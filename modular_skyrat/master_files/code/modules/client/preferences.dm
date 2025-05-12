@@ -68,14 +68,14 @@
 	else if (SA.color_src == USE_ONE_COLOR)
 		shown_colors = 1
 	if((allow_advanced_colors || SA.always_color_customizable) && shown_colors)
-		dat += "<a href='?src=[REF(src)];key=[key];preference=reset_color;task=change_bodypart'>R</a>"
-	dat += "<a href='?src=[REF(src)];key=[key];preference=change_name;task=change_bodypart'>[acc_name]</a>"
+		dat += "<a href='byond://?src=[REF(src)];key=[key];preference=reset_color;task=change_bodypart'>R</a>"
+	dat += "<a href='byond://?src=[REF(src)];key=[key];preference=change_name;task=change_bodypart'>[acc_name]</a>"
 	if(allow_advanced_colors || SA.always_color_customizable)
 		if(shown_colors)
 			dat += "<BR>"
 			var/list/colorlist = mutant_bodyparts[key][MUTANT_INDEX_COLOR_LIST]
 			for(var/i in 1 to shown_colors)
-				dat += " <a href='?src=[REF(src)];key=[key];color_index=[i];preference=change_color;task=change_bodypart'><span class='color_holder_box' style='background-color:["#[colorlist[i]]"]'></span></a>"
+				dat += " <a href='byond://?src=[REF(src)];key=[key];color_index=[i];preference=change_color;task=change_bodypart'><span class='color_holder_box' style='background-color:["#[colorlist[i]]"]'></span></a>"
 	return dat
 
 /datum/preferences/proc/reset_colors()
@@ -163,7 +163,7 @@
 		return FALSE
 
 /// This proc saves the damage currently on `character` (human) and reapplies it after `safe_transfer_prefs()` is applied to the `character`.
-/datum/preferences/proc/safe_transfer_prefs_to_with_damage(mob/living/carbon/human/character, icon_updates = TRUE, is_antag = FALSE)
+/datum/preferences/proc/safe_transfer_prefs_to_with_damage(mob/living/carbon/human/character, icon_updates = TRUE, is_antag = FALSE, visuals_only = FALSE)
 	if(!istype(character))
 		return FALSE
 
@@ -171,10 +171,12 @@
 	if(!added_tracker)
 		return FALSE
 
-	safe_transfer_prefs_to(character, icon_updates, is_antag)
+	safe_transfer_prefs_to(character, icon_updates, is_antag, visuals_only = visuals_only)
 	qdel(added_tracker)
 
 // Updates the mob's chat color in the global cache
-/datum/preferences/safe_transfer_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE, is_antag = FALSE)
+/datum/preferences/safe_transfer_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE, is_antag = FALSE, visuals_only = FALSE)
 	. = ..()
 	GLOB.chat_colors_by_mob_name[character.name] = list(character.chat_color, character.chat_color_darkened) // by now the mob has had its prefs applied to it
+
+#undef MAX_MUTANT_ROWS

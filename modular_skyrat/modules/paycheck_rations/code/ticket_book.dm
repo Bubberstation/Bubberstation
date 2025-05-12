@@ -8,7 +8,7 @@
 /obj/item/storage/ration_ticket_book/Initialize(mapload)
 	. = ..()
 	atom_storage.max_specific_storage = WEIGHT_CLASS_SMALL
-	atom_storage.max_slots = 4
+	atom_storage.max_slots = 8
 	atom_storage.set_holdable(list(
 		/obj/item/paper/paperslip/ration_ticket,
 	))

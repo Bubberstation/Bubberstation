@@ -57,12 +57,12 @@
 #define HEADSMASH_BLOCK_ARMOR 20
 #define SUPLEX_TIMER 3 SECONDS
 
-// alt-clicking a human as another human while grappling them tightly makes you try for grappling-based maneuvers.
+/// alt-clicking a human as another human while grappling them tightly makes you try for grappling-based maneuvers.
 /mob/living/carbon/human/click_alt(mob/user)
 	if(!ishuman(user))
 		return ..()
 	var/mob/living/carbon/human/human_user = user
-	if(human_user == src || !human_user.combat_mode || !human_user.dna.species.try_grab_maneuver(user, src))
+	if(human_user != src && human_user.combat_mode && !human_user.dna.species.try_grab_maneuver(user, src))
 		return CLICK_ACTION_BLOCKING
 
 /// State check for grab maneuver - because you can't logically suplex a man if you've stopped grappling them.
@@ -89,7 +89,7 @@
 			. = TRUE
 			try_headslam(user, target, affecting)
 		if(BODY_ZONE_CHEST)
-			if(istype(user.mind.martial_art, /datum/martial_art/cqc))
+			if(locate(/datum/martial_art/cqc) in user.martial_arts)
 			// If you know CQC, You can't suplex and instead have the ability to use the chokehold, Sorry.
 			// Sleeping people on demand is stronger anyway.
 				return FALSE

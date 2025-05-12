@@ -11,18 +11,17 @@
 
 
 /// Logs a message in a mob's individual log, and in the global logs as well if log_globally is true
-/mob/log_message(message, message_type, color = null, log_globally = TRUE, list/data, redacted_copy) // BUBBER EDIT
+/mob/log_message(message, message_type, color = null, log_globally = TRUE, list/data)
 	if(!LAZYLEN(message))
 		stack_trace("Empty message")
 		return
 
 	// Cannot use the list as a map if the key is a number, so we stringify it (thank you BYOND)
 	var/smessage_type = num2text(message_type, MAX_BITFLAG_DIGITS)
-	var/datum/player_details/client_details = client?.player_details
 
-	if(!isnull(client_details))
-		if(!islist(client_details.logging[smessage_type]))
-			client_details.logging[smessage_type] = list()
+	if(HAS_CONNECTED_PLAYER(src))
+		if(!islist(persistent_client.logging[smessage_type]))
+			persistent_client.logging[smessage_type] = list()
 
 	if(!islist(logging[smessage_type]))
 		logging[smessage_type] = list()
@@ -57,7 +56,7 @@
 
 	logging[smessage_type] += timestamped_message
 
-	if(client)
-		client.player_details.logging[smessage_type] += timestamped_message
+	if(HAS_CONNECTED_PLAYER(src))
+		persistent_client.logging[smessage_type] += timestamped_message
 
 	..()

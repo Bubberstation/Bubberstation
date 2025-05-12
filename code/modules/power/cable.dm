@@ -177,7 +177,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(
 	icon_state = dir_string
 	return ..()
 
-/obj/structure/cable/proc/handlecable(obj/item/W, mob/user, params)
+/obj/structure/cable/proc/handlecable(obj/item/W, mob/user, list/modifiers)
 	var/turf/T = get_turf(src)
 	if(T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE)
 		return
@@ -207,8 +207,8 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(
 //   - Wirecutters : cut it duh !
 //   - Multitool : get the power currently passing through the cable
 //
-/obj/structure/cable/attackby(obj/item/W, mob/user, params)
-	handlecable(W, user, params)
+/obj/structure/cable/attackby(obj/item/item, mob/user, list/modifiers)
+	handlecable(item, user, modifiers)
 
 
 // shock the user with probability prb
@@ -221,7 +221,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(
 	else
 		return FALSE
 
-/obj/structure/cable/singularity_pull(S, current_size)
+/obj/structure/cable/singularity_pull(atom/singularity, current_size)
 	..()
 	if(current_size >= STAGE_FIVE)
 		deconstruct()
@@ -798,3 +798,9 @@ GLOBAL_LIST(hub_radial_layer_list)
 // This is a mapping aid. In order for this to be placed on a map and function, all three layers need to have their nodes active
 /obj/structure/cable/multilayer/connected
 		cable_layer = CABLE_LAYER_1 | CABLE_LAYER_2 | CABLE_LAYER_3
+
+/obj/structure/cable/multilayer/layer1
+		cable_layer = CABLE_LAYER_1
+
+/obj/structure/cable/multilayer/layer3
+		cable_layer =  CABLE_LAYER_3

@@ -221,7 +221,7 @@
 
 /// checks if we're a brainmob inside a brain & the brain is inside a head
 /datum/antagonist/bloodsucker/proc/is_head(mob/living/poor_fucker)
-	if(!istype(poor_fucker?.loc, /obj/item/organ/internal/brain))
+	if(!istype(poor_fucker?.loc, /obj/item/organ/brain))
 		return
 	var/obj/brain = poor_fucker.loc
 	if(!istype(brain?.loc, /obj/item/bodypart/head))
@@ -277,9 +277,9 @@
 	power.on_power_upgrade()
 
 /datum/antagonist/bloodsucker/proc/regain_heart(mob/living/carbon/target, obj/structure/closet/crate/coffin/coffin)
-	var/obj/item/organ/heart = locate(/obj/item/organ/internal/heart) in coffin.contents
+	var/obj/item/organ/heart = locate(/obj/item/organ/heart) in coffin.contents
 	if(heart && !target.get_organ_slot(ORGAN_SLOT_HEART) && heart.Insert(target))
-		to_chat(span_warning("You have regained your heart!"))
+		to_chat(target, span_warning("You have regained your heart!"))
 
 /datum/antagonist/bloodsucker/proc/allow_head_to_talk(mob/speaker, message, ignore_spam, forced)
 	SIGNAL_HANDLER
@@ -372,24 +372,18 @@
 	if(is_head(deleted_mob))
 		on_brainmob_qdel()
 
+/datum/antagonist/bloodsucker/proc/register_body_signals(mob/target)
+	for(var/signal in body_signals)
+		RegisterSignal(target, signal, body_signals[signal])
 
-/datum/antagonist/bloodsucker/proc/unregister_body_signals()
-	UnregisterSignal(owner.current, list(
-		COMSIG_LIVING_LIFE,
-		COMSIG_ATOM_EXAMINE,
-		COMSIG_LIVING_DEATH,
-		COMSIG_SPECIES_GAIN,
-		COMSIG_QDELETING,
-		COMSIG_ENTER_COFFIN,
-		COMSIG_MOB_STAKED,
-		COMSIG_CARBON_LOSE_ORGAN
-	))
+/datum/antagonist/bloodsucker/proc/unregister_body_signals(mob/target)
+	for(var/signal in body_signals)
+		UnregisterSignal(target, signal)
+
+/datum/antagonist/bloodsucker/proc/register_sol_signals()
+	for(var/signal in sol_signals)
+		RegisterSignal(SSsunlight, signal, sol_signals[signal])
 
 /datum/antagonist/bloodsucker/proc/unregister_sol_signals()
-	UnregisterSignal(SSsunlight, list(
-		COMSIG_SOL_RANKUP_BLOODSUCKERS,
-		COMSIG_SOL_NEAR_START,
-		COMSIG_SOL_END,
-		COMSIG_SOL_RISE_TICK,
-		COMSIG_SOL_WARNING_GIVEN
-	))
+	for(var/signal in sol_signals)
+		UnregisterSignal(SSsunlight, signal)

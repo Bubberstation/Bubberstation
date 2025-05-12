@@ -1,8 +1,9 @@
-/obj/item/organ/internal/cyberimp/arm/power_cord
+/obj/item/organ/cyberimp/arm/power_cord
 	name = "charging implant"
 	desc = "An internal power cord. Useful if you run on elecricity. Not so much otherwise."
 	items_to_create = list(/obj/item/synth_powercord)
-	zone = "l_arm"
+	zone = BODY_ZONE_L_ARM
+	slot = ORGAN_SLOT_LEFT_ARM_AUG
 
 /obj/item/synth_powercord
 	name = "power cord"
@@ -40,7 +41,7 @@
 	var/nutrition_level_joules = user.nutrition * SYNTH_JOULES_PER_NUTRITION
 	user.changeNext_move(CLICK_CD_MELEE)
 
-	var/obj/item/organ/internal/stomach/synth/synth_cell = user.get_organ_slot(ORGAN_SLOT_STOMACH)
+	var/obj/item/organ/stomach/synth/synth_cell = user.get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(QDELETED(synth_cell) || !istype(synth_cell))
 		to_chat(user, span_warning("You plug into [target], but nothing happens! It seems you don't have an internal cell to charge."))
 		return
@@ -82,7 +83,7 @@
 	var/minimum_cell_charge = target_apc ? SYNTH_APC_MINIMUM_PERCENT : 0
 
 	if(!target_cell || target_cell.percent() < minimum_cell_charge)
-		user.balloon_alert(user, "APC charge low!")
+		user.balloon_alert(user, UNLINT("APC charge low!"))
 		return
 
 	var/energy_needed
@@ -98,7 +99,7 @@
 		// Check if the charge level of the cell is below the minimum.
 		// Prevents synths from overloading the cell.
 		if(target_cell.percent() < minimum_cell_charge)
-			user.balloon_alert(user, "APC charge low!")
+			user.balloon_alert(user, UNLINT("APC charge low!"))
 			break
 
 		// Attempt to drain charge from the cell.
@@ -113,7 +114,7 @@
 			// The cell could be sabotaged, which causes it to explode and qdelete.
 			if(QDELETED(target_cell))
 				return
-			user.balloon_alert(user, "APC failure!")
+			user.balloon_alert(user, UNLINT("APC failure!"))
 			break
 
 		// If charging was successful, then increase user nutrition and emit sparks.

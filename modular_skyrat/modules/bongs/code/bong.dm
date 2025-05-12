@@ -235,6 +235,7 @@
 	update_alpha()
 
 #undef MAX_FAKE_STEAM_STAGES
+#undef STAGE_DOWN_TIME
 
 /datum/crafting_recipe/bong
 	name = "Bong"

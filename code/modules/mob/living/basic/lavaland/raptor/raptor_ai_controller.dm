@@ -1,5 +1,3 @@
-#define NEXT_EAT_COOLDOWN 45 SECONDS
-
 /datum/ai_controller/basic_controller/raptor
 	blackboard = list(
 		BB_INTERACTIONS_WITH_OWNER = list(
@@ -29,7 +27,6 @@
 		/datum/ai_planning_subtree/find_and_hunt_target/raptor_trough,
 		/datum/ai_planning_subtree/find_and_hunt_target/care_for_young,
 		/datum/ai_planning_subtree/make_babies,
-		/datum/ai_planning_subtree/find_and_hunt_target/raptor_start_trouble,
 		/datum/ai_planning_subtree/express_happiness,
 		/datum/ai_planning_subtree/find_and_hunt_target/play_with_owner/raptor,
 	)
@@ -38,12 +35,20 @@
 	. = ..()
 	if(. & AI_CONTROLLER_INCOMPATIBLE)
 		return
-	RegisterSignal(new_pawn, COMSIG_MOB_ATE, PROC_REF(post_eat))
+	RegisterSignal(new_pawn, COMSIG_AI_BLACKBOARD_KEY_SET(BB_RAPTOR_COWARD), PROC_REF(on_cowardly_set))
+	RegisterSignal(new_pawn, COMSIG_AI_BLACKBOARD_KEY_CLEARED(BB_RAPTOR_COWARD), PROC_REF(on_cowardly_clear))
 
-/datum/ai_controller/basic_controller/raptor/proc/post_eat()
+/datum/ai_controller/basic_controller/raptor/proc/on_cowardly_set(datum/source)
 	SIGNAL_HANDLER
+	ADD_TRAIT(pawn, TRAIT_MOB_DIFFICULT_TO_MOUNT, REF(src))
+
+/datum/ai_controller/basic_controller/raptor/proc/on_cowardly_clear(datum/source)
+	SIGNAL_HANDLER
+	REMOVE_TRAIT(pawn, TRAIT_MOB_DIFFICULT_TO_MOUNT, REF(src))
+
+/datum/ai_controller/basic_controller/raptor/on_mob_eat()
+	. = ..()
 	clear_blackboard_key(BB_RAPTOR_TROUGH_TARGET)
-	set_blackboard_key(BB_RAPTOR_EAT_COOLDOWN, world.time + NEXT_EAT_COOLDOWN)
 
 /datum/ai_controller/basic_controller/baby_raptor
 	blackboard = list(
@@ -62,5 +67,3 @@
 		/datum/ai_planning_subtree/express_happiness,
 		/datum/ai_planning_subtree/look_for_adult,
 	)
-
-#undef NEXT_EAT_COOLDOWN

@@ -1,4 +1,4 @@
-//SKYRAT AND SOL AMMO
+//TERRAGOV AMMO
 
 /datum/supply_pack/security/lethalsolpistols
 	name = ".35 Ammunition Crates"
@@ -53,24 +53,25 @@
 	crate_name = "anti riot shotgun ammo crate"
 
 
-//SOL GUNS
+//TERRAGOV GUNS
 
 /datum/supply_pack/security/wespe
 	name = "Wespe Three-Pack Crates"
 	desc = "Contains three case of the .35 sol handgun, magazines included."
 	cost = CARGO_CRATE_VALUE * 12
-	contains = list(/obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/wespe = 3,
-					/obj/item/ammo_box/c35sol/incapacitator = 3,
-				)
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/sol = 3,
+		/obj/item/ammo_box/magazine/c35sol_pistol = 3,
+		/obj/item/ammo_box/c35sol/incapacitator = 3,
+		)
 	crate_name = "wespe pistols crate"
 
 /datum/supply_pack/security/eland
 	name = "Eland Three-Pack Crates"
 	desc = "Contains three case of the .35 sol revolver, munition boxes included."
 	cost = CARGO_CRATE_VALUE * 12
-	contains = list(/obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/eland = 3,
-					/obj/item/ammo_box/c35sol/incapacitator = 3,
-				)
+	contains = list(/obj/item/gun/ballistic/revolver/sol = 3,
+		/obj/item/ammo_box/c35sol/incapacitator = 3,
+		)
 	crate_name = "eland pistols crate"
 
 /datum/supply_pack/security/armory/renoster
@@ -88,7 +89,8 @@
 	desc = "Three entirely proprietary Sindano kits, chambered in .35 Sol Short. Each kit contains three empty magazines and a box each of incapacitator and lethal rounds."
 	cost = CARGO_CRATE_VALUE * 20
 	contains = list(
-		/obj/item/storage/toolbox/guncase/skyrat/carwo_large_case/sindano = 3,
+		/obj/item/gun/ballistic/automatic/sol_smg = 3,
+		/obj/item/ammo_box/magazine/c35sol_pistol = 3,
 	)
 	crate_name = "Carwo 'Sindano' Submachinegun Crate"
 
@@ -105,12 +107,12 @@
 
 /datum/supply_pack/security/sidearmcrate
 	name = "Sidearm Crate"
-	desc = "Contains Two Sidearm Beacon, rated for NanoTrasen usage."
+	desc = "Contains Two Sidearm Beacon, rated for Nanotrasen usage."
 	access_view = ACCESS_ARMORY
 	cost = CARGO_CRATE_VALUE * 12
 	contains = list(/obj/item/choice_beacon/security_pistol = 2,
 	)
-	crate_name = "NanoTrasen Sidearm Crate"
+	crate_name = "Nanotrasen Sidearm Crate"
 
 // RomFed Gun
 
@@ -119,8 +121,8 @@
 	desc = "Two CMG-1, chambered in experimental steel flechette."
 	cost = CARGO_CRATE_VALUE * 20
 	contains = list(
-		/obj/item/storage/toolbox/guncase/skyrat/pistol/rom_flech,
-		/obj/item/storage/toolbox/guncase/skyrat/pistol/rom_flech,
+		/obj/item/gun/ballistic/automatic/rom_flech = 2,
+		/obj/item/ammo_box/magazine/caflechette = 2,
 	)
 	crate_name = "RomTech CMG-1 Crate"
 
@@ -128,7 +130,8 @@
 	name = "Romulus Ceremonial Bolt Action Rifle Crate"
 	desc = "Contains Three Ceremonial Bolt Action Rifle in .40 , as well as ammo for it."
 	cost = CARGO_CRATE_VALUE * 12
-	contains = list(/obj/item/storage/toolbox/guncase/skyrat/ceremonial_rifle = 3,
+	contains = list(/obj/item/gun/ballistic/rifle/carwil = 3,
+		/obj/item/ammo_box/magazine/c40sol_rifle = 3,
 	)
 	crate_name = "Romulus Ceremonial Rifle Crate"
 
@@ -154,6 +157,7 @@
 		/obj/item/ammo_box/c980grenade/riot = 3,
 	)
 
+/*
 /datum/supply_pack/imports/lmg
 	name = "Smuggled Sol Light Machinegun Crate"
 	desc = "(*!&@#GOOD NEWS, OPERATIVE! WE GOT YOU THE BIG LEAGUE AUTOMATIC WEAPONS. BY \
@@ -166,6 +170,7 @@
 		/obj/item/gun/ballistic/automatic/sol_rifle/machinegun = 1,
 		/obj/item/ammo_box/magazine/c40sol_rifle/drum = 2,
 	)
+*/ //BUBBER EDIT: IT'S AS BAD AS YOU THOUGHT
 
 /datum/supply_pack/imports/infanterie
 	name = "Carwil Battle Rifle Crate"

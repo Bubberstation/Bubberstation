@@ -15,7 +15,7 @@
 
 	wound_bonus = -35
 	bare_wound_bonus = -60
-	stamina_falloff_tile = 0.3
+	stamina_falloff_tile = -0.3
 
 /obj/item/ammo_casing/c460rowland/dart
 	name = ".460 Rowland Armour Piercing bullet casing"
@@ -70,5 +70,5 @@
 	wound_bonus = -10
 	bare_wound_bonus = -10
 	armour_penetration = 45
-	speed = 0.5
+	speed = 2
 	range = 14

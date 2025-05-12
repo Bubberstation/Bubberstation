@@ -1,4 +1,3 @@
-/* SKYRAT EDIT: See modular_skyrat/modules/jukebox
 /obj/machinery/jukebox
 	name = "jukebox"
 	desc = "A classic music player."
@@ -26,6 +25,11 @@
 	stop_music()
 	QDEL_NULL(music_player)
 	return ..()
+
+/obj/machinery/jukebox/examine(mob/user)
+	. = ..()
+	if(music_player.active_song_sound)
+		. += "Now playing: [music_player.selection.song_name]"
 
 /obj/machinery/jukebox/no_access
 	req_access = null
@@ -384,4 +388,3 @@
 /obj/machinery/jukebox/disco/proc/dance4_revert(mob/living/dancer, matrix/starting_matrix)
 	animate(dancer, transform = starting_matrix, time = 5, loop = 0)
 	REMOVE_TRAIT(dancer, TRAIT_DISCO_DANCER, REF(src))
-SKYRAT EDIT END*/

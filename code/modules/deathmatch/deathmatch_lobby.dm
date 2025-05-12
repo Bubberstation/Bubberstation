@@ -38,6 +38,7 @@
 		loadouts = GLOB.deathmatch_game.loadouts
 	add_player(player, loadouts[1], TRUE)
 	ui_interact(player)
+	addtimer(CALLBACK(src, PROC_REF(lobby_afk_probably)), 5 MINUTES) // being generous here
 
 /datum/deathmatch_lobby/Destroy(force, ...)
 	. = ..()
@@ -129,7 +130,9 @@
 	if (isnull(observer) || !observer.client)
 		remove_ckey_from_play(ckey)
 		return
-
+	//Bubber edit - storing time of death before deathmatch
+	player_previous_death_times[observer.ckey] = list("previous_time_of_death" = observer.persistent_client.time_of_death)
+	//Bubber edit end
 	// equip player
 	var/datum/outfit/deathmatch_loadout/loadout = players_info["loadout"]
 	if (!(loadout in loadouts))
@@ -139,15 +142,15 @@
 	observer.client?.prefs.safe_transfer_prefs_to(new_player)
 	new_player.dna.update_dna_identity()
 	new_player.updateappearance(icon_update = TRUE, mutcolor_update = TRUE, mutations_overlay_update = TRUE)
-	new_player.add_traits(list(TRAIT_CANNOT_CRYSTALIZE, TRAIT_PERMANENTLY_MORTAL), INNATE_TRAIT)
-	if(!isnull(observer.mind) && observer.mind?.current)
+	new_player.add_traits(list(TRAIT_CANNOT_CRYSTALIZE, TRAIT_PERMANENTLY_MORTAL, TRAIT_TEMPORARY_BODY), INNATE_TRAIT)
+	if(observer.mind)
 		new_player.AddComponent( \
 			/datum/component/temporary_body, \
 			old_mind = observer.mind, \
 			old_body = observer.mind.current, \
 		)
 	new_player.equipOutfit(loadout) // Loadout
-	new_player.key = ckey
+	new_player.PossessByPlayer(ckey)
 	players_info["mob"] = new_player
 
 	for(var/datum/deathmatch_modifier/modifier as anything in modifiers)
@@ -155,8 +158,8 @@
 
 	// BUBBER EDIT BEGIN - No more abductors talking to station!
 	if(isabductor(new_player))
-		var/obj/item/organ/internal/tongue/abductor/tongue = new_player.get_organ_slot(ORGAN_SLOT_TONGUE)
-		if(istype(tongue, /obj/item/organ/internal/tongue/abductor))
+		var/obj/item/organ/tongue/abductor/tongue = new_player.get_organ_slot(ORGAN_SLOT_TONGUE)
+		if(istype(tongue, /obj/item/organ/tongue/abductor))
 			tongue.mothership = "deathmatch"
 	// BUBBER EDIT END
 
@@ -176,6 +179,12 @@
 	announce(span_reallybig("The players have took too long! Game ending!"))
 	end_game()
 
+/datum/deathmatch_lobby/proc/lobby_afk_probably()
+	if (QDELING(src) || playing)
+		return
+	announce(span_warning("Lobby ([host]) was closed due to not starting after 5 minutes, being potentially AFK. Please be faster next time."))
+	GLOB.deathmatch_game.remove_lobby(host)
+
 /datum/deathmatch_lobby/proc/end_game()
 	if (!location)
 		CRASH("Reservation of deathmatch game [host] deleted during game.")
@@ -193,7 +202,10 @@
 		players[ckey]["mob"] = null
 		loser.ghostize(can_reenter_corpse = FALSE)
 		qdel(loser)
-
+		//bubber edit - give them their death timer back
+		var/mob/player_mob = get_mob_by_ckey(ckey)
+		player_mob.persistent_client.time_of_death = player_previous_death_times[ckey]["previous_time_of_death"]
+		//bubber edit end
 	for(var/datum/deathmatch_modifier/modifier in modifiers)
 		GLOB.deathmatch_game.modifiers[modifier].on_end_game(src)
 
@@ -228,6 +240,11 @@
 	if(!isnull(ghost))
 		add_observer(ghost, (host == ckey))
 	announce(span_reallybig("[player.real_name] HAS DIED.<br>[players.len] REMAIN."))
+
+	//Bubber Edit - retain respawn timer
+	var/mob/dead_player_mob = get_mob_by_ckey(ckey)
+	dead_player_mob.persistent_client.time_of_death = player_previous_death_times[ckey]["previous_time_of_death"]
+	//BUBBER EDIT END
 
 	if(!gibbed && !QDELING(player) && !isdead(player))
 		if(!HAS_TRAIT(src, TRAIT_DEATHMATCH_EXPLOSIVE_IMPLANTS))
@@ -310,7 +327,7 @@
 	var/max_players = map.max_players
 	for (var/possible_unlucky_loser in players)
 		max_players--
-		if (max_players <= 0)
+		if (max_players < 0)
 			var/loser_mob = players[possible_unlucky_loser]["mob"]
 			remove_ckey_from_play(possible_unlucky_loser)
 			add_observer(loser_mob)

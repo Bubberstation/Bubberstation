@@ -134,6 +134,7 @@
 	icon_state = "bouncy_castle"
 	anchored = TRUE
 	density = TRUE
+	layer = OBJ_LAYER
 
 /obj/structure/bouncy_castle/Initialize(mapload, mob/gored)
 	. = ..()
@@ -149,7 +150,7 @@
 
 	AddComponent(/datum/component/bloody_spreader,\
 		blood_left = INFINITY,\
-		blood_dna = list("meaty DNA" = "MT-"),\
+		blood_dna = list("meaty DNA" = get_blood_type(BLOOD_TYPE_MEAT)),\
 		diseases = null,\
 	)
 

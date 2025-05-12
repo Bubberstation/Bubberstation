@@ -43,7 +43,6 @@
 		/obj/item/ammo_box/magazine/caflechette = 10,
 	)
 
-	veteran_only = TRUE
 	job_flags = STATION_JOB_FLAGS | JOB_CANNOT_OPEN_SLOTS
 
 /datum/outfit/job/blueshield

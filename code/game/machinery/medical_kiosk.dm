@@ -117,7 +117,7 @@
 		active_price = board.custom_cost
 	return
 
-/obj/machinery/medical_kiosk/attackby(obj/item/O, mob/user, params)
+/obj/machinery/medical_kiosk/attackby(obj/item/O, mob/user, list/modifiers)
 	if(default_deconstruction_screwdriver(user, "[base_icon_state]_open", "[base_icon_state]_off", O))
 		return
 	else if(default_deconstruction_crowbar(O))
@@ -178,7 +178,7 @@
 			user.visible_message(span_warning("[user] waves a suspicious card by the [src]'s biometric scanner!"))
 		balloon_alert(user, "sensors overloaded")
 	obj_flags |= EMAGGED
-	var/obj/item/circuitboard/computer/cargo/board = circuit
+	var/obj/item/circuitboard/board = circuit
 	board.obj_flags |= EMAGGED //Mirrors emag status onto the board as well.
 	pandemonium = TRUE
 	return TRUE
@@ -237,7 +237,7 @@
 	var/bleed_status = "Patient is not currently bleeding."
 	var/blood_status = " Patient either has no blood, or does not require it to function."
 	var/blood_percent = round((patient.blood_volume / BLOOD_VOLUME_NORMAL)*100)
-	var/blood_type = patient.dna.blood_type
+	var/datum/blood_type/blood_type = patient.dna.blood_type
 	var/blood_warning = " "
 	var/blood_alcohol = patient.get_blood_alcohol_content()
 
@@ -254,7 +254,7 @@
 			blood_warning = " Patient has low blood levels. Seek a large meal, or iron supplements."
 		if(blood_percent <= 60)
 			blood_warning = " Patient has DANGEROUSLY low blood levels. Seek a blood transfusion, iron supplements, or saline glucose immedietly. Ignoring treatment may lead to death!"
-		blood_status = "Patient blood levels are currently reading [blood_percent]%. Patient has [ blood_type] type blood. [blood_warning]"
+		blood_status = "Patient blood levels are currently reading [blood_percent]%. Patient has [ blood_type.name] type blood. [blood_warning]"
 
 	var/trauma_status = "Patient is free of unique brain trauma."
 	var/brain_loss = patient.get_organ_loss(ORGAN_SLOT_BRAIN)
@@ -296,7 +296,7 @@
 			chemical_list += list(list("name" = reagent.name, "volume" = round(reagent.volume, 0.01)))
 			if(reagent.overdosed)
 				overdose_list += list(list("name" = reagent.name))
-	var/obj/item/organ/internal/stomach/belly = patient.get_organ_slot(ORGAN_SLOT_STOMACH)
+	var/obj/item/organ/stomach/belly = patient.get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(belly?.reagents.reagent_list.len) //include the stomach contents if it exists
 		for(var/bile in belly.reagents.reagent_list)
 			var/datum/reagent/bit = bile
@@ -312,7 +312,7 @@
 		addict_list += list(list("name" = initial(addiction_type.name)))
 
 	if (patient.has_status_effect(/datum/status_effect/hallucination))
-		hallucination_status = "Subject appears to be hallucinating. Suggested treatments: bedrest, mannitol or psicodine."
+		hallucination_status = "Subject appears to be hallucinating. Suggested treatments: Antipsychotic medication, [/datum/reagent/medicine/haloperidol::name] or [/datum/reagent/medicine/synaptizine::name]."
 
 	if(patient.stat == DEAD || HAS_TRAIT(patient, TRAIT_FAKEDEATH) || ((brute_loss+fire_loss+tox_loss+oxy_loss) >= 200))  //Patient status checks.
 		patient_status = "Dead."
@@ -375,7 +375,7 @@
 	data["active_status_4"] = scan_active & KIOSK_SCANNING_REAGENTS // Reagents/hallucination Scan Check
 	return data
 
-/obj/machinery/medical_kiosk/ui_act(action,active)
+/obj/machinery/medical_kiosk/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return

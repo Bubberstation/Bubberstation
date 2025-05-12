@@ -52,6 +52,11 @@
 	add_points(delta_time)
 	handle_tracks()
 
+/datum/storyteller/vv_edit_var(var_name, var_value) // Appends any name changes with the original storyteller
+	. = ..()
+	if(var_name == NAMEOF(src, name))
+		name = "[var_value] ([initial(name)])"
+
 /// Add points to all tracks while respecting the multipliers.
 /datum/storyteller/proc/add_points(delta_time)
 	var/datum/controller/subsystem/gamemode/mode = SSgamemode
@@ -60,7 +65,11 @@
 		mode.event_track_points[track] += point_gain
 		mode.last_point_gains[track] = point_gain
 
-/// Goes through every track of the gamemode and checks if it passes a threshold to buy an event, if does, buys one.
+/**
+ * Goes through every track of the gamemode and checks if it passes a threshold to buy an event, if does, buys one.
+ *
+ * Additionally updates static ui data once it's done incase event track data has changed
+ */
 /datum/storyteller/proc/handle_tracks()
 	. = FALSE //Has return value for the roundstart loop
 	var/datum/controller/subsystem/gamemode/mode = SSgamemode
@@ -68,6 +77,7 @@
 		var/points = mode.event_track_points[track]
 		if(points >= mode.point_thresholds[track] && find_and_buy_event_from_track(track))
 			. = TRUE
+	mode.update_static_data_for_all_viewers()
 
 /// Find and buy a valid event from a track.
 /datum/storyteller/proc/find_and_buy_event_from_track(track)
@@ -93,6 +103,10 @@
 				continue
 			if(event.can_spawn_event(player_pop))
 				valid_events[event] = event.calculated_weight
+				if(event.roundstart)
+					log_dynamic("[event] added to roundstart event pool with calculated weight [event.calculated_weight] and tags [english_list(event.tags)].")
+			else if(event.roundstart)
+				log_dynamic("[event] did not meet inclusion criteria, skipped.")
 		///If we didn't get any events, remove the points inform admins and dont do anything
 		if(!length(valid_events))
 			message_admins("Storyteller failed to pick an event for track of [track].")
@@ -119,11 +133,14 @@
 	message_admins("Storyteller purchased and triggered [bought_event] event, on [track] track, for [total_cost] cost.")
 	log_admin("Storyteller purchased and triggered [bought_event] event, on [track] track, for [total_cost] cost.")
 	if(bought_event.roundstart)
+		log_dynamic("Storyteller selected roundstart event [bought_event] based on weighted selection!")
 		mode.TriggerEvent(bought_event)
 	else
 		mode.schedule_event(bought_event, (rand(3, 4) MINUTES), total_cost)
 
-/// Calculates the weights of the events from a passed track.
+/**
+ * Calculates the weights of the events from a passed track.
+ */
 /datum/storyteller/proc/calculate_weights(track)
 	for(var/datum/round_event_control/event as anything in SSgamemode.event_pools[track])
 		var/weight_total = event.weight
@@ -139,3 +156,9 @@
 			weight_total -= event.reoccurence_penalty_multiplier * weight_total * (1 - (event_repetition_multiplier ** occurences))
 		/// Write it
 		event.calculated_weight = round(weight_total, 1)
+
+/datum/storyteller/proc/calculate_weights_all()
+	var/datum/controller/subsystem/gamemode/mode = SSgamemode
+	for(var/track in mode.event_tracks)
+		calculate_weights(track)
+	mode.update_static_data_for_all_viewers()

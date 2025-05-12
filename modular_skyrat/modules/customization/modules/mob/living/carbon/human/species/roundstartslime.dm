@@ -30,8 +30,8 @@
 	heatmod = 1
 	specific_alpha = 155
 	markings_alpha = 130 //This is set lower than the other so that the alpha values don't stack on top of each other so much
-	mutanteyes = /obj/item/organ/internal/eyes
-	mutanttongue = /obj/item/organ/internal/tongue/jelly
+	mutanteyes = /obj/item/organ/eyes
+	mutanttongue = /obj/item/organ/tongue/jelly
 
 	bodypart_overrides = list( //Overriding jelly bodyparts
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/jelly/slime/roundstart,
@@ -159,12 +159,13 @@
 		if("Tertiary")
 			color_target = "mcolor3"
 
-	var/new_mutant_colour = input(
+	// BUBBERSTATION EDIT START: TGUI COLOR PICKER
+	var/new_mutant_colour = tgui_color_picker(
 		alterer,
-		"Choose your character's new [color_choice = "All" ? "" : lowertext(color_choice)] color:",
+		"Choose your character's new [color_choice = "All" ? "" : LOWER_TEXT(color_choice)] color:",
 		"Form Alteration",
 		alterer.dna.features[color_target]
-	) as color|null
+	) // BUBBERSTATION EDIT END: TGUI COLOR PICKER
 	if(!new_mutant_colour)
 		return
 
@@ -264,7 +265,7 @@
 			var/hair_area = tgui_alert(alterer, "Select which color you would like to change", "Hair Color Alterations", list("Hairstyle", "Facial Hair", "Both"))
 			if(!hair_area)
 				return
-			var/new_hair_color = input(alterer, "Select your new hair color", "Hair Color Alterations", alterer.dna.features["mcolor"]) as color|null
+			var/new_hair_color = tgui_color_picker(alterer, "Select your new hair color", "Hair Color Alterations", alterer.dna.features["mcolor"]) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 			if(!new_hair_color)
 				return
 
@@ -327,7 +328,7 @@
 			alter_parts(alterer)
 
 	alterer.mutant_renderkey = "" //Just in case
-	alterer.update_mutant_bodyparts()
+	alterer.update_body_parts()
 
 /**
  * Alter parts lets you adjust mutant bodyparts
@@ -400,7 +401,7 @@
 			alterer.dna.species.mutant_bodyparts[chosen_key] = new_acc_list
 			alterer.dna.mutant_bodyparts[chosen_key] = new_acc_list.Copy()
 		alterer.dna.update_uf_block(SSaccessories.dna_mutant_bodypart_blocks[chosen_key])
-	alterer.update_mutant_bodyparts()
+	alterer.update_body_parts()
 	alterer.update_clothing(ALL) // for any clothing that has alternate versions (e.g. muzzled masks)
 
 /**
@@ -445,13 +446,13 @@
 		return
 	switch(dna_alteration)
 		if("Breasts Lactation")
-			var/obj/item/organ/external/genital/breasts/melons = alterer.get_organ_slot(ORGAN_SLOT_BREASTS)
+			var/obj/item/organ/genital/breasts/melons = alterer.get_organ_slot(ORGAN_SLOT_BREASTS)
 			alterer.dna.features["breasts_lactation"] = !alterer.dna.features["breasts_lactation"]
 			melons.lactates = alterer.dna.features["breasts_lactation"]
 			alterer.balloon_alert(alterer, "[alterer.dna.features["breasts_lactation"] ? "lactating" : "not lactating"]")
 
 		if("Breasts Size")
-			var/obj/item/organ/external/genital/breasts/melons = alterer.get_organ_slot(ORGAN_SLOT_BREASTS)
+			var/obj/item/organ/genital/breasts/melons = alterer.get_organ_slot(ORGAN_SLOT_BREASTS)
 			var/new_size = tgui_input_list(
 				alterer,
 				"Choose your character's breasts size:",
@@ -464,7 +465,7 @@
 			melons.set_size(alterer.dna.features["breasts_size"])
 
 		if("Penis Girth")
-			var/obj/item/organ/external/genital/penis/sausage = alterer.get_organ_slot(ORGAN_SLOT_PENIS)
+			var/obj/item/organ/genital/penis/sausage = alterer.get_organ_slot(ORGAN_SLOT_PENIS)
 			var/max_girth = PENIS_MAX_GIRTH
 			if(alterer.dna.features["penis_size"] >= max_girth)
 				max_girth = alterer.dna.features["penis_size"]
@@ -480,7 +481,7 @@
 				sausage.girth = alterer.dna.features["penis_girth"]
 
 		if("Penis Length")
-			var/obj/item/organ/external/genital/penis/wang = alterer.get_organ_slot(ORGAN_SLOT_PENIS)
+			var/obj/item/organ/genital/penis/wang = alterer.get_organ_slot(ORGAN_SLOT_PENIS)
 			var/new_length = tgui_input_number(
 				alterer,
 				"Choose your penis length:\n([PENIS_MIN_LENGTH]-[PENIS_MAX_LENGTH] inches)",
@@ -497,7 +498,7 @@
 			wang.set_size(alterer.dna.features["penis_size"])
 
 		if("Penis Sheath")
-			var/obj/item/organ/external/genital/penis/schlong = alterer.get_organ_slot(ORGAN_SLOT_PENIS)
+			var/obj/item/organ/genital/penis/schlong = alterer.get_organ_slot(ORGAN_SLOT_PENIS)
 			var/new_sheath = tgui_input_list(
 				alterer,
 				"Choose your penis sheath",
@@ -513,7 +514,7 @@
 			alterer.balloon_alert(alterer, "[alterer.dna.features["penis_taur_mode"] ? "using taur penis" : "not using taur penis"]")
 
 		if("Testicles Size")
-			var/obj/item/organ/external/genital/testicles/avocados = alterer.get_organ_slot(ORGAN_SLOT_TESTICLES)
+			var/obj/item/organ/genital/testicles/avocados = alterer.get_organ_slot(ORGAN_SLOT_TESTICLES)
 			var/new_size = tgui_input_list(
 				alterer,
 				"Choose your character's testicles size:",

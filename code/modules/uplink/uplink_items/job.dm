@@ -18,7 +18,10 @@
 
 /datum/uplink_item/role_restricted/mail_counterfeit_kit
 	name = "GLA Brand Mail Counterfeit Kit"
-	desc = "A box of five (5) counterfeit devices. Each single-use device can hold one normal sized object, and impersonate an ordinary postal envelope addressed to whoever you choose. Optionally, can be rigged to activate held items - great for if you want to surprise someone with a primed grenade!"
+	desc = "A box containing five devices capable of counterfeiting NT's mail. Can be used to store items within as an easy means of smuggling contraband. \
+			Additionally, you may choose to \"arm\" the item inside, causing the item to be used the moment the mail is opened as if the person had just used it in hand. \
+			The most common usage of this feature is with grenades, as it forces the grenade to prime. Bonus points if the grenade is set to instantly detonate. \
+			Comes with an integrated micro-computer for configuration purposes."
 	item = /obj/item/storage/box/syndie_kit/mail_counterfeit
 	cost = 2
 	uplink_item_flags = SYNDIE_TRIPS_CONTRABAND
@@ -110,7 +113,6 @@
 	name = "Combat Bakery Kit"
 	desc = "A kit of clandestine baked weapons. Contains a baguette which a skilled mime could use as a sword, \
 		a pair of throwing croissants, and the recipe to make more on demand. Once the job is done, eat the evidence."
-	progression_minimum = 15 MINUTES
 	item = /obj/item/storage/box/syndie_kit/combat_baking
 	cost = 7
 	restricted_roles = list(JOB_COOK, JOB_MIME)
@@ -145,6 +147,14 @@
 	desc = "A brutal cleaver on a long chain, it allows you to pull people to your location."
 	item = /obj/item/gun/magic/hook
 	cost = 11
+	restricted_roles = list(JOB_COOK)
+
+/datum/uplink_item/role_restricted/moltobeso
+	name = "Molt'Obeso Sauce Bottle"
+	desc = "A branded bottle of Molt'Obeso sauce. This sauce can stimulate hunger in people, leading them to eat more than they intended. \
+			It also enhances the absorption of calories from the food consumed."
+	item = /obj/item/storage/box/syndie_kit/moltobeso
+	cost = 2
 	restricted_roles = list(JOB_COOK)
 
 /datum/uplink_item/role_restricted/turretbox
@@ -189,7 +199,7 @@
 
 /datum/uplink_item/role_restricted/advanced_plastic_surgery
 	name = "Advanced Plastic Surgery Program"
-	desc = "A bootleg copy of an collector item, this disk contains the procedure to perform advanced plastic surgery, allowing you to model someone's face and voice based on a picture taken by a camera on your offhand. \
+	desc = "A bootleg copy of a collector item, this disk contains the procedure to perform advanced plastic surgery, allowing you to model someone's face and voice based on a picture taken by a camera on your offhand. \
 	All changes are superficial and does not change ones genetic makeup. \
 	Insert into an Operating Console to enable the procedure."
 	item = /obj/item/disk/surgery/advanced_plastic_surgery
@@ -214,7 +224,6 @@
 	name = "Reverse Revolver"
 	desc = "A revolver that always fires at its user. \"Accidentally\" drop your weapon, then watch as the greedy corporate pigs blow their own brains all over the wall. \
 	The revolver itself is actually real. Only clumsy people, and clowns, can fire it normally. Comes in a box of hugs. Honk."
-	progression_minimum = 30 MINUTES
 	cost = 14
 	item = /obj/item/storage/box/hug/reverse_revolver
 	restricted_roles = list(JOB_CLOWN)
@@ -223,8 +232,6 @@
 	name = "Kinetic Accelerator Pressure Mod"
 	desc = "A modification kit which allows Kinetic Accelerators to do greatly increased damage while indoors. \
 			Occupies 35% mod capacity."
-	// While less deadly than a revolver it does have infinite ammo
-	progression_minimum = 15 MINUTES
 	item = /obj/item/borg/upgrade/modkit/indoors
 	cost = 5 //you need two for full damage, so total of 10 for maximum damage
 	limited_stock = 2 //you can't use more than two!
@@ -243,7 +250,6 @@
 /datum/uplink_item/role_restricted/laser_arm
 	name = "Laser Arm Implant"
 	desc = "An implant that grants you a recharging laser gun inside your arm. Weak to EMPs. Comes with a syndicate autosurgeon for immediate self-application."
-	progression_minimum = 20 MINUTES
 	cost = 10
 	item = /obj/item/autosurgeon/syndicate/laser_arm
 	restricted_roles = list(JOB_ROBOTICIST, JOB_RESEARCH_DIRECTOR)
@@ -252,10 +258,9 @@
 /datum/uplink_item/role_restricted/chemical_gun
 	name = "Reagent Dartgun"
 	desc = "A heavily modified syringe gun which is capable of synthesizing its own chemical darts using input reagents. Can hold 90u of reagents."
-	progression_minimum = 15 MINUTES
 	item = /obj/item/gun/chem
 	cost = 12
-	restricted_roles = list(JOB_CHEMIST, JOB_CHIEF_MEDICAL_OFFICER, JOB_BOTANIST)
+	restricted_roles = list(JOB_CHEMIST, JOB_MEDICAL_DOCTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_BOTANIST)
 
 /datum/uplink_item/role_restricted/pie_cannon
 	name = "Banana Cream Pie Cannon"
@@ -321,7 +326,6 @@
 			Attach to an exosuit with an existing equipment to disguise the bay as that equipment. The sacrificed equipment will be lost.\
 			Alternatively, you can attach the bay to an empty equipment slot, but the bay will not be concealed. Once the bay is \
 			attached, an exosuit weapon can be fitted inside."
-	progression_minimum = 30 MINUTES
 	item = /obj/item/mecha_parts/mecha_equipment/concealed_weapon_bay
 	cost = 3
 	restricted_roles = list(JOB_ROBOTICIST, JOB_RESEARCH_DIRECTOR)
@@ -336,6 +340,7 @@
 			also give them a bit of sentience though."
 	progression_minimum = 30 MINUTES
 	item = /obj/item/reagent_containers/syringe/spider_extract
+	population_minimum = TRAITOR_POPULATION_LOWPOP
 	cost = 10
 	restricted_roles = list(JOB_RESEARCH_DIRECTOR, JOB_SCIENTIST, JOB_ROBOTICIST)
 	surplus = 10

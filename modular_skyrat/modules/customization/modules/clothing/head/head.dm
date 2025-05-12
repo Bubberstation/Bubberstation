@@ -175,7 +175,7 @@
 /obj/item/clothing/head/fedora/brown //Fedora without detective's candy corn gimmick
 	name = "brown fedora"
 	icon_state = "detective"
-	inhand_icon_state = "det_hat"
+	inhand_icon_state = null
 
 /obj/item/clothing/head/hooded/standalone_hood
 	name = "hood"
@@ -261,7 +261,7 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
 	desc = "It's good overthrowing the king."
-	icon_state = "solgov_bicorne"
+	icon_state = "terragov_bicorne"
 	worn_y_offset = 2
 
 /obj/item/clothing/head/hats/caphat/sonnensoldner

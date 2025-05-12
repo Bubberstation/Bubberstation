@@ -7,6 +7,7 @@
 	icon = 'icons/obj/weapons/voidwalker_items.dmi'
 	icon_state = "tentacle"
 	inhand_icon_state = "tentacle"
+	icon_angle = 180
 	force = 25
 	armour_penetration = 35
 	lefthand_file = 'icons/mob/inhands/antag/voidwalker_lefthand.dmi'
@@ -34,18 +35,18 @@
 /obj/item/void_eater/equipped(mob/user)
 	. = ..()
 
-	RegisterSignal(user, COMSIG_VOIDWALKER_SUCCESFUL_KIDNAP, PROC_REF(refresh))
+	RegisterSignal(user, COMSIG_VOIDWALKER_SUCCESSFUL_KIDNAP, PROC_REF(refresh))
 
 /obj/item/void_eater/dropped(mob/user, silent)
 	. = ..()
-	UnregisterSignal(user, COMSIG_VOIDWALKER_SUCCESFUL_KIDNAP)
+	UnregisterSignal(user, COMSIG_VOIDWALKER_SUCCESSFUL_KIDNAP)
 
 /obj/item/void_eater/examine(mob/user)
 	. = ..()
 	. += span_notice("The [name] weakens each hit, recharge it by kidnapping someone!")
 	. += span_notice("Sharpness: [round(force)]/[initial(force)]")
 
-/obj/item/void_eater/attack(mob/living/target_mob, mob/living/user, params)
+/obj/item/void_eater/attack(mob/living/target_mob, mob/living/user, list/modifiers)
 	if(!ishuman(target_mob))
 		return ..()
 
@@ -63,7 +64,7 @@
 			hewmon.balloon_alert(user, "shattering...")
 			if(do_after(user, 4 SECONDS, hewmon))
 				new /obj/effect/spawner/random/glass_shards (spawnloc)
-				var/obj/item/organ/brain = hewmon.get_organ_by_type(/obj/item/organ/internal/brain)
+				var/obj/item/organ/brain = hewmon.get_organ_by_type(/obj/item/organ/brain)
 				if(brain)
 					brain.Remove(hewmon)
 					brain.forceMove(spawnloc)

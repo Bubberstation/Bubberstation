@@ -14,8 +14,7 @@
 	var/teleport_range = 7
 
 /obj/item/mecha_parts/mecha_equipment/teleporter/action(mob/source, atom/target, list/modifiers)
-	var/area/ourarea = get_area(src)
-	if(!action_checks(target) || ourarea.area_flags & NOTELEPORT)
+	if(!action_checks(target) || !check_teleport_valid(source, target, TELEPORT_CHANNEL_BLUESPACE))
 		return
 	var/turf/T = get_turf(target)
 	if(T && (loc.z == T.z) && (get_dist(loc, T) <= teleport_range))
@@ -28,7 +27,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/wormhole_generator
 	name = "mounted wormhole generator"
-	desc = "An exosuit module that allows generating of small quasi-stable wormholes, allowing for long-range inneacurate teleportation."
+	desc = "An exosuit module that allows generating of small quasi-stable wormholes, allowing for long-range inaccurate teleportation."
 	icon_state = "mecha_wholegen"
 	equip_cooldown = 50
 	energy_drain = 300
@@ -36,8 +35,7 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/wormhole_generator/action(mob/source, atom/target, list/modifiers)
-	var/area/ourarea = get_area(src)
-	if(!action_checks(target) || ourarea.area_flags & NOTELEPORT)
+	if(!action_checks(target) || !check_teleport_valid(source, target, TELEPORT_CHANNEL_WORMHOLE))
 		return
 	var/area/targetarea = pick(get_areas_in_range(100, chassis))
 	if(!targetarea)//Literally middle of nowhere how did you even get here
@@ -167,7 +165,7 @@
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/armor/anticcw_armor_booster
-	name = "Impact Cushion Plates"
+	name = "exosuit impact cushion plates"
 	desc = "Boosts exosuit armor against melee attacks"
 	icon_state = "mecha_abooster_ccw"
 	iconstate_name = "melee"
@@ -175,10 +173,10 @@
 	armor_mod = /datum/armor/mecha_equipment_ccw_boost
 
 /datum/armor/mecha_equipment_ccw_boost
-	melee = 15
+	melee = 20
 
 /obj/item/mecha_parts/mecha_equipment/armor/antiproj_armor_booster
-	name = "Projectile Shielding"
+	name = "exosuit projectile shielding"
 	desc = "Boosts exosuit armor against ranged kinetic and energy projectiles. Completely blocks taser shots."
 	icon_state = "mecha_abooster_proj"
 	iconstate_name = "range"
@@ -186,8 +184,38 @@
 	armor_mod = /datum/armor/mecha_equipment_ranged_boost
 
 /datum/armor/mecha_equipment_ranged_boost
-	bullet = 10
-	laser = 10
+	bullet = 15
+	laser = 15
+
+/obj/item/mecha_parts/mecha_equipment/armor/antiemp_armor_booster
+	name = "exosuit ablative insulation"
+	desc = "Boosts exosuit armor against energy-based attacks. Also shields the exosuit's internal wiring from hostile EMP attacks. However, this may leave the \
+		exosuit slightly more vulnerable to kinetic blows due to taking up valuable hull cushioning."
+	icon_state = "mecha_abooster_emp"
+	iconstate_name = "range"
+	protect_name = "EMP and Energy Armor"
+	armor_mod = /datum/armor/mecha_equipment_energy_boost
+
+/datum/armor/mecha_equipment_energy_boost
+	melee = -5
+	bullet = -10
+	energy = 15
+
+/obj/item/mecha_parts/mecha_equipment/armor/antiemp_armor_booster/attach(obj/vehicle/sealed/mecha/new_mecha, attach_right)
+	. = ..()
+	chassis.AddElement(/datum/element/empprotection, EMP_PROTECT_WIRES)
+
+/obj/item/mecha_parts/mecha_equipment/armor/antiemp_armor_booster/detach(atom/moveto)
+	chassis.RemoveElement(/datum/element/empprotection, EMP_PROTECT_WIRES)
+	return ..()
+
+/obj/item/mecha_parts/mecha_equipment/armor/antiemp_armor_booster/clandestine
+	name = "exosuit hardened ablative insulation"
+	desc = "Boosts exosuit armor against energy-based attacks. Also shields the exosuit's internal wiring from hostile EMP attacks."
+	armor_mod = /datum/armor/mecha_equipment_improved_energy_boost
+
+/datum/armor/mecha_equipment_improved_energy_boost
+	energy = 20
 
 ////////////////////////////////// REPAIR DROID //////////////////////////////////////////////////
 
@@ -198,6 +226,7 @@
 	icon_state = "repair_droid"
 	energy_drain = 50
 	range = 0
+	unstackable = TRUE
 	can_be_toggled = TRUE
 	active = FALSE
 	equipment_slot = MECHA_UTILITY
@@ -285,7 +314,7 @@
 	///Maximum fuel capacity of the generator, in units
 	var/max_fuel = 75 * SHEET_MATERIAL_AMOUNT
 	///Energy recharged per second
-	var/rechargerate = 0.005 * STANDARD_CELL_RATE
+	var/rechargerate = 0.05 * STANDARD_CELL_RATE
 
 /obj/item/mecha_parts/mecha_equipment/generator/Initialize(mapload)
 	. = ..()
@@ -318,7 +347,7 @@
 			log_message("Deactivated.", LOG_MECHA)
 		return TRUE
 
-/obj/item/mecha_parts/mecha_equipment/generator/attackby(obj/item/weapon, mob/user, params)
+/obj/item/mecha_parts/mecha_equipment/generator/attackby(obj/item/weapon, mob/user, list/modifiers)
 	. = ..()
 	if(!istype(weapon, fuel))
 		return FALSE

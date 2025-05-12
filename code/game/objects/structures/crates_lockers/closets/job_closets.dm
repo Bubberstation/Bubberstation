@@ -25,7 +25,7 @@
 
 /obj/structure/closet/chefcloset
 	name = "chef's closet"
-	desc = "It's a storage unit for foodservice garments and mouse traps."
+	desc = "It's a storage unit for food service garments and mousetraps."
 	icon_door = "chef_wardrobe"
 
 /obj/structure/closet/chefcloset/PopulateContents()
@@ -66,11 +66,6 @@
 	new /obj/item/clothing/shoes/galoshes(src)
 	new /obj/item/watertank/janitor(src)
 	new /obj/item/storage/belt/janitor(src)
-
-	//SKYRAT EDIT ADDITION
-	new /obj/item/air_refresher(src)
-	new /obj/item/air_refresher(src)
-	//SKYRAT EDIT END
 
 /obj/structure/closet/lawcloset
 	name = "legal closet"

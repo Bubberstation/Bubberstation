@@ -1,9 +1,9 @@
-import { BooleanLike } from 'common/react';
-import { createSearch } from 'common/string';
 import { useState } from 'react';
+import { Box, Button, Icon, Input, Section, Table } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
+import { createSearch } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
-import { Box, Button, Icon, Input, Section, Table } from '../components';
 import { COLORS } from '../constants';
 import { Window } from '../layouts';
 
@@ -192,12 +192,7 @@ const CrewTable = () => {
               name={sortAsc ? 'chevron-up' : 'chevron-down'}
             />
           </Button>
-          <Input
-            placeholder="Search for name..."
-            onInput={(e) =>
-              setSearchQuery((e.target as HTMLTextAreaElement).value)
-            }
-          />
+          <Input placeholder="Search for name..." onChange={setSearchQuery} />
         </>
       }
     >

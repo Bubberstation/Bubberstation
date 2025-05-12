@@ -35,6 +35,9 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	/// Displayed name of the loadout item.
 	/// Defaults to the item's name if unset.
 	var/name
+	/// Title of a group that this item will be bundled under
+	/// Defaults to parent category's title if unset
+	var/group = null
 	/// Whether this item has greyscale support.
 	/// Only works if the item is compatible with the GAGS system of coloring.
 	/// Set automatically to TRUE for all items that have the flag [IS_PLAYER_COLORABLE_1].
@@ -50,8 +53,6 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	var/abstract_type = /datum/loadout_item
 	/// The actual item path of the loadout item.
 	var/obj/item/item_path
-	/// Lazylist of additional "information" text to display about this item.
-	var/list/additional_displayed_text
 	/// Icon file (DMI) for the UI to use for preview icons.
 	/// Set automatically if null
 	var/ui_icon
@@ -61,7 +62,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	/// Reskin options of this item if it can be reskinned.
 	VAR_FINAL/list/cached_reskin_options
 
-	//SKYRAT EDIT ADDITION
+	// BUBBER EDIT ADDITION START
 	/// If set, it's a list containing ckeys which only can get the item
 	var/list/ckeywhitelist
 	/// If set, is a list of job names of which can get the loadout item
@@ -76,7 +77,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	var/required_season = null
 	/// If the item won't appear when the ERP config is disabled
 	var/erp_item = FALSE
-
+	// BUBBER EDIT END
 
 /datum/loadout_item/New(category)
 	src.category = category
@@ -152,7 +153,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	if(manager.menu)
 		return FALSE
 
-	var/list/loadout = manager.preferences.read_preference(/datum/preference/loadout)
+	var/list/loadout = manager.get_current_loadout() // BUBBER EDIT: Multiple loadout presets: ORIGINAL: var/list/loadout = manager.preferences.read_preference(/datum/preference/loadout)
 	var/list/allowed_configs = list()
 	if(initial(item_path.greyscale_config))
 		allowed_configs += "[initial(item_path.greyscale_config)]"
@@ -182,7 +183,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	if(!istype(open_menu))
 		CRASH("set_slot_greyscale called without a greyscale menu!")
 
-	var/list/loadout = manager.preferences.read_preference(/datum/preference/loadout)
+	var/list/loadout = manager.get_current_loadout() // BUBBER EDIT: Multiple loadout presets: ORIGINAL: var/list/loadout = manager.preferences.read_preference(/datum/preference/loadout)
 	if(!loadout?[item_path])
 		return FALSE
 
@@ -191,7 +192,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 		return FALSE
 
 	loadout[item_path][INFO_GREYSCALE] = colors.Join("")
-	manager.preferences.update_preference(GLOB.preference_entries[/datum/preference/loadout], loadout)
+	manager.save_current_loadout(loadout) // BUBBER EDIT: Multiple loadout presets: ORIGINAL: manager.preferences.update_preference(GLOB.preference_entries[/datum/preference/loadout], loadout)
 	return TRUE // update UI
 
 /// Sets the name of the item.
@@ -199,7 +200,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 // Generally, if this conflicts, name_slot is to be put anywhere where INFO_NAMED appears in tgcode
 /datum/loadout_item/proc/set_name(datum/preference_middleware/loadout/manager, mob/user, name_slot = INFO_NAMED)
 	var/isname = (name_slot == INFO_NAMED)
-	var/list/loadout = manager.preferences.read_preference(/datum/preference/loadout)
+	var/list/loadout = manager.get_current_loadout() // BUBBER EDIT: Multiple loadout presets: ORIGINAL: var/list/loadout = manager.preferences.read_preference(/datum/preference/loadout)
 	var/input_name = tgui_input_text(
 		user = user,
 		message = "What [isname ? "name" : "description"] do you want to give the [name]? Leave blank to clear.",
@@ -210,7 +211,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	if(QDELETED(src) || QDELETED(user) || QDELETED(manager) || QDELETED(manager.preferences))
 		return FALSE
 
-	loadout = manager.preferences.read_preference(/datum/preference/loadout) // Make sure no shenanigans happened
+	loadout = manager.get_current_loadout() // BUBBER EDIT: Multiple loadout presets: ORIGINAL: loadout = manager.preferences.read_preference(/datum/preference/loadout) // Make sure no shenanigans happened
 	if(!loadout?[item_path])
 		return FALSE
 
@@ -219,7 +220,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	else if(input_name == "")
 		loadout[item_path] -= name_slot
 
-	manager.preferences.update_preference(GLOB.preference_entries[/datum/preference/loadout], loadout)
+	manager.save_current_loadout(loadout) // BUBBER EDIT: Multiple loadout presets: ORIGINAL: manager.preferences.update_preference(GLOB.preference_entries[/datum/preference/loadout], loadout)
 	return FALSE // no update needed
 // SKYRAT EDIT END
 
@@ -232,12 +233,12 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	if(!cached_reskin_options[reskin_to])
 		return FALSE
 
-	var/list/loadout = manager.preferences.read_preference(/datum/preference/loadout)
+	var/list/loadout = manager.get_current_loadout() // BUBBER EDIT: Multiple loadout presets: ORIGINAL: var/list/loadout = manager.preferences.read_preference(/datum/preference/loadout)
 	if(!loadout?[item_path])
 		return FALSE
 
 	loadout[item_path][INFO_RESKIN] = reskin_to
-	manager.preferences.update_preference(GLOB.preference_entries[/datum/preference/loadout], loadout)
+	manager.save_current_loadout(loadout) // BUBBER EDIT: Multiple loadout presets: ORIGINAL: manager.preferences.update_preference(GLOB.preference_entries[/datum/preference/loadout], loadout)
 	return TRUE // always update UI
 
 /**
@@ -261,7 +262,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
  *
  * Arguments:
  * * preference_source - the datum/preferences our loadout item originated from - cannot be null
- * * equipper - the mob we're equipping this item onto - cannot be null
+ * * equipper - the mob we're equipping this item onto
  * * visuals_only - whether or not this is only concerned with visual things (not backpack, not renaming, etc)
  * * preference_list - what the raw loadout list looks like in the preferences
  *
@@ -274,7 +275,8 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	mob/living/carbon/human/equipper,
 	visuals_only = FALSE,
 )
-	ASSERT(!isnull(equipped_item))
+	if(isnull(equipped_item))
+		return NONE
 
 	if(!visuals_only)
 		ADD_TRAIT(equipped_item, TRAIT_ITEM_OBJECTIVE_BLOCKED, TRAIT_SOURCE_LOADOUT)
@@ -329,56 +331,57 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	SHOULD_CALL_PARENT(TRUE)
 
 	var/list/formatted_item = list()
+	var/list/information = list()
+	var/list/fetched_info = get_item_information()
+	for (var/icon_name in fetched_info)
+		information += list(list(
+			"icon" = icon_name,
+			"tooltip" = fetched_info[icon_name]
+		))
+
 	formatted_item["name"] = name
+	formatted_item["group"] = group || category.category_name
 	formatted_item["path"] = item_path
-	formatted_item["information"] = get_item_information()
+	formatted_item["information"] = information
 	formatted_item["buttons"] = get_ui_buttons()
 	formatted_item["reskins"] = get_reskin_options()
 	formatted_item["icon"] = ui_icon
 	formatted_item["icon_state"] = ui_icon_state
 
-	// SKYRAT EDIT BEGIN - Extra loadout stuff
-	formatted_item["ckey_whitelist"] = ckeywhitelist
-	formatted_item["donator_only"] = donator_only
-	formatted_item["restricted_roles"] = restricted_roles
-	formatted_item["blacklisted_roles"] = restricted_roles
-	// SKYRAT EDIT END
-
 	return formatted_item
 
 /**
  * Returns a list of information to display about this item in the loadout UI.
- *
- * These should be short strings, sub 14 characters generally.
+ * Icon -> tooltip displayed when its hovered over
  */
 /datum/loadout_item/proc/get_item_information() as /list
 	SHOULD_CALL_PARENT(TRUE)
 
+	// Mothblocks is hellbent on recolorable and reskinnable being only tooltips for items for visual clarity, so ask her before changing these
 	var/list/displayed_text = list()
-
-	displayed_text += (additional_displayed_text || list())
-
 	if(can_be_greyscale)
-		displayed_text += "Recolorable"
-
-	if(can_be_named)
-		displayed_text += "Renamable"
+		displayed_text[FA_ICON_PALETTE] = "Recolorable"
 
 	if(can_be_reskinned)
-		displayed_text += "Reskinnable"
+		displayed_text[FA_ICON_SWATCHBOOK] = "Reskinnable"
 
 	// SKYRAT EDIT ADDITION
 	if(donator_only)
-		displayed_text += "Donator only"
+		displayed_text[FA_ICON_MONEY_BILL] = "Donator only"
 
 	if(ckeywhitelist)
-		displayed_text += "Unique"
+		displayed_text[FA_ICON_LOCK] = "Player Whitelist: [ckeywhitelist.Join(", ")]"
 
 	if(restricted_roles || blacklisted_roles)
-		displayed_text += "Role restricted"
+		var/list/tooltip_text = list()
+		if(restricted_roles)
+			tooltip_text += "Job Whitelist: [restricted_roles.Join(", ")]"
+		if(blacklisted_roles)
+			tooltip_text += "Job Blacklist: [blacklisted_roles.Join(", ")]"
+		displayed_text[FA_ICON_TOOLBOX] = tooltip_text.Join("\n")
 
 	if(restricted_species)
-		displayed_text += "Species restricted"
+		displayed_text[FA_ICON_DNA] = "Species Whitelist: [restricted_species.Join(", ")]"
 	// SKYRAT EDIT ADDITION
 	return displayed_text
 

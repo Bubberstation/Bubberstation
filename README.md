@@ -3,7 +3,6 @@
 [![CI Suite](https://github.com/Bubberstation/Bubberstation/actions/workflows/ci_suite.yml/badge.svg)](https://github.com/Bubberstation/Bubberstation/actions/workflows/ci_suite.yml)
 
 [![resentment](.github/images/badges/built-with-resentment.svg)](.github/images/comics/131-bug-free.png) [![technical debt](.github/images/badges/contains-technical-debt.svg)](.github/images/comics/106-tech-debt-modified.png) [![forinfinityandbyond](.github/images/badges/made-in-byond.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
-[![resentment](.github/images/badges/built-with-resentment.svg)](.github/images/comics/131-bug-free.png) [![technical debt](.github/images/badges/contains-technical-debt.svg)](.github/images/comics/106-tech-debt-modified.png) [![forinfinityandbyond](.github/images/badges/made-in-byond.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
 | Website                   | Link                                           |
 |---------------------------|------------------------------------------------|
@@ -70,8 +69,13 @@ Find `BUILD.bat` here in the root folder of tgstation, and double click it to in
 
 **[How to compile in VSCode and other build options](tools/build/README.md).**
 
-## TG Guide Contributors
-[Guides for Contributors](.github/CONTRIBUTING.md)
+## Getting started
+
+<!-- For contribution guidelines refer to the [Guides for Contributors](.github/CONTRIBUTING.md). -->
+
+For getting started (dev env, compilation) see the HackMD document [here](https://hackmd.io/@tgstation/HJ8OdjNBc#tgstation-Development-Guide).
+
+For overall design documentation see [HackMD](https://hackmd.io/@tgstation).
 
 ## LICENSE
 

@@ -5,20 +5,10 @@
 	. = ..()
 	playsound(src, 'modular_skyrat/modules/aesthetics/lightswitch/sound/lightswitch.ogg', 100, 1)
 
-#ifndef UNIT_TESTS
-/obj/machinery/light_switch/post_machine_initialize()
+/obj/machinery/light_switch/default_on
+
+/obj/machinery/light_switch/default_on/post_machine_initialize()
 	. = ..()
-	if(prob(50) && area.lightswitch) //50% chance for area to start with lights off.
-		turn_off()
-#endif
+	set_lights(TRUE)
 
-/obj/machinery/light_switch/proc/turn_off()
-	if(!area.lightswitch)
-		return
-	area.lightswitch = FALSE
-	area.update_icon()
-
-	for(var/obj/machinery/light_switch/light_switch in area)
-		light_switch.update_icon()
-
-	area.power_change()
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch/default_on, 26)

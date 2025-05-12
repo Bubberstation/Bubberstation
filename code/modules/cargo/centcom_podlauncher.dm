@@ -63,10 +63,8 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 	var/obj/structure/closet/supplypod/centcompod/temp_pod //The temporary pod that is modified by this datum, then cloned. The buildObject() clone of this pod is what is launched
 	// Stuff needed to render the map
 	var/map_name
-	var/atom/movable/screen/map_view/cam_screen
-	var/atom/movable/screen/background/cam_background
+	var/atom/movable/screen/map_view/camera/cam_screen
 	var/tabIndex = 1
-	var/renderLighting = FALSE
 	var/static/list/pod_style_info
 	var/static/list/pod_style_lookup
 
@@ -100,35 +98,32 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 	refreshBay()
 	ui_interact(holder.mob)
 
-/datum/centcom_podlauncher/proc/initMap()
-	if(map_name)
-		holder.clear_map(map_name)
+/datum/centcom_podlauncher/proc/initMap(datum/tgui/ui)
+	if(cam_screen)
+		QDEL_NULL(cam_screen)
 
 	map_name = "admin_supplypod_bay_[REF(src)]_map"
 	// Initialize map objects
 	cam_screen = new
 	cam_screen.generate_view(map_name)
+	cam_screen.clear_with_screen = FALSE
+	cam_screen.cam_background.clear_with_screen = FALSE
+	// display_to doesn't send the planes to the client, so we have to do it via display_to_client
 
-	var/datum/plane_master_group/planes = cam_screen.display_to(holder.mob)
+	if (!ui)
+		ui = ui_interact(holder.mob)
+	cam_screen.display_to(holder.mob, ui.window)
 
-	if(!renderLighting)
-		for(var/atom/movable/screen/plane_master/instance as anything in holder.mob.hud_used.get_true_plane_masters(LIGHTING_PLANE, planes.key))
-			instance.set_alpha(100)
-
-	cam_background = new
-	cam_background.assigned_map = map_name
-	cam_background.del_on_map_removal = TRUE
 	refreshView()
-	holder.register_map_obj(cam_background)
 
 /datum/centcom_podlauncher/ui_state(mob/user)
 	if (SSticker.current_state >= GAME_STATE_FINISHED)
 		return GLOB.always_state //Allow the UI to be given to players by admins after roundend
-	return GLOB.admin_state
+	return ADMIN_STATE(R_ADMIN)
 
 /datum/centcom_podlauncher/ui_assets(mob/user)
 	return list(
-		get_asset_datum(/datum/asset/spritesheet/supplypods),
+		get_asset_datum(/datum/asset/spritesheet_batched/supplypods),
 	)
 
 /datum/centcom_podlauncher/ui_interact(mob/user, datum/tgui/ui)
@@ -138,6 +133,7 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 		ui = new(user, src, "CentcomPodLauncher")
 		ui.open()
 		refreshView()
+	return ui
 
 /datum/centcom_podlauncher/ui_static_data(mob/user)
 	var/list/data = list()
@@ -153,7 +149,6 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 	data["oldArea"] = (oldTurf ? get_area(oldTurf) : null) //Holds the name of the area that the user was in before using the teleportCentcom action
 	data["picking_dropoff_turf"] = picking_dropoff_turf //If we're picking or have picked a dropoff turf. Only works when pod is in reverse mode
 	data["customDropoff"] = customDropoff
-	data["renderLighting"] = renderLighting
 	data["launchClone"] = launchClone //Do we launch the actual items in the bay or just launch clones of them?
 	data["launchRandomItem"] = launchRandomItem //Do we launch a single random item instead of everything on the turf?
 	data["launchChoice"] = launchChoice //Launch turfs all at once (0), ordered (1), or randomly(1)
@@ -176,6 +171,7 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 	data["effectCircle"] = temp_pod.effectCircle //If true, allows the pod to come in at any angle. Bit of a weird feature but whatever its here
 	data["effectBurst"] = effectBurst //IOf true, launches five pods at once (with a very small delay between for added coolness), in a 3x3 area centered around the area
 	data["effectReverse"] = temp_pod.reversing //If true, the pod will not send any items. Instead, after opening, it will close again (picking up items/mobs) and fly back to centcom
+	data["create_sparks"] = temp_pod.create_sparks //If true, the pod will create sparks before being deleted. This might cause fires if there is plasma in the air.
 	data["reverse_option_list"] = temp_pod.reverse_option_list
 	data["effectTarget"] = specificTarget //Launches the pod at the turf of a specific mob target, rather than wherever the user clicked. Useful for smites
 	data["effectName"] = temp_pod.adminNamed //Determines whether or not the pod has been named by an admin. If true, the pod's name will not get overridden when the style of the pod changes (changing the style of the pod normally also changes the name+desc)
@@ -302,7 +298,7 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 					return
 				if (!isnum(boomInput[i])) //If the user doesn't input a number, set that specific explosion value to zero
 					tgui_alert(usr, "That wasn't a number! Value set to default (zero) instead.")
-					boomInput = 0
+					boomInput[i] = 0
 			explosionChoice = 1
 			temp_pod.explosionSize = boomInput
 			. = TRUE
@@ -410,6 +406,9 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 		if("reverseOption")
 			var/reverseOption = params["reverseOption"]
 			temp_pod.reverse_option_list[reverseOption] = !temp_pod.reverse_option_list[reverseOption]
+			. = TRUE
+		if("create_sparks") //Toggle: The creates sparks before the pod is deleted
+			temp_pod.create_sparks = !temp_pod.create_sparks
 			. = TRUE
 		if("effectTarget") //Toggle: Launch at a specific mob (instead of at whatever turf you click on). Used for the supplypod smite
 			if (specificTarget)
@@ -520,11 +519,7 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 			refreshView()
 			. = TRUE
 		if("refreshView")
-			initMap()
-			refreshView()
-			. = TRUE
-		if("renderLighting")
-			renderLighting = !renderLighting
+			initMap(ui)
 			. = TRUE
 		if("setStyle")
 			var/chosenStyle = params["style"]
@@ -548,8 +543,6 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 
 /datum/centcom_podlauncher/ui_close(mob/user) //Uses the destroy() proc. When the user closes the UI, we clean up the temp_pod and supplypod_selector variables.
 	QDEL_NULL(temp_pod)
-	QDEL_NULL(cam_screen)
-	QDEL_NULL(cam_background)
 	qdel(src)
 
 /datum/centcom_podlauncher/proc/setupViewPod()
@@ -571,9 +564,7 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 	var/size_x = bbox[3] - bbox[1] + 1
 	var/size_y = bbox[4] - bbox[2] + 1
 
-	cam_screen.vis_contents = visible_turfs
-	cam_background.icon_state = "clear"
-	cam_background.fill_rect(1, 1, size_x, size_y)
+	cam_screen.show_camera(visible_turfs, size_x, size_y)
 
 /datum/centcom_podlauncher/proc/updateCursor(forceClear = FALSE) //Update the mouse of the user
 	if (!holder) //Can't update the mouse icon if the client doesnt exist!
@@ -784,19 +775,23 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 		selector.moveToNullspace() //Otherwise, we move the selector to nullspace until it is needed again
 
 /datum/centcom_podlauncher/proc/clearBay() //Clear all objs and mobs from the selected bay
-	for (var/obj/O in bay.get_all_contents())
-		qdel(O)
-	for (var/mob/M in bay.get_all_contents())
-		qdel(M)
+	for (var/obj/object in bay.get_all_contents())
+		if (istype(object.type, /obj/effect/light_emitter/podbay))
+			continue
+		qdel(object)
+	for (var/mob/mob in bay.get_all_contents())
+		qdel(mob)
 	for (var/bayturf in bay)
 		var/turf/turf_to_clear = bayturf
+		if (istype(turf_to_clear, /obj/effect/light_emitter/podbay))
+			continue
 		turf_to_clear.ChangeTurf(/turf/open/floor/iron)
 
 /datum/centcom_podlauncher/Destroy() //The Destroy() proc. This is called by ui_close proc, or whenever the user leaves the game
 	updateCursor(TRUE) //Make sure our moues cursor resets to default. False means we are not in launch mode
-	QDEL_NULL(temp_pod) //Delete the temp_pod
 	QDEL_NULL(selector) //Delete the selector effect
 	QDEL_NULL(indicator)
+	QDEL_NULL(cam_screen)
 	return ..()
 
 /datum/centcom_podlauncher/proc/supplypod_punish_log(list/whoDyin)
@@ -815,7 +810,6 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 /datum/centcom_podlauncher/proc/loadData(list/dataToLoad)
 	bayNumber = dataToLoad["bayNumber"]
 	customDropoff = dataToLoad["customDropoff"]
-	renderLighting = dataToLoad["renderLighting"]
 	launchClone = dataToLoad["launchClone"] //Do we launch the actual items in the bay or just launch clones of them?
 	launchRandomItem = dataToLoad["launchRandomItem"] //Do we launch a single random item instead of everything on the turf?
 	launchChoice = dataToLoad["launchChoice"] //Launch turfs all at once (0), ordered (1), or randomly(1)
@@ -839,6 +833,7 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 	effectBurst = dataToLoad["effectBurst"] //IOf true, launches five pods at once (with a very small delay between for added coolness), in a 3x3 area centered around the area
 	temp_pod.reversing = dataToLoad["effectReverse"] //If true, the pod will not send any items. Instead, after opening, it will close again (picking up items/mobs) and fly back to centcom
 	temp_pod.reverse_option_list = dataToLoad["reverse_option_list"]
+	temp_pod.create_sparks = dataToLoad["create_sparks"] // If true, creates sparks when the pod vanishes.
 	specificTarget = dataToLoad["effectTarget"] //Launches the pod at the turf of a specific mob target, rather than wherever the user clicked. Useful for smites
 	temp_pod.adminNamed = dataToLoad["effectName"] //Determines whether or not the pod has been named by an admin. If true, the pod's name will not get overridden when the style of the pod changes (changing the style of the pod normally also changes the name+desc)
 	temp_pod.name = dataToLoad["podName"]

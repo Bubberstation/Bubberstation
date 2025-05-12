@@ -3,6 +3,7 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	priority = PREFERENCE_PRIORITY_LOADOUT
 	can_randomize = FALSE
+	// BUBBER NOTE: This isn't accurate, this is now an assoc list of names to the stuff below. Yeah. - Rimi, the pref code slaughterer
 	// Loadout preference is an assoc list [item_path] = [loadout item information list]
 	//
 	// it may look something like
@@ -56,8 +57,6 @@
 		else if(owner_client)
 			var/datum/loadout_item/loadout_item = GLOB.all_loadout_datums[real_path]
 			if(loadout_item?.ckeywhitelist && !(owner_client?.ckey in loadout_item.ckeywhitelist))
-				continue
-			if(loadout_item?.donator_only && !GLOB.donator_list[owner_client?.ckey])
 				continue
 		// SKYRAT EDIT END
 

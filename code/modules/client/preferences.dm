@@ -109,10 +109,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		load_path(parent.ckey)
 		if(load_and_save && !fexists(path))
 			try_savefile_type_migration()
-		unlock_content = !!parent.IsByondMember()
-		donator_status = !!GLOB.donator_list[parent.ckey] //SKYRAT EDIT ADD - DONATOR CHECK
-		if(unlock_content || donator_status) //SKYRAT EDIT - ADD DONATOR CHECK
-			max_save_slots = 100 //SKYRAT EDIT - ORIGINAL 8
+
+		refresh_membership()
 	else
 		CRASH("attempted to create a preferences datum without a client or mock!")
 	load_savefile()
@@ -138,27 +136,24 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	if(!loaded_preferences_successfully)
 		save_preferences()
-	save_character() //let's save this new random character so it doesn't keep generating new ones.
+	save_character(TRUE) //let's save this new random character so it doesn't keep generating new ones. // BUBBER EDIT
 
 /datum/preferences/ui_interact(mob/user, datum/tgui/ui)
 	// There used to be code here that readded the preview view if you "rejoined"
 	// I'm making the assumption that ui close will be called whenever a user logs out, or loses a window
 	// If this isn't the case, kill me and restore the code, thanks
 
+	// We need IconForge and the assets to be ready before allowing the menu to open
+	if(SSearly_assets.initialized != INITIALIZATION_INNEW_REGULAR)
+		return
+
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		character_preview_view = create_character_preview_view(user)
-
 		ui = new(user, src, "PreferencesMenu")
 		ui.set_autoupdate(FALSE)
 		ui.open()
-
-		// HACK: Without this the character starts out really tiny because of some BYOND bug.
-		// You can fix it by changing a preference, so let's just forcably update the body to emulate this.
-		// Lemon from the future: this issue appears to replicate if the byond map (what we're relaying here)
-		// Is shown while the client's mouse is on the screen. As soon as their mouse enters the main map, it's properly scaled
-		// I hate this place
-		addtimer(CALLBACK(character_preview_view, TYPE_PROC_REF(/atom/movable/screen/map_view/char_preview, update_body)), 1 SECONDS)
+		character_preview_view.display_to(user, ui.window)
 
 /datum/preferences/ui_state(mob/user)
 	return GLOB.always_state
@@ -216,7 +211,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences/ui_assets(mob/user)
 	var/list/assets = list(
-		get_asset_datum(/datum/asset/spritesheet/preferences),
+		get_asset_datum(/datum/asset/spritesheet_batched/preferences),
 		get_asset_datum(/datum/asset/json/preferences),
 	)
 
@@ -278,9 +273,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if (istype(requested_preference, /datum/preference/name))
 				tainted_character_profiles = TRUE
 			//SKYRAT EDIT
-			update_mutant_bodyparts(requested_preference)
-			for (var/datum/preference_middleware/preference_middleware as anything in middleware)
-				if (preference_middleware.post_set_preference(usr, requested_preference_key, value))
+			update_body_parts(requested_preference)
+			for(var/datum/preference_middleware/preference_middleware as anything in middleware)
+				if(preference_middleware.post_set_preference(ui.user, requested_preference_key, value))
 					return TRUE
 			//SKYRAT EDIT END
 			return TRUE
@@ -297,12 +292,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/default_value = read_preference(requested_preference.type)
 
 			// Yielding
-			var/new_color = input(
+			// BUBBERSTATION EDIT START: TGUI COLOR PICKER
+			var/new_color = tgui_color_picker(
 				usr,
 				"Select new color",
 				null,
 				default_value || COLOR_WHITE,
-			) as color | null
+			) // BUBBERSTATION EDIT END: TGUI COLOR PICKER
 
 			if (!new_color)
 				return FALSE
@@ -316,6 +312,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			preview_pref = params["updated_preview"]
 			character_preview_view.update_body()
 			return TRUE
+
+		//BUBBER EDIT ADDITION START: Background Selection
+		if("update_background")
+			update_preference(GLOB.preference_entries[/datum/preference/choiced/background_state], params["new_background"])
+			return TRUE
+		//BUBBER EDIT ADDITION END: Background Selection
 
 		if ("open_food")
 			GLOB.food_prefs_menu.ui_interact(usr)
@@ -338,12 +340,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/default_value = default_value_list[index_key]
 
 			// Yielding
-			var/new_color = input(
+			// BUBBERSTATION EDIT START: TGUI COLOR PICKER
+			var/new_color = tgui_color_picker(
 				usr,
 				"Select new color",
 				null,
 				default_value || COLOR_WHITE,
-			) as color | null
+			) // BUBBERSTATION EDIT END: TGUI COLOR PICKER
 
 			if (!new_color)
 				return FALSE
@@ -388,7 +391,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	character_preview_view = new(null, src)
 	character_preview_view.generate_view("character_preview_[REF(character_preview_view)]")
 	character_preview_view.update_body()
-	character_preview_view.display_to(user)
 
 	return character_preview_view
 
@@ -439,11 +441,21 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	/// Whether we show current job clothes or nude/loadout only
 	var/show_job_clothes = TRUE
 
+	// BUBBER EDIT ADDITION START: Better character preview: Rescales between 32x32, 64x64 and 96x96.
+	var/image/canvas
+	var/last_canvas_size
+	var/last_canvas_state
+	// BUBBER EDIT END
+
 /atom/movable/screen/map_view/char_preview/Initialize(mapload, datum/preferences/preferences)
 	. = ..()
 	src.preferences = preferences
 
 /atom/movable/screen/map_view/char_preview/Destroy()
+	// BUBBER EDIT ADDITION START: Better character preview
+	canvas?.cut_overlays()
+	QDEL_NULL(canvas)
+	// BUBBER EDIT END
 	QDEL_NULL(body)
 	preferences?.character_preview_view = null
 	preferences = null
@@ -456,7 +468,44 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	else
 		body.wipe_state()
 
-	appearance = preferences.render_new_preview_appearance(body, show_job_clothes)
+	// BUBBER STATION EDIT BEGIN: Better character preview
+	// appearance = preferences.render_new_preview_appearance(body, show_job_clothes) // ORIGINAL CODE
+	if (canvas)
+		canvas.cut_overlays()
+
+	preferences.render_new_preview_appearance(body, show_job_clothes)
+
+	var/canvas_size = 0
+	var/canvas_state = preferences.read_preference(/datum/preference/choiced/background_state)
+
+	// Being a taur, or over 1.1 scales it up
+	if (body.dna.mutant_bodyparts["taur"] && body.dna.mutant_bodyparts["taur"]["name"] != "None")
+		canvas_size = 1
+	else if (!isnull(body.dna.features["body_size"]) && body.dna.features["body_size"] > 1.1)
+		canvas_size = 1
+	// Add extra level if we're oversized
+	if (preferences.all_quirks.Find("Oversized"))
+		canvas_size += 1
+
+	if (last_canvas_size != canvas_size || last_canvas_state != canvas_state)
+		QDEL_NULL(canvas)
+		switch(canvas_size)
+			if(0)
+				body.pixel_x = 0
+				canvas = image('modular_zubbers/icons/customization/template.dmi', icon_state = canvas_state)
+			if(1)
+				body.pixel_x = 16
+				canvas = image('modular_zubbers/icons/customization/template_64x64.dmi', icon_state = canvas_state)
+			else
+				body.pixel_x = 32
+				canvas = image('modular_zubbers/icons/customization/template_96x96.dmi', icon_state = canvas_state)
+
+	last_canvas_size = canvas_size
+	last_canvas_state = canvas_state
+
+	canvas.add_overlay(body.appearance)
+	appearance = canvas.appearance
+	// BUBBER EDIT END
 
 /atom/movable/screen/map_view/char_preview/proc/create_body()
 	QDEL_NULL(body)
@@ -526,10 +575,24 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			.++
 
 /datum/preferences/proc/validate_quirks()
-	if(CONFIG_GET(flag/disable_quirk_points))
-		return
-	if(GetQuirkBalance() < 0)
+	var/datum/species/species_type = read_preference(/datum/preference/choiced/species)
+	var/list/quirks_removed
+	for(var/quirk_name in all_quirks)
+		var/quirk_path = SSquirks.quirks[quirk_name]
+		var/datum/quirk/quirk_prototype = SSquirks.quirk_prototypes[quirk_path]
+		if(!quirk_prototype.is_species_appropriate(species_type))
+			all_quirks -= quirk_name
+			LAZYADD(quirks_removed, quirk_name)
+	var/list/feedback
+	if(LAZYLEN(quirks_removed))
+		LAZYADD(feedback, "The following quirks are incompatible with your species:")
+		LAZYADD(feedback, quirks_removed)
+	if(!CONFIG_GET(flag/disable_quirk_points) && GetQuirkBalance() < 0)
+		LAZYADD(feedback, "Your quirks have been reset.")
 		all_quirks = list()
+	if(LAZYLEN(feedback))
+		to_chat(parent, boxed_message(span_greentext(feedback.Join("\n"))))
+
 
 /**
  * Safely read a given preference datum from a given client.
@@ -581,9 +644,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	return preferences.chat_toggles
 
 /// Sanitizes the preferences, applies the randomization prefs, and then applies the preference to the human mob.
-/datum/preferences/proc/safe_transfer_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE, is_antag = FALSE)
+/datum/preferences/proc/safe_transfer_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE, is_antag = FALSE, visuals_only = FALSE) // BUBBER EDIT - Customization - ORIGINAL: /datum/preferences/proc/safe_transfer_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE, is_antag = FALSE)
 	apply_character_randomization_prefs(is_antag)
-	apply_prefs_to(character, icon_updates)
+	apply_prefs_to(character, icon_updates, visuals_only = visuals_only) // BUBBER EDIT - Customization - ORIGINAL: apply_prefs_to(character, icon_updates)
 
 /// Applies the given preferences to a human mob.
 /datum/preferences/proc/apply_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE, visuals_only = FALSE)  // SKYRAT EDIT - Customization - ORIGINAL: /datum/preferences/proc/apply_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE)
@@ -639,3 +702,23 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			default_randomization[preference_key] = RANDOM_ENABLED
 
 	return default_randomization
+
+/datum/preferences/proc/refresh_membership()
+	var/byond_member = parent.IsByondMember()
+	if(isnull(byond_member)) // Connection failure, retry once
+		byond_member = parent.IsByondMember()
+		var/static/admins_warned = FALSE
+		if(!admins_warned)
+			admins_warned = TRUE
+			message_admins("BYOND membership lookup had a connection failure for a user. This is most likely an issue on the BYOND side but if this consistently happens you should bother your server operator to look into it.")
+		if(isnull(byond_member)) // Retrying didn't work, warn the user
+			log_game("BYOND membership lookup for [parent.ckey] failed due to a connection error.")
+		else
+			log_game("BYOND membership lookup for [parent.ckey] failed due to a connection error but succeeded after retry.")
+
+	if(isnull(byond_member))
+		to_chat(parent, span_warning("There's been a connection failure while trying to check the status of your BYOND membership. Reconnecting may fix the issue, or BYOND could be experiencing downtime."))
+
+	unlock_content = !!byond_member
+	if(unlock_content)
+		max_save_slots = 8

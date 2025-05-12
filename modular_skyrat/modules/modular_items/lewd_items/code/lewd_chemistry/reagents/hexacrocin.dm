@@ -9,7 +9,6 @@
 	color = "#FF2BFF"
 	overdose_threshold = 25
 	overdose_pref_datum = /datum/preference/toggle/erp/bimbofication
-
 	emote_probability = 5
 	thought_probability = 5
 	arousal_adjust_amount = 2

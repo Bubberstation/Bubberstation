@@ -114,7 +114,7 @@
 		if(!check_rights(R_ADMIN))
 			return
 		//SSdynamic.admin_panel() // BUBBER EDIT - STORYTELLER
-		SSgamemode.admin_panel(usr) // BUBBER EDIT - STORYTELLER
+		SSgamemode.ui_interact(usr) // BUBBER EDIT - STORYTELLER
 	else if(href_list["call_shuttle"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -541,7 +541,7 @@
 
 		var/new_value = input(usr, "Enter the forced threat level for dynamic mode.", "Forced threat level") as num
 		if (new_value > 100)
-			return tgui_alert(usr, "The value must be be under 100.")
+			return tgui_alert(usr, "The value must be under 100.")
 		GLOB.dynamic_forced_threat_level = new_value
 
 		log_admin("[key_name(usr)] set 'forced_threat_level' to [GLOB.dynamic_forced_threat_level].")
@@ -898,7 +898,7 @@
 		exportable_text += "[special_role_description]<br>"
 		exportable_text += ADMIN_FULLMONTY_NONAME(subject)
 
-		to_chat(src.owner, examine_block(exportable_text), confidential = TRUE)
+		to_chat(src.owner, boxed_message(exportable_text), confidential = TRUE)
 
 	else if(href_list["addjobslot"])
 		if(!check_rights(R_ADMIN))
@@ -1431,7 +1431,9 @@
 		var/list/dat = list("Related accounts by [uppertext(href_list["showrelatedacc"])]:")
 		dat += thing_to_check
 
-		usr << browse(dat.Join("<br>"), "window=related_[C];size=420x300")
+		var/datum/browser/browser = new(usr, "related_[C]", "[C.ckey] Related Accounts", 420, 300)
+		browser.set_content(dat.Join("<br>"))
+		browser.open()
 
 	else if(href_list["centcomlookup"])
 		if(href_list) // BUBBER EDIT BEGIN - Crash Bandaid
@@ -1440,66 +1442,7 @@
 		if(!check_rights(R_ADMIN))
 			return
 
-		if(!CONFIG_GET(string/centcom_ban_db))
-			to_chat(usr, span_warning("Centcom Galactic Ban DB is disabled!"))
-			return
-
-		var/ckey = href_list["centcomlookup"]
-
-		// Make the request
-		var/datum/http_request/request = new()
-		request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/centcom_ban_db)]/[ckey]", "", "")
-		request.begin_async()
-		UNTIL(request.is_complete() || !usr)
-		if (!usr)
-			return
-		var/datum/http_response/response = request.into_response()
-
-		var/list/bans
-
-		var/list/dat = list("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><body>")
-
-		if(response.errored)
-			dat += "<br>Failed to connect to CentCom."
-		else if(response.status_code != 200)
-			dat += "<br>Failed to connect to CentCom. Status code: [response.status_code]"
-		else
-			if(response.body == "[]")
-				dat += "<center><b>0 bans detected for [ckey]</b></center>"
-			else
-				bans = json_decode(response.body)
-
-				//Ignore bans from non-whitelisted sources, if a whitelist exists
-				var/list/valid_sources
-				if(CONFIG_GET(string/centcom_source_whitelist))
-					valid_sources = splittext(CONFIG_GET(string/centcom_source_whitelist), ",")
-					dat += "<center><b>Bans detected for [ckey]</b></center>"
-				else
-					//Ban count is potentially inaccurate if they're using a whitelist
-					dat += "<center><b>[bans.len] ban\s detected for [ckey]</b></center>"
-
-				for(var/list/ban in bans)
-					if(valid_sources && !(ban["sourceName"] in valid_sources))
-						continue
-					dat += "<b>Server: </b> [sanitize(ban["sourceName"])]<br>"
-					dat += "<b>RP Level: </b> [sanitize(ban["sourceRoleplayLevel"])]<br>"
-					dat += "<b>Type: </b> [sanitize(ban["type"])]<br>"
-					dat += "<b>Banned By: </b> [sanitize(ban["bannedBy"])]<br>"
-					dat += "<b>Reason: </b> [sanitize(ban["reason"])]<br>"
-					dat += "<b>Datetime: </b> [sanitize(ban["bannedOn"])]<br>"
-					var/expiration = ban["expires"]
-					dat += "<b>Expires: </b> [expiration ? "[sanitize(expiration)]" : "Permanent"]<br>"
-					if(ban["type"] == "job")
-						dat += "<b>Jobs: </b> "
-						var/list/jobs = ban["jobs"]
-						dat += sanitize(jobs.Join(", "))
-						dat += "<br>"
-					dat += "<hr>"
-
-		dat += "<br></body>"
-		var/datum/browser/popup = new(usr, "centcomlookup-[ckey]", "<div align='center'>Central Command Galactic Ban Database</div>", 700, 600)
-		popup.set_content(dat.Join())
-		popup.open(0)
+		open_centcom_bans(href_list["centcomlookup"])
 
 	else if(href_list["slowquery"])
 		if(!check_rights(R_ADMIN))
@@ -1751,6 +1694,7 @@
 			return
 		return usr.client?.mark_datum(datum_to_mark)
 
+#ifndef DISABLE_DREAMLUAU
 	else if(href_list["lua_state"])
 		if(!check_rights(R_DEBUG))
 			return
@@ -1767,6 +1711,7 @@
 				editor.force_view_chunk = log_entry["chunk"]
 				editor.force_modal = "viewChunk"
 		editor.ui_interact(usr)
+#endif
 
 	else if(href_list["show_paper"])
 		if(!check_rights(R_ADMIN))
@@ -1784,6 +1729,7 @@
 			if(FAX.fax_id != href_list["destination"])
 				continue
 			FAX.receive(locate(href_list["print_fax"]), href_list["sender_name"])
+			return
 	// SKYRAT EDIT ADDITION START
 	else if(href_list["pass_opfor_candidate"])
 		if(!check_rights(R_ADMIN))
@@ -1791,7 +1737,6 @@
 
 		if(!SSdynamic.picking_specific_rule(/datum/dynamic_ruleset/midround/from_living/opfor_candidate, forced = TRUE, ignore_cost = TRUE))
 			message_admins("An OPFOR candidate could not be selected.")
-
 	// SKYRAT EDIT ADDITION END
 	else if(href_list["play_internet"])
 		if(!check_rights(R_SOUND))

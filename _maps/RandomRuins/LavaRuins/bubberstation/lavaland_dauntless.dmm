@@ -3046,6 +3046,14 @@
 "nr" = (
 /turf/closed/wall/r_wall/syndicate,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/holding)
+"nt" = (
+/obj/machinery/button/camkillswitch{
+	pixel_x = -32;
+	pixel_y = 26;
+	req_access = list("syndicate")
+	},
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/space/has_grav/bubbers/dauntless/sec/holding)
 "nu" = (
 /obj/effect/turf_decal/stripes/red/line,
 /obj/effect/turf_decal/stripes/red/line{
@@ -3225,6 +3233,10 @@
 	},
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
+"on" = (
+/obj/item/assembly/control/camkillswitch/persistence_ext,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "oo" = (
 /obj/machinery/light/small/red/directional/west,
 /turf/open/floor/wood/tile,
@@ -4273,9 +4285,6 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "sN" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -10131,7 +10140,7 @@
 	dir = 5
 	},
 /obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/radio/headset/interdyne,
+/obj/item/radio/headset/syndicateciv/staff,
 /turf/open/floor/iron/small,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "RU" = (
@@ -10298,7 +10307,7 @@
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "Sy" = (
-/obj/machinery/photocopier,
+/obj/machinery/photocopier/prebuilt,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/interrogation)
 "SB" = (
@@ -11206,14 +11215,6 @@
 "VY" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
-"VZ" = (
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/obj/machinery/pollution_scrubber,
-/turf/open/floor/wood/tile,
-/area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "Wa" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 10
@@ -13630,7 +13631,7 @@ RP
 dY
 pl
 HC
-RP
+on
 eI
 qr
 ux
@@ -13987,7 +13988,7 @@ Da
 JP
 jh
 uP
-VZ
+jh
 vn
 pw
 SO
@@ -14727,7 +14728,7 @@ JZ
 Wm
 tA
 Ku
-oZ
+nt
 VP
 ru
 HW

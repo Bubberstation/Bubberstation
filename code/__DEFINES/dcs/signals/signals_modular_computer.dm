@@ -16,6 +16,7 @@
 
 /// From /obj/item/modular_computer/proc/InsertID: (inserting_id, user)
 #define COMSIG_MODULAR_COMPUTER_INSERTED_ID "comsig_computer_inserted_id"
+#define COMSIG_MODULAR_COMPUTER_REMOVED_ID "comsig_computer_removed_id" // BUBBER EDIT ADDITION - Signal on ID removal
 
 /// From /datum/computer_file/program/on_start: (user)
 #define COMSIG_COMPUTER_PROGRAM_START "computer_program_start"

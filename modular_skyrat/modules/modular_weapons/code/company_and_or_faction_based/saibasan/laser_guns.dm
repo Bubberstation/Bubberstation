@@ -71,7 +71,7 @@
 	/// What is this gun's extended examine, we only have to do this because the carbine is a subtype
 	var/expanded_examine_text = "The Hyeseong rifle is the first line of man-portable Marsian weapons platforms \
 		from Cybersun Industries. Like her younger sister weapon, the Hoshi carbine, CI used funding aid provided \
-		by SolFed to develop a portable weapon fueled by a proprietary generator rumored to be fueled by superstable plasma. \
+		by TerraGov to develop a portable weapon fueled by a proprietary generator rumored to be fueled by superstable plasma. \
 		A rugged and hefty weapon, the Hyeseong stars in applications anywhere from medium to long ranges, though struggling \
 		in CQB. Her onboard machine intelligence, at first devised to support the operator and manage the internal reactor, \
 		is shipped with a more professional and understated personality-- since influenced by 'negligence' from users in \
@@ -278,7 +278,7 @@
 	default_selected_mode = "Incinerate"
 	speech_json_file = SHORT_MOD_LASER_SPEECH
 	expanded_examine_text = "The Hoshi carbine is the latest line of man-portable Marsian weapons platforms from \
-		Cybersun Industries. Like her older sister weapon, the Hyeseong rifle, CI used funding aid provided by SolFed \
+		Cybersun Industries. Like her older sister weapon, the Hyeseong rifle, CI used funding aid provided by TerraGov \
 		to develop a portable weapon fueled by a proprietary generator rumored to be fueled by superstable plasma. A \
 		lithe and mobile weapon, the Hoshi stars in close-quarters battle, trickshots, and area-of-effect blasts; though \
 		ineffective at ranged combat. Her onboard machine intelligence, at first devised to support the operator and \

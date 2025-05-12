@@ -103,7 +103,7 @@
 	if(sticker)
 		. += "[base_icon_state]_barcode"
 
-/obj/item/delivery/attackby(obj/item/item, mob/user, params)
+/obj/item/delivery/attackby(obj/item/item, mob/user, list/modifiers)
 	if(istype(item, /obj/item/dest_tagger))
 		var/obj/item/dest_tagger/dest_tagger = item
 
@@ -122,6 +122,7 @@
 		if(!str || !length(str))
 			to_chat(user, span_warning("Invalid text!"))
 			return
+		playsound(src, SFX_WRITING_PEN, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
 		user.visible_message(span_notice("[user] labels [src] as [str]."))
 		name = "[name] ([str])"
 
@@ -351,7 +352,7 @@
 	if(payments_acc)
 		. += span_notice("<b>Ctrl-click</b> to clear the registered account.")
 
-/obj/item/sales_tagger/attackby(obj/item/item, mob/living/user, params)
+/obj/item/sales_tagger/attackby(obj/item/item, mob/living/user, list/modifiers)
 	. = ..()
 	if(isidcard(item))
 		var/obj/item/card/id/potential_acc = item

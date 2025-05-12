@@ -20,6 +20,7 @@
 		"stamp-closed" = 'icons/stamp_icons/large_stamp-closed.png',
 		"stamp-crow" = 'icons/stamp_icons/crow-stamp.png',
 		"stamp-warden" = 'icons/stamp_icons/large_stamp-warden.png',
+		"stamp-persistence" = 'icons/stamp_icons/large_stamp-persistence.png',
 		//BUBBERSTATION ADDITION: END - Bubberstation Stamp Icons
 
 		"stamp-clown" = 'icons/stamp_icons/large_stamp-clown.png',

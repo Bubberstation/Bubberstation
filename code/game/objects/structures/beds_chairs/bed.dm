@@ -91,6 +91,8 @@
 	build_stack_type = /obj/item/stack/sheet/mineral/titanium
 	build_stack_amount = 1
 	elevation = 0
+	buckle_sound = SFX_SEATBELT_BUCKLE
+	unbuckle_sound = SFX_SEATBELT_UNBUCKLE
 	/// The item it spawns when it's folded up.
 	var/foldable_type
 
@@ -172,7 +174,7 @@
 		. += mutable_appearance(icon, "brakes_down")
 		. += emissive_appearance(icon, "brakes_down", src, alpha = src.alpha)
 
-/obj/structure/bed/medical/emergency/attackby(obj/item/item, mob/user, params)
+/obj/structure/bed/medical/emergency/attackby(obj/item/item, mob/user, list/modifiers)
 	if(istype(item, /obj/item/emergency_bed/silicon))
 		var/obj/item/emergency_bed/silicon/silicon_bed = item
 		if(silicon_bed.loaded)
@@ -218,7 +220,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	w_class = WEIGHT_CLASS_NORMAL // No more excuses, stop getting blood everywhere
 
-/obj/item/emergency_bed/attackby(obj/item/item, mob/living/user, params)
+/obj/item/emergency_bed/attackby(obj/item/item, mob/living/user, list/modifiers)
 	if(istype(item, /obj/item/emergency_bed/silicon))
 		var/obj/item/emergency_bed/silicon/silicon_bed = item
 		if(silicon_bed.loaded)

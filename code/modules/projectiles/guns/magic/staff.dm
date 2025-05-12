@@ -3,6 +3,7 @@
 	ammo_type = /obj/item/ammo_casing/magic/nothing
 	worn_icon_state = null
 	icon_state = "staff"
+	icon_angle = -45
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 	item_flags = NEEDS_PERMIT | NO_MAT_REDEMPTION
@@ -201,7 +202,6 @@
 		/obj/projectile/bullet/mime,
 		/obj/projectile/curse_hand,
 		/obj/projectile/energy/electrode,
-		/obj/projectile/energy/net,
 		/obj/projectile/energy/nuclear_particle,
 		/obj/projectile/gravityattract,
 		/obj/projectile/gravitychaos,
@@ -242,6 +242,7 @@
 	ammo_type = /obj/item/ammo_casing/magic/spellblade
 	icon_state = "spellblade"
 	inhand_icon_state = "spellblade"
+	icon_angle = -45
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	hitsound = 'sound/items/weapons/rapierhit.ogg'
@@ -269,7 +270,7 @@
 
 /obj/item/gun/magic/staff/locker
 	name = "staff of the locker"
-	desc = "An artefact that expells encapsulating bolts, for incapacitating thy enemy."
+	desc = "An artefact that expels encapsulating bolts, for incapacitating thy enemy."
 	fire_sound = 'sound/effects/magic/staff_change.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/locker
 	icon_state = "locker"

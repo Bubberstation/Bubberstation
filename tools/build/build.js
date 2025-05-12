@@ -157,6 +157,10 @@ export const IconCutterTarget = new Juke.Target({
       `icons/**/*.png.toml`,
       `icons/**/*.dmi.toml`,
       `cutter_templates/**/*.toml`,
+      // BUBBER EDIT ADDITION START: Modular iconcutter
+      `modular_zubbers/icons/**/*.png.toml`,
+      `modular_zubbers/icons/**/*.dmi.toml`,
+      // BUBBER EDIT END
       cutter_path,
     ]
     // Alright we're gonna search out any existing toml files and convert
@@ -164,6 +168,10 @@ export const IconCutterTarget = new Juke.Target({
     const existing_configs = [
       ...Juke.glob(`icons/**/*.png.toml`),
       ...Juke.glob(`icons/**/*.dmi.toml`),
+      // BUBBER EDIT ADDITION START: Modular iconcutter
+      ...Juke.glob(`modular_zubbers/icons/**/*.png.toml`),
+      ...Juke.glob(`modular_zubbers/icons/**/*.dmi.toml`),
+      // BUBBER EDIT END
     ];
     return [
       ...standard_inputs,
@@ -176,6 +184,10 @@ export const IconCutterTarget = new Juke.Target({
     const folders = [
       ...Juke.glob(`icons/**/*.png.toml`),
       ...Juke.glob(`icons/**/*.dmi.toml`),
+      // BUBBER EDIT ADDITION START: Modular iconcutter
+      ...Juke.glob(`modular_zubbers/icons/**/*.png.toml`),
+      ...Juke.glob(`modular_zubbers/icons/**/*.dmi.toml`),
+      // BUBBER EDIT END
     ];
     return folders
       .map((file) => file.replace(`.png.toml`, '.dmi'))
@@ -188,6 +200,14 @@ export const IconCutterTarget = new Juke.Target({
       'cutter_templates',
       'icons',
     ]);
+    // BUBBER EDIT ADDITION START: Modular iconcutter
+    await Juke.exec(cutter_path, [
+      '--dont-wait',
+      '--templates',
+      'cutter_templates',
+      'modular_zubbers/icons',
+    ]);
+    // BUBBER EDIT END
   },
 });
 
@@ -224,6 +244,7 @@ export const DmTarget = new Juke.Target({
     'modular_skyrat/**', ///SKYRAT EDIT ADDITION - Making the CBT work
     'modular_zubbers/**', ///BUBBER EDIT ADDITION - Making the CBT work
     'sound/**',
+    'tgui/public/tgui.html',
     `${DME_NAME}.dme`,
     NamedVersionFile,
   ],
@@ -357,7 +378,7 @@ export const TguiTarget = new Juke.Target({
   dependsOn: [YarnTarget],
   inputs: [
     'tgui/.yarn/install-target',
-    'tgui/webpack.config.js',
+    'tgui/rspack.config.cjs',
     'tgui/**/package.json',
     'tgui/packages/**/*.+(js|cjs|ts|tsx|jsx|scss)',
   ],
@@ -453,7 +474,7 @@ export const TguiCleanTarget = new Juke.Target({
     Juke.rm('tgui/public/*.map');
     Juke.rm('tgui/public/*.{chunk,bundle,hot-update}.*');
     Juke.rm('tgui/packages/tgfont/dist', { recursive: true });
-    Juke.rm('tgui/.yarn/{cache,unplugged,webpack}', { recursive: true });
+    Juke.rm('tgui/.yarn/{cache,unplugged,rspack}', { recursive: true });
     Juke.rm('tgui/.yarn/build-state.yml');
     Juke.rm('tgui/.yarn/install-state.gz');
     Juke.rm('tgui/.yarn/install-target');

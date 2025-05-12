@@ -44,4 +44,4 @@
 	config_entry_value = "Central Command has ordered the Epsilon security level on the station. Consider all contracts terminated."
 
 /datum/config_entry/string/alert_gamma
-	config_entry_value = "The Solar Federation has placed this system under Gamma Alert status. This galactic system is facing a ZK-Class Reality Failure Scenario. Security Personnel is authorized full access to lethal equipment to enforce Martial Law. Failure to follow emergency procedures is punishable by death. This is not a drill."
+	config_entry_value = "The Terran Government has placed this system under Gamma Alert status. This galactic system is facing a ZK-Class Reality Failure Scenario. Security Personnel is authorized full access to lethal equipment to enforce Martial Law. Failure to follow emergency procedures is punishable by death. This is not a drill."

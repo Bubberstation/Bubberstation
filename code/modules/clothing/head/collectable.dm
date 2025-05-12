@@ -72,6 +72,7 @@
 	greyscale_config_worn = /datum/greyscale_config/beret/worn
 	greyscale_colors = "#972A2A"
 	dog_fashion = /datum/dog_fashion/head/beret
+	hair_mask = /datum/hair_mask/standard_hat_middle
 
 /obj/item/clothing/head/collectable/welding
 	name = "collectable welding helmet"
@@ -109,7 +110,7 @@
 
 /obj/item/clothing/head/collectable/pirate/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -3)
+	AddComponent(/datum/component/adjust_fishing_difficulty, -4)
 
 /obj/item/clothing/head/collectable/kitty
 	name = "collectable kitty ears"
@@ -135,7 +136,7 @@
 
 /obj/item/clothing/head/collectable/wizard/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -1)
+	AddComponent(/datum/component/adjust_fishing_difficulty, -2)
 
 /obj/item/clothing/head/collectable/hardhat
 	name = "collectable hard hat"

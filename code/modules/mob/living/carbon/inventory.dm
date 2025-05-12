@@ -441,6 +441,7 @@
 	if(offered_item.on_offered(src)) // see if the item interrupts with its own behavior
 		return
 
+	balloon_alert_to_viewers("offers something")
 	visible_message(span_notice("[src] is offering [offered ? "[offered] " : ""][offered_item]."), \
 					span_notice("You offer [offered ? "[offered] " : ""][offered_item]."), null, 2)
 
@@ -479,6 +480,7 @@
 
 	visible_message(span_notice("[src] takes [I] from [offerer]."), \
 					span_notice("You take [I] from [offerer]."))
+	I.do_pickup_animation(src, offerer)
 	put_in_hands(I)
 
 ///Returns a list of all body_zones covered by clothing

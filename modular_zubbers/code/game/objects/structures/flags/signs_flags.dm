@@ -16,8 +16,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/galfed, 32)
 	icon_state = "flag_tizira"
 
 /obj/structure/sign/flag/terragov
-	name = "flag of the Solarian State"
-	desc = "Previously the flag of the Sol Federation, before it was dissolved."
+	name = "flag of the Terran Government"
+	desc = "The flag of the Terran Government, home of humanity."
 
 /obj/item/sign/flag/galfed
 	name = "folded flag of the Galactic Federation"
@@ -33,19 +33,19 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/galfed, 32)
 	icon_state = "folded_tizira"
 
 /obj/item/sign/flag/terragov
-	name = "folded flag of the Solarian State"
-	desc = "The folded flag of the Solarian State."
+	name = "folded flag of the Terran Government"
+	desc = "The folded flag of the Terran Government."
 
 /obj/structure/sign/flag/nri
-	name = "flag of the Novaya Rossiyskaya Imperiya"
-	desc = "The flag of the NRI, the white symbolizes nobility, the blue faithfulness, and the red symbolizes courage. In the middle is the emblem of the Russians, symbolizing their new home among the stars."
+	name = "flag of the Pan-Slavic Commonwealth."
+	desc = "The flag of the Commonwealth, donning the Pan-Slavic colours of Blue, White and Red, as defined all the way back in 1848 on old Terra. Long way from home, druzya."
 	icon = 'modular_zubbers/icons/obj/flags.dmi'
 	icon_state = "flag_nri"
 	item_flag = /obj/item/sign/flag/nri
 
 /obj/item/sign/flag/nri
-	name = "folded flag of the Novaya Rossiyskaya Imperiya"
-	desc = "The folded flag of the Novaya Rossiyskaya Imperiya."
+	name = "folded flag of the Pan-Slavic Commonwealth"
+	desc = "The folded flag of the Pan-Slavic Commonwealth."
 	icon = 'modular_zubbers/icons/obj/flags.dmi'
 	icon_state = "folded_nri"
 	sign_path = /obj/structure/sign/flag/nri

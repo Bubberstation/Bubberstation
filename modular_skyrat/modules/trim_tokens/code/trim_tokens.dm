@@ -19,7 +19,7 @@
 	var/has_required_trim = FALSE
 	// Do we force the access update? TRUE by default.
 	var/force_access = TRUE
-	// Does it have multiple uses? 1 by default, set to INFINITE (so -1, not any lower) to not have it be consumed.
+	// Does it have multiple uses? 1 by default, set to -1 to not have it be consumed.
 	var/uses = 1
 
 /obj/item/trim_token/Initialize(mapload)

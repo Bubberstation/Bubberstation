@@ -1,11 +1,14 @@
-/obj/item/organ/internal/brain/cybernetic
+/obj/item/organ/brain/cybernetic
 	name = "cybernetic brain"
 	desc = "A mechanical brain found inside of androids. Not to be confused with a positronic brain."
 	icon_state = "brain-c"
 	organ_flags = ORGAN_ROBOTIC | ORGAN_VITAL
 	failing_desc = "seems to be broken, and will not work without repairs."
+	var/emp_dmg_mult = 1 //BUBBER EDIT - Variable multiplier for damage from EMPs. Note the base damage is 20.
+	var/emp_dmg_max = 999 ///BUBBER EDIT - Threshold before the organ simply stops taking damage from EMPs. Defaults to kill
 
-/obj/item/organ/internal/brain/cybernetic/brain_damage_examine()
+
+/obj/item/organ/brain/cybernetic/brain_damage_examine()
 	if(suicided)
 		return span_info("Its circuitry is smoking slightly. They must not have been able to handle the stress of it all.")
 	if(brainmob && (decoy_override || brainmob.client || brainmob.get_ghost()))
@@ -18,7 +21,7 @@
 	else
 		return span_info("This one is completely devoid of life.")
 
-/obj/item/organ/internal/brain/cybernetic/check_for_repair(obj/item/item, mob/user)
+/obj/item/organ/brain/cybernetic/check_for_repair(obj/item/item, mob/user)
 	if (item.tool_behaviour == TOOL_MULTITOOL) //attempt to repair the brain
 		if (brainmob?.health <= HEALTH_THRESHOLD_DEAD) //if the brain is fucked anyway, do nothing
 			to_chat(user, span_warning("[src] is far too damaged, there's nothing else we can do for it!"))
@@ -48,12 +51,19 @@
 		return TRUE
 	return FALSE
 
-/obj/item/organ/internal/brain/cybernetic/emp_act(severity)
+/obj/item/organ/brain/cybernetic/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	switch(severity) // Hard cap on brain damage from EMP
+//BUBBER EDIT BEGIN - can't be emp'd if dead
+	if(owner.stat == DEAD)
+		return
+//BUBBER EDIT END
+	switch(severity)
 		if (EMP_HEAVY)
-			apply_organ_damage(20, BRAIN_DAMAGE_SEVERE)
+			to_chat(owner, span_boldwarning("You feel [pick("like your brain is being fried", "a sharp pain in your head")]!")) //BUBBER EDIT - added alert text for getting EMP'd.
+			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, (20*emp_dmg_mult), emp_dmg_max) //BUBBER EDIT - cap implemented
 		if (EMP_LIGHT)
-			apply_organ_damage(10, BRAIN_DAMAGE_MILD)
+			to_chat(owner, span_warning("You feel [pick("disoriented", "confused", "dizzy")].")) //BUBBER EDIT - added alert text for getting EMP'd.
+			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, (10*emp_dmg_mult), emp_dmg_max) //BUBBER EDIT - cap implemented
+

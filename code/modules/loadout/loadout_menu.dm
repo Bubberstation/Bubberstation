@@ -31,10 +31,12 @@
 		select_item(interacted_item)
 	return TRUE
 
+/* BUBBER EDIT REMOVAL: Multiple loadout presets: Handled in the modular file.
 /datum/preference_middleware/loadout/proc/action_clear_all(list/params, mob/user)
 	PRIVATE_PROC(TRUE)
 	preferences.update_preference(GLOB.preference_entries[/datum/preference/loadout], null)
 	return TRUE
+*/
 
 /datum/preference_middleware/loadout/proc/action_toggle_job_outfit(list/params, mob/user)
 	PRIVATE_PROC(TRUE)
@@ -66,7 +68,7 @@
 
 /// Select [path] item to [category_slot] slot.
 /datum/preference_middleware/loadout/proc/select_item(datum/loadout_item/selected_item)
-	var/list/loadout = preferences.read_preference(/datum/preference/loadout)
+	var/list/loadout = get_current_loadout() // BUBBER EDIT: Multiple loadout presets: ORIGINAL: var/list/loadout = preferences.read_preference(/datum/preference/loadout)
 	var/list/datum/loadout_item/loadout_datums = loadout_list_to_datums(loadout)
 	for(var/datum/loadout_item/item as anything in loadout_datums)
 		if(item.category != selected_item.category)
@@ -78,19 +80,19 @@
 		to_chat(preferences.parent, span_warning("You cannot select this item!"))
 		return
 
-	if(!isnull(selected_item.donator_only) && !GLOB.donator_list[preferences?.parent?.ckey])
+	if(selected_item.donator_only && !SSplayer_ranks.is_donator(preferences.parent))
 		to_chat(preferences.parent, span_warning("This item is for donators only."))
 		return
 	// SKYRAT EDIT END
 
 	LAZYSET(loadout, selected_item.item_path, list())
-	preferences.update_preference(GLOB.preference_entries[/datum/preference/loadout], loadout)
+	save_current_loadout(loadout) // BUBBER EDIT: Multiple loadout presets: ORIGINAL: preferences.update_preference(GLOB.preference_entries[/datum/preference/loadout], loadout)
 
 /// Deselect [deselected_item].
 /datum/preference_middleware/loadout/proc/deselect_item(datum/loadout_item/deselected_item)
-	var/list/loadout = preferences.read_preference(/datum/preference/loadout)
+	var/list/loadout = get_current_loadout() // BUBBER EDIT: Multiple loadout presets: ORIGINAL: var/list/loadout = preferences.read_preference(/datum/preference/loadout)
 	LAZYREMOVE(loadout, deselected_item.item_path)
-	preferences.update_preference(GLOB.preference_entries[/datum/preference/loadout], loadout)
+	save_current_loadout(loadout) // BUBBER EDIT: Multiple loadout presets: ORIGINAL: preferences.update_preference(GLOB.preference_entries[/datum/preference/loadout], loadout)
 
 /datum/preference_middleware/loadout/proc/register_greyscale_menu(datum/greyscale_modify_menu/open_menu)
 	src.menu = open_menu
@@ -111,11 +113,6 @@
 /datum/preference_middleware/loadout/get_ui_static_data(mob/user)
 	var/list/data = list()
 	data["loadout_preview_view"] = preferences.character_preview_view.assigned_map
-	// SKYRAT EDIT START - EXPANDED LOADOUT
-	data["ckey"] = user.ckey
-	if(SSplayer_ranks.is_donator(user.client))
-		data["is_donator"] = TRUE
-	// SKYRAT EDIT END
 	return data
 
 /datum/preference_middleware/loadout/get_constant_data()

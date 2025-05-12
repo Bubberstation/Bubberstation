@@ -69,7 +69,7 @@
 		SSticker.quote_of_the_round_attribution = "[found_name], [found_job]"
 		SSticker.quote_of_the_round_record_start = null //Chosen!
 		SSticker.quote_of_the_round_ckey = found_user.ckey ? found_user.ckey : "NO CKEY" //It's possible to be null.
-		message_admins("[found_message] by [ADMIN_LOOKUPFLW(found_user)] has been randomly selected as quote of the round. <a href='?src=[REF(src)];cancel_quote=1'>Click here to change</a>.")
+		message_admins("[found_message] by [ADMIN_LOOKUPFLW(found_user)] has been randomly selected as quote of the round. <a href='byond://?src=[REF(src)];cancel_quote=1'>Click here to change</a>.")
 		log_world("[key_name(found_user)] has been randomly selected for quote of the round with the quote \"[found_message]\".")
 
 /obj/machinery/telecomms/hub/Topic(href, href_list)

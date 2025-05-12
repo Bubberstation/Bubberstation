@@ -1,8 +1,4 @@
-import { createSearch } from 'common/string';
 import { useState } from 'react';
-
-import { BooleanLike } from '../../common/react';
-import { useBackend } from '../backend';
 import {
   Button,
   Input,
@@ -11,7 +7,11 @@ import {
   Section,
   Slider,
   Stack,
-} from '../components';
+} from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
+import { createSearch } from 'tgui-core/string';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
@@ -322,7 +322,7 @@ const Categories = (props: CategoriesProps) => {
         />
       }
     >
-      <Stack fill vertical zebra>
+      <Stack fill vertical zebra g={0.2}>
         <Stack.Item>
           <Button
             fluid
@@ -337,7 +337,7 @@ const Categories = (props: CategoriesProps) => {
           </Button>
         </Stack.Item>
         {data.categories.map((category) => (
-          <Stack.Item mt={0.25} key={category}>
+          <Stack.Item key={category}>
             <Button
               fluid
               icon="chevron-right"
@@ -386,13 +386,13 @@ const Blanks = (props: BlanksProps) => {
           width={8.75}
           value={searchText}
           placeholder="Search blank..."
-          onInput={(e, value) => setSearchText(value)}
+          onChange={setSearchText}
         />
       }
     >
-      <Stack fill vertical zebra>
+      <Stack fill vertical zebra g={0.5}>
         {visibleBlanks.map((blank) => (
-          <Stack.Item key={blank.code} mt={0.5}>
+          <Stack.Item key={blank.code}>
             <Button
               fluid
               ellipsis

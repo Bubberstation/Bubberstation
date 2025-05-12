@@ -11,7 +11,7 @@
 	icon_state = "hardsuit-metrocop"
 	inhand_icon_state =  null
 	blood_overlay_type = "hardsuit-metrocop"
-	armor_type =/datum/armor/suit_armor
+	armor_type = /datum/armor/suit_armor
 
 /obj/item/clothing/suit/armor/metrocopriot //Sprite done by Gat1Day#2892
 	name = "Riot Civil Protection Suit"
@@ -23,14 +23,30 @@
 	blood_overlay_type = "hardsuit-metrocop-RL"
 	armor_type = /datum/armor/armor_riot
 
-/obj/item/clothing/suit/armor/vest/collared_vest//Sprite done by offwrldr
-	name = "Collared Vest"
-	desc = "An armored vest with an attached collar, adorned with a blue stripe on the right breastplate. It is unlikely the collar adds any additional protective qualities."
+/obj/item/clothing/suit/armor/vest/collared_vest//Sprite done by offwrldr/Bangle - same person. Recently edited sprite.
+	name = "GLP-C 'Úlfur' Vest"
+	desc = "A set of General Light Protective armor, with complimentary pauldrons and an additional armored collar, similar to a gorget. This pattern of armored vest is typically afforded to diplomats and members of the press in hostile environments, though has seen use among private security forces. The armored collar is designed to protect the neck and throat from shrapnel. All things considered, it's quite comfortable, though many unfortunate wearers are often mistaken for combatants given the militarized aesthetic."
 	icon = 'modular_zubbers/icons/obj/clothing/suits/collared_vest.dmi'
 	worn_icon = 'modular_zubbers/icons/obj/clothing/suits/collared_vest.dmi'
 	icon_state = "vest_worn"
 	inhand_icon_state = null
 	armor_type = /datum/armor/suit_armor
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Red Pattern" = list(
+			RESKIN_ICON_STATE = "vest_worn_red",
+			RESKIN_WORN_ICON_STATE = "vest_worn_red"
+		),
+		"Neutral Pattern" = list(
+			RESKIN_ICON_STATE = "vest_worn",
+			RESKIN_WORN_ICON_STATE = "vest_worn",
+		),
+		"Blue Pattern" = list(
+			RESKIN_ICON_STATE = "vest_worn_blue",
+			RESKIN_WORN_ICON_STATE = "vest_worn_blue",
+			RESKIN_SUPPORTS_VARIATIONS_FLAGS = NONE
+		)
+	)
 
 /obj/item/clothing/suit/armor/vest/secjacket // Port from TG Station (DrTuxedo)
 	name = "security jacket"

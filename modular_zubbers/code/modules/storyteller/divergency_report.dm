@@ -1,6 +1,12 @@
 /datum/controller/subsystem/gamemode/proc/send_trait_report()
 	. = "<b><i>Central Command Status Summary</i></b><hr>"
-	SSstation.generate_station_goals(20)
+	// We don't want to roll all three goals every shift, so randomly choose how many we'll do, weighted towards doing none.
+	var/list/total_goal_weights = list(
+		"0" = 65,
+		"1" = 20,
+		"2" = 10,
+		"3" = 5)
+	SSstation.generate_station_goals(text2num(pick_weight(total_goal_weights))) // Yes, this is bad, but I can't use straight nums for assoc list keys. Sue me.
 
 	var/list/station_goals = SSstation.get_station_goals()
 
@@ -26,7 +32,7 @@
  *
  * Returns a formatted string all station goals that are available to the station.
  */
-/datum/controller/subsystem/gamemode/proc/generate_station_goal_report(var/list/station_goals)
+/datum/controller/subsystem/gamemode/proc/generate_station_goal_report(list/station_goals)
 	. = "<hr><b>Special Orders for [station_name()]:</b><BR>"
 	var/list/goal_reports = list()
 	for(var/datum/station_goal/station_goal as anything in station_goals)

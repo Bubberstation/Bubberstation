@@ -6,6 +6,8 @@
 	icon_state = "ashclothvendor"
 	icon_deny = "necrocrate"
 
+	use_power = NO_POWER_USE
+
 	products = list( //Relatively normal to have, I GUESS
 		/obj/item/clothing/under/costume/gladiator/ash_walker/tribal = 15,
 		/obj/item/clothing/under/costume/gladiator/ash_walker/chestwrap = 15,

@@ -1,4 +1,3 @@
-import { classes } from 'common/react';
 import {
   Box,
   Button,
@@ -8,6 +7,7 @@ import {
   Stack,
   Tooltip,
 } from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -133,16 +133,15 @@ const CustomPrint = (props: CustomPrintProps) => {
       ])}
     >
       <Button.Input
+        buttonText={`[Max: ${maxMult}]`}
         color="transparent"
-        onCommit={(_e, value: string) =>
+        onCommit={(value) =>
           act('build', {
             ref: design.id,
             amount: value,
           })
         }
-      >
-        [Max: {maxMult}]
-      </Button.Input>
+      />
     </div>
   );
 };

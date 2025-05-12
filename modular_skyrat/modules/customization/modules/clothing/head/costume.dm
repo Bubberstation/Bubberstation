@@ -29,14 +29,6 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/clothing/head/costume/skyrat/christmas
-	name = "christmas hat"
-	desc = "How festive!"
-	icon_state = "christmas"
-
-/obj/item/clothing/head/costume/skyrat/christmas/green
-	icon_state = "christmas_g"
-
 /obj/item/clothing/head/costume/skyrat/en //One of the two parts of E-N's butchering
 	name = "E-N suit head"
 	icon_state = "enhead"

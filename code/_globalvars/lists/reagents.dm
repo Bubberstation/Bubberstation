@@ -30,10 +30,10 @@ GLOBAL_LIST_INIT(reagent_containers, list(
 		/obj/item/reagent_containers/cup/tube
 	),
 	CAT_PILLS = typecacheof(list(
-		/obj/item/reagent_containers/pill/style
+		/obj/item/reagent_containers/applicator/pill/style
 	)),
 	CAT_PATCHES = typecacheof(list(
-		/obj/item/reagent_containers/pill/patch/style
+		/obj/item/reagent_containers/applicator/patch/style
 	)),
 	// SKYRAT EDIT ADDITION START
 	CAT_HYPOS = typecacheof(list(
@@ -42,6 +42,10 @@ GLOBAL_LIST_INIT(reagent_containers, list(
 	)),
 	CAT_DARTS = typecacheof(list(
 		/obj/item/reagent_containers/syringe/smartdart
+	)),
+	CAT_MEDBOTTLES = typecacheof(list(
+		/obj/item/reagent_containers/cup/bottle/medi,
+		/obj/item/reagent_containers/cup/bottle/large
 	)),
 	// SKYRAT EDIT ADDITION END
 ))
@@ -65,6 +69,8 @@ GLOBAL_LIST_INIT(blacklisted_metalgen_types, typecacheof(list(
 )))
 /// Map of reagent names to its datum path
 GLOBAL_LIST_INIT(name2reagent, build_name2reagentlist())
+/// list of all plan traits
+GLOBAL_LIST_INIT(plant_traits, init_plant_traits())
 
 /// Initialises all /datum/reagent into a list indexed by reagent id
 /proc/init_chemical_reagent_list()

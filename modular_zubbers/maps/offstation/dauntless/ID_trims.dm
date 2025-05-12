@@ -47,7 +47,7 @@
 	assignment = "Dauntless Mining Officer"
 	trim_state = "trim_ds2miningofficer"
 	sechud_icon_state = SECHUD_DS2_MININGOFFICER
-	access = list(ACCESS_SYNDICATE)
+	access = list(ACCESS_SYNDICATE, ACCESS_MINERAL_STOREROOM)
 
 /datum/id_trim/syndicom/bubberstation/dauntless/masteratarms
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
@@ -76,6 +76,3 @@
 	trim_state = "trim_ds2admiral"
 	sechud_icon_state = SECHUD_DS2_ADMIRAL
 	access = list(ACCESS_SYNDICATE, ACCESS_ROBOTICS, ACCESS_SYNDICATE_LEADER)
-
-
-

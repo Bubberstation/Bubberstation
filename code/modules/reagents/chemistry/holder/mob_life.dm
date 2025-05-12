@@ -19,8 +19,8 @@
 		expose_temperature(owner.bodytemperature, 0.25)
 
 	var/need_mob_update = FALSE
-	var/obj/item/organ/internal/stomach/belly = owner.get_organ_slot(ORGAN_SLOT_STOMACH)
-	var/obj/item/organ/internal/liver/liver = owner.get_organ_slot(ORGAN_SLOT_LIVER)
+	var/obj/item/organ/stomach/belly = owner.get_organ_slot(ORGAN_SLOT_STOMACH)
+	var/obj/item/organ/liver/liver = owner.get_organ_slot(ORGAN_SLOT_LIVER)
 	var/liver_tolerance = 0
 	var/liver_damage = 0
 	var/provide_pain_message
@@ -40,7 +40,7 @@
 			if(belly)
 				amount += belly.reagents.get_reagent_amount(toxin.type)
 
-			if(amount <= liver_tolerance)
+			if(amount <= liver_tolerance * toxin.liver_tolerance_multiplier)
 				owner.reagents.remove_reagent(toxin.type, toxin.metabolization_rate * owner.metabolism_efficiency * seconds_per_tick)
 				continue
 
@@ -49,7 +49,7 @@
 		// If applicable, calculate any toxin-related liver damage
 		// Note: we have to do this AFTER metabolize_reagent, because we want handle_reagent to run before we make the determination.
 		// The order is really important unfortunately.
-		if(toxin && !liverless && liver && liver.filterToxins && !HAS_TRAIT(owner, TRAIT_TOXINLOVER))
+		if(toxin && !liverless && liver && liver.filterToxins && !HAS_TRAIT(owner, TRAIT_TOXINLOVER) && !HAS_TRAIT(owner, TRAIT_TOXIMMUNE))
 			if(toxin.affected_organ_flags && !(liver.organ_flags & toxin.affected_organ_flags)) //this particular toxin does not affect this type of organ
 				continue
 

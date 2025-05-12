@@ -1,7 +1,7 @@
 /datum/status_effect/ropebunny
 	id = "ropebunny"
 	tick_interval = 1 SECONDS
-	duration = INFINITE
+	duration = STATUS_EFFECT_PERMANENT
 	alert_type = null
 
 /datum/status_effect/ropebunny/on_apply()

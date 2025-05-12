@@ -36,6 +36,11 @@
 		/obj/item/lighter,
 	)
 
+// do not have the new sprites for these
+/obj/item/clothing/suit/toggle/jacket/det_trench
+	icon = 'icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'icons/mob/clothing/suits/jacket.dmi'
+
 /datum/armor/jacket_engi
 	fire = 30
 	acid = 45
@@ -48,16 +53,6 @@
 
 /datum/armor/jacket_sci
 	bomb = 10
-
-/obj/item/clothing/suit/toggle/jacket/med
-	name = "medbay jacket"
-	desc = "A comfortable jacket in medical blue."
-	icon_state = "med_dep_jacket"
-	armor_type = /datum/armor/jacket_med
-
-/datum/armor/jacket_med
-	bio = 50
-	acid = 45
 
 /obj/item/clothing/suit/toggle/jacket/supply
 	name = "cargo jacket"

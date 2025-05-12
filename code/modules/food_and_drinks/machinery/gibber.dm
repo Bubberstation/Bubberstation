@@ -7,12 +7,18 @@
 	circuit = /obj/item/circuitboard/machine/gibber
 	anchored_tabletop_offset = 8
 
-	var/operating = FALSE //Is it on?
-	var/dirty = FALSE // Does it need cleaning?
-	var/gibtime = 40 // Time from starting until meat appears
+	//Is it on?
+	var/operating = FALSE
+	/// Does it need cleaning?
+	var/dirty = FALSE
+	/// Time from starting until meat appears
+	var/gibtime = 40
+	/// How much meat we meet when we meat the meat
 	var/meat_produced = 2
+	/// If the gibber should give the 'Subject may not have abiotic items on' message
 	var/ignore_clothing = FALSE
-
+	/// The DNA info of the last gibbed mob
+	var/blood_dna_info
 
 /obj/machinery/gibber/Initialize(mapload)
 	. = ..()
@@ -48,7 +54,12 @@
 /obj/machinery/gibber/update_overlays()
 	. = ..()
 	if(dirty)
-		. += "grinder_bloody"
+		var/mutable_appearance/blood_overlay = mutable_appearance(icon, "grinder_bloody", appearance_flags = RESET_COLOR|KEEP_APART)
+		if(blood_dna_info)
+			blood_overlay.color = get_blood_dna_color(blood_dna_info)
+		else
+			blood_overlay.color = BLOOD_COLOR_RED
+		. += blood_overlay
 	if(machine_stat & (NOPOWER|BROKEN) || panel_open)
 		return
 	if(!occupant)
@@ -123,7 +134,7 @@
 	default_unfasten_wrench(user, tool)
 	return ITEM_INTERACT_SUCCESS
 
-/obj/machinery/gibber/attackby(obj/item/P, mob/user, params)
+/obj/machinery/gibber/attackby(obj/item/P, mob/user, list/modifiers)
 	if(default_deconstruction_screwdriver(user, "grinder_open", "grinder", P))
 		return
 
@@ -182,7 +193,7 @@
 	var/typeofmeat = /obj/item/food/meat/slab/human
 	var/typeofskin
 
-	var/obj/item/food/meat/slab/allmeat[meat_produced]
+	var/list/results = list()
 	var/obj/item/stack/sheet/animalhide/skin
 	var/list/datum/disease/diseases = mob_occupant.get_static_viruses()
 
@@ -193,30 +204,39 @@
 		else if(gibee.dna && gibee.dna.species)
 			typeofmeat = gibee.dna.species.meat
 			typeofskin = gibee.dna.species.skinned_type
+		blood_dna_info = gibee.get_blood_dna_list()
 
 	else if(iscarbon(occupant))
-		var/mob/living/carbon/C = occupant
-		typeofmeat = C.type_of_meat
-		gibtype = C.gib_type
-		if(isalien(C))
+		var/mob/living/carbon/carbon_occupant = occupant
+		typeofmeat = carbon_occupant.type_of_meat
+		gibtype = carbon_occupant.gib_type
+		if(isalien(carbon_occupant))
 			typeofskin = /obj/item/stack/sheet/animalhide/xeno
+		blood_dna_info = carbon_occupant.get_blood_dna_list()
 
-	var/occupant_volume
-	if(occupant?.reagents)
-		occupant_volume = occupant.reagents.total_volume
-	for (var/i=1 to meat_produced)
-		var/obj/item/food/meat/slab/newmeat = new typeofmeat
+	for (var/i in 1 to meat_produced)
+		var/obj/item/food/meat/slab/newmeat = new typeofmeat(null, blood_dna_info)
 		newmeat.name = "[sourcename] [newmeat.name]"
 		newmeat.set_custom_materials(list(GET_MATERIAL_REF(/datum/material/meat/mob_meat, occupant) = 4 * SHEET_MATERIAL_AMOUNT))
-		if(istype(newmeat))
-			newmeat.subjectname = sourcename
-			newmeat.reagents.add_reagent (/datum/reagent/consumable/nutriment, sourcenutriment / meat_produced) // Thehehe. Fat guys go first
-			if(occupant_volume)
-				occupant.reagents.trans_to(newmeat, occupant_volume / meat_produced, remove_blacklisted = TRUE)
-			if(sourcejob)
-				newmeat.subjectjob = sourcejob
+		if(!istype(newmeat))
+			continue
+		newmeat.subjectname = sourcename
+		if(sourcejob)
+			newmeat.subjectjob = sourcejob
 
-		allmeat[i] = newmeat
+		results += newmeat
+
+	SEND_SIGNAL(occupant, COMSIG_LIVING_GIBBER_ACT, user, src, results)
+
+	var/reagents_in_produced = 0
+	for(var/obj/item/result as anything in results)
+		if(result.reagents)
+			reagents_in_produced++
+
+	for(var/obj/item/result as anything in results)
+		occupant.reagents.trans_to(result, occupant.reagents.total_volume / reagents_in_produced, remove_blacklisted = TRUE)
+		result.reagents?.add_reagent(/datum/reagent/consumable/nutriment/fat, sourcenutriment / reagents_in_produced) // Thehehe. Fat guys go first
+
 
 	if(typeofskin)
 		skin = new typeofskin
@@ -227,21 +247,23 @@
 	mob_occupant.ghostize()
 	set_occupant(null)
 	qdel(mob_occupant)
-	addtimer(CALLBACK(src, PROC_REF(make_meat), skin, allmeat, meat_produced, gibtype, diseases), gibtime)
+	addtimer(CALLBACK(src, PROC_REF(make_meat), skin, results, meat_produced, gibtype, diseases, blood_dna_info), gibtime)
 
-/obj/machinery/gibber/proc/make_meat(obj/item/stack/sheet/animalhide/skin, list/obj/item/food/meat/slab/allmeat, meat_produced, gibtype, list/datum/disease/diseases)
+/obj/machinery/gibber/proc/make_meat(obj/item/stack/sheet/animalhide/skin, list/results, meat_produced, gibtype, list/datum/disease/diseases, blood_dna_info)
 	playsound(src.loc, 'sound/effects/splat.ogg', 50, TRUE)
 	operating = FALSE
 	if (!dirty && prob(50))
 		dirty = TRUE
+	if(blood_dna_info)
+		add_blood_DNA(blood_dna_info)
 	var/turf/T = get_turf(src)
 	var/list/turf/nearby_turfs = RANGE_TURFS(3,T) - T
 	if(skin)
 		skin.forceMove(loc)
 		skin.throw_at(pick(nearby_turfs),meat_produced,3)
-	for (var/i=1 to meat_produced)
-		var/obj/item/meatslab = allmeat[i]
 
+	var/iteration = 1
+	for (var/obj/item/meatslab in results)
 		if(LAZYLEN(diseases))
 			var/list/datum/disease/diseases_to_add = list()
 			for(var/datum/disease/disease as anything in diseases)
@@ -252,13 +274,19 @@
 				diseases_to_add += disease
 			if(LAZYLEN(diseases_to_add))
 				meatslab.AddComponent(/datum/component/infective, diseases_to_add)
-
+		if(blood_dna_info)
+			meatslab.add_blood_DNA(blood_dna_info)
 		meatslab.forceMove(loc)
-		meatslab.throw_at(pick(nearby_turfs),i,3)
-		for (var/turfs=1 to meat_produced)
-			var/turf/gibturf = pick(nearby_turfs)
-			if (!gibturf.density && (src in view(gibturf)))
-				new gibtype(gibturf, i, diseases)
+		meatslab.throw_at(pick(nearby_turfs), iteration, 3)
+
+		iteration++
+
+	for (var/i in 1 to meat_produced**2) //2 slabs: 4 giblets, 3 slabs: 9, etc.
+		var/turf/gibturf = pick(nearby_turfs)
+		if (!gibturf.density && (src in view(gibturf)))
+			var/obj/effect/decal/cleanable/new_gibs = new gibtype(gibturf, round(1 + i / meat_produced), diseases)
+			if(blood_dna_info)
+				new_gibs.add_blood_DNA(blood_dna_info)
 
 	pixel_x = base_pixel_x //return to its spot after shaking
 	operating = FALSE

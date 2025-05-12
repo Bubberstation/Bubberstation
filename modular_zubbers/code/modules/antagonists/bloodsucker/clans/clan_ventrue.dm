@@ -62,7 +62,7 @@
 	var/list/options = list_available_powers(ghouldatum.bloodsucker_powers)
 	var/mob/living/carbon/human/target = ghouldatum.owner.current
 	var/datum/action/cooldown/bloodsucker/choice = choose_powers(
-		"You have the opportunity to level up your Favorite Ghoul. Select a power you wish them to recieve.",
+		"You have the opportunity to level up your Favorite Ghoul. Select a power you wish them to receive.",
 		"A wise master's hand is neccesary",
 		options
 	)

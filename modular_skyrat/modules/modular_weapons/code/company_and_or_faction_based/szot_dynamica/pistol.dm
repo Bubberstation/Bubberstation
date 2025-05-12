@@ -119,7 +119,7 @@
 
 	. += "The 'Bóbr' started development as a limited run sporting weapon before \
 		the military took interest. The market quickly changed from sport shooting \
-		targets, to sport shooting SolFed strike teams once the conflict broke out. \
+		targets, to sport shooting TerraGov strike teams once the conflict broke out. \
 		This pattern is different from the original civilian version, with a military \
 		standard pistol grip and weather resistant finish. While the 'Bóbr' was not \
 		a weapon standard issued to every CIN soldier, it was available for relatively \

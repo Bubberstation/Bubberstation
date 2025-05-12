@@ -1,5 +1,5 @@
 
-/mob/living/silicon/ai/attackby(obj/item/W, mob/user, params)
+/mob/living/silicon/ai/attackby(obj/item/W, mob/user, list/modifiers)
 	if(istype(W, /obj/item/ai_module))
 		var/obj/item/ai_module/MOD = W
 		disconnect_shell()
@@ -152,3 +152,9 @@
 	var/atom/ai_structure = ai_mob_to_structure()
 	ai_structure.balloon_alert(user, "disconnected neural network")
 	return ITEM_INTERACT_SUCCESS
+
+/mob/living/silicon/ai/attack_effects(damage_done, hit_zone, armor_block, obj/item/attacking_item, mob/living/attacker)
+	if(damage_done > 0 && attacking_item.damtype != STAMINA && stat != DEAD)
+		spark_system.start()
+		. = TRUE
+	return ..() || .

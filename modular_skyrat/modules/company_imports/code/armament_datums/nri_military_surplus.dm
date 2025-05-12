@@ -83,8 +83,8 @@
 	cost = PAYCHECK_CREW
 
 /datum/armament_entry/company_import/nri_surplus/misc/food_replicator
-	description = "Once widespread technology used by numerous fringe colonies of NRI origin and even in some SolFed territories, that ultimately went out of fashion due to \
-	SolFed propaganda deeming it unprofitable and imposing severe trading fees on anyone trying to sell them. A small portion of government-backed manufacturers still produce \
+	description = "Once widespread technology used by numerous fringe colonies of NRI origin and even in some TerraGov territories, that ultimately went out of fashion due to \
+	TerraGov propaganda deeming it unprofitable and imposing severe trading fees on anyone trying to sell them. A small portion of government-backed manufacturers still produce \
 	'food replicators' for private and government use; a few of them is selling this via us."
 	item_type = /obj/item/circuitboard/machine/biogenerator/food_replicator
 	cost = CARGO_CRATE_VALUE * 9
@@ -95,6 +95,7 @@
 
 /datum/armament_entry/company_import/nri_surplus/firearm
 	subcategory = "Firearms"
+/*
 /datum/armament_entry/company_import/nri_surplus/firearm/shotgun_revolver
 	item_type = /obj/item/gun/ballistic/revolver/shotgun_revolver
 	cost = PAYCHECK_COMMAND * 6
@@ -128,7 +129,7 @@
 	contraband = TRUE
 	cost = PAYCHECK_COMMAND * 14
 	restricted = TRUE
-
+*/ //Bubber Edit: Disables Lanca, Sakhno, Bobr, and other
 //Begone
 /*
 /datum/armament_entry/company_import/nri_surplus/firearm/anti_materiel_rifle
@@ -141,7 +142,7 @@
 /datum/armament_entry/company_import/nri_surplus/firearm_ammo
 	subcategory = "Firearm Magazines"
 	cost = PAYCHECK_CREW
-
+/*
 /datum/armament_entry/company_import/nri_surplus/firearm_ammo/plasma_battery
 	item_type = /obj/item/ammo_box/magazine/recharge/plasma_battery
 
@@ -156,7 +157,7 @@
 /datum/armament_entry/company_import/nri_surplus/firearm_ammo/lanca
 	item_type = /obj/item/ammo_box/magazine/lanca/spawns_empty
 	contraband = TRUE
-/*
+
 /datum/armament_entry/company_import/nri_surplus/firearm_ammo/amr_magazine
 	item_type = /obj/item/ammo_box/magazine/wylom
 	contraband = TRUE

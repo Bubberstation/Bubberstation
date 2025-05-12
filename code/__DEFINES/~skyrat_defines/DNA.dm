@@ -46,7 +46,6 @@
 
 /// Organ slot external
 #define ORGAN_SLOT_EXTERNAL_CAP "cap"
-#define ORGAN_SLOT_EXTERNAL_EARS "ears_external" // I hate having to do this, hopefully I'll be able to remove this soon with an external ears refactor.
 #define ORGAN_SLOT_EXTERNAL_FLUFF "fluff"
 #define ORGAN_SLOT_EXTERNAL_HEAD_ACCESSORY "head_accessory"
 #define ORGAN_SLOT_EXTERNAL_MOTH_MARKINGS "moth_markings"
@@ -57,6 +56,7 @@
 #define ORGAN_SLOT_EXTERNAL_TAUR "taur"
 #define ORGAN_SLOT_EXTERNAL_XENODORSAL "xenodorsal"
 #define ORGAN_SLOT_EXTERNAL_XENOHEAD "xenohead"
+#define ORGAN_SLOT_BORER "borer"
 
 //Defines for an accessory to be randomed
 #define ACC_RANDOM		"random"
@@ -69,10 +69,10 @@
 
 //In inches
 #define PENIS_MIN_GIRTH PENIS_MIN_LENGTH
-#define PENIS_MAX_GIRTH 20
+#define PENIS_MAX_GIRTH 40
 #define PENIS_DEFAULT_GIRTH 5 // a lil big but not by much
 #define PENIS_MIN_LENGTH 1
-#define PENIS_MAX_LENGTH 36
+#define PENIS_MAX_LENGTH 72
 #define PENIS_DEFAULT_LENGTH 6 //still a lil long but not insane
 
 #define TESTICLES_MIN_SIZE 0
@@ -143,3 +143,11 @@
 
 // Leaving this here because it's used for bodyparts, like SPECIES_X are, but since taurs aren't a species... Named it LIMBS instead.
 #define LIMBS_TAUR "taur"
+
+#define DNA_BLOCKS_PER_FEATURE 4
+#define DNA_FEATURE_COLOR_BLOCKS_PER_FEATURE 3
+#define DNA_FEATURE_BLOCKS_TOTAL_SIZE_PER_FEATURE (DNA_BLOCK_SIZE + DNA_BLOCK_SIZE_COLOR * DNA_FEATURE_COLOR_BLOCKS_PER_FEATURE)
+#define DNA_BLOCKS_PER_MARKING 2
+#define DNA_MARKING_COLOR_BLOCKS_PER_MARKING 1
+#define DNA_BLOCKS_PER_MARKING_ZONE (MAXIMUM_MARKINGS_PER_LIMB * DNA_BLOCKS_PER_MARKING + 1)
+#define DNA_MARKING_BLOCKS_TOTAL_SIZE_PER_MARKING (DNA_BLOCK_SIZE + DNA_BLOCK_SIZE_COLOR * DNA_MARKING_COLOR_BLOCKS_PER_MARKING)

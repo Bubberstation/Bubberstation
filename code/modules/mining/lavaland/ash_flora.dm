@@ -190,6 +190,7 @@
 	max_integrity = 100
 	seed = /obj/item/seeds/lavaland/polypore
 	wine_power = 20
+	foodtypes = VEGETABLES
 
 /obj/item/food/grown/ash_flora/Initialize(mapload)
 	. = ..()
@@ -238,24 +239,7 @@
 	icon_state = "cactus_fruit"
 	seed = /obj/item/seeds/lavaland/cactus
 	wine_power = 50
-	special_desc_requirement = EXAMINE_CHECK_JOB //SKYRAT EDIT
-	special_desc_jobs = list("Botanist") //SKYRAT EDIT
-	special_desc = "This flora is very nutritious and medicinal." //SKYRAT EDIT
-
-/obj/item/food/grown/ash_flora/seraka
-	name = "seraka cap"
-	desc = "Small, deeply flavourful mushrooms originally native to Tizira."
-	icon_state = "seraka_cap"
-	seed = /obj/item/seeds/lavaland/seraka
-	wine_power = 40
-
-/obj/item/food/grown/ash_flora/fireblossom
-	name = "fire blossom"
-	desc = "A flower from a fire blossom."
-	icon_state = "fireblossom"
-	slot_flags = ITEM_SLOT_HEAD
-	seed = /obj/item/seeds/lavaland/fireblossom
-	wine_power = 40
+	foodtypes = FRUIT
 
 /obj/item/food/grown/ash_flora/seraka
 	name = "seraka cap"

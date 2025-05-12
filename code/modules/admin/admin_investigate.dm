@@ -1,6 +1,8 @@
 /atom/proc/investigate_log(message, subject)
-	if(!message || !subject)
+	if(!message)
 		return
+	if(!subject)
+		CRASH("No subject provided for investigate_log")
 	var/F = file("[GLOB.log_directory]/[subject].html")
 	var/source = "[src]"
 
@@ -29,6 +31,7 @@ ADMIN_VERB(investigate_show, R_NONE, "Investigate", "Browse various detailed log
 		INVESTIGATE_RECORDS,
 		INVESTIGATE_RESEARCH,
 		INVESTIGATE_WIRES,
+		INVESTIGATE_NANITES, // BUBBER ADDITION - NANITES
 	)
 
 	var/list/logs_present = list("notes, memos, watchlist")
@@ -59,4 +62,7 @@ ADMIN_VERB(investigate_show, R_NONE, "Investigate", "Browse various detailed log
 	if(!fexists(F))
 		to_chat(user, span_danger("No [selected] logfile was found."), confidential = TRUE)
 		return
-	user << browse(F,"window=investigate[selected];size=800x300")
+
+	var/datum/browser/browser = new(user, "investigate[selected]", "Investigation of [selected]", 800, 300)
+	browser.set_content(file2text(F))
+	browser.open()

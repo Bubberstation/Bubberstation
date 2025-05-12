@@ -1,3 +1,5 @@
+#define SPACE_PHASING "space-phasing"
+
 /**
  * ### Space Crawl
  *
@@ -5,7 +7,7 @@
  */
 /datum/action/cooldown/spell/jaunt/space_crawl
 	name = "Space Phase"
-	desc = "Allows you to phase in and out of existance while in space or misc tiles."
+	desc = "Allows you to phase in and out of existence while in space or a low-pressure, outdoor area."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 
@@ -16,6 +18,10 @@
 
 	invocation_type = INVOCATION_NONE
 	spell_requirements = NONE
+
+	jaunt_type = /obj/effect/dummy/phased_mob/spell_jaunt/space
+	///List of traits that are added to the heretic while in space phase jaunt
+	var/static/list/jaunting_traits = list(TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTCOLD, TRAIT_NOBREATH)
 
 /datum/action/cooldown/spell/jaunt/space_crawl/Grant(mob/grant_to)
 	. = ..()
@@ -29,10 +35,14 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(isspaceturf(get_turf(owner)) || ismiscturf(get_turf(owner)))
+	var/turf/my_turf = get_turf(owner)
+	if(isspaceturf(my_turf))
+		return TRUE
+	var/area/my_area = get_area(owner)
+	if (isopenturf(my_turf) && my_area.outdoors && lavaland_equipment_pressure_check(my_turf))
 		return TRUE
 	if(feedback)
-		to_chat(owner, span_warning("You must stand on a space or misc turf!"))
+		to_chat(owner, span_warning("You must stand in space, or an outdoor area with low pressure!"))
 	return FALSE
 
 /datum/action/cooldown/spell/jaunt/space_crawl/cast(mob/living/cast_on)
@@ -82,6 +92,7 @@
 		jaunter.put_in_hands(left_hand)
 		jaunter.put_in_hands(right_hand)
 
+	jaunter.add_traits(jaunting_traits, SPACE_PHASING)
 	RegisterSignal(jaunter, SIGNAL_REMOVETRAIT(TRAIT_ALLOW_HERETIC_CASTING), PROC_REF(on_focus_lost))
 	playsound(our_turf, 'sound/effects/magic/cosmic_energy.ogg', 50, TRUE, -1)
 	our_turf.visible_message(span_warning("[jaunter] sinks into [our_turf]!"))
@@ -101,6 +112,7 @@
 
 	if(!exit_jaunt(jaunter, our_turf))
 		return FALSE
+	jaunter.remove_traits(jaunting_traits, SPACE_PHASING)
 	our_turf.visible_message(span_boldwarning("[jaunter] rises out of [our_turf]!"))
 	return TRUE
 
@@ -131,3 +143,10 @@
 /obj/item/space_crawl/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+
+/// Different graphic for position indicator
+/obj/effect/dummy/phased_mob/spell_jaunt/space
+	phased_mob_icon_state = "solarflare"
+	movespeed = 0
+
+#undef SPACE_PHASING

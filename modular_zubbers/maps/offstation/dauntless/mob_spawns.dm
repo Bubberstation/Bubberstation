@@ -19,6 +19,15 @@
 	loadout_enabled = TRUE
 	computer_area = /area/ruin/space/has_grav/bubbers/dauntless/service
 	spawner_job_path = /datum/job/dauntless
+	/// If true, this spawner will give it's target exploitables access.
+	var/give_exploitables = TRUE
+
+/obj/effect/mob_spawn/ghost_role/human/dauntless/special(mob/living/spawned_mob, mob/mob_possessor)
+	. = ..()
+
+	if (give_exploitables)
+		spawned_mob.mind?.has_exploitables_override = TRUE
+		spawned_mob.mind?.handle_exploitables_menu()
 
 /obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate
 	name = "Syndicate Operative"
@@ -44,6 +53,7 @@
 	important_text = "You are not an antagonist. You are still bound to the Roleplay Rules regarding escalation. Dauntless personnel can throw you into lava if you antagonize them."
 	outfit = /datum/outfit/dauntless/prisoner
 	computer_area = /area/ruin/space/has_grav/bubbers/dauntless/sec/prison
+	give_exploitables = FALSE
 
 /obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate/service
 	outfit = /datum/outfit/dauntless/syndicate/service
@@ -185,10 +195,10 @@
 //Dauntless Roles
 
 /datum/outfit/dauntless/syndicate
-	name = "Dauntless Opporative"
+	name = "Dauntless Operative"
 	uniform = /obj/item/clothing/under/syndicate/skyrat/tactical
 	shoes = /obj/item/clothing/shoes/combat
-	ears = /obj/item/radio/headset/interdyne
+	ears = /obj/item/radio/headset/syndicateciv/staff
 	back = /obj/item/storage/backpack
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
@@ -261,7 +271,7 @@
 	head = /obj/item/clothing/head/helmet/swat/ds
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/redsec
 	mask = /obj/item/clothing/mask/gas/syndicate
-	ears = /obj/item/radio/headset/interdyne
+	ears = /obj/item/radio/headset/syndicateciv/staff
 
 /datum/outfit/dauntless/syndicate/miningoff
 	name = "Dauntless Mining Officer"
@@ -270,6 +280,7 @@
 	id_trim = /datum/id_trim/syndicom/bubberstation/dauntless/miner
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	suit = /obj/item/clothing/suit/armor/bulletproof/old
+	suit_store = /obj/item/gun/ballistic/automatic/pistol
 	back = /obj/item/storage/backpack/satchel/explorer
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
@@ -277,10 +288,10 @@
 		/obj/item/knife/combat/survival = 1,
 		/obj/item/t_scanner/adv_mining_scanner/lesser = 1,
 		/obj/item/gun/energy/recharge/kinetic_accelerator = 1,
-		/obj/item/storage/toolbox/guncase/skyrat/pistol = 1,
+		/obj/item/ammo_box/magazine/m9mm
 		)
 	mask = /obj/item/clothing/mask/gas/syndicate
-	ears = /obj/item/radio/headset/interdyne
+	ears = /obj/item/radio/headset/syndicateciv/staff
 	l_pocket = /obj/item/card/mining_point_card
 	r_pocket = /obj/item/mining_voucher
 	head = /obj/item/clothing/head/soft/black
@@ -295,7 +306,7 @@
 	name = "Dauntless Command Operative"
 	uniform = /obj/item/clothing/under/syndicate/skyrat/tactical
 	shoes = /obj/item/clothing/shoes/combat
-	ears = /obj/item/radio/headset/interdyne/command
+	ears = /obj/item/radio/headset/syndicateciv/command
 	back = /obj/item/storage/backpack
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,

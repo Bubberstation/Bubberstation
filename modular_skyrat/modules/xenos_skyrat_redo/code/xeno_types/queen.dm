@@ -5,10 +5,24 @@
 	desc = "A hulking beast of an alien, for some reason this one seems more important than the others, you should probably quit staring at it and do something."
 	caste = "queen"
 	maxHealth = 500
+	status_flags = NONE //can't shove or KO the queen, kiddo.
 	health = 500
 	icon_state = "alienqueen"
 	melee_damage_lower = 30
 	melee_damage_upper = 35
+	default_organ_types_by_slot = list(
+		ORGAN_SLOT_BRAIN = /obj/item/organ/brain/alien,
+		ORGAN_SLOT_XENO_HIVENODE = /obj/item/organ/alien/hivenode,
+		ORGAN_SLOT_TONGUE = /obj/item/organ/tongue/alien,
+		ORGAN_SLOT_EYES = /obj/item/organ/eyes/alien,
+		ORGAN_SLOT_LIVER = /obj/item/organ/liver/alien,
+		ORGAN_SLOT_EARS = /obj/item/organ/ears,
+		ORGAN_SLOT_STOMACH = /obj/item/organ/stomach/alien,
+		ORGAN_SLOT_XENO_PLASMAVESSEL = /obj/item/organ/alien/plasmavessel/large/queen,
+		ORGAN_SLOT_XENO_RESINSPINNER = /obj/item/organ/alien/resinspinner,
+		ORGAN_SLOT_XENO_NEUROTOXINGLAND = /obj/item/organ/alien/neurotoxin/queen,
+		ORGAN_SLOT_XENO_EGGSAC = /obj/item/organ/alien/eggsac
+	)
 
 /mob/living/carbon/alien/adult/skyrat/queen/Initialize(mapload)
 	. = ..()
@@ -22,17 +36,10 @@
 
 	add_movespeed_modifier(/datum/movespeed_modifier/alien_big)
 
-/mob/living/carbon/alien/adult/skyrat/queen/create_internal_organs()
-	organs += new /obj/item/organ/internal/alien/plasmavessel/large/queen
-	organs += new /obj/item/organ/internal/alien/resinspinner
-	organs += new /obj/item/organ/internal/alien/neurotoxin/queen
-	organs += new /obj/item/organ/internal/alien/eggsac
-	..()
-
 /mob/living/carbon/alien/adult/skyrat/queen/alien_talk(message, shown_name = name)
 	..(message, shown_name, TRUE)
 
-/obj/item/organ/internal/alien/neurotoxin/queen
+/obj/item/organ/alien/neurotoxin/queen
 	name = "neurotoxin gland"
 	icon_state = "neurotox"
 	zone = BODY_ZONE_PRECISE_MOUTH
@@ -51,7 +58,7 @@
 		if(carbon_mob == src)
 			continue
 
-		var/obj/item/organ/internal/alien/hivenode/node = carbon_mob.get_organ_by_type(/obj/item/organ/internal/alien/hivenode)
+		var/obj/item/organ/alien/hivenode/node = carbon_mob.get_organ_by_type(/obj/item/organ/alien/hivenode)
 
 		if(istype(node))
 			node.queen_death()

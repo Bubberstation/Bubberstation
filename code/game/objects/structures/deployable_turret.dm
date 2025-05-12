@@ -195,7 +195,7 @@
 		target = target_turf
 	var/obj/projectile/projectile_to_fire = new projectile_type(targets_from)
 	playsound(src, firesound, 75, TRUE)
-	projectile_to_fire.preparePixelProjectile(target, targets_from)
+	projectile_to_fire.aim_projectile(target, targets_from)
 	projectile_to_fire.firer = user
 	projectile_to_fire.fired_from = src
 	projectile_to_fire.fire()
@@ -249,7 +249,7 @@
 /obj/item/gun_control/CanItemAutoclick()
 	return TRUE
 
-/obj/item/gun_control/attack_atom(obj/O, mob/living/user, params)
+/obj/item/gun_control/attack_atom(obj/O, mob/living/user, list/modifiers)
 	user.changeNext_move(CLICK_CD_MELEE)
 	O.attacked_by(src, user)
 

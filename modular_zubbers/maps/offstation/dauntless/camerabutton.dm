@@ -12,7 +12,7 @@
 	cooldown = TRUE
 
 	var/killswitch = FALSE
-	var/list/cameras = get_camera_list(camera_network)
+	var/list/cameras = GLOB.cameranet.get_available_camera_by_tag_list(camera_network)
 	var/obj/machinery/camera/C
 	for(var/i in cameras)
 		C = cameras[i]
@@ -29,12 +29,3 @@
 /obj/machinery/button/camkillswitch
 	name = "camera kill switch"
 	device_type = /obj/item/assembly/control/camkillswitch
-
-/datum/design/camkillswitch
-	name = "Camera Kill Switch"
-	id = "camkillswitch"
-	materials = list(
-		/datum/material/iron = SMALL_MATERIAL_AMOUNT,
-		/datum/material/glass = SMALL_MATERIAL_AMOUNT,
-	)
-	build_path = /obj/item/assembly/control/camkillswitch

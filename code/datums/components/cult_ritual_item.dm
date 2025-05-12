@@ -162,7 +162,7 @@
 	// For carbonss we also want to clear out the stomach of any holywater
 	if(iscarbon(target))
 		var/mob/living/carbon/carbon_target = target
-		var/obj/item/organ/internal/stomach/belly = carbon_target.get_organ_slot(ORGAN_SLOT_STOMACH)
+		var/obj/item/organ/stomach/belly = carbon_target.get_organ_slot(ORGAN_SLOT_STOMACH)
 		if(belly)
 			holy_to_unholy += belly.reagents.get_reagent_amount(/datum/reagent/water/holywater)
 			belly.reagents.del_reagent(/datum/reagent/water/holywater)
@@ -298,6 +298,7 @@
 	if(ispath(rune_to_scribe, /obj/effect/rune/narsie))
 		if(!scribe_narsie_rune(cultist, user_team))
 			return
+		our_turf = get_turf(cultist) //we may have moved. adjust as needed...
 
 	cultist.visible_message(
 		span_warning("[cultist] [cultist.blood_volume ? "cuts open [cultist.p_their()] arm and begins writing in [cultist.p_their()] own blood":"begins sketching out a strange design"]!"),
@@ -379,7 +380,7 @@
 		LAZYADD(shields, new /obj/structure/emergency_shield/cult/narsie(shielded_turf))
 
 	notify_ghosts(
-		"[cultist] has begun scribing a Nar'Sie rune!",
+		"[cultist.real_name] has begun scribing a Nar'Sie rune!",
 		source = cultist,
 		header = "Maranax Infirmux!",
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,

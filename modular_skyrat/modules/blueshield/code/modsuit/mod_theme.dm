@@ -16,8 +16,7 @@
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	siemens_coefficient = 0
 	complexity_max = DEFAULT_MAX_COMPLEXITY
-	slowdown_inactive = 0.75
-	slowdown_active = 0.25
+	slowdown_deployed = 0.25
 	allowed_suit_storage = list(
 		/obj/item/ammo_box,
 		/obj/item/ammo_casing,

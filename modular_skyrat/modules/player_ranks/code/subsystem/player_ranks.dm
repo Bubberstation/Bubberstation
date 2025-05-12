@@ -10,7 +10,9 @@
 SUBSYSTEM_DEF(player_ranks)
 	name = "Player Ranks"
 	flags = SS_NO_FIRE
-	init_order = INIT_ORDER_PLAYER_RANKS
+	dependencies = list(
+		/datum/controller/subsystem/dbcore
+	)
 	// The following controllers handle most of the legacy system's functions,
 	// and provide a layer of abstraction for this subsystem to have cleaner
 	// logic.
@@ -18,8 +20,7 @@ SUBSYSTEM_DEF(player_ranks)
 	var/datum/player_rank_controller/donator/donator_controller
 	/// The mentor player rank controller.
 	var/datum/player_rank_controller/mentor/mentor_controller
-	/// The veteran player rank controller.
-	var/datum/player_rank_controller/veteran/veteran_controller
+	/// The vetted player rank controller.
 	var/datum/player_rank_controller/vetted/vetted_controller
 
 /datum/controller/subsystem/player_ranks/Initialize()
@@ -28,18 +29,15 @@ SUBSYSTEM_DEF(player_ranks)
 
 	load_donators()
 	load_mentors()
-	load_veterans()
 	load_vetted_ckeys()
 	return SS_INIT_SUCCESS
 
 
 /datum/controller/subsystem/player_ranks/Destroy()
-	. = ..()
-
 	QDEL_NULL(donator_controller)
 	QDEL_NULL(mentor_controller)
-	QDEL_NULL(veteran_controller)
 	QDEL_NULL(vetted_controller)
+	. = ..()
 
 /**
  * Returns whether or not the user is qualified as a donator.
@@ -76,18 +74,6 @@ SUBSYSTEM_DEF(player_ranks)
 		CRASH("Invalid user type provided to is_mentor(), expected 'client' and obtained '[user ? user.type : "null"]'.")
 
 	return user.is_mentor(admin_bypass)
-
-
-/**
- * Returns whether or not the user is qualified as a veteran.
- *
- * Arguments:
- * * user - The client to verify the veteran status of.
- * * admin_bypass - Whether or not admins can succeed this check, even if they
- * do not actually possess the role. Defaults to `TRUE`.
- */
-/datum/controller/subsystem/player_ranks/proc/is_veteran(client/user, admin_bypass = TRUE) // BUBBER TODO - Remove the remnants of the skyrat elitism system
-	return TRUE
 
 /// Handles loading donators either via SQL or using the legacy system,
 /// based on configs.
@@ -167,33 +153,6 @@ SUBSYSTEM_DEF(player_ranks)
 
 	load_player_rank_sql(mentor_controller)
 
-
-/// Handles loading veteran players either via SQL or using the legacy system,
-/// based on configs.
-/datum/controller/subsystem/player_ranks/proc/load_veterans()
-	PROTECTED_PROC(TRUE)
-
-	if(IsAdminAdvancedProcCall())
-		return
-
-	veteran_controller = new
-
-	if(CONFIG_GET(flag/veteran_legacy_system))
-		veteran_controller.load_legacy()
-		return
-
-	if(!SSdbcore.Connect())
-		var/message = "Failed to connect to database in load_veterans(). Reverting to legacy system."
-		log_config(message)
-		log_game(message)
-		message_admins(message)
-		CONFIG_SET(flag/veteran_legacy_system, TRUE)
-		veteran_controller.load_legacy()
-		return
-
-	load_player_rank_sql(veteran_controller)
-
-
 /**
  * Handles populating the player rank from the database.
  *
@@ -225,7 +184,7 @@ SUBSYSTEM_DEF(player_ranks)
 	if(IsAdminAdvancedProcCall())
 		return null
 
-	rank_title = lowertext(rank_title)
+	rank_title = LOWER_TEXT(rank_title)
 
 	// Can't make switch() statements with non-constant values.
 	if(rank_title == donator_controller.rank_title)
@@ -233,9 +192,6 @@ SUBSYSTEM_DEF(player_ranks)
 
 	if(rank_title == mentor_controller.rank_title)
 		return mentor_controller
-
-	if(rank_title == veteran_controller.rank_title)
-		return veteran_controller
 
 	CRASH("Invalid player_rank_controller \"[rank_title || "*null*"]\" used in get_controller_for_group()!")
 
@@ -269,14 +225,14 @@ SUBSYSTEM_DEF(player_ranks)
 	if(!admin_holder)
 		return FALSE
 
-	if(!admin_holder.check_for_rights(R_PERMISSIONS))
+	if(!admin_holder.check_for_rights(R_ADMIN))
 		if(is_admin_client)
 			to_chat(admin, span_warning("You do not possess the permissions to do this."))
 
 		return FALSE
 
 
-	rank_title = lowertext(rank_title)
+	rank_title = LOWER_TEXT(rank_title)
 
 	var/datum/player_rank_controller/controller = get_controller_for_group(rank_title)
 
@@ -318,7 +274,7 @@ SUBSYSTEM_DEF(player_ranks)
 
 	var/datum/db_query/query_add_player_rank = SSdbcore.NewQuery(
 		"INSERT INTO [format_table_name(PLAYER_RANK_TABLE_NAME)] (ckey, rank, admin_ckey) VALUES(:ckey, :rank, :admin_ckey) \
-		 ON DUPLICATE KEY UPDATE deleted = 0, admin_ckey = :admin_ckey",
+		ON DUPLICATE KEY UPDATE deleted = 0, admin_ckey = :admin_ckey",
 		list("ckey" = ckey, "rank" = controller.rank_title, "admin_ckey" = admin_ckey),
 	)
 
@@ -358,13 +314,13 @@ SUBSYSTEM_DEF(player_ranks)
 	if(!admin_holder)
 		return FALSE
 
-	if(!admin_holder.check_for_rights(R_PERMISSIONS))
+	if(!admin_holder.check_for_rights(R_ADMIN))
 		if(is_admin_client)
 			to_chat(admin, span_warning("You do not possess the permissions to do this."))
 
 		return FALSE
 
-	rank_title = lowertext(rank_title)
+	rank_title = LOWER_TEXT(rank_title)
 
 	var/datum/player_rank_controller/controller = get_controller_for_group(rank_title)
 
@@ -421,7 +377,7 @@ SUBSYSTEM_DEF(player_ranks)
 	if(IsAdminAdvancedProcCall())
 		return
 
-	if(!check_rights_for(admin, R_PERMISSIONS | R_DEBUG | R_SERVER))
+	if(!check_rights_for(admin, R_ADMIN | R_DEBUG | R_SERVER))
 		to_chat(admin, span_warning("You do not possess the permissions to do this."))
 		return
 

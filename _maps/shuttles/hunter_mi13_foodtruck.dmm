@@ -15,7 +15,7 @@
 /area/shuttle/hunter/mi13_foodtruck)
 "af" = (
 /obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/surgery_tray/full,
+/obj/effect/spawner/surgery_tray/full,
 /obj/structure/sign/poster/contraband/hacking_guide/directional/south,
 /turf/open/floor/circuit/red/off,
 /area/shuttle/hunter/mi13_foodtruck)
@@ -99,25 +99,6 @@
 /obj/structure/sign/poster/official/high_class_martini/directional/north,
 /turf/open/floor/circuit/red/off,
 /area/shuttle/hunter/mi13_foodtruck)
-"dC" = (
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/binoculars{
-	pixel_y = 10
-	},
-/obj/item/traitor_bug{
-	pixel_y = 6;
-	pixel_x = 6
-	},
-/obj/item/traitor_bug{
-	pixel_y = 3;
-	pixel_x = -5
-	},
-/obj/item/storage/box/zipties{
-	pixel_y = -4;
-	pixel_x = 4
-	},
-/turf/open/floor/circuit/red/off,
-/area/shuttle/hunter/mi13_foodtruck)
 "dJ" = (
 /obj/machinery/computer/records/security/syndie,
 /turf/open/floor/circuit/red/off,
@@ -153,6 +134,17 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
+/area/shuttle/hunter/mi13_foodtruck)
+"fw" = (
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/binoculars{
+	pixel_y = 10
+	},
+/obj/item/storage/box/zipties{
+	pixel_y = -4;
+	pixel_x = 4
+	},
+/turf/open/floor/circuit/red/off,
 /area/shuttle/hunter/mi13_foodtruck)
 "gc" = (
 /obj/structure/closet/crate/cardboard/mothic,
@@ -214,7 +206,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/hunter/mi13_foodtruck)
 "hB" = (
-/obj/machinery/power/shuttle_engine/propulsion,
+/obj/machinery/power/shuttle_engine/propulsion/left,
 /turf/template_noop,
 /area/shuttle/hunter/mi13_foodtruck)
 "iO" = (
@@ -271,8 +263,8 @@
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/hunter/mi13_foodtruck)
 "kf" = (
-/obj/effect/turf_decal/box,
-/turf/closed/wall/mineral/titanium/nodiagonal,
+/obj/machinery/power/shuttle_engine/propulsion/right,
+/turf/template_noop,
 /area/shuttle/hunter/mi13_foodtruck)
 "kj" = (
 /obj/structure/table/reinforced/plastitaniumglass,
@@ -338,6 +330,26 @@
 "nh" = (
 /obj/structure/sign/poster/ripped/directional/south,
 /turf/open/floor/mineral/titanium,
+/area/shuttle/hunter/mi13_foodtruck)
+"on" = (
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/reagent_containers/syringe{
+	pixel_y = -3;
+	pixel_x = -5
+	},
+/obj/item/reagent_containers/dropper{
+	pixel_y = 6;
+	pixel_x = -3
+	},
+/obj/item/reagent_containers/cup/beaker/large{
+	pixel_y = 6;
+	pixel_x = 8
+	},
+/obj/item/reagent_containers/applicator/pill/cyanide{
+	pixel_y = -6;
+	pixel_x = 10
+	},
+/turf/open/floor/circuit/red/off,
 /area/shuttle/hunter/mi13_foodtruck)
 "oA" = (
 /obj/structure/railing{
@@ -552,6 +564,25 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/hunter/mi13_foodtruck)
+"AR" = (
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/reagent_containers/cup/glass/mug/tea{
+	pixel_x = 8;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/cup/beaker{
+	pixel_x = 8
+	},
+/obj/item/reagent_containers/cup/beaker{
+	pixel_x = -5;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/applicator/pill/cyanide{
+	pixel_y = -9;
+	pixel_x = -2
+	},
+/turf/open/floor/circuit/red/off,
+/area/shuttle/hunter/mi13_foodtruck)
 "Bn" = (
 /obj/machinery/computer/crew/syndie,
 /turf/open/floor/circuit/red,
@@ -620,25 +651,6 @@
 /obj/machinery/airalarm/directional/south,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/mineral/plastitanium,
-/area/shuttle/hunter/mi13_foodtruck)
-"KV" = (
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/reagent_containers/cup/glass/mug/tea{
-	pixel_x = 8;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/cup/beaker{
-	pixel_x = 8
-	},
-/obj/item/reagent_containers/cup/beaker{
-	pixel_x = -5;
-	pixel_y = 3
-	},
-/obj/item/reagent_containers/pill/cyanide{
-	pixel_y = -9;
-	pixel_x = -2
-	},
-/turf/open/floor/circuit/red/off,
 /area/shuttle/hunter/mi13_foodtruck)
 "Lm" = (
 /obj/machinery/vending/dinnerware,
@@ -744,26 +756,6 @@
 	},
 /turf/open/floor/circuit/red/off,
 /area/shuttle/hunter/mi13_foodtruck)
-"Yi" = (
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/reagent_containers/syringe{
-	pixel_y = -3;
-	pixel_x = -5
-	},
-/obj/item/reagent_containers/dropper{
-	pixel_y = 6;
-	pixel_x = -3
-	},
-/obj/item/reagent_containers/cup/beaker/large{
-	pixel_y = 6;
-	pixel_x = 8
-	},
-/obj/item/reagent_containers/pill/cyanide{
-	pixel_y = -6;
-	pixel_x = 10
-	},
-/turf/open/floor/circuit/red/off,
-/area/shuttle/hunter/mi13_foodtruck)
 "YW" = (
 /obj/structure/table/reinforced,
 /obj/structure/railing{
@@ -841,7 +833,7 @@ jc
 kv
 ku
 aj
-hB
+kf
 "}
 (5,1,1) = {"
 Ev
@@ -889,7 +881,7 @@ ku
 ku
 ku
 ah
-kf
+ku
 ku
 Pq
 Pq
@@ -960,7 +952,7 @@ pU
 ab
 ku
 aj
-hB
+kf
 "}
 (12,1,1) = {"
 Pq
@@ -970,9 +962,9 @@ cm
 Am
 ku
 lX
-KV
-Yi
-dC
+AR
+on
+fw
 kj
 af
 ku

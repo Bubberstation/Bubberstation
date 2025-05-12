@@ -23,9 +23,13 @@
 	var/datum/antagonist/space_dragon/dragon_antag_datum = dragon_time.mind.add_antag_datum(/datum/antagonist/space_dragon)
 	dragon_time.eat(to_be_consumed)
 
-	dragon_antag_datum.riftTimer = dragon_antag_datum.maxRiftTimer + 1
-	dragon_antag_datum.rift_checks()
+	// BUBBER CHANGE START: dragon doesn't have a riftTimer anymore
+	dragon_time.death(TRUE)
+	QDEL_NULL(dragon_antag_datum.owner.current)
+	// dragon_antag_datum.riftTimer = dragon_antag_datum.maxRiftTimer + 1
+	// dragon_antag_datum.rift_checks()
 
-	TEST_ASSERT(QDELETED(dragon_time), "The space dragon wasn't deleted after having its rift timer exceeded!")
-	TEST_ASSERT(!QDELETED(to_be_consumed), "After having its rift timer exceeded, the dragon deleted the dummy instead! The dragon should be dead prior to being deleted!")
-	TEST_ASSERT(isturf(to_be_consumed.loc), "After having its rift timer exceeded, the dragon did not eject the dummy! (Dummy's loc: [to_be_consumed.loc])")
+	// TEST_ASSERT(QDELETED(dragon_time), "The space dragon wasn't deleted after having its rift timer exceeded!")
+	TEST_ASSERT(!QDELETED(to_be_consumed), "After eating the dummy and dying, the dragon deleted the dummy instead!")
+	TEST_ASSERT(isturf(to_be_consumed.loc), "After eating the dummy and dying, the dragon did not eject the dummy! (Dummy's loc: [to_be_consumed.loc])")
+	// BUBBER CHANGE END

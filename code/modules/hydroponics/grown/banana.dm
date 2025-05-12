@@ -30,7 +30,7 @@
 
 /obj/item/food/grown/banana/make_edible()
 	. = ..()
-	AddComponent(/datum/component/edible, check_liked = CALLBACK(src, PROC_REF(check_liked)))
+	AddComponentFrom(SOURCE_EDIBLE_INNATE, /datum/component/edible, check_liked = CALLBACK(src, PROC_REF(check_liked)))
 
 /obj/item/food/grown/banana/Initialize(mapload)
 	. = ..()
@@ -39,7 +39,7 @@
 
 ///Clowns will always like bananas.
 /obj/item/food/grown/banana/proc/check_liked(mob/living/carbon/human/consumer)
-	var/obj/item/organ/internal/liver/liver = consumer.get_organ_slot(ORGAN_SLOT_LIVER)
+	var/obj/item/organ/liver/liver = consumer.get_organ_slot(ORGAN_SLOT_LIVER)
 	if (!HAS_TRAIT(consumer, TRAIT_AGEUSIA) && liver && HAS_TRAIT(liver, TRAIT_COMEDY_METABOLISM))
 		return FOOD_LIKED
 
@@ -161,7 +161,7 @@
 
 /obj/item/food/grown/banana/bunch
 	name = "banana bunch"
-	desc = "Am exquisite bunch of bananas. The almost otherwordly plumpness steers the mind any discening entertainer towards the divine."
+	desc = "An exquisite bunch of bananas. The almost otherwordly plumpness steers the mind any discerning entertainer towards the divine."
 	icon_state = "banana_bunch"
 	bite_consumption_mod = 4
 	var/is_ripening = FALSE
@@ -205,3 +205,14 @@
 	if(!is_simian(user))
 		return to_chat(user, span_notice("You don't really know what to do with this."))
 	else start_ripening()
+
+/// Used for april fools mail
+/obj/item/grown/bananapeel/gros_michel
+	name = "gros michel peel"
+	desc = "A peel from a species of banana that's hyper-vulnerable to contamination."
+
+/obj/item/grown/bananapeel/gros_michel/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/germ_sensitive, mapload)
+	transform *= 1.25
+	AddComponent(/datum/component/decomposition, mapload, decomp_req_handle = TRUE, custom_time = 1 MINUTES, decomp_result = /obj/item/food/badrecipe/moldy)

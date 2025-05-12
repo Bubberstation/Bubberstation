@@ -1,9 +1,9 @@
 /datum/orderable_item/mining/survival_bodybag
-	item_path = /obj/item/bodybag/environmental
+	purchase_path = /obj/item/bodybag/environmental
 	cost_per_order = 500
 
 /datum/orderable_item/mining/suit_voucher
-	item_path = /obj/item/suit_voucher
+	purchase_path = /obj/item/suit_voucher
 	cost_per_order = 2000
 
 /obj/item/kinetic_crusher
@@ -25,6 +25,13 @@
 			RESKIN_INHAND_R = 'modular_skyrat/master_files/icons/mob/64x64_righthand.dmi',
 		),
 	)
+
+/obj/item/kinetic_crusher/setup_reskinning()
+	if(!check_setup_reskinning())
+		return
+
+	// We already register context regardless in Initialize.
+	RegisterSignal(src, COMSIG_CLICK_ALT, PROC_REF(on_click_alt_reskin))
 
 /obj/item/kinetic_crusher/post_reskin(mob/our_mob)
 	if(icon_state == "crusher-glaive")

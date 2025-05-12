@@ -36,6 +36,25 @@
 	var/contributes_to_ratcap = TRUE
 	/// Probability that, if we successfully bite a shocked cable, that we will die to it.
 	var/cable_zap_prob = 85
+	///list of pet commands we follow
+	var/static/list/pet_commands = list(
+		/datum/pet_command/idle,
+		/datum/pet_command/free,
+		/datum/pet_command/follow,
+		/datum/pet_command/perform_trick_sequence,
+	)
+
+/datum/emote/mouse
+	mob_type_allowed_typecache = /mob/living/basic/mouse
+	mob_type_blacklist_typecache = list()
+
+/datum/emote/mouse/squeak
+	key = "squeak"
+	key_third_person = "squeaks"
+	message = "squeak!"
+	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'sound/mobs/non-humanoids/mouse/mousesqueek.ogg'
 
 /mob/living/basic/mouse/Initialize(mapload, tame = FALSE, new_body_color)
 	. = ..()
@@ -55,6 +74,7 @@
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
 	)
+	AddComponent(/datum/component/obeys_commands, pet_commands)
 	AddElement(/datum/element/connect_loc, loc_connections)
 	make_tameable()
 	AddComponent(/datum/component/swarming, 16, 16) //max_x, max_y
@@ -63,7 +83,8 @@
 	if (tame)
 		faction |= FACTION_NEUTRAL
 	else
-		AddComponent(/datum/component/tameable, food_types = list(/obj/item/food/cheese), tame_chance = 100)
+		var/static/list/food_types = list(/obj/item/food/cheese)
+		AddComponent(/datum/component/tameable, food_types = food_types, tame_chance = 100)
 
 /mob/living/basic/mouse/Destroy()
 	SSmobs.cheeserats -= src
@@ -270,7 +291,7 @@
 	. = ..()
 	// Tom fears no cable.
 	ADD_TRAIT(src, TRAIT_SHOCKIMMUNE, INNATE_TRAIT)
-	AddElement(/datum/element/pet_bonus, "squeaks happily!")
+	AddElement(/datum/element/pet_bonus, "squeak")
 
 /mob/living/basic/mouse/brown/tom/create_a_new_rat()
 	new /mob/living/basic/mouse/brown(loc, /* tame = */ tame) // dominant gene
@@ -341,7 +362,7 @@
 	qdel(src)
 	return LAZARUS_INJECTOR_USED
 
-/obj/item/food/deadmouse/attackby(obj/item/attacking_item, mob/user, params)
+/obj/item/food/deadmouse/attackby(obj/item/attacking_item, mob/user, list/modifiers)
 	var/mob/living/living_user = user
 	if(istype(living_user) && attacking_item.get_sharpness() && living_user.combat_mode)
 		if(!isturf(loc))
@@ -383,24 +404,30 @@
 /// The mouse AI controller
 /datum/ai_controller/basic_controller/mouse
 	blackboard = list( // Always cowardly
-		BB_CURRENT_HUNTING_TARGET = null, // cheese
-		BB_LOW_PRIORITY_HUNTING_TARGET = null, // cable
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic, // Use this to find people to run away from
+		BB_PET_TARGETING_STRATEGY = /datum/targeting_strategy/basic/not_friends,
 		BB_BASIC_MOB_FLEE_DISTANCE = 3,
+		BB_SONG_LINES = MOUSE_SONG,
 	)
 
 	ai_traits = STOP_MOVING_WHEN_PULLED
 	ai_movement = /datum/ai_movement/basic_avoidance
 	idle_behavior = /datum/idle_behavior/idle_random_walk
 	planning_subtrees = list(
-		// Top priority is to look for and execute hunts for cheese even if someone is looking at us
+		// Try to speak, because it's cute
+		/datum/ai_planning_subtree/random_speech/mouse,
+		// Follow the boss's orders
+		/datum/ai_planning_subtree/pet_planning,
+		// Look for and execute hunts for cheese even if someone is looking at us
 		/datum/ai_planning_subtree/find_and_hunt_target/look_for_cheese,
+		// Next priority is to try and appreoach a keyboard
+		/datum/ai_planning_subtree/approach_synthesizer,
+		// And play it if we are near it
+		/datum/ai_planning_subtree/generic_play_instrument/end_planning,
 		// Next priority is see if anyone is looking at us
 		/datum/ai_planning_subtree/simple_find_nearest_target_to_flee,
 		// Skedaddle
 		/datum/ai_planning_subtree/flee_target/mouse,
-		// Try to speak, because it's cute
-		/datum/ai_planning_subtree/random_speech/mouse,
 		// Otherwise, look for and execute hunts for cabling
 		/datum/ai_planning_subtree/find_and_hunt_target/look_for_cables,
 	)

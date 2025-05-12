@@ -4,7 +4,7 @@
 	icon = 'modular_zubbers/icons/obj/items_and_weapons.dmi'
 	icon_state = "papal_staff"
 	inhand_icon_state = "papal_staff"
-	belt_icon_state = "baguette"
+	inside_belt_icon_state = "baguette"
 	worn_icon_state = "baguette"
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_righthand.dmi'
@@ -141,7 +141,7 @@ means that you'll be forced to move carefully while it's on. Fits in pockets, an
 		to_chat(user, "<span class='warning'>You can't do that right now!</span>")
 		return
 	if(alert("Are you sure you want to recolor your blade?", "Confirm Repaint", "Yes", "No") == "Yes")
-		var/energy_color_input = input(usr,"","Choose Energy Color",light_color) as color|null
+		var/energy_color_input = tgui_color_picker(usr,"","Choose Energy Color",light_color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 		if(!energy_color_input || !user.can_perform_action(src, SILENT_ADJACENCY) || hacked)
 			return
 		set_light_color(energy_color_input)

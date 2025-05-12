@@ -49,7 +49,7 @@
 	//otherwise don't do anything because turfs and areas are initialized before movables.
 	if(!mapload)
 		addtimer(CALLBACK(src, PROC_REF(drop_stuff)), 0)
-	parent.AddElement(/datum/element/lazy_fishing_spot, /datum/fish_source/chasm)
+	parent.AddComponent(/datum/component/fishing_spot, GLOB.preset_fish_sources[/datum/fish_source/chasm])
 
 /datum/component/chasm/UnregisterFromParent()
 	storage = null
@@ -67,7 +67,7 @@
 	drop_stuff(movable)
 
 /datum/component/chasm/proc/block_teleport()
-	return COMPONENT_BLOCK_TELEPORT
+	return TRUE
 
 /datum/component/chasm/proc/on_chasm_stopped(datum/source)
 	SIGNAL_HANDLER

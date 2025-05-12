@@ -9,8 +9,8 @@
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	uses_integrity = FALSE
 
-/obj/effect/attackby(obj/item/weapon, mob/user, params)
-	if(SEND_SIGNAL(weapon, COMSIG_ITEM_ATTACK_EFFECT, src, user, params) & COMPONENT_NO_AFTERATTACK)
+/obj/effect/attackby(obj/item/weapon, mob/user, list/modifiers)
+	if(SEND_SIGNAL(weapon, COMSIG_ITEM_ATTACK_EFFECT, src, user, modifiers) & COMPONENT_NO_AFTERATTACK)
 		return TRUE
 
 	// I'm not sure why these are snowflaked to early return but they are
@@ -50,7 +50,7 @@
 /obj/effect/abstract
 	resistance_flags = parent_type::resistance_flags | SHUTTLE_CRUSH_PROOF
 
-/obj/effect/abstract/singularity_pull()
+/obj/effect/abstract/singularity_pull(atom/singularity, current_size)
 	return
 
 /obj/effect/abstract/singularity_act()
@@ -59,7 +59,7 @@
 /obj/effect/abstract/has_gravity(turf/gravity_turf)
 	return FALSE
 
-/obj/effect/dummy/singularity_pull()
+/obj/effect/dummy/singularity_pull(atom/singularity, current_size)
 	return
 
 /obj/effect/dummy/singularity_act()

@@ -156,13 +156,17 @@
 
 /datum/crafting_recipe/flashlight_eyes
 	name = "Flashlight Eyes"
-	result = /obj/item/organ/internal/eyes/robotic/flashlight
+	result = /obj/item/organ/eyes/robotic/flashlight
 	time = 10
 	reqs = list(
 		/obj/item/flashlight = 2,
 		/obj/item/restraints/handcuffs/cable = 1
 	)
 	category = CAT_EQUIPMENT
+
+/datum/crafting_recipe/flashlight_eyes/New()
+	. = ..()
+	blacklist += typesof(/obj/item/flashlight/flare)
 
 /datum/crafting_recipe/extendohand_r
 	name = "Extendo-Hand (Right Arm)"

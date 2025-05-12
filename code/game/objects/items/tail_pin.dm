@@ -14,9 +14,9 @@
 	sharpness = SHARP_POINTY
 	max_integrity = 200
 	layer = CORGI_ASS_PIN_LAYER
-	embed_type = /datum/embed_data/corgi_pin
+	embed_type = /datum/embedding/corgi_pin
 
-/datum/embed_data/corgi_pin
+/datum/embedding/corgi_pin
 	pain_chance = 0
 	jostle_pain_mult = 0
 	ignore_throwspeed_threshold = TRUE
@@ -35,13 +35,12 @@
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/party_game, 32)
 
-/obj/structure/sign/poster/party_game/attackby(obj/item/I, mob/user, params)
+/obj/structure/sign/poster/party_game/attackby(obj/item/I, mob/user, list/modifiers)
 	. = ..()
 	if(!istype(I,/obj/item/tail_pin))//We're using the same trick that tables use for placing objects x and y onto the click location.
 		return
 	if(!user.transferItemToLoc(I, drop_location(), silent = FALSE))
 		return
-	var/list/modifiers = params2list(params)
 	if(!LAZYACCESS(modifiers, ICON_X) || !LAZYACCESS(modifiers, ICON_Y))
 		return
 	I.pixel_x = clamp(text2num(LAZYACCESS(modifiers, ICON_X)) - 16, -(ICON_SIZE_X/2), ICON_SIZE_X/2)

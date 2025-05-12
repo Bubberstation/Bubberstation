@@ -1,4 +1,5 @@
 // Tool types, if you add new ones please add them to /obj/item/debug/omnitool in code/game/objects/items/debug_items.dm
+// and to GLOB.all_tool_behaviours in code/_globalvars/lists/engineering.dm
 #define TOOL_CROWBAR "crowbar"
 #define TOOL_MULTITOOL "multitool"
 #define TOOL_SCREWDRIVER "screwdriver"
@@ -8,7 +9,6 @@
 #define TOOL_ANALYZER "analyzer"
 #define TOOL_MINING "mining"
 #define TOOL_SHOVEL "shovel"
-#define TOOL_DRAPES "surgicaldrapes"
 #define TOOL_RETRACTOR "retractor"
 #define TOOL_HEMOSTAT "hemostat"
 #define TOOL_CAUTERY "cautery"

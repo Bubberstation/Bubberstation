@@ -23,7 +23,7 @@ GLOBAL_DATUM_INIT(food_prefs_menu, /datum/food_prefs_menu, new)
 		to_chat(preferences.parent, span_announce("Your food preferences can't be set because of [fail_reason] choices! Please check your preferences!")) // Sorry, but I don't want folk sleeping on this.
 		return
 
-	var/obj/item/organ/internal/tongue/target_tongue = target.get_organ_slot(ORGAN_SLOT_TONGUE)
+	var/obj/item/organ/tongue/target_tongue = target.get_organ_slot(ORGAN_SLOT_TONGUE)
 
 	if(isnull(target_tongue) || !preferences.food_preferences["enabled"])
 		return

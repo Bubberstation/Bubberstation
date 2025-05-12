@@ -29,6 +29,7 @@
 	desc = "A dual-mode tool for retrieving specimens and scanning appearances. Scanning can be done through cameras."
 	icon_state = "gizmo_scan"
 	inhand_icon_state = "silencer"
+	icon_angle = -45
 	var/mode = GIZMO_SCAN
 	var/datum/weakref/marked_target_weakref
 	var/obj/machinery/abductor/console/console
@@ -105,6 +106,7 @@
 	desc = "A compact device used to shut down communications equipment."
 	icon_state = "silencer"
 	inhand_icon_state = "gizmo"
+	icon_angle = -45
 
 /obj/item/abductor/silencer/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!AbductorCheck(user))
@@ -145,6 +147,7 @@
 			or to send a command to a test subject with a charged gland."
 	icon_state = "mind_device_message"
 	inhand_icon_state = "silencer"
+	icon_angle = -45
 	var/mode = MIND_DEVICE_MESSAGE
 
 /obj/item/abductor/mind_device/attack_self(mob/user)
@@ -178,7 +181,7 @@
 /obj/item/abductor/mind_device/proc/mind_control(atom/target, mob/living/user)
 	if(iscarbon(target))
 		var/mob/living/carbon/carbon_target = target
-		var/obj/item/organ/internal/heart/gland/target_gland = carbon_target.get_organ_slot("heart")
+		var/obj/item/organ/heart/gland/target_gland = carbon_target.get_organ_slot("heart")
 		if(!istype(target_gland))
 			to_chat(user, span_warning("Your target does not have an experimental gland!"))
 			return
@@ -271,10 +274,10 @@
 <br>
 1.Acquire fresh specimen.<br>
 2.Put the specimen on operating table.<br>
-3.Apply surgical drapes, preparing for experimental dissection.<br>
+3.Apply surgical drapes, preparing for experimental organ manipulation.<br>
 4.Apply scalpel to specimen's torso.<br>
-5.Clamp bleeders on specimen's torso with a hemostat.<br>
-6.Retract skin of specimen's torso with a retractor.<br>
+5.Retract skin of specimen's torso with a retractor.<br>
+6.Clamp bleeders on specimen's torso with a hemostat.<br>
 7.Apply scalpel again to specimen's torso.<br>
 8.Search through the specimen's torso with your hands to remove any superfluous organs.<br>
 9.Insert replacement gland (Retrieve one from gland storage).<br>
@@ -283,7 +286,20 @@
 12.Choose one of the machine options. The target will be analyzed and teleported to the selected drop-off point.<br>
 13.You will receive one supply credit, and the subject will be counted towards your quota.<br>
 <br>
-Congratulations! You are now trained for invasive xenobiology research!"}
+Congratulations! You are now trained for invasive xenobiology research!<br>
+<br>
+Addendum for more exotic biomechanical specimens:<br>
+1.Acquire less conventional surgical instruments from your collaborator.<br>
+2.Apply surgical drapes, preparing for hardware manipulation.<br>
+3.Use screwdriver to unscrew specimen's shell.<br>
+4.Open hatch with your hands.<br>
+5.Use wrench to unwrench bolts of specimen's torso.<br>
+6.Use multitool to prepare the mechanical parts for removal.<br>
+7.Remove circulatory mechanism with hemostat.<br>
+8.Insert replacement gland (Retrieve one from gland storage).<br>
+9.Use wrench to secure bolts again.<br>
+10.Use screwdriver to resecure specimen's shell.<br>
+Return to step 11 of normal process."}
 
 /obj/item/paper/guides/antag/abductor/click_alt()
 	return CLICK_ACTION_BLOCKING //otherwise it would fold into a paperplane.
@@ -297,11 +313,13 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	righthand_file = 'icons/mob/inhands/antag/abductor_righthand.dmi'
 	icon_state = "wonderprodStun"
 	inhand_icon_state = "wonderprod"
+	icon_angle = -45
 
 	force = 7
 	wound_bonus = FALSE
 
 	actions_types = list(/datum/action/item_action/toggle_mode)
+	action_slots = ALL
 
 	cooldown = 0 SECONDS
 	stamina_damage = 0
@@ -448,7 +466,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 		species = span_notice("[human_victim.dna.species.name]")
 		if(IS_CHANGELING(human_victim))
 			species = span_warning("Changeling lifeform")
-		var/obj/item/organ/internal/heart/gland/temp = locate() in human_victim.organs
+		var/obj/item/organ/heart/gland/temp = locate() in human_victim.organs
 		if(temp)
 			helptext = span_warning("Experimental gland detected!")
 		else
@@ -549,6 +567,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	name = "alien scalpel"
 	desc = "It's a gleaming sharp knife made out of silvery-green metal."
 	icon = 'icons/obj/antags/abductor.dmi'
+	icon_angle = 180
 	surgical_tray_overlay = "scalpel_alien"
 	toolspeed = 0.25
 
@@ -557,6 +576,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	desc = "You've never seen this before."
 	icon = 'icons/obj/antags/abductor.dmi'
 	surgical_tray_overlay = "hemostat_alien"
+	icon_angle = 180
 	toolspeed = 0.25
 
 /obj/item/retractor/alien
@@ -564,6 +584,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	desc = "You're not sure if you want the veil pulled back."
 	icon = 'icons/obj/antags/abductor.dmi'
 	surgical_tray_overlay = "retractor_alien"
+	icon_angle = 180
 	toolspeed = 0.25
 
 /obj/item/circular_saw/alien
@@ -571,6 +592,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	desc = "Do the aliens also lose this, and need to find an alien hatchet?"
 	icon = 'icons/obj/antags/abductor.dmi'
 	surgical_tray_overlay = "saw_alien"
+	icon_angle = 180
 	toolspeed = 0.25
 
 /obj/item/surgicaldrill/alien
@@ -578,6 +600,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	desc = "Maybe alien surgeons have finally found a use for the drill."
 	icon = 'icons/obj/antags/abductor.dmi'
 	surgical_tray_overlay = "drill_alien"
+	icon_angle = 180
 	toolspeed = 0.25
 
 /obj/item/cautery/alien
@@ -586,6 +609,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 		Unless..."
 	icon = 'icons/obj/antags/abductor.dmi'
 	surgical_tray_overlay = "cautery_alien"
+	icon_angle = 180
 	toolspeed = 0.25
 
 /obj/item/clothing/head/helmet/abductor
@@ -594,6 +618,10 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	icon_state = "alienhelmet"
 	inhand_icon_state = null
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
+	sound_vary = TRUE
+	equip_sound = 'sound/items/handling/helmet/helmet_equip1.ogg'
+	pickup_sound = 'sound/items/handling/helmet/helmet_pickup1.ogg'
+	drop_sound = 'sound/items/handling/helmet/helmet_drop1.ogg'
 
 /obj/item/clothing/head/helmet/abductor/equipped(mob/living/user, slot)
 	. = ..()
@@ -616,6 +644,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	desc = "Effectively just a Space Swiss Army Knife. Contains a multitude of integrated tools. Right-click it to switch which toolset is active."
 	icon_state = "omnitool"
 	inhand_icon_state = "silencer"
+	icon_angle = -45
 	toolspeed = 0.25
 	tool_behaviour = null
 	usesound = 'sound/items/pshoom/pshoom.ogg'

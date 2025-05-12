@@ -48,7 +48,7 @@
 
 /obj/item/mod/module/armor_booster/contractor // Much flatter distribution because contractor suit gets a shitton of armor already
 	armor_mod = /datum/armor/contract_booster
-	speed_added = -0.5 //Bulky as shit
+	space_slowdown = 0.5 //Bulky as shit
 	desc = "An embedded set of armor plates, allowing the suit's already extremely high protection \
 		to be increased further. However, the plating, while deployed, will slow down the user \
 		and make the suit unable to vacuum seal so this extra armor provides zero ability for extravehicular activity while deployed."
@@ -66,10 +66,10 @@
 	icon_state = "magnet"
 	icon = 'modular_skyrat/modules/contractor/icons/modsuit_modules.dmi'
 
-/obj/item/mod/module/springlock/contractor/on_suit_activation() // This module is actually *not* a death trap
+/obj/item/mod/module/springlock/contractor/on_part_activation() // This module is actually *not* a death trap
 	return
 
-/obj/item/mod/module/springlock/contractor/on_suit_deactivation(deleting = FALSE)
+/obj/item/mod/module/springlock/contractor/on_part_deactivation(deleting = FALSE)
 	return
 
 /// This exists for the adminbus contractor modsuit. Do not use otherwise

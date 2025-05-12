@@ -1,6 +1,6 @@
 import { useReducer, useState } from 'react';
+import { Button, Dropdown, Input, Section, Stack } from 'tgui-core/components';
 
-import { Button, Dropdown, Input, Section, Stack } from '../../components';
 import { Window } from '../../layouts';
 import { SORTING_TYPES } from './contants';
 import { FilterAction, filterReducer, FilterState } from './filters';
@@ -66,9 +66,10 @@ export function ControllerContent(props) {
               <Stack fill vertical>
                 <Stack.Item height="50%">
                   <Input
-                    onInput={(e, value) =>
+                    onChange={(value) =>
                       dispatch({ type: FilterAction.Query, payload: value })
                     }
+                    expensive
                     placeholder="By name"
                     value={state.query}
                     width="85%"

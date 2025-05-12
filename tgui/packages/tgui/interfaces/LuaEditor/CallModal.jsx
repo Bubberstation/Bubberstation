@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from '../../backend';
-import { Button, Modal, Section } from '../../components';
+import { Button, Modal, Section } from 'tgui-core/components';
 import { ListMapper } from './ListMapper';
 
 export const CallModal = (props) => {

@@ -23,11 +23,11 @@
 
 /obj/item/borg/upgrade/syndicate_access/dauntless/examine_more(mob/user)
 	. = ..()
-	. += span_notice("This one seems to include a Interdyne communication chip. How neat!")
+	. += span_notice("This one seems to include an Interdyne communication chip. How neat!")
 
 /obj/item/borg/upgrade/syndicate_access/dauntless/action(mob/living/silicon/robot/R, user)
 	. = ..()
 
 	// Yes, this forces out and removes any other keys. Which it should, in this case.
-	R.radio.keyslot = new /obj/item/encryptionkey/headset_syndicate/interdyne(src)
+	R.radio.keyslot = new /obj/item/encryptionkey/headset_syndicate/cybersun(src)
 	R.radio.recalculateChannels()

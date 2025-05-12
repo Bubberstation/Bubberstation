@@ -1,4 +1,3 @@
-import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -9,7 +8,9 @@ import {
   Section,
   Stack,
   Tabs,
-} from '../components';
+} from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
@@ -134,9 +135,10 @@ function LaunchpadTitle(props) {
       <Stack fill>
         <Stack.Item grow>
           <Input
+            expensive
             value={pad_name}
             width="170px"
-            onChange={(e, value) =>
+            onChange={(value) =>
               act('rename', {
                 name: value,
               })

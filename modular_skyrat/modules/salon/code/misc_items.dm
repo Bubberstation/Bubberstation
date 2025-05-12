@@ -23,12 +23,14 @@
 	INVOKE_ASYNC(src, PROC_REF(async_set_color), attacked_mob, user)
 
 /obj/item/lipstick/quantum/proc/async_set_color(mob/attacked_mob, mob/user)
-	var/new_color = input(
+	// BUBBERSTATION EDIT START: TGUI COLOR PICKER
+	var/new_color = tgui_color_picker(
 			user,
 			"Select lipstick color",
 			null,
 			COLOR_WHITE,
-		) as color | null
+		)
+	// BUBBERSTATION EDIT END: TGUI COLOR PICKER
 
 	var/mob/living/carbon/human/target = attacked_mob
 	if(target.is_mouth_covered())
@@ -177,18 +179,3 @@
 	icon = 'modular_skyrat/modules/salon/icons/items.dmi'
 	icon_state = "barber"
 	buildable_sign = FALSE // Don't want them removed, they look too jank.
-
-/obj/item/storage/box/perfume
-	name = "box of perfumes"
-
-/obj/item/storage/box/perfume/PopulateContents()
-	new /obj/item/perfume/cologne(src)
-	new /obj/item/perfume/wood(src)
-	new /obj/item/perfume/rose(src)
-	new /obj/item/perfume/jasmine(src)
-	new /obj/item/perfume/mint(src)
-	new /obj/item/perfume/vanilla(src)
-	new /obj/item/perfume/pear(src)
-	new /obj/item/perfume/strawberry(src)
-	new /obj/item/perfume/cherry(src)
-	new /obj/item/perfume/amber(src)

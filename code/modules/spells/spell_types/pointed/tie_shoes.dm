@@ -46,7 +46,7 @@
 	return isliving(cast_on)
 
 // We need to override this, as trying to change next_use_time in cast() will just result in it being overridden.
-/datum/action/cooldown/spell/touch/before_cast(atom/cast_on)
+/datum/action/cooldown/spell/pointed/untie_shoes/before_cast(atom/cast_on)
 	return ..() | SPELL_NO_IMMEDIATE_COOLDOWN
 
 /datum/action/cooldown/spell/pointed/untie_shoes/cast(mob/living/carbon/cast_on)
@@ -90,11 +90,11 @@
 
 	switch(shoes_to_tie.tied)
 		if(SHOES_TIED)
-			if(!shoes_to_tie.can_be_tied)
+			if(shoes_to_tie.fastening_type == SHOES_SLIPON)
 				if(bypass_tie_status)
 					to_chat(owner, span_warning("You magically grant laces to [cast_on]'s shoes!"))
 					cast_on.balloon_alert(owner, "laced!")
-					shoes_to_tie.can_be_tied = TRUE
+					shoes_to_tie.fastening_type = SHOES_LACED
 					if(invocation_type != INVOCATION_NONE)
 						playsound(cast_on, 'sound/effects/magic/summonitems_generic.ogg', 50, TRUE)
 					return TRUE

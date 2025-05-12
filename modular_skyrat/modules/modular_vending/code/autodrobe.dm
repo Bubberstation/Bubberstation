@@ -67,8 +67,7 @@
 				/obj/item/clothing/glasses/biker = 5,
 				/obj/item/clothing/suit/trenchblack = 5,
 				/obj/item/clothing/suit/trenchbrown = 5,
-				/obj/item/clothing/head/costume/skyrat/christmas = 5,
-				/obj/item/clothing/head/costume/skyrat/christmas/green =  5,
+				/obj/item/clothing/head/costume/santa/gags = 5,
 				/obj/item/clothing/under/costume/skyrat/christmas = 5,
 				/obj/item/clothing/under/costume/skyrat/christmas/green = 5,
 				/obj/item/clothing/under/costume/skyrat/christmas/croptop = 5,
@@ -78,6 +77,8 @@
 				/obj/item/clothing/shoes/winterboots/christmas = 5,
 				/obj/item/clothing/shoes/winterboots/christmas/green = 5,
 				/obj/item/clothing/under/pants/tactical = 5,
+				/obj/item/clothing/head/costume/irs = 5,
+				/obj/item/clothing/suit/costume/irs = 5
 			),
 		),
 	)

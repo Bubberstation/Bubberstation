@@ -10,11 +10,11 @@ Adds some new high tier engineering gear for use by ERTs.
 None
 
 ### Defines
-#define RADIO_CHANNEL_SOLFED "SolFed"
-#define RADIO_KEY_SOLFED "l"
-#define RADIO_TOKEN_SOLFED ":l"
+#define RADIO_CHANNEL_TERRAGOV "Terragov"
+#define RADIO_KEY_TERRAGOV "l"
+#define RADIO_TOKEN_TERRAGOV ":l"
 
-#define FREQ_SOLFED 1377
+#define FREQ_TERRAGOV 1377
 
 ### Credits:
 LT3

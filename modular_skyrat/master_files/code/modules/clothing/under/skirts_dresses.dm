@@ -1,5 +1,3 @@
-#define SKIRTS_DRESSES_DIGIFILE 'modular_skyrat/master_files/icons/mob/clothing/under/skirts_dresses_digi.dmi'
-
 /obj/item/clothing/under/dress
 	body_parts_covered = CHEST|GROIN	//For reference
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY //For reference - We dont want to cut a random hole in dresses

@@ -166,7 +166,7 @@
 	return TRUE
 
 //ADD
-/obj/item/robot_suit/attackby(obj/item/W, mob/user, params)
+/obj/item/robot_suit/attackby(obj/item/W, mob/user, list/modifiers)
 	if(istype(W, /obj/item/stack/sheet/iron))
 		var/obj/item/stack/sheet/iron/M = W
 		if(!l_arm && !r_arm && !l_leg && !r_leg && !chest && !head)
@@ -239,7 +239,7 @@
 
 	else if(istype(W, /obj/item/bodypart/head/robot))
 		var/obj/item/bodypart/head/robot/HD = W
-		if(locate(/obj/item/organ/internal) in HD)
+		if(locate(/obj/item/organ) in HD)
 			to_chat(user, span_warning("There are organs inside [HD]!"))
 			return
 		if(head)

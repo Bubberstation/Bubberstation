@@ -47,6 +47,7 @@
 						"Black" = "collar_black",
 						"Black-teal" = "collar_tealblack",
 						"Spike" = "collar_spike")
+	kink_collar = TRUE
 	/// What the name on the tag is
 	var/tagname = null
 	/// Item path of on-init creation in the collar's storage
@@ -271,6 +272,7 @@
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_neck.dmi'
 	icon_state = "mindcollar"
 	inhand_icon_state = null
+	kink_collar = TRUE
 	/// Reference to the mind control remote
 	var/obj/item/mind_controller/remote = null
 	var/emoting = "Shivers."

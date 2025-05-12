@@ -153,6 +153,10 @@
 	return ..() | SPELL_NO_FEEDBACK | SPELL_NO_IMMEDIATE_COOLDOWN
 
 /datum/action/cooldown/spell/touch/cast(mob/living/carbon/cast_on)
+	if(SEND_SIGNAL(cast_on, COMSIG_TOUCH_HANDLESS_CAST, src) & COMPONENT_CAST_HANDLESS)
+		StartCooldown()
+		return
+
 	if(!QDELETED(attached_hand) && (attached_hand in cast_on.held_items))
 		remove_hand(cast_on, reset_cooldown_after = TRUE)
 		return
@@ -165,7 +169,7 @@
  *
  * When our hand hits an atom, we can cast do_hand_hit() on them.
  */
-/datum/action/cooldown/spell/touch/proc/on_hand_hit(datum/source, mob/living/caster, atom/target, click_parameters)
+/datum/action/cooldown/spell/touch/proc/on_hand_hit(datum/source, mob/living/caster, atom/target, list/modifiers)
 	SIGNAL_HANDLER
 	SHOULD_NOT_OVERRIDE(TRUE) // DEFINITELY don't put effects here, put them in cast_on_hand_hit
 
@@ -179,7 +183,7 @@
  *
  * When our hand hits an atom, we can cast do_hand_hit() on them.
  */
-/datum/action/cooldown/spell/touch/proc/on_hand_hit_secondary(datum/source, mob/living/caster, atom/target, click_parameters)
+/datum/action/cooldown/spell/touch/proc/on_hand_hit_secondary(datum/source, mob/living/caster, atom/target, list/modifiers)
 	SIGNAL_HANDLER
 	SHOULD_NOT_OVERRIDE(TRUE)
 

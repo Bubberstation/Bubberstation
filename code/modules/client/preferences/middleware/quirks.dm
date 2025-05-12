@@ -6,6 +6,41 @@
 		"give_quirk" = PROC_REF(give_quirk),
 		"remove_quirk" = PROC_REF(remove_quirk),
 	)
+/datum/preference_middleware/quirks/pre_set_preference(mob/user, preference, value)
+	if(preference != "species")
+		return
+	var/list/incompatible_quirks
+	var/selected_species_type = GLOB.species_list[value]
+	for(var/quirk_name in preferences.all_quirks)
+		var/quirk_path = SSquirks.quirks[quirk_name]
+		var/datum/quirk/quirk_prototype = SSquirks.quirk_prototypes[quirk_path]
+		if(!quirk_prototype.is_species_appropriate(selected_species_type))
+			LAZYADD(incompatible_quirks, quirk_name)
+	if(!LAZYLEN(incompatible_quirks))
+		return
+	var/list/message = list("The following quirks are incompatible with your selected species and will be removed: [incompatible_quirks.Join(", ")].")
+	if(CONFIG_GET(flag/disable_quirk_points))
+		message += "Would you like to continue?"
+	else
+		message += "If you do not have enough points to cover the removed quirks, your quirks will be reset. Would you like to continue?"
+	var/response = tgui_alert(user, message.Join(" "), "Quirks Incompatible", list("Yes", "No"))
+	if(response != "Yes")
+		return TRUE
+
+
+/datum/preference_middleware/quirks/post_set_preference(mob/user, preference, value)
+	if(preference != "species")
+		return
+	tainted = TRUE
+	preferences.validate_quirks()
+
+/datum/preference_middleware/quirks/proc/get_species_compatibility()
+	var/list/species_blacklist = list()
+	var/datum/species/mob_species = preferences.read_preference(/datum/preference/choiced/species)
+	for(var/datum/quirk/quirk_type as anything in SSquirks.quirk_prototypes)
+		if(!SSquirks.quirk_prototypes[quirk_type].is_species_appropriate(mob_species))
+			species_blacklist += quirk_type::name
+	return species_blacklist
 
 /datum/preference_middleware/quirks/get_ui_static_data(mob/user)
 	if (preferences.current_window != PREFERENCE_TAB_CHARACTER_PREFERENCES)
@@ -14,6 +49,7 @@
 	var/list/data = list()
 
 	data["selected_quirks"] = get_selected_quirks()
+	data["species_disallowed_quirks"] = get_species_compatibility()
 
 	return data
 
@@ -23,6 +59,7 @@
 	if (tainted)
 		tainted = FALSE
 		data["selected_quirks"] = get_selected_quirks()
+		data["species_disallowed_quirks"] = get_species_compatibility()
 
 	return data
 
@@ -54,7 +91,6 @@
 			"value" = initial(quirk.value),
 			"customizable" = constant_data?.is_customizable(),
 			"customization_options" = customization_options,
-			"veteran_only" = initial(quirk.veteran_only), // SKYRAT EDIT - Veteran quirks
 			"species_whitelist" = species_whitelist, //BUBBER EDIT - Species quirks
 		)
 
@@ -71,13 +107,7 @@
 /datum/preference_middleware/quirks/proc/give_quirk(list/params, mob/user)
 	var/quirk_name = params["quirk"]
 
-	//SKYRAT EDIT ADDITION
-	var/list/quirks = SSquirks.get_quirks()
-	var/datum/quirk/quirk = quirks[quirk_name]
-	if(!CONFIG_GET(flag/bypass_veteran_system) && initial(quirk.veteran_only) && !SSplayer_ranks.is_veteran(preferences?.parent))
-		return FALSE
-	//SKYRAT EDIT END
-
+	preferences.validate_quirks()
 	var/list/new_quirks = preferences.all_quirks | quirk_name
 	if (SSquirks.filter_invalid_quirks(new_quirks, preferences.augments) != new_quirks)// SKYRAT EDIT - AUGMENTS+
 		// If the client is sending an invalid give_quirk, that means that
@@ -114,13 +144,6 @@
 	var/list/selected_quirks = list()
 
 	for (var/quirk in preferences.all_quirks)
-		//SKYRAT EDIT ADDITION
-		var/list/quirks = SSquirks.get_quirks()
-		var/datum/quirk/quirk_datum = quirks[quirk]
-		if(!CONFIG_GET(flag/bypass_veteran_system) && initial(quirk_datum.veteran_only) && !SSplayer_ranks.is_veteran(preferences?.parent))
-			preferences.all_quirks -= quirk
-			continue
-		//SKYRAT EDIT END
 		selected_quirks += sanitize_css_class_name(quirk)
 
 	return selected_quirks

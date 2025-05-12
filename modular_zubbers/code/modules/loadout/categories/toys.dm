@@ -70,3 +70,31 @@
 /datum/loadout_item/toys/suspicious_protogen
 	name = "Suspicious Protogen Plush"
 	item_path = /obj/item/toy/plush/suspicious_protogen
+
+/datum/loadout_item/toys/foxy_plush
+	name = "Colorful Fox Plush"
+	item_path = /obj/item/toy/plush/foxy_plush
+
+/datum/loadout_item/toys/bottomsynf
+	name = "CentCom Synth Fox Plush"
+	item_path = /obj/item/toy/plush/bottomsynf
+
+/datum/loadout_item/toys/squeaky_toy
+	name = "Squeaky Rat Plushie"
+	item_path = /obj/item/toy/plush/squeaky_toy
+
+/datum/loadout_item/toys/androiddog
+	name = "Android Dog Plushie"
+	item_path = /obj/item/toy/plush/androiddog
+
+/datum/loadout_item/toys/ghoul
+	name = "Intern Ghoul Plushie"
+	item_path = /obj/item/toy/plush/ghoul
+
+/datum/loadout_item/toys/mold_kobold
+	name = "Hemophage Awareness Kobold"
+	item_path = /obj/item/toy/plush/mold_kobold
+
+/datum/loadout_item/toys/mothroach_plush
+	name = "Mothroach Plush"
+	item_path = /obj/item/toy/plush/mothroach_plush

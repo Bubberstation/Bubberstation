@@ -139,8 +139,8 @@
 
 	switch(user.zone_selected) //to let code know what part of body we gonna vibe
 		if(BODY_ZONE_PRECISE_GROIN)
-			var/obj/item/organ/external/genital/penis = target.get_organ_slot(ORGAN_SLOT_PENIS)
-			var/obj/item/organ/external/genital/vagina = target.get_organ_slot(ORGAN_SLOT_VAGINA)
+			var/obj/item/organ/genital/penis = target.get_organ_slot(ORGAN_SLOT_PENIS)
+			var/obj/item/organ/genital/vagina = target.get_organ_slot(ORGAN_SLOT_VAGINA)
 			var/penis_message = (user == target) ? pick("massages their penis with the [src]",
 					"[vibration_adj] teases their penis with [src]") \
 				: pick("[vibration_adj] massages [target]'s penis with [src]",
@@ -167,7 +167,7 @@
 				target.try_lewd_autoemote(pick("twitch_s", "moan", "blush"))
 
 		if(BODY_ZONE_CHEST)
-			var/obj/item/organ/external/genital/breasts = target.get_organ_slot(ORGAN_SLOT_BREASTS)
+			var/obj/item/organ/genital/breasts = target.get_organ_slot(ORGAN_SLOT_BREASTS)
 			if(breasts?.is_exposed())
 				var/breasts_or_nipples = breasts ? ORGAN_SLOT_BREASTS : ORGAN_SLOT_NIPPLES
 				message = (user == target) ? pick("massages their [breasts_or_nipples] with the [src]",

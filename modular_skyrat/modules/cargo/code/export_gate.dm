@@ -1,13 +1,3 @@
-/// Returns a list of minds of staff in a particular job
-/datum/controller/subsystem/job/proc/get_job_staff_records(job_trim)
-	if(isnull(job_trim))
-		CRASH("get_job_staff_records called without a job argument")
-
-	. = list()
-	for(var/datum/record/locked/target in GLOB.manifest.locked)
-		if(target.trim == job_trim)
-			. += target
-
 /obj/item/circuitboard/machine/export_gate
 	name = "Export Gate"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
@@ -16,23 +6,6 @@
 		/datum/stock_part/scanning_module = 3,
 		/datum/stock_part/card_reader = 1,
 	)
-
-/obj/item/flatpack/export_gate
-	board = /obj/item/circuitboard/machine/export_gate
-
-/obj/item/flatpack/export_gate/Initialize(mapload)
-	. = ..()
-	var/turf/our_turf = get_turf(src)
-	new /obj/item/paper/fluff/export_gate(our_turf)
-
-/obj/item/flatpack/export_gate/multitool_act(mob/living/user, obj/item/tool)
-	if(isturf(loc))
-		var/turf/location = loc
-		if(!locate(/obj/machinery/conveyor) in location)
-			balloon_alert(user, "needs conveyor belt!")
-			return ITEM_INTERACT_BLOCKING
-
-	return ..()
 
 /datum/supply_pack/service/export_gate
 	name = "Bounty Cube Export Gate"
@@ -210,19 +183,11 @@
 
 /obj/machinery/export_gate/proc/refresh_payment_accounts()
 	var/list/manifest_accounts = list()
-	var/list/cargo_techs = SSjob.get_job_staff_records(JOB_CARGO_TECHNICIAN)
-	if(isnull(cargo_techs))
+	var/list/cargo_tech_accounts = SSeconomy.bank_accounts_by_job[/datum/job/cargo_technician]
+	if(isnull(cargo_tech_accounts))
 		return
 
-	for(var/datum/record/locked/cargo_tech as anything in cargo_techs)
-		var/datum/mind/cargo_mind = cargo_tech.mind_ref.resolve()
-		if(isnull(cargo_mind))
-			continue
-
-		var/datum/bank_account/tech_account = cargo_mind.current.get_bank_account()
-		if(isnull(tech_account))
-			continue
-
+	for(var/datum/bank_account/tech_account as anything in cargo_tech_accounts)
 		if(tech_account.off_duty_check())
 			continue
 

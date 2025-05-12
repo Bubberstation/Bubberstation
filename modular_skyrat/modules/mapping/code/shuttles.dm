@@ -92,7 +92,7 @@
 	name = "Privateer Slaver"
 	prompt_name = "a privateer slaver"
 	you_are_text = "You're here to capture valuable hostages to sell into slavery."
-	flavour_text = "You're part of a privateer crew that sometimes takes contracts from the illusive Guild, which offers bounties and contracts to independent crews. Raiding colonies of the many less technologically advanced species in the area is much easier than this. You've been told that your mission is to capture as many valuable hostages from the station as possible. Your anonymous employer insists on the importance of humiliating SolFed by snatching those under their protection from right under their noses."
+	flavour_text = "You're part of a privateer crew that sometimes takes contracts from the illusive Guild, which offers bounties and contracts to independent crews. Raiding colonies of the many less technologically advanced species in the area is much easier than this. You've been told that your mission is to capture as many valuable hostages from the station as possible. Your anonymous employer insists on the importance of humiliating TerraGov by snatching those under their protection from right under their noses."
 	important_text = ""
 
 /obj/effect/mob_spawn/ghost_role/human/guild/slaver
@@ -121,6 +121,7 @@
 	name = "Privateer Slaver"
 	head = /obj/item/clothing/head/helmet/alt
 	suit = /obj/item/clothing/suit/armor/bulletproof
+	suit_store = /obj/item/gun/ballistic/automatic/pistol/sol/no_mag
 	uniform = /obj/item/clothing/under/syndicate/combat
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
@@ -137,7 +138,7 @@
 	backpack_contents = list(
 		/obj/item/storage/box/survival/engineer/radio,
 		/obj/item/melee/baton/telescopic,
-		/obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/wespe,
+		/obj/item/ammo_box/magazine/c35sol_pistol/starts_empty,
 		/obj/item/grenade/c4,
 		/obj/item/grenade/smokebomb
 	)
@@ -146,6 +147,7 @@
 	name = "Privateer Slaver Captain"
 	head = /obj/item/clothing/head/helmet/alt
 	suit = /obj/item/clothing/suit/armor/bulletproof
+	suit_store = /obj/item/gun/ballistic/automatic/pistol/trappiste
 	uniform = /obj/item/clothing/under/syndicate/combat
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
@@ -162,7 +164,7 @@
 	backpack_contents = list(
 		/obj/item/storage/box/survival/engineer/radio,
 		/obj/item/melee/baton/telescopic,
-		/obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/skild,
+		/obj/item/ammo_box/magazine/c585trappiste_pistol,
 		/obj/item/megaphone/command
 	)
 

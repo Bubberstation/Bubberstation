@@ -47,7 +47,7 @@ If anyone can figure out how to get Obsessed to work I would be very appreciativ
 	for(var/role in GLOB.special_roles)
 		if(role in list(ROLE_MALF, ROLE_PAI, ROLE_SENTIENCE, ROLE_OBSESSED))
 			continue
-		dat += "<a href='?src=[REF(src)];[HrefToken()];makeAntag=[role]'>Make [role](s)."
+		dat += "<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=[role]'>Make [role](s)."
 		if(antag_is_ghostrole(role))
 			dat += " (Requires Ghosts)"
 		dat += "</a><br>"
@@ -61,6 +61,8 @@ If anyone can figure out how to get Obsessed to work I would be very appreciativ
 	if(applicant.mind.special_role)
 		return FALSE
 	if(!(targetrole in applicant.client.prefs.be_special))
+		return FALSE
+	if(!applicant.client.prefs.read_preference(/datum/preference/toggle/be_antag))
 		return FALSE
 	if(onstation)
 		var/turf/T = get_turf(applicant)

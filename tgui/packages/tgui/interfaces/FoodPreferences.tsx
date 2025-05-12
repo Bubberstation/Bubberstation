@@ -1,7 +1,7 @@
 // THIS IS A SKYRAT UI FILE
-import { useBackend } from '../backend';
 import {
   Box,
+  Button,
   Dimmer,
   Divider,
   Icon,
@@ -9,8 +9,9 @@ import {
   Stack,
   StyleableSection,
   Tooltip,
-} from '../components';
-import { Button } from '../components/Button';
+} from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
@@ -56,14 +57,14 @@ export const FoodPreferences = (props) => {
                     <Button icon="circle-question" mr="0.5em" />
                     {data.invalid ? (
                       <Box as="span" color="#bd2020">
-                        Prefrences are Invalid!{' '}
+                        Preferences are Invalid!{' '}
                         {data.invalid.charAt(0).toUpperCase() +
                           data.invalid.slice(1)}{' '}
                         |&nbsp;
                       </Box>
                     ) : (
                       <Box as="span" color="green">
-                        Prefrences are Valid!
+                        Preferences are Valid!
                       </Box>
                     )}
                   </Box>

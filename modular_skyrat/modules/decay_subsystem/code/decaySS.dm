@@ -15,15 +15,16 @@ These procs are incredibly expensive and should only really be run once. That's 
 
 #define NEST_PERCENT_CHANCE 1
 
-#define LIGHT_FLICKER_PERCENT_CHANCE 10
-
 SUBSYSTEM_DEF(decay)
 	name = "Decay System"
 	flags = SS_NO_FIRE
-	init_order = INIT_ORDER_DECAY
+	dependencies = list(
+		/datum/controller/subsystem/mapping,
+		/datum/controller/subsystem/atoms,
+	)
 
 	/// This is used to determine what maps we should not spawn on.
-	var/list/station_filter = list("Birdshot Station", "Runtime Station", "MultiZ Debug", "Gateway Test")
+	var/list/station_filter = list("Catwalk Station", "Runtime Station", "MultiZ Debug", "Gateway Test")
 	var/list/possible_turfs = list()
 	var/list/possible_areas = list()
 	var/severity_modifier = 1
@@ -46,12 +47,6 @@ SUBSYSTEM_DEF(decay)
 		log_world("SSDecay was disabled due to map filter.")
 		return SS_INIT_NO_NEED
 
-	// Putting this first so that it just doesn't waste time iterating through everything if it's not going to do anything anyway.
-	if(prob(50))
-		message_admins("SSDecay will not interact with this round.")
-		log_world("SSDecay will not interact with this round.")
-		return SS_INIT_NO_NEED
-
 	for(var/area/iterating_area as anything in GLOB.areas)
 		if(!is_station_level(iterating_area.z))
 			continue
@@ -67,7 +62,9 @@ SUBSYSTEM_DEF(decay)
 	if(!possible_turfs)
 		CRASH("SSDecay had no possible turfs to use!")
 
-	severity_modifier = rand(1, 4)
+	var/severity_modifier = CONFIG_GET(number/ssdecay_intensity)
+	if(!severity_modifier || severity_modifier == 5)
+		severity_modifier = rand(1, 4)
 
 	message_admins("SSDecay severity modifier set to [severity_modifier]")
 	log_world("SSDecay severity modifier set to [severity_modifier]")
@@ -120,10 +117,6 @@ SUBSYSTEM_DEF(decay)
 				if(!iterating_floor.Enter(spawned_spawner))
 					qdel(spawned_spawner)
 
-		for(var/obj/machinery/light/iterating_light in iterating_maintenance)
-			if(prob(LIGHT_FLICKER_PERCENT_CHANCE))
-				iterating_light.start_flickering()
-
 /datum/controller/subsystem/decay/proc/do_engineering()
 	for(var/area/station/engineering/iterating_engineering in possible_areas)
 		for(var/turf/open/iterating_floor in iterating_engineering)
@@ -152,7 +145,11 @@ SUBSYSTEM_DEF(decay)
 				if(!iterating_floor.Enter(spawned_vomit))
 					qdel(spawned_vomit)
 
-		if(is_type_in_list(iterating_medical, list(/area/station/medical/coldroom, /area/station/medical/morgue, /area/station/medical/psychology)))
-			for(var/obj/machinery/light/iterating_light in iterating_medical)
-				if(prob(LIGHT_FLICKER_PERCENT_CHANCE))
-					iterating_light.start_flickering()
+#undef WALL_RUST_PERCENT_CHANCE
+#undef FLOOR_DIRT_PERCENT_CHANCE
+#undef FLOOR_BLOOD_PERCENT_CHANCE
+#undef FLOOR_VOMIT_PERCENT_CHANCE
+#undef FLOOR_OIL_PERCENT_CHANCE
+#undef FLOOR_TILE_MISSING_PERCENT_CHANCE
+#undef FLOOR_COBWEB_PERCENT_CHANCE
+#undef NEST_PERCENT_CHANCE

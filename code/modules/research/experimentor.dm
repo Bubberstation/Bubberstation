@@ -115,13 +115,13 @@
 	if(in_range(user, src) || isobserver(user))
 		. += span_notice("The status display reads: Malfunction probability reduced by <b>[malfunction_probability_coeff]%</b>.<br>Cooldown interval between experiments at <b>[resetTime*0.1]</b> seconds.")
 
-/obj/machinery/rnd/experimentor/attackby(obj/item/weapon, mob/living/user, params)
+/obj/machinery/rnd/experimentor/attackby(obj/item/weapon, mob/living/user, list/modifiers)
 	if(user.combat_mode)
 		return ..()
 	if(!is_insertion_ready(user))
 		return ..()
 	if(!user.transferItemToLoc(weapon, src))
-		to_chat(user, span_warning("\The [weapon] is stuck to your hand, you cannot put it in the [name]!"))
+		to_chat(user, span_warning("\The [weapon] is stuck to your hand, you cannot put it in \the [src]!"))
 		return TRUE
 	loaded_item = weapon
 	to_chat(user, span_notice("You add [weapon] to the machine."))
@@ -363,7 +363,7 @@
 				visible_message(span_danger("[src] dangerously overheats, launching a flaming fuel orb!"))
 				investigate_log("Experimentor has launched a <font color='red'>fireball</font> at [M]!", INVESTIGATE_EXPERIMENTOR)
 				var/obj/projectile/magic/fireball/FB = new /obj/projectile/magic/fireball(start)
-				FB.preparePixelProjectile(MT, start)
+				FB.aim_projectile(MT, start)
 				FB.fire()
 		else if(prob(EFFECT_PROB_LOW * (100 - malfunction_probability_coeff) * 0.01))
 			visible_message(span_danger("[src] malfunctions, melting [exp_on] and releasing a burst of flame!"))
@@ -828,7 +828,6 @@
 	var/datum/dimension_theme/shifter = SSmaterials.dimensional_themes[new_theme_path]
 	for(var/turf/shiftee in range(1, user))
 		shifter.apply_theme(shiftee, show_effect = TRUE)
-	qdel(shifter)
 	// prevent *total* spam conversion
 	min_cooldown += 2 SECONDS
 	max_cooldown += 2 SECONDS

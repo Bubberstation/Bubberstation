@@ -36,10 +36,10 @@
 
 	/// The microfusion lens used for generating the beams.
 	var/obj/item/ammo_casing/energy/laser/microfusion/microfusion_lens
-	/// The time it takes for someone to (tactically) reload this gun. In deciseconds.
-	var/tactical_reload_time = 4 SECONDS
-	/// The time it takes for someone to normally reload this gun. In deciseconds.
-	var/normal_reload_time = 2 SECONDS
+	/// The time it takes for someone to (tactically) reload this gun.
+	var/tactical_reload_time = 6 SECONDS
+	/// The time it takes for someone to normally reload this gun.
+	var/normal_reload_time = 4 SECONDS
 	/// The sound played when you insert a cell.
 	var/sound_cell_insert = 'modular_skyrat/modules/microfusion/sound/mag_insert.ogg'
 	/// Should the insertion sound played vary?
@@ -93,6 +93,7 @@
 	else
 		cell = new(src)
 	cell.parent_gun = src
+	cell.chargerate = STANDARD_CELL_CHARGE * 0.2
 	if(!dead_cell)
 		cell.give(cell.maxcharge)
 	if(phase_emitter_type)
@@ -343,7 +344,7 @@
 
 	add_fingerprint(user)
 
-	if(semicd)
+	if(fire_cd)
 		return
 
 	//Vary by at least this much
@@ -384,11 +385,11 @@
 			return
 		process_chamber()
 		update_appearance()
-		semicd = TRUE
+		fire_cd = TRUE
 		var/fire_delay_to_add = 0
 		if(phase_emitter)
 			fire_delay_to_add = phase_emitter.fire_delay
-		addtimer(CALLBACK(src, PROC_REF(reset_semicd)), fire_delay + fire_delay_to_add)
+		addtimer(CALLBACK(src, PROC_REF(reset_fire_cd)), fire_delay + fire_delay_to_add)
 
 	if(user)
 		user.update_held_items()
@@ -609,6 +610,7 @@
 		playsound(src, sound_cell_insert, sound_cell_insert_volume, sound_cell_insert_vary)
 	cell = inserting_cell
 	inserting_cell.forceMove(src)
+	inserting_cell.inserted_into_weapon()
 	cell.parent_gun = src
 	normal_reload_time = inserting_cell.reloading_time
 	tactical_reload_time = inserting_cell.reloading_time_tactical
@@ -786,3 +788,5 @@
 /// Recalculates the recoil, based on attachment-provided values.
 /obj/item/gun/microfusion/proc/recalculate_recoil()
 	recoil = max(0, attachment_recoil)
+
+#undef DUALWIELD_PENALTY_EXTRA_MULTIPLIER

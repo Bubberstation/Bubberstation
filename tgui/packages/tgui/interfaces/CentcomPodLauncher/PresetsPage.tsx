@@ -1,8 +1,5 @@
 import { storage } from 'common/storage';
-import { createUuid } from 'common/uuid';
 import { useEffect, useState } from 'react';
-
-import { useBackend } from '../../backend';
 import {
   Button,
   Divider,
@@ -10,7 +7,10 @@ import {
   NumberInput,
   Section,
   Stack,
-} from '../../components';
+} from 'tgui-core/components';
+import { createUuid } from 'tgui-core/uuid';
+
+import { useBackend } from '../../backend';
 import { POD_GREY } from './constants';
 import { PodLauncherData } from './types';
 
@@ -94,11 +94,7 @@ export function PresetsPage(props) {
       {editing && (
         <Stack vertical>
           <Stack.Item>
-            <Input
-              autoFocus
-              onChange={(e, value) => setName(value)}
-              placeholder="Preset Name"
-            />
+            <Input autoFocus onChange={setName} placeholder="Preset Name" />
             <Button
               icon="check"
               inline
@@ -155,7 +151,7 @@ export function PresetsPage(props) {
                   borderStyle: 'solid',
                   borderColor: `hsl(${preset.hue}, 80%, 80%)`,
                 }
-              : ''
+              : {}
           }
           width="100%"
         >

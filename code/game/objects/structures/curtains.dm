@@ -22,7 +22,8 @@
 	// see-through curtains should let emissives shine through
 	if(!opaque_closed)
 		blocks_emissive = EMISSIVE_BLOCK_NONE
-	return ..()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_INVERTED_DEMOLITION, INNATE_TRAIT)
 
 /obj/structure/curtain/proc/toggle()
 	open = !open
@@ -42,7 +43,7 @@
 
 /obj/structure/curtain/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/toy/crayon))
-		color = input(user,"","Choose Color",color) as color
+		color = tgui_color_picker(user, "", "Choose Color", color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 	else
 		return ..()
 

@@ -37,7 +37,6 @@
 		/obj/item/reagent_containers/cup/glass/bottle/champagne = 10
 	)
 
-	veteran_only = TRUE
 	job_flags = STATION_JOB_FLAGS | JOB_BOLD_SELECT_TEXT | JOB_CANNOT_OPEN_SLOTS
 
 /datum/outfit/job/nanotrasen_consultant
@@ -108,7 +107,7 @@
 /obj/item/modular_computer/pda/nanotrasen_consultant
 	name = "nanotrasen consultant's PDA"
 	inserted_disk = /obj/item/computer_disk/command/captain
-	inserted_item = /obj/item/pen/fountain/captain
+	inserted_item = /obj/item/pen/fountain/green
 	greyscale_colors = "#017941#0060b8"
 
 /obj/item/storage/bag/garment/nanotrasen_consultant
@@ -119,17 +118,23 @@
 	new /obj/item/clothing/shoes/sneakers/brown(src)
 	new /obj/item/clothing/glasses/sunglasses/gar/giga(src)
 	new /obj/item/clothing/gloves/combat(src)
-	new /obj/item/clothing/gloves/combat/naval/nanotrasen_consultant(src)
+	new /obj/item/clothing/gloves/captain/centcom(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/centcom/nt_consultant(src)
 	new /obj/item/clothing/under/rank/nanotrasen_consultant(src)
 	new /obj/item/clothing/under/rank/nanotrasen_consultant/skirt(src)
+	new /obj/item/clothing/under/rank/centcom/consultant(src)
+	new /obj/item/clothing/under/rank/centcom/consultant/skirt(src)
 	new /obj/item/clothing/under/rank/centcom/officer(src)
 	new /obj/item/clothing/under/rank/centcom/officer_skirt(src)
+	new /obj/item/clothing/under/rank/centcom/official(src)
+	new /obj/item/clothing/under/rank/centcom/official/turtleneck(src)
 	new /obj/item/clothing/head/nanotrasen_consultant(src)
 	new /obj/item/clothing/head/nanotrasen_consultant/beret(src)
 	new /obj/item/clothing/head/beret/centcom_formal/nt_consultant(src)
 	new /obj/item/clothing/head/hats/centhat(src)
+	new /obj/item/clothing/head/hats/consultant_cap(src)
 	new /obj/item/clothing/suit/armor/centcom_formal/nt_consultant(src)
+	new /obj/item/clothing/suit/armor/vest/officerfake(src)
 	new /obj/item/clothing/under/rank/centcom/intern(src)
 	new /obj/item/clothing/head/hats/intern(src)
 

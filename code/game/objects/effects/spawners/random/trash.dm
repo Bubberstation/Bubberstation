@@ -36,7 +36,7 @@
 		/obj/effect/spawner/random/entertainment/money = 10,
 		/obj/effect/spawner/random/trash/crushed_can = 10,
 		/obj/item/shard/plasma = 5,
-		/obj/item/reagent_containers/pill/maintenance = 5,
+		/obj/item/reagent_containers/applicator/pill/maintenance = 5,
 		/obj/item/mail/junkmail = 5,
 		/obj/effect/spawner/random/food_or_drink/snack = 5,
 		/obj/effect/spawner/random/trash/soap = 3,
@@ -45,6 +45,7 @@
 		/obj/item/reagent_containers/cup/soda_cans/grey_bull = 1,
 		/obj/effect/spawner/random/engineering/tool = 1,
 		/mob/living/basic/mouse = 1,
+		/mob/living/basic/snail = 1,
 		/obj/item/food/grown/cannabis = 1,
 		/obj/item/reagent_containers/cup/rag = 1,
 		/obj/effect/spawner/random/entertainment/drugs= 1,
@@ -53,6 +54,12 @@
 		/obj/effect/spawner/random/entertainment/cigar = 1,
 		/obj/item/stack/ore/gold = 1,
 	)
+/obj/effect/spawner/random/trash/deluxe_garbage/Initialize(mapload)
+	if(mapload)
+		var/turf/location = get_turf(loc)
+		if(location.initial_gas_mix != OPENTURF_DEFAULT_ATMOS && location.initial_gas_mix != OPENTURF_DIRTY_ATMOS)
+			loot -= /mob/living/basic/mouse
+	return ..()
 
 /obj/effect/spawner/random/trash/cigbutt
 	name = "cigarette butt spawner"

@@ -1,8 +1,8 @@
 /datum/outfit/centcom
 	name = "CentCom Base"
 
-/datum/outfit/centcom/post_equip(mob/living/carbon/human/centcom_member, visualsOnly = FALSE)
-	if(visualsOnly)
+/datum/outfit/centcom/post_equip(mob/living/carbon/human/centcom_member, visuals_only = FALSE)
+	if(visuals_only)
 		return
 	var/obj/item/implant/mindshield/mindshield = new /obj/item/implant/mindshield(centcom_member)//hmm lets have centcom officials become revs
 	mindshield.implant(centcom_member, null, silent = TRUE)
@@ -17,8 +17,8 @@
 	shoes = /obj/item/clothing/shoes/combat/swat
 	var/additional_radio
 
-/datum/outfit/centcom/ert/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	if(visualsOnly)
+/datum/outfit/centcom/ert/post_equip(mob/living/carbon/human/H, visuals_only = FALSE)
+	if(visuals_only)
 		return
 
 	var/obj/item/radio/headset/R = H.ears
@@ -46,6 +46,7 @@
 		/obj/item/melee/baton/security/loaded = 1,
 	)
 	belt = /obj/item/storage/belt/security/full
+	ears = /obj/item/radio/headset/headset_cent/alt/leader
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	l_pocket = /obj/item/switchblade
 	additional_radio = /obj/item/encryptionkey/heads/captain
@@ -168,8 +169,8 @@
 	r_pocket = /obj/item/modular_computer/pda/heads
 	l_hand = /obj/item/clipboard
 
-/datum/outfit/centcom/centcom_official/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	if(visualsOnly)
+/datum/outfit/centcom/centcom_official/post_equip(mob/living/carbon/human/H, visuals_only = FALSE)
+	if(visuals_only)
 		return
 
 	var/obj/item/modular_computer/pda/heads/pda = H.r_store
@@ -261,6 +262,7 @@
 		/obj/item/melee/baton/security/loaded = 1,
 		/obj/item/storage/box/lights/mixed = 1,
 	)
+	ears = /obj/item/radio/headset/headset_cent/alt/leader
 	r_hand = /obj/item/reagent_containers/spray/chemsprayer/janitor
 
 /datum/outfit/centcom/ert/clown
@@ -282,9 +284,9 @@
 	r_pocket = /obj/item/bikehorn/golden
 	additional_radio = /obj/item/encryptionkey/heads/hop
 
-/datum/outfit/centcom/ert/clown/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/centcom/ert/clown/post_equip(mob/living/carbon/human/H, visuals_only = FALSE)
 	..()
-	if(visualsOnly)
+	if(visuals_only)
 		return
 	ADD_TRAIT(H.mind, TRAIT_NAIVE, INNATE_TRAIT)
 	H.dna.add_mutation(/datum/mutation/human/clumsy)
@@ -308,8 +310,8 @@
 	r_pocket = /obj/item/ammo_box/strilka310
 	l_hand = /obj/item/gun/ballistic/rifle/boltaction
 
-/datum/outfit/centcom/centcom_intern/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	if(visualsOnly)
+/datum/outfit/centcom/centcom_intern/post_equip(mob/living/carbon/human/H, visuals_only = FALSE)
+	if(visuals_only)
 		return
 
 	var/obj/item/card/id/W = H.wear_id
@@ -454,8 +456,8 @@
 		/obj/item/skillchip/disk_verifier,
 	)
 
-/datum/outfit/centcom/death_commando/post_equip(mob/living/carbon/human/squaddie, visualsOnly = FALSE)
-	if(visualsOnly)
+/datum/outfit/centcom/death_commando/post_equip(mob/living/carbon/human/squaddie, visuals_only = FALSE)
+	if(visuals_only)
 		return
 
 	var/obj/item/radio/radio = squaddie.ears
@@ -471,16 +473,18 @@
 	name = "Death Commando Officer"
 
 	back = /obj/item/mod/control/pre_equipped/apocryphal/officer
+	ears = /obj/item/radio/headset/headset_cent/alt/leader
 
-/datum/outfit/centcom/death_commando/officer/post_equip(mob/living/carbon/human/squaddie, visualsOnly = FALSE)
+/datum/outfit/centcom/death_commando/officer/post_equip(mob/living/carbon/human/squaddie, visuals_only = FALSE)
 	. = ..()
 	var/obj/item/mod/control/mod = squaddie.back
 	if(!istype(mod))
 		return
-	var/obj/item/mod/module/hat_stabilizer/hat_holder = locate() in mod.modules
-	var/obj/item/clothing/head/helmet/space/beret/beret = new(hat_holder)
-	hat_holder.attached_hat = beret
-	squaddie.update_clothing(mod.slot_flags)
+	var/obj/item/clothing/helmet = mod.get_part_from_slot(ITEM_SLOT_HEAD)
+	var/obj/item/clothing/head/helmet/space/beret/beret = new(helmet)
+	var/datum/component/hat_stabilizer/component = helmet.GetComponent(/datum/component/hat_stabilizer)
+	component.attach_hat(beret)
+	squaddie.update_clothing(helmet.slot_flags)
 
 /datum/outfit/centcom/ert/marine
 	name = "Marine Commander"
@@ -490,6 +494,7 @@
 	suit_store = /obj/item/gun/ballistic/automatic/wt550
 	back = /obj/item/shield/riot
 	belt = /obj/item/storage/belt/military/assault/full
+	ears = /obj/item/radio/headset/headset_cent/alt/leader
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch
 	l_pocket = /obj/item/knife/combat
 	r_pocket = /obj/item/tank/internals/emergency_oxygen/double
@@ -503,6 +508,7 @@
 
 	id = /obj/item/card/id/advanced/centcom/ert/security
 	suit = /obj/item/clothing/suit/armor/vest/marine/security
+	ears = /obj/item/radio/headset/headset_cent/alt
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	head = /obj/item/clothing/head/helmet/marine/security
 	additional_radio = /obj/item/encryptionkey/heads/hos
@@ -522,9 +528,9 @@
 		/obj/item/storage/medkit/advanced = 1,
 	)
 	belt = /obj/item/storage/belt/medical/paramedic
+	ears = /obj/item/radio/headset/headset_cent/alt
 	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
 	additional_radio = /obj/item/encryptionkey/heads/cmo
-
 
 	skillchips = list(/obj/item/skillchip/entrails_reader)
 
@@ -538,6 +544,7 @@
 	back = /obj/item/deployable_turret_folded
 	uniform = /obj/item/clothing/under/rank/centcom/military/eng
 	belt = /obj/item/storage/belt/utility/full/powertools/rcd
+	ears = /obj/item/radio/headset/headset_cent/alt
 	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses
 	additional_radio = /obj/item/encryptionkey/heads/ce
 
@@ -560,9 +567,9 @@
 	r_pocket = /obj/item/reagent_containers/hypospray/medipen/salacid
 	ears = /obj/item/radio/headset
 	backpack_contents = list(
-			/obj/item/storage/medkit/emergency = 1,
-			/obj/item/crowbar = 1,
-			/obj/item/restraints/handcuffs = 1,
+		/obj/item/storage/medkit/emergency = 1,
+		/obj/item/crowbar = 1,
+		/obj/item/restraints/handcuffs = 1,
 	)
 
 /datum/outfit/centcom/militia/general
@@ -589,6 +596,7 @@
 		/obj/item/stack/medical/poultice = 1, //These stacks contain 15 by default. Great for getting corpses to defib range without surgery.
 	)
 	belt = /obj/item/storage/belt/medical/ert
+	ears = /obj/item/radio/headset/headset_cent/alt
 	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
 	additional_radio = /obj/item/encryptionkey/heads/cmo
 	mask = /obj/item/clothing/mask/surgical
