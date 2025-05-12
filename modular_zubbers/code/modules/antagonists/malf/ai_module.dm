@@ -34,7 +34,7 @@
 		to_chat(user, span_warning("You can only have one hacked Synthetic at a time"))
 		return FALSE
 	var/mob/living/carbon/human/ipc = clicked_on
-	if(is_special_character(ipc, allow_fake_antags = FALSE))
+	if(ipc.client?.prefs && (!(ROLE_MALF in ipc.client.prefs.be_special) || !(ROLE_MALF_MIDROUND in ipc.client.prefs.be_special) || is_special_character(ipc, allow_fake_antags = FALSE)))
 		to_chat(user, span_warning("Target seems unwilling to be hacked, find another target."))
 		return FALSE
 	if(!ipc.mind)
