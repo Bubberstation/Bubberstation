@@ -4,18 +4,19 @@
 	description = "Instill a directive upon a single Synthetic to follow your whims and protect you, \
 	Requires target to be incapacitated and non-mindshielded to use. \
 	Synthetic May exhibit abnormal conditions that might be detected."
-	cost = 70
+	cost = 60
 	power_type = /datum/action/innate/ai/ranged/override_directive
 	unlock_text = span_notice("You finish up the SQL injection payload to use on a vulnerability in Synthetic's")
 	unlock_sound = 'sound/machines/ping.ogg'
 
 /datum/action/innate/ai/ranged/override_directive
 	name = "Subvert Positronic Chassis"
-	desc = "Subverts an Synthetic's directives to make them your pawn. Synthetic must be inoperational and not mindshielded for virus payload to deliver."
-	button_icon_state = "directives_override"
+	desc = "Subverts a Synthetic's directives to make them your pawn. Synthetic must be inoperational and not mindshielded for virus payload to deliver."
+	button_icon = 'modular_zubbers/icons/action/milf_ai_ability.dmi'
+	button_icon_state = "synth_hacking_icon"
 	uses = 1
 	ranged_mousepointer = 'icons/effects/mouse_pointers/override_machine_target.dmi'
-	enable_text = span_notice("You prepare to inject virus payload into an unsanitized input point of an Synthetic.")
+	enable_text = span_notice("You prepare to inject virus payload into an unsanitized input point of a Synthetic.")
 	disable_text = span_notice("You hold off on injecting the virus payload.")
 
 /datum/action/innate/ai/ranged/override_directive/New()
@@ -26,14 +27,14 @@
 	if(user.incapacitated)
 		unset_ranged_ability(user)
 		return FALSE
-	if(user.connected_ipcs.len)
-		to_chat(user, span_warning("You can only have one hacked Synthetic at a time"))
-		return FALSE
 	if(!issynthetic(clicked_on))
 		to_chat(user, span_warning("You can only hack Synthetics!"))
 		return FALSE
+	if(user.connected_ipcs.len)
+		to_chat(user, span_warning("You can only have one hacked Synthetic at a time"))
+		return FALSE
 	var/mob/living/carbon/human/ipc = clicked_on
-	if(ipc.client?.prefs && (!(ROLE_MALF in ipc.client.prefs.be_special) || !(ROLE_MALF_MIDROUND in ipc.client.prefs.be_special)))
+	if(is_special_character(ipc, allow_fake_antags = FALSE))
 		to_chat(user, span_warning("Target seems unwilling to be hacked, find another target."))
 		return FALSE
 	if(!ipc.mind)

@@ -253,7 +253,6 @@
 			//Name. Area, and Status! Everything an AI wants to know about its TV-heads!
 			. += "[connected_ipc.name] | S.Integrity: [connected_ipc.health]% | Loc: [get_area_name(connected_ipc, TRUE)] | Status: [robot_status]"
 	// Bubbers Edit End
-
 	. += "AI shell beacons detected: [LAZYLEN(GLOB.available_ai_shells)]" //Count of total AI shells
 
 /mob/living/silicon/ai/proc/ai_call_shuttle()
