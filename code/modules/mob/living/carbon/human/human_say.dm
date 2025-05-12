@@ -75,7 +75,7 @@
 	var/obj/item/radio/headset/dongle = ears
 	//Bubber Edit Start
 	for(var/obj/item/implant/radio/implant in src.implants)
-		if(implant.radio.translate_binary)
+		if(implant.radio.special_channels & RADIO_SPECIAL_BINARY)
 			dongle = implant.radio
 			break
 	//Bubber Edit End

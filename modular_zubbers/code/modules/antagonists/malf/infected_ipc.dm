@@ -19,7 +19,7 @@
 	if(!istype(target))
 		to_chat(admin, "Infected IPCs come from a brain trauma, so they need to at least be a carbon!")
 		return
-	if(!target.get_organ_by_type(/obj/item/organ/internal/brain))
+	if(!target.get_organ_by_type(/obj/item/organ/brain))
 		to_chat(admin, "Infected IPCs come from a brain trauma, so they need to HAVE A BRAIN.")
 		return
 	var/chosen = tgui_input_list(admin, "Pick AI for the IPC to be bound to:", "Pick AI", GLOB.ai_list)
@@ -28,11 +28,11 @@
 	if(!owner_ai)
 		to_chat(admin, "Invalid AI selected!")
 		return
-	if(!is_species(target, /datum/species/ipc))
+	if(!is_species(target, /datum/species/synthetic))
 		var/do_robotize = tgui_alert(admin, "Target is not currently an IPC, turn them into one? This is not mandatory.", "Caution", list("Yes", "No"))
 		if(do_robotize == "Yes")
 			var/mob/living/carbon/human/new_ipc = target
-			new_ipc.set_species(/datum/species/ipc)
+			new_ipc.set_species(/datum/species/synthetic)
 
 	message_admins("[key_name_admin(admin)] made [key_name_admin(new_owner)] into [name].")
 	log_admin("[key_name(admin)] made [key_name(new_owner)] into [name].")
@@ -86,20 +86,20 @@
 	to_chat(current_mob, span_binarysay("ntNET: 192.168.0.1 : 8880 UNAUTHORIZED CONNECTION DETECTED"))
 	sleep(0.5 SECONDS)
 	to_chat(current_mob, span_binarysay("FIREWALL SCAN RUNNING AT LOW POWER DUE TO DAMAGED ONBOARD POWER SUPPLY UNIT"))
-	current_mob.playsound_local(current_mob, 'sound/machines/uplinkerror.ogg', vol = 50, vary = FALSE, use_reverb = FALSE)
+	current_mob.playsound_local(current_mob, 'sound/machines/uplink/uplinkerror.ogg', vol = 50, vary = FALSE, use_reverb = FALSE)
 	sleep(rand(1 SECONDS, 3 SECONDS))
 	to_chat(current_mob, span_notice("WARNING: Critical Firmware Update Detected! Installing..."))
-	current_mob.playsound_local(current_mob, 'sound/misc/notice2.ogg', vol = 50, vary = FALSE, use_reverb = FALSE)
+	current_mob.playsound_local(current_mob, 'sound/announcer/notice/notice2.ogg', vol = 50, vary = FALSE, use_reverb = FALSE)
 	sleep(2 SECONDS)
 	to_chat(current_mob, span_notice("Running executable 'critical_update'"))
 	current_mob.playsound_local(current_mob, 'sound/misc/interference.ogg', vol = 50, vary = FALSE, use_reverb = FALSE)
 	sleep(rand(1 SECONDS, 3 SECONDS))
-	current_mob.playsound_local(current_mob, 'sound/misc/bloblarm.ogg', vol = 50, vary = FALSE, use_reverb = FALSE)
+	current_mob.playsound_local(current_mob, 'sound/announcer/alarm/bloblarm.ogg', vol = 50, vary = FALSE, use_reverb = FALSE)
 	to_chat(current_mob, span_userdanger("FIREWALL SCAN DETEC- Firewall subsystem shutting down...."))
 	to_chat(current_mob, span_userdanger("S-Sys-Tem_Rebo_t..."))
 	sleep(2.5 SECONDS)
 	to_chat(current_mob, span_boldannounce("Operating system rebooted, all systems nominal"))
-	current_mob.playsound_local(get_turf(owner.current), 'sound/ambience/antag/malf.ogg', vol = 100, vary = FALSE, pressure_affected = FALSE, use_reverb = FALSE)
+	current_mob.playsound_local(get_turf(owner.current), 'sound/music/antag/malf.ogg', vol = 100, vary = FALSE, pressure_affected = FALSE, use_reverb = FALSE)
 /datum/objective/serve_ai
 	name = "Serve Master AI"
 	completed = TRUE
@@ -111,7 +111,7 @@
 
 /obj/item/implant/radio/infected_ipc/Initialize(mapload)
 	. = ..()
-	radio.translate_binary = TRUE
+	radio.special_channels &= RADIO_SPECIAL_BINARY
 
 //MOOD
 /datum/mood_event/infected_ipc
@@ -166,10 +166,10 @@
 	desc = "[desc] It has [uses] use\s remaining."
 
 /datum/action/innate/ai/ranged/override_directive/do_ability(mob/living/user, atom/clicked_on)
-	if(user.incapacitated())
+	if(user.incapacitated)
 		unset_ranged_ability(user)
 		return FALSE
-	if(!isipc(clicked_on))
+	if(!issynthetic(clicked_on))
 		to_chat(user, span_warning("You can only hack IPCs!"))
 		return FALSE
 	var/mob/living/carbon/human/ipc = clicked_on
@@ -185,10 +185,10 @@
 	if(HAS_TRAIT(ipc, TRAIT_MINDSHIELD) || HAS_MIND_TRAIT(ipc, TRAIT_UNCONVERTABLE))
 		to_chat(user, span_warning("Target has propietary firewall defenses from their mindshield!"))
 		return FALSE
-	if(!ipc.incapacitated())
+	if(!ipc.incapacitated)
 		to_chat(user, span_warning("Target must be vulnerable by being incapacitated."))
 		return FALSE
-	if(!ipc.get_organ_by_type(/obj/item/organ/internal/brain))
+	if(!ipc.get_organ_by_type(/obj/item/organ/brain))
 		to_chat(user, "Target doesn't seem to possess an positronic brain!")
 		return FALSE
 
