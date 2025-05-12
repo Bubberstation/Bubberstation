@@ -1,0 +1,61 @@
+//AI Milf MODULE
+/datum/ai_module/malf/utility/override_directive
+	name = "Positronic Chassis Hacking"
+	description = "Instill a directive upon a single IPC to follow your whims and protect you, \
+	Requires target to be incapacitated and non-mindshielded to use. \
+	IPC May exhibit abnormal conditions that might be detected."
+	cost = 70
+	power_type = /datum/action/innate/ai/ranged/override_directive
+	unlock_text = span_notice("You finish up the SQL injection payload to use on a vulnerability in IPC's")
+	unlock_sound = 'sound/machines/ping.ogg'
+
+/datum/action/innate/ai/ranged/override_directive
+	name = "Subvert Positronic Chassis"
+	desc = "Subverts an IPC directives to make them your pawn. IPC must be inoperational and not mindshielded for virus payload to deliver."
+	button_icon_state = "directives_override"
+	uses = 1
+	ranged_mousepointer = 'icons/effects/mouse_pointers/override_machine_target.dmi'
+	enable_text = span_notice("You prepare to inject virus payload into an unsanitized input point of an IPC.")
+	disable_text = span_notice("You hold off on injecting the virus payload.")
+
+/datum/action/innate/ai/ranged/override_directive/New()
+	. = ..()
+	desc = "[desc] It has [uses] use\s remaining."
+
+/datum/action/innate/ai/ranged/override_directive/do_ability(mob/living/user, atom/clicked_on)
+	if(user.incapacitated)
+		unset_ranged_ability(user)
+		return FALSE
+	if(!issynthetic(clicked_on))
+		to_chat(user, span_warning("You can only hack IPCs!"))
+		return FALSE
+	var/mob/living/carbon/human/ipc = clicked_on
+	if(ipc.client?.prefs && (!(ROLE_MALF in ipc.client.prefs.be_special) || !(ROLE_MALF_MIDROUND in ipc.client.prefs.be_special)))
+		to_chat(user, span_warning("Target seems unwilling to be hacked, find another target."))
+		return FALSE
+	if(!ipc.mind)
+		to_chat(user, span_warning("Target must be have a mind."))
+		return FALSE
+	if(ipc.mind.has_antag_datum(/datum/antagonist/infected_ipc))
+		to_chat(user, "Target has already been hacked!")
+		return FALSE
+	if(HAS_TRAIT(ipc, TRAIT_MINDSHIELD) || HAS_MIND_TRAIT(ipc, TRAIT_UNCONVERTABLE))
+		to_chat(user, span_warning("Target has propietary firewall defenses from their mindshield!"))
+		return FALSE
+	if(!ipc.incapacitated)
+		to_chat(user, span_warning("Target must be vulnerable by being incapacitated."))
+		return FALSE
+	if(!ipc.get_organ_by_type(/obj/item/organ/brain))
+		to_chat(user, "Target doesn't seem to possess an positronic brain!")
+		return FALSE
+
+	user.playsound_local(user, 'sound/misc/interference.ogg', 50, FALSE, use_reverb = FALSE)
+	adjust_uses(-1)
+	if(uses)
+		desc = "[initial(desc)] It has [uses] use\s remaining."
+		build_all_button_icons()
+
+	var/datum/brain_trauma/special/infected_ipc/hacked_ipc = ipc.gain_trauma(/datum/brain_trauma/special/infected_ipc)
+	hacked_ipc.link_and_add_antag(user.mind)
+	unset_ranged_ability(user, span_danger("Sending virus payload..."))
+	return TRUE
