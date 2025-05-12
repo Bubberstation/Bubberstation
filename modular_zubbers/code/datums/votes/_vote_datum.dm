@@ -91,7 +91,7 @@
 		if(highest_votes >= victory_threshold)
 			log_dynamic("Victory threshold ([victory_threshold]) reached! Winner(s): [highest_choices.Join(", ")] with [highest_votes] votes",
 				list("winners" = highest_choices, "votes" = highest_votes))
-			elimination_results += "[highest_choices[1]] - [highest_votes]"
+			elimination_results += "[highest_choices[1]] wins by threshold victory with [highest_votes]/[total_voters] votes!"
 			if(istype(src, /datum/vote/storyteller))
 				SSgamemode.vote_datum.elimination_results = elimination_results.Copy()
 			return highest_choices
