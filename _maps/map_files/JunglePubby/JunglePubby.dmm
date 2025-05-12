@@ -212,6 +212,7 @@
 /obj/machinery/firealarm/directional/east,
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
+/obj/machinery/plantgenes,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "aaY" = (
@@ -220,6 +221,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/machinery/smartfridge/disks,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "aaZ" = (
@@ -3521,10 +3523,6 @@
 /area/station/maintenance/department/security/brig)
 "any" = (
 /obj/machinery/light/directional/west,
-/obj/structure/sign/map{
-	icon_state = "map-pubby";
-	pixel_x = -32
-	},
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 8
 	},
@@ -5687,10 +5685,6 @@
 "avi" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
-	},
-/obj/structure/sign/map{
-	icon_state = "map-pubby";
-	pixel_y = 32
 	},
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
@@ -8573,7 +8567,11 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /obj/structure/bed/dogbed,
 /mob/living/basic/frog{
-	name = "Gerald the NT Frog"
+	name = "Gerald the NT Frog";
+	icon_dead = "rare_frog_trash_dead";
+	icon_living = "rare_frog_trash";
+	icon_state = "rare_frog_trash";
+	desc = "It's Gerald! The NTR's trustworthy golden frog!"
 	},
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/nt_rep)
@@ -9099,10 +9097,6 @@
 /area/station/command/heads_quarters/hos)
 "aHK" = (
 /obj/machinery/light/directional/north,
-/obj/structure/sign/map{
-	icon_state = "map-pubby";
-	pixel_y = 32
-	},
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/fore)
@@ -9183,17 +9177,6 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/turf/open/floor/iron,
-/area/station/hallway/primary/central/fore)
-"aIc" = (
-/obj/structure/sign/map{
-	icon_state = "map-pubby";
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/fore)
 "aId" = (
@@ -10128,10 +10111,6 @@
 	dir = 4
 	},
 /obj/structure/table/wood,
-/obj/item/storage/box/perfume{
-	pixel_x = 4;
-	pixel_y = 5
-	},
 /obj/item/storage/box/lipsticks{
 	pixel_x = -6;
 	pixel_y = 3
@@ -11180,6 +11159,7 @@
 /obj/machinery/door/airlock/maintenance{
 	name = "Kitchen Maintenance"
 	},
+/obj/structure/plasticflaps/kitchen,
 /turf/open/floor/plating,
 /area/station/maintenance/central)
 "aRP" = (
@@ -12640,6 +12620,7 @@
 	dir = 4
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/kitchen,
+/obj/structure/plasticflaps/kitchen,
 /turf/open/floor/iron/showroomfloor,
 /area/station/service/kitchen/coldroom)
 "aYb" = (
@@ -13890,7 +13871,7 @@
 /obj/item/radio/intercom/directional/north,
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/east,
-/obj/effect/spawner/random/vending/colavend,
+/obj/machinery/gbp_redemption,
 /turf/open/floor/iron,
 /area/station/cargo/lobby)
 "bdS" = (
@@ -14451,10 +14432,6 @@
 /area/station/hallway/primary/central/aft)
 "bgi" = (
 /obj/machinery/vending/cola,
-/obj/structure/sign/map{
-	icon_state = "map-pubby";
-	pixel_y = 32
-	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
 	},
@@ -24101,10 +24078,6 @@
 /obj/machinery/camera/directional/north{
 	c_tag = "Engineering Port Fore"
 	},
-/obj/structure/sign/map{
-	icon_state = "map-pubby";
-	pixel_y = 32
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
@@ -26825,9 +26798,7 @@
 /turf/open/floor/iron/cafeteria,
 /area/station/service/kitchen)
 "cpz" = (
-/obj/structure/rack,
-/obj/item/stack/package_wrap,
-/obj/item/hand_labeler,
+/obj/machinery/smartfridge/drying,
 /turf/open/floor/iron/cafeteria,
 /area/station/service/kitchen)
 "cpA" = (
@@ -27589,10 +27560,6 @@
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
-	},
-/obj/machinery/door/window/left/directional/west{
-	name = "Deliveries";
-	req_access = list("shipping")
 	},
 /turf/open/floor/iron,
 /area/station/cargo/sorting)
@@ -33681,6 +33648,11 @@
 	dir = 8;
 	id = "Delivery"
 	},
+/obj/machinery/door/window/left/directional/west{
+	name = "Deliveries";
+	req_access = list("shipping")
+	},
+/obj/structure/plasticflaps,
 /turf/open/floor/plating,
 /area/station/cargo/sorting)
 "gZl" = (
@@ -48821,7 +48793,7 @@
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "tSN" = (
-/mob/living/simple_animal/hostile/retaliate/goose/vomit,
+/mob/living/basic/goose/vomit,
 /turf/open/floor/wood,
 /area/station/service/abandoned_gambling_den)
 "tSR" = (
@@ -48937,7 +48909,7 @@
 /area/station/cargo/storage)
 "tYF" = (
 /obj/machinery/computer/cryopod/directional/north,
-/obj/machinery/time_clock/directional/west,
+/obj/machinery/modular_computer/preset/time_clock/directional/west,
 /turf/open/floor/iron,
 /area/station/common/cryopods)
 "tYU" = (
@@ -89476,7 +89448,7 @@ aAH
 aAH
 hDu
 hDu
-aIc
+qlr
 ilz
 fei
 anX
@@ -91248,7 +91220,7 @@ iqc
 ngp
 cBr
 cBs
-qRW
+tSN
 gna
 klV
 xbJ
@@ -91760,7 +91732,7 @@ cBk
 jhD
 cBo
 alQ
-tSN
+qRW
 cBw
 qRW
 aiS
