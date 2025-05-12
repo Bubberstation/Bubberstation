@@ -517,7 +517,7 @@
 		addtimer(CALLBACK(src, PROC_REF(animate_eyelids), owner), blink_delay + duration)
 
 /obj/item/organ/eyes/proc/animate_eyelids(mob/living/carbon/human/parent)
-	if(!CONFIG_GET(flag/blinking)) return // BUBBER EDIT - CONFIG BLINKING
+	if(CONFIG_GET(flag/disable_blinking)) return // BUBBER EDIT - CONFIG BLINKING
 
 	var/sync_blinking = TRUE // synchronized_blinking && (parent.get_organ_loss(ORGAN_SLOT_BRAIN) < ASYNC_BLINKING_BRAIN_DAMAGE) // BUBBER EDIT - REMOVE ASYNC BLINKING UNTIL https://github.com/tgstation/tgstation/issues/90269 is fixed
 	// Randomize order for unsynched animations
