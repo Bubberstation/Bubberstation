@@ -1,35 +1,35 @@
 /datum/antagonist/infected_ipc
-	name = "\improper Infected IPC"
+	name = "\improper Infected Synthetic"
 	roundend_category = "traitors"
 	antagpanel_category = "Malf AI"
 	job_rank = ROLE_MALF
 	antag_hud_name = "traitor"
 	suicide_cry = "FOR MY MASTER!!"
 	antag_moodlet = /datum/mood_event/infected_ipc
-	///radio binary for IPC
+	///radio binary for synthetic
 	var/obj/item/implant/radio/infected_ipc/internal_radio
 	/// The camera for ai
 	var/obj/machinery/camera/internal_camera
-	///ai that's linked to the ipc
+	///ai that's linked to the synthetic
 	var/mob/living/silicon/ai/master_ai
 
 /datum/antagonist/infected_ipc/admin_add(datum/mind/new_owner, mob/admin)
 	var/mob/living/carbon/target = new_owner.current
 	var/mob/living/silicon/ai/owner_ai
 	if(!istype(target))
-		to_chat(admin, "Infected IPCs come from a brain trauma, so they need to at least be a carbon!")
+		to_chat(admin, "Infected Synthetic's come from a brain trauma, so they need to at least be a carbon!")
 		return
 	if(!target.get_organ_by_type(/obj/item/organ/brain))
-		to_chat(admin, "Infected IPCs come from a brain trauma, so they need to HAVE A BRAIN.")
+		to_chat(admin, "Infected Synthetic's come from a brain trauma, so they need to HAVE A BRAIN.")
 		return
-	var/chosen = tgui_input_list(admin, "Pick AI for the IPC to be bound to:", "Pick AI", GLOB.ai_list)
+	var/chosen = tgui_input_list(admin, "Pick AI for the Synthetic to be bound to:", "Pick AI", GLOB.ai_list)
 	if(istype(chosen, /mob/living/silicon/ai))
 		owner_ai = chosen
 	if(!owner_ai)
 		to_chat(admin, "Invalid AI selected!")
 		return
 	if(!is_species(target, /datum/species/synthetic))
-		var/do_robotize = tgui_alert(admin, "Target is not currently an IPC, turn them into one? This is not mandatory.", "Caution", list("Yes", "No"))
+		var/do_robotize = tgui_alert(admin, "Target is not currently an Synthetic, turn them into one? This is not mandatory.", "Caution", list("Yes", "No"))
 		if(do_robotize == "Yes")
 			var/mob/living/carbon/human/new_ipc = target
 			new_ipc.set_species(/datum/species/synthetic)
@@ -91,7 +91,9 @@
 	to_chat(current_mob, span_notice("WARNING: Critical Firmware Update Detected! Installing..."))
 	current_mob.playsound_local(current_mob, 'sound/announcer/notice/notice2.ogg', vol = 50, vary = FALSE, use_reverb = FALSE)
 	sleep(2 SECONDS)
-	to_chat(current_mob, span_notice("Running executable 'critical_update'"))
+	var/list/filenames = list("critical_update", "not_a_virus", "cute_wallpaper.exe")
+	var/picked_name = pick(filenames)
+	to_chat(current_mob, span_notice("Running executable '[picked_name]'"))
 	current_mob.playsound_local(current_mob, 'sound/misc/interference.ogg', vol = 50, vary = FALSE, use_reverb = FALSE)
 	sleep(rand(1 SECONDS, 3 SECONDS))
 	current_mob.playsound_local(current_mob, 'sound/announcer/alarm/bloblarm.ogg', vol = 50, vary = FALSE, use_reverb = FALSE)

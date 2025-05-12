@@ -278,7 +278,7 @@
 		var/list/ipc_results = list()
 		var/connected_ipc_amt = length(master_ai.connected_ipcs)
 		if(connected_ipc_amt)
-			ipc_results += span_header("The Malfunctioning AI had [connected_ipc_amt] infected IPC('s) under their command: ")
+			ipc_results += span_header("The Malfunctioning AI had [connected_ipc_amt] infected Synthetic('s) under their command: ")
 			for(var/mob/living/carbon/human/connected_ipc as anything in master_ai.connected_ipcs)
 				ipc_results += connected_ipc.name
 		result += ipc_results

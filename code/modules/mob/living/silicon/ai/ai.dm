@@ -245,7 +245,7 @@
 	// Bubbers Edit Start
 	var/connected_ipc_amt = length(connected_ipcs)
 	if(connected_ipc_amt)
-		. += "Connected IPCs: [connected_ipc_amt]"
+		. += "Connected Synthetic's: [connected_ipc_amt]"
 		for(var/mob/living/carbon/human/connected_ipc as anything in connected_ipcs)
 			var/robot_status = "Nominal"
 			if(connected_ipc.stat != CONSCIOUS || !connected_ipc.client)

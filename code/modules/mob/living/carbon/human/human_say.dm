@@ -76,8 +76,7 @@
 	//Bubber Edit Start
 	for(var/obj/item/implant/radio/implant in src.implants)
 		if(implant.radio.special_channels & RADIO_SPECIAL_BINARY)
-			dongle = implant.radio
-			break
+			return TRUE
 	//Bubber Edit End
 	if(!istype(dongle))
 		return FALSE
