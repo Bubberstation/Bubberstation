@@ -41,3 +41,6 @@
 
 /obj/effect/landmark/navigate_destination/docksec
 	location = "Secondary Ship Dock"
+
+/obj/effect/landmark/navigate_destination/sauna
+	location = "Sauna"

@@ -93,7 +93,7 @@
 		return underbarrel.try_fire_gun(target, user, params)
 	return ..()
 
-/obj/item/gun/ballistic/automatic/pistol/clandestine/fisher/afterattack(atom/target, mob/user, click_parameters)
+/obj/item/gun/ballistic/automatic/pistol/clandestine/fisher/afterattack(atom/target, mob/user, list/modifiers)
 	var/obj/projectile/energy/fisher/melee/simulated_hit = new
 	simulated_hit.firer = user
 	simulated_hit.on_hit(target)
@@ -224,7 +224,6 @@
 	name = "\improper Liberator"
 	desc = "A poorly made 3D printed \"gun\", only capable of firing a single shot. Well-known throughout the Spinward Sector \
 		after an incident where 3 assistants were killed by shrapnel from such a device exploding while attempting to shoot a mouse."
-	icon = 'icons/obj/weapons/guns/ballistic.dmi' // BUBBER EDIT ADDITION - We don't have an override sprite for this one
 	icon_state = "doorhickey"
 	custom_materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 2)
 	bolt_type = BOLT_TYPE_NO_BOLT

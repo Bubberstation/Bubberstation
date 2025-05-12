@@ -1173,6 +1173,10 @@
 	if(isabductor(affected_mob))
 		affected_mob.add_mood_event("ET_pieces", /datum/mood_event/et_pieces, name)
 		affected_mob.set_drugginess(30 SECONDS * REM * seconds_per_tick)
+	//bubber edit BEGIN - vulpkanin love peanut butter too
+	if(isvulpkanin(affected_mob))
+		affected_mob.add_mood_event("ET_pieces", /datum/mood_event/et_pieces, name)
+	//bubber edit END
 
 /datum/reagent/consumable/vinegar
 	name = "Vinegar"

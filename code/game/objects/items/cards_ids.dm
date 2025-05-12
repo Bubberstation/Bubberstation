@@ -1281,17 +1281,29 @@
 	trim = /datum/id_trim/maint_reaper
 	registered_name = "Thirteen"
 
+/obj/item/card/id/advanced/platinum
+	name = "platinum identification card"
+	desc = "A platinum card which shows the highest level of dedication."
+	icon_state = "card_platinum"
+	inhand_icon_state = "platinum_id"
+	assigned_icon_state = "assigned_silver"
+	wildcard_slots = WILDCARD_LIMIT_PLATINUM
+
+/obj/item/card/id/advanced/platinum/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_TASTEFULLY_THICK_ID_CARD, INNATE_TRAIT)
+
 /obj/item/card/id/advanced/gold
 	name = "gold identification card"
 	desc = "A golden card which shows power and might."
 	icon_state = "card_gold"
 	inhand_icon_state = "gold_id"
-	assigned_icon_state = "assigned_gold"
+	assigned_icon_state = "assigned_silver"
 	wildcard_slots = WILDCARD_LIMIT_GOLD
 
 /obj/item/card/id/advanced/gold/Initialize(mapload)
 	. = ..()
-	ADD_TRAIT(src, TRAIT_TASTEFULLY_THICK_ID_CARD, ROUNDSTART_TRAIT)
+	ADD_TRAIT(src, TRAIT_TASTEFULLY_THICK_ID_CARD, INNATE_TRAIT)
 
 /obj/item/card/id/advanced/gold/captains_spare
 	name = "captain's spare ID"
@@ -1668,7 +1680,7 @@
 	if(ishuman(interacting_with))
 		interacting_with.balloon_alert(user, "scanning ID card...")
 
-		if(!do_after(user, 2 SECONDS, interacting_with))
+		if(!do_after(user, 2 SECONDS, interacting_with, hidden = TRUE))
 			interacting_with.balloon_alert(user, "interrupted!")
 			return ITEM_INTERACT_BLOCKING
 

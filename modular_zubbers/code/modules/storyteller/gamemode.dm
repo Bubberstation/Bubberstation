@@ -376,6 +376,7 @@ SUBSYSTEM_DEF(gamemode)
 	if(storyteller_halted)
 		message_admins("WARNING: Didn't roll roundstart events (including antagonists) due to the storyteller being halted.")
 		return
+	log_dynamic("Initializing storyteller [storyteller.name] with the following multipliers! [english_list_assoc(storyteller.tag_multipliers)]")
 	while(TRUE)
 		if(!storyteller.handle_tracks())
 			break
@@ -685,6 +686,7 @@ SUBSYSTEM_DEF(gamemode)
 /datum/controller/subsystem/gamemode/proc/storyteller_vote_choices()
 	var/client_amount = GLOB.clients.len
 	var/list/choices = list()
+	var/list/vote_message = list()
 	for(var/storyteller_type in storytellers)
 		var/datum/storyteller/storyboy = storytellers[storyteller_type]
 		/// Prevent repeating storytellers
@@ -696,8 +698,11 @@ SUBSYSTEM_DEF(gamemode)
 			continue
 		choices += storyboy.name
 		///Because the vote subsystem is dumb and does not support any descriptions, we dump them into world.
-		to_chat(world, span_notice("<b>[storyboy.name]</b>"))
-		to_chat(world, span_notice("[storyboy.desc]"))
+		vote_message += "<b>[storyboy.name]</b>"
+		vote_message += "[storyboy.desc]"
+		vote_message += ""
+	var/finalized_message = "[vote_message.Join("\n")]"
+	to_chat(world, custom_boxed_message("purple_box", vote_font("[span_bold("Storyteller Vote")]\n<hr>[finalized_message]")))
 	return choices
 
 /datum/controller/subsystem/gamemode/proc/storyteller_vote_result(winner_name)

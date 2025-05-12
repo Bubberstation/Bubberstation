@@ -16,7 +16,7 @@
 	/// var to check if it got opened by a key
 	var/spawned_loot = FALSE
 
-/obj/structure/closet/crate/necropolis/tendril/attackby(obj/item/item, mob/user, params)
+/obj/structure/closet/crate/necropolis/tendril/attackby(obj/item/item, mob/user, list/modifiers)
 	if(!istype(item, /obj/item/skeleton_key) || spawned_loot)
 		return ..()
 	var/loot = rand(1,21)
@@ -123,8 +123,8 @@
 	icon_state = "necro_bubblegum"
 	base_icon_state = "necro_bubblegum"
 	lid_icon_state = "necro_bubblegum_lid"
-	lid_x = -26
-	lid_y = 2
+	lid_w = -26
+	lid_z = 2
 
 /obj/structure/closet/crate/necropolis/bubblegum/PopulateContents()
 	new /obj/item/clothing/suit/hooded/hostile_environment(src)

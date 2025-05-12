@@ -17,13 +17,14 @@
 		/obj/item/electronics/airalarm = 10,
 		/obj/item/electronics/firealarm = 10,
 		/obj/item/electronics/firelock = 10,
+		/obj/item/stack/sticky_tape/duct = 10,
 	)
 	contraband = list(
 		/obj/item/stock_parts/power_store/cell/potato = 3,
 	)
 	premium = list(
 		/obj/item/storage/belt/utility = 3,
-		///obj/item/construction/rcd/loaded = 2, // SKYRAT EDIT REMOVAL
+		/obj/item/construction/rcd/loaded = 2,
 		/obj/item/storage/box/smart_metal_foam = 1,
 	)
 	refill_canister = /obj/item/vending_refill/engivend

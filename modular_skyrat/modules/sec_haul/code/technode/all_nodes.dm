@@ -9,7 +9,6 @@
 	design_ids = list(
 		"sol40_riflstandardemag",
 		"solgrenade_extmag",
-		"sol35_shortextmag",
 		"ca_flech",
 		"ca_flechmagnesium",
 		"s12g_slug",
@@ -31,7 +30,6 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 
 /datum/techweb_node/basic_arms/New()
-	design_ids += "sol35_shortmag"
 	design_ids += "c10mm_r"
 	design_ids += "c10mm_rihdf"
 	design_ids += "s12c_fslug"
@@ -45,7 +43,6 @@
 	description = "The same technology used in the Sol 2351 Campaign.It is highly classified and resource intensive."
 	prereq_ids = list("syndicate_basic","storedmunition_tech_two")
 	design_ids = list(
-		"sol40_rifldrummag",
 		"m9mm_mag_ext_hp",
 		"m9mm_mag_ext",
 		"m9mm_mag_ext_b",
@@ -53,27 +50,20 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 
 /datum/techweb_node/sec_equip/New()
-	design_ids += "m45_mag"
-	design_ids += "s12g_rubber"
-	design_ids += "s12g_bslug"
 	design_ids += "c457_casing"
-	design_ids += "sol40_riflemag"
 	design_ids += "m9mm_mag_rubber"
 	design_ids += "c10mm_rl"
 	. = ..()
 
 /datum/techweb_node/riot_supression/New()
-	design_ids += "s12g_hornet"
 	design_ids += "s12g_br"
 	design_ids += "m9mm_mag_ihdf"
 	design_ids += "ca_flechballpoint"
 	design_ids += "m9mm_mag"
 	design_ids += "c10mm_rincin"
-	design_ids += "s12g_antitide"
 	. = ..()
 
 /datum/techweb_node/exotic_ammo/New()
-	design_ids += "s12g_incinslug"
 	design_ids += "ca_flechripper"
 	design_ids += "sol_bolt_to_rifle"
 	design_ids += "c10mm_rhp"
@@ -81,8 +71,6 @@
 	. = ..()
 
 /datum/techweb_node/syndicate_basic/New()
-	design_ids += "s12g_magnum"
-	design_ids += "s12g_express"
 	design_ids += "s12g_ion"
 	. = ..()
 

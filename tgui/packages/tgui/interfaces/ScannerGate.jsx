@@ -93,10 +93,6 @@ const SCANNER_GATE_ROUTES = {
     component: () => ScannerGateGender,
   },
   //  SKYRAT EDIT END - MORE SCANNER GATE OPTIONS
-  Contraband: {
-    title: 'Scanner Mode: Contraband',
-    component: () => ScannerGateContraband,
-  },
   // BUBBER EDIT START - NANITES
   Nanites: {
     title: 'Scanner Mode: Nanites',
@@ -168,12 +164,6 @@ const ScannerGateOff = (props) => {
           onClick={() => act('set_mode', { new_mode: 'Nanites' })}
         />
         {/* BUBBER EDIT END - NANITES */}
-
-        <Button
-          content="Contraband"
-          disabled={contraband_enabled ? false : true}
-          onClick={() => act('set_mode', { new_mode: 'Contraband' })}
-        />
       </Box>
     </>
   );
@@ -317,7 +307,7 @@ const ScannerGateNutrition = (props) => {
 // BUBBER EDIT START - NANITES
 const ScannerGateNanites = (props, context) => {
   const { act, data } = useBackend(context);
-  const { reverse, nanite_cloud } = data;
+  const { reverse, nanite_cloud, min_cloud_id, max_cloud_id } = data;
   return (
     <>
       <Box mb={2}>
@@ -330,10 +320,11 @@ const ScannerGateNanites = (props, context) => {
             <NumberInput
               value={nanite_cloud}
               width="65px"
-              minValue={1}
-              maxValue={100}
+              minValue={min_cloud_id + 1}
+              maxValue={max_cloud_id}
+              step={1}
               stepPixelSize={2}
-              onChange={(e, value) =>
+              onChange={(value) =>
                 act('set_nanite_cloud', {
                   new_cloud: value,
                 })
