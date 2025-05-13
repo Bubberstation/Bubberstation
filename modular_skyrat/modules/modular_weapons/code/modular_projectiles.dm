@@ -11,7 +11,6 @@
 /*
 *	.38 Special
 */
-#define COLOR_AMMO_EMP "#5f959c"
 
 /obj/item/ammo_casing/c38/haywire
 	name = ".38 Haywire bullet casing"
