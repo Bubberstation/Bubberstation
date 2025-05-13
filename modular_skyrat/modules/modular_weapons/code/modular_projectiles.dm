@@ -9,6 +9,75 @@
 // whatever goblin decided to spread out bullets over like 3 files and god knows however many overrides i wish you a very stubbed toe
 
 /*
+*	.38 Special
+*/
+#define COLOR_AMMO_EMP "#5f959c"
+
+/obj/item/ammo_casing/c38/haywire
+	name = ".38 Haywire bullet casing"
+	desc = "A .38 Haywire bullet casing, with an electromagnetic generator in the tip.\
+		<br><br>\
+		<i>HAYWIRE: Electromagnetic pulse ammo. Deals little damage, but causes a small electromagnetic pulse.</i>"
+	projectile_type = /obj/projectile/bullet/c38/haywire
+	custom_materials = AMMO_MATS_EMP
+	advanced_print_req = TRUE
+
+/obj/item/ammo_box/c38/haywire
+	name = "speed loader (.38 Haywire)"
+	desc = "Designed to quickly reload revolvers. These rounds create small electromagnetic pulses upon impact."
+	ammo_type = /obj/item/ammo_casing/c38/haywire
+	ammo_band_color = COLOR_AMMO_EMP
+
+/obj/item/ammo_box/magazine/m38/haywire
+	name = "battle rifle magazine (.38 Haywire)"
+	desc = parent_type::desc + " These bullets create small electromagnetic pulses on impact; devastating against electronics."
+	ammo_type = /obj/item/ammo_casing/c38/haywire
+	ammo_band_color = COLOR_AMMO_EMP
+
+/obj/projectile/bullet/c38/haywire
+	name = ".38 haywire bullet"
+	damage = 10
+	ricochets_max = 0
+	embed_type = null
+	/// EMP radius when this bullet hits a target.
+	var/emp_radius = 0
+
+/obj/projectile/bullet/c38/haywire/on_hit(atom/target, blocked, pierce_hit)
+	. = ..()
+	empulse(target, 0, emp_radius)
+
+/*
+*	.357 Magnum
+*/
+
+/obj/item/ammo_casing/c357/haywire
+	name = ".357 Haywire+ bullet casing"
+	desc = "A .357 Haywire+ bullet casing, with a high-efficiency electromagnetic generator in the tip.\
+		<br><br>\
+		<i>HAYWIRE+: Electromagnetic pulse ammo. Deals moderate damage, and cause a small, but powerful, electromagnetic pulse.</i>"
+	projectile_type = /obj/projectile/bullet/c357/haywire
+	custom_materials = AMMO_MATS_EMP
+	advanced_print_req = TRUE
+
+/obj/item/ammo_box/a357/haywire
+	name = "speed loader (.357 Haywire+)"
+	desc = "Designed to quickly reload revolvers. These rounds create small, but powerful electromagnetic pulses upon impact."
+	ammo_type = /obj/item/ammo_casing/c357/haywire
+	ammo_band_color = COLOR_AMMO_EMP
+
+/obj/projectile/bullet/c357/haywire
+	name = ".357 Haywire+ bullet"
+	damage = 40
+	ricochets_max = 0
+	embed_type = null
+	/// EMP radius when this bullet hits a target.
+	var/emp_radius = 1
+
+/obj/projectile/bullet/c357/haywire/on_hit(atom/target, blocked, pierce_hit)
+	. = ..()
+	empulse(target, emp_radius, emp_radius)
+
+/*
 *	.460 Ceres (renamed tgcode .45)
 */
 

@@ -224,6 +224,13 @@
 	)
 	return ..()
 
+/datum/techweb_node/exotic_ammo/New()
+	design_ids += list(
+		"c38_haywire",
+		"c38_haywire_mag",
+	)
+	return ..()
+
 ////////////////////////Alien technology////////////////////////
 
 /datum/techweb_node/alien_surgery/New()
