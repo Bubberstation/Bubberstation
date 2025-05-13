@@ -359,18 +359,7 @@
 /turf/open/floor/iron/dark,
 /area/awaymission/wargames/tents)
 "dE" = (
-/obj/structure/table,
-/obj/item/stack/medical/suture/bloody,
-/obj/item/stack/medical/suture/bloody,
-/obj/machinery/recharger,
-/obj/item/storage/toolbox/syndicate{
-	pixel_y = 13;
-	pixel_x = -8
-	},
-/obj/item/storage/medkit/tactical/premium{
-	pixel_y = -7;
-	pixel_x = 9
-	},
+/obj/machinery/chem_master,
 /turf/open/floor/iron/white,
 /area/awaymission/wargames/cin/medical)
 "dF" = (
@@ -679,8 +668,7 @@
 /turf/open/misc/grass/planet,
 /area/awaymission/wargames/outside)
 "hM" = (
-/obj/structure/table,
-/obj/item/surgery_tray/full/deployed,
+/obj/machinery/chem_heater/withbuffer,
 /turf/open/floor/iron/white,
 /area/awaymission/wargames/cin/medical)
 "hP" = (
@@ -2396,12 +2384,6 @@
 /turf/open/floor/plating/rust,
 /area/awaymission/wargames/airfield)
 "AB" = (
-/obj/structure/table/optable,
-/obj/item/surgical_processor,
-/obj/machinery/defibrillator_mount/charging{
-	pixel_y = -30
-	},
-/obj/item/defibrillator/loaded,
 /obj/machinery/light/directional/south,
 /turf/open/floor/iron/white,
 /area/awaymission/wargames/cin/medical)
@@ -3007,6 +2989,7 @@
 /area/awaymission/wargames/gatewayroom)
 "Jc" = (
 /obj/machinery/light/directional/east,
+/obj/machinery/chem_dispenser/fullupgrade,
 /turf/open/floor/iron/white,
 /area/awaymission/wargames/cin/medical)
 "Jm" = (
@@ -4376,6 +4359,20 @@
 /obj/item/sensor_device,
 /obj/item/sensor_device,
 /obj/item/sensor_device,
+/obj/item/storage/medkit/tactical/premium{
+	pixel_y = -7;
+	pixel_x = 9
+	},
+/obj/item/storage/toolbox/syndicate{
+	pixel_y = 13;
+	pixel_x = -8
+	},
+/obj/item/stack/medical/suture/bloody,
+/obj/item/stack/medical/suture/bloody,
+/obj/machinery/recharger{
+	pixel_y = 6;
+	pixel_x = 7
+	},
 /turf/open/floor/iron/white,
 /area/awaymission/wargames/cin/medical)
 "YF" = (

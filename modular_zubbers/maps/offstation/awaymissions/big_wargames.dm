@@ -121,3 +121,28 @@
 /datum/outfit/cin_soldier/wargames/command
 	name = "Coalition Operative Command Staff"
 	// ill make them more uniuqe later
+
+/obj/item/radio/headset/headset_cin
+	keyslot = new /obj/item/encryptionkey/headset_cin
+
+/obj/item/radio/headset/cybersun/captain
+	name = "cybersun captain headset"
+	desc = "The headset of the boss."
+	command = TRUE
+
+/obj/item/encryptionkey/headset_cin
+	name = "engineering radio encryption key"
+	icon_state = "cypherkey_engineering"
+	channels = list(RADIO_CHANNEL_ENGINEERING = 1)
+	greyscale_config = /datum/greyscale_config/encryptionkey_engineering
+	greyscale_colors = "#f8d860#dca01b"
+
+
+/obj/item/radio/headset/headset_cin/bowman
+	name = "CIN bowman headset"
+	desc = "Headset used by the CIN. Protects ears from flashbangs."
+	icon_state = "com_headset_alt"
+
+/obj/item/radio/headset/headset_cin/bowman/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))
