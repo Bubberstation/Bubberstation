@@ -48,10 +48,12 @@
 	if (!ishuman(M))
 		balloon_alert(user, "[M.p_they()] does not fit!")
 		return FALSE
-	var/mob/living/carbon/human/penis_inspection = M
-	if(!penis_inspection.has_penis(REQUIRE_GENITAL_EXPOSED) && portal_mode == GLORYHOLE)
-		balloon_alert(user, "a penis is required to operate!")
-		return FALSE
+	if(portal_mode == GLORYHOLE)
+		var/mob/living/carbon/human/penis_inspection = M
+		var/obj/item/organ/genital/penis/penis_reference = M.get_organ_slot(ORGAN_SLOT_PENIS)
+		if(!penis_inspection.has_penis(REQUIRE_GENITAL_EXPOSED) || penis_reference?.visibility_preference == GENITAL_NEVER_SHOW)
+			balloon_alert(user, "a penis is required to operate!")
+			return FALSE
 	if (!linked_portal)
 		balloon_alert(user, "portal not linked!")
 		return FALSE
@@ -134,6 +136,7 @@
 	var/obj/item/organ/genital/penis/affected_penis = current_mob.get_organ_slot(ORGAN_SLOT_PENIS) //Stolen from Strapon code, this is bad we should probably have a cleaner way
 	affected_penis?.visibility_preference = GENITAL_NEVER_SHOW
 	current_mob.update_body()
+	affected_penis?.visibility_preference = initial_genital_visibility //These seems weird but I need to hide the penis when people use the gloryhole while maintaining its visability so it can be interacted with.
 
 ///Removes everything besides the head for the buckled mob, used in wallstuck mode
 /obj/structure/lewd_portal/proc/head_only()
@@ -184,6 +187,7 @@
 	if(portal_mode == GLORYHOLE)
 		var/obj/item/organ/genital/penis/affected_penis = unbuckled_mob.get_organ_slot(ORGAN_SLOT_PENIS) //Stolen from Strapon code, this is bad we should probably have a cleaner way
 		affected_penis?.visibility_preference = initial_genital_visibility
+		initial_genital_visibility = null
 		unbuckled_mob.update_body()
 	. = ..()
 
