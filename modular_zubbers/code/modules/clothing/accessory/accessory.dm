@@ -84,5 +84,5 @@
 	icon_state = "dogtags"
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FIRE_PROOF // its metal, and funny to leave behind when you dust.
-	attachment_slot = null
+	attachment_slot = NONE
 	above_suit = TRUE
