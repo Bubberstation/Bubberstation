@@ -87,13 +87,13 @@
 				if(portal_mode == WALLSTUCK)
 					relayed_body.transform = turn(relayed_body.transform, ROTATION_COUNTERCLOCKWISE)
 				else
-					relayed_body.pixel_y = 8
+					relayed_body.pixel_y = 7
 			if(WEST)
 				relayed_body.pixel_x = -24
 				if(portal_mode == WALLSTUCK)
 					relayed_body.transform = turn(relayed_body.transform, ROTATION_CLOCKWISE)
 				else
-					relayed_body.pixel_y = 8
+					relayed_body.pixel_y = 7
 		relayed_body.update_visuals()
 		if(portal_mode == GLORYHOLE)
 			var/obj/item/organ/genital/penis/penis_reference = current_mob.get_organ_slot(ORGAN_SLOT_PENIS)
