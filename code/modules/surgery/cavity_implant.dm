@@ -25,17 +25,26 @@
 
 GLOBAL_LIST_INIT(heavy_cavity_implants, typecacheof(list(/obj/item/transfer_valve)))
 
-/datum/surgery_step/close_cavity
-	name = "solder  cavity (cautery)"
+/datum/surgery_step/close_cavity  //Bubber edit: new surgery step used solely for the mechanical variant. Used to seal the cavity so the surgery can progress to the proper surgery end point for synthetics.
+	name = "solder  cavity (cautery or welder)"
 	implements = list(
 		TOOL_CAUTERY = 100,
 		/obj/item/gun/energy/laser = 90,
-		TOOL_WELDER = 70,
+		TOOL_WELDER = 100,
 		/obj/item = 30) // 30% success with any hot item.
 	time = 24
 	preop_sound = 'sound/items/handling/surgery/cautery1.ogg'
 	success_sound = 'sound/items/handling/surgery/cautery2.ogg'
 
+/datum/surgery_step/close_cavity/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+	display_results(
+		user,
+		target,
+		span_notice("You begin to solder the electronics around [target]'s cavity..."),
+		span_notice("[user] begins to solder [target]'s internal cavity with [tool]!"),
+		span_notice("[user] begins to solder [target]'s internal cavity!"),
+	)
+	display_pain(target, "The pain in your chest is unbearable! You can barely take it anymore!")
 
 //handle cavity
 /datum/surgery_step/handle_cavity
