@@ -70,7 +70,7 @@
 		return
 	var/obscured = source.check_obscured_slots()
 	if(!(obscured & ITEM_SLOT_EYES))
-		examine_text += span_boldwarning("[source.p_Their()] monitor is weirdly corrupted")
+		examine_text += span_boldwarning("[source.p_Their()] optics is weirdly corrupted")
 
 /datum/antagonist/infected_ipc/proc/set_master(datum/mind/master)
 	//the proc that links the AI and gives objectives. also some fluff hack that isn't in greet() since it has to be in otder to make sense.
