@@ -15,3 +15,12 @@
 	icon_state = "galfedsoft"
 	soft_type = "galfed"
 	dog_fashion = null
+
+/obj/item/clothing/head/peacekeeperberet
+	name = "Peacekeeper Beret"
+	desc = "A relic from the past. Its effectiveness as a stylish hat was never debated."
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "unberet"
+	item_state = "unberet"
+	dog_fashion = null
