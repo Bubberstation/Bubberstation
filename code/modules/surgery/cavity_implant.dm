@@ -9,6 +9,19 @@
 		/datum/surgery_step/handle_cavity,
 		/datum/surgery_step/close)
 
+/datum/surgery/cavity_implant/mechanic
+	name = "Robotic cavity implant"
+	requires_bodypart_type = BODYTYPE_ROBOTIC
+	possible_locs = list(BODY_ZONE_CHEST)
+	steps = list(
+		/datum/surgery_step/mechanic_open,
+		/datum/surgery_step/mechanic_unwrench,
+		/datum/surgery_step/prepare_electronics,
+		/datum/surgery_step/open_hatch,
+		/datum/surgery_step/handle_cavity,
+		/datum/surgery_step/mechanic_wrench,
+		/datum/surgery_step/mechanic_close)
+
 GLOBAL_LIST_INIT(heavy_cavity_implants, typecacheof(list(/obj/item/transfer_valve)))
 
 //handle cavity
