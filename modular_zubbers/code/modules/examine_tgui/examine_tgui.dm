@@ -111,7 +111,7 @@
 			ooc_notes += preferences.read_preference(/datum/preference/text/ooc_notes/silicon)
 			headshot += preferences.read_preference(/datum/preference/text/headshot/silicon)
 			name = holder.name
-			if(!(show_nsfw_flavor_text == "Never"))
+			if(show_nsfw_flavor_text != "Never")
 				flavor_text_nsfw = preferences.read_preference(/datum/preference/text/flavor_text_nsfw/silicon)
 				headshot_nsfw = preferences.read_preference(/datum/preference/text/headshot/silicon/nsfw)
 
