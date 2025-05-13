@@ -215,7 +215,6 @@
 
 	patient.client?.prefs?.safe_transfer_prefs_to_with_damage(patient, visuals_only = TRUE)
 	patient.dna.update_dna_identity()
-	SSquirks.AssignQuirks(patient, patient.client)
 	if(patient.dna.real_name != original_name)
 		log_game("[key_name(patient)] has used the Self-Actualization Device at [loc_name(src)], changed the name of their character. \
 		Original Name: [original_name], New Name: [patient.dna.real_name].")
@@ -226,6 +225,7 @@
 	say("Procedure complete! Enjoy your life being a new you!")
 
 	open_machine()
+	SSquirks.OverrideQuirks(patient, patient.client)
 
 /// Ejection and shut down of the machine, used before the preferences have been applied to the player. Damage optional.
 /obj/machinery/self_actualization_device/proc/eject_old_you(damaged_goods = FALSE)

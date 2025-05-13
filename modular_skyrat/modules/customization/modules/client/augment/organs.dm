@@ -14,6 +14,7 @@
 		var/datum/mind/holder_mind = human_holder.mind
 
 		new_brain.modular_persistence = old_brain.modular_persistence
+		new_brain.modular_persistence?.owner = new_brain
 		old_brain.modular_persistence = null
 
 		new_brain.copy_traits_from(old_brain)
