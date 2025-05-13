@@ -258,7 +258,7 @@
 		living.AddComponent(/datum/component/nanites, 5)
 		SEND_SIGNAL(living, COMSIG_NANITE_SYNC, nanites)
 		// SEND_SIGNAL(living, COMSIG_NANITE_SET_CLOUD, nanites.cloud_id) won't set the cloud
-		// SEND_SIGNAL(living, COMSIG_NANITE_SET_CLOUD_SYNC, NANITE_CLOUD_DISABLE)
+		SEND_SIGNAL(living, COMSIG_NANITE_SET_CLOUD_SYNC, NANITE_CLOUD_DISABLE)
 		living.investigate_log("was infected by a nanite cluster with cloud ID [nanites.cloud_id] by [key_name(host_mob)] at [AREACOORD(living)].", INVESTIGATE_NANITES)
 		to_chat(living, span_warning("You feel a tiny prick."))
 	decay_sting()
