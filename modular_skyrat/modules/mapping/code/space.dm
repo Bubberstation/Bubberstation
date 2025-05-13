@@ -82,7 +82,7 @@
 	id = "blackmarket"
 	suffix = "blackmarket.dmm"
 	name = "Space-Ruin Black Market"
-	description = "Markets' open."
+	description = "Market's open."
 
 /datum/map_template/ruin/space/skyrat/shuttle8532
 	id = "shuttle8532"
