@@ -231,6 +231,13 @@
 ///Janitor belt
 /datum/storage/janitor_belt
 	max_slots = 6
+	// BUBBER EDIT ADDITION BEGIN - Trash bag on da belt
+	var/static/list/exception_cache = typecacheof(list(
+		/obj/item/storage/bag/trash,
+	))
+	exception_max = 1
+	allow_big_nesting = TRUE
+	// BUBBER EDIT ADDITION END - Trash bag on da belt
 
 /datum/storage/janitor_belt/New(atom/parent, max_slots, max_specific_storage, max_total_storage)
 	. = ..()
@@ -255,7 +262,7 @@
 		/obj/item/mop/advanced, //SKYRAT EDIT For when you're lazy to use a bucket
 		/obj/item/reagent_containers/cup/bucket, //SKYRAT EDIT - Bucket
 
-	))
+	), exception_hold_list = exception_cache) // BUBBER EDIT CHANGE - Trash bag on da belt - ORIGINAL: ))
 
 ///Bandolier belt
 /datum/storage/bandolier_belt
