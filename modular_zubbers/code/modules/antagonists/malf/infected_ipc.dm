@@ -39,7 +39,6 @@
 	var/datum/brain_trauma/special/infected_ipc/trauma = target.gain_trauma(/datum/brain_trauma/special/infected_ipc)
 	trauma.link_and_add_antag(owner_ai?.mind)
 
-
 /datum/antagonist/infected_ipc/on_removal()
 	//disconnects them from master AI
 	master_ai?.connected_ipcs -= owner.current
@@ -55,7 +54,7 @@
 	internal_camera = new /obj/machinery/camera(current_mob)
 	internal_camera.name = owner.name
 	internal_camera.c_tag = owner.name
-	ADD_TRAIT(current_mob, TRAIT_CORRUPTED_MONITOR, type) //a way to identify infected ipcs
+	RegisterSignal(current_mob, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 
 /datum/antagonist/infected_ipc/remove_innate_effects(mob/living/mob_override)
 	. = ..()
@@ -63,7 +62,15 @@
 	var/mob/living/current_mob = mob_override || owner.current
 	QDEL_NULL(internal_radio)
 	QDEL_NULL(internal_camera)
-	REMOVE_TRAIT(current_mob, TRAIT_CORRUPTED_MONITOR, type)
+	UnregisterSignal(current_mob, COMSIG_MOB_EXAMINATE)
+
+/datum/antagonist/infected_ipc/proc/on_examine(mob/living/carbon/human/source, mob/user, list/examine_text)
+	SIGNAL_HANDLER
+	if(!istype(source))
+		return
+	var/obscured = source.check_obscured_slots()
+	if(!(obscured & ITEM_SLOT_EYES))
+		examine_text += span_boldwarning("[source.p_Their()] monitor is weirdly corrupted")
 
 /datum/antagonist/infected_ipc/proc/set_master(datum/mind/master)
 	//the proc that links the AI and gives objectives. also some fluff hack that isn't in greet() since it has to be in otder to make sense.

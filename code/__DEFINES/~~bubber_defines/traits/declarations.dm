@@ -41,6 +41,3 @@
 
 // makes it so this mob loses nutrition twice as fast
 #define TRAIT_FAST_METABOLISM "fast_metabolism"
-
-/// Their monitors are corrupted (this should be IPC exclusive trait). Currently used to set special examine text on IPCs. Examine text is overridden by TRAIT_CORRUPTED_MONITOR.
-#define TRAIT_CORRUPTED_MONITOR "corrupted_monitor"
