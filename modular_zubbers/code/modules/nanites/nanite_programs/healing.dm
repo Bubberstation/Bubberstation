@@ -160,7 +160,7 @@
 	host_mob.grab_ghost()
 	playsound(host_mob, 'sound/machines/defib/defib_charge.ogg', 50, FALSE)
 	send_user_message("Starting user revival sequence.")
-	addtimer(CALLBACK(src, .proc/zap), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(zap)), 5 SECONDS)
 
 /datum/nanite_program/defib/proc/check_revivable()
 	if(!iscarbon(host_mob)) //nonstandard biology
