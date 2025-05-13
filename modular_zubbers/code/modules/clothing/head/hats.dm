@@ -22,5 +22,4 @@
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "unberet"
-	item_state = "unberet"
 	dog_fashion = null
