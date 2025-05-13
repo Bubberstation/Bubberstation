@@ -131,6 +131,9 @@
 //This limb is shadowy and will regen if shadowheal is active
 #define BODYTYPE_SHADOW (1<<7)
 // BUBBER EDIT ADDITION
+
+/// Nanomachine bodypart
+#define BODYTYPE_NANO (1<<8)
 ///The limb fits a modular custom shape
 #define BODYSHAPE_CUSTOM (1<<9)
 ///The limb fits a taur body
@@ -139,6 +142,7 @@
 #define BODYSHAPE_HIDE_SHOES (1<<11)
 ///The limb causes glasses and hats to be drawn on layers 5 and 4 respectively. Currently used for snouts with the (Top) suffix, which are drawn on layer 6 and would normally cover facewear
 #define BODYSHAPE_ALT_FACEWEAR_LAYER (1<<12)
+
 // BUBBER EDIT END
 
 

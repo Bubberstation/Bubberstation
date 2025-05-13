@@ -8,7 +8,7 @@
 	desc = "<b>Left click</b> to coil/uncoil your powerful tail around something, <b>right click</b> to begin crushing."
 	check_flags = AB_CHECK_LYING|AB_CHECK_CONSCIOUS|AB_CHECK_INCAPACITATED|AB_CHECK_PHASED
 
-	button_icon = 'modular_skyrat/modules/taur_mechanics/icons/ability.dmi'
+	button_icon = 'modular_zubbers/icons/actions/constrict.dmi'
 	button_icon_state = "constrict"
 
 	ranged_mousepointer = 'icons/effects/mouse_pointers/supplypod_pickturf.dmi'
@@ -125,7 +125,7 @@
 	name = "serpentine tail"
 	desc = "A scaley tail, currently coiled."
 
-	icon = 'modular_skyrat/modules/taur_mechanics/icons/tail.dmi'
+	icon = 'modular_zubbers/icons/mob/taur/tail.dmi'
 	icon_state = "naga"
 	pixel_x = -16
 
@@ -190,7 +190,7 @@
 	if (tail_overlay)
 		return tail_overlay // we already have it
 
-	tail_overlay = mutable_appearance('modular_skyrat/modules/taur_mechanics/icons/tail.dmi', "naga_top", ABOVE_MOB_LAYER + 0.01, src)
+	tail_overlay = mutable_appearance('modular_zubbers/icons/mob/taur/tail.dmi', "naga_top", ABOVE_MOB_LAYER + 0.01, src)
 	tail_overlay.appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 	tail_overlay.setDir(owner.dir)
 	add_overlay(tail_overlay)
@@ -642,7 +642,7 @@
 	name = "Constricted"
 	desc = "You're being constricted by a giant tail! You can resist, attack the tail, or attack the constrictor to escape!"
 
-	icon = 'modular_skyrat/modules/taur_mechanics/icons/ability.dmi'
+	icon = 'modular_zubbers/icons/actions/constrict.dmi'
 	icon_state = "constrict"
 
 #undef CONSTRICT_BASE_PIXEL_SHIFT

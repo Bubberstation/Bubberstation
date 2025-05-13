@@ -347,6 +347,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	formatted_item["reskins"] = get_reskin_options()
 	formatted_item["icon"] = ui_icon
 	formatted_item["icon_state"] = ui_icon_state
+	formatted_item["ckey_whitelist"] = ckeywhitelist // BUBBER EDIT ADDITION: Filter ckey-locked items
 
 	return formatted_item
 
