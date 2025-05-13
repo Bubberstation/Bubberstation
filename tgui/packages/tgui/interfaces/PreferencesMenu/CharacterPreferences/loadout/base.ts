@@ -38,6 +38,7 @@ export type LoadoutItem = {
   buttons: LoadoutButton[];
   reskins: ReskinOption[] | null;
   information: LoadoutTooltip[];
+  ckey_whitelist: string[] | null; // BUBBER EDIT ADDITION: Filter ckey-locked items
 };
 
 // Category of items in the loadout
