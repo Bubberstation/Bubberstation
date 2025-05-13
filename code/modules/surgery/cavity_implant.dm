@@ -19,10 +19,23 @@
 		/datum/surgery_step/prepare_electronics,
 		/datum/surgery_step/open_hatch,
 		/datum/surgery_step/handle_cavity,
+		/datum/surgery_step/close_cavity,
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/mechanic_close)
 
 GLOBAL_LIST_INIT(heavy_cavity_implants, typecacheof(list(/obj/item/transfer_valve)))
+
+/datum/surgery_step/close_cavity
+	name = "solder  cavity (cautery)"
+	implements = list(
+		TOOL_CAUTERY = 100,
+		/obj/item/gun/energy/laser = 90,
+		TOOL_WELDER = 70,
+		/obj/item = 30) // 30% success with any hot item.
+	time = 24
+	preop_sound = 'sound/items/handling/surgery/cautery1.ogg'
+	success_sound = 'sound/items/handling/surgery/cautery2.ogg'
+
 
 //handle cavity
 /datum/surgery_step/handle_cavity
@@ -37,8 +50,6 @@ GLOBAL_LIST_INIT(heavy_cavity_implants, typecacheof(list(/obj/item/transfer_valv
 
 /datum/surgery_step/handle_cavity/tool_check(mob/user, obj/item/tool)
 	if(tool.tool_behaviour == TOOL_CAUTERY || istype(tool, /obj/item/gun/energy/laser)) //Bubber edit: adds TOOL_WRENCH and TOOL_RETRACTOR to the list of excluded items so that the robotic surgery functions
-		return FALSE
-	if(tool.tool_behaviour == TOOL_WRENCH || TOOL_RETRACTOR) //Bubber edit: adds TOOL_WRENCH and TOOL_RETRACTOR to the list of excluded items so that the robotic surgery functions
 		return FALSE
 	return !tool.get_temperature()
 
