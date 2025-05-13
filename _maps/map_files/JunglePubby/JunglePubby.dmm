@@ -2368,7 +2368,10 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/iron/solarpanel/airless,
-/area/station/solars/starboard)
+/area/station/solars/starboard{
+	base_lighting_alpha = 255;
+	default_gravity = 1
+	})
 "ajB" = (
 /obj/item/storage/box/mousetraps,
 /turf/open/floor/plating,
@@ -3809,12 +3812,18 @@
 /obj/structure/lattice,
 /obj/structure/grille,
 /turf/open/misc/dirt/dark/jungle,
-/area/station/solars/port)
+/area/station/solars/port{
+	default_gravity = 1;
+	base_lighting_alpha = 255
+	})
 "aoJ" = (
 /obj/structure/lattice,
 /obj/structure/grille/broken,
 /turf/open/misc/dirt/dark/jungle,
-/area/station/solars/port)
+/area/station/solars/port{
+	default_gravity = 1;
+	base_lighting_alpha = 255
+	})
 "aoN" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
@@ -4205,7 +4214,10 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/iron/solarpanel/airless,
-/area/station/solars/port)
+/area/station/solars/port{
+	default_gravity = 1;
+	base_lighting_alpha = 255
+	})
 "aqd" = (
 /obj/machinery/power/solar{
 	id = "starboardsolar";
@@ -4213,7 +4225,10 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/iron/solarpanel/airless,
-/area/station/solars/port)
+/area/station/solars/port{
+	default_gravity = 1;
+	base_lighting_alpha = 255
+	})
 "aqe" = (
 /obj/item/target/alien,
 /turf/open/floor/plating,
@@ -6897,16 +6912,25 @@
 /obj/machinery/power/tracker,
 /obj/structure/cable,
 /turf/open/floor/iron/solarpanel/airless,
-/area/station/solars/port)
+/area/station/solars/port{
+	default_gravity = 1;
+	base_lighting_alpha = 255
+	})
 "azJ" = (
 /obj/structure/lattice/catwalk,
 /obj/item/stack/cable_coil,
 /turf/open/misc/dirt/dark/jungle,
-/area/station/solars/port)
+/area/station/solars/port{
+	default_gravity = 1;
+	base_lighting_alpha = 255
+	})
 "azK" = (
 /obj/structure/lattice/catwalk,
 /turf/open/misc/dirt/dark/jungle,
-/area/station/solars/port)
+/area/station/solars/port{
+	default_gravity = 1;
+	base_lighting_alpha = 255
+	})
 "azN" = (
 /obj/effect/turf_decal/box/white{
 	color = "#52B4E9"
@@ -8414,7 +8438,10 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/iron/solarpanel/airless,
-/area/station/solars/starboard)
+/area/station/solars/starboard{
+	base_lighting_alpha = 255;
+	default_gravity = 1
+	})
 "aFh" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Starboard Solar Access"
@@ -9937,17 +9964,26 @@
 "aMn" = (
 /obj/structure/lattice/catwalk,
 /turf/open/misc/dirt/dark/jungle,
-/area/station/solars/starboard)
+/area/station/solars/starboard{
+	base_lighting_alpha = 255;
+	default_gravity = 1
+	})
 "aMo" = (
 /obj/structure/lattice/catwalk,
 /obj/item/stack/cable_coil,
 /turf/open/misc/dirt/dark/jungle,
-/area/station/solars/starboard)
+/area/station/solars/starboard{
+	base_lighting_alpha = 255;
+	default_gravity = 1
+	})
 "aMp" = (
 /obj/machinery/power/tracker,
 /obj/structure/cable,
 /turf/open/floor/iron/solarpanel/airless,
-/area/station/solars/starboard)
+/area/station/solars/starboard{
+	base_lighting_alpha = 255;
+	default_gravity = 1
+	})
 "aMr" = (
 /obj/item/cigbutt/cigarbutt,
 /obj/structure/chair/stool/bar/directional/east,
@@ -29919,7 +29955,10 @@
 /area/station/maintenance/department/science/central)
 "dTc" = (
 /turf/open/misc/dirt/dark/jungle,
-/area/station/solars/starboard)
+/area/station/solars/starboard{
+	base_lighting_alpha = 255;
+	default_gravity = 1
+	})
 "dTR" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -33329,7 +33368,10 @@
 /obj/structure/lattice/catwalk,
 /obj/structure/cable,
 /turf/open/misc/dirt/dark/jungle,
-/area/station/solars/port)
+/area/station/solars/port{
+	default_gravity = 1;
+	base_lighting_alpha = 255
+	})
 "gKw" = (
 /obj/effect/spawner/liquids_spawner,
 /turf/open/floor/iron/pool/cobble/side{
@@ -34916,6 +34958,18 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/cryo)
+"imU" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue/half/contrasted{
+	dir = 8
+	},
+/obj/structure/disposalpipe/junction,
+/turf/open/floor/iron/white,
+/area/station/medical/medbay/central)
 "int" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/closed/wall,
@@ -38372,7 +38426,10 @@
 /obj/structure/lattice,
 /obj/structure/grille/broken,
 /turf/open/misc/dirt/dark/jungle,
-/area/station/solars/starboard)
+/area/station/solars/starboard{
+	base_lighting_alpha = 255;
+	default_gravity = 1
+	})
 "lpW" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -45438,7 +45495,10 @@
 "rqz" = (
 /obj/structure/lattice,
 /turf/open/misc/dirt/dark/jungle,
-/area/station/solars/port)
+/area/station/solars/port{
+	default_gravity = 1;
+	base_lighting_alpha = 255
+	})
 "rqB" = (
 /obj/machinery/conveyor{
 	dir = 1;
@@ -46741,7 +46801,10 @@
 /obj/structure/lattice,
 /obj/structure/grille,
 /turf/open/misc/dirt/dark/jungle,
-/area/station/solars/starboard)
+/area/station/solars/starboard{
+	base_lighting_alpha = 255;
+	default_gravity = 1
+	})
 "ssx" = (
 /obj/item/shard,
 /turf/open/floor/plating,
@@ -47314,7 +47377,10 @@
 "sQp" = (
 /obj/structure/lattice,
 /turf/open/misc/dirt/dark/jungle,
-/area/station/solars/starboard)
+/area/station/solars/starboard{
+	base_lighting_alpha = 255;
+	default_gravity = 1
+	})
 "sQx" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "bridgespace";
@@ -50434,7 +50500,10 @@
 /obj/structure/lattice/catwalk,
 /obj/structure/cable,
 /turf/open/misc/dirt/dark/jungle,
-/area/station/solars/starboard)
+/area/station/solars/starboard{
+	base_lighting_alpha = 255;
+	default_gravity = 1
+	})
 "ver" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
@@ -79459,7 +79528,7 @@ qRO
 xLa
 koW
 bzK
-btV
+imU
 btV
 anG
 uMY
