@@ -5,11 +5,24 @@
 	var/atom/movable/screen/map_view/examine_panel_screen
 
 
+/mob/living/carbon/human/Destroy()
+	QDEL_NULL(tgui)
+	. = ..()
+
+/mob/living/silicon/Destroy()
+	QDEL_NULL(examine_panel)
+	. = ..()
+
 /datum/examine_panel/ui_state(mob/user)
 	return GLOB.always_state
 
 /datum/examine_panel/ui_close(mob/user)
 	examine_panel_screen.hide_from(user)
+
+/datum/examine_panel/Destroy(force)
+	holder = null
+	QDEL_NULL(examine_panel_screen)
+	. = ..()
 
 /datum/examine_panel/ui_interact(mob/user, datum/tgui/ui)
 	if(!examine_panel_screen)
