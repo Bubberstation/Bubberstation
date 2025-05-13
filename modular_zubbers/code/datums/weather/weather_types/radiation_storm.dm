@@ -9,3 +9,7 @@
 		/area/ruin/unpowered/primitive_catgirl_den,
 	))
 	. = ..()
+
+/datum/weather/rain_storm/acid/junglepubby
+	target_trait = ZTRAIT_ACIDSTORM
+	probability = 40
