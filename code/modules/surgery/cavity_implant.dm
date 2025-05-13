@@ -9,7 +9,7 @@
 		/datum/surgery_step/handle_cavity,
 		/datum/surgery_step/close)
 
-/datum/surgery/cavity_implant/mechanic
+/datum/surgery/cavity_implant/mechanic //Bubber edit: new surgery path for augments and synths so they can have cavity implants.
 	name = "Robotic cavity implant"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	possible_locs = list(BODY_ZONE_CHEST)
@@ -36,7 +36,7 @@ GLOBAL_LIST_INIT(heavy_cavity_implants, typecacheof(list(/obj/item/transfer_valv
 	var/obj/item/item_for_cavity
 
 /datum/surgery_step/handle_cavity/tool_check(mob/user, obj/item/tool)
-	if(tool.tool_behaviour == TOOL_CAUTERY || istype(tool, /obj/item/gun/energy/laser))
+	if(tool.tool_behaviour == TOOL_CAUTERY || istype(tool, /obj/item/gun/energy/laser) || TOOL_WRENCH || TOOL_RETRACTOR) //Bubber edit: adds TOOL_WRENCH and TOOL_RETRACTOR to the list of excluded items so that the robotic surgery functions
 		return FALSE
 	return !tool.get_temperature()
 
