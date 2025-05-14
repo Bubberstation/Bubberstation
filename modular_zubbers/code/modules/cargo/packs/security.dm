@@ -84,3 +84,13 @@
 	/obj/item/ammo_box/magazine/miecz = 1)
 	cost = CARGO_CRATE_VALUE * 10
 	access = ACCESS_SECURITY
+
+/datum/supply_pack/security/bodycams
+	name = "Security Body Camera Package"
+	crate_name = "body cam crate"
+	desc = "Contains a box of body cameras."
+	contains = list(
+		/obj/item/storage/box/bodycamera,
+	)
+	cost = CARGO_CRATE_VALUE * 10
+	access = ACCESS_SECURITY
