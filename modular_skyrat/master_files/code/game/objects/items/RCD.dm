@@ -72,3 +72,17 @@
 	. = ..()
 	plumbing_design_types = mining_design_types
 
+/obj/item/construction/rcd/robotics_rcd
+	name = "Robotics rcd"
+	desc = "A modified RCD that has less storage then your usual NT RCD which lost some contruction abilitys and the ability to deconstruct anything in favor of being more accessibility for synthetic repairs. Reload using metal, glass, or plasteel."
+	icon = 'modular_skyrat/master_files/icons/obj/tools.dmi'
+	icon_state = "rcd"
+	worn_icon_state = "RCD"
+	max_matter = 80
+	matter = 80
+	construction_upgrades = RCD_UPGRADE_ROBO_UPGRADE
+	banned_upgrades = RCD_ALL_UPGRADES & ~RCD_UPGRADE_ROBO_UPGRADE
+
+/obj/item/construction/rcd/roboticsrcd/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
+	balloon_alert(user, "it has no deconstruction mode")
+	return NONE
