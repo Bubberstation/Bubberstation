@@ -5,11 +5,24 @@
 	var/atom/movable/screen/map_view/examine_panel_screen
 
 
+/mob/living/carbon/human/Destroy()
+	QDEL_NULL(tgui)
+	. = ..()
+
+/mob/living/silicon/Destroy()
+	QDEL_NULL(examine_panel)
+	. = ..()
+
 /datum/examine_panel/ui_state(mob/user)
 	return GLOB.always_state
 
 /datum/examine_panel/ui_close(mob/user)
 	examine_panel_screen.hide_from(user)
+
+/datum/examine_panel/Destroy(force)
+	holder = null
+	QDEL_NULL(examine_panel_screen)
+	. = ..()
 
 /datum/examine_panel/ui_interact(mob/user, datum/tgui/ui)
 	if(!examine_panel_screen)
@@ -38,11 +51,13 @@
 
 
 /datum/examine_panel/ui_data(mob/user)
-	var/list/data = list()
+	. = ..()
+	var/list/data = .
 
 	var/datum/preferences/preferences = holder.client?.prefs
 
 	var/flavor_text
+	var/flavor_text_nsfw
 	var/custom_species
 	var/custom_species_lore
 	var/obscured
@@ -50,8 +65,20 @@
 	var/obscurity_examine_pref = preferences?.read_preference(/datum/preference/toggle/obscurity_examine)
 	var/ooc_notes = ""
 	var/headshot = ""
+	var/headshot_nsfw = ""
 	var/art_ref = ""
 	var/art_ref_nsfw = preferences?.read_preference(/datum/preference/toggle/art_ref_nsfw)
+	var/character_ad = ""
+
+	var/emote_length = preferences?.read_preference(/datum/preference/choiced/emote_length)
+	var/approach = preferences?.read_preference(/datum/preference/choiced/approach_pref)
+	var/furries = preferences?.read_preference(/datum/preference/choiced/directory_character_prefs/furry_pref)
+	var/scalies = preferences?.read_preference(/datum/preference/choiced/directory_character_prefs/scalie_pref)
+	var/others = preferences?.read_preference(/datum/preference/choiced/directory_character_prefs/other_pref)
+	var/demihumans = preferences?.read_preference(/datum/preference/choiced/directory_character_prefs/demihuman_pref)
+	var/humans = preferences?.read_preference(/datum/preference/choiced/directory_character_prefs/human_pref)
+	var/show_nsfw_flavor_text = preferences?.read_preference(/datum/preference/choiced/show_nsfw_flavor_text)
+
 	//  Handle OOC notes first
 	if(preferences)
 		if(preferences.read_preference(/datum/preference/toggle/master_erp_preferences))
@@ -67,6 +94,13 @@
 			ooc_notes += "ERP Mechanics: [e_prefs_mechanical]\n"
 			ooc_notes += "\n"
 
+		character_ad += "Preferred Emote Length: [emote_length]\n"
+		character_ad += "How to Approach: [approach]\n"
+		character_ad += "Furries: [furries] | Scalies: [scalies] | Other: [others]\n"
+		character_ad += "Demis: [demihumans] | Humans: [humans]\n"
+		character_ad += "\n"
+		character_ad += preferences.read_preference(/datum/preference/text/character_ad)
+
 		// Now we handle silicon and/or human, order doesn't really matter
 		// If other variants of mob/living need to be handled at some point, put them here
 		if(issilicon(holder))
@@ -77,6 +111,9 @@
 			ooc_notes += preferences.read_preference(/datum/preference/text/ooc_notes/silicon)
 			headshot += preferences.read_preference(/datum/preference/text/headshot/silicon)
 			name = holder.name
+			if(show_nsfw_flavor_text != "Never")
+				flavor_text_nsfw = preferences.read_preference(/datum/preference/text/flavor_text_nsfw/silicon)
+				headshot_nsfw = preferences.read_preference(/datum/preference/text/headshot/silicon/nsfw)
 
 		//Round Removal opt in stuff
 		if(CONFIG_GET(flag/use_rr_opt_in_preferences))
@@ -103,13 +140,17 @@
 			flavor_text = holder_human.dna.features["flavor_text"]
 			art_ref = holder_human.dna.features["art_ref"]
 			name = holder.name
+			if(show_nsfw_flavor_text == "Always On" || (show_nsfw_flavor_text == "Nude Only" && !(holder_human.w_uniform)))
+				flavor_text_nsfw = holder_human.dna.features["flavor_text_nsfw"]
+				headshot_nsfw = holder_human.dna.features["headshot_nsfw"]
+
 		//Custom species handling. Reports the normal custom species if there is not one set.
 			if(holder_human.dna.species.lore_protected || holder_human.dna.features["custom_species"] == "")
 				custom_species = holder_human.dna.species.name
 			else
 				custom_species = holder_human.dna.features["custom_species"]
 		//Custom species lore handling. Reports the species lore with summary if there is not one set. Does this separately so you can name your subrace without the lore changing.
-			if(holder_human.dna.species.lore_protected || holder_human.dna.features["custom_species_lore"] == "")
+			if(holder_human.dna.species.lore_protected || !holder_human.dna.features["custom_species_lore"] || holder_human.dna.features["custom_species_lore"] == "")
 				var/list/desc = holder_human.dna.species.get_species_description()
 				var/list/lore = holder_human.dna.species.get_species_lore()
 				custom_species_lore += desc.Join("\n\n")
@@ -122,10 +163,13 @@
 	data["character_name"] = name
 	data["assigned_map"] = examine_panel_screen.assigned_map
 	data["flavor_text"] = flavor_text
+	data["flavor_text_nsfw"] = flavor_text_nsfw
 	data["ooc_notes"] = ooc_notes
 	data["custom_species"] = custom_species
 	data["custom_species_lore"] = custom_species_lore
 	data["headshot"] = headshot
+	data["headshot_nsfw"] = headshot_nsfw
 	data["art_ref"] = art_ref
 	data["art_ref_nsfw"] = art_ref_nsfw
+	data["character_ad"] = character_ad
 	return data
