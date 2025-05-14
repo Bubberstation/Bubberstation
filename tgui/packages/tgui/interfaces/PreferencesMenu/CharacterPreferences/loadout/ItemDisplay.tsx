@@ -132,7 +132,7 @@ export function ItemListDisplay(props: ListProps) {
     data.character_preferences.misc.loadout_lists[
       data.character_preferences.misc.loadout_index
     ]; // BUBBER EDIT CHANGE: Multiple loadout presets: Original: data.character_preferences.misc;
-  const itemGroups = sortByGroup(props.items);
+  const itemGroups = sortByGroup(FilterItemList(props.items)); // BUBBER EDIT CHANGE: Filter ckey-locked items - ORIGINAL: const itemGroups = sortByGroup(props.items);
 
   return (
     <Stack vertical>
@@ -168,6 +168,20 @@ export function ItemListDisplay(props: ListProps) {
     </Stack>
   );
 }
+
+// BUBBER EDIT ADDITION BEGIN: Filter ckey-locked items
+const FilterItemList = (items: LoadoutItem[]) => {
+  const { data } = useBackend<LoadoutManagerData>();
+  const ckey = data.ckey;
+
+  return items.filter((item: LoadoutItem) => {
+    if (item.ckey_whitelist && item.ckey_whitelist.indexOf(ckey) === -1) {
+      return false;
+    }
+    return true;
+  });
+};
+// BUBBER EDIT ADDITION END: Filter ckey-locked items
 
 type TabProps = {
   category: LoadoutCategory | undefined;
