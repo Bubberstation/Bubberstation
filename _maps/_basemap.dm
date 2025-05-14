@@ -26,9 +26,8 @@
 		#include "map_files\BoxStation\BoxStation.dmm"
 		#include "map_files\JunglePubby\JunglePubby.dmm"
 		// BUBBER EDIT ADDITION END
-
-		#ifdef CIBUILDING
-			#include "templates.dm"
-		#endif
+	#endif
+	#ifdef ALL_TEMPLATES
+		#include "templates.dm"
 	#endif
 #endif
