@@ -81,7 +81,7 @@
 
 	var/space = should_have_space_before_emote(html_decode(container_emote)[1]) ? " " : ""
 
-	container_message = ("[user.say_emphasis(container_message)]")
+	container_message = ("[user.apply_message_emphasis(container_message)]")
 
 	var/atom/picked_loc
 	if (!length(locs_we_can_use))

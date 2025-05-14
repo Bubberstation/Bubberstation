@@ -45,6 +45,7 @@
 		/obj/item/reagent_containers/cup/soda_cans/grey_bull = 1,
 		/obj/effect/spawner/random/engineering/tool = 1,
 		/mob/living/basic/mouse = 1,
+		/mob/living/basic/snail = 1,
 		/obj/item/food/grown/cannabis = 1,
 		/obj/item/reagent_containers/cup/rag = 1,
 		/obj/effect/spawner/random/entertainment/drugs= 1,
@@ -58,6 +59,7 @@
 		var/turf/location = get_turf(loc)
 		if(location.initial_gas_mix != OPENTURF_DEFAULT_ATMOS && location.initial_gas_mix != OPENTURF_DIRTY_ATMOS)
 			loot -= /mob/living/basic/mouse
+			loot -= /mob/living/basic/snail
 	return ..()
 
 /obj/effect/spawner/random/trash/cigbutt

@@ -59,4 +59,4 @@
 	var/selected_type = female ? /obj/effect/decal/cleanable/cum/femcum : /obj/effect/decal/cleanable/cum
 	var/atom/stain = new selected_type(the_turf, get_static_viruses())
 
-	stain.transfer_mob_blood_dna(src) //I'm not adding a new forensics category for cumstains
+	stain.add_mob_blood(src) //I'm not adding a new forensics category for cumstains
