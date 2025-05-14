@@ -219,7 +219,7 @@
 		worn_icon_state = "[base_icon_state]_impregnated"
 
 		var/obj/item/bodypart/chest/LC = target.get_bodypart(BODY_ZONE_CHEST)
-		if((!LC) && !target.get_organ_by_type(/obj/item/organ/body_egg/alien_embryo))
+		if((!LC) && !target.get_organ_by_type(/obj/item/organ/body_egg/alien_embryo)) // BUBBER EDIT - Synthetics can get facehuggered.
 			new /obj/item/organ/body_egg/alien_embryo(target)
 			target.log_message("was impregnated by a facehugger", LOG_GAME)
 			target.log_message("was impregnated by a facehugger", LOG_VICTIM, log_globally = FALSE)
