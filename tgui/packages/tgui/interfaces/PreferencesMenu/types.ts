@@ -236,6 +236,7 @@ export type PreferencesMenuData = {
   quirks_balance: number;
   positive_quirk_count: number;
   species_restricted_jobs?: string[];
+  ckey: string;
   // SKYRAT EDIT END
 
   keybindings: Record<string, string[]>;
