@@ -7635,6 +7635,8 @@
 	dir = 8
 	},
 /obj/machinery/light_switch/directional/east,
+/obj/structure/bed/dogbed/renault,
+/mob/living/basic/pet/fox/renault,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/captain)
 "aCH" = (
@@ -8541,6 +8543,7 @@
 /area/station/command/heads_quarters/captain)
 "aFz" = (
 /obj/effect/turf_decal/tile/blue/half/contrasted,
+/obj/machinery/greenscreen_camera,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/captain)
 "aFA" = (
@@ -8767,9 +8770,7 @@
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/captain)
 "aGm" = (
-/obj/effect/spawner/random/entertainment/arcade{
-	dir = 1
-	},
+/obj/structure/sign/poster/greenscreen/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/captain)
 "aGn" = (
@@ -19050,9 +19051,7 @@
 /turf/open/floor/plating,
 /area/station/hallway/secondary/entry)
 "bAL" = (
-/obj/structure/transit_tube/station/dispenser{
-	dir = 1
-	},
+/obj/structure/transit_tube/station/dispenser/reverse/flipped,
 /turf/open/floor/plating,
 /area/station/hallway/secondary/entry)
 "bAN" = (
@@ -19246,6 +19245,7 @@
 /obj/effect/turf_decal/tile/purple/half/contrasted{
 	dir = 1
 	},
+/obj/machinery/light/directional/north,
 /turf/open/floor/iron/white,
 /area/station/science/ordnance)
 "bBO" = (
@@ -19830,6 +19830,7 @@
 /area/station/science/ordnance)
 "bEd" = (
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/light/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance)
 "bEf" = (
@@ -29532,6 +29533,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
+/obj/machinery/light/directional/west,
 /turf/open/floor/iron,
 /area/station/science/ordnance/testlab)
 "dAG" = (
@@ -30492,6 +30494,7 @@
 /area/station/science/xenobiology)
 "eoS" = (
 /obj/machinery/airalarm/directional/east,
+/obj/effect/mapping_helpers/airalarm/tlv_no_checks,
 /turf/open/floor/iron/dark/telecomms,
 /area/station/tcommsat/server)
 "epk" = (
@@ -31792,6 +31795,12 @@
 /obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/plating,
 /area/station/maintenance/department/cargo)
+"fpF" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/light/directional/east,
+/turf/open/floor/iron/dark,
+/area/station/science/ordnance/testlab)
 "fqJ" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
@@ -36084,12 +36093,12 @@
 /area/station/maintenance/department/science/central)
 "jqQ" = (
 /obj/machinery/airalarm/directional/north,
-/obj/effect/mapping_helpers/airalarm/tlv_cold_room,
 /obj/machinery/camera/directional/north{
 	c_tag = "Kitchen Cold Room"
 	},
 /obj/structure/cable,
 /obj/machinery/deepfryer,
+/obj/effect/mapping_helpers/airalarm/tlv_kitchen,
 /turf/open/floor/iron/showroomfloor,
 /area/station/service/kitchen/coldroom)
 "jry" = (
@@ -37231,6 +37240,7 @@
 /obj/effect/turf_decal/tile/purple/half/contrasted{
 	dir = 4
 	},
+/obj/machinery/light/directional/south,
 /turf/open/floor/iron/white,
 /area/station/science/ordnance)
 "kqc" = (
@@ -37635,10 +37645,12 @@
 /turf/open/floor/iron/dark,
 /area/station/security/interrogation)
 "kHO" = (
-/obj/structure/bed/dogbed/renault,
-/mob/living/basic/pet/fox/renault,
+/obj/effect/turf_decal/tile/purple/opposingcorners{
+	dir = 4
+	},
+/obj/machinery/light/directional/south,
 /turf/open/floor/iron/dark,
-/area/station/command/heads_quarters/captain)
+/area/station/service/barber)
 "kHP" = (
 /obj/structure/table/reinforced,
 /obj/machinery/button/door{
@@ -53216,6 +53228,7 @@
 	dir = 1;
 	name = "Connector Port (Air Supply)"
 	},
+/obj/machinery/light/directional/south,
 /turf/open/floor/engine,
 /area/station/science/ordnance)
 "xeB" = (
@@ -54396,6 +54409,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
 /area/station/maintenance/department/security/brig)
 "xWl" = (
@@ -82613,7 +82627,7 @@ riB
 gOY
 ycS
 kUk
-kUk
+kHO
 qpd
 wbR
 aKT
@@ -83374,7 +83388,7 @@ fWI
 aBp
 aCC
 aDG
-kHO
+aBm
 aFz
 aGm
 awR
@@ -98842,7 +98856,7 @@ wDb
 awX
 lRW
 bEf
-bFr
+fpF
 noM
 bHE
 bJV
