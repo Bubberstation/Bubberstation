@@ -1530,7 +1530,7 @@
 
 /// The actual effect of EMPs on the limb. Allows children to override it however they want
 /obj/item/bodypart/proc/emp_effect(severity, protection)
-	if(!IS_ROBOTIC_LIMB(src))
+	if(!(IS_ROBOTIC_LIMB(src) || IS_NANO_LIMB(src))) // BUBBER EDIT - Proteans
 		return FALSE
 	// with defines at the time of writing, this is 2 brute and 1.5 burn
 	// 2 + 1.5 = 3,5, with 6 limbs thats 21, on a heavy 42

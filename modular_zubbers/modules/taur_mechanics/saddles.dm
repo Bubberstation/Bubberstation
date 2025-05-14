@@ -3,9 +3,9 @@
 	desc = "someone spawned a basetype!"
 	slot_flags = ITEM_SLOT_BACK // no storage
 
-	icon = 'modular_skyrat/modules/taur_mechanics/icons/saddles.dmi'
-	worn_icon = 'modular_skyrat/modules/taur_mechanics/icons/saddles.dmi'
-	worn_icon_taur_snake = 'modular_skyrat/modules/taur_mechanics/icons/saddles.dmi'
+	icon = 'modular_zubbers/icons/mob/taur/saddles.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/taur/saddles.dmi'
+	worn_icon_taur_snake = 'modular_zubbers/icons/mob/taur/saddles.dmi'
 
 /obj/item/riding_saddle/Initialize(mapload)
 	. = ..()
@@ -50,9 +50,9 @@
 
 	slot_flags = ITEM_SLOT_BACK
 
-	icon = 'modular_skyrat/modules/taur_mechanics/icons/saddles.dmi'
-	worn_icon = 'modular_skyrat/modules/taur_mechanics/icons/saddles.dmi'
-	worn_icon_taur_snake = 'modular_skyrat/modules/taur_mechanics/icons/saddles.dmi'
+	icon = 'modular_zubbers/icons/mob/taur/saddles.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/taur/saddles.dmi'
+	worn_icon_taur_snake = 'modular_zubbers/icons/mob/taur/saddles.dmi'
 
 	storage_type = /datum/storage/saddlebags
 
