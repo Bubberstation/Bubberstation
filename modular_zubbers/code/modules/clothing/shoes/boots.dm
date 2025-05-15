@@ -283,3 +283,16 @@
 	body_parts_covered = parent_type::body_parts_covered | LEGS
 	resistance_flags = FIRE_PROOF
 	fastening_type = SHOES_SLIPON
+
+// sprites by Aeri/unionheart
+// digi sprites by @sippykot
+/obj/item/clothing/shoes/jackboots/heel
+	name = "high-heeled jackboots"
+	desc = "Leather jackboots, the synth-leather polished to an almost mirror sheen - and with a curious addition of a rather aggressive heel."
+	icon = 'modular_zubbers/icons/obj/clothing/shoes.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+	icon_state = "heel-jackboots"
+	supports_variations_flags = NONE
+	uses_advanced_reskins = FALSE
+	unique_reskin = NONE
