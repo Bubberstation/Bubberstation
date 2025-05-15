@@ -1,4 +1,4 @@
-/datum/surgery/cavity_implant/mechanic //Bubber edit: new surgery path for augments and synths so they can have cavity implants.
+/datum/surgery/cavity_implant/mechanic //new surgery path for augments and synths so they can have cavity implants.
 	name = "Robotic cavity implant"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	possible_locs = list(BODY_ZONE_CHEST)
@@ -12,7 +12,7 @@
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/mechanic_close)
 
-/datum/surgery_step/close_cavity  //Bubber edit: new surgery step used solely for the mechanical variant. Used to seal the cavity so the surgery can progress to the proper surgery end point for synthetics.
+/datum/surgery_step/close_cavity  //new surgery step used solely for the mechanical variant. Used to seal the cavity so the surgery can progress to the proper surgery end point for synthetics.
 	name = "solder  cavity (cautery or welder)"
 	implements = list(
 		TOOL_CAUTERY = 100,
