@@ -293,6 +293,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	icon_state = "heel-jackboots"
+	worn_icon_state = "heel-jackboots"
 	supports_variations_flags = NONE
 	uses_advanced_reskins = FALSE
 	unique_reskin = NONE
