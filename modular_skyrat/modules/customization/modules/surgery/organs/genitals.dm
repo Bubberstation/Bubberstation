@@ -187,8 +187,14 @@
 			size_affix = "2"
 		if(16 to 24)
 			size_affix = "3"
-		else
+		if(25 to 37)
 			size_affix = "4"
+		if(38 to 47)
+			size_affix = "5"
+		if(48 to 59)
+			size_affix = "6"
+		else
+			size_affix = "7"
 	var/passed_string = "penis_[genital_type]_[size_affix]"
 	if(uses_skintones)
 		passed_string += "_s"
@@ -215,8 +221,14 @@
 			size_affix = "2"
 		if(16 to 24)
 			size_affix = "3"
-		else
+		if(25 to 37)
 			size_affix = "4"
+		if(38 to 47)
+			size_affix = "5"
+		if(48 to 59)
+			size_affix = "6"
+		else
+			size_affix = "7"
 	var/passed_string = "[genital_type]_[size_affix]_[is_erect]"
 	if(uses_skintones)
 		passed_string += "_s"
