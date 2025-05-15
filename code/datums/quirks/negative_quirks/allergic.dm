@@ -20,7 +20,7 @@
 		/datum/reagent/medicine/cordiolis_hepatico,
 		/datum/reagent/medicine/synaphydramine,
 		/datum/reagent/medicine/diphenhydramine,
-		/datum/reagent/medicine/sansufentanyl
+		/datum/reagent/medicine/sansufentanyl,
 		/datum/reagent/medicine/coagulant       //Bubber edit: adds coagulant
 		)
 	var/allergy_string
