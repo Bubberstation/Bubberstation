@@ -76,7 +76,7 @@
 #define PENIS_DEFAULT_LENGTH 6 //still a lil long but not insane
 
 #define TESTICLES_MIN_SIZE 0
-#define TESTICLES_MAX_SIZE 6
+#define TESTICLES_MAX_SIZE 8
 
 #define SHEATH_NONE	"None"
 #define SHEATH_NORMAL "Sheath"
