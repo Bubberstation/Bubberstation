@@ -25,6 +25,7 @@
 /obj/structure/lewd_portal/Initialize(mapload)
 	LAZYINITLIST(buckled_mobs)
 	. = ..()
+	register_context()
 
 /obj/structure/lewd_portal/Destroy()
 	unbuckle_all_mobs(TRUE)
@@ -40,6 +41,15 @@
 	if(portal_mode == WALLSTUCK)
 		inspect_mode = "stuck in wall"
 	. += span_notice("Its currently in [inspect_mode] mode.")
+	. += span_notice("Right click to change modes.")
+
+/obj/structure/lewd_portal/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
+	if(portal_mode == GLORYHOLE)
+		context[SCREENTIP_CONTEXT_RMB] = "Stuck In Wall Mode"
+		return CONTEXTUAL_SCREENTIP_SET
+	else
+		context[SCREENTIP_CONTEXT_RMB] = "Gloryhole Mode"
+		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/structure/lewd_portal/user_buckle_mob(mob/living/M, mob/user, check_loc)
 	if(!M.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
@@ -237,6 +247,7 @@
 	if(creation_mode == WALLSTUCK)
 		inspect_mode = "stuck in wall"
 	. += span_notice("Its currently in [inspect_mode] mode.")
+	. += span_notice("Use in hand to change modes.")
 
 /obj/item/wallframe/lewd_portal/after_attach(obj/attached_to)
 	var/obj/structure/lewd_portal/portal_result = attached_to
