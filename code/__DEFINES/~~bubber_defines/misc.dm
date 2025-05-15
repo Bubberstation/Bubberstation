@@ -18,3 +18,5 @@ GLOBAL_DATUM_INIT(noncapital_i, /regex, regex("\\b\[i]\\b", "g")) */ // TODO: RE
 #define COMSIG_EMOTE_OVERLAY_EXPIRE "emote_overlay_exprie"
 /// From /mob/living/carbon/human/proc/adjust_arousal()
 #define COMSIG_HUMAN_ADJUST_AROUSAL "human_adjust_arousal"
+/// From /mob/living/carbon/human/verb/toggle_genitals()
+#define COMSIG_HUMAN_TOGGLE_GENITALS "human_toggle_genitals"
