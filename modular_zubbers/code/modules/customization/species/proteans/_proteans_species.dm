@@ -152,10 +152,7 @@
 			if(!isnum(number))//Default to 1
 				number = 1
 			for(var/i in 1 to number) // Copy and paste of EQUIP_OUTFIT_ITEM
-				owner.equip_to_slot_or_del(SSwardrobe.provide_type(path, owner), ITEM_SLOT_BACKPACK, TRUE, TRUE)
-				var/obj/item/outfit_item = owner.get_item_by_slot(ITEM_SLOT_BACKPACK)
-				if(outfit_item && outfit_item.type == path && !get_a_job)
-					outfit_item.on_outfit_equip(owner, visuals_only, ITEM_SLOT_BACKPACK)
+				owner.equip_to_storage(SSwardrobe.provide_type(path, owner), ITEM_SLOT_BACK, TRUE, TRUE)
 
 /datum/species/protean/get_default_mutant_bodyparts()
 	return list(
