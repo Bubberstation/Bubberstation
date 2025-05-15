@@ -170,6 +170,11 @@
 	name = "Synthetic Horse (Inverted)"
 	icon_state = "synthhorseinv"
 
+/datum/sprite_accessory/taur/synthliz/bunny
+	name = "Synthetic Bunny"
+	icon_state = "bigbunny"
+	icon = 'modular_zubbers/icons/customization/taur.dmi'
+
 /datum/sprite_accessory/taur/synthliz/wolf
 	name = "Synthetic Wolf"
 	icon_state = "synthwolf"
@@ -188,11 +193,6 @@
 	name = "Synthetic Naga, Fat"
 	icon_state = "nagafat"
 	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/taur.dmi'
-
-/datum/sprite_accessory/taur/synthliz/bunny
-	name = "Bunny"
-	icon_state = "bigbunny"
-	icon = 'modular_zubbers/icons/customization/taur.dmi'
 
 /datum/sprite_accessory/taur/synthliz/biglegs
 	name = "Synthetic Big Legs"
