@@ -252,7 +252,6 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/clothing/glasses/fake_sunglasses = 100,
 		/obj/item/clothing/glasses/trickblindfold = 25,
 		/obj/item/clothing/head/costume/bearpelt = 75,
-		/obj/item/clothing/head/costume/bunnyhead = 25,
 		/obj/item/clothing/head/costume/canada = 50,
 		/obj/item/clothing/head/costume/festive = 50,
 		/obj/item/clothing/head/costume/foilhat = 25,
@@ -503,14 +502,26 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/skillchip/job/engineer = 10,
 		/obj/item/skillchip/job/psychology = 10,
 		/obj/item/skillchip/job/roboticist = 10,
+		/obj/item/skillchip/job/clown = 10,
+		/obj/item/skillchip/job/detectives_taste = 5,
+		/obj/item/skillchip/job/janitor = 10,
+		/obj/item/skillchip/job/miner = 10,
 		/obj/item/skillchip/light_remover = 100,
 		/obj/item/skillchip/sabrage = 100,
 		/obj/item/skillchip/useless_adapter = 100,
 		/obj/item/skillchip/wine_taster = 100,
 		/obj/item/skillchip/xenoarch_magnifier = 25,
 		/obj/item/skillchip/master_angler = 25,
-		/obj/item/skillchip/brainwashing = 100 //Doesn't give brainwashing, it allows you to wash brains in washing machines
-	) = 50,
+		/obj/item/skillchip/brainwashing = 100, //Doesn't give brainwashing, it allows you to wash brains in washing machines
+		/obj/item/skillchip/intj = 5,
+		/obj/item/skillchip/matrix_taunt = 1,
+		/obj/item/skillchip/acrobatics/kiss = 1,
+		/obj/item/skillchip/drunken_brawler = 5,
+		/obj/item/skillchip/research_director = 1,
+		/obj/item/skillchip/big_pointer = 5,
+		/obj/item/skillchip/musical = 10,
+
+	) = 100,
 	list(
 		/obj/item/folder/ancient_paperwork = 1,
 		/obj/item/folder/biscuit/unsealed = 10,
@@ -604,6 +615,11 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 	/obj/item/reagent_containers/cup/soda_cans/random = 10,
 	/obj/item/reagent_containers/spray/mister/janitor = 5,
 	/obj/item/clothing/shoes/jackboots = 20,
-
-
+	/obj/item/prescription_lenses = 5,
+	list(
+		/obj/item/throwing_star = 5,
+		/obj/item/throwing_star/toy = 20,
+	) = 20,
+	/obj/item/banhammer = 10,
+	/obj/item/gift = 1, //Harmless toys.
 ))

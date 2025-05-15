@@ -119,6 +119,5 @@ GLOBAL_LIST_INIT(oddity_loot, list(//oddity: strange or crazy items
 	/obj/item/melee/baton = 1,
 	/obj/item/seeds/firelemon = 1,
 	/obj/item/clothing/head/helmet/abductor = 20,
-	/obj/item/disk/surgery/advanced_plastic_surgery = 10,
-
+	/obj/item/disk/surgery/advanced_plastic_surgery = 10
 ))
