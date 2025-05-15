@@ -296,3 +296,19 @@
 	supports_variations_flags = NONE
 	uses_advanced_reskins = FALSE
 	unique_reskin = NONE
+// Diesel Boots | Sprites by Fluff from Bad Deathclaw
+/obj/item/clothing/shoes/jackboots/diesel_m
+	name = "male diesel boots"
+	desc = "Fancy mens' steel-toed boots."
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+	icon_state = "diesel_m"
+
+/obj/item/clothing/shoes/jackboots/diesel_f
+	name = "female diesel boots"
+	desc = "Fancy womens' knee-high platform boots with shiny steel clasps."
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+	icon_state = "diesel_f"
