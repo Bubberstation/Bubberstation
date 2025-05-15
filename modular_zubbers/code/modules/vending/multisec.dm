@@ -14,15 +14,18 @@
 					/obj/item/clothing/suit/toggle/jacket/sec = 6,
 					/obj/item/clothing/suit/armor/vest/secjacket/blue = 6,
 					/obj/item/clothing/suit/armor/vest/peacekeeper/brit = 6,
+					/obj/item/clothing/suit/armor/vest/peacekeeper/spacecoat = 6,
 					/obj/item/clothing/neck/security_cape = 6,
 					/obj/item/clothing/neck/security_cape/armplate = 6,
 					/obj/item/storage/backpack/security = 6,
 					/obj/item/storage/backpack/satchel/sec = 6,
 					/obj/item/storage/backpack/duffelbag/sec = 6,
-					/obj/item/storage/backpack/duffelbag/sec = 6,
+					/obj/item/storage/backpack/messenger/sec = 6,
 					/obj/item/clothing/under/rank/security/officer = 10,
 					/obj/item/clothing/under/rank/security/officer/skirt/blue = 10,
+					/obj/item/clothing/under/rank/security/rax = 10,
 					/obj/item/clothing/under/rank/security/peacekeeper = 10,
+					/obj/item/clothing/under/rank/security/peacekeeper/jumpsuit = 10,
 					/obj/item/clothing/under/rank/security/peacekeeper/skirt = 10,
 					/obj/item/clothing/under/rank/security/peacekeeper/shortskirt = 10,
 					/obj/item/clothing/under/rank/security/peacekeeper/miniskirt = 10,
@@ -35,12 +38,21 @@
 					/obj/item/clothing/head/security_cap = 10,
 					/obj/item/clothing/head/beret/sec/peacekeeper = 6,
 					/obj/item/clothing/head/beret/sec/peacekeeper/white = 6,
+					/obj/item/clothing/head/cowboy/skyrat/cattleman/sec = 6,
+					/obj/item/clothing/head/cowboy/skyrat/cattleman/wide/sec = 6,
 					/obj/item/clothing/head/helmet/sec/terra = 6,
 					/obj/item/clothing/head/hats/warden/police/patrol = 6,
 					/obj/item/clothing/head/costume/ushanka/sec = 10,
 					/obj/item/clothing/gloves/color/black/security = 10,
 					/obj/item/clothing/head/helmet/sec/futuristic = 6,
 					/obj/item/clothing/suit/armor/vest/collared_vest = 6, //added by Bangle
+					/obj/item/clothing/accessory/armband/deputy/lopland = 6,
+					/obj/item/clothing/under/colonial/nri_police = 6,
+					/obj/item/clothing/suit/armor/vest/nri_police = 6,
+					/obj/item/clothing/neck/cloak/colonial/nri_police = 6,
+					/obj/item/clothing/head/hats/colonial/nri_police = 6,
+
+
 				),
 			),
 		list(
@@ -84,6 +96,7 @@
 					/obj/item/clothing/suit/armor/vest/peacekeeper/armadyne = 6,
 					/obj/item/clothing/suit/armor/vest/peacekeeper/armadyne/armor = 6,
 					/obj/item/clothing/suit/armor/vest/caligram_parka_vest_tan = 6,
+					/obj/item/clothing/accessory/armband/deputy = 6,
 				),
 			),
 		list(
@@ -104,6 +117,7 @@
 					/obj/item/clothing/under/rank/security/peacekeeper/security_medic/alternate = 3,
 					/obj/item/clothing/under/rank/security/peacekeeper/security_medic = 3,
 					/obj/item/clothing/under/rank/security/peacekeeper/security_medic/skirt = 3,
+					/obj/item/clothing/suit/armor/vest/peacekeeper/security_medic = 3,
 				)
 			),
 		list(
@@ -139,10 +153,7 @@
 
 
 	contraband = list(
-					/obj/item/clothing/under/colonial/nri_police = 3,
 					/obj/item/clothing/suit/british_officer = 3,
-					/obj/item/clothing/head/cowboy/skyrat/cattleman/sec = 3,
-					/obj/item/clothing/head/cowboy/skyrat/cattleman/wide/sec = 3,
 					/obj/item/clothing/head/fedora/det_hat/cybergoggles = 3,
 					/obj/item/clothing/glasses/hud/eyepatch/sec = 3, //No flash protection on the eyepatches, so they're worse than the sunnies.
 					/obj/item/clothing/glasses/hud/eyepatch/sec/blindfold = 3, //Ditto
