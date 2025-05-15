@@ -231,7 +231,7 @@ export const DmMapsIncludeTarget = new Juke.Target({
 export const DmTarget = new Juke.Target({
   parameters: [DefineParameter, DmVersionParameter, WarningParameter, NoWarningParameter, SkipIconCutter],
   dependsOn: ({ get }) => [
-    get(DefineParameter).includes('ALL_MAPS') && DmMapsIncludeTarget,
+    get(DefineParameter).includes('ALL_TEMPLATES') && DmMapsIncludeTarget,
     !get(SkipIconCutter) && IconCutterTarget,
   ],
   inputs: [
@@ -270,7 +270,7 @@ export const DmTarget = new Juke.Target({
 export const DmTestTarget = new Juke.Target({
   parameters: [DefineParameter, DmVersionParameter, WarningParameter, NoWarningParameter],
   dependsOn: ({ get }) => [
-    get(DefineParameter).includes('ALL_MAPS') && DmMapsIncludeTarget,
+    get(DefineParameter).includes('ALL_TEMPLATES') && DmMapsIncludeTarget,
     IconCutterTarget,
   ],
   executes: async ({ get }) => {
@@ -306,7 +306,7 @@ export const DmTestTarget = new Juke.Target({
 export const AutowikiTarget = new Juke.Target({
   parameters: [DefineParameter, DmVersionParameter, WarningParameter, NoWarningParameter],
   dependsOn: ({ get }) => [
-    get(DefineParameter).includes('ALL_MAPS') && DmMapsIncludeTarget,
+    get(DefineParameter).includes('ALL_TEMPLATES') && DmMapsIncludeTarget,
     IconCutterTarget,
   ],
   outputs: [
