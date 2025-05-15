@@ -21,6 +21,8 @@
 		/datum/reagent/medicine/synaphydramine,
 		/datum/reagent/medicine/diphenhydramine,
 		/datum/reagent/medicine/sansufentanyl
+		/datum/reagent/medicine/coagulant       //Bubber edit: adds coagulant
+		/datum/reagent/toxin/formaldehyde       //Bubber edit: adds formaldehyde
 		)
 	var/allergy_string
 
