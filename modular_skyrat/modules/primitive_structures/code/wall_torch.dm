@@ -50,7 +50,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/wall_torch, 28)
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/wall_torch/spawns_lit, 28)
 
-// Crafting recipe for the wall torch mount
 /datum/crafting_recipe/wall_torch
 	name = "Wall Torch"
 	result = /obj/item/wallframe/torch
@@ -62,7 +61,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/wall_torch/spawns_lit, 28)
 	time = 5 SECONDS
 	category = CAT_STRUCTURE
 
-// The wall torch mount item
 /obj/item/wallframe/torch
 	name = "wall mounted torch"
 	desc = "A simple torch ready to be mounted to the wall, for lighting and such. Apply to wall to use."
