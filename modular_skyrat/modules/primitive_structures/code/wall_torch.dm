@@ -49,3 +49,15 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/wall_torch, 28)
 	spawns_lit = TRUE
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/wall_torch/spawns_lit, 28)
+
+// Crafting recipe for the wall torch
+/datum/crafting_recipe/wall_torch
+	name = "Wall Torch"
+	result = /obj/structure/wall_torch
+	reqs = list(
+		/obj/item/stack/sheet/mineral/wood = 2,
+		/obj/item/stack/sheet/iron = 1,
+		/obj/item/stack/sheet/cloth = 1,
+	)
+	time = 10 SECONDS
+	category = CAT_STRUCTURE
