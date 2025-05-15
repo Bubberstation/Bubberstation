@@ -24,7 +24,7 @@
 		RegisterSignal(user, COMSIG_MOB_UNEQUIPPED_ITEM, PROC_REF(update_on_removed))
 
 /// After the hat has actually been removed from the mob, we can update what needs to be updated here
-/obj/item/clothing/head/proc/update_on_removed(mob/living/carbon/human/user, /obj/item/hat, slot)
+/obj/item/clothing/head/proc/update_on_removed(mob/living/carbon/human/user, obj/item/hat, slot)
 	SIGNAL_HANDLER
 	if(istype(user) && user.ears)
 		user.update_worn_ears()
