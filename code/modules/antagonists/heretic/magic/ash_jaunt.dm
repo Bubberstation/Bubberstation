@@ -20,6 +20,8 @@
 	jaunt_type = /obj/effect/dummy/phased_mob/spell_jaunt/red
 	jaunt_in_type = /obj/effect/temp_visual/dir_setting/ash_shift
 	jaunt_out_type = /obj/effect/temp_visual/dir_setting/ash_shift/out
+	/// If we are on fire while wearing ash robes, we can empower our next cast
+	var/empowered_cast = FALSE
 
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/Grant(mob/grant_to)
 	. = ..()
@@ -62,10 +64,14 @@
 	if(!istype(human_owner.wear_suit, /obj/item/clothing/suit/hooded/cultrobes/eldritch/ash))
 		return ..()
 
+	empowered_cast = TRUE
 	human_owner.setStaminaLoss(0)
 	human_owner.SetAllImmobility(0)
 
 	return ..()
+
+/datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/do_jaunt(mob/living/cast_on)
+	jaunt_duration = (empowered_cast ? 1.5 SECONDS : initial(jaunt_duration))
 
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/do_steam_effects()
 	return
