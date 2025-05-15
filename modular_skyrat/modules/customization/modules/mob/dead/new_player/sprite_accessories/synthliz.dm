@@ -141,7 +141,7 @@
 
 //Synth Taurs (Ported from Virgo)
 /datum/sprite_accessory/taur/synthliz
-	name = "Cybernetic Lizard"
+	name = "Synthetic Lizard"
 	icon_state = "synthlizard"
 	taur_mode = STYLE_TAUR_PAW
 	recommended_species = list()
@@ -149,40 +149,50 @@
 	organ_type = /obj/item/organ/taur_body/horselike/synth
 
 /datum/sprite_accessory/taur/synthliz/inv
-	name = "Cybernetic Lizard (Inverted)"
+	name = "Synthetic Lizard (Inverted)"
 	icon_state = "synthlizardinv"
 
 /datum/sprite_accessory/taur/synthliz/feline
-	name = "Cybernetic Feline"
+	name = "Synthetic Feline"
 	icon_state = "synthfeline"
 
 /datum/sprite_accessory/taur/synthliz/feline/inv
-	name = "Cybernetic Feline (Inverted)"
+	name = "Synthetic Feline (Inverted)"
 	icon_state = "synthfelineinv"
 
 /datum/sprite_accessory/taur/synthliz/horse
-	name = "Cybernetic Horse"
+	name = "Synthetic Horse"
 	icon_state = "synthhorse"
 	taur_mode = STYLE_TAUR_HOOF
 	alt_taur_mode = STYLE_TAUR_PAW
 
 /datum/sprite_accessory/taur/synthliz/horse/inv
-	name = "Cybernetic Horse (Inverted)"
+	name = "Synthetic Horse (Inverted)"
 	icon_state = "synthhorseinv"
 
 /datum/sprite_accessory/taur/synthliz/wolf
-	name = "Cybernetic Wolf"
+	name = "Synthetic Wolf"
 	icon_state = "synthwolf"
 
 /datum/sprite_accessory/taur/synthliz/wolf/inv
-	name = "Cybernetic Wolf (Inverted)"
+	name = "Synthetic Wolf (Inverted)"
 	icon_state = "synthwolfinv"
 
 /datum/sprite_accessory/taur/synthliz/synthnaga
-	name = "Cybernetic Naga"
+	name = "Synthetic Naga"
 	icon_state = "synthnaga"
 	taur_mode = STYLE_TAUR_SNAKE
 	organ_type = /obj/item/organ/taur_body/serpentine/synth
+
+/datum/sprite_accessory/taur/synthliz/synthnagafat
+	name = "Synthetic Naga, Fat"
+	icon_state = "nagafat"
+	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/taur.dmi'
+
+/datum/sprite_accessory/taur/synthliz/bunny
+	name = "Bunny"
+	icon_state = "bigbunny"
+	icon = 'modular_zubbers/icons/customization/taur.dmi'
 
 /datum/sprite_accessory/taur/synthliz/biglegs
 	name = "Synthetic Big Legs"
@@ -201,3 +211,13 @@
 /datum/sprite_accessory/taur/synthliz/biglegs/stanced/bird
 	name = "Synthetic Big Legs, Stanced Bird"
 	icon_state = "biglegs_bird_stanced"
+
+/datum/sprite_accessory/taur/synthliz/biglegs/peg
+	name = "Synthetic Big Legs, Pegs"
+	icon_state = "biglegs_peg"
+	icon = 'modular_zubbers/icons/customization/taur.dmi'
+
+/datum/sprite_accessory/taur/synthliz/biglegs/stanced/peg
+	name = "Synthetic Big Legs, Stanced Pegs"
+	icon_state = "biglegs_peg_stanced"
+	icon = 'modular_zubbers/icons/customization/taur.dmi'
