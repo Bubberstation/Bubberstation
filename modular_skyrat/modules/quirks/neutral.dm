@@ -103,7 +103,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	icon = FA_ICON_GRIN_TEARS
 
 /datum/quirk/item_quirk/joker/add_unique(client/client_source)
-	give_item_to_holder(/obj/item/paper/joker, list(LOCATION_BACKPACK = ITEM_SLOT_BACKPACK, LOCATION_HANDS = ITEM_SLOT_HANDS))
+	give_item_to_holder(/obj/item/paper/joker, list(LOCATION_BACKPACK, LOCATION_HANDS))
 
 /datum/quirk/item_quirk/joker/process()
 	if(pcooldown > world.time)

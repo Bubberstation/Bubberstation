@@ -114,6 +114,11 @@
 	return ..()
 
 /datum/bodypart_overlay/mutant/wings/moth/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner)
+	// BUBBER EDIT ADDITION BEGIN - Customization
+	. = ..()
+	if(!.)
+		return
+	// BUBBER EDIT ADDITION END - Customization
 	var/mob/living/carbon/human/human = bodypart_owner.owner
 	if(!istype(human))
 		return TRUE
