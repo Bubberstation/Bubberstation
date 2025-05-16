@@ -121,7 +121,7 @@
 
 		// Remove the eliminated option from choices
 		choices -= option_to_eliminate
-		elimination_results += "[option_to_eliminate] - [lowest_votes]"
+		elimination_results += "[option_to_eliminate]"
 
 		// Update rankings and redistribute votes
 		var/redistribution_text = "Vote redistribution after eliminating [option_to_eliminate]:\n"
@@ -201,7 +201,7 @@
 	// If we're down to one option, it's the winner
 	if(length(choices) == 1)
 		log_dynamic("Only one option remains: [choices[1]] is the winner!", list("winner" = choices[1]))
-		elimination_results += "[choices[1]] - [highest_votes]"
+		elimination_results += "[choices[1]]"
 		if(istype(src, /datum/vote/storyteller))
 			SSgamemode.vote_datum.elimination_results = elimination_results.Copy()
 		return list(choices[1])

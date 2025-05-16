@@ -21,7 +21,7 @@
 	set_next_map(config.maplist[winning_option])
 	var/list/vote_results = map_vote.elimination_results
 	var/serialized_vote_results = "[vote_results.Join("\n")]"
-	var/list/vote_result_message = list("Method: Ranked Vote\n\n[serialized_vote_results]\n\nNext Map: [span_vote_notice(span_bold(winning_option))]")
+	var/list/vote_result_message = list("Method: Ranked Vote\n\nElimination order:\n[serialized_vote_results]\n\nNext Map: [span_vote_notice(span_bold(winning_option))]")
 	send_map_vote_notice(arglist(vote_result_message))
 
 /datum/controller/subsystem/map_vote/send_map_vote_notice(...)
