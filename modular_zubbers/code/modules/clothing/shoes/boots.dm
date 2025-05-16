@@ -284,6 +284,18 @@
 	resistance_flags = FIRE_PROOF
 	fastening_type = SHOES_SLIPON
 
+// sprites by Aeri/unionheart
+// digi sprites by @sippykot
+/obj/item/clothing/shoes/jackboots/heel
+	name = "high-heeled jackboots"
+	desc = "Synth-leather jackboots, the material polished to an almost mirror sheen - and with a curious addition of a rather aggressive heel."
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+	icon_state = "heel-jackboots"
+	uses_advanced_reskins = FALSE
+	unique_reskin = NONE
+
 // Diesel Boots | Sprites by Fluff from Bad Deathclaw
 /obj/item/clothing/shoes/jackboots/diesel_m
 	name = "male diesel boots"
