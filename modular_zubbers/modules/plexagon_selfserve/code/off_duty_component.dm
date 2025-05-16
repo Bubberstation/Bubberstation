@@ -41,7 +41,7 @@
 	on_cooldown = FALSE
 
 ///Attempts an unlock if attacked by another ID. If the ID has HoP access, it will unlock and return TRUE
-/datum/component/off_duty_timer/proc/attempt_unlock(datum/source, obj/item/attacking_item, mob/user, params)
+/datum/component/off_duty_timer/proc/attempt_unlock(datum/source, obj/item/attacking_item, mob/user, list/modifiers)
 	SIGNAL_HANDLER
 	if(!hop_locked)
 		return FALSE
