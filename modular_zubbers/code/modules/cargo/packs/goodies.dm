@@ -120,6 +120,6 @@
 /datum/supply_pack/goody/rope_implant
 	name = "Climbing Hook Implant"
 	desc = "A specialized climbing hook implant for the vertically challenged."
-	cost = PAYCHECK_COMMAND * 2
+	cost = PAYCHECK_CREW * 12
 	contains = list(/obj/item/organ/cyberimp/arm/rope)
 
