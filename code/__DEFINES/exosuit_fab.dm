@@ -13,6 +13,8 @@
 //Bubber addition start
 /// Module is compatible with Research Cyborg model
 #define BORG_MODEL_RESEARCH (1<<6)
+/// Module is compatible with Tarkon Cyborg model
+#define BORG_MODEL_TARKON (1<<7)
 //Bubber addition end
 
 /// Module is compatible with Ripley Exosuit models
