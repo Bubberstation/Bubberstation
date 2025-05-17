@@ -48,6 +48,8 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	list(/datum/quirk/dominant_aura, /datum/quirk/well_trained),
 	list(/datum/quirk/equipping/entombed, /datum/quirk/equipping/seamless_clothes),
 	list(/datum/quirk/equipping/entombed, /datum/quirk/badback),
+	list(/datum/quirk/sensative_soles, /datum/quirk/hard_soles),
+	list(/datum/quirk/hard_soles, /datum/quirk/sensative_soles),
 	list(/datum/quirk/unblinking, /datum/quirk/item_quirk/fluoride_stare),
 	//BUBBER EDIT ADDITION END
 ))

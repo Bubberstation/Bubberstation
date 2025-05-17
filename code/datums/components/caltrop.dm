@@ -96,7 +96,7 @@
 	if(!IS_ORGANIC_LIMB(leg))
 		return
 
-	if (!(flags & CALTROP_BYPASS_SHOES))
+	if (!(flags & CALTROP_BYPASS_SHOES) & !HAS_TRAIT(digitigrade_fan, TRAIT_SENSATIVE_SOLES)) //if we are bypassing shoes, we need to check if they have shoes on
 		// SKYRAT EDIT ADDITION BEGIN - Hardened Soles Quirk
 		if(HAS_TRAIT(digitigrade_fan, TRAIT_HARD_SOLES))
 			return
@@ -107,7 +107,10 @@
 	var/damage = rand(min_damage, max_damage)
 	if(HAS_TRAIT(digitigrade_fan, TRAIT_LIGHT_STEP))
 		damage *= 0.75
-
+	// BUBBER EDIT ADDITION BEGIN - Sensative Soles Quirk
+	else if(HAS_TRAIT(digitigrade_fan, TRAIT_SENSATIVE_SOLES))
+		damage *= 1.25
+	// BUBBER EDIT ADDITION END
 
 	if(!(flags & CALTROP_SILENT) && !digitigrade_fan.has_status_effect(/datum/status_effect/caltropped))
 		digitigrade_fan.apply_status_effect(/datum/status_effect/caltropped)
