@@ -19,6 +19,9 @@
 /datum/reagent/carbondioxide
 	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC
 
+/datum/reagent/consumable/nutriment
+	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC
+
 /datum/reagent/iron
 	chemical_flags_skyrat = REAGENT_BLOOD_REGENERATING
 
@@ -51,6 +54,12 @@
 	if(C.mob_biotypes & MOB_ROBOTIC)
 		C.nutrition = min(C.nutrition + 5, NUTRITION_LEVEL_FULL-1)
 	..()
+
+/datum/reagent/consumable/nutriment/on_mob_life(mob/living/carbon/C)
+	if(C.mob_biotypes & MOB_ROBOTIC)
+		C.nutrition = min(C.nutrition + 2, NUTRITION_LEVEL_FULL-1)
+	..()
+
 // Catnip
 /datum/reagent/pax/catnip
 	name = "Catnip"
