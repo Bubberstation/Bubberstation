@@ -12,6 +12,7 @@
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
 	)
+	COOLDOWN_DECLARE(squish_cooldown) // BUBBER EDIT
 
 
 /datum/component/squashable/Initialize(squash_chance, squash_damage, squash_flags, squash_callback)
@@ -28,6 +29,9 @@
 		on_squash_callback = CALLBACK(parent, squash_callback)
 
 	AddComponent(/datum/component/connect_loc_behalf, parent, loc_connections)
+	if(squash_callback) // BUBBER EDIT BEGIN- NO ROACHES SQUISHING EACH OTHER FOR THE OTHER EDIT
+		return
+	RegisterSignal(parent, COMSIG_LIVING_MOB_BUMPED, PROC_REF(on_entered))// BUBBER EDIT END - MICRO BALANCE
 
 /datum/component/squashable/Destroy(force)
 	on_squash_callback = null
@@ -36,6 +40,8 @@
 ///Handles the squashing of the mob
 /datum/component/squashable/proc/on_entered(turf/source_turf, atom/movable/crossing_movable)
 	SIGNAL_HANDLER
+	if(istype(crossing_movable, /obj)) // BUBBER EDIT -  don't get knocked down by items
+		return
 
 	if(parent == crossing_movable)
 		return
@@ -45,6 +51,7 @@
 		return
 
 	if((squash_flags & SQUASHED_SHOULD_BE_DOWN) && parent_as_living.body_position != LYING_DOWN)
+		parent_as_living.Knockdown(1 SECONDS) // BUBBER EDIT - MICRO BALANCE
 		return
 
 	var/should_squash = ((squash_flags & SQUASHED_ALWAYS_IF_DEAD) && parent_as_living.stat == DEAD) || prob(squash_chance)
@@ -61,6 +68,7 @@
 			if(should_squash)
 				crossing_mob.visible_message(span_notice("[crossing_mob] squashed [parent_as_living]."), span_notice("You squashed [parent_as_living]."))
 				Squish(parent_as_living)
+				playsound(parent_as_living, 'sound/effects/blob/attackblob.ogg', 50, TRUE) // BUBBER EDIT
 			else
 				parent_as_living.visible_message(span_notice("[parent_as_living] avoids getting crushed."))
 	else if(isstructure(crossing_movable))
@@ -74,7 +82,11 @@
 	if(squash_flags & SQUASHED_SHOULD_BE_GIBBED)
 		target.gib(DROP_ALL_REMAINS)
 	else
-		target.adjustBruteLoss(squash_damage)
+		if(COOLDOWN_FINISHED(src, squish_cooldown))// BUBBER EDIT
+			target.take_bodypart_damage(squash_damage, wound_bonus = 5)// BUBBER EDIT
+			target.AddElement(/datum/element/squish, 20 SECONDS) // BUBBER EDIT
+			COOLDOWN_START(src, squish_cooldown, 20 SECONDS)// BUBBER EDIT
+
 
 /datum/component/squashable/UnregisterFromParent()
 	. = ..()
