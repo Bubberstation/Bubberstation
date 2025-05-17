@@ -9,3 +9,13 @@
 		/area/ruin/unpowered/primitive_catgirl_den,
 	))
 	. = ..()
+
+// Jungle Pubby stuff placed here temporarily.
+
+/datum/weather/rain_storm/acid/junglepubby
+	target_trait = ZTRAIT_ACIDSTORM
+	probability = 40
+
+	telegraph_sound = null
+
+	weather_flags = (WEATHER_MOBS | WEATHER_BAROMETER)
