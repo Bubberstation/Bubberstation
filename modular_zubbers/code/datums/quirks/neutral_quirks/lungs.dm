@@ -4,7 +4,7 @@
 	var/obj/item/organ/lungs/lungs_holding
 	var/obj/item/organ/lungs/lungs_added
 	var/lungs_typepath = /obj/item/organ/lungs
-	items = list(/obj/item/clothing/accessory/breathing = list(ITEM_SLOT_BACKPACK))
+	stored_items = list(/obj/item/clothing/accessory/breathing = list(ITEM_SLOT_BACK))
 	var/breath_type = "oxygen"
 
 /datum/quirk/equipping/lungs/add(client/client_source)

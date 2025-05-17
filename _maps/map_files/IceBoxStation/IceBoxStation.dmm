@@ -14700,17 +14700,6 @@
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/surface/outdoors/nospawn)
-"ecc" = (
-/obj/effect/spawner/random/structure/table_fancy,
-/obj/structure/sign/painting/library_secure{
-	pixel_x = 32
-	},
-/obj/machinery/door/window/right/directional/west{
-	name = "Secure Art Exhibition";
-	req_access = list("library")
-	},
-/turf/open/floor/wood,
-/area/station/service/library)
 "ecs" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -16251,10 +16240,6 @@
 /obj/item/toy/sword,
 /turf/open/floor/iron/checker,
 /area/station/maintenance/port/fore)
-"eAg" = (
-/obj/effect/spawner/structure/window/reinforced/tinted,
-/turf/closed/wall,
-/area/station/security/prison/toilet)
 "eAh" = (
 /obj/machinery/power/smes,
 /obj/structure/cable,
@@ -48126,6 +48111,17 @@
 "nKa" = (
 /turf/closed/wall,
 /area/station/security/checkpoint/medical)
+"nKb" = (
+/obj/effect/spawner/random/structure/table_fancy,
+/obj/structure/sign/painting/library_secure{
+	pixel_x = 32
+	},
+/obj/machinery/door/window/right/directional/west{
+	name = "Secure Art Exhibition";
+	req_access = list("library")
+	},
+/turf/open/floor/wood,
+/area/station/service/library)
 "nKk" = (
 /obj/effect/turf_decal/siding/thinplating_new{
 	dir = 8
@@ -73029,6 +73025,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/purple/visible,
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
+"uIB" = (
+/obj/effect/spawner/structure/window/reinforced/tinted,
+/turf/open/floor/plating,
+/area/station/security/prison/toilet)
 "uIC" = (
 /obj/machinery/door/airlock/security{
 	aiControlDisabled = 1;
@@ -109117,8 +109117,8 @@ thA
 thA
 thA
 uOb
-eAg
-eAg
+uIB
+uIB
 yiz
 lBR
 fZq
@@ -109631,8 +109631,8 @@ thA
 thA
 thA
 uOb
-eAg
-eAg
+uIB
+uIB
 nHs
 lBR
 oWe
@@ -110145,8 +110145,8 @@ thA
 thA
 thA
 uOb
-eAg
-eAg
+uIB
+uIB
 kXO
 lBR
 jbb
@@ -262336,7 +262336,7 @@ pzV
 uZn
 kKL
 jbz
-ecc
+nKb
 god
 xse
 iQQ
