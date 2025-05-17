@@ -7,3 +7,4 @@
 	antag_divisor = 32
 	storyteller_type = STORYTELLER_TYPE_CALM
 	votable = FALSE
+	display_setting = STORYTELLER_DISPLAY_NEVER_SECRET
