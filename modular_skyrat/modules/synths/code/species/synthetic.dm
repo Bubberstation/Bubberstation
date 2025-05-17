@@ -78,6 +78,15 @@
 			to_chat(human, span_warning("Alert: Critical damage taken! Cooling systems failing!"))
 			do_sparks(3, TRUE, human)
 
+	var/obj/item/organ/lungs/lungs = human.get_organ_slot(ORGAN_SLOT_LUNGS)
+	if(!lungs)
+		// No lungs present, apply overheating
+		human.adjust_bodytemperature(50) // We're overheating!!
+		human.adjustFireLoss(1)
+		if(prob(10))
+			to_chat(human, span_warning("Alert: Cooling system missing, overheating imminent!"))
+			do_sparks(3, TRUE, human)
+
 /datum/species/synthetic/spec_revival(mob/living/carbon/human/transformer)
 	switch_to_screen(transformer, "Console")
 	addtimer(CALLBACK(src, PROC_REF(switch_to_screen), transformer, saved_screen), 5 SECONDS)
