@@ -1617,6 +1617,10 @@
 	},
 /obj/item/radio/off,
 /obj/item/restraints/handcuffs,
+/obj/machinery/door/window/right/directional/west{
+	name = "Brig Desk";
+	req_access = list("brig")
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "amn" = (
@@ -37561,10 +37565,6 @@
 "ftR" = (
 /obj/effect/turf_decal/caution/stand_clear/blue,
 /obj/effect/turf_decal/bot_blue,
-/obj/machinery/door/window/right/directional/east{
-	name = "Brig Desk";
-	req_access = list("brig")
-	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
@@ -48268,16 +48268,6 @@
 	dir = 4
 	},
 /area/station/maintenance/starboard/fore)
-"mdV" = (
-/obj/effect/turf_decal/caution/stand_clear/blue,
-/obj/effect/turf_decal/bot_blue,
-/obj/machinery/door/window/left/directional/east{
-	name = "Brig Desk";
-	req_access = list("brig")
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/iron/dark,
-/area/station/security/brig)
 "mec" = (
 /obj/machinery/computer/exodrone_control_console{
 	dir = 4
@@ -55174,6 +55164,10 @@
 	pixel_y = 7
 	},
 /obj/item/pen,
+/obj/machinery/door/window/left/directional/west{
+	name = "Brig Desk";
+	req_access = list("brig")
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "qHh" = (
@@ -96790,7 +96784,7 @@ lHY
 ykZ
 mEL
 rwl
-mdV
+ftR
 ftR
 mYO
 aua

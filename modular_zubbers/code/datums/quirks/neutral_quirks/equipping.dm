@@ -44,8 +44,12 @@
 		if(!ispath(item_path))
 			continue
 		var/item = new item_path(carbon_holder.loc)
+		var/success = FALSE
 		for(var/slot as anything in stored_items[item_path])
-			carbon_holder.equip_to_storage(item, slot, indirect_action = TRUE)
+			success = carbon_holder.equip_to_storage(item, slot, indirect_action = TRUE)
+			if(success)
+				break
+		equipped_items[item] = success
 
 	for (var/item as anything in equipped_items)
 		on_equip_item(item, equipped_items[item])
