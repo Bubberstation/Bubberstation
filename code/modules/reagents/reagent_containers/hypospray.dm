@@ -19,6 +19,8 @@
 	var/stealthy = FALSE
 	/// If TRUE, the hypospray will be permanently unusable.
 	var/used_up = FALSE
+	// Bubber edit:
+	var/no_sticker = FALSE
 
 /obj/item/reagent_containers/hypospray/attack_paw(mob/user, list/modifiers)
 	return attack_hand(user, modifiers)
@@ -151,7 +153,8 @@
 
 /obj/item/reagent_containers/hypospray/medipen/Initialize(mapload)
 	. = ..()
-	label_text = span_notice("There is a sticker pasted onto the side which reads, 'WARNING: This medipen contains [pretty_string_from_reagent_list(reagents.reagent_list, names_only = TRUE, join_text = ", ", final_and = TRUE, capitalize_names = TRUE)], do not use if allergic to any listed chemicals.")
+	if(!no_sticker) // Bubber edit:
+		label_text = span_notice("There is a sticker pasted onto the side which reads, 'WARNING: This medipen contains [pretty_string_from_reagent_list(reagents.reagent_list, names_only = TRUE, join_text = ", ", final_and = TRUE, capitalize_names = TRUE)], do not use if allergic to any listed chemicals.")
 
 /obj/item/reagent_containers/hypospray/medipen/examine()
 	. = ..()
