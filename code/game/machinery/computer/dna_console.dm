@@ -720,11 +720,11 @@
 				var/datum/mutation/human/matched_mutation = null
 				//Go through all sequences for matching gene, and set the mutation
 				for (var/M in subtypesof(/datum/mutation/human))
-					// SKYRAT EDIT ADDITION
+					// BUBBER EDIT ADDITION
 					var/datum/mutation/human/iterating_mutation = M
 					if(initial(iterating_mutation.disabled))
 						continue
-					// SKYRAT EDIT END
+					// BUBBER EDIT END
 					var/true_sequence = GET_SEQUENCE(M)
 					if (new_sequence == true_sequence)
 						matched_mutation = M

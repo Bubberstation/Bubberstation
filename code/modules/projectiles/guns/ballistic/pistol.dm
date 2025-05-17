@@ -1,7 +1,7 @@
 /obj/item/gun/ballistic/automatic/pistol
 	name = "\improper Makarov pistol"
-//	desc = "A small, easily concealable 9mm handgun. Has a threaded barrel for suppressors."	// SKYRAT EDIT: Original
-	desc = "A small, easily concealable 9x25mm Mk.12 handgun. Has a threaded barrel for suppressors."	// SKYRAT EDIT: Calibre rename
+//	desc = "A small, easily concealable 9mm handgun. Has a threaded barrel for suppressors."	// BUBBER EDIT: Original
+	desc = "A small, easily concealable 9x25mm Mk.12 handgun. Has a threaded barrel for suppressors."	// BUBBER EDIT: Calibre rename
 	icon_state = "pistol"
 	w_class = WEIGHT_CLASS_SMALL
 	accepted_magazine_type = /obj/item/ammo_box/magazine/m9mm
@@ -168,9 +168,9 @@
 	desc = "A Deagle brand Deagle for operators operating operationally. Uses .50 AE ammo."
 	icon_state = "deaglecamo"
 	inhand_icon_state = "deagleg"
-	// SKYRAT EDIT - We don't actually have the right icons for this. When you add the icons you can remove this line!
+	// BUBBER EDIT - We don't actually have the right icons for this. When you add the icons you can remove this line!
 	show_bolt_icon = FALSE
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 
 /obj/item/gun/ballistic/automatic/pistol/deagle/regal
 	name = "\improper Regal Condor"
@@ -188,13 +188,13 @@
 
 /obj/item/gun/ballistic/automatic/pistol/aps
 	name = "\improper Stechkin APS machine pistol"
-	desc = "A modernized reproduction of an old Soviet machine pistol. It fires quickly, but kicks like a mule. Uses 9mm ammo. Has a threaded barrel for suppressors." //SKYRAT EDIT
+	desc = "A modernized reproduction of an old Soviet machine pistol. It fires quickly, but kicks like a mule. Uses 9mm ammo. Has a threaded barrel for suppressors." //BUBBER EDIT
 	icon_state = "aps"
 	w_class = WEIGHT_CLASS_NORMAL
 	accepted_magazine_type = /obj/item/ammo_box/magazine/m9mm_aps
 	can_suppress = TRUE
 	burst_size = 3
-	burst_delay = 3 //SKYRAT EDIT - Original: 1
+	burst_delay = 3 //BUBBER EDIT - Original: 1
 	spread = 10
 	actions_types = list(/datum/action/item_action/toggle_firemode)
 	suppressor_x_offset = 6

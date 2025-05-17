@@ -35,12 +35,12 @@
 	owner.special_role = job_rank
 	if(give_objectives)
 		forge_ai_objectives()
-	// SKYRAT EDIT START - Moving voice changing to Malf only
+	// BUBBER EDIT START - Moving voice changing to Malf only
 #ifdef AI_VOX
 	var/mob/living/silicon/ai/malf_ai = owner.current
 	malf_ai.vox_voices += VOX_MIL
 #endif
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 	if(!employer)
 		employer = pick(GLOB.ai_employers)
 
@@ -62,12 +62,12 @@
 		var/mob/living/silicon/ai/malf_ai = owner.current
 		malf_ai.set_zeroth_law("")
 		malf_ai.remove_malf_abilities()
-		// SKYRAT EDIT START - Moving voice changing to Malf only
+		// BUBBER EDIT START - Moving voice changing to Malf only
 #ifdef AI_VOX
 		malf_ai.vox_voices -= VOX_MIL
 		malf_ai.vox_type = VOX_NORMAL
 #endif
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 		QDEL_NULL(malf_ai.malf_picker)
 
 	owner.special_role = null
@@ -96,7 +96,7 @@
 
 /// Generates a special objective and adds it to the objective list.
 /datum/antagonist/malf_ai/proc/forge_special_objective()
-	var/special_pick = rand(3,4) // SKYRAT EDIT - REMOVING PURGE/BLOCK
+	var/special_pick = rand(3,4) // BUBBER EDIT - REMOVING PURGE/BLOCK
 	switch(special_pick)
 		if(1)
 			var/datum/objective/block/block_objective = new

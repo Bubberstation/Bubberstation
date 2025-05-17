@@ -51,7 +51,7 @@
 	var/weapon_weight = WEAPON_LIGHT
 	var/dual_wield_spread = 24 //additional spread when dual wielding
 	///Can we hold up our target with this? Default to yes
-	var/can_hold_up = FALSE // SKYRAT EDIT - DISABLED ORIGINAL: TRUE
+	var/can_hold_up = FALSE // BUBBER EDIT - DISABLED ORIGINAL: TRUE
 	/// If TRUE, and we aim at ourselves, it will initiate a do after to fire at ourselves.
 	/// If FALSE it will just try to fire at ourselves straight up.
 	var/doafter_self_shoot = TRUE
@@ -91,8 +91,8 @@
 		pin.gun_insert(new_gun = src)
 
 	add_seclight_point()
-	give_gun_safeties() // SKYRAT EDIT ADDITION - GUN SAFETIES
-	give_manufacturer_examine() // SKYRAT EDIT ADDITON - MANUFACTURER EXAMINE
+	give_gun_safeties() // BUBBER EDIT ADDITION - GUN SAFETIES
+	give_manufacturer_examine() // BUBBER EDIT ADDITON - MANUFACTURER EXAMINE
 	add_bayonet_point()
 
 /obj/item/gun/Destroy()

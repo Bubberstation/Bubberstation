@@ -17,7 +17,7 @@
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	layer = MOB_LAYER
 	/// The sound this plays on impact.
-	var/hitsound // SKYRAT EDIT CHANGE
+	var/hitsound // BUBBER EDIT CHANGE
 	/// Sound played when the projectile hits a wall
 	var/hitsound_wall
 
@@ -266,10 +266,10 @@
 	var/wound_falloff_tile
 	/// How much we want to drop the embed_chance value, if we can embed, per tile, for falloff purposes
 	var/embed_falloff_tile
-	// SKYRAT EDIT ADDITION START
+	// BUBBER EDIT ADDITION START
 	/// If this should be able to hit the target even on direct firing when `ignored_factions` applies
 	var/ignore_direct_target = FALSE
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 	/// How much accuracy is lost for each tile travelled
 	var/accuracy_falloff = 7
 	/// How much accuracy before falloff starts to matter. Formula is range - falloff * tiles travelled
@@ -371,7 +371,7 @@
 	else
 		impact_x = entry_x + movement_vector?.pixel_x * rand(0, ICON_SIZE_X / 2)
 		impact_y = entry_y + movement_vector?.pixel_y * rand(0, ICON_SIZE_Y / 2)
-	// SKYRAT EDIT ADDITION BEGIN - IMPACT SOUNDS
+	// BUBBER EDIT ADDITION BEGIN - IMPACT SOUNDS
 	var/impact_sound
 	if(hitsound)
 		impact_sound = hitsound
@@ -379,7 +379,7 @@
 		impact_sound = target.impact_sound
 		get_sfx()
 	playsound(src, get_sfx_skyrat(impact_sound), vol_by_damage(), TRUE, -1)
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 
 	if(isturf(target) && hitsound_wall)
 		playsound(src, hitsound_wall, clamp(vol_by_damage() + (suppressed ? 0 : 20), 0, 100), TRUE, -1)
@@ -650,7 +650,7 @@
 			var/mob/firer_mob = firer
 			if (firer_mob.buckled == target)
 				return FALSE
-	if(ignored_factions?.len && ismob(target) && (!direct_target || ignore_direct_target)) //SKYRAT EDIT: ignore_direct_target
+	if(ignored_factions?.len && ismob(target) && (!direct_target || ignore_direct_target)) //BUBBER EDIT: ignore_direct_target
 		var/mob/target_mob = target
 		if(faction_check(target_mob.faction, ignored_factions))
 			return FALSE

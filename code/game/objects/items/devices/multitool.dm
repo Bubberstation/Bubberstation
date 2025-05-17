@@ -10,7 +10,7 @@
 
 
 
-/obj/item/multitool //SKYRAT EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
+/obj/item/multitool //BUBBER EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
 	name = "multitool"
 	desc = "Used for pulsing wires to test which to cut. Not recommended by doctors. You can activate it in-hand to locate the nearest APC."
 	icon = 'icons/obj/devices/tool.dmi'

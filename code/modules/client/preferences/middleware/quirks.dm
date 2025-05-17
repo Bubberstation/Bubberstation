@@ -109,7 +109,7 @@
 
 	preferences.validate_quirks()
 	var/list/new_quirks = preferences.all_quirks | quirk_name
-	if (SSquirks.filter_invalid_quirks(new_quirks, preferences.augments) != new_quirks)// SKYRAT EDIT - AUGMENTS+
+	if (SSquirks.filter_invalid_quirks(new_quirks, preferences.augments) != new_quirks)// BUBBER EDIT - AUGMENTS+
 		// If the client is sending an invalid give_quirk, that means that
 		// something went wrong with the client prediction, so we should
 		// catch it back up to speed.
@@ -128,7 +128,7 @@
 	if ( \
 		!(quirk_name in preferences.all_quirks) \
 		|| SSquirks.filter_invalid_quirks(new_quirks, preferences.augments) != new_quirks \
-	)// SKYRAT EDIT - AUGMENTS+
+	)// BUBBER EDIT - AUGMENTS+
 		// If the client is sending an invalid remove_quirk, that means that
 		// something went wrong with the client prediction, so we should
 		// catch it back up to speed.

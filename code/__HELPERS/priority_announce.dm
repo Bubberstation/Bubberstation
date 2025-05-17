@@ -142,7 +142,7 @@
 	else
 		finalized_announcement = CHAT_ALERT_DEFAULT_SPAN(jointext(minor_announcement_strings, ""))
 
-	var/custom_sound = sound_override || (alert ? 'modular_skyrat/modules/alerts/sound/alerts/alert1.ogg' : 'sound/announcer/notice/notice2.ogg') // SKYRAT EDIT CHANGE - CUSTOM ANNOUNCEMENTS - Original: 'sound/announcer/notice/notice1.ogg'
+	var/custom_sound = sound_override || (alert ? 'modular_skyrat/modules/alerts/sound/alerts/alert1.ogg' : 'sound/announcer/notice/notice2.ogg') // BUBBER EDIT CHANGE - CUSTOM ANNOUNCEMENTS - Original: 'sound/announcer/notice/notice1.ogg'
 	dispatch_announcement_to_players(finalized_announcement, players, custom_sound, should_play_sound)
 
 /// Sends an announcement about the level changing to players. Uses the passed in datum and the subsystem's previous security level to generate the message.
@@ -187,7 +187,7 @@
 /// Proc that just dispatches the announcement to our applicable audience. Only the announcement is a mandatory arg.
 /// `should_play_sound` can also be a callback, if you want to only play the sound to specific players.
 /proc/dispatch_announcement_to_players(announcement, list/players = GLOB.player_list, sound_override = null, should_play_sound = TRUE)
-	// SKYRAT EDIT CHANGE BEGIN - CUSTOM ANNOUNCEMENTS
+	// BUBBER EDIT CHANGE BEGIN - CUSTOM ANNOUNCEMENTS
 	/* Original:
 
 	var/sound_to_play = !isnull(sound_override) ? sound_override : 'sound/announcer/notice/notice2.ogg'
@@ -225,7 +225,7 @@
 			continue
 
 		to_chat(target, announcement)
-	// SKYRAT EDIT CHANGE END - CUSTOM ANNOUNCEMENTS
+	// BUBBER EDIT CHANGE END - CUSTOM ANNOUNCEMENTS
 
 #undef MAJOR_ANNOUNCEMENT_TITLE
 #undef MAJOR_ANNOUNCEMENT_TEXT

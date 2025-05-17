@@ -263,22 +263,22 @@
 		var/list/trauma_text = list()
 		for(var/t in patient.get_traumas())
 			var/datum/brain_trauma/trauma = t
-			//SKYRAT EDIT: Scary Traits (Bimbo)
+			//BUBBER EDIT: Scary Traits (Bimbo)
 			if(!trauma.display_scanner)
 				continue
-			//SKYRAT EDIT: Scary Traits (Bimbo)
+			//BUBBER EDIT: Scary Traits (Bimbo)
 			var/trauma_desc = ""
 			switch(trauma.resilience)
 				if(TRAUMA_RESILIENCE_SURGERY)
 					trauma_desc += "severe "
 				if(TRAUMA_RESILIENCE_LOBOTOMY)
 					trauma_desc += "deep-rooted "
-				// SKYRAT EDIT CHANGE BEGIN - Curable permanent traumas
+				// BUBBER EDIT CHANGE BEGIN - Curable permanent traumas
 				if(TRAUMA_RESILIENCE_MAGIC)
 					trauma_desc += "soul-bound "
 				if(TRAUMA_RESILIENCE_ABSOLUTE)
 					trauma_desc += "permanent "
-				// SKYRAT EDIT CHANGE END
+				// BUBBER EDIT CHANGE END
 			trauma_desc += trauma.scan_desc
 			trauma_text += trauma_desc
 		trauma_status = "Cerebral traumas detected: patient appears to be suffering from [english_list(trauma_text)]."

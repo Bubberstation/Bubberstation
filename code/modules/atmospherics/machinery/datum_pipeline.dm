@@ -49,13 +49,13 @@
 	reconcile_air()
 	//Only react if the mix has changed, and don't keep updating if it hasn't
 	update = air.react(src)
-	//CalculateGasmixColor(air) // SKYRAT EDIT REMOVAL - Pipe gas visuals removed // SKYRAT TODO - Look into this
+	//CalculateGasmixColor(air) // BUBBER EDIT REMOVAL - Pipe gas visuals removed // BUBBER TODO - Look into this
 
 /datum/pipeline/proc/set_air(datum/gas_mixture/new_air)
 	if(new_air == air)
 		return
 	air = new_air
-	//CalculateGasmixColor(air) // SKYRAT EDIT REMOVAL - Pipe gas visuals removed
+	//CalculateGasmixColor(air) // BUBBER EDIT REMOVAL - Pipe gas visuals removed
 
 ///Preps a pipeline for rebuilding, insterts it into the rebuild queue
 /datum/pipeline/proc/build_pipeline(obj/machinery/atmospherics/base)
@@ -217,7 +217,7 @@
 	var/turf_temperature = target.GetTemperature()
 	var/turf_heat_capacity = target.GetHeatCapacity()
 
-	//SKYRAT EDIT ADDITION BEGIN
+	//BUBBER EDIT ADDITION BEGIN
 	if(target.liquids?.liquid_state >= LIQUID_STATE_FOR_HEAT_EXCHANGERS)
 		turf_temperature = target.liquids.temp
 		turf_heat_capacity = target.liquids.total_reagents * REAGENT_HEAT_CAPACITY
@@ -231,7 +231,7 @@
 		air.temperature -= heat / total_heat_capacity
 		if(!target.liquids.immutable)
 			target.liquids.temp += heat / turf_heat_capacity
-	else //SKYRAT EDIT END
+	else //BUBBER EDIT END
 		if(turf_heat_capacity <= 0 || partial_heat_capacity <= 0)
 			return TRUE
 

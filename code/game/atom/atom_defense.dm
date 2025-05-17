@@ -108,12 +108,12 @@
 	switch(damage_type)
 		if(BRUTE)
 			if(damage_amount)
-				//SKYRAT EDIT ADDITION - CREDITS TO WHITEDREAM(valtos)
+				//BUBBER EDIT ADDITION - CREDITS TO WHITEDREAM(valtos)
 				playsound(src, pick('modular_skyrat/master_files/sound/effects/metalblock1.wav', 'modular_skyrat/master_files/sound/effects/metalblock2.wav', \
 									'modular_skyrat/master_files/sound/effects/metalblock3.wav', 'modular_skyrat/master_files/sound/effects/metalblock4.wav', \
 									'modular_skyrat/master_files/sound/effects/metalblock5.wav', 'modular_skyrat/master_files/sound/effects/metalblock6.wav', \
 									'modular_skyrat/master_files/sound/effects/metalblock7.wav', 'modular_skyrat/master_files/sound/effects/metalblock8.wav'), 50, TRUE)
-				//SKYRAT EDIT END
+				//BUBBER EDIT END
 			else
 				playsound(src, 'sound/items/weapons/tap.ogg', 50, TRUE)
 		if(BURN)

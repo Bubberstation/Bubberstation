@@ -53,10 +53,10 @@
 			var/obj/item/the_real_food = holder.my_atom
 			if(isitem(the_real_food) && !is_reagent_container(the_real_food))
 				exposed_mob.add_mob_memory(/datum/memory/good_food, food = the_real_food)
-		// SKYRAT EDIT ADDITION BEGIN - Racial Drinks
+		// BUBBER EDIT ADDITION BEGIN - Racial Drinks
 		if (RACE_DRINK)
 			exposed_mob.add_mood_event("quality_drink", /datum/mood_event/race_drink)
-		// SKYRAT EDIT ADDITION END
+		// BUBBER EDIT ADDITION END
 
 /// Gets just how much nutrition this reagent supplies per server tick to the eater
 /datum/reagent/consumable/proc/get_nutriment_factor(mob/living/carbon/eater)

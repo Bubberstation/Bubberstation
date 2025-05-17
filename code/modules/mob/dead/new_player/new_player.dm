@@ -74,13 +74,13 @@
 	if(SSlag_switch.measures[DISABLE_DEAD_KEYLOOP])
 		less_input_message = " - Notice: Observer freelook is currently disabled."
 	// Don't convert this to tgui please, it's way too important
-	var/this_is_like_playing_right = alert(usr, "Are you sure you wish to observe?[less_input_message]", "Observe", "Yes", "No") //SKYRAT EDIT CHANGE
+	var/this_is_like_playing_right = alert(usr, "Are you sure you wish to observe?[less_input_message]", "Observe", "Yes", "No") //BUBBER EDIT CHANGE
 	if(QDELETED(src) || !src.client || this_is_like_playing_right != "Yes")
 		ready = PLAYER_NOT_READY
-		show_title_screen() // SKYRAT EDIT ADDITION
+		show_title_screen() // BUBBER EDIT ADDITION
 		return FALSE
 
-	hide_title_screen() // SKYRAT EDIT ADDITION - Skyrat Titlescreen
+	hide_title_screen() // BUBBER EDIT ADDITION - Skyrat Titlescreen
 	var/mob/dead/observer/observer = new()
 	spawning = TRUE
 
@@ -123,7 +123,7 @@
 			return "Your account is not old enough for [jobtitle]."
 		if(JOB_UNAVAILABLE_SLOTFULL)
 			return "[jobtitle] is already filled to capacity."
-		//SKYRAT EDIT ADDITION
+		//BUBBER EDIT ADDITION
 		if(JOB_UNAVAILABLE_QUIRK)
 			return "[jobtitle] is restricted due to your selected quirks."
 		if(JOB_UNAVAILABLE_LANGUAGE)
@@ -138,7 +138,7 @@
 		//BUBBER EDIT END: Silicon flavor text
 		if(JOB_UNAVAILABLE_AUGMENT)
 			return "[jobtitle] is restricted due to your selected body augments."
-		//SKYRAT EDIT END
+		//BUBBER EDIT END
 		if(JOB_UNAVAILABLE_ANTAG_INCOMPAT)
 			return "[jobtitle] is not compatible with some antagonist role assigned to you."
 		if(JOB_UNAVAILABLE_AGE)
@@ -166,14 +166,14 @@
 
 	if(latejoin && !job.special_check_latejoin(client))
 		return JOB_UNAVAILABLE_GENERIC
-	//SKYRAT EDIT ADDITION
+	//BUBBER EDIT ADDITION
 	if(!job.has_required_languages(client.prefs))
 		return JOB_UNAVAILABLE_LANGUAGE
 	if(job.has_banned_quirk(client.prefs))
 		return JOB_UNAVAILABLE_QUIRK
 	if(job.has_banned_species(client.prefs))
 		return JOB_UNAVAILABLE_SPECIES
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 	return JOB_AVAILABLE
 
 
@@ -207,7 +207,7 @@
 		tgui_alert(usr, "There was an unexpected error putting you into your requested job. If you cannot join with any job, you should contact an admin.")
 		return FALSE
 
-	hide_title_screen()// SKYRAT EDIT ADDITION
+	hide_title_screen()// BUBBER EDIT ADDITION
 	mind.late_joiner = TRUE
 	var/atom/destination = mind.assigned_role.get_latejoin_spawn_point()
 	if(!destination)
@@ -228,7 +228,7 @@
 	// If we already have a captain, are they a "Captain" rank and are we allowing multiple of them to be assigned?
 	if(is_captain_job(job))
 		is_captain = IS_FULL_CAPTAIN
-		captain_sound = ANNOUNCER_DEPARTMENTAL // SKYRAT EDIT CHANGE - Announcer Sounds
+		captain_sound = ANNOUNCER_DEPARTMENTAL // BUBBER EDIT CHANGE - Announcer Sounds
 	// If we don't have an assigned cap yet, check if this person qualifies for some from of captaincy.
 	else if(!SSjob.assigned_captain && ishuman(character) && SSjob.chain_of_command[rank] && !is_banned_from(character.ckey, list(JOB_CAPTAIN)))
 		is_captain = IS_ACTING_CAPTAIN
@@ -258,7 +258,7 @@
 		humanc.increment_scar_slot()
 		humanc.load_persistent_scars()
 
-		SSpersistence.load_modular_persistence(humanc.get_organ_slot(ORGAN_SLOT_BRAIN)) // SKYRAT EDIT ADDITION - MODULAR_PERSISTENCE
+		SSpersistence.load_modular_persistence(humanc.get_organ_slot(ORGAN_SLOT_BRAIN)) // BUBBER EDIT ADDITION - MODULAR_PERSISTENCE
 
 
 		if(GLOB.curse_of_madness_triggered)
@@ -279,7 +279,7 @@
 		SSquirks.AssignQuirks(humanc, humanc.client)
 
 	if(humanc) // Quirks may change manifest datapoints, so inject only after assigning quirks
-		GLOB.manifest.inject(humanc, null, humanc.client) // SKYRAT EDIT - Added humanc.client - ALTERNATIVE_JOB_TITLES
+		GLOB.manifest.inject(humanc, null, humanc.client) // BUBBER EDIT - Added humanc.client - ALTERNATIVE_JOB_TITLES
 		SEND_SIGNAL(humanc, COMSIG_HUMAN_CHARACTER_SETUP_FINISHED)
 	var/area/station/arrivals = GLOB.areas_by_type[/area/station/hallway/secondary/entry]
 	if(humanc && arrivals && !arrivals.power_environ) //arrivals depowered
@@ -297,7 +297,7 @@
 /mob/dead/new_player/proc/create_character(atom/destination)
 	spawning = TRUE
 
-	hide_title_screen() // SKYRAT EDIT ADDITION - titlescreen
+	hide_title_screen() // BUBBER EDIT ADDITION - titlescreen
 
 	mind.active = FALSE //we wish to transfer the key manually
 	var/mob/living/spawning_mob = mind.assigned_role.get_spawn_mob(client, destination)

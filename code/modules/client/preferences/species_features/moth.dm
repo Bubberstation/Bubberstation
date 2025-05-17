@@ -1,4 +1,4 @@
-/* SKYRAT EDIT REMOVAL
+/* BUBBER EDIT REMOVAL
 /datum/preference/choiced/moth_antennae
 	savefile_key = "feature_moth_antennae"
 	savefile_identifier = PREFERENCE_CHARACTER

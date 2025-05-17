@@ -119,7 +119,7 @@
 /datum/config_entry/flag/log_attack
 
 // log subtler emotes
-/datum/config_entry/flag/log_subtler  //SKYRAT EDIT ADDITION
+/datum/config_entry/flag/log_subtler  //BUBBER EDIT ADDITION
 
 /// log emotes
 /datum/config_entry/flag/log_emote

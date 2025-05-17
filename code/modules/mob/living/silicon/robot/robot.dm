@@ -11,7 +11,7 @@
 		post_tipped_callback = CALLBACK(src, PROC_REF(after_tip_over)), \
 		post_untipped_callback = CALLBACK(src, PROC_REF(after_righted)), \
 		roleplay_friendly = TRUE, \
-		roleplay_emotes = list(/datum/emote/silicon/buzz, /datum/emote/silicon/buzz2, /datum/emote/silicon/beep, /datum/emote/silicon/beep2), /* SKYRAT EDIT CHANGE - ORIGINAL: roleplay_emotes = list(/datum/emote/silicon/buzz, /datum/emote/silicon/buzz2, /datum/emote/silicon/beep)*/ \
+		roleplay_emotes = list(/datum/emote/silicon/buzz, /datum/emote/silicon/buzz2, /datum/emote/silicon/beep, /datum/emote/silicon/beep2), /* BUBBER EDIT CHANGE - ORIGINAL: roleplay_emotes = list(/datum/emote/silicon/buzz, /datum/emote/silicon/buzz2, /datum/emote/silicon/beep)*/ \
 		roleplay_callback = CALLBACK(src, PROC_REF(untip_roleplay)))
 		//BUBBER EDIT: REDUCES THE SELF-RIGHT TIME FOR BORGS TO 3 SECONDS, FROM 60 SECONDS
 
@@ -167,7 +167,7 @@
 		to_chat(src,span_userdanger("ERROR: Lockdown is engaged. Please disengage lockdown to pick module."))
 		return
 
-	// SKYRAT EDIT START - Making the cyborg model list static to reduce how many times it's generated.
+	// BUBBER EDIT START - Making the cyborg model list static to reduce how many times it's generated.
 	if(!length(GLOB.cyborg_model_list))
 		GLOB.cyborg_model_list = list(
 			"Engineering" = /obj/item/robot_model/engineering,
@@ -192,8 +192,8 @@
 		for(var/option in GLOB.cyborg_model_list)
 			var/obj/item/robot_model/model = GLOB.cyborg_model_list[option]
 			var/model_icon = initial(model.cyborg_base_icon)
-			GLOB.cyborg_base_models_icon_list[option] = image(icon = 'modular_skyrat/master_files/icons/mob/robots.dmi', icon_state = model_icon) // SKYRAT EDIT - CARGO BORGS - ORIGINAL: model_icons[option] = image(icon = 'icons/mob/robots.dmi', icon_state = model_icon)
-	// SKYRAT EDIT END
+			GLOB.cyborg_base_models_icon_list[option] = image(icon = 'modular_skyrat/master_files/icons/mob/robots.dmi', icon_state = model_icon) // BUBBER EDIT - CARGO BORGS - ORIGINAL: model_icons[option] = image(icon = 'icons/mob/robots.dmi', icon_state = model_icon)
+	// BUBBER EDIT END
 
 	var/input_model = show_radial_menu(src, src, GLOB.cyborg_base_models_icon_list, radius = 42)
 	if(!input_model || model.type != /obj/item/robot_model)
@@ -749,13 +749,13 @@
 	if (hasExpanded)
 		hasExpanded = FALSE
 		//update_transform(0.5) // Original
-		update_transform(0.6) // SKYRAT EDIT CHANGE
+		update_transform(0.6) // BUBBER EDIT CHANGE
 
-	//SKYRAT EDIT ADDITION BEGIN - CYBORG
+	//BUBBER EDIT ADDITION BEGIN - CYBORG
 	if (hasShrunk)
 		hasShrunk = FALSE
 		update_transform(4/3)
-	//SKYRAT EDIT ADDITION END
+	//BUBBER EDIT ADDITION END
 
 	logevent("Chassis model has been reset.")
 	log_silicon("CYBORG: [key_name(src)] has reset their cyborg model.")

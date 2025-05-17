@@ -15,7 +15,7 @@ import {
   NumberInput,
   Slider,
   Stack,
-  TextArea, // SKYRAT EDIT ADDITION
+  TextArea, // BUBBER EDIT ADDITION
 } from 'tgui-core/components';
 import { BooleanLike } from 'tgui-core/react';
 
@@ -260,7 +260,7 @@ export function FeatureShortTextInput(
     />
   );
 }
-// SKYRAT EDIT ADDITION START - SKYRAT FEATURES DOWN HERE
+// BUBBER EDIT ADDITION START - BUBBER FEATURES DOWN HERE
 
 export const FeatureTextInput = (
   props: FeatureValueProps<string, string, FeatureShortTextData>,
@@ -350,4 +350,4 @@ export const FeatureTriBoolInput = (props: FeatureValueProps<boolean[]>) => {
     </Stack>
   );
 };
-// SKYRAT EDIT ADDITION END
+// BUBBER EDIT ADDITION END

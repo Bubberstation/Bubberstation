@@ -16,7 +16,7 @@
 	var/datum/species/species = new species_type
 	return !(TRAIT_NO_UNDERWEAR in species.inherent_traits)
 
-// SKYRAT EDIT ADDITION BEGIN - Colorable Undershirt/Socks
+// BUBBER EDIT ADDITION BEGIN - Colorable Undershirt/Socks
 /datum/preference/color/undershirt_color
 	savefile_key = "undershirt_color"
 	savefile_identifier = PREFERENCE_CHARACTER
@@ -48,7 +48,7 @@
 	var/species_type = preferences.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
 	return !(TRAIT_NO_UNDERWEAR in species.inherent_traits)
-// SKYRAT EDIT ADDITION END - Colorable Undershirt/Socks
+// BUBBER EDIT ADDITION END - Colorable Undershirt/Socks
 
 
 /datum/preference/color/bra_color

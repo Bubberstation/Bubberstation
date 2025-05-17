@@ -9,12 +9,12 @@
 	human.say("*shrug")
 	TEST_ASSERT_EQUAL(emotes_used, 1, "Human did not shrug")
 
-	//SKYRAT EDIT REMOVAL BEGIN - Following check does not affect us
+	//BUBBER EDIT REMOVAL BEGIN - Following check does not affect us
 	/*
 	human.say("*beep")
 	TEST_ASSERT_EQUAL(emotes_used, 1, "Human beeped, when that should be restricted to silicons")
 	*/
-	//SKYRAT EDIT REMOVAL END
+	//BUBBER EDIT REMOVAL END
 
 	human.setOxyLoss(140)
 
@@ -23,12 +23,12 @@
 	human.say("*shrug")
 	TEST_ASSERT_EQUAL(emotes_used, 1, "Human shrugged while unconscious")
 
-	//SKYRAT EDIT REMOVAL BEGIN - Following check fails due to global cooldown from the above test step (.8s)
+	//BUBBER EDIT REMOVAL BEGIN - Following check fails due to global cooldown from the above test step (.8s)
 	/*
 	human.say("*deathgasp")
 	TEST_ASSERT_EQUAL(emotes_used, 2, "Human could not deathgasp while unconscious")
 	*/
-	//SKYRAT EDIT REMOVAL END
+	//BUBBER EDIT REMOVAL END
 
 	human.key = null
 

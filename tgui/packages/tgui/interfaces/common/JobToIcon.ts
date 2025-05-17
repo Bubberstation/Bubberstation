@@ -1,9 +1,9 @@
 export type AvailableJob = keyof typeof JOB2ICON;
 
 /** Icon map of jobs to their fontawesome5 (free) counterpart. */
-// SKYRAT EDIT START - ORIGINAL: export const JOB2ICONs = {
+// BUBBER EDIT START - ORIGINAL: export const JOB2ICONs = {
 const BASEICONS = {
-  // SKYRAT EDIT - END
+  // BUBBER EDIT - END
   AI: 'eye',
   Assistant: 'toolbox',
   'Atmospheric Technician': 'fan',
@@ -58,7 +58,7 @@ const BASEICONS = {
   'Veteran Security Advisor': 'ribbon',
   'Pun Pun': 'paw',
   Warden: 'handcuffs',
-  // SKYRAT EDIT START - Skyrat-exclusive jobs have icons too
+  // BUBBER EDIT START - Skyrat-exclusive jobs have icons too
 
   'Telecomms Specialist': 'tower-cell',
   Barber: 'scissors',
@@ -71,10 +71,10 @@ const BASEICONS = {
   Orderly: 'shield-heart',
   'Science Guard': 'shield-heart',
   'Security Medic': 'heart-pulse',
-  // SKYRAT EDIT END
+  // BUBBER EDIT END
 } as const;
 
-// SKYRAT EDIT START - ALT TITLES
+// BUBBER EDIT START - ALT TITLES
 const ALTTITLES = {
   // AI - eye
   'Station Intelligence': BASEICONS['AI'],
@@ -298,4 +298,4 @@ const ALTTITLES = {
 
 // Combine the Base icons and ALt titles
 export const JOB2ICON = { ...BASEICONS, ...ALTTITLES } as const;
-// SKYRAT EDIT END
+// BUBBER EDIT END

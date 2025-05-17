@@ -687,16 +687,16 @@
 		/obj/machinery/vending/wardrobe/science_wardrobe = "SciDrobe",
 		/obj/machinery/vending/wardrobe/sec_wardrobe = "SecDrobe",
 		/obj/machinery/vending/wardrobe/viro_wardrobe = "ViroDrobe",
-		// SKYRAT STUFF AT THE BOTTOM I SUPPOSE FOR SIMPLICITY'S SAKE
-		/obj/machinery/vending/access/command = "Command Outfitting Station", //SKYRAT EDIT ADDITION
-		/obj/machinery/vending/barbervend = "Fab-O-Vend", //SKYRAT EDIT ADDITION
-		/obj/machinery/vending/dorms = "LustWish",	//SKYRAT EDIT CHANGE - ERP UPDATE - ORIGINAL: /obj/machinery/vending/dorms = "KinkVend"
-		/obj/machinery/vending/imported = "NT Sustenance Supplier", //SKYRAT EDIT ADDITION
-		/obj/machinery/vending/imported/mothic = "Nomad Fleet Ration Chit Exchange", //SKYRAT EDIT ADDITION
-		/obj/machinery/vending/imported/tiziran = "Tiziran Imported Delicacies", //SKYRAT EDIT ADDITION
-		/obj/machinery/vending/imported/yangyu = "Fudobenda", //SKYRAT EDIT ADDITION
-		/obj/machinery/vending/security = "Armadyne Peacekeeper Equipment Vendor", //SKYRAT EDIT CHANGE - SEC_HUAL - ORIGINAL: /obj/machinery/vending/security = "SecTech",
-		/obj/machinery/vending/deforest_medvend = "DeForest Med-Vend", //SKYRAT PORT ADDITION
+		// BUBBER STUFF AT THE BOTTOM I SUPPOSE FOR SIMPLICITY'S SAKE
+		/obj/machinery/vending/access/command = "Command Outfitting Station", //BUBBER EDIT ADDITION
+		/obj/machinery/vending/barbervend = "Fab-O-Vend", //BUBBER EDIT ADDITION
+		/obj/machinery/vending/dorms = "LustWish",	//BUBBER EDIT CHANGE - ERP UPDATE - ORIGINAL: /obj/machinery/vending/dorms = "KinkVend"
+		/obj/machinery/vending/imported = "NT Sustenance Supplier", //BUBBER EDIT ADDITION
+		/obj/machinery/vending/imported/mothic = "Nomad Fleet Ration Chit Exchange", //BUBBER EDIT ADDITION
+		/obj/machinery/vending/imported/tiziran = "Tiziran Imported Delicacies", //BUBBER EDIT ADDITION
+		/obj/machinery/vending/imported/yangyu = "Fudobenda", //BUBBER EDIT ADDITION
+		/obj/machinery/vending/security = "Armadyne Peacekeeper Equipment Vendor", //BUBBER EDIT CHANGE - SEC_HUAL - ORIGINAL: /obj/machinery/vending/security = "SecTech",
+		/obj/machinery/vending/deforest_medvend = "DeForest Med-Vend", //BUBBER PORT ADDITION
 	)
 
 /obj/item/circuitboard/machine/vendor/screwdriver_act(mob/living/user, obj/item/tool)

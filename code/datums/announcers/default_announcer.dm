@@ -1,4 +1,4 @@
-/* SKYRAT EDIT REMOVAL
+/* BUBBER EDIT REMOVAL
 /datum/centcom_announcer/default
 	welcome_sounds = list('sound/announcer/default/welcome.ogg')
 	alert_sounds = list('sound/announcer/default/attention.ogg')

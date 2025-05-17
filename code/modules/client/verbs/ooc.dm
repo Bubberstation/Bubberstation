@@ -79,8 +79,8 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 
 	var/keyname = key
 
-	if(CONFIG_GET(flag/enable_cross_server_ooc)) //SKYRAT EDIT ADDITION
-		send_ooc_to_other_server(ckey, msg) //SKYRAT EDIT ADDITION
+	if(CONFIG_GET(flag/enable_cross_server_ooc)) //BUBBER EDIT ADDITION
+		send_ooc_to_other_server(ckey, msg) //BUBBER EDIT ADDITION
 
 	if(prefs.unlock_content)
 		if(prefs.toggles & MEMBER_PUBLIC)

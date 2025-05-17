@@ -98,7 +98,7 @@ GLOBAL_LIST_EMPTY(lobby_station_traits)
 /datum/station_trait/proc/can_display_lobby_button(client/player)
 	return sign_up_button && !SSticker.HasRoundStarted()
 
-/* SKYRAT EDIT REMOVAL
+/* BUBBER EDIT REMOVAL
 /// Apply any additional handling we need to our lobby button
 /datum/station_trait/proc/setup_lobby_button(atom/movable/screen/lobby/button/sign_up/lobby_button)
 	SHOULD_CALL_PARENT(TRUE)

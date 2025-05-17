@@ -67,10 +67,10 @@
 	for(var/datum/spacevine_mutation/mutation in mutations)
 		override += mutation.on_chem(src, chem)
 	if(!override && prob(75) && istype(chem, /datum/reagent/toxin/plantbgone))
-		// SKYRAT EDIT ADD START
+		// BUBBER EDIT ADD START
 		if(plantbgone_resist && prob(50))
 			return
-		// SKYRAT EDIT ADD END
+		// BUBBER EDIT ADD END
 		qdel(src)
 
 /obj/structure/spacevine/proc/eat(mob/eater)

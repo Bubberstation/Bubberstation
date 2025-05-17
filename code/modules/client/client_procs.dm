@@ -32,10 +32,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 /client/Topic(href, href_list, hsrc, hsrc_command)
 	if(!usr || usr != mob) //stops us calling Topic for somebody else's client. Also helps prevent usr=null
 		return
-	//SKYRAT EDIT ADDITION BEGIN - MENTOR
+	//BUBBER EDIT ADDITION BEGIN - MENTOR
 	if(mentor_client_procs(href_list))
 		return
-	//SKYRAT EDIT ADDITION END
+	//BUBBER EDIT ADDITION END
 
 #ifndef TESTING
 	if (LOWER_TEXT(hsrc_command) == "_debug") //disable the integrated byond vv in the client side debugging tools since it doesn't respect vv read protections
@@ -368,11 +368,11 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	else if(GLOB.deadmins[ckey])
 		add_verb(src, /client/proc/readmin)
 		connecting_admin = TRUE
-	//SKYRAT EDIT ADDITION //We will check the population here, because we need to know if the client is an admin or not.
+	//BUBBER EDIT ADDITION //We will check the population here, because we need to know if the client is an admin or not.
 	if(!check_population(connecting_admin))
 		qdel(src)
 		return
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 	if(CONFIG_GET(flag/autoadmin))
 		if(!GLOB.admin_datums[ckey])
 			var/list/autoadmin_ranks = ranks_from_rank_name(CONFIG_GET(string/autoadmin_rank))
@@ -675,7 +675,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(!query_client_in_db.Execute())
 		qdel(query_client_in_db)
 		return
-/* SKYRAT EDIT - ORIGINAL:
+/* BUBBER EDIT - ORIGINAL:
 	var/client_is_in_db = query_client_in_db.NextRow()
 	// If we aren't an admin, and the flag is set (the panic bunker is enabled).
 	if(CONFIG_GET(flag/panic_bunker) && !holder && !GLOB.deadmins[ckey])
@@ -711,7 +711,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	var/client_is_in_db = query_client_in_db.NextRow()
 
 	if(!client_is_in_db)
-		//SKYRAT EDIT ADDITION BEGIN - PANICBUNKER
+		//BUBBER EDIT ADDITION BEGIN - PANICBUNKER
 		if (CONFIG_GET(flag/panic_bunker) && !holder && !GLOB.deadmins[ckey] && !(ckey in GLOB.bunker_passthrough))
 			log_access("Failed Login: [key] - [address] - New account attempting to connect during panic bunker")
 			message_admins("<span class='adminnotice'>Failed Login: [key] - [address] - New account attempting to connect during panic bunker</span>")
@@ -730,7 +730,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			qdel(query_client_in_db)
 			qdel(src)
 			return
-		//SKYRAT EDIT END
+		//BUBBER EDIT END
 		new_player = 1
 		account_join_date = findJoinDate()
 		var/datum/db_query/query_add_player = SSdbcore.NewQuery({"
@@ -745,10 +745,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		if(!account_join_date)
 			account_join_date = "Error"
 			account_age = -1
-		//SKYRAT EDIT ADDITION BEGIN - PANICBUNKER
+		//BUBBER EDIT ADDITION BEGIN - PANICBUNKER
 		else if(ckey in GLOB.bunker_passthrough)
 			GLOB.bunker_passthrough -= ckey
-		//SKYRAT EDIT END
+		//BUBBER EDIT END
 	qdel(query_client_in_db)
 	var/datum/db_query/query_get_client_age = SSdbcore.NewQuery(
 		"SELECT firstseen, DATEDIFF(Now(),firstseen), accountjoindate, DATEDIFF(Now(),accountjoindate) FROM [format_table_name("player")] WHERE ckey = :ckey",

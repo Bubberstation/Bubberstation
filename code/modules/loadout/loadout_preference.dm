@@ -17,7 +17,7 @@
 
 // Sanitize on load to ensure no invalid paths from older saves get in
 /datum/preference/loadout/deserialize(input, datum/preferences/preferences)
-	return sanitize_loadout_list(input, preferences.parent?.mob, preferences.parent) // SKYRAT EDIT CHANGE parent
+	return sanitize_loadout_list(input, preferences.parent?.mob, preferences.parent) // BUBBER EDIT CHANGE parent
 
 // Default value is null - the loadout list is a lazylist
 /datum/preference/loadout/create_default_value(datum/preferences/preferences)
@@ -32,7 +32,7 @@
  *
  * Returns a list, or null if empty
  */
-/datum/preference/loadout/proc/sanitize_loadout_list(list/passed_list, mob/optional_loadout_owner, client/owner_client) as /list // SKYRAT EDIT CHANGE - client/owner_client
+/datum/preference/loadout/proc/sanitize_loadout_list(list/passed_list, mob/optional_loadout_owner, client/owner_client) as /list // BUBBER EDIT CHANGE - client/owner_client
 	var/list/sanitized_list
 	for(var/path in passed_list)
 		// Loading from json has each path in the list as a string that we need to convert back to typepath
@@ -53,12 +53,12 @@
 					You may want to check your loadout settings."))
 			continue
 
-		// SKYRAT EDIT ADDITION
+		// BUBBER EDIT ADDITION
 		else if(owner_client)
 			var/datum/loadout_item/loadout_item = GLOB.all_loadout_datums[real_path]
 			if(loadout_item?.ckeywhitelist && !(owner_client?.ckey in loadout_item.ckeywhitelist))
 				continue
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 
 		// Set into sanitize list using converted path key
 		var/list/data = passed_list[path]

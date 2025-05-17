@@ -261,7 +261,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	if(get_amount() < 2)
 		user.balloon_alert(user, "not enough material!")
 		return ITEM_INTERACT_BLOCKING
-	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/construction, SKILL_SPEED_MODIFIER) //SKYRAT EDIT: Construction Skill
+	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/construction, SKILL_SPEED_MODIFIER) //BUBBER EDIT: Construction Skill
 	if(!do_after(user, 4 SECONDS * skill_modifier, build_on))
 		return ITEM_INTERACT_BLOCKING
 	if(build_on.is_blocked_turf())
@@ -271,7 +271,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 		user.balloon_alert(user, "not enough material!")
 		return ITEM_INTERACT_BLOCKING
 	new/obj/structure/girder/displaced(build_on)
-	user.mind.adjust_experience(/datum/skill/construction, 5) //SKYRAT EDIT: Construction Skill
+	user.mind.adjust_experience(/datum/skill/construction, 5) //BUBBER EDIT: Construction Skill
 	return ITEM_INTERACT_SUCCESS
 
 /*
@@ -848,7 +848,7 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 		/datum/crafting_recipe/bonespear,
 		/datum/crafting_recipe/bracers,
 		/datum/crafting_recipe/skullhelm,
-		/datum/crafting_recipe/ash_recipe/bone_greaves, /* SKYRAT EDIT ADDITION */
+		/datum/crafting_recipe/ash_recipe/bone_greaves, /* BUBBER EDIT ADDITION */
 	)
 
 	AddElement(

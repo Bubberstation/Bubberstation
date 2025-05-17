@@ -32,7 +32,7 @@
 
 /datum/keybinding/living/look_up
 	// hotkey_keys = list("L") // ORIGINAL
-	hotkey_keys = list("P") //SKYRAT EDIT CHANGE - CUSTOMIZATION
+	hotkey_keys = list("P") //BUBBER EDIT CHANGE - CUSTOMIZATION
 	name = "look up"
 	full_name = "Look Up"
 	description = "Look up at the next z-level.  Only works if directly below open space."
@@ -54,7 +54,7 @@
 
 /datum/keybinding/living/look_down
 	// hotkey_keys = list(";") // ORIGINAL
-	hotkey_keys = list("\[") //SKYRAT EDIT CHANGE - CUSTOMIZATION
+	hotkey_keys = list("\[") //BUBBER EDIT CHANGE - CUSTOMIZATION
 	name = "look down"
 	full_name = "Look Down"
 	description = "Look down at the previous z-level.  Only works if directly above open space."
@@ -133,7 +133,7 @@
 	user_mob.set_combat_mode(FALSE, silent = FALSE)
 
 /datum/keybinding/living/toggle_move_intent
-	hotkey_keys = list("Alt") //SKYRAT EDIT CHANGE - C IS FOR COMBAT INDICATOR - ORIGINAL: hotkey_keys = list("C")
+	hotkey_keys = list("Alt") //BUBBER EDIT CHANGE - C IS FOR COMBAT INDICATOR - ORIGINAL: hotkey_keys = list("C")
 	name = "toggle_move_intent"
 	full_name = "Hold to toggle move intent"
 	description = "Held down to cycle to the other move intent, release to cycle back"

@@ -93,7 +93,7 @@
 	return changed ? CONTEXTUAL_SCREENTIP_SET : .
 
 
-/obj/item/clothing/under/worn_overlays(mutable_appearance/standing, isinhands = FALSE, file2use = null, mutant_styles = NONE) // SKYRAT EDIT - customisation
+/obj/item/clothing/under/worn_overlays(mutable_appearance/standing, isinhands = FALSE, file2use = null, mutant_styles = NONE) // BUBBER EDIT - customisation
 	. = ..()
 	if(isinhands)
 		return
@@ -101,7 +101,7 @@
 	if(damaged_clothes)
 		. += mutable_appearance('icons/effects/item_damage.dmi', "damageduniform")
 	if(accessory_overlay)
-		. += modify_accessory_overlay() // SKYRAT EDIT CHANGE - ORIGINAL: . += accessory_overlay
+		. += modify_accessory_overlay() // BUBBER EDIT CHANGE - ORIGINAL: . += accessory_overlay
 
 /obj/item/clothing/under/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands = FALSE, icon_file)
 	. = ..()
@@ -150,13 +150,13 @@
 	if(adjusted == ALT_STYLE)
 		adjust_to_normal()
 
-	/* SKYRAT EDIT REMOVAL - This breaks jumpsuit adjustment. Plus, we don't support it.
+	/* BUBBER EDIT REMOVAL - This breaks jumpsuit adjustment. Plus, we don't support it.
 	if((supports_variations_flags & CLOTHING_DIGITIGRADE_VARIATION) && ishuman(user))
 		var/mob/living/carbon/human/wearer = user
 		if(wearer.bodyshape & BODYSHAPE_DIGITIGRADE)
 			adjusted = DIGITIGRADE_STYLE
 			update_appearance()
-		*/ // SKYRAT EDIT END
+		*/ // BUBBER EDIT END
 
 /obj/item/clothing/under/generate_digitigrade_icons(icon/base_icon, greyscale_colors)
 	var/icon/legs = icon(SSgreyscale.GetColoredIconByType(/datum/greyscale_config/digitigrade, greyscale_colors), "jumpsuit_worn")

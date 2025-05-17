@@ -9,12 +9,12 @@ export type MedicalRecordData = {
   records: MedicalRecord[];
   min_age: number;
   max_age: number;
-  max_chrono_age: number; // SKYRAT EDIT ADDITION - Chronological age
+  max_chrono_age: number; // BUBBER EDIT ADDITION - Chronological age
 };
 
 export type MedicalRecord = {
   age: number;
-  chrono_age: number; // SKYRAT EDIT ADDITION - Chronological age
+  chrono_age: number; // BUBBER EDIT ADDITION - Chronological age
   blood_type: string;
   crew_ref: string;
   dna: string;
@@ -29,10 +29,10 @@ export type MedicalRecord = {
   rank: string;
   species: string;
   trim: string;
-  // SKYRAT EDIT START - RP Records
+  // BUBBER EDIT START - RP Records
   past_general_records: string;
   past_medical_records: string;
-  // SKYRAT EDIT END
+  // BUBBER EDIT END
 };
 
 export type MedicalNote = {

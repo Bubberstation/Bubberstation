@@ -336,7 +336,7 @@
 	overlays_standing[WOUND_LAYER] = wound_overlay
 	apply_overlay(WOUND_LAYER)
 
-//SKYRAT EDIT REMOVAL BEGIN - CUSTOMIZATION (moved to modular)
+//BUBBER EDIT REMOVAL BEGIN - CUSTOMIZATION (moved to modular)
 /*
 /mob/living/carbon/update_worn_mask(update_obscured = TRUE)
 	remove_overlay(FACEMASK_LAYER)
@@ -373,9 +373,9 @@
 
 	apply_overlay(NECK_LAYER)
 */
-//SKYRAT EDIT REMOVAL END
+//BUBBER EDIT REMOVAL END
 
-//SKYRAT EDIT REMOVAL BEGIN - TESHARI CLOTHES (moved to modular)
+//BUBBER EDIT REMOVAL BEGIN - TESHARI CLOTHES (moved to modular)
 /*
 /mob/living/carbon/update_worn_back(update_obscured = TRUE)
 	remove_overlay(BACK_LAYER)
@@ -392,7 +392,7 @@
 
 	apply_overlay(BACK_LAYER)
 */
-//SKYRAT EDIT REMOVAL END
+//BUBBER EDIT REMOVAL END
 
 /mob/living/carbon/update_worn_legcuffs(update_obscured = TRUE)
 	remove_overlay(LEGCUFF_LAYER)
@@ -404,7 +404,7 @@
 		apply_overlay(LEGCUFF_LAYER)
 		throw_alert("legcuffed", /atom/movable/screen/alert/restrained/legcuffed, new_master = src.legcuffed)
 
-//SKYRAT EDIT REMOVAL BEGIN - CUSTOMIZATION (moved to modular)
+//BUBBER EDIT REMOVAL BEGIN - CUSTOMIZATION (moved to modular)
 /*
 
 /mob/living/carbon/update_worn_head(update_obscured = TRUE)
@@ -426,12 +426,12 @@
 
 	apply_overlay(HEAD_LAYER)
 */
-//SKYRAT EDIT REMOVAL END
+//BUBBER EDIT REMOVAL END
 
 
 /mob/living/carbon/update_worn_handcuffs(update_obscured = TRUE)
 	remove_overlay(HANDCUFF_LAYER)
-	if(handcuffed && !(handcuffed.item_flags & ABSTRACT)) //SKYRAT EDIT - ADDED !(handcuffed.item_flags & ABSTRACT)
+	if(handcuffed && !(handcuffed.item_flags & ABSTRACT)) //BUBBER EDIT - ADDED !(handcuffed.item_flags & ABSTRACT)
 		if(update_obscured)
 			update_obscured_slots(handcuffed.flags_inv)
 		var/mutable_appearance/handcuff_overlay = mutable_appearance('icons/mob/simple/mob.dmi', "handcuff1", -HANDCUFF_LAYER)
@@ -471,10 +471,10 @@
 /// Overlays for the worn overlay so you can overlay while you overlay
 /// eg: ammo counters, primed grenade flashing, etc.
 /// "icon_file" is used automatically for inhands etc. to make sure it gets the right inhand file
-// SKYRAT EDIT CHANGE BEGIN - CUSTOMIZATION
+// BUBBER EDIT CHANGE BEGIN - CUSTOMIZATION
 // obj/item/proc/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file) - original
 /obj/item/proc/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file, mutant_styles = NONE)
-// SKYRAT EDIT CHANGE END
+// BUBBER EDIT CHANGE END
 	SHOULD_CALL_PARENT(TRUE)
 	RETURN_TYPE(/list)
 
@@ -498,10 +498,10 @@
 	var/list/needs_update = list()
 	var/limb_count_update = 0
 	for(var/obj/item/bodypart/limb as anything in bodyparts)
-		// SKYRAT EDIT BEGIN - Don't handle abstract limbs (Taurs, etc.)
+		// BUBBER EDIT BEGIN - Don't handle abstract limbs (Taurs, etc.)
 		if(!limb.show_icon)
 			continue
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 		limb.update_limb(is_creating = update_limb_data) //Update limb actually doesn't do much, get_limb_icon is the cpu eater.
 
 		var/old_key = icon_render_keys?[limb.body_zone] //Checks the mob's icon render key list for the bodypart

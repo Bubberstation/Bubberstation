@@ -81,7 +81,7 @@
 	greyscale_colors = "#CC2102"
 	greyscale_config = /datum/greyscale_config/plaidskirt
 	greyscale_config_worn = /datum/greyscale_config/plaidskirt/worn
-	greyscale_config_worn_digi = /datum/greyscale_config/plaidskirt/worn/digi //SKYRAT EDIT ADDITION - DigiGreyscale
+	greyscale_config_worn_digi = /datum/greyscale_config/plaidskirt/worn/digi //BUBBER EDIT ADDITION - DigiGreyscale
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/dress/skirt/turtleskirt

@@ -1,4 +1,4 @@
-// Skyrat specific station areas
+// Bubber specific station areas
 
 /*
 * Station bound areas

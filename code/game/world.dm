@@ -370,7 +370,7 @@ GLOBAL_VAR(restart_counter)
 	QDEL_NULL(Debugger)
 	. = ..()
 
-/* SKYRAT EDIT REMOVAL - OVERRIDEN
+/* BUBBER EDIT REMOVAL - OVERRIDEN
 /world/proc/update_status()
 
 	var/list/features = list()

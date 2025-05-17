@@ -1,7 +1,7 @@
 //Each lists stores ckeys for "Never for this round" option category
 
 #define POLL_IGNORE_ACADEMY_WIZARD "academy_wizard"
-#define POLL_IGNORE_CORTICAL_BORER "cortical_borer" // SKYRAT EDIT - Cortical Borer
+#define POLL_IGNORE_CORTICAL_BORER "cortical_borer" // BUBBER EDIT - Cortical Borer
 #define POLL_IGNORE_ALIEN_LARVA "alien_larva"
 #define POLL_IGNORE_ASH_SPIRIT "ash_spirit"
 #define POLL_IGNORE_ASHWALKER "ashwalker"
@@ -42,7 +42,7 @@
 
 GLOBAL_LIST_INIT(poll_ignore_desc, list(
 	POLL_IGNORE_ACADEMY_WIZARD = "Academy Wizard Defender",
-	POLL_IGNORE_CORTICAL_BORER = "Cortical Borer", // SKYRAT EDIT ADDITION
+	POLL_IGNORE_CORTICAL_BORER = "Cortical Borer", // BUBBER EDIT ADDITION
 	POLL_IGNORE_ALIEN_LARVA = "Xenomorph larva",
 	POLL_IGNORE_ASH_SPIRIT = "Ash Spirit",
 	POLL_IGNORE_ASHWALKER = "Ashwalker eggs",

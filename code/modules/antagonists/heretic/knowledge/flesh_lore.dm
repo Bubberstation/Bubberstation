@@ -25,7 +25,7 @@
 	name = "Principle of Hunger"
 	desc = "Opens up the Path of Flesh to you. \
 		Allows you to transmute a knife and a pool of blood into a Bloody Blade. \
-		You can create upto twenty at a time." //SKYRAT EDIT three to twenty
+		You can create upto twenty at a time." //BUBBER EDIT three to twenty
 	gain_text = "Hundreds of us starved, but not me... I found strength in my greed."
 	required_atoms = list(
 		/obj/item/knife = 1,

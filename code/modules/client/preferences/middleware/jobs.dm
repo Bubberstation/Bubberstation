@@ -1,9 +1,9 @@
 /datum/preference_middleware/jobs
 	action_delegations = list(
 		"set_job_preference" = PROC_REF(set_job_preference),
-		// SKYRAT EDIT
+		// BUBBER EDIT
 		"set_job_title" = PROC_REF(set_job_title),
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 	)
 
 /datum/preference_middleware/jobs/proc/set_job_preference(list/params, mob/user)
@@ -28,7 +28,7 @@
 
 	return TRUE
 
-// SKYRAT EDIT
+// BUBBER EDIT
 /datum/preference_middleware/jobs/proc/set_job_title(list/params, mob/user)
 	var/job_title = params["job"]
 	var/new_job_title = params["new_title"]
@@ -44,7 +44,7 @@
 	preferences.alt_job_titles[job_title] = new_job_title
 
 	return TRUE
-// SKYRAT EDIT END
+// BUBBER EDIT END
 
 /datum/preference_middleware/jobs/get_constant_data()
 	var/list/data = list()
@@ -75,7 +75,7 @@
 		jobs[job.title] = list(
 			"description" = job.description,
 			"department" = department_name,
-			"alt_titles" = job.alt_titles, // SKYRAT EDIT
+			"alt_titles" = job.alt_titles, // BUBBER EDIT
 		)
 
 	data["departments"] = departments
@@ -85,15 +85,15 @@
 
 /datum/preference_middleware/jobs/get_ui_data(mob/user)
 	var/list/data = list()
-	// SKYRAT EDIT
+	// BUBBER EDIT
 	if(isnull(preferences.alt_job_titles))
 		preferences.alt_job_titles = list()
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 	data["job_preferences"] = preferences.job_preferences
-	// SKYRAT EDIT
+	// BUBBER EDIT
 	data["job_alt_titles"] = preferences.alt_job_titles
 	data["species_restricted_jobs"] = get_unavailable_jobs_for_species()
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 
 	return data
 
@@ -151,7 +151,7 @@
 			data += job.title
 
 	return data
-//SKYRAT EDIT ADDITION BEGIN - CHECKING FOR INCOMPATIBLE SPECIES
+//BUBBER EDIT ADDITION BEGIN - CHECKING FOR INCOMPATIBLE SPECIES
 //This returns a list of jobs that are unavailable for the player's current species
 /datum/preference_middleware/jobs/proc/get_unavailable_jobs_for_species()
 	var/list/data = list()
@@ -162,5 +162,5 @@
 
 	return data
 
-//SKYRAT EDIT ADDITION END
+//BUBBER EDIT ADDITION END
 

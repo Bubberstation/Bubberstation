@@ -57,9 +57,9 @@
 
 /proc/create_space_ninja(spawn_loc)
 	var/mob/living/carbon/human/new_ninja = new(spawn_loc)
-//	new_ninja.randomize_human_appearance(~(RANDOMIZE_NAME|RANDOMIZE_SPECIES)) //SKYRAT EDIT: Player Prefs Ninjas
+//	new_ninja.randomize_human_appearance(~(RANDOMIZE_NAME|RANDOMIZE_SPECIES)) //BUBBER EDIT: Player Prefs Ninjas
 	var/new_name = "[pick(GLOB.ninja_titles)] [pick(GLOB.ninja_names)]"
 	new_ninja.name = new_name
 	new_ninja.real_name = new_name
-//	new_ninja.dna.update_dna_identity()  //SKYRAT EDIT: Player Prefs Ninjas
+//	new_ninja.dna.update_dna_identity()  //BUBBER EDIT: Player Prefs Ninjas
 	return new_ninja

@@ -75,10 +75,10 @@
 		droppable_organs |= droppable
 	var/obj/item/organ/organ = pick(droppable_organs)// BUBBER EDIT - Random organ Drop
 	if(organ)// BUBBER EDIT: OG: for(var/obj/item/organ/organ in contents) -- BUBBER EDIT END
-		// SKYRAT EDIT START - Non-spillable organs
+		// BUBBER EDIT START - Non-spillable organs
 		if(!organ.drop_when_organ_spilling)
 			return // BUBBER EDIT - OG: continue
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 		var/org_zone = check_zone(organ.zone)
 		if(org_zone != BODY_ZONE_CHEST)
 			return // BUBBER EDIT- OG: continue

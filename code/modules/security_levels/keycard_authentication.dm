@@ -3,8 +3,8 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 #define KEYCARD_RED_ALERT "Red Alert"
 #define KEYCARD_EMERGENCY_MAINTENANCE_ACCESS "Emergency Maintenance Access"
 #define KEYCARD_BSA_UNLOCK "Bluespace Artillery Unlock"
-#define KEYCARD_PIN_UNRESTRICT "Unrestrict Permit Firing Pins" //SKYRAT EDIT
-#define KEYCARD_ENG_OVERRIDE "Engineering Override Access" //SKYRAT EDIT
+#define KEYCARD_PIN_UNRESTRICT "Unrestrict Permit Firing Pins" //BUBBER EDIT
+#define KEYCARD_ENG_OVERRIDE "Engineering Override Access" //BUBBER EDIT
 
 #define ACCESS_GRANTING_COOLDOWN (30 SECONDS)
 
@@ -50,8 +50,8 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 	data["red_alert"] = (SSsecurity_level.get_current_level_as_number() >= SEC_LEVEL_RED) ? 1 : 0
 	data["emergency_maint"] = GLOB.emergency_access
 	data["bsa_unlock"] = GLOB.bsa_unlock
-	data["permit_pins"] = (CONFIG_GET(flag/permit_pins) ? TRUE : FALSE) //SKYRAT EDIT
-	data["eng_override"] = GLOB.force_eng_override //SKYRAT EDIT
+	data["permit_pins"] = (CONFIG_GET(flag/permit_pins) ? TRUE : FALSE) //BUBBER EDIT
+	data["eng_override"] = GLOB.force_eng_override //BUBBER EDIT
 	return data
 
 /obj/machinery/keycard_auth/ui_status(mob/user, datum/ui_state/state)
@@ -88,7 +88,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 			if(!event_source)
 				sendEvent(KEYCARD_BSA_UNLOCK)
 				. = TRUE
-		//SKYRAT EDIT START
+		//BUBBER EDIT START
 		if("pin_unrestrict")
 			if(!event_source)
 				sendEvent(KEYCARD_PIN_UNRESTRICT)
@@ -97,7 +97,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 			if(!event_source)
 				sendEvent(KEYCARD_ENG_OVERRIDE)
 				. = TRUE
-		//SKYRAT EDIT END
+		//BUBBER EDIT END
 		if("give_janitor_access")
 			var/mob/living/living_user = usr
 			if(!living_user || !istype(living_user))
@@ -169,12 +169,12 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 			make_maint_all_access()
 		if(KEYCARD_BSA_UNLOCK)
 			toggle_bluespace_artillery()
-		//SKYRAT EDIT START
+		//BUBBER EDIT START
 		if(KEYCARD_PIN_UNRESTRICT)
 			toggle_permit_pins()
 		if(KEYCARD_ENG_OVERRIDE)
 			toggle_eng_override()
-		//SKYRAT EDIT END
+		//BUBBER EDIT END
 
 /// Subtype which is stuck to a wall
 /obj/machinery/keycard_auth/wall_mounted
@@ -240,5 +240,5 @@ GLOBAL_VAR_INIT(emergency_access, FALSE)
 #undef KEYCARD_RED_ALERT
 #undef KEYCARD_EMERGENCY_MAINTENANCE_ACCESS
 #undef KEYCARD_BSA_UNLOCK
-#undef KEYCARD_PIN_UNRESTRICT //SKYRAT EDIT
-#undef KEYCARD_ENG_OVERRIDE //SKYRAT EDIT
+#undef KEYCARD_PIN_UNRESTRICT //BUBBER EDIT
+#undef KEYCARD_ENG_OVERRIDE //BUBBER EDIT

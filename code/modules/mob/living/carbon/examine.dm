@@ -294,14 +294,14 @@
 		ADD_NEWLINE_IF_NECESSARY(.)
 		. += "<b>Quirks:</b> [get_quirk_string(FALSE, CAT_QUIRK_ALL)]"
 
-	//SKYRAT EDIT ADDITION BEGIN - GUNPOINT
+	//BUBBER EDIT ADDITION BEGIN - GUNPOINT
 	if(gunpointing)
 		. += "<span class='warning'><b>[t_He] [t_is] holding [gunpointing.target.name] at gunpoint with [gunpointing.aimed_gun.name]!</b></span>\n"
 	if(length(gunpointed))
 		for(var/datum/gunpoint/GP in gunpointed)
 			. += "<span class='warning'><b>[GP.source.name] [GP.source.p_are()] holding [t_him] at gunpoint with [GP.aimed_gun.name]!</b></span>\n"
 
-	//SKYRAT EDIT ADDITION BEGIN - CUSTOMIZATION
+	//BUBBER EDIT ADDITION BEGIN - CUSTOMIZATION
 	for(var/genital in GLOB.possible_genitals)
 		if(dna.species.mutant_bodyparts[genital])
 			var/datum/sprite_accessory/genital/G = SSaccessories.sprite_accessories[genital][dna.species.mutant_bodyparts[genital][MUTANT_INDEX_NAME]]
@@ -345,7 +345,7 @@
 		if(erp_status_pref && !CONFIG_GET(flag/disable_erp_preferences))
 			. += EXAMINE_SECTION_BREAK
 			. += span_info("ERP Status: [span_revenboldnotice(erp_status_pref)]")
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 
 	SEND_SIGNAL(src, COMSIG_ATOM_EXAMINE, user, .)
 	if(length(.))
@@ -672,10 +672,10 @@
 
 	var/age_text
 	switch(age)
-		if(-INFINITY to 17) // SKYRAT EDIT ADD START -- AGE EXAMINE
+		if(-INFINITY to 17) // BUBBER EDIT ADD START -- AGE EXAMINE
 			age_text = "too young to be here"
 		if(18 to 25)
-			age_text = "a young adult" // SKYRAT EDIT END
+			age_text = "a young adult" // BUBBER EDIT END
 		if(36 to 55)
 			age_text = "middle-aged"
 		if(56 to 75)

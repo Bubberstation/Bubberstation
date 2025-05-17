@@ -25,18 +25,18 @@
 
 /datum/job/ai/after_spawn(mob/living/spawned, client/player_client)
 	. = ..()
-	/* SKYRAT EDIT REMOVAL START
+	/* BUBBER EDIT REMOVAL START
 	//we may have been created after our borg
 	if(SSticker.current_state == GAME_STATE_SETTING_UP)
 		for(var/mob/living/silicon/robot/R in GLOB.silicon_mobs)
 			if(!R.connected_ai)
 				R.TryConnectToAI()
-	*/ // SKYRAT EDIT REMOVAL END
+	*/ // BUBBER EDIT REMOVAL END
 	var/mob/living/silicon/ai/ai_spawn = spawned
 	if(player_client)
 		ai_spawn.set_gender(player_client)
 	ai_spawn.log_current_laws()
-	// SKYRAT EDIT ADDITION START
+	// BUBBER EDIT ADDITION START
 	for(var/mob/living/silicon/robot/sync_target in GLOB.silicon_mobs)
 		if(!(sync_target.z in SSmapping.levels_by_trait(ZTRAIT_STATION)) || (sync_target.z in SSmapping.levels_by_trait(ZTRAIT_ICE_RUINS_UNDERGROUND))) // Skip ghost cafe, interlink, and other cyborgs.
 			continue
@@ -57,7 +57,7 @@
 		sync_target.lawsync()
 		sync_target.lawupdate = TRUE
 		sync_target.show_laws()
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 
 
 /datum/job/ai/get_roundstart_spawn_point()

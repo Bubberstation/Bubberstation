@@ -347,7 +347,7 @@
 	. = ..()
 	allowed += list(
 		/obj/item/melee/baton/telescopic,
-		/obj/item/gun/energy/cell_loaded/medigun, //SKYRAT EDIT MEDIGUNS
+		/obj/item/gun/energy/cell_loaded/medigun, //BUBBER EDIT MEDIGUNS
 	)
 
 /obj/item/clothing/head/hooded/winterhood/medical/cmo

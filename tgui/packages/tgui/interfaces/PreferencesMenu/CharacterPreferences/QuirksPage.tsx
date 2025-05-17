@@ -234,9 +234,9 @@ function QuirkPopper(props: QuirkPopperProps) {
               boxShadow: '0px 4px 8px 3px rgba(0, 0, 0, 0.7)',
             }}
           >
-            {/* SKYRAT EDIT START - maxWidth to 400px from 300px */}
+            {/* BUBBER EDIT START - maxWidth to 400px from 300px */}
             <Stack maxWidth="400px" backgroundColor="black" px="5px" py="3px">
-              {/* SKYRAT EDIT END - maxWidth to 400px from 300px */}
+              {/* BUBBER EDIT END - maxWidth to 400px from 300px */}
               <Stack.Item>
                 <PreferenceList
                   preferences={getCorrespondingPreferences(
@@ -326,10 +326,10 @@ export function QuirksPage(props) {
     }
   });
 
-  // SKYRAT EDIT START - Better Quirk Count Code
+  // BUBBER EDIT START - Better Quirk Count Code
   let balance = -data.quirks_balance;
   let positiveQuirks = data.positive_quirk_count;
-  // SKYRAT EDIT END
+  // BUBBER EDIT END
 
   for (const selectedQuirkName of selectedQuirks) {
     const selectedQuirk = quirkInfo[selectedQuirkName];

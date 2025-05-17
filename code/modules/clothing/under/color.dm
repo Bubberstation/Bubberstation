@@ -7,7 +7,7 @@
 	greyscale_config_worn = /datum/greyscale_config/jumpsuit/worn
 	greyscale_config_inhand_left = /datum/greyscale_config/jumpsuit/inhand_left
 	greyscale_config_inhand_right = /datum/greyscale_config/jumpsuit/inhand_right
-	greyscale_config_worn_digi = /datum/greyscale_config/jumpsuit/worn/digi //SKYRAT EDIT ADDITION - DigiGreyscale
+	greyscale_config_worn_digi = /datum/greyscale_config/jumpsuit/worn/digi //BUBBER EDIT ADDITION - DigiGreyscale
 	icon = 'icons/obj/clothing/under/color.dmi'
 	icon_state = "jumpsuit"
 	inhand_icon_state = "jumpsuit"
@@ -21,7 +21,7 @@
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	icon_state = "jumpskirt"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
-	greyscale_config_worn_digi = null //SKYRAT EDIT ADDITION - DigiGreyscale
+	greyscale_config_worn_digi = null //BUBBER EDIT ADDITION - DigiGreyscale
 
 /// Returns a random, acceptable jumpsuit typepath
 /proc/get_random_jumpsuit()
@@ -39,7 +39,7 @@
 
 /obj/item/clothing/under/color/random/Initialize(mapload)
 	..()
-	var/obj/item/clothing/under/color/C = get_random_variant() // SKYRAT EDIT CHANGE - use local proc that handles prefs
+	var/obj/item/clothing/under/color/C = get_random_variant() // BUBBER EDIT CHANGE - use local proc that handles prefs
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		H.equip_to_slot_or_del(new C(H), ITEM_SLOT_ICLOTHING, initial=TRUE) //or else you end up with naked assistants running around everywhere...

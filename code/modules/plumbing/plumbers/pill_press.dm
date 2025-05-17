@@ -36,7 +36,7 @@
 			CAT_PILLS = GLOB.reagent_containers[CAT_PILLS],
 			CAT_PATCHES = GLOB.reagent_containers[CAT_PATCHES],
 			CAT_MEDBOTTLES = GLOB.reagent_containers[CAT_MEDBOTTLES], // BUBBER EDIT - CAT_MEDBOTTLES
-			CAT_HYPOS = GLOB.reagent_containers[CAT_HYPOS], // SKYRAT EDIT ADDITION - Hypovials
+			CAT_HYPOS = GLOB.reagent_containers[CAT_HYPOS], // BUBBER EDIT ADDITION - Hypovials
 		)
 
 		packaging_types = list()
@@ -81,10 +81,10 @@
 				suffix = "Pill"
 			if(CAT_PATCHES)
 				suffix = "Patch"
-			//SKYRAT EDIT ADDITION BEGIN - HYPOVIALS
+			//BUBBER EDIT ADDITION BEGIN - HYPOVIALS
 			if (CAT_HYPOS)
 				suffix = "Vial"
-			//SKYRAT EDIT ADDITION END - HYPOVIALS
+			//BUBBER EDIT ADDITION END - HYPOVIALS
 			else
 				suffix = "Bottle"
 		container.name = "[product_name] [suffix]"

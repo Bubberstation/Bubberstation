@@ -1,4 +1,4 @@
-/* SKYRAT EDIT REMOVAL
+/* BUBBER EDIT REMOVAL
 /proc/generate_lizard_side_shot(datum/sprite_accessory/sprite_accessory, key, include_snout = TRUE)
 	var/static/datum/universal_icon/lizard
 	var/static/datum/universal_icon/lizard_with_snout

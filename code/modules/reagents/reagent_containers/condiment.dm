@@ -63,7 +63,7 @@
 			span_warning("[user] fed you from [src]."))
 		log_combat(user, M, "fed", reagents.get_reagent_log_string())
 
-	SEND_SIGNAL(M, COMSIG_GLASS_DRANK, src, user) // SKYRAT EDIT ADDITION - Hemophages can't casually drink what's not going to regenerate their blood
+	SEND_SIGNAL(M, COMSIG_GLASS_DRANK, src, user) // BUBBER EDIT ADDITION - Hemophages can't casually drink what's not going to regenerate their blood
 	reagents.trans_to(M, 10, transferred_by = user, methods = INGEST)
 	playsound(M.loc,'sound/items/drink.ogg', rand(10,50), TRUE)
 	return TRUE

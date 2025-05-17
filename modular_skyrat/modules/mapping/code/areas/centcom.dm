@@ -1,4 +1,4 @@
-// Skyrat CC area defines
+// Bubber CC area defines
 
 /*
 * Ghost Cafe

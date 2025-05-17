@@ -1,6 +1,6 @@
-#define LOG_BURN_TIMER 5000 //SKYRAT EDIT original: #define LOG_BURN_TIMER 150
+#define LOG_BURN_TIMER 5000 //BUBBER EDIT original: #define LOG_BURN_TIMER 150
 #define PAPER_BURN_TIMER 5
-#define MAXIMUM_BURN_TIMER 100000 //SKYRAT EDIT original: #define MAXIMUM_BURN_TIMER 3000
+#define MAXIMUM_BURN_TIMER 100000 //BUBBER EDIT original: #define MAXIMUM_BURN_TIMER 3000
 
 /obj/structure/fireplace
 	name = "fireplace"
@@ -113,15 +113,15 @@
 		return
 
 	switch(burn_time_remaining())
-		if(0 to 19999) //SKYRAT EDIT original: if(0 to 500)
+		if(0 to 19999) //BUBBER EDIT original: if(0 to 500)
 			set_light(1)
-		if(20000 to 39999) //SKYRAT EDIT original: if(500 to 1000)
+		if(20000 to 39999) //BUBBER EDIT original: if(500 to 1000)
 			set_light(2)
-		if(40000 to 59999) //SKYRAT EDIT original: if(1000 to 1500)
+		if(40000 to 59999) //BUBBER EDIT original: if(1000 to 1500)
 			set_light(3)
-		if(60000 to 79999) //SKYRAT EDIT original: if(1500 to 2000)
+		if(60000 to 79999) //BUBBER EDIT original: if(1500 to 2000)
 			set_light(4)
-		if(80000 to MAXIMUM_BURN_TIMER) //SKYRAT EDIT original: if(2000 to MAXIMUM_BURN_TIMER)
+		if(80000 to MAXIMUM_BURN_TIMER) //BUBBER EDIT original: if(2000 to MAXIMUM_BURN_TIMER)
 			set_light(6)
 
 /obj/structure/fireplace/process(seconds_per_tick)

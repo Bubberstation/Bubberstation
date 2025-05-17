@@ -59,7 +59,7 @@
 		/datum/surgery_step/clamp_bleeders,
 		/datum/surgery_step/replace_limb,
 	)
-	removes_target_bodypart = TRUE // SKYRAT EDIT ADDITION - Surgically unremovable limbs
+	removes_target_bodypart = TRUE // BUBBER EDIT ADDITION - Surgically unremovable limbs
 
 //SURGERY STEP SUCCESSES
 

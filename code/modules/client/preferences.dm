@@ -92,10 +92,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	QDEL_NULL(character_preview_view)
 	QDEL_LIST(middleware)
 	value_cache = null
-	//SKYRAT EDIT ADDITION
+	//BUBBER EDIT ADDITION
 	if(pref_species)
 		QDEL_NULL(pref_species)
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 	return ..()
 
 /datum/preferences/New(client/parent)
@@ -123,11 +123,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/loaded_preferences_successfully = load_preferences()
 	if(loaded_preferences_successfully)
 		if(load_character())
-			// SKYRAT EDIT START - Sanitizing preferences
+			// BUBBER EDIT START - Sanitizing preferences
 			sanitize_languages()
 			sanitize_quirks()
-			// SKYRAT EDIT END
-			return // SKYRAT EDIT - Don't remove this. Just don't. Nothing is worth forced random characters.
+			// BUBBER EDIT END
+			return // BUBBER EDIT - Don't remove this. Just don't. Nothing is worth forced random characters.
 	//we couldn't load character data so just randomize the character appearance + name
 	randomise_appearance_prefs() //let's create a random character then - rather than a fat, bald and naked man.
 	if(parent)
@@ -170,12 +170,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		data["character_profiles"] = create_character_profiles()
 		tainted_character_profiles = FALSE
 
-	//SKYRAT EDIT BEGIN
+	//BUBBER EDIT BEGIN
 	data["preview_selection"] = preview_pref
 
 	data["quirks_balance"] = GetQuirkBalance()
 	data["positive_quirk_count"] = GetPositiveQuirkCount()
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 
 	data["character_preferences"] = compile_character_preferences(user)
 
@@ -189,12 +189,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 /datum/preferences/ui_static_data(mob/user)
 	var/list/data = list()
 
-	// SKYRAT EDIT ADDITION START
+	// BUBBER EDIT ADDITION START
 	if(CONFIG_GET(flag/disable_erp_preferences))
 		data["preview_options"] = list(PREVIEW_PREF_JOB, PREVIEW_PREF_LOADOUT, PREVIEW_PREF_UNDERWEAR, PREVIEW_PREF_NAKED)
 	else
 		data["preview_options"] = list(PREVIEW_PREF_JOB, PREVIEW_PREF_LOADOUT, PREVIEW_PREF_UNDERWEAR, PREVIEW_PREF_NAKED, PREVIEW_PREF_NAKED_AROUSED)
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 
 	data["character_profiles"] = create_character_profiles()
 
@@ -235,10 +235,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if ("change_slot")
 			// Save existing character
 			save_character()
-			// SKYRAT EDIT START - Sanitizing languages
+			// BUBBER EDIT START - Sanitizing languages
 			if(sanitize_languages())
 				save_character()
-			// SKYRAT EDIT END
+			// BUBBER EDIT END
 			// SAFETY: `switch_to_slot` performs sanitization on the slot number
 			switch_to_slot(params["slot"])
 			return TRUE
@@ -246,12 +246,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			remove_current_slot()
 			return TRUE
 		if ("rotate")
-			/* SKYRAT EDIT - Bi-directional prefs menu rotation - ORIGINAL:
+			/* BUBBER EDIT - Bi-directional prefs menu rotation - ORIGINAL:
 			character_preview_view.dir = turn(character_preview_view.dir, -90)
 			*/ // ORIGINAL END - SKYRAT EDIT START:
 			var/backwards = params["backwards"]
 			character_preview_view.setDir(turn(character_preview_view.dir, backwards ? 90 : -90))
-			// SKYRAT EDIT END
+			// BUBBER EDIT END
 
 			return TRUE
 		if ("set_preference")
@@ -272,12 +272,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			if (istype(requested_preference, /datum/preference/name))
 				tainted_character_profiles = TRUE
-			//SKYRAT EDIT
+			//BUBBER EDIT
 			update_body_parts(requested_preference)
 			for(var/datum/preference_middleware/preference_middleware as anything in middleware)
 				if(preference_middleware.post_set_preference(ui.user, requested_preference_key, value))
 					return TRUE
-			//SKYRAT EDIT END
+			//BUBBER EDIT END
 			return TRUE
 		if ("set_color_preference")
 			var/requested_preference_key = params["preference"]
@@ -307,7 +307,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				return FALSE
 
 			return TRUE
-		//SKYRAT EDIT ADDITION
+		//BUBBER EDIT ADDITION
 		if("update_preview")
 			preview_pref = params["updated_preview"]
 			character_preview_view.update_body()
@@ -361,7 +361,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		// For the quirks in the prefs menu.
 		if ("get_quirks_balance")
 			return TRUE
-		//SKYRAT EDIT END
+		//BUBBER EDIT END
 
 
 	for (var/datum/preference_middleware/preference_middleware as anything in middleware)
@@ -561,11 +561,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	for(var/V in all_quirks)
 		var/datum/quirk/T = SSquirks.quirks[V]
 		bal -= initial(T.value)
-	//SKYRAT EDIT ADDITION
+	//BUBBER EDIT ADDITION
 	for(var/key in augments)
 		var/datum/augment_item/aug = GLOB.augment_items[augments[key]]
 		bal -= aug.cost
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 	return bal
 
 /datum/preferences/proc/GetPositiveQuirkCount()
@@ -649,19 +649,19 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	apply_prefs_to(character, icon_updates, visuals_only = visuals_only) // BUBBER EDIT - Customization - ORIGINAL: apply_prefs_to(character, icon_updates)
 
 /// Applies the given preferences to a human mob.
-/datum/preferences/proc/apply_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE, visuals_only = FALSE)  // SKYRAT EDIT - Customization - ORIGINAL: /datum/preferences/proc/apply_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE)
-	character.dna.features = MANDATORY_FEATURE_LIST //SKYRAT EDIT CHANGE - We need to instansiate the list with the basic features.
+/datum/preferences/proc/apply_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE, visuals_only = FALSE)  // BUBBER EDIT - Customization - ORIGINAL: /datum/preferences/proc/apply_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE)
+	character.dna.features = MANDATORY_FEATURE_LIST //BUBBER EDIT CHANGE - We need to instansiate the list with the basic features.
 
 	for (var/datum/preference/preference as anything in get_preferences_in_priority_order())
 		if (preference.savefile_identifier != PREFERENCE_CHARACTER)
 			continue
 
-		preference.apply_to_human(character, read_preference(preference.type), src) // SKYRAT EDIT - src
+		preference.apply_to_human(character, read_preference(preference.type), src) // BUBBER EDIT - src
 
-	// SKYRAT EDIT ADDITION START - middleware apply human prefs
+	// BUBBER EDIT ADDITION START - middleware apply human prefs
 	for (var/datum/preference_middleware/preference_middleware as anything in middleware)
 		preference_middleware.apply_to_human(character, src, visuals_only = visuals_only)
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 
 	character.dna.real_name = character.real_name
 

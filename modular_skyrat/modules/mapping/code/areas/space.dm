@@ -1,4 +1,4 @@
-// Skyrat space area defines - Mostly for ruins
+// Bubber space area defines - Mostly for ruins
 
 ///Cybersun, Forgotten Ship
 /area/ruin/space/has_grav/cybersun
@@ -303,7 +303,7 @@
 /area/ruin/space/has_grav/cargodise_freighter/exterior
 	name = "Freighter Exterior"
 
-// Skyrat's Space Hotel
+// Bubber's Space Hotel
 
 /area/ruin/space/has_grav/hotel/sauna
 	name = "Hotel Sauna Room"

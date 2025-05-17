@@ -333,8 +333,8 @@
 	starting_programs = list(
 		/datum/computer_file/program/filemanager,
 		/datum/computer_file/program/robotact,
-		/datum/computer_file/program/crew_manifest, // SKYRAT EDIT ADDITION - Manifests for borgs
-		/datum/computer_file/program/messenger, // SKYRAT EDIT ADDITION - Messenger for borgs
+		/datum/computer_file/program/crew_manifest, // BUBBER EDIT ADDITION - Manifests for borgs
+		/datum/computer_file/program/messenger, // BUBBER EDIT ADDITION - Messenger for borgs
 		/datum/computer_file/program/borg_monitor,
 		/datum/computer_file/program/atmosscan,
 		/datum/computer_file/program/crew_manifest,

@@ -1,4 +1,4 @@
-// THIS IS A SKYRAT UI FILE
+// THIS IS A BUBBER UI FILE
 import { sortBy } from 'common/collections';
 import { Box, Button, Icon, Section, Table } from 'tgui-core/components';
 

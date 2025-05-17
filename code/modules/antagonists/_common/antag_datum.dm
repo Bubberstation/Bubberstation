@@ -336,9 +336,9 @@ GLOBAL_LIST_EMPTY(antagonists)
 	if(owner.current)
 		SEND_SIGNAL(owner.current, COMSIG_MOB_ANTAGONIST_REMOVED, src)
 	qdel(src)
-	// SKYRAT EDIT START
+	// BUBBER EDIT START
 	owner?.handle_exploitables() //Inefficient here, but on_removal() is called in multiple locations
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 
 /**
  * Proc that sends fluff or instructional messages to the player when they are given this antag datum.
@@ -347,7 +347,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 /datum/antagonist/proc/greet()
 	if(!silent)
 		to_chat(owner.current, span_big("You are \the [src]."))
-		to_chat(owner.current, span_infoplain(span_doyourjobidiot("Remember that being an antagonist does not exclude you from the server rules regarding RP standards."))) //SKYRAT EDIT - RP REMINDER
+		to_chat(owner.current, span_infoplain(span_doyourjobidiot("Remember that being an antagonist does not exclude you from the server rules regarding RP standards."))) //BUBBER EDIT - RP REMINDER
 		play_stinger()
 
 /// Plays the antag stinger sound, if we have one

@@ -94,7 +94,7 @@
 	var/paper_to_add = get_paper_overlay()
 	if(paper_to_add)
 		. += paper_to_add
-	if(!integrated_pen && pen) // SKYRAT EDIT - CARGO BORGS - ORIGINAL: if(pen)
+	if(!integrated_pen && pen) // BUBBER EDIT - CARGO BORGS - ORIGINAL: if(pen)
 		. += "clipboard_pen"
 	. += "clipboard_over"
 

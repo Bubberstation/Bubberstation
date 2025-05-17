@@ -67,9 +67,9 @@ SUBSYSTEM_DEF(ticker)
 
 	/// ID of round reboot timer, if it exists
 	var/reboot_timer = null
-	var/real_round_start_time = 0 //SKYRAT EDIT ADDITION
+	var/real_round_start_time = 0 //BUBBER EDIT ADDITION
 
-	var/discord_alerted = FALSE //SKYRAT EDIT - DISCORD PING SPAM PREVENTION
+	var/discord_alerted = FALSE //BUBBER EDIT - DISCORD PING SPAM PREVENTION
 
 /datum/controller/subsystem/ticker/Initialize()
 	var/list/byond_sound_formats = list(
@@ -175,8 +175,8 @@ SUBSYSTEM_DEF(ticker)
 			else
 				SSvote.initiate_vote(/datum/vote/storyteller, "Storyteller Vote", forced = TRUE)
 		// BUBBERSTATION EDIT END
-			SStitle.change_title_screen() //SKYRAT EDIT ADDITION - Title screen
-			addtimer(CALLBACK(SStitle, TYPE_PROC_REF(/datum/controller/subsystem/title, change_title_screen)), 1 SECONDS) //SKYRAT EDIT ADDITION - Title screen
+			SStitle.change_title_screen() //BUBBER EDIT ADDITION - Title screen
+			addtimer(CALLBACK(SStitle, TYPE_PROC_REF(/datum/controller/subsystem/title, change_title_screen)), 1 SECONDS) //BUBBER EDIT ADDITION - Title screen
 			//Everyone who wants to be an observer is now spawned
 			SEND_SIGNAL(src, COMSIG_TICKER_ENTER_PREGAME)
 
@@ -210,7 +210,7 @@ SUBSYSTEM_DEF(ticker)
 				SEND_SIGNAL(src, COMSIG_TICKER_ENTER_SETTING_UP)
 				current_state = GAME_STATE_SETTING_UP
 				Master.SetRunLevel(RUNLEVEL_SETUP)
-				SSevents.reschedule() // SKYRAT EDIT ADDITION
+				SSevents.reschedule() // BUBBER EDIT ADDITION
 				if(start_immediately)
 					fire()
 
@@ -301,8 +301,8 @@ SUBSYSTEM_DEF(ticker)
 
 	round_start_time = world.time //otherwise round_start_time would be 0 for the signals
 	SEND_SIGNAL(src, COMSIG_TICKER_ROUND_STARTING, world.time)
-	real_round_start_time = REALTIMEOFDAY //SKYRAT EDIT ADDITION
-	SSautotransfer.new_shift(real_round_start_time) //SKYRAT EDIT ADDITION
+	real_round_start_time = REALTIMEOFDAY //BUBBER EDIT ADDITION
+	SSautotransfer.new_shift(real_round_start_time) //BUBBER EDIT ADDITION
 
 	log_world("Game start took [(world.timeofday - init_start)/10]s")
 	INVOKE_ASYNC(SSdbcore, TYPE_PROC_REF(/datum/controller/subsystem/dbcore,SetRoundStart))
@@ -350,7 +350,7 @@ SUBSYSTEM_DEF(ticker)
 
 		iter_human.increment_scar_slot()
 		iter_human.load_persistent_scars()
-		SSpersistence.load_modular_persistence(iter_human.get_organ_slot(ORGAN_SLOT_BRAIN)) // SKYRAT EDIT ADDITION - MODULAR_PERSISTENCE
+		SSpersistence.load_modular_persistence(iter_human.get_organ_slot(ORGAN_SLOT_BRAIN)) // BUBBER EDIT ADDITION - MODULAR_PERSISTENCE
 		iter_human.add_to_player_list() // BUBBER EDIT ADDITION - CHARACTER DIRECTORY
 
 		if(!iter_human.hardcore_survival_score)
@@ -381,11 +381,11 @@ SUBSYSTEM_DEF(ticker)
 			GLOB.joined_player_list += player.ckey
 			var/atom/destination = player.mind.assigned_role.get_roundstart_spawn_point()
 			if(!destination) // Failed to fetch a proper roundstart location, won't be going anywhere.
-				player.show_title_screen() //SKYRAT EDIT CHANGE
+				player.show_title_screen() //BUBBER EDIT CHANGE
 				continue
 			player.create_character(destination)
 		else
-			player.show_title_screen() //SKYRAT EDIT ADDITION
+			player.show_title_screen() //BUBBER EDIT ADDITION
 
 
 		CHECK_TICK
@@ -597,7 +597,7 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/send_news_report()
 	var/news_message
 	var/news_source = "Nanotrasen News Network"
-	var/decoded_station_name = html_decode(CONFIG_GET(string/cross_comms_name)) //decode station_name to avoid minor_announce double encode // SKYRAT EDIT: CROSS COMMS CONFIG
+	var/decoded_station_name = html_decode(CONFIG_GET(string/cross_comms_name)) //decode station_name to avoid minor_announce double encode // BUBBER EDIT: CROSS COMMS CONFIG
 
 	switch(news_report)
 		// The nuke was detonated on the syndicate recon outpost
@@ -688,24 +688,24 @@ SUBSYSTEM_DEF(ticker)
 			news_message = "Officials are advising nearby colonies about a newly declared exclusion zone in \
 				the sector surrounding [decoded_station_name]."
 
-	//SKYRAT EDIT - START
+	//BUBBER EDIT - START
 	if(SSblackbox.first_death)
 		var/list/ded = SSblackbox.first_death
 		if(ded.len)
 			news_message += " NT Sanctioned Psykers picked up faint traces of someone near the station, allegedly having had died. Their name was: [ded["name"]], [ded["role"]], at [ded["area"]].[ded["last_words"] ? " Their last words were: \"[ded["last_words"]]\"" : ""]" // " // An Extra quote and comment because highlighting goes weird
 		else
 			news_message += " NT Sanctioned Psykers proudly confirm reports that nobody died this shift!"
-	//SKYRAT EDIT - END
+	//BUBBER EDIT - END
 
-	if(news_message && length(CONFIG_GET(keyed_list/cross_server))) //SKYRAT EDIT - CONFIG CHECK MOVED FROM ROUNDEND.DM
-		news_message += " (Shift on [CONFIG_GET(string/cross_server_name)] ending!)" //SKYRAT EDIT ADDITION
+	if(news_message && length(CONFIG_GET(keyed_list/cross_server))) //BUBBER EDIT - CONFIG CHECK MOVED FROM ROUNDEND.DM
+		news_message += " (Shift on [CONFIG_GET(string/cross_server_name)] ending!)" //BUBBER EDIT ADDITION
 		send2otherserver(news_source, news_message,"News_Report")
-	//SKYRAT EDIT - START
+	//BUBBER EDIT - START
 	if(news_message)
 		return news_message
 	else
 		return "We regret to inform you that shit be whack, yo. None of our reporters have any idea of what may or may not have gone on."
-	//SKYRAT EDIT - END
+	//BUBBER EDIT - END
 
 /datum/controller/subsystem/ticker/proc/GetTimeLeft()
 	if(isnull(SSticker.timeLeft))

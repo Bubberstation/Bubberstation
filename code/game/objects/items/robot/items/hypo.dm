@@ -8,7 +8,7 @@
 		/datum/reagent/medicine/salglu_solution,\
 		/datum/reagent/medicine/spaceacillin,\
 		/datum/reagent/medicine/lidocaine\
-	) //SKYRAT EDIT line 10 added Lidocaine
+	) //BUBBER EDIT line 10 added Lidocaine
 #define EXPANDED_MEDICAL_REAGENTS list(\
 		/datum/reagent/medicine/inacusiate,\
 		/datum/reagent/medicine/mannitol,\
@@ -250,7 +250,7 @@
 	. += "Currently loaded: [selected_reagent ? "[selected_reagent]. [selected_reagent.description]" : "nothing."]"
 	. += span_notice("<i>Alt+Click</i> to change transfer amount. Currently set to [amount_per_transfer_from_this]u.")
 
-/* SKYRAT EDIT REMOVAL START - SEE master_files/code/modules/reagents/reagent_containers.dm
+/* BUBBER EDIT REMOVAL START - SEE master_files/code/modules/reagents/reagent_containers.dm
 /obj/item/reagent_containers/borghypo/click_alt(mob/living/user)
 
 	change_transfer_amount(user)

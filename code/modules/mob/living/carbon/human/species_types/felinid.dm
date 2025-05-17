@@ -5,12 +5,12 @@
 	examine_limb_id = SPECIES_HUMAN
 	mutantbrain = /obj/item/organ/brain/felinid
 	mutanttongue = /obj/item/organ/tongue/cat
-	/* SKYRAT EDIT REMOVAL - CUSTOMIZATION
+	/* BUBBER EDIT REMOVAL - CUSTOMIZATION
 	mutantears = /obj/item/organ/ears/cat
 	mutant_organs = list(
 		/obj/item/organ/tail/cat = "Cat",
 	)
-	*/ // SKYRAT EDIT REMOVAL END
+	*/ // BUBBER EDIT REMOVAL END
 	inherent_traits = list(
 		TRAIT_CATLIKE_GRACE,
 		TRAIT_HATED_BY_DOGS,
@@ -42,7 +42,7 @@
 			target_human.dna.features["tail_cat"] = "Cat"
 			if(target_human.dna.features["ears"] == "None")
 				target_human.dna.features["ears"] = "Cat"
-		/* SKYRAT EDIT -- START -- ORIGINAL
+		/* BUBBER EDIT -- START -- ORIGINAL
 		if(target_human.dna.features["ears"] == "None")
 			mutantears = /obj/item/organ/ears
 		else
@@ -54,7 +54,7 @@
 			ears.Insert(target_human, movement_flags = DELETE_IF_REPLACED)
 		else
 			mutantears = /obj/item/organ/ears
-		// SKYRAT EDIT -- END
+		// BUBBER EDIT -- END
 	return ..()
 
 /datum/species/human/felinid/randomize_features(mob/living/carbon/human/human_mob)
@@ -213,7 +213,7 @@
 	human_for_preview.set_hairstyle("Hime Cut", update = TRUE)
 
 
-	/* SKYRAT EDIT - Making the species menu icons work better - ORIGINAL:
+	/* BUBBER EDIT - Making the species menu icons work better - ORIGINAL:
 	var/obj/item/organ/ears/cat/cat_ears = human_for_preview.get_organ_by_type(/obj/item/organ/ears/cat)
 	if (cat_ears)
 		cat_ears.color = human_for_preview.hair_color
@@ -223,7 +223,7 @@
 	human_for_preview.dna.mutant_bodyparts["ears"] = list(MUTANT_INDEX_NAME = "Cat", MUTANT_INDEX_COLOR_LIST = list(human_for_preview.hair_color))
 	regenerate_organs(human_for_preview, src, visual_only = TRUE)
 	human_for_preview.update_body(TRUE)
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 
 /datum/species/human/felinid/get_physical_attributes()
 	return "Felinids are very similar to humans in almost all respects, with their biggest differences being the ability to lick their wounds, \
@@ -280,14 +280,14 @@
 			SPECIES_PERK_NAME = "Hydrophobia",
 			SPECIES_PERK_DESC = "Felinids don't like getting soaked with water.",
 		),
-// SKYRAT EDIT ADDITION START
+// BUBBER EDIT ADDITION START
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "paw",
 			SPECIES_PERK_NAME = "Soft Landing",
 			SPECIES_PERK_DESC = "Felinids are unhurt by high falls, and land on their feet.",
 		),
-// SKYRAT EDIT ADDITION END
+// BUBBER EDIT ADDITION END
 	)
 
 	return to_add

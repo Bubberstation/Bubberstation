@@ -92,7 +92,7 @@
 	var/holopay_name = "holographic pay stand"
 
 	/// Registered owner's age.
-	var/registered_age = 18 //SKYRAT EDIT - ORIGINAL (30)
+	var/registered_age = 18 //BUBBER EDIT - ORIGINAL (30)
 
 	/// The job name registered on the card (for example: Assistant).
 	var/assignment
@@ -502,7 +502,7 @@
 	if(Adjacent(user))
 		var/minor
 		if(registered_name && registered_age && registered_age < AGE_MINOR)
-			minor = " <b>[registered_age]</b>" //SKYRAT EDIT CHANGE
+			minor = " <b>[registered_age]</b>" //BUBBER EDIT CHANGE
 		user.visible_message(span_notice("[user] shows you: [icon2html(src, viewers(user))] [src.name][minor]."), span_notice("You show \the [src.name][minor]."))
 	add_fingerprint(user)
 
@@ -649,11 +649,11 @@
 			return ITEM_INTERACT_BLOCKING
 		to_chat(user, span_notice("You stuff the contents into the card! They disappear in a puff of bluespace smoke, adding [money_added] worth of credits to the linked account."))
 		return ITEM_INTERACT_SUCCESS
-	/// SKYRAT EDIT BEGINS - Trim Tokens - Proc defined in modular_skyrat/modules/trim_tokens/code/cards_id.dm
+	/// BUBBER EDIT BEGINS - Trim Tokens - Proc defined in modular_skyrat/modules/trim_tokens/code/cards_id.dm
 	else if(istype(tool, /obj/item/trim_token))
 		apply_token(tool, user)
 		return
-	/// SKYRAT EDIT ENDS
+	/// BUBBER EDIT ENDS
 	return NONE
 
 /**

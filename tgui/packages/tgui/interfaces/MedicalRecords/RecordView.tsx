@@ -33,11 +33,11 @@ export const MedicalRecordView = (props) => {
   const { assigned_view, physical_statuses, mental_statuses, station_z } = data;
 
   // const { min_age, max_age } = data; // ORIGINAL
-  const { min_age, max_age, max_chrono_age } = data; // SKYRAT EDIT CHANGE - Chronological age
+  const { min_age, max_age, max_chrono_age } = data; // BUBBER EDIT CHANGE - Chronological age
 
   const {
     age,
-    chrono_age, // SKYRAT EDIT ADDITION - Chronological age
+    chrono_age, // BUBBER EDIT ADDITION - Chronological age
     blood_type,
     crew_ref,
     dna,
@@ -49,10 +49,10 @@ export const MedicalRecordView = (props) => {
     name,
     quirk_notes,
     rank,
-    // SKYRAT EDIT START - RP Records
+    // BUBBER EDIT START - RP Records
     past_general_records,
     past_medical_records,
-    // SKYRAT EDIT END
+    // BUBBER EDIT END
     species,
   } = foundRecord;
 
@@ -98,9 +98,9 @@ export const MedicalRecordView = (props) => {
               <EditableText field="job" target_ref={crew_ref} text={rank} />
             </LabeledList.Item>
             {/* <LabeledList.Item label="Age"> // ORIGINAL */}
-            {/* SKYRAT EDIT CHANGE BEGIN - Chronological age */}
+            {/* BUBBER EDIT CHANGE BEGIN - Chronological age */}
             <LabeledList.Item label="Physical Age">
-              {/* SKYRAT EDIT CHANGE END */}
+              {/* BUBBER EDIT CHANGE END */}
               <RestrictedInput
                 minValue={min_age}
                 maxValue={max_age}
@@ -116,7 +116,7 @@ export const MedicalRecordView = (props) => {
                 value={age}
               />
             </LabeledList.Item>
-            {/* SKYRAT EDIT ADDITION BEGIN - Chronological age */}
+            {/* BUBBER EDIT ADDITION BEGIN - Chronological age */}
             <LabeledList.Item label="Chronological Age">
               <RestrictedInput
                 minValue={min_age}
@@ -131,7 +131,7 @@ export const MedicalRecordView = (props) => {
                 value={chrono_age}
               />
             </LabeledList.Item>
-            {/* SKYRAT EDIT ADDITION END */}
+            {/* BUBBER EDIT ADDITION END */}
             <LabeledList.Item label="Species">
               <EditableText
                 field="species"
@@ -236,7 +236,7 @@ export const MedicalRecordView = (props) => {
                 <Box key={index}>&#8226; {quirk}</Box>
               ))}
             </LabeledList.Item>
-            {/* SKYRAT EDIT START - RP Records (Not pretty but it's there) */}
+            {/* BUBBER EDIT START - RP Records (Not pretty but it's there) */}
             <LabeledList.Item label="General Records">
               <Box maxWidth="100%" preserveWhitespace>
                 {past_general_records || 'N/A'}
@@ -247,7 +247,7 @@ export const MedicalRecordView = (props) => {
                 {past_medical_records || 'N/A'}
               </Box>
             </LabeledList.Item>
-            {/* SKYRAT EDIT END */}
+            {/* BUBBER EDIT END */}
           </LabeledList>
         </Section>
       </Stack.Item>

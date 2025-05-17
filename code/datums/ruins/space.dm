@@ -180,7 +180,7 @@
 
 /datum/map_template/ruin/space/spacehotel
 	id = "spacehotel"
-	suffix = "spacehotel_skyrat.dmm"	// SKYRAT EDIT CHANGE - ORIGINAL: suffix = "spacehotel.dmm"
+	suffix = "spacehotel_skyrat.dmm"	// BUBBER EDIT CHANGE - ORIGINAL: suffix = "spacehotel.dmm"
 	name = "Space-Ruin The Twin-Nexus Hotel"
 	description = "An interstellar hotel, where the weary spaceman can rest their head and relax, assured that the residential staff will not murder them in their sleep. Probably."
 
@@ -284,16 +284,16 @@
 	name = "Space-Ruin Gondoland"
 	description = "Just an ordinary rock- wait, what's that thing?"
 
-// SKYRAT EDIT CHANGE START -- Reworked whiteship ruin
-/* SKYRAT EDIT CHANGE -- ORIGINAL COMMENTED OUT
+// BUBBER EDIT CHANGE START -- Reworked whiteship ruin
+/* BUBBER EDIT CHANGE -- ORIGINAL COMMENTED OUT
 /datum/map_template/ruin/space/whiteshipruin_box
 id = "whiteshipruin_box"
 suffix = "whiteshipruin_box.dmm"*/
 
-/datum/map_template/ruin/space/whiteshipruin_box_skyrat//Skyrat Edit
+/datum/map_template/ruin/space/whiteshipruin_box_skyrat//Bubber Edit
 	id = "whiteshipruin_box_skyrat"
 	suffix = "whiteshipruin_box_skyrat.dmm"
-	// SKYRAT EDIT CHANGE END
+	// BUBBER EDIT CHANGE END
 	name = "Space-Ruin NT Medical Ship"
 	description = "An ancient ship, said to be among the first discovered derelicts near Space Station 13 that was still in working order. \
 	Aged and deprecated by time, this relic of a vessel is now broken beyond repair."

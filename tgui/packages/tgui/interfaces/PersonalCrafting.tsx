@@ -23,7 +23,7 @@ import { Food } from './PreferencesMenu/types';
 const TYPE_ICONS = {
   'Can Make': 'utensils',
   [Food.Alcohol]: 'wine-glass',
-  [Food.Bloody]: 'tint', // SKYRAT EDIT ADDITION - Hemophage Food
+  [Food.Bloody]: 'tint', // BUBBER EDIT ADDITION - Hemophage Food
   [Food.Breakfast]: 'sun',
   [Food.Bugs]: 'bug',
   [Food.Cloth]: 'tshirt',
@@ -77,7 +77,7 @@ const CATEGORY_ICONS_COOKING = {
   Cakes: 'cake-candles',
   'Egg-Based Food': 'egg',
   Frozen: 'ice-cream',
-  'Hemophage Food': 'tint', // SKYRAT EDIT ADDITION - Hemophage Food
+  'Hemophage Food': 'tint', // BUBBER EDIT ADDITION - Hemophage Food
   'Lizard Food': 'dragon',
   Meats: 'bacon',
   'Mexican Food': 'pepper-hot',
@@ -91,7 +91,7 @@ const CATEGORY_ICONS_COOKING = {
   Seafood: 'fish',
   Soups: 'mug-hot',
   Spaghettis: 'wheat-awn',
-  'Teshari Food': 'feather-pointed', // SKYRAT EDIT ADDITION - Teshari Food
+  'Teshari Food': 'feather-pointed', // BUBBER EDIT ADDITION - Teshari Food
 } as const;
 
 enum MODE {

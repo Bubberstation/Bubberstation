@@ -7,7 +7,7 @@ import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
-const ROWS = 6; // SKYRAT EDIT CHANGE
+const ROWS = 6; // BUBBER EDIT CHANGE
 const COLUMNS = 6;
 
 const BUTTON_DIMENSIONS = '64px';
@@ -60,12 +60,12 @@ const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
   },
 
   enable_internals: {
-    icon: 'lungs', // SKYRAT EDIT - TGFONT IS FUCKED AND I DUNNO WHY SO HERE'S A BANDAID - original "tg-air-tank"
+    icon: 'lungs', // BUBBER EDIT - TGFONT IS FUCKED AND I DUNNO WHY SO HERE'S A BANDAID - original "tg-air-tank"
     text: 'Enable internals',
   },
 
   disable_internals: {
-    icon: 'lungs-virus', // SKYRAT EDIT - TGFONT IS FUCKED AND I DUNNO WHY SO HERE'S A BANDAID - original "tg-air-tank-slash"
+    icon: 'lungs-virus', // BUBBER EDIT - TGFONT IS FUCKED AND I DUNNO WHY SO HERE'S A BANDAID - original "tg-air-tank-slash"
     text: 'Disable internals',
   },
 
@@ -220,7 +220,7 @@ const SLOTS: Record<
     image: 'inventory-pocket.png',
   },
 
-  // SKYRAT EDIT ADDITION
+  // BUBBER EDIT ADDITION
   vagina: {
     displayName: 'vagina',
     gridSpot: getGridSpotKey([5, 1]),
@@ -245,7 +245,7 @@ const SLOTS: Record<
     image: 'inventory-pocket.png',
   },
 };
-// SKYRAT EDIT END
+// BUBBER EDIT END
 
 enum ObscuringLevel {
   Completely = 1,

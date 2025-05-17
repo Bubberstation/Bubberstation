@@ -118,10 +118,10 @@
 	if(CONFIG_GET(flag/usewhitelist))
 		load_whitelist()
 
-	// SKYRAT EDIT ADDITION START
+	// BUBBER EDIT ADDITION START
 	populate_interaction_instances()
 	remove_erp_things()
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 
 	loaded = TRUE
 

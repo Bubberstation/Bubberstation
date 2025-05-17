@@ -132,10 +132,10 @@
 			. += filling
 
 
-/obj/machinery/chem_master/wrench_act(mob/living/user, obj/item/tool) //SKYRAT ADDITION START
+/obj/machinery/chem_master/wrench_act(mob/living/user, obj/item/tool) //BUBBER ADDITION START
 	if(default_unfasten_wrench(user, tool) == SUCCESSFUL_UNFASTEN)
 		return ITEM_INTERACT_SUCCESS
-	return ITEM_INTERACT_BLOCKING //SKYRAT ADDITION END
+	return ITEM_INTERACT_BLOCKING //BUBBER ADDITION END
 
 /obj/machinery/chem_master/Exited(atom/movable/gone, direction)
 	. = ..()
@@ -171,8 +171,8 @@
 			CAT_TUBES = GLOB.reagent_containers[CAT_TUBES],
 			CAT_PILLS = GLOB.reagent_containers[CAT_PILLS],
 			CAT_PATCHES = GLOB.reagent_containers[CAT_PATCHES],
-			CAT_HYPOS = GLOB.reagent_containers[CAT_HYPOS], // SKYRAT EDIT
-			CAT_DARTS = GLOB.reagent_containers[CAT_DARTS], // SKYRAT EDIT
+			CAT_HYPOS = GLOB.reagent_containers[CAT_HYPOS], // BUBBER EDIT
+			CAT_DARTS = GLOB.reagent_containers[CAT_DARTS], // BUBBER EDIT
 		)
 	return containers
 
@@ -517,10 +517,10 @@
 				item_name_default = "[master_reagent.name] [item_name_default]"
 			if(!(initial(selected_container.reagent_flags) & OPENCONTAINER)) // Closed containers get both reagent name and units in the name
 				item_name_default = "[master_reagent.name] [item_name_default] ([volume_in_each]u)"
-			// SKYRAT EDIT ADDITION START - Autonamed hyposprays/smartdarts
+			// BUBBER EDIT ADDITION START - Autonamed hyposprays/smartdarts
 			if(ispath(selected_container, /obj/item/reagent_containers/cup/vial) || ispath(selected_container, /obj/item/reagent_containers/syringe/smartdart))
 				item_name_default = "[master_reagent.name] [item_name_default]"
-			// SKYRAT EDIT ADDITION END
+			// BUBBER EDIT ADDITION END
 			var/item_name = tgui_input_text(
 				usr,
 				"Container name",

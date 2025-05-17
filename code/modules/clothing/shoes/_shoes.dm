@@ -51,7 +51,7 @@
 			playsound(user, 'sound/items/weapons/genhit2.ogg', 50, TRUE)
 		return BRUTELOSS
 
-//SKYRAT EDIT REMOVAL BEGIN -DIGI_BLOODSOLE - (Moved to modular_skyrat/modules/digi_shoeblood/code/modules/clothing/shoes/_shoes.dm)
+//BUBBER EDIT REMOVAL BEGIN -DIGI_BLOODSOLE - (Moved to modular_skyrat/modules/digi_shoeblood/code/modules/clothing/shoes/_shoes.dm)
 /*
 /obj/item/clothing/shoes/worn_overlays(mutable_appearance/standing, isinhands = FALSE)
 	. = ..()
@@ -74,7 +74,7 @@
 			blood_overlay.color = get_blood_dna_color(GET_ATOM_BLOOD_DNA(src))
 			. += blood_overlay
 */
-//SKYRAT EDIT REMOVAL END
+//BUBBER EDIT REMOVAL END
 /obj/item/clothing/shoes/examine(mob/user)
 	. = ..()
 
@@ -203,10 +203,10 @@
 		to_chat(user, span_notice("You quietly set to work [tied ? "un[fastening_verb()]" : "knotting"] [loc]'s [src.name]..."))
 		if(HAS_TRAIT(user, TRAIT_CLUMSY)) // based clowns trained their whole lives for this
 			mod_time *= 0.75
-		// SKYRAT EDIT ADDITION START
+		// BUBBER EDIT ADDITION START
 		if(HAS_TRAIT(user, TRAIT_STICKY_FINGERS)) // Clowns with thieving gloves will be a menace
 			mod_time *= 0.5
-		// SKYRAT EDIT ADDITION END
+		// BUBBER EDIT ADDITION END
 		if(do_after(user, mod_time, target = our_guy, extra_checks = CALLBACK(src, PROC_REF(still_shoed), our_guy), hidden = TRUE))
 			to_chat(user, span_notice("You [tied ? "un[fasten_verb()]" : "knot"] the [fastening_type] on [loc]'s [src.name]."))
 			if(tied == SHOES_UNTIED)

@@ -176,7 +176,7 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 	var/teleportion_possible = FALSE
 	var/transport_active = FALSE
 
-	//SKYRAT EDIT ADDITION
+	//BUBBER EDIT ADDITION
 	var/requires_key = FALSE
 	var/key_used = FALSE
 
@@ -187,7 +187,7 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 		key_used = TRUE
 		qdel(I)
 		return
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 
 /obj/machinery/gateway/Initialize(mapload)
 	generate_destination()
@@ -272,10 +272,10 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 /obj/machinery/gateway/proc/activate(datum/gateway_destination/D)
 	if(!powered() || target)
 		return
-	//SKYRAT EDIT ADDITION
+	//BUBBER EDIT ADDITION
 	if(requires_key && !key_used)
 		return
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 	target = D
 	target.activate(destination)
 	portal_visuals.setup_visuals(target)
@@ -385,13 +385,13 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 			try_to_linkup()
 			return TRUE
 		if("activate")
-			//SKYRAT EDIT ADDITION BEGIN
+			//BUBBER EDIT ADDITION BEGIN
 			if(ishuman(usr))
 				var/mob/living/carbon/human/interacting_human = usr
 				if(!allowed(interacting_human))
 					to_chat(interacting_human, "<span class='notice'>Error, you do not have the required access to link up the gateway.</span>")
 					return FALSE
-			//SKYRAT EDIT END
+			//BUBBER EDIT END
 			var/datum/gateway_destination/D = locate(params["destination"]) in GLOB.gateway_destinations
 			try_to_connect(D)
 			return TRUE

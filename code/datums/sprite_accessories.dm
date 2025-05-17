@@ -1319,7 +1319,7 @@ GLOBAL_LIST_EMPTY(blended_hair_icons_cache)
 	gender = MALE
 	use_static = TRUE
 
-/* SKYRAT EDIT REMOVAL START - Underwear and bra split
+/* BUBBER EDIT REMOVAL START - Underwear and bra split
 //FEMALE UNDERWEAR
 /datum/sprite_accessory/underwear/female_bikini
 	name = "Bikini"
@@ -1421,7 +1421,7 @@ GLOBAL_LIST_EMPTY(blended_hair_icons_cache)
 	icon_state = "female_kinky"
 	gender = FEMALE
 	use_static = TRUE
-*/ // SKYRAT EDIT END
+*/ // BUBBER EDIT END
 
 ////////////////////////////
 // Undershirt Definitions //
@@ -1618,7 +1618,7 @@ GLOBAL_LIST_EMPTY(blended_hair_icons_cache)
 	icon_state = "whiteshortsleeve"
 	gender = NEUTER
 
-/* SKYRAT EDIT REMOVAL START - Underwear and bra split
+/* BUBBER EDIT REMOVAL START - Underwear and bra split
 /datum/sprite_accessory/undershirt/sports_bra
 	name = "Sports Bra"
 	icon_state = "sports_bra"
@@ -1628,7 +1628,7 @@ GLOBAL_LIST_EMPTY(blended_hair_icons_cache)
 	name = "Sports Bra (Alt)"
 	icon_state = "sports_bra_alt"
 	gender = NEUTER
-*/ // SKYRAT EDIT END
+*/ // BUBBER EDIT END
 
 /datum/sprite_accessory/undershirt/blueshirtsport
 	name = "Sports Shirt (Blue)"

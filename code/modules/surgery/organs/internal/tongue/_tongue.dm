@@ -189,7 +189,7 @@
 	say_mod = "hisses"
 	taste_sensitivity = 10 // combined nose + tongue, extra sensitive
 	modifies_speech = TRUE
-	languages_native = list(/datum/language/draconic, /datum/language/ashtongue) //SKYRAT EDIT: Ashtongue for Ashwalkers
+	languages_native = list(/datum/language/draconic, /datum/language/ashtongue) //BUBBER EDIT: Ashtongue for Ashwalkers
 	liked_foodtypes = GORE | MEAT | SEAFOOD | NUTS | BUGS
 	disliked_foodtypes = GRAIN | DAIRY | CLOTH | GROSS
 	voice_filter = @{"[0:a] asplit [out0][out2]; [out0] asetrate=%SAMPLE_RATE%*0.9,aresample=%SAMPLE_RATE%,atempo=1/0.9,aformat=channel_layouts=mono,volume=0.2 [p0]; [out2] asetrate=%SAMPLE_RATE%*1.1,aresample=%SAMPLE_RATE%,atempo=1/1.1,aformat=channel_layouts=mono,volume=0.2[p2]; [p0][0][p2] amix=inputs=3"}
@@ -197,11 +197,11 @@
 		new /regex("s+", "g") = "sss",
 		new /regex("S+", "g") = "SSS",
 		new /regex(@"(\w)x", "g") = "$1kss",
-		//new /regex(@"(\w)X", "g") = "$1KSSS", // SKYRAT EDIT REMOVAL
+		//new /regex(@"(\w)X", "g") = "$1KSSS", // BUBBER EDIT REMOVAL
 		new /regex(@"\bx([\-|r|R]|\b)", "g") = "ecks$1",
 		new /regex(@"\bX([\-|r|R]|\b)", "g") = "ECKS$1",
 	)
-	// SKYRAT EDIT ADDITION START - Russian version
+	// BUBBER EDIT ADDITION START - Russian version
 	var/static/list/russian_speech_replacements = list(
 		new /regex("s+", "g") = "sss",
 		new /regex("S+", "g") = "SSS",
@@ -218,11 +218,11 @@
 		"ж" = "ш",
 		"Ж" = "Ш",
 	)
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 
 /obj/item/organ/tongue/lizard/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/speechmod, replacements = CONFIG_GET(flag/russian_text_formation) ? russian_speech_replacements : speech_replacements, should_modify_speech = CALLBACK(src, PROC_REF(should_modify_speech))) // SKYRAT EDIT CHANGE - ORIGINAL: AddComponent(/datum/component/speechmod, replacements = speech_replacements, should_modify_speech = CALLBACK(src, PROC_REF(should_modify_speech)))
+	AddComponent(/datum/component/speechmod, replacements = CONFIG_GET(flag/russian_text_formation) ? russian_speech_replacements : speech_replacements, should_modify_speech = CALLBACK(src, PROC_REF(should_modify_speech))) // BUBBER EDIT CHANGE - ORIGINAL: AddComponent(/datum/component/speechmod, replacements = speech_replacements, should_modify_speech = CALLBACK(src, PROC_REF(should_modify_speech)))
 
 /obj/item/organ/tongue/lizard/silver
 	name = "silver tongue"
@@ -597,10 +597,10 @@
 	color = "#96DB00" // TODO proper sprite, rather than recoloured pink tongue
 	modifies_speech = TRUE
 	voice_filter = "atempo=0.5" // makes them talk really slow
-	liked_foodtypes = VEGETABLES | FRUIT | GROSS | RAW //SKYRAT EDIT - Roundstart Snails - Food Prefs
-	disliked_foodtypes = DAIRY | ORANGES | SUGAR //SKYRAT EDIT: Roundstart Snails - As it turns out, you can't give a snail processed sugar or citrus.
+	liked_foodtypes = VEGETABLES | FRUIT | GROSS | RAW //BUBBER EDIT - Roundstart Snails - Food Prefs
+	disliked_foodtypes = DAIRY | ORANGES | SUGAR //BUBBER EDIT: Roundstart Snails - As it turns out, you can't give a snail processed sugar or citrus.
 
-/* SKYRAT EDIT START - Roundstart Snails: Less annoying speech.
+/* BUBBER EDIT START - Roundstart Snails: Less annoying speech.
 /obj/item/organ/tongue/snail/modify_speech(datum/source, list/speech_args)
 	var/new_message
 	var/message = speech_args[SPEECH_MESSAGE]
@@ -610,7 +610,7 @@
 		else
 			new_message += message[i]
 	speech_args[SPEECH_MESSAGE] = new_message
-*/ // SKYRAT EDIT END
+*/ // BUBBER EDIT END
 
 /obj/item/organ/tongue/ethereal
 	name = "electric discharger"

@@ -32,7 +32,7 @@
 
 	values += "Random"
 	//we add uncommon as it's foreigner-only.
-	values += /datum/language/common::name // SKYRAT EDIT ADDITION START - Let's you select common
+	values += /datum/language/common::name // BUBBER EDIT ADDITION START - Let's you select common
 	values += /datum/language/uncommon::name
 
 	for(var/datum/language/language_type as anything in GLOB.uncommon_roundstart_languages)

@@ -145,7 +145,7 @@
 	icon_state = "sili_hatchet"
 	icon_angle = 0
 
-/* Skyrat Edit Start - Modularization and New Scythes
+/* Bubber Edit Start - Modularization and New Scythes
 /obj/item/scythe
 	name = "scythe"
 	desc = "A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow."

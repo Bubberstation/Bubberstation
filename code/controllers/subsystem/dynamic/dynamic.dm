@@ -530,10 +530,10 @@ SUBSYSTEM_DEF(dynamic)
 
 	if (!CONFIG_GET(flag/no_intercept_report))
 		addtimer(CALLBACK(src, PROC_REF(send_intercept)), rand(waittime_l, waittime_h))
-	//SKYRAT EDIT START - DIVERGENCY/GOALS REPORT
+	//BUBBER EDIT START - DIVERGENCY/GOALS REPORT
 //	else // BUBBER EDIT REMOVAL
 //		addtimer(CALLBACK(src, PROC_REF(send_trait_report)), rand(waittime_l, waittime_h)) // BUBBER EDIT REMOVAL
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 		addtimer(CALLBACK(src, PROC_REF(display_roundstart_logout_report)), ROUNDSTART_LOGOUT_REPORT_TIME)
 
 	if(CONFIG_GET(flag/reopen_roundstart_suicide_roles))
@@ -905,7 +905,7 @@ SUBSYSTEM_DEF(dynamic)
 		ruleset.restricted_roles |= ruleset.protected_roles
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		ruleset.restricted_roles |= JOB_ASSISTANT
-	// SKYRAT EDIT ADDITION
+	// BUBBER EDIT ADDITION
 	for(var/datum/job/iterating_job as anything in subtypesof(/datum/job))
 		if(!initial(iterating_job.antagonist_restricted))
 			continue
@@ -916,7 +916,7 @@ SUBSYSTEM_DEF(dynamic)
 			ruleset.restricted_roles |= initial(iterating_job.title)
 		else
 			ruleset.restricted_roles |= initial(iterating_job.title)
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 	if(!(ruleset.ruleset_category & GLOB.dynamic_ruleset_categories))
 		ruleset.requirements = list(101,101,101,101,101,101,101,101,101,101)
 

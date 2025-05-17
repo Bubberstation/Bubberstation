@@ -356,7 +356,7 @@
 	id = /obj/item/card/id/away/hotel/manager
 
 /datum/outfit/hotelstaff/security
-	r_hand = /obj/item/gun/energy/laser/scatter/shotty // SKYRAT EDIT ADD - SPAWNS IN HAND INSTEAD OF ON MAP
+	r_hand = /obj/item/gun/energy/laser/scatter/shotty // BUBBER EDIT ADD - SPAWNS IN HAND INSTEAD OF ON MAP
 	id = /obj/item/card/id/away/hotel/security
 
 //Lost Space Truckers: Six people stranded in deep space aboard a cargo freighter. They must survive their marooning and cooperate.
@@ -504,7 +504,7 @@
 	icon_state = "cryopod-open"
 
 /obj/structure/showcase/machinery/oldpod/used/psyker
-	icon = 'icons/obj/machines/sleeper.dmi' // SKYRAT TODO - Add aesthetics sprites
+	icon = 'icons/obj/machines/sleeper.dmi' // BUBBER TODO - Add aesthetics sprites
 
 //IDS//
 

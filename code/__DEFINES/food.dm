@@ -19,7 +19,7 @@
 #define BUGS (1<<18)
 #define GORE (1<<19)
 #define STONE (1<<20)
-#define BLOODY (1<<21) // SKYRAT EDIT - Hemophage Food
+#define BLOODY (1<<21) // BUBBER EDIT - Hemophage Food
 
 DEFINE_BITFIELD(foodtypes, list(
 	"MEAT" = MEAT,
@@ -43,7 +43,7 @@ DEFINE_BITFIELD(foodtypes, list(
 	"BUGS" = BUGS,
 	"GORE" = GORE,
 	"STONE" = STONE,
-	"BLOODY" = BLOODY, // SKYRAT EDIT - Hemophage Food
+	"BLOODY" = BLOODY, // BUBBER EDIT - Hemophage Food
 ))
 
 /// A list of food type names, in order of their flags
@@ -69,7 +69,7 @@ DEFINE_BITFIELD(foodtypes, list(
 	"BUGS", \
 	"GORE", \
 	"STONE", \
-	"BLOODY", /* SKYRAT EDIT - Hemophage Food */ \
+	"BLOODY", /* BUBBER EDIT - Hemophage Food */ \
 )
 
 /// IC meaning (more or less) for food flags
@@ -95,7 +95,7 @@ DEFINE_BITFIELD(foodtypes, list(
 	"Bugs", \
 	"Gore", \
 	"Rocks", \
-	"Bloody", /* SKYRAT EDIT - Hemophage Food */ \
+	"Bloody", /* BUBBER EDIT - Hemophage Food */ \
 )
 
 /// Food types assigned to all podperson organs
@@ -108,7 +108,7 @@ DEFINE_BITFIELD(foodtypes, list(
 #define DRINK_FANTASTIC 5
 
 #define FOOD_AMAZING 6
-#define RACE_DRINK 7 // SKYRAT EDIT ADDITION
+#define RACE_DRINK 7 // BUBBER EDIT ADDITION
 
 #define FOOD_QUALITY_NORMAL 1
 #define FOOD_QUALITY_NICE 2
@@ -193,7 +193,7 @@ DEFINE_BITFIELD(food_flags, list(
 ///Define for return value of the after_eat callback that will call OnConsume if it hasn't already.
 #define FOOD_AFTER_EAT_CONSUME_ANYWAY 2
 
-#define STOP_SERVING_BREAKFAST (35 MINUTES) // SKYRAT EDIT - ORIGINAL: 15 MINUTES
+#define STOP_SERVING_BREAKFAST (35 MINUTES) // BUBBER EDIT - ORIGINAL: 15 MINUTES
 
 #define FOOD_MEAT_HUMAN 50
 #define FOOD_MEAT_MUTANT 100

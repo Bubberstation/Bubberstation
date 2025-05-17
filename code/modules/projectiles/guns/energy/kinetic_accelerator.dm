@@ -159,10 +159,10 @@
 		modkit_upgrade.modify_projectile(kinetic_projectile)
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/cyborg
-	icon_state = "kineticgun" // SKYRAT EDIT CHANGE
+	icon_state = "kineticgun" // BUBBER EDIT CHANGE
 	holds_charge = TRUE
 	unique_frequency = TRUE
-	max_mod_capacity = 100 // SKYRAT EDIT CHANGE FROM 90 - Balance due to fauna changes and no level perks applying
+	max_mod_capacity = 100 // BUBBER EDIT CHANGE FROM 90 - Balance due to fauna changes and no level perks applying
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/minebot
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL

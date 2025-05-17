@@ -273,14 +273,14 @@
 	level = 6
 	passive_message = span_notice("You feel tingling on your skin as light passes over it.")
 	threshold_descs = list(
-		"Stage Speed 7" = "Doubles healing speed.", //SKYRAT EDIT: Brings Noc regen into line with the rest of the healing symptoms.
+		"Stage Speed 7" = "Doubles healing speed.", //BUBBER EDIT: Brings Noc regen into line with the rest of the healing symptoms.
 	)
 
 /datum/symptom/heal/darkness/Start(datum/disease/advance/A)
 	. = ..()
 	if(!.)
 		return
-	if(A.totalStageSpeed() >= 7)//SKYRAT EDIT: Brings Noc regen into line with the rest of the healing symptoms.
+	if(A.totalStageSpeed() >= 7)//BUBBER EDIT: Brings Noc regen into line with the rest of the healing symptoms.
 		power = 2
 
 /datum/symptom/heal/darkness/CanHeal(datum/disease/advance/A)
@@ -378,7 +378,7 @@
 			return power * 0.9
 		if(SOFT_CRIT)
 			return power * 0.5
-	if(M.getBruteLoss() + M.getFireLoss() >= 100 && !active_coma && !(HAS_TRAIT(M,TRAIT_NOSOFTCRIT))) //SKYRAT EDIT: ORIGINAL: 70 - Adjusts this to remain 37.5% of total health(plus crit health). Because 70 is alot less health here then it is on tg.
+	if(M.getBruteLoss() + M.getFireLoss() >= 100 && !active_coma && !(HAS_TRAIT(M,TRAIT_NOSOFTCRIT))) //BUBBER EDIT: ORIGINAL: 70 - Adjusts this to remain 37.5% of total health(plus crit health). Because 70 is alot less health here then it is on tg.
 		to_chat(M, span_warning("You feel yourself slip into a regenerative coma..."))
 		active_coma = TRUE
 		addtimer(CALLBACK(src, PROC_REF(coma), M), 6 SECONDS)

@@ -62,7 +62,7 @@
 	else
 		to_chat(src, span_alert("No holopad connected."))
 
-/* SKYRAT EDIT REMOVAL - MOVED TO: MODULAR_SKYRAT/MODULES/ALT_VOX/CODE/VOX_PROCS.DM
+/* BUBBER EDIT REMOVAL - MOVED TO: MODULAR_SKYRAT/MODULES/ALT_VOX/CODE/VOX_PROCS.DM
 // Make sure that the code compiles with AI_VOX undefined
 #ifdef AI_VOX
 #define VOX_DELAY 600
@@ -195,4 +195,4 @@
 
 #undef VOX_DELAY
 #endif
-*/ //SKYRAT EDIT REMOVAL END
+*/ //BUBBER EDIT REMOVAL END

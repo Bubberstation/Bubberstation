@@ -1,4 +1,4 @@
-// SKYRAT EDIT: REPLACED BY /datum/preference/choiced/mutant_choice/pod_hair IN mutant_parts.dm
+// BUBBER EDIT: REPLACED BY /datum/preference/choiced/mutant_choice/pod_hair IN mutant_parts.dm
 /*
 /datum/preference/choiced/pod_hair
 	savefile_key = "feature_pod_hair"
@@ -31,4 +31,4 @@
 
 /datum/preference/choiced/pod_hair/apply_to_human(mob/living/carbon/human/target, value)
 	target.dna.features["pod_hair"] = value
-*/ // SKYRAT EDIT END
+*/ // BUBBER EDIT END

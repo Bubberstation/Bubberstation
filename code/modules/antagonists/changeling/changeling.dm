@@ -87,7 +87,7 @@
 	var/static/list/slot2type = list(
 		"head" = /obj/item/clothing/head/changeling,
 		"wear_mask" = /obj/item/clothing/mask/changeling,
-		"wear_neck" = /obj/item/changeling, // SKYRAT EDIT
+		"wear_neck" = /obj/item/changeling, // BUBBER EDIT
 		"back" = /obj/item/changeling,
 		"wear_suit" = /obj/item/clothing/suit/changeling,
 		"w_uniform" = /obj/item/clothing/under/changeling,
@@ -103,9 +103,9 @@
 	/// A list of all memories we've stolen through absorbs.
 	var/list/stolen_memories = list()
 
-	var/true_form_death //SKYRAT EDIT ADDITION: The time that the horror form died.
+	var/true_form_death //BUBBER EDIT ADDITION: The time that the horror form died.
 
-	// SKYRAT EDIT START
+	// BUBBER EDIT START
 	var/datum/changeling_profile/current_profile = null
 	var/list/mimicable_quirks_list = list(
 		"Bad Touch",
@@ -127,7 +127,7 @@
 		"Webbing aspect (Emotes)",
 		"Friendly",
 	)
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 
 /datum/antagonist/changeling/New()
 	. = ..()
@@ -567,7 +567,7 @@
 	new_profile.underwear_color = target.underwear_color
 	new_profile.undershirt = target.undershirt
 	new_profile.socks = target.socks
-	// SKYRAT EDIT ADDITION START
+	// BUBBER EDIT ADDITION START
 	new_profile.bra = target.bra
 	new_profile.undershirt_color = target.undershirt_color
 	new_profile.socks_color = target.socks_color
@@ -579,7 +579,7 @@
 	new_profile.laugh_type = target.selected_laugh?.type || /datum/laugh_type/none
 	new_profile.target_body_scaling = target.mob_height
 	new_profile.target_size = target.mob_size
-	//SKYRAT EDIT ADDITION END
+	//BUBBER EDIT ADDITION END
 	// Hair and facial hair gradients, alongside their colours.
 	//THE BUBBER EDIT ADDITION BEGIN - Voice Bark
 	new_profile.blooper_id = target.blooper_id
@@ -621,13 +621,13 @@
 		new_profile.worn_icon_list[slot] = clothing_item.worn_icon
 		new_profile.worn_icon_state_list[slot] = clothing_item.worn_icon_state
 		new_profile.exists_list[slot] = 1
-		// SKYRAT EDIT ADDITION START
+		// BUBBER EDIT ADDITION START
 		new_profile.worn_icon_digi_list[slot] = clothing_item.worn_icon_digi
 		new_profile.worn_icon_monkey_list[slot] = clothing_item.worn_icon_monkey
 		new_profile.worn_icon_teshari_list[slot] = clothing_item.worn_icon_teshari
 		new_profile.worn_icon_vox_list[slot] = clothing_item.worn_icon_vox
 		new_profile.supports_variations_flags_list[slot] = clothing_item.supports_variations_flags
-		// SKYRAT EDIT ADDITION END
+		// BUBBER EDIT ADDITION END
 
 	new_profile.voice = target.voice
 	new_profile.voice_filter = target.voice_filter
@@ -820,7 +820,7 @@
 	user.age = chosen_profile.age
 	user.physique = chosen_profile.physique
 	user.mind?.set_level(/datum/skill/athletics, chosen_profile.athletics_level, silent = TRUE)
-	// SKYRAT EDIT ADDITION START
+	// BUBBER EDIT ADDITION START
 	user.bra = chosen_profile.bra
 
 	user.undershirt_color = chosen_profile.undershirt_color
@@ -848,7 +848,7 @@
 			if(target_quirk.name == mimicable_quirk)
 				user.add_quirk(target_quirk.type)
 				break
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 	user.voice = chosen_profile.voice
 	user.voice_filter = chosen_profile.voice_filter
 
@@ -857,7 +857,7 @@
 	for(var/obj/item/bodypart/limb as anything in user.bodyparts)
 		limb.update_limb(is_creating = TRUE)
 
-	user.updateappearance(mutcolor_update = TRUE, eyeorgancolor_update = TRUE) // SKYRAT EDIT
+	user.updateappearance(mutcolor_update = TRUE, eyeorgancolor_update = TRUE) // BUBBER EDIT
 	user.domutcheck()
 
 	// Get rid of any scars from previous Changeling-ing
@@ -930,13 +930,13 @@
 		new_flesh_item.worn_icon = chosen_profile.worn_icon_list[slot]
 		new_flesh_item.worn_icon_state = chosen_profile.worn_icon_state_list[slot]
 
-		// SKYRAT EDIT START
+		// BUBBER EDIT START
 		new_flesh_item.worn_icon_digi = chosen_profile.worn_icon_digi_list[slot]
 		new_flesh_item.worn_icon_monkey = chosen_profile.worn_icon_monkey_list[slot]
 		new_flesh_item.worn_icon_teshari = chosen_profile.worn_icon_teshari_list[slot]
 		new_flesh_item.worn_icon_vox = chosen_profile.worn_icon_vox_list[slot]
 		new_flesh_item.supports_variations_flags = chosen_profile.supports_variations_flags_list[slot]
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 
 		if(istype(new_flesh_item, /obj/item/changeling/id) && chosen_profile.id_icon)
 			var/obj/item/changeling/id/flesh_id = new_flesh_item
@@ -955,7 +955,7 @@
 	user.regenerate_icons()
 	user.name = user.get_visible_name()
 	current_profile = chosen_profile
-	// SKYRAT EDIT START
+	// BUBBER EDIT START
 	user.visual_only_organs = TRUE
 	chosen_dna.transfer_identity(user, TRUE)
 	user.visual_only_organs = initial(user.visual_only_organs)
@@ -966,7 +966,7 @@
 	user.mob_size = chosen_profile.target_size
 	//this has to be at the end of the proc or it breaks everything below it, womp womp
 	user.set_mob_height(chosen_profile.target_body_scaling)
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 //THE BUBBER EDIT ADDITION BEGIN - Voice Bark
 	user.blooper = null
 	user.blooper_id = chosen_profile.blooper_id
@@ -1067,7 +1067,7 @@
 	new_profile.quirks = quirks.Copy()
 	new_profile.voice = voice
 	new_profile.voice_filter = voice_filter
-	// SKYRAT EDIT ADDITION START
+	// BUBBER EDIT ADDITION START
 	new_profile.undershirt_color = undershirt_color
 	new_profile.socks_color = socks_color
 	new_profile.bra = bra
@@ -1083,18 +1083,18 @@
 	new_profile.supports_variations_flags_list = supports_variations_flags_list.Copy()
 	new_profile.scream_type = scream_type
 	new_profile.laugh_type = laugh_type
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 
 /datum/antagonist/changeling/roundend_report()
 	var/list/parts = list()
 
-	// SKYRAT EDIT REMOVAL START
+	// BUBBER EDIT REMOVAL START
 	/*
 	var/changeling_win = TRUE
 	if(!owner.current)
 		changeling_win = FALSE
 	*/
-	// SKYRAT EDIT REMOVAL END
+	// BUBBER EDIT REMOVAL END
 
 	parts += printplayer(owner)
 	parts += "<b>Genomes Extracted:</b> [absorbed_count]<br>"
@@ -1102,24 +1102,24 @@
 	if(objectives.len)
 		var/count = 1
 		for(var/datum/objective/objective in objectives)
-			// SKYRAT EDIT START - No greentext
+			// BUBBER EDIT START - No greentext
 			/*
 			if(!objective.check_completion())
 				changeling_win = FALSE
 			parts += "<b>Objective #[count]</b>: [objective.explanation_text] [objective.get_roundend_success_suffix()]"
 			*/
 			parts += "<b>Objective #[count]</b>: [objective.explanation_text]"
-			// SKYRAT EDIT END - No greentext
+			// BUBBER EDIT END - No greentext
 			count++
 
-	// SKYRAT EDIT REMOVAL START - No greentext
+	// BUBBER EDIT REMOVAL START - No greentext
 	/*
 	if(changeling_win)
 		parts += span_greentext("The changeling was successful!")
 	else
 		parts += span_redtext("The changeling has failed.")
 	*/
-	// SKYRAT EDIT REMOVAL END - No greentext
+	// BUBBER EDIT REMOVAL END - No greentext
 
 	return parts.Join("<br>")
 

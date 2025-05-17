@@ -3,8 +3,8 @@ export const CHANNELS = [
   'Say',
   'Radio',
   'Me',
-  'Whis', // SKYRAT EDIT ADDITION - CUSTOMIZATION
-  'LOOC', // SKYRAT EDIT ADDITION - CUSTOMIZATION
+  'Whis', // BUBBER EDIT ADDITION - CUSTOMIZATION
+  'LOOC', // BUBBER EDIT ADDITION - CUSTOMIZATION
   'OOC',
   'Admin',
 ] as const;

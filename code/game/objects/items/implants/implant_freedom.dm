@@ -54,10 +54,10 @@
 		<b>Disclaimer:</b> Heavy-duty restraints such as straightjackets are deemed \"too complex\" to release from."
 
 /obj/item/implanter/freedom
-	name = "implanter" // Skyrat edit , was implanter (freedom)
+	name = "implanter" // Bubber edit , was implanter (freedom)
 	imp_type = /obj/item/implant/freedom
-	special_desc_requirement = EXAMINE_CHECK_SYNDICATE // Skyrat edit
-	special_desc = "A Syndicate implanter used for a freedom implant" // Skyrat edit
+	special_desc_requirement = EXAMINE_CHECK_SYNDICATE // Bubber edit
+	special_desc = "A Syndicate implanter used for a freedom implant" // Bubber edit
 
 /obj/item/implantcase/freedom
 	name = "implant case - 'Freedom'"
