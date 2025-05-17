@@ -56,7 +56,7 @@
 	suit = /obj/item/clothing/suit/armor/vest/peacekeeper/security_medic
 	l_hand = /obj/item/storage/medkit/brute
 	head = /obj/item/clothing/head/beret/sec/peacekeeper/security_medic
-	suit_store = /obj/item/gun/energy/disabler/smg
+	suit_store = /obj/item/gun/energy/e_gun/advtaser
 	backpack = /obj/item/storage/backpack/security
 	satchel = /obj/item/storage/backpack/satchel/sec
 	duffelbag = /obj/item/storage/backpack/duffelbag/sec
