@@ -431,13 +431,12 @@
 	//Traits: Species
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/user = owner.current
-		var/obj/item/bodypart/user_left_arm = user.get_bodypart(BODY_ZONE_L_ARM)
-		var/obj/item/bodypart/user_right_arm = user.get_bodypart(BODY_ZONE_R_ARM)
 		user.dna?.remove_all_mutations()
-		user_left_arm.unarmed_damage_low += 1 //lowest possible punch damage - 6 now
-		user_left_arm.unarmed_damage_high += 1 //highest possible punch damage - 11
-		user_right_arm.unarmed_damage_low += 1 //lowest possible punch damage - 6
-		user_right_arm.unarmed_damage_high += 1 //highest possible punch damage - 11
+		for (var/body_zone in GLOB.limb_zones)
+			var/obj/item/bodypart/limbs = user.get_bodypart(body_zone) // messy but we'll fix it later.
+			limbs.unarmed_damage_low += 1
+			limbs.unarmed_damage_high += 1
+			limbs.unarmed_effectiveness += 1
 		user.mob_biotypes |= biotype
 	//Give Bloodsucker Traits
 	owner.current.add_traits(bloodsucker_traits, BLOODSUCKER_TRAIT)
