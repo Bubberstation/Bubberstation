@@ -90,7 +90,7 @@
 	var/obj/item/organ/heart/heart = human.get_organ_slot(ORGAN_SLOT_HEART)
 	if(!heart)
 		// No heart present, apply paralysis
-		human.Paralyze(15) // Paralyze for 10 ticks (adjust as needed)
+		human.Paralyze(15) // Paralyze for 15 ticks (adjust as needed)
 		if(prob(10))
 			to_chat(human, span_warning("Alert: Missing oil pump. Unable to use hydraulics for movement."))
 
