@@ -48,6 +48,9 @@
 #define ROLE_CLOCK_CULTIST "Clock Cultist"
 // SKYRAT EDIT END
 #define ROLE_VOIDWALKER "Voidwalker"
+//Bubber Edit start
+#define ROLE_INFECTED_SYNTHETIC "Hacked Synthetic"
+//Bubber Edit End
 
 // Latejoin roles
 #define ROLE_HERETIC_SMUGGLER "Heretic Smuggler"

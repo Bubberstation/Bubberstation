@@ -2,9 +2,9 @@
 	name = "\improper Infected Synthetic"
 	roundend_category = "traitors"
 	antagpanel_category = "Malf AI"
-	job_rank = ROLE_MALF
+	job_rank = ROLE_INFECTED_SYNTHETIC
 	antag_hud_name = "traitor"
-	suicide_cry = "FOR MY MASTER!!"
+	ui_name = "AntagInfoHackedSynthetic"
 	antag_moodlet = /datum/mood_event/infected_ipc
 	///radio binary for synthetic
 	var/obj/item/implant/radio/infected_ipc/internal_radio
@@ -73,7 +73,7 @@
 		examine_text += span_boldwarning("[source.p_Their()] optics is weirdly corrupted")
 
 /datum/antagonist/infected_ipc/proc/set_master(datum/mind/master)
-	//the proc that links the AI and gives objectives. also some fluff hack that isn't in greet() since it has to be in otder to make sense.
+	//the proc that links the AI and gives objectives. also some fluff hack that isn't in greet() since it has to be in order to make sense.
 	var/datum/objective/serve_ai/master_obj = new()
 	master_obj.owner = owner
 	master_obj.explanation_text = "Forever serve the directives and orders of your AI master, [master]. Protect them until your last tick."
@@ -149,3 +149,7 @@
 	antagonist = null
 	master_ai = null
 	owner.mind.remove_antag_datum(/datum/antagonist/infected_ipc)
+
+//Icon in antag menu
+/datum/antagonist/infected_ipc/get_preview_icon()
+	return finish_preview_icon(icon('modular_zubbers/icons/human-player/InfectedIPC.dmi', "hsynth"))
