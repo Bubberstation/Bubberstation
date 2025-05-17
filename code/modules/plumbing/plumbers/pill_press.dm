@@ -12,7 +12,8 @@
 	/// selected size of the product
 	var/current_volume = 10
 	/// maximum printable volume of the product
-	var/max_volume = 100 // BUBBER EDIT CHANGE - Original: 50
+	var/max_volume = 100
+	buffer = 100 // BUBBER EDIT CHANGE - Original: 50
 	/// prefix for the product name
 	var/product_name = "factory"
 	/// Selected duration of produced pills, if they're selected
@@ -35,8 +36,9 @@
 		var/list/types = list(
 			CAT_PILLS = GLOB.reagent_containers[CAT_PILLS],
 			CAT_PATCHES = GLOB.reagent_containers[CAT_PATCHES],
-			CAT_MEDBOTTLES = GLOB.reagent_containers[CAT_MEDBOTTLES], // BUBBER EDIT - CAT_MEDBOTTLES
 			CAT_HYPOS = GLOB.reagent_containers[CAT_HYPOS], // SKYRAT EDIT ADDITION - Hypovials
+			CAT_PEN_INJECTORS = GLOB.reagent_containers[CAT_PEN_INJECTORS], // BUBBER EDIT
+			CAT_MEDBOTTLES = GLOB.reagent_containers[CAT_MEDBOTTLES], // BUBBER EDIT - CAT_MEDBOTTLES
 		)
 
 		packaging_types = list()
@@ -82,9 +84,12 @@
 			if(CAT_PATCHES)
 				suffix = "Patch"
 			//SKYRAT EDIT ADDITION BEGIN - HYPOVIALS
-			if (CAT_HYPOS)
+			if(CAT_HYPOS)
 				suffix = "Vial"
 			//SKYRAT EDIT ADDITION END - HYPOVIALS
+			if(CAT_PEN_INJECTORS)
+				suffix = "Injector"
+			// BUBBER EDIT
 			else
 				suffix = "Bottle"
 		container.name = "[product_name] [suffix]"

@@ -169,9 +169,11 @@
 	if(!length(containers))
 		containers = list(
 			CAT_TUBES = GLOB.reagent_containers[CAT_TUBES],
+			CAT_MEDBOTTLES = GLOB.reagent_containers[CAT_MEDBOTTLES], // BUBBER EDIT - CAT_MEDBOTTLES
 			CAT_PILLS = GLOB.reagent_containers[CAT_PILLS],
 			CAT_PATCHES = GLOB.reagent_containers[CAT_PATCHES],
 			CAT_HYPOS = GLOB.reagent_containers[CAT_HYPOS], // SKYRAT EDIT
+			CAT_PEN_INJECTORS = GLOB.reagent_containers[CAT_PEN_INJECTORS], // BUBBER EDIT
 			CAT_DARTS = GLOB.reagent_containers[CAT_DARTS], // SKYRAT EDIT
 		)
 	return containers
