@@ -21,6 +21,10 @@
 	var/obj/lewd_portal_relay/relayed_body
 	///Gloryhole mode needs to make a characters penis invisible, this records the previous state
 	var/initial_genital_visibility
+	///This variable is used to get the scale of the buckled mob without touching the rotaiton, used for larger/small characters
+	var/datum/decompose_matrix/mob_scale_manager
+	///How offset someones head should be when stuck in a wall.
+	var/wallstuck_offset_amount = 12
 
 /obj/structure/lewd_portal/Initialize(mapload)
 	LAZYINITLIST(buckled_mobs)
@@ -79,9 +83,12 @@
 	if(LAZYLEN(buckled_mobs))
 		if(ishuman(buckled_mobs[1]))
 			current_mob = buckled_mobs[1]
+			mob_scale_manager = current_mob.transform.decompose()
+			offset_algorithm()
 
 	if(istype(current_mob.dna.species))
 		relayed_body = new /obj/lewd_portal_relay(linked_portal.loc, current_mob, linked_portal)
+		relayed_body.transform = relayed_body.transform.Scale(mob_scale_manager.scale_x, mob_scale_manager.scale_y)
 		switch(linked_portal.dir)
 			if(NORTH)
 				relayed_body.pixel_y = 24
@@ -126,21 +133,31 @@
 			RegisterSignals(current_mob, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR, COMSIG_MOB_HANDCUFFED, COMSIG_MOB_EMOTE, COMSIG_EMOTE_OVERLAY_EXPIRE, COMSIG_HUMAN_ADJUST_AROUSAL, COMSIG_HUMAN_TOGGLE_GENITALS), PROC_REF(head_only))
 			switch(dir)
 				if(NORTH)
-					current_mob.pixel_y += 12
+					current_mob.pixel_y += wallstuck_offset_amount
 				if(SOUTH)
-					current_mob.pixel_y += -12
+					current_mob.pixel_y += -wallstuck_offset_amount
 					current_mob.transform = turn(current_mob.transform, ROTATION_FLIP)
 				if(EAST)
-					current_mob.pixel_x += 12
+					current_mob.pixel_x += wallstuck_offset_amount
 					current_mob.transform = turn(current_mob.transform, ROTATION_COUNTERCLOCKWISE)
 				if(WEST)
-					current_mob.pixel_x += -12
+					current_mob.pixel_x += -wallstuck_offset_amount
 					current_mob.transform = turn(current_mob.transform, ROTATION_CLOCKWISE)
 	else
 		unbuckle_all_mobs()
 	..()
 
-///hides the buckled mob's penis
+///Algorithm that calculates what a mob head offset should be based on mob scale.
+/obj/structure/lewd_portal/proc/offset_algorithm()
+	var/transform_scale_height = mob_scale_manager.scale_y
+	if(transform_scale_height <= 1)
+		wallstuck_offset_amount = (-30 * transform_scale_height) + 42
+	else
+		wallstuck_offset_amount = (-24 * transform_scale_height) + 36
+	wallstuck_offset_amount = clamp(round(wallstuck_offset_amount), 0, 18)
+
+
+///Hides the buckled mob's penis
 /obj/structure/lewd_portal/proc/hide_penis()
 	SIGNAL_HANDLER
 	var/obj/item/organ/genital/penis/affected_penis = current_mob.get_organ_slot(ORGAN_SLOT_PENIS) //Stolen from Strapon code, this is bad we should probably have a cleaner way
@@ -171,29 +188,35 @@
 	UnregisterSignal(current_mob, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR, COMSIG_MOB_HANDCUFFED, COMSIG_MOB_EMOTE, COMSIG_EMOTE_OVERLAY_EXPIRE, COMSIG_HUMAN_ADJUST_AROUSAL, COMSIG_HUMAN_TOGGLE_GENITALS))
 	visible_message("[current_mob] exits the [src]")
 	current_mob = null
+	mob_scale_manager = null
 	qdel(relayed_body)
 	unbuckled_mob.cut_overlays()
 	unbuckled_mob.regenerate_icons()
-	var/offset_ammount = 24
+	var/offset_amount = 24
 	if(portal_mode == WALLSTUCK)
-		offset_ammount = 12
+		offset_amount = wallstuck_offset_amount
+	wallstuck_offset_amount = 12
 	switch(dir)
 		if(NORTH)
-			unbuckled_mob.pixel_y -= offset_ammount
+			unbuckled_mob.pixel_y -= offset_amount
 		if(SOUTH)
 			if(portal_mode == WALLSTUCK)
-				unbuckled_mob.pixel_y += 12
+				unbuckled_mob.pixel_y += offset_amount
 				unbuckled_mob.transform = turn(unbuckled_mob.transform, ROTATION_FLIP)
 			else
 				unbuckled_mob.pixel_y += 6
 		if(EAST)
-			unbuckled_mob.pixel_x -= 12
 			if(portal_mode == WALLSTUCK)
+				unbuckled_mob.pixel_x -= offset_amount
 				unbuckled_mob.transform = turn(unbuckled_mob.transform, ROTATION_CLOCKWISE)
+			else
+				unbuckled_mob.pixel_x -= 12
 		if(WEST)
-			unbuckled_mob.pixel_x += 12
 			if(portal_mode == WALLSTUCK)
+				unbuckled_mob.pixel_x += offset_amount
 				unbuckled_mob.transform = turn(unbuckled_mob.transform, ROTATION_COUNTERCLOCKWISE)
+			else
+				unbuckled_mob.pixel_x += 12
 	if(portal_mode == GLORYHOLE)
 		var/obj/item/organ/genital/penis/affected_penis = unbuckled_mob.get_organ_slot(ORGAN_SLOT_PENIS) //Stolen from Strapon code, this is bad we should probably have a cleaner way
 		affected_penis?.visibility_preference = initial_genital_visibility
@@ -285,6 +308,7 @@
 
 /obj/lewd_portal_relay/Initialize(mapload, mob/living/carbon/human/owner_ref, obj/structure/lewd_portal/owning_portal_reference)
 	. = ..()
+	appearance_flags |= KEEP_TOGETHER
 	if(!owner_ref || !owning_portal_reference)
 		return INITIALIZE_HINT_QDEL
 	owning_portal = owning_portal_reference
