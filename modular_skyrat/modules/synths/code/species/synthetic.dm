@@ -95,8 +95,8 @@
 			to_chat(human, span_warning("Alert: Oil pump is non-functional or missing. Hydraulics efficiency reduced."))
 
 	var/obj/item/organ/liver/liver = human.get_organ_slot(ORGAN_SLOT_LIVER)
-	if(!liver)
-		// No liver present, apply message informing of the missing liver
+	if(!liver || (liver.organ_flags & ORGAN_FAILING))
+		// No liver or failing liver present, apply message informing of the missing liver
 		if(prob(10))
 			to_chat(human, span_warning("Alert: Reagent processing unit is non-functional or missing. Systems clogging."))
 
