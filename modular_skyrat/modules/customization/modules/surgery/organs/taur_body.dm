@@ -1,3 +1,5 @@
+#define LAYDOWN_COOLDOWN 2 SECONDS
+
 /obj/item/organ/taur_body
 	name = "taur body"
 	zone = BODY_ZONE_CHEST
@@ -96,10 +98,25 @@
 	layers = ALL_EXTERNAL_OVERLAYS | EXTERNAL_FRONT_UNDER_CLOTHES | EXTERNAL_FRONT_OVER
 	color_source = ORGAN_COLOR_OVERRIDE
 
+	/// If this taur body can lay down
+	var/can_lay_down = FALSE
+	/// Are we currently laying down?
+	var/laying_down = FALSE
+	/// The offset we get from laying down. Negative values move us down
+	var/laydown_offset = 0
+
+/datum/bodypart_overlay/mutant/taur_body/on_mob_insert(obj/item/organ/parent, mob/living/carbon/receiver)
+	. = ..()
+	var/datum/sprite_accessory/taur/accessory = sprite_datum
+	if(accessory.can_lay_down)
+		can_lay_down = TRUE
+		laydown_offset = accessory.laydown_offset
+
+/datum/bodypart_overlay/mutant/taur_body/get_base_icon_state()
+	return "[sprite_datum.icon_state][laying_down ? "_laying" : ""]"
 
 /datum/bodypart_overlay/mutant/taur_body/override_color(rgb_value)
 	return draw_color
-
 
 /datum/bodypart_overlay/mutant/taur_body/get_global_feature_list()
 	return SSaccessories.sprite_accessories["taur"]
@@ -143,7 +160,11 @@
 		qdel(current_right_leg)
 	new_right_leg.bodytype |= BODYTYPE_TAUR
 
-	return ..()
+	. = ..()
+
+	var/datum/bodypart_overlay/mutant/taur_body/overlay = bodypart_overlay
+	if(overlay.can_lay_down)
+		add_verb(receiver, /obj/item/organ/taur_body/proc/toggle_laying)
 
 
 /obj/item/organ/taur_body/on_mob_remove(mob/living/carbon/organ_owner, special, movement_flags)
@@ -167,7 +188,7 @@
 		new_right_leg.replace_limb(organ_owner, TRUE)
 
 	// We don't call `synchronize_bodytypes()` here, because it's already going to get called in the parent because `external_bodyshapes` has a value.
-
+	remove_verb(organ_owner, /obj/item/organ/taur_body/proc/toggle_laying)
 	return ..()
 
 /obj/item/organ/taur_body/proc/get_riding_offset(oversized = FALSE)
@@ -180,3 +201,50 @@
 		TEXT_EAST = list(round(-riding_offset_side_x * scaling_mult, 1), round((riding_offset_side_y + taur_specific_clothing_y_offsets?[TEXT_EAST]) * scaling_mult, 1)),
 		TEXT_WEST = list(round(riding_offset_side_x * scaling_mult, 1), round((riding_offset_side_y + taur_specific_clothing_y_offsets?[TEXT_WEST]) * scaling_mult, 1)),
 	)
+
+/obj/item/organ/taur_body/proc/toggle_laying()
+	set category = "Taur"
+	set name = "Toggle Laying Down"
+
+	var/mob/living/carbon/human/owner = src
+	if(!istype(owner))
+		return
+
+	var/obj/item/organ/taur_body/organ = owner.get_organ_by_type(/obj/item/organ/taur_body)
+	if(isnull(organ))
+		stack_trace("Taur lay down triggered without Taur organ")
+		return
+
+	var/datum/bodypart_overlay/mutant/taur_body/overlay = organ.bodypart_overlay
+	if(!overlay.can_lay_down)
+		return
+	if(owner.resting)
+		to_chat(owner, span_notice("You have to be standing up in order to lay down properly!"))
+	if(overlay.laying_down)
+		// Rising up
+		to_chat(owner, span_notice("You start lifting your body up."))
+		if(!do_after(owner, LAYDOWN_COOLDOWN))
+			return
+
+		overlay.laying_down = FALSE
+		owner.layer = initial(owner.layer)
+		owner.pixel_y -= overlay.laydown_offset
+		owner.update_body_parts()
+
+		owner.SetImmobilized(0, TRUE)
+		REMOVE_TRAIT(owner, TRAIT_UNDENSE, TRAIT_SOURCE_TAURLAY)
+		to_chat(owner, span_notice("You stand up."))
+	else
+		// And laying back down
+		overlay.laying_down = TRUE
+		owner.layer = LYING_MOB_LAYER
+		owner.pixel_y += overlay.laydown_offset
+		owner.update_body_parts()
+
+		owner.Immobilize(INFINITY, TRUE)
+		ADD_TRAIT(owner, TRAIT_UNDENSE, TRAIT_SOURCE_TAURLAY)
+		to_chat(owner, span_notice("You lay down."))
+		if(owner.has_gravity())
+			playsound(owner, "bodyfall", 50, TRUE)
+
+#undef LAYDOWN_COOLDOWN
