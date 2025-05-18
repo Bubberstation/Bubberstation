@@ -79,6 +79,8 @@
 	taur_mode = STYLE_TAUR_HOOF
 	alt_taur_mode = STYLE_TAUR_PAW
 	color_src = USE_ONE_COLOR
+	can_lay_down = TRUE
+	laydown_offset = -3
 
 /datum/sprite_accessory/taur/cow/spotted
 	name = "Cow (Spotted)"
@@ -91,11 +93,14 @@
 	taur_mode = STYLE_TAUR_HOOF
 	alt_taur_mode = STYLE_TAUR_PAW
 	organ_type = /obj/item/organ/taur_body/horselike/deer
+	can_lay_down = TRUE
+	laydown_offset = -3
 
 /datum/sprite_accessory/taur/drake
 	name = "Drake"
 	icon_state = "drake"
 	taur_mode = STYLE_TAUR_PAW
+	can_lay_down = TRUE
 
 /datum/sprite_accessory/taur/drake/old
 	name = "Drake (Old)"
@@ -122,7 +127,7 @@
 	taur_mode = STYLE_TAUR_HOOF
 	alt_taur_mode = STYLE_TAUR_PAW
 	can_lay_down = TRUE
-	laydown_offset = -10
+	laydown_offset = -3
 
 /datum/sprite_accessory/taur/naga
 	name = "Naga"
@@ -144,6 +149,8 @@
 	name = "Otie"
 	icon_state = "otie"
 	taur_mode = STYLE_TAUR_PAW
+	can_lay_down = TRUE
+	laydown_offset = -3
 
 /datum/sprite_accessory/taur/pede
 	name = "Scolipede"
@@ -167,11 +174,15 @@
 	name = "Canine"
 	icon_state = "canine"
 	taur_mode = STYLE_TAUR_PAW
+	can_lay_down = TRUE
+	laydown_offset = -3
 
 /datum/sprite_accessory/taur/feline
 	name = "Feline"
 	icon_state = "feline"
 	taur_mode = STYLE_TAUR_PAW
+	can_lay_down = TRUE
+	laydown_offset = -3
 
 /datum/sprite_accessory/taur/goop
 	name = "Goop"

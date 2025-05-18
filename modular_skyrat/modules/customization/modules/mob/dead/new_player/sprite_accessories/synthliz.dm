@@ -147,36 +147,52 @@
 	recommended_species = list()
 	genetic = FALSE
 	organ_type = /obj/item/organ/taur_body/horselike/synth
+	can_lay_down = TRUE
+	laydown_offset = -3
 
 /datum/sprite_accessory/taur/synthliz/inv
 	name = "Cybernetic Lizard (Inverted)"
 	icon_state = "synthlizardinv"
+	can_lay_down = TRUE
+	laydown_offset = -3
 
 /datum/sprite_accessory/taur/synthliz/feline
 	name = "Cybernetic Feline"
 	icon_state = "synthfeline"
+	can_lay_down = TRUE
+	laydown_offset = -3
 
 /datum/sprite_accessory/taur/synthliz/feline/inv
 	name = "Cybernetic Feline (Inverted)"
 	icon_state = "synthfelineinv"
+	can_lay_down = TRUE
+	laydown_offset = -3
 
 /datum/sprite_accessory/taur/synthliz/horse
 	name = "Cybernetic Horse"
 	icon_state = "synthhorse"
 	taur_mode = STYLE_TAUR_HOOF
 	alt_taur_mode = STYLE_TAUR_PAW
+	can_lay_down = TRUE
+	laydown_offset = -3
 
 /datum/sprite_accessory/taur/synthliz/horse/inv
 	name = "Cybernetic Horse (Inverted)"
 	icon_state = "synthhorseinv"
+	can_lay_down = TRUE
+	laydown_offset = -3
 
 /datum/sprite_accessory/taur/synthliz/wolf
 	name = "Cybernetic Wolf"
 	icon_state = "synthwolf"
+	can_lay_down = TRUE
+	laydown_offset = -3
 
 /datum/sprite_accessory/taur/synthliz/wolf/inv
 	name = "Cybernetic Wolf (Inverted)"
 	icon_state = "synthwolfinv"
+	can_lay_down = TRUE
+	laydown_offset = -3
 
 /datum/sprite_accessory/taur/synthliz/synthnaga
 	name = "Cybernetic Naga"
