@@ -63,6 +63,20 @@
 	speaker.verb_sing = initial(verb_sing)
 	speaker.verb_yell = initial(verb_yell)
 
+/obj/item/organ/tongue/bovine
+	name = "bovine tongue"
+	desc = "A long and wide tongue that craves grass."
+	say_mod = "moos"
+	icon_state = "tongue"
+	modifies_speech = TRUE
+
+/// /obj/item/organ/tongue/bovine/on_mob_insert(mob/living/carbon/signer, special = FALSE, movement_flags = DELETE_IF_REPLACED)
+///	. = ..()
+///	signer.verb_ask = ""
+///	signer.verb_exclaim = ""
+///	signer.verb_whisper = ""
+///	signer.verb_yell = ""
+
 /// This "human" tongue is only used in Character Preferences / Augmentation menu.
 /// The base tongue class lacked a say_mod. With say_mod included it makes a non-Human user sound like a Human.
 /obj/item/organ/tongue/human
