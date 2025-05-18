@@ -228,7 +228,7 @@
 		return FALSE
 
 	var/final_force = CALCULATE_FORCE(src, attack_modifiers)
-	if(damtype != STAMINA && final_force && HAS_TRAIT(user, TRAIT_PACIFISM))
+	if(damtype != STAMINA && final_force && HAS_TRAIT(user, TRAIT_PACIFISM) && !(item_flags & BYPASSES_PACIFISM))
 		to_chat(user, span_warning("You don't want to harm other living beings!"))
 		return FALSE
 
