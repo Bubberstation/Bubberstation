@@ -1,5 +1,5 @@
 ///the minimum size of a pill or patch
-#define MIN_VOLUME 5
+#define MIN_VOLUME 1 // BUBBER EDIT CHANGE - Original: 5
 ///max amount of pills allowed on our tile before we start storing them instead
 #define MAX_FLOOR_PRODUCTS 4 // BUBBER EDIT CHANGE - Original: 10
 
@@ -206,6 +206,12 @@
 				packaging_category = CAT_PATCHES
 			else if(ispath(packaging_type, /obj/item/reagent_containers/applicator/pill))
 				packaging_category = CAT_PILLS
+			// Bubber edit: I guess we need to do this TWICE because of tg slop
+			else if(ispath(packaging_type, /obj/item/reagent_containers/cup/vial))
+				packaging_category = CAT_HYPOS
+			else if(ispath(packaging_type, /obj/item/reagent_containers/hypospray/medipen/deforest/pen_medipen))
+				packaging_category = CAT_PEN_INJECTORS
+			// Bubber edit end
 			else
 				packaging_category = "Bottles"
 

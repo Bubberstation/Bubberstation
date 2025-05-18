@@ -1,12 +1,12 @@
 // why it's a subtype of deforest medipens? so I don't have to rewrite injection code...
 /obj/item/reagent_containers/hypospray/medipen/deforest/pen_medipen
 	name = "pen injector"
-	desc = "The pen injector is an open-source copy of the medipen system - It focuses on simplicity, safety and cheapness of production, which can be seen from the less-compact design; It's purpose is to ease manufacturing, skirt patents and ensure safety even with untrained personnel by retracting the needle after use, and requiring a more deliberate pen-like grip."
-	icon = 'modular_zubbers/code/modules/pen_medipens/icons/pen_medipens.dmi'
+	desc = "The pen injector is an open-source copy of the medipen system - It's less compact design eases mass production, and ensures safety even with untrained personnel by retracting the needle after use, while requiring a more deliberate pen-like grip."
+	icon = 'modular_zubbers/icons/obj/medical/pen_medipens/pen_medipens.dmi'
 	icon_state = "default"
 	base_icon_state = "default"
 	volume = 25
-	fill_icon = 'modular_zubbers/code/modules/pen_medipens/icons/fill_overlay.dmi'
+	fill_icon = 'modular_zubbers/icons/obj/medical/pen_medipens/fill_overlay.dmi'
 	fill_icon_state = "tank"
 	fill_icon_thresholds = list(0,1)
 	adjust_color_contrast = FALSE

@@ -153,7 +153,7 @@
 
 /obj/item/reagent_containers/hypospray/medipen/Initialize(mapload)
 	. = ..()
-	if(!no_sticker) // Bubber edit:
+	if(!no_sticker) // Bubber edit
 		label_text = span_notice("There is a sticker pasted onto the side which reads, 'WARNING: This medipen contains [pretty_string_from_reagent_list(reagents.reagent_list, names_only = TRUE, join_text = ", ", final_and = TRUE, capitalize_names = TRUE)], do not use if allergic to any listed chemicals.")
 
 /obj/item/reagent_containers/hypospray/medipen/examine()
