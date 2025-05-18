@@ -90,9 +90,9 @@
 	var/obj/item/organ/heart/heart = human.get_organ_slot(ORGAN_SLOT_HEART)
 	if(!heart)
 		// No heart present, apply paralysis
-		human.Paralyze(15) // Paralyze for 15 ticks (adjust as needed)
+		human.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH, 10 SECONDS)
 		if(prob(10))
-			to_chat(human, span_warning("Alert: Missing oil pump. Unable to use hydraulics for movement."))
+			to_chat(human, span_warning("Alert: Missing oil pump. Hydraulics efficiency reduced."))
 
 /datum/species/synthetic/spec_revival(mob/living/carbon/human/transformer)
 	switch_to_screen(transformer, "Console")
