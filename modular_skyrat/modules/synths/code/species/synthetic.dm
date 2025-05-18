@@ -79,7 +79,7 @@
 			do_sparks(3, TRUE, human)
 
 	var/obj/item/organ/lungs/lungs = human.get_organ_slot(ORGAN_SLOT_LUNGS)
-	if(!lungs)
+	if(!lungs || (liver.organ_flags & ORGAN_FAILING))
 		// No lungs present, apply overheating
 		human.adjust_bodytemperature(50)
 		human.adjustFireLoss(1)
@@ -88,7 +88,7 @@
 			do_sparks(3, TRUE, human)
 
 	var/obj/item/organ/heart/heart = human.get_organ_slot(ORGAN_SLOT_HEART)
-	if(!heart)
+	if(!heart || (liver.organ_flags & ORGAN_FAILING))
 		// No heart present, apply paralysis
 		human.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH, 10 SECONDS)
 		if(prob(10))
