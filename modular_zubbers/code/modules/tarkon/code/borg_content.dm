@@ -42,7 +42,6 @@
 	icon_state = "module_tarkon"
 	new_model = /obj/item/robot_model/tarkon
 
-// FYI - This is currently using ONE drake sprite from the RND borg because the others arent done yet, and i want playtesting.
 /obj/item/robot_model/tarkon
 	name = "Port Tarkon Prototype"
 	basic_modules = list( // A hideous amalgamation of all of the modules, as tarkon needs a lot of everything, and is often short staffed.
@@ -74,31 +73,45 @@
 		/obj/item/gun/energy/disabler/cyborg // Group six - Secuity, All service modules in the upgrade to reduce bloat.
 	)
 	radio_channels = list(RADIO_CHANNEL_TARKON)
-
 	emag_modules = list(
 		/obj/item/experimental_dash,
 		/obj/item/borg/apparatus/illegal,// Research borg plus they get a gun
 		/obj/item/gun/energy/printer // Tarkon has become a place for toys, and borgs should get one too.
 	)
-	/* COMMENTED OUT TO USE A TEMP BORG FOR TESTING REASONS - SPRITES UNFINISHED
-	cyborg_base_icon = "tarkon"
-	cyborg_icon_override = CYBORG_ICON_TARKON
-	model_select_icon = "tarkon"
-	model_select_alternate_icon = 'modular_zubbers/code/modules/silicons/borgs/sprites/screen_robot.dmi'
-	model_traits = list(TRAIT_KNOW_ROBO_WIRES, TRAIT_RESEARCH_CYBORG)
-	 */
-	cyborg_base_icon = "research"
-	cyborg_icon_override = CYBORG_ICON_SCI
+	cyborg_base_icon = "draketarkon"
+	cyborg_icon_override = CYBORG_ICON_TARKON_WIDE_BUBBER
 	model_select_icon = "research"
 	model_select_alternate_icon = 'modular_zubbers/code/modules/silicons/borgs/sprites/screen_robot.dmi'
 	model_traits = list(TRAIT_KNOW_ROBO_WIRES, TRAIT_RESEARCH_CYBORG)
 	borg_skins = list(
 		"Drake" = list(
-			SKIN_ICON_STATE = "drake",
-			SKIN_ICON = CYBORG_ICON_SCI_WIDE,
+			SKIN_ICON_STATE = "draketarkon",
+			SKIN_ICON = CYBORG_ICON_TARKON_WIDE_BUBBER,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
 			DRAKE_HAT_OFFSET
-		)// TODO: Waiting on sprite recolours for... ALL of this.
+		),"F3-LINE" = list(
+			SKIN_ICON_STATE = CYBORG_ICON_STATE_TARKON_FELI,
+			SKIN_ICON = CYBORG_ICON_ALL_FELI,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL, TRAIT_R_LIGHT_WEIGHT),
+			F3LINE_HAT_OFFSET
+		),"Dullahan" = list(
+			SKIN_ICON_STATE = "dullahantarkon",
+			SKIN_ICON = CYBORG_ICON_TARKON_TALL_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
+			DULLAHAN_HAT_OFFSET
+		),"Meka" = list(
+			SKIN_ICON_STATE = "mekatarkon",
+			SKIN_ICON = CYBORG_ICON_TARKON_TALL_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL), TALL_HAT_OFFSET
+		),"NiKO (Alt)" = list(
+			SKIN_ICON_STATE = "sfmmeketarkon",
+			SKIN_ICON = CYBORG_ICON_TARKON_TALL_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL), TALL_HAT_OFFSET
+		),"NiKA" = list(
+			SKIN_ICON_STATE = "fmekatarkon",
+			SKIN_ICON = CYBORG_ICON_TARKON_TALL_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL), TALL_HAT_OFFSET
+		)
 	)
 
 /obj/item/radio/borg/tarkon
