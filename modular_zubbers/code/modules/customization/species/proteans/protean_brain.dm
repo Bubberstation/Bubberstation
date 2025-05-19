@@ -126,7 +126,6 @@
 	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob/living, SetStun), 0), 5 SECONDS)
 	if(!HAS_TRAIT(suit, TRAIT_NODROP))
 		ADD_TRAIT(suit, TRAIT_NODROP, "protean")
-	owner.remove_traits(suit_traits, TRAIT_PROTEAN_SUIT)
 
 /obj/item/organ/brain/protean/proc/replace_limbs()
 	var/obj/item/organ/stomach/protean/stomach = owner.get_organ_slot(ORGAN_SLOT_STOMACH)
