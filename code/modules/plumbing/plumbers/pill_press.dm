@@ -13,7 +13,7 @@
 	var/current_volume = 10
 	/// maximum printable volume of the product
 	var/max_volume = 100 // BUBBER EDIT CHANGE - Original: 50
-	buffer = 100 // BUBBER EDIT CHANGE - you need to have a buffer now or it won't fill the 100u bottles
+	buffer = 100 // BUBBER EDIT CHANGE - you need to have a buffer now or it won't fill the 100u bottles, since the default buffer is 50u
 	/// prefix for the product name
 	var/product_name = "factory"
 	/// Selected duration of produced pills, if they're selected
