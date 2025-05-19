@@ -12,8 +12,8 @@
 	/// selected size of the product
 	var/current_volume = 10
 	/// maximum printable volume of the product
-	var/max_volume = 100
-	buffer = 100 // BUBBER EDIT CHANGE - Original: 50
+	var/max_volume = 100 // BUBBER EDIT CHANGE - Original: 50
+	buffer = 100 // BUBBER EDIT CHANGE - you need to have a buffer now or it won't fill the 100u bottles
 	/// prefix for the product name
 	var/product_name = "factory"
 	/// Selected duration of produced pills, if they're selected
@@ -89,7 +89,7 @@
 			//SKYRAT EDIT ADDITION END - HYPOVIALS
 			if(CAT_PEN_INJECTORS)
 				suffix = "Injector"
-			// BUBBER EDIT
+			// BUBBER EDIT for pen_medipens
 			else
 				suffix = "Bottle"
 		container.name = "[product_name] [suffix]"
@@ -206,12 +206,12 @@
 				packaging_category = CAT_PATCHES
 			else if(ispath(packaging_type, /obj/item/reagent_containers/applicator/pill))
 				packaging_category = CAT_PILLS
-			// Bubber edit: I guess we need to do this TWICE because of tg slop
+			// BUBBER EDIT: added with pen_medipens - needed to properly name the injectors and fixes the hypovials
 			else if(ispath(packaging_type, /obj/item/reagent_containers/cup/vial))
 				packaging_category = CAT_HYPOS
 			else if(ispath(packaging_type, /obj/item/reagent_containers/hypospray/medipen/deforest/pen_medipen))
 				packaging_category = CAT_PEN_INJECTORS
-			// Bubber edit end
+			// BUBBER EDIT END
 			else
 				packaging_category = "Bottles"
 
