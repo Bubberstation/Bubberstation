@@ -51,7 +51,7 @@ GLOBAL_LIST(end_titles)
 	for(var/I in GLOB.end_titles)
 		if(!credits)
 			return
-		var/atom/movable/screen/credit/T = new(null, I, src)
+		var/atom/movable/screen/credit/T = new(null, null, I, src)
 		_credits += T
 		T.rollem()
 		sleep(CREDIT_SPAWN_SPEED)
@@ -64,7 +64,7 @@ GLOBAL_LIST(end_titles)
 	set name = "Stop End Titles"
 	set category = "OOC"
 	verbs -= /client/proc/ClearCredits
-	QDEL_NULL(credits)
+	QDEL_LAZYLIST(credits)
 
 /atom/movable/screen/credit
 	icon_state = "blank"
@@ -76,7 +76,7 @@ GLOBAL_LIST(end_titles)
 	var/client/parent
 	var/matrix/target
 
-/atom/movable/screen/credit/Initialize(mapload, credited, client/P)
+/atom/movable/screen/credit/Initialize(mapload, datum/hud/hud_owner, credited, client/P)
 	. = ..()
 	parent = P
 	maptext = {"<div style="font:'Small Fonts'">[credited]</div>"}
@@ -102,7 +102,7 @@ GLOBAL_LIST(end_titles)
 		P.screen -= src
 	LAZYREMOVE(P?.credits, src)
 	parent = null
-	return . = ..()
+	. = ..()
 
 /proc/generate_titles()
 	var/list/titles = list()

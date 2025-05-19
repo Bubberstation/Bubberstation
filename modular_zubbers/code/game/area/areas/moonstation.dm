@@ -165,3 +165,7 @@
 /area/lavaland/underground/unexplored/danger
 	icon_state = "danger"
 	area_flags = VALID_TERRITORY | UNIQUE_AREA | CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED | MEGAFAUNA_SPAWN_ALLOWED
+
+/area/station/maintenance/department/medical/psychology
+	name = "Psychology Maintenance"
+	icon_state = "unknown"
