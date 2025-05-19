@@ -70,12 +70,20 @@
 	icon_state = "tongue"
 	modifies_speech = TRUE
 
-/// /obj/item/organ/tongue/bovine/on_mob_insert(mob/living/carbon/signer, special = FALSE, movement_flags = DELETE_IF_REPLACED)
-///	. = ..()
-///	signer.verb_ask = ""
-///	signer.verb_exclaim = ""
-///	signer.verb_whisper = ""
-///	signer.verb_yell = ""
+/obj/item/organ/tongue/bovine/on_mob_insert(mob/living/carbon/signer, special = FALSE, movement_flags = DELETE_IF_REPLACED)
+	. = ..()
+	signer.verb_ask = "lows"
+	signer.verb_exclaim = "huffs"
+	signer.verb_whisper = "hums"
+	signer.verb_yell = "brays"
+
+/obj/item/organ/tongue/bovine/on_mob_remove(mob/living/carbon/speaker, special = FALSE, movement_flags)
+	. = ..()
+	speaker.verb_ask = intial(verb_ask)
+	speaker.verb_exclaim = initial(verb_exclaim)
+	speaker.verb_whisper = initial(verb_whisper)
+	speaker.verb_sing = initial(verb_sing)
+	speaker.verb_yell = initial(verb_yell)
 
 /// This "human" tongue is only used in Character Preferences / Augmentation menu.
 /// The base tongue class lacked a say_mod. With say_mod included it makes a non-Human user sound like a Human.
