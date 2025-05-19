@@ -11286,6 +11286,7 @@
 /obj/structure/extinguisher_cabinet/directional/north,
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/white/line,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
 "wI" = (
@@ -12977,6 +12978,18 @@
 /obj/effect/turf_decal/skyrat_decals/syndicate/bottom/middle,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/command/bridge)
+"zU" = (
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/sign/warning/xeno_mining/directional/east,
+/turf/open/floor/engine/hull{
+	initial_gas_mix = "LAVALAND_ATMOS"
+	},
+/area/lavaland/surface/outdoors)
 "zV" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 1
@@ -18243,7 +18256,8 @@
 	},
 /obj/structure/closet/shuttle/engivent{
 	pixel_x = 0;
-	pixel_y = -34
+	pixel_y = -34;
+	name = "Gas Miner Storage"
 	},
 /obj/item/storage/box/gas_miner_beacons/syndicate{
 	pixel_x = 7;
@@ -19033,7 +19047,6 @@
 /turf/open/floor/iron/white/diagonal,
 /area/ruin/space/has_grav/bubbers/persistance/med)
 "Mh" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/white/line,
 /turf/open/floor/mineral/plastitanium,
@@ -22883,6 +22896,7 @@
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 4
 	},
+/obj/structure/sign/warning/xeno_mining/directional/west,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "TT" = (
@@ -25885,7 +25899,7 @@ gq
 CF
 ZD
 hY
-ki
+zU
 hY
 hY
 dl
