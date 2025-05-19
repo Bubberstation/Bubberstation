@@ -79,7 +79,7 @@
 
 /obj/item/organ/tongue/bovine/on_mob_remove(mob/living/carbon/speaker, special = FALSE, movement_flags)
 	. = ..()
-	speaker.verb_ask = intial(verb_ask)
+	speaker.verb_ask = initial(verb_ask)
 	speaker.verb_exclaim = initial(verb_exclaim)
 	speaker.verb_whisper = initial(verb_whisper)
 	speaker.verb_sing = initial(verb_sing)
