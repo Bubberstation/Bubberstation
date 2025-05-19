@@ -30,7 +30,7 @@
 	return FALSE // Can't remove the core.
 
 /obj/item/mod/control/pre_equipped/protean/emag_act(mob/user, obj/item/card/emag/emag_card)
-	to_chat(user, span_warning("The control unit does not respond."))
+	to_chat(user, span_warning("The control unit does not respond to the [emag_card]."))
 	return FALSE // Nope
 
 /obj/item/mod/control/pre_equipped/protean/canStrip(mob/who)
@@ -225,7 +225,7 @@
 		. += span_notice("<b>Control Shift Click</b> to open Protean strip menu.")
 		if(brain.dead)
 			if(!open)
-				. += isnull(refactory) ? span_warning("This Protean requires critical repairs! <b>Screwdriver them open</b>") : span_notice("<b>d systems...</b>")
+				. += isnull(refactory) ? span_warning("This Protean requires critical repairs! <b>Screwdriver them open</b>") : span_notice("<b>Repairing systems...</b>")
 			else
 				. += isnull(refactory) ? span_warning("<b>Insert a new refactory</b>") : span_notice("<b>Refactory Installed! Repairing systems...</b>")
 
