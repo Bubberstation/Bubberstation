@@ -80,7 +80,7 @@
 
 	var/obj/item/organ/lungs/lungs = human.get_organ_slot(ORGAN_SLOT_LUNGS)
 	if(!lungs || (lungs.organ_flags & ORGAN_FAILING))
-		// No lungs present, apply overheating
+		// No lungs or failing lungs present, apply overheating
 		human.adjust_bodytemperature(50)
 		human.adjustFireLoss(1)
 		if(prob(10))
@@ -89,8 +89,8 @@
 
 	var/obj/item/organ/heart/heart = human.get_organ_slot(ORGAN_SLOT_HEART)
 	if(!heart || (heart.organ_flags & ORGAN_FAILING))
-		// No heart present, apply paralysis
-		human.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH, 10 SECONDS)
+		// No heart or failing heart present, apply slowdown
+		human.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH, 5 SECONDS)
 		if(prob(10))
 			to_chat(human, span_warning("Alert: Oil pump is non-functional or missing. Hydraulics efficiency reduced."))
 
