@@ -68,16 +68,19 @@
 		return
 	var/obj/item/organ/stomach/protean/stomach = get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(!istype(stomach))
-		to_chat(usr, span_warning("You are missing a stomach and can't turn on low power mode"))
+		to_chat(src, span_warning("You are missing a stomach and can't turn on low power mode"))
 		return
 	if(loc == species.species_modsuit)
-		to_chat(usr, span_notice("You can't toggle low power when in a suit form!"))
+		to_chat(src, span_notice("You can't toggle low power when in a suit form!"))
 		return
-
-	var/datum/status_effect/protean_low_power_mode/effect = has_status_effect(/datum/status_effect/protean_low_power_mode)
-	if(effect)
+	if(!do_after(src, 2.5 SECONDS)) // Long enough to where our stomach can process inbetween activations
+		src.loc.balloon_alert(src, "toggle interrupted")
+		return
+	if(has_status_effect(/datum/status_effect/protean_low_power_mode))
 		stomach.metabolism_modifier *= 16
-		qdel(effect)
+		remove_status_effect(/datum/status_effect/protean_low_power_mode)
 	else
+		if(species.species_modsuit.active)
+			species.species_modsuit.toggle_activate(usr, TRUE)
 		stomach.metabolism_modifier /= 16
 		apply_status_effect(/datum/status_effect/protean_low_power_mode)
