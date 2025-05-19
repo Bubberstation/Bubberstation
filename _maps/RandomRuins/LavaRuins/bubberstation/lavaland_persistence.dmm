@@ -952,10 +952,6 @@
 /obj/item/clothing/under/syndicate/skyrat/baseball,
 /obj/effect/spawner/random/exotic/syndie,
 /obj/structure/cable,
-/obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/janitor{
-	name = "Persistence Janitor";
-	dir = 8
-	},
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "bP" = (
@@ -1090,6 +1086,9 @@
 	},
 /obj/structure/railing/corner/end{
 	dir = 4
+	},
+/obj/structure/railing/corner/end/flip{
+	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
@@ -2090,8 +2089,7 @@
 /obj/machinery/airalarm/directional/west,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/service{
-	dir = 4;
-	name = "Persistence General Staff"
+	dir = 4
 	},
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/chef)
@@ -3774,8 +3772,7 @@
 /obj/machinery/airalarm/directional/west,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/brigoff{
-	dir = 4;
-	name = "Persistence Brig Officer"
+	dir = 4
 	},
 /obj/structure/safe/abovetilefloor,
 /obj/item/clothing/gloves/boxing/evil,
@@ -5248,8 +5245,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/quartermaster{
-	dir = 4;
-	name = "Persistence Cargo Tech"
+	dir = 4
 	},
 /obj/structure/fluff/paper/stack{
 	dir = 4
@@ -6344,8 +6340,7 @@
 /obj/effect/spawner/random/entertainment/plushie_delux,
 /obj/item/clothing/suit/jacket/runner/syndicate,
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/stationmed{
-	dir = 4;
-	name = "Persistence Medical Officer"
+	dir = 4
 	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/medical)
@@ -7009,14 +7004,8 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/kirbyplants/organic/plant21{
-	pixel_x = 0;
-	pixel_y = 11
-	},
-/obj/item/clothing/head/costume/maidheadband/tactical_maid{
-	pixel_x = 1;
-	pixel_y = 1
+/obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/janitor{
+	dir = 1
 	},
 /turf/open/floor/carpet/purple,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
@@ -9769,8 +9758,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/med)
 "tN" = (
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/enginetech{
-	dir = 4;
-	name = "Persistence Engineer"
+	dir = 4
 	},
 /turf/open/floor/iron/terracotta/small,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/engineering)
@@ -10749,10 +10737,14 @@
 	},
 /obj/effect/turf_decal/siding/wideplating_new/dark,
 /obj/effect/turf_decal/siding/wood,
-/obj/structure/chair/pillow_small,
-/obj/item/fancy_pillow{
-	pixel_x = 4;
-	pixel_y = -6
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/kirbyplants/organic/plant21{
+	pixel_x = 0;
+	pixel_y = 11
+	},
+/obj/item/clothing/head/costume/maidheadband/tactical_maid{
+	pixel_x = 1;
+	pixel_y = 1
 	},
 /turf/open/floor/carpet/purple,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
@@ -12555,9 +12547,7 @@
 /obj/item/bikehorn,
 /obj/item/bikehorn/rubberducky,
 /obj/item/reagent_containers/cup/glass/bottle/holywater,
-/obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/moraleofficer{
-	name = "Persistence Morale Officer"
-	},
+/obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/moraleofficer,
 /turf/open/floor/iron/terracotta/diagonal,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/morale)
 "zh" = (
@@ -15732,8 +15722,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/command/admiral)
 "Fd" = (
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate/researcher{
-	dir = 4;
-	name = "Persistence Researcher"
+	dir = 4
 	},
 /turf/open/floor/carpet/purple,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/science)
@@ -17961,8 +17950,7 @@
 	dir = 4
 	},
 /obj/effect/mob_spawn/ghost_role/human/persistence/command/masteratarms{
-	dir = 4;
-	name = "Persistence Master at Arms"
+	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/maa)
@@ -21585,7 +21573,6 @@
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Rs" = (
 /obj/effect/mob_spawn/ghost_role/human/persistence/command/corporateliaison{
-	name = "Persistence Corporate Liason";
 	dir = 4
 	},
 /turf/open/floor/carpet/red,
@@ -23192,9 +23179,7 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/utilities)
 "Ur" = (
-/obj/effect/mob_spawn/ghost_role/human/persistence/command/admiral{
-	name = "Persistence Admiral"
-	},
+/obj/effect/mob_spawn/ghost_role/human/persistence/command/admiral,
 /obj/effect/turf_decal/siding/wideplating_new/dark/end{
 	dir = 1
 	},
