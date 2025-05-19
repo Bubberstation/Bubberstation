@@ -10,6 +10,8 @@
 	var/metal_max = PROTEAN_STOMACH_FULL
 	/// How much metal are we holding currently (In sheets)
 	var/metal = PROTEAN_STOMACH_FULL
+	/// Multiplicative modifier to how fast we lose metal
+	var/metabolism_modifier = 1
 	COOLDOWN_DECLARE(starving_message)
 
 /obj/item/organ/stomach/protean/Initialize(mapload)
@@ -41,11 +43,11 @@
 	if(metal > PROTEAN_STOMACH_FALTERING)
 		owner.remove_movespeed_modifier(/datum/movespeed_modifier/protean_slowdown)
 		if(owner.health < owner.maxHealth && metal > PROTEAN_STOMACH_FULL * 0.3)
-			metal -= clamp(((PROTEAN_STOMACH_FULL / PROTEAN_METABOLISM_RATE) * seconds_per_tick * 20), 0, 10) // Healing needs metal. 0.2 sheets per tick
+			metal -= clamp(((PROTEAN_STOMACH_FULL / PROTEAN_METABOLISM_RATE) * seconds_per_tick * 20), 0, metal_max) // Healing needs metal. 0.2 sheets per tick
 			owner.adjustBruteLoss(-2, forced = TRUE)
 			owner.adjustFireLoss(-2, forced = TRUE)
 		else
-			metal -= clamp(((PROTEAN_STOMACH_FULL / PROTEAN_METABOLISM_RATE) * seconds_per_tick), 0, 10)
+			metal -= clamp(((PROTEAN_STOMACH_FULL / PROTEAN_METABOLISM_RATE) * metabolism_modifier * seconds_per_tick), 0, metal_max)
 		return
 	owner.adjustBruteLoss(2, forced = TRUE)
 	if(COOLDOWN_FINISHED(src, starving_message))

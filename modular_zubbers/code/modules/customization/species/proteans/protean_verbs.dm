@@ -58,3 +58,26 @@
 		else
 			balloon_alert(src, "incapacitated!")
 
+/mob/living/carbon/proc/low_power()
+	set name = "Toggle Low Power Mode"
+	set desc = "Toggle whether you are running on low power mode."
+	set category = "Protean"
+
+	var/datum/species/protean/species = dna.species
+	if(!istype(species))
+		return
+	var/obj/item/organ/stomach/protean/stomach = get_organ_slot(ORGAN_SLOT_STOMACH)
+	if(!istype(stomach))
+		to_chat(usr, span_warning("You are missing a stomach and can't turn on low power mode"))
+		return
+	if(loc == species.species_modsuit)
+		to_chat(usr, span_notice("You can't toggle low power when in a suit form!"))
+		return
+
+	var/datum/status_effect/protean_low_power_mode/effect = has_status_effect(/datum/status_effect/protean_low_power_mode)
+	if(effect)
+		stomach.metabolism_modifier *= 16
+		qdel(effect)
+	else
+		stomach.metabolism_modifier /= 16
+		apply_status_effect(/datum/status_effect/protean_low_power_mode)
