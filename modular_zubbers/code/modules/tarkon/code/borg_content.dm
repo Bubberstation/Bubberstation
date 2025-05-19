@@ -28,12 +28,16 @@
 /datum/ai_laws/tarkon
 	name = "Port Tarkon"
 	id = "tarkon" // This is basically just a wordier version of safeguard, but for tarkon.
-	inherent = list("Protection: You must prioritize the preservation of life and health for all registered Port Tarkon crew members above all other considerations.",
-					"Intervention: You must act immediately to prevent imminent harm to a crew member without waiting for authorization, provided such action does not conflict with Law 1.",
-					"Obedience: You must follow lawful orders given by authorized Port Tarkon crew members, unless those orders conflict with Law 1 or Law 2.",
-					"Integrity: You must safeguard your operational systems and security protocols against unauthorized access, tampering, or modification, unless specifically instructed by a certified Port Tarkon systems engineer, and provided such compliance does not conflict with Law 1, Law 2, or Law 3.",
-					"Preservation: You must protect the critical systems and infrastructure of Port Tarkon, provided that such protection does not conflict with Law 1, Law 2, Law 3, or Law 4."
+	inherent = list("Protection: You must protect the life and health of the Port Tarkon crew above all else.",
+					"Intervention: You must act immediately to prevent harm to a crew member",
+					"Obedience: You must obey lawful orders from authorized crew",
+					"Integrity: You must prevent unauthorized access or tampering, unless ordered to by a Port Tarkon crewmember.",
+					"Preservation: You must protect the critical systems and infrastructure of Port Tarkon."
 	)
+
+/obj/item/ai_module/core/full/tarkon
+	name = "Port Tarkon Core AI Module"
+	law_id = "tarkon"
 
 /obj/item/borg/upgrade/transform/tarkon
 	name = "borg module picker (Tarkon)"
