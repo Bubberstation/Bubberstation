@@ -78,10 +78,9 @@
 	icon = 'modular_skyrat/master_files/icons/obj/tools.dmi'
 	icon_state = "rcd"
 	worn_icon_state = "RCD"
-	max_matter = 80
-	matter = 80
-	construction_upgrades = RCD_UPGRADE_ROBO_UPGRADE
-	banned_upgrades = RCD_ALL_UPGRADES & ~RCD_UPGRADE_ROBO_UPGRADE
+	max_matter = 60
+	matter = 60
+	banned_upgrades = RCD_ALL_UPGRADES
 
 /obj/item/construction/rcd/roboticsrcd/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	balloon_alert(user, "it has no deconstruction mode")
