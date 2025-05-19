@@ -16,9 +16,14 @@
 	organ_traits = list(TRAIT_SILICON_EMOTES_ALLOWED)
 	/// Whether or not the protean is stuck in their suit or not.
 	var/dead = FALSE
+	/// The list of traits added by the suit transformation (and removed when they emerge)
+	var/static/list/suit_traits = list(TRAIT_RESISTCOLD, TRAIT_RESISTHEAT, TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE)
+
 	COOLDOWN_DECLARE(message_cooldown)
 	COOLDOWN_DECLARE(refactory_cooldown)
 	COOLDOWN_DECLARE(orchestrator_cooldown)
+
+#define TRAIT_PROTEAN_SUIT "protean_suit"
 
 /obj/item/organ/brain/protean/on_life(seconds_per_tick, times_fired)
 	. = ..()
@@ -86,6 +91,7 @@
 	if(!forced)
 		if(!do_after(owner, 5 SECONDS))
 			return
+	owner.visible_message(span_warning("[owner] retreats into [owner.p_their()] control unit!"))
 	owner.extinguish_mob()
 	var/obj/item/mod/control/pre_equipped/protean/suit = protean.species_modsuit
 	owner.invisibility = 101
@@ -95,6 +101,7 @@
 	owner.forceMove(suit)
 	sleep(12) //Sleep is fine here because I'm not returning anything and if the brain gets deleted within 12 ticks of this being ran, we have some other serious issues.
 	owner.invisibility = initial(owner.invisibility)
+	owner.add_traits(suit_traits, TRAIT_PROTEAN_SUIT) // While in the suit, Proteans are immune to hot, cold, high and low pressures to avoid getting damage while being worn as a spaceproof mod suit.
 
 /obj/item/organ/brain/protean/proc/leave_modsuit()
 	var/datum/species/protean/protean = owner.dna?.species
@@ -117,6 +124,7 @@
 	sleep(12) //Same as above
 	suit.drop_suit()
 	owner.forceMove(suit.loc)
+	owner.visible_message(span_warning("[owner] reforms from [owner.p_their()] control unit!"))
 	if(owner.get_item_by_slot(ITEM_SLOT_BACK))
 		owner.dropItemToGround(owner.get_item_by_slot(ITEM_SLOT_BACK), TRUE, TRUE, TRUE)
 	owner.equip_to_slot_if_possible(suit, ITEM_SLOT_BACK, disable_warning = TRUE)
@@ -124,6 +132,7 @@
 	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob/living, SetStun), 0), 5 SECONDS)
 	if(!HAS_TRAIT(suit, TRAIT_NODROP))
 		ADD_TRAIT(suit, TRAIT_NODROP, "protean")
+	owner.remove_traits(suit_traits, TRAIT_PROTEAN_SUIT)
 
 /obj/item/organ/brain/protean/proc/replace_limbs()
 	var/obj/item/organ/stomach/protean/stomach = owner.get_organ_slot(ORGAN_SLOT_STOMACH)
@@ -160,13 +169,16 @@
 
 /obj/item/organ/brain/protean/proc/revive()
 	dead = FALSE
+	owner.visible_message(span_warning("[owner]'s nanites regain cohesion."))
 	playsound(owner, 'sound/machines/ping.ogg', 30)
 	to_chat(owner, span_warning("You have regained all your mass!"))
 	owner.fully_heal()
 
 /obj/item/organ/brain/protean/proc/revive_timer()
 	balloon_alert_to_viewers("repairing")
-	addtimer(CALLBACK(src, PROC_REF(revive)), 5 MINUTES) // Bump to 5 minutes
+	owner.visible_message(span_warning("[owner]'s nanites writhe as repair process begins."))
+	to_chat(owner, span_red("Your refactory has been replaced. You will become functional again in a few minutes.."))
+	addtimer(CALLBACK(src, PROC_REF(revive)), 1 MINUTES) // Bump to 5 minutes
 
 /obj/effect/temp_visual/protean_to_suit
 	name = "to_suit"
@@ -179,3 +191,5 @@
 	icon = PROTEAN_ORGAN_SPRITE
 	icon_state = "from_puddle"
 	duration = 12
+
+#undef TRAIT_PROTEAN_SUIT

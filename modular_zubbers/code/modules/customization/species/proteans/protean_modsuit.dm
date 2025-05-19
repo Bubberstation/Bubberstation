@@ -26,9 +26,11 @@
 	return ..()
 
 /obj/item/mod/control/pre_equipped/protean/wrench_act(mob/living/user, obj/item/wrench)
+	to_chat(user, span_warning("The core cannot be removed from the control unit."))
 	return FALSE // Can't remove the core.
 
 /obj/item/mod/control/pre_equipped/protean/emag_act(mob/user, obj/item/card/emag/emag_card)
+	to_chat(user, span_warning("The control unit does not respond."))
 	return FALSE // Nope
 
 /obj/item/mod/control/pre_equipped/protean/canStrip(mob/who)
@@ -223,7 +225,7 @@
 		. += span_notice("<b>Control Shift Click</b> to open Protean strip menu.")
 		if(brain.dead)
 			if(!open)
-				. += isnull(refactory) ? span_warning("This Protean requires critical repairs! <b>Screwdriver them open</b>") : span_notice("<b>Repairing systems...</b>")
+				. += isnull(refactory) ? span_warning("This Protean requires critical repairs! <b>Screwdriver them open</b>") : span_notice("<b>d systems...</b>")
 			else
 				. += isnull(refactory) ? span_warning("<b>Insert a new refactory</b>") : span_notice("<b>Refactory Installed! Repairing systems...</b>")
 
@@ -265,6 +267,7 @@
 	if (!isnull(should_strip_proc_path) && !call(species.owner, should_strip_proc_path)(user))
 		return
 	suit.balloon_alert_to_viewers("stripping")
+	suit.wearer.visible_message(span_warning("[source] begins to dump the contents of [suit.wearer]'s control unit!"))
 	ASYNC
 		var/datum/strip_menu/protean/strip_menu = LAZYACCESS(strip_menus, species.owner)
 		if (isnull(strip_menu))
