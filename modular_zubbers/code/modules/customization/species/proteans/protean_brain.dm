@@ -16,14 +16,9 @@
 	organ_traits = list(TRAIT_SILICON_EMOTES_ALLOWED)
 	/// Whether or not the protean is stuck in their suit or not.
 	var/dead = FALSE
-	/// The list of traits added by the suit transformation (and removed when they emerge)
-	var/static/list/suit_traits = list(TRAIT_RESISTCOLD, TRAIT_RESISTHEAT, TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE)
-
 	COOLDOWN_DECLARE(message_cooldown)
 	COOLDOWN_DECLARE(refactory_cooldown)
 	COOLDOWN_DECLARE(orchestrator_cooldown)
-
-#define TRAIT_PROTEAN_SUIT "protean_suit"
 
 /obj/item/organ/brain/protean/on_life(seconds_per_tick, times_fired)
 	. = ..()
@@ -101,7 +96,6 @@
 	owner.forceMove(suit)
 	sleep(12) //Sleep is fine here because I'm not returning anything and if the brain gets deleted within 12 ticks of this being ran, we have some other serious issues.
 	owner.invisibility = initial(owner.invisibility)
-	owner.add_traits(suit_traits, TRAIT_PROTEAN_SUIT) // While in the suit, Proteans are immune to hot, cold, high and low pressures to avoid getting damage while being worn as a spaceproof mod suit.
 
 /obj/item/organ/brain/protean/proc/leave_modsuit()
 	var/datum/species/protean/protean = owner.dna?.species
@@ -192,5 +186,3 @@
 	icon = PROTEAN_ORGAN_SPRITE
 	icon_state = "from_puddle"
 	duration = 12
-
-#undef TRAIT_PROTEAN_SUIT
