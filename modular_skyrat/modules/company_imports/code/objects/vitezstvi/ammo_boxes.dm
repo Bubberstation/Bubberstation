@@ -40,6 +40,10 @@
 	ammo_type = /obj/item/ammo_casing/c10mm/fire
 	max_ammo = 20
 
+/obj/item/ammo_box/c9mm/security //Bubberstation sourced, because IDK if I can make a bubber modular over a skyrat modular if that makes sense
+	name = "ammo box (9mm security)"
+	ammo_type = /obj/item/ammo_casing/c9mm/security
+
 /obj/item/ammo_box/c46x30mm
 	name = "ammo box (4.6x30mm)"
 	icon = 'modular_skyrat/modules/company_imports/icons/ammo.dmi'
