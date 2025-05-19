@@ -44,11 +44,8 @@
 			metal -= clamp(((PROTEAN_STOMACH_FULL / PROTEAN_METABOLISM_RATE) * seconds_per_tick * 20), 0, 10) // Healing needs metal. 0.2 sheets per tick
 			owner.adjustBruteLoss(-2, forced = TRUE)
 			owner.adjustFireLoss(-2, forced = TRUE)
-		if(owner.blood_volume < BLOOD_VOLUME_NORMAL && metal > PROTEAN_STOMACH_FULL * 0.3) // Because blood loss doesn't actually register as health loss for us. We also bypass standard handle_blood because we do not use standard nutrition
-			metal -= clamp(((PROTEAN_STOMACH_FULL / PROTEAN_METABOLISM_RATE) * seconds_per_tick * 200), 0, 10) // Our blood is nanite slurry - a useful healing chem for others - we're going to make it cost a premium 1 sheets per tick
-			owner.blood_volume = min(owner.blood_volume + (((BLOOD_REGEN_FACTOR * PROTEAN_METABOLISM_RATE) * 0.05) * seconds_per_tick), BLOOD_VOLUME_NORMAL) // 2 Sheets = 25u of slurry
 		else
-			metal -= clamp(((PROTEAN_STOMACH_FULL / PROTEAN_METABOLISM_RATE) * seconds_per_tick), 0, 5) // If we have no needed repairs, our consumption is minimal.
+			metal -= clamp(((PROTEAN_STOMACH_FULL / PROTEAN_METABOLISM_RATE) * seconds_per_tick), 0, 10)
 		return
 	owner.adjustBruteLoss(2, forced = TRUE)
 	if(COOLDOWN_FINISHED(src, starving_message))

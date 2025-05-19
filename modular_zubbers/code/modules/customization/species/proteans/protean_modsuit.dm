@@ -228,6 +228,10 @@
 				. += isnull(refactory) ? span_warning("This Protean requires critical repairs! <b>Screwdriver them open</b>") : span_notice("<b>Repairing systems...</b>")
 			else
 				. += isnull(refactory) ? span_warning("<b>Insert a new refactory</b>") : span_notice("<b>Refactory Installed! Repairing systems...</b>")
+		if(!brain.owner.key) // We have to put these here because you're examining an object, and not a carbon, and players otherwise can't tell if anyone is home.
+			. += span_deadsay("[brain.owner.P_Their] nanites are no longer moving along the surface of the control unit. The stresses of life in deep-space must have been too much for [brain.owner.p_them]. Any recovery is unlikely.")
+		if(!brain.owner.client)
+			. += span_deadsay("[brain.owner.P_Their] nanites are in perfect stasis, and [brain.owner.p_theyve] been completely unresponsive to anything for [brain.owner.round(((world.time - brain.owner.lastclienttime) / (1 MINUTES)),1)] minutes. [brain.owner.p_they] may snap out of it soon.")
 
 /obj/item/mod/control/pre_equipped/protean/proc/ooc_escape(mob/living/carbon/user)
 	SIGNAL_HANDLER
