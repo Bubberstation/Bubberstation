@@ -37,7 +37,7 @@
 			CAT_PILLS = GLOB.reagent_containers[CAT_PILLS],
 			CAT_PATCHES = GLOB.reagent_containers[CAT_PATCHES],
 			CAT_HYPOS = GLOB.reagent_containers[CAT_HYPOS], // SKYRAT EDIT ADDITION - Hypovials
-			CAT_PEN_INJECTORS = GLOB.reagent_containers[CAT_PEN_INJECTORS], // BUBBER EDIT
+			CAT_PEN_INJECTORS = GLOB.reagent_containers[CAT_PEN_INJECTORS], // BUBBER EDIT pen_medipens
 			CAT_MEDBOTTLES = GLOB.reagent_containers[CAT_MEDBOTTLES], // BUBBER EDIT - CAT_MEDBOTTLES
 		)
 
