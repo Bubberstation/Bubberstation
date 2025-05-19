@@ -3159,6 +3159,18 @@
 	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/port_tarkon/dorms)
+"lu" = (
+/obj/effect/decal/cleanable/cobweb,
+/obj/structure/rack,
+/obj/item/mod/module/noslip,
+/obj/item/soap/omega,
+/obj/item/sharpener,
+/obj/item/sharpener,
+/obj/item/food/cake/lemon,
+/obj/item/kitchen/rollingpin/illegal,
+/obj/item/grenade/clusterbuster/cleaner,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav)
 "lw" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 5
@@ -6575,7 +6587,7 @@
 /obj/effect/turf_decal/tile/yellow/half{
 	dir = 1
 	},
-/obj/effect/mob_spawn/ghost_role/human/tarkon,
+/obj/effect/mob_spawn/ghost_role/human/tarkon/service,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon)
 "yj" = (
@@ -7912,6 +7924,10 @@
 /obj/item/stock_parts/power_store/cell/super,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/trauma)
+"CP" = (
+/obj/machinery/door/puzzle/keycard/personal_service,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav)
 "CQ" = (
 /obj/effect/turf_decal/tile/purple/anticorner{
 	dir = 1
@@ -22318,8 +22334,8 @@ za
 "}
 (67,1,1) = {"
 Vt
-TD
-Mv
+lu
+CP
 jY
 Mv
 wY
@@ -22567,7 +22583,7 @@ Mv
 jY
 Dr
 Dr
-nl
+TD
 Vt
 za
 za
