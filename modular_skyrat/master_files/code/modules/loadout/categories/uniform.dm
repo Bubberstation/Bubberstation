@@ -141,7 +141,7 @@
 /datum/loadout_item/uniform/jumpsuit/security_jumpsuit
 	name = "Security Jumpsuit"
 	item_path = /obj/item/clothing/under/rank/security/peacekeeper/jumpsuit
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC) //BUBBER EDIT: adds JOB_CORRECTIONS_OFFICER and JOB_SECURITY_MEDIC
+	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC, ALL_JOBS_DEPT_GUARDS) //BUBBER EDIT: adds JOB_CORRECTIONS_OFFICER and JOB_SECURITY_MEDIC
 
 /datum/loadout_item/uniform/jumpsuit/security_peacekeeper
 	name = "Security Peacekeeper Uniform"

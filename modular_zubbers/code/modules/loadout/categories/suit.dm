@@ -1,7 +1,7 @@
 /datum/loadout_item/suit/secjacket
 	name = "High-Vis Security Jacket"
 	item_path = /obj/item/clothing/suit/armor/vest/secjacket/blue
-	restricted_roles = list(ALL_JOBS_SEC)
+	restricted_roles = list(ALL_JOBS_SEC. ALL_JOBS_DEPT_GUARDS)
 
 /datum/loadout_item/suit/leather_apron
 	name = "Leather Apron"
