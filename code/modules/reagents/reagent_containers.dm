@@ -210,7 +210,7 @@
 /obj/item/reagent_containers/proc/SplashReagents(atom/target, datum/thrownthing/throwingdatum, override_spillable = FALSE)
 	if(!reagents || !reagents.total_volume || (!spillable && !override_spillable) || reagent_flags & SMART_CAP)
 		return
-	var/mob/thrown_by = throwingdatum.get_thrower()
+	var/mob/thrown_by = throwingdatum?.get_thrower()
 
 	if(ismob(target) && target.reagents)
 		var/splash_multiplier = 1
@@ -230,7 +230,7 @@
 		reagents.expose(target_turf, TOUCH, (1 - splash_multiplier)) // 1 - splash_multiplier because it's what didn't hit the target
 		target_turf.add_liquid_from_reagents(reagents, reagent_multiplier = (1 - splash_multiplier)) // SKYRAT EDIT ADDITION - liquid spills (molotov buff) (huge)
 
-	else if(bartender_check(target, thrown_by) && throwingdatum)
+	else if(throwingdatum && bartender_check(target, thrown_by))
 		visible_message(span_notice("[src] lands onto \the [target] without spilling a single drop."))
 		return
 
