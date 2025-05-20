@@ -57,11 +57,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/match/update_desc(updates)
 	. = ..()
 	if(lit)
-		desc = "[initial(desc)]. This one is lit."
+		desc = "[initial(desc)] This one is lit."
 	else if(burnt)
-		desc = "[initial(desc)]. This one has seen better days."
+		desc = "[initial(desc)] This one has seen better days."
 	else if(broken)
-		desc = "[initial(desc)]. This one is broken."
+		desc = "[initial(desc)] This one is broken."
 	else
 		desc = initial(desc)
 
@@ -94,10 +94,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/match/proc/matchignite()
 	if(lit || burnt || broken)
 		return
-	//SKYRAT EDIT ADDITION
-	var/turf/my_turf = get_turf(src)
-	my_turf.pollute_turf(/datum/pollutant/sulphur, 5)
-	//SKYRAT EDIT END
 	playsound(src, 'sound/items/match_strike.ogg', 15, TRUE)
 	lit = TRUE
 	damtype = BURN
@@ -173,6 +169,19 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	. = ..()
 	matchignite()
 
+/obj/item/match/battery
+	name = "battery lighter"
+	desc = "A budget lighter done by using a battery and some aluminium. Hold tightly to ignite."
+	icon_state = "battery_unlit"
+	base_icon_state = "battery"
+
+/obj/item/match/battery/attack_self(mob/living/user, modifiers)
+	. = ..()
+	if(!do_after(user, 4 SECONDS, src))
+		return
+	user.apply_damage(5, BURN, user.get_active_hand())
+	matchignite()
+
 //////////////////
 //FINE SMOKABLES//
 //////////////////
@@ -231,8 +240,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	VAR_FINAL/how_long_have_we_been_smokin = 0 SECONDS
 	/// Which people ate cigarettes and how many
 	var/static/list/cigarette_eaters = list()
-
-	var/pollution_type = /datum/pollutant/smoke //SKYRAT EDIT ADDITION /// What type of pollution does this produce on smoking, changed to weed pollution sometimes
 
 /obj/item/cigarette/Initialize(mapload)
 	. = ..()
@@ -328,7 +335,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	user.visible_message(span_suicide("[user] is huffing [src] as quickly as [user.p_they()] can! It looks like [user.p_theyre()] trying to give [user.p_them()]self cancer."))
 	return (TOXLOSS|OXYLOSS)
 
-/obj/item/cigarette/attackby(obj/item/W, mob/user, params)
+/obj/item/cigarette/attackby(obj/item/W, mob/user, list/modifiers)
 	if(lit)
 		return ..()
 
@@ -420,12 +427,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		e.start(src)
 		qdel(src)
 		return
-	//SKYRAT EDIT ADDITION
-	// Setting the puffed pollutant to cannabis if we're smoking the space drugs reagent(obtained from cannabis)
-	if(reagents.has_reagent(/datum/reagent/drug/space_drugs))
-		pollution_type = /datum/pollutant/smoke/cannabis
-	// allowing reagents to react after being lit
-	//SKYRAT EDIT END
 
 	reagents.flags &= ~(NO_REACT)
 	reagents.handle_reactions()
@@ -460,16 +461,53 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	QDEL_NULL(mob_smoke)
 
 /obj/item/cigarette/proc/long_exhale(mob/living/carbon/smoker)
-	smoker.visible_message(
-		span_notice("[smoker] exhales a large cloud of smoke from [src]."),
-		span_notice("You exhale a large cloud of smoke from [src]."),
-	)
+	// Find a mob to blow smoke at
+	var/mob/living/guy_infront
+	for(var/mob/living/guy in get_step(smoker, smoker.dir))
+		// one of you has to get on the other's level
+		if(guy.body_position != smoker.body_position)
+			continue
+		// ensures we're face to face
+		if(!(REVERSE_DIR(guy.dir) & smoker.dir))
+			continue
+		guy_infront = guy
+		// in case we get a living first, we wanna prioritize humans
+		if(ishuman(guy_infront))
+			break
+
+	if(isnull(guy_infront))
+		smoker.visible_message(
+			span_notice("[smoker] exhales a large cloud of smoke from [src]."),
+			span_notice("You exhale a large cloud of smoke from [src]."),
+		)
+
+	else if(ishuman(guy_infront) && guy_infront.get_bodypart(BODY_ZONE_HEAD) && !guy_infront.is_pepper_proof())
+		guy_infront.visible_message(
+			span_notice("[smoker] exhales a large cloud of smoke from [src] directly at [guy_infront]'s face!"),
+			span_notice("You exhale a large cloud of smoke from [src] directly at [guy_infront]'s face."),
+			ignored_mobs = guy_infront,
+		)
+		to_chat(guy_infront, span_warning("You get a face full of smoke from [smoker]'s [name]!"))
+		smoke_in_face(guy_infront)
+
+	else
+		guy_infront.visible_message(
+			span_notice("[smoker] exhales a large cloud of smoke from [src] at [guy_infront]."),
+			span_notice("You exhale a large cloud of smoke from [src] at [guy_infront]."),
+		)
+
 	if(!isturf(smoker.loc))
 		return
 
 	var/obj/effect/abstract/particle_holder/big_smoke = new(smoker.loc, /particles/smoke/cig/big)
 	update_particle_position(big_smoke, smoker.dir)
 	QDEL_IN(big_smoke, big_smoke.particles.lifespan)
+
+/// Called when a mob gets smoke blown in their face.
+/obj/item/cigarette/proc/smoke_in_face(mob/living/getting_smoked)
+	getting_smoked.add_mood_event("smoke_bm", /datum/mood_event/smoke_in_face)
+	if(prob(20) && !HAS_TRAIT(getting_smoked, TRAIT_SMOKER) && !HAS_TRAIT(getting_smoked, TRAIT_ANOSMIA))
+		getting_smoked.emote("cough")
 
 /// Handles processing the reagents in the cigarette.
 /obj/item/cigarette/proc/handle_reagents(seconds_per_tick)
@@ -515,11 +553,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(!check_oxygen(user))
 		extinguish()
 		return
-
-	// SKYRAT EDIT ADDITION START - Pollution
-	var/turf/location = get_turf(src)
-	location.pollute_turf(pollution_type, 5, POLLUTION_PASSIVE_EMITTER_CAP)
-	// SKYRAT EDIT END
 
 	smoketime -= seconds_per_tick * (1 SECONDS)
 	if(smoketime <= 0)
@@ -623,6 +656,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	smoke_all = TRUE
 	lung_harm = 1.5
 	list_reagents = list(/datum/reagent/drug/nicotine = 10, /datum/reagent/medicine/omnizine = 15)
+
+/obj/item/cigarette/syndicate/smoke_in_face(mob/living/getting_smoked)
+	. = ..()
+	getting_smoked.adjust_eye_blur(6 SECONDS)
+	getting_smoked.adjust_temp_blindness(2 SECONDS)
 
 /obj/item/cigarette/shadyjims
 	desc = "A Shady Jim's Super Slims cigarette."
@@ -858,7 +896,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	STOP_PROCESSING(SSobj, src)
 	QDEL_NULL(cig_smoke)
 
-/obj/item/cigarette/pipe/attackby(obj/item/thing, mob/user, params)
+/obj/item/cigarette/pipe/attackby(obj/item/thing, mob/user, list/modifiers)
 	if(!istype(thing, /obj/item/food/grown))
 		return ..()
 
@@ -1080,12 +1118,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	//Time to start puffing those fat vapes, yo.
 	COOLDOWN_START(src, drag_cooldown, dragtime)
-
-	//SKYRAT EDIT ADDITION
-	//open flame removed because vapes are a closed system, they won't light anything on fire
-	var/turf/my_turf = get_turf(src)
-	my_turf.pollute_turf(/datum/pollutant/smoke/vape, 5, POLLUTION_PASSIVE_EMITTER_CAP)
-	//SKYRAT EDIT END
 
 	if(obj_flags & EMAGGED)
 		var/datum/effect_system/fluid_spread/smoke/chem/smoke_machine/puff = new

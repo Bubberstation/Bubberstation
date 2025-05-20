@@ -30,6 +30,10 @@
  */
 /proc/generate_random_name_species_based(gender, unique, datum/species/species_type, include_all = FALSE)
 	ASSERT(ispath(species_type, /datum/species))
+	// BUBBER EDIT ADDITION BEGIN - Ashwalkers
+	if(istype(species_type, /datum/species/lizard))
+		return generate_ashwalker_name()
+	// BUBBER EDIT ADDITION END - Ashwalkers
 	var/datum/language_holder/holder = GLOB.prototype_language_holders[species_type::species_language_holder]
 
 	var/list/languages_to_pick_from = list()
@@ -372,6 +376,8 @@ GLOBAL_DATUM(syndicate_code_response_regex, /regex)
 			return "a blood filter"
 		if(TOOL_ROLLINGPIN)
 			return "a rolling pin"
+		if(TOOL_RUSTSCRAPER)
+			return "a rust scraper"
 		else
 			return "something... but the gods didn't set this up right (Please report this bug)"
 

@@ -147,4 +147,4 @@
 	icon_state = "lightless"
 
 /datum/movespeed_modifier/light_averse
-	multiplicative_slowdown = 0.1
+	multiplicative_slowdown = 0.25

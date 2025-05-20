@@ -12,7 +12,7 @@
 
 /datum/surgery/blood_filter/mechanic
 	name = "Hydraulics Purge"
-	requires_bodypart_type = BODYTYPE_ROBOTIC
+	requires_bodypart_type = BODYTYPE_ROBOTIC | BODYTYPE_NANO // BUBBER EDIT
 	steps = list(
 		/datum/surgery_step/mechanic_open,
 		/datum/surgery_step/open_hatch,
@@ -84,7 +84,7 @@
 	var/obj/item/blood_filter/bloodfilter = tool
 	if(target.reagents?.total_volume)
 		for(var/datum/reagent/chem as anything in target.reagents.reagent_list)
-			if(!length(bloodfilter.whitelist) || (chem.type in bloodfilter.whitelist))
+			if(!length(bloodfilter.whitelist) || !(chem.type in bloodfilter.whitelist))
 				target.reagents.remove_reagent(chem.type, clamp(round(chem.volume * 0.22, 0.2), 0.4, 10))
 	target.adjustToxLoss(amount = clamp(round(target.toxloss * -0.07, 2), -2, -10), forced = TRUE) // BUBBER EDIT ADDITION - Filtration fixes toxins
 	display_results(

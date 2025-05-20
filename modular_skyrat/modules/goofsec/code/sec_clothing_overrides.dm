@@ -203,8 +203,8 @@
 	base_icon_state = "security_eyepatch"
 
 /obj/item/clothing/glasses/hud/security/night
-	icon_state = "security_hud_nv"
-	glass_colour_type = /datum/client_colour/glass_colour/green
+	icon = 'icons/obj/clothing/glasses.dmi'
+	worn_icon = 'icons/mob/clothing/eyes.dmi'
 
 /*
 * HEAD
@@ -469,6 +469,48 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "tackle_blue"
+
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Black Variant" = list(
+			RESKIN_ICON_STATE = "combat",
+			RESKIN_WORN_ICON_STATE = "combat"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "tackle_blue",
+			RESKIN_WORN_ICON_STATE = "tackle_blue"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON = 'icons/obj/clothing/gloves.dmi',
+			RESKIN_WORN_ICON = 'icons/mob/clothing/hands.dmi',
+			RESKIN_ICON_STATE = "gorilla",
+			RESKIN_WORN_ICON_STATE = "gorilla"
+		),
+	)
+
+/obj/item/clothing/gloves/tackler/combat
+	icon = 'icons/obj/clothing/gloves.dmi'
+	worn_icon = 'icons/mob/clothing/hands.dmi'
+	icon_state = "gorilla"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Black Variant" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi',
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi',
+			RESKIN_ICON_STATE = "combat",
+			RESKIN_WORN_ICON_STATE = "combat"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi',
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi',
+			RESKIN_ICON_STATE = "tackle_blue",
+			RESKIN_WORN_ICON_STATE = "tackle_blue"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "gorilla",
+			RESKIN_WORN_ICON_STATE = "gorilla"
+		),
+	)
 
 /obj/item/clothing/gloves/krav_maga/sec
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'

@@ -33,6 +33,8 @@
 
 /datum/quirk/equipping/seamless_clothes/proc/remove_quirk()
 	SIGNAL_HANDLER
+	if(!isturf(shoes.loc))
+		return
 	qdel(src)
 
 /datum/quirk_constant_data/seamless_clothes

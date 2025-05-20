@@ -43,18 +43,11 @@
 /datum/loadout_item/accessory/bone_charm
 	name = "Heirloom Bone Talisman"
 	item_path = /obj/item/clothing/accessory/talisman/armourless
-	additional_displayed_text = list(TOOLTIP_NO_ARMOR)
 
 /datum/loadout_item/accessory/bone_codpiece
 	name = "Heirloom Skull Codpiece"
 	item_path = /obj/item/clothing/accessory/skullcodpiece/armourless
-	additional_displayed_text = list(TOOLTIP_NO_ARMOR)
 
 /datum/loadout_item/accessory/sinew_kilt
 	name = "Heirloom Sinew Skirt"
 	item_path = /obj/item/clothing/accessory/skilt/armourless
-	additional_displayed_text = list(TOOLTIP_NO_ARMOR)
-
-/datum/loadout_item/accessory/wallet
-	name = "Wallet"
-	item_path = /obj/item/storage/wallet

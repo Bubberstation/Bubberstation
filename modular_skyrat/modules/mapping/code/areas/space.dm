@@ -170,10 +170,18 @@
 	name = "P-T Trauma Center"
 	icon_state = "med_central"
 
+/area/ruin/space/has_grav/port_tarkon/viro
+	name = "P-T Virology Center"
+	icon_state = "med_central"
+
 /area/ruin/space/has_grav/port_tarkon/developement
 	name = "P-T Developement Center"
 	icon_state = "science"
 	area_flags = XENOBIOLOGY_COMPATIBLE | UNIQUE_AREA
+
+/area/ruin/space/has_grav/port_tarkon/scienceaway
+	name = "P-T Detached Research Center"
+	icon_state = "science"
 
 /area/ruin/space/has_grav/port_tarkon/comms
 	name = "P-T Communication Center"
@@ -181,6 +189,10 @@
 
 /area/ruin/space/has_grav/port_tarkon/power1
 	name = "P-T Solar Control"
+	icon_state = "engine"
+
+/area/ruin/space/has_grav/port_tarkon/power2
+	name = "P-T Backup Generator Room"
 	icon_state = "engine"
 
 /area/ruin/space/has_grav/port_tarkon/centerhall
@@ -191,9 +203,17 @@
 	name = "P-T Security Office"
 	icon_state = "security"
 
+/area/ruin/space/has_grav/port_tarkon/lounge
+	name = "P-T Bar Lounge"
+	icon_state = "bar"
+
 /area/ruin/space/has_grav/port_tarkon/atmos
 	name = "P-T Atmospheric Center"
 	icon_state = "atmos"
+
+/area/ruin/space/has_grav/port_tarkon/engineering
+	name = "P-T Engineering Center"
+	icon_state = "engineering"
 
 /area/ruin/space/has_grav/port_tarkon/kitchen
 	name = "P-T Kitchen"
@@ -201,6 +221,10 @@
 
 /area/ruin/space/has_grav/port_tarkon/garden
 	name = "P-T Garden"
+	icon_state = "garden"
+
+/area/ruin/space/has_grav/port_tarkon/park
+	name = "P-T Park"
 	icon_state = "garden"
 
 /area/ruin/space/has_grav/port_tarkon/cargo
@@ -227,10 +251,22 @@
 	name = "P-T Dorms"
 	icon_state = "dorms"
 
+/area/ruin/space/has_grav/port_tarkon/random_dorm
+	name = "P-T Deluxe Dorm Room"
+	icon_state = "dorms"
+
 /area/solars/tarkon
 	name = "\improper P-T Solar Array"
 	icon_state = "space_near"
 	default_gravity = STANDARD_GRAVITY
+
+/area/ruin/space/has_grav/port_tarkon/aichamber
+	name = "P-T AI Chamber"
+	icon_state = "ai_interior"
+
+/area/ruin/space/has_grav/port_tarkon/aiante
+	name = "P-T AI Antechamber"
+	icon_state = "ai_interior"
 
 // Cargodise Lost Freighter
 

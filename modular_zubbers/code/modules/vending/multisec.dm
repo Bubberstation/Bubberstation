@@ -128,8 +128,6 @@
 					/obj/item/clothing/head/beret/sec/navyofficer = 6,
 					/obj/item/clothing/suit/jacket/officer/tan = 6,
 					/obj/item/clothing/head/helmet/metrocophelmet = 6,
-					/obj/item/clothing/suit/armor/metrocop = 6,
-					/obj/item/clothing/suit/armor/metrocopriot = 6,
 					/obj/item/clothing/accessory/badge/holo = 10, //I know there's a box of them but, why not have more, eh?
 					/obj/item/clothing/accessory/badge/holo/cord = 10,
 					/obj/item/clothing/head/helmet/blueshirt = 3,

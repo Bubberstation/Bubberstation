@@ -3,6 +3,7 @@
 
 //! Techweb names for new point types. Can be used to define specific point values for specific types of research (science, security, engineering, etc.)
 #define TECHWEB_POINT_TYPE_GENERIC "General Research"
+#define TECHWEB_POINT_TYPE_NANITE "Nanite Research" // BUBBER EDIT ADDITION - NANITES
 
 //!  Amount of points required to unlock nodes of corresponding tiers
 #define TECHWEB_TIER_1_POINTS 40
@@ -60,6 +61,8 @@
 //! General defines for vatgrowing
 /// Past how much growth can the other cell_lines affect a finished cell line negatively
 #define VATGROWING_DANGER_MINIMUM 30
+//Defines how many percent of vat grown atoms come out as hue shifted color mutants. A flat chance for now, maybe in the future dependant on the cell line.
+#define CYTO_SHINY_CHANCE 15
 
 #define SCIPAPER_COOPERATION_INDEX 1
 #define SCIPAPER_FUNDING_INDEX 2

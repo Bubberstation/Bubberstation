@@ -93,9 +93,9 @@
 
 /mob/living/carbon/alien/getTrail()
 	if(getBruteLoss() < 200)
-		return pick (list("xltrails_1", "xltrails2"))
+		return pick (list("ltrails_1", "ltrails2"))
 	else
-		return pick (list("xttrails_1", "xttrails2"))
+		return pick (list("trails_1", "trails2"))
 
 /mob/living/carbon/alien/get_trail_blood()
 	return BLOOD_STATE_XENO
@@ -177,6 +177,13 @@ Des: Removes all infected images from the alien.
 	if(istype(melting_pot) && istype(frying_pan))
 		for (var/atom/movable/poor_sod as anything in melting_pot.stomach_contents)
 			frying_pan.consume_thing(poor_sod)
+	// BUBBER ADDITION START - NANITES
+	var/datum/component/nanites/nanites = GetComponent(/datum/component/nanites)
+	if(nanites)
+		new_xeno.AddComponent(/datum/component/nanites, nanites.nanite_volume)
+		SEND_SIGNAL(new_xeno, COMSIG_NANITE_SYNC, nanites)
+	// BUBBER ADDITION END - NANITES
+
 	qdel(src)
 
 /// Changes the name of the xeno we are evolving into in order to keep the same numerical identifier the old xeno had.

@@ -60,18 +60,6 @@
 	message_robot = "synthesizes a yawn."
 	message_AI = "synthesizes a yawns."
 
-/datum/emote/living/sniff/run_emote(mob/user, params, type_override, intentional)
-	. = ..()
-	if(.)
-		var/turf/open/current_turf = get_turf(user)
-		if(istype(current_turf) && current_turf.pollution)
-			if(iscarbon(user))
-				var/mob/living/carbon/carbon_user = user
-				if(carbon_user.internal) //Breathing from internals means we cant smell
-					return
-				carbon_user.next_smell = world.time + SMELL_COOLDOWN
-			current_turf.pollution.smell_act(user)
-
 /datum/emote/living/peep
 	key = "peep"
 	key_third_person = "peeps"
@@ -177,7 +165,8 @@
 	key = "meow"
 	key_third_person = "meows"
 	message = "meows!"
-	emote_type = EMOTE_AUDIBLE
+	message_mime = "meows silently."
+	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'modular_skyrat/modules/emotes/sound/emotes/meow.ogg'
 
