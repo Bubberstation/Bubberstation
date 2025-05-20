@@ -86,5 +86,5 @@
 	banned_upgrades = RCD_ALL_UPGRADES
 
 /obj/item/construction/rcd/robotics_rcd/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
-	balloon_alert(user, "No deconstruction mode")
+	balloon_alert(user, "no deconstruction mode")
 	return NONE
