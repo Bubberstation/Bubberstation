@@ -119,7 +119,6 @@
 	)
 
 /obj/item/radio/borg/tarkon
-	special_channels = RADIO_CHANNEL_TARKON
 	keyslot = /obj/item/encryptionkey/headset_cargo/tarkon
 
 /obj/item/radio/borg/tarkon/Initialize(mapload)
