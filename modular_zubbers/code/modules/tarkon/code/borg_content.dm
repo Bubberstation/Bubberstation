@@ -122,6 +122,10 @@
 	special_channels = RADIO_CHANNEL_TARKON
 	keyslot = /obj/item/encryptionkey/headset_cargo/tarkon
 
+/obj/item/radio/borg/tarkon/Initialize(mapload)
+	. = ..()
+	set_frequency(FREQ_TARKON)
+
 /mob/living/silicon/robot/model/tarkon
 	set_model = /obj/item/robot_model/tarkon
 	cell = /obj/item/stock_parts/power_store/cell/hyper
