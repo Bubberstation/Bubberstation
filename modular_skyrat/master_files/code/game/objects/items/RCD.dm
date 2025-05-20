@@ -73,7 +73,7 @@
 	plumbing_design_types = mining_design_types
 
 /obj/item/construction/rcd/robotics_rcd
-	name = "Robotics rcd"
+	name = "Robotics RCD"
 	desc = "A modified RCD that has less storage then your usual NT RCD which lost some contruction abilities and the ability to deconstruct anything in favor of being more accessibility for synthetic repairs. Reload using metal, glass, or plasteel."
 	icon = 'modular_skyrat/master_files/icons/obj/tools.dmi'
 	icon_state = "roborcd"
