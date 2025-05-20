@@ -462,6 +462,22 @@
 	},
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/qm)
+"aiU" = (
+/obj/item/book/manual/wiki/barman_recipes{
+	pixel_x = 5;
+	pixel_y = 6
+	},
+/obj/item/rag,
+/obj/structure/table/wood,
+/obj/item/holosign_creator/robot_seat/bar{
+	pixel_y = 6
+	},
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/turf_decal/box/white/corners{
+	dir = 8
+	},
+/turf/open/floor/iron/dark,
+/area/station/service/bar)
 "aiX" = (
 /turf/open/floor/iron,
 /area/station/security/courtroom)
@@ -1843,13 +1859,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
 /area/station/engineering/lobby)
-"axZ" = (
-/obj/structure/table/optable{
-	name = "Robotics Operating Table"
-	},
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/iron/dark,
-/area/station/science/robotics/lab)
 "ayd" = (
 /obj/structure/sign/poster/random/directional/north,
 /turf/open/floor/plating,
@@ -1866,6 +1875,11 @@
 /obj/effect/mapping_helpers/airlock/access/all/engineering/atmos,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos)
+"ayA" = (
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/sink/directional/south,
+/turf/open/floor/iron/dark,
+/area/station/science/robotics/lab)
 "ayG" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing/corner,
@@ -8282,13 +8296,6 @@
 /obj/structure/sign/warning/cold_temp/directional/north,
 /turf/open/floor/plating,
 /area/station/maintenance/aft/lesser)
-"cjI" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/obj/item/rag,
-/turf/open/floor/iron,
-/area/station/maintenance/starboard/fore)
 "cjJ" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 8
@@ -10447,19 +10454,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/carpet/royalblue,
 /area/station/command/heads_quarters/captain)
-"cQc" = (
-/obj/structure/table/wood,
-/obj/item/rag,
-/obj/item/clothing/head/collectable/tophat{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/effect/spawner/random/entertainment/gambling{
-	pixel_x = -13
-	},
-/obj/effect/mapping_helpers/broken_floor,
-/turf/open/floor/wood,
-/area/station/maintenance/fore)
 "cQf" = (
 /obj/structure/cable,
 /turf/open/floor/iron,
@@ -20058,6 +20052,19 @@
 /obj/effect/turf_decal/tile/green,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/turret_protected/ai_upload)
+"fHr" = (
+/obj/structure/table/wood,
+/obj/item/rag,
+/obj/item/clothing/head/collectable/tophat{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/effect/spawner/random/entertainment/gambling{
+	pixel_x = -13
+	},
+/obj/effect/mapping_helpers/broken_floor,
+/turf/open/floor/wood,
+/area/station/maintenance/fore)
 "fHv" = (
 /obj/effect/spawner/random/structure/tank_holder,
 /obj/effect/decal/cleanable/dirt,
@@ -20203,15 +20210,6 @@
 	dir = 1
 	},
 /area/station/medical/morgue)
-"fJF" = (
-/obj/structure/table,
-/obj/structure/window/reinforced/spawner/directional/east,
-/obj/item/mmi,
-/obj/item/mmi,
-/obj/item/mmi,
-/obj/machinery/newscaster/directional/north,
-/turf/open/floor/iron/dark,
-/area/station/science/robotics/lab)
 "fJL" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/nitrogen_input{
 	dir = 1
@@ -24144,6 +24142,14 @@
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/underground/explored)
+"gQk" = (
+/obj/structure/table/optable{
+	name = "Robotics Operating Table"
+	},
+/obj/effect/landmark/event_spawn,
+/obj/machinery/newscaster/directional/south,
+/turf/open/floor/iron/dark,
+/area/station/science/robotics/lab)
 "gQp" = (
 /obj/machinery/door/airlock/external{
 	name = "External Access"
@@ -28517,12 +28523,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/maintenance/disposal/incinerator)
-"icI" = (
-/obj/structure/table,
-/obj/item/retractor,
-/obj/machinery/status_display/evac/directional/north,
-/turf/open/floor/iron/dark,
-/area/station/science/robotics/lab)
 "icK" = (
 /obj/machinery/firealarm/directional/east,
 /obj/structure/railing,
@@ -30043,14 +30043,6 @@
 	dir = 4
 	},
 /area/station/service/chapel)
-"iBa" = (
-/obj/structure/table,
-/obj/item/circular_saw,
-/obj/item/scalpel{
-	pixel_y = 12
-	},
-/turf/open/floor/iron/dark,
-/area/station/science/robotics/lab)
 "iBe" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
@@ -64556,6 +64548,10 @@
 /obj/effect/turf_decal/tile/yellow/opposingcorners,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos/project)
+"slS" = (
+/obj/effect/spawner/structure/window/reinforced/tinted,
+/turf/open/floor/plating,
+/area/station/security/prison/toilet)
 "slX" = (
 /obj/structure/fans/tiny,
 /obj/effect/turf_decal/stripes/red/box,
@@ -68829,6 +68825,15 @@
 /obj/machinery/status_display/evac/directional/north,
 /turf/open/floor/iron/white/smooth_large,
 /area/station/service/kitchen)
+"twq" = (
+/obj/structure/table,
+/obj/item/circular_saw,
+/obj/item/scalpel{
+	pixel_y = 12
+	},
+/obj/item/retractor,
+/turf/open/floor/iron/dark,
+/area/station/science/robotics/lab)
 "twr" = (
 /obj/effect/turf_decal/tile/brown/half/contrasted{
 	dir = 1
@@ -73025,10 +73030,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/purple/visible,
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
-"uIB" = (
-/obj/effect/spawner/structure/window/reinforced/tinted,
-/turf/open/floor/plating,
-/area/station/security/prison/toilet)
 "uIC" = (
 /obj/machinery/door/airlock/security{
 	aiControlDisabled = 1;
@@ -76463,6 +76464,13 @@
 	},
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/rd)
+"vKc" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/item/rag,
+/turf/open/floor/iron,
+/area/station/maintenance/starboard/fore)
 "vKk" = (
 /obj/machinery/vending/security,
 /turf/open/floor/iron/smooth_edge,
@@ -81423,6 +81431,12 @@
 "xhK" = (
 /turf/closed/wall/r_wall,
 /area/station/security/prison/safe)
+"xhO" = (
+/obj/machinery/status_display/evac/directional/north,
+/obj/structure/table,
+/obj/item/mmi,
+/turf/open/floor/iron/dark,
+/area/station/science/robotics/lab)
 "xhV" = (
 /obj/machinery/duct,
 /turf/open/floor/wood,
@@ -82721,22 +82735,6 @@
 	dir = 1
 	},
 /area/station/science/explab)
-"xBf" = (
-/obj/item/book/manual/wiki/barman_recipes{
-	pixel_x = 5;
-	pixel_y = 6
-	},
-/obj/item/rag,
-/obj/structure/table/wood,
-/obj/item/holosign_creator/robot_seat/bar{
-	pixel_y = 6
-	},
-/obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/effect/turf_decal/box/white/corners{
-	dir = 8
-	},
-/turf/open/floor/iron/dark,
-/area/station/service/bar)
 "xBj" = (
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/access/all/service/bar,
@@ -109117,8 +109115,8 @@ thA
 thA
 thA
 uOb
-uIB
-uIB
+slS
+slS
 yiz
 lBR
 fZq
@@ -109631,8 +109629,8 @@ thA
 thA
 thA
 uOb
-uIB
-uIB
+slS
+slS
 nHs
 lBR
 oWe
@@ -110145,8 +110143,8 @@ thA
 thA
 thA
 uOb
-uIB
-uIB
+slS
+slS
 kXO
 lBR
 jbb
@@ -249213,7 +249211,7 @@ fhz
 skl
 jVb
 tnP
-cQc
+fHr
 jOQ
 skl
 dnk
@@ -252572,7 +252570,7 @@ gJD
 kKL
 jOC
 uWy
-xBf
+aiU
 byJ
 mNP
 foI
@@ -258476,7 +258474,7 @@ weF
 pEc
 kKL
 moF
-cjI
+vKc
 kKL
 pQa
 wWo
@@ -259020,9 +259018,9 @@ vvP
 mxD
 cgZ
 uvt
-iBa
+twq
 pra
-axZ
+gQk
 mtI
 lUf
 keZ
@@ -259277,7 +259275,7 @@ ddk
 dry
 edq
 uvt
-icI
+xhO
 pra
 ctY
 mtI
@@ -259534,7 +259532,7 @@ qfh
 kRE
 cLo
 uvt
-fJF
+ayA
 oed
 wkH
 mtI
