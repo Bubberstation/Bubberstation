@@ -138,10 +138,16 @@
 
 /datum/round_event/antagonist/proc/candidate_setup(datum/round_event_control/antagonist/cast_control)
 	var/list/candidates = cast_control.get_candidates()
+	var/datum/antagonist/A = cast_control.antag_datum
+	var/antag_name = A.name
 	for(var/i in 1 to antag_count)
 		if(!candidates.len)
 			break
 		var/mob/candidate = pick_n_take(candidates)
+		if(tgui_alert(candidate, "You have been selected to be \an [antag_name]. Do you accept?", "Antagonist Selection", list("No", "Yes"), timeout = 10 SECONDS) != "Yes")
+			continue
+			// If the player accepts, we set up their mind and add them to the list of minds to finalize
+			// If they don't, we remove them from the list of candidates and try again
 		setup_minds += candidate.mind
 		candidate_roles_setup(candidate)
 
