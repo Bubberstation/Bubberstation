@@ -41,7 +41,7 @@
 
 	var/space = should_have_space_before_emote(html_decode(subtle_emote)[1]) ? " " : ""
 
-	subtle_message = span_subtle("<b>[user]</b>[space]<i>[user.say_emphasis(subtle_message)]</i>")
+	subtle_message = span_subtle("<b>[user]</b>[space]<i>[user.apply_message_emphasis(subtle_message)]</i>")
 
 	var/list/viewers = get_hearers_in_view(SUBTLE_ONE_TILE, user)
 
@@ -137,7 +137,7 @@
 
 	var/space = should_have_space_before_emote(html_decode(subtler_emote)[1]) ? " " : ""
 
-	subtler_message = span_subtler("<b>[user]</b>[space]<i>[user.say_emphasis(subtler_message)]</i>")
+	subtler_message = span_subtler("<b>[user]</b>[space]<i>[user.apply_message_emphasis(subtler_message)]</i>")
 
 	if(istype(target, /mob))
 		var/mob/target_mob = target

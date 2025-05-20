@@ -5,7 +5,6 @@ SUBSYSTEM_DEF(vote)
 	name = "Vote"
 	wait = 1 SECONDS
 	flags = SS_KEEP_TIMING
-	init_order = INIT_ORDER_VOTE
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 
 	/// A list of all generated action buttons
@@ -119,7 +118,7 @@ SUBSYSTEM_DEF(vote)
 	)
 	log_vote("vote finalized", vote_log_data)
 	if(to_display)
-		to_chat(world, custom_boxed_message("purple_box", vote_font("[to_display]"))) // BUBBER EDIT CHANGE -  span_infoplain changed to examine_block
+		to_chat(world, span_infoplain(vote_font("[to_display]")))
 
 	// Finally, doing any effects on vote completion
 	current_vote.finalize_vote(final_winner)

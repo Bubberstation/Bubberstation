@@ -69,10 +69,10 @@
 
 //In inches
 #define PENIS_MIN_GIRTH PENIS_MIN_LENGTH
-#define PENIS_MAX_GIRTH 20
+#define PENIS_MAX_GIRTH 40
 #define PENIS_DEFAULT_GIRTH 5 // a lil big but not by much
 #define PENIS_MIN_LENGTH 1
-#define PENIS_MAX_LENGTH 36
+#define PENIS_MAX_LENGTH 72
 #define PENIS_DEFAULT_LENGTH 6 //still a lil long but not insane
 
 #define TESTICLES_MIN_SIZE 0
@@ -98,7 +98,7 @@
 	"penis_sheath" = SHEATH_NONE,\
 	"balls_size" = 1,\
 	"body_size" = BODY_SIZE_NORMAL,\
-	"custom_species" = null,\
+	"custom_species" = "",\
 	"penis_uses_skintones" = TRUE,\
 	"penis_uses_skincolor" = TRUE,\
 	"testicles_uses_skintones" = TRUE,\

@@ -168,12 +168,12 @@
 	var/list/choices = list()
 	for(var/choice in available_selection)
 		var/datum/radial_menu_choice/option = new
-		var/image/part_image = image(icon = HIDING_RADIAL_DMI, icon_state = initial(choice))
+		var/image/part_image = image(icon = HIDING_RADIAL_DMI, icon_state = choice)
 
 		option.image = part_image
 		if(choice in try_hide_mutant_parts)
 			part_image.underlays += image(icon = HIDING_RADIAL_DMI, icon_state = "module_unable")
-		choices[initial(choice)] = option
+		choices[choice] = option
 	// Radial choices
 	sort_list(choices)
 	var/pick = show_radial_menu(usr, src, choices, custom_check = FALSE, tooltips = TRUE)

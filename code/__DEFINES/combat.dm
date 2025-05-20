@@ -68,7 +68,7 @@
 //Bitflags defining which status effects could be or are inflicted on a mob
 /// If set, this mob can be stunned.
 #define CANSTUN (1<<0)
-/// If set, this mob can be knocked down (or stamcrit)
+/// If set, this mob can be knocked down
 #define CANKNOCKDOWN (1<<1)
 /// If set, this mob can be knocked unconscious via status effect.
 /// NOTE, does not mean immune to sleep. Unconscious and sleep are two different things.
@@ -319,6 +319,11 @@ GLOBAL_LIST_INIT(leg_zones, list(BODY_ZONE_R_LEG, BODY_ZONE_L_LEG))
 
 /// Martial arts attack happened and succeeded, do not allow a check for a regular attack.
 #define MARTIAL_ATTACK_SUCCESS COMPONENT_CANCEL_ATTACK_CHAIN
+
+/// Get the active martial art of a mob.
+#define GET_ACTIVE_MARTIAL_ART(goku) (LAZYACCESS(goku.martial_arts, 1))
+/// Get what martial art will be used after cycling through the active martial art.
+#define GET_NEXT_MARTIAL_ART(goku) (LAZYACCESS(goku.martial_arts, 2))
 
 /// IF an object is weak against armor, this is the value that any present armor is multiplied by
 #define ARMOR_WEAKENED_MULTIPLIER 2

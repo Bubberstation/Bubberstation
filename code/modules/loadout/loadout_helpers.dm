@@ -51,6 +51,11 @@
 				to_chat(preference_source.parent, span_warning("You were unable to get a loadout item ([initial(item.item_path.name)]) due to species restrictions!"))
 			continue
 
+		if(item.donator_only && !SSplayer_ranks.is_donator(preference_source?.parent))
+			if(preference_source.parent)
+				to_chat(preference_source.parent, span_warning("You were unable to get a loadout item ([initial(item.item_path.name)]) due to donator restrictions!"))
+			continue
+
 		if(item.ckeywhitelist && !(preference_source?.parent?.ckey in item.ckeywhitelist)) // Sanity checking
 			if(preference_source.parent)
 				to_chat(preference_source.parent, span_warning("You were unable to get a loadout item ([initial(item.item_path.name)]) due to CKEY restrictions!"))
@@ -75,17 +80,13 @@
 	var/list/new_contents = get_all_gear()
 	var/update = NONE
 	for(var/datum/loadout_item/item as anything in loadout_datums)
-		var/obj/item/equipped = locate(item.item_path) in new_contents
-		if(isnull(equipped))
-			continue
 		update |= item.on_equip_item(
-			equipped_item = equipped,
+			equipped_item = loadout_placement_preference == LOADOUT_OVERRIDE_CASE ? locate(item.item_path) in travel_suitcase : locate(item.item_path) in new_contents, // BUBBER EDIT CHANGE - ORIGINAL: equipped_item = locate(item.item_path) in new_contents,
 			preference_source = preference_source,
 			preference_list = preference_list,
 			equipper = src,
 			visuals_only = visuals_only,
 		)
-
 	if(update)
 		update_clothing(update)
 

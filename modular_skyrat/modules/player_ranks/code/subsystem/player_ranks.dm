@@ -10,7 +10,9 @@
 SUBSYSTEM_DEF(player_ranks)
 	name = "Player Ranks"
 	flags = SS_NO_FIRE
-	init_order = INIT_ORDER_PLAYER_RANKS
+	dependencies = list(
+		/datum/controller/subsystem/dbcore
+	)
 	// The following controllers handle most of the legacy system's functions,
 	// and provide a layer of abstraction for this subsystem to have cleaner
 	// logic.
@@ -32,11 +34,10 @@ SUBSYSTEM_DEF(player_ranks)
 
 
 /datum/controller/subsystem/player_ranks/Destroy()
-	. = ..()
-
 	QDEL_NULL(donator_controller)
 	QDEL_NULL(mentor_controller)
 	QDEL_NULL(vetted_controller)
+	. = ..()
 
 /**
  * Returns whether or not the user is qualified as a donator.
@@ -224,7 +225,7 @@ SUBSYSTEM_DEF(player_ranks)
 	if(!admin_holder)
 		return FALSE
 
-	if(!admin_holder.check_for_rights(R_PERMISSIONS))
+	if(!admin_holder.check_for_rights(R_ADMIN))
 		if(is_admin_client)
 			to_chat(admin, span_warning("You do not possess the permissions to do this."))
 
@@ -313,7 +314,7 @@ SUBSYSTEM_DEF(player_ranks)
 	if(!admin_holder)
 		return FALSE
 
-	if(!admin_holder.check_for_rights(R_PERMISSIONS))
+	if(!admin_holder.check_for_rights(R_ADMIN))
 		if(is_admin_client)
 			to_chat(admin, span_warning("You do not possess the permissions to do this."))
 
@@ -376,7 +377,7 @@ SUBSYSTEM_DEF(player_ranks)
 	if(IsAdminAdvancedProcCall())
 		return
 
-	if(!check_rights_for(admin, R_PERMISSIONS | R_DEBUG | R_SERVER))
+	if(!check_rights_for(admin, R_ADMIN | R_DEBUG | R_SERVER))
 		to_chat(admin, span_warning("You do not possess the permissions to do this."))
 		return
 

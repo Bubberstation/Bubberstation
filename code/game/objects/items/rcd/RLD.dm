@@ -231,6 +231,47 @@
 	matter = 100
 	max_matter = 100
 
+/obj/item/construction/rld/cyborg
+	name = "Cyborg rapid-light-device"
+	desc = "A device used to rapidly provide lighting sources to an area. Runs off a cyborg's internal power supply"
+	// Energy Use
+	var/energyfactor = 0.050 * STANDARD_CELL_CHARGE
+
+/obj/item/construction/rld/cyborg/get_matter(mob/user)
+	if(!iscyborg(user))
+		return 0
+	var/mob/living/silicon/robot/borgy = user
+	if(!borgy.cell)
+		return 0
+	max_matter = borgy.cell.maxcharge
+	return borgy.cell.charge
+
+/obj/item/construction/rld/cyborg/useResource(amount, mob/user)
+	if(!iscyborg(user))
+		return 0
+	var/mob/living/silicon/robot/borgy = user
+	if(!borgy.cell)
+		if(user)
+			balloon_alert(user, "no cell found!")
+		return 0
+	. = borgy.cell.use(amount * energyfactor)
+	if(!. && user)
+		balloon_alert(user, "insufficient charge!")
+	return .
+
+/obj/item/construction/rld/cyborg/checkResource(amount, mob/user)
+	if(!iscyborg(user))
+		return 0
+	var/mob/living/silicon/robot/borgy = user
+	if(!borgy.cell)
+		if(user)
+			balloon_alert(user, "no cell found!")
+		return 0
+	. = borgy.cell.charge >= (amount * energyfactor)
+	if(!. && user)
+		balloon_alert(user, "insufficient charge!")
+	return .
+
 #undef LIGHT_TUBE_COST
 #undef FLOOR_LIGHT_COST
 #undef GLOW_STICK_COST

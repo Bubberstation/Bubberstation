@@ -9,7 +9,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	//SKYRAT EDIT ADDITION - GHOST HOTEL UPDATE + EXTRA STUFF
-	var/static/list/hotel_maps = list("Generic", "Apartment", "Beach Condo", "Station Side", "Library", "Cultist's Cavern", "Winter Woods", "Evacuated Station", "Prison", "Corporate Office", "Recovery Wing", "Grotto", "Grotto (Night)")
+	var/static/list/hotel_maps = list("Generic", "Apartment", "Beach Condo", "Station Side", "Library", "Cultist's Cavern", "Winter Woods", "Evacuated Station", "Prison", "Corporate Office", "Recovery Wing", "Grotto", "Grotto (Night)", "Fox Bar", "The Nightclub", "EVA", "Oasis", "Oasis (Night)")
 	//standart - hilber's hotel room
 	//apartment - see /datum/map_template/ghost_cafe_rooms
 	//beach condo - Beach themed apartment
@@ -29,6 +29,11 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	var/datum/map_template/ghost_cafe_rooms/recwing/ghost_cafe_rooms_recwing
 	var/datum/map_template/ghost_cafe_rooms/grotto/ghost_cafe_rooms_grotto
 	var/datum/map_template/ghost_cafe_rooms/grotto2/ghost_cafe_rooms_grotto2
+	var/datum/map_template/ghost_cafe_rooms/foxbar/ghost_cafe_rooms_foxbar
+	var/datum/map_template/ghost_cafe_rooms/nightclub/ghost_cafe_rooms_nightclub
+	var/datum/map_template/ghost_cafe_rooms/eva/ghost_cafe_rooms_eva
+	var/datum/map_template/ghost_cafe_rooms/oasis/ghost_cafe_rooms_oasis
+	var/datum/map_template/ghost_cafe_rooms/oasisalt/ghost_cafe_rooms_oasisalt
 	//BUBBER EDIT END
 
 	var/datum/map_template/hilbertshotel/hotelRoomTemp
@@ -64,6 +69,11 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	ghost_cafe_rooms_recwing = new()
 	ghost_cafe_rooms_grotto = new()
 	ghost_cafe_rooms_grotto2 = new()
+	ghost_cafe_rooms_foxbar = new()
+	ghost_cafe_rooms_nightclub = new()
+	ghost_cafe_rooms_eva = new()
+	ghost_cafe_rooms_oasis = new()
+	ghost_cafe_rooms_oasisalt = new()
 	//BUBBER EDIT END
 
 	var/area/currentArea = get_area(src)
@@ -116,7 +126,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 		to_chat(target, span_warning("You aren't able to activate \the [src] anymore!"))
 
 	// Has the user thrown it away or otherwise disposed of it such that it's no longer in their hands or in some storage connected to them?
-	// if(!(get_atom_on_turf(src, /mob) == user)) SKYRAT EDIT ORIGINAL
+	// if(get_atom_on_turf(src, /mob) != user) SKYRAT EDIT ORIGINAL
 	if(!Adjacent(user)) // SKYRAT EDIT -- Ghost Cafe Static Hilbertspawner
 		if(user == target)
 			to_chat(user, span_warning("\The [src] is no longer in your possession!"))
@@ -243,6 +253,20 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	else if(chosen_room == "Grotto (Night)")
 		load_from = ghost_cafe_rooms_grotto2
 
+	else if(chosen_room == "Fox Bar")
+		load_from = ghost_cafe_rooms_foxbar
+
+	else if(chosen_room == "The Nightclub")
+		load_from = ghost_cafe_rooms_nightclub
+
+	else if(chosen_room == "EVA")
+		load_from = ghost_cafe_rooms_eva
+
+	else if(chosen_room == "Oasis")
+		load_from = ghost_cafe_rooms_oasis
+
+	else if(chosen_room == "Oasis (Night)")
+		load_from = ghost_cafe_rooms_oasisalt
 	//BUBBER EDIT END
 
 
