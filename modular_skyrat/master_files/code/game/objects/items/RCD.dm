@@ -74,14 +74,17 @@
 
 /obj/item/construction/rcd/robotics_rcd
 	name = "Robotics rcd"
-	desc = "A modified RCD that has less storage then your usual NT RCD which lost some contruction abilitys and the ability to deconstruct anything in favor of being more accessibility for synthetic repairs. Reload using metal, glass, or plasteel."
+	desc = "A modified RCD that has less storage then your usual NT RCD which lost some contruction abilities and the ability to deconstruct anything in favor of being more accessibility for synthetic repairs. Reload using metal, glass, or plasteel."
 	icon = 'modular_skyrat/master_files/icons/obj/tools.dmi'
-	icon_state = "rcd"
+	icon_state = "roborcd"
 	worn_icon_state = "RCD"
-	max_matter = 60
-	matter = 60
+	lefthand_file = 'modular_skyrat/modules/aesthetics/tools/tools_lefthand.dmi'
+	righthand_file = 'modular_skyrat/modules/aesthetics/tools/tools_righthand.dmi'
+	max_matter = 50
+	matter = 50
+	action_slots = NONE
 	banned_upgrades = RCD_ALL_UPGRADES
 
-/obj/item/construction/rcd/roboticsrcd/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
+/obj/item/construction/rcd/robotics_rcd/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	balloon_alert(user, "it has no deconstruction mode")
 	return NONE
