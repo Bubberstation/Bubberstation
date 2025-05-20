@@ -118,11 +118,11 @@
 	sleep(12) //Same as above
 	suit.drop_suit()
 	owner.forceMove(suit.loc)
-	owner.visible_message(span_warning("[owner] reforms from [owner.p_their()] control unit!"))
 	if(owner.get_item_by_slot(ITEM_SLOT_BACK))
 		owner.dropItemToGround(owner.get_item_by_slot(ITEM_SLOT_BACK), TRUE, TRUE, TRUE)
 	owner.equip_to_slot_if_possible(suit, ITEM_SLOT_BACK, disable_warning = TRUE)
 	suit.invisibility = initial(suit.invisibility)
+	owner.visible_message(span_warning("[owner] reforms from [owner.p_their()] control unit!"))
 	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob/living, SetStun), 0), 5 SECONDS)
 	if(!HAS_TRAIT(suit, TRAIT_NODROP))
 		ADD_TRAIT(suit, TRAIT_NODROP, "protean")
