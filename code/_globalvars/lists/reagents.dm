@@ -48,7 +48,7 @@ GLOBAL_LIST_INIT(reagent_containers, list(
 		/obj/item/reagent_containers/cup/bottle/large
 	)),
 	CAT_PEN_INJECTORS = typecacheof(list(
-		/obj/item/reagent_containers/hypospray/medipen/deforest/pen_medipen
+		/obj/item/reagent_containers/hypospray/medipen/deforest/printable
 	)),
 	// BUBBER EDIT ADDITION END
 ))

@@ -209,7 +209,7 @@
 			// BUBBER EDIT: added with pen_medipens - needed to properly name the injectors and fixes the hypovials
 			else if(ispath(packaging_type, /obj/item/reagent_containers/cup/vial))
 				packaging_category = CAT_HYPOS
-			else if(ispath(packaging_type, /obj/item/reagent_containers/hypospray/medipen/deforest/pen_medipen))
+			else if(ispath(packaging_type, /obj/item/reagent_containers/hypospray/medipen/deforest/printable))
 				packaging_category = CAT_PEN_INJECTORS
 			// BUBBER EDIT END
 			else
