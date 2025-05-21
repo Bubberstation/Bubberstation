@@ -1,2 +1,2 @@
 /datum/quirk/item_quirk/signer
-	value = 2 //Original value: 4
+	value = 3 //Original value: 4
