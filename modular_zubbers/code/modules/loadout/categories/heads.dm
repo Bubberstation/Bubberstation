@@ -101,7 +101,7 @@
 /datum/loadout_item/head/beret/sec/peacekeeper
 	name = "Peacekeeper beret"
 	item_path = /obj/item/clothing/head/beret/sec/peacekeeper
-	restricted_roles = list(ALL_JOBS_SEC, ALL_JOBS_DEPT_GUARDS)
+	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/beret/sec/peacekeeper/white
 	name = "Peacekeeper beret (White)"
@@ -122,7 +122,7 @@
 /datum/loadout_item/head/helmet/sec/redsec
 	name = "Security helmet (Redsec)"
 	item_path = /obj/item/clothing/head/helmet/sec/redsec
-	restricted_roles = list(ALL_JOBS_SEC, ALL_JOBS_DEPT_GUARDS)
+	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/helmet/nri_police
 	name = "Imperial police helmet"
