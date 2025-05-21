@@ -32,7 +32,7 @@
 /datum/loadout_item/uniform/security/utility/redsec
 	name = "Security utility uniform (Redsec)"
 	item_path = /obj/item/clothing/under/rank/security/skyrat/utility/redsec
-	restricted_roles = list(ALL_JOBS_SEC)
+	restricted_roles = list(ALL_JOBS_SEC, ALL_JOBS_DEPT GUARDS)
 
 /datum/loadout_item/uniform/security/officer/formal
 	name = "Security Officer's formal uniform"
