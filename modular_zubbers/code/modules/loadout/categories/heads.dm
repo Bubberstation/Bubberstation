@@ -90,7 +90,7 @@
 /datum/loadout_item/head/security_cap/colonial
 	name = "Imperial police cap"
 	item_path = /obj/item/clothing/head/hats/colonial/nri_police
-	restricted_roles = list(ALL_JOBS_SEC, ALL_JOBS_DEPT_GUARDS)
+	restricted_roles = list(ALL_JOBS_SEC, JOB_CUSTOMS_AGENT)
 	can_be_reskinned = FALSE
 
 /datum/loadout_item/head/security_beanie
@@ -101,7 +101,7 @@
 /datum/loadout_item/head/beret/sec/peacekeeper
 	name = "Peacekeeper beret"
 	item_path = /obj/item/clothing/head/beret/sec/peacekeeper
-	restricted_roles = list(ALL_JOBS_SEC)
+	restricted_roles = list(ALL_JOBS_SEC, ALL_JOBS_DEPT_GUARDS)
 
 /datum/loadout_item/head/beret/sec/peacekeeper/white
 	name = "Peacekeeper beret (White)"
@@ -122,7 +122,7 @@
 /datum/loadout_item/head/helmet/sec/redsec
 	name = "Security helmet (Redsec)"
 	item_path = /obj/item/clothing/head/helmet/sec/redsec
-	restricted_roles = list(ALL_JOBS_SEC)
+	restricted_roles = list(ALL_JOBS_SEC, ALL_JOBS_DEPT_GUARDS)
 
 /datum/loadout_item/head/helmet/nri_police
 	name = "Imperial police helmet"
@@ -138,7 +138,7 @@
 /datum/loadout_item/head/beret/sec/peacekeeper/armadyne
 	name = "Armadyne corporate beret"
 	item_path = /obj/item/clothing/head/beret/sec/peacekeeper/armadyne
-	restricted_roles = list(ALL_JOBS_SEC)
+	restricted_roles = list(ALL_JOBS_SEC, ALL_JOBS_DEPT_GUARDS)
 
 /datum/loadout_item/head/helmet/sec/peacekeeper/security_medic
 	name = "Security Medic helmet"

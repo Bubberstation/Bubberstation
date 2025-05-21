@@ -101,12 +101,12 @@
 /datum/loadout_item/uniform/jumpsuit/security_skirt
 	name = "Blue Security Battledress"
 	item_path = /obj/item/clothing/under/rank/security/peacekeeper/skirt
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC) //BUBBER EDIT: adds JOB_CORRECTIONS_OFFICER and JOB_SECURITY_MEDIC
+	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC, ALL_JOBS_DEPT_GUARDS) //BUBBER EDIT: adds JOB_CORRECTIONS_OFFICER and JOB_SECURITY_MEDIC
 
 /datum/loadout_item/uniform/jumpsuit/security_skirt_redsec
 	name = "Red Security Battledress"
 	item_path = /obj/item/clothing/under/rank/security/peacekeeper/skirt_redsec
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)  //BUBBER EDIT: adds JOB_CORRECTIONS_OFFICER and JOB_SECURITY_MEDIC
+	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC, ALL_JOBS_DEPT_GUARDS)  //BUBBER EDIT: adds JOB_CORRECTIONS_OFFICER and JOB_SECURITY_MEDIC
 
 /datum/loadout_item/uniform/jumpsuit/security_skirt_hos
 	name = "HoS Security Battledress"
@@ -126,7 +126,7 @@
 /datum/loadout_item/uniform/jumpsuit/security_jumpskirt
 	name = "Security Jumpskirt"
 	item_path = /obj/item/clothing/under/rank/security/officer/skirt
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC) //BUBBER EDIT: adds JOB_CORRECTIONS_OFFICER and JOB_SECURITY_MEDIC
+	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC, ALL_JOBS_DEPT_GUARDS) //BUBBER EDIT: adds JOB_CORRECTIONS_OFFICER and JOB_SECURITY_MEDIC
 
 /datum/loadout_item/uniform/jumpsuit/security_shortskirt
 	name = "Security Shortskirt"
@@ -151,7 +151,7 @@
 /datum/loadout_item/uniform/jumpsuit/imperial_police_uniform
 	name = "Imperial Police Uniform"
 	item_path = /obj/item/clothing/under/colonial/nri_police
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC, JOB_CUSTOMS_AGENT)
 
 /datum/loadout_item/uniform/jumpsuit/disco
 	name = "Superstar Cop Uniform"

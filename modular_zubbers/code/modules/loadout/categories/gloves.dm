@@ -24,10 +24,10 @@
 /datum/loadout_item/gloves/color/black/security
 	name = "Security gloves"
 	item_path = /obj/item/clothing/gloves/color/black/security
-	restricted_roles = list(ALL_JOBS_SEC)
+	restricted_roles = list(ALL_JOBS_SEC, ALL_JOBS_DEPT_GUARDS)
 	can_be_reskinned = TRUE
 
 /datum/loadout_item/gloves/combat/peacekeeper/armadyne
 	name = "Armadyne combat gloves"
 	item_path = /obj/item/clothing/gloves/combat/peacekeeper/armadyne
-	restricted_roles = list(ALL_JOBS_SEC)
+	restricted_roles = list(ALL_JOBS_SEC, ALL_JOBS_DEPT_GUARDS)
