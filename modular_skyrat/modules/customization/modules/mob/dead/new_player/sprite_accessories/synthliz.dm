@@ -140,6 +140,7 @@
 	color_src = USE_MATRIXED_COLORS
 
 //Synth Taurs (Ported from Virgo)
+//Subtype with no loaf sprite needs to be false
 /datum/sprite_accessory/taur/synthliz
 	name = "Cybernetic Lizard"
 	icon_state = "synthlizard"
@@ -153,7 +154,7 @@
 /datum/sprite_accessory/taur/synthliz/inv
 	name = "Cybernetic Lizard (Inverted)"
 	icon_state = "synthlizardinv"
-	can_lay_down = FALSE //subtype with no loaf sprite needs to be false
+	can_lay_down = FALSE
 
 /datum/sprite_accessory/taur/synthliz/feline
 	name = "Cybernetic Feline"
@@ -164,7 +165,7 @@
 /datum/sprite_accessory/taur/synthliz/feline/inv
 	name = "Cybernetic Feline (Inverted)"
 	icon_state = "synthfelineinv"
-	can_lay_down = FALSE //subtype with no loaf sprite needs to be false
+	can_lay_down = FALSE
 
 /datum/sprite_accessory/taur/synthliz/horse
 	name = "Cybernetic Horse"
@@ -177,18 +178,18 @@
 /datum/sprite_accessory/taur/synthliz/horse/inv
 	name = "Cybernetic Horse (Inverted)"
 	icon_state = "synthhorseinv"
-	can_lay_down = FALSE //subtype with no loaf sprite needs to be false
+	can_lay_down = FALSE
 
 /datum/sprite_accessory/taur/synthliz/wolf
 	name = "Cybernetic Wolf"
 	icon_state = "synthwolf"
-	can_lay_down = TRUE
-	laydown_offset = -3
+	can_lay_down = FALSE
 
 /datum/sprite_accessory/taur/synthliz/wolf/inv
 	name = "Cybernetic Wolf (Inverted)"
 	icon_state = "synthwolfinv"
-	can_lay_down = FALSE //subtype with no loaf sprite needs to be false
+	can_lay_down = TRUE
+	laydown_offset = -3
 
 /datum/sprite_accessory/taur/synthliz/synthnaga
 	name = "Cybernetic Naga"

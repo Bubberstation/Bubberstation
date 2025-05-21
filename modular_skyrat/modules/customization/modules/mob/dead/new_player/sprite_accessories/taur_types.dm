@@ -65,6 +65,7 @@
 
 	return FALSE
 
+//Subtype with no loaf sprite needs to be false
 /datum/sprite_accessory/taur/none
 	name = SPRITE_ACCESSORY_NONE
 	dimension_x = 32
@@ -86,7 +87,7 @@
 	name = "Cow (Spotted)"
 	icon_state = "cow_spotted"
 	color_src = USE_MATRIXED_COLORS
-	can_lay_down = FALSE //subtype with no loaf sprite needs to be false
+	can_lay_down = FALSE
 
 /datum/sprite_accessory/taur/deer
 	name = "Deer"
@@ -107,7 +108,7 @@
 /datum/sprite_accessory/taur/drake/old
 	name = "Drake (Old)"
 	icon_state = "drake_old"
-	can_lay_down = FALSE //subtype with no loaf sprite needs to be false
+	can_lay_down = FALSE
 
 /datum/sprite_accessory/taur/tarantula
 	name = "Tarantula"
