@@ -47,7 +47,7 @@
 		for(var/species_id in GLOB.quirk_species_whitelist[quirk])
 			var/datum/species/species_type = GLOB.species_list[species_id]
 			var/species_name = initial(species_type.name)
-			species_whitelist[species_id] += species_name 
+			species_whitelist[species_id] += species_name
 		for(var/species_id in GLOB.quirk_species_blacklist[quirk])
 			var/datum/species/species_type = GLOB.species_list[species_id]
 			var/species_name = initial(species_type.name)

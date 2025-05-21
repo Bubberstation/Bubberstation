@@ -1,4 +1,4 @@
-// THIS IS A SKYRAT UI FILE
+// THIS IS A ZUBBERS UI FILE
 import { Feature, FeatureNumberInput } from '../../base';
 
 export const bodytemp: Feature<number> = {
