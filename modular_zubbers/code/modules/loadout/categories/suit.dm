@@ -80,12 +80,12 @@
 /datum/loadout_item/suit/jacket/security_medic
 	name = "Security medic labcoat"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic
-	restricted_roles = list(JOB_SECURITY_MEDIC)
+	restricted_roles = list(JOB_SECURITY_MEDIC, JOB_ORDERLY)
 
 /datum/loadout_item/suit/jacket/security_medic
 	name = "Security medic labcoat (Blue)"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic/blue
-	restricted_roles = list(JOB_SECURITY_MEDIC)
+	restricted_roles = list(JOB_SECURITY_MEDIC, JOB_ORDERLY)
 
 
 // Fancy crop-top jackets

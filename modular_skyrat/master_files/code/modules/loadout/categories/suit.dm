@@ -599,7 +599,7 @@
 /datum/loadout_item/suit/security_jacket
 	name = "Security Jacket"
 	item_path = /obj/item/clothing/suit/toggle/jacket/sec
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY) //Not giving this one to COs because it's actually better than the one they spawn with
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, ALL_JOBS_DEPT_GUARDS) //Not giving this one to COs because it's actually better than the one they spawn with
 
 /datum/loadout_item/suit/brit
 	name = "High Vis Armored Vest"
@@ -641,7 +641,7 @@
 /datum/loadout_item/suit/labcoat/doctor_tailcoat
 	name = "Brig Physician's tailcoat"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/sec
-	restricted_roles = list(JOB_SECURITY_MEDIC)
+	restricted_roles = list(JOB_SECURITY_MEDIC, JOB_ORDERLY)
 
 /datum/loadout_item/suit/supply_jacket
 	name = "Supply Jacket"
