@@ -86,6 +86,7 @@
 	name = "Cow (Spotted)"
 	icon_state = "cow_spotted"
 	color_src = USE_MATRIXED_COLORS
+	can_lay_down = FALSE //subtype with no loaf sprite needs to be false
 
 /datum/sprite_accessory/taur/deer
 	name = "Deer"
@@ -94,22 +95,26 @@
 	alt_taur_mode = STYLE_TAUR_PAW
 	organ_type = /obj/item/organ/taur_body/horselike/deer
 	can_lay_down = TRUE
-	laydown_offset = -3
+	laydown_offset = -4
 
 /datum/sprite_accessory/taur/drake
 	name = "Drake"
 	icon_state = "drake"
 	taur_mode = STYLE_TAUR_PAW
 	can_lay_down = TRUE
+	laydown_offset = -3
 
 /datum/sprite_accessory/taur/drake/old
 	name = "Drake (Old)"
 	icon_state = "drake_old"
+	can_lay_down = FALSE //subtype with no loaf sprite needs to be false
 
 /datum/sprite_accessory/taur/tarantula
 	name = "Tarantula"
 	icon_state = "tarantula"
 	organ_type = /obj/item/organ/taur_body/spider
+	can_lay_down = TRUE
+	laydown_offset = -3
 
 /datum/sprite_accessory/taur/drider
 	name = "Drider"
@@ -150,7 +155,7 @@
 	icon_state = "otie"
 	taur_mode = STYLE_TAUR_PAW
 	can_lay_down = TRUE
-	laydown_offset = -3
+	laydown_offset = -4
 
 /datum/sprite_accessory/taur/pede
 	name = "Scolipede"
@@ -182,7 +187,7 @@
 	icon_state = "feline"
 	taur_mode = STYLE_TAUR_PAW
 	can_lay_down = TRUE
-	laydown_offset = -3
+	laydown_offset = -4
 
 /datum/sprite_accessory/taur/goop
 	name = "Goop"
