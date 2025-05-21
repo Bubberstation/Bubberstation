@@ -93,25 +93,30 @@
 			SKIN_ICON = CYBORG_ICON_TARKON_WIDE_BUBBER,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
 			DRAKE_HAT_OFFSET
-		),"F3-LINE" = list(
+		),
+		"F3-LINE" = list(
 			SKIN_ICON_STATE = CYBORG_ICON_STATE_TARKON_FELI,
 			SKIN_ICON = CYBORG_ICON_ALL_FELI,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL, TRAIT_R_LIGHT_WEIGHT),
 			F3LINE_HAT_OFFSET
-		),"Dullahan" = list(
+		),
+		"Dullahan" = list(
 			SKIN_ICON_STATE = "dullahantarkon",
 			SKIN_ICON = CYBORG_ICON_TARKON_TALL_BUBBER,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
 			DULLAHAN_HAT_OFFSET
-		),"Meka" = list(
+		),
+		"Meka" = list(
 			SKIN_ICON_STATE = "mekatarkon",
 			SKIN_ICON = CYBORG_ICON_TARKON_TALL_BUBBER,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL), TALL_HAT_OFFSET
-		),"NiKO (Alt)" = list(
+		),
+		"NiKO (Alt)" = list(
 			SKIN_ICON_STATE = "sfmmeketarkon",
 			SKIN_ICON = CYBORG_ICON_TARKON_TALL_BUBBER,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL), TALL_HAT_OFFSET
-		),"NiKA" = list(
+		),
+		"NiKA" = list(
 			SKIN_ICON_STATE = "fmekatarkon",
 			SKIN_ICON = CYBORG_ICON_TARKON_TALL_BUBBER,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL), TALL_HAT_OFFSET
@@ -175,8 +180,6 @@
 		)
 	items_to_remove = list(
 		/obj/item/healthanalyzer,
-		/obj/item/borg/cyborg_omnitool/medical,
-		/obj/item/borg/cyborg_omnitool/medical, // Twice because you get two
 		/obj/item/blood_filter
 						)
 

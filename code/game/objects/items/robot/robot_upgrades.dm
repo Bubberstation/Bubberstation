@@ -384,8 +384,8 @@
 		to produce more advanced and complex medical reagents."
 	icon_state = "module_medical"
 	require_model = TRUE
-	model_type = list(/obj/item/robot_model/medical, /obj/item/robot_model/tarkon)
-	model_flags = list(BORG_MODEL_MEDICAL, BORG_MODEL_TARKON)
+	model_type = list(/obj/item/robot_model/medical, /obj/item/robot_model/tarkon) // BUBBER EDIT - Tarkon Borg adition
+	model_flags = list(BORG_MODEL_MEDICAL, BORG_MODEL_TARKON) // BUBBER EDIT - Tarkon Borg adition
 	var/list/additional_reagents = list()
 
 /obj/item/borg/upgrade/hypospray/action(mob/living/silicon/robot/borg, mob/living/user = usr)
