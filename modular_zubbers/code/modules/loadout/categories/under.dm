@@ -32,7 +32,7 @@
 /datum/loadout_item/uniform/security/utility/redsec
 	name = "Security utility uniform (Redsec)"
 	item_path = /obj/item/clothing/under/rank/security/skyrat/utility/redsec
-	restricted_roles = list(ALL_JOBS_SEC, ALL_JOBS_DEPT_GUARDS)
+	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/uniform/security/officer/formal
 	name = "Security Officer's formal uniform"
@@ -42,17 +42,17 @@
 /datum/loadout_item/uniform/security/peacekeeper/security_medic
 	name = "Security medic turtleneck"
 	item_path =/obj/item/clothing/under/rank/security/peacekeeper/security_medic
-	restricted_roles = list(JOB_SECURITY_MEDIC, JOB_ORDERLY)
+	restricted_roles = list(JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/uniform/security/peacekeeper/security_medic/skirt
 	name = "Security medic skirtleneck"
 	item_path =/obj/item/clothing/under/rank/security/peacekeeper/security_medic/skirt
-	restricted_roles = list(JOB_SECURITY_MEDIC, JOB_ORDERLY)
+	restricted_roles = list(JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/uniform/security/peacekeeper/security_medic/alternate
 	name = "Security medic jumpsuit"
 	item_path = /obj/item/clothing/under/rank/security/peacekeeper/security_medic/alternate
-	restricted_roles = list(JOB_SECURITY_MEDIC, JOB_ORDERLY)
+	restricted_roles = list(JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/uniform/security/corrections_officer
 	name = "Correction's Officer jumpsuit"
