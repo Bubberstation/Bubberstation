@@ -156,3 +156,5 @@
 	new /obj/item/storage/photo_album/personal(src)
 	new /obj/item/bedsheet/centcom(src)
 	new /obj/item/storage/bag/garment/nanotrasen_consultant(src)
+
+/obj/structure/closet/secure_closet/nanotrasen_consultant/station
