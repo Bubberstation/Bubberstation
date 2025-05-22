@@ -9,7 +9,7 @@
 	var/excavation_warning = "This will be awfully loud. Are you ready to protect the hacking pod?"
 	var/list/defending_mobs = list(/mob/living/basic/alien/drone/tarkon)
 	var/static/list/scanning_equipment = list(/obj/item/hackc)
-	move_resist = MOVE_FORCE_EXTREMELY_STRONG
+	move_resist = MOVE_FORCE_OVERPOWERING
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF //This thing will take a beating.
 	anchored = TRUE
 	density = TRUE
@@ -19,7 +19,7 @@
 	var/spawn_drone_on_tap = TRUE
 	var/icon_state_tapped = "emerg_engine_running"
 	var/mob/living/basic/node_drone/hackc/node = null //this path is a placeholder.
-	var/wave_timer = WAVE_DURATION_LARGE
+	var/wave_timer = WAVE_DURATION_TARKON
 	COOLDOWN_DECLARE(wave_cooldown)
 	COOLDOWN_DECLARE(manual_vent_cooldown)
 	var/reward_key // for allowing the door key to drop
@@ -41,6 +41,21 @@
 	icon_state = "mining_node_active"
 	icon_living = "mining_node_active"
 	icon_dead = "mining_node_active"
+	faction = list(FACTION_TARKON, FACTION_NEUTRAL)
+	move_force = MOVE_FORCE_OVERPOWERING
+	move_resist = MOVE_FORCE_OVERPOWERING // this thing isnt budging
+	pull_force = MOVE_FORCE_OVERPOWERING
+	move_intent = MOVE_INTENT_RUN
+	var/obj/structure/ore_vent/attached_engine = null
+
+/mob/living/basic/node_drone/hackc/proc/arrivewd(obj/structure/wave_defence/parent_engine)
+	attached_engine = parent_engine
+	buckled = attached_engine
+	maxHealth = 500
+	health = maxHealth
+	update_appearance(UPDATE_ICON_STATE)
+	pixel_z = 400
+	animate(src, pixel_z = 0, time = 2 SECONDS, easing = QUAD_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
 
 /obj/structure/wave_defence/examine(mob/user)
 	. += span_notice("This can be repaired by calling in a drone with a [span_bold("Hack-C signaller")].")
@@ -92,7 +107,7 @@
 	Shake(duration = 3 SECONDS)
 	if(spawn_drone)
 		node = new /mob/living/basic/node_drone/hackc(loc)
-		node.arrive(src)
+		node.arrivewd(src)
 		RegisterSignal(node, COMSIG_QDELETING, PROC_REF(handle_wave_conclusion))
 		RegisterSignal(node, COMSIG_MOVABLE_MOVED, PROC_REF(handle_wave_conclusion))
 		addtimer(CALLBACK(node, TYPE_PROC_REF(/atom, update_appearance)), wave_timer * 0.25)
@@ -106,9 +121,10 @@
 	AddComponent(\
 		/datum/component/spawner, \
 		spawn_types = defending_mobs, \
-		spawn_time = 15 SECONDS - difficulty_modifier, \
+		spawn_time = 10 SECONDS - difficulty_modifier, \
 		max_spawned = 10 + difficulty_modifier, \
-		max_spawn_per_attempt = 3 + difficulty_modifier + spawn_mod, \
+		max_spawn_per_attempt = 1 + difficulty_modifier, \
+		max_spawn_per_attempt = 4 + difficulty_modifier + spawn_mod, \
 		spawn_text = "appears to assault", \
 		spawn_distance = 4 + spawn_mod, \
 		spawn_distance_exclude = 2, \
@@ -189,9 +205,11 @@
 
 /obj/structure/wave_defence/tarkon/rnd
 	reward_key = /obj/item/keycard/tarkon_rnd
+	difficulty_modifier = 2
 
 /obj/structure/wave_defence/tarkon/engi
 	reward_key = /obj/item/keycard/tarkon_engi
+	difficulty_modifier = 2
 	spawn_mod = 1
 
 /obj/structure/wave_defence/tarkon/med
@@ -199,7 +217,7 @@
 
 /obj/structure/wave_defence/tarkon/boss
 	reward_key = /obj/item/keycard/tarkon_vault
-	difficulty_modifier = 2
+	difficulty_modifier = 3
 
 /obj/structure/wave_defence/tarkon/boss/initiate_wave_win()
 	reward_gun = pick_weight_recursive(GLOB.tarkon_prize_pool)
