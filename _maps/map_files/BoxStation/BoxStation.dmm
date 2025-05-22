@@ -4374,12 +4374,10 @@
 /turf/open/floor/iron,
 /area/station/commons/fitness/recreation)
 "axR" = (
-/obj/machinery/door/airlock/external{
-	space_dir = 8
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
@@ -51547,12 +51545,12 @@
 /turf/open/floor/iron,
 /area/station/common/cryopods)
 "ooW" = (
-/obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
+/obj/machinery/door/airlock/external,
 /turf/open/floor/plating,
 /area/station/maintenance/fore)
 "opE" = (
@@ -52151,7 +52149,7 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/central)
 "oHB" = (
-/obj/item/modular_computer/pda/clear,
+/obj/effect/spawner/random/burgerstation/loot/odd_safe,
 /turf/open/floor/plating,
 /area/station/security/prison)
 "oHF" = (
@@ -52273,6 +52271,14 @@
 /obj/effect/spawner/random/trash/mess,
 /turf/open/floor/iron/grimy,
 /area/station/service/library/abandoned)
+"oNf" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/steam_vent,
+/turf/open/floor/plating,
+/area/station/maintenance/port/aft)
 "oNw" = (
 /obj/item/radio/intercom/directional/south,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple/layer2{
@@ -67412,9 +67418,12 @@
 /turf/open/floor/iron/cafeteria,
 /area/station/commons/locker)
 "ydW" = (
-/obj/structure/steam_vent,
+/obj/item/modular_computer/pda/clear{
+	pixel_x = 0;
+	pixel_y = 0
+	},
 /turf/open/floor/plating,
-/area/station/maintenance/port/aft)
+/area/station/security/prison)
 "yeE" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -89368,7 +89377,7 @@ acd
 unh
 acd
 quB
-hnO
+ydW
 vLC
 eTu
 tIC
@@ -92295,7 +92304,7 @@ caq
 caq
 caq
 caq
-caq
+oNf
 caq
 caq
 caq
@@ -92554,7 +92563,7 @@ bLv
 bCq
 bCq
 bCq
-ydW
+bHE
 bHE
 bHE
 bHE
@@ -109301,7 +109310,7 @@ xzh
 xzh
 xzh
 xzh
-xzh
+sNY
 xzh
 xzh
 xzh
