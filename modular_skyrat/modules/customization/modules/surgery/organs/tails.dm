@@ -3,6 +3,7 @@
 	mutantpart_info = list(MUTANT_INDEX_NAME = "Smooth", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF"))
 	var/can_wag = TRUE
 	var/wagging = FALSE
+	organ_flags = ORGAN_EXTERNAL
 
 /datum/bodypart_overlay/mutant/tail
 	color_source = ORGAN_COLOR_OVERRIDE

@@ -5,10 +5,8 @@
 	icon = 'modular_skyrat/modules/deforest_medical_items/icons/storage.dmi'
 	icon_state = "painkiller_bottle"
 	custom_price = PAYCHECK_CREW * 1.5
-
-/obj/item/storage/pill_bottle/painkiller/PopulateContents()
-	for(var/i in 1 to 7)
-		new /obj/item/reagent_containers/applicator/pill/amollin(src)
+	spawn_type = /obj/item/reagent_containers/applicator/pill/amollin
+	spawn_count = 7
 
 /obj/item/reagent_containers/applicator/pill/amollin
 	name = "amollin pill"
@@ -28,6 +26,8 @@
 	icon = 'modular_skyrat/modules/deforest_medical_items/icons/storage.dmi'
 	icon_state = "painkiller_bottle"
 	w_class = WEIGHT_CLASS_TINY // this is fine because we hard limit what can go in this thing
+	spawn_type = /obj/item/reagent_containers/applicator/pill/prescription_stimulant
+	spawn_count = 5
 
 /obj/item/storage/pill_bottle/prescription_stimulant/Initialize(mapload)
 	. = ..()
@@ -36,10 +36,6 @@
 	atom_storage.set_holdable(list(
 		/obj/item/reagent_containers/applicator/pill/prescription_stimulant,
 	))
-
-/obj/item/storage/pill_bottle/prescription_stimulant/PopulateContents()
-	for(var/i in 1 to 5)
-		new /obj/item/reagent_containers/applicator/pill/prescription_stimulant(src)
 
 /obj/item/reagent_containers/applicator/pill/prescription_stimulant
 	name = "alifil pill"

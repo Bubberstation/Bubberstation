@@ -35,12 +35,10 @@
 /datum/loadout_item/uniform/jumpsuit/random
 	name = "Random Jumpsuit"
 	item_path = /obj/item/clothing/under/color/random
-	additional_displayed_text = list(TOOLTIP_RANDOM_COLOR)
 
 /datum/loadout_item/uniform/jumpsuit/random_skirt
 	name = "Random Jumpskirt"
 	item_path = /obj/item/clothing/under/color/jumpskirt/random
-	additional_displayed_text = list(TOOLTIP_RANDOM_COLOR)
 
 /datum/loadout_item/uniform/jumpsuit/rainbow
 	name = "Rainbow Jumpsuit"
