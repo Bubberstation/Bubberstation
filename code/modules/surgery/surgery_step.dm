@@ -242,7 +242,13 @@
 		)
 	if(ishuman(user))
 		var/mob/living/carbon/human/surgeon = user
-		surgeon.add_blood_DNA_to_items(target.get_blood_dna_list(), ITEM_SLOT_GLOVES)
+		if (ishuman(target))
+			var/mob/living/carbon/human/human_target = target
+			var/obj/item/bodypart/target_bodypart = target.get_bodypart(target_zone)
+			if(target_bodypart.bodytype != BODYTYPE_ROBOTIC && !HAS_TRAIT(human_target, TRAIT_NOBLOOD))
+				surgeon.add_blood_DNA_to_items(target.get_blood_dna_list(), ITEM_SLOT_GLOVES)
+		else
+			surgeon.add_blood_DNA_to_items(target.get_blood_dna_list(), ITEM_SLOT_GLOVES)
 	else
 		user.add_mob_blood(target)
 	return TRUE

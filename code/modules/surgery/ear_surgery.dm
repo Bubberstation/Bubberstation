@@ -1,7 +1,7 @@
 //Head surgery to fix the ears organ
 /datum/surgery/ear_surgery
 	name = "Ear surgery"
-	requires_bodypart_type = NONE
+	requires_bodypart_type = BODYTYPE_ORGANIC | BODYTYPE_ALIEN | BODYTYPE_NANO | BODYTYPE_SHADOW
 	organ_to_manipulate = ORGAN_SLOT_EARS
 	possible_locs = list(BODY_ZONE_HEAD)
 	steps = list(
@@ -13,14 +13,33 @@
 		/datum/surgery_step/close,
 	)
 
+/datum/surgery/ear_surgery/mechanic
+	name = "Auditory Sensor repair"
+	requires_bodypart_type = BODYTYPE_ROBOTIC
+	steps = list(
+		/datum/surgery_step/mechanic_open,
+		/datum/surgery_step/open_hatch,
+		/datum/surgery_step/mechanic_unwrench,
+		/datum/surgery_step/fix_ears/mechanic,
+		/datum/surgery_step/mechanic_wrench,
+		/datum/surgery_step/mechanic_close
+	)
+
 //fix ears
 /datum/surgery_step/fix_ears
-	name = "fix ears (hemostat)"
+	name = "fix ears (hemostat/screwdriver)"
 	implements = list(
 		TOOL_HEMOSTAT = 100,
 		TOOL_SCREWDRIVER = 45,
 		/obj/item/pen = 25)
 	time = 64
+
+/datum/surgery_step/fix_ears/mechanic
+	name = "repair auditory sensor (screwdriver/hemostat)"
+	implements = list(
+		TOOL_SCREWDRIVER = 100,
+		TOOL_HEMOSTAT = 45,
+		/obj/item/pen = 25)
 
 /datum/surgery/ear_surgery/can_start(mob/user, mob/living/carbon/target)
 	return target.get_organ_slot(ORGAN_SLOT_EARS) && ..()
