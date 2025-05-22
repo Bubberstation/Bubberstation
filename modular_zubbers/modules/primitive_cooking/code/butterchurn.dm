@@ -22,6 +22,17 @@
 /obj/structure/butterchurn/Initialize(mapload)
 	. = ..()
 	create_reagents(100, OPENCONTAINER)
+	register_context()
+
+/obj/structure/butterchurn/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	if(held_item?.tool_behaviour == TOOL_WRENCH)
+		context[SCREENTIP_CONTEXT_LMB] = "Disassemble"
+
+	if(!held_item)
+		context[SCREENTIP_CONTEXT_LMB] = "Churn Liquid"
+
+	context[SCREENTIP_CONTEXT_CTRL_SHIFT_LMB] = anchored ? "Unsecure" : "Secure"
+	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/structure/butterchurn/examine(mob/user)
 	. = ..()
@@ -73,28 +84,28 @@
 	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 	add_fingerprint(user)
 	busy = TRUE
-	if(do_after(user, 5 SECONDS * skill_modifier, src))
-		var/stamina_use = CHURN_STAMINA_USE
-		if(prob(user.mind.get_skill_modifier(/datum/skill/primitive, SKILL_PROBS_MODIFIER)))
-			stamina_use *= 0.5 //so it uses half the amount of stamina (25 instead of 50)
-
-		user.adjustStaminaLoss(stamina_use) // Prevents spamming it
-
-		busy = FALSE
-		user.visible_message(span_notice("[user] churns \the [src]."), span_notice("You finish churning \the [src]."))
-		var/cream_amt = reagents.get_reagent_amount(/datum/reagent/consumable/milk) / CHURN_CREAM_RATIO
-		var/cream_purity = reagents.get_reagent_purity(/datum/reagent/consumable/milk)
-		var/butter_amt = FLOOR(reagents.get_reagent_amount(/datum/reagent/consumable/cream) / CHURN_BUTTER_RATIO, 1)
-		var/butter_purity = reagents.get_reagent_purity(/datum/reagent/consumable/cream)
-		reagents.remove_reagent(/datum/reagent/consumable/cream, 10 * butter_amt)
-		for(var/i in 1 to butter_amt)
-			var/obj/item/food/butter/tasty_butter = new(drop_location())
-			tasty_butter.reagents.set_all_reagents_purity(butter_purity)
-		reagents.remove_reagent(/datum/reagent/consumable/milk, reagents.get_reagent_amount(/datum/reagent/consumable/milk))
-		reagents.add_reagent(/datum/reagent/consumable/cream, cream_amt, added_purity = cream_purity)
-	else
+	if(!do_after(user, 5 SECONDS * skill_modifier, src))
 		busy = FALSE
 		balloon_alert_to_viewers("stopped churning")
+		return
+
+	var/stamina_use = CHURN_STAMINA_USE
+	if(prob(user.mind.get_skill_modifier(/datum/skill/primitive, SKILL_PROBS_MODIFIER)))
+		stamina_use *= 0.5 //so it uses half the amount of stamina (25 instead of 50)
+	user.adjustStaminaLoss(stamina_use) // Prevents spamming it
+	busy = FALSE
+	user.visible_message(span_notice("[user] churns \the [src]."), span_notice("You finish churning \the [src]."))
+	var/cream_amt = reagents.get_reagent_amount(/datum/reagent/consumable/milk) / CHURN_CREAM_RATIO
+	var/cream_purity = reagents.get_reagent_purity(/datum/reagent/consumable/milk)
+	var/butter_amt = FLOOR(reagents.get_reagent_amount(/datum/reagent/consumable/cream) / CHURN_BUTTER_RATIO, 1)
+	var/butter_purity = reagents.get_reagent_purity(/datum/reagent/consumable/cream)
+	reagents.remove_reagent(/datum/reagent/consumable/cream, 10 * butter_amt)
+	for(var/i in 1 to butter_amt)
+		var/obj/item/food/butter/tasty_butter = new(drop_location())
+		tasty_butter.reagents.set_all_reagents_purity(butter_purity)
+	reagents.remove_reagent(/datum/reagent/consumable/milk, reagents.get_reagent_amount(/datum/reagent/consumable/milk))
+	reagents.add_reagent(/datum/reagent/consumable/cream, cream_amt, added_purity = cream_purity)
+
 
 #undef CHURN_CREAM_RATIO
 #undef CHURN_BUTTER_RATIO
