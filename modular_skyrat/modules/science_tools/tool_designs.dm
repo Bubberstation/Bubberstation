@@ -13,7 +13,7 @@
 
 /datum/design/rcd_loaded/robotics_rcd
 	name = "Robotics RCD"
-	desc = "A modified RCD that has less storage then your usual NT RCD which lost some contruction abilities and the ability to deconstruct anything in favor of being more accessibility for synthetic repairs. Reload using metal, glass, or plasteel."
+	desc = "A modified RCD that has less storage than your usual NT RCD is and has less construction options and has lost the ability to deconstruct in favor of being more accessible for synthetic repairs. Reload using metal, glass, or plasteel."
 	id = SCIENCE_ROBORCD_DESIGN_ID
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/construction/rcd/robotics_rcd
