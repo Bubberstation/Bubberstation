@@ -31,6 +31,7 @@
 		/obj/item/storage/pill_bottle/lidocaine,  // BUBBER EDIT ADDITION
 		/obj/item/hemostat,
 		/obj/item/razor,
+		/obj/item/reagent_containers/medigel/sterilizine,
 		/obj/item/retractor,
 		/obj/item/scalpel,
 		/obj/item/stack/medical/bone_gel,
@@ -152,7 +153,14 @@
 ///Egg box
 /datum/storage/egg_box/New(atom/parent, max_slots, max_specific_storage, max_total_storage)
 	. = ..()
-	set_holdable(/obj/item/food/egg)
+	set_holdable(list(
+		/obj/item/food/egg,
+		/obj/item/food/chocolateegg,
+		/obj/item/food/boiledegg,
+		/obj/item/food/scotchegg,
+		/obj/item/food/grown/eggy,
+		/obj/item/surprise_egg,
+	))
 
 ///Generic fancy holder
 /datum/storage/fancy_holder/New(obj/item/storage/fancy/candle_box/parent, max_slots, max_specific_storage, max_total_storage)
