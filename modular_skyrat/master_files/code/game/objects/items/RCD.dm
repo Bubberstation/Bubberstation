@@ -74,7 +74,7 @@
 
 /obj/item/construction/rcd/robotics_rcd
 	name = "Robotics RCD"
-	desc = "A modified RCD that has less storage then your usual NT RCD which lost some contruction abilities and the ability to deconstruct anything in favor of being more accessibility for synthetic repairs. Reload using metal, glass, or plasteel."
+	desc = "A modified RCD that has less storage than your usual NT RCD is and has less construction options and has lost the ability to deconstruct in favor of being more accessible for synthetic repairs. Reload using metal, glass, or plasteel."
 	icon = 'modular_skyrat/master_files/icons/obj/tools.dmi'
 	icon_state = "roborcd"
 	worn_icon_state = "RCD"
