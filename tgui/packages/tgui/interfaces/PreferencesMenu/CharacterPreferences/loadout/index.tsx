@@ -14,6 +14,7 @@ import {
   Stack,
   Tabs,
 } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 import { removeAllSkiplines } from '../../../TextInputModal';
 import { PreferencesMenuData } from '../../types';
@@ -38,6 +39,7 @@ export function LoadoutPage(props) {
   const [modifyItemDimmer, setModifyItemDimmer] = useState<LoadoutItem | null>(
     null,
   );
+  const [searchingTooltips, setSearchingTooltips] = useState<BooleanLike>(0); // BUBBER EDIT ADDITION: Search in tooltips
   // BUBBER EDIT ADDITION START: Multiple loadout presets
   const [managingPreset, _setManagingPreset] = useState<string | null>(null);
   const { act, data } = useBackend<PreferencesMenuData>();
@@ -144,12 +146,23 @@ export function LoadoutPage(props) {
           fitted
           title="&nbsp;"
           buttons={
-            <Input
-              width="200px"
-              onChange={setSearchLoadout}
-              placeholder="Search for an item..."
-              value={searchLoadout}
-            />
+            <>
+              {/* BUBBER EDIT ADDITION BEGIN: Search in tooltips */}
+              <Button.Checkbox
+                checked={searchingTooltips}
+                onClick={() => setSearchingTooltips(!searchingTooltips)}
+                tooltip="Include matches from item tooltip information e.g. Job Whitelist"
+              >
+                Search Tooltips
+              </Button.Checkbox>
+              {/* BUBBER EDIT ADDITION END: Search in tooltips */}
+              <Input
+                width="200px"
+                onChange={setSearchLoadout}
+                placeholder="Search for an item..."
+                value={searchLoadout}
+              />
+            </>
           }
         >
           <Tabs fluid align="center">
@@ -181,6 +194,7 @@ export function LoadoutPage(props) {
           currentTab={selectedTabName}
           currentSearch={searchLoadout}
           modifyItemDimmer={modifyItemDimmer}
+          searchingTooltips={searchingTooltips} // BUBBER EDIT ADDITION: Search in tooltips
           setModifyItemDimmer={setModifyItemDimmer}
           setManagingPreset={setManagingPreset}
         />
@@ -194,6 +208,7 @@ type LoadoutTabsProps = {
   currentTab: string;
   currentSearch: string;
   modifyItemDimmer: LoadoutItem | null;
+  searchingTooltips: BooleanLike; // BUBBER EDIT ADDITION: Search in tooltips
   setModifyItemDimmer: (dimmer: LoadoutItem | null) => void;
   setManagingPreset: (string) => void;
 };
@@ -204,6 +219,7 @@ function LoadoutTabs(props: LoadoutTabsProps) {
     currentTab,
     currentSearch,
     modifyItemDimmer,
+    searchingTooltips, // BUBBER EDIT ADDITION: Search in tooltips
     setModifyItemDimmer,
     setManagingPreset,
   } = props;
@@ -306,6 +322,7 @@ function LoadoutTabs(props: LoadoutTabsProps) {
                   <SearchDisplay
                     loadout_tabs={loadout_tabs}
                     currentSearch={currentSearch}
+                    searchingTooltips={searchingTooltips} // BUBBER EDIT ADDITION: Search in tooltips
                   />
                 ) : (
                   <LoadoutTabDisplay category={activeCategory} />
