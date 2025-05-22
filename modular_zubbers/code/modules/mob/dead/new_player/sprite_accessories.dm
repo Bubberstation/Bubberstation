@@ -202,54 +202,54 @@
 	name = "Warm Thigh Highs"
 	icon_state = "warm_thigh"
 	use_static = null
-	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/clothing.dmi'
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/clothing.dmi'
 
 /datum/sprite_accessory/socks/warm_ankle
 	name = "Warm Ankle Socks"
 	icon_state = "warm_ankle"
 	use_static = null
-	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/clothing.dmi'
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/clothing.dmi'
 
 /datum/sprite_accessory/socks/warm_short
 	name = "Warm Short Socks"
 	icon_state = "warm_short"
 	use_static = null
-	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/clothing.dmi'
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/clothing.dmi'
 
 /datum/sprite_accessory/socks/recolor_thigh
 	name = "NonTemp Thigh Highs"
 	icon_state = "recolor_thigh"
 	use_static = null
-	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/clothing.dmi'
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/clothing.dmi'
 
 /datum/sprite_accessory/socks/cool_thighs
 	name = "Cool thigh highs."
 	icon_state = "cool_thighs"
 	use_static = null
-	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/clothing.dmi'
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/clothing.dmi'
 
 /datum/sprite_accessory/socks/cool_ankle
 	name = "Cool Ankle Socks."
 	icon_state = "cool_ankle"
 	use_static = null
-	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/clothing.dmi'
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/clothing.dmi'
 
 /datum/sprite_accessory/socks/cool_short
 	name = "Cool Short Socks."
 	icon_state = "cool_short"
 	use_static = null
-	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/clothing.dmi'
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/clothing.dmi'
 
 /datum/sprite_accessory/socks/grey_ankle
 	name = "Nontemp ankle socks."
 	icon_state = "grey_ankle"
 	use_static = null
-	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/clothing.dmi'
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/clothing.dmi'
 
 /datum/sprite_accessory/socks/grey_short
 	name = "Nontemp short socks."
 	icon_state = "grey_short"
 	use_static = null
-	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/clothing.dmi'
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/clothing.dmi'
 
 
