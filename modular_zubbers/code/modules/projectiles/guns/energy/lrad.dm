@@ -67,3 +67,32 @@
 					unlucky_bastard.say("4")
 
 
+/datum/status_effect/confusion/lrad
+	id = "confusion_lrad"
+
+/datum/status_effect/confusion/lrad/on_creation(mob/living/new_owner, duration = 10 SECONDS)
+	src.duration = duration
+	return ..()
+
+/datum/status_effect/confusion/lrad/on_apply()
+	RegisterSignal(owner, COMSIG_MOB_CLIENT_PRE_MOVE, PROC_REF(on_move))
+	return TRUE
+
+/datum/status_effect/confusion/lrad/on_remove()
+	UnregisterSignal(owner, COMSIG_MOB_CLIENT_PRE_MOVE)
+
+/// Signal proc for [COMSIG_MOB_CLIENT_PRE_MOVE]. We have a chance to mix up our movement pre-move with confusion.
+/datum/status_effect/confusion/lrad/proc/on_move(datum/source, list/move_args)
+	SIGNAL_HANDLER
+
+	// How much time is left in the duration, in seconds.
+	var/time_left = (duration - world.time) / 10
+	var/direction = move_args[MOVE_ARG_DIRECTION]
+	var/new_dir
+
+	if(!owner.resting)
+		new_dir = pick(GLOB.alldirs)
+
+	if(!isnull(new_dir))
+		move_args[MOVE_ARG_NEW_LOC] = get_step(owner, new_dir)
+		move_args[MOVE_ARG_DIRECTION] = new_dir

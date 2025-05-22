@@ -38,6 +38,7 @@
 
 /obj/item/gun/ballistic/automatic/pistol/sec_glock/security/rubber //This is what you give to cargo packages.
 	spawn_magazine_type = /obj/item/ammo_box/magazine/m9mm/rubber
+
 /obj/item/gun/ballistic/automatic/pistol/sec_glock/attack_self(mob/living/user)
 	if(!chambered)
 		var/obj/item/storage/our_belt = user.get_item_by_slot(ITEM_SLOT_BELT)
