@@ -92,44 +92,44 @@ coordinates = [163, 155, 1]
 trait_name = "Station"
 
 # DELTASTATION MAP EDITS
+# Deltastation Armory
+[templates.deltastation_armory]
+map_files = ["deltastation_armory.dmm"]
+directory = "_maps/bubber/automapper/templates/Deltastation/"
+required_map = "DeltaStation2.dmm"
+coordinates = [207, 127, 1]
+trait_name = "Station"
+
 # Deltastation Arrivals
 [templates.deltastation_arrivals]
 map_files = ["deltastation_arrivals.dmm"]
-directory = "_maps/skyrat/automapper/templates/deltastation/"
+directory = "_maps/bubber/automapper/templates/Deltastation/"
 required_map = "DeltaStation2.dmm"
 coordinates = [126, 195, 1]
-trait_name = "Station"
-
-# Deltastation Cryo
-[templates.deltastation_cryo]
-map_files = ["deltastation_cryo.dmm"]
-directory = "_maps/skyrat/automapper/templates/deltastation/"
-required_map = "DeltaStation2.dmm"
-coordinates = [216, 93, 1]
 trait_name = "Station"
 
 # Deltastation Barber
 [templates.deltastation_barber]
 map_files = ["deltastation_barber.dmm"]
-directory = "_maps/skyrat/automapper/templates/deltastation/"
+directory = "_maps/bubber/automapper/templates/Deltastation/"
 required_map = "DeltaStation2.dmm"
 coordinates = [121, 124, 1]
 trait_name = "Station"
 
-# Deltastation NTR Office
-[templates.deltastation_ntrep_office]
-map_files = ["deltastation_ntrep_office.dmm"]
-directory = "_maps/skyrat/automapper/templates/deltastation/"
+# Deltastation Book of Kindred
+[templates.deltastation_book_of_kindred]
+map_files = ["book_of_kindred_display.dmm"]
+directory = "_maps/bubber/automapper/templates/generic/"
 required_map = "DeltaStation2.dmm"
-coordinates = [123, 143, 1]
+coordinates = [186, 105, 1]
 trait_name = "Station"
 
-# Deltastation Supermatter Chamber
-[templates.deltastation_supermatter]
-map_files = ["deltastation_supermatter.dmm"]
-directory = "_maps/skyrat/automapper/templates/deltastation/"
+# Deltastation Cryo
+[templates.deltastation_cryo]
+map_files = ["deltastation_cryo.dmm"]
+directory = "_maps/bubber/automapper/templates/Deltastation/"
 required_map = "DeltaStation2.dmm"
-coordinates = [84, 109, 1]
+coordinates = [216, 93, 1]
 trait_name = "Station"
 
 # Deltastation Medbay
@@ -138,6 +138,22 @@ map_files = ["deltastation_medbay.dmm"]
 directory = "_maps/bubber/automapper/templates/Deltastation/"
 required_map = "DeltaStation2.dmm"
 coordinates = [157, 77, 1]
+trait_name = "Station"
+
+# Deltastation NTR Office
+[templates.deltastation_ntrep_office]
+map_files = ["deltastation_ntrep_office.dmm"]
+directory = "_maps/bubber/automapper/templates/Deltastation/"
+required_map = "DeltaStation2.dmm"
+coordinates = [123, 143, 1]
+trait_name = "Station"
+
+# Deltastation Supermatter Chamber
+[templates.deltastation_supermatter]
+map_files = ["deltastation_supermatter.dmm"]
+directory = "_maps/bubber/automapper/templates/Deltastation/"
+required_map = "DeltaStation2.dmm"
+coordinates = [84, 109, 1]
 trait_name = "Station"
 
 # ICEBOX MAP EDITS
@@ -404,14 +420,6 @@ required_map = "birdshot.dmm"
 coordinates = [50, 106, 1]
 trait_name = "Station"
 
-# Deltastation Armory
-[templates.deltastation_armory]
-map_files = ["deltastation_armory.dmm"]
-directory = "_maps/bubber/automapper/templates/Deltastation/"
-required_map = "DeltaStation2.dmm"
-coordinates = [207, 127, 1]
-trait_name = "Station"
-
 # IceBoxStation Armory
 [templates.iceboxstation_armory]
 map_files = ["iceboxstation_armory.dmm"]
@@ -496,13 +504,7 @@ trait_name = "Mining"
 
 ## Book of kindred display cases
 
-#DeltaStation2
-[templates.deltastation_book_of_kindred]
-map_files = ["book_of_kindred_display.dmm"]
-directory = "_maps/bubber/automapper/templates/generic/"
-required_map = "DeltaStation2.dmm"
-coordinates = [186, 105, 1]
-trait_name = "Station"
+
 
 #IceBoxStation
 [templates.iceboxstation_book_of_kindred]
