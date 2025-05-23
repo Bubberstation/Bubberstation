@@ -457,7 +457,7 @@
 /datum/loadout_item/head/cowboyhat_secwide
 	name = "Wide-Brimmed Cattleman Hat, Security"
 	item_path = /obj/item/clothing/head/cowboy/skyrat/cattleman/wide/sec
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, ALL_JOBS_DEPT_GUARDS)
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER)
 
 /datum/loadout_item/head/ushanka/sec
 	name = "Security Ushanka"

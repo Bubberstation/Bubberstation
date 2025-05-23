@@ -138,7 +138,7 @@
 /datum/loadout_item/head/beret/sec/peacekeeper/armadyne
 	name = "Armadyne corporate beret"
 	item_path = /obj/item/clothing/head/beret/sec/peacekeeper/armadyne
-	restricted_roles = list(ALL_JOBS_SEC, ALL_JOBS_DEPT_GUARDS)
+	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/helmet/sec/peacekeeper/security_medic
 	name = "Security Medic helmet"

@@ -27,7 +27,7 @@
 /datum/loadout_item/uniform/security/peacekeeper/armadyne
 	name = "Armadyne Corporate Uniform"
 	item_path =/obj/item/clothing/under/rank/security/peacekeeper/armadyne
-	restricted_roles = list(ALL_JOBS_SEC, ALL_JOBS_DEPT_GUARDS)
+	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/uniform/security/utility/redsec
 	name = "Security utility uniform (Redsec)"
