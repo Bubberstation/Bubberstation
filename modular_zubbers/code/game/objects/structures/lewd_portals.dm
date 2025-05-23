@@ -189,7 +189,7 @@
 	visible_message("[current_mob] exits the [src]")
 	current_mob = null
 	mob_scale_manager = null
-	qdel(relayed_body)
+	QDEL_NULL(relayed_body)
 	unbuckled_mob.cut_overlays()
 	unbuckled_mob.regenerate_icons()
 	var/offset_amount = 24
