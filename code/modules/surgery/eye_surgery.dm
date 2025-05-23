@@ -1,6 +1,6 @@
 /datum/surgery/eye_surgery
 	name = "Eye surgery"
-	requires_bodypart_type = BODYTYPE_ORGANIC | BODYTYPE_ALIEN | BODYTYPE_NANO | BODYTYPE_SHADOW
+	requires_bodypart_type = NONE
 	organ_to_manipulate = ORGAN_SLOT_EYES
 	possible_locs = list(BODY_ZONE_PRECISE_EYES)
 	steps = list(
@@ -11,17 +11,6 @@
 		/datum/surgery_step/close,
 	)
 
-/datum/surgery/eye_surgery/mechanic
-	name = "Optical Sensor repair"
-	requires_bodypart_type = BODYTYPE_ROBOTIC
-	steps = list(
-		/datum/surgery_step/mechanic_open,
-		/datum/surgery_step/open_hatch,
-		/datum/surgery_step/prepare_electronics,
-		/datum/surgery_step/fix_eyes/mechanic,
-		/datum/surgery_step/mechanic_close
-	)
-
 //fix eyes
 /datum/surgery_step/fix_eyes
 	name = "fix eyes (hemostat)"
@@ -30,13 +19,6 @@
 		TOOL_SCREWDRIVER = 45,
 		/obj/item/pen = 25)
 	time = 64
-
-/datum/surgery_step/fix_eyes/mechanic
-	name = "repair optical sensor (screwdriver/hemostat)"
-	implements = list(
-		TOOL_SCREWDRIVER = 100,
-		TOOL_HEMOSTAT = 45,
-		/obj/item/pen = 25)
 
 /datum/surgery/eye_surgery/can_start(mob/user, mob/living/carbon/target)
 	return target.get_organ_slot(ORGAN_SLOT_EYES) && ..()
