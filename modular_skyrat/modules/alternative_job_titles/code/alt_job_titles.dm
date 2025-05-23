@@ -94,6 +94,7 @@
 		"Command Bodyguard",
 		"Executive Protection Agent",
 		"Command Protection Officer",
+		"Henchman",
 	)
 
 /datum/job/botanist
