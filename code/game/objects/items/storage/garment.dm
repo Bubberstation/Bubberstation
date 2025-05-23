@@ -66,7 +66,7 @@
 	new /obj/item/clothing/shoes/laceup(src)
 //Duplication from Commdrobe
 	new /obj/item/clothing/head/playbunnyears/hop(src)
-	new /obj/item/clothing/under/rank/civilian/hop_bunnysuit(src)
+	new /obj/item/clothing/under/rank/civilian/head_of_personnel/bunnysuit(src) //BUBBER EDIT - Bunnysuits
 	new /obj/item/clothing/suit/armor/hop_tailcoat(src)
 	new /obj/item/clothing/neck/tie/bunnytie/hop(src)
 	new /obj/item/clothing/head/hopcap/beret(src)
@@ -186,7 +186,7 @@
 	new /obj/item/clothing/under/rank/medical/chief_medical_officer/skyrat/imperial(src)
 	new /obj/item/clothing/neck/mantle/cmomantle(src)
 	new /obj/item/clothing/head/playbunnyears/cmo(src)
-	new /obj/item/clothing/under/rank/medical/cmo_bunnysuit(src)
+	new /obj/item/clothing/under/rank/medical/chief_medical_officer/bunnysuit(src) //BUBBER EDIT - Bunnysuits
 	new /obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/cmo(src)
 	new /obj/item/clothing/neck/tie/bunnytie/cmo(src)
 
@@ -236,7 +236,7 @@
 	new /obj/item/clothing/under/rank/cargo/qm/skyrat/formal(src)
 	new /obj/item/clothing/under/rank/cargo/qm/skyrat/formal/skirt(src)
 	new /obj/item/clothing/head/playbunnyears/quartermaster(src)
-	new /obj/item/clothing/under/rank/cargo/quartermaster_bunnysuit(src)
+	new /obj/item/clothing/under/rank/cargo/qm/bunnysuit(src) //BUBBER EDIT - Bunnysuits
 	new /obj/item/clothing/suit/jacket/tailcoat/quartermaster(src)
 	new /obj/item/clothing/neck/tie/bunnytie/cargo(src)
 
