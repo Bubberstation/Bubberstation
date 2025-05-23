@@ -79,3 +79,15 @@
 /datum/species/teshari/on_species_loss(mob/living/carbon/C, datum/species/new_species, pref_load)
 	. = ..()
 	passtable_off(C, SPECIES_TRAIT)
+
+/datum/species/teshari/create_pref_unique_perks()
+	var/list/perk_descriptions = list()
+
+	perk_descriptions += list(list(
+		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+		SPECIES_PERK_ICON = FA_ICON_RUNNING,
+		SPECIES_PERK_NAME = "Tablerunning",
+		SPECIES_PERK_DESC = "A being of extreme agility, you can jump on tables just by running into them!"
+	))
+
+	return perk_descriptions
