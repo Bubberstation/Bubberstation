@@ -114,11 +114,16 @@
 	var/obj/item/bodypart/leg/left/taur/new_left_leg
 	var/obj/item/bodypart/leg/right/taur/new_right_leg
 
+	var/datum/preferences/prefs = receiver.client?.prefs
+	var/use_synthetic_taur = FALSE
+	if (prefs)
+		use_synthetic_taur = prefs.read_preference(/datum/preference/toggle/synthetic_taur)
+
 	if(organ_flags & ORGAN_ORGANIC)
 		new_left_leg = new /obj/item/bodypart/leg/left/taur()
 		new_right_leg = new /obj/item/bodypart/leg/right/taur()
 
-	if(organ_flags & ORGAN_ROBOTIC)
+	if(organ_flags & ORGAN_ROBOTIC || use_synthetic_taur)
 		new_left_leg = new /obj/item/bodypart/leg/left/synth/taur()
 		new_right_leg = new /obj/item/bodypart/leg/right/synth/taur()
 
