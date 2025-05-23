@@ -48,7 +48,9 @@ GLOBAL_LIST_INIT(balls_size_translation, list(
 	"3" = "Very Big",
 	"4" = "Enormous",
 	"5" = "Immense",
-	"6" = "Gargantuan"
+	"6" = "Gargantuan",
+	"7" = "Monstrous",
+	"8" = "Colossal"
 	))
 
 GLOBAL_LIST_INIT(marking_zone_to_bitflag, list(
@@ -80,7 +82,9 @@ GLOBAL_LIST_INIT(preference_balls_sizes, list(
 	"Very Big",
 	"Enormous",
 	"Immense",
-	"Gargantuan"
+	"Gargantuan",
+	"Monstrous",
+	"Colossal"
 	))
 
 GLOBAL_LIST_INIT(robotic_styles_list, list(
