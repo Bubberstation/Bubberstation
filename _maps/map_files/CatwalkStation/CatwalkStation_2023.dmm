@@ -2203,15 +2203,6 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/glass/reinforced/plasma,
 /area/station/engineering/atmos/upper)
-"aKy" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/disposalpipe/segment{
-	dir = 2
-	},
-/obj/effect/spawner/random/trash/graffiti,
-/obj/machinery/light/small/directional/east,
-/turf/open/floor/iron/sepia,
-/area/station/hallway/secondary/construction)
 "aKA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/extinguisher_cabinet/directional/west,
@@ -14620,16 +14611,6 @@
 	},
 /turf/open/floor/engine/hull/air,
 /area/station/maintenance/port/aft)
-"eqG" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/airlock{
-	name = "Garden"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/iron/dark,
-/area/station/maintenance/starboard/aft)
 "eqV" = (
 /obj/effect/spawner/random/structure/closet_maintenance,
 /obj/effect/turf_decal/bot,
@@ -15393,6 +15374,19 @@
 /obj/structure/closet/crate/coffin,
 /turf/open/floor/plating,
 /area/station/maintenance/port)
+"eFp" = (
+/obj/machinery/button/door/directional/west{
+	id = "hosprivacy";
+	name = "Privacy Shutters Control";
+	pixel_x = 8;
+	pixel_y = 25
+	},
+/obj/machinery/holopad/secure,
+/obj/machinery/keycard_auth/wall_mounted/directional/north{
+	pixel_x = -6
+	},
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/hos)
 "eFq" = (
 /obj/machinery/door/airlock/command{
 	name = "Captain's Quarters"
@@ -18412,26 +18406,6 @@
 	},
 /turf/open/floor/iron/textured_large,
 /area/station/medical/virology)
-"fAH" = (
-/obj/structure/table,
-/obj/item/gun/energy/e_gun/dragnet{
-	pixel_x = -4;
-	pixel_y = 8
-	},
-/obj/item/gun/energy/e_gun/dragnet{
-	pixel_y = 6
-	},
-/obj/item/clothing/glasses/hud/security/sunglasses{
-	pixel_y = -1
-	},
-/obj/item/clothing/glasses/hud/security/sunglasses{
-	pixel_y = -1
-	},
-/obj/item/clothing/glasses/hud/security/sunglasses{
-	pixel_y = -1
-	},
-/turf/open/floor/iron/dark/smooth_large,
-/area/station/ai_monitored/security/armory)
 "fAI" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -19016,6 +18990,16 @@
 /obj/structure/extinguisher_cabinet/directional/west,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/ce)
+"fIU" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/airlock{
+	name = "Garden"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/iron/dark,
+/area/station/maintenance/starboard/aft)
 "fJc" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/layer2{
 	dir = 8
@@ -28185,6 +28169,12 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
 /area/station/security/detectives_office/private_investigators_office)
+"iuR" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/smooth_large,
+/area/station/security/interrogation)
 "ivh" = (
 /obj/structure/lattice/catwalk,
 /obj/effect/landmark/start/hangover,
@@ -42089,6 +42079,30 @@
 /obj/item/electronics/airlock,
 /turf/open/floor/iron/dark,
 /area/station/science/lobby)
+"mBm" = (
+/obj/structure/table,
+/obj/item/dragnet_beacon{
+	pixel_x = 7;
+	pixel_y = 10
+	},
+/obj/item/gun/energy/e_gun/dragnet{
+	pixel_x = -4;
+	pixel_y = 8
+	},
+/obj/item/gun/energy/e_gun/dragnet{
+	pixel_y = 6
+	},
+/obj/item/clothing/glasses/hud/security/sunglasses{
+	pixel_y = -1
+	},
+/obj/item/clothing/glasses/hud/security/sunglasses{
+	pixel_y = -1
+	},
+/obj/item/clothing/glasses/hud/security/sunglasses{
+	pixel_y = -1
+	},
+/turf/open/floor/iron/dark/smooth_large,
+/area/station/ai_monitored/security/armory)
 "mBK" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -57222,12 +57236,6 @@
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
-"rht" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 1
-	},
-/turf/open/floor/iron/dark/smooth_large,
-/area/station/security/interrogation)
 "rhx" = (
 /obj/effect/turf_decal/tile/blue/half/contrasted,
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
@@ -71659,6 +71667,15 @@
 /obj/machinery/camera/autoname/directional/north,
 /turf/open/floor/wood,
 /area/station/security/detectives_office)
+"vvc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/disposalpipe/segment{
+	dir = 2
+	},
+/obj/effect/spawner/random/trash/graffiti,
+/obj/machinery/light/small/directional/east,
+/turf/open/floor/iron/sepia,
+/area/station/hallway/secondary/construction)
 "vvk" = (
 /turf/open/floor/iron/dark/textured_large,
 /area/station/science/genetics)
@@ -76086,16 +76103,6 @@
 	},
 /turf/open/floor/engine/hull,
 /area/space/nearstation)
-"wLV" = (
-/obj/machinery/button/door/directional/west{
-	id = "hosprivacy";
-	name = "Privacy Shutters Control";
-	pixel_x = 0;
-	pixel_y = 24
-	},
-/obj/machinery/holopad/secure,
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/hos)
 "wMc" = (
 /obj/effect/turf_decal/trimline/red/filled/warning,
 /turf/open/floor/iron,
@@ -121553,7 +121560,7 @@ vnp
 hFi
 fHl
 exj
-aKy
+vvc
 exj
 qZZ
 hFi
@@ -121808,7 +121815,7 @@ wKb
 wKb
 eio
 eio
-eqG
+fIU
 wKb
 uVg
 uVg
@@ -164409,7 +164416,7 @@ gRG
 dkw
 uof
 uof
-fAH
+mBm
 uof
 uof
 wcf
@@ -169297,7 +169304,7 @@ hds
 whi
 eNE
 bpK
-wLV
+eFp
 mRJ
 fTi
 hJa
@@ -172377,7 +172384,7 @@ cba
 xSS
 waz
 eGP
-rht
+iuR
 xcx
 hCY
 sdf
