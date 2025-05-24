@@ -8,7 +8,7 @@
 	power_path = /datum/action/cooldown/mob_cooldown/leap
 	instability = 25
 
-/datum/mutation/human/strong_legs/modify()
+/datum/mutation/human/strong_legs/setup()
 	. = ..()
 	var/datum/action/cooldown/mob_cooldown/leap/ability = .
 	if(!istype(ability)) // null or invalid
