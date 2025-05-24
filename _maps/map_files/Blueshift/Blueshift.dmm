@@ -26786,11 +26786,7 @@
 /turf/open/floor/engine,
 /area/station/science/ordnance)
 "fbC" = (
-/turf/open/water/overlay{
-	desc = "It's a pool for swimming in!";
-	icon_state = "hotspring_tile";
-	name = "pool"
-	},
+/turf/open/water/overlay/hotspring,
 /area/station/command/heads_quarters/captain/private)
 "fbD" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
@@ -110566,6 +110562,10 @@
 	},
 /turf/open/floor/iron,
 /area/station/command/teleporter)
+"vgU" = (
+/obj/machinery/status_display/evac/directional/south,
+/turf/open/water/overlay/hotspring,
+/area/station/command/heads_quarters/captain/private)
 "vgV" = (
 /obj/effect/decal/cleanable/dirt{
 	icon_state = "dirt-flat-1"
@@ -115099,13 +115099,8 @@
 	},
 /area/station/hallway/primary/central)
 "vXY" = (
-/obj/item/toy/beach_ball/branded,
-/obj/machinery/computer/security/telescreen/entertainment/directional/west,
-/turf/open/water/overlay{
-	desc = "It's a pool for swimming in!";
-	icon_state = "hotspring_tile";
-	name = "pool"
-	},
+/obj/structure/sign/poster/greenscreen/directional/west,
+/turf/open/water/overlay/hotspring,
 /area/station/command/heads_quarters/captain/private)
 "vYb" = (
 /obj/machinery/door/airlock/security/old{
@@ -116093,6 +116088,10 @@
 /obj/machinery/status_display/ai/directional/west,
 /turf/open/floor/iron/cafeteria,
 /area/station/service/kitchen)
+"wgt" = (
+/obj/item/toy/beach_ball/branded,
+/turf/open/water/overlay/hotspring,
+/area/station/command/heads_quarters/captain/private)
 "wgu" = (
 /obj/structure/table,
 /obj/structure/cable,
@@ -118328,6 +118327,17 @@
 	},
 /turf/open/floor/wood,
 /area/station/service/electronic_marketing_den)
+"wBG" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/machinery/greenscreen_camera{
+	dir = 8;
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/captain/private)
 "wBI" = (
 /obj/structure/chair/pew/right{
 	dir = 8
@@ -231853,7 +231863,7 @@ rOM
 wpl
 xMY
 xDy
-fbC
+wgt
 vXY
 fbC
 gTZ
@@ -232112,7 +232122,7 @@ vxQ
 cZS
 fbC
 fbC
-fbC
+vgU
 gTZ
 oYZ
 oYZ
@@ -232368,7 +232378,7 @@ gTZ
 ges
 wvk
 wqq
-wqq
+wBG
 akg
 gTZ
 jMO
