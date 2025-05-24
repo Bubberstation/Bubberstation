@@ -223,10 +223,11 @@
 	if(overlay.laying_down)
 		// Rising up
 		to_chat(owner, span_notice("You start lifting your body up."))
-		if(!do_after(owner, LAYDOWN_COOLDOWN))
-			return
-
-		overlay.laying_down = FALSE
+        if(!do_after(owner, LAYDOWN_COOLDOWN))
+            return
+        if(!overlay.laying_down) // Prevent multiple standups at once
+            return
+        overlay.laying_down = FALSE
 		owner.layer = initial(owner.layer)
 		owner.pixel_y -= overlay.laydown_offset
 		owner.update_body_parts()
