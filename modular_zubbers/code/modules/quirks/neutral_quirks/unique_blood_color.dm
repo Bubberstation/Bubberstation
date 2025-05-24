@@ -55,7 +55,7 @@
 		return
 
 ///Making the new blood type
-	var/datum/blood_type/new_blood_type = new /datum/blood_type/custom(human_holder.dna.blood_type, human_holder.dna.blood_type.compatible_types)
+	var/datum/blood_type/new_blood_type = new /datum/blood_type/alt_color(human_holder.dna.blood_type, human_holder.dna.blood_type.compatible_types)
 	new_blood_type.color = override.color
 	GLOB.blood_types[new_blood_type.id] = new_blood_type
 	human_holder.set_blood_type(new_blood_type)
