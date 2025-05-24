@@ -55,6 +55,12 @@
 /datum/augment_item/organ/lungs
 	slot = AUGMENT_SLOT_LUNGS
 
+/datum/augment_item/organ/lungs/normal
+	name = "Normal Lungs"
+	slot = AUGMENT_SLOT_LUNGS
+	path = /obj/item/organ/lungs
+	cost = 1 // if you dont have normal lungs, still an investment to switch it out
+
 /datum/augment_item/organ/lungs/hot
 	name = "Heat-Adapted Lungs"
 	slot = AUGMENT_SLOT_LUNGS
