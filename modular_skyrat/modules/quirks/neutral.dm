@@ -273,6 +273,21 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	new_tongue.copy_traits_from(human_holder.get_organ_slot(ORGAN_SLOT_TONGUE))
 	new_tongue.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
+/datum/quirk/item_quirk/bovine
+	name = "Bovine Traits"
+	desc = "Moo. You seem to act like a bovine for whatever reason. This will replace most other tongue-based speech quirks."
+	mob_trait = TRAIT_BOVINE
+	icon = FA_ICON_COW
+	value = 0
+	medical_record_text = "Patient exhibits bovine-adjacent mannerisms."
+
+/datum/quirk/item_quirk/bovine/add_unique(client/client_source)
+	var/mob/living/carbon/human/human_holder = quirk_holder
+	var/obj/item/organ/tongue/bovine/new_tongue = new(get_turf(human_holder))
+
+	new_tongue.copy_traits_from(human_holder.get_organ_slot(ORGAN_SLOT_TONGUE))
+	new_tongue.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
+
 /datum/quirk/sensitivesnout
 	name = "Sensitive Snout"
 	desc = "Your face has always been sensitive, and it really hurts when someone pokes it!"
