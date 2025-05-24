@@ -400,21 +400,20 @@ required_map = "Lavaland.dmm"
 coordinates = [8, 161, 1]
 trait_name = "Mining"
 
-# ----- KILO DOES NOT NEED THIS SINCE UPSTREAM REMOVED IT, BUT I DON'T FEEL LIKE MAPPING IT. THIS IS A COOL REFACTOR PROJECT FOR BORED CODERS
-# Kilostation Armory
-[templates.kilostation_armory]
-map_files = ["kilostation_armory.dmm"]
-directory = "_maps/bubber/automapper/templates/kilostation/"
-required_map = "kilostation.dmm"
-coordinates = [81, 78, 1]
-trait_name = "Station"
-
 # Kilostation Arrivals
 [templates.kilostation_arrivals]
 map_files = ["kilostation_arrivals.dmm"]
 directory = "_maps/bubber/automapper/templates/kilostation/"
 required_map = "KiloStation.dmm"
 coordinates = [151, 80, 1]
+trait_name = "Station"
+
+#KiloStation
+[templates.kilostation_book_of_kindred]
+map_files = ["book_of_kindred_display.dmm"]
+directory = "_maps/bubber/automapper/templates/generic/"
+required_map = "KiloStation.dmm"
+coordinates = [97, 128, 1]
 trait_name = "Station"
 
 # Kilostation ERT Bay and Barber
@@ -459,14 +458,6 @@ coordinates = [200, 228, 1]
 trait_name = "Mining"
 
 ## Book of kindred display cases
-
-#KiloStation
-[templates.kilostation_book_of_kindred]
-map_files = ["book_of_kindred_display.dmm"]
-directory = "_maps/bubber/automapper/templates/generic/"
-required_map = "KiloStation.dmm"
-coordinates = [97, 128, 1]
-trait_name = "Station"
 
 #VoidRaptor
 [templates.voidraptor_book_of_kindred]
