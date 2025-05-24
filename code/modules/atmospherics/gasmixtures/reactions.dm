@@ -1162,6 +1162,8 @@
 		air.temperature = max((temperature * old_heat_capacity + energy_released) / new_heat_capacity, TCMB)
 	return REACTING
 
+// BUBBER EDIT REMOVAL:
+/*
 /datum/gas_reaction/antinoblium_replication
 	priority_group = PRIORITY_FORMATION
 	name = "Antinoblium Replication"
@@ -1204,6 +1206,7 @@
 	var/new_heat_capacity = air.heat_capacity()
 	if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
 		air.temperature = max(air.temperature * heat_capacity / new_heat_capacity, TCMB)
-
+*/
+// BUBBER EDIT END
 
 #undef SET_REACTION_RESULTS
