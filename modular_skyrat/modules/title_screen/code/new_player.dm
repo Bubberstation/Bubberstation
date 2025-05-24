@@ -2,7 +2,7 @@
 	/// Title screen is ready to receive signals
 	var/title_screen_is_ready = FALSE
 
-/mob/dead/new_player/Topic(href, href_list[])
+/mob/dead/new_player/Topic(href, href_list)
 	if(src != usr)
 		return
 
@@ -83,11 +83,18 @@
 	if(href_list["late_join"])
 		play_lobby_button_sound()
 		GLOB.latejoin_menu.ui_interact(usr)
+		return
 
 	if(href_list["title_is_ready"])
 		title_screen_is_ready = TRUE
 		return
 
+	if(href_list["polls_menu"])
+		play_lobby_button_sound()
+		handle_player_polling()
+		return
+
+	. = ..()
 
 /mob/dead/new_player/Login()
 	. = ..()
@@ -215,9 +222,9 @@
 		qdel(query_get_new_polls)
 		return
 	if(query_get_new_polls.NextRow())
-		output +={"<a class="menu_button menu_newpoll" href='byond://?src=[text_ref(src)];viewpoll=1'>POLLS (NEW)</a>"}
+		output +={"<a class="menu_button menu_newpoll" href='byond://?src=[text_ref(src)];polls_menu=1'>POLLS (NEW)</a>"}
 	else
-		output +={"<a class="menu_button" href='byond://?src=[text_ref(src)];viewpoll=1'>POLLS</a>"}
+		output +={"<a class="menu_button" href='byond://?src=[text_ref(src)];polls_menu=1'>POLLS</a>"}
 	qdel(query_get_new_polls)
 	if(QDELETED(src))
 		return

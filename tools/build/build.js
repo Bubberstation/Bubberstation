@@ -214,6 +214,7 @@ export const IconCutterTarget = new Juke.Target({
 export const DmMapsIncludeTarget = new Juke.Target({
   executes: async () => {
     const folders = [
+      ...Juke.glob('_maps/bubber/**/*.dmm'), // BUBBER EDIT ADDITION - Include our templates
       ...Juke.glob('_maps/map_files/**/modular_pieces/*.dmm'),
       ...Juke.glob('_maps/RandomRuins/**/*.dmm'),
       ...Juke.glob('_maps/RandomZLevels/**/*.dmm'),
@@ -231,7 +232,7 @@ export const DmMapsIncludeTarget = new Juke.Target({
 export const DmTarget = new Juke.Target({
   parameters: [DefineParameter, DmVersionParameter, WarningParameter, NoWarningParameter, SkipIconCutter],
   dependsOn: ({ get }) => [
-    get(DefineParameter).includes('ALL_MAPS') && DmMapsIncludeTarget,
+    get(DefineParameter).includes('ALL_TEMPLATES') && DmMapsIncludeTarget,
     !get(SkipIconCutter) && IconCutterTarget,
   ],
   inputs: [
@@ -270,7 +271,7 @@ export const DmTarget = new Juke.Target({
 export const DmTestTarget = new Juke.Target({
   parameters: [DefineParameter, DmVersionParameter, WarningParameter, NoWarningParameter],
   dependsOn: ({ get }) => [
-    get(DefineParameter).includes('ALL_MAPS') && DmMapsIncludeTarget,
+    get(DefineParameter).includes('ALL_TEMPLATES') && DmMapsIncludeTarget,
     IconCutterTarget,
   ],
   executes: async ({ get }) => {
@@ -306,7 +307,7 @@ export const DmTestTarget = new Juke.Target({
 export const AutowikiTarget = new Juke.Target({
   parameters: [DefineParameter, DmVersionParameter, WarningParameter, NoWarningParameter],
   dependsOn: ({ get }) => [
-    get(DefineParameter).includes('ALL_MAPS') && DmMapsIncludeTarget,
+    get(DefineParameter).includes('ALL_TEMPLATES') && DmMapsIncludeTarget,
     IconCutterTarget,
   ],
   outputs: [

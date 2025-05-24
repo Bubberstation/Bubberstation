@@ -50,7 +50,7 @@
 	build_path = /obj/item/storage/pouch/cin_general
 	category = list(
 		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_NRI_MEDICAL,
+		RND_CATEGORY_NRI_CLOTHING,
 	)
 
 /datum/design/cool_hat

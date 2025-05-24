@@ -355,8 +355,7 @@
 					target_record.citations += new_citation
 					new_citation.alert_owner(usr, src, target_record.name, "You have been fined [fine] credits for '[citation_name]'. Fines may be paid at security.")
 					investigate_log("New Citation: <strong>[citation_name]</strong> Fine: [fine] | Added to [target_record.name] by [key_name(human_user)]", INVESTIGATE_RECORDS)
-					SSblackbox.ReportCitation(REF(new_citation), human_user.ckey, human_user.real_name, target_record.name, citation_name, fine)
-					return
+					SSblackbox.ReportCitation(REF(new_citation), human_user.ckey, human_user.real_name, target_record.name, citation_name, null, fine)
 
 				//SKYRAT EDIT ADDITION BEGIN - EXAMINE RECORDS
 				if(href_list["genrecords"])
@@ -383,6 +382,7 @@
 
 					target_record.crimes += new_crime
 					investigate_log("New Crime: <strong>[crime_name]</strong> | Added to [target_record.name] by [key_name(human_user)]", INVESTIGATE_RECORDS)
+					SSblackbox.ReportCitation(REF(new_crime), human_user.ckey, human_user.real_name, target_record.name, crime_name, null)
 					to_chat(human_user, span_notice("Successfully added a crime."))
 
 					return
@@ -638,8 +638,7 @@
  * Returns false if we couldn't wash our hands due to them being obscured, otherwise true
  */
 /mob/living/carbon/human/proc/wash_hands(clean_types)
-	var/obscured = check_obscured_slots()
-	if(obscured & ITEM_SLOT_GLOVES)
+	if(check_covered_slots() & ITEM_SLOT_GLOVES)
 		return FALSE
 
 	if(gloves)
@@ -660,13 +659,10 @@
 	if(!is_mouth_covered() && clean_lips())
 		. = TRUE
 
-	if(glasses && is_eyes_covered(ITEM_SLOT_MASK|ITEM_SLOT_HEAD) && glasses.wash(clean_types))
-		update_worn_glasses()
+	if(glasses && !is_eyes_covered(ITEM_SLOT_MASK|ITEM_SLOT_HEAD) && glasses.wash(clean_types))
 		. = TRUE
 
-	var/obscured = check_obscured_slots()
-	if(wear_mask && !(obscured & ITEM_SLOT_MASK) && wear_mask.wash(clean_types))
-		update_worn_mask()
+	if(wear_mask && !(check_covered_slots() & ITEM_SLOT_MASK) && wear_mask.wash(clean_types))
 		. = TRUE
 
 /**
@@ -674,28 +670,11 @@
  */
 /mob/living/carbon/human/wash(clean_types)
 	. = ..()
-
-	// Wash equipped stuff that cannot be covered
-	if(wear_suit?.wash(clean_types))
-		update_worn_oversuit()
-		. = TRUE
-
-	if(belt?.wash(clean_types))
-		update_worn_belt()
-		. = TRUE
-
-	// Check and wash stuff that can be covered
-	var/obscured = check_obscured_slots()
-
-	if(!(obscured & ITEM_SLOT_ICLOTHING) && w_uniform?.wash(clean_types))
-		update_worn_undersuit()
-		. = TRUE
-
 	if(!is_mouth_covered() && clean_lips())
 		. = TRUE
 
 	// Wash hands if exposed
-	if(!gloves && (clean_types & CLEAN_TYPE_BLOOD) && blood_in_hands > 0 && !(obscured & ITEM_SLOT_GLOVES))
+	if(!gloves && (clean_types & CLEAN_TYPE_BLOOD) && blood_in_hands > 0 && !(check_covered_slots() & ITEM_SLOT_GLOVES))
 		blood_in_hands = 0
 		update_worn_gloves()
 		. = TRUE
