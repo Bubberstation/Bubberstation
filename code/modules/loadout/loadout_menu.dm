@@ -113,6 +113,7 @@
 /datum/preference_middleware/loadout/get_ui_static_data(mob/user)
 	var/list/data = list()
 	data["loadout_preview_view"] = preferences.character_preview_view.assigned_map
+	data["ckey"] = user.ckey // BUBBER EDIT ADDITION: Filter ckey-locked items
 	return data
 
 /datum/preference_middleware/loadout/get_constant_data()
