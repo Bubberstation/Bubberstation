@@ -26,9 +26,11 @@
 	return ..()
 
 /obj/item/mod/control/pre_equipped/protean/wrench_act(mob/living/user, obj/item/wrench)
+	to_chat(user, span_warning("The core cannot be removed from the control unit."))
 	return FALSE // Can't remove the core.
 
 /obj/item/mod/control/pre_equipped/protean/emag_act(mob/user, obj/item/card/emag/emag_card)
+	to_chat(user, span_warning("The control unit does not respond to the [emag_card]."))
 	return FALSE // Nope
 
 /obj/item/mod/control/pre_equipped/protean/canStrip(mob/who)
@@ -217,6 +219,7 @@
 /obj/item/mod/control/pre_equipped/protean/examine(mob/user)
 	. = ..()
 	var/obj/item/mod/core/protean/protean_core = core
+	var/mob/living/carbon/human/protean_in_suit = protean_core?.mod.client_mobs_in_contents
 	var/obj/item/organ/brain/protean/brain = protean_core?.linked_species.owner.get_organ_slot(ORGAN_SLOT_BRAIN)
 	var/obj/item/organ/stomach/protean/refactory = protean_core.linked_species.owner.get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(!isnull(brain) || istype(brain))
@@ -226,6 +229,10 @@
 				. += isnull(refactory) ? span_warning("This Protean requires critical repairs! <b>Screwdriver them open</b>") : span_notice("<b>Repairing systems...</b>")
 			else
 				. += isnull(refactory) ? span_warning("<b>Insert a new refactory</b>") : span_notice("<b>Refactory Installed! Repairing systems...</b>")
+		if(!protean_in_suit.key) // We have to put these here because you're examining an object, and not a carbon, and players otherwise can't tell if anyone is home.
+			. += span_deadsay("[protean_in_suit.P_Their] nanites are no longer moving along the surface of the control unit. The stresses of life in deep-space must have been too much for [protean_in_suit.p_them]. Any recovery is unlikely.")
+		if(!protean_in_suit.client)
+			. += span_deadsay("[protean_in_suit.P_Their] nanites are in perfect stasis, and [protean_in_suit.p_theyve] been completely unresponsive to anything for [protean_in_suit.round(((world.time - protean_in_suit.lastclienttime) / (1 MINUTES)),1)] minutes. [protean_in_suit.p_they] may snap out of it soon.")
 
 /obj/item/mod/control/pre_equipped/protean/proc/ooc_escape(mob/living/carbon/user)
 	SIGNAL_HANDLER
@@ -265,6 +272,7 @@
 	if (!isnull(should_strip_proc_path) && !call(species.owner, should_strip_proc_path)(user))
 		return
 	suit.balloon_alert_to_viewers("stripping")
+	suit.wearer.visible_message(span_warning("[source] begins to dump the contents of [suit.wearer]'s control unit!"))
 	ASYNC
 		var/datum/strip_menu/protean/strip_menu = LAZYACCESS(strip_menus, species.owner)
 		if (isnull(strip_menu))

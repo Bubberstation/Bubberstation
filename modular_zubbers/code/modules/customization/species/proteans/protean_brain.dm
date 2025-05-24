@@ -86,6 +86,7 @@
 	if(!forced)
 		if(!do_after(owner, 5 SECONDS))
 			return
+	owner.visible_message(span_warning("[owner] retreats into [owner.p_their()] control unit!"))
 	owner.extinguish_mob()
 	var/obj/item/mod/control/pre_equipped/protean/suit = protean.species_modsuit
 	owner.invisibility = 101
@@ -121,6 +122,7 @@
 		owner.dropItemToGround(owner.get_item_by_slot(ITEM_SLOT_BACK), TRUE, TRUE, TRUE)
 	owner.equip_to_slot_if_possible(suit, ITEM_SLOT_BACK, disable_warning = TRUE)
 	suit.invisibility = initial(suit.invisibility)
+	owner.visible_message(span_warning("[owner] reforms from [owner.p_their()] control unit!"))
 	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob/living, SetStun), 0), 5 SECONDS)
 	if(!HAS_TRAIT(suit, TRAIT_NODROP))
 		ADD_TRAIT(suit, TRAIT_NODROP, "protean")
@@ -160,13 +162,17 @@
 
 /obj/item/organ/brain/protean/proc/revive()
 	dead = FALSE
+	owner.visible_message(span_warning("[owner]'s nanites regain cohesion."))
 	playsound(owner, 'sound/machines/ping.ogg', 30)
 	to_chat(owner, span_warning("You have regained all your mass!"))
 	owner.fully_heal()
 
 /obj/item/organ/brain/protean/proc/revive_timer()
 	balloon_alert_to_viewers("repairing")
-	addtimer(CALLBACK(src, PROC_REF(revive)), 5 MINUTES) // Bump to 5 minutes
+	playsound(get_turf(src), 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
+	owner.visible_message(span_warning("[owner]'s nanites writhe as repair process begins."))
+	to_chat(owner, span_red("Your refactory has been replaced. You will become functional again in a few minutes.."))
+	addtimer(CALLBACK(src, PROC_REF(revive)), 5 MINUTES)
 
 /obj/effect/temp_visual/protean_to_suit
 	name = "to_suit"
