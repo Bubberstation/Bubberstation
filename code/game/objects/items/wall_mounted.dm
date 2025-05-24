@@ -9,6 +9,9 @@
 	var/result_path
 	var/wall_external = FALSE // For frames that are external to the wall they are placed on, like light fixtures and cameras.
 	var/pixel_shift //The amount of pixels
+	var/multi_use = 0 //BUBBER EDIT ADDITION - User for lewd portals to allow you to place more than one
+	var/bypass_unpowered = FALSE //BUBBER EDIT ADDITION - Some wallframes can be placed in unpowered areas, specifically lewd portals in this case
+	var/bypass_floor = FALSE //BUBBER EDIT ADDITION - Some wallframes can be placed in areas without floors, specifically lewd portals in this case
 
 /obj/item/wallframe/proc/try_build(turf/on_wall, mob/user)
 	if(get_dist(on_wall,user) > 1)
@@ -20,10 +23,10 @@
 		return
 	var/turf/T = get_turf(user)
 	var/area/A = get_area(T)
-	if(!isfloorturf(T))
+	if(!isfloorturf(T) && !bypass_floor) //BUBBER EDIT - allows for wallmounts in floorless areas
 		balloon_alert(user, "cannot place here!")
 		return
-	if(A.always_unpowered)
+	if(A.always_unpowered && !bypass_unpowered) //BUBBER EDIT - allows for wallmounts in unpowered areas
 		balloon_alert(user, "cannot place in this area!")
 		return
 	if(check_wall_item(T, floor_to_wall, wall_external))
@@ -53,8 +56,13 @@
 				if(WEST)
 					hanging_object.pixel_x = -pixel_shift
 		after_attach(hanging_object)
-
+	//BUBBER EDIT START - For lewd_portals, you can place multiple with the same frame.
+	if(multi_use > 1)
+		multi_use--
+		return
+	//BUBBER EDIT END
 	qdel(src)
+
 
 /obj/item/wallframe/proc/after_attach(obj/attached_to)
 	transfer_fingerprints_to(attached_to)
