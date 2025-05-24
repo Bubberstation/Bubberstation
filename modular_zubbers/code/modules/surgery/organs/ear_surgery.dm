@@ -14,9 +14,17 @@
 		/datum/surgery_step/mechanic_close
 	)
 
+/datum/surgery_step/fix_ears
+	preop_sound = 'sound/items/handling/surgery/hemostat1.ogg'
+	success_sound = 'sound/items/handling/surgery/retractor2.ogg'
+	failure_sound = 'sound/items/handling/surgery/organ2.ogg'
+
 /datum/surgery_step/fix_ears/mechanic
 	name = "repair auditory sensor (screwdriver/hemostat)"
 	implements = list(
 		TOOL_SCREWDRIVER = 100,
 		TOOL_HEMOSTAT = 45,
 		/obj/item/pen = 25)
+	preop_sound = 'sound/items/taperecorder/tape_flip.ogg'
+	success_sound = 'sound/items/taperecorder/taperecorder_close.ogg'
+	failure_sound = 'sound/items/handling/disk_drop.ogg'
