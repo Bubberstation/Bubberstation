@@ -246,10 +246,18 @@ coordinates = [114, 65, 3]
 trait_name = "Station"
 
 # TRAMSTATION MAP EDITS
+# Tramstation Armory
+[templates.tramstation_armory]
+map_files = ["tramstation_armory.dmm"]
+directory = "_maps/bubber/automapper/templates/tramstation/"
+required_map = "tramstation.dmm"
+coordinates = [69, 162, 2]
+trait_name = "Station"
+
 # Tramstation Arrivals
 [templates.tramstation_arrivals]
 map_files = ["tramstation_arrivals.dmm"]
-directory = "_maps/skyrat/automapper/templates/tramstation/"
+directory = "_maps/bubber/automapper/templates/tramstation/"
 required_map = "tramstation.dmm"
 coordinates = [8, 96, 2]
 trait_name = "Station"
@@ -257,17 +265,33 @@ trait_name = "Station"
 # Tramstation Barber
 [templates.tramstation_barber]
 map_files = ["tramstation_barber.dmm"]
-directory = "_maps/skyrat/automapper/templates/tramstation/"
+directory = "_maps/bubber/automapper/templates/tramstation/"
 required_map = "tramstation.dmm"
 coordinates = [133, 125, 1]
+trait_name = "Station"
+
+# Tramstation Book of Kindred
+[templates.tramstation_book_of_kindred]
+map_files = ["book_of_kindred_display.dmm"]
+directory = "_maps/bubber/automapper/templates/generic/"
+required_map = "tramstation.dmm"
+coordinates = [49, 103, 2]
 trait_name = "Station"
 
 # Tramstation Cryo
 [templates.tramstation_cryo]
 map_files = ["tramstation_cryo.dmm"]
-directory = "_maps/skyrat/automapper/templates/tramstation/"
+directory = "_maps/bubber/automapper/templates/tramstation/"
 required_map = "tramstation.dmm"
 coordinates = [68, 102, 2]
+trait_name = "Station"
+
+# Tramstation Medbay
+[templates.tramstation_medbay]
+map_files = ["tramstation_medbay.dmm"]
+directory = "_maps/bubber/automapper/templates/tramstation/"
+required_map = "tramstation.dmm"
+coordinates = [118, 101, 2]
 trait_name = "Station"
 
 # Tramstation NTR Office
@@ -281,17 +305,9 @@ trait_name = "Station"
 # Tramstation Supermatter Chamber
 [templates.tramstation_supermatter]
 map_files = ["tramstation_supermatter.dmm"]
-directory = "_maps/skyrat/automapper/templates/tramstation/"
-required_map = "tramstation.dmm"
-coordinates = [118, 75, 1]
-trait_name = "Station"
-
-# Tramstation Medbay
-[templates.tramstation_medbay]
-map_files = ["tramstation_medbay.dmm"]
 directory = "_maps/bubber/automapper/templates/tramstation/"
 required_map = "tramstation.dmm"
-coordinates = [118, 101, 2]
+coordinates = [118, 75, 1]
 trait_name = "Station"
 
 # BIRDSHOT MAP EDITS
@@ -444,14 +460,6 @@ required_map = "LimaStation.dmm"
 coordinates = [66, 136, 2]
 trait_name = "Station"
 
-# Tramstation Armory
-[templates.tramstation_armory]
-map_files = ["tramstation_armory.dmm"]
-directory = "_maps/bubber/automapper/templates/tramstation/"
-required_map = "tramstation.dmm"
-coordinates = [69, 162, 2]
-trait_name = "Station"
-
 # ----- KILO DOES NOT NEED THIS SINCE UPSTREAM REMOVED IT, BUT I DON'T FEEL LIKE MAPPING IT. THIS IS A COOL REFACTOR PROJECT FOR BORED CODERS
 # Kilostation Armory
 [templates.kilostation_armory]
@@ -550,15 +558,6 @@ map_files = ["book_of_kindred_display.dmm"]
 directory = "_maps/bubber/automapper/templates/generic/"
 required_map = "VoidRaptor.dmm"
 coordinates = [146, 137, 1]
-trait_name = "Station"
-
-
-#TramStation
-[templates.tramstation_book_of_kindred]
-map_files = ["book_of_kindred_display.dmm"]
-directory = "_maps/bubber/automapper/templates/generic/"
-required_map = "tramstation.dmm"
-coordinates = [49, 103, 2]
 trait_name = "Station"
 
 # WAWASTATION MAP EDITS
