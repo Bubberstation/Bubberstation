@@ -14682,6 +14682,11 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
+"eUC" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/red/box,
+/turf/open/floor/engine,
+/area/station/engineering/supermatter/room)
 "eUM" = (
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible,
 /turf/closed/wall/r_wall,
@@ -19204,6 +19209,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/port/lesser)
+"gmv" = (
+/obj/machinery/button/delam_scram,
+/turf/closed/wall/r_wall,
+/area/station/engineering/supermatter/room)
 "gmB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -47646,6 +47655,7 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible,
 /obj/machinery/light/directional/south,
+/obj/structure/sign/delam_procedure/directional/south,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "pqS" = (
@@ -49238,12 +49248,10 @@
 /turf/open/floor/iron/showroomfloor,
 /area/station/science/genetics)
 "pSh" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
+/obj/effect/turf_decal/stripes/red/box,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "pSj" = (
@@ -66031,6 +66039,18 @@
 /mob/living/basic/slime,
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
+"vhG" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/delam_scram/directional/north{
+	pixel_y = 12
+	},
+/turf/open/floor/engine,
+/area/station/engineering/supermatter)
 "vhK" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -111925,7 +111945,7 @@ quv
 lhm
 lYb
 kvM
-mNt
+vhG
 mNt
 mNt
 dPr
@@ -112176,8 +112196,8 @@ uvm
 dGX
 tyI
 pSh
-rea
-mSC
+gmv
+eUC
 pqH
 lOX
 uWA
