@@ -222,11 +222,12 @@
 		to_chat(owner, span_notice("You have to be standing up in order to lay down properly!"))
 	if(overlay.laying_down)
 		// Rising up
-		to_chat(owner, span_notice("You start lifting your body up."))
-        if(!do_after(owner, LAYDOWN_COOLDOWN))
-            return
-        if(!overlay.laying_down) // Prevent multiple standups at once
-            return
+			to_chat(owner, span_notice("You start lifting your body up."))
+			if(!do_after(owner, LAYDOWN_COOLDOWN))
+			return
+		if(!overlay.laying_down) // Prevent multiple standups at once
+			return
+
         overlay.laying_down = FALSE
 		owner.layer = initial(owner.layer)
 		owner.pixel_y -= overlay.laydown_offset
