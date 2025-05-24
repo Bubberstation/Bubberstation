@@ -1425,9 +1425,11 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		var/gas_amount = environment.gases[gas_id][MOLES]
 		switch(gas_id)
 		// BUBBER EDIT: REMOVAL - no it doesn't
-			// if(/datum/gas/antinoblium) // Antinoblium - irradiates the target.
+			if(/datum/gas/antinoblium) // Antinoblium - irradiates the target.
 			// 	if(gas_amount >= MOLES_GAS_VISIBLE && SPT_PROB(1, gas_amount * seconds_per_tick))
 			// 		SSradiation.irradiate(human)
+				return
+		// BUBBER EDIT END
 
 ////////////
 //  Stun  //
