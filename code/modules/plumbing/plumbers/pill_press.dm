@@ -37,6 +37,7 @@
 			CAT_PILLS = GLOB.reagent_containers[CAT_PILLS],
 			CAT_PATCHES = GLOB.reagent_containers[CAT_PATCHES],
 			CAT_HYPOS = GLOB.reagent_containers[CAT_HYPOS], // SKYRAT EDIT ADDITION - Hypovials
+			CAT_PEN_INJECTORS = GLOB.reagent_containers[CAT_PEN_INJECTORS], // BUBBER EDIT pen_medipens
 			CAT_MEDBOTTLES = GLOB.reagent_containers[CAT_MEDBOTTLES], // BUBBER EDIT - CAT_MEDBOTTLES
 		)
 
@@ -86,6 +87,9 @@
 			if(CAT_HYPOS)
 				suffix = "Vial"
 			//SKYRAT EDIT ADDITION END - HYPOVIALS
+			if(CAT_PEN_INJECTORS)
+				suffix = "Injector"
+			// BUBBER EDIT for pen_medipens
 			else
 				suffix = "Bottle"
 		container.name = "[product_name] [suffix]"
@@ -205,6 +209,8 @@
 			// BUBBER EDIT: added with pen_medipens - needed to properly name the injectors and fixes the hypovials
 			else if(ispath(packaging_type, /obj/item/reagent_containers/cup/vial))
 				packaging_category = CAT_HYPOS
+			else if(ispath(packaging_type, /obj/item/reagent_containers/hypospray/medipen/deforest/printable))
+				packaging_category = CAT_PEN_INJECTORS
 			// BUBBER EDIT END
 			else
 				packaging_category = "Bottles"
