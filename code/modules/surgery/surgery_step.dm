@@ -240,11 +240,24 @@
 			span_notice("[user] succeeds!"),
 			span_notice("[user] finishes."),
 		)
+	// BUBBER EDIT: prevents blood from being splashed / added to the surgeon's gloves if the patient's limb / organ (eyes) are robotic
 	if(ishuman(user))
 		var/mob/living/carbon/human/surgeon = user
-		surgeon.add_blood_DNA_to_items(target.get_blood_dna_list(), ITEM_SLOT_GLOVES)
+		if (ishuman(target))
+			var/mob/living/carbon/human/human_target = target
+			var/obj/item/bodypart/target_bodypart = target.get_bodypart(target_zone)
+			var/obj/item/organ/eyes/target_eyes = target.get_organ_slot(ORGAN_SLOT_EYES)
+			if(target_bodypart)
+				if(target_bodypart.bodytype != BODYTYPE_ROBOTIC && !HAS_TRAIT(human_target, TRAIT_NOBLOOD))
+					surgeon.add_blood_DNA_to_items(target.get_blood_dna_list(), ITEM_SLOT_GLOVES)
+			else if(target_eyes) // snowflake case for eyes
+				if(target_eyes.organ_flags != ORGAN_ROBOTIC && !HAS_TRAIT(human_target, TRAIT_NOBLOOD))
+					surgeon.add_blood_DNA_to_items(target.get_blood_dna_list(), ITEM_SLOT_GLOVES)
+		else
+			surgeon.add_blood_DNA_to_items(target.get_blood_dna_list(), ITEM_SLOT_GLOVES)
 	else
 		user.add_mob_blood(target)
+	// BUBBER EDIT END
 	return TRUE
 
 /datum/surgery_step/proc/play_success_sound(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
