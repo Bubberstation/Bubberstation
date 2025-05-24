@@ -80,10 +80,16 @@
 
 		// BUBBER EDIT START - Species only quirks
 		var/list/species_whitelist = list()
+		var/list/species_blacklist = list()
 		for(var/species_id in GLOB.quirk_species_whitelist[quirk])
 			var/datum/species/species_type = GLOB.species_list[species_id]
 			var/species_name = initial(species_type.name)
-			species_whitelist[species_id] += species_name // BUBBER EDIT END - Species only quirks
+			species_whitelist[species_id] += species_name
+		for(var/species_id in GLOB.quirk_species_blacklist[quirk])
+			var/datum/species/species_type = GLOB.species_list[species_id]
+			var/species_name = initial(species_type.name)
+			species_blacklist[species_id] += species_name
+		// BUBBER EDIT END - Species only quirks
 		quirk_info[sanitize_css_class_name(quirk_name)] = list(
 			"description" = initial(quirk.desc),
 			"icon" = initial(quirk.icon),
@@ -92,6 +98,7 @@
 			"customizable" = constant_data?.is_customizable(),
 			"customization_options" = customization_options,
 			"species_whitelist" = species_whitelist, //BUBBER EDIT - Species quirks
+			"species_blacklist" = species_blacklist,
 		)
 
 	return list(
