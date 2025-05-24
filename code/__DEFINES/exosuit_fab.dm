@@ -42,6 +42,10 @@
 /// Module is compatible with Justice models
 #define EXOSUIT_MODULE_JUSTICE (1<<12)
 
+///BUBBER EDIT START - Module is compatible with McCloud models
+#define EXOSUIT_MODULE_MCCLOUD (1<<13)
+///BUBBER EDIT END
+
 /// Module is compatible with "Working" Exosuit models - Ripley and Clarke
 #define EXOSUIT_MODULE_WORKING (EXOSUIT_MODULE_RIPLEY | EXOSUIT_MODULE_CLARKE)
 /// Module is compatible with "Combat" Exosuit models - Gygax, H.O.N.K, Durand and Phazon, or any Exosuit with an empty Concealed Weapon Bay

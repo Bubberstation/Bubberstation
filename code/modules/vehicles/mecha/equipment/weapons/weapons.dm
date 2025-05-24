@@ -74,6 +74,17 @@
 			var/mob/living/shooter = source
 			projectile_obj.hit_prone_targets = shooter.combat_mode
 		projectile_obj.fire()
+
+		///BUBBER EDIT START: If the chassis type is mccloud, then add the mccloud's speed to the projectile
+		if(istype(chassis, /obj/vehicle/sealed/mecha/mccloud))
+			var/obj/vehicle/sealed/mecha/mccloud/mccloud_chassis = chassis
+			if(mccloud_chassis.jet_mode)
+				var/x_to_add = mccloud_chassis.drift_handler.drift_force * cos(mccloud_chassis.drift_handler.drifting_loop.angle)
+				var/y_to_add = mccloud_chassis.drift_handler.drift_force * sin(mccloud_chassis.drift_handler.drifting_loop.angle)
+				projectile_obj.movement_vector.pixel_x = x_to_add
+				projectile_obj.movement_vector.pixel_y= y_to_add
+		///BUBBER EDIT START: If the chassis type is mccloud, then add the mccloud's speed to the projectile
+
 		if(!projectile_obj.suppressed && firing_effect_type)
 			new firing_effect_type(chassis || get_turf(src), chassis.dir)
 		playsound(chassis, fire_sound, 50, TRUE)
