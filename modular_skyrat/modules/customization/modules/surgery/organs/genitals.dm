@@ -479,6 +479,8 @@
 	if(genital_type == "pair")
 		max_size = 19
 	var/current_size = FLOOR(genital_size, 1)
+	if(genital_name == "Pair")
+		current_size = clamp(current_size, 0, 16)
 	if(current_size < 0)
 		current_size = 0
 	else if (current_size > max_size)
