@@ -16,6 +16,7 @@
 		#include "map_files\CatwalkStation\CatwalkStation_2023.dmm"
 		#include "map_files\NebulaStation\NebulaStation.dmm"
 		// SKYRAT EDIT ADDITON START - Compiling our modular maps too!
+		#include "map_files\Blueshift\Blueshift.dmm"
 		#include "map_files\VoidRaptor\VoidRaptor.dmm"
 		#include "map_files\KiloStation\KiloStation.dmm"
 		// SKYRAT EDIT END
