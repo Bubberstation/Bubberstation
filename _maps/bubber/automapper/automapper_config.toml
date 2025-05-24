@@ -9,7 +9,137 @@
 # Traits - Station (for station relatied edits), CentCom (for edits on the CC map), Mining (for edits on Lavaland)
 # More can be found in code\__DEFINES\maps.dm
 
-# CENTRAL COMMAND MAP TEMPLATES
+# BIRDSHOT MAP EDITS
+# Birdshot Armory
+[templates.birdshot_armory]
+map_files = ["birdshot_armory.dmm"]
+directory = "_maps/bubber/automapper/templates/Birdshot/"
+required_map = "birdshot.dmm"
+coordinates = [50, 106, 1]
+trait_name = "Station"
+
+# Birdshot Arrivals
+[templates.birdshot_arrivals]
+map_files = ["birdshot_arrivals.dmm"]
+directory = "_maps/bubber/automapper/templates/Birdshot/"
+required_map = "birdshot.dmm"
+coordinates = [136, 61, 1]
+trait_name = "Station"
+
+# Birdshot Barber
+[templates.birdshot_barber]
+map_files = ["birdshot_barber.dmm"]
+directory = "_maps/bubber/automapper/templates/Birdshot/"
+required_map = "birdshot.dmm"
+coordinates = [129, 127, 1]
+trait_name = "Station"
+
+# Birdshot Book of Kindred
+[templates.birdshot_book_of_kindred]
+map_files = ["book_of_kindred_display.dmm"]
+directory = "_maps/bubber/automapper/templates/generic/"
+required_map = "birdshot.dmm"
+coordinates = [80, 145, 1]
+trait_name = "Station"
+
+# Birdshot Cryo
+[templates.birdshot_cryo]
+map_files = ["birdshot_cryo.dmm"]
+directory = "_maps/bubber/automapper/templates/Birdshot/"
+required_map = "birdshot.dmm"
+coordinates = [136, 157, 1]
+trait_name = "Station"
+
+# Birdshot ERT Bay
+[templates.birdshot_ert_bay]
+map_files = ["birdshot_ert_bay.dmm"]
+directory = "_maps/bubber/automapper/templates/Birdshot/"
+required_map = "birdshot.dmm"
+coordinates = [188, 72, 1]
+trait_name = "Station"
+
+# Birdshot NTR Office
+[templates.birdshot_ntrep_office]
+map_files = ["birdshot_ntrep_office.dmm"]
+directory = "_maps/bubber/automapper/templates/Birdshot/"
+required_map = "birdshot.dmm"
+coordinates = [111, 157, 1]
+trait_name = "Station"
+
+# Birdshot Supermatter Chamber
+[templates.birdshot_supermatter]
+map_files = ["birdshot_supermatter.dmm"]
+directory = "_maps/bubber/automapper/templates/Birdshot/"
+required_map = "birdshot.dmm"
+coordinates = [71, 211, 1]
+trait_name = "Station"
+
+# Birdshot Vacant Room (to replace the mapped barber with ours)
+[templates.birdshot_vacant]
+map_files = ["birdshot_vacant.dmm"]
+directory = "_maps/bubber/automapper/templates/Birdshot/"
+required_map = "birdshot.dmm"
+coordinates = [117, 145, 1]
+trait_name = "Station"
+
+# CATWALK MAP EDITS
+# Catwalk Arrivals
+[templates.catwalk_arrivals]
+map_files = ["catwalk_arrivals.dmm"]
+directory = "_maps/bubber/automapper/templates/CatwalkStation/"
+required_map = "CatwalkStation_2023.dmm"
+coordinates = [118, 54, 1]
+trait_name = "Station"
+
+# Catwalk Barber
+[templates.catwalk_barber]
+map_files = ["catwalk_barber.dmm"]
+directory = "_maps/bubber/automapper/templates/CatwalkStation/"
+required_map = "CatwalkStation_2023.dmm"
+coordinates = [128, 168, 1]
+trait_name = "Station"
+
+# Catwalk Cryo
+[templates.catwalk_cryo]
+map_files = ["catwalk_cryo.dmm"]
+directory = "_maps/bubber/automapper/templates/CatwalkStation/"
+required_map = "CatwalkStation_2023.dmm"
+coordinates = [142, 152, 1]
+trait_name = "Station"
+
+# Catwalk ERT Bay
+[templates.catwalk_centcom]
+map_files = ["catwalk_centcom.dmm"]
+directory = "_maps/bubber/automapper/templates/CatwalkStation/"
+required_map = "CatwalkStation_2023.dmm"
+coordinates = [136, 49, 1]
+trait_name = "Station"
+
+# Catwalk NTR Office
+[templates.catwalk_ntrep_office]
+map_files = ["catwalk_ntrep.dmm"]
+directory = "_maps/bubber/automapper/templates/CatwalkStation/"
+required_map = "CatwalkStation_2023.dmm"
+coordinates = [142, 126, 1]
+trait_name = "Station"
+
+# Catwalk Sauna
+[templates.catwalk_sauna]
+map_files = ["catwalk_sauna.dmm"]
+directory = "_maps/bubber/automapper/templates/CatwalkStation/"
+required_map = "CatwalkStation_2023.dmm"
+coordinates = [153, 173, 1]
+trait_name = "Station"
+
+# Catwalk Supermatter Chamber
+[templates.catwalk_supermatter]
+map_files = ["catwalk_supermatter.dmm"]
+directory = "_maps/bubber/automapper/templates/CatwalkStation/"
+required_map = "CatwalkStation_2023.dmm"
+coordinates = [171, 163, 1]
+trait_name = "Station"
+
+# CENTRAL COMMAND MAP EDITS
 # CC Ferry Dock - Admin Shuttle
 [templates.centcom_ferry_dock]
 map_files = ["centcom_ferry_dock.dmm"]
@@ -26,70 +156,13 @@ required_map = "CentCom_skyrat_z2.dmm"
 coordinates = [51, 167, 2]
 trait_name = "CentCom"
 
-# METASTATION MAP TEMPLATES
-# Metastation Armory
-[templates.metastation_armory]
-map_files = ["metastation_armory.dmm"]
-directory = "_maps/bubber/automapper/templates/MetaStation/"
-required_map = "MetaStation.dmm"
-coordinates = [105, 171, 1]
-trait_name = "Station"
-
-# Metastation Arrivals
-[templates.metastaton_arrivals]
-map_files = ["metastation_arrivals.dmm"]
-directory = "_maps/bubber/automapper/templates/MetaStation/"
-required_map = "MetaStation.dmm"
-coordinates = [20, 107, 1]
-trait_name = "Station"
-
-# Metastation Barber
-[templates.metastation_barber]
-map_files = ["metastation_barber.dmm"]
-directory = "_maps/bubber/automapper/templates/MetaStation/"
-required_map = "MetaStation.dmm"
-coordinates = [101, 116, 1]
-trait_name = "Station"
-
-# Metastation Book of Kindred
-[templates.metastation_book_of_kindred]
-map_files = ["book_of_kindred_display.dmm"]
-directory = "_maps/bubber/automapper/templates/generic/"
-required_map = "MetaStation.dmm"
-coordinates = [83, 118, 1]
-trait_name = "Station"
-
-# Metastation Cryo
-[templates.metastation_cryo]
-map_files = ["metastation_cryo.dmm"]
-directory = "_maps/bubber/automapper/templates/MetaStation/"
-required_map = "MetaStation.dmm"
-coordinates = [133, 182, 1]
-trait_name = "Station"
-
-# Metastation Medbay
-[templates.metastation_medbay]
-map_files = ["metastation_medbay.dmm"]
-directory = "_maps/bubber/automapper/templates/MetaStation/"
-required_map = "MetaStation.dmm"
-coordinates = [86, 105, 1]
-trait_name = "Station"
-
-# Metastation NTR Office
-[templates.metastation_ntrep_office]
-map_files = ["metastation_ntrep_office.dmm"]
-directory = "_maps/bubber/automapper/templates/MetaStation/"
-required_map = "MetaStation.dmm"
-coordinates = [57, 119, 1]
-trait_name = "Station"
-
-# Metastation Supermatter Chamber
-[templates.metastation_supermatter]
-map_files = ["metastation_supermatter.dmm"]
-directory = "_maps/bubber/automapper/templates/MetaStation/"
-required_map = "MetaStation.dmm"
-coordinates = [163, 155, 1]
-trait_name = "Station"
+# Interlink Admin Office
+[templates.interlink_adminoffice]
+map_files = ["interlink_adminoffice.dmm"]
+directory = "_maps/bubber/automapper/templates/centcom/"
+required_map = "CentCom_skyrat_z2.dmm"
+coordinates = [72, 183, 2]
+trait_name = "CentCom"
 
 # DELTASTATION MAP EDITS
 # Deltastation Armory
@@ -245,142 +318,13 @@ required_map = "IceBoxStation.dmm"
 coordinates = [114, 65, 3]
 trait_name = "Station"
 
-# TRAMSTATION MAP EDITS
-# Tramstation Armory
-[templates.tramstation_armory]
-map_files = ["tramstation_armory.dmm"]
-directory = "_maps/bubber/automapper/templates/tramstation/"
-required_map = "tramstation.dmm"
-coordinates = [69, 162, 2]
-trait_name = "Station"
-
-# Tramstation Arrivals
-[templates.tramstation_arrivals]
-map_files = ["tramstation_arrivals.dmm"]
-directory = "_maps/bubber/automapper/templates/tramstation/"
-required_map = "tramstation.dmm"
-coordinates = [8, 96, 2]
-trait_name = "Station"
-
-# Tramstation Barber
-[templates.tramstation_barber]
-map_files = ["tramstation_barber.dmm"]
-directory = "_maps/bubber/automapper/templates/tramstation/"
-required_map = "tramstation.dmm"
-coordinates = [133, 125, 1]
-trait_name = "Station"
-
-# Tramstation Book of Kindred
-[templates.tramstation_book_of_kindred]
+# KILOSTATION MAP EDITS
+# KiloStation Book of Kindred
+[templates.kilostation_book_of_kindred]
 map_files = ["book_of_kindred_display.dmm"]
 directory = "_maps/bubber/automapper/templates/generic/"
-required_map = "tramstation.dmm"
-coordinates = [49, 103, 2]
-trait_name = "Station"
-
-# Tramstation Cryo
-[templates.tramstation_cryo]
-map_files = ["tramstation_cryo.dmm"]
-directory = "_maps/bubber/automapper/templates/tramstation/"
-required_map = "tramstation.dmm"
-coordinates = [68, 102, 2]
-trait_name = "Station"
-
-# Tramstation Medbay
-[templates.tramstation_medbay]
-map_files = ["tramstation_medbay.dmm"]
-directory = "_maps/bubber/automapper/templates/tramstation/"
-required_map = "tramstation.dmm"
-coordinates = [118, 101, 2]
-trait_name = "Station"
-
-# Tramstation NTR Office
-[templates.tramstation_ntrep_office]
-map_files = ["tramstation_ntrep_office.dmm"]
-directory = "_maps/bubber/automapper/templates/tramstation/"
-required_map = "tramstation.dmm"
-coordinates = [34, 135, 2]
-trait_name = "Station"
-
-# Tramstation Supermatter Chamber
-[templates.tramstation_supermatter]
-map_files = ["tramstation_supermatter.dmm"]
-directory = "_maps/bubber/automapper/templates/tramstation/"
-required_map = "tramstation.dmm"
-coordinates = [118, 75, 1]
-trait_name = "Station"
-
-# BIRDSHOT MAP EDITS
-# Birdshot Armory
-[templates.birdshot_armory]
-map_files = ["birdshot_armory.dmm"]
-directory = "_maps/bubber/automapper/templates/Birdshot/"
-required_map = "birdshot.dmm"
-coordinates = [50, 106, 1]
-trait_name = "Station"
-
-# Birdshot Arrivals
-[templates.birdshot_arrivals]
-map_files = ["birdshot_arrivals.dmm"]
-directory = "_maps/bubber/automapper/templates/Birdshot/"
-required_map = "birdshot.dmm"
-coordinates = [136, 61, 1]
-trait_name = "Station"
-
-# Birdshot Barber
-[templates.birdshot_barber]
-map_files = ["birdshot_barber.dmm"]
-directory = "_maps/bubber/automapper/templates/Birdshot/"
-required_map = "birdshot.dmm"
-coordinates = [129, 127, 1]
-trait_name = "Station"
-
-# Birdshot Book of Kindred
-[templates.birdshot_book_of_kindred]
-map_files = ["book_of_kindred_display.dmm"]
-directory = "_maps/bubber/automapper/templates/generic/"
-required_map = "birdshot.dmm"
-coordinates = [80, 145, 1]
-trait_name = "Station"
-
-# Birdshot Cryo
-[templates.birdshot_cryo]
-map_files = ["birdshot_cryo.dmm"]
-directory = "_maps/bubber/automapper/templates/Birdshot/"
-required_map = "birdshot.dmm"
-coordinates = [136, 157, 1]
-trait_name = "Station"
-
-# Birdshot ERT Bay
-[templates.birdshot_ert_bay]
-map_files = ["birdshot_ert_bay.dmm"]
-directory = "_maps/bubber/automapper/templates/Birdshot/"
-required_map = "birdshot.dmm"
-coordinates = [188, 72, 1]
-trait_name = "Station"
-
-# Birdshot NTR Office
-[templates.birdshot_ntrep_office]
-map_files = ["birdshot_ntrep_office.dmm"]
-directory = "_maps/bubber/automapper/templates/Birdshot/"
-required_map = "birdshot.dmm"
-coordinates = [111, 157, 1]
-trait_name = "Station"
-
-# Birdshot Supermatter Chamber
-[templates.birdshot_supermatter]
-map_files = ["birdshot_supermatter.dmm"]
-directory = "_maps/bubber/automapper/templates/Birdshot/"
-required_map = "birdshot.dmm"
-coordinates = [71, 211, 1]
-trait_name = "Station"
-
-# Birdshot Vacant Room (to replace the mapped barber with ours)
-[templates.birdshot_vacant]
-map_files = ["birdshot_vacant.dmm"]
-directory = "_maps/bubber/automapper/templates/Birdshot/"
-required_map = "birdshot.dmm"
-coordinates = [117, 145, 1]
+required_map = "KiloStation.dmm"
+coordinates = [97, 128, 1]
 trait_name = "Station"
 
 # LAVALAND MAP EDITS
@@ -400,120 +344,86 @@ required_map = "Lavaland.dmm"
 coordinates = [8, 161, 1]
 trait_name = "Mining"
 
-#KiloStation
-[templates.kilostation_book_of_kindred]
-map_files = ["book_of_kindred_display.dmm"]
-directory = "_maps/bubber/automapper/templates/generic/"
-required_map = "KiloStation.dmm"
-coordinates = [97, 128, 1]
+# METASTATION MAP EDITS
+# Metastation Armory
+[templates.metastation_armory]
+map_files = ["metastation_armory.dmm"]
+directory = "_maps/bubber/automapper/templates/MetaStation/"
+required_map = "MetaStation.dmm"
+coordinates = [105, 171, 1]
 trait_name = "Station"
 
-# Interlink Admin Office
-[templates.interlink_adminoffice]
-map_files = ["interlink_adminoffice.dmm"]
-directory = "_maps/bubber/automapper/templates/generic/"
-required_map = "CentCom_skyrat_z2.dmm"
-coordinates = [72, 183, 2]
-trait_name = "CentCom"
+# Metastation Arrivals
+[templates.metastaton_arrivals]
+map_files = ["metastation_arrivals.dmm"]
+directory = "_maps/bubber/automapper/templates/MetaStation/"
+required_map = "MetaStation.dmm"
+coordinates = [20, 107, 1]
+trait_name = "Station"
 
-#Moonstation Ashwalker nest
-# Lavaland NE Ashwalker Nest
-[templates.lavaland_ashwalker_nest_moonstation]
+# Metastation Barber
+[templates.metastation_barber]
+map_files = ["metastation_barber.dmm"]
+directory = "_maps/bubber/automapper/templates/MetaStation/"
+required_map = "MetaStation.dmm"
+coordinates = [101, 116, 1]
+trait_name = "Station"
+
+# Metastation Book of Kindred
+[templates.metastation_book_of_kindred]
+map_files = ["book_of_kindred_display.dmm"]
+directory = "_maps/bubber/automapper/templates/generic/"
+required_map = "MetaStation.dmm"
+coordinates = [83, 118, 1]
+trait_name = "Station"
+
+# Metastation Cryo
+[templates.metastation_cryo]
+map_files = ["metastation_cryo.dmm"]
+directory = "_maps/bubber/automapper/templates/MetaStation/"
+required_map = "MetaStation.dmm"
+coordinates = [133, 182, 1]
+trait_name = "Station"
+
+# Metastation Medbay
+[templates.metastation_medbay]
+map_files = ["metastation_medbay.dmm"]
+directory = "_maps/bubber/automapper/templates/MetaStation/"
+required_map = "MetaStation.dmm"
+coordinates = [86, 105, 1]
+trait_name = "Station"
+
+# Metastation NTR Office
+[templates.metastation_ntrep_office]
+map_files = ["metastation_ntrep_office.dmm"]
+directory = "_maps/bubber/automapper/templates/MetaStation/"
+required_map = "MetaStation.dmm"
+coordinates = [57, 119, 1]
+trait_name = "Station"
+
+# Metastation Supermatter Chamber
+[templates.metastation_supermatter]
+map_files = ["metastation_supermatter.dmm"]
+directory = "_maps/bubber/automapper/templates/MetaStation/"
+required_map = "MetaStation.dmm"
+coordinates = [163, 155, 1]
+trait_name = "Station"
+
+# MOONSTATION MAP EDITS
+# Moonstation Ashwalker nest
+[templates.moonstation_ashwalker_nest]
 map_files = ["lavaland_ashwalker_nest.dmm"]
-directory = "_maps/skyrat/automapper/templates/mining/"
+directory = "_maps/bubber/automapper/templates/lavaland/"
 required_map = "moonstation.dmm"
 coordinates = [200, 228, 1]
 trait_name = "Mining"
 
-## Book of kindred display cases
-
-#VoidRaptor
-[templates.voidraptor_book_of_kindred]
-map_files = ["book_of_kindred_display.dmm"]
-directory = "_maps/bubber/automapper/templates/generic/"
-required_map = "VoidRaptor.dmm"
-coordinates = [146, 137, 1]
-trait_name = "Station"
-
-# WAWASTATION MAP EDITS
-# Wawastation Armory
-[templates.wawastation_armory]
-map_files = ["wawastation_armory.dmm"]
-directory = "_maps/bubber/automapper/templates/wawastation/"
-required_map = "wawastation.dmm"
-coordinates = [63, 127, 2]
-trait_name = "Station"
-
-# Wawastation Arrivals
-[templates.wawastation_arrivals]
-map_files = ["wawastation_arrivals.dmm"]
-directory = "_maps/bubber/automapper/templates/wawastation/"
-required_map = "wawastation.dmm"
-coordinates = [69, 81, 2]
-trait_name = "Station"
-
-# Wawastation Barber
-[templates.wawastation_barber]
-map_files = ["wawastation_barber.dmm"]
-directory = "_maps/bubber/automapper/templates/wawastation/"
-required_map = "wawastation.dmm"
-coordinates = [116, 111, 2]
-trait_name = "Station"
-
-# Wawastation Commons
-[templates.wawastation_commons]
-map_files = ["wawastation_commons.dmm"]
-directory = "_maps/bubber/automapper/templates/wawastation/"
-required_map = "wawastation.dmm"
-coordinates = [109, 88, 2]
-trait_name = "Station"
-
-# Wawastation Corridor
-[templates.wawastation_corridor]
-map_files = ["wawastation_corridor.dmm"]
-directory = "_maps/bubber/automapper/templates/wawastation/"
-required_map = "wawastation.dmm"
-coordinates = [81, 101, 2]
-trait_name = "Station"
-
-# Wawastation Elevator
-[templates.wawastation_elevator]
-map_files = ["wawastation_elevator.dmm"]
-directory = "_maps/bubber/automapper/templates/wawastation/"
-required_map = "wawastation.dmm"
-coordinates = [86, 89, 1]
-trait_name = "Station"
-
-# Wawastation Kiosk
-[templates.wawastation_kiosk]
-map_files = ["wawastation_kiosk.dmm"]
-directory = "_maps/bubber/automapper/templates/wawastation/"
-required_map = "wawastation.dmm"
-coordinates = [133, 94, 2]
-trait_name = "Station"
-
-# Wawastation Lockers
-[templates.wawastation_lockers]
-map_files = ["wawastation_lockers.dmm"]
-directory = "_maps/bubber/automapper/templates/wawastation/"
-required_map = "wawastation.dmm"
-coordinates = [111, 93, 1]
-trait_name = "Station"
-
-# Wawastation NTR Office
-[templates.wawastation_ntrep_office]
-map_files = ["wawastation_ntrep_office.dmm"]
-directory = "_maps/bubber/automapper/templates/wawastation/"
-required_map = "wawastation.dmm"
-coordinates = [108, 122, 1]
-trait_name = "Station"
-
-# Wawastation Supermatter
-[templates.wawastation_supermatter]
-map_files = ["wawastation_supermatter.dmm"]
-directory = "_maps/bubber/automapper/templates/wawastation/"
-required_map = "wawastation.dmm"
-coordinates = [162, 63, 1]
+# Moonstation NW Persistence
+[templates.moonstation_persistence]
+map_files = ["lavaland_persistence.dmm"]
+directory = "_maps/bubber/automapper/templates/lavaland/"
+required_map = "moonstation.dmm"
+coordinates = [8, 179, 1]
 trait_name = "Station"
 
 # NEBULASTATION MAP EDITS
@@ -621,67 +531,157 @@ required_map = "NebulaStation.dmm"
 coordinates = [112, 93, 1]
 trait_name = "Station"
 
-# Moonstation NW Persistence
-[templates.moonstation_persistence]
-map_files = ["lavaland_persistence.dmm"]
-directory = "_maps/RandomRuins/LavaRuins/bubberstation/"
-required_map = "moonstation.dmm"
-coordinates = [8, 179, 1]
+# TRAMSTATION MAP EDITS
+# Tramstation Armory
+[templates.tramstation_armory]
+map_files = ["tramstation_armory.dmm"]
+directory = "_maps/bubber/automapper/templates/tramstation/"
+required_map = "tramstation.dmm"
+coordinates = [69, 162, 2]
 trait_name = "Station"
 
-# CATWALK MAP EDITS
-# Catwalk Arrivals
-[templates.catwalk_arrivals]
-map_files = ["catwalk_arrivals.dmm"]
-directory = "_maps/bubber/automapper/templates/CatwalkStation/"
-required_map = "CatwalkStation_2023.dmm"
-coordinates = [118, 54, 1]
+# Tramstation Arrivals
+[templates.tramstation_arrivals]
+map_files = ["tramstation_arrivals.dmm"]
+directory = "_maps/bubber/automapper/templates/tramstation/"
+required_map = "tramstation.dmm"
+coordinates = [8, 96, 2]
 trait_name = "Station"
 
-# Catwalk Barber
-[templates.catwalk_barber]
-map_files = ["catwalk_barber.dmm"]
-directory = "_maps/bubber/automapper/templates/CatwalkStation/"
-required_map = "CatwalkStation_2023.dmm"
-coordinates = [128, 168, 1]
+# Tramstation Barber
+[templates.tramstation_barber]
+map_files = ["tramstation_barber.dmm"]
+directory = "_maps/bubber/automapper/templates/tramstation/"
+required_map = "tramstation.dmm"
+coordinates = [133, 125, 1]
 trait_name = "Station"
 
-# Catwalk Cryo
-[templates.catwalk_cryo]
-map_files = ["catwalk_cryo.dmm"]
-directory = "_maps/bubber/automapper/templates/CatwalkStation/"
-required_map = "CatwalkStation_2023.dmm"
-coordinates = [142, 152, 1]
+# Tramstation Book of Kindred
+[templates.tramstation_book_of_kindred]
+map_files = ["book_of_kindred_display.dmm"]
+directory = "_maps/bubber/automapper/templates/generic/"
+required_map = "tramstation.dmm"
+coordinates = [49, 103, 2]
 trait_name = "Station"
 
-# Catwalk ERT Bay
-[templates.catwalk_centcom]
-map_files = ["catwalk_centcom.dmm"]
-directory = "_maps/bubber/automapper/templates/CatwalkStation/"
-required_map = "CatwalkStation_2023.dmm"
-coordinates = [136, 49, 1]
+# Tramstation Cryo
+[templates.tramstation_cryo]
+map_files = ["tramstation_cryo.dmm"]
+directory = "_maps/bubber/automapper/templates/tramstation/"
+required_map = "tramstation.dmm"
+coordinates = [68, 102, 2]
 trait_name = "Station"
 
-# Catwalk NTR Office
-[templates.catwalk_ntrep_office]
-map_files = ["catwalk_ntrep.dmm"]
-directory = "_maps/bubber/automapper/templates/CatwalkStation/"
-required_map = "CatwalkStation_2023.dmm"
-coordinates = [142, 126, 1]
+# Tramstation Medbay
+[templates.tramstation_medbay]
+map_files = ["tramstation_medbay.dmm"]
+directory = "_maps/bubber/automapper/templates/tramstation/"
+required_map = "tramstation.dmm"
+coordinates = [118, 101, 2]
 trait_name = "Station"
 
-# Catwalk Sauna
-[templates.catwalk_sauna]
-map_files = ["catwalk_sauna.dmm"]
-directory = "_maps/bubber/automapper/templates/CatwalkStation/"
-required_map = "CatwalkStation_2023.dmm"
-coordinates = [153, 173, 1]
+# Tramstation NTR Office
+[templates.tramstation_ntrep_office]
+map_files = ["tramstation_ntrep_office.dmm"]
+directory = "_maps/bubber/automapper/templates/tramstation/"
+required_map = "tramstation.dmm"
+coordinates = [34, 135, 2]
 trait_name = "Station"
 
-# Catwalk Supermatter Chamber
-[templates.catwalk_supermatter]
-map_files = ["catwalk_supermatter.dmm"]
-directory = "_maps/bubber/automapper/templates/CatwalkStation/"
-required_map = "CatwalkStation_2023.dmm"
-coordinates = [171, 163, 1]
+# Tramstation Supermatter Chamber
+[templates.tramstation_supermatter]
+map_files = ["tramstation_supermatter.dmm"]
+directory = "_maps/bubber/automapper/templates/tramstation/"
+required_map = "tramstation.dmm"
+coordinates = [118, 75, 1]
+trait_name = "Station"
+
+# VOIDRAPTOR MAP EDITS
+# VoidRaptor Book of Kindred
+[templates.voidraptor_book_of_kindred]
+map_files = ["book_of_kindred_display.dmm"]
+directory = "_maps/bubber/automapper/templates/generic/"
+required_map = "VoidRaptor.dmm"
+coordinates = [146, 137, 1]
+trait_name = "Station"
+
+# WAWASTATION MAP EDITS
+# Wawastation Armory
+[templates.wawastation_armory]
+map_files = ["wawastation_armory.dmm"]
+directory = "_maps/bubber/automapper/templates/wawastation/"
+required_map = "wawastation.dmm"
+coordinates = [63, 127, 2]
+trait_name = "Station"
+
+# Wawastation Arrivals
+[templates.wawastation_arrivals]
+map_files = ["wawastation_arrivals.dmm"]
+directory = "_maps/bubber/automapper/templates/wawastation/"
+required_map = "wawastation.dmm"
+coordinates = [69, 81, 2]
+trait_name = "Station"
+
+# Wawastation Barber
+[templates.wawastation_barber]
+map_files = ["wawastation_barber.dmm"]
+directory = "_maps/bubber/automapper/templates/wawastation/"
+required_map = "wawastation.dmm"
+coordinates = [116, 111, 2]
+trait_name = "Station"
+
+# Wawastation Commons
+[templates.wawastation_commons]
+map_files = ["wawastation_commons.dmm"]
+directory = "_maps/bubber/automapper/templates/wawastation/"
+required_map = "wawastation.dmm"
+coordinates = [109, 88, 2]
+trait_name = "Station"
+
+# Wawastation Corridor
+[templates.wawastation_corridor]
+map_files = ["wawastation_corridor.dmm"]
+directory = "_maps/bubber/automapper/templates/wawastation/"
+required_map = "wawastation.dmm"
+coordinates = [81, 101, 2]
+trait_name = "Station"
+
+# Wawastation Elevator
+[templates.wawastation_elevator]
+map_files = ["wawastation_elevator.dmm"]
+directory = "_maps/bubber/automapper/templates/wawastation/"
+required_map = "wawastation.dmm"
+coordinates = [86, 89, 1]
+trait_name = "Station"
+
+# Wawastation Kiosk
+[templates.wawastation_kiosk]
+map_files = ["wawastation_kiosk.dmm"]
+directory = "_maps/bubber/automapper/templates/wawastation/"
+required_map = "wawastation.dmm"
+coordinates = [133, 94, 2]
+trait_name = "Station"
+
+# Wawastation Lockers
+[templates.wawastation_lockers]
+map_files = ["wawastation_lockers.dmm"]
+directory = "_maps/bubber/automapper/templates/wawastation/"
+required_map = "wawastation.dmm"
+coordinates = [111, 93, 1]
+trait_name = "Station"
+
+# Wawastation NTR Office
+[templates.wawastation_ntrep_office]
+map_files = ["wawastation_ntrep_office.dmm"]
+directory = "_maps/bubber/automapper/templates/wawastation/"
+required_map = "wawastation.dmm"
+coordinates = [108, 122, 1]
+trait_name = "Station"
+
+# Wawastation Supermatter
+[templates.wawastation_supermatter]
+map_files = ["wawastation_supermatter.dmm"]
+directory = "_maps/bubber/automapper/templates/wawastation/"
+required_map = "wawastation.dmm"
+coordinates = [162, 63, 1]
 trait_name = "Station"
