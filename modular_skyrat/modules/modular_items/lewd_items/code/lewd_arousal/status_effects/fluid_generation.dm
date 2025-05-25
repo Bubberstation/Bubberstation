@@ -12,7 +12,7 @@
 /datum/status_effect/body_fluid_regen
 	id = "body fluid regen"
 	tick_interval = 5 SECONDS
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 	alert_type = null
 
 /datum/status_effect/body_fluid_regen/vagina
@@ -23,7 +23,7 @@
 	if(owner.stat >= DEAD || !owner.client?.prefs?.read_preference(/datum/preference/toggle/erp) || !istype(affected_human))
 		return FALSE
 
-	var/obj/item/organ/external/genital/vagina/vagina = owner.get_organ_slot(ORGAN_SLOT_VAGINA)
+	var/obj/item/organ/genital/vagina/vagina = owner.get_organ_slot(ORGAN_SLOT_VAGINA)
 	if(!vagina)
 		return FALSE
 
@@ -41,7 +41,7 @@
 	if(owner.stat >= DEAD || !owner.client?.prefs?.read_preference(/datum/preference/toggle/erp) || !istype(affected_human))
 		return FALSE
 
-	var/obj/item/organ/external/genital/testicles/testes = owner.get_organ_slot(ORGAN_SLOT_TESTICLES)
+	var/obj/item/organ/genital/testicles/testes = owner.get_organ_slot(ORGAN_SLOT_TESTICLES)
 	if(!testes || (affected_human.arousal < AROUSAL_LOW))
 		return FALSE
 
@@ -56,7 +56,7 @@
 	if(owner.stat >= DEAD || !owner.client?.prefs?.read_preference(/datum/preference/toggle/erp) || !istype(affected_human))
 		return FALSE
 
-	var/obj/item/organ/external/genital/breasts/breasts = owner.get_organ_slot(ORGAN_SLOT_BREASTS)
+	var/obj/item/organ/genital/breasts/breasts = owner.get_organ_slot(ORGAN_SLOT_BREASTS)
 	if(!breasts || !breasts.lactates)
 		return FALSE
 

@@ -1,4 +1,4 @@
-GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/effects/acid.dmi', "default"))
+GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/effects/acid.dmi', "default", appearance_flags = RESET_COLOR|KEEP_APART))
 
 /**
  * Component representing acid applied to an object.
@@ -226,7 +226,7 @@ GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/e
 	return COMPONENT_CLEANED
 
 /// Handles water diluting the acid on the object.
-/datum/component/acid/proc/on_expose_reagent(atom/parent_atom, datum/reagent/exposing_reagent, reac_volume)
+/datum/component/acid/proc/on_expose_reagent(atom/parent_atom, datum/reagent/exposing_reagent, reac_volume, methods)
 	SIGNAL_HANDLER
 
 	if(!istype(exposing_reagent, /datum/reagent/water))
@@ -243,16 +243,10 @@ GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/e
 	if(!iscarbon(user) || user.can_touch_acid(source, acid_power, acid_volume))
 		return NONE
 
-	var/obj/item/bodypart/affecting = user.get_active_hand()
-	//Should not happen!
-	if(!affecting)
-		return NONE
-
-	affecting.receive_damage(burn = 5)
+	user.apply_damage(5, BURN, user.get_active_hand())
 	to_chat(user, span_userdanger("The acid on \the [source] burns your hand!"))
 	INVOKE_ASYNC(user, TYPE_PROC_REF(/mob, emote), "scream")
 	playsound(source, SFX_SEAR, 50, TRUE)
-	user.update_damage_overlays()
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /// Handles searing the feet of whoever walks over this without protection. Only active if the parent is a turf.

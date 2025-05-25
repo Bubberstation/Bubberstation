@@ -52,7 +52,7 @@
 	var/list/seedling_commands = list(
 		/datum/pet_command/idle,
 		/datum/pet_command/free,
-		/datum/pet_command/follow,
+		/datum/pet_command/follow/start_active,
 	)
 
 /mob/living/basic/seedling/Initialize(mapload)
@@ -138,7 +138,7 @@
 	combatant_state = state
 	update_appearance()
 
-/mob/living/basic/seedling/attackby(obj/item/can, mob/living/carbon/human/user, list/modifiers)
+/mob/living/basic/seedling/attackby(obj/item/can, mob/living/carbon/human/user, list/modifiers, list/attack_modifiers)
 	if(istype(can, /obj/item/reagent_containers/cup/watering_can) && isnull(held_can))
 		can.forceMove(src)
 		return
@@ -213,10 +213,10 @@
 	seedling_commands = list(
 		/datum/pet_command/idle,
 		/datum/pet_command/free,
-		/datum/pet_command/follow,
-		/datum/pet_command/point_targeting/attack,
-		/datum/pet_command/point_targeting/use_ability/solarbeam,
-		/datum/pet_command/point_targeting/use_ability/rapidseeds,
+		/datum/pet_command/follow/start_active,
+		/datum/pet_command/attack,
+		/datum/pet_command/use_ability/solarbeam,
+		/datum/pet_command/use_ability/rapidseeds,
 	)
 
 //abilities
@@ -230,7 +230,6 @@
 	default_projectile_spread = 10
 	shot_count = 10
 	shot_delay = 0.2 SECONDS
-	melee_cooldown_time = 0 SECONDS
 	shared_cooldown = NONE
 	///how long we must charge up before firing off
 	var/charge_up_timer = 3 SECONDS

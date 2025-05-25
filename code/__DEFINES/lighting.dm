@@ -46,6 +46,7 @@
 // These are a percentage of how much darkness to cut off (in rgb)
 #define LIGHTING_CUTOFF_VISIBLE 0
 #define LIGHTING_CUTOFF_REAL_LOW 4.5
+#define LIGHTING_CUTOFF_LOW 10
 #define LIGHTING_CUTOFF_MEDIUM 15
 #define LIGHTING_CUTOFF_HIGH 30
 #define LIGHTING_CUTOFF_FULLBRIGHT 100
@@ -55,6 +56,9 @@
 
 /// The amount of lumcount on a tile for it to be considered dark (used to determine reading and nyctophobia)
 #define LIGHTING_TILE_IS_DARK 0.2
+
+/// Weight of overlay lighting, in percentage of contribution towards total light
+#define OVERLAY_LIGHTING_WEIGHT 0.4
 
 //code assumes higher numbers override lower numbers.
 #define LIGHTING_NO_UPDATE 0
@@ -87,8 +91,8 @@ GLOBAL_LIST_INIT(emissive_color, EMISSIVE_COLOR)
 GLOBAL_LIST_INIT(em_block_color, EM_BLOCK_COLOR)
 
 /// A set of appearance flags applied to all emissive and emissive blocker overlays.
-/// KEEP_APART to prevent parent hooking, KEEP_TOGETHER for children, and we reset the color and alpha of our parent so nothing gets overridden
-#define EMISSIVE_APPEARANCE_FLAGS (KEEP_APART|KEEP_TOGETHER|RESET_COLOR|RESET_ALPHA)
+/// KEEP_APART to prevent parent hooking, KEEP_TOGETHER for children, and we reset the color of our parent so emissives get proper coloring based on [EMISSIVE_COLOR]
+#define EMISSIVE_APPEARANCE_FLAGS (KEEP_APART|KEEP_TOGETHER|RESET_COLOR)
 /// The color matrix used to mask out emissive blockers on the emissive plane. Alpha should default to zero, be solely dependent on the RGB value of [EMISSIVE_COLOR], and be independent of the RGB value of [EM_BLOCK_COLOR].
 #define EM_MASK_MATRIX list(0,0,0,1/3, 0,0,0,1/3, 0,0,0,1/3, 0,0,0,0, 1,1,1,0)
 /// A globally cached version of [EM_MASK_MATRIX] for quick access.

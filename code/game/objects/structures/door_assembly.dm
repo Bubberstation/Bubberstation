@@ -81,7 +81,7 @@
 	if(created_name)
 		. += span_notice("There is a small <i>paper</i> placard on the assembly, written on it is '[created_name]'.")
 
-/obj/structure/door_assembly/attackby(obj/item/W, mob/living/user, params)
+/obj/structure/door_assembly/attackby(obj/item/W, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(IS_WRITING_UTENSIL(W) && !user.combat_mode)
 		var/t = tgui_input_text(user, "Enter the name for the door", "Airlock Renaming", created_name, max_length = MAX_NAME_LEN)
 		if(!t)
@@ -297,7 +297,7 @@
 	if(electronics.shell)
 		door.AddComponent( \
 			/datum/component/shell, \
-			unremovable_circuit_components = list(new /obj/item/circuit_component/airlock, new /obj/item/circuit_component/airlock_access_event), \
+			unremovable_circuit_components = list(new /obj/item/circuit_component/airlock, new /obj/item/circuit_component/airlock_access_event, new /obj/item/circuit_component/remotecam/airlock), \
 			capacity = SHELL_CAPACITY_LARGE, \
 			shell_flags = SHELL_FLAG_ALLOW_FAILURE_ACTION|SHELL_FLAG_REQUIRE_ANCHOR \
 		)

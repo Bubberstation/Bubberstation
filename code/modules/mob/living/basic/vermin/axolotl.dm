@@ -12,7 +12,7 @@
 	density = FALSE
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
-	mob_biotypes = MOB_ORGANIC | MOB_BEAST
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST|MOB_AQUATIC
 	gold_core_spawnable = FRIENDLY_SPAWN
 
 	response_help_continuous = "pets"
@@ -33,7 +33,7 @@
 
 /mob/living/basic/axolotl/Initialize(mapload)
 	. = ..()
-	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
+	add_traits(list(TRAIT_NODROWN, TRAIT_SWIMMER, TRAIT_VENTCRAWLER_ALWAYS), INNATE_TRAIT)
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_AXOLOTL, CELL_VIRUS_TABLE_GENERIC_MOB, 1, 5)
 
 /datum/ai_controller/basic_controller/axolotl

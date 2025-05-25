@@ -259,8 +259,7 @@
 
 	if(play_sound && !no_sound)
 		replacer.play_rped_sound()
-		if(replacer.works_from_distance)
-			user.Beam(src, icon_state = "rped_upgrade", time = 0.5 SECONDS)
+
 	return TRUE
 
 /obj/structure/frame/machine/can_be_unfasten_wrench(mob/user, silent)
@@ -280,7 +279,6 @@
 		return .
 	if(state != FRAME_STATE_BOARD_INSTALLED)
 		return .
-
 	if(finalize_construction(user, tool))
 		return ITEM_INTERACT_SUCCESS
 
@@ -439,6 +437,9 @@
  * * tool - the tool used to finalize the construction
  */
 /obj/structure/frame/machine/finalize_construction(mob/living/user, obj/item/tool)
+	if(locate(circuit.build_path) in loc)
+		balloon_alert(user, "identical machine present!")
+		return FALSE
 	for(var/component in req_components)
 		if(req_components[component] > 0)
 			user.balloon_alert(user, "missing components!")

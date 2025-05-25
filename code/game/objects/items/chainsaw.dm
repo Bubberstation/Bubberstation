@@ -5,6 +5,7 @@
 	desc = "A versatile power tool. Useful for limbing trees and delimbing humans."
 	icon = 'icons/obj/weapons/chainsaw.dmi'
 	icon_state = "chainsaw"
+	icon_angle = 180
 	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/chainsaw_righthand.dmi'
 	obj_flags = CONDUCTS_ELECTRICITY
@@ -68,6 +69,11 @@
 	toolspeed = active ? 0.5 : initial(toolspeed)
 	update_item_action_buttons()
 
+	return COMPONENT_NO_DEFAULT_MESSAGE
+
+/obj/item/chainsaw/get_demolition_modifier(obj/target)
+	return HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE) ? demolition_mod : 0.8
+
 /obj/item/chainsaw/suicide_act(mob/living/carbon/user)
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
 		user.visible_message(span_suicide("[user] smashes [src] into [user.p_their()] neck, destroying [user.p_their()] esophagus! It looks like [user.p_theyre()] trying to commit suicide!"))
@@ -81,7 +87,7 @@
 		myhead.dismember()
 	return BRUTELOSS
 
-/obj/item/chainsaw/attack(mob/living/target_mob, mob/living/user, params)
+/obj/item/chainsaw/attack(mob/living/target_mob, mob/living/user, list/modifiers, list/attack_modifiers)
 	if (target_mob.stat != DEAD)
 		return ..()
 

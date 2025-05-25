@@ -278,10 +278,6 @@
 *	MISC
 */
 
-/datum/loadout_item/head/baseball
-	name = "Ballcap"
-	item_path = /obj/item/clothing/head/soft/mime
-
 /datum/loadout_item/head/pirate
 	name = "Pirate hat"
 	item_path = /obj/item/clothing/head/costume/pirate
@@ -334,12 +330,10 @@
 /datum/loadout_item/head/maidhead
 	name = "Simple Maid Headband"
 	item_path = /obj/item/clothing/head/costume/skyrat/maid
-	additional_displayed_text = list("Small headband that only fits on top the head.")
 
 /datum/loadout_item/head/maidhead2
 	name = "Frilly Maid Headband"
 	item_path = /obj/item/clothing/head/costume/maidheadband
-	additional_displayed_text = list("Larger headband from the maid rework. Fits around head and ears.")
 
 /datum/loadout_item/head/wig
 	name = "Wig"
@@ -482,7 +476,7 @@
 /datum/loadout_item/head/navyblueofficerberet
 	name = "Security Officer's Navy Blue beret"
 	item_path = /obj/item/clothing/head/beret/sec/navyofficer
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_WARDEN)
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/head/navybluewardenberet
 	name = "Warden's Navy Blue beret"
@@ -638,7 +632,6 @@
 /datum/loadout_item/head/rainbow_bunch
 	name = "Rainbow Bunch"
 	item_path = /obj/item/food/grown/rainbow_flower
-	additional_displayed_text = list(TOOLTIP_RANDOM_COLOR)
 
 // Legacy unpaintable cowboy hat because it fits a character better
 /datum/loadout_item/head/cowboyhat_legacy

@@ -23,7 +23,7 @@
 /datum/surgery/advanced/brainwashing_sleeper/mechanic
 	name = "Sleeper Agent Reprogramming"
 	desc = "Malware which directly implants the sleeper protocol directive into the robotic patient's operating system, making it their absolute priority. It can be cleared using a mindshield implant."
-	requires_bodypart_type = BODYTYPE_ROBOTIC
+	requires_bodypart_type = BODYTYPE_ROBOTIC | BODYTYPE_NANO
 	steps = list(
 		/datum/surgery_step/mechanic_open,
 		/datum/surgery_step/open_hatch,
@@ -37,7 +37,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	var/obj/item/organ/internal/brain/target_brain = target.get_organ_slot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/brain/target_brain = target.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(!target_brain)
 		return FALSE
 	return TRUE

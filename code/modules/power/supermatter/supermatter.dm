@@ -579,7 +579,10 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	final_countdown = TRUE
 
-	SEND_GLOBAL_SIGNAL(COMSIG_MAIN_SM_DELAMINATING, final_countdown) // SKYRAT EDIT ADDITION - DELAM_SCRAM
+	INVOKE_ASYNC(src, PROC_REF(final_announcement)) // BUBBER EDIT ADDITION - DELAM SOUNDS
+	if(is_main_engine) // BUBBER EDIT ADDITION - DELAM_SCRAM
+		SEND_GLOBAL_SIGNAL(COMSIG_MAIN_SM_DELAMINATING, final_countdown) // BUBBER EDIT ADDITION - DELAM_SCRAM
+
 	notify_ghosts(
 		"[src] has begun the delamination process!",
 		source = src,
@@ -885,7 +888,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
  * Set to a number higher than [SM_DELAM_PRIO_IN_GAME] to fully force an admin delam.
  * * delam_path: Typepath of a [/datum/sm_delam]. [SM_DELAM_STRATEGY_PURGE] means reset and put prio back to zero.
  *
- * Returns: Not used for anything, just returns true on succesful set, manual and automatic. Helps admins check stuffs.
+ * Returns: Not used for anything, just returns true on successful set, manual and automatic. Helps admins check stuffs.
  */
 /obj/machinery/power/supermatter_crystal/proc/set_delam(priority = SM_DELAM_PRIO_NONE, manual_delam_path = SM_DELAM_STRATEGY_PURGE)
 	if(priority < delam_priority)
@@ -1065,8 +1068,12 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	//This gotdamn variable is a boomer and keeps giving me problems
 	var/turf/target_turf = get_turf(target)
 	var/pressure = 1
+	// Calculate pressure and do electrolysis.
 	if(target_turf?.return_air())
-		pressure = max(1,target_turf.return_air().return_pressure())
+		var/datum/gas_mixture/air_mixture = target_turf.return_air()
+		pressure = max(1, air_mixture.return_pressure())
+		air_mixture.electrolyze(working_power = zap_str / 200, electrolyzer_args = list(ELECTROLYSIS_ARGUMENT_SUPERMATTER_POWER = power_level))
+		target_turf.air_update_turf()
 	//We get our range with the strength of the zap and the pressure, the higher the former and the lower the latter the better
 	var/new_range = clamp(zap_str / pressure * 10, 2, 7)
 	var/zap_count = 1

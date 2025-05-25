@@ -42,7 +42,6 @@
 /datum/techweb_node/medbay_equip_adv/New()
 	. = ..()
 	design_ids += list(
-		"crewmonitor",
 		"borg_upgrade_advancedanalyzer",
 	)
 
@@ -77,7 +76,8 @@
 	design_ids += list(
 		"borg_upgrade_advcutter",
 		"borg_upgrade_inducer_sci",
-		"borg_upgrade_brped"
+		"borg_upgrade_brped",
+		"rld_cyborg"
 	)
 
 /datum/techweb_node/borg_medical/New()
@@ -97,8 +97,16 @@
 	)
 
 /datum/techweb_node/borg_utility/New()
+	. = ..()
 	design_ids -= list(
 		"borg_upgrade_expand" // Moved to default robotics, always available. It provides no practical benefit so it shouldn't be here
+	)
+
+/datum/techweb_node/borg_mining/New()
+	. = ..()
+	design_ids += list(
+		"pinpointer_vent_cyborg",
+		"adv_xenoarchbag_cyborg"
 	)
 
 // Computer Tech
@@ -172,4 +180,3 @@
 	research_costs = list(
 		TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS
 	)
-

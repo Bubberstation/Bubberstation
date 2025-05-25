@@ -45,7 +45,7 @@
 		return signal_face // no need to null-check, because force_set will always set a signal_face
 	var/face_name = !isnull(signal_face) ? signal_face : get_face_name("")
 	var/id_name = !isnull(signal_id) ? signal_id : get_id_name("")
-	if (force_real_name)
+	if(force_real_name)
 		var/fake_name
 		if (face_name && face_name != real_name)
 			fake_name = face_name
@@ -90,25 +90,19 @@
 	return
 
 /mob/living/carbon/human/get_id_name(if_no_id = "Unknown")
-	var/obj/item/storage/wallet/wallet = wear_id
-	var/obj/item/modular_computer/pda = wear_id
-	var/obj/item/card/id/id = wear_id
 	if(HAS_TRAIT(src, TRAIT_UNKNOWN))
 		. = if_no_id //You get NOTHING, no id name, good day sir
 		var/list/identity = list(null, null, null)
 		SEND_SIGNAL(src, COMSIG_HUMAN_GET_FORCED_NAME, identity)
 		if(identity[VISIBLE_NAME_FORCED])
-			. = identity[VISIBLE_NAME_FACE] // to return forced names when unknown, instead of ID
-			return
-	if(istype(wallet))
-		id = wallet.front_id
-	if(istype(id))
-		. = id.registered_name
-	else if(istype(pda) && pda.computer_id_slot)
-		. = pda.computer_id_slot.registered_name
+			return identity[VISIBLE_NAME_FACE] // to return forced names when unknown, instead of ID
+	else
+		var/obj/item/card/id/id = astype(wear_id, /obj/item/card/id) \
+			|| astype(wear_id, /obj/item/storage/wallet)?.front_id \
+			|| astype(wear_id, /obj/item/modular_computer)?.computer_id_slot
+		. = id?.registered_name
 	if(!.)
 		. = if_no_id //to prevent null-names making the mob unclickable
-	return
 
 /mob/living/carbon/human/get_idcard(hand_first = TRUE)
 	. = ..()
@@ -130,14 +124,14 @@
 /mob/living/carbon/human/proc/check_chunky_fingers()
 	if(HAS_TRAIT_NOT_FROM(src, TRAIT_CHUNKYFINGERS, RIGHT_ARM_TRAIT) && HAS_TRAIT_NOT_FROM(src, TRAIT_CHUNKYFINGERS, LEFT_ARM_TRAIT))
 		return TRUE
-	return (active_hand_index % 2) ? HAS_TRAIT_FROM(src, TRAIT_CHUNKYFINGERS, LEFT_ARM_TRAIT) : HAS_TRAIT_FROM(src, TRAIT_CHUNKYFINGERS, RIGHT_ARM_TRAIT)
+	return IS_LEFT_INDEX(active_hand_index) ? HAS_TRAIT_FROM(src, TRAIT_CHUNKYFINGERS, LEFT_ARM_TRAIT) : HAS_TRAIT_FROM(src, TRAIT_CHUNKYFINGERS, RIGHT_ARM_TRAIT)
 
 /mob/living/carbon/human/get_policy_keywords()
 	. = ..()
 	. += "[dna.species.type]"
 
 /mob/living/carbon/human/proc/get_eye_scars()
-	var/obj/item/organ/internal/eyes/eyes = get_organ_slot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/eyes = get_organ_slot(ORGAN_SLOT_EYES)
 	if (!isnull(eyes))
 		return eyes.scarring
 
@@ -167,8 +161,7 @@
 	for(var/i in missing_bodyparts)
 		var/datum/scar/scaries = new
 		scars += "[scaries.format_amputated(i)]"
-	for(var/i in all_scars)
-		var/datum/scar/iter_scar = i
+	for(var/datum/scar/iter_scar as anything in all_scars)
 		if(!iter_scar.fake)
 			scars += "[iter_scar.format()];"
 	return scars
@@ -259,47 +252,28 @@
 	fully_replace_character_name(real_name, generate_random_mob_name())
 
 /**
- * Setter for mob height
+ * Setter for mob height - updates the base height of the mob (which is then adjusted by traits or species)
  *
  * Exists so that the update is done immediately
  *
  * Returns TRUE if changed, FALSE otherwise
  */
 /mob/living/carbon/human/proc/set_mob_height(new_height)
-	if(mob_height == new_height)
-		return FALSE
-	if(new_height == HUMAN_HEIGHT_DWARF || new_height == MONKEY_HEIGHT_DWARF)
-		CRASH("Don't set height to dwarf height directly, use dwarf trait instead.")
-	if(new_height == MONKEY_HEIGHT_MEDIUM)
-		CRASH("Don't set height to monkey height directly, use monkified gene/species instead.")
-
-	mob_height = new_height
-	regenerate_icons()
-	return TRUE
+	base_mob_height = new_height
+	update_mob_height()
 
 /**
- * Getter for mob height
+ * Updates the mob's height
  *
  * Mainly so that dwarfism can adjust height without needing to override existing height
  *
  * Returns a mob height num
  */
-/mob/living/carbon/human/proc/get_mob_height()
-	if(HAS_TRAIT(src, TRAIT_DWARF))
-		if(ismonkey(src))
-			return MONKEY_HEIGHT_DWARF
-		else
-			return HUMAN_HEIGHT_DWARF
-	if(HAS_TRAIT(src, TRAIT_TOO_TALL))
-		if(ismonkey(src))
-			return MONKEY_HEIGHT_TALL
-		else
-			return HUMAN_HEIGHT_TALLEST
-
-	else if(ismonkey(src))
-		return MONKEY_HEIGHT_MEDIUM
-
-	return mob_height
+/mob/living/carbon/human/proc/update_mob_height()
+	var/old_height = mob_height
+	mob_height = dna?.species?.update_species_heights(src) || base_mob_height
+	if(old_height != mob_height)
+		regenerate_icons()
 
 /**
  * Makes a full copy of src and returns it.
@@ -389,3 +363,17 @@
 	user.visible_message(span_notice("[user] fixes some of the [message] [src]'s [affecting.name]."), \
 		span_notice("You fix some of the [message] [src == user ? "your" : "[src]'s"] [affecting.name]."))
 	return TRUE
+
+/// Sets both mob's and eye organ's eye color values
+/// If color_right is not passed, its assumed to be the same as color_left
+/mob/living/carbon/human/proc/set_eye_color(color_left, color_right)
+	if (!color_right)
+		color_right = color_left
+	eye_color_left = color_left
+	eye_color_right = color_right
+	// Doesn't assign eye color if they already have one from their type
+	var/obj/item/organ/eyes/eyes = get_organ_by_type(/obj/item/organ/eyes)
+	if (istype(eyes) && !initial(eyes.eye_color_left) && !initial(eyes.eye_color_right))
+		eyes.eye_color_left = color_left
+		eyes.eye_color_right = color_right
+		eyes.refresh(src, FALSE)

@@ -29,10 +29,11 @@
 	AddComponent(/datum/component/speechmod, replacements = list("." = "!"), end_string = "!!", uppercase = TRUE)
 
 /datum/mutation/human/hulk/on_acquiring(mob/living/carbon/human/owner)
-	if(..())
+	. = ..()
+	if(!.)
 		return
 	for(var/obj/item/bodypart/part as anything in owner.bodyparts)
-		part.variable_color = bodypart_color
+		part.add_color_override(bodypart_color, LIMB_COLOR_HULK)
 	owner.update_body_parts()
 	owner.add_mood_event("hulk", /datum/mood_event/hulk)
 	RegisterSignal(owner, COMSIG_LIVING_EARLY_UNARMED_ATTACK, PROC_REF(on_attack_hand))
@@ -94,7 +95,7 @@
 	if(..())
 		return
 	for(var/obj/item/bodypart/part as anything in owner.bodyparts)
-		part.variable_color = null
+		part.remove_color_override(LIMB_COLOR_HULK)
 	owner.update_body_parts()
 	owner.clear_mood_event("hulk")
 	UnregisterSignal(owner, COMSIG_LIVING_EARLY_UNARMED_ATTACK)

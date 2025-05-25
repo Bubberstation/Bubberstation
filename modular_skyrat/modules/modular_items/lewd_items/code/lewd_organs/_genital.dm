@@ -1,4 +1,4 @@
-/obj/item/organ/external/genital
+/obj/item/organ/genital
 	/// The fluid count of the genital.
 	var/internal_fluid_count = 0
 
@@ -12,15 +12,15 @@
 	var/obj/item/inserted_item
 
 /// Helper proc for checking if internal fluids are full or not.
-/obj/item/organ/external/genital/proc/internal_fluid_full()
+/obj/item/organ/genital/proc/internal_fluid_full()
 	return internal_fluid_count >= internal_fluid_maximum
 
 /// Adds the given amount to the internal fluid count, clamping it between 0 and internal_fluid_maximum.
-/obj/item/organ/external/genital/proc/adjust_internal_fluid(amount)
+/obj/item/organ/genital/proc/adjust_internal_fluid(amount)
 	internal_fluid_count = clamp(internal_fluid_count + amount, 0, internal_fluid_maximum)
 
 /// Tries to add the specified amount to the target reagent container, or removes it if none are available. Keeps in mind internal_fluid_count.
-/obj/item/organ/external/genital/proc/transfer_internal_fluid(datum/reagents/reagent_container = null, attempt_amount)
+/obj/item/organ/genital/proc/transfer_internal_fluid(datum/reagents/reagent_container = null, attempt_amount)
 	if(!internal_fluid_datum || !internal_fluid_count || !internal_fluid_maximum)
 		return FALSE
 

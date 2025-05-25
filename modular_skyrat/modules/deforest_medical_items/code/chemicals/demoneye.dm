@@ -21,7 +21,6 @@
 	name = "DemonEye"
 	description = "A performance enhancing drug originally developed on mars. \
 		A favorite among gangs and other outlaws on the planet, though overuse can cause terrible addiction and bodily damage."
-	reagent_state = LIQUID
 	color = "#af00be"
 	taste_description = "industrial shuttle fuel"
 	metabolization_rate = 0.65 * REAGENTS_METABOLISM
@@ -122,7 +121,7 @@
 		hurt_that_mans_organs(our_guy, 3, FALSE)
 
 	if(locate(/datum/reagent/drug/twitch) in our_guy.reagents.reagent_list) // Combining this with twitch could cause some heart attack problems
-		our_guy.ForceContractDisease(new /datum/disease/heart_failure(), FALSE, TRUE)
+		our_guy.apply_status_effect(/datum/status_effect/heart_attack)
 
 
 /datum/reagent/drug/demoneye/overdose_process(mob/living/carbon/our_guy, seconds_per_tick, times_fired)

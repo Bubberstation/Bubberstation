@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
+import { Box, Button, Icon, Stack } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
-import { Box, Button, Icon, Stack } from '../../components';
 import { Window } from '../../layouts';
 import { Connection, Connections, Position } from '../common/Connections';
 import { BoardTabs } from './BoardTabs';
@@ -291,20 +291,20 @@ export function DetectiveBoard(props) {
                         connections={retrieveConnections(
                           movingEvidenceConnections,
                         )}
-                        zLayer={99}
+                        zLayer={1}
                       />
                     )}
                     {connection && (
                       <Connections
                         lineWidth={5}
                         connections={[connection]}
-                        zLayer={99}
+                        zLayer={1}
                       />
                     )}
                     <Connections
                       lineWidth={5}
                       connections={connections}
-                      zLayer={99}
+                      zLayer={1}
                     />
                     {item?.evidences?.map((evidence, index) => (
                       <Evidence

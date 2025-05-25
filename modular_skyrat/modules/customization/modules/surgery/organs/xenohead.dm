@@ -1,4 +1,4 @@
-/obj/item/organ/external/xenohead
+/obj/item/organ/xenohead
 	name = "xeno head"
 	desc = "How did you take that off?"
 	icon_state = "random_fly_2"

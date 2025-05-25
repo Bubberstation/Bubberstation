@@ -16,9 +16,9 @@
 	name = "Primitive Demihuman"
 	id = SPECIES_FELINE_PRIMITIVE
 
-	mutantlungs = /obj/item/organ/internal/lungs/icebox_adapted
-	mutanteyes = /obj/item/organ/internal/eyes/low_light_adapted
-	mutanttongue = /obj/item/organ/internal/tongue/cat/primitive
+	mutantlungs = /obj/item/organ/lungs/icebox_adapted
+	mutanteyes = /obj/item/organ/eyes/low_light_adapted
+	mutanttongue = /obj/item/organ/tongue/cat/primitive
 
 	species_language_holder = /datum/language_holder/primitive_felinid
 	language_prefs_whitelist = list(/datum/language/primitive_catgirl)
@@ -40,7 +40,7 @@
 		"legs" = list("Normal Legs", FALSE),
 	)
 
-/datum/species/human/felinid/primitive/on_species_gain(mob/living/carbon/new_primitive, datum/species/old_species, pref_load)
+/datum/species/human/felinid/primitive/on_species_gain(mob/living/carbon/new_primitive, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
 	var/mob/living/carbon/human/hearthkin = new_primitive
 	if(!istype(hearthkin))
@@ -48,7 +48,7 @@
 	hearthkin.dna.add_mutation(/datum/mutation/human/olfaction, MUT_NORMAL)
 	hearthkin.dna.activate_mutation(/datum/mutation/human/olfaction)
 
-    	// >mfw I take mutadone and my nose clogs
+	// >mfw I take mutadone and my nose clogs
 	var/datum/mutation/human/olfaction/mutation = locate() in hearthkin.dna.mutations
 	mutation.mutadone_proof = TRUE
 	mutation.instability = 0
@@ -124,7 +124,7 @@
 		"Physically, the Hearthkin always come in the form of demihumans; appearing similar to normal Earthlings, \
 			but with the tails, ears, and sometimes limbs of various arctic animals; wolves, bears, and felines to only name a few. \
 			They seem perfectly adapted to their lands of ice and mist, but find even the mild controlled temperatures of \
-			NanoTrasen stations to be swelteringly hot. Their view of 'station' genemodders is that of 'halflings': \
+			Nanotrasen stations to be swelteringly hot. Their view of 'station' genemodders is that of 'halflings': \
 			Ancestral bodies, but with the blood and spirit of the humans of Midgard, \
 			tending to look down on them even more than other aliens.",
 	)

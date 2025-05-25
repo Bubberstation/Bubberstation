@@ -26,22 +26,25 @@
 		addtimer(CALLBACK(src, PROC_REF(remove_cooldown)), cooldown_timer)
 
 	init_time = world.time
+
+/datum/component/off_duty_timer/RegisterWithParent()
+	. = ..()
 	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(attempt_unlock))
 
-/datum/component/off_duty_timer/Destroy(force, silent)
+/datum/component/off_duty_timer/UnregisterFromParent()
+	. = ..()
 	UnregisterSignal(parent, COMSIG_ATOM_ATTACKBY)
-	if(stored_trim)
-		qdel(stored_trim)
-		stored_trim = null
 
-	return ..()
+/datum/component/off_duty_timer/Destroy(force, silent)
+	stored_trim = null
+	. = ..()
 
 ///Sets the on_cooldown variable to false, making it so that the ID can clock back in.
 /datum/component/off_duty_timer/proc/remove_cooldown()
 	on_cooldown = FALSE
 
 ///Attempts an unlock if attacked by another ID. If the ID has HoP access, it will unlock and return TRUE
-/datum/component/off_duty_timer/proc/attempt_unlock(datum/source, obj/item/attacking_item, mob/user, params)
+/datum/component/off_duty_timer/proc/attempt_unlock(datum/source, obj/item/attacking_item, mob/user, list/modifiers)
 	SIGNAL_HANDLER
 	if(!hop_locked)
 		return FALSE

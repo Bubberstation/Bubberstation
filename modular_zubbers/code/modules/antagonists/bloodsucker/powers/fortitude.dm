@@ -104,3 +104,5 @@
 	fortitude_resist = 1
 	UnregisterSignal(owner, list(COMSIG_LIVING_ADJUST_BRUTE_DAMAGE, COMSIG_LIVING_ADJUST_BURN_DAMAGE))
 	return ..()
+
+#undef FORTITUDE_STUN_IMMUNITY_LEVEL

@@ -83,7 +83,7 @@
 	)
 
 	skyrat_contraband = list(
-		/obj/item/organ/internal/tongue/lizard/robot = 2,
+		/obj/item/organ/tongue/lizard/robot = 2,
 	)
 
 /obj/machinery/vending/wardrobe/science_wardrobe
@@ -104,11 +104,6 @@
 
 /obj/machinery/vending/wardrobe/bar_wardrobe
 	skyrat_products = list(
-		/obj/item/storage/fancy/candle_box/vanilla = 1,
-		/obj/item/storage/fancy/candle_box/pear = 1,
-		/obj/item/storage/fancy/candle_box/amber = 1,
-		/obj/item/storage/fancy/candle_box/jasmine = 1,
-		/obj/item/storage/fancy/candle_box/mint = 1,
 		/obj/item/clothing/suit/hooded/wintercoat/skyrat/bartender = 2,
 	)
 

@@ -47,7 +47,7 @@ If anyone can figure out how to get Obsessed to work I would be very appreciativ
 	for(var/role in GLOB.special_roles)
 		if(role in list(ROLE_MALF, ROLE_PAI, ROLE_SENTIENCE, ROLE_OBSESSED))
 			continue
-		dat += "<a href='?src=[REF(src)];[HrefToken()];makeAntag=[role]'>Make [role](s)."
+		dat += "<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=[role]'>Make [role](s)."
 		if(antag_is_ghostrole(role))
 			dat += " (Requires Ghosts)"
 		dat += "</a><br>"

@@ -1,5 +1,4 @@
 // THIS IS A SKYRAT UI FILE
-import { useBackend } from '../backend';
 import {
   BlockQuote,
   Box,
@@ -10,7 +9,9 @@ import {
   LabeledList,
   ProgressBar,
   Section,
-} from '../components';
+} from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 export const Soulcatcher = (props) => {

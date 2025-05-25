@@ -48,16 +48,13 @@
 	fire = 80
 	acid = 50
 
-/obj/machinery/portable_atmospherics/canister/Initialize(mapload, datum/gas_mixture/existing_mixture)
+/obj/machinery/portable_atmospherics/canister/Initialize(mapload)
 	. = ..()
 
 	if(mapload)
 		internal_cell = new /obj/item/stock_parts/power_store/cell/high(src)
 
-	if(existing_mixture)
-		air_contents.copy_from(existing_mixture)
-	else
-		create_gas()
+	create_gas()
 
 	if(ispath(gas_type, /datum/gas))
 		desc = "[GLOB.meta_gas_info[gas_type][META_GAS_NAME]]. [GLOB.meta_gas_info[gas_type][META_GAS_DESC]]"
@@ -366,7 +363,7 @@
 	if(internal_cell)
 		internal_cell.forceMove(drop_location())
 
-/obj/machinery/portable_atmospherics/canister/attackby(obj/item/item, mob/user, params)
+/obj/machinery/portable_atmospherics/canister/attackby(obj/item/item, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(item, /obj/item/stock_parts/power_store/cell))
 		var/obj/item/stock_parts/power_store/cell/active_cell = item
 		if(!panel_open)
@@ -690,7 +687,7 @@
 	shielding_powered = !shielding_powered
 	SSair.start_processing_machine(src)
 	message_admins("[ADMIN_LOOKUPFLW(user)] turned [shielding_powered ? "on" : "off"] [wire_pulsed ? "via wire pulse" : ""] the [src] powered shielding.")
-	user.investigate_log("turned [shielding_powered ? "on" : "off"] [wire_pulsed ? "via wire pulse" : ""] the [src] powered shielding.")
+	user.investigate_log("turned [shielding_powered ? "on" : "off"] [wire_pulsed ? "via wire pulse" : ""] the [src] powered shielding.", INVESTIGATE_ATMOS)
 	update_appearance()
 
 /// Ejects tank from canister, if any
@@ -698,8 +695,8 @@
 	if(!holding)
 		return FALSE
 	if(valve_open)
-		message_admins("[ADMIN_LOOKUPFLW(user)] removed [holding] from [src] with valve still open [wire_pulsed ? "via wire pulse" : ""] at [ADMIN_VERBOSEJMP(src)] releasing contents into the [span_boldannounce("air")].")
-		user.investigate_log("removed the [holding] [wire_pulsed ? "via wire pulse" : ""], leaving the valve open and transferring into the [span_boldannounce("air")].", INVESTIGATE_ATMOS)
+		message_admins("[ADMIN_LOOKUPFLW(user)] removed [holding] from [src] with valve still open [wire_pulsed ? "via wire pulse" : ""] at [ADMIN_VERBOSEJMP(src)] releasing contents into the [span_bolddanger("air")].")
+		user.investigate_log("removed the [holding] [wire_pulsed ? "via wire pulse" : ""], leaving the valve open and transferring into the [span_bolddanger("air")].", INVESTIGATE_ATMOS)
 	replace_tank(user, FALSE)
 	return TRUE
 
@@ -712,7 +709,7 @@
 	suppress_reactions = !suppress_reactions
 	SSair.start_processing_machine(src)
 	message_admins("[ADMIN_LOOKUPFLW(user)] turned [suppress_reactions ? "on" : "off"] [wire_pulsed ? "via wire pulse" : ""] the [src] reaction suppression.")
-	user.investigate_log("turned [suppress_reactions ? "on" : "off"] [wire_pulsed ? "via wire pulse" : ""] the [src] reaction suppression.")
+	user.investigate_log("turned [suppress_reactions ? "on" : "off"] [wire_pulsed ? "via wire pulse" : ""] the [src] reaction suppression.", INVESTIGATE_ATMOS)
 
 /obj/machinery/portable_atmospherics/canister/proc/recolor(datum/greyscale_modify_menu/menu)
 	set_greyscale(menu.split_colors, menu.config.type)

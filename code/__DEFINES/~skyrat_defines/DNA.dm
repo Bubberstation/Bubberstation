@@ -69,10 +69,10 @@
 
 //In inches
 #define PENIS_MIN_GIRTH PENIS_MIN_LENGTH
-#define PENIS_MAX_GIRTH 20
+#define PENIS_MAX_GIRTH 40
 #define PENIS_DEFAULT_GIRTH 5 // a lil big but not by much
 #define PENIS_MIN_LENGTH 1
-#define PENIS_MAX_LENGTH 36
+#define PENIS_MAX_LENGTH 72
 #define PENIS_DEFAULT_LENGTH 6 //still a lil long but not insane
 
 #define TESTICLES_MIN_SIZE 0
@@ -98,7 +98,7 @@
 	"penis_sheath" = SHEATH_NONE,\
 	"balls_size" = 1,\
 	"body_size" = BODY_SIZE_NORMAL,\
-	"custom_species" = null,\
+	"custom_species" = "",\
 	"penis_uses_skintones" = TRUE,\
 	"penis_uses_skincolor" = TRUE,\
 	"testicles_uses_skintones" = TRUE,\
@@ -143,3 +143,11 @@
 
 // Leaving this here because it's used for bodyparts, like SPECIES_X are, but since taurs aren't a species... Named it LIMBS instead.
 #define LIMBS_TAUR "taur"
+
+#define DNA_BLOCKS_PER_FEATURE 4
+#define DNA_FEATURE_COLOR_BLOCKS_PER_FEATURE 3
+#define DNA_FEATURE_BLOCKS_TOTAL_SIZE_PER_FEATURE (DNA_BLOCK_SIZE + DNA_BLOCK_SIZE_COLOR * DNA_FEATURE_COLOR_BLOCKS_PER_FEATURE)
+#define DNA_BLOCKS_PER_MARKING 2
+#define DNA_MARKING_COLOR_BLOCKS_PER_MARKING 1
+#define DNA_BLOCKS_PER_MARKING_ZONE (MAXIMUM_MARKINGS_PER_LIMB * DNA_BLOCKS_PER_MARKING + 1)
+#define DNA_MARKING_BLOCKS_TOTAL_SIZE_PER_MARKING (DNA_BLOCK_SIZE + DNA_BLOCK_SIZE_COLOR * DNA_MARKING_COLOR_BLOCKS_PER_MARKING)

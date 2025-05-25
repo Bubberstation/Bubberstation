@@ -412,7 +412,7 @@
 		return message
 
 	message += span_danger("\nCurrent degradation/max: [span_blue("<b>[current_degradation]</b>")]/<b>[max_degradation]</b>.")
-	message += span_notice("\n<a href='?src=[REF(src)];[DEATH_CONSEQUENCES_SHOW_HEALTH_ANALYZER_DATA]=1'>View degradation specifics?</a>")
+	message += span_notice("\n<a href='byond://?src=[REF(src)];[DEATH_CONSEQUENCES_SHOW_HEALTH_ANALYZER_DATA]=1'>View degradation specifics?</a>")
 	if (permakill_if_at_max_degradation)
 		message += span_revenwarning("\n\n<b><i>SUBJECT WILL BE PERMANENTLY KILLED IF DEGRADATION REACHES MAXIMUM!</i></b>")
 
@@ -434,7 +434,7 @@
 
 	if (href_list[DEATH_CONSEQUENCES_SHOW_HEALTH_ANALYZER_DATA])
 		if (world.time <= time_til_scan_expires[usr])
-			to_chat(usr, examine_block(get_specific_data()), trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
+			to_chat(usr, boxed_message(get_specific_data()), trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
 		else
 			to_chat(usr, span_warning("Your scan has expired! Try scanning again!"))
 
@@ -503,7 +503,7 @@
 	if (isnull(source))
 		return // sanity
 
-	var/ckey = lowertext(owner.mind?.key)
+	var/ckey = LOWER_TEXT(owner.mind?.key)
 	if (isnull(ckey) || ckey != source.ckey)
 		return // sanity
 

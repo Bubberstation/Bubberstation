@@ -14,7 +14,7 @@
 	if(istext(new_type))
 		new_type = text2path(new_type)
 
-	if( !ispath(new_type) )
+	if(!ispath(new_type) )
 		to_chat(usr, "Invalid type path (new_type = [new_type]) in change_mob_type(). Contact a coder.")
 		return
 
@@ -67,7 +67,7 @@
 
 		mind.transfer_to(desired_mob, 1) // second argument to force key move to new mob
 	else
-		desired_mob.key = key
+		desired_mob.PossessByPlayer(key)
 
 	SEND_SIGNAL(src, COMSIG_MOB_CHANGED_TYPE, desired_mob)
 	if(delete_old_mob)

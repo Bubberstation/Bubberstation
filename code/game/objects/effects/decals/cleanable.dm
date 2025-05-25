@@ -1,6 +1,6 @@
 /obj/effect/decal/cleanable
 	gender = PLURAL
-	layer = FLOOR_CLEAN_LAYER
+	layer = CLEANABLE_FLOOR_OBJECT_LAYER
 	var/list/random_icon_states = null
 	///I'm sorry but cleanable/blood code is ass, and so is blood_DNA
 	var/blood_state = ""
@@ -15,16 +15,26 @@
 	var/datum/reagent/decal_reagent
 	///The amount of reagent this decal holds, if decal_reagent is defined
 	var/reagent_amount = 0
+	/// If TRUE, gains TRAIT_MOPABLE on init - thus this cleanable will cleaned if its turf is cleaned
+	/// Set to FALSE for things that hang high on the walls or things which generally shouldn't be mopped up
+	var/is_mopped = TRUE
 
 /// Creates a cleanable decal on a turf
 /// Use this if your decal is one of one, and thus we should not spawn it if it's there already
 /// Returns either the existing cleanable, the one we created, or null if we can't spawn on that turf
 /turf/proc/spawn_unique_cleanable(obj/effect/decal/cleanable/cleanable_type)
+	var/turf/checkturf = src
+	while (isgroundlessturf(checkturf) && checkturf.zPassOut(DOWN))
+		var/turf/below = GET_TURF_BELOW(checkturf)
+		if (!below || !below.zPassIn(DOWN))
+			break
+		checkturf = below
+
 	// There is no need to spam unique cleanables, they don't stack and it just chews cpu
-	var/obj/effect/decal/cleanable/existing = locate(cleanable_type) in src
+	var/obj/effect/decal/cleanable/existing = locate(cleanable_type) in checkturf
 	if(existing)
 		return existing
-	return new cleanable_type(src)
+	return new cleanable_type(checkturf)
 
 /obj/effect/decal/cleanable/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()
@@ -39,6 +49,9 @@
 				if (replace_decal(C))
 					handle_merge_decal(C)
 					return INITIALIZE_HINT_QDEL
+
+	if(is_mopped)
+		ADD_TRAIT(src, TRAIT_MOPABLE, INNATE_TRAIT)
 
 	if(LAZYLEN(diseases))
 		var/list/datum/disease/diseases_to_add = list()
@@ -68,8 +81,8 @@
 	if(mergeable_decal)
 		return TRUE
 
-/obj/effect/decal/cleanable/attackby(obj/item/W, mob/user, params)
-	if((istype(W, /obj/item/reagent_containers/cup) && !istype(W, /obj/item/reagent_containers/cup/rag)) || istype(W, /obj/item/reagent_containers/cup/glass))
+/obj/effect/decal/cleanable/attackby(obj/item/W, mob/user, list/modifiers, list/attack_modifiers)
+	if((istype(W, /obj/item/reagent_containers/cup) && !istype(W, /obj/item/rag)) || istype(W, /obj/item/reagent_containers/cup/glass))
 		if(src.reagents && W.reagents)
 			. = 1 //so the containers don't splash their content on the src while scooping.
 			if(!src.reagents.total_volume)
@@ -136,6 +149,9 @@
 			return rgb(22, 22, 22)
 
 	return null
+
+/obj/effect/decal/cleanable/blood/get_blood_color()
+	return color || ..()
 
 /obj/effect/decal/cleanable/proc/handle_merge_decal(obj/effect/decal/cleanable/merger)
 	if(!merger)

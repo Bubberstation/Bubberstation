@@ -190,7 +190,7 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 	dropamt = 9
 	threat = 10
 
-/obj/effect/meteor/candy/pumpking/Initialize()
+/obj/effect/meteor/candy/pumpking/Initialize(mapload)
 	. = ..()
 	src.transform *= 2
 	meteorsound = pick('sound/effects/hallucinations/im_here1.ogg', 'sound/effects/hallucinations/im_here2.ogg')

@@ -24,7 +24,7 @@
 	if(isnull(spawn_location))
 		return MAP_ERROR
 
-	var/mob/chosen_one = SSpolling.poll_ghost_candidates(check_jobban = ROLE_VOIDWALKER, role = ROLE_VOIDWALKER, alert_pic = /obj/item/cosmic_skull, jump_target = spawn_location, role_name_text = "Void Walker", amount_to_pick = 1)
+	var/mob/chosen_one = SSpolling.poll_ghost_candidates(check_jobban = ROLE_VOIDWALKER, role = ROLE_VOIDWALKER, alert_pic = /obj/item/clothing/head/helmet/skull/cosmic, jump_target = spawn_location, role_name_text = "Void Walker", amount_to_pick = 1)
 	if(isnull(chosen_one))
 		return NOT_ENOUGH_PLAYERS
 	var/datum/mind/player_mind = new /datum/mind(chosen_one.key)

@@ -63,6 +63,7 @@
 	icon_keyboard = "syndie_key"
 	warmup_time = SYN_BOUNTY_PAD_WARM_TIME
 	circuit = /obj/item/circuitboard/computer/syndiepad
+	export_market = EXPORT_MARKET_STATION
 
 	/// The account to add balance
 	var/credits_account = ACCOUNT_INT
@@ -128,7 +129,7 @@
 				return FALSE
 	return TRUE
 
-/obj/machinery/computer/piratepad_control/syndiepad/proc/reset_icon(var/obj/machinery/piratepad/syndiepad/pad)
+/obj/machinery/computer/piratepad_control/syndiepad/proc/reset_icon(obj/machinery/piratepad/syndiepad/pad)
 	if(!pad)
 		return
 	flick(pad.sending_state,pad)

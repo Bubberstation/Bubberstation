@@ -193,12 +193,12 @@
 	physical = null
 	return ..()
 
-/obj/item/modular_computer/pre_attack_secondary(atom/A, mob/living/user, params)
-	if(active_program?.tap(A, user, params))
-		user.do_attack_animation(A) //Emulate this animation since we kill the attack in three lines
+/obj/item/modular_computer/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
+	if(active_program?.tap(interacting_with, user, modifiers))
+		user.do_attack_animation(interacting_with) //Emulate this animation since we kill the attack in three lines
 		playsound(loc, 'sound/items/weapons/tap.ogg', get_clamped_volume(), TRUE, -1) //Likewise for the tap sound
 		addtimer(CALLBACK(src, PROC_REF(play_ping)), 0.5 SECONDS, TIMER_UNIQUE) //Slightly delayed ping to indicate success
-		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+		return ITEM_INTERACT_SUCCESS
 	return ..()
 
 // shameless copy of newscaster photo saving
@@ -550,13 +550,13 @@
  * The program calling this proc.
  * The message that the program wishes to display.
  */
-/obj/item/modular_computer/proc/alert_call(datum/computer_file/program/caller, alerttext, sound = 'sound/machines/beep/twobeep_high.ogg')
-	if(!caller || !caller.alert_able || caller.alert_silenced || !alerttext) //Yeah, we're checking alert_able. No, you don't get to make alerts that the user can't silence.
+/obj/item/modular_computer/proc/alert_call(datum/computer_file/program/call_source, alerttext, sound = 'sound/machines/beep/twobeep_high.ogg')
+	if(!call_source || !call_source.alert_able || call_source.alert_silenced || !alerttext) //Yeah, we're checking alert_able. No, you don't get to make alerts that the user can't silence.
 		return FALSE
 	playsound(src, sound, 50, TRUE)
-	physical.loc.visible_message(span_notice("[icon2html(physical, viewers(physical.loc))] \The [src] displays a [caller.filedesc] notification: [alerttext]"))
+	physical.loc.visible_message(span_notice("[icon2html(physical, viewers(physical.loc))] \The [src] displays a [call_source.filedesc] notification: [alerttext]"))
 
-/obj/item/modular_computer/proc/ring(ringtone) // bring bring
+/obj/item/modular_computer/proc/ring(ringtone, list/balloon_alertees) // bring bring
 	if(!use_energy())
 		return
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_PDA_GLITCHED))
@@ -566,7 +566,10 @@
 			), 50, TRUE)
 	else
 		playsound(src, 'sound/machines/beep/twobeep_high.ogg', 50, TRUE)
-	audible_message("*[ringtone]*")
+	ringtone = "*[ringtone]*"
+	audible_message(ringtone)
+	for(var/mob/living/alertee in balloon_alertees)
+		alertee.balloon_alert(alertee, ringtone)
 
 /obj/item/modular_computer/proc/send_sound()
 	playsound(src, 'sound/machines/terminal/terminal_success.ogg', 15, TRUE)
@@ -608,17 +611,17 @@
 		if(NTNET_ETHERNET_SIGNAL)
 			data["PC_ntneticon"] = "sig_lan.gif"
 
+	var/list/program_headers = list()
 	if(length(idle_threads))
-		var/list/program_headers = list()
 		for(var/datum/computer_file/program/idle_programs as anything in idle_threads)
 			if(!idle_programs.ui_header)
 				continue
 			program_headers.Add(list(list("icon" = idle_programs.ui_header)))
 
-		data["PC_programheaders"] = program_headers
+	data["PC_programheaders"] = program_headers
 
 	data["PC_stationtime"] = station_time_timestamp()
-	data["PC_stationdate"] = "[time2text(world.realtime, "DDD, Month DD")], [CURRENT_STATION_YEAR]"
+	data["PC_stationdate"] = "[time2text(world.realtime, "DDD, Month DD", NO_TIMEZONE)], [CURRENT_STATION_YEAR]"
 	data["PC_showexitprogram"] = !!active_program // Hides "Exit Program" button on mainscreen
 	return data
 
@@ -899,6 +902,7 @@
 		return ITEM_INTERACT_BLOCKING
 	balloon_alert(user, "inserted paper")
 	qdel(new_paper)
+	playsound(src, 'sound/machines/computer/paper_insert.ogg', 40, vary = TRUE)
 	stored_paper++
 	return ITEM_INTERACT_SUCCESS
 
@@ -915,6 +919,7 @@
 		return ITEM_INTERACT_BLOCKING
 	balloon_alert(user, "inserted paper")
 	to_chat(user, span_notice("Added in [papers_added] new sheets. You now have [stored_paper] / [max_paper] printing paper stored."))
+	playsound(src, 'sound/machines/computer/paper_insert.ogg', 40, vary = TRUE)
 	bin.update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
@@ -924,6 +929,8 @@
 	if(inserted_disk)
 		user.put_in_hands(inserted_disk)
 		balloon_alert(user, "disks swapped")
+	else
+		balloon_alert(user, "disk inserted")
 	inserted_disk = disk
 	playsound(src, 'sound/machines/card_slide.ogg', 50)
 	return ITEM_INTERACT_SUCCESS
@@ -981,6 +988,30 @@
 	if(!include_disk_files || !inserted_disk)
 		return stored_files
 	return stored_files + inserted_disk.stored_files
+
+/// Returns how relevant the current security level is:
+#define ALERT_RELEVANCY_SAFE 0 /// * 0: User is not in immediate danger and not needed for some station-critical task.
+#define ALERT_RELEVANCY_WARN 1 /// * 1: Danger is around, but the user is not directly needed to handle it.
+#define ALERT_RELEVANCY_PERTINENT 2/// * 2: Danger is around and the user is responsible for handling it.
+/obj/item/modular_computer/proc/get_security_level_relevancy()
+	switch(SSsecurity_level.get_current_level_as_number())
+		if(SEC_LEVEL_DELTA)
+			return ALERT_RELEVANCY_PERTINENT
+		if(SEC_LEVEL_RED) // all-hands-on-deck situations, everyone is responsible for combatting a threat
+			return ALERT_RELEVANCY_PERTINENT
+		if(SEC_LEVEL_BLUE) // suspected threat. security needs to be alert and possibly preparing for it, no further concerns
+			if(ACCESS_SECURITY in computer_id_slot?.access)
+				return ALERT_RELEVANCY_PERTINENT
+			else
+				return ALERT_RELEVANCY_WARN
+		if(SEC_LEVEL_GREEN) // no threats, no concerns
+			return ALERT_RELEVANCY_SAFE
+
+	return 0
+
+#undef ALERT_RELEVANCY_SAFE
+#undef ALERT_RELEVANCY_WARN
+#undef ALERT_RELEVANCY_PERTINENT
 
 /**
  * Debug ModPC

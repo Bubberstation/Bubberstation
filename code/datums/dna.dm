@@ -73,7 +73,8 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	var/unique_enzymes
 	///Stores the hashed values of traits such as skin tones, hair style, and gender
 	var/unique_identity
-	var/blood_type
+	/// The singleton blood type
+	var/datum/blood_type/blood_type
 	///The type of mutant race the player is if applicable (i.e. potato-man)
 	var/datum/species/species = new /datum/species/human
 	/// Assoc list of feature keys to their value
@@ -127,7 +128,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		return
 	destination.dna.unique_enzymes = unique_enzymes
 	destination.dna.unique_identity = unique_identity
-	destination.dna.blood_type = blood_type
+	destination.set_blood_type(blood_type)
 	destination.dna.unique_features = unique_features
 	destination.dna.features = features.Copy()
 	destination.dna.real_name = real_name
@@ -150,7 +151,6 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	new_dna.default_mutation_genes = default_mutation_genes
 	new_dna.unique_identity = unique_identity
 	new_dna.unique_features = unique_features
-	new_dna.blood_type = blood_type
 	new_dna.features = features.Copy()
 	//SKYRAT EDIT ADDITION BEGIN - CUSTOMIZATION
 	new_dna.mutant_bodyparts = mutant_bodyparts.Copy()
@@ -159,8 +159,10 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	//SKYRAT EDIT ADDITION END
 	//if the new DNA has a holder, transform them immediately, otherwise save it
 	if(new_dna.holder)
+		new_dna.holder.set_blood_type(blood_type)
 		new_dna.holder.set_species(species.type, icon_update = 0)
 	else
+		new_dna.blood_type = blood_type
 		new_dna.species = new species.type
 	new_dna.real_name = real_name
 	// Mutations aren't gc managed, but they still aren't templates
@@ -254,7 +256,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	if(features["lizard_markings"])
 		L[DNA_LIZARD_MARKINGS_BLOCK] = construct_block(SSaccessories.lizard_markings_list.Find(features["lizard_markings"]), length(SSaccessories.lizard_markings_list))
 	if(features["tail_cat"])
-		L[DNA_TAIL_BLOCK] = construct_block(SSaccessories.tails_list_human.Find(features["tail_cat"]), length(SSaccessories.tails_list_human))
+		L[DNA_TAIL_BLOCK] = construct_block(SSaccessories.tails_list_felinid.Find(features["tail_cat"]), length(SSaccessories.tails_list_felinid))
 	if(features["tail_lizard"])
 		L[DNA_LIZARD_TAIL_BLOCK] = construct_block(SSaccessories.tails_list_lizard.Find(features["tail_lizard"]), length(SSaccessories.tails_list_lizard))
 	if(features["snout"])
@@ -277,6 +279,8 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		L[DNA_MUSHROOM_CAPS_BLOCK] = construct_block(SSaccessories.caps_list.Find(features["caps"]), length(SSaccessories.caps_list))
 	if(features["pod_hair"])
 		L[DNA_POD_HAIR_BLOCK] = construct_block(SSaccessories.pod_hair_list.Find(features["pod_hair"]), length(SSaccessories.pod_hair_list))
+	if(features["fish_tail"])
+		L[DNA_FISH_TAIL_BLOCK] = construct_block(SSaccessories.tails_list_fish.Find(features["fish_tail"]), length(SSaccessories.tails_list_fish))
 
 	for(var/blocknum in 1 to DNA_FEATURE_BLOCKS)
 		. += L[blocknum] || random_string(GET_UI_BLOCK_LEN(blocknum), GLOB.hex_characters)
@@ -402,7 +406,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		if(DNA_LIZARD_MARKINGS_BLOCK)
 			set_uni_feature_block(blocknumber, construct_block(SSaccessories.lizard_markings_list.Find(features["lizard_markings"]), length(SSaccessories.lizard_markings_list)))
 		if(DNA_TAIL_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(SSaccessories.tails_list_human.Find(features["tail_cat"]), length(SSaccessories.tails_list_human)))
+			set_uni_feature_block(blocknumber, construct_block(SSaccessories.tails_list_felinid.Find(features["tail_cat"]), length(SSaccessories.tails_list_felinid)))
 		if(DNA_LIZARD_TAIL_BLOCK)
 			set_uni_feature_block(blocknumber, construct_block(SSaccessories.tails_list_lizard.Find(features["tail_lizard"]), length(SSaccessories.tails_list_lizard)))
 		if(DNA_SNOUT_BLOCK)
@@ -425,28 +429,33 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 			set_uni_feature_block(blocknumber, construct_block(SSaccessories.caps_list.Find(features["caps"]), length(SSaccessories.caps_list)))
 		if(DNA_POD_HAIR_BLOCK)
 			set_uni_feature_block(blocknumber, construct_block(SSaccessories.pod_hair_list.Find(features["pod_hair"]), length(SSaccessories.pod_hair_list)))
+		if(DNA_FISH_TAIL_BLOCK)
+			set_uni_feature_block(blocknumber, construct_block(SSaccessories.tails_list_fish.Find(features["fish_tail"]), length(SSaccessories.tails_list_fish)))
 */
 //SKYRAT EDIT REMOVAL END
 
 //Please use add_mutation or activate_mutation instead
 /datum/dna/proc/force_give(datum/mutation/human/human_mutation)
-	if(holder && human_mutation)
-		if(human_mutation.class == MUT_NORMAL)
-			set_se(1, human_mutation)
-		. = human_mutation.on_acquiring(holder)
-		if(.)
-			qdel(human_mutation)
-		update_instability()
+	if(!holder || !human_mutation)
+		return
+	if(human_mutation.class == MUT_NORMAL)
+		set_se(1, human_mutation)
+	. = human_mutation.on_acquiring(holder)
+	if(!.)
+		qdel(human_mutation)
+		return
+	human_mutation.setup()
+	update_instability()
 
 //Use remove_mutation instead
 /datum/dna/proc/force_lose(datum/mutation/human/human_mutation)
-	if(holder && (human_mutation in mutations))
-		set_se(0, human_mutation)
-		. = human_mutation.on_losing(holder)
-		if(!(human_mutation in mutations))
-			qdel(human_mutation) // qdel mutations on removal
-			update_instability(FALSE)
+	if(!holder || !(human_mutation in mutations))
 		return
+	set_se(0, human_mutation)
+	. = human_mutation.on_losing(holder)
+	if(!(human_mutation in mutations))
+		qdel(human_mutation) // qdel mutations on removal
+		update_instability(FALSE)
 
 /**
  * Checks if two DNAs are practically the same by comparing their most defining features
@@ -461,7 +470,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		&& real_name == target_dna.real_name \
 		&& species.type == target_dna.species.type \
 		&& compare_list(features, target_dna.features) \
-		&& blood_type == target_dna.blood_type \
+		&& blood_type.type == target_dna.blood_type.type \
 	)
 		return TRUE
 
@@ -506,7 +515,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
  * * create_mutation_blocks - If true, generate_dna_blocks is called, which is used to set up mutation blocks (what a mob can naturally mutate).
  * * randomize_features - If true, all entries in the features list will be randomized.
  */
-/datum/dna/proc/initialize_dna(newblood_type, create_mutation_blocks = TRUE, randomize_features = TRUE)
+/datum/dna/proc/initialize_dna(newblood_type = random_human_blood_type(), create_mutation_blocks = TRUE, randomize_features = TRUE)
 	if(newblood_type)
 		blood_type = newblood_type
 	if(create_mutation_blocks) //I hate this
@@ -612,8 +621,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 
 	dna.update_body_size()
 	// SKYRAT EDIT ADDITION END
-
-	dna.species.on_species_gain(src, old_species, pref_load)
+	dna.species.on_species_gain(src, old_species, pref_load, regenerate_icons = icon_update)
 	log_mob_tag("TAG: [tag] SPECIES: [key_name(src)] \[[mrace]\]")
 
 /mob/living/carbon/human/set_species(datum/species/mrace, icon_update = TRUE, pref_load = FALSE, list/override_features, list/override_mutantparts, list/override_markings) // SKYRAT EDIT CHANGE - ORIGINAL: /mob/living/carbon/human/set_species(datum/species/mrace, icon_update = TRUE, pref_load = FALSE)
@@ -656,7 +664,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		dna.generate_unique_enzymes()
 
 	if(newblood_type)
-		dna.blood_type = newblood_type
+		set_blood_type(newblood_type)
 
 	if(unique_identity)
 		dna.unique_identity = unique_identity
@@ -710,8 +718,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	..()
 	var/structure = dna.unique_identity
 	skin_tone = GLOB.skin_tones[deconstruct_block(get_uni_identity_block(structure, DNA_SKIN_TONE_BLOCK), GLOB.skin_tones.len)]
-	eye_color_left = sanitize_hexcolor(get_uni_identity_block(structure, DNA_EYE_COLOR_LEFT_BLOCK))
-	eye_color_right = sanitize_hexcolor(get_uni_identity_block(structure, DNA_EYE_COLOR_RIGHT_BLOCK))
+	set_eye_color(sanitize_hexcolor(get_uni_identity_block(structure, DNA_EYE_COLOR_LEFT_BLOCK)), sanitize_hexcolor(get_uni_identity_block(structure, DNA_EYE_COLOR_RIGHT_BLOCK)))
 	set_haircolor(sanitize_hexcolor(get_uni_identity_block(structure, DNA_HAIR_COLOR_BLOCK)), update = FALSE)
 	set_facial_haircolor(sanitize_hexcolor(get_uni_identity_block(structure, DNA_FACIAL_HAIR_COLOR_BLOCK)), update = FALSE)
 	set_hair_gradient_color(sanitize_hexcolor(get_uni_identity_block(structure, DNA_HAIR_COLOR_GRADIENT_BLOCK)), update = FALSE)
@@ -746,7 +753,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	if(dna.features["spines"])
 		dna.features["spines"] = SSaccessories.spines_list[deconstruct_block(get_uni_feature_block(features, DNA_SPINES_BLOCK), length(SSaccessories.spines_list))]
 	if(dna.features["tail_cat"])
-		dna.features["tail_cat"] = SSaccessories.tails_list_human[deconstruct_block(get_uni_feature_block(features, DNA_TAIL_BLOCK), length(SSaccessories.tails_list_human))]
+		dna.features["tail_cat"] = SSaccessories.tails_list_felinid[deconstruct_block(get_uni_feature_block(features, DNA_TAIL_BLOCK), length(SSaccessories.tails_list_felinid))]
 	if(dna.features["tail_lizard"])
 		dna.features["tail_lizard"] = SSaccessories.tails_list_lizard[deconstruct_block(get_uni_feature_block(features, DNA_LIZARD_TAIL_BLOCK), length(SSaccessories.tails_list_lizard))]
 	if(dna.features["ears"])
@@ -979,7 +986,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 
 /mob/living/carbon/human/proc/something_horrible_mindmelt()
 	if(!is_blind())
-		var/obj/item/organ/internal/eyes/eyes = locate(/obj/item/organ/internal/eyes) in organs
+		var/obj/item/organ/eyes/eyes = locate(/obj/item/organ/eyes) in organs
 		if(!eyes)
 			return
 		eyes.Remove(src)

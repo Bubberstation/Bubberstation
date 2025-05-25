@@ -1,7 +1,5 @@
 import { sortBy } from 'common/collections';
 import { useState } from 'react';
-
-import { useBackend, useLocalState } from '../backend';
 import {
   BlockQuote,
   Button,
@@ -12,7 +10,9 @@ import {
   Section,
   Stack,
   Tabs,
-} from '../components';
+} from 'tgui-core/components';
+
+import { useBackend, useLocalState } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
@@ -146,6 +146,7 @@ const CitationManager = (props) => {
   const { crew_ref } = foundRecord;
 
   const [paying, setPaying] = useState(5);
+  const [payingIsValid, setPayingIsValid] = useState(true);
 
   return (
     <Collapsible
@@ -176,11 +177,12 @@ const CitationManager = (props) => {
             <RestrictedInput
               maxValue={fine}
               minValue={5}
-              onChange={(event, value) => setPaying(value)}
+              onChange={setPaying}
               value={paying}
+              onValidationChange={setPayingIsValid}
             />
             <Button.Confirm
-              content="Pay"
+              disabled={!payingIsValid}
               onClick={() =>
                 act('pay', {
                   amount: paying,
@@ -188,7 +190,9 @@ const CitationManager = (props) => {
                   fine_ref: fine_ref,
                 })
               }
-            />
+            >
+              Pay
+            </Button.Confirm>
           </LabeledList.Item>
         )}
       </LabeledList>

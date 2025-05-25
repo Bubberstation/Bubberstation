@@ -1,4 +1,4 @@
-/obj/item/organ/external/synth_screen
+/obj/item/organ/synth_screen
 	name = "synth screen"
 	desc = "Surely that's just a bunch of LEDs and not a retro-projected screen, right? Right...?"
 	icon_state = "tonguerobot"
@@ -8,6 +8,7 @@
 
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_EXTERNAL_SYNTH_SCREEN
+	organ_flags = ORGAN_EXTERNAL
 
 	preference = "feature_ipc_screen"
 

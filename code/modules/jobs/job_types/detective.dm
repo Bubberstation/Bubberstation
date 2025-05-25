@@ -54,7 +54,7 @@
 
 	id_trim = /datum/id_trim/job/detective
 	uniform = /obj/item/clothing/under/rank/security/detective
-	suit = /obj/item/clothing/suit/jacket/det_suit
+	suit = /obj/item/clothing/suit/toggle/jacket/det_trench
 	backpack_contents = list(
 		/obj/item/detective_scanner = 1,
 		/obj/item/melee/baton = 1,
@@ -79,17 +79,17 @@
 
 	skillchips = list(/obj/item/skillchip/job/detectives_taste)
 
-/datum/outfit/job/detective/pre_equip(mob/living/carbon/human/human, visualsOnly = FALSE)
+/datum/outfit/job/detective/pre_equip(mob/living/carbon/human/human, visuals_only = FALSE)
 	. = ..()
 	if (human.age < AGE_MINOR)
 		mask = /obj/item/cigarette/candy
 		head = /obj/item/clothing/head/fedora/det_hat/minor
 
-/datum/outfit/job/detective/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/detective/post_equip(mob/living/carbon/human/H, visuals_only = FALSE)
 	..()
 	var/obj/item/cigarette/cig = H.wear_mask
 	if(istype(cig)) //Some species specfic changes can mess this up (plasmamen)
 		cig.light("")
 
-	if(visualsOnly)
+	if(visuals_only)
 		return

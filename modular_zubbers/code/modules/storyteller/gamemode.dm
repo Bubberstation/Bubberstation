@@ -184,6 +184,13 @@ SUBSYSTEM_DEF(gamemode)
 	if(!resumed)
 		src.currentrun = running.Copy()
 
+	if(EMERGENCY_AT_LEAST_DOCKED)
+		//Don't run any events if the shuttle is docked with the station (or in transit towards central command.
+		return
+	if( (SSshuttle.emergency_no_recall && !SSshuttle.admin_emergency_no_recall) && EMERGENCY_IDLE_OR_RECALLED)
+		//Don't run any events if the shuttle is in transit in a non-admin no-recall state.
+		return
+
 	///Handle scheduled events
 	for(var/datum/scheduled_event/sch_event in scheduled_events)
 		if(world.time >= sch_event.start_time)
@@ -191,7 +198,7 @@ SUBSYSTEM_DEF(gamemode)
 		else if(!sch_event.alerted_admins && world.time >= sch_event.start_time - 1 MINUTES)
 			///Alert admins 1 minute before running and allow them to cancel or refund the event, once again.
 			sch_event.alerted_admins = TRUE
-			message_admins("Scheduled Event: [sch_event.event] will run in [(sch_event.start_time - world.time) / 10] seconds. (<a href='?src=[REF(sch_event)];action=cancel'>CANCEL</a>) (<a href='?src=[REF(sch_event)];action=refund'>REFUND</a>)")
+			message_admins("Scheduled Event: [sch_event.event] will run in [(sch_event.start_time - world.time) / 10] seconds. (<a href='byond://?src=[REF(sch_event)];action=cancel'>CANCEL</a>) (<a href='byond://?src=[REF(sch_event)];action=refund'>REFUND</a>)")
 
 	if(!storyteller_halted && next_storyteller_process <= world.time && storyteller)
 		// We update crew information here to adjust population scalling and event thresholds for the storyteller.
@@ -244,6 +251,7 @@ SUBSYSTEM_DEF(gamemode)
 	inherit_required_time = TRUE,
 	no_antags = TRUE,
 	list/restricted_roles,
+	list/restricted_species,
 	)
 
 
@@ -272,10 +280,13 @@ SUBSYSTEM_DEF(gamemode)
 			continue
 		if(restricted_roles && (candidate.mind.assigned_role.title in restricted_roles))
 			continue
+		var/mob/living/carbon/carbon = candidate
+		if(istype(carbon)) // species restrictions
+			if(restricted_species && (carbon.dna.species.id in restricted_species))
+				continue
 		if(special_role_flag)
 			if(!(candidate.client.prefs) || !(special_role_flag in candidate.client.prefs.be_special))
 				continue
-
 			var/time_to_check
 			if(required_time)
 				time_to_check = required_time
@@ -369,6 +380,7 @@ SUBSYSTEM_DEF(gamemode)
 	if(storyteller_halted)
 		message_admins("WARNING: Didn't roll roundstart events (including antagonists) due to the storyteller being halted.")
 		return
+	log_dynamic("Initializing storyteller [storyteller.name] with the following multipliers! [english_list_assoc(storyteller.tag_multipliers)]")
 	while(TRUE)
 		if(!storyteller.handle_tracks())
 			break
@@ -388,9 +400,9 @@ SUBSYSTEM_DEF(gamemode)
 	var/datum/scheduled_event/scheduled = new (passed_event, world.time + passed_time, passed_cost, passed_ignore, passed_announce)
 	var/round_started = SSticker.HasRoundStarted()
 	if(round_started)
-		message_admins("Event: [passed_event] has been scheduled to run in [passed_time / 10] seconds. (<a href='?src=[REF(scheduled)];action=cancel'>CANCEL</a>) (<a href='?src=[REF(scheduled)];action=refund'>REFUND</a>)")
+		message_admins("Event: [passed_event] has been scheduled to run in [passed_time / 10] seconds. (<a href='byond://?src=[REF(scheduled)];action=cancel'>CANCEL</a>) (<a href='byond://?src=[REF(scheduled)];action=refund'>REFUND</a>)")
 	else //Only roundstart events can be scheduled before round start
-		message_admins("Event: [passed_event] has been scheduled to run on roundstart. (<a href='?src=[REF(scheduled)];action=cancel'>CANCEL</a>)")
+		message_admins("Event: [passed_event] has been scheduled to run on roundstart. (<a href='byond://?src=[REF(scheduled)];action=cancel'>CANCEL</a>)")
 	scheduled_events += scheduled
 
 /datum/controller/subsystem/gamemode/proc/update_crew_infos()
@@ -678,6 +690,7 @@ SUBSYSTEM_DEF(gamemode)
 /datum/controller/subsystem/gamemode/proc/storyteller_vote_choices()
 	var/client_amount = GLOB.clients.len
 	var/list/choices = list()
+	var/list/vote_message = list()
 	for(var/storyteller_type in storytellers)
 		var/datum/storyteller/storyboy = storytellers[storyteller_type]
 		/// Prevent repeating storytellers
@@ -689,8 +702,11 @@ SUBSYSTEM_DEF(gamemode)
 			continue
 		choices += storyboy.name
 		///Because the vote subsystem is dumb and does not support any descriptions, we dump them into world.
-		to_chat(world, span_notice("<b>[storyboy.name]</b>"))
-		to_chat(world, span_notice("[storyboy.desc]"))
+		vote_message += "<b>[storyboy.name]</b>"
+		vote_message += "[storyboy.desc]"
+		vote_message += ""
+	var/finalized_message = "[vote_message.Join("\n")]"
+	to_chat(world, custom_boxed_message("purple_box", vote_font("[span_bold("Storyteller Vote")]\n<hr>[finalized_message]")))
 	return choices
 
 /datum/controller/subsystem/gamemode/proc/storyteller_vote_result(winner_name)
@@ -790,3 +806,5 @@ SUBSYSTEM_DEF(gamemode)
 	for(var/datum/round_event_control/event as anything in track_events)
 		if(event.type == text2path(type))
 			return event
+
+#undef INIT_ORDER_GAMEMODE

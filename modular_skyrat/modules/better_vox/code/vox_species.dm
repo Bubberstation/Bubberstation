@@ -12,12 +12,12 @@
 		TRAIT_MUTANT_COLORS,
 	)
 	inherent_biotypes = MOB_ORGANIC | MOB_HUMANOID
-	mutantlungs = /obj/item/organ/internal/lungs/nitrogen/vox
-	mutantbrain = /obj/item/organ/internal/brain/cybernetic/cortical/vox //BUBBER EDIT - new brain dropped
+	mutantlungs = /obj/item/organ/lungs/nitrogen/vox
+	mutantbrain = /obj/item/organ/brain/cybernetic/cortical/vox //BUBBER EDIT - new brain dropped
 	breathid = "n2"
 	mutant_bodyparts = list()
 	meat = /obj/item/food/meat/slab/chicken/human //item file in teshari module
-	mutanttongue = /obj/item/organ/internal/tongue/vox
+	mutanttongue = /obj/item/organ/tongue/vox
 	payday_modifier = 1.0
 	outfit_important_for_life = /datum/outfit/vox
 	species_language_holder = /datum/language_holder/vox
@@ -105,11 +105,11 @@
 		While these Vox are often pushed by other Primalis to 'hurry up already,' it is the wide consensus of Vox that 'A lone leader is worse than a larva, for while even a larva has a future, all the leader has is a disgraced past.'"
 	)
 
-/datum/species/vox_primalis/on_species_gain(mob/living/carbon/human/transformer)
+/datum/species/vox_primalis/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons = TRUE)
 	. = ..()
-	var/vox_color = transformer.dna.features["vox_bodycolor"]
+	var/vox_color = human_who_gained_species.dna.features["vox_bodycolor"]
 	if(!vox_color || vox_color == "default")
 		return
-	for(var/obj/item/bodypart/limb as anything in transformer.bodyparts)
+	for(var/obj/item/bodypart/limb as anything in human_who_gained_species.bodyparts)
 		limb.limb_id = "[SPECIES_VOX_PRIMALIS]_[vox_color]"
-	transformer.update_body()
+	human_who_gained_species.update_body()

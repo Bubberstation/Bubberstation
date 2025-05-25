@@ -45,9 +45,9 @@
 	atmos_contents = dummy_list
 
 /datum/spatial_grid_cell/Destroy(force)
-	if(force)//the response to someone trying to qdel this is a right proper fuck you
+	if(!force)//the response to someone trying to qdel this is a right proper fuck you
 		stack_trace("dont try to destroy spatial grid cells without a good reason. if you need to do it use force")
-		return
+		return QDEL_HINT_LETMELIVE
 
 	. = ..()
 
@@ -79,7 +79,9 @@
  */
 SUBSYSTEM_DEF(spatial_grid)
 	can_fire = FALSE
-	init_order = INIT_ORDER_SPATIAL_GRID
+	dependencies = list(
+		/datum/controller/subsystem/mapping,
+	)
 	name = "Spatial Grid"
 
 	///list of the spatial_grid_cell datums per z level, arranged in the order of y index then x index

@@ -35,7 +35,7 @@ export async function processAutoChangelog({ github, context }) {
 	github.rest.repos.createOrUpdateFileContents({
 		owner: context.repo.owner,
 		repo: context.repo.repo,
-		path: `html/changelogs/AutoChangeLog-pr-${context.payload.pull_request.number}.yml`,
+		path: `html/changelogs/AutoChangeLog-bubber-pr-${context.payload.pull_request.number}.yml`, // BUBBER EDIT CHANGE: Changelog 2: Original: path: `html/changelogs/AutoChangeLog-pr-${context.payload.pull_request.number}.yml`,
 		message: `Automatic changelog for PR #${context.payload.pull_request.number} [ci skip]`,
 		content: Buffer.from(yml).toString("base64"),
 	});

@@ -7,7 +7,6 @@
 #define NO_INIT_PARAMETER "no-init"
 
 GLOBAL_VAR(restart_counter)
-GLOBAL_VAR(tracy_log)
 
 /**
  * WORLD INITIALIZATION
@@ -66,15 +65,24 @@ GLOBAL_VAR(tracy_log)
 /world/proc/Genesis(tracy_initialized = FALSE)
 	RETURN_TYPE(/datum/controller/master)
 
-#ifdef USE_BYOND_TRACY
-#warn USE_BYOND_TRACY is enabled
 	if(!tracy_initialized)
+		Tracy = new
+#ifdef USE_BYOND_TRACY
+		if(Tracy.enable("USE_BYOND_TRACY defined"))
+			Genesis(tracy_initialized = TRUE)
+			return
 #else
-	if(!tracy_initialized && (USE_TRACY_PARAMETER in params))
+		var/tracy_enable_reason
+		if(USE_TRACY_PARAMETER in params)
+			tracy_enable_reason = "world.params"
+		if(fexists(TRACY_ENABLE_PATH))
+			tracy_enable_reason ||= "enabled for round"
+			SEND_TEXT(world.log, "[TRACY_ENABLE_PATH] exists, initializing byond-tracy!")
+			fdel(TRACY_ENABLE_PATH)
+		if(!isnull(tracy_enable_reason) && Tracy.enable(tracy_enable_reason))
+			Genesis(tracy_initialized = TRUE)
+			return
 #endif
-		GLOB.tracy_log = init_byond_tracy()
-		Genesis(tracy_initialized = TRUE)
-		return
 
 	Profile(PROFILE_RESTART)
 	Profile(PROFILE_RESTART, type = "sendmaps")
@@ -83,7 +91,7 @@ GLOBAL_VAR(tracy_log)
 	_initialize_log_files("data/logs/config_error.[GUID()].log")
 
 	// Init the debugger first so we can debug Master
-	init_debugger()
+	Debugger = new
 
 	// Create the logger
 	logger = new
@@ -155,7 +163,7 @@ GLOBAL_VAR(tracy_log)
 
 	SetupLogs()
 
-	load_admins()
+	load_admins(initial = TRUE)
 
 	load_poll_data()
 
@@ -201,10 +209,10 @@ GLOBAL_VAR(tracy_log)
 	var/override_dir = params[OVERRIDE_LOG_DIRECTORY_PARAMETER]
 	if(!override_dir)
 		var/realtime = world.realtime
-		var/texttime = time2text(realtime, "YYYY/MM/DD")
+		var/texttime = time2text(realtime, "YYYY/MM/DD", TIMEZONE_UTC)
 		GLOB.log_directory = "data/logs/[texttime]/round-"
 		GLOB.public_log_directory = "data/public/logs/[texttime]/round-" // BUBBER EDIT ADDITION
-		GLOB.picture_logging_prefix = "L_[time2text(realtime, "YYYYMMDD")]_"
+		GLOB.picture_logging_prefix = "L_[time2text(realtime, "YYYYMMDD", TIMEZONE_UTC)]_"
 		GLOB.picture_log_directory = "data/picture_logs/[texttime]/round-"
 		if(GLOB.round_id)
 			GLOB.log_directory += "[GLOB.round_id]"
@@ -225,13 +233,12 @@ GLOBAL_VAR(tracy_log)
 	GLOB.master_public_log_file = "[GLOB.public_log_directory]/round_log.txt" // BUBBER EDIT ADDITON
 	logger.init_logging()
 
-	if(GLOB.tracy_log)
-		rustg_file_write("[GLOB.tracy_log]", "[GLOB.log_directory]/tracy.loc")
+	if(Tracy.trace_path)
+		rustg_file_write("[Tracy.trace_path]", "[GLOB.log_directory]/tracy.loc")
 
 	if(!fexists(GLOB.master_public_log_file)) // BUBBER EDIT ADDITION
 		rustg_file_write("Starting up round ID [GLOB.round_id].\n --------------------------\n", GLOB.master_public_log_file) // BUBBER EDIT ADDITION
-
-	var/latest_changelog = file("[global.config.directory]/../html/changelogs/archive/" + time2text(world.timeofday, "YYYY-MM") + ".yml")
+	var/latest_changelog = file("[global.config.directory]/../html/changelogs/archive/" + time2text(world.timeofday, "YYYY-MM", TIMEZONE_UTC) + ".yml")
 	GLOB.changelog_hash = fexists(latest_changelog) ? md5(latest_changelog) : 0 //for telling if the changelog has changed recently
 
 	if(GLOB.round_id)
@@ -305,6 +312,26 @@ GLOBAL_VAR(tracy_log)
 	sleep(0) //yes, 0, this'll let Reboot finish and prevent byond memes
 	qdel(src) //shut it down
 
+/// Returns TRUE if the world should do a TGS hard reboot.
+/world/proc/check_hard_reboot()
+	if(!TgsAvailable())
+		return FALSE
+	// byond-tracy can't clean up itself, and thus we should always hard reboot if its enabled, to avoid an infinitely growing trace.
+	if(Tracy?.enabled)
+		return TRUE
+	var/ruhr = CONFIG_GET(number/rounds_until_hard_restart)
+	switch(ruhr)
+		if(-1)
+			return FALSE
+		if(0)
+			return TRUE
+		else
+			if(GLOB.restart_counter >= ruhr)
+				return TRUE
+			else
+				text2file("[++GLOB.restart_counter]", RESTART_COUNTER_PATH)
+				return FALSE
+
 /world/Reboot(reason = 0, fast_track = FALSE)
 	if (reason || fast_track) //special reboot, do none of the normal stuff
 		if (usr)
@@ -319,46 +346,28 @@ GLOBAL_VAR(tracy_log)
 	FinishTestRun()
 	return
 	#else
-	if(TgsAvailable())
-		var/do_hard_reboot
-		// check the hard reboot counter
-		var/ruhr = CONFIG_GET(number/rounds_until_hard_restart)
-		switch(ruhr)
-			if(-1)
-				do_hard_reboot = FALSE
-			if(0)
-				do_hard_reboot = TRUE
-			else
-				if(GLOB.restart_counter >= ruhr)
-					do_hard_reboot = TRUE
-				else
-					text2file("[++GLOB.restart_counter]", RESTART_COUNTER_PATH)
-					do_hard_reboot = FALSE
-
-		if(do_hard_reboot)
-			log_world("World hard rebooted at [time_stamp()]")
-			shutdown_logging() // See comment below.
-			auxcleanup()
-			TgsEndProcess()
-			return ..()
+	if(check_hard_reboot())
+		log_world("World hard rebooted at [time_stamp()]")
+		shutdown_logging() // See comment below.
+		QDEL_NULL(Tracy)
+		QDEL_NULL(Debugger)
+		TgsEndProcess()
+		return ..()
 
 	log_world("World rebooted at [time_stamp()]")
 
 	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
-	auxcleanup()
+	QDEL_NULL(Tracy)
+	QDEL_NULL(Debugger)
 
 	TgsReboot() // TGS can decide to kill us right here, so it's important to do it last
 
 	..()
 	#endif
 
-/world/proc/auxcleanup()
-	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
-	if (debug_server)
-		call_ext(debug_server, "auxtools_shutdown")()
-
 /world/Del()
-	auxcleanup()
+	QDEL_NULL(Tracy)
+	QDEL_NULL(Debugger)
 	. = ..()
 
 /* SKYRAT EDIT REMOVAL - OVERRIDEN
@@ -402,7 +411,7 @@ GLOBAL_VAR(tracy_log)
 		else if(SSticker.current_state == GAME_STATE_SETTING_UP)
 			new_status += "<br>Starting: <b>Now</b>"
 		else if(SSticker.IsRoundInProgress())
-			new_status += "<br>Time: <b>[time2text(STATION_TIME_PASSED(), "hh:mm", 0)]</b>"
+			new_status += "<br>Time: <b>[time2text(STATION_TIME_PASSED(), "hh:mm", NO_TIMEZONE)]</b>"
 			if(SSshuttle?.emergency && SSshuttle?.emergency?.mode != (SHUTTLE_IDLE || SHUTTLE_ENDGAME))
 				new_status += " | Shuttle: <b>[SSshuttle.emergency.getModeStr()] [SSshuttle.emergency.getTimerStr()]</b>"
 		else if(SSticker.current_state == GAME_STATE_FINISHED)
@@ -440,8 +449,9 @@ GLOBAL_VAR(tracy_log)
 	LISTASSERTLEN(global_area.turfs_by_zlevel, map_load_z_cutoff, list())
 	for (var/zlevel in 1 to map_load_z_cutoff)
 		var/list/to_add = block(
-			locate(old_max + 1, 1, zlevel),
-			locate(maxx, maxy, zlevel))
+			old_max + 1, 1, zlevel,
+			maxx, maxy, zlevel
+		)
 
 		global_area.turfs_by_zlevel[zlevel] += to_add
 
@@ -456,8 +466,9 @@ GLOBAL_VAR(tracy_log)
 	LISTASSERTLEN(global_area.turfs_by_zlevel, map_load_z_cutoff, list())
 	for (var/zlevel in 1 to map_load_z_cutoff)
 		var/list/to_add = block(
-			locate(1, old_maxy + 1, 1),
-			locate(maxx, maxy, map_load_z_cutoff))
+			1, old_maxy + 1, 1,
+			maxx, maxy, map_load_z_cutoff
+		)
 		global_area.turfs_by_zlevel[zlevel] += to_add
 
 /world/proc/incrementMaxZ()
@@ -487,30 +498,9 @@ GLOBAL_VAR(tracy_log)
 
 /world/proc/on_tickrate_change()
 	SStimer?.reset_buckets()
+#ifndef DISABLE_DREAMLUAU
 	DREAMLUAU_SET_EXECUTION_LIMIT_MILLIS(tick_lag * 100)
-
-/world/proc/init_byond_tracy()
-	var/library
-
-	switch (system_type)
-		if (MS_WINDOWS)
-			library = "prof.dll"
-		if (UNIX)
-			library = "libprof.so"
-		else
-			CRASH("Unsupported platform: [system_type]")
-
-	var/init_result = call_ext(library, "init")("block")
-	if(length(init_result) != 0 && init_result[1] == ".") // if first character is ., then it returned the output filename
-		return init_result
-	else if(init_result != "0")
-		CRASH("Error initializing byond-tracy: [init_result]")
-
-/world/proc/init_debugger()
-	var/dll = GetConfig("env", "AUXTOOLS_DEBUG_DLL")
-	if (dll)
-		call_ext(dll, "auxtools_init")()
-		enable_debugging()
+#endif
 
 /world/Profile(command, type, format)
 	if((command & PROFILE_STOP) || !global.config?.loaded || !CONFIG_GET(flag/forbid_all_profiling))

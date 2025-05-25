@@ -800,7 +800,7 @@
 /area/awaymission/cabin)
 "ev" = (
 /obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/cup/rag,
+/obj/item/rag,
 /turf/open/floor/wood,
 /area/awaymission/cabin)
 "ew" = (
@@ -2390,16 +2390,6 @@
 "ms" = (
 /turf/closed/indestructible/rock/snow/ice,
 /area/awaymission/cabin/caves)
-"my" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/gun/ballistic/automatic/surplus{
-	desc = "Uses 10mm ammo and its bulky frame prevents one-hand firing. It has the word CHEKOV engraved on the stock.";
-	name = "chekov's rifle"
-	},
-/turf/open/floor/mineral/plastitanium/red{
-	name = "soviet floor"
-	},
-/area/awaymission/cabin/caves/sovietcave)
 "mI" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/directional/south,
@@ -2549,16 +2539,6 @@
 	name = "soviet floor"
 	},
 /area/awaymission/cabin/caves/sovietcave)
-"nw" = (
-/obj/effect/decal/cleanable/blood,
-/obj/item/reagent_containers/pill/patch/libital,
-/obj/effect/light_emitter{
-	set_cap = 3;
-	set_luminosity = 6;
-	light_color = "#9bbbff"
-	},
-/turf/open/floor/plating/snowed/snow_cabin,
-/area/awaymission/cabin/snowforest/sovietsurface)
 "nB" = (
 /obj/structure/table/wood/poker,
 /obj/item/dice/d6{
@@ -2651,6 +2631,13 @@
 	},
 /turf/closed/wall/ice,
 /area/awaymission/cabin/caves)
+"oB" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/gun/ballistic/rifle/sks/chekhov,
+/turf/open/floor/mineral/plastitanium/red{
+	name = "soviet floor"
+	},
+/area/awaymission/cabin/caves/sovietcave)
 "oH" = (
 /obj/item/clothing/suit/armor/vest/russian_coat{
 	pixel_x = 16;
@@ -2874,6 +2861,16 @@
 	},
 /turf/open/floor/wood/freezing,
 /area/awaymission/cabin/snowforest)
+"qA" = (
+/obj/effect/decal/cleanable/blood,
+/obj/item/reagent_containers/applicator/patch/libital,
+/obj/effect/light_emitter{
+	set_cap = 3;
+	set_luminosity = 6;
+	light_color = "#9bbbff"
+	},
+/turf/open/floor/plating/snowed/snow_cabin,
+/area/awaymission/cabin/snowforest/sovietsurface)
 "qF" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 9
@@ -3860,6 +3857,16 @@
 	},
 /turf/open/misc/asteroid/snow/snow_cabin,
 /area/awaymission/cabin/snowforest)
+"BL" = (
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/item/reagent_containers/applicator/patch/libital,
+/obj/effect/light_emitter{
+	set_cap = 3;
+	set_luminosity = 6;
+	light_color = "#9bbbff"
+	},
+/turf/open/floor/plating/snowed/snow_cabin,
+/area/awaymission/cabin/snowforest/sovietsurface)
 "BR" = (
 /mob/living/basic/skeleton/ice{
 	desc = "A reanimated skeleton covered in thick sheet of natural ice. It is obvious to tell that they look really slow.";
@@ -4262,15 +4269,6 @@
 	},
 /turf/open/floor/plating/snowed/snow_cabin,
 /area/awaymission/cabin/snowforest/sovietsurface)
-"IJ" = (
-/obj/item/reagent_containers/pill/patch/libital,
-/obj/effect/light_emitter{
-	set_cap = 3;
-	set_luminosity = 6;
-	light_color = "#9bbbff"
-	},
-/turf/open/floor/plating/snowed/snow_cabin,
-/area/awaymission/cabin/snowforest/sovietsurface)
 "IR" = (
 /obj/structure/chair,
 /obj/effect/decal/cleanable/blood,
@@ -4513,6 +4511,15 @@
 /obj/structure/sign/warning/no_smoking/directional/east,
 /turf/open/floor/wood/freezing,
 /area/awaymission/cabin/lumbermill)
+"LB" = (
+/obj/item/reagent_containers/applicator/patch/libital,
+/obj/effect/light_emitter{
+	set_cap = 3;
+	set_luminosity = 6;
+	light_color = "#9bbbff"
+	},
+/turf/open/floor/plating/snowed/snow_cabin,
+/area/awaymission/cabin/snowforest/sovietsurface)
 "LE" = (
 /obj/item/nullrod/claymore/multiverse{
 	anchored = 1;
@@ -5555,16 +5562,6 @@
 	},
 /turf/open/floor/plating/snowed/snow_cabin,
 /area/awaymission/cabin/snowforest)
-"ZB" = (
-/obj/effect/decal/cleanable/blood/gibs,
-/obj/item/reagent_containers/pill/patch/libital,
-/obj/effect/light_emitter{
-	set_cap = 3;
-	set_luminosity = 6;
-	light_color = "#9bbbff"
-	},
-/turf/open/floor/plating/snowed/snow_cabin,
-/area/awaymission/cabin/snowforest/sovietsurface)
 "ZH" = (
 /obj/item/lighter/greyscale,
 /obj/effect/light_emitter{
@@ -42288,7 +42285,7 @@ Ae
 Ae
 qn
 Ae
-ZB
+BL
 Ae
 Ae
 Ae
@@ -42796,7 +42793,7 @@ Jz
 Jz
 vH
 IR
-nw
+qA
 QC
 Ae
 Ae
@@ -43058,7 +43055,7 @@ SK
 uF
 Ae
 zT
-IJ
+LB
 QV
 Ie
 SK
@@ -44599,7 +44596,7 @@ Ae
 zT
 Ae
 Ae
-IJ
+LB
 Hk
 Ae
 Ae
@@ -58990,7 +58987,7 @@ ii
 ii
 ii
 mO
-my
+oB
 kF
 im
 im

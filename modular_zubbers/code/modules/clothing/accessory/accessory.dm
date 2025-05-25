@@ -57,20 +57,32 @@
 	)
 // Pride Pin Over-ride
 /obj/item/clothing/accessory/pride
-    icon = 'modular_skyrat/master_files/icons/obj/clothing/accessories.dmi'
-    worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/accessories.dmi'
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/accessories.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/accessories.dmi'
 
-    unique_reskin  = list(
-    "Rainbow Pride" = "pride",
-    "Bisexual Pride" = "pride_bi",
-    "Pansexual Pride" = "pride_pan",
-    "Asexual Pride" = "pride_ace",
-    "Non-binary Pride" = "pride_enby",
-    "Transgender Pride" = "pride_trans",
-    "Intersex Pride" = "pride_intersex",
-    "Lesbian Pride" = "pride_lesbian",
-    "Man-Loving-Man / Gay Pride" = "pride_mlm",
-    "Genderfluid Pride" = "pride_genderfluid",
-    "Genderqueer Pride" = "pride_genderqueer",
-    "Aromantic Pride" = "pride_aromantic",
+	unique_reskin  = list(
+	"Rainbow Pride" = "pride",
+	"Bisexual Pride" = "pride_bi",
+	"Pansexual Pride" = "pride_pan",
+	"Asexual Pride" = "pride_ace",
+	"Non-binary Pride" = "pride_enby",
+	"Transgender Pride" = "pride_trans",
+	"Intersex Pride" = "pride_intersex",
+	"Lesbian Pride" = "pride_lesbian",
+	"Man-Loving-Man / Gay Pride" = "pride_mlm",
+	"Genderfluid Pride" = "pride_genderfluid",
+	"Genderqueer Pride" = "pride_genderqueer",
+	"Aromantic Pride" = "pride_aromantic",
 )
+
+// Dogtags
+/obj/item/clothing/accessory/dogtags
+	name = "Dogtags"
+	desc = "Two small metal tags, connected with a thin piece of chain that hold important health information. And everything needed for a tombstone..."
+	icon = 'modular_zubbers/icons/obj/clothing/accessories.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
+	icon_state = "dogtags"
+	w_class = WEIGHT_CLASS_TINY
+	resistance_flags = FIRE_PROOF // its metal, and funny to leave behind when you dust.
+	attachment_slot = NONE
+	above_suit = TRUE

@@ -6,7 +6,7 @@
 		/datum/reagent/fuel = 20,
 		/obj/item/stack/cable_coil = 15,
 		/obj/item/assembly/timer = 1,
-		/obj/item/pipe/quaternary/pipe = 1,
+		/obj/item/pipe = 1,
 	)
 	time = 6 SECONDS
 	category = CAT_CHEMISTRY
@@ -15,7 +15,7 @@
 	name = "Molotov"
 	result = /obj/item/reagent_containers/cup/glass/bottle/molotov
 	reqs = list(
-		/obj/item/reagent_containers/cup/rag = 1,
+		/obj/item/rag = 1,
 		/obj/item/reagent_containers/cup/glass/bottle = 1,
 	)
 	parts = list(/obj/item/reagent_containers/cup/glass/bottle = 1)
@@ -150,6 +150,8 @@
 	category = CAT_CHEMISTRY
 
 /datum/crafting_recipe/improvised_chem_heater/on_craft_completion(mob/user, atom/result)
+	if(!istype(user))
+		return
 	var/obj/item/stock_parts/power_store/cell/cell = locate(/obj/item/stock_parts/power_store/cell) in range(1)
 	if(!cell)
 		return

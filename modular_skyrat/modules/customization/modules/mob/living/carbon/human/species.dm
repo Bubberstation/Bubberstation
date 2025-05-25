@@ -62,7 +62,7 @@ GLOBAL_LIST_EMPTY(customizable_races)
 /datum/species/mush
 	mutant_bodyparts = list()
 
-/datum/species/vampire
+/datum/species/human/vampire
 	mutant_bodyparts = list()
 
 /datum/species/plasmaman
@@ -130,7 +130,7 @@ GLOBAL_LIST_EMPTY(customizable_races)
 
 	if(noggin && !(HAS_TRAIT(species_human, TRAIT_HUSK)))
 		if(noggin.head_flags & HEAD_EYESPRITES)
-			var/obj/item/organ/internal/eyes/eye_organ = species_human.get_organ_slot(ORGAN_SLOT_EYES)
+			var/obj/item/organ/eyes/eye_organ = species_human.get_organ_slot(ORGAN_SLOT_EYES)
 
 			if(eye_organ)
 				eye_organ.refresh(call_update = FALSE)
@@ -148,7 +148,7 @@ GLOBAL_LIST_EMPTY(customizable_races)
 					icon_state += "_d"
 					female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY // for digi gender shaping
 				if(species_human.dna.species.sexes && species_human.physique == FEMALE && (underwear.gender == MALE))
-					underwear_overlay = wear_female_version(icon_state, underwear.icon, BODY_LAYER, female_sprite_flags)
+					underwear_overlay = mutable_appearance(wear_female_version(icon_state, underwear.icon, female_sprite_flags), layer = -BODY_LAYER)
 				else
 					underwear_overlay = mutable_appearance(underwear.icon, icon_state, -BODY_LAYER)
 				if(!underwear.use_static)
@@ -171,7 +171,7 @@ GLOBAL_LIST_EMPTY(customizable_races)
 			if(undershirt)
 				var/mutable_appearance/undershirt_overlay
 				if(species_human.dna.species.sexes && species_human.physique == FEMALE)
-					undershirt_overlay = wear_female_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
+					undershirt_overlay = mutable_appearance(wear_female_version(undershirt.icon_state, undershirt.icon),layer = -BODY_LAYER)
 				else
 					undershirt_overlay = mutable_appearance(undershirt.icon, undershirt.icon_state, -BODY_LAYER)
 				if(!undershirt.use_static)

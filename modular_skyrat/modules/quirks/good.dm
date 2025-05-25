@@ -13,7 +13,7 @@
 /datum/quirk/linguist
 	name = "Linguist"
 	desc = "You're a student of numerous languages and come with an additional language point."
-	value = 4
+	value = 2
 	mob_trait = TRAIT_LINGUIST
 	gain_text = span_notice("Your brain seems more equipped to handle different modes of conversation.")
 	lose_text = span_danger("Your grasp of the finer points of Draconic idioms fades away.")
@@ -138,7 +138,7 @@
 	lose_text = span_danger("Your appendix has magically.. regrown?")
 	medical_record_text = "Patient had appendicitis in the past and has had their appendix surgically removed."
 	/// The mob's original appendix
-	var/obj/item/organ/internal/appendix/old_appendix
+	var/obj/item/organ/appendix/old_appendix
 
 /datum/quirk/no_appendix/post_add()
 	var/mob/living/carbon/carbon_quirk_holder = quirk_holder
@@ -158,7 +158,7 @@
 	if(isnull(old_appendix))
 		return
 
-	var/obj/item/organ/internal/appendix/current_appendix = carbon_quirk_holder.get_organ_slot(ORGAN_SLOT_APPENDIX)
+	var/obj/item/organ/appendix/current_appendix = carbon_quirk_holder.get_organ_slot(ORGAN_SLOT_APPENDIX)
 
 	// if we have not gained an appendix already, put the old one back
 	if(isnull(current_appendix))

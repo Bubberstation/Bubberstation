@@ -140,55 +140,68 @@
 	color_src = USE_MATRIXED_COLORS
 
 //Synth Taurs (Ported from Virgo)
+//Subtype with no loaf sprite needs to be false
 /datum/sprite_accessory/taur/synthliz
 	name = "Cybernetic Lizard"
 	icon_state = "synthlizard"
 	taur_mode = STYLE_TAUR_PAW
 	recommended_species = list()
 	genetic = FALSE
-	organ_type = /obj/item/organ/external/taur_body/horselike/synth
+	organ_type = /obj/item/organ/taur_body/horselike/synth
+	can_lay_down = TRUE
+	laydown_offset = -3
 
 /datum/sprite_accessory/taur/synthliz/inv
 	name = "Cybernetic Lizard (Inverted)"
 	icon_state = "synthlizardinv"
+	can_lay_down = FALSE
 
 /datum/sprite_accessory/taur/synthliz/feline
 	name = "Cybernetic Feline"
 	icon_state = "synthfeline"
+	can_lay_down = TRUE
+	laydown_offset = -3
 
 /datum/sprite_accessory/taur/synthliz/feline/inv
 	name = "Cybernetic Feline (Inverted)"
 	icon_state = "synthfelineinv"
+	can_lay_down = FALSE
 
 /datum/sprite_accessory/taur/synthliz/horse
 	name = "Cybernetic Horse"
 	icon_state = "synthhorse"
 	taur_mode = STYLE_TAUR_HOOF
 	alt_taur_mode = STYLE_TAUR_PAW
+	can_lay_down = TRUE
+	laydown_offset = -3
 
 /datum/sprite_accessory/taur/synthliz/horse/inv
 	name = "Cybernetic Horse (Inverted)"
 	icon_state = "synthhorseinv"
+	can_lay_down = FALSE
 
 /datum/sprite_accessory/taur/synthliz/wolf
 	name = "Cybernetic Wolf"
 	icon_state = "synthwolf"
+	can_lay_down = FALSE
 
 /datum/sprite_accessory/taur/synthliz/wolf/inv
 	name = "Cybernetic Wolf (Inverted)"
 	icon_state = "synthwolfinv"
+	can_lay_down = TRUE
+	laydown_offset = -3
 
 /datum/sprite_accessory/taur/synthliz/synthnaga
 	name = "Cybernetic Naga"
 	icon_state = "synthnaga"
 	taur_mode = STYLE_TAUR_SNAKE
-	organ_type = /obj/item/organ/external/taur_body/serpentine/synth
+	organ_type = /obj/item/organ/taur_body/serpentine/synth
 
 /datum/sprite_accessory/taur/synthliz/biglegs
 	name = "Synthetic Big Legs"
 	icon_state = "biglegs"
 	taur_mode = STYLE_TAUR_PAW
-	organ_type = /obj/item/organ/external/taur_body/anthro/synth
+	organ_type = /obj/item/organ/taur_body/anthro/synth
 
 /datum/sprite_accessory/taur/synthliz/biglegs/stanced
 	name = "Synthetic Big Legs, Stanced"

@@ -11,8 +11,9 @@
 	antimagic_flags = MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_PHASED|AB_CHECK_OPEN_TURF
 
-	invocation = "GIN'YU CAPAN"
+	invocation = "GIN'YU CAPAN."
 	invocation_type = INVOCATION_WHISPER
+	antimagic_flags = MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND
 
 	active_msg = "You prepare to swap minds with a target..."
 	deactive_msg = "You dispel mind swap."
@@ -128,7 +129,7 @@
 
 	// Just in case the swappee's key wasn't grabbed by transfer_to...
 	if(to_swap_key)
-		caster.key = to_swap_key
+		caster.PossessByPlayer(to_swap_key)
 
 	// MIND TRANSFER END
 

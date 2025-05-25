@@ -10,7 +10,7 @@
 	)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	mutant_bodyparts = list()
-	mutanttongue = /obj/item/organ/internal/tongue/aquatic
+	mutanttongue = /obj/item/organ/tongue/aquatic
 	payday_modifier = 1.0
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	examine_limb_id = SPECIES_AKULA
@@ -35,7 +35,7 @@
 		"wings" = list("None", FALSE),
 	)
 
-/obj/item/organ/internal/tongue/aquatic
+/obj/item/organ/tongue/aquatic
 	liked_foodtypes = SEAFOOD | MEAT | FRUIT | GORE
 	disliked_foodtypes = CLOTH | GROSS
 	toxic_foodtypes = TOXIC

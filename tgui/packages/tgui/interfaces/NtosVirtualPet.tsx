@@ -1,8 +1,4 @@
-import { BooleanLike } from 'common/react';
-import { capitalize } from 'common/string';
 import { useState } from 'react';
-
-import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -15,7 +11,11 @@ import {
   Section,
   Stack,
   Tabs,
-} from '../components';
+} from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
+import { capitalize } from 'tgui-core/string';
+
+import { useBackend } from '../backend';
 import { NtosWindow } from '../layouts';
 
 type Data = {
@@ -256,11 +256,10 @@ const PetTricks = (props) => {
       title={capitalize(TrickName)}
       buttons={
         <Button.Input
+          buttonText="Rename Trick"
           color="transparent"
-          onCommit={(_, value) => setTrickName(value)}
-        >
-          Rename Trick
-        </Button.Input>
+          onCommit={setTrickName}
+        />
       }
     >
       <LabeledList>
@@ -347,7 +346,7 @@ const Customization = (props) => {
               fluid
               maxLength={30}
               value={selectedName}
-              onInput={(_, value) => setSelectedName(value)}
+              onChange={setSelectedName}
             />
           </Section>
         </Stack.Item>

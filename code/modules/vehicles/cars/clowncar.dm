@@ -24,6 +24,9 @@
 	var/cannonmode = CLOWN_CANNON_INACTIVE
 	///Does the driver require the clown role to drive it
 	var/enforce_clown_role = TRUE
+	forced_enter_sound = SFX_CLOWN_CAR_LOAD
+	enter_sound = 'sound/vehicles/clown_car/door_close.ogg'
+	exit_sound = 'sound/vehicles/clown_car/door_open.ogg'
 
 /datum/armor/car_clowncar
 	melee = 70
@@ -54,16 +57,13 @@
 		if(is_clown_job(H.mind?.assigned_role) || !enforce_clown_role) //Ensures only clowns can drive the car. (Including more at once)
 			add_control_flags(H, VEHICLE_CONTROL_DRIVE)
 			RegisterSignal(H, COMSIG_MOB_CLICKON, PROC_REF(fire_cannon_at))
+			playsound(src, 'sound/vehicles/clown_car/door_close.ogg', 70, TRUE)
 			M.log_message("has entered [src] as a possible driver", LOG_GAME)
 			return
 	add_control_flags(M, VEHICLE_CONTROL_KIDNAPPED)
 
 /obj/vehicle/sealed/car/clowncar/mob_forced_enter(mob/M, silent = FALSE)
 	. = ..()
-	playsound(src, pick(
-		'sound/vehicles/clowncar_load1.ogg',
-		'sound/vehicles/clowncar_load2.ogg',
-		), 75)
 	if(iscarbon(M))
 		var/mob/living/carbon/forced_mob = M
 		if(forced_mob.has_reagent(/datum/reagent/consumable/ethanol/irishcarbomb))
@@ -103,14 +103,14 @@
 		foam.set_up(4, holder = src, location = loc, carry = foamreagent)
 		foam.start()
 
-/obj/vehicle/sealed/car/clowncar/attacked_by(obj/item/I, mob/living/user)
-	. = ..()
-	if(!istype(I, /obj/item/food/grown/banana))
+/obj/vehicle/sealed/car/clowncar/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(!istype(tool, /obj/item/food/grown/banana))
 		return
-	var/obj/item/food/grown/banana/banana = I
-	atom_integrity += min(banana.seed.potency, max_integrity-atom_integrity)
-	to_chat(user, span_danger("You use the [banana] to repair [src]!"))
+	var/obj/item/food/grown/banana/banana = tool
+	repair_damage(banana.seed.potency)
+	to_chat(user, span_danger("You use [banana] to repair [src]!"))
 	qdel(banana)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/vehicle/sealed/car/clowncar/Bump(atom/bumped)
 	. = ..()
@@ -134,7 +134,10 @@
 					carbon_occupant.set_eye_blur_if_lower(rand(10 SECONDS, 20 SECONDS))
 
 			hittarget_living.adjustBruteLoss(200)
-			new /obj/effect/decal/cleanable/blood/splatter(get_turf(hittarget_living))
+			var/obj/effect/decal/cleanable/blood/splatter/blood_splatter = new /obj/effect/decal/cleanable/blood/splatter(get_turf(hittarget_living))
+			if(iscarbon(hittarget_living))
+				var/mob/living/carbon/carbon_target = hittarget_living
+				blood_splatter.add_mob_blood(carbon_target)
 
 			log_combat(src, hittarget_living, "rammed into", null, "injuring all passengers and killing the [hittarget_living]")
 			dump_mobs(TRUE)
@@ -147,9 +150,9 @@
 		hittarget_living.visible_message(span_warning("[src] rams into [hittarget_living] and sucks [hittarget_living.p_them()] up!")) //fuck off shezza this isn't ERP.
 		mob_forced_enter(hittarget_living)
 		playsound(src, pick(
-			'sound/vehicles/clowncar_ram1.ogg',
-			'sound/vehicles/clowncar_ram2.ogg',
-			'sound/vehicles/clowncar_ram3.ogg',
+			'sound/vehicles/clown_car/clowncar_ram1.ogg',
+			'sound/vehicles/clown_car/clowncar_ram2.ogg',
+			'sound/vehicles/clown_car/clowncar_ram3.ogg',
 			), 75)
 		log_combat(src, hittarget_living, "sucked up")
 		return
@@ -157,10 +160,10 @@
 		return
 	visible_message(span_warning("[src] rams into [bumped] and crashes!"))
 	playsound(src, pick(
-		'sound/vehicles/clowncar_crash1.ogg',
-		'sound/vehicles/clowncar_crash2.ogg',
+		'sound/vehicles/clown_car/clowncar_crash1.ogg',
+		'sound/vehicles/clown_car/clowncar_crash2.ogg',
 		), 75)
-	playsound(src, 'sound/vehicles/clowncar_crashpins.ogg', 75)
+	playsound(src, 'sound/vehicles/clown_car/clowncar_crashpins.ogg', 75)
 	dump_mobs(TRUE)
 	log_combat(src, bumped, "crashed into", null, "dumping all passengers")
 
@@ -193,7 +196,7 @@
 	return TRUE
 
 /obj/vehicle/sealed/car/clowncar/atom_destruction(damage_flag)
-	playsound(src, 'sound/vehicles/clowncar_fart.ogg', 100)
+	playsound(src, 'sound/vehicles/clown_car/clowncar_fart.ogg', 100)
 	STOP_PROCESSING(SSobj,src)
 	return ..()
 
@@ -209,6 +212,7 @@
  * * Fart and make everyone nearby laugh
  */
 /obj/vehicle/sealed/car/clowncar/proc/roll_the_dice(mob/user)
+	playsound(src, 'sound/vehicles/clown_car/button_press.ogg', 50, TRUE, MEDIUM_RANGE_SOUND_EXTRARANGE)
 	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_CLOWNCAR_RANDOMNESS))
 		to_chat(user, span_notice("The button panel is currently recharging."))
 		return
@@ -245,7 +249,7 @@
 			addtimer(CALLBACK(src, PROC_REF(stop_dropping_oil)), 3 SECONDS)
 		if(6)
 			visible_message(span_danger("[user] presses one of the colorful buttons on [src], and the clown car lets out a comedic toot."))
-			playsound(src, 'sound/vehicles/clowncar_fart.ogg', 100)
+			playsound(src, 'sound/vehicles/clown_car/clowncar_fart.ogg', 100)
 			for(var/mob/living/L in orange(loc, 6))
 				L.emote("laugh")
 			for(var/mob/living/L as anything in occupants)
@@ -274,7 +278,7 @@
 		flick("clowncar_fromfire", src)
 		icon_state = "clowncar"
 		addtimer(CALLBACK(src, PROC_REF(deactivate_cannon)), 2 SECONDS)
-		playsound(src, 'sound/vehicles/clowncar_cannonmode2.ogg', 75)
+		playsound(src, 'sound/vehicles/clown_car/clowncar_cannonmode2.ogg', 75)
 		visible_message(span_danger("[src] starts going back into mobile mode."))
 	else
 		canmove = FALSE //anchor and activate canon
@@ -282,7 +286,7 @@
 		icon_state = "clowncar_fire"
 		visible_message(span_danger("[src] opens up and reveals a large cannon."))
 		addtimer(CALLBACK(src, PROC_REF(activate_cannon)), 2 SECONDS)
-		playsound(src, 'sound/vehicles/clowncar_cannonmode1.ogg', 75)
+		playsound(src, 'sound/vehicles/clown_car/clowncar_cannonmode1.ogg', 75)
 	cannonmode = CLOWN_CANNON_BUSY
 
 ///Finalizes canon activation

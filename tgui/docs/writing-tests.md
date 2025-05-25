@@ -12,7 +12,7 @@ test('something', () => {
 
 Refer to [README](../README.md) to learn how to run tests.
 
-There is an example test in `packages/common/react.spec.ts`.
+There is an example test in `packages/tgui-core/react.spec.ts`.
 
 You can read more about Jest here: https://jestjs.io/docs/en/getting-started
 

@@ -29,6 +29,8 @@
 	else if(ckey)
 		stack_trace("Mob without client but with associated ckey, [ckey], has been deleted.")
 
+	persistent_client?.set_mob(null)
+
 	remove_from_mob_list()
 	remove_from_dead_mob_list()
 	remove_from_alive_mob_list()
@@ -107,6 +109,17 @@
 	. = ..()
 	tag = "mob_[next_mob_id++]"
 
+/// Assigns a (c)key to this mob.
+/mob/proc/PossessByPlayer(ckey)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(isnull(ckey))
+		return
+
+	if(!istext(ckey))
+		CRASH("Tried to assign a mob a non-text ckey, wtf?!")
+
+	src.ckey = ckey(ckey)
+
 /mob/serialize_list(list/options, list/semvers)
 	. = ..()
 
@@ -178,8 +191,8 @@
 			hud_list[hud] = list()
 
 		else
-			var/image/I = image('modular_zubbers/icons/mob/huds/hud.dmi', src, "")	//ZUBBERS EDIT: original filepath 'icons/mob/huds/hud.dmi'
-			I.appearance_flags = RESET_COLOR|RESET_TRANSFORM
+			var/image/I = image('modular_zubbers/icons/mob/huds/hud.dmi', src, "") // BUBBER EDIT - Original path 'icons/mob/huds/hud.dmi'
+			I.appearance_flags = RESET_COLOR|PIXEL_SCALE|KEEP_APART
 			hud_list[hud] = I
 		set_hud_image_active(hud, update_huds = FALSE) //by default everything is active. but dont add it to huds to keep control.
 
@@ -277,7 +290,7 @@
 	hearers -= ignored_mobs
 
 	//SKYRAT EDIT ADDITION BEGIN - AI QoL
-	for(var/mob/camera/ai_eye/ai_eye in hearers)
+	for(var/mob/eye/camera/ai/ai_eye in hearers)
 		if(ai_eye.ai?.client && !(ai_eye.ai.stat == DEAD))
 			hearers -= ai_eye
 			hearers |= ai_eye.ai
@@ -291,6 +304,8 @@
 		hearers -= src
 
 	var/raw_msg = message
+	if(visible_message_flags & WITH_EMPHASIS_MESSAGE)
+		message = apply_message_emphasis(message)
 	if(visible_message_flags & EMOTE_MESSAGE)
 		message = span_emote("<b>[src]</b>[separation][message]") // SKYRAT EDIT - Better emotes
 
@@ -338,15 +353,17 @@
 		return
 	var/raw_self_message = self_message
 	var/self_runechat = FALSE
+	var/block_self_highlight = (visible_message_flags & BLOCK_SELF_HIGHLIGHT_MESSAGE)
+	if(visible_message_flags & WITH_EMPHASIS_MESSAGE)
+		self_message = apply_message_emphasis(self_message)
 	if(visible_message_flags & EMOTE_MESSAGE)
 		self_message = span_emote("<b>[src]</b> [self_message]") // May make more sense as "You do x"
 
 	if(visible_message_flags & ALWAYS_SHOW_SELF_MESSAGE)
-		to_chat(src, self_message)
+		to_chat(src, self_message, avoid_highlighting = block_self_highlight)
 		self_runechat = TRUE
-
 	else
-		self_runechat = show_message(self_message, MSG_VISUAL, blind_message, MSG_AUDIBLE)
+		self_runechat = show_message(self_message, MSG_VISUAL, blind_message, MSG_AUDIBLE, avoid_highlighting = block_self_highlight)
 
 	if(self_runechat && (visible_message_flags & EMOTE_MESSAGE) && runechat_prefs_check(src, visible_message_flags))
 		create_chat_message(src, raw_message = raw_self_message, runechat_flags = visible_message_flags)
@@ -367,7 +384,7 @@
 	var/list/hearers = get_hearers_in_view(hearing_distance, src)
 
 	//SKYRAT EDIT ADDITION BEGIN - AI QoL
-	for(var/mob/camera/ai_eye/ai_eye in hearers)
+	for(var/mob/eye/camera/ai/ai_eye in hearers)
 		if(ai_eye.ai?.client && !(ai_eye.ai.stat == DEAD))
 			hearers -= ai_eye
 			hearers |= ai_eye.ai
@@ -380,6 +397,8 @@
 	if(self_message)
 		hearers -= src
 	var/raw_msg = message
+	if(audible_message_flags & WITH_EMPHASIS_MESSAGE)
+		message = apply_message_emphasis(message)
 	if(audible_message_flags & EMOTE_MESSAGE)
 		message = span_emote("<b>[src]</b>[separation][message]") //SKYRAT EDIT CHANGE
 	for(var/mob/M in hearers)
@@ -408,13 +427,17 @@
 		return
 	var/raw_self_message = self_message
 	var/self_runechat = FALSE
+	var/block_self_highlight = (audible_message_flags & BLOCK_SELF_HIGHLIGHT_MESSAGE)
+	if(audible_message_flags & WITH_EMPHASIS_MESSAGE)
+		self_message = apply_message_emphasis(self_message)
 	if(audible_message_flags & EMOTE_MESSAGE)
 		self_message = span_emote("<b>[src]</b> [self_message]")
+
 	if(audible_message_flags & ALWAYS_SHOW_SELF_MESSAGE)
-		to_chat(src, self_message)
+		to_chat(src, self_message, avoid_highlighting = block_self_highlight)
 		self_runechat = TRUE
 	else
-		self_runechat = show_message(self_message, MSG_AUDIBLE, deaf_message, MSG_VISUAL)
+		self_runechat = show_message(self_message, MSG_AUDIBLE, deaf_message, MSG_VISUAL, avoid_highlighting = block_self_highlight)
 
 	if(self_runechat && (audible_message_flags & EMOTE_MESSAGE) && runechat_prefs_check(src, audible_message_flags))
 		create_chat_message(src, raw_message = raw_self_message, runechat_flags = audible_message_flags)
@@ -569,7 +592,7 @@
 			var/list/result = examinify.examine_more(src)
 			if(!length(result))
 				result += span_notice("<i>You examine [examinify] closer, but find nothing of interest...</i>")
-			result_combined = jointext(result, "<br>")
+			result_combined = boxed_message(jointext(result, "<br>"))
 			result_combined = replacetext(result_combined, "<hr><br>", "<hr>") // BUBBER EDIT ADDITION - bit of a hack here to make sure we don't get linebreaks coming after headers
 
 		else
@@ -581,8 +604,8 @@
 		var/list/result = examinify.examine(src)
 		var/atom_title = examinify.examine_title(src, thats = TRUE)
 		SEND_SIGNAL(src, COMSIG_MOB_EXAMINING, examinify, result)
-		result_combined = (atom_title ? "[span_slightly_larger("[atom_title][ismob(examinify) ? "!" :"."][EXAMINE_SECTION_BREAK]")]" : "") + jointext(result, "<br>") // BUBBER EDIT CHANGE - No centered title + exclamation point for mobs - ORIGINAL: result_combined = (atom_title ? fieldset_block("[span_slightly_larger(atom_title)].", jointext(result, "<br>"), "examine_block") : examine_block(jointext(result, "<br>")))
-		result_combined = examine_block(replacetext(result_combined, "<hr><br>", "<hr>")) // BUBBER EDIT ADDITION - bit of a hack here to make sure we don't get linebreaks coming after headers, as well as properly adding the examine_block
+		result_combined = (atom_title ? fieldset_block("[atom_title]", jointext(result, "<br>"), "boxed_message") : boxed_message(jointext(result, "<br>")))
+		result_combined = replacetext(result_combined, "<hr><br>", "<hr>") // BUBBER EDIT ADDITION - bit of a hack here to make sure we don't get linebreaks coming after headers, as well as properly adding the examine_block
 
 	to_chat(src, span_infoplain(result_combined))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, examinify)
@@ -609,7 +632,7 @@
 			return FALSE
 
 	//you can only initiate exaimines if you have a hand, it's not disabled, and only as many examines as you have hands
-	/// our active hand, to check if it's disabled/detatched
+	/// our active hand, to check if it's disabled/detached
 	var/obj/item/bodypart/active_hand = has_active_hand()? get_active_hand() : null
 	if(!active_hand || active_hand.bodypart_disabled || do_after_count() >= usable_hands)
 		to_chat(src, span_warning("You don't have a free hand to examine this!"))
@@ -663,7 +686,7 @@
 	return
 
 /mob/living/handle_eye_contact(mob/living/examined_mob)
-	if(!istype(examined_mob) || src == examined_mob || examined_mob.stat >= UNCONSCIOUS || !client)
+	if(!istype(examined_mob) || src == examined_mob || examined_mob.stat >= UNCONSCIOUS || !client || is_blind())
 		return
 
 	var/imagined_eye_contact = FALSE
@@ -679,12 +702,16 @@
 
 	// check to see if their face is blocked or, if not, a signal blocks it
 	if(examined_mob.is_face_visible() && SEND_SIGNAL(src, COMSIG_MOB_EYECONTACT, examined_mob, TRUE) != COMSIG_BLOCK_EYECONTACT)
-		var/msg = span_smallnotice("You make eye contact with [examined_mob].")
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), src, msg), 0.3 SECONDS) // so the examine signal has time to fire and this will print after
+		var/obj/item/clothing/eye_cover = examined_mob.is_eyes_covered()
+		if (!eye_cover || (!eye_cover.tint && !eye_cover.flash_protect))
+			var/msg = span_smallnotice("You make eye contact with [examined_mob].")
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), src, msg), 0.3 SECONDS) // so the examine signal has time to fire and this will print after
 
-	if(!imagined_eye_contact && is_face_visible() && SEND_SIGNAL(examined_mob, COMSIG_MOB_EYECONTACT, src, FALSE) != COMSIG_BLOCK_EYECONTACT)
-		var/msg = span_smallnotice("[src] makes eye contact with you.")
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), examined_mob, msg), 0.3 SECONDS)
+	if(!imagined_eye_contact && is_face_visible() && !examined_mob.is_blind() && SEND_SIGNAL(examined_mob, COMSIG_MOB_EYECONTACT, src, FALSE) != COMSIG_BLOCK_EYECONTACT)
+		var/obj/item/clothing/eye_cover = is_eyes_covered()
+		if (!eye_cover || (!eye_cover.tint && !eye_cover.flash_protect))
+			var/msg = span_smallnotice("[src] makes eye contact with you.")
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), examined_mob, msg), 0.3 SECONDS)
 
 /**
  * Called by using Activate Held Object with an empty hand/limb
@@ -822,14 +849,19 @@
 		qdel(M)
 		return
 
-	M.key = key
+	M.PossessByPlayer(key)
 
 /// Checks if the mob can respawn yet according to the respawn delay
 /mob/proc/check_respawn_delay(override_delay = 0)
 	if(!override_delay && !CONFIG_GET(number/respawn_delay))
 		return TRUE
+	//BUBBER EDIT 30 minute grace period
+	var/respawn_grace_period = CONFIG_GET(number/respawn_grace_period)
+	if(world.time < respawn_grace_period)
+		return TRUE
+	//BUBBER EDIT END
 
-	var/death_time = world.time - client.player_details.time_of_death
+	var/death_time = world.time - persistent_client.time_of_death
 
 	var/required_delay = override_delay || CONFIG_GET(number/respawn_delay)
 
@@ -867,6 +899,7 @@
 /mob/proc/get_status_tab_items()
 	. = list("") //we want to offset unique stuff from standard stuff
 	SEND_SIGNAL(src, COMSIG_MOB_GET_STATUS_TAB_ITEMS, .)
+	return .
 
 /**
  * Convert a list of spells into a displyable list for the statpanel
@@ -940,9 +973,8 @@
 		return
 
 	if(!selected_hand)
-		selected_hand = (active_hand_index % held_items.len)+1
-
-	if(istext(selected_hand))
+		selected_hand = active_hand_index
+	else if(istext(selected_hand))
 		selected_hand = LOWER_TEXT(selected_hand)
 		if(selected_hand == "right" || selected_hand == "r")
 			selected_hand = 2
@@ -951,8 +983,9 @@
 
 	if(selected_hand != active_hand_index)
 		swap_hand(selected_hand)
-	else
-		mode()
+
+	// _queue_verb requires a client, so when we don't have it (AI controlled mob) we don't use it
+	client ? mode() : execute_mode()
 
 /mob/proc/assess_threat(judgement_criteria, lasercolor = "", datum/callback/weaponcheck=null) //For sec bot threat assessment
 	return 0
@@ -1067,25 +1100,6 @@
 		return FALSE
 	return ..(M, force, check_loc, buckle_mob_flags)
 
-///Call back post buckle to a mob to offset your visual height
-/mob/post_buckle_mob(mob/living/M)
-	var/height = M.get_mob_buckling_height(src)
-	M.pixel_y = initial(M.pixel_y) + height
-	if(M.layer <= layer) //make sure they stay above our current layer
-		M.layer = layer + 0.1
-///Call back post unbuckle from a mob, (reset your visual height here)
-/mob/post_unbuckle_mob(mob/living/M)
-	M.layer = initial(M.layer)
-	M.pixel_y = initial(M.pixel_y)
-
-///returns the height in pixel the mob should have when buckled to another mob.
-/mob/proc/get_mob_buckling_height(mob/seat)
-	if(isliving(seat))
-		var/mob/living/L = seat
-		if(L.mob_size <= MOB_SIZE_SMALL) //being on top of a small mob doesn't put you very high.
-			return 0
-	return 9
-
 ///Can the mob interact() with an atom?
 /mob/proc/can_interact_with(atom/A, treat_mob_as_adjacent)
 	if(isAdminGhostAI(src))
@@ -1132,6 +1146,7 @@
  * * BYPASS_ADJACENCY - The target does not have to be adjacent
  * * SILENT_ADJACENCY - Adjacency is required but errors are not printed
  * * NOT_INSIDE_TARGET - The target maybe adjacent but the mob should not be inside the target
+ * * ALLOW_PAI - Allows pAIs to perform an action
  *
  * silence_adjacency: Sometimes we want to use this proc to check interaction without allowing it to throw errors for base case adjacency
  * Alt click uses this, as otherwise you can detect what is interactable from a distance via the error message
@@ -1385,7 +1400,8 @@
 	. = ..()
 	VV_DROPDOWN_OPTION("", "---------")
 	VV_DROPDOWN_OPTION(VV_HK_GIB, "Gib")
-	VV_DROPDOWN_OPTION(VV_HK_REMOVE_SPELL, "Remove Spell")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_AI, "Give AI Controller")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_AI_SPEECH, "Give Random AI Speech")
 	VV_DROPDOWN_OPTION(VV_HK_GIVE_SPELL, "Give Spell")
 	VV_DROPDOWN_OPTION(VV_HK_REMOVE_SPELL, "Remove Spell")
 	VV_DROPDOWN_OPTION(VV_HK_GIVE_MOB_ACTION, "Give Mob Ability")
@@ -1426,6 +1442,12 @@
 		if(!check_rights(R_ADMIN))
 			return
 		usr.client.cmd_admin_godmode(src)
+
+	if(href_list[VV_HK_GIVE_AI])
+		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/give_ai_controller, src)
+
+	if(href_list[VV_HK_GIVE_AI_SPEECH])
+		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/give_ai_speech, src)
 
 	if(href_list[VV_HK_GIVE_MOB_ACTION])
 		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/give_mob_action, src)
@@ -1492,13 +1514,21 @@
 /mob/proc/adjust_nutrition(change, forced = FALSE) //Honestly FUCK the oldcoders for putting nutrition on /mob someone else can move it up because holy hell I'd have to fix SO many typechecks
 	if(HAS_TRAIT(src, TRAIT_NOHUNGER) && !forced)
 		return
+	//Bubber edit BEGIN - Allow for people to get hungry faster
+	if(HAS_TRAIT(src, TRAIT_FAST_METABOLISM) && change < 0)
+		change = change * 2
+	//Bubber edit END
 
 	nutrition = max(0, nutrition + change)
-	hud_used?.hunger?.update_appearance()
 
 /mob/living/adjust_nutrition(change, forced)
 	. = ..()
-	mob_mood?.update_nutrition_moodlets()
+	// Queue update if change is small enough (6 is 1% of nutrition softcap)
+	if(abs(change) >= 6)
+		mob_mood?.update_nutrition_moodlets()
+		hud_used?.hunger?.update_hunger_bar()
+	else
+		living_flags |= QUEUE_NUTRITION_UPDATE
 
 ///Force set the mob nutrition
 /mob/proc/set_nutrition(set_to, forced = FALSE) //Seriously fuck you oldcoders.
@@ -1506,11 +1536,16 @@
 		return
 
 	nutrition = max(0, set_to)
-	hud_used?.hunger?.update_appearance()
 
 /mob/living/set_nutrition(set_to, forced)
+	var/old_nutrition = nutrition
 	. = ..()
-	mob_mood?.update_nutrition_moodlets()
+	// Queue update if change is small enough (6 is 1% of nutrition softcap)
+	if(abs(old_nutrition - nutrition) >= 6)
+		mob_mood?.update_nutrition_moodlets()
+		hud_used?.hunger?.update_hunger_bar()
+	else
+		living_flags |= QUEUE_NUTRITION_UPDATE
 
 ///Apply a proper movespeed modifier based on items we have equipped
 /mob/proc/update_equipment_speed_mods()
@@ -1594,8 +1629,7 @@
 	if(!canon_client)
 		return
 
-	for(var/foo in canon_client.player_details.post_logout_callbacks)
-		var/datum/callback/CB = foo
+	for(var/datum/callback/CB as anything in persistent_client.post_logout_callbacks)
 		CB.Invoke()
 
 	if(canon_client?.movingmob)

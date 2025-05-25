@@ -16,6 +16,7 @@
 	icon = 'icons/obj/canisters.dmi'
 	icon_state = "generic"
 	inhand_icon_state = "generic_tank"
+	icon_angle = -45
 	lefthand_file = 'icons/mob/inhands/equipment/tanks_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tanks_righthand.dmi'
 	obj_flags = CONDUCTS_ELECTRICITY
@@ -33,6 +34,7 @@
 	demolition_mod = 1.25
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*5)
 	actions_types = list(/datum/action/item_action/set_internals)
+	action_slots = ALL
 	armor_type = /datum/armor/item_tank
 	integrity_failure = 0.5
 	/// If we are in the process of exploding, stops multi explosions
@@ -197,7 +199,7 @@
 	to_chat(user, span_warning("There isn't enough pressure in [src] to commit suicide with..."))
 	return SHAME
 
-/obj/item/tank/attackby(obj/item/attacking_item, mob/user, params)
+/obj/item/tank/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	add_fingerprint(user)
 	if(istype(attacking_item, /obj/item/assembly_holder))
 		if(tank_assembly)

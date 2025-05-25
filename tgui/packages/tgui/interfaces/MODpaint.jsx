@@ -1,6 +1,3 @@
-import { capitalize } from 'common/string';
-
-import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -9,7 +6,10 @@ import {
   Section,
   Slider,
   Stack,
-} from '../components';
+} from 'tgui-core/components';
+import { capitalize } from 'tgui-core/string';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 const colorToMatrix = (param) => {
@@ -58,13 +58,6 @@ const displayText = (param) => {
 export const MODpaint = (props) => {
   const { act, data } = useBackend();
   const { mapRef, currentColor } = data;
-  const [
-    [rr, rg, rb, ra],
-    [gr, gg, gb, ga],
-    [br, bg, bb, ba],
-    [ar, ag, ab, aa],
-    [cr, cg, cb, ca],
-  ] = currentColor;
   const presets = ['red', 'yellow', 'green', 'teal', 'blue', 'purple'];
   const prefixes = ['r', 'g', 'b'];
   return (

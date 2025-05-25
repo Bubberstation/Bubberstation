@@ -269,7 +269,7 @@
 
 	return ..()
 
-/mob/living/simple_animal/bot/secbot/attackby(obj/item/attacking_item, mob/living/user, params)
+/mob/living/simple_animal/bot/secbot/attackby(obj/item/attacking_item, mob/living/user, list/modifiers, list/attack_modifiers)
 	..()
 	if(!(bot_mode_flags & BOT_MODE_ON)) // Bots won't remember if you hit them while they're off.
 		return
@@ -297,15 +297,15 @@
 	update_appearance()
 	return TRUE
 
-/mob/living/simple_animal/bot/secbot/bullet_act(obj/projectile/Proj)
+/mob/living/simple_animal/bot/secbot/bullet_act(obj/projectile/proj)
 	. = ..()
 	if(. != BULLET_ACT_HIT)
 		return
 
-	if(istype(Proj, /obj/projectile/beam) || istype(Proj, /obj/projectile/bullet))
-		if((Proj.damage_type == BURN) || (Proj.damage_type == BRUTE))
-			if(Proj.is_hostile_projectile() && Proj.damage < src.health && ishuman(Proj.firer))
-				retaliate(Proj.firer)
+	if(istype(proj, /obj/projectile/beam) || istype(proj, /obj/projectile/bullet))
+		if((proj.damage_type == BURN) || (proj.damage_type == BRUTE))
+			if(proj.is_hostile_projectile() && proj.damage < src.health && ishuman(proj.firer))
+				retaliate(proj.firer)
 
 /mob/living/simple_animal/bot/secbot/UnarmedAttack(atom/attack_target, proximity_flag, list/modifiers)
 	if(!(bot_mode_flags & BOT_MODE_ON))
@@ -326,7 +326,7 @@
 /mob/living/simple_animal/bot/secbot/hitby(atom/movable/hitting_atom, skipcatch = FALSE, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum)
 	if(isitem(hitting_atom))
 		var/obj/item/item_hitby = hitting_atom
-		var/mob/thrown_by = item_hitby.thrownby?.resolve()
+		var/mob/thrown_by = throwingdatum.get_thrower()
 		if(item_hitby.throwforce < src.health && thrown_by && ishuman(thrown_by))
 			var/mob/living/carbon/human/human_throwee = thrown_by
 			retaliate(human_throwee)

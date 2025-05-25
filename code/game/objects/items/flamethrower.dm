@@ -80,6 +80,8 @@
 		. += "+lit"
 
 /obj/item/flamethrower/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	if (!ptank)
+		return NONE
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, span_warning("You can't bring yourself to fire \the [src]! You don't want to risk harming anyone..."))
 		log_combat(user, interacting_with, "attempted to flamethrower", src, "with gas mixture: {[print_gas_mixture(ptank.return_analyzable_air())]}, flamethrower: \"[name]\" ([src]), igniter: \"[igniter.name]\", tank: \"[ptank.name]\" and tank distribution pressure: \"[siunit(1000 * ptank.distribute_pressure, unit = "Pa", maxdecimals = 9)]\"" + (lit ? " while lit" : "" + " but failed due to pacifism."))
@@ -117,7 +119,7 @@
 		update_appearance()
 		return TRUE
 
-/obj/item/flamethrower/attackby(obj/item/W, mob/user, params)
+/obj/item/flamethrower/attackby(obj/item/W, mob/user, list/modifiers, list/attack_modifiers)
 	if(isigniter(W))
 		var/obj/item/assembly/igniter/I = W
 		if(I.secured)

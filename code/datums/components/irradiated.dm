@@ -181,18 +181,19 @@
 
 	if (isliving(source))
 		var/mob/living/living_source = source
-		to_chat(user, span_boldannounce("[icon2html(geiger_counter, user)] Subject is irradiated. Contamination traces back to roughly [DisplayTimeText(world.time - beginning_of_irradiation, 5)] ago. Current toxin levels: [living_source.getToxLoss()]."))
+		to_chat(user, span_bolddanger("[icon2html(geiger_counter, user)] Subject is irradiated. Contamination traces back to roughly [DisplayTimeText(world.time - beginning_of_irradiation, 5)] ago. Current toxin levels: [living_source.getToxLoss()]."))
 	else
 		// In case the green wasn't obvious enough...
-		to_chat(user, span_boldannounce("[icon2html(geiger_counter, user)] Target is irradiated."))
+		to_chat(user, span_bolddanger("[icon2html(geiger_counter, user)] Target is irradiated."))
 
 	return COMSIG_GEIGER_COUNTER_SCAN_SUCCESSFUL
 
 /datum/component/irradiated/proc/on_healthscan(datum/source, list/render_list, advanced, mob/user, mode, tochat)
 	SIGNAL_HANDLER
 
-	render_list += conditional_tooltip("<span class='alert ml-1'>Subject is irradiated.</span>", "Supply antiradiation or antitoxin, such as [/datum/reagent/medicine/potass_iodide::name] or [/datum/reagent/medicine/pen_acid::name].", tochat)
-	render_list += "<br>"
+	render_list += "<span class='alert ml-1'>"
+	render_list += conditional_tooltip("Subject is irradiated.", "Supply antiradiation or antitoxin, such as [/datum/reagent/medicine/potass_iodide::name] or [/datum/reagent/medicine/pen_acid::name].", tochat)
+	render_list += "</span><br>"
 
 /atom/movable/screen/alert/irradiated
 	name = "Irradiated"

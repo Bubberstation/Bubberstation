@@ -10,7 +10,9 @@
 SUBSYSTEM_DEF(player_ranks)
 	name = "Player Ranks"
 	flags = SS_NO_FIRE
-	init_order = INIT_ORDER_PLAYER_RANKS
+	dependencies = list(
+		/datum/controller/subsystem/dbcore
+	)
 	// The following controllers handle most of the legacy system's functions,
 	// and provide a layer of abstraction for this subsystem to have cleaner
 	// logic.
@@ -32,11 +34,10 @@ SUBSYSTEM_DEF(player_ranks)
 
 
 /datum/controller/subsystem/player_ranks/Destroy()
-	. = ..()
-
 	QDEL_NULL(donator_controller)
 	QDEL_NULL(mentor_controller)
 	QDEL_NULL(vetted_controller)
+	. = ..()
 
 /**
  * Returns whether or not the user is qualified as a donator.
@@ -183,7 +184,7 @@ SUBSYSTEM_DEF(player_ranks)
 	if(IsAdminAdvancedProcCall())
 		return null
 
-	rank_title = lowertext(rank_title)
+	rank_title = LOWER_TEXT(rank_title)
 
 	// Can't make switch() statements with non-constant values.
 	if(rank_title == donator_controller.rank_title)
@@ -224,14 +225,14 @@ SUBSYSTEM_DEF(player_ranks)
 	if(!admin_holder)
 		return FALSE
 
-	if(!admin_holder.check_for_rights(R_PERMISSIONS))
+	if(!admin_holder.check_for_rights(R_ADMIN))
 		if(is_admin_client)
 			to_chat(admin, span_warning("You do not possess the permissions to do this."))
 
 		return FALSE
 
 
-	rank_title = lowertext(rank_title)
+	rank_title = LOWER_TEXT(rank_title)
 
 	var/datum/player_rank_controller/controller = get_controller_for_group(rank_title)
 
@@ -273,7 +274,7 @@ SUBSYSTEM_DEF(player_ranks)
 
 	var/datum/db_query/query_add_player_rank = SSdbcore.NewQuery(
 		"INSERT INTO [format_table_name(PLAYER_RANK_TABLE_NAME)] (ckey, rank, admin_ckey) VALUES(:ckey, :rank, :admin_ckey) \
-		 ON DUPLICATE KEY UPDATE deleted = 0, admin_ckey = :admin_ckey",
+		ON DUPLICATE KEY UPDATE deleted = 0, admin_ckey = :admin_ckey",
 		list("ckey" = ckey, "rank" = controller.rank_title, "admin_ckey" = admin_ckey),
 	)
 
@@ -313,13 +314,13 @@ SUBSYSTEM_DEF(player_ranks)
 	if(!admin_holder)
 		return FALSE
 
-	if(!admin_holder.check_for_rights(R_PERMISSIONS))
+	if(!admin_holder.check_for_rights(R_ADMIN))
 		if(is_admin_client)
 			to_chat(admin, span_warning("You do not possess the permissions to do this."))
 
 		return FALSE
 
-	rank_title = lowertext(rank_title)
+	rank_title = LOWER_TEXT(rank_title)
 
 	var/datum/player_rank_controller/controller = get_controller_for_group(rank_title)
 
@@ -376,7 +377,7 @@ SUBSYSTEM_DEF(player_ranks)
 	if(IsAdminAdvancedProcCall())
 		return
 
-	if(!check_rights_for(admin, R_PERMISSIONS | R_DEBUG | R_SERVER))
+	if(!check_rights_for(admin, R_ADMIN | R_DEBUG | R_SERVER))
 		to_chat(admin, span_warning("You do not possess the permissions to do this."))
 		return
 

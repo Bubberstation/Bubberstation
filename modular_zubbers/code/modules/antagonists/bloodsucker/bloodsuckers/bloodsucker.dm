@@ -337,10 +337,12 @@
 
 /datum/antagonist/bloodsucker/get_preview_icon()
 
-	var/icon/final_icon = render_preview_outfit(/datum/outfit/bloodsucker_outfit)
-	final_icon.Blend(icon('icons/effects/blood.dmi', "uniformblood"), ICON_OVERLAY)
+	var/icon/outfit_icon = render_preview_outfit(preview_outfit)
+	var/icon/blood_icon = icon('icons/effects/blood.dmi', "uniformblood")
+	blood_icon.Blend(BLOOD_COLOR_RED, ICON_MULTIPLY)
+	outfit_icon.Blend(blood_icon, ICON_OVERLAY)
 
-	return finish_preview_icon(final_icon)
+	return finish_preview_icon(outfit_icon)
 
 /datum/antagonist/bloodsucker/ui_static_data(mob/user)
 	var/list/data = ability_ui_data(powers)
@@ -491,10 +493,10 @@
 	owner.current.remove_language(/datum/language/vampiric, ALL, LANGUAGE_MIND)
 	// Heart & Eyes
 	var/mob/living/carbon/user = owner.current
-	var/obj/item/organ/internal/heart/newheart = owner.current.get_organ_slot(ORGAN_SLOT_HEART)
+	var/obj/item/organ/heart/newheart = owner.current.get_organ_slot(ORGAN_SLOT_HEART)
 	if(newheart)
 		newheart.Restart()
-	var/obj/item/organ/internal/eyes/user_eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/user_eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
 	if(user_eyes)
 		user_eyes.flash_protect = initial(user_eyes.flash_protect)
 		user_eyes.color_cutoffs = initial(user_eyes.color_cutoffs)

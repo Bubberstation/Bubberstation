@@ -2,6 +2,8 @@
 // When the signal is called: (signal arguments)
 // All signals send the source datum of the signal as the first argument
 
+///from base of atom/movable/Moved(): (/atom, newloc, direction)
+#define COMSIG_MOVABLE_ATTEMPTED_MOVE "movable_attempted_move"
 ///from base of atom/movable/Moved(): (/atom)
 #define COMSIG_MOVABLE_PRE_MOVE "movable_pre_move"
 	#define COMPONENT_MOVABLE_BLOCK_PRE_MOVE (1<<0)
@@ -29,6 +31,7 @@
 #define COMSIG_MOVABLE_IMPACT "movable_impact"
 ///from base of mob/living/hitby(): (mob/living/target, hit_zone, blocked, datum/thrownthing/throwingdatum)
 #define COMSIG_MOVABLE_IMPACT_ZONE "item_impact_zone"
+	#define MOVABLE_IMPACT_ZONE_OVERRIDE (1<<0)
 ///from /atom/movable/proc/buckle_mob(): (mob/living/M, force, check_loc, buckle_mob_flags)
 #define COMSIG_MOVABLE_PREBUCKLE "prebuckle" // this is the last chance to interrupt and block a buckle before it finishes
 	#define COMPONENT_BLOCK_BUCKLE (1<<0)
@@ -52,6 +55,10 @@
 #define COMSIG_MOVABLE_THROW_LANDED "movable_throw_landed"
 ///from base of atom/movable/on_changed_z_level(): (turf/old_turf, turf/new_turf, same_z_layer)
 #define COMSIG_MOVABLE_Z_CHANGED "movable_ztransit"
+/// from /atom/movable/can_z_move(): (turf/start, turf/destination)
+#define COMSIG_CAN_Z_MOVE "movable_can_z_move"
+	/// Return to block z movement
+	#define COMPONENT_CANT_Z_MOVE (1<<0)
 ///called before hearing a message from atom/movable/Hear():
 #define COMSIG_MOVABLE_PRE_HEAR "movable_pre_hear"
 	///cancel hearing the message because we're doing something else presumably
@@ -81,8 +88,6 @@
 #define COMSIG_MOVABLE_CHANGE_DUCT_LAYER "movable_change_duct_layer"
 ///Called before a movable is being teleported from `check_teleport_valid()`: (destination, channel)
 #define COMSIG_MOVABLE_TELEPORTING "movable_teleporting"
-///Called when a movable is being teleported from `do_teleport()`: (destination, channel)
-#define COMSIG_MOVABLE_TELEPORTED "movable_teleported"
 ///Called after a movable is teleported from `do_teleport()`: ()
 #define COMSIG_MOVABLE_POST_TELEPORT "movable_post_teleport"
 /// from /mob/living/can_z_move, sent to whatever the mob is buckled to. Only ridable movables should be ridden up or down btw.
@@ -122,10 +127,12 @@
 ///from base of /atom/movable/point_at: (atom/A, obj/effect/temp_visual/point/point)
 #define COMSIG_MOVABLE_POINTED "movable_pointed"
 
+///From /datum/component/aquarium/get_content_beauty: (beauty_holder)
+#define COMSIG_MOVABLE_GET_AQUARIUM_BEAUTY "movable_ge_aquarium_beauty"
+
 /// Sent to movables when they are being stolen by a spy: (mob/living/spy, datum/spy_bounty/bounty)
 #define COMSIG_MOVABLE_SPY_STEALING "movable_spy_stealing"
 /// Called when something is pushed by a living mob bumping it: (mob/living/pusher, push force)
 #define COMSIG_MOVABLE_BUMP_PUSHED "movable_bump_pushed"
 	/// Stop it from moving
 	#define COMPONENT_NO_PUSH (1<<0)
-

@@ -32,7 +32,7 @@ GLOBAL_LIST_EMPTY(cortical_borers)
 	return FALSE
 
 //borers also create an organ, so you dont need to debrain someone
-/obj/item/organ/internal/borer_body
+/obj/item/organ/borer_body
 	name = "engorged cortical borer"
 	desc = "the body of a cortical borer, full of human viscera, blood, and more."
 	zone = BODY_ZONE_HEAD
@@ -40,18 +40,18 @@ GLOBAL_LIST_EMPTY(cortical_borers)
 	/// Ref to the borer who this organ belongs to
 	var/mob/living/basic/cortical_borer/borer
 
-/obj/item/organ/internal/borer_body/Destroy()
+/obj/item/organ/borer_body/Destroy()
 	borer = null
 	return ..()
 
-/obj/item/organ/internal/borer_body/mob_insert(mob/living/carbon/carbon_target, special, movement_flags)
+/obj/item/organ/borer_body/on_mob_insert(mob/living/carbon/carbon_target, special, movement_flags)
 	. = ..()
 	for(var/datum/borer_focus/body_focus as anything in borer.body_focuses)
 		body_focus.on_add()
 	carbon_target.apply_status_effect(/datum/status_effect/grouped/screwy_hud/fake_healthy, type)
 
 //on removal, force the borer out
-/obj/item/organ/internal/borer_body/mob_remove(mob/living/carbon/carbon_target, special)
+/obj/item/organ/borer_body/on_mob_remove(mob/living/carbon/carbon_target, special, movement_flags)
 	. = ..()
 	var/mob/living/basic/cortical_borer/cb_inside = carbon_target.has_borer()
 	for(var/datum/borer_focus/body_focus as anything in cb_inside.body_focuses)
@@ -149,7 +149,7 @@ GLOBAL_LIST_EMPTY(cortical_borers)
 	/// The human we are hosted in
 	var/mob/living/carbon/human/human_host
 	/// The brain we are currently hooked to
-	var/obj/item/organ/internal/brain/brain_host
+	var/obj/item/organ/brain/brain_host
 	//what the host gains or loses with the borer
 	var/list/hosts_abilities = list()
 	//just a little "timer" to compare to world.time

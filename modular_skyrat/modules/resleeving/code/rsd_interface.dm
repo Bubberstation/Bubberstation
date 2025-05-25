@@ -9,7 +9,7 @@
 
 /// Attempts to use the item on the target brain.
 /obj/item/rsd_interface/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
-	if(!istype(interacting_with, /obj/item/organ/internal/brain))
+	if(!istype(interacting_with, /obj/item/organ/brain))
 		return NONE
 
 	if(HAS_TRAIT(interacting_with, TRAIT_RSD_COMPATIBLE))
@@ -25,7 +25,7 @@
 
 /datum/element/rsd_interface/Attach(datum/target)
 	. = ..()
-	if(!istype(target, /obj/item/organ/internal/brain))
+	if(!istype(target, /obj/item/organ/brain))
 		return ELEMENT_INCOMPATIBLE
 
 	RegisterSignal(target, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))

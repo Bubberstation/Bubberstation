@@ -1,4 +1,4 @@
-/obj/item/organ/external/xenodorsal
+/obj/item/organ/xenodorsal
 	name = "dorsal spines"
 	desc = "How did that even fit on them...?"
 	icon_state = "random_fly_2"
@@ -8,6 +8,7 @@
 
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_EXTERNAL_XENODORSAL
+	organ_flags = ORGAN_EXTERNAL
 
 	preference = "feature_xenodorsal"
 

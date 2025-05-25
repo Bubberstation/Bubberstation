@@ -8,10 +8,13 @@ GLOBAL_LIST_EMPTY(map_incident_displays)
 #define DISPLAY_DELAM (1<<0)
 /// Display current number of tram hits on incident sign
 #define DISPLAY_TRAM (1<<1)
+/// Display current number of tram hits on incident sign
+#define DISPLAY_DISEASE (1<<2) // BUBBER EDIT ADDITION - Disease Counter
 
 DEFINE_BITFIELD(sign_features, list(
 	"DISPLAY_DELAM" = DISPLAY_DELAM,
 	"DISPLAY_TRAM" = DISPLAY_TRAM,
+	"DISPLAY_DISEASE" = DISPLAY_DISEASE, // BUBBER EDIT ADDITION - Disease Counter
 ))
 
 #define TREND_RISING "rising"
@@ -19,9 +22,11 @@ DEFINE_BITFIELD(sign_features, list(
 
 #define NAME_DELAM "delamination incident display"
 #define NAME_TRAM "tram incident display"
+#define NAME_DISEASE "epidemic display" // BUBBER EDIT ADDITION - Disease Counter
 
 #define DESC_DELAM "A signs describe how long it's been since the last delamination incident. Features an advert for SAFETY MOTH."
 #define DESC_TRAM "A display that provides the number of tram related safety incidents this shift."
+#define DESC_DISEASE "A display that provides the number of active disease outbreak cases on shift.<br/><span class='boldwarning'>Doctor-Patient confidentiality is not practised on this station.</span>" // BUBBER EDIT ADDITION - Disease Counter
 
 #define DISPLAY_PIXEL_1_W 21
 #define DISPLAY_PIXEL_1_Z -2
@@ -100,8 +105,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 	. = ..()
 	GLOB.map_incident_displays += src
 	update_delam_count(SSpersistence.rounds_since_engine_exploded, SSpersistence.delam_highscore)
+	update_disease_count(SSdisease.cached_event_disease_count, SSdisease.previous_event_disease_count) // BUBBER EDIT ADDITION - Disease Counter
 	RegisterSignal(SStransport, COMSIG_TRAM_COLLISION, PROC_REF(update_tram_count))
-
+	RegisterSignal(SSdisease, COMSIG_DISEASE_COUNT_UPDATE, PROC_REF(update_disease_count))
 	update_appearance()
 
 /obj/machinery/incident_display/Destroy()
@@ -187,7 +193,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 // EMP causes the display to display random numbers or outright break.
 /obj/machinery/incident_display/emp_act(severity)
 	. = ..()
-	if(prob(50))
+	if(prob(50) || sign_features & DISPLAY_DISEASE) // BUBBER EDIT CHANGE - Disease Counter
 		set_machine_stat(machine_stat | BROKEN)
 		update_appearance()
 		return
@@ -261,6 +267,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 	else if((sign_features & DISPLAY_DELAM) && last_delam <= 0) // you done fucked up
 		icon_state = "display_shame"
 		set_light(l_range = 1.7, l_power = 1.5, l_color = LIGHT_COLOR_SHAME, l_on = TRUE)
+	// BUBBER EDIT ADDITION BEGIN - Disease Counter
+	else if((sign_features & DISPLAY_DISEASE) && current_disease_metric >= 8)
+		icon_state = "display_shame"
+		set_light(l_range = 1.7, l_power = 1.5, l_color = LIGHT_COLOR_SHAME, l_on = TRUE)
+	// BUBBER EDIT ADDITION END - Disease Counter
 	else
 		icon_state = "display_normal"
 		set_light(l_range = 1.7, l_power = 1.5, l_color = LIGHT_COLOR_NORMAL, l_on = TRUE)
@@ -361,6 +372,51 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 			. += tram_trend_overlay
 			. += tram_trend_emissive
 
+	// BUBBER EDIT ADDITION BEGIN - Disease Counter
+	if(sign_features & DISPLAY_DISEASE)
+		. += mutable_appearance(icon, "overlay_disease")
+		. += emissive_appearance(icon, "overlay_disease", src, alpha = DISPLAY_PIXEL_ALPHA)
+
+		var/disease_pos1 = current_disease_metric % 10
+		var/mutable_appearance/disease_pos1_overlay = mutable_appearance(icon, "num_[disease_pos1]")
+		var/mutable_appearance/disease_pos1_emissive = emissive_appearance(icon, "num_[disease_pos1]", src, alpha = DISPLAY_PIXEL_ALPHA)
+		disease_pos1_overlay.color = disease_display_color
+		disease_pos1_overlay.pixel_w = DISPLAY_PIXEL_1_W
+		disease_pos1_emissive.pixel_w = DISPLAY_PIXEL_1_W
+		disease_pos1_overlay.pixel_z = DISPLAY_PIXEL_1_Z
+		disease_pos1_emissive.pixel_z = DISPLAY_PIXEL_1_Z
+		. += disease_pos1_overlay
+		. += disease_pos1_emissive
+
+		var/disease_pos2 = (current_disease_metric / 10) % 10
+		var/mutable_appearance/disease_pos2_overlay = mutable_appearance(icon, "num_[disease_pos2]")
+		var/mutable_appearance/disease_pos2_emissive = emissive_appearance(icon, "num_[disease_pos2]", src, alpha = DISPLAY_PIXEL_ALPHA)
+		disease_pos2_overlay.color = disease_display_color
+		disease_pos2_overlay.pixel_w = DISPLAY_PIXEL_2_W
+		disease_pos2_emissive.pixel_w = DISPLAY_PIXEL_2_W
+		disease_pos2_overlay.pixel_z = DISPLAY_PIXEL_2_Z
+		disease_pos2_emissive.pixel_z = DISPLAY_PIXEL_2_Z
+		. += disease_pos2_overlay
+		. += disease_pos2_emissive
+
+		if(current_disease_metric >= 100)
+			. += mutable_appearance(icon, "num_100_blue")
+			. += emissive_appearance(icon, "num_100_blue", src, alpha = DISPLAY_BASE_ALPHA)
+
+		if(current_disease_metric > prev_disease_metric)
+			var/mutable_appearance/disease_trend_overlay = mutable_appearance(icon, TREND_RISING)
+			var/mutable_appearance/disease_trend_emissive = emissive_appearance(icon, "[TREND_RISING]", src, alpha = DISPLAY_PIXEL_ALPHA)
+			disease_trend_overlay.color = "#fb6493"
+			. += disease_trend_overlay
+			. += disease_trend_emissive
+		else
+			var/mutable_appearance/disease_trend_overlay = mutable_appearance(icon, TREND_FALLING)
+			var/mutable_appearance/disease_trend_emissive = emissive_appearance(icon, "[TREND_FALLING]", src, alpha = DISPLAY_PIXEL_ALPHA)
+			disease_trend_overlay.color = disease_display_color
+			. += disease_trend_overlay
+			. += disease_trend_emissive
+	// BUBBER EDIT ADDITION END - Disease Counter
+
 /obj/machinery/incident_display/examine(mob/user)
 	. = ..()
 	if(atom_integrity < max_integrity)
@@ -385,7 +441,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 			. += span_info("The supermatter crystal has delaminated, in case you didn't notice.")
 
 	if(sign_features & DISPLAY_TRAM)
-		. += span_notice("It can be changed to display delam-free shifts with a [EXAMINE_HINT("multitool")].")
+		//. += span_notice("It can be changed to display delam-free shifts with a [EXAMINE_HINT("multitool")].")
+		. += span_notice("It can be changed to display disease infections with a [EXAMINE_HINT("multitool")].") // BUBBER EDIT CHANGE - Disease Counter
 		. += span_info("The station has had [hit_count] tram incident\s this shift.")
 		switch(hit_count)
 			if(0)
@@ -403,12 +460,15 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 
 #undef DISPLAY_DELAM
 #undef DISPLAY_TRAM
+#undef DISPLAY_DISEASE // BUBBER EDIT ADDITION - Disease Counter
 
 #undef NAME_DELAM
 #undef NAME_TRAM
+#undef NAME_DISEASE // BUBBER EDIT ADDITION - Disease Counter
 
 #undef DESC_DELAM
 #undef DESC_TRAM
+#undef DESC_DISEASE // BUBBER EDIT ADDITION - Disease Counter
 
 #undef TREND_RISING
 #undef TREND_FALLING

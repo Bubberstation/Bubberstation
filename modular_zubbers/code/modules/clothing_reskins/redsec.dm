@@ -34,22 +34,6 @@
 		)
 	. = ..()
 
-/obj/item/clothing/head/security_cap/Initialize(mapload)
-	unique_reskin["RedSec Variant"] = list(
-			RESKIN_ICON = 'icons/obj/clothing/head/hats.dmi',
-			RESKIN_ICON_STATE = "secsoft",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/head/hats.dmi'
-		)
-	. = ..()
-
-/obj/item/clothing/gloves/color/black/security/Initialize(mapload)
-	unique_reskin["RedSec Variant"] = list(
-			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/gloves.dmi',
-			RESKIN_ICON_STATE = "redsec",
-			RESKIN_WORN_ICON_STATE = "maagloves",
-		)
-	. = ..()
-
 /obj/item/clothing/under/rank/security/officer/Initialize(mapload)
 	if (!unique_reskin)
 		. = ..()

@@ -82,7 +82,7 @@
 	cost = PAYCHECK_CREW
 
 /datum/armament_entry/company_import/deforest/first_aid/robo_patch
-	item_type = /obj/item/reagent_containers/pill/robotic_patch/synth_repair
+	item_type = /obj/item/reagent_containers/applicator/pill/robotic_patch/synth_repair
 	cost = PAYCHECK_CREW
 
 /datum/armament_entry/company_import/deforest/first_aid/bandaid
@@ -276,19 +276,19 @@
 	subcategory = "Cybernetics"
 
 /datum/armament_entry/company_import/deforest/implant/surgery
-	item_type = /obj/item/organ/internal/cyberimp/arm/surgery
+	item_type = /obj/item/organ/cyberimp/arm/surgery
 	cost = PAYCHECK_COMMAND * 5
 
 /datum/armament_entry/company_import/deforest/implant/toolset
-	item_type = /obj/item/organ/internal/cyberimp/arm/toolset
+	item_type = /obj/item/organ/cyberimp/arm/toolset
 	cost = PAYCHECK_COMMAND * 5
 
 /datum/armament_entry/company_import/deforest/implant/botany
-	item_type = /obj/item/organ/internal/cyberimp/arm/botany
+	item_type = /obj/item/organ/cyberimp/arm/botany
 	cost = PAYCHECK_COMMAND * 5
 
 /datum/armament_entry/company_import/deforest/implant/janitor
-	item_type = /obj/item/organ/internal/cyberimp/arm/janitor
+	item_type = /obj/item/organ/cyberimp/arm/janitor
 	cost = PAYCHECK_COMMAND * 5
 
 // Modsuit Modules from the medical category, here instead of in Nakamura because nobody buys from this company

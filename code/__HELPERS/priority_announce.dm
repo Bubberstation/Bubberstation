@@ -63,7 +63,7 @@
 				header += SUBHEADER_ANNOUNCEMENT_TITLE(title)
 		if(ANNOUNCEMENT_TYPE_CAPTAIN)
 			header = MAJOR_ANNOUNCEMENT_TITLE("Captain's Announcement")
-			GLOB.news_network.submit_article(text, "Captain's Announcement", "Station Announcements", null)
+			GLOB.news_network.submit_article(text, "Captain's Announcement", NEWSCASTER_STATION_ANNOUNCEMENTS, null)
 		if(ANNOUNCEMENT_TYPE_SYNDICATE)
 			header = MAJOR_ANNOUNCEMENT_TITLE("Syndicate Captain's Announcement")
 		else
@@ -87,9 +87,9 @@
 
 	if(isnull(sender_override) && players == GLOB.player_list)
 		if(length(title) > 0)
-			GLOB.news_network.submit_article(title + "<br><br>" + text, "[command_name()]", "Station Announcements", null)
+			GLOB.news_network.submit_article(title + "<br><br>" + text, "[command_name()]", NEWSCASTER_STATION_ANNOUNCEMENTS, null)
 		else
-			GLOB.news_network.submit_article(text, "[command_name()] Update", "Station Announcements", null)
+			GLOB.news_network.submit_article(text, "[command_name()] Update", NEWSCASTER_STATION_ANNOUNCEMENTS, null)
 
 /proc/print_command_report(text = "", title = null, announce=TRUE)
 	if(!title)
@@ -120,7 +120,7 @@
  * html_encode - if TRUE, we will html encode our title and message before sending it, to prevent player input abuse.
  * players - optional, a list mobs to send the announcement to. If unset, sends to all palyers.
  * sound_override - optional, use the passed sound file instead of the default notice sounds.
- * should_play_sound - Whether the notice sound should be played or not.
+ * should_play_sound - Whether the notice sound should be played or not. This can also be a callback, if you only want mobs to hear the sound based off of specific criteria.
  * color_override - optional, use the passed color instead of the default notice color.
  */
 /proc/minor_announce(message, title = "Attention:", alert = FALSE, html_encode = TRUE, list/players, sound_override, should_play_sound = TRUE, color_override)
@@ -185,20 +185,22 @@
 	return jointext(returnable_strings, "")
 
 /// Proc that just dispatches the announcement to our applicable audience. Only the announcement is a mandatory arg.
+/// `should_play_sound` can also be a callback, if you want to only play the sound to specific players.
 /proc/dispatch_announcement_to_players(announcement, list/players = GLOB.player_list, sound_override = null, should_play_sound = TRUE)
 	// SKYRAT EDIT CHANGE BEGIN - CUSTOM ANNOUNCEMENTS
 	/* Original:
 
 	var/sound_to_play = !isnull(sound_override) ? sound_override : 'sound/announcer/notice/notice2.ogg'
 
+	var/datum/callback/should_play_sound_callback = astype(should_play_sound)
+
 	for(var/mob/target in players)
 		if(isnewplayer(target) || !target.can_hear())
 			continue
 
 		to_chat(target, announcement)
-		if(!should_play_sound)
+		if(!should_play_sound || (should_play_sound_callback && !should_play_sound_callback.Invoke(target)))
 			continue
-
 		if(target.client?.prefs.read_preference(/datum/preference/toggle/sound_announcements))
 			SEND_SOUND(target, sound(sound_to_play))
 	*/

@@ -9,7 +9,7 @@
 	max_matter = 500
 	matter = 500
 	canRturf = TRUE
-	upgrade = RCD_UPGRADE_FRAMES | RCD_UPGRADE_SIMPLE_CIRCUITS | RCD_UPGRADE_FURNISHING
+	construction_upgrades = RCD_UPGRADE_FRAMES | RCD_UPGRADE_SIMPLE_CIRCUITS | RCD_UPGRADE_FURNISHING
 
 // Check for drains - we only want one per tile
 /obj/item/construction/plumbing/canPlace(turf/destination)
@@ -72,3 +72,19 @@
 	. = ..()
 	plumbing_design_types = mining_design_types
 
+/obj/item/construction/rcd/robotics_rcd
+	name = "Robotics RCD"
+	desc = "A modified RCD that has less storage than your usual NT RCD is and has less construction options and has lost the ability to deconstruct in favor of being more accessible for synthetic repairs. Reload using metal, glass, or plasteel."
+	icon = 'modular_skyrat/master_files/icons/obj/tools.dmi'
+	icon_state = "roborcd"
+	worn_icon_state = "RCD"
+	lefthand_file = 'modular_skyrat/modules/aesthetics/tools/tools_lefthand.dmi'
+	righthand_file = 'modular_skyrat/modules/aesthetics/tools/tools_righthand.dmi'
+	max_matter = 50
+	matter = 50
+	action_slots = NONE
+	banned_upgrades = RCD_ALL_UPGRADES
+
+/obj/item/construction/rcd/robotics_rcd/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
+	balloon_alert(user, "no deconstruction mode")
+	return NONE

@@ -1,5 +1,4 @@
 // THIS IS A SKYRAT UI FILE
-import { useBackend } from '../../backend';
 import {
   Box,
   Button,
@@ -7,9 +6,11 @@ import {
   Dropdown,
   Section,
   Stack,
-} from '../../components';
+} from 'tgui-core/components';
+
+import { useBackend } from '../../backend';
 import { CharacterPreview } from '../common/CharacterPreview';
-import { PreferencesMenuData } from './data';
+import { PreferencesMenuData } from './types';
 
 export const RotateCharacterButtons = (props) => {
   const { act } = useBackend<PreferencesMenuData>();

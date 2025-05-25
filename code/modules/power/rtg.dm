@@ -37,7 +37,7 @@
 	if(in_range(user, src) || isobserver(user))
 		. += span_notice("The status display reads: Power generation at <b>[display_power(power_gen, convert = FALSE)]</b>.")
 
-/obj/machinery/power/rtg/attackby(obj/item/I, mob/user, params)
+/obj/machinery/power/rtg/attackby(obj/item/I, mob/user, list/modifiers, list/attack_modifiers)
 	if(default_deconstruction_screwdriver(user, "[initial(icon_state)]-open", initial(icon_state), I))
 		return
 	else if(default_deconstruction_crowbar(I))
@@ -73,10 +73,10 @@
 	tesla_zap(source = src, zap_range = 5, power = power_gen * 20)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(explosion), src, 2, 3, 4, null, 8), 10 SECONDS) // Not a normal explosion.
 
-/obj/machinery/power/rtg/abductor/bullet_act(obj/projectile/Proj)
+/obj/machinery/power/rtg/abductor/bullet_act(obj/projectile/proj)
 	. = ..()
-	if(!going_kaboom && istype(Proj) && Proj.damage > 0 && ((Proj.damage_type == BURN) || (Proj.damage_type == BRUTE)))
-		log_bomber(Proj.firer, "triggered a", src, "explosion via projectile")
+	if(!going_kaboom && istype(proj) && proj.damage > 0 && ((proj.damage_type == BURN) || (proj.damage_type == BRUTE)))
+		log_bomber(proj.firer, "triggered a", src, "explosion via projectile")
 		overload()
 
 /obj/machinery/power/rtg/abductor/blob_act(obj/structure/blob/B)
@@ -112,7 +112,7 @@
 	name = "Lava powered RTG"
 	desc = "This device only works when exposed to the toxic fumes of Lavaland"
 	circuit = null
-	power_gen = 1500
+	power_gen = 20000
 	anchored = TRUE
 	resistance_flags = LAVA_PROOF
 
@@ -142,7 +142,7 @@
 	power_gen = 750
 	anchored = TRUE
 
-/obj/machinery/power/rtg/old_station/attackby(obj/item/I, mob/user, params)
+/obj/machinery/power/rtg/old_station/attackby(obj/item/I, mob/user, list/modifiers, list/attack_modifiers)
 	if(default_deconstruction_screwdriver(user, "[initial(icon_state)]-open", initial(icon_state), I))
 		to_chat(user,span_warning("You feel it crumbling under your hands!"))
 		return

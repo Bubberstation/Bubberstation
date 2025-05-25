@@ -14,7 +14,7 @@
 	)
 	var/choised_mode = show_radial_menu(user, user, choise, require_near = TRUE)
 	if(!choised_mode)
-		user.balloon_alert(user, "Select one!")
+		user.balloon_alert(user, "select one!")
 		return FALSE
 	var/list/pick = list()
 	if(choised_mode == "Wall mode")
@@ -43,14 +43,14 @@
 	. = ..()
 
 	if(!selected_atom)
-		user.balloon_alert(user, "Select atom first!")
+		user.balloon_alert(user, "select atom first!")
 		return FALSE
 	if(!isopenturf(target))
-		user.balloon_alert(user, "Blocked!")
+		user.balloon_alert(user, "blocked!")
 		return FALSE
 	var/turf/T = target
 	if(T.is_blocked_turf())
-		user.balloon_alert(user, "Blocked!")
+		user.balloon_alert(user, "blocked!")
 		return FALSE
 	if(!isturf(selected_atom))
 		T.place_on_top(selected_atom)
