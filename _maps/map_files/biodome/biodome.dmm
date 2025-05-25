@@ -13936,20 +13936,12 @@
 /turf/closed/wall/mineral/wood,
 /area/station/maintenance/department/bridge)
 "eNa" = (
-/obj/item/storage/box/teargas{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/storage/box/handcuffs,
-/obj/item/storage/box/flashbangs{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/structure/rack,
-/obj/item/gun/grenadelauncher,
 /obj/effect/turf_decal/tile/red/anticorner/contrasted{
 	dir = 4
 	},
+/obj/structure/closet/secure_closet/armory_kiboko,
+/obj/item/ammo_box/c980grenade/riot,
+/obj/item/ammo_box/c980grenade/smoke,
 /turf/open/floor/iron/dark/textured,
 /area/station/ai_monitored/security/armory)
 "eNd" = (
@@ -29215,19 +29207,11 @@
 /area/station/engineering/atmos)
 "kga" = (
 /obj/structure/rack,
-/obj/item/gun/ballistic/shotgun/riot{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/gun/ballistic/shotgun/riot,
-/obj/item/gun/ballistic/shotgun/riot{
-	pixel_x = 3;
-	pixel_y = -3
-	},
 /obj/structure/window/reinforced/spawner/directional/north,
 /obj/effect/turf_decal/tile/red/half{
 	dir = 8
 	},
+/obj/effect/spawner/armory_spawn/shotguns,
 /turf/open/floor/iron/dark/textured,
 /area/station/ai_monitored/security/armory)
 "kgl" = (
@@ -30362,7 +30346,7 @@
 /area/station/science/ordnance/freezerchamber)
 "kyc" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/cup/rag,
+/obj/item/rag,
 /obj/item/book/manual/wiki/barman_recipes{
 	pixel_x = 5;
 	pixel_y = 6
@@ -53172,10 +53156,6 @@
 /obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plating,
 /area/station/engineering/supermatter/room)
-"seP" = (
-/obj/effect/spawner/structure/window/reinforced/tinted,
-/turf/closed/wall/mineral/wood,
-/area/station/service/theater)
 "sfD" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/effect/mapping_helpers/airlock/access/any/science/maintenance,
@@ -57480,7 +57460,7 @@
 /turf/open/floor/iron,
 /area/station/commons/locker)
 "tEj" = (
-/obj/structure/closet/secure_closet/nanotrasen_consultant/station,
+/obj/structure/closet/secure_closet/nanotrasen_consultant,
 /obj/item/assembly/flash/handheld,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
@@ -64473,6 +64453,8 @@
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 8
 	},
+/obj/structure/rack,
+/obj/effect/spawner/armory_spawn/smg,
 /turf/open/floor/iron/dark/textured,
 /area/station/ai_monitored/security/armory)
 "wfQ" = (
@@ -65801,10 +65783,6 @@
 /obj/structure/sign/warning/yes_smoking/circle/directional/south,
 /turf/open/floor/wood/large,
 /area/station/biodome/fore)
-"wzl" = (
-/obj/effect/spawner/structure/window/reinforced/tinted,
-/turf/closed/wall/mineral/wood,
-/area/station/asteroid)
 "wzu" = (
 /obj/machinery/atmospherics/pipe/layer_manifold/scrubbers/visible{
 	dir = 4
@@ -162269,7 +162247,7 @@ hHc
 hHc
 hNy
 hNy
-wzl
+cwy
 mCq
 gdH
 hNy
@@ -172356,7 +172334,7 @@ sZD
 sZD
 sZD
 kKT
-seP
+eGs
 xou
 uOC
 eGs

@@ -34,6 +34,21 @@
 	color_src = null
 	factual = FALSE
 
+//Overriding base /tg/ tails so the icon_states are appropriate under the new system.
+/datum/sprite_accessory/tails/felinid/cat
+	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/tails.dmi'
+	icon_state = "cat"
+	color_src = USE_ONE_COLOR
+
+/datum/sprite_accessory/tails/fish
+	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/fish_tails.dmi'
+
+/datum/sprite_accessory/tails/xeno/default
+	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/xeno_tail.dmi'
+
+/datum/sprite_accessory/tails/xeno/queen
+	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/xeno_queen_tail.dmi'
+
 /datum/sprite_accessory/tails/lizard
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/tails.dmi'
 	recommended_species = list(SPECIES_LIZARD, SPECIES_LIZARD_ASH, SPECIES_MAMMAL, SPECIES_UNATHI, SPECIES_LIZARD_SILVER)

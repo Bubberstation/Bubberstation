@@ -1,16 +1,16 @@
 /datum/job/blueshield
 	title = JOB_BLUESHIELD
-	description = "Protect heads of staff, get your fancy gun stolen, cry as the captain touches the supermatter."
+	description = "Protect the Heads of Staff and get your hands dirty so they can keep theirs clean."
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list(JOB_NT_REP)
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "Central Command and the Nanotrasen Consultant"
+	supervisors = "All Command Staff and Central Command when applicable"
 	minimal_player_age = 7
 	exp_requirements = 2400
 	exp_required_type = EXP_TYPE_CREW
-	exp_required_type_department = EXP_TYPE_COMMAND
+	exp_required_type_department = EXP_TYPE_SECURITY
 	exp_granted_type = EXP_TYPE_CREW
 	config_tag = "BLUESHIELD"
 
@@ -25,7 +25,6 @@
 	department_for_prefs = /datum/job_department/captain
 
 	departments_list = list(
-		/datum/job_department/central_command,
 		/datum/job_department/command,
 	)
 	liver_traits = list(TRAIT_PRETENDER_ROYAL_METABOLISM)
@@ -51,7 +50,7 @@
 	uniform = /obj/item/clothing/under/rank/blueshield
 	suit = /obj/item/clothing/suit/armor/vest/blueshield/jacket
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
-	id = /obj/item/card/id/advanced/centcom
+	id = /obj/item/card/id/advanced/platinum
 	shoes = /obj/item/clothing/shoes/jackboots
 	ears = /obj/item/radio/headset/headset_bs/alt
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
