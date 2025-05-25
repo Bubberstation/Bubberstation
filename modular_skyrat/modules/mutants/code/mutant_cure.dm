@@ -77,10 +77,10 @@
 		. += "It has an extracted RNA sample in it."
 
 /obj/item/rna_extractor/Destroy()
-	. = ..()
 	if(loaded_vial)
 		loaded_vial.forceMove(loc)
 		loaded_vial = null
+	. = ..()
 
 /obj/item/rna_vial
 	name = "raw RNA vial"

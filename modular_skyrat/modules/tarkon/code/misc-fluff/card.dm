@@ -40,6 +40,18 @@
 	desc = "An access card designated for \"security members\". Everyone wants your guns, partner. Yee-haw."
 	trim = /datum/id_trim/away/tarkon/sec
 
+/datum/id_trim/away/tarkon/service
+	assignment = "P-T Service Personnel"
+	access = list(ACCESS_AWAY_GENERAL, ACCESS_WEAPONS, ACCESS_TARKON)
+	department_color = COLOR_GREEN
+	department_state = "department"
+	sechud_icon_state = SECHUD_CHEF
+	trim_state = "trim_cook"
+
+/obj/item/card/id/advanced/tarkon/service
+	name = "P-T service techs access card"
+	desc = "An access card designated for \"the stations` support\". Cook, clean, and keep everyone on the crew happy."
+	trim = /datum/id_trim/away/tarkon/service
 
 /datum/id_trim/away/tarkon/med
 	assignment = "P-T Trauma Medic"

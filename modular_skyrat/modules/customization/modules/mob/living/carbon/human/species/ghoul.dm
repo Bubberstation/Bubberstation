@@ -123,13 +123,13 @@
 
 			return COMPONENT_CANCEL_ATTACK_CHAIN
 
-/datum/species/ghoul/proc/attach_meat(mob/living/carbon/human/target, obj/item/attacking_item, mob/living/user, params)
+/datum/species/ghoul/proc/attach_meat(mob/living/carbon/human/target, obj/item/attacking_item, mob/living/user, list/modifiers)
 	SIGNAL_HANDLER
 
 	if(!istype(target))
 		return
 
-	if(LAZYACCESS(params2list(params), RIGHT_CLICK))
+	if(LAZYACCESS(modifiers, RIGHT_CLICK))
 		return
 
 	// MEAT LIMBS: If our limb is missing, and we're using meat, stick it in!

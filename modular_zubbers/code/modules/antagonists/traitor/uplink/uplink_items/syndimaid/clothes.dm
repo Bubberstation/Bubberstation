@@ -1,7 +1,7 @@
-// Same as a armor deployed redsuit
+// Mostly same as a armor deployed redsuit
 /datum/armor/clothing_under/syndimaid
-	acid = 90
-	bio = 100
+	acid = 20
+	bio = 20
 	bomb = 40
 	bullet = 50
 	energy = 40
@@ -16,44 +16,34 @@
 	armor_type = /datum/armor/clothing_under/syndimaid
 	body_parts_covered = CHEST|GROIN|LEGS
 	resistance_flags = parent_type::resistance_flags | FIRE_PROOF
+	/// who we are currently locking from wearing other outer clothing
+	var/datum/weakref/wear_locked
 
-	var/is_worn = FALSE // This is to avoid any jank with the equip chain that I know exists
-
-/obj/item/clothing/under/syndicate/skyrat/maid/armored/Initialize(mapload)
+/obj/item/clothing/under/syndicate/skyrat/maid/armored/equipped(mob/living/user, slot)
 	. = ..()
-	RegisterSignal(src, COMSIG_ITEM_POST_EQUIPPED, PROC_REF(check_equip))
-
-/obj/item/clothing/under/syndicate/skyrat/maid/armored/Destroy()
-	. = ..()
-	UnregisterSignal(src, COMSIG_ITEM_POST_EQUIPPED)
-
-/obj/item/clothing/under/syndicate/skyrat/maid/armored/mob_can_equip(mob/living/user, slot, disable_warning, bypass_equip_delay_self, ignore_equipped, indirect_action)
 	if(slot == ITEM_SLOT_ICLOTHING)
-		var/mob/living/carbon/human/human_wearer = user
-		if(human_wearer.wear_suit)
-			return FALSE
+		toggle_equip_lock(TRUE, user)
+
+/obj/item/clothing/under/syndicate/skyrat/maid/armored/dropped(mob/living/user)
 	. = ..()
+	var/old_wear_locked = wear_locked?.resolve()
+	if(!old_wear_locked || old_wear_locked != user)
+		return
+	toggle_equip_lock(FALSE, user)
 
-/obj/item/clothing/under/syndicate/skyrat/maid/armored/proc/check_equip(datum/source, mob/user, slot, initial)
-	SIGNAL_HANDLER
-	if(slot == ITEM_SLOT_ICLOTHING)
-		RegisterSignal(user, COMSIG_HUMAN_EQUIPPING_ITEM, PROC_REF(block_equips))
-		RegisterSignal(user, COMSIG_MOB_UNEQUIPPED_ITEM, PROC_REF(remove_block))
-		is_worn = TRUE
-	else if(is_worn)
-		UnregisterSignal(user, list(COMSIG_HUMAN_EQUIPPING_ITEM, COMSIG_MOB_UNEQUIPPED_ITEM))
-		is_worn = FALSE
-
-/obj/item/clothing/under/syndicate/skyrat/maid/armored/proc/remove_block(datum/source, obj/item, force, newloc, no_move, invdrop, silent)
-	SIGNAL_HANDLER
-	if(is_worn)
-		UnregisterSignal(source, list(COMSIG_HUMAN_EQUIPPING_ITEM, COMSIG_MOB_UNEQUIPPED_ITEM))
-		is_worn = FALSE
-
-/obj/item/clothing/under/syndicate/skyrat/maid/armored/proc/block_equips(datum/source, mob/target, slot)
-	SIGNAL_HANDLER
-	if(slot == ITEM_SLOT_OCLOTHING)
-		return COMPONENT_BLOCK_EQUIP
+/obj/item/clothing/under/syndicate/skyrat/maid/armored/proc/toggle_equip_lock(lock = TRUE, mob/living/user)
+	var/mob/living/carbon/human/human_wearer = user
+	if(!istype(human_wearer) || !human_wearer?.dna?.species)
+		return
+	var/datum/species/wearer_species = human_wearer.dna.species
+	var/has_flag = !!(wearer_species.no_equip_flags & ITEM_SLOT_OCLOTHING)
+	if(has_flag == lock)
+		return
+	var/new_flags = wearer_species.no_equip_flags & ~ITEM_SLOT_OCLOTHING
+	if(lock)
+		new_flags = wearer_species.no_equip_flags | ITEM_SLOT_OCLOTHING
+	wearer_species.update_no_equip_flags(human_wearer, new_flags)
+	wear_locked = lock ? WEAKREF(human_wearer) : null
 
 /obj/item/clothing/head/costume/maidheadband/syndicate/armored
 	armor_type = /datum/armor/clothing_under/syndimaid

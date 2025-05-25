@@ -55,21 +55,20 @@ GLOBAL_LIST_INIT(sm_delam_list, list(
 		playsound(sm, 'sound/machines/terminal/terminal_alert.ogg', 75)
 		return FALSE
 
+	// BUBBER EDIT CHANGE BEGIN - DELAM SOUNDS - Original:
+	/*
 	switch(sm.get_status())
 		if(SUPERMATTER_DELAMINATING)
-			// SKYRAT EDIT ADDITION
-			alert_sound_to_playing('modular_skyrat/master_files/sound/effects/reactor/meltdown.ogg', override_volume = TRUE)
-			alert_sound_to_playing('sound/effects/alert.ogg', override_volume = TRUE)
-			// SKYRAT EDIT END
+			playsound(sm, 'sound/announcer/alarm/bloblarm.ogg', 100, FALSE, 40, 30, falloff_distance = 10)
 		if(SUPERMATTER_EMERGENCY)
-			// SKYRAT EDIT ADDITION
-			alert_sound_to_playing('modular_skyrat/master_files/sound/effects/reactor/core_overheating.ogg', override_volume = TRUE)
-			alert_sound_to_playing('sound/announcer/notice/notice1.ogg', override_volume = TRUE)
-			// SKYRAT EDIT END
+			playsound(sm, 'sound/machines/engine_alert/engine_alert1.ogg', 100, FALSE, 30, 30, falloff_distance = 10)
 		if(SUPERMATTER_DANGER)
 			playsound(sm, 'sound/machines/engine_alert/engine_alert2.ogg', 100, FALSE, 30, 30, falloff_distance = 10)
 		if(SUPERMATTER_WARNING)
 			playsound(sm, 'sound/machines/terminal/terminal_alert.ogg', 75)
+	*/
+	delam_alarm_sounds(sm)
+	// BUBBER EDIT CHANGE END
 
 	if(sm.damage >= sm.emergency_point) // In emergency
 		sm.radio.talk_into(sm, "CRYSTAL DELAMINATION IMMINENT! Integrity: [round(sm.get_integrity_percent(), 0.01)]%", sm.emergency_channel)
