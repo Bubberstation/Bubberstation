@@ -230,7 +230,7 @@
 	. = ..()
 	var/datum/gas_mixture/delam_juice = new
 	delam_juice.add_gases(/datum/gas/freon)
-	delam_juice.gases[/datum/gas/freon][MOLES] = 7000 // enough to stop most delams, but not the really big fuckups
+	delam_juice.gases[/datum/gas/freon][MOLES] = 14000 // enough to stop most delams, but not the really big fuckups
 	delam_juice.temperature = 170 // 170K -103c
 	airs[1] = delam_juice
 

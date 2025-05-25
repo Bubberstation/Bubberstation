@@ -345,7 +345,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		set_delam(SM_DELAM_PRIO_NONE, SM_DELAM_STRATEGY_PURGE) // This one cant clear any forced delams.
 	delamination_strategy.delam_progress(src)
 	// BUBBER EDIT ADDITION BEGIN - DELAM_SCRAM
-	if(damage > 98.7 && is_main_engine && !suppression_fired)
+	if(damage > 98.4 && is_main_engine && !suppression_fired)
 		investigate_log("Integrity at time of suppression signal was [100 - damage]", INVESTIGATE_ENGINE)
 		SEND_GLOBAL_SIGNAL(COMSIG_MAIN_SM_DELAMINATING, COMSIG_SCRAM_AUTO_FIRE)
 		suppression_fired = TRUE
