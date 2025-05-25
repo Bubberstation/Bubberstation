@@ -17,3 +17,5 @@
 	name = "Bunny"
 	icon_state = "bigbunny"
 	icon = 'modular_zubbers/icons/customization/taur.dmi'
+	can_lay_down = TRUE
+	laydown_offset = -4
