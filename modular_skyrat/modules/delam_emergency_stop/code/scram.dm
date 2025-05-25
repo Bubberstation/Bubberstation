@@ -3,7 +3,6 @@
 #define BUTTON_IDLE 1
 #define BUTTON_AWAKE 2
 #define BUTTON_ARMED 3
-#define EVAC_WARNING_TIMER 3 SECONDS
 
 /// An atmos device that uses freezing cold air to attempt an emergency shutdown of the supermatter engine
 /obj/machinery/atmospherics/components/unary/delam_scram
@@ -117,15 +116,14 @@
 			use_reverb = TRUE,
 			falloff_distance = 10,
 		)
-		radio.talk_into(src, "Suppression system fault! Unable to trigger, software integrity check failed.", warning_channel)
+		radio.talk_into(src, "Suppression system fault! Unable to trigger, software integrity check failed.", warning_channel, list(SPAN_COMMAND))
 		audible_message(span_danger("[src] makes a series of sad beeps. Someone has corrupted its software!"))
 		return FALSE
 
 	if(world.time - SSticker.round_start_time > 30 MINUTES && trigger_reason == COMSIG_SCRAM_TRIGGER_PUSHED)
 		audible_message(span_danger("[src] makes a series of sad beeps. The internal gas buffer is past its 30 minute expiry... what a feat of engineering!"))
 		investigate_log("Delam SCRAM signal was received but failed precondition check. (Round time or trigger reason)", INVESTIGATE_ATMOS)
-		radio.talk_into(src, "Supermatter delam suppression system fault! Unable to trigger, internal gas mix integrity check failed.", emergency_channel)
-		radio.talk_into(src, "Evacuation of area in proximity to supermatter engine room is advised.", emergency_channel)
+		radio.talk_into(src, "Supermatter delam suppression system fault! Unable to trigger, internal gas mix integrity check failed.", emergency_channel, list(SPAN_COMMAND))
 		return FALSE
 
 	return TRUE
@@ -141,10 +139,10 @@
 		notify_volume = 75,
 	)
 
-	radio.talk_into(src, "Supermatter delamination suppression system triggered! Evacuation of supermatter engine room is advised.", emergency_channel)
+	radio.talk_into(src, "Supermatter delamination suppression system triggered!", emergency_channel, list(SPAN_COMMAND))
 
 	// fight fire with ~~gasoline~~ freon
-	addtimer(CALLBACK(src, PROC_REF(put_on_a_show)), EVAC_WARNING_TIMER)
+	addtimer(CALLBACK(src, PROC_REF(put_on_a_show)), 4 SECONDS)
 	playsound(
 		source = src,
 		soundin = 'sound/announcer/alarm/bloblarm.ogg',
@@ -155,7 +153,7 @@
 		use_reverb = TRUE,
 		falloff_distance = 10,
 	)
-	power_fail((EVAC_WARNING_TIMER / 10) + 25, (EVAC_WARNING_TIMER / 10) + 25)
+	power_fail(duration_min = 27, duration_max = 33)
 
 /// Stop the delamination. Let the fireworks begin
 /obj/machinery/atmospherics/components/unary/delam_scram/proc/put_on_a_show()
@@ -164,8 +162,9 @@
 		return
 
 	// Fire bell close, that nice 'are we gonna die?' rumble out far
+	investigate_log("Integrity at time of suppression activation was [100 - angry_sm.damage]", INVESTIGATE_ENGINE)
 	on = TRUE
-	SSpersistence.reset_delam_counter()
+	SSpersistence.delam_counter_penalty()
 	alert_sound_to_playing('sound/ambience/earth_rumble/earth_rumble_distant3.ogg', override_volume = TRUE)
 	update_appearance()
 
@@ -187,25 +186,8 @@
 		venti_boi.on = FALSE
 		venti_boi.update_appearance()
 
-	// The windows can only protect you for so long
-	for(var/obj/structure/window/reinforced/plasma/fucked_window in range(3, src))
-		addtimer(CALLBACK(fucked_window, TYPE_PROC_REF(/obj/structure/window/reinforced/plasma, shatter_window)), rand(17 SECONDS, 19 SECONDS))
-
-	// Let the gas work for a few seconds to cool the crystal. If it has damage beyond repair, heal it a bit
-	addtimer(CALLBACK(src, PROC_REF(prevent_explosion)), 9 SECONDS)
-
-/// Shatter the supermatter chamber windows
-/obj/structure/window/reinforced/plasma/proc/shatter_window()
-	visible_message(span_danger("[src] shatters in the freon fire!"))
-	explosion(
-		origin = src,
-		devastation_range = 0,
-		heavy_impact_range = 0,
-		light_impact_range = 0,
-		flame_range = 3,
-		flash_range = 5,
-	)
-	qdel(src)
+	// Let the gas work for a few seconds to start the cooling process.
+	addtimer(CALLBACK(src, PROC_REF(aftermath)), 2 SECONDS)
 
 /// The valiant little machine falls apart, one time use only!
 /obj/machinery/atmospherics/components/unary/delam_scram/proc/goodbye_friends()
@@ -224,7 +206,7 @@
 	deconstruct(FALSE)
 
 /// Drain the internal energy, if the crystal damage is above 100 we heal it a bit. Not much, but should be good to let them recover.
-/obj/machinery/atmospherics/components/unary/delam_scram/proc/prevent_explosion()
+/obj/machinery/atmospherics/components/unary/delam_scram/proc/aftermath()
 	var/obj/machinery/power/supermatter_crystal/engine/damaged_sm = my_sm?.resolve()
 	if(!damaged_sm)
 		return
@@ -232,12 +214,13 @@
 	damaged_sm.name = "partially delaminated supermatter crystal"
 	damaged_sm.desc = "This crystal has seen better days, the glow seems off and the shards look brittle. Central says it's still \"relatively safe.\" They'd never lie to us, right?"
 	damaged_sm.explosion_power += 5 // if you fuck up again, yeesh
-	for(var/datum/sm_gas/saved_gas_mix as anything in damaged_sm.current_gas_behavior)
-		saved_gas_mix.heat_modifier += 1.5
-		saved_gas_mix.heat_resistance -= 0.7
-
-	if(damaged_sm.damage > 100)
-		damaged_sm.damage = 100
+	for(var/current_gas_mix as anything in damaged_sm.current_gas_behavior)
+		var/datum/sm_gas/gas_mix = damaged_sm.current_gas_behavior[current_gas_mix]
+		if(istype(gas_mix, /datum/sm_gas/freon))
+			gas_mix.heat_resistance += 0.4
+			continue
+		gas_mix.heat_modifier += 1.5
+		gas_mix.heat_resistance -= 0.4
 
 	damaged_sm.internal_energy = 0
 	for(var/obj/machinery/power/energy_accumulator/tesla_coil/zappy_boi in range(3, src))
@@ -247,13 +230,13 @@
 	. = ..()
 	var/datum/gas_mixture/delam_juice = new
 	delam_juice.add_gases(/datum/gas/freon)
-	delam_juice.gases[/datum/gas/freon][MOLES] = 16000 // enough to stop most delams, but not the really big fuckups
+	delam_juice.gases[/datum/gas/freon][MOLES] = 7000 // enough to stop most delams, but not the really big fuckups
 	delam_juice.temperature = 170 // 170K -103c
 	airs[1] = delam_juice
 
 /// A big red button you can smash to stop the supermatter engine, oh how tempting!
 /obj/machinery/button/delam_scram
-	name = "\improper supermatter emergency stop button"
+	name = "\proper the supermatter emergency stop button"
 	desc = "Your last hope to try and save the crystal during a delamination.<br>\
 		While it is indeed a big red button, pressing it outside of an emergency \
 		will probably get the engineering department out for your blood."
@@ -328,7 +311,7 @@
 	COOLDOWN_START(src, scram_button, 15 SECONDS)
 	button_stage = BUTTON_ARMED // You thought you could sneak this one by your coworkers?
 	update_appearance()
-	radio.talk_into(src, "SUPERMATTER EMERGENCY STOP BUTTON ARMED!", RADIO_CHANNEL_ENGINEERING)
+	radio.talk_into(src, "Supermatter delamination suppression system armed!", RADIO_CHANNEL_ENGINEERING, list(SPAN_COMMAND))
 	visible_message(span_danger("[user] swings open the plastic cover on [src]!"))
 
 	// Let the admins know someone's fucked up
@@ -471,9 +454,8 @@
 	return ..()
 
 /// Resets the safety incident display internal counter back to -1 (delam event happened)
-/datum/controller/subsystem/persistence/proc/reset_delam_counter()
-	delam_highscore = rounds_since_engine_exploded
-	rounds_since_engine_exploded = -1
+/datum/controller/subsystem/persistence/proc/delam_counter_penalty()
+	rounds_since_engine_exploded = round(rounds_since_engine_exploded * 0.5)
 	for(var/obj/machinery/incident_display/sign as anything in GLOB.map_incident_displays)
 		sign.update_delam_count(rounds_since_engine_exploded)
 
@@ -485,4 +467,3 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/delam_procedure, 32)
 #undef BUTTON_IDLE
 #undef BUTTON_AWAKE
 #undef BUTTON_ARMED
-#undef EVAC_WARNING_TIMER
