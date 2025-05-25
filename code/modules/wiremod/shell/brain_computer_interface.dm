@@ -155,7 +155,7 @@
 	if (!sent_message)
 		return
 
-	if(!(color_input.value in GLOB.component_span_color_list)) // // BUBBER ADDITION
+	if(!(color_input.value in GLOB.component_span_color_list)) // BUBBER ADDITION
 		color_input.set_value("Default")
 
 	if (isnull(bci.owner))
@@ -164,7 +164,7 @@
 	if (bci.owner.stat == DEAD)
 		return
 
-	to_chat(bci.owner, "<i>You hear a strange, robotic voice in your head...</i> \"<span class='[GLOB.component_span_color_list[color_input.value]]'>[span_robot("[html_encode(sent_message)]")]</span>\"") // // BUBBER EDIT
+	to_chat(bci.owner, "<i>You hear a strange, robotic voice in your head...</i> \"<span class='[GLOB.component_span_color_list[color_input.value]]'>[span_robot("[html_encode(sent_message)]")]</span>\"") // BUBBER EDIT
 
 /obj/item/circuit_component/bci_core/proc/on_organ_implanted(datum/source, mob/living/carbon/owner)
 	SIGNAL_HANDLER
