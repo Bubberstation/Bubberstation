@@ -1,8 +1,5 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aF" = (
-/obj/structure/railing{
-	dir = 1
-	},
 /obj/effect/turf_decal/siding/dark_red,
 /obj/effect/turf_decal/siding/dark_red{
 	dir = 1
@@ -242,6 +239,22 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
+"gT" = (
+/obj/effect/turf_decal/trimline/dark_red/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/dark/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/dark_red/filled/line,
+/obj/effect/turf_decal/trimline/dark/line,
+/obj/structure/transport/linear/public,
+/obj/machinery/lift_indicator/directional/north,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bubbers/persistance/controltower)
 "hj" = (
 /obj/machinery/modular_shield/module/charger{
 	dir = 1
@@ -407,7 +420,12 @@
 /turf/open/floor/iron/colony/texture,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
 "nv" = (
-/turf/open/openspace,
+/obj/effect/turf_decal/bot_red,
+/obj/structure/transport/linear/public,
+/obj/structure/railing/corner/end/flip{
+	dir = 8
+	},
+/turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
 "nx" = (
 /obj/structure/railing/corner{
@@ -605,6 +623,12 @@
 	},
 /turf/open/floor/iron/dark/snowdin,
 /area/ruin/space/has_grav/bubbers/persistance/shieldgen)
+"rM" = (
+/obj/effect/turf_decal/bot_red,
+/obj/effect/turf_decal/box/red,
+/obj/structure/transport/linear/public,
+/turf/open/floor/iron/dark/textured_large,
+/area/ruin/space/has_grav/bubbers/persistance/controltower)
 "rN" = (
 /obj/effect/turf_decal/stripes/red/full,
 /obj/effect/turf_decal/box/white,
@@ -695,6 +719,9 @@
 	},
 /obj/effect/turf_decal/trimline/dark/end{
 	dir = 1
+	},
+/obj/structure/railing{
+	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
@@ -1122,6 +1149,26 @@
 	},
 /turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
+"FG" = (
+/obj/effect/turf_decal/trimline/dark_red/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/dark/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/dark_red/filled/shrink_ccw,
+/obj/effect/turf_decal/trimline/dark/line,
+/obj/structure/transport/linear/public,
+/obj/machinery/elevator_control_panel/directional/north{
+	linked_elevator_id = "PersistenceElevator";
+	preset_destination_names = list("2" = "Bridge Bottom", "3" = "Bridge Upper");
+	req_access = list("syndicate")
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bubbers/persistance/controltower)
 "FM" = (
 /turf/open/floor/mineral/plastitanium/red{
 	icon_state = "plastitanium"
@@ -1245,9 +1292,6 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/shieldgen)
 "JY" = (
-/obj/structure/railing{
-	dir = 8
-	},
 /obj/effect/turf_decal/siding/dark_red/end{
 	dir = 1
 	},
@@ -1256,6 +1300,9 @@
 	},
 /obj/effect/turf_decal/trimline/dark/end{
 	dir = 1
+	},
+/obj/structure/railing{
+	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
@@ -1388,25 +1435,28 @@
 /turf/open/floor/iron/dark/snowdin,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "On" = (
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/dark_red/filled/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/dark_red/filled/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/dark/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/dark/line{
+	dir = 8
+	},
+/obj/structure/railing/corner/end/flip{
+	dir = 8
+	},
 /obj/structure/railing{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/dark_red{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/dark_red{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/dark_red/filled/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/dark_red/filled/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/dark/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/dark/line{
 	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -1544,6 +1594,12 @@
 /obj/effect/turf_decal/trimline/dark/line{
 	dir = 4
 	},
+/obj/structure/railing/corner/end{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 4
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
 "St" = (
@@ -1628,6 +1684,14 @@
 	},
 /turf/open/floor/iron/dark/snowdin,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
+"UO" = (
+/obj/effect/turf_decal/bot_red,
+/obj/structure/transport/linear/public,
+/obj/structure/railing/corner/end{
+	dir = 4
+	},
+/turf/open/floor/iron/dark/textured_large,
+/area/ruin/space/has_grav/bubbers/persistance/controltower)
 "UR" = (
 /obj/structure/steam_vent/fast,
 /turf/open/floor/iron/dark/snowdin,
@@ -1705,6 +1769,24 @@
 	dir = 1
 	},
 /turf/open/floor/plating/elevatorshaft,
+/area/ruin/space/has_grav/bubbers/persistance/controltower)
+"Xe" = (
+/obj/effect/turf_decal/trimline/dark_red/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/dark/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/dark_red/filled/warning,
+/obj/effect/turf_decal/trimline/dark/warning,
+/obj/structure/transport/linear/public,
+/obj/effect/landmark/transport/transport_id{
+	specific_transport_id = "PersistenceElevator"
+	},
+/turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
 "Xq" = (
 /obj/effect/turf_decal/stripes/line{
@@ -5113,7 +5195,7 @@ dI
 dI
 dI
 LP
-nv
+gT
 nv
 aF
 yP
@@ -5183,8 +5265,8 @@ dI
 dI
 dI
 yP
-nv
-nv
+Xe
+rM
 aF
 yP
 SU
@@ -5253,8 +5335,8 @@ dI
 dI
 dI
 dq
-nv
-nv
+FG
+UO
 aF
 yP
 SU

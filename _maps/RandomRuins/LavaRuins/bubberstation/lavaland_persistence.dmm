@@ -983,11 +983,6 @@
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "bR" = (
-/obj/machinery/button/door/directional/north{
-	id = "syndikitchen_s";
-	name = "Kitchen Shutters";
-	pixel_y = -24
-	},
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/food/cake/birthday/energy{
 	pixel_x = 0;
@@ -2830,6 +2825,7 @@
 "fO" = (
 /obj/structure/sign/poster/contraband/calada_jelly/directional/east,
 /obj/structure/table/reinforced/plastitaniumglass,
+/obj/machinery/processor,
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
 "fP" = (
@@ -2891,6 +2887,11 @@
 	pixel_y = 4
 	},
 /obj/effect/turf_decal/bot_red,
+/obj/machinery/power/apc/auto_name/directional/west,
+/obj/structure/cable,
+/obj/effect/mapping_helpers/apc/syndicate_access,
+/obj/effect/mapping_helpers/apc/full_charge,
+/obj/effect/mapping_helpers/apc/cut_AI_wire,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/persistance/service/sauna)
 "fV" = (
@@ -6850,6 +6851,13 @@
 /obj/structure/sign/poster/official/festive/directional/west,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
+"oc" = (
+/obj/effect/turf_decal/bot_red,
+/obj/structure/railing/corner/end/flip{
+	dir = 8
+	},
+/turf/open/floor/iron/dark/textured_large,
+/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "od" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/command/liason)
@@ -7196,6 +7204,9 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/trimline/dark/corner{
+	dir = 4
+	},
+/obj/structure/railing/corner/end{
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -7979,27 +7990,6 @@
 "qB" = (
 /turf/closed/wall/r_wall/syndicate/cruiser,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/medical)
-"qC" = (
-/obj/effect/turf_decal/trimline/dark_red/filled/corner{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/dark/corner{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/dark_red/corner{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/dark_red/filled/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/dark/corner{
-	dir = 8
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "qD" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
@@ -10645,7 +10635,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "vF" = (
 /obj/machinery/light/directional/east,
-/obj/vehicle/ridden/atv/snowmobile/syndicate,
+/obj/vehicle/ridden/atv,
 /turf/open/floor/iron/colony/bolts,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "vG" = (
@@ -15819,6 +15809,11 @@
 	pixel_x = 7;
 	pixel_y = 2
 	},
+/obj/machinery/button/door/directional/north{
+	id = "syndikitchen_s";
+	name = "Kitchen Shutters";
+	pixel_y = -24
+	},
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
 "Fj" = (
@@ -18399,7 +18394,6 @@
 	pixel_y = 0;
 	pixel_x = 24
 	},
-/obj/machinery/processor,
 /obj/effect/turf_decal/trimline/dark/filled/end{
 	dir = 4;
 	alpha = 160
@@ -18417,7 +18411,7 @@
 	alpha = 200;
 	dir = 4
 	},
-/obj/structure/marker_beacon/jade,
+/obj/structure/table/reinforced/plastitaniumglass,
 /turf/open/floor/iron/white/smooth_large,
 /area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
 "KJ" = (
@@ -20555,6 +20549,12 @@
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/medical)
+"Pg" = (
+/obj/machinery/button/elevator/directional/west{
+	id = "PersistenceElevator"
+	},
+/turf/closed/wall/r_wall/syndicate/cruiser,
+/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "Ph" = (
 /obj/structure/sign/poster/official/periodic_table/directional/west,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -21272,7 +21272,7 @@
 	pixel_y = 5;
 	base_icon_state = "tram"
 	},
-/obj/vehicle/ridden/atv/snowmobile/syndicate,
+/obj/vehicle/ridden/atv,
 /turf/open/floor/iron/colony/bolts,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "QL" = (
@@ -24694,6 +24694,11 @@
 /turf/open/floor/iron/white/smooth_large,
 /area/ruin/space/has_grav/bubbers/persistance/med/treatment)
 "XG" = (
+/mob/living/basic/snail{
+	faction = list("neutral","maint_creatures","Syndicate");
+	name = "Tiger Coop snail";
+	desc = "Is that a prototype ling or just a snail with branding?"
+	},
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "XI" = (
@@ -28212,7 +28217,7 @@ FV
 oM
 NG
 bR
-mH
+Tf
 VG
 gq
 gq
@@ -28350,7 +28355,7 @@ br
 sy
 fg
 Oo
-Tf
+mH
 Ng
 gq
 gq
@@ -28842,9 +28847,9 @@ FW
 "}
 (45,1,1) = {"
 LD
-Yd
+Pg
 rz
-LG
+oc
 sX
 Ay
 sX
@@ -29051,7 +29056,7 @@ FW
 VG
 XB
 Ck
-qC
+YN
 Pp
 kC
 RT

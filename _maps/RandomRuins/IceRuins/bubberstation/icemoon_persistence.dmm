@@ -5368,14 +5368,6 @@
 	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
-"lf" = (
-/obj/effect/turf_decal/bot_red,
-/obj/structure/transport/linear/public,
-/obj/structure/railing/corner/end{
-	dir = 4
-	},
-/turf/open/floor/iron/dark/textured_large,
-/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "lg" = (
 /obj/structure/extinguisher_cabinet/directional/west,
 /obj/machinery/ammo_workbench,
@@ -8735,12 +8727,6 @@
 	},
 /obj/effect/turf_decal/trimline/dark_red/filled/shrink_ccw,
 /obj/effect/turf_decal/trimline/dark/line,
-/obj/structure/transport/linear/public,
-/obj/machinery/elevator_control_panel/directional/north{
-	linked_elevator_id = "PersistenceElevator";
-	preset_destination_names = list("2" = "Bridge Bottom", "3" = "Bridge Upper");
-	req_access = list("syndicate")
-	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "rE" = (
@@ -9682,24 +9668,6 @@
 	},
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
-"tF" = (
-/obj/effect/turf_decal/trimline/dark_red/filled/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/dark/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/dark_red{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/dark_red/filled/warning,
-/obj/effect/turf_decal/trimline/dark/warning,
-/obj/structure/transport/linear/public,
-/obj/effect/landmark/transport/transport_id{
-	specific_transport_id = "PersistenceElevator"
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "tG" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -10135,6 +10103,11 @@
 	pixel_y = 4
 	},
 /obj/effect/turf_decal/bot_red,
+/obj/machinery/power/apc/auto_name/directional/west,
+/obj/structure/cable,
+/obj/effect/mapping_helpers/apc/syndicate_access,
+/obj/effect/mapping_helpers/apc/full_charge,
+/obj/effect/mapping_helpers/apc/cut_AI_wire,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/persistance/service/sauna)
 "uq" = (
@@ -10520,9 +10493,6 @@
 	dir = 4
 	},
 /obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/railing/corner/end{
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -11824,6 +11794,7 @@
 "xH" = (
 /obj/structure/sign/poster/contraband/calada_jelly/directional/east,
 /obj/structure/table/reinforced/plastitaniumglass,
+/obj/machinery/processor,
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
 "xJ" = (
@@ -12870,14 +12841,6 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sec/armory)
-"zB" = (
-/obj/effect/turf_decal/bot_red,
-/obj/structure/transport/linear/public,
-/obj/structure/railing/corner/end/flip{
-	dir = 8
-	},
-/turf/open/floor/iron/dark/textured_large,
-/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "zC" = (
 /obj/machinery/light/directional/west,
 /obj/effect/turf_decal/siding/wood{
@@ -13194,6 +13157,11 @@
 /obj/item/reagent_containers/condiment/honey{
 	pixel_x = 7;
 	pixel_y = 2
+	},
+/obj/machinery/button/door/directional/north{
+	id = "syndikitchen_s";
+	name = "Kitchen Shutters";
+	pixel_y = -24
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
@@ -16251,22 +16219,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service)
-"Gm" = (
-/obj/effect/turf_decal/trimline/dark_red/filled/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/dark/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/dark_red{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/dark_red/filled/line,
-/obj/effect/turf_decal/trimline/dark/line,
-/obj/structure/transport/linear/public,
-/obj/machinery/lift_indicator/directional/north,
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "Go" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -18400,9 +18352,6 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/obj/structure/railing/corner/end/flip{
-	dir = 8
-	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "KZ" = (
@@ -19073,11 +19022,6 @@
 	},
 /area/ruin/space/has_grav/bubbers/persistance/med)
 "Mh" = (
-/obj/machinery/button/door/directional/north{
-	id = "syndikitchen_s";
-	name = "Kitchen Shutters";
-	pixel_y = -24
-	},
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/food/cake/birthday/energy{
 	pixel_x = 0;
@@ -22545,7 +22489,6 @@
 	pixel_y = 0;
 	pixel_x = 24
 	},
-/obj/machinery/processor,
 /obj/effect/turf_decal/trimline/dark/filled/end{
 	dir = 4;
 	alpha = 160
@@ -22563,7 +22506,7 @@
 	alpha = 200;
 	dir = 4
 	},
-/obj/structure/marker_beacon/jade,
+/obj/structure/table/reinforced/plastitaniumglass,
 /turf/open/floor/iron/white/smooth_large,
 /area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
 "Tx" = (
@@ -22932,7 +22875,6 @@
 "Up" = (
 /obj/effect/turf_decal/bot_red,
 /obj/effect/turf_decal/box/red,
-/obj/structure/transport/linear/public,
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "Ur" = (
@@ -24659,6 +24601,11 @@
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "XO" = (
+/mob/living/basic/snail{
+	faction = list("neutral","maint_creatures","Syndicate");
+	name = "Tiger Coop snail";
+	desc = "Is that a prototype ling or just a snail with branding?"
+	},
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "XP" = (
@@ -28545,7 +28492,7 @@ jE
 dI
 JI
 Mh
-rh
+IK
 nc
 uQ
 mc
@@ -28685,7 +28632,7 @@ vM
 zo
 Lh
 Zs
-IK
+rh
 Fy
 uQ
 mc
@@ -29186,8 +29133,8 @@ mc
 uQ
 UG
 TR
-Gm
-zB
+jF
+pu
 SM
 wp
 SM
@@ -29256,7 +29203,7 @@ mc
 uQ
 QB
 hO
-tF
+RO
 Up
 Bu
 IA
@@ -29327,7 +29274,7 @@ uQ
 nc
 HU
 rD
-lf
+pu
 ui
 wp
 ui
