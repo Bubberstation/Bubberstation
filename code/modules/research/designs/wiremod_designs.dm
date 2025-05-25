@@ -171,6 +171,11 @@
 	id = "comp_tonumber"
 	build_path = /obj/item/circuit_component/tonumber
 
+/datum/design/component/color // BUBBER ADDITION
+	name = "Color Component"
+	id = "comp_color"
+	build_path = /obj/item/circuit_component/color
+
 /datum/design/component/typecheck
 	name = "Typecheck Component"
 	id = "comp_typecheck"
