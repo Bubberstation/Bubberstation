@@ -141,7 +141,7 @@
 
 //Synth Taurs (Ported from Virgo)
 /datum/sprite_accessory/taur/synthliz
-	name = "Synthetic Lizard"
+	name = "Cybernetic Lizard"
 	icon_state = "synthlizard"
 	taur_mode = STYLE_TAUR_PAW
 	recommended_species = list()
@@ -149,48 +149,48 @@
 	organ_type = /obj/item/organ/taur_body/horselike/synth
 
 /datum/sprite_accessory/taur/synthliz/inv
-	name = "Synthetic Lizard (Inverted)"
+	name = "Cybernetic Lizard (Inverted)"
 	icon_state = "synthlizardinv"
 
 /datum/sprite_accessory/taur/synthliz/feline
-	name = "Synthetic Feline"
+	name = "Cybernetic Feline"
 	icon_state = "synthfeline"
 
 /datum/sprite_accessory/taur/synthliz/feline/inv
-	name = "Synthetic Feline (Inverted)"
+	name = "Cybernetic Feline (Inverted)"
 	icon_state = "synthfelineinv"
 
 /datum/sprite_accessory/taur/synthliz/horse
-	name = "Synthetic Horse"
+	name = "Cybernetic Horse"
 	icon_state = "synthhorse"
 	taur_mode = STYLE_TAUR_HOOF
 	alt_taur_mode = STYLE_TAUR_PAW
 
 /datum/sprite_accessory/taur/synthliz/horse/inv
-	name = "Synthetic Horse (Inverted)"
+	name = "Cybernetic Horse (Inverted)"
 	icon_state = "synthhorseinv"
 
 /datum/sprite_accessory/taur/synthliz/bunny
-	name = "Synthetic Bunny"
+	name = "Cybernetic Bunny"
 	icon_state = "bigbunny"
 	icon = 'modular_zubbers/icons/customization/taur.dmi'
 
 /datum/sprite_accessory/taur/synthliz/wolf
-	name = "Synthetic Wolf"
+	name = "Cybernetic Wolf"
 	icon_state = "synthwolf"
 
 /datum/sprite_accessory/taur/synthliz/wolf/inv
-	name = "Synthetic Wolf (Inverted)"
+	name = "Cybernetic Wolf (Inverted)"
 	icon_state = "synthwolfinv"
 
 /datum/sprite_accessory/taur/synthliz/synthnaga
-	name = "Synthetic Naga"
+	name = "Cybernetic Naga"
 	icon_state = "synthnaga"
 	taur_mode = STYLE_TAUR_SNAKE
 	organ_type = /obj/item/organ/taur_body/serpentine/synth
 
 /datum/sprite_accessory/taur/synthliz/synthnagafat
-	name = "Synthetic Naga, Fat"
+	name = "Cybernetic Naga, Fat"
 	icon_state = "nagafat"
 	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/taur.dmi'
 
