@@ -81,7 +81,6 @@
 		"comp_toggle",
 		"comp_tonumber",
 		"comp_tostring",
-		"comp_color", // BUBBER ADDITION
 		"comp_trigonometry",
 		"comp_typecast",
 		"comp_typecheck",
