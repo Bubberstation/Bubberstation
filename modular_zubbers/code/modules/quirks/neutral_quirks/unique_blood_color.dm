@@ -43,23 +43,17 @@
 				override.color = BLOOD_COLOR_RED
 	else
 		override.color = client_source?.prefs.read_preference(/datum/preference/color/input_blood_color)
-	change_blood_color(new_species = human_holder.dna.species, override = human_holder.dna.blood_type)
+	change_blood_color(quirked = human_holder, override = human_holder.dna.blood_type)
 
 //someone could turn this into a universal replace_blood() or something... but not me
 
-/datum/quirk/unique_blood_color/proc/change_blood_color(datum/source, datum/species/new_species, datum/species/old_species, datum/blood_type/override, pref_load, regenerate_icons)
+/datum/quirk/unique_blood_color/proc/change_blood_color(datum/source, mob/living/carbon/human/quirked, datum/blood_type/override, update_cached_blood_dna_info)
 	SIGNAL_HANDLER
-
-	var/mob/living/carbon/human/human_holder = quirk_holder
-	if(!istype(human_holder))
-		return
-
-///Making the new blood type
-	var/datum/blood_type/new_blood_type = new /datum/blood_type/alt_color(human_holder.dna.blood_type, human_holder.dna.blood_type.compatible_types)
-	new_blood_type.color = override.color
+///Making the new blood type... Not having a check-for-reuse might be problematic, but who's sitting in a SAD 10-odd times?
+	var/datum/blood_type/new_blood_type = new /datum/blood_type/alt_color(quirked.dna.blood_type, override, quirked.dna.blood_type.compatible_types)
 	GLOB.blood_types[new_blood_type.id] = new_blood_type
-	human_holder.set_blood_type(new_blood_type)
+	quirked.set_blood_type(new_blood_type)
 
-	if(new_species.exotic_bloodtype)
-		new_species.exotic_bloodtype = new_blood_type
+	if(quirked.dna.species.exotic_bloodtype)
+		quirked.dna.species.exotic_bloodtype = new_blood_type
 
