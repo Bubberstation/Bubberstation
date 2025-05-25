@@ -614,6 +614,14 @@
 	UnregisterSignal(mod, COMSIG_ATOM_EMAG_ACT)
 
 /obj/item/mod/module/dna_lock/on_use()
+	/// Bubber Edit Start - Proteans
+	if(istype(mod, /obj/item/mod/control/pre_equipped/protean))
+		var/obj/item/mod/control/pre_equipped/protean/p_suit = mod
+		var/obj/item/mod/core/protean/p_core = mod.core
+		var/datum/species/protean/species = p_core.linked_species
+		if(species.owner.loc == p_suit.loc)
+			return balloon_alert(p_suit.wearer, "button unresponsive")
+	/// Bubber Edit End
 	dna = mod.wearer.dna.unique_enzymes
 	balloon_alert(mod.wearer, "dna updated")
 	drain_power(use_energy_cost)
@@ -629,6 +637,11 @@
 /obj/item/mod/module/dna_lock/proc/dna_check(mob/user)
 	if(!iscarbon(user))
 		return FALSE
+	/// Bubber Edit Start
+	var/obj/item/mod/control/pre_equipped/protean/suit = mod
+	if(istype(suit))
+		return TRUE
+	/// Bubber Edit End
 	var/mob/living/carbon/carbon_user = user
 	if(!dna  || (carbon_user.has_dna() && carbon_user.dna.unique_enzymes == dna))
 		return TRUE
