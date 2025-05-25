@@ -1,8 +1,16 @@
 import { useState } from 'react';
-import { Button, Input, NoticeBox, Section, Stack } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  Input,
+  NoticeBox,
+  Section,
+  Stack,
+} from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
+import { sanitizeText } from '../sanitize';
 
 type IndividualLogViewerData = {
   mob_name: string;
@@ -230,7 +238,8 @@ const LogEntriesViewer = (props: LogEntriesViewerProps) => {
                   >
                     {entry.timestamp}
                   </div>
-                  <div
+                  {/* eslint-disable-next-line react/no-danger */}
+                  <Box
                     style={{
                       fontFamily: 'monospace',
                       fontSize: '12px',
@@ -240,7 +249,7 @@ const LogEntriesViewer = (props: LogEntriesViewerProps) => {
                       color: '#ffffff',
                     }}
                     dangerouslySetInnerHTML={{
-                      __html: entry.formatted_message,
+                      __html: sanitizeText(entry.formatted_message),
                     }}
                   />
                 </div>
