@@ -175,8 +175,8 @@
 /obj/item/organ/brain/protean/proc/revive_timer()
 	balloon_alert_to_viewers("repairing")
 	playsound(get_turf(src), 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
-	to_chat(owner, span_red("Your refactory has been replaced. You will become functional again in a few minutes.."))
-	addtimer(CALLBACK(src, PROC_REF(revive)), 1 MINUTES)
+	owner.notify_revival("Your refactory has been replaced. You will become functional again in a few minutes..")
+	addtimer(CALLBACK(src, PROC_REF(revive)), 5 MINUTES)
 
 /obj/effect/temp_visual/protean_to_suit
 	name = "to_suit"
