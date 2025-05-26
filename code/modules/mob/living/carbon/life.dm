@@ -2,13 +2,6 @@
 	if(HAS_TRAIT(src, TRAIT_NO_TRANSFORM))
 		return
 
-	//SKYRAT EDIT ADDITION
-	if(isopenturf(loc))
-		var/turf/open/my_our_turf = loc
-		if(my_our_turf.pollution)
-			my_our_turf.pollution.touch_act(src)
-	//SKYRAT EDIT END
-
 	if(damageoverlaytemp)
 		damageoverlaytemp = 0
 		update_damage_hud()
@@ -131,13 +124,6 @@
 						visible_message("<span class='warning'>[src] chokes on [our_turf.liquids.reagents_to_text()]!</span>", \
 									"<span class='userdanger'>You're choking on [our_turf.liquids.reagents_to_text()]!</span>")
 					return FALSE
-				if(isopenturf(our_turf))
-					var/turf/open/open_turf = our_turf
-					if(open_turf.pollution)
-						if(next_smell <= world.time)
-							next_smell = world.time + SMELL_COOLDOWN
-							open_turf.pollution.smell_act(src)
-						open_turf.pollution.breathe_act(src)
 				//SKYRAT EDIT END
 				var/breath_moles = 0
 				if(environment)
@@ -570,7 +556,7 @@
 					dna.unique_enzymes = dna.previous["UE"]
 					dna.previous.Remove("UE")
 				if(dna.previous["blood_type"])
-					dna.blood_type = dna.previous["blood_type"]
+					set_blood_type(dna.previous["blood_type"])
 					dna.previous.Remove("blood_type")
 				dna.temporary_mutations.Remove(mut)
 				continue
@@ -732,22 +718,29 @@
 //Stomach//
 ///////////
 
-/mob/living/carbon/get_fullness()
-	var/fullness = nutrition
+/mob/living/carbon/get_fullness(only_consumable)
+	. = ..()
 
 	var/obj/item/organ/stomach/belly = get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(!belly) //nothing to see here if we do not have a stomach
-		return fullness
+		return .
 
-	for(var/bile in belly.reagents.reagent_list)
-		var/datum/reagent/bits = bile
-		if(istype(bits, /datum/reagent/consumable))
-			var/datum/reagent/consumable/goodbit = bile
-			fullness += goodbit.get_nutriment_factor(src) * goodbit.volume / goodbit.metabolization_rate
+	for(var/datum/reagent/bits as anything in belly.reagents.reagent_list)
+		// hack to get around stomachs having 5u stomach lining reagent ugugugu
+		var/effective_volume = bits.volume
+		if(belly.food_reagents[bits.type])
+			effective_volume -= belly.food_reagents[bits.type]
+		if(effective_volume <= 0)
 			continue
-		fullness += 0.6 * bits.volume / bits.metabolization_rate //not food takes up space
+		if(istype(bits, /datum/reagent/consumable))
+			var/datum/reagent/consumable/goodbit = bits
+			. += goodbit.get_nutriment_factor(src) * effective_volume / goodbit.metabolization_rate
+			continue
+		if(!only_consumable)
+			continue
+		. += 0.6 * effective_volume / bits.metabolization_rate //not food takes up space
 
-	return fullness
+	return .
 
 /mob/living/carbon/has_reagent(reagent, amount = -1, needs_metabolizing = FALSE)
 	. = ..()

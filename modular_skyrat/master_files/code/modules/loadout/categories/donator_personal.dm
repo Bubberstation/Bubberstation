@@ -690,23 +690,19 @@
 /datum/loadout_item/suit/lt3_armor
 	name = "Silver Jacket Mk II"
 	item_path = /obj/item/clothing/suit/armor/skyy
-	//ckeywhitelist = list("lt3")
 	restricted_roles = list(JOB_HEAD_OF_PERSONNEL, JOB_NT_REP)
 
 /datum/loadout_item/suit/lt3_jacket
 	name = "Silver Jacket"
 	item_path = /obj/item/clothing/suit/jacket/skyy
-	//ckeywhitelist = list("lt3")
 
 /datum/loadout_item/uniform/miscellaneous/lt3_jeans
 	name = "Silver Jeans"
 	item_path = /obj/item/clothing/under/pants/skyy
-	//ckeywhitelist = list("lt3")
 
 /datum/loadout_item/gloves/lt3_gloves
 	name = "Charcoal Fingerless Gloves"
 	item_path = /obj/item/clothing/gloves/skyy
-	//ckeywhitelist = list("lt3")
 
 /datum/loadout_item/toys/switchcomb
 	name = "Switchblade Comb"
@@ -721,7 +717,7 @@
 /datum/loadout_item/inhand/officialcat
 	name = "Official Cat Stamp"
 	item_path = /obj/item/stamp/cat
-	ckeywhitelist = list("kathrinbailey")
+//	ckeywhitelist = list("kathrinbailey")
 
 /datum/loadout_item/inhand/hardlight_wheelchair
 	name = "Hardlight Wheelchair Projector"
