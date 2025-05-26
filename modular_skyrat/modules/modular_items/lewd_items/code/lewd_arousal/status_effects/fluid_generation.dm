@@ -53,7 +53,7 @@
 	// if(!testes || (affected_human.arousal < AROUSAL_LOW))
 	// 	return FALSE
 
-	var/regen = (50 / AROUSAL_MULTIPLIER) * (testes.internal_fluid_maximum / TESTES_MULTIPLIER) * BASE_MULTIPLIER // this is really quite stupid, the bare number is replacing the arousal value previously there
+	var/regen = (50 / AROUSAL_MULTIPLIER) * (testes.reagents.maximum_volume / TESTES_MULTIPLIER) * BASE_MULTIPLIER // this is really quite stupid, the bare number is replacing the arousal value previously there
 	testes.reagents.add_reagent(testes.internal_fluid_datum, regen)
 
 //
@@ -78,7 +78,7 @@
 		var/B = breasts.reagents.total_volume
 		A -= B // how much free space remaining?
 		if(regen > A)
-			regen = A
+			regen = A // so we aren't draining nutrition for milk that isn't actually being generated
 		owner.adjust_nutrition(-regen / NUTRITION_COST_MULTIPLIER)
 		breasts.reagents.add_reagent(breasts.internal_fluid_datum, regen)
 
