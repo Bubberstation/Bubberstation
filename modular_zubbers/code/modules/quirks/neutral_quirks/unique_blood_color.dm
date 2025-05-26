@@ -57,7 +57,6 @@
 		GLOB.blood_types[new_blood_type::id] = new_blood_type
 	quirked.set_blood_type(new_blood_type)
 
-	investigate_log("[key_name(mind)] has generated a new blood type [new_blood_type], INVESTIGATE_RECORDS")
 	if(quirked.dna.species.exotic_bloodtype)
 		quirked.dna.species.exotic_bloodtype = new_blood_type
 
