@@ -91,7 +91,7 @@
 /obj/vehicle/sealed/mecha/mccloud/proc/activate_jet(delay = 7)
 	if(jet_mode)
 		return
-	if(!skip_delay)
+	if(delay != 0)
 		do_after(usr, delay DECISECONDS)
 	icon_state = "mccloud-jet"
 	jet_mode = TRUE
@@ -101,7 +101,7 @@
 /obj/vehicle/sealed/mecha/mccloud/proc/activate_biped(delay = 7)
 	if(!jet_mode)
 		return
-	if(!skip_delay)
+	if(delay != 0)
 		do_after(usr, delay DECISECONDS)
 	icon_state = "mccloud"
 	jet_mode = FALSE
@@ -175,7 +175,7 @@
 	if(strafe)
 		setDir(olddir)
 	if(no_jet_environment())
-		activate_biped()
+		activate_biped(3 SECONDS)
 
 /obj/vehicle/sealed/mecha/mccloud/proc/jet_mode_thruster_effects(movement_dir)
 	var/obj/effect/particle_effect/E = new /obj/effect/particle_effect/ion_trails(get_turf(src))
