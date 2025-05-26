@@ -41,10 +41,12 @@
 
 	handle_refactory(owner.get_organ_slot(ORGAN_SLOT_STOMACH))
 	handle_orchestrator(owner.get_organ_slot(ORGAN_SLOT_HEART))
-	if(owner.stat >= HARD_CRIT && !dead)
+
+/obj/item/organ/brain/protean/on_death(seconds_per_tick, times_fired)
+	. = ..()
+	if(owner.stat == DEAD && !dead)
 		to_chat(owner, span_red("Your fragile refactory withers away with your mass reduced to scraps. Someone will have to help you."))
 		dead = TRUE
-		owner.fully_heal(HEAL_DAMAGE)
 		qdel(owner.get_organ_slot(ORGAN_SLOT_STOMACH))
 		go_into_suit(TRUE)
 
@@ -102,7 +104,7 @@
 	if(!istype(protean))
 		return
 	var/obj/item/mod/control/pre_equipped/protean/suit = protean.species_modsuit
-	if(dead)
+	if(owner.stat == DEAD)
 		to_chat(owner, span_warning("Your mass is destroyed. You are unable to leave."))
 		return
 	if(!do_after(owner, 5 SECONDS, suit, IGNORE_INCAPACITATED))
@@ -161,18 +163,20 @@
 		ears.Insert(owner, TRUE)
 
 /obj/item/organ/brain/protean/proc/revive()
+	var/obj/item/organ/stomach/protean/protean_stomach = owner.get_organ_slot(ORGAN_SLOT_STOMACH)
 	dead = FALSE
 	owner.visible_message(span_warning("[owner]'s nanites regain cohesion."))
 	playsound(owner, 'sound/machines/ping.ogg', 30)
 	to_chat(owner, span_warning("You have regained all your mass!"))
-	owner.fully_heal()
+	protean_stomach.metal = PROTEAN_STOMACH_FULL // it's brand new. it should be full.
+	owner.fully_heal(HEAL_DAMAGE)
+	owner.revive()
 
 /obj/item/organ/brain/protean/proc/revive_timer()
 	balloon_alert_to_viewers("repairing")
 	playsound(get_turf(src), 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
-	owner.visible_message(span_warning("[owner]'s nanites writhe as repair process begins."))
 	to_chat(owner, span_red("Your refactory has been replaced. You will become functional again in a few minutes.."))
-	addtimer(CALLBACK(src, PROC_REF(revive)), 5 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(revive)), 1 MINUTES)
 
 /obj/effect/temp_visual/protean_to_suit
 	name = "to_suit"

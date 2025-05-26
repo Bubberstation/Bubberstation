@@ -105,6 +105,7 @@
 /obj/item/mod/control/pre_equipped/protean/tool_act(mob/living/user, obj/item/tool, list/modifiers)
 	. = ..()
 	var/obj/item/mod/core/protean/protean_core = core
+	var/mob/living/carbon/human/the_protean = protean_core?.linked_species.owner
 	var/obj/item/organ/brain/protean/brain = protean_core?.linked_species.owner.get_organ_slot(ORGAN_SLOT_BRAIN)
 	var/obj/item/organ/stomach/protean/refactory = protean_core.linked_species.owner.get_organ_slot(ORGAN_SLOT_STOMACH)
 
@@ -112,6 +113,7 @@
 		var/obj/item/organ/stomach = tool
 		stomach.Insert(protean_core.linked_species.owner, TRUE, DELETE_IF_REPLACED)
 		balloon_alert(user, "inserted!")
+		src.visible_message(span_warning("[the_protean]'s nanites writhe as repair process begins."))
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 		brain.revive_timer()
 		return ITEM_INTERACT_SUCCESS
@@ -219,7 +221,6 @@
 /obj/item/mod/control/pre_equipped/protean/examine(mob/user)
 	. = ..()
 	var/obj/item/mod/core/protean/protean_core = core
-	var/mob/living/carbon/human/protean_in_suit = protean_core?.mod.client_mobs_in_contents
 	var/obj/item/organ/brain/protean/brain = protean_core?.linked_species.owner.get_organ_slot(ORGAN_SLOT_BRAIN)
 	var/obj/item/organ/stomach/protean/refactory = protean_core.linked_species.owner.get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(!isnull(brain) || istype(brain))
@@ -229,10 +230,6 @@
 				. += isnull(refactory) ? span_warning("This Protean requires critical repairs! <b>Screwdriver them open</b>") : span_notice("<b>Repairing systems...</b>")
 			else
 				. += isnull(refactory) ? span_warning("<b>Insert a new refactory</b>") : span_notice("<b>Refactory Installed! Repairing systems...</b>")
-		if(!protean_in_suit.key) // We have to put these here because you're examining an object, and not a carbon, and players otherwise can't tell if anyone is home.
-			. += span_deadsay("[protean_in_suit.P_Their] nanites are no longer moving along the surface of the control unit. The stresses of life in deep-space must have been too much for [protean_in_suit.p_them]. Any recovery is unlikely.")
-		if(!protean_in_suit.client)
-			. += span_deadsay("[protean_in_suit.P_Their] nanites are in perfect stasis, and [protean_in_suit.p_theyve] been completely unresponsive to anything for [protean_in_suit.round(((world.time - protean_in_suit.lastclienttime) / (1 MINUTES)),1)] minutes. [protean_in_suit.p_they] may snap out of it soon.")
 
 /obj/item/mod/control/pre_equipped/protean/proc/ooc_escape(mob/living/carbon/user)
 	SIGNAL_HANDLER
