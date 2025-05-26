@@ -38,7 +38,7 @@ GLOBAL_LIST_INIT(sm_delam_list, list(
 		return FALSE
 
 	// BUBBER EDIT ADDITION BEGIN - DELAM_SCRAM
-	if(sm.damage >= sm.danger_point - 29) // 69%. Nice.
+	if(!sm.station_notified && sm.damage >= sm.danger_point - 29) // 69%. Nice.
 		if(SSjob.is_skeleton_engineering(3)) // Notify early for a skeleton crew
 			notify_delam_suppression(sm)
 		else if(sm.damage >= sm.danger_point)
