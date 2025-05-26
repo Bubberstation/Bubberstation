@@ -24,4 +24,4 @@
 /datum/weather/rad_storm/end()
 	. = ..()
 	if(maint_flipped)
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(revoke_maint_all_access), TRUE), 30 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(revoke_maint_all_access), FALSE), 45 SECONDS)

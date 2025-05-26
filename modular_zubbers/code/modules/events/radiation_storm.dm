@@ -7,4 +7,4 @@
 	// we trigger the airlocks for a bit to not immediately give away that it's fake
 	if(fake && !GLOB.emergency_access)
 		make_maint_all_access(silent = TRUE)
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(revoke_maint_all_access), TRUE), 90 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(revoke_maint_all_access), FALSE), 90 SECONDS)
