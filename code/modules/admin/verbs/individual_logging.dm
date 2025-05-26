@@ -2,6 +2,12 @@
 	if(!M || !ismob(M))
 		return
 
+	// SPLURT EDIT START: TGUI Individual Logging Panel
+	if(usr?.client?.prefs?.read_preference(/datum/preference/toggle/use_tgui_player_panel))
+		show_individual_logging_panel_tgui(M, source)
+		return
+	// SPLURT EDIT END
+
 	var/ntype = text2num(type)
 
 	//Add client links
