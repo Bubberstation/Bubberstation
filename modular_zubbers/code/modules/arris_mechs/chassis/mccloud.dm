@@ -88,17 +88,21 @@
 /obj/vehicle/sealed/mecha/mccloud/proc/no_jet_environment()
 	return !can_switch_jet()
 
-/obj/vehicle/sealed/mecha/mccloud/proc/activate_jet(skip_delay = FALSE)
+/obj/vehicle/sealed/mecha/mccloud/proc/activate_jet(delay = 7)
+	if(jet_mode)
+		return
 	if(!skip_delay)
-		do_after(usr, 7 DECISECONDS)
+		do_after(usr, delay DECISECONDS)
 	icon_state = "mccloud-jet"
 	jet_mode = TRUE
 	movedelay = !overclock_mode ? MCCLOUD_JET_MODE_MOVE : MCCLOUD_JET_MODE_MOVE / overclock_coeff
 	mode_switch_sparks()
 
-/obj/vehicle/sealed/mecha/mccloud/proc/activate_biped(skip_delay = FALSE)
+/obj/vehicle/sealed/mecha/mccloud/proc/activate_biped(delay = 7)
+	if(!jet_mode)
+		return
 	if(!skip_delay)
-		do_after(usr, 7 DECISECONDS)
+		do_after(usr, delay DECISECONDS)
 	icon_state = "mccloud"
 	jet_mode = FALSE
 	movedelay = !overclock_mode ? MCCLOUD_BIPED_MODE_MOVE : MCCLOUD_BIPED_MODE_MOVE / overclock_coeff
@@ -200,7 +204,7 @@
 
 //leaving the mech switches to biped mode before doing so
 /obj/vehicle/sealed/mecha/mccloud/mob_exit(mob/M, silent = FALSE, randomstep = FALSE, forced = FALSE)
-	activate_biped(TRUE)
+	activate_biped(0 DECISECONDS)
 	..()
 
 //mech slows down when hit by a disabler
