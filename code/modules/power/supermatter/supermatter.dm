@@ -350,7 +350,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	// BUBBER EDIT ADDITION BEGIN - DELAM_SCRAM
 	if(damage > SUPERMATTER_SUPPRESSION_THRESHOLD && is_main_engine && !suppression_fired)
 		investigate_log("Integrity at time of suppression signal was [100 - damage]", INVESTIGATE_ENGINE)
-		SEND_GLOBAL_SIGNAL(COMSIG_MAIN_SM_DELAMINATING, COMSIG_SCRAM_AUTO_FIRE)
+		SEND_GLOBAL_SIGNAL(COMSIG_MAIN_SM_DELAMINATING, SCRAM_AUTO_FIRE)
 		suppression_fired = TRUE
 	// BUBBER EDIT ADDITION END
 	if(damage > explosion_point && !final_countdown)

@@ -120,7 +120,7 @@
 		audible_message(span_danger("[src] makes a series of sad beeps. Someone has corrupted its software!"))
 		return FALSE
 
-	if(world.time - SSticker.round_start_time > 30 MINUTES && trigger_reason == COMSIG_SCRAM_TRIGGER_PUSHED)
+	if(world.time - SSticker.round_start_time > 30 MINUTES && trigger_reason == SCRAM_TRIGGER_PUSHED)
 		audible_message(span_danger("[src] makes a series of sad beeps. The internal gas buffer is past its 30 minute expiry... what a feat of engineering!"))
 		investigate_log("Delam SCRAM signal was received but failed precondition check. (Round time or trigger reason)", INVESTIGATE_ATMOS)
 		radio.talk_into(src, "Supermatter delam suppression system fault! Unable to trigger, internal gas mix integrity check failed.", emergency_channel, list(SPAN_COMMAND))
@@ -134,7 +134,7 @@
 	notify_ghosts(
 		"[src] has been activated!",
 		source = src,
-		header = trigger_reason == COMSIG_SCRAM_DIVINE_INTERVENTION ? "Divine Intervention" : "Mistakes Were Made",
+		header = trigger_reason == SCRAM_DIVINE_INTERVENTION ? "Divine Intervention" : "Mistakes Were Made",
 		ghost_sound = 'sound/machines/warning-buzzer.ogg',
 		notify_volume = 75,
 	)
@@ -346,7 +346,7 @@
 	flick_overlay_view("[base_icon_state]-overlay-active", 20 SECONDS)
 
 	// No going back now!
-	SEND_GLOBAL_SIGNAL(COMSIG_MAIN_SM_DELAMINATING, COMSIG_SCRAM_TRIGGER_PUSHED)
+	SEND_GLOBAL_SIGNAL(COMSIG_MAIN_SM_DELAMINATING, SCRAM_TRIGGER_PUSHED)
 
 	if(world.time - SSticker.round_start_time > 30 MINUTES)
 		playsound(
