@@ -31,7 +31,7 @@
 		to_chat(user, span_warning("You can only hack Synthetics!"))
 		return FALSE
 	if(user.connected_ipcs.len)
-		to_chat(user, span_warning("You can only have one hacked Synthetic at a time"))
+		to_chat(user, span_warning("You can only have one hacked Synthetic at a time."))
 		return FALSE
 	var/mob/living/carbon/human/ipc = clicked_on
 	if(ipc.client?.prefs && (!(ROLE_INFECTED_SYNTHETIC in ipc.client.prefs.be_special) || is_special_character(ipc, allow_fake_antags = FALSE)))

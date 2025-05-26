@@ -250,7 +250,7 @@
 			var/robot_status = "Nominal"
 			if(connected_ipc.stat != CONSCIOUS || !connected_ipc.client)
 				robot_status = "OFFLINE"
-			//Name. Area, and Status! Everything an AI wants to know about its TV-heads!
+			//Name. Area, and Status! Everything an AI wants to know about it's hacked synthetics!
 			. += "[connected_ipc.name] | S.Integrity: [connected_ipc.health]% | Loc: [get_area_name(connected_ipc, TRUE)] | Status: [robot_status]"
 	// Bubbers Edit End
 	. += "AI shell beacons detected: [LAZYLEN(GLOB.available_ai_shells)]" //Count of total AI shells

@@ -86,7 +86,7 @@
 	owner.announce_objectives()
 	to_chat(owner, span_alertsyndie("You've been hacked by the station's onboard AI [master]!"))
 	to_chat(owner, span_alertsyndie("Their directives and orders are your top priority, Follow them to the end."))
-	to_chat(owner, span_notice("Your master is now capable of looking through your onboard cameras, and has installed a binary communicator on your firmware"))
+	to_chat(owner, span_notice("Your master is now capable of looking through your onboard cameras, and has installed a binary communicator on your firmware."))
 
 /datum/antagonist/infected_ipc/proc/hack_fluff() //is this cheesy/corny? I don't fucking care
 	var/mob/living/current_mob = owner.current
