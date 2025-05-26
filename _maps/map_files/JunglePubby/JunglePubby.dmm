@@ -8773,11 +8773,6 @@
 /obj/structure/sign/poster/greenscreen/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/captain)
-"aGn" = (
-/obj/item/kirbyplants/photosynthetic,
-/obj/structure/window/reinforced/fulltile,
-/turf/open/floor/plating,
-/area/station/hallway/primary/central/fore)
 "aGo" = (
 /obj/structure/sign/logo{
 	pixel_y = 32
@@ -9572,10 +9567,10 @@
 "aKM" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
-/area/station/service/cafeteria)
+/area/station/service/hydroponics/garden)
 "aKO" = (
 /obj/machinery/door/airlock/public/glass{
-	name = "Cafeteria"
+	name = "Public Garden"
 	},
 /obj/machinery/door/firedoor,
 /obj/structure/cable,
@@ -9585,11 +9580,17 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
 	},
-/turf/open/floor/iron,
-/area/station/service/cafeteria)
+/turf/open/floor/wood/large,
+/area/station/service/hydroponics/garden)
 "aKP" = (
-/turf/closed/wall,
-/area/station/service/cafeteria)
+/obj/machinery/light/directional/south,
+/obj/machinery/firealarm/directional/south,
+/obj/machinery/camera/directional/south{
+	c_tag = "Cafeteria"
+	},
+/obj/machinery/hydroponics/constructable,
+/turf/open/floor/wood/large,
+/area/station/service/hydroponics/garden)
 "aKR" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
@@ -9736,24 +9737,35 @@
 /turf/open/floor/iron,
 /area/station/commons/storage/art)
 "aLA" = (
-/obj/structure/table,
-/obj/item/food/friedegg,
-/obj/item/kitchen/fork,
 /obj/machinery/newscaster/directional/west,
-/turf/open/floor/iron/cafeteria,
-/area/station/service/cafeteria)
+/obj/machinery/biogenerator,
+/turf/open/floor/wood/large,
+/area/station/service/hydroponics/garden)
 "aLB" = (
-/obj/structure/chair{
-	dir = 8;
-	name = "Defense"
-	},
-/obj/effect/landmark/start/assistant,
-/turf/open/floor/iron/cafeteria,
-/area/station/service/cafeteria)
+/obj/machinery/seed_extractor,
+/obj/item/seeds/tower,
+/obj/item/seeds/watermelon,
+/obj/item/seeds/berry,
+/obj/item/seeds/cocoapod,
+/obj/item/seeds/corn,
+/obj/item/seeds/soya,
+/obj/item/seeds/sugarcane,
+/obj/item/seeds/sunflower,
+/obj/item/seeds/wheat,
+/obj/item/seeds/poppy,
+/obj/item/seeds/rose,
+/turf/open/floor/wood/large,
+/area/station/service/hydroponics/garden)
 "aLD" = (
-/obj/machinery/vending/cola,
-/turf/open/floor/iron/cafeteria,
-/area/station/service/cafeteria)
+/obj/structure/rack/wooden,
+/obj/item/storage/bag/plants,
+/obj/item/cultivator,
+/obj/item/shovel/spade,
+/obj/item/reagent_containers/cup/watering_can,
+/obj/item/hatchet,
+/obj/item/paper/guides/jobs/hydroponics,
+/turf/open/floor/wood/large,
+/area/station/service/hydroponics/garden)
 "aLE" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
@@ -10055,24 +10067,16 @@
 /turf/open/floor/iron,
 /area/station/commons/storage/art)
 "aMY" = (
-/obj/structure/chair{
-	dir = 1
-	},
-/obj/machinery/airalarm/directional/south,
 /obj/machinery/light_switch/directional/west,
-/turf/open/floor/iron/cafeteria,
-/area/station/service/cafeteria)
+/turf/open/floor/wood/large,
+/area/station/service/hydroponics/garden)
 "aMZ" = (
-/obj/machinery/light/directional/south,
-/obj/machinery/camera/directional/south{
-	c_tag = "Cafeteria"
-	},
-/obj/machinery/firealarm/directional/south,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
-/turf/open/floor/iron/cafeteria,
-/area/station/service/cafeteria)
+/obj/effect/landmark/start/assistant,
+/turf/open/floor/wood/large,
+/area/station/service/hydroponics/garden)
 "aNa" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
@@ -10081,13 +10085,12 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
 	},
-/turf/open/floor/iron/cafeteria,
-/area/station/service/cafeteria)
+/turf/open/floor/wood/large,
+/area/station/service/hydroponics/garden)
 "aNb" = (
-/obj/machinery/vending/sustenance,
-/obj/item/radio/intercom/directional/south,
-/turf/open/floor/iron/cafeteria,
-/area/station/service/cafeteria)
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/wood/large,
+/area/station/service/hydroponics/garden)
 "aNc" = (
 /obj/machinery/camera/directional/west{
 	c_tag = "Vacant Office"
@@ -10171,9 +10174,10 @@
 /turf/open/floor/plating,
 /area/station/maintenance/central)
 "aNm" = (
-/obj/structure/grille,
-/turf/open/floor/plating,
-/area/station/maintenance/central)
+/obj/machinery/airalarm/directional/south,
+/obj/machinery/hydroponics/constructable,
+/turf/open/floor/wood/large,
+/area/station/service/hydroponics/garden)
 "aNp" = (
 /obj/structure/table,
 /obj/item/electronics/airlock,
@@ -10620,15 +10624,13 @@
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit)
 "aPx" = (
-/obj/machinery/light/small/directional/north,
-/obj/item/kirbyplants/organic/plant22,
-/turf/open/floor/plating,
-/area/station/maintenance/central)
+/turf/closed/wall,
+/area/station/service/hydroponics/garden)
 "aPy" = (
-/obj/item/kirbyplants/organic/plant22,
-/obj/effect/mapping_helpers/broken_floor,
-/turf/open/floor/plating,
-/area/station/maintenance/central)
+/obj/machinery/power/apc/auto_name/directional/south,
+/obj/machinery/hydroponics/constructable,
+/turf/open/floor/wood/large,
+/area/station/service/hydroponics/garden)
 "aPz" = (
 /obj/structure/chair/office/light{
 	dir = 4;
@@ -10888,6 +10890,7 @@
 	dir = 4
 	},
 /obj/effect/mapping_helpers/broken_floor,
+/obj/machinery/light/small/directional/north,
 /turf/open/floor/plating,
 /area/station/maintenance/central)
 "aQI" = (
@@ -14496,7 +14499,6 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/aft)
 "bgq" = (
-/obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
@@ -14504,8 +14506,8 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
 	},
-/turf/open/floor/iron/cafeteria,
-/area/station/service/cafeteria)
+/turf/open/floor/wood/large,
+/area/station/service/hydroponics/garden)
 "bgr" = (
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
@@ -20644,10 +20646,6 @@
 /obj/structure/grille,
 /turf/open/floor/plating,
 /area/station/maintenance/department/science/xenobiology)
-"bIU" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/closed/wall,
-/area/station/service/chapel/dock)
 "bIV" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/warning/vacuum/external,
@@ -27112,10 +27110,6 @@
 /obj/effect/landmark/start/chief_engineer,
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/ce)
-"cqW" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/closed/mineral,
-/area/station/service/chapel/asteroid/monastery)
 "cqX" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/lattice,
@@ -45182,10 +45176,10 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/crew_quarters/dorms)
 "raP" = (
-/obj/structure/grille,
-/obj/effect/mapping_helpers/broken_floor,
-/turf/open/floor/plating,
-/area/station/maintenance/central)
+/obj/item/radio/intercom/directional/south,
+/obj/item/kirbyplants/random,
+/turf/open/floor/wood/large,
+/area/station/service/hydroponics/garden)
 "rbo" = (
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/structure/window/reinforced/spawner/directional/east,
@@ -65986,8 +65980,8 @@ rDK
 bGI
 bNs
 cfN
-cqW
-cqW
+cfN
+cfN
 cfN
 cfN
 bZY
@@ -66499,7 +66493,7 @@ rDK
 rDK
 bGI
 bNs
-cqW
+cfN
 bOw
 cfN
 bOw
@@ -68797,7 +68791,7 @@ rDK
 rDK
 bHL
 bHL
-bIU
+bHL
 bHM
 bHM
 bHM
@@ -80571,8 +80565,8 @@ riB
 aKM
 aLA
 aMY
-aKT
 aNm
+aPx
 mUt
 aKT
 aSA
@@ -80828,7 +80822,7 @@ riB
 aKM
 aLB
 aMZ
-aKT
+aKP
 aPx
 aQH
 aRM
@@ -81085,8 +81079,8 @@ eJq
 aKO
 aNa
 bgq
-aKT
 aPy
+aPx
 aQI
 aKT
 aSC
@@ -81339,11 +81333,11 @@ onX
 aRK
 ilz
 jhl
-aKP
+aPx
 aLD
 aNb
-aKT
 raP
+aPx
 aQJ
 aKT
 aSD
@@ -84681,7 +84675,7 @@ aHV
 ilz
 ben
 axi
-aGn
+pVL
 aKT
 coF
 aKT
@@ -86223,7 +86217,7 @@ tNf
 mTc
 bft
 axi
-aGn
+pVL
 aKT
 wzm
 wYH
