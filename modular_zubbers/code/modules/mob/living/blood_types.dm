@@ -9,7 +9,7 @@
 	id = type_key()
 	src.color = override_blood_type.color
 	src.reagent_type = real_blood_type.reagent_type
-	src.restoration_chem = real_blood_type.reagent_type
+	src.restoration_chem = real_blood_type.restoration_chem
 	src.compatible_types = LAZYCOPY(real_compatible_types)
 	src.root_abstract_type = null
 
