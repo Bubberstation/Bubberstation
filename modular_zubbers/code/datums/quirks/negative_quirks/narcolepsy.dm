@@ -17,7 +17,7 @@
 	user.gain_trauma(/datum/brain_trauma/severe/narcolepsy/permanent, TRAUMA_RESILIENCE_ABSOLUTE)
 
 	var/obj/item/storage/pill_bottle/prescription_stimulant/stimmies = new()
-	if(quirk_holder.equip_to_slot_if_possible(stimmies, ITEM_SLOT_BACKPACK, qdel_on_fail = TRUE, initial = TRUE, indirect_action = TRUE))
+	if(quirk_holder.equip_to_storage(stimmies, ITEM_SLOT_BACK, del_on_fail = TRUE, initial = TRUE, indirect_action = TRUE))
 		to_chat(quirk_holder, span_info("You have been given a bottle of mild stimulants to assist in staying awake this shift..."))
 
 /datum/quirk/narcolepsy/remove()
