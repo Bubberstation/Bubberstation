@@ -131,6 +131,9 @@
 //This limb is shadowy and will regen if shadowheal is active
 #define BODYTYPE_SHADOW (1<<7)
 // SKYRAT EDIT ADDITION
+
+/// Nanomachine bodypart
+#define BODYTYPE_NANO (1<<8)
 ///The limb fits a modular custom shape
 #define BODYSHAPE_CUSTOM (1<<9)
 ///The limb fits a taur body
@@ -139,6 +142,7 @@
 #define BODYSHAPE_HIDE_SHOES (1<<11)
 ///The limb causes glasses and hats to be drawn on layers 5 and 4 respectively. Currently used for snouts with the (Top) suffix, which are drawn on layer 6 and would normally cover facewear
 #define BODYSHAPE_ALT_FACEWEAR_LAYER (1<<12)
+
 // SKYRAT EDIT END
 
 
@@ -448,8 +452,7 @@
 #define OFFSET_HAIR "hair" // Skyrat edit - addition - Akulas
 
 //MINOR TWEAKS/MISC
-//#define AGE_MIN 17	//youngest a character can be //ORIGINAL
-#define AGE_MIN	18	//youngest a character can be //SKYRAT EDIT CHANGE - age
+#define AGE_MIN 18 //youngest a character can be
 #define AGE_MAX 100 //oldest a character can be //SKYRAT EDIT CHANGE - Increase max character age to 100 - ORIGINAL: #define AGE_MAX 85 //oldest a character can be
 #define AGE_CHRONO_MAX 9999 //SKYRAT EDIT ADDITION - Chronological age
 #define AGE_MINOR 20 //legal age of space drinking and smoking
@@ -1050,3 +1053,11 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 /// Distance which you can see someone's ID card
 /// Short enough that you can inspect over tables (bartender checking age)
 #define ID_EXAMINE_DISTANCE 3
+
+GLOBAL_LIST_INIT(regal_rat_minion_commands, list(
+	/datum/pet_command/idle,
+	/datum/pet_command/free,
+	/datum/pet_command/protect_owner,
+	/datum/pet_command/follow,
+	/datum/pet_command/attack/mouse
+))
