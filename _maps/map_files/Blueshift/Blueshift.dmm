@@ -7735,6 +7735,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/mapping_helpers/airlock/access/all/command/captain,
 /obj/effect/landmark/navigate_destination,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "bzQ" = (
@@ -13185,6 +13188,15 @@
 /obj/machinery/power/shuttle_engine/heater,
 /turf/open/floor/plating,
 /area/station/maintenance/port/upper)
+"czb" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/iron,
+/area/station/hallway/secondary/command)
 "czf" = (
 /obj/structure/table/glass,
 /obj/item/paper_bin{
@@ -18838,6 +18850,7 @@
 	pixel_x = -5;
 	pixel_y = 3
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/blueshield)
 "dCa" = (
@@ -19614,6 +19627,9 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "dJz" = (
@@ -47596,6 +47612,9 @@
 /obj/machinery/disposal/bin,
 /obj/machinery/newscaster/directional/west,
 /obj/structure/noticeboard/directional/north,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
 /turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/blueshield)
 "jfO" = (
@@ -51759,6 +51778,13 @@
 /obj/machinery/duct,
 /turf/open/floor/iron,
 /area/station/commons/fitness)
+"jTE" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/disposalpipe/junction,
+/turf/open/floor/iron,
+/area/station/hallway/secondary/command)
 "jTG" = (
 /obj/structure/window/reinforced/spawner/directional/north,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -69109,6 +69135,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical)
+"nlQ" = (
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/carpet/executive,
+/area/station/command/heads_quarters/blueshield)
 "nlR" = (
 /obj/structure/closet/secure_closet/brig,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -75209,6 +75239,15 @@
 	name = "White padded wall"
 	},
 /area/station/maintenance/department/medical)
+"oss" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/blueshield)
 "ost" = (
 /obj/item/stack/sheet/cardboard,
 /obj/structure/cable,
@@ -77113,6 +77152,9 @@
 /obj/machinery/disposal/bin,
 /obj/effect/turf_decal/delivery,
 /obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
 /turf/open/floor/iron/dark,
@@ -98010,6 +98052,13 @@
 /obj/effect/spawner/random/maintenance,
 /turf/open/floor/plating,
 /area/station/maintenance/fore/upper)
+"sKi" = (
+/obj/structure/chair/office{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/blueshield)
 "sKk" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -107053,6 +107102,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/holopad/secure,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "utX" = (
@@ -110589,6 +110641,9 @@
 /area/station/security/prison/garden)
 "vfN" = (
 /obj/machinery/computer/records/security,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
 /turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/blueshield)
 "vfQ" = (
@@ -219441,9 +219496,9 @@ oTn
 qJL
 ide
 vfN
-sRq
+nlQ
 dBT
-hSt
+sKi
 dJx
 qCC
 sZp
@@ -219958,7 +220013,7 @@ ixt
 sRq
 rle
 hSt
-dJx
+oss
 ohl
 sZp
 nAD
@@ -220215,7 +220270,7 @@ lsn
 cGu
 pRa
 kAU
-dJx
+oss
 mTw
 sZp
 ycn
@@ -220729,7 +220784,7 @@ qsP
 lKB
 rXp
 qsP
-gwW
+czb
 qsP
 qsP
 neN
@@ -220986,7 +221041,7 @@ rpk
 rpk
 bnq
 bnq
-rpk
+jTE
 bnq
 cYv
 hdx
