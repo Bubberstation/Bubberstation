@@ -10,7 +10,7 @@
 	base_icon_state = "mccloud"
 	movedelay = MCCLOUD_BIPED_MODE_MOVE
 	overclock_coeff = 1.1
-	overclock_temp_danger = 3
+	overclock_temp_danger = 3 //overclock ability makes this go crazy fast so it has to be significantly limited
 	max_integrity = 150
 	accesses = list(ACCESS_MECH_SCIENCE, ACCESS_MECH_SECURITY)
 	armor_type = /datum/armor/mecha_mccloud
@@ -124,7 +124,7 @@
 	if(!jet_mode)
 		return ..()
 	else
-		return jet_move(direction, TRUE)
+		return jet_move(direction, forcerotate)
 
 ///Edit of parent's mech movement. Simply overriding it and adding stuff at the end isn't great cause plane movement is incapable of certain types of movement.
 /obj/vehicle/sealed/mecha/mccloud/proc/jet_move(direction, forcerotate)
@@ -164,7 +164,8 @@
 				keyheld = TRUE
 				break
 
-	if(dir != direction && (!strafe || forcerotate || keyheld))
+	//force direction change if user moves > 45 degrees away from facing direction, or if the direction is reversed, or if typical mech direction switch logic
+	if((angle2dir_cardinal(drift_handler?.drifting_loop?.angle) != dir || dir == REVERSE_DIR(direction) || (!strafe || forcerotate || keyheld)) && (dir != direction))
 		setDir(direction)
 		if(!(mecha_flags & QUIET_TURNS))
 			playsound(src, turnsound, 40, TRUE)
