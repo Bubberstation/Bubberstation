@@ -49,11 +49,15 @@
 
 /datum/quirk/unique_blood_color/proc/change_blood_color(datum/source, mob/living/carbon/human/quirked, datum/blood_type/override, update_cached_blood_dna_info)
 	SIGNAL_HANDLER
-///Making the new blood type... Not having a check-for-reuse might be problematic, but who's sitting in a SAD 10-odd times?
-	var/datum/blood_type/new_blood_type = new /datum/blood_type/alt_color(quirked.dna.blood_type, override, quirked.dna.blood_type.compatible_types)
-	GLOB.blood_types[new_blood_type.id] = new_blood_type
+///Making the new blood type
+
+	var/datum/blood_type/new_blood_type = get_blood_type("[new_blood_type.id]_alt_[new_blood_type.color]")
+	if(isnull(new_blood_type))
+		new_blood_type = new /datum/blood_type/alt_color(real_blood_type = quirked.dna.blood_type, override_blood_type = override, real_compatible_types = quirked.dna.blood_type.compatible_types)
+		GLOB.blood_types[new_blood_type::id] = new_blood_type
 	quirked.set_blood_type(new_blood_type)
 
+	investigate_log("[key_name(mind)] has generated a new blood type [new_blood_type], INVESTIGATE_RECORDS")
 	if(quirked.dna.species.exotic_bloodtype)
 		quirked.dna.species.exotic_bloodtype = new_blood_type
 
