@@ -223,30 +223,26 @@
 ///bumping things as the jet mode should damage the jet
 /obj/vehicle/sealed/mecha/mccloud/Bump(atom/bumped_thing)
 	. = ..()
-	if(!bumped_thing.density || !has_buckled_mobs() || world.time < next_crash)
+
+	if(!jet_mode)
 		return
-	var/mob/living/rider = buckled_mobs[1]
+
+	if(drift_handler.drift_force < 5)
+		return
+
+	var/bumped_damage = drift_handler.drift_force * 5
+	var/self_damage = drift_handler.drift_force * 3
+
+	//if the bumped thing is a mech, that mech should be able to brace for impact
+	//given that it's piloted and facing the right direction
+	if(istype(bumped_thing, /obj/vehicle/sealed/mecha))
+		var/obj/vehicle/sealed/mecha/bumped_mech = bumped_thing
+		if(bumped_mech.occupants.len > 0 && angle2dir_cardinal(drift_handler.drifting_loop.angle) == REVERSE_DIR(bumped_mech.dir))
+			visible_message(span_danger("[bumped_mech] braces for impact against [src]!"))
+			bumped_damage = bumped_damage * 0.3
+
+	take_damage(self_damage, BRUTE, 0, 0)
+	force = bumped_damage
+	mech_melee_attack(src, bumped_thing)
 
 	playsound(src, 'sound/effects/bang.ogg', 40, TRUE)
-	if(!iscarbon(rider) || rider.getStaminaLoss() >= 100 || grinding || iscarbon(bumped_thing))
-		var/atom/throw_target = get_edge_target_turf(rider, pick(GLOB.cardinals))
-		unbuckle_mob(rider)
-		if((istype(bumped_thing, /obj/machinery/disposal/bin)))
-			rider.Paralyze(8 SECONDS)
-			rider.forceMove(bumped_thing)
-			forceMove(bumped_thing)
-			visible_message(span_danger("[src] crashes into [bumped_thing], and gets dumped straight into it!"))
-			return
-		rider.throw_at(throw_target, 3, 2)
-		var/head_slot = rider.get_item_by_slot(ITEM_SLOT_HEAD)
-		if(!head_slot || !(istype(head_slot,/obj/item/clothing/head/helmet) || istype(head_slot,/obj/item/clothing/head/utility/hardhat)))
-			rider.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
-			rider.updatehealth()
-		visible_message(span_danger("[src] crashes into [bumped_thing], sending [rider] flying!"))
-		rider.Paralyze(8 SECONDS)
-		if(iscarbon(bumped_thing))
-			var/mob/living/carbon/victim = bumped_thing
-			var/grinding_mulitipler = 1
-			if(grinding)
-				grinding_mulitipler = 2
-			victim.Knockdown(4 * grinding_mulitipler SECONDS)
