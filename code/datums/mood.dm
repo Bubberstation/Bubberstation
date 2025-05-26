@@ -128,8 +128,10 @@
 			add_mood_event(MOOD_CATEGORY_NUTRITION, /datum/mood_event/fed)
 		if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)
 			clear_mood_event(MOOD_CATEGORY_NUTRITION)
-		if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
+		if(NUTRITION_LEVEL_VERY_HUNGRY to NUTRITION_LEVEL_HUNGRY)
 			add_mood_event(MOOD_CATEGORY_NUTRITION, /datum/mood_event/hungry)
+		if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_VERY_HUNGRY)
+			add_mood_event(MOOD_CATEGORY_NUTRITION, /datum/mood_event/hungry_very)
 		if(0 to NUTRITION_LEVEL_STARVING)
 			add_mood_event(MOOD_CATEGORY_NUTRITION, /datum/mood_event/starving)
 
@@ -345,7 +347,9 @@
 				msg += "[span_info("I'm not hungry.")]<br>"
 			if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)
 				msg += "[span_info("I could use a bite to eat.")]<br>"
-			if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
+			if(NUTRITION_LEVEL_VERY_HUNGRY to NUTRITION_LEVEL_HUNGRY)
+				msg += "[span_warning("I'm feeling hungry.")]<br>"
+			if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_VERY_HUNGRY)
 				msg += "[span_warning("I feel quite hungry.")]<br>"
 			if(0 to NUTRITION_LEVEL_STARVING)
 				msg += "[span_boldwarning("I'm starving!")]<br>"
@@ -615,11 +619,15 @@
 			mob_parent.add_actionspeed_modifier(/datum/actionspeed_modifier/high_sanity)
 			sanity_level = SANITY_LEVEL_GREAT
 
+	// BUBBER EDIT REMOVAL BEGIN - No hallucination on hunger/sanity
+	/*
 	// Crazy or insane = add some uncommon hallucinations
 	if(sanity_level >= SANITY_LEVEL_CRAZY)
 		mob_parent.apply_status_effect(/datum/status_effect/hallucination/sanity)
 	else
 		mob_parent.remove_status_effect(/datum/status_effect/hallucination/sanity)
+	*/
+	// BUBBER EDIT REMOVAL END - No hallucination on hunger/sanity
 
 	update_mood_icon()
 

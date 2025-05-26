@@ -285,6 +285,8 @@
 	var/pressure = environment?.return_pressure() //SKYRAT EDIT ADDITION - Micro optimisation
 	if(environment.temperature >= BODYTEMP_HEAT_WARNING_2 || pressure > HAZARD_HIGH_PRESSURE) //BUBBER EDIT CHANGE - FIRELOCKS
 		return FIRELOCK_ALARM_TYPE_HOT
+	if(environment.gases[/datum/gas/antinoblium] && environment.gases[/datum/gas/antinoblium][MOLES] > MINIMUM_MOLE_COUNT)
+		return FIRELOCK_ALARM_TYPE_HOT
 	if(environment.temperature <= BODYTEMP_COLD_WARNING_2 || pressure < HAZARD_LOW_PRESSURE) //BUBBER EDIT CHANGE - FIRELOCKS
 		return FIRELOCK_ALARM_TYPE_COLD
 	return

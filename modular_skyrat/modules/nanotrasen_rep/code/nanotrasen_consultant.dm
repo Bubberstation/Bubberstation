@@ -17,7 +17,6 @@
 
 	departments_list = list(
 		/datum/job_department/command,
-		/datum/job_department/central_command
 	)
 
 	outfit = /datum/outfit/job/nanotrasen_consultant
@@ -49,11 +48,11 @@
 	gloves = /obj/item/clothing/gloves/combat
 	uniform =  /obj/item/clothing/under/rank/nanotrasen_consultant
 	suit = /obj/item/clothing/suit/armor/vest/nanotrasen_consultant
+	suit_store = /obj/item/gun/energy/e_gun
 	shoes = /obj/item/clothing/shoes/jackboots
 	head = /obj/item/clothing/head/nanotrasen_consultant
 	backpack_contents = list(
 		/obj/item/melee/baton/telescopic = 1,
-		/obj/item/gun/energy/e_gun/mini = 1,
 		)
 
 	skillchips = list(/obj/item/skillchip/disk_verifier)
@@ -68,7 +67,7 @@
 
 	chameleon_extras = list(/obj/item/gun/energy/e_gun, /obj/item/stamp/centcom)
 
-	id = /obj/item/card/id/advanced/centcom
+	id = /obj/item/card/id/advanced/platinum
 	id_trim = /datum/id_trim/job/nanotrasen_consultant
 
 /obj/item/radio/headset/heads/nanotrasen_consultant
@@ -118,23 +117,30 @@
 	new /obj/item/clothing/shoes/sneakers/brown(src)
 	new /obj/item/clothing/glasses/sunglasses/gar/giga(src)
 	new /obj/item/clothing/gloves/combat(src)
-	new /obj/item/clothing/gloves/combat/naval/nanotrasen_consultant(src)
+	new /obj/item/clothing/gloves/captain/centcom(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/centcom/nt_consultant(src)
 	new /obj/item/clothing/under/rank/nanotrasen_consultant(src)
 	new /obj/item/clothing/under/rank/nanotrasen_consultant/skirt(src)
+	new /obj/item/clothing/under/rank/centcom/consultant(src)
+	new /obj/item/clothing/under/rank/centcom/consultant/skirt(src)
 	new /obj/item/clothing/under/rank/centcom/officer(src)
 	new /obj/item/clothing/under/rank/centcom/officer_skirt(src)
+	new /obj/item/clothing/under/rank/centcom/official(src)
+	new /obj/item/clothing/under/rank/centcom/official/turtleneck(src)
 	new /obj/item/clothing/head/nanotrasen_consultant(src)
 	new /obj/item/clothing/head/nanotrasen_consultant/beret(src)
 	new /obj/item/clothing/head/beret/centcom_formal/nt_consultant(src)
 	new /obj/item/clothing/head/hats/centhat(src)
+	new /obj/item/clothing/head/hats/consultant_cap(src)
 	new /obj/item/clothing/suit/armor/centcom_formal/nt_consultant(src)
+	new /obj/item/clothing/suit/armor/vest/officerfake(src)
 	new /obj/item/clothing/under/rank/centcom/intern(src)
 	new /obj/item/clothing/head/hats/intern(src)
 
 /obj/structure/closet/secure_closet/nanotrasen_consultant
 	name = "nanotrasen consultant's locker"
-	req_access = list(ACCESS_CAPTAIN, ACCESS_CENT_GENERAL)
+	req_access = list()
+	req_one_access = list(ACCESS_CENT_GENERAL)
 	icon_state = "cc"
 	icon = 'modular_skyrat/master_files/icons/obj/closet.dmi'
 

@@ -14,11 +14,12 @@ import {
   Stack,
   Tabs,
 } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 import { removeAllSkiplines } from '../../../TextInputModal';
 import { PreferencesMenuData } from '../../types';
 import { useServerPrefs } from '../../useServerPrefs';
-import {
+import type {
   LoadoutCategory,
   LoadoutItem,
   LoadoutManagerData,
@@ -38,6 +39,7 @@ export function LoadoutPage(props) {
   const [modifyItemDimmer, setModifyItemDimmer] = useState<LoadoutItem | null>(
     null,
   );
+  const [searchingTooltips, setSearchingTooltips] = useState<BooleanLike>(0); // BUBBER EDIT ADDITION: Search in tooltips
   // BUBBER EDIT ADDITION START: Multiple loadout presets
   const [managingPreset, _setManagingPreset] = useState<string | null>(null);
   const { act, data } = useBackend<PreferencesMenuData>();
@@ -106,10 +108,8 @@ export function LoadoutPage(props) {
                   placeholder="Maximum of 24 characters long"
                   width="100%"
                   maxLength={24}
-                  onChange={(_, value) => onType(value)}
-                  onInput={(_, value) => onType(value)}
-                  onEnter={(event) => {
-                    event.preventDefault();
+                  onChange={onType}
+                  onEnter={() => {
                     act(`${managingPreset.toLowerCase()}_loadout_preset`, {
                       name: input,
                     });
@@ -146,12 +146,23 @@ export function LoadoutPage(props) {
           fitted
           title="&nbsp;"
           buttons={
-            <Input
-              width="200px"
-              onInput={(_, value) => setSearchLoadout(value)}
-              placeholder="Search for an item..."
-              value={searchLoadout}
-            />
+            <>
+              {/* BUBBER EDIT ADDITION BEGIN: Search in tooltips */}
+              <Button.Checkbox
+                checked={searchingTooltips}
+                onClick={() => setSearchingTooltips(!searchingTooltips)}
+                tooltip="Include matches from item tooltip information e.g. Job Whitelist"
+              >
+                Search Tooltips
+              </Button.Checkbox>
+              {/* BUBBER EDIT ADDITION END: Search in tooltips */}
+              <Input
+                width="200px"
+                onChange={setSearchLoadout}
+                placeholder="Search for an item..."
+                value={searchLoadout}
+              />
+            </>
           }
         >
           <Tabs fluid align="center">
@@ -183,6 +194,7 @@ export function LoadoutPage(props) {
           currentTab={selectedTabName}
           currentSearch={searchLoadout}
           modifyItemDimmer={modifyItemDimmer}
+          searchingTooltips={searchingTooltips} // BUBBER EDIT ADDITION: Search in tooltips
           setModifyItemDimmer={setModifyItemDimmer}
           setManagingPreset={setManagingPreset}
         />
@@ -196,6 +208,7 @@ type LoadoutTabsProps = {
   currentTab: string;
   currentSearch: string;
   modifyItemDimmer: LoadoutItem | null;
+  searchingTooltips: BooleanLike; // BUBBER EDIT ADDITION: Search in tooltips
   setModifyItemDimmer: (dimmer: LoadoutItem | null) => void;
   setManagingPreset: (string) => void;
 };
@@ -206,6 +219,7 @@ function LoadoutTabs(props: LoadoutTabsProps) {
     currentTab,
     currentSearch,
     modifyItemDimmer,
+    searchingTooltips, // BUBBER EDIT ADDITION: Search in tooltips
     setModifyItemDimmer,
     setManagingPreset,
   } = props;
@@ -291,7 +305,7 @@ function LoadoutTabs(props: LoadoutTabsProps) {
       <Stack.Item grow>
         {searching || activeCategory?.contents ? (
           <Section
-            title={searching ? 'Searching...' : 'Catalog'}
+            title={searching ? 'Search results' : 'Catalog'}
             fill
             scrollable
             buttons={
@@ -308,6 +322,7 @@ function LoadoutTabs(props: LoadoutTabsProps) {
                   <SearchDisplay
                     loadout_tabs={loadout_tabs}
                     currentSearch={currentSearch}
+                    searchingTooltips={searchingTooltips} // BUBBER EDIT ADDITION: Search in tooltips
                   />
                 ) : (
                   <LoadoutTabDisplay category={activeCategory} />
