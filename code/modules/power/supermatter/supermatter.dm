@@ -1,3 +1,5 @@
+#define SUPERMATTER_SUPPRESSION_THRESHOLD 98.4 // BUBBER EDIT ADDITION - DELAM_SCRAM
+
 //Ported from /vg/station13, which was in turn forked from baystation12;
 //Please do not bother them with bugs from this port, however, as it has been modified quite a bit.
 //Modifications include removing the world-ending full supermatter variation, and leaving only the shard.
@@ -346,7 +348,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		set_delam(SM_DELAM_PRIO_NONE, SM_DELAM_STRATEGY_PURGE) // This one cant clear any forced delams.
 	delamination_strategy.delam_progress(src)
 	// BUBBER EDIT ADDITION BEGIN - DELAM_SCRAM
-	if(damage > 98.4 && is_main_engine && !suppression_fired)
+	if(damage > SUPERMATTER_SUPPRESSION_THRESHOLD && is_main_engine && !suppression_fired)
 		investigate_log("Integrity at time of suppression signal was [100 - damage]", INVESTIGATE_ENGINE)
 		SEND_GLOBAL_SIGNAL(COMSIG_MAIN_SM_DELAMINATING, COMSIG_SCRAM_AUTO_FIRE)
 		suppression_fired = TRUE
@@ -1134,3 +1136,5 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 #undef MACHINERY
 #undef OBJECT
 #undef LOWEST
+
+#undef SUPERMATTER_SUPPRESSION_THRESHOLD // BUBBER EDIT ADDITION - DELAM_SCRAM
