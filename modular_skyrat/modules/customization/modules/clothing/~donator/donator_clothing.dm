@@ -219,16 +219,6 @@
 
 /datum/armor/clothing_under/none
 
-/obj/item/clothing/shoes/jackboots/heel
-	name = "high-heeled jackboots"
-	desc = "Almost like regular jackboots... why are they on a high heel?"
-	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/shoes.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/feet.dmi'
-	icon_state = "heel-jackboots"
-	supports_variations_flags = NONE
-	uses_advanced_reskins = FALSE
-	unique_reskin = NONE
-
 // Donation reward for Bloodrite
 /obj/item/clothing/shoes/clown_shoes/britches
 	desc = "The prankster's standard-issue clowning shoes. They look extraordinarily cute. Ctrl-click to toggle waddle dampeners."
