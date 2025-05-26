@@ -12438,16 +12438,16 @@
 "ctC" = (
 /obj/structure/stairs/south,
 /obj/structure/sign/directions/command{
-	dir = 8;
+	dir = 9;
 	pixel_x = 32;
 	pixel_y = 6
 	},
 /obj/structure/sign/directions/medical{
-	dir = 8;
+	dir = 9;
 	pixel_x = 32
 	},
 /obj/structure/sign/directions/science{
-	dir = 8;
+	dir = 9;
 	pixel_x = 32;
 	pixel_y = -6
 	},
@@ -12785,16 +12785,16 @@
 "cvt" = (
 /obj/structure/stairs/north,
 /obj/structure/sign/directions/command{
-	dir = 4;
+	dir = 5;
 	pixel_x = -32;
 	pixel_y = 6
 	},
 /obj/structure/sign/directions/medical{
-	dir = 4;
+	dir = 5;
 	pixel_x = -32
 	},
 /obj/structure/sign/directions/science{
-	dir = 4;
+	dir = 5;
 	pixel_x = -32;
 	pixel_y = -6
 	},
@@ -13067,14 +13067,9 @@
 	name = "Bridge Access Blast Door"
 	},
 /obj/effect/turf_decal/delivery,
-/obj/structure/sign/directions/engineering{
-	desc = "A sign that shows there are doors here. There are doors everywhere!";
-	icon_state = "doors";
-	name = "WARNING: BLAST DOORS";
-	pixel_y = 32
-	},
 /obj/structure/cable,
 /obj/machinery/light/small/directional/north,
+/obj/structure/sign/warning/doors/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/command)
 "cyv" = (
@@ -16153,7 +16148,7 @@
 	pixel_y = -4
 	},
 /obj/structure/sign/directions/evac{
-	dir = 1;
+	dir = 8;
 	pixel_y = -10
 	},
 /turf/closed/wall,
@@ -40883,16 +40878,16 @@
 /area/station/service/lawoffice)
 "hPq" = (
 /obj/structure/sign/directions/command{
-	dir = 4;
+	dir = 5;
 	pixel_x = -32;
 	pixel_y = 6
 	},
 /obj/structure/sign/directions/medical{
-	dir = 4;
+	dir = 5;
 	pixel_x = -32
 	},
 /obj/structure/sign/directions/science{
-	dir = 4;
+	dir = 5;
 	pixel_x = -32;
 	pixel_y = -6
 	},
@@ -43712,7 +43707,7 @@
 /area/station/science/xenobiology/control)
 "irJ" = (
 /obj/structure/sign/directions/evac{
-	dir = 1;
+	dir = 8;
 	pixel_y = -10
 	},
 /obj/structure/sign/directions/supply{
@@ -47426,7 +47421,7 @@
 	pixel_y = -4
 	},
 /obj/structure/sign/directions/evac{
-	dir = 1;
+	dir = 8;
 	pixel_y = -10
 	},
 /turf/closed/wall,
@@ -56167,19 +56162,19 @@
 /area/station/security/prison/work)
 "kII" = (
 /obj/structure/sign/directions/security{
-	dir = 8;
+	dir = 9;
 	pixel_y = 8
 	},
 /obj/structure/sign/directions/engineering{
-	dir = 8;
+	dir = 9;
 	pixel_y = 2
 	},
 /obj/structure/sign/directions/supply{
-	dir = 8;
+	dir = 9;
 	pixel_y = -4
 	},
 /obj/structure/sign/directions/evac{
-	dir = 1;
+	dir = 9;
 	pixel_y = -10
 	},
 /turf/closed/wall/r_wall,
@@ -69230,19 +69225,19 @@
 /area/station/security/prison/upper)
 "nng" = (
 /obj/structure/sign/directions/security{
-	dir = 8;
+	dir = 10;
 	pixel_y = 8
 	},
 /obj/structure/sign/directions/engineering{
-	dir = 8;
+	dir = 10;
 	pixel_y = 2
 	},
 /obj/structure/sign/directions/supply{
-	dir = 8;
+	dir = 10;
 	pixel_y = -4
 	},
 /obj/structure/sign/directions/evac{
-	dir = 1;
+	dir = 10;
 	pixel_y = -10
 	},
 /turf/closed/wall,
@@ -70996,19 +70991,19 @@
 /area/station/hallway/primary/aft)
 "nFn" = (
 /obj/structure/sign/directions/security{
-	dir = 1;
+	dir = 10;
 	pixel_y = 8
 	},
 /obj/structure/sign/directions/engineering{
-	dir = 1;
+	dir = 10;
 	pixel_y = 2
 	},
 /obj/structure/sign/directions/supply{
-	dir = 1;
+	dir = 10;
 	pixel_y = -4
 	},
 /obj/structure/sign/directions/evac{
-	dir = 8;
+	dir = 10;
 	pixel_y = -10
 	},
 /turf/closed/wall,
@@ -92036,16 +92031,16 @@
 "rBZ" = (
 /obj/structure/stairs/north,
 /obj/structure/sign/directions/command{
-	dir = 8;
+	dir = 9;
 	pixel_x = 32;
 	pixel_y = 6
 	},
 /obj/structure/sign/directions/medical{
-	dir = 8;
+	dir = 9;
 	pixel_x = 32
 	},
 /obj/structure/sign/directions/science{
-	dir = 8;
+	dir = 9;
 	pixel_x = 32;
 	pixel_y = -6
 	},
@@ -97664,19 +97659,23 @@
 /obj/machinery/door/firedoor,
 /obj/structure/sign/directions/security{
 	pixel_x = -32;
-	pixel_y = 8
+	pixel_y = 8;
+	dir = 6
 	},
 /obj/structure/sign/directions/engineering{
 	pixel_x = -32;
-	pixel_y = 2
+	pixel_y = 2;
+	dir = 6
 	},
 /obj/structure/sign/directions/supply{
 	pixel_x = -32;
-	pixel_y = -4
+	pixel_y = -4;
+	dir = 6
 	},
 /obj/structure/sign/directions/evac{
 	pixel_x = -32;
-	pixel_y = -10
+	pixel_y = -10;
+	dir = 6
 	},
 /turf/open/floor/iron/dark/side,
 /area/station/hallway/primary/upper)
