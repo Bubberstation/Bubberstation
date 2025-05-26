@@ -341,6 +341,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	damage_factors = calculate_damage()
 	if(damage == 0) // Clear any in game forced delams if on full health.
 		set_delam(SM_DELAM_PRIO_IN_GAME, SM_DELAM_STRATEGY_PURGE)
+		station_notified = FALSE // BUBBER EDIT ADDITION - DELAM_SCRAM
 	else if(!final_countdown)
 		set_delam(SM_DELAM_PRIO_NONE, SM_DELAM_STRATEGY_PURGE) // This one cant clear any forced delams.
 	delamination_strategy.delam_progress(src)
