@@ -56,26 +56,15 @@
 
 /datum/component/status_indicator/RegisterWithParent()
 	attached_mob = parent
-	// The Basics
-	RegisterSignal(parent, COMSIG_LIVING_LIFE, PROC_REF(status_indicator_evaluate))
-	// When things actually happen
-	RegisterSignal(parent, COMSIG_LIVING_STATUS_STUN, PROC_REF(status_indicator_evaluate))
-	RegisterSignal(parent, COMSIG_LIVING_STATUS_KNOCKDOWN, PROC_REF(status_indicator_evaluate))
-	RegisterSignal(parent, COMSIG_LIVING_STATUS_PARALYZE, PROC_REF(status_indicator_evaluate))
-	RegisterSignal(parent, COMSIG_LIVING_STATUS_IMMOBILIZE, PROC_REF(status_indicator_evaluate))
-	RegisterSignal(parent, COMSIG_LIVING_STATUS_UNCONSCIOUS, PROC_REF(status_indicator_evaluate))
+	RegisterSignals(parent, list(COMSIG_LIVING_LIFE, COMSIG_LIVING_STATUS_STUN, COMSIG_LIVING_STATUS_KNOCKDOWN, COMSIG_LIVING_STATUS_PARALYZE, COMSIG_LIVING_STATUS_IMMOBILIZE, COMSIG_LIVING_STATUS_UNCONSCIOUS), PROC_REF(status_indicator_evaluate))
 
 
+/datum/component/status_indicator/Destroy()
+	. = ..()
+	QDEL_LIST_ASSOC_VAL(status_indicators)
 
 /datum/component/status_indicator/UnregisterFromParent()
-	QDEL_LIST(status_indicators)
-	UnregisterSignal(attached_mob, COMSIG_LIVING_DEATH)
-	UnregisterSignal(attached_mob, COMSIG_LIVING_LIFE)
-	UnregisterSignal(attached_mob, COMSIG_LIVING_STATUS_STUN)
-	UnregisterSignal(attached_mob, COMSIG_LIVING_STATUS_KNOCKDOWN)
-	UnregisterSignal(attached_mob, COMSIG_LIVING_STATUS_PARALYZE)
-	UnregisterSignal(attached_mob, COMSIG_LIVING_STATUS_IMMOBILIZE)
-	UnregisterSignal(attached_mob, COMSIG_LIVING_STATUS_UNCONSCIOUS)
+	UnregisterSignal(attached_mob, list(COMSIG_LIVING_LIFE, COMSIG_LIVING_STATUS_STUN, COMSIG_LIVING_STATUS_KNOCKDOWN, COMSIG_LIVING_STATUS_PARALYZE, COMSIG_LIVING_STATUS_IMMOBILIZE, COMSIG_LIVING_STATUS_UNCONSCIOUS))
 	attached_mob = null
 
 /// Receives signals to update on carbon health updates. Checks if the mob is dead - if true, removes all the indicators. Then, we determine what status indicators the mob should carry or remove.
@@ -125,9 +114,11 @@
 /datum/component/status_indicator/proc/remove_status_indicator(prospective_indicator)
 	var/obj/effect/overlay/status_indicator/resolved_indicator = status_indicators[prospective_indicator]
 	if(resolved_indicator)
-		status_indicators.Remove(prospective_indicator, resolved_indicator)
+		status_indicators[prospective_indicator] = null
 		animate(resolved_indicator, pixel_z = 0, pixel_w = 0, time = 1 SECONDS, easing = ELASTIC_EASING, alpha = 0)
-		QDEL_IN(resolved_indicator, 2 SECONDS)
+		ASYNC
+			QDEL_IN(resolved_indicator, 2 SECONDS)
+			attached_mob.vis_contents -= resolved_indicator
 
 /// Refreshes the indicators over a mob's head. Should only be called when adding or removing a status indicator with the above procs,
 /// or when the mob changes size visually for some reason.
