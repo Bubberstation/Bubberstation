@@ -15702,7 +15702,7 @@
 /area/station/command/heads_quarters/hop)
 "cWa" = (
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden{
-	dir = 8
+	dir = 6
 	},
 /turf/closed/wall/r_wall,
 /area/station/maintenance/disposal/incinerator)
@@ -19377,6 +19377,10 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/security/prison/upper)
+"dHv" = (
+/obj/machinery/portable_atmospherics/scrubber,
+/turf/open/floor/iron,
+/area/station/engineering/atmos/test_chambers)
 "dHx" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
@@ -33196,6 +33200,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/grass,
 /area/station/commons/dorms)
+"goB" = (
+/obj/machinery/atmospherics/pipe/smart/simple/supply/hidden,
+/turf/closed/wall/r_wall,
+/area/station/maintenance/disposal/incinerator)
 "goF" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /obj/structure/cable,
@@ -37150,6 +37158,13 @@
 /obj/effect/mapping_helpers/airlock/access/any/engineering/general,
 /turf/open/floor/iron,
 /area/station/engineering/storage_shared)
+"hdH" = (
+/obj/effect/spawner/structure/window/reinforced/plasma,
+/obj/machinery/atmospherics/pipe/smart/simple/supply/hidden{
+	dir = 9
+	},
+/turf/open/floor/plating,
+/area/station/maintenance/disposal/incinerator)
 "hdL" = (
 /obj/effect/turf_decal/stripes/end{
 	dir = 1
@@ -38145,12 +38160,6 @@
 	dir = 8
 	},
 /area/station/security/office)
-"hnh" = (
-/obj/machinery/atmospherics/pipe/smart/simple/supply/hidden,
-/obj/structure/cable,
-/obj/machinery/duct,
-/turf/open/floor/iron,
-/area/station/engineering/atmos/test_chambers)
 "hni" = (
 /obj/structure/chair/plastic{
 	dir = 4
@@ -42409,6 +42418,10 @@
 	dir = 4
 	},
 /area/station/hallway/primary/port)
+"ieL" = (
+/obj/machinery/portable_atmospherics/pump,
+/turf/open/floor/iron,
+/area/station/engineering/atmos/test_chambers)
 "ieR" = (
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/structure/tank_holder/extinguisher,
@@ -52876,6 +52889,7 @@
 /area/station/science/ordnance)
 "kdO" = (
 /obj/machinery/light/directional/west,
+/obj/machinery/portable_atmospherics/pump,
 /turf/open/floor/iron,
 /area/station/engineering/atmos/test_chambers)
 "kdU" = (
@@ -76316,8 +76330,8 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical/morgue)
 "oDe" = (
-/obj/machinery/atmospherics/components/unary/passive_vent{
-	dir = 1
+/obj/machinery/atmospherics/pipe/layer_manifold/supply/hidden{
+	dir = 4
 	},
 /turf/open/floor/iron,
 /area/station/engineering/atmos/test_chambers)
@@ -94544,6 +94558,10 @@
 "sbR" = (
 /turf/closed/wall,
 /area/station/maintenance/department/medical)
+"sbU" = (
+/obj/machinery/portable_atmospherics/scrubber/huge/movable,
+/turf/open/floor/iron,
+/area/station/engineering/atmos/test_chambers)
 "sbZ" = (
 /obj/structure/grille,
 /turf/open/space/basic,
@@ -101921,6 +101939,7 @@
 /area/space/nearstation)
 "twn" = (
 /obj/machinery/camera/autoname/directional/west,
+/obj/machinery/portable_atmospherics/pump,
 /turf/open/floor/iron,
 /area/station/engineering/atmos/test_chambers)
 "two" = (
@@ -104101,6 +104120,9 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/simple/supply/hidden{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/station/engineering/atmos/test_chambers)
 "tQA" = (
@@ -110865,13 +110887,6 @@
 /area/station/commons/dorms)
 "vhR" = (
 /obj/effect/landmark/start/atmospheric_technician,
-/turf/open/floor/iron,
-/area/station/engineering/atmos/test_chambers)
-"vif" = (
-/obj/machinery/atmospherics/pipe/smart/simple/supply/hidden{
-	dir = 6
-	},
-/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/station/engineering/atmos/test_chambers)
 "vih" = (
@@ -121220,10 +121235,7 @@
 /area/station/maintenance/department/medical)
 "xcO" = (
 /obj/machinery/atmospherics/components/tank/plasma{
-	initialize_directions = 1
-	},
-/obj/machinery/atmospherics/pipe/smart/simple/supply/hidden{
-	dir = 8
+	dir = 1
 	},
 /obj/machinery/light/directional/east,
 /turf/open/floor/iron/dark,
@@ -163841,12 +163853,12 @@ gpz
 gpz
 gpz
 cnV
-sQQ
-sQQ
-sQQ
+dHv
+dHv
+sbU
 sQQ
 kdO
-sQQ
+ieL
 twn
 raw
 sQQ
@@ -165897,7 +165909,7 @@ sQQ
 sQQ
 sQQ
 hYG
-sQQ
+puX
 cPg
 cPg
 cPg
@@ -166154,7 +166166,7 @@ wlM
 sQQ
 sQQ
 kfT
-sQQ
+puX
 sQQ
 sQQ
 puX
@@ -166409,8 +166421,8 @@ lZe
 lZe
 lZe
 lZe
-vif
-hnh
+lZe
+cnV
 oDe
 sQQ
 fth
@@ -166924,8 +166936,8 @@ oYP
 fey
 fth
 cWa
-fth
-jQq
+goB
+hdH
 fth
 fth
 laI
