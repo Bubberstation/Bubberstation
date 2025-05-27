@@ -7479,6 +7479,9 @@
 /obj/item/cigarette{
 	pixel_y = 4
 	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1
+	},
 /turf/open/floor/iron/dark/small,
 /area/station/cargo/miningdock)
 "bxS" = (
@@ -35021,6 +35024,14 @@
 /obj/effect/spawner/random/maintenance,
 /turf/open/floor/plating,
 /area/station/maintenance/fore/upper)
+"gHB" = (
+/obj/structure/closet/crate,
+/obj/effect/spawner/random/maintenance/three,
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 9
+	},
+/turf/open/floor/iron/dark/small,
+/area/station/cargo/miningdock)
 "gHC" = (
 /obj/machinery/flasher/directional/east{
 	id = "AI";
@@ -61357,6 +61368,11 @@
 	},
 /turf/open/floor/iron,
 /area/station/maintenance/port/aft)
+"lKL" = (
+/obj/structure/closet/crate/secure/loot,
+/obj/effect/turf_decal/stripes/white/line,
+/turf/open/floor/iron/dark/small,
+/area/station/cargo/miningdock)
 "lKM" = (
 /obj/item/kirbyplants/random,
 /obj/effect/turf_decal/tile/neutral{
@@ -72359,11 +72375,11 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/science/upper)
 "nSH" = (
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 1
-	},
 /obj/structure/chair/plastic{
 	dir = 8
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 10
 	},
 /turf/open/floor/iron/dark/small,
 /area/station/cargo/miningdock)
@@ -81433,15 +81449,11 @@
 /turf/open/floor/iron,
 /area/station/engineering/transit_tube)
 "pEj" = (
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 9
-	},
-/obj/machinery/bouldertech/refinery/smelter,
 /obj/machinery/conveyor{
-	dir = 9;
+	dir = 8;
 	id = "brm_belt"
 	},
-/turf/open/floor/iron/dark/small,
+/turf/open/floor/iron/smooth,
 /area/station/cargo/miningdock)
 "pEk" = (
 /obj/machinery/door/firedoor,
@@ -85528,11 +85540,6 @@
 /obj/structure/grille,
 /turf/open/floor/plating,
 /area/station/maintenance/fore/upper)
-"qrp" = (
-/obj/structure/closet/crate,
-/obj/effect/spawner/random/maintenance/three,
-/turf/open/floor/iron/dark/small,
-/area/station/cargo/miningdock)
 "qru" = (
 /obj/structure/rack,
 /obj/item/stack/cable_coil{
@@ -108361,8 +108368,12 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/upper)
 "uGt" = (
-/obj/structure/closet/crate/secure/loot,
-/turf/open/floor/iron/dark/small,
+/obj/machinery/bouldertech/refinery/smelter,
+/obj/machinery/conveyor{
+	dir = 9;
+	id = "brm_belt"
+	},
+/turf/open/floor/iron/smooth,
 /area/station/cargo/miningdock)
 "uGz" = (
 /obj/item/stack/sheet/cardboard,
@@ -168699,7 +168710,7 @@ kev
 pXg
 txY
 bxP
-djJ
+lKL
 leG
 kyD
 pEc
@@ -168956,7 +168967,7 @@ ryA
 mYd
 txY
 nSH
-jvp
+gHB
 bti
 kyD
 pEc
@@ -169212,7 +169223,7 @@ ktY
 djJ
 djJ
 txY
-qrp
+ktY
 uGt
 kgv
 kyD
@@ -169469,7 +169480,7 @@ ktY
 vHy
 bvN
 txY
-vHy
+ktY
 pEj
 sZm
 wYj
