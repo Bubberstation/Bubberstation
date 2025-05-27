@@ -68,7 +68,7 @@
 
 
 /datum/component/status_indicator/UnregisterFromParent()
-	QDEL_NULL(status_indicators)
+	QDEL_LIST(status_indicators)
 	UnregisterSignal(attached_mob, COMSIG_LIVING_DEATH)
 	UnregisterSignal(attached_mob, COMSIG_LIVING_LIFE)
 	UnregisterSignal(attached_mob, COMSIG_LIVING_STATUS_STUN)
