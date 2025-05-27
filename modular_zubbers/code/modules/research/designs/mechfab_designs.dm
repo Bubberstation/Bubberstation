@@ -17,7 +17,7 @@
 	name = "AI-uplink brain"
 	id = "ai_uplink_brain"
 	build_type = MECHFAB
-	construction_time = 30 SECONDS
+	construction_time = 60 SECONDS
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 25,
 					/datum/material/glass = SHEET_MATERIAL_AMOUNT * 25,
 					/datum/material/silver = SHEET_MATERIAL_AMOUNT * 25,
