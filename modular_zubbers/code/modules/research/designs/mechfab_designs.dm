@@ -13,6 +13,22 @@
 
 	build_path = /mob/living/carbon/human/species/synth/empty
 
+/datum/design/ai_uplink_brain
+	name = "AI-uplink brain"
+	id = "ai_uplink_brain"
+	build_type = MECHFAB
+	construction_time = 30 SECONDS
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 25,
+					/datum/material/glass = SHEET_MATERIAL_AMOUNT * 25,
+					/datum/material/silver = SHEET_MATERIAL_AMOUNT * 25,
+					/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 25,
+					/datum/material/bluespace = SHEET_MATERIAL_AMOUNT * 25,
+					/datum/material/titanium  = SHEET_MATERIAL_AMOUNT * 25,
+					/datum/material/gold = SHEET_MATERIAL_AMOUNT * 25)
+	category = list(RND_CATEGORY_MECHFAB_SYNTH + RND_SUBCATEGORY_MECHFAB_SYNTH_PARTS)
+
+	build_path = /obj/item/organ/brain/cybernetic/ai
+
 /datum/design/borg_upgrade_advcutter
 	name = "Advanced Plasma Cutter"
 	id = "borg_upgrade_advcutter"

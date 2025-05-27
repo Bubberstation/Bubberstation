@@ -109,6 +109,17 @@
 		"adv_xenoarchbag_cyborg"
 	)
 
+/datum/techweb_node/ai_uplink_brain
+	id = TECHWEB_NODE_AI_UPLINK_BRAIN
+	display_name = "AI-uplink brain"
+	description = "This bleeding edge 'organ' can be inserted into the head of completely synthic humanoids, granting AIs that which they want most: hands."
+	prereq_ids = list(TECHWEB_NODE_ALIEN_SURGERY, TECHWEB_NODE_ALIEN_ENGI, TECHWEB_NODE_SYNDICATE_BASIC, TECHWEB_NODE_PARTS_BLUESPACE)
+	design_ids = list(
+		"ai_uplink_brain",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
+	announce_channels = list(RADIO_CHANNEL_SCIENCE)
+
 // Computer Tech
 /datum/techweb_node/gaming/New()
 	. = ..()
