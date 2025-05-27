@@ -63,7 +63,7 @@
 /datum/weather/rad_storm/end()
 	if(..())
 		return
-	priority_announce("The radiation threat has passed. Please return to your workplaces.", "Anomaly Alert", ANNOUNCER_RADIATIONPASSED) //SKYRAT EDIT CHANGE
+	priority_announce("The station has passed the radiation belt, please report to medbay if you experience any unusual symptoms. Maintenance will lose all access again shortly.", "Radiation Alert Cleared", ANNOUNCER_RADIATIONPASSED) // BUBBER EDIT CHANGE
 	status_alarm(FALSE)
 
 /datum/weather/rad_storm/proc/do_mutate(mob/living/carbon/human/mutant)

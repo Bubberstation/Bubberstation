@@ -44,7 +44,7 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 		/obj/item/reagent_containers/cup/glass/colocup = 75,
 		/obj/item/reagent_containers/cup/glass/sillycup = 25,
 		/obj/item/reagent_containers/cup/glass/waterbottle/empty = 25,
-		/obj/item/reagent_containers/cup/rag = 25,
+		/obj/item/rag = 25,
 		/obj/item/restraints/handcuffs/cable/zipties/used = 10,
 		/obj/item/rollingpaper = 25,
 		/obj/item/shard = 100,

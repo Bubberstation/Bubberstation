@@ -10,7 +10,8 @@
 	power_coeff = 1
 
 /datum/mutation/human/chameleon/on_acquiring(mob/living/carbon/human/owner)
-	if(..())
+	. = ..()
+	if(!.)
 		return
 	/// SKYRAT EDIT BEGIN
 	if(HAS_TRAIT(owner, TRAIT_CHAMELEON_SKIN))
