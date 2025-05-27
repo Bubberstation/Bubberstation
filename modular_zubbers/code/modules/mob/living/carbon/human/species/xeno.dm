@@ -16,7 +16,7 @@
 		Xenomorph-like characteristics, rather than a specific species in its own right. As Xenomorphs themselves are \
 		parasitic hybridisations of many different 'host' species, the main distinguishing factors between a regular \
 		Xenomorph and a Hybrid are a more humanoid body shape and stature with alien features, inert or defective hive \
-		organs and a less murderous demeanour. These are not the only documented differences, though they are the most frequent.",
+		organs, and a less murderous demeanor. These are not the only documented differences, though they are the most frequent.",
 
 		"Their manner of creation just as wildly varies, from lab-grown experiments to unusual genetic malformations \
 		in pure Xenomorph hives. All of this unfortunately culminates into a degree of prejudice and fear from the other \
