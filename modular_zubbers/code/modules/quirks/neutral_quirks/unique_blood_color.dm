@@ -40,7 +40,7 @@
 		if("Custom")
 			override.color = client_source?.prefs.read_preference(/datum/preference/color/input_blood_color)
 		else
-			investigate_log("unique blood colour quirk applied to [human_holder(mind)] without /datum/preference/choiced/select_blood_color, defaulting." INVESTIGATE_RECORDS)
+			investigate_log("unique blood colour quirk applied to [human_holder(mind)] without /datum/preference/choiced/select_blood_color, defaulting.", INVESTIGATE_RECORDS)
 			override.color = BLOOD_COLOR_RED
 	change_blood_color(quirked = human_holder, override = override)
 
