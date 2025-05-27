@@ -60,12 +60,12 @@
 
 
 /datum/component/status_indicator/Destroy()
-	. = ..()
 	QDEL_LIST_ASSOC_VAL(status_indicators)
+	attached_mob = null
+	. = ..()
 
 /datum/component/status_indicator/UnregisterFromParent()
 	UnregisterSignal(attached_mob, list(COMSIG_LIVING_LIFE, COMSIG_LIVING_STATUS_STUN, COMSIG_LIVING_STATUS_KNOCKDOWN, COMSIG_LIVING_STATUS_PARALYZE, COMSIG_LIVING_STATUS_IMMOBILIZE, COMSIG_LIVING_STATUS_UNCONSCIOUS))
-	attached_mob = null
 
 /// Receives signals to update on carbon health updates. Checks if the mob is dead - if true, removes all the indicators. Then, we determine what status indicators the mob should carry or remove.
 /datum/component/status_indicator/proc/status_indicator_evaluate()
