@@ -429,3 +429,10 @@
 	name = "Chitter2"
 	id = "chitter2"
 	soundpath = 'modular_zubbers/code/modules/blooper/voice/bloopers/kazooie/chitter1.ogg'
+
+/datum/blooper/xenohiss
+	name = "Xenohiss"
+	id = "Xenohiss"
+	soundpath = 'modular_zubbers/code/modules/blooper/voice/bloopers/Xenohiss.ogg'
+	minspeed = 10
+	maxspeed = 16

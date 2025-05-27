@@ -23,8 +23,6 @@
 	if(speech_args[SPEECH_LANGUAGE] in languages_native) // Speaking a native language?
 		return modify_speech(source, speech_args)
 
-
-
 /obj/item/organ/tongue/xeno_hybrid/modify_speech(datum/source, list/speech_args)
 	ASYNC
 		actually_modify_speech(source, speech_args)
