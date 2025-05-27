@@ -650,6 +650,7 @@ Basically, we fill the time between now and 2s from now with hands based off the
 			/datum/brain_trauma/severe/hypnotic_stupor, // These apply the above blacklisted trauma
 			/datum/brain_trauma/severe/hypnotic_trigger,
 			/datum/brain_trauma/special/honorbound, // Designed to be chaplain exclusive
+			/datum/brain_trauma/voided, // Voidwalker exclusive and more of a magical status effect than a trauma
 		)
 		forbiddentraumas += typesof(/datum/brain_trauma/very_special) // SKYRAT EDIT ADDITION - No very special (lewd) quirks gained by inverse neurine
 
