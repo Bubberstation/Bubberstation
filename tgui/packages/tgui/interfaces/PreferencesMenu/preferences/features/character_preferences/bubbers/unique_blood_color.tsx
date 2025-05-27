@@ -1,15 +1,5 @@
-import {
-  CheckboxInput,
-  Feature,
-  FeatureChoiced,
-  FeatureColorInput,
-} from '../../base';
+import { Feature, FeatureChoiced, FeatureColorInput } from '../../base';
 import { FeatureDropdownInput } from '../../dropdowns';
-
-export const preset_blood_color: Feature<boolean> = {
-  name: 'Toggle to use presets',
-  component: CheckboxInput,
-};
 
 export const input_blood_color: Feature<string> = {
   name: 'Custom color',
@@ -20,5 +10,6 @@ export const input_blood_color: Feature<string> = {
 
 export const select_blood_color: FeatureChoiced = {
   name: 'Preset color',
+  description: 'NOTE: Use the Custom option for custom color.',
   component: FeatureDropdownInput,
 };
