@@ -4600,6 +4600,7 @@
 	cycle_id = "Frontleftfloor2"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/external,
+/obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/plating,
 /area/station/maintenance/port/fore)
 "aVT" = (
@@ -13046,7 +13047,6 @@
 /obj/machinery/door/airlock/external{
 	space_dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "ERT dock"
 	},
@@ -13695,7 +13695,7 @@
 /obj/structure/table/rolling,
 /obj/item/wrench,
 /turf/open/floor/iron/smooth,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "cDP" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -13956,7 +13956,7 @@
 	},
 /obj/machinery/power/shuttle_engine/heater,
 /turf/open/floor/iron/smooth,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "cFO" = (
 /obj/structure/cable,
 /obj/machinery/newscaster/directional/east,
@@ -15677,7 +15677,6 @@
 /obj/effect/decal/cleanable/dirt{
 	icon_state = "dirt-flat-1"
 	},
-/obj/machinery/power/smes/engineering,
 /turf/open/floor/iron/dark/small,
 /area/station/maintenance/starboard/fore)
 "cVS" = (
@@ -19125,9 +19124,8 @@
 	name = "Shuttle maintenance bay door button";
 	pixel_y = -32
 	},
-/obj/structure/cable,
 /turf/open/floor/iron/smooth,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "dFr" = (
 /obj/machinery/atmospherics/pipe/smart/simple/pink/visible{
 	dir = 8
@@ -19341,14 +19339,14 @@
 /area/station/hallway/primary/upper)
 "dGZ" = (
 /obj/machinery/door/airlock/engineering{
-	name = "Cargo Power Station"
+	name = "Shuttle Maintenance Bay"
 	},
-/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/iron/smooth,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "dHb" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/structure/extinguisher_cabinet/directional/south,
@@ -19689,7 +19687,7 @@
 "dJW" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "dJY" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/airlock/external{
@@ -22839,12 +22837,8 @@
 /turf/open/floor/iron,
 /area/station/command/teleporter)
 "esx" = (
-/obj/machinery/power/terminal{
-	dir = 8
-	},
-/obj/structure/cable,
 /turf/open/floor/plating,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "esy" = (
 /obj/effect/turf_decal/vg_decals/numbers/zero,
 /turf/open/floor/iron/shuttle/arrivals/airless,
@@ -24636,7 +24630,7 @@
 	},
 /obj/machinery/power/apc/auto_name/directional/south,
 /turf/open/floor/iron/smooth,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "eIA" = (
 /obj/structure/chair/wood{
 	dir = 1
@@ -27181,8 +27175,9 @@
 /obj/effect/decal/cleanable/dirt{
 	icon_state = "dirt-flat-1"
 	},
+/obj/structure/cable,
 /turf/open/floor/iron/smooth,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "feZ" = (
 /obj/structure/table,
 /obj/effect/spawner/random/maintenance,
@@ -29114,7 +29109,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/power/port_gen/pacman/pre_loaded,
 /turf/open/floor/iron/smooth,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "fyK" = (
 /obj/structure/railing/corner/end/flip,
 /obj/effect/turf_decal/trimline/purple/filled/line,
@@ -35887,7 +35882,7 @@
 /area/station/maintenance/starboard/fore)
 "gPZ" = (
 /turf/closed/wall/r_wall,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "gQe" = (
 /obj/structure/weightmachine,
 /obj/structure/extinguisher_cabinet/directional/north,
@@ -36457,7 +36452,6 @@
 /area/station/maintenance/aft/upper)
 "gVU" = (
 /obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "ERT dock"
 	},
@@ -39765,9 +39759,6 @@
 /obj/effect/decal/cleanable/dirt{
 	icon_state = "dirt-flat-1"
 	},
-/obj/machinery/power/terminal{
-	dir = 8
-	},
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/maintenance/starboard/fore)
 "hFf" = (
@@ -40679,9 +40670,8 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
-/obj/structure/cable,
 /turf/open/floor/iron/smooth,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "hND" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Toxins Maintenance"
@@ -47176,7 +47166,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/smooth,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "jbn" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 9
@@ -50603,7 +50593,7 @@
 "jJb" = (
 /obj/effect/spawner/random/trash/graffiti,
 /turf/closed/wall,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "jJf" = (
 /obj/structure/chair/office,
 /obj/effect/landmark/start/assistant,
@@ -52292,9 +52282,6 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/station/command/captain_dining)
-"jXN" = (
-/turf/closed/wall,
-/area/station/cargo/power_station/upper)
 "jXO" = (
 /obj/structure/chair/sofa/bench/left{
 	dir = 8;
@@ -52488,12 +52475,11 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/engineering/engine_aft_port)
 "jZl" = (
-/obj/structure/cable,
 /obj/effect/decal/cleanable/dirt{
 	icon_state = "dirt-flat-1"
 	},
 /turf/open/floor/iron,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "jZm" = (
 /obj/structure/table/wood/poker,
 /obj/item/storage/dice,
@@ -55132,13 +55118,8 @@
 /turf/open/floor/iron/white/smooth_corner,
 /area/station/science/explab)
 "kyb" = (
-/obj/structure/cable,
-/obj/machinery/door/airlock/engineering{
-	name = "Cargo Power Station"
-	},
-/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
-/turf/open/floor/plating,
-/area/station/cargo/power_station/upper)
+/turf/closed/wall,
+/area/station/maintenance/shuttle_maint_bay)
 "kye" = (
 /obj/effect/turf_decal/stripes{
 	dir = 9
@@ -61660,13 +61641,11 @@
 /turf/open/floor/plating,
 /area/station/maintenance/aft/upper)
 "lNh" = (
-/obj/structure/cable,
 /obj/machinery/door/airlock/engineering{
-	name = "Cargo Power Station"
+	name = "Shuttle Maintenance Bay"
 	},
-/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
 /turf/open/floor/iron,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "lNi" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -61976,15 +61955,11 @@
 	},
 /area/station/security/prison/safe)
 "lQN" = (
-/obj/machinery/power/terminal{
-	dir = 8
-	},
-/obj/structure/cable,
 /obj/effect/decal/cleanable/dirt{
 	icon_state = "dirt-flat-1"
 	},
 /turf/open/floor/plating,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "lQX" = (
 /obj/structure/sign/warning/vacuum/external/directional/north,
 /obj/structure/closet/cardboard,
@@ -62032,6 +62007,12 @@
 	},
 /turf/open/floor/wood/parquet,
 /area/station/common/tailoring)
+"lRn" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/iron,
+/area/station/hallway/secondary/service)
 "lRo" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/carpet,
@@ -64251,14 +64232,6 @@
 /obj/effect/mapping_helpers/broken_floor,
 /turf/open/floor/plating,
 /area/station/maintenance/aft/upper)
-"mou" = (
-/obj/structure/cable,
-/obj/machinery/door/airlock/maintenance{
-	name = "Disposal Access"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
-/turf/open/floor/plating,
-/area/station/maintenance/disposal)
 "moy" = (
 /obj/structure/chair/stool/directional/west,
 /obj/effect/decal/cleanable/dirt{
@@ -66291,7 +66264,7 @@
 	dir = 1
 	},
 /turf/open/floor/iron/smooth,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "mJx" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner{
 	dir = 4
@@ -69529,7 +69502,7 @@
 /obj/machinery/light/broken/directional/north,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/smooth,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "nqG" = (
 /turf/closed/wall/r_wall,
 /area/station/science/ordnance/burnchamber)
@@ -74628,13 +74601,6 @@
 /obj/structure/cable,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
-"omU" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/cable,
-/obj/machinery/computer/monitor,
-/turf/open/floor/iron/smooth,
-/area/station/cargo/power_station/upper)
 "omW" = (
 /obj/effect/turf_decal/trimline/purple/filled/line,
 /obj/structure/cable,
@@ -79246,7 +79212,7 @@
 /turf/open/floor/iron/stairs/old{
 	dir = 4
 	},
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "phD" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/red{
@@ -81148,12 +81114,11 @@
 /turf/closed/wall/r_wall,
 /area/station/command/heads_quarters/rd)
 "pzU" = (
-/obj/structure/cable,
 /obj/effect/decal/cleanable/dirt{
 	icon_state = "dirt-flat-1"
 	},
 /turf/open/floor/iron/smooth,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "pAm" = (
 /obj/structure/curtain/bounty,
 /obj/effect/turf_decal/siding/wood{
@@ -82304,7 +82269,7 @@
 	},
 /obj/effect/decal/cleanable/oil/slippery,
 /turf/open/floor/iron/smooth,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "pMi" = (
 /obj/machinery/atmospherics/pipe/smart/simple/cyan/visible{
 	dir = 6
@@ -84197,7 +84162,7 @@
 	},
 /obj/effect/decal/cleanable/oil/streak,
 /turf/open/floor/iron/smooth,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "qeS" = (
 /obj/structure/bed/pod,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
@@ -88325,11 +88290,11 @@
 /area/station/security/office)
 "qRf" = (
 /obj/machinery/door/airlock/engineering{
-	name = "Cargo Power Station"
+	name = "Shuttle Maintenance Bay"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/engineering/general,
 /turf/open/floor/plating,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "qRp" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 10
@@ -89199,8 +89164,9 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/chapel)
 "qZJ" = (
+/obj/structure/cable,
 /turf/open/floor/iron/smooth,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "qZM" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/condiment/saltshaker{
@@ -95089,9 +95055,8 @@
 /turf/open/floor/iron/dark,
 /area/station/security/office)
 "sgZ" = (
-/obj/structure/cable,
 /turf/open/floor/iron/smooth,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "sha" = (
 /obj/structure/table,
 /obj/effect/spawner/random/food_or_drink/donkpockets,
@@ -99918,13 +99883,11 @@
 /turf/open/floor/iron/dark,
 /area/station/science/xenobiology/control)
 "tbl" = (
-/obj/machinery/power/smes/engineering,
 /obj/structure/railing{
 	dir = 9
 	},
-/obj/structure/cable,
 /turf/open/floor/plating,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "tbm" = (
 /obj/structure/chair/plastic{
 	dir = 8
@@ -104772,7 +104735,7 @@
 	},
 /obj/item/clothing/glasses/welding,
 /turf/open/floor/iron/smooth,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "tXu" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/structure/cable,
@@ -108219,7 +108182,6 @@
 "uFA" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
 "uFC" = (
@@ -108388,13 +108350,11 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port/fore)
 "uHb" = (
-/obj/machinery/power/smes/engineering,
 /obj/structure/railing{
 	dir = 8
 	},
-/obj/structure/cable,
 /turf/open/floor/plating,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "uHf" = (
 /obj/machinery/light/small/broken/directional/south,
 /obj/structure/cable,
@@ -113964,7 +113924,6 @@
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/turret_protected/ai)
 "vJR" = (
-/obj/structure/cable,
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/maintenance/starboard/fore)
 "vJU" = (
@@ -116946,8 +116905,9 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/iron/smooth,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "wmC" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/field/generator,
@@ -120125,6 +120085,12 @@
 	},
 /turf/open/floor/stone,
 /area/station/hallway/primary/central)
+"wRs" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/iron,
+/area/station/hallway/secondary/service)
 "wRu" = (
 /obj/machinery/door/airlock/research{
 	name = "Research Division Access"
@@ -120330,7 +120296,7 @@
 	name = "Shuttle Bay Blast Door"
 	},
 /turf/open/floor/plating,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "wTq" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -120839,7 +120805,7 @@
 	},
 /obj/machinery/power/shuttle_engine/propulsion,
 /turf/open/floor/iron/smooth,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "wYS" = (
 /obj/machinery/computer/records/security,
 /obj/structure/detectiveboard/directional/north,
@@ -126598,9 +126564,8 @@
 /area/station/security/prison/mess)
 "yeF" = (
 /obj/item/weldingtool,
-/obj/structure/cable,
 /turf/open/floor/iron/smooth,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "yeG" = (
 /obj/structure/closet/secure_closet/blueshield,
 /obj/item/storage/backpack/blueshield,
@@ -126879,7 +126844,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/smooth,
-/area/station/cargo/power_station/upper)
+/area/station/maintenance/shuttle_maint_bay)
 "yhf" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -167850,7 +167815,7 @@ dij
 gbC
 kcZ
 pdU
-hAd
+wRs
 wuM
 mGW
 onG
@@ -168107,7 +168072,7 @@ rtr
 rtr
 pdU
 pdU
-mFT
+lRn
 bMc
 sWA
 wCL
@@ -168364,7 +168329,7 @@ wRG
 lln
 pdU
 aJU
-mFT
+lRn
 vpS
 sWA
 aHz
@@ -168621,7 +168586,7 @@ eGR
 jbo
 pdU
 dLl
-mFT
+lRn
 vpS
 sWA
 sWA
@@ -168878,14 +168843,14 @@ iTN
 sfw
 pdU
 ceG
-mFT
+lRn
 vpS
 dsK
-jUp
-jUp
-jUp
-jUp
-mou
+dyT
+dyT
+dyT
+dyT
+dyT
 jUp
 ctp
 mPs
@@ -169134,10 +169099,10 @@ eDR
 tfe
 rtr
 rtr
-jXN
+kyb
 dGZ
-jXN
-jXN
+kyb
+kyb
 kyb
 gPZ
 ocA
@@ -169391,7 +169356,7 @@ xGF
 apR
 rtr
 pHE
-jXN
+kyb
 wmu
 feX
 qZJ
@@ -169905,8 +169870,8 @@ ivC
 xNV
 rtr
 jvx
-jXN
-omU
+kyb
+jbj
 hNC
 yeF
 pzU
@@ -170162,7 +170127,7 @@ dVy
 dVy
 dVy
 wPg
-jXN
+kyb
 nqC
 cFN
 wYO
@@ -170419,7 +170384,7 @@ sYw
 jrX
 eVK
 fqP
-jXN
+kyb
 fyF
 yha
 mJv
@@ -170679,7 +170644,7 @@ qte
 jJb
 qeM
 cDN
-feX
+pzU
 sgZ
 wTm
 pxb
@@ -170933,10 +170898,10 @@ qte
 vii
 mZc
 qte
-jXN
-feX
-qZJ
-qZJ
+kyb
+pzU
+sgZ
+sgZ
 dFp
 gPZ
 pxb
@@ -171190,7 +171155,7 @@ aVy
 hrK
 uFA
 dVy
-jXN
+kyb
 phz
 tbl
 uHb
@@ -171445,8 +171410,8 @@ nZC
 oiE
 kgl
 gVU
-qte
-qte
+jYW
+jYW
 lNh
 jZl
 esx
