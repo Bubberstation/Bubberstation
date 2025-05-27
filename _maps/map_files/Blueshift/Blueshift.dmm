@@ -36991,6 +36991,12 @@
 	},
 /turf/closed/wall,
 /area/station/maintenance/clown_chamber)
+"hcm" = (
+/obj/machinery/conveyor_switch/oneway{
+	id = "brm_belt"
+	},
+/turf/open/floor/iron/smooth,
+/area/station/cargo/miningdock)
 "hcn" = (
 /obj/structure/rack/wooden,
 /obj/machinery/light/directional/east,
@@ -81426,6 +81432,17 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/iron,
 /area/station/engineering/transit_tube)
+"pEj" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 9
+	},
+/obj/machinery/bouldertech/refinery/smelter,
+/obj/machinery/conveyor{
+	dir = 9;
+	id = "brm_belt"
+	},
+/turf/open/floor/iron/dark/small,
+/area/station/cargo/miningdock)
 "pEk" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/maintenance,
@@ -104009,6 +104026,14 @@
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible,
 /turf/open/floor/plating,
 /area/station/engineering/atmos/hfr_room)
+"tPP" = (
+/obj/machinery/bouldertech/refinery,
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "brm_belt"
+	},
+/turf/open/floor/iron/smooth_edge,
+/area/station/cargo/miningdock)
 "tPS" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -109849,6 +109874,13 @@
 "uWD" = (
 /turf/closed/wall/r_wall,
 /area/station/science)
+"uWF" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "brm_belt"
+	},
+/turf/open/floor/iron/smooth_edge,
+/area/station/cargo/miningdock)
 "uWI" = (
 /obj/structure/chair{
 	dir = 4
@@ -115324,6 +115356,14 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/wood,
 /area/station/service/lawoffice)
+"vYp" = (
+/obj/machinery/brm,
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "brm_belt"
+	},
+/turf/open/floor/iron/smooth_edge,
+/area/station/cargo/miningdock)
 "vYq" = (
 /obj/machinery/light/small/broken/directional/north,
 /turf/open/floor/iron,
@@ -169430,7 +169470,7 @@ vHy
 bvN
 txY
 vHy
-bvN
+pEj
 sZm
 wYj
 pEc
@@ -169686,8 +169726,8 @@ ouO
 ouO
 bZm
 txY
-ktY
-mMw
+hcm
+uWF
 sZm
 kyD
 pEc
@@ -169944,7 +169984,7 @@ gvD
 qFW
 kOB
 ktY
-mMw
+tPP
 bti
 kyD
 pEc
@@ -170201,7 +170241,7 @@ jVB
 tnT
 cLb
 wWq
-mMw
+uWF
 kgv
 kyD
 pEc
@@ -170458,7 +170498,7 @@ gbS
 gbS
 wvZ
 gEY
-mMw
+vYp
 leG
 kyD
 pEc
