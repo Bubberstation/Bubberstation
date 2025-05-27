@@ -24,7 +24,7 @@
 					/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 10,
 					/datum/material/bluespace = SHEET_MATERIAL_AMOUNT * 30,
 					/datum/material/titanium  = SHEET_MATERIAL_AMOUNT * 10,
-					/datum/material/bananium  = SHEET_MATERIAL_AMOUNT * 2,
+					/datum/material/bananium  = SHEET_MATERIAL_AMOUNT * 5,
 					/datum/material/gold = SHEET_MATERIAL_AMOUNT * 25)
 	category = list(RND_CATEGORY_MECHFAB_SYNTH + RND_SUBCATEGORY_MECHFAB_SYNTH_PARTS)
 
