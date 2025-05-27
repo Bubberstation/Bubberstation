@@ -19,8 +19,8 @@
 		organs, and a less murderous demeanor. These are not the only documented differences, though they are the most frequent.",
 
 		"Their manner of creation just as wildly varies, from lab-grown experiments to unusual genetic malformations \
-		in pure Xenomorph hives. All of this unfortunately culminates into a degree of prejudice and fear from the other \
-		races for their roots as parasites, regardless of if the Hybrid in question is even capable of performing such infestuous acts.",
+		in pure Xenomorph hives. All of this unfortunately culminates into a degree of prejudice and fear from  other \
+		races for their origins as parasites, regardless of if the Hybrid in question is even capable of infesting other living creatures.",
 	)
 
 /datum/species/xeno/create_pref_unique_perks()

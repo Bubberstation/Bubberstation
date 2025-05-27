@@ -1,12 +1,14 @@
 /datum/language_holder/xeno_hybrid
-	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-								/datum/language/xenocommon = list(LANGUAGE_ATOM),
-								/datum/language/xenocommon/lesser_hivemind = list(LANGUAGE_ATOM),
-								)
-	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-							/datum/language/xenocommon = list(LANGUAGE_ATOM),
-							/datum/language/xenocommon/lesser_hivemind = list(LANGUAGE_ATOM),
-							)
+	understood_languages = list(
+		/datum/language/common = list(LANGUAGE_ATOM),
+		/datum/language/xenocommon = list(LANGUAGE_ATOM),
+		/datum/language/xenocommon/lesser_hivemind = list(LANGUAGE_ATOM),
+		)
+	spoken_languages = list(
+		/datum/language/common = list(LANGUAGE_ATOM),
+		/datum/language/xenocommon = list(LANGUAGE_ATOM),
+		/datum/language/xenocommon/lesser_hivemind = list(LANGUAGE_ATOM),
+		)
 
 /obj/item/organ/tongue/xeno_hybrid
 		modifies_speech = TRUE

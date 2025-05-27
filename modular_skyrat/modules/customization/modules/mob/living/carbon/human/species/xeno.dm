@@ -50,7 +50,7 @@
 
 /datum/species/xeno/get_species_lore()
 	return list(placeholder_lore)
-/*  BUBBER EDIT REMOVAL BEGIN - moved to modular_zubbers/code/modules/emotes/emotes.dm
+/*  BUBBER EDIT REMOVAL BEGIN - moved to modular_zubbers/code/modules/mob/living/carbon/human/species/xeno.dm
 /datum/species/xeno/create_pref_unique_perks()
 	var/list/to_add = list()
 
