@@ -5,7 +5,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	alpha = 0
 
-/mob/living/carbon/human/Initialize()
+/mob/living/carbon/human/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/status_indicator)
 
@@ -118,7 +118,7 @@
 	if(!status_indicators[prospective_indicator])
 		this_indicator = new
 		this_indicator.icon_state = prospective_indicator
-		LAZYSET(status_indicators, prospective_indicator, this_indicator)
+		status_indicators[prospective_indicator] |= this_indicator
 		animate_new_indicator(this_indicator)
 
 /// Similar to add_status_indicator() but removes it instead, and nulls the list if it becomes empty as a result.
