@@ -225,9 +225,7 @@
 /obj/effect/decal/cleanable/dirt{
 	icon_state = "dirt-flat-1"
 	},
-/obj/structure/reagent_dispensers/plumbed{
-	dir = 8
-	},
+/obj/structure/reagent_dispensers/plumbed,
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical/morgue)
 "adt" = (
@@ -4801,9 +4799,7 @@
 /obj/effect/decal/cleanable/dirt{
 	icon_state = "dirt-flat-1"
 	},
-/obj/structure/reagent_dispensers/plumbed{
-	dir = 8
-	},
+/obj/structure/reagent_dispensers/plumbed,
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
 "aXQ" = (
@@ -17557,6 +17553,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/duct,
 /turf/open/floor/plating,
 /area/station/maintenance/port/fore)
 "doF" = (
@@ -30987,7 +30984,7 @@
 /area/station/service/bar/atrium)
 "fTh" = (
 /obj/structure/reagent_dispensers/plumbed{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/aft/upper)
@@ -42348,7 +42345,7 @@
 /area/station/science/lab)
 "iek" = (
 /obj/structure/reagent_dispensers/plumbed{
-	dir = 8
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/security/greater)
@@ -48212,7 +48209,7 @@
 "jlS" = (
 /obj/structure/sign/warning/electric_shock/directional/south,
 /obj/structure/reagent_dispensers/plumbed{
-	dir = 8
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical)
@@ -49412,7 +49409,7 @@
 /area/station/medical/surgery/theatre)
 "jxc" = (
 /obj/structure/reagent_dispensers/plumbed{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/station/commons/dorms)
@@ -50563,9 +50560,7 @@
 /obj/effect/decal/cleanable/dirt{
 	icon_state = "dirt-flat-1"
 	},
-/obj/structure/reagent_dispensers/plumbed{
-	dir = 8
-	},
+/obj/structure/reagent_dispensers/plumbed,
 /turf/open/floor/plating,
 /area/station/maintenance/department/eva)
 "jIl" = (
@@ -53474,7 +53469,7 @@
 /area/station/commons/dorms)
 "khO" = (
 /obj/structure/reagent_dispensers/plumbed{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/port/fore)
@@ -64755,6 +64750,12 @@
 /obj/machinery/computer/shuttle/mining,
 /turf/open/floor/iron/dark/small,
 /area/station/cargo/miningdock)
+"mtx" = (
+/obj/structure/reagent_dispensers/plumbed{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/station/security/prison/upper)
 "mtF" = (
 /obj/effect/turf_decal/tile/purple/half,
 /turf/open/floor/iron,
@@ -64862,7 +64863,7 @@
 "mvq" = (
 /obj/structure/cable,
 /obj/structure/reagent_dispensers/plumbed{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/engineering/engine_aft_starboard)
@@ -86552,7 +86553,7 @@
 /area/station/science/ordnance)
 "qzK" = (
 /obj/structure/reagent_dispensers/plumbed{
-	dir = 8
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/science/central)
@@ -91009,7 +91010,7 @@
 /area/station/maintenance/abandon_surgery)
 "rrD" = (
 /obj/structure/reagent_dispensers/plumbed{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/night_club)
@@ -107768,6 +107769,12 @@
 "uAV" = (
 /turf/open/floor/iron,
 /area/station/commons/vacant_room/commissary)
+"uAZ" = (
+/obj/structure/reagent_dispensers/plumbed{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/station/maintenance/department/medical)
 "uBf" = (
 /obj/effect/decal/cleanable/dirt{
 	icon_state = "dirt-flat-1"
@@ -113891,7 +113898,7 @@
 /area/station/maintenance/abandon_wrestle)
 "vIU" = (
 /obj/structure/reagent_dispensers/plumbed{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
@@ -151673,7 +151680,7 @@ dOX
 okZ
 ttc
 khO
-eBw
+ttc
 eBw
 lWz
 ggF
@@ -151930,7 +151937,7 @@ vyT
 vyT
 uBt
 wPc
-gbQ
+kFn
 doD
 gbQ
 rsi
@@ -169354,7 +169361,7 @@ hcM
 tfU
 jnr
 mZZ
-fnG
+mtx
 lWC
 mJa
 lWC
@@ -234482,7 +234489,7 @@ aYj
 gUp
 iOG
 ydH
-sVh
+uAZ
 giS
 ewc
 mFi
