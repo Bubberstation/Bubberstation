@@ -16173,6 +16173,15 @@
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/iron/cafeteria,
 /area/station/common/wrestling/concessions)
+"daZ" = (
+/obj/machinery/atmospherics/components/tank/air{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/station/maintenance/department/science/xenobiology)
 "dbb" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing{
@@ -30176,7 +30185,7 @@
 /obj/effect/turf_decal/stripes{
 	dir = 6
 	},
-/obj/machinery/atmospherics/components/tank/oxygen,
+/obj/machinery/atmospherics/components/tank,
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/storage)
 "fLc" = (
@@ -37917,7 +37926,7 @@
 /obj/effect/turf_decal/stripes{
 	dir = 9
 	},
-/obj/machinery/atmospherics/components/tank/oxygen,
+/obj/machinery/atmospherics/components/tank,
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/storage)
 "hlu" = (
@@ -53738,6 +53747,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical)
+"klf" = (
+/obj/machinery/atmospherics/components/tank,
+/turf/open/floor/iron/dark,
+/area/station/maintenance/department/engineering/atmos_aux_port)
 "klh" = (
 /obj/structure/cable,
 /turf/open/floor/iron,
@@ -64966,7 +64979,7 @@
 /obj/effect/turf_decal/stripes{
 	dir = 8
 	},
-/obj/machinery/atmospherics/components/tank/oxygen,
+/obj/machinery/atmospherics/components/tank,
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/storage)
 "mwQ" = (
@@ -97878,10 +97891,10 @@
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
 "sJo" = (
-/obj/machinery/atmospherics/components/tank/air,
 /obj/effect/turf_decal/stripes{
 	dir = 1
 	},
+/obj/machinery/atmospherics/components/tank,
 /turf/open/floor/plating,
 /area/station/maintenance/department/science/xenobiology)
 "sJq" = (
@@ -98245,6 +98258,11 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/primary/port)
+"sLV" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/general/visible/layer4,
+/obj/machinery/atmospherics/components/tank,
+/turf/open/floor/plating,
+/area/station/security/prison/upper)
 "sMb" = (
 /obj/structure/chair{
 	dir = 4
@@ -99445,7 +99463,7 @@
 /obj/effect/turf_decal/stripes{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/tank/oxygen,
+/obj/machinery/atmospherics/components/tank,
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/storage)
 "sXK" = (
@@ -116908,6 +116926,10 @@
 /obj/structure/cable,
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/shuttle_maint_bay)
+"wmv" = (
+/obj/machinery/atmospherics/components/tank,
+/turf/open/floor/iron,
+/area/station/science/xenobiology/control)
 "wmC" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/field/generator,
@@ -121453,6 +121475,7 @@
 /obj/effect/decal/cleanable/dirt{
 	icon_state = "dirt-flat-1"
 	},
+/obj/machinery/atmospherics/components/tank,
 /turf/open/floor/iron/dark,
 /area/station/maintenance/department/security/prison_upper)
 "xfF" = (
@@ -124491,7 +124514,7 @@
 /obj/effect/turf_decal/stripes{
 	dir = 5
 	},
-/obj/machinery/atmospherics/components/tank/oxygen,
+/obj/machinery/atmospherics/components/tank,
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/storage)
 "xKN" = (
@@ -169554,7 +169577,7 @@ xYZ
 hcM
 nbp
 tfU
-jnr
+sLV
 vGh
 knn
 wZr
@@ -215841,7 +215864,7 @@ ybT
 aNm
 oIw
 qGL
-vMm
+klf
 jjg
 gIN
 gIN
@@ -225441,7 +225464,7 @@ gLc
 gLc
 soz
 jYw
-tLf
+wmv
 xRa
 pog
 xui
@@ -228538,7 +228561,7 @@ pMi
 cLw
 lcT
 cLw
-sJo
+daZ
 asg
 mAe
 tTT
