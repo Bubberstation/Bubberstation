@@ -40,7 +40,7 @@
 		if("Custom")
 			override.color = client_source?.prefs.read_preference(/datum/preference/color/input_blood_color)
 		else
-			investigate_log("unique blood colour quirk applied to [human_holder(mind)] without /datum/preference/choiced/select_blood_color, defaulting.", INVESTIGATE_RECORDS)
+			human_holder.investigate_log("unique blood colour quirk applied to [human_holder.mind] without /datum/preference/choiced/select_blood_color, defaulting.", INVESTIGATE_RECORDS)
 			override.color = BLOOD_COLOR_RED
 	change_blood_color(quirked = human_holder, override = override)
 
@@ -52,7 +52,7 @@
 	var/datum/blood_type/new_blood_type = get_blood_type("[quirked.dna.blood_type.id]_alt_[override.color]") //for example, A-_alt_#69af19
 	if(isnull(new_blood_type))
 		var/blood_type_path = "[quirked.dna.blood_type]/alt_color"
-		investigate_log("Generating [blood_type_path]..." INVESTIGATE_RECORDS)
+		quirked.investigate_log("Generating [blood_type_path]...", INVESTIGATE_RECORDS)
 		new_blood_type = new blood_type_path(override_blood_type = override)
 		GLOB.blood_types[new_blood_type::id] = new_blood_type
 	quirked.set_blood_type(new_blood_type)
