@@ -7,9 +7,9 @@
 	cost_per_order = 25
 
 /datum/orderable_item/consumables/robotic_repair
-	purchase_path = /obj/item/storage/medkit/robotic_repair
+	purchase_path = /obj/item/storage/medkit/robotic_repair/stocked
 	cost_per_order = 250
 
 /datum/orderable_item/consumables/preemo
-	purchase_path = /obj/item/storage/medkit/robotic_repair/preemo
+	purchase_path = /obj/item/storage/medkit/robotic_repair/preemo/stocked
 	cost_per_order = 400
