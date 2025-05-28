@@ -405,10 +405,10 @@
 		return
 
 	if (!internal_magazine && istype(tool, /obj/item/ammo_box/magazine))
-		// SKYRAT EDIT ADDITION START - this return is intentional; we do not want to run TG's version of this case handling
+		// BUBBER EDIT ADDITION START - this return is intentional; we do not want to run TG's version of this case handling
 		if(handle_magazine(user, tool))
 			return
-		// SKYRAT EDIT ADDITION END
+		// BUBBER EDIT ADDITION END
 		if (!magazine)
 			insert_magazine(user, tool)
 			return ITEM_INTERACT_SUCCESS

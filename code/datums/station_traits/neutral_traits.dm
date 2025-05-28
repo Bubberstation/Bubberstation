@@ -413,7 +413,7 @@
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_JOB_AFTER_SPAWN, PROC_REF(on_job_after_spawn))
 
-/* SKYRAT EDIT -- REMOVAL -- I swear, we need to update our UI in near future to account for the new buttons and shit
+/* BUBBER EDIT -- REMOVAL -- I swear, we need to update our UI in near future to account for the new buttons and shit
 /datum/station_trait/skub/setup_lobby_button(atom/movable/screen/lobby/button/sign_up/lobby_button)
 	RegisterSignal(lobby_button, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(on_lobby_button_update_overlays))
 	lobby_button.desc = "Are you pro-skub or anti-skub? Click to cycle through pro-skub, anti-skub, random and neutral."

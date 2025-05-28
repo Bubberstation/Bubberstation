@@ -36,7 +36,7 @@
 		var/list/types = list(
 			CAT_PILLS = GLOB.reagent_containers[CAT_PILLS],
 			CAT_PATCHES = GLOB.reagent_containers[CAT_PATCHES],
-			CAT_HYPOS = GLOB.reagent_containers[CAT_HYPOS], // SKYRAT EDIT ADDITION - Hypovials
+			CAT_HYPOS = GLOB.reagent_containers[CAT_HYPOS], // BUBBER EDIT ADDITION - Hypovials
 			CAT_PEN_INJECTORS = GLOB.reagent_containers[CAT_PEN_INJECTORS], // BUBBER EDIT pen_medipens
 			CAT_MEDBOTTLES = GLOB.reagent_containers[CAT_MEDBOTTLES], // BUBBER EDIT - CAT_MEDBOTTLES
 		)
@@ -83,10 +83,10 @@
 				suffix = "Pill"
 			if(CAT_PATCHES)
 				suffix = "Patch"
-			//SKYRAT EDIT ADDITION BEGIN - HYPOVIALS
+			//BUBBER EDIT ADDITION BEGIN - HYPOVIALS
 			if(CAT_HYPOS)
 				suffix = "Vial"
-			//SKYRAT EDIT ADDITION END - HYPOVIALS
+			//BUBBER EDIT ADDITION END - HYPOVIALS
 			if(CAT_PEN_INJECTORS)
 				suffix = "Injector"
 			// BUBBER EDIT for pen_medipens

@@ -431,14 +431,14 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 				vary = FALSE,
 			)
 	/* Shut up Skyrat priority announcer
-	//SKYRAT EDIT ADDITON BEGIN
+	//BUBBER EDIT ADDITON BEGIN
 	if(!SSmapping.level_has_any_trait(z, ZTRAIT_STATION)) // SHUT THE FUCK UP ABANDONED STATIONS, I DON'T CARE
 		return
 	if(on)
 		priority_announce("A gravity generator has successfully restarted its graviton field, artificial gravity is online.", "Gravity Generator", ANNOUNCER_GRAVGENON)
 	else
 		priority_announce("A gravity generator has lost its graviton field integrity ballast, artificial gravity is offline.", "Gravity Generator", ANNOUNCER_GRAVGENOFF)
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 	*/// BUBBER EDIT CHANGE END - GRAVGEN SOUNDS
 
 /obj/machinery/gravity_generator/main/proc/gravity_in_level()

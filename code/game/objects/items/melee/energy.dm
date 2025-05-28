@@ -31,7 +31,7 @@
 	/// The heat given off when active.
 	var/active_heat = 3500
 
-	// SKYRAT EDIT ADD START
+	// BUBBER EDIT ADD START
 
 	/// The sound played when the item is turned on
 	var/enable_sound = 'sound/items/weapons/saberon.ogg'
@@ -39,7 +39,7 @@
 	/// The sound played when the item is turned off
 	var/disable_sound = 'sound/items/weapons/saberoff.ogg'
 
-	// SKYRAT EDIT ADD END
+	// BUBBER EDIT ADD END
 
 /datum/armor/melee_energy
 	fire = 100

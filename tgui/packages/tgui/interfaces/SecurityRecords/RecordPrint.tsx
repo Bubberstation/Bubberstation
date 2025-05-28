@@ -86,17 +86,17 @@ export const RecordPrint = (props) => {
             Missing
           </Button>
           <Button
-            // SKYRAT EDIT REMOVE START - REMOVE INNOCENT CHECK, ALLOWS RAPSHEETS TO BE PRINTED WITHOUT ANY CRIMES HAVING BEEN LOGGED
+            // BUBBER EDIT REMOVE START - REMOVE INNOCENT CHECK, ALLOWS RAPSHEETS TO BE PRINTED WITHOUT ANY CRIMES HAVING BEEN LOGGED
             // disabled={innocent}
             // SKYRA EDIT REMOVE END
             icon="file-alt"
             onClick={() => swapTabs(PRINTOUT.Rapsheet)}
             selected={printType === PRINTOUT.Rapsheet}
-            tooltip={`Prints a standard paper with the record on it.`} // SKYRAT EDIT CHANGE START - ORIGINAL:
+            tooltip={`Prints a standard paper with the record on it.`} // BUBBER EDIT CHANGE START - ORIGINAL:
             // tooltip={`Prints a standard paper with the record on it.${
             //  innocent ? ' (Requires crimes)' : ''
             // }`}
-            // SKYRAT EDIT CHANGE END
+            // BUBBER EDIT CHANGE END
             tooltipPosition="bottom"
           >
             Rapsheet

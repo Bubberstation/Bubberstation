@@ -169,7 +169,7 @@
 
 /datum/world_topic/news_report/Run(list/input)
 
-	priority_announce(input["message"], "Breaking Update From [input["message_sender"]]") //SKYRAT EDIT CHANGE
+	priority_announce(input["message"], "Breaking Update From [input["message_sender"]]") //BUBBER EDIT CHANGE
 
 /datum/world_topic/adminmsg
 	keyword = "adminmsg"

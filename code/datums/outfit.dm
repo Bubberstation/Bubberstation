@@ -228,10 +228,10 @@
 		user.socks = initial(socks.name)
 
 
-	// SKYRAT EDIT ADDITION START - Underwear and bra split
+	// BUBBER EDIT ADDITION START - Underwear and bra split
 	if(bra)
 		user.bra = initial(bra.name)
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 
 	if(accessory)
 		var/obj/item/clothing/under/U = user.w_uniform
@@ -407,7 +407,7 @@
 	for(var/skillpath in skillchips)
 		preload += skillpath
 
-	preload -= typesof(/obj/item/clothing/under/color/random) // SKYRAT EDIT - Don't preload random jumpsuit spawners that delete themselves
+	preload -= typesof(/obj/item/clothing/under/color/random) // BUBBER EDIT - Don't preload random jumpsuit spawners that delete themselves
 
 	return preload
 

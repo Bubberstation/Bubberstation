@@ -35,7 +35,7 @@
 	name = "Held Sombrero Style (Held, Right)"
 	json_config = 'code/datums/greyscale/json_configs/sombrero_base_righthand.json'
 
-/* SKYRAT EDIT START - Beret-lliant (moved to modular_skyrat/modules/berets/code/datums/config_types)
+/* BUBBER EDIT START - Beret-lliant (moved to modular_skyrat/modules/berets/code/datums/config_types)
 /datum/greyscale_config/beret/worn
 	name = "Beret Worn"
 	name = "Beret (Worn)"

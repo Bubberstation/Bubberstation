@@ -1,4 +1,4 @@
-/* SKYRAT EDIT REMOVAL START
+/* BUBBER EDIT REMOVAL START
 /datum/preference/choiced/monkey_tail
 	savefile_key = "feature_monkey_tail"
 	savefile_identifier = PREFERENCE_CHARACTER

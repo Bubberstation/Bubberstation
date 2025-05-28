@@ -554,7 +554,7 @@
 	randomize_fuel = FALSE
 	trash_type = /obj/item/trash/candle
 	can_be_extinguished = TRUE
-	var/scented_type //SKYRAT EDIT ADDITION /// Pollutant type for scented candles
+	var/scented_type //BUBBER EDIT ADDITION /// Pollutant type for scented candles
 	/// The current wax level, used for drawing the correct icon
 	var/current_wax_level = 1
 	/// The previous wax level, remembered so we only have to make 3 update_appearance calls total as opposed to every tick
@@ -744,8 +744,8 @@
 	light_system = OVERLAY_LIGHT
 
 /obj/item/flashlight/emp
-	special_desc_requirement = EXAMINE_CHECK_SYNDICATE // SKYRAT EDIT
-	special_desc = "This flashlight is equipped with a miniature EMP generator." //SKYRAT EDIT
+	special_desc_requirement = EXAMINE_CHECK_SYNDICATE // BUBBER EDIT
+	special_desc = "This flashlight is equipped with a miniature EMP generator." //BUBBER EDIT
 	var/emp_max_charges = 4
 	var/emp_cur_charges = 4
 	var/charge_timer = 0

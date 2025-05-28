@@ -427,7 +427,7 @@
 			adjusted_time = (recipe.time * recipe.trait_modifier)
 		else
 			adjusted_time = recipe.time
-		var/skill_modifier = builder.mind.get_skill_modifier(/datum/skill/construction, SKILL_SPEED_MODIFIER) //SKYRAT EDIT: Construction Skill
+		var/skill_modifier = builder.mind.get_skill_modifier(/datum/skill/construction, SKILL_SPEED_MODIFIER) //BUBBER EDIT: Construction Skill
 		if(!do_after(builder, adjusted_time * skill_modifier, target = builder))
 			builder.balloon_alert(builder, "interrupted!")
 			return
@@ -457,7 +457,7 @@
 		SEND_SIGNAL(created, COMSIG_ATOM_CONSTRUCTED, builder)
 		on_item_crafted(builder, created)
 
-	builder.mind.adjust_experience(/datum/skill/construction, 5) //SKYRAT EDIT: Construction Skill
+	builder.mind.adjust_experience(/datum/skill/construction, 5) //BUBBER EDIT: Construction Skill
 
 	// Use up the material
 	use(recipe.req_amount * multiplier)

@@ -2,7 +2,7 @@
 	name = "Spiritual"
 	desc = "You hold a spiritual belief, whether in God, nature or the arcane rules of the universe. You gain comfort from the presence of holy people, and believe that your prayers are more special than others. Being in the chapel makes you happy."
 	icon = FA_ICON_BIBLE
-	value = 2 /// SKYRAT EDIT - Quirk Rebalance - Original: value = 4
+	value = 2 /// BUBBER EDIT - Quirk Rebalance - Original: value = 4
 	mob_trait = TRAIT_SPIRITUAL
 	gain_text = span_notice("You have faith in a higher power.")
 	lose_text = span_danger("You lose faith!")

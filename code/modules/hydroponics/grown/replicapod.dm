@@ -188,10 +188,10 @@
 	podman.faction |= factions
 	if(!features["mcolor"])
 		features["mcolor"] = "#59CE00"
-	/* SKYRAT EDIT REMOVAL START
+	/* BUBBER EDIT REMOVAL START
 	if(!features["pod_hair"])
 		features["pod_hair"] = pick(SSaccessories.pod_hair_list)
-	*/ //SKYRAT EDIT REMOVAL END - Tricolor Pod Hair
+	*/ //BUBBER EDIT REMOVAL END - Tricolor Pod Hair
 
 	for(var/V in quirks)
 		new V(podman)

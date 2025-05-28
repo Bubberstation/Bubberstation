@@ -285,12 +285,12 @@
 			mood_screen_object.color = "#f15d36"
 
 	if (!conflicting_moodies.len) // theres no special icons, use the normal icon states
-		//SKYRAT EDIT ADDITION BEGIN - ALEXITHYMIA
+		//BUBBER EDIT ADDITION BEGIN - ALEXITHYMIA
 		if(HAS_TRAIT(mob_parent, TRAIT_MOOD_NOEXAMINE))
 			mood_screen_object.icon_state = "mood5"
 			mood_screen_object.color = "#4b96c4"
 			return
-		//SKYRAT EDIT ADDITION END
+		//BUBBER EDIT ADDITION END
 		mood_screen_object.icon_state = "mood[mood_level]"
 		return
 
@@ -400,7 +400,7 @@
 		if(SANITY_INSANE to SANITY_CRAZY)
 			msg += "[span_boldwarning("AHAHAHAHAHAHAHAHAHAH!!")]\n"
 	*/
-	//SKYRAT EDIT CHANGE BEGIN - ALEXITHYMIA
+	//BUBBER EDIT CHANGE BEGIN - ALEXITHYMIA
 	if(!HAS_TRAIT(user, TRAIT_MOOD_NOEXAMINE))
 		switch(sanity)
 			if(SANITY_GREAT to INFINITY)
@@ -417,7 +417,7 @@
 				msg += "[span_boldwarning("AHAHAHAHAHAHAHAHAHAH!!")]\n"
 	else
 		msg += "[span_notice("I don't really know.")]\n"
-	//SKYRAT EDIT CHANGE END
+	//BUBBER EDIT CHANGE END
 
 	msg += span_notice("My current mood: ") //Short term
 	//ORIGINAL
@@ -442,7 +442,7 @@
 		if(MOOD_LEVEL_HAPPY4)
 			msg += "[span_boldnicegreen("I love life!")]\n"
 	*/
-	//SKYRAT EDIT CHANGE BEGIN - ALEXITHYMIA / ALCOHOL_PROCESSING
+	//BUBBER EDIT CHANGE BEGIN - ALEXITHYMIA / ALCOHOL_PROCESSING
 	if(!HAS_TRAIT(user, TRAIT_MOOD_NOEXAMINE))
 		switch(mood_level)
 			if(MOOD_LEVEL_SAD4)
@@ -473,7 +473,7 @@
 
 	msg += "[span_notice("Moodlets:")]<br>"//All moodlets
 	if(mood_events.len && !HAS_TRAIT(user, TRAIT_MOOD_NOEXAMINE)) // ORIGINAL - //if(mood_events.len)
-	//SKYRAT EDIT CHANGE END
+	//BUBBER EDIT CHANGE END
 		for(var/category in mood_events)
 			var/datum/mood_event/event = mood_events[category]
 			msg += "&bull; "

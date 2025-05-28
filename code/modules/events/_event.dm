@@ -1,4 +1,4 @@
-#define RANDOM_EVENT_ADMIN_INTERVENTION_TIME (3 MINUTES) // SKYRAT EDIT CHANGE - ORIGINAL: #define RANDOM_EVENT_ADMIN_INTERVENTION_TIME (10 SECONDS)
+#define RANDOM_EVENT_ADMIN_INTERVENTION_TIME (3 MINUTES) // BUBBER EDIT CHANGE - ORIGINAL: #define RANDOM_EVENT_ADMIN_INTERVENTION_TIME (10 SECONDS)
 
 //this singleton datum is used by the events controller to dictate how it selects events
 /datum/round_event_control
@@ -160,7 +160,7 @@ Runs the event
 	round_event.current_players = get_active_player_count(alive_check = 1, afk_check = 1, human_check = 1)
 	occurrences++
 
-	SSevents.previously_run += src //SKYRAT EDIT ADDITION
+	SSevents.previously_run += src //BUBBER EDIT ADDITION
 
 	if(announce_chance_override != null)
 		round_event.announce_chance = announce_chance_override

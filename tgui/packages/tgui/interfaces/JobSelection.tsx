@@ -38,7 +38,7 @@ type Data = {
   disable_jobs_for_non_observers: BooleanLike;
   priority: BooleanLike;
   round_duration: string;
-  alert_level: { name: string; color: string }; // SKYRAT EDIT ADDITION - Alert level on jobs menu
+  alert_level: { name: string; color: string }; // BUBBER EDIT ADDITION - Alert level on jobs menu
 };
 
 type JobEntryProps = {
@@ -188,9 +188,9 @@ export function JobSelection(props) {
   return (
     <Window
       width={1012}
-      /* SKYRAT EDIT CHANGE START - Expand UI for available jobs */
+      /* BUBBER EDIT CHANGE START - Expand UI for available jobs */
       height={shuttle_status ? 916 : 900 /* Hahahahahaha */}
-      /* SKYRAT EDIT CHANGE END */
+      /* BUBBER EDIT CHANGE END */
     >
       <Window.Content>
         <Section
@@ -208,7 +208,7 @@ export function JobSelection(props) {
             <>
               {shuttle_status && <NoticeBox info>{shuttle_status}</NoticeBox>}
               {
-                // SKYRAT EDIT ADDITION - Alert level on jobs menu
+                // BUBBER EDIT ADDITION - Alert level on jobs menu
                 <NoticeBox color={data.alert_level.color}>
                   The current alert level is: {data.alert_level.name}
                 </NoticeBox>

@@ -282,8 +282,8 @@
 	zone_select.update_appearance()
 	static_inventory += zone_select
 
-	ammo_counter = new /atom/movable/screen/ammo_counter(null, src) //SKYRAT EDIT ADDITION
-	infodisplay += ammo_counter //SKYRAT EDIT ADDITION
+	ammo_counter = new /atom/movable/screen/ammo_counter(null, src) //BUBBER EDIT ADDITION
+	infodisplay += ammo_counter //BUBBER EDIT ADDITION
 
 	for(var/atom/movable/screen/inventory/inv in (static_inventory + toggleable_inventory))
 		if(inv.slot_id)

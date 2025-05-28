@@ -44,7 +44,7 @@
 		)))
 		if(KIT_RECON)
 			new /obj/item/clothing/glasses/thermal/xray(src) // ~8 tc?
-//			new /obj/item/storage/briefcase/launchpad(src) //6 tc // SKYRAT EDIT REMOVAL
+//			new /obj/item/storage/briefcase/launchpad(src) //6 tc // BUBBER EDIT REMOVAL
 			new /obj/item/binoculars(src) // 2 tc?
 			new /obj/item/encryptionkey/syndicate(src) // 2 tc
 			new /obj/item/storage/box/syndie_kit/space(src) //4 tc
@@ -865,7 +865,7 @@
 	illustration = "writing_syndie"
 
 /obj/item/storage/box/syndicate/contractor_loadout/PopulateContents()
-	new /obj/item/mod/control/pre_equipped/contractor(src) //SKYRAT EDIT: Was infiltrator variant
+	new /obj/item/mod/control/pre_equipped/contractor(src) //BUBBER EDIT: Was infiltrator variant
 	new /obj/item/clothing/head/helmet/space/syndicate/contract(src)
 	new /obj/item/clothing/suit/space/syndicate/contract(src)
 	new /obj/item/clothing/under/chameleon(src)

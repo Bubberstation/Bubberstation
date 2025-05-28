@@ -258,7 +258,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	QDEL_NULL(radio)
 	QDEL_NULL(countdown)
 	if(is_main_engine && GLOB.main_supermatter_engine == src)
-		SSpersistence.delam_counter_penalty() // SKYRAT EDIT ADDITION BEGIN - DELAM SCRAM
+		SSpersistence.delam_counter_penalty() // BUBBER EDIT ADDITION BEGIN - DELAM SCRAM
 		GLOB.main_supermatter_engine = null
 	QDEL_NULL(soundloop)
 	return ..()

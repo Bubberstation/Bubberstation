@@ -37,7 +37,7 @@
 			var/turf/T = object
 			T.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 		else if(isobj(object))
-			// SKYRAT EDIT -- BS delete sparks. Original was just qdel(object)
+			// BUBBER EDIT -- BS delete sparks. Original was just qdel(object)
 			var/turf/T = get_turf(object)
 			qdel(object)
 			if(T && c.prefs.read_preference(/datum/preference/toggle/admin/delete_sparks))

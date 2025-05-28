@@ -50,7 +50,7 @@
 		"s" = "z",
 		"S" = "Z",
 	)
-	// SKYRAT EDIT ADDITION START - Russian version
+	// BUBBER EDIT ADDITION START - Russian version
 	var/static/list/russian_speech_replacements = list(
 		new /regex("z+", "g") = "zzz",
 		new /regex("Z+", "g") = "ZZZ",
@@ -61,7 +61,7 @@
 		"с" = "з",
 		"С" = "З",
 	)
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 
 
 /obj/item/organ/tongue/fly/Initialize(mapload)

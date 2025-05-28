@@ -447,13 +447,13 @@
 					log_admin("[key_name(usr)] tried and failed to give [current] an uplink.")
 				else
 					log_admin("[key_name(usr)] gave [current] an uplink.")
-			//SKYRAT EDIT ADDITION BEGIN -- EXPLOITABLES
+			//BUBBER EDIT ADDITION BEGIN -- EXPLOITABLES
 			if("toggle_exploitables")
 				has_exploitables_override = !has_exploitables_override //First we set the override to be the opposite of whatever it was apon execution, then we
 				handle_exploitables() // use ternaries to convert this into true/false for admin logs.
 				log_admin("[key_name(usr)] toggled [current]'s exploitables override to [(has_exploitables_override) ? "true" : "false"].")
 				message_admins("[key_name(usr)] toggled [current]'s exploitables override to [(has_exploitables_override) ? "true" : "false"].")
-			//SKYRAT EDIT ADDITION END
+			//BUBBER EDIT ADDITION END
 
 	else if (href_list["obj_announce"])
 		announce_objectives()
@@ -511,12 +511,12 @@
 /// Sets us to the passed job datum, then greets them to their new job.
 /// Use this one for when you're assigning this mind to a new job for the first time,
 /// or for when someone's receiving a job they'd really want to be greeted to.
-/datum/mind/proc/set_assigned_role_with_greeting(datum/job/new_role, client/incoming_client, alt_title) // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: /datum/mind/proc/set_assigned_role_with_greeting(datum/job/new_role, client/incoming_client)
+/datum/mind/proc/set_assigned_role_with_greeting(datum/job/new_role, client/incoming_client, alt_title) // BUBBER EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: /datum/mind/proc/set_assigned_role_with_greeting(datum/job/new_role, client/incoming_client)
 	. = set_assigned_role(new_role)
 	if(assigned_role != new_role)
 		return
 
-	var/intro_message = new_role.get_spawn_message(alt_title) // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: var/intro_message = new_role.get_spawn_message()
+	var/intro_message = new_role.get_spawn_message(alt_title) // BUBBER EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: var/intro_message = new_role.get_spawn_message()
 	if(incoming_client && intro_message)
 		to_chat(incoming_client, intro_message)
 

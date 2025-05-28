@@ -36,7 +36,7 @@
 	var/light_fail = FALSE
 	///Does the scanner ignore light_pass and light_fail for sending signals?
 	var/ignore_signals = FALSE
-	var/detect_gender = "male" //SKYRAT EDIT ADDITION - MORE SCANNER GATE OPTIONS
+	var/detect_gender = "male" //BUBBER EDIT ADDITION - MORE SCANNER GATE OPTIONS
 	var/nanite_cloud = 1 // BUBBER EDIT ADDITION - NANITES
 	///Modifier to the chance of scanner being false positive/negative
 	var/minus_false_beep = 0
@@ -252,7 +252,7 @@
 				if(scanned_human.nutrition >= detect_nutrition && detect_nutrition == NUTRITION_LEVEL_FAT)
 					beep = TRUE
 					detected_thing = "Obesity"
-		//SKYRAT EDIT BEGIN - MORE SCANNER GATE OPTIONS
+		//BUBBER EDIT BEGIN - MORE SCANNER GATE OPTIONS
 		if(SCANGATE_GENDER)
 			detected_thing = detect_gender
 			if(ishuman(thing))
@@ -260,7 +260,7 @@
 				if((scanned_human.gender in list("male", "female"))) //funny thing: nb people will always get by the scan B)
 					if(scanned_human.gender == detect_gender)
 						beep = TRUE
-		//SKYRAT EDIT END - MORE SCANNER GATE OPTIONS
+		//BUBBER EDIT END - MORE SCANNER GATE OPTIONS
 		// BUBBER EDIT ADDITION BEGIN - NANITES
 		if(SCANGATE_NANITES)
 			detected_thing = "Nanite cloud #[nanite_cloud]"
@@ -338,7 +338,7 @@
 	data["disease_threshold"] = disease_threshold
 	data["target_species_id"] = detect_species_id
 	data["target_nutrition"] = detect_nutrition
-	data["target_gender"] = detect_gender //SKYRAT EDIT - MORE SCANNER GATE OPTIONS
+	data["target_gender"] = detect_gender //BUBBER EDIT - MORE SCANNER GATE OPTIONS
 	data["nanite_cloud"] = nanite_cloud // BUBBER EDIT ADDITION - NANITES
 	data["target_zombie"] = (detect_species_id == SPECIES_ZOMBIE)
 	return data
@@ -384,7 +384,7 @@
 				if("Obese")
 					detect_nutrition = NUTRITION_LEVEL_FAT
 			. = TRUE
-		//SKYRAT EDIT BEGIN - MORE SCANNER GATE OPTIONS
+		//BUBBER EDIT BEGIN - MORE SCANNER GATE OPTIONS
 		if("set_target_gender")
 			var/new_gender = params["new_gender"]
 			var/gender_list = list(
@@ -398,7 +398,7 @@
 					if("Female")
 						detect_gender = "female"
 			. = TRUE
-		//SKYRAT EDIT END - MORE SCANNER GATE OPTIONS
+		//BUBBER EDIT END - MORE SCANNER GATE OPTIONS
 		// BUBBER EDIT ADDITION BEGIN - NANITES
 		if("set_nanite_cloud")
 			var/new_cloud_id = params["new_cloud"]

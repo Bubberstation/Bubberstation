@@ -29,7 +29,7 @@
 
 /datum/record/New(
 	age = 18,
-	chrono_age = 18, // SKYRAT EDIT ADDITION - Chronological age
+	chrono_age = 18, // BUBBER EDIT ADDITION - Chronological age
 	blood_type = "?",
 	character_appearance,
 	dna_string = "Unknown",
@@ -43,7 +43,7 @@
 	voice = "?????",
 )
 	src.age = age
-	src.chrono_age = chrono_age // SKYRAT EDIT ADDITION - Chronological age
+	src.chrono_age = chrono_age // BUBBER EDIT ADDITION - Chronological age
 	src.blood_type = blood_type
 	src.character_appearance = character_appearance
 	src.dna_string = dna_string
@@ -91,7 +91,7 @@
 
 /datum/record/crew/New(
 	age = 18,
-	chrono_age = 18, // SKYRAT EDIT ADDITION - Chronological age
+	chrono_age = 18, // BUBBER EDIT ADDITION - Chronological age
 	blood_type = "?",
 	character_appearance,
 	dna_string = "Unknown",
@@ -111,11 +111,11 @@
 	physical_status = PHYSICAL_ACTIVE,
 	mental_status = MENTAL_STABLE,
 	quirk_notes,
-	// SKYRAT EDIT START - RP Records
+	// BUBBER EDIT START - RP Records
 	past_general_records = "",
 	past_medical_records = "",
 	past_security_records = "",
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 )
 	. = ..()
 	src.lock_ref = lock_ref
@@ -126,11 +126,11 @@
 	src.physical_status = physical_status
 	src.mental_status = mental_status
 	src.quirk_notes = quirk_notes
-	// SKYRAT EDIT START - RP Records
+	// BUBBER EDIT START - RP Records
 	src.past_general_records = past_general_records
 	src.past_medical_records = past_medical_records
 	src.past_security_records = past_security_records
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 
 	GLOB.manifest.general += src
 
@@ -152,7 +152,7 @@
 
 /datum/record/locked/New(
 	age = 18,
-	chrono_age = 18, // SKYRAT EDIT ADDITION - Chronological age
+	chrono_age = 18, // BUBBER EDIT ADDITION - Chronological age
 	blood_type = "?",
 	character_appearance,
 	dna_string = "Unknown",
@@ -272,24 +272,24 @@
 	var/final_paper_text = "<center><b>SR-[print_count]: [header]</b></center><br>"
 
 	final_paper_text += "Name: [name]<br>Gender: [gender]<br>Age: [age]<br>"
-	final_paper_text += "Chronological Age: [chrono_age]<br>" // SKYRAT EDIT ADDITION - Chronological age
+	final_paper_text += "Chronological Age: [chrono_age]<br>" // BUBBER EDIT ADDITION - Chronological age
 	if(alias != name)
 		final_paper_text += "Alias: [alias]<br>"
 
 	final_paper_text += "Species: [species]<br>Fingerprint: [fingerprint]<br>Wanted Status: [wanted_status]<br><br>"
 
-	//SKYRAT EDIT ADD - RP RECORDS
+	//BUBBER EDIT ADD - RP RECORDS
 	if(past_general_records != "")
 		final_paper_text += "<br><B>General Records:</B>"
 		final_paper_text += "<br>[past_general_records]<br>"
-	//SKYRAT EDIT ADD END
+	//BUBBER EDIT ADD END
 	final_paper_text += "<center><B>Security Data</B></center><br><br>"
 
-	//SKYRAT EDIT ADDITION START - RP RECORDS
+	//BUBBER EDIT ADDITION START - RP RECORDS
 	if(past_security_records != "")
 		final_paper_text += "<B>Security Records:</B>"
 		final_paper_text += "<br>[past_security_records]<br>"
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 
 	final_paper_text += "Crimes:<br>"
 	final_paper_text += {"<table style="text-align:center;" border="1" cellspacing="0" width="100%">
@@ -337,9 +337,9 @@
 
 	printed_paper.name = "SR-[print_count] '[name]'"
 
-	/// SKYRAT EDIT ADD - TRUE
+	/// BUBBER EDIT ADD - TRUE
 	printed_paper.add_raw_text(final_paper_text,TRUE)
-	/// SKYRAT EDIT ADD END
+	/// BUBBER EDIT ADD END
 	printed_paper.update_appearance()
 
 	return printed_paper

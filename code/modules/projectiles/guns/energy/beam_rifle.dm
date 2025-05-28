@@ -52,7 +52,7 @@
 	hitscan = TRUE
 	tracer_type = /obj/effect/projectile/tracer/tracer/beam_rifle
 
-/* SKYRAT EDIT REMOVE - God
+/* BUBBER EDIT REMOVE - God
 /obj/projectile/beam/event_horizon/on_hit(atom/target, blocked, pierce_hit)
 	. = ..()
 

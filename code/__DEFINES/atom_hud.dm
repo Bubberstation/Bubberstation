@@ -47,7 +47,7 @@
 /// Steady Hacked APC effect, visible only to Malf AIs
 #define MALF_APC_HUD "22"
 
-// SKYRAT EDIT ADDITION BEGIN - gun permits and DNR
+// BUBBER EDIT ADDITION BEGIN - gun permits and DNR
 /// ammo of guns
 #define AMMO_HUD "25"
 /// if they have a gun permit
@@ -55,7 +55,7 @@
 
 /// If they have the DNR trait
 #define DNR_HUD "27"
-// SKYRAT EDIT ADDITION END
+// BUBBER EDIT ADDITION END
 // BUBBER EDIT ADDITION START
 #define NANITE_HUD "28"
 #define DIAG_NANITE_FULL_HUD "29"

@@ -169,12 +169,12 @@
 /obj/item/hand_tele/attack_self(mob/user)
 	if (!can_teleport_notifies(user))
 		return
-	//SKYRAT EDIT BEGIN
+	//BUBBER EDIT BEGIN
 	var/turf/my_turf = get_turf(src)
 	if(is_away_level(my_turf.z))
 		to_chat(user, "<span class='warning'>[src] cannot be used here!</span>")
 		return
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 	var/list/locations = list()
 	for(var/obj/machinery/computer/teleporter/computer as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/computer/teleporter))
 		var/atom/target = computer.target_ref?.resolve()

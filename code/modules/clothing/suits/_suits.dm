@@ -17,23 +17,23 @@
 	var/blood_overlay_type = "suit"
 	limb_integrity = 0 // disabled for most exo-suits
 
-/obj/item/clothing/suit/worn_overlays(mutable_appearance/standing, isinhands = FALSE, file2use = null, mutant_styles = NONE) // SKYRAT EDIT CHANGE - TAURS AND TESHIS - ORIGINAL: /obj/item/clothing/suit/worn_overlays(mutable_appearance/standing, isinhands = FALSE)
+/obj/item/clothing/suit/worn_overlays(mutable_appearance/standing, isinhands = FALSE, file2use = null, mutant_styles = NONE) // BUBBER EDIT CHANGE - TAURS AND TESHIS - ORIGINAL: /obj/item/clothing/suit/worn_overlays(mutable_appearance/standing, isinhands = FALSE)
 	. = ..()
 	if(isinhands)
 		return
 
 	if(damaged_clothes)
-		//SKYRAT EDIT CHANGE BEGIN
+		//BUBBER EDIT CHANGE BEGIN
 		//. += mutable_appearance('icons/effects/item_damage.dmi', "damaged[blood_overlay_type]") //ORIGINAL
 		var/damagefile2use = (mutant_styles & STYLE_TAUR_ALL) ? 'modular_skyrat/master_files/icons/mob/64x32_item_damage.dmi' : 'icons/effects/item_damage.dmi'
 		. += mutable_appearance(damagefile2use, "damaged[blood_overlay_type]")
-		//SKYRAT EDIT CHANGE END
+		//BUBBER EDIT CHANGE END
 	if(GET_ATOM_BLOOD_DNA_LENGTH(src))
-		//SKYRAT EDIT CHANGE BEGIN
+		//BUBBER EDIT CHANGE BEGIN
 		//. += mutable_appearance('icons/effects/blood.dmi', "[blood_overlay_type]blood") //ORIGINAL
 		var/bloodfile2use = (mutant_styles & STYLE_TAUR_ALL) ? 'modular_skyrat/master_files/icons/mob/64x32_blood.dmi' : 'icons/effects/blood.dmi'
 		. += mutable_appearance(bloodfile2use, "[blood_overlay_type]blood")
-		//SKYRAT EDIT CHANGE END
+		//BUBBER EDIT CHANGE END
 
 	var/mob/living/carbon/human/wearer = loc
 	if(!ishuman(wearer) || !wearer.w_uniform)
@@ -44,7 +44,7 @@
 
 	var/obj/item/clothing/accessory/displayed = undershirt.attached_accessories[1]
 	if(displayed.above_suit)
-		. += undershirt.modify_accessory_overlay() // SKYRAT EDIT CHANGE - ORIGINAL: . += undershirt.accessory_overlay
+		. += undershirt.modify_accessory_overlay() // BUBBER EDIT CHANGE - ORIGINAL: . += undershirt.accessory_overlay
 
 /obj/item/clothing/suit/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands = FALSE, icon_file)
 	. = ..()

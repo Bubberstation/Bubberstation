@@ -35,11 +35,11 @@
 	SIGNAL_HANDLER
 
 	var/datum/status_effect/crusher_damage/damage = target.has_status_effect(/datum/status_effect/crusher_damage)
-	// SKYRAT EDIT START - ASHWALKER TROPHIES
-	var/datum/status_effect/ashwalker_damage/ashie_damage = target.has_status_effect(/datum/status_effect/ashwalker_damage) // SKYRAT EDIT ADDITION
-	var/damage_total = damage?.total_damage + ashie_damage?.total_damage // SKYRAT EDIT ADDITION
-	if(damage_total && prob((damage_total/target.maxHealth) * drop_mod)) //on average, you'll need to kill 4 creatures before getting the item. by default. // SKYRAT EDIT - ORIGINAL: if(damage && prob((damage.total_damage/target.maxHealth) * drop_mod))
-	// SKYRAT EDIT END - ASHWALKER TROPHIES
+	// BUBBER EDIT START - ASHWALKER TROPHIES
+	var/datum/status_effect/ashwalker_damage/ashie_damage = target.has_status_effect(/datum/status_effect/ashwalker_damage) // BUBBER EDIT ADDITION
+	var/damage_total = damage?.total_damage + ashie_damage?.total_damage // BUBBER EDIT ADDITION
+	if(damage_total && prob((damage_total/target.maxHealth) * drop_mod)) //on average, you'll need to kill 4 creatures before getting the item. by default. // BUBBER EDIT - ORIGINAL: if(damage && prob((damage.total_damage/target.maxHealth) * drop_mod))
+	// BUBBER EDIT END - ASHWALKER TROPHIES
 		if(islist(trophy_type))
 			for(var/trophypath in trophy_type)
 				make_path(target, trophypath)

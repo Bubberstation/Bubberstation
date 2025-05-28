@@ -7,7 +7,7 @@
 	zone = BODY_ZONE_PRECISE_GROIN
 	slot = ORGAN_SLOT_EXTERNAL_TAIL
 
-	//dna_block = DNA_TAIL_BLOCK // SKYRAT EDIT REMOVAL - Customization - We have our own system to handle DNA.
+	//dna_block = DNA_TAIL_BLOCK // BUBBER EDIT REMOVAL - Customization - We have our own system to handle DNA.
 	restyle_flags = EXTERNAL_RESTYLE_FLESH
 
 	// defaults to cat, but the parent type shouldn't be created regardless
@@ -65,12 +65,12 @@
 
 	tail_spines_overlay = new
 	tail_spines_overlay.tail_spine_key = tail_spine_key
-	// SKYRAT EDIT ADDITION START
+	// BUBBER EDIT ADDITION START
 	if(!bodypart.owner.dna.mutant_bodyparts["spines"])
 		bodypart.owner.dna.mutant_bodyparts["spines"] = list(MUTANT_INDEX_NAME = "None", MUTANT_INDEX_COLOR_LIST = list("#886600", "#886600", "#886600"))
-	// SKYRAT EDIT ADDITION END
-	var/feature_name = bodypart.owner.dna.mutant_bodyparts["spines"][MUTANT_INDEX_NAME] // SKYRAT EDIT CHANGE - ORIGINAL: var/feature_name = bodypart.owner.dna.features["spines"] //tail spines don't live in DNA, but share feature names with regular spines
-	tail_spines_overlay.set_appearance_from_dna(bodypart.owner.dna, feature_name, feature_key = "spines") // SKYRAT EDIT CHANGE - ORIGINAL: tail_spines_overlay.set_appearance_from_name(feature_name)
+	// BUBBER EDIT ADDITION END
+	var/feature_name = bodypart.owner.dna.mutant_bodyparts["spines"][MUTANT_INDEX_NAME] // BUBBER EDIT CHANGE - ORIGINAL: var/feature_name = bodypart.owner.dna.features["spines"] //tail spines don't live in DNA, but share feature names with regular spines
+	tail_spines_overlay.set_appearance_from_dna(bodypart.owner.dna, feature_name, feature_key = "spines") // BUBBER EDIT CHANGE - ORIGINAL: tail_spines_overlay.set_appearance_from_name(feature_name)
 	bodypart.add_bodypart_overlay(tail_spines_overlay)
 
 /// If we have a tail spines overlay, delete it
@@ -151,10 +151,10 @@
 /datum/bodypart_overlay/mutant/tail/get_base_icon_state()
 	return "[wagging ? "wagging_" : ""][sprite_datum.icon_state]" //add the wagging tag if we be wagging
 
-// SKYRAT EDIT ADDITION - CUSTOMIZATION
+// BUBBER EDIT ADDITION - CUSTOMIZATION
 /datum/bodypart_overlay/mutant/tail/get_global_feature_list()
 	return SSaccessories.sprite_accessories["tail"]
-// SKYRAT EDIT ADDITION END
+// BUBBER EDIT ADDITION END
 
 /datum/bodypart_overlay/mutant/tail/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner)
 	var/mob/living/carbon/human/human = bodypart_owner.owner
@@ -174,15 +174,15 @@
 	wag_flags = WAG_ABLE
 
 /datum/bodypart_overlay/mutant/tail/get_global_feature_list()
-	return SSaccessories.sprite_accessories["tail"] // SKYRAT EDIT - Customization - ORIGINAL: return SSaccessories.tails_list_human
+	return SSaccessories.sprite_accessories["tail"] // BUBBER EDIT - Customization - ORIGINAL: return SSaccessories.tails_list_human
 
 /obj/item/organ/tail/cat/get_butt_sprite()
 	return icon('icons/mob/butts.dmi', BUTT_SPRITE_CAT)
 
 ///Cat tail bodypart overlay
 /datum/bodypart_overlay/mutant/tail/cat
-	feature_key = "tail" // SKYRAT EDIT - Customization - ORIGINAL: feature_key = "tail_cat"
-	// color_source = ORGAN_COLOR_HAIR // SKYRAT EDIT REMOVAL
+	feature_key = "tail" // BUBBER EDIT - Customization - ORIGINAL: feature_key = "tail_cat"
+	// color_source = ORGAN_COLOR_HAIR // BUBBER EDIT REMOVAL
 
 /datum/bodypart_overlay/mutant/tail/cat/get_global_feature_list()
 	return SSaccessories.sprite_accessories["tail"] // BUBBER EDIT ORIGINAL: return SSaccessories.tails_list_felinid
@@ -197,7 +197,7 @@
 ///Monkey tail bodypart overlay
 /datum/bodypart_overlay/mutant/tail/monkey
 	color_source = NONE
-	feature_key = "tail" // SKYRAT EDIT - Customization - ORIGINAL: feature_key = "tail_monkey"
+	feature_key = "tail" // BUBBER EDIT - Customization - ORIGINAL: feature_key = "tail_monkey"
 
 /datum/bodypart_overlay/mutant/tail/monkey/get_global_feature_list()
 	return SSaccessories.tails_list_monkey
@@ -266,14 +266,14 @@
 	bodypart_overlay = /datum/bodypart_overlay/mutant/tail/lizard
 
 	wag_flags = WAG_ABLE
-	//dna_block = DNA_LIZARD_TAIL_BLOCK // SKYRAT EDIT REMOVAL - Customization - We have our own system to handle DNA.
+	//dna_block = DNA_LIZARD_TAIL_BLOCK // BUBBER EDIT REMOVAL - Customization - We have our own system to handle DNA.
 
 ///Lizard tail bodypart overlay datum
 /datum/bodypart_overlay/mutant/tail/lizard
-	feature_key = "tail" // SKYRAT EDIT - Customization - ORIGINAL: feature_key = "tail_lizard"
+	feature_key = "tail" // BUBBER EDIT - Customization - ORIGINAL: feature_key = "tail_lizard"
 
 /datum/bodypart_overlay/mutant/tail/lizard/get_global_feature_list()
-	return SSaccessories.sprite_accessories["tail"] // SKYRAT EDIT - Customization - ORIGINAL: return SSaccessories.tails_list_lizard
+	return SSaccessories.sprite_accessories["tail"] // BUBBER EDIT - Customization - ORIGINAL: return SSaccessories.tails_list_lizard
 
 /obj/item/organ/tail/lizard/fake
 	name = "fabricated lizard tail"
@@ -289,7 +289,7 @@
 	var/tail_spine_key = NONE
 
 /datum/bodypart_overlay/mutant/tail_spines/get_global_feature_list()
-	return SSaccessories.sprite_accessories["tailspines"] // SKYRAT EDIT CHANGE - ORIGINAL: return SSaccessories.tail_spines_list
+	return SSaccessories.sprite_accessories["tailspines"] // BUBBER EDIT CHANGE - ORIGINAL: return SSaccessories.tail_spines_list
 
 /datum/bodypart_overlay/mutant/tail_spines/get_base_icon_state()
 	return (!isnull(tail_spine_key) ? "[tail_spine_key]_" : "") + (wagging ? "wagging_" : "") + sprite_datum.icon_state // Select the wagging state if appropriate

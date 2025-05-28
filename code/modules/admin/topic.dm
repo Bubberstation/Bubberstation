@@ -57,7 +57,7 @@
 		handle_job_exempt_menu_topic(usr, href, href_list, target_ckey)
 	// BUBBER EDIT END
 
-// SKYRAT EDIT BEGIN -- ONE CLICK ANTAG
+// BUBBER EDIT BEGIN -- ONE CLICK ANTAG
 	else if(href_list["makeAntag"])
 
 		message_admins("[key_name_admin(usr)] is attempting to make [href_list["makeAntag"]]")
@@ -90,7 +90,7 @@
 		if(src.make_antag(href_list["makeAntag"], opt))
 			message_admins("[key_name_admin(usr)] created '[href_list["makeAntag"]]' with a parameter of '[opt]'.")
 		else message_admins("[key_name_admin(usr)] FAILED to create '[href_list["makeAntag"]]' with a parameter of '[opt]'.")
-// SKYRAT EDIT END -- ONE CLICK ANTAG
+// BUBBER EDIT END -- ONE CLICK ANTAG
 
 	else if(href_list["editrightsbrowser"])
 		edit_admin_permissions(0)
@@ -594,13 +594,13 @@
 		if(tgui_alert(usr, "Send [key_name(M)] to Prison?", "Message", list("Yes", "No")) != "Yes")
 			return
 
-		/// SKYRAT EDIT START - Immersion-friendly Admin Prison
+		/// BUBBER EDIT START - Immersion-friendly Admin Prison
 		var/datum/effect_system/spark_spread/quantum/sparks = new
 		sparks.set_up(10, 1, M)
 		sparks.attach(M.loc)
 		sparks.start()
 		M.forceMove(pick(GLOB.prisonwarp))
-		/// SKYRAT EDIT END
+		/// BUBBER EDIT END
 
 		to_chat(M, span_adminnotice("You have been sent to Prison!"), confidential = TRUE)
 
@@ -1730,14 +1730,14 @@
 				continue
 			FAX.receive(locate(href_list["print_fax"]), href_list["sender_name"])
 			return
-	// SKYRAT EDIT ADDITION START
+	// BUBBER EDIT ADDITION START
 	else if(href_list["pass_opfor_candidate"])
 		if(!check_rights(R_ADMIN))
 			return
 
 		if(!SSdynamic.picking_specific_rule(/datum/dynamic_ruleset/midround/from_living/opfor_candidate, forced = TRUE, ignore_cost = TRUE))
 			message_admins("An OPFOR candidate could not be selected.")
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 	else if(href_list["play_internet"])
 		if(!check_rights(R_SOUND))
 			return

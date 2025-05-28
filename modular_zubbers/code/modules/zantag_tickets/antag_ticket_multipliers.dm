@@ -101,7 +101,7 @@
 /datum/antagonist/xeno
 	antag_ticket_multiplier = 1
 
-//Skyrat antag types
+//Bubber antag types
 /datum/antagonist/assault_operative
 	antag_ticket_multiplier = 1
 

@@ -1,4 +1,4 @@
-/* SKYRAT EDIT REMOVAL
+/* BUBBER EDIT REMOVAL
 /datum/preference/choiced/tail_felinid
 	savefile_key = "feature_human_tail" //savefile keys cannot be changed, blame whoever named them this way.
 	savefile_identifier = PREFERENCE_CHARACTER

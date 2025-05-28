@@ -34,7 +34,7 @@
 	)
 
 /datum/species/human/get_cough_sound(mob/living/carbon/human/human)
-	if(human.gender == FEMALE) // SKYRAT EDIT CHANGE
+	if(human.gender == FEMALE) // BUBBER EDIT CHANGE
 		return pick(
 			'sound/mobs/humanoids/human/cough/female_cough1.ogg',
 			'sound/mobs/humanoids/human/cough/female_cough2.ogg',
@@ -53,7 +53,7 @@
 	)
 
 /datum/species/human/get_cry_sound(mob/living/carbon/human/human)
-	if(human.gender == FEMALE) // SKYRAT EDIT CHANGE
+	if(human.gender == FEMALE) // BUBBER EDIT CHANGE
 		return pick(
 			'sound/mobs/humanoids/human/cry/female_cry1.ogg',
 			'sound/mobs/humanoids/human/cry/female_cry2.ogg',

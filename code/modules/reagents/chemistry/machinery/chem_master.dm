@@ -132,10 +132,10 @@
 			. += filling
 
 
-/obj/machinery/chem_master/wrench_act(mob/living/user, obj/item/tool) //SKYRAT ADDITION START
+/obj/machinery/chem_master/wrench_act(mob/living/user, obj/item/tool) //BUBBER ADDITION START
 	if(default_unfasten_wrench(user, tool) == SUCCESSFUL_UNFASTEN)
 		return ITEM_INTERACT_SUCCESS
-	return ITEM_INTERACT_BLOCKING //SKYRAT ADDITION END
+	return ITEM_INTERACT_BLOCKING //BUBBER ADDITION END
 
 /obj/machinery/chem_master/Exited(atom/movable/gone, direction)
 	. = ..()
@@ -172,9 +172,9 @@
 			CAT_MEDBOTTLES = GLOB.reagent_containers[CAT_MEDBOTTLES], // BUBBER EDIT - CAT_MEDBOTTLES
 			CAT_PILLS = GLOB.reagent_containers[CAT_PILLS],
 			CAT_PATCHES = GLOB.reagent_containers[CAT_PATCHES],
-			CAT_HYPOS = GLOB.reagent_containers[CAT_HYPOS], // SKYRAT EDIT
+			CAT_HYPOS = GLOB.reagent_containers[CAT_HYPOS], // BUBBER EDIT
 			CAT_PEN_INJECTORS = GLOB.reagent_containers[CAT_PEN_INJECTORS], // BUBBER EDIT - pen_medipens
-			CAT_DARTS = GLOB.reagent_containers[CAT_DARTS], // SKYRAT EDIT
+			CAT_DARTS = GLOB.reagent_containers[CAT_DARTS], // BUBBER EDIT
 		)
 	return containers
 

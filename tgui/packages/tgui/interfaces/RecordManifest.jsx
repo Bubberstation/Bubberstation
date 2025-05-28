@@ -1,4 +1,4 @@
-// THIS IS A SKYRAT UI FILE
+// THIS IS A BUBBER UI FILE
 import { Button, Icon, Section, Table, Tooltip } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 

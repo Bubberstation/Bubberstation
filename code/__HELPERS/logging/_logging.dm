@@ -99,7 +99,7 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 	if(!log_globally)
 		return
 
-	//SKYRAT EDIT ADDITION BEGIN
+	//BUBBER EDIT ADDITION BEGIN
 	#ifndef SPACEMAN_DMM
 	if(CONFIG_GET(flag/sql_game_log) && CONFIG_GET(flag/sql_enabled))
 		SSdbcore.add_log_to_mass_insert_queue(
@@ -116,7 +116,7 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 		if(!CONFIG_GET(flag/file_game_log))
 			return
 	#endif
-	//SKYRAT EDIT ADDITION END
+	//BUBBER EDIT ADDITION END
 	var/log_text = "[key_name_and_tag(src)] [message] [loc_name(src)]"
 	var/redacted_log_text = "[(src)]: [message] @ [loc_name(src)]" // BUBBER EDIT ADDITION
 	switch(message_type)
@@ -129,12 +129,12 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 			log_whisper(log_text, data, redacted_log_text) // BUBBER EDIT
 		if(LOG_EMOTE)
 			log_emote(log_text, data, redacted_log_text) // BUBBER EDIT
-		//SKYRAT EDIT ADDITION BEGIN
+		//BUBBER EDIT ADDITION BEGIN
 		if(LOG_SUBTLE)
 			log_subtle(log_text, data)
 		if(LOG_SUBTLER)
 			log_subtler(log_text, data)
-		//SKYRAT EDIT ADDITION END
+		//BUBBER EDIT ADDITION END
 		if(LOG_RADIO_EMOTE)
 			log_radio_emote(log_text, data, redacted_log_text)
 		if(LOG_DSAY)

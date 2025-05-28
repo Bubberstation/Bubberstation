@@ -7,7 +7,7 @@ import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
-const ROWS = 6; // SKYRAT EDIT CHANGE
+const ROWS = 6; // BUBBER EDIT CHANGE
 const COLUMNS = 6;
 
 const BUTTON_DIMENSIONS = '64px';
@@ -220,7 +220,7 @@ const SLOTS: Record<
     image: 'inventory-pocket.png',
   },
 
-  // SKYRAT EDIT ADDITION
+  // BUBBER EDIT ADDITION
   vagina: {
     displayName: 'vagina',
     gridSpot: getGridSpotKey([5, 1]),
@@ -245,7 +245,7 @@ const SLOTS: Record<
     image: 'inventory-pocket.png',
   },
 };
-// SKYRAT EDIT END
+// BUBBER EDIT END
 
 enum ObscuringLevel {
   Completely = 1,

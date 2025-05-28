@@ -60,11 +60,11 @@
 	hitsound = 'sound/effects/splat.ogg'
 	/// The chain we send out while we are in motion, referred to as "initial" to not get confused with the chain we use to reel the victim in.
 	var/datum/beam/initial_chain
-	var/chain_icon = 'icons/effects/beam.dmi' // SKYRAT EDIT ADDITION
+	var/chain_icon = 'icons/effects/beam.dmi' // BUBBER EDIT ADDITION
 
 /obj/projectile/hook/fire(setAngle)
 	if(firer)
-		initial_chain = firer.Beam(src, icon_state = "chain", icon = chain_icon, emissive = FALSE) // SKYRAT EDIT CHANGE - Adds icon arg - ORIGINAL: chain = firer.Beam(src, icon_state = "chain", emissive = FALSE)
+		initial_chain = firer.Beam(src, icon_state = "chain", icon = chain_icon, emissive = FALSE) // BUBBER EDIT CHANGE - Adds icon arg - ORIGINAL: chain = firer.Beam(src, icon_state = "chain", emissive = FALSE)
 		ADD_TRAIT(firer, TRAIT_IMMOBILIZED, REF(src))
 		addtimer(TRAIT_CALLBACK_REMOVE(firer, TRAIT_IMMOBILIZED, REF(src)), IMMOBILIZATION_TIMER) // safety if we miss, if we get a hit we stay immobilized
 	return ..()

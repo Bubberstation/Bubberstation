@@ -3,7 +3,7 @@
 	plural_form = "Mothmen"
 	id = SPECIES_MOTH
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_BUG
-	mutant_bodyparts = list("moth_markings" = "None") // SKYRAT EDIT CHANGE - ORIGINAL: body_markings = list(/datum/bodypart_overlay/simple/body_marking/moth = "None")
+	mutant_bodyparts = list("moth_markings" = "None") // BUBBER EDIT CHANGE - ORIGINAL: body_markings = list(/datum/bodypart_overlay/simple/body_marking/moth = "None")
 	/*mutant_organs = list( // BUBBER EDIT REMOVAL
 		/obj/item/organ/wings/moth = "Plain",
 		/obj/item/organ/antennae = "Plain",
@@ -43,7 +43,7 @@
 
 /datum/species/moth/randomize_features()
 	var/list/features = ..()
-	features["moth_markings"] = pick(SSaccessories.moth_wings_list) // SKYRAT EDIT CHANGE - ORIGINAL: features["moth_markings"] = pick(SSaccessories.moth_markings_list)
+	features["moth_markings"] = pick(SSaccessories.moth_wings_list) // BUBBER EDIT CHANGE - ORIGINAL: features["moth_markings"] = pick(SSaccessories.moth_markings_list)
 	return features
 
 /datum/species/moth/get_scream_sound(mob/living/carbon/human/moth)

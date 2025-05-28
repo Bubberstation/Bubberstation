@@ -279,7 +279,7 @@
  * * ignored_mobs (optional) doesn't show any message to any mob in this list.
  * * visible_message_flags (optional) is the type of message being sent.
  */
-/atom/proc/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags = NONE, separation = " ", pref_to_check) // SKYRAT EDIT ADDITION - separation, pref checks
+/atom/proc/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags = NONE, separation = " ", pref_to_check) // BUBBER EDIT ADDITION - separation, pref checks
 	var/turf/T = get_turf(src)
 	if(!T)
 		return
@@ -289,7 +289,7 @@
 	var/list/hearers = get_hearers_in_view(vision_distance, src) //caches the hearers and then removes ignored mobs.
 	hearers -= ignored_mobs
 
-	//SKYRAT EDIT ADDITION BEGIN - AI QoL
+	//BUBBER EDIT ADDITION BEGIN - AI QoL
 	for(var/mob/eye/camera/ai/ai_eye in hearers)
 		if(ai_eye.ai?.client && !(ai_eye.ai.stat == DEAD))
 			hearers -= ai_eye
@@ -298,7 +298,7 @@
 	for(var/obj/effect/overlay/holo_pad_hologram/holo in hearers)
 		if(holo.Impersonation?.client)
 			hearers |= holo.Impersonation
-	//SKYRAT EDIT ADDITION END - AI QoL
+	//BUBBER EDIT ADDITION END - AI QoL
 
 	if(self_message)
 		hearers -= src
@@ -307,15 +307,15 @@
 	if(visible_message_flags & WITH_EMPHASIS_MESSAGE)
 		message = apply_message_emphasis(message)
 	if(visible_message_flags & EMOTE_MESSAGE)
-		message = span_emote("<b>[src]</b>[separation][message]") // SKYRAT EDIT - Better emotes
+		message = span_emote("<b>[src]</b>[separation][message]") // BUBBER EDIT - Better emotes
 
 	for(var/mob/M in hearers)
 		if(!M.client)
 			continue
-		// SKYRAT EDIT ADDITION - Emote pref checks
+		// BUBBER EDIT ADDITION - Emote pref checks
 		if(pref_to_check && !M.client?.prefs.read_preference(pref_to_check))
 			continue
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 
 		//This entire if/else chain could be in two lines but isn't for readibilties sake.
 		var/msg = message
@@ -347,7 +347,7 @@
 
 
 ///Adds the functionality to self_message.
-/mob/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags = NONE, separation = " ", pref_to_check)  // SKYRAT EDIT ADDITION - Better emotes, pref checks
+/mob/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags = NONE, separation = " ", pref_to_check)  // BUBBER EDIT ADDITION - Better emotes, pref checks
 	. = ..()
 	if(!self_message)
 		return
@@ -380,10 +380,10 @@
  * * self_message (optional) is what the src mob hears.
  * * audible_message_flags (optional) is the type of message being sent.
  */
-/atom/proc/audible_message(message, deaf_message, hearing_distance = DEFAULT_MESSAGE_RANGE, self_message, audible_message_flags = NONE, separation = " ", pref_to_check) // SKYRAT EDIT ADDITION - Better emotes, pref checks
+/atom/proc/audible_message(message, deaf_message, hearing_distance = DEFAULT_MESSAGE_RANGE, self_message, audible_message_flags = NONE, separation = " ", pref_to_check) // BUBBER EDIT ADDITION - Better emotes, pref checks
 	var/list/hearers = get_hearers_in_view(hearing_distance, src)
 
-	//SKYRAT EDIT ADDITION BEGIN - AI QoL
+	//BUBBER EDIT ADDITION BEGIN - AI QoL
 	for(var/mob/eye/camera/ai/ai_eye in hearers)
 		if(ai_eye.ai?.client && !(ai_eye.ai.stat == DEAD))
 			hearers -= ai_eye
@@ -392,7 +392,7 @@
 	for(var/obj/effect/overlay/holo_pad_hologram/holo in hearers)
 		if(holo.Impersonation?.client)
 			hearers |= holo.Impersonation
-	//SKYRAT EDIT ADDITION END - AI QoL
+	//BUBBER EDIT ADDITION END - AI QoL
 
 	if(self_message)
 		hearers -= src
@@ -400,12 +400,12 @@
 	if(audible_message_flags & WITH_EMPHASIS_MESSAGE)
 		message = apply_message_emphasis(message)
 	if(audible_message_flags & EMOTE_MESSAGE)
-		message = span_emote("<b>[src]</b>[separation][message]") //SKYRAT EDIT CHANGE
+		message = span_emote("<b>[src]</b>[separation][message]") //BUBBER EDIT CHANGE
 	for(var/mob/M in hearers)
-	// SKYRAT EDIT ADDITION - Emote pref checks
+	// BUBBER EDIT ADDITION - Emote pref checks
 		if(pref_to_check && !M.client?.prefs.read_preference(pref_to_check))
 			continue
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 		if(audible_message_flags & EMOTE_MESSAGE && runechat_prefs_check(M, audible_message_flags) && M.can_hear())
 			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = audible_message_flags)
 		M.show_message(message, MSG_AUDIBLE, deaf_message, MSG_VISUAL)
@@ -421,7 +421,7 @@
  * * deaf_message (optional) is what deaf people will see.
  * * hearing_distance (optional) is the range, how many tiles away the message can be heard.
  */
-/mob/audible_message(message, deaf_message, hearing_distance = DEFAULT_MESSAGE_RANGE, self_message, audible_message_flags = NONE, separation = " ", pref_to_check) // SKYRAT EDIT ADDITION - Better emotes, pref checks
+/mob/audible_message(message, deaf_message, hearing_distance = DEFAULT_MESSAGE_RANGE, self_message, audible_message_flags = NONE, separation = " ", pref_to_check) // BUBBER EDIT ADDITION - Better emotes, pref checks
 	. = ..()
 	if(!self_message)
 		return
@@ -823,12 +823,12 @@
 	if(!check_respawn_delay())
 		return
 
-	//SKYRAT EDIT ADDITION
+	//BUBBER EDIT ADDITION
 	if(ckey)
 		if(is_banned_from(ckey, BAN_RESPAWN))
 			to_chat(usr, "<span class='boldnotice'>You are respawn banned, you can't respawn!</span>")
 			return
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 
 	usr.log_message("used the respawn button.", LOG_GAME)
 
@@ -1227,13 +1227,13 @@
 				// Only update if this player is a target
 				if(obj.target && obj.target.current && obj.target.current.real_name == name)
 					obj.update_explanation_text()
-	// SKYRAT EDIT BEGIN - Update the mob chat color list, removing the old name
+	// BUBBER EDIT BEGIN - Update the mob chat color list, removing the old name
 		if(client)
 			GLOB.chat_colors_by_mob_name -= oldname
 
 	if(client)
 		GLOB.chat_colors_by_mob_name[name] = list(chat_color, chat_color_darkened)
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 	log_mob_tag("TAG: [tag] RENAMED: [key_name(src)]")
 
 	return TRUE

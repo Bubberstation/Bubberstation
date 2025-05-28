@@ -7,7 +7,7 @@
 		TRAIT_MUTANT_COLORS,
 	)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_REPTILE
-	mutant_bodyparts = list("body_markings" = "None", "legs" = "Normal Legs") // SKYRAT EDIT CHANGE - ORIGINAL: body_markings = list(/datum/bodypart_overlay/simple/body_marking/lizard = "None")
+	mutant_bodyparts = list("body_markings" = "None", "legs" = "Normal Legs") // BUBBER EDIT CHANGE - ORIGINAL: body_markings = list(/datum/bodypart_overlay/simple/body_marking/lizard = "None")
 	mutant_organs = list(
 		/obj/item/organ/horns = SPRITE_ACCESSORY_NONE,
 		/obj/item/organ/frills = SPRITE_ACCESSORY_NONE,
@@ -48,7 +48,7 @@
 	return
 
 
-//SKYRAT EDIT REMOVAL BEGIN
+//BUBBER EDIT REMOVAL BEGIN
 /*
 /datum/species/lizard/randomize_features()
 	var/list/features = ..()
@@ -56,7 +56,7 @@
 	return features
 
 */
-//SKYRAT EDIT REMOVAL END
+//BUBBER EDIT REMOVAL END
 
 
 /datum/species/lizard/get_scream_sound(mob/living/carbon/human/lizard)

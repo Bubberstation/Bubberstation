@@ -17,7 +17,7 @@
 
 /datum/keybinding/client/communication/radio
 	//hotkey_keys = list("Y") // ORIGINAL
-	hotkey_keys = list(";") // SKYRAT EDIT CHANGE - CUSTOMIZATION
+	hotkey_keys = list(";") // BUBBER EDIT CHANGE - CUSTOMIZATION
 	name = RADIO_CHANNEL
 	full_name = "IC Radio (;)"
 	keybind_signal = COMSIG_KB_CLIENT_RADIO_DOWN

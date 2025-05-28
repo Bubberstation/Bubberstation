@@ -1,4 +1,4 @@
-// THIS IS A SKYRAT SECTOR UI FILE
+// THIS IS A BUBBER SECTOR UI FILE
 import { Feature, FeatureNumberInput } from '../../base';
 
 export const chrono_age: Feature<number> = {

@@ -122,12 +122,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 	return TRUE
 
 
-//SKYRAT EDIT ADDITION
+//BUBBER EDIT ADDITION
 /obj/machinery/shower/plunger_act(obj/item/plunger/P, mob/living/user, reinforced)
 	if(do_after(user, 3 SECONDS, src))
 		reagents.remove_all(reagents.total_volume)
 		balloon_alert(user, "reservoir emptied")
-//SKYRAT EDIT END
+//BUBBER EDIT END
 
 /obj/machinery/shower/analyzer_act(mob/living/user, obj/item/tool)
 	. = ..()

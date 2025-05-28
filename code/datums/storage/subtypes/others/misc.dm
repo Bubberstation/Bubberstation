@@ -273,10 +273,10 @@
 			/obj/item/stack/medical,
 			/obj/item/stamp,
 			/obj/item/toy/crayon,
-			// SKYRAT EDIT BEGIN
+			// BUBBER EDIT BEGIN
 			/obj/item/condom_pack,
 			/obj/item/gbp_punchcard,
-			// SKYRAT EDIT END
+			// BUBBER EDIT END
 		),
 		cant_hold_list = list(
 			/obj/item/screwdriver/power

@@ -11,10 +11,10 @@ const commandJobs = [
   'Research Director',
   'Chief Medical Officer',
   'Quartermaster',
-  'Nanotrasen Consultant', // SKYRAT EDIT
+  'Nanotrasen Consultant', // BUBBER EDIT
 ];
 
-// SKYRAT EDIT CHANGE BEGIN - ALTERNATIVE_JOB_TITLES
+// BUBBER EDIT CHANGE BEGIN - ALTERNATIVE_JOB_TITLES
 // Any instance of crewMember.trim was originally crewMember.rank
 export const CrewManifest = (props) => {
   const {
@@ -105,4 +105,4 @@ export const CrewManifest = (props) => {
     </Window>
   );
 };
-// SKYRAT EDIT CHANGE END - ALTERNATIVE_JOB_TITLES
+// BUBBER EDIT CHANGE END - ALTERNATIVE_JOB_TITLES

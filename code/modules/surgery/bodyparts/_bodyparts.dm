@@ -79,7 +79,7 @@
 	///Controls if the limb is disabled. TRUE means it is disabled (similar to being removed, but still present for the sake of targeted interactions).
 	var/bodypart_disabled = FALSE
 	///Handles limb disabling by damage. If 0 (0%), a limb can't be disabled via damage. If 1 (100%), it is disabled at max limb damage. Anything between is the percentage of damage against maximum limb damage needed to disable the limb.
-	var/disabling_threshold_percentage = 1 //SKYRAT EDIT CHANGE - COMBAT - ORIGINAL : var/disabling_threshold_percentage = 0
+	var/disabling_threshold_percentage = 1 //BUBBER EDIT CHANGE - COMBAT - ORIGINAL : var/disabling_threshold_percentage = 0
 
 	// Damage variables
 	///A mutiplication of the burn and brute damage that the limb's stored damage contributes to its attached mob's overall wellbeing.
@@ -209,10 +209,10 @@
 	var/datum/bodypart_overlay/texture/texture_bodypart_overlay
 	/// Lazylist of /datum/status_effect/grouped/bodypart_effect types. Instances of this are applied to the carbon when added the limb is attached, and merged with similair limbs
 	var/list/bodypart_effects
-	// SKYRAT EDIT BEGIN
+	// BUBBER EDIT BEGIN
 	/// If we even wanna try and handle icons/overlays of the limb (Taurs don't, f.e.). See update_body_parts
 	var/show_icon = TRUE
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 	/// The cached info about the blood this organ belongs to, set during on_removal()
 	var/list/blood_dna_info
 
@@ -571,7 +571,7 @@
 			return
 		// now we have our wounding_type and are ready to carry on with wounds and dealing the actual damage
 		if(wounding_dmg >= WOUND_MINIMUM_DAMAGE && wound_bonus != CANT_WOUND)
-			//SKYRAT EDIT ADDITION - MEDICAL
+			//BUBBER EDIT ADDITION - MEDICAL
 			//This makes it so the more damaged bodyparts are, the more likely they are to get wounds
 			//However, this bonus isn't applied when the object doesn't pass the initial wound threshold, nor is it when it already has enough wounding dmg
 			/* if(wounding_dmg < DAMAGED_BODYPART_BONUS_WOUNDING_BONUS) // BUBBER EDIT REMOVAL
@@ -583,7 +583,7 @@
 			if (istype(current_gauze, /obj/item/stack/medical/gauze))
 				var/obj/item/stack/medical/gauze/our_gauze = current_gauze
 				our_gauze.get_hit()
-			//SKYRAT EDIT ADDITION END - MEDICAL
+			//BUBBER EDIT ADDITION END - MEDICAL
 			check_wounding(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus, attack_direction, damage_source = damage_source, wound_clothing = wound_clothing)
 
 	for(var/datum/wound/iter_wound as anything in wounds)
@@ -710,12 +710,12 @@
 			update_disabled()
 		if(updating_health)
 			owner.updatehealth()
-		//SKYRAT EDIT ADDITION BEGIN - CUSTOMIZATION
+		//BUBBER EDIT ADDITION BEGIN - CUSTOMIZATION
 		//Consider moving this to a new species proc "spec_heal" maybe?
 		if(owner.stat == DEAD && HAS_TRAIT(owner, TRAIT_REVIVES_BY_HEALING))
 			if(owner.health > 50)
 				owner.revive(FALSE)
-		//SKYRAT EDIT ADDITION END
+		//BUBBER EDIT ADDITION END
 	cremation_progress = min(0, cremation_progress - ((brute_dam + burn_dam)*(100/max_damage)))
 	return update_bodypart_damage_state()
 
@@ -1017,7 +1017,7 @@
 	for(var/datum/bodypart_overlay/simple/body_marking/marking in bodypart_overlays)
 		marking.set_appearance(human_owner.dna.features[marking.dna_feature_key], species_color)
 
-	// SKYRAT EDIT ADDITION
+	// BUBBER EDIT ADDITION
 	var/datum/species/owner_species = human_owner.dna.species
 
 	if(owner_species && owner_species.specific_alpha != 255)
@@ -1030,7 +1030,7 @@
 		markings_alpha = owner_species.markings_alpha
 	else
 		markings = list()
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 	return TRUE
 
 /obj/item/bodypart/proc/update_draw_color()
@@ -1158,10 +1158,10 @@
 		update_draw_color()
 
 	if(draw_color)
-		var/limb_color = alpha != 255 ? "[draw_color][num2hex(alpha, 2)]" : "[draw_color]" // SKYRAT EDIT ADDITION - Alpha values on limbs. We check if the limb is attached and if the owner has an alpha value to append
-		limb.color = limb_color // SKYRAT EDIT CHANGE - ORIGINAL: limb.color = "[draw_color]"
+		var/limb_color = alpha != 255 ? "[draw_color][num2hex(alpha, 2)]" : "[draw_color]" // BUBBER EDIT ADDITION - Alpha values on limbs. We check if the limb is attached and if the owner has an alpha value to append
+		limb.color = limb_color // BUBBER EDIT CHANGE - ORIGINAL: limb.color = "[draw_color]"
 		if(aux_zone)
-			aux.color = limb_color // SKYRAT EDIT CHANGE - ORIGINAL: aux.color = "[draw_color]"
+			aux.color = limb_color // BUBBER EDIT CHANGE - ORIGINAL: aux.color = "[draw_color]"
 
 	//EMISSIVE CODE START
 	// For some reason this was applied as an overlay on the aux image and limb image before.
@@ -1210,7 +1210,7 @@
 				. += overlay.get_overlay(external_layer, src)
 		for(var/datum/layer in .)
 			overlay.modify_bodypart_appearance(layer)
-	// SKYRAT EDIT ADDITION BEGIN - MARKINGS CODE
+	// BUBBER EDIT ADDITION BEGIN - MARKINGS CODE
 	var/override_color
 	var/atom/offset_spokesman = owner || src
 	// First, check to see if this bodypart is husked. If so, we don't want to apply our sparkledog colors to the limb.
@@ -1265,7 +1265,7 @@
 				. += accessory_overlay
 				if (emissive)
 					. += emissive
-	// SKYRAT EDIT END - MARKINGS CODE END
+	// BUBBER EDIT END - MARKINGS CODE END
 	return .
 
 /obj/item/bodypart/proc/huskify_image(image/thing_to_husk)
@@ -1542,8 +1542,8 @@
 	var/burn_damage = AUGGED_LIMB_EMP_BURN_DAMAGE
 	if(severity == EMP_HEAVY)
 		time_needed *= 2
-		brute_damage *= 1.3 // SKYRAT EDIT : Balance - Lowers total damage from ~125 Brute to ~30
-		burn_damage *= 1.3 // SKYRAT EDIT : Balance - Lowers total damage from ~104 Burn to ~24
+		brute_damage *= 1.3 // BUBBER EDIT : Balance - Lowers total damage from ~125 Brute to ~30
+		burn_damage *= 1.3 // BUBBER EDIT : Balance - Lowers total damage from ~104 Burn to ~24
 
 	receive_damage(brute_damage, burn_damage)
 	do_sparks(number = 1, cardinal_only = FALSE, source = owner || src)

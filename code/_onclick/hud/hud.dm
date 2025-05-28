@@ -18,7 +18,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	"Blue - 98" = 'modular_zubbers/master_files/icons/hud/screen_blue98.dmi' // Bubber Addition
 ))
 
-//SKYRAT EDIT - ADDITION - ERP ICONS FIX
+//BUBBER EDIT - ADDITION - ERP ICONS FIX
 
 GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	"Midnight" = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_items/inventory_icons/midnight.dmi',
@@ -30,17 +30,17 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	"Glass" = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_items/inventory_icons/glass.dmi'
 ))
 
-//SKYRAT EDIT - ADDITION - ERP ICONS FIX - END
+//BUBBER EDIT - ADDITION - ERP ICONS FIX - END
 
 /proc/ui_style2icon(ui_style)
 	return GLOB.available_ui_styles[ui_style] || GLOB.available_ui_styles[GLOB.available_ui_styles[1]]
 
-//SKYRAT EDIT - ADDITION - ERP ICONS FIX
+//BUBBER EDIT - ADDITION - ERP ICONS FIX
 
 /proc/erp_ui_style2icon(ui_style)
 	return GLOB.available_erp_ui_styles[ui_style] || GLOB.available_erp_ui_styles[GLOB.available_erp_ui_styles[1]]
 
-//SKYRAT EDIT - ADDITION - ERP ICONS FIX - END
+//BUBBER EDIT - ADDITION - ERP ICONS FIX - END
 
 /datum/hud
 	var/mob/mymob
@@ -50,7 +50,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	var/inventory_shown = FALSE //Equipped item inventory
 	var/hotkey_ui_hidden = FALSE //This is to hide the buttons that can be used via hotkeys. (hotkeybuttons list of buttons)
 
-	var/atom/movable/screen/ammo_counter //SKYRAT EDIT ADDITION
+	var/atom/movable/screen/ammo_counter //BUBBER EDIT ADDITION
 
 	var/atom/movable/screen/alien_plasma_display
 	var/atom/movable/screen/alien_queen_finder
@@ -120,7 +120,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	var/atom/movable/screen/hunger/hunger
 	// subtypes can override this to force a specific UI style
 	var/ui_style
-	var/erp_ui_style //SKYRAT EDIT - ADDITION - ERP ICONS FIX
+	var/erp_ui_style //BUBBER EDIT - ADDITION - ERP ICONS FIX
 
 	// List of weakrefs to objects that we add to our screen that we don't expect to DO anything
 	// They typically use * in their render target. They exist solely so we can reuse them,
@@ -133,7 +133,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	if (!ui_style)
 		// will fall back to the default if any of these are null
 		ui_style = ui_style2icon(owner.client?.prefs?.read_preference(/datum/preference/choiced/ui_style))
-		erp_ui_style = erp_ui_style2icon(owner.client?.prefs?.read_preference(/datum/preference/choiced/ui_style)) //SKYRAT EDIT - ADDITION - ERP ICONS FIX
+		erp_ui_style = erp_ui_style2icon(owner.client?.prefs?.read_preference(/datum/preference/choiced/ui_style)) //BUBBER EDIT - ADDITION - ERP ICONS FIX
 
 	toggle_palette = new()
 	toggle_palette.set_hud(src)
@@ -273,10 +273,10 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	alien_plasma_display = null
 	alien_queen_finder = null
 
-	//SKYRAT EDIT ADDITION START - SKYRAT HUD
+	//BUBBER EDIT ADDITION START - SKYRAT HUD
 	wanted_lvl = null
 	ammo_counter = null
-	// SKYRAT EDIT ADDITION END - SKYRAT HUD
+	// BUBBER EDIT ADDITION END - SKYRAT HUD
 
 	QDEL_LIST_ASSOC_VAL(master_groups)
 	QDEL_LIST_ASSOC_VAL(plane_master_controllers)

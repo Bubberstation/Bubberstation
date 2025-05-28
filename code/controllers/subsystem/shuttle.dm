@@ -156,10 +156,10 @@ SUBSYSTEM_DEF(shuttle)
 	while(length(pack_processing))
 		var/datum/supply_pack/pack = pack_processing[length(pack_processing)]
 		pack_processing.len--
-		//SKYRAT EDIT START
+		//BUBBER EDIT START
 		if(pack == /datum/supply_pack/armament)
 			continue
-		//SKYRAT EDIT END
+		//BUBBER EDIT END
 
 		if(ispath(pack, /datum/supply_pack))
 			pack = new pack
@@ -292,7 +292,7 @@ SUBSYSTEM_DEF(shuttle)
 		priority_announce(
 			text = "Emergency shuttle uplink interference detected, shuttle call disabled while the system reinitializes. Estimated restore in [DisplayTimeText(lockout_timer, round_seconds_to = 60)].",
 			title = "Uplink Interference",
-			sound = ANNOUNCER_SHUTTLE, // SKYRAT EDIT CHANGE - Announcer Sounds - ORIGINAL: sound = 'sound/announcer/announcement/announce_dig.ogg',
+			sound = ANNOUNCER_SHUTTLE, // BUBBER EDIT CHANGE - Announcer Sounds - ORIGINAL: sound = 'sound/announcer/announcement/announce_dig.ogg',
 			sender_override = "Emergency Shuttle Uplink Alert",
 			color_override = "grey",
 		)
@@ -306,7 +306,7 @@ SUBSYSTEM_DEF(shuttle)
 		priority_announce(
 			text= "Emergency shuttle uplink services are now back online.",
 			title = "Uplink Restored",
-			sound = ANNOUNCER_SHUTTLE, // SKYRAT EDIT CHANGE - Announcer Sounds - ORIGINAL: sound = 'sound/announcer/announcement/announce_dig.ogg',
+			sound = ANNOUNCER_SHUTTLE, // BUBBER EDIT CHANGE - Announcer Sounds - ORIGINAL: sound = 'sound/announcer/announcement/announce_dig.ogg',
 			sender_override = "Emergency Shuttle Uplink Alert",
 			color_override = "green",
 		)
@@ -467,9 +467,9 @@ SUBSYSTEM_DEF(shuttle)
 				return
 		if(SEC_LEVEL_BLUE)
 			//if(emergency.timeLeft(1) < emergency_call_time * 0.5) ORIGINAL
-			if(emergency.timeLeft(1) < emergency_call_time * 0.6) //SKYRAT EDIT CHANGE - ALERTS
+			if(emergency.timeLeft(1) < emergency_call_time * 0.6) //BUBBER EDIT CHANGE - ALERTS
 				return
-		//SKYRAT EDIT ADDITION BEGIN - ALERTS
+		//BUBBER EDIT ADDITION BEGIN - ALERTS
 		if(SEC_LEVEL_ORANGE)
 			if(emergency.timeLeft(1) < emergency_call_time * 0.4)
 				return
@@ -479,7 +479,7 @@ SUBSYSTEM_DEF(shuttle)
 		if(SEC_LEVEL_AMBER)
 			if(emergency.timeLeft(1) < emergency_call_time * 0.4)
 				return
-		//SKYRAT EDIT ADDITION END
+		//BUBBER EDIT ADDITION END
 		else
 			if(emergency.timeLeft(1) < emergency_call_time * 0.25)
 				return

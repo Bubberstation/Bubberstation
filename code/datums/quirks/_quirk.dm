@@ -28,7 +28,7 @@
 	var/abstract_parent_type = /datum/quirk
 	/// The icon to show in the preferences menu.
 	/// This references a tgui icon, so it can be FontAwesome or a tgfont (with a tg- prefix).
-	var/icon = "bug" //SKYRAT EDIT CHANGE
+	var/icon = "bug" //BUBBER EDIT CHANGE
 	/// A lazylist of items people can receive from mail who have this quirk enabled
 	/// The base weight for the each quirk's mail goodies list to be selected is 5
 	/// then the item selected is determined by pick(selected_quirk.mail_goodies)
@@ -259,7 +259,7 @@
 /mob/living/proc/get_quirk_string(medical = FALSE, category = CAT_QUIRK_ALL, from_scan = FALSE)
 	var/list/dat = list()
 
-	// SKYRAT EDIT ADDITION START
+	// BUBBER EDIT ADDITION START
 	// The health analyzer will first check if the target is a changeling, and if they are, load the quirks of the person they're disguising as.
 
 	var/target_quirks = quirks
@@ -267,9 +267,9 @@
 	if(target_changeling)
 		target_quirks = target_changeling.current_profile.quirks
 
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 
-	for(var/datum/quirk/candidate as anything in target_quirks) // SKYRAT EDIT CHANGE - ORIGINAL : for(var/datum/quirk/candidate as anything in quirks)
+	for(var/datum/quirk/candidate as anything in target_quirks) // BUBBER EDIT CHANGE - ORIGINAL : for(var/datum/quirk/candidate as anything in quirks)
 		if(from_scan && (candidate.quirk_flags & QUIRK_HIDE_FROM_SCAN))
 			continue
 		switch(category)

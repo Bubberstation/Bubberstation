@@ -62,10 +62,10 @@
 	tracked_heretics |= heretic
 
 	// If our heretic's on station, generate some new influences
-	//SKYRAT EDIT START
+	//BUBBER EDIT START
 	var/area/heretic_area = get_area(heretic.current)
 	if(ishuman(heretic.current) && (!(is_centcom_level(heretic.current.z)) || istype(heretic_area, /area/centcom/interlink)) || istype(heretic_area, /area/shuttle/arrival))
-	//SKYRAT EDIT END
+	//BUBBER EDIT END
 		generate_new_influences()
 
 /**

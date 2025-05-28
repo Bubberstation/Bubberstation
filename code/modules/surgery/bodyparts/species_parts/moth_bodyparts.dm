@@ -1,4 +1,4 @@
-/* SKYRAT EDIT REMOVAL - Moved to modular_skyrat\master_files\code\modules\surgery\bodyparts\species_parts\moth_bodyparts.dm
+/* BUBBER EDIT REMOVAL - Moved to modular_skyrat\master_files\code\modules\surgery\bodyparts\species_parts\moth_bodyparts.dm
 /obj/item/bodypart/head/moth
 	icon = 'icons/mob/human/species/moth/bodyparts.dmi'
 	icon_state = "moth_head"
@@ -60,4 +60,4 @@
 	icon_static = 'icons/mob/human/species/moth/bodyparts.dmi'
 	limb_id = SPECIES_MOTH
 	should_draw_greyscale = FALSE
-*/ // SKYRAT EDIT END
+*/ // BUBBER EDIT END

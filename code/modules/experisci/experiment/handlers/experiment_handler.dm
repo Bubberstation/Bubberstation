@@ -124,8 +124,8 @@
 		if(!(config_flags & EXPERIMENT_CONFIG_SILENT_FAIL))
 			to_chat(user, span_notice("You do not have an experiment selected!"))
 		return
-	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/research, SKILL_SPEED_MODIFIER) //SKYRAT EDIT: Research Skill (simple research)
-	if(!(config_flags & EXPERIMENT_CONFIG_IMMEDIATE_ACTION) && !do_after(user, 1 SECONDS * skill_modifier, target = target)) //SKYRAT EDIT: Research Skill (simple research)
+	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/research, SKILL_SPEED_MODIFIER) //BUBBER EDIT: Research Skill (simple research)
+	if(!(config_flags & EXPERIMENT_CONFIG_IMMEDIATE_ACTION) && !do_after(user, 1 SECONDS * skill_modifier, target = target)) //BUBBER EDIT: Research Skill (simple research)
 		return
 	if(action_experiment(source, target))
 		// BUBBERSTATION EDIT START
@@ -134,7 +134,7 @@
 		// BUBBERSTATION EDIT END
 		playsound(user, 'sound/machines/ping.ogg', 25)
 		to_chat(user, span_notice("You scan [target]."))
-		user.mind.adjust_experience(/datum/skill/research, 5) //SKYRAT EDIT: Research Skill (simple research)
+		user.mind.adjust_experience(/datum/skill/research, 5) //BUBBER EDIT: Research Skill (simple research)
 	else if(!(config_flags & EXPERIMENT_CONFIG_SILENT_FAIL))
 		playsound(user, 'sound/machines/buzz/buzz-sigh.ogg', 25)
 		to_chat(user, span_notice("[target] is not related to your currently selected experiment."))

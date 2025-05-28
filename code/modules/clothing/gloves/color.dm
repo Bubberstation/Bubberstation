@@ -9,7 +9,7 @@
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE
 	cut_type = /obj/item/clothing/gloves/fingerless
-	// SKYRAT EDIT ADDITION START
+	// BUBBER EDIT ADDITION START
 	uses_advanced_reskins = TRUE
 	unique_reskin = list(
 		"Basic Gloves" = list(
@@ -25,7 +25,7 @@
 			RESKIN_WORN_ICON_STATE = "peacekeeper"
 		)
 	)
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 
 /obj/item/clothing/gloves/color/black/Initialize(mapload)
 	. = ..()

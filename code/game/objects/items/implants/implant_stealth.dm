@@ -4,10 +4,10 @@
 	actions_types = list(/datum/action/item_action/agent_box)
 
 /obj/item/implanter/stealth
-	name = "implanter" // Skyrat edit , was originaly implanter (stealth)
+	name = "implanter" // Bubber edit , was originaly implanter (stealth)
 	imp_type = /obj/item/implant/stealth
-	special_desc_requirement = EXAMINE_CHECK_SYNDICATE // Skyrat edit
-	special_desc = "A Syndicate implanter used for a stealth implant" // Skyrat edit
+	special_desc_requirement = EXAMINE_CHECK_SYNDICATE // Bubber edit
+	special_desc = "A Syndicate implanter used for a stealth implant" // Bubber edit
 
 //Box Object
 

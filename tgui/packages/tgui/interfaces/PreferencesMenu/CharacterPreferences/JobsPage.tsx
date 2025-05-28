@@ -35,7 +35,7 @@ function PriorityButton(props: PriorityButtonProps) {
   const className = `PreferencesMenu__Jobs__departments__priority`;
 
   return (
-    // SKYRAT EDIT START
+    // BUBBER EDIT START
     <Button
       className={classes([
         className,
@@ -49,7 +49,7 @@ function PriorityButton(props: PriorityButtonProps) {
       height={PRIORITY_BUTTON_SIZE}
       width={PRIORITY_BUTTON_SIZE}
     />
-    // SKYRAT EDIT END
+    // BUBBER EDIT END
   );
 }
 
@@ -116,14 +116,14 @@ function PriorityButtons(props: PriorityButtonsProps) {
   const { createSetPriority, isOverflow, priority } = props;
 
   return (
-    <Box // SKYRAT EDIT - Originally a stack
+    <Box // BUBBER EDIT - Originally a stack
       style={{
         alignItems: 'center',
         height: '100%',
         justifyContent: 'flex-end',
         paddingLeft: '0.3em',
-        paddingTop: '0.12em', // SKYRAT EDIT ADDITION - Add some vertical padding
-        paddingBottom: '0.12em', // SKYRAT EDIT ADDITION - To make this look nicer
+        paddingTop: '0.12em', // BUBBER EDIT ADDITION - Add some vertical padding
+        paddingBottom: '0.12em', // BUBBER EDIT ADDITION - To make this look nicer
       }}
     >
       {isOverflow ? (
@@ -175,7 +175,7 @@ function PriorityButtons(props: PriorityButtonsProps) {
           />
         </>
       )}
-    </Box> // SKYRAT EDIT - Originally a stack
+    </Box> // BUBBER EDIT - Originally a stack
   );
 }
 
@@ -186,7 +186,7 @@ type JobRowProps = {
 };
 
 function JobRow(props: JobRowProps) {
-  const { data, act } = useBackend<PreferencesMenuData>(); // SKYRAT EDIT CHANGE - Adds act param
+  const { data, act } = useBackend<PreferencesMenuData>(); // BUBBER EDIT CHANGE - Adds act param
   const { className, job, name } = props;
 
   const isOverflow = data.overflow_role === name;
@@ -198,11 +198,11 @@ function JobRow(props: JobRowProps) {
     data.job_required_experience && data.job_required_experience[name];
   const daysLeft = data.job_days_left ? data.job_days_left[name] : 0;
 
-  // SKYRAT EDIT ADDITION
+  // BUBBER EDIT ADDITION
   const alt_title_selected = data.job_alt_titles[name]
     ? data.job_alt_titles[name]
     : name;
-  // SKYRAT EDIT END
+  // BUBBER EDIT END
 
   let rightSide: ReactNode;
 
@@ -233,7 +233,7 @@ function JobRow(props: JobRowProps) {
         </Stack.Item>
       </Stack>
     );
-    // SKYRAT EDIT START
+    // BUBBER EDIT START
   } else if (
     data.species_restricted_jobs &&
     data.species_restricted_jobs.indexOf(name) !== -1
@@ -245,7 +245,7 @@ function JobRow(props: JobRowProps) {
         </Stack.Item>
       </Stack>
     );
-    // SKYRAT EDIT END
+    // BUBBER EDIT END
   } else {
     rightSide = (
       <PriorityButtons
@@ -268,7 +268,7 @@ function JobRow(props: JobRowProps) {
             }}
           >
             {
-              // SKYRAT EDIT CHANGE START - ORIGINAL: {name}
+              // BUBBER EDIT CHANGE START - ORIGINAL: {name}
               !job.alt_titles ? (
                 name
               ) : (
@@ -281,7 +281,7 @@ function JobRow(props: JobRowProps) {
                   }
                 />
               )
-              // SKYRAT EDIT CHANGE END
+              // BUBBER EDIT CHANGE END
             }
           </Stack.Item>
         </Tooltip>
@@ -326,7 +326,7 @@ function Department(props: DepartmentProps) {
       <Stack fill vertical g={0}>
         {jobsForDepartment.map(([name, job]) => {
           return (
-            <JobRow /* SKYRAT EDIT START - Fixing alt titles */
+            <JobRow /* BUBBER EDIT START - Fixing alt titles */
               className={classes([
                 className,
                 name === department.head && 'head',
@@ -334,7 +334,7 @@ function Department(props: DepartmentProps) {
               key={name}
               job={job}
               name={name}
-            /> /* SKYRAT EDIT END */
+            /> /* BUBBER EDIT END */
           );
         })}
       </Stack>

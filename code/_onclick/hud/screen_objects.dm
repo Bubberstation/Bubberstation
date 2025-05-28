@@ -838,7 +838,7 @@
 	var/client/holder
 
 INITIALIZE_IMMEDIATE(/atom/movable/screen/splash)
-/* SKYRAT EDIT REMOVAL
+/* BUBBER EDIT REMOVAL
 /atom/movable/screen/splash/Initialize(mapload, datum/hud/hud_owner, client/C, visible, use_previous_title)
 	. = ..()
 	if(!istype(C))
@@ -858,7 +858,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/splash)
 		icon = SStitle.previous_icon
 
 	holder.screen += src
-*/ // SKYRAT EDIT END
+*/ // BUBBER EDIT END
 /atom/movable/screen/splash/proc/Fade(out, qdel_after = TRUE)
 	if(QDELETED(src))
 		return

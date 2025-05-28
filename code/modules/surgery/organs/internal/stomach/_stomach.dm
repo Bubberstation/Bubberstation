@@ -206,7 +206,7 @@
 
 ///This gets called after the owner takes a bite of food
 /obj/item/organ/stomach/proc/after_eat(atom/edible)
-	SEND_SIGNAL(src, COMSIG_STOMACH_AFTER_EAT, edible) // SKYRAT EDIT ADDITION - Hemophage Organs
+	SEND_SIGNAL(src, COMSIG_STOMACH_AFTER_EAT, edible) // BUBBER EDIT ADDITION - Hemophage Organs
 	return
 
 /obj/item/organ/stomach/proc/consume_thing(atom/movable/thing)

@@ -640,7 +640,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module/malf))
 /// Robotic Factory: Places a large machine that converts humans that go through it into cyborgs. Unlocking this ability removes shunting.
 /datum/ai_module/malf/utility/place_cyborg_transformer
 	name = "Robotic Factory (Removes Shunting)"
-	description = "Build a machine anywhere, using expensive nanomachines, that will slowly create loyal cyborgs for you." // SKYRAT EDIT
+	description = "Build a machine anywhere, using expensive nanomachines, that will slowly create loyal cyborgs for you." // BUBBER EDIT
 	cost = 100
 	power_type = /datum/action/innate/ai/place_transformer
 	unlock_text = span_notice("You make contact with Space Amazon and request a robotics factory for delivery.")
@@ -648,7 +648,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module/malf))
 
 /datum/action/innate/ai/place_transformer
 	name = "Place Robotics Factory"
-	desc = "Places a machine that slowly creates cyborgs. Conveyor belts included!" // SKYRAT EDIT
+	desc = "Places a machine that slowly creates cyborgs. Conveyor belts included!" // BUBBER EDIT
 	button_icon_state = "robotic_factory"
 	uses = 1
 	auto_use_uses = FALSE //So we can attempt multiple times
@@ -671,7 +671,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module/malf))
 		active = FALSE
 		return
 	var/turf/T = get_turf(owner_AI.eyeobj)
-	var/obj/machinery/transformer_rp/conveyor = new(T) //SKYRAT EDIT CHANGE - SILLICONQOL - ORIGINAL: var/obj/machinery/transformer/conveyor = new(T)
+	var/obj/machinery/transformer_rp/conveyor = new(T) //BUBBER EDIT CHANGE - SILLICONQOL - ORIGINAL: var/obj/machinery/transformer/conveyor = new(T)
 	conveyor.master_ai = owner
 	playsound(T, 'sound/effects/phasein.ogg', 100, TRUE)
 	if(owner_AI.can_shunt) //prevent repeated messages

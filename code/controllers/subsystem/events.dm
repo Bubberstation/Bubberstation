@@ -21,7 +21,7 @@ SUBSYSTEM_DEF(events)
 	///Will wizard events be included in the event pool?
 	var/wizardmode = FALSE
 
-	var/list/previously_run = list() //SKYRAT EDIT ADDITION
+	var/list/previously_run = list() //BUBBER EDIT ADDITION
 
 /datum/controller/subsystem/events/Initialize()
 	for(var/type in typesof(/datum/round_event_control))

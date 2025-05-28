@@ -473,14 +473,14 @@
 		to_chat(target, span_warning("As [user] touches you with vile magicks, the Mansus absorbs most of the effects!"))
 		target.balloon_alert_to_viewers("absorbed!")
 		return ..()
-		// SKYRAT EDIT ADDITION START
+		// BUBBER EDIT ADDITION START
 	else if(IS_CLOCK(target))
 		to_chat(user, span_warning("Some force greater than you intervenes! [target] is protected by the heretic Ratvar!"))
 		to_chat(target, span_warning("You are protected by your faith to Ratvar!"))
 		var/old_color = target.color
 		target.color = rgb(190, 135, 0)
 		animate(target, color = old_color, time = 1 SECONDS, easing = EASE_IN)
-		// SKYRAT EDIT ADDITION END
+		// BUBBER EDIT ADDITION END
 		return ..()
 
 	if(target.can_block_magic())

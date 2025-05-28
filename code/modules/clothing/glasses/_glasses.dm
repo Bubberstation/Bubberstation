@@ -38,7 +38,7 @@
 
 /obj/item/clothing/glasses/visor_toggling()
 	. = ..()
-	alternate_worn_layer = up ? ABOVE_BODY_FRONT_HEAD_LAYER : initial(alternate_worn_layer) // SKYRAT EDIT CHANGE - ORIGINAL : alternate_worn_layer = up ? ABOVE_BODY_FRONT_HEAD_LAYER : null
+	alternate_worn_layer = up ? ABOVE_BODY_FRONT_HEAD_LAYER : initial(alternate_worn_layer) // BUBBER EDIT CHANGE - ORIGINAL : alternate_worn_layer = up ? ABOVE_BODY_FRONT_HEAD_LAYER : null
 	if(visor_vars_to_toggle & VISOR_VISIONFLAGS)
 		vision_flags ^= initial(vision_flags)
 	if(visor_vars_to_toggle & VISOR_INVISVIEW)
@@ -481,7 +481,7 @@
 	tint = 2
 	visor_vars_to_toggle = VISOR_FLASHPROTECT | VISOR_TINT
 	glass_colour_type = /datum/client_colour/glass_colour/gray
-	alternate_worn_layer = ABOVE_BODY_FRONT_HEAD_LAYER // SKYRAT EDIT - Just so it works until I make the change upstream
+	alternate_worn_layer = ABOVE_BODY_FRONT_HEAD_LAYER // BUBBER EDIT - Just so it works until I make the change upstream
 
 /obj/item/clothing/glasses/welding/Initialize(mapload)
 	. = ..()
@@ -582,8 +582,8 @@
 	name = "chameleon thermals"
 	desc = "A pair of thermal optic goggles with an onboard chameleon generator."
 	actions_types = list(/datum/action/item_action/chameleon/change/glasses/no_preset)
-	special_desc_requirement = EXAMINE_CHECK_SYNDICATE // SKYRAT EDIT ADDITION
-	special_desc = "Chameleon thermal goggles employed by the Syndicate in infiltration operations." //SKYRAT EDIT ADDITION, I don't think the regular description persists through chameleon changes.
+	special_desc_requirement = EXAMINE_CHECK_SYNDICATE // BUBBER EDIT ADDITION
+	special_desc = "Chameleon thermal goggles employed by the Syndicate in infiltration operations." //BUBBER EDIT ADDITION, I don't think the regular description persists through chameleon changes.
 
 /obj/item/clothing/glasses/thermal/monocle
 	name = "thermoncle"

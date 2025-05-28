@@ -93,7 +93,7 @@
 		to_chat(user, span_notice("You swallow a gulp of [src]."))
 
 	SEND_SIGNAL(src, COMSIG_GLASS_DRANK, target_mob, user)
-	SEND_SIGNAL(target_mob, COMSIG_GLASS_DRANK, src, user) // SKYRAT EDIT ADDITION - Hemophages can't casually drink what's not going to regenerate their blood
+	SEND_SIGNAL(target_mob, COMSIG_GLASS_DRANK, src, user) // BUBBER EDIT ADDITION - Hemophages can't casually drink what's not going to regenerate their blood
 	var/fraction = min(gulp_size/reagents.total_volume, 1)
 	reagents.trans_to(target_mob, gulp_size, transferred_by = user, methods = reagent_consumption_method)
 	checkLiked(fraction, target_mob)
@@ -364,7 +364,7 @@
 
 /obj/item/reagent_containers/cup/bucket
 	name = "bucket"
-	desc = "It's a bucket. You can squeeze a mop's contents into it by using right-click." //SKYRAT EDIT CHANGE - ORIGINAL: desc = "It's a bucket."
+	desc = "It's a bucket. You can squeeze a mop's contents into it by using right-click." //BUBBER EDIT CHANGE - ORIGINAL: desc = "It's a bucket."
 	icon = 'icons/obj/service/janitor.dmi'
 	worn_icon = 'icons/mob/clothing/head/utility.dmi'
 	icon_state = "bucket"
@@ -376,8 +376,8 @@
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT * 2)
 	w_class = WEIGHT_CLASS_NORMAL
 	amount_per_transfer_from_this = 20
-	possible_transfer_amounts = list(5,10,15,20,25,30,50,100) //SKYRAT EDIT CHANGE
-	volume = 100 //SKYRAT EDIT CHANGE
+	possible_transfer_amounts = list(5,10,15,20,25,30,50,100) //BUBBER EDIT CHANGE
+	volume = 100 //BUBBER EDIT CHANGE
 	flags_inv = HIDEHAIR
 	slot_flags = ITEM_SLOT_HEAD
 	resistance_flags = NONE

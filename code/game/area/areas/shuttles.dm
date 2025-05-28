@@ -161,7 +161,7 @@
 	name = "Labor Camp Shuttle"
 
 /area/shuttle/supply
-	name = "NLV Consign" //SKYRAT EDIT CHANGE
+	name = "NLV Consign" //BUBBER EDIT CHANGE
 	area_flags = NOTELEPORT
 
 /area/shuttle/escape
