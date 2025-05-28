@@ -17,6 +17,14 @@
 	. = ..()
 	user.log_message("[key_name(user)] interacted with [src] at [AREACOORD(src)]", LOG_GAME)
 
+/datum/language_holder/drone //Allows maintenance drones to understand, but not speak, Common.
+	understood_languages = list(
+		/datum/language/drone = list(LANGUAGE_ATOM),
+		/datum/language/common = list(LANGUAGE_ATOM)
+	)
+	spoken_languages = list(/datum/language/drone = list(LANGUAGE_ATOM))
+	blocked_languages = list()
+
 /mob/living/basic/drone
 	//So that drones can do things without worrying about stuff
 	shy = FALSE
