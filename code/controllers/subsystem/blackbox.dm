@@ -438,7 +438,7 @@ Versioning
 	job,
 	special,
 	latejoin) VALUES (
-	INET_ATON(:server_ip,
+	INET_ATON(:server_ip),
 	:port,
 	:round_id,
 	:ckey,
