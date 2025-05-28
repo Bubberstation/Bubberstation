@@ -140,7 +140,7 @@
 		new_left_leg = new /obj/item/bodypart/leg/left/taur()
 		new_right_leg = new /obj/item/bodypart/leg/right/taur()
 
-	if(organ_flags & ORGAN_ROBOTIC || use_synthetic_taur)
+	if((organ_flags & ORGAN_ROBOTIC) || use_synthetic_taur)
 		new_left_leg = new /obj/item/bodypart/leg/left/synth/taur()
 		new_right_leg = new /obj/item/bodypart/leg/right/synth/taur()
 

@@ -31,12 +31,13 @@
 		return FALSE
 
 	var/datum/sprite_accessory/taur_mode = SSaccessories.sprite_accessories["taur"][preferences.read_preference(/datum/preference/choiced/mutant_choice/taur)]
-	return (istype(taur_mode, /datum/sprite_accessory/taur))
+	return !istype(taur_mode, /datum/sprite_accessory/taur/none)
 
 /datum/preference/toggle/synthetic_taur/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	if (value)
+	if (!value)
 		return
 
 	var/obj/item/organ/taur_body/taur = target.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
 	if (istype(taur))
-		taur.organ_flags = ORGAN_ROBOTIC
+		taur.organ_flags &= ~ORGAN_ORGANIC
+		taur.organ_flags |= ORGAN_ROBOTIC
