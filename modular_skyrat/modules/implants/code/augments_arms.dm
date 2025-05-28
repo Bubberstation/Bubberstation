@@ -50,6 +50,7 @@
 	for(var/datum/weakref/created_item in items_list)
 	to_chat(usr, span_notice("You unlock [src]'s integrated energy arm blade! You madman!"))
 	items_list += WEAKREF(new /obj/item/melee/implantarmblade/energy(src))
+	obj_flags |= EMAGGED
 	return TRUE
 
 /obj/item/knife/razor_claws
