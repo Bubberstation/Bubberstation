@@ -85,6 +85,7 @@
 	key = "wings_functional"
 
 /datum/sprite_accessory/wings/robotic
+	recommended_species = list(SPECIES_PROTEAN, SPECIES_SYNTH)
 	locked = FALSE
 
 /datum/sprite_accessory/wings/skeleton
