@@ -117,7 +117,7 @@
 	var/obj/effect/overlay/status_indicator/resolved_indicator = status_indicators[prospective_indicator]
 	if(resolved_indicator)
 		status_indicators[prospective_indicator] = null
-		animate(resolved_indicator, pixel_z = 0, pixel_w = 0, time = 1 SECONDS, easing = ELASTIC_EASING, alpha = 0)
+		animate(resolved_indicator, pixel_z = rand(1,32), pixel_w = rand(1,32), time = 2 SECONDS, easing = LINEAR_EASING, alpha = 0)
 		addtimer(CALLBACK(src, PROC_REF(cleanup), resolved_indicator), 3 SECONDS)
 
 /datum/component/status_indicator/proc/cleanup(resolved_indicator)
@@ -132,7 +132,8 @@
 	var/mob/living/carbon/my_carbon_mob = attached_mob
 
 	var/icon_scale = get_icon_scale(my_carbon_mob)
-
+	this_indicator.pixel_z = rand(0,32)
+	this_indicator.pixel_w = rand(0,32)
 	if(my_carbon_mob.stat == DEAD)
 		return
 
@@ -153,7 +154,8 @@
 	current_x_position -= 16 * (icon_scale - DEFAULT_MOB_SCALE)
 	this_indicator.appearance_flags |= (KEEP_TOGETHER|RESET_COLOR|RESET_TRANSFORM)
 	my_carbon_mob.vis_contents |= this_indicator
-	animate(this_indicator, pixel_z = y_offset, pixel_w = current_x_position, time = 1 SECONDS, easing = ELASTIC_EASING, alpha = 255)
+
+	animate(this_indicator, pixel_z = y_offset, pixel_w = current_x_position, time = 1 SECONDS, easing = BOUNCE_EASING, alpha = 255)
 
 /datum/component/status_indicator/proc/get_icon_scale(livingmob)
 	if(!iscarbon(livingmob)) // normal mobs are always 1 for scale - hopefully all borgs and simplemobs get this one
