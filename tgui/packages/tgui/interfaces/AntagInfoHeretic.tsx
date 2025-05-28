@@ -83,6 +83,7 @@ type Info = {
   objectives: Objective[];
   can_change_objective: BooleanLike;
   paths: Paths[];
+  knowledge_shop: Knowledge[];
 };
 
 const IntroductionSection = (props) => {
@@ -345,6 +346,39 @@ const KnowledgeTree = (props) => {
   );
 };
 
+const KnowledgeShop = (props) => {
+  const { data, act } = useBackend<Info>();
+  const { knowledge_shop } = data;
+
+  const knowledges = () => {
+    if (!knowledge_shop.length) {
+      return 'None!';
+    }
+    return knowledge_shop?.map((knowledge, index) => (
+      <Stack.Item key="notOnlyAIndex(fillItIn)">
+        Tier {index + 1}
+        <hr />
+      </Stack.Item>
+    ));
+  };
+
+  return (
+    <Section title="Knowledge Shop" fill scrollable>
+      <Stack vertical fill>
+        <hr />
+        <Stack.Item>Tier 2</Stack.Item>
+        <hr />
+        <Stack.Item>Tier 3</Stack.Item>
+        <hr />
+        <Stack.Item>Tier 4</Stack.Item>
+        <hr />
+        <Stack.Item>Tier 5</Stack.Item>
+        <hr />
+      </Stack>
+    </Section>
+  );
+};
+
 const ResearchInfo = (props) => {
   const { data } = useBackend<Info>();
   const { charges } = data;
@@ -360,6 +394,9 @@ const ResearchInfo = (props) => {
       </Stack.Item>
       <Stack.Item grow>
         <KnowledgeTree />
+      </Stack.Item>
+      <Stack.Item grow>
+        <KnowledgeShop />
       </Stack.Item>
     </Stack>
   );
