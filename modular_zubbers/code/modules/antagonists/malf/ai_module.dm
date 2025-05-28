@@ -2,7 +2,7 @@
 /datum/ai_module/malf/utility/override_directive
 	name = "Positronic Chassis Hacking"
 	description = "Instill a directive upon a single Synthetic to follow your whims and protect you, \
-	Requires target to be incapacitated and non-mindshielded to use. \
+	requires target to be incapacitated and non-mindshielded to use. \
 	Synthetic may exhibit abnormal conditions that might be detected."
 	cost = 60
 	power_type = /datum/action/innate/ai/ranged/override_directive

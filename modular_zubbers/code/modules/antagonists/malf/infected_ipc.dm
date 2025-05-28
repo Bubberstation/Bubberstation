@@ -23,6 +23,8 @@
 		to_chat(admin, "Infected Synthetics come from a brain trauma, so they need to HAVE A BRAIN.")
 		return
 	var/chosen = tgui_input_list(admin, "Pick AI for the Synthetic to be bound to:", "Pick AI", GLOB.ai_list)
+	if(!chosen)
+		return
 	if(istype(chosen, /mob/living/silicon/ai))
 		owner_ai = chosen
 	if(!owner_ai)
@@ -70,7 +72,7 @@
 		return
 	var/obscured = source.check_obscured_slots()
 	if(!(obscured & ITEM_SLOT_EYES))
-		examine_text += span_boldwarning("[source.p_Their()] optics is weirdly corrupted")
+		examine_text += span_boldwarning("[source.p_Their()] optics are weirdly corrupted")
 
 /datum/antagonist/infected_ipc/proc/set_master(datum/mind/master)
 	//the proc that links the AI and gives objectives. also some fluff hack that isn't in greet() since it has to be in order to make sense.
