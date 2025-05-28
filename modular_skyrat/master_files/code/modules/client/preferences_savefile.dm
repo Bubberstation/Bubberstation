@@ -3,7 +3,7 @@
  * You can't really use the non-modular version, least you eventually want asinine merge
  * conflicts and/or potentially disastrous issues to arise, so here's your own.
  */
-#define MODULAR_SAVEFILE_VERSION_MAX 8
+#define MODULAR_SAVEFILE_VERSION_MAX 9
 
 #define MODULAR_SAVEFILE_UP_TO_DATE -1
 
@@ -15,6 +15,7 @@
 #define VERSION_LANGUAGES 6
 #define VERSION_LOADOUT_PRESETS 7
 #define VERSION_INTERNAL_EXTERNAL_ORGANS 8
+#define VERSION_PARTIAL_LANGUAGES 9
 
 #define INDEX_UNDERWEAR 1
 #define INDEX_BRA 2
@@ -264,6 +265,15 @@
 			var/augment_path_string_stripped = copytext(save_augments[augment_name], prefix_length + 1)
 			save_augments[augment_name] = "/obj/item/organ[augment_path_string_stripped]"
 		load_augments(save_augments)
+
+	if(current_version < VERSION_PARTIAL_LANGUAGES)
+		var/list/save_languages = save_data["languages"]
+		for (var/language in save_languages)
+			var/value = save_languages[language]
+			if (isnum(value) || (islist(value) && isnull(value[LANGUAGE_KNOWLEDGE])))
+				var/flags = isnum(value) ? value : UNDERSTOOD_LANGUAGE | SPOKEN_LANGUAGE
+				value = list(LANGUAGE_KNOWLEDGE = 100, LANGUAGE_FLAGS = flags)
+			languages[language] = value
 
 	to_chat(parent, custom_boxed_message("green_box", span_greentext("Updated preferences!")))
 

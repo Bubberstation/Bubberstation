@@ -1,5 +1,5 @@
 // THIS IS A SKYRAT UI FILE
-import { Box, Button, Section, Stack } from 'tgui-core/components';
+import { Box, Button, NumberInput, Section, Stack } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
 import { PreferencesMenuData } from './types';
@@ -16,6 +16,22 @@ export const KnownLanguage = (props) => {
           ? 'Can understand.'
           : 'Cannot understand.'}{' '}
         {props.language.can_speak ? 'Can speak.' : 'Cannot speak.'}
+        <br />
+        Understanding:
+        <NumberInput
+          width="30px"
+          minValue={0}
+          maxValue={100}
+          step={0.5}
+          value={props.language.partial_knowledge}
+          onChange={(new_value) =>
+            act('adjust_partial_language', {
+              language_name: props.language.name,
+              partial_amount: new_value,
+            })
+          }
+        />
+        %
         <br />
         <Button
           color="bad"
