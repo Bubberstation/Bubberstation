@@ -879,7 +879,7 @@
 		//obj/item/stack/pipe_cleaner_coil/cyborg,
 		//obj/item/chisel,
 		*/
-		/obj/item/reagent_containers/cup/rag,
+		/obj/item/rag,
 		//obj/item/storage/bag/money, //This is never used and there's already too much bloat
 		// SKYRAT EDIT END
 	)
