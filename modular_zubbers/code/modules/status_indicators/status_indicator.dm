@@ -71,6 +71,8 @@
 /datum/component/status_indicator/proc/status_indicator_evaluate()
 	SIGNAL_HANDLER
 	if(attached_mob.stat == DEAD)
+		for(var/status_indicator_current in status_indicators)
+			remove_status_indicator(status_indicator_current)
 		return
 	else
 		weaken_indicator_update()
@@ -116,9 +118,11 @@
 	if(resolved_indicator)
 		status_indicators[prospective_indicator] = null
 		animate(resolved_indicator, pixel_z = 0, pixel_w = 0, time = 1 SECONDS, easing = ELASTIC_EASING, alpha = 0)
-		ASYNC
-			QDEL_IN(resolved_indicator, 2 SECONDS)
-			attached_mob.vis_contents -= resolved_indicator
+		addtimer(CALLBACK(src, PROC_REF(cleanup), resolved_indicator), 3 SECONDS)
+
+/datum/component/status_indicator/proc/cleanup(resolved_indicator)
+	QDEL_IN(resolved_indicator, 2 SECONDS)
+	attached_mob.vis_contents -= resolved_indicator
 
 /// Refreshes the indicators over a mob's head. Should only be called when adding or removing a status indicator with the above procs,
 /// or when the mob changes size visually for some reason.
