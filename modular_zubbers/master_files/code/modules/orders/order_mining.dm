@@ -5,3 +5,11 @@
 /datum/orderable_item/consumables/synth_repair
 	purchase_path = /obj/item/reagent_containers/applicator/pill/robotic_patch/synth_repair
 	cost_per_order = 25
+
+/datum/orderable_item/consumables/robotic_repair
+	purchase_path = /obj/item/storage/medkit/robotic_repair
+	cost_per_order = 250
+
+/datum/orderable_item/consumables/preemo
+	purchase_path = /obj/item/storage/medkit/robotic_repair/preemo
+	cost_per_order = 400
