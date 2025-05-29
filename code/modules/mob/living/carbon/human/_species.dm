@@ -988,7 +988,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	var/attack_direction = get_dir(user, target)
 	var/attack_type = attacking_bodypart.attack_type
-	var/unarmed_sharpness = attacking_bodypart.unarmed_sharpness //SKYRAT EDIT ADDITION - If unarmed damage sharpness needs to be taken into account.
 	var/kicking = (atk_effect == ATTACK_EFFECT_KICK)
 	var/final_armor_block = armor_block
 	if(kicking || grappled) //kicks and punches when grappling bypass armor slightly.
