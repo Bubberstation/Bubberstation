@@ -59,6 +59,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	var/atom/movable/screen/zone_select
 	var/atom/movable/screen/pull_icon
 	var/atom/movable/screen/rest_icon
+	var/atom/movable/screen/sleep_icon
 	var/atom/movable/screen/throw_icon
 	var/atom/movable/screen/resist_icon
 	var/atom/movable/screen/module_store_icon
