@@ -170,11 +170,12 @@ GLOBAL_LIST_EMPTY(startup_messages)
 		"}
 
 	// Tell the server this page loaded.
-	dat += {"
-		<script>
-			location.href = "byond://?src=[text_ref(src)];title_is_ready=1";
-		</script>
-	"}
+	if(!title_screen_is_ready)
+		dat += {"
+			<script>
+				location.href = "byond://?src=[text_ref(src)];title_is_ready=1";
+			</script>
+		"}
 
 	dat += "</body></html>"
 
