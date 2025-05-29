@@ -134,11 +134,11 @@
 	attach(source, FALSE)
 
 /atom/movable/screen/text/screen_timer/Destroy()
-	. = ..()
 	if(length(timer_mobs))
 		remove_from(timer_mobs)
 
 	STOP_PROCESSING(SSprocessing, src)
+	. = ..()
 
 /atom/movable/screen/text/screen_timer/attached
 	maptext_x = 0
@@ -202,6 +202,6 @@
 	abstract_move(get_turf(tracked))
 
 /atom/movable/screen/text/screen_timer/attached/Destroy()
-	. = ..()
 	if(following_object)
 		unregister_follower()
+	. = ..()

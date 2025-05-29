@@ -38,7 +38,7 @@
 		inserted_card = null
 	return ..()
 
-/datum/component/armament/proc/on_attackby(atom/target, obj/item, mob/user)
+/datum/component/armament/proc/on_attackby(datum/source, obj/item, mob/user, list/modifiers)
 	SIGNAL_HANDLER
 
 	if(!user || !item)

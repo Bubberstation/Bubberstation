@@ -12,3 +12,10 @@
 	name = "Big Legs, Stanced Pegs"
 	icon_state = "biglegs_peg_stanced"
 	icon = 'modular_zubbers/icons/customization/taur.dmi'
+
+/datum/sprite_accessory/taur/bunny
+	name = "Bunny"
+	icon_state = "bigbunny"
+	icon = 'modular_zubbers/icons/customization/taur.dmi'
+	can_lay_down = TRUE
+	laydown_offset = -4

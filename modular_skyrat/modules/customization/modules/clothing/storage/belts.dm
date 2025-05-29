@@ -45,6 +45,7 @@
 	)
 	atom_storage.allow_big_nesting = TRUE // Lets the pouch work
 	AddElement(/datum/element/update_icon_updates_onmob)
+	PopulateContents()
 
 //Overrides normal dumping code to instead dump from the pouch item inside
 /datum/storage/belt/crusader/dump_content_at(atom/dest_object, mob/dumping_mob)
@@ -153,7 +154,8 @@
 		/obj/item/reagent_containers/medigel,
 		/obj/item/storage/pill_bottle,
 		/obj/item/implanter,
-		/obj/item/hypospray/mkii,
+		/obj/item/hypospray,
 		/obj/item/reagent_containers/cup/vial,
-		/obj/item/weaponcell/medical
+		/obj/item/weaponcell/medical,
+		/obj/item/reagent_containers/cup/tube
 		))

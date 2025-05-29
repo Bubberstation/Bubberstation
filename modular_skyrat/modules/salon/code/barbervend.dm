@@ -24,7 +24,6 @@
 		/obj/item/storage/box/lipsticks = 3,
 		/obj/item/lipstick/quantum = 1,
 		/obj/item/razor = 1,
-		/obj/item/storage/box/perfume = 1,
 	)
 	refill_canister = /obj/item/vending_refill/barbervend
 	default_price = PAYCHECK_CREW
