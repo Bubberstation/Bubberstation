@@ -74,7 +74,7 @@
 	set_greyscale(greyscale_colors, /datum/greyscale_config/shibari_rope/high)
 	return ..()
 
-/obj/item/stack/shibari_rope/split_stack(mob/user, amount)
+/obj/item/stack/shibari_rope/split_stack(amount)
 	. = ..()
 	if(.)
 		var/obj/item/stack/current_stack = .
@@ -142,24 +142,24 @@
 	var/obj/item/stack/shibari_rope/split_rope = null
 	var/slow = 0
 	if(them.bodyshape & BODYSHAPE_TAUR)
-		split_rope = split_stack(null, 2)
+		split_rope = split_stack(2)
 		slow = 4
 	else
-		split_rope = split_stack(null, 1)
-	if(split_rope)
-		shibari_groin = new(src)
-		shibari_groin.slowdown = slow
-		shibari_groin.set_greyscale(greyscale_colors)
-		shibari_groin.glow = glow
-		split_rope.forceMove(shibari_groin)
-		if(them.equip_to_slot_if_possible(shibari_groin, ITEM_SLOT_ICLOTHING, TRUE, FALSE, TRUE))
-			shibari_groin.tightness = tightness
-			shibari_groin = null
-			them.visible_message(span_warning("[user] tied [them]'s groin!"),\
-				span_userdanger("[user] tied your groin!"),\
-				span_hear("You hear ropes being completely tightened."))
-	else
+		split_rope = split_stack(1)
+	if(!split_rope)
 		to_chat(user, span_warning("You don't have enough ropes!"))
+		return
+	shibari_groin = new(src)
+	shibari_groin.slowdown = slow
+	shibari_groin.set_greyscale(greyscale_colors)
+	shibari_groin.glow = glow
+	split_rope.forceMove(shibari_groin)
+	if(them.equip_to_slot_if_possible(shibari_groin, ITEM_SLOT_ICLOTHING, TRUE, FALSE, TRUE))
+		shibari_groin.tightness = tightness
+		shibari_groin = null
+		them.visible_message(span_warning("[user] tied [them]'s groin!"),\
+			span_userdanger("[user] tied your groin!"),\
+			span_hear("You hear ropes being completely tightened."))
 
 
 
