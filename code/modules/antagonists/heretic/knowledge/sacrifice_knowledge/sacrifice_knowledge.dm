@@ -344,7 +344,7 @@
 	//BUBBERSTATION EDIT
 	if(is_species(sac_target, /datum/species/protean))
 		var/obj/item/organ/brain/protean/brain = sac_target.get_organ_slot(ORGAN_SLOT_BRAIN)
-		if(brain != NULL)
+		if(brain)
 			brain.revive()
 			brain.leave_modsuit()
 	//BUBBERSTATION EDIT END
