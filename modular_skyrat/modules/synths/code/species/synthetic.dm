@@ -75,8 +75,30 @@
 		human.adjustFireLoss(1) //Still deal some damage in case a cold environment would be preventing us from the sweet release to robot heaven
 		human.adjust_bodytemperature(13) //We're overheating!!
 		if(prob(10))
-			to_chat(human, span_warning("Alert: Critical damage taken! Cooling systems failing!"))
+			to_chat(human, span_warning("Alert: Critical damage taken, all systems failing."))
 			do_sparks(3, TRUE, human)
+
+	var/obj/item/organ/lungs/lungs = human.get_organ_slot(ORGAN_SLOT_LUNGS)
+	if(!lungs || (lungs.organ_flags & ORGAN_FAILING))
+		// No lungs or failing lungs present, apply overheating
+		human.adjust_bodytemperature(50)
+		human.adjustFireLoss(1)
+		if(prob(10))
+			to_chat(human, span_warning("Alert: Cooling system is non-functional or missing, OVERHEATING is imminent."))
+			do_sparks(3, TRUE, human)
+
+	var/obj/item/organ/heart/heart = human.get_organ_slot(ORGAN_SLOT_HEART)
+	if(!heart || (heart.organ_flags & ORGAN_FAILING))
+		// No heart or failing heart present, apply slowdown
+		human.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH, 5 SECONDS)
+		if(prob(10))
+			to_chat(human, span_warning("Alert: Oil pump is non-functional or missing. Hydraulics efficiency reduced."))
+
+	var/obj/item/organ/liver/liver = human.get_organ_slot(ORGAN_SLOT_LIVER)
+	if(!liver || (liver.organ_flags & ORGAN_FAILING))
+		// No liver or failing liver present, apply message informing of the missing liver
+		if(prob(10))
+			to_chat(human, span_warning("Alert: Reagent processing unit is non-functional or missing. Systems clogging."))
 
 /datum/species/synthetic/spec_revival(mob/living/carbon/human/transformer)
 	switch_to_screen(transformer, "Console")
