@@ -344,8 +344,9 @@
 	//BUBBERSTATION EDIT
 	if(is_species(sac_target, /datum/species/protean))
 		var/obj/item/organ/brain/protean/brain = sac_target.get_organ_slot(ORGAN_SLOT_BRAIN)
-		brain.revive()
-		brain.leave_modsuit()
+		if(brain != NULL)
+			brain.revive()
+			brain.leave_modsuit()
 	//BUBBERSTATION EDIT END
 	sac_target.visible_message(span_danger("[sac_target] begins to shudder violenty as dark tendrils begin to drag them into thin air!"))
 	sac_target.set_handcuffed(new /obj/item/restraints/handcuffs/energy/cult(sac_target))
