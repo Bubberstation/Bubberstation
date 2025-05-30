@@ -42,9 +42,7 @@
 	hood.set_greyscale(new_coat_colors) //Adopt the suit's grayscale coloring for visual clarity.
 
 /obj/item/clothing/head/hooded/winterhood/colourable
-	icon = 'icons/map_icons/clothing/head/_head.dmi'
-	icon_state = "/obj/item/clothing/head/hooded/winterhood/colourable"
-	post_init_icon_state = "hood_winter"
+	icon_state = "hood_winter"
 	greyscale_config = /datum/greyscale_config/winter_hood
 	greyscale_config_worn = /datum/greyscale_config/winter_hood/worn
 

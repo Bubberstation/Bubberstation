@@ -1,9 +1,8 @@
 /obj/item/reagent_containers/cup/vial
 	name = "broken hypovial"
 	desc = "You probably shouldn't be seeing this. Shout at a coder."
-	icon = 'icons/map_icons/items/_item.dmi'
-	icon_state = "/obj/item/reagent_containers/cup/vial"
-	post_init_icon_state = "hypovial"
+	icon = 'modular_skyrat/modules/hyposprays/icons/vials.dmi'
+	icon_state = "hypovial"
 	greyscale_config = /datum/greyscale_config/hypovial
 	fill_icon_state = "hypovial_fill"
 	spillable = FALSE
@@ -27,6 +26,8 @@
 		"Buff" = "hypovial-buff",
 		"Custom" = "hypovial-custom",
 	)
+	/// The original icon file where our overlays reside.
+	var/original_icon = 'modular_skyrat/modules/hyposprays/icons/vials.dmi'
 
 /obj/item/reagent_containers/cup/vial/Initialize(mapload)
 	. = ..()
@@ -43,7 +44,7 @@
 /obj/item/reagent_containers/cup/vial/click_ctrl_shift(mob/user, obj/item/I)
 	current_skin = null
 	icon_state = initial(icon_state)
-	icon = initial(icon)
+	icon = original_icon
 	greyscale_colors = null
 	reskin_obj(user)
 
@@ -89,13 +90,11 @@
 	possible_transfer_amounts = list(1,2,5,10,15,25,50)
 
 /obj/item/reagent_containers/cup/vial/small/style
-	icon_state = "/obj/item/reagent_containers/cup/vial/small/style"
-	post_init_icon_state = "hypovial"
+	icon_state = "hypovial"
 
 //Styles
 /obj/item/reagent_containers/cup/vial/small/style/generic
-	icon_state = "/obj/item/reagent_containers/cup/vial/small/style/generic"
-	post_init_icon_state = "hypovial-generic"
+	icon_state = "hypovial-generic"
 /obj/item/reagent_containers/cup/vial/small/style/brute
 	icon_state = "hypovial-brute"
 /obj/item/reagent_containers/cup/vial/small/style/burn

@@ -1,9 +1,8 @@
 /obj/item/storage/hypospraykit
 	name = "hypospray kit"
 	desc = "A hypospray kit with foam insets for hypovials and a mounting point on the bottom."
-	icon = 'icons/map_icons/items/_item.dmi'
-	icon_state = "/obj/item/storage/hypospraykit"
-	post_init_icon_state = "firstaid-mini"
+	icon = 'modular_skyrat/modules/hyposprays/icons/hypokits.dmi'
+	icon_state = "firstaid-mini"
 	worn_icon_state = "healthanalyzer" // Get a better sprite later
 	inhand_icon_state = "medkit"
 	greyscale_config = /datum/greyscale_config/hypokit
@@ -19,6 +18,8 @@
 	var/static/list/case_designs
 	var/static/list/case_designs_xl
 	var/is_xl = FALSE
+	/// The original icon file where our overlays reside.
+	var/original_icon = 'modular_skyrat/modules/hyposprays/icons/hypokits.dmi'
 
 	/// Tracks if a hypospray is attached to the case or not.
 	var/obj/item/hypospray/mkii/attached_hypo
@@ -90,17 +91,17 @@
 	. = ..()
 	if(attached_hypo)
 		if(attached_hypo.greyscale_colors != null) //it's one of the GAGS variants
-			var/mutable_appearance/hypo_overlay = mutable_appearance(initial(icon), attached_hypo.icon_state)
+			var/mutable_appearance/hypo_overlay = mutable_appearance(original_icon, attached_hypo.icon_state)
 			. += hypo_overlay
 			var/list/split_colors = splittext(attached_hypo.greyscale_colors, "#")
-			var/mutable_appearance/hypo_overlay_acc1 = mutable_appearance(initial(icon), "hypo2_accent1")
+			var/mutable_appearance/hypo_overlay_acc1 = mutable_appearance(original_icon, "hypo2_accent1")
 			hypo_overlay_acc1.color = "#[split_colors[2]]"
 			. += hypo_overlay_acc1
-			var/mutable_appearance/hypo_overlay_acc2 = mutable_appearance(initial(icon), "hypo2_accent2")
+			var/mutable_appearance/hypo_overlay_acc2 = mutable_appearance(original_icon, "hypo2_accent2")
 			hypo_overlay_acc2.color = "#[split_colors[3]]"
 			. += hypo_overlay_acc2
 		else
-			var/mutable_appearance/hypo_overlay = mutable_appearance(initial(icon), attached_hypo.icon_state)
+			var/mutable_appearance/hypo_overlay = mutable_appearance(original_icon, attached_hypo.icon_state)
 			. += hypo_overlay
 
 /obj/item/storage/hypospraykit/tool_act(mob/living/user, obj/item/tool, list/modifiers)
@@ -158,7 +159,7 @@
 		var/datum/greyscale_modify_menu/menu = new(src, usr, allowed_configs)
 		menu.ui_interact(usr)
 	else //restore normal icon
-		icon = initial(icon)
+		icon = original_icon
 		greyscale_colors = null
 
 /obj/item/storage/hypospraykit/proc/check_menu(mob/user)
@@ -186,8 +187,7 @@
 /obj/item/storage/hypospraykit/cmo
 	name = "deluxe hypospray kit"
 	desc = "An extended hypospray kit with foam insets for hypovials & a mounting point on the bottom."
-	icon_state = "/obj/item/storage/hypospraykit/cmo"
-	post_init_icon_state = "cmo-mini"
+	icon_state = "cmo-mini"
 	current_case = "cmo"
 	is_xl = TRUE
 	w_class = WEIGHT_CLASS_NORMAL
@@ -204,8 +204,7 @@
 
 /obj/item/storage/hypospraykit/cmo/empty
 	desc = "An extended hypospray kit with foam insets for hypovials & a mounting point on the bottom."
-	icon_state = "/obj/item/storage/hypospraykit/cmo/empty"
-	post_init_icon_state = "emt-mini"
+	icon_state = "emt-mini"
 	current_case = "emt"
 	empty = TRUE
 
@@ -227,8 +226,7 @@
 /obj/item/storage/hypospraykit/cmo/combat
 	name = "combat hypospray kit"
 	desc = "A larger tactical hypospray kit containing a combat-focused deluxe hypospray and vials."
-	icon_state = "/obj/item/storage/hypospraykit/cmo/combat"
-	post_init_icon_state = "tactical-mini"
+	icon_state = "tactical-mini"
 	current_case = "tactical"
 
 /obj/item/storage/hypospraykit/cmo/combat/PopulateContents()
@@ -247,8 +245,7 @@
 /obj/item/storage/hypospraykit/paramedic
 	name = "paramedic hypospray kit"
 	desc = "A hypospray kit containing an advanced hypospray and a starter set of vials."
-	icon_state = "/obj/item/storage/hypospraykit/paramedic"
-	post_init_icon_state = "buffs-mini"
+	icon_state = "buffs-mini"
 	current_case = "buffs"
 
 /obj/item/storage/hypospraykit/paramedic/PopulateContents()

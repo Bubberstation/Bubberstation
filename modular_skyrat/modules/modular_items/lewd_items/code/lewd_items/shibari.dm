@@ -6,8 +6,9 @@
 /obj/item/stack/shibari_rope
 	name = "shibari ropes"
 	desc = "Coil of bondage ropes."
-	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
-	icon_state = "shibari_rope"
+	icon = 'icons/map_icons/items/_item.dmi'
+	icon_state = "/obj/item/stack/shibari_rope"
+	post_init_icon_state = "shibari_rope"
 	amount = 1
 	merge_type = /obj/item/stack/shibari_rope
 	singular_name = "rope"
@@ -40,7 +41,8 @@
 	name = "glowy shibari ropes"
 	singular_name = "glowy rope"
 	merge_type = /obj/item/stack/shibari_rope/glow
-	icon_state = "shibari_rope_glow"
+	icon_state = "/obj/item/stack/shibari_rope/glow"
+	post_init_icon_state = "shibari_rope_glow"
 	light_system = OVERLAY_LIGHT
 	light_range = 1
 	light_on = TRUE

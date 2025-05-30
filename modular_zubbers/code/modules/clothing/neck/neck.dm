@@ -39,6 +39,7 @@
 /obj/item/clothing/neck/tie/bunnytie/syndicate
 	name = "blood-red bowtie collar"
 	desc = "A fancy tie that includes a red collar. Looking sinister..."
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_syndi_tied"
 	tie_type = "bowtie_collar_syndi"
 	armor_type = /datum/armor/large_scarf_syndie
@@ -53,6 +54,7 @@
 /obj/item/clothing/neck/tie/bunnytie/magician
 	name = "magician's bowtie collar"
 	desc = "A fancy gold tie that includes a collar. Looking magical!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_wiz_tied"
 	tie_type = "bowtie_collar_wiz"
 	greyscale_config = null
@@ -66,6 +68,7 @@
 /obj/item/clothing/neck/tie/bunnytie/centcom
 	name = "centcom bowtie collar"
 	desc = "A fancy gold tie that includes a collar. Looking in charge!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_centcom_tied"
 	tie_type = "bowtie_collar_centcom"
 	greyscale_config = null
@@ -78,6 +81,7 @@
 /obj/item/clothing/neck/tie/bunnytie/communist
 	name = "really red bowtie collar"
 	desc = "A simple red tie that includes a collar. Looking egalitarian!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_communist_tied"
 	tie_type = "bowtie_collar_communist"
 	greyscale_config = null
@@ -90,6 +94,7 @@
 /obj/item/clothing/neck/tie/bunnytie/blue
 	name = "blue bowtie collar"
 	desc = "A simple blue tie that includes a collar. Looking imperialist!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_blue_tied"
 	tie_type = "bowtie_collar_blue"
 	greyscale_config = null
@@ -104,6 +109,7 @@
 /obj/item/clothing/neck/tie/bunnytie/captain
 	name = "captain's bowtie"
 	desc = "A blue tie that includes a collar. Looking commanding!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_captain_tied"
 	tie_type = "bowtie_collar_captain"
 	greyscale_colors = null
@@ -119,6 +125,7 @@
 /obj/item/clothing/neck/tie/bunnytie/cargo
 	name = "cargo bowtie"
 	desc = "A brown tie that includes a collar. Looking unionized!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_cargo_tied"
 	tie_type = "bowtie_collar_cargo"
 	greyscale_colors = null
@@ -132,6 +139,7 @@
 /obj/item/clothing/neck/tie/bunnytie/miner
 	name = "shaft miner's bowtie"
 	desc = "A purple tie that includes a collar. Looking hardy!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_explorer_tied"
 	tie_type = "bowtie_collar_explorer"
 	greyscale_colors = null
@@ -145,6 +153,7 @@
 /obj/item/clothing/neck/tie/bunnytie/mailman
 	name = "mailman's bowtie"
 	desc = "A red tie that includes a collar. Looking unstoppable!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_mail_tied"
 	tie_type = "bowtie_collar_mail"
 	greyscale_colors = null
@@ -158,6 +167,7 @@
 /obj/item/clothing/neck/tie/bunnytie/bitrunner
 	name = "bitrunner's bowtie"
 	desc = "Bitrunners were told that wearing a novelty shirt with a printed bow tie wasn't enough for formal events."
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_bitrunner_tied"
 	tie_type = "bowtie_collar_bitrunner"
 	greyscale_colors = null
@@ -173,6 +183,7 @@
 /obj/item/clothing/neck/tie/bunnytie/engineer
 	name = "engineering bowtie"
 	desc = "An orange tie that includes a collar. Looking industrious!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_engi_tied"
 	tie_type = "bowtie_collar_engi"
 	greyscale_colors = null
@@ -187,6 +198,7 @@
 /obj/item/clothing/neck/tie/bunnytie/atmos_tech
 	name = "atmospheric technician's bowtie"
 	desc = "A blue tie that includes a collar. Looking inflammable!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_atmos_tied"
 	tie_type = "bowtie_collar_atmos"
 	greyscale_colors = null
@@ -200,6 +212,7 @@
 /obj/item/clothing/neck/tie/bunnytie/ce
 	name = "chief engineer's bowtie"
 	desc = "A green tie that includes a collar. Looking managerial!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_ce_tied"
 	tie_type = "bowtie_collar_ce"
 	greyscale_colors = null
@@ -215,6 +228,7 @@
 /obj/item/clothing/neck/tie/bunnytie/doctor
 	name = "medical bowtie"
 	desc = "A light blue tie that includes a collar. Looking helpful!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_doctor_tied"
 	tie_type = "bowtie_collar_doctor"
 	greyscale_colors = null
@@ -228,6 +242,7 @@
 /obj/item/clothing/neck/tie/bunnytie/paramedic
 	name = "paramedic's bowtie"
 	desc = "A white tie that includes a collar. Looking selfless!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_paramedic_tied"
 	tie_type = "bowtie_collar_paramedic"
 	greyscale_colors = null
@@ -241,6 +256,7 @@
 /obj/item/clothing/neck/tie/bunnytie/chemist
 	name = "chemist's bowtie"
 	desc = "An orange tie that includes a collar. Looking explosive!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_chem_tied"
 	tie_type = "bowtie_collar_chem"
 	greyscale_colors = null
@@ -254,6 +270,7 @@
 /obj/item/clothing/neck/tie/bunnytie/pathologist
 	name = "pathologist's bowtie"
 	desc = "A green tie that includes a collar. Looking infectious!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_virologist_tied"
 	tie_type = "bowtie_collar_virologist"
 	greyscale_colors = null
@@ -267,6 +284,7 @@
 /obj/item/clothing/neck/tie/bunnytie/coroner
 	name = "coroner's bowtie"
 	desc = "A black tie that includes a collar. Looking dead...Dead good!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_coroner_tied"
 	tie_type = "bowtie_collar_coroner"
 	greyscale_colors = null
@@ -280,6 +298,7 @@
 /obj/item/clothing/neck/tie/bunnytie/cmo
 	name = "chief medical officer's bowtie"
 	desc = "A blue tie that includes a collar. Looking responsible!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_cmo_tied"
 	tie_type = "bowtie_collar_cmo"
 	greyscale_colors = null
@@ -295,6 +314,7 @@
 /obj/item/clothing/neck/tie/bunnytie/scientist
 	name = "scientist's bowtie"
 	desc = "A purple tie that includes a collar. Looking intelligent!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_science_tied"
 	tie_type = "bowtie_collar_science"
 	greyscale_colors = null
@@ -308,6 +328,7 @@
 /obj/item/clothing/neck/tie/bunnytie/roboticist
 	name = "roboticist's bowtie"
 	desc = "A red tie that includes a collar. Looking transhumanist!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_roboticist_tied"
 	tie_type = "bowtie_collar_roboticist"
 	greyscale_colors = null
@@ -321,6 +342,7 @@
 /obj/item/clothing/neck/tie/bunnytie/geneticist
 	name = "geneticist's bowtie"
 	desc = "A blue tie that includes a collar. Looking aberrant!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_genetics_tied"
 	tie_type = "bowtie_collar_genetics"
 	greyscale_colors = null
@@ -334,6 +356,7 @@
 /obj/item/clothing/neck/tie/bunnytie/rd
 	name = "research director's bowtie"
 	desc = "A purple tie that includes a collar. Looking inventive!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_science_tied"
 	tie_type = "bowtie_collar_science"
 	greyscale_colors = null
@@ -349,6 +372,7 @@
 /obj/item/clothing/neck/tie/bunnytie/security
 	name = "security bowtie"
 	desc = "A red tie that includes a collar. Looking tough!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_sec_tied"
 	tie_type = "bowtie_collar_sec"
 	greyscale_colors = null
@@ -362,6 +386,7 @@
 /obj/item/clothing/neck/tie/bunnytie/security_assistant
 	name = "security assistant's bowtie"
 	desc = "A grey tie that includes a collar. Looking \"helpful\"."
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_sec_assistant_tied"
 	tie_type = "bowtie_collar_sec_assistant"
 	greyscale_colors = null
@@ -375,6 +400,7 @@
 /obj/item/clothing/neck/tie/bunnytie/brig_phys
 	name = "brig physician's bowtie"
 	desc = "A red tie that includes a collar. Looking underappreciated!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_brig_phys_tied"
 	tie_type = "bowtie_collar_brig_phys"
 	greyscale_colors = null
@@ -388,6 +414,7 @@
 /obj/item/clothing/neck/tie/bunnytie/detective
 	name = "detective's tie collar"
 	desc = "A brown tie that includes a collar. Looking inquisitive!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "tie_collar_det_tied"
 	tie_type = "tie_collar_det"
 	greyscale_colors = null
@@ -401,6 +428,7 @@
 /obj/item/clothing/neck/tie/bunnytie/prisoner
 	name = "prisoner's bowtie"
 	desc = "A black tie that includes a collar. Looking criminal!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_prisoner_tied"
 	tie_type = "bowtie_collar_prisoner"
 	greyscale_colors = null
@@ -416,6 +444,7 @@
 /obj/item/clothing/neck/tie/bunnytie/hop
 	name = "head of personnel's bowtie"
 	desc = "A dull red tie that includes a collar. Looking bogged down."
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_hop_tied"
 	tie_type = "bowtie_collar_hop"
 	greyscale_colors = null
@@ -429,6 +458,7 @@
 /obj/item/clothing/neck/tie/bunnytie/janitor
 	name = "janitor's bowtie"
 	desc = "A purple tie that includes a collar. Looking tidy!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_janitor_tied"
 	tie_type = "bowtie_collar_janitor"
 	greyscale_colors = null
@@ -451,6 +481,7 @@
 /obj/item/clothing/neck/tie/bunnytie/cook
 	name = "cook's bowtie"
 	desc = "A red tie that includes a collar. Looking culinary!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_chef_tied"
 	tie_type = "bowtie_collar_chef"
 	greyscale_colors = null
@@ -464,6 +495,7 @@
 /obj/item/clothing/neck/tie/bunnytie/botanist
 	name = "botanist's bowtie"
 	desc = "A blue tie that includes a collar. Looking green-thumbed!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_botany_tied"
 	tie_type = "bowtie_collar_botany"
 	greyscale_colors = null
@@ -500,6 +532,7 @@
 /obj/item/clothing/neck/tie/bunnytie/lawyer_black
 	name = "lawyer's black tie collar"
 	desc = "A black tie that includes a collar. Looking legal!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "tie_collar_lawyer_black_tied"
 	tie_type = "tie_collar_lawyer_black"
 	greyscale_colors = null
@@ -513,6 +546,7 @@
 /obj/item/clothing/neck/tie/bunnytie/lawyer_blue
 	name = "lawyer's blue tie collar"
 	desc = "A blue tie that includes a collar. Looking defensive!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "tie_collar_lawyer_blue_tied"
 	tie_type = "tie_collar_lawyer_blue"
 	greyscale_colors = null
@@ -526,6 +560,7 @@
 /obj/item/clothing/neck/tie/bunnytie/lawyer_red
 	name = "lawyer's red tie collar"
 	desc = "A red tie that includes a collar. Looking prosecutive!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "tie_collar_lawyer_red_tied"
 	tie_type = "tie_collar_lawyer_red"
 	greyscale_colors = null
@@ -539,6 +574,7 @@
 /obj/item/clothing/neck/tie/bunnytie/lawyer_good
 	name = "good lawyer's tie collar"
 	desc = "A black tie that includes a collar. Looking technically legal!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "tie_collar_lawyer_good_tied"
 	tie_type = "tie_collar_lawyer_good"
 	greyscale_colors = null

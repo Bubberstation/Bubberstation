@@ -8,10 +8,17 @@
 
 /obj/item/clothing/under/dress/skyrat
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/skirts_dresses.dmi'
+	icon_state = null
+	post_init_icon_state = null
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/skirts_dresses.dmi'
+	greyscale_config = null
+	greyscale_config_worn = null
+	greyscale_colors = null
 
 /obj/item/clothing/under/dress/skirt/skyrat	//Just so they can stay under TG's skirts in case code needs subtypes of them (also SDMM dropdown looks nicer like this)
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/skirts_dresses.dmi'
+	icon_state = null
+	post_init_icon_state = null
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/skirts_dresses.dmi'
 	// TG gave these greyscales but ours don't get them yet
 	greyscale_config = null

@@ -18,9 +18,8 @@
 
 /obj/item/hypospray/mkii
 	name = "hypospray Mk.II"
-	icon = 'icons/map_icons/items/_item.dmi'
-	icon_state = "/obj/item/hypospray/mkii"
-	post_init_icon_state = "hypo2"
+	icon = 'modular_skyrat/modules/hyposprays/icons/hypokits.dmi'
+	icon_state = "hypo2"
 	greyscale_config = /datum/greyscale_config/hypospray_mkii
 	desc = "A new development from DeForest Medical, this hypospray takes 50-unit vials as the drug supply for easy swapping."
 	w_class = WEIGHT_CLASS_TINY
@@ -47,12 +46,13 @@
 	var/penetrates = null
 	/// Used for GAGS-ified hypos.
 	var/gags_bodystate = "hypo2_normal"
+	/// The original icon file where our overlays reside.
+	var/original_icon = 'modular_skyrat/modules/hyposprays/icons/hypokits.dmi'
 
 /obj/item/hypospray/mkii/combat
 	name = "hypospray Mk.II combat"
 	allowed_containers = list(/obj/item/reagent_containers/cup/vial/small)
-	icon_state = "/obj/item/hypospray/mkii/combat"
-	post_init_icon_state = "combathypo2"
+	icon_state = "combathypo2"
 	gags_bodystate = "hypo2_combat"
 	desc = "The combat variant of DeForest Hypospray Mk. II series, able to pierce through thick armor and quickly self-inject the user in combat scenarios."
 	inject_wait = WAIT_INJECT
@@ -64,8 +64,7 @@
 /obj/item/hypospray/mkii/piercing
 	name = "hypospray Mk.II advanced"
 	allowed_containers = list(/obj/item/reagent_containers/cup/vial/small)
-	icon_state = "/obj/item/hypospray/mkii/piercing"
-	post_init_icon_state = "piercinghypo2"
+	icon_state = "piercinghypo2"
 	gags_bodystate = "hypo2_piercing"
 	desc = "The advanced variant in the DeForest Hypospray Mk. II series, able to pierce through thick armor and quickly spray or inject the chemicals."
 	spray_self = DELUXE_SELF_INJECT
@@ -92,16 +91,14 @@
 
 /obj/item/hypospray/mkii/deluxe
 	name = "hypospray Mk.II deluxe"
-	icon_state = "/obj/item/hypospray/mkii/deluxe"
-	post_init_icon_state = "bighypo2"
+	icon_state = "bighypo2"
 	gags_bodystate = "hypo2_deluxe"
 	desc = "The deluxe variant of the Hypospray Mk. II, able to take both 100u and 50u vials."
 	allowed_containers = list(/obj/item/reagent_containers/cup/vial/small, /obj/item/reagent_containers/cup/vial/large)
 
 /obj/item/hypospray/mkii/deluxe/cmo
 	name = "hypospray Mk.II deluxe: CMO edition"
-	icon_state = "/obj/item/hypospray/mkii/deluxe/cmo"
-	post_init_icon_state = "cmo2"
+	icon_state = "cmo2"
 	gags_bodystate = "hypo2_cmo"
 	desc = "The CMO's prized Hypospray Mk. II Deluxe, able to take both 100u and 50u vials, acting faster and able to deliver more reagents per spray."
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
@@ -113,8 +110,7 @@
 
 /obj/item/hypospray/mkii/deluxe/combat
 	name = "hypospray Mk.II deluxe: combat edition"
-	icon_state = "/obj/item/hypospray/mkii/deluxe/combat"
-	post_init_icon_state = "combat2"
+	icon_state = "combat2"
 	gags_bodystate = "hypo2_tactical"
 	desc = "A variant of the Hypospray Mk. II Deluxe, able to take both 100u and 50u vials, with overcharged applicators and an armor-piercing tip."
 	// Made non-indestructible since this is typically an admin spawn.  still robust though!
@@ -144,17 +140,17 @@
 			vial_spritetype += "[vial.type_suffix]"
 		else
 			vial_spritetype += "-s"
-		var/mutable_appearance/chem_loaded = mutable_appearance(initial(icon), vial_spritetype)
+		var/mutable_appearance/chem_loaded = mutable_appearance(original_icon, vial_spritetype)
 		chem_loaded.color = vial.chem_color
 		. += chem_loaded
 	if(vial.greyscale_colors != null)
-		var/mutable_appearance/vial_overlay = mutable_appearance(initial(icon), "[vial.icon_state]-body")
+		var/mutable_appearance/vial_overlay = mutable_appearance(original_icon, "[vial.icon_state]-body")
 		vial_overlay.color = vial.greyscale_colors
 		. += vial_overlay
-		var/mutable_appearance/vial_overlay_glass = mutable_appearance(initial(icon), "[vial.icon_state]-glass")
+		var/mutable_appearance/vial_overlay_glass = mutable_appearance(original_icon, "[vial.icon_state]-glass")
 		. += vial_overlay_glass
 	else
-		var/mutable_appearance/vial_overlay = mutable_appearance(initial(icon), vial.icon_state)
+		var/mutable_appearance/vial_overlay = mutable_appearance(original_icon, vial.icon_state)
 		. += vial_overlay
 
 /obj/item/hypospray/mkii/examine(mob/user)
@@ -181,7 +177,7 @@
 		menu.ui_interact(usr)
 	else
 		icon_state = initial(icon_state)
-		icon = initial(icon)
+		icon = original_icon
 		greyscale_colors = null
 
 /obj/item/hypospray/mkii/proc/unload_hypo(obj/item/hypo, mob/user)
