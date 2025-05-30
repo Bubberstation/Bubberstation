@@ -668,25 +668,30 @@
 	var/emagged = FALSE
 	var/non_departmental_uses_left = 4
 
-/obj/item/melee/baton/security/loaded/departmental/baton_attack(mob/living/target, mob/living/user, modifiers)
-	if(active && !emagged && cooldown_check <= world.time)
-		var/area/current_area = get_area(user)
-		if(!is_type_in_list(current_area, valid_areas))
-			if(non_departmental_uses_left)
-				non_departmental_uses_left--
-				if(non_departmental_uses_left)
-					say("[non_departmental_uses_left] non-departmental uses left!")
-				else
-					say("[src] is out of non-departmental uses! Return to your department and reactivate the baton to refresh it!")
-			else
-				target.visible_message(span_warning("[user] prods [target] with [src]. Luckily, it shut off due to being in the wrong area."), \
-					span_warning("[user] prods you with [src]. Luckily, it shut off due to being in the wrong area."))
-				active = FALSE
-				balloon_alert(user, "wrong department")
-				playsound(src, SFX_SPARKS, 75, TRUE, -1)
-				update_appearance()
-				return BATON_ATTACK_DONE
+/obj/item/melee/baton/security/loaded/departmental/pre_attack(atom/target, mob/living/user, list/modifiers, list/attack_modifiers)
 	. = ..()
+	if(. || !isliving(target))
+		return .
+
+	if(!active)
+		return .
+
+	var/area/current_area = get_area(user)
+	if(emagged || is_type_in_list(current_area, valid_areas))
+		return .
+
+	if(non_departmental_uses_left)
+		if(--non_departmental_uses_left)
+			say("[non_departmental_uses_left] non-departmental uses left!")
+		else
+			say("[src] is out of non-departmental uses! Return to your department and reactivate the baton to refresh it!")
+		return .
+
+	target.visible_message(span_warning("[user] prods [target] with [src]. Luckily, it was shut off due to being in the wrong area."), \
+						span_warning("[user] prods you with [src]. Luckily, it was shut off due to being in the wrong area."))
+	turn_off()
+	balloon_alert(user, "wrong department")
+	return TRUE
 
 /obj/item/melee/baton/security/loaded/departmental/attack_self(mob/user)
 	. = ..()
