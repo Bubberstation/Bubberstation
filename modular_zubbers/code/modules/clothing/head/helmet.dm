@@ -68,9 +68,10 @@
 /obj/item/clothing/head/henchmen_hat
 	name = "henchmen cap"
 	desc = "Alright boss.. I'll handle it."
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	icon = 'icons/map_icons/clothing/head/_head.dmi'
+	icon_state = "/obj/item/clothing/head/henchmen_hat"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
-	icon_state = "greyscale_cap"
+	post_init_icon_state = "greyscale_cap"
 	greyscale_colors = "#201b1a"
 	greyscale_config = /datum/greyscale_config/henchmen
 	greyscale_config_worn = /datum/greyscale_config/henchmen/worn
@@ -82,9 +83,10 @@
 /obj/item/clothing/head/playbunnyears
 	name = "bunny ears headband"
 	desc = "A pair of bunny ears attached to a headband. One of the ears is already crooked."
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	icon = 'icons/map_icons/clothing/head/_head.dmi'
+	icon_state = "/obj/item/clothing/head/playbunnyears"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
-	icon_state = "playbunny_ears"
+	post_init_icon_state = "playbunny_ears"
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 	greyscale_colors = "#39393f"
 	greyscale_config = /datum/greyscale_config/playbunnyears

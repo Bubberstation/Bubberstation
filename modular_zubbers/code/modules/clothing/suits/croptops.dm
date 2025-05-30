@@ -4,7 +4,9 @@
 	name = "crop-top jacket"
 	desc = "A jacket that, some time long past, probably made quite the effective outdoors wear. Now, \
 		some barbarian has cut the entire bottom half out."
-	icon_state = "crop_jacket"
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/crop_jacket"
+	post_init_icon_state = "crop_jacket"
 	greyscale_config = /datum/greyscale_config/crop_jacket
 	greyscale_config_worn = /datum/greyscale_config/crop_jacket/worn
 	greyscale_colors = "#ebebeb#a52f29#292929"
@@ -20,7 +22,8 @@
 	name = "short-sleeved crop-top jacket"
 	desc = "A jacket that, some time long past, probably made quite the effective outdoors wear. Now, \
 		some barbarian has cut the entire bottom half out, as well as half the sleeves."
-	icon_state = "crop_jacket_short"
+	icon_state = "/obj/item/clothing/suit/crop_jacket/shortsleeve"
+	post_init_icon_state = "crop_jacket_short"
 	greyscale_config = /datum/greyscale_config/shortsleeve_crop_jacket
 	greyscale_config_worn = /datum/greyscale_config/shortsleeve_crop_jacket/worn
 
@@ -28,7 +31,8 @@
 	name = "sleeveless crop-top jacket"
 	desc = "A jacket that, some time long past, probably made quite the effective outdoors wear. Now, \
 		some barbarian has cut the entire bottom half out, as well as the sleeves."
-	icon_state = "crop_jacket_sleeveless"
+	icon_state = "/obj/item/clothing/suit/crop_jacket/sleeveless"
+	post_init_icon_state = "crop_jacket_sleeveless"
 	greyscale_config = /datum/greyscale_config/sleeveless_crop_jacket
 	greyscale_config_worn = /datum/greyscale_config/sleeveless_crop_jacket/worn
 	greyscale_colors = "#ebebeb#a52f29"

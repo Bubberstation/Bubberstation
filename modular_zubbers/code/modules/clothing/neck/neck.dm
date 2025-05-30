@@ -22,9 +22,10 @@
 /obj/item/clothing/neck/tie/bunnytie
 	name = "bowtie collar"
 	desc = "A fancy tie that includes a collar. Looking snazzy!"
-	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
+	icon = 'icons/map_icons/clothing/neck.dmi'
+	icon_state = "/obj/item/clothing/neck/tie/bunnytie"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
-	icon_state = "bowtie_collar_tied"
+	post_init_icon_state = "bowtie_collar_tied"
 	tie_type = "bowtie_collar"
 	greyscale_colors = "#ffffff#39393f"
 	greyscale_config = /datum/greyscale_config/bowtie_collar

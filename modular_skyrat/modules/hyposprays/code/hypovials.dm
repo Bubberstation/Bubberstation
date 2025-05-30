@@ -1,8 +1,9 @@
 /obj/item/reagent_containers/cup/vial
 	name = "broken hypovial"
 	desc = "You probably shouldn't be seeing this. Shout at a coder."
-	icon = 'modular_skyrat/modules/hyposprays/icons/vials.dmi'
-	icon_state = "hypovial"
+	icon = 'icons/map_icons/items/_item.dmi'
+	icon_state = "/obj/item/reagent_containers/cup/vial"
+	post_init_icon_state = "hypovial"
 	greyscale_config = /datum/greyscale_config/hypovial
 	fill_icon_state = "hypovial_fill"
 	spillable = FALSE
@@ -88,11 +89,13 @@
 	possible_transfer_amounts = list(1,2,5,10,15,25,50)
 
 /obj/item/reagent_containers/cup/vial/small/style
-	icon_state = "hypovial"
+	icon_state = "/obj/item/reagent_containers/cup/vial/small/style"
+	post_init_icon_state = "hypovial"
 
 //Styles
 /obj/item/reagent_containers/cup/vial/small/style/generic
-	icon_state = "hypovial-generic"
+	icon_state = "/obj/item/reagent_containers/cup/vial/small/style/generic"
+	post_init_icon_state = "hypovial-generic"
 /obj/item/reagent_containers/cup/vial/small/style/brute
 	icon_state = "hypovial-brute"
 /obj/item/reagent_containers/cup/vial/small/style/burn

@@ -60,9 +60,10 @@
 /obj/item/clothing/suit/jacket/henchmen_coat
 	name = "henchmen coat"
 	desc = "Alright boss.. I'll handle it."
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/jacket/henchmen_coat"
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/jacket_digi.dmi'
-	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
-	icon_state = "greyscale_coat"
+	post_init_icon_state = "greyscale_coat"
 	greyscale_colors = "#201b1a"
 	greyscale_config = /datum/greyscale_config/henchmen
 	greyscale_config_worn = /datum/greyscale_config/henchmen/worn
@@ -79,8 +80,9 @@
 	desc = "A coat usually worn by bunny themed waiters and the like."
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/jacket_digi.dmi'
-	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
-	icon_state = "tailcoat"
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/jacket/tailcoat"
+	post_init_icon_state = "tailcoat"
 	greyscale_colors = "#39393f"
 	greyscale_config = /datum/greyscale_config/tailcoat
 	greyscale_config_worn = /datum/greyscale_config/tailcoat_worn
@@ -89,7 +91,8 @@
 /obj/item/clothing/suit/jacket/tailcoat/bartender
 	name = "bartender's tailcoat"
 	desc = "A coat usually worn by bunny themed bartenders. It has an interior holster for firearms and some extra padding for minor protection."
-	icon_state = "tailcoat_bar"
+	icon_state = "/obj/item/clothing/suit/jacket/tailcoat/bartender"
+	post_init_icon_state = "tailcoat_bar"
 	greyscale_colors = "#39393f#ffffff"
 	greyscale_config = /datum/greyscale_config/tailcoat_bar
 	greyscale_config_worn = /datum/greyscale_config/tailcoat_bar_worn

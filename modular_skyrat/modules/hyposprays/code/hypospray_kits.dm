@@ -1,8 +1,9 @@
 /obj/item/storage/hypospraykit
 	name = "hypospray kit"
 	desc = "A hypospray kit with foam insets for hypovials and a mounting point on the bottom."
-	icon = 'modular_skyrat/modules/hyposprays/icons/hypokits.dmi'
-	icon_state = "firstaid-mini"
+	icon = 'icons/map_icons/items/_item.dmi'
+	icon_state = "/obj/item/storage/hypospraykit"
+	post_init_icon_state = "firstaid-mini"
 	worn_icon_state = "healthanalyzer" // Get a better sprite later
 	inhand_icon_state = "medkit"
 	greyscale_config = /datum/greyscale_config/hypokit
@@ -185,7 +186,8 @@
 /obj/item/storage/hypospraykit/cmo
 	name = "deluxe hypospray kit"
 	desc = "An extended hypospray kit with foam insets for hypovials & a mounting point on the bottom."
-	icon_state = "cmo-mini"
+	icon_state = "/obj/item/storage/hypospraykit/cmo"
+	post_init_icon_state = "cmo-mini"
 	current_case = "cmo"
 	is_xl = TRUE
 	w_class = WEIGHT_CLASS_NORMAL
@@ -202,7 +204,8 @@
 
 /obj/item/storage/hypospraykit/cmo/empty
 	desc = "An extended hypospray kit with foam insets for hypovials & a mounting point on the bottom."
-	icon_state = "emt-mini"
+	icon_state = "/obj/item/storage/hypospraykit/cmo/empty"
+	post_init_icon_state = "emt-mini"
 	current_case = "emt"
 	empty = TRUE
 
@@ -224,7 +227,8 @@
 /obj/item/storage/hypospraykit/cmo/combat
 	name = "combat hypospray kit"
 	desc = "A larger tactical hypospray kit containing a combat-focused deluxe hypospray and vials."
-	icon_state = "tactical-mini"
+	icon_state = "/obj/item/storage/hypospraykit/cmo/combat"
+	post_init_icon_state = "tactical-mini"
 	current_case = "tactical"
 
 /obj/item/storage/hypospraykit/cmo/combat/PopulateContents()
@@ -243,7 +247,8 @@
 /obj/item/storage/hypospraykit/paramedic
 	name = "paramedic hypospray kit"
 	desc = "A hypospray kit containing an advanced hypospray and a starter set of vials."
-	icon_state = "buffs-mini"
+	icon_state = "/obj/item/storage/hypospraykit/paramedic"
+	post_init_icon_state = "buffs-mini"
 	current_case = "buffs"
 
 /obj/item/storage/hypospraykit/paramedic/PopulateContents()
