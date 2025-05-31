@@ -35,10 +35,12 @@
 	for(var/datum/reagent/consumable/food in reagents.reagent_list)
 		food.nutriment_factor = 0
 	. = ..()
-	handle_hunger_slowdown(owner, seconds_per_tick)
+	handle_protean_hunger(owner, seconds_per_tick)
 
-/obj/item/organ/stomach/protean/handle_hunger_slowdown(mob/living/carbon/human/human, seconds_per_tick)
+/obj/item/organ/stomach/protean/proc/handle_protean_hunger(mob/living/carbon/human/human, seconds_per_tick)
 	if(!istype(owner.dna.species, /datum/species/protean))
+		return
+	if(isnull(owner.client)) // So we dont die from afk/crashing out
 		return
 	if(metal > PROTEAN_STOMACH_FALTERING)
 		owner.remove_movespeed_modifier(/datum/movespeed_modifier/protean_slowdown)

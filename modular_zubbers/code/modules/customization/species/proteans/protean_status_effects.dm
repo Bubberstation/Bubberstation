@@ -7,7 +7,8 @@
 /atom/movable/screen/alert/status_effect/protean_low_power_mode
 	name = "Low Power Mode"
 	desc = "You are running on low power mode, this slows you down but means you'll use way less material to sustain yourself"
-	// Todo - icons
+	icon = 'modular_zubbers/icons/hud/screen_alert.dmi'
+	icon_state = "protean_lowpower"
 
 /datum/status_effect/protean_low_power_mode/on_apply()
 	. = ..()
@@ -27,6 +28,7 @@
 /atom/movable/screen/alert/status_effect/protean_low_power_mode/reform
 	name = "Freshly reformed"
 	desc = "You have just reformed from inside your modsuit, leaving you slowed down and weaker as you finalize your form"
+	icon_state = "protean_reform"
 
 /datum/status_effect/protean_low_power_mode/reform/on_apply()
 	. = ..()
