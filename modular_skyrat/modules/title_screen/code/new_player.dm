@@ -10,6 +10,9 @@
 /mob/dead/new_player/proc/trigger_unvetted_warning()
 	if(unvetted_notified)
 		return TRUE
+	if(!CONFIG_GET(flag/check_vetted))
+		unvetted_notified = TRUE
+		return TRUE
 	if(!SSplayer_ranks.initialized)
 		return TRUE
 	if(SSplayer_ranks.is_vetted(client, admin_bypass = FALSE))

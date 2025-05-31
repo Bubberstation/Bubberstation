@@ -17,7 +17,9 @@
 	maptext_width = view_to_pixels(hud.mymob.canon_client.view_size.getView())[1]
 
 /atom/movable/screen/text/activation_text/proc/update_status()
-	if(vetted || !hud?.mymob?.canon_client || !SSplayer_ranks.initialized)
+	if(!CONFIG_GET(flag/check_vetted))
+		return
+	if(vetted || !SSplayer_ranks.initialized || !hud?.mymob?.canon_client)
 		return
 	if(!SSplayer_ranks.is_vetted(hud.mymob.canon_client, admin_bypass = FALSE))
 		maptext = MAPTEXT_SELAWIK("<span style='text-align: right; color: #7A7E88'>Activate Bubberstation</span>")
