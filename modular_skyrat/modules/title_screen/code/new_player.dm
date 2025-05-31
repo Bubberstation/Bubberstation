@@ -30,7 +30,7 @@
 	tgui_deadline_alert(
 		src,
 		"Unvetted players will lose the ability to join or observe rounds in [remaining_time] day\s!",
-		"You are unvetted!",
+		"Get vetted by [time2text(DEADLINE_TIMESTAMP, "Month DD YYYY")]!",
 		days_remaining = remaining_time,
 		timeout = 10 SECONDS,
 	)
