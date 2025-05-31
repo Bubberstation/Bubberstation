@@ -98,6 +98,13 @@
 	can_lay_down = TRUE
 	laydown_offset = -4
 
+/datum/sprite_accessory/taur/bunny
+	name = "Bunny"
+	icon_state = "bigbunny"
+	icon = 'modular_zubbers/icons/customization/taur.dmi'
+	can_lay_down = TRUE
+	laydown_offset = -4
+
 /datum/sprite_accessory/taur/drake
 	name = "Drake"
 	icon_state = "drake"
@@ -140,6 +147,11 @@
 	icon_state = "naga"
 	taur_mode = STYLE_TAUR_SNAKE
 	organ_type = /obj/item/organ/taur_body/serpentine
+
+/datum/sprite_accessory/taur/naga/fat
+	name = "Naga, Fat"
+	icon_state = "nagafat"
+	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/taur.dmi'
 
 /datum/sprite_accessory/taur/naga/striped
 	name = "Naga, Striped"
@@ -221,3 +233,13 @@
 /datum/sprite_accessory/taur/biglegs/stanced/bird
 	name = "Big Legs, Stanced Bird"
 	icon_state = "biglegs_bird_stanced"
+
+/datum/sprite_accessory/taur/biglegs/peg
+	name = "Big Legs, Pegs"
+	icon_state = "biglegs_peg"
+	icon = 'modular_zubbers/icons/customization/taur.dmi'
+
+/datum/sprite_accessory/taur/biglegs/stanced/peg
+	name = "Big Legs, Stanced Pegs"
+	icon_state = "biglegs_peg_stanced"
+	icon = 'modular_zubbers/icons/customization/taur.dmi'
