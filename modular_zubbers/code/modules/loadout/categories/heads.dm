@@ -33,7 +33,7 @@
 /datum/loadout_item/head/helmet/sec/futuristic
 	name = "futuristic security helmet"
 	item_path = /obj/item/clothing/head/helmet/sec/futuristic
-	restricted_roles = list(ALL_JOBS_SEC)
+	restricted_roles = list(ALL_JOBS_SEC, ALL_JOBS_DEPT_GUARDS)
 
 /datum/loadout_item/head/sombrero
 	name = "Sombrero"
@@ -72,7 +72,7 @@
 /datum/loadout_item/head/security_cap
 	name = "Security cap"
 	item_path = /obj/item/clothing/head/security_cap
-	restricted_roles = list(ALL_JOBS_SEC)
+	restricted_roles = list(ALL_JOBS_SEC, ALL_JOBS_DEPT_GUARDS)
 	can_be_reskinned = TRUE
 
 /datum/loadout_item/head/security_cap/soft
@@ -111,7 +111,7 @@
 /datum/loadout_item/head/helmet/sec/terra
 	name = "Sol police helmet"
 	item_path = /obj/item/clothing/head/helmet/sec/terra
-	restricted_roles = list(ALL_JOBS_SEC)
+	restricted_roles = list(ALL_JOBS_SEC, ALL_JOBS_DEPT_GUARDS)
 
 /datum/loadout_item/head/hats/warden/police/patrol
 	name = "Warden's police cap"

@@ -36,7 +36,7 @@
 /datum/loadout_item/shoes/jackboots/sec
 	name = "security jackboots"
 	item_path = /obj/item/clothing/shoes/jackboots/sec
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC, ALL_JOBS_DEPT_GUARDS)
 
 
 /datum/loadout_item/shoes/jackboots/peacekeeper
