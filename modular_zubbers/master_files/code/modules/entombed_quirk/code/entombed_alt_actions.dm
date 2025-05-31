@@ -4,7 +4,7 @@
 	. = ..()
 	var/obj/item/mod/control/pre_equipped/entombed/entombed_suit = get_item(source)
 	if (!istype(entombed_suit))
-		return null
+		return
 
 	if (!entombed_suit.active)
 		return list("entombed_emergency_reactivate")
@@ -13,7 +13,7 @@
 	. = ..()
 	var/obj/item/mod/control/pre_equipped/entombed/entombed_suit = get_item(source)
 	if (!istype(entombed_suit))
-		return null
+		return
 
 	switch (action_key)
 		if ("entombed_emergency_reactivate")

@@ -214,6 +214,7 @@ export const IconCutterTarget = new Juke.Target({
 export const DmMapsIncludeTarget = new Juke.Target({
   executes: async () => {
     const folders = [
+      ...Juke.glob('_maps/bubber/**/*.dmm'), // BUBBER EDIT ADDITION - Include our templates
       ...Juke.glob('_maps/map_files/**/modular_pieces/*.dmm'),
       ...Juke.glob('_maps/RandomRuins/**/*.dmm'),
       ...Juke.glob('_maps/RandomZLevels/**/*.dmm'),
@@ -358,18 +359,17 @@ export const TgFontTarget = new Juke.Target({
   dependsOn: [YarnTarget],
   inputs: [
     'tgui/.yarn/install-target',
-    'tgui/packages/tgfont/**/*.+(js|cjs|svg)',
+    'tgui/packages/tgfont/**/*.+(js|mjs|svg)',
     'tgui/packages/tgfont/package.json',
   ],
   outputs: [
     'tgui/packages/tgfont/dist/tgfont.css',
-    'tgui/packages/tgfont/dist/tgfont.eot',
     'tgui/packages/tgfont/dist/tgfont.woff2',
   ],
   executes: async () => {
     await yarn('tgfont:build');
+    fs.mkdirSync('tgui/packages/tgfont/static', { recursive: true });
     fs.copyFileSync('tgui/packages/tgfont/dist/tgfont.css', 'tgui/packages/tgfont/static/tgfont.css');
-    fs.copyFileSync('tgui/packages/tgfont/dist/tgfont.eot', 'tgui/packages/tgfont/static/tgfont.eot');
     fs.copyFileSync('tgui/packages/tgfont/dist/tgfont.woff2', 'tgui/packages/tgfont/static/tgfont.woff2');
   }
 });
