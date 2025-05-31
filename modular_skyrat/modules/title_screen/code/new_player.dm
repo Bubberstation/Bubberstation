@@ -1,6 +1,25 @@
+/// BYOND timestamp corresponding to deadline (Sept. 1, 2025)
+#define DEADLINE_TIMESTAMP 8100000000
+
 /mob/dead/new_player
 	/// Title screen is ready to receive signals
 	var/title_screen_is_ready = FALSE
+	/// Whether the player (if unvetted) has acknowledged the deadline warning
+	var/unvetted_notified = FALSE
+
+/mob/dead/new_player/proc/trigger_unvetted_warning()
+	if(unvetted_notified)
+		return
+
+	var/remaining_time = round((DEADLINE_TIMESTAMP - world.realtime) / (1 DAYS), 1)
+	tgui_deadline_alert(
+		src,
+		"Unvetted players will lose the ability to join or observe rounds in [remaining_time] day\s!",
+		"You are unvetted!",
+		days_remaining = remaining_time,
+	)
+	unvetted_notified = TRUE
+
 
 /mob/dead/new_player/Topic(href, href_list)
 	if(src != usr)
@@ -14,6 +33,7 @@
 
 	if(href_list["observe"])
 		play_lobby_button_sound()
+		trigger_unvetted_warning()
 		make_me_an_observer()
 		return
 
@@ -79,6 +99,7 @@
 
 	if(href_list["late_join"])
 		play_lobby_button_sound()
+		trigger_unvetted_warning()
 		GLOB.latejoin_menu.ui_interact(usr)
 		return
 
@@ -226,3 +247,5 @@
 	if(QDELETED(src))
 		return
 	return output
+
+#undef DEADLINE_TIMESTAMP
