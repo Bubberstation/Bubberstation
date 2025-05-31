@@ -22,9 +22,9 @@
 	return (inserted_cores.len == required_cores.len)
 
 /obj/item/organ/brain/cybernetic/ai/anomalock/on_mob_insert(mob/living/carbon/organ_owner, special, movement_flags)
-	. = ..()
 	if(!check_inserted_cores())
 		return FALSE
+	. = ..()
 	playsound(organ_owner, 'sound/items/eshield_recharge.ogg', 40)
 
 /obj/item/organ/brain/cybernetic/ai/anomalock/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
