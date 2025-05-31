@@ -37,10 +37,12 @@
 	step_energy_drain = 25 //extremely high energy drain forces user to return to recharge points often
 
 	var/jet_mode = FALSE
+	var/switching_modes = FALSE
 	//thrusters to use when not in jet mode
 	var/obj/item/mecha_parts/mecha_equipment/thrusters/backup_thrusters = null
 	//thrusters to use when in jet mode
 	var/obj/item/mecha_parts/mecha_equipment/thrusters/ion/mccloud/jet_mode_thrusters = null
+	COOLDOWN_DECLARE(cooldown_mech_mccloud_landing_skid)
 	COOLDOWN_DECLARE(cooldown_mech_mccloud_stamina_slow)
 
 /datum/armor/mecha_mccloud
@@ -62,7 +64,7 @@
 /datum/action/vehicle/sealed/mecha/mccloud/mech_switch_stance/Trigger(trigger_flags)
 	if(!..())
 		return
-	if(!chassis || !(owner in chassis.occupants))
+	if(!chassis || !(owner in chassis.occupants) || switching_modes)
 		return
 
 	var/obj/vehicle/sealed/mecha/mccloud/mccloud_chassis = chassis
@@ -74,10 +76,12 @@
 			mccloud_chassis.balloon_alert(owner, "atmosphere insufficient for spaceflight!")
 		else
 			mccloud_chassis.balloon_alert(owner, "switching to jet mode!")
-			mccloud_chassis.activate_jet()
+			switching_modes = TRUE
+			addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/mecha/mccloud, activate_jet)), 7 DECISECONDS)
 	else
 		mccloud_chassis.balloon_alert(owner, "switching to biped mode!")
-		mccloud_chassis.activate_biped()
+		switching_modes = TRUE
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/mecha/mccloud, activate_biped)), 7 DECISECONDS)
 
 /obj/vehicle/sealed/mecha/mccloud/proc/can_switch_jet()
 	var/turf/T = get_turf(loc)
@@ -88,21 +92,19 @@
 /obj/vehicle/sealed/mecha/mccloud/proc/no_jet_environment()
 	return !can_switch_jet()
 
-/obj/vehicle/sealed/mecha/mccloud/proc/activate_jet(delay = 7)
+/obj/vehicle/sealed/mecha/mccloud/proc/activate_jet()
 	if(jet_mode)
 		return
-	if(delay != 0)
-		do_after(usr, delay DECISECONDS)
+	switching_modes = FALSE
 	icon_state = "mccloud-jet"
 	jet_mode = TRUE
 	movedelay = !overclock_mode ? MCCLOUD_JET_MODE_MOVE : MCCLOUD_JET_MODE_MOVE / overclock_coeff
 	mode_switch_sparks()
 
-/obj/vehicle/sealed/mecha/mccloud/proc/activate_biped(delay = 7)
+/obj/vehicle/sealed/mecha/mccloud/proc/activate_biped()
 	if(!jet_mode)
 		return
-	if(delay != 0)
-		do_after(usr, delay DECISECONDS)
+	switching_modes = FALSE
 	icon_state = "mccloud"
 	jet_mode = FALSE
 	movedelay = !overclock_mode ? MCCLOUD_BIPED_MODE_MOVE : MCCLOUD_BIPED_MODE_MOVE / overclock_coeff
@@ -175,8 +177,12 @@
 	newtonian_move(dir2angle(direction), FALSE, 0, 9 NEWTONS, 18 NEWTONS, FALSE)
 	if(strafe)
 		setDir(olddir)
-	if(no_jet_environment())
-		activate_biped(3 SECONDS)
+
+/obj/vehicle/sealed/mecha/mccloud/Move()
+	. = ..()
+	if(no_jet_environment() && jet_mode)
+		switching_modes = TRUE
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/mecha/mccloud, activate_biped)), 7 DECISECONDS)
 
 /obj/vehicle/sealed/mecha/mccloud/proc/jet_mode_thruster_effects(movement_dir)
 	var/obj/effect/particle_effect/E = new /obj/effect/particle_effect/ion_trails(get_turf(src))
@@ -205,7 +211,7 @@
 
 //leaving the mech switches to biped mode before doing so
 /obj/vehicle/sealed/mecha/mccloud/mob_exit(mob/M, silent = FALSE, randomstep = FALSE, forced = FALSE)
-	activate_biped(0 DECISECONDS)
+	activate_biped()
 	..()
 
 //mech slows down when hit by a disabler
@@ -215,7 +221,7 @@
 		stamina_damage(hitting_projectile)
 
 /obj/vehicle/sealed/mecha/mccloud/proc/stamina_damage(obj/projectile/hitting_projectile)
-	if(!jet_mode && COOLDOWN_FINISHED(src, cooldown_mech_mccloud_stamina_slow))
+	if(!jet_mode)
 		movedelay = !overclock_mode ? MCCLOUD_BIPED_MODE_MOVE_DISABLER : MCCLOUD_BIPED_MODE_MOVE_DISABLER / overclock_coeff
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/mecha/mccloud, stamina_reset)), hitting_projectile.damage DECISECONDS)
 
