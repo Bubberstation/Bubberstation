@@ -9,7 +9,7 @@
 
 /atom/movable/screen/text/activation_text/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
-	RegisterSignal(hud.mymob, COMSIG_MOB_LOGIN, PROC_REF(on_mob_login))
+	RegisterSignal(hud?.mymob, COMSIG_MOB_LOGIN, PROC_REF(on_mob_login))
 	update_view()
 	INVOKE_ASYNC(src, PROC_REF(update_status))
 
