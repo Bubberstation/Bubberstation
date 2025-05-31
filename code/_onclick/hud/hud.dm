@@ -51,6 +51,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	var/hotkey_ui_hidden = FALSE //This is to hide the buttons that can be used via hotkeys. (hotkeybuttons list of buttons)
 
 	var/atom/movable/screen/ammo_counter //SKYRAT EDIT ADDITION
+	var/atom/movable/screen/text/activation_text/activation // BUBBER EDIT ADDITION
 
 	var/atom/movable/screen/alien_plasma_display
 	var/atom/movable/screen/alien_queen_finder
@@ -154,6 +155,9 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	screentip_images = preferences?.read_preference(/datum/preference/toggle/screentip_images)
 	screentip_text = new(null, src)
 	static_inventory += screentip_text
+
+	activation = new(null, src) // BUBBER EDIT ADDITION
+	static_inventory += activation // BUBBER EDIT ADDITION
 
 	for(var/mytype in subtypesof(/atom/movable/plane_master_controller))
 		var/atom/movable/plane_master_controller/controller_instance = new mytype(null,src)
@@ -277,6 +281,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	//SKYRAT EDIT ADDITION START - SKYRAT HUD
 	wanted_lvl = null
 	ammo_counter = null
+	activation = null
 	// SKYRAT EDIT ADDITION END - SKYRAT HUD
 
 	QDEL_LIST_ASSOC_VAL(master_groups)
