@@ -7,9 +7,12 @@
 	/// Whether the player (if unvetted) has acknowledged the deadline warning
 	var/unvetted_notified = FALSE
 
+/**
+ * Check player vetting status and if necessary warn about upcoming deadline
+ *
+ * Returns FALSE if unvetted and deadline has passed, TRUE otherwise
+ */
 /mob/dead/new_player/proc/trigger_unvetted_warning()
-	if(unvetted_notified)
-		return TRUE
 	if(!CONFIG_GET(flag/check_vetted))
 		unvetted_notified = TRUE
 		return TRUE
@@ -52,14 +55,14 @@
 
 	if(href_list["observe"])
 		play_lobby_button_sound()
-		if(!trigger_unvetted_warning())
+		if(!unvetted_notified && !trigger_unvetted_warning())
 			return FALSE
 		make_me_an_observer()
 		return
 
 	if(href_list["job_traits"])
 		play_lobby_button_sound()
-		if(!trigger_unvetted_warning())
+		if(!unvetted_notified && !trigger_unvetted_warning())
 			return FALSE
 		show_job_traits()
 		return
@@ -115,7 +118,7 @@
 				to_chat(src, span_notice("You need at least [CONFIG_GET(number/flavor_text_character_requirement)] characters of Flavor Text to ready up for the round. You have [length_char(client.prefs.read_preference(/datum/preference/text/flavor_text))] characters."))
 				return
 
-		if(!trigger_unvetted_warning())
+		if(!unvetted_notified && !trigger_unvetted_warning())
 			return FALSE
 		ready = !ready
 		client << output(ready, "title_browser:toggle_ready")
@@ -123,7 +126,7 @@
 
 	if(href_list["late_join"])
 		play_lobby_button_sound()
-		if(!trigger_unvetted_warning())
+		if(!unvetted_notified && !trigger_unvetted_warning())
 			return FALSE
 		GLOB.latejoin_menu.ui_interact(usr)
 		return
