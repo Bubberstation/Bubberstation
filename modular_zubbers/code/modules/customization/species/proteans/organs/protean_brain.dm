@@ -91,6 +91,8 @@
 	owner.invisibility = 101
 	new /obj/effect/temp_visual/protean_to_suit(owner.loc, owner.dir)
 	owner.Stun(INFINITY, TRUE)
+	owner.add_traits(list(TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTHEAT, TRAIT_RESISTCOLD), PROTEAN_TRAIT)
+	owner.remove_status_effect(/datum/status_effect/protean_low_power_mode)
 	suit.drop_suit()
 	owner.forceMove(suit)
 	sleep(12) //Sleep is fine here because I'm not returning anything and if the brain gets deleted within 12 ticks of this being ran, we have some other serious issues.
@@ -121,7 +123,9 @@
 		owner.dropItemToGround(owner.get_item_by_slot(ITEM_SLOT_BACK), TRUE, TRUE, TRUE)
 	owner.equip_to_slot_if_possible(suit, ITEM_SLOT_BACK, disable_warning = TRUE)
 	suit.invisibility = initial(suit.invisibility)
-	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob/living, SetStun), 0), 5 SECONDS)
+	owner.SetStun(0)
+	owner.remove_traits(list(TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTHEAT, TRAIT_RESISTCOLD), PROTEAN_TRAIT)
+	owner.apply_status_effect(/datum/status_effect/protean_low_power_mode/reform)
 	if(!HAS_TRAIT(suit, TRAIT_NODROP))
 		ADD_TRAIT(suit, TRAIT_NODROP, "protean")
 
