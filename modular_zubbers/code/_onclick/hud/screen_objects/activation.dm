@@ -1,5 +1,5 @@
 /atom/movable/screen/text/activation_text
-	screen_loc = "BOTTOM,LEFT"
+	screen_loc = "BOTTOM+1,LEFT"
 	maptext = ""
 	alpha = 180
 	plane = SPLASHSCREEN_PLANE
