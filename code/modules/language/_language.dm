@@ -264,7 +264,7 @@
 			// the probability of managing to understand a word is based on how common it is (+10%, -15%)
 			// 1000 words in the list, so words outside the list are just treated as "the 1250th most common word"
 			var/commonness = GLOB.most_common_words[LOWER_TEXT(base_word)] || 1250
-			translate_prob += (10 * (1 - (min(commonness, 1250) / 500)))
+			translate_prob += max((10 * (1 - (min(commonness, 1250) / 500))), 0) // BUBBER EDIT ADDITION - wrapped in max()
 			if(prob(translate_prob))
 				scrambled_words += word
 				translated_index += FALSE
