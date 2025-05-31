@@ -64,9 +64,6 @@
 		TRAIT_RDS_SUPPRESSED,
 		TRAIT_MADNESS_IMMUNE,
 
-		// Seperate handling will be used. Proteans never truely "die". They get stuck in their suit.
-		TRAIT_NODEATH,
-
 		//TRAIT_VENTCRAWLER_NUDE, - A tease. If you want to give a species vent crawl. God help your soul. But I won't stop you from learning that hard lesson.
 	)
 

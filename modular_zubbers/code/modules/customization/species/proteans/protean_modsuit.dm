@@ -26,9 +26,11 @@
 	return ..()
 
 /obj/item/mod/control/pre_equipped/protean/wrench_act(mob/living/user, obj/item/wrench)
+	to_chat(user, span_warning("The core cannot be removed from the control unit."))
 	return FALSE // Can't remove the core.
 
 /obj/item/mod/control/pre_equipped/protean/emag_act(mob/user, obj/item/card/emag/emag_card)
+	to_chat(user, span_warning("The control unit does not respond to the [emag_card]."))
 	return FALSE // Nope
 
 /obj/item/mod/control/pre_equipped/protean/canStrip(mob/who)
@@ -103,6 +105,7 @@
 /obj/item/mod/control/pre_equipped/protean/tool_act(mob/living/user, obj/item/tool, list/modifiers)
 	. = ..()
 	var/obj/item/mod/core/protean/protean_core = core
+	var/mob/living/carbon/human/the_protean = protean_core?.linked_species.owner
 	var/obj/item/organ/brain/protean/brain = protean_core?.linked_species.owner.get_organ_slot(ORGAN_SLOT_BRAIN)
 	var/obj/item/organ/stomach/protean/refactory = protean_core.linked_species.owner.get_organ_slot(ORGAN_SLOT_STOMACH)
 
@@ -110,6 +113,7 @@
 		var/obj/item/organ/stomach = tool
 		stomach.Insert(protean_core.linked_species.owner, TRUE, DELETE_IF_REPLACED)
 		balloon_alert(user, "inserted!")
+		src.visible_message(span_warning("[the_protean]'s nanites writhe as repair process begins."))
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 		brain.revive_timer()
 		return ITEM_INTERACT_SUCCESS
@@ -265,6 +269,7 @@
 	if (!isnull(should_strip_proc_path) && !call(species.owner, should_strip_proc_path)(user))
 		return
 	suit.balloon_alert_to_viewers("stripping")
+	suit.wearer.visible_message(span_warning("[source] begins to dump the contents of [suit.wearer]'s control unit!"))
 	ASYNC
 		var/datum/strip_menu/protean/strip_menu = LAZYACCESS(strip_menus, species.owner)
 		if (isnull(strip_menu))

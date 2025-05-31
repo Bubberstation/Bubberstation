@@ -1,6 +1,6 @@
 /obj/item/organ/stomach/protean
 	name = "refactory"
-	desc = "An extremely fragile factory used to rescyle materials and create more nanite mass"
+	desc = "An extremely fragile factory used to recycle materials and create more nanite mass in Proteans. Can either be inserted into the hardsuit rig as a mod suit 'module', or into the Protean's body directly."
 	icon = PROTEAN_ORGAN_SPRITE
 	icon_state = "refactory"
 	organ_flags = ORGAN_ROBOTIC | ORGAN_NANOMACHINE
