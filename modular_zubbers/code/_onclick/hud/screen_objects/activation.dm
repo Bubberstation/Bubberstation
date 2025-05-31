@@ -2,7 +2,7 @@
 	screen_loc = "BOTTOM+1,LEFT"
 	maptext = ""
 	alpha = 180
-	maptext_width = 680
+	maptext_width = 672
 	plane = SPLASHSCREEN_PLANE
 	layer = SCREENTIP_LAYER
 	var/vetted = FALSE
