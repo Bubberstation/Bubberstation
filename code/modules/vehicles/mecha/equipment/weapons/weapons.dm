@@ -55,6 +55,17 @@
 	/// Find our mecha, find the opposite direction. Used for kickback while the mecha is drifting in zero-g to launch us in this direction.
 	var/newtonian_target = dir2angle(REVERSE_DIR(chassis.dir))
 	. = ..()//start the cooldown early because of sleeps
+
+	///BUBBER EDIT START: If the chassis type is mccloud, then add the mccloud's speed to the projectile
+	var/x_to_add = 0
+	var/y_to_add = 0
+	if(istype(chassis, /obj/vehicle/sealed/mecha/mccloud))
+		var/obj/vehicle/sealed/mecha/mccloud/mccloud_chassis = chassis
+		if(mccloud_chassis.jet_mode && istype(mccloud_chassis.drift_handler) && istype(mccloud_chassis.drift_handler.drifting_loop))
+			x_to_add = mccloud_chassis.drift_handler.drift_force * sin(mccloud_chassis.drift_handler.drifting_loop.angle) / 8.0
+			y_to_add = mccloud_chassis.drift_handler.drift_force * cos(mccloud_chassis.drift_handler.drifting_loop.angle) / 8.0
+	///BUBBER EDIT END
+
 	for(var/projectiles_to_shoot in 1 to projectiles_per_shot)
 		if(energy_drain && !chassis.has_charge(energy_drain))//in case we run out of energy mid-burst, such as emp
 			break
@@ -76,14 +87,9 @@
 		projectile_obj.fire()
 
 		///BUBBER EDIT START: If the chassis type is mccloud, then add the mccloud's speed to the projectile
-		if(istype(chassis, /obj/vehicle/sealed/mecha/mccloud))
-			var/obj/vehicle/sealed/mecha/mccloud/mccloud_chassis = chassis
-			if(mccloud_chassis.jet_mode)
-				var/x_to_add = mccloud_chassis.drift_handler.drift_force * cos(mccloud_chassis.drift_handler.drifting_loop.angle)
-				var/y_to_add = mccloud_chassis.drift_handler.drift_force * sin(mccloud_chassis.drift_handler.drifting_loop.angle)
-				projectile_obj.movement_vector.pixel_x = x_to_add
-				projectile_obj.movement_vector.pixel_y= y_to_add
-		///BUBBER EDIT START: If the chassis type is mccloud, then add the mccloud's speed to the projectile
+		projectile_obj.movement_vector.pixel_x += x_to_add
+		projectile_obj.movement_vector.pixel_y += y_to_add
+		///BUBBER EDIT END
 
 		if(!projectile_obj.suppressed && firing_effect_type)
 			new firing_effect_type(chassis || get_turf(src), chassis.dir)
