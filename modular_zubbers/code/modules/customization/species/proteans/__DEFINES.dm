@@ -83,6 +83,11 @@ PROTEAN_LIMB_ATTACH(/obj/item/bodypart/head/mutant/protean)
 
 PROTEAN_BODYPART_DEFINE(/obj/item/bodypart/chest/mutant/protean, LIMB_MAX_HP_CORE)
 
+/obj/item/bodypart/chest/mutant/protean
+	wing_types = list(
+		/obj/item/organ/wings/functional/robotic,
+		/obj/item/organ/wings/functional/robotic/virtual
+		)
 
 // Limbs
 PROTEAN_BODYPART_DEFINE(/obj/item/bodypart/arm/left/mutant/protean, 40)
