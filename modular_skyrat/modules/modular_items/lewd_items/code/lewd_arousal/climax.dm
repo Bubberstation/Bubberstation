@@ -58,7 +58,7 @@
 	var/self_orgasm = FALSE
 	var/self_their = p_their()
 
-	var/obj/item/organ/genital/testicles/testicles = src.get_organ_slot(ORGAN_SLOT_TESTICLES)
+	var/obj/item/organ/genital/testicles/testicles = get_organ_slot(ORGAN_SLOT_TESTICLES)
 	if(get_organ_slot(ORGAN_SLOT_TESTICLES))
 		testicles.calculate_cumshot()
 
