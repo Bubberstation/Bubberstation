@@ -127,17 +127,16 @@
 /obj/item/mod/control/pre_equipped/frontline/surplus
 	theme = /datum/mod_theme/frontline/surplus
 
-/datum/supply_pack/security/surplus_nri_modsuit
+/datum/supply_pack/imports/surplus_nri_modsuit
 	name = "Surplus Combat MODsuit Crate"
 	desc = "A crate containing a single surplus MODsuit, \
 		designed for use by the Pan-Slavic Commonwealth Defense Collegia. \
 		This one has been stripped of its combat modules, but is still a good suit for those who need protection and mobility. \
 		Notably, does not use or require a armor module."
 	cost = CARGO_CRATE_VALUE * 22
-	access_view = ACCESS_SECURITY
+	contraband = TRUE
 	contains = list(/obj/item/mod/control/pre_equipped/frontline/surplus)
 	crate_name = "surplus MODsuit crate"
-	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
 /datum/mod_theme/policing
 	name = "policing"
