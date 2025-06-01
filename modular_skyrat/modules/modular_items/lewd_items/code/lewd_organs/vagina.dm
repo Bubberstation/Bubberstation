@@ -5,4 +5,3 @@
 /obj/item/organ/genital/vagina/build_from_dna(datum/dna/DNA, associated_key)
 	. = ..()
 	reagents.maximum_volume = internal_fluid_maximum
-	// i guess you start dry
