@@ -1,3 +1,5 @@
+#define TRANSFORM_TRAITS list(TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTHEAT, TRAIT_RESISTCOLD)
+
 /**
  * HANDLES ALL OF PROTEAN EXISTENCE CODE.
  * Very snowflakey species. This is the communication chain.
@@ -91,7 +93,7 @@
 	owner.invisibility = 101
 	new /obj/effect/temp_visual/protean_to_suit(owner.loc, owner.dir)
 	owner.Stun(INFINITY, TRUE)
-	owner.add_traits(list(TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTHEAT, TRAIT_RESISTCOLD), PROTEAN_TRAIT)
+	owner.add_traits(TRANSFORM_TRAITS, PROTEAN_TRAIT)
 	owner.remove_status_effect(/datum/status_effect/protean_low_power_mode)
 	suit.drop_suit()
 	owner.forceMove(suit)
@@ -124,7 +126,7 @@
 	owner.equip_to_slot_if_possible(suit, ITEM_SLOT_BACK, disable_warning = TRUE)
 	suit.invisibility = initial(suit.invisibility)
 	owner.SetStun(0)
-	owner.remove_traits(list(TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTHEAT, TRAIT_RESISTCOLD), PROTEAN_TRAIT)
+	owner.remove_traits(TRANSFORM_TRAITS, PROTEAN_TRAIT)
 	owner.apply_status_effect(/datum/status_effect/protean_low_power_mode/reform)
 	if(!HAS_TRAIT(suit, TRAIT_NODROP))
 		ADD_TRAIT(suit, TRAIT_NODROP, "protean")
@@ -183,3 +185,5 @@
 	icon = PROTEAN_ORGAN_SPRITE
 	icon_state = "from_puddle"
 	duration = 12
+
+#undef TRANSFORM_TRAITS

@@ -4,3 +4,4 @@
 	icon = PROTEAN_ORGAN_SPRITE
 	icon_state = "orchestrator"
 	organ_flags = ORGAN_ROBOTIC | ORGAN_NANOMACHINE
+

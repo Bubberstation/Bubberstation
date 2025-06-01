@@ -84,3 +84,4 @@
 			species.species_modsuit.toggle_activate(usr, TRUE)
 		stomach.metabolism_modifier /= 16
 		apply_status_effect(/datum/status_effect/protean_low_power_mode)
+

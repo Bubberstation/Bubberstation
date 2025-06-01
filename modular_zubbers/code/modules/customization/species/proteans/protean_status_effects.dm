@@ -41,3 +41,4 @@
 	var/mob/living/carbon/human/human_owner = owner
 	if(istype(human_owner))
 		human_owner.physiology.damage_resistance += 100
+
