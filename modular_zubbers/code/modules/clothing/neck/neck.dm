@@ -35,6 +35,7 @@
 
 /obj/item/clothing/neck/tie/bunnytie/tied
 	is_tied = TRUE
+	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 
 /obj/item/clothing/neck/tie/bunnytie/syndicate
 	name = "blood-red bowtie collar"
@@ -170,7 +171,7 @@
 	greyscale_config_worn = null
 	flags_1 = null
 
-/obj/item/clothing/neck/tie/bunnytie/mail/tied
+/obj/item/clothing/neck/tie/bunnytie/mailman/tied
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/bitrunner
@@ -502,11 +503,13 @@
 /obj/item/clothing/neck/tie/bunnytie/bartender
 	name = "bartender's bowtie"
 	desc = "A black tie that includes a collar. Looking fancy!"
+	icon_state = "/obj/item/clothing/neck/tie/bunnytie/bartender"
 	flags_1 = null
 	custom_price = PAYCHECK_CREW
 
 /obj/item/clothing/neck/tie/bunnytie/bartender/tied
 	is_tied = TRUE
+	flags_1 = NO_NEW_GAGS_PREVIEW_1
 
 /obj/item/clothing/neck/tie/bunnytie/cook
 	name = "cook's bowtie"
