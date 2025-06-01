@@ -1066,6 +1066,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	view = new_size
 	SEND_SIGNAL(src, COMSIG_VIEW_SET, new_size)
 	mob.hud_used.screentip_text.update_view()
+	mob.hud_used.activation.update_view() // BUBBER EDIT ADDITION
 	apply_clickcatcher()
 	mob.reload_fullscreen()
 	if (isliving(mob))
