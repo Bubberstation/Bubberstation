@@ -50,8 +50,6 @@
 		return FALSE
 
 	var/obj/item/organ/genital/testicles/testes = owner.get_organ_slot(ORGAN_SLOT_TESTICLES)
-	// if(!testes || (affected_human.arousal < AROUSAL_LOW))
-	// 	return FALSE
 
 	var/regen = (50 / AROUSAL_MULTIPLIER) * (testes.reagents.maximum_volume / TESTES_MULTIPLIER) * BASE_MULTIPLIER // this is really quite stupid, the bare number is replacing the arousal value previously there
 	testes.reagents.add_reagent(testes.internal_fluid_datum, regen)
