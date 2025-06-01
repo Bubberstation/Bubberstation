@@ -19,4 +19,4 @@
 	reagents.add_reagent(internal_fluid_datum, internal_fluid_maximum) // should make you start with full balls? (cum is stored in the balls in ss13)
 
 /obj/item/organ/genital/testicles/proc/calculate_cumshot()
-	cumshot_size = ( reagents.total_volume * cumshot_size_mod ) * cumshot_size_mult
+	cumshot_size = (reagents.total_volume * cumshot_size_mod) * cumshot_size_mult
