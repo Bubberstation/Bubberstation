@@ -1,17 +1,10 @@
 /datum/loadout_category/
 	var/list/generation_subtypes = list()
 
-/datum/loadout_category/head
-	generation_subtypes = list(
-		/obj/item/clothing/head
-	)
-
-/datum/loadout_category/suit
-	generation_subtypes = list(
-		/obj/item/clothing/suit
-	)
-
 /datum/loadout_category/get_items()
+
+	if(!generation_subtypes || !length(generation_subtypes))
+		return ..() //Default behavior
 
 	. = list()
 
@@ -34,4 +27,7 @@
 				found_item
 			)
 			. += loadout_item_datum
-			GLOB.loadout_item_path_to_datum[found_item] = loadout_item_datum
+
+/datum/loadout_item/New(...)
+	. = ..()
+	GLOB.loadout_item_path_to_datum[src.item_path] = src

@@ -4,12 +4,14 @@ GLOBAL_LIST_INIT(loadout_blacklist,list())
 
 	. = list()
 
+	if(!length(GLOB.armor_by_type))
+		stack_trace("Loadout nonsense generated before armor stuff could initialize! Shit's fucked!")
+		return .
+
 	var/list/obj/item/found_types = typesof(desired_subtype)
 
 	if(subtypes_only)
 		found_types -= desired_subtype
-
-	var/static/list/clothing_typecache = typecacheof(/obj/item/clothing)
 
 	for(var/obj/item/found_item as anything in found_types)
 
@@ -29,7 +31,7 @@ GLOBAL_LIST_INIT(loadout_blacklist,list())
 			continue
 
 		//We're clothing.
-		if(is_type_in_typecache(found_item,clothing_typecache)) //Supports paths.
+		if(ispath(found_item,/obj/item/clothing/))
 
 			var/obj/item/clothing/found_clothing = found_item
 
@@ -51,27 +53,21 @@ GLOBAL_LIST_INIT(loadout_blacklist,list())
 				continue
 
 			//Armor Stuff
-			var/datum/armor/found_armor = initial(found_clothing.armor) ?  : null
+			var/datum/armor/found_armor = initial(found_clothing.armor)
 			if(found_armor)
-				found_armor = GLOB.armor_by_type[initial(found_clothing)]
-				stack_trace("Loadout nonsense generated before armor stuff could initialize! Shits fucked!")
-				continue
-
-
-
-
-
-			if(found_armor)
-				//Bio, Acid, Wounding, and Fire is excluded from here since some science related items have immunity from this.
-				if(found_armor.get_rating(BOMB) > 0)
+				found_armor = GLOB.armor_by_type[found_armor]
+				//Bio, Acid, and Wounding are excluded from here since some science related items have immunity from this.
+				if(found_armor.get_rating(MELEE) > 0)
 					continue
 				if(found_armor.get_rating(BULLET) > 0)
+					continue
+				if(found_armor.get_rating(BOMB) > 0)
 					continue
 				if(found_armor.get_rating(ENERGY) > 0)
 					continue
 				if(found_armor.get_rating(LASER) > 0)
 					continue
-				if(found_armor.get_rating(MELEE) > 0)
+				if(found_armor.get_rating(FIRE) > 0)
 					continue
 
 		//All good.
