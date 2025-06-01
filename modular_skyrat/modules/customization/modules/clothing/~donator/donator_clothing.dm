@@ -836,6 +836,7 @@
 	greyscale_colors = null
 	desc = " "
 	icon_state = "mikuleggings"
+	post_init_icon_state = null
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/feet.dmi'
 	worn_icon_state = "mikuleggings"
