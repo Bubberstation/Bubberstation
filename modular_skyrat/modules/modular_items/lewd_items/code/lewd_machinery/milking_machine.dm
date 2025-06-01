@@ -396,7 +396,6 @@
 	if(!target_container || current_selected_organ.reagents.total_volume <= 0)
 		return FALSE
 
-	//current_selected_organ.transfer_internal_fluid(target_container.reagents, fluid_retrieve_amount[current_mode] * fluid_multiplier * seconds_per_tick)
 	current_selected_organ.reagents.trans_to(target_container, fluid_retrieve_amount[current_mode] * fluid_multiplier * seconds_per_tick)
 	return TRUE
 
