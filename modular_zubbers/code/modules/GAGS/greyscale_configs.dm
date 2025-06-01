@@ -75,7 +75,7 @@
 
 /datum/greyscale_config/bowtie_collar
 	name = "Bowtie Collar"
-	icon_file = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
+	icon_file = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/bowtie_collar.json'
 
 /datum/greyscale_config/bowtie_collar_worn
