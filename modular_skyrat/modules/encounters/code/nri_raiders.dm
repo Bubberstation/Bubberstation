@@ -146,6 +146,7 @@ GLOBAL_VAR(first_officer)
 
 /obj/item/modular_computer/pda/nri_police
 	name = "\improper Commonwealth police PDA"
+	icon_state = "/obj/item/modular_computer/pda/nri_police"
 	device_theme = PDA_THEME_TERMINAL
 	greyscale_colors = "#363655#7878f7"
 	comp_light_luminosity = 6.3 //Matching a flashlight
