@@ -111,7 +111,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 			continue
 		return holiday_real.get_holiday_colors(thing_to_color, pattern || holiday_real.holiday_pattern)
 	// BUBBER EDIT ADDITION BEGIN - Pride Flag Colors
-	if(prob(25))
+	if(prob(20))
 		var/datum/holiday/pride_week/rainbow_datum = new()
 		return rainbow_datum.get_holiday_colors(thing_to_color, pattern)
 	// BUBBER EDIT ADDITION END - Pride Flag Colors
