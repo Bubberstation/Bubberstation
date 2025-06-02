@@ -3,18 +3,22 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
 	},
-/turf/open/floor/mineral/titanium,
+/obj/effect/turf_decal/tile/brown/half{
+	dir = 8
+	},
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "bF" = (
 /obj/machinery/light/directional/east,
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/food_or_drink/snack,
-/turf/open/floor/mineral/titanium,
+/obj/machinery/recharger,
+/obj/effect/turf_decal/tile/dark_blue/diagonal_edge,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "cP" = (
 /obj/machinery/door/airlock/titanium/glass,
 /obj/effect/mapping_helpers/airlock/access/all/tarkon/general,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/shuttle/tarkon_driver)
 "cS" = (
 /obj/machinery/door/airlock/titanium,
@@ -26,7 +30,7 @@
 	},
 /obj/structure/fans/tiny/invisible,
 /obj/structure/cable,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "ef" = (
 /turf/open/floor/iron/recharge_floor,
@@ -35,7 +39,10 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
-/turf/open/floor/mineral/titanium,
+/obj/effect/turf_decal/tile/brown/half{
+	dir = 4
+	},
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "fy" = (
 /obj/effect/spawner/structure/window/reinforced/shuttle,
@@ -48,12 +55,13 @@
 /obj/machinery/light/directional/west,
 /obj/structure/table/reinforced,
 /obj/item/clothing/mask/gas,
-/turf/open/floor/mineral/titanium,
+/obj/effect/turf_decal/tile/dark_blue/diagonal_edge,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "gu" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/catwalk_floor/iron,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/shuttle/tarkon_driver)
 "hH" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -63,13 +71,13 @@
 /obj/structure/chair/comfy/shuttle{
 	dir = 8
 	},
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "if" = (
 /obj/machinery/door/airlock/titanium,
 /obj/structure/fans/tiny/invisible,
 /obj/structure/cable,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "ik" = (
 /obj/structure/cable,
@@ -77,16 +85,16 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "io" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/catwalk_floor/iron,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/shuttle/tarkon_driver)
 "iF" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "jG" = (
 /obj/structure/cable,
@@ -94,27 +102,41 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "ni" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/mineral/titanium,
+/obj/effect/turf_decal/tile/brown/half{
+	dir = 4
+	},
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "nn" = (
 /obj/structure/rack/shelf,
 /obj/effect/spawner/random/medical/medkit,
-/obj/effect/spawner/random/medical/medkit,
 /obj/machinery/airalarm/directional/east,
 /obj/effect/mapping_helpers/airalarm/all_access,
-/turf/open/floor/mineral/titanium,
+/obj/effect/spawner/random/medical/medkit,
+/obj/effect/spawner/random/medical/medkit_rare,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "nz" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/airlock/titanium/glass,
 /obj/effect/mapping_helpers/airlock/access/all/tarkon/general,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shuttle/tarkon_driver)
+"ob" = (
+/obj/machinery/suit_storage_unit/industrial/tarkon,
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "oz" = (
 /obj/machinery/airalarm/directional/south,
@@ -122,12 +144,15 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
-/turf/open/floor/mineral/titanium,
+/obj/effect/turf_decal/tile/brown/half{
+	dir = 1
+	},
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "rr" = (
 /obj/machinery/light/directional/north,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "st" = (
 /obj/machinery/light/directional/south,
@@ -135,7 +160,14 @@
 	dir = 1
 	},
 /obj/machinery/portable_atmospherics/canister/air,
-/turf/open/floor/mineral/titanium,
+/obj/effect/turf_decal/tile/brown/half{
+	dir = 4
+	},
+/turf/open/floor/iron,
+/area/shuttle/tarkon_driver)
+"sv" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "tV" = (
 /turf/closed/wall/mineral/titanium/nodiagonal,
@@ -144,14 +176,17 @@
 /obj/machinery/door/airlock/titanium,
 /obj/effect/mapping_helpers/airlock/access/all/tarkon/general,
 /obj/structure/fans/tiny/invisible,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "vo" = (
-/turf/open/floor/catwalk_floor/iron,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/shuttle/tarkon_driver)
 "zo" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/mineral/titanium,
+/obj/effect/turf_decal/tile/brown/half{
+	dir = 8
+	},
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "zL" = (
 /obj/machinery/power/shuttle_engine/propulsion/burst,
@@ -162,7 +197,8 @@
 /area/shuttle/tarkon_driver)
 "Al" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/tarkon_driver,
-/turf/open/floor/mineral/titanium,
+/obj/effect/turf_decal/tile/dark_blue/diagonal_edge,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "Ap" = (
 /obj/structure/chair/comfy/shuttle{
@@ -170,16 +206,23 @@
 	},
 /obj/machinery/airalarm/directional/north,
 /obj/effect/mapping_helpers/airalarm/all_access,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "AX" = (
 /obj/machinery/light/directional/north,
 /obj/structure/tank_dispenser,
-/turf/open/floor/mineral/titanium,
+/obj/effect/turf_decal/tile/brown/half{
+	dir = 4
+	},
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "BH" = (
 /obj/machinery/recharge_station,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/iron,
+/area/shuttle/tarkon_driver)
+"BP" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/shuttle/tarkon_driver)
 "BS" = (
 /obj/machinery/airalarm/directional/east,
@@ -187,7 +230,10 @@
 /obj/structure/chair/comfy/shuttle{
 	dir = 8
 	},
-/turf/open/floor/mineral/titanium,
+/obj/effect/turf_decal/tile/brown/anticorner{
+	dir = 1
+	},
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "Cf" = (
 /obj/structure/rack/shelf,
@@ -195,7 +241,7 @@
 /obj/item/flashlight/flare,
 /obj/item/flashlight/flare,
 /obj/machinery/door/window/right/directional/west,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "Cn" = (
 /obj/structure/rack/shelf,
@@ -204,7 +250,7 @@
 /obj/item/tank/internals/emergency_oxygen,
 /obj/machinery/door/window/right/directional/west,
 /obj/machinery/light/directional/south,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "Cv" = (
 /obj/machinery/power/shuttle_engine/propulsion/burst,
@@ -214,7 +260,7 @@
 /obj/machinery/mech_bay_recharge_port{
 	dir = 2
 	},
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "Em" = (
 /turf/template_noop,
@@ -224,12 +270,29 @@
 /obj/item/tank/internals/emergency_oxygen/engi,
 /obj/machinery/airalarm/directional/west,
 /obj/effect/mapping_helpers/airalarm/all_access,
-/turf/open/floor/mineral/titanium,
+/obj/effect/turf_decal/tile/dark_blue/half,
+/obj/effect/turf_decal/tile/dark_blue/diagonal_edge,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "Fp" = (
 /obj/structure/table/reinforced,
 /obj/item/crowbar/red,
-/turf/open/floor/mineral/titanium,
+/obj/effect/turf_decal/tile/dark_blue/diagonal_edge,
+/turf/open/floor/iron,
+/area/shuttle/tarkon_driver)
+"Gl" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/tile/brown/half{
+	dir = 8
+	},
+/turf/open/floor/iron,
+/area/shuttle/tarkon_driver)
+"Gn" = (
+/obj/effect/turf_decal/tile/brown/half{
+	dir = 4
+	},
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "GN" = (
 /turf/closed/wall/mineral/titanium/spaceship,
@@ -238,15 +301,15 @@
 /obj/machinery/light/directional/north,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "HI" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/catwalk_floor/iron,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/shuttle/tarkon_driver)
 "HY" = (
 /obj/machinery/door/airlock/titanium,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/shuttle/tarkon_driver)
 "IP" = (
 /obj/structure/closet/crate/internals,
@@ -260,13 +323,25 @@
 /obj/item/clothing/mask/breath,
 /obj/machinery/door/window/right/directional/east,
 /obj/machinery/light/directional/south,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/iron,
+/area/shuttle/tarkon_driver)
+"Jm" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown/anticorner{
+	dir = 4
+	},
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "Jo" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light/directional/south,
 /obj/item/pickaxe/drill,
-/turf/open/floor/mineral/titanium,
+/obj/effect/turf_decal/tile/brown/half{
+	dir = 8
+	},
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "JF" = (
 /turf/closed/wall/mineral/titanium,
@@ -277,15 +352,23 @@
 	id = "driverwindows";
 	name = "Blast Shield Control"
 	},
-/turf/open/floor/mineral/titanium,
+/obj/item/binoculars{
+	pixel_x = 9;
+	pixel_y = 10
+	},
+/obj/effect/turf_decal/tile/dark_blue/diagonal_edge,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "JY" = (
 /obj/machinery/computer/shuttle/tarkon_driver,
-/turf/open/floor/mineral/titanium,
+/obj/effect/turf_decal/tile/dark_blue/diagonal_edge,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "Kv" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
-/turf/open/floor/mineral/titanium,
+/obj/effect/turf_decal/tile/dark_blue/half,
+/obj/effect/turf_decal/tile/dark_blue/diagonal_edge,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "LG" = (
 /turf/closed/wall/mineral/titanium/spaceship/nodiagonal,
@@ -294,12 +377,12 @@
 /obj/machinery/door/airlock/titanium,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/shuttle/tarkon_driver)
 "Ml" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/catwalk_floor/iron,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/shuttle/tarkon_driver)
 "Nj" = (
 /obj/structure/chair/comfy/shuttle{
@@ -307,40 +390,63 @@
 	},
 /obj/machinery/airalarm/directional/north,
 /obj/effect/mapping_helpers/airalarm/all_access,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/iron,
+/area/shuttle/tarkon_driver)
+"Ny" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown/half{
+	dir = 1
+	},
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "Ow" = (
 /obj/structure/cable,
-/turf/open/floor/catwalk_floor/iron,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/shuttle/tarkon_driver)
 "OJ" = (
 /obj/machinery/suit_storage_unit/industrial/tarkon,
-/turf/open/floor/mineral/titanium,
+/obj/effect/turf_decal/tile/brown/half{
+	dir = 4
+	},
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "Pn" = (
 /obj/machinery/power/smes/engineering,
 /obj/structure/cable,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "Qe" = (
 /obj/structure/rack/shelf,
-/obj/effect/spawner/random/engineering/material,
-/obj/effect/spawner/random/engineering/material,
-/turf/open/floor/mineral/titanium,
+/obj/effect/turf_decal/tile/brown/half{
+	dir = 8
+	},
+/obj/item/storage/toolbox/emergency/turret/mag_fed/hoplite/pre_filled,
+/obj/item/storage/toolbox/emergency/turret/mag_fed/hoplite/pre_filled{
+	pixel_y = 10
+	},
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "Rg" = (
-/turf/open/floor/mineral/titanium,
+/obj/effect/turf_decal/tile/brown/half{
+	dir = 8
+	},
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "Rn" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/airalarm/directional/north,
 /obj/effect/mapping_helpers/airalarm/all_access,
-/turf/open/floor/mineral/titanium,
+/obj/effect/turf_decal/tile/brown/half{
+	dir = 4
+	},
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "Sd" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "St" = (
 /obj/structure/closet/crate/internals,
@@ -353,7 +459,7 @@
 /obj/item/clothing/head/helmet/space/eva,
 /obj/item/clothing/mask/breath,
 /obj/machinery/door/window/right/directional/east,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "Tp" = (
 /obj/structure/rack/shelf,
@@ -361,19 +467,21 @@
 /obj/item/oxygen_candle,
 /obj/item/oxygen_candle,
 /obj/machinery/door/window/right/directional/west,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "TS" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
 	},
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "Ue" = (
 /obj/structure/table/reinforced,
 /obj/machinery/cell_charger,
 /obj/machinery/light_switch/directional/east,
-/turf/open/floor/mineral/titanium,
+/obj/effect/turf_decal/tile/dark_blue/half,
+/obj/effect/turf_decal/tile/dark_blue/diagonal_edge,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "Ut" = (
 /obj/effect/spawner/structure/window/reinforced/shuttle,
@@ -384,14 +492,14 @@
 /obj/effect/mapping_helpers/airlock/access/all/tarkon/general,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/shuttle/tarkon_driver)
 "Vp" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/computer/mech_bay_power_console{
 	dir = 4
 	},
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "Vt" = (
 /obj/machinery/power/apc/auto_name/directional/east,
@@ -400,38 +508,58 @@
 /obj/effect/mapping_helpers/apc/unlocked,
 /obj/structure/table/reinforced,
 /obj/item/storage/toolbox/emergency,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "VM" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/catwalk_floor/iron,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/shuttle/tarkon_driver)
 "Ww" = (
-/obj/structure/rack/shelf,
-/obj/effect/spawner/random/maintenance/three,
+/obj/structure/rack/gunrack,
 /obj/machinery/light/directional/north,
-/turf/open/floor/mineral/titanium,
+/obj/item/gun/ballistic/automatic/m6pdw{
+	pixel_x = 4
+	},
+/obj/item/gun/ballistic/automatic/m6pdw,
+/obj/item/gun/ballistic/automatic/m6pdw{
+	pixel_x = -4
+	},
+/obj/structure/rack,
+/obj/machinery/door/window/brigdoor/right/directional/west{
+	req_access = list("tarkon")
+	},
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/item/ammo_box/magazine/c35sol_pistol,
+/obj/item/ammo_box/magazine/c35sol_pistol,
+/obj/item/ammo_box/magazine/c35sol_pistol,
+/obj/item/ammo_box/magazine/c35sol_pistol,
+/obj/item/ammo_box/magazine/c35sol_pistol,
+/obj/item/ammo_box/magazine/c35sol_pistol,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "Xb" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "XN" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "Ye" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/turf/open/floor/mineral/titanium,
+/obj/effect/turf_decal/tile/dark_blue/half,
+/obj/effect/turf_decal/tile/dark_blue/diagonal_edge,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "Zm" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 1
 	},
-/turf/open/floor/mineral/titanium,
+/obj/effect/turf_decal/tile/dark_blue/diagonal_edge,
+/turf/open/floor/iron,
 /area/shuttle/tarkon_driver)
 "Zo" = (
 /obj/machinery/power/shuttle_engine/propulsion/burst{
@@ -464,7 +592,7 @@ Zo
 LG
 AX
 OJ
-OJ
+ob
 JF
 fy
 fy
@@ -480,7 +608,7 @@ Cv
 Em
 Em
 uk
-Kv
+BP
 gu
 oz
 JF
@@ -507,7 +635,7 @@ TS
 TS
 LG
 rr
-Kv
+sv
 XN
 LG
 GN
@@ -518,14 +646,14 @@ JS
 fE
 Fi
 gu
-TS
+Jm
 Ut
-Rg
+Gn
 fg
-Rg
+Gn
 LG
 Rn
-Rg
+Gn
 ni
 st
 GN
@@ -580,7 +708,7 @@ Rg
 LG
 zo
 Rg
-iF
+Gl
 Jo
 GN
 "}
@@ -606,9 +734,9 @@ GN
 Em
 Em
 uk
-Kv
+BP
 gu
-Xb
+Ny
 JF
 Tp
 Cf

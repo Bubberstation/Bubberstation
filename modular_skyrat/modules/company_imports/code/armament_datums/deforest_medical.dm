@@ -276,19 +276,19 @@
 	subcategory = "Cybernetics"
 
 /datum/armament_entry/company_import/deforest/implant/surgery
-	item_type = /obj/item/organ/cyberimp/arm/surgery
+	item_type = /obj/item/organ/cyberimp/arm/toolkit/surgery
 	cost = PAYCHECK_COMMAND * 5
 
 /datum/armament_entry/company_import/deforest/implant/toolset
-	item_type = /obj/item/organ/cyberimp/arm/toolset
+	item_type = /obj/item/organ/cyberimp/arm/toolkit/toolset
 	cost = PAYCHECK_COMMAND * 5
 
 /datum/armament_entry/company_import/deforest/implant/botany
-	item_type = /obj/item/organ/cyberimp/arm/botany
+	item_type = /obj/item/organ/cyberimp/arm/toolkit/botany
 	cost = PAYCHECK_COMMAND * 5
 
 /datum/armament_entry/company_import/deforest/implant/janitor
-	item_type = /obj/item/organ/cyberimp/arm/janitor
+	item_type = /obj/item/organ/cyberimp/arm/toolkit/janitor
 	cost = PAYCHECK_COMMAND * 5
 
 // Modsuit Modules from the medical category, here instead of in Nakamura because nobody buys from this company
