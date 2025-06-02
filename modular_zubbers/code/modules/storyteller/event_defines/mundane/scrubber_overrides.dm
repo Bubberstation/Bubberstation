@@ -66,3 +66,4 @@
 
 /datum/round_event/scrubber_overflow/catastrophic
 	reagents_amount = 80
+
