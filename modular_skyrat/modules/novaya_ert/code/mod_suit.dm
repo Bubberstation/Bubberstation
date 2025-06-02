@@ -99,7 +99,6 @@
 
 /datum/mod_theme/frontline/surplus
 	name = "frontline surplus"
-	complexity_max = DEFAULT_MAX_COMPLEXITY - 3
 	activation_step_time = MOD_ACTIVATION_STEP_TIME + 3
 	desc = "A Pan-Slavic Commonwealth Defense Collegia protective suit, designed for fortified positions operation and humanitarian aid, this one looks rather old and worn out."
 	extended_desc = "A Pan-Slavic Commonwealth Defense Collegia protective suit, designed for fortified positions operation and humanitarian aid. \
