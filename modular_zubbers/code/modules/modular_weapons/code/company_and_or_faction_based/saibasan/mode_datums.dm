@@ -181,12 +181,6 @@
 	json_speech_string = "shotgun"
 	gun_runetext_color = "#7a0bb7"
 
-/datum/laser_weapon_mode/shotgun_small/apply_to_weapon(obj/item/gun/energy/applied_gun)
-	applied_gun.recoil = 1
-
-/datum/laser_weapon_mode/shotgun_small/remove_from_weapon(obj/item/gun/energy/applied_gun)
-	applied_gun.recoil = initial(applied_gun.recoil)
-
 // Trickshot bounce disabler mode for the small laser
 /datum/laser_weapon_mode/trickshot_disabler
 	name = "Disable"
@@ -201,4 +195,42 @@
 	return
 
 /datum/laser_weapon_mode/trickshot_disabler/remove_from_weapon(obj/item/gun/energy/applied_gun)
+	return
+
+/datum/laser_weapon_mode/shotgun_small/apply_to_weapon(obj/item/gun/energy/applied_gun)
+	applied_gun.recoil = 1
+
+/datum/laser_weapon_mode/shotgun_small/remove_from_weapon(obj/item/gun/energy/applied_gun)
+	applied_gun.recoil = initial(applied_gun.recoil)
+
+// Sec/station variant disabler
+/datum/laser_weapon_mode/disabler_security
+	name = "Disable"
+	casing = /obj/item/ammo_casing/energy/disabler
+	weapon_icon_state = "disable"
+	charge_sections = 3
+	shot_delay = 0.4 SECONDS
+	json_speech_string = "disable"
+	gun_runetext_color = "#47a1b3"
+
+/datum/laser_weapon_mode/disabler_security/apply_to_weapon(obj/item/gun/energy/applied_gun)
+	return
+
+/datum/laser_weapon_mode/disabler_security/remove_from_weapon(obj/item/gun/energy/applied_gun)
+	return
+
+// Sec/station variant laser
+/datum/laser_weapon_mode/laser_security
+	name = "Kill"
+	casing = /obj/item/ammo_casing/energy/laser
+	weapon_icon_state = "kill"
+	charge_sections = 3
+	shot_delay = 0.4 SECONDS
+	json_speech_string = "incinerate"
+	gun_runetext_color = "#cd4456"
+
+/datum/laser_weapon_mode/laser_security/apply_to_weapon(obj/item/gun/energy/applied_gun)
+	return
+
+/datum/laser_weapon_mode/laser_security/remove_from_weapon(obj/item/gun/energy/applied_gun)
 	return
