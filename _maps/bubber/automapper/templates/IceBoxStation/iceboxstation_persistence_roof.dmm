@@ -51,7 +51,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
 "aH" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/mineral/plastitanium/red/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "bb" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
@@ -59,13 +59,16 @@
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
 "bq" = (
 /obj/machinery/light/floor,
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/shieldgen)
 "bt" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 4
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/mineral/plastitanium/red/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "bK" = (
 /obj/effect/turf_decal/stripes/red/line{
@@ -74,7 +77,10 @@
 /obj/structure/fence{
 	dir = 4
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "cn" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
@@ -98,42 +104,57 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
+"cA" = (
+/obj/machinery/porta_turret/syndicate{
+	pixel_y = 32;
+	pixel_x = -32
+	},
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
+/area/ruin/space/has_grav/bubbers/persistance/roof)
 "cL" = (
 /obj/structure/chair/wood,
 /obj/machinery/light/directional/west,
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "cQ" = (
 /obj/structure/shipping_container/gas/nthi{
 	pixel_y = -5
 	},
-/turf/open/floor/plating/elevatorshaft,
+/turf/open/floor/plating/elevatorshaft/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
-"cY" = (
-/obj/machinery/modular_shield/module/node{
-	dir = 8
-	},
-/turf/open/floor/iron/dark/snowdin,
-/area/ruin/space/has_grav/bubbers/persistance/shieldgen)
 "dq" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
 "dI" = (
-/turf/open/openspace,
+/turf/open/openspace/icemoon,
 /area/icemoon/underground/explored)
 "dZ" = (
 /obj/structure/shipping_container/kahraman/alt{
 	pixel_y = -5
 	},
-/turf/open/floor/plating/elevatorshaft,
+/turf/open/floor/plating/elevatorshaft/icebox,
+/area/ruin/space/has_grav/bubbers/persistance/roof)
+"ea" = (
+/obj/structure/deployable_barricade/snow{
+	dir = 4
+	},
+/obj/structure/deployable_barricade/snow{
+	dir = 1
+	},
+/obj/structure/statue/snow/snowlegion,
+/turf/open/misc/asteroid/snow/icemoon/do_not_chasm,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "em" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/structure/cable,
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
 "et" = (
 /obj/machinery/light/directional/south,
@@ -162,52 +183,80 @@
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
 "ev" = (
 /obj/structure/table/reinforced/plastitaniumglass,
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "eF" = (
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/plastitanium/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "eJ" = (
 /obj/machinery/light/directional/east,
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "eL" = (
 /obj/structure/cable,
 /obj/machinery/light/floor,
-/turf/open/floor/iron/colony/texture,
+/turf/open/floor/iron/colony/texture/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
 "eW" = (
 /obj/structure/chair/wood{
 	dir = 4
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "eZ" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 8
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/mineral/plastitanium/red/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "ff" = (
 /obj/machinery/light/floor,
-/turf/open/floor/iron/colony/texture,
+/turf/open/floor/iron/colony/texture/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "fo" = (
 /obj/structure/fence/corner,
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "fq" = (
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 8
 	},
 /obj/effect/turf_decal/trimline/dark_red/warning,
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
+/area/ruin/space/has_grav/bubbers/persistance/roof)
+"fU" = (
+/obj/item/toy/snowball,
+/obj/item/toy/snowball,
+/obj/item/toy/snowball,
+/obj/item/toy/snowball,
+/obj/item/toy/snowball,
+/obj/item/toy/snowball,
+/obj/item/toy/snowball,
+/obj/item/toy/snowball,
+/obj/item/toy/snowball,
+/obj/structure/deployable_barricade/snow,
+/turf/open/misc/asteroid/snow/icemoon/do_not_chasm,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "gi" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/mineral/plastitanium/red/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "gn" = (
 /mob/living/simple_animal/bot/mulebot{
@@ -228,7 +277,7 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 6
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/mineral/plastitanium/red/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "gP" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
@@ -237,7 +286,7 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 4
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/mineral/plastitanium/red/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "gT" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/line{
@@ -256,23 +305,29 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
 "hj" = (
-/obj/machinery/modular_shield/module/charger{
-	dir = 1
+/obj/machinery/modular_shield/module/node{
+	dir = 8
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/shieldgen)
 "hn" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/structure/cable,
 /obj/machinery/power/floodlight,
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/catwalk_floor/iron_dark/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/shieldgen)
 "hr" = (
 /obj/structure/chair/wood{
 	dir = 8
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "hW" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
@@ -282,7 +337,7 @@
 	pixel_x = 0;
 	pixel_y = 2
 	},
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/catwalk_floor/iron_dark/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "ie" = (
 /obj/machinery/space_heater/wall_mounted/directional/north,
@@ -292,30 +347,27 @@
 /obj/structure/shipping_container/exagon/precious{
 	pixel_y = -5
 	},
-/turf/open/floor/plating/elevatorshaft,
+/turf/open/floor/plating/elevatorshaft/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "iB" = (
-/turf/open/floor/iron/colony/texture,
+/turf/open/floor/iron/colony/texture/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "iC" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/catwalk_floor/iron_dark/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
-"iG" = (
-/turf/open/floor/iron/dark/snowdin,
-/area/ruin/space/has_grav/bubbers/persistance/shieldgen)
 "iI" = (
 /obj/structure/shipping_container/cybersun/defaced{
 	pixel_y = -5
 	},
-/turf/open/floor/plating/elevatorshaft,
+/turf/open/floor/plating/elevatorshaft/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "ji" = (
 /obj/structure/shipping_container/reefer{
 	pixel_y = -5
 	},
-/turf/open/floor/plating/elevatorshaft,
+/turf/open/floor/plating/elevatorshaft/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "jp" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
@@ -325,23 +377,43 @@
 /obj/structure/fence/door{
 	dir = 4
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "jr" = (
 /obj/machinery/light/directional/south,
-/turf/open/misc/asteroid/snow/atmosphere,
+/turf/open/misc/asteroid/snow/icemoon/do_not_chasm,
+/area/ruin/space/has_grav/bubbers/persistance/roof)
+"jt" = (
+/obj/structure/statue/snow/snowman,
+/turf/open/misc/asteroid/snow/icemoon/do_not_chasm,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "jD" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/structure/cable,
-/turf/open/floor/iron/colony,
+/turf/open/floor/iron/colony/bolts,
+/area/ruin/space/has_grav/bubbers/persistance/roof)
+"jH" = (
+/obj/machinery/porta_turret/syndicate{
+	pixel_y = -32;
+	pixel_x = -32
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/turf/open/openspace/icemoon,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "kk" = (
 /obj/structure/shipping_container/cybersun{
 	pixel_y = -5
 	},
-/turf/open/floor/plating/elevatorshaft,
+/turf/open/floor/plating/elevatorshaft/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "kD" = (
 /obj/effect/turf_decal/stripes/line{
@@ -362,29 +434,30 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "lj" = (
 /obj/structure/shipping_container/vitezstvi/flags{
 	pixel_y = -5
 	},
-/turf/open/floor/plating/elevatorshaft,
+/turf/open/floor/plating/elevatorshaft/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "lB" = (
 /obj/machinery/light/directional/west,
-/turf/open/misc/asteroid/snow/atmosphere,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "lZ" = (
 /obj/structure/shipping_container/conarex{
 	pixel_y = -5
 	},
-/turf/open/floor/plating/elevatorshaft,
+/turf/open/floor/plating/elevatorshaft/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "mb" = (
 /obj/structure/chair/wood,
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "mn" = (
 /obj/effect/turf_decal/stripes/red/line{
@@ -394,7 +467,10 @@
 	dir = 4
 	},
 /obj/machinery/light/directional/east,
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "mE" = (
 /obj/effect/turf_decal/stripes/red/corner{
@@ -409,15 +485,18 @@
 /obj/effect/turf_decal/trimline/dark/line{
 	dir = 5
 	},
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/plastitanium/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "ne" = (
 /obj/effect/turf_decal/trimline/dark_red/warning,
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "nf" = (
 /obj/machinery/light/floor,
-/turf/open/floor/iron/colony/texture,
+/turf/open/floor/iron/colony/texture/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
 "nv" = (
 /obj/effect/turf_decal/bot_red,
@@ -431,9 +510,7 @@
 /obj/structure/railing/corner{
 	dir = 8
 	},
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "nN" = (
 /obj/machinery/button/door/directional/west{
@@ -443,16 +520,17 @@
 	pixel_y = -24;
 	pixel_x = 0
 	},
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
 "nR" = (
-/turf/open/floor/iron/smooth,
+/turf/open/floor/iron/smooth/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "nZ" = (
 /obj/machinery/light/floor,
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "ol" = (
 /turf/open/floor/iron/colony/bolts,
@@ -461,63 +539,81 @@
 /obj/structure/chair/wood{
 	dir = 1
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
+/area/ruin/space/has_grav/bubbers/persistance/roof)
+"ox" = (
+/obj/structure/deployable_barricade/snow{
+	dir = 8
+	},
+/turf/open/misc/asteroid/snow/icemoon/do_not_chasm,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "oz" = (
 /obj/effect/turf_decal/trimline/dark_red/warning{
 	dir = 6
 	},
 /obj/machinery/light/directional/south,
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "oI" = (
 /obj/structure/railing{
 	dir = 4
 	},
 /obj/structure/table/reinforced/plastitaniumglass,
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "oO" = (
-/turf/open/floor/iron/dark/snowdin,
+/obj/machinery/porta_turret/syndicate{
+	pixel_y = 32
+	},
+/turf/open/misc/asteroid/snow/icemoon/do_not_chasm,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "oT" = (
 /obj/structure/fence,
-/turf/open/floor/iron/colony/texture,
-/area/ruin/space/has_grav/bubbers/persistance/roof)
-"pl" = (
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/iron/colony/texture/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "pr" = (
 /obj/structure/railing{
 	dir = 6
 	},
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "pt" = (
 /obj/structure/shipping_container/amsco{
 	pixel_y = -5
 	},
-/turf/open/floor/plating/elevatorshaft,
+/turf/open/floor/plating/elevatorshaft/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "pA" = (
 /obj/structure/railing/corner{
 	dir = 4
 	},
 /obj/structure/fence/door,
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "pY" = (
 /obj/effect/turf_decal/tile/dark_red/half{
 	dir = 8
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
+"qc" = (
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/turf/open/openspace/icemoon,
+/area/icemoon/underground/explored)
 "ql" = (
 /obj/effect/turf_decal/siding/dark_red{
 	dir = 9
@@ -528,23 +624,29 @@
 /obj/effect/turf_decal/trimline/dark/line{
 	dir = 9
 	},
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/plastitanium/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "qn" = (
 /obj/machinery/light/directional/west,
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "qo" = (
 /obj/structure/fence{
 	dir = 8
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "qq" = (
 /obj/structure/shipping_container/reefer/interdyne{
 	pixel_y = -5
 	},
-/turf/open/floor/plating/elevatorshaft,
+/turf/open/floor/plating/elevatorshaft/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "qM" = (
 /obj/structure/railing{
@@ -581,7 +683,7 @@
 /obj/structure/fence{
 	dir = 4
 	},
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/plastitanium/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "qZ" = (
 /obj/structure/flatpack_cart,
@@ -595,11 +697,22 @@
 	},
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
+"ri" = (
+/obj/structure/railing,
+/obj/machinery/porta_turret/syndicate{
+	pixel_y = 32;
+	pixel_x = 32
+	},
+/turf/open/floor/engine/hull/icebox,
+/area/ruin/space/has_grav/bubbers/persistance/roof)
 "rr" = (
 /obj/effect/turf_decal/tile/dark_red/half{
 	dir = 4
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "rA" = (
 /obj/effect/turf_decal/stripes/red/corner,
@@ -615,13 +728,16 @@
 /obj/structure/fence{
 	dir = 4
 	},
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/plastitanium/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "rG" = (
-/obj/machinery/modular_shield/module/well{
-	dir = 1
+/obj/machinery/modular_shield/module/node{
+	dir = 4
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/shieldgen)
 "rM" = (
 /obj/effect/turf_decal/bot_red,
@@ -647,7 +763,7 @@
 "rO" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/turf/open/floor/iron/colony/texture,
+/turf/open/floor/iron/colony/texture/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "rS" = (
 /obj/effect/turf_decal/stripes/red/corner,
@@ -657,19 +773,22 @@
 /obj/effect/turf_decal/loading_area/red{
 	dir = 1
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "rU" = (
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
 	},
-/turf/open/floor/iron/colony/texture,
+/turf/open/floor/iron/colony/texture/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "sc" = (
 /obj/structure/shipping_container/gorlex/red{
 	pixel_y = -5
 	},
-/turf/open/floor/plating/elevatorshaft,
+/turf/open/floor/plating/elevatorshaft/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "se" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -681,7 +800,7 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 5
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/mineral/plastitanium/red/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "sn" = (
 /obj/item/toy/figure/syndie{
@@ -695,20 +814,32 @@
 	dir = 1
 	},
 /obj/machinery/light/floor,
-/turf/open/floor/iron/colony/texture,
+/turf/open/floor/iron/colony/texture/icebox,
+/area/ruin/space/has_grav/bubbers/persistance/roof)
+"sE" = (
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "sF" = (
 /obj/machinery/light/directional/north,
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "sG" = (
-/turf/open/floor/plating/elevatorshaft,
+/turf/open/floor/plating/elevatorshaft/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "sW" = (
 /obj/effect/turf_decal/tile/dark_red{
 	dir = 1
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "tb" = (
 /obj/effect/turf_decal/siding/dark_red/end{
@@ -725,26 +856,24 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
-"ti" = (
-/obj/machinery/modular_shield/module/node{
-	dir = 4
-	},
-/turf/open/floor/iron/dark/snowdin,
-/area/ruin/space/has_grav/bubbers/persistance/shieldgen)
 "tl" = (
 /obj/structure/railing/corner,
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
+"tA" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/catwalk_floor/iron_dark/icebox,
+/area/ruin/space/has_grav/bubbers/persistance/shieldgen)
 "tR" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 1
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/mineral/plastitanium/red/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "tT" = (
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/catwalk_floor/iron_dark/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/shieldgen)
 "ud" = (
 /obj/structure/railing{
@@ -753,12 +882,21 @@
 /obj/structure/fence{
 	dir = 8
 	},
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
+/turf/open/floor/engine/hull/icebox,
+/area/ruin/space/has_grav/bubbers/persistance/roof)
+"ue" = (
+/obj/effect/turf_decal/tile/dark_red/half/contrasted,
+/obj/machinery/porta_turret/syndicate{
+	pixel_y = -32;
+	pixel_x = -32
+	},
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
 	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "ug" = (
-/turf/open/misc/asteroid/snow/atmosphere,
+/turf/open/misc/asteroid/snow/icemoon/do_not_chasm,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "uk" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -777,39 +915,72 @@
 /obj/effect/turf_decal/trimline/dark_red/warning{
 	dir = 5
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
+/area/ruin/space/has_grav/bubbers/persistance/roof)
+"uK" = (
+/obj/machinery/porta_turret/syndicate{
+	pixel_y = -32
+	},
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "vn" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 10
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/mineral/plastitanium/red/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "vo" = (
 /obj/effect/turf_decal/tile/dark_red/half/contrasted{
 	dir = 8
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
+/area/ruin/space/has_grav/bubbers/persistance/roof)
+"vt" = (
+/obj/structure/deployable_barricade/snow{
+	dir = 8
+	},
+/obj/structure/deployable_barricade/snow,
+/turf/open/misc/asteroid/snow/icemoon/do_not_chasm,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "vy" = (
 /obj/structure/shipping_container/oms{
 	pixel_y = -5
 	},
-/turf/open/floor/plating/elevatorshaft,
+/turf/open/floor/plating/elevatorshaft/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "vB" = (
 /obj/effect/turf_decal/stripes/red/line,
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
+/area/ruin/space/has_grav/bubbers/persistance/roof)
+"vG" = (
+/obj/structure/railing{
+	dir = 6
+	},
+/obj/machinery/porta_turret/syndicate{
+	pixel_y = 32;
+	pixel_x = -32
+	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "vK" = (
-/obj/structure/railing/corner{
-	dir = 1
-	},
 /obj/structure/fence/corner{
 	dir = 1
 	},
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
 	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "vO" = (
@@ -820,15 +991,13 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "wA" = (
 /obj/machinery/power/portagrav,
 /obj/structure/cable,
 /obj/machinery/light/directional/east,
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/catwalk_floor/iron_dark/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "wI" = (
 /obj/effect/turf_decal/tile/dark_red/half{
@@ -837,7 +1006,10 @@
 /obj/effect/turf_decal/tile/dark_red{
 	dir = 8
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "wY" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -846,16 +1018,31 @@
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
+"xl" = (
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/turf/open/openspace/icemoon,
+/area/ruin/space/has_grav/bubbers/persistance/roof)
 "xt" = (
 /obj/machinery/griddle/frontier_tabletop,
 /obj/structure/table/reinforced/plastitaniumglass,
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "xI" = (
 /obj/effect/turf_decal/tile/dark_red/anticorner/contrasted{
 	dir = 8
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "xK" = (
 /obj/effect/turf_decal/stripes/line{
@@ -871,7 +1058,7 @@
 /obj/structure/shipping_container/tiger_coop/text{
 	pixel_y = -5
 	},
-/turf/open/floor/plating/elevatorshaft,
+/turf/open/floor/plating/elevatorshaft/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "xZ" = (
 /obj/structure/chair/plastic{
@@ -884,7 +1071,7 @@
 /obj/structure/shipping_container/exagon/minor{
 	pixel_y = -5
 	},
-/turf/open/floor/plating/elevatorshaft,
+/turf/open/floor/plating/elevatorshaft/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "yd" = (
 /obj/machinery/airalarm/directional/west,
@@ -941,9 +1128,7 @@
 /obj/structure/railing/corner{
 	dir = 1
 	},
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "zj" = (
 /obj/structure/railing{
@@ -953,15 +1138,46 @@
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
 "zk" = (
 /obj/effect/turf_decal/tile/dark_red/half/contrasted,
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
+/area/ruin/space/has_grav/bubbers/persistance/roof)
+"zy" = (
+/obj/structure/fence,
+/obj/machinery/porta_turret/syndicate{
+	pixel_y = -32;
+	pixel_x = -32
+	},
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "zA" = (
 /obj/machinery/modular_shield/module/node{
 	dir = 4
 	},
 /obj/machinery/light/directional/west,
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/catwalk_floor/iron_dark/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/shieldgen)
+"zM" = (
+/obj/structure/deployable_barricade/snow{
+	dir = 4
+	},
+/obj/structure/deployable_barricade/snow,
+/turf/open/misc/asteroid/snow/icemoon/do_not_chasm,
+/area/ruin/space/has_grav/bubbers/persistance/roof)
+"zY" = (
+/obj/machinery/porta_turret/syndicate{
+	pixel_y = -32;
+	pixel_x = 32
+	},
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
+/area/ruin/space/has_grav/bubbers/persistance/roof)
 "zZ" = (
 /obj/effect/turf_decal/stripes/red/corner{
 	dir = 8
@@ -978,7 +1194,7 @@
 /obj/structure/fence{
 	dir = 4
 	},
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/plastitanium/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "Al" = (
 /obj/structure/cable,
@@ -986,29 +1202,28 @@
 /obj/effect/mapping_helpers/apc/full_charge,
 /obj/effect/mapping_helpers/apc/cut_AI_wire,
 /obj/effect/mapping_helpers/apc/syndicate_access,
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "Am" = (
 /obj/structure/railing,
 /obj/machinery/light/directional/north,
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
-"Ap" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/obj/structure/cable,
-/turf/open/floor/catwalk_floor/iron_dark,
-/area/ruin/space/has_grav/bubbers/persistance/shieldgen)
 "At" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/structure/cable,
-/obj/machinery/power/floodlight,
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/space/has_grav/bubbers/persistance/roof)
+"AP" = (
+/obj/structure/deployable_barricade/snow{
+	dir = 8
+	},
+/obj/structure/deployable_barricade/snow{
+	dir = 1
+	},
+/obj/structure/statue/snow/snowman,
+/turf/open/misc/asteroid/snow/icemoon/do_not_chasm,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "Be" = (
 /obj/effect/turf_decal/stripes/line{
@@ -1025,14 +1240,8 @@
 /obj/structure/shipping_container/gas{
 	pixel_y = -5
 	},
-/turf/open/floor/plating/elevatorshaft,
+/turf/open/floor/plating/elevatorshaft/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
-"BN" = (
-/obj/machinery/modular_shield/module/node{
-	dir = 1
-	},
-/turf/open/floor/iron/colony/texture,
-/area/ruin/space/has_grav/bubbers/persistance/shieldgen)
 "BP" = (
 /obj/machinery/light/directional/north,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
@@ -1047,13 +1256,17 @@
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
 "Cr" = (
 /obj/effect/turf_decal/siding/thinplating/dark,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/mineral/plastitanium/red/icebox,
+/area/ruin/space/has_grav/bubbers/persistance/roof)
+"Cv" = (
+/obj/structure/sign/warning/radiation/directional/north,
+/turf/open/misc/asteroid/snow/icemoon/do_not_chasm,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "CL" = (
 /obj/structure/shipping_container/tiger_coop{
 	pixel_y = -5
 	},
-/turf/open/floor/plating/elevatorshaft,
+/turf/open/floor/plating/elevatorshaft/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "Da" = (
 /obj/machinery/power/apc/auto_name/directional/west,
@@ -1070,21 +1283,36 @@
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
 "Dc" = (
 /obj/effect/turf_decal/tile/dark_red/anticorner/contrasted,
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "Dk" = (
 /obj/effect/turf_decal/loading_area/red{
 	dir = 1
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
-"DS" = (
+"Dr" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/structure/cable,
 /obj/item/storage/backpack/satchel/flat/with_tools,
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/catwalk_floor/iron_dark/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
+"DC" = (
+/obj/machinery/modular_shield/module/well{
+	dir = 1
+	},
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
+/area/ruin/space/has_grav/bubbers/persistance/shieldgen)
 "Ek" = (
 /obj/effect/turf_decal/siding/dark_red{
 	dir = 8
@@ -1095,7 +1323,7 @@
 /obj/effect/turf_decal/trimline/dark/line{
 	dir = 8
 	},
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/plastitanium/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "El" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
@@ -1123,20 +1351,25 @@
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
-"Fc" = (
+"Fe" = (
 /obj/structure/railing{
-	dir = 6
+	dir = 8
 	},
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
+/obj/machinery/porta_turret/syndicate{
+	dir = 8;
+	faction = list("Syndicate","neutral");
+	pixel_y = 32;
+	density = 0;
+	pixel_x = 32
 	},
-/area/icemoon/underground/explored)
+/turf/open/floor/engine/hull/icebox,
+/area/ruin/space/has_grav/bubbers/persistance/roof)
 "Fh" = (
 /obj/machinery/modular_shield/module/node{
 	dir = 8
 	},
 /obj/machinery/light/directional/east,
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/catwalk_floor/iron_dark/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/shieldgen)
 "Fq" = (
 /obj/effect/turf_decal/stripes/line,
@@ -1147,7 +1380,7 @@
 /obj/structure/shipping_container/interdyne{
 	pixel_y = -5
 	},
-/turf/open/floor/plating/elevatorshaft,
+/turf/open/floor/plating/elevatorshaft/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "FG" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/line{
@@ -1178,13 +1411,23 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 9
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/mineral/plastitanium/red/icebox,
+/area/ruin/space/has_grav/bubbers/persistance/roof)
+"FU" = (
+/obj/machinery/porta_turret/syndicate{
+	pixel_y = 32;
+	pixel_x = 32
+	},
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "Gb" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/mineral/plastitanium/red/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "Gu" = (
 /obj/machinery/light/floor,
@@ -1195,7 +1438,7 @@
 	pixel_y = 24;
 	pixel_x = 0
 	},
-/turf/open/floor/iron/colony/texture,
+/turf/open/floor/iron/colony/texture/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
 "Gv" = (
 /obj/effect/turf_decal/siding/dark_red{
@@ -1207,24 +1450,48 @@
 /obj/effect/turf_decal/trimline/dark/line{
 	dir = 1
 	},
+/turf/open/floor/mineral/plastitanium/icebox,
+/area/ruin/space/has_grav/bubbers/persistance/roof)
+"Ha" = (
+/obj/structure/steam_vent/fast,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
+"Hg" = (
+/obj/machinery/light/floor,
+/turf/open/floor/iron/colony/texture/icebox,
+/area/ruin/space/has_grav/bubbers/persistance/shieldgen)
+"Hl" = (
+/obj/machinery/modular_shield/module/charger{
+	dir = 1
+	},
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
+/area/ruin/space/has_grav/bubbers/persistance/shieldgen)
 "Hs" = (
 /obj/structure/shipping_container/defaced{
 	pixel_y = -5
 	},
-/turf/open/floor/plating/elevatorshaft,
+/turf/open/floor/plating/elevatorshaft/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "Hu" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
+"HH" = (
+/obj/machinery/light/directional/east,
+/turf/open/misc/asteroid/snow/icemoon/do_not_chasm,
+/area/ruin/space/has_grav/bubbers/persistance/roof)
 "HW" = (
 /obj/effect/turf_decal/tile/dark_red/half/contrasted{
 	dir = 4
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "In" = (
 /obj/structure/table/wood,
@@ -1238,12 +1505,26 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
+"IE" = (
+/obj/machinery/light/directional/west,
+/obj/machinery/porta_turret/syndicate{
+	pixel_y = -32;
+	pixel_x = -32
+	},
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
+/area/ruin/space/has_grav/bubbers/persistance/roof)
 "Ja" = (
 /obj/structure/fence/door{
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/red/full,
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "Jb" = (
 /obj/structure/table/wood,
@@ -1254,25 +1535,36 @@
 "Je" = (
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
+"Jh" = (
+/obj/machinery/porta_turret/syndicate{
+	pixel_y = -32;
+	pixel_x = 32
+	},
+/turf/open/misc/asteroid/snow/icemoon/do_not_chasm,
+/area/ruin/space/has_grav/bubbers/persistance/roof)
 "Jn" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/shieldgen)
 "Jt" = (
 /obj/effect/turf_decal/tile/dark_red/half/contrasted,
 /obj/machinery/light/directional/south,
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "Ju" = (
 /obj/structure/railing,
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "JI" = (
 /obj/effect/turf_decal/trimline/dark_red/warning{
 	dir = 4
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "JQ" = (
 /obj/machinery/light/floor,
@@ -1285,11 +1577,11 @@
 /obj/machinery/modular_shield/module/node{
 	dir = 1
 	},
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/catwalk_floor/iron_dark/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/shieldgen)
 "JX" = (
 /obj/machinery/light/directional/east,
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/catwalk_floor/iron_dark/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/shieldgen)
 "JY" = (
 /obj/effect/turf_decal/siding/dark_red/end{
@@ -1319,14 +1611,17 @@
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
 "Kh" = (
 /obj/structure/fence,
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "KG" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/structure/cable,
 /obj/structure/sign/warning/directional/east,
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/catwalk_floor/iron_dark/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "KH" = (
 /obj/structure/fans/tiny/forcefield{
@@ -1358,37 +1653,50 @@
 /obj/effect/turf_decal/box/red/corners{
 	dir = 1
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "Li" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/structure/cable,
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/catwalk_floor/iron_dark/icebox,
+/area/ruin/space/has_grav/bubbers/persistance/roof)
+"Lm" = (
+/obj/structure/statue/snow/snowlegion,
+/turf/open/misc/asteroid/snow/icemoon/do_not_chasm,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "Lq" = (
 /obj/structure/shipping_container/gas/exagon{
 	pixel_y = -5
 	},
-/turf/open/floor/plating/elevatorshaft,
+/turf/open/floor/plating/elevatorshaft/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "Ly" = (
 /obj/machinery/power/portagrav,
 /obj/structure/cable,
 /obj/machinery/light/directional/west,
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/catwalk_floor/iron_dark/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "LH" = (
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 8
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "LK" = (
 /obj/machinery/modular_shield/module/relay{
 	dir = 1
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/shieldgen)
 "LP" = (
 /obj/machinery/button/elevator/directional/west{
@@ -1396,6 +1704,20 @@
 	},
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
+"LT" = (
+/obj/item/toy/snowball,
+/obj/item/toy/snowball,
+/obj/item/toy/snowball,
+/obj/item/toy/snowball,
+/obj/item/toy/snowball,
+/obj/item/toy/snowball,
+/obj/item/toy/snowball,
+/obj/item/toy/snowball,
+/obj/item/toy/snowball,
+/obj/item/toy/snowball,
+/obj/structure/deployable_barricade/snow,
+/turf/open/misc/asteroid/snow/icemoon/do_not_chasm,
+/area/ruin/space/has_grav/bubbers/persistance/roof)
 "Md" = (
 /obj/machinery/light/directional/south,
 /obj/effect/turf_decal/siding/dark_red{
@@ -1422,7 +1744,17 @@
 /obj/structure/shipping_container/sunda{
 	pixel_y = -5
 	},
-/turf/open/floor/plating/elevatorshaft,
+/turf/open/floor/plating/elevatorshaft/icebox,
+/area/ruin/space/has_grav/bubbers/persistance/roof)
+"ME" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/machinery/porta_turret/syndicate{
+	pixel_y = 32;
+	pixel_x = -32
+	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "MQ" = (
 /obj/structure/cable,
@@ -1432,7 +1764,29 @@
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
 "MS" = (
 /obj/machinery/light/directional/south,
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
+/area/ruin/space/has_grav/bubbers/persistance/roof)
+"Nb" = (
+/obj/structure/deployable_barricade/snow{
+	dir = 4
+	},
+/turf/open/misc/asteroid/snow/icemoon/do_not_chasm,
+/area/ruin/space/has_grav/bubbers/persistance/roof)
+"NO" = (
+/obj/machinery/porta_turret/syndicate{
+	dir = 8;
+	faction = list("Syndicate","neutral");
+	pixel_y = -32;
+	density = 0;
+	pixel_x = 32
+	},
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "On" = (
 /obj/effect/turf_decal/siding/dark_red{
@@ -1468,7 +1822,7 @@
 /obj/structure/shipping_container/great_northern{
 	pixel_y = -5
 	},
-/turf/open/floor/plating/elevatorshaft,
+/turf/open/floor/plating/elevatorshaft/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "OL" = (
 /obj/item/toy/figure/syndie{
@@ -1479,7 +1833,10 @@
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
 "OM" = (
 /obj/machinery/grill,
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "OU" = (
 /obj/structure/railing{
@@ -1499,24 +1856,16 @@
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
-"Pw" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
-/area/icemoon/underground/explored)
 "Pz" = (
 /obj/machinery/light/directional/north,
 /obj/item/multitool,
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/catwalk_floor/iron_dark/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/shieldgen)
 "PB" = (
 /obj/structure/shipping_container/gas/apda/hydrogen{
 	pixel_y = -5
 	},
-/turf/open/floor/plating/elevatorshaft,
+/turf/open/floor/plating/elevatorshaft/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "PV" = (
 /obj/machinery/power/apc/auto_name/directional/west,
@@ -1525,7 +1874,7 @@
 /obj/effect/mapping_helpers/apc/cut_AI_wire,
 /obj/structure/cable,
 /obj/machinery/light/directional/west,
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/catwalk_floor/iron_dark/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/shieldgen)
 "Qp" = (
 /obj/machinery/light/directional/west,
@@ -1539,7 +1888,7 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
 "Qt" = (
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/mineral/plastitanium/red/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "QF" = (
 /obj/machinery/door/airlock/external,
@@ -1551,6 +1900,18 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark/snowdin,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
+"QI" = (
+/obj/structure/deployable_barricade/snow{
+	dir = 1
+	},
+/turf/open/misc/asteroid/snow/icemoon/do_not_chasm,
+/area/ruin/space/has_grav/bubbers/persistance/roof)
+"Rf" = (
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
+/area/ruin/space/has_grav/bubbers/persistance/shieldgen)
 "RR" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -1619,40 +1980,38 @@
 /obj/structure/railing{
 	dir = 9
 	},
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "SG" = (
 /obj/structure/railing/corner{
 	dir = 4
 	},
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "SM" = (
 /obj/machinery/light/directional/north,
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/catwalk_floor/iron_dark/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/shieldgen)
 "SU" = (
 /obj/structure/cable,
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/catwalk_floor/iron_dark/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "Ta" = (
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 4
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "Te" = (
 /obj/effect/turf_decal/trimline/dark_red/warning,
 /obj/machinery/light/directional/south,
-/turf/open/floor/iron/dark/snowdin,
-/area/ruin/space/has_grav/bubbers/persistance/roof)
-"Tg" = (
-/obj/structure/statue/snow/snowman,
-/turf/open/misc/asteroid/snow/atmosphere,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "Tr" = (
 /obj/effect/turf_decal/trimline/dark_red/warning{
@@ -1661,13 +2020,19 @@
 /obj/effect/turf_decal/trimline/dark_red/warning{
 	dir = 1
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "TL" = (
 /obj/effect/turf_decal/tile/dark_red{
 	dir = 8
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "Uj" = (
 /obj/effect/turf_decal/stripes/red/line{
@@ -1676,13 +2041,19 @@
 /obj/effect/turf_decal/trimline/dark_red/warning{
 	dir = 1
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "UN" = (
 /obj/structure/fence/corner{
 	dir = 6
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "UO" = (
 /obj/effect/turf_decal/bot_red,
@@ -1692,10 +2063,6 @@
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
-"UR" = (
-/obj/structure/steam_vent/fast,
-/turf/open/floor/iron/dark/snowdin,
-/area/ruin/space/has_grav/bubbers/persistance/roof)
 "UX" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
@@ -1724,9 +2091,7 @@
 /obj/structure/railing{
 	dir = 10
 	},
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "Vx" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
@@ -1734,36 +2099,49 @@
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
 "VO" = (
 /obj/structure/sign/warning/radiation/directional/north,
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "VP" = (
-/obj/machinery/light/floor,
-/turf/open/floor/iron/colony/texture,
+/obj/machinery/modular_shield/module/node{
+	dir = 1
+	},
+/turf/open/floor/iron/colony/texture/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/shieldgen)
 "VQ" = (
 /obj/structure/railing{
 	dir = 5
 	},
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "VR" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/catwalk_floor/iron_dark/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
 "VY" = (
 /obj/effect/turf_decal/trimline/dark_red/warning{
 	dir = 1
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "Wk" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
+"Wq" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/structure/cable,
+/obj/machinery/power/floodlight,
+/turf/open/floor/catwalk_floor/iron_dark/icebox,
+/area/ruin/space/has_grav/bubbers/persistance/roof)
 "Wy" = (
 /obj/structure/railing{
 	dir = 1
@@ -1792,39 +2170,38 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/turf/open/openspace,
+/turf/open/openspace/icemoon,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
-"Xx" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/obj/structure/cable,
-/obj/machinery/power/floodlight,
-/turf/open/floor/iron/colony,
-/area/ruin/space/has_grav/bubbers/persistance/roof)
 "Xz" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/structure/cable,
 /obj/machinery/modular_shield_generator,
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/catwalk_floor/iron_dark/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/shieldgen)
 "XB" = (
 /obj/structure/fence/door,
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "XE" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/structure/cable,
 /obj/structure/sign/warning/directional/west,
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/catwalk_floor/iron_dark/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "XI" = (
 /obj/effect/turf_decal/tile/dark_red,
 /obj/effect/turf_decal/tile/dark_red{
 	dir = 8
 	},
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "XO" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
@@ -1838,9 +2215,7 @@
 /obj/structure/fence{
 	dir = 8
 	},
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "Yk" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -1859,25 +2234,34 @@
 /obj/machinery/light/directional/east,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/bubbers/persistance/controltower)
+"Yl" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/machinery/porta_turret/syndicate{
+	pixel_y = -32;
+	pixel_x = -32
+	},
+/turf/open/floor/engine/hull/icebox,
+/area/ruin/space/has_grav/bubbers/persistance/roof)
 "Ys" = (
 /obj/machinery/light/directional/east,
-/turf/open/floor/iron/smooth,
+/turf/open/floor/iron/smooth/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "YK" = (
 /obj/machinery/light/directional/south,
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/catwalk_floor/iron_dark/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/shieldgen)
-"YO" = (
-/obj/machinery/light/directional/west,
-/turf/open/floor/iron/smooth,
-/area/ruin/space/has_grav/bubbers/persistance/roof)
 "YZ" = (
 /obj/machinery/light/directional/south,
-/turf/open/floor/iron/smooth,
+/turf/open/floor/iron/smooth/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "Zl" = (
 /obj/effect/turf_decal/tile/dark_red/opposingcorners,
-/turf/open/floor/iron/dark/snowdin,
+/turf/open/floor/plating/reinforced/icebox{
+	icon_state = "darkfull";
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	},
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "Zp" = (
 /obj/effect/turf_decal/siding/dark_red{
@@ -1889,15 +2273,13 @@
 /obj/effect/turf_decal/trimline/dark/line{
 	dir = 4
 	},
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/plastitanium/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 "ZU" = (
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/roof)
 
 (1,1,1) = {"
@@ -2119,6 +2501,15 @@ dI
 dI
 dI
 dI
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
 dI
 dI
 dI
@@ -2126,48 +2517,39 @@ dI
 dI
 dI
 dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
 dI
 dI
 dI
@@ -2189,7 +2571,7 @@ dI
 dI
 dI
 dI
-dI
+xl
 SF
 kH
 kH
@@ -2197,15 +2579,15 @@ kH
 kH
 kH
 Vq
+xl
+xl
+xl
+xl
+xl
+xl
 dI
 dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
+xl
 SF
 kH
 kH
@@ -2230,17 +2612,17 @@ kH
 kH
 kH
 kH
-Vq
-dI
-SF
+kH
+kH
+kH
 kH
 kH
 kH
 Vq
-dI
-dI
-dI
-dI
+xl
+xl
+xl
+qc
 dI
 dI
 dI
@@ -2255,67 +2637,67 @@ dI
 dI
 dI
 dI
-dI
-dI
-dI
-dI
-dI
+xl
+xl
+xl
+xl
+xl
 ZU
-oO
-oO
-oO
-oO
-oO
+sE
+sE
+NO
+sE
+sE
 nx
 kH
 kH
-kH
+Fe
 kH
 Vq
-dI
-dI
-dI
-dI
-ZU
-oO
-oO
-ug
-ug
-ug
-oO
-ug
-oO
-oO
-oO
-oO
-oO
-oO
-ug
-ug
-ug
-oO
-oO
-oO
-oO
-oO
-oO
-oO
-Ju
-dI
+xl
+xl
+xl
+xl
 ZU
 ug
 ug
-oO
+ug
+ug
+ug
+ug
+ug
+sE
+sE
+sE
+sE
+sE
+sE
+ug
+ug
+ug
+ug
+ug
+ug
+ug
+ug
+ug
+ug
+ug
+ug
+ug
+ug
+ug
+ug
 nx
 kH
 kH
 Vq
-dI
-dI
-dI
-dI
-dI
-dI
+xl
+xl
+xl
+xl
+xl
+xl
 dI
 dI
 dI
@@ -2325,67 +2707,67 @@ dI
 dI
 dI
 dI
-dI
+xl
 SF
 kH
 kH
 kH
 zh
-oO
-oO
+sE
+sE
 MS
 dq
 yP
 yP
 yP
 dq
-oO
-oO
+sE
+sE
 nx
 kH
 kH
 kH
 kH
 zh
-oO
-oO
+sE
+sE
+sE
+ug
+ug
+ug
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
 ug
 ug
 ug
 ug
-oO
-oO
-oO
-oO
-oO
-oO
-oO
-oO
-oO
 ug
 ug
 ug
 ug
-oO
-oO
-oO
-oO
-nx
-kH
-zh
 ug
 ug
-oO
-oO
-oO
-oO
+ug
+ug
+ug
+ug
+ug
+ug
+ug
 nx
 kH
 kH
 kH
 kH
 Vq
-dI
+xl
 dI
 dI
 dI
@@ -2395,23 +2777,23 @@ dI
 dI
 dI
 dI
-dI
+xl
 ZU
-oO
-oO
+NO
+sE
 eJ
-oO
+sE
 eJ
-oO
-oO
+sE
+sE
 yP
 BP
 Je
 EJ
 yP
-oO
-oO
-oO
+sE
+sE
+sE
 MS
 dq
 dq
@@ -2419,43 +2801,43 @@ dq
 dq
 dq
 sF
-oO
-ug
-oO
-oO
-oO
+sE
+sE
+sE
+zY
+sE
 eJ
-oO
+sE
 eJ
-oO
-oO
-oO
-oO
-oO
-oO
-oO
-ug
-ug
-ug
-oO
-oO
-oO
-oO
+sE
+FU
+sE
+sE
+sE
+sE
+sE
 ug
 ug
 ug
 ug
-oO
-oO
-oO
-oO
-oO
+ug
+ug
+ug
+ug
+ug
+ug
+ug
+ug
+ug
+ug
+Jh
+sE
 eJ
-oO
+sE
 eJ
-oO
-Ju
-dI
+sE
+ri
+xl
 dI
 dI
 dI
@@ -2465,7 +2847,7 @@ dI
 dI
 dI
 dI
-dI
+xl
 ZU
 MS
 gP
@@ -2473,13 +2855,13 @@ gP
 Pt
 gP
 gP
-oO
+sE
 yP
 cw
 Wk
 xZ
 yP
-oO
+sE
 dq
 dq
 dq
@@ -2489,9 +2871,9 @@ kD
 yk
 dq
 ev
-ug
-ug
-oO
+sE
+sE
+sE
 MS
 gP
 gP
@@ -2499,20 +2881,20 @@ Pt
 gP
 gP
 sF
-iG
-iG
-iG
-iG
-iG
-oO
+Rf
+Rf
+Rf
+Rf
+Rf
+Rf
 ug
 ug
 ug
-oO
-oO
 ug
 ug
 ug
+ug
+sE
 nR
 nR
 nR
@@ -2525,7 +2907,7 @@ Pt
 gP
 gP
 Am
-dI
+xl
 dI
 dI
 dI
@@ -2535,21 +2917,21 @@ dI
 dI
 dI
 dI
-dI
+xl
 ZU
-oO
+sE
 gP
 SU
 Ly
 SU
 gP
-oO
+sE
 yP
 Yk
 cw
 Pd
 yP
-oO
+sE
 dq
 St
 MQ
@@ -2559,30 +2941,30 @@ El
 RR
 rf
 OM
-oO
-oO
-oO
-oO
+sE
+sE
+sE
+sE
 gP
 SU
 Ly
 SU
 gP
-oO
-iG
-iG
+sE
+Rf
+Rf
 bq
-ti
+Rf
 rG
-oO
-oO
-oO
-oO
-oO
-oO
+DC
 ug
 ug
 ug
+ug
+ug
+ug
+ug
+sE
 nR
 zk
 vo
@@ -2595,7 +2977,7 @@ Ly
 SU
 gP
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -2605,21 +2987,21 @@ dI
 dI
 dI
 dI
-dI
+xl
 ZU
-oO
+sE
 gP
 SU
 gP
 SU
 gP
-MS
+jr
 dq
 dq
 EA
 dq
 dq
-oO
+sE
 dq
 Be
 Xq
@@ -2629,30 +3011,30 @@ El
 Sj
 rf
 xt
-oO
-ug
-oO
-oO
+sE
+sE
+sE
+sE
 gP
 SU
 gP
 SU
 gP
-oO
-iG
-iG
-iG
-ti
+sE
+Rf
+Rf
+Rf
+Rf
 rG
-oO
-oO
-oO
-oO
-oO
+DC
 ug
 ug
 ug
 ug
+ug
+ug
+ug
+sE
 nR
 zk
 zk
@@ -2665,7 +3047,7 @@ gP
 SU
 gP
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -2675,21 +3057,21 @@ dI
 dI
 dI
 dI
-dI
+xl
 ZU
-oO
+sE
 gP
 SU
 gP
 SU
 gP
-VO
-oO
+Cv
+ug
 ff
 Li
 ff
-oO
-oO
+sE
+sE
 dq
 dq
 dq
@@ -2699,8 +3081,8 @@ El
 KU
 dq
 ev
-ug
-ug
+sE
+sE
 ug
 ug
 gP
@@ -2708,25 +3090,25 @@ SU
 gP
 SU
 gP
-oO
-iG
-iG
-iG
-ti
+sE
+Rf
+Rf
+Rf
+Rf
 rG
-oO
-oO
-oO
-oO
+DC
 ug
 ug
 ug
 ug
 ug
+ug
+ug
+sE
 nR
 zk
 TL
-oO
+sE
 TL
 zk
 gP
@@ -2735,7 +3117,7 @@ gP
 SU
 gP
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -2745,9 +3127,9 @@ dI
 dI
 dI
 dI
-dI
+xl
 ZU
-oO
+sE
 gP
 SU
 gP
@@ -2758,19 +3140,19 @@ ug
 iB
 Li
 iB
-oO
-oO
-oO
-oO
-oO
+sE
+sE
+sE
+sE
+sE
 dq
 KH
 cu
 KH
 dq
-oO
-ug
-ug
+sE
+sE
+sE
 ug
 ug
 gP
@@ -2778,21 +3160,21 @@ SU
 gP
 SU
 gP
-oO
-iG
-iG
-iG
-ti
+sE
+Rf
+Rf
+Rf
+Rf
 rG
-oO
-oO
-oO
+DC
 ug
 ug
 ug
 ug
 ug
 ug
+ug
+sE
 nR
 zk
 TL
@@ -2805,7 +3187,7 @@ gP
 SU
 gP
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -2815,7 +3197,7 @@ dI
 dI
 dI
 dI
-dI
+xl
 ZU
 MS
 gP
@@ -2828,10 +3210,10 @@ ug
 ff
 Li
 ff
-oO
-oO
-oO
-oO
+sE
+sE
+sE
+sE
 MS
 dq
 Al
@@ -2839,9 +3221,9 @@ em
 nN
 dq
 sF
-oO
-oO
-oO
+sE
+sE
+ug
 jr
 gP
 SU
@@ -2849,25 +3231,25 @@ XE
 SU
 gP
 sF
-iG
-iG
-iG
-ti
+Rf
+Rf
+Rf
+Rf
 rG
-oO
-oO
-oO
+DC
 ug
 ug
 ug
 ug
 ug
 ug
+ug
+sE
 nR
 zk
 TL
 sW
-oO
+sE
 Jt
 gP
 SU
@@ -2875,7 +3257,7 @@ XE
 SU
 gP
 Am
-dI
+xl
 dI
 dI
 dI
@@ -2884,68 +3266,68 @@ dI
 dI
 dI
 dI
-dI
+xl
 SF
 zh
-oO
+sE
 qn
 ff
-At
+Li
 ff
 qn
-oO
+sE
 ug
 iB
 Li
 iB
-ug
-oO
-oO
-oO
-oO
+gP
+Pt
+Pt
+Pt
+gP
 qn
 iB
 Li
 iB
-oO
-oO
+sE
+sE
 eW
 eW
-oO
-oO
+sE
+ug
 qn
 ff
-At
+Li
 ff
 qn
-oO
-ti
+sE
+rG
 LK
 bq
-ti
+Rf
 rG
-oO
-oO
-oO
+DC
 ug
 ug
 ug
 ug
 ug
 ug
+ug
+sE
 nR
 zk
 zk
 xI
 xI
 zk
-YO
+lB
 ff
 At
 ff
 lB
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -2954,58 +3336,58 @@ dI
 dI
 dI
 dI
-dI
+xl
 ZU
-oO
-oO
-oO
-iB
-Li
-iB
-oO
-oO
-oO
-iB
-Li
-iB
+sE
+sE
 ug
-oO
-oO
-oO
-oO
-oO
 iB
 Li
 iB
-oO
+sE
+sE
+ug
+iB
+Li
+iB
+Pt
+Ha
+Ha
+Ha
+Pt
+sE
+iB
+Li
+iB
+sE
 mb
 ev
 ev
 oo
-oO
-oO
+ug
+sE
 iB
 Li
 iB
-oO
-oO
-ti
-LK
-iG
-ti
+sE
+sE
 rG
-oO
-oO
-oO
+LK
+Rf
+Rf
+rG
+DC
 ug
 ug
 ug
 ug
+sE
 ug
 ug
+sE
 nR
 zk
-oO
+sE
 sW
 sW
 zk
@@ -3015,7 +3397,7 @@ Li
 iB
 ug
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -3024,55 +3406,55 @@ dI
 dI
 dI
 dI
-dI
+xl
 ZU
-oO
-oO
-UR
-ff
-Li
-ff
-oO
-oO
-oO
-ff
-Li
-ff
+sE
 ug
 ug
-oO
-oO
-oO
-oO
 ff
 Li
 ff
-oO
+sE
+sE
+ug
+ff
+Li
+ff
+Pt
+Ha
+Ha
+Ha
+Pt
+sE
+ff
+Li
+ff
+sE
 mb
 ev
 ev
 oo
 ug
-oO
+sE
 iB
 Li
 iB
-oO
-oO
-ti
-LK
-iG
-ti
+sE
+sE
 rG
-oO
-oO
-oO
+LK
+Rf
+Rf
+rG
+DC
 ug
 ug
 ug
 ug
-ug
-ug
+sE
+sE
+sE
+sE
 nR
 zk
 zk
@@ -3085,7 +3467,7 @@ Li
 iB
 ug
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -3094,68 +3476,68 @@ dI
 dI
 dI
 dI
-dI
+xl
 ZU
-oO
-oO
-oO
-iB
-Li
-iB
-oO
-oO
+ug
+ug
 ug
 iB
 Li
 iB
+sE
 ug
 ug
-ug
-oO
-oO
-oO
 iB
 Li
 iB
-oO
-ug
+Pt
+Ha
+Ha
+Ha
+Pt
+sE
+iB
+Li
+iB
+sE
+sE
 hr
 hr
-oO
+sE
 ug
-oO
+sE
 iB
 Li
 iB
-oO
-oO
-ti
-LK
-iG
-ti
+sE
+sE
 rG
-oO
-oO
-oO
+LK
+Rf
+Rf
+rG
+DC
 ug
 ug
 ug
 ug
-ug
-oO
+sE
+sE
+sE
+sE
 nR
 zk
 TL
-oO
+sE
 TL
 zk
 nR
 iB
 Li
 iB
-oO
+sE
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -3164,55 +3546,55 @@ dI
 dI
 dI
 dI
-dI
+xl
 ZU
-oO
-oO
-oO
-iB
-Li
-iB
-oO
-oO
+ug
+ug
 ug
 iB
 Li
 iB
+sE
 ug
 ug
-ug
-oO
-oO
-oO
+iB
+Li
+iB
+gP
+Pt
+Pt
+Pt
+gP
+sE
 iB
 Li
 iB
 ug
 ug
 ug
-oO
 ug
 ug
-oO
+ug
+sE
 iB
 Li
 iB
-oO
-oO
-ti
-LK
-iG
-ti
+sE
+sE
 rG
-oO
-oO
-oO
+LK
+Rf
+Rf
+rG
+DC
 ug
-Tg
 ug
 ug
 ug
-oO
+sE
+sE
+sE
+sE
 nR
 zk
 zk
@@ -3223,9 +3605,9 @@ nR
 iB
 Li
 iB
-oO
+sE
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -3234,26 +3616,26 @@ dI
 dI
 dI
 dI
-dI
+xl
 ZU
-oO
-oO
-oO
-iB
-Li
-iB
-oO
+ug
 ug
 ug
 iB
 Li
 iB
+sE
 ug
 ug
-ug
-ug
-oO
-oO
+iB
+Li
+iB
+sE
+sE
+sE
+sE
+sE
+sE
 iB
 Li
 iB
@@ -3262,30 +3644,30 @@ ug
 ug
 ug
 ug
-oO
-oO
+ug
+sE
 ff
 Li
 ff
-oO
-oO
-ti
-LK
-iG
-ti
+sE
+sE
 rG
-oO
-oO
-oO
+LK
+Rf
+Rf
+rG
+DC
 ug
 ug
 ug
 ug
-ug
-ug
+sE
+sE
+sE
+sE
 nR
 zk
-oO
+sE
 sW
 vo
 zk
@@ -3293,9 +3675,9 @@ nR
 iB
 Li
 iB
-oO
+sE
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -3304,17 +3686,26 @@ dI
 dI
 dI
 dI
-dI
+xl
 VQ
 SG
-oO
-oO
+ug
+sE
 iB
 Li
 iB
-oO
+sE
 ug
 ug
+iB
+Li
+iB
+sE
+sE
+sE
+sE
+sE
+sE
 iB
 Li
 iB
@@ -3322,37 +3713,28 @@ ug
 ug
 ug
 ug
-oO
-oO
+ug
+ug
+sE
 iB
 Li
 iB
-ug
-ug
-ug
-ug
-ug
-ug
-oO
-iB
-Li
-iB
-oO
-oO
-ti
+sE
+sE
+rG
 LK
 bq
-ti
+Rf
 rG
-iB
-iB
-iB
-oO
+DC
 ug
 ug
-ug
-ug
-ug
+sE
+sE
+sE
+sE
+sE
+sE
 nR
 zk
 zk
@@ -3363,9 +3745,9 @@ nR
 iB
 Li
 iB
-oO
+sE
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -3375,54 +3757,54 @@ dI
 dI
 dI
 dI
-dI
+xl
 ZU
-oO
-oO
+sE
+sE
 iB
 Li
 iB
-oO
+sE
 ug
 ug
 iB
 Li
 iB
-oO
-ug
-oO
-oO
-oO
-oO
+sE
+sE
+sE
+sE
+sE
+sE
 iB
 Li
 iB
-oO
 ug
 ug
 ug
-oO
 ug
-oO
+ug
+ug
+sE
 iB
 Li
 iB
-oO
-oO
-ti
-LK
-iG
-ti
+sE
+sE
 rG
+LK
+Rf
+Rf
+rG
+DC
+sE
+ug
+ug
 iB
-pl
 iB
-oO
+iB
 ug
-ug
-ug
-ug
-oO
+sE
 nR
 zk
 TL
@@ -3433,10 +3815,10 @@ nR
 ff
 Li
 ff
-oO
+sE
 Ju
-dI
-dI
+xl
+xl
 dI
 dI
 "}
@@ -3445,54 +3827,54 @@ dI
 dI
 dI
 dI
-dI
+xl
 ZU
-oO
-oO
+sE
+sE
 ff
 Li
 ff
-oO
+sE
 ug
-oO
+ug
 ff
 Li
 ff
-oO
-ug
-ug
-oO
-oO
-oO
+gP
+Pt
+Pt
+Pt
+gP
+sE
 ff
 Li
 ff
-oO
-oO
 ug
 ug
 ug
 ug
-oO
+ug
+ug
+sE
 iB
 Li
 iB
-oO
-oO
-ti
-LK
-iG
-ti
+sE
+sE
 rG
+LK
+Rf
+Rf
+rG
+DC
+sE
+ug
+ug
 iB
 Li
 iB
-oO
 ug
-ug
-ug
-ug
-oO
+sE
 nR
 zk
 TL
@@ -3506,7 +3888,7 @@ iB
 ug
 nx
 Vq
-dI
+xl
 dI
 dI
 "}
@@ -3515,54 +3897,54 @@ dI
 dI
 dI
 dI
-dI
+xl
 ZU
-oO
-oO
+sE
+sE
 iB
 Li
 iB
-oO
+sE
 ug
 ug
 iB
 Li
 iB
-oO
-oO
-ug
-ug
-oO
-oO
+Pt
+Ha
+Ha
+Ha
+Pt
+sE
 iB
 Li
 iB
-oO
 ug
 ug
 ug
 ug
-oO
-oO
+ug
+sE
+sE
 iB
 Li
 iB
-oO
-oO
-ti
-LK
-iG
-ti
+sE
+sE
 rG
+LK
+Rf
+Rf
+rG
+DC
+sE
+ug
+ug
 iB
-DS
+Dr
 iB
-oO
 ug
-ug
-ug
-ug
-oO
+sE
 nR
 zk
 TL
@@ -3576,7 +3958,7 @@ iB
 ug
 ug
 Ju
-dI
+xl
 dI
 dI
 "}
@@ -3584,55 +3966,55 @@ dI
 dI
 dI
 dI
-dI
+xl
 SF
 zh
-oO
-oO
-iB
-Li
-iB
-oO
-oO
-ug
+sE
+sE
 iB
 Li
 iB
 ug
 ug
-oO
 ug
-oO
-oO
 iB
 Li
 iB
-oO
+Pt
+Ha
+Ha
+Ha
+Pt
+sE
+iB
+Li
+iB
 ug
 ug
-oO
-oO
-oO
-oO
+ug
+ug
+sE
+sE
+sE
 ff
 Li
 ff
-oO
-oO
-ti
-LK
-iG
-ti
+sE
+sE
 rG
+LK
+Rf
+Rf
+rG
+DC
+sE
+ug
+ug
 iB
 Li
 iB
-oO
 ug
-ug
-ug
-ug
-oO
+sE
 nR
 zk
 zk
@@ -3646,7 +4028,7 @@ iB
 ug
 ug
 Ju
-dI
+xl
 dI
 dI
 "}
@@ -3654,55 +4036,55 @@ dI
 dI
 dI
 dI
-dI
+xl
 ZU
-oO
-oO
-oO
-iB
-Li
-iB
-oO
-ug
-ug
-iB
-Li
-iB
-oO
-oO
-ug
-ug
-oO
-oO
+sE
+sE
+sE
 iB
 Li
 iB
 ug
 ug
 ug
-oO
-oO
-oO
-oO
 iB
 Li
 iB
-oO
-oO
-ti
-LK
-iG
-ti
+Pt
+Ha
+Ha
+Ha
+Pt
+sE
+iB
+Li
+iB
+ug
+ug
+ug
+ug
+sE
+sE
+sE
+iB
+Li
+iB
+sE
+sE
 rG
+LK
+Rf
+Rf
+rG
+DC
+sE
+sE
+ug
 iB
 Li
 iB
-oO
-ug
-ug
-ug
-oO
-oO
+sE
+sE
 nR
 zk
 TL
@@ -3716,7 +4098,7 @@ iB
 ug
 ug
 Ju
-dI
+xl
 dI
 dI
 "}
@@ -3724,55 +4106,55 @@ dI
 dI
 dI
 dI
-dI
+xl
 ZU
-oO
-oO
-oO
+sE
+sE
+gP
 iB
 Li
 iB
 ug
 ug
-oO
+ug
 iB
 Li
 iB
-oO
-oO
-oO
-ug
-ug
-oO
+gP
+Pt
+Pt
+Pt
+gP
+sE
 iB
 Li
 iB
 ug
-oO
-oO
-oO
-oO
-oO
+ug
+ug
+sE
+sE
+sE
 Jn
 SM
-Ap
+tA
 YK
 Jn
-iG
-ti
+Rf
+rG
 LK
 bq
-ti
+Rf
 rG
+DC
+sE
+sE
+ug
 iB
 Li
 iB
-oO
-oO
-oO
-oO
-oO
-oO
+sE
+sE
 nR
 zk
 HW
@@ -3783,10 +4165,10 @@ nR
 iB
 Li
 iB
-ug
+gP
 ug
 Ju
-dI
+xl
 dI
 dI
 "}
@@ -3794,11 +4176,11 @@ dI
 dI
 dI
 dI
-dI
+xl
 ZU
-oO
-oO
-oO
+sE
+sE
+gP
 ff
 Li
 ff
@@ -3825,38 +4207,38 @@ ff
 iB
 PV
 tT
-Ap
+tA
 tT
 zA
-BN
-BN
-BN
-BN
-BN
 VP
-iB
-Li
-iB
-iB
-ff
-iB
-ff
-iB
-ff
+VP
+VP
+VP
+VP
+VP
+Hg
 iB
 iB
-iB
-iB
-iB
-ff
 iB
 ff
 Li
 ff
+iB
+ff
+iB
+iB
+iB
+iB
+iB
+ff
+iB
+ff
+Li
+ff
+gP
 ug
-oO
 Ju
-dI
+xl
 dI
 dI
 "}
@@ -3864,13 +4246,13 @@ dI
 dI
 dI
 dI
-dI
-VQ
-SG
-oO
-oO
+xl
+ZU
+sE
+uK
+gP
 iB
-At
+Wq
 Li
 Li
 Li
@@ -3894,39 +4276,39 @@ Li
 Li
 Li
 hn
-Ap
+tA
 Xz
 JU
 JU
-Ap
-Ap
-Ap
-Ap
-Ap
-Ap
+tA
+tA
+tA
+tA
+tA
+tA
+tA
 Li
 Li
 Li
 Li
 Li
 Li
-Li
-At
-Li
-Li
-Li
-Li
-At
+Wq
 Li
 Li
 Li
 Li
-At
+Wq
+Li
+Li
+Li
+Li
+Wq
 iB
-ug
+gP
 oO
 Ju
-dI
+xl
 dI
 dI
 "}
@@ -3934,11 +4316,11 @@ dI
 dI
 dI
 dI
-dI
-dI
+qc
 ZU
-oO
-oO
+sE
+sE
+gP
 ff
 Li
 iB
@@ -3965,15 +4347,25 @@ ff
 iB
 JX
 tT
-Ap
+tA
 tT
 Fh
-BN
-BN
-BN
-BN
-BN
 VP
+VP
+VP
+VP
+VP
+VP
+Hg
+iB
+iB
+iB
+ff
+iB
+ff
+Li
+ff
+iB
 iB
 iB
 iB
@@ -3983,20 +4375,10 @@ iB
 ff
 Li
 ff
-iB
-iB
-iB
-iB
-iB
-ff
-iB
-ff
-Li
-ff
-ug
+gP
 ug
 Ju
-dI
+xl
 dI
 dI
 "}
@@ -4004,11 +4386,11 @@ dI
 dI
 dI
 dI
-dI
-SF
+xl
+ZU
 vK
 Kh
-Kh
+gP
 oT
 jp
 oT
@@ -4035,21 +4417,21 @@ Kh
 Kh
 Jn
 Pz
-Ap
+tA
 YK
 Jn
-iG
-cY
+Rf
+hj
 LK
 bq
-cY
+Rf
 hj
-oO
-oO
-oO
-oO
-oO
-oO
+Hl
+sE
+ug
+ug
+ug
+ug
 iB
 Li
 iB
@@ -4063,10 +4445,10 @@ nR
 iB
 Li
 iB
-ug
+gP
 ug
 Ju
-dI
+xl
 dI
 dI
 "}
@@ -4074,52 +4456,52 @@ dI
 dI
 dI
 dI
-dI
+xl
 VQ
 pA
-oO
-oO
+sE
+sE
 ff
 Li
 ff
-oO
-oO
+sE
+sE
 nZ
-oO
-oO
-oO
-oO
-oO
+sE
+sE
+sE
+sE
+sE
 nZ
-oO
-oO
-oO
-oO
-oO
+sE
+sE
+sE
+sE
+sE
 nZ
-oO
-oO
-oO
-oO
-oO
-oO
+sE
+sE
+sE
+sE
+sE
+sE
 XB
 iB
 Li
 iB
-oO
-oO
-cY
-LK
-iG
-cY
+sE
+sE
 hj
-oO
-oO
-oO
-oO
-oO
-oO
+LK
+Rf
+Rf
+hj
+Hl
+ug
+ug
+ug
+ug
+ug
 iB
 Li
 iB
@@ -4134,9 +4516,9 @@ iB
 Li
 iB
 ug
-oO
+ug
 Ju
-dI
+xl
 dI
 dI
 "}
@@ -4145,7 +4527,7 @@ dI
 dI
 dI
 dI
-dI
+xl
 ud
 sG
 vy
@@ -4154,19 +4536,19 @@ Li
 iB
 sG
 Lq
-oO
+sE
 sG
 PB
-oO
+sE
 sG
 xW
-oO
+sE
 sG
 iI
-oO
+sE
 sG
 cQ
-oO
+sE
 Ta
 Ta
 Ta
@@ -4177,27 +4559,27 @@ bK
 ff
 Li
 ff
-oO
-oO
-cY
-LK
-iG
-cY
+sE
+sE
 hj
-oO
-oO
-oO
+LK
+Rf
+Rf
+hj
+Hl
 ug
 ug
-oO
+ug
+ug
+ug
 iB
 Li
 iB
 nR
 zk
-oO
+sE
 sW
-oO
+sE
 zk
 nR
 iB
@@ -4206,7 +4588,7 @@ iB
 ug
 tl
 pr
-dI
+xl
 dI
 dI
 "}
@@ -4215,7 +4597,7 @@ dI
 dI
 dI
 dI
-dI
+xl
 ud
 sG
 sG
@@ -4224,16 +4606,16 @@ Li
 iB
 sG
 sG
-oO
+sE
 sG
 sG
-oO
+sE
 sG
 sG
-oO
+sE
 sG
 sG
-oO
+sE
 sG
 sG
 vB
@@ -4247,19 +4629,19 @@ zZ
 rU
 Li
 iB
-oO
-oO
-cY
-LK
-iG
-cY
+sE
+sE
 hj
-oO
-oO
+LK
+Rf
+Rf
+hj
+Hl
 ug
 ug
-oO
-oO
+ug
+ug
+ug
 iB
 Li
 iB
@@ -4275,8 +4657,8 @@ Li
 iB
 ug
 Ju
-dI
-dI
+xl
+xl
 dI
 dI
 "}
@@ -4284,8 +4666,8 @@ dI
 dI
 dI
 dI
-dI
-dI
+xl
+xl
 ud
 sG
 sG
@@ -4294,16 +4676,16 @@ Li
 iB
 sG
 sG
-oO
+sE
 sG
 sG
-oO
+sE
 sG
 sG
-oO
+sE
 sG
 sG
-oO
+sE
 sG
 sG
 vB
@@ -4317,35 +4699,35 @@ Vm
 rU
 Li
 iB
-oO
-oO
-cY
-LK
-iG
-cY
+sE
+sE
 hj
-oO
-oO
+LK
+Rf
+Rf
+hj
+Hl
 ug
-oO
+QI
 ug
-oO
+LT
+ug
 iB
 Li
 iB
 nR
 zk
 TL
-oO
+sE
 TL
 zk
 nR
 iB
 Li
 iB
-oO
+ug
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -4354,28 +4736,28 @@ dI
 dI
 dI
 dI
-dI
+xl
 SF
 Yb
-oO
-oO
+sE
+sE
 iB
 Li
 iB
-oO
-oO
+sE
+sE
 nZ
-oO
-oO
-oO
-oO
-oO
+sE
+sE
+sE
+sE
+sE
 nZ
-oO
-oO
-oO
-oO
-oO
+sE
+sE
+sE
+sE
+sE
 vB
 Gv
 eF
@@ -4387,19 +4769,19 @@ qV
 rU
 Li
 iB
-oO
-oO
-cY
-LK
-iG
-cY
+sE
+sE
 hj
-oO
+LK
+Rf
+Rf
+hj
+Hl
 ug
+ea
+Nb
+zM
 ug
-ug
-ug
-oO
 ff
 Li
 ff
@@ -4413,9 +4795,9 @@ nR
 ff
 Li
 ff
-oO
+ug
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -4424,7 +4806,7 @@ dI
 dI
 dI
 dI
-dI
+xl
 ZU
 XB
 iC
@@ -4434,18 +4816,18 @@ Li
 iB
 sG
 ji
-oO
+sE
 sG
 yb
-oO
+sE
 sG
 Hs
-oO
+sE
 sG
 dZ
-oO
-oO
-oO
+sE
+sE
+sE
 Lg
 Gv
 FM
@@ -4457,25 +4839,25 @@ qV
 rU
 Li
 iB
-oO
-oO
-cY
+sE
+sE
+hj
 LK
 bq
-cY
+Rf
 hj
-oO
+Hl
 ug
 ug
 ug
 ug
-oO
+ug
 iB
 Li
 iB
 nR
 zk
-oO
+sE
 sW
 vo
 zk
@@ -4483,9 +4865,9 @@ nR
 iB
 Li
 iB
-oO
+ug
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -4493,29 +4875,29 @@ dI
 (38,1,1) = {"
 dI
 dI
-dI
-dI
+xl
+xl
 ZU
 qo
 iC
-oO
+sE
 iB
 Li
 iB
 sG
 sG
-oO
+sE
 sG
 sG
-oO
+sE
 sG
 sG
-oO
+sE
 sG
 sG
-oO
-oO
-oO
+sE
+sE
+sE
 Dk
 Gv
 FS
@@ -4527,18 +4909,18 @@ qV
 sy
 Li
 ff
-oO
-oO
-cY
-LK
-iG
-cY
+sE
+sE
 hj
-oO
-oO
+LK
+Rf
+Rf
+hj
+Hl
 ug
 ug
 ug
+Lm
 ug
 iB
 Li
@@ -4553,9 +4935,9 @@ nR
 iB
 Li
 iB
-oO
+ug
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -4563,7 +4945,7 @@ dI
 (39,1,1) = {"
 dI
 dI
-dI
+xl
 dq
 dq
 dq
@@ -4574,18 +4956,18 @@ Li
 ff
 sG
 sG
-oO
+sE
 sG
 sG
-oO
+sE
 sG
 sG
-oO
+sE
 sG
 sG
-oO
-oO
-oO
+sE
+sE
+sE
 Dk
 Gv
 gi
@@ -4597,18 +4979,18 @@ qV
 rU
 Li
 iB
-oO
-oO
-cY
-LK
-iG
-cY
+sE
+sE
 hj
-oO
+LK
+Rf
+Rf
+hj
+Hl
 ug
 ug
 ug
-ug
+jt
 ug
 iB
 Li
@@ -4623,9 +5005,9 @@ nR
 iB
 Li
 iB
-oO
+ug
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -4633,7 +5015,7 @@ dI
 (40,1,1) = {"
 dI
 dI
-dI
+xl
 dq
 yd
 OL
@@ -4642,20 +5024,20 @@ gw
 xS
 jD
 ol
-oO
-oO
+sE
+sE
 nZ
-oO
-oO
-oO
-oO
-oO
+sE
+sE
+sE
+sE
+sE
 nZ
-oO
-oO
-oO
-oO
-oO
+sE
+sE
+sE
+sE
+sE
 Dk
 Gv
 gi
@@ -4667,14 +5049,14 @@ qV
 rU
 Li
 iB
-oO
-oO
-cY
-LK
-iG
-cY
+sE
+sE
 hj
-oO
+LK
+Rf
+Rf
+hj
+Hl
 ug
 ug
 ug
@@ -4693,9 +5075,9 @@ nR
 iB
 Li
 iB
-oO
+sE
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -4703,7 +5085,7 @@ dI
 (41,1,1) = {"
 dI
 dI
-dI
+xl
 yP
 OU
 aG
@@ -4714,18 +5096,18 @@ jD
 ol
 sG
 CL
-oO
+sE
 sG
 qq
-oO
+sE
 sG
 BK
-oO
+sE
 sG
 Mx
-oO
-oO
-oO
+sE
+sE
+sE
 Dk
 Gv
 si
@@ -4737,14 +5119,14 @@ qV
 rU
 Li
 iB
-oO
-oO
-cY
-LK
-iG
-cY
+sE
+sE
 hj
-oO
+LK
+Rf
+Rf
+hj
+Hl
 ug
 ug
 ug
@@ -4756,16 +5138,16 @@ iB
 nR
 zk
 TL
-oO
+sE
 TL
 zk
 nR
 ff
 Li
 ff
-oO
+sE
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -4773,7 +5155,7 @@ dI
 (42,1,1) = {"
 dI
 dI
-dI
+xl
 yP
 Wy
 yg
@@ -4784,18 +5166,18 @@ jD
 ol
 sG
 sG
-oO
+sE
 sG
 sG
-oO
+sE
 sG
 sG
-oO
+sE
 sG
 sG
-oO
-oO
-oO
+sE
+sE
+sE
 Dk
 Gv
 FM
@@ -4807,14 +5189,14 @@ qV
 rU
 Li
 iB
-oO
-oO
-cY
-LK
-iG
-cY
+sE
+sE
 hj
-oO
+LK
+Rf
+Rf
+hj
+Hl
 ug
 ug
 ug
@@ -4833,9 +5215,9 @@ nR
 iB
 Li
 iB
-oO
+sE
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -4843,7 +5225,7 @@ dI
 (43,1,1) = {"
 dI
 dI
-dI
+xl
 yP
 zj
 qM
@@ -4854,18 +5236,18 @@ jD
 ol
 sG
 sG
-oO
+sE
 sG
 sG
-oO
+sE
 sG
 sG
-oO
+sE
 sG
 sG
-oO
-oO
-oO
+sE
+sE
+sE
 rS
 Gv
 eF
@@ -4877,14 +5259,14 @@ qV
 sy
 Li
 ff
-oO
-oO
-cY
+sE
+sE
+hj
 LK
 bq
-cY
+Rf
 hj
-oO
+Hl
 ug
 ug
 ug
@@ -4903,9 +5285,9 @@ nR
 iB
 Li
 iB
-oO
+sE
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -4913,7 +5295,7 @@ dI
 (44,1,1) = {"
 dI
 dI
-dI
+xl
 dq
 Op
 sn
@@ -4922,20 +5304,20 @@ gw
 Bn
 jD
 JQ
-oO
-oO
+sE
+sE
 nZ
-oO
-oO
-oO
-oO
-oO
+sE
+sE
+sE
+sE
+sE
 nZ
-oO
-oO
-oO
-oO
-oO
+sE
+sE
+sE
+sE
+sE
 vB
 rN
 eF
@@ -4947,18 +5329,18 @@ Vm
 rU
 Li
 iB
-oO
-oO
-cY
-LK
-iG
-cY
+sE
+sE
 hj
-oO
+LK
+Rf
+Rf
+hj
+Hl
 ug
-ug
-ug
-ug
+AP
+ox
+vt
 ug
 iB
 Li
@@ -4973,9 +5355,9 @@ nR
 ug
 Li
 iB
-oO
+sE
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -4983,7 +5365,7 @@ dI
 (45,1,1) = {"
 dI
 dI
-dI
+xl
 dq
 vO
 Op
@@ -4992,18 +5374,18 @@ gw
 xS
 jD
 ol
-oO
-oO
-oO
+sE
+sE
+sE
 sG
 ip
-oO
+sE
 sG
 sc
-oO
+sE
 sG
 lZ
-oO
+sE
 sG
 lj
 vB
@@ -5017,35 +5399,35 @@ rA
 rU
 Li
 iB
-oO
-oO
-iG
-iG
-iG
-cY
+sE
+sE
+Rf
+Rf
+Rf
+Rf
 hj
-oO
+Hl
 ug
+QI
 ug
+fU
 ug
-ug
-oO
 iB
 Li
 iB
 nR
 zk
 TL
-oO
-oO
+sE
+sE
 zk
 nR
 iB
 Li
 iB
-oO
+sE
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -5053,30 +5435,30 @@ dI
 (46,1,1) = {"
 dI
 dI
-dI
+xl
 dq
 RT
 Op
 XO
 gw
 Bn
-Xx
+jD
 JQ
 eJ
-oO
-oO
+sE
+sE
 sG
 sG
-oO
+sE
 sG
 sG
-oO
+sE
 sG
 sG
-oO
+sE
 sG
 sG
-oO
+sE
 LH
 Uj
 LH
@@ -5085,21 +5467,21 @@ LH
 fq
 mn
 ff
-At
+Li
 ff
 eJ
-oO
-iG
-iG
-iG
-cY
+sE
+Rf
+Rf
+Rf
+Rf
 hj
-oO
+Hl
 ug
 ug
-oO
-oO
-oO
+ug
+ug
+ug
 iB
 Li
 iB
@@ -5111,11 +5493,11 @@ xI
 zk
 Ys
 ff
-At
+Li
 ff
 eJ
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -5123,7 +5505,7 @@ dI
 (47,1,1) = {"
 dI
 dI
-dI
+xl
 dq
 tb
 Sp
@@ -5134,24 +5516,24 @@ KG
 SU
 gP
 sF
-oO
+sE
 sG
 sG
-oO
+sE
 sG
 sG
-oO
+sE
 sG
 sG
-oO
+sE
 sG
 sG
-oO
-oO
+sE
+sE
 VY
-oO
-oO
-oO
+sE
+sE
+sE
 Te
 gP
 SU
@@ -5159,24 +5541,24 @@ KG
 SU
 gP
 sF
-iG
-iG
-iG
-cY
+Rf
+Rf
+Rf
+Rf
 hj
-oO
+Hl
 ug
 ug
-oO
-oO
-oO
+ug
+ug
+ug
 iB
 Li
 iB
 nR
 zk
 TL
-oO
+sE
 TL
 Jt
 gP
@@ -5185,7 +5567,7 @@ KG
 SU
 gP
 Am
-dI
+xl
 dI
 dI
 dI
@@ -5193,7 +5575,7 @@ dI
 (48,1,1) = {"
 dI
 dI
-dI
+xl
 LP
 gT
 nv
@@ -5203,43 +5585,43 @@ SU
 gP
 SU
 gP
-oO
+sE
 nZ
-oO
-oO
-oO
-oO
-oO
+sE
+sE
+sE
+sE
+sE
 nZ
-oO
-oO
-oO
-oO
-oO
-oO
-oO
+sE
+sE
+sE
+sE
+sE
+sE
+sE
 VY
-oO
-oO
-oO
+sE
+sE
+sE
 ne
 gP
 SU
 gP
 SU
 gP
-oO
-iG
-iG
+sE
+Rf
+Rf
 bq
-cY
+Rf
 hj
-oO
+Hl
 ug
 ug
-oO
-oO
-oO
+ug
+ug
+ug
 iB
 Li
 iB
@@ -5255,7 +5637,7 @@ gP
 SU
 gP
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -5263,7 +5645,7 @@ dI
 (49,1,1) = {"
 dI
 dI
-dI
+xl
 yP
 Xe
 rM
@@ -5274,24 +5656,24 @@ gP
 SU
 gP
 VO
-oO
+sE
 sG
 pt
-oO
+sE
 sG
 FB
-oO
+sE
 sG
 kk
-oO
+sE
 sG
 Oq
 nZ
-oO
+sE
 Tr
-oO
-oO
-oO
+sE
+sE
+sE
 ne
 gP
 SU
@@ -5299,17 +5681,17 @@ gP
 SU
 gP
 VO
-oO
-oO
-oO
-oO
-oO
-oO
-oO
+sE
+sE
+sE
+sE
 ug
-oO
-oO
-eJ
+ug
+ug
+ug
+ug
+ug
+HH
 eL
 VR
 nf
@@ -5325,7 +5707,7 @@ gP
 SU
 gP
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -5333,7 +5715,7 @@ dI
 (50,1,1) = {"
 dI
 dI
-dI
+xl
 dq
 FG
 UO
@@ -5343,42 +5725,42 @@ SU
 gP
 SU
 gP
-oO
-oO
+sE
+sE
 sG
 sG
-oO
+sE
 sG
 sG
-oO
+sE
 sG
 sG
-oO
+sE
 sG
 sG
-oO
-oO
+sE
+sE
 VY
-oO
-oO
-oO
+sE
+sE
+sE
 ne
 gP
 SU
 gP
 SU
 gP
-oO
-oO
+sE
+sE
 ug
 ug
 ug
 ug
-oO
-oO
-oO
-oO
-oO
+ug
+ug
+ug
+ug
+ug
 dq
 dq
 QF
@@ -5395,7 +5777,7 @@ gP
 SU
 gP
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -5403,7 +5785,7 @@ dI
 (51,1,1) = {"
 dI
 dI
-dI
+xl
 dq
 JY
 On
@@ -5413,42 +5795,42 @@ SU
 wA
 SU
 gP
-oO
-oO
+sE
+sE
 sG
 sG
-oO
+sE
 sG
 sG
-oO
+sE
 sG
 sG
-oO
+sE
 sG
 sG
-oO
-oO
+sE
+sE
 VY
-oO
-oO
-oO
+sE
+sE
+sE
 ne
 gP
 SU
 wA
 SU
 gP
-oO
-oO
+sE
+sE
 ug
 ug
 ug
 ug
 ug
 ug
-oO
-oO
-oO
+ug
+ug
+ug
 yP
 Jb
 Hu
@@ -5456,7 +5838,7 @@ Ke
 Vx
 zk
 TL
-oO
+sE
 TL
 zk
 gP
@@ -5465,7 +5847,7 @@ wA
 SU
 gP
 Ju
-dI
+xl
 dI
 dI
 dI
@@ -5473,7 +5855,7 @@ dI
 (52,1,1) = {"
 dI
 dI
-dI
+xl
 dq
 ie
 Op
@@ -5484,20 +5866,20 @@ Pt
 gP
 gP
 sF
-oO
-oO
-oO
-oO
-oO
-oO
-oO
-oO
-oO
-oO
-oO
-oO
-oO
-oO
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
 uJ
 JI
 JI
@@ -5509,9 +5891,9 @@ Pt
 gP
 gP
 sF
-oO
+sE
 ug
-oO
+ug
 ug
 ug
 ug
@@ -5535,7 +5917,7 @@ Pt
 gP
 gP
 Am
-dI
+xl
 dI
 dI
 dI
@@ -5543,15 +5925,15 @@ dI
 (53,1,1) = {"
 dI
 dI
-dI
+xl
 dq
 gn
 qZ
 gn
 dq
 cL
-oO
-qn
+sE
+IE
 fo
 Kh
 Kh
@@ -5572,23 +5954,23 @@ Kh
 Kh
 Kh
 Kh
-Kh
+zy
 UN
 qn
-oO
+sE
 qn
-oO
-oO
-oO
-oO
-oO
-oO
+sE
+cA
+sE
+ug
+ug
+ug
 tl
 wp
 wp
 SG
-oO
-oO
+sE
+sE
 yP
 In
 wY
@@ -5596,16 +5978,16 @@ uI
 Vx
 zk
 TL
-oO
+sE
 TL
-zk
+ue
 nR
 qn
-oO
+sE
 qn
 tl
-pr
-dI
+vG
+xl
 dI
 dI
 dI
@@ -5613,7 +5995,7 @@ dI
 (54,1,1) = {"
 dI
 dI
-dI
+xl
 dq
 dq
 dq
@@ -5634,12 +6016,12 @@ wp
 wp
 wp
 SG
-oO
-oO
-oO
-oO
-oO
-oO
+sE
+sE
+sE
+sE
+sE
+sE
 tl
 wp
 wp
@@ -5648,17 +6030,17 @@ wp
 wp
 wp
 SG
-oO
-oO
-oO
+sE
+sE
+ug
 tl
 wp
 pr
-dI
-dI
+xl
+xl
 VQ
 SG
-oO
+sE
 dq
 yP
 yP
@@ -5674,8 +6056,8 @@ wp
 wp
 wp
 pr
-dI
-dI
+xl
+xl
 dI
 dI
 dI
@@ -5683,68 +6065,68 @@ dI
 (55,1,1) = {"
 dI
 dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
+jH
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
 VQ
 wp
 wp
 wp
 wp
-Pw
-Pw
-Fc
-dI
-dI
-dI
-dI
-dI
-dI
+wp
+wp
+pr
+xl
+xl
+xl
+xl
+xl
+xl
 VQ
 wp
 wp
 wp
 pr
+xl
+xl
+xl
 dI
-dI
-dI
-dI
-dI
+xl
 VQ
+Yl
 wp
 wp
 wp
 wp
 wp
+ME
 wp
 wp
 wp
 wp
-Pw
-Pw
-Fc
-dI
-dI
-dI
-dI
-dI
+pr
+xl
+xl
+xl
+xl
+qc
 dI
 dI
 dI
@@ -5772,45 +6154,45 @@ dI
 dI
 dI
 dI
+qc
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
 dI
 dI
 dI
 dI
 dI
+xl
+xl
+xl
+xl
+xl
+xl
+xl
 dI
 dI
 dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
-dI
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+qc
 dI
 dI
 dI

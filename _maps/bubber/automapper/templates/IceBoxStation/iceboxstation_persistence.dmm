@@ -17,16 +17,13 @@
 /turf/open/floor/iron/white/diagonal,
 /area/ruin/space/has_grav/bubbers/persistance/med)
 "ac" = (
-/obj/machinery/computer/atmos_control/nocontrol/incinerator{
-	dir = 4;
-	id_tag = "syndiship_turbine";
-	atmos_chambers = list("syndiship_turbine")
-	},
 /obj/machinery/button/door/directional/west{
 	id = "turbine_vent";
 	name = "Turbine Vent";
 	req_access = list("syndicate")
 	},
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/holosign_creator/atmos,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "ad" = (
@@ -251,9 +248,7 @@
 	},
 /obj/structure/sign/warning/biohazard/directional/west,
 /obj/structure/lattice/catwalk/mining,
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/icemoon/underground/explored)
 "aD" = (
 /obj/machinery/biogenerator,
@@ -782,7 +777,7 @@
 /obj/structure/emergency_shield/cult/weak{
 	name = "Energy Shield"
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/engine/hull/icebox,
 /area/icemoon/underground/explored)
 "bD" = (
 /obj/effect/turf_decal/stripes/line{
@@ -1200,10 +1195,7 @@
 	name = "persistence exterior east"
 	},
 /obj/effect/turf_decal/weather/snow,
-/turf/open/floor/iron/shuttle/evac{
-	icon_state = "7,2";
-	dir = 4
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "cw" = (
 /obj/structure/dresser,
@@ -1436,9 +1428,7 @@
 	},
 /obj/structure/lattice/catwalk/mining,
 /obj/structure/sign/warning/xeno_mining/directional/east,
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/icemoon/underground/explored)
 "cQ" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -2584,10 +2574,8 @@
 "fq" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/south,
 /obj/machinery/door/firedoor/heavy,
-/obj/structure/table/reinforced/plastitaniumglass,
 /obj/machinery/airalarm/directional/west,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
-/obj/item/holosign_creator/atmos,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "fs" = (
@@ -3754,9 +3742,7 @@
 	icon_state = "tram";
 	base_icon_state = "tram"
 	},
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "hQ" = (
 /obj/effect/turf_decal/trimline/dark/filled/line{
@@ -3811,19 +3797,6 @@
 /obj/item/plate/large,
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
-"hW" = (
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/effect/turf_decal/weather/snow,
-/turf/open/floor/iron/shuttle/evac{
-	icon_state = "5,13";
-	dir = 2
-	},
-/area/icemoon/underground/explored)
 "hX" = (
 /obj/machinery/smartfridge/organ,
 /turf/open/floor/iron/dark/smooth_large,
@@ -3835,19 +3808,6 @@
 	},
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/bubbers/persistance/service)
-"hZ" = (
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/effect/turf_decal/weather/snow,
-/turf/open/floor/iron/shuttle/evac{
-	icon_state = "5,13";
-	dir = 1
-	},
-/area/icemoon/underground/explored)
 "ia" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/warning,
 /obj/effect/turf_decal/trimline/dark_red/filled/warning{
@@ -3974,7 +3934,7 @@
 	dir = 8;
 	id = "QMLoad"
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/engine/hull/icebox,
 /area/icemoon/underground/explored)
 "in" = (
 /obj/structure/frame/machine/secured,
@@ -4128,9 +4088,7 @@
 	pixel_y = 5;
 	base_icon_state = "tram"
 	},
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "iD" = (
 /obj/effect/turf_decal/stripes/red/line{
@@ -4142,9 +4100,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "iE" = (
 /obj/effect/turf_decal/stripes/red/line{
@@ -4160,9 +4116,7 @@
 	pixel_y = 5;
 	base_icon_state = "tram"
 	},
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "iG" = (
 /obj/structure/marker_beacon/teal,
@@ -4605,6 +4559,8 @@
 /obj/machinery/atmospherics/pipe/smart/simple/yellow/visible/layer2{
 	dir = 8
 	},
+/obj/machinery/airalarm/directional/north,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/gas)
 "jA" = (
@@ -7380,9 +7336,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
 	},
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "oZ" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark{
@@ -7942,9 +7896,7 @@
 	icon_state = "tram";
 	base_icon_state = "tram"
 	},
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "pY" = (
 /obj/effect/turf_decal/stripes/line{
@@ -8466,9 +8418,7 @@
 	icon_state = "tram";
 	base_icon_state = "tram"
 	},
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
 "rb" = (
 /obj/structure/closet/crate/secure/syndicate/wafflecorp{
@@ -8854,9 +8804,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "rU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -9321,17 +9269,12 @@
 	network = list("persistence_ext")
 	},
 /obj/effect/turf_decal/weather/snow,
-/turf/open/floor/iron/shuttle/evac{
-	icon_state = "7,2";
-	dir = 1
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "sH" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "sL" = (
-/obj/machinery/airalarm/directional/east,
-/obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/machinery/door/firedoor/heavy,
 /obj/machinery/light/directional/east,
 /turf/open/floor/plating/reinforced,
@@ -9813,9 +9756,10 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/lockers)
 "tR" = (
 /obj/machinery/light/small/directional/west,
-/obj/machinery/computer/turbine_computer{
-	mapping_id = "dauntless_turbine";
-	dir = 4
+/obj/machinery/computer/atmos_control/nocontrol/incinerator{
+	dir = 4;
+	id_tag = "syndiship_turbine";
+	atmos_chambers = list("syndiship_turbine")
 	},
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
@@ -10567,6 +10511,13 @@
 /obj/machinery/door/firedoor/heavy,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
+"vo" = (
+/obj/machinery/computer/turbine_computer{
+	mapping_id = "dauntless_turbine";
+	dir = 4
+	},
+/turf/open/floor/plating/reinforced,
+/area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "vp" = (
 /obj/structure/table/wood,
 /obj/structure/towel_bin{
@@ -10643,9 +10594,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
 	},
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "vw" = (
 /obj/machinery/airalarm/directional/west,
@@ -10916,8 +10865,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/machinery/defibrillator_mount/charging{
 	pixel_y = 30;
-	pixel_x = 0;
-	icon_state = "defib"
+	pixel_x = 0
 	},
 /obj/structure/marker_beacon/cerulean,
 /obj/item/defibrillator/loaded,
@@ -11238,9 +11186,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 8
 	},
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
 "wz" = (
 /obj/machinery/shower/directional/west,
@@ -12407,7 +12353,7 @@
 	dir = 8;
 	id = "QMLoad"
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/engine/hull/icebox,
 /area/icemoon/underground/explored)
 "yV" = (
 /obj/structure/chair/pew/left{
@@ -13153,9 +13099,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
 	},
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "As" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -13226,10 +13170,7 @@
 	name = "Energy Shield"
 	},
 /obj/effect/turf_decal/weather/snow,
-/turf/open/floor/iron/shuttle/evac{
-	icon_state = "7,2";
-	dir = 8
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "AA" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -14212,9 +14153,7 @@
 	name = "Energy Shield"
 	},
 /obj/structure/lattice/catwalk/mining,
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/icemoon/underground/explored)
 "Cy" = (
 /obj/effect/turf_decal/stripes/line{
@@ -14436,19 +14375,6 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/maa)
-"CV" = (
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/effect/turf_decal/weather/snow,
-/turf/open/floor/iron/shuttle/evac{
-	icon_state = "5,13";
-	dir = 1
-	},
-/area/lavaland/surface/outdoors)
 "CY" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -14568,9 +14494,7 @@
 	name = "Energy Shield"
 	},
 /obj/structure/sign/warning/docking/directional/west,
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/icemoon/underground/explored)
 "Dg" = (
 /obj/structure/table/reinforced/plastitaniumglass,
@@ -15681,7 +15605,7 @@
 	id = "QMLoad"
 	},
 /obj/structure/lattice/catwalk/mining,
-/turf/open/floor/pod/dark,
+/turf/open/floor/engine/hull/icebox,
 /area/icemoon/underground/explored)
 "Fd" = (
 /obj/structure/cable,
@@ -15906,10 +15830,7 @@
 	name = "Energy Shield"
 	},
 /obj/effect/turf_decal/weather/snow,
-/turf/open/floor/iron/shuttle/evac{
-	icon_state = "5,13";
-	dir = 4
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/lavaland/surface/outdoors)
 "Fz" = (
 /obj/structure/fireplace,
@@ -17626,9 +17547,7 @@
 	dir = 8
 	},
 /obj/structure/disposaloutlet,
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/icemoon/underground/explored)
 "IX" = (
 /obj/structure/closet/generic/wall{
@@ -18662,10 +18581,7 @@
 	name = "Energy Shield"
 	},
 /obj/effect/turf_decal/weather/snow,
-/turf/open/floor/iron/shuttle/evac{
-	icon_state = "5,13";
-	dir = 4
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/icemoon/underground/explored)
 "Lt" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -18844,7 +18760,7 @@
 	name = "Persistence Exterior North";
 	network = list("persistence_ext")
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "LN" = (
 /obj/structure/cable,
@@ -19176,6 +19092,11 @@
 /obj/item/circuitboard/machine/stacking_unit_console,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/mining)
+"Mw" = (
+/obj/machinery/airalarm/directional/north,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
+/turf/open/floor/plating/reinforced,
+/area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "MA" = (
 /obj/machinery/netpod,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -19333,7 +19254,7 @@
 	dir = 8;
 	id = "QMLoad"
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "MQ" = (
 /obj/structure/cable,
@@ -19594,9 +19515,7 @@
 	name = "Energy Shield"
 	},
 /obj/structure/lattice/catwalk/mining,
-/turf/open/floor/engine/hull{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/icemoon/underground/explored)
 "Nr" = (
 /obj/effect/turf_decal/siding/dark,
@@ -20490,7 +20409,7 @@
 	id = "QMLoad"
 	},
 /obj/structure/lattice/catwalk/mining,
-/turf/open/floor/pod/dark,
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "Pe" = (
 /obj/machinery/computer/cryopod/cybersun/directional/west,
@@ -21172,19 +21091,6 @@
 /obj/machinery/disposal/bin,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/medical)
-"QB" = (
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/effect/turf_decal/weather/snow,
-/turf/open/floor/iron/shuttle/evac{
-	icon_state = "5,13";
-	dir = 8
-	},
-/area/icemoon/underground/explored)
 "QC" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/west{
 	pixel_x = -4
@@ -21410,6 +21316,9 @@
 /obj/machinery/atmospherics/components/unary/passive_vent/layer4{
 	dir = 4
 	},
+/obj/structure/railing{
+	dir = 10
+	},
 /turf/open/lava/plasma/ice_moon,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "Rd" = (
@@ -21451,7 +21360,7 @@
 	id = "QMLoad"
 	},
 /obj/structure/lattice/catwalk/mining,
-/turf/open/floor/pod/dark,
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "Rh" = (
 /obj/structure/cable,
@@ -22229,13 +22138,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/iron/terracotta/small,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/engineering)
-"SJ" = (
-/obj/structure/railing{
-	dir = 10
-	},
-/obj/structure/lattice/catwalk/mining,
-/turf/open/lava/plasma/ice_moon,
-/area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "SM" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/shrink_ccw{
 	dir = 1
@@ -23041,10 +22943,7 @@
 	network = list("persistence_ext")
 	},
 /obj/effect/turf_decal/weather/snow,
-/turf/open/floor/iron/shuttle/evac{
-	icon_state = "7,2";
-	dir = 2
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "UH" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
@@ -24796,10 +24695,7 @@
 	pixel_y = 0
 	},
 /obj/effect/turf_decal/weather/snow,
-/turf/open/floor/iron/shuttle/evac{
-	icon_state = "7,2";
-	dir = 1
-	},
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "Yf" = (
 /obj/machinery/syndicatebomb/empty,
@@ -26094,7 +25990,7 @@ nc
 nc
 nc
 nc
-hW
+Lr
 cv
 Lr
 uQ
@@ -26135,7 +26031,7 @@ HP
 HP
 XC
 nc
-hW
+Lr
 cv
 Lr
 uQ
@@ -26238,11 +26134,11 @@ Ag
 UZ
 gz
 Rc
-SJ
 Gd
-rt
-rt
-rt
+Gd
+Gd
+Gd
+Gd
 rt
 uQ
 Bk
@@ -26309,8 +26205,8 @@ rm
 gz
 oM
 Gd
-rt
 Gd
+vo
 tR
 ac
 Gd
@@ -26378,9 +26274,9 @@ uS
 Kj
 bV
 jA
-Iu
-rz
 yE
+rz
+Iu
 Iu
 Iu
 fq
@@ -26671,7 +26567,7 @@ Bk
 Bk
 Bk
 Bk
-CV
+Fy
 uQ
 uQ
 mc
@@ -26820,7 +26716,7 @@ mc
 mc
 mc
 uQ
-hW
+Lr
 HP
 HP
 HP
@@ -26960,7 +26856,7 @@ mc
 mc
 Pq
 uQ
-QB
+Lr
 HP
 RE
 Dk
@@ -27155,13 +27051,13 @@ TF
 mz
 Ya
 YA
-Iu
+Mw
 Iu
 Iu
 Iu
 ng
 rt
-CV
+Fy
 uQ
 uQ
 mc
@@ -28771,7 +28667,7 @@ pc
 rh
 rh
 ax
-CV
+Fy
 uQ
 mc
 mc
@@ -29059,7 +28955,7 @@ mc
 (47,1,1) = {"
 mc
 uQ
-hW
+Lr
 Kd
 HJ
 RJ
@@ -29191,7 +29087,7 @@ iz
 VD
 Dy
 kt
-hZ
+Lr
 uQ
 mc
 mc
@@ -29199,7 +29095,7 @@ mc
 (49,1,1) = {"
 mc
 uQ
-QB
+Lr
 hO
 RO
 KS
@@ -29634,9 +29530,9 @@ uQ
 uQ
 nc
 nc
-QB
+Lr
 Az
-hZ
+Lr
 nc
 FE
 Di
@@ -29649,9 +29545,9 @@ Rf
 Fc
 nc
 nc
-QB
+Lr
 Az
-hZ
+Lr
 nc
 im
 im

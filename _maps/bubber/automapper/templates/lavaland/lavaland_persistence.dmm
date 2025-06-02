@@ -2154,10 +2154,8 @@
 "ex" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/south,
 /obj/machinery/door/firedoor/heavy,
-/obj/structure/table/reinforced/plastitaniumglass,
 /obj/machinery/airalarm/directional/west,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
-/obj/item/holosign_creator/atmos,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "ez" = (
@@ -3427,6 +3425,8 @@
 /obj/machinery/atmospherics/pipe/smart/simple/yellow/visible/layer2{
 	dir = 8
 	},
+/obj/machinery/airalarm/directional/north,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/gas)
 "hf" = (
@@ -9262,13 +9262,6 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
-"sT" = (
-/obj/structure/railing{
-	dir = 10
-	},
-/obj/structure/lattice/catwalk/mining,
-/turf/open/lava/smooth/lava_land_surface,
-/area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "sU" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
@@ -13942,8 +13935,6 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
 "Ce" = (
-/obj/machinery/airalarm/directional/east,
-/obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/machinery/door/firedoor/heavy,
 /obj/machinery/light/directional/east,
 /turf/open/floor/plating/reinforced,
@@ -15804,8 +15795,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/machinery/defibrillator_mount/charging{
 	pixel_y = 30;
-	pixel_x = 0;
-	icon_state = "defib"
+	pixel_x = 0
 	},
 /obj/structure/marker_beacon/cerulean,
 /obj/item/defibrillator/loaded,
@@ -16512,9 +16502,10 @@
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "GD" = (
 /obj/machinery/light/small/directional/west,
-/obj/machinery/computer/turbine_computer{
-	mapping_id = "dauntless_turbine";
-	dir = 4
+/obj/machinery/computer/atmos_control/nocontrol/incinerator{
+	dir = 4;
+	id_tag = "syndiship_turbine";
+	atmos_chambers = list("syndiship_turbine")
 	},
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
@@ -18412,6 +18403,11 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
+"KH" = (
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
+/obj/machinery/airalarm/directional/north,
+/turf/open/floor/plating/reinforced,
+/area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "KJ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
@@ -20616,6 +20612,9 @@
 /obj/machinery/atmospherics/components/unary/passive_vent/layer4{
 	dir = 4
 	},
+/obj/structure/railing{
+	dir = 10
+	},
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "Pl" = (
@@ -20991,16 +20990,13 @@
 /turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
 "Qa" = (
-/obj/machinery/computer/atmos_control/nocontrol/incinerator{
-	dir = 4;
-	id_tag = "syndiship_turbine";
-	atmos_chambers = list("syndiship_turbine")
-	},
 /obj/machinery/button/door/directional/west{
 	id = "turbine_vent";
 	name = "Turbine Vent";
 	req_access = list("syndicate")
 	},
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/holosign_creator/atmos,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "Qc" = (
@@ -24207,6 +24203,13 @@
 	},
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
+"WC" = (
+/obj/machinery/computer/turbine_computer{
+	mapping_id = "dauntless_turbine";
+	dir = 4
+	},
+/turf/open/floor/plating/reinforced,
+/area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "WE" = (
 /obj/structure/sign/poster/contraband/waffle_corp_rifles/directional/west,
 /obj/effect/turf_decal/siding/dark{
@@ -25989,11 +25992,11 @@ jS
 be
 Kb
 Pk
-sT
 yZ
-AQ
-AQ
-AQ
+yZ
+yZ
+yZ
+yZ
 AQ
 gq
 an
@@ -26059,8 +26062,8 @@ qh
 Kb
 aF
 yZ
-AQ
 yZ
+WC
 GD
 Qa
 yZ
@@ -26127,9 +26130,9 @@ wI
 CN
 Wh
 SR
-sb
-GC
 Lg
+GC
+sb
 sb
 sb
 ex
@@ -26893,7 +26896,7 @@ MF
 OW
 me
 BR
-sb
+KH
 sb
 sb
 sb
