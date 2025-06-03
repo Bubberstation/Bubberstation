@@ -7,9 +7,8 @@
 
 /obj/item/organ/eyes/robotic/protean
 	name = "imaging nanites"
-	desc = "Nanites designed to collect visual data from the surrounding world"
+	desc = "Nanites designed to collect visual data from the surrounding world."
 	organ_flags = ORGAN_ROBOTIC
-	flash_protect = FLASH_PROTECTION_WELDER
 
 /obj/item/organ/eyes/robotic/protean/Initialize(mapload)
 	if(QDELETED(src))
@@ -22,7 +21,7 @@
 
 /obj/item/organ/ears/cybernetic/protean
 	name = "sensory nanites"
-	desc = "Nanites designed to collect audio feedback from the surrounding world"
+	desc = "Nanites designed to collect audio feedback from the surrounding world."
 	organ_flags = ORGAN_ROBOTIC
 
 /obj/item/organ/ears/cybernetic/protean/Insert(mob/living/carbon/receiver, special, movement_flags)
