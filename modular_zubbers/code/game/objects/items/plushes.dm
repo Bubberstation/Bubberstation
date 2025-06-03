@@ -282,3 +282,28 @@
 		'sound/mobs/non-humanoids/hiss/hiss2.ogg' = 1,
 		'modular_skyrat/modules/emotes/sound/emotes/voxrustle.ogg' = 1,
 	)
+
+/obj/item/toy/plush/mothroach_plush
+	name = "mothroach plush"
+	desc = "A plushie featuring the likeness everyone's favorite genetic freak-turned station pet. Do not soak it in milk and throw it against a wall."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "mothroach"
+	attack_verb_continuous = list("mothroaches", "moths", "roaches")
+	attack_verb_simple = list("mothroach", "moth", "roach")
+	gender = MALE
+	squeak_override = list( 'sound/mobs/humanoids/moth/scream_moth.ogg' = 1, )
+
+/obj/item/toy/plush/moth/lovers
+	name = "lovers moth plushie"
+	desc = "An adorable mothperson plushie. It's a lovely bug!"
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "moffplush_lovers"
+
+/obj/item/toy/plush/lazy_synth
+	name = "lazy synth plush"
+	desc = "A soft plush of an extremely lazy synth. Might be found loafing in random places."
+	attack_verb_continuous = list("squishes")
+	attack_verb_simple = list("squish")
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "lazy_synth"
+	squeak_override = list('modular_zubbers/sound/misc/squeakle.ogg' = 1)

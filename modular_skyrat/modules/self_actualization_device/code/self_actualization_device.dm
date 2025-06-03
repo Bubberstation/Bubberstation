@@ -5,7 +5,7 @@
 /// How long does it take to break out of the machine?
 #define BREAKOUT_TIME 5 SECONDS
 /// The interval that advertisements are said by the machine's speaker.
-#define ADVERT_TIME 18 SECONDS
+#define ADVERT_TIME 14 SECONDS
 
 /datum/design/board/self_actualization_device
 	name = "Machine Design (Self-Actualization Device)"
@@ -16,10 +16,10 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /obj/item/circuitboard/machine/self_actualization_device
-	name = "Self-Actualization Device (Machine Board)"
+	name = "Self-Actualization Device"
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/self_actualization_device
-	req_components = list(/datum/stock_part/micro_laser = 1)
+	req_components = list()
 
 /obj/machinery/self_actualization_device
 	name = "Self-Actualization Device"
@@ -29,10 +29,12 @@
 	circuit = /obj/item/circuitboard/machine/self_actualization_device
 	state_open = FALSE
 	density = TRUE
+	active_power_usage = 240 KILO WATTS
+	idle_power_usage = 24 KILO WATTS
 	/// Is someone being processed inside of the machine?
 	var/processing = FALSE
 	/// How long does the machine take to work?
-	var/processing_time = 1 MINUTES
+	var/processing_time = 30 SECONDS
 	/// wzhzhzh
 	var/datum/looping_sound/microwave/sound_loop
 	/// Has the player consented to the DNA change
@@ -213,21 +215,17 @@
 
 	patient.client?.prefs?.safe_transfer_prefs_to_with_damage(patient, visuals_only = TRUE)
 	patient.dna.update_dna_identity()
-	SSquirks.AssignQuirks(patient, patient.client)
-	log_game("[key_name(patient)] used a Self-Actualization Device at [loc_name(src)].")
-
 	if(patient.dna.real_name != original_name)
-		message_admins("[key_name_admin(patient)] has used the Self-Actualization Device, and changed the name of their character. \
-		Original Name: [original_name], New Name: [patient.dna.real_name]. \
-		This may be a false positive from changing from a humanized monkey into a character, so be careful.")
+		log_game("[key_name(patient)] has used the Self-Actualization Device at [loc_name(src)], changed the name of their character. \
+		Original Name: [original_name], New Name: [patient.dna.real_name].")
 	else
-		message_admins("[key_name_admin(patient)] has used the Self-Actualization Device, and potentially changed their quirks. \
-		This may be a false positive from restoring an altered body of the same name, so be careful.")
+		log_game("[key_name(patient)] has used the Self-Actualization Device at [loc_name(src)].")
 
 	playsound(src, 'sound/machines/microwave/microwave-end.ogg', 100, FALSE)
 	say("Procedure complete! Enjoy your life being a new you!")
 
 	open_machine()
+	SSquirks.OverrideQuirks(patient, patient.client)
 
 /// Ejection and shut down of the machine, used before the preferences have been applied to the player. Damage optional.
 /obj/machinery/self_actualization_device/proc/eject_old_you(damaged_goods = FALSE)
@@ -296,14 +294,6 @@
 
 	if(default_deconstruction_crowbar(used_item))
 		return TRUE
-
-/obj/machinery/self_actualization_device/RefreshParts()
-	. = ..()
-	processing_time = 70 SECONDS
-	for(var/datum/stock_part/micro_laser/laser in component_parts) // Laser tier increases speed, at the expense of power.
-		processing_time -= laser.tier * 10 SECONDS
-		active_power_usage = 7200000 / processing_time WATTS
-		idle_power_usage = active_power_usage / 4
 
 #undef NO_CONSENT
 #undef CONSENT_GRANTED

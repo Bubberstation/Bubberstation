@@ -78,6 +78,7 @@ GLOBAL_LIST_INIT(skyrat_wood_recipes, list(
 	new/datum/stack_recipe("large wooden mortar", /obj/structure/large_mortar, 10, time = 3 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_TOOLS),
 	new/datum/stack_recipe("wooden cutting board", /obj/item/cutting_board, 5, time = 2 SECONDS, category = CAT_TOOLS),
 	new/datum/stack_recipe("wooden shelf", /obj/structure/rack/wooden, 2, time = 2 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE),
+	new/datum/stack_recipe("butter churn", /obj/structure/butterchurn, 8, time = 3 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE),
 	new/datum/stack_recipe("seed shelf", /obj/machinery/smartfridge/wooden/seed_shelf, 10, time = 2 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE),
 	new/datum/stack_recipe("produce bin", /obj/machinery/smartfridge/wooden/produce_bin, 10, time = 2 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE),
 	new/datum/stack_recipe("produce display", /obj/machinery/smartfridge/wooden/produce_display, 10, time = 2 SECONDS, crafting_flags = CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE),

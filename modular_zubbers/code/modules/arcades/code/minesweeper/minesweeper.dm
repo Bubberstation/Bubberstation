@@ -84,9 +84,11 @@
 
 	return data
 
-/obj/machinery/computer/arcade/minesweeper/ui_act(action, list/params, mob/user)
+/obj/machinery/computer/arcade/minesweeper/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	if(..())
 		return TRUE
+
+	var/mob/user = ui.user
 
 	switch(action)
 		if("PRG_do_tile")
@@ -231,7 +233,7 @@
 
 	return data
 
-/datum/computer_file/program/minesweeper/ui_act(action, list/params, mob/user)
+/datum/computer_file/program/minesweeper/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	if(..())
 		return TRUE
 
@@ -241,6 +243,7 @@
 	if(!board.host && computer)
 		board.host = computer
 
+	var/mob/user = ui.user
 
 	switch(action)
 		if("PRG_do_tile")
