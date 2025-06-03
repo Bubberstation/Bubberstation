@@ -10,7 +10,8 @@
 	tag_multipliers = list(
 		TAG_COMBAT = 0.3,
 		TAG_DESTRUCTIVE = 0.3,
-		TAG_CHAOTIC = 0.1
+		TAG_CHAOTIC = 0.1,
+		TAG_BIG_THREE = 0,
 	)
 	antag_divisor = 32
 	storyteller_type = STORYTELLER_TYPE_CALM
