@@ -8,6 +8,7 @@
 	body_parts_covered = NONE
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	item_flags = DROPDEL
+	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	greyscale_colors = "#bd8fcf"
 	has_sensor = NO_SENSORS
 
@@ -114,7 +115,9 @@
 /obj/item/clothing/under/shibari/torso
 	name = "shibari ropes"
 	desc = "Nice looking rope bondage."
-	icon_state = "shibari_body"
+
+	icon_state = "/obj/item/clothing/under/shibari/torso"
+	post_init_icon_state = "shibari_body"
 
 	greyscale_config = /datum/greyscale_config/shibari/body
 	greyscale_config_worn = /datum/greyscale_config/shibari/body/worn
@@ -137,7 +140,8 @@
 /obj/item/clothing/under/shibari/groin
 	name = "crotch rope shibari"
 	desc = "A rope that teases the wearer's genitals."
-	icon_state = "shibari_groin"
+	icon_state = "/obj/item/clothing/under/shibari/groin"
+	post_init_icon_state = "shibari_groin"
 
 	greyscale_config = /datum/greyscale_config/shibari/groin
 	greyscale_config_worn = /datum/greyscale_config/shibari/groin/worn
@@ -170,7 +174,8 @@
 /obj/item/clothing/under/shibari/full
 	name = "shibari fullbody ropes"
 	desc = "Bondage ropes that cover the whole body."
-	icon_state = "shibari_fullbody"
+	icon_state = "/obj/item/clothing/under/shibari/full"
+	post_init_icon_state = "shibari_fullbody"
 
 	greyscale_config = /datum/greyscale_config/shibari/fullbody
 	greyscale_config_worn = /datum/greyscale_config/shibari/fullbody/worn

@@ -2,8 +2,9 @@
 //SUITS
 /obj/item/clothing/suit/hooded/wintercoat/colourable
 	name = "custom winter coat"
-	icon_state = "winter_coat"
-	icon = null
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/hooded/wintercoat/colourable"
+	post_init_icon_state = "winter_coat"
 	worn_icon_state = null
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/colourable
 	greyscale_config = /datum/greyscale_config/winter_coat
@@ -49,7 +50,9 @@
 
 /obj/item/clothing/neck/cloak/colourable
 	name = "colourable cloak"
-	icon_state = "gags_cloak"
+	icon = 'icons/map_icons/clothing/neck.dmi'
+	icon_state = "/obj/item/clothing/neck/cloak/colourable"
+	post_init_icon_state = "gags_cloak"
 	greyscale_config = /datum/greyscale_config/cloak
 	greyscale_config_worn = /datum/greyscale_config/cloak/worn
 	greyscale_colors = "#917A57#4e412e#4e412e"
@@ -57,19 +60,22 @@
 
 /obj/item/clothing/neck/cloak/colourable/veil
 	name = "colourable veil"
-	icon_state = "gags_veil"
+	icon_state = "/obj/item/clothing/neck/cloak/colourable/veil"
+	post_init_icon_state = "gags_veil"
 	greyscale_config = /datum/greyscale_config/cloak/veil
 	greyscale_config_worn = /datum/greyscale_config/cloak/veil/worn
 
 /obj/item/clothing/neck/cloak/colourable/boat
 	name = "colourable boatcloak"
-	icon_state = "gags_boat"
+	icon_state = "/obj/item/clothing/neck/cloak/colourable/boat"
+	post_init_icon_state = "gags_boat"
 	greyscale_config = /datum/greyscale_config/cloak/boat
 	greyscale_config_worn = /datum/greyscale_config/cloak/boat/worn
 
 /obj/item/clothing/neck/cloak/colourable/shroud
 	name = "colourable shroud"
-	icon_state = "gags_shroud"
+	icon_state = "/obj/item/clothing/neck/cloak/colourable/shroud"
+	post_init_icon_state = "gags_shroud"
 	greyscale_config = /datum/greyscale_config/cloak/shroud
 	greyscale_config_worn = /datum/greyscale_config/cloak/shroud/worn
 
@@ -830,6 +836,7 @@
 	greyscale_colors = null
 	desc = " "
 	icon_state = "mikuleggings"
+	post_init_icon_state = null
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/feet.dmi'
 	worn_icon_state = "mikuleggings"
@@ -1208,7 +1215,6 @@
 /obj/item/poster/korpstech
 	name = "Korps Genetics poster"
 	poster_type = /obj/structure/sign/poster/contraband/korpstech
-	icon = 'modular_skyrat/modules/aesthetics/posters/contraband.dmi'
 	icon_state = "rolled_poster"
 
 /obj/structure/sign/poster/contraband/korpstech
