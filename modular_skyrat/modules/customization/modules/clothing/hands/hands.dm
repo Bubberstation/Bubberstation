@@ -34,8 +34,9 @@
 /obj/item/clothing/gloves/bracer/wraps
 	name = "cloth arm wraps"
 	desc = "Cloth bracers, the colour all left up to the choice of the wearer."
-	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/gloves.dmi'
-	icon_state = "arm_wraps"
+	icon = 'icons/map_icons/clothing/_clothing.dmi'
+	icon_state = "/obj/item/clothing/gloves/bracer/wraps"
+	post_init_icon_state = "arm_wraps"
 	inhand_icon_state = "greyscale_gloves"
 	greyscale_config = /datum/greyscale_config/armwraps
 	greyscale_config_worn = /datum/greyscale_config/armwraps/worn
@@ -48,7 +49,9 @@
 /obj/item/clothing/gloves/maid_arm_covers
 	name = "maid arm covers"
 	desc = "Maid in China."
-	icon_state = "maid_arm_covers"
+	icon = 'icons/map_icons/clothing/_clothing.dmi'
+	icon_state = "/obj/item/clothing/gloves/maid_arm_covers"
+	post_init_icon_state = "maid_arm_covers"
 	greyscale_config = /datum/greyscale_config/maid_arm_covers
 	greyscale_config_worn = /datum/greyscale_config/maid_arm_covers/worn
 	greyscale_config_inhand_left = null

@@ -8,53 +8,17 @@
 	abstract_type = /datum/loadout_item/toys
 	can_be_named = TRUE
 
-/datum/loadout_item/toys/bee
-	name = "Bee Plushie"
-	item_path = /obj/item/toy/plush/beeplushie
-
-/datum/loadout_item/toys/carp
-	name = "Carp Plushie"
-	item_path = /obj/item/toy/plush/carpplushie
-
 /datum/loadout_item/toys/shark
 	name = "Shark Plushie"
 	item_path = /obj/item/toy/plush/shark
-
-/datum/loadout_item/toys/lizard_greyscale
-	name = "Greyscale Lizard Plushie"
-	item_path = /obj/item/toy/plush/lizard_plushie
-
-/datum/loadout_item/toys/moth
-	name = "Moth Plushie"
-	item_path = /obj/item/toy/plush/moth
 
 /datum/loadout_item/toys/narsie
 	name = "Nar'sie Plushie"
 	item_path = /obj/item/toy/plush/narplush
 
-/datum/loadout_item/toys/nukie
-	name = "Nukie Plushie"
-	item_path = /obj/item/toy/plush/nukeplushie
-
-/datum/loadout_item/toys/peacekeeper
-	name = "Peacekeeper Plushie"
-	item_path = /obj/item/toy/plush/pkplush
-
-/datum/loadout_item/toys/plasmaman
-	name = "Plasmaman Plushie"
-	item_path = /obj/item/toy/plush/plasmamanplushie
-
 /datum/loadout_item/toys/ratvar
 	name = "Ratvar Plushie"
 	item_path = /obj/item/toy/plush/ratplush
-
-/datum/loadout_item/toys/rouny
-	name = "Rouny Plushie"
-	item_path = /obj/item/toy/plush/rouny
-
-/datum/loadout_item/toys/snake
-	name = "Snake Plushie"
-	item_path = /obj/item/toy/plush/snakeplushie
 
 /datum/loadout_item/toys/slime
 	name = "Slime Plushie"
@@ -264,81 +228,9 @@
 *	CARDS
 */
 
-/datum/loadout_item/toys/card_binder
-	name = "Card Binder"
-	item_path = /obj/item/storage/card_binder
-
-/datum/loadout_item/toys/card_deck
-	name = "Playing Card Deck"
-	item_path = /obj/item/toy/cards/deck
-
-/datum/loadout_item/toys/kotahi_deck
-	name = "Kotahi Deck"
-	item_path = /obj/item/toy/cards/deck/kotahi
-
-/datum/loadout_item/toys/wizoff_deck
-	name = "Wizoff Deck"
-	item_path = /obj/item/toy/cards/deck/wizoff
-
 /datum/loadout_item/toys/tarot
 	name = "Tarot Card Deck"
 	item_path = /obj/item/toy/cards/deck/tarot
-
-/*
-*	DICE
-*/
-
-/datum/loadout_item/toys/d1
-	name = "D1"
-	item_path = /obj/item/dice/d1
-
-/datum/loadout_item/toys/d2
-	name = "D2"
-	item_path = /obj/item/dice/d2
-
-/datum/loadout_item/toys/d4
-	name = "D4"
-	item_path = /obj/item/dice/d4
-
-/datum/loadout_item/toys/d6
-	name = "D6"
-	item_path = /obj/item/dice/d6
-
-/datum/loadout_item/toys/d6_ebony
-	name = "D6 (Ebony)"
-	item_path = /obj/item/dice/d6/ebony
-
-/datum/loadout_item/toys/d6_space
-	name = "D6 (Space)"
-	item_path = /obj/item/dice/d6/space
-
-/datum/loadout_item/toys/d8
-	name = "D8"
-	item_path = /obj/item/dice/d8
-
-/datum/loadout_item/toys/d10
-	name = "D10"
-	item_path = /obj/item/dice/d10
-
-/datum/loadout_item/toys/d12
-	name = "D12"
-	item_path = /obj/item/dice/d12
-
-/datum/loadout_item/toys/d20
-	name = "D20"
-	item_path = /obj/item/dice/d20
-
-/datum/loadout_item/toys/d100
-	name = "D100"
-	item_path = /obj/item/dice/d100
-
-/datum/loadout_item/toys/d00
-	name = "D00"
-	item_path = /obj/item/dice/d00
-
-/datum/loadout_item/toys/dice
-	name = "Dice Bag"
-	item_path = /obj/item/storage/dice
 
 /*
 *	TENNIS BALLS

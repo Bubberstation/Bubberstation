@@ -2,23 +2,6 @@
 *	PRESCRIPTION GLASSES
 */
 
-/datum/loadout_item/glasses/prescription_glasses
-	name = "Glasses"
-	item_path = /obj/item/clothing/glasses/regular
-	additional_displayed_text = list("PRESCRIPTION")
-
-/datum/loadout_item/glasses/prescription_glasses/circle_glasses
-	name = "Circle Glasses"
-	item_path = /obj/item/clothing/glasses/regular/circle
-
-/datum/loadout_item/glasses/prescription_glasses/hipster_glasses
-	name = "Hipster Glasses"
-	item_path = /obj/item/clothing/glasses/regular/hipster
-
-/datum/loadout_item/glasses/prescription_glasses/jamjar_glasses
-	name = "Jamjar Glasses"
-	item_path = /obj/item/clothing/glasses/regular/jamjar
-
 /datum/loadout_item/glasses/prescription_glasses/thin
 	name = "Thin Glasses"
 	item_path = /obj/item/clothing/glasses/thin
@@ -26,10 +9,6 @@
 /datum/loadout_item/glasses/prescription_glasses/better
 	name = "Modern Glasses"
 	item_path = /obj/item/clothing/glasses/regular/betterunshit
-
-/datum/loadout_item/glasses/prescription_glasses/kim
-	name = "Binoclard Lenses"
-	item_path = /obj/item/clothing/glasses/regular/kim
 
 /*
 *	COSMETIC GLASSES

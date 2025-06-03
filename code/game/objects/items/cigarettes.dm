@@ -57,11 +57,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/match/update_desc(updates)
 	. = ..()
 	if(lit)
-		desc = "[initial(desc)]. This one is lit."
+		desc = "[initial(desc)] This one is lit."
 	else if(burnt)
-		desc = "[initial(desc)]. This one has seen better days."
+		desc = "[initial(desc)] This one has seen better days."
 	else if(broken)
-		desc = "[initial(desc)]. This one is broken."
+		desc = "[initial(desc)] This one is broken."
 	else
 		desc = initial(desc)
 
@@ -94,10 +94,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/match/proc/matchignite()
 	if(lit || burnt || broken)
 		return
-	//SKYRAT EDIT ADDITION
-	var/turf/my_turf = get_turf(src)
-	my_turf.pollute_turf(/datum/pollutant/sulphur, 5)
-	//SKYRAT EDIT END
 	playsound(src, 'sound/items/match_strike.ogg', 15, TRUE)
 	lit = TRUE
 	damtype = BURN
@@ -173,6 +169,19 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	. = ..()
 	matchignite()
 
+/obj/item/match/battery
+	name = "battery lighter"
+	desc = "A budget lighter done by using a battery and some aluminium. Hold tightly to ignite."
+	icon_state = "battery_unlit"
+	base_icon_state = "battery"
+
+/obj/item/match/battery/attack_self(mob/living/user, modifiers)
+	. = ..()
+	if(!do_after(user, 4 SECONDS, src))
+		return
+	user.apply_damage(5, BURN, user.get_active_hand())
+	matchignite()
+
 //////////////////
 //FINE SMOKABLES//
 //////////////////
@@ -231,8 +240,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	VAR_FINAL/how_long_have_we_been_smokin = 0 SECONDS
 	/// Which people ate cigarettes and how many
 	var/static/list/cigarette_eaters = list()
-
-	var/pollution_type = /datum/pollutant/smoke //SKYRAT EDIT ADDITION /// What type of pollution does this produce on smoking, changed to weed pollution sometimes
 
 /obj/item/cigarette/Initialize(mapload)
 	. = ..()
@@ -328,7 +335,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	user.visible_message(span_suicide("[user] is huffing [src] as quickly as [user.p_they()] can! It looks like [user.p_theyre()] trying to give [user.p_them()]self cancer."))
 	return (TOXLOSS|OXYLOSS)
 
-/obj/item/cigarette/attackby(obj/item/W, mob/user, params)
+/obj/item/cigarette/attackby(obj/item/W, mob/user, list/modifiers, list/attack_modifiers)
 	if(lit)
 		return ..()
 
@@ -420,12 +427,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		e.start(src)
 		qdel(src)
 		return
-	//SKYRAT EDIT ADDITION
-	// Setting the puffed pollutant to cannabis if we're smoking the space drugs reagent(obtained from cannabis)
-	if(reagents.has_reagent(/datum/reagent/drug/space_drugs))
-		pollution_type = /datum/pollutant/smoke/cannabis
-	// allowing reagents to react after being lit
-	//SKYRAT EDIT END
 
 	reagents.flags &= ~(NO_REACT)
 	reagents.handle_reactions()
@@ -552,11 +553,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(!check_oxygen(user))
 		extinguish()
 		return
-
-	// SKYRAT EDIT ADDITION START - Pollution
-	var/turf/location = get_turf(src)
-	location.pollute_turf(pollution_type, 5, POLLUTION_PASSIVE_EMITTER_CAP)
-	// SKYRAT EDIT END
 
 	smoketime -= seconds_per_tick * (1 SECONDS)
 	if(smoketime <= 0)
@@ -900,7 +896,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	STOP_PROCESSING(SSobj, src)
 	QDEL_NULL(cig_smoke)
 
-/obj/item/cigarette/pipe/attackby(obj/item/thing, mob/user, params)
+/obj/item/cigarette/pipe/attackby(obj/item/thing, mob/user, list/modifiers, list/attack_modifiers)
 	if(!istype(thing, /obj/item/food/grown))
 		return ..()
 
@@ -963,10 +959,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/vape
 	name = "\improper E-Cigarette"
 	desc = "A classy and highly sophisticated electronic cigarette, for classy and dignified gentlemen. A warning label reads \"Warning: Do not fill with flammable materials.\""//<<< i'd vape to that.
-	icon = 'icons/obj/clothing/masks.dmi'
-	worn_icon_muzzled = 'modular_skyrat/master_files/icons/mob/clothing/mask.dmi' //SKYRAT EDIT: ADDITION
-	icon_state = "vape"
+	icon = 'icons/map_icons/items/_item.dmi'
+	icon_state = "/obj/item/vape"
+	post_init_icon_state = "vape"
 	worn_icon_state = "vape_worn"
+	worn_icon_muzzled = 'modular_skyrat/master_files/icons/mob/clothing/mask.dmi' //SKYRAT EDIT: ADDITION
 	greyscale_config = /datum/greyscale_config/vape
 	greyscale_config_worn = /datum/greyscale_config/vape/worn
 	greyscale_config_worn_muzzled = /datum/greyscale_config/vape/worn/muzzled //SKYRAT EDIT ADDITION
@@ -1014,7 +1011,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		screw = FALSE
 		to_chat(user, span_notice("You close the cap on [src]."))
 		reagents.flags &= ~(OPENCONTAINER)
-		icon_state = initial(icon_state)
+		icon_state = initial(post_init_icon_state) || initial(icon_state)
 		set_greyscale(new_config = initial(greyscale_config))
 
 /obj/item/vape/multitool_act(mob/living/user, obj/item/tool)
@@ -1123,12 +1120,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	//Time to start puffing those fat vapes, yo.
 	COOLDOWN_START(src, drag_cooldown, dragtime)
 
-	//SKYRAT EDIT ADDITION
-	//open flame removed because vapes are a closed system, they won't light anything on fire
-	var/turf/my_turf = get_turf(src)
-	my_turf.pollute_turf(/datum/pollutant/smoke/vape, 5, POLLUTION_PASSIVE_EMITTER_CAP)
-	//SKYRAT EDIT END
-
 	if(obj_flags & EMAGGED)
 		var/datum/effect_system/fluid_spread/smoke/chem/smoke_machine/puff = new
 		puff.set_up(4, holder = src, location = loc, carry = reagents, efficiency = 24)
@@ -1151,33 +1142,41 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	handle_reagents()
 
 /obj/item/vape/red
+	icon_state = "/obj/item/vape/red"
 	greyscale_colors = "#A02525"
 	flags_1 = NONE
 
 /obj/item/vape/blue
+	icon_state = "/obj/item/vape/blue"
 	greyscale_colors = "#294A98"
 	flags_1 = NONE
 
 /obj/item/vape/purple
+	icon_state = "/obj/item/vape/purple"
 	greyscale_colors = "#9900CC"
 	flags_1 = NONE
 
 /obj/item/vape/green
+	icon_state = "/obj/item/vape/green"
 	greyscale_colors = "#3D9829"
 	flags_1 = NONE
 
 /obj/item/vape/yellow
+	icon_state = "/obj/item/vape/yellow"
 	greyscale_colors = "#DAC20E"
 	flags_1 = NONE
 
 /obj/item/vape/orange
+	icon_state = "/obj/item/vape/orange"
 	greyscale_colors = "#da930e"
 	flags_1 = NONE
 
 /obj/item/vape/black
+	icon_state = "/obj/item/vape/black"
 	greyscale_colors = "#2e2e2e"
 	flags_1 = NONE
 
 /obj/item/vape/white
+	icon_state = "/obj/item/vape/white"
 	greyscale_colors = "#DCDCDC"
 	flags_1 = NONE

@@ -230,9 +230,6 @@
 	var/last_asset_job = 0
 	var/last_completed_asset_job = 0
 
-	/// rate limiting for the crew manifest
-	var/crew_manifest_delay
-
 	/// A buffer of currently held keys.
 	var/list/keys_held = list()
 	/// A buffer for combinations such of modifiers + keys (ex: CtrlD, AltE, ShiftT). Format: `"key"` -> `"combo"` (ex: `"D"` -> `"CtrlD"`)
@@ -269,3 +266,6 @@
 
 	///Which ambient sound this client is currently being provided.
 	var/current_ambient_sound
+
+	/// The DPI scale of the client. 1 is equivalent to 100% window scaling, 2 will be 200% window scaling
+	var/window_scaling

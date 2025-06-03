@@ -1,6 +1,9 @@
 SUBSYSTEM_DEF(area_spawn)
 	name = "Area Spawn"
 	flags = SS_NO_FIRE
+	dependencies = list(
+		/datum/controller/subsystem/mapping
+	)
 
 	// Can't be on tile or a neighbor.
 	// Usually things where it's important to be sure the players can walk up to them, but aren't dense.
