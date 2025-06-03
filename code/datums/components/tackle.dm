@@ -434,7 +434,7 @@
 	if(HAS_TRAIT(sacker, TRAIT_NOGUNS)) //Those dedicated to martial combat are particularly skilled tacklers
 		attack_mod += 2
 
-	if(HAS_TRAIT(sacker, TRAIT_TACKLING_TAILED_POUNCE))	//Only applies to xenos due to trait given by xeno tails
+	if(HAS_TRAIT(sacker, TRAIT_TACKLING_TAILED_POUNCE))
 		var/obj/item/organ/tail/lizard/sacker_tail = sacker.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
 		attack_mod += sacker_tail ? 2 : -2
 
