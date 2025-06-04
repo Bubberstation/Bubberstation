@@ -36,7 +36,7 @@
 		COOLDOWN_START(src, sound_cooldown, 3 SECONDS)
 	if(.) // TRUE means we were blocked
 		return
-	if(blood_chance <= 0 || target_mob.stat == DEAD) //Can't infect. Will still draw blood anyways.
+	if(blood_chance <= 0 || target_mob.stat == DEAD || !user) //Can't infect. Will still draw blood anyways.
 		return
 	var/final_force = CALCULATE_FORCE(src, attack_modifiers)
 	if(final_force <= 0 || !ishuman(target_mob) || !COOLDOWN_FINISHED(src, infection_cooldown))
@@ -50,7 +50,7 @@
 		return
 	var/mob/living/carbon/human/host = target_mob
 	var/datum/component/changeling_zombie_infection/infection = host.AddComponent(/datum/component/changeling_zombie_infection)
-	if(infection && user)
+	if(infection)
 		target_mob.balloon_alert(user, "infected")
 		var/datum/component/changeling_zombie_infection/component = user.GetComponent(/datum/component/changeling_zombie_infection)
 		infection.was_changeling_husked = component.was_changeling_husked
