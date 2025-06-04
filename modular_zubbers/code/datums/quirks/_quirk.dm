@@ -5,24 +5,12 @@
 	var/list/species_whitelist = list()
 	var/list/species_blacklist = list()
 
-/datum/quirk/add_to_holder(mob/living/new_holder, quirk_transfer = FALSE, client/client_source, unique = TRUE)
-	if(!can_add(new_holder))
-		CRASH("Attempted to add quirk to holder that can't have it.")
-	. = ..()
-
-/// Returns true if the quirk is valid for the target, call parent so quirk_species_whitelist and blacklist can be checked.
-/datum/quirk/proc/can_add(mob/target)
-	SHOULD_CALL_PARENT(TRUE)
+/datum/quirk/is_species_appropriate(datum/species/mob_species)
 	if(length(species_whitelist))
-		if(!ishuman(target))
-			return FALSE
-		var/mob/living/carbon/human = target
-		if(!(human?.dna.species.id in species_whitelist))
+		if(!(initial(mob_species.id) in species_whitelist))
 			return FALSE
 	if(length(species_blacklist))
-		if(!ishuman(target))
+		if(initial(mob_species.id) in species_blacklist)
 			return FALSE
-		var/mob/living/carbon/human = target
-		if(human?.dna.species.id in species_blacklist)
-			return FALSE
-	return TRUE
+
+	. = ..()

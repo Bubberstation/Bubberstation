@@ -30,11 +30,10 @@
 	SSsunlight.remove_sun_sufferer(quirk_holder)
 	UnregisterSignal(SSsunlight, list(COMSIG_SOL_RISE_TICK, COMSIG_SOL_WARNING_GIVEN))
 
-/datum/quirk/sol_weakness/can_add(mob/target)
-	. = ..()
-	if(!.)
+/datum/quirk/sol_weakness/add_to_holder(mob/living/new_holder, quirk_transfer, client/client_source, unique)
+	if(IS_BLOODSUCKER(new_holder))
 		return
-	return !IS_BLOODSUCKER(target)
+	. = ..()
 
 /datum/quirk/sol_weakness/proc/on_blood_healing(mob/owner, seconds_between_ticks, datum/status_effect/blood_regen_active/effect)
 	if(effect && in_coffin())
