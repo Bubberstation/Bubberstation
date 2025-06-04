@@ -231,7 +231,7 @@
 				CRASH("Heretic attempted to learn a final knowledge despite not being able to ascend!")
 
 			// Check the discounted cost for the knowledge if it's a side knowledge.
-			var/cost = heretic_knowledge_tree["[researched_path]"][HKT_COST]
+			var/cost = heretic_knowledge_tree[researched_path][HKT_COST]
 			if(cost > knowledge_points)
 				return FALSE
 
