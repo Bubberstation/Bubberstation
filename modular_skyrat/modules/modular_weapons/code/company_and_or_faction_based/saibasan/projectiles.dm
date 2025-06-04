@@ -113,12 +113,13 @@
 
 /obj/projectile/beam/cybersun_laser/granata_shrapnel/shotgun_pellet
 	icon_state = "because_it_doesnt_miss"
-	damage = 22
+	damage = 15
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
 	speed = 1.25
 	light_color = COLOR_SCIENCE_PINK
 	range = 9
 	damage_falloff_tile = -3
+	weak_against_armour = FALSE
 // Hellfire lasers for the little guy
 
 /obj/item/ammo_casing/energy/cybersun_small_hellfire
