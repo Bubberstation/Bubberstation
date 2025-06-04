@@ -140,7 +140,7 @@
 	applied_gun.force = 20
 	applied_gun.sharpness = SHARP_EDGED
 	applied_gun.bare_wound_bonus = 15
-	applied_gun.wound_bonus = 15
+	applied_gun.wound_bonus = 5
 	applied_gun.disabled_for_other_reasons = TRUE
 	applied_gun.attack_verb_continuous = list("slashes", "cuts")
 	applied_gun.attack_verb_simple = list("slash", "cut")
