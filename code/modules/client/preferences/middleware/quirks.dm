@@ -78,12 +78,6 @@
 		var/datum/quirk_constant_data/constant_data = GLOB.all_quirk_constant_data[quirk]
 		var/list/datum/preference/customization_options = constant_data?.get_customization_data()
 
-		// BUBBER EDIT START - Species only quirks
-		var/list/species_whitelist = list()
-		for(var/species_id in GLOB.quirk_species_whitelist[quirk])
-			var/datum/species/species_type = GLOB.species_list[species_id]
-			var/species_name = initial(species_type.name)
-			species_whitelist[species_id] += species_name // BUBBER EDIT END - Species only quirks
 		quirk_info[sanitize_css_class_name(quirk_name)] = list(
 			"description" = initial(quirk.desc),
 			"icon" = initial(quirk.icon),
@@ -91,7 +85,6 @@
 			"value" = initial(quirk.value),
 			"customizable" = constant_data?.is_customizable(),
 			"customization_options" = customization_options,
-			"species_whitelist" = species_whitelist, //BUBBER EDIT - Species quirks
 		)
 
 	return list(
