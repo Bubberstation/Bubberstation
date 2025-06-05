@@ -13104,6 +13104,17 @@
 /obj/effect/spawner/random/engineering/canister,
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
+"dUV" = (
+/obj/effect/turf_decal/trimline/purple/filled/line,
+/obj/machinery/airalarm/directional/south,
+/obj/effect/mapping_helpers/airalarm/mixingchamber_access,
+/obj/effect/mapping_helpers/airalarm/link{
+	chamber_id = "ordnanceburn"
+	},
+/obj/effect/mapping_helpers/airalarm/tlv_no_checks,
+/obj/machinery/atmospherics/components/binary/pump/on/supply/hidden/layer4,
+/turf/open/floor/iron/dark,
+/area/station/science/ordnance)
 "dUW" = (
 /obj/structure/tank_holder/extinguisher,
 /obj/item/radio/intercom/directional/south,
@@ -43462,17 +43473,6 @@
 /obj/structure/cable,
 /turf/open/openspace,
 /area/station/maintenance/department/engine)
-"mWq" = (
-/obj/structure/table,
-/obj/item/stack/sheet/iron/fifty{
-	pixel_x = -9;
-	pixel_y = 9
-	},
-/obj/item/stack/sheet/glass/fifty{
-	pixel_y = 13
-	},
-/turf/open/floor/engine,
-/area/station/engineering/atmos/hfr_room)
 "mWu" = (
 /obj/effect/spawner/random/maintenance,
 /turf/open/floor/glass,
@@ -49512,25 +49512,6 @@
 /obj/item/radio/intercom/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/engineering/storage_shared)
-"oMH" = (
-/obj/item/hfr_box/body/waste_output{
-	pixel_x = -15;
-	pixel_y = 13
-	},
-/obj/item/hfr_box/body/interface{
-	pixel_y = 17
-	},
-/obj/item/hfr_box/body/moderator_input{
-	pixel_x = -8;
-	pixel_y = 8
-	},
-/obj/item/hfr_box/body/waste_output{
-	pixel_x = 10;
-	pixel_y = 9
-	},
-/obj/structure/table,
-/turf/open/floor/engine,
-/area/station/engineering/atmos/hfr_room)
 "oMI" = (
 /obj/machinery/door/airlock/command{
 	name = "Teleport Access"
@@ -60268,29 +60249,6 @@
 /obj/machinery/status_display/evac/directional/west,
 /turf/open/floor/wood,
 /area/station/ai_monitored/command/storage/eva)
-"rYz" = (
-/obj/structure/table,
-/obj/item/hfr_box/corner{
-	pixel_x = 3;
-	pixel_y = 10
-	},
-/obj/item/hfr_box/corner{
-	pixel_y = 6
-	},
-/obj/item/hfr_box/corner{
-	pixel_x = -2;
-	pixel_y = 8
-	},
-/obj/item/hfr_box/corner{
-	pixel_x = -4;
-	pixel_y = 5
-	},
-/obj/item/hfr_box/core{
-	pixel_x = 3;
-	pixel_y = 4
-	},
-/turf/open/floor/engine,
-/area/station/engineering/atmos/hfr_room)
 "rYF" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -61355,6 +61313,21 @@
 /obj/machinery/light/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/command/teleporter)
+"spD" = (
+/obj/structure/table,
+/obj/item/stack/sheet/iron/fifty{
+	pixel_x = -7;
+	pixel_y = 7
+	},
+/obj/item/stack/sheet/glass/fifty{
+	pixel_y = 7
+	},
+/obj/item/stack/sheet/plasteel/fifty{
+	pixel_x = 7;
+	pixel_y = 7
+	},
+/turf/open/floor/engine,
+/area/station/engineering/atmos/hfr_room)
 "spJ" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 4
@@ -65131,17 +65104,6 @@
 "tAb" = (
 /turf/open/floor/engine/hull/air,
 /area/station/engineering/supermatter)
-"tAn" = (
-/obj/effect/turf_decal/trimline/purple/filled/line,
-/obj/machinery/airalarm/directional/south,
-/obj/effect/mapping_helpers/airalarm/mixingchamber_access,
-/obj/effect/mapping_helpers/airalarm/link{
-	chamber_id = "ordnanceburn"
-	},
-/obj/effect/mapping_helpers/airalarm/tlv_no_checks,
-/obj/machinery/atmospherics/components/binary/pump/on/supply/hidden/layer4,
-/turf/open/floor/iron/dark,
-/area/station/science/ordnance)
 "tAr" = (
 /obj/structure/toilet{
 	dir = 4
@@ -74664,10 +74626,6 @@
 /obj/machinery/newscaster/directional/east,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
-"wmG" = (
-/obj/item/stack/sheet/plasteel/fifty,
-/turf/open/floor/engine,
-/area/station/engineering/atmos/hfr_room)
 "wmK" = (
 /obj/machinery/airalarm/directional/north,
 /obj/machinery/atmospherics/pipe/multiz/supply/visible/layer4,
@@ -76449,6 +76407,24 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/storage/tcomms)
+"wOX" = (
+/obj/item/hfr_box/body/interface{
+	pixel_y = 17
+	},
+/obj/item/hfr_box/body/moderator_input{
+	pixel_x = -8;
+	pixel_y = 9
+	},
+/obj/item/hfr_box/body/fuel_input{
+	pixel_x = 7;
+	pixel_y = 9
+	},
+/obj/item/hfr_box/body/waste_output{
+	pixel_y = 3
+	},
+/obj/structure/table,
+/turf/open/floor/engine,
+/area/station/engineering/atmos/hfr_room)
 "wPb" = (
 /obj/machinery/door/airlock/research{
 	name = "R&D's Backdoor"
@@ -80249,6 +80225,29 @@
 /obj/structure/broken_flooring/singular/always_floorplane/directional/east,
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
+"xXL" = (
+/obj/structure/table,
+/obj/item/hfr_box/corner{
+	pixel_x = 7;
+	pixel_y = 14
+	},
+/obj/item/hfr_box/corner{
+	pixel_y = 14;
+	pixel_x = -8
+	},
+/obj/item/hfr_box/core{
+	pixel_y = 8
+	},
+/obj/item/hfr_box/corner{
+	pixel_x = -8;
+	pixel_y = 3
+	},
+/obj/item/hfr_box/corner{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/turf/open/floor/engine,
+/area/station/engineering/atmos/hfr_room)
 "xXO" = (
 /obj/structure/ladder,
 /turf/open/floor/plating,
@@ -184165,7 +184164,7 @@ pgM
 weO
 iHo
 aFV
-tAn
+dUV
 gnK
 gnK
 kMj
@@ -193843,13 +193842,13 @@ xIe
 nlm
 nlm
 ydS
-wmG
+bNX
 ovn
 bNX
 qGp
 bNX
 wIm
-rYz
+xXL
 ydS
 nlm
 nlm
@@ -194106,7 +194105,7 @@ ayg
 pDG
 tHd
 bNX
-mWq
+spD
 ydS
 nlm
 nlm
@@ -194363,7 +194362,7 @@ gct
 ewI
 sUM
 bNX
-oMH
+wOX
 bxd
 nlm
 nlm
