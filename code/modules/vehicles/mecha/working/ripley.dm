@@ -117,6 +117,7 @@
 	var/mutable_appearance/sirenlights
 	///Looping sound datum for the Siren audio
 	var/datum/looping_sound/siren/weewooloop
+	///Radio used to report status on sec channels
 
 /datum/armor/mecha_paddy
 	melee = 40
