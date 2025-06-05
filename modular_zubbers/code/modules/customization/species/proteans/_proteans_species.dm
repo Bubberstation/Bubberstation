@@ -99,6 +99,7 @@
 		/mob/living/carbon/proc/protean_heal,
 		/mob/living/carbon/proc/lock_suit,
 		/mob/living/carbon/proc/suit_transformation,
+		/mob/living/carbon/proc/low_power
 	)
 	add_verb(gainer, protean_verbs)
 
