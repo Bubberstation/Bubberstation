@@ -14,3 +14,6 @@
 	stage5 = list(span_danger("Blood....Blood..."))
 	new_form = /mob/living/carbon/human/species/hemophage
 	infectable_biotypes = MOB_ORGANIC|MOB_UNDEAD
+
+/datum/disease/transformation/xeno
+	new_form = /mob/living/carbon/alien/adult/skyrat/drone
