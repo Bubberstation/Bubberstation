@@ -38,8 +38,6 @@
 		/obj/item/clothing/head/collectable/captain = 4,
 		/obj/item/gun/energy/disabler/smoothbore = 5,
 		/obj/item/restraints/legcuffs/bola/energy = 10,
-		/obj/item/ammo_box/magazine/caflechette/ripper = 20,
-		/obj/item/ammo_box/magazine/caflechette = 10,
 	)
 
 	job_flags = STATION_JOB_FLAGS | JOB_CANNOT_OPEN_SLOTS
