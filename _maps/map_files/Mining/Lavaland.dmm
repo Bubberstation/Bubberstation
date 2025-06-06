@@ -500,7 +500,6 @@
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "cV" = (
-/obj/structure/cable,
 /obj/machinery/door/airlock/external{
 	name = "Mining External Airlock"
 	},
@@ -816,6 +815,7 @@
 /obj/machinery/power/port_gen/pacman{
 	anchored = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/mine/maintenance/service)
 "eX" = (
@@ -3151,6 +3151,12 @@
 	},
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"pW" = (
+/obj/machinery/power/colony_wind_turbine,
+/obj/structure/lattice/catwalk,
+/obj/structure/cable,
+/turf/open/misc/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "pZ" = (
 /obj/structure/stone_tile/block{
 	dir = 4
@@ -3670,6 +3676,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/atmos,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/mine/maintenance/service)
 "ti" = (
@@ -3696,6 +3703,7 @@
 /obj/machinery/atmospherics/pipe/layer_manifold/supply{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/mine/maintenance/service)
 "tx" = (
@@ -3721,6 +3729,7 @@
 "tz" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/portable_atmospherics/scrubber,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/mine/maintenance/service)
 "tB" = (
@@ -3772,6 +3781,7 @@
 "tW" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/mine/maintenance/service)
 "tX" = (
@@ -3955,11 +3965,11 @@
 "vf" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/cable,
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/mine/maintenance/service)
 "vh" = (
@@ -4846,6 +4856,11 @@
 	},
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"Aw" = (
+/obj/effect/turf_decal/sand/plating/volcanic,
+/obj/structure/cable,
+/turf/open/floor/plating/lavaland_atmos,
+/area/mine/maintenance/service/disposals)
 "Ax" = (
 /obj/item/pickaxe,
 /obj/effect/mob_spawn/corpse/human/miner,
@@ -4934,6 +4949,10 @@
 /obj/structure/railing/corner,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"Bn" = (
+/obj/structure/lattice/catwalk,
+/turf/open/misc/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "Bs" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -4989,6 +5008,7 @@
 "BR" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/disposalpipe/segment,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/mine/maintenance/service)
 "BS" = (
@@ -5242,7 +5262,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
-/obj/structure/cable,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "Dy" = (
@@ -6107,9 +6126,7 @@
 /turf/open/floor/plating/lavaland_atmos,
 /area/lavaland/surface/outdoors)
 "Jh" = (
-/obj/structure/cable,
 /obj/machinery/light/small/directional/east,
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/mine/maintenance/service)
 "Ji" = (
@@ -6205,6 +6222,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/mine/maintenance/service)
 "JD" = (
@@ -6291,9 +6309,9 @@
 /area/lavaland/surface/outdoors)
 "JS" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/cable,
 /obj/machinery/atmospherics/components/binary/pump/on/layer4,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/mine/maintenance/service)
 "JV" = (
@@ -6847,7 +6865,6 @@
 "MI" = (
 /obj/structure/fence/door/opened,
 /obj/structure/disposalpipe/segment,
-/obj/structure/cable,
 /obj/effect/turf_decal/sand/plating/volcanic,
 /turf/open/floor/plating/lavaland_atmos,
 /area/mine/maintenance/service/disposals)
@@ -7069,6 +7086,7 @@
 /area/mine/production)
 "NV" = (
 /obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/mine/maintenance/service)
 "NX" = (
@@ -7395,6 +7413,11 @@
 /obj/effect/turf_decal/sand/plating/volcanic,
 /turf/open/floor/plating/lavaland_atmos,
 /area/mine/maintenance/service/disposals)
+"PM" = (
+/obj/effect/spawner/structure/window/reinforced/tinted,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/mine/maintenance/service)
 "PR" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/carpet/executive,
@@ -7458,6 +7481,13 @@
 /obj/effect/spawner/random/structure/steam_vent,
 /turf/open/floor/plating,
 /area/mine/maintenance/service)
+"Qd" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/turf/open/misc/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "Qe" = (
 /obj/structure/ore_box,
 /obj/effect/decal/cleanable/dirt,
@@ -7933,6 +7963,11 @@
 	dir = 1
 	},
 /area/mine/production)
+"Tb" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/mine/maintenance/service)
 "Tc" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -8078,6 +8113,7 @@
 	name = "Mining Station Maintenance"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/mine/maintenance/service)
 "TW" = (
@@ -8321,6 +8357,13 @@
 	dir = 1
 	},
 /area/mine/laborcamp)
+"Vk" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/turf/open/misc/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "Vm" = (
 /obj/machinery/hydroponics/constructable,
 /obj/structure/window/spawner/directional/west,
@@ -8372,6 +8415,13 @@
 /obj/effect/mapping_helpers/airlock/access/any/security/brig,
 /turf/open/floor/plating,
 /area/mine/maintenance/labor)
+"Vr" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/misc/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "Vt" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/trimline/brown/filled/line{
@@ -36091,10 +36141,10 @@ ZY
 ZY
 ZY
 ZY
-ZY
-ZY
-ZY
-ZY
+pU
+pU
+pU
+pU
 pU
 pU
 pU
@@ -36345,12 +36395,12 @@ fQ
 fQ
 ZY
 ZY
-ZY
-ZY
-ZY
-ZY
-ZY
-ZY
+pU
+pU
+pU
+pU
+pU
+pU
 pU
 pU
 pU
@@ -36602,12 +36652,12 @@ fQ
 fQ
 ZY
 ZY
-ZY
-ZY
-ZY
-ZY
-ZY
-ZY
+pU
+pW
+aD
+pW
+aD
+pW
 pU
 pU
 pU
@@ -36859,12 +36909,12 @@ fQ
 ZY
 ZY
 ZY
-ZY
-ZY
-ZY
-ZY
-ZY
 pU
+aD
+pU
+aD
+pU
+aD
 pU
 pU
 pU
@@ -37116,12 +37166,12 @@ fQ
 ZY
 ZY
 ZY
-ZY
-ZY
-ZY
-ZY
-ZY
 pU
+pW
+aD
+pW
+aD
+pW
 pU
 pU
 pU
@@ -37372,19 +37422,19 @@ fQ
 fQ
 ZY
 ZY
-ZY
-ZY
-ZY
-ZY
-ZY
 pU
 pU
+aD
+pU
+aD
+pU
+aD
 pU
 pU
-Ue
+Qd
 MI
 lo
-xG
+Aw
 gU
 Eo
 aj
@@ -37629,16 +37679,16 @@ fQ
 fQ
 ZY
 ZY
-ZY
-ZY
-ZY
-ZY
-ZY
 pU
 pU
+pW
+Bn
+pW
+aD
+pW
 pU
 pU
-Qz
+Vr
 ON
 ON
 NV
@@ -37886,16 +37936,16 @@ fQ
 ZY
 ZY
 ZY
-ZY
-ZY
-ZY
-ZY
-ZY
 pU
 pU
+aD
+pU
+aD
+pU
+aD
 pU
 pU
-Qz
+Vr
 ON
 rw
 eW
@@ -38143,21 +38193,21 @@ fQ
 ZY
 ZY
 ZY
-ZY
-ZY
-ZY
-ZY
 pU
 pU
+pW
+Bn
+pW
+aD
+pW
 pU
-pU
-Ue
-gB
+Qd
+Vk
 ON
 rA
-Hs
-sO
-Hs
+Tb
+fi
+Tb
 IJ
 ON
 ON
@@ -38401,20 +38451,20 @@ ZY
 ZY
 ZY
 ZY
-ZY
-ZY
-ZY
 pU
+aD
 pU
+aD
 pU
+aD
 pU
-Qz
+Vr
 ON
 ON
 ON
 ON
 ON
-sO
+fi
 Rw
 ON
 zd
@@ -38658,14 +38708,14 @@ ZY
 ZY
 ZY
 ZY
-ZY
-ZY
 pU
+pW
+aD
+pW
+aD
+pW
 pU
-pU
-pU
-pU
-Qz
+Vr
 ON
 ni
 rZ
@@ -38915,20 +38965,20 @@ ZY
 ZY
 ZY
 ZY
-ZY
-ZY
 pU
 pU
 pU
 pU
+pU
+aD
 pU
 Qz
-ON
+PM
 oc
 sO
 Hs
 ON
-Hs
+Tb
 xD
 BK
 HA
@@ -39434,7 +39484,7 @@ pU
 pU
 pU
 pU
-Qz
+Vr
 ON
 ON
 ON
@@ -39948,9 +39998,9 @@ pU
 pU
 pU
 pU
-aD
+Bn
 cV
-fi
+sO
 cV
 Jh
 cr
