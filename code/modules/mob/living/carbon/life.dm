@@ -515,8 +515,12 @@
 		if(!(donor_type.type_key() in blood_type.compatible_types))
 			reagents.add_reagent(/datum/reagent/toxin, reac_volume * 0.5)
 			return COMPONENT_NO_EXPOSE_REAGENTS
-
-	blood_volume = min(blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM)
+	// BUBBER EDIT CHANGE BEGIN - Rebalancing blood for hemophages - ORIGINAL:
+	// blood_volume = min(blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM)
+	// We do a max() here so that being injected with monkey blood when you're past 560u doesn't reset you back to 560
+	var/max_blood_volume = chem.data?["monkey_origins"] ? max(blood_volume, BLOOD_VOLUME_NORMAL) : BLOOD_VOLUME_MAXIMUM
+	blood_volume = min(blood_volume + round(reac_volume, 0.1), max_blood_volume)
+	// BUBBER EDIT CHANGE END - Rebalancing blood for hemophages
 	return COMPONENT_NO_EXPOSE_REAGENTS
 
 /mob/living/carbon/proc/handle_bodyparts(seconds_per_tick, times_fired)

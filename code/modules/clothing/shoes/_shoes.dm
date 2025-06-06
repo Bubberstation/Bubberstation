@@ -51,8 +51,6 @@
 			playsound(user, 'sound/items/weapons/genhit2.ogg', 50, TRUE)
 		return BRUTELOSS
 
-//SKYRAT EDIT REMOVAL BEGIN -DIGI_BLOODSOLE - (Moved to modular_skyrat/modules/digi_shoeblood/code/modules/clothing/shoes/_shoes.dm)
-/*
 /obj/item/clothing/shoes/worn_overlays(mutable_appearance/standing, isinhands = FALSE)
 	. = ..()
 	if(isinhands)
@@ -67,8 +65,7 @@
 	var/blood_overlay = get_blood_overlay("shoe")
 	if (blood_overlay)
 		. += blood_overlay
-*/
-//SKYRAT EDIT REMOVAL END
+
 /obj/item/clothing/shoes/examine(mob/user)
 	. = ..()
 
