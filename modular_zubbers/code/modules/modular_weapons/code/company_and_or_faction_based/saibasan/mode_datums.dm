@@ -210,7 +210,7 @@
 	weapon_icon_state = "disable"
 	charge_sections = 3
 	shot_delay = 0.4 SECONDS
-	json_speech_string = "disable"
+	json_speech_string = "secdisable"
 	gun_runetext_color = "#47a1b3"
 
 /datum/laser_weapon_mode/disabler_security/apply_to_weapon(obj/item/gun/energy/applied_gun)
@@ -226,7 +226,7 @@
 	weapon_icon_state = "kill"
 	charge_sections = 3
 	shot_delay = 0.4 SECONDS
-	json_speech_string = "incinerate"
+	json_speech_string = "seclaser"
 	gun_runetext_color = "#cd4456"
 
 /datum/laser_weapon_mode/laser_security/apply_to_weapon(obj/item/gun/energy/applied_gun)

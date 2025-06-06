@@ -167,3 +167,15 @@
 	SIGNAL_HANDLER
 	to_chat(bound_spirit, span_userdanger("You were destroyed!"))
 	QDEL_NULL(bound_spirit)
+
+/datum/component/spirit_holding/alternate //Works with altclick instead
+
+
+/datum/component/spirit_holding/alternate/RegisterWithParent()
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(parent, COMSIG_QDELETING, PROC_REF(on_destroy))
+	RegisterSignal(parent, COMSIG_CLICK_ALT, PROC_REF(on_attack_self))
+
+/datum/component/spirit_holding/alternate/UnregisterFromParent()
+	UnregisterSignal(parent, list(COMSIG_ATOM_EXAMINE, COMSIG_QDELETING))
+	UnregisterSignal(parent, list(COMSIG_CLICK_ALT, COMSIG_QDELETING))
