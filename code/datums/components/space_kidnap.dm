@@ -46,9 +46,11 @@
 	kidnapping = FALSE
 
 /datum/component/space_kidnap/proc/take_them(mob/living/victim)
+	/* BUBBERSTATION CHANGE: REMOVES VOIDED BRAIN TRAUMA
 	if(ishuman(victim))
 		var/mob/living/carbon/human/hewmon = victim
 		hewmon.gain_trauma(/datum/brain_trauma/voided)
+	BUBBERSTATION CHANGE END: REMOVES VOIDED BRAIN TRAUMA */
 
 	victim.flash_act(INFINITY, override_blindness_check = TRUE, visual = TRUE, type = /atom/movable/screen/fullscreen/flash/black)
 	new /obj/effect/temp_visual/circle_wave/unsettle(get_turf(victim))
