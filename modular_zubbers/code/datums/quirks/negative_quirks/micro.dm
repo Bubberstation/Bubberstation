@@ -3,7 +3,7 @@
 	name = "Small"
 	desc = "For whatever reason, you are slightly smaller than most. You are twenty smaller than others,\
 	with the drawback of being easily squashed!"
-	icon = FA_ICON_BUG
+	icon = FA_ICON_MINIMIZE
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_HIDE_FROM_SCAN|QUIRK_CHANGES_APPEARANCE
 	value = -4
 	gain_text = span_danger("You feel a bit smaller.")
@@ -28,7 +28,7 @@
 	name = "Microscopic"
 	desc = "You are fourty percent smaller than others... People really squint their eyes to see you! \
 	You are also squished like a bug accidentally ALL the time!"
-	icon = FA_ICON_WINDOW_MINIMIZE
+	icon = FA_ICON_BACTERIUM
 	squash_damage_ = 30
 	squash_chance_ = 50
 	size_reduced = 0.6
