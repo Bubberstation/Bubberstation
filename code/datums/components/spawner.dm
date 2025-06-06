@@ -15,13 +15,15 @@
 	var/datum/callback/spawn_callback
 	/// How many mobs can we spawn maximum each time we try to spawn? (1 - max)
 	var/max_spawn_per_attempt
+	/// The least amount of mobs we can spawn. Good for when you dont want waves of one creature. (BUBBER ADDITION)
+	var/min_spawn_per_attempt
 	/// Distance from the spawner to spawn mobs
 	var/spawn_distance
 	/// Distance from the spawner to exclude mobs from spawning
 	var/spawn_distance_exclude
 	COOLDOWN_DECLARE(spawn_delay)
 
-/datum/component/spawner/Initialize(spawn_types = list(), spawn_time = 30 SECONDS, max_spawned = 5, max_spawn_per_attempt = 1 , faction = list(FACTION_MINING), spawn_text = null, datum/callback/spawn_callback = null, spawn_distance = 1, spawn_distance_exclude = 0, initial_spawn_delay = 0 SECONDS)
+/datum/component/spawner/Initialize(spawn_types = list(), spawn_time = 30 SECONDS, max_spawned = 5, max_spawn_per_attempt = 1, min_spawn_per_attempt = 1, faction = list(FACTION_MINING), spawn_text = null, datum/callback/spawn_callback = null, spawn_distance = 1, spawn_distance_exclude = 0, initial_spawn_delay = 0 SECONDS)
 	if (!islist(spawn_types))
 		CRASH("invalid spawn_types to spawn specified for spawner component!")
 	src.spawn_time = spawn_time
@@ -31,6 +33,7 @@
 	src.max_spawned = max_spawned
 	src.spawn_callback = spawn_callback
 	src.max_spawn_per_attempt = max_spawn_per_attempt
+	src.min_spawn_per_attempt = min_spawn_per_attempt // BUBBER ADDITION
 	src.spawn_distance = spawn_distance
 	src.spawn_distance_exclude = spawn_distance_exclude
 	// If set, doesn't instantly spawn a creature when the spawner component is applied.
@@ -66,8 +69,9 @@
 	var/chosen_mob_type = pick(spawn_types)
 	var/adjusted_spawn_count = 1
 	var/max_spawn_this_attempt = min(max_spawn_per_attempt, max_spawned - spawned_total)
+	var/min_spawn_this_attempt = min_spawn_per_attempt // BUBBER ADDITION
 	if (max_spawn_this_attempt > 1)
-		adjusted_spawn_count = rand(1, max_spawn_this_attempt)
+		adjusted_spawn_count = rand(min_spawn_this_attempt, max_spawn_this_attempt) // BUBBER ADDITION - Original: adjusted_spawn_count = rand(1, max_spawn_this_attempt)
 	for(var/i in 1 to adjusted_spawn_count)
 		var/atom/created
 		var/turf/picked_spot
