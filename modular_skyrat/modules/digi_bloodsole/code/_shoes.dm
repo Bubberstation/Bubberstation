@@ -6,6 +6,7 @@
 		. += mutable_appearance('icons/effects/item_damage.dmi', "damagedshoe")
 
 /obj/item/clothing/shoes/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands = FALSE, icon_file)
+	. = ..()
 	if(GET_ATOM_BLOOD_DNA(src))
 		if (mutant_styles & CLOTHING_DIGITIGRADE_VARIATION)
 			if(clothing_flags & LARGE_WORN_ICON)

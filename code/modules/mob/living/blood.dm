@@ -507,7 +507,7 @@
 	if(!has_gravity() || !isturf(start))
 		return
 	// BUBBER EDIT BEGIN - Blood pooling
-	for(var/obj/effect/decal/cleanable/blood/blood_effect in splatter_turf)
+	for(var/obj/effect/decal/cleanable/blood/blood_effect in target_turf)
 		blood_effect.increase_blood_pool()
 	// BUBBER EDIT END
 	var/base_bleed_rate = get_bleed_rate()

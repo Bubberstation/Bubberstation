@@ -435,9 +435,11 @@
 	// SKYRAT EDIT ADDITION - Mutant stuff and DEATH CONSEQUENCES
 	if(target.GetComponent(/datum/component/mutant_infection))
 		render_list += span_userdanger("UNKNOWN PROTO-VIRAL INFECTION DETECTED. ISOLATE IMMEDIATELY.")
-	var/datum/brain_trauma/severe/death_consequences/consequences = locate(/datum/brain_trauma/severe/death_consequences) in carbontarget?.get_traumas()
-	if(consequences)
-		render_list += consequences.get_health_analyzer_link_text(user)
+	var/mob/living/carbon/carbontarget = target
+	if(istype(carbontarget))
+		var/datum/brain_trauma/severe/death_consequences/consequences = locate(/datum/brain_trauma/severe/death_consequences) in carbontarget?.get_traumas()
+		if(consequences)
+			render_list += consequences.get_health_analyzer_link_text(user)
 	// SKYRAT EDIT END
 
 	//BUBBERSTATION EDIT ADDITION - CHANGELING ZOMBIE STUFF
