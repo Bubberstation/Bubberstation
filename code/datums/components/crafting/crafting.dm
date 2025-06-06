@@ -221,7 +221,7 @@
 		var/mob/crafting_mob = crafter
 		var/skill_modifier = 1
 		if(istype(crafting_mob))
-			skill_modifier = crafter_mob.mind.get_skill_modifier(/datum/skill/construction, SKILL_SPEED_MODIFIER)
+			skill_modifier = crafting_mob.mind.get_skill_modifier(/datum/skill/construction, SKILL_SPEED_MODIFIER)
 		// BUBBER EDIT ADDITION END - Construction skill
 		if(!do_after(crafter, recipe.time * skill_modifier, target = crafter)) // BUBBER EDIT CHANGE - Construction skill - Original: if(!do_after(crafter, recipe.time, target = crafter))
 			return "."
