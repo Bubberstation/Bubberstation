@@ -10,6 +10,8 @@
 	var/metal_max = PROTEAN_STOMACH_FULL
 	/// How much metal are we holding currently (In sheets)
 	var/metal = PROTEAN_STOMACH_FULL
+	/// Multiplicative modifier to how fast we lose metal
+	var/metabolism_modifier = 1
 	COOLDOWN_DECLARE(starving_message)
 
 /obj/item/organ/stomach/protean/Initialize(mapload)
@@ -33,19 +35,26 @@
 	for(var/datum/reagent/consumable/food in reagents.reagent_list)
 		food.nutriment_factor = 0
 	. = ..()
-	handle_hunger_slowdown(owner, seconds_per_tick)
+	handle_protean_hunger(owner, seconds_per_tick)
 
-/obj/item/organ/stomach/protean/handle_hunger_slowdown(mob/living/carbon/human/human, seconds_per_tick)
+/obj/item/organ/stomach/protean/proc/handle_protean_hunger(mob/living/carbon/human/human, seconds_per_tick)
 	if(!istype(owner.dna.species, /datum/species/protean))
+		return
+	if(isnull(owner.client)) // So we dont die from afk/crashing out
 		return
 	if(metal > PROTEAN_STOMACH_FALTERING)
 		owner.remove_movespeed_modifier(/datum/movespeed_modifier/protean_slowdown)
-		if(owner.health < owner.maxHealth && metal > PROTEAN_STOMACH_FULL * 0.3)
-			metal -= clamp(((PROTEAN_STOMACH_FULL / PROTEAN_METABOLISM_RATE) * seconds_per_tick * 20), 0, 10) // Healing needs metal. 0.2 sheets per tick
-			owner.adjustBruteLoss(-2, forced = TRUE)
-			owner.adjustFireLoss(-2, forced = TRUE)
-		else
-			metal -= clamp(((PROTEAN_STOMACH_FULL / PROTEAN_METABOLISM_RATE) * seconds_per_tick), 0, 10)
+		var/hunger_modifier = metabolism_modifier
+		// If we're high enough on metal we might try to heal or recover blood
+		if(metal > PROTEAN_STOMACH_FULL * 0.3)
+			if(owner.health < owner.maxHealth)
+				hunger_modifier += 20
+				owner.adjustBruteLoss(-2, forced = TRUE)
+				owner.adjustFireLoss(-2, forced = TRUE)
+			if(owner.blood_volume < BLOOD_VOLUME_NORMAL)
+				hunger_modifier += 100
+				owner.blood_volume = min(owner.blood_volume + (((BLOOD_REGEN_FACTOR * PROTEAN_METABOLISM_RATE) * 0.05) * seconds_per_tick), BLOOD_VOLUME_NORMAL)
+		metal -= clamp(((PROTEAN_STOMACH_FULL / PROTEAN_METABOLISM_RATE) * hunger_modifier * seconds_per_tick), 0, metal_max)
 		return
 	owner.adjustBruteLoss(2, forced = TRUE)
 	if(COOLDOWN_FINISHED(src, starving_message))
