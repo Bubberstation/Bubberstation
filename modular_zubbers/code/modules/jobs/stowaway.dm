@@ -1,16 +1,15 @@
-// Remove this once wallets spawning with normal IDs instead of cardboard is fixed
-//	/datum/station_trait/wallets
-//	weight = 0
-
 /datum/job/assistant/stowaway
 	title = "Stowaway"
 	description = "Be a stowaway aboard a hazardous research station that is infamous for many reasons."
 	faction = FACTION_NONE
-	supervisors = "Yourself."
+	supervisors = "yourself"
 	minimal_player_age = 7
+	total_positions = 20
+	spawn_positions = 20
 	exp_requirements = 2400
 	exp_required_type = EXP_TYPE_CREW
 	exp_granted_type = EXP_TYPE_SPECIAL
+	config_tag = "STOWAWAY"
 
 	liver_traits = list(TRAIT_MAINTENANCE_METABOLISM)
 
@@ -39,8 +38,22 @@
 	spawned.put_in_hands(new /obj/item/storage/toolbox/mechanical)
 	spawned.equip_to_slot(new /obj/item/card/cardboard, ITEM_SLOT_ID)
 
- // Fixes for station traits...
+// Fixes for station traits...
 /datum/station_trait/wallets/on_job_after_spawn(datum/source, datum/job/job, mob/living/living_mob, mob/M, joined_late)
 	if(!(job.job_flags & JOB_EQUIP_RANK))
 		return
 	. = ..()
+
+/obj/effect/landmark/start/stowaway
+	name = "Stowaway"
+	icon_state = "Assistant"
+
+// This is purely to satisfy unit tests, stowaway spawn locations are handled in after_spawn()
+/datum/area_spawn/stowaway_landmark
+	blacklisted_stations = list("Runtime Station", "MultiZ Debug", "Gateway Test")
+	amount_to_spawn = 5
+	desired_atom = /obj/effect/landmark/start/stowaway
+
+/datum/area_spawn/stowaway_landmark/New()
+	. = ..()
+	target_areas = subtypesof(/area/station/maintenance)
