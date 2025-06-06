@@ -24,12 +24,13 @@
 
 /obj/projectile/beam/cybersun_laser/marksman
 	icon_state = "sniper"
-	damage = 50
+	damage = 40
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/yellow_laser
-	speed = 2.5
+	speed = 2
 	light_range = 2
 	light_color = COLOR_VERY_SOFT_YELLOW
 	wound_falloff_tile = -0.1
+	armour_penetration = 15
 
 // Disabler machinegun for the big gun
 
@@ -105,20 +106,20 @@
 /obj/item/ammo_casing/energy/cybersun_big_shotgun
 	projectile_type = /obj/projectile/beam/cybersun_laser/granata_shrapnel/shotgun_pellet
 	e_cost = LASER_SHOTS(10, STANDARD_CELL_CHARGE * 2)
-	pellets = 5
+	pellets = 4
 	variance = 30
 	select_name = "Shotgun"
 	fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/laser_firing/melt.ogg'
 
 /obj/projectile/beam/cybersun_laser/granata_shrapnel/shotgun_pellet
 	icon_state = "because_it_doesnt_miss"
-	damage = 10
+	damage = 15
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
 	speed = 1.25
 	light_color = COLOR_SCIENCE_PINK
 	range = 9
-	damage_falloff_tile = -0.5
-
+	damage_falloff_tile = -3
+	weak_against_armour = FALSE
 // Hellfire lasers for the little guy
 
 /obj/item/ammo_casing/energy/cybersun_small_hellfire
@@ -221,7 +222,7 @@
 	projectile_type = /obj/projectile/beam/cybersun_laser/granata_shrapnel/shotgun_pellet
 	e_cost = LASER_SHOTS(10, STANDARD_CELL_CHARGE)
 	pellets = 3
-	variance = 15
+	variance = 20
 	select_name = "Shotgun"
 	fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/laser_firing/melt.ogg'
 
