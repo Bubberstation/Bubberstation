@@ -56,4 +56,4 @@
 
 /datum/area_spawn/stowaway_landmark/New()
 	. = ..()
-	target_areas = subtypesof(/area/station/maintenance)
+	target_areas = shuffle(typesof(/area/station/maintenance/fore) | typesof(/area/station/maintenance/aft) | typesof(/area/station/maintenance/port) | typesof(/area/station/maintenance/starboard))
