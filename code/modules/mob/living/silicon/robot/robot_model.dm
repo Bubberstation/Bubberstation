@@ -434,7 +434,7 @@
 		/obj/item/stack/sheet/glass,
 		/obj/item/borg/apparatus/sheet_manipulator,
 		/obj/item/stack/rods/cyborg,
-		/obj/item/lightreplacer/cyborg, // Skyrat Edit - Surprised Engie borgs don't get these
+		/obj/item/lightreplacer, // Skyrat Edit - Surprised Engie borgs don't get these
 		/obj/item/construction/rtd/borg,
 		/obj/item/stack/cable_coil,
 	)
