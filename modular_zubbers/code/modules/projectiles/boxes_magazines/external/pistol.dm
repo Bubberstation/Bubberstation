@@ -3,12 +3,15 @@
 	desc = "A 9mm handgun magazine, suitable for the Service Pistol."
 	ammo_type = /obj/item/ammo_casing/c9mm/security
 	max_ammo = 10
+	ammo_band_color = "#971313"
 
 /obj/item/ammo_box/magazine/m9mm/security/rocket
-	name = "pistol magazine (9mm Security)"
+	name = "pistol magazine (9mm Rocket Eject)"
 	desc = "A 9mm handgun magazine, suitable for the Service Pistol."
 	ammo_type = /obj/item/ammo_casing/c9mm/security
 	max_ammo = 8
+	ammo_band_color = "#ff9900"
+
 
 /obj/item/ammo_box/magazine/m9mm/security/rocket/throw_impact(mob/living/hit_mob, datum/thrownthing/throwingdatum)
 	. = ..()
