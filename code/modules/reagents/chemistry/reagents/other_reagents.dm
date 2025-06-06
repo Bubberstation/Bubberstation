@@ -3013,6 +3013,7 @@
 		return
 
 	var/spilled_ants = (round(reac_volume,1) - 5) // To account for ant decals giving 3-5 ants on initialize.
+	pests.lazy_init_reagents() // BUBBER EDIT ADDITION - Bug fix ants not having reagent holder at mapload
 	pests.reagents.add_reagent(type, spilled_ants)
 	pests.update_ant_damage()
 
