@@ -22,8 +22,8 @@
 /obj/item/organ/liver/hemophage/handle_chemical(mob/living/carbon/affected_mob, datum/reagent/chem, seconds_per_tick, times_fired)
 	. = ..()
 
-	// parent returned COMSIG_MOB_STOP_REAGENT_CHECK or we are failing
-	if((. & COMSIG_MOB_STOP_REAGENT_CHECK) || (organ_flags & ORGAN_FAILING))
+	// parent returned COMSIG_MOB_STOP_REAGENT_TICK or we are failing
+	if((. & COMSIG_MOB_STOP_REAGENT_TICK) || (organ_flags & ORGAN_FAILING))
 		return
 
 	// hemophages drink blood so blood must be pretty good for them
