@@ -70,12 +70,10 @@ DROP TABLE IF EXISTS `ban`;
 CREATE TABLE `ban` (
   `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `bantime` DATETIME NOT NULL,
-  `server_name` VARCHAR(32) DEFAULT NULL,
   `server_ip` INT(10) UNSIGNED NOT NULL,
   `server_port` SMALLINT(5) UNSIGNED NOT NULL,
   `round_id` INT(11) UNSIGNED NULL,
   `role` VARCHAR(32) NULL DEFAULT NULL,
-  `global_ban` TINYINT(1) UNSIGNED NOT NULL DEFAULT '1',
   `expiration_time` DATETIME NULL DEFAULT NULL,
   `applies_to_admins` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
   `reason` VARCHAR(2048) NOT NULL,
@@ -93,7 +91,6 @@ CREATE TABLE `ban` (
   `unbanned_ip` INT(10) UNSIGNED NULL DEFAULT NULL,
   `unbanned_computerid` VARCHAR(32) NULL DEFAULT NULL,
   `unbanned_round_id` INT(11) UNSIGNED NULL DEFAULT NULL,
-  `discord_reported` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0', /* SKYRAT EDIT - Labelling bans for ease of reporting them over Discord. */
   PRIMARY KEY (`id`),
   KEY `idx_ban_isbanned` (`ckey`,`role`,`unbanned_datetime`,`expiration_time`),
   KEY `idx_ban_isbanned_details` (`ckey`,`ip`,`computerid`,`role`,`unbanned_datetime`,`expiration_time`),
@@ -118,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `citation` (
   `sender_ic` varchar(64) NOT NULL DEFAULT '' COMMENT 'Longer because this is the character name, not the ckey',
   `recipient` varchar(64) NOT NULL DEFAULT '' COMMENT 'Longer because this is the character name, not the ckey',
   `crime` text NOT NULL,
-	`crime_desc` text NULL DEFAULT NULL,
+  `crime_desc` text NULL DEFAULT NULL,
   `fine` int(4) DEFAULT NULL,
   `paid` int(4) DEFAULT 0,
   `timestamp` datetime NOT NULL,
@@ -137,7 +134,6 @@ DROP TABLE IF EXISTS `connection_log`;
 CREATE TABLE `connection_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `datetime` datetime DEFAULT NULL,
-  `server_name` VARCHAR(32) DEFAULT NULL,
   `server_ip` int(10) unsigned NOT NULL,
   `server_port` smallint(5) unsigned NOT NULL,
   `round_id` int(11) unsigned NULL,
@@ -162,7 +158,6 @@ CREATE TABLE `death` (
   `y_coord` smallint(5) unsigned NOT NULL,
   `z_coord` smallint(5) unsigned NOT NULL,
   `mapname` varchar(32) NOT NULL,
-  `server_name` varchar(32) DEFAULT NULL,
   `server_ip` int(10) unsigned NOT NULL,
   `server_port` smallint(5) unsigned NOT NULL,
   `round_id` int(11) unsigned NULL,
@@ -247,7 +242,6 @@ CREATE TABLE `legacy_population` (
   `playercount` int(11) DEFAULT NULL,
   `admincount` int(11) DEFAULT NULL,
   `time` datetime NOT NULL,
-  `server_name` varchar(32) DEFAULT NULL,
   `server_ip` int(10) unsigned NOT NULL,
   `server_port` smallint(5) unsigned NOT NULL,
   `round_id` int(11) unsigned NULL,
@@ -335,7 +329,6 @@ CREATE TABLE `messages` (
   `adminckey` varchar(32) NOT NULL,
   `text` varchar(2048) NOT NULL,
   `timestamp` datetime NOT NULL,
-  `server_name` varchar(32) DEFAULT NULL,
   `server` varchar(32) DEFAULT NULL,
   `server_ip` int(10) unsigned NOT NULL,
   `server_port` smallint(5) unsigned NOT NULL,
@@ -525,7 +518,6 @@ CREATE TABLE `round` (
   `start_datetime` DATETIME NULL,
   `shutdown_datetime` DATETIME NULL,
   `end_datetime` DATETIME NULL,
-  `server_name` VARCHAR(32) DEFAULT NULL,
   `server_ip` INT(10) UNSIGNED NOT NULL,
   `server_port` SMALLINT(5) UNSIGNED NOT NULL,
   `commit_hash` CHAR(40) NULL,
@@ -691,21 +683,6 @@ CREATE TABLE `discord_links` (
   	`valid` BOOLEAN NOT NULL DEFAULT FALSE,
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
-
---
--- Table structure for table `game_log`
---
-DROP TABLE IF EXISTS `game_log`;
-CREATE TABLE `game_log` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `datetime` datetime NOT NULL,
-  `round_id` int(11) NOT NULL,
-  `ckey` varchar(32) NOT NULL,
-  `loc` varchar(60) NOT NULL,
-  `type` varchar(10) NOT NULL,
-  `message` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Table structure for table `admin_connections`
