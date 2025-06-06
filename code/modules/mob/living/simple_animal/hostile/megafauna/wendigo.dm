@@ -85,6 +85,8 @@ Difficulty: Hard
 	spiral.Grant(src)
 	wave.Grant(src)
 
+	AddComponent(/datum/component/boss_music, 'sound/music/boss/wendigum_boss.ogg', 133 SECONDS) //bubber edit: boss music
+
 /mob/living/simple_animal/hostile/megafauna/wendigo/Initialize(mapload)
 	. = ..()
 	starting = get_turf(src)

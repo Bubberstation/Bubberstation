@@ -5,6 +5,8 @@
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 
+	AddComponent(/datum/component/boss_music, 'sound/music/boss/drake_boss.ogg', 175 SECONDS)
+
 /mob/living/simple_animal/hostile/megafauna/dragon/proc/on_move(atom/source, atom/new_loc)
 	SIGNAL_HANDLER
 	for(var/obj/item/food/meat/slab/drakebait in view(src, 1.5)) //Checks if the bait is on, or is next to the Ashdrake
