@@ -19,6 +19,7 @@
 #define FATNESS_LEVEL_VERYFAT 330
 #define FATNESS_LEVEL_FATTER 250
 #define FATNESS_LEVEL_FAT 170
+#define FATNESS_LEVEL_NONE 0
 
 //Math stuff for fatness movement speed
 #define FATNESS_DIVISOR 860
