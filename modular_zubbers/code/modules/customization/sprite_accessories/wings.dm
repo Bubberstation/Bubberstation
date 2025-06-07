@@ -124,3 +124,11 @@
 	dimension_x = 32
 	dimension_y = 32
 	color_src = USE_MATRIXED_COLORS
+
+/datum/sprite_accessory/wings/robotic/virtual
+	name = "Virtualized Wings"
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/wings_wide.dmi'
+	icon_state = "virtualized"
+	dimension_x = 46
+	color_src = USE_MATRIXED_COLORS
+	center = TRUE
