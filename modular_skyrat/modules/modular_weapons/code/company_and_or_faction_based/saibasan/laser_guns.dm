@@ -2,10 +2,6 @@
 #define LONG_MOD_LASER_SPEECH "saibasan/long_modular_laser.json"
 /// File location for the short gun's speech
 #define SHORT_MOD_LASER_SPEECH "saibasan/short_modular_laser.json"
-/// File location for the long gun's speech
-#define SECURITY_MOD_LASER_SPEECH "saibasan/security_modular_laser.json"
-/// File location for the short gun's speech
-#define CLOWN_MOD_LASER_SPEECH "saibasan/clown_modular_laser.json"
 /// How long the gun should wait between speaking to lessen spam
 #define MOD_LASER_SPEECH_COOLDOWN 2 SECONDS
 /// What color is the default kill mode for these guns, used to make sure the chat colors are right at roundstart
@@ -292,44 +288,6 @@
 /obj/item/gun/energy/modular_laser_rifle/carbine/emp_act(severity)
 	. = ..()
 	speak_up("emp", TRUE) // She gets very upset if you emp her
-
-/obj/item/gun/energy/modular_laser_rifle/security
-	name = "\improper Allstar SC-3 Smart-laser"
-	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/saibasan/guns32x.dmi'
-	icon_state = "hoshi_kill"
-	inhand_icon_state = "hoshi_kill"
-	worn_icon_state = "hoshi_kill"
-	base_icon_state = "hoshi"
-	charge_sections = 3
-	cell_type = /obj/item/stock_parts/power_store/cell
-	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser)
-	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
-	SET_BASE_PIXEL(0, 0)
-	w_class = WEIGHT_CLASS_NORMAL
-	weapon_weight = WEAPON_MEDIUM
-	weapon_mode_options = list(
-		/datum/laser_weapon_mode/disabler_security,
-		/datum/laser_weapon_mode/sword,
-		/datum/laser_weapon_mode/laser_security,
-	)
-	default_selected_mode = "Kill"
-	speech_json_file = SECURITY_MOD_LASER_SPEECH
-	expanded_examine_text = "The Hoshi carbine is the latest line of man-portable Marsian weapons platforms from \
-		Cybersun Industries. Like her older sister weapon, the Hyeseong rifle, CI used funding aid provided by TerraGov \
-		to develop a portable weapon fueled by a proprietary generator rumored to be fueled by superstable plasma. A \
-		lithe and mobile weapon, the Hoshi stars in close-quarters battle, trickshots, and area-of-effect blasts; though \
-		ineffective at ranged combat. Her onboard machine intelligence, at first devised to support the operator and \
-		manage the internal reactor, was originally shipped with a more energetic personality-- since influenced by 'negligence' \
-		from users in wiping the intelligence's memory before resale or transport."
-
-/obj/item/gun/energy/modular_laser_rifle/security/emp_act(severity)
-	. = ..()
-	speak_up("emp", TRUE) // She gets very upset if you emp her
-
-/obj/item/gun/energy/modular_laser_rifle/security/attack_self(mob/living/user)
-	if(!currently_switching_types)
-		change_to_switch_mode(user)
-	return ..()
 
 #undef LONG_MOD_LASER_SPEECH
 #undef SHORT_MOD_LASER_SPEECH

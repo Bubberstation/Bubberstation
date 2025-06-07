@@ -161,27 +161,6 @@
 		return TRUE
 	return FALSE
 
-// Regular disablers for faction coherency on the SC-3's. It was this or re-doing the entire hoshi gun talk code. You can forgive me some day
-
-/obj/item/ammo_casing/energy/cybersun_small_disabler
-	projectile_type = /obj/projectile/beam/cybersun_laser/disable_bounce
-	e_cost = LASER_SHOTS(10, STANDARD_CELL_CHARGE)
-	select_name = "Disable"
-	harmful = FALSE
-
-/obj/projectile/beam/cybersun_laser/disable_bounce
-	icon_state = "disable_bounce"
-	damage = 0
-	stamina = 30
-	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
-	light_color = COLOR_BRIGHT_BLUE
-	ricochet_auto_aim_angle = 30
-	ricochet_auto_aim_range = 5
-	ricochets_max = 2
-	ricochet_incidence_leeway = 100
-	ricochet_chance = 130
-	ricochet_decay_damage = 0.8
-
 // Flare launcher
 
 /obj/item/ammo_casing/energy/cybersun_small_launcher
