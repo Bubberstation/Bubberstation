@@ -18,13 +18,13 @@
 /datum/loadout_item/neck/security_cape
 	name = "security cape"
 	item_path = /obj/item/clothing/neck/security_cape
-	restricted_roles = list(ALL_JOBS_SEC)
+	restricted_roles = list(ALL_JOBS_SEC, ALL_JOBS_DEPT_GUARDS)
 	can_be_reskinned = TRUE
 
 /datum/loadout_item/neck/security_cape/armplate
 	name = "security gauntlet"
 	item_path = /obj/item/clothing/neck/security_cape/armplate
-	restricted_roles = list(ALL_JOBS_SEC)
+	restricted_roles = list(ALL_JOBS_SEC, ALL_JOBS_DEPT_GUARDS)
 	can_be_reskinned = TRUE
 
 /datum/loadout_item/neck/pauldron
