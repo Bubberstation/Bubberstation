@@ -1,11 +1,11 @@
 /// File location for the long gun's speech
 #define LONG_MOD_LASER_SPEECH "saibasan/long_modular_laser.json"
+/// File location for the short gun's speech
 #define SHORT_MOD_LASER_SPEECH "saibasan/short_modular_laser.json"
-#define TIDER_MOD_LASER_SPEECH "saibasan/tider_modular_laser.json"
-#define SYNDIE_MOD_LASER_SPEECH "saibasan/syndie_modular_laser.json"
-#define CLOWN_MOD_LASER_SPEECH "saibasan/clown_modular_laser.json"
-#define CORPO_MOD_LASER_SPEECH "saibasan/corpo_modular_laser.json"
+/// File location for the long gun's speech
 #define SECURITY_MOD_LASER_SPEECH "saibasan/security_modular_laser.json"
+/// File location for the short gun's speech
+#define CLOWN_MOD_LASER_SPEECH "saibasan/clown_modular_laser.json"
 /// How long the gun should wait between speaking to lessen spam
 #define MOD_LASER_SPEECH_COOLDOWN 2 SECONDS
 /// What color is the default kill mode for these guns, used to make sure the chat colors are right at roundstart
@@ -70,6 +70,8 @@
 	var/last_charge = 0
 	/// If the gun's personality speech thing is on, defaults to on because just listen to her
 	var/personality_mode = TRUE
+	/// Keeps track of our soulcatcher component
+	var/datum/component/carrier/soulcatcher/tracked_soulcatcher
 	/// What is this gun's extended examine, we only have to do this because the carbine is a subtype
 	var/expanded_examine_text = "The Hyeseong rifle is the first line of man-portable Marsian weapons platforms \
 		from Cybersun Industries. Like her younger sister weapon, the Hoshi carbine, CI used funding aid provided \
@@ -84,17 +86,17 @@
 /obj/item/gun/energy/modular_laser_rifle/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_CYBERSUN)
-	AddComponent(/datum/component/spirit_holding/alternate)
 	chat_color = DEFAULT_RUNECHAT_GUN_COLOR
 	chat_color_darkened = process_chat_color(DEFAULT_RUNECHAT_GUN_COLOR, sat_shift = 0.85, lum_shift = 0.85)
 	last_charge = cell.charge
+	tracked_soulcatcher = AddComponent(/datum/component/carrier/soulcatcher/modular_laser)
 	create_weapon_mode_stuff()
 	voice = null
 
 /obj/item/gun/energy/modular_laser_rifle/examine(mob/user)
 	. = ..()
 	. += span_notice("You can <b>examine closer</b> to learn a little more about this weapon.")
-	. += span_notice("You can <b>Alt-Click</b> this gun to download <b>random personalities</b>.")
+	. += span_notice("You can <b>Alt-Click</b> this gun to access the <b>internal soulcatcher</b>.")
 
 /obj/item/gun/energy/modular_laser_rifle/examine_more(mob/user)
 	. = ..()
@@ -102,10 +104,12 @@
 	return .
 
 /obj/item/gun/energy/modular_laser_rifle/Destroy()
+	QDEL_NULL(tracked_soulcatcher)
 	return ..()
 
 /obj/item/gun/energy/modular_laser_rifle/click_alt(mob/user)
 	. = ..()
+	tracked_soulcatcher?.ui_interact(user)
 
 /// Handles filling out all of the lists regarding weapon modes and radials around that
 /obj/item/gun/energy/modular_laser_rifle/proc/create_weapon_mode_stuff()
@@ -209,22 +213,6 @@
 		return
 	UnregisterSignal(user, COMSIG_MOB_CI_TOGGLED)
 
-
-/obj/item/gun/energy/modular_laser_rifle/security/equipped(mob/user, slot, initial)
-	. = ..()
-	RegisterSignal(user, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(on_user_damage_taken))
-
-/obj/item/gun/energy/modular_laser_rifle/security/dropped(mob/user, silent)
-	. = ..()
-	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMAGE)
-
-/obj/item/gun/energy/modular_laser_rifle/security/proc/on_user_damage_taken(mob/user)
-	var/mob/living/carbon/opperator = user
-	if((opperator.getFireLoss() + opperator.getBruteLoss()) >= 120)
-		speak_up("userdying")
-	else
-		speak_up("userhit")
-
 /obj/item/gun/energy/modular_laser_rifle/dropped(mob/user, silent)
 	. = ..()
 	if(src in user.contents)
@@ -264,6 +252,10 @@
 	name = "Toggle Weapon Personality"
 	desc = "Toggles the weapon's personality core. Studies find that turning them off makes them quite sad, however."
 	background_icon_state = "bg_mod"
+
+/datum/component/carrier/soulcatcher/modular_laser
+	max_mobs = 1
+	communicate_as_parent = TRUE
 
 //Short version of the above modular rifle, has less charge and different modes
 /obj/item/gun/energy/modular_laser_rifle/carbine
@@ -309,7 +301,6 @@
 	worn_icon_state = "hoshi_kill"
 	base_icon_state = "hoshi"
 	charge_sections = 3
-	selfcharge = 0
 	cell_type = /obj/item/stock_parts/power_store/cell
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser)
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
@@ -340,24 +331,7 @@
 		change_to_switch_mode(user)
 	return ..()
 
-/obj/item/gun/energy/modular_laser_rifle/security/tider
-	speech_json_file = SECURITY_MOD_LASER_SPEECH
-
-/obj/item/gun/energy/modular_laser_rifle/security/syndie
-	speech_json_file = SYNDIE_MOD_LASER_SPEECH
-
-/obj/item/gun/energy/modular_laser_rifle/security/corpo
-	speech_json_file = CORPO_MOD_LASER_SPEECH
-
-/obj/item/gun/energy/modular_laser_rifle/security/clown
-	speech_json_file = CLOWN_MOD_LASER_SPEECH
-
 #undef LONG_MOD_LASER_SPEECH
 #undef SHORT_MOD_LASER_SPEECH
 #undef MOD_LASER_SPEECH_COOLDOWN
-#undef TIDER_MOD_LASER_SPEECH
-#undef SYNDIE_MOD_LASER_SPEECH
-#undef CLOWN_MOD_LASER_SPEECH
-#undef CORPO_MOD_LASER_SPEECH
-#undef SECURITY_MOD_LASER_SPEECH
 #undef DEFAULT_RUNECHAT_GUN_COLOR
