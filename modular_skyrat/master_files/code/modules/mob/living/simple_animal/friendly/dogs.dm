@@ -95,7 +95,7 @@
 	/// Has E-N been emagged already?
 	var/emagged = FALSE
 	/// A list of the things dropped when it dies
-	var/static/list/borgi_drops = list(/obj/effect/decal/cleanable/oil/slippery)
+	var/static/list/borgi_drops = list(/obj/effect/decal/cleanable/blood/oil/slippery)
 	/// The threshold of HP before the borgi attacks non-friends
 	var/rage_hp = 30
 	/// The chance to spark (on life)
