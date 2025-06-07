@@ -73,6 +73,11 @@
 	if(istype(brain))
 		return TRUE
 	var/obj/item/radio/headset/dongle = ears
+	//Bubber Edit Start
+	for(var/obj/item/implant/radio/implant in src.implants)
+		if(implant.radio.special_channels & RADIO_SPECIAL_BINARY)
+			return TRUE
+	//Bubber Edit End
 	if(!istype(dongle))
 		return FALSE
 	return dongle.special_channels & RADIO_SPECIAL_BINARY
