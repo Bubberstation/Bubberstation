@@ -11,6 +11,7 @@
 	track = EVENT_TRACK_MAJOR
 	tags = list(TAG_DESTRUCTIVE, TAG_COMBAT, TAG_CHAOTIC)
 	weight = 10
+	min_players = 50 //previously 20.
 
 /datum/round_event_control/meteor_wave
 	track = EVENT_TRACK_MAJOR
