@@ -19,22 +19,25 @@
 	AddComponent(/datum/component/udder, reagent_produced_override = /datum/reagent/consumable/moth_milk)
 
 
-/datum/reagent/consumable/tea/blood_tea
+/datum/reagent/consumable/icetea/blood_tea
 	name = "Hemoglobin Iced Tea"
 	description = "A timeless classic!"
 	color = "#B85D52"//rgb(184, 93, 82)
 	quality = DRINK_GOOD
-	taste_description = "chilly sweet tea and an iron bite"
+	taste_description = "chilly sweet tea with an iron bite"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	chemical_flags_skyrat = REAGENT_BLOOD_REGENERATING
 
-/datum/reagent/consumable/tea/blood_tea/on_mob_add(mob/living/affected_mob, amount)
-	. = ..()
-	if(ishemophage(affected_mob))
-		affected_mob.reagents.add_reagent(/datum/reagent/blood, amount)
+/datum/reagent/consumable/icetea/blood_tea/on_transfer(atom/A, methods=INGEST, trans_volume)
+	if(!(methods & INGEST) || (!ishemophage(A) && !istype(A, /obj/item/organ/stomach)) )
+		return
+
+	A.reagents.add_reagent(/datum/reagent/blood, trans_volume)
+
+	..()
 
 /datum/glass_style/drinking_glass/blood_tea
-	required_drink_type = /datum/reagent/consumable/tea/blood_tea
+	required_drink_type = /datum/reagent/consumable/icetea/blood_tea
 	icon = 'modular_zubbers/icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "bloodteaglass"
 	name = "cup of hemoglobin iced tea"
@@ -50,10 +53,13 @@
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	chemical_flags_skyrat = REAGENT_BLOOD_REGENERATING
 
-/datum/reagent/consumable/coffee/blood_coffee/on_mob_add(mob/living/affected_mob, amount)
-	. = ..()
-	if(ishemophage(affected_mob))
-		affected_mob.reagents.add_reagent(/datum/reagent/blood, amount)
+/datum/reagent/consumable/coffee/blood_coffee/on_transfer(atom/A, methods=INGEST, trans_volume)
+	if(!(methods & INGEST) || (!ishemophage(A) && !istype(A, /obj/item/organ/stomach)) )
+		return
+
+	A.reagents.add_reagent(/datum/reagent/blood, trans_volume)
+
+	..()
 
 /datum/glass_style/drinking_glass/blood_coffee
 	required_drink_type = /datum/reagent/consumable/coffee/blood_coffee
