@@ -6160,6 +6160,10 @@
 /obj/effect/turf_decal/stripes/end,
 /turf/open/floor/engine,
 /area/station/science/ordnance)
+"blN" = (
+/mob/living/basic/pet/dog/markus,
+/turf/open/floor/iron,
+/area/station/cargo/sorting)
 "blR" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
@@ -13347,6 +13351,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
 	},
+/obj/effect/landmark/start/security_medic,
 /turf/open/floor/iron/white,
 /area/station/security/medical)
 "cAj" = (
@@ -23375,6 +23380,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 6
 	},
+/obj/effect/landmark/start/security_medic,
 /turf/open/floor/iron/white,
 /area/station/security/medical)
 "ews" = (
@@ -38449,6 +38455,7 @@
 "hpq" = (
 /obj/machinery/light/directional/north,
 /obj/structure/sign/poster/random/directional/north,
+/obj/item/flatpack/export_gate,
 /turf/open/floor/iron/smooth_large,
 /area/station/cargo/storage)
 "hpu" = (
@@ -92615,7 +92622,7 @@
 	c_tag = "Prison gym";
 	network = list("ss13","prison")
 	},
-/obj/item/kirbyplants/random,
+/obj/machinery/vending/dorms/prison,
 /turf/open/floor/iron/dark,
 /area/station/security/prison/workout)
 "rFT" = (
@@ -101891,9 +101898,7 @@
 	pixel_x = -5
 	},
 /obj/structure/noticeboard/directional/west,
-/obj/machinery/posialert{
-	pixel_y = -35
-	},
+/obj/machinery/posialert/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/rd)
 "tum" = (
@@ -124466,6 +124471,10 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance)
+"xHR" = (
+/mob/living/basic/pet/dog/corgi/borgi,
+/turf/open/floor/circuit/red,
+/area/station/science/robotics/mechbay)
 "xHT" = (
 /turf/closed/wall,
 /area/station/maintenance/rus_surgery)
@@ -165537,7 +165546,7 @@ dlo
 xsq
 vSn
 bBn
-wLn
+blN
 pYc
 byx
 czQ
@@ -221823,7 +221832,7 @@ nrx
 uCp
 aXQ
 jDB
-aXQ
+xHR
 qAK
 sXt
 sJP
