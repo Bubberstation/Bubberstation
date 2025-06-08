@@ -168,6 +168,7 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
 	icon_state = "beret_clown"
+	post_init_icon_state = null
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
