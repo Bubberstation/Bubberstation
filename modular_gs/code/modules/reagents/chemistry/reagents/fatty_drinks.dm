@@ -14,7 +14,7 @@
 	use_gs_icon = TRUE
 
 /datum/reagent/consumable/ethanol/belly_bloats/on_mob_life(mob/living/carbon/M)
-	if(M && M?.client?.prefs.weight_gain_food) // GS13
+	if(M && M?.client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_food)) // GS13
 		M.nutrition += 15 * REAGENTS_METABOLISM
 	else
 		M.nutrition += 1
@@ -34,7 +34,7 @@
 	use_gs_icon = TRUE
 
 /datum/reagent/consumable/ethanol/blobby_mary/on_mob_life(mob/living/carbon/M)
-	if(M && M?.client?.prefs.weight_gain_food) // GS13
+	if(M && M?.client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_food)) // GS13
 		M.nutrition += 25 * REAGENTS_METABOLISM
 	else
 		M.nutrition += 1
@@ -54,7 +54,7 @@
 	use_gs_icon = TRUE
 
 /datum/reagent/consumable/ethanol/beltbuster_mead/on_mob_life(mob/living/carbon/M)
-	if(M && M?.client?.prefs.weight_gain_food) // GS13
+	if(M && M?.client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_food)) // GS13
 		M.nutrition += 30 * REAGENTS_METABOLISM
 	else
 		M.nutrition += 1
@@ -80,7 +80,7 @@
 	M.Jitter(5)
 	if(M.getBruteLoss() && prob(20))
 		M.heal_bodypart_damage(1,0, 0)
-	if(M && M?.client?.prefs.weight_gain_food) // GS13
+	if(M && M?.client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_food)) // GS13
 		M.nutrition += 15 * REAGENTS_METABOLISM
 	else
 		M.nutrition += 1
@@ -106,7 +106,7 @@
 	if(M.getToxLoss() && prob(20))
 		M.adjustToxLoss(-1, 0)
 	M.adjust_bodytemperature(20 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
-	if(M && M?.client?.prefs.weight_gain_food) // GS13
+	if(M && M?.client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_food)) // GS13
 		M.nutrition += 15 * REAGENTS_METABOLISM
 	else
 		M.nutrition += 1
@@ -126,7 +126,7 @@
 	use_gs_icon = TRUE
 
 /datum/reagent/consumable/snakebite/on_mob_life(mob/living/carbon/M)
-	if(M && M?.client?.prefs.weight_gain_food) // GS13
+	if(M && M?.client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_food)) // GS13
 		M.nutrition += 25 * REAGENTS_METABOLISM
 	else
 		M.nutrition += 1

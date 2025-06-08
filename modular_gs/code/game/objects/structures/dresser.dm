@@ -2,7 +2,7 @@
 /obj/structure/gmushroomdresser
  	name = "dresser"
  	desc = "A nicely-crafted mushroom dresser. It's filled with lots of undies."
- 	icon = 'GainStation13/icons/obj/stationobjs.dmi'
+ 	icon = 'modular_gs/icons/obj/stationobjs.dmi'
  	icon_state = "gmushroomdresser"
  	density = TRUE
  	anchored = TRUE
@@ -85,7 +85,7 @@
 /obj/structure/plaswooddresser
 	name = "dresser"
 	desc = "A nicely-crafted plaswood dresser. It's filled with lots of undies."
-	icon = 'GainStation13/icons/obj/stationobjs.dmi'
+	icon = 'modular_gs/icons/obj/stationobjs.dmi'
 	icon_state = "plaswooddresser"
 	density = TRUE
 	anchored = TRUE
@@ -168,7 +168,7 @@
 /obj/structure/shadowwdresser
 	name = "dresser"
 	desc = "A nicely-crafted shadow wood dresser. It's filled with lots of undies."
-	icon = 'GainStation13/icons/obj/stationobjs.dmi'
+	icon = 'modular_gs/icons/obj/stationobjs.dmi'
 	icon_state = "shadowwdresser"
 	density = TRUE
 	anchored = TRUE

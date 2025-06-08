@@ -1,7 +1,7 @@
 /obj/structure/ashtree/ashstump
 	name = "Ashtree stump"
 	desc = "Return to ashes."
-	icon = 'GainStation13/icons/obj/flora/ashtree.dmi'
+	icon = 'modular_gs/icons/obj/flora/ashtree.dmi'
 	icon_state = "ashtree_stump"
 	density = FALSE
 	pixel_x = -16
@@ -9,7 +9,7 @@
 /obj/structure/flora/ashtree/ashtreee
 	name = "Ashtree"
 	desc = "A small native lavaland tree."
-	icon = 'GainStation13/icons/obj/flora/ashtree.dmi'
+	icon = 'modular_gs/icons/obj/flora/ashtree.dmi'
 	icon_state = "ashtree_1"
 	var/list/icon_states = list("ashtree_1", "ashtree_2")
 
@@ -52,7 +52,7 @@
 /obj/structure/gmushroom/gmushroomstump
 	name = "Giant mushroom stump"
 	desc = "It will grow back. Maybe. One day."
-	icon = 'GainStation13/icons/obj/flora/gmushroom.dmi'
+	icon = 'modular_gs/icons/obj/flora/gmushroom.dmi'
 	icon_state = "gmushroom_stump"
 	density = FALSE
 	pixel_x = -16
@@ -60,7 +60,7 @@
 /obj/structure/flora/gmushroom/gggmushroom
 	name = "Giant mushroom"
 	desc = "An impressive overgrown mushroom."
-	icon = 'GainStation13/icons/obj/flora/gmushroom.dmi'
+	icon = 'modular_gs/icons/obj/flora/gmushroom.dmi'
 	icon_state = "gmushroom_1"
 	var/list/icon_states = list("gmushroom_1", "gmushroom_2")
 
@@ -74,7 +74,7 @@
 /obj/structure/flora/shadowtree
 	name = "Shadow tree"
 	desc = "A native lavaland tree, with a remarkable purple color."
-	icon = 'GainStation13/icons/obj/flora/shadowtree.dmi'
+	icon = 'modular_gs/icons/obj/flora/shadowtree.dmi'
 	max_integrity = 80
 	density = TRUE
 	pixel_x = -16
@@ -104,7 +104,7 @@
 /obj/structure/shadowtree/shadowtreestump
 	name = "Shadow tree stump"
 	desc = "Hidden in the shadowns."
-	icon = 'GainStation13/icons/obj/flora/shadowtree.dmi'
+	icon = 'modular_gs/icons/obj/flora/shadowtree.dmi'
 	icon_state = "shadowtree_stump"
 	density = FALSE
 	pixel_x = -16
@@ -112,7 +112,7 @@
 /obj/structure/flora/shadowtree/shadowtreee
 	name = "Shadow tree"
 	desc = "A native Lavaland tree, with a remarkable purple color."
-	icon = 'GainStation13/icons/obj/flora/shadowtree.dmi'
+	icon = 'modular_gs/icons/obj/flora/shadowtree.dmi'
 	icon_state = "shadowtree_1"
 	var/list/icon_states = list("shadowtree_1", "shadowtree_2")
 
@@ -155,7 +155,7 @@
 /obj/structure/plasmatree/plasmatreestump
 	name = "Plasma tree stump"
 	desc = "Pointy and sharp."
-	icon = 'GainStation13/icons/obj/flora/plasmatree.dmi'
+	icon = 'modular_gs/icons/obj/flora/plasmatree.dmi'
 	icon_state = "plasmatree_stump"
 	density = FALSE
 	pixel_x = -16
@@ -163,7 +163,7 @@
 /obj/structure/flora/plasmatree/plasmatreee
 	name = "Plasma tree"
 	desc = "A tree that has absorved plasma from the ground, making its wood strong like metal."
-	icon = 'GainStation13/icons/obj/flora/plasmatree.dmi'
+	icon = 'modular_gs/icons/obj/flora/plasmatree.dmi'
 	icon_state = "plasmatree_1"
 	var/list/icon_states = list("plasmatree_1", "plasmatree_2")
 
@@ -182,7 +182,7 @@
 
 /obj/structure/flora/crystal/small
 	name = "small crystals"
-	icon = 'GainStation13/icons/obj/flora/layeniasmall.dmi'
+	icon = 'modular_gs/icons/obj/flora/layeniasmall.dmi'
 	light_range = 2
 	light_power = 0.25
 	light_color = LIGHT_COLOR_BLUE
@@ -211,7 +211,7 @@
 
 /obj/structure/flora/crystal/medium
 	name = "medium crystals"
-	icon = 'GainStation13/icons/obj/flora/layeniamedium.dmi'
+	icon = 'modular_gs/icons/obj/flora/layeniamedium.dmi'
 	pixel_x = -16
 	pixel_y = -3
 	layer = ABOVE_ALL_MOB_LAYER
@@ -234,7 +234,7 @@
 /obj/structure/flora/redgrass
 	name = "tall grass"
 	desc = "A patch of overgrown red grass."
-	icon = 'GainStation13/icons/obj/lavaland/redgrass.dmi'
+	icon = 'modular_gs/icons/obj/lavaland/redgrass.dmi'
 	gender = PLURAL	//"this is grass" not "this is a grass"
 
 /obj/structure/flora/redgrass/redg
@@ -245,7 +245,7 @@
 	. = ..()
 
 /obj/structure/flora/tree/desertdead
-	icon = 'GainStation13/icons/obj/flora/desertdead.dmi'
+	icon = 'modular_gs/icons/obj/flora/desertdead.dmi'
 	desc = "A dead tree in the middle of the desert."
 	icon_state = "desertdead_1"
 	var/list/icon_states = list ("desertdead_1", "desertdead_2", "desertdead_3")

@@ -7,7 +7,7 @@
 	name = "Energy Harvesting Module"
 	density = TRUE
 	use_power = NO_POWER_USE
-	icon = 'GainStation13/icons/obj/energy_harvester.dmi'			// by AlManiak
+	icon = 'modular_gs/icons/obj/energy_harvester.dmi'			// by AlManiak
 	icon_state = "off"
 	circuit = /obj/item/circuitboard/machine/energy_harvester
 	var/datum/looping_sound/generator/soundloop
@@ -123,13 +123,13 @@
 
 	if(!.)
 		return FALSE
-	
+
 	if(too_many_harvesters_in_network())
 		src.visible_message("<span class='alert'>[src] buzzes. Seems like there are too many energy harvesters connected to this powernet.</span>")
 		playsound(src, 'sound/machines/buzz-two.ogg', 50)
 		disconnect_from_network()
 		return FALSE
-	
+
 	return TRUE
 
 /obj/machinery/power/energy_harvester/proc/too_many_harvesters_in_network()

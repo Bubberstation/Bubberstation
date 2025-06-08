@@ -1,6 +1,6 @@
 /turf/open/floor/mineral/titanium/old
 	name = "tiled floor"
-	icon = 'GainStation13/icons/turf/floors.dmi'
+	icon = 'modular_gs/icons/turf/floors.dmi'
 	icon_state = "titanium_old"
 	floor_tile = /obj/item/stack/tile/mineral/titanium
 	broken_states = list("titanium_dam1_old","titanium_dam2_old","titanium_dam3_old","titanium_dam4_old","titanium_dam5_old")

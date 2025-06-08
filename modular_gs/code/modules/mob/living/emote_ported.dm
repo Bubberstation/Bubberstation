@@ -153,7 +153,7 @@
 	message = "chirps in surprise!"
 	message_param = "chirps in surprise at %t!"
 	emote_type = EMOTE_AUDIBLE
-	sound = 'GainStation13/sound/voice/teshari/teshsqueak.ogg' // Copyright CC BY 3.0 InspectorJ (freesound.org) for the source audio.
+	sound = 'modular_gs/sound/voice/teshari/teshsqueak.ogg' // Copyright CC BY 3.0 InspectorJ (freesound.org) for the source audio.
 
 /datum/emote/living/carbon/teshchirp
 	key = "tchirp"
@@ -161,7 +161,7 @@
 	message = "chirps!"
 	message_param = "chirps at %t!"
 	emote_type = EMOTE_AUDIBLE
-	sound = 'GainStation13/sound/voice/teshari/teshchirp.ogg' // Copyright Sampling+ 1.0 Incarnidine (freesound.org) for the source audio.
+	sound = 'modular_gs/sound/voice/teshari/teshchirp.ogg' // Copyright Sampling+ 1.0 Incarnidine (freesound.org) for the source audio.
 
 /datum/emote/living/carbon/teshtrill
 	key = "trill"
@@ -169,7 +169,7 @@
 	message = "trills."
 	message_param = "trills at %t."
 	emote_type = EMOTE_AUDIBLE
-	sound = 'GainStation13/sound/voice/teshari/teshtrill.ogg' // Copyright CC BY-NC 3.0 Arnaud Coutancier (freesound.org) for the source audio.
+	sound = 'modular_gs/sound/voice/teshari/teshtrill.ogg' // Copyright CC BY-NC 3.0 Arnaud Coutancier (freesound.org) for the source audio.
 
 /datum/emote/living/sneeze/teshsneeze //Replace this with a modular species/tongue based sneeze system later. Also piggybacking on normal sneezes
 	key = "teshsneeze"
@@ -178,7 +178,7 @@
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/sneeze/teshsneeze/get_sound()
-	return pick('GainStation13/sound/voice/teshari/tesharisneeze.ogg', 'GainStation13/sound/voice/teshari/tesharisneezeb.ogg')
+	return pick('modular_gs/sound/voice/teshari/tesharisneeze.ogg', 'modular_gs/sound/voice/teshari/tesharisneezeb.ogg')
 
 /datum/emote/living/cough/teshcough //Same as above. Replace with a modular system later.
 	key = "teshcough"
@@ -187,7 +187,7 @@
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/cough/teshcough/get_sound()
-	return pick('GainStation13/sound/voice/teshari/tesharicougha.ogg', 'GainStation13/sound/voice/teshari/tesharicoughb.ogg')
+	return pick('modular_gs/sound/voice/teshari/tesharicougha.ogg', 'modular_gs/sound/voice/teshari/tesharicoughb.ogg')
 
 /datum/emote/living/carbon/teshscream
 	key = "teshscream"
@@ -195,7 +195,7 @@
 	message = "screams!"
 	message_param = "screams at %t!"
 	emote_type = EMOTE_AUDIBLE
-	sound = 'GainStation13/sound/voice/teshari/teshscream.ogg'
+	sound = 'modular_gs/sound/voice/teshari/teshscream.ogg'
 
 /datum/emote/living/prbt
 	key = "prbt"
@@ -203,7 +203,7 @@
 	message = "prbts."
 	message_param = "prbts at %t."
 	emote_type = EMOTE_AUDIBLE
-	sound = 'GainStation13/sound/voice/emotes/prbt.ogg'
+	sound = 'modular_gs/sound/voice/emotes/prbt.ogg'
 
 /datum/emote/living/mlem
 	key = "mlem"
@@ -219,10 +219,10 @@
 	key = "gyoh"
 	key_third_person = "gyohs"
 	message = "gyohs"
-	var/bigsound = list('GainStation13/sound/voice/teppi/gyooh1.ogg', 'GainStation13/sound/voice/teppi/gyooh2.ogg', \
-						'GainStation13/sound/voice/teppi/gyooh3.ogg', 'GainStation13/sound/voice/teppi/gyooh4.ogg', \
-						'GainStation13/sound/voice/teppi/gyooh5.ogg', 'GainStation13/sound/voice/teppi/gyooh6.ogg')
-	var/smolsound = list('GainStation13/sound/voice/teppi/whine1.ogg', 'GainStation13/sound/voice/teppi/whine2.ogg')
+	var/bigsound = list('modular_gs/sound/voice/teppi/gyooh1.ogg', 'modular_gs/sound/voice/teppi/gyooh2.ogg', \
+						'modular_gs/sound/voice/teppi/gyooh3.ogg', 'modular_gs/sound/voice/teppi/gyooh4.ogg', \
+						'modular_gs/sound/voice/teppi/gyooh5.ogg', 'modular_gs/sound/voice/teppi/gyooh6.ogg')
+	var/smolsound = list('modular_gs/sound/voice/teppi/whine1.ogg', 'modular_gs/sound/voice/teppi/whine2.ogg')
 
 /datum/emote/living/teppi/run_emote(mob/living/user, params)
 	/* //If we port teppi later, Enable this.
@@ -243,9 +243,9 @@
 	key = "rumble"
 	key_third_person = "rumbles"
 	message = "rumbles contentedly."
-	sound = 'GainStation13/sound/voice/teppi/cute_rumble.ogg'
-	bigsound = list('GainStation13/sound/voice/teppi/rumble.ogg')
-	smolsound = list('GainStation13/sound/voice/teppi/cute_rumble.ogg')
+	sound = 'modular_gs/sound/voice/teppi/cute_rumble.ogg'
+	bigsound = list('modular_gs/sound/voice/teppi/rumble.ogg')
+	smolsound = list('modular_gs/sound/voice/teppi/cute_rumble.ogg')
 
 //Vorestation ports end.
 
@@ -256,6 +256,6 @@
 	message = "wawas."
 	message_param = "wawas at %t."
 	emote_type = EMOTE_AUDIBLE
-	sound = 'GainStation13/sound/voice/emotes/wawa.ogg'
+	sound = 'modular_gs/sound/voice/emotes/wawa.ogg'
 
 //Chompstation ports end.

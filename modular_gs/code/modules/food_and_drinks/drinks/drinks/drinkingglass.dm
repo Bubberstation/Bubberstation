@@ -8,6 +8,6 @@
 		if(istype(R, /datum/reagent/consumable))
 			var/datum/reagent/consumable/C = R
 			if(C.use_gs_icon == TRUE)
-				icon = 'GainStation13/icons/obj/drinks.dmi'
+				icon = 'modular_gs/icons/obj/drinks.dmi'
 
 	..()

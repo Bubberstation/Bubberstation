@@ -3,5 +3,5 @@
 /datum/sprite_accessory/horns/unicorn
 	name = "Unicorn"
 	icon_state = "unicorn"
-	icon = 'GainStation13/icons/mob/horns.dmi'
+	icon = 'modular_gs/icons/mob/horns.dmi'
 	color_src = MATRIXED

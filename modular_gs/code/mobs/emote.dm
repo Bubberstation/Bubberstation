@@ -24,7 +24,7 @@
 		if(user.nextsoundemote >= world.time)
 			return
 		user.nextsoundemote = world.time + 7
-		playsound(user, 'GainStation13/sound/voice/speen.ogg', 50, 1, -1)
+		playsound(user, 'modular_gs/sound/voice/speen.ogg', 50, 1, -1)
 	. = ..()
 
 
@@ -41,5 +41,5 @@
 		if(user.nextsoundemote >= world.time)
 			return
 		user.nextsoundemote = world.time + 7
-		playsound(user, 'GainStation13/sound/voice//cackle_yeen.ogg', 50, 1, -1)
+		playsound(user, 'modular_gs/sound/voice//cackle_yeen.ogg', 50, 1, -1)
 	. = ..()

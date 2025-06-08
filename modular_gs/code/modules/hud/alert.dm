@@ -1,5 +1,5 @@
 /atom/movable/screen/alert/gs13
-	icon = 'GainStation13/icons/mob/screen_alert.dmi'
+	icon = 'modular_gs/icons/mob/screen_alert.dmi'
 
 /atom/movable/screen/alert/gs13/blob
 	name = "Fatty Blob"

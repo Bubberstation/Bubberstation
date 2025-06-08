@@ -45,28 +45,28 @@ var/charges = 3
 	name = "Healing Pulse"
 	desc = "Emit a healing pulse around yourself, curing the wounds of all around you."
 	check_flags = AB_CHECK_CONSCIOUS
-	icon_icon = 'GainStation13/icons/mob/action_icons.dmi'
+	icon_icon = 'modular_gs/icons/mob/action_icons.dmi'
 	button_icon_state = "healing"
 
 /datum/action/innate/unburden
 	name = "Lift Burdens"
 	desc = "Vitalise all those around you, giving them a boost of speed for a moment. The effects of this charm are more effective on those whom are heavily burdened"
 	check_flags = AB_CHECK_CONSCIOUS
-	icon_icon = 'GainStation13/icons/mob/action_icons.dmi'
+	icon_icon = 'modular_gs/icons/mob/action_icons.dmi'
 	button_icon_state = "boost"
 
 /datum/action/innate/bless
 	name = "Bless Food"
 	desc = "infuse food near you with a fraction of your power to make it more nourishing"
 	check_flags = AB_CHECK_CONSCIOUS
-	icon_icon = 'GainStation13/icons/mob/action_icons.dmi'
+	icon_icon = 'modular_gs/icons/mob/action_icons.dmi'
 	button_icon_state = "cal_bless"
 
 /datum/action/innate/recharge
 	name = "Recharge"
 	desc = "refresh and recharge your magical abilities"
 	check_flags = AB_CHECK_CONSCIOUS
-	icon_icon = 'GainStation13/icons/mob/action_icons.dmi'
+	icon_icon = 'modular_gs/icons/mob/action_icons.dmi'
 	button_icon_state = "cal_golem_sleepies"
 
 

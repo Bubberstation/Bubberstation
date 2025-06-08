@@ -1,5 +1,5 @@
 /obj/item/strangerock
-	icon = 'GainStation13/code/xenoarch/fossil_and_artifact.dmi'
+	icon = 'modular_gs/code/xenoarch/fossil_and_artifact.dmi'
 	name = "strange rock"
 	desc = "This is a strange rock, it appears to have a relic encased."
 	icon_state = "strange"

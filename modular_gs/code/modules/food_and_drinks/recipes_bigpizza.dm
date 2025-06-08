@@ -9,7 +9,7 @@
 /obj/item/reagent_containers/food/snacks/pizza/framewrecker
 	name = "Framewrecker Pizza"
 	desc = "You feel your arteries clogging just by merely looking at this monster. Is this even real, or a mere hallucination?"
-	icon = 'GainStation13/icons/obj/food/food64x64.dmi'
+	icon = 'modular_gs/icons/obj/food/food64x64.dmi'
 	icon_state = "theonepizza"
 	pixel_x = -16
 	pixel_y = -16
@@ -32,7 +32,7 @@
 /obj/item/reagent_containers/food/snacks/pizzaslice/framewrecker
 	name = "Framewrecker Pizza Slice"
 	desc = "This mere slice is the size of pizza on its own!"
-	icon = 'GainStation13/icons/obj/food/ported_meals.dmi'
+	icon = 'modular_gs/icons/obj/food/ported_meals.dmi'
 	list_reagents = list(/datum/reagent/consumable/nutriment = 60)
 	icon_state = "big_mushroom_slice"
 	filling_color = "#FFA500"

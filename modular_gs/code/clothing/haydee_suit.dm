@@ -1,8 +1,8 @@
 /obj/item/clothing/head/helmet/space/hardsuit/engine/haydee
 	name = "Haydee Helmet"
 	desc = "A strange helmet. Offers little to no protection."
-	icon = 'GainStation13/icons/obj/clothing/haydee_modular.dmi'
-	mob_overlay_icon = 'GainStation13/icons/obj/clothing/haydee_modular.dmi'
+	icon = 'modular_gs/icons/obj/clothing/haydee_modular.dmi'
+	mob_overlay_icon = 'modular_gs/icons/obj/clothing/haydee_modular.dmi'
 	icon_state = "haydee_helmet"
 	armor = list("melee" = 10, "bullet" = 5, "laser" = 10, "energy" = 5, "bomb" = 0, "bio" = 0, "rad" = 25, "fire" = 25, "acid" = 25)
 	slowdown = 0
@@ -12,9 +12,9 @@
 /obj/item/clothing/suit/space/hardsuit/engine/haydee
 	name = "Haydee Suit"
 	desc = "A strangely voluptous suit. Offers little to no protection. It also appears to have minor flab-compressing properties."
-	icon = 'GainStation13/icons/obj/clothing/haydee_modular.dmi'
-	mob_overlay_icon =  'GainStation13/icons/obj/clothing/haydee_modular.dmi'
-	anthro_mob_worn_overlay = 'GainStation13/icons/obj/clothing/haydee_modular.dmi'
+	icon = 'modular_gs/icons/obj/clothing/haydee_modular.dmi'
+	mob_overlay_icon =  'modular_gs/icons/obj/clothing/haydee_modular.dmi'
+	anthro_mob_worn_overlay = 'modular_gs/icons/obj/clothing/haydee_modular.dmi'
 	icon_state = "haydee_suit1"
 	item_state = "item_haydee"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 25, "fire" = 5, "acid" = 5)
@@ -23,21 +23,21 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/engine/haydee
 	slowdown = 0
 	mutantrace_variation = NONE
-	var/icon_location = 'GainStation13/icons/obj/clothing/haydee_modular.dmi'
+	var/icon_location = 'modular_gs/icons/obj/clothing/haydee_modular.dmi'
 	var/mob/living/carbon/U
 
 //haydee gun
 /obj/item/gun/ballistic/automatic/pistol/haydee
 	name = "Simplistic Pistol"
 	desc = "10mm handgun. It seems to be clad in overly simplistic white shell."
-	icon = 'GainStation13/icons/obj/clothing/haydee_modular.dmi'
+	icon = 'modular_gs/icons/obj/clothing/haydee_modular.dmi'
 	icon_state = "pistol"
 	can_suppress = FALSE
 
 /obj/item/gun/ballistic/automatic/toy/pistol/haydee
 	name = "Simplistic Toy Pistol"
 	desc = "A small, easily concealable toy handgun."
-	icon = 'GainStation13/icons/obj/clothing/haydee_modular.dmi'
+	icon = 'modular_gs/icons/obj/clothing/haydee_modular.dmi'
 	icon_state = "pistol"
 
 

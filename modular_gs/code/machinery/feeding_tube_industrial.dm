@@ -6,7 +6,7 @@
 /obj/structure/disposaloutlet/industrial_feeding_tube
 	name = "\improper industrial feeding tube"
 	desc = "An imposing machine designed to pump an absurd amount of \"food\" down something's throat. It seems to connect to disposal pipes."
-	icon = 'GainStation13/icons/obj/feeding_tube_industrial.dmi'
+	icon = 'modular_gs/icons/obj/feeding_tube_industrial.dmi'
 	icon_state = "base"
 	max_integrity = 500 //Durable...
 	anchored = FALSE
@@ -183,7 +183,7 @@
 	. = ..()
 	cut_overlays()
 
-	var/mutable_appearance/tube_overlay = mutable_appearance('GainStation13/icons/obj/feeding_tube_industrial.dmi', "tube_idle")
+	var/mutable_appearance/tube_overlay = mutable_appearance('modular_gs/icons/obj/feeding_tube_industrial.dmi', "tube_idle")
 
 	if(pumping)
 		tube_overlay.icon_state = "tube-pump"
@@ -233,7 +233,7 @@
 			break
 	if(!pumping)
 		pumping = TRUE
-		playsound(src, 'GainStation13/sound/rakshasa/Corrosion3.ogg', 50, 1)
+		playsound(src, 'modular_gs/sound/rakshasa/Corrosion3.ogg', 50, 1)
 		update_icon()
 		spawn(8)
 			pumping = FALSE
@@ -317,7 +317,7 @@
 		// After everything, if we've pushed something, play the "rubber tube noise"
 		// It's technically an evil digestion sound from a snowflake shadekin, but it makes for a good tube sound. Thanks Verkie!
 		if(fed_something)
-			playsound(attached.loc, 'GainStation13/sound/rakshasa/Corrosion3.ogg', rand(50,70), 1)
+			playsound(attached.loc, 'modular_gs/sound/rakshasa/Corrosion3.ogg', rand(50,70), 1)
 
 		if(LAZYLEN(pump_stuff) && repeat)
 			pump()

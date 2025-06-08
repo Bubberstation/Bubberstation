@@ -4,7 +4,7 @@
 
 
 /obj/item/metal_food
-	icon = 'GainStation13/icons/obj/food/metal_food.dmi'
+	icon = 'modular_gs/icons/obj/food/metal_food.dmi'
 	desc = "Looks shiny."
 	w_class = WEIGHT_CLASS_SMALL
 	var/crunch_value = 0 // value per bite

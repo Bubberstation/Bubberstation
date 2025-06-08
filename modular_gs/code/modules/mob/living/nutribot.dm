@@ -12,7 +12,7 @@
 /mob/living/simple_animal/bot/nutribot
 	name = "\improper Nutribot"
 	desc = "A little nutritional robot. He looks somewhat underwhelmed."
-	icon = 'GainStation13/icons/mob/nutribot.dmi'
+	icon = 'modular_gs/icons/mob/nutribot.dmi'
 	icon_state = "nutribot0"
 	density = FALSE
 	anchored = FALSE

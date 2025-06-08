@@ -1,9 +1,9 @@
 /obj/item/storage/fancy/large_donut_box // not inheriting from a regular box of donuts for now because I don't want the icon changes...
 	name = "large donut box"
 	desc = "For when security just can't get enough."
-	icon = 'GainStation13/icons/obj/food/containers.dmi'
+	icon = 'modular_gs/icons/obj/food/containers.dmi'
 	icon_state = "large_donut_box"
-	spawn_type = /obj/item/reagent_containers/food/snacks/donut	
+	spawn_type = /obj/item/reagent_containers/food/snacks/donut
 	fancy_open = FALSE
 	custom_price = PRICE_NORMAL
 	appearance_flags = KEEP_TOGETHER

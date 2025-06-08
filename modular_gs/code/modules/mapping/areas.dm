@@ -33,7 +33,7 @@
 	has_gravity = TRUE
 
 /area/xenoarch
-	icon = 'GainStation13/icons/turf/areas.dmi'
+	icon = 'modular_gs/icons/turf/areas.dmi'
 	icon_state = "xenogen"
 	has_gravity = STANDARD_GRAVITY
 
@@ -68,7 +68,7 @@
 
 
 /area/lavaland/demone
-	icon = 'GainStation13/icons/turf/areas.dmi'
+	icon = 'modular_gs/icons/turf/areas.dmi'
 
 /area/lavaland/demone/tele
 	name= "Demone Teleporter Room"

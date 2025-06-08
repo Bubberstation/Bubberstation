@@ -7,7 +7,7 @@
 	whisper_verb = "mrowls quietly"
 	key = "j"
 	flags = TONGUELESS_SPEECH
-	icon = 'GainStation13/icons/misc/language.dmi'
+	icon = 'modular_gs/icons/misc/language.dmi'
 	sentence_chance = 0
 	default_priority = 80
 	syllables = list("rr","rr","tajr","kir","raj","kii","mir","kra","ahk","nal","vah","khaz","jri","ran","darr",

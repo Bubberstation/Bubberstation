@@ -1,7 +1,7 @@
 /obj/item/seeds/vale
 	name = "pack of vale seeds"
 	desc = "These seeds grow into vale plants."
-	icon = 'GainStation13/code/xenoarch/xenobotany/icons/seeds.dmi'
+	icon = 'modular_gs/code/xenoarch/xenobotany/icons/seeds.dmi'
 	icon_state = "vale"
 	species = "vale"
 	plantname = "Vale Plant"
@@ -9,7 +9,7 @@
 	lifespan = 55
 	endurance = 35
 	yield = 5
-	growing_icon = 'GainStation13/code/xenoarch/xenobotany/icons/growing.dmi'
+	growing_icon = 'modular_gs/code/xenoarch/xenobotany/icons/growing.dmi'
 	icon_grow = "vale-stage"
 	growthstages = 4
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
@@ -19,7 +19,7 @@
 	seed = /obj/item/seeds/vale
 	name = "vale"
 	desc = "It's a little piece of vale."
-	icon = 'GainStation13/code/xenoarch/xenobotany/icons/harvests.dmi'
+	icon = 'modular_gs/code/xenoarch/xenobotany/icons/harvests.dmi'
 	icon_state = "vale"
 	filling_color = "#FF4500"
 	bitesize = 100

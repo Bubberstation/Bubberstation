@@ -195,7 +195,7 @@
 /obj/item/gun/energy/fatoray/weak/cyborg
 	name = "cyborg fatoray"
 	desc = "An integrated fatoray for cyborg use."
-	icon = 'GainStation13/icons/obj/fatoray.dmi'
+	icon = 'modular_gs/icons/obj/fatoray.dmi'
 	icon_state = "fatoray_weak"
 	can_charge = FALSE
 	selfcharge = EGUN_SELFCHARGE_BORG
@@ -227,7 +227,7 @@
 /obj/item/reagent_containers/borghypo/feeding_tube
 	name = "cyborg feeding tube"
 	desc = "A feeding tube module for a cyborg."
-	icon = 'GainStation13/icons/obj/feeding_tube.dmi'
+	icon = 'modular_gs/icons/obj/feeding_tube.dmi'
 	icon_state = "borg_tube"
 	possible_transfer_amounts = list(5,10,20)
 	charge_cost = 20

@@ -1,7 +1,7 @@
 /obj/vehicle/ridden/grocery_cart //ported from Hippiestation (by Jujumatic)
 	name = "grocery cart"
 	desc = "A cart you can use to hold groceries, or ride in."
-	icon = 'GainStation13/icons/obj/vehicles.dmi'
+	icon = 'modular_gs/icons/obj/vehicles.dmi'
 	icon_state = "grocery_cart"
 	layer = OBJ_LAYER
 	max_integrity = 100

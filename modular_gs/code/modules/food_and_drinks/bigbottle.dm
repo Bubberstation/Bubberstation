@@ -8,12 +8,10 @@
 /obj/item/reagent_containers/food/drinks/bigbottle
 	name = "Bottle"
 	desc = "You shouldn't see this."
-	icon = 'GainStation13/icons/obj/food/bigbottle.dmi'
+	icon = 'modular_gs/icons/obj/food/bigbottle.dmi'
 	icon_state = "bigbottle_default"
 	list_reagents = list(/datum/reagent/consumable/space_cola = 25)
 	custom_materials = list(/datum/material/plastic=200)
-	foodtype = SUGAR
-	isGlass = FALSE
 	volume = 100
 
 /obj/item/reagent_containers/food/drinks/bigbottle/starkist

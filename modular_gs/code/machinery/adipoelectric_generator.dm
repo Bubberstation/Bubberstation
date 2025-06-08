@@ -1,7 +1,7 @@
 /obj/machinery/power/adipoelectric_generator
 	name = "adipoelectric generator"
 	desc = "This device uses calorite technology to transform excess blubber into power!"
-	icon = 'GainStation13/icons/obj/adipoelectric_transformer.dmi'
+	icon = 'modular_gs/icons/obj/adipoelectric_transformer.dmi'
 	icon_state = "state_off"
 	density = FALSE
 	anchored = FALSE

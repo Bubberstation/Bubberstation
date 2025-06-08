@@ -1,5 +1,5 @@
 /obj/item/mod/module/hydraulic_movement
-	icon = 'GainStation13/icons/obj/clothing/modsuit/mod_modules.dmi'
+	icon = 'modular_gs/icons/obj/clothing/modsuit/mod_modules.dmi'
 	icon_state = "hydraulic_mod"
 	name = "MOD hydraulic movement assistance module"
 	desc = "A module created by GATO, installed across the suit, featuring a system of hydraulic pistons \
@@ -59,7 +59,7 @@
 	desc = "A GATO-designed module that supports plumper bodies and allows easier movement."
 
 /obj/item/mod/module/calovoltaic
-	icon = 'GainStation13/icons/obj/clothing/modsuit/mod_modules.dmi'
+	icon = 'modular_gs/icons/obj/clothing/modsuit/mod_modules.dmi'
 	icon_state = "calovoltaic_mod"
 	name = "MOD calovoltaic generator module"
 	desc = "A module created by GATO, capable of burning adipose tissue \
@@ -108,28 +108,28 @@
 
 /obj/item/mod/control/proc/gs13_icon_update()
 	if(theme.use_gs_icon == TRUE)
-		icon = 'GainStation13/icons/obj/clothing/modsuit/mod_clothing.dmi'
-		mob_overlay_icon = 'GainStation13/icons/mob/clothing/modsuit/mod_clothing.dmi'
+		icon = 'modular_gs/icons/obj/clothing/modsuit/mod_clothing.dmi'
+		mob_overlay_icon = 'modular_gs/icons/mob/clothing/modsuit/mod_clothing.dmi'
 		icon_state = "[theme]-control"
 		item_state = "[theme]-control"
 
-		helmet.icon = 'GainStation13/icons/obj/clothing/modsuit/mod_clothing.dmi'
-		helmet.mob_overlay_icon = 'GainStation13/icons/mob/clothing/modsuit/mod_clothing.dmi'
+		helmet.icon = 'modular_gs/icons/obj/clothing/modsuit/mod_clothing.dmi'
+		helmet.mob_overlay_icon = 'modular_gs/icons/mob/clothing/modsuit/mod_clothing.dmi'
 		helmet.icon_state = "[theme]-helmet"
 		helmet.item_state = "[theme]-helmet"
 
-		chestplate.icon = 'GainStation13/icons/obj/clothing/modsuit/mod_clothing.dmi'
-		chestplate.mob_overlay_icon = 'GainStation13/icons/mob/clothing/modsuit/mod_clothing.dmi'
+		chestplate.icon = 'modular_gs/icons/obj/clothing/modsuit/mod_clothing.dmi'
+		chestplate.mob_overlay_icon = 'modular_gs/icons/mob/clothing/modsuit/mod_clothing.dmi'
 		chestplate.icon_state = "[theme]-chestplate"
 		chestplate.item_state = "[theme]-chestplate"
 
-		gauntlets.icon = 'GainStation13/icons/obj/clothing/modsuit/mod_clothing.dmi'
-		gauntlets.mob_overlay_icon = 'GainStation13/icons/mob/clothing/modsuit/mod_clothing.dmi'
+		gauntlets.icon = 'modular_gs/icons/obj/clothing/modsuit/mod_clothing.dmi'
+		gauntlets.mob_overlay_icon = 'modular_gs/icons/mob/clothing/modsuit/mod_clothing.dmi'
 		gauntlets.icon_state = "[theme]-gauntlets"
 		gauntlets.item_state = "[theme]-gauntlets"
 
-		boots.icon = 'GainStation13/icons/obj/clothing/modsuit/mod_clothing.dmi'
-		boots.mob_overlay_icon = 'GainStation13/icons/mob/clothing/modsuit/mod_clothing.dmi'
+		boots.icon = 'modular_gs/icons/obj/clothing/modsuit/mod_clothing.dmi'
+		boots.mob_overlay_icon = 'modular_gs/icons/mob/clothing/modsuit/mod_clothing.dmi'
 		boots.icon_state = "[theme]-boots"
 		boots.item_state = "[theme]-boots"
 

@@ -23,7 +23,7 @@
 /datum/action/innate/wrap_target
 	name = "wrap"
 	desc = "encases a humanoid in a web cocoon."
-	icon_icon = 'GainStation13/icons/obj/clothing/web.dmi'
+	icon_icon = 'modular_gs/icons/obj/clothing/web.dmi'
 	button_icon_state = "web_bindings"
 	background_icon_state = "bg_alien"
 
@@ -78,8 +78,8 @@
 /obj/item/clothing/suit/straight_jacket/web
 	name = "web bindings"
 	desc = "A mesh of sticky web that binds whoever is stuck inside of it"
-	icon = 'GainStation13/icons/obj/clothing/web.dmi'
-	mob_overlay_icon = 'GainStation13/icons/mob/web.dmi'
+	icon = 'modular_gs/icons/obj/clothing/web.dmi'
+	mob_overlay_icon = 'modular_gs/icons/mob/web.dmi'
 	icon_state = "web_bindings"
 	item_state = "web_bindings"
 	breakouttime = 600 //1 minute is reasonable.

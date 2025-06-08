@@ -1,7 +1,7 @@
 /mob/living/simple_animal/friendly/cakegolem //I told you I'd do it, Remie //sorry Remie -Eye
 	name = "Puffball"
 	desc = "It's a person made out of cake."
-	icon = 'GainStation13/icons/mob/cakegolem.dmi'
+	icon = 'modular_gs/icons/mob/cakegolem.dmi'
 	icon_state = "cakegolem"
 	icon_living = "cakegolem"
 	icon_dead = "cakegolem_dead"

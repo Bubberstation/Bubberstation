@@ -77,7 +77,7 @@
 //GS13 Datapads and Books
 /obj/item/book/manual/blubbery_bartender
 	name = "The Blubbery Bartender"
-	icon = 'GainStation13/icons/obj/library.dmi'
+	icon = 'modular_gs/icons/obj/library.dmi'
 	icon_state ="bookblubberybartender"
 	author = "Anonymous" // Whoever wrote the paper or book, can be changed by pen or PC. It is not automatically assigned.
 	title = "The Blubbery Bartender"
@@ -115,7 +115,7 @@
 
 /obj/item/book/manual/fatty_chems
 	name = "The Strange Chems of GATO's Sector"
-	icon = 'GainStation13/icons/obj/library.dmi'
+	icon = 'modular_gs/icons/obj/library.dmi'
 	icon_state ="bookblubberybartender"
 	author = "Unknown"
 	title = "The Strange Chems of GATO's Sector"
@@ -153,7 +153,7 @@
 //fastfood
 /obj/item/paper/fluff/ruins/fastfood/general_info
 	name = "Welcome to GATO!"
-	icon = 'GainStation13/icons/obj/library.dmi'
+	icon = 'modular_gs/icons/obj/library.dmi'
 	icon_state = "book1"
 	info = "We are glad to have you be a part of our galaxy-wide GATO franchise locations! As a restaurant worker / manager, you are a part of the GATO Corp and for security purposes, you may be treated as a part of the General Station 13's crew. Make sure to keep your restaurant clean and well-stocked. Good luck!"
 
@@ -162,7 +162,7 @@
 
 /obj/item/book/manual/gato_spacelaw
 	name = "GATO Space Law"
-	icon = 'GainStation13/icons/obj/library.dmi'
+	icon = 'modular_gs/icons/obj/library.dmi'
 	desc = "A set of GATO-Station guidelines for keeping law and order on their space stations."
 	icon_state = "bookSpaceLaw"
 	author = "GATO PMC"
@@ -483,7 +483,7 @@
 //gato pamphlets
 /obj/item/book/lorebooks/welcome_to_gato
 	name = "Welcome to GATO Industrial Concern!"
-	icon = 'GainStation13/icons/obj/library.dmi'
+	icon = 'modular_gs/icons/obj/library.dmi'
 	icon_state = "bookwelcometogato"
 	desc = "A book stamped with GATO's feline logo. It serves the purpose of introducing employees to their current accommodations"
 	author = "A. Tenebrae"

@@ -2,7 +2,7 @@
 /obj/structure/cursedfatfountain
 	name = "Strange fountain"
 	desc = "An odd fountain, sparking with foreign magic."
-	icon =  'GainStation13/icons/obj/cursed_fountain.dmi'
+	icon =  'modular_gs/icons/obj/cursed_fountain.dmi'
 	icon_state = "full"
 	anchored = TRUE
 	density = TRUE

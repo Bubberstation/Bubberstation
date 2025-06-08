@@ -2,7 +2,7 @@
 /turf/closed/wall/mineral/gmushroom
 	name = "mushroom wall"
 	desc = "A wall with mushroom plating."
-	icon = 'GainStation13/icons/turf/walls/gmushroom_wall.dmi'
+	icon = 'modular_gs/icons/turf/walls/gmushroom_wall.dmi'
 	icon_state = "gmushroom"
 	sheet_type = /obj/item/stack/sheet/mineral/gmushroom
 	hardness = 70
@@ -28,7 +28,7 @@
 /turf/closed/wall/mineral/plaswood
 	name = "plaswood wall"
 	desc = "A wall with plaswood plating."
-	icon = 'GainStation13/icons/turf/walls/plaswood_wall.dmi'
+	icon = 'modular_gs/icons/turf/walls/plaswood_wall.dmi'
 	icon_state = "plaswood"
 	sheet_type = /obj/item/stack/sheet/mineral/plaswood
 	hardness = 90
@@ -54,7 +54,7 @@
 /turf/closed/wall/mineral/shadoww
 	name = "shadow wall"
 	desc = "A wall with shadow wood plating."
-	icon = 'GainStation13/icons/turf/walls/shadoww_wall.dmi'
+	icon = 'modular_gs/icons/turf/walls/shadoww_wall.dmi'
 	icon_state = "shadoww"
 	sheet_type = /obj/item/stack/sheet/mineral/shadoww
 	hardness = 70

@@ -1,7 +1,7 @@
 /obj/machinery/vending/mealdor
 	name = "Meal Vendor"
 	desc = "The vending machine used by starving people. Looks like they've changed the shell, it looks cuter."
-	icon = 'GainStation13/icons/obj/vending.dmi'
+	icon = 'modular_gs/icons/obj/vending.dmi'
 	icon_state = "mealdor"
 	product_slogans = "Are you hungry? Eat some of my food!;Be sure to eat one of our tasty treats!;Was that your stomach? Go ahead, get some food!"
 	vend_reply = "Enjoy your meal."

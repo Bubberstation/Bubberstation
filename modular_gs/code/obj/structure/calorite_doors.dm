@@ -1,6 +1,6 @@
 /obj/structure/mineral_door/calorite //GS13
 	name = "calorite door"
-	icon = 'GainStation13/icons/obj/structure/calorite_door.dmi'
+	icon = 'modular_gs/icons/obj/structure/calorite_door.dmi'
 	icon_state = "calorite"
 	sheetType = /obj/item/stack/sheet/mineral/calorite
 	max_integrity = 200

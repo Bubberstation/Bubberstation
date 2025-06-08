@@ -1,13 +1,13 @@
 /obj/item/bluespace_belt
 	name = "bluespace belt"
 	desc = "A belt made using bluespace technology. The power of space and time, used to hide the fact you are fat."
-	icon = 'GainStation13/icons/obj/clothing/bluespace_belt.dmi'
+	icon = 'modular_gs/icons/obj/clothing/bluespace_belt.dmi'
 	icon_state = "bluespace_belt"
 	item_state = "bluespace_belt"
 	slot_flags = ITEM_SLOT_BELT
-	equip_sound = 'GainStation13/sound/items/equip/toolbelt_equip.ogg'
-	drop_sound = 'GainStation13/sound/items/handling/toolbelt_drop.ogg'
-	pickup_sound =  'GainStation13/sound/items/handling/toolbelt_pickup.ogg'
+	equip_sound = 'modular_gs/sound/items/equip/toolbelt_equip.ogg'
+	drop_sound = 'modular_gs/sound/items/handling/toolbelt_drop.ogg'
+	pickup_sound =  'modular_gs/sound/items/handling/toolbelt_pickup.ogg'
 	var/equipped = FALSE		// is it in the belt slot?
 
 /obj/item/bluespace_belt/equipped(mob/user, slot)
@@ -39,7 +39,7 @@
 /obj/item/bluespace_belt/primitive
 	name = "primitive bluespace belt"
 	desc = "A primitive belt made using bluespace technology. The power of space and time, used to hide the fact you are fat. This one requires cells to continue operating, and may suffer from random failures."
-	icon = 'GainStation13/icons/obj/clothing/bluespace_belt.dmi'
+	icon = 'modular_gs/icons/obj/clothing/bluespace_belt.dmi'
 	icon_state = "primitive_belt"
 	item_state = "primitive_belt"
 

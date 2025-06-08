@@ -1,7 +1,7 @@
 /obj/structure/scale
 	name = "weighing scale"
 	desc = "You can weigh yourself with this."
-	icon = 'GainStation13/icons/obj/scale.dmi'
+	icon = 'modular_gs/icons/obj/scale.dmi'
 	icon_state = "scale"
 	anchored = TRUE
 	resistance_flags = NONE
@@ -71,7 +71,7 @@
 				weighperson(HM)
 
 /obj/structure/scale/proc/weighperson(mob/living/carbon/human/fatty)
-	src.lastreading = fatty.calculate_weight_in_pounds() 
+	src.lastreading = fatty.calculate_weight_in_pounds()
 	weighEffect(fatty)
 	visible_message("<span class='notice'>[fatty] weighs themselves.</span>")
 	visible_message("<span class='notice'>The numbers on the screen settle on: [src.lastreading]Lbs.</span>")

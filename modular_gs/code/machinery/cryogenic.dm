@@ -1,7 +1,7 @@
 /obj/machinery/cryopod/tele //lore-friendly cryo thing
 	name = "Long-range Central Command teleporter"
 	desc = "A special mobility sleeper for storing agents in a disclosed location."
-	icon = 'GainStation13/icons/obj/Cryogenic2.dmi'
+	icon = 'modular_gs/icons/obj/Cryogenic2.dmi'
 	icon_state = "telepod-open"
 	on_store_message = "has teleported back to Central Command."
 	on_store_name = "Teleporter Oversight"

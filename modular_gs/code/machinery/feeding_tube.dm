@@ -6,7 +6,7 @@
 /obj/machinery/iv_drip/feeding_tube
 	name = "\improper Feeding tube"
 	desc = "Originally meant to automatically feed cattle and farm animals, this model was repurposed for more... personal usage."
-	icon = 'GainStation13/icons/obj/feeding_tube.dmi'
+	icon = 'modular_gs/icons/obj/feeding_tube.dmi'
 	icon_state = "feeding_tube"
 	var/static/list/food_containers = typecacheof(list(/obj/item/reagent_containers/food,
 									/obj/item/reagent_containers/glass,))
@@ -28,7 +28,7 @@
 		else
 			add_overlay("beakeridle")
 		if(beaker.reagents.total_volume)
-			var/mutable_appearance/filling_overlay = mutable_appearance('GainStation13/icons/obj/feeding_tube.dmi', "reagent")
+			var/mutable_appearance/filling_overlay = mutable_appearance('modular_gs/icons/obj/feeding_tube.dmi', "reagent")
 
 			var/percent = round((beaker.reagents.total_volume / beaker.volume) * 100)
 			switch(percent)

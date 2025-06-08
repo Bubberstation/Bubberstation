@@ -1,7 +1,7 @@
 /obj/structure/trash_pile
 	name = "trash pile"
 	desc = "A pile of trash, perhaps something of use can be found?"
-	icon = 'GainStation13/icons/obj/trash_piles.dmi'
+	icon = 'modular_gs/icons/obj/trash_piles.dmi'
 	icon_state = "randompile"
 
 	anchored = TRUE

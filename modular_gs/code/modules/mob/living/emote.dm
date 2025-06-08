@@ -3,7 +3,7 @@
 	key_third_person = "gurgles"
 	message = "'s belly gurgles"
 	emote_type = EMOTE_AUDIBLE
-	sound = 'GainStation13/sound/voice/gurgle1.ogg'
+	sound = 'modular_gs/sound/voice/gurgle1.ogg'
 
 /datum/emote/living/gurgle/get_sound()
 	return get_sfx("gurgle") // Lets get any of the gurgle sounds we have set.
@@ -77,7 +77,7 @@
 /datum/emote/living/burp/fart/goon // Fart but it's funny !
 	key = "goonfart"
 	key_third_person = "goonfarts"
-	noise_type = 'GainStation13/sound/voice/farts/fart4.ogg'
+	noise_type = 'modular_gs/sound/voice/farts/fart4.ogg'
 
 //Shhh... It's a secret! Don't tell or I'll steal your legs
 /datum/emote/living/burunyu
@@ -85,7 +85,7 @@
 	key_third_person = "burunyues"
 	message = "emits a strange feline sound"
 	emote_type = EMOTE_AUDIBLE
-	sound = 'GainStation13/sound/voice/funnycat.ogg'
+	sound = 'modular_gs/sound/voice/funnycat.ogg'
 
 /datum/emote/living/bellyrub
 	key = "bellyrub"

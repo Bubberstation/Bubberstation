@@ -1,7 +1,7 @@
 /obj/item/ancientartifact
 	name = "Admin Debug. Parent Artifact"
 	desc = "You shouldn't have this."
-	icon = 'GainStation13/code/xenoarch/fossil_and_artifact.dmi'
+	icon = 'modular_gs/code/xenoarch/fossil_and_artifact.dmi'
 
 /obj/item/ancientartifact/Initialize()
 	..()

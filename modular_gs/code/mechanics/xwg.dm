@@ -3,7 +3,7 @@
 /mob/living/carbon/proc/xwg_resize()
 	return TRUE // code in later
 /*
-	if(client?.prefs?.weight_gain_extreme && !normalized)
+	if(client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_extreme && !normalized))
 		var/xwg_size = sqrt(fatness/FATNESS_LEVEL_BLOB)
 		xwg_size = min(xwg_size, RESIZE_MACRO)
 		xwg_size = max(xwg_size, custom_body_size)

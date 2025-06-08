@@ -1,6 +1,6 @@
 /obj/effect/spawner/chocoslime_delivery
 	name = "choco slime delivery"
-	icon = 'GainStation13/icons/mob/candymonster.dmi'
+	icon = 'modular_gs/icons/mob/candymonster.dmi'
 	icon_state = "a_c_slime"
 	var/announcement_time = 2
 

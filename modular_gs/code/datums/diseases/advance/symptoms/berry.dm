@@ -56,7 +56,7 @@
 /obj/effect/decal/cleanable/juice
 	name = "berry juice"
 	desc = "It's blue and smells enticingly sweet."
-	icon = 'GainStation13/icons/turf/berry_decal.dmi'
+	icon = 'modular_gs/icons/turf/berry_decal.dmi'
 	icon_state = "floor1"
 	random_icon_states = list("floor1", "floor2", "floor3", "floor4", "floor5", "floor6", "floor7")
 	blood_state = BLOOD_STATE_JUICE

@@ -21,9 +21,9 @@
 	reagents_add = list(/datum/reagent/drug/space_drugs = 0.05,
 						/datum/reagent/drug/munchies = 0.10)
 	rarity = 69
-	icon = 'GainStation13/icons/obj/hydroponics/seeds.dmi'
+	icon = 'modular_gs/icons/obj/hydroponics/seeds.dmi'
 	icon_state = "seed-munchies"
-	growing_icon = 'GainStation13/icons/obj/hydroponics/growing.dmi'
+	growing_icon = 'modular_gs/icons/obj/hydroponics/growing.dmi'
 	icon_grow = "munchycannabis-grow" // Uses one growth icons set for all the subtypes
 	icon_dead = "munchycannabis-dead" // Same for the dead icon
 	icon_harvest = "munchycannabis-harvest"
@@ -32,7 +32,7 @@
 	seed = /obj/item/seeds/cannabis/munchies
 	name = "munchies cannabis leaf"
 	desc = "You feel hungry just looking at it."
-	icon = 'GainStation13/icons/obj/hydroponics/harvest.dmi'
+	icon = 'modular_gs/icons/obj/hydroponics/harvest.dmi'
 	icon_state = "munchycannabis"
 	wine_power = 90
 

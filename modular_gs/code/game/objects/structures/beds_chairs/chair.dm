@@ -2,7 +2,7 @@
 /obj/structure/chair/shadoww
 	name = "shadow wood chair"
 	desc = "Fashionable dark."
-	icon = 'GainStation13/icons/obj/chairs.dmi'
+	icon = 'modular_gs/icons/obj/chairs.dmi'
 	icon_state = "shadoww_chair"
 	resistance_flags = FLAMMABLE
 	max_integrity = 70
@@ -14,7 +14,7 @@
 /obj/structure/chair/plaswood
 	name = "plaswood chair"
 	desc = "Hard but confortable to sit."
-	icon = 'GainStation13/icons/obj/chairs.dmi'
+	icon = 'modular_gs/icons/obj/chairs.dmi'
 	icon_state = "plaswood_chair"
 	resistance_flags = FLAMMABLE | ACID_PROOF
 	max_integrity = 90
@@ -26,7 +26,7 @@
 /obj/structure/chair/gmushroom
 	name = "mushroom chair"
 	desc = "You don't need to worry about losing your seat in case of fire!"
-	icon = 'GainStation13/icons/obj/chairs.dmi'
+	icon = 'modular_gs/icons/obj/chairs.dmi'
 	icon_state = "gmushroom_chair"
 	resistance_flags = FIRE_PROOF
 	max_integrity = 70
@@ -37,7 +37,7 @@
 //Toppled chairs
 /obj/item/chair/shadoww
 	name = "shadow wood chair"
-	icon = 'GainStation13/icons/obj/chairs.dmi'
+	icon = 'modular_gs/icons/obj/chairs.dmi'
 	icon_state = "shadoww_chair_toppled"
 	item_state = "shadowwchair"
 	resistance_flags = FLAMMABLE
@@ -48,7 +48,7 @@
 
 /obj/item/chair/plaswood
 	name = "plaswood chair"
-	icon = 'GainStation13/icons/obj/chairs.dmi'
+	icon = 'modular_gs/icons/obj/chairs.dmi'
 	icon_state = "plaswood_chair_toppled"
 	item_state = "plaswoodchair"
 	resistance_flags = FLAMMABLE | ACID_PROOF
@@ -59,7 +59,7 @@
 
 /obj/item/chair/gmushroom
 	name = "mushroom chair"
-	icon = 'GainStation13/icons/obj/chairs.dmi'
+	icon = 'modular_gs/icons/obj/chairs.dmi'
 	icon_state = "gmushroom_chair_toppled"
 	item_state = "gmushroomchair"
 	resistance_flags = FIRE_PROOF

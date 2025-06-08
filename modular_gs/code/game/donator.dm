@@ -3,8 +3,8 @@
 //item presets for donator items and other gunk
 //
 /obj/item/clothing/glasses/eyepatch/white
-	icon ='GainStation13/icons/obj/clothing/glasses.dmi'
-	mob_overlay_icon = 'GainStation13/icons/mob/eyes.dmi'
+	icon ='modular_gs/icons/obj/clothing/glasses.dmi'
+	mob_overlay_icon = 'modular_gs/icons/mob/eyes.dmi'
 	name = "White eyepatch"
 	desc = "Smells faintly of medicine and headaches."
 	icon_state = "eyepatch_white"
@@ -31,8 +31,8 @@
 /obj/item/clothing/suit/storage/blueshield //Look man I don't know, this is the file it was in on Oracle. Don't shoot me. Please.
 	name = "blueshield coat"
 	desc = "An armored coat often worn by bodyguards. Tough because everyone knows deep down you're a softie."
-	icon = 'GainStation13/icons/obj/clothing/suits.dmi'
-	mob_overlay_icon = 'GainStation13/icons/mob/suit.dmi'
+	icon = 'modular_gs/icons/obj/clothing/suits.dmi'
+	mob_overlay_icon = 'modular_gs/icons/mob/suit.dmi'
 	icon_state = "blueshieldcoat"
 	item_state = "blueshieldcoat"
 	body_parts_covered = CHEST|LEGS|ARMS

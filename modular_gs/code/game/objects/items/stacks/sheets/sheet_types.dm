@@ -21,7 +21,7 @@ GLOBAL_LIST_INIT(shadoww_recipes, list ( \
 	singular_name = "shadow wood plank"
 	icon_state = "sheet-shadoww"
 	item_state = "sheet-shadoww"
-	icon = 'GainStation13/icons/obj/stack_objects.dmi'
+	icon = 'modular_gs/icons/obj/stack_objects.dmi'
 	custom_materials = list(/datum/material/wood=MINERAL_MATERIAL_AMOUNT)
 	sheettype = "shadoww"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 0)
@@ -70,7 +70,7 @@ GLOBAL_LIST_INIT(gmushroom_recipes, list ( \
 	singular_name = "mushroom plank"
 	icon_state = "sheet-gmushroom"
 	item_state = "sheet-gmushroom"
-	icon = 'GainStation13/icons/obj/stack_objects.dmi'
+	icon = 'modular_gs/icons/obj/stack_objects.dmi'
 	sheettype = "gmushroom"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 0)
 	resistance_flags = FIRE_PROOF
@@ -118,7 +118,7 @@ GLOBAL_LIST_INIT(plaswood_recipes, list ( \
 	singular_name = "plaswood plank"
 	icon_state = "sheet-plaswood"
 	item_state = "sheet-plaswood"
-	icon = 'GainStation13/icons/obj/stack_objects.dmi'
+	icon = 'modular_gs/icons/obj/stack_objects.dmi'
 	sheettype = "plaswood"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 80)
 	resistance_flags = FLAMMABLE | ACID_PROOF

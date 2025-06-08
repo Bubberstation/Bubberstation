@@ -2,7 +2,7 @@
 /obj/item/reagent_containers/barrel_tank
 	name = "barrel tank"
 	desc = "A wooden barrely with straps and a tube attached. One can only wonder what it's for."
-	icon = 'GainStation13/icons/obj/barrel_tank.dmi'
+	icon = 'modular_gs/icons/obj/barrel_tank.dmi'
 	icon_state = "barrel_tank"
 	item_state = "barrel_tank"
 	w_class = WEIGHT_CLASS_BULKY

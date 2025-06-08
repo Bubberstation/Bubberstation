@@ -1,6 +1,6 @@
 ///I'm trying my best allright
 /mob/living/carbon/human
-	icon = 'GainStation13/icons/mob/fat.dmi'
+	icon = 'modular_gs/icons/mob/fat.dmi'
 	var/hunger = 0
 
 /mob/living/carbon/human/Life()

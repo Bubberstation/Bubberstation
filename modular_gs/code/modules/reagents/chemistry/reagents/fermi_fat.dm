@@ -8,7 +8,6 @@
 	overdose_threshold = 50
 	metabolization_rate = REAGENTS_METABOLISM / 4
 	can_synth = FALSE //DO NOT MAKE THIS SNYTHESIZABLE, THESE CHEMS ARE SUPPOSED TO NOT BE USED COMMONLY
-	chemical_flags = REAGENT_ORGANIC_PROCESS | REAGENT_BIOFUEL_PROCESS
 
 	overdose_threshold = 50
 	addiction_threshold = 100
@@ -151,7 +150,6 @@
 	pH = 7
 	metabolization_rate = REAGENTS_METABOLISM / 4
 	can_synth = FALSE
-	chemical_flags = REAGENT_ORGANIC_PROCESS | REAGENT_BIOFUEL_PROCESS
 
 	overdose_threshold = 50
 

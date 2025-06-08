@@ -1,7 +1,7 @@
 /obj/item/dumbbell
 	desc = "A weighty dumbbell, perfect for arm exercise!"
 	name = "dumbbell"
-	icon = 'GainStation13/icons/obj/dumbbell.dmi'
+	icon = 'modular_gs/icons/obj/dumbbell.dmi'
 	icon_state = "pen"
 	item_state = "pen"
 	throwforce = 20

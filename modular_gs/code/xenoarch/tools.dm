@@ -1,7 +1,7 @@
 /obj/item/xenoarch
 	name = "Parent Xenoarch"
 	desc = "Debug. Parent Clean"
-	icon = 'GainStation13/code/xenoarch/tools.dmi'
+	icon = 'modular_gs/code/xenoarch/tools.dmi'
 
 /obj/item/xenoarch/Initialize()
 	..()
@@ -165,7 +165,7 @@
 /obj/item/storage/bag/strangerock
 	name = "strange rock bag"
 	desc = "A bag for strange rocks."
-	icon = 'GainStation13/code/xenoarch/tools.dmi'
+	icon = 'modular_gs/code/xenoarch/tools.dmi'
 	icon_state = "rockbag"
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
@@ -227,7 +227,7 @@
 /obj/item/storage/bag/strangerockadv
 	name = "bluespace strange rock bag"
 	desc = "A bag for strange rocks."
-	icon = 'GainStation13/code/xenoarch/tools.dmi'
+	icon = 'modular_gs/code/xenoarch/tools.dmi'
 	icon_state = "rockbagadv"
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -290,7 +290,7 @@
 /obj/item/storage/belt/xenoarch
 	name = "xenoarchaeologist belt"
 	desc = "used to store your tools for xenoarchaeology."
-	icon = 'GainStation13/code/xenoarch/tools.dmi'
+	icon = 'modular_gs/code/xenoarch/tools.dmi'
 	icon_state = "miningbelt"
 
 /obj/item/storage/belt/xenoarch/ComponentInitialize()

@@ -28,14 +28,14 @@
 //maws
 /datum/sprite_accessory/snouts/mam_snouts/mootant
 	name = "Mootant"
-	icon = 'GainStation13/icons/mob/markings/mam_snouts.dmi'
+	icon = 'modular_gs/icons/mob/markings/mam_snouts.dmi'
 	icon_state = "mootantone"
 	color_src = MATRIXED
 	matrixed_sections = MATRIX_RED
 
 /datum/sprite_accessory/snouts/mam_snouts/mootant_tertiary
 	name = "Mootant ALT (Tertiary)"
-	icon = 'GainStation13/icons/mob/markings/mam_snouts.dmi'
+	icon = 'modular_gs/icons/mob/markings/mam_snouts.dmi'
 	icon_state = "mootanttwo"
 	color_src = MATRIXED
 	matrixed_sections = MATRIX_RED_BLUE
@@ -43,55 +43,55 @@
 /datum/sprite_accessory/ears/mam_ears/mootant
 	name = "Mootant"
 	icon_state = "mootantone"
-	icon = 'GainStation13/icons/mob/markings/mam_ears.dmi'
+	icon = 'modular_gs/icons/mob/markings/mam_ears.dmi'
 	color_src = MATRIXED
 	matrixed_sections = MATRIX_RED
 
 /datum/sprite_accessory/ears/mam_ears/mootant_tertiary
 	name = "Mootant ALT (Tertiary)"
 	icon_state = "mootanttwo"
-	icon = 'GainStation13/icons/mob/markings/mam_ears.dmi'
+	icon = 'modular_gs/icons/mob/markings/mam_ears.dmi'
 	color_src = MATRIXED
 	matrixed_sections = MATRIX_RED_BLUE
 
 /datum/sprite_accessory/ears/human/mootant
 	name = "Mootant"
 	icon_state = "mootantone"
-	icon = 'GainStation13/icons/mob/markings/mam_ears.dmi'
+	icon = 'modular_gs/icons/mob/markings/mam_ears.dmi'
 	color_src = MATRIXED
 	matrixed_sections = MATRIX_RED
 
 /datum/sprite_accessory/ears/human/mootant_secondary
 	name = "Mootant (Secondary)"
 	icon_state = "mootanttwo"
-	icon = 'GainStation13/icons/mob/markings/mam_ears.dmi'
+	icon = 'modular_gs/icons/mob/markings/mam_ears.dmi'
 	color_src = MATRIXED
 	matrixed_sections = MATRIX_RED_BLUE
 //tails
 /datum/sprite_accessory/tails/human/mootant
 	name = "Mootant"
 	icon_state = "mootant"
-	icon = 'GainStation13/icons/mob/markings/mam_tails.dmi'
+	icon = 'modular_gs/icons/mob/markings/mam_tails.dmi'
 	color_src = MATRIXED
 	matrixed_sections = MATRIX_RED_GREEN
 
 /datum/sprite_accessory/tails_animated/human/mootant
 	name = "Mootant"
 	icon_state = "mootant"
-	icon = 'GainStation13/icons/mob/markings/mam_tails.dmi'
+	icon = 'modular_gs/icons/mob/markings/mam_tails.dmi'
 	color_src = MATRIXED
 	matrixed_sections = MATRIX_RED_GREEN
 
 /datum/sprite_accessory/tails/mam_tails/mootant
 	name = "Mootant"
 	icon_state = "mootant"
-	icon = 'GainStation13/icons/mob/markings/mam_tails.dmi'
+	icon = 'modular_gs/icons/mob/markings/mam_tails.dmi'
 	matrixed_sections = MATRIX_RED_GREEN
 
 /datum/sprite_accessory/tails_animated/mam_tails_animated/mootant
 	name = "Mootant"
 	icon_state = "mootant"
-	icon = 'GainStation13/icons/mob/markings/mam_tails.dmi'
+	icon = 'modular_gs/icons/mob/markings/mam_tails.dmi'
 	matrixed_sections = MATRIX_RED_GREEN
 
 //mutation toxin

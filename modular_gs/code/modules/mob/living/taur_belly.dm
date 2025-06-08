@@ -2,7 +2,7 @@
 	name 					= "taur belly"
 	desc 					= "You see a belly on their taur body."
 	icon_state 				= "belly"
-	icon 					= 'GainStation13/icons/obj/genitals/taur_belly/taur_belly_drake.dmi' //drake belly as placeholder
+	icon 					= 'modular_gs/icons/obj/genitals/taur_belly/taur_belly_drake.dmi' //drake belly as placeholder
 	zone 					= BODY_ZONE_CHEST // ugh... I think this is a target on a health doll
 	slot 					= ORGAN_SLOT_TAUR_BELLY
 	w_class 				= 3

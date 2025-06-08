@@ -1,7 +1,7 @@
 /obj/item/clothing/accessory/medal/gato_badge
 	name = "GATO Badge"
 	desc = "You shouldn't see this."
-	icon = 'GainStation13/icons/mob/accessories.dmi'
+	icon = 'modular_gs/icons/mob/accessories.dmi'
 	icon_state = "gato_middleman"
 	above_suit = TRUE
 

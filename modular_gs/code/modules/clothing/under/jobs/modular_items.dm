@@ -6,7 +6,7 @@
 //HOW TO CREATE A NEW MODULAR ITEM
 // 1) DRAW THE SPRITES (see already made modular sprites)
 // 2) FIND THE ITEM YOU WANT TO MAKE MODULAR (example: the grey jumpsuit is /obj/item/clothing/under/color/grey )
-// 3) CHANGE IT'S modular_icon_location TO BE THE LOCATION OF THE SPRITES YOU'VE MADE (example: modular_icon_location = 'GainStation13/icons/mob/modclothes/modular_grey.dmi')
+// 3) CHANGE IT'S modular_icon_location TO BE THE LOCATION OF THE SPRITES YOU'VE MADE (example: modular_icon_location = 'modular_gs/icons/mob/modclothes/modular_grey.dmi')
 // 4) YOU ARE DONE. YOUR ITEM IS NOW MODULAR
 
 //Many functions of the system can be customized by overloading the various procs
@@ -206,7 +206,7 @@
 //The modular grey jumpsuit. The foundation of modular items and our holy grail
 /obj/item/clothing/under/color/grey
 	name = "grey jumpsuit (Modular)"												//(Modular) to tell players it is modular
-	modular_icon_location = 'GainStation13/icons/mob/modclothes/modular_grey.dmi'	//Location of the sprites, to make it modular
+	modular_icon_location = 'modular_gs/icons/mob/modclothes/modular_grey.dmi'	//Location of the sprites, to make it modular
 	desc = "A tasteful grey jumpsuit that reminds you of the good old days."
 
 //Overload of the alt belly sprites function, for adjusteable clothing

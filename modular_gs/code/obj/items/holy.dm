@@ -35,11 +35,11 @@
 /obj/item/nullrod/dream_breaker
 	name = "dream breaker"
 	desc = "A cross-shaped weapon emitting a faint, dream-like light. Its blows will wake any dreamer."
-	icon = 'GainStation13/icons/obj/dreambreaker.dmi'
+	icon = 'modular_gs/icons/obj/dreambreaker.dmi'
 	icon_state = "dreambreaker"
 	item_state = "dreambreaker"
-	lefthand_file = 'GainStation13/icons/obj/dreambreaker_left.dmi'
-	righthand_file = 'GainStation13/icons/obj/dreambreaker_right.dmi'
+	lefthand_file = 'modular_gs/icons/obj/dreambreaker_left.dmi'
+	righthand_file = 'modular_gs/icons/obj/dreambreaker_right.dmi'
 
 	actions_types = list(/datum/action/item_action/db_slide)
 	var/slidedistance = 2
@@ -91,5 +91,5 @@
 /datum/action/item_action/db_slide
 	name = "Dream Breaker Slide"
 	desc = "Use dream-like atheletics to slide forward, but don't wear yourself out!."
-	icon_icon = 'GainStation13/icons/obj/dreambreaker.dmi'
+	icon_icon = 'modular_gs/icons/obj/dreambreaker.dmi'
 	button_icon_state = "dreambreaker"

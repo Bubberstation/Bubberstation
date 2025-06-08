@@ -32,7 +32,7 @@
 	spawncount = rand(4, 7)
 
 /datum/round_event/dessert_infestation/announce(fake)
-	priority_announce("Unidentified lifesigns detected aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", 'GainStation13/sound/ai/aliens.ogg')
+	priority_announce("Unidentified lifesigns detected aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", 'modular_gs/sound/ai/aliens.ogg')
 
 /datum/round_event/dessert_infestation/start()
 	var/list/area/stationAreas = list()

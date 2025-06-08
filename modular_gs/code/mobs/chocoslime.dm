@@ -27,7 +27,7 @@
 /mob/living/simple_animal/hostile/feed/chocolate_slime
 	name = "Chocolate slime"
 	desc = "It's a living blob of tasty chocolate!"
-	icon = 'GainStation13/icons/mob/candymonster.dmi'
+	icon = 'modular_gs/icons/mob/candymonster.dmi'
 	icon_state = "a_c_slime"
 	icon_living = "a_c_slime"
 	icon_dead = "a_c_slime_dead"
@@ -82,7 +82,7 @@
 
 /obj/item/projectile/beam/fattening/icecream //might as well make use of this thing to not make ton of different variants of the same thing
 	name = "ice cream blob"
-	icon = 'GainStation13/icons/mob/candymonster.dmi'
+	icon = 'modular_gs/icons/mob/candymonster.dmi'
 	icon_state = "icecream_projectile"
 	ricochets_max = 0
 	ricochet_chance = 0
@@ -112,7 +112,7 @@
 /mob/living/simple_animal/hostile/fatten/magehand
 	name = "Magehand"
 	desc = "It's a floating mage hand of strange, crackling orange energy..."
-	icon = 'GainStation13/icons/mob/fathand.dmi'
+	icon = 'modular_gs/icons/mob/fathand.dmi'
 	icon_state = "fathand"
 	icon_living = "fathand"
 	icon_dead = "fathand_dead"

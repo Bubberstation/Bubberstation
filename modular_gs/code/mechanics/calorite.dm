@@ -30,7 +30,7 @@
 
 /obj/item/stack/ore/calorite //GS13
 	name = "calorite ore"
-	icon = 'GainStation13/icons/obj/mining.dmi'
+	icon = 'modular_gs/icons/obj/mining.dmi'
 	icon_state = "calorite ore"
 	item_state = "calorite ore"
 	singular_name = "Calorite ore chunk"
@@ -41,7 +41,7 @@
 
 /obj/item/stack/sheet/mineral/calorite
 	name = "calorite"
-	icon = 'GainStation13/icons/obj/stack_objects.dmi'
+	icon = 'modular_gs/icons/obj/stack_objects.dmi'
 	icon_state = "sheet-calorite"
 	item_state = "sheet-calorite"
 	singular_name = "calorite sheet"
@@ -70,7 +70,7 @@ GLOBAL_LIST_INIT(calorite_recipes, list ( \
 	name = "Calorite tile"
 	singular_name = "Calorite floor tile"
 	desc = "A tile made out of calorite. Bwoomph."
-	icon = 'GainStation13/icons/obj/tiles.dmi'
+	icon = 'modular_gs/icons/obj/tiles.dmi'
 	icon_state = "tile_calorite"
 	turf_type = /turf/open/floor/mineral/calorite
 	mineralType = "calorite"
@@ -99,7 +99,7 @@ GLOBAL_LIST_INIT(calorite_recipes, list ( \
 
 /turf/open/floor/mineral/calorite
 	name = "Calorite floor"
-	icon = 'GainStation13/icons/turf/floors.dmi'
+	icon = 'modular_gs/icons/turf/floors.dmi'
 	icon_state = "calorite"
 	floor_tile = /obj/item/stack/tile/mineral/calorite
 	icons = list("calorite","calorite_dam")
@@ -141,7 +141,7 @@ GLOBAL_LIST_INIT(calorite_recipes, list ( \
 
 
 /obj/structure/statue/calorite
-	icon = 'GainStation13/icons/obj/statue.dmi'
+	icon = 'modular_gs/icons/obj/statue.dmi'
 	max_integrity = 400
 	custom_materials = list(/datum/material/calorite=MINERAL_MATERIAL_AMOUNT*5)
 
@@ -208,7 +208,7 @@ GLOBAL_LIST_INIT(calorite_recipes, list ( \
 /turf/closed/wall/mineral/calorite //GS13
 	name = "calorite wall"
 	desc = "A wall with calorite plating. Burp."
-	icon = 'GainStation13/icons/turf/calorite_wall.dmi'
+	icon = 'modular_gs/icons/turf/calorite_wall.dmi'
 	icon_state = "calorite"
 	sheet_type = /obj/item/stack/sheet/mineral/calorite
 	canSmoothWith = list(/turf/closed/wall/mineral/calorite, /obj/structure/falsewall/calorite)
@@ -239,7 +239,7 @@ GLOBAL_LIST_INIT(calorite_recipes, list ( \
 /obj/structure/falsewall/calorite            //GS13
 	name = "calorite wall"
 	desc = "A wall with calorite plating. Burp."
-	icon = 'GainStation13/icons/turf/calorite_wall.dmi'
+	icon = 'modular_gs/icons/turf/calorite_wall.dmi'
 	icon_state = "calorite"
 	mineral = /obj/item/stack/sheet/mineral/calorite
 	walltype = /turf/closed/wall/mineral/calorite

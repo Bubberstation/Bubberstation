@@ -9,7 +9,7 @@
 	if(!weight_gain_rate_modifier)
 		return FALSE
 
-	if(!iscarbon(wearer) || slot !=ITEM_SLOT_NECK || !wearer?.client?.prefs?.weight_gain_items)
+	if(!iscarbon(wearer) || slot !=ITEM_SLOT_NECK || !wearer?.client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_items))
 		return FALSE
 
 	wearer.weight_gain_rate = wearer.weight_gain_rate * weight_gain_rate_modifier
@@ -20,7 +20,7 @@
 	if(!weight_gain_rate_modifier)
 		return FALSE
 
-	if(!iscarbon(wearer) || !(wearer.get_item_by_slot(ITEM_SLOT_NECK) == src) || !wearer?.client?.prefs?.weight_gain_items)
+	if(!iscarbon(wearer) || !(wearer.get_item_by_slot(ITEM_SLOT_NECK) == src) || !wearer?.client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_items))
 		return FALSE
 
 	wearer.weight_gain_rate = (wearer.weight_gain_rate / weight_gain_rate_modifier)

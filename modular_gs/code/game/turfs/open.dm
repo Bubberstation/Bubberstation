@@ -18,27 +18,27 @@
 /turf/open/indestructible/chocolate
 	name = "chocolate floor"
 	desc = "A rather tasty floor, hopefully it does not ruin your shoes."
-	icon = 'Gainstation13/icons/turf/floor_candy.dmi'
+	icon = 'modular_gs/icons/turf/floor_candy.dmi'
 	icon_state = "choclit_2"
 
 
 /turf/open/indestructible/bubblegum
 	name = "bubblegum floor"
 	desc = "A rather tasty floor, hopefully it does not ruin your shoes."
-	icon = 'Gainstation13/icons/turf/floor_candy.dmi'
+	icon = 'modular_gs/icons/turf/floor_candy.dmi'
 	icon_state = "floor_pinkgum"
 
 /turf/open/candyfloor
 	name = "candy grass"
 	desc = "This weird grass smells of cinnamon and liquorice."
-	icon = 'Gainstation13/icons/turf/floor_candy.dmi'
+	icon = 'modular_gs/icons/turf/floor_candy.dmi'
 	icon_state = "candyfloor"
 
 /turf/open/chocolateriver
 	gender = PLURAL
 	name = "liquid chocolate"
 	desc = "This is probably used for some kind of huge fountain."
-	icon = 'Gainstation13/icons/turf/floor_candy.dmi'
+	icon = 'modular_gs/icons/turf/floor_candy.dmi'
 	icon_state = "chocwater"
 	slowdown = 1
 	bullet_sizzle = TRUE
@@ -50,12 +50,12 @@
 	heavyfootstep = FOOTSTEP_WATER
 
 /turf/open/floor/carpet/gato //GS13
-	icon = 'GainStation13/icons/turf/carpet_gato.dmi'
+	icon = 'modular_gs/icons/turf/carpet_gato.dmi'
 	floor_tile = /obj/item/stack/tile/carpet/gato
 	canSmoothWith = list(/turf/open/floor/carpet/gato)
 
 /obj/item/stack/tile/carpet/gato //GS13
-	icon = 'GainStation13/icons/obj/tiles.dmi'
+	icon = 'modular_gs/icons/obj/tiles.dmi'
 	name = "gato-themed carpet"
 	icon_state = "tile-carpet-gato"
 	turf_type = /turf/open/floor/carpet/gato

@@ -3,7 +3,7 @@ GLOBAL_LIST_EMPTY(adipoelectric_transformer)
 /obj/machinery/adipoelectric_transformer
 	name = "adipoelectric transformer"
 	desc = "This device uses calorite technology to store excess current in the wire it's placed on into whoever steps on!"
-	icon = 'GainStation13/icons/obj/adipoelectric_transformer.dmi'
+	icon = 'modular_gs/icons/obj/adipoelectric_transformer.dmi'
 	icon_state = "state_off"
 	density = FALSE
 	use_power = NO_POWER_USE

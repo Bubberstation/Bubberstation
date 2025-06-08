@@ -3,35 +3,35 @@
 
 
 /obj/effect/turf_decal/candy //used for baseline
-	icon = 'GainStation13/icons/turf/decals_candy.dmi'
+	icon = 'modular_gs/icons/turf/decals_candy.dmi'
 	icon_state = ""
 
 /obj/effect/turf_decal/candy/redwhite
-	icon = 'GainStation13/icons/turf/decals_candy.dmi'
+	icon = 'modular_gs/icons/turf/decals_candy.dmi'
 	icon_state = "candy_decal1"
 
 /obj/effect/turf_decal/candy/redwhite2
-	icon = 'GainStation13/icons/turf/decals_candy.dmi'
+	icon = 'modular_gs/icons/turf/decals_candy.dmi'
 	icon_state = "candy_decal2"
 
 /obj/effect/turf_decal/candy/redwhite3
-	icon = 'GainStation13/icons/turf/decals_candy.dmi'
+	icon = 'modular_gs/icons/turf/decals_candy.dmi'
 	icon_state = "candy_decal3"
 
 /obj/effect/turf_decal/candy/greenwhite1
-	icon = 'GainStation13/icons/turf/decals_candy.dmi'
+	icon = 'modular_gs/icons/turf/decals_candy.dmi'
 	icon_state = "candy_decal_g1"
 
 /obj/effect/turf_decal/candy/greenwhite2
-	icon = 'GainStation13/icons/turf/decals_candy.dmi'
+	icon = 'modular_gs/icons/turf/decals_candy.dmi'
 	icon_state = "candy_decal_g2"
 
 /obj/effect/turf_decal/candy/bluewhite1
-	icon = 'GainStation13/icons/turf/decals_candy.dmi'
+	icon = 'modular_gs/icons/turf/decals_candy.dmi'
 	icon_state = "candy_decal_b1"
 
 /obj/effect/turf_decal/candy/purplewhite1
-	icon = 'GainStation13/icons/turf/decals_candy.dmi'
+	icon = 'modular_gs/icons/turf/decals_candy.dmi'
 	icon_state = "candy_decal_p1"
 
 
@@ -43,5 +43,5 @@
 	pixel_x = -16
 	layer = FLY_LAYER
 	anchored = TRUE
-	icon = 'GainStation13/icons/turf/decals_large_candy.dmi'
+	icon = 'modular_gs/icons/turf/decals_large_candy.dmi'
 	icon_state = "lollipop_tree_blue"

@@ -2,8 +2,8 @@
 /obj/item/clothing/glasses/hud/health/gar
 	name = "gar health scanner HUD"
 	desc = "When you're scared, that's all the more reason to move forward!"
-	icon ='GainStation13/icons/obj/clothing/glasses.dmi'
-	mob_overlay_icon = 'GainStation13/icons/mob/eyes.dmi'
+	icon ='modular_gs/icons/obj/clothing/glasses.dmi'
+	mob_overlay_icon = 'modular_gs/icons/mob/eyes.dmi'
 	icon_state = "garh"
 	item_state = "garh"
 	force = 10

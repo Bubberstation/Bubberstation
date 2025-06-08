@@ -4,7 +4,7 @@
 /obj/structure/medkit_cabinet
 	name = "Medkit Cabinet"
 	desc = "A small wall mounted cabinet designed to hold a medical kit."
-	icon = 'GainStation13/icons/obj/wallmounts.dmi'
+	icon = 'modular_gs/icons/obj/wallmounts.dmi'
 	icon_state = "medkit_closed"
 	anchored = TRUE
 	density = FALSE
@@ -160,6 +160,6 @@ obj/structure/medkit_cabinet/contents_explosion(severity, target)
 /obj/item/wallframe/medkit_cabinet
 	name = "Medkit wall frame."
 	desc = "Used for building wall-mounted medkit cabinets."
-	icon = 'GainStation13/icons/obj/wallframe.dmi'
+	icon = 'modular_gs/icons/obj/wallframe.dmi'
 	icon_state = "medkit"
 	result_path = /obj/structure/medkit_cabinet

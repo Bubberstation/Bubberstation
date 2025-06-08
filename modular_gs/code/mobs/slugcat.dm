@@ -1,7 +1,7 @@
 /mob/living/simple_animal/pet/slugcat
 	name = "slugcat"
 	desc = "It's a cat . . . Thing from another planet, maybe from another world. You think it's not dangerous, but you can't be sure. "
-	icon = 'GainStation13/icons/mob/pets.dmi'
+	icon = 'modular_gs/icons/mob/pets.dmi'
 	icon_state = "slugcat"
 	icon_living = "slugcat"
 	icon_dead = "slugcat_dead"

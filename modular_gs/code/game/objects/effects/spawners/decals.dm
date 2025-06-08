@@ -25,7 +25,7 @@
 /obj/structure/sign/warning/gato
 	name = "\improper WARNING SIGN"
 	desc = "A warning sign which reads 'SECURE AREA'."
-	icon = 'GainStation13/icons/obj/decals.dmi'
+	icon = 'modular_gs/icons/obj/decals.dmi'
 
 /obj/structure/sign/warning/gato/securearea
 	name = "\improper SECURE AREA"

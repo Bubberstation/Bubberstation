@@ -1,7 +1,7 @@
 /obj/item/gun/fatbeam // GS13
 	name = "Fatbeam Gun"
 	desc = "Apparently used to treat malnourished patients from a safe distance... But we all know what it will truly be used for."
-	icon = 'GainStation13/icons/obj/weapons/fatbeam.dmi'
+	icon = 'modular_gs/icons/obj/weapons/fatbeam.dmi'
 	icon_state = "fatbeam"
 	item_state = "fatbeam"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -114,7 +114,7 @@
 /obj/item/gun/fatbeam/proc/on_beam_tick(var/mob/living/target)
 	if(target.health != target.maxHealth)
 		new /obj/effect/temp_visual/heal(get_turf(target), "#fabb62")
-	if(target?.client?.prefs?.weight_gain_weapons)
+	if(target?.client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_weapons))
 		target.nutrition += 50
 	return
 

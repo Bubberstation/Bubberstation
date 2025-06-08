@@ -1,5 +1,5 @@
 /obj/item/toy/plush/gs13
-		icon = 'GainStation13/icons/obj/plushes.dmi'
+		icon = 'modular_gs/icons/obj/plushes.dmi'
 
 /obj/item/toy/plush/gs13/metha
 	name = "Magical Captain plushie"

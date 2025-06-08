@@ -5,13 +5,13 @@
 
 /obj/item/trash/fatoray_scrap1
 	name = "raygun scraps"
-	icon = 'GainStation13/icons/obj/fatoray.dmi'
+	icon = 'modular_gs/icons/obj/fatoray.dmi'
 	icon_state = "fatoray_scrap1"
 	desc = "Small parts that seemingly once belonged to some sort of a raygun."
 
 /obj/item/trash/fatoray_scrap2
 	name = "raygun scraps"
-	icon = 'GainStation13/icons/obj/fatoray.dmi'
+	icon = 'modular_gs/icons/obj/fatoray.dmi'
 	icon_state = "fatoray_scrap2"
 	desc = "Small parts that seemingly once belonged to some sort of a raygun."
 
@@ -57,7 +57,7 @@
 
 /obj/item/reagent_containers/food/snacks/blueberry_gum
 	name = "blueberry gum"
-	icon = 'GainStation13/icons/obj/gum.dmi'
+	icon = 'modular_gs/icons/obj/gum.dmi'
 	icon_state = "gum_wrapped"
 	desc = "Doesn't cause anything more than some discoloration... probably."
 	trash = /obj/item/trash/blueberry_gum
@@ -71,7 +71,7 @@
 
 /obj/item/trash/blueberry_gum
 	name = "chewed gum"
-	icon = 'GainStation13/icons/obj/gum.dmi'
+	icon = 'modular_gs/icons/obj/gum.dmi'
 	icon_state = "gum_chewed"
 
 // nutriment pump turbo
@@ -90,7 +90,7 @@
 /obj/item/holosign_creator/restaurant
 	name = "Holosign Projector - Restaurant Adverts"
 	desc = "A holo-sign maker, used for placing signs that advertises the local fast food restaurant."
-	icon = 'GainStation13/icons/obj/holosign.dmi'
+	icon = 'modular_gs/icons/obj/holosign.dmi'
 	icon_state = "holo_fastfood"
 	holosign_type = /obj/structure/holosign/restaurant
 	creation_time = 0
@@ -99,7 +99,7 @@
 /obj/item/holosign_creator/closed
 	name = "Holosign Projector - Closing Sign"
 	desc = "A holo-sign maker, used for placing signs that inform people of a location being closed off."
-	icon = 'GainStation13/icons/obj/holosign.dmi'
+	icon = 'modular_gs/icons/obj/holosign.dmi'
 	icon_state = "holo_closed"
 	holosign_type = /obj/structure/holosign/barrier/closed
 	creation_time = 0
@@ -109,13 +109,13 @@
 /obj/structure/holosign/restaurant
 	name = "The Restaurant is OPEN! Come visit!"
 	desc = "A holographic projector that displays a sign advertising the nearby Fast Food Restaurant."
-	icon = 'GainStation13/icons/obj/holosign.dmi'
+	icon = 'modular_gs/icons/obj/holosign.dmi'
 	icon_state = "holosign_ad"
 
 /obj/structure/holosign/barrier/closed
 	name = "This Location is Closed!"
 	desc = "A short holographic barrier used to close off areas. Can be passed by walking."
-	icon = 'GainStation13/icons/obj/holosign.dmi'
+	icon = 'modular_gs/icons/obj/holosign.dmi'
 	icon_state = "holosign_closed"
 
 //ID for fastfood wagies so they can use the tele
@@ -128,7 +128,7 @@
 /obj/effect/decal/big_gato //96x96 px sprite
 	name = "GATO"
 	desc = "Your employer! Probably."
-	icon = 'GainStation13/icons/turf/96x96.dmi'
+	icon = 'modular_gs/icons/turf/96x96.dmi'
 	icon_state = "gato"
 	layer = ABOVE_OPEN_TURF_LAYER
 	pixel_x = -32
@@ -137,7 +137,7 @@
 /obj/effect/decal/medium_gato //64x64 px sprite
 	name = "GATO"
 	desc = "Your employer! Probably."
-	icon = 'GainStation13/icons/turf/64x64.dmi'
+	icon = 'modular_gs/icons/turf/64x64.dmi'
 	icon_state = "gato"
 	layer = ABOVE_OPEN_TURF_LAYER
 	pixel_y = -16
@@ -149,8 +149,8 @@
 /obj/item/clothing/mask/pig/gag //this one only lets you say "oink" and similar
 	name = "Voice modulator - pig"
 	desc = "A small gag, used to silence people in a rather 'original' way."
-	icon = 'GainStation13/icons/obj/masks.dmi'
-	mob_overlay_icon = 'GainStation13/icons/mob/mask.dmi'
+	icon = 'modular_gs/icons/obj/masks.dmi'
+	mob_overlay_icon = 'modular_gs/icons/mob/mask.dmi'
 	icon_state = "ballgag"
 	item_state = "ballgag"
 	flags_inv = HIDEFACE
@@ -161,8 +161,8 @@
 /obj/item/clothing/mask/cowmask/gag //this one only lets you say "moo" and similar
 	name = "Voice modulator - cow"
 	desc = "A small gag, used to silence people in a rather 'original' way."
-	icon = 'GainStation13/icons/obj/masks.dmi'
-	mob_overlay_icon = 'GainStation13/icons/mob/mask.dmi'
+	icon = 'modular_gs/icons/obj/masks.dmi'
+	mob_overlay_icon = 'modular_gs/icons/mob/mask.dmi'
 	icon_state = "ballgag"
 	item_state = "ballgag"
 	flags_inv = HIDEFACE
@@ -170,7 +170,7 @@
 /obj/item/service_sign
 	name = "service sign"
 	desc = "A sign that reads 'closed'"
-	icon = 'GainStation13/icons/obj/service_sign.dmi'
+	icon = 'modular_gs/icons/obj/service_sign.dmi'
 	icon_state = "sign_closed"
 
 /obj/item/service_sign/attack_self()
@@ -190,7 +190,7 @@
 //GS 13 Port - Big gulps in all sizes
 /obj/item/reagent_containers/food/drinks/flask/paper_cup
 	name = "paper cup"
-	icon = 'GainStation13/icons/obj/paper_cups.dmi'
+	icon = 'modular_gs/icons/obj/paper_cups.dmi'
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5, 10, 15, 20, 25, 30, 50)
 	volume = 50

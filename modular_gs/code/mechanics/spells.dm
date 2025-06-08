@@ -23,7 +23,7 @@
 	desc = "The calories from multiple donuts compressed into pure energy."
 	catchphrase = null
 	on_use_sound = 'sound/weapons/pulse.ogg'
-	icon = 'GainStation13/icons/obj/spells/spell_items.dmi'
+	icon = 'modular_gs/icons/obj/spells/spell_items.dmi'
 	icon_state = "add-hand"
 	///How much weight is added?
 	var/weight_to_add = 300
@@ -88,7 +88,7 @@
 /obj/effect/proc_holder/spell/aoe_turf/conjure/the_traps/fat
 	name = "Fat Traps!"
 	desc = "Summon a number of traps to fatten your enemies."
-	action_icon = 'GainStation13/icons/obj/structure/traps.dmi'
+	action_icon = 'modular_gs/icons/obj/structure/traps.dmi'
 	action_icon_state = "trap-fattening"
 
 	clothes_req = FALSE
@@ -111,7 +111,7 @@
 	name = "fattening tome"
 	spell = /obj/effect/proc_holder/spell/targeted/touch/add_weight
 	spellname = "fattening"
-	icon = 'GainStation13/icons/obj/spells/spellbooks.dmi'
+	icon = 'modular_gs/icons/obj/spells/spellbooks.dmi'
 	icon_state = "add_weight"
 	desc = "This book feels warm to the touch."
 

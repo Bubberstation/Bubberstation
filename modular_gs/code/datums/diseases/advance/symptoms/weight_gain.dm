@@ -20,7 +20,7 @@
 	if(!..())
 		return
 	var/mob/living/carbon/M = A.affected_mob
-	if(!(M?.client?.prefs?.weight_gain_viruses))
+	if(!(M?.client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_viruses)))
 		return FALSE
 	switch(A.stage)
 		if(1, 2, 3, 4)

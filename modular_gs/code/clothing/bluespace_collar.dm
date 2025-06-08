@@ -7,14 +7,14 @@
 /obj/item/clothing/neck/petcollar/locked/bluespace_collar_receiver/equipped(mob/user, slot)
 	. = ..()
 	var/mob/living/carbon/wearer = user
-	if(!iscarbon(wearer) || slot !=ITEM_SLOT_NECK || !wearer?.client?.prefs?.weight_gain_items)
+	if(!iscarbon(wearer) || slot !=ITEM_SLOT_NECK || !wearer?.client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_items))
 		return FALSE
 	victim = user;
 
 /obj/item/clothing/neck/petcollar/locked/bluespace_collar_receiver/dropped(mob/user)
 	. = ..()
 	var/mob/living/carbon/wearer = user
-	if(!iscarbon(wearer) || !(wearer.get_item_by_slot(ITEM_SLOT_NECK) == src) || !wearer?.client?.prefs?.weight_gain_items)
+	if(!iscarbon(wearer) || !(wearer.get_item_by_slot(ITEM_SLOT_NECK) == src) || !wearer?.client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_items))
 		return FALSE
 	victim = 0
 
@@ -42,13 +42,13 @@
 /obj/item/clothing/neck/petcollar/locked/bluespace_collar_transmitter/equipped(mob/user, slot)
 	. = ..()
 	var/mob/living/carbon/wearer = user
-	if(!iscarbon(wearer) || slot !=ITEM_SLOT_NECK || !wearer?.client?.prefs?.weight_gain_items)
+	if(!iscarbon(wearer) || slot !=ITEM_SLOT_NECK || !wearer?.client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_items))
 		return FALSE
 
 /obj/item/clothing/neck/petcollar/locked/bluespace_collar_transmitter/dropped(mob/user)
 	. = ..()
 	var/mob/living/carbon/wearer = user
-	if(!iscarbon(wearer) || !(wearer.get_item_by_slot(ITEM_SLOT_NECK) == src) || !wearer?.client?.prefs?.weight_gain_items)
+	if(!iscarbon(wearer) || !(wearer.get_item_by_slot(ITEM_SLOT_NECK) == src) || !wearer?.client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_items))
 		return FALSE
 
 /obj/item/clothing/neck/petcollar/locked/bluespace_collar_transmitter/attackby(obj/item/K, mob/user, params)

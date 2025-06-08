@@ -2,7 +2,7 @@
 /obj/item/clothing/gloves/color/yellow/ce //funky looking, basically combat gloves
 	desc = "Special Insulated gloves with pricy thermal shielding normally only found in combat gloves."
 	name = "Chief Engineer Insulated Gloves"
-	icon = 'GainStation13/icons/obj/clothing/gloves.dmi'
+	icon = 'modular_gs/icons/obj/clothing/gloves.dmi'
 	icon_state = "ce_insuls"
 	item_state = "blackgloves"
 	siemens_coefficient = 0

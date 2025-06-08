@@ -11,16 +11,16 @@
 
 /obj/item/stack/tile/mineral/titanium/attack_self(mob/user)
 	var/static/list/choices = list(
-			"Titanium" = image(icon = 'GainStation13/icons/obj/tiles.dmi', icon_state = "tile_shuttle"),
-			"Yellow Titanium" = image(icon = 'GainStation13/icons/obj/tiles.dmi', icon_state = "tile_shuttle_yellow"),
-			"Blue Titanium" = image(icon = 'GainStation13/icons/obj/tiles.dmi', icon_state = "tile_shuttle_blue"),
-			"White Titanium" = image(icon = 'GainStation13/icons/obj/tiles.dmi', icon_state = "tile_shuttle_white"),
-			"Purple Titanium" = image(icon = 'GainStation13/icons/obj/tiles.dmi', icon_state = "tile_shuttle_purple"),
-			"Titanium Tile" = image(icon = 'GainStation13/icons/obj/tiles.dmi', icon_state = "tile_shuttle_old"),
-			"Yellow Titanium Tile" = image(icon = 'GainStation13/icons/obj/tiles.dmi', icon_state = "tile_shuttle_old_yellow"),
-			"Blue Titanium Tile" = image(icon = 'GainStation13/icons/obj/tiles.dmi', icon_state = "tile_shuttle_old_blue"),
-			"White Titanium Tile" = image(icon = 'GainStation13/icons/obj/tiles.dmi', icon_state = "tile_shuttle_old_white"),
-			"Purple Titanium Tile" = image(icon = 'GainStation13/icons/obj/tiles.dmi', icon_state = "tile_shuttle_old_purple"),
+			"Titanium" = image(icon = 'modular_gs/icons/obj/tiles.dmi', icon_state = "tile_shuttle"),
+			"Yellow Titanium" = image(icon = 'modular_gs/icons/obj/tiles.dmi', icon_state = "tile_shuttle_yellow"),
+			"Blue Titanium" = image(icon = 'modular_gs/icons/obj/tiles.dmi', icon_state = "tile_shuttle_blue"),
+			"White Titanium" = image(icon = 'modular_gs/icons/obj/tiles.dmi', icon_state = "tile_shuttle_white"),
+			"Purple Titanium" = image(icon = 'modular_gs/icons/obj/tiles.dmi', icon_state = "tile_shuttle_purple"),
+			"Titanium Tile" = image(icon = 'modular_gs/icons/obj/tiles.dmi', icon_state = "tile_shuttle_old"),
+			"Yellow Titanium Tile" = image(icon = 'modular_gs/icons/obj/tiles.dmi', icon_state = "tile_shuttle_old_yellow"),
+			"Blue Titanium Tile" = image(icon = 'modular_gs/icons/obj/tiles.dmi', icon_state = "tile_shuttle_old_blue"),
+			"White Titanium Tile" = image(icon = 'modular_gs/icons/obj/tiles.dmi', icon_state = "tile_shuttle_old_white"),
+			"Purple Titanium Tile" = image(icon = 'modular_gs/icons/obj/tiles.dmi', icon_state = "tile_shuttle_old_purple"),
 		)
 	var/choice = show_radial_menu(user, src, choices, radius = 48, require_near = TRUE)
 	switch(choice)
@@ -67,21 +67,21 @@
 
 /obj/item/stack/tile/plasteel
 	desc = "Metal tiles that can be placed on top of plating. Press Z or use these to change tiles."
-	icon = 'GainStation13/icons/obj/tiles.dmi'
+	icon = 'modular_gs/icons/obj/tiles.dmi'
 	var/tile_reskin_mode
 	tile_reskin_mode = "plasteel"
 
 /obj/item/stack/tile/plasteel/attack_self(mob/user)
 	var/static/list/choices = list(
-			"Plasteel" = image(icon = 'GainStation13/icons/obj/tiles.dmi', icon_state = "tile_plasteel"),
-			"White Plasteel" = image(icon = 'GainStation13/icons/obj/tiles.dmi', icon_state = "tile_white"),
-			"Dark Plasteel" = image(icon = 'GainStation13/icons/obj/tiles.dmi', icon_state = "tile_dark"),
-			"Chapel Flooring" = image(icon = 'GainStation13/icons/obj/tiles.dmi', icon_state = "tile_chapel"),
-			"Shower" = image(icon = 'GainStation13/icons/obj/tiles.dmi', icon_state = "tile_shower"),
-			"Freezer" = image(icon = 'GainStation13/icons/obj/tiles.dmi', icon_state = "tile_freezer"),
-			"Kitchen" = image(icon = 'GainStation13/icons/obj/tiles.dmi', icon_state = "tile_kitchen"),
-			"Grimy" = image(icon = 'GainStation13/icons/obj/tiles.dmi', icon_state = "tile_grimy"),
-			"Solar Panel" = image(icon = 'GainStation13/icons/obj/tiles.dmi', icon_state = "tile_solar"),
+			"Plasteel" = image(icon = 'modular_gs/icons/obj/tiles.dmi', icon_state = "tile_plasteel"),
+			"White Plasteel" = image(icon = 'modular_gs/icons/obj/tiles.dmi', icon_state = "tile_white"),
+			"Dark Plasteel" = image(icon = 'modular_gs/icons/obj/tiles.dmi', icon_state = "tile_dark"),
+			"Chapel Flooring" = image(icon = 'modular_gs/icons/obj/tiles.dmi', icon_state = "tile_chapel"),
+			"Shower" = image(icon = 'modular_gs/icons/obj/tiles.dmi', icon_state = "tile_shower"),
+			"Freezer" = image(icon = 'modular_gs/icons/obj/tiles.dmi', icon_state = "tile_freezer"),
+			"Kitchen" = image(icon = 'modular_gs/icons/obj/tiles.dmi', icon_state = "tile_kitchen"),
+			"Grimy" = image(icon = 'modular_gs/icons/obj/tiles.dmi', icon_state = "tile_grimy"),
+			"Solar Panel" = image(icon = 'modular_gs/icons/obj/tiles.dmi', icon_state = "tile_solar"),
 		)
 	var/choice = show_radial_menu(user, src, choices, radius = 48, require_near = TRUE)
 	switch(choice)
