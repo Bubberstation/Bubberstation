@@ -21,7 +21,7 @@
 
 /datum/reagent/consumable/icetea/blood_tea
 	name = "Hemoglobin Iced Tea"
-	description = "A timeless classic!"
+	description = "A mix of blood and iced tea, with a slice of juicy blood tomato as a garnish."
 	color = "#B85D52"//rgb(184, 93, 82)
 	quality = DRINK_GOOD
 	taste_description = "chilly sweet tea with an iron bite"
@@ -49,7 +49,7 @@
 
 /datum/reagent/consumable/coffee/blood_coffee
 	name = "Blood Coffee"
-	description = "A timeless classic!"
+	description = "Hot black coffee mixed with rich blood, a hemophage's favorite!"
 	color = "#8E272B"//rgb(142, 39, 43)
 	quality = DRINK_GOOD
 	taste_description = "bitter iron"
@@ -72,4 +72,4 @@
 	icon = 'modular_zubbers/icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "bloodcoffeeglass"
 	name = "mug of blood coffee"
-	desc = "A mug of hot steamy coffee mixed with fresh blood."
+	desc = "A mug of hot black coffee mixed with fresh blood."
