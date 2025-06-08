@@ -35,7 +35,7 @@
 	if(!istype(stomach) || !stomach.owner || !ishemophage(stomach.owner) || trans_volume <= 0)
 		return
 
-	stomach.owner.blood_volume = min(stomach.owner.blood_volume + trans_volume, BLOOD_VOLUME_NORMAL)
+	stomach.owner.blood_volume = min(stomach.owner.blood_volume + trans_volume, BLOOD_VOLUME_MAXIMUM)
 
 	..()
 
@@ -63,7 +63,7 @@
 	if(!istype(stomach) || !stomach.owner || !ishemophage(stomach.owner) || trans_volume <= 0)
 		return
 
-	stomach.owner.blood_volume = min(stomach.owner.blood_volume + trans_volume, BLOOD_VOLUME_NORMAL)
+	stomach.owner.blood_volume = min(stomach.owner.blood_volume + trans_volume, BLOOD_VOLUME_MAXIMUM)
 
 	..()
 
