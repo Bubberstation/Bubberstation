@@ -13,8 +13,6 @@
 	fire_delay = 5
 	can_suppress = FALSE
 	projectile_damage_multiplier = 1
-	wound_bonus = -10
-	bare_wound_bonus = -10
 	var/magejecting = 0 //whether we are launching the mags or not
 	actions_types = list(/datum/action/item_action/toggle_mageject)
 
@@ -39,8 +37,9 @@
 
 /obj/item/gun/ballistic/automatic/pistol/sec_glock/examine(mob/user)
 	. = ..()
-	. += "Use it in hand to spin the gun, ejecting the magazine at wherever you're aiming and performing a quick reload."
-	. += ""
+	. += span_notice("Using it in hand when out of ammo to start a spin reload. This can only be done if you have a spare magazine in or on your belt.")
+	. += span_notice("Spin reloads can be done on the move and need you only to hold your gun for their 2 second duration. ")
+	. += span_notice("If toggled on, spin reloads throw empty magazines in the direction you're facing, dealing damage dependant on their type. ")
 
 // /obj/item/gun/ballistic/automatic/pistol/sec_glock/security //This is what you give to Security Officers.
 // 	name = "\improper C-CK 9x25mm"
@@ -57,28 +56,39 @@
 // 	spawn_magazine_type = /obj/item/ammo_box/magazine/m9mm/rubber
 
 /obj/item/gun/ballistic/automatic/pistol/sec_glock/attack_self(mob/living/user)
+	var/obj/item/storage/our_belt = user.get_item_by_slot(ITEM_SLOT_BELT)
+	var/obj/item/ammo_box/magazine/m9mm/security/swapped_mag = locate(/obj/item/ammo_box/magazine/m9mm/security) in our_belt.contents
+	if(!magazine && swapped_mag)
+		if(swapped_mag)
+			if(insert_magazine(user, swapped_mag))
+				SpinAnimation(2, 1)
+				balloon_alert(user, "You spin your gun, loading in a mag!")
+			else
+				balloon_alert(user, "That magazine doesn't fit!")
+		else
+			balloon_alert(user, "No spare magazines in your belt!")
+		return
 	if(!chambered)
-		var/obj/item/storage/our_belt = user.get_item_by_slot(ITEM_SLOT_BELT)
-		var/obj/item/ammo_box/magazine/m9mm/security/swapped_mag = locate(/obj/item/ammo_box/magazine/m9mm/security) in our_belt.contents
 		if(swapped_mag)
 			SpinAnimation(2, 1) //What a badass
 			if(do_after(user, 1 SECONDS, timed_action_flags = ( IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE ), target = src))
 				throw_eject_magazine(user, magejecting)
-		return
+		else
+			balloon_alert(user, "No spare magazines in your belt!")
 	if(bolt_type == BOLT_TYPE_NO_BOLT)
 		unload_ammo(user)
 		return
-	drop_bolt(user)
-	if (recent_rack > world.time)
+	drop_bolt_silent(user)
+	if(recent_rack > world.time)
 		return
 	recent_rack = world.time + rack_delay
-	rack(user)
+	rack_silent(user)
 	return
 
 /obj/item/gun/ballistic/automatic/pistol/sec_glock/proc/throw_eject_magazine(mob/user, display_message = TRUE, obj/item/ammo_box/magazine/tac_load = null, atom/target)
 	if(bolt_type == BOLT_TYPE_OPEN)
 		chambered = null
-	if (magazine.ammo_count())
+	if(magazine.ammo_count())
 		playsound(src, eject_sound, eject_sound_volume, eject_sound_vary)
 	else
 		playsound(src, eject_empty_sound, eject_sound_volume, eject_sound_vary)
@@ -107,7 +117,29 @@
 	magazine = AM
 	if(bolt_type == BOLT_TYPE_OPEN && !bolt_locked)
 		chamber_round(TRUE)
-	drop_bolt(user)
+	drop_bolt_silent()
 	update_appearance()
 	.=..()
 	return TRUE
+
+// for your viewing convenience, same procs, just without bubbles
+/obj/item/gun/ballistic/proc/drop_bolt_silent(mob/user = null)
+	playsound(src, bolt_drop_sound, bolt_drop_sound_volume, FALSE)
+	chamber_round()
+	bolt_locked = FALSE
+	update_appearance()
+
+/obj/item/gun/ballistic/proc/rack_silent(mob/user = null)
+	if(bolt_type == BOLT_TYPE_NO_BOLT)
+		return
+	if(bolt_type == BOLT_TYPE_OPEN)
+		if(!bolt_locked)
+			return
+		bolt_locked = FALSE
+	process_chamber(!chambered, FALSE)
+	if(bolt_type == BOLT_TYPE_LOCKING && !chambered)
+		bolt_locked = TRUE
+		playsound(src, lock_back_sound, lock_back_sound_volume, lock_back_sound_vary)
+	else
+		playsound(src, rack_sound, rack_sound_volume, rack_sound_vary)
+	update_appearance()

@@ -4,3 +4,5 @@
 	caliber = CALIBER_9MM
 	projectile_type = /obj/projectile/bullet/c9mm/security
 	newtonian_force = 0.75
+	wound_bonus = -20
+	bare_wound_bonus = 10

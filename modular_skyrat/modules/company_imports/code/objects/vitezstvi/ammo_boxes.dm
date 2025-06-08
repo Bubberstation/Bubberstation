@@ -40,7 +40,7 @@
 	ammo_type = /obj/item/ammo_casing/c10mm/fire
 	max_ammo = 20
 
-/obj/item/ammo_box/c9mm/security //Bubberstation sourced, because IDK if I can make a bubber modular over a skyrat modular if that makes sense
+/obj/item/ammo_box/c9mm/security //Bubberstation sourced, because I'll finalize all the moving once I merge the adjacent PR's
 	name = "ammo box (9mm security)"
 	ammo_type = /obj/item/ammo_casing/c9mm/security
 
