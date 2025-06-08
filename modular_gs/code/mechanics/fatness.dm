@@ -20,6 +20,8 @@
 	var/weight_loss_rate = 1
 	//Variable related to door stuckage code
 	var/doorstuck = 0
+	/// What is the maximum amount of weight we can put on?
+	var/max_weight
 
 	var/fullness = FULLNESS_LEVEL_HALF_FULL
 	var/fullness_reduction_timer = 0 // When was the last time they emoted to reduce their fullness
@@ -54,8 +56,8 @@
 	fatness_real += amount_to_change
 	fatness_real = max(fatness_real, MINIMUM_FATNESS_LEVEL) //It would be a little silly if someone got negative fat.
 
-	if(client?.prefs?.max_weight) // GS13
-		fatness_real = min(fatness_real, (client?.prefs?.max_weight - 1))
+	if(max_weight) // GS13
+		fatness_real = min(fatness_real, (max_weight - 1))
 
 	fatness = fatness_real //Make their current fatness their real fatness
 
@@ -177,14 +179,14 @@
 	if(fat_hiders) //do we have any hiders active?
 		var/fatness_over = hiders_calc() //calculate the sum of all hiders
 		fatness = fatness + fatness_over //Then, make their current fatness the sum of their real plus/minus the calculated amount
-		if(client?.prefs?.max_weight) //Check their prefs
-			fatness = min(fatness, (client?.prefs?.max_weight - 1)) //And make sure it's not above their preferred max
+		if(max_weight) //Check their prefs
+			fatness = min(fatness, (max_weight - 1)) //And make sure it's not above their preferred max
 
 /mob/living/carbon/proc/perma_apply()
 	if(fatness_perma > 0)	//Check if we need to make calcs at all
 		fatness = fatness + fatness_perma	//Add permanent fat to fatness
-		if(client?.prefs?.max_weight)	//Check for max weight prefs
-			fatness = min(fatness, (client?.prefs?.max_weight - 1))	//Apply max weight prefs
+		if(max_weight)	//Check for max weight prefs
+			fatness = min(fatness, (max_weight - 1))	//Apply max weight prefs
 
 /mob/living/carbon/proc/adjust_perma(adjustment_amount, type_of_fattening = FATTENING_TYPE_ITEM)
 	if(!client)
@@ -208,8 +210,8 @@
 	fatness_perma += amount_to_change
 	fatness_perma = max(fatness_perma, MINIMUM_FATNESS_LEVEL)
 
-	if(client?.prefs?.max_weight) // GS13
-		fatness_perma = min(fatness_perma, (client?.prefs?.max_weight - 1))
+	if(max_weight)
+		fatness_perma = min(fatness_perma, (max_weight - 1))
 
 /mob/living/carbon/human/handle_breathing(times_fired)
 	. = ..()

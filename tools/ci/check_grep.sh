@@ -19,14 +19,14 @@ if command -v rg >/dev/null 2>&1; then
 	if [ ! rg -P '' >/dev/null 2>&1 ] ; then
 		pcre2_support=0
 	fi
-	code_files="code/**/**.dm modular_skyrat/**/**.dm modular_zubbers/**/**.dm" # BUBBER EDIT - Adds modular folders
+	code_files="code/**/**.dm modular_skyrat/**/**.dm modular_zubbers/**/**.dm modular_gs/**/**.dm" # BUBBER EDIT - Adds modular folders
 	map_files="_maps/**/**.dmm"
 	shuttle_map_files="_maps/shuttles/**.dmm"
 	code_x_515="code/**/!(__byond_version_compat).dm"
 else
 	pcre2_support=0
 	grep=grep
-	code_files="-r --include=code/**/**.dm --include=modular_skyrat/**/**.dm --include=modular_zubbers/**/**.dm" # BUBBER EDIT - Adds modular folders
+	code_files="-r --include=code/**/**.dm --include=modular_skyrat/**/**.dm --include=modular_zubbers/**/**.dm --include=modular_gs/**/**.dm" # BUBBER EDIT - Adds modular folders
 	map_files="-r --include=_maps/**/**.dmm"
 	shuttle_map_files="-r --include=_maps/shuttles/**.dmm"
 	code_x_515="-r --include=code/**/!(__byond_version_compat).dm"
