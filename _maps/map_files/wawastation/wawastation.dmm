@@ -20645,11 +20645,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical)
-"hkq" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
-/turf/closed/wall/r_wall,
-/area/station/science/ordnance/burnchamber)
 "hkt" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -25697,19 +25692,6 @@
 /obj/effect/turf_decal/tile/purple/anticorner/contrasted,
 /turf/open/floor/iron/white,
 /area/station/science/lobby)
-"jbM" = (
-/obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/structure/table/reinforced,
-/obj/item/ai_module/toy_ai{
-	pixel_x = 16;
-	pixel_y = 8
-	},
-/obj/item/paper_bin/construction{
-	pixel_y = 6
-	},
-/obj/item/pen,
-/turf/open/floor/iron/dark,
-/area/station/ai_monitored/turret_protected/aisat/foyer)
 "jbP" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/light/small/directional/west,
@@ -43914,6 +43896,18 @@
 /obj/machinery/door/airlock/public/glass/incinerator/atmos_exterior,
 /turf/open/floor/engine,
 /area/station/maintenance/disposal/incinerator)
+"pqr" = (
+/obj/structure/table/wood,
+/obj/item/food/carneburrito{
+	pixel_x = -2;
+	pixel_y = 5
+	},
+/obj/item/toy/talking/ai{
+	pixel_x = 9;
+	pixel_y = -6
+	},
+/turf/open/floor/carpet/executive,
+/area/station/command/meeting_room)
 "pqB" = (
 /obj/structure/chair/stool/directional/north,
 /obj/effect/turf_decal/sand/plating,
@@ -54845,6 +54839,19 @@
 /obj/structure/broken_flooring/side,
 /turf/open/floor/plating,
 /area/station/cargo/warehouse)
+"sWl" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/structure/table/reinforced,
+/obj/item/paper_bin/construction{
+	pixel_y = 6
+	},
+/obj/item/pen,
+/obj/item/toy/talking/ai{
+	pixel_x = 18;
+	pixel_y = 8
+	},
+/turf/open/floor/iron/dark,
+/area/station/ai_monitored/turret_protected/aisat/foyer)
 "sWn" = (
 /obj/machinery/light/warm/directional/south,
 /turf/open/floor/grass,
@@ -60306,18 +60313,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/misc/asteroid,
 /area/station/maintenance/department/science)
-"uOs" = (
-/obj/structure/table/wood,
-/obj/item/ai_module/toy_ai{
-	pixel_x = 9;
-	pixel_y = -6
-	},
-/obj/item/food/carneburrito{
-	pixel_x = -2;
-	pixel_y = 5
-	},
-/turf/open/floor/carpet/executive,
-/area/station/command/meeting_room)
 "uOx" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -62244,6 +62239,15 @@
 	dir = 8
 	},
 /area/station/science/xenobiology)
+"vBN" = (
+/obj/structure/window/spawner/directional/east,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/binary/pump/on/supply/visible/layer4,
+/obj/machinery/portable_atmospherics/scrubber,
+/turf/open/floor/iron/dark/smooth_large,
+/area/station/science/ordnance)
 "vBV" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -62640,15 +62644,6 @@
 	},
 /turf/open/floor/wood,
 /area/station/service/theater)
-"vHX" = (
-/obj/structure/window/spawner/directional/east,
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/obj/machinery/atmospherics/components/binary/pump/on/supply/visible/layer4,
-/obj/machinery/portable_atmospherics/scrubber,
-/turf/open/floor/iron/dark/smooth_large,
-/area/station/science/ordnance)
 "vHY" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/iron/dark,
@@ -66915,6 +66910,11 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/cargo/storage)
+"xfQ" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
+/turf/closed/wall/r_wall,
+/area/station/science/ordnance/burnchamber)
 "xgn" = (
 /obj/structure/mannequin/skeleton{
 	starting_items = list()
@@ -103350,7 +103350,7 @@ pyH
 gHQ
 iJP
 kee
-jbM
+sWl
 ncc
 srs
 sYI
@@ -112629,8 +112629,8 @@ gOY
 gOY
 tTK
 oEP
-vHX
-hkq
+vBN
+xfQ
 cAG
 xXF
 sLr
@@ -162719,7 +162719,7 @@ glA
 lFG
 lFG
 oDK
-uOs
+pqr
 kse
 qmp
 qyG
