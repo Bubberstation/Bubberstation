@@ -6,3 +6,13 @@
 	cost = 3
 	restricted_roles = list(JOB_CLOWN)
 	uplink_item_flags = SYNDIE_TRIPS_CONTRABAND
+
+/datum/uplink_item/weapon_kits/clownsword/clown
+	category = /datum/uplink_category/role_restricted
+	restricted_roles = list(JOB_CLOWN)
+	purchasable_from = UPLINK_TRAITORS
+
+/datum/uplink_item/weapon_kits/bananashield/clown
+	category = /datum/uplink_category/role_restricted
+	restricted_roles = list(JOB_CLOWN)
+	purchasable_from = UPLINK_TRAITORS
