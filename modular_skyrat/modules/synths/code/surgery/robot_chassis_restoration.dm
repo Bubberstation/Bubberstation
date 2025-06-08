@@ -1,6 +1,7 @@
 #define SYNTH_REVIVE_WELD_INTERNALS_DAMAGE 30
 
 // Should be a very quick surgery, it's meant to replace defibs (mostly!)
+/* BUBBER REMOVAL START
 /datum/surgery/positronic_restoration
 	name = "Posibrain Reboot (Revival)"
 	steps = list(
@@ -23,7 +24,7 @@
 		return FALSE
 
 	return TRUE
-
+BUBBER REMOVAL END */
 /datum/surgery_step/pry_off_plating/fullbody
 	time = 1.4 SECONDS
 

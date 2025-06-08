@@ -1,3 +1,4 @@
+/* Skyrat file had this, just keepin it for memories.
 /datum/surgery/robot_brain_surgery
 	name = "Reset Posibrain Logic (Brain Surgery)"
 	steps = list(
@@ -11,7 +12,7 @@
 
 	target_mobtypes = list(/mob/living/carbon/human)
 	possible_locs = list(BODY_ZONE_CHEST) // The brains are in the chest
-	requires_bodypart_type = BODYTYPE_ROBOTIC
+	requires_bodypart_type = BODYTYPE_ROBOTIC | BODYTYPE_NANO
 	desc = "A surgical procedure that restores the default behavior logic and personality matrix of an IPC posibrain, removing deep-rooted traumas."
 
 /datum/surgery/robot_brain_surgery/can_start(mob/user, mob/living/carbon/target, obj/item/tool)
@@ -24,14 +25,14 @@
 		return FALSE
 	else
 		return TRUE
-
+*/
 /datum/surgery_step/fix_robot_brain
-	name = "fix posibrain (multitool/hemostat)"
+	name = "fix posibrain (multitool)"
 	implements = list(
 		TOOL_MULTITOOL = 100,
-		TOOL_HEMOSTAT = 90,
-		TOOL_SCREWDRIVER = 35,
-		/obj/item/pen = 15)
+		TOOL_HEMOSTAT = 35,
+		/obj/item/pen = 15
+	)
 	repeatable = TRUE
 	preop_sound = 'sound/items/handling/tools/multitool_pickup.ogg'
 	success_sound = 'sound/items/handling/tools/multitool_drop.ogg'
@@ -60,6 +61,9 @@
 
 	target.setOrganLoss(ORGAN_SLOT_BRAIN, target.get_organ_loss(ORGAN_SLOT_BRAIN) - 60)	//we set damage in this case in order to clear the "failing" flag
 	target.cure_all_traumas(TRAUMA_RESILIENCE_SURGERY)
+	target.cure_all_traumas(TRAUMA_RESILIENCE_LOBOTOMY) //Lobotomy tier fix cause you can't clone this!
+	target.apply_status_effect(/datum/status_effect/vulnerable_to_damage/surgery)
+
 	if(target.get_organ_loss(ORGAN_SLOT_BRAIN) > NONE)
 		to_chat(user, "[target]'s posibrain still has some lasting system damage that can be cleared.")
 
@@ -164,3 +168,19 @@
 		/datum/reagent/medicine/liquid_solder,
 		/datum/reagent/water/holywater,
 	)
+/* Skyrat file had this, just keepin it for memories.
+/datum/surgery/robot_trauma_surgery
+	name = "Reticulate Posibrain Splines (Blessed Lobotomy)"
+	desc = "A surgical procedure that refurbishes low level components in the posibrain, to fix the strongest trauma errors."
+	possible_locs = list(BODY_ZONE_CHEST) // The brains are in the chest
+	requires_bodypart_type = BODYTYPE_ROBOTIC
+	target_mobtypes = list(/mob/living/carbon/human)
+	steps = list(
+		/datum/surgery_step/mechanic_open,
+		/datum/surgery_step/mechanic_unwrench,
+		/datum/surgery_step/pry_off_plating,
+		/datum/surgery_step/prepare_electronics,
+		/datum/surgery_step/fix_robot_brain/advanced,
+		/datum/surgery_step/mechanic_close,
+	)
+*/

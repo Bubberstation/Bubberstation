@@ -411,7 +411,7 @@
 		/datum/surgery/advanced/bioware/nerve_grounding,
 		/datum/surgery/advanced/bioware/nerve_grounding/mechanic,
 		/datum/surgery/advanced/bioware/vein_threading,
-		/datum/surgery/advanced/bioware/vein_threading/mechanic,
+		/datum/surgery/robot/advanced/bioware/vein_threading, // BUBBER EDIT
 		/datum/surgery/advanced/bioware/muscled_veins,
 		/datum/surgery/advanced/bioware/muscled_veins/mechanic,
 		/datum/surgery/advanced/bioware/ligament_hook,
