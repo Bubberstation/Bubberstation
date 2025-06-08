@@ -30,7 +30,7 @@
 
 /datum/reagent/consumable/tea/blood_tea/on_mob_add(mob/living/affected_mob, amount)
 	. = ..()
-	if(ishemophage(exposed_mob))
+	if(ishemophage(affected_mob))
 		affected_mob.reagents.add_reagent(/datum/reagent/blood, amount)
 
 /datum/glass_style/drinking_glass/blood_tea
@@ -52,11 +52,11 @@
 
 /datum/reagent/consumable/coffee/blood_coffee/on_mob_add(mob/living/affected_mob, amount)
 	. = ..()
-	if(ishemophage(exposed_mob))
+	if(ishemophage(affected_mob))
 		affected_mob.reagents.add_reagent(/datum/reagent/blood, amount)
 
 /datum/glass_style/drinking_glass/blood_coffee
-	required_drink_type = datum/reagent/consumable/coffee/blood_coffee
+	required_drink_type = /datum/reagent/consumable/coffee/blood_coffee
 	icon = 'modular_zubbers/icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "bloodcoffeeglass"
 	name = "mug of blood coffee"
