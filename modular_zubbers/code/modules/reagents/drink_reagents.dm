@@ -29,9 +29,9 @@
 	chemical_flags_skyrat = REAGENT_BLOOD_REGENERATING
 
 /datum/reagent/consumable/tea/blood_tea/on_mob_add(mob/living/affected_mob, amount)
-    . = ..()
-    if(ishemophage(exposed_mob))
-        exposed_mob.reagents.add_reagent(/datum/reagent/blood, amount)
+	. = ..()
+	if(ishemophage(exposed_mob))
+		affected_mob.reagents.add_reagent(/datum/reagent/blood, amount)
 
 /datum/glass_style/drinking_glass/blood_tea
 	required_drink_type = /datum/reagent/consumable/tea/blood_tea
@@ -51,9 +51,9 @@
 	chemical_flags_skyrat = REAGENT_BLOOD_REGENERATING
 
 /datum/reagent/consumable/coffee/blood_coffee/on_mob_add(mob/living/affected_mob, amount)
-    . = ..()
-    if(ishemophage(exposed_mob))
-        exposed_mob.reagents.add_reagent(/datum/reagent/blood, amount)
+	. = ..()
+	if(ishemophage(exposed_mob))
+		affected_mob.reagents.add_reagent(/datum/reagent/blood, amount)
 
 /datum/glass_style/drinking_glass/blood_coffee
 	required_drink_type = datum/reagent/consumable/coffee/blood_coffee
