@@ -1116,7 +1116,7 @@
 	name = "Wetware OS Destructive Defragmentation"
 	desc = "A destructive robotic defragmentation method which guarantees removal of almost all brain traumas, but might cause another permanent trauma in return."
 	id = "surgery_lobotomy_mechanic"
-	surgery = /datum/surgery/robot/advanced/lobotomy // BUBBER EDIT
+	surgery = /datum/surgery/advanced/lobotomy/mechanic
 
 /datum/design/surgery/pacify
 	name = "Pacification"
@@ -1232,7 +1232,7 @@
 	name = "Hydraulics Routing Optimization"
 	desc = "A robotic upgrade which severely reduces the amount of hydraulic fluid lost in case of injury."
 	id = "surgery_vein_thread_mechanic"
-	surgery = /datum/surgery/robot/advanced/bioware/vein_threading // BUBBER EDIT
+	surgery = /datum/surgery/advanced/bioware/vein_threading/mechanic
 
 /datum/design/surgery/muscled_veins
 	name = "Vein Muscle Membrane"

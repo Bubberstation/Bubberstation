@@ -1,4 +1,3 @@
-/* Skyrat file had this, just keepin it for memories.
 /datum/surgery/robot_brain_surgery
 	name = "Reset Posibrain Logic (Brain Surgery)"
 	steps = list(
@@ -25,7 +24,7 @@
 		return FALSE
 	else
 		return TRUE
-*/
+
 /datum/surgery_step/fix_robot_brain
 	name = "fix posibrain (multitool)"
 	implements = list(
@@ -168,7 +167,7 @@
 		/datum/reagent/medicine/liquid_solder,
 		/datum/reagent/water/holywater,
 	)
-/* Skyrat file had this, just keepin it for memories.
+
 /datum/surgery/robot_trauma_surgery
 	name = "Reticulate Posibrain Splines (Blessed Lobotomy)"
 	desc = "A surgical procedure that refurbishes low level components in the posibrain, to fix the strongest trauma errors."
@@ -183,4 +182,4 @@
 		/datum/surgery_step/fix_robot_brain/advanced,
 		/datum/surgery_step/mechanic_close,
 	)
-*/
+

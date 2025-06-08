@@ -161,9 +161,9 @@
 	desc = "A disk that contains advanced surgery procedures, must be loaded into an Operating Console."
 	surgeries = list(
 		/datum/surgery/advanced/lobotomy,
-		/datum/surgery/robot/advanced/lobotomy, // BUBBER EDIT
+		/datum/surgery/advanced/lobotomy/mechanic,
 		/datum/surgery/advanced/bioware/vein_threading,
-		/datum/surgery/robot/advanced/bioware/vein_threading, // BUBBER EDIT
+		/datum/surgery/advanced/bioware/vein_threading/mechanic,
 		/datum/surgery/advanced/bioware/nerve_splicing,
 		/datum/surgery/advanced/bioware/nerve_splicing/mechanic,
 		/datum/surgery_step/heal/combo/upgraded,
