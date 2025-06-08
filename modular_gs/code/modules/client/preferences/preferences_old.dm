@@ -15,7 +15,7 @@
 	var/weight_gain_viruses = FALSE
 	///Weight gain from nanites
 	var/weight_gain_nanites = FALSE
-	//Weight gain from atmos gasses
+	///Weight gain from atmos gasses
 	var/weight_gain_atmos = FALSE
 	///content related to transformation
 	var/transformation = FALSE
