@@ -2,7 +2,7 @@
 
 GLOBAL_VAR_INIT(security_deathrattle,create_security_deathrattle())
 
-GLOBAL_VAR(allow_security_deathrattle,TRUE)
+GLOBAL_VAR_INIT(allow_security_deathrattle,TRUE)
 
 /proc/create_security_deathrattle()
 	return new /datum/deathrattle_group("nanotrasen security group")
