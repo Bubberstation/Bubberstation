@@ -99,41 +99,42 @@
 	if(!client?.prefs || !type_of_fattening)
 		return FALSE
 
-	if(FATTENING_TYPE_ITEM)
-		if(!client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_items))
-			return FALSE
+	switch(type_of_fattening)
+		if(FATTENING_TYPE_ITEM)
+			if(!client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_items))
+				return FALSE
 
-	if(FATTENING_TYPE_FOOD)
-		if(!client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_food))
-			return FALSE
+		if(FATTENING_TYPE_FOOD)
+			if(!client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_food))
+				return FALSE
 
-	if(FATTENING_TYPE_CHEM)
-		if(!client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_chems))
-			return FALSE
+		if(FATTENING_TYPE_CHEM)
+			if(!client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_chems))
+				return FALSE
 
-	if(FATTENING_TYPE_WEAPON)
-		if(!client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_weapons))
-			return FALSE
+		if(FATTENING_TYPE_WEAPON)
+			if(!client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_weapons))
+				return FALSE
 
-	if(FATTENING_TYPE_MAGIC)
-		if(!client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_magic))
-			return FALSE
+		if(FATTENING_TYPE_MAGIC)
+			if(!client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_magic))
+				return FALSE
 
-	if(FATTENING_TYPE_VIRUS)
-		if(!client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_viruses))
-			return FALSE
+		if(FATTENING_TYPE_VIRUS)
+			if(!client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_viruses))
+				return FALSE
 
-	if(FATTENING_TYPE_NANITES)
-		if(!client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_nanites))
-			return FALSE
+		if(FATTENING_TYPE_NANITES)
+			if(!client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_nanites))
+				return FALSE
 
-	if(FATTENING_TYPE_ATMOS)
-		if(!client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_atmos))
-			return FALSE
+		if(FATTENING_TYPE_ATMOS)
+			if(!client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_atmos))
+				return FALSE
 
-	if(FATTENING_TYPE_WEIGHT_LOSS)
-		if(HAS_TRAIT(src, TRAIT_WEIGHT_LOSS_IMMUNE))
-			return FALSE
+		if(FATTENING_TYPE_WEIGHT_LOSS)
+			if(HAS_TRAIT(src, TRAIT_WEIGHT_LOSS_IMMUNE))
+				return FALSE
 
 	return TRUE
 
