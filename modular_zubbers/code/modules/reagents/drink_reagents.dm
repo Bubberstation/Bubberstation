@@ -29,10 +29,13 @@
 	chemical_flags_skyrat = REAGENT_BLOOD_REGENERATING
 
 /datum/reagent/consumable/icetea/blood_tea/on_transfer(atom/A, methods=INGEST, trans_volume)
-	if(!(methods & INGEST) || (!ishemophage(A) && !istype(A, /obj/item/organ/stomach)) )
+	if(!(methods & INGEST))
+		return
+	var/obj/item/organ/stomach/stomach = A
+	if(!istype(stomach) || !stomach.owner || !ishemophage(stomach.owner) || trans_volume <= 0)
 		return
 
-	A.reagents.add_reagent(/datum/reagent/blood, trans_volume)
+	stomach.owner.blood_volume = min(stomach.owner.blood_volume + trans_volume, BLOOD_VOLUME_NORMAL)
 
 	..()
 
@@ -54,10 +57,13 @@
 	chemical_flags_skyrat = REAGENT_BLOOD_REGENERATING
 
 /datum/reagent/consumable/coffee/blood_coffee/on_transfer(atom/A, methods=INGEST, trans_volume)
-	if(!(methods & INGEST) || (!ishemophage(A) && !istype(A, /obj/item/organ/stomach)) )
+	if(!(methods & INGEST))
+		return
+	var/obj/item/organ/stomach/stomach = A
+	if(!istype(stomach) || !stomach.owner || !ishemophage(stomach.owner) || trans_volume <= 0)
 		return
 
-	A.reagents.add_reagent(/datum/reagent/blood, trans_volume)
+	stomach.owner.blood_volume = min(stomach.owner.blood_volume + trans_volume, BLOOD_VOLUME_NORMAL)
 
 	..()
 
