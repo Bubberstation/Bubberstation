@@ -99,49 +99,41 @@
 	if(!client?.prefs || !type_of_fattening)
 		return FALSE
 
-	switch(type_of_fattening)
-		if(FATTENING_TYPE_ALMIGHTY)
-			return TRUE
+	if(FATTENING_TYPE_ITEM)
+		if(!client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_items))
+			return FALSE
 
-		if(FATTENING_TYPE_ITEM)
-			if(!client?.prefs?.weight_gain_items)
-				return FALSE
+	if(FATTENING_TYPE_FOOD)
+		if(!client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_food))
+			return FALSE
 
-		if(FATTENING_TYPE_FOOD)
-			if(!client?.prefs?.weight_gain_food)
-				return FALSE
+	if(FATTENING_TYPE_CHEM)
+		if(!client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_chems))
+			return FALSE
 
-		if(FATTENING_TYPE_CHEM)
-			if(!client?.prefs?.weight_gain_chems)
-				return FALSE
+	if(FATTENING_TYPE_WEAPON)
+		if(!client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_weapons))
+			return FALSE
 
-		if(FATTENING_TYPE_WEAPON)
-			if(!client?.prefs?.weight_gain_weapons)
-				return FALSE
+	if(FATTENING_TYPE_MAGIC)
+		if(!client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_magic))
+			return FALSE
 
-		if(FATTENING_TYPE_MAGIC)
-			if(!client?.prefs?.weight_gain_magic)
-				return FALSE
+	if(FATTENING_TYPE_VIRUS)
+		if(!client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_viruses))
+			return FALSE
 
-		if(FATTENING_TYPE_VIRUS)
-			if(!client?.prefs?.weight_gain_viruses)
-				return FALSE
+	if(FATTENING_TYPE_NANITES)
+		if(!client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_nanites))
+			return FALSE
 
-		if(FATTENING_TYPE_NANITES)
-			if(!client?.prefs?.weight_gain_nanites)
-				return FALSE
+	if(FATTENING_TYPE_ATMOS)
+		if(!client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_atmos))
+			return FALSE
 
-		if(FATTENING_TYPE_ATMOS)
-			if(!client?.prefs?.weight_gain_atmos)
-				return FALSE
-
-		if(TRANSFORMATION)
-			if(!client?.prefs?.transformation)
-				return FALSE
-
-		if(FATTENING_TYPE_WEIGHT_LOSS)
-			if(HAS_TRAIT(src, TRAIT_WEIGHT_LOSS_IMMUNE))
-				return FALSE
+	if(FATTENING_TYPE_WEIGHT_LOSS)
+		if(HAS_TRAIT(src, TRAIT_WEIGHT_LOSS_IMMUNE))
+			return FALSE
 
 	return TRUE
 
@@ -189,6 +181,10 @@
 			fatness = min(fatness, (max_weight - 1))	//Apply max weight prefs
 
 /mob/living/carbon/proc/adjust_perma(adjustment_amount, type_of_fattening = FATTENING_TYPE_ITEM)
+	/// we will fix this later
+	/*
+	return TRUE
+
 	if(!client)
 		return FALSE
 	if(!client.prefs.weight_gain_permanent)
@@ -212,6 +208,7 @@
 
 	if(max_weight)
 		fatness_perma = min(fatness_perma, (max_weight - 1))
+	*/
 
 /mob/living/carbon/human/handle_breathing(times_fired)
 	. = ..()
@@ -273,7 +270,7 @@
 	return needed_fatness
 
 /mob/living/carbon/proc/applyFatnessDamage(amount)
-	if(!client?.prefs?.weight_gain_weapons) // If we can't fatten them through weapons, apply stamina damage
+	if(!client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_weapons)) // If we can't fatten them through weapons, apply stamina damage
 		adjustStaminaLoss(amount)
 		return TRUE
 
@@ -281,6 +278,7 @@
 	adjust_fatness(fat_to_add, FATTENING_TYPE_WEAPON)
 	return fat_to_add
 
+/* Fix this later.
 /mob/living/carbon/proc/applyPermaFatnessDamage(amount)
 	if(!client?.prefs?.weight_gain_permanent) // If we cant apply permafat, apply regular fat
 		return applyFatnessDamage(amount)
@@ -288,3 +286,4 @@
 	var/fat_to_add = ((amount * CONFIG_GET(number/damage_multiplier)) * PERMA_FAT_DAMAGE_TO_FATNESS)
 	adjust_perma(fat_to_add, FATTENING_TYPE_WEAPON)
 	return fat_to_add
+*/
