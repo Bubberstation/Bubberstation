@@ -11,12 +11,17 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 
 /// Builds the list of crew records for all crew members.
 /datum/manifest/proc/build()
+	// List of mobs we want to mass insert into the manifest table at round start
+	var/list/players_to_log = list()
 	for(var/mob/dead/new_player/readied_player as anything in GLOB.new_player_list)
 		if(readied_player.new_character)
 			log_manifest(readied_player.ckey, readied_player.new_character.mind, readied_player.new_character)
+			players_to_log[readied_player.ckey] = readied_player.new_character
 		if(ishuman(readied_player.new_character))
 			inject(readied_player.new_character, null, readied_player.client) // SKYRAT EDIT - RP Records - ORIGINAL: inject(readied_player.new_character)
 		CHECK_TICK
+	if(length(players_to_log))
+		SSblackbox.ReportRoundstartManifest(players_to_log)
 
 /// Gets the current manifest.
 /datum/manifest/proc/get_manifest()
@@ -124,7 +129,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 	var/datum/record/locked/lockfile = new(
 		age = person.age,
 		chrono_age = person.chrono_age, // SKYRAT EDIT ADDITION - Chronological age
-		blood_type = record_dna.blood_type.name,
+		blood_type = person.get_bloodtype()?.name || "UNKNOWN",
 		character_appearance = character_appearance,
 		dna_string = record_dna.unique_enzymes,
 		fingerprint = md5(record_dna.unique_identity),
@@ -146,7 +151,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 	new /datum/record/crew(
 		age = person.age,
 		chrono_age = person.chrono_age, // SKYRAT EDIT ADDITION - Chronological age
-		blood_type = record_dna.blood_type.name,
+		blood_type = person.get_bloodtype()?.name || "UNKNOWN",
 		character_appearance = character_appearance,
 		dna_string = record_dna.unique_enzymes,
 		fingerprint = md5(record_dna.unique_identity),

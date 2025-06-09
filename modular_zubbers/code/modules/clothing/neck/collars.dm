@@ -1,7 +1,8 @@
 /obj/item/clothing/neck/human_petcollar/locked/ringbell
 	name = "ringing bell collar"
 	desc = "A soft collar that chimes for your little pet!"
-	icon_state = "ringbell"
+	icon_state = "/obj/item/clothing/neck/human_petcollar/locked/ringbell"
+	post_init_icon_state = "ringbell"
 	greyscale_config = /datum/greyscale_config/collar/ringbell
 	greyscale_config_worn = /datum/greyscale_config/collar/ringbell/worn
 	greyscale_colors = "#FF4F66#FFCC00"
@@ -13,8 +14,9 @@
 /obj/item/clothing/neck/kink_collar/locked/gps
 	name = "tracking collar"
 	desc = "A collar that lets you find your pet anywhere with GPS!"
+	icon_state = "/obj/item/clothing/neck/kink_collar/locked/gps"
 	var/datum/component/gps/gps
-	icon_state = "gps"
+	post_init_icon_state = "gps"
 	greyscale_config = /datum/greyscale_config/collar/gps
 	greyscale_config_worn = /datum/greyscale_config/collar/gps/worn
 	greyscale_config_inhand_left = /datum/greyscale_config/collar/gps/lefthand
