@@ -24,9 +24,6 @@
 /datum/surgery/advanced/lobotomy/mechanic/can_start(mob/user, mob/living/carbon/target)
 	return !issynthetic(target) && ..()
 
-/datum/surgery/blood_filter/mechanic/can_start(mob/user, mob/living/carbon/target)
-	return !issynthetic(target) && ..()
-
 /datum/surgery/brain_surgery/mechanic/can_start(mob/user, mob/living/carbon/target)
 	return !issynthetic(target) && ..()
 
