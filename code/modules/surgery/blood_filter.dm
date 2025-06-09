@@ -11,7 +11,7 @@
 
 
 /datum/surgery/blood_filter/mechanic
-	name = "Hydraulics Purge (Blood FIlter)"
+	name = "Hydraulics Purge (Blood Filter)" // BUBBER EDIT - Added it for clarification
 	requires_bodypart_type = BODYTYPE_ROBOTIC | BODYTYPE_NANO // BUBBER EDIT
 	steps = list(
 		/datum/surgery_step/mechanic_open,

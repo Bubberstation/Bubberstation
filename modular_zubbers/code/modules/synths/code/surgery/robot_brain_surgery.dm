@@ -11,7 +11,7 @@
 
 	target_mobtypes = list(/mob/living/carbon/human)
 	possible_locs = list(BODY_ZONE_CHEST) // The brains are in the chest
-	requires_bodypart_type = BODYTYPE_ROBOTIC | BODYTYPE_NANO // The reasoning on why im just gonna put this here is because proteans have their brains in their chests anyways.
+	requires_bodypart_type = BODYTYPE_ROBOTIC
 	desc = "A surgical procedure that restores the default behavior logic and personality matrix of an IPC posibrain, removing deep-rooted traumas."
 
 /datum/surgery/robot_brain_surgery/can_start(mob/user, mob/living/carbon/target, obj/item/tool)
@@ -90,7 +90,7 @@
 	name = "Neural Defragmentation (Neurectomy)"
 	desc = "Requires Liquid Solder. A surgical procedure that refurbishes low level components in the posibrain, to fix deep-rooted trauma errors."
 	possible_locs = list(BODY_ZONE_CHEST) // The brains are in the chest
-	requires_bodypart_type = BODYTYPE_ROBOTIC | BODYTYPE_NANO // Hopefully this applies to the blessed version aswell.
+	requires_bodypart_type = BODYTYPE_ROBOTIC
 	requires_tech = TRUE
 	target_mobtypes = list(/mob/living/carbon/human)
 	steps = list(

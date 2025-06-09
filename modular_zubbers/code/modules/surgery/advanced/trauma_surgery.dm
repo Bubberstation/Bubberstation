@@ -3,6 +3,7 @@
 
 /datum/surgery/advanced/neurectomy
 	name = "Neurectomy"
+	requires_bodypart_type = BODYTYPE_ORGANIC | BODYTYPE_ALIEN | BODYTYPE_NANO | BODYTYPE_SHADOW // Should do a proper neurectomy version for roboticly augmented folks at some point
 	desc = "An invasive surgical procedure which guarantees removal of deep-rooted brain traumas, but takes a while for the body to recover..."
 	possible_locs = list(BODY_ZONE_HEAD)
 	steps = list(
