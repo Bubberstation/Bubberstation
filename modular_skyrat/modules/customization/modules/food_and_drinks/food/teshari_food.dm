@@ -124,6 +124,7 @@
 	tastes = list("tough, spicy jerky" = 1)
 	foodtypes = MEAT
 	crafting_complexity = FOOD_COMPLEXITY_2
+	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT)
 
 /obj/item/food/sirisai_wrap
 	name = "sirisai wrap"
@@ -139,6 +140,7 @@
 	tastes = list("cooked cabbage" = 1, "spiced meat" = 1, "minty piru bread" = 1)
 	foodtypes = MEAT | VEGETABLES
 	crafting_complexity = FOOD_COMPLEXITY_4
+	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT)
 
 /obj/item/food/sweet_piru_noodles
 	name = "sweet piru noodles"
@@ -173,6 +175,7 @@
 	tastes = list("heavily seasoned meat" = 1, "sweetened minty piru noodles" = 1, "zesty chilis" = 1)
 	foodtypes = VEGETABLES | FRUIT | SUGAR | MEAT
 	crafting_complexity = FOOD_COMPLEXITY_5
+	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT)
 
 /obj/item/food/sirisai_flatbread
 	name = "sirisai flatbread"
@@ -189,6 +192,7 @@
 	tastes = list("crispy minty flatbread" = 1, "minty muli pods" = 1, "tomato sauce" = 1, "tangy spice" = 1, "baked meat" = 1)
 	foodtypes = VEGETABLES | MEAT
 	crafting_complexity = FOOD_COMPLEXITY_4
+	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT * 3)
 
 /obj/item/food/sirisai_flatbread/make_processable()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/sirisai_flatbread_slice, 4, 3 SECONDS, table_required = TRUE, screentip_verb = "Slice")
@@ -254,6 +258,7 @@
 	tastes = list("hearty spiced meat" = 1, "baked carrots" = 1, "baked cabbage" = 1, "minty broth" = 1)
 	foodtypes = VEGETABLES | MEAT
 	crafting_complexity = FOOD_COMPLEXITY_5
+	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT * 2)
 
 /obj/item/food/stuffed_muli_pod
 	name = "stuffed muli pod"
@@ -270,6 +275,7 @@
 	tastes = list("spiced meat" = 1, "minty muli pod" = 1, "super-sweet kiri fruit" = 1, "chili" = 1)
 	foodtypes = VEGETABLES | FRUIT | MEAT | SUGAR
 	crafting_complexity = FOOD_COMPLEXITY_3
+	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT)
 
 /obj/item/food/caramel_jelly_toast
 	name = "caramel jelly toast"

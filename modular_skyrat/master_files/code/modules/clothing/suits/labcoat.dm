@@ -52,7 +52,9 @@
 /obj/item/clothing/suit/toggle/labcoat/hospitalgown //Intended to keep patients modest while still allowing for surgeries
 	name = "hospital gown"
 	desc = "A complicated drapery with an assortment of velcros and strings, designed to keep a patient modest during medical stay and surgeries."
-	icon_state = "labcoat_job"
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/toggle/labcoat/hospitalgown"
+	post_init_icon_state = "labcoat_job"
 	greyscale_config = /datum/greyscale_config/labcoat
 	greyscale_config_worn = /datum/greyscale_config/labcoat/worn
 	greyscale_colors = "#478294#478294#478294#478294"
@@ -68,7 +70,9 @@
 /obj/item/clothing/suit/toggle/labcoat/medical //Renamed version of the Genetics labcoat for more generic medical purposes; just a subtype of /labcoat/ for the TG files
 	name = "medical labcoat"
 	desc = "A suit that protects against minor chemical spills. Has a blue stripe on the shoulder."
-	icon_state = "labcoat_job"
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/toggle/labcoat/medical"
+	post_init_icon_state = "labcoat_job"
 	greyscale_config = /datum/greyscale_config/labcoat
 	greyscale_config_worn = /datum/greyscale_config/labcoat/worn
 	greyscale_config_worn_teshari = /datum/greyscale_config/labcoat/worn/teshari //tacks teshari override onto labcoats

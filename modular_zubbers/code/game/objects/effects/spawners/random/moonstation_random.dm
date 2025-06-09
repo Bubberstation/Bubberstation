@@ -323,7 +323,7 @@
 		/obj/machinery/stove = 20,
 		/obj/machinery/syndicatebomb/training = 40,
 		/obj/machinery/washing_machine = 100,
-		/obj/structure/altar_of_gods = 5,
+		/obj/structure/altar/of_gods = 5,
 		/obj/structure/aquarium/prefilled = 100,
 		/obj/structure/bonfire/grill_pre_attached = 200,
 		/obj/structure/cannon/trash = 50,

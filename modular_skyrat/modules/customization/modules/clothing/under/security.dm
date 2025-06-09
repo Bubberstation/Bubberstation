@@ -48,44 +48,52 @@
 /obj/item/clothing/under/rank/prisoner/protcust
 	name = "protective custody prisoner jumpsuit"
 	desc = "A mustard coloured prison jumpsuit, often worn by former Security members, informants and former CentCom employees. Its suit sensors are stuck in the \"Fully On\" position."
+	icon_state = "/obj/item/clothing/under/rank/prisoner/protcust"
 	greyscale_colors = "#FFB600"
 
 /obj/item/clothing/under/rank/prisoner/skirt/protcust
 	name = "protective custody prisoner jumpskirt"
 	desc = "A mustard coloured prison jumpskirt, often worn by former Security members, informants and former CentCom employees. Its suit sensors are stuck in the \"Fully On\" position."
+	icon_state = "/obj/item/clothing/under/rank/prisoner/skirt/protcust"
 	greyscale_colors = "#FFB600"
 	supports_variations_flags = NONE
 
 /obj/item/clothing/under/rank/prisoner/lowsec
 	name = "low security prisoner jumpsuit"
 	desc = "A pale, almost creamy prison jumpsuit, this one denotes a low security prisoner, things like fraud and anything white collar. Its suit sensors are stuck in the \"Fully On\" position."
+	icon_state = "/obj/item/clothing/under/rank/prisoner/lowsec"
 	greyscale_colors = "#AB9278"
 
 /obj/item/clothing/under/rank/prisoner/skirt/lowsec
 	name = "low security prisoner jumpskirt"
 	desc = "A pale, almost creamy prison jumpskirt, this one denotes a low security prisoner, things like fraud and anything white collar. Its suit sensors are stuck in the \"Fully On\" position."
+	icon_state = "/obj/item/clothing/under/rank/prisoner/skirt/lowsec"
 	greyscale_colors = "#AB9278"
 	supports_variations_flags = NONE
 
 /obj/item/clothing/under/rank/prisoner/highsec
 	name = "high risk prisoner jumpsuit"
 	desc = "A bright red prison jumpsuit, depending on who sees it, either a badge of honour or a sign to avoid. Its suit sensors are stuck in the \"Fully On\" position."
+	icon_state = "/obj/item/clothing/under/rank/prisoner/highsec"
 	greyscale_colors = "#FF3400"
 
 /obj/item/clothing/under/rank/prisoner/skirt/highsec
 	name = "high risk prisoner jumpskirt"
 	desc = "A bright red prison jumpskirt, depending on who sees it, either a badge of honour or a sign to avoid. Its suit sensors are stuck in the \"Fully On\" position."
+	icon_state = "/obj/item/clothing/under/rank/prisoner/skirt/highsec"
 	greyscale_colors = "#FF3400"
 	supports_variations_flags = NONE
 
 /obj/item/clothing/under/rank/prisoner/supermax
 	name = "supermax prisoner jumpsuit"
 	desc = "A dark crimson red prison jumpsuit, for the worst of the worst, or the Clown. Its suit sensors are stuck in the \"Fully On\" position."
+	icon_state = "/obj/item/clothing/under/rank/prisoner/supermax"
 	greyscale_colors = "#992300"
 
 /obj/item/clothing/under/rank/prisoner/skirt/supermax
 	name = "supermax prisoner jumpskirt"
 	desc = "A dark crimson red prison jumpskirt, for the worst of the worst, or the Clown. Its suit sensors are stuck in the \"Fully On\" position."
+	icon_state = "/obj/item/clothing/under/rank/prisoner/skirt/supermax"
 	greyscale_colors = "#992300"
 	supports_variations_flags = NONE
 
@@ -96,6 +104,7 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/costume.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/costume_digi.dmi'
 	icon_state = "prisonerclassic"
+	post_init_icon_state = null
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_inhand_left = null
@@ -106,12 +115,14 @@
 /obj/item/clothing/under/rank/prisoner/syndicate
 	name = "syndicate prisoner jumpsuit"
 	desc = "A crimson red jumpsuit worn by syndicate captives. Its sensors have been shorted out."
+	icon_state = "/obj/item/clothing/under/rank/prisoner/syndicate"
 	greyscale_colors = "#992300"
 	has_sensor = FALSE
 
 /obj/item/clothing/under/rank/prisoner/skirt/syndicate
 	name = "syndicate prisoner jumpskirt"
 	desc = "A crimson red jumpskirt worn by syndicate captives. Its sensors have been shorted out."
+	icon_state = "/obj/item/clothing/under/rank/prisoner/skirt/syndicate"
 	greyscale_colors = "#992300"
 	has_sensor = FALSE
 	supports_variations_flags = NONE
@@ -119,4 +130,5 @@
 /obj/item/clothing/under/rank/prisoner/syndicate/station
 	name = "syndicate prisoner jumpsuit"
 	desc = "A dark blood red prison jumpsuit, for the known Syndicate captives, valuable targets to CentCom and interrogation. Its suit sensors are stuck in the \"Fully On\" position."
+	icon_state = "/obj/item/clothing/under/rank/prisoner/syndicate/station"
 	greyscale_colors = "#5c0000ff"

@@ -6,3 +6,4 @@
 #define CAT_HYPOS "hypos"
 #define CAT_DARTS "darts"
 #define CAT_MEDBOTTLES "bottles"
+#define CAT_PEN_INJECTORS "pen injectors"
