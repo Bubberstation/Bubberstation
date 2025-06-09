@@ -71,6 +71,12 @@ type KnowledgeTier = {
   nodes: Knowledge[];
 };
 
+type HereticPassive = {
+  name: string;
+  description: string[];
+  level: number;
+};
+
 type HereticPath = {
   route: string;
   complexity: string;
@@ -81,6 +87,7 @@ type HereticPath = {
   tips: string[];
   starting_knowledge: Knowledge;
   preview_abilities: Knowledge[];
+  passive: HereticPassive;
 };
 
 type Info = {
@@ -269,7 +276,8 @@ const KnowledgeTree = () => {
     .map((tier) =>
       tier.nodes.filter(
         (node) =>
-          node.bought_category && node.bought_category === BoughtAt.Tree,
+          (node.bought_category && node.bought_category === BoughtAt.Tree) ||
+          !node.bought_category,
       ),
     )
     .filter((tier) => tier.length > 0);
@@ -291,7 +299,11 @@ const KnowledgeTree = () => {
                   wrap="wrap"
                 >
                   {tier.map((node) => (
-                    <KnowledgeNode key={node.path} node={node} />
+                    <KnowledgeNode
+                      key={node.path}
+                      node={node}
+                      buy_source={undefined}
+                    />
                   ))}
                 </Stack>
                 <hr />
@@ -310,11 +322,27 @@ type KnowledgeNodeProps = {
 
 const KnowledgeNode = ({
   node,
-  buy_source = BoughtAt.Tree,
+  buy_source,
   can_buy = true,
 }: KnowledgeNodeProps) => {
   const { data, act } = useBackend<Info>();
   const { charges } = data;
+
+  const isBuyable = can_buy && !node.bought_category;
+
+  const iconState = () => {
+    if (!can_buy) {
+      return node.bgr;
+    }
+    if (node.bought_category) {
+      return 'node_finished';
+    }
+    if (charges < node.cost) {
+      return 'node_locked';
+    }
+    return node.bgr;
+  };
+
   return (
     <Stack.Item key={node.name}>
       <Button
@@ -322,7 +350,7 @@ const KnowledgeNode = ({
         tooltip={`${node.name}:
           ${node.desc}`}
         onClick={
-          !can_buy || node.bought_category
+          !isBuyable
             ? () => logger.warn(`Cannot buy ${node.name}`)
             : () => act('research', { path: node.path, source: buy_source })
         }
@@ -335,13 +363,7 @@ const KnowledgeNode = ({
       >
         <DmIcon
           icon="icons/ui_icons/antags/heretic/knowledge.dmi"
-          icon_state={
-            charges < node.cost
-              ? 'node_locked'
-              : node.bought_category
-                ? 'node_finished'
-                : node.bgr
-          }
+          icon_state={iconState()}
           height={node.ascension ? '192px' : '64px'}
           width={node.ascension ? '192px' : '64px'}
           top="0px"
@@ -368,9 +390,7 @@ const KnowledgeNode = ({
           textColor="white"
           bold
         >
-          {!node.bought_category &&
-            can_buy &&
-            (node.cost > 0 ? node.cost : 'FREE')}
+          {isBuyable && (node.cost > 0 ? node.cost : 'FREE')}
         </Box>
       </Button>
       {!!node.ascension && (
@@ -493,6 +513,13 @@ const PathContent = ({
   path: HereticPath;
   isPathSelected: boolean;
 }) => {
+  const {
+    level,
+    name,
+    tier_1_description,
+    tier_2_description,
+    tier_3_description,
+  } = path.passive;
   return (
     <Section
       title={
@@ -527,14 +554,25 @@ const PathContent = ({
           ))}
         </Stack.Item>
         <Stack.Item>
-          <b>Guaranteed Abilities:</b>
-          <Stack wrap="wrap" justify="center">
-            {path.preview_abilities.map((ability) => (
-              <Stack.Item key={`guaranteed_${ability.name}`} m={1}>
-                <KnowledgeNode node={ability} can_buy={false} />
-              </Stack.Item>
-            ))}
-          </Stack>
+          <b>Starting Passive Bonus:</b>
+        </Stack.Item>
+        <Stack.Item>
+          {!isPathSelected && (
+            <>
+              <b>Guaranteed Abilities:</b>
+              <Stack wrap="wrap" justify="center">
+                {path.preview_abilities.map((ability) => (
+                  <Stack.Item key={`guaranteed_${ability.name}`} m={1}>
+                    <KnowledgeNode
+                      node={ability}
+                      can_buy={false}
+                      buy_source={BoughtAt.Tree}
+                    />
+                  </Stack.Item>
+                ))}
+              </Stack>
+            </>
+          )}
         </Stack.Item>
         {!isPathSelected && (
           <>
