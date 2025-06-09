@@ -10,6 +10,7 @@
 		/datum/surgery_step/prepare_electronics,
 		/datum/surgery_step/weld_plating/fullbody,
 		/datum/surgery_step/finalize_positronic_restoration,
+		/datum/surgery_step/add_plating/fullbody, // Adding this so you actualy heal the revival's damage
 		/datum/surgery_step/mechanic_close,
 	)
 
