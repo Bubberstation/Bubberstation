@@ -22,7 +22,7 @@
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "e" = (
-/obj/machinery/modular_computer/preset/id/centcom,
+/obj/machinery/modular_computer/preset/command,
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
 "g" = (
@@ -198,10 +198,10 @@
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "D" = (
-/obj/machinery/computer/camera_advanced,
 /obj/structure/chalkboard{
 	pixel_y = 32
 	},
+/obj/machinery/computer/security,
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
 "E" = (
@@ -211,13 +211,13 @@
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "F" = (
-/obj/machinery/door/airlock/corporate{
-	name = "Administrative Office"
-	},
-/obj/effect/mapping_helpers/airlock/access/any/cent_com/rep_or_captain,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock/access/all/admin/general,
+/obj/machinery/door/airlock/centcom{
+	name = "Administrative Office"
 	},
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
@@ -329,8 +329,8 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/corporate,
-/obj/effect/mapping_helpers/airlock/cutaiwire,
 /obj/effect/mapping_helpers/airlock/access/any/cent_com/rep_or_captain,
+/obj/effect/mapping_helpers/airlock/access/all/admin/general,
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "T" = (
