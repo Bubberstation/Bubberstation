@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/automatic/pistol/sec_glock //This is what you give to the Head of Security.
 	name = "\improper 'Murphy' Service Pistol"
-	desc = "This 9 mm monster was developed during the very first body-modding craze by NanoTrasen, built with every what-if in mind, this timeless brick is near-incapable of failure. 60% more bullet-per-bullet ammo may not have helped it's killing power, but it sure helped this gun hit like an actual brick when used as a bludgeon. \
+	desc = "This 9 mm monster was developed during the very first body-modding craze by Nanotrasen, built with every what-if in mind, this timeless brick is near-incapable of failure. 60% more bullet-per-bullet ammo may not have helped it's killing power, but it sure helped this gun hit like an actual brick when used as a bludgeon. \
 	Not only that, but it's 'anti-lawsuit' heavy trigger design allows for safe spinning, if one can handle it and not hit anyone with the magazine flying out the handle."
 	icon = 'modular_zubbers/icons/obj/guns/sec_pistol.dmi'
 	icon_state = "black"
@@ -62,11 +62,11 @@
 		if(swapped_mag)
 			if(insert_magazine(user, swapped_mag))
 				SpinAnimation(2, 1)
-				balloon_alert(user, "You spin your gun, loading in a mag!")
+				balloon_alert(user, "you spin your gun, loading in a mag!")
 			else
-				balloon_alert(user, "That magazine doesn't fit!")
+				balloon_alert(user, "that magazine doesn't fit!")
 		else
-			balloon_alert(user, "No spare magazines in your belt!")
+			balloon_alert(user, "no spare magazines in your belt!")
 		return
 	if(!chambered)
 		if(swapped_mag)
@@ -74,7 +74,7 @@
 			if(do_after(user, 1 SECONDS, timed_action_flags = ( IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE ), target = src))
 				throw_eject_magazine(user, magejecting)
 		else
-			balloon_alert(user, "No spare magazines in your belt!")
+			balloon_alert(user, "no spare magazines in your belt!")
 	if(bolt_type == BOLT_TYPE_NO_BOLT)
 		unload_ammo(user)
 		return
