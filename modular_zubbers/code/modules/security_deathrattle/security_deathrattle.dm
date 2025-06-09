@@ -22,7 +22,6 @@ GLOBAL_VAR_INIT(allow_security_deathrattle,TRUE)
 	name = "implant case - 'Deathrattle (Security)'"
 	imp_type = /obj/item/implant/deathrattle/security
 
-
 //Create an implanter with it.
 /obj/item/implanter/security_deathrattle
 	name = "implanter (security deathrattle)"
@@ -38,28 +37,17 @@ GLOBAL_VAR_INIT(allow_security_deathrattle,TRUE)
 		new /obj/item/implantcase/deathrattle/security(src)
 	new /obj/item/implanter/security_deathrattle(src)
 
-//Add to lockers.
-/obj/structure/closet/secure_closet/security_medic/PopulateContents()
-	. = ..()
-	if(allow_security_deathrattle)
-		new /obj/item/storage/lockbox/security_deathrattle(src)
-
-/obj/structure/closet/secure_closet/warden/PopulateContents()
-	. = ..()
-	if(allow_security_deathrattle)
-		new /obj/item/storage/lockbox/security_deathrattle(src)
-
 //Add supply pack to cargo.
 
 /datum/supply_pack/security/deathrattle_implants
 	name = "Security Deathrattle Implants"
 	desc = "Demoralize your fellow officers by telling them the exact moment you die! Comes with a lockbox of 4 security deathrattle implants."
-	cost = CARGO_CRATE_VALUE * 3
+	cost = CARGO_CRATE_VALUE * 4
 	access_view = ACCESS_ARMORY
 	contains = list(/obj/item/storage/lockbox/security_deathrattle = 1)
 	crate_name = "deathrattle implant crate"
-	special_enabled = TRUE
 	special = TRUE
+	special_enabled = FALSE
 
 //Disable deathrattles if security already has them
 /datum/station_trait/deathrattle_department/security/New(..,)
@@ -73,3 +61,35 @@ GLOBAL_VAR_INIT(allow_security_deathrattle,TRUE)
 	GLOB.allow_security_deathrattle = FALSE
 	var/datum/supply_pack/security/deathrattle_implants/implant_order = SSshuttle.supply_packs[/datum/supply_pack/security/deathrattle_implants]
 	implant_order.special_enabled = FALSE
+
+
+// Add the event to trigger it.
+
+/datum/round_event_control/security_deathrattle_implants
+	name = "Security Deathrattle Implants"
+	typepath = /datum/round_event/security_deathrattle_implants
+	weight = 10
+	category = EVENT_CATEGORY_BUREAUCRATIC
+	description = "Allows security to purchase deathrattle implants."
+	max_occurrences = 1
+
+/datum/round_event_control/can_spawn_event(players_amt, allow_magic = FALSE)
+
+	. = ..()
+
+	if(!.)
+		return
+
+	return GLOB.allow_security_deathrattle && (SSsecurity_level.get_current_level_as_number() >= SEC_LEVEL_AMBER)
+
+/datum/round_event/security_deathrattle_implants
+	start_when = 1
+	announce_when = 2
+	fakeable = FALSE
+
+/datum/round_event/security_deathrattle_implants/start()
+	var/datum/supply_pack/security/deathrattle_implants/implant_order = SSshuttle.supply_packs[/datum/supply_pack/security/deathrattle_implants]
+	implant_order.special_enabled = TRUE
+
+/datum/round_event/security_deathrattle_implants/announce(fake)
+	priority_announce("Due to \"[pick(GLOB.card_decks["white"])]\", Deathrattle Implants are available to be purchased for security from Cargo.", "Nanotrasen Safety Division")

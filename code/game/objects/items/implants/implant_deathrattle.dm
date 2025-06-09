@@ -29,6 +29,8 @@
 	if(implant.imp_in)
 		on_implant_implantation(implant.imp_in)
 
+	return TRUE //BUBBERSTATION ADDITION.
+
 /datum/deathrattle_group/proc/on_implant_implantation(obj/item/implant/implant, mob/living/target, mob/user, silent = FALSE, force = FALSE)
 	SIGNAL_HANDLER
 
