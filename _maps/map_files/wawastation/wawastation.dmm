@@ -17336,13 +17336,6 @@
 	},
 /turf/open/floor/wood/large,
 /area/station/cargo/boutique)
-"geZ" = (
-/obj/structure/table/optable{
-	dir = 4
-	},
-/obj/item/clothing/mask/muzzle/breath,
-/turf/open/floor/iron/white/smooth_large,
-/area/station/science/robotics/lab)
 "gfe" = (
 /obj/effect/turf_decal/tile/blue/fourcorners,
 /obj/machinery/iv_drip,
@@ -21363,6 +21356,16 @@
 /obj/machinery/nuclearbomb/selfdestruct,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/command/nuke_storage)
+"hwa" = (
+/obj/structure/table/optable,
+/obj/machinery/camera/autoname/directional/west{
+	network = list("ss13","medbay")
+	},
+/obj/effect/turf_decal/tile/blue/full,
+/obj/item/radio/intercom/directional/north,
+/obj/item/clothing/mask/breath/muzzle,
+/turf/open/floor/iron/white,
+/area/station/medical/surgery)
 "hwb" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -25692,6 +25695,19 @@
 /obj/effect/turf_decal/tile/purple/anticorner/contrasted,
 /turf/open/floor/iron/white,
 /area/station/science/lobby)
+"jbM" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/structure/table/reinforced,
+/obj/item/paper_bin/construction{
+	pixel_y = 6
+	},
+/obj/item/pen,
+/obj/item/toy/talking/ai{
+	pixel_x = 18;
+	pixel_y = 8
+	},
+/turf/open/floor/iron/dark,
+/area/station/ai_monitored/turret_protected/aisat/foyer)
 "jbP" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/light/small/directional/west,
@@ -43896,18 +43912,6 @@
 /obj/machinery/door/airlock/public/glass/incinerator/atmos_exterior,
 /turf/open/floor/engine,
 /area/station/maintenance/disposal/incinerator)
-"pqr" = (
-/obj/structure/table/wood,
-/obj/item/food/carneburrito{
-	pixel_x = -2;
-	pixel_y = 5
-	},
-/obj/item/toy/talking/ai{
-	pixel_x = 9;
-	pixel_y = -6
-	},
-/turf/open/floor/carpet/executive,
-/area/station/command/meeting_room)
 "pqB" = (
 /obj/structure/chair/stool/directional/north,
 /obj/effect/turf_decal/sand/plating,
@@ -54839,19 +54843,6 @@
 /obj/structure/broken_flooring/side,
 /turf/open/floor/plating,
 /area/station/cargo/warehouse)
-"sWl" = (
-/obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/structure/table/reinforced,
-/obj/item/paper_bin/construction{
-	pixel_y = 6
-	},
-/obj/item/pen,
-/obj/item/toy/talking/ai{
-	pixel_x = 18;
-	pixel_y = 8
-	},
-/turf/open/floor/iron/dark,
-/area/station/ai_monitored/turret_protected/aisat/foyer)
 "sWn" = (
 /obj/machinery/light/warm/directional/south,
 /turf/open/floor/grass,
@@ -56533,6 +56524,13 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/engine/cult,
 /area/station/service/library)
+"tAC" = (
+/obj/structure/table/optable{
+	dir = 4
+	},
+/obj/item/clothing/mask/breath/muzzle,
+/turf/open/floor/iron/white/smooth_large,
+/area/station/science/robotics/lab)
 "tAL" = (
 /obj/item/exodrone,
 /obj/machinery/exodrone_launcher,
@@ -60313,6 +60311,18 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/misc/asteroid,
 /area/station/maintenance/department/science)
+"uOs" = (
+/obj/structure/table/wood,
+/obj/item/food/carneburrito{
+	pixel_x = -2;
+	pixel_y = 5
+	},
+/obj/item/toy/talking/ai{
+	pixel_x = 9;
+	pixel_y = -6
+	},
+/turf/open/floor/carpet/executive,
+/area/station/command/meeting_room)
 "uOx" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -65554,16 +65564,6 @@
 "wHJ" = (
 /turf/closed/wall/r_wall,
 /area/station/ai_monitored/turret_protected/aisat_interior)
-"wIn" = (
-/obj/structure/table/optable,
-/obj/machinery/camera/autoname/directional/west{
-	network = list("ss13","medbay")
-	},
-/obj/effect/turf_decal/tile/blue/full,
-/obj/item/radio/intercom/directional/north,
-/obj/item/clothing/mask/muzzle/breath,
-/turf/open/floor/iron/white,
-/area/station/medical/surgery)
 "wIr" = (
 /obj/effect/turf_decal/tile/dark_red/opposingcorners,
 /obj/structure/cable,
@@ -82082,7 +82082,7 @@ xKp
 rnk
 dnO
 rnk
-wIn
+hwa
 oSP
 uRb
 xBS
@@ -103350,7 +103350,7 @@ pyH
 gHQ
 iJP
 kee
-sWl
+jbM
 ncc
 srs
 sYI
@@ -105438,7 +105438,7 @@ lOy
 poZ
 xOU
 exk
-geZ
+tAC
 cya
 vpq
 qKm
@@ -162719,7 +162719,7 @@ glA
 lFG
 lFG
 oDK
-pqr
+uOs
 kse
 qmp
 qyG
