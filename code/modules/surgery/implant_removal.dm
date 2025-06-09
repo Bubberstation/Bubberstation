@@ -85,7 +85,7 @@
 
 /datum/surgery/implant_removal/mechanic
 	name = "Implant Removal"
-	requires_bodypart_type = BODYTYPE_ROBOTIC
+	requires_bodypart_type = BODYTYPE_ROBOTIC | BODYTYPE_NANO // BUBBER EDIT
 	target_mobtypes = list(/mob/living/carbon/human) // Simpler mobs don't have bodypart types
 	surgery_flags = parent_type::surgery_flags | SURGERY_REQUIRE_LIMB
 	steps = list(

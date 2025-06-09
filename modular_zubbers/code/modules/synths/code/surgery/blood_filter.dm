@@ -1,5 +1,5 @@
 /datum/surgery/blood_filter/mechanic
-	name = "Hydraulics Purge"
+	name = "Hydraulics Purge (blood filter)"
 	requires_bodypart_type = BODYTYPE_ROBOTIC | BODYTYPE_NANO
 	steps = list(
 		/datum/surgery_step/mechanic_open,
