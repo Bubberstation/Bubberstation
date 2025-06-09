@@ -52,6 +52,7 @@
 	if(isnull(new_blood_type))
 		//appends /alt_color to the datum path??? idk
 		var/blood_type_path = "[quirked.dna.blood_type]/alt_color"
+		CRASH("[blood_type_path]")
 		new_blood_type = new /datum/blood_type/lizard/alt_color(override_blood_type = override)
 		GLOB.blood_types[new_blood_type.id] = new_blood_type
 	quirked.set_blood_type(new_blood_type)
