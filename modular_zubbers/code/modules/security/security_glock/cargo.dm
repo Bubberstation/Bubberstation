@@ -11,7 +11,7 @@
 	contains = list(/obj/item/gun/ballistic/automatic/pistol/sec_glock = 2)
 	crate_name = "'Murphy' service pistol crate'"
 
-/datum/supply_pack/security/armory/sec_glock_ammo_rubber
+/datum/supply_pack/security/armory/sec_glock_ammo
 	name = "'Murphy' Service Pistol Ammo Crate"
 	desc = "Contains 4 magazines with lethal rounds for the 'Murphy' service pistol."
 	cost = CARGO_CRATE_VALUE * 3
