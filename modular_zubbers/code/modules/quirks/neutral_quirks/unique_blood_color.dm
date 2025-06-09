@@ -20,7 +20,7 @@
 	var/mob/living/carbon/human/human_holder = quirk_holder
 	if(!istype(human_holder)) //If you want to change the blood of a non-human mob, just varedit. It'll reset when changing species tho
 		return
-	var/datum/blood_type/override = new human_holder.dna.blood_type
+	var/datum/blood_type/override = human_holder.dna.blood_type
 	var/selected_color = client_source?.prefs.read_preference(/datum/preference/choiced/select_blood_color)
 	switch(selected_color)
 		if("Custom")
