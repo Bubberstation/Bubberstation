@@ -27,7 +27,7 @@
 /datum/augment_item/implant/l_arm/rope
 	name = "Left Climbing Hook"
 	cost = 1
-	path = /obj/item/organ/cyberimp/arm/rope/left_arm
+	path = /obj/item/organ/cyberimp/arm/toolkit/rope/left_arm
 
 //RIGHT ARM IMPLANTS
 /datum/augment_item/implant/r_arm
@@ -41,7 +41,7 @@
 /datum/augment_item/implant/r_arm/rope
 	name = "Right Climbing Hook"
 	cost = 1
-	path = /obj/item/organ/cyberimp/arm/rope/right_arm
+	path = /obj/item/organ/cyberimp/arm/toolkit/rope/right_arm
 
 //EYES IMPLANTS
 /datum/augment_item/implant/eyes

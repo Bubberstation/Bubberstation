@@ -121,5 +121,5 @@
 	name = "Climbing Hook Implant"
 	desc = "A specialized climbing hook implant for the vertically challenged."
 	cost = PAYCHECK_CREW * 12
-	contains = list(/obj/item/organ/cyberimp/arm/rope)
+	contains = list(/obj/item/organ/cyberimp/arm/toolkit/rope)
 
