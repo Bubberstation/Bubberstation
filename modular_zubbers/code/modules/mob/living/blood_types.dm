@@ -197,13 +197,13 @@
 /datum/blood_type/snail/alt_color/type_key()
 	return "[name]_alt_[color]"
 
-/datum/blood_type/skrell/alt_color
-	root_abstract_type = /datum/blood_type/skrell
+/datum/blood_type/copper/alt_color
+	root_abstract_type = /datum/blood_type/copper
 
-/datum/blood_type/skrell/alt_color/type_key()
+/datum/blood_type/copper/alt_color/type_key()
 	return "[name]_alt_[color]"
 
-/datum/blood_type/skrell/alt_color/New(datum/blood_type/override_blood_type)
+/datum/blood_type/copper/alt_color/New(datum/blood_type/override_blood_type)
 	src.id = type_key()
 	src.color = override_blood_type.color
 
