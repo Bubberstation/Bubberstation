@@ -30,6 +30,4 @@
 /datum/preference/numeric/quad_eyes_offset/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	if(!value)
 		return
-	var/obj/item/organ/eyes/eyes = target.get_organ_slot(ORGAN_SLOT_EYES)
-	if(eyes)
-		eyes.quad_eyes_offset = value
+	target.quad_eyes_offset = value

@@ -268,10 +268,10 @@
 	if(HAS_TRAIT(owner, TRAIT_QUAD_EYES)) // (*) (*) v (*) (*)
 		var/mutable_appearance/eye_left_2 = new /mutable_appearance(eye_left)
 		eye_left_2.pixel_x -= 1
-		eye_left_2.pixel_y += quad_eyes_offset
+		eye_left_2.pixel_y += parent.quad_eyes_offset
 		var/mutable_appearance/eye_right_2 = new /mutable_appearance(eye_right)
 		eye_right_2.pixel_x += 1
-		eye_right_2.pixel_y += quad_eyes_offset
+		eye_right_2.pixel_y += parent.quad_eyes_offset
 
 		eye_left.underlays.Add(eye_left_2)
 		eye_right.underlays.Add(eye_right_2)
