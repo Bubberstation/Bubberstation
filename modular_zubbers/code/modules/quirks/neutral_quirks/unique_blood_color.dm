@@ -4,7 +4,7 @@
 	name = "Blood Pigmentation"
 	desc = "Your blood has a different colour than what your species usually has."
 	gain_text = span_purple("The undertones of your flesh shift in hue.")
-	lose_text = span_notice("Your flesh returns to a natural look.")
+	lose_text = span_purple("Your flesh returns to a natural look.")
 	medical_record_text = "Patient has unusual blood pigmentation."
 	value = 0
 	icon = FA_ICON_DROPLET
@@ -20,7 +20,7 @@
 	var/mob/living/carbon/human/human_holder = quirk_holder
 	if(!istype(human_holder)) //If you want to change the blood of a non-human mob, just varedit. It'll reset when changing species tho
 		return
-	var/datum/blood_type/override = human_holder.dna.blood_type
+	var/datum/blood_type/override
 	var/selected_color = client_source?.prefs.read_preference(/datum/preference/choiced/select_blood_color)
 	switch(selected_color)
 		if("Custom")
@@ -40,7 +40,12 @@
 		if("White/Synth")
 			override.color = BLOOD_COLOR_WHITE
 		else
-			CRASH("target /datum/preference/choiced/select_blood_color not found")
+			CRASH("incorrect/missing /datum/preference/choiced/select_blood_color - [selected_color]")
+	///Check if new blood type is same as old. Jank! But it should prevent cases of special blood types made from relative normal blood
+	if(human_holder.dna.blood_type.color == override.color)
+		to_chat(human_holder, span_notice("...your blood selected blood colour was your species' default hue. Quirk removed."))
+		remove_from_current_holder()
+		return
 	change_blood_color(quirked = human_holder, override = override)
 
 //someone could turn this into a universal replace_blood() or something... but not me
