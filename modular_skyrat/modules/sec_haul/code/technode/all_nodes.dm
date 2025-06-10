@@ -65,7 +65,6 @@
 
 /datum/techweb_node/exotic_ammo/New()
 	design_ids += "ca_flechripper"
-	design_ids += "sol_bolt_to_rifle"
 	design_ids += "c10mm_rhp"
 	design_ids += "c10mm_rap"
 	. = ..()
