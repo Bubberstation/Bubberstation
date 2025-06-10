@@ -6,9 +6,9 @@
 		readout = ""
 		if(target::root_abstract_type == target) // Let's not modify placeholders
 			testing("[target] skipped, abstract")
+			testing("printing [target.root_abstract_type]")
 			continue
 		testing("mass_edit_blood_compatability target is [target]") //this reads as the datum typepath...
-		var/datum/blood_type/sanity = get_blood_type(target)
 		var/amicrazy = isnull(target.compatible_types)
 		testing("target.compatible_types is [amicrazy ? "not " : ""]null") //...SO WHY IS THIS NULL
 		readout = ""
@@ -16,9 +16,6 @@
 			readout+="[i], "
 		testing("target: [target].compatible_types contains [readout]") //NULL!?!
 		readout = ""
-		for(var/i as anything in sanity?.compatible_types)
-			readout+="[i], "
-		testing("sanity check: [sanity].compatible_types contains [readout]") //NULL!!!
 		if(!filter)
 			actually_MEBC(to_append, target, mode_remove)
 		else if(filter in target.compatible_types) //cascading error from above....
@@ -29,18 +26,20 @@
 	readout = ""
 	for(var/i as anything in to_append)
 		readout+="[i], "
-	NOTICE("mass_edit_blood_compatability successfully invoked: ([readout])is/are  [mode_remove ? "no longer" : "now"] compatible with all blood types compatible containing ([filter]) or if null, all of them.")
+	NOTICE("mass_edit_blood_compatability successfully invoked: [readout]is/are  [mode_remove ? "no longer" : "now"] compatible with all blood types compatible containing ([filter]) or if null, all of them.")
 
+///don't call this
 /proc/actually_MEBC(list/to_append, datum/blood_type/target, mode_remove)
 	var/readout = ""
-	var/list/compat_list = LAZYCOPY(target?.compatible_types)
+	var/list/compat_list = LAZYCOPY(target::compatible_types)
+	var/datum/blood_type/target_literal = get_blood_type(target)
 	switch(mode_remove)
 		if(FALSE)
 			compat_list += to_append
-			target.compatible_types = compat_list
+			target_literal.compatible_types = compat_list
 		if(TRUE)
 			compat_list -= to_append
-			target.compatible_types = compat_list
+			target_literal.compatible_types = compat_list
 	for(var/i as anything in target.compatible_types)
 		readout += "[i], "
-	testing("[target] succesfully modified; new compatabilities are: [readout]")
+	testing("[target]/[target_literal] succesfully modified; new compatabilities are: [readout]")
