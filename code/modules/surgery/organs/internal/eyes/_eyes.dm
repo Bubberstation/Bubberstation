@@ -263,6 +263,21 @@
 
 	var/mutable_appearance/eye_left = mutable_appearance(eye_icon, "[eye_icon_state]_l", -eyes_layer, parent) // SKYRAT EDIT CHANGE - Customization - ORIGINAL: var/mutable_appearance/eye_left = mutable_appearance('icons/mob/human/human_face.dmi', "[eye_icon_state]_l", -BODY_LAYER, parent)
 	var/mutable_appearance/eye_right = mutable_appearance(eye_icon, "[eye_icon_state]_r", -eyes_layer, parent) // SKYRAT EDIT CHANGE - Customization - ORIGINAL: var/mutable_appearance/eye_right = mutable_appearance('icons/mob/human/human_face.dmi', "[eye_icon_state]_r", -BODY_LAYER, parent)
+
+	// BEGIN BUBBER ADDITION:
+	if(HAS_TRAIT(owner, TRAIT_QUAD_EYES)) // (*) (*) v (*) (*)
+		var/mutable_appearance/eye_left_2 = new /mutable_appearance(eye_left)
+		eye_left_2.pixel_x -= 1
+		eye_left_2.pixel_y += quad_eyes_offset
+		var/mutable_appearance/eye_right_2 = new /mutable_appearance(eye_right)
+		eye_right_2.pixel_x += 1
+		eye_right_2.pixel_y += quad_eyes_offset
+
+		eye_left.underlays.Add(eye_left_2)
+		eye_right.underlays.Add(eye_right_2)
+
+	// END BUBBER ADDITION
+
 	var/list/overlays = list(eye_left, eye_right)
 
 	var/obscured = parent.check_obscured_slots()

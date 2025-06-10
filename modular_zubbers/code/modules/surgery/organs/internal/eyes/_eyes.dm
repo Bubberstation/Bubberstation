@@ -1,3 +1,7 @@
+/obj/item/organ/eyes
+	/// Offset to the Y-pixel for if the mob has four eyes or not. Positive is up, negative is down.
+	var/quad_eyes_offset = 0
+
 /obj/item/organ/eyes/shadekin
 	name = "shadekin eyes"
 	desc = "These eyes are massive, and feel warm to the touch. The shadekin that's missing these is probably feeling very queasy."
@@ -16,3 +20,10 @@
 	blink_animation = FALSE
 	iris_overlay = null
 	lighting_cutoff = LIGHTING_CUTOFF_LOW
+
+/obj/item/organ/eyes/robotic/multitool_act(mob/living/user, obj/item/tool)
+	. = ..()
+	// Choose left and right eye color
+	to_chat(user, span_notice("Changing Eye Color: Pressing 'Cancel' or closing out the window will return the eye's current color."))
+	eye_color_left = tgui_color_picker(user, "Pick a new color", "Left Eye Color", eye_color_left)
+	eye_color_right = tgui_color_picker(user, "Pick a new color", "Right Eye Color", eye_color_right)
