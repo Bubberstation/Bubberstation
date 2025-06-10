@@ -35,7 +35,7 @@
 	wound = 25
 
 /obj/item/mod/control/pre_equipped/safeguard/Initialize(mapload, new_theme, new_skin, new_core)
-	default_pins += /obj/item/mod/module/armor_booster/nanotrasen/security/safeguard
+	default_pins += /obj/item/mod/module/armor_booster/nanotrasen/security
 	applied_modules -= /obj/item/mod/module/headprotector
 	. = ..()
 
