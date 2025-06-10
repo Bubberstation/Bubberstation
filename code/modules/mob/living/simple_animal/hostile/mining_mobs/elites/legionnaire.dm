@@ -53,6 +53,11 @@
 	/// Whether or not the legionnaire is currently charging, used to deny movement input if he is
 	var/charging = FALSE
 
+/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/Initialize(mapload)
+	. = ..()
+
+	AddComponent(/datum/component/boss_music, 'sound/music/boss/tumor_boss.ogg', 130 SECONDS) //bubber edit: boss music
+
 /datum/action/innate/elite_attack/legionnaire_charge
 	name = "Legionnaire Charge"
 	button_icon_state = "legionnaire_charge"
