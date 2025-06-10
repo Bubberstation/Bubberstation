@@ -11,14 +11,12 @@
 
 /obj/item/mod/module/armor_booster/nanotrasen/on_part_activation() //removes welding protection
 	RegisterSignal(mod, COMSIG_MOD_UPDATE_SPEED, PROC_REF(on_update_speed))
-	var/obj/item/clothing/head_cover = mod.get_part_from_slot(ITEM_SLOT_HEAD) || mod.get_part_from_slot(ITEM_SLOT_MASK) || mod.get_part_from_slot(ITEM_SLOT_EYES)
 	mod.update_speed()
 
 /obj/item/mod/module/armor_booster/nanotrasen/on_part_deactivation(deleting = FALSE)
 	if(deleting)
 		return
 	UnregisterSignal(mod, COMSIG_MOD_UPDATE_SPEED)
-	var/obj/item/clothing/head_cover = mod.get_part_from_slot(ITEM_SLOT_HEAD) || mod.get_part_from_slot(ITEM_SLOT_MASK) || mod.get_part_from_slot(ITEM_SLOT_EYES)
 	mod.update_speed()
 
 //every security, command, etc mod theme has its own armour booster now, taking half the armour values of their current modsuit armour
