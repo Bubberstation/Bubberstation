@@ -21,7 +21,7 @@
 
 /datum/mod_theme/safeguard //HoS
 	armor_type = /datum/armor/mod_theme_safeguard
-	inbuilt_modules = list(/obj/item/mod/module/armor_booster/nanotrasen/security/safeguard)
+	inbuilt_modules = list(/obj/item/mod/module/armor_booster/nanotrasen/security, /obj/item/mod/module/shove_blocker/locked)
 
 /datum/armor/mod_theme_safeguard
 	melee = 20
@@ -61,7 +61,7 @@
 
 /datum/mod_theme/responsory // ERT
 	armor_type = /datum/armor/mod_theme_responsory
-	inbuilt_modules = list(/obj/item/mod/module/armor_booster/nanotrasen/security)
+	inbuilt_modules = list(/obj/item/mod/module/armor_booster/nanotrasen/centcom/ert)
 
 /datum/armor/mod_theme_responsory
 	melee = 20
@@ -80,12 +80,12 @@
 		/obj/item/mod/module/armor_booster/retractplates,
 		/obj/item/mod/module/armor_booster, //none of them use these and im not sure if its redundant, better to be safe than not.
 		)
-	default_pins += /obj/item/mod/module/armor_booster/nanotrasen/security
+	default_pins += /obj/item/mod/module/armor_booster/nanotrasen/centcom/ert
 	. = ..()
 
 /datum/mod_theme/corporate // Centcom Commander
 	armor_type = /datum/armor/mod_theme_corporate
-	inbuilt_modules = list(/obj/item/mod/module/armor_booster/nanotrasen/corporate)
+	inbuilt_modules = list(/obj/item/mod/module/armor_booster/nanotrasen/centcom/corporate)
 
 /datum/armor/mod_theme_corporate
 	melee = 25
@@ -99,7 +99,7 @@
 	wound = 15
 
 /obj/item/mod/control/pre_equipped/corporate/Initialize(mapload, new_theme, new_skin, new_core)
-	default_pins += /obj/item/mod/module/armor_booster/nanotrasen/corporate
+	default_pins += /obj/item/mod/module/armor_booster/nanotrasen/centcom/corporate
 	. = ..()
 
 // Blueshield Armor
