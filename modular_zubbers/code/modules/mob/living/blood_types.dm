@@ -222,9 +222,15 @@
 		CRASH("attempt to generate alt-color blood type failed, override arg is null")
 	compatible_types = LAZYCOPY(orig?.compatible_types)
 	root_abstract_type = null
-	var/list/id_as_list = list(id,)
-	testing("invoking mass_edit_blood_compatability() for [src.name]")
-	mass_edit_blood_compatability(filter = alternate_of, to_append = id_as_list)
+	var/list/id_as_list = list()
+	id_as_list += id
+	var/readout = ""
+	for(var/i as anything in id_as_list)
+		readout += "[i], "
+	testing("id_as_list contains [readout]")
+	var/datum/blood_type/filter = GLOB.blood_types[alternate_of]
+	testing("invoking mass_edit_blood_compatability() for [id] and filter as [alternate_of]")
+	mass_edit_blood_compatability(to_append = id_as_list, filter = filter)
 
 /datum/blood_type/lizard/alt_color/type_key()
 	return "[name]_alt_[color]"
