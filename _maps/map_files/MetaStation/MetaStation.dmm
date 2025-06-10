@@ -1174,21 +1174,6 @@
 /obj/structure/sign/warning/test_chamber/directional/south,
 /turf/open/floor/iron/white,
 /area/station/science/ordnance/testlab)
-"awL" = (
-/obj/structure/rack,
-/obj/item/storage/box/gloves{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/box/bodybags,
-/obj/item/healthanalyzer,
-/obj/structure/disposalpipe/segment,
-/obj/structure/window/spawner/directional/west,
-/obj/structure/window/spawner/directional/north,
-/obj/item/tank/internals/anesthetic,
-/obj/item/clothing/mask/breath/muzzle,
-/turf/open/floor/iron/white,
-/area/station/science/robotics/lab)
 "awO" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -13177,6 +13162,21 @@
 /obj/machinery/light/small/directional/east,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
+"eER" = (
+/obj/structure/rack,
+/obj/item/storage/box/gloves{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/box/bodybags,
+/obj/item/healthanalyzer,
+/obj/structure/disposalpipe/segment,
+/obj/structure/window/spawner/directional/west,
+/obj/structure/window/spawner/directional/north,
+/obj/item/tank/internals/anesthetic,
+/obj/item/clothing/mask/breath/muzzle,
+/turf/open/floor/iron/white,
+/area/station/science/robotics/lab)
 "eFC" = (
 /obj/machinery/bluespace_vendor/directional/south,
 /obj/effect/turf_decal/tile/neutral,
@@ -19087,11 +19087,6 @@
 /obj/machinery/light/floor,
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology/hallway)
-"gLI" = (
-/obj/machinery/door/poddoor/massdriver_ordnance,
-/obj/structure/fans/tiny,
-/turf/open/floor/plating,
-/area/station/science/ordnance/testlab)
 "gLJ" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -20969,6 +20964,16 @@
 /obj/structure/window/reinforced/spawner/directional/north,
 /turf/open/floor/plating,
 /area/station/security/checkpoint/customs)
+"hvq" = (
+/obj/machinery/door/poddoor/massdriver_chapel,
+/obj/machinery/atmos_shield_gen/active{
+	dir = 4
+	},
+/obj/machinery/atmos_shield_gen/active{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/station/service/chapel/funeral)
 "hvr" = (
 /obj/machinery/camera/directional/south{
 	c_tag = "Central Primary Hallway - Fore - Courtroom"
@@ -28582,25 +28587,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/white,
 /area/station/medical/surgery/theatre)
-"jSD" = (
-/obj/structure/table/reinforced,
-/obj/item/tank/internals/anesthetic{
-	pixel_x = 3
-	},
-/obj/item/tank/internals/anesthetic,
-/obj/item/tank/internals/anesthetic{
-	pixel_x = -3
-	},
-/obj/effect/turf_decal/tile/blue/fourcorners,
-/obj/structure/window/reinforced/spawner/directional/west,
-/obj/machinery/light/small/directional/east,
-/obj/item/clothing/mask/breath/muzzle{
-	pixel_y = -4
-	},
-/obj/item/clothing/mask/breath/muzzle,
-/obj/item/clothing/mask/breath/muzzle,
-/turf/open/floor/iron/white,
-/area/station/medical/surgery/theatre)
 "jTi" = (
 /obj/machinery/hydroponics/soil,
 /obj/machinery/camera/directional/west{
@@ -29766,11 +29752,6 @@
 "kmN" = (
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/lesser)
-"kmW" = (
-/obj/machinery/door/poddoor/massdriver_trash,
-/obj/structure/fans/tiny,
-/turf/open/floor/plating,
-/area/station/maintenance/disposal)
 "kmZ" = (
 /obj/structure/sign/warning/secure_area,
 /turf/closed/wall/r_wall,
@@ -36795,6 +36776,16 @@
 /obj/effect/spawner/random/structure/crate,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/lesser)
+"mOY" = (
+/obj/machinery/door/poddoor/massdriver_ordnance,
+/obj/machinery/atmos_shield_gen/active{
+	dir = 8
+	},
+/obj/machinery/atmos_shield_gen/active{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/station/science/ordnance/testlab)
 "mPh" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -40406,6 +40397,25 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
+"oap" = (
+/obj/structure/table/reinforced,
+/obj/item/tank/internals/anesthetic{
+	pixel_x = 3
+	},
+/obj/item/tank/internals/anesthetic,
+/obj/item/tank/internals/anesthetic{
+	pixel_x = -3
+	},
+/obj/effect/turf_decal/tile/blue/fourcorners,
+/obj/structure/window/reinforced/spawner/directional/west,
+/obj/machinery/light/small/directional/east,
+/obj/item/clothing/mask/breath/muzzle{
+	pixel_y = -4
+	},
+/obj/item/clothing/mask/breath/muzzle,
+/obj/item/clothing/mask/breath/muzzle,
+/turf/open/floor/iron/white,
+/area/station/medical/surgery/theatre)
 "oar" = (
 /obj/structure/chair/office/light{
 	dir = 1
@@ -46296,6 +46306,14 @@
 /obj/machinery/computer/security/telescreen/minisat/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
+"qcH" = (
+/obj/machinery/door/poddoor/massdriver_trash,
+/obj/machinery/atmos_shield_gen/active{
+	dir = 1
+	},
+/obj/machinery/atmos_shield_gen/active,
+/turf/open/floor/plating,
+/area/station/maintenance/disposal)
 "qcP" = (
 /obj/effect/landmark/blobstart,
 /obj/effect/mapping_helpers/burnt_floor,
@@ -58623,11 +58641,6 @@
 /obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/space,
 /area/space/nearstation)
-"ulE" = (
-/obj/machinery/door/poddoor/massdriver_chapel,
-/obj/structure/fans/tiny,
-/turf/open/floor/plating,
-/area/station/service/chapel/funeral)
 "ulR" = (
 /obj/effect/turf_decal/tile/yellow/anticorner/contrasted{
 	dir = 1
@@ -86962,7 +86975,7 @@ xuK
 lMJ
 lMJ
 jfG
-kmW
+qcH
 jfG
 qvJ
 jfG
@@ -89869,7 +89882,7 @@ ixv
 jml
 wRZ
 mPF
-jSD
+oap
 jUb
 oOZ
 omm
@@ -92220,7 +92233,7 @@ wyC
 gYU
 rbF
 rxY
-ulE
+hvq
 aaa
 aaa
 aaa
@@ -100154,7 +100167,7 @@ gcU
 noN
 bCc
 bCc
-awL
+eER
 kPy
 eut
 dEV
@@ -105571,7 +105584,7 @@ nsA
 ekV
 sdb
 oPf
-gLI
+mOY
 aYT
 anS
 lMJ

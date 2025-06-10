@@ -17068,14 +17068,6 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/aft/lesser)
-"eNk" = (
-/obj/structure/window/reinforced/spawner/directional/east,
-/obj/structure/table,
-/obj/item/storage/box/bodybags,
-/obj/item/pen,
-/obj/item/clothing/mask/breath/muzzle,
-/turf/open/floor/iron/dark,
-/area/station/science/robotics/lab)
 "eNl" = (
 /obj/structure/chair/comfy/black,
 /obj/effect/landmark/start/head_of_security,
@@ -18353,6 +18345,14 @@
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating,
 /area/station/maintenance/fore)
+"ffF" = (
+/obj/machinery/door/poddoor/massdriver_ordnance,
+/obj/machinery/atmos_shield_gen/active{
+	dir = 1
+	},
+/obj/machinery/atmos_shield_gen/active,
+/turf/open/floor/plating,
+/area/station/science/ordnance/testlab)
 "ffQ" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 10
@@ -18583,11 +18583,6 @@
 /obj/machinery/power/apc/auto_name/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos/storage/gas)
-"fiU" = (
-/obj/machinery/door/poddoor/massdriver_ordnance,
-/obj/structure/fans/tiny,
-/turf/open/floor/plating,
-/area/station/science/ordnance/testlab)
 "fiY" = (
 /obj/machinery/ntnet_relay,
 /turf/open/floor/circuit/telecomms/mainframe,
@@ -29447,13 +29442,6 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
-"iqW" = (
-/obj/machinery/door/poddoor/massdriver_chapel{
-	dir = 4
-	},
-/obj/structure/fans/tiny,
-/turf/open/floor/plating,
-/area/station/service/chapel)
 "irn" = (
 /obj/structure/cable,
 /obj/effect/mapping_helpers/broken_floor,
@@ -53731,6 +53719,16 @@
 /obj/effect/mapping_helpers/airlock/access/all/science/ordnance,
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/freezerchamber)
+"pjf" = (
+/obj/machinery/door/poddoor/massdriver_chapel{
+	dir = 4
+	},
+/obj/machinery/atmos_shield_gen/active,
+/obj/machinery/atmos_shield_gen/active{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/station/service/chapel)
 "pji" = (
 /obj/structure/cable,
 /obj/machinery/camera/directional/east{
@@ -55294,6 +55292,17 @@
 	},
 /turf/open/floor/iron,
 /area/station/security/prison/mess)
+"pEZ" = (
+/obj/effect/turf_decal/stripes/red/box,
+/obj/machinery/door/poddoor/massdriver_trash,
+/obj/machinery/atmos_shield_gen/active{
+	dir = 4
+	},
+/obj/machinery/atmos_shield_gen/active{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/station/maintenance/disposal)
 "pFg" = (
 /obj/structure/chair{
 	dir = 8
@@ -64570,12 +64579,6 @@
 /obj/effect/spawner/structure/window/reinforced/tinted,
 /turf/open/floor/plating,
 /area/station/security/prison/toilet)
-"slX" = (
-/obj/structure/fans/tiny,
-/obj/effect/turf_decal/stripes/red/box,
-/obj/machinery/door/poddoor/massdriver_trash,
-/turf/open/floor/plating,
-/area/station/maintenance/disposal)
 "sma" = (
 /obj/effect/spawner/random/trash/mopbucket,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -78002,6 +78005,14 @@
 	},
 /turf/open/misc/asteroid/snow/icemoon,
 /area/icemoon/underground/explored)
+"wkH" = (
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/table,
+/obj/item/storage/box/bodybags,
+/obj/item/pen,
+/obj/item/clothing/mask/breath/muzzle,
+/turf/open/floor/iron/dark,
+/area/station/science/robotics/lab)
 "wkN" = (
 /obj/machinery/door/firedoor{
 	dir = 4
@@ -170072,7 +170083,7 @@ gjq
 gjq
 scw
 hyj
-slX
+pEZ
 oXx
 ceY
 kbq
@@ -259536,7 +259547,7 @@ cLo
 uvt
 fJF
 oed
-eNk
+wkH
 mtI
 uRL
 xmf
@@ -264646,7 +264657,7 @@ tlH
 tlH
 nXb
 wrX
-iqW
+pjf
 wrX
 oHH
 oHH
@@ -267775,7 +267786,7 @@ bln
 bln
 bln
 hyV
-fiU
+ffF
 bgx
 vzD
 vzD

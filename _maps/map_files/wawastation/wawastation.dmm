@@ -1155,11 +1155,6 @@
 /obj/effect/spawner/random/structure/closet_maintenance,
 /turf/open/floor/plating,
 /area/station/maintenance/central/lesser)
-"aub" = (
-/obj/structure/fans/tiny,
-/obj/machinery/door/poddoor/massdriver_ordnance,
-/turf/open/floor/engine,
-/area/station/science/ordnance/testlab)
 "auj" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /turf/open/floor/engine,
@@ -10372,15 +10367,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/security/office)
-"dIo" = (
-/obj/machinery/door/poddoor/massdriver_trash,
-/obj/structure/fans/tiny,
-/obj/effect/turf_decal/tile/yellow/opposingcorners,
-/obj/effect/turf_decal/stripes/end{
-	dir = 8
-	},
-/turf/open/floor/engine,
-/area/station/maintenance/disposal)
 "dIr" = (
 /obj/effect/mapping_helpers/mail_sorting/science/research,
 /obj/structure/disposalpipe/sorting/mail/flip,
@@ -17336,6 +17322,13 @@
 	},
 /turf/open/floor/wood/large,
 /area/station/cargo/boutique)
+"geZ" = (
+/obj/structure/table/optable{
+	dir = 4
+	},
+/obj/item/clothing/mask/breath/muzzle,
+/turf/open/floor/iron/white/smooth_large,
+/area/station/science/robotics/lab)
 "gfe" = (
 /obj/effect/turf_decal/tile/blue/fourcorners,
 /obj/machinery/iv_drip,
@@ -21356,16 +21349,6 @@
 /obj/machinery/nuclearbomb/selfdestruct,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/command/nuke_storage)
-"hwa" = (
-/obj/structure/table/optable,
-/obj/machinery/camera/autoname/directional/west{
-	network = list("ss13","medbay")
-	},
-/obj/effect/turf_decal/tile/blue/full,
-/obj/item/radio/intercom/directional/north,
-/obj/item/clothing/mask/breath/muzzle,
-/turf/open/floor/iron/white,
-/area/station/medical/surgery)
 "hwb" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -25461,6 +25444,18 @@
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/airless,
 /area/station/maintenance/department/science)
+"iXf" = (
+/obj/machinery/door/poddoor/massdriver_trash,
+/obj/effect/turf_decal/tile/yellow/opposingcorners,
+/obj/effect/turf_decal/stripes/end{
+	dir = 8
+	},
+/obj/machinery/atmos_shield_gen/active{
+	dir = 1
+	},
+/obj/machinery/atmos_shield_gen/active,
+/turf/open/floor/engine,
+/area/station/maintenance/disposal)
 "iXj" = (
 /obj/effect/spawner/structure/window/reinforced/tinted,
 /turf/open/floor/plating,
@@ -28483,6 +28478,14 @@
 /obj/machinery/computer/security/telescreen/minisat/directional/west,
 /turf/open/floor/iron,
 /area/station/command/bridge)
+"jXJ" = (
+/obj/machinery/door/poddoor/massdriver_ordnance,
+/obj/machinery/atmos_shield_gen/active,
+/obj/machinery/atmos_shield_gen/active{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/station/science/ordnance/testlab)
 "jXL" = (
 /obj/effect/spawner/random/trash/garbage{
 	spawn_scatter_radius = 1
@@ -36272,12 +36275,6 @@
 /obj/effect/mapping_helpers/broken_floor,
 /turf/open/floor/plating,
 /area/station/maintenance/port/greater)
-"mFb" = (
-/obj/structure/fans/tiny,
-/obj/machinery/door/poddoor/massdriver_chapel,
-/obj/effect/turf_decal/stripes/full,
-/turf/open/floor/iron/dark,
-/area/station/service/chapel/funeral)
 "mFe" = (
 /obj/structure/chair/office{
 	dir = 4
@@ -56524,13 +56521,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/engine/cult,
 /area/station/service/library)
-"tAC" = (
-/obj/structure/table/optable{
-	dir = 4
-	},
-/obj/item/clothing/mask/breath/muzzle,
-/turf/open/floor/iron/white/smooth_large,
-/area/station/science/robotics/lab)
 "tAL" = (
 /obj/item/exodrone,
 /obj/machinery/exodrone_launcher,
@@ -65564,6 +65554,16 @@
 "wHJ" = (
 /turf/closed/wall/r_wall,
 /area/station/ai_monitored/turret_protected/aisat_interior)
+"wIn" = (
+/obj/structure/table/optable,
+/obj/machinery/camera/autoname/directional/west{
+	network = list("ss13","medbay")
+	},
+/obj/effect/turf_decal/tile/blue/full,
+/obj/item/radio/intercom/directional/north,
+/obj/item/clothing/mask/breath/muzzle,
+/turf/open/floor/iron/white,
+/area/station/medical/surgery)
 "wIr" = (
 /obj/effect/turf_decal/tile/dark_red/opposingcorners,
 /obj/structure/cable,
@@ -66850,6 +66850,17 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/station/medical/chemistry/minisat)
+"xfc" = (
+/obj/machinery/door/poddoor/massdriver_chapel,
+/obj/effect/turf_decal/stripes/full,
+/obj/machinery/atmos_shield_gen/active{
+	dir = 4
+	},
+/obj/machinery/atmos_shield_gen/active{
+	dir = 8
+	},
+/turf/open/floor/iron/dark,
+/area/station/service/chapel/funeral)
 "xfi" = (
 /obj/effect/turf_decal/trimline/yellow/filled/corner{
 	dir = 1
@@ -81781,7 +81792,7 @@ jtv
 jLv
 mxq
 mxq
-dIo
+iXf
 mxq
 pRM
 pRM
@@ -82082,7 +82093,7 @@ xKp
 rnk
 dnO
 rnk
-hwa
+wIn
 oSP
 uRb
 xBS
@@ -100346,7 +100357,7 @@ gLK
 azg
 thg
 fUj
-mFb
+xfc
 cLf
 cLf
 cLf
@@ -105438,7 +105449,7 @@ lOy
 poZ
 xOU
 exk
-tAC
+geZ
 cya
 vpq
 qKm
@@ -115971,7 +115982,7 @@ dUc
 dUc
 dUc
 moe
-aub
+jXJ
 moe
 dUc
 cLf

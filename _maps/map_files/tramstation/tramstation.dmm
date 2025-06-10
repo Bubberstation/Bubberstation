@@ -2314,13 +2314,6 @@
 /obj/structure/mirror/directional/west,
 /turf/open/floor/iron/showroomfloor,
 /area/station/commons/vacant_room)
-"aiX" = (
-/obj/machinery/door/poddoor/massdriver_trash{
-	id = "fortnitedoor"
-	},
-/obj/structure/fans/tiny,
-/turf/open/floor/plating,
-/area/station/maintenance/disposal)
 "ajc" = (
 /obj/machinery/button/door/directional/west{
 	name = "Privacy Bolts";
@@ -13674,17 +13667,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
-"dGB" = (
-/obj/structure/table/reinforced,
-/obj/structure/window/spawner/directional/north,
-/obj/structure/window/spawner/directional/west,
-/obj/item/circular_saw,
-/obj/item/scalpel{
-	pixel_y = 11
-	},
-/obj/item/clothing/mask/breath/muzzle,
-/turf/open/floor/iron/white,
-/area/station/science/robotics/lab)
 "dGJ" = (
 /obj/effect/turf_decal/trimline/neutral/filled/line{
 	dir = 4
@@ -16869,6 +16851,17 @@
 	},
 /turf/open/floor/iron/smooth,
 /area/station/command/gateway)
+"eQY" = (
+/obj/structure/table/reinforced,
+/obj/structure/window/spawner/directional/north,
+/obj/structure/window/spawner/directional/west,
+/obj/item/circular_saw,
+/obj/item/scalpel{
+	pixel_y = 11
+	},
+/obj/item/clothing/mask/breath/muzzle,
+/turf/open/floor/iron/white,
+/area/station/science/robotics/lab)
 "eRb" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/decal/cleanable/dirt,
@@ -25969,6 +25962,16 @@
 /obj/structure/cable,
 /turf/open/floor/iron/white,
 /area/station/security/medical)
+"ioc" = (
+/obj/machinery/door/poddoor/massdriver_chapel,
+/obj/machinery/atmos_shield_gen/active{
+	dir = 4
+	},
+/obj/machinery/atmos_shield_gen/active{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/station/service/chapel/monastery)
 "iog" = (
 /obj/machinery/duct,
 /obj/effect/turf_decal/trimline/neutral/filled/line,
@@ -38816,11 +38819,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /turf/open/floor/iron/grimy,
 /area/station/hallway/secondary/entry)
-"mEH" = (
-/obj/machinery/door/poddoor/massdriver_chapel,
-/obj/structure/fans/tiny,
-/turf/open/floor/plating,
-/area/station/service/chapel/monastery)
 "mEK" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -50585,6 +50583,14 @@
 	},
 /turf/open/floor/iron,
 /area/station/commons/dorms)
+"qSe" = (
+/obj/machinery/door/poddoor/massdriver_ordnance,
+/obj/machinery/atmos_shield_gen/active,
+/obj/machinery/atmos_shield_gen/active{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/station/science/ordnance/testlab)
 "qSg" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Trial Cell B"
@@ -64503,6 +64509,16 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
+"vBr" = (
+/obj/machinery/door/poddoor/massdriver_trash{
+	id = "fortnitedoor"
+	},
+/obj/machinery/atmos_shield_gen/active{
+	dir = 1
+	},
+/obj/machinery/atmos_shield_gen/active,
+/turf/open/floor/plating,
+/area/station/maintenance/disposal)
 "vBs" = (
 /obj/machinery/duct,
 /obj/structure/cable,
@@ -66142,11 +66158,6 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
-"wgM" = (
-/obj/machinery/door/poddoor/massdriver_ordnance,
-/obj/structure/fans/tiny,
-/turf/open/floor/plating,
-/area/station/science/ordnance/testlab)
 "wgQ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -120449,7 +120460,7 @@ xSG
 xSG
 xSG
 vle
-aiX
+vBr
 vle
 aaa
 aaa
@@ -125370,7 +125381,7 @@ aac
 aac
 ign
 ign
-wgM
+qSe
 ign
 ign
 aac
@@ -155715,7 +155726,7 @@ aRy
 aRE
 aRI
 aRL
-mEH
+ioc
 pMW
 pMW
 pMW
@@ -179335,7 +179346,7 @@ dzu
 doK
 kWg
 psa
-dGB
+eQY
 nns
 soq
 abM

@@ -3138,6 +3138,16 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/testlab)
+"aNc" = (
+/obj/machinery/door/poddoor/massdriver_chapel,
+/obj/machinery/atmos_shield_gen/active{
+	dir = 4
+	},
+/obj/machinery/atmos_shield_gen/active{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/station/service/chapel/funeral)
 "aNd" = (
 /obj/structure/chair/stool/directional/west,
 /obj/structure/cable,
@@ -12138,12 +12148,6 @@
 "cUF" = (
 /turf/closed/wall,
 /area/station/engineering/atmos/project)
-"cUJ" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/poddoor/massdriver_ordnance,
-/obj/structure/fans/tiny,
-/turf/open/floor/plating/airless,
-/area/station/science/ordnance/testlab)
 "cUU" = (
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 8
@@ -14990,11 +14994,6 @@
 /obj/structure/sign/warning/radiation/directional/north,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
-"dHN" = (
-/obj/machinery/door/poddoor/massdriver_chapel,
-/obj/structure/fans/tiny,
-/turf/open/floor/plating,
-/area/station/service/chapel/funeral)
 "dHQ" = (
 /obj/effect/turf_decal/tile/brown/half/contrasted,
 /turf/open/floor/iron,
@@ -39817,21 +39816,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/security/range)
-"jPB" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/gloves/latex,
-/obj/item/surgical_drapes,
-/obj/item/clothing/suit/apron/surgical,
-/obj/structure/window/reinforced/spawner/directional/north{
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = -10;
-	pixel_y = -4
-	},
-/obj/item/clothing/mask/breath/muzzle,
-/turf/open/floor/iron,
-/area/station/science/robotics/lab)
 "jPC" = (
 /obj/machinery/telecomms/bus/preset_two,
 /obj/effect/turf_decal/tile/neutral/anticorner/contrasted{
@@ -43886,6 +43870,21 @@
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /turf/open/floor/iron,
 /area/station/maintenance/fore)
+"kRZ" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/gloves/latex,
+/obj/item/surgical_drapes,
+/obj/item/clothing/suit/apron/surgical,
+/obj/structure/window/reinforced/spawner/directional/north{
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = -10;
+	pixel_y = -4
+	},
+/obj/item/clothing/mask/breath/muzzle,
+/turf/open/floor/iron,
+/area/station/science/robotics/lab)
 "kSa" = (
 /obj/item/kirbyplants/organic/plant21,
 /obj/effect/turf_decal/stripes/line{
@@ -52399,6 +52398,15 @@
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood/large,
 /area/station/service/library)
+"mXl" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/poddoor/massdriver_ordnance,
+/obj/machinery/atmos_shield_gen/active{
+	dir = 1
+	},
+/obj/machinery/atmos_shield_gen/active,
+/turf/open/floor/plating/airless,
+/area/station/science/ordnance/testlab)
 "mXr" = (
 /obj/structure/cable,
 /obj/structure/table/wood,
@@ -66027,6 +66035,17 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos)
+"qrj" = (
+/obj/machinery/door/poddoor/massdriver_trash,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/atmos_shield_gen/active{
+	dir = 1
+	},
+/obj/machinery/atmos_shield_gen/active,
+/turf/open/floor/iron,
+/area/station/maintenance/disposal)
 "qrv" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin,
@@ -67329,29 +67348,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
-"qIA" = (
-/obj/structure/table/reinforced,
-/obj/item/tank/internals/anesthetic{
-	pixel_x = 3
-	},
-/obj/item/tank/internals/anesthetic,
-/obj/item/tank/internals/anesthetic{
-	pixel_x = -3
-	},
-/obj/structure/window/reinforced/spawner/directional/west,
-/obj/machinery/status_display/evac/directional/south,
-/obj/machinery/door/window/left/directional/north{
-	name = "Surgical Supplies";
-	req_access = list("surgery")
-	},
-/obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/item/clothing/mask/breath/muzzle{
-	pixel_y = -4
-	},
-/obj/item/clothing/mask/breath/muzzle,
-/obj/item/clothing/mask/breath/muzzle,
-/turf/open/floor/iron/dark,
-/area/station/medical/surgery/theatre)
 "qIE" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/public/glass{
@@ -71381,14 +71377,6 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/medical/virology)
-"rKW" = (
-/obj/machinery/door/poddoor/massdriver_trash,
-/obj/structure/fans/tiny,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/iron,
-/area/station/maintenance/disposal)
 "rLa" = (
 /obj/effect/turf_decal/tile/brown/half/contrasted{
 	dir = 4
@@ -72651,6 +72639,29 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/iron,
 /area/station/cargo/miningoffice)
+"rZe" = (
+/obj/structure/table/reinforced,
+/obj/item/tank/internals/anesthetic{
+	pixel_x = 3
+	},
+/obj/item/tank/internals/anesthetic,
+/obj/item/tank/internals/anesthetic{
+	pixel_x = -3
+	},
+/obj/structure/window/reinforced/spawner/directional/west,
+/obj/machinery/status_display/evac/directional/south,
+/obj/machinery/door/window/left/directional/north{
+	name = "Surgical Supplies";
+	req_access = list("surgery")
+	},
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/item/clothing/mask/breath/muzzle{
+	pixel_y = -4
+	},
+/obj/item/clothing/mask/breath/muzzle,
+/obj/item/clothing/mask/breath/muzzle,
+/turf/open/floor/iron/dark,
+/area/station/medical/surgery/theatre)
 "rZf" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
@@ -126246,7 +126257,7 @@ fLf
 fLf
 fLf
 blX
-cUJ
+mXl
 kzc
 rnW
 qQM
@@ -129547,7 +129558,7 @@ xPX
 rvI
 inb
 cni
-jPB
+kRZ
 vPV
 pTC
 pTC
@@ -137810,7 +137821,7 @@ aVy
 lHd
 gxA
 qQa
-qIA
+rZe
 qYL
 uAV
 xyN
@@ -145404,7 +145415,7 @@ aaa
 aac
 aad
 kic
-rKW
+qrj
 kic
 kic
 oeX
@@ -148355,7 +148366,7 @@ cYP
 gcB
 rIl
 cfy
-dHN
+aNc
 aaa
 aaa
 aaa
