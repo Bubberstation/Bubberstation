@@ -4,7 +4,7 @@ Coil Rifle
 */
 
 /obj/item/gun/ballistic/automatic/coilgun
-	name = "\improper RomTech MEC-1E "
+	name = "\improper RomTech MEC-1E"
 	desc = "The magnetic experimental coil 1 or the Coilgun as it is called, uses electromagnetic coil to propel a solid projectile at enemy at high speed.\
 		Used by Romulus Federation Military Force and Kepler Colonial Defense \
 	    Developed by 'The Citadel'. It was intended to be a replacement for the aging RT-M4A\
@@ -25,8 +25,8 @@ Coil Rifle
 	force = 15
 	mag_display = TRUE
 	projectile_damage_multiplier = 2
-	projectile_speed_multiplier = 1.2
-	fire_delay = 1
+	projectile_speed_multiplier = 1.4
+	fire_delay = 2
 	burst_size = 1
 	actions_types = list()
 	spread = 7
@@ -45,8 +45,6 @@ Coil Rifle
 	var/degradation_probability = 10
 	/// The maximum speed malus for projectile flight speed. Projectiles probably shouldn't move too slowly or else they will start to cause problems.
 	var/maximum_speed_malus = 0.7
-	/// What is our damage multiplier if the gun is emagged?
-	var/emagged_projectile_damage_multiplier = 2.5
 
 	/// Whether or not our gun is suffering an EMP related malfunction.
 	var/emp_malfunction = FALSE
@@ -55,11 +53,6 @@ Coil Rifle
 	var/explosion_timer
 
 	SET_BASE_PIXEL(-8, 0)
-
-/obj/item/gun/ballistic/automatic/coilgun/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/scope, range_modifier = 2)
-	register_context()
 
 /obj/item/gun/ballistic/automatic/coilgun/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
@@ -72,12 +65,12 @@ Coil Rifle
 	. = ..()
 	. += span_notice("<b><i>Looking down at \the [src], you recall something you read in a promotional pamphlet... </i></b>")
 
-	. += span_info("The BR-38 possesses an acceleration rail that launches bullets at higher than typical velocity.\
+	. += span_info("The MEC-1E possesses an acceleration rail that launches bullets at higher than typical velocity.\
 		This allows even less powerful cartridges to put out significant amounts of stopping power.")
 
 	. += span_notice("<b><i>However, you also remember some of the rumors...  </i></b>")
 
-	. += span_notice("In a sour twist of irony for Nanotrasen's historical issues with ballistics-based security weapons, the BR-38 has one significant flaw. \
+	. += span_notice("In a sour twist of irony for Nanotrasen's historical issues with ballistics-based security weapons, the MEC-1E has one significant flaw. \
 		It is possible for the weapon to suffer from unintended discombulations due to closed heat distribution systems should the weapon be tampered with. \
 		R&D are working on this issue before the weapon sees commercial sales. That, and trying to work out why the weapon's onboard computation systems suffer \
 		from so many calculation errors.")
@@ -111,15 +104,6 @@ Coil Rifle
 		emp_malfunction = TRUE
 		attempt_degradation(TRUE)
 
-/obj/item/gun/ballistic/automatic/coilgun/emag_act(mob/user, obj/item/card/emag/emag_card)
-	. = ..()
-	if(obj_flags & EMAGGED)
-		return FALSE
-	obj_flags |= EMAGGED
-	projectile_damage_multiplier = emagged_projectile_damage_multiplier
-	balloon_alert(user, "heat distribution systems deactivated")
-	return TRUE
-
 /obj/item/gun/ballistic/automatic/coilgun/multitool_act(mob/living/user, obj/item/tool)
 	if(!tool.use_tool(src, user, 20 SECONDS, volume = 50))
 		balloon_alert(user, "interrupted!")
@@ -143,9 +127,6 @@ Coil Rifle
 		shots_before_degradation --
 		return
 
-	else if ((obj_flags & EMAGGED) && degradation_stage == degradation_stage_max && !explosion_timer)
-		perform_extreme_malfunction(user)
-
 	else
 		attempt_degradation(FALSE)
 
@@ -163,7 +144,7 @@ Coil Rifle
 	if(!prob(degradation_probability) && !force_increment || degradation_stage == degradation_stage_max)
 		return //Only update if we actually increment our degradation stage
 
-	degradation_stage = clamp(degradation_stage + (obj_flags & EMAGGED ? 2 : 1), 0, degradation_stage_max)
+	degradation_stage = clamp(degradation_stage + (obj_flags ? 2 : 1), 0, degradation_stage_max)
 	projectile_speed_multiplier = clamp(initial(projectile_speed_multiplier) + degradation_stage * 0.1, initial(projectile_speed_multiplier), maximum_speed_malus)
 	fire_delay = initial(fire_delay) + (degradation_stage * 0.5)
 	do_sparks(1, TRUE, src)
@@ -186,17 +167,6 @@ Coil Rifle
 			fire_delay = initial(fire_delay)
 
 	update_appearance()
-
-/// Proc to handle the countdown for our detonation
-/obj/item/gun/ballistic/automatic/coilgun/proc/perform_extreme_malfunction(mob/living/user)
-	balloon_alert(user, "gun is exploding, throw it!")
-	explosion_timer = addtimer(CALLBACK(src, PROC_REF(fucking_explodes_you)), 5 SECONDS, (TIMER_UNIQUE|TIMER_OVERRIDE))
-	playsound(src, 'sound/items/weapons/gun/general/empty_alarm.ogg', 50, FALSE)
-
-/// proc to handle our detonation
-/obj/item/gun/ballistic/automatic/coilgun/proc/fucking_explodes_you()
-	explosion(src, devastation_range = 1, heavy_impact_range = 3, light_impact_range = 6, explosion_cause = src)
-
 
 //Flechette Rifle
 //This Replace The Battle Rifle, handle with care please
