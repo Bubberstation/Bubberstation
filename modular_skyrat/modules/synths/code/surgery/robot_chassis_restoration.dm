@@ -8,9 +8,9 @@
 		/datum/surgery_step/open_hatch,
 		/datum/surgery_step/mechanic_unwrench,
 		/datum/surgery_step/prepare_electronics,
-		/datum/surgery_step/weld_plating/fullbody,
+		/datum/surgery_step/weld_plating_slice/fullbody,
 		/datum/surgery_step/finalize_positronic_restoration,
-		/datum/surgery_step/add_plating/fullbody, // Adding this so you actualy heal the revival's damage
+		/datum/surgery_step/weld_plating/fullbody,
 		/datum/surgery_step/mechanic_close,
 	)
 
@@ -36,11 +36,27 @@
 		span_notice("[user] begins to pry open the outer protective panels on [target]'s braincase."),
 		span_notice("[user] begins to pry open the panels on [target]'s braincase.")
 	)
-
 /datum/surgery_step/weld_plating/fullbody
 	time = 2 SECONDS
 
 /datum/surgery_step/weld_plating/fullbody/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+	display_results(
+		user,
+		target,
+		span_notice("You begin to weld the inner protective panels of [target]'s braincase..."),
+		span_notice("[user] begins to weld the inner protective panels of [target]'s braincase."),
+		span_notice("[user] begins to weld the panels from [target]'s braincase.")
+	)
+
+/datum/surgery_step/weld_plating/fullbody/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+	. = ..()
+
+	target.heal_bodypart_damage(brute = SYNTH_REVIVE_WELD_INTERNALS_DAMAGE, target_zone = "[target_zone]")
+
+/datum/surgery_step/weld_plating_slice/fullbody
+	time = 2 SECONDS
+
+/datum/surgery_step/weld_plating_slice/fullbody/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(
 		user,
 		target,
@@ -49,7 +65,7 @@
 		span_notice("[user] begins to slice the panels from [target]'s braincase.")
 	)
 
-/datum/surgery_step/weld_plating/fullbody/success(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results)
+/datum/surgery_step/weld_plating_slice/fullbody/success(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results)
 	. = ..()
 
 	target.apply_damage(SYNTH_REVIVE_WELD_INTERNALS_DAMAGE, BRUTE, "[target_zone]", wound_bonus = CANT_WOUND)
