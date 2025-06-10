@@ -6,12 +6,7 @@ Coil Rifle
 /obj/item/gun/ballistic/automatic/coilgun
 	name = "\improper RomTech MEC-1E"
 	desc = "The magnetic experimental coil 1 or the Coilgun as it is called, uses electromagnetic coil to propel a solid projectile at enemy at high speed.\
-		Used by Romulus Federation Military Force and Kepler Colonial Defense \
-	    Developed by 'The Citadel'. It was intended to be a replacement for the aging RT-M4A\
-		Which by this point was no longer being produced due to improved technology in manufacturing. Relegating gunpowder-based firearm to only hardline conservatives \
-		The gun has a safety feature that prevents it from being fired one handed\
-		Despite it being made of lightweight polymer because of NCE believing the guns would be 'un-balanced' in the wrong hands.\
-		Some part of the gun feels oddly <b> Hollow. </b>"
+		Used by Romulus Federation Military Force and Kepler Colonial Defense"
 	icon = 'icons/obj/weapons/guns/wide_guns.dmi'
 	icon_state = "battle_rifle"
 	inhand_icon_state = "battle_rifle"
@@ -71,10 +66,11 @@ Coil Rifle
 
 	. += span_notice("<b><i>However, you also remember some of the rumors...  </i></b>")
 
-	. += span_notice("In a sour twist of irony for Nanotrasen's historical issues with ballistics-based security weapons, the MEC-1E has one significant flaw. \
-		It is possible for the weapon to suffer from unintended discombulations due to closed heat distribution systems should the weapon be tampered with. \
-		R&D are working on this issue before the weapon sees commercial sales. That, and trying to work out why the weapon's onboard computation systems suffer \
-		from so many calculation errors.")
+	. += span_notice("Developed by 'The Citadel'. It was intended to be a replacement for the aging RT-M4A\
+		Which by this point was no longer being produced due to improved technology in manufacturing. Relegating gunpowder-based firearm to only hardline conservatives \
+		The gun has a safety feature that prevents it from being fired one handed\
+		Despite it being made of lightweight polymer because of NCE believing the guns would be 'un-balanced' in the wrong hands.\
+		Some part of the gun feels oddly <b> Hollow. </b>")
 
 /obj/item/gun/ballistic/automatic/coilgun/examine(mob/user)
 	. = ..()

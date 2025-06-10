@@ -1,6 +1,6 @@
 /obj/item/ammo_casing/cacoil
-	name = "coilgun round (5.7mm)"
-	desc = "A Commonwealth Standard coilgun. Contains a dart inside the metallic casing"
+	name = "coilgun driver (5.7mm)"
+	desc = "A Commonwealth Standard coilgun casing. Contains a dart inside the metallic casing"
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/romulus_technology/ammo.dmi'
 	icon_state = "sl-casing"
