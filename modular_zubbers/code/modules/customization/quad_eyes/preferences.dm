@@ -19,7 +19,7 @@
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "quad_eyes_offset"
 	savefile_identifier = PREFERENCE_CHARACTER
-	maximum = 0
+	maximum = 0 // Any value higher than this and the eyes don't appear after the character is spawned in.
 	minimum = -2
 
 /datum/preference/numeric/quad_eyes_offset/is_accessible(datum/preferences/preferences)
