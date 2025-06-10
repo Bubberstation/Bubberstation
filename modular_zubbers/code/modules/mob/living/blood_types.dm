@@ -214,7 +214,7 @@
 /datum/blood_type/lizard/alt_color/New(datum/blood_type/override)
 	id = type_key()
 	if(!isnull(override.color))
-		.color = override.color
+		color = override.color
 	root_abstract_type = null
 
 /datum/blood_type/lizard/alt_color/type_key()
