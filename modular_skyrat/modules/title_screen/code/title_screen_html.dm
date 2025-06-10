@@ -170,13 +170,12 @@ GLOBAL_LIST_EMPTY(startup_messages)
 		"}
 
 	// Tell the server this page loaded.
-	dat += {"
-		<script>
-			var ready_request = new XMLHttpRequest();
-			ready_request.open("GET", "?src=[text_ref(src)];title_is_ready=1", true);
-			ready_request.send();
-		</script>
-	"}
+	if(!title_screen_is_ready)
+		dat += {"
+			<script>
+				location.href = "byond://?src=[text_ref(src)];title_is_ready=1";
+			</script>
+		"}
 
 	dat += "</body></html>"
 
