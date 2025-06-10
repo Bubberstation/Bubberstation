@@ -1,7 +1,3 @@
-/obj/item/organ/eyes
-	/// Offset to the Y-pixel for if the mob has four eyes or not. Positive is up, negative is down.
-	var/quad_eyes_offset = 0
-
 /obj/item/organ/eyes/shadekin
 	name = "shadekin eyes"
 	desc = "These eyes are massive, and feel warm to the touch. The shadekin that's missing these is probably feeling very queasy."
