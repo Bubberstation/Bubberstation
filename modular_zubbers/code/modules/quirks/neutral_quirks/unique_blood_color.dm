@@ -41,7 +41,7 @@
 			override.color = BLOOD_COLOR_WHITE
 		else
 			CRASH("incorrect/missing /datum/preference/choiced/select_blood_color - [selected_color]")
-	///Check if new blood type is same as old. Jank! But it should prevent cases of special blood types made from relative normal blood
+///Check if new blood type is same as old. Jank, but it should prevent cases of special blood types made from relative normal blood
 	if(human_holder.dna.blood_type.color == override.color)
 		to_chat(human_holder, span_notice("...your blood selected blood colour was your species' default hue. Quirk removed."))
 		remove_from_current_holder()
@@ -53,15 +53,10 @@
 /datum/quirk/unique_blood_color/proc/change_blood_color(datum/source, mob/living/carbon/human/quirked, datum/blood_type/override, update_cached_blood_dna_info)
 	SIGNAL_HANDLER
 ///Making the new blood type
-	var/datum/blood_type/new_blood_type = get_blood_type("[quirked.dna.blood_type.name]_alt_[override.color]") //for example, A-_alt_#69af19
+	var/datum/blood_type/new_blood_type = get_blood_type("[quirked.dna.blood_type]_alt_[override.color]") //for example, A-_alt_#69af19
+///check if blood type already exists before making it new
 	if(isnull(new_blood_type))
-		//appends /alt_color to the datum path??? idk
-		var/blood_type_path = "[quirked.dna.blood_type]/alt_color"
-		CRASH("[blood_type_path]")
-		new_blood_type = new /datum/blood_type/lizard/alt_color(override_blood_type = override)
+		var/recolor_type = quirked.dna.blood_type.recolor_blood_type
+		new_blood_type = new recolor_type(override_blood_type = override)
 		GLOB.blood_types[new_blood_type.id] = new_blood_type
 	quirked.set_blood_type(new_blood_type)
-
-	if(quirked.dna.species.exotic_bloodtype)
-		quirked.dna.species.exotic_bloodtype = new_blood_type
-
