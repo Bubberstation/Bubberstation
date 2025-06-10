@@ -1,4 +1,4 @@
-/datum/techweb_node/basic_arms
+/datum/techweb_node/basic_arms/New()
 	id = TECHWEB_NODE_BASIC_ARMS
 	starting_node = TRUE
 	display_name = "Basic Arms"
@@ -20,7 +20,7 @@
 		"m9mm_sec",
 		)
 
-/datum/techweb_node/exotic_ammo
+/datum/techweb_node/exotic_ammo/New()
 	id = TECHWEB_NODE_EXOTIC_AMMO
 	display_name = "Exotic Ammunition"
 	description = "Specialized bullets designed to ignite, freeze, and inflict various other effects on targets, expanding combat capabilities."
