@@ -24,6 +24,20 @@
 	ammo_type = /obj/item/ammo_casing/c457govt
 
 //Rifle Magazine
+/obj/item/ammo_box/magazine/cacoil
+	name = "coilgun driver magazine (5.7mm)"
+	desc = "Contains specialised casing that house a smaller dart. Do not leave near Teshari."
+	ammo_type = /obj/item/ammo_casing/cacoil
+	caliber = CALIBER_COIL
+	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/romulus_technology/ammo.dmi'
+	icon_state = "pcr"
+	max_ammo = 20
+	multitype = TRUE
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
+	w_class = WEIGHT_CLASS_NORMAL
+	ammo_band_icon = "+pcr_ammo_band"
+	ammo_band_color = null
+
 /obj/item/ammo_box/magazine/caflechette
 	name = "flechette penetrator box"
 	ammo_type = /obj/item/ammo_casing/caflechette
