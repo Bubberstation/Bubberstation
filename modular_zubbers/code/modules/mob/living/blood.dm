@@ -28,7 +28,7 @@
 		readout+="[i], "
 	NOTICE("mass_edit_blood_compatability successfully invoked: [readout]is/are  [mode_remove ? "no longer" : "now"] compatible with all blood types compatible containing ([filter]) or if null, all of them.")
 
-///don't call this
+///don't call this. also this entire section hasnt been tested because it hasn't gotten to run yet.
 /proc/actually_MEBC(list/to_append, datum/blood_type/target, mode_remove)
 	var/readout = ""
 	var/list/compat_list = LAZYCOPY(target::compatible_types)
