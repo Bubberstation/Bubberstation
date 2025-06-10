@@ -19,7 +19,7 @@
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "quad_eyes_offset"
 	savefile_identifier = PREFERENCE_CHARACTER
-	maximum = 2
+	maximum = 0
 	minimum = -2
 
 /datum/preference/numeric/quad_eyes_offset/is_accessible(datum/preferences/preferences)
