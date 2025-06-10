@@ -6,6 +6,7 @@
 		This module has been partially reverse engineered from competing combat MOD technology, \
 		and does not help reduce the bulkiness of many of the suits it is installed in."
 	space_slowdown = 0 //This is to nerf your armour, not buff your modsuit speed
+	incompatible_modules = list(/obj/item/mod/module/armor_booster, /obj/item/mod/module/headprotector) //removed the flash protection, you CAN use the welding module with this
 	icon = 'icons/obj/clothing/suits/armor.dmi'
 	icon_state = "heavy" //SWAT suit icon, because I want to change the action buttons and these aren't meant to be obtainable outside the suits
 
@@ -40,6 +41,7 @@
 	energy = 20
 
 /obj/item/mod/module/armor_booster/nanotrasen/centcom/ //re-adds welding protection
+	incompatible_modules = list(/obj/item/mod/module/armor_booster, /obj/item/mod/module/welding, /obj/item/mod/module/headprotector)
 
 /obj/item/mod/module/armor_booster/nanotrasen/centcom/on_part_activation()
 	RegisterSignal(mod, COMSIG_MOD_UPDATE_SPEED, PROC_REF(on_update_speed))
