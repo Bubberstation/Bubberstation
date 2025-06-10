@@ -66,7 +66,7 @@ Coil Rifle
 
 	. += span_notice("<b><i>However, you also remember some of the rumors...  </i></b>")
 
-	. += span_notice("Developed by 'The Citadel'. It was intended to be a replacement for the aging RT-M4A\
+	. += span_notice("Developed by 'The Citadel' Prior to construction of Space Station 13. It was intended to be a replacement for the aging RT-M4A\
 		Which by this point was no longer being produced due to improved technology in manufacturing. Relegating gunpowder-based firearm to only hardline conservatives \
 		The gun has a safety feature that prevents it from being fired one handed\
 		Despite it being made of lightweight polymer because of NCE believing the guns would be 'un-balanced' in the wrong hands.\
