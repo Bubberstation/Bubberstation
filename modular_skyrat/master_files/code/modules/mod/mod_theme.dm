@@ -113,7 +113,7 @@
 	wound = 15
 
 /datum/mod_theme/security // Security Officer
-	default_skin = "security blue"
+	default_skin = "security_blue"
 	armor_type = /datum/armor/mod_theme_security
 	variants = list(
 		"security" = list(
@@ -199,7 +199,7 @@
 
 /datum/mod_theme/safeguard // Head of Security
 	armor_type = /datum/armor/mod_theme_safeguard
-	default_skin = "safeguard blue"
+	default_skin = "safeguard_blue"
 	variants = list(
 		"safeguard" = list(
 			/obj/item/clothing/head/mod = list(
