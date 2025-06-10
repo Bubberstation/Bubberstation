@@ -9,7 +9,8 @@ Coil Rifle
 		Used by Romulus Federation Military Force and Kepler Colonial Defense \
 	    Developed by 'The Citadel'. It was intended to be a replacement for the aging RT-M4A\
 		Which by this point was no longer being produced due to improved technology in manufacturing. Relegating gunpowder-based firearm to only hardline conservatives \
-		The gun has a safety feature that prevents it from being fired one handed despite it being made of lightweight polymer because of NCE believing the guns would be 'un-balanced' in the wrong hands.\
+		The gun has a safety feature that prevents it from being fired one handed\
+		Despite it being made of lightweight polymer because of NCE believing the guns would be 'un-balanced' in the wrong hands.\
 		Some part of the gun feels oddly <b> Hollow. </b>"
 	icon = 'icons/obj/weapons/guns/wide_guns.dmi'
 	icon_state = "battle_rifle"

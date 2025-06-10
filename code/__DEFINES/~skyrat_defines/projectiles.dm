@@ -28,3 +28,5 @@
 #define CALIBER_457GOVT ".457 Government"
 
 #define CALIBER_FLECHETTE "Flechette"
+
+#define CALIBER_COIL "Coil"
