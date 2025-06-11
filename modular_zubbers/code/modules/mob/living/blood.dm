@@ -17,15 +17,18 @@
 		testing("is compat_list null? [readout]")
 		readout = ""
 		testing("filter is [filter]")
-		switch(filter)
-			if(isnull(filter))
-				testing("filter null")
-				actually_MEBC(to_append, target, mode_remove)
-			if(filter in compat_list) //cascading error from above....
-				testing("filter found")
-				actually_MEBC(to_append, target, mode_remove)
-			else
-				testing("[target] skipped, filtered") //this works at least
+		if(filter in compat_list)
+			readout = TRUE
+		testing("is filter in compat_list? [readout]")
+		readout = ""
+		if(isnull(filter))
+			testing("filter null")
+			actually_MEBC(to_append, target, mode_remove)
+		else if(filter in compat_list) //cascading error from above....
+			testing("filter found")
+			actually_MEBC(to_append, target, mode_remove)
+		else
+			testing("[target] skipped, filtered") //this works at least
 
 	readout = ""
 	for(var/i as anything in to_append)
