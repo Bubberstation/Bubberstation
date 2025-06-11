@@ -36,11 +36,13 @@ export const NaniteProgramHub = (props, context) => {
     programs = {},
     techweb,
   } = data;
-  const [selectedCategory, setSelectedCategory] = useSharedState(
-    context,
+  const [selectedCategory, setSelectedCategory] = useSharedState<string | null>(
     'category',
+    null,
   );
-  const programsInCategory = (programs && programs[selectedCategory]) || [];
+  const programsInCategory =
+    (programs && selectedCategory && programs[selectedCategory]) || [];
+
   return (
     <Window width={500} height={700}>
       <Window.Content scrollable>

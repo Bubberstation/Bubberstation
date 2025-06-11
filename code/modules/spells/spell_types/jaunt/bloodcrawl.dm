@@ -14,6 +14,8 @@
 
 	spell_requirements = NONE
 
+	jaunt_type = /obj/effect/dummy/phased_mob/blood
+
 	/// The time it takes to enter blood
 	var/enter_blood_time = 0 SECONDS
 	/// The time it takes to exit blood
@@ -143,8 +145,8 @@
 	playsound(landing_turf, 'sound/effects/magic/exit_blood.ogg', 50, TRUE, -1)
 
 	// Make the mob have the color of the blood pool it came out of
-	var/obj/effect/decal/cleanable/came_from = locate() in landing_turf
-	var/new_color = came_from?.get_blood_color()
+	var/obj/effect/decal/cleanable/blood/came_from = locate() in landing_turf
+	var/new_color = came_from?.color
 	if(!new_color)
 		return
 
@@ -375,3 +377,7 @@
 /obj/item/bloodcrawl/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+
+/// Different graphic for the position indicator
+/obj/effect/dummy/phased_mob/blood
+	phased_mob_icon_state = "mini_leaper"

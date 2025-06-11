@@ -11,7 +11,7 @@
 	ears = /obj/item/radio/headset/headset_srv
 	id = /obj/item/card/id/advanced
 	id_trim = /datum/id_trim/job/bartender
-	r_pocket = /obj/item/reagent_containers/cup/rag
+	r_pocket = /obj/item/rag
 	l_pocket = /obj/item/toy/cards/deck
 	l_hand = /obj/item/storage/bag/tray
 	undershirt = "Nude"
@@ -85,7 +85,7 @@
 	neck = /obj/item/clothing/neck/tie/bunnytie/centcom/tied
 	ears = /obj/item/radio/headset/headset_cent
 	id = /obj/item/card/id/advanced/centcom
-	r_pocket = /obj/item/reagent_containers/cup/rag
+	r_pocket = /obj/item/rag
 	l_pocket = /obj/item/toy/cards/deck
 	l_hand = /obj/item/storage/bag/tray
 	undershirt = "Nude"

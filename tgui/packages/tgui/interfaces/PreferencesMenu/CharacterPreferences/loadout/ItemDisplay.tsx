@@ -1,15 +1,16 @@
 import { useBackend } from 'tgui/backend';
 import {
-  Box,
-  Button,
   DmIcon,
-  Flex,
   Icon,
+  ImageButton,
   NoticeBox,
+  Stack,
+  Tooltip,
 } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 
-import { LoadoutCategory, LoadoutItem, LoadoutManagerData } from './base';
+import type { LoadoutCategory, LoadoutItem, LoadoutManagerData } from './base';
 
 type Props = {
   item: LoadoutItem;
@@ -58,58 +59,44 @@ export function ItemDisplay(props: DisplayProps) {
   const { act } = useBackend();
   const { active, item, scale = 3 } = props;
 
-  const boxSize = `${scale * 32}px`;
-
   return (
-    <Button
-      height={boxSize}
-      width={boxSize}
-      color={active ? 'green' : 'default'}
-      style={{ textTransform: 'capitalize', zIndex: '1' }}
-      tooltip={item.name}
-      tooltipPosition={'bottom'}
-      onClick={() =>
-        act('select_item', {
-          path: item.path,
-          deselect: active,
-        })
-      }
-    >
-      <Flex vertical>
-        <Flex.Item>
-          <ItemIcon item={item} scale={scale} />
-        </Flex.Item>
+    <div style={{ position: 'relative' }}>
+      <ImageButton
+        imageSize={scale * 32}
+        color={active ? 'green' : 'default'}
+        style={{ textTransform: 'capitalize', zIndex: '1' }}
+        tooltip={item.name}
+        tooltipPosition={'bottom'}
+        dmIcon={item.icon}
+        dmIconState={item.icon_state}
+        onClick={() =>
+          act('select_item', {
+            path: item.path,
+            deselect: active,
+          })
+        }
+      />
+      <div
+        style={{ position: 'absolute', top: '8px', right: '8px', zIndex: '2' }}
+      >
         {item.information.length > 0 && (
-          <Flex.Item ml={-5.5} style={{ zIndex: '3' }}>
+          <Stack vertical>
             {item.information.map((info) => (
-              <Box
-                height="9px"
-                key={info}
-                fontSize="9px"
+              <Stack.Item
+                key={info.icon}
+                fontSize="14px"
                 textColor={'darkgray'}
                 bold
               >
-                {info}
-              </Box>
+                <Tooltip position="right" content={info.tooltip}>
+                  <Icon name={info.icon} />
+                </Tooltip>
+              </Stack.Item>
             ))}
-            {
-              // SKYRAT EDIT START - EXPANDED LOADOUT
-              <Flex.Item
-                ml={5.7}
-                mt={0.35}
-                style={{ position: 'absolute', bottom: 5, right: 5 }}
-              >
-                {ShouldDisplayJobRestriction(item) && ItemJobRestriction(item)}
-                {ShouldDisplayPlayerRestriction(item) &&
-                  ItemPlayerRestriction(item)}
-              </Flex.Item>
-
-              /* SKYRAT EDIT END */
-            }
-          </Flex.Item>
+          </Stack>
         )}
-      </Flex>
-    </Button>
+      </div>
+    </div>
   );
 }
 
@@ -117,114 +104,90 @@ type ListProps = {
   items: LoadoutItem[];
 };
 
+type LoadoutGroup = {
+  items: LoadoutItem[];
+  title: string;
+};
+
+function sortByGroup(items: LoadoutItem[]): LoadoutGroup[] {
+  const groups: LoadoutGroup[] = [];
+
+  for (let i = 0; i < items.length; i++) {
+    const item: LoadoutItem = items[i];
+    let usedGroup: LoadoutGroup | undefined = groups.find(
+      (group) => group.title === item.group,
+    );
+    if (usedGroup === undefined) {
+      usedGroup = { items: [], title: item.group };
+      groups.push(usedGroup);
+    }
+    usedGroup.items.push(item);
+  }
+
+  return groups;
+}
+
 export function ItemListDisplay(props: ListProps) {
   const { data } = useBackend<LoadoutManagerData>();
   const loadout_list =
     data.character_preferences.misc.loadout_lists[
       data.character_preferences.misc.loadout_index
-    ]; // BUBBER EDIT: Multiple loadout presets: ORIGINAL: const { loadout_list } = data.character_preferences.misc;
-  const itemList = FilterItemList(props.items); // SKYRAT EDIT - EXPANDED LOADOUT
+    ]; // BUBBER EDIT CHANGE: Multiple loadout presets: Original: data.character_preferences.misc;
+  const itemGroups = sortByGroup(FilterItemList(props.items)); // BUBBER EDIT CHANGE: Filter ckey-locked items - ORIGINAL: const itemGroups = sortByGroup(props.items);
+
   return (
-    <Flex wrap>
-      {itemList.map((item /* SKYRAT EDIT : {props.items.map((item) => (*/) => (
-        <Flex.Item key={item.name} mr={2} mb={2}>
-          <ItemDisplay
-            item={item}
-            active={loadout_list && loadout_list[item.path] !== undefined}
-          />
-        </Flex.Item>
+    <Stack vertical>
+      {itemGroups.length > 1 && <Stack.Item />}
+      {itemGroups.map((group) => (
+        <Stack.Item key={group.title}>
+          <Stack vertical>
+            {itemGroups.length > 1 && (
+              <>
+                <Stack.Item mt={-1.5} mb={-0.8} ml={1.5}>
+                  <h3 color="grey">{group.title}</h3>
+                </Stack.Item>
+                <Stack.Divider />
+              </>
+            )}
+            <Stack.Item>
+              <Stack wrap g={0.5}>
+                {group.items.map((item) => (
+                  <Stack.Item key={item.name}>
+                    <ItemDisplay
+                      item={item}
+                      active={
+                        loadout_list && loadout_list[item.path] !== undefined
+                      }
+                    />
+                  </Stack.Item>
+                ))}
+              </Stack>
+            </Stack.Item>
+          </Stack>
+        </Stack.Item>
       ))}
-    </Flex>
+    </Stack>
   );
 }
 
-type TabProps = {
-  category: LoadoutCategory | undefined;
-};
-// SKYRAT EDIT START - EXPANDED LOADOUT
+// BUBBER EDIT ADDITION BEGIN: Filter ckey-locked items
 const FilterItemList = (items: LoadoutItem[]) => {
   const { data } = useBackend<LoadoutManagerData>();
-  const { is_donator } = data;
   const ckey = data.ckey;
 
   return items.filter((item: LoadoutItem) => {
     if (item.ckey_whitelist && item.ckey_whitelist.indexOf(ckey) === -1) {
       return false;
     }
-    if (item.donator_only && !is_donator) {
-      return false;
-    }
     return true;
   });
 };
-const ShouldDisplayPlayerRestriction = (item: LoadoutItem) => {
-  if (item.ckey_whitelist || item.restricted_species) {
-    return true;
-  }
+// BUBBER EDIT ADDITION END: Filter ckey-locked items
 
-  return false;
+type TabProps = {
+  category: LoadoutCategory | undefined;
 };
 
-const ShouldDisplayJobRestriction = (item: LoadoutItem) => {
-  if (item.restricted_roles || item.blacklisted_roles) {
-    return true;
-  }
-
-  return false;
-};
-
-const ItemPlayerRestriction = (item: LoadoutItem) => {
-  let restrictions: string[] = [];
-
-  if (item.ckey_whitelist) {
-    restrictions.push('CKEY Whitelist: ' + item.ckey_whitelist.join(', '));
-  }
-
-  if (item.restricted_species) {
-    restrictions.push(
-      'Species Whitelist: ' + item.restricted_species.join(', '),
-    );
-  }
-
-  const tooltip = restrictions.join(', ');
-
-  return (
-    <Button
-      icon="lock"
-      height="22px"
-      width="22px"
-      color="yellow"
-      tooltip={tooltip}
-      tooltipPosition={'bottom-start'}
-      style={{ zIndex: '2' }}
-    />
-  );
-};
-
-const ItemJobRestriction = (item: LoadoutItem) => {
-  let restrictions: string[] = [];
-  if (item.restricted_roles) {
-    restrictions.push('Job Whitelist: ' + item.restricted_roles.join(', '));
-  }
-
-  if (item.blacklisted_roles) {
-    restrictions.push('Job Blacklist: ' + item.blacklisted_roles.join(', '));
-  }
-  const tooltip = restrictions.join(', ');
-  return (
-    <Button
-      icon="briefcase"
-      height="22px"
-      width="22px"
-      color="blue"
-      tooltip={tooltip}
-      tooltipPosition={'bottom-start'}
-      style={{ zIndex: '2' }}
-    />
-  );
-};
-
-// SKYRAT EDIT END - EXPANDED LOADOUT
 export function LoadoutTabDisplay(props: TabProps) {
   const { category } = props;
   if (!category) {
@@ -241,14 +204,20 @@ export function LoadoutTabDisplay(props: TabProps) {
 type SearchProps = {
   loadout_tabs: LoadoutCategory[];
   currentSearch: string;
+  searchingTooltips: BooleanLike; // BUBBER EDIT ADDITION: Search in tooltips
 };
 
 export function SearchDisplay(props: SearchProps) {
-  const { loadout_tabs, currentSearch } = props;
+  const { loadout_tabs, currentSearch, searchingTooltips } = props; // BUBBER EDIT CHANGE: Search in tooltips: ORIGINAL: const { loadout_tabs, currentSearch } = props;
 
   const search = createSearch(
     currentSearch,
-    (loadout_item: LoadoutItem) => loadout_item.name,
+    (loadout_item: LoadoutItem) =>
+      loadout_item.name +
+      // BUBBER EDIT ADDITION BEGIN: Search in tooltips
+      (searchingTooltips &&
+        loadout_item.information.map((entry) => entry.tooltip)),
+    // BUBBER EDIT ADDITION END: Search in tooltips
   );
 
   const validLoadoutItems = loadout_tabs

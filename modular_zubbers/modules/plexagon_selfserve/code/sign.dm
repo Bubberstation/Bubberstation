@@ -1,7 +1,7 @@
 /obj/structure/sign/poster/timeclock_psa
 	name = "HoP Moth - punch clock"
 	desc = "This informational sign uses HoP Moth™ reminding the viewer to do their part in the station's Enterprise Resource Planning efforts, punching out before periods of prolonged absence or leisure time."
-	icon = 'modular_zubbers/modules/plexagon_selfserve/icons/sign.dmi'
+	icon = 'modular_zubbers/icons/obj/sign.dmi'
 	icon_state = "moff-clockout"
 	anchored = TRUE
 

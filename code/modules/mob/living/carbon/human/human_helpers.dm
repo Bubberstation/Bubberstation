@@ -90,25 +90,19 @@
 	return
 
 /mob/living/carbon/human/get_id_name(if_no_id = "Unknown")
-	var/obj/item/storage/wallet/wallet = wear_id
-	var/obj/item/modular_computer/pda = wear_id
-	var/obj/item/card/id/id = wear_id
 	if(HAS_TRAIT(src, TRAIT_UNKNOWN))
 		. = if_no_id //You get NOTHING, no id name, good day sir
 		var/list/identity = list(null, null, null)
 		SEND_SIGNAL(src, COMSIG_HUMAN_GET_FORCED_NAME, identity)
 		if(identity[VISIBLE_NAME_FORCED])
-			. = identity[VISIBLE_NAME_FACE] // to return forced names when unknown, instead of ID
-			return
-	if(istype(wallet))
-		id = wallet.front_id
-	if(istype(id))
-		. = id.registered_name
-	else if(istype(pda) && pda.computer_id_slot)
-		. = pda.computer_id_slot.registered_name
+			return identity[VISIBLE_NAME_FACE] // to return forced names when unknown, instead of ID
+	else
+		var/obj/item/card/id/id = astype(wear_id, /obj/item/card/id) \
+			|| astype(wear_id, /obj/item/storage/wallet)?.front_id \
+			|| astype(wear_id, /obj/item/modular_computer)?.computer_id_slot
+		. = id?.registered_name
 	if(!.)
 		. = if_no_id //to prevent null-names making the mob unclickable
-	return
 
 /mob/living/carbon/human/get_idcard(hand_first = TRUE)
 	. = ..()
@@ -369,3 +363,17 @@
 	user.visible_message(span_notice("[user] fixes some of the [message] [src]'s [affecting.name]."), \
 		span_notice("You fix some of the [message] [src == user ? "your" : "[src]'s"] [affecting.name]."))
 	return TRUE
+
+/// Sets both mob's and eye organ's eye color values
+/// If color_right is not passed, its assumed to be the same as color_left
+/mob/living/carbon/human/proc/set_eye_color(color_left, color_right)
+	if (!color_right)
+		color_right = color_left
+	eye_color_left = color_left
+	eye_color_right = color_right
+	// Doesn't assign eye color if they already have one from their type
+	var/obj/item/organ/eyes/eyes = get_organ_by_type(/obj/item/organ/eyes)
+	if (istype(eyes) && !initial(eyes.eye_color_left) && !initial(eyes.eye_color_right))
+		eyes.eye_color_left = color_left
+		eyes.eye_color_right = color_right
+		eyes.refresh(src, FALSE)

@@ -14,7 +14,7 @@
 	///If true, the structure can be deconstructed into a metal sheet with a wrench.
 	var/deconstructible = TRUE
 
-/obj/structure/fluff/attackby(obj/item/I, mob/living/user, params)
+/obj/structure/fluff/attackby(obj/item/I, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(I.tool_behaviour == TOOL_WRENCH && deconstructible)
 		user.visible_message(span_notice("[user] starts disassembling [src]..."), span_notice("You start disassembling [src]..."))
 		I.play_tool_sound(src)
@@ -87,7 +87,7 @@
 	icon = 'icons/obj/mining_zones/survival_pod.dmi'
 	icon_state = "fan_tiny"
 	plane = FLOOR_PLANE
-	layer = ABOVE_OPEN_TURF_LAYER
+	layer = BELOW_CATWALK_LAYER
 
 /**
  * A variety of statue in disrepair; parts are broken off and a gemstone is missing

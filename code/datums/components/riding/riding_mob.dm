@@ -192,6 +192,7 @@
 ///////Yes, I said humans. No, this won't end well...//////////
 /datum/component/riding/creature/human
 	can_be_driven = FALSE
+	var/obj/item/bodypart/used_hand // BUBBER EDIT ADDITION - Featherweight quirk
 
 /datum/component/riding/creature/human/Initialize(mob/living/riding_mob, force = FALSE, ride_check_flags = NONE)
 	. = ..()
@@ -208,9 +209,17 @@
 		// since pulled movables are moved before buckled movables
 		ADD_TRAIT(riding_mob, TRAIT_UNDENSE, VEHICLE_TRAIT)
 	else if(ride_check_flags & CARRIER_NEEDS_ARM) // fireman
-		human_parent.buckle_lying = 90
+		// BUBBER EDIT ADDITION BEGIN - Featherweight quirk
+		if(HAS_TRAIT(riding_mob, TRAIT_CAN_BE_PICKED_UP))
+			human_parent.buckle_lying = 0
+			used_hand = human_parent.get_active_hand()
+			ADD_TRAIT(riding_mob, TRAIT_UNDENSE, VEHICLE_TRAIT)
+		else
+		// BUBBER EDIT ADDITION END - Featherweight quirk
+			human_parent.buckle_lying = 90
 
 /datum/component/riding/creature/handle_buckle(mob/living/rider)
+	. = ..()
 	var/mob/living/ridden = parent
 	if(!require_minigame || ridden.faction.Find(REF(rider)))
 		return
@@ -271,7 +280,7 @@
 
 /datum/component/riding/creature/human/get_rider_offsets_and_layers(pass_index, mob/offsetter)
 	var/mob/living/carbon/human/seat = parent
-/* BUBBER EDIT CHANGE BEGIN - Oversized Overhaul, Taur riding
+/* BUBBER EDIT CHANGE BEGIN - Oversized Overhaul, Taur riding, Featherweight quirk
 	// fireman carry
 	if(seat.buckle_lying)
 		return list(
@@ -288,35 +297,52 @@
 		TEXT_WEST =  list( 6, 8, MOB_BELOW_PIGGYBACK_LAYER),
 	)
 */
-	// fireman carry
-	if(seat.buckle_lying)
-		return HAS_TRAIT(seat, TRAIT_OVERSIZED) ? list(
-			TEXT_NORTH = list(0, OVERSIZED_OFFSET),
-			TEXT_SOUTH = list(0, OVERSIZED_OFFSET),
-			TEXT_EAST = list(0, OVERSIZED_OFFSET),
-			TEXT_WEST = list(0, OVERSIZED_OFFSET),
-		) : list(
-			TEXT_NORTH = list(0, REGULAR_OFFSET),
-			TEXT_SOUTH = list(0, REGULAR_OFFSET),
-			TEXT_EAST = list(0, REGULAR_OFFSET),
-			TEXT_WEST = list(0, REGULAR_OFFSET),
-		)
-	else if(!(ride_check_flags & RIDING_TAUR)) // piggyback
-		return HAS_TRAIT(seat, TRAIT_OVERSIZED) ? list(
-			TEXT_NORTH = list(0, OVERSIZED_OFFSET),
-			TEXT_SOUTH = list(0, OVERSIZED_OFFSET),
-			TEXT_EAST = list(-OVERSIZED_SIDE_OFFSET, OVERSIZED_OFFSET),
-			TEXT_WEST = list(OVERSIZED_SIDE_OFFSET, OVERSIZED_OFFSET),
-		) : list(
-			TEXT_NORTH = list(0, REGULAR_OFFSET),
-			TEXT_SOUTH = list(0, REGULAR_OFFSET),
-			TEXT_EAST = list(-REGULAR_OFFSET, REGULAR_SIDE_OFFSET),
-			TEXT_WEST = list(REGULAR_OFFSET, REGULAR_SIDE_OFFSET)
-		)
 	if(ride_check_flags & RIDING_TAUR) // riding a taur
 		var/obj/item/organ/taur_body/taur_body = seat.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
 		return taur_body.get_riding_offset(oversized = HAS_TRAIT(seat, TRAIT_OVERSIZED))
-// BUBBER EDIT CHANGE END - Oversized Overhaul, Taur riding
+	// fireman carry or featherweight quirk
+	else if(ride_check_flags & CARRIER_NEEDS_ARM)
+		if(HAS_TRAIT(offsetter, TRAIT_CAN_BE_PICKED_UP))
+			// featherweight quirk
+			return used_hand.body_zone == BODY_ZONE_L_ARM ? list(
+				// held in left hand
+				TEXT_NORTH = list(-FEATHERWEIGHT_OFFSET, 0, MOB_BELOW_PIGGYBACK_LAYER),
+				TEXT_SOUTH = list(FEATHERWEIGHT_OFFSET, 0, MOB_ABOVE_PIGGYBACK_LAYER),
+				TEXT_EAST = list(FEATHERWEIGHT_SIDE_OFFSET, 0, MOB_BELOW_PIGGYBACK_LAYER),
+				TEXT_WEST = list(-FEATHERWEIGHT_SIDE_OFFSET, 0, MOB_ABOVE_PIGGYBACK_LAYER),
+			) : list(
+				// held in right hand
+				TEXT_NORTH = list(FEATHERWEIGHT_OFFSET, 0, MOB_BELOW_PIGGYBACK_LAYER),
+				TEXT_SOUTH = list(-FEATHERWEIGHT_OFFSET, 0, MOB_ABOVE_PIGGYBACK_LAYER),
+				TEXT_EAST = list(FEATHERWEIGHT_SIDE_OFFSET, 0, MOB_ABOVE_PIGGYBACK_LAYER),
+				TEXT_WEST = list(-FEATHERWEIGHT_SIDE_OFFSET, 0, MOB_BELOW_PIGGYBACK_LAYER),
+			)
+		else
+			// fireman carry
+			return HAS_TRAIT(seat, TRAIT_OVERSIZED) ? list(
+				TEXT_NORTH = list(0, OVERSIZED_OFFSET, MOB_ABOVE_PIGGYBACK_LAYER),
+				TEXT_SOUTH = list(0, OVERSIZED_OFFSET, MOB_BELOW_PIGGYBACK_LAYER),
+				TEXT_EAST = list(0, OVERSIZED_OFFSET, MOB_BELOW_PIGGYBACK_LAYER),
+				TEXT_WEST = list(0, OVERSIZED_OFFSET, MOB_BELOW_PIGGYBACK_LAYER),
+			) : list(
+				TEXT_NORTH = list(0, REGULAR_OFFSET, MOB_ABOVE_PIGGYBACK_LAYER),
+				TEXT_SOUTH = list(0, REGULAR_OFFSET, MOB_BELOW_PIGGYBACK_LAYER),
+				TEXT_EAST = list(0, REGULAR_OFFSET, MOB_BELOW_PIGGYBACK_LAYER),
+				TEXT_WEST = list(0, REGULAR_OFFSET, MOB_BELOW_PIGGYBACK_LAYER),
+			)
+	else if(ride_check_flags & RIDER_NEEDS_ARMS) // piggyback
+		return HAS_TRAIT(seat, TRAIT_OVERSIZED) ? list(
+			TEXT_NORTH = list(0, OVERSIZED_OFFSET, MOB_ABOVE_PIGGYBACK_LAYER),
+			TEXT_SOUTH = list(0, OVERSIZED_OFFSET, MOB_BELOW_PIGGYBACK_LAYER),
+			TEXT_EAST = list(-OVERSIZED_SIDE_OFFSET, OVERSIZED_OFFSET, MOB_BELOW_PIGGYBACK_LAYER),
+			TEXT_WEST = list(OVERSIZED_SIDE_OFFSET, OVERSIZED_OFFSET, MOB_BELOW_PIGGYBACK_LAYER),
+		) : list(
+			TEXT_NORTH = list(0, REGULAR_OFFSET, MOB_ABOVE_PIGGYBACK_LAYER),
+			TEXT_SOUTH = list(0, REGULAR_OFFSET, MOB_BELOW_PIGGYBACK_LAYER),
+			TEXT_EAST = list(-REGULAR_OFFSET, REGULAR_SIDE_OFFSET, MOB_BELOW_PIGGYBACK_LAYER),
+			TEXT_WEST = list(REGULAR_OFFSET, REGULAR_SIDE_OFFSET, MOB_BELOW_PIGGYBACK_LAYER)
+		)
+// BUBBER EDIT CHANGE END - Oversized Overhaul, Taur riding, Featherweight quirk
 
 /datum/component/riding/creature/human/get_parent_offsets_and_layers()
 	return list(
@@ -483,6 +509,7 @@
 	)
 
 /datum/component/riding/creature/megacarp
+	override_allow_spacemove = TRUE
 
 /datum/component/riding/creature/megacarp/get_rider_offsets_and_layers(pass_index, mob/offsetter)
 	return list(
@@ -707,224 +734,3 @@
 
 /datum/component/riding/creature/raptor/fast
 	vehicle_move_delay = 1.5
-
-//a simple minigame players must win to mount and tame a mob
-/datum/riding_minigame
-	///our host mob
-	var/datum/weakref/host
-	///our current rider
-	var/datum/weakref/mounter
-	///the total amount of tries the rider gets
-	var/maximum_attempts = 25
-	///maximum number of failures before we fail
-	var/current_attempts = 0
-	///required number of successes
-	var/required_successes = 11
-	///what failures are we on
-	var/current_failures = 0
-	///we win these
-	var/current_succeeded = 0
-	///holder of our heart counter
-	var/image/heart_counter
-	///list of our hearts
-	var/list/hearts_list = list()
-	///holder of our minigame!
-	var/image/minigame_holder
-	///cached directional icons of our host
-	var/list/cached_arrows = list()
-	///cooldown when we fail
-	COOLDOWN_DECLARE(failure_cooldown)
-
-/datum/riding_minigame/New(mob/living/ridden, mob/living/rider)
-	. = ..()
-	host = WEAKREF(ridden)
-	mounter = WEAKREF(rider)
-	RegisterSignal(rider, COMSIG_MOB_UNBUCKLED, PROC_REF(lose_minigame))
-	RegisterSignal(ridden, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(on_ridden_moved))
-	minigame_holder = image(icon='icons/effects/effects.dmi', loc=rider,icon_state="nothing", layer = 0, pixel_x = 32, pixel_y = 0)
-	heart_counter = image(icon='icons/effects/effects.dmi', loc=rider,icon_state="nothing", layer = 0, pixel_x = 0, pixel_y = -32)
-	SET_PLANE_EXPLICIT(minigame_holder, ABOVE_HUD_PLANE, rider)
-	SET_PLANE_EXPLICIT(heart_counter, ABOVE_HUD_PLANE, rider)
-	generate_heart_counter()
-	generate_visuals()
-	rider.client.images |= list(minigame_holder, heart_counter)
-	START_PROCESSING(SSprocessing, src)
-
-/datum/riding_minigame/proc/generate_visuals()
-	var/static/list/void_arrow_angles = list(
-		"north" = -90,
-		"west" = 180,
-		"south" = 90,
-		"east" = 0,
-	)
-	var/x_offset = 0
-	for(var/direction in void_arrow_angles)
-		var/obj/effect/overlay/vis/ride_minigame/new_arrow = new
-		new_arrow.icon = 'icons/effects/riding_minigame.dmi'
-		new_arrow.icon_state = "blank_arrow"
-		new_arrow.transform = new_arrow.transform.Turn(void_arrow_angles[direction])
-		new_arrow.pixel_x = x_offset
-		new_arrow.layer = ABOVE_ALL_MOB_LAYER
-		minigame_holder.vis_contents += new_arrow
-		cached_arrows[direction] = list("visual_object" = new_arrow, "is_active" = null)
-		x_offset += 16
-
-/datum/riding_minigame/proc/generate_heart_counter()
-	var/x_offset = -32
-	for(var/i in 1 to required_successes)
-		var/obj/effect/overlay/vis/ride_minigame/heart = new
-		heart.icon = 'icons/effects/effects.dmi'
-		heart.icon_state = "empty_heart"
-		heart.pixel_x = x_offset
-		x_offset += 8
-		hearts_list += heart
-		heart_counter.vis_contents += heart
-
-/datum/riding_minigame/process()
-	if(current_attempts >= maximum_attempts)
-		lose_minigame()
-		return
-	if(prob(30)) //we shake and move uncontrollably!
-		var/mob/living/living_host = host.resolve()
-		living_host.Shake(pixelshiftx = 1, pixelshifty = 0, duration = 0.75 SECONDS)
-		living_host.spin(spintime = 0.75 SECONDS, speed = 1)
-
-
-
-	for(var/index in 0 to 1)
-		addtimer(CALLBACK(src, PROC_REF(generate_arrow)), 0.3 SECONDS * index)
-
-/datum/riding_minigame/proc/generate_arrow()
-	if(current_attempts >= maximum_attempts)
-		return
-	var/static/list/possible_arrows = list(
-		"north" = 0,
-		"west" = 16,
-		"south" = 32,
-		"east" = 48,
-	)
-	current_attempts++
-	var/picked_arrow = pick(possible_arrows)
-	var/obj/effect/overlay/vis/ride_minigame/new_arrow = new
-	new_arrow.icon = 'icons/effects/riding_minigame.dmi'
-	new_arrow.icon_state = "[picked_arrow]_arrow"
-	new_arrow.alpha = 0
-	new_arrow.layer = ABOVE_ALL_MOB_LAYER + 0.1
-	new_arrow.pixel_x = possible_arrows[picked_arrow]
-	new_arrow.pixel_y = -50
-	minigame_holder.vis_contents += new_arrow
-	animate(new_arrow, alpha = 255, time = 0.15 SECONDS)
-	animate(new_arrow, pixel_y = 20, time = 1.4 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(add_active_arrow), new_arrow, picked_arrow), 0.9 SECONDS)
-
-/datum/riding_minigame/proc/add_active_arrow(atom/arrow, direction)
-	if(QDELETED(arrow))
-		return
-	cached_arrows[direction]["is_active"] = arrow
-	RegisterSignal(arrow, COMSIG_QDELETING, PROC_REF(on_arrow_delete))
-	addtimer(CALLBACK(src, PROC_REF(remove_active_arrow), arrow, direction), 0.2 SECONDS)
-
-/datum/riding_minigame/proc/remove_active_arrow(atom/arrow, direction)
-	if(QDELETED(arrow))
-		return
-	animate(arrow, alpha = 0, time = 0.1 SECONDS)
-	QDEL_IN(arrow, 0.1 SECONDS)
-
-/datum/riding_minigame/proc/on_arrow_delete(datum/source)
-	SIGNAL_HANDLER
-	for(var/arrow in cached_arrows)
-		var/list/arrow_details = cached_arrows[arrow]
-		if(arrow_details["is_active"] != source)
-			continue
-		arrow_details["is_active"] = null
-
-/datum/riding_minigame/proc/on_ridden_moved(atom/movable/source, atom/new_loc, direction)
-	SIGNAL_HANDLER
-	. = NONE
-	if(new_loc.z != source.z || !COOLDOWN_FINISHED(src, failure_cooldown))
-		return
-	var/list/arrow_data = cached_arrows[dir2text(direction)]
-	var/atom/existing_arrow = arrow_data["is_active"]
-
-	if(!QDELETED(existing_arrow))
-		qdel(existing_arrow)
-		var/atom/arrow_object = arrow_data["visual_object"]
-		flick("blank_arrow_win", arrow_object)
-		increment_counter()
-		return
-
-	for(var/arrow_direction in cached_arrows)
-		var/obj/my_arrow = cached_arrows[arrow_direction]["visual_object"]
-		if(isnull(my_arrow))
-			continue
-		flick("blank_arrow_lose", my_arrow)
-		my_arrow.Shake(duration = 2 SECONDS)
-
-	increment_failure()
-
-/datum/riding_minigame/proc/increment_counter()
-	current_succeeded++
-	var/obj/new_heart = hearts_list[current_succeeded]
-	new_heart.icon_state = "full_heart"
-	new_heart.transform = new_heart.transform.Scale(2 ,2)
-	animate(new_heart, transform = matrix(), time = 0.3 SECONDS)
-	if(current_succeeded >= required_successes)
-		win_minigame()
-
-/datum/riding_minigame/proc/increment_failure()
-	current_failures++
-	COOLDOWN_START(src, failure_cooldown, 2 SECONDS)
-	if(current_failures > (maximum_attempts - required_successes))
-		lose_minigame()
-
-/datum/riding_minigame/proc/lose_minigame()
-	SIGNAL_HANDLER
-	var/mob/living/living_host = host?.resolve()
-	var/mob/living/living_rider = mounter?.resolve()
-	if(isnull(living_host) || isnull(living_rider))
-		qdel(src)
-		return
-	if(LAZYFIND(living_host.buckled_mobs, living_rider))
-		UnregisterSignal(living_rider, COMSIG_MOB_UNBUCKLED) //we're about to knock them down!
-		living_host.spin(spintime = 2 SECONDS, speed = 1)
-		living_rider.Knockdown(4 SECONDS)
-		living_host.unbuckle_mob(living_rider)
-		living_host.balloon_alert(living_rider, "knocks you down!")
-	qdel(src)
-
-/datum/riding_minigame/proc/win_minigame()
-	var/mob/living/living_host = host?.resolve()
-	var/mob/living/living_rider = mounter?.resolve()
-	if(isnull(living_host) || isnull(living_rider))
-		qdel(src)
-		return
-	living_host.befriend(living_rider)
-	living_host.balloon_alert(living_rider, "calms down...")
-	qdel(src)
-
-/datum/riding_minigame/Destroy()
-	STOP_PROCESSING(SSprocessing, src)
-
-	var/mob/living/living_mounter = mounter?.resolve()
-	if(living_mounter)
-		living_mounter.client.images -= minigame_holder
-		living_mounter.client.images -= heart_counter
-
-	mounter = null
-	host = null
-	hearts_list = null
-	cached_arrows = null
-	minigame_holder = null
-	heart_counter = null
-	return ..()
-
-/obj/effect/overlay/vis/ride_minigame
-	vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_PLANE
-
-
-//SKYRAT EDIT START: Human Riding Defines
-#undef OVERSIZED_OFFSET
-#undef OVERSIZED_SIDE_OFFSET
-#undef REGULAR_OFFSET
-#undef REGULAR_SIDE_OFFSET
-//SKYRAT EDIT END

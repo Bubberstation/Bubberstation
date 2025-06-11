@@ -8,12 +8,6 @@
 		"Special Operations Medic",
 	)
 
-/datum/job/blueshield/New()
-	alt_titles |= list(
-		"Henchman",
-	)
-	. = ..()
-
 /datum/job/orderly/New()
 	alt_titles |= list(
 		"Medical Attendant",
