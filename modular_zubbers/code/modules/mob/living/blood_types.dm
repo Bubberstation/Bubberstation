@@ -239,26 +239,22 @@
 
 /datum/blood_type/lizard/alt_color
 	/* root_abstract_type = /datum/blood_type/lizard/alt_color */
-	alternate_of = BLOOD_TYPE_LIZARD
+	alternate_of = /datum/blood_type/lizard
 
 /datum/blood_type/lizard/alt_color/New(override, datum/blood_type/orig)
 	if(!isnull(override))
 		color = override
-		testing("created alternate [name] in [color]")
 		id = type_key()
 	else
 		CRASH("attempt to generate alt-color blood type failed, override arg is null")
-	compatible_types = LAZYCOPY(orig?.compatible_types)
-	root_abstract_type = null
-	var/list/id_as_list = list()
-	id_as_list += id
+	testing("created alternate [id]")
+	var/list/to_append = list(recolor_blood_type,)
 	var/readout = ""
-	for(var/i as anything in id_as_list)
-		readout += "[i], "
-	testing("id_as_list contains [readout]")
-	var/datum/blood_type/filter = GLOB.blood_types[alternate_of]
-	testing("invoking mass_edit_blood_compatability() for [id] and filter as [alternate_of]")
-	mass_edit_blood_compatability(to_append = id_as_list, filter = filter)
+	for(var/i as anything in to_append)
+		readout += "[i],"
+	testing("invoking mass_edit_blood_compatability() for [readout] and filter as [alternate_of]")
+	mass_edit_blood_compatability(to_append = to_append, filter = alternate_of)
+	compatible_types = LAZYCOPY(orig?.compatible_types)
 
 /datum/blood_type/lizard/alt_color/type_key()
 	return "[name]_alt_[color]"

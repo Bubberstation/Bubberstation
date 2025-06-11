@@ -2,26 +2,30 @@
 /proc/mass_edit_blood_compatability(list/to_append, datum/blood_type/filter, mode_remove = FALSE)
 	testing("mass_edit_blood_compatability initialized with filter as [filter]")
 	var/readout = ""
+	var/list/compat_list = list()
 	for(var/datum/blood_type/target as anything in subtypesof(/datum/blood_type))
-		readout = ""
+		testing("mass_edit_blood_compatability target is [target]") //this reads as the datum typepath...
 		if(target::root_abstract_type == target) // Let's not modify placeholders
 			testing("[target] skipped, abstract")
 			testing("printing [target.root_abstract_type]")
 			continue
-		testing("mass_edit_blood_compatability target is [target]") //this reads as the datum typepath...
-		var/amicrazy = isnull(target.compatible_types)
-		testing("target.compatible_types is [amicrazy ? "not " : ""]null") //...SO WHY IS THIS NULL
+		compat_list = LAZYCOPY(target.compatible_types)
+		readout = isnull(target.compatible_types)
+		testing("is target.compatible_types null? [readout]")
 		readout = ""
-		for(var/i as anything in target.compatible_types)
-			readout+="[i], "
-		testing("target: [target].compatible_types contains [readout]") //NULL!?!
+		readout = isnull(compat_list)
+		testing("is compat_list null? [readout]")
 		readout = ""
-		if(!filter)
-			actually_MEBC(to_append, target, mode_remove)
-		else if(filter in target.compatible_types) //cascading error from above....
-			actually_MEBC(to_append, target, mode_remove)
-		else
-			testing("[target] skipped, filtered") //this works at least
+		testing("filter is [filter]")
+		switch(filter)
+			if(isnull(filter))
+				testing("filter null")
+				actually_MEBC(to_append, target, mode_remove)
+			if(filter in compat_list) //cascading error from above....
+				testing("filter found")
+				actually_MEBC(to_append, target, mode_remove)
+			else
+				testing("[target] skipped, filtered") //this works at least
 
 	readout = ""
 	for(var/i as anything in to_append)
@@ -31,15 +35,13 @@
 ///don't call this. also this entire section hasnt been tested because it hasn't gotten to run yet.
 /proc/actually_MEBC(list/to_append, datum/blood_type/target, mode_remove)
 	var/readout = ""
-	var/list/compat_list = LAZYCOPY(target::compatible_types)
-	var/datum/blood_type/target_literal = get_blood_type(target)
+	var/list/compat_list = LAZYCOPY(target.compatible_types)
 	switch(mode_remove)
-		if(FALSE)
-			compat_list += to_append
-			target_literal.compatible_types = compat_list
 		if(TRUE)
 			compat_list -= to_append
-			target_literal.compatible_types = compat_list
+		else
+			compat_list += to_append
+	target.compatible_types = compat_list
 	for(var/i as anything in target.compatible_types)
 		readout += "[i], "
-	testing("[target]/[target_literal] succesfully modified; new compatabilities are: [readout]")
+	testing("[target] succesfully modified; new compatabilities are: [readout]")
