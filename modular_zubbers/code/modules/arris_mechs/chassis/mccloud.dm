@@ -64,11 +64,10 @@
 /datum/action/vehicle/sealed/mecha/mccloud/mech_switch_stance/Trigger(trigger_flags)
 	if(!..())
 		return
-	if(!chassis || !(owner in chassis.occupants) || switching_modes)
 		return
 
 	var/obj/vehicle/sealed/mecha/mccloud/mccloud_chassis = chassis
-	if (!istype(mccloud_chassis))
+	if (!istype(mccloud_chassis) || mccloud_chassis.switching_modes)
 		return
 
 	if(mccloud_chassis.jet_mode == FALSE)
@@ -76,11 +75,11 @@
 			mccloud_chassis.balloon_alert(owner, "atmosphere insufficient for spaceflight!")
 		else
 			mccloud_chassis.balloon_alert(owner, "switching to jet mode!")
-			switching_modes = TRUE
+			mccloud_chassis.switching_modes = TRUE
 			addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/mecha/mccloud, activate_jet)), 7 DECISECONDS)
 	else
 		mccloud_chassis.balloon_alert(owner, "switching to biped mode!")
-		switching_modes = TRUE
+		mccloud_chassis.switching_modes = TRUE
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/mecha/mccloud, activate_biped)), 7 DECISECONDS)
 
 /obj/vehicle/sealed/mecha/mccloud/proc/can_switch_jet()
@@ -93,18 +92,18 @@
 	return !can_switch_jet()
 
 /obj/vehicle/sealed/mecha/mccloud/proc/activate_jet()
+	switching_modes = FALSE
 	if(jet_mode)
 		return
-	switching_modes = FALSE
 	icon_state = "mccloud-jet"
 	jet_mode = TRUE
 	movedelay = !overclock_mode ? MCCLOUD_JET_MODE_MOVE : MCCLOUD_JET_MODE_MOVE / overclock_coeff
 	mode_switch_sparks()
 
 /obj/vehicle/sealed/mecha/mccloud/proc/activate_biped()
+	switching_modes = FALSE
 	if(!jet_mode)
 		return
-	switching_modes = FALSE
 	icon_state = "mccloud"
 	jet_mode = FALSE
 	movedelay = !overclock_mode ? MCCLOUD_BIPED_MODE_MOVE : MCCLOUD_BIPED_MODE_MOVE / overclock_coeff
@@ -174,7 +173,7 @@
 		if(keyheld || !pivot_step) //If we pivot step, we don't return here so we don't just come to a stop
 			return TRUE
 	jet_mode_thruster_effects(direction)
-	newtonian_move(dir2angle(direction), FALSE, 0, 9 NEWTONS, 18 NEWTONS, FALSE)
+	newtonian_move(dir2angle(direction), FALSE, 0, 6 NEWTONS, 18 NEWTONS, FALSE)
 	if(strafe)
 		setDir(olddir)
 
