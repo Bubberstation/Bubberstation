@@ -440,10 +440,14 @@
 		. += "[t_He] [t_is] holding [held_thing.examine_title_worn(user)] in [t_his] [get_held_index_name(get_held_index_of_item(held_thing))]."
 	//gloves
 	if(gloves && !(obscured & ITEM_SLOT_GLOVES) && !HAS_TRAIT(gloves, TRAIT_EXAMINE_SKIP))
-		. += "[t_He] [t_has] [gloves.examine_title_worn(user)] on [t_his] hands."
-	else if(GET_ATOM_BLOOD_DNA_LENGTH(src))
-		if(num_hands)
-			. += span_warning("[t_He] [t_has] [num_hands > 1 ? "" : "a "]blood-stained hand[num_hands > 1 ? "s" : ""]!")
+		. += "[t_He] [t_has] [gloves.examine_title(user)] on [t_his] hands."
+	else if(GET_ATOM_BLOOD_DECAL_LENGTH(src) && num_hands)
+		var/list/blood_stains = GET_ATOM_BLOOD_DECALS(src)
+		var/datum/blood_type/blood_type = blood_stains[blood_stains[length(blood_stains)]]
+		var/blood_descriptior = "blood"
+		if(istype(blood_type))
+			blood_descriptior = LOWER_TEXT(blood_type.get_blood_name())
+		. += span_warning("[t_He] [t_has] [num_hands > 1 ? "" : "a "][blood_descriptior]-stained hand[num_hands > 1 ? "s" : ""]!")
 	//handcuffed?
 	if(handcuffed)
 		var/cables_or_cuffs = istype(handcuffed, /obj/item/restraints/handcuffs/cable) ? "restrained with cable" : "handcuffed"
@@ -536,8 +540,8 @@
 		. += "[t_He] [t_is] holding [held_thing.examine_title_worn(user)] in [t_his] [get_held_index_name(get_held_index_of_item(held_thing))]."
 	//gloves
 	if(gloves && !(obscured & ITEM_SLOT_GLOVES) && !HAS_TRAIT(gloves, TRAIT_EXAMINE_SKIP))
-		. += "[t_He] [t_has] [gloves.examine_title_worn(user)] on [t_his] hands."
-	else if(GET_ATOM_BLOOD_DNA_LENGTH(src) || blood_in_hands)
+		. += "[t_He] [t_has] [gloves.examine_title(user)] on [t_his] hands."
+	else if(GET_ATOM_BLOOD_DECAL_LENGTH(src) || blood_in_hands)
 		if(num_hands)
 			. += span_warning("[t_He] [t_has] [num_hands > 1 ? "" : "a "]blood-stained hand[num_hands > 1 ? "s" : ""]!")
 	//handcuffed?

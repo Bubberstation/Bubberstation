@@ -7,6 +7,7 @@ import {
   Stack,
   Tooltip,
 } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 
 import type { LoadoutCategory, LoadoutItem, LoadoutManagerData } from './base';
@@ -132,7 +133,7 @@ export function ItemListDisplay(props: ListProps) {
     data.character_preferences.misc.loadout_lists[
       data.character_preferences.misc.loadout_index
     ]; // BUBBER EDIT CHANGE: Multiple loadout presets: Original: data.character_preferences.misc;
-  const itemGroups = sortByGroup(props.items);
+  const itemGroups = sortByGroup(FilterItemList(props.items)); // BUBBER EDIT CHANGE: Filter ckey-locked items - ORIGINAL: const itemGroups = sortByGroup(props.items);
 
   return (
     <Stack vertical>
@@ -169,6 +170,20 @@ export function ItemListDisplay(props: ListProps) {
   );
 }
 
+// BUBBER EDIT ADDITION BEGIN: Filter ckey-locked items
+const FilterItemList = (items: LoadoutItem[]) => {
+  const { data } = useBackend<LoadoutManagerData>();
+  const ckey = data.ckey;
+
+  return items.filter((item: LoadoutItem) => {
+    if (item.ckey_whitelist && item.ckey_whitelist.indexOf(ckey) === -1) {
+      return false;
+    }
+    return true;
+  });
+};
+// BUBBER EDIT ADDITION END: Filter ckey-locked items
+
 type TabProps = {
   category: LoadoutCategory | undefined;
 };
@@ -189,14 +204,20 @@ export function LoadoutTabDisplay(props: TabProps) {
 type SearchProps = {
   loadout_tabs: LoadoutCategory[];
   currentSearch: string;
+  searchingTooltips: BooleanLike; // BUBBER EDIT ADDITION: Search in tooltips
 };
 
 export function SearchDisplay(props: SearchProps) {
-  const { loadout_tabs, currentSearch } = props;
+  const { loadout_tabs, currentSearch, searchingTooltips } = props; // BUBBER EDIT CHANGE: Search in tooltips: ORIGINAL: const { loadout_tabs, currentSearch } = props;
 
   const search = createSearch(
     currentSearch,
-    (loadout_item: LoadoutItem) => loadout_item.name,
+    (loadout_item: LoadoutItem) =>
+      loadout_item.name +
+      // BUBBER EDIT ADDITION BEGIN: Search in tooltips
+      (searchingTooltips &&
+        loadout_item.information.map((entry) => entry.tooltip)),
+    // BUBBER EDIT ADDITION END: Search in tooltips
   );
 
   const validLoadoutItems = loadout_tabs
