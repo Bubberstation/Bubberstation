@@ -2,7 +2,7 @@
 
 /obj/item/ammo_casing/energy/laser/plasma_glob
 	projectile_type = /obj/projectile/beam/laser/plasma_glob
-	fire_sound = 'modular_skyrat/modules/microfusion/sound/incinerate.ogg'
+	fire_sound = 'modular_zubbers/sound/weapons/incinerate.ogg'
 
 /obj/item/ammo_casing/energy/laser/plasma_glob/Initialize(mapload)
 	. = ..()

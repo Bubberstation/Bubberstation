@@ -12,7 +12,7 @@
 | Code                    | [https://github.com/Bubberstation/Bubberstation](https://github.com/Bubberstation/Bubberstation)                                       |
 | Wiki                    | [https://tgstation13.org/wiki/Main_Page](https://tgstation13.org/wiki/Main_Page)                                                       |
 | Codedocs                | [https://skyrat-ss13.github.io/Skyrat-tg/](https://skyrat-ss13.github.io/Skyrat-tg/)                                                   |
-| Bubberstation Discord   | [https://discord.gg/x4CVEHy6u7](https://discord.gg/x4CVEHy6u7)                                                                         |
+| Bubberstation Discord   | [https://discord.gg/AvjrTqnqEx](https://discord.gg/AvjrTqnqEx)                                                                         |
 | Coderbus Discord        | [https://discord.gg/Vh8TJp9](https://discord.gg/Vh8TJp9)                                                                               |
 
 This is Bubberstation's fork of TG. Originally forked from Skyrat.
