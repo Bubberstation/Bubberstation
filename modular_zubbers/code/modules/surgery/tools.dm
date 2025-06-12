@@ -187,14 +187,14 @@
 	item_flags = SURGICAL_TOOL | CRUEL_IMPLEMENT
 
 /obj/item/bonesetter/cruel
-	name = "bonesetter"
+	name = "harsh bonesetter"
 	desc = "We shall make you whole once more..."
 	icon = 'modular_zubbers/icons/obj/medical/surgery_tools.dmi'
 	item_flags = SURGICAL_TOOL | CRUEL_IMPLEMENT
 
 /obj/item/blood_filter/cruel
 	name = "malignant blood filter"
-	desc = "For filtering the blood."
+	desc = "You must be made pure..."
 	icon = 'modular_zubbers/icons/obj/medical/surgery_tools.dmi'
 	item_flags = SURGICAL_TOOL | CRUEL_IMPLEMENT
 
