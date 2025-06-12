@@ -6,18 +6,20 @@
 	var/shell_language
 
 	//List of valid languages of the speech circuit
-	var/list/circuit_languages = list()
+	var/static/list/circuit_languages
 
 /obj/item/circuit_component/speech/Initialize(mapload)
 	. = ..()
-	for(var/datum/language/language as anything in GLOB.language_datum_instances)
-		if(language.secret)
-			continue
-		circuit_languages[language.name] = language
+	if(!circuit_languages)
+		circuit_languages = list()
+		for(var/datum/language/language as anything in GLOB.language_datum_instances)
+			if(language.secret)
+				continue
+			circuit_languages[language.name] = language
 
 /obj/item/circuit_component/speech/populate_ports()
 	. = ..()
-	. += language_port = add_input_port("Language", PORT_TYPE_STRING, trigger = null)
+	language_port = add_input_port("Language", PORT_TYPE_STRING, trigger = null)
 
 /obj/item/circuit_component/speech/input_received(datum/port/input/port)
 	if(!parent.shell)
