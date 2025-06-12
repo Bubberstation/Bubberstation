@@ -64,6 +64,7 @@
 /datum/action/vehicle/sealed/mecha/mccloud/mech_switch_stance/Trigger(trigger_flags)
 	if(!..())
 		return
+	if(!chassis || !(owner in chassis.occupants))
 		return
 
 	var/obj/vehicle/sealed/mecha/mccloud/mccloud_chassis = chassis
@@ -208,6 +209,11 @@
 	else
 		return ..()
 
+/obj/vehicle/sealed/mecha/mob_try_enter(mob/M)
+	. = ..()
+	if(.)
+		AddComponent(/datum/component/scope/mccloud, range_modifier = 1.15, zoom_method = ZOOM_METHOD_ITEM_ACTION, item_action_type = /datum/action/vehicle/sealed/mecha/mccloud/mech_toggle_binoculars)
+
 //leaving the mech switches to biped mode before doing so
 /obj/vehicle/sealed/mecha/mccloud/mob_exit(mob/M, silent = FALSE, randomstep = FALSE, forced = FALSE)
 	activate_biped()
@@ -256,3 +262,41 @@
 	mech_melee_attack(src, bumped_thing)
 
 	playsound(src, 'sound/effects/bang.ogg', 40, TRUE)
+
+/datum/component/scope/mccloud
+	var/unscope_on_move = FALSE
+
+/datum/component/scope/mccloud/Initialize(range_modifier = 1, zoom_method = ZOOM_METHOD_RIGHT_CLICK, item_action_type)
+	src.range_modifier = range_modifier
+	src.zoom_method = zoom_method
+	src.item_action_type = item_action_type
+
+/datum/component/scope/mccloud/RegisterWithParent()
+
+	var/obj/vehicle/sealed/mecha/parent_mech = parent
+	if(istype(parent_mech))
+		RegisterSignal(parent_mech, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
+		var/datum/stuff = locate(item_action_type) in parent_mech.occupant_actions[1]
+		var/stuff2 = parent_mech.occupant_actions
+		var/datum/action/vehicle/sealed/mecha/scope = parent_mech.occupant_actions[parent_mech.occupants[1]][/datum/action/vehicle/sealed/mecha/mccloud/mech_toggle_binoculars]
+		RegisterSignal(scope, COMSIG_ACTION_TRIGGER, PROC_REF(on_action_trigger))
+
+/datum/component/scope/mccloud/on_action_trigger(datum/action/source)
+	SIGNAL_HANDLER
+	var/obj/vehicle/sealed/mecha/mecha = source.target
+	if(tracker)
+		stop_zooming()
+	else
+		zoom(mecha)
+
+/datum/component/scope/mccloud/zoom(mob/user)
+	. = ..(usr)
+
+/datum/component/scope/mccloud/stop_zooming(mob/user)
+	. = ..(usr)
+
+/datum/component/scope/mccloud/on_enter_new_loc(datum/source, atom/newloc, atom/old_loc, list/atom/old_locs)
+	SIGNAL_HANDLER
+	if(unscope_on_move)
+		. = ..()
+
