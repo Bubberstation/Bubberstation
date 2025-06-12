@@ -307,6 +307,6 @@
 
 /obj/machinery/vending/wardrobe/coroner_wardrobe
 	zubbers_products = list(
-		/obj/item/surgicaldrill/cruel
-		/obj/item/circular_saw/cruel
+		/obj/item/surgicaldrill/cruel = 1,
+		/obj/item/circular_saw/cruel = 1,
 	)
