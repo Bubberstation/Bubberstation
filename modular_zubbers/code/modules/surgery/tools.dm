@@ -201,7 +201,7 @@
 /obj/item/autopsy_scanner/cruel
 	name = "twisted autopsy scanner"
 	desc = "Used in surgery to extract information from a cadaver. Can also scan the health of cadavers like an advanced health analyzer!"
-	icon = 'icons/obj/devices/scanner.dmi'
+	icon = 'modular_zubbers/icons/obj/medical/surgery_tools.dmi'
 	worn_icon = 'modular_zubbers/icons/obj/clothing/belt.dmi'
 	icon_state = "cruelautopsy"
 	inhand_icon_state = "cruelautopsy"
@@ -214,30 +214,30 @@
 
 /obj/item/retractor/cruel/augment
 	desc = "A twisted micro-mechanical manipulator for retracting stuff."
-	toolspeed = 0.5
+	toolspeed = 0.75
 
 
 /obj/item/hemostat/cruel/augment
 	desc = "Tiny, warped servos power a pair of pincers to stop bleeding."
-	toolspeed = 0.5
+	toolspeed = 0.75
 
 
 /obj/item/cautery/cruel/augment
 	desc = "Chalk this one up as another successful vivisection."
-	toolspeed = 0.5
+	toolspeed = 0.75
 
 
 /obj/item/scalpel/cruel/augment
 	desc = "Ultra-sharp blade attached directly to your bone for enhanced vivisection."
-	toolspeed = 0.5
+	toolspeed = 0.75
 
 /obj/item/surgicaldrill/cruel/augment
 	desc = "What secrets do they keep buried within those pearls..."
 	hitsound = 'sound/items/weapons/circsawhit.ogg'
 	w_class = WEIGHT_CLASS_SMALL
-	toolspeed = 0.5
+	toolspeed = 0.75
 
 /obj/item/circular_saw/cruel/augment
 	desc = "A twisted blade for twisted purpose. Rip sinew and bone until your work is done."
 	w_class = WEIGHT_CLASS_SMALL
-	toolspeed = 0.5
+	toolspeed = 0.75
