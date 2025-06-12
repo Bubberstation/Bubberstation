@@ -304,3 +304,9 @@
 		/obj/item/clothing/neck/tie/bunnytie/atmos_tech = 3,
 		/obj/item/clothing/shoes/workboots/heeled = 3,
 	)
+
+/obj/machinery/vending/wardrobe/coroner_wardrobe
+	zubbers_products = list(
+		/obj/item/surgicaldrill/cruel
+		/obj/item/circular_saw/cruel
+	)

@@ -194,7 +194,7 @@
 		/obj/item/blood_filter,
 		/obj/item/bonesetter,
 		/obj/item/cautery/cruel,
-		/obj/item/circular_saw,
+		/obj/item/circular_saw/cruel,  //BUBBER EDIT CHANGE
 		/obj/item/clothing/mask/surgical,
 		/obj/item/hemostat/cruel,
 		/obj/item/razor/surgery,
@@ -203,7 +203,7 @@
 		/obj/item/stack/medical/bone_gel,
 		/obj/item/stack/sticky_tape/surgical,
 		/obj/item/surgical_drapes,
-		/obj/item/surgicaldrill,
+		/obj/item/surgicaldrill/cruel,  //BUBBER EDIT CHANGE
 		/obj/item/autopsy_scanner // BUBBER EDIT ADDITION
 	)
 

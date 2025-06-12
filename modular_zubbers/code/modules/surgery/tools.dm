@@ -166,3 +166,51 @@
 		RESKIN_ICON_STATE = "combitool",
 		),
 	)
+
+//Cruel Tools for the morbid surgical implant
+
+/obj/item/surgicaldrill/cruel
+	desc = "What secrets do they keep buried within those pearls..."
+	icon_state = "crueldrill"
+	icon = 'modular_zubbers/icons/obj/medical/surgery_tools.dmi'
+	item_flags = SURGICAL_TOOL | CRUEL_IMPLEMENT
+
+
+/obj/item/circular_saw/cruel
+	desc = "A twisted blade for twisted purpose. Rip sinew and bone until your work is done."
+	icon_state = "cruelsaw"
+	icon = 'modular_zubbers/icons/obj/medical/surgery_tools.dmi'
+	lefthand_file = 'modular_skyrat/modules/exp_corps/icons/bonesaw_l.dmi'
+	righthand_file = 'modular_skyrat/modules/exp_corps/icons/bonesaw_r.dmi'
+	item_flags = SURGICAL_TOOL | CRUEL_IMPLEMENT
+
+
+/obj/item/retractor/cruel/augment
+	desc = "A twisted micro-mechanical manipulator for retracting stuff."
+	toolspeed = 0.5
+
+
+/obj/item/hemostat/cruel/augment
+	desc = "Tiny, warped servos power a pair of pincers to stop bleeding."
+	toolspeed = 0.5
+
+
+/obj/item/cautery/cruel/augment
+	desc = "Chalk this one up as another successful vivisection."
+	toolspeed = 0.5
+
+
+/obj/item/scalpel/cruel/augment
+	desc = "Ultra-sharp blade attached directly to your bone for enhanced vivisection."
+	toolspeed = 0.5
+
+/obj/item/surgicaldrill/cruel/augment
+	desc = "What secrets do they keep buried within those pearls..."
+	hitsound = 'sound/items/weapons/circsawhit.ogg'
+	w_class = WEIGHT_CLASS_SMALL
+	toolspeed = 0.5
+
+/obj/item/circular_saw/cruel/augment
+	desc = "A twisted blade for twisted purpose. Rip sinew and bone until your work is done."
+	w_class = WEIGHT_CLASS_SMALL
+	toolspeed = 0.5
