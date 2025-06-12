@@ -180,8 +180,8 @@
 	desc = "A twisted blade for twisted purpose. Rip sinew and bone until your work is done."
 	icon_state = "cruelsaw"
 	icon = 'modular_zubbers/icons/obj/medical/surgery_tools.dmi'
-	lefthand_file = 'modular_skyrat/modules/exp_corps/icons/bonesaw_l.dmi'
-	righthand_file = 'modular_skyrat/modules/exp_corps/icons/bonesaw_r.dmi'
+	lefthand_file = 'modular_zubbers/icons/obj/medical/cruelsaw_l.dmi'
+	righthand_file = 'modular_zubbers/icons/obj/medical/cruelsaw_r.dmi'
 	item_flags = SURGICAL_TOOL | CRUEL_IMPLEMENT
 
 
