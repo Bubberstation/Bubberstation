@@ -1847,30 +1847,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	worn_y_offset = 4
 
-//  Donator reward Smol42
-
-/obj/item/clothing/neck/trenchcoat
-	name = "Graceful Trenchcoat"
-	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/cloaks.dmi'
-	icon_state = "trenchcoat"
-	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/neck.dmi'
-	body_parts_covered = CHEST|GROIN|LEGS|ARMS
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"White" = list(
-			RESKIN_ICON_STATE = "trenchcoat_white",
-			RESKIN_WORN_ICON_STATE = "trenchcoat_white"
-		),
-		"Tin variant" = list(
-			RESKIN_ICON_STATE = "trenchcoat_tin",
-			RESKIN_WORN_ICON_STATE = "trenchcoat_tin"
-		),
-		"Blue variant" = list(
-			RESKIN_ICON_STATE = "trenchcoat_blue",
-			RESKIN_WORN_ICON_STATE = "trenchcoat_blue"
-		)
-	)
-
 //Donation reward for Jasohavents
 /obj/item/clothing/under/rank/cargo/qm/skirt/old
 	name = "quartermaster's jumpskirt"
