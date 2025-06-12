@@ -182,6 +182,7 @@
 	icon = 'modular_zubbers/icons/obj/medical/surgery_tools.dmi'
 	lefthand_file = 'modular_zubbers/icons/obj/medical/cruelsaw_l.dmi'
 	righthand_file = 'modular_zubbers/icons/obj/medical/cruelsaw_r.dmi'
+	inhand_icon_state = "cruelsaw"
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	item_flags = SURGICAL_TOOL | CRUEL_IMPLEMENT
 
