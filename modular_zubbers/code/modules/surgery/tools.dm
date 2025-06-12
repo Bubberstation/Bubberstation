@@ -167,7 +167,7 @@
 		),
 	)
 
-//Cruel Tools for the morbid surgical implant
+//Cruel Tools
 
 /obj/item/surgicaldrill/cruel
 	desc = "What secrets do they keep buried within those pearls..."
@@ -186,6 +186,31 @@
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	item_flags = SURGICAL_TOOL | CRUEL_IMPLEMENT
 
+/obj/item/bonesetter/cruel
+	name = "bonesetter"
+	desc = "We shall make you whole once more..."
+	icon = 'modular_zubbers/icons/obj/medical/surgery_tools.dmi'
+	item_flags = SURGICAL_TOOL | CRUEL_IMPLEMENT
+
+/obj/item/blood_filter/cruel
+	name = "malignant blood filter"
+	desc = "For filtering the blood."
+	icon = 'modular_zubbers/icons/obj/medical/surgery_tools.dmi'
+	item_flags = SURGICAL_TOOL | CRUEL_IMPLEMENT
+
+/obj/item/autopsy_scanner/cruel
+	name = "twisted autopsy scanner"
+	desc = "Used in surgery to extract information from a cadaver. Can also scan the health of cadavers like an advanced health analyzer!"
+	icon = 'icons/obj/devices/scanner.dmi'
+	worn_icon = 'modular_zubbers/icons/obj/clothing/belt.dmi'
+	icon_state = "cruelautopsy"
+	inhand_icon_state = "cruelautopsy"
+	worn_icon_state = "cruelautopsy"
+	lefthand_file = 'modular_zubbers/icons/obj/medical/cruelautopsy_l.dmi'
+	righthand_file = 'modular_zubbers/icons/obj/medical/cruelautopsy_r.dmi'
+	item_flags = CRUEL_IMPLEMENT
+
+//Cruel tools for the morbid surgical implant
 
 /obj/item/retractor/cruel/augment
 	desc = "A twisted micro-mechanical manipulator for retracting stuff."

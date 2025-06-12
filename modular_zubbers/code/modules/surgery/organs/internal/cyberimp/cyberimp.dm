@@ -12,7 +12,7 @@
 		/obj/item/circular_saw/cruel/augment,
 		/obj/item/surgical_drapes,
 		/obj/item/bonesetter,
-		/obj/item/blood_filter,
+		/obj/item/autopsy_scanner/cruel,
 	)
 
 /obj/item/organ/cyberimp/arm/toolkit/surgery/cruel/emagged
@@ -27,7 +27,7 @@
 		/obj/item/circular_saw/cruel/augment,
 		/obj/item/surgical_drapes,
 		/obj/item/bonesetter,
-		/obj/item/blood_filter,
+		/obj/item/autopsy_scanner/cruel,
 		/obj/item/knife/combat/cyborg,
 	)
 
