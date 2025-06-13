@@ -1,16 +1,14 @@
 /datum/quirk
 	// Is this quirk hidden from TGUI / the character preferences window?
 	var/hidden_quirk = FALSE
-	/// List of species that this quirk is valid for, or empty if it's valid for all species. Only use species ids here.
-	var/list/species_whitelist = list()
-	var/list/species_blacklist = list()
+	/// Blacklist of species for this quirk
+	var/list/species_blacklist = null
+	/// Whitelist of species for this quirk
+	var/list/species_whitelist = null
 
 /datum/quirk/is_species_appropriate(datum/species/mob_species)
-	if(length(species_whitelist))
-		if(!(initial(mob_species.id) in species_whitelist))
-			return FALSE
-	if(length(species_blacklist))
-		if(initial(mob_species.id) in species_blacklist)
-			return FALSE
-
-	. = ..()
+	if(LAZYLEN(species_blacklist) && (mob_species.id in species_blacklist))
+		return FALSE
+	if(LAZYLEN(species_whitelist) && !(mob_species.id in species_whitelist))
+		return FALSE
+	return ..()

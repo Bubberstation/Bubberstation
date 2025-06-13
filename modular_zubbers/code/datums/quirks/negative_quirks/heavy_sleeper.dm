@@ -2,7 +2,7 @@
 /datum/quirk/heavy_sleeper
 	name = "Heavy Sleeper"
 	desc = "You sleep like a rock! Whenever you're put to sleep or knocked unconscious, you take a little bit longer to wake up."
-	icon = FA_ICON_BED
+	icon = FA_ICON_FACE_TIRED
 	value = -2
 	mob_trait = TRAIT_HEAVY_SLEEPER
 	gain_text = span_danger("You feel sleepy.")

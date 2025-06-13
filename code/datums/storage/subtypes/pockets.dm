@@ -194,7 +194,7 @@
 		/obj/item/lipstick,
 		/obj/item/flashlight/pen,
 		/obj/item/lipstick,
-		/obj/item/reagent_containers/cup/rag, //BUBBER EDIT ADDITION: A POCKET PROTECTOR CAN CARRY A RAG
+		/obj/item/rag, //BUBBER EDIT ADDITION: A POCKET PROTECTOR CAN CARRY A RAG
 	))
 
 ///Helmet pockets

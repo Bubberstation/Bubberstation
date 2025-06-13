@@ -341,7 +341,6 @@ export function QuirksPage(props) {
       positiveQuirks += 1;
     }
 
-
     balance += selectedQuirk.value;
     */ // BUBBER EDIT END
   }
@@ -424,7 +423,6 @@ export function QuirksPage(props) {
               width="200px"
               value={searchQuery}
               onChange={setSearchQuery}
-              expensive
             />
           </Stack.Item>
           <Stack.Item grow className="PreferencesMenu__Quirks__QuirkList">
