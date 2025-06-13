@@ -77,6 +77,8 @@
 				/obj/item/clothing/shoes/winterboots/christmas = 5,
 				/obj/item/clothing/shoes/winterboots/christmas/green = 5,
 				/obj/item/clothing/under/pants/tactical = 5,
+				/obj/item/clothing/head/costume/irs = 5,
+				/obj/item/clothing/suit/costume/irs = 5
 			),
 		),
 	)
