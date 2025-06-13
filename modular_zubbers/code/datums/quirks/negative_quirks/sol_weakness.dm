@@ -15,12 +15,8 @@
 	value = -4
 	hardcore_value = 6
 	quirk_flags = QUIRK_HIDE_FROM_SCAN | QUIRK_HUMAN_ONLY
+	species_whitelist = list(SPECIES_HEMOPHAGE)
 	COOLDOWN_DECLARE(sun_burn)
-
-/datum/quirk/sol_weakness/is_species_appropriate(datum/species/mob_species)
-	if(mob_species.id != SPECIES_HEMOPHAGE)
-		return FALSE
-	return ..()
 
 /datum/quirk/sol_weakness/add_to_holder(mob/living/new_holder, quirk_transfer = FALSE, client/client_source, unique = TRUE)
 	if(IS_BLOODSUCKER(new_holder))

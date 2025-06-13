@@ -7,8 +7,4 @@
 	gain_text = span_notice("You feel that your body has adapted to consumption of normal food and drink without mixing in blood.")
 	lose_text = span_danger("You feel that your body is no longer able to consume normal food or drink without mixing in blood.")
 	medical_record_text = "Patient is able to consume food or drink without having to mix in blood, though they derive no nutritional benefit from it."
-
-/datum/quirk/masquerade_food/is_species_appropriate(datum/species/mob_species)
-	if(mob_species.id != SPECIES_HEMOPHAGE)
-		return FALSE
-	return ..()
+	species_whitelist = list(SPECIES_HEMOPHAGE)

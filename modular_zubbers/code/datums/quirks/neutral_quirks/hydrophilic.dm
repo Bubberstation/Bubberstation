@@ -9,8 +9,4 @@
 	medical_record_text = "Patient scans indicate extreme hydrophilicity."
 	hardcore_value = 0
 	mob_trait = TRAIT_HYDROPHILIC
-
-/datum/quirk/hydrophilic/is_species_appropriate(datum/species/mob_species)
-	if(mob_species.id != SPECIES_SLIMESTART)
-		return FALSE
-	return ..()
+	species_whitelist = list(SPECIES_SLIMESTART)
