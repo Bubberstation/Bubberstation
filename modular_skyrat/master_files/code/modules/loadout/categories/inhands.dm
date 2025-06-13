@@ -23,9 +23,9 @@
 	name = "Skateboard"
 	item_path = /obj/item/melee/skateboard
 
-/datum/loadout_item/inhand/toolbox
-	name = "Full Toolbox"
-	item_path = /obj/item/storage/toolbox/mechanical
+/datum/loadout_item/inhand/emergency_toolbox
+	name = "Emergency Toolbox"
+	item_path = /obj/item/storage/toolbox/emergency
 	blacklisted_roles = list(JOB_PRISONER)
 
 /datum/loadout_item/inhand/bouquet_mixed
