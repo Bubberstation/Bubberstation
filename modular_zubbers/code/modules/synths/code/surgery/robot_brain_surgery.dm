@@ -61,8 +61,6 @@
 
 	target.setOrganLoss(ORGAN_SLOT_BRAIN, target.get_organ_loss(ORGAN_SLOT_BRAIN) - 60)	//we set damage in this case in order to clear the "failing" flag
 	target.cure_all_traumas(TRAUMA_RESILIENCE_SURGERY)
-	target.cure_all_traumas(TRAUMA_RESILIENCE_LOBOTOMY) //Lobotomy tier fix cause you can't clone this!
-	target.apply_status_effect(/datum/status_effect/vulnerable_to_damage/surgery)
 
 	if(target.get_organ_loss(ORGAN_SLOT_BRAIN) > NONE)
 		to_chat(user, "[target]'s posibrain still has some lasting system damage that can be cleared.")
