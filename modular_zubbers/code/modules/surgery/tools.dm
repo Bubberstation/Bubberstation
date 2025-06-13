@@ -167,77 +167,33 @@
 		),
 	)
 
-//Cruel Tools
-
-/obj/item/surgicaldrill/cruel
-	desc = "What secrets do they keep buried within those pearls..."
-	icon_state = "crueldrill"
-	icon = 'modular_zubbers/icons/obj/medical/surgery_tools.dmi'
-	item_flags = SURGICAL_TOOL | CRUEL_IMPLEMENT
-
-
-/obj/item/circular_saw/cruel
-	desc = "A twisted blade for twisted purpose. Rip sinew and bone until your work is done."
-	icon_state = "cruelsaw"
-	icon = 'modular_zubbers/icons/obj/medical/surgery_tools.dmi'
-	lefthand_file = 'modular_zubbers/icons/obj/medical/cruelsaw_l.dmi'
-	righthand_file = 'modular_zubbers/icons/obj/medical/cruelsaw_r.dmi'
-	inhand_icon_state = "cruelsaw"
-	hitsound = 'sound/items/weapons/bladeslice.ogg'
-	item_flags = SURGICAL_TOOL | CRUEL_IMPLEMENT
-
-/obj/item/bonesetter/cruel
-	name = "harsh bonesetter"
-	desc = "We shall make you whole once more..."
-	icon = 'modular_zubbers/icons/obj/medical/surgery_tools.dmi'
-	item_flags = SURGICAL_TOOL | CRUEL_IMPLEMENT
-
-/obj/item/blood_filter/cruel
-	name = "malignant blood filter"
-	desc = "You must be made pure..."
-	icon = 'modular_zubbers/icons/obj/medical/surgery_tools.dmi'
-	item_flags = SURGICAL_TOOL | CRUEL_IMPLEMENT
-
-/obj/item/autopsy_scanner/cruel
-	name = "twisted autopsy scanner"
-	desc = "Used in surgery to extract information from a cadaver. Can also scan the health of cadavers like an advanced health analyzer!"
-	icon = 'modular_zubbers/icons/obj/medical/surgery_tools.dmi'
-	worn_icon = 'modular_zubbers/icons/obj/clothing/belt.dmi'
-	icon_state = "cruelautopsy"
-	inhand_icon_state = "cruelautopsy"
-	worn_icon_state = "cruelautopsy"
-	lefthand_file = 'modular_zubbers/icons/obj/medical/cruelautopsy_l.dmi'
-	righthand_file = 'modular_zubbers/icons/obj/medical/cruelautopsy_r.dmi'
-	item_flags = CRUEL_IMPLEMENT
-
 //Cruel tools for the morbid surgical implant
 
 /obj/item/retractor/cruel/augment
 	desc = "A twisted micro-mechanical manipulator for retracting stuff."
-	toolspeed = 0.75
+	toolspeed = 0.5
 
 
 /obj/item/hemostat/cruel/augment
 	desc = "Tiny, warped servos power a pair of pincers to stop bleeding."
-	toolspeed = 0.75
+	toolspeed = 0.5
 
 
 /obj/item/cautery/cruel/augment
 	desc = "Chalk this one up as another successful vivisection."
-	toolspeed = 0.75
+	toolspeed = 0.5
 
 
 /obj/item/scalpel/cruel/augment
 	desc = "Ultra-sharp blade attached directly to your bone for enhanced vivisection."
-	toolspeed = 0.75
+	toolspeed = 0.5
 
 /obj/item/surgicaldrill/cruel/augment
 	desc = "What secrets do they keep buried within those pearls..."
-	hitsound = 'sound/items/weapons/circsawhit.ogg'
 	w_class = WEIGHT_CLASS_SMALL
-	toolspeed = 0.75
+	toolspeed = 0.5
 
 /obj/item/circular_saw/cruel/augment
 	desc = "A twisted blade for twisted purpose. Rip sinew and bone until your work is done."
 	w_class = WEIGHT_CLASS_SMALL
-	toolspeed = 0.75
+	toolspeed = 0.5

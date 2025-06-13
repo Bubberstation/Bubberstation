@@ -11,8 +11,8 @@
 		/obj/item/scalpel/cruel/augment,
 		/obj/item/circular_saw/cruel/augment,
 		/obj/item/surgical_drapes,
-		/obj/item/bonesetter,
-		/obj/item/autopsy_scanner/cruel,
+		/obj/item/bonesetter/cruel,
+		/obj/item/autopsy_scanner,
 	)
 
 /obj/item/organ/cyberimp/arm/toolkit/surgery/cruel/emagged
@@ -26,8 +26,8 @@
 		/obj/item/scalpel/cruel/augment,
 		/obj/item/circular_saw/cruel/augment,
 		/obj/item/surgical_drapes,
-		/obj/item/bonesetter,
-		/obj/item/autopsy_scanner/cruel,
-		/obj/item/knife/combat/cyborg,
+		/obj/item/bonesetter/cruel,
+		/obj/item/autopsy_scanner,
+		/obj/item/shovel/serrated,
 	)
 

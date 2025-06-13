@@ -726,3 +726,36 @@
 /obj/item/scalpel/cruel/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/bane, mob_biotypes = MOB_UNDEAD, damage_multiplier = 1) //Just in case one of the tennants get uppity
+
+/obj/item/surgicaldrill/cruel
+	name = "tearing drill"
+	desc = "What secrets do they keep buried within those pearls..."
+	icon_state = "crueldrill"
+	inhand_icon_state = "crueldrill"
+	surgical_tray_overlay = "drill_cruel"
+	item_flags = SURGICAL_TOOL | CRUEL_IMPLEMENT
+
+/obj/item/circular_saw/cruel
+	name = "jagged bonesaw"
+	desc = "A twisted blade for twisted purpose. Rip sinew and bone until your work is done."
+	icon_state = "cruelsaw"
+	inhand_icon_state = "cruelsaw"
+	hitsound = 'sound/items/weapons/bladeslice.ogg'
+	surgical_tray_overlay = "saw_cruel"
+	item_flags = SURGICAL_TOOL | CRUEL_IMPLEMENT
+
+/obj/item/bonesetter/cruel
+	name = "harsh bonesetter"
+	desc = "We shall make you whole once more..."
+	icon_state = "cruelbonesetter"
+	inhand_icon_state = "cruelbonesetter"
+	surgical_tray_overlay = "bonesetter_cruel"
+	item_flags = SURGICAL_TOOL | CRUEL_IMPLEMENT
+
+/obj/item/blood_filter/cruel
+	name = "malignant blood filter"
+	desc = "You must be made pure..."
+	icon_state = "cruelbloodfilter"
+	inhand_icon_state = "cruelbloodfilter"
+	surgical_tray_overlay = "filter_cruel"
+	item_flags = SURGICAL_TOOL | CRUEL_IMPLEMENT
