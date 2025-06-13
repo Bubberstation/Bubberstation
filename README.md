@@ -1,4 +1,4 @@
-## Bubberstation (TG Downstream)
+## Buttberstation (TG Downstream)
 
 [![CI Suite](https://github.com/Bubberstation/Bubberstation/actions/workflows/ci_suite.yml/badge.svg)](https://github.com/Bubberstation/Bubberstation/actions/workflows/ci_suite.yml)
 
