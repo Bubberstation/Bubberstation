@@ -791,14 +791,14 @@
 //
 
 /datum/outfit/job/hos/pre_equip(mob/living/carbon/human/affected_mob)
-	if(affected_mob.jumpsuit_style == PREF_SKIRT)
-		to_chat(affected_mob, span_alertwarning("Lopland Head of Security uniforms don't include a skirt variant! You've been equipped with a jumpsuit instead."))
+	if(affected_mob.jumpsuit_style != PREF_SUIT)
+		to_chat(affected_mob, span_alertwarning("Lopland Head of Security uniforms don't include alternate variants! You've been equipped with a jumpsuit instead."))
 		affected_mob.jumpsuit_style = PREF_SUIT
 	. = ..()
 
 /datum/outfit/job/warden/pre_equip(mob/living/carbon/human/affected_mob)
-	if(affected_mob.jumpsuit_style == PREF_SKIRT)
-		to_chat(affected_mob, span_alertwarning("Lopland Warden uniforms don't include a skirt variant! You've been equipped with a jumpsuit instead."))
+	if(affected_mob.jumpsuit_style != PREF_SUIT)
+		to_chat(affected_mob, span_alertwarning("Lopland Warden uniforms don't include alternate variants! You've been equipped with a jumpsuit instead."))
 		affected_mob.jumpsuit_style = PREF_SUIT
 	. = ..()
 
