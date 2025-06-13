@@ -935,6 +935,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 	) = 25,
 	/obj/item/toy/nyamagotchi = 15,
 	/obj/item/paper/fluff/stations/soap = 50,
+	/obj/item/extendohand/acme = 50,
 	list(
 		/obj/item/soap = 50,
 		/obj/item/soap/deluxe = 10,
@@ -985,5 +986,15 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/reagent_containers/heroinbrick = 1,
 		/obj/item/reagent_containers/hashbrick = 1
 	) = 50,
-	/obj/item/rack_parts = 75
+	/obj/item/rack_parts = 75,
+	list(
+		/obj/item/hairbrush = 1,
+		/obj/item/hairbrush/comb = 1
+	) = 5,
+	/obj/item/towel = 10,
+	/obj/item/lipstick/random = 5,
+	list(
+		/obj/item/bikehorn/rubberducky = 1,
+		/obj/item/bikehorn/rubberducky/plasticducky = 1
+	) = 5,
 ))
