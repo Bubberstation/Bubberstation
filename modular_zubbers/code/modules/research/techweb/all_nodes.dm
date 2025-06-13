@@ -102,6 +102,13 @@
 		"borg_upgrade_expand" // Moved to default robotics, always available. It provides no practical benefit so it shouldn't be here
 	)
 
+/datum/techweb_node/borg_mining/New()
+	. = ..()
+	design_ids += list(
+		"pinpointer_vent_cyborg",
+		"adv_xenoarchbag_cyborg"
+	)
+
 // Computer Tech
 /datum/techweb_node/gaming/New()
 	. = ..()

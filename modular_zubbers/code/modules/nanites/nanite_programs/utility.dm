@@ -8,7 +8,7 @@
 
 /datum/nanite_program/viral/register_extra_settings()
 	extra_settings[NES_PROGRAM_OVERWRITE] = new /datum/nanite_extra_setting/type("Add To", list("Overwrite", "Add To", "Ignore"))
-	extra_settings[NES_CLOUD_OVERWRITE] = new /datum/nanite_extra_setting/number(0, 0, 100)
+	extra_settings[NES_CLOUD_OVERWRITE] = new /datum/nanite_extra_setting/number(NANITE_MIN_CLOUD_ID, NANITE_MIN_CLOUD_ID, NANITE_MAX_CLOUD_ID)
 
 /datum/nanite_program/viral/active_effect()
 	if(world.time < pulse_cooldown)
@@ -220,35 +220,45 @@
 			that is unlinked from the cloud. \
 			Will not work on hosts or those already infected."
 	can_trigger = TRUE
-	trigger_cost = 5
+	trigger_cost = 15
 	trigger_cooldown = 100
 	rogue_types = list(/datum/nanite_program/glitch, /datum/nanite_program/toxic)
 	var/decay_timer
 
 /datum/nanite_program/nanite_sting/Destroy()
-	. = ..()
 	if(!decay_timer)
-		return
+		return ..()
 	decay_sting()
+	. = ..()
 
 /datum/nanite_program/nanite_sting/on_trigger(comm_message)
-	consume_nanites(-15)
 	to_chat(host_mob, span_warning("Your hands becomes sharp and prickly."))
 	RegisterSignal(host_mob, COMSIG_LIVING_EARLY_UNARMED_ATTACK, PROC_REF(on_attack_hand))
 	decay_timer = addtimer(CALLBACK(src, PROC_REF(decay_sting)), 30 SECONDS, TIMER_STOPPABLE)
 
-/datum/nanite_program/nanite_sting/proc/on_attack_hand(atom/source, mob/user, modifiers)
+/datum/nanite_program/nanite_sting/proc/on_attack_hand(atom/attacker, mob/attack_target, proximity_flag, list/modifiers)
 	SIGNAL_HANDLER
-	var/mob/living/living = source
-	if(!istype(living)) return
-	if(!CAN_HAVE_NANITES(living) || SEND_SIGNAL(living, COMSIG_HAS_NANITES) || !living.Adjacent(host_mob)) return
-
-	if(prob(100 - living.getarmor(null, BIO)))
+	var/mob/living/living = attack_target
+	if(!isliving(living))
+		return
+	if(!CAN_HAVE_NANITES(living))
+		host_mob.balloon_alert(host_mob, "can't be infected!")
+		return
+	if(SEND_SIGNAL(living, COMSIG_HAS_NANITES))
+		host_mob.balloon_alert(host_mob, "already infected!")
+		return
+	if(!living.Adjacent(host_mob))
+		host_mob.balloon_alert(host_mob, "can't reach!")
+		return
+	var/chances = 100 - living.run_armor_check(host_mob.zone_selected, BIO, silent = TRUE)
+	var/success = prob(chances)
+	host_mob.balloon_alert(host_mob, "[chances]% chance [success ? "success" : "failed!"]")
+	if(success)
 		//unlike with Infective Exo-Locomotion, this can't take over existing nanites, because Nanite Sting only targets non-hosts.
 		living.AddComponent(/datum/component/nanites, 5)
 		SEND_SIGNAL(living, COMSIG_NANITE_SYNC, nanites)
 		// SEND_SIGNAL(living, COMSIG_NANITE_SET_CLOUD, nanites.cloud_id) won't set the cloud
-		// SEND_SIGNAL(living, COMSIG_NANITE_SET_CLOUD_SYNC, NANITE_CLOUD_DISABLE)
+		SEND_SIGNAL(living, COMSIG_NANITE_SET_CLOUD_SYNC, NANITE_CLOUD_DISABLE)
 		living.investigate_log("was infected by a nanite cluster with cloud ID [nanites.cloud_id] by [key_name(host_mob)] at [AREACOORD(living)].", INVESTIGATE_NANITES)
 		to_chat(living, span_warning("You feel a tiny prick."))
 	decay_sting()

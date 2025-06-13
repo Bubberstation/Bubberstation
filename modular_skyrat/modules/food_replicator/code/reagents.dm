@@ -34,24 +34,6 @@
 	mix_message = "The mixture instantly heats up."
 	reaction_flags = REACTION_INSTANT
 
-/datum/reagent/consumable/powdered_coco
-	name = "Powdered Coco"
-	description = "Made with love (citation needed), and reclaimed biomass."
-	nutriment_factor = 0
-	color = "#403010"
-	taste_description = "dry chocolate"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-	default_container = /obj/item/reagent_containers/cup/glass/mug/coco
-
-/datum/chemical_reaction/food/unpowdered_coco
-	required_reagents = list(
-		/datum/reagent/consumable/milk = 1,
-		/datum/reagent/consumable/powdered_coco = 1,
-	)
-	results = list(/datum/reagent/consumable/hot_coco = 2)
-	mix_message = "The mixture instantly heats up."
-	reaction_flags = REACTION_INSTANT
-
 /datum/reagent/consumable/powdered_lemonade
 	name = "Powdered Lemonade"
 	description = "Sweet, tangy base of a lemonade. Would be good if you'd mix it with water."

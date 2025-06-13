@@ -43,8 +43,8 @@
 	)
 	esp = human_holder.GetComponent(/datum/component/echolocation)
 
-	human_holder.remove_client_colour(/datum/client_colour/monochrome)
-	esp_color = human_holder.add_client_colour(/datum/client_colour/echolocation_custom)
+	human_holder.remove_client_colour(REF(src))
+	esp_color = human_holder.add_client_colour(/datum/client_colour/echolocation_custom, REF(src))
 	esp_color.update_color(col)
 
 	// add an action/spell to allow the player to toggle echolocation off for a bit (eyestrain on longer rounds, or just roleplay)
@@ -57,7 +57,7 @@
 	QDEL_NULL(esp) // echolocation component removal handles graceful disposal of everything above
 	QDEL_NULL(added_action) // remove the stall action, too
 	var/mob/living/carbon/human/human_holder = quirk_holder
-	human_holder.remove_client_colour(/datum/client_colour/echolocation_custom) // clean up the custom colour override we added
+	human_holder.remove_client_colour(REF(src)) // clean up the custom colour override we added
 	UnregisterSignal(human_holder, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine_text))
 
 /datum/quirk/echolocation/proc/on_examine_text(client/client_source, mob/user, list/examine_list)
