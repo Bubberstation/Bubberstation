@@ -86,16 +86,10 @@
 	access = ACCESS_SECURITY
 
 /datum/supply_pack/security/armory/swat
-	name = "SWAT Crate"
 	desc = "Contains two fullbody sets of tough, fireproof suits designed in a joint \
 		effort by IS-ERI and Nanotrasen. Each set contains a suit, helmet, mask, combat belt, a pepperball gun, \
 		and gorilla gloves."
-	cost = CARGO_CRATE_VALUE * 7
-	contains = list(/obj/item/clothing/head/helmet/swat/nanotrasen = 2,
-					/obj/item/clothing/suit/armor/swat = 2,
-					/obj/item/clothing/mask/gas/sechailer/swat = 2,
-					/obj/item/storage/belt/military/assault = 2,
-					/obj/item/clothing/gloves/tackler/combat = 2,
-					/obj/item/storage/toolbox/guncase/skyrat/pistol/pepperball = 2,
-				)
-	crate_name = "swat crate"
+
+/datum/supply_pack/security/armory/swat/New()
+	. = ..()
+	contains += list(/obj/item/storage/toolbox/guncase/skyrat/pistol/pepperball = 2)
