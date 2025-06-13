@@ -10,14 +10,17 @@
 	var/static/list/requesters = list()
 
 /obj/machinery/door/airlock/attack_hand_secondary(mob/living/user, list/modifiers)
+	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
+
 	if(world.time < requesters[user.name] + 10 SECONDS)
 		to_chat(user, span_warning("Hold on, let the AI parse your request."))
-		return
-	. = ..()
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if(!hasPower())
 		to_chat(user, span_warning("This door isn't powered."))
-		return
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	src.balloon_alert(user, UNLINT("AI requested"))
 
@@ -29,11 +32,13 @@
 		if(AI.deployed_shell)
 			if(!is_station_level(AI.deployed_shell.registered_z))
 				continue
-			to_chat(AI.deployed_shell, "<b><a href='byond://?src=[REF(AI)];track=[html_encode(user.name)]'>[user]</a></b> is requesting you to open the [src] [LINK_DENY][LINK_OPEN][LINK_BOLT][LINK_SHOCK]")
+			to_chat(AI.deployed_shell, "<b><a href='byond://?_src_=usr;track=[html_encode(user.name)]'>[user]</a></b> is requesting you to open the [src] [LINK_DENY][LINK_OPEN][LINK_BOLT][LINK_SHOCK]")
 		if(!is_station_level(AI.registered_z))
 			continue
-		to_chat(AI, "<b><a href='byond://?src=[REF(AI)];track=[html_encode(user.name)]'>[user]</a></b> is requesting you to open the [src] [LINK_DENY][LINK_OPEN][LINK_BOLT][LINK_SHOCK]")
+		to_chat(AI, "<b><a href='byond://?_src_=usr;track=[html_encode(user.name)]'>[user]</a></b> is requesting you to open the [src] [LINK_DENY][LINK_OPEN][LINK_BOLT][LINK_SHOCK]")
 	requesters[user.name] = world.time
+
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 #undef LINK_DENY
 #undef LINK_OPEN

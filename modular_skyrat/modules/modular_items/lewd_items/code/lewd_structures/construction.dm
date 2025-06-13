@@ -87,7 +87,9 @@
 	resulting_structure = /obj/structure/bed/bdsm_bed
 
 /obj/item/construction_kit/bdsm/shibari
-	icon_state = "shibari_kit"
+	icon = 'icons/map_icons/items/_item.dmi'
+	icon_state = "/obj/item/construction_kit/bdsm/shibari"
+	post_init_icon_state = "shibari_kit"
 	greyscale_config = /datum/greyscale_config/shibari_stand_item
 	greyscale_colors = "#bd8fcf"
 	resulting_structure = /obj/structure/chair/shibari_stand
