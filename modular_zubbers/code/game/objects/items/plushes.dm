@@ -78,7 +78,7 @@
 	desc = "He looks very eepy. A tag on the back of the plushie reads, 'Happy birthday, big guy.'"
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "tiredtesh"
-	squeak_override = list('modular_skyrat/modules/emotes/sound/emotes/Nose_boop.ogg' = 1)
+	squeak_override = list('modular_zubbers/sound/emotes/nose_boop.ogg' = 1)
 
 /obj/item/toy/plush/xenoplush
 	name = "xenomorph plushie"
@@ -224,7 +224,7 @@
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "FoxyPlush"
 	gender = MALE
-	squeak_override = list('modular_skyrat/modules/emotes/sound/emotes/claponce1.ogg' = 1)
+	squeak_override = list('modular_zubbers/sound/emotes/claponce1.ogg' = 1)
 
 // Rin/Yayyay007's plush
 /obj/item/toy/plush/squeaky_toy
