@@ -14,7 +14,7 @@
 /datum/surgery/advanced/lobotomy/mechanic
 	name = "Wetware OS Destructive Defragmentation"
 	desc = "A destructive robotic defragmentation method which guarantees removal of almost all brain traumas, but might cause another permanent trauma in return."
-	requires_bodypart_type = BODYTYPE_ROBOTIC
+	requires_bodypart_type = BODYTYPE_ROBOTIC | BODYTYPE_NANO // BUBBER EDIT
 	steps = list(
 		/datum/surgery_step/mechanic_open,
 		/datum/surgery_step/open_hatch,

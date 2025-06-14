@@ -32,18 +32,34 @@
 /datum/techweb_node/surgery_adv/New()
 	design_ids += "surgery_neurectomy"
 	design_ids += "surgery_blessed_neurectomy"
+	design_ids += "surgery_blessed_neurectomy_mechanical"
+	design_ids += "surgery_neurectomy_mechanical"
 	. = ..()
 
-/datum/design/surgery/robot_trauma
+/datum/design/surgery/robot_trauma // For synths
 	name = "Neural Defragmentation"
 	desc = "A surgical procedure that refurbishes low level components in the posibrain, to fix deep-rooted trauma errors."
 	id = "robotic_trauma_surgery"
 	surgery = /datum/surgery/robot_trauma_surgery
 	research_icon_state = "surgery_head"
 
-/datum/design/surgery/robot_trauma/blessed
+/datum/design/surgery/robot_trauma/blessed // For synths
 	name = "Devine Debugging"
 	desc = "A surgical procedure that refurbishes low level components in the posibrain, to fix the strongest, soulbound trauma errors."
 	id = "robotic_blessed_trauma_surgery"
 	surgery = /datum/surgery/robot_trauma_surgery/blessed
+	research_icon_state = "surgery_head"
+
+/datum/design/surgery/neurectomy/blessed // For augmented and proteans
+	name = "Neural blessing (Blessed Neurectomy)"
+	desc = "We're not quite sure exactly how it works, but with the blessing of a chaplain combined with modern chemicals, this manages to remove soul-bound traumas once thought to be magic."
+	id = "surgery_blessed_neurectomy_mechanical"
+	surgery = /datum/surgery/advanced/neurectomy/blessed/mechanical
+	research_icon_state = "surgery_head"
+
+/datum/design/surgery/neurectomy/mechanical // For augmented and proteans
+	name = "Neural Reset (Neurectomy)"
+	desc = "Requires Liquid Solder. An invasive surgical procedure which guarantees removal of deep-rooted brain traumas."
+	id = "surgery_neurectomy_mechanical"
+	surgery = /datum/surgery/advanced/neurectomy/mechanical
 	research_icon_state = "surgery_head"

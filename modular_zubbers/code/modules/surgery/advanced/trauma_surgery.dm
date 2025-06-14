@@ -130,3 +130,31 @@
 		/datum/reagent/water/holywater,
 		/datum/reagent/medicine/neurine,
 	)
+
+/datum/surgery/advanced/neurectomy/mechanical
+	name = "Neural Reset (Neurectomy)"
+	requires_bodypart_type = BODYTYPE_ROBOTIC | BODYTYPE_NANO
+	desc = "Requires Liquid Solder. An invasive surgical procedure which guarantees removal of deep-rooted brain traumas."
+	possible_locs = list(BODY_ZONE_HEAD)
+	steps = list(
+		/datum/surgery_step/mechanic_open,
+		/datum/surgery_step/mechanic_unwrench,
+		/datum/surgery_step/pry_off_plating,
+		/datum/surgery_step/prepare_electronics,
+		/datum/surgery_step/fix_robot_brain/trauma,
+		/datum/surgery_step/mechanic_close,
+	)
+
+/datum/surgery/advanced/neurectomy/blessed/mechanical
+	name = "Neural blessing (Blessed Neurectomy)"
+	requires_bodypart_type = BODYTYPE_ROBOTIC | BODYTYPE_NANO
+	desc = "We're not quite sure exactly how it works, but with the blessing of a chaplain combined with modern chemicals, this manages to remove soul-bound traumas once thought to be magic."
+	possible_locs = list(BODY_ZONE_HEAD)
+	steps = list(
+		/datum/surgery_step/mechanic_open,
+		/datum/surgery_step/mechanic_unwrench,
+		/datum/surgery_step/pry_off_plating,
+		/datum/surgery_step/prepare_electronics,
+		/datum/surgery_step/fix_robot_brain/blessed,
+		/datum/surgery_step/mechanic_close,
+	)

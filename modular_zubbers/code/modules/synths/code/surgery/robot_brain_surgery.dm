@@ -32,6 +32,7 @@
 		TOOL_HEMOSTAT = 90,
 		TOOL_SCREWDRIVER = 35,
 		/obj/item/pen = 15)
+
 	repeatable = TRUE
 	preop_sound = 'sound/items/handling/tools/multitool_pickup.ogg'
 	success_sound = 'sound/items/handling/tools/multitool_drop.ogg'
@@ -164,3 +165,44 @@
 		/datum/reagent/medicine/liquid_solder,
 		/datum/reagent/water/holywater,
 	)
+
+/datum/surgery/robot_trauma_surgery
+	name = "Reticulate Posibrain Splines (Blessed Lobotomy)"
+	desc = "A surgical procedure that refurbishes low level components in the posibrain, to fix the strongest trauma errors."
+	possible_locs = list(BODY_ZONE_CHEST) // The brains are in the chest
+	requires_bodypart_type = BODYTYPE_ROBOTIC
+	target_mobtypes = list(/mob/living/carbon/human)
+	steps = list(
+		/datum/surgery_step/mechanic_open,
+		/datum/surgery_step/mechanic_unwrench,
+		/datum/surgery_step/pry_off_plating,
+		/datum/surgery_step/prepare_electronics,
+		/datum/surgery_step/fix_robot_brain/advanced,
+		/datum/surgery_step/mechanic_close,
+	)
+
+/datum/surgery_step/fix_robot_brain/advanced
+	name = "reticulate splines (multitool)"
+	repeatable = FALSE
+	chems_needed = list(
+		/datum/reagent/medicine/liquid_solder,
+		/datum/reagent/water/holywater,
+	)
+
+/datum/surgery_step/fix_robot_brain/advanced/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+	display_results(user,
+		target,
+		span_notice("You succeed in reticulating [target]'s splines."),
+		"[user] successfully fixes [target]'s posibrain!",
+		"[user] completes the surgery on [target]'s posibrain.",
+	)
+
+	target.setOrganLoss(ORGAN_SLOT_BRAIN, target.get_organ_loss(ORGAN_SLOT_BRAIN) - 60)	//we set damage in this case in order to clear the "failing" flag
+	target.cure_all_traumas(TRAUMA_RESILIENCE_SURGERY)
+	target.cure_all_traumas(TRAUMA_RESILIENCE_LOBOTOMY)
+	target.cure_all_traumas(TRAUMA_RESILIENCE_MAGIC)
+	target.apply_status_effect(/datum/status_effect/vulnerable_to_damage/surgery)
+	playsound(source = get_turf(target), soundin = 'sound/effects/magic/repulse.ogg', vol = 75, vary = TRUE, falloff_distance = 2)
+	if(target.mind && target.mind.has_antag_datum(/datum/antagonist/brainwashed))
+		target.mind.remove_antag_datum(/datum/antagonist/brainwashed)
+	return ..()

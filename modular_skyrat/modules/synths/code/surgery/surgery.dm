@@ -24,9 +24,6 @@
 /datum/surgery/advanced/lobotomy/mechanic/can_start(mob/user, mob/living/carbon/target)
 	return !issynthetic(target) && ..()
 
-/datum/surgery/blood_filter/mechanic/can_start(mob/user, mob/living/carbon/target)
-	return !issynthetic(target) && ..()
-
 /datum/surgery/brain_surgery/mechanic/can_start(mob/user, mob/living/carbon/target)
 	return !issynthetic(target) && ..()
 
@@ -50,6 +47,12 @@
 	return !issynthetic(target) && ..()
 
 /datum/surgery/stomach_pump/mechanic/can_start(mob/user, mob/living/carbon/target)
+	return !issynthetic(target) && ..()
+
+/datum/surgery/advanced/neurectomy/blessed/mechanical/can_start(mob/user, mob/living/carbon/target)
+	return !issynthetic(target) && ..()
+
+/datum/surgery/advanced/neurectomy/mechanical/can_start(mob/user, mob/living/carbon/target)
 	return !issynthetic(target) && ..()
 
 /// Proteans can not heal via these surgeries.
