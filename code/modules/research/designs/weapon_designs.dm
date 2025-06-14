@@ -532,19 +532,6 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
-/datum/design/flechette
-	name = "Flechette Shotgun Shell (Lethal)"
-	desc = "A shotgun casing filled with small metal darts. Pokes many tiny holes into meat and kevlar alike. Useful for turning someone's insides \
-		into outsides."
-	id = "flechetteshell"
-	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2)
-	build_path = /obj/item/ammo_casing/shotgun/flechette
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-
 /datum/design/donkflechette
 	name = "Donk Co. 'Donk Spike' Flechette Shotgun Shell (Lethal)"
 	desc = "A shotgun casing filled with small plastic darts. That's right, plastic. Do you really think plastic is that scary? Sure, it would hurt to be \

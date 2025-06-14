@@ -120,7 +120,7 @@
 	design_ids += "wt550_ammo_rubber"
 	design_ids += "s12g_rubber"
 	design_ids += "s12g_bslug"
-	design_ids += "s12c_br"
+	design_ids += "s12g_br"
 	design_ids += "s12g_incinslug"
 	design_ids += "wt550_ammo_normal"
 	. = ..()
