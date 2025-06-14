@@ -23,6 +23,7 @@
 
 /datum/techweb_node/basic_arms/New()
 	design_ids += "s12c_fslug"
+	design_ids += "s12c_br"
 	design_ids += "s12g_huntingslug"
 
 /datum/techweb_node/sec_equip/New()
