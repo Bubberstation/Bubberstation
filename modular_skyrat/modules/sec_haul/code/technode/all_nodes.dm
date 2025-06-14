@@ -26,17 +26,9 @@
 	design_ids += "s12g_huntingslug"
 
 /datum/techweb_node/sec_equip/New()
-
-	design_ids += "s12g_rubber"
-	design_ids += "s12g_bslug"
 	. = ..()
 
 /datum/techweb_node/riot_supression/New()
-	design_ids += "s12g_br"
-	. = ..()
-
-/datum/techweb_node/exotic_ammo/New()
-	design_ids += "s12g_incinslug"
 	. = ..()
 
 /datum/techweb_node/syndicate_basic/New()
