@@ -5128,9 +5128,9 @@
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe)
 "bVH" = (
-/obj/machinery/door/poddoor/shutters/window/indestructible{
-	id = "interlink_hall";
-	name = "Windowed Interlink Access Shutters"
+/obj/machinery/door/poddoor/shutters/window/indestructible/preopen{
+	name = "Windowed Interlink Access Shutters";
+	id = "interlink_hall2"
 	},
 /obj/effect/turf_decal/caution/stand_clear,
 /turf/open/floor/iron,
@@ -5765,13 +5765,6 @@
 /area/centcom/holding/cafe/park)
 "cLD" = (
 /obj/structure/table,
-/obj/item/storage/medkit/regular{
-	pixel_x = 8;
-	pixel_y = 10
-	},
-/obj/item/storage/medkit/regular{
-	pixel_y = 6
-	},
 /obj/effect/turf_decal/delivery/blue,
 /turf/open/floor/iron,
 /area/centcom/interlink)
@@ -6753,7 +6746,7 @@
 	},
 /area/centcom/holding/cafe/park)
 "esx" = (
-/obj/effect/decal/cleanable/xenoblood,
+/obj/effect/decal/cleanable/blood/xeno,
 /obj/structure/alien/weeds,
 /turf/open/misc/dirt/planet,
 /area/centcom/holding/cafe/park)
@@ -7062,10 +7055,10 @@
 /turf/open/floor/mineral/silver,
 /area/centcom/holding/cafe)
 "eRc" = (
-/obj/machinery/door/poddoor/shutters/indestructible{
-	id = "evac_hall";
-	name = "Interlink Access Shutters"
+/obj/machinery/vending/cigarette{
+	all_products_free = 1
 	},
+/obj/effect/turf_decal/bot,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "eRB" = (
@@ -7807,9 +7800,11 @@
 /turf/open/floor/wood/tile,
 /area/centcom/interlink)
 "gap" = (
-/obj/machinery/vending/boozeomat,
 /obj/effect/turf_decal/trimline/green/line{
 	dir = 4
+	},
+/obj/machinery/vending/boozeomat{
+	all_products_free = 1
 	},
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
@@ -7912,9 +7907,9 @@
 /area/centcom/holding/cafe/park)
 "gjK" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/shutters/indestructible{
-	id = "il_bar";
-	name = "Interlink Bar Shutters"
+/obj/machinery/door/poddoor/shutters/indestructible/preopen{
+	id = "il_kitchen";
+	name = "Interlink Kitchen Shutters"
 	},
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
@@ -9122,7 +9117,9 @@
 /turf/open/floor/iron/white,
 /area/centcom/holding/cafe)
 "hTh" = (
-/obj/machinery/door/poddoor/shutters/window/preopen,
+/obj/machinery/door/poddoor/shutters/window/preopen{
+	name = "Interlink Access Shutters"
+	},
 /obj/effect/turf_decal/siding/dark,
 /turf/open/floor/iron,
 /area/centcom/interlink)
@@ -9320,6 +9317,20 @@
 	dir = 8
 	},
 /turf/open/floor/grass,
+/area/centcom/interlink)
+"ife" = (
+/obj/machinery/door/airlock/multi_tile/public/glass{
+	name = "Interlink Access"
+	},
+/obj/machinery/door/poddoor/shutters/window/indestructible/preopen{
+	id = "evac_hall";
+	name = "Windowed Interlink Access Shutters"
+	},
+/obj/machinery/door/poddoor/shutters/indestructible/preopen{
+	id = "evac_hall";
+	name = "Interlink Access Shutters"
+	},
+/turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "ifp" = (
 /obj/structure/spacevine{
@@ -10225,7 +10236,6 @@
 /turf/open/floor/plating,
 /area/cruiser_dock)
 "jqm" = (
-/obj/structure/closet/crate/freezer/blood,
 /obj/effect/turf_decal/bot_blue,
 /turf/open/floor/iron/freezer,
 /area/centcom/interlink)
@@ -10323,7 +10333,7 @@
 /area/centcom/holding/cafe/park)
 "jxw" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/window/indestructible{
+/obj/machinery/door/poddoor/shutters/window/indestructible/preopen{
 	id = "arriv_hall";
 	name = "Windowed Interlink Access Shutters"
 	},
@@ -10782,7 +10792,7 @@
 /obj/machinery/door/airlock/multi_tile/public/glass{
 	name = "Interlink Access"
 	},
-/obj/machinery/door/poddoor/shutters/indestructible{
+/obj/machinery/door/poddoor/shutters/indestructible/preopen{
 	id = "evac_hall";
 	name = "Interlink Access Shutters"
 	},
@@ -11900,13 +11910,6 @@
 	dir = 8
 	},
 /obj/structure/table,
-/obj/item/storage/medkit/regular{
-	pixel_x = 8;
-	pixel_y = 10
-	},
-/obj/item/storage/medkit/regular{
-	pixel_y = 6
-	},
 /obj/machinery/light/cold/directional/south,
 /obj/effect/turf_decal/delivery/blue,
 /turf/open/floor/iron,
@@ -12171,13 +12174,6 @@
 /area/centcom/holding/cafe)
 "mju" = (
 /obj/structure/table,
-/obj/item/storage/medkit/o2{
-	pixel_x = 8;
-	pixel_y = 10
-	},
-/obj/item/storage/medkit/toxin{
-	pixel_y = 6
-	},
 /obj/effect/turf_decal/delivery/blue,
 /obj/effect/turf_decal/trimline/blue/filled/corner,
 /turf/open/floor/iron/white,
@@ -13330,7 +13326,9 @@
 /turf/open/misc/dirt/planet,
 /area/centcom/holding/cafe/park)
 "nzO" = (
-/obj/machinery/door/poddoor/shutters/window/preopen,
+/obj/machinery/door/poddoor/shutters/window/preopen{
+	name = "Interlink Access Shutters"
+	},
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "nAp" = (
@@ -13864,8 +13862,8 @@
 	},
 /area/centcom/holding/cafe)
 "onb" = (
-/obj/machinery/door/poddoor/shutters/indestructible{
-	id = "arriv_hall";
+/obj/machinery/door/poddoor/shutters/indestructible/preopen{
+	id = "evac_hall";
 	name = "Interlink Access Shutters"
 	},
 /turf/open/floor/iron/dark,
@@ -14928,7 +14926,7 @@
 /area/centcom/holding/cafe)
 "pGZ" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/window/indestructible{
+/obj/machinery/door/poddoor/shutters/window/indestructible/preopen{
 	id = "evac_hall";
 	name = "Windowed Interlink Access Shutters"
 	},
@@ -15318,13 +15316,10 @@
 /turf/open/floor/wood,
 /area/centcom/holding/cafe)
 "qbk" = (
-/obj/machinery/door/airlock/multi_tile/public/glass{
-	name = "Interlink Access"
+/obj/machinery/vending/coffee{
+	all_products_free = 1
 	},
-/obj/machinery/door/poddoor/shutters/indestructible{
-	id = "arriv_hall";
-	name = "Interlink Access Shutters"
-	},
+/obj/effect/turf_decal/bot,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "qbp" = (
@@ -16563,7 +16558,9 @@
 /turf/open/floor/iron/smooth,
 /area/cruiser_dock)
 "rKs" = (
-/obj/machinery/vending/dinnerware,
+/obj/machinery/vending/dinnerware{
+	all_products_free = 1
+	},
 /obj/effect/turf_decal/siding/white/corner{
 	dir = 4
 	},
@@ -18658,11 +18655,11 @@
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe)
 "uji" = (
-/obj/machinery/door/poddoor/shutters/window/indestructible{
-	id = "interlink_hall2";
-	name = "Windowed Interlink Access Shutters"
-	},
 /obj/effect/turf_decal/caution/stand_clear,
+/obj/machinery/door/poddoor/shutters/window/indestructible/preopen{
+	name = "Windowed Interlink Access Shutters";
+	id = "interlink_hall2"
+	},
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "ujQ" = (
@@ -18707,7 +18704,9 @@
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe)
 "unr" = (
-/obj/machinery/door/poddoor/shutters/window/preopen,
+/obj/machinery/door/poddoor/shutters/window/preopen{
+	name = "Interlink Access Shutters"
+	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -18874,7 +18873,7 @@
 /area/centcom/interlink)
 "uFG" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/shutters/indestructible{
+/obj/machinery/door/poddoor/shutters/indestructible/preopen{
 	id = "il_kitchen";
 	name = "Interlink Kitchen Shutters"
 	},
@@ -20499,13 +20498,6 @@
 /area/centcom/holding/cafe)
 "xdQ" = (
 /obj/structure/table,
-/obj/item/storage/medkit/brute{
-	pixel_x = 8;
-	pixel_y = 10
-	},
-/obj/item/storage/medkit/fire{
-	pixel_y = 6
-	},
 /obj/effect/turf_decal/delivery/blue,
 /turf/open/floor/iron/white,
 /area/centcom/interlink)
@@ -21291,7 +21283,6 @@
 /area/centcom/holding/cafe)
 "ycL" = (
 /obj/structure/table/optable,
-/obj/item/surgery_tray/full,
 /obj/effect/turf_decal/bot_blue,
 /turf/open/floor/iron/white,
 /area/centcom/interlink)
@@ -32812,7 +32803,7 @@ aYp
 jxw
 aXG
 lAx
-uji
+bVH
 tCJ
 hvQ
 hvQ
@@ -33075,7 +33066,7 @@ hvQ
 hvQ
 hvQ
 tin
-bVH
+uji
 aTE
 aXG
 pGZ
@@ -33323,7 +33314,7 @@ hvQ
 hvQ
 uQt
 qey
-qbk
+kmV
 wJj
 dDo
 lOD
@@ -33592,7 +33583,7 @@ oYa
 xEn
 aOl
 qey
-eRc
+onb
 wJj
 aXG
 cBq
@@ -34608,7 +34599,7 @@ hvQ
 hvQ
 uQt
 qey
-qbk
+kmV
 wJj
 rDL
 tvw
@@ -34620,7 +34611,7 @@ ucr
 pTO
 aOl
 qey
-kmV
+ife
 wJj
 aXG
 cBq
@@ -34877,7 +34868,7 @@ tvw
 lOD
 gUi
 qey
-eRc
+onb
 wJj
 aXG
 rjf
@@ -35131,7 +35122,7 @@ hvQ
 hvQ
 hvQ
 tin
-bVH
+uji
 aTE
 aXG
 pGZ
@@ -35382,13 +35373,13 @@ jXO
 jxw
 aXG
 lAx
-uji
+bVH
 tCJ
 hvQ
 hvQ
 hvQ
 tin
-bVH
+uji
 aTE
 aXG
 pGZ
@@ -37450,8 +37441,8 @@ tvw
 tvw
 tvw
 xyz
-wAE
-enb
+qbk
+eRc
 tvw
 tvw
 tvw
