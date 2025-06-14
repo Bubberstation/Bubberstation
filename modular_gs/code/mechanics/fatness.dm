@@ -26,10 +26,8 @@
 	var/fullness = FULLNESS_LEVEL_HALF_FULL
 	var/fullness_reduction_timer = 0 // When was the last time they emoted to reduce their fullness
 
-	/// How many mobs have been digested by this mob?
-	var/prey_digested = 0
 	/// How many humanoid mobs have been digested by this mob?
-	var/human_prey_digested = 0
+	var/carbons_digested = 0
 
 /**
 * Adjusts the fatness level of the parent mob.

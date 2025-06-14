@@ -14,3 +14,5 @@
 #define TRANSFORMATION "transformation"
 
 #define FATNESS_TO_WEIGHT_RATIO 0.25
+
+#define FATNESS_FROM_VORE 0.8

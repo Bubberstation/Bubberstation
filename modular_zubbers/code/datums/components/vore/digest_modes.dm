@@ -91,6 +91,7 @@ GLOBAL_DATUM_INIT(vore_cryopod, /obj/machinery/cryopod/quiet/vore, new /obj/mach
 	living_parent.log_message("digested and qdel'd [key_name(L)].", LOG_ATTACK)
 	L.log_message("was digested and qdel'd by [key_name(living_parent)].", LOG_VICTIM)
 
+	handle_vore_weight_gain(living_parent, L) // GS13 EDIT WG from vore!
 	remove_player_from_round_safely(L)
 	return TRUE
 
