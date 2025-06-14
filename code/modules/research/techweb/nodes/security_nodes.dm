@@ -92,7 +92,6 @@
 		"c38_true_strike",
 		"c38_true_strike_mag",
 		"techshotshell",
-		"flechetteshell",
 		"m9mm_sec_rocket",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
