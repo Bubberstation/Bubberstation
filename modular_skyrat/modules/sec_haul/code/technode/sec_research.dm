@@ -24,7 +24,7 @@
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-
+/*
 // Sol 40 Rifle
 //These use plastic so they are still material costly, but should be not as bad
 
@@ -51,7 +51,7 @@
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-
+*/
 //Grenade Launcher stuff
 
 /datum/design/kiboko_mag
@@ -507,7 +507,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 //Conversion Kit
-
+/*
 /datum/design/sol_rifle_carbine_kit
 	name = "Sol Carbine Conversion Part Kit(Very Lethal)"
 	desc = "The kit to brutalise your functional battle rifle into a short carbine, ideal for close quarter."
@@ -533,3 +533,4 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 	autolathe_exportable = FALSE
+*/
