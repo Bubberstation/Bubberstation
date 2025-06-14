@@ -1,11 +1,13 @@
-/datum/species/proc/update_body_size(mob/living/carbon/human/H, size_change)
+
+/mob/living/carbon/human/proc/update_body_size(mob/living/carbon/human/H, size_change)
 	if(!istype(H))
 		return
 
+/*
 	var/obj/item/organ/genital/butt/butt = H.getorganslot(ORGAN_SLOT_BUTT)
 	var/obj/item/organ/genital/belly/belly = H.getorganslot(ORGAN_SLOT_BELLY)
 	var/obj/item/organ/genital/breasts/breasts = H.getorganslot(ORGAN_SLOT_BREASTS)
-	var/obj/item/organ/genital/taur_belly/tbelly = H.getorganslot(ORGAN_SLOT_TAUR_BELLY) //GS13 TAUR BELLY EDIT
+	var/obj/item/organ/genital/taur_belly/tbelly = H.getorganslot(ORGAN_SLOT_TAUR_BELLY)
 
 	if(butt)
 		if(butt.max_size > 0)
@@ -19,7 +21,7 @@
 				belly.modify_size(size_change)
 		else
 			belly.modify_size(size_change)
-	if(tbelly)	//GS13 TAUR BELLY EDIT
+	if(tbelly)
 		if(tbelly.max_size > 0)
 			if((tbelly.size + size_change) <= tbelly.max_size)
 				tbelly.modify_size(size_change)
@@ -37,7 +39,11 @@
 	H.update_inv_w_uniform()
 	H.update_inv_wear_suit()
 
-/datum/species/proc/handle_fatness_trait(mob/living/carbon/human/H, trait, trait_lose, trait_gain, fatness_lose, fatness_gain, chat_lose, chat_gain)
+Do this later.
+*/
+
+/mob/living/carbon/human/proc/handle_fatness_trait(trait, trait_lose, trait_gain, fatness_lose, fatness_gain, chat_lose, chat_gain)
+	var/mob/living/carbon/human/H = src
 	if(H.fatness < fatness_lose)
 		if (chat_lose)
 			to_chat(H, chat_lose)
@@ -55,7 +61,11 @@
 			ADD_TRAIT(H, trait_gain, OBESITY)
 		update_body_size(H, 1)
 
-/datum/species/proc/handle_helplessness(mob/living/carbon/human/fatty)
+/mob/living/carbon/human/proc/handle_helplessness()
+	return TRUE
+	/*
+	Later
+	var/mob/living/carbon/human/fatty = src
 	var/datum/preferences/preferences = fatty?.client?.prefs
 	if(!istype(preferences) || HAS_TRAIT(fatty, TRAIT_NO_HELPLESSNESS))
 		return FALSE
@@ -214,7 +224,7 @@
 					// to_chat(fatty, "<span class='warning'>[PBS_belt] can no longer contain your weight!</span>")
 					fatty.visible_message("<span class='warning'>[PBS_belt] fails as it's unable to contain [fatty]'s bulk!</span>", "<span class='warning'>[PBS_belt] fails as it's unable to contain your bulk!</span>")
 					fatty.dropItemToGround(PBS_belt)
-					
+
 				var/obj/item/storage/belt/belt = fatty.belt
 				if(istype(belt))
 					// to_chat(fatty, "<span class='warning'>[belt] can no longer contain your weight!</span>")
@@ -260,6 +270,7 @@
 	else
 		if(HAS_TRAIT_FROM(fatty, TRAIT_NO_BUCKLE, HELPLESSNESS_TRAIT))
 			REMOVE_TRAIT(fatty, TRAIT_NO_BUCKLE, HELPLESSNESS_TRAIT)
+*/
 
 /datum/movespeed_modifier/fatness
 	id = "fat"
@@ -292,7 +303,8 @@
 		if(modifier.name == name)
 			LAZYREMOVE(fatness_delay_modifiers, modifier)
 
-/datum/species/proc/apply_fatness_speed_modifiers(mob/living/carbon/human/H, fatness_delay)
+/mob/living/carbon/human/proc/apply_fatness_speed_modifiers(fatness_delay)
+	var/mob/living/carbon/human/H = src
 	var/delay_cap = FATNESS_MAX_MOVE_PENALTY
 	if(HAS_TRAIT(H, TRAIT_WEAKLEGS))
 		delay_cap = 60
@@ -304,10 +316,8 @@
 	fatness_delay = min(fatness_delay, delay_cap)
 	return fatness_delay
 
-/datum/species/proc/handle_fatness(mob/living/carbon/human/H)
-	handle_helplessness(H)
-	H.handle_modular_items()
-
+/mob/living/carbon/human/proc/handle_fatness()
+	var/mob/living/carbon/human/H = src
 	// update movement speed
 	var/fatness_delay = 0
 	if(H.fatness && !HAS_TRAIT(H, TRAIT_NO_FAT_SLOWDOWN))
@@ -325,14 +335,13 @@
 				fatness_delay = min(fatness_delay, 60)
 
 	if(fatness_delay)
-		fatness_delay = apply_fatness_speed_modifiers(H, fatness_delay)
+		fatness_delay = apply_fatness_speed_modifiers(fatness_delay)
 		H.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/fatness, TRUE, fatness_delay)
 	else
 		H.remove_movespeed_modifier(/datum/movespeed_modifier/fatness)
 
 	if(HAS_TRAIT(H, TRAIT_BLOB))
 		handle_fatness_trait(
-			H,
 			TRAIT_BLOB,
 			TRAIT_IMMOBILE,
 			null,
@@ -343,7 +352,6 @@
 		return
 	if(HAS_TRAIT(H, TRAIT_IMMOBILE))
 		handle_fatness_trait(
-			H,
 			TRAIT_IMMOBILE,
 			TRAIT_BARELYMOBILE,
 			TRAIT_BLOB,
@@ -354,7 +362,6 @@
 		return
 	if(HAS_TRAIT(H, TRAIT_BARELYMOBILE))
 		handle_fatness_trait(
-			H,
 			TRAIT_BARELYMOBILE,
 			TRAIT_EXTREMELYOBESE,
 			TRAIT_IMMOBILE,
@@ -365,7 +372,6 @@
 		return
 	if(HAS_TRAIT(H, TRAIT_EXTREMELYOBESE))
 		handle_fatness_trait(
-			H,
 			TRAIT_EXTREMELYOBESE,
 			TRAIT_MORBIDLYOBESE,
 			TRAIT_BARELYMOBILE,
@@ -376,7 +382,6 @@
 		return
 	if(HAS_TRAIT(H, TRAIT_MORBIDLYOBESE))
 		handle_fatness_trait(
-			H,
 			TRAIT_MORBIDLYOBESE,
 			TRAIT_OBESE,
 			TRAIT_EXTREMELYOBESE,
@@ -387,7 +392,6 @@
 		return
 	if(HAS_TRAIT(H, TRAIT_OBESE))
 		handle_fatness_trait(
-			H,
 			TRAIT_OBESE,
 			TRAIT_VERYFAT,
 			TRAIT_MORBIDLYOBESE,
@@ -398,7 +402,6 @@
 		return
 	if(HAS_TRAIT(H, TRAIT_VERYFAT))
 		handle_fatness_trait(
-			H,
 			TRAIT_VERYFAT,
 			TRAIT_FATTER,
 			TRAIT_OBESE,
@@ -409,7 +412,6 @@
 		return
 	if(HAS_TRAIT(H, TRAIT_FATTER))
 		handle_fatness_trait(
-			H,
 			TRAIT_FATTER,
 			TRAIT_FAT,
 			TRAIT_VERYFAT,
@@ -420,7 +422,6 @@
 		return
 	if(HAS_TRAIT(H, TRAIT_FAT))
 		handle_fatness_trait(
-			H,
 			TRAIT_FAT,
 			null,
 			TRAIT_FATTER,
@@ -430,7 +431,6 @@
 			"<span class='danger'>You feel even plumper!</span>")
 	else
 		handle_fatness_trait(
-			H,
 			null,
 			null,
 			TRAIT_FAT,
