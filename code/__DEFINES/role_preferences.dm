@@ -48,6 +48,9 @@
 #define ROLE_CLOCK_CULTIST "Clock Cultist"
 // SKYRAT EDIT END
 #define ROLE_VOIDWALKER "Voidwalker"
+//Bubber Edit start
+#define ROLE_INFECTED_SYNTHETIC "Hacked Synthetic"
+//Bubber Edit End
 
 // Latejoin roles
 #define ROLE_HERETIC_SMUGGLER "Heretic Smuggler"
@@ -197,6 +200,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_BORER = 0,
 	ROLE_MUTANT = 0,
 	//SKYRAT EDIT END
+	ROLE_INFECTED_SYNTHETIC = 0, //Bubber Edit
 	ROLE_VOIDWALKER = 0,
 
 	// Latejoin
