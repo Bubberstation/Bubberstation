@@ -137,9 +137,10 @@
 
 /datum/laser_weapon_mode/sword/apply_to_weapon(obj/item/gun/energy/modular_laser_rifle/applied_gun)
 	playsound(src, 'sound/items/unsheath.ogg', 25, TRUE)
-	applied_gun.force = 18
+	applied_gun.force = 20
 	applied_gun.sharpness = SHARP_EDGED
-	applied_gun.bare_wound_bonus = 10
+	applied_gun.bare_wound_bonus = 15
+	applied_gun.wound_bonus = 5
 	applied_gun.disabled_for_other_reasons = TRUE
 	applied_gun.attack_verb_continuous = list("slashes", "cuts")
 	applied_gun.attack_verb_simple = list("slash", "cut")
@@ -149,6 +150,7 @@
 	playsound(src, 'sound/items/sheath.ogg', 25, TRUE)
 	applied_gun.force = initial(applied_gun.force)
 	applied_gun.sharpness = initial(applied_gun.sharpness)
+	applied_gun.wound_bonus = initial(applied_gun.wound_bonus)
 	applied_gun.bare_wound_bonus = initial(applied_gun.bare_wound_bonus)
 	applied_gun.disabled_for_other_reasons = FALSE
 	applied_gun.attack_verb_continuous = initial(applied_gun.attack_verb_continuous)
