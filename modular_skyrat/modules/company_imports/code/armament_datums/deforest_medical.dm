@@ -291,6 +291,10 @@
 	item_type = /obj/item/organ/cyberimp/arm/toolkit/janitor
 	cost = PAYCHECK_COMMAND * 5
 
+/datum/armament_entry/company_import/deforest/implant/cruelsurgery
+	item_type = /obj/item/organ/cyberimp/arm/toolkit/surgery/cruel
+	cost = PAYCHECK_COMMAND * 5
+
 // Modsuit Modules from the medical category, here instead of in Nakamura because nobody buys from this company
 
 /datum/armament_entry/company_import/deforest/medical_modules
