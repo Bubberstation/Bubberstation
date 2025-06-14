@@ -2,24 +2,6 @@
 	category = COMPANY_NAME_VITEZSTVI_AMMO
 	company_bitflag = CARGO_COMPANY_VITEZSTVI_AMMO
 
-// Ammo bench and the lethals disk
-
-/datum/armament_entry/company_import/vitezstvi/ammo_bench
-	subcategory = "Ammunition Manufacturing Equipment"
-
-/datum/armament_entry/company_import/vitezstvi/ammo_bench/bench_itself
-	item_type = /obj/item/circuitboard/machine/ammo_workbench
-	cost = PAYCHECK_COMMAND * 5
-/*
-/datum/armament_entry/company_import/vitezstvi/ammo_bench/ammo_disk
-	item_type = /obj/item/disk/ammo_workbench/advanced
-	cost = PAYCHECK_COMMAND * 5
-*/
-
-/datum/armament_entry/company_import/vitezstvi/ammo_bench/bullet_drive
-	item_type = /obj/item/circuitboard/machine/dish_drive/bullet
-	cost = PAYCHECK_COMMAND * 2
-
 // Weapon accessories
 
 /datum/armament_entry/company_import/vitezstvi/accessory
@@ -40,25 +22,6 @@
 */
 
 // Boxes of non-shotgun ammo
-
-/datum/armament_entry/company_import/vitezstvi/ammo_boxes
-	subcategory = "Ammunition Boxes"
-	cost = PAYCHECK_CREW
-
-/datum/armament_entry/company_import/vitezstvi/ammo_boxes/sol35
-	item_type = /obj/item/ammo_box/c35sol
-
-/datum/armament_entry/company_import/vitezstvi/ammo_boxes/sol35_disabler
-	item_type = /obj/item/ammo_box/c35sol/incapacitator
-
-/datum/armament_entry/company_import/vitezstvi/ammo_boxes/sol40_disabler
-	item_type = /obj/item/ammo_box/c40sol/fragmentation
-
-/datum/armament_entry/company_import/vitezstvi/ammo_boxes/strilka_rubber
-	item_type = /obj/item/ammo_box/c310_cargo_box/rubber
-
-/datum/armament_entry/company_import/vitezstvi/ammo_boxes/trappiste585_disabler
-	item_type = /obj/item/ammo_box/c585trappiste/incapacitator
 
 // Revolver speedloaders
 
@@ -106,8 +69,6 @@
 /datum/armament_entry/company_import/vitezstvi/shot_shells/flechettes
 	item_type = /obj/item/ammo_box/advanced/s12gauge/flechette
 */
-/datum/armament_entry/company_import/vitezstvi/shot_shells/hornet_nest
-	item_type = /obj/item/ammo_box/advanced/s12gauge/beehive
 /*
 /datum/armament_entry/company_import/vitezstvi/shot_shells/stardust
 	item_type = /obj/item/ammo_box/advanced/s12gauge/antitide

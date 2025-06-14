@@ -118,18 +118,10 @@
 
 /datum/techweb_node/riot_supression/New()
 	design_ids += "wt550_ammo_rubber"
-	design_ids += "wt550_ammo_flathead"
-	design_ids += "sol35_shortmag"
-	design_ids += "m45_mag"
-	design_ids += "s12g_hornet"
-	design_ids += "s12g_antitide"
 	design_ids += "s12g_rubber"
 	design_ids += "s12g_bslug"
 	design_ids += "s12g_incinslug"
 	design_ids += "wt550_ammo_normal"
-	design_ids += "sol35_shortextmag"
-	design_ids += "sol40_riflemag"
-	design_ids += "solgrenade_mag"
 	. = ..()
 
 /datum/techweb_node/exotic_ammo/New()
@@ -141,8 +133,6 @@
 	design_ids -= "mag_autorifle_ap"
 	design_ids -= "mag_autorifle_ic"
 	design_ids += "wt550_ammo_incendiary"
-	design_ids += "s12g_magnum"
-	design_ids += "s12g_express"
 	design_ids += "mod_mind_transfer"
 	. = ..()
 
