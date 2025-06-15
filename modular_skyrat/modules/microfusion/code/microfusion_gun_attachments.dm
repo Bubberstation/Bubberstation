@@ -179,7 +179,7 @@ Lasers set the target on fire.
 	heat_addition = 90
 	slot = GUN_SLOT_BARREL
 	projectile_override = /obj/projectile/beam/laser/microfusion/superheated
-	new_fire_sound = 'modular_skyrat/modules/microfusion/sound/vaporize.ogg'
+	new_fire_sound = 'modular_zubbers/sound/weapons/vaporize.ogg'
 
 /*
 HELLFIRE ATTACHMENT
@@ -195,7 +195,7 @@ Makes the gun shoot hellfire lasers.
 	power_usage = 20
 	slot = GUN_SLOT_BARREL
 	projectile_override = /obj/projectile/beam/laser/microfusion/hellfire
-	new_fire_sound = 'modular_skyrat/modules/microfusion/sound/melt.ogg'
+	new_fire_sound = 'modular_zubbers/sound/weapons/melt.ogg'
 
 /*
 REPEATER ATTACHMENT
@@ -247,7 +247,7 @@ The gun can fire X-RAY shots.
 	attachment_overlay_icon_state = "attachment_xray"
 	heat_addition = 90
 	power_usage = 50
-	new_fire_sound = 'modular_skyrat/modules/microfusion/sound/incinerate.ogg'
+	new_fire_sound = 'modular_zubbers/sound/weapons/incinerate.ogg'
 	projectile_override = /obj/projectile/beam/laser/microfusion/xray
 
 /obj/item/microfusion_gun_attachment/barrel/xray/examine(mob/user)
@@ -556,7 +556,7 @@ Converts shots to STAMINA damage.
 
 /obj/item/microfusion_gun_attachment/undercharger/run_attachment(obj/item/gun/microfusion/microfusion_gun)
 	. = ..()
-	microfusion_gun.fire_sound = 'modular_skyrat/modules/microfusion/sound/burn.ogg'
+	microfusion_gun.fire_sound = 'modular_zubbers/sound/weapons/burn.ogg'
 
 /obj/item/microfusion_gun_attachment/undercharger/process_fire(obj/item/gun/microfusion/microfusion_gun, obj/item/ammo_casing/chambered)
 	. = ..()

@@ -61,7 +61,7 @@
 	))
 
 /datum/component/irradiated/Destroy(force)
-	var/atom/movable/parent_movable = parent
+	var/mob/living/parent_movable = parent //BUBBERSTATION CHANGE: MOVABLE TO LIVING
 	if (istype(parent_movable))
 		parent_movable.remove_filter("rad_glow")
 
@@ -149,7 +149,7 @@
 	)
 
 /datum/component/irradiated/proc/create_glow()
-	var/atom/movable/parent_movable = parent
+	var/mob/living/parent_movable = parent //BUBBERSTATION CHANGE: MOVABLE TO LIVING.
 	if (!istype(parent_movable))
 		return
 
@@ -168,11 +168,11 @@
 	SIGNAL_HANDLER
 
 	if (!(clean_types & CLEAN_TYPE_RADIATION))
-		return
+		return NONE
 
 	if (isitem(parent))
 		qdel(src)
-		return COMPONENT_CLEANED
+		return COMPONENT_CLEANED|COMPONENT_CLEANED_GAIN_XP
 
 	COOLDOWN_START(src, clean_cooldown, RADIATION_CLEAN_IMMUNITY_TIME)
 
