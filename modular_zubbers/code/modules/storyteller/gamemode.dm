@@ -124,6 +124,7 @@ SUBSYSTEM_DEF(gamemode)
 	/// Ready players for roundstart events.
 	var/ready_players = 0
 	var/active_players = 0
+	var/active_crew = 0
 	var/head_crew = 0
 	var/eng_crew = 0
 	var/sec_crew = 0
@@ -406,32 +407,48 @@ SUBSYSTEM_DEF(gamemode)
 	scheduled_events += scheduled
 
 /datum/controller/subsystem/gamemode/proc/update_crew_infos()
+
 	// Very similar logic to `get_active_player_count()`
+
+	active_crew = 0
 	active_players = 0
 	head_crew = 0
 	eng_crew = 0
 	med_crew = 0
 	sec_crew = 0
-	for(var/mob/player_mob as anything in GLOB.player_list)
-		if(!player_mob.client)
+
+	for(var/mob/player_mob as anything in GLOB.alive_player_list)
+
+		if(!player_mob?.client?.is_afk()) //If afk
 			continue
-		if(player_mob.stat) //If they're alive
-			continue
-		if(player_mob.client.is_afk()) //If afk
-			continue
-		if(!ishuman(player_mob))
-			continue
+
 		active_players++
-		if(player_mob.mind?.assigned_role)
-			var/datum/job/player_role = player_mob.mind.assigned_role
-			if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_COMMAND)
-				head_crew++
-			if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_ENGINEERING)
-				eng_crew++
-			if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_MEDICAL)
-				med_crew++
-			if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_SECURITY)
-				sec_crew++
+
+		if(!player_mob.mind?.assigned_role)
+			continue
+		var/datum/job/player_role = player_mob.mind.assigned_role
+
+		//Check if they're actually a crew job (and not something like an off-station ghost role).
+		if(!(player_role.job_flags & JOB_CREW_MEMBER))
+			continue
+
+		//Check if they're actually on station and not """engaged""" in """roleplay""".like a good crew member.
+		//This basically checks if they're on a station z-level and they're not in dorms.
+		if(engaged_role_play_check(player_mob, station = TRUE, dorms = TRUE))
+			continue
+
+		active_crew++
+
+		//Now check each crewmember's job flags.
+		if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_COMMAND)
+			head_crew++
+		if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_ENGINEERING)
+			eng_crew++
+		if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_MEDICAL)
+			med_crew++
+		if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_SECURITY)
+			sec_crew++
+
 	pop_data_cached = TRUE
 
 /datum/controller/subsystem/gamemode/proc/TriggerEvent(datum/round_event_control/event)
