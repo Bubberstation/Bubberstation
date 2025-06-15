@@ -1,6 +1,10 @@
 /// What accessories can a species have as well as their default accessory of such type e.g. "frills" = "Aquatic". Default accessory colors is dictated by the accessory properties and mutcolors of the specie
 GLOBAL_LIST_EMPTY(default_mutant_bodyparts)
 GLOBAL_LIST_INIT(possible_genitals, list(
+	//GS13 EDIT ASS AND BELLY :)
+	ORGAN_SLOT_BELLY,
+	ORGAN_SLOT_BUTT,
+	//GS13 EDIT END
 	ORGAN_SLOT_VAGINA,
 	ORGAN_SLOT_WOMB,
 	ORGAN_SLOT_TESTICLES,

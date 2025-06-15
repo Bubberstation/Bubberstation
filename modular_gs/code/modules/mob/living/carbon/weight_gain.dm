@@ -16,7 +16,7 @@
 			fatty.throw_alert("fullness", /atom/movable/screen/alert/gs13/beegbelly)
 
 
-	var/obj/item/organ/genital/belly/B = fatty.getorganslot("belly")
+	var/obj/item/organ/genital/external/belly/B = fatty.getorganslot("belly")
 	if(!isnull(B) && istype(B))
 		B.update()
 	*/

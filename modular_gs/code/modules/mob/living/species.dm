@@ -5,7 +5,7 @@
 
 /*
 	var/obj/item/organ/genital/butt/butt = H.getorganslot(ORGAN_SLOT_BUTT)
-	var/obj/item/organ/genital/belly/belly = H.getorganslot(ORGAN_SLOT_BELLY)
+	var/obj/item/organ/genital/external/belly/belly = H.getorganslot(ORGAN_SLOT_BELLY)
 	var/obj/item/organ/genital/breasts/breasts = H.getorganslot(ORGAN_SLOT_BREASTS)
 	var/obj/item/organ/genital/taur_belly/tbelly = H.getorganslot(ORGAN_SLOT_TAUR_BELLY)
 

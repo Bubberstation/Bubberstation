@@ -1,4 +1,4 @@
-/obj/item/organ/genital/belly //I know, I know a belly aint a genital. but it is in the sake of code.
+/obj/item/organ/genital/external/belly //I know, I know a belly aint a genital. but it is in the sake of code.
 	name 					= "belly"
 	desc 					= "You see a belly on their midsection."
 	icon_state 				= "belly"
@@ -18,7 +18,7 @@
 	var/prev_size			= 0
 	layer_index = BELLY_LAYER_INDEX
 
-/obj/item/organ/genital/belly/modify_size(modifier, min = BELLY_SIZE_DEF, max = BELLY_SIZE_MAX)
+/obj/item/organ/genital/external/belly/modify_size(modifier, min = BELLY_SIZE_DEF, max = BELLY_SIZE_MAX)
 	var/new_value = clamp(size_cached + modifier, starting_size, max)
 	if(new_value == size_cached)
 		return
@@ -28,7 +28,7 @@
 	update()
 	..()
 
-/obj/item/organ/genital/belly/update_appearance()
+/obj/item/organ/genital/external/belly/update_appearance()
 	//GS13 - Port Stuffed states
 	// Default settings
 	var/datum/sprite_accessory/S = GLOB.belly_shapes_list[shape] //GS13 - get belly shape
@@ -59,7 +59,7 @@
 		else
 			color = "#[owner.dna.features["belly_color"]]"
 
-/obj/item/organ/genital/belly/get_features(mob/living/carbon/human/H)
+/obj/item/organ/genital/external/belly/get_features(mob/living/carbon/human/H)
 	var/datum/dna/D = H.dna
 	if(D.species.use_skintones && D.features["genitals_use_skintone"])
 		color = SKINTONE2HEX(H.skin_tone)

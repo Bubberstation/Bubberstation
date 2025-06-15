@@ -75,7 +75,7 @@
 	//If they are different, record the sprites and build_modular to TRUE to signal that new sprites are needed
 	var/obj/item/organ/genital/O
 	for(O in U.internal_organs)
-		if(istype(O, /obj/item/organ/genital/belly))
+		if(istype(O, /obj/item/organ/genital/external/belly))
 			genitals_list += list(O)
 			var/belly = get_modular_belly(O)
 			if(belly != mod_belly_rec)
@@ -103,7 +103,7 @@
 	//Go through the list of genitals previously found and for each add the modular sprite overlays to the user
 	var/obj/item/organ/genital/G
 	for(G in genitals_list)
-		if(istype(G, /obj/item/organ/genital/belly))
+		if(istype(G, /obj/item/organ/genital/external/belly))
 			add_modular_overlay(U, mod_belly_rec, MODULAR_BELLY_LAYER, color)
 			add_modular_overlay(U, "[mod_belly_rec]_SOUTH", BELLY_FRONT_LAYER, color)
 		if(istype(G, /obj/item/organ/genital/butt))
