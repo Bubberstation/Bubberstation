@@ -93,7 +93,6 @@ export type Quirk = {
   value: number;
   customizable: boolean;
   customization_options?: string[];
-  species_whitelist: Record<string, string>[]; // BUBBER EDIT ADDITION - Species quirks
 };
 
 // SKYRAT EDIT START
@@ -181,7 +180,6 @@ export type PreferencesMenuData = {
   preview_options: string[]; // SKYRAT EDIT ADDITION
   preview_selection: string; // SKYRAT EDIT ADDITION
 
-  is_vetted: BooleanLike; // BUBBER EDIT - Vetted Users
   character_preferences: {
     clothing: Record<string, string>;
     features: Record<string, string>;
