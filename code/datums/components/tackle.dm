@@ -445,7 +445,11 @@
 	var/obj/item/organ/wings/sacker_wing = sacker.get_organ_slot(ORGAN_SLOT_EXTERNAL_WINGS)
 	if(sacker_wing)
 		attack_mod += 2
-
+	// BUBBER EDIT START - Taj tackle bonus (same as moths)
+	var/obj/item/organ/ears/cat/tajaran/sacker_tajaran_ears = sacker.get_organ_slot(ORGAN_SLOT_EARS)
+	if(istype(sacker_tajaran_ears) && istajaran(sacker))
+		attack_mod += 1 // UwU pounces on you
+	// BUBBER EDIT END
 	var/obj/item/organ/cyberimp/chest/spine/potential_spine = sacker.get_organ_slot(ORGAN_SLOT_SPINE)
 	if(istype(potential_spine))
 		attack_mod += potential_spine.strength_bonus
