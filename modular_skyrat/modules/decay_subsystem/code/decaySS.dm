@@ -127,7 +127,7 @@ SUBSYSTEM_DEF(decay)
 					qdel(spawned_blood)
 
 			if(prob(FLOOR_OIL_PERCENT_CHANCE * severity_modifier))
-				var/obj/effect/decal/cleanable/oil/spawned_oil = new (iterating_floor)
+				var/obj/effect/decal/cleanable/blood/oil/spawned_oil = new (iterating_floor)
 				if(!iterating_floor.Enter(spawned_oil))
 					qdel(spawned_oil)
 
