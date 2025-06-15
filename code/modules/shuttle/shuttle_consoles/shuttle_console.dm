@@ -99,6 +99,9 @@
 	if(!length(data["locations"]))
 		data["locked"] = TRUE
 		data["status"] = "Locked"
+	if(!mobile_docking_port.canMove())
+		data["locked"] = TRUE
+		data["status"] = "Immobile"
 	return data
 
 /**
@@ -239,6 +242,7 @@
 		possible_destinations = replacetext(replacetextEx(possible_destinations, "[shuttleId]_custom", ""), ";;", ";")
 	shuttleId = port.shuttle_id
 	possible_destinations += ";[port.shuttle_id]_custom"
+	return TRUE
 
 #undef SHUTTLE_CONSOLE_ACCESSDENIED
 #undef SHUTTLE_CONSOLE_ENDGAME

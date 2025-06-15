@@ -59,7 +59,6 @@ function CharacterProfiles(props: ProfileProps) {
     <Stack align="center" justify="left">
       <Stack.Item width="285px">
         <SideDropdown
-          width="100%"
           selected={profiles[activeSlot]}
           options={profiles.map((profile, slot) => ({
             value: slot,
@@ -233,7 +232,9 @@ export function CharacterPreferenceWindow(props) {
         </Stack>
       </Stack.Item>
       <Stack.Divider />
-      <Stack.Item>{pageContents}</Stack.Item>
+      <Stack.Item grow position="relative" overflowX="hidden" overflowY="auto">
+        {pageContents}
+      </Stack.Item>
     </Stack>
   );
 }

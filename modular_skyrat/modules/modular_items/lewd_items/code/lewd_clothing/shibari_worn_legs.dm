@@ -1,19 +1,22 @@
 /obj/item/clothing/shoes/shibari_legs
 	name = "shibari legs bondage"
 	desc = "Bondage ropes that cover legs."
-	icon_state = "shibari_legs"
-	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_shoes.dmi'
+	icon = 'icons/map_icons/clothing/shoes.dmi'
+	icon_state = "/obj/item/clothing/shoes/shibari_legs"
+	post_init_icon_state = "shibari_legs"
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_shoes.dmi'
 	worn_icon_digi = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_shoes_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_shoes_teshari.dmi'
 	body_parts_covered = NONE
 	strip_delay = 100
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION|STYLE_TAUR_ALL
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	slowdown = 4
 	item_flags = DROPDEL|IGNORE_DIGITIGRADE
 
 	greyscale_config = /datum/greyscale_config/shibari/legs
 	greyscale_config_worn = /datum/greyscale_config/shibari/legs/worn
 	greyscale_config_worn_digi = /datum/greyscale_config/shibari/legs/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/shibari/legs/worn/teshari
 	greyscale_colors = "#bd8fcf"
 
 	///should this clothing item use the emissive system

@@ -189,7 +189,7 @@
 			playsound(src, SFX_DESECRATION ,50, TRUE, -1)
 	return BRUTELOSS
 
-/obj/item/scythe/pre_attack(atom/target, mob/living/user, params)
+/obj/item/scythe/pre_attack(atom/target, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(!istype(target, /obj/structure/alien/resin/flower_bud) && !istype(target, /obj/structure/spacevine))
 		return ..()
 	if(swiping || get_turf(target) == get_turf(user))
@@ -232,11 +232,12 @@
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
 
 ///Catch right clicks so we can stylize!
-/obj/item/secateurs/pre_attack_secondary(atom/target, mob/living/user, params)
+/obj/item/secateurs/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	if(user.combat_mode)
-		return ..()
-	restyle(target, user)
-	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+		return NONE
+
+	restyle(interacting_with, user)
+	return ITEM_INTERACT_SUCCESS
 
 ///Send a signal to whatever we clicked and ask them if they wanna be PLANT RESTYLED YEAAAAAAAH
 /obj/item/secateurs/proc/restyle(atom/target, mob/living/user)

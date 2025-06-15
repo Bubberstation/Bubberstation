@@ -174,7 +174,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/iron
 	grind_results = list(/datum/reagent/iron = 20)
 	gulag_valid = TRUE
-	tableVariant = /obj/structure/table
+	table_type = /obj/structure/table
 	material_type = /datum/material/iron
 	matter_amount = 4
 	cost = SHEET_MATERIAL_AMOUNT
@@ -304,7 +304,7 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/plasteel
 	grind_results = list(/datum/reagent/iron = 20, /datum/reagent/toxin/plasma = 20)
 	gulag_valid = TRUE
-	tableVariant = /obj/structure/table/reinforced
+	table_type = /obj/structure/table/reinforced
 	material_flags = NONE
 	matter_amount = 12
 
@@ -362,7 +362,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("loom", /obj/structure/loom, 10, time = 1.5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_TOOLS), \
 	new/datum/stack_recipe("mortar", /obj/item/reagent_containers/cup/mortar, 3, crafting_flags = NONE, category = CAT_CHEMISTRY), \
 	new/datum/stack_recipe("firebrand", /obj/item/match/firebrand, 2, time = 10 SECONDS, crafting_flags = NONE, category = CAT_TOOLS), \
-	new/datum/stack_recipe("bonfire", /obj/structure/bonfire/player_made, 10, time = 6 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_TOOLS), /* SKYRAT EDIT - Pollution - ORIGINAL: /obj/structure/bonfire */ \
+	new/datum/stack_recipe("bonfire", /obj/structure/bonfire, 10, time = 6 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_TOOLS), \
 	new/datum/stack_recipe("easel", /obj/structure/easel, 5, time = 1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_ENTERTAINMENT), \
 	new/datum/stack_recipe("noticeboard", /obj/item/wallframe/noticeboard, 1, time = 1 SECONDS, crafting_flags = NONE, category = CAT_FURNITURE), \
 	new/datum/stack_recipe("fish mount", /obj/item/wallframe/fish, 2, time = 3 SECONDS, crafting_flags = NONE, category = CAT_FURNITURE),\
@@ -499,7 +499,7 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	new/datum/stack_recipe("construction bag", /obj/item/storage/bag/construction, 4, crafting_flags = NONE, category = CAT_CONTAINERS), \
 	null, \
 	new/datum/stack_recipe("improvised gauze", /obj/item/stack/medical/gauze/improvised, 1, 2, 6, crafting_flags = NONE, category = CAT_TOOLS), \
-	new/datum/stack_recipe("rag", /obj/item/reagent_containers/cup/rag, 1, crafting_flags = NONE, category = CAT_CHEMISTRY), \
+	new/datum/stack_recipe("rag", /obj/item/rag, 1, crafting_flags = NONE, category = CAT_CHEMISTRY), \
 	new/datum/stack_recipe("bedsheet", /obj/item/bedsheet, 3, crafting_flags = NONE, category = CAT_FURNITURE), \
 	new/datum/stack_recipe("double bedsheet", /obj/item/bedsheet/double, 6, crafting_flags = NONE, category = CAT_FURNITURE), \
 	new/datum/stack_recipe("empty sandbag", /obj/item/emptysandbag, 4, crafting_flags = NONE, category = CAT_CONTAINERS), \
@@ -528,9 +528,11 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	force = 0
 	throwforce = 0
 	merge_type = /obj/item/stack/sheet/cloth
-	drop_sound = 'sound/items/handling/cloth_drop.ogg'
-	pickup_sound = 'sound/items/handling/cloth_pickup.ogg'
+	drop_sound = 'sound/items/handling/cloth/cloth_drop1.ogg'
+	pickup_sound = 'sound/items/handling/cloth/cloth_pickup1.ogg'
 	grind_results = list(/datum/reagent/cellulose = 20)
+	pickup_sound = SFX_CLOTH_PICKUP
+	drop_sound = SFX_CLOTH_DROP
 
 /obj/item/stack/sheet/cloth/get_main_recipes()
 	. = ..()
@@ -559,8 +561,8 @@ GLOBAL_LIST_INIT(durathread_recipes, list ( \
 	force = 0
 	throwforce = 0
 	merge_type = /obj/item/stack/sheet/durathread
-	drop_sound = 'sound/items/handling/cloth_drop.ogg'
-	pickup_sound = 'sound/items/handling/cloth_pickup.ogg'
+	drop_sound = 'sound/items/handling/cloth/cloth_drop1.ogg'
+	pickup_sound = 'sound/items/handling/cloth/cloth_pickup1.ogg'
 
 /obj/item/stack/sheet/durathread/Initialize(mapload)
 	. = ..()
@@ -590,8 +592,8 @@ GLOBAL_LIST_INIT(durathread_recipes, list ( \
 	grind_results = list(/datum/reagent/cellulose = 20)
 	var/loom_result = /obj/item/stack/sheet/cloth
 	var/loom_time = 1 SECONDS
-	drop_sound = 'sound/items/handling/cloth_drop.ogg'
-	pickup_sound = 'sound/items/handling/cloth_pickup.ogg'
+	drop_sound = 'sound/items/handling/cloth/cloth_drop1.ogg'
+	pickup_sound = 'sound/items/handling/cloth/cloth_pickup1.ogg'
 
 /obj/item/stack/sheet/cotton/Initialize(mapload)
 	. = ..()
@@ -716,7 +718,7 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 /obj/item/stack/sheet/cardboard/fifty
 	amount = 50
 
-/obj/item/stack/sheet/cardboard/attackby(obj/item/I, mob/user, params)
+/obj/item/stack/sheet/cardboard/attackby(obj/item/I, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(I, /obj/item/stamp/clown) && !istype(loc, /obj/item/storage))
 		var/atom/droploc = drop_location()
 		if(use(1))
@@ -772,7 +774,7 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 	novariants = FALSE
 	grind_results = list(/datum/reagent/iron = 20, /datum/reagent/copper = 12) //we have no "tin" reagent so this is the closest thing
 	merge_type = /obj/item/stack/sheet/bronze
-	tableVariant = /obj/structure/table/bronze
+	table_type = /obj/structure/table/bronze
 	material_type = /datum/material/bronze
 	walltype = /turf/closed/wall/mineral/bronze
 	has_unique_girder = TRUE
@@ -832,6 +834,7 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 	material_type = /datum/material/bone
 	drop_sound = null
 	pickup_sound = null
+	resistance_flags = FIRE_PROOF | LAVA_PROOF
 
 /obj/item/stack/sheet/bone/Initialize(mapload, new_amount, merge, list/mat_override, mat_amt)
 	. = ..()
@@ -939,9 +942,9 @@ new /datum/stack_recipe("paper frame door", /obj/structure/mineral_door/paperfra
 	amount = 5
 
 /obj/item/stack/sheet/pizza
-	name = "pepperoni sheetzzas"
-	desc = "It's a delicious pepperoni sheetzza!"
-	singular_name = "pepperoni sheetzza"
+	name = "sheet pizza"
+	desc = "It's a deliciously rectangular sheet of pizza!"
+	singular_name = "sheet pizza"
 	icon_state = "sheet-pizza"
 	mats_per_unit = list(/datum/material/pizza = SHEET_MATERIAL_AMOUNT)
 	merge_type = /obj/item/stack/sheet/pizza

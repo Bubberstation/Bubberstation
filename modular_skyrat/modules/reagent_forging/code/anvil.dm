@@ -79,7 +79,7 @@
 		return ITEM_INTERACT_SUCCESS
 
 /obj/structure/reagent_anvil/hammer_act(mob/living/user, obj/item/tool)
-	conditional_pref_sound(src, 'modular_skyrat/modules/reagent_forging/sound/forge.ogg', 50, TRUE, pref_to_check = /datum/preference/numeric/sound_ambience_volume)
+	conditional_pref_sound(src, 'modular_skyrat/modules/reagent_forging/sound/forge.ogg', vol = 50, vary = TRUE, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
 
 	//do we have an incomplete item to hammer out? if so, here is our block of code
 	var/obj/item/forging/incomplete/locate_incomplete = locate() in contents

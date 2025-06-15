@@ -30,17 +30,13 @@
 	name = "Purple Lipstick"
 	item_path = /obj/item/lipstick/purple
 
-/datum/loadout_item/pocket_items/lipstick_red
-	name = "Red Lipstick"
-	item_path = /obj/item/lipstick
-
 /*
 *	MISC
 */
 
 /datum/loadout_item/pocket_items/rag
 	name = "Rag"
-	item_path = /obj/item/reagent_containers/cup/rag
+	item_path = /obj/item/rag
 
 /datum/loadout_item/pocket_items/razor
 	name = "Razor"
@@ -53,10 +49,6 @@
 /datum/loadout_item/pocket_items/cheaplighter
 	name = "Cheap Lighter"
 	item_path = /obj/item/lighter/greyscale
-
-/datum/loadout_item/pocket_items/zippolighter
-	name = "Zippo Lighter"
-	item_path = /obj/item/lighter
 
 /datum/loadout_item/pocket_items/ttsdevice
 	name = "Text-to-Speech Device"
@@ -197,51 +189,6 @@
 /datum/loadout_item/pocket_items/drugs_liberty
 	name = "Liberty Cap Seeds"
 	item_path = /obj/item/seeds/liberty
-
-/*
-*	FRAGRANCES
-*/
-
-/datum/loadout_item/pocket_items/fragrance_cologne
-	name = "Cologne Bottle"
-	item_path = /obj/item/perfume/cologne
-
-/datum/loadout_item/pocket_items/fragrance_wood
-	name = "Wood Perfume"
-	item_path = /obj/item/perfume/wood
-
-/datum/loadout_item/pocket_items/fragrance_rose
-	name = "Rose Perfume"
-	item_path = /obj/item/perfume/rose
-
-/datum/loadout_item/pocket_items/fragrance_jasmine
-	name = "Jasmine Perfume"
-	item_path = /obj/item/perfume/jasmine
-
-/datum/loadout_item/pocket_items/fragrance_mint
-	name = "Mint Perfume"
-	item_path = /obj/item/perfume/mint
-
-/datum/loadout_item/pocket_items/fragrance_vanilla
-	name = "Vanilla Perfume"
-	item_path = /obj/item/perfume/vanilla
-
-/datum/loadout_item/pocket_items/fragrance_pear
-	name = "Pear Perfume"
-	item_path = /obj/item/perfume/pear
-
-/datum/loadout_item/pocket_items/fragrance_strawberry
-	name = "Strawberry Perfume"
-	item_path = /obj/item/perfume/strawberry
-
-/datum/loadout_item/pocket_items/fragrance_cherry
-	name = "Cherry Perfume"
-	item_path = /obj/item/perfume/cherry
-
-/datum/loadout_item/pocket_items/fragrance_amber
-	name = "Amber Perfume"
-	item_path = /obj/item/perfume/amber
-
 
 /*
 *	DONATOR

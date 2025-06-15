@@ -55,8 +55,6 @@
 	affected_mob.adjust_temp_blindness(-2 SECONDS * REM * seconds_per_tick)
 	var/need_mob_update
 	switch(current_cycle)
-		if(1 to 20)
-			//nothing
 		if(21 to 110)
 			if(SPT_PROB(100 * (1 - (sqrt(110 - current_cycle) / 10)), seconds_per_tick))
 				need_mob_update = affected_mob.adjustOrganLoss(ORGAN_SLOT_EYES, -2 * REM * seconds_per_tick)
@@ -996,6 +994,18 @@
 	taste_description = "sweet pomegranates"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
+/datum/reagent/consumable/grenadine/on_mob_metabolize(mob/living/drinker)
+	. = ..()
+	if(IS_REVOLUTIONARY(drinker))
+		to_chat(drinker, span_warning("Antioxidants are weakening your radical spirit!"))
+		
+/datum/reagent/consumable/grenadine/on_mob_life(mob/living/carbon/drinker, seconds_per_tick, times_fired)
+	. = ..()
+	if(IS_REVOLUTIONARY(drinker))
+		drinker.set_dizzy_if_lower(10 SECONDS * REM * seconds_per_tick)
+		if(drinker.getStaminaLoss() < 80) 
+			drinker.adjustStaminaLoss(12, required_biotype = affected_biotype) //The pomegranate stops free radicals! Har har.
+
 /datum/reagent/consumable/parsnipjuice
 	name = "Parsnip Juice"
 	description = "Why..."
@@ -1073,7 +1083,7 @@
 	affected_mob.update_transform(newsize/current_size)
 	current_size = newsize
 	if(SPT_PROB(23, seconds_per_tick))
-		affected_mob.sneeze()
+		affected_mob.emote("sneeze")
 
 /datum/reagent/consumable/red_queen/on_mob_end_metabolize(mob/living/affected_mob)
 	. = ..()

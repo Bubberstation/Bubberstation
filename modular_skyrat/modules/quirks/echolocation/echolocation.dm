@@ -43,9 +43,9 @@
 	)
 	esp = human_holder.GetComponent(/datum/component/echolocation)
 
-	human_holder.remove_client_colour(/datum/client_colour/monochrome/blind)
-	esp_color = human_holder.add_client_colour(/datum/client_colour/echolocation_custom)
-	esp_color.update_colour(col)
+	human_holder.remove_client_colour(REF(src))
+	esp_color = human_holder.add_client_colour(/datum/client_colour/echolocation_custom, REF(src))
+	esp_color.update_color(col)
 
 	// add an action/spell to allow the player to toggle echolocation off for a bit (eyestrain on longer rounds, or just roleplay)
 	var/datum/action/cooldown/spell/echolocation_toggle/toggle_action = new /datum/action/cooldown/spell/echolocation_toggle()
@@ -57,7 +57,7 @@
 	QDEL_NULL(esp) // echolocation component removal handles graceful disposal of everything above
 	QDEL_NULL(added_action) // remove the stall action, too
 	var/mob/living/carbon/human/human_holder = quirk_holder
-	human_holder.remove_client_colour(/datum/client_colour/echolocation_custom) // clean up the custom colour override we added
+	human_holder.remove_client_colour(REF(src)) // clean up the custom colour override we added
 	UnregisterSignal(human_holder, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine_text))
 
 /datum/quirk/echolocation/proc/on_examine_text(client/client_source, mob/user, list/examine_list)
@@ -71,7 +71,7 @@
 	examine_list += span_cyan("[human_holder.p_They()] [human_holder.p_have()] [human_holder.p_their()] ears perked up, listening closely to even slightest noise.")
 
 /datum/client_colour/echolocation_custom
-	colour = COLOR_MATRIX_SEPIATONE
+	color = COLOR_MATRIX_SEPIATONE
 	priority = 1
 	override = TRUE
 

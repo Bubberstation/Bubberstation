@@ -174,12 +174,17 @@
 	flags_1 = HTML_USE_INITAL_ICON_1
 	rad_insulation = RAD_MEDIUM_INSULATION
 
-/obj/machinery/door/airlock/Initialize(mapload)
+/obj/machinery/door/airlock/get_save_vars()
 	. = ..()
+	. -= NAMEOF(src, icon_state) // airlocks ignore icon_state and instead use get_airlock_overlay()
+	// TODO save the wire data but need to include states for cute wires, signalers attached to wires, etc.
+	return .
 
-	set_wires(get_wires())
+/obj/machinery/door/airlock/Initialize(mapload)
 	if(glass)
 		airlock_material = "glass"
+	. = ..()
+	set_wires(get_wires())
 	if(security_level > AIRLOCK_SECURITY_IRON)
 		atom_integrity = normal_integrity * AIRLOCK_INTEGRITY_MULTIPLIER
 		max_integrity = normal_integrity * AIRLOCK_INTEGRITY_MULTIPLIER
@@ -599,17 +604,17 @@
 			var/mutable_appearance/floorlight = mutable_appearance('icons/obj/doors/airlocks/station/overlays.dmi', "unres_[heading]", FLOAT_LAYER, src, ABOVE_LIGHTING_PLANE)
 			switch (heading)
 				if (NORTH)
-					floorlight.pixel_x = 0
-					floorlight.pixel_y = 32
+					floorlight.pixel_w = 0
+					floorlight.pixel_z = 32
 				if (SOUTH)
-					floorlight.pixel_x = 0
-					floorlight.pixel_y = -32
+					floorlight.pixel_w = 0
+					floorlight.pixel_z = -32
 				if (EAST)
-					floorlight.pixel_x = 32
-					floorlight.pixel_y = 0
+					floorlight.pixel_w = 32
+					floorlight.pixel_z = 0
 				if (WEST)
-					floorlight.pixel_x = -32
-					floorlight.pixel_y = 0
+					floorlight.pixel_w = -32
+					floorlight.pixel_z = 0
 			. += floorlight
 */
 
@@ -667,6 +672,7 @@
 		else
 			. += "There's a [note.name] pinned to the front..."
 			. += note.examine(user)
+		. += span_notice("The attached [note.name] can be taken down with some [EXAMINE_HINT("wirecutters")].")
 	if(seal)
 		. += "It's been braced with \a [seal]."
 	if(welded)
@@ -1035,7 +1041,7 @@
 	update_appearance()
 	return TRUE
 
-/obj/machinery/door/airlock/attackby(obj/item/C, mob/user, params)
+/obj/machinery/door/airlock/attackby(obj/item/C, mob/user, list/modifiers, list/attack_modifiers)
 	if(!HAS_SILICON_ACCESS(user))
 		if(isElectrified() && (C.obj_flags & CONDUCTS_ELECTRICITY) && shock(user, 75))
 			return
@@ -1252,7 +1258,7 @@
 		return
 
 	open(BYPASS_DOOR_CHECKS)
-	take_damage(25, BRUTE, 0, 0) // Enough to sometimes spark
+	take_damage(AIRLOCK_PRY_DAMAGE, BRUTE, 0, 0) // Enough to sometimes spark
 	if(density && !open(BYPASS_DOOR_CHECKS))
 		to_chat(user, span_warning("Despite your attempts, [src] refuses to open."))
 
@@ -1935,6 +1941,7 @@
 	name = "freezer airlock"
 	icon = 'icons/obj/doors/airlocks/station/freezer.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_fre
+	can_be_glass = FALSE
 
 /obj/machinery/door/airlock/science
 	name = "science airlock"
@@ -2290,6 +2297,7 @@
 	icon = 'icons/obj/doors/airlocks/centcom/centcom.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/centcom/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_centcom
+	can_be_glass = FALSE
 	normal_integrity = 1000
 	security_level = 6
 	explosion_block = 2
@@ -2298,6 +2306,7 @@
 	icon = 'icons/obj/doors/airlocks/centcom/centcom.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/centcom/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_grunge
+	can_be_glass = FALSE
 
 
 // Vault Airlocks
@@ -2307,6 +2316,7 @@
 	icon = 'icons/obj/doors/airlocks/vault/vault.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/vault/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_vault
+	can_be_glass = FALSE
 	explosion_block = 2
 	normal_integrity = 400 // reverse engieneerd: 400 * 1.5 (sec lvl 6) = 600 = original
 	security_level = 6
@@ -2320,6 +2330,7 @@
 	overlays_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
 	note_overlay_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_hatch
+	can_be_glass = FALSE
 
 /obj/machinery/door/airlock/maintenance_hatch
 	name = "maintenance hatch"
@@ -2327,6 +2338,7 @@
 	overlays_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
 	note_overlay_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_mhatch
+	can_be_glass = FALSE
 
 // High Security Airlocks
 
@@ -2335,6 +2347,7 @@
 	icon = 'icons/obj/doors/airlocks/highsec/highsec.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/highsec/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_highsecurity
+	can_be_glass = FALSE
 	explosion_block = 2
 	normal_integrity = 500
 	security_level = 1
@@ -2358,6 +2371,7 @@
 	icon = 'icons/obj/doors/airlocks/abductor/abductor_airlock.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/abductor/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_abductor
+	can_be_glass = FALSE
 	note_overlay_file = 'icons/obj/doors/airlocks/external/overlays.dmi'
 	damage_deflection = 30
 	explosion_block = 3
@@ -2540,6 +2554,7 @@
 	SEND_SIGNAL(src, COMSIG_AIRLOCK_OPEN, forced)
 	set_density(FALSE)
 	operating = FALSE
+	update_appearance()
 	return TRUE
 
 /obj/machinery/door/airlock/instant/close(forced = DEFAULT_DOOR_CHECKS, force_crush = FALSE)
@@ -2547,7 +2562,12 @@
 	SEND_SIGNAL(src, COMSIG_AIRLOCK_CLOSE, forced)
 	set_density(TRUE)
 	operating = FALSE
+	update_appearance()
 	return TRUE
+
+/obj/machinery/door/airlock/instant/glass
+	opacity = FALSE
+	glass = TRUE
 
 // SKYRAT EDIT REMOVAL START - moved to code/__DEFINES/~skyrat_defines/airlock.dm
 /*

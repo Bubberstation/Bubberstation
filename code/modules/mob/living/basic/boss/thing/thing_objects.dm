@@ -21,8 +21,8 @@
 		var/mob/living/living_victim = potential_target
 		if(isliving(living_victim))
 			hit_someone = TRUE
-			living_victim.apply_damage(40, damagetype = BRUTE, sharpness = SHARP_POINTY)
-		else if(potential_target.uses_integrity && !(potential_target.resistance_flags & INDESTRUCTIBLE) && !(initial(potential_target.density)) && !HAS_TRAIT(potential_target, TRAIT_UNDERFLOOR))
+			living_victim.apply_damage(40, damagetype = BRUTE, sharpness = SHARP_POINTY, wound_bonus = -10)
+		else if(potential_target.uses_integrity && !(potential_target.resistance_flags & INDESTRUCTIBLE) && initial(potential_target.density) && !HAS_TRAIT(potential_target, TRAIT_UNDERFLOOR))
 			potential_target.take_damage(100, BRUTE)
 	if (hit_someone)
 		expiry_time /= 2
@@ -57,6 +57,18 @@
 	if(!isnull(duration))
 		src.duration = duration
 	return ..()
+
+/obj/effect/temp_visual/telegraphing/exclamation/following/Initialize(mapload, duration, obj/following)
+	. = ..()
+	if(isnull(following))
+		return INITIALIZE_HINT_QDEL
+	glide_size = following.glide_size
+	RegisterSignal(following, COMSIG_MOVABLE_MOVED, PROC_REF(follow))
+
+///called when the thing we're following moves
+/obj/effect/temp_visual/telegraphing/exclamation/following/proc/follow(datum/source)
+	SIGNAL_HANDLER
+	forceMove(get_turf(source))
 
 /obj/effect/temp_visual/telegraphing/exclamation/animated
 	alpha = 0

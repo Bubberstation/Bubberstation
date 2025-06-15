@@ -146,6 +146,7 @@
 		update_label()
 		update_icon()
 
+	register_item_context()
 	register_context()
 
 	RegisterSignal(src, COMSIG_ATOM_UPDATED_ICON, PROC_REF(update_in_wallet))
@@ -174,7 +175,7 @@
 
 /obj/item/card/id/equipped(mob/user, slot)
 	. = ..()
-	if (slot == ITEM_SLOT_ID)
+	if (slot & ITEM_SLOT_ID)
 		RegisterSignal(user, COMSIG_MOVABLE_POINTED, PROC_REF(on_pointed))
 
 /obj/item/card/id/dropped(mob/user)
@@ -522,8 +523,15 @@
 /obj/item/card/id/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 
-	context[SCREENTIP_CONTEXT_LMB] = "Show ID"
 	context[SCREENTIP_CONTEXT_RMB] = "Project pay stand"
+
+	if(isnull(held_item) || (held_item == src))
+		context[SCREENTIP_CONTEXT_LMB] = "Show ID"
+	else if(iscash(held_item) || istype(held_item, /obj/item/storage/bag/money))
+		context[SCREENTIP_CONTEXT_LMB] = "Insert"
+	else if(istype(held_item, /obj/item/rupee))
+		context[SCREENTIP_CONTEXT_LMB] = "Insert?"
+
 	if(isnull(registered_account) || registered_account.replaceable) //Same check we use when we check if we can assign an account
 		context[SCREENTIP_CONTEXT_ALT_RMB] = "Assign account"
 	else if(registered_account.account_balance > 0)
@@ -531,6 +539,12 @@
 	if(trim && length(trim.honorifics))
 		context[SCREENTIP_CONTEXT_CTRL_LMB] = "Toggle honorific"
 	return CONTEXTUAL_SCREENTIP_SET
+
+/obj/item/card/id/add_item_context(obj/item/source, list/context, atom/target, mob/living/user)
+	. = ..()
+	if(iscash(target))
+		context[SCREENTIP_CONTEXT_LMB] = "Insert into card"
+		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/card/id/proc/try_project_paystand(mob/user, turf/target)
 	if(!COOLDOWN_FINISHED(src, last_holopay_projection))
@@ -927,20 +941,15 @@
 
 /// Re-generates the honorific title. Returns the compiled honorific_title value
 /obj/item/card/id/proc/update_honorific()
-	var/is_mononym = is_mononym(registered_name)
 	switch(honorific_position)
 		if(HONORIFIC_POSITION_FIRST)
 			honorific_title = "[chosen_honorific] [first_name(registered_name)]"
 		if(HONORIFIC_POSITION_LAST)
 			honorific_title = "[chosen_honorific] [last_name(registered_name)]"
 		if(HONORIFIC_POSITION_FIRST_FULL)
-			honorific_title = "[chosen_honorific] [first_name(registered_name)]"
-			if(!is_mononym)
-				honorific_title += " [last_name(registered_name)]"
+			honorific_title = "[chosen_honorific] [registered_name]"
 		if(HONORIFIC_POSITION_LAST_FULL)
-			if(!is_mononym)
-				honorific_title += "[first_name(registered_name)] "
-			honorific_title += "[last_name(registered_name)][chosen_honorific]"
+			honorific_title = "[registered_name][chosen_honorific]"
 	return honorific_title
 
 /// Returns the trim assignment name.
@@ -1053,6 +1062,10 @@
 /obj/item/card/id/away/deep_storage //deepstorage.dmm space ruin
 	name = "bunker access ID"
 
+/obj/item/card/id/away/filmstudio
+	name = "Film Studio ID"
+	desc = "An ID card that allows access to the variety of airlocks present in the film studio"
+
 /obj/item/card/id/departmental_budget
 	name = "departmental card (ERROR)"
 	desc = "Provides access to the departmental budget."
@@ -1123,6 +1136,12 @@
 	UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 
 	return ..()
+
+/obj/item/card/id/advanced/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = ..()
+	if(istype(held_item, /obj/item/toy/crayon))
+		context[SCREENTIP_CONTEXT_LMB] = "Recolor ID"
+		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/card/id/advanced/proc/after_input_check(mob/user)
 	if(QDELETED(user) || QDELETED(src) || !user.client || !user.can_perform_action(src, NEED_DEXTERITY|FORBID_TELEKINESIS_REACH))
@@ -1282,17 +1301,29 @@
 	trim = /datum/id_trim/maint_reaper
 	registered_name = "Thirteen"
 
+/obj/item/card/id/advanced/platinum
+	name = "platinum identification card"
+	desc = "A platinum card which shows the highest level of dedication."
+	icon_state = "card_platinum"
+	inhand_icon_state = "platinum_id"
+	assigned_icon_state = "assigned_silver"
+	wildcard_slots = WILDCARD_LIMIT_PLATINUM
+
+/obj/item/card/id/advanced/platinum/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_TASTEFULLY_THICK_ID_CARD, INNATE_TRAIT)
+
 /obj/item/card/id/advanced/gold
 	name = "gold identification card"
 	desc = "A golden card which shows power and might."
 	icon_state = "card_gold"
 	inhand_icon_state = "gold_id"
-	assigned_icon_state = "assigned_gold"
+	assigned_icon_state = "assigned_silver"
 	wildcard_slots = WILDCARD_LIMIT_GOLD
 
 /obj/item/card/id/advanced/gold/Initialize(mapload)
 	. = ..()
-	ADD_TRAIT(src, TRAIT_TASTEFULLY_THICK_ID_CARD, ROUNDSTART_TRAIT)
+	ADD_TRAIT(src, TRAIT_TASTEFULLY_THICK_ID_CARD, INNATE_TRAIT)
 
 /obj/item/card/id/advanced/gold/captains_spare
 	name = "captain's spare ID"
@@ -1463,6 +1494,12 @@
 	/// Time left on a card till they can leave.
 	var/time_left = 0
 
+/obj/item/card/id/advanced/prisoner/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = ..()
+	if(isidcard(held_item))
+		context[SCREENTIP_CONTEXT_LMB] = "Set sentence time"
+		return CONTEXTUAL_SCREENTIP_SET
+
 /obj/item/card/id/advanced/prisoner/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	. = ..()
 	if(.)
@@ -1583,7 +1620,9 @@
 
 /obj/item/card/id/advanced/plainclothes/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_LMB] = "Show/Flip ID"
+	if(isnull(held_item) || (held_item == src))
+		context[SCREENTIP_CONTEXT_LMB] = "Show/Flip ID"
+		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/card/id/advanced/plainclothes/examine(mob/user)
 	. = ..()
@@ -1600,9 +1639,9 @@
 		return ..()
 	balloon_alert(user, "flipped")
 	if(trim_assignment_override)
-		SSid_access.remove_trim_from_chameleon_card(src)
+		SSid_access.remove_trim_override(src)
 	else
-		SSid_access.apply_trim_to_chameleon_card(src, alt_trim)
+		SSid_access.apply_trim_override(src, alt_trim)
 	update_label()
 	update_appearance()
 
@@ -1618,8 +1657,9 @@
 	desc = "A highly advanced chameleon ID card. Touch this card on another ID card or player to choose which accesses to copy. \
 		Has special magnetic properties which force it to the front of wallets."
 	trim = /datum/id_trim/chameleon
-	wildcard_slots = WILDCARD_LIMIT_CHAMELEON_PLUS // SKYRAT EDIT - Original WILDCARD_LIMIT_CHAMELEON
+	wildcard_slots = WILDCARD_LIMIT_GOLD
 	actions_types = list(/datum/action/item_action/chameleon/change/id, /datum/action/item_action/chameleon/change/id_trim)
+	action_slots = ALL
 
 	/// Have we set a custom name and job assignment, or will we use what we're given when we chameleon change?
 	var/forged = FALSE
@@ -1628,13 +1668,27 @@
 	/// Weak ref to the ID card we're currently attempting to steal access from.
 	var/datum/weakref/theft_target
 
-/obj/item/card/id/advanced/chameleon/Initialize(mapload)
-	. = ..()
-	register_item_context()
+/obj/item/card/id/advanced/chameleon/crummy
+	desc = "A surplus version of a chameleon ID card. Can only hold a limited number of access codes."
+	wildcard_slots = WILDCARD_LIMIT_CHAMELEON
 
 /obj/item/card/id/advanced/chameleon/Destroy()
 	theft_target = null
 	return ..()
+
+/obj/item/card/id/advanced/chameleon/equipped(mob/user, slot)
+	. = ..()
+	if (slot & ITEM_SLOT_ID)
+		RegisterSignal(user, COMSIG_LIVING_CAN_TRACK, PROC_REF(can_track))
+
+/obj/item/card/id/advanced/chameleon/dropped(mob/user)
+	UnregisterSignal(user, COMSIG_LIVING_CAN_TRACK)
+	return ..()
+
+/obj/item/card/id/advanced/chameleon/proc/can_track(datum/source, mob/user)
+	SIGNAL_HANDLER
+
+	return COMPONENT_CANT_TRACK
 
 /obj/item/card/id/advanced/chameleon/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(isidcard(interacting_with))
@@ -1650,7 +1704,7 @@
 	if(ishuman(interacting_with))
 		interacting_with.balloon_alert(user, "scanning ID card...")
 
-		if(!do_after(user, 2 SECONDS, interacting_with))
+		if(!do_after(user, 2 SECONDS, interacting_with, hidden = TRUE))
 			interacting_with.balloon_alert(user, "interrupted!")
 			return ITEM_INTERACT_BLOCKING
 
@@ -1818,7 +1872,7 @@
 	if(forged) //reset the ID if forged
 		registered_name = initial(registered_name)
 		assignment = initial(assignment)
-		SSid_access.remove_trim_from_chameleon_card(src)
+		SSid_access.remove_trim_override(src)
 		REMOVE_TRAIT(src, TRAIT_MAGNETIC_ID_CARD, CHAMELEON_ITEM_TRAIT)
 		user.log_message("reset \the [initial(name)] named \"[src]\" to default.", LOG_GAME)
 		update_label()
@@ -1873,7 +1927,7 @@
 
 	registered_name = input_name
 	if(selected_trim_path)
-		SSid_access.apply_trim_to_chameleon_card(src, trim_list[selected_trim_path])
+		SSid_access.apply_trim_override(src, trim_list[selected_trim_path])
 	if(target_occupation)
 		assignment = sanitize(target_occupation)
 	if(new_age)
@@ -1908,6 +1962,9 @@
 
 	if(!in_range(user, target))
 		return .
+	if(isidcard(target))
+		context[SCREENTIP_CONTEXT_LMB] = "Copy access"
+		return CONTEXTUAL_SCREENTIP_SET
 	if(ishuman(target))
 		context[SCREENTIP_CONTEXT_RMB] = "Copy access"
 		return CONTEXTUAL_SCREENTIP_SET
@@ -1916,11 +1973,10 @@
 		return CONTEXTUAL_SCREENTIP_SET
 	return .
 
-/// A special variant of the classic chameleon ID card which accepts all access.
+/// A special variant of the classic chameleon ID card which is black. Cool!
 /obj/item/card/id/advanced/chameleon/black
 	icon_state = "card_black"
 	assigned_icon_state = "assigned_syndicate"
-	wildcard_slots = WILDCARD_LIMIT_GOLD
 
 /obj/item/card/id/advanced/engioutpost
 	registered_name = "George 'Plastic' Miller"
@@ -1984,6 +2040,10 @@
 	var/details_colors = list(COLOR_BLACK, COLOR_BLACK, COLOR_BLACK)
 	pickup_sound = 'sound/items/handling/materials/cardboard_pick_up.ogg'
 	drop_sound = 'sound/items/handling/materials/cardboard_drop.ogg'
+
+/obj/item/card/cardboard/Initialize(mapload)
+	. = ..()
+	register_context()
 
 /obj/item/card/cardboard/equipped(mob/user, slot, initial = FALSE)
 	. = ..()
@@ -2111,6 +2171,15 @@
 /obj/item/card/cardboard/examine(mob/user)
 	. = ..()
 	. += span_notice("You could use a pen or crayon to forge a name, assignment or trim.")
+
+/obj/item/card/cardboard/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = ..()
+	if(isnull(held_item) || (held_item == src))
+		context[SCREENTIP_CONTEXT_LMB] = "Show ID"
+		return CONTEXTUAL_SCREENTIP_SET
+	else if(IS_WRITING_UTENSIL(held_item))
+		context[SCREENTIP_CONTEXT_LMB] = "Modify"
+		return CONTEXTUAL_SCREENTIP_SET
 
 #undef INDEX_NAME_COLOR
 #undef INDEX_ASSIGNMENT_COLOR

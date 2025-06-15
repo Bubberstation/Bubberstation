@@ -5,7 +5,6 @@ SUBSYSTEM_DEF(vote)
 	name = "Vote"
 	wait = 1 SECONDS
 	flags = SS_KEEP_TIMING
-	init_order = INIT_ORDER_VOTE
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 
 	/// A list of all generated action buttons
@@ -119,7 +118,7 @@ SUBSYSTEM_DEF(vote)
 	)
 	log_vote("vote finalized", vote_log_data)
 	if(to_display)
-		to_chat(world, custom_boxed_message("purple_box", vote_font("[to_display]"))) // BUBBER EDIT CHANGE -  span_infoplain changed to examine_block
+		to_chat(world, span_infoplain(vote_font("[to_display]")))
 
 	// Finally, doing any effects on vote completion
 	current_vote.finalize_vote(final_winner)
@@ -247,10 +246,9 @@ SUBSYSTEM_DEF(vote)
 		voting_action.name = "Vote: [current_vote.override_question || current_vote.name]"
 		voting_action.Grant(new_voter.mob)
 
-		new_voter.player_details.player_actions += voting_action
+		new_voter.persistent_client.player_actions += voting_action
 		generated_actions += voting_action
-
-		if(current_vote.vote_sound && (new_voter.prefs.read_preference(/datum/preference/toggle/sound_announcements)))
+		if(current_vote.vote_sound && new_voter.prefs.read_preference(/datum/preference/toggle/sound_announcements))
 			SEND_SOUND(new_voter, sound(current_vote.vote_sound))
 
 	return TRUE
@@ -480,12 +478,12 @@ SUBSYSTEM_DEF(vote)
 
 // We also need to remove our action from the player actions when we're cleaning up.
 /datum/action/vote/Remove(mob/removed_from)
-	if(removed_from.client)
-		removed_from.client?.player_details.player_actions -= src
+	if(removed_from.persistent_client)
+		removed_from.persistent_client.player_actions -= src
 
 	else if(removed_from.ckey)
-		var/datum/player_details/associated_details = GLOB.player_details[removed_from.ckey]
-		associated_details?.player_actions -= src
+		var/datum/persistent_client/persistent_client = GLOB.persistent_clients_by_ckey[removed_from.ckey]
+		persistent_client?.player_actions -= src
 
 	return ..()
 

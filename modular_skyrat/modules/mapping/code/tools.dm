@@ -15,6 +15,10 @@
 	icon_state = "cutters"
 	toolspeed = 0.2
 	random_color = FALSE
+	greyscale_config = null
+	greyscale_config_belt = null
+	greyscale_config_inhand_left = null
+	greyscale_config_inhand_right = null
 
 //WELDING TOOLS//
 /obj/item/weldingtool/advanced
@@ -38,6 +42,7 @@
 	desc = "A classy silver screwdriver with an alien alloy tip, it works almost as well as the real thing. There's a sticker attached declaring that it needs updating from 'the latest samples'."
 	icon = 'modular_skyrat/modules/mapping/icons/obj/items/advancedtools.dmi'
 	icon_state = "screwdriver_a"
+	post_init_icon_state = null
 	inhand_icon_state = "screwdriver_nuke"
 	usesound = 'sound/items/pshoom/pshoom.ogg'
 	toolspeed = 0.2
@@ -46,6 +51,7 @@
 	greyscale_config = null
 	greyscale_config_inhand_left = null
 	greyscale_config_inhand_right = null
+	greyscale_config_belt = null
 
 //CROWBAR//
 /obj/item/crowbar/advanced

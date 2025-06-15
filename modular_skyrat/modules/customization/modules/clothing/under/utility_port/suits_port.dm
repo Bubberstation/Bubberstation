@@ -36,6 +36,11 @@
 		/obj/item/lighter,
 	)
 
+// do not have the new sprites for these
+/obj/item/clothing/suit/toggle/jacket/det_trench
+	icon = 'icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'icons/mob/clothing/suits/jacket.dmi'
+
 /datum/armor/jacket_engi
 	fire = 30
 	acid = 45
@@ -111,7 +116,9 @@
 
 /obj/item/clothing/suit/toggle/jacket/flannel/gags
 	name = "flannel shirt"
-	icon_state = "flannelgags"
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/toggle/jacket/flannel/gags"
+	post_init_icon_state = "flannelgags"
 	greyscale_config = /datum/greyscale_config/flannelgags
 	greyscale_config_worn = /datum/greyscale_config/flannelgags/worn
 	greyscale_colors = "#a61e1f"

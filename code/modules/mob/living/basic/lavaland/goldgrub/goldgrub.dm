@@ -10,7 +10,7 @@
 	speed = 5
 	pixel_x = -12
 	base_pixel_x = -12
-	mob_biotypes = MOB_ORGANIC|MOB_BEAST
+	mob_biotypes = MOB_ORGANIC|MOB_BUG|MOB_MINING
 	friendly_verb_continuous = "harmlessly rolls into"
 	friendly_verb_simple = "harmlessly roll into"
 	maxHealth = 45
@@ -35,7 +35,7 @@
 		/datum/pet_command/idle,
 		/datum/pet_command/free,
 		/datum/pet_command/grub_spit,
-		/datum/pet_command/follow,
+		/datum/pet_command/follow/start_active,
 		/datum/pet_command/fetch,
 	)
 

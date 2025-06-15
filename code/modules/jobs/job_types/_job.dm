@@ -253,20 +253,10 @@
 	dna.species.pre_equip_species_outfit(equipping, src, visual_only)
 	equip_outfit_and_loadout(equipping.get_outfit(consistent), player_client?.prefs, visual_only, equipping) // SKYRAT EDIT CHANGE - Add equipping param
 
-/datum/job/proc/announce_head(mob/living/carbon/human/human, channels, job_title) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels. // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES
-	if(!human)
-		return
-	var/obj/machinery/announcement_system/system
-	var/list/available_machines = list()
-	for(var/obj/machinery/announcement_system/announce as anything in GLOB.announcement_systems)
-		if(announce.newhead_toggle)
-			available_machines += announce
-			break
-	if(!length(available_machines))
-		return
-	system = pick(available_machines)
-	//timer because these should come after the captain announcement
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer), CALLBACK(system, TYPE_PROC_REF(/obj/machinery/announcement_system, announce), AUTO_ANNOUNCE_NEWHEAD, human.real_name, job_title, channels), 1)) // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES
+/datum/job/proc/announce_head(mob/living/carbon/human/human, channels, job_title) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels. // BUBBER EDIT CHANGE - ALTERNATIVE_JOB_TITLES
+	if(human)
+		//timer because these should come after the captain announcement
+		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer), CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(aas_config_announce), /datum/aas_config_entry/newhead, list("PERSON" = human.real_name, "RANK" = job_title), null, channels, null, TRUE), 1)) // BUBBER EDIT CHANGE - ALTERNATIVE_JOB_TITLES
 
 //If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
 /datum/job/proc/player_old_enough(client/player)

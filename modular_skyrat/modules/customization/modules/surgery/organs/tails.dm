@@ -3,6 +3,7 @@
 	mutantpart_info = list(MUTANT_INDEX_NAME = "Smooth", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF"))
 	var/can_wag = TRUE
 	var/wagging = FALSE
+	organ_flags = ORGAN_EXTERNAL
 
 /datum/bodypart_overlay/mutant/tail
 	color_source = ORGAN_COLOR_OVERRIDE
@@ -16,7 +17,10 @@
 /datum/bodypart_overlay/mutant/tail/get_base_icon_state()
 	return sprite_datum.icon_state
 
-/datum/bodypart_overlay/mutant/tail/can_draw_on_bodypart(mob/living/carbon/human/wearer)
+/datum/bodypart_overlay/mutant/tail/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner)
+	var/mob/living/carbon/human/wearer = bodypart_owner.owner
+	if(!wearer)
+		return TRUE
 	var/list/used_in_turf = list("tail")
 	// Emote exception
 	if(wearer.owned_turf?.name in used_in_turf)

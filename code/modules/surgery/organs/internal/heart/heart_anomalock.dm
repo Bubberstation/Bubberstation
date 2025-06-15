@@ -39,7 +39,6 @@
 	add_lightning_overlay(30 SECONDS)
 	playsound(organ_owner, 'sound/items/eshield_recharge.ogg', 40)
 	organ_owner.AddElement(/datum/element/empprotection, EMP_PROTECT_SELF|EMP_PROTECT_CONTENTS)
-	organ_owner.apply_status_effect(/datum/status_effect/stabilized/yellow, src)
 	RegisterSignal(organ_owner, SIGNAL_ADDTRAIT(TRAIT_CRITICAL_CONDITION), PROC_REF(activate_survival))
 	RegisterSignal(organ_owner, COMSIG_ATOM_EMP_ACT, PROC_REF(on_emp_act))
 
@@ -49,11 +48,10 @@
 		return
 	UnregisterSignal(organ_owner, SIGNAL_ADDTRAIT(TRAIT_CRITICAL_CONDITION))
 	organ_owner.RemoveElement(/datum/element/empprotection, EMP_PROTECT_SELF|EMP_PROTECT_CONTENTS)
-	organ_owner.remove_status_effect(/datum/status_effect/stabilized/yellow)
 	tesla_zap(source = organ_owner, zap_range = 20, power = 2.5e5, cutoff = 1e3)
 	qdel(src)
 
-/obj/item/organ/heart/cybernetic/anomalock/attack(mob/living/target_mob, mob/living/user, params)
+/obj/item/organ/heart/cybernetic/anomalock/attack(mob/living/target_mob, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(target_mob != user || !istype(target_mob) || !core)
 		return ..()
 
@@ -96,10 +94,28 @@
 
 /obj/item/organ/heart/cybernetic/anomalock/on_life(seconds_per_tick, times_fired)
 	. = ..()
+	if(!core)
+		return
+
 	if(owner.blood_volume <= BLOOD_VOLUME_NORMAL)
 		owner.blood_volume += 5 * seconds_per_tick
+
 	if(owner.health <= owner.crit_threshold)
 		activate_survival(owner)
+
+	if(times_fired % (1 SECONDS))
+		return
+
+	var/list/batteries = list()
+	for(var/obj/item/stock_parts/power_store/cell in owner.get_all_contents())
+		if(cell.used_charge())
+			batteries += cell
+
+	if(!length(batteries))
+		return
+
+	var/obj/item/stock_parts/power_store/cell = pick(batteries)
+	cell.give(cell.max_charge() * 0.1)
 
 ///Does a few things to try to help you live whatever you may be going through
 /obj/item/organ/heart/cybernetic/anomalock/proc/activate_survival(mob/living/carbon/organ_owner)
@@ -115,10 +131,6 @@
 /obj/item/organ/heart/cybernetic/anomalock/proc/notify_cooldown(mob/living/carbon/organ_owner)
 	balloon_alert(organ_owner, "your heart strengthtens")
 	playsound(organ_owner, 'sound/items/eshield_recharge.ogg', 40)
-
-///Returns the mob we are implanted in so that the electricity effect doesn't runtime
-/obj/item/organ/heart/cybernetic/anomalock/proc/get_held_mob()
-	return owner
 
 /obj/item/organ/heart/cybernetic/anomalock/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, required_anomaly))
@@ -185,19 +197,14 @@
 	owner.reagents.add_reagent(/datum/reagent/medicine/coagulant, 5)
 	owner.add_filter("emp_shield", 2, outline_filter(1, "#639BFF"))
 	to_chat(owner, span_revendanger("You feel a burst of energy! It's do or die!"))
-	if(iscarbon(owner))
-		var/mob/living/carbon/carbon_owner = owner
-		carbon_owner.gain_trauma(/datum/brain_trauma/special/tenacity, TRAUMA_RESILIENCE_ABSOLUTE)
+	owner.add_traits(list(TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT, TRAIT_ANALGESIA), REF(src))
 
 /datum/status_effect/voltaic_overdrive/on_remove()
 	. = ..()
 	owner.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 	owner.remove_filter("emp_shield")
 	owner.balloon_alert(owner, "your heart weakens")
-	if(iscarbon(owner))
-		var/mob/living/carbon/carbon_owner = owner
-		carbon_owner.cure_trauma_type(/datum/brain_trauma/special/tenacity, TRAUMA_RESILIENCE_ABSOLUTE)
-
+	owner.remove_traits(list(TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT, TRAIT_ANALGESIA), REF(src))
 
 /atom/movable/screen/alert/status_effect/anomalock_active
 	name = "voltaic overdrive"

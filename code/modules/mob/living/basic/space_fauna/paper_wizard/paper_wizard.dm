@@ -13,6 +13,7 @@
 	response_disarm_simple = "push"
 	basic_mob_flags = DEL_ON_DEATH
 
+	status_flags = CANPUSH
 	maxHealth = 1000
 	health = 1000
 	melee_damage_lower = 10
@@ -20,6 +21,7 @@
 	obj_damage = 50
 	attack_sound = 'sound/effects/hallucinations/growl1.ogg'
 	ai_controller = /datum/ai_controller/basic_controller/paper_wizard
+	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, STAMINA = 0, OXY = 1)
 	///spell to summon minions
 	var/datum/action/cooldown/spell/conjure/wizard_summon_minions/summon
 	///spell to summon clones
@@ -105,7 +107,7 @@
 	faction = list(FACTION_STICKMAN)
 	melee_damage_lower = 1
 	melee_damage_upper = 5
-	ai_controller = /datum/ai_controller/basic_controller/simple_hostile
+	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile
 
 /mob/living/basic/paper_wizard/copy/Initialize(mapload)
 	. = ..()

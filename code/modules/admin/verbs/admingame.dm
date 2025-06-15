@@ -27,7 +27,8 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mo
 		body += "<br>\[<A href='byond://?_src_=holder;[HrefToken()];ppbyckey=[player.ckey];ppbyckeyorigmob=[REF(player)]'>Find Updated Panel</A>\]"
 
 	if(player.client)
-		body += "<br>\[<b>First Seen:</b> [player.client.player_join_date]\]\[<b>Byond account registered on:</b> [player.client.account_join_date]\]"
+		body += "<br>\[<b>First Seen:</b> [player.client.player_join_date]\]"
+		body += "<br>\[<b>Byond account registered on:</b> [player.client.account_join_date]\]"
 		// SKYRAT EDIT ADDITION START - Player Ranks
 		var/list/player_ranks = list()
 
@@ -78,11 +79,10 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mo
 
 	body += "<b>Mob type</b> = [player.type]<br><br>"
 
-	if(player.client)
+	if(HAS_CONNECTED_PLAYER(player))
 		body += "<b>Old names:</b> "
-		var/datum/player_details/deets = GLOB.player_details[player.ckey]
-		if(deets)
-			body += deets.get_played_names()
+		if(player.persistent_client)
+			body += player.persistent_client.get_played_names()
 		else
 			body += "<i>None?!</i>"
 		body += "<br><br>"
@@ -167,7 +167,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mo
 	body += "<br>"
 	body += "</body></html>"
 
-	user << browse(body, "window=adminplayeropts-[REF(player)];size=550x515")
+	user << browse(body, "window=adminplayeropts-[REF(player)];size=550x540")
 	BLACKBOX_LOG_ADMIN_VERB("Player Panel")
 
 /client/proc/cmd_admin_godmode(mob/mob in GLOB.mob_list)
@@ -216,7 +216,7 @@ ADMIN_VERB(respawn_character, R_ADMIN, "Respawn Character", "Respawn a player th
 				var/mob/living/carbon/human/species/monkey/new_monkey = new
 				SSjob.send_to_late_join(new_monkey)
 				G_found.mind.transfer_to(new_monkey) //be careful when doing stuff like this! I've already checked the mind isn't in use
-				new_monkey.key = G_found.key
+				new_monkey.PossessByPlayer(G_found.key)
 				to_chat(new_monkey, "You have been fully respawned. Enjoy the game.", confidential = TRUE)
 				var/msg = span_adminnotice("[key_name_admin(user)] has respawned [new_monkey.key] as a filthy monkey.")
 				message_admins(msg)
@@ -251,7 +251,7 @@ ADMIN_VERB(respawn_character, R_ADMIN, "Respawn Character", "Respawn a player th
 	if(is_unassigned_job(new_character.mind.assigned_role))
 		new_character.mind.set_assigned_role(SSjob.get_job_type(SSjob.overflow_role))
 
-	new_character.key = G_found.key
+	new_character.PossessByPlayer(G_found.key)
 
 	/*
 	The code below functions with the assumption that the mob is already a traitor if they have a special role.
@@ -301,7 +301,7 @@ ADMIN_VERB(respawn_character, R_ADMIN, "Respawn Character", "Respawn a player th
 	if(!record_found && (new_character.mind.assigned_role.job_flags & JOB_CREW_MEMBER))
 		//Power to the user!
 		if(tgui_alert(new_character,"Warning: No data core entry detected. Would you like to announce the arrival of this character by adding them to various databases, such as medical records?",,list("No","Yes")) == "Yes")
-			GLOB.manifest.inject(new_character, src)	// SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - Original: GLOB.manifest.inject(new_character)
+			GLOB.manifest.inject(new_character, null, src)	// SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - Original: GLOB.manifest.inject(new_character)
 
 		if(tgui_alert(new_character,"Would you like an active AI to announce this character?",,list("No","Yes")) == "Yes")
 			announce_arrival(new_character, new_character.mind.assigned_role.title)

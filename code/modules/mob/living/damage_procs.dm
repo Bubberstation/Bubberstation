@@ -39,6 +39,9 @@
 	if(!forced)
 		damage_amount *= ((100 - blocked) / 100)
 		damage_amount *= get_incoming_damage_modifier(damage_amount, damagetype, def_zone, sharpness, attack_direction, attacking_item)
+
+	SEND_SIGNAL(src, COMSIG_MOB_ALWAYS_APPLY_DAMAGE, damage_amount, damagetype, def_zone, blocked, wound_bonus, bare_wound_bonus, sharpness, attack_direction, attacking_item, wound_clothing) // BUBBER ADDITION: FLAT DAMAGE MODIFIERS
+
 	if(damage_amount <= 0)
 		return 0
 
@@ -95,7 +98,7 @@
 		if(BRAIN)
 			damage_dealt = -1 * adjustOrganLoss(ORGAN_SLOT_BRAIN, damage_amount)
 
-	SEND_SIGNAL(src, COMSIG_MOB_AFTER_APPLY_DAMAGE, damage_dealt, damagetype, def_zone, blocked, wound_bonus, bare_wound_bonus,sharpness, attack_direction, attacking_item, wound_clothing)
+	SEND_SIGNAL(src, COMSIG_MOB_AFTER_APPLY_DAMAGE, damage_dealt, damagetype, def_zone, blocked, wound_bonus, bare_wound_bonus, sharpness, attack_direction, attacking_item, wound_clothing)
 	return damage_dealt
 
 /**
@@ -247,7 +250,7 @@
 	if(drowsy)
 		adjust_drowsiness(drowsy)
 	if(eyeblur)
-		adjust_eye_blur_up_to(eyeblur, 30 SECONDS) // BUBBER CHANGE, CAPS EYEBLUR
+		adjust_eye_blur_up_to(eyeblur, eyeblur)
 	if(jitter && !check_stun_immunity(CANSTUN))
 		adjust_jitter(jitter)
 	if(slur)

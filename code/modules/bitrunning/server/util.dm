@@ -12,7 +12,7 @@
 		balloon_alert_to_viewers("cooldown has completed")
 		return
 	//BUBBER ADDITION END
-	radio.talk_into(src, "Thermal systems within operational parameters. Proceeding to domain configuration.", RADIO_CHANNEL_SUPPLY)
+	aas_config_announce(/datum/aas_config_entry/bitrunning_QS_ready_announcement, list(), src, list(RADIO_CHANNEL_SUPPLY))
 
 
 /// If there are hosted minds, attempts to get a list of their current virtual bodies w/ vitals

@@ -32,33 +32,48 @@
 	/// The sound we play upon successfully treating the wound
 	var/treatment_sound = 'sound/items/duct_tape/duct_tape_rip.ogg'
 
-// This is only relevant for the types of wounds defined, we can't work if there are none
-/obj/item/stack/medical/wound_recovery/try_heal(mob/living/patient, mob/user, silent = FALSE, looping = FALSE, auto_change_zone = TRUE)
+// Ported from Nova: \/
+////// Searches for a wound that this item is capable of treating
+/obj/item/stack/medical/wound_recovery/proc/find_suitable_wound(obj/item/bodypart/limb)
+	for(var/datum/wound/wound as anything in limb.wounds)
+		if((wound.wound_flags & ACCEPTS_GAUZE) && is_type_in_list(wound, applicable_wounds))
+			return wound
 
+/obj/item/stack/medical/add_item_context(obj/item/source, list/context, atom/target, mob/living/user)
+	if(!iscarbon(target))
+		return NONE
+	context[SCREENTIP_CONTEXT_LMB] = "Heal"
+	return CONTEXTUAL_SCREENTIP_SET
+
+/obj/item/stack/medical/wound_recovery/try_heal_checks(mob/living/patient, mob/living/user, healed_zone, silent = FALSE)
+	var/obj/item/bodypart/limb = patient.get_bodypart(healed_zone)
+	if(isnull(limb))
+		if(!silent)
+			patient.balloon_alert(user, "no [parse_zone(healed_zone)]!")
+		return FALSE
+	if(!LAZYLEN(limb.wounds))
+		if(!silent)
+			patient.balloon_alert(user, "no wounds!") // good problem to have imo
+		return FALSE
 	if(patient.has_status_effect(/datum/status_effect/vulnerable_to_damage))
-		patient.balloon_alert(user, "still recovering from last use!")
-		return
+		if(!silent)
+			patient.balloon_alert(user, "still recovering from last use!")
+		return FALSE
+	if(!find_suitable_wound(limb))
+		if(!silent)
+			patient.balloon_alert(user, "can't heal those!")
+		return FALSE
+	return TRUE
+
+// This is only relevant for the types of wounds defined, we can't work if there are none
+/obj/item/stack/medical/wound_recovery/try_heal(mob/living/patient, mob/user, silent = FALSE, looping = FALSE, auto_change_zone = TRUE, continuous = FALSE)
 
 	var/treatment_delay = (user == patient ? self_delay : other_delay)
 
 	var/obj/item/bodypart/limb = patient.get_bodypart(check_zone(user.zone_selected))
-	if(!limb)
-		patient.balloon_alert(user, "missing limb!")
-		return
-	if(!LAZYLEN(limb.wounds))
-		patient.balloon_alert(user, "no wounds!")
-		return
 
-	var/splintable_wound = FALSE
-	var/datum/wound/woundies
-	for(var/found_wound in limb.wounds)
-		woundies = found_wound
-		if((woundies.wound_flags & ACCEPTS_GAUZE) && is_type_in_list(woundies, applicable_wounds))
-			splintable_wound = TRUE
-			break
-	if(!splintable_wound)
-		patient.balloon_alert(user, "can't heal those!")
-		return
+	var/datum/wound/woundies = find_suitable_wound(limb)
+// Ported from Nova: ^
 
 	if(HAS_TRAIT(woundies, TRAIT_WOUND_SCANNED))
 		treatment_delay *= 0.5

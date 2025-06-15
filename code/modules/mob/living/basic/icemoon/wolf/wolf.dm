@@ -5,7 +5,6 @@
 	icon_state = "whitewolf"
 	icon_living = "whitewolf"
 	icon_dead = "whitewolf_dead"
-	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	mouse_opacity = MOUSE_OPACITY_ICON
 	speak_emote = list("howls")
 	friendly_verb_continuous = "howls at"
@@ -60,8 +59,6 @@
 	AddElement(/datum/element/footstep, FOOTSTEP_MOB_CLAW)
 	AddElement(/datum/element/ai_flee_while_injured)
 	AddElement(/datum/element/ai_retaliate)
-	AddComponent(/datum/component/basic_mob_ability_telegraph)
-	AddComponent(/datum/component/basic_mob_attack_telegraph, telegraph_duration = 0.6 SECONDS)
 
 	if(can_tame)
 		make_tameable()
@@ -84,5 +81,7 @@
 //this should also produce interesting behavior where tamed wolves defend other tamed wolves.
 /mob/living/basic/mining/wolf/befriend(mob/living/new_friend)
 	. = ..()
+	if(isnull(.))
+		return
 	faction = new_friend.faction.Copy()
 	visible_message(span_notice("[src] lowers [src.p_their()] snout at [new_friend]'s offering and begins to wag [src.p_their()] tail."))

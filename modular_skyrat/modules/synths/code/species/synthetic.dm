@@ -12,7 +12,6 @@
 		TRAIT_STABLEHEART,
 		TRAIT_LIMBATTACHMENT,
 		TRAIT_NO_HUSK,
-		TRAIT_OXYIMMUNE,
 		TRAIT_LITERATE,
 		TRAIT_NOCRITDAMAGE, // We do our own handling of crit damage.
 		TRAIT_ROBOTIC_DNA_ORGANS,
@@ -23,7 +22,7 @@
 	reagent_flags = PROCESS_SYNTHETIC
 	payday_modifier = 1.0 // Matches the rest of the pay penalties the non-human crew have
 	species_language_holder = /datum/language_holder/machine
-	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord)
+	mutant_organs = list(/obj/item/organ/cyberimp/arm/toolkit/power_cord)
 	mutantbrain = /obj/item/organ/brain/synth
 	mutantstomach = /obj/item/organ/stomach/synth
 	mutantears = /obj/item/organ/ears/synth
@@ -33,7 +32,7 @@
 	mutantheart = /obj/item/organ/heart/synth
 	mutantliver = /obj/item/organ/liver/synth
 	mutantappendix = null
-	exotic_blood = /datum/reagent/fuel/oil
+	exotic_bloodtype = BLOOD_TYPE_OIL
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/synth,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/synth,
@@ -76,8 +75,30 @@
 		human.adjustFireLoss(1) //Still deal some damage in case a cold environment would be preventing us from the sweet release to robot heaven
 		human.adjust_bodytemperature(13) //We're overheating!!
 		if(prob(10))
-			to_chat(human, span_warning("Alert: Critical damage taken! Cooling systems failing!"))
+			to_chat(human, span_warning("Alert: Critical damage taken, all systems failing."))
 			do_sparks(3, TRUE, human)
+
+	var/obj/item/organ/lungs/lungs = human.get_organ_slot(ORGAN_SLOT_LUNGS)
+	if(!lungs || (lungs.organ_flags & ORGAN_FAILING))
+		// No lungs or failing lungs present, apply overheating
+		human.adjust_bodytemperature(50)
+		human.adjustFireLoss(1)
+		if(prob(10))
+			to_chat(human, span_warning("Alert: Cooling system is non-functional or missing, OVERHEATING is imminent."))
+			do_sparks(3, TRUE, human)
+
+	var/obj/item/organ/heart/heart = human.get_organ_slot(ORGAN_SLOT_HEART)
+	if(!heart || (heart.organ_flags & ORGAN_FAILING))
+		// No heart or failing heart present, apply slowdown
+		human.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH, 5 SECONDS)
+		if(prob(10))
+			to_chat(human, span_warning("Alert: Oil pump is non-functional or missing. Hydraulics efficiency reduced."))
+
+	var/obj/item/organ/liver/liver = human.get_organ_slot(ORGAN_SLOT_LIVER)
+	if(!liver || (liver.organ_flags & ORGAN_FAILING))
+		// No liver or failing liver present, apply message informing of the missing liver
+		if(prob(10))
+			to_chat(human, span_warning("Alert: Reagent processing unit is non-functional or missing. Systems clogging."))
 
 /datum/species/synthetic/spec_revival(mob/living/carbon/human/transformer)
 	switch_to_screen(transformer, "Console")
@@ -140,7 +161,7 @@
 			continue
 
 		if(chassis_of_choice.color_src && chassis[MUTANT_INDEX_COLOR_LIST] && length(chassis[MUTANT_INDEX_COLOR_LIST]))
-			limb.add_color_override(head[MUTANT_INDEX_COLOR_LIST][1], LIMB_COLOR_SYNTH)
+			limb.add_color_override(chassis[MUTANT_INDEX_COLOR_LIST][1], LIMB_COLOR_SYNTH)
 		limb.change_appearance(chassis_of_choice.icon, chassis_of_choice.icon_state, !!chassis_of_choice.color_src, limb.body_part == CHEST && chassis_of_choice.dimorphic)
 		limb.name = "\improper[chassis_of_choice.name] [parse_zone(limb.body_zone)]"
 
@@ -201,7 +222,7 @@
 	transformer.update_body()
 
 /datum/species/synthetic/get_types_to_preload()
-	return ..() - typesof(/obj/item/organ/cyberimp/arm/power_cord) // Don't cache things that lead to hard deletions.
+	return ..() - typesof(/obj/item/organ/cyberimp/arm/toolkit/power_cord) // Don't cache things that lead to hard deletions.
 
 /datum/species/synthetic/create_pref_unique_perks()
 	var/list/perk_descriptions = list()

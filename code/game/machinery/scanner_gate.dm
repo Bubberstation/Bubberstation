@@ -6,6 +6,7 @@
 #define SCANGATE_SPECIES "Species"
 #define SCANGATE_NUTRITION "Nutrition"
 #define SCANGATE_GENDER "Gender" // BUBBER EDIT ADDITION
+#define SCANGATE_NANITES "Nanites" // BUBBER EDIT ADDITION
 
 /obj/machinery/scanner_gate
 	name = "scanner gate"
@@ -36,12 +37,13 @@
 	///Does the scanner ignore light_pass and light_fail for sending signals?
 	var/ignore_signals = FALSE
 	var/detect_gender = "male" //SKYRAT EDIT ADDITION - MORE SCANNER GATE OPTIONS
+	var/nanite_cloud = 1 // BUBBER EDIT ADDITION - NANITES
 	///Modifier to the chance of scanner being false positive/negative
 	var/minus_false_beep = 0
 	///Base false positive/negative chance
 	var/base_false_beep = 5
 	///List of species that can be scanned by the gate. Supports adding more species' IDs during in-game.
-	var/list/available_species = list(
+	var/static/list/available_species = list(
 		SPECIES_HUMAN,
 		SPECIES_LIZARD,
 		SPECIES_FLYPERSON,
@@ -52,6 +54,33 @@
 		SPECIES_PODPERSON,
 		SPECIES_GOLEM,
 		SPECIES_ZOMBIE,
+	)
+	/// All scan modes available to the scanner
+	var/static/list/all_modes = list(
+		SCANGATE_NONE,
+		SCANGATE_MINDSHIELD,
+		SCANGATE_DISEASE,
+		SCANGATE_GUNS,
+		SCANGATE_WANTED,
+		SCANGATE_SPECIES,
+		SCANGATE_NUTRITION,
+		SCANGATE_GENDER, // BUBBER EDIT ADDITION
+		SCANGATE_NANITES, // BUBBER EDIT ADDITION
+	)
+	/// All disease severity thresholds available to the scanner
+	var/static/list/all_disease_thresholds = list(
+		DISEASE_SEVERITY_POSITIVE,
+		DISEASE_SEVERITY_NONTHREAT,
+		DISEASE_SEVERITY_MINOR,
+		DISEASE_SEVERITY_MEDIUM,
+		DISEASE_SEVERITY_HARMFUL,
+		DISEASE_SEVERITY_DANGEROUS,
+		DISEASE_SEVERITY_BIOHAZARD,
+	)
+	/// All nutrition levels available to the scanner
+	var/static/list/nutrition_modes = list(
+		"Starving",
+		"Obese",
 	)
 	/// Overlay object we're using for scanlines
 	var/obj/effect/overlay/scanline = null
@@ -64,6 +93,7 @@
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
+	AddComponent(/datum/component/simple_rotation, ROTATION_IGNORE_ANCHORED|ROTATION_REQUIRE_WRENCH|ROTATION_NEEDS_UNBLOCKED)
 	register_context()
 
 /obj/machinery/scanner_gate/Destroy(force)
@@ -74,6 +104,10 @@
 	. = ..()
 	for(var/datum/stock_part/scanning_module/scanning_module in component_parts)
 		minus_false_beep = scanning_module.tier //The better are scanninning modules - the lower is chance of False Positives
+
+/obj/machinery/scanner_gate/setDir(newdir)
+	. = ..()
+	scanline?.setDir(newdir)
 
 /obj/machinery/scanner_gate/examine(mob/user)
 	. = ..()
@@ -117,7 +151,7 @@
 		return
 	set_scanline("passive")
 
-/obj/machinery/scanner_gate/attackby(obj/item/attacking_item, mob/user, params)
+/obj/machinery/scanner_gate/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	var/obj/item/card/id/card = attacking_item.GetID()
 	if(card)
 		if(locked)
@@ -227,6 +261,14 @@
 					if(scanned_human.gender == detect_gender)
 						beep = TRUE
 		//SKYRAT EDIT END - MORE SCANNER GATE OPTIONS
+		// BUBBER EDIT ADDITION BEGIN - NANITES
+		if(SCANGATE_NANITES)
+			detected_thing = "Nanite cloud #[nanite_cloud]"
+			if(isliving(thing))
+				var/detected_cloud_id = SEND_SIGNAL(thing, COMSIG_NANITE_GET_CLOUD)
+				if(detected_cloud_id == nanite_cloud)
+					beep = TRUE
+		// BUBBER EDIT ADDITION END - NANITES
 
 	if(reverse)
 		beep = !beep
@@ -283,6 +325,10 @@
 			"specie_name" = capitalize(format_text(specie.name)),
 			"specie_id" = species_id,
 		))
+	// BUBBER EDIT ADDITION BEGIN - NANITES
+	.["min_cloud_id"] = NANITE_MIN_CLOUD_ID
+	.["max_cloud_id"] = NANITE_MAX_CLOUD_ID
+	// BUBBER EDIT ADDITION END - NANITES
 
 /obj/machinery/scanner_gate/ui_data()
 	var/list/data = list()
@@ -293,6 +339,7 @@
 	data["target_species_id"] = detect_species_id
 	data["target_nutrition"] = detect_nutrition
 	data["target_gender"] = detect_gender //SKYRAT EDIT - MORE SCANNER GATE OPTIONS
+	data["nanite_cloud"] = nanite_cloud // BUBBER EDIT ADDITION - NANITES
 	data["target_zombie"] = (detect_species_id == SPECIES_ZOMBIE)
 	return data
 
@@ -304,6 +351,8 @@
 	switch(action)
 		if("set_mode")
 			var/new_mode = params["new_mode"]
+			if(!new_mode || !(new_mode in all_modes))
+				return
 			scangate_mode = new_mode
 			. = TRUE
 		if("toggle_reverse")
@@ -315,26 +364,25 @@
 			. = TRUE
 		if("set_disease_threshold")
 			var/new_threshold = params["new_threshold"]
+			if(!new_threshold || !(new_threshold in all_disease_thresholds))
+				return
 			disease_threshold = new_threshold
 			. = TRUE
 		if("set_target_species")
 			var/new_specie_id = params["new_species_id"]
-			if(!(new_specie_id in available_species))
+			if(!new_specie_id || !(new_specie_id in available_species))
 				return
 			detect_species_id = new_specie_id
 			. = TRUE
 		if("set_target_nutrition")
 			var/new_nutrition = params["new_nutrition"]
-			var/nutrition_list = list(
-				"Starving",
-				"Obese"
-			)
-			if(new_nutrition && (new_nutrition in nutrition_list))
-				switch(new_nutrition)
-					if("Starving")
-						detect_nutrition = NUTRITION_LEVEL_STARVING
-					if("Obese")
-						detect_nutrition = NUTRITION_LEVEL_FAT
+			if(!new_nutrition || !(new_nutrition in nutrition_modes))
+				return
+			switch(new_nutrition)
+				if("Starving")
+					detect_nutrition = NUTRITION_LEVEL_STARVING
+				if("Obese")
+					detect_nutrition = NUTRITION_LEVEL_FAT
 			. = TRUE
 		//SKYRAT EDIT BEGIN - MORE SCANNER GATE OPTIONS
 		if("set_target_gender")
@@ -351,6 +399,14 @@
 						detect_gender = "female"
 			. = TRUE
 		//SKYRAT EDIT END - MORE SCANNER GATE OPTIONS
+		// BUBBER EDIT ADDITION BEGIN - NANITES
+		if("set_nanite_cloud")
+			var/new_cloud_id = params["new_cloud"]
+			if(!isnum(new_cloud_id))
+				return
+			nanite_cloud = clamp(new_cloud_id, NANITE_MIN_CLOUD_ID+1, NANITE_MAX_CLOUD_ID)
+			. = TRUE
+		// BUBBER EDIT ADDITION END - NANITES
 
 /obj/machinery/scanner_gate/preset_guns
 	locked = TRUE
@@ -365,3 +421,4 @@
 #undef SCANGATE_SPECIES
 #undef SCANGATE_NUTRITION
 #undef SCANGATE_GENDER //BUBBER EDIT
+#undef SCANGATE_NANITES //BUBBER EDIT

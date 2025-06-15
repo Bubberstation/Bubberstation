@@ -117,7 +117,7 @@
 	if(prob(25))
 		to_chat(human_user, span_userdanger("An otherwordly presence tears and atomizes your [their_poor_arm.name] as you try to touch the hole in the very fabric of reality!"))
 		their_poor_arm.dismember()
-		forceMove(their_poor_arm, src) // stored for later fishage
+		their_poor_arm.forceMove(src) // stored for later fishage
 	else
 		to_chat(human_user,span_danger("You pull your hand away from the hole as the eldritch energy flails, trying to latch onto existence itself!"))
 	return TRUE
@@ -145,7 +145,7 @@
 	var/obj/item/bodypart/head/head = locate() in human_user.bodyparts
 	if(head)
 		head.dismember()
-		forceMove(head, src) // stored for later fishage
+		head.forceMove(src) // stored for later fishage
 	else
 		human_user.gib(DROP_ALL_REMAINS)
 	human_user.investigate_log("has died from using telekinesis on a heretic influence.", INVESTIGATE_DEATHS)
@@ -154,15 +154,15 @@
 	explosion.start(src)
 */
 
-/obj/effect/visible_heretic_influence/examine(mob/user)
+/obj/effect/visible_heretic_influence/examine(mob/living/user)
 	. = ..()
+	. += span_hypnophrase(pick_list(HERETIC_INFLUENCE_FILE, "examine"))
 	if(IS_HERETIC(user) || !ishuman(user))
 		return
 
-	var/mob/living/carbon/human/human_user = user
-	to_chat(human_user, span_userdanger("Your mind burns as you stare at the tear!"))
-	human_user.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 190)
-	// human_user.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus) Bubberstation change: Hugboxes heretics.
+	. += span_userdanger("Your mind burns as you stare at the tear!")
+	user.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 190)
+	//user.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus) // BUBBER EDIT - Hugboxes
 
 /obj/effect/heretic_influence
 	name = "reality smash"
@@ -206,7 +206,7 @@
 
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
-/obj/effect/heretic_influence/attackby(obj/item/weapon, mob/user, params)
+/obj/effect/heretic_influence/attackby(obj/item/weapon, mob/user, list/modifiers, list/attack_modifiers)
 	. = ..()
 	if(.)
 		return
@@ -220,7 +220,7 @@
 		return FALSE
 	if(!codex.book_open)
 		codex.attack_self(user) // open booke
-	INVOKE_ASYNC(src, PROC_REF(drain_influence), user, 2)
+	INVOKE_ASYNC(src, PROC_REF(drain_influence), user, 2, codex.drain_speed)
 	return TRUE
 
 /**
@@ -229,12 +229,12 @@
  *
  * If successful, the influence is drained and deleted.
  */
-/obj/effect/heretic_influence/proc/drain_influence(mob/living/user, knowledge_to_gain)
+/obj/effect/heretic_influence/proc/drain_influence(mob/living/user, knowledge_to_gain, drain_speed = 10 SECONDS)
 
 	being_drained = TRUE
 	loc.balloon_alert(user, "draining influence...")
 
-	if(!do_after(user, 10 SECONDS, src, hidden = TRUE))
+	if(!do_after(user, drain_speed, src, hidden = TRUE))
 		being_drained = FALSE
 		loc.balloon_alert(user, "interrupted!")
 		return

@@ -71,6 +71,19 @@
 
 /datum/antagonist/fugitive_hunter/apply_innate_effects(mob/living/mob_override)
 	add_team_hud(mob_override || owner.current)
+	if(backstory == HUNTER_PACK_RUSSIAN)
+		var/mob/living/owner_mob = mob_override || owner.current
+		//bubber edit; spinwarder removed
+		owner_mob.grant_language(/datum/language/panslavic, source = LANGUAGE_BOUNTYHUNTER)
+		owner_mob.set_active_language(/datum/language/panslavic)
+		//edit end
+
+/datum/antagonist/fugitive_hunter/remove_innate_effects(mob/living/mob_override)
+	var/mob/living/owner_mob = mob_override || owner.current
+	//bubber edit; spinwarder removed
+	owner_mob.remove_language(/datum/language/panslavic, source = LANGUAGE_BOUNTYHUNTER)
+	//edit end
+	return ..()
 
 /datum/team/fugitive_hunters
 	var/backstory = "error"

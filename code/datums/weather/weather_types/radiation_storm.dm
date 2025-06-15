@@ -3,17 +3,17 @@
 	name = "radiation storm"
 	desc = "A cloud of intense radiation passes through the area dealing rad damage to those who are unprotected."
 
-	telegraph_duration = 400
+	telegraph_duration = 40 SECONDS
 	telegraph_message = span_danger("The air begins to grow warm.")
 
 	weather_message = span_userdanger("<i>You feel waves of heat wash over you! Find shelter!</i>")
 	weather_overlay = "ash_storm"
-	weather_duration_lower = 600
-	weather_duration_upper = 1500
+	weather_duration_lower = 1 MINUTES
+	weather_duration_upper = 2.5 MINUTES
 	weather_color = "green"
 	weather_sound = 'sound/announcer/alarm/bloblarm.ogg'
 
-	end_duration = 100
+	end_duration = 10 SECONDS
 	end_message = span_notice("The air seems to be cooling off again.")
 
 	area_type = /area
@@ -24,6 +24,7 @@
 	target_trait = ZTRAIT_STATION
 
 	immunity_type = TRAIT_RADSTORM_IMMUNE
+	weather_flags = (WEATHER_MOBS | WEATHER_INDOORS)
 	/// Chance we get a negative mutation, if we fail we get a positive one
 	var/negative_mutation_chance = 90
 	/// Chance we mutate
@@ -34,7 +35,7 @@
 	status_alarm(TRUE)
 
 
-/datum/weather/rad_storm/weather_act(mob/living/living)
+/datum/weather/rad_storm/weather_act_mob(mob/living/living)
 	if(!prob(mutate_chance))
 		return
 
@@ -57,10 +58,12 @@
 	if(prob(50))
 		do_mutate(human)
 
+	return ..()
+
 /datum/weather/rad_storm/end()
 	if(..())
 		return
-	priority_announce("The radiation threat has passed. Please return to your workplaces.", "Anomaly Alert", ANNOUNCER_RADIATIONPASSED) //SKYRAT EDIT CHANGE
+	priority_announce("The station has passed the radiation belt, please report to medbay if you experience any unusual symptoms. Maintenance will lose all access again shortly.", "Radiation Alert Cleared", ANNOUNCER_RADIATIONPASSED) // BUBBER EDIT CHANGE
 	status_alarm(FALSE)
 
 /datum/weather/rad_storm/proc/do_mutate(mob/living/carbon/human/mutant)
@@ -90,17 +93,14 @@
 	protected_areas = list(/area/shuttle, /area/station/maintenance/radshelter)
 
 	weather_overlay = "nebula_radstorm"
-	weather_duration_lower = 100 HOURS
-	weather_duration_upper = 100 HOURS
-
 	end_message = null
+	weather_flags = parent_type::weather_flags | WEATHER_ENDLESS
 
 	mutate_chance = 0.1
-
 	///Chance we pulse a living during the storm
 	var/radiation_chance = 5
 
-/datum/weather/rad_storm/nebula/weather_act(mob/living/living)
+/datum/weather/rad_storm/nebula/weather_act_mob(mob/living/living)
 	..()
 
 	if(!prob(radiation_chance))

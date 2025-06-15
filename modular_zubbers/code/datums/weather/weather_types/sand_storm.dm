@@ -1,37 +1,34 @@
 //Basically a reskinned Ash Storm
 
-GLOBAL_LIST_EMPTY(sand_storm_sounds)
-
-/datum/weather/sand_storm
+/datum/weather/sand_storm_moon
 	name = "sand storm"
 	desc = "An intense atmospheric storm lifts sand off of the planet's surface and billows it down across the area, dealing intense burn damage to the unprotected."
 
 	telegraph_message = "<span class='boldwarning'>Stacks of dark clouds and cloudy sand cover the horizon. Seek shelter.</span>"
-	telegraph_duration = 600
+	telegraph_duration = 60 SECONDS
 	telegraph_overlay = "sandstorm_light"
 
 	weather_message = "<span class='userdanger'><i>Smoldering particles of sand billow down around you! Get inside!</i></span>"
-	weather_duration_lower = 1200
-	weather_duration_upper = 2400
+	weather_duration_lower = 2 MINUTES
+	weather_duration_upper = 4 MINUTES
 	weather_overlay = "sandstorm"
 
 	end_message = "<span class='boldannounce'>The shrieking wind whips away the last of the sand and falls to its usual murmur. It should be safe to go outside now.</span>"
-	end_duration = 600
+	end_duration = 60 SECONDS
 	end_overlay = "sandstorm_light"
 
 	area_type = /area
-	protect_indoors = TRUE
-	target_trait = ZTRAIT_SANDSTORM
+	target_trait = ZTRAIT_SANDSTORM_MOON
 
 	immunity_type = TRAIT_ASHSTORM_IMMUNE
 
-	probability = 60
+	probability = 40
 
-	barometer_predictable = TRUE
+	weather_flags = (WEATHER_MOBS | WEATHER_BAROMETER)
 	var/list/weak_sounds = list()
 	var/list/strong_sounds = list()
 
-/datum/weather/sand_storm/telegraph()
+/datum/weather/sand_storm_moon/telegraph()
 	var/list/eligible_areas = list()
 	for (var/z in impacted_z_levels)
 		eligible_areas += SSmapping.areas_in_z["[z]"]
@@ -54,17 +51,17 @@ GLOBAL_LIST_EMPTY(sand_storm_sounds)
 	GLOB.sand_storm_sounds += weak_sounds
 	return ..()
 
-/datum/weather/sand_storm/start()
+/datum/weather/sand_storm_moon/start()
 	GLOB.sand_storm_sounds -= weak_sounds
 	GLOB.sand_storm_sounds += strong_sounds
 	return ..()
 
-/datum/weather/sand_storm/wind_down()
+/datum/weather/sand_storm_moon/wind_down()
 	GLOB.sand_storm_sounds -= strong_sounds
 	GLOB.sand_storm_sounds += weak_sounds
 	return ..()
 
-/datum/weather/sand_storm/can_weather_act(mob/living/mob_to_check)
+/datum/weather/sand_storm_moon/can_weather_act_mob(mob/living/mob_to_check)
 	. = ..()
 	if(!. || !ishuman(mob_to_check))
 		return
@@ -72,12 +69,12 @@ GLOBAL_LIST_EMPTY(sand_storm_sounds)
 	if(human_to_check.get_thermal_protection() >= FIRE_IMMUNITY_MAX_TEMP_PROTECT)
 		return FALSE
 
-/datum/weather/sand_storm/end()
+/datum/weather/sand_storm_moon/end()
 	GLOB.sand_storm_sounds -= weak_sounds
 	return ..()
 
 /// Copied from the base weather.dm file to make this modular. I fucking hate modularity.
-/datum/weather/sand_storm/generate_overlay_cache()
+/datum/weather/sand_storm_moon/generate_overlay_cache()
 	// We're ending, so no overlays at all
 	if(stage == END_STAGE)
 		return list()
@@ -110,7 +107,7 @@ GLOBAL_LIST_EMPTY(sand_storm_sounds)
 
 	return gen_overlay_cache
 
-/datum/weather/sand_storm/can_get_alert(mob/player)
+/datum/weather/sand_storm_moon/can_get_alert(mob/player)
 
 	if(!..())
 		return FALSE
@@ -129,13 +126,13 @@ GLOBAL_LIST_EMPTY(sand_storm_sounds)
 /mob/Login()
 	. = ..()
 	if(.)
-		AddElement(/datum/element/weather_listener, /datum/weather/sand_storm, ZTRAIT_SANDSTORM, GLOB.sand_storm_sounds)
+		AddElement(/datum/element/weather_listener, /datum/weather/sand_storm_moon, ZTRAIT_SANDSTORM_MOON, GLOB.sand_storm_sounds)
 
 /datum/component/object_possession/bind_to_new_object(obj/target)
 
 	. = ..()
 	if(.)
-		target.AddElement(/datum/element/weather_listener, /datum/weather/sand_storm, ZTRAIT_SANDSTORM, GLOB.sand_storm_sounds)
+		target.AddElement(/datum/element/weather_listener, /datum/weather/sand_storm_moon, ZTRAIT_SANDSTORM_MOON, GLOB.sand_storm_sounds)
 
 /datum/component/object_possession/cleanup_object_binding()
 
@@ -144,12 +141,12 @@ GLOBAL_LIST_EMPTY(sand_storm_sounds)
 	. = ..()
 
 	if(was_valid)
-		possessed.RemoveElement(/datum/element/weather_listener, /datum/weather/sand_storm, ZTRAIT_SANDSTORM, GLOB.sand_storm_sounds)
+		possessed.RemoveElement(/datum/element/weather_listener, /datum/weather/sand_storm_moon, ZTRAIT_SANDSTORM_MOON, GLOB.sand_storm_sounds)
 
 
 #define WEATHER_BASE_DAMAGE 2.5
 
-/datum/weather/sand_storm/weather_act(mob/living/victim)
+/datum/weather/sand_storm_moon/weather_act_mob(mob/living/victim)
 
 	if(victim.resistance_flags & FIRE_PROOF)
 		return

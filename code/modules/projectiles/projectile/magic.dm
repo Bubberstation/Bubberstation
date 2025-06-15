@@ -353,6 +353,10 @@
 /obj/projectile/magic/wipe/on_hit(mob/living/carbon/target, blocked = 0, pierce_hit)
 	. = ..()
 	if(iscarbon(target))
+		if(istype(get_area(target), /area/deathmatch))
+			target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 25) // Roughly 8 hits to kill
+			target.visible_message(span_warning("[target] grips their head in pain!"))
+			return BULLET_ACT_HIT
 		for(var/x in target.get_traumas())//checks to see if the victim is already going through possession
 			if(istype(x, /datum/brain_trauma/special/imaginary_friend/trapped_owner))
 				target.visible_message(span_warning("[src] vanishes on contact with [target]!"))
@@ -378,7 +382,7 @@
 	if(chosen_one)
 		to_chat(target, span_boldnotice("You have been noticed by a ghost and it has possessed you!"))
 		var/mob/dead/observer/ghosted_target = target.ghostize(FALSE)
-		target.key = chosen_one.key
+		target.PossessByPlayer(chosen_one.key)
 		trauma.add_friend(ghosted_target)
 	else
 		to_chat(target, span_notice("Your mind has managed to go unnoticed in the spirit world."))
@@ -533,7 +537,6 @@
 	hitsound = 'sound/items/weapons/punch3.ogg'
 	trigger_range = 0
 	antimagic_flags = MAGIC_RESISTANCE_HOLY
-	ignored_factions = list(FACTION_CULT)
 	range = 105
 	speed = 0.15
 

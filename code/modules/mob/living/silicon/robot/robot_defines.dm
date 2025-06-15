@@ -17,6 +17,8 @@
 	hud_type = /datum/hud/robot
 	unique_name = TRUE
 	mouse_drop_zone = TRUE
+	held_items = list(null, null, null) //we use held_items for the module holding, because that makes sense to do!
+	default_hand_amount = 3
 
 	///Represents the cyborg's model (engineering, medical, etc.)
 	var/obj/item/robot_model/model = null
@@ -73,10 +75,6 @@
 	var/atom/movable/screen/inv3 = null
 	var/atom/movable/screen/hands = null
 
-	///Used to determine whether they have the module menu shown or not
-	var/shown_robot_modules = FALSE
-	var/atom/movable/screen/robot_modules_background
-
 	///Lamp button reference
 	var/atom/movable/screen/robot/lamp/lampButton
 
@@ -89,7 +87,6 @@
 
 	// Modules (tool slots)
 	var/obj/item/module_active = null
-	held_items = list(null, null, null) //we use held_items for the module holding, because that makes sense to do!
 
 	///For checking which modules are disabled or not.
 	var/disabled_modules
@@ -142,8 +139,6 @@
 	var/obj/item/hat
 	var/hat_offset = list("north" = list(0, -3), "south" = list(0, -3), "east" = list(4, -3), "west" = list(-4, -3))
 
-	///What types of mobs are allowed to ride/buckle to this mob
-	var/static/list/can_ride_typecache = typecacheof(/mob/living/carbon/human)
 	can_buckle = TRUE
 	buckle_lying = FALSE
 

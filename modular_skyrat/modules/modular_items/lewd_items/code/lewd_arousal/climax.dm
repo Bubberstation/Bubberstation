@@ -4,6 +4,7 @@
 
 #define CLIMAX_ON_FLOOR "On the floor"
 #define CLIMAX_IN_OR_ON "Climax in or on someone"
+#define CLIMAX_OPEN_CONTAINER "Fill reagent container"
 
 /mob/living/carbon/human
 	/// Used to prevent nightmare scenarios.
@@ -72,14 +73,23 @@
 
 		else
 			var/list/interactable_inrange_humans = list()
+			// monkey see, monkey do
+			var/list/interactable_inrange_open_containers = list()
 
 			// Unfortunately prefs can't be checked here, because byond/tgstation moment.
 			for(var/mob/living/carbon/human/iterating_human in (view(1, src) - src))
 				interactable_inrange_humans[iterating_human.name] = iterating_human
 
+			// this should be making a list of cups(?)
+			for(var/obj/item/reagent_containers/cup/iterating_open_container in (view(1, src) - src))
+				interactable_inrange_open_containers[iterating_open_container.name] = iterating_open_container
+
 			var/list/buttons = list(CLIMAX_ON_FLOOR)
 			if(interactable_inrange_humans.len)
 				buttons += CLIMAX_IN_OR_ON
+
+			if(interactable_inrange_open_containers.len)
+				buttons += CLIMAX_OPEN_CONTAINER
 
 			var/penis_climax_choice = tgui_alert(src, "Choose where to shoot your load.", "Load preference!", buttons)
 
@@ -89,6 +99,41 @@
 				create_cum_decal = TRUE
 				visible_message(span_userlove("[src] shoots [self_their] sticky load onto the floor!"), \
 					span_userlove("You shoot string after string of hot cum, hitting the floor!"))
+
+			else if(penis_climax_choice == CLIMAX_OPEN_CONTAINER)
+				var/target_choice = tgui_input_list(src, "Choose a container to cum into.", "Choose target!", interactable_inrange_open_containers)
+				if(!target_choice)
+					create_cum_decal = TRUE
+					visible_message(span_userlove("[src] shoots [self_their] sticky load onto the floor!"), \
+						span_userlove("You shoot string after string of hot cum, hitting the floor!"))
+				else
+					var/obj/item/reagent_containers/cup/target_open_container = interactable_inrange_open_containers[target_choice]
+					if(target_open_container.is_refillable() && target_open_container.is_drainable())
+						// here's where we actually do the cumming(?)
+						var/obj/item/organ/genital/testicles/src_testicles = src.get_organ_slot(ORGAN_SLOT_TESTICLES)
+						var/cum_volume = src_testicles.genital_size * 10
+						var/total_volume_w_cum = cum_volume + target_open_container.reagents.total_volume
+						conditional_pref_sound(get_turf(src), SFX_DESECRATION, 50, TRUE, pref_to_check = /datum/preference/toggle/erp/sounds)
+						if(target_open_container.reagents.holder_full())
+							// its full already
+							add_cum_splatter_floor(get_turf(target_open_container))
+							visible_message(span_userlove("[src] tries to cum into the [target_open_container], but it's already full, spilling their hot load onto the floor!"), \
+								span_userlove("You try to cum into the [target_open_container], but it's already full, so it all hits the floor instead!"))
+						else
+							target_open_container.reagents.add_reagent(/datum/reagent/consumable/cum, cum_volume)
+							if(total_volume_w_cum > target_open_container.volume)
+								// overflow, make the decal
+								add_cum_splatter_floor(get_turf(target_open_container))
+								visible_message(span_userlove("[src] shoots [self_their] sticky load into the [target_open_container], it's so full that it overflows!"), \
+									span_userlove("You shoot string after string of hot cum into the [target_open_container], making it overflow!"))
+							else
+								visible_message(span_userlove("[src] shoots [self_their] sticky load into the [target_open_container]!"), \
+									span_userlove("You shoot string after string of hot cum into the [target_open_container]!"))
+					else
+						// cum fail
+						create_cum_decal = TRUE
+						visible_message(span_userlove("[src] shoots [self_their] sticky load onto the floor!"), \
+							span_userlove("You shoot string after string of hot cum, hitting the floor!"))
 
 			else
 				var/target_choice = tgui_input_list(src, "Choose a person to cum in or on.", "Choose target!", interactable_inrange_humans)
@@ -163,3 +208,4 @@
 #undef CLIMAX_BOTH
 #undef CLIMAX_ON_FLOOR
 #undef CLIMAX_IN_OR_ON
+#undef CLIMAX_OPEN_CONTAINER

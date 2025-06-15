@@ -24,7 +24,6 @@
 /// cannot be removed without admin intervention
 #define ROUNDSTART_TRAIT "roundstart"
 #define JOB_TRAIT "job"
-#define CYBORG_ITEM_TRAIT "cyborg-item"
 /// Any traits granted by quirks.
 #define QUIRK_TRAIT "quirk_trait"
 /// (B)admins only.
@@ -56,6 +55,8 @@
 #define SHOES_TRAIT "shoes"
 /// Trait inherited by implants
 #define IMPLANT_TRAIT "implant"
+/// Traits given by the heretic arena spell
+#define HERETIC_ARENA_TRAIT "heretic_arena"
 #define GLASSES_TRAIT "glasses"
 /// inherited from riding vehicles
 #define VEHICLE_TRAIT "vehicle"
@@ -149,6 +150,8 @@
 
 /// A trait gained from a mob's leap action, like the leaper
 #define LEAPING_TRAIT "leaping"
+/// From grabbing someone
+#define GRABBING_TRAIT "grabbing"
 /// A trait gained from a mob's vanish action, like the herophant
 #define VANISHING_TRAIT "vanishing"
 /// A trait gained from a mob's swoop action, like the ash drake
@@ -195,6 +198,8 @@
 
 /// Trait from mob/living/update_transform()
 #define UPDATE_TRANSFORM_TRAIT "update_transform"
+/// Trait from mob/living/update_offsets()
+#define UPDATE_OFFSET_TRAIT "update_offset"
 
 /// Trait granted by the berserker hood.
 #define BERSERK_TRAIT "berserk_trait"

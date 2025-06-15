@@ -93,7 +93,6 @@ export type Quirk = {
   value: number;
   customizable: boolean;
   customization_options?: string[];
-  species_whitelist: Record<string, string>[]; // BUBBER EDIT ADDITION - Species quirks
 };
 
 // SKYRAT EDIT START
@@ -181,7 +180,6 @@ export type PreferencesMenuData = {
   preview_options: string[]; // SKYRAT EDIT ADDITION
   preview_selection: string; // SKYRAT EDIT ADDITION
 
-  is_vetted: BooleanLike; // BUBBER EDIT - Vetted Users
   character_preferences: {
     clothing: Record<string, string>;
     features: Record<string, string>;
@@ -203,6 +201,7 @@ export type PreferencesMenuData = {
       loadout_lists: LoadoutList; // BUBBER EDIT: Multiple loadout presets: ORIGINAL: loadout_list: LoadoutList;
       job_clothes: BooleanLike;
       loadout_index: string; // BUBBER EDIT ADDITION: Multiple loadout presets
+      background_state: string; // BUBBER EDIT ADDITION: Swappable character editor backgrounds
     };
 
     randomization: Record<string, RandomSetting>;
@@ -236,12 +235,12 @@ export type PreferencesMenuData = {
   positive_quirk_count: number;
   species_restricted_jobs?: string[];
   ckey: string;
-  is_donator: BooleanLike;
   // SKYRAT EDIT END
 
   keybindings: Record<string, string[]>;
   overflow_role: string;
   selected_quirks: string[];
+  species_disallowed_quirks: string[];
 
   antag_bans?: string[];
   antag_days_left?: Record<string, number>;
@@ -269,5 +268,6 @@ export type ServerData = {
     loadout_tabs: LoadoutCategory[];
   };
   species: Record<string, Species>;
-  [otherKey: string]: unknown;
+  background_state: { choices: string[] }; // BUBBER EDIT ADDITION
+  [otheyKey: string]: unknown;
 };

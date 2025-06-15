@@ -45,9 +45,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	///Never, Optional, or Forced digi legs?
 	var/digitigrade_customization = DIGITIGRADE_NEVER
-	///If your race bleeds something other than bog standard blood, change this to reagent id. For example, ethereals bleed liquid electricity.
-	var/datum/reagent/exotic_blood
 	///If your race uses a non standard bloodtype (A+, O-, AB-, etc). For example, lizards have L type blood.
+	///Reagent that your species bleeds, and what chemical can be used to recover lost blood depend on this
 	var/exotic_bloodtype
 	///The rate at which blood is passively drained by having the blood deficiency quirk. Some races such as slimepeople can regen their blood at different rates so this is to account for that
 	var/blood_deficiency_drain_rate = BLOOD_REGEN_FACTOR + BLOOD_DEFICIENCY_MODIFIER // slightly above the regen rate so it slowly drains instead of regenerates.
@@ -389,22 +388,25 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	human_who_gained_species.mob_respiration_type = inherent_respiration_type
 	human_who_gained_species.butcher_results = knife_butcher_results?.Copy()
 
+	// BUBBER EDIT BEGIN - Bake digitigrade into the species on apply
+	try_make_digitigrade(human_who_gained_species)
+	// BUBBER EDIT END
 	if(old_species.type != type)
 		replace_body(human_who_gained_species, src)
+
+	if(!human_who_gained_species.get_bloodtype()?.is_species_universal) // Clown blood is forever.
+		//Assigns exotic blood type if the species has one
+		if(exotic_bloodtype && human_who_gained_species.get_bloodtype()?.id != exotic_bloodtype)
+			human_who_gained_species.set_blood_type(get_blood_type(exotic_bloodtype))
+		//Otherwise, check if the previous species had an exotic bloodtype and we do not have one and assign a random blood type
+		else if(old_species.exotic_bloodtype && isnull(exotic_bloodtype))
+			human_who_gained_species.set_blood_type(random_human_blood_type())
 
 	regenerate_organs(human_who_gained_species, old_species, replace_current = human_who_gained_species.visual_only_organs, visual_only = human_who_gained_species.visual_only_organs) // SKYRAT EDIT - Allows existing organs to be properly removed when regenerating organs - ORIGINAL: regenerate_organs(human_who_gained_species, old_species, replace_current = FALSE, visual_only = human_who_gained_species.visual_only_organs)
 	// Update locked slots AFTER all organ and body stuff is handled
 	human_who_gained_species.hud_used?.update_locked_slots()
 	// Drop the items the new species can't wear
 	INVOKE_ASYNC(src, PROC_REF(worn_items_fit_body_check), human_who_gained_species, TRUE)
-
-	//Assigns exotic blood type if the species has one
-	if(exotic_bloodtype && human_who_gained_species.dna.blood_type != exotic_bloodtype)
-		human_who_gained_species.dna.blood_type = exotic_bloodtype
-	//Otherwise, check if the previous species had an exotic bloodtype and we do not have one and assign a random blood type
-	//(why the fuck is blood type not tied to a fucking DNA block?)
-	else if(old_species.exotic_bloodtype && !exotic_bloodtype)
-		human_who_gained_species.dna.blood_type = random_blood_type()
 
 	//Resets blood if it is excessively high so they don't gib
 	normalize_blood(human_who_gained_species)
@@ -630,7 +632,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		// Anything that's small or smaller can fit into a pocket by default
 		if((slot & (ITEM_SLOT_RPOCKET|ITEM_SLOT_LPOCKET)) && I.w_class <= POCKET_WEIGHT_CLASS)
 			excused = TRUE
-		else if(slot & (ITEM_SLOT_SUITSTORE|ITEM_SLOT_BACKPACK|ITEM_SLOT_BELTPACK|ITEM_SLOT_HANDS))
+		else if(slot & (ITEM_SLOT_SUITSTORE|ITEM_SLOT_HANDS))
 			excused = TRUE
 		if(!excused)
 			return FALSE
@@ -667,16 +669,11 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(ITEM_SLOT_BELT)
 			var/obj/item/bodypart/O = H.get_bodypart(BODY_ZONE_CHEST)
-
 			if(!H.w_uniform && !HAS_TRAIT(H, TRAIT_NO_JUMPSUIT) && (!O || IS_ORGANIC_LIMB(O)))
 				if(!disable_warning)
 					to_chat(H, span_warning("You need a jumpsuit before you can attach this [I.name]!"))
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
-		if(ITEM_SLOT_BELTPACK)
-			if(H.belt && H.belt.atom_storage?.can_insert(I, H, messages = TRUE, force = indirect_action ? STORAGE_SOFT_LOCKED : STORAGE_NOT_LOCKED))
-				return TRUE
-			return FALSE
 		if(ITEM_SLOT_EYES)
 			if(!H.get_bodypart(BODY_ZONE_HEAD))
 				return FALSE
@@ -757,10 +754,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(H.num_legs < 2)
 				return FALSE
 			return TRUE
-		if(ITEM_SLOT_BACKPACK)
-			if(H.back && H.back.atom_storage?.can_insert(I, H, messages = TRUE, force = indirect_action ? STORAGE_SOFT_LOCKED : STORAGE_NOT_LOCKED))
-				return TRUE
-			return FALSE
 	return FALSE //Unsupported slot
 
 /datum/species/proc/equip_delay_self_check(obj/item/I, mob/living/carbon/human/H, bypass_equip_delay_self)
@@ -773,26 +766,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /// Equips the necessary species-relevant gear before putting on the rest of the uniform.
 /datum/species/proc/pre_equip_species_outfit(datum/job/job, mob/living/carbon/human/equipping, visuals_only = FALSE)
 	return
-
-/**
- * Handling special reagent interactions.
- *
- * Return null continue running the normal on_mob_life() for that reagent.
- * Return COMSIG_MOB_STOP_REAGENT_CHECK to not run the normal metabolism effects.
- *
- * NOTE: If you return COMSIG_MOB_STOP_REAGENT_CHECK, that reagent will not be removed liike normal! You must handle it manually.
- **/
-/datum/species/proc/handle_chemical(datum/reagent/chem, mob/living/carbon/human/affected, seconds_per_tick, times_fired)
-	SHOULD_CALL_PARENT(TRUE)
-	if(chem.type == exotic_blood)
-		affected.blood_volume = min(affected.blood_volume + round(chem.volume, 0.1), BLOOD_VOLUME_MAXIMUM)
-		affected.reagents.del_reagent(chem.type)
-		return COMSIG_MOB_STOP_REAGENT_CHECK
-	if(!chem.overdosed && chem.overdose_threshold && chem.volume >= chem.overdose_threshold && !HAS_TRAIT(affected, TRAIT_OVERDOSEIMMUNE))
-		chem.overdosed = TRUE
-		chem.overdose_start(affected)
-		affected.log_message("has started overdosing on [chem.name] at [chem.volume] units.", LOG_GAME)
-	return SEND_SIGNAL(affected, COMSIG_SPECIES_HANDLE_CHEMICAL, chem, seconds_per_tick, times_fired)
 
 /**
  * Equip the outfit required for life. Replaces items currently worn.
@@ -873,47 +846,65 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		attacking_bodypart = brain.get_attacking_limb(target)
 	if(!attacking_bodypart)
 		attacking_bodypart = user.get_active_hand()
+
+	// Whether or not we get some protein for a successful attack. Nom.
+	var/biting = FALSE
+
 	var/atk_verb = pick(attacking_bodypart.unarmed_attack_verbs)
 	var/atk_effect = attacking_bodypart.unarmed_attack_effect
 
 	if(atk_effect == ATTACK_EFFECT_BITE)
-		if(user.is_mouth_covered(ITEM_SLOT_MASK))
-			to_chat(user, span_warning("You can't [atk_verb] with your mouth covered!"))
+		if(!user.is_mouth_covered(ITEM_SLOT_MASK))
+			biting = TRUE
+		else if(user.get_active_hand()) //In the event we can't bite, emergency swap to see if we can attack with a hand.
+			attacking_bodypart = user.get_active_hand()
+			atk_verb = pick(attacking_bodypart.unarmed_attack_verbs)
+			atk_effect = attacking_bodypart.unarmed_attack_effect
+		else  //Nothing? Okay. Fail.
+			user.balloon_alert(user, "can't attack!")
 			return FALSE
+
 	user.do_attack_animation(target, atk_effect)
 
 	//has our target been shoved recently? If so, they're staggered and we get an easy hit.
-	var/staggered = FALSE
+	var/staggered = target.has_status_effect(/datum/status_effect/staggered)
 
 	//Someone in a grapple is much more vulnerable to being harmed by punches.
-	var/grappled = FALSE
-
-	if(target.get_timed_status_effect_duration(/datum/status_effect/staggered))
-		staggered = TRUE
-
-	if(target.pulledby && target.pulledby.grab_state >= GRAB_AGGRESSIVE)
-		grappled = TRUE
+	var/grappled = (target.pulledby && target.pulledby.grab_state >= GRAB_AGGRESSIVE)
 
 	var/damage = rand(attacking_bodypart.unarmed_damage_low, attacking_bodypart.unarmed_damage_high)
 	var/limb_accuracy = attacking_bodypart.unarmed_effectiveness
+	var/limb_sharpness = attacking_bodypart.unarmed_sharpness
+
+	if(grappled)
+		var/pummel_bonus = attacking_bodypart.unarmed_pummeling_bonus
+		damage = floor(damage * pummel_bonus)
+		limb_accuracy = floor(limb_accuracy * pummel_bonus)
+
+	//Get our puncher's combined brute and burn damage.
+	var/puncher_brute_and_burn = (user.getFireLoss() + user.getBruteLoss())
+
+	//Get our targets combined brute and burn damage.
+	var/target_brute_and_burn = (target.getFireLoss() + target.getBruteLoss())
 
 	// In a brawl, drunkenness can make you swing more wildly and with more force, and thus catch your opponent off guard, but it could also totally throw you off if you're too intoxicated
 	// But god is it going to make you sick moving too much while drunk
 	var/user_drunkenness = user.get_drunk_amount()
 
-	if(user_drunkenness && HAS_TRAIT(user, TRAIT_DRUNKEN_BRAWLER)) // Drunken brawlers only need to be intoxicated, doesn't matter how much
-		limb_accuracy += clamp((user.getFireLoss() + user.getBruteLoss()) * 0.5, 10, 200)
-		damage += damage * clamp((user.getFireLoss() + user.getBruteLoss()) / 100, 0.3, 2) //Basically a multiplier of how much extra damage you get based on how low your health is overall. A floor of about a 30%.
-		var/drunken_martial_descriptor = pick("Drunken", "Intoxicated", "Tipsy", "Inebriated", "Delirious", "Day-Drinker's", "Firegut", "Blackout")
-		atk_verb = "[drunken_martial_descriptor] [atk_verb]"
+	if(user_drunkenness)
+		if(HAS_TRAIT(user, TRAIT_DRUNKEN_BRAWLER)) // Drunken brawlers only need to be intoxicated, doesn't matter how much
+			limb_accuracy += clamp(puncher_brute_and_burn / 2, 10, 200)
+			damage += damage * clamp(puncher_brute_and_burn / 100, 0.3, 2) //Basically a multiplier of how much extra damage you get based on how low your health is overall. A floor of about a 30%.
+			var/drunken_martial_descriptor = pick("Drunken", "Intoxicated", "Tipsy", "Inebriated", "Delirious", "Day-Drinker's", "Firegut", "Blackout")
+			atk_verb = "[drunken_martial_descriptor] [atk_verb]"
 
-	else if(user_drunkenness > 30 && user_drunkenness < 60)
-		limb_accuracy *= 1.2
-		user.adjust_disgust(2)
+		else if(user_drunkenness >= 60)
+			limb_accuracy = -limb_accuracy // good luck landing a punch now, you drunk fuck
+			user.adjust_disgust(5)
 
-	else if(user_drunkenness >= 60)
-		limb_accuracy = -limb_accuracy // good luck landing a punch now, you drunk fuck
-		user.adjust_disgust(5)
+		else if(user_drunkenness >= 30)
+			limb_accuracy *= 1.2
+			user.adjust_disgust(2)
 
 	var/obj/item/bodypart/affecting = target.get_bodypart(target.get_random_valid_zone(user.zone_selected))
 
@@ -922,7 +913,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if((target.body_position == LYING_DOWN) || HAS_TRAIT(user, TRAIT_PERFECT_ATTACKER) || staggered || user_drunkenness && HAS_TRAIT(user, TRAIT_DRUNKEN_BRAWLER)) //kicks and attacks against staggered targets never miss (provided your species deals more than 0 damage). Drunken brawlers while drunk also don't miss
 			miss_chance = 0
 		else
-			miss_chance = clamp(UNARMED_MISS_CHANCE_BASE - limb_accuracy + (user.getFireLoss()*0.5 + user.getBruteLoss()*0.5), 0, UNARMED_MISS_CHANCE_MAX) //Limb miss chance + various damage. capped at 80 so there is at least a chance to land a hit.
+			miss_chance = clamp(UNARMED_MISS_CHANCE_BASE - limb_accuracy + (puncher_brute_and_burn / 2), 0, UNARMED_MISS_CHANCE_MAX) //Limb miss chance + various damage. capped at 80 so there is at least a chance to land a hit.
 
 	if(!damage || !affecting || prob(miss_chance))//future-proofing for species that have 0 damage/weird cases where no zone is targeted
 		playsound(target.loc, attacking_bodypart.unarmed_miss_sound, 25, TRUE, -1)
@@ -937,16 +928,18 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	// In a brawl, drunkenness is a boon if you're a bit drunk but not too much. Else you're easier to hit.
 	// But, generally, getting hit while drunk is probably a good way to start throwing up
 	var/target_drunkenness = target.get_drunk_amount()
-	if(target_drunkenness && HAS_TRAIT(target, TRAIT_DRUNKEN_BRAWLER)) // Drunken brawlers only need to be intoxicated, doesn't matter how much
-		armor_block += 20
 
-	else if(target_drunkenness > 30 && target_drunkenness < 60)
-		armor_block += 10
-		target.adjust_disgust(2)
+	if(target_drunkenness)
+		if(HAS_TRAIT(target, TRAIT_DRUNKEN_BRAWLER)) // Drunken brawlers only need to be intoxicated, doesn't matter how much
+			armor_block += 20
 
-	else if(target_drunkenness >= 60)
-		armor_block *= 0.5
-		target.adjust_disgust(5)
+		else if(target_drunkenness >= 60)
+			armor_block *= 0.5
+			target.adjust_disgust(5)
+
+		else if(target_drunkenness >= 30)
+			armor_block += 10
+			target.adjust_disgust(2)
 
 	playsound(target.loc, attacking_bodypart.unarmed_attack_sound, 25, TRUE, -1)
 
@@ -964,17 +957,26 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	var/attack_direction = get_dir(user, target)
 	var/attack_type = attacking_bodypart.attack_type
-	var/unarmed_sharpness = attacking_bodypart.unarmed_sharpness //SKYRAT EDIT ADDITION - If unarmed damage sharpness needs to be taken into account.
-	if(atk_effect == ATTACK_EFFECT_KICK || grappled) //kicks and punches when grappling bypass armor slightly.
+	var/kicking = (atk_effect == ATTACK_EFFECT_KICK)
+	var/final_armor_block = armor_block
+	if(kicking || grappled) //kicks and punches when grappling bypass armor slightly.
 		if(damage >= 9)
 			target.force_say()
 		log_combat(user, target, grappled ? "grapple punched" : "kicked")
-		target.apply_damage(damage, attack_type, affecting, armor_block - limb_accuracy, attack_direction = attack_direction)
+		final_armor_block -= limb_accuracy
+		target.apply_damage(damage, attack_type, affecting, final_armor_block, attack_direction = attack_direction, sharpness = limb_sharpness)
 	else // Normal attacks do not gain the benefit of armor penetration.
-		target.apply_damage(damage, attack_type, affecting, armor_block, attack_direction = attack_direction, sharpness = unarmed_sharpness) //SKYRAT EDIT - Applies sharpness if it does - ORIGINAL: target.apply_damage(damage, attack_type, affecting, armor_block, attack_direction = attack_direction)
+		target.apply_damage(damage, attack_type, affecting, armor_block, attack_direction = attack_direction, sharpness = limb_sharpness)
 		if(damage >= 9)
 			target.force_say()
 		log_combat(user, target, "punched")
+
+	if(biting && (target.mob_biotypes & MOB_ORGANIC)) //Good for you. You probably just ate someone alive.
+		var/datum/reagents/tasty_meal = new()
+		tasty_meal.add_reagent(/datum/reagent/consumable/nutriment/protein, round(damage/3, 1))
+		tasty_meal.trans_to(user, tasty_meal.total_volume, transferred_by = user, methods = INGEST)
+
+	SEND_SIGNAL(target, COMSIG_HUMAN_GOT_PUNCHED, user, damage, attack_type, affecting, final_armor_block, kicking, limb_sharpness)
 
 	// If our target is staggered and has sustained enough damage, we can apply a randomly determined status effect to inflict when we punch them.
 	// The effects are based on the punching effectiveness of our attacker. Some effects are not reachable by the average human, and require augmentation to reach or being a species with a heavy punch effectiveness.
@@ -982,8 +984,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(HAS_TRAIT(target, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED) || target.stat == DEAD) //If our target is dead or has specailized armor, there is no way to inflict these effects.
 		return
 
-	// If our target is staggered, the target's armor, minus our limb effectiveness sets the minimum necessary amount of damage sustained to cause an effect. Minimum 40, max 200 for sanity reasons
-	if(staggered && (target.getFireLoss()*0.5 + target.getBruteLoss()*0.5) >= min(armor_block - limb_accuracy, 40, 200))
+	// If our target is staggered, the target's armor, minus our limb effectiveness sets the minimum necessary amount of damage sustained to cause an effect. We clamp the value for sanity reasons.
+	var/effective_armor = max(armor_block, UNARMED_COMBO_HIT_HEALTH_BASE) - limb_accuracy
+	if(staggered && target_brute_and_burn >= clamp(effective_armor, 0, 200))
 		stagger_combo(user, target, atk_verb, limb_accuracy, armor_block)
 
 /// Handles the stagger combo effect of our punch. Follows the same logic as the above proc, target is our owner, user is our attacker.
@@ -1053,7 +1056,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(!istype(owner)) //sanity check for drones.
 		return
 	if(owner.mind)
-		attacker_style = owner.mind.martial_art
+		attacker_style = GET_ACTIVE_MARTIAL_ART(owner)
 	if((owner != target) && target.check_block(owner, 0, owner.name, attack_type = UNARMED_ATTACK))
 		log_combat(owner, target, "attempted to touch")
 		target.visible_message(span_warning("[owner] attempts to touch [target]!"), \
@@ -1084,6 +1087,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
  */
 /datum/species/proc/handle_environment(mob/living/carbon/human/humi, datum/gas_mixture/environment, seconds_per_tick, times_fired)
 	handle_environment_pressure(humi, environment, seconds_per_tick, times_fired)
+	handle_gas_interaction(humi, environment, seconds_per_tick, times_fired)
 
 /**
  * Body temperature handler for species
@@ -1394,6 +1398,20 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				var/pressure_damage = LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod * H.physiology.brute_mod * seconds_per_tick
 				H.adjustBruteLoss(pressure_damage, required_bodytype = BODYTYPE_ORGANIC)
 				H.throw_alert(ALERT_PRESSURE, /atom/movable/screen/alert/lowpressure, 2)
+
+/**
+ *	Handles exposure to the skin of various gases.
+ */
+/datum/species/proc/handle_gas_interaction(mob/living/carbon/human/human, datum/gas_mixture/environment, seconds_per_tick, times_fired)
+	if((human?.wear_suit?.clothing_flags & STOPSPRESSUREDAMAGE) && (human?.head?.clothing_flags & STOPSPRESSUREDAMAGE))
+		return
+
+	for(var/gas_id in environment.gases)
+		var/gas_amount = environment.gases[gas_id][MOLES]
+		switch(gas_id)
+			if(/datum/gas/antinoblium) // Antinoblium - irradiates the target.
+				if(gas_amount >= MOLES_GAS_VISIBLE && SPT_PROB(1, gas_amount * seconds_per_tick))
+					SSradiation.irradiate(human)
 
 ////////////
 //  Stun  //
@@ -1787,6 +1805,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
  */
 /datum/species/proc/create_pref_blood_perks()
 	var/list/to_add = list()
+	var/datum/blood_type/blood_type = exotic_bloodtype ? get_blood_type(exotic_bloodtype) : null
 
 	// TRAIT_NOBLOOD takes priority by default
 	if(TRAIT_NOBLOOD in inherent_traits)
@@ -1798,12 +1817,12 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		))
 
 	// Otherwise, check if their exotic blood is a valid typepath
-	else if(ispath(exotic_blood))
+	else if(ispath(blood_type?.reagent_type))
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = "tint",
-			SPECIES_PERK_NAME = initial(exotic_blood.name),
-			SPECIES_PERK_DESC = "[name] blood is [initial(exotic_blood.name)], which can make receiving medical treatment harder.",
+			SPECIES_PERK_NAME = initial(blood_type.reagent_type.name),
+			SPECIES_PERK_DESC = "[name] blood is [initial(blood_type.reagent_type.name)], which can make receiving medical treatment harder.",
 		))
 
 	// Otherwise otherwise, see if they have an exotic bloodtype set
@@ -2023,32 +2042,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	new_species ||= target.dna.species //If no new species is provided, assume its src.
 	//Note for future: Potentionally add a new C.dna.species() to build a template species for more accurate limb replacement
 
-	// SKYRAT EDIT ADDITION START - Synth digitigrade sanitization
-	var/ignore_digi = FALSE // You can jack into this var with other checks, if you want.
-	if(issynthetic(target))
-		var/list/chassis = target.dna.mutant_bodyparts[MUTANT_SYNTH_CHASSIS]
-		if(chassis)
-			var/list/chassis_accessory = SSaccessories.sprite_accessories[MUTANT_SYNTH_CHASSIS]
-			var/datum/sprite_accessory/synth_chassis/body_choice
-			if(chassis_accessory)
-				body_choice = chassis_accessory[chassis[MUTANT_INDEX_NAME]]
-			if(body_choice && !body_choice.is_digi_compatible)
-				ignore_digi = TRUE
-	// SKYRAT EDIT END
-
 	var/list/final_bodypart_overrides = new_species.bodypart_overrides.Copy()
-	if(!ignore_digi && ((new_species.digitigrade_customization == DIGITIGRADE_OPTIONAL && target.dna.features["legs"] == DIGITIGRADE_LEGS) || new_species.digitigrade_customization == DIGITIGRADE_FORCED)) //if((new_species.digitigrade_customization == DIGITIGRADE_OPTIONAL && target.dna.features["legs"] == DIGITIGRADE_LEGS) || new_species.digitigrade_customization == DIGITIGRADE_FORCED) // SKYRAT EDIT - Digitigrade customization - ORIGINAL
-		/* SKYRAT EDIT - Digitigrade customization - ORIGINAL:
+
+	// BUBBER EDIT BEGIN REMOVAL - We bake these into the species
+	/*
+	if((new_species.digitigrade_customization == DIGITIGRADE_OPTIONAL && target.dna.features["legs"] == DIGITIGRADE_LEGS) || new_species.digitigrade_customization == DIGITIGRADE_FORCED)
 		final_bodypart_overrides[BODY_ZONE_R_LEG] = /obj/item/bodypart/leg/right/digitigrade
 		final_bodypart_overrides[BODY_ZONE_L_LEG] = /obj/item/bodypart/leg/left/digitigrade
-		*/ // ORIGINAL END - SKYRAT EDIT START:
-		var/obj/item/bodypart/leg/right/r_leg = new_species.bodypart_overrides[BODY_ZONE_R_LEG]
-		if(r_leg)
-			final_bodypart_overrides[BODY_ZONE_R_LEG] = initial(r_leg.digitigrade_type)
-		var/obj/item/bodypart/leg/left/l_leg = new_species.bodypart_overrides[BODY_ZONE_L_LEG]
-		if(l_leg)
-			final_bodypart_overrides[BODY_ZONE_L_LEG] = initial(l_leg.digitigrade_type)
-		// SKYRAT EDIT END
+	*/ // BUBBER EDIT END
 
 	for(var/obj/item/bodypart/old_part as anything in target.bodyparts)
 		if((old_part.change_exempt_flags & BP_BLOCK_CHANGE_SPECIES) || (old_part.bodypart_flags & BODYPART_IMPLANTED))
