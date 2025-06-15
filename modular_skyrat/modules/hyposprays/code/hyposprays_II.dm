@@ -18,8 +18,8 @@
 
 /obj/item/hypospray/mkii
 	name = "hypospray Mk.II"
+	icon = 'modular_skyrat/modules/hyposprays/icons/hypokits.dmi'
 	icon_state = "hypo2"
-	icon = 'modular_skyrat/modules/hyposprays/icons/hyposprays.dmi'
 	greyscale_config = /datum/greyscale_config/hypospray_mkii
 	desc = "A new development from DeForest Medical, this hypospray takes 50-unit vials as the drug supply for easy swapping."
 	w_class = WEIGHT_CLASS_TINY
@@ -46,6 +46,8 @@
 	var/penetrates = null
 	/// Used for GAGS-ified hypos.
 	var/gags_bodystate = "hypo2_normal"
+	/// The original icon file where our overlays reside.
+	var/original_icon = 'modular_skyrat/modules/hyposprays/icons/hypokits.dmi'
 
 /obj/item/hypospray/mkii/combat
 	name = "hypospray Mk.II combat"
@@ -138,17 +140,17 @@
 			vial_spritetype += "[vial.type_suffix]"
 		else
 			vial_spritetype += "-s"
-		var/mutable_appearance/chem_loaded = mutable_appearance(initial(icon), vial_spritetype)
+		var/mutable_appearance/chem_loaded = mutable_appearance(original_icon, vial_spritetype)
 		chem_loaded.color = vial.chem_color
 		. += chem_loaded
 	if(vial.greyscale_colors != null)
-		var/mutable_appearance/vial_overlay = mutable_appearance(initial(icon), "[vial.icon_state]-body")
+		var/mutable_appearance/vial_overlay = mutable_appearance(original_icon, "[vial.icon_state]-body")
 		vial_overlay.color = vial.greyscale_colors
 		. += vial_overlay
-		var/mutable_appearance/vial_overlay_glass = mutable_appearance(initial(icon), "[vial.icon_state]-glass")
+		var/mutable_appearance/vial_overlay_glass = mutable_appearance(original_icon, "[vial.icon_state]-glass")
 		. += vial_overlay_glass
 	else
-		var/mutable_appearance/vial_overlay = mutable_appearance(initial(icon), vial.icon_state)
+		var/mutable_appearance/vial_overlay = mutable_appearance(original_icon, vial.icon_state)
 		. += vial_overlay
 
 /obj/item/hypospray/mkii/examine(mob/user)
@@ -175,7 +177,7 @@
 		menu.ui_interact(usr)
 	else
 		icon_state = initial(icon_state)
-		icon = initial(icon)
+		icon = original_icon
 		greyscale_colors = null
 
 /obj/item/hypospray/mkii/proc/unload_hypo(obj/item/hypo, mob/user)

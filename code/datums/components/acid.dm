@@ -223,10 +223,10 @@ GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/e
 	if(!(clean_types & CLEAN_TYPE_ACID))
 		return NONE
 	qdel(src)
-	return COMPONENT_CLEANED
+	return COMPONENT_CLEANED|COMPONENT_CLEANED_GAIN_XP
 
 /// Handles water diluting the acid on the object.
-/datum/component/acid/proc/on_expose_reagent(atom/parent_atom, datum/reagent/exposing_reagent, reac_volume)
+/datum/component/acid/proc/on_expose_reagent(atom/parent_atom, datum/reagent/exposing_reagent, reac_volume, methods)
 	SIGNAL_HANDLER
 
 	if(!istype(exposing_reagent, /datum/reagent/water))

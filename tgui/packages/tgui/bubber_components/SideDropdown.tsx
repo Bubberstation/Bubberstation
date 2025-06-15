@@ -1,11 +1,8 @@
-import { ReactNode, useEffect, useRef, useState } from 'react';
-import { Button } from 'tgui-core/components';
-import { Icon } from 'tgui-core/components';
-import { Popper } from 'tgui-core/components';
+import { ComponentProps, type ReactNode, useRef, useState } from 'react';
+import { Box, Button, Floating, Icon } from 'tgui-core/components';
+import { KEY } from 'tgui-core/keys';
 import { classes } from 'tgui-core/react';
 import { unit } from 'tgui-core/ui';
-
-import type { BoxProps } from './Box';
 
 type SideDropdownEntry = {
   displayText: ReactNode;
@@ -13,6 +10,8 @@ type SideDropdownEntry = {
 };
 
 type SideDropdownOption = string | SideDropdownEntry;
+
+type BoxProps = ComponentProps<typeof Box>;
 
 type Props = {
   /** Called when a value is picked from the list, `value` is the value that was picked */
@@ -27,8 +26,6 @@ type Props = {
   autoScroll: boolean;
   /** Whether to display previous / next buttons */
   buttons: boolean;
-  /** Whether to clip the selected text */
-  clipSelectedText: boolean;
   /** Color of dropdown button */
   color: string;
   /** Disables the dropdown */
@@ -37,20 +34,24 @@ type Props = {
   displayText: ReactNode;
   /** Icon to display in dropdown button */
   icon: string;
+  /** Whether the icon should be displayed alone */
+  iconOnly: boolean;
   /** Angle of the icon */
   iconRotation: number;
   /** Whether or not the icon should spin */
   iconSpin: boolean;
-  /** Width of the dropdown menu. Default: 15rem */
-  menuWidth: string;
+  /** Width of the dropdown menu in box units. Default: 15 */
+  menuWidth: string | number;
   /** Whether or not the arrow on the right hand side of the dropdown button is visible */
   noChevron: boolean;
+  /** Text to show when nothing has been selected. */
+  placeholder: string;
+  /** @deprecated If you want to allow dropdown breaks layout, set width 100% */
+  clipSelectedText: boolean;
   /** Called when dropdown button is clicked */
   onClick: (event) => void;
   /** Dropdown renders over instead of below */
   over: boolean;
-  /** Text to show when nothing has been selected. */
-  placeholder: string;
 }> &
   BoxProps;
 
@@ -76,26 +77,24 @@ export function SideDropdown(props: Props) {
     autoScroll = true,
     buttons,
     className,
-    clipSelectedText = true,
     color = 'default',
     disabled,
     displayText,
     icon,
     iconRotation,
     iconSpin,
-    menuWidth = '20rem',
+    iconOnly,
+    menuWidth,
     noChevron,
     onClick,
     onSelected,
     options = [],
-    over,
     placeholder = 'Select...',
     selected,
-    width = '20rem',
+    width = 15,
   } = props;
 
   const [open, setOpen] = useState(false);
-  const adjustedOpen = over ? !open : open;
   const innerRef = useRef<HTMLDivElement>(null);
 
   const selectedIndex =
@@ -112,7 +111,6 @@ export function SideDropdown(props: Props) {
 
     const dropdownMenu = innerRef.current;
     const element = dropdownMenu?.children[scrollPos] as HTMLElement;
-
     if (dropdownMenu && element) {
       dropdownMenu.scrollTop = element.offsetTop;
     }
@@ -142,127 +140,130 @@ export function SideDropdown(props: Props) {
     onSelected?.(getOptionValue(options[newIndex]));
   }
 
-  /** Allows the menu to be scrollable on open */
-  useEffect(() => {
-    if (!open) {
-      return;
-    }
-
-    if (autoScroll && selectedIndex !== NONE) {
-      scrollToElement(selectedIndex);
-    }
-
-    innerRef.current?.focus();
-  }, [open]);
-
   return (
-    <Popper
-      isOpen={open}
-      onClickOutside={() => setOpen(false)}
-      placement="right-end"
-      content={
-        <div
-          className="Layout Dropdown__menu"
-          style={{ minWidth: menuWidth }}
-          ref={innerRef}
-        >
-          {options.length === 0 && (
-            <div className="Dropdown__menuentry">No options</div>
-          )}
+    <div className="Dropdown">
+      <Floating
+        allowedOutsideClasses=".Dropdown__button"
+        closeAfterInteract
+        contentAutoWidth={!menuWidth}
+        contentClasses="Dropdown__menu--wrapper"
+        contentStyles={{ width: menuWidth ? unit(menuWidth) : undefined }}
+        disabled={disabled}
+        onOpenChange={setOpen}
+        placement="right-end"
+        content={
+          <div ref={innerRef} className="Dropdown__menu">
+            {options.length === 0 ? (
+              <div className="Dropdown__menu--entry">No options</div>
+            ) : (
+              options.map((option) => {
+                const value = getOptionValue(option);
+                return (
+                  <div
+                    className={classes([
+                      'Dropdown__menu--entry',
+                      selected === value && 'selected',
+                    ])}
+                    key={value}
+                    onClick={() => {
+                      onSelected?.(value);
+                    }}
+                    onKeyDown={(event) => {
+                      if (event.key === KEY.Enter) {
+                        onSelected?.(value);
+                      }
+                    }}
+                  >
+                    {typeof option === 'string' ? option : option.displayText}
+                  </div>
+                );
+              })
+            )}
+          </div>
+        }
+        onMounted={() => {
+          if (open && autoScroll && selectedIndex !== NONE) {
+            /**
+             * Floating uses async FloatingPortal,
+             * the dropdown content is not yet ready when you open it.
+             */
 
-          {options.map((option, index) => {
-            const value = getOptionValue(option);
-
-            return (
-              <div
-                className={classes([
-                  'Dropdown__menuentry',
-                  selected === value && 'selected',
-                ])}
-                key={index}
-                onClick={() => {
-                  setOpen(false);
-                  onSelected?.(value);
-                }}
-                onKeyDown={(event) => {
-                  if (event.key === 'Enter') {
-                    setOpen(false);
-                    onSelected?.(value);
-                  }
-                }}
-              >
-                {typeof option === 'string' ? option : option.displayText}
-              </div>
-            );
-          })}
-        </div>
-      }
-    >
-      <div className="Dropdown" style={{ width: unit(width) }}>
+            scrollToElement(selectedIndex);
+          }
+        }}
+      >
         <div
           className={classes([
             'Dropdown__control',
-            'Button',
-            'Button--dropdown',
             `Button--color--${color}`,
             disabled && 'Button--disabled',
+            iconOnly && 'Dropdown__control--icon-only',
             className,
           ])}
+          style={{ width: unit(width) }}
           onClick={(event) => {
             if (disabled && !open) {
               return;
             }
-            setOpen(!open);
             onClick?.(event);
           }}
           onKeyDown={(event) => {
-            if (event.key === 'Enter' && !disabled) {
-              setOpen(!open);
+            if (event.key === KEY.Enter && !disabled) {
               onClick?.(event);
             }
           }}
         >
           {icon && (
-            <Icon mr={1} name={icon} rotation={iconRotation} spin={iconSpin} />
+            <Icon
+              className="Dropdown__icon"
+              name={icon}
+              rotation={iconRotation}
+              spin={iconSpin}
+            />
           )}
-          <span
-            className="Dropdown__selected-text"
-            style={{
-              overflow: clipSelectedText ? 'hidden' : 'visible',
-            }}
-          >
-            {displayText ||
-              (selected && getOptionValue(selected)) ||
-              placeholder}
-          </span>
-          {!noChevron && (
-            <span className="Dropdown__arrow-button">
-              <Icon name={adjustedOpen ? 'chevron-up' : 'chevron-down'} />
-            </span>
+          {!iconOnly && (
+            <>
+              <span className="Dropdown__selected-text">
+                {displayText ||
+                  (selected && getOptionValue(selected)) ||
+                  placeholder}
+              </span>
+
+              {!noChevron && (
+                <Icon
+                  className={classes([
+                    'Dropdown__icon',
+                    'Dropdown__icon--arrow',
+                    open && 'open',
+                  ])}
+                  name="chevron-down"
+                />
+              )}
+            </>
           )}
         </div>
-        {buttons && (
-          <>
-            <Button
-              disabled={disabled}
-              height={1.8}
-              icon="chevron-left"
-              onClick={() => {
-                updateSelected(DIRECTION.Previous);
-              }}
-            />
+      </Floating>
+      {buttons && (
+        <>
+          <Button
+            className="Dropdown__button"
+            disabled={disabled}
+            icon="chevron-left"
+            onClick={() => {
+              updateSelected(DIRECTION.Previous);
+            }}
+          />
 
-            <Button
-              disabled={disabled}
-              height={1.8}
-              icon="chevron-right"
-              onClick={() => {
-                updateSelected(DIRECTION.Next);
-              }}
-            />
-          </>
-        )}
-      </div>
-    </Popper>
+          <Button
+            className="Dropdown__button"
+            disabled={disabled}
+            icon="chevron-right"
+            onClick={() => {
+              updateSelected(DIRECTION.Next);
+            }}
+          />
+        </>
+      )}
+    </div>
   );
 }

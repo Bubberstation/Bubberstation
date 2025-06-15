@@ -89,7 +89,11 @@
 		// Otherwise if it's neither a target nor a cultist, remove it
 		else if(!(sacrifice in heretic_datum.sac_targets) && !IS_CULTIST(sacrifice))
 			atoms -= sacrifice
-
+	//BUBBER EDIT, NO HIDING FROM THE DARK GODS!
+	for(var/obj/item/mod/control/pre_equipped/protean/protean_item in atoms)
+		for(var/mob/living/carbon/human/hiding_target in protean_item.contents)
+			atoms += hiding_target
+	//BUBBER EDIT END
 	// Finally, return TRUE if we have a target in the list
 	if(locate(/mob/living/carbon/human) in atoms)
 		return TRUE
@@ -337,7 +341,13 @@
 		CRASH("[type] - begin_sacrifice could not find a destination landmark OR default landmark to send the sacrifice! (Heretic's path: [our_heretic.heretic_path])")
 
 	var/turf/destination = get_turf(destination_landmark)
-
+	//BUBBERSTATION EDIT
+	if(is_species(sac_target, /datum/species/protean))
+		var/obj/item/organ/brain/protean/brain = sac_target.get_organ_slot(ORGAN_SLOT_BRAIN)
+		if(brain)
+			brain.revive()
+			brain.leave_modsuit()
+	//BUBBERSTATION EDIT END
 	sac_target.visible_message(span_danger("[sac_target] begins to shudder violenty as dark tendrils begin to drag them into thin air!"))
 	sac_target.set_handcuffed(new /obj/item/restraints/handcuffs/energy/cult(sac_target))
 	sac_target.update_handcuffed()
@@ -432,7 +442,7 @@
 		var/obj/item/organ/to_give = new organ_path
 		to_give.Insert(sac_target)
 
-	new /obj/effect/gibspawner/human/bodypartless(get_turf(sac_target))
+	new /obj/effect/gibspawner/human/bodypartless(get_turf(sac_target), sac_target)
 	sac_target.visible_message(span_boldwarning("Several organs force themselves out of [sac_target]!"))
 
 /**
@@ -638,7 +648,7 @@
 		span_userdanger("Your organs are violently pulled out of your chest by shadowy hands!")
 	)
 
-	new /obj/effect/gibspawner/human/bodypartless(get_turf(sac_target))
+	new /obj/effect/gibspawner/human/bodypartless(get_turf(sac_target), sac_target)
 
 #undef SACRIFICE_SLEEP_DURATION
 #undef SACRIFICE_REALM_DURATION
