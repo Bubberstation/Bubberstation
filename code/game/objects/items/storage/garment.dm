@@ -125,6 +125,7 @@
 	new /obj/item/clothing/under/rank/security/head_of_security/skyrat/imperial(src)
 	new /obj/item/clothing/suit/jacket/hos/blue(src)
 	new /obj/item/clothing/neck/mantle/hosmantle(src)
+	new /obj/item/clothing/accessory/badge/holo/hos(src)
 
 /obj/item/storage/bag/garment/warden/PopulateContents()
 	new /obj/item/clothing/suit/armor/vest/warden(src)
@@ -138,6 +139,7 @@
 	new /obj/item/clothing/gloves/krav_maga/sec(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses(src)
 	new /obj/item/clothing/mask/gas/sechailer(src)
+	new /obj/item/clothing/accessory/badge/holo/warden(src)
 
 /obj/item/storage/bag/garment/research_director/PopulateContents()
 	new /obj/item/clothing/under/rank/rnd/research_director(src)
