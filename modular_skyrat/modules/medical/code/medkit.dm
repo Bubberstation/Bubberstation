@@ -47,60 +47,53 @@
 /datum/storage/duffel/synth_trauma_kit/New(atom/parent, max_slots, max_specific_storage, max_total_storage, numerical_stacking, allow_quick_gather, allow_quick_empty, collection_mode, attack_hand_interact)
 	. = ..()
 
-	var/static/list/exception_cache = typecacheof(list(
-		// Mainly just stacks, with the exception of pill bottles and sprays
-		/obj/item/stack/cable_coil,
-		/obj/item/stack/medical/gauze,
-		/obj/item/reagent_containers/spray,
-		/obj/item/stack/medical/bone_gel,
-		/obj/item/rcd_ammo,
-		/obj/item/storage/pill_bottle,
-	))
-
-	var/static/list/can_hold_list = list(
-		// Stacks
-		/obj/item/stack/cable_coil,
-		/obj/item/stack/medical/gauze,
-		/obj/item/stack/medical/bone_gel,
-		// Reagent containers, for synth medicine
-		/obj/item/reagent_containers/spray,
-		/obj/item/storage/pill_bottle,
-		/obj/item/reagent_containers/pill,
-		/obj/item/reagent_containers/cup,
-		/obj/item/reagent_containers/syringe,
-		// Tools, including tools you might not want to use but might have to (hemostat/retractor/etc)
-		/obj/item/screwdriver,
-		/obj/item/wrench,
-		/obj/item/crowbar,
-		/obj/item/weldingtool,
-		/obj/item/bonesetter,
-		/obj/item/wirecutters,
-		/obj/item/hemostat,
-		/obj/item/retractor,
-		/obj/item/cautery,
-		/obj/item/plunger,
-		// RCD stuff - RCDs can easily treat the 1st step of T3 blunt
-		/obj/item/construction/rcd,
-		/obj/item/rcd_ammo,
-		// Clothing items
-		/obj/item/clothing/gloves,
-		/obj/item/clothing/glasses/hud/health,
-		/obj/item/clothing/glasses/hud/diagnostic,
-		/obj/item/clothing/glasses/welding,
-		/obj/item/clothing/glasses/sunglasses, // still provides some welding protection
-		/obj/item/clothing/head/utility/welding,
-		/obj/item/clothing/mask/gas/welding,
-		// Generic health items
-		/obj/item/healthanalyzer,
+	set_holdable(
+		can_hold_list = list(
+			// Stacks
+			/obj/item/stack/cable_coil,
+			/obj/item/stack/medical/gauze,
+			/obj/item/stack/medical/bone_gel,
+			// Reagent containers, for synth medicine
+			/obj/item/reagent_containers/spray,
+			/obj/item/storage/pill_bottle,
+			/obj/item/reagent_containers/applicator/pill,
+			/obj/item/reagent_containers/cup,
+			/obj/item/reagent_containers/syringe,
+			// Tools, including tools you might not want to use but might have to (hemostat/retractor/etc)
+			/obj/item/screwdriver,
+			/obj/item/wrench,
+			/obj/item/crowbar,
+			/obj/item/weldingtool,
+			/obj/item/bonesetter,
+			/obj/item/wirecutters,
+			/obj/item/hemostat,
+			/obj/item/retractor,
+			/obj/item/cautery,
+			/obj/item/plunger,
+			// RCD stuff - RCDs can easily treat the 1st step of T3 blunt
+			/obj/item/construction/rcd,
+			/obj/item/rcd_ammo,
+			// Clothing items
+			/obj/item/clothing/gloves,
+			/obj/item/clothing/glasses/hud/health,
+			/obj/item/clothing/glasses/hud/diagnostic,
+			/obj/item/clothing/glasses/welding,
+			/obj/item/clothing/glasses/sunglasses, // still provides some welding protection
+			/obj/item/clothing/head/utility/welding,
+			/obj/item/clothing/mask/gas/welding,
+			// Generic health items
+			/obj/item/healthanalyzer,
+		),
+		exception_hold_list = list(
+			// Mainly just stacks, with the exception of pill bottles and sprays
+			/obj/item/stack/cable_coil,
+			/obj/item/stack/medical/gauze,
+			/obj/item/reagent_containers/spray,
+			/obj/item/stack/medical/bone_gel,
+			/obj/item/rcd_ammo,
+			/obj/item/storage/pill_bottle,
+		)
 	)
-	exception_hold = exception_cache
-
-	// We keep the type list and the typecache list separate...
-	var/static/list/can_hold_cache = typecacheof(can_hold_list)
-	can_hold = can_hold_cache
-
-	//...So we can run this without it generating a line for every subtype.
-	can_hold_description = generate_hold_desc(can_hold_list)
 
 /obj/item/storage/backpack/duffelbag/synth_treatment_kit/trauma/PopulateContents() // yes, this is all within the storage capacity
 	// Slash/Pierce wound tools - can reduce intensity of electrical damage (wires can fix generic burn damage)
@@ -184,16 +177,20 @@
 	name = "mechanical medkit"
 	desc = "For those mechanical booboos."
 
-	icon = 'modular_skyrat/modules/medical/code/medkit.dmi'
+	icon = 'modular_skyrat/modules/medical/icons/obj/medkit.dmi'
 	icon_state = "medkit_mechanical"
 	inhand_icon_state = "medkit_mechanical"
-	lefthand_file = 'modular_skyrat/modules/medical/code/medical_lefthand.dmi'
-	righthand_file = 'modular_skyrat/modules/medical/code/medical_righthand.dmi'
+	lefthand_file = 'modular_skyrat/modules/medical/icons/medical_lefthand.dmi'
+	righthand_file = 'modular_skyrat/modules/medical/icons/medical_righthand.dmi'
+	storage_type = /datum/storage/medkit/mechanical
 
 /obj/item/storage/medkit/mechanical/Initialize(mapload)
 	. = ..()
 
-	var/static/list/list_of_everything_mechanical_medkits_can_hold = list_of_everything_medkits_can_hold + list(
+/datum/storage/medkit/mechanical/New()
+	. = ..()
+
+	set_holdable(list_of_everything_medkits_can_hold + list(
 		/obj/item/stack/cable_coil,
 		/obj/item/crowbar,
 		/obj/item/screwdriver,
@@ -204,11 +201,5 @@
 		/obj/item/plunger,
 		/obj/item/clothing/head/utility/welding,
 		/obj/item/clothing/glasses/welding,
+		)
 	)
-	var/static/list/exception_cache = typecacheof(
-		/obj/item/clothing/head/utility/welding
-	)
-
-	atom_storage.set_holdable(list_of_everything_mechanical_medkits_can_hold)
-	LAZYINITLIST(atom_storage.exception_hold)
-	atom_storage.exception_hold = atom_storage.exception_hold + exception_cache

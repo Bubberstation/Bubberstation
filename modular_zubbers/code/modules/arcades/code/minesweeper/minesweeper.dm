@@ -84,9 +84,11 @@
 
 	return data
 
-/obj/machinery/computer/arcade/minesweeper/ui_act(action, list/params, mob/user)
+/obj/machinery/computer/arcade/minesweeper/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	if(..())
 		return TRUE
+
+	var/mob/user = ui.user
 
 	switch(action)
 		if("PRG_do_tile")
@@ -96,7 +98,7 @@
 			if(!x || !y)
 				return
 
-			return board.do_tile(x,y,flagging,user)
+			return board.do_tile(x, y, flagging, user)
 
 		if("PRG_new_game")
 			board.play_snd('modular_zubbers/sound/arcade/minesweeper_boardpress.ogg')
@@ -165,7 +167,7 @@
 				to_chat(user, span_notice("You don't have any stored tickets!"))
 			return TRUE
 
-/obj/machinery/computer/arcade/minesweeper/emag_act(mob/user)
+/obj/machinery/computer/arcade/minesweeper/emag_act(mob/living/user)
 	if(obj_flags & EMAGGED)
 		return
 	desc = "An arcade machine that generates grids. It's clunking and sparking everywhere, almost as if threatening to explode at any moment!"
@@ -231,7 +233,7 @@
 
 	return data
 
-/datum/computer_file/program/minesweeper/ui_act(action, list/params, mob/user)
+/datum/computer_file/program/minesweeper/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	if(..())
 		return TRUE
 
@@ -241,6 +243,7 @@
 	if(!board.host && computer)
 		board.host = computer
 
+	var/mob/user = ui.user
 
 	switch(action)
 		if("PRG_do_tile")
@@ -363,7 +366,7 @@
 	starting_time = 0
 	return TRUE
 
-/datum/minesweeper/proc/do_tile(x,y,flagging, mob/user)
+/datum/minesweeper/proc/do_tile(x,y,flagging, mob/living/user)
 	if(game_status)
 		return
 
@@ -431,14 +434,14 @@
 			if(MINESWEEPER_EXPERT)
 				value = 20
 
-	usr.played_game()
+	user.played_game()
 	var/result = select_square(x,y)
 	game_status = result
 	switch(result)
 		if(MINESWEEPER_VICTORY)
 			play_snd('modular_zubbers/sound/arcade/minesweeper_win.ogg')
 			host.say("You cleared the board of all mines! Congratulations!")
-			usr.won_game()
+			user.won_game()
 			if(emaggable && host.obj_flags & EMAGGED && value >= 1)
 				var/itemname
 				switch(rand(1,3))
@@ -465,7 +468,7 @@
 			ticket_count += value
 
 		if(MINESWEEPER_DEAD)
-			usr.lost_game()
+			user.lost_game()
 			if(emaggable && (host.obj_flags & EMAGGED))
 				// One crossed wire, one wayward pinch of potassium chlorate, ONE ERRANT TWITCH
 				// AND

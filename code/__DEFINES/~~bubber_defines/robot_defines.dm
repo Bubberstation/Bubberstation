@@ -96,6 +96,7 @@
 //	SMOLRAPTOR BORG DEFINES BELOW
 
 #define CYBORG_ICON_TYPE_SMOLRAPTOR "smolraptor"
+#define CYBORG_ICON_TYPE_SMOLRAPTOR_ALT "smolraptor_alt"
 
 #define CYBORG_ICON_GEN_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_gen.dmi'
 #define CYBORG_ICON_SCI_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_sci.dmi'
@@ -104,7 +105,7 @@
 #define CYBORG_ICON_CAR_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_car.dmi'
 #define CYBORG_ICON_SERV_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_serv.dmi'
 #define CYBORG_ICON_PK_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_pk.dmi'
-#define CYBORG_ICON_JANI_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_jani.dmi'
+#define CYBORG_ICON_SEC_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_sec.dmi'
 #define CYBORG_ICON_MIN_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_min.dmi'
 #define CYBORG_ICON_CC_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_cc.dmi'
 #define CYBORG_ICON_SYN_SMOLRAPTOR 'modular_zubbers/code/modules/silicons/borgs/sprites/smallraptors/smolraptor_syndie.dmi'
@@ -206,6 +207,9 @@
 #define DULLAHAN_HAT_OFFSET \
 	SKIN_HAT_OFFSET = list("north" = list(0, 16), "south" = list(0, 16), "east" = list(2, 16), "west" = list(-2, 16)), \
 	SKIN_HAT_REST_OFFSET = list("north" = list(0, 1), "south" = list(0, 1), "east" = list(2, 1), "west" = list(-2, 1))
+#define DULLAHAN_TAUR_HAT_OFFSET \
+	SKIN_HAT_OFFSET = list("north" = list(1, 15), "south" = list(1, 15), "east" = list(7, 15), "west" = list(-7, 15)), \
+	SKIN_HAT_REST_OFFSET = list("north" = list(1, 1), "south" = list(1, 1), "east" = list(7, 1), "west" = list(-7, 1))
 #define CORRUPT_HAT_OFFSET \
 	SKIN_HAT_OFFSET = list("north" = list(16, -4), "south" = list(16, -15), "east" = list(35, -7), "west" = list(-3, -7)), \
 	SKIN_HAT_REST_OFFSET = list("north" = list(16, -6), "south" = list(16, -17), "east" = list(35, -14), "west" = list(-3, -14))

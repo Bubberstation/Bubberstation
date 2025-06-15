@@ -295,6 +295,9 @@
 	if(mode == SHUTTLE_IGNITING && destination == destination_port)
 		return
 
+	if(!canMove())
+		return
+
 	switch(mode)
 		if(SHUTTLE_CALL)
 			if(destination_port == destination)
@@ -313,6 +316,10 @@
 		if(SHUTTLE_IDLE, SHUTTLE_IGNITING)
 			destination = destination_port
 			mode = SHUTTLE_IGNITING
+			// BUBBER EDIT ADDITION BEGIN - Shuttle doors bolt/sounds
+			bolt_all_doors()
+			play_engine_sound(src, TRUE)
+			// BUBBER EDIT ADDITION END - Shuttle doors bolt/sounds
 			setTimer(ignitionTime)
 
 //recall the shuttle to where it was previously
@@ -461,6 +468,7 @@
 				return
 			if(rechargeTime)
 				mode = SHUTTLE_RECHARGING
+				unbolt_all_doors() // BUBBER EDIT ADDITION - Shuttle doors bolt/sounds
 				setTimer(rechargeTime)
 				return
 		if(SHUTTLE_RECALL)
@@ -477,6 +485,7 @@
 				enterTransit()
 				return
 
+	unbolt_all_doors() // BUBBER EDIT ADDITION - Shuttle doors bolt/sounds
 	mode = SHUTTLE_IDLE
 	timer = 0
 	destination = null
@@ -487,6 +496,8 @@
 			var/tl = timeLeft(1)
 			if(tl <= SHUTTLE_RIPPLE_TIME)
 				create_ripples(destination, tl)
+				play_engine_sound(src, FALSE) // BUBBER EDIT ADDITION - Shuttle doors bolt/sounds
+				play_engine_sound(destination, FALSE) // BUBBER EDIT ADDITION - Shuttle doors bolt/sounds
 
 	var/obj/docking_port/stationary/S0 = get_docked()
 	if(istype(S0, /obj/docking_port/stationary/transit) && timeLeft(1) <= PARALLAX_LOOP_TIME)

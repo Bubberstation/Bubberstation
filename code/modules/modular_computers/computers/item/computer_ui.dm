@@ -120,6 +120,10 @@
 			"alert" = program.alert_pending,
 		))
 
+	data["alert_style"] = get_security_level_relevancy()
+	data["alert_color"] = SSsecurity_level?.current_security_level?.announcement_color
+	data["alert_name"] = SSsecurity_level?.current_security_level?.name_shortform
+
 	return data
 
 // Handles user's GUI input
@@ -189,7 +193,10 @@
 					if(!inserted_disk)
 						return
 
-					user.put_in_hands(inserted_disk)
+					if(!user || !Adjacent(user))
+						inserted_disk.forceMove(drop_location())
+					else
+						user.put_in_hands(inserted_disk)
 					inserted_disk = null
 					playsound(src, 'sound/machines/card_slide.ogg', 50)
 					return TRUE

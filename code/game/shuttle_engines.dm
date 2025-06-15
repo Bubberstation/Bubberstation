@@ -39,6 +39,16 @@
 	. = ..()
 	AddComponent(/datum/component/simple_rotation)
 	register_context()
+	if(!mapload)
+		engine_state = ENGINE_UNWRENCHED
+		anchored = FALSE
+
+/obj/machinery/power/shuttle_engine/on_construction(mob/user)
+	. = ..()
+	if(anchored)
+		connect_to_shuttle(port = SSshuttle.get_containing_shuttle(src)) //connect to a new ship, if needed
+		if(!connected_ship_ref?.resolve())
+			AddElement(/datum/element/connect_loc, connections)
 
 /obj/machinery/power/shuttle_engine/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
 	. = ..()
@@ -46,9 +56,10 @@
 		return FALSE
 	connected_ship_ref = WEAKREF(port)
 	port.engine_list += src
-	port.current_engine_power += engine_power
 	if(mapload)
 		port.initial_engine_power += engine_power
+	if(engine_state == ENGINE_WELDED)
+		alter_engine_power(engine_power)
 
 /obj/machinery/power/shuttle_engine/Destroy()
 	if(engine_state == ENGINE_WELDED)
@@ -182,10 +193,6 @@
 /obj/machinery/power/shuttle_engine/propulsion/burst
 	name = "burst engine"
 	desc = "An engine that releases a large bluespace burst to propel it."
-
-/obj/machinery/power/shuttle_engine/propulsion/burst/cargo
-	engine_state = ENGINE_UNWRENCHED
-	anchored = FALSE
 
 /obj/machinery/power/shuttle_engine/propulsion/burst/left
 	name = "left burst engine"

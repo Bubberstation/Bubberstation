@@ -9,6 +9,7 @@
 	. = ..()
 	research_node_id("oldstation_surgery", TRUE, TRUE, FALSE)
 	research_node_id("tarkontech", TRUE, TRUE, FALSE)
+	research_node_id("tarkondefence", TRUE, TRUE, FALSE) // not ideal, but will have to do for now
 
 /datum/techweb_node/tarkon
 	id = "tarkontech"
@@ -26,22 +27,29 @@
 		"powerator_tarkon",
 		"cargoconsole_tarkon",
 		"bountypad_tarkon",
-		"bountyconsole_tarkon"
+		"bountyconsole_tarkon",
+		"hackc"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	hidden = TRUE
 
-/datum/techweb_node/tarkonturret //Yes. Tarkon does not start with this unlocked.
+/datum/techweb_node/tarkonturret
 	id = "tarkondefence"
-	display_name = "Tarkon Industries Technology"
+	display_name = "Tarkon Industries Defensive Technology"
 	description = "Tarkon Industries Blackrust Salvage division's defense designs."
 	prereq_ids = list(TECHWEB_NODE_TARKON, TECHWEB_NODE_BASIC_ARMS, TECHWEB_NODE_AI)
+	required_items_to_unlock = list(
+		/obj/item/mod/construction/plating/tarkon,
+		/obj/item/construction/rcd/arcd/tarkon,
+		/obj/item/gun/energy/recharge/resonant_system,
+	)
 	design_ids = list(
 		"hoplite_assembly",
 		"cerberus_assembly",
 		"target_designator",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+	hidden = TRUE
 
 /datum/design/hoplite_assembly
 	name = "Hoplite Turret Assembly"
@@ -139,6 +147,20 @@
 	build_path = /obj/item/construction/rcd/arcd/tarkon
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design/tarkonhackc
+	name = "Tarkon Hack-C Signaller"
+	desc = "A small device that signals a 'Hack-C' drone to repair specialized machinery."
+	id = "hackc"
+	build_path = /obj/item/hackc
+	category = list(
+		RND_CATEGORY_TOOLS
+	)
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
