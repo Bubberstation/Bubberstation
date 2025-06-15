@@ -1,5 +1,5 @@
 ///the minimum size of a pill or patch
-#define MIN_VOLUME 5
+#define MIN_VOLUME 1 // BUBBER EDIT CHANGE - Original: 5
 ///max amount of pills allowed on our tile before we start storing them instead
 #define MAX_FLOOR_PRODUCTS 4 // BUBBER EDIT CHANGE - Original: 10
 
@@ -13,6 +13,7 @@
 	var/current_volume = 10
 	/// maximum printable volume of the product
 	var/max_volume = 100 // BUBBER EDIT CHANGE - Original: 50
+	buffer = 100 // BUBBER EDIT CHANGE - you need to have a buffer now or it won't fill the 100u bottles, since the default buffer is 50u
 	/// prefix for the product name
 	var/product_name = "factory"
 	/// Selected duration of produced pills, if they're selected
@@ -35,8 +36,9 @@
 		var/list/types = list(
 			CAT_PILLS = GLOB.reagent_containers[CAT_PILLS],
 			CAT_PATCHES = GLOB.reagent_containers[CAT_PATCHES],
-			CAT_MEDBOTTLES = GLOB.reagent_containers[CAT_MEDBOTTLES], // BUBBER EDIT - CAT_MEDBOTTLES
 			CAT_HYPOS = GLOB.reagent_containers[CAT_HYPOS], // SKYRAT EDIT ADDITION - Hypovials
+			CAT_PEN_INJECTORS = GLOB.reagent_containers[CAT_PEN_INJECTORS], // BUBBER EDIT pen_medipens
+			CAT_MEDBOTTLES = GLOB.reagent_containers[CAT_MEDBOTTLES], // BUBBER EDIT - CAT_MEDBOTTLES
 		)
 
 		packaging_types = list()
@@ -82,9 +84,12 @@
 			if(CAT_PATCHES)
 				suffix = "Patch"
 			//SKYRAT EDIT ADDITION BEGIN - HYPOVIALS
-			if (CAT_HYPOS)
+			if(CAT_HYPOS)
 				suffix = "Vial"
 			//SKYRAT EDIT ADDITION END - HYPOVIALS
+			if(CAT_PEN_INJECTORS)
+				suffix = "Injector"
+			// BUBBER EDIT for pen_medipens
 			else
 				suffix = "Bottle"
 		container.name = "[product_name] [suffix]"
@@ -201,6 +206,12 @@
 				packaging_category = CAT_PATCHES
 			else if(ispath(packaging_type, /obj/item/reagent_containers/applicator/pill))
 				packaging_category = CAT_PILLS
+			// BUBBER EDIT: added with pen_medipens - needed to properly name the injectors and fixes the hypovials
+			else if(ispath(packaging_type, /obj/item/reagent_containers/cup/vial))
+				packaging_category = CAT_HYPOS
+			else if(ispath(packaging_type, /obj/item/reagent_containers/hypospray/medipen/deforest/printable))
+				packaging_category = CAT_PEN_INJECTORS
+			// BUBBER EDIT END
 			else
 				packaging_category = "Bottles"
 

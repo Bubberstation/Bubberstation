@@ -804,15 +804,19 @@
 
 //PDA Greyscale Overrides
 /obj/item/modular_computer/pda/security
+	icon_state = "/obj/item/modular_computer/pda/security"
 	greyscale_colors = "#2B356D#1E1E1E"
 
 /obj/item/modular_computer/pda/detective
+	icon_state = "/obj/item/modular_computer/pda/detective"
 	greyscale_colors = "#90714F#1E1E1E"
 
 /obj/item/modular_computer/pda/warden
+	icon_state = "/obj/item/modular_computer/pda/warden"
 	greyscale_colors = "#2F416E#1E1E1E#ACACAC"
 
 /obj/item/modular_computer/pda/heads/hos
+	icon_state = "/obj/item/modular_computer/pda/heads/hos"
 	greyscale_colors = "#2B356D#1E1E1E"
 
 /*
@@ -892,11 +896,15 @@
 /obj/item/storage/belt/holster
 	desc = "A rather plain but still cool looking holster that can hold a handgun, and some ammo."
 
-/obj/item/storage/belt/holster/Initialize(mapload)
-	. = ..()
-	atom_storage.max_slots = 3
-	atom_storage.max_total_storage = 16
-	atom_storage.set_holdable(list(
+/datum/storage/holster
+	max_slots = 3
+	max_total_storage = 16
+
+/datum/storage/holster/New(atom/parent, max_slots, max_specific_storage, max_total_storage, list/holdables)
+	if(length(holdables))
+		return ..()
+
+	holdables = list(
 		/obj/item/gun/ballistic/automatic/pistol,
 		/obj/item/ammo_box/magazine, // Just magazine, because the sec-belt can hold these aswell
 		/obj/item/gun/ballistic/revolver,
@@ -912,16 +920,22 @@
 		/obj/item/gun/ballistic/rifle/boltaction, //fits if you make it an obrez
 		/obj/item/gun/energy/laser/captain,
 		/obj/item/gun/energy/e_gun/hos,
-		))
+	)
+
+	return ..()
 
 /obj/item/storage/belt/holster/detective
 	name = "detective's holster"
 	desc = "A holster able to carry handguns and extra ammo, thanks to an additional hand-sewn pouch. WARNING: Badasses only."
 
-/obj/item/storage/belt/holster/detective/Initialize(mapload)
-	. = ..()
-	atom_storage.max_slots = 4
-	atom_storage.set_holdable(list(
+/datum/storage/holster/detective
+	max_slots = 4
+
+/datum/storage/holster/detective/New(atom/parent, max_slots, max_specific_storage, max_total_storage, list/holdables)
+	if(length(holdables))
+		return ..()
+
+	holdables = list(
 		/obj/item/gun/ballistic/automatic/pistol,
 		/obj/item/ammo_box/magazine, // Just magazine, because the sec-belt can hold these aswell
 		/obj/item/gun/ballistic/revolver,
@@ -937,13 +951,18 @@
 		/obj/item/gun/ballistic/rifle/boltaction, //fits if you make it an obrez
 		/obj/item/gun/energy/laser/captain,
 		/obj/item/gun/energy/e_gun/hos,
-		))
+	)
 
-/obj/item/storage/belt/holster/energy/Initialize(mapload)
-	. = ..()
-	atom_storage.max_slots = 2
-	atom_storage.max_specific_storage = WEIGHT_CLASS_NORMAL
-	atom_storage.set_holdable(list(
+	return ..()
+
+/datum/storage/holster/energy
+	max_specific_storage = WEIGHT_CLASS_NORMAL
+
+/datum/storage/holster/energy/New(atom/parent, max_slots, max_specific_storage, max_total_storage, list/holdables)
+	if(length(holdables))
+		return ..()
+
+	holdables = list(
 		/obj/item/gun/energy/e_gun/mini,
 		/obj/item/gun/energy/disabler,
 		/obj/item/gun/energy/dueling,
@@ -955,7 +974,10 @@
 		/obj/item/gun/ballistic/automatic/pistol/plasma_marksman,
 		/obj/item/gun/ballistic/automatic/pistol/plasma_thrower,
 		/obj/item/ammo_box/magazine/recharge/plasma_battery,
-	))
+	)
+
+	return ..()
+
 /*
 *	HEAD
 */
