@@ -13,7 +13,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_NO_HUSK "no_husk"
 #define TRAIT_NORUNNING "norunning" // You walk!
 #define TRAIT_EXCITABLE "wagwag" //Will wag when patted!
-#define TRAIT_OXYIMMUNE	"oxyimmune" // Immune to oxygen damage, ideally give this to all non-breathing species or bad stuff will happen
 #define TRAIT_AFFECTION_AVERSION "affection_aversion" // No more dogborg licking. "Dogborg bad" is no longer a personality
 #define TRAIT_PERSONALSPACE "personalspace" // Block/counter-attack ass-slaps
 #define TRAIT_QUICKREFLEXES "quickreflexes" // Counters hugs and headpats
@@ -72,6 +71,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 
 // avian traits
 #define TRAIT_AVIAN "avian_aspect"
+
+// bovine traits
+#define TRAIT_BOVINE "bovine_aspect"
 
 // chameleon mutation
 #define TRAIT_CHAMELEON_SKIN "chameleon_skin"

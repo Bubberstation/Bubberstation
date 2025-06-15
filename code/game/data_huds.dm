@@ -18,7 +18,7 @@
 /datum/atom_hud/data
 
 /datum/atom_hud/data/human/medical
-	hud_icons = list(STATUS_HUD, HEALTH_HUD, DNR_HUD) // SKYRAT EDIT ADDITION - DNR_HUD
+	hud_icons = list(STATUS_HUD, HEALTH_HUD, DNR_HUD, NANITE_HUD) // BUBBER EDIT ADDITION - DNR-HUD / NANITE_HUD
 
 /datum/atom_hud/data/human/medical/basic
 
@@ -51,13 +51,13 @@
 	hud_icons = list(ID_HUD)
 
 /datum/atom_hud/data/human/security/advanced
-	hud_icons = list(ID_HUD, IMPSEC_FIRST_HUD, IMPLOYAL_HUD, IMPSEC_SECOND_HUD, WANTED_HUD, PERMIT_HUD, DNR_HUD) //SKYRAT EDIT ADDITION - PERMIT_HUD, DNR_HUD
+	hud_icons = list(ID_HUD, IMPSEC_FIRST_HUD, IMPLOYAL_HUD, IMPSEC_SECOND_HUD, WANTED_HUD, PERMIT_HUD, DNR_HUD, NANITE_HUD) // BUBBER EDIT ADDITION - DNR-HUD / NANITE_HUD
 
 /datum/atom_hud/data/human/fan_hud
 	hud_icons = list(FAN_HUD)
 
 /datum/atom_hud/data/diagnostic
-	hud_icons = list(DIAG_HUD, DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_MECH_HUD, DIAG_BOT_HUD, DIAG_TRACK_HUD, DIAG_CAMERA_HUD, DIAG_AIRLOCK_HUD, DIAG_LAUNCHPAD_HUD)
+	hud_icons = list(DIAG_HUD, DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_MECH_HUD, DIAG_BOT_HUD, DIAG_TRACK_HUD, DIAG_CAMERA_HUD, DIAG_AIRLOCK_HUD, DIAG_LAUNCHPAD_HUD, DIAG_NANITE_FULL_HUD) // BUBBER EDIT ADDITION - NANITE_HUD
 
 /datum/atom_hud/data/bot_path
 	hud_icons = list(DIAG_PATH_HUD)
@@ -99,6 +99,10 @@ Medical HUD! Basic mode needs suit sensors on.
 	var/severity
 	if(HAS_TRAIT(src, TRAIT_DISEASELIKE_SEVERITY_MEDIUM))
 		severity = DISEASE_SEVERITY_MEDIUM
+		threat = get_disease_severity_value(severity)
+
+	if(HAS_TRAIT(src, TRAIT_DISEASELIKE_SEVERITY_HIGH))
+		severity = DISEASE_SEVERITY_DANGEROUS
 		threat = get_disease_severity_value(severity)
 
 	for(var/thing in diseases)
@@ -558,10 +562,10 @@ Diagnostic HUDs!
 
 /atom/proc/adjust_hud_position(image/holder, animate_time = null)
 	if (animate_time)
-		animate(holder, pixel_x = -(get_cached_width() - ICON_SIZE_X) / 2, pixel_y = get_cached_height() - ICON_SIZE_Y, time = animate_time)
+		animate(holder, pixel_w = -(get_cached_width() - ICON_SIZE_X) / 2, pixel_z = get_cached_height() - ICON_SIZE_Y, time = animate_time)
 		return
-	holder.pixel_x = -(get_cached_width() - ICON_SIZE_X) / 2
-	holder.pixel_y = get_cached_height() - ICON_SIZE_Y
+	holder.pixel_w = -(get_cached_width() - ICON_SIZE_X) / 2
+	holder.pixel_z = get_cached_height() - ICON_SIZE_Y
 
 /atom/proc/set_hud_image_state(hud_type, hud_state, x_offset = 0, y_offset = 0)
 	if (!hud_list) // Still initializing
@@ -574,5 +578,5 @@ Diagnostic HUDs!
 	holder.icon_state = hud_state
 	adjust_hud_position(holder)
 	if (x_offset || y_offset)
-		holder.pixel_x += x_offset
-		holder.pixel_y += y_offset
+		holder.pixel_w += x_offset
+		holder.pixel_z += y_offset

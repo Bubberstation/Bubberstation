@@ -38,6 +38,10 @@ GLOBAL_VAR(round_default_lawset)
 
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_UNIQUE_AI))
 		return pick_weighted_lawset()
+	//Bubber edit start - HoS AI station trait
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_HOS_AI))
+		return /datum/ai_laws/robocop
+	//Bubber edit end
 
 	switch(CONFIG_GET(number/default_laws))
 		if(CONFIG_ASIMOV)

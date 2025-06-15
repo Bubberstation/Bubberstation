@@ -13,6 +13,9 @@
 	/// How much extra bleeding the mob is given
 	var/bleed_modifier_addition = 1
 
+/datum/status_effect/vulnerable_to_damage/surgery
+	duration = 15 MINUTES
+
 /datum/status_effect/vulnerable_to_damage/on_apply()
 	to_chat(owner, span_userdanger("Your body suddenly feals weak and fragile!"))
 	var/mob/living/carbon/human/carbon_owner = owner

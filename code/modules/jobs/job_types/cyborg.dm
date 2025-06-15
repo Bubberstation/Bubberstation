@@ -26,11 +26,12 @@
 	. = ..()
 	if(!iscyborg(spawned))
 		return
-	spawned.gender = NEUTER
 	var/mob/living/silicon/robot/robot_spawn = spawned
 	robot_spawn.notify_ai(AI_NOTIFICATION_NEW_BORG)
+	if(player_client)
+		robot_spawn.set_gender(player_client)
 	//SKYRAT EDIT START
-	robot_spawn.set_connected_ai(select_active_ai_with_fewest_borgs())
+	robot_spawn.set_connected_ai(select_priority_ai())
 	if(robot_spawn.connected_ai)
 		log_combat(robot_spawn.connected_ai, robot_spawn, "synced cyborg [robot_spawn] to [robot_spawn.connected_ai] (Cyborg spawn syncage)") // BUBBER EDIT - PUBLIC LOGS AND CLEANUP
 		if(robot_spawn.shell) //somehow?
@@ -42,6 +43,8 @@
 		robot_spawn.lawupdate = TRUE
 		robot_spawn.lawsync()
 		robot_spawn.show_laws()
+		if(HAS_TRAIT(SSstation, STATION_TRAIT_HOS_AI))
+			robot_spawn.visible_message(self_message = span_alert("Securityborg has been enabled for this shift."))
 	//SKYRAT EDIT END
 	if(!robot_spawn.connected_ai) // Only log if there's no Master AI
 		robot_spawn.log_current_laws()

@@ -18,29 +18,29 @@
 	var/refit_path
 	var/item_slot
 	var/list/icons_in_refit_path
-	switch (referenced_item.slot_flags)
+	switch (initial(referenced_item.slot_flags))
 		if (ITEM_SLOT_ICLOTHING)
 			item_slot = "UNIFORM"
-		else if (ITEM_SLOT_OCLOTHING)
+		if (ITEM_SLOT_OCLOTHING)
 			item_slot = "SUIT"
-		else if (ITEM_SLOT_BELT)
+		if (ITEM_SLOT_BELT)
 			item_slot = "BELT"
-		else if (ITEM_SLOT_GLOVES)
+		if (ITEM_SLOT_GLOVES)
 			item_slot = "GLOVES"
-		else if (ITEM_SLOT_HEAD)
+		if (ITEM_SLOT_HEAD)
 			item_slot = "HEAD"
-		else if (ITEM_SLOT_EARS)
+		if (ITEM_SLOT_EARS)
 			item_slot = "EARS"
-		else if (ITEM_SLOT_NECK)
+		if (ITEM_SLOT_NECK)
 			item_slot = "NECK"
-		else if (ITEM_SLOT_MASK)
+		if (ITEM_SLOT_MASK)
 			item_slot = "MASK"
-		else if (ITEM_SLOT_EYES)
+		if (ITEM_SLOT_EYES)
 			item_slot = "GLASSES"
-		else if (ITEM_SLOT_FEET)
+		if (ITEM_SLOT_FEET)
 			item_slot = "SHOES"
 		else
-			CRASH("There are no item slots that exist by the name of [referenced_item].")
+			return list()
 	for(var/cur_species in supported_species)
 		if(cur_species==SPECIES_VOX_PRIMALIS) // Why was this named like this?
 			cur_species = "better_vox"

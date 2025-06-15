@@ -26,7 +26,8 @@
 	fire_delay = 3
 
 	spread = 7
-	projectile_wound_bonus = -35
+	projectile_wound_bonus = -20
+	projectile_damage_multiplier = 0.75
 
 	accepted_magazine_type = /obj/item/ammo_box/magazine/c40sol_rifle
 	spawn_magazine_type = /obj/item/ammo_box/magazine/c40sol_rifle/standard
@@ -137,7 +138,6 @@
 	inhand_icon_state = "infanterie_evil"
 	bolt_type = BOLT_TYPE_LOCKING
 	mag_display = TRUE
-	mag_display_ammo = TRUE
 	empty_indicator = TRUE
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_HEAVY

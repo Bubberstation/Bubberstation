@@ -321,7 +321,7 @@
 /datum/config_entry/string/banappeals
 
 /datum/config_entry/string/wikiurl
-	default = "http://tgstation13.org/wiki"
+	default = "https://wiki.tgstation13.org"
 
 /datum/config_entry/string/forumurl
 	default = "http://tgstation13.org/phpBB/index.php"
@@ -778,3 +778,16 @@
 /// If admins with +DEBUG can queue byond-tracy to run the next round.
 /datum/config_entry/flag/allow_tracy_queue
 	protection = CONFIG_ENTRY_LOCKED
+
+/**
+ * Tgui ui_act payloads larger than 2kb are split into chunks a maximum of 1kb in size.
+ * This flag represents the maximum chunk count the server is willing to receive.
+ */
+/datum/config_entry/number/tgui_max_chunk_count
+	default = 32
+
+// If set, enables the "Link forum account" OOC verb
+/datum/config_entry/string/forum_link_uri
+
+/datum/config_entry/flag/generate_assets_in_init
+	default = FALSE

@@ -31,6 +31,7 @@ ADMIN_VERB(investigate_show, R_NONE, "Investigate", "Browse various detailed log
 		INVESTIGATE_RECORDS,
 		INVESTIGATE_RESEARCH,
 		INVESTIGATE_WIRES,
+		INVESTIGATE_NANITES, // BUBBER ADDITION - NANITES
 	)
 
 	var/list/logs_present = list("notes, memos, watchlist")

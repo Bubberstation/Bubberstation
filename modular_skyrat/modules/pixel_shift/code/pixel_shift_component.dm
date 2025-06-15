@@ -137,22 +137,22 @@
 		if(SHIFTING_PARENT)
 			switch(direct)
 				if(NORTH)
-					if(shift_y <= maximum_pixel_shift + owner.base_pixel_y)
+					if(shift_y <= maximum_pixel_shift)
 						shift_y++
 						owner.add_offsets(type, y_add = shift_y)
 						is_shifted = TRUE
 				if(EAST)
-					if(shift_x <= maximum_pixel_shift + owner.base_pixel_x)
+					if(shift_x <= maximum_pixel_shift)
 						shift_x++
 						owner.add_offsets(type, x_add = shift_x)
 						is_shifted = TRUE
 				if(SOUTH)
-					if(shift_y >= -maximum_pixel_shift + owner.base_pixel_y)
+					if(shift_y >= -maximum_pixel_shift)
 						shift_y--
 						owner.add_offsets(type, y_add = shift_y)
 						is_shifted = TRUE
 				if(WEST)
-					if(shift_x >= -maximum_pixel_shift + owner.base_pixel_x)
+					if(shift_x >= -maximum_pixel_shift)
 						shift_x--
 						owner.add_offsets(type, x_add = shift_x)
 						is_shifted = TRUE

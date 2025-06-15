@@ -15,7 +15,9 @@
 SUBSYSTEM_DEF(automapper)
 	name = "Automapper"
 	flags = SS_NO_FIRE
-	init_order = INIT_ORDER_AUTOMAPPER
+	dependents = list(
+		/datum/controller/subsystem/mapping
+	)
 	/// The path to our TOML file
 	var/config_file = "_maps/bubber/automapper/automapper_config.toml" // BUBBER TODO - Merge our and skyrat's automapper in one
 	/// Our loaded TOML file

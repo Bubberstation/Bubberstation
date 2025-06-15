@@ -1,5 +1,5 @@
 /obj/item/book/granter/magazine/
-	icon = 'modular_zubbers/maps/biodome/magazine.dmi'
+	icon = 'modular_zubbers/icons/maps/biodome/magazine.dmi'
 	icon_state = "mothboys"
 
 //Flavor item for the Biodome arrivals shuttle, but I think it's funny if it still appears elsewhere.

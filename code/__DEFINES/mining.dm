@@ -18,6 +18,14 @@
 /// Small vents, giving small boulders.
 #define SMALL_VENT_TYPE "small"
 
+//gibtonite strength
+/// Gibtonite was deactivated right before it could explode
+#define GIBTONITE_QUALITY_HIGH 3
+/// Gibtonite was deactivated a few seconds before it could explode
+#define GIBTONITE_QUALITY_MEDIUM 2
+/// Gibtonite was deactivated right after it was struck.
+#define GIBTONITE_QUALITY_LOW 1
+
 // Timers for the ore vents to perform wave defense.
 /// Duration for wave defense for a small vent.
 #define WAVE_DURATION_SMALL 60 SECONDS
@@ -25,6 +33,8 @@
 #define WAVE_DURATION_MEDIUM 90 SECONDS
 /// Duration for wave defense for a large vent.
 #define WAVE_DURATION_LARGE 150 SECONDS
+/// Duration for wave defense for the tarkon emergency engines.
+#define WAVE_DURATION_TARKON 120 SECONDS
 
 /// Proximity to a vent that a wall ore needs to be for 5 ore to be mined.
 #define VENT_PROX_VERY_HIGH 3

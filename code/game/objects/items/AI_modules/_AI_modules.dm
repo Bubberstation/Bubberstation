@@ -23,7 +23,7 @@
 
 /obj/item/ai_module/Initialize(mapload)
 	. = ..()
-	if(mapload && HAS_TRAIT(SSstation, STATION_TRAIT_UNIQUE_AI) && is_station_level(z))
+	if(mapload && (HAS_TRAIT(SSstation, STATION_TRAIT_UNIQUE_AI) || HAS_TRAIT(SSstation, STATION_TRAIT_HOS_AI)) && is_station_level(z)) //Bubber edit HoS AI station trait
 		var/delete_module = handle_unique_ai()
 		if(delete_module)
 			return INITIALIZE_HINT_QDEL
@@ -89,7 +89,7 @@
 	else
 		to_chat(user, span_notice("Upload complete."))
 
-	var/time = time2text(world.realtime,"hh:mm:ss")
+	var/time = time2text(world.realtime,"hh:mm:ss", TIMEZONE_UTC)
 	var/ainame = law_datum.owner ? law_datum.owner.name : "empty AI core"
 	var/aikey = law_datum.owner ? law_datum.owner.ckey : "null"
 

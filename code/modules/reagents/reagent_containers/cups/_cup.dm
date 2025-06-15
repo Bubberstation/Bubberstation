@@ -24,6 +24,10 @@
 	///What sound does our consumption play on consuming from the container?
 	var/consumption_sound = 'sound/items/drink.ogg'
 
+/obj/item/reagent_containers/cup/Initialize(mapload, vol)
+	. = ..()
+	AddElement(/datum/element/reagents_item_heatable)
+
 /obj/item/reagent_containers/cup/examine(mob/user)
 	. = ..()
 	if(drink_type)
@@ -173,7 +177,7 @@
 
 	return NONE
 
-/obj/item/reagent_containers/cup/attackby(obj/item/attacking_item, mob/user, params)
+/obj/item/reagent_containers/cup/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	var/hotness = attacking_item.get_temperature()
 	if(hotness && reagents)
 		reagents.expose_temperature(hotness)
@@ -406,9 +410,7 @@
 	melee = 10
 	acid = 50
 
-// SKYRAT EDIT CHANGE START - LIQUIDS
-/* Original
-/obj/item/reagent_containers/cup/bucket/attackby(obj/O, mob/user, params)
+/obj/item/reagent_containers/cup/bucket/attackby(obj/O, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(O, /obj/item/mop))
 		if(reagents.total_volume < 1)
 			user.balloon_alert(user, "empty!")
@@ -417,35 +419,31 @@
 			user.balloon_alert(user, "doused [O]")
 			playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE)
 		return
-*/
-/obj/item/reagent_containers/cup/bucket/attackby(obj/mop, mob/living/user, params)
-	if(istype(mop, /obj/item/mop))
-		var/is_right_clicking = LAZYACCESS(params2list(params), RIGHT_CLICK)
-		if(is_right_clicking)
-			if(mop.reagents.total_volume == 0)
-				user.balloon_alert(user, "mop is dry!")
-				return
-			if(reagents.total_volume == reagents.maximum_volume)
-				user.balloon_alert(user, "mop is full!")
-				return
-			mop.reagents.remove_all(mop.reagents.total_volume * SQUEEZING_DISPERSAL_RATIO)
-			mop.reagents.trans_to(src, mop.reagents.total_volume, transferred_by = user)
-			user.balloon_alert(user, "mop squeezed")
-		else
-			if(reagents.total_volume < 1)
-				user.balloon_alert(user, "container empty!")
-			else
-				reagents.trans_to(mop, 5, transferred_by = user)
-				user.balloon_alert(user, "mop wet")
-				playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE)
-
-	else if(isprox(mop)) //This works with wooden buckets for now. Somewhat unintended, but maybe someone will add sprites for it soon(TM)
-		to_chat(user, span_notice("You add [mop] to [src]."))
-		qdel(mop)
+	else if(isprox(O)) //This works with wooden buckets for now. Somewhat unintended, but maybe someone will add sprites for it soon(TM)
+		to_chat(user, span_notice("You add [O] to [src]."))
+		qdel(O)
 		var/obj/item/bot_assembly/cleanbot/new_cleanbot_ass = new(null, src)
 		user.put_in_hands(new_cleanbot_ass)
 		return
-// SKYRAT EDIT CHANGE END - LIQUIDS
+
+	return ..()
+
+// BUBBER EDIT ADDITION BEGIN - LIQUIDS
+/obj/item/reagent_containers/cup/bucket/item_interaction_secondary(mob/living/user, obj/item/tool, list/modifiers)
+	if(istype(tool, /obj/item/mop))
+		if(tool.reagents.total_volume == 0)
+			user.balloon_alert(user, "mop is dry!")
+			return ITEM_INTERACT_BLOCKING
+		if(reagents.total_volume == reagents.maximum_volume)
+			user.balloon_alert(user, "container is full!")
+			return ITEM_INTERACT_BLOCKING
+		tool.reagents.remove_all(tool.reagents.total_volume * SQUEEZING_DISPERSAL_RATIO)
+		tool.reagents.trans_to(src, tool.reagents.total_volume, transferred_by = user)
+		user.balloon_alert(user, "mop squeezed")
+		return ITEM_INTERACT_SUCCESS
+
+	. = ..()
+// BUBBER EDIT ADDITION END - LIQUIDS
 
 /obj/item/reagent_containers/cup/bucket/equipped(mob/user, slot)
 	. = ..()

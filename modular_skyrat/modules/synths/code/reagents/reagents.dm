@@ -37,13 +37,14 @@
 
 /datum/reagent/medicine/liquid_solder
 	name = "Liquid Solder"
-	description = "Repairs brain damage in synthetics."
+	description = "Repairs organ damage in synthetics."
 	color = "#727272"
 	taste_description = "metal"
 	process_flags = REAGENT_SYNTHETIC
 
 /datum/reagent/medicine/liquid_solder/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick)
-	affected_mob.adjustOrganLoss(ORGAN_SLOT_BRAIN, -3 * REM * seconds_per_tick)
+	for(var/obj/item/organ/organ in affected_mob.organs)
+		affected_mob.adjustOrganLoss(organ.slot, -3 * REM * seconds_per_tick)
 	if(prob(10))
 		affected_mob.cure_trauma_type(resilience = TRAUMA_RESILIENCE_BASIC)
 	return ..()
