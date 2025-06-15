@@ -41,12 +41,12 @@
 				stack_trace("get_exploitable_manifest() failed to get job department for [department_type] of [job.type]")
 				continue
 
-			var/list/exp_entry = list(
+			var/list/exp_entry = list(list(
 				"name" = name,
 				"rank" = rank,
 //				"truerank" = truerank,
 				"exploitable_information" = exploitables,
-			)
+			))
 
 			var/list/exp_department_list = exp_manifest_out[department.department_name]
 

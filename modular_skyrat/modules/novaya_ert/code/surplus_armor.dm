@@ -36,9 +36,10 @@
 /obj/item/clothing/head/helmet/cin_surplus_helmet
 	name = "\improper GZ-03 combat helmet"
 	desc = "An outdated service helmet previously used by CIN military forces. The design dates back to the years leading up to CIN - TerraGov border war, and was in service until the advent of VOSKHOD powered armor becoming standard issue."
-	icon = 'modular_skyrat/modules/novaya_ert/icons/surplus_armor/surplus_armor.dmi'
+	icon = 'icons/map_icons/clothing/head/_head.dmi'
+	icon_state = "/obj/item/clothing/head/helmet/cin_surplus_helmet"
 	worn_icon = 'modular_skyrat/modules/novaya_ert/icons/surplus_armor/surplus_armor_object.dmi'
-	icon_state = "helmet_plain"
+	post_init_icon_state = "helmet_plain"
 	greyscale_config = /datum/greyscale_config/cin_surplus_helmet/object
 	greyscale_config_worn = /datum/greyscale_config/cin_surplus_helmet
 	greyscale_colors = CIN_WINTER_COLORS
@@ -86,12 +87,15 @@
 	return .
 
 /obj/item/clothing/head/helmet/cin_surplus_helmet/desert
+	icon_state = "/obj/item/clothing/head/helmet/cin_surplus_helmet/desert"
 	greyscale_colors = CIN_MOUNTAIN_DESERT_COLORS
 
 /obj/item/clothing/head/helmet/cin_surplus_helmet/forest
+	icon_state = "/obj/item/clothing/head/helmet/cin_surplus_helmet/forest"
 	greyscale_colors = CIN_FOREST_COLORS
 
 /obj/item/clothing/head/helmet/cin_surplus_helmet/marine
+	icon_state = "/obj/item/clothing/head/helmet/cin_surplus_helmet/marine"
 	greyscale_colors = CIN_MARINE_COLORS
 
 /obj/item/clothing/head/helmet/cin_surplus_helmet/random_color
@@ -114,21 +118,25 @@
 /obj/item/clothing/under/syndicate/rus_army/cin_surplus
 	name = "\improper CIN combat uniform"
 	desc = "A CIN designed combat uniform that can come in any number of camouflauge variations. Despite this particular design being developed in the years leading up to the CIN-TerraGov border war, the uniform is still in use by many member states to this day."
-	icon = 'modular_skyrat/modules/novaya_ert/icons/surplus_armor/surplus_armor.dmi'
+	icon = 'icons/map_icons/clothing/under/_under.dmi'
+	icon_state = "/obj/item/clothing/under/syndicate/rus_army/cin_surplus"
 	worn_icon = 'modular_skyrat/modules/novaya_ert/icons/surplus_armor/surplus_armor_object.dmi'
-	icon_state = "undersuit_greyscale"
+	post_init_icon_state = "undersuit_greyscale"
 	greyscale_config = /datum/greyscale_config/cin_surplus_undersuit/object
 	greyscale_config_worn = /datum/greyscale_config/cin_surplus_undersuit
 	greyscale_config_worn_digi = /datum/greyscale_config/cin_surplus_undersuit/digi
 	greyscale_colors = "#bbbbc9#bbbbc9#34343a"
 
 /obj/item/clothing/under/syndicate/rus_army/cin_surplus/desert
+	icon_state = "/obj/item/clothing/under/syndicate/rus_army/cin_surplus/desert"
 	greyscale_colors = "#aa6d4c#aa6d4c#34343a"
 
 /obj/item/clothing/under/syndicate/rus_army/cin_surplus/forest
+	icon_state = "/obj/item/clothing/under/syndicate/rus_army/cin_surplus/forest"
 	greyscale_colors = "#6D6D51#6D6D51#34343a"
 
 /obj/item/clothing/under/syndicate/rus_army/cin_surplus/marine
+	icon_state = "/obj/item/clothing/under/syndicate/rus_army/cin_surplus/marine"
 	greyscale_colors = "#51517b#51517b#34343a"
 
 /obj/item/clothing/under/syndicate/rus_army/cin_surplus/random_color
@@ -191,21 +199,25 @@
 
 /obj/item/storage/belt/military/cin_surplus
 	desc = "A tactical webbing often used by the CIN's military forces."
-	icon = 'modular_skyrat/modules/novaya_ert/icons/surplus_armor/surplus_armor.dmi'
+	icon = 'icons/map_icons/clothing/_clothing.dmi'
+	icon_state = "/obj/item/storage/belt/military/cin_surplus"
 	worn_icon = 'modular_skyrat/modules/novaya_ert/icons/surplus_armor/surplus_armor_object.dmi'
-	icon_state = "chestrig"
+	post_init_icon_state = "chestrig"
 	worn_icon_state = "chestrig"
 	greyscale_config = /datum/greyscale_config/cin_surplus_chestrig/object
 	greyscale_config_worn = /datum/greyscale_config/cin_surplus_chestrig
 	greyscale_colors = CIN_WINTER_COLORS_COMPLIMENT
 
 /obj/item/storage/belt/military/cin_surplus/desert
+	icon_state = "/obj/item/storage/belt/military/cin_surplus/desert"
 	greyscale_colors = CIN_MOUNTAIN_DESERT_COLORS_COMPLIMENT
 
 /obj/item/storage/belt/military/cin_surplus/forest
+	icon_state = "/obj/item/storage/belt/military/cin_surplus/forest"
 	greyscale_colors = CIN_FOREST_COLORS_COMPLIMENT
 
 /obj/item/storage/belt/military/cin_surplus/marine
+	icon_state = "/obj/item/storage/belt/military/cin_surplus/marine"
 	greyscale_colors = CIN_MARINE_COLORS_COMPLIMENT
 
 /obj/item/storage/belt/military/cin_surplus/random_color
@@ -228,20 +240,24 @@
 /obj/item/storage/backpack/industrial/cin_surplus
 	name = "\improper CIN military backpack"
 	desc = "A rugged backpack often used by the CIN's military forces."
-	icon = 'modular_skyrat/modules/novaya_ert/icons/surplus_armor/surplus_armor.dmi'
+	icon = 'icons/map_icons/items/_item.dmi'
+	icon_state = "/obj/item/storage/backpack/industrial/cin_surplus"
 	worn_icon = 'modular_skyrat/modules/novaya_ert/icons/surplus_armor/surplus_armor_object.dmi'
-	icon_state = "backpack"
+	post_init_icon_state = "backpack"
 	greyscale_config = /datum/greyscale_config/cin_surplus_backpack/object
 	greyscale_config_worn = /datum/greyscale_config/cin_surplus_backpack
 	greyscale_colors = CIN_WINTER_COLORS_COMPLIMENT
 
 /obj/item/storage/backpack/industrial/cin_surplus/desert
+	icon_state = "/obj/item/storage/backpack/industrial/cin_surplus/desert"
 	greyscale_colors = CIN_MOUNTAIN_DESERT_COLORS_COMPLIMENT
 
 /obj/item/storage/backpack/industrial/cin_surplus/forest
+	icon_state = "/obj/item/storage/backpack/industrial/cin_surplus/forest"
 	greyscale_colors = CIN_FOREST_COLORS_COMPLIMENT
 
 /obj/item/storage/backpack/industrial/cin_surplus/marine
+	icon_state = "/obj/item/storage/backpack/industrial/cin_surplus/marine"
 	greyscale_colors = CIN_MARINE_COLORS_COMPLIMENT
 
 /obj/item/storage/backpack/industrial/cin_surplus/random_color

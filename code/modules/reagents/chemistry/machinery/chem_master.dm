@@ -169,9 +169,11 @@
 	if(!length(containers))
 		containers = list(
 			CAT_TUBES = GLOB.reagent_containers[CAT_TUBES],
+			CAT_MEDBOTTLES = GLOB.reagent_containers[CAT_MEDBOTTLES], // BUBBER EDIT - CAT_MEDBOTTLES
 			CAT_PILLS = GLOB.reagent_containers[CAT_PILLS],
 			CAT_PATCHES = GLOB.reagent_containers[CAT_PATCHES],
 			CAT_HYPOS = GLOB.reagent_containers[CAT_HYPOS], // SKYRAT EDIT
+			CAT_PEN_INJECTORS = GLOB.reagent_containers[CAT_PEN_INJECTORS], // BUBBER EDIT - pen_medipens
 			CAT_DARTS = GLOB.reagent_containers[CAT_DARTS], // SKYRAT EDIT
 		)
 	return containers
@@ -515,12 +517,12 @@
 			var/datum/reagent/master_reagent = reagents.get_master_reagent()
 			if(selected_container == default_container) // Tubes and bottles gain reagent name
 				item_name_default = "[master_reagent.name] [item_name_default]"
-			if(!(initial(selected_container.reagent_flags) & OPENCONTAINER)) // Closed containers get both reagent name and units in the name
+			// BUBBER EDIT: needed for pen_medipens and bugfixes
+			else if(!(initial(selected_container.reagent_flags) & OPENCONTAINER)) // Closed containers get both reagent name and units in the name
 				item_name_default = "[master_reagent.name] [item_name_default] ([volume_in_each]u)"
-			// SKYRAT EDIT ADDITION START - Autonamed hyposprays/smartdarts
-			if(ispath(selected_container, /obj/item/reagent_containers/cup/vial) || ispath(selected_container, /obj/item/reagent_containers/syringe/smartdart))
+			else // yeah, its kinda dumb
 				item_name_default = "[master_reagent.name] [item_name_default]"
-			// SKYRAT EDIT ADDITION END
+			// BUBBER EDIT END
 			var/item_name = tgui_input_text(
 				usr,
 				"Container name",
