@@ -39,7 +39,7 @@
 
 /area/misc/hilbertshotel/winterwoods
 	name = "Winter Woods"
-	ambientsounds = AMBIENCE_ICEMOON
+	ambience_index = AMBIENCE_ICEMOON
 
 /datum/map_template/ghost_cafe_rooms/evacuationstation
 	name = "Evacuated Station"

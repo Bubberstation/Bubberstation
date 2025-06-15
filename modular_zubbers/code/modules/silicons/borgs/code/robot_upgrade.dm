@@ -88,3 +88,26 @@
 	model_type = list(/obj/item/robot_model/engineering)
 	model_flags = BORG_MODEL_ENGINEERING
 	items_to_add = list(/obj/item/construction/rld/cyborg)
+
+// Borg Advanced Xenoarchaeology Bag
+
+/obj/item/borg/upgrade/xenoarch/adv
+	name = "Cyborg Advanced Xenoarchaeology Bag"
+	desc = "An improved bag to pick up strange rocks for science"
+	icon_state = "module_general"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/miner, /obj/item/robot_model/sci)
+	model_flags = list(BORG_MODEL_MINER, BORG_MODEL_RESEARCH)
+	items_to_add = list(/obj/item/storage/bag/xenoarch/adv)
+
+
+// Mining Borg Vent Pinpointer
+
+/obj/item/borg/upgrade/pinpointer/vent
+	name = "Vent Pinpointer"
+	desc = "A modularized tracking device. It will locate and point to nearby vents."
+	icon_state = "module_miner"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/miner)
+	model_flags = BORG_MODEL_MINER
+	items_to_add = list(/obj/item/pinpointer/vent)

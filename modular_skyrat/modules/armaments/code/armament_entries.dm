@@ -16,8 +16,7 @@
 SUBSYSTEM_DEF(armaments)
 	name = "Armaments"
 	flags = SS_NO_FIRE
-	init_order = INIT_ORDER_ARMAMENTS
-
+	init_stage = INITSTAGE_LAST
 	var/list/entries
 
 /datum/controller/subsystem/armaments/Initialize()
