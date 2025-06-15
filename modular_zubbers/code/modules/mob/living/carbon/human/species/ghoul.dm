@@ -31,6 +31,9 @@
 	//i dont have to worry about sprites due to limbs_icon, thank god
 	//also the head needs to be normal for hair to work
 
+	/// Body parts that the ghoul can pull off or have reattached
+	var/static/list/swappable_parts = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+
 /datum/species/ghoul/get_default_mutant_bodyparts()
 	return list(
 		"tail" = list("None", FALSE),
@@ -38,15 +41,15 @@
 		"legs" = list("Normal Legs", FALSE),
 	)
 
+/datum/species/ghoul/get_species_description()
+	return list(placeholder_description,)
+
 /proc/proof_ghoul_features(list/inFeatures)
 	// Missing Defaults in DNA? Randomize!
 	if(inFeatures["ghoulcolor"] == null || inFeatures["ghoulcolor"] == "")
 		inFeatures["ghoulcolor"] = GLOB.color_list_ghoul[pick(GLOB.color_list_ghoul)]
 
-/datum/species/proc/set_ghoul_color(mob/living/carbon/human/human_ghoul)
-	return // Do Nothing
-
-/datum/species/ghoul/set_ghoul_color(mob/living/carbon/human/human_ghoul)
+/datum/species/ghoul/proc/set_ghoul_color(mob/living/carbon/human/human_ghoul)
 	// Called on Assign, or on Color Change (or any time proof_ghoul_features() is used)
 	fixed_mut_color = human_ghoul.dna.features["ghoulcolor"]
 
@@ -62,7 +65,7 @@
 		set_ghoul_color(human_ghoul)
 
 		// 2) BODYPARTS
-		RegisterSignal(human_ghoul, COMSIG_ATOM_ATTACKBY, PROC_REF(attach_meat))
+		RegisterSignal(human_ghoul, COMSIG_ATOM_ITEM_INTERACTION, PROC_REF(attach_meat))
 		human_ghoul.part_default_head = /obj/item/bodypart/head/mutant/ghoul
 		human_ghoul.part_default_chest = /obj/item/bodypart/chest/mutant/ghoul
 		human_ghoul.part_default_l_arm = /obj/item/bodypart/arm/left/mutant/ghoul
@@ -74,7 +77,7 @@
 	. = ..()
 
 	// 2) BODYPARTS
-	UnregisterSignal(former_ghoul, COMSIG_ATOM_ATTACKBY)
+	UnregisterSignal(former_ghoul, COMSIG_ATOM_ITEM_INTERACTION)
 	former_ghoul.part_default_head = /obj/item/bodypart/head
 	former_ghoul.part_default_chest = /obj/item/bodypart/chest
 	former_ghoul.part_default_l_arm = /obj/item/bodypart/arm/left
@@ -88,76 +91,73 @@
 
 /datum/species/ghoul/disarm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
 	// Targeting Self? With "DISARM"
-	if (user == target)
-		var/target_zone = user.zone_selected
-		var/list/allowedList = list ( BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG )
-		var/obj/item/bodypart/affecting = user.get_bodypart(check_zone(user.zone_selected)) //stabbing yourself always hits the right target
+	if (user != target)
+		return ..()
 
-		if ((target_zone in allowedList) && affecting)
+	var/target_zone = user.zone_selected
+	var/obj/item/bodypart/affecting = user.get_bodypart(check_zone(user.zone_selected)) //stabbing yourself always hits the right target
 
-			if (user.handcuffed)
-				to_chat(user, span_alert("You can't get a good enough grip with your hands bound."))
-				return FALSE
+	if (!(target_zone in swappable_parts) || !affecting)
+		return ..()
 
-			// Robot Arms Fail
-			if (!IS_ORGANIC_LIMB(affecting))
-				to_chat(user, "That thing is on there good. It's not coming off with a gentle tug.")
-				return FALSE
+	if (user.handcuffed)
+		to_chat(user, span_alert("You can't get a good enough grip with your hands bound."))
+		return FALSE
 
-			// Pry it off...
-			user.visible_message("[user] grabs onto [p_their()] own [affecting.name] and pulls.", span_notice("You grab hold of your [affecting.name] and yank hard."))
-			if (!do_after(user, 3 SECONDS, target))
-				return TRUE
+	// Robot Arms Fail
+	if (!IS_ORGANIC_LIMB(affecting))
+		to_chat(user, "That thing is on there good. It's not coming off with a gentle tug.")
+		return FALSE
 
-			user.visible_message("[user]'s [affecting.name] comes right off in their hand.", span_notice("Your [affecting.name] pops right off."))
-			playsound(get_turf(user), 'sound/effects/meatslap.ogg', 40, 1) //ill change these sounds later
+	// Pry it off...
+	user.visible_message("[user] grabs onto [p_their()] own [affecting.name] and pulls.", span_notice("You grab hold of your [affecting.name] and yank hard."))
+	if (!do_after(user, 3 SECONDS, target))
+		return FALSE
 
-			// Destroy Limb, Drop Meat, Pick Up
-			var/obj/item/I = affecting.drop_limb()
-			if (istype(I, /obj/item/food/meat/slab))
-				user.put_in_hands(I)
+	user.visible_message("[user]'s [affecting.name] comes right off in their hand.", span_notice("Your [affecting.name] pops right off."))
+	playsound(get_turf(user), 'sound/effects/meatslap.ogg', 40, 1) //ill change these sounds later
 
-			new /obj/effect/temp_visual/dir_setting/bloodsplatter(target.loc, target.dir)
-			target.add_splatter_floor(target.loc)
-			target.bleed(60)
+	// Destroy Limb, Drop Meat, Pick Up
+	var/obj/item/I = affecting.drop_limb()
+	if (istype(I, /obj/item/food/meat/slab))
+		user.put_in_hands(I)
 
-			return COMPONENT_CANCEL_ATTACK_CHAIN
+	new /obj/effect/temp_visual/dir_setting/bloodsplatter(target.loc, target.dir)
+	target.add_splatter_floor(target.loc)
+	target.bleed(60)
 
-/datum/species/ghoul/proc/attach_meat(mob/living/carbon/human/target, obj/item/attacking_item, mob/living/user, list/modifiers)
+	return TRUE
+
+/datum/species/ghoul/proc/attach_meat(mob/living/carbon/human/target, mob/living/user, obj/item/tool, list/modifiers)
 	SIGNAL_HANDLER
 
 	if(!istype(target))
-		return
-
-	if(LAZYACCESS(modifiers, RIGHT_CLICK))
-		return
+		return NONE
 
 	// MEAT LIMBS: If our limb is missing, and we're using meat, stick it in!
-	if(target.stat < DEAD && istype(attacking_item, /obj/item/food/meat/slab))
-		var/target_zone = user.zone_selected
+	if(target.stat == DEAD || !istype(tool, /obj/item/food/meat/slab))
+		return NONE
 
-		if(target.get_bodypart(target_zone)) // we already have a limb here
-			return
+	var/target_zone = user.zone_selected
+	if(target.get_bodypart(target_zone)) // we already have a limb here
+		return NONE
 
-		var/list/limbs = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+	if(!(target_zone in swappable_parts))
+		return NONE
 
-		if((target_zone in limbs))
-			if(user == target)
-				user.visible_message("[user] begins mashing [attacking_item] into [target]'s torso.", span_notice("You begin mashing [attacking_item] into your torso."))
-			else
-				user.visible_message("[user] begins mashing [attacking_item] into [target]'s torso.", span_notice("You begin mashing [attacking_item] into [target]'s torso."))
+	user.visible_message("[user] begins mashing [tool] into [target]'s torso.", span_notice("You begin mashing [tool] into [target == user ? "your" : "[target]'s"] torso."))
 
-			// Leave Melee Chain (so deleting the meat doesn't throw an error) <--- aka, deleting the meat that called this very proc.
-			spawn(1)
-				if(do_after(user, 3 SECONDS, target))
-					// Attach the part!
-					var/obj/item/bodypart/newBP = target.newBodyPart(target_zone, FALSE)
-					target.visible_message("The meat sprouts digits and becomes [target]'s new [newBP.name]!", span_notice("The meat sprouts digits and becomes your new [newBP.name]!"))
-					newBP.try_attach_limb(target)
-					qdel(attacking_item)
-					playsound(get_turf(target), 'sound/effects/meatslap.ogg', 50, 1)
+	// Leave Melee Chain (so deleting the meat doesn't throw an error) <--- aka, deleting the meat that called this very proc.
+	ASYNC
+		if(do_after(user, 3 SECONDS, target))
+			// Attach the part!
+			var/obj/item/bodypart/newBP = target.newBodyPart(target_zone, FALSE)
+			target.visible_message("The meat sprouts digits and becomes [target]'s new [newBP.name]!", span_notice("The meat sprouts digits and becomes your new [newBP.name]!"))
+			newBP.try_attach_limb(target)
+			qdel(tool)
+			playsound(get_turf(target), 'sound/effects/meatslap.ogg', 50, 1)
 
-			return COMPONENT_CANCEL_ATTACK_CHAIN
+	return ITEM_INTERACT_SUCCESS
 
 /mob/living/carbon
 	// Type References for Bodyparts
@@ -167,9 +167,6 @@
 	var/obj/item/bodypart/arm/right/part_default_r_arm = /obj/item/bodypart/arm/right
 	var/obj/item/bodypart/leg/left/part_default_l_leg = /obj/item/bodypart/leg/left
 	var/obj/item/bodypart/leg/right/part_default_r_leg = /obj/item/bodypart/leg/right
-
-/datum/species/ghoul/get_species_description()
-	return placeholder_description
 
 /datum/species/ghoul/get_species_lore()
 	return list(placeholder_lore)
