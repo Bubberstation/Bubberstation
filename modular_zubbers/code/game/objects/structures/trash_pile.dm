@@ -16,8 +16,8 @@
 
 	var/list/searched_by_ckeys = list() //Assoc list of people who searched this trash pile (value is 1), or started searching (value is 0)
 
-	var/trash_delay = 0.5 SECONDS
-	var/funny_sound_delay = 0.2 SECONDS
+	var/trash_delay = 1 SECONDS
+	var/funny_sound_delay = 0.4 SECONDS
 
 	COOLDOWN_DECLARE(trash_cooldown)
 	COOLDOWN_DECLARE(funny_sound_cooldown)
@@ -119,7 +119,13 @@
 	if(searched_by_ckeys[user.ckey])
 		balloon_alert(user, "empty...")
 		return TRUE
-	var/obj/item/spawned_item = prob(25) ? pick_weight_recursive(GLOB.common_loot) : pick_weight_recursive(GLOB.trash_pile_loot)
+	var/obj/item/spawned_item
+
+	if(prob(0.33) && length(GLOB.one_of_a_kind_loot)) // 1 in 300
+		spawned_item = pick_n_take(GLOB.one_of_a_kind_loot)
+	else
+		spawned_item = pick_weight_recursive(GLOB.trash_pile_loot)
+
 	spawned_item = new spawned_item(get_turf(src))
 	if(spawned_item)
 		balloon_alert(user, "found [spawned_item.name]!")
@@ -202,11 +208,7 @@
 
 	if(COOLDOWN_FINISHED(src, trash_cooldown))
 		COOLDOWN_START(src, trash_cooldown, trash_delay*0.5 + rand()*trash_delay) // x0.5 to x1.5
-		var/obj/item/spawned_item
-		if(length(GLOB.one_of_a_kind_loot) && prob(0.1)) //1 in 1000
-			spawned_item = pick_n_take(GLOB.one_of_a_kind_loot)
-		else
-			spawned_item = pick_weight_recursive(GLOB.trash_loot)
+		var/obj/item/spawned_item = pick_weight_recursive(GLOB.trash_loot)
 		spawned_item = new spawned_item(T)
 		var/turf/throw_at = get_ranged_target_turf_direct(src, user, 7, rand(-60,60))
 		if(spawned_item.safe_throw_at(throw_at, rand(2,4), rand(1,3), user, spin = TRUE))

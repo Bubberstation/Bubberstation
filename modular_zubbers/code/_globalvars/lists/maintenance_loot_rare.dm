@@ -2,11 +2,26 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items - TODO: FIND THE NE
 	/obj/item/aicard/aitater = 10,
 	/obj/item/ammo_box/foambox/riot = 25,
 	list(
-		/obj/item/survivalcapsule = 100,
+		/obj/item/survivalcapsule = 30,
 		/obj/item/survivalcapsule/luxury = 10,
 		/obj/item/survivalcapsule/luxuryelite = 5,
 		/obj/item/survivalcapsule/sauna = 5,
-		/obj/item/survivalcapsule/bathroom = 1
+		/obj/item/survivalcapsule/bathroom = 1,
+		/obj/item/survivalcapsule/fishing = 1,
+		/obj/item/survivalcapsule/fishing/hacked = 1,
+		/obj/item/survivalcapsule/plap = 1,
+		/obj/item/survivalcapsule/medical = 1,
+		/obj/item/survivalcapsule/chemistry = 1,
+		/obj/item/survivalcapsule/botany = 1,
+		/obj/item/survivalcapsule/trays = 1,
+		/obj/item/survivalcapsule/fan = 1,
+		/obj/item/survivalcapsule/o2 = 1,
+		/obj/item/survivalcapsule/kitchen = 1,
+		/obj/item/survivalcapsule/cabin = 1,
+		/obj/item/survivalcapsule/threebythree = 1,
+		/obj/item/survivalcapsule/sixbysix = 1,
+		/obj/item/survivalcapsule/xenoarchpod = 1,
+		/obj/item/survivalcapsule/triage = 1,
 	) = 25,
 	/obj/item/table_clock = 25,
 	/obj/item/storage/briefcase/coderbus = 10,
@@ -16,6 +31,7 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items - TODO: FIND THE NE
 		/obj/item/autosurgeon/organ/nif = 1
 	) = 1,
 	/obj/item/beacon = 1,
+	/obj/item/pet_food/pet_space_treat = 5,
 	list(
 		/obj/item/clothing/glasses/hud/ar/projector/diagnostic = 50,
 		/obj/item/clothing/glasses/hud/ar/projector/health = 25,
@@ -104,8 +120,14 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items - TODO: FIND THE NE
 		/obj/item/dnainjector/spastic = 1,
 		/obj/item/dnainjector/paranoia = 1,
 		/obj/item/dnainjector/coughmut = 1,
-		/obj/item/dnainjector/antenna = 1
-	) = 25,
+		/obj/item/dnainjector/antenna = 1,
+		/obj/item/dnainjector/strong_legs = 1,
+		/obj/item/dnainjector/webbing = 1,
+		/obj/item/dnainjector/void = 1,
+		/obj/item/dnainjector/olfaction = 1,
+
+
+	) = 50,
 	/obj/item/dog_bone = 5,
 	/obj/item/door_seal = 10,
 	list(
@@ -174,7 +196,6 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items - TODO: FIND THE NE
 	/obj/item/spess_knife = 5,
 	/obj/item/borg_restart_board = 5,
 	/obj/item/switchblade = 1,
-	/obj/item/throwing_star = 5,
 	/obj/item/grenade/primer/stingbang = 1,
 	list(
 		/obj/item/tank/internals/emergency_oxygen/engi/clown = 1,
@@ -219,6 +240,9 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items - TODO: FIND THE NE
 		/obj/item/book/granter/crafting_recipe/dusting/pipegun_prime = 1,
 		/obj/item/book/granter/crafting_recipe/dusting/laser_musket_prime = 1
 	) = 10,
-	/obj/item/skillchip/intj = 5,
+	/obj/item/raw_anomaly_core/random = 1,
+	/obj/item/fakeartefact = 5,
+	/obj/item/kheiral_cuffs = 1,
+	/obj/item/stack/sheet/hot_ice = 1,
 
 ))
