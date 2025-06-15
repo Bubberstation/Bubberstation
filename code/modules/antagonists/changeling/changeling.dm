@@ -957,7 +957,7 @@
 	current_profile = chosen_profile
 	// SKYRAT EDIT START
 	user.visual_only_organs = TRUE
-	chosen_dna.transfer_identity(user, TRUE)
+	chosen_dna.copy_dna(user.dna, COPY_DNA_SE|COPY_DNA_SPECIES)
 	user.visual_only_organs = initial(user.visual_only_organs)
 	user.updateappearance(mutcolor_update = TRUE, eyeorgancolor_update = TRUE)
 	user.regenerate_icons()

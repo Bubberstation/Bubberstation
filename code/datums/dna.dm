@@ -48,9 +48,11 @@ GLOBAL_LIST_INIT(features_block_lengths, list(
  * Commonly used by the datum/dna/set_uni_identity_block and datum/dna/get_uni_identity_block procs.
  */
 GLOBAL_LIST_INIT(total_ui_len_by_block, populate_total_ui_len_by_block())
+*/
 
 GLOBAL_LIST_INIT(standard_mutation_sources, list(MUTATION_SOURCE_ACTIVATED, MUTATION_SOURCE_MUTATOR, MUTATION_SOURCE_TIMED_INJECTOR))
 
+/*
 /proc/populate_total_ui_len_by_block()
 	. = list()
 	var/total_block_len = 1
@@ -454,6 +456,8 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 			set_uni_feature_block(blocknumber, construct_block(SSaccessories.pod_hair_list.Find(features["pod_hair"]), length(SSaccessories.pod_hair_list)))
 		if(DNA_FISH_TAIL_BLOCK)
 			set_uni_feature_block(blocknumber, construct_block(SSaccessories.tails_list_fish.Find(features["fish_tail"]), length(SSaccessories.tails_list_fish)))
+*/
+//SKYRAT EDIT REMOVAL END
 
 /**
  * Checks if two DNAs are practically the same by comparing their most defining features
