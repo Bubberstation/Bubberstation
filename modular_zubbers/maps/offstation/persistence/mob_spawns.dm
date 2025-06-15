@@ -166,7 +166,7 @@
 		/obj/item/screwdriver/cyborg/power,
 		/obj/item/construction/rcd/borg/syndicate,
 		/obj/item/pipe_dispenser,
-		/obj/item/lightreplacer/cyborg,
+		/obj/item/lightreplacer,
 		/obj/item/stack/cable_coil,
 		/obj/item/stack/sheet/iron,
 		/obj/item/stack/rods/cyborg,
