@@ -10,4 +10,4 @@
 	name = "Synth Joints"
 	default_color = "#ffffff"
 	gendered = FALSE
-	affected_bodyparts = CHEST | ARM_LEFT | ARM_RIGHT | LEG_LEFT | LEG_RIGHT
+	affected_bodyparts = CHEST | ARM_LEFT | ARM_RIGHT | LEG_LEFT | LEG_RIGHT | HAND_RIGHT | HAND_LEFT

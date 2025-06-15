@@ -1,6 +1,4 @@
 import { useState } from 'react';
-
-import { useBackend } from '../backend';
 import {
   Button,
   Icon,
@@ -9,7 +7,9 @@ import {
   Section,
   Table,
   Tooltip,
-} from '../components';
+} from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 const erpTagColor = {
@@ -166,7 +166,7 @@ const CharacterDirectoryList = (props) => {
     >
       <Input
         placeholder="Search name..."
-        onChange={(e) => setSearchTerm(e.target.value)}
+        onChange={setSearchTerm}
         value={searchTerm}
         mb={2}
       />

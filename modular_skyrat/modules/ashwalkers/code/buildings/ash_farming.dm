@@ -28,7 +28,7 @@
 /**
  * check_attack is meant to listen for the COMSIG_ATOM_ATTACKBY signal, where it essentially functions like the attackby proc
  */
-/datum/component/simple_farm/proc/check_attack(datum/source, obj/item/attacking_item, mob/user)
+/datum/component/simple_farm/proc/check_attack(datum/source, obj/item/attacking_item, mob/user, list/modifiers)
 	SIGNAL_HANDLER
 
 	//if its a seed, lets try to plant
@@ -140,11 +140,11 @@
 		else
 			icon_state = "[planted_seed.icon_grow][planted_seed.growthstages]"
 
-		name = lowertext(planted_seed.plantname)
+		name = LOWER_TEXT(planted_seed.plantname)
 
 	else
 		icon_state = "[planted_seed.icon_grow]1"
-		name = lowertext("harvested [planted_seed.plantname]")
+		name = LOWER_TEXT("harvested [planted_seed.plantname]")
 
 	return ..()
 
@@ -266,7 +266,7 @@
 /**
  * will create a harvest of the seeds product, with a chance to create a mutated version
  */
-/obj/structure/simple_farm/proc/create_harvest(var/obj/item/storage/bag/plants/plant_bag, var/mob/user)
+/obj/structure/simple_farm/proc/create_harvest(obj/item/storage/bag/plants/plant_bag, mob/user)
 	if(!planted_seed)
 		return
 

@@ -238,6 +238,9 @@
 			color_set = fire_colour
 			power_set = fire_power
 			brightness_set = fire_brightness
+		else if (major_emergency)
+			color_set = bulb_emergency_colour
+			brightness_set = brightness * bulb_major_emergency_brightness_mul
 		else if (nightshift_enabled)
 			brightness_set -= brightness_set * NIGHTSHIFT_LIGHT_MODIFIER // SKYRAT EDIT CHANGE - ORIGINAL: brightness_set = nightshift_brightness
 			power_set -= power_set * NIGHTSHIFT_LIGHT_MODIFIER // SKYRAT EDIT CHANGE - ORIGINAL: power_set = nightshift_light_power
@@ -259,9 +262,8 @@
 					blue = clamp(blue, 0, 255)
 					color_set = rgb(red, green, blue) // Splice the numbers together and turn them back to hex.
 				// SKYRAT EDIT ADDITION END
-		else if (major_emergency)
-			color_set = bulb_low_power_colour
-			brightness_set = brightness * bulb_major_emergency_brightness_mul
+		if (cached_color_filter)
+			color_set = apply_matrix_to_color(color_set, cached_color_filter["color"], cached_color_filter["space"] || COLORSPACE_RGB)
 		var/matching = light && brightness_set == light.light_range && power_set == light.light_power && color_set == light.light_color
 		if(!matching && (maploaded || instant)) // SKYRAT EDIT CHANGE - ORIGINAL: if(!matching)
 			switchcount++
@@ -385,7 +387,7 @@
 
 // attack with item - insert light (if right type), otherwise try to break the light
 
-/obj/machinery/light/attackby(obj/item/tool, mob/living/user, params)
+/obj/machinery/light/attackby(obj/item/tool, mob/living/user, list/modifiers, list/attack_modifiers)
 	// attempt to insert light
 	if(istype(tool, /obj/item/light))
 		if(status == LIGHT_OK)
@@ -467,14 +469,17 @@
 		real_cell.forceMove(new_light)
 		cell = null
 
-/obj/machinery/light/attacked_by(obj/item/attacking_object, mob/living/user)
-	..()
+/obj/machinery/light/attacked_by(obj/item/attacking_object, mob/living/user, list/modifiers, list/attack_modifiers)
+	. = ..()
+	if(!.)
+		return
 	if(status != LIGHT_BROKEN && status != LIGHT_EMPTY)
 		return
 	if(!on || !(attacking_object.obj_flags & CONDUCTS_ELECTRICITY))
 		return
-	if(prob(12))
-		electrocute_mob(user, get_area(src), src, 0.3, TRUE)
+	if(!prob(12))
+		return
+	electrocute_mob(user, get_area(src), src, 0.3, TRUE)
 
 /obj/machinery/light/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
@@ -539,13 +544,13 @@
 		)
 	return TRUE
 
-
 /obj/machinery/light/proc/flicker(amount = rand(10, 20))
 	set waitfor = FALSE
 	if(flickering)
 		return
 	flickering = TRUE
 	if(on && status == LIGHT_OK)
+		. = TRUE //did we actually flicker? Send this now because we expect immediate response, before sleeping.
 		for(var/i in 1 to amount)
 			if(status != LIGHT_OK || !has_power())
 				break
@@ -557,7 +562,6 @@
 		else
 			on = FALSE
 		update(FALSE, TRUE) //SKYRAT EDIT CHANGE
-		. = TRUE //did we actually flicker?
 	flickering = FALSE
 
 // ai attack - make lights flicker, because why not
@@ -592,9 +596,9 @@
 	var/protected = FALSE
 
 	if(istype(user))
-		var/obj/item/organ/internal/stomach/maybe_stomach = user.get_organ_slot(ORGAN_SLOT_STOMACH)
-		if(istype(maybe_stomach, /obj/item/organ/internal/stomach/ethereal))
-			var/obj/item/organ/internal/stomach/ethereal/stomach = maybe_stomach
+		var/obj/item/organ/stomach/maybe_stomach = user.get_organ_slot(ORGAN_SLOT_STOMACH)
+		if(istype(maybe_stomach, /obj/item/organ/stomach/ethereal))
+			var/obj/item/organ/stomach/ethereal/stomach = maybe_stomach
 			if(stomach.drain_time > world.time)
 				return
 			to_chat(user, span_notice("You start channeling some power through the [fitting] into your body."))
@@ -620,15 +624,13 @@
 	else if(istype(user) && user.dna.check_mutation(/datum/mutation/human/telekinesis))
 		to_chat(user, span_notice("You telekinetically remove the light [fitting]."))
 	else
-		var/obj/item/bodypart/affecting = user.get_bodypart("[(user.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
-		if(affecting?.receive_damage( 0, 5 )) // 5 burn damage
-			user.update_damage_overlays()
+		var/obj/item/bodypart/affecting = user.get_active_hand()
+		user.apply_damage(5, BURN, affecting, wound_bonus = CANT_WOUND)
 		if(HAS_TRAIT(user, TRAIT_LIGHTBULB_REMOVER))
-			to_chat(user, span_notice("You feel your [affecting] burning, and the light beginning to budge."))
+			to_chat(user, span_notice("You feel your [affecting.plaintext_zone] burning, but the light begins to budge..."))
 			if(!do_after(user, 5 SECONDS, target = src))
 				return
-			if(affecting?.receive_damage( 0, 10 )) // 10 more burn damage
-				user.update_damage_overlays()
+			user.apply_damage(10, BURN, user.get_active_hand(), wound_bonus = CANT_WOUND)
 			to_chat(user, span_notice("You manage to remove the light [fitting], shattering it in process."))
 			break_light_tube()
 		else
@@ -765,11 +767,11 @@
 	icon_state = "floor"
 	brightness = 4
 	light_angle = 360
-	layer = ABOVE_OPEN_TURF_LAYER
+	layer = BELOW_CATWALK_LAYER
 	plane = FLOOR_PLANE
 	light_type = /obj/item/light/bulb
 	fitting = "bulb"
-	nightshift_brightness = 3
+	nightshift_brightness = 4
 	fire_brightness = 4.5
 
 /obj/machinery/light/floor/get_light_offset()

@@ -11,7 +11,6 @@
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
 	can_buckle = TRUE
 	key_type = /obj/item/oar
-	var/allowed_turf = /turf/open/lava
 
 /obj/vehicle/ridden/lavaboat/Initialize(mapload)
 	. = ..()
@@ -23,6 +22,7 @@
 	icon = 'icons/mob/rideables/vehicles.dmi'
 	icon_state = "oar"
 	inhand_icon_state = "oar"
+	icon_angle = 45
 	lefthand_file = 'icons/mob/inhands/items/lavaland_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/lavaland_righthand.dmi'
 	force = 12

@@ -108,7 +108,7 @@
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
-	loot = list(/obj/effect/decal/cleanable/robot_debris)
+	loot = list(/obj/effect/decal/cleanable/blood/gibs/robot_debris)
 
 /mob/living/simple_animal/hostile/cult/horror
 	name = "Malformed Cultist"
@@ -343,7 +343,7 @@
 	bubble_icon = "machine"
 	speech_span = SPAN_ROBOT
 	del_on_death = 1
-	loot = list(/obj/effect/decal/cleanable/robot_debris)
+	loot = list(/obj/effect/decal/cleanable/blood/gibs/robot_debris)
 
 /mob/living/simple_animal/hostile/evilborg/heavy
 	name = "Malfunctioning Heavy Cyborg"

@@ -7,7 +7,7 @@
 	..()
 
 	new /obj/item/storage/bag/garment/station_admiral(src)
-	new /obj/item/radio/headset/interdyne/command(src)
+	new /obj/item/radio/headset/syndicateciv/command(src)
 
 /obj/structure/closet/secure_closet/persistence/maa_locker
 	icon_door = "warden"
@@ -21,6 +21,6 @@
 	new /obj/item/storage/belt/security/full(src)
 	new /obj/item/watertank/pepperspray(src)
 	new /obj/item/storage/bag/garment/master_arms(src)
-	new /obj/item/radio/headset/interdyne(src)
+	new /obj/item/radio/headset/syndicateciv/staff(src)
 
 

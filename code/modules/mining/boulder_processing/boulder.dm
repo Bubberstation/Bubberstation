@@ -9,7 +9,10 @@
 	icon_state = "ore"
 	icon = 'icons/obj/ore.dmi'
 	item_flags = NO_MAT_REDEMPTION | SLOWS_WHILE_IN_HAND
-	throw_range = 2
+	w_class = WEIGHT_CLASS_HUGE
+	throwforce = 30 // Under normal circumstances, pretty much nobody can throw this.
+	throw_range = 0
+	tk_throw_range = 1 // Sorry, this is too cheesy, but maybe you can smash down doors with it.
 	throw_speed = 0.5
 	slowdown = 1.5
 	drag_slowdown = 1.5 // It's still a big rock.
@@ -28,6 +31,7 @@
 	register_context()
 	AddComponent(/datum/component/two_handed, require_twohands = TRUE, force_unwielded = 0, force_wielded = 5) //Heavy as all hell, it's a boulder, dude.
 	AddComponent(/datum/component/sisyphus_awarder)
+	AddElement(/datum/element/bane, mob_biotypes = MOB_SPECIAL, added_damage = 20, requires_combat_mode = FALSE)
 
 /obj/item/boulder/Destroy(force)
 	SSore_generation.available_boulders -= src
@@ -35,8 +39,14 @@
 	return ..()
 
 /obj/item/boulder/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
-	if(held_item?.tool_behaviour == TOOL_MINING || HAS_TRAIT(user, TRAIT_BOULDER_BREAKER))
-		context[SCREENTIP_CONTEXT_RMB] = "Crush boulder into ore"
+	if(held_item && (held_item.tool_behaviour == TOOL_MINING || HAS_TRAIT(held_item, TRAIT_BOULDER_BREAKER)))
+		context[SCREENTIP_CONTEXT_LMB] = "Crush boulder into ore"
+		return CONTEXTUAL_SCREENTIP_SET
+	else if(HAS_TRAIT(user, TRAIT_BOULDER_BREAKER))
+		if(isbasicmob(user))
+			context[SCREENTIP_CONTEXT_LMB] = "Crush boulder into ore"
+		else
+			context[SCREENTIP_CONTEXT_RMB] = "Crush boulder into ore"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/boulder/examine(mob/user)
@@ -76,21 +86,20 @@
 
 /obj/item/boulder/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
-	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+	if(.)
 		return
 	if(HAS_TRAIT(user, TRAIT_BOULDER_BREAKER))
 		manual_process(null, user, INATE_BOULDER_SPEED_MULTIPLIER)
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
-/obj/item/boulder/attackby_secondary(obj/item/weapon, mob/user, params)
-	. = ..()
-	if(HAS_TRAIT(user, TRAIT_BOULDER_BREAKER) || HAS_TRAIT(weapon, TRAIT_BOULDER_BREAKER))
-		manual_process(weapon, user, INATE_BOULDER_SPEED_MULTIPLIER)
-		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-	if(weapon.tool_behaviour == TOOL_MINING)
-		manual_process(weapon, user)
-		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-	return ..()
+/obj/item/boulder/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if (HAS_TRAIT(tool, TRAIT_BOULDER_BREAKER))
+		manual_process(tool, user, INATE_BOULDER_SPEED_MULTIPLIER)
+		return ITEM_INTERACT_SUCCESS
+	if (tool.tool_behaviour == TOOL_MINING)
+		manual_process(tool, user)
+		return ITEM_INTERACT_SUCCESS
+	return NONE
 
 /obj/item/boulder/attack_basic_mob(mob/user, list/modifiers)
 	. = ..()
@@ -98,7 +107,6 @@
 		return
 	if(HAS_TRAIT(user, TRAIT_BOULDER_BREAKER))
 		manual_process(null, user, INATE_BOULDER_SPEED_MULTIPLIER) //A little hacky but it works around the speed of the blackboard task selection process for now.
-		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /**
  * This is called when a boulder is processed by a mob or tool, and reduces the durability of the boulder.
@@ -145,6 +153,7 @@
 		to_chat(user, span_notice("You finish working on \the [src], and it crumbles into ore."))
 		playsound(src, 'sound/effects/rock/rock_break.ogg', 50)
 		user.mind?.adjust_experience(/datum/skill/mining, MINING_SKILL_BOULDER_SIZE_XP * 0.2)
+		user.mind?.adjust_experience(/datum/skill/athletics, MINING_SKILL_BOULDER_SIZE_XP * 0.2)
 		qdel(src)
 		return
 	var/msg = (durability == 1 ? "is crumbling!" : "looks weaker!")
@@ -154,8 +163,10 @@
 /**
  * This function is called while breaking boulders manually, and drops ore based on the boulder's mineral content.
  * Quantity of ore spawned here is 1 less than if the boulder was processed by a machine, but clamped at 10 maximum, 1 minimum.
+ *
+ * target_destination: Optional - Sets the location directly instead of dropping it
  */
-/obj/item/boulder/proc/convert_to_ore()
+/obj/item/boulder/proc/convert_to_ore(atom/target_destination)
 	for(var/datum/material/picked in custom_materials)
 		var/obj/item/stack/ore/cracked_ore // Take the associated value and convert it into ore stacks...
 		var/quantity = clamp(round((custom_materials[picked] - SHEET_MATERIAL_AMOUNT)/SHEET_MATERIAL_AMOUNT), 1, 10) //but less resources than if they processed it by hand.
@@ -164,7 +175,10 @@
 		if(isnull(cracked_ore_type))
 			stack_trace("boulder found containing material type [picked.type] with no set ore_type")
 			continue
-		cracked_ore = new cracked_ore_type (drop_location(), quantity)
+		var/atom/ore_destination = drop_location()
+		if(target_destination)
+			ore_destination = target_destination
+		cracked_ore = new cracked_ore_type (ore_destination, quantity)
 		SSblackbox.record_feedback("tally", "ore_mined", quantity, cracked_ore.type)
 
 ///Moves boulder contents to the drop location, and then deletes the boulder.

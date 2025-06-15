@@ -1,4 +1,4 @@
-/obj/item/organ/internal/cyberimp/brain/nif
+/obj/item/organ/cyberimp/brain/nif
 	///Currently Avalible themese for the NIFs
 	var/static/list/ui_themes = list(
 		"abductor",
@@ -16,22 +16,22 @@
 	///What theme is currently being used on the NIF?
 	var/current_theme = "default"
 
-/obj/item/organ/internal/cyberimp/brain/nif/ui_interact(mob/user, datum/tgui/ui)
+/obj/item/organ/cyberimp/brain/nif/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
 		ui = new(user, src, "NifPanel", name)
 		ui.open()
 
-/obj/item/organ/internal/cyberimp/brain/nif/ui_state(mob/user)
+/obj/item/organ/cyberimp/brain/nif/ui_state(mob/user)
 	return GLOB.conscious_state
 
-/obj/item/organ/internal/cyberimp/brain/nif/ui_status(mob/user)
+/obj/item/organ/cyberimp/brain/nif/ui_status(mob/user)
 	if(user == linked_mob)
 		return UI_INTERACTIVE
 	return UI_CLOSE
 
-/obj/item/organ/internal/cyberimp/brain/nif/ui_static_data(mob/user)
+/obj/item/organ/cyberimp/brain/nif/ui_static_data(mob/user)
 	var/list/data = list()
 
 	data["loaded_nifsofts"] = list()
@@ -60,7 +60,7 @@
 
 	return data
 
-/obj/item/organ/internal/cyberimp/brain/nif/ui_data(mob/user)
+/obj/item/organ/cyberimp/brain/nif/ui_data(mob/user)
 	var/list/data = list()
 	//User Preference Variables
 	data["linked_mob_name"] = linked_mob.name
@@ -77,12 +77,15 @@
 	data["blood_drain"] = blood_drain
 	data["minimum_blood_level"] = minimum_blood_level
 
+	var/datum/component/nif_examine/nif_examine = linked_mob.GetComponent(/datum/component/nif_examine)
+	data["nif_examine_text"] = nif_examine?.nif_examine_text
+
 	//Durability Variables.
 	data["durability"] = durability
 
 	return data
 
-/obj/item/organ/internal/cyberimp/brain/nif/ui_act(action, list/params)
+/obj/item/organ/cyberimp/brain/nif/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return

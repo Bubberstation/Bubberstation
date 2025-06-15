@@ -107,8 +107,7 @@
 	armor_type = /datum/armor/mod_theme_policing
 	complexity_max = DEFAULT_MAX_COMPLEXITY - 1
 	charge_drain = DEFAULT_CHARGE_DRAIN * 1.25
-	slowdown_inactive = 1.5
-	slowdown_active = 0.5
+	slowdown_deployed = 0.5
 	allowed_suit_storage = list(
 		/obj/item/flashlight,
 		/obj/item/tank/internals,
@@ -317,9 +316,11 @@
 	UnregisterSignal(mod.wearer, COMSIG_LIVING_HEALTH_UPDATE)
 
 /obj/item/mod/module/auto_doc/on_install()
+	. = ..()
 	RegisterSignal(mod, COMSIG_ATOM_ITEM_INTERACTION, PROC_REF(on_item_interact))
 
 /obj/item/mod/module/auto_doc/on_uninstall(deleting)
+	. = ..()
 	UnregisterSignal(mod, COMSIG_ATOM_ATTACKBY)
 
 /obj/item/mod/module/auto_doc/attackby(obj/item/attacking_item, mob/user, params)

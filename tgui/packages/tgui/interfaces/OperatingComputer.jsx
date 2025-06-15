@@ -1,4 +1,3 @@
-import { useBackend, useSharedState } from '../backend';
 import {
   AnimatedNumber,
   Button,
@@ -7,7 +6,9 @@ import {
   ProgressBar,
   Section,
   Tabs,
-} from '../components';
+} from 'tgui-core/components';
+
+import { useBackend, useSharedState } from '../backend';
 import { Window } from '../layouts';
 
 const damageTypes = [
@@ -56,7 +57,8 @@ export const OperatingComputer = (props) => {
 
 const PatientStateView = (props) => {
   const { act, data } = useBackend();
-  const { table, procedures = [], patient = {} } = data;
+  // const { table, procedures = [], patient = {} } = data; // BUBBER EDIT CHANGE
+  const { table, procedures = [], patient = {}, traumas = [] } = data;
   if (!table) {
     return <NoticeBox>No Table Detected</NoticeBox>;
   }
@@ -97,6 +99,27 @@ const PatientStateView = (props) => {
           'No Patient Detected'
         )}
       </Section>
+      {/* BUBBER EDIT ADDITION BEGIN - SURGERY COMPUTER INFO */}
+      {traumas.map((trauma) => (
+        <Section key={trauma.name} title={'Trauma: ' + trauma.name}>
+          <LabeledList>
+            <LabeledList.Item label="Diagnosis">{trauma.info}</LabeledList.Item>
+            <LabeledList.Item label="Treatment">
+              {trauma.treatment}
+            </LabeledList.Item>
+            {trauma.chems ? (
+              <LabeledList.Item label="Chem Req">
+                <NoticeBox info>{trauma.chems}</NoticeBox>
+              </LabeledList.Item>
+            ) : (
+              <LabeledList.Item label="Chem Req">
+                <NoticeBox success>None</NoticeBox>
+              </LabeledList.Item>
+            )}
+          </LabeledList>
+        </Section>
+      ))}
+      {/* BUBBER EDIT ADDITION END - SURGERY COMPUTER INFO */}
       {procedures.length === 0 && <Section>No Active Procedures</Section>}
       {procedures.map((procedure) => (
         <Section key={procedure.name} title={procedure.name}>

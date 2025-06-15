@@ -14,7 +14,7 @@
 	AddComponent(/datum/component/simple_rotation)
 
 /obj/machinery/iv_drip/plumbing/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
-	if(attached)
+	if(attachment)
 		context[SCREENTIP_CONTEXT_RMB] = "Take needle out"
 	else if(reagent_container && !use_internal_storage)
 		context[SCREENTIP_CONTEXT_RMB] = "Eject container"
@@ -23,7 +23,7 @@
 
 	return CONTEXTUAL_SCREENTIP_SET
 
-/obj/machinery/iv_drip/plumbing/plunger_act(obj/item/plunger/P, mob/living/user, reinforced)
+/obj/machinery/iv_drip/plumbing/plunger_act(obj/item/plunger/attacking_plunger, mob/living/user, reinforced)
 	user.balloon_alert_to_viewers("furiously plunging...", "plunging iv drip...")
 	if(do_after(user, 3 SECONDS, target = src))
 		user.balloon_alert_to_viewers("finished plunging")

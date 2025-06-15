@@ -25,7 +25,7 @@
 	map_generator = /datum/map_generator/cave_generator/trench
 
 /area/ruin/ocean
-	has_gravity = TRUE
+	default_gravity = STANDARD_GRAVITY
 	area_flags = UNIQUE_AREA
 
 /area/ruin/ocean/listening_outpost

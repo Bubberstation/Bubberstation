@@ -205,7 +205,7 @@
 		icon = 'modular_skyrat/modules/aesthetics/walls/icons/reinforced_wall.dmi' // SKYRAT EDIT CHANGE - ORIGINAL: icon = 'icons/turf/walls/reinforced_states.dmi'
 		icon_state = "[base_decon_state]-[d_state]"
 	else
-		icon = 'modular_skyrat/modules/aesthetics/walls/icons/reinforced_wall.dmi' // SKYRAT EDIT CHANGE - ORIGINAL: icon = 'icons/turf/walls/reinforced_wall.dmi'
+		icon = initial(icon) // SKYRAT EDIT CHANGE - ORIGINAL: icon = 'icons/turf/walls/reinforced_wall.dmi'
 		icon_state = "[base_icon_state]-[smoothing_junction]"
 	return ..()
 
@@ -215,9 +215,13 @@
 			dismantle_wall()
 
 /turf/closed/wall/r_wall/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
-	if(the_rcd.canRturf || the_rcd.construction_mode == RCD_WALLFRAME)
+	if (the_rcd.construction_mode == RCD_WALLFRAME)
 		return ..()
-
+	if(!the_rcd.canRturf)
+		return
+	. = ..()
+	if (.)
+		.["delay"] *= RCD_RWALL_DELAY_MULT
 
 /turf/closed/wall/r_wall/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, list/rcd_data)
 	if(the_rcd.canRturf || rcd_data["[RCD_DESIGN_MODE]"] == RCD_WALLFRAME)

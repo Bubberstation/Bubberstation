@@ -22,7 +22,7 @@
 	wreckage = /obj/structure/mecha_wreckage/justice
 	mech_type = EXOSUIT_MODULE_JUSTICE
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
-	mecha_flags = ID_LOCK_ON | QUIET_STEPS | QUIET_TURNS | CAN_STRAFE | HAS_LIGHTS | MMI_COMPATIBLE | IS_ENCLOSED
+	mecha_flags = ID_LOCK_ON | QUIET_STEPS | QUIET_TURNS | CAN_STRAFE | HAS_LIGHTS | MMI_COMPATIBLE | IS_ENCLOSED | AI_COMPATIBLE
 	destroy_wall_sound = 'sound/vehicles/mecha/mech_blade_break_wall.ogg'
 	brute_attack_sound = 'sound/vehicles/mecha/mech_blade_attack.ogg'
 	attack_verbs = list("cut", "cuts", "cutting")
@@ -459,12 +459,13 @@
  * * charger - occupant inside mech.
  * * target - occupant inside mech.
  */
-/datum/action/vehicle/sealed/mecha/charge_attack/proc/charge_attack(mob/living/charger, turf/target)
+/datum/action/vehicle/sealed/mecha/charge_attack/proc/charge_attack(mob/living/charger, atom/target)
 	var/turf/start_charge_here = get_turf(charger)
-	var/charge_range = min(get_dist_euclidean(start_charge_here, target), max_charge_range)
-	var/turf/but_we_gonna_here = get_ranged_target_turf(start_charge_here, get_dir(start_charge_here, target), floor(charge_range))
+	var/turf/target_pos = get_turf(target)
 	var/turf/here_we_go = start_charge_here
-	for(var/turf/line_turf in get_line(get_step(start_charge_here, get_dir(start_charge_here, target)), but_we_gonna_here))
+	for(var/turf/line_turf in get_line(start_charge_here, target_pos))
+		if(floor(get_dist_euclidean(start_charge_here, line_turf)) > max_charge_range)
+			break
 		if(get_turf(charger) == get_turf(line_turf))
 			continue
 		if(isclosedturf(line_turf))

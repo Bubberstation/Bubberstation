@@ -25,29 +25,44 @@
 	mod.update_charge_alert()
 	mod = null
 
+/// Returns the item responsible for charging the suit, like a power cell, an ethereal's stomach, the core itself, etc.
 /obj/item/mod/core/proc/charge_source()
 	return
 
+/// Returns the amount of charge in the core.
 /obj/item/mod/core/proc/charge_amount()
 	return 0
 
+/// Returns the max amount of charge stored in the core.
 /obj/item/mod/core/proc/max_charge_amount()
 	return 1
 
+/// Adds a set amount of charge to the core.
 /obj/item/mod/core/proc/add_charge(amount)
 	return FALSE
 
+/// Subtracts a set amount of charge from the core.
 /obj/item/mod/core/proc/subtract_charge(amount)
 	return FALSE
 
+/// Checks if there's enough charge in the core to use an amount of energy.
 /obj/item/mod/core/proc/check_charge(amount)
 	return FALSE
 
-/**
- * Gets what icon state to display on the HUD for the charge level of this core
- */
+/// Returns what icon state to display on the HUD for the charge level of this core
 /obj/item/mod/core/proc/get_charge_icon_state()
 	return "0"
+
+/// Gets what the UI should use for the charge bar color.
+/obj/item/mod/core/proc/get_chargebar_color()
+	return "bad"
+
+/// Gets what the UI should use for the charge bar text.
+/obj/item/mod/core/proc/get_chargebar_string()
+	var/charge_amount = charge_amount()
+	var/max_charge_amount = max_charge_amount()
+	return "[display_energy(charge_amount)] of [display_energy(max_charge_amount())] \
+		([round((100 * charge_amount) / max_charge_amount, 1)]%)"
 
 /obj/item/mod/core/infinite
 	name = "MOD infinite core"
@@ -75,6 +90,12 @@
 
 /obj/item/mod/core/infinite/get_charge_icon_state()
 	return "high"
+
+/obj/item/mod/core/infinite/get_chargebar_color()
+	return "teal"
+
+/obj/item/mod/core/infinite/get_chargebar_string()
+	return "Infinite"
 
 /obj/item/mod/core/standard
 	name = "MOD standard core"
@@ -163,6 +184,22 @@
 
 	return "empty"
 
+/obj/item/mod/core/standard/get_chargebar_color()
+	if(isnull(charge_source()))
+		return "transparent"
+	switch(round(charge_amount() / max_charge_amount(), 0.01))
+		if(-INFINITY to 0.33)
+			return "bad"
+		if(0.33 to 0.66)
+			return "average"
+		if(0.66 to INFINITY)
+			return "good"
+
+/obj/item/mod/core/standard/get_chargebar_string()
+	if(isnull(charge_source()))
+		return "Power Cell Missing"
+	return ..()
+
 /obj/item/mod/core/standard/proc/install_cell(new_cell)
 	cell = new_cell
 	cell.forceMove(src)
@@ -222,11 +259,11 @@
 	if(!istype(attacking_item, /obj/item/stock_parts/power_store/cell))
 		return FALSE
 	if(!mod.open)
-		mod.balloon_alert(user, "open the cover first!")
+		mod.balloon_alert(user, "cover closed!")
 		playsound(mod, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	if(cell)
-		mod.balloon_alert(user, "cell already installed!")
+		mod.balloon_alert(user, "already has cell!")
 		playsound(mod, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	install_cell(attacking_item)
@@ -260,41 +297,62 @@
 	name = "MOD ethereal core"
 	icon_state = "mod-core-ethereal"
 	desc = "A reverse engineered core of a Modular Outerwear Device. Using natural liquid electricity from Ethereals, \
-		preventing the need to use external sources to convert electric charge."
+		preventing the need to use external sources to convert electric charge. As the suits are naturally charged by \
+		liquid electricity, this core makes it much more efficient, running all soft, hard, and wetware with several \
+		times less energy usage."
 	/// A modifier to all charge we use, ethereals don't need to spend as much energy as normal suits.
 	var/charge_modifier = 0.1
 
 /obj/item/mod/core/ethereal/charge_source()
-	var/obj/item/organ/internal/stomach/ethereal/ethereal_stomach = mod.wearer.get_organ_slot(ORGAN_SLOT_STOMACH)
+	var/obj/item/organ/stomach/ethereal/ethereal_stomach = mod.wearer.get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(!istype(ethereal_stomach))
 		return
 	return ethereal_stomach
 
 /obj/item/mod/core/ethereal/charge_amount()
-	var/obj/item/organ/internal/stomach/ethereal/charge_source = charge_source()
+	var/obj/item/organ/stomach/ethereal/charge_source = charge_source()
 	return charge_source?.cell.charge() || ETHEREAL_CHARGE_NONE
 
 /obj/item/mod/core/ethereal/max_charge_amount()
 	return ETHEREAL_CHARGE_FULL
 
 /obj/item/mod/core/ethereal/add_charge(amount)
-	var/obj/item/organ/internal/stomach/ethereal/charge_source = charge_source()
-	if(!charge_source)
+	var/obj/item/organ/stomach/ethereal/charge_source = charge_source()
+	if(isnull(charge_source))
 		return FALSE
-	charge_source.adjust_charge(amount*charge_modifier)
+	charge_source.adjust_charge(amount * charge_modifier)
 	return TRUE
 
 /obj/item/mod/core/ethereal/subtract_charge(amount)
-	var/obj/item/organ/internal/stomach/ethereal/charge_source = charge_source()
-	if(!charge_source)
+	var/obj/item/organ/stomach/ethereal/charge_source = charge_source()
+	if(isnull(charge_source))
 		return FALSE
-	return -charge_source.adjust_charge(-amount*charge_modifier)
+	return -charge_source.adjust_charge(-amount * charge_modifier)
 
 /obj/item/mod/core/ethereal/check_charge(amount)
-	return charge_amount() >= amount*charge_modifier
+	return charge_amount() >= amount * charge_modifier
 
 /obj/item/mod/core/ethereal/get_charge_icon_state()
-	return charge_source() ? "0" : "missing"
+	return isnull(charge_source()) ? "missing" : "0"
+
+/obj/item/mod/core/ethereal/get_chargebar_color()
+	if(isnull(charge_source()))
+		return "transparent"
+	switch(charge_amount())
+		if(-INFINITY to ETHEREAL_CHARGE_LOWPOWER)
+			return "bad"
+		if(ETHEREAL_CHARGE_LOWPOWER to ETHEREAL_CHARGE_NORMAL)
+			return "average"
+		if(ETHEREAL_CHARGE_NORMAL to ETHEREAL_CHARGE_FULL)
+			return "good"
+		if(ETHEREAL_CHARGE_FULL to INFINITY)
+			return "teal"
+
+/obj/item/mod/core/ethereal/get_chargebar_string()
+	var/obj/item/organ/stomach/ethereal/charge_source = charge_source()
+	if(isnull(charge_source()) || isnull(charge_source.cell))
+		return "Biological Battery Missing"
+	return ..()
 
 #define PLASMA_CORE_ORE_CHARGE (1.5 * STANDARD_CELL_CHARGE)
 #define PLASMA_CORE_SHEET_CHARGE (2 * STANDARD_CELL_CHARGE)
@@ -354,6 +412,13 @@
 			return "very_low"
 
 	return "empty"
+
+/obj/item/mod/core/plasma/get_chargebar_color()
+	switch(round(charge_amount() / max_charge_amount(), 0.01))
+		if(-INFINITY to 0.33)
+			return "bad"
+		if(0.33 to INFINITY)
+			return "purple"
 
 /obj/item/mod/core/plasma/proc/on_mod_interaction(datum/source, mob/living/user, obj/item/thing)
 	SIGNAL_HANDLER
@@ -444,3 +509,168 @@
 	var/flower_boots = new chosen_type(get_turf(mod.wearer))
 	animate(flower_boots, alpha = 0, 1 SECONDS)
 	QDEL_IN(flower_boots, 1 SECONDS)
+
+/obj/item/mod/core/soul
+	name = "MOD soul shard core"
+	desc = "A soul shard haphazardly jammed into a hand-crafted MOD core frame."
+	icon = 'icons/map_icons/items/_item.dmi'
+	icon_state = "/obj/item/mod/core/soul"
+	post_init_icon_state = "mod-core-soul"
+	var/base_desc
+	var/theme = THEME_CULT
+	greyscale_config = /datum/greyscale_config/mod_core_soul
+	greyscale_colors = "#ff0000"
+
+/obj/item/mod/core/soul/Initialize(mapload)
+	. = ..()
+	base_desc = desc
+	update_appearance(UPDATE_DESC)
+
+/obj/item/mod/core/soul/update_desc(updates)
+	. = ..()
+	desc = base_desc
+	switch(theme)
+		if(THEME_CULT)
+			desc += " You can feel unholy energies trying to tear something away from you."
+		if(THEME_HOLY)
+			desc += " It emanates a divine aura that defies souls tainted by darker forces."
+		if(THEME_WIZARD)
+			desc += " Yet another foray by the Wizard Federation into the dangerous field of soul magic."
+		if(THEME_HERETIC)
+			desc += " The surface of the shard shines with glimpses of things which never were, yet have always been."
+		else
+			desc += " Or at least, that's what it should be. <i>Somebody</i> must have set a variable incorrectly."
+
+/obj/item/mod/core/soul/update_greyscale()
+	switch(theme)
+		if(THEME_CULT)
+			greyscale_colors = "#ff0000"
+		if(THEME_HOLY)
+			greyscale_colors = "#0000ff"
+		if(THEME_WIZARD)
+			greyscale_colors = "#ff00ff"
+		if(THEME_HERETIC)
+			greyscale_colors = "#00ff00"
+	return ..()
+
+/obj/item/mod/core/soul/on_craft_completion(list/components, datum/crafting_recipe/current_recipe, atom/crafter)
+	var/obj/item/soulstone/stone = locate() in components
+	set_theme(stone.theme)
+	for(var/mob/living/basic/shade/shade in stone)
+		shade.forceMove(get_turf(src))
+		shade.visible_message(span_warning("[shade] is ejected from [stone] as it is inserted into [src]!"), span_warning("You are ejected from [stone] as it is inserted into [src]!"))
+	return ..()
+
+/obj/item/mod/core/soul/proc/set_theme(new_theme)
+	theme = new_theme
+	update_appearance(UPDATE_DESC)
+	update_greyscale()
+
+/obj/item/mod/core/soul/charge_source()
+	return CONFIG_GET(flag/disable_human_mood) ? src : mod.wearer?.mob_mood
+
+/obj/item/mod/core/soul/max_charge_amount()
+	return CONFIG_GET(flag/disable_human_mood) ? INFINITY : SANITY_MAXIMUM
+
+/obj/item/mod/core/soul/charge_amount()
+	var/mob/living/wearer = mod.wearer
+	if(!wearer)
+		return 0
+	if(HAS_TRAIT(wearer, TRAIT_NO_SOUL))
+		return 0 // Can't draw from something that isn't there.
+	if(CONFIG_GET(flag/disable_human_mood))
+		return INFINITY
+	var/datum/mood/source = charge_source()
+	return source?.sanity
+
+/obj/item/mod/core/soul/check_charge(amount)
+	if(CONFIG_GET(flag/disable_human_mood))
+		return !!mod.wearer
+	return charge_amount() >= amount * 10 / STANDARD_CELL_CHARGE
+
+/obj/item/mod/core/soul/subtract_charge(amount)
+	var/mob/living/wearer = mod.wearer
+	if(CONFIG_GET(flag/disable_human_mood))
+		return !!wearer
+	var/datum/mood/source = charge_source()
+	source.adjust_sanity(-amount * 10 / STANDARD_CELL_CHARGE)
+	var/backlash_type = get_backlash_type(wearer)
+	if(backlash_type)
+		wearer.add_mood_event("soul_core", backlash_type)
+	else
+		wearer.add_mood_event("soul_core", /datum/mood_event/soul_core_warning)
+	return TRUE
+
+/obj/item/mod/core/soul/get_chargebar_string()
+	var/mob/living/wearer = mod.wearer
+	if(!wearer || HAS_TRAIT(wearer, TRAIT_NO_SOUL))
+		return "No power source detected."
+	if(CONFIG_GET(flag/disable_human_mood))
+		return "Infinite"
+	return "[round(charge_amount() / max_charge_amount() * 100, 0.1)]%"
+
+/obj/item/mod/core/soul/get_chargebar_color()
+	switch(theme)
+		if(THEME_CULT)
+			return "red"
+		if(THEME_HOLY)
+			return "blue"
+		if(THEME_WIZARD)
+			return "purple"
+		if(THEME_HERETIC)
+			return "green"
+
+/obj/item/mod/core/soul/proc/get_backlash_type(mob/living/checked)
+	switch(theme)
+		if(THEME_CULT)
+			if(!(IS_CULTIST(checked) || IS_HERETIC(checked) || HAS_MIND_TRAIT(checked, TRAIT_MAGICALLY_GIFTED)))
+				return /datum/mood_event/soul_core_torment
+		if(THEME_HERETIC)
+			if(!(IS_CULTIST(checked) || IS_HERETIC(checked) || HAS_MIND_TRAIT(checked, TRAIT_MAGICALLY_GIFTED)))
+				return /datum/mood_event/soul_core_torment/heretic
+		if(THEME_HOLY)
+			if(IS_CULTIST(checked) || IS_HERETIC(checked))
+				return /datum/mood_event/soul_core_torment
+			if(IS_WIZARD(checked))
+				return /datum/mood_event/soul_core_discomfort
+
+/obj/item/mod/core/soul/get_charge_icon_state()
+	switch(round(charge_amount() / max_charge_amount(), 0.01))
+		if(0.75 to INFINITY)
+			return "high"
+		if(0.5 to 0.75)
+			return "mid"
+		if(0.25 to 0.5)
+			return "low"
+		if(0.02 to 0.25)
+			return "very_low"
+
+	return "empty"
+
+/obj/item/mod/core/soul/vv_edit_var(vname, vval)
+	. = ..()
+	if(vname == NAMEOF(src, theme))
+		update_appearance(UPDATE_DESC)
+		update_greyscale()
+
+/datum/mood_event/soul_core_torment
+	description = "IT BURNS!! IT BURNS!! THE DEEPEST DEPTHS OF MY BEING!! IT BURNS!!"
+	mood_change = -20
+	timeout = 10 SECONDS
+
+/datum/mood_event/soul_core_torment/heretic
+	description = "GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD!!"
+
+/datum/mood_event/soul_core_discomfort
+	description = "I'm no fan of these divine powers breathing down my neck."
+	mood_change = -3
+	timeout = 10 SECONDS
+
+/datum/mood_event/soul_core_warning
+	description = "I can feel my modsuit siphoning my energy. I'd better keep my spirits high."
+	mood_change = 0
+	timeout = 10 SECONDS
+
+/obj/item/mod/core/soul/wizard
+	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
+	theme = THEME_WIZARD

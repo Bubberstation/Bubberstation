@@ -100,7 +100,7 @@
 
 /obj/machinery/dna_infuser/proc/end_infuse(fail_explanation, fail_title)
 	var/mob/living/carbon/human/human_occupant = occupant
-	if(human_occupant.infuse_organ(infusing_into))
+	if(human_occupant.infuse_organ(infusing_into, infusing_from))
 		check_tier_progression(human_occupant)
 		to_chat(occupant, span_danger("You feel yourself becoming more... [infusing_into.infusion_desc]?"))
 	infusing = FALSE
@@ -161,7 +161,7 @@
 	//we set drop to false to manually call it with an allowlist
 	dump_inventory_contents(list(occupant))
 
-/obj/machinery/dna_infuser/attackby(obj/item/used, mob/user, params)
+/obj/machinery/dna_infuser/attackby(obj/item/used, mob/user, list/modifiers, list/attack_modifiers)
 	if(infusing)
 		return
 	if(!occupant && default_deconstruction_screwdriver(user, icon_state, icon_state, used))//sent icon_state is irrelevant...

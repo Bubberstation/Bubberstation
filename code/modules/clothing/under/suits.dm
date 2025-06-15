@@ -113,10 +113,10 @@
 
 /obj/item/clothing/under/suit/carpskin
 	name = "carpskin suit"
-	desc = "An luxurious suit made with only the finest scales, perfect for conducting dodgy business deals."
+	desc = "A luxurious suit made with only the finest scales, perfect for conducting dodgy business deals."
 	icon_state = "carpskin_suit"
 	inhand_icon_state = null
 
 /obj/item/clothing/under/suit/carpskin/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -2)
+	AddComponent(/datum/component/adjust_fishing_difficulty, -4)

@@ -157,8 +157,8 @@
 /obj/machinery/modular_computer/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	return (CPU_INTERACTABLE(user) && !user.combat_mode) ? cpu.item_interaction(user, tool, modifiers) : ..()
 
-/obj/machinery/modular_computer/attacked_by(obj/item/attacking_item, mob/living/user)
-	return CPU_INTERACTABLE(user) ? cpu.attacked_by(attacking_item, user) : ..()
+/obj/machinery/modular_computer/attacked_by(obj/item/attacking_item, mob/living/user, list/modifiers, list/attack_modifiers)
+	return CPU_INTERACTABLE(user) ? cpu.attacked_by(attacking_item, user, modifiers, attack_modifiers) : ..()
 
 // Stronger explosions cause serious damage to internal components
 // Minor explosions are mostly mitigitated by casing.
@@ -186,7 +186,7 @@
 // "Stun" weapons can cause minor damage to components (short-circuits?)
 // "Burn" damage is equally strong against internal components and exterior casing
 // "Brute" damage mostly damages the casing.
-/obj/machinery/modular_computer/bullet_act(obj/projectile/Proj)
-	return cpu?.bullet_act(Proj) || ..()
+/obj/machinery/modular_computer/bullet_act(obj/projectile/proj)
+	return cpu?.projectile_hit(proj) || ..()
 
 #undef CPU_INTERACTABLE

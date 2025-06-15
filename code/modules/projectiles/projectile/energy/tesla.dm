@@ -26,11 +26,13 @@
 	damage = 15 //Mech man big
 
 /obj/projectile/energy/tesla_cannon
-	name = "tesla orb"
-	icon_state = "ice_1"
-	damage = 0
-	speed = 1.5
-	var/shock_damage = 5
+	name = "tesla bolt"
+	icon_state = null
+	hitscan = TRUE
+	tracer_type = /obj/effect/projectile/tracer/lightning
+	impact_effect_type = null
+	damage = 5
+	var/shock_damage = 10
 
 /obj/projectile/energy/tesla_cannon/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()

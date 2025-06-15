@@ -1,9 +1,5 @@
 import { map } from 'common/collections';
-import { toFixed } from 'common/math';
 import { useState } from 'react';
-
-import { numberOfDecimalDigits } from '../../common/math';
-import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -15,7 +11,11 @@ import {
   NoticeBox,
   NumberInput,
   Section,
-} from '../components';
+} from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
+import { numberOfDecimalDigits } from 'tgui-core/math';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 const FilterIntegerEntry = (props) => {
@@ -23,7 +23,7 @@ const FilterIntegerEntry = (props) => {
   const { act } = useBackend();
   return (
     <NumberInput
-      value={value}
+      value={value || 0}
       minValue={-500}
       maxValue={500}
       step={1}
@@ -49,7 +49,7 @@ const FilterFloatEntry = (props) => {
   return (
     <>
       <NumberInput
-        value={value}
+        value={value || 0}
         minValue={-500}
         maxValue={500}
         stepPixelSize={4}
@@ -87,7 +87,7 @@ const FilterTextEntry = (props) => {
     <Input
       value={value}
       width="250px"
-      onChange={(e, value) =>
+      onBlur={(value) =>
         act('modify_filter_value', {
           name: filterName,
           new_data: {
@@ -116,7 +116,7 @@ const FilterColorEntry = (props) => {
       <Input
         value={value}
         width="90px"
-        onChange={(e, value) =>
+        onBlur={(value) =>
           act('transition_filter_value', {
             name: filterName,
             new_data: {
@@ -243,12 +243,11 @@ const FilterEntry = (props) => {
             }
           />
           <Button.Input
-            content="Rename"
-            placeholder={name}
-            onCommit={(e, new_name) =>
+            buttonText="Rename"
+            onCommit={(value) =>
               act('rename_filter', {
-                name: name,
-                new_name: new_name,
+                name,
+                new_name: value,
               })
             }
             width="90px"
@@ -309,7 +308,7 @@ export const Filteriffic = (props) => {
                 <Input
                   value={massApplyPath}
                   width="100px"
-                  onChange={(e, value) => setMassApplyPath(value)}
+                  onChange={setMassApplyPath}
                 />
                 <Button.Confirm
                   content="Apply"

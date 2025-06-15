@@ -1,7 +1,7 @@
 /datum/loadout_item/suit/secjacket
 	name = "High-Vis Security Jacket"
 	item_path = /obj/item/clothing/suit/armor/vest/secjacket/blue
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER)
+	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/suit/leather_apron
 	name = "Leather Apron"
@@ -27,6 +27,93 @@
 	name = "Pirate coat"
 	item_path = /obj/item/clothing/suit/costume/pirate
 
+/datum/loadout_item/suit/hooded/wintercoat/security
+	name = "Security winter jacket"
+	item_path = /obj/item/clothing/suit/hooded/wintercoat/security
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/suit/hooded/wintercoat/security/redsec
+	name = "Security winter jacket (Redsec)"
+	item_path = /obj/item/clothing/suit/hooded/wintercoat/security/redsec
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/suit/toggle/jacket/sec/old
+	name = "Security jacket (Redsec)"
+	item_path = /obj/item/clothing/suit/toggle/jacket/sec/old
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/suit/jacket/officer/tan
+	name = "Formal security jacket (tan)"
+	item_path = /obj/item/clothing/suit/jacket/officer/tan
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/suit/armor/vest/secjacket
+	name = "Security jacket"
+	item_path = /obj/item/clothing/suit/armor/vest/secjacket
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/suit/armor/vest/peacekeeper/armadyne
+	name = "Armadyne Jacket"
+	item_path = /obj/item/clothing/suit/armor/vest/peacekeeper/armadyne
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/suit/armor/vest/peacekeeper/armadyne/armor
+	name = "Armadyne Armor Vest"
+	item_path = /obj/item/clothing/suit/armor/vest/peacekeeper/armadyne/armor
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/suit/armor/vest/nri_police
+	name = "Imperial police vest"
+	item_path = /obj/item/clothing/suit/armor/vest/nri_police
+	restricted_roles = list(ALL_JOBS_SEC, JOB_CUSTOMS_AGENT)
+
+/datum/loadout_item/suit/jacket/fedsec
+	name = "Modern Security federation jacket"
+	item_path = /obj/item/clothing/suit/fedcoat/modern/sec
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/suit/jacket/corrections_officer
+	name = "Correction's officer's jacket"
+	item_path = /obj/item/clothing/suit/toggle/jacket/corrections_officer
+	restricted_roles = list(JOB_CORRECTIONS_OFFICER, JOB_WARDEN)
+
+/datum/loadout_item/suit/jacket/security_medic
+	name = "Security medic labcoat"
+	item_path = /obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic
+	restricted_roles = list(JOB_SECURITY_MEDIC)
+
+/datum/loadout_item/suit/jacket/security_medic
+	name = "Security medic labcoat (Blue)"
+	item_path = /obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic/blue
+	restricted_roles = list(JOB_SECURITY_MEDIC)
+
+
+// Fancy crop-top jackets
+
+/datum/loadout_item/suit/crop_jacket
+	name = "Colourable Crop-Top Jacket"
+	item_path = /obj/item/clothing/suit/crop_jacket
+
+/datum/loadout_item/suit/shortsleeve_crop_jacket
+	name = "Colourable Short-Sleeved Crop-Top Jacket"
+	item_path = /obj/item/clothing/suit/crop_jacket/shortsleeve
+
+/datum/loadout_item/suit/sleeveless_crop_jacket
+	name = "Colourable Sleeveless Crop-Top Jacket"
+	item_path = /obj/item/clothing/suit/crop_jacket/sleeveless
+
+/datum/loadout_item/suit/sports_jacket
+	name = "Colourable Sports Jacket"
+	item_path = /obj/item/clothing/suit/crop_jacket/long
+
+/datum/loadout_item/suit/shortsleeve_sports_jacket
+	name = "Colourable Short-Sleeved Sports Jacket"
+	item_path = /obj/item/clothing/suit/crop_jacket/shortsleeve/long
+
+/datum/loadout_item/suit/sleeveless_sports_jacket
+	name = "Colourable Sleeveless Sports Jacket"
+	item_path = /obj/item/clothing/suit/crop_jacket/sleeveless/long
+
 //Donator items V V V
 
 /datum/loadout_item/suit/runner_engi
@@ -42,7 +129,7 @@
 /datum/loadout_item/suit/collared_vest
 	name = "GLP-C 'Úlfur' Vest"
 	item_path = /obj/item/clothing/suit/armor/vest/collared_vest
-	restricted_roles = list(JOB_NT_REP, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_BLUESHIELD)
+	restricted_roles = list(ALL_JOBS_SEC, ALL_JOBS_CENTRAL)
 	donator_only = TRUE //Dono item for offwrldr
 
 /datum/loadout_item/suit/highvisjacket //sprites by Keila

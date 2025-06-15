@@ -46,7 +46,7 @@
 	remove_from_dart(holder_casing, holder_projectile)
 	UnregisterSignal(parent, COMSIG_ITEM_PRE_ATTACK)
 
-/datum/component/dart_insert/proc/on_preattack(datum/source, atom/target, mob/user, params)
+/datum/component/dart_insert/proc/on_preattack(datum/source, atom/target, mob/user, list/modifiers)
 	SIGNAL_HANDLER
 	var/obj/item/ammo_casing/foam_dart/dart = target
 	if(!istype(dart))
@@ -133,10 +133,10 @@
 	new_overlays += mutable_appearance(projectile_overlay_icon, projectile_overlay_icon_state)
 
 /datum/component/dart_insert/proc/apply_var_modifiers(obj/projectile/projectile)
-	var_modifiers = istype(modifier_getter) ? modifier_getter.Invoke() : list()
+	if (!modifier_getter)
+		return
+	var_modifiers = modifier_getter.Invoke(projectile)
 	projectile.damage += var_modifiers["damage"]
-	if(var_modifiers["speed"])
-		var_modifiers["speed"] = reciprocal_add(projectile.speed, var_modifiers["speed"]) - projectile.speed
 	projectile.speed += var_modifiers["speed"]
 	projectile.armour_penetration += var_modifiers["armour_penetration"]
 	projectile.wound_bonus += var_modifiers["wound_bonus"]

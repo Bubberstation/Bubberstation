@@ -96,13 +96,13 @@
 	ADD_TRAIT(target, TRAIT_CURRENTLY_CLEANING, REF(src))
 	// We need to update our planes on overlay changes
 	RegisterSignal(target, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(cleaning_target_moved))
-	var/mutable_appearance/low_bubble = mutable_appearance('icons/effects/effects.dmi', "bubbles", GAME_CLEAN_LAYER, target, GAME_PLANE)
-	var/mutable_appearance/high_bubble = mutable_appearance('icons/effects/effects.dmi', "bubbles", GAME_CLEAN_LAYER, target, ABOVE_GAME_PLANE)
+	var/mutable_appearance/low_bubble = mutable_appearance('icons/effects/effects.dmi', "bubbles", CLEANABLE_OBJECT_LAYER, target, GAME_PLANE)
+	var/mutable_appearance/high_bubble = mutable_appearance('icons/effects/effects.dmi', "bubbles", CLEANABLE_OBJECT_LAYER, target, ABOVE_GAME_PLANE)
 	var/list/icon_offsets = target.get_oversized_icon_offsets()
-	low_bubble.pixel_x = icon_offsets["x"]
-	low_bubble.pixel_y = icon_offsets["y"]
-	high_bubble.pixel_x = icon_offsets["x"]
-	high_bubble.pixel_y = icon_offsets["y"]
+	low_bubble.pixel_w = icon_offsets["x"]
+	low_bubble.pixel_z = icon_offsets["y"]
+	high_bubble.pixel_w = icon_offsets["x"]
+	high_bubble.pixel_z = icon_offsets["y"]
 	if(target.plane > low_bubble.plane) //check if the higher overlay is necessary
 		target.add_overlay(high_bubble)
 	else if(target.plane == low_bubble.plane)
@@ -118,7 +118,9 @@
 	if(user.mind) //higher cleaning skill can make the duration shorter
 		//offsets the multiplier you get from cleaning skill, but doesn't allow the duration to be longer than the base duration
 		cleaning_duration = (cleaning_duration * min(user.mind.get_skill_modifier(/datum/skill/cleaning, SKILL_SPEED_MODIFIER)+skill_duration_modifier_offset, 1))
-
+	// Assoc list, collects all items being cleaned with its value being any blood on it
+	var/list/all_cleaned = list()
+	all_cleaned[target] = GET_ATOM_BLOOD_DNA(target) || list()
 	//do the cleaning
 	var/clean_succeeded = FALSE
 	if(do_after(user, cleaning_duration, target = target))
@@ -126,10 +128,11 @@
 		if(clean_target)
 			for(var/obj/effect/decal/cleanable/cleanable_decal in target) //it's important to do this before you wash all of the cleanables off
 				user.mind?.adjust_experience(/datum/skill/cleaning, round(cleanable_decal.beauty / CLEAN_SKILL_BEAUTY_ADJUSTMENT))
+				all_cleaned[cleanable_decal] = GET_ATOM_BLOOD_DNA(cleanable_decal)
 			if(target.wash(cleaning_strength))
 				user.mind?.adjust_experience(/datum/skill/cleaning, round(CLEAN_SKILL_GENERIC_WASH_XP))
 
-	on_cleaned_callback?.Invoke(source, target, user, clean_succeeded)
+	on_cleaned_callback?.Invoke(source, target, user, clean_succeeded, all_cleaned)
 	//remove the cleaning overlay
 	target.cut_overlay(low_bubble)
 	target.cut_overlay(high_bubble)
@@ -140,13 +143,13 @@
 	if(same_z_layer)
 		return
 	// First, get rid of the old overlay
-	var/mutable_appearance/old_low_bubble = mutable_appearance('icons/effects/effects.dmi', "bubbles", GAME_CLEAN_LAYER, old_turf, GAME_PLANE)
-	var/mutable_appearance/old_high_bubble = mutable_appearance('icons/effects/effects.dmi', "bubbles", GAME_CLEAN_LAYER, old_turf, ABOVE_GAME_PLANE)
+	var/mutable_appearance/old_low_bubble = mutable_appearance('icons/effects/effects.dmi', "bubbles", CLEANABLE_OBJECT_LAYER, old_turf, GAME_PLANE)
+	var/mutable_appearance/old_high_bubble = mutable_appearance('icons/effects/effects.dmi', "bubbles", CLEANABLE_OBJECT_LAYER, old_turf, ABOVE_GAME_PLANE)
 	source.cut_overlay(old_low_bubble)
 	source.cut_overlay(old_high_bubble)
 
 	// Now, add the new one
-	var/mutable_appearance/new_low_bubble = mutable_appearance('icons/effects/effects.dmi', "bubbles", GAME_CLEAN_LAYER, new_turf, GAME_PLANE)
-	var/mutable_appearance/new_high_bubble = mutable_appearance('icons/effects/effects.dmi', "bubbles", GAME_CLEAN_LAYER, new_turf, ABOVE_GAME_PLANE)
+	var/mutable_appearance/new_low_bubble = mutable_appearance('icons/effects/effects.dmi', "bubbles", CLEANABLE_OBJECT_LAYER, new_turf, GAME_PLANE)
+	var/mutable_appearance/new_high_bubble = mutable_appearance('icons/effects/effects.dmi', "bubbles", CLEANABLE_OBJECT_LAYER, new_turf, ABOVE_GAME_PLANE)
 	source.add_overlay(new_low_bubble)
 	source.add_overlay(new_high_bubble)

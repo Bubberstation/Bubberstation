@@ -24,7 +24,6 @@
 
 	return TRUE
 
-
 /mob/living/verb/shift_layer_down()
 	set name = "Shift Layer Downwards"
 	set category = "IC"
@@ -74,3 +73,8 @@
 	var/mob/living/layer_shifter = user
 
 	return layer_shifter.shift_layer_down()
+
+#undef MOB_LAYER_SHIFT_INCREMENT
+#undef MOB_LAYER_MULTIPLIER
+#undef MOB_LAYER_SHIFT_MIN
+#undef MOB_LAYER_SHIFT_MAX

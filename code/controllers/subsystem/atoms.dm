@@ -1,6 +1,11 @@
 SUBSYSTEM_DEF(atoms)
 	name = "Atoms"
-	init_order = INIT_ORDER_ATOMS
+	dependencies = list(
+		/datum/controller/subsystem/processing/reagents,
+		/datum/controller/subsystem/fluids,
+		/datum/controller/subsystem/mapping,
+		/datum/controller/subsystem/job,
+	)
 	flags = SS_NO_FIRE
 
 	/// A stack of list(source, desired initialized state)
@@ -157,6 +162,7 @@ SUBSYSTEM_DEF(atoms)
 		initialized = base_initialized
 		base_initialized = INITIALIZATION_INNEW_REGULAR
 		return
+
 	initialized = initialized_state[length(initialized_state)][2]
 
 /// Returns TRUE if anything is currently being initialized
@@ -173,9 +179,6 @@ SUBSYSTEM_DEF(atoms)
 /datum/controller/subsystem/atoms/proc/setupGenetics()
 	var/list/mutations = subtypesof(/datum/mutation/human)
 	shuffle_inplace(mutations)
-	for(var/A in subtypesof(/datum/generecipe))
-		var/datum/generecipe/GR = A
-		GLOB.mutation_recipes[initial(GR.required)] = initial(GR.result)
 	for(var/i in 1 to LAZYLEN(mutations))
 		var/path = mutations[i] //byond gets pissy when we do it in one line
 		var/datum/mutation/human/B = new path ()

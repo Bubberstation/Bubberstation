@@ -47,7 +47,7 @@
 	antagonist.objectives = list(fixation)
 
 	hypno_alert.desc = "\"[hypnotic_phrase]\"... your mind seems to be fixated on this concept."
-	..()
+	. = ..()
 
 /datum/brain_trauma/hypnosis/on_lose()
 	message_admins("[ADMIN_LOOKUPFLW(owner)] is no longer hypnotized with the phrase '[hypnotic_phrase]'.")
@@ -55,7 +55,10 @@
 	to_chat(owner, span_userdanger("You suddenly snap out of your hypnosis. The phrase '[hypnotic_phrase]' no longer feels important to you."))
 	owner.clear_alert(ALERT_HYPNOSIS)
 	..()
+	if (!isnull(antagonist))
+		antagonist.trauma = null
 	owner.mind.remove_antag_datum(/datum/antagonist/hypnotized)
+	antagonist = null
 
 /datum/brain_trauma/hypnosis/on_life(seconds_per_tick, times_fired)
 	..()

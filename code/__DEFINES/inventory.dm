@@ -51,23 +51,19 @@
 #define ITEM_SLOT_NECK (1<<12)
 /// A character's hand slots
 #define ITEM_SLOT_HANDS (1<<13)
-/// Inside of a character's backpack
-#define ITEM_SLOT_BACKPACK (1<<14)
 /// Suit Storage slot
-#define ITEM_SLOT_SUITSTORE (1<<15)
+#define ITEM_SLOT_SUITSTORE (1<<14)
 /// Left Pocket slot
-#define ITEM_SLOT_LPOCKET (1<<16)
+#define ITEM_SLOT_LPOCKET (1<<15)
 /// Right Pocket slot
-#define ITEM_SLOT_RPOCKET (1<<17)
+#define ITEM_SLOT_RPOCKET (1<<16)
 /// Handcuff slot
-#define ITEM_SLOT_HANDCUFFED (1<<18)
+#define ITEM_SLOT_HANDCUFFED (1<<17)
 /// Legcuff slot (bolas, beartraps)
-#define ITEM_SLOT_LEGCUFFED (1<<19)
-/// Inside of a character's BELT.........
-#define ITEM_SLOT_BELTPACK (1<<20)
+#define ITEM_SLOT_LEGCUFFED (1<<18)
 
 /// Total amount of slots
-#define SLOTS_AMT 20 // Keep this up to date!
+#define SLOTS_AMT 19 // Keep this up to date!
 
 ///Inventory slots that can be blacklisted by a species from being equipped into
 DEFINE_BITFIELD(no_equip_flags, list(
@@ -125,11 +121,20 @@ DEFINE_BITFIELD(no_equip_flags, list(
 /// If this has our taur variant, do we hide our taur part?
 #define HIDETAUR (1<<20)
 //SKYRAT EDIT ADDITION END
+//Bitflags for hair appendage zones
+#define HAIR_APPENDAGE_FRONT (1<<0)
+#define HAIR_APPENDAGE_LEFT (1<<1)
+#define HAIR_APPENDAGE_RIGHT (1<<2)
+#define HAIR_APPENDAGE_REAR (1<<3)
+#define HAIR_APPENDAGE_TOP (1<<4)
+#define HAIR_APPENDAGE_HANGING_FRONT (1<<5)
+#define HAIR_APPENDAGE_HANGING_REAR (1<<6)
+#define HAIR_APPENDAGE_ALL (HAIR_APPENDAGE_FRONT|HAIR_APPENDAGE_LEFT|HAIR_APPENDAGE_RIGHT|HAIR_APPENDAGE_REAR|HAIR_APPENDAGE_TOP|HAIR_APPENDAGE_HANGING_FRONT|HAIR_APPENDAGE_HANGING_REAR)
 
 //bitflags for clothing coverage - also used for limbs
-#define HEAD (1<<0)
-#define CHEST (1<<1)
-#define GROIN (1<<2)
+#define CHEST (1<<0)
+#define GROIN (1<<1)
+#define HEAD (1<<2)
 #define LEG_LEFT (1<<3)
 #define LEG_RIGHT (1<<4)
 #define LEGS (LEG_LEFT | LEG_RIGHT)
@@ -148,6 +153,10 @@ DEFINE_BITFIELD(no_equip_flags, list(
 //defines for the index of hands
 #define LEFT_HANDS 1
 #define RIGHT_HANDS 2
+/// Checks if the value is "right" - same as ISEVEN, but used primarily for hand or foot index contexts
+#define IS_RIGHT_INDEX(value) (value % 2 == 0)
+/// Checks if the value is "left" - same as ISODD, but used primarily for hand or foot index contexts
+#define IS_LEFT_INDEX(value) (value % 2 != 0)
 
 //flags for female outfits: How much the game can safely "take off" the uniform without it looking weird
 /// For when there's simply no need for a female version of this uniform.
@@ -176,7 +185,6 @@ DEFINE_BITFIELD(no_equip_flags, list(
 /// The sprite works fine for digitigrade legs as-is.
 #define CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON (1<<2)
 /// Auto-generates the leg portion of the sprite with GAGS
-/// Suggested that you set [/obj/item/var/digitigrade_greyscale_config_worn] when using this flag
 #define CLOTHING_DIGITIGRADE_MASK (1<<3)
 // SKYRAT EDIT ADDITION START
 /// The sprite works fine for snouts.
@@ -299,26 +307,63 @@ GLOBAL_LIST_INIT(mining_suit_allowed, list(
 	/obj/item/kinetic_crusher,
 	/obj/item/knife,
 	/obj/item/mining_scanner,
-	/obj/item/organ/internal/monster_core,
+	/obj/item/organ/monster_core,
 	/obj/item/storage/bag/ore,
 	/obj/item/pickaxe,
 	/obj/item/resonator,
 	/obj/item/spear,
 ))
 
-/// String for items placed into the left pocket.
+/// List of all "tools" that can fit into belts or work from toolboxes
+
+GLOBAL_LIST_INIT(tool_items, list(
+	/obj/item/airlock_painter,
+	/obj/item/analyzer,
+	/obj/item/assembly/signaler,
+	/obj/item/construction/rcd,
+	/obj/item/construction/rld,
+	/obj/item/construction/rtd,
+	/obj/item/crowbar,
+	/obj/item/extinguisher/mini,
+	/obj/item/flashlight,
+	/obj/item/forcefield_projector,
+	/obj/item/geiger_counter,
+	/obj/item/holosign_creator/atmos,
+	/obj/item/holosign_creator/engineering,
+	/obj/item/inducer,
+	/obj/item/lightreplacer,
+	/obj/item/multitool,
+	/obj/item/pipe_dispenser,
+	/obj/item/pipe_painter,
+	/obj/item/plunger,
+	/obj/item/radio,
+	/obj/item/screwdriver,
+	/obj/item/stack/cable_coil,
+	/obj/item/t_scanner,
+	/obj/item/weldingtool,
+	/obj/item/wirecutters,
+	/obj/item/wrench,
+	/obj/item/spess_knife,
+))
+
+// Keys for equip_in_one_of_slots, if you add new ones update the assoc lists in equip_in_one_of_slots
+/// Items placed into the left pocket.
 #define LOCATION_LPOCKET "in your left pocket"
-/// String for items placed into the right pocket
+/// Items placed into the right pocket
 #define LOCATION_RPOCKET "in your right pocket"
-/// String for items placed into the backpack.
+/// Items placed into the backpack.
 #define LOCATION_BACKPACK "in your backpack"
-/// String for items placed into the hands.
+/// Items placed into the hands.
 #define LOCATION_HANDS "in your hands"
-/// String for items placed in the glove slot.
+/// Items placed in the glove slot.
 #define LOCATION_GLOVES "on your hands"
-/// String for items placed in the eye/glasses slot.
+/// Items placed in the eye/glasses slot.
 #define LOCATION_EYES "covering your eyes"
-/// String for items placed on the head/hat slot.
+/// Items placed in the mask slot.
+#define LOCATION_MASK "covering your face"
+/// Items placed on the head/hat slot.
 #define LOCATION_HEAD "on your head"
-/// String for items placed in the neck slot.
+/// Items placed in the neck slot.
 #define LOCATION_NECK "around your neck"
+/// Items placed in the id slot
+#define LOCATION_ID "in your ID slot"

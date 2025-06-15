@@ -6,23 +6,25 @@
 	return 2
 
 /mob/living/silicon/attack_alien(mob/living/carbon/alien/adult/user, list/modifiers)
-	if(..()) //if harm or disarm intent
-		var/damage = rand(user.melee_damage_lower, user.melee_damage_upper)
-		if (prob(90))
-			log_combat(user, src, "attacked")
-			playsound(loc, 'sound/items/weapons/slash.ogg', 25, TRUE, -1)
-			visible_message(span_danger("[user] slashes at [src]!"), \
-							span_userdanger("[user] slashes at you!"), null, null, user)
-			to_chat(user, span_danger("You slash at [src]!"))
-			if(prob(8))
-				flash_act(affect_silicon = 1)
-			log_combat(user, src, "attacked")
-			adjustBruteLoss(damage)
-		else
-			playsound(loc, 'sound/items/weapons/slashmiss.ogg', 25, TRUE, -1)
-			visible_message(span_danger("[user]'s swipe misses [src]!"), \
-							span_danger("You avoid [user]'s swipe!"), null, null, user)
-			to_chat(user, span_warning("Your swipe misses [src]!"))
+	. = ..()
+	if(!.) //if harm or disarm intent
+		return
+	var/damage = rand(user.melee_damage_lower, user.melee_damage_upper)
+	if (prob(90))
+		playsound(loc, 'sound/items/weapons/slash.ogg', 25, TRUE, -1)
+		visible_message(span_danger("[user] slashes at [src]!"), \
+						span_userdanger("[user] slashes at you!"), null, null, user)
+		to_chat(user, span_danger("You slash at [src]!"))
+		if(prob(8))
+			flash_act(affect_silicon = 1)
+		adjustBruteLoss(damage)
+		log_combat(user, src, "attacked")
+	else
+		playsound(loc, 'sound/items/weapons/slashmiss.ogg', 25, TRUE, -1)
+		visible_message(span_danger("[user]'s swipe misses [src]!"),
+						span_danger("You avoid [user]'s swipe!"), null, null, user)
+		to_chat(user, span_warning("Your swipe misses [src]!"))
+		log_combat(user, src, "attacked and missed")
 
 /mob/living/silicon/attack_animal(mob/living/simple_animal/user, list/modifiers)
 	. = ..()
@@ -87,13 +89,13 @@
 
 /mob/living/silicon/check_block(atom/hitby, damage, attack_text, attack_type, armour_penetration, damage_type, attack_flag)
 	. = ..()
-	if(.)
-		return TRUE
+	if(. == SUCCESSFUL_BLOCK)
+		return SUCCESSFUL_BLOCK
 	if(damage_type == BRUTE && attack_type == UNARMED_ATTACK && attack_flag == MELEE && damage <= 10)
 		playsound(src, 'sound/effects/bang.ogg', 10, TRUE)
 		visible_message(span_danger("[attack_text] doesn't leave a dent on [src]!"), vision_distance = COMBAT_MESSAGE_RANGE)
-		return TRUE
-	return FALSE
+		return SUCCESSFUL_BLOCK
+	return FAILED_BLOCK
 
 /mob/living/silicon/attack_drone(mob/living/basic/drone/user)
 	if(user.combat_mode)

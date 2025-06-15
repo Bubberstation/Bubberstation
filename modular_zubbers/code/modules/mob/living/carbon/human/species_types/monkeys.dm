@@ -1,6 +1,6 @@
 
 /datum/species/monkey
-	mutantheart = /obj/item/organ/internal/heart/monkey
+	mutantheart = /obj/item/organ/heart/monkey
 
 /datum/species/monkey/get_species_description()
 	return list("Monkeys are a type of primate that exist between humans and animals on the evolutionary chain. \

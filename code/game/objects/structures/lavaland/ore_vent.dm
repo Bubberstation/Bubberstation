@@ -97,7 +97,7 @@
 		SSore_generation.processed_vents -= src
 	return ..()
 
-/obj/structure/ore_vent/attackby(obj/item/attacking_item, mob/user, params)
+/obj/structure/ore_vent/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	. = ..()
 	if(.)
 		return TRUE
@@ -128,9 +128,8 @@
 
 /obj/structure/ore_vent/attack_basic_mob(mob/user, list/modifiers)
 	. = ..()
-	if(!HAS_TRAIT(user, TRAIT_BOULDER_BREAKER))
-		return
-	produce_boulder(TRUE)
+	if(HAS_TRAIT(user, TRAIT_BOULDER_BREAKER))
+		produce_boulder(TRUE)
 
 /obj/structure/ore_vent/is_buckle_possible(mob/living/target, force, check_loc)
 	. = ..()
@@ -207,10 +206,10 @@
 /**
  * This confirms that the user wants to start the wave defense event, and that they can start it.
  */
-/obj/structure/ore_vent/proc/pre_wave_defense(mob/user, spawn_drone = TRUE)
+/obj/structure/ore_vent/proc/pre_wave_defense(mob/user, spawn_drone = TRUE, mech_scan = FALSE)
 	if(tgui_alert(user, excavation_warning, "Begin defending ore vent?", list("Yes", "No")) != "Yes")
 		return FALSE
-	if(!can_interact(user))
+	if(!can_interact(user) && !mech_scan)
 		return FALSE
 	if(!COOLDOWN_FINISHED(src, wave_cooldown) || node)
 		return FALSE
@@ -230,7 +229,7 @@
 			if(istype(rock, /turf/open/misc/asteroid) && prob(35)) // so it's too common
 				new /obj/effect/decal/cleanable/rubble(rock)
 			if(prob(100 - (i * 15)))
-				rock.gets_drilled(user, FALSE)
+				rock.gets_drilled(user)
 				if(prob(50))
 					new /obj/effect/decal/cleanable/rubble(rock)
 		sleep(0.6 SECONDS)
@@ -337,24 +336,16 @@
  * Gives a readout of the ores available in the vent that gets added to the description,
  * then asks the user if they want to start wave defense if it's already been discovered.
  * @params user The user who tapped the vent.
- * @params scan_only If TRUE, the vent will only scan, and not prompt to start wave defense. Used by the mech mineral scanner.
+ * @params mech_scan If TRUE, will bypass interaction checks to allow mechs to be able to begin the wave defense.
  */
-/obj/structure/ore_vent/proc/scan_and_confirm(mob/living/user, scan_only = FALSE)
+/obj/structure/ore_vent/proc/scan_and_confirm(mob/living/user, mech_scan = FALSE)
 	if(tapped)
 		balloon_alert_to_viewers("vent tapped!")
 		return
 	if(!COOLDOWN_FINISHED(src, wave_cooldown) || node) //We're already defending the vent, so don't scan it again.
-		if(!scan_only)
-			balloon_alert_to_viewers("protect the node drone!")
+		balloon_alert_to_viewers("protect the node drone!")
 		return
 	if(!discovered)
-		if(scan_only)
-			discovered = TRUE
-			generate_description(user)
-			balloon_alert_to_viewers("vent scanned!")
-			AddComponent(/datum/component/gps, name)
-			return
-
 		if(DOING_INTERACTION_WITH_TARGET(user, src))
 			balloon_alert(user, "already scanning!")
 			return
@@ -374,10 +365,8 @@
 			user_id_card.registered_account.mining_points += (MINER_POINT_MULTIPLIER)
 			user_id_card.registered_account.bank_card_talk("You've been awarded [MINER_POINT_MULTIPLIER] mining points for discovery of an ore vent.")
 		return
-	if(scan_only)
-		return
 
-	if(!pre_wave_defense(user, spawn_drone_on_tap))
+	if(!pre_wave_defense(user, spawn_drone_on_tap, mech_scan))
 		return
 	start_wave_defense()
 
@@ -598,7 +587,7 @@
 	RegisterSignal(boss, COMSIG_LIVING_DEATH, PROC_REF(handle_wave_conclusion))
 	SSblackbox.record_feedback("tally", "ore_vent_mobs_spawned", 1, summoned_boss)
 	COOLDOWN_START(src, wave_cooldown, INFINITY) //Basically forever
-	boss.say(boss.summon_line) //Pull their specific summon line to say. Default is meme text so make sure that they have theirs set already.
+	boss.say(boss.summon_line, language = /datum/language/common, forced = "summon line") //Pull their specific summon line to say. Default is meme text so make sure that they have theirs set already.
 
 /obj/structure/ore_vent/boss/handle_wave_conclusion()
 	node = new /mob/living/basic/node_drone(loc) //We're spawning the vent after the boss dies, so the player can just focus on the boss.

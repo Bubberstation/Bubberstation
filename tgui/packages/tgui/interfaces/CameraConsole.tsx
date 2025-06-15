@@ -116,11 +116,10 @@ const CameraSelector = (props) => {
       <Stack.Item>
         <Input
           autoFocus
-          expensive
           fluid
           mt={1}
           placeholder="Search for a camera"
-          onInput={(e, value) => setSearchText(value)}
+          onChange={setSearchText}
           value={searchText}
         />
       </Stack.Item>

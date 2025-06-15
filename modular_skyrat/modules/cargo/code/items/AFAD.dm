@@ -9,7 +9,7 @@
 	inhand_icon_state = "chronogun"
 	w_class = WEIGHT_CLASS_NORMAL
 
-	
+
 
 /obj/item/gun/medbeam/afad/on_beam_tick(mob/living/target)
 	if(target.health != target.maxHealth)
@@ -19,3 +19,6 @@
 	target.adjustToxLoss(EXOTIC_DAMAGE_HEALING)
 	target.adjustOxyLoss(EXOTIC_DAMAGE_HEALING)
 	return
+
+#undef PHYSICAL_DAMAGE_HEALING
+#undef EXOTIC_DAMAGE_HEALING

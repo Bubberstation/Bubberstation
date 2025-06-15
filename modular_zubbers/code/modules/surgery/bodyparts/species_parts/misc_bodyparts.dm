@@ -31,10 +31,28 @@
 	limb_id = SPECIES_SHADEKIN
 	brute_modifier = 1.2
 	burn_modifier = 1.2
+	digitigrade_type = /obj/item/bodypart/leg/left/digitigrade/shadekin
 
 /obj/item/bodypart/leg/right/shadekin
 	icon_greyscale = BODYPART_ICON_BUBBER
 	limb_id = SPECIES_SHADEKIN
+	brute_modifier = 1.2
+	burn_modifier = 1.2
+	digitigrade_type = /obj/item/bodypart/leg/right/digitigrade/shadekin
+
+/obj/item/bodypart/leg/left/digitigrade/shadekin
+	icon_greyscale = BODYPART_ICON_BUBBER
+	limb_id = BODYPART_ID_DIGITIGRADE
+	footprint_sprite = FOOTPRINT_SPRITE_PAWS
+	footstep_type = FOOTSTEP_MOB_CLAW
+	brute_modifier = 1.2
+	burn_modifier = 1.2
+
+/obj/item/bodypart/leg/right/digitigrade/shadekin
+	icon_greyscale = BODYPART_ICON_BUBBER
+	limb_id = BODYPART_ID_DIGITIGRADE
+	footprint_sprite = FOOTPRINT_SPRITE_PAWS
+	footstep_type = FOOTSTEP_MOB_CLAW
 	brute_modifier = 1.2
 	burn_modifier = 1.2
 

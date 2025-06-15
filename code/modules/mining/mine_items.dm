@@ -13,7 +13,7 @@
 	. = ..()
 	set_light(set_luminosity, set_cap)
 
-/obj/effect/light_emitter/singularity_pull()
+/obj/effect/light_emitter/singularity_pull(atom/singularity, current_size)
 	return
 
 /obj/effect/light_emitter/singularity_act()
@@ -183,6 +183,10 @@
 		. += span_notice("You can give this a bump to send it on its way, or drag it off the rails to drag it around.")
 	else
 		. += span_notice("Drag this onto a mine cart rail to set it on its way.")
+
+// We don't want the locked crate overlay show up.
+/obj/structure/closet/crate/miningcar/closet_update_overlays(list/new_overlays)
+	return
 
 /obj/structure/closet/crate/miningcar/Move(atom/newloc, direct, glide_size_override, update_dir)
 	if(isnull(newloc))

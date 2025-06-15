@@ -5,7 +5,7 @@
 	id = "genetic_damage"
 	alert_type = null
 	status_type = STATUS_EFFECT_REFRESH // New effects will add to total_damage
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 	tick_interval = 2 SECONDS
 	on_remove_on_mob_delete = TRUE // Need to unregister from owner, be_replaced() would cause runtimes
 	remove_on_fullheal = TRUE
@@ -58,8 +58,9 @@
 		message = "Minor genetic damage detected."
 
 	if(message)
-		render_list += conditional_tooltip("<span class='alert ml-1'>[message]</span>", "Irreparable under normal circumstances - will decay over time.", tochat)
-		render_list += "<br>"
+		render_list += "<span class='alert ml-1'>"
+		render_list += conditional_tooltip("[message]", "Irreparable under normal circumstances - will decay over time.", tochat)
+		render_list += "</span><br>"
 
 #undef GORILLA_MUTATION_CHANCE_PER_SECOND
 #undef GORILLA_MUTATION_MINIMUM_DAMAGE

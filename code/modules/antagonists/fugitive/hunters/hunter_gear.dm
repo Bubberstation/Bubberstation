@@ -134,6 +134,7 @@
 	icon_state = "bouncy_castle"
 	anchored = TRUE
 	density = TRUE
+	layer = OBJ_LAYER
 
 /obj/structure/bouncy_castle/Initialize(mapload, mob/gored)
 	. = ..()
@@ -147,11 +148,7 @@
 		max_blood = INFINITY,\
 	)
 
-	AddComponent(/datum/component/bloody_spreader,\
-		blood_left = INFINITY,\
-		blood_dna = list("meaty DNA" = "MT-"),\
-		diseases = null,\
-	)
+	AddComponent(/datum/component/bloody_spreader)
 
 /obj/structure/bouncy_castle/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	switch(damage_type)

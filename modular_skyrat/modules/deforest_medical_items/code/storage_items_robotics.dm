@@ -10,36 +10,33 @@
 	worn_icon_state = "frontier"
 	drop_sound = 'sound/items/handling/ammobox_drop.ogg'
 	pickup_sound = 'sound/items/handling/ammobox_pickup.ogg'
+	storage_type = /datum/storage/medkit/robotic_repair
 
-/obj/item/storage/medkit/robotic_repair/Initialize(mapload)
+/datum/storage/medkit/robotic_repair/New()
 	. = ..()
-	var/static/list/list_of_everything_mechanical_medkits_can_hold = list_of_everything_medkits_can_hold + list(
-		/obj/item/stack/cable_coil,
-		/obj/item/crowbar,
-		/obj/item/screwdriver,
-		/obj/item/wrench,
-		/obj/item/weldingtool,
-		/obj/item/wirecutters,
-		/obj/item/multitool,
-		/obj/item/plunger,
-		/obj/item/clothing/head/utility/welding,
-		/obj/item/clothing/glasses/welding,
+	set_holdable(list_of_everything_medkits_can_hold + list(
+			/obj/item/stack/cable_coil,
+			/obj/item/crowbar,
+			/obj/item/screwdriver,
+			/obj/item/wrench,
+			/obj/item/weldingtool,
+			/obj/item/wirecutters,
+			/obj/item/multitool,
+			/obj/item/plunger,
+			/obj/item/clothing/head/utility/welding,
+			/obj/item/clothing/glasses/welding,
+		),
+		list(),
+		list(/obj/item/clothing/head/utility/welding,
+		)
 	)
-	var/static/list/exception_cache = typecacheof(
-		/obj/item/clothing/head/utility/welding,
-	)
-
-	atom_storage.set_holdable(list_of_everything_mechanical_medkits_can_hold)
-	LAZYINITLIST(atom_storage.exception_hold)
-	atom_storage.exception_hold = atom_storage.exception_hold + exception_cache
-	atom_storage.max_specific_storage = WEIGHT_CLASS_NORMAL
 
 /obj/item/storage/medkit/robotic_repair/stocked
 
 /obj/item/storage/medkit/robotic_repair/stocked/PopulateContents()
 	var/static/items_inside = list(
 		/obj/item/stack/medical/gauze = 1,
-		/obj/item/reagent_containers/pill/robotic_patch/synth_repair = 2,
+		/obj/item/reagent_containers/applicator/pill/robotic_patch/synth_repair = 2,
 		/obj/item/stack/medical/wound_recovery/robofoam = 1,
 		/obj/item/reagent_containers/hypospray/medipen/deforest/robot_system_cleaner = 1,
 		/obj/item/reagent_containers/hypospray/medipen/deforest/coagulants = 1, // Coagulants help electrical damage
@@ -65,7 +62,7 @@
 	var/static/items_inside = list(
 		/obj/item/stack/medical/gauze/twelve = 1,
 		/obj/item/stack/cable_coil/thirty = 1,
-		/obj/item/reagent_containers/pill/robotic_patch/synth_repair = 4,
+		/obj/item/reagent_containers/applicator/pill/robotic_patch/synth_repair = 4,
 		/obj/item/stack/medical/wound_recovery/robofoam = 1,
 		/obj/item/reagent_containers/hypospray/medipen/deforest/robot_system_cleaner = 1,
 		/obj/item/reagent_containers/hypospray/medipen/deforest/robot_liquid_solder = 1,

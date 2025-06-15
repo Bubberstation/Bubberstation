@@ -13,14 +13,14 @@
 		to_chat(src, span_warning("You can't cum right now!"))
 
 /mob/living/verb/reflexes_verb()
-    set name = "Toggle Reflexes"
-    set category = "IC"
-    if(!HAS_TRAIT_FROM(src, TRAIT_QUICKREFLEXES, REF(src)))
-        ADD_TRAIT(src, TRAIT_QUICKREFLEXES, REF(src))
-        to_chat(src, span_notice("[get_reflexes_gain_text()]"))
-    else
-        REMOVE_TRAIT(src, TRAIT_QUICKREFLEXES, REF(src))
-        to_chat(src, span_notice("[get_reflexes_lose_text()]"))
+	set name = "Toggle Reflexes"
+	set category = "IC"
+	if(!HAS_TRAIT_FROM(src, TRAIT_QUICKREFLEXES, REF(src)))
+		ADD_TRAIT(src, TRAIT_QUICKREFLEXES, REF(src))
+		to_chat(src, span_notice("[get_reflexes_gain_text()]"))
+	else
+		REMOVE_TRAIT(src, TRAIT_QUICKREFLEXES, REF(src))
+		to_chat(src, span_notice("[get_reflexes_lose_text()]"))
 
 /mob/living/proc/get_reflexes_gain_text()
 	return "You don't feel like being touched right now."
@@ -52,7 +52,7 @@
 	set name = "OOC Safe Word"
 	set category = "OOC"
 	set desc = "Removes any and all lewd items from you."
-
+	SEND_SIGNAL(src, COMSIG_OOC_ESCAPE)
 	log_message("[key_name(src)] used the OOC Safe Word verb.", LOG_ATTACK)
 	for(var/obj/item/equipped_item in get_equipped_items())
 		if(!(equipped_item.type in GLOB.pref_checked_clothes))

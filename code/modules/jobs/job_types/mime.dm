@@ -36,13 +36,10 @@
 
 	job_tone = "silence"
 
-
 /datum/job/mime/after_spawn(mob/living/spawned, client/player_client)
-	. = ..()
-	if(!ishuman(spawned))
-		return
-	spawned.apply_pref_name(/datum/preference/name/mime, player_client)
-
+	if (ishuman(spawned))
+		spawned.apply_pref_name(/datum/preference/name/mime, player_client)
+	return ..()
 
 /datum/outfit/job/mime
 	name = "Mime"
@@ -59,7 +56,7 @@
 	belt = /obj/item/modular_computer/pda/mime
 	ears = /obj/item/radio/headset/headset_srv
 	gloves = /obj/item/clothing/gloves/color/white
-	head = /obj/item/clothing/head/frenchberet
+	head = /obj/item/clothing/head/beret/frenchberet
 	mask = /obj/item/clothing/mask/gas/mime
 	shoes = /obj/item/clothing/shoes/laceup
 
@@ -69,10 +66,10 @@
 	box = /obj/item/storage/box/survival/hug/black
 	chameleon_extras = /obj/item/stamp/mime
 
-/datum/outfit/job/mime/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/mime/post_equip(mob/living/carbon/human/H, visuals_only = FALSE)
 	..()
 
-	if(visualsOnly)
+	if(visuals_only)
 		return
 
 	// Start our mime out with a vow of silence and the ability to break (or make) it

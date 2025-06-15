@@ -1,7 +1,3 @@
-/datum/loadout_item/shoes/glow
-	name = "Glow Shoes"
-	item_path = /obj/item/clothing/shoes/glow
-
 /datum/loadout_item/shoes/bubber/clown/pink/squeak //Unlike the rest, these make noise. Job locked.
 	name = "Pink Clown Heels"
 	item_path = /obj/item/clothing/shoes/clown_shoes/bubber/clussy
@@ -31,3 +27,11 @@
 /datum/loadout_item/shoes/horseshoes
 	name = "Horseshoes"
 	item_path = /obj/item/clothing/shoes/horseshoe
+
+/datum/loadout_item/shoes/diesel_m
+	name = "Male Diesel Boots"
+	item_path = /obj/item/clothing/shoes/jackboots/diesel_m
+
+/datum/loadout_item/shoes/diesel_f
+	name = "Female Diesel Boots"
+	item_path = /obj/item/clothing/shoes/jackboots/diesel_f

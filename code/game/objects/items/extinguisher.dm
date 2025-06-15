@@ -5,6 +5,7 @@
 	icon_state = "fire_extinguisher0"
 	worn_icon_state = "fire_extinguisher"
 	inhand_icon_state = "fire_extinguisher"
+	icon_angle = 90
 	hitsound = 'sound/items/weapons/smash.ogg'
 	pickup_sound = 'sound/items/handling/gas_tank/gas_tank_pick_up.ogg'
 	drop_sound = 'sound/items/handling/gas_tank/gas_tank_drop.ogg'
@@ -186,8 +187,8 @@
 	else
 		return ..()
 
-/obj/item/extinguisher/attack_atom(obj/O, mob/living/user, params)
-	if(AttemptRefill(O, user))
+/obj/item/extinguisher/attack_atom(obj/attacked_obj, mob/living/user, list/modifiers, list/attack_modifiers)
+	if(AttemptRefill(attacked_obj, user))
 		refilling = TRUE
 		return FALSE
 	else
@@ -321,7 +322,7 @@
 		user.visible_message(span_notice("[user] empties out \the [src] onto the floor using the release valve."), span_info("You quietly empty out \the [src] using its release valve."))
 
 //firebot assembly
-/obj/item/extinguisher/attackby(obj/O, mob/user, params)
+/obj/item/extinguisher/attackby(obj/O, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(O, /obj/item/bodypart/arm/left/robot) || istype(O, /obj/item/bodypart/arm/right/robot))
 		to_chat(user, span_notice("You add [O] to [src]."))
 		qdel(O)

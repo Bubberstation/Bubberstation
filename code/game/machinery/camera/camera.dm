@@ -70,7 +70,7 @@
 	var/alarm_on = FALSE
 	///How many times this camera has been EMP'ed consecutively, will reset back to 0 when fixed.
 	var/emped
-	///Boolean on whether the AI can even turn on this camera's light- borg caneras dont have one, for example.
+	///Boolean on whether the AI can even turn on this camera's light- borg cameras dont have one, for example.
 	var/internal_light = TRUE
 	///Number of AIs watching this camera with lights on, used for icons.
 	var/in_use_lights = 0
@@ -269,7 +269,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/xray, 0)
 		return
 	user.electrocute_act(10, src)
 
-/obj/machinery/camera/singularity_pull(S, current_size)
+/obj/machinery/camera/singularity_pull(atom/singularity, current_size)
 	if (camera_enabled && current_size >= STAGE_FIVE) // If the singulo is strong enough to pull anchored objects and the camera is still active, turn off the camera as it gets ripped off the wall.
 		toggle_cam(null, 0)
 	return ..()
@@ -444,3 +444,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/xray, 0)
 	else
 		user.clear_sight(SEE_TURFS|SEE_MOBS|SEE_OBJS)
 	return TRUE
+
+///Called when the camera starts being watched on a camera console.
+/obj/machinery/camera/proc/on_start_watching()
+	return
+
+///Called when the camera stops being watched on a camera console.
+/obj/machinery/camera/proc/on_stop_watching()
+	return

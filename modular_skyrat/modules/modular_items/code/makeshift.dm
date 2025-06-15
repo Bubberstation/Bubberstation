@@ -16,11 +16,18 @@
 	desc = "A makeshift screwdriver, flimsily made using cloth and some metal."
 	icon = 'modular_skyrat/modules/modular_items/icons/tools.dmi'
 	icon_state = "makeshift_screwdriver"
+	post_init_icon_state = null
+	inside_belt_icon_state = null
 	random_color = FALSE
 	force = 1
 	throwforce = 1
 	w_class = WEIGHT_CLASS_NORMAL
 	toolspeed = 1.5
+	greyscale_config = null
+	greyscale_config_belt = null
+	greyscale_config_inhand_left = null
+	greyscale_config_inhand_right = null
+	greyscale_colors = null
 
 /obj/item/weldingtool/makeshift
 	name = "makeshift welder"
@@ -39,11 +46,16 @@
 	desc = "Makeshift wire cutters, flimsily constructed with miscellaneous parts."
 	icon = 'modular_skyrat/modules/modular_items/icons/tools.dmi'
 	icon_state = "makeshift_cutters"
+
 	random_color = FALSE
 	force = 3
 	throwforce = 2
 	w_class = WEIGHT_CLASS_NORMAL
 	toolspeed = 1.5
+	greyscale_config = null
+	greyscale_config_belt = null
+	greyscale_config_inhand_left = null
+	greyscale_config_inhand_right = null
 
 /obj/item/wrench/makeshift
 	name = "makeshift wrench"

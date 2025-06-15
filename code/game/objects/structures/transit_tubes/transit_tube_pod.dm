@@ -27,7 +27,7 @@
 	icon_state = contents.len ? occupied_icon_state : initial(icon_state)
 	return ..()
 
-/obj/structure/transit_tube_pod/attackby(obj/item/I, mob/user, params)
+/obj/structure/transit_tube_pod/attackby(obj/item/I, mob/user, list/modifiers, list/attack_modifiers)
 	if(I.tool_behaviour == TOOL_CROWBAR)
 		if(!moving)
 			I.play_tool_sound(src)
@@ -63,7 +63,7 @@
 		if(EXPLODE_LIGHT)
 			SSexplosions.low_mov_atom += contents
 
-/obj/structure/transit_tube_pod/singularity_pull(S, current_size)
+/obj/structure/transit_tube_pod/singularity_pull(atom/singularity, current_size)
 	..()
 	if(current_size >= STAGE_FIVE)
 		deconstruct(FALSE)

@@ -53,7 +53,6 @@ GLOBAL_LIST_EMPTY(starlight)
 	temperature = TCMB
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
 	heat_capacity = 700000
-	var/starlight_source_count = 0
 
 	var/destination_z
 	var/destination_x
@@ -138,14 +137,14 @@ GLOBAL_LIST_EMPTY(starlight)
 /turf/open/space/handle_slip()
 	return
 
-/turf/open/space/attackby(obj/item/C, mob/user, params)
+/turf/open/space/attackby(obj/item/attacking_item, mob/user, list/modifiers)
 	..()
 	if(!CanBuildHere())
 		return
-	if(istype(C, /obj/item/stack/rods))
-		build_with_rods(C, user)
-	else if(istype(C, /obj/item/stack/tile/iron))
-		build_with_floor_tiles(C, user)
+	if(istype(attacking_item, /obj/item/stack/rods))
+		build_with_rods(attacking_item, user)
+	else if(ismetaltile(attacking_item))
+		build_with_floor_tiles(attacking_item, user)
 
 
 /turf/open/space/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
@@ -243,6 +242,14 @@ GLOBAL_LIST_EMPTY(starlight)
 
 	return FALSE
 
+/turf/open/space/ChangeTurf(path, list/new_baseturfs, flags)
+	. = ..()
+	if (!. || isspaceturf(.))
+		return
+
+	var/area/new_turf_area = get_area(.)
+	if (istype(new_turf_area, /area/space) && !istype(new_turf_area, /area/space/nearstation))
+		set_turf_to_area(., GLOB.areas_by_type[/area/space/nearstation])
 
 /turf/open/space/attempt_lattice_replacement()
 	var/dest_x = destination_x
@@ -272,7 +279,7 @@ GLOBAL_LIST_EMPTY(starlight)
 	return INITIALIZE_HINT_LATELOAD
 
 /turf/open/space/openspace/LateInitialize()
-	AddElement(/datum/element/turf_z_transparency)
+	ADD_TURF_TRANSPARENCY(src, INNATE_TRAIT)
 
 /turf/open/space/openspace/Destroy()
 	// Signals persist through destroy, GO HOME

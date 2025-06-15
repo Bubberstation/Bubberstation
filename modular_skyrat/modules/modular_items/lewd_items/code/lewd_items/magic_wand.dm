@@ -129,8 +129,8 @@
 	switch(user.zone_selected)
 		if(BODY_ZONE_PRECISE_GROIN)
 			if(carbon_target)
-				var/obj/item/organ/external/genital/penis = carbon_target.get_organ_slot(ORGAN_SLOT_PENIS)
-				var/obj/item/organ/external/genital/vagina = carbon_target.get_organ_slot(ORGAN_SLOT_VAGINA)
+				var/obj/item/organ/genital/penis = carbon_target.get_organ_slot(ORGAN_SLOT_PENIS)
+				var/obj/item/organ/genital/vagina = carbon_target.get_organ_slot(ORGAN_SLOT_VAGINA)
 
 				if(!vagina && !penis)
 					return FALSE
@@ -166,7 +166,7 @@
 
 		if(BODY_ZONE_CHEST)
 			if(carbon_target)
-				var/obj/item/organ/external/genital/breasts = carbon_target.get_organ_slot(ORGAN_SLOT_BREASTS)
+				var/obj/item/organ/genital/breasts = carbon_target.get_organ_slot(ORGAN_SLOT_BREASTS)
 				if(!breasts?.is_exposed())
 					to_chat(user, span_danger("Looks like [target]'s chest is covered!"))
 					return FALSE

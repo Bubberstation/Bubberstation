@@ -27,7 +27,7 @@
 
 /obj/item/clothing/gloves/combat/wizard/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -3) //something something wizard casting
+	AddComponent(/datum/component/adjust_fishing_difficulty, -5) //something something wizard casting
 
 /obj/item/clothing/gloves/combat/floortile
 	name = "floortile camouflage gloves"
@@ -35,6 +35,6 @@
 	icon_state = "ftc_gloves"
 	inhand_icon_state = "greyscale_gloves"
 
-/obj/item/clothing/gloves/combat/floortiletile/Initialize(mapload)
+/obj/item/clothing/gloves/combat/floortile/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -3) //tacticool
+	AddComponent(/datum/component/adjust_fishing_difficulty, -5) //tacticool

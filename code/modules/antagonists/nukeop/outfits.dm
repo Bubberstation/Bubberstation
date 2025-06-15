@@ -40,8 +40,8 @@
 	uniform = /obj/item/clothing/under/plasmaman/syndicate
 	r_hand = /obj/item/tank/internals/plasmaman/belt/full
 
-/datum/outfit/syndicate/post_equip(mob/living/carbon/human/nukie, visualsOnly = FALSE)
-	if(visualsOnly)
+/datum/outfit/syndicate/post_equip(mob/living/carbon/human/nukie, visuals_only = FALSE)
+	if(visuals_only)
 		return
 
 	// We don't require the nukiebase be loaded to function, but lets go ahead and kick off loading just in case
@@ -54,7 +54,7 @@
 		radio.use_command = TRUE
 	if(ispath(uplink_type, /obj/item/uplink) || tc) // /obj/item/uplink understands 0 tc
 		var/obj/item/uplink = new uplink_type(nukie, nukie.key, tc)
-		nukie.equip_to_slot_or_del(uplink, ITEM_SLOT_BACKPACK, indirect_action = TRUE)
+		nukie.equip_to_storage(uplink, ITEM_SLOT_BACK, indirect_action = TRUE, del_on_fail = TRUE)
 
 	var/obj/item/implant/weapons_auth/weapons_implant = new/obj/item/implant/weapons_auth(nukie)
 	weapons_implant.implant(nukie)
@@ -107,9 +107,9 @@
 	)
 	var/faction = "The Syndicate"
 
-/datum/outfit/syndicate/reinforcement/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/syndicate/reinforcement/post_equip(mob/living/carbon/human/H, visuals_only = FALSE)
 	. = ..()
-	if(visualsOnly)
+	if(visuals_only)
 		return
 	to_chat(H, span_notice("You're an agent of [faction], sent to accompany the nuclear squad on their mission. \
 		Support your allies, and remember: Down with Nanotrasen."))
@@ -186,10 +186,9 @@
 	back = /obj/item/mod/control/pre_equipped/empty/syndicate
 	uniform = /obj/item/clothing/under/syndicate
 
-/datum/outfit/nuclear_operative/post_equip(mob/living/carbon/human/H, visualsOnly)
+/datum/outfit/nuclear_operative/post_equip(mob/living/carbon/human/H, visuals_only)
 	var/obj/item/mod/module/armor_booster/booster = locate() in H.back
-	booster.active = TRUE
-	H.update_worn_back()
+	booster.activate()
 
 /datum/outfit/nuclear_operative_elite
 	name = "Nuclear Operative (Elite, Preview only)"
@@ -199,10 +198,9 @@
 	l_hand = /obj/item/modular_computer/pda/nukeops
 	r_hand = /obj/item/shield/energy
 
-/datum/outfit/nuclear_operative_elite/post_equip(mob/living/carbon/human/H, visualsOnly)
+/datum/outfit/nuclear_operative_elite/post_equip(mob/living/carbon/human/H, visuals_only)
 	var/obj/item/mod/module/armor_booster/booster = locate() in H.back
-	booster.active = TRUE
-	H.update_worn_back()
+	booster.activate()
 	var/obj/item/shield/energy/shield = locate() in H.held_items
 	shield.icon_state = "[shield.base_icon_state]1"
 	H.update_held_items()

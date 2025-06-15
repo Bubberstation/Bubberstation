@@ -5,6 +5,7 @@
 	icon = 'icons/mob/nonhuman-player/blob.dmi'
 	icon_state = "blob_head"
 	unique_name = TRUE
+	status_flags = CANPUSH
 	pass_flags = PASSBLOB
 	faction = list(ROLE_BLOB)
 	combat_mode = TRUE
@@ -18,6 +19,7 @@
 	lighting_cutoff_blue = 30
 	initial_language_holder = /datum/language_holder/empty
 	can_buckle_to = FALSE
+	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, STAMINA = 0, OXY = 1)
 
 /mob/living/basic/blob_minion/Initialize(mapload)
 	. = ..()
@@ -25,7 +27,7 @@
 	AddComponent(/datum/component/blob_minion, on_strain_changed = CALLBACK(src, PROC_REF(on_strain_updated)))
 
 /// Called when our blob overmind changes their variant, update some of our mob properties
-/mob/living/basic/blob_minion/proc/on_strain_updated(mob/camera/blob/overmind, datum/blobstrain/new_strain)
+/mob/living/basic/blob_minion/proc/on_strain_updated(mob/eye/blob/overmind, datum/blobstrain/new_strain)
 	return
 
 /// Associates this mob with a specific blob factory node

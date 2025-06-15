@@ -19,8 +19,8 @@
 		expose_temperature(owner.bodytemperature, 0.25)
 
 	var/need_mob_update = FALSE
-	var/obj/item/organ/internal/stomach/belly = owner.get_organ_slot(ORGAN_SLOT_STOMACH)
-	var/obj/item/organ/internal/liver/liver = owner.get_organ_slot(ORGAN_SLOT_LIVER)
+	var/obj/item/organ/stomach/belly = owner.get_organ_slot(ORGAN_SLOT_STOMACH)
+	var/obj/item/organ/liver/liver = owner.get_organ_slot(ORGAN_SLOT_LIVER)
 	var/liver_tolerance = 0
 	var/liver_damage = 0
 	var/provide_pain_message
@@ -40,7 +40,7 @@
 			if(belly)
 				amount += belly.reagents.get_reagent_amount(toxin.type)
 
-			if(amount <= liver_tolerance)
+			if(amount <= liver_tolerance * toxin.liver_tolerance_multiplier)
 				owner.reagents.remove_reagent(toxin.type, toxin.metabolization_rate * owner.metabolism_efficiency * seconds_per_tick)
 				continue
 
@@ -49,7 +49,7 @@
 		// If applicable, calculate any toxin-related liver damage
 		// Note: we have to do this AFTER metabolize_reagent, because we want handle_reagent to run before we make the determination.
 		// The order is really important unfortunately.
-		if(toxin && !liverless && liver && liver.filterToxins && !HAS_TRAIT(owner, TRAIT_TOXINLOVER))
+		if(toxin && !liverless && liver && liver.filterToxins && !HAS_TRAIT(owner, TRAIT_TOXINLOVER) && !HAS_TRAIT(owner, TRAIT_TOXIMMUNE))
 			if(toxin.affected_organ_flags && !(liver.organ_flags & toxin.affected_organ_flags)) //this particular toxin does not affect this type of organ
 				continue
 
@@ -86,7 +86,6 @@
  * * liverless - Stops reagents that aren't set as [/datum/reagent/var/self_consuming] from metabolizing
  */
 /datum/reagents/proc/metabolize_reagent(mob/living/carbon/owner, datum/reagent/reagent, seconds_per_tick, times_fired, can_overdose = FALSE, liverless = FALSE, dead = FALSE)
-	var/need_mob_update = FALSE
 	if(QDELETED(reagent.holder))
 		return FALSE
 
@@ -101,31 +100,40 @@
 		return
 	//SKYRAT EDIT ADDITION END
 
-	if(owner && reagent && (!dead || (reagent.chemical_flags & REAGENT_DEAD_PROCESS)))
-		if(owner.reagent_check(reagent, seconds_per_tick, times_fired))
-			return
-		if(liverless && !reagent.self_consuming) //need to be metabolized
-			return
-		if(!reagent.metabolizing)
-			reagent.metabolizing = TRUE
-			reagent.on_mob_metabolize(owner)
-		if(can_overdose && !HAS_TRAIT(owner, TRAIT_OVERDOSEIMMUNE))
-			if(reagent.overdose_threshold)
-				if(reagent.volume >= reagent.overdose_threshold && !reagent.overdosed)
-					reagent.overdosed = TRUE
-					need_mob_update += reagent.overdose_start(owner)
-					owner.log_message("has started overdosing on [reagent.name] at [reagent.volume] units.", LOG_GAME)
-			for(var/addiction in reagent.addiction_types)
-				owner.mind?.add_addiction_points(addiction, reagent.addiction_types[addiction] * REAGENTS_METABOLISM)
+	if(!owner || !reagent || (dead && !(reagent.chemical_flags & REAGENT_DEAD_PROCESS)))
+		return FALSE
 
-			if(reagent.overdosed)
-				need_mob_update += reagent.overdose_process(owner, seconds_per_tick, times_fired)
-		reagent.current_cycle++
-		need_mob_update += reagent.on_mob_life(owner, seconds_per_tick, times_fired)
-		if(dead && !QDELETED(owner) && !QDELETED(reagent))
-			need_mob_update += reagent.on_mob_dead(owner, seconds_per_tick)
-		if(!QDELETED(owner) && !QDELETED(reagent))
-			reagent.metabolize_reagent(owner, seconds_per_tick, times_fired)
+	if(owner.reagent_tick(reagent, seconds_per_tick, times_fired))
+		return FALSE
+
+	if(liverless && !reagent.self_consuming) //need to be metabolized
+		return FALSE
+
+	var/need_mob_update = FALSE
+	if(!reagent.metabolizing)
+		reagent.metabolizing = TRUE
+		reagent.on_mob_metabolize(owner)
+
+	if(can_overdose && !HAS_TRAIT(owner, TRAIT_OVERDOSEIMMUNE))
+		if(reagent.overdose_threshold && reagent.volume >= reagent.overdose_threshold && !reagent.overdosed)
+			reagent.overdosed = TRUE
+			need_mob_update += reagent.overdose_start(owner)
+			owner.log_message("has started overdosing on [reagent.name] at [reagent.volume] units.", LOG_GAME)
+
+		for(var/addiction in reagent.addiction_types)
+			owner.mind?.add_addiction_points(addiction, reagent.addiction_types[addiction] * REAGENTS_METABOLISM)
+
+		if(reagent.overdosed)
+			need_mob_update += reagent.overdose_process(owner, seconds_per_tick, times_fired)
+
+	reagent.current_cycle++
+	need_mob_update += reagent.on_mob_life(owner, seconds_per_tick, times_fired)
+
+	if(dead && !QDELETED(owner) && !QDELETED(reagent))
+		need_mob_update += reagent.on_mob_dead(owner, seconds_per_tick)
+
+	if(!QDELETED(owner) && !QDELETED(reagent))
+		reagent.metabolize_reagent(owner, seconds_per_tick, times_fired)
 
 	return need_mob_update
 

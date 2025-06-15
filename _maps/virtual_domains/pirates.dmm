@@ -217,7 +217,7 @@
 /obj/effect/turf_decal/weather/sand{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/oil/streak,
+/obj/effect/decal/cleanable/blood/splatter/oil,
 /turf/open/floor/wood,
 /area/virtual_domain/fullbright)
 "mp" = (
@@ -412,7 +412,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/oil,
+/obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/wood,
 /area/virtual_domain/fullbright)
 "wu" = (
@@ -610,7 +610,8 @@
 "HO" = (
 /obj/structure/table/wood,
 /mob/living/basic/parrot{
-	name = "pepper"
+	name = "pepper";
+	faction = list("pirate")
 	},
 /turf/open/floor/carpet/blue,
 /area/virtual_domain)
