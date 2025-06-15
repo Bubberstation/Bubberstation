@@ -176,6 +176,7 @@
 #define CYBORG_ICON_NINJA_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerNinja.dmi'
 #define CYBORG_ICON_SCI_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerSci.dmi'
 #define CYBORG_ICON_SEC_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerSec.dmi'
+#define CYBORG_ICON_PK_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerPeaceKeeper.dmi'
 #define CYBORG_ICON_SERVICE_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerService.dmi'
 #define CYBORG_ICON_SYNDI_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerSyndi.dmi'
 
