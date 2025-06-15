@@ -1,11 +1,11 @@
-/mob/living/silicon/robot/unequip_module_from_slot(obj/item/O)
-	..()
-	if(check_held_item_sprites(O))
+/mob/living/silicon/robot/doUnEquip(obj/item/item_dropping, force, atom/newloc, no_move, invdrop, silent)
+	. = ..()
+	if(check_held_item_sprites(item_dropping))
 		update_icons()
 
-/mob/living/silicon/robot/equip_module_to_slot(obj/item/O)
-	..()
-	if(check_held_item_sprites(O))
+/mob/living/silicon/robot/put_in_hand(obj/item/item_module, hand_index, forced = FALSE, ignore_anim = TRUE, visuals_only = FALSE)
+	. = ..()
+	if(check_held_item_sprites(item_module))
 		update_icons()
 
 /// contains a list of items that currently have sprites associated with them, and what borg-skin has them, returns true if the held item and borg skin are in the list.

@@ -4,7 +4,7 @@
 	projectile_type = /obj/projectile/beam/cybersun_laser
 	e_cost = LASER_SHOTS(20, STANDARD_CELL_CHARGE * 2)
 	select_name = "Kill"
-	fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/laser_firing/laser.ogg'
+	fire_sound = 'modular_zubbers/sound/weapons/laser.ogg'
 
 /obj/projectile/beam/cybersun_laser
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/saibasan/projectiles.dmi'
@@ -20,16 +20,17 @@
 	projectile_type = /obj/projectile/beam/cybersun_laser/marksman
 	e_cost = LASER_SHOTS(10, STANDARD_CELL_CHARGE * 2)
 	select_name = "Marksman"
-	fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/laser_firing/vaporize.ogg'
+	fire_sound = 'modular_zubbers/sound/weapons/vaporize.ogg'
 
 /obj/projectile/beam/cybersun_laser/marksman
 	icon_state = "sniper"
-	damage = 50
+	damage = 40
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/yellow_laser
-	speed = 2.5
+	speed = 2
 	light_range = 2
 	light_color = COLOR_VERY_SOFT_YELLOW
 	wound_falloff_tile = -0.1
+	armour_penetration = 15
 
 // Disabler machinegun for the big gun
 
@@ -79,7 +80,7 @@
 /obj/projectile/beam/cybersun_laser/granata/proc/fuse_activation(atom/target)
 	var/obj/item/grenade/shrapnel_maker = new casing_to_spawn(get_turf(target))
 	shrapnel_maker.detonate()
-	playsound(src, 'modular_skyrat/modules/modular_weapons/sounds/grenade_burst.ogg', 50, TRUE, -3)
+	playsound(src, 'modular_zubbers/sound/weapons/grenade_burst.ogg', 50, TRUE, -3)
 	qdel(shrapnel_maker)
 
 /obj/projectile/beam/cybersun_laser/granata_shrapnel
@@ -105,27 +106,27 @@
 /obj/item/ammo_casing/energy/cybersun_big_shotgun
 	projectile_type = /obj/projectile/beam/cybersun_laser/granata_shrapnel/shotgun_pellet
 	e_cost = LASER_SHOTS(10, STANDARD_CELL_CHARGE * 2)
-	pellets = 5
+	pellets = 4
 	variance = 30
 	select_name = "Shotgun"
-	fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/laser_firing/melt.ogg'
+	fire_sound = 'modular_zubbers/sound/weapons/melt.ogg'
 
 /obj/projectile/beam/cybersun_laser/granata_shrapnel/shotgun_pellet
 	icon_state = "because_it_doesnt_miss"
-	damage = 10
+	damage = 15
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
 	speed = 1.25
 	light_color = COLOR_SCIENCE_PINK
 	range = 9
-	damage_falloff_tile = -0.5
-
+	damage_falloff_tile = -3
+	weak_against_armour = FALSE
 // Hellfire lasers for the little guy
 
 /obj/item/ammo_casing/energy/cybersun_small_hellfire
 	projectile_type = /obj/projectile/beam/cybersun_laser/hellfire
 	e_cost = LASER_SHOTS(10, STANDARD_CELL_CHARGE)
 	select_name = "Incinerate"
-	fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/laser_firing/incinerate.ogg'
+	fire_sound = 'modular_zubbers/sound/weapons/incinerate.ogg'
 
 /obj/projectile/beam/cybersun_laser/hellfire
 	icon_state = "hellfire"
@@ -221,9 +222,9 @@
 	projectile_type = /obj/projectile/beam/cybersun_laser/granata_shrapnel/shotgun_pellet
 	e_cost = LASER_SHOTS(10, STANDARD_CELL_CHARGE)
 	pellets = 3
-	variance = 15
+	variance = 20
 	select_name = "Shotgun"
-	fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/laser_firing/melt.ogg'
+	fire_sound = 'modular_zubbers/sound/weapons/melt.ogg'
 
 // Dummy casing that does nothing but have a projectile that looks like a sword
 

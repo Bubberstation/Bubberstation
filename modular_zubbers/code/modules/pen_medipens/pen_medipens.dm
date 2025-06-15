@@ -5,7 +5,7 @@
 	icon = 'modular_zubbers/icons/obj/medical/pen_medipens/pen_medipens.dmi'
 	icon_state = "default"
 	base_icon_state = "default"
-	volume = 12
+	volume = 25
 	fill_icon = 'modular_zubbers/icons/obj/medical/pen_medipens/fill_overlay.dmi'
 	fill_icon_state = "tank"
 	fill_icon_thresholds = list(0,1)

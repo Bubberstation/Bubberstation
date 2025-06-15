@@ -59,7 +59,9 @@
 /obj/item/clothing/suit/urban
 	name = "urban coat"
 	desc = "A coat built for urban life."
-	icon_state = "urban_coat"
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/urban"
+	post_init_icon_state = "urban_coat"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	greyscale_config = /datum/greyscale_config/urban_coat
 	greyscale_config_worn = /datum/greyscale_config/urban_coat/worn
@@ -89,7 +91,9 @@
 
 /obj/item/clothing/suit/jacket/leather/colourable
 	desc = "Now with more color!"
-	icon_state = "leather_jacket"
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/jacket/leather/colourable"
+	post_init_icon_state = "leather_jacket"
 	greyscale_config = /datum/greyscale_config/leather_jacket
 	greyscale_config_worn = /datum/greyscale_config/leather_jacket/worn
 	greyscale_colors = "#FFFFFF"
@@ -98,7 +102,9 @@
 /obj/item/clothing/suit/duster
 	name = "duster"
 	desc = "This station ain't big enough for the both of us."
-	icon_state = "duster"
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/duster"
+	post_init_icon_state = "duster"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	greyscale_config = /datum/greyscale_config/duster
 	greyscale_config_worn = /datum/greyscale_config/duster/worn
@@ -108,7 +114,9 @@
 /obj/item/clothing/suit/toggle/peacoat
 	name = "peacoat"
 	desc = "The way you guys are blending in with the local colour. I mean, Flag Girl was bad enough, but U-Boat Captain?"
-	icon_state = "peacoat"
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/toggle/peacoat"
+	post_init_icon_state = "peacoat"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	greyscale_config = /datum/greyscale_config/peacoat
 	greyscale_config_worn = /datum/greyscale_config/peacoat/worn
@@ -143,7 +151,9 @@
 /obj/item/clothing/suit/croptop
 	name = "crop top turtleneck"
 	desc = "A comfy looking turtleneck that exposes your midriff, fashionable but makes the point of a sweater moot. Now with Pycroft polychromatic tech!"
-	icon_state = "croptop"
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/croptop"
+	post_init_icon_state = "croptop"
 	greyscale_config = /datum/greyscale_config/croptop
 	greyscale_config_worn = /datum/greyscale_config/croptop/worn
 	greyscale_colors = "#1d1b1b"
@@ -162,7 +172,9 @@
 /obj/item/clothing/suit/varsity
 	name = "varsity jacket"
 	desc = "A simple varsity jacket with no obvious sources."
-	icon_state = "varsity_jacket"
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/varsity"
+	post_init_icon_state = "varsity_jacket"
 	greyscale_config = /datum/greyscale_config/varsity
 	greyscale_config_worn = /datum/greyscale_config/varsity/worn
 	greyscale_colors = "#553022#a67a5b#2d2d33"
@@ -191,7 +203,9 @@
 /obj/item/clothing/suit/tailored_jacket
 	name = "tailored jacket"
 	desc = "A somewhat long jacket tailor made for... however it looks right now!"
-	icon_state = "tailored_jacket"
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/tailored_jacket"
+	post_init_icon_state = "tailored_jacket"
 	greyscale_config = /datum/greyscale_config/tailored_jacket
 	greyscale_config_worn = /datum/greyscale_config/tailored_jacket/worn
 	greyscale_colors = "#8c8c8c#8c8c8c#8c8c8c#bf9f78#8c8c8c#8c8c8c#8c8c8c#bf9f78#8c8c8c" // Look this has a lot of colorable sections
@@ -206,6 +220,7 @@
 /obj/item/clothing/suit/tailored_jacket/short
 	name = "tailored short jacket"
 	desc = "A jacket tailor made for... however it looks right now!"
+	icon_state = "/obj/item/clothing/suit/tailored_jacket/short"
 	greyscale_config = /datum/greyscale_config/tailored_short_jacket
 	greyscale_config_worn = /datum/greyscale_config/tailored_short_jacket/worn
 	greyscale_colors = "#8c8c8c#8c8c8c#8c8c8c#bf9f78#8c8c8c#8c8c8c#bf9f78#8c8c8c"
@@ -213,7 +228,9 @@
 /obj/item/clothing/suit/warm_coat
 	name = "warm coat"
 	desc = "A long insulated coat with fur, it looks quite comfortable."
-	icon_state = "warm_coat"
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/warm_coat"
+	post_init_icon_state = "warm_coat"
 	greyscale_config = /datum/greyscale_config/warm_coat
 	greyscale_config_worn = /datum/greyscale_config/warm_coat/worn
 	greyscale_colors = "#7a5f4f#d9cec7"

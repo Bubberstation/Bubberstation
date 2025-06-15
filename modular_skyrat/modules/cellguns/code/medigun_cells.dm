@@ -499,6 +499,7 @@
 /obj/item/clothing/suit/toggle/labcoat/hospitalgown/hardlight
 	name = "hardlight hospital gown"
 	desc = "A hospital gown made out of hardlight - you can barely feel it on your body, especially with all the anesthetics."
+	icon_state = "/obj/item/clothing/suit/toggle/labcoat/hospitalgown/hardlight"
 	greyscale_colors = "#B2D3CA#B2D3CA#B2D3CA#B2D3CA"
 
 /obj/item/clothing/suit/toggle/labcoat/hospitalgown/hardlight/dropped(mob/user)
