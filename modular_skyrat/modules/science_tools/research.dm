@@ -4,6 +4,7 @@
 	var/static/list/science_tools = list(
 		SCIENCE_JAWS_OF_LIFE_DESIGN_ID,
 		SCIENCE_DRILL_DESIGN_ID,
+		SCIENCE_ROBORCD_DESIGN_ID,
 	)
 	design_ids += science_tools
 

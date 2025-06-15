@@ -39,3 +39,5 @@
 // makes it so held items float by their head
 #define TRAIT_FLOATING_HELD "held_items_float"
 
+// makes it so this mob loses nutrition twice as fast
+#define TRAIT_FAST_METABOLISM "fast_metabolism"

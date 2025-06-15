@@ -84,6 +84,7 @@
 		switch(unclaim_response)
 			if("Yes")
 				unbolt(user)
+	return CLICK_ACTION_SUCCESS
 /*
 /obj/structure/bloodsucker/bloodaltar
 	name = "bloody altar"
@@ -470,11 +471,25 @@
 	. = ..()
 	if(!.)
 		return
-	if(anchored && (IS_GHOUL(user) || IS_BLOODSUCKER(user)))
+	if(IS_GHOUL(user) || IS_BLOODSUCKER(user))
 		toggle()
 	return ..()
 
+/obj/structure/bloodsucker/candelabrum/Click(location, control, params)
+	. = ..()
+	var/mob/user = usr
+	var/list/modifiers = params2list(params)
+	if(!LAZYACCESS(modifiers, RIGHT_CLICK) || !IS_BLOODSUCKER(user) || !istype(user))
+		return
+	if(user.stat >= UNCONSCIOUS)
+		return
+	user.balloon_alert_to_viewers("motions their hand at [src]")
+	toggle(user)
+
 /obj/structure/bloodsucker/candelabrum/proc/toggle(mob/user)
+	if(!anchored)
+		to_chat(user, span_danger("You can't turn this on while it is not secured!"))
+		return
 	lit = !lit
 	if(lit)
 		desc = initial(desc)
@@ -485,6 +500,7 @@
 		set_light(0)
 		STOP_PROCESSING(SSobj, src)
 	update_icon()
+
 
 /obj/structure/bloodsucker/candelabrum/process()
 	if(!lit)

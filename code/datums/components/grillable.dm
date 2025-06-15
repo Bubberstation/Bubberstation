@@ -123,11 +123,6 @@
 	SIGNAL_HANDLER
 
 	. = COMPONENT_HANDLED_GRILLING
-	//SKYRAT EDIT ADDITION
-	if(pollutant_type)
-		var/turf/parent_turf = get_turf(parent)
-		parent_turf.pollute_turf(pollutant_type, 10)
-	//SKYRAT EDIT END
 
 	current_cook_time += seconds_per_tick * 10 //turn it into ds
 	if(current_cook_time >= required_cook_time)
@@ -144,8 +139,7 @@
 
 	else
 		grilled_result = new cook_result(original_object.loc)
-		if(original_object.custom_materials)
-			grilled_result.set_custom_materials(original_object.custom_materials)
+		grilled_result.set_custom_materials(original_object.custom_materials)
 
 	if(IsEdible(grilled_result) && positive_result)
 		BLACKBOX_LOG_FOOD_MADE(grilled_result.type)

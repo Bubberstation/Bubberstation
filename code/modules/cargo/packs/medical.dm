@@ -92,7 +92,7 @@
 					/obj/item/reagent_containers/cup/bottle/morphine,
 					/obj/item/reagent_containers/cup/bottle/toxin,
 					/obj/item/reagent_containers/cup/beaker/large,
-					/obj/item/reagent_containers/pill/insulin,
+					/obj/item/reagent_containers/applicator/pill/insulin,
 					/obj/item/stack/medical/gauze,
 					/obj/item/storage/box/bandages,
 					/obj/item/storage/box/beakers,
@@ -107,13 +107,14 @@
 					/obj/item/defibrillator/loaded,
 					/obj/item/reagent_containers/blood/o_minus,
 					/obj/item/storage/pill_bottle/mining,
-					/obj/item/reagent_containers/pill/neurine,
+					/obj/item/reagent_containers/applicator/pill/neurine,
 					/obj/item/stack/medical/bone_gel = 2,
 					/obj/item/vending_refill/medical,
 					/obj/item/vending_refill/drugs,
 				)
 	crate_name = "medical supplies crate"
 	crate_type = /obj/structure/closet/crate/medical
+	test_ignored = TRUE
 
 /datum/supply_pack/medical/supplies/fill(obj/structure/closet/crate/C)
 	for(var/i in 1 to 10)
@@ -198,7 +199,7 @@
 	name = "Paperwork Implant Set"
 	desc = "A crate containing two implants, which can be surgically implanted to effectivize crewmembers at paperwork. Warranty void if exposed to electromagnetic pulses."
 	cost = CARGO_CRATE_VALUE * 3
-	contains = list(/obj/item/organ/cyberimp/arm/paperwork = 2)
+	contains = list(/obj/item/organ/cyberimp/arm/toolkit/paperwork = 2)
 	crate_name = "Paperwork implant crate"
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 

@@ -19,7 +19,7 @@
 
 // If brainproblems is added to a synth, this detours to the brainproblems/synth quirk.
 // TODO: Add more brain-specific detours when PR #16105 is merged
-/datum/quirk/item_quirk/brainproblems/add_to_holder(mob/living/new_holder, quirk_transfer, client/client_source)
+/datum/quirk/item_quirk/brainproblems/add_to_holder(mob/living/new_holder, quirk_transfer = FALSE, client/client_source, unique = TRUE)
 	if(!issynthetic(new_holder) || type != /datum/quirk/item_quirk/brainproblems)
 		// Defer to TG brainproblems if the character isn't robotic.
 		return ..()
@@ -27,17 +27,17 @@
 	// TODO: Check brain type and detour to appropriate brainproblems quirk
 	var/datum/quirk/item_quirk/brainproblems/synth/bp_synth = new
 	qdel(src)
-	return bp_synth.add_to_holder(new_holder, quirk_transfer, client_source)
+	return bp_synth.add_to_holder(new_holder, quirk_transfer, client_source, unique)
 
 // Synthetics get liquid_solder with Brain Tumor instead of mannitol.
 /datum/quirk/item_quirk/brainproblems/synth/add_unique(client/client_source)
 	give_item_to_holder(
 		/obj/item/storage/pill_bottle/liquid_solder/braintumor,
 		list(
-			LOCATION_LPOCKET = ITEM_SLOT_LPOCKET,
-			LOCATION_RPOCKET = ITEM_SLOT_RPOCKET,
-			LOCATION_BACKPACK = ITEM_SLOT_BACKPACK,
-			LOCATION_HANDS = ITEM_SLOT_HANDS,
+			LOCATION_LPOCKET,
+			LOCATION_RPOCKET,
+			LOCATION_BACKPACK,
+			LOCATION_HANDS,
 		),
 		flavour_text = "These will keep you alive until you can secure a supply of medication. Don't rely on them too much!",
 	)
