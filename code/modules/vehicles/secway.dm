@@ -61,7 +61,7 @@
 	else
 		user.balloon_alert_to_viewers("stopped welding [src]", "interrupted the repair!")
 
-/obj/vehicle/ridden/secway/attackby(obj/item/W, mob/living/user, params)
+/obj/vehicle/ridden/secway/attackby(obj/item/W, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(!istype(W, /obj/item/food/grown/banana))
 		return ..()
 	// ignore the occupants because they're presumably too distracted to notice the guy stuffing fruit into their vehicle's exhaust. do segways have exhausts? they do now!
@@ -97,9 +97,9 @@
 	return ..()
 
 //bullets will have a 60% chance to hit any riders
-/obj/vehicle/ridden/secway/bullet_act(obj/projectile/P)
+/obj/vehicle/ridden/secway/bullet_act(obj/projectile/proj)
 	if(!buckled_mobs || prob(40))
 		return ..()
 	for(var/mob/rider as anything in buckled_mobs)
-		rider.bullet_act(P)
-	return TRUE
+		return rider.projectile_hit(proj)
+	return ..()

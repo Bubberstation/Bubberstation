@@ -1,4 +1,3 @@
-import { toFixed } from 'common/math';
 import React, { useEffect, useState } from 'react';
 import { useBackend, useSharedState } from 'tgui/backend';
 import {
@@ -15,8 +14,9 @@ import {
   Stack,
   TextArea,
 } from 'tgui-core/components';
+import { FitText } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 
-import { FitText } from '../../components';
 import { AppearanceDisplay, BellyFullscreenIcon } from './AppearanceDisplay';
 import * as types from './types';
 
@@ -137,7 +137,7 @@ export const BellyUI = (props: {
         editing ? (
           <Input
             value={belly.name}
-            onChange={(e, value) =>
+            onChange={(value) =>
               act('edit_belly', { ref: belly.ref, var: 'name', value })
             }
           />
@@ -255,7 +255,7 @@ export const BellyUI = (props: {
                 value={belly.desc}
                 height={10}
                 className={'VorePanel__AdvancedTextArea'}
-                onChange={(e, value) =>
+                onChange={(value) =>
                   act('edit_belly', { ref: belly.ref, var: 'desc', value })
                 }
               />
@@ -429,7 +429,7 @@ export const BellyUI = (props: {
             {editing ? (
               <Input
                 value={belly.insert_verb}
-                onChange={(e, value) =>
+                onChange={(value) =>
                   act('edit_belly', {
                     ref: belly.ref,
                     var: 'insert_verb',
@@ -446,7 +446,7 @@ export const BellyUI = (props: {
             {editing ? (
               <Input
                 value={belly.release_verb}
-                onChange={(e, value) =>
+                onChange={(value) =>
                   act('edit_belly', {
                     ref: belly.ref,
                     var: 'release_verb',
@@ -702,7 +702,7 @@ const BellyMessageSection = (props: {
               value={v}
               fluid
               maxLength={data.max_vore_message_length}
-              onChange={(e, val) => {
+              onChange={(val) => {
                 setBellyValues(
                   bellyValues.map((oldVal, index) => {
                     if (index === i) {
@@ -741,7 +741,7 @@ const BellyMessageSection = (props: {
         }
         fluid
         maxLength={data.max_vore_message_length}
-        onEnter={(e, val) => {
+        onEnter={(val) => {
           setBellyValues([...bellyValues, val]);
           setHasChanges(true);
         }}

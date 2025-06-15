@@ -37,9 +37,33 @@
 	desc = "An asymmetrical, unisex uniform with the legs replaced by a utility skirt."
 	worn_icon_state = "security_skirt"
 	icon_state = "security_skirt"
+	can_adjust = TRUE
 	uses_advanced_reskins = FALSE
 	unique_reskin = null
 	alt_covers_chest = FALSE
+	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
+
+/obj/item/clothing/under/rank/security/peacekeeper/skirt_redsec
+	name = "security battle dress"
+	desc = "An asymmetrical, unisex uniform with the legs replaced by a utility skirt. Now in classic security red!"
+	worn_icon_state = "security_skirt_redsec"
+	icon_state = "security_skirt_redsec"
+	can_adjust = TRUE
+	uses_advanced_reskins = FALSE
+	unique_reskin = null
+	alt_covers_chest = FALSE
+	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
+
+/obj/item/clothing/under/rank/security/peacekeeper/skirt_hos
+	name = "head of security battle dress"
+	desc = "An asymmetrical, unisex uniform with the legs replaced by a utility skirt. This version is specifically designed for the head of the security department!"
+	worn_icon_state = "security_skirt_hos"
+	icon_state = "security_skirt_hos"
+	can_adjust = TRUE
+	uses_advanced_reskins = FALSE
+	unique_reskin = null
+	alt_covers_chest = FALSE
+	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 
 /obj/item/clothing/under/rank/security/peacekeeper/trousers
 	name = "security trousers"

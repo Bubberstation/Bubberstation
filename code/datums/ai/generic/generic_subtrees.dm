@@ -22,6 +22,14 @@
 	if(!song_player.song.playing) //we may stop playing if we weren't playing before, were setting up dk theme, or ran out of repeats (also causing setup behavior)
 		controller.queue_behavior(/datum/ai_behavior/play_instrument, BB_SONG_INSTRUMENT)
 
+/datum/ai_planning_subtree/generic_play_instrument/end_planning
+
+/datum/ai_planning_subtree/generic_play_instrument/end_planning/SelectBehaviors(datum/ai_controller/controller, seconds_per_tick)
+	. = ..()
+	if (controller.blackboard_key_exists(BB_SONG_INSTRUMENT))
+		return SUBTREE_RETURN_FINISH_PLANNING // Don't plan anything else if we're playing an instrument
+
+
 /**
  * Generic Resist Subtree, resist if it makes sense to!
  *
@@ -55,10 +63,16 @@
 	if(world.time < next_eat)
 		return
 
-	if(!controller.blackboard[BB_FOOD_TARGET])
+	var/atom/food_target = controller.blackboard[BB_FOOD_TARGET]
+
+	if(isnull(food_target))
 		controller.queue_behavior(/datum/ai_behavior/find_and_set/edible, BB_FOOD_TARGET, /obj/item, 2)
 		return
 
-	controller.queue_behavior(/datum/ai_behavior/drop_item)
+	var/mob/living/living_pawn = controller.pawn
+	if(!length(living_pawn.get_empty_held_indexes())  && !(food_target in living_pawn.held_items))
+		controller.queue_behavior(/datum/ai_behavior/drop_item)
+		return SUBTREE_RETURN_FINISH_PLANNING
+
 	controller.queue_behavior(/datum/ai_behavior/consume, BB_FOOD_TARGET, BB_NEXT_HUNGRY)
 	return SUBTREE_RETURN_FINISH_PLANNING

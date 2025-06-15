@@ -1,6 +1,4 @@
 import { ReactNode, useState } from 'react';
-
-import { useBackend, useLocalState } from '../../backend';
 import {
   Box,
   Button,
@@ -10,7 +8,9 @@ import {
   Section,
   Stack,
   Tooltip,
-} from '../../components';
+} from 'tgui-core/components';
+
+import { useBackend, useLocalState } from '../../backend';
 
 /**
  * This describes something that influences a particular reaction
@@ -59,7 +59,7 @@ const GasSearchBar = (props: {
         {activeInput ? (
           <Input
             fluid
-            onChange={(e, value) => {
+            onBlur={(value) => {
               setActiveInput(false);
               onChange(value);
             }}
@@ -126,7 +126,7 @@ const GasHandbook = (props) => {
 };
 
 const ReactionHandbook = (props) => {
-  const { act, data } = useBackend<{ reactionInfo: Reaction[] }>();
+  const { data } = useBackend<{ reactionInfo: Reaction[] }>();
   const { reactionInfo } = data;
   const [activeGasId, setActiveGasId] = useLocalState('activeGasId', '');
   const [activeReactionId, setActiveReactionId] = useLocalState(

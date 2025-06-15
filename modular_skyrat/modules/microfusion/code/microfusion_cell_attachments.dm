@@ -11,7 +11,7 @@ For adding unique abilities to microfusion cells. These cannot directly interact
 	w_class = WEIGHT_CLASS_NORMAL
 	/// The overlay that will be automatically added, must be in the cells icon.
 	var/attachment_overlay_icon_state
-	 /// Does this attachment process with the cell?
+	/// Does this attachment process with the cell?
 	var/processing_attachment = FALSE
 
 

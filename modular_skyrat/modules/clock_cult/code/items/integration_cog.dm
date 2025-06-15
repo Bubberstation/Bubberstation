@@ -26,7 +26,7 @@
 		if(!do_after(user, 5 SECONDS, target = cogger_apc))
 			return
 
-		balloon_alert(user, "APC cut open")
+		balloon_alert(user, UNLINT("APC cut open"))
 		cogger_apc.panel_open = TRUE
 		cogger_apc.update_appearance()
 		return
@@ -42,7 +42,7 @@
 	cogger_apc.panel_open = FALSE
 	cogger_apc.update_appearance()
 	balloon_alert(user, "[src] inserted")
-	playsound(get_turf(user), 'modular_skyrat/modules/clock_cult/sound/machinery/integration_cog_install.ogg', 20)
+	playsound(get_turf(user), 'sound/machines/clockcult/integration_cog_install.ogg', 20)
 	if(!cogger_apc.clock_cog_rewarded)
 		addtimer(CALLBACK(src, PROC_REF(finish_setup), cogger_apc), SET_UP_TIME)
 

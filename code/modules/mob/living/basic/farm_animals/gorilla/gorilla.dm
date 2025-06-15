@@ -27,7 +27,7 @@
 	melee_attack_cooldown = CLICK_CD_MELEE
 	melee_damage_lower = 25
 	melee_damage_upper = 30
-	damage_coeff = list(BRUTE = 1, BURN = 1.5, TOX = 1.5, STAMINA = 0, OXY = 1.5)
+	damage_coeff = list(BRUTE = 1, BURN = 1.5, TOX = 1.5, STAMINA = 1, OXY = 1.5)
 	obj_damage = 40
 	attack_verb_continuous = "pummels"
 	attack_verb_simple = "pummel"
@@ -57,7 +57,7 @@
 	. = ..()
 	add_traits(list(TRAIT_ADVANCEDTOOLUSER, TRAIT_CAN_STRIP, TRAIT_CHUNKYFINGERS), ROUNDSTART_TRAIT)
 	AddElement(/datum/element/wall_tearer, allow_reinforced = FALSE)
-	AddElement(/datum/element/dextrous)
+	AddElement(/datum/element/dextrous, can_throw = TRUE)
 	AddElement(/datum/element/footstep, FOOTSTEP_MOB_BAREFOOT)
 	AddElement(/datum/element/basic_eating, heal_amt = 10, food_types = gorilla_food)
 	AddComponent(
@@ -146,7 +146,7 @@
 	obj_damage = 15
 	ai_controller = /datum/ai_controller/basic_controller/gorilla/lesser
 	butcher_results = list(/obj/item/food/meat/slab/gorilla = 2)
-	current_size = 0.75
+	initial_size = 0.75
 
 /// Cargo's wonderful mascot, the tranquil box-carrying ape
 /mob/living/basic/gorilla/cargorilla
@@ -175,7 +175,20 @@
 	obj_damage = 25
 	speed = 0.1
 	paralyze_chance = 0
-	current_size = 0.9
+	initial_size = 0.9
+
+/mob/living/basic/gorilla/hostile
+	name = "Feral Gorilla"
+	maxHealth = 180
+	health = 180
+	desc = "A gorilla created via \"advanced genetic science\". While not quite as strong as their wildborne brethren, this simian still packs a punch."
+	melee_damage_lower = 15
+	melee_damage_upper = 18
+	obj_damage = 25
+	speed = 0.1
+	paralyze_chance = 0
+	initial_size = 0.9
+	faction = list(FACTION_HOSTILE)
 
 /mob/living/basic/gorilla/genetics/Initialize(mapload)
 	. = ..()

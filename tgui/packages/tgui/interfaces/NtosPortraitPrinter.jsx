@@ -1,8 +1,15 @@
 import { useState } from 'react';
+import {
+  Button,
+  Image,
+  Input,
+  NoticeBox,
+  Section,
+  Stack,
+} from 'tgui-core/components';
 
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
-import { Button, Image, Input, NoticeBox, Section, Stack } from '../components';
 import { NtosWindow } from '../layouts';
 
 export const NtosPortraitPrinter = (props) => {
@@ -23,26 +30,32 @@ export const NtosPortraitPrinter = (props) => {
         <Stack vertical fill>
           <Stack.Item>
             <Section title="Search">
-              <Input
-                fluid
-                placeholder="Search Paintings..."
-                value={search_string}
-                onChange={(e, value) => {
-                  act('search', {
-                    to_search: value,
-                  });
-                  setListIndex(0);
-                }}
-              />
-              <Button
-                content={search_mode}
-                onClick={() => {
-                  act('change_search_mode');
-                  if (search_string) {
-                    setListIndex(0);
-                  }
-                }}
-              />
+              <Stack>
+                <Stack.Item grow>
+                  <Input
+                    fluid
+                    placeholder="Search Paintings..."
+                    value={search_string}
+                    onBlur={(value) => {
+                      act('search', {
+                        to_search: value,
+                      });
+                      setListIndex(0);
+                    }}
+                  />
+                </Stack.Item>
+                <Stack.Item>
+                  <Button
+                    content={search_mode}
+                    onClick={() => {
+                      act('change_search_mode');
+                      if (search_string) {
+                        setListIndex(0);
+                      }
+                    }}
+                  />
+                </Stack.Item>
+              </Stack>
             </Section>
           </Stack.Item>
           <Stack.Item grow={2}>

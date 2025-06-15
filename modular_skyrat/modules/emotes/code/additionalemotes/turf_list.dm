@@ -32,7 +32,7 @@
 			icon_state = "water"
 			src.add_overlay(image('modular_skyrat/master_files/icons/effects/turf_effects.dmi', "water_top", EXTRA_ABOVE_MOB_LAYER))
 			flick_overlay_static(image('modular_skyrat/modules/liquids/icons/obj/effects/splash.dmi', "splash", EXTRA_ABOVE_MOB_LAYER), 20)
-			playsound(get_turf(src), 'modular_skyrat/master_files/sound/effects/watersplash.ogg', 25, TRUE)
+			playsound(get_turf(src), 'modular_zubbers/sound/effects/watersplash.ogg', 25, TRUE)
 
 		if("smoke")
 			name = "blazing mist"
@@ -181,6 +181,6 @@
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
-		human_user.update_mutant_bodyparts()
+		human_user.update_body_parts()
 
 #undef EXTRA_ABOVE_MOB_LAYER

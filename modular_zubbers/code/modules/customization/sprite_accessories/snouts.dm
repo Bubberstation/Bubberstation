@@ -8,7 +8,6 @@
 	icon = 'modular_zubbers/icons/customization/snouts.dmi'
 	icon_state = "cervine"
 
-
 /datum/sprite_accessory/snouts/mammal/cat
 	name = "Cat"
 	icon = 'modular_zubbers/icons/customization/snouts.dmi'
@@ -35,3 +34,13 @@
 	name = "Snaggletooth"
 	icon = 'modular_zubbers/icons/customization/snouts.dmi'
 	icon_state = "snaggletooth"
+
+/datum/sprite_accessory/snouts/mammal/pig
+	name = "Porcine"
+	icon = 'modular_zubbers/icons/customization/snouts.dmi'
+	icon_state = "pig"
+
+/datum/sprite_accessory/snouts/mammal/pig/boar
+	name = "Porcine + Tusks"
+	icon = 'modular_zubbers/icons/customization/snouts.dmi'
+	icon_state = "boar"

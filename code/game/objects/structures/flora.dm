@@ -52,9 +52,7 @@
 	/// Flags for the flora to determine what kind of sound to play when it gets hit
 	var/flora_flags = NONE
 
-//BUBBER EDIT START - MOVED TO MODULAR
-/*
-/obj/structure/flora/attackby(obj/item/used_item, mob/living/user, params)
+/obj/structure/flora/attackby(obj/item/used_item, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(user.combat_mode)
 		return ..()
 	if(flags_1 & HOLOGRAM_1)
@@ -95,8 +93,6 @@
 
 	if(harvest(user))
 		after_harvest(user)
-*/
-//BUBBER EDIT END
 
 /obj/structure/flora/attack_hand(mob/user, list/modifiers)
 	. = ..()

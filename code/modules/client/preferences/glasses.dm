@@ -12,9 +12,12 @@
 
 /datum/preference/choiced/glasses/icon_for(value)
 	if (value == "Random")
-		return icon('icons/effects/random_spawners.dmi', "questionmark")
+		return uni_icon('icons/effects/random_spawners.dmi', "questionmark")
 	else
-		return icon('icons/obj/clothing/glasses.dmi', "glasses_[LOWER_TEXT(value)]")
+		// BUBBER EDIT CHANGE BEGIN - Handle glasses not in the base tg file
+		var/obj/item/clothing/glasses/glasses_type = GLOB.nearsighted_glasses[value]
+		return uni_icon(initial(glasses_type.icon), initial(glasses_type.icon_state))
+		// BUBBER EDIT CHANGE END - Handle glasses not in the base tg file
 
 /datum/preference/choiced/glasses/is_accessible(datum/preferences/preferences)
 	if (!..(preferences))

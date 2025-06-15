@@ -47,9 +47,9 @@
 
 	outfit_weight = 2
 
-/datum/outfit/job/assistant/gimmick/cyborg/post_equip(mob/living/carbon/human/equipped, visualsOnly)
+/datum/outfit/job/assistant/gimmick/cyborg/post_equip(mob/living/carbon/human/equipped, visuals_only)
 	. = ..()
-	var/obj/item/organ/internal/tongue/robot/robotongue = new ()
+	var/obj/item/organ/tongue/robot/robotongue = new ()
 	robotongue.Insert(equipped, movement_flags = DELETE_IF_REPLACED)
 
 /datum/outfit/job/assistant/gimmick/skater
@@ -103,7 +103,7 @@
 
 	outfit_weight = 5
 
-/datum/outfit/job/assistant/gimmick/mopper/post_equip(mob/living/carbon/human/equipped, visualsOnly)
+/datum/outfit/job/assistant/gimmick/mopper/post_equip(mob/living/carbon/human/equipped, visuals_only)
 	. = ..()
 
 	for(var/turf/turf in range(1, equipped))
@@ -210,3 +210,11 @@
 	backpack_contents = list(/obj/item/storage/crayons)
 
 	outfit_weight = 3
+
+/datum/outfit/job/assistant/gimmick/bear
+	name = "Gimmick Assistant - Bear"
+	head = /obj/item/clothing/head/costume/bearpelt
+	suit = /obj/item/clothing/suit/costume/bear_suit
+	shoes = /obj/item/clothing/shoes/sneakers/black
+	uniform = /obj/item/clothing/under/color/black
+	outfit_weight = 6

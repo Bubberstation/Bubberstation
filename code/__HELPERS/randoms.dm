@@ -15,7 +15,6 @@
 			/obj/item/food/grown/ash_flora,
 			/obj/item/food/grown/mushroom,
 			/obj/item/food/grown/nettle,
-			/obj/item/food/grown/shell,
 			/obj/item/food/kebab,
 			/obj/item/food/meat,
 			/obj/item/food/meat/slab,
@@ -39,6 +38,7 @@
 ///Gets a random drink excluding the blocked type
 /proc/get_random_drink()
 	var/list/blocked = list(
+		/obj/item/reagent_containers/cup/glass/changeling_zombie_virus, // BUBBER EDIT - Remove the changeling virus from slime extracts
 		/obj/item/reagent_containers/cup/soda_cans,
 		/obj/item/reagent_containers/cup/glass/bottle
 		)

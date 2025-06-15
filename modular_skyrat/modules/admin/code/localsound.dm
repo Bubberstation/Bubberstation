@@ -97,7 +97,7 @@
 				if (listening_mob.client)
 					players += listening_mob
 		for(var/mob/player_mob as anything in players)
-			if(player_mob.client.prefs.read_preference(/datum/preference/toggle/sound_midi))
+			if(player_mob.client.prefs.read_preference(/datum/preference/numeric/volume/sound_midi) > 0)
 				if(!stop_localweb_sounds)
 					player_mob.client.tgui_panel?.play_music(localweb_sound_url, music_extra_data)
 				else
@@ -130,3 +130,8 @@ ADMIN_VERB(play_localweb_sound, R_SOUND, "Play Local Internet Sound", "Play a gi
 		localweb_sound(usr, web_sound_input, range = number_input)
 	else
 		localweb_sound(usr, null, null, null)
+
+#undef SHELLEO_ERRORLEVEL
+#undef SHELLEO_STDOUT
+#undef SHELLEO_STDERR
+#undef COOLDOWN_LOCAL_INTERNET_SOUND

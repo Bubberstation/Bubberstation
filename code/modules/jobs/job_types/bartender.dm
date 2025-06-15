@@ -20,7 +20,7 @@
 		/datum/job_department/service,
 		)
 
-	family_heirlooms = list(/obj/item/reagent_containers/cup/rag, /obj/item/clothing/head/hats/tophat, /obj/item/reagent_containers/cup/glass/shaker)
+	family_heirlooms = list(/obj/item/rag, /obj/item/clothing/head/hats/tophat, /obj/item/reagent_containers/cup/glass/shaker)
 
 	mail_goodies = list(
 		/obj/item/storage/box/rubbershot = 30,
@@ -61,7 +61,7 @@
 
 	skillchips = list(/obj/item/skillchip/drunken_brawler)
 
-/datum/outfit/job/bartender/post_equip(mob/living/carbon/human/H, visualsOnly)
+/datum/outfit/job/bartender/post_equip(mob/living/carbon/human/H, visuals_only)
 	. = ..()
 
 	var/obj/item/card/id/W = H.wear_id

@@ -110,3 +110,16 @@
 	desc = "A small toolbox with one spare set of prescripted lenses. Warning: fragile."
 	cost = PAYCHECK_COMMAND * 2 // glasses are expensive! woah-wee momma!
 	contains = list(/obj/item/prescription_lenses)
+
+/datum/supply_pack/goody/space_pet_snack
+	name = "Spaceproof Pet Snack"
+	desc = "Contains a treat for your loving companion that'll make them spaceworthy."
+	cost = PAYCHECK_CREW * 5
+	contains = list(/obj/item/pet_food/pet_space_treat)
+
+/datum/supply_pack/goody/rope_implant
+	name = "Climbing Hook Implant"
+	desc = "A specialized climbing hook implant for the vertically challenged."
+	cost = PAYCHECK_CREW * 12
+	contains = list(/obj/item/organ/cyberimp/arm/toolkit/rope)
+

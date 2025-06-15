@@ -12,7 +12,6 @@
 		TRAIT_STABLEHEART,
 		TRAIT_LIMBATTACHMENT,
 		TRAIT_NO_HUSK,
-		TRAIT_OXYIMMUNE,
 		TRAIT_LITERATE,
 		TRAIT_NOCRITDAMAGE, // We do our own handling of crit damage.
 		TRAIT_ROBOTIC_DNA_ORGANS,
@@ -23,17 +22,17 @@
 	reagent_flags = PROCESS_SYNTHETIC
 	payday_modifier = 1.0 // Matches the rest of the pay penalties the non-human crew have
 	species_language_holder = /datum/language_holder/machine
-	mutant_organs = list(/obj/item/organ/internal/cyberimp/arm/power_cord)
-	mutantbrain = /obj/item/organ/internal/brain/synth
-	mutantstomach = /obj/item/organ/internal/stomach/synth
-	mutantears = /obj/item/organ/internal/ears/synth
-	mutanttongue = /obj/item/organ/internal/tongue/synth
-	mutanteyes = /obj/item/organ/internal/eyes/synth
-	mutantlungs = /obj/item/organ/internal/lungs/synth
-	mutantheart = /obj/item/organ/internal/heart/synth
-	mutantliver = /obj/item/organ/internal/liver/synth
+	mutant_organs = list(/obj/item/organ/cyberimp/arm/toolkit/power_cord)
+	mutantbrain = /obj/item/organ/brain/synth
+	mutantstomach = /obj/item/organ/stomach/synth
+	mutantears = /obj/item/organ/ears/synth
+	mutanttongue = /obj/item/organ/tongue/synth
+	mutanteyes = /obj/item/organ/eyes/synth
+	mutantlungs = /obj/item/organ/lungs/synth
+	mutantheart = /obj/item/organ/heart/synth
+	mutantliver = /obj/item/organ/liver/synth
 	mutantappendix = null
-	exotic_blood = /datum/reagent/fuel/oil
+	exotic_bloodtype = BLOOD_TYPE_OIL
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/synth,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/synth,
@@ -76,8 +75,30 @@
 		human.adjustFireLoss(1) //Still deal some damage in case a cold environment would be preventing us from the sweet release to robot heaven
 		human.adjust_bodytemperature(13) //We're overheating!!
 		if(prob(10))
-			to_chat(human, span_warning("Alert: Critical damage taken! Cooling systems failing!"))
+			to_chat(human, span_warning("Alert: Critical damage taken, all systems failing."))
 			do_sparks(3, TRUE, human)
+
+	var/obj/item/organ/lungs/lungs = human.get_organ_slot(ORGAN_SLOT_LUNGS)
+	if(!lungs || (lungs.organ_flags & ORGAN_FAILING))
+		// No lungs or failing lungs present, apply overheating
+		human.adjust_bodytemperature(50)
+		human.adjustFireLoss(1)
+		if(prob(10))
+			to_chat(human, span_warning("Alert: Cooling system is non-functional or missing, OVERHEATING is imminent."))
+			do_sparks(3, TRUE, human)
+
+	var/obj/item/organ/heart/heart = human.get_organ_slot(ORGAN_SLOT_HEART)
+	if(!heart || (heart.organ_flags & ORGAN_FAILING))
+		// No heart or failing heart present, apply slowdown
+		human.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH, 5 SECONDS)
+		if(prob(10))
+			to_chat(human, span_warning("Alert: Oil pump is non-functional or missing. Hydraulics efficiency reduced."))
+
+	var/obj/item/organ/liver/liver = human.get_organ_slot(ORGAN_SLOT_LIVER)
+	if(!liver || (liver.organ_flags & ORGAN_FAILING))
+		// No liver or failing liver present, apply message informing of the missing liver
+		if(prob(10))
+			to_chat(human, span_warning("Alert: Reagent processing unit is non-functional or missing. Systems clogging."))
 
 /datum/species/synthetic/spec_revival(mob/living/carbon/human/transformer)
 	switch_to_screen(transformer, "Console")
@@ -85,26 +106,26 @@
 	playsound(transformer.loc, 'sound/machines/chime.ogg', 50, TRUE)
 	transformer.visible_message(span_notice("[transformer]'s [screen ? "monitor lights up" : "eyes flicker to life"]!"), span_notice("All systems nominal. You're back online!"))
 
-/datum/species/synthetic/on_species_gain(mob/living/carbon/human/transformer)
+/datum/species/synthetic/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons = TRUE)
 	. = ..()
 
-	RegisterSignal(transformer, COMSIG_ATOM_EMAG_ACT, PROC_REF(on_emag_act))
+	RegisterSignal(human_who_gained_species, COMSIG_ATOM_EMAG_ACT, PROC_REF(on_emag_act))
 
 	var/datum/action/sing_tones/sing_action = new
-	sing_action.Grant(transformer)
+	sing_action.Grant(human_who_gained_species)
 
-	var/screen_mutant_bodypart = transformer.dna.mutant_bodyparts[MUTANT_SYNTH_SCREEN]
-	var/obj/item/organ/internal/eyes/eyes = transformer.get_organ_slot(ORGAN_SLOT_EYES)
+	var/screen_mutant_bodypart = human_who_gained_species.dna.mutant_bodyparts[MUTANT_SYNTH_SCREEN]
+	var/obj/item/organ/eyes/eyes = human_who_gained_species.get_organ_slot(ORGAN_SLOT_EYES)
 
 	if(!screen && screen_mutant_bodypart && screen_mutant_bodypart[MUTANT_INDEX_NAME] && screen_mutant_bodypart[MUTANT_INDEX_NAME] != "None")
 
 		if(eyes)
 			eyes.eye_icon_state = "None"
 
-		screen = new(transformer)
-		screen.Grant(transformer)
+		screen = new(human_who_gained_species)
+		screen.Grant(human_who_gained_species)
 
-		RegisterSignal(transformer, COMSIG_LIVING_DEATH, PROC_REF(bsod_death)) // screen displays bsod on death, if they have one
+		RegisterSignal(human_who_gained_species, COMSIG_LIVING_DEATH, PROC_REF(bsod_death)) // screen displays bsod on death, if they have one
 
 		return
 
@@ -135,12 +156,12 @@
 
 		if(limb.body_zone == BODY_ZONE_HEAD)
 			if(head_of_choice.color_src && head[MUTANT_INDEX_COLOR_LIST] && length(head[MUTANT_INDEX_COLOR_LIST]))
-				limb.variable_color = head[MUTANT_INDEX_COLOR_LIST][1]
+				limb.add_color_override(head[MUTANT_INDEX_COLOR_LIST][1], LIMB_COLOR_SYNTH)
 			limb.change_appearance(head_of_choice.icon, head_of_choice.icon_state, !!head_of_choice.color_src, head_of_choice.dimorphic)
 			continue
 
 		if(chassis_of_choice.color_src && chassis[MUTANT_INDEX_COLOR_LIST] && length(chassis[MUTANT_INDEX_COLOR_LIST]))
-			limb.variable_color = chassis[MUTANT_INDEX_COLOR_LIST][1]
+			limb.add_color_override(chassis[MUTANT_INDEX_COLOR_LIST][1], LIMB_COLOR_SYNTH)
 		limb.change_appearance(chassis_of_choice.icon, chassis_of_choice.icon_state, !!chassis_of_choice.color_src, limb.body_part == CHEST && chassis_of_choice.dimorphic)
 		limb.name = "\improper[chassis_of_choice.name] [parse_zone(limb.body_zone)]"
 
@@ -150,7 +171,7 @@
 
 	UnregisterSignal(human, COMSIG_ATOM_EMAG_ACT)
 
-	var/obj/item/organ/internal/eyes/eyes = human.get_organ_slot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/eyes = human.get_organ_slot(ORGAN_SLOT_EYES)
 
 	if(eyes)
 		eyes.eye_icon_state = initial(eyes.eye_icon_state)
@@ -192,7 +213,7 @@
 		return
 
 	// This is awful. Please find a better way to do this.
-	var/obj/item/organ/external/synth_screen/screen_organ = transformer.get_organ_slot(ORGAN_SLOT_EXTERNAL_SYNTH_SCREEN)
+	var/obj/item/organ/synth_screen/screen_organ = transformer.get_organ_slot(ORGAN_SLOT_EXTERNAL_SYNTH_SCREEN)
 	if(!istype(screen_organ))
 		return
 
@@ -201,7 +222,7 @@
 	transformer.update_body()
 
 /datum/species/synthetic/get_types_to_preload()
-	return ..() - typesof(/obj/item/organ/internal/cyberimp/arm/power_cord) // Don't cache things that lead to hard deletions.
+	return ..() - typesof(/obj/item/organ/cyberimp/arm/toolkit/power_cord) // Don't cache things that lead to hard deletions.
 
 /datum/species/synthetic/create_pref_unique_perks()
 	var/list/perk_descriptions = list()

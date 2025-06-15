@@ -1,6 +1,3 @@
-import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -10,7 +7,10 @@ import {
   NumberInput,
   Section,
   Stack,
-} from '../components';
+} from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
@@ -117,7 +117,7 @@ const InstrumentSettings = (props) => {
         <NumberInput
           step={1}
           minValue={0}
-          disabled={playing}
+          disabled={!!playing}
           maxValue={max_repeats}
           value={repeat}
           onChange={(value) =>

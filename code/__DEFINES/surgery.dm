@@ -30,6 +30,12 @@
 #define ORGAN_PROMINENT (1<<11)
 /// An organ that is ostensibly dangerous when inside a body
 #define ORGAN_HAZARDOUS (1<<12)
+/// This is an external organ, not an inner one. Used in several checks.
+#define ORGAN_EXTERNAL (1<<13)
+/// This is a mutant organ, having this makes you a -derived mutant to health analyzers.
+#define ORGAN_MUTANT (1<<14)
+/// BUBBER EDIT ADD - Nanoswarm organ
+#define ORGAN_NANOMACHINE (1<<15)
 
 /// Scarring on the right eye
 #define RIGHT_EYE_SCAR (1<<0)
@@ -40,6 +46,8 @@
 #define IS_ORGANIC_LIMB(limb) (limb.bodytype & BODYTYPE_ORGANIC)
 /// Helper to figure out if a limb is robotic
 #define IS_ROBOTIC_LIMB(limb) (limb.bodytype & BODYTYPE_ROBOTIC)
+/// Helper to figure out if a limb is a nanomachine limb. --- BUBBER EDIT
+#define IS_NANO_LIMB(limb) (limb.bodytype & BODYTYPE_NANO) // BUBBER EDIT END
 /// Helper to figure out if a limb is a peg limb
 #define IS_PEG_LIMB(limb) (limb.bodytype & BODYTYPE_PEG)
 
@@ -52,6 +60,8 @@
 #define BODYPART_IMPLANTED (1<<2)
 /// Bodypart never displays as a husk
 #define BODYPART_UNHUSKABLE (1<<3)
+/// Bodypart has never been added to a mob
+#define BODYPART_VIRGIN (1<<4)
 
 // Bodypart change blocking flags
 ///Bodypart does not get replaced during set_species()
@@ -91,6 +101,12 @@
 #define SURGERY_REQUIRES_REAL_LIMB (1<<4)
 ///Will grant a bonus during surgery steps to users with TRAIT_MORBID while they're using tools with CRUEL_IMPLEMENT
 #define SURGERY_MORBID_CURIOSITY (1<<5)
+/**
+ * Instead of checking if the tool used is an actual surgery tool to avoid accidentally whacking patients with the wrong tool,
+ * it'll check if it has a defined tool behaviour instead. Useful for surgeries that use mechanical tools instead of medical ones,
+ * like hardware manipulation.
+ */
+#define SURGERY_CHECK_TOOL_BEHAVIOUR (1<<6)
 
 ///Return true if target is not in a valid body position for the surgery
 #define IS_IN_INVALID_SURGICAL_POSITION(target, surgery) ((surgery.surgery_flags & SURGERY_REQUIRE_RESTING) && (target.mobility_flags & MOBILITY_LIEDOWN && target.body_position != LYING_DOWN))

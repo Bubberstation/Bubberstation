@@ -139,10 +139,7 @@
 			reagents.add_reagent(/datum/reagent/consumable/ethanol/fruit_wine, reagent.volume, data, added_purity = reagent_purity)
 		reagents.del_reagent(reagent.type)
 
-/obj/item/food/grown/grind(datum/reagents/target_holder, mob/user)
-	if(on_grind() == -1)
-		return FALSE
-
+/obj/item/food/grown/grind_atom(datum/reagents/target_holder, mob/user)
 	var/grind_results_num = LAZYLEN(grind_results)
 	if(grind_results_num)
 		var/average_purity = reagents.get_average_purity()
@@ -152,9 +149,22 @@
 		for(var/reagent in grind_results)
 			reagents.add_reagent(reagent, single_reagent_amount, added_purity = average_purity)
 
-	if(reagents && target_holder)
-		reagents.trans_to(target_holder, reagents.total_volume, transferred_by = user)
-	return TRUE
+	return reagents?.trans_to(target_holder, reagents.total_volume, transferred_by = user)
+
+/obj/item/food/grown/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	//if we attack with paper and the grown is a mushroom, create a spore print.
+	if(istype(tool, /obj/item/paper) && seed?.get_gene(/datum/plant_gene/trait/plant_type/fungal_metabolism))
+		qdel(tool)
+		seed.name = "[LOWER_TEXT(seed.plantname)] spore print"
+		seed.desc = "A dusting of [LOWER_TEXT(seed.plantname)] spores have been deposited in a beautiful pattern on the surface of the paper. "
+		seed.icon_state = "spore_print[pick(1,2,3)]"
+		seed.forceMove(drop_location())
+		playsound(user, 'sound/items/paper_flip.ogg', 20)
+		seed = null
+		qdel(src)
+		return ITEM_INTERACT_SUCCESS
+	else
+		return ..()
 
 #undef BITE_SIZE_POTENCY_MULTIPLIER
 #undef BITE_SIZE_VOLUME_MULTIPLIER

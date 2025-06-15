@@ -22,7 +22,7 @@
 	return ..()
 
 /mob/living/carbon/human/get_default_say_verb()
-	var/obj/item/organ/internal/tongue/tongue = get_organ_slot(ORGAN_SLOT_TONGUE)
+	var/obj/item/organ/tongue/tongue = get_organ_slot(ORGAN_SLOT_TONGUE)
 	if(isnull(tongue))
 		if(HAS_TRAIT(src, TRAIT_SIGN_LANG))
 			return "signs"
@@ -64,15 +64,18 @@
 	return special_voice
 
 /mob/living/carbon/human/binarycheck()
-	if(stat >= SOFT_CRIT || !ears)
-		return FALSE
-	var/obj/item/radio/headset/dongle = ears
-	if(!istype(dongle))
+	if(stat >= SOFT_CRIT)
 		return FALSE
 	var/area/our_area = get_area(src)
 	if(our_area.area_flags & BINARY_JAMMING)
 		return FALSE
-	return (dongle.special_channels & RADIO_SPECIAL_BINARY)
+	var/obj/item/organ/brain/cybernetic/ai/brain = get_organ_slot(ORGAN_SLOT_BRAIN)
+	if(istype(brain))
+		return TRUE
+	var/obj/item/radio/headset/dongle = ears
+	if(!istype(dongle))
+		return FALSE
+	return dongle.special_channels & RADIO_SPECIAL_BINARY
 
 /mob/living/carbon/human/radio(message, list/message_mods = list(), list/spans, language) //Poly has a copy of this, lazy bastard
 	. = ..()

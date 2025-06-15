@@ -4,7 +4,7 @@
 	surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_REQUIRES_REAL_LIMB
 	organ_to_manipulate = ORGAN_SLOT_STOMACH
 	possible_locs = list(BODY_ZONE_CHEST)
-	requires_bodypart_type = BODYTYPE_ROBOTIC
+	requires_bodypart_type = BODYTYPE_ROBOTIC | BODYTYPE_NANO
 	steps = list(
 		/datum/surgery_step/mechanic_open,
 		/datum/surgery_step/mechanic_unwrench,
@@ -17,7 +17,7 @@
 	desc = "A mechanical surgery procedure designed to repair an androids internal bioreactor."
 
 /datum/surgery/bioreactor/can_start(mob/user, mob/living/carbon/target)
-	var/obj/item/organ/internal/stomach/bioreactor = target.get_organ_slot(ORGAN_SLOT_STOMACH)
+	var/obj/item/organ/stomach/bioreactor = target.get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(isnull(bioreactor) || !issynthetic(target) || bioreactor.damage < 10)
 		return FALSE
 	return ..()
@@ -46,7 +46,7 @@
 
 /datum/surgery_step/bioreactor/repair/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	var/mob/living/carbon/human/patient = target
-	var/obj/item/organ/internal/stomach/bioreactor = target.get_organ_slot(ORGAN_SLOT_STOMACH)
+	var/obj/item/organ/stomach/bioreactor = target.get_organ_slot(ORGAN_SLOT_STOMACH)
 	patient.setOrganLoss(ORGAN_SLOT_STOMACH, 0) // adjustOrganLoss didnt work here without runtimes spamming, setting to 0 as synths have no natural organ decay/regeneration
 	if(bioreactor.organ_flags & ORGAN_EMP)
 		bioreactor.organ_flags &= ~ORGAN_EMP

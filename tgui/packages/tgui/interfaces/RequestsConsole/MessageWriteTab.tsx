@@ -1,7 +1,5 @@
 import { sort } from 'common/collections';
 import { useState } from 'react';
-
-import { useBackend, useLocalState } from '../../backend';
 import {
   Box,
   Button,
@@ -9,7 +7,9 @@ import {
   Section,
   Stack,
   TextArea,
-} from '../../components';
+} from 'tgui-core/components';
+
+import { useBackend, useLocalState } from '../../backend';
 import { RequestPriority, RequestsData, RequestType } from './types';
 
 export const MessageWriteTab = (props) => {
@@ -147,7 +147,7 @@ export const MessageWriteTab = (props) => {
         height={20}
         maxLength={1025}
         value={messageText}
-        onChange={(_, value) => setMessageText(value)}
+        onChange={setMessageText}
         placeholder="Type your message..."
       />
       <Section>

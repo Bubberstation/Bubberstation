@@ -35,7 +35,7 @@
 	icon_state = "implantcase-[imp ? imp.implant_color : 0]"
 	return ..()
 
-/obj/item/implantcase/attackby(obj/item/used_item, mob/living/user, params)
+/obj/item/implantcase/attackby(obj/item/used_item, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(IS_WRITING_UTENSIL(used_item))
 		if(!user.can_write(used_item))
 			return
@@ -43,6 +43,7 @@
 		if((user.get_active_held_item() != used_item) || !user.can_perform_action(src))
 			return
 		if(new_name)
+			playsound(src, SFX_WRITING_PEN, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
 			name = "implant case - '[new_name]'"
 		else
 			name = "implant case"

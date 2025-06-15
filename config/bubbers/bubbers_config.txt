@@ -17,5 +17,8 @@ INTERN_THRESHOLD_COMMAND 20
 ## If enabled, it will use checks to determine if a player is vetted or not in different parts of the game
 #CHECK_VETTED
 
-## Default Storyteller. Comment out to enable voting.
-DEFAULT_STORYTELLER /datum/storyteller/extended
+## Respawn grace period (deciseconds), which allows to return to the lobby some amount of time after the world loads - default 30 minutes
+RESPAWN_GRACE_PERIOD 18000
+
+## If enabled, /human mobs will no longer blink (blinking is somewhat expensive)
+#DISABLE_BLINKING

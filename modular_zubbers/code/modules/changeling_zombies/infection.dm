@@ -1,6 +1,6 @@
 GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 
-/proc/can_become_changeling_zombie(var/datum/parent)
+/proc/can_become_changeling_zombie(datum/parent)
 
 	if(!ishuman(parent) || HAS_TRAIT(parent,TRAIT_NO_ZOMBIFY) || HAS_TRAIT(parent,TRAIT_GENELESS))
 		return FALSE
@@ -256,7 +256,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 
 	if(!was_changeling_husked && !GLOB.changeling_zombies_detected) //Only announce if it's from a non-changeling spawn.
 		var/turf/T = get_turf(host)
-		if(is_station_level(T.z)) //Prevents the announcements if admins are fucking around on centcomm.
+		if(is_station_level(T.z)) //Prevents the announcements if admins are fucking around on centcom.
 			var/list/turf/found_turfs = get_area_turfs(/area/station/medical,subtypes=TRUE)
 			if(length(found_turfs))
 				var/turf/chosen_turf = pick(found_turfs)

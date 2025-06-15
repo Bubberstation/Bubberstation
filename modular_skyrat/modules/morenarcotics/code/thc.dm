@@ -40,7 +40,6 @@
 /datum/reagent/drug/thc
 	name = "THC"
 	description = "A chemical found in cannabis that serves as its main psychoactive component."
-	reagent_state = LIQUID
 	color = "#cfa40c"
 	overdose_threshold = 30 //just gives funny effects, but doesnt hurt you; thc has no actual known overdose
 	ph = 6

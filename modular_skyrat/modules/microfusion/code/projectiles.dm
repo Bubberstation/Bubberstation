@@ -7,7 +7,7 @@
 	projectile_type = /obj/projectile/beam/laser/microfusion
 	e_cost = LASER_SHOTS(12, STANDARD_CELL_CHARGE)
 	select_name = "laser"
-	fire_sound = 'modular_skyrat/modules/microfusion/sound/laser_1.ogg'
+	fire_sound = 'modular_zubbers/sound/weapons/laser.ogg'
 	fire_sound_volume = 100
 
 /obj/item/ammo_casing/proc/refresh_shot()
@@ -52,7 +52,7 @@
 	icon_state = "laser_greyscale"
 	wound_bonus = 0
 	damage = 25 // Basically a hellfire beam
-	speed = 0.6
+	speed = 1.6
 	color = LIGHT_COLOR_FLARE
 	light_color = LIGHT_COLOR_FLARE
 
@@ -78,7 +78,7 @@
 	tracer_type = /obj/effect/projectile/tracer/heavy_laser
 	muzzle_type = /obj/effect/projectile/muzzle/heavy_laser
 	impact_type = /obj/effect/projectile/impact/heavy_laser
-	speed = 0.4
+	speed = 2.5
 
 /obj/projectile/beam/laser/microfusion/xray
 	name = "x-ray microfusion laser"

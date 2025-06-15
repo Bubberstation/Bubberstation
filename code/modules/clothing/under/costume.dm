@@ -176,7 +176,7 @@
 
 /obj/item/clothing/under/costume/sailor
 	name = "sailor suit"
-	desc = "Skipper's in the wardroom drinkin gin'."
+	desc = "Skipper's in the wardroom drinkin' gin."
 	icon_state = "sailor"
 	inhand_icon_state = "b_suit"
 	can_adjust = FALSE
@@ -309,9 +309,11 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/costume/buttondown/slacks
-	name = "buttondown shirt with slacks"
-	desc = "A fancy buttondown shirt with slacks."
-	icon_state = "buttondown_slacks"
+	name = "button-down shirt with slacks"
+	desc = "A fancy button-down shirt with slacks."
+	icon = 'icons/map_icons/clothing/under/costume.dmi'
+	icon_state = "/obj/item/clothing/under/costume/buttondown/slacks"
+	post_init_icon_state = "buttondown_slacks"
 	greyscale_config = /datum/greyscale_config/buttondown_slacks
 	greyscale_config_worn = /datum/greyscale_config/buttondown_slacks/worn
 	greyscale_config_worn_digi = /datum/greyscale_config/buttondown_slacks/worn/digi //SKYRAT EDIT ADDITION - DigiGreyscale
@@ -319,12 +321,15 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/costume/buttondown/slacks/service //preset one to be a formal white shirt and black pants
+	icon_state = "/obj/item/clothing/under/costume/buttondown/slacks/service"
 	greyscale_colors = "#EEEEEE#CBDBFC#17171B#222227"
 
 /obj/item/clothing/under/costume/buttondown/shorts
-	name = "buttondown shirt with shorts"
-	desc = "A fancy buttondown shirt with shorts."
-	icon_state = "buttondown_shorts"
+	name = "button-down shirt with shorts"
+	desc = "A fancy button-down shirt with shorts."
+	icon = 'icons/map_icons/clothing/under/costume.dmi'
+	icon_state = "/obj/item/clothing/under/costume/buttondown/shorts"
+	post_init_icon_state = "buttondown_shorts"
 	greyscale_config = /datum/greyscale_config/buttondown_shorts
 	greyscale_config_worn = /datum/greyscale_config/buttondown_shorts/worn
 	greyscale_config_worn_digi = /datum/greyscale_config/buttondown_shorts/worn/digi //SKYRAT EDIT ADDITION - DigiGreyscale
@@ -332,9 +337,11 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/costume/buttondown/skirt
-	name = "buttondown shirt with skirt"
-	desc = "A fancy buttondown shirt with skirt."
-	icon_state = "buttondown_skirt"
+	name = "button-down shirt with skirt"
+	desc = "A fancy button-down shirt with skirt."
+	icon = 'icons/map_icons/clothing/under/costume.dmi'
+	icon_state = "/obj/item/clothing/under/costume/buttondown/skirt"
+	post_init_icon_state = "buttondown_skirt"
 	greyscale_config = /datum/greyscale_config/buttondown_skirt
 	greyscale_config_worn = /datum/greyscale_config/buttondown_skirt/worn
 	greyscale_colors = "#EEEEEE#EE8E2E#222227#D8D39C"
@@ -344,6 +351,7 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/under/costume/buttondown/skirt/service //preset one to be a formal white shirt and black skirt
+	icon_state = "/obj/item/clothing/under/costume/buttondown/skirt/service"
 	greyscale_colors = "#EEEEEE#CBDBFC#17171B#222227"
 
 /obj/item/clothing/under/costume/jackbros
@@ -361,7 +369,9 @@
 
 /obj/item/clothing/under/costume/football_suit
 	name = "football uniform"
-	icon_state = "football_suit"
+	icon = 'icons/map_icons/clothing/under/costume.dmi'
+	icon_state = "/obj/item/clothing/under/costume/football_suit"
+	post_init_icon_state = "football_suit"
 	can_adjust = FALSE
 	greyscale_config = /datum/greyscale_config/football_suit
 	greyscale_config_worn = /datum/greyscale_config/football_suit/worn
@@ -422,7 +432,9 @@
 /obj/item/clothing/under/costume/gi
 	name = "martial gi"
 	desc = "Assistant, nukie, whatever. You can beat anyone; it's called hard work!"
-	icon_state = "martial_arts_gi"
+	icon = 'icons/map_icons/clothing/under/costume.dmi'
+	icon_state = "/obj/item/clothing/under/costume/gi"
+	post_init_icon_state = "martial_arts_gi"
 	greyscale_config = /datum/greyscale_config/gi
 	greyscale_config_worn = /datum/greyscale_config/gi/worn
 	greyscale_colors = "#f1eeee#000000"
@@ -439,12 +451,13 @@
 /obj/item/clothing/under/costume/gi/goku
 	name = "sacred gi"
 	desc = "Created by a man who touched the hearts and lives of many."
-	icon_state = "martial_arts_gi_goku"
+	icon_state = "/obj/item/clothing/under/costume/gi/goku"
+	post_init_icon_state = "martial_arts_gi_goku"
 	greyscale_colors = "#f89925#3e6dd7"
 
 /obj/item/clothing/under/costume/traditional
 	name = "traditional suit"
-	desc = "A full, vibrantly coloured suit. Likely with traditional purposes. Maybe the colours represent a familly, clan, or rank, who knows."
+	desc = "A full, vibrantly coloured suit. Likely with traditional purposes. Maybe the colours represent a family, clan, or rank, who knows."
 	icon_state = "tradition"
 	inhand_icon_state = null
 	female_sprite_flags = NO_FEMALE_UNIFORM
@@ -471,16 +484,16 @@
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEEARS|HIDEEYES|HIDEHAIR
 
 /obj/item/clothing/under/costume/gamberson
-	name = "re-enactor's Gamberson"
-	desc = "A colorful set of clothes made to look like a medieval gamberson."
+	name = "re-enactor's gambeson"
+	desc = "A colorful set of clothes made to look like a medieval gambeson."
 	icon_state = "gamberson"
 	inhand_icon_state = null
 	female_sprite_flags = NO_FEMALE_UNIFORM
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/gamberson/military
-	name = "swordsman's Gamberson"
-	desc = "A padded medieval gamberson. Has enough woolen layers to dull a strike from any small weapon."
+	name = "swordsman's gambeson"
+	desc = "A padded medieval gambeson. Has enough woolen layers to dull a strike from any small weapon."
 	armor_type = /datum/armor/clothing_under/rank_security
 	has_sensor = NO_SENSORS
 

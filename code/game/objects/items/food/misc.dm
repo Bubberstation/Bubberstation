@@ -278,7 +278,7 @@
 	)
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("melon" = 1)
-	foodtypes = FRUIT
+	foodtypes = VEGETABLES|FRUIT|ORANGES
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_4
 
@@ -296,14 +296,6 @@
 	tastes = list("grain alcohol" = 1, "fruit" = 1)
 	foodtypes = FRUIT | ALCOHOL
 	crafting_complexity = FOOD_COMPLEXITY_2
-
-/obj/item/food/melonkeg/CheckParts(list/parts_list)
-	. = ..()
-	var/obj/item/reagent_containers/cup/glass/bottle/bottle = locate() in contents
-	if(!bottle)
-		return
-	if(bottle.message_in_a_bottle)
-		bottle.message_in_a_bottle.forceMove(drop_location())
 
 /obj/item/food/honeybar
 	name = "honey nut bar"
@@ -342,6 +334,7 @@
 	foodtypes = GRAIN | FRUIT | SUGAR
 	food_flags = FOOD_FINGER_FOOD
 	crafting_complexity = FOOD_COMPLEXITY_5
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 3)
 
 /obj/item/food/branrequests
 	name = "bran requests cereal"
@@ -353,7 +346,7 @@
 		/datum/reagent/consumable/salt = 8,
 	)
 	tastes = list("bran" = 4, "raisins" = 3, "salt" = 1)
-	foodtypes = GRAIN | FRUIT | BREAKFAST
+	foodtypes = SUGAR|GRAIN|FRUIT|BREAKFAST
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_2
 
@@ -366,25 +359,27 @@
 	foodtypes = DAIRY
 	w_class = WEIGHT_CLASS_SMALL
 	dog_fashion = /datum/dog_fashion/head/butter
+	var/can_stick = TRUE
 
 /obj/item/food/butter/examine(mob/user)
 	. = ..()
-	. += span_notice("If you had a rod you could make <b>butter on a stick</b>.")
+	if (can_stick)
+		. += span_notice("If you had a rod you could make <b>butter on a stick</b>.")
 
-/obj/item/food/butter/attackby(obj/item/item, mob/user, params)
-	if(istype(item, /obj/item/stack/rods))
-		var/obj/item/stack/rods/rods = item
-		if(!rods.use(1))//borgs can still fail this if they have no metal
-			to_chat(user, span_warning("You do not have enough iron to put [src] on a stick!"))
-			return ..()
-		to_chat(user, span_notice("You stick the rod into the stick of butter."))
-		var/obj/item/food/butter/on_a_stick/new_item = new(usr.loc)
-		var/replace = (user.get_inactive_held_item() == rods)
-		if(!rods && replace)
-			user.put_in_hands(new_item)
-		qdel(src)
-		return TRUE
-	..()
+/obj/item/food/butter/attackby(obj/item/item, mob/user, list/modifiers, list/attack_modifiers)
+	if(!istype(item, /obj/item/stack/rods) || !can_stick)
+		return ..()
+	var/obj/item/stack/rods/rods = item
+	if(!rods.use(1))//borgs can still fail this if they have no metal
+		to_chat(user, span_warning("You do not have enough iron to put [src] on a stick!"))
+		return ..()
+	to_chat(user, span_notice("You stick the rod into the stick of butter."))
+	user.temporarilyRemoveItemFromInventory(src)
+	var/obj/item/food/butter/on_a_stick/new_item = new(drop_location())
+	if (user.CanReach(new_item))
+		user.put_in_hands(new_item)
+	qdel(src)
+	return TRUE
 
 /obj/item/food/butter/on_a_stick //there's something so special about putting it on a stick.
 	name = "butter on a stick"
@@ -393,6 +388,7 @@
 	trash_type = /obj/item/stack/rods
 	food_flags = FOOD_FINGER_FOOD
 	venue_value = FOOD_PRICE_CHEAP
+	can_stick = FALSE
 
 /obj/item/food/butter/make_processable()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/butterslice, 3, 3 SECONDS, table_required = TRUE, screentip_verb = "Slice")
@@ -441,6 +437,7 @@
 	foodtypes = MEAT | DAIRY | GRAIN
 	venue_value = FOOD_PRICE_CHEAP
 	crafting_complexity = FOOD_COMPLEXITY_3
+	custom_materials = list(/datum/material/meat = MEATSLAB_MATERIAL_AMOUNT)
 
 /obj/item/food/pesto
 	name = "pesto"
@@ -507,9 +504,10 @@
 		/datum/reagent/consumable/nutriment/vitamin = 5,
 	)
 	tastes = list("juicy meat" = 1, "rice" = 1, "cabbage" = 1)
-	foodtypes = MEAT | VEGETABLES
+	foodtypes = MEAT|VEGETABLES|GRAIN
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_3
+	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT * 2)
 
 /obj/item/food/seaweedsheet
 	name = "seaweed sheet"
@@ -525,7 +523,7 @@
 
 /obj/item/food/seaweedsheet/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/customizable_reagent_holder, /obj/item/food/sushi/empty, CUSTOM_INGREDIENT_ICON_FILL, max_ingredients = 6)
+	AddComponent(/datum/component/ingredients_holder, /obj/item/food/sushi/empty, CUSTOM_INGREDIENT_ICON_FILL, max_ingredients = 6)
 
 /obj/item/food/seaweedsheet/saltcane
 	name = "dried saltcane sheathe"
@@ -550,7 +548,7 @@
 		/datum/reagent/consumable/nutriment/protein = 4,
 	)
 	tastes = list("granola" = 1, "nuts" = 1, "chocolate" = 1, "raisin" = 1)
-	foodtypes = GRAIN | NUTS | FRUIT | SUGAR | DAIRY
+	foodtypes = GRAIN|NUTS|FRUIT|SUGAR
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_4
 
@@ -564,20 +562,20 @@
 		/datum/reagent/consumable/nutriment/vitamin = 2,
 	)
 	tastes = list("rice" = 1, "dried seaweed" = 1)
-	foodtypes = VEGETABLES
+	foodtypes = VEGETABLES|GRAIN
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/onigiri/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/customizable_reagent_holder, /obj/item/food/onigiri/empty, CUSTOM_INGREDIENT_ICON_NOCHANGE, max_ingredients = 4)
+	AddComponent(/datum/component/ingredients_holder, /obj/item/food/onigiri/empty, CUSTOM_INGREDIENT_ICON_NOCHANGE, max_ingredients = 4)
 
 // empty onigiri for custom onigiri
 /obj/item/food/onigiri/empty
 	name = "onigiri"
 	desc = "A ball of cooked rice surrounding a filling formed into a triangular shape and wrapped in seaweed."
 	icon_state = "onigiri"
-	foodtypes = VEGETABLES
+	foodtypes = VEGETABLES|GRAIN
 	tastes = list()
 
 /obj/item/food/pacoca
@@ -613,10 +611,10 @@
 
 /obj/item/food/pickle/make_edible()
 	. = ..()
-	AddComponent(/datum/component/edible, check_liked = CALLBACK(src, PROC_REF(check_liked)))
+	AddComponentFrom(SOURCE_EDIBLE_INNATE, /datum/component/edible, check_liked = CALLBACK(src, PROC_REF(check_liked)))
 
 /obj/item/food/pickle/proc/check_liked(mob/living/carbon/human/consumer)
-	var/obj/item/organ/internal/liver/liver = consumer.get_organ_slot(ORGAN_SLOT_LIVER)
+	var/obj/item/organ/liver/liver = consumer.get_organ_slot(ORGAN_SLOT_LIVER)
 	if(!HAS_TRAIT(consumer, TRAIT_AGEUSIA) && liver && HAS_TRAIT(liver, TRAIT_CORONER_METABOLISM))
 		return FOOD_LIKED
 
@@ -661,6 +659,7 @@
 	foodtypes = GRAIN | VEGETABLES | MEAT
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_2
+	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT)
 
 /obj/item/food/stuffed_eggplant
 	name = "stuffed eggplant"
@@ -675,6 +674,7 @@
 	foodtypes = VEGETABLES | MEAT | DAIRY
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_3
+	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT)
 
 /obj/item/food/moussaka
 	name = "moussaka"
@@ -686,8 +686,9 @@
 		/datum/reagent/consumable/nutriment/protein = 20,
 	)
 	tastes = list("cooked eggplant" = 5, "potato" = 1, "baked veggies" = 2, "meat" = 4, "bechamel sauce" = 3)
-	foodtypes = MEAT | DAIRY | VEGETABLES
+	foodtypes = MEAT|VEGETABLES|GRAIN|DAIRY
 	crafting_complexity = FOOD_COMPLEXITY_4
+	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT)
 
 /obj/item/food/moussaka/make_processable()
 	AddElement(/datum/element/processable, TOOL_KNIFE,  /obj/item/food/moussaka_slice, 4, 3 SECONDS, table_required = TRUE,  screentip_verb = "Cut")
@@ -702,7 +703,7 @@
 		/datum/reagent/consumable/nutriment/protein = 5,
 	)
 	tastes = list("cooked eggplant" = 5, "potato" = 1, "baked veggies" = 2, "meat" = 4, "bechamel sauce" = 3)
-	foodtypes = MEAT | DAIRY | VEGETABLES
+	foodtypes = MEAT|VEGETABLES|GRAIN|DAIRY
 	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/candied_pineapple
@@ -715,7 +716,7 @@
 	icon_state = "candied_pineapple_1"
 	base_icon_state = "candied_pineapple"
 	tastes = list("sugar" = 2, "chewy pineapple" = 4)
-	foodtypes = FRUIT | SUGAR
+	foodtypes = SUGAR|FRUIT|PINEAPPLE
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_TINY
 	crafting_complexity = FOOD_COMPLEXITY_1
@@ -797,6 +798,7 @@
 	foodtypes = VEGETABLES | GRAIN | MEAT
 	w_class = WEIGHT_CLASS_TINY
 	crafting_complexity = FOOD_COMPLEXITY_4
+	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT * 2)
 
 /obj/item/food/vegetarian_gyro
 	name = "vegetarian gyro"

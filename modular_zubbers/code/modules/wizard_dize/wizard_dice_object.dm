@@ -132,7 +132,7 @@
 	qdel(src)
 
 
-/obj/item/dice/d20/teleporting_die_of_fate/proc/apply_random_smite(var/mob/living/carbon/human/target)
+/obj/item/dice/d20/teleporting_die_of_fate/proc/apply_random_smite(mob/living/carbon/human/target)
 
 	switch(smite_rng_seed % 9)
 		if(0)

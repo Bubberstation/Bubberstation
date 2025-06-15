@@ -6,13 +6,13 @@ It's quite simple: create a file ending in `.test.ts` or `.spec.ts` (usually wit
 
 ```js
 test('something', () => {
-  expect('a').toBe('a');
+	expect('a').toBe('a');
 });
 ```
 
 Refer to [README](../README.md) to learn how to run tests.
 
-There is an example test in `packages/common/react.spec.ts`.
+There is an example test in `packages/tgui-core/react.spec.ts`.
 
 You can read more about Jest here: https://jestjs.io/docs/en/getting-started
 

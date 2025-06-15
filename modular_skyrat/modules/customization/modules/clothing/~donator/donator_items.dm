@@ -33,7 +33,7 @@
 
 /obj/item/hairbrush/switchblade/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/update_icon_updates_onmob, ITEM_SLOT_HANDS)
+	AddElement(/datum/element/update_icon_updates_onmob)
 
 ///This is called when you transform it
 /obj/item/hairbrush/switchblade/attack_self(mob/user, modifiers)
@@ -232,7 +232,9 @@
 /obj/item/instrument/piano_synth/headphones/catear_headphone
 	name = "Cat-Ear Headphones"
 	desc = "Merch of their Electric Guitarist Demi Galgan from the Singularity Shredders. It's heavily customizable and even comes with a holographic tail!"
-	icon_state = "catear_headphone"
+	icon = 'icons/map_icons/items/_item.dmi'
+	icon_state = "/obj/item/instrument/piano_synth/headphones/catear_headphone"
+	post_init_icon_state = "catear_headphone"
 	worn_icon = 'modular_skyrat/modules/GAGS/icons/head/catear_headphone.dmi'
 	lefthand_file = 'modular_skyrat/modules/GAGS/icons/head/catear_headphone_inhand.dmi'
 	righthand_file = 'modular_skyrat/modules/GAGS/icons/head/catear_headphone_inhand.dmi'

@@ -25,8 +25,8 @@
 	AddComponent(/datum/component/wetsuit)
 
 /obj/item/clothing/under/skinsuit/Destroy()
-	. = ..()
 	qdel(GetComponent(/datum/component/wetsuit))
+	. = ..()
 
 /obj/item/clothing/head/helmet/space/skinsuit_helmet
 	name = "\improper Stardress helm"
@@ -44,8 +44,8 @@
 	AddComponent(/datum/component/wetsuit)
 
 /obj/item/clothing/head/helmet/space/skinsuit_helmet/Destroy()
-	. = ..()
 	qdel(GetComponent(/datum/component/wetsuit))
+	. = ..()
 
 /obj/item/clothing/suit/armor/riot/skinsuit_armor
 	name = "\improper Shorebreaker plating"

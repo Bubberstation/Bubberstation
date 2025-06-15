@@ -195,7 +195,7 @@
 		target = target_turf
 	var/obj/projectile/projectile_to_fire = new projectile_type(targets_from)
 	playsound(src, firesound, 75, TRUE)
-	projectile_to_fire.preparePixelProjectile(target, targets_from)
+	projectile_to_fire.aim_projectile(target, targets_from)
 	projectile_to_fire.firer = user
 	projectile_to_fire.fired_from = src
 	projectile_to_fire.fire()
@@ -249,21 +249,24 @@
 /obj/item/gun_control/CanItemAutoclick()
 	return TRUE
 
-/obj/item/gun_control/attack_atom(obj/O, mob/living/user, params)
+/obj/item/gun_control/attack_atom(obj/attacked_obj, mob/living/user, list/modifiers, list/attack_modifiers)
 	user.changeNext_move(CLICK_CD_MELEE)
-	O.attacked_by(src, user)
+	attacked_obj.attacked_by(src, user, modifiers)
 
-/obj/item/gun_control/attack(mob/living/M, mob/living/user)
-	M.lastattacker = user.real_name
-	M.lastattackerckey = user.ckey
-	M.attacked_by(src, user)
+/obj/item/gun_control/attack(mob/living/target_mob, mob/living/user, list/modifiers, list/attack_modifiers)
+	target_mob.lastattacker = user.real_name
+	target_mob.lastattackerckey = user.ckey
+	target_mob.attacked_by(src, user, modifiers)
 	add_fingerprint(user)
 
 /obj/item/gun_control/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
-	var/obj/machinery/deployable_turret/E = user.buckled
-	E.calculated_projectile_vars = calculate_projectile_angle_and_pixel_offsets(user, interacting_with, modifiers)
-	E.direction_track(user, interacting_with)
-	E.checkfire(interacting_with, user)
+	var/obj/machinery/deployable_turret/buckled_turret = user.buckled
+	if(!istype(buckled_turret))
+		return NONE
+	buckled_turret.calculated_projectile_vars = calculate_projectile_angle_and_pixel_offsets(user, interacting_with, modifiers)
+	buckled_turret.direction_track(user, interacting_with)
+	buckled_turret.checkfire(interacting_with, user)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/gun_control/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	return ranged_interact_with_atom(interacting_with, user, modifiers)

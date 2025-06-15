@@ -1,5 +1,5 @@
 /datum/species/lizard/ashwalker
-	mutanteyes = /obj/item/organ/internal/eyes/night_vision/ashwalker
+	mutanteyes = /obj/item/organ/eyes/night_vision/ashwalker
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/lizard/ashwalker,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/lizard/ashwalker,
@@ -9,7 +9,7 @@
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/lizard/ashwalker,
 	)
 
-/datum/species/lizard/ashwalker/on_species_gain(mob/living/carbon/carbon_target, datum/species/old_species)
+/datum/species/lizard/ashwalker/on_species_gain(mob/living/carbon/carbon_target, datum/species/old_species, regenerate_icons)
 	. = ..()
 	RegisterSignal(carbon_target, COMSIG_MOB_ITEM_ATTACK, PROC_REF(mob_attack))
 	carbon_target.AddComponent(/datum/component/ash_age)
@@ -20,7 +20,7 @@
 	UnregisterSignal(carbon_target, COMSIG_MOB_ITEM_ATTACK)
 	carbon_target.faction &= FACTION_ASHWALKER
 
-/datum/species/lizard/ashwalker/proc/mob_attack(datum/source, mob/mob_target, mob/user)
+/datum/species/lizard/ashwalker/proc/mob_attack(datum/source, mob/mob_target, mob/user, list/modifiers)
 	SIGNAL_HANDLER
 
 	if(!isliving(mob_target))

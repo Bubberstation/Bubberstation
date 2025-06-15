@@ -14,26 +14,27 @@ import {
   rgbaToHsva,
   validHex,
 } from 'common/colorpicker';
-import { clamp } from 'common/math';
-import { classes } from 'common/react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Interaction, Interactive } from 'tgui/components/Interactive';
-
-import { useBackend } from '../backend';
 import {
+  Autofocus,
   Box,
   Button,
   Flex,
+  Input,
   NumberInput,
-  Pointer,
   Section,
   Stack,
   Tooltip,
-} from '../components';
-import { Autofocus } from '../components/Autofocus';
+} from 'tgui-core/components';
+import { clamp } from 'tgui-core/math';
+import { classes } from 'tgui-core/react';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { InputButtons } from './common/InputButtons';
+import { Interaction, Interactive } from './common/Interactive';
 import { Loader } from './common/Loader';
+import { Pointer } from './common/Pointer';
 
 interface ColorPickerData {
   autofocus: boolean;
@@ -221,7 +222,7 @@ const ColorSelector: React.FC<ColorSelectorProps> = React.memo(
                   <Stack.Item>
                     <Box textColor="label">Hex:</Box>
                   </Stack.Item>
-                  <Stack.Item grow height="24px">
+                  <Stack.Item grow>
                     <HexColorInput
                       fluid
                       color={hsvaToHex(color).substring(1)}
@@ -459,9 +460,8 @@ const HexColorInput: React.FC<HexColorInputProps> = React.memo(
       [alpha],
     );
 
-    const handleChangeEvent = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const inputValue = e.currentTarget.value;
-      const strippedValue = inputValue
+    const handleChangeEvent = (value: string) => {
+      const strippedValue = value
         .replace(/[^0-9A-Fa-f]/g, '')
         .substring(0, 6)
         .toUpperCase();
@@ -481,7 +481,7 @@ const HexColorInput: React.FC<HexColorInputProps> = React.memo(
       }
     }, [initialColor, isValidFullHex, localValue, onChange]);
 
-    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const handleBlur = () => {
       commitOrRevert();
     };
 
@@ -493,18 +493,14 @@ const HexColorInput: React.FC<HexColorInputProps> = React.memo(
     };
 
     return (
-      <Box className={classes(['Input', fluid && 'Input--fluid'])}>
-        <div className="Input__baseline">.</div>
-        <input
-          className="Input__input"
-          value={localValue}
-          spellCheck={false}
-          onChange={handleChangeEvent}
-          onBlur={handleBlur}
-          onKeyDown={handleKeyDown}
-          {...rest}
-        />
-      </Box>
+      <Input
+        fluid
+        value={localValue}
+        onChange={handleChangeEvent}
+        onBlur={handleBlur}
+        onKeyDown={handleKeyDown}
+        {...rest}
+      />
     );
   },
 );

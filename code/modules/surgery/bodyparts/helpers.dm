@@ -29,6 +29,24 @@
 	new_limb.try_attach_limb(src, special = special)
 	return old_limb // can be null
 
+/// Replaces the chosen limb(zone) to the original one
+/mob/living/carbon/proc/reset_to_original_bodypart(limb_zone)
+	if (!(limb_zone in GLOB.all_body_zones))
+		stack_trace("Invalid zone [limb_zone] provided to reset_to_original_bodypart()")
+		return
+
+	// find old limb to del it first
+	var/obj/item/bodypart/old_limb = get_bodypart(limb_zone)
+	if(old_limb)
+		old_limb.drop_limb(special = TRUE)
+		qdel(old_limb)
+
+	// mаke and attach the original limb
+	var/obj/item/bodypart/original_limb = newBodyPart(limb_zone)
+	original_limb.try_attach_limb(src, TRUE)
+	original_limb.update_limb(is_creating = TRUE)
+	regenerate_icons()
+
 /mob/living/carbon/has_hand_for_held_index(i)
 	if(!i)
 		return FALSE
@@ -40,11 +58,12 @@
 
 ///Get the bodypart for whatever hand we have active, Only relevant for carbons
 /mob/proc/get_active_hand()
+	RETURN_TYPE(/obj/item/bodypart)
 	return FALSE
 
 /mob/living/carbon/get_active_hand()
 	var/which_hand = BODY_ZONE_PRECISE_L_HAND
-	if(!(active_hand_index % RIGHT_HANDS))
+	if(IS_RIGHT_INDEX(active_hand_index))
 		which_hand = BODY_ZONE_PRECISE_R_HAND
 	return get_bodypart(check_zone(which_hand))
 
@@ -54,7 +73,7 @@
 
 /mob/living/carbon/get_inactive_hand()
 	var/which_hand = BODY_ZONE_PRECISE_R_HAND
-	if(!(active_hand_index % RIGHT_HANDS))
+	if(IS_RIGHT_INDEX(active_hand_index))
 		which_hand = BODY_ZONE_PRECISE_L_HAND
 	return get_bodypart(check_zone(which_hand))
 
@@ -64,7 +83,7 @@
 
 /mob/living/carbon/has_left_hand(check_disabled = TRUE)
 	for(var/obj/item/bodypart/hand_instance in hand_bodyparts)
-		if(!(hand_instance.held_index % RIGHT_HANDS) || (check_disabled && hand_instance.bodypart_disabled))
+		if(IS_RIGHT_INDEX(hand_instance.held_index) || (check_disabled && hand_instance.bodypart_disabled))
 			continue
 		return TRUE
 	return FALSE
@@ -80,7 +99,7 @@
 
 /mob/living/carbon/has_right_hand(check_disabled = TRUE)
 	for(var/obj/item/bodypart/hand_instance in hand_bodyparts)
-		if(hand_instance.held_index % RIGHT_HANDS || (check_disabled && hand_instance.bodypart_disabled))
+		if(IS_LEFT_INDEX(hand_instance.held_index) || (check_disabled && hand_instance.bodypart_disabled))
 			continue
 		return TRUE
 	return FALSE
@@ -128,18 +147,20 @@
 
 ///Remove a specific embedded item from the carbon mob
 /mob/living/carbon/proc/remove_embedded_object(obj/item/embedded)
-	SEND_SIGNAL(src, COMSIG_CARBON_EMBED_REMOVAL, embedded)
+	if (embedded.get_embed()?.owner != src)
+		return
+	embedded.get_embed().remove_embedding()
 
 ///Remove all embedded objects from all limbs on the carbon mob
 /mob/living/carbon/proc/remove_all_embedded_objects()
 	for(var/obj/item/bodypart/bodypart as anything in bodyparts)
-		for(var/obj/item/embedded in bodypart.embedded_objects)
+		for(var/obj/item/embedded as anything in bodypart.embedded_objects)
 			remove_embedded_object(embedded)
 
-/mob/living/carbon/proc/has_embedded_objects(include_harmless=FALSE)
+/mob/living/carbon/proc/has_embedded_objects(include_harmless = FALSE)
 	for(var/obj/item/bodypart/bodypart as anything in bodyparts)
-		for(var/obj/item/embedded in bodypart.embedded_objects)
-			if(!include_harmless && embedded.is_embed_harmless())
+		for(var/obj/item/embedded as anything in bodypart.embedded_objects)
+			if(!include_harmless && embedded.get_embed().is_harmless(consider_stamina = TRUE))
 				continue
 			return TRUE
 
@@ -182,8 +203,8 @@
 /mob/living/carbon/proc/synchronize_bodytypes()
 	var/all_limb_flags = NONE
 	for(var/obj/item/bodypart/limb as anything in bodyparts)
-		for(var/obj/item/organ/external/ext_organ in limb)
-			all_limb_flags |= ext_organ.external_bodytypes
+		for(var/obj/item/organ/organ in limb)
+			all_limb_flags |= organ.external_bodytypes
 		all_limb_flags |= limb.bodytype
 
 	bodytype = all_limb_flags
@@ -192,8 +213,8 @@
 /mob/living/carbon/proc/synchronize_bodyshapes()
 	var/all_limb_flags = NONE
 	for(var/obj/item/bodypart/limb as anything in bodyparts)
-		for(var/obj/item/organ/external/ext_organ in limb)
-			all_limb_flags |= ext_organ.external_bodyshapes
+		for(var/obj/item/organ/organ in limb)
+			all_limb_flags |= organ.external_bodyshapes
 		all_limb_flags |= limb.bodyshape
 
 	bodyshape = all_limb_flags

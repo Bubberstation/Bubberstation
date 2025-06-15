@@ -9,12 +9,14 @@
 /obj/item/clothing/shoes/fancy_heels/cc
 	name = "nanotrasen heels"
 	desc = "Surely these aren't official. Right?"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/cc"
 	greyscale_colors = "#316E4A"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/syndi
 	name = "syndiheels"
 	desc = "Heel in more way than one."
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/syndi"
 	greyscale_colors = "#18191E"
 	body_parts_covered = parent_type::body_parts_covered | LEGS
 	armor_type = /datum/armor/shoes_combat
@@ -32,6 +34,7 @@
 /obj/item/clothing/shoes/fancy_heels/wizard
 	name = "magical heels"
 	desc = "A pair of heels that seem to magically solve all the problems with walking in heels."
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/wizard"
 	strip_delay = 2 SECONDS
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	greyscale_colors = "#291A69"
@@ -40,16 +43,19 @@
 /obj/item/clothing/shoes/fancy_heels/red
 	name = "red heels"
 	desc = "A pair of classy red heels."
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/red"
 	greyscale_colors = "#921C25"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/blue
 	name = "blue heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/blue"
 	greyscale_colors = "#41579a"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/lightgrey
 	name = "light grey heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/lightgrey"
 	greyscale_colors = "#d0d7da"
 	flags_1 = null
 
@@ -61,10 +67,12 @@
 	icon_state = "explorer_heeled"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	species_exception = null
 
 /obj/item/clothing/shoes/fancy_heels/navyblue
 	name = "navy blue heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/navyblue"
 	greyscale_colors = "#362f68"
 	flags_1 = null
 
@@ -74,17 +82,20 @@
 	icon_state = "workboots_heeled"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	species_exception = null
 
 //MEDICAL
 
 /obj/item/clothing/shoes/fancy_heels/white
 	name = "white heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/white"
 	greyscale_colors = "#ffffff"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/darkblue
 	name = "dark blue heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/darkblue"
 	greyscale_colors = "#364660"
 	flags_1 = null
 
@@ -92,10 +103,13 @@
 
 /obj/item/clothing/shoes/fancy_heels/black
 	name = "black heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/black"
 	greyscale_colors = "#39393f"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/purple
+	name = "purple heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/purple"
 	greyscale_colors = "#7e1980"
 	flags_1 = null
 
@@ -103,21 +117,25 @@
 
 /obj/item/clothing/shoes/fancy_heels/red
 	name = "red heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/red"
 	greyscale_colors = "#a52f29"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/grey
 	name = "grey heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/grey"
 	greyscale_colors = "#918f8c"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/brown
 	name = "brown heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/brown"
 	greyscale_colors = "#784f44"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/orange
 	name = "orange heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/orange"
 	greyscale_colors = "#ff8d1e"
 	flags_1 = null
 
@@ -129,11 +147,13 @@
 	icon_state = "hos_boots"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 
 //SERVICE
 
 /obj/item/clothing/shoes/fancy_heels/lightblue
 	name = "light blue heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/lightblue"
 	greyscale_colors = "#3e6588"
 	flags_1 = null
 
@@ -145,10 +165,12 @@
 	icon_state ="galoshes_heeled"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	custom_premium_price = PAYCHECK_CREW * 3
 
 /obj/item/clothing/shoes/fancy_heels/green
 	name = "green heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/green"
 	greyscale_colors = "#50d967"
 	flags_1 = null
 
@@ -160,34 +182,41 @@
 	icon_state ="honk_heels"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 
 /obj/item/clothing/shoes/fancy_heels/darkgreen
 	name = "dark green heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/darkgreen"
 	greyscale_colors = "#47853a"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/teal
 	name = "teal heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/teal"
 	greyscale_colors = "#5cbfaa"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/mutedblack
 	name = "muted black heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/mutedblack"
 	greyscale_colors = "#2f3038"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/mutedblue
 	name = "muted blue heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/mutedblue"
 	greyscale_colors = "#1165c5"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/beige
 	name = "beige heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/beige"
 	greyscale_colors = "#a69e9a"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/darkgrey
 	name = "dark grey heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/darkgrey"
 	greyscale_colors = "#46464d"
 	flags_1 = null
 
@@ -200,7 +229,7 @@
 	desc = "Stylish banana shaped shoes that make it impossible to walk without slipping. Due to the slippery nature of them, removal will require the help of a friend!"
 	icon_state = "banana_slippers"
 	worn_icon_state = "banana_slippers"
-	can_be_tied = FALSE
+	fastening_type = SHOES_SLIPON
 	strip_delay = 10 SECONDS
 
 // Special throw_impact for hats to frisbee hats at people to place them on their heads/attempt to de-hat them.
@@ -237,7 +266,7 @@
 	if(iscyborg(hit_atom))
 		return
 
-/obj/item/clothing/shoes/banana_slippers/Initialize()
+/obj/item/clothing/shoes/banana_slippers/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/slippery, 80)
 	RegisterSignal(src, COMSIG_SHOES_STEP_ACTION, PROC_REF(on_step))
@@ -277,4 +306,33 @@
 
 	body_parts_covered = parent_type::body_parts_covered | LEGS
 	resistance_flags = FIRE_PROOF
-	can_be_tied = FALSE
+	fastening_type = SHOES_SLIPON
+
+// sprites by Aeri/unionheart
+// digi sprites by @sippykot
+/obj/item/clothing/shoes/jackboots/heel
+	name = "high-heeled jackboots"
+	desc = "Synth-leather jackboots, the material polished to an almost mirror sheen - and with a curious addition of a rather aggressive heel."
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+	icon_state = "heel-jackboots"
+	uses_advanced_reskins = FALSE
+	unique_reskin = NONE
+
+// Diesel Boots | Sprites by Fluff from Bad Deathclaw
+/obj/item/clothing/shoes/jackboots/diesel_m
+	name = "male diesel boots"
+	desc = "Fancy mens' steel-toed boots."
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+	icon_state = "diesel_m"
+
+/obj/item/clothing/shoes/jackboots/diesel_f
+	name = "female diesel boots"
+	desc = "Fancy womens' knee-high platform boots with shiny steel clasps."
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+	icon_state = "diesel_f"

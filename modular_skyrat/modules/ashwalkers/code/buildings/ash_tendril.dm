@@ -3,14 +3,14 @@
 
 //this is for revitalizing/preserving regen cores
 /obj/structure/lavaland/ash_walker/attackby(obj/item/attacking_item, mob/living/user, params)
-	if(!istype(attacking_item, /obj/item/organ/internal/monster_core/regenerative_core))
+	if(!istype(attacking_item, /obj/item/organ/monster_core/regenerative_core))
 		return ..()
 
 	if(!user.mind.has_antag_datum(/datum/antagonist/ashwalker))
 		balloon_alert(user, "must be an ashwalker!")
 		return
 
-	var/obj/item/organ/internal/monster_core/regenerative_core/regen_core = attacking_item
+	var/obj/item/organ/monster_core/regenerative_core/regen_core = attacking_item
 
 	if(!regen_core.preserve())
 		balloon_alert(user, "organ decayed!")

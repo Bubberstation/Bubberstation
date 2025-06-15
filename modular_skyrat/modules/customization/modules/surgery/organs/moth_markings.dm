@@ -1,4 +1,4 @@
-/obj/item/organ/external/moth_markings
+/obj/item/organ/moth_markings
 	name = "moth markings"
 	desc = "How did you even get that off...?"
 	icon_state = "random_fly_2"

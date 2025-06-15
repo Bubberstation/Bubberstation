@@ -80,15 +80,14 @@ at the cost of risking a vicious bite.**/
 		return
 	if(critter_infested && prob(50) && iscarbon(user))
 		var/mob/living/carbon/bite_victim = user
-		var/obj/item/bodypart/affecting = bite_victim.get_bodypart("[(user.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
-		to_chat(user, span_danger("You feel a sharp pain as an unseen creature sinks its [pick("fangs", "beak", "proboscis")] into your arm!"))
-		if(affecting?.receive_damage(30))
-			bite_victim.update_damage_overlays()
-			playsound(src,'sound/items/weapons/bite.ogg', 70, TRUE)
-			return
+		var/obj/item/bodypart/affecting = bite_victim.get_active_hand()
+		to_chat(user, span_danger("You feel a sharp pain as an unseen creature sinks its [pick("fangs", "beak", "proboscis")] into your [affecting.plaintext_zone]!"))
+		bite_victim.apply_damage(30, BRUTE, affecting)
+		playsound(src,'sound/items/weapons/bite.ogg', 70, TRUE)
+		return
 	to_chat(user, span_warning("You find nothing of value..."))
 
-/obj/structure/moisture_trap/attackby(obj/item/I, mob/user, params)
+/obj/structure/moisture_trap/attackby(obj/item/I, mob/user, list/modifiers, list/attack_modifiers)
 	if(iscyborg(user) || isalien(user) || !CanReachInside(user))
 		return ..()
 	add_fingerprint(user)
@@ -132,7 +131,7 @@ at the cost of risking a vicious bite.**/
 	/// Stage of the pants making process
 	var/status = ALTAR_INACTIVE
 
-/obj/structure/destructible/cult/pants_altar/attackby(obj/attacking_item, mob/user, params)
+/obj/structure/destructible/cult/pants_altar/attackby(obj/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(attacking_item, /obj/item/melee/cultblade/dagger) && IS_CULTIST(user) && status)
 		to_chat(user, span_notice("[src] is creating something, you can't move it!"))
 		return
@@ -178,8 +177,7 @@ at the cost of risking a vicious bite.**/
 			overlayicon = "altar_pants2"
 		if(ALTAR_STAGETHREE)
 			overlayicon = "altar_pants3"
-	var/mutable_appearance/pants_overlay = mutable_appearance(icon, overlayicon)
-	pants_overlay.appearance_flags = RESET_COLOR
+	var/mutable_appearance/pants_overlay = mutable_appearance(icon, overlayicon, appearance_flags = RESET_COLOR|KEEP_APART)
 	pants_overlay.color = pants_color
 	. += pants_overlay
 
@@ -233,6 +231,7 @@ at the cost of risking a vicious bite.**/
 /obj/item/clothing/under/pants/slacks/altar
 	name = "strange pants"
 	desc = "A pair of pants. They do not look or feel natural, and smell like fresh blood."
+	icon_state = "/obj/item/clothing/under/pants/slacks/altar"
 	greyscale_colors = "#ffffff#ffffff#ffffff"
 	flags_1 = NONE //If IS_PLAYER_COLORABLE gets added color-changing support (i.e. spraycans), these won't end up getting it too. Plus, it already has its own recolor.
 

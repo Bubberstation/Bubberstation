@@ -34,7 +34,7 @@
 	name = "Black Market Trader"
 	uniform = /obj/item/clothing/under/rank/cargo/tech
 	shoes = /obj/item/clothing/shoes/laceup
-	id = /obj/item/card/id/away/blackmarket
+	id = /obj/item/card/id/advanced/chameleon/black/blackmarket
 
 /datum/outfit/black_market/post_equip(mob/living/carbon/human/shady, visualsOnly)
 	handlebank(shady)
@@ -188,7 +188,7 @@
 	name = "DS-2 Operative"
 	uniform = /obj/item/clothing/under/syndicate/skyrat/tactical
 	shoes = /obj/item/clothing/shoes/combat
-	ears = /obj/item/radio/headset/interdyne
+	ears = /obj/item/radio/headset/syndicateciv/staff
 	back = /obj/item/storage/backpack
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
@@ -209,7 +209,6 @@
 		/obj/item/knife/combat/survival = 1,
 		/obj/item/t_scanner/adv_mining_scanner/lesser = 1,
 		/obj/item/gun/energy/recharge/kinetic_accelerator = 1,
-		/obj/item/storage/toolbox/guncase/skyrat/pistol = 1,
 		)
 	id_trim = /datum/id_trim/syndicom/skyrat/ds2/miner
 	l_pocket = /obj/item/card/mining_point_card
@@ -274,7 +273,7 @@
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/redsec
 	r_pocket = /obj/item/flashlight/seclite
 	mask = /obj/item/clothing/mask/gas/syndicate
-	ears = /obj/item/radio/headset/interdyne
+	ears = /obj/item/radio/headset/syndicateciv/staff
 
 /datum/outfit/ds2/syndicate/post_equip(mob/living/carbon/human/syndicate)
 	syndicate.faction |= ROLE_SYNDICATE
@@ -285,7 +284,7 @@
 	name = "DS-2 Command Operative"
 	uniform = /obj/item/clothing/under/syndicate/skyrat/tactical
 	shoes = /obj/item/clothing/shoes/combat
-	ears = /obj/item/radio/headset/interdyne/command
+	ears = /obj/item/radio/headset/syndicateciv/command
 	back = /obj/item/storage/backpack
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
@@ -514,7 +513,7 @@
 	desc = "A perfectly generic identification card. Looks like it could use some flavor. This one looks like it belonged to someone important."
 	wildcard_slots = WILDCARD_LIMIT_SILVER
 
-/obj/item/card/id/away/blackmarket
+/obj/item/card/id/advanced/chameleon/black/blackmarket
 	name = "scuffed ID card"
 	desc = "A faded, scuffed, plastic ID card. You can make out the rank \"Deck Crewman\"."
 	trim = /datum/id_trim/away/blackmarket
@@ -556,9 +555,17 @@
 
 //CRYO CONSOLES
 /obj/machinery/computer/cryopod/interdyne
-	radio = /obj/item/radio/headset/interdyne
+	radio = /obj/item/radio/headset/syndicateciv/staff
 	announcement_channel = RADIO_CHANNEL_INTERDYNE
 	req_one_access = list("syndicate_leader")
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod/interdyne, 32)
+
+//CRYO CONSOLES
+/obj/machinery/computer/cryopod/cybersun
+	radio = /obj/item/radio/headset/syndicateciv/staff
+	announcement_channel = RADIO_CHANNEL_CYBERSUN
+	req_one_access = list("syndicate_leader")
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod/cybersun, 32)
 

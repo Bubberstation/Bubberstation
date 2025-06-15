@@ -68,13 +68,14 @@
 		var/obj/projectile/projectile_obj = new projectile(get_turf(src))
 		projectile_obj.log_override = TRUE //we log being fired ourselves a little further down.
 		projectile_obj.firer = chassis
-		projectile_obj.preparePixelProjectile(target, source, modifiers, spread)
+		projectile_obj.fired_from = src // mech = firer, equipment = fired from
+		projectile_obj.aim_projectile(target, source, modifiers, spread)
 		if(isliving(source) && source.client) //dont want it to happen from syndie mecha npc mobs, they do direct fire anyways
 			var/mob/living/shooter = source
 			projectile_obj.hit_prone_targets = shooter.combat_mode
 		projectile_obj.fire()
 		if(!projectile_obj.suppressed && firing_effect_type)
-			new firing_effect_type(get_turf(src), chassis.dir)
+			new firing_effect_type(chassis || get_turf(src), chassis.dir)
 		playsound(chassis, fire_sound, 50, TRUE)
 
 		log_combat(source, target, "fired [projectile_obj] at", src, "from [chassis] at [get_area_name(src, TRUE)]")
@@ -164,14 +165,73 @@
 	harmful = TRUE
 	mech_flags = EXOSUIT_MODULE_COMBAT | EXOSUIT_MODULE_WORKING
 
+///Exosuit thermal guns
+
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal
+	equip_cooldown = 20
+	name = "\improper Prototype -I 'Thermal Cannon'"
+	desc = "A special prototype of a heavy thermal weapon designed for use on exosuits. This one is debug-chambered."
+	icon_state = "mecha_laser"
+	energy_drain = 50
+	projectile = /obj/item/ammo_casing/energy/nanite
+	fire_sound = 'sound/items/weapons/thermalpistol.ogg'
+	harmful = TRUE
+
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/cryo
+	name = "\improper Prototype I 'Cryo Thermal Cannon'"
+	desc = "A special prototype of a heavy thermal weapon designed for use on exosuits. This one is cryo-chambered."
+	icon_state = "mecha_cryogun"
+	projectile = /obj/projectile/energy/cryo
+
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/inferno
+	name = "\improper Prototype II 'Pyro Thermal Cannon'"
+	desc = "A special prototype of a heavy thermal weapon designed for use on exosuits. This one is molten-chambered."
+	icon_state = "mecha_pyrogun"
+	projectile = /obj/projectile/energy/inferno
+
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/cryo/try_attach_part(mob/user, obj/vehicle/sealed/mecha/themech, attach_right)
+	var/has_molten = FALSE
+	for (var/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/thegun in themech.flat_equipment)
+		if (istype(thegun, /obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/cryo))
+			to_chat(user, span_warning("[themech] already has [thegun] installed!"))
+			return FALSE
+		if (istype(thegun, /obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/inferno))
+			has_molten = TRUE
+	if (has_molten)
+		for (var/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/thegun in themech.flat_equipment)
+			if (istype(thegun, /obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/inferno))
+				thegun.equip_cooldown = 8
+		equip_cooldown = 8
+	return ..()
+
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/inferno/try_attach_part(mob/user, obj/vehicle/sealed/mecha/themech, attach_right)
+	var/has_cryo = FALSE
+	for (var/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/thegun in themech.flat_equipment)
+		if (istype(thegun, /obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/inferno))
+			to_chat(user, span_warning("[themech] already has [thegun] installed!"))
+			return FALSE
+		if (istype(thegun, /obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/cryo))
+			has_cryo = TRUE
+	if (has_cryo)
+		for (var/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/thegun in themech.flat_equipment)
+			if (istype(thegun, /obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/cryo))
+				thegun.equip_cooldown = 8
+		equip_cooldown = 8
+	return ..()
+
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/detach(atom/moveto)
+	for (var/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/thermal_gun in chassis.flat_equipment)
+		thermal_gun.equip_cooldown = 20
+	. = ..()
+
 //Exosuit-mounted kinetic accelerator
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/mecha_kineticgun
-	equip_cooldown = 10
 	name = "Exosuit Proto-kinetic Accelerator"
 	desc = "An exosuit-mounted mining tool that does increased damage in low pressure. Drawing from an onboard power source allows it to project further than the handheld version."
 	icon_state = "mecha_kineticgun"
 	energy_drain = 30
 	projectile = /obj/projectile/kinetic/mech
+	equip_cooldown = 1.6 SECONDS
 	fire_sound = 'sound/items/weapons/kinetic_accel.ogg'
 	harmful = TRUE
 	mech_flags = EXOSUIT_MODULE_COMBAT | EXOSUIT_MODULE_WORKING
@@ -193,6 +253,7 @@
 	icon_state = "mecha_honker"
 	energy_drain = 200
 	equip_cooldown = 150
+	projectiles_per_shot = 0
 	range = MECHA_MELEE|MECHA_RANGED
 	kickback = FALSE
 	mech_flags = EXOSUIT_MODULE_HONK
@@ -211,7 +272,7 @@
 		to_chat(M, "<font color='red' size='7'>HONK</font>")
 		M.SetSleeping(0)
 		M.adjust_stutter(40 SECONDS)
-		var/obj/item/organ/internal/ears/ears = M.get_organ_slot(ORGAN_SLOT_EARS)
+		var/obj/item/organ/ears/ears = M.get_organ_slot(ORGAN_SLOT_EARS)
 		if(ears)
 			ears.adjustEarDamage(0, 30)
 		M.Paralyze(60)

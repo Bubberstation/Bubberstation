@@ -1,4 +1,3 @@
-import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -9,7 +8,9 @@ import {
   NumberInput,
   Section,
   Table,
-} from '../components';
+} from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { RADIO_CHANNELS } from '../constants';
 import { Window } from '../layouts';
 
@@ -57,7 +58,7 @@ export const Telecomms = (props) => {
                 <Input
                   width={13}
                   value={id}
-                  onChange={(e, value) => act('id', { value })}
+                  onBlur={(value) => act('id', { value })}
                 />
               }
             />
@@ -67,8 +68,8 @@ export const Telecomms = (props) => {
                 <Input
                   width={10}
                   value={network}
-                  defaultValue={'tcommsat'}
-                  onChange={(e, value) => act('network', { value })}
+                  placeholder="tcommsat"
+                  onBlur={(value) => act('network', { value })}
                 />
               }
             />

@@ -40,3 +40,5 @@
 		to_chat(user, span_boldnotice("You feel the alien mind of the Necropolis lose its interest in you as you remove the necklace. The eye closes, and your mind does as well, losing its grasp of Ashtongue."))
 
 //ASHWALKER TRANSLATOR NECKLACE END//
+
+#undef LANGUAGE_TRANSLATOR

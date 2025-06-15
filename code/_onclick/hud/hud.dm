@@ -51,20 +51,18 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	var/hotkey_ui_hidden = FALSE //This is to hide the buttons that can be used via hotkeys. (hotkeybuttons list of buttons)
 
 	var/atom/movable/screen/ammo_counter //SKYRAT EDIT ADDITION
-
-	var/atom/movable/screen/blobpwrdisplay
+	var/atom/movable/screen/text/activation_text/activation // BUBBER EDIT ADDITION
 
 	var/atom/movable/screen/alien_plasma_display
 	var/atom/movable/screen/alien_queen_finder
-
-	var/atom/movable/screen/combo/combo_display
 
 	var/atom/movable/screen/action_intent
 	var/atom/movable/screen/zone_select
 	var/atom/movable/screen/pull_icon
 	var/atom/movable/screen/rest_icon
+	var/atom/movable/screen/sleep_icon
 	var/atom/movable/screen/throw_icon
-	var/atom/movable/screen/module_store_icon
+	var/atom/movable/screen/resist_icon
 	var/atom/movable/screen/floor_change
 
 	var/list/static_inventory = list() //the screen objects which are static
@@ -120,7 +118,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	var/atom/movable/screen/stamina
 	var/atom/movable/screen/healthdoll/healthdoll
 	var/atom/movable/screen/spacesuit
-	var/atom/movable/screen/hunger
+	var/atom/movable/screen/hunger/hunger
 	// subtypes can override this to force a specific UI style
 	var/ui_style
 	var/erp_ui_style //SKYRAT EDIT - ADDITION - ERP ICONS FIX
@@ -157,6 +155,9 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	screentip_text = new(null, src)
 	static_inventory += screentip_text
 
+	activation = new(null, src) // BUBBER EDIT ADDITION
+	static_inventory += activation // BUBBER EDIT ADDITION
+
 	for(var/mytype in subtypesof(/atom/movable/plane_master_controller))
 		var/atom/movable/plane_master_controller/controller_instance = new mytype(null,src)
 		plane_master_controllers[controller_instance.name] = controller_instance
@@ -177,8 +178,9 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 
 /datum/hud/proc/client_refresh(datum/source)
 	SIGNAL_HANDLER
-	RegisterSignal(mymob.canon_client, COMSIG_CLIENT_SET_EYE, PROC_REF(on_eye_change))
-	on_eye_change(null, null, mymob.canon_client.eye)
+	var/client/client = mymob.canon_client
+	RegisterSignal(client, COMSIG_CLIENT_SET_EYE, PROC_REF(on_eye_change))
+	on_eye_change(null, null, client.eye)
 
 /datum/hud/proc/clear_client(datum/source)
 	SIGNAL_HANDLER
@@ -224,6 +226,8 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	SIGNAL_HANDLER
 	update_parallax_pref() // If your eye changes z level, so should your parallax prefs
 	var/turf/eye_turf = get_turf(eye)
+	if(!eye_turf)
+		return
 	SEND_SIGNAL(src, COMSIG_HUD_Z_CHANGED, eye_turf.z)
 	var/new_offset = GET_TURF_PLANE_OFFSET(eye_turf)
 	if(current_plane_offset == new_offset)
@@ -247,7 +251,6 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	QDEL_NULL(listed_actions)
 	QDEL_LIST(floating_actions)
 
-	QDEL_NULL(module_store_icon)
 	QDEL_LIST(static_inventory)
 
 	// all already deleted by static inventory clear
@@ -262,6 +265,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	QDEL_LIST(toggleable_inventory)
 	QDEL_LIST(hotkeybuttons)
 	throw_icon = null
+	resist_icon = null
 	QDEL_LIST(infodisplay)
 
 	healths = null
@@ -269,13 +273,13 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	healthdoll = null
 	spacesuit = null
 	hunger = null
-	blobpwrdisplay = null
 	alien_plasma_display = null
 	alien_queen_finder = null
-	combo_display = null
 
 	//SKYRAT EDIT ADDITION START - SKYRAT HUD
 	wanted_lvl = null
+	ammo_counter = null
+	activation = null
 	// SKYRAT EDIT ADDITION END - SKYRAT HUD
 
 	QDEL_LIST_ASSOC_VAL(master_groups)
@@ -321,12 +325,14 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 /datum/hud/proc/get_plane_group(key)
 	return master_groups[key]
 
+///Creates the mob's visible HUD, returns FALSE if it can't, TRUE if it did.
 /mob/proc/create_mob_hud()
 	if(!client || hud_used)
-		return
+		return FALSE
 	set_hud_used(new hud_type(src))
 	update_sight()
 	SEND_SIGNAL(src, COMSIG_MOB_HUD_CREATED)
+	return TRUE
 
 /mob/proc/set_hud_used(datum/hud/new_hud)
 	hud_used = new_hud
@@ -418,7 +424,12 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	// Handles alerts - the things on the right side of the screen
 	reorganize_alerts(screenmob)
 	screenmob.reload_fullscreen()
-	update_parallax_pref(screenmob)
+
+	if(screenmob == mymob)
+		update_parallax_pref(screenmob)
+	else
+		viewmob.hud_used.update_parallax_pref()
+
 	update_reuse(screenmob)
 
 	// ensure observers get an accurate and up-to-date view
@@ -445,12 +456,6 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 		return
 	var/mob/screenmob = viewmob || mymob
 	hidden_inventory_update(screenmob)
-
-/datum/hud/robot/show_hud(version = 0, mob/viewmob)
-	. = ..()
-	if(!.)
-		return
-	update_robot_modules_display()
 
 /* BUBBER EDIT REMOVAL - We use a different lobby hud
 /datum/hud/new_player/show_hud(version = 0, mob/viewmob)
@@ -527,12 +532,24 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 		static_inventory += hand_box
 		hand_box.update_appearance()
 
-	var/i = 1
-	for(var/atom/movable/screen/swap_hand/SH in static_inventory)
-		SH.screen_loc = ui_swaphand_position(mymob,!(i % 2) ? 2: 1)
-		i++
-	for(var/atom/movable/screen/human/equip/E in static_inventory)
-		E.screen_loc = ui_equip_position(mymob)
+	var/num_of_swaps = 0
+	for(var/atom/movable/screen/swap_hand/swap_hands in static_inventory)
+		num_of_swaps += 1
+
+	var/hand_num = 1
+	for(var/atom/movable/screen/swap_hand/swap_hands in static_inventory)
+		var/hand_ind = RIGHT_HANDS
+		if (num_of_swaps > 1)
+			hand_ind = IS_RIGHT_INDEX(hand_num) ? LEFT_HANDS : RIGHT_HANDS
+		swap_hands.screen_loc = ui_swaphand_position(mymob, hand_ind)
+		hand_num += 1
+	hand_num = 1
+	for(var/atom/movable/screen/drop/swap_hands in static_inventory)
+		var/hand_ind = LEFT_HANDS
+		if (num_of_swaps > 1)
+			hand_ind = IS_LEFT_INDEX(hand_num) ? LEFT_HANDS : RIGHT_HANDS
+		swap_hands.screen_loc = ui_swaphand_position(mymob, hand_ind)
+		hand_num += 1
 
 	if(ismob(mymob) && mymob.hud_used == src)
 		show_hud(hud_version)
@@ -565,6 +582,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 			floating_actions += button
 			button.screen_loc = position
 			position = SCRN_OBJ_FLOATING
+			toggle_palette.update_state()
 
 	button.location = position
 
@@ -583,6 +601,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 				position_action(button, button.linked_action.default_button_position)
 				return
 			button.screen_loc = get_valid_screen_location(relative_to.screen_loc, ICON_SIZE_ALL, our_client.view_size.getView()) // Asks for a location adjacent to our button that won't overflow the map
+			toggle_palette.update_state()
 
 	button.location = relative_to.location
 
@@ -593,6 +612,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 			CRASH("We just tried to hide an action buttion that somehow has the default position as its location, you done fucked up")
 		if(SCRN_OBJ_FLOATING)
 			floating_actions -= button
+			toggle_palette.update_state()
 		if(SCRN_OBJ_IN_LIST)
 			listed_actions.remove_action(button)
 		if(SCRN_OBJ_IN_PALETTE)
@@ -603,11 +623,13 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 /datum/hud/proc/generate_landings(atom/movable/screen/movable/action_button/button)
 	listed_actions.generate_landing()
 	palette_actions.generate_landing()
+	toggle_palette.activate_landing()
 
 /// Clears all currently visible landings
 /datum/hud/proc/hide_landings()
 	listed_actions.clear_landing()
 	palette_actions.clear_landing()
+	toggle_palette.disable_landing()
 
 // Updates any existing "owned" visuals, ensures they continue to be visible
 /datum/hud/proc/update_our_owner()

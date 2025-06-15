@@ -312,10 +312,6 @@
 /*
 *	OPEN TURFS
 */
-/turf/open
-	/// Pollution stored on this turf
-	var/datum/pollution/pollution
-
 //Consider making all of these behaviours a smart component/element? Something that's only applied wherever it needs to be
 //Could probably have the variables on the turf level, and the behaviours being activated/deactived on the component level as the vars are updated
 /turf/open/CanPass(atom/movable/mover, turf/location)

@@ -23,29 +23,30 @@
 	if(isnull(chosen_one))
 		return NOT_ENOUGH_PLAYERS
 	//spawn the ninja and assign the candidate
+	/// BUBBER EDIT START
 	var/mob/living/carbon/human/ninja = create_space_ninja(spawn_location)
-	ninja.key = chosen_one.key
+	ninja.PossessByPlayer(chosen_one.key)
 	ninja.mind.add_antag_datum(/datum/antagonist/ninja)
 	spawned_mobs += ninja
-// SKYRAT EDIT ADDITION BEGIN: Preference Ninjas
-	var/loadme = tgui_input_list(ninja, "Do you wish to load your character slot?", "Load Character?", list("Yes!", "No, I want to be random!"), default = "No, I want to be random!", timeout = 60 SECONDS)
-	var/codename
-	if(loadme == "Yes!")
-		ninja.client?.prefs?.safe_transfer_prefs_to(ninja)
-		codename = tgui_input_text(ninja.client, "What should your codename be?", "Agent Name", "[pick("Master", "Legendary", "Agent", "Shinobi", "Ninja")] [ninja.dna.species.name]", 42, FALSE, TRUE, 300 SECONDS)
-		codename ? codename : (codename = "[pick("Master", "Legendary", "Agent", "Shinobi", "Ninja")] [ninja.dna.species.name]")
-		ninja.name = codename
-		ninja.real_name = codename
-		ninja.dna.update_dna_identity()
-	else
-		ninja.randomize_human_appearance(~(RANDOMIZE_NAME|RANDOMIZE_SPECIES))
-		ninja.dna.update_dna_identity()
-	//BUBBER EDIT BEGIN
-	var/obj/item/mod/control/ninjamod = locate(/obj/item/mod/control/pre_equipped/ninja) in ninja.contents
-	var/obj/item/mod/module/dna_lock/reinforced/ninja_dna_lock = locate(/obj/item/mod/module/dna_lock/reinforced) in ninjamod.contents
-	ninja_dna_lock.on_use()// BUBBER EDIT END
+	if(!isprotean(ninja))
+		var/loadme = tgui_input_list(ninja, "Do you wish to load your character slot?", "Load Character?", list("Yes!", "No, I want to be random!"), default = "No, I want to be random!", timeout = 60 SECONDS)
+		var/codename
+		if(loadme == "Yes!")
+			ninja.client?.prefs?.safe_transfer_prefs_to(ninja)
+			codename = tgui_input_text(ninja.client, "What should your codename be?", "Agent Name", "[pick("Master", "Legendary", "Agent", "Shinobi", "Ninja")] [ninja.dna.species.name]", 42, FALSE, TRUE, 300 SECONDS)
+			codename ? codename : (codename = "[pick("Master", "Legendary", "Agent", "Shinobi", "Ninja")] [ninja.dna.species.name]")
+			ninja.name = codename
+			ninja.real_name = codename
+			ninja.dna.update_dna_identity()
+		else
+			ninja.randomize_human_appearance(~(RANDOMIZE_NAME|RANDOMIZE_SPECIES))
+			ninja.dna.update_dna_identity()
 
-// SKYRAT EDIT ADDITION END: Preference Ninjas
+	var/obj/item/mod/control/ninjamod = locate(isprotean(ninja) ? /obj/item/mod/control/pre_equipped/protean : /obj/item/mod/control/pre_equipped/ninja) in ninja.contents
+	var/obj/item/mod/module/dna_lock/reinforced/ninja_dna_lock = locate(/obj/item/mod/module/dna_lock/reinforced) in ninjamod.contents
+	ninja_dna_lock.on_use()
+	/// BUBBER EDIT END
+
 	message_admins("[ADMIN_LOOKUPFLW(ninja)] has been made into a space ninja by an event.")
 	ninja.log_message("was spawned as a ninja by an event.", LOG_GAME)
 

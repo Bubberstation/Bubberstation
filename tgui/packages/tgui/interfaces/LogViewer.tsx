@@ -1,6 +1,4 @@
 import { useState } from 'react';
-
-import { useBackend } from '../backend';
 import {
   Button,
   Collapsible,
@@ -8,7 +6,9 @@ import {
   NoticeBox,
   Section,
   Stack,
-} from '../components';
+} from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type LogViewerData = {
@@ -99,7 +99,7 @@ const CategoryBar = (props: CategoryBarProps) => {
         <Input
           placeholder="Search"
           value={categorySearch}
-          onChange={(_, value) => setCategorySearch(value)}
+          onChange={setCategorySearch}
         />
       }
     >
@@ -172,11 +172,7 @@ const CategoryViewer = (props: CategoryViewerProps) => {
       }`}
       buttons={
         <>
-          <Input
-            placeholder="Search"
-            value={search}
-            onInput={(_, value) => setSearch(value)}
-          />
+          <Input placeholder="Search" value={search} onChange={setSearch} />
           <Button
             icon="code"
             tooltip="RegEx Search"

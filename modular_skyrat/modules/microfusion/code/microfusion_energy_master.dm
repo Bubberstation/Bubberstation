@@ -344,7 +344,7 @@
 
 	add_fingerprint(user)
 
-	if(semicd)
+	if(fire_cd)
 		return
 
 	//Vary by at least this much
@@ -385,11 +385,11 @@
 			return
 		process_chamber()
 		update_appearance()
-		semicd = TRUE
+		fire_cd = TRUE
 		var/fire_delay_to_add = 0
 		if(phase_emitter)
 			fire_delay_to_add = phase_emitter.fire_delay
-		addtimer(CALLBACK(src, PROC_REF(reset_semicd)), fire_delay + fire_delay_to_add)
+		addtimer(CALLBACK(src, PROC_REF(reset_fire_cd)), fire_delay + fire_delay_to_add)
 
 	if(user)
 		user.update_held_items()
@@ -788,3 +788,5 @@
 /// Recalculates the recoil, based on attachment-provided values.
 /obj/item/gun/microfusion/proc/recalculate_recoil()
 	recoil = max(0, attachment_recoil)
+
+#undef DUALWIELD_PENALTY_EXTRA_MULTIPLIER

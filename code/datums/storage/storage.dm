@@ -23,6 +23,8 @@
 	/// List of all the mobs currently viewing the contents of this storage.
 	VAR_PRIVATE/list/mob/is_using = list()
 
+	///The type of storage interface this datum uses.
+	var/datum/storage_interface/storage_type = /datum/storage_interface
 	/// Associated list that keeps track of all storage UI datums per person.
 	VAR_PRIVATE/list/datum/storage_interface/storage_interfaces = null
 
@@ -35,6 +37,7 @@
 	/// Do not set directly, use set_holdable
 	VAR_FINAL/list/obj/item/cant_hold
 	/// Typecache of items that can always be inserted into this storage, regardless of size.
+	///Do not set directly, use set_holdable
 	VAR_FINAL/list/obj/item/exception_hold
 	/// For use with an exception typecache:
 	/// The maximum amount of items of the exception type that can be inserted into this storage.
@@ -47,6 +50,8 @@
 	var/rustle_vary = TRUE
 	/// Path for the item's rustle sound.
 	var/rustle_sound = SFX_RUSTLE
+	/// Path for the item's rustle sound when removing items.
+	var/remove_rustle_sound = null
 	/// The sound to play when we open/access the storage
 	var/open_sound
 	var/open_sound_vary = TRUE
@@ -145,7 +150,7 @@
 
 /datum/storage/Destroy()
 
-	for(var/mob/person in is_using)
+	for(var/mob/person as anything in is_using)
 		hide_contents(person)
 
 	is_using.Cut()
@@ -159,7 +164,7 @@
 /datum/storage/proc/on_deconstruct()
 	SIGNAL_HANDLER
 
-	remove_all()
+	remove_all(update_storage = FALSE)
 
 /// Automatically ran on all object insertions: flag marking and view refreshing.
 /datum/storage/proc/handle_enter(datum/source, obj/item/arrived)
@@ -171,6 +176,7 @@
 	arrived.item_flags |= IN_STORAGE
 	refresh_views()
 	arrived.on_enter_storage(src)
+	RegisterSignal(arrived, COMSIG_MOUSEDROPPED_ONTO, PROC_REF(mousedrop_receive))
 	SEND_SIGNAL(arrived, COMSIG_ITEM_STORED, src)
 	parent.update_appearance()
 
@@ -184,6 +190,7 @@
 	gone.item_flags &= ~IN_STORAGE
 	remove_and_refresh(gone)
 	gone.on_exit_storage(src)
+	UnregisterSignal(gone, COMSIG_MOUSEDROPPED_ONTO)
 	SEND_SIGNAL(gone, COMSIG_ITEM_UNSTORED, src)
 	parent.update_appearance()
 
@@ -283,35 +290,51 @@
 /// ~Lemon
 GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
-/datum/storage/proc/set_holdable(list/can_hold_list, list/cant_hold_list)
-	if(!isnull(can_hold_list) && !islist(can_hold_list))
-		can_hold_list = list(can_hold_list)
-	if(!isnull(cant_hold_list) && !islist(cant_hold_list))
-		cant_hold_list = list(cant_hold_list)
-
+/**
+ * Sets what type of contents this storage supports
+ * Arguments
+ *
+ * * list/can_hold_list - The list of item types whitelisted in this storage rejecting everything else
+ * * list/cant_hold_list - The list of item types blacklisted in this storage accepting everything else
+ * * list/exception_hold_list - The list of items that can exceed `max_specific_storage`. It can only fit `exception_count` of such items
+ */
+/datum/storage/proc/set_holdable(list/can_hold_list, list/cant_hold_list, list/exception_hold_list)
+	can_hold = null
 	if (!isnull(can_hold_list))
-		if(isnull(can_hold_description))
-			can_hold_description = generate_hold_desc(can_hold_list)
+		if(!islist(can_hold_list))
+			can_hold_list = list(can_hold_list)
 
 		var/unique_key = can_hold_list.Join("-")
 		if(!GLOB.cached_storage_typecaches[unique_key])
 			GLOB.cached_storage_typecaches[unique_key] = typecacheof(can_hold_list)
 		can_hold = GLOB.cached_storage_typecaches[unique_key]
 
+	cant_hold = null
 	if (!isnull(cant_hold_list))
+		if(!islist(cant_hold_list))
+			cant_hold_list = list(cant_hold_list)
+
 		var/unique_key = cant_hold_list.Join("-")
 		if(!GLOB.cached_storage_typecaches[unique_key])
 			GLOB.cached_storage_typecaches[unique_key] = typecacheof(cant_hold_list)
 		cant_hold = GLOB.cached_storage_typecaches[unique_key]
 
-/// Generates a description, primarily for clothing storage.
-/datum/storage/proc/generate_hold_desc(can_hold_list)
-	var/list/desc = list()
+	exception_hold = null
+	if (!isnull(exception_hold_list))
+		if(!islist(exception_hold_list))
+			exception_hold_list = list(exception_hold_list)
 
-	for(var/obj/item/valid_item as anything in can_hold_list)
-		desc += "\a [initial(valid_item.name)]"
+		var/unique_key = exception_hold_list.Join("-")
+		if(!GLOB.cached_storage_typecaches[unique_key])
+			GLOB.cached_storage_typecaches[unique_key] = typecacheof(exception_hold_list)
+		exception_hold = GLOB.cached_storage_typecaches[unique_key]
 
-	return "\n\t[span_notice("[desc.Join("\n\t")]")]"
+	can_hold_description = null
+	if(length(can_hold_list))
+		var/list/desc = list()
+		for(var/obj/item/valid_item as anything in can_hold_list)
+			desc += "\a [initial(valid_item.name)]"
+		can_hold_description = "\n\t[span_notice("[desc.Join("\n\t")]")]"
 
 /// Updates the action button for toggling collectmode.
 /datum/storage/proc/update_actions(atom/source, mob/equipper, slot)
@@ -439,7 +462,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
  * Arguments
  * * obj/item/to_insert - the item we're inserting
  * * mob/user - (optional) the user who is inserting the item.
- * * override - see item_insertion_feedback()
+ * * override - skip feedback, only do the animation
  * * force - bypass locked storage up to a certain level. See [code/__DEFINES/storage.dm]
  * * messages - if TRUE, we will create balloon alerts for the user.
  */
@@ -451,10 +474,11 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 	SEND_SIGNAL(parent, COMSIG_ATOM_STORED_ITEM, to_insert, user, force)
 	SEND_SIGNAL(src, COMSIG_STORAGE_STORED_ITEM, to_insert, user, force)
-	RegisterSignal(to_insert, COMSIG_MOUSEDROPPED_ONTO, PROC_REF(mousedrop_receive))
 	to_insert.forceMove(real_location)
 	item_insertion_feedback(user, to_insert, override)
 	parent.update_appearance()
+	if(get(real_location, /mob) != user)
+		to_insert.do_pickup_animation(real_location, user)
 	return TRUE
 
 /// Since items inside storages ignore transparency for QOL reasons, we're tracking when things are dropped onto them instead of our UI elements
@@ -468,7 +492,6 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		return
 
 	if (target.loc != real_location) // what even
-		UnregisterSignal(target, COMSIG_MOUSEDROPPED_ONTO)
 		return
 
 	if(numerical_stacking)
@@ -531,7 +554,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	if(silent)
 		return
 
-	if(do_rustle)
+	if(do_rustle && rustle_sound)
 		playsound(parent, rustle_sound, 50, rustle_vary, -5)
 
 	if(!silent_for_user)
@@ -550,8 +573,9 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
  * * obj/item/thing - the object we're removing
  * * atom/remove_to_loc - where we're placing the item
  * * silent - if TRUE, we won't play any exit sounds
+ * * visual_updates - if TRUE we update storage views & animate parent appearance
  */
-/datum/storage/proc/attempt_remove(obj/item/thing, atom/remove_to_loc, silent = FALSE)
+/datum/storage/proc/attempt_remove(obj/item/thing, atom/remove_to_loc, silent = FALSE, visual_updates = TRUE)
 	SHOULD_NOT_SLEEP(TRUE)
 
 	if(istype(thing) && ismob(parent.loc))
@@ -562,18 +586,21 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		reset_item(thing)
 		thing.forceMove(remove_to_loc)
 
-		if(do_rustle && !silent)
-			playsound(parent, SFX_RUSTLE, 50, TRUE, -5)
+		if(!silent && do_rustle)
+			if(remove_rustle_sound)
+				playsound(parent, remove_rustle_sound, 50, TRUE, -5)
+			else if(rustle_sound)
+				playsound(parent, rustle_sound, 50, TRUE, -5)
 	else
 		thing.moveToNullspace()
 
-	if(animated)
-		animate_parent()
+	if(visual_updates)
+		if(animated)
+			animate_parent()
 
-	refresh_views()
-	parent.update_appearance()
+		refresh_views()
+		parent.update_appearance()
 
-	UnregisterSignal(thing, COMSIG_MOUSEDROPPED_ONTO)
 	SEND_SIGNAL(parent, COMSIG_ATOM_REMOVED_ITEM, thing, remove_to_loc, silent)
 	SEND_SIGNAL(src, COMSIG_STORAGE_REMOVED_ITEM, thing, remove_to_loc, silent)
 	return TRUE
@@ -583,10 +610,11 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
  *
  * Arguments
  * * atom/drop_loc - where we're placing the item
+ * * update_storage - should we update the parent to show visual effects
  */
-/datum/storage/proc/remove_all(atom/drop_loc = parent.drop_location())
+/datum/storage/proc/remove_all(atom/drop_loc = parent.drop_location(), update_storage = TRUE)
 	for(var/obj/item/thing in real_location)
-		if(!attempt_remove(thing, drop_loc, silent = TRUE))
+		if(!attempt_remove(thing, drop_loc, silent = TRUE, visual_updates = update_storage))
 			continue
 		thing.pixel_x = thing.base_pixel_x + rand(-8, 8)
 		thing.pixel_y = thing.base_pixel_y + rand(-8, 8)
@@ -667,7 +695,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 /datum/storage/proc/remove_and_refresh(atom/movable/gone)
 	SIGNAL_HANDLER
 
-	for(var/mob/user in is_using)
+	for(var/mob/user as anything in is_using)
 		if(user.client)
 			var/client/cuser = user.client
 			cuser.screen -= gone
@@ -686,13 +714,15 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		thing.emp_act(severity)
 
 /// Signal handler for preattack from an object.
-/datum/storage/proc/on_preattack(datum/source, obj/item/thing, mob/user, params)
+/datum/storage/proc/on_preattack(datum/source, obj/item/thing, mob/user, list/modifiers)
 	SIGNAL_HANDLER
 
-	if(!istype(thing) || !allow_quick_gather || thing.atom_storage)
+	if(!istype(thing) || thing == parent.loc || !allow_quick_gather || thing.atom_storage)
 		return
 
 	if(collection_mode == COLLECT_ONE)
+		if(thing.loc == user)
+			user.dropItemToGround(thing, silent = TRUE) //this is nessassary to update any inventory slot it is attached to
 		attempt_insert(thing, user)
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
@@ -832,9 +862,6 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 /// Called directly from the attack chain if [insert_on_attack] is TRUE.
 /// Handles inserting an item into the storage when clicked.
 /datum/storage/proc/item_interact_insert(mob/living/user, obj/item/thing)
-	if(iscyborg(user))
-		return ITEM_INTERACT_BLOCKING
-
 	attempt_insert(thing, user)
 	return ITEM_INTERACT_SUCCESS
 
@@ -850,15 +877,8 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	if(ishuman(user))
 		var/mob/living/carbon/human/hum = user
-		if(hum.l_store == parent && !hum.get_active_held_item())
-			INVOKE_ASYNC(hum, TYPE_PROC_REF(/mob, put_in_hands), parent)
-			hum.l_store = null
+		if(hum.l_store == parent || hum.r_store == parent)
 			return
-		if(hum.r_store == parent && !hum.get_active_held_item())
-			INVOKE_ASYNC(hum, TYPE_PROC_REF(/mob, put_in_hands), parent)
-			hum.r_store = null
-			return
-
 	if(parent.loc == user)
 		INVOKE_ASYNC(src, PROC_REF(open_storage), user)
 		return COMPONENT_CANCEL_ATTACK_CHAIN
@@ -920,14 +940,14 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		if(!to_remove)
 			return TRUE
 
-		remove_single(to_show, to_remove)
-		INVOKE_ASYNC(src, PROC_REF(put_in_hands_async), to_show, to_remove)
-		if(!silent)
-			to_show.visible_message(
-				span_warning("[to_show] draws [to_remove] from [parent]!"),
-				span_notice("You draw [to_remove] from [parent]."),
-			)
-		return TRUE
+		if (remove_single(to_show, to_remove))
+			INVOKE_ASYNC(src, PROC_REF(put_in_hands_async), to_show, to_remove)
+			if(!silent)
+				to_show.visible_message(
+					span_warning("[to_show] draws [to_remove] from [parent]!"),
+					span_notice("You draw [to_remove] from [parent]."),
+				)
+			return TRUE
 
 	// If nothing else, then we want to open the thing, so do that
 	if(!show_contents(to_show))
@@ -959,8 +979,14 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 /// Close the storage UI for everyone viewing us.
 /datum/storage/proc/close_all()
-	for(var/mob/user in is_using)
+	for(var/mob/user as anything in is_using)
 		hide_contents(user)
+
+/// Closes the storage UIs of this and everything inside the parent for everyone viewing them.
+/datum/storage/proc/close_all_recursive()
+	close_all()
+	for(var/atom/movable/movable as anything in parent.get_all_contents())
+		movable.atom_storage?.close_all()
 
 /// Refresh the views of everyone currently viewing the storage.
 /datum/storage/proc/refresh_views()
@@ -1014,7 +1040,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	var/ui_style = ui_style2icon(to_show.client?.prefs?.read_preference(/datum/preference/choiced/ui_style))
 
 	if (isnull(storage_interfaces[to_show]))
-		storage_interfaces[to_show] = new /datum/storage_interface(ui_style, src)
+		storage_interfaces[to_show] = new storage_type(ui_style, src, to_show)
 
 	orient_storage()
 
@@ -1058,6 +1084,8 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 	toggle_collection_mode(triggered.owner)
 
+	return COMPONENT_ACTION_BLOCK_TRIGGER
+
 /datum/storage/proc/action_deleted(datum/source)
 	SIGNAL_HANDLER
 
@@ -1080,34 +1108,17 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	for (var/mob/ui_user as anything in storage_interfaces)
 		if (isnull(storage_interfaces[ui_user]))
 			continue
-		storage_interfaces[ui_user].update_position(screen_start_x, screen_pixel_x, screen_start_y, screen_pixel_y, columns, rows)
-
-	var/current_x = screen_start_x
-	var/current_y = screen_start_y
-	var/turf/our_turf = get_turf(real_location)
-
-	var/list/obj/storage_contents = list()
-	if (islist(numbered_contents))
-		for(var/content_type in numbered_contents)
-			var/datum/numbered_display/numberdisplay = numbered_contents[content_type]
-			storage_contents[numberdisplay.sample_object] = MAPTEXT("<font color='white'>[(numberdisplay.number > 1)? "[numberdisplay.number]" : ""]</font>")
-	else
-		for(var/obj/item as anything in real_location)
-			storage_contents[item] = ""
-
-	for(var/obj/item as anything in storage_contents)
-		item.mouse_opacity = MOUSE_OPACITY_OPAQUE
-		item.screen_loc = "[current_x]:[screen_pixel_x],[current_y]:[screen_pixel_y]"
-		item.maptext = storage_contents[item]
-		SET_PLANE(item, ABOVE_HUD_PLANE, our_turf)
-		current_x++
-		if(current_x - screen_start_x < columns)
-			continue
-		current_x = screen_start_x
-
-		current_y++
-		if(current_y - screen_start_y >= rows)
-			break
+		storage_interfaces[ui_user].update_position(
+			screen_start_x,
+			screen_pixel_x,
+			screen_start_y,
+			screen_pixel_y,
+			columns,
+			rows,
+			ui_user,
+			real_location,
+			numbered_contents,
+		)
 
 /**
  * Toggles the collectmode of our storage.
@@ -1140,3 +1151,12 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		return
 
 	changed.visible_message(span_warning("[changed] falls out of [parent]!"), vision_distance = COMBAT_MESSAGE_RANGE)
+
+///Assign a new value to the locked variable. If it's higher than NOT_LOCKED, close the UIs and update the appearance of the parent.
+/datum/storage/proc/set_locked(new_locked)
+	if(locked == new_locked)
+		return
+	locked = new_locked
+	if(new_locked > STORAGE_NOT_LOCKED)
+		close_all_recursive()
+	parent.update_appearance()

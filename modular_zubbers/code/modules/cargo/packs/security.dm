@@ -1,6 +1,6 @@
 /datum/supply_pack/security/armory/wt551
 	name = "WT-551 Autorifle Crate"
-	desc = "Contains a pair of WT-551 Autorifles pre-loaded with less-lethal rubber-tipped rounds. Additional ammo sold seperately. Backwards-compatible with WT-550 magazines. NanoTrasen reminds you that the other weapon is for a friend, and not for going guns akimbo."
+	desc = "Contains a pair of WT-551 Autorifles pre-loaded with less-lethal rubber-tipped rounds. Additional ammo sold seperately. Backwards-compatible with WT-550 magazines. Nanotrasen reminds you that the other weapon is for a friend, and not for going guns akimbo."
 	cost = CARGO_CRATE_VALUE * 8
 	contains = list(/obj/item/gun/ballistic/automatic/wt550/security/rubber = 2)
 	crate_name = "wt-550 autorifle crate"
@@ -84,3 +84,12 @@
 	/obj/item/ammo_box/magazine/miecz = 1)
 	cost = CARGO_CRATE_VALUE * 10
 	access = ACCESS_SECURITY
+
+/datum/supply_pack/security/armory/swat
+	desc = "Contains two fullbody sets of tough, fireproof suits designed in a joint \
+		effort by IS-ERI and Nanotrasen. Each set contains a suit, helmet, mask, combat belt, a pepperball gun, \
+		and gorilla gloves."
+
+/datum/supply_pack/security/armory/swat/New()
+	. = ..()
+	contains += list(/obj/item/storage/toolbox/guncase/skyrat/pistol/pepperball = 2)

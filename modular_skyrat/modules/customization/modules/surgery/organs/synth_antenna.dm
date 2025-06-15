@@ -1,4 +1,4 @@
-/obj/item/organ/external/synth_antenna
+/obj/item/organ/synth_antenna
 	name = "synth antenna"
 	desc = "Wonder if we'll catch Syndicate frequencies with these..."
 	icon_state = "random_fly_1"
@@ -8,7 +8,7 @@
 
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_EXTERNAL_SYNTH_ANTENNA
-
+	organ_flags = ORGAN_UNREMOVABLE
 	preference = "feature_ipc_antenna"
 
 	bodypart_overlay = /datum/bodypart_overlay/mutant/synth_antenna

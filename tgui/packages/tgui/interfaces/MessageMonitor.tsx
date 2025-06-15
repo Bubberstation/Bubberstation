@@ -1,7 +1,4 @@
-import { BooleanLike } from 'common/react';
 import { Dispatch, SetStateAction, useState } from 'react';
-
-import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -10,7 +7,10 @@ import {
   Section,
   Stack,
   Table,
-} from '../components';
+} from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 enum Screen {
@@ -178,7 +178,7 @@ const MainScreenAuth = (props: AuthScreenProps) => {
         <Section>
           <Input
             value={auth_password}
-            onChange={(e, value) => setPassword(value)}
+            onChange={setPassword}
             placeholder="Password"
           />
           <Button
@@ -281,7 +281,7 @@ const MainScreenNotAuth = (props: AuthScreenProps) => {
         <Section>
           <Input
             value={auth_password}
-            onChange={(e, value) => setPassword(value)}
+            onChange={setPassword}
             placeholder="Password"
           />
           <Button onClick={() => act('auth', { auth_password: auth_password })}>

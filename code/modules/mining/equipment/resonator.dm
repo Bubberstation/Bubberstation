@@ -11,6 +11,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 15
 	throwforce = 10
+	slot_flags = ITEM_SLOT_BELT
 
 	/// the mode of the resonator; has three modes: auto (1), manual (2), and matrix (3)
 	var/mode = RESONATOR_MODE_AUTO
@@ -42,7 +43,7 @@
 		new /obj/effect/temp_visual/resonance(target_turf, user, src, mode, adding_failure)
 		user.changeNext_move(CLICK_CD_MELEE)
 
-/obj/item/resonator/pre_attack(atom/target, mob/user, params)
+/obj/item/resonator/pre_attack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
 	if(check_allowed_items(target, not_inside = TRUE))
 		create_resonance(target, user)
 	return ..()

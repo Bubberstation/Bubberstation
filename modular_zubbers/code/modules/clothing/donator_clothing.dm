@@ -68,7 +68,7 @@
 		/obj/item/reagent_containers/cup/bottle,
 		/obj/item/reagent_containers/cup/tube,
 		/obj/item/reagent_containers/hypospray,
-		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/applicator/pill,
 		/obj/item/reagent_containers/syringe,
 		/obj/item/gun/syringe,
 		/obj/item/sensor_device,
@@ -130,6 +130,6 @@
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	attack_verb_continuous = list ("cuddles", "meows", "hisses")
 	attack_verb_simple = list ("cuddle", "meow", "hiss")
-	squeak_override = list ('modular_skyrat/modules/customization/game/objects/items/sound/merowr.ogg' = 1)
+	squeak_override = list ('modular_zubbers/sound/voice/merowr.ogg' = 1)
 	resistance_flags = FIRE_PROOF
 

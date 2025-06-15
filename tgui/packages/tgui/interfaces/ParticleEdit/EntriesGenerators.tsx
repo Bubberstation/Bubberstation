@@ -1,7 +1,5 @@
 /* eslint-disable react/jsx-no-undef */
 import { useContext } from 'react';
-
-import { useBackend } from '../../backend';
 import {
   Button,
   ColorBox,
@@ -9,7 +7,9 @@ import {
   LabeledList,
   NumberInput,
   Stack,
-} from '../../components';
+} from 'tgui-core/components';
+
+import { useBackend } from '../../backend';
 import { ParticleContext } from '.';
 import {
   EntryGeneratorNumbersListProps,
@@ -112,8 +112,8 @@ export const FloatGeneratorColor = (props: FloatGeneratorColorProps) => {
         {!Array.isArray(float) ? (
           <Stack.Item>
             <Input
-              value={float}
-              onChange={(e, value) =>
+              value={float?.toString()}
+              onBlur={(value) =>
                 act('edit', {
                   var: var_name,
                   new_value: value,

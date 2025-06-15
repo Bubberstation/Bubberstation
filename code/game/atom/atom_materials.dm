@@ -10,11 +10,14 @@
 /// Sets the custom materials for an atom. This is what you want to call, since most of the ones below are mainly internal.
 /atom/proc/set_custom_materials(list/materials, multiplier = 1)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	if(length(custom_materials))
-		remove_material_effects()
+	if((custom_materials == materials) && multiplier == 1) //Easy way to know no changes are being made.
+		return
 
-	if(!length(materials))
-		custom_materials = null
+	var/replace_mats = length(materials)
+	if(length(custom_materials))
+		remove_material_effects(replace_mats)
+
+	if(!replace_mats)
 		return
 
 	initialize_materials(materials, multiplier)
@@ -30,28 +33,32 @@
 		for(var/current_material in materials)
 			materials[current_material] *= multiplier
 
+	sortTim(materials, GLOBAL_PROC_REF(cmp_numeric_dsc), associative = TRUE)
 	apply_material_effects(materials)
-	custom_materials = SSmaterials.FindOrCreateMaterialCombo(materials)
 
 ///proc responsible for applying material effects when setting materials.
 /atom/proc/apply_material_effects(list/materials)
 	SHOULD_CALL_PARENT(TRUE)
-	if(!materials || !(material_flags & MATERIAL_EFFECTS))
-		return
-	var/list/material_effects = get_material_effects_list(materials)
-	finalize_material_effects(material_effects)
+	if(material_flags & MATERIAL_EFFECTS)
+		var/list/material_effects = get_material_effects_list(materials)
+		finalize_material_effects(material_effects)
+
+	custom_materials = SSmaterials.FindOrCreateMaterialCombo(materials)
 
 /// Proc responsible for removing material effects when setting materials.
-/atom/proc/remove_material_effects()
+/atom/proc/remove_material_effects(replace_mats = TRUE)
 	SHOULD_CALL_PARENT(TRUE)
 	//Only runs if custom materials existed at first and affected src.
-	if(!custom_materials || !(material_flags & MATERIAL_EFFECTS))
-		return
-	var/list/material_effects = get_material_effects_list(custom_materials)
-	finalize_remove_material_effects(material_effects)
+	if(material_flags & MATERIAL_EFFECTS)
+		var/list/material_effects = get_material_effects_list(custom_materials)
+		finalize_remove_material_effects(material_effects)
+
+	if(!replace_mats)
+		custom_materials = null
 
 /atom/proc/get_material_effects_list(list/materials)
 	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
 	var/list/material_effects = list()
 	var/index = 1
 	for(var/current_material in materials)
@@ -81,17 +88,13 @@
 	var/total_alpha = 0
 	var/list/colors = list()
 	var/mat_length = length(materials)
-	var/datum/material/main_material //the material with the highest amount (after calculations)
-	var/main_mat_amount
-	var/main_mat_mult
+	var/datum/material/main_material = materials[1]//the material with the highest amount (after calculations)
+	var/main_mat_amount = materials[main_material][MATERIAL_LIST_OPTIMAL_AMOUNT]
+	var/main_mat_mult = materials[main_material][MATERIAL_LIST_MULTIPLIER]
 	for(var/datum/material/custom_material as anything in materials)
 		var/list/deets = materials[custom_material]
 		var/mat_amount = deets[MATERIAL_LIST_OPTIMAL_AMOUNT]
 		var/multiplier = deets[MATERIAL_LIST_MULTIPLIER]
-		if(mat_amount > main_mat_amount)
-			main_material = custom_material
-			main_mat_amount = mat_amount
-			main_mat_mult = multiplier
 
 		apply_single_mat_effect(custom_material, mat_amount, multiplier)
 		custom_material.on_applied(src, mat_amount, multiplier)
@@ -107,10 +110,10 @@
 	apply_main_material_effects(main_material, main_mat_amount, main_mat_mult)
 
 	if(material_flags & (MATERIAL_COLOR|MATERIAL_GREYSCALE))
-		var/init_alpha = initial(alpha)
-		var/alpha_value = (total_alpha / length(materials)) * init_alpha
+		var/previous_alpha = alpha
+		alpha *= (total_alpha / length(materials))/255
 
-		if(alpha_value < init_alpha * 0.9)
+		if(alpha < previous_alpha * 0.9)
 			opacity = FALSE
 
 		if(material_flags & MATERIAL_GREYSCALE)
@@ -131,6 +134,8 @@
 	if(material_flags & MATERIAL_ADD_PREFIX)
 		var/prefixes = get_material_prefixes(materials)
 		name = "[prefixes] [name]"
+
+	SEND_SIGNAL(src, COMSIG_ATOM_FINALIZE_MATERIAL_EFFECTS, materials, main_material)
 
 /**
  * A proc used by both finalize_material_effects() and finalize_remove_material_effects() to get the colors
@@ -201,9 +206,14 @@
 		return path
 
 ///Apply material effects of a single material.
-/atom/proc/apply_single_mat_effect(datum/material/custom_material, amount, multipier)
+/atom/proc/apply_single_mat_effect(datum/material/material, amount, multiplier)
 	SHOULD_CALL_PARENT(TRUE)
-	return
+	if(!(material_flags & MATERIAL_AFFECT_STATISTICS) || !uses_integrity)
+		return
+	var/integrity_mod = GET_MATERIAL_MODIFIER(material.integrity_modifier, multiplier)
+	modify_max_integrity(ceil(max_integrity * integrity_mod))
+	var/list/armor_mods = material.get_armor_modifiers(multiplier)
+	set_armor(get_armor().generate_new_with_multipliers(armor_mods))
 
 ///A proc for material effects that only the main material (which the atom's primarly composed of) should apply.
 /atom/proc/apply_main_material_effects(datum/material/main_material, amount, multipier)
@@ -249,10 +259,17 @@
 	if(material_flags & MATERIAL_ADD_PREFIX)
 		name = initial(name)
 
+	SEND_SIGNAL(src, COMSIG_ATOM_FINALIZE_REMOVE_MATERIAL_EFFECTS, materials, main_material)
+
 ///Remove material effects of a single material.
-/atom/proc/remove_single_mat_effect(datum/material/custom_material, amount, multipier)
+/atom/proc/remove_single_mat_effect(datum/material/material, amount, multiplier)
 	SHOULD_CALL_PARENT(TRUE)
-	return
+	if(!(material_flags & MATERIAL_AFFECT_STATISTICS) || !uses_integrity)
+		return
+	var/integrity_mod = GET_MATERIAL_MODIFIER(material.integrity_modifier, multiplier)
+	modify_max_integrity(floor(max_integrity / integrity_mod))
+	var/list/armor_mods = material.get_armor_modifiers(1 / multiplier)
+	set_armor(get_armor().generate_new_with_multipliers(armor_mods))
 
 ///A proc to remove the material effects previously applied by the (ex-)main material
 /atom/proc/remove_main_material_effects(datum/material/main_material, amount, multipier)
@@ -289,13 +306,13 @@
  * Arguments:
  * - flags: A set of flags determining how exactly the materials are broken down.
  */
-/atom/proc/get_material_composition()
+/atom/proc/get_material_composition(flags)
 	. = list()
 
 	var/list/cached_materials = custom_materials
 	for(var/mat in cached_materials)
 		var/datum/material/material = GET_MATERIAL_REF(mat)
-		var/list/material_comp = material.return_composition(cached_materials[mat])
+		var/list/material_comp = material.return_composition(cached_materials[mat], flags)
 		for(var/comp_mat in material_comp)
 			.[comp_mat] += material_comp[comp_mat]
 
