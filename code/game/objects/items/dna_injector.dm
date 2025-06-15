@@ -57,7 +57,7 @@
 			target.real_name = fields["name"]
 			target.dna.unique_enzymes = fields["UE"]
 			target.name = target.real_name
-			target.dna.blood_type = fields["blood_type"]
+			target.set_blood_type(fields["blood_type"])
 		if(fields["UI"]) //UI+UE
 			target.dna.unique_identity = merge_text(target.dna.unique_identity, fields["UI"])
 		if(fields["UF"])
@@ -94,6 +94,7 @@
 
 	if(!inject(target, user)) //Now we actually do the heavy lifting.
 		to_chat(user, span_notice("It appears that [target] does not have compatible DNA."))
+		return
 
 	used = TRUE
 	update_appearance()
@@ -130,11 +131,11 @@
 			if(!target.dna.previous["UE"])
 				target.dna.previous["UE"] = target.dna.unique_enzymes
 			if(!target.dna.previous["blood_type"])
-				target.dna.previous["blood_type"] = target.dna.blood_type
+				target.dna.previous["blood_type"] = target.get_bloodtype()
 			target.real_name = fields["name"]
 			target.dna.unique_enzymes = fields["UE"]
 			target.name = target.real_name
-			target.dna.blood_type = fields["blood_type"]
+			target.set_blood_type(fields["blood_type"])
 			target.dna.temporary_mutations[UE_CHANGED] = endtime
 		if(fields["UI"]) //UI+UE
 			if(!target.dna.previous["UI"])

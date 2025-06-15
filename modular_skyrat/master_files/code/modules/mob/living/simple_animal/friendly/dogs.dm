@@ -95,7 +95,7 @@
 	/// Has E-N been emagged already?
 	var/emagged = FALSE
 	/// A list of the things dropped when it dies
-	var/static/list/borgi_drops = list(/obj/effect/decal/cleanable/oil/slippery)
+	var/static/list/borgi_drops = list(/obj/effect/decal/cleanable/blood/oil/slippery)
 	/// The threshold of HP before the borgi attacks non-friends
 	var/rage_hp = 30
 	/// The chance to spark (on life)
@@ -150,7 +150,7 @@
 
 	harass_target(target, always_shoot = TRUE)
 
-/mob/living/basic/pet/dog/corgi/borgi/proc/on_attackby(datum/source, obj/item/used_item, mob/living/target)
+/mob/living/basic/pet/dog/corgi/borgi/proc/on_attackby(datum/source, obj/item/used_item, mob/living/target, list/modifiers)
 	SIGNAL_HANDLER
 
 	if(!used_item.force || used_item.damtype == STAMINA || health <= 0)
@@ -158,13 +158,13 @@
 
 	harass_target(target, always_shoot = TRUE)
 
-/mob/living/basic/pet/dog/corgi/borgi/proc/on_hitby(datum/source, obj/item/used_item)
+/mob/living/basic/pet/dog/corgi/borgi/proc/on_hitby(datum/source, obj/item/used_item, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
 	SIGNAL_HANDLER
 
 	if(!istype(used_item) || used_item.throwforce < 5 || health <= 0)
 		return
 
-	var/mob/living/carbon/human/thrown_by = used_item.thrownby?.resolve()
+	var/mob/living/carbon/human/thrown_by = throwingdatum.get_thrower()
 	if(!ishuman(thrown_by))
 		return
 
@@ -201,7 +201,7 @@
 	var/obj/projectile/fired_projectile
 	var/fire_sound
 	if(harmless)
-		fired_projectile = new /obj/item/ammo_casing/foam_dart(loc)
+		fired_projectile = new /obj/projectile/bullet/foam_dart(loc)
 		fired_projectile.icon = 'icons/obj/weapons/guns/toy.dmi'
 		fired_projectile.icon_state = "foamdart_proj"
 		fire_sound = 'sound/items/syringeproj.ogg'
@@ -373,6 +373,8 @@
 
 /mob/living/basic/pet/dog/pitbull/Initialize(mapload)
 	. = ..()
+	if(prob(1))
+		name = pick("Crayon", "Pimpy", "Staypuft", "Bape", "BLOODSKULL", "Baby G")
 	AddElement(/datum/element/tiny_mob_hunter, MOB_SIZE_SMALL) //He eats anything that he sees as a toddler.
 	AddElement(/datum/element/footstep, footstep_type = FOOTSTEP_MOB_CLAW)
 

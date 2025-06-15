@@ -1,21 +1,18 @@
 /datum/crafting_recipe/food
 	mass_craftable = TRUE
-	crafting_flags = parent_type::crafting_flags | CRAFT_TRANSFERS_REAGENTS | CRAFT_CLEARS_REAGENTS
+	requirements_mats_blacklist = list(
+		/obj/item/reagent_containers/cup/bowl,
+		/obj/item/popsicle_stick,
+		/obj/item/stack/rods,
+	)
+	crafting_flags = parent_type::crafting_flags | CRAFT_TRANSFERS_REAGENTS | CRAFT_CLEARS_REAGENTS | CRAFT_ENFORCE_MATERIALS_PARITY
 	///The food types that are added to the result when the recipe is completed
 	var/added_foodtypes = NONE
 	///The food types that are removed to the result when the recipe is completed
 	var/removed_foodtypes = NONE
 
-/datum/crafting_recipe/food/on_craft_completion(mob/user, atom/result)
-	SHOULD_CALL_PARENT(TRUE)
-	. = ..()
-	if(istype(result) && istype(user) && !isnull(user.mind))
-		ADD_TRAIT(result, TRAIT_FOOD_CHEF_MADE, REF(user.mind))
-
 /datum/crafting_recipe/food/New()
 	. = ..()
-	parts |= reqs
-
 	//rarely, but a few cooking recipes (cake cat & co) don't result food items.
 	if(!PERFORM_ALL_TESTS(focus_only/check_foodtypes) || non_craftable || !ispath(result, /obj/item/food))
 		return
@@ -162,13 +159,9 @@
 	results = list(/datum/reagent/consumable/hot_ramen = 3)
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/consumable/dry_ramen = 3)
 
-	pollutant_type = /datum/pollutant/food/spicy_noodles //SKYRAT EDIT ADDITION
-
 /datum/chemical_reaction/food/hell_ramen
 	results = list(/datum/reagent/consumable/hell_ramen = 6)
 	required_reagents = list(/datum/reagent/consumable/capsaicin = 1, /datum/reagent/consumable/hot_ramen = 6)
-
-	pollutant_type = /datum/pollutant/food/spicy_noodles //SKYRAT EDIT ADDITION
 
 /datum/chemical_reaction/food/imitationcarpmeat
 	required_reagents = list(/datum/reagent/toxin/carpotoxin = 5)

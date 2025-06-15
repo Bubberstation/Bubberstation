@@ -14,6 +14,11 @@
 /// Applied when the ridee is normal sized. Applies to side offsets.
 #define REGULAR_SIDE_OFFSET 4
 
+/// Sprite offset applied when carrying someone with featherweight quirk. Applies to front offsets.
+#define FEATHERWEIGHT_OFFSET 6
+/// Sprite offset applied when carrying someone with featherweight quirk. Applies to side offsets.
+#define FEATHERWEIGHT_SIDE_OFFSET 3
+
 /// Sent when a mob attempts to ride our saddle. Should return a bitfield containing riding flags, ex. RIDER_NEEDS_ARMS (mob/living/carbon)
 #define COMSIG_HUMAN_SADDLE_RIDE_ATTEMPT "human_saddle_ride_attempt"
 
