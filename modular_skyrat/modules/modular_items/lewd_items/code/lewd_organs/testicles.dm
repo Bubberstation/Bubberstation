@@ -1,9 +1,9 @@
 /obj/item/organ/genital/testicles
 	internal_fluid_datum = /datum/reagent/consumable/cum
+	internal_fluid_maximum = 10
 	var/cumshot_size = 0
 	var/cumshot_size_mod = 1
 	var/cumshot_size_mult = 0.5
-	internal_fluid_maximum = 10
 
 /obj/item/organ/genital/testicles/build_from_dna(datum/dna/DNA, associated_key)
 	. = ..()
