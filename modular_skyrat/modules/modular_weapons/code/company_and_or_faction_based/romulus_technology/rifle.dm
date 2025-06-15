@@ -11,8 +11,8 @@ Coil Rifle
 	name = "\improper RomTech MEC-1E"
 	desc = "The magnetic experimental coil 1 or the Coilgun as it is called, uses electromagnetic coil to propel a solid projectile at enemy at high speed.\
 		Used by Romulus Federation Military Force and Kepler Colonial Defense"
-	icon = 'icons/obj/weapons/guns/wide_guns.dmi'
-	icon_state = "battle_rifle"
+	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/romulus_technology/gun48x32.dmi'
+	icon_state = "pcr"
 	inhand_icon_state = "battle_rifle"
 	base_icon_state = "battle_rifle"
 	worn_icon = 'icons/mob/clothing/back.dmi'
@@ -112,7 +112,7 @@ Coil Rifle
 	shots_before_degradation = initial(shots_before_degradation)
 	degradation_stage = initial(degradation_stage)
 	projectile_speed_multiplier = initial(projectile_speed_multiplier)
-	fire_delay = initial(fire_delay)
+	spread = initial(spread)
 	update_appearance()
 	balloon_alert(user, "system reset")
 	return ITEM_INTERACT_SUCCESS
@@ -146,7 +146,6 @@ Coil Rifle
 	degradation_stage = clamp(degradation_stage + (obj_flags ? 2 : 1), 0, degradation_stage_max)
 	projectile_speed_multiplier = clamp(initial(projectile_speed_multiplier) + degradation_stage * 0.1, initial(projectile_speed_multiplier), maximum_speed_malus)
 	spread = clamp(initial(spread) + (degradation_stage * 0.5), initial(spread), maximum_spread_malus)
-	fire_delay = clamp(initial(fire_delay) + (degradation_stage * 0.5),initial(fire_delay) , 5)
 	do_sparks(1, TRUE, src)
 	update_appearance()
 
@@ -162,10 +161,8 @@ Coil Rifle
 		if(degradation_stage)
 			projectile_speed_multiplier = clamp(initial(projectile_speed_multiplier) - degradation_stage * 0.1, maximum_speed_malus, initial(projectile_speed_multiplier))
 			spread = clamp(initial(spread) + (degradation_stage * 0.5), initial(spread), maximum_spread_malus)
-			fire_delay = clamp(initial(fire_delay) + (degradation_stage * 0.5), initial(fire_delay) , 5)
 		else
 			projectile_speed_multiplier = initial(projectile_speed_multiplier)
-			fire_delay = initial(fire_delay)
 			spread = initial(spread)
 
 	update_appearance()

@@ -1,11 +1,11 @@
 //Coilgun Driver Magazine or whatever the fuck you wanna call it im done with this shit
 /obj/item/ammo_box/magazine/cacoilgun
-	name = "flechette penetrator box"
-	ammo_type = /obj/item/ammo_casing/caflechette
-	caliber = CALIBER_FLECHETTE
+	name = "coilgun magazine (5.7mm)"
+	ammo_type = /obj/item/ammo_casing/cacoil
+	caliber = CALIBER_COIL
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/romulus_technology/ammo.dmi'
 	icon_state = "cmg_penetrator"
-	max_ammo = 25
+	max_ammo = 20
 	multitype = TRUE
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 	w_class = WEIGHT_CLASS_NORMAL
