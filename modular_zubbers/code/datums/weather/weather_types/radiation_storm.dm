@@ -25,3 +25,13 @@
 	. = ..()
 	if(maint_flipped)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(revoke_maint_all_access), FALSE), 45 SECONDS)
+
+// Jungle Pubby stuff placed here temporarily.
+
+/datum/weather/rain_storm/acid/junglepubby
+	target_trait = ZTRAIT_ACIDSTORM
+	probability = 40
+
+	telegraph_sound = null
+
+	weather_flags = (WEATHER_MOBS | WEATHER_BAROMETER)
