@@ -19,6 +19,8 @@
 	var/stealthy = FALSE
 	/// If TRUE, the hypospray will be permanently unusable.
 	var/used_up = FALSE
+	// BUBBER EDIT CHANGE: for pen_medipens, allows for medipens without the warning label
+	var/no_sticker = FALSE
 
 /obj/item/reagent_containers/hypospray/attack_paw(mob/user, list/modifiers)
 	return attack_hand(user, modifiers)
@@ -55,7 +57,7 @@
 				trans = reagents.trans_to(affected_mob, amount_per_transfer_from_this, transferred_by = user, methods = INJECT)
 			else
 				reagents.expose(affected_mob, INJECT, fraction)
-				trans = reagents.copy_to(affected_mob, amount_per_transfer_from_this)
+				trans = reagents.copy_to(affected_mob, amount_per_transfer_from_this, copy_methods = INJECT)
 			to_chat(user, span_notice("[trans] unit\s injected. [reagents.total_volume] unit\s remaining in [src]."))
 			log_combat(user, affected_mob, "injected", src, "([contained])")
 		return TRUE
@@ -151,7 +153,8 @@
 
 /obj/item/reagent_containers/hypospray/medipen/Initialize(mapload)
 	. = ..()
-	label_text = span_notice("There is a sticker pasted onto the side which reads, 'WARNING: This medipen contains [pretty_string_from_reagent_list(reagents.reagent_list, names_only = TRUE, join_text = ", ", final_and = TRUE, capitalize_names = TRUE)], do not use if allergic to any listed chemicals.")
+	if(!no_sticker) // BUBBER EDIT CHANGE: for pen_medipens, allows for medipens without the warning label
+		label_text = span_notice("There is a sticker pasted onto the side which reads, 'WARNING: This medipen contains [pretty_string_from_reagent_list(reagents.reagent_list, names_only = TRUE, join_text = ", ", final_and = TRUE, capitalize_names = TRUE)], do not use if allergic to any listed chemicals.")
 
 /obj/item/reagent_containers/hypospray/medipen/examine()
 	. = ..()
@@ -289,11 +292,11 @@
 
 /obj/item/reagent_containers/hypospray/medipen/atropine
 	name = "atropine autoinjector"
-	desc = "A rapid way to save a person from a critical injury state!"
+	desc = "A rapid way to save a person from a critical injury state! Additionally contains a powerful coagulant to prevent blood loss."
 	icon_state = "atropen"
 	inhand_icon_state = "atropen"
 	base_icon_state = "atropen"
-	list_reagents = list(/datum/reagent/medicine/atropine = 10)
+	list_reagents = list(/datum/reagent/medicine/atropine = 10, /datum/reagent/medicine/coagulant = 2)
 
 /obj/item/reagent_containers/hypospray/medipen/snail
 	name = "snail shot"

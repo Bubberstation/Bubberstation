@@ -87,10 +87,9 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 	venue_value = FOOD_PRICE_CHEAP
 
-/obj/item/food/burger/human/chicken/CheckParts(list/parts_list)
-	..()
-	var/obj/item/food/patty/human/human_patty = locate(/obj/item/food/patty/human/chicken) in contents
-	for(var/datum/material/meat/mob_meat/mob_meat_material in human_patty.custom_materials)
+/obj/item/food/burger/human/chicken/on_craft_completion(list/components, datum/crafting_recipe/current_recipe, atom/crafter)
+	. = ..()
+	for(var/datum/material/meat/mob_meat/mob_meat_material in custom_materials)
 		if(mob_meat_material.subjectname)
 			name = "[mob_meat_material.subjectname] burger"
 		else if(mob_meat_material.subjectjob)

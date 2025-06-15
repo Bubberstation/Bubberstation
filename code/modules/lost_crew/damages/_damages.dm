@@ -88,7 +88,7 @@
 	body_data += decay.type
 
 	// Simulate bloodloss by dragging/moving
-	victim.blood_volume = max(victim.blood_volume - victim.bleedDragAmount() * rand(20, 100), 0)
+	victim.blood_volume = max(victim.blood_volume - victim.bleed_drag_amount() * rand(20, 100), 0)
 	set_death_date(victim)
 
 	death_lore += area_lore + " " + cause_of_death.cause_of_death
@@ -118,8 +118,8 @@
 	body.timeofdeath = world.time - died_how_long_ago
 
 	var/death_real_time = world.realtime - died_how_long_ago
-	var/current_date = time2text(death_real_time, "DD Month")
-	var/current_year = text2num(time2text(death_real_time, "YYYY")) + STATION_YEAR_OFFSET
+	var/current_date = time2text(death_real_time, "DD Month", 0)
+	var/current_year = text2num(time2text(death_real_time, "YYYY", NO_TIMEZONE)) + STATION_YEAR_OFFSET
 	body.station_timestamp_timeofdeath = "[current_date] [current_year]"
 
 /// Main corpse damage type that's used to apply damages to a body

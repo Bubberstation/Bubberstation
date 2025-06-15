@@ -8,7 +8,7 @@
  * Handles installing the capacitor in the window, to provide it with some
  * polarization functionalities.
  */
-/obj/item/stock_parts/capacitor/proc/install_polarization_controller(datum/source, obj/structure/window/target, mob/user)
+/obj/item/stock_parts/capacitor/proc/install_polarization_controller(datum/source, obj/structure/window/target, mob/user, list/modifiers)
 	SIGNAL_HANDLER
 
 	if(!istype(target))

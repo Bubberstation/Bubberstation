@@ -90,3 +90,13 @@
 	icon = 'modular_zubbers/icons/customization/hair.dmi'
 	name = "Long Smoothy"
 	icon_state = "hair_long_smoothy"
+
+/datum/sprite_accessory/hair/slime_tendrils_bangs //modified by JadeCat from Skyrat's Slime Tendrils hair
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
+	name = "Slime Tendrils - Bangs"
+	icon_state = "hair_slimetendrils_bangs"
+
+/datum/sprite_accessory/hair/fluffball
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
+	name = "Fluffball"
+	icon_state = "hair_fluffball"

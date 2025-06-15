@@ -455,6 +455,7 @@
 									span_warning("[src] grabs you [grabbed_by_hands ? "by your hands":"passively"]!"), null, null, src)
 					to_chat(src, span_notice("You grab [M] [grabbed_by_hands ? "by their hands":"passively"]!"))
 			// SKYRAT EDIT END
+					grabbed_human.share_blood_on_touch(src, grabbed_by_hands ? ITEM_SLOT_GLOVES : ITEM_SLOT_ICLOTHING|ITEM_SLOT_OCLOTHING)
 			else
 				M.visible_message(span_warning("[src] grabs [M] passively!"), \
 								span_warning("[src] grabs you passively!"), null, null, src)
@@ -809,6 +810,19 @@
 	else
 		set_density(TRUE)
 
+/mob/living/update_rest_hud_icon()
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!hud_used.sleep_icon || HAS_TRAIT(src, TRAIT_SLEEPIMMUNE))
+		return TRUE
+	if(resting || HAS_TRAIT(src, TRAIT_FLOORED))
+		hud_used.static_inventory |= hud_used.sleep_icon
+	else
+		hud_used.static_inventory -= hud_used.sleep_icon
+	hud_used.show_hud(hud_used.hud_version)
+	return TRUE
+
 //Recursive function to find everything a mob is holding. Really shitty proc tbh.
 /mob/living/get_contents()
 	var/list/ret = list()
@@ -1067,10 +1081,6 @@
 /mob/living/proc/update_damage_overlays()
 	return
 
-/// Proc that only really gets called for humans, to handle bleeding overlays.
-/mob/living/proc/update_wound_overlays()
-	return
-
 /mob/living/Move(atom/newloc, direct, glide_size_override)
 	if(lying_angle != 0)
 		lying_angle_on_movement(direct)
@@ -1082,7 +1092,7 @@
 		return
 
 	var/old_direction = dir
-	var/turf/T = loc
+	var/turf/old_loc = loc
 
 	if(pulling)
 		update_pull_movespeed()
@@ -1090,8 +1100,8 @@
 	. = ..()
 
 	if(moving_diagonally != FIRST_DIAG_STEP && isliving(pulledby))
-		var/mob/living/L = pulledby
-		L.set_pull_offsets(src, pulledby.grab_state)
+		var/mob/living/puller = pulledby
+		puller.set_pull_offsets(src, puller.grab_state)
 
 	if(active_storage)
 		var/storage_is_important_recurisve = (active_storage.parent in important_recursive_contents?[RECURSIVE_CONTENTS_ACTIVE_STORAGE])
@@ -1099,8 +1109,12 @@
 		if(!storage_is_important_recurisve && !can_reach_active_storage)
 			active_storage.hide_contents(src)
 
-	if(body_position == LYING_DOWN && !buckled && prob(getBruteLoss()*200/maxHealth))
-		makeTrail(newloc, T, old_direction)
+	if(!buckled && !moving_diagonally && loc != old_loc)
+		var/blood_flow = get_bleed_rate()
+		var/health_check = body_position == LYING_DOWN && prob(getBruteLoss() * 200 / maxHealth)
+		var/bleeding_check = blood_flow > 3 && prob(blood_flow * 16)
+		if(health_check || bleeding_check)
+			make_blood_trail(newloc, old_loc, old_direction, direct)
 
 ///Called by mob Move() when the lying_angle is different than zero, to better visually simulate crawling.
 /mob/living/proc/lying_angle_on_movement(direct)
@@ -1111,85 +1125,6 @@
 
 /mob/living/carbon/alien/adult/lying_angle_on_movement(direct)
 	return
-
-/mob/living/proc/makeTrail(turf/target_turf, turf/start, direction)
-	if(!has_gravity() || !isturf(start) || !blood_volume)
-		return
-
-	var/trail_type = getTrail()
-	var/trail_blood_type = get_trail_blood()
-	if(!trail_type || !trail_blood_type)
-		return
-
-	var/brute_ratio = round(getBruteLoss() / maxHealth, 0.1)
-	if(blood_volume < max(BLOOD_VOLUME_NORMAL * (1 - brute_ratio * 0.25), 0))//don't leave trail if blood volume below a threshold
-		return
-
-	var/bleed_amount = bleedDragAmount()
-	blood_volume = max(blood_volume - bleed_amount, 0) //that depends on our brute damage.
-	var/newdir = get_dir(target_turf, start)
-	if(newdir != direction)
-		newdir = newdir | direction
-		if(newdir == (NORTH|SOUTH))
-			newdir = NORTH
-		else if(newdir == (EAST|WEST))
-			newdir = EAST
-
-	if((newdir in GLOB.cardinals) && (prob(50)))
-		newdir = REVERSE_DIR(get_dir(target_turf, start))
-
-	var/found_trail = FALSE
-	for(var/obj/effect/decal/cleanable/blood/trail_holder/trail in start)
-		if (trail.blood_state != trail_blood_type)
-			continue
-
-		// Don't make double trails, even if they're of a different type
-		if(newdir in trail.existing_dirs)
-			found_trail = TRUE
-			break
-
-		trail.existing_dirs += newdir
-		trail.add_overlay(image('icons/effects/blood.dmi', trail_type, dir = newdir))
-		trail.transfer_mob_blood_dna(src)
-		trail.bloodiness = min(trail.bloodiness + bleed_amount, BLOOD_POOL_MAX)
-		found_trail = TRUE
-		break
-
-	if (found_trail)
-		return
-
-	var/obj/effect/decal/cleanable/blood/trail_holder/trail = new(start, get_static_viruses())
-	trail.blood_state = trail_blood_type
-	trail.existing_dirs += newdir
-	trail.add_overlay(image('icons/effects/blood.dmi', trail_type, dir = newdir))
-	trail.transfer_mob_blood_dna(src)
-	trail.bloodiness = min(bleed_amount, BLOOD_POOL_MAX)
-
-/mob/living/proc/get_trail_blood()
-	return BLOOD_STATE_HUMAN
-
-/mob/living/carbon/human/makeTrail(turf/T)
-	if(HAS_TRAIT(src, TRAIT_NOBLOOD) || !is_bleeding() || HAS_TRAIT(src, TRAIT_NOBLOOD))
-		return
-	..()
-
-///Returns how much blood we're losing from being dragged a tile, from [/mob/living/proc/makeTrail]
-/mob/living/proc/bleedDragAmount()
-	var/brute_ratio = round(getBruteLoss() / maxHealth, 0.1)
-	return max(1, brute_ratio * 2)
-
-/mob/living/carbon/bleedDragAmount()
-	var/bleed_amount = 0
-	for(var/i in all_wounds)
-		var/datum/wound/iter_wound = i
-		bleed_amount += iter_wound.drag_bleed_amount()
-	return bleed_amount
-
-/mob/living/proc/getTrail()
-	if(getBruteLoss() < 300)
-		return pick("ltrails_1", "ltrails_2")
-	else
-		return pick("trails_1", "trails_2")
 
 /// Print a message about an annoying sensation you are feeling. Returns TRUE if successful.
 /mob/living/proc/itch(obj/item/bodypart/target_part = null, damage = 0.5, can_scratch = TRUE, silent = FALSE)
@@ -1554,6 +1489,7 @@
 	return TRUE
 
 /mob/living/proc/update_stamina()
+	SEND_SIGNAL(src, COMSIG_LIVING_STAMINA_UPDATE)
 	update_stamina_hud()
 
 /mob/living/carbon/alien/update_stamina()
@@ -2364,6 +2300,52 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 /mob/living/proc/get_body_temp_cold_damage_limit()
 	return BODYTEMP_COLD_DAMAGE_LIMIT
 
+/atom/movable/looking_holder
+	invisibility = INVISIBILITY_MAXIMUM
+	///the direction we are operating in
+	var/look_direction
+	///actual atom on the turf, usually the owner
+	var/atom/movable/container
+	///the actual owner who is "looking"
+	var/mob/living/owner
+
+/atom/movable/looking_holder/Initialize(mapload, mob/living/owner, direction)
+	. = ..()
+	look_direction = direction
+	src.owner = owner
+	update_container()
+
+/atom/movable/looking_holder/Destroy()
+	owner = null
+	return ..()
+
+/atom/movable/looking_holder/proc/update_container()
+	SIGNAL_HANDLER
+	var/new_container = get_atom_on_turf(owner)
+	if(new_container == container)
+		return
+	if(container != owner)
+		UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+	if(container)
+		UnregisterSignal(container, COMSIG_MOVABLE_MOVED)
+
+	container = new_container
+
+	RegisterSignal(new_container, COMSIG_MOVABLE_MOVED, PROC_REF(mirror_move))
+	if(new_container != owner)
+		RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(update_container))
+
+/atom/movable/looking_holder/proc/mirror_move(mob/living/source, atom/oldloc, direction, Forced, old_locs)
+	SIGNAL_HANDLER
+	if(!isturf(owner.loc))
+		update_container()
+	set_glide_size(container.glide_size)
+	var/turf/looking_turf = owner.get_looking_turf(look_direction)
+	if(!looking_turf)
+		owner.end_look()
+		return
+	abstract_move(looking_turf)
+
 ///Checks if the user is incapacitated or on cooldown.
 /mob/living/proc/can_look_up()
 	if(next_move > world.time)
@@ -2371,6 +2353,13 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	if(INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS))
 		return FALSE
 	return TRUE
+
+/mob/living/proc/end_look()
+	reset_perspective()
+	looking_vertically = NONE
+	QDEL_NULL(looking_holder)
+
+
 /**
  * look_up Changes the perspective of the mob to any openspace turf above the mob
  *
@@ -2378,61 +2367,40 @@ GLOBAL_LIST_EMPTY(fire_appearances)
  *
  */
 /mob/living/proc/look_up()
-	if(client.perspective != MOB_PERSPECTIVE) //We are already looking up.
-		stop_look_up()
+	if(looking_vertically == UP)
+		return
+	if(looking_vertically == DOWN)
+		end_look()
+		return
 	if(!can_look_up())
 		return
 	changeNext_move(CLICK_CD_LOOK_UP)
-	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(stop_look_up)) //We stop looking up if we move.
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(start_look_up)) //We start looking again after we move.
-	start_look_up()
-
-/mob/living/proc/start_look_up()
-	SIGNAL_HANDLER
-
-	looking_vertically = TRUE
-
-	var/turf/current_turf = get_turf(src)
-	var/turf/above_turf = GET_TURF_ABOVE(current_turf)
-
-	//Check if turf above exists
+	var/turf/above_turf = get_looking_turf(UP)
 	if(!above_turf)
-		to_chat(src, span_warning("There's nothing interesting above."))
-		to_chat(src, "You set your head straight again.")
-		end_look_up()
 		return
+	looking_vertically = UP
+	looking_holder = new(above_turf, src, UP)
+	reset_perspective(looking_holder)
 
-	var/turf/ceiling = get_step_multiz(src, UP)
-	if(!ceiling) //We are at the highest z-level.
-		if (prob(0.1))
-			to_chat(src, span_warning("You gaze out into the infinite vastness of deep space, for a moment, you have the impulse to continue travelling, out there, out into the deep beyond, before your consciousness reasserts itself and you decide to stay within travelling distance of the station."))
-			return
-		to_chat(src, span_warning("There's nothing interesting up there."))
+/mob/living/proc/get_looking_turf(direction)
+	//down needs to check this floor
+	var/turf/check_turf = get_step_multiz(src, direction == DOWN ? NONE : direction)
+	if(!get_step_multiz(src, direction)) //We are at the edge z-level.
+		to_chat(src, span_warning("There's nothing interesting there."))
 		return
-	else if(!istransparentturf(ceiling)) //There is no turf we can look through above us
-		var/turf/front_hole = get_step(ceiling, dir)
+	else if(!istransparentturf(check_turf)) //There is no turf we can look through above us
+		var/turf/front_hole = get_step(check_turf, dir)
 		if(istransparentturf(front_hole))
-			ceiling = front_hole
+			check_turf = front_hole
 		else
-			for(var/turf/checkhole in TURF_NEIGHBORS(ceiling))
+			for(var/turf/checkhole in TURF_NEIGHBORS(check_turf))
 				if(istransparentturf(checkhole))
-					ceiling = checkhole
+					check_turf = checkhole
 					break
-		if(!istransparentturf(ceiling))
-			to_chat(src, span_warning("You can't see through the floor above you."))
+		if(!istransparentturf(check_turf))
+			to_chat(src, span_warning("You can't see through the floor [direction == DOWN ? "below" : "above"] you."))
 			return
-
-	reset_perspective(ceiling)
-
-/mob/living/proc/stop_look_up()
-	SIGNAL_HANDLER
-	reset_perspective()
-
-/mob/living/proc/end_look_up()
-	stop_look_up()
-	looking_vertically = FALSE
-	UnregisterSignal(src, COMSIG_MOVABLE_PRE_MOVE)
-	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
+	return direction == DOWN ? get_step_multiz(check_turf, DOWN) : check_turf
 
 /**
  * look_down Changes the perspective of the mob to any openspace turf below the mob
@@ -2441,63 +2409,20 @@ GLOBAL_LIST_EMPTY(fire_appearances)
  *
  */
 /mob/living/proc/look_down()
-	if(client.perspective != MOB_PERSPECTIVE) //We are already looking down.
-		stop_look_down()
+	if(looking_vertically == UP)
+		end_look()
+		return
+	if(looking_vertically == DOWN)
+		return
 	if(!can_look_up()) //if we cant look up, we cant look down.
 		return
 	changeNext_move(CLICK_CD_LOOK_UP)
-	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(stop_look_down)) //We stop looking down if we move.
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(start_look_down)) //We start looking again after we move.
-	start_look_down()
-
-/mob/living/proc/start_look_down()
-	SIGNAL_HANDLER
-
-	looking_vertically = TRUE
-
-	var/turf/current_turf = get_turf(src)
-	var/turf/below_turf = GET_TURF_BELOW(current_turf)
-
-	//Check if turf below exists
+	var/turf/below_turf = get_looking_turf(DOWN)
 	if(!below_turf)
-		to_chat(src, span_warning("There's nothing interesting below."))
-		to_chat(src, "You set your head straight again.")
-		end_look_up()
 		return
-
-	var/turf/floor = get_turf(src)
-	var/turf/lower_level = get_step_multiz(floor, DOWN)
-	if(!lower_level) //We are at the lowest z-level.
-		to_chat(src, span_warning("You can't see through the floor below you."))
-		return
-	else if(!istransparentturf(floor)) //There is no turf we can look through below us
-		var/turf/front_hole = get_step(floor, dir)
-		if(istransparentturf(front_hole))
-			floor = front_hole
-			lower_level = get_step_multiz(front_hole, DOWN)
-		else
-			// Try to find a hole near us
-			for(var/turf/checkhole in TURF_NEIGHBORS(floor))
-				if(istransparentturf(checkhole))
-					floor = checkhole
-					lower_level = get_step_multiz(checkhole, DOWN)
-					break
-		if(!istransparentturf(floor))
-			to_chat(src, span_warning("You can't see through the floor below you."))
-			return
-
-	reset_perspective(lower_level)
-
-/mob/living/proc/stop_look_down()
-	SIGNAL_HANDLER
-	reset_perspective()
-
-/mob/living/proc/end_look_down()
-	stop_look_down()
-	looking_vertically = FALSE
-	UnregisterSignal(src, COMSIG_MOVABLE_PRE_MOVE)
-	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
-
+	looking_vertically = DOWN
+	looking_holder = new(get_looking_turf(DOWN), src, DOWN)
+	reset_perspective(looking_holder)
 
 /mob/living/set_stat(new_stat)
 	. = ..()
@@ -2721,6 +2646,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		on_lying_down()
 	else // From lying down to standing up.
 		on_standing_up()
+	update_rest_hud_icon()
 
 
 /// Proc to append behavior to the condition of being floored. Called when the condition starts.
@@ -3033,7 +2959,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 
 	if(looking_vertically)
 		to_chat(src, "You set your head straight again.")
-		end_look_up()
+		end_look()
 		return
 
 	var/turf/current_turf = get_turf(src)
@@ -3053,7 +2979,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 
 	if(looking_vertically)
 		to_chat(src, "You set your head straight again.")
-		end_look_down()
+		end_look()
 		return
 
 	var/turf/current_turf = get_turf(src)

@@ -330,7 +330,6 @@
 	w_class = WEIGHT_CLASS_TINY
 	attack_verb_continuous = list("slaps")
 	attack_verb_simple = list("slap")
-	interaction_flags_atom = parent_type::interaction_flags_atom | INTERACT_ATOM_IGNORE_MOBILITY
 	drop_sound = SFX_CLOTH_DROP
 	pickup_sound = SFX_CLOTH_PICKUP
 
@@ -377,10 +376,6 @@
 	RegisterSignal(user, COMSIG_SURGERY_STARTING, PROC_REF(check_surgery))
 
 /obj/item/surgical_processor/dropped(mob/user, silent)
-	. = ..()
-	UnregisterSignal(user, COMSIG_SURGERY_STARTING)
-
-/obj/item/surgical_processor/cyborg_unequip(mob/user)
 	. = ..()
 	UnregisterSignal(user, COMSIG_SURGERY_STARTING)
 
