@@ -72,6 +72,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 // avian traits
 #define TRAIT_AVIAN "avian_aspect"
 
+// bovine traits
+#define TRAIT_BOVINE "bovine_aspect"
+
 // chameleon mutation
 #define TRAIT_CHAMELEON_SKIN "chameleon_skin"
 
