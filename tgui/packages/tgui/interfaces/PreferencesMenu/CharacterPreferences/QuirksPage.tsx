@@ -341,7 +341,6 @@ export function QuirksPage(props) {
       positiveQuirks += 1;
     }
 
-
     balance += selectedQuirk.value;
     */ // BUBBER EDIT END
   }
@@ -374,22 +373,6 @@ export function QuirksPage(props) {
           return `This is incompatible with ${incompatibleQuirk}!`;
         }
       }
-      // BUBBER EDIT ADDITION START - Species quirks
-      const currentSpeciesID = data.character_preferences.misc.species;
-      // keys are the species_ids, values are the species names
-      const speciesWhitelistKeys = Object.keys(quirk.species_whitelist);
-      if (
-        speciesWhitelistKeys?.length &&
-        !speciesWhitelistKeys.includes(currentSpeciesID)
-      ) {
-        const speciesWhitelistNames = Object.values(quirk.species_whitelist);
-        if (speciesWhitelistNames.length === 1) {
-          return `This quirk can only be taken by the ${speciesWhitelistNames[0]} species.`;
-        }
-        const speciesList = speciesWhitelistNames.join(', ');
-        return `This quirk can only be taken by the following species: ${speciesList}.`;
-      }
-      // BUBBER EDIT ADDITION END
     }
     if (data.species_disallowed_quirks.includes(quirk.name)) {
       return 'This quirk is incompatible with your selected species.';
@@ -440,7 +423,6 @@ export function QuirksPage(props) {
               width="200px"
               value={searchQuery}
               onChange={setSearchQuery}
-              expensive
             />
           </Stack.Item>
           <Stack.Item grow className="PreferencesMenu__Quirks__QuirkList">

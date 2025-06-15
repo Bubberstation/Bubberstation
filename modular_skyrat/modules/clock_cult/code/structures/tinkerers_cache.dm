@@ -70,7 +70,7 @@
 
 	var/crafting_item = initial(chosen_item.item_path)
 	new crafting_item(get_turf(src))
-	playsound(src, 'modular_skyrat/modules/clock_cult/sound/machinery/steam_whoosh.ogg', 50)
+	playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 50)
 
 	to_chat(user, span_brass("You craft [initial(chosen_item.name)] to near perfection, [src] cooling down. [initial(chosen_item.time_delay_mult) ? "It will be available in [DisplayTimeText(COOLDOWN_TIMELEFT(src, use_cooldown))]." : "It is ready to use again."]"))
 
