@@ -13,12 +13,12 @@
 	fire_delay = 5
 	can_suppress = FALSE
 	projectile_damage_multiplier = 1
-	var/magejecting = 0 //whether we are launching the mags or not
 	actions_types = list(/datum/action/item_action/toggle_mageject)
+	var/magejecting = 0 //whether we are launching the mags or not
 
 /datum/action/item_action/toggle_mageject
-	button_icon = 'icons/obj/weapons/guns/ammo.dmi' //SKYRAT EDIT ADDITION
-	button_icon_state = "9x19p" //SKYRAT EDIT ADDITION
+	button_icon = 'icons/obj/weapons/guns/ammo.dmi'
+	button_icon_state = "9x19p"
 	name = "Toggle magazine ejection"
 
 
@@ -41,51 +41,32 @@
 	. += span_notice("Spin reloads can be done on the move and need you only to hold your gun for their 2 second duration. ")
 	. += span_notice("If toggled on, spin reloads throw empty magazines in the direction you're facing, dealing damage dependant on their type. ")
 
-// /obj/item/gun/ballistic/automatic/pistol/sec_glock/security //This is what you give to Security Officers.
-// 	name = "\improper C-CK 9x25mm"
-// 	desc = "The Compact Criminal Killer, or C-CK9 for short, is a semi-automatic ballistic pistol meant for regulated station defense. These are normally issued with a special firing pin that only allows firing on code blue or higher."
-// 	icon = 'modular_zubbers/icons/obj/guns/sec_pistol.dmi'
-// 	icon_state = "black"
-// 	pin = /obj/item/firing_pin/alert_level/blue
-// 	spawn_magazine_type = /obj/item/ammo_box/magazine/m9mm/flathead
-// 	fire_delay = 4
-// 	can_suppress = FALSE
-// 	projectile_damage_multiplier = 0.65
-
-// /obj/item/gun/ballistic/automatic/pistol/sec_glock/security/rubber //This is what you give to cargo packages.
-// 	spawn_magazine_type = /obj/item/ammo_box/magazine/m9mm/rubber
-
 /obj/item/gun/ballistic/automatic/pistol/sec_glock/attack_self(mob/living/user)
 	var/obj/item/storage/our_belt = user.get_item_by_slot(ITEM_SLOT_BELT)
 	var/obj/item/ammo_box/magazine/m9mm/security/swapped_mag = locate(/obj/item/ammo_box/magazine/m9mm/security) in our_belt.contents
-	if(!magazine && swapped_mag)
-		if(swapped_mag)
-			if(insert_magazine(user, swapped_mag))
-				SpinAnimation(2, 1)
-				balloon_alert(user, "you spin your gun, loading in a mag!")
-			else
-				balloon_alert(user, "that magazine doesn't fit!")
+	if(!magazine && swapped_mag) //Empty gun, load in anyhow but without delay. No mag
+		if(insert_magazine(user, swapped_mag))
+			SpinAnimation(2, 1)
+			balloon_alert(user, "you spin your gun, loading in a mag!")
 		else
-			balloon_alert(user, "no spare magazines in your belt!")
-		return
+			balloon_alert(user, "that magazine doesn't fit!")
 	if(!chambered)
 		if(swapped_mag)
-			SpinAnimation(2, 1) //What a badass
-			if(do_after(user, 1 SECONDS, timed_action_flags = ( IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE ), target = src))
-				throw_eject_magazine(user, magejecting)
+			balloon_alert(user, "you spin your gun, loading in a mag!")
+			SpinAnimation(2, 1)
+			if(do_after(user, 1 SECONDS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE), target = src))
+				throw_eject_magazine(user, magejecting, swapped_mag)
 		else
 			balloon_alert(user, "no spare magazines in your belt!")
-	if(bolt_type == BOLT_TYPE_NO_BOLT)
-		unload_ammo(user)
-		return
-	drop_bolt_silent(user)
+			return
+	drop_bolt(user)
 	if(recent_rack > world.time)
 		return
 	recent_rack = world.time + rack_delay
-	rack_silent(user)
-	return
+	rack(user)
 
-/obj/item/gun/ballistic/automatic/pistol/sec_glock/proc/throw_eject_magazine(mob/user, display_message = TRUE, obj/item/ammo_box/magazine/tac_load = null, atom/target)
+
+/obj/item/gun/ballistic/automatic/pistol/sec_glock/proc/throw_eject_magazine(mob/user, display_message = TRUE, obj/item/ammo_box/magazine/m9mm/security/belt_mag, atom/target)
 	if(bolt_type == BOLT_TYPE_OPEN)
 		chambered = null
 	if(magazine.ammo_count())
@@ -93,18 +74,16 @@
 	else
 		playsound(src, eject_empty_sound, eject_sound_volume, eject_sound_vary)
 	magazine.forceMove(drop_location())
-	var/obj/item/ammo_box/magazine/old_mag = magazine
-	var/obj/item/storage/our_belt = user.get_item_by_slot(ITEM_SLOT_BELT)
-	var/obj/item/ammo_box/magazine/m9mm/security/swapped_mag = locate(/obj/item/ammo_box/magazine/m9mm/security) in our_belt.contents
-	if(swapped_mag)
-		insert_magazine(user, swapped_mag)
+	var/obj/item/ammo_box/magazine/m9mm/security/old_mag = magazine
+	if(belt_mag)
+		insert_magazine(user, belt_mag)
 	else
 		magazine = null
 		return
 	old_mag.forceMove(drop_location())
-	if(istype(old_mag, /obj/item/ammo_box/magazine/m9mm/security/rocket) && magejecting)
-		playsound(old_mag, 'sound/items/weapons/gun/general/rocket_launch.ogg', 50, TRUE)
+	playsound(old_mag, old_mag.murphy_eject_sound, 50, TRUE)
 	if(magejecting)
+		old_mag.was_ejected = 1
 		old_mag.throw_at(get_edge_target_turf(user, user.dir), range = 7, speed = 7, thrower = user, force = 10)
 	old_mag.update_appearance()
 	update_appearance()
@@ -117,19 +96,19 @@
 	magazine = AM
 	if(bolt_type == BOLT_TYPE_OPEN && !bolt_locked)
 		chamber_round(TRUE)
-	drop_bolt_silent()
+	drop_bolt()
 	update_appearance()
-	.=..()
+	..()
 	return TRUE
 
 // for your viewing convenience, same procs, just without bubbles
-/obj/item/gun/ballistic/proc/drop_bolt_silent(mob/user = null)
+/obj/item/gun/ballistic/automatic/pistol/sec_glock/drop_bolt(mob/user = null)
 	playsound(src, bolt_drop_sound, bolt_drop_sound_volume, FALSE)
 	chamber_round()
 	bolt_locked = FALSE
 	update_appearance()
 
-/obj/item/gun/ballistic/proc/rack_silent(mob/user = null)
+/obj/item/gun/ballistic/automatic/pistol/sec_glock/rack(mob/user = null)
 	if(bolt_type == BOLT_TYPE_NO_BOLT)
 		return
 	if(bolt_type == BOLT_TYPE_OPEN)
@@ -143,3 +122,5 @@
 	else
 		playsound(src, rack_sound, rack_sound_volume, rack_sound_vary)
 	update_appearance()
+	.=..()
+
