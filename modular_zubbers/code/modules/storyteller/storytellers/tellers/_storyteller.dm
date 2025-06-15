@@ -45,6 +45,8 @@
 
 	/// Two tellers of the same intensity group can't run in 2 consecutive rounds
 	var/storyteller_type = STORYTELLER_TYPE_ALWAYS_AVAILABLE
+	/// If Secret is enabled, should this storyteller be eligible to be hidden
+	var/display_setting = STORYTELLER_DISPLAY_DEFAULT
 
 /datum/storyteller/process(delta_time)
 	if(disable_distribution)
