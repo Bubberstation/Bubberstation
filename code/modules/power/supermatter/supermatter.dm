@@ -1,3 +1,5 @@
+#define SUPERMATTER_SUPPRESSION_THRESHOLD 98.4 // BUBBER EDIT ADDITION - DELAM_SCRAM
+
 //Ported from /vg/station13, which was in turn forked from baystation12;
 //Please do not bother them with bugs from this port, however, as it has been modified quite a bit.
 //Modifications include removing the world-ending full supermatter variation, and leaving only the shard.
@@ -78,6 +80,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/explosion_point = 100
 	///Are we exploding?
 	var/final_countdown = FALSE
+	///Have we fired delam suppression?
+	var/suppression_fired = FALSE // BUBBER EDIT ADDITION - DELAM_SCRAM
 	///A scaling value that affects the severity of explosions.
 	var/explosion_power = 35
 	///Time in 1/10th of seconds since the last sent warning
@@ -254,7 +258,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	QDEL_NULL(radio)
 	QDEL_NULL(countdown)
 	if(is_main_engine && GLOB.main_supermatter_engine == src)
-		SSpersistence.reset_delam_counter() // SKYRAT EDIT ADDITION BEGIN - DELAM SCRAM
+		SSpersistence.delam_counter_penalty() // SKYRAT EDIT ADDITION BEGIN - DELAM SCRAM
 		GLOB.main_supermatter_engine = null
 	QDEL_NULL(soundloop)
 	return ..()
@@ -339,9 +343,16 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	damage_factors = calculate_damage()
 	if(damage == 0) // Clear any in game forced delams if on full health.
 		set_delam(SM_DELAM_PRIO_IN_GAME, SM_DELAM_STRATEGY_PURGE)
+		station_notified = FALSE // BUBBER EDIT ADDITION - DELAM_SCRAM
 	else if(!final_countdown)
 		set_delam(SM_DELAM_PRIO_NONE, SM_DELAM_STRATEGY_PURGE) // This one cant clear any forced delams.
 	delamination_strategy.delam_progress(src)
+	// BUBBER EDIT ADDITION BEGIN - DELAM_SCRAM
+	if(damage > SUPERMATTER_SUPPRESSION_THRESHOLD && is_main_engine && !suppression_fired)
+		investigate_log("Integrity at time of suppression signal was [100 - damage]", INVESTIGATE_ENGINE)
+		SEND_GLOBAL_SIGNAL(COMSIG_MAIN_SM_DELAMINATING, SCRAM_AUTO_FIRE)
+		suppression_fired = TRUE
+	// BUBBER EDIT ADDITION END
 	if(damage > explosion_point && !final_countdown)
 		count_down()
 
@@ -580,8 +591,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	final_countdown = TRUE
 
 	INVOKE_ASYNC(src, PROC_REF(final_announcement)) // BUBBER EDIT ADDITION - DELAM SOUNDS
-	if(is_main_engine) // BUBBER EDIT ADDITION - DELAM_SCRAM
-		SEND_GLOBAL_SIGNAL(COMSIG_MAIN_SM_DELAMINATING, final_countdown) // BUBBER EDIT ADDITION - DELAM_SCRAM
 
 	notify_ghosts(
 		"[src] has begun the delamination process!",
@@ -639,7 +648,10 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				if(isanimal_or_basicmob(lucky_engi))
 					continue
 				LAZYADD(saviors, WEAKREF(lucky_engi))
-
+			// BUBBER EDIT ADDITION BEGIN - DELAM_SCRAM
+			for(var/mob/player as anything in GLOB.player_list)
+				SEND_SOUND(player, sound(null)) // stop our long ass delam sound
+			// BUBBER EDIT ADDITION END
 			return // delam averted
 		sleep(1 SECONDS)
 
@@ -1124,3 +1136,5 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 #undef MACHINERY
 #undef OBJECT
 #undef LOWEST
+
+#undef SUPERMATTER_SUPPRESSION_THRESHOLD // BUBBER EDIT ADDITION - DELAM_SCRAM

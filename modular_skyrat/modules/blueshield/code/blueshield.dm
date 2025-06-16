@@ -74,6 +74,7 @@
 
 /obj/item/modular_computer/pda/blueshield
 	name = "blueshield PDA"
+	icon_state = "/obj/item/modular_computer/pda/blueshield"
 	greyscale_colors = "#2B356D#1E1E1E"
 	inserted_item = /obj/item/pen/red/security
 	starting_programs = list(

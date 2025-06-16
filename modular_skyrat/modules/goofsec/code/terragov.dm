@@ -312,6 +312,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 /obj/item/modular_computer/pda/request_911
 	name = "Terragov PDA"
 	desc = "A small experimental microcomputer, up to Terragov 911 Responder standards."
+	icon_state = "/obj/item/modular_computer/pda/request_911"
 	greyscale_config = /datum/greyscale_config/tablet/captain
 	greyscale_colors = "#EAEAEA#66CCFF#FFCC00#5F5F5F"
 	max_capacity = parent_type::max_capacity * 2
@@ -322,6 +323,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 
 /obj/item/modular_computer/pda/request_911/police
 	name = "Terragov Marshal PDA"
+	icon_state = "/obj/item/modular_computer/pda/request_911/police"
 	greyscale_colors = "#EAEAEA#66CCFF#FFD900#CC5075"
 	inserted_item = /obj/item/pen/red/security
 	starting_programs = list(
@@ -330,6 +332,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 
 /obj/item/modular_computer/pda/request_911/atmos
 	name = "Terragov Atmospherics PDA"
+	icon_state = "/obj/item/modular_computer/pda/request_911/atmos"
 	greyscale_colors = "#EAEAEA#66CCFF#FFD900#7DDEFF"
 	starting_programs = list(
 		/datum/computer_file/program/atmosscan,
@@ -339,6 +342,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 
 /obj/item/modular_computer/pda/request_911/emt
 	name = "Terragov Medical PDA"
+	icon_state = "/obj/item/modular_computer/pda/request_911/emt"
 	greyscale_colors = "#EAEAEA#66CCFF#FFD900#7284D4"
 	starting_programs = list(
 		/datum/computer_file/program/records/medical,
@@ -426,7 +430,8 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 
 /obj/item/encryptionkey/headset_terragov/atmos
 	name = "\improper TerraGov adv. atmos encryption key"
-	icon_state = "cypherkey_medical"
+	icon_state = "/obj/item/encryptionkey/headset_terragov/atmos"
+	post_init_icon_state = "cypherkey_medical"
 	special_channels = RADIO_SPECIAL_CENTCOM
 	channels = list(RADIO_CHANNEL_TERRAGOV = 1, RADIO_CHANNEL_ENGINEERING = 1, RADIO_CHANNEL_COMMAND = 1)
 	greyscale_config = /datum/greyscale_config/encryptionkey_medical

@@ -273,7 +273,7 @@
 		/datum/job/coroner = /obj/item/organ/tongue/bone, //hes got a bone to pick with you
 		/datum/job/curator = /obj/item/organ/cyberimp/brain/connector,
 		/datum/job/detective = /obj/item/organ/lungs/cybernetic/tier3,
-		/datum/job/doctor = /obj/item/organ/cyberimp/arm/surgery,
+		/datum/job/doctor = /obj/item/organ/cyberimp/arm/toolkit/surgery,
 		/datum/job/geneticist = /obj/item/organ/fly, //we don't care about implants, we have cancer.
 		/datum/job/head_of_personnel = /obj/item/organ/eyes/robotic,
 		/datum/job/head_of_security = /obj/item/organ/eyes/robotic/thermals,
@@ -289,20 +289,20 @@
 		/datum/job/research_director = /obj/item/organ/cyberimp/bci,
 		/datum/job/roboticist = /obj/item/organ/cyberimp/eyes/hud/diagnostic,
 		/datum/job/scientist = /obj/item/organ/ears/cybernetic,
-		/datum/job/security_officer = /obj/item/organ/cyberimp/arm/flash,
+		/datum/job/security_officer = /obj/item/organ/cyberimp/arm/toolkit/flash,
 		/datum/job/shaft_miner = /obj/item/organ/monster_core/rush_gland,
-		/datum/job/station_engineer = /obj/item/organ/cyberimp/arm/toolset,
+		/datum/job/station_engineer = /obj/item/organ/cyberimp/arm/toolkit/toolset,
 		/datum/job/warden = /obj/item/organ/cyberimp/eyes/hud/security,
 		// BUBBER EDIT ADDITION START - MODULAR JOBS
 		/datum/job/blueshield = /obj/item/organ/cyberimp/brain/anti_stun,
 		/datum/job/nanotrasen_consultant = /obj/item/organ/heart/cybernetic/tier3,
 		/datum/job/barber = /obj/item/organ/ears/cybernetic/whisper,
-		/datum/job/corrections_officer = /obj/item/organ/cyberimp/arm/flash,
+		/datum/job/corrections_officer = /obj/item/organ/cyberimp/arm/toolkit/flash,
 		/datum/job/orderly = /obj/item/organ/cyberimp/brain/anti_drop,
-		/datum/job/science_guard = /obj/item/organ/cyberimp/arm/flash,
+		/datum/job/science_guard = /obj/item/organ/cyberimp/arm/toolkit/flash,
 		/datum/job/customs_agent = /obj/item/organ/cyberimp/eyes/hud/security,
 		/datum/job/bouncer = /obj/item/organ/cyberimp/arm/strongarm,
-		/datum/job/engineering_guard = /obj/item/organ/cyberimp/arm/flash,
+		/datum/job/engineering_guard = /obj/item/organ/cyberimp/arm/toolkit/flash,
 		/datum/job/telecomms_specialist = /obj/item/organ/ears/cybernetic/xray,
 		// BUBBER EDIT END
 	)

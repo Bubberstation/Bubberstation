@@ -226,7 +226,7 @@
 
 /datum/storage/wands_belt/New(atom/parent, max_slots, max_specific_storage, max_total_storage)
 	. = ..()
-	set_holdable(/obj/item/gun/magic/wand)
+	set_holdable(list(/obj/item/gun/magic/wand,/obj/item/clothing/sextoy/magic_wand)) // BUBBER EDIT CHANGE: adds /obj/item/clothing/sextoy/magic_wand
 
 ///Janitor belt
 /datum/storage/janitor_belt

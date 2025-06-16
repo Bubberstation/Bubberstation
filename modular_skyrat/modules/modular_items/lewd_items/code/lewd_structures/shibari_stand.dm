@@ -1,12 +1,14 @@
 /obj/structure/chair/shibari_stand
 	name = "shibari stand"
 	desc = "A stand for buckling people with ropes."
-	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_structures/shibari_stand.dmi'
-	icon_state = "shibari_stand"
+	icon = 'icons/map_icons/objects.dmi'
+	icon_state = "/obj/structure/chair/shibari_stand"
+	post_init_icon_state = "shibari_stand"
 	max_integrity = 75
 	layer = 4
 	item_chair = null
 	buildstacktype = null
+	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 	///Overlays for ropes
 	var/static/mutable_appearance/shibari_rope_overlay
 	var/static/mutable_appearance/shibari_rope_overlay_behind

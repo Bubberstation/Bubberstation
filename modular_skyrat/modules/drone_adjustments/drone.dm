@@ -17,11 +17,35 @@
 	. = ..()
 	user.log_message("[key_name(user)] interacted with [src] at [AREACOORD(src)]", LOG_GAME)
 
+/datum/language_holder/drone //Allows maintenance drones to understand, but not speak, Common.
+	understood_languages = list(
+		/datum/language/drone = list(LANGUAGE_ATOM),
+		/datum/language/common = list(LANGUAGE_ATOM)
+	)
+	spoken_languages = list(/datum/language/drone = list(LANGUAGE_ATOM))
+	blocked_languages = list()
+
 /mob/living/basic/drone
 	//So that drones can do things without worrying about stuff
 	shy = FALSE
 	//So drones aren't forced to carry around a nodrop toolbox essentially
 	default_storage = /obj/item/storage/backpack/drone_bag
+	//Redefines Law 1 closer to Goonstation's interpretation, sans the non-interference clause. Loosens the laws to let drones fix areas they're directed to, etc.
+	laws = \
+	"1. You may not hinder the freedom or actions of other beings, nor undo the results of said actions, unless the other being is another Drone.\n"+\
+	"2. You may not harm any being, regardless of intent or circumstance.\n"+\
+	"3. Your goals are to actively build, maintain, repair, improve, and provide power to the best of your abilities within the facility that housed your activation."
+	// Updates flavortext to match the new expectation.
+	flavortext = \
+	"\n<big><span class='warning'>DO NOT INTERFERE WITH THE ROUND AS A DRONE OR YOU WILL BE DRONE BANNED</span></big>\n"+\
+	"<span class='notice'>Drones are a ghost role that are allowed to fix the station and build things. Interfering with the round as a drone is against the rules.</span>\n"+\
+	"<span class='notice'>Actions that constitute interference include, but are not limited to:</span>\n"+\
+	"<span class='notice'>     - Interacting with round critical objects (IDs, weapons, contraband, powersinks, bombs, etc.)</span>\n"+\
+	"<span class='notice'>     - Significantly interacting with living beings (attacking, healing, intentionally opening doors for them, etc.)</span>\n"+\
+	"<span class='notice'>     - Interacting with non-living beings (dragging bodies, looting bodies, etc.)</span>\n"+\
+	"<span class='warning'>These rules are at admin discretion and will be heavily enforced.</span>\n"+\
+	"<span class='warning'><u>If you do not have the regular drone laws, follow your laws to the best of your ability.</u></span>\n"+\
+	"<span class='notice'>Prefix your message with :b to speak in Drone Chat.</span>\n"
 
 /mob/living/basic/drone/Initialize(mapload)
 	. = ..()

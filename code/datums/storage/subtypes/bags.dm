@@ -155,6 +155,8 @@
 		/obj/item/reagent_containers/medigel,
 		/obj/item/reagent_containers/applicator,
 		/obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers/hypospray/medipen, // BUBBER EDIT ADDITION - Hyposprays 2: spray harder
+		/obj/item/reagent_containers/cup/vial // BUBBER EDIT ADDITION - seems like an oversight it wasn't here already
 	))
 
 ///Bio bag

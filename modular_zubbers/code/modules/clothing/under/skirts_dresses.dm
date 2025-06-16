@@ -11,7 +11,9 @@
 /obj/item/clothing/under/dress/miniskirt
 	name = "miniskirt"
 	desc = "This skirt is quite small, even by skirt standards."
-	icon_state = "miniskirt"
+	icon = 'icons/map_icons/clothing/under/dress.dmi'
+	icon_state = "/obj/item/clothing/under/dress/miniskirt"
+	post_init_icon_state = "miniskirt"
 	greyscale_colors = "#39393f#ffffff#ffffff"
 	greyscale_config = /datum/greyscale_config/miniskirt
 	greyscale_config_worn = /datum/greyscale_config/miniskirt_worn

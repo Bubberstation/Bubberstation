@@ -29,7 +29,6 @@ SUBSYSTEM_DEF(player_ranks)
 
 	load_donators()
 	load_mentors()
-	load_vetted_ckeys()
 	return SS_INIT_SUCCESS
 
 
