@@ -77,11 +77,11 @@
 		else
 			mccloud_chassis.balloon_alert(owner, "switching to jet mode!")
 			mccloud_chassis.switching_modes = TRUE
-			addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/mecha/mccloud, activate_jet)), 7 DECISECONDS)
+			addtimer(CALLBACK(mccloud_chassis, TYPE_PROC_REF(/obj/vehicle/sealed/mecha/mccloud, activate_jet)), 7 DECISECONDS)
 	else
 		mccloud_chassis.balloon_alert(owner, "switching to biped mode!")
 		mccloud_chassis.switching_modes = TRUE
-		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/mecha/mccloud, activate_biped)), 7 DECISECONDS)
+		addtimer(CALLBACK(mccloud_chassis, TYPE_PROC_REF(/obj/vehicle/sealed/mecha/mccloud, activate_biped)), 7 DECISECONDS)
 
 /obj/vehicle/sealed/mecha/mccloud/proc/can_switch_jet()
 	var/turf/T = get_turf(loc)
@@ -311,7 +311,7 @@
 	var/obj/vehicle/sealed/mecha/parent_mech = parent
 	if(!istype(mech_pilot.client) || !istype(parent) || !(mech_pilot in parent_mech.occupants))
 		stop_zooming(mech_pilot)
-		qdel_null(src)
+		QDEL_NULL(src)
 		return
 	tracker.calculate_params()
 	if(!mech_pilot.client.intended_direction)
