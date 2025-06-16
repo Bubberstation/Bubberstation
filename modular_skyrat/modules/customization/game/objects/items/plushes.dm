@@ -29,7 +29,7 @@
 	icon_state = "plushie_fermis"
 	attack_verb_continuous = list("cuddles", "petpatts", "wigglepurrs")
 	attack_verb_simple = list("cuddle", "petpatt", "wigglepurr")
-	squeak_override = list('modular_skyrat/modules/customization/game/objects/items/sound/merowr.ogg' = 1)
+	squeak_override = list('modular_zubbers/sound/voice/merowr.ogg' = 1)
 	gender = FEMALE
 
 /obj/item/toy/plush/skyrat/fermis/chen
@@ -104,7 +104,7 @@
 	icon_state = "plushie_duffy"
 	attack_verb_continuous = list("flutters", "flaps", "squeaks")
 	attack_verb_simple = list("flutter", "flap", "squeak")
-	squeak_override = list('modular_skyrat/modules/emotes/sound/emotes/mothsqueak.ogg'= 1)
+	squeak_override = list('modular_zubbers/sound/emotes/mothsqueak.ogg' = 1)
 	gender = MALE
 
 /obj/item/toy/plush/skyrat/leaplush
@@ -192,7 +192,7 @@
 	icon_state = "blackcat"
 	attack_verb_continuous = list("cuddles", "meows", "hisses")
 	attack_verb_simple = list("cuddle", "meow", "hiss")
-	squeak_override = list('modular_skyrat/modules/customization/game/objects/items/sound/merowr.ogg' = 1)
+	squeak_override = list('modular_zubbers/sound/voice/merowr.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/cat/tux
 	name = "tux cat plushie"
@@ -463,7 +463,7 @@
 	gender = FEMALE
 	attack_verb_continuous = list("pats", "hugs", "scolds", "pets")
 	attack_verb_simple = list("pat", "hug", "scold", "pet")
-	squeak_override = list('sound/mobs/non-humanoids/mouse/mousesqueek.ogg' = 1, 'modular_skyrat/modules/emotes/sound/voice/mothsqueak.ogg' = 1,)
+	squeak_override = list('sound/mobs/non-humanoids/mouse/mousesqueek.ogg' = 1, 'modular_zubbers/sound/emotes/mothsqueak.ogg' = 1,)
 	responses = list("Rabbits are prey animals and are therefore constantly aware of their surroundings.", "Things to jump up on (they like to be in high places)", "become a rabbit today!", "Be cunning and full of tricks...", "Subscription confirmed! Thank you for choosing RABBITFACTS +TM+!", "Holland Lops are a breed of rabbit originating in the Netherlands.", "Rabbits may need medication to keep themselves healthy, and that's ok! Make sure to take yours too!", "rabbits really liked this product", "A healthy rabbit diet includes fresh vegetables.", "Rabbits do not hibernate. Their schedules are much too busy.", "the rate of bunnies is measured by RPB (rabbits per bunny)", )
 
 /obj/item/toy/plush/skyrat/chunko/andrew
@@ -473,7 +473,7 @@
 	gender = MALE
 	attack_verb_continuous = list("pats", "hugs", "scolds", "pets")
 	attack_verb_simple = list("pat", "hug", "scold", "pet")
-	squeak_override = list('sound/mobs/non-humanoids/mouse/mousesqueek.ogg' = 1, 'modular_skyrat/modules/emotes/sound/voice/mothsqueak.ogg' = 1,)
+	squeak_override = list('sound/mobs/non-humanoids/mouse/mousesqueek.ogg' = 1, 'modular_zubbers/sound/emotes/mothsqueak.ogg' = 1,)
 	// All lowercase messages are intentional
 	responses = list("bunny who you best pray you never encounter, lest you suffer a fate worse than death.", "this is a bunny!", "I wonder what would happen if you took bunnies, and combined them with rabbits, and merged their properties and characteristics. It's something to think about.", "If you're cold, they're cold. Give them the deed to your house.", "bunny that goes yeah! woo! yeah! woo! yeah! woo! yeah! woo! yeah! woo! yeah!", "the bunnies are beyond my comprehension", "it's a bunny thing, you wouldn't get it", "this bunny has an unfathomable power level", "%pull the string and I'll bink at you...I'm your bunny.", "Bunny (1954)", "the bunny that pulls the strings....", )
 
@@ -577,7 +577,7 @@
 	icon_state = "plush_lonie"
 	attack_verb_continuous = list("snuggles", "nibbles", "awoos", "tail whaps")
 	attack_verb_simple = list("snuggle", "nibble", "awoo", "tail whap")
-	squeak_override = list('modular_skyrat/modules/customization/game/objects/items/sound/merowr.ogg' = 1)
+	squeak_override = list('modular_zubbers/sound/voice/merowr.ogg' = 1)
 
 //Donation reward for syntax1112
 /obj/item/toy/plush/skyrat/plushie_syntax1112
