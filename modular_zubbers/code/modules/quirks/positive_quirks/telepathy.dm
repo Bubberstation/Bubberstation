@@ -1,4 +1,4 @@
-/datum/mutation/human/telepathy
+/datum/mutation/telepathy
 	power_path = /datum/action/cooldown/spell/pointed/telepathy
 
 /datum/action/cooldown/spell/pointed/telepathy
@@ -98,7 +98,7 @@
 		//different messaging if the target has the telepathy mutation themselves themselves
 		if (ishuman(target))
 			var/mob/living/carbon/human/human_target = target
-			var/datum/mutation/human/telepathy/tele_mut = human_target.dna.get_mutation(/datum/mutation/human/telepathy)
+			var/datum/mutation/telepathy/tele_mut = human_target.dna.get_mutation(/datum/mutation/telepathy)
 
 			if (tele_mut)
 				to_chat(target, span_boldnotice("[caster]'s psychic presence resounds in your mind: \"[span_purple(message)]\""))
@@ -138,9 +138,7 @@
 /datum/quirk/telepathic/add(client/client_source)
 	if (iscarbon(quirk_holder))
 		var/mob/living/carbon/human/human_holder = quirk_holder
-
-		if(!human_holder.dna.activate_mutation(/datum/mutation/human/telepathy))
-			human_holder.dna.add_mutation(/datum/mutation/human/telepathy, MUT_OTHER)
+		human_holder.dna.add_mutation(/datum/mutation/telepathy, MUTATION_SOURCE_QUIRK)
 	else if(issilicon(quirk_holder))
 		var/mob/living/silicon/robot_holder = quirk_holder
 		var/datum/action/cooldown/spell/pointed/telepathy/tele_action = new
@@ -154,7 +152,7 @@
 		tele_action_ref = null
 	if(iscarbon(quirk_holder))
 		var/mob/living/carbon/human/human_holder = quirk_holder
-		human_holder.dna.remove_mutation(/datum/mutation/human/telepathy)
+		human_holder.dna.remove_mutation(/datum/mutation/telepathy, MUTATION_SOURCE_QUIRK)
 	else if(issilicon(quirk_holder) && !isnull(tele_action))
 		QDEL_NULL(tele_action)
 		tele_action_ref = null
@@ -167,7 +165,7 @@
 /datum/emote/living/telepathy_reply/run_emote(mob/living/user, params, type_override, intentional)
 	if (ishuman(user) && intentional)
 		var/mob/living/carbon/human/human_user = user
-		var/datum/mutation/human/telepathy/mutation = human_user.dna.get_mutation(/datum/mutation/human/telepathy)
+		var/datum/mutation/telepathy/mutation = human_user.dna.get_mutation(/datum/mutation/telepathy)
 		if (mutation)
 			var/datum/action/cooldown/spell/pointed/telepathy/tele_action = locate() in user.actions
 			// just straight up call the right-click action as is
