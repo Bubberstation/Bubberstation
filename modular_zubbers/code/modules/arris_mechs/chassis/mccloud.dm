@@ -311,6 +311,7 @@
 	var/obj/vehicle/sealed/mecha/parent_mech = parent
 	if(!istype(mech_pilot.client) || !istype(parent) || !(mech_pilot in parent_mech.occupants))
 		stop_zooming(mech_pilot)
+		qdel_null(src)
 		return
 	tracker.calculate_params()
 	if(!mech_pilot.client.intended_direction)
