@@ -212,7 +212,7 @@
 /obj/vehicle/sealed/mecha/mob_try_enter(mob/M)
 	. = ..()
 	if(.)
-		AddComponent(/datum/component/scope/mccloud, range_modifier = 1.15, zoom_method = ZOOM_METHOD_ITEM_ACTION, item_action_type = /datum/action/vehicle/sealed/mecha/mccloud/mech_toggle_binoculars)
+		AddComponent(/datum/component/scope/mccloud, range_modifier = 0.7, zoom_method = ZOOM_METHOD_ITEM_ACTION, item_action_type = /datum/action/vehicle/sealed/mecha/mccloud/mech_toggle_binoculars, mech_pilot = M)
 
 //leaving the mech switches to biped mode before doing so
 /obj/vehicle/sealed/mecha/mccloud/mob_exit(mob/M, silent = FALSE, randomstep = FALSE, forced = FALSE)
@@ -265,20 +265,20 @@
 
 /datum/component/scope/mccloud
 	var/unscope_on_move = FALSE
+	var/mob/mech_pilot
 
-/datum/component/scope/mccloud/Initialize(range_modifier = 1, zoom_method = ZOOM_METHOD_RIGHT_CLICK, item_action_type)
+/datum/component/scope/mccloud/Initialize(range_modifier = 1, zoom_method = ZOOM_METHOD_RIGHT_CLICK, item_action_type, mech_pilot = null)
 	src.range_modifier = range_modifier
 	src.zoom_method = zoom_method
 	src.item_action_type = item_action_type
+	src.mech_pilot = mech_pilot
 
 /datum/component/scope/mccloud/RegisterWithParent()
 
 	var/obj/vehicle/sealed/mecha/parent_mech = parent
 	if(istype(parent_mech))
 		RegisterSignal(parent_mech, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
-		var/datum/stuff = locate(item_action_type) in parent_mech.occupant_actions[1]
-		var/stuff2 = parent_mech.occupant_actions
-		var/datum/action/vehicle/sealed/mecha/scope = parent_mech.occupant_actions[parent_mech.occupants[1]][/datum/action/vehicle/sealed/mecha/mccloud/mech_toggle_binoculars]
+		var/datum/action/vehicle/sealed/mecha/scope = parent_mech.occupant_actions[usr][/datum/action/vehicle/sealed/mecha/mccloud/mech_toggle_binoculars]
 		RegisterSignal(scope, COMSIG_ACTION_TRIGGER, PROC_REF(on_action_trigger))
 
 /datum/component/scope/mccloud/on_action_trigger(datum/action/source)
@@ -290,13 +290,29 @@
 		zoom(mecha)
 
 /datum/component/scope/mccloud/zoom(mob/user)
-	. = ..(usr)
+	. = ..(mech_pilot)
 
 /datum/component/scope/mccloud/stop_zooming(mob/user)
-	. = ..(usr)
+	. = ..(mech_pilot)
+
+/datum/component/scope/mccloud/on_move(atom/movable/source, atom/oldloc, dir, forced)
+	SIGNAL_HANDLER
+	if(!tracker)
+		return
+	if(unscope_on_move)
+		stop_zooming(tracker.owner)
 
 /datum/component/scope/mccloud/on_enter_new_loc(datum/source, atom/newloc, atom/old_loc, list/atom/old_locs)
 	SIGNAL_HANDLER
 	if(unscope_on_move)
 		. = ..()
 
+/datum/component/scope/mccloud/process(seconds_per_tick)
+	var/obj/vehicle/sealed/mecha/parent_mech = parent
+	if(!istype(mech_pilot.client) || !istype(parent) || !(mech_pilot in parent_mech.occupants))
+		stop_zooming(mech_pilot)
+		return
+	tracker.calculate_params()
+	if(!mech_pilot.client.intended_direction)
+		mech_pilot.face_atom(tracker.given_turf)
+	animate(mech_pilot.client, world.tick_lag, pixel_x = tracker.given_x, pixel_y = tracker.given_y)
