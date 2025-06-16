@@ -15245,6 +15245,7 @@
 /obj/structure/cable,
 /obj/structure/cable/layer1,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible,
+/obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "fjm" = (
@@ -18770,6 +18771,7 @@
 "gtH" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible,
 /obj/structure/cable/layer1,
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "gtN" = (
@@ -29947,6 +29949,13 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/fore/greater)
+"krt" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/station/engineering/supermatter/room)
 "kru" = (
 /obj/machinery/light_switch/directional/east,
 /obj/machinery/light/small/directional/east,
@@ -35732,7 +35741,9 @@
 "mjV" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible,
 /obj/machinery/meter,
-/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "mkb" = (
@@ -39288,7 +39299,7 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos/pumproom)
 "nwa" = (
-/obj/machinery/computer/scan_consolenew{
+/obj/machinery/computer/dna_console{
 	dir = 4
 	},
 /turf/open/floor/iron/dark/small,
@@ -41585,7 +41596,7 @@
 /turf/open/floor/iron/grimy,
 /area/station/security/detectives_office)
 "ogD" = (
-/obj/machinery/computer/scan_consolenew{
+/obj/machinery/computer/dna_console{
 	dir = 8
 	},
 /turf/open/floor/iron/dark/small,
@@ -65206,8 +65217,9 @@
 /turf/open/floor/iron/dark,
 /area/station/science/lab)
 "wpi" = (
+/obj/structure/cable,
 /obj/effect/turf_decal/stripes/corner{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
@@ -107889,7 +107901,7 @@ hNy
 siV
 oyH
 mDF
-bGq
+wpi
 ppF
 cix
 cix
@@ -109688,8 +109700,8 @@ vtU
 siV
 wIa
 ric
-bGq
-wpi
+krt
+gXp
 vlo
 gXp
 vlo
@@ -111242,8 +111254,8 @@ oRg
 oRg
 aFz
 nyG
-unN
 dxV
+unN
 siV
 xHf
 gNx
