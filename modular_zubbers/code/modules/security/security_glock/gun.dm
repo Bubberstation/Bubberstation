@@ -99,7 +99,7 @@
 	drop_bolt()
 	update_appearance()
 	..()
-	return TRUE
+	return
 
 // for your viewing convenience, same procs, just without bubbles
 /obj/item/gun/ballistic/automatic/pistol/sec_glock/drop_bolt(mob/user = null)
@@ -122,5 +122,4 @@
 	else
 		playsound(src, rack_sound, rack_sound_volume, rack_sound_vary)
 	update_appearance()
-	.=..()
 
