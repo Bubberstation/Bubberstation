@@ -43,19 +43,21 @@
 		return
 	COOLDOWN_START(src, infection_cooldown, CHANGELING_ZOMBIE_REINFECT_DELAY)
 	if(!prob(blood_chance))
-		target_mob.balloon_alert(user, "chance to infect failed")
 		return
 	if(!can_become_changeling_zombie(target_mob))
 		target_mob.balloon_alert(user, "cannot infect")
 		return
 	var/mob/living/carbon/human/host = target_mob
 	var/datum/component/changeling_zombie_infection/infection = host.AddComponent(/datum/component/changeling_zombie_infection)
-	if(infection)
-		target_mob.balloon_alert(user, "infected")
-		var/datum/component/changeling_zombie_infection/component = user.GetComponent(/datum/component/changeling_zombie_infection)
-		infection.was_changeling_husked = component.was_changeling_husked
-		if(component && component.infect_objective)
-			component.infect_objective.total_infections += 1
+	if(!infection)
+		return
+	target_mob.balloon_alert(user, "infected")
+	var/datum/component/changeling_zombie_infection/component = user.GetComponent(/datum/component/changeling_zombie_infection)
+	if(!component)
+		return
+	infection.was_changeling_husked = component.was_changeling_husked
+	if(component.infect_objective)
+		component.infect_objective.total_infections += 1
 
 /obj/item/melee/arm_blade/changeling_zombie/attack_atom(atom/attacked_atom, mob/living/user, params)
 	. = ..()
