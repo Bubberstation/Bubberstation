@@ -99,7 +99,6 @@
 	drop_bolt()
 	update_appearance()
 	..()
-	return
 
 // for your viewing convenience, same procs, just without bubbles
 /obj/item/gun/ballistic/automatic/pistol/sec_glock/drop_bolt(mob/user = null)
