@@ -1,5 +1,5 @@
 #define MCCLOUD_JET_MODE_MOVE 0.7
-#define MCCLOUD_BIPED_MODE_MOVE 1.1
+#define MCCLOUD_BIPED_MODE_MOVE 1.0
 #define MCCLOUD_BIPED_MODE_MOVE_DISABLER 1.7
 
 /obj/vehicle/sealed/mecha/mccloud
@@ -16,7 +16,7 @@
 	armor_type = /datum/armor/mecha_mccloud
 	max_temperature = 25000
 	force = 25
-	destruction_sleep_duration = 40
+	destruction_sleep_duration = 80
 	exit_delay = 40
 	wreckage = /obj/structure/mecha_wreckage/gygax
 	mech_type = EXOSUIT_MODULE_GYGAX
@@ -30,7 +30,7 @@
 	equip_by_category = list(
 		MECHA_L_ARM = null,
 		MECHA_R_ARM = null,
-		MECHA_UTILITY = null,// list(/obj/item/mecha_parts/mecha_equipment/thrusters/ion/mccloud),
+		MECHA_UTILITY = null,
 		MECHA_POWER = list(),
 		MECHA_ARMOR = list(),
 	)
