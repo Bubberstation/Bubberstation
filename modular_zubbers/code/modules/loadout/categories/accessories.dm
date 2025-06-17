@@ -9,3 +9,7 @@
 /datum/loadout_item/accessory/holobadge_cord
 	name = "Holobadge with Lanyard"
 	item_path = /obj/item/clothing/accessory/badge/holo/cord
+
+/datum/loadout_item/accessory/dogtags
+	name = "Dogtags"
+	item_path = /obj/item/clothing/accessory/dogtags

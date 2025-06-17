@@ -23,7 +23,7 @@
 
 	examine_list += span_danger("It has an awful gleam against those who cannot think.")
 
-/datum/component/mindless_killer/proc/deal_smite(datum/source, mob/living/target_mob, mob/user, params)
+/datum/component/mindless_killer/proc/deal_smite(datum/source, mob/living/target_mob, mob/user, proximity_flag, list/modifiers)
 	SIGNAL_HANDLER
 	if(!istype(target_mob))
 		return

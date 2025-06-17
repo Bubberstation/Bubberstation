@@ -1,36 +1,36 @@
 /obj/item/autosurgeon/toolset
-	starting_organ = /obj/item/organ/cyberimp/arm/toolset
+	starting_organ = /obj/item/organ/cyberimp/arm/toolkit/toolset
 
 /obj/item/autosurgeon/surgery
-	starting_organ = /obj/item/organ/cyberimp/arm/surgery
+	starting_organ = /obj/item/organ/cyberimp/arm/toolkit/surgery
 
 /obj/item/autosurgeon/botany
-	starting_organ = /obj/item/organ/cyberimp/arm/botany
+	starting_organ = /obj/item/organ/cyberimp/arm/toolkit/botany
 
 /obj/item/autosurgeon/janitor
-	starting_organ = /obj/item/organ/cyberimp/arm/janitor
+	starting_organ = /obj/item/organ/cyberimp/arm/toolkit/janitor
 
 /obj/item/autosurgeon/armblade
-	starting_organ = /obj/item/organ/cyberimp/arm/armblade
+	starting_organ = /obj/item/organ/cyberimp/arm/toolkit/armblade
 
 /obj/item/autosurgeon/muscle
 	starting_organ = /obj/item/organ/cyberimp/arm/strongarm
 
 //syndie
 /obj/item/autosurgeon/syndicate/hackerman
-	starting_organ = /obj/item/organ/cyberimp/arm/hacker
+	starting_organ = /obj/item/organ/cyberimp/arm/toolkit/hacker
 
 /obj/item/autosurgeon/syndicate/esword_arm
-	starting_organ = /obj/item/organ/cyberimp/arm/esword
+	starting_organ = /obj/item/organ/cyberimp/arm/toolkit/esword
 
 /obj/item/autosurgeon/syndicate/nodrop
 	starting_organ = /obj/item/organ/cyberimp/brain/anti_drop
 
 /obj/item/autosurgeon/syndicate/baton
-	starting_organ = /obj/item/organ/cyberimp/arm/baton
+	starting_organ = /obj/item/organ/cyberimp/arm/toolkit/baton
 
 /obj/item/autosurgeon/syndicate/flash
-	starting_organ = /obj/item/organ/cyberimp/arm/flash
+	starting_organ = /obj/item/organ/cyberimp/arm/toolkit/flash
 
 //bodypart
 /obj/item/autosurgeon/bodypart/r_arm_robotic

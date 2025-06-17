@@ -26,9 +26,10 @@
 	. = ..()
 	if(!iscyborg(spawned))
 		return
-	spawned.gender = NEUTER
 	var/mob/living/silicon/robot/robot_spawn = spawned
 	robot_spawn.notify_ai(AI_NOTIFICATION_NEW_BORG)
+	if(player_client)
+		robot_spawn.set_gender(player_client)
 	//SKYRAT EDIT START
 	robot_spawn.set_connected_ai(select_priority_ai())
 	if(robot_spawn.connected_ai)

@@ -30,5 +30,5 @@
 		if(current_vote.vote_sound && (late_voter.prefs.read_preference(/datum/preference/toggle/sound_announcements)))
 			SEND_SOUND(late_voter, sound(current_vote.vote_sound))
 
-		to_chat(late_voter, span_yellowteamradio(span_soapbox("It's time to make your choices for [current_vote.name]! Type 'vote' or click <a href='byond://winset?command=vote'>here</a> to place your votes.")))
+		to_chat(late_voter, custom_boxed_message("purple_box", vote_font("[span_bold("[current_vote.name] Vote")]\n<hr>It's time to make your choices! Type 'vote' or click <a href='byond://winset?command=vote'>here</a> to place your votes.")))
 

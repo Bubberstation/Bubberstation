@@ -81,8 +81,8 @@
 /datum/map_template/ruin/space/skyrat/blackmarket
 	id = "blackmarket"
 	suffix = "blackmarket.dmm"
-	name = "Space-Ruin Shady Market"
-	description = "Whaddya buyin'?"
+	name = "Space-Ruin Black Market"
+	description = "Market's open."
 
 /datum/map_template/ruin/space/skyrat/shuttle8532
 	id = "shuttle8532"

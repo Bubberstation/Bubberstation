@@ -68,7 +68,9 @@
 /obj/item/clothing/suit/toggle/jacket/cardigan
 	name = "cardigan"
 	desc = "It's like, half a jacket."
-	icon_state = "cardigan"
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/toggle/jacket/cardigan"
+	post_init_icon_state = "cardigan"
 	greyscale_config = /datum/greyscale_config/cardigan
 	greyscale_config_worn = /datum/greyscale_config/cardigan/worn
 	greyscale_colors = "#FFFFFF"
@@ -291,10 +293,11 @@
 /obj/item/clothing/suit/apron/chef/colorable_apron
 	name = "apron"
 	desc = "A basic apron."
-	icon = 'modular_skyrat/modules/GAGS/icons/suit/suit.dmi'
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/apron/chef/colorable_apron"
+	post_init_icon_state = "apron"
 	worn_icon = 'modular_skyrat/modules/GAGS/icons/suit/suit.dmi'
 	worn_icon_teshari = 'modular_skyrat/modules/GAGS/icons/suit/suit_teshari.dmi'
-	icon_state = "apron"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	gets_cropped_on_taurs = FALSE
 	greyscale_colors = "#ffffff"
@@ -333,7 +336,9 @@
 /obj/item/clothing/suit/warm_sweater
 	name = "warm sweater"
 	desc = "A comfortable warm-looking sweater."
-	icon_state = "warm_sweater"
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/warm_sweater"
+	post_init_icon_state = "warm_sweater"
 	greyscale_config = /datum/greyscale_config/warm_sweater
 	greyscale_config_worn = /datum/greyscale_config/warm_sweater/worn
 	greyscale_colors = "#867361"
@@ -344,7 +349,9 @@
 /obj/item/clothing/suit/heart_sweater
 	name = "heart sweater"
 	desc = "A comfortable warm-looking sweater. It even has a heart pattern on it, how cute."
-	icon_state = "heart_sweater"
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/heart_sweater"
+	post_init_icon_state = "heart_sweater"
 	greyscale_config = /datum/greyscale_config/heart_sweater
 	greyscale_config_worn = /datum/greyscale_config/heart_sweater/worn
 	greyscale_colors = "#867361#8f3a3a"

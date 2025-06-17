@@ -29,12 +29,3 @@
 /obj/machinery/button/camkillswitch
 	name = "camera kill switch"
 	device_type = /obj/item/assembly/control/camkillswitch
-
-/datum/design/camkillswitch
-	name = "Camera Kill Switch"
-	id = "camkillswitch"
-	materials = list(
-		/datum/material/iron = SMALL_MATERIAL_AMOUNT,
-		/datum/material/glass = SMALL_MATERIAL_AMOUNT,
-	)
-	build_path = /obj/item/assembly/control/camkillswitch

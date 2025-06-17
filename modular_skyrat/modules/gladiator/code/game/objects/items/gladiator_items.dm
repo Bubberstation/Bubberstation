@@ -37,6 +37,11 @@
 	uses_advanced_reskins = FALSE
 	resistance_flags = INDESTRUCTIBLE
 
+/obj/item/clothing/neck/warrior_cape/loadout //Subtype for loadout item so i can make it not "indestructible"
+	name = "tattered cloak"
+	desc = "A cloak from a once feared foe now worn by those that have faced death in the eyes and prevailed, it looks rather worn as not as pristine as it used to be"
+	resistance_flags = FIRE_PROOF
+
 /obj/item/clothing/neck/warrior_cape/examine()
 	. = ..()
 	. += span_warning("Struggle against the tide, no matter how strong it may be.")
@@ -62,7 +67,7 @@
 	bio = 70
 	fire = 100
 	acid = 100
-	
+
 /datum/armor/drake_empowerment //Modular Override: nerfs beserker armour so I can keep this armour balanced
 	laser = 10
 	energy = 0
@@ -234,6 +239,22 @@
 	new /obj/item/clothing/suit/hooded/berserker/gatsu(src)
 	new /obj/item/clothing/neck/warrior_cape(src)
 	new /obj/item/crusher_trophy/gladiator(src)
+
+// Bubber Edit and alt varient for berserker suit
+
+/obj/item/clothing/suit/hooded/berserker/gladiator
+	desc = "A suit of ancient body armor imbued with potent spiritual magnetism, capable of massively boosting a wearer's close combat skills at the cost of ravaging their mind and overexerting their body."
+	icon_state = "berk_suit"
+	icon = 'modular_skyrat/modules/gladiator/icons/berserk_icons.dmi'
+	worn_icon = 'modular_skyrat/modules/gladiator/icons/berserk_suit.dmi'
+	worn_icon_digi = 'modular_skyrat/modules/gladiator/icons/berserk_suit_digi.dmi'
+	hoodtype = /obj/item/clothing/head/hooded/berserker/gladiator
+
+/obj/item/clothing/head/hooded/berserker/gladiator
+	desc = "A uniquely styled helmet with ghastly red eyes that seals it's user inside."
+	icon_state = "berk_helm"
+	icon = 'modular_skyrat/modules/gladiator/icons/berserk_icons.dmi'
+	worn_icon = 'modular_skyrat/modules/gladiator/icons/berserk_suit.dmi'
 
 #undef BERSERK_MAX_CHARGE
 #undef PROJECTILE_HIT_MULTIPLIER

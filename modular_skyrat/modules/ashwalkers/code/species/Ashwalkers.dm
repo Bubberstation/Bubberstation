@@ -20,7 +20,7 @@
 	UnregisterSignal(carbon_target, COMSIG_MOB_ITEM_ATTACK)
 	carbon_target.faction &= FACTION_ASHWALKER
 
-/datum/species/lizard/ashwalker/proc/mob_attack(datum/source, mob/mob_target, mob/user)
+/datum/species/lizard/ashwalker/proc/mob_attack(datum/source, mob/mob_target, mob/user, list/modifiers)
 	SIGNAL_HANDLER
 
 	if(!isliving(mob_target))

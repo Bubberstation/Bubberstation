@@ -51,21 +51,21 @@ export const StoryManager = (props) => {
               <TextArea
                 height="20px"
                 placeholder="A short, consise title/author for the article."
-                onChange={(_e, value) => setTitle(value)}
+                onChange={setTitle}
               />
             </LabeledList.Item>
             <LabeledList.Item label="Body Text">
               <TextArea
                 height="100px"
                 placeholder="The contents of the article itself."
-                onChange={(_e, value) => setText(value)}
+                onChange={setText}
               />
             </LabeledList.Item>
             <LabeledList.Item label="ID">
               <TextArea
                 height="20px"
                 placeholder="A unique id for the article. Article will not publish if set ID is in use."
-                onChange={(_e, value) => setID(value)}
+                onChange={setID}
               />
             </LabeledList.Item>
             <LabeledList.Item label="Date">

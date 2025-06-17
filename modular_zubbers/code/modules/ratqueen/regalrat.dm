@@ -32,9 +32,9 @@
 	current_look.apply(src)
 
 /mob/living/basic/regal_rat/Destroy()
-	. = ..()
 	QDEL_NULL(fashion_select)
 	QDEL_NULL(current_look)
+	. = ..()
 
 /// Regal rat swallows sludge to transform themselves into a different looking rat
 /datum/action/cooldown/rat_fashion

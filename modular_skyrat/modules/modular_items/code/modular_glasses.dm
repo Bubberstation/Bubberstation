@@ -35,8 +35,8 @@
 	glasses_type = type
 
 /obj/item/clothing/glasses/hud/ar/Destroy()
-	. = ..()
 	STOP_PROCESSING(SSobj, src)
+	. = ..()
 
 /obj/item/clothing/glasses/hud/ar/equipped(mob/living/carbon/human/user, slot)
 	if(mode != MODE_OFF || slot != slot_flags)

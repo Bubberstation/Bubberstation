@@ -14,6 +14,7 @@
 		var/datum/mind/holder_mind = human_holder.mind
 
 		new_brain.modular_persistence = old_brain.modular_persistence
+		new_brain.modular_persistence?.owner = new_brain
 		old_brain.modular_persistence = null
 
 		new_brain.copy_traits_from(old_brain)
@@ -53,6 +54,12 @@
 //LUNGS
 /datum/augment_item/organ/lungs
 	slot = AUGMENT_SLOT_LUNGS
+
+/datum/augment_item/organ/lungs/normal
+	name = "Normal Lungs"
+	slot = AUGMENT_SLOT_LUNGS
+	path = /obj/item/organ/lungs
+	cost = 1 // if you dont have normal lungs, still an investment to switch it out
 
 /datum/augment_item/organ/lungs/hot
 	name = "Heat-Adapted Lungs"

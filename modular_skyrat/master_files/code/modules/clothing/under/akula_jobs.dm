@@ -25,16 +25,16 @@
 	update_appearance()
 
 /obj/item/clothing/under/akula_wetsuit/Destroy()
-	. = ..()
 	var/mob/user = loc
 	if(!istype(user))
-		return
+		return ..()
 
 	if(tail_overlay)
 		user.cut_overlay(tail_overlay)
 		tail_overlay = null
 
 	qdel(GetComponent(/datum/component/wetsuit))
+	. = ..()
 
 /obj/item/clothing/under/akula_wetsuit/equipped(mob/user, slot)
 	. = ..()
@@ -183,15 +183,15 @@
 	update_appearance()
 
 /obj/item/clothing/head/helmet/space/akula_wetsuit/Destroy()
-	. = ..()
 	var/mob/user = loc
 	if(attached_hat)
 		attached_hat.forceMove(drop_location())
 
 	if(!istype(user))
-		return
+		return ..()
 
 	qdel(GetComponent(/datum/component/wetsuit))
+	. = ..()
 
 // Wearing hats inside the wetworks helmet
 /obj/item/clothing/head/helmet/space/akula_wetsuit/examine()

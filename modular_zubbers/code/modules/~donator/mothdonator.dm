@@ -38,15 +38,12 @@
 	desc = "Central's beloved pet mothroach, Mr. Fluff. He looks so happy to be here!"
 	gender = MALE
 	icon = 'modular_zubbers/icons/mob/donator_pets.dmi'
-	icon_state = "mr_fluff"
-	icon_living = "mr_fluff"
-	icon_dead = "mr_fluff_dead"
 
 /obj/item/clothing/head/mob_holder/pet/donator/centralsmith
 	name = "Mr. Fluff"
 	desc = "Central's beloved pet mothroach, Mr. Fluff. He looks so happy to be here!"
 	icon = 'modular_zubbers/icons/mob/donator_pets.dmi'
-	icon_state = "mr_fluff"
+	icon_state = "mothroach"
 	starting_pet = /mob/living/basic/mothroach/mr_fluff
 
 //FIND A BETTER SPOT FOR THIS

@@ -33,6 +33,7 @@
 		target,
 		span_notice("You begin to pry open the outer protective panels on [target]'s braincase..."),
 		span_notice("[user] begins to pry open the outer protective panels on [target]'s braincase."),
+		span_notice("[user] begins to pry open the panels on [target]'s braincase.")
 	)
 
 /datum/surgery_step/weld_plating/fullbody
@@ -44,6 +45,7 @@
 		target,
 		span_notice("You begin to slice the inner protective panels from [target]'s braincase..."),
 		span_notice("[user] begins to slice the inner protective panels from [target]'s braincase."),
+		span_notice("[user] begins to slice the panels from [target]'s braincase.")
 	)
 
 /datum/surgery_step/weld_plating/fullbody/success(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results)
@@ -61,6 +63,7 @@
 		target,
 		span_notice("You begin to add new panels to [target]'s braincase..."),
 		span_notice("[user] begins to add new panels to [target]'s braincase."),
+		span_notice("[user] begins to add new panels to [target]'s braincase.")
 	)
 
 /datum/surgery_step/add_plating/fullbody/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -85,6 +88,7 @@
 		target,
 		span_notice("You begin to force a reboot in [target]'s posibrain..."),
 		span_notice("[user] begins to force a reboot in [target]'s posibrain."),
+		span_notice("[user] begins to force a reboot in [target]'s posibrain.")
 	)
 
 	target.notify_revival("Someone is trying to reboot your posibrain.", source = target)

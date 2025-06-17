@@ -94,3 +94,11 @@
 /datum/loadout_item/toys/mold_kobold
 	name = "Hemophage Awareness Kobold"
 	item_path = /obj/item/toy/plush/mold_kobold
+
+/datum/loadout_item/toys/mothroach_plush
+	name = "Mothroach Plush"
+	item_path = /obj/item/toy/plush/mothroach_plush
+
+/datum/loadout_item/toys/lazy_synth
+	name = "Lazy Synth Plush"
+	item_path = /obj/item/toy/plush/lazy_synth

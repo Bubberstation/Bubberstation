@@ -9,11 +9,6 @@
 	rate_up_lim = 35
 	reaction_tags = REACTION_TAG_HEALING | REACTION_TAG_EASY
 
-	//SKYRAT EDIT ADDITION
-	pollutant_type = /datum/pollutant/chemical_vapors
-	pollutant_amount = 0.2
-	//SKYRAT EDIT END
-
 /datum/chemical_reaction/medicine/leporazine
 	results = list(/datum/reagent/medicine/leporazine = 2)
 	required_reagents = list(/datum/reagent/silicon = 1, /datum/reagent/copper = 1)
@@ -359,34 +354,28 @@
 ///medical stacks
 
 /datum/chemical_reaction/medicine/medsuture
-	required_reagents = list(/datum/reagent/cellulose = 10, /datum/reagent/toxin/formaldehyde = 20, /datum/reagent/medicine/polypyr = 15) //This might be a bit much, reagent cost should be reviewed after implementation.
+	required_reagents = list(/datum/reagent/cellulose = 2, /datum/reagent/toxin/formaldehyde = 4, /datum/reagent/medicine/polypyr = 3) //This might be a bit much, reagent cost should be reviewed after implementation.
 	reaction_flags = REACTION_INSTANT
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_HEALING | REACTION_TAG_BRUTE
 
 /datum/chemical_reaction/medicine/medsuture/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
-	var/location = get_turf(holder.my_atom)
-	for(var/i in 1 to created_volume)
-		new /obj/item/stack/medical/suture/medicated(location)
+	new /obj/item/stack/medical/suture/medicated(get_turf(holder.my_atom), round(created_volume * 4))
 
 /datum/chemical_reaction/medicine/medmesh
-	required_reagents = list(/datum/reagent/cellulose = 10, /datum/reagent/consumable/aloejuice = 20, /datum/reagent/space_cleaner/sterilizine = 10)
+	required_reagents = list(/datum/reagent/cellulose = 2, /datum/reagent/consumable/aloejuice = 4, /datum/reagent/space_cleaner/sterilizine = 2)
 	reaction_flags = REACTION_INSTANT
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_HEALING | REACTION_TAG_BURN
 
 /datum/chemical_reaction/medicine/medmesh/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
-	var/location = get_turf(holder.my_atom)
-	for(var/i in 1 to created_volume)
-		new /obj/item/stack/medical/mesh/advanced(location)
+	new /obj/item/stack/medical/mesh/advanced(get_turf(holder.my_atom), round(created_volume * 3))
 
 /datum/chemical_reaction/medicine/poultice
-	required_reagents = list(/datum/reagent/toxin/bungotoxin = 20, /datum/reagent/cellulose = 20, /datum/reagent/consumable/aloejuice = 20)
+	required_reagents = list(/datum/reagent/toxin/bungotoxin = 4, /datum/reagent/cellulose = 4, /datum/reagent/consumable/aloejuice = 4	)
 	reaction_flags = REACTION_INSTANT
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_HEALING | REACTION_TAG_BRUTE | REACTION_TAG_BURN
 
 /datum/chemical_reaction/medicine/poultice/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
-	var/location = get_turf(holder.my_atom)
-	for(var/i in 1 to created_volume)
-		new /obj/item/stack/medical/poultice(location)
+	new /obj/item/stack/medical/poultice(get_turf(holder.my_atom), round(created_volume * 3))
 
 /datum/chemical_reaction/medicine/seraka_destroy //seraka extract is destroyed by sodium hydroxide
 	results = list(/datum/reagent/consumable/sugar = 1)

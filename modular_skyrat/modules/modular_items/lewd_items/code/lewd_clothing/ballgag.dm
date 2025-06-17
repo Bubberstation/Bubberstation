@@ -2,10 +2,11 @@
 /obj/item/clothing/mask/ballgag
 	name = "ball gag"
 	desc = "Prevents the wearer from speaking."
-	icon_state = "ballgag"
+	icon = 'icons/map_icons/clothing/mask.dmi'
+	icon_state = "/obj/item/clothing/mask/ballgag"
+	post_init_icon_state = "ballgag"
 	inhand_icon_state = "ballgag"
 	worn_icon_state = "ballgag"
-	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_masks.dmi'
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_masks.dmi'
 	worn_icon_muzzled = 'modular_skyrat/master_files/icons/mob/clothing/mask_muzzled.dmi'
 	lefthand_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_inhands/lewd_inhand_left.dmi'
@@ -90,7 +91,8 @@
 /obj/item/clothing/mask/ballgag/choking
 	name = "phallic ball gag"
 	desc = "Prevents the wearer from speaking, as well as making breathing harder."
-	icon_state = "chokegag"
+	icon_state = "/obj/item/clothing/mask/ballgag/choking"
+	post_init_icon_state = "chokegag"
 	moan_volume = 40
 	resizable = TRUE
 	greyscale_config = /datum/greyscale_config/ballgag/choking_small

@@ -250,7 +250,7 @@
 	if(drowsy)
 		adjust_drowsiness(drowsy)
 	if(eyeblur)
-		adjust_eye_blur_up_to(eyeblur, 30 SECONDS) // BUBBER CHANGE, CAPS EYEBLUR
+		adjust_eye_blur_up_to(eyeblur, eyeblur)
 	if(jitter && !check_stun_immunity(CANSTUN))
 		adjust_jitter(jitter)
 	if(slur)

@@ -67,13 +67,13 @@
 
 /datum/design/limb_disk/tajaran
 	name = "Tajaran Organ Design Disk"
-	desc = "Contains designs for tajaran organs for the limbgrower - Tounges and eyes."
+	desc = "Contains designs for tajaran organs for the limbgrower - Ears, tounges, and eyes."
 	id = "limbdesign_tajaran"
 	build_path = /obj/item/disk/design_disk/limbs/tajaran
 
 /obj/item/disk/design_disk/limbs/tajaran
 	name = "Tajaran Organ Design Disk"
-	limb_designs = list(/obj/item/organ/tongue/cat/tajaran, /obj/item/organ/eyes/tajaran, /obj/item/organ/ears/cat/tajaran)
+	limb_designs = list(/datum/design/tajaran_eyes, /datum/design/tajaran_tongue, /datum/design/tajaran_ears)
 
 /obj/machinery/limbgrower/Initialize(mapload)
 	categories += list(

@@ -199,3 +199,21 @@
 	affected_bodyparts = CHEST
 	default_color = "#FFFFFF"
 	gendered = FALSE
+
+/datum/body_marking/bubber/talleyes
+	icon_state = "talleyes"
+	name = "Tall Eyes"
+	default_color = "#FFFFFF"
+	affected_bodyparts = HEAD
+
+/datum/body_marking/bubber/wideeyes
+	icon_state = "wideeyes"
+	name = "Wide Eyes"
+	default_color = "#FFFFFF"
+	affected_bodyparts = HEAD
+
+/datum/body_marking/bubber/angledeyes
+	icon_state = "angledeyes"
+	name = "Angled Eyes"
+	default_color = "#FFFFFF"
+	affected_bodyparts = HEAD

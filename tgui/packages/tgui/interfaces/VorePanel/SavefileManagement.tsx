@@ -42,7 +42,7 @@ export const Savefile = (props: {
               <Input
                 width={21}
                 value={data.current_slot}
-                onChange={(e, name) => act('set_slot_name', { name })}
+                onChange={(name) => act('set_slot_name', { name })}
               />
             ) : (
               data.current_slot

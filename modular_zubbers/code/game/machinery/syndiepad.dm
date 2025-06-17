@@ -63,6 +63,7 @@
 	icon_keyboard = "syndie_key"
 	warmup_time = SYN_BOUNTY_PAD_WARM_TIME
 	circuit = /obj/item/circuitboard/computer/syndiepad
+	export_market = EXPORT_MARKET_STATION
 
 	/// The account to add balance
 	var/credits_account = ACCOUNT_INT

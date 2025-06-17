@@ -69,11 +69,6 @@
 		scrub(epicentre.return_air())
 	for(var/turf/open/openturf as anything in epicentre.get_atmos_adjacent_turfs(alldir = TRUE))
 		scrub(openturf.return_air())
-	//SKYRAT EDIT ADDITION
-	for(var/turf/open/open_turf in view(3, src))
-		if(open_turf.pollution)
-			open_turf.pollution.scrub_amount(POLLUTION_HEIGHT_DIVISOR)
-	//SKYRAT EDIT END
 	return ..()
 
 /**

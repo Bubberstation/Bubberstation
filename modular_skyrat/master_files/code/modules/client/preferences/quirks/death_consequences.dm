@@ -101,7 +101,7 @@
 /datum/preference/numeric/death_consequences/crit_threshold_reduction_percent_of_max
 	savefile_key = "dc_crit_threshold_reduction_percent_of_max"
 
-	minimum = 0
+	minimum = 1
 	maximum = 100
 
 /datum/preference/numeric/death_consequences/crit_threshold_reduction_percent_of_max/create_default_value()
@@ -128,7 +128,7 @@
 /datum/preference/numeric/death_consequences/stamina_damage_percent_of_max
 	savefile_key = "dc_stamina_damage_percent_of_max"
 
-	minimum = 0
+	minimum = 1
 	maximum = 100
 
 /datum/preference/numeric/death_consequences/stamina_damage_percent_of_max/create_default_value()

@@ -74,3 +74,15 @@
 	"Genderqueer Pride" = "pride_genderqueer",
 	"Aromantic Pride" = "pride_aromantic",
 )
+
+// Dogtags
+/obj/item/clothing/accessory/dogtags
+	name = "Dogtags"
+	desc = "Two small metal tags, connected with a thin piece of chain that hold important health information. And everything needed for a tombstone..."
+	icon = 'modular_zubbers/icons/obj/clothing/accessories.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
+	icon_state = "dogtags"
+	w_class = WEIGHT_CLASS_TINY
+	resistance_flags = FIRE_PROOF // its metal, and funny to leave behind when you dust.
+	attachment_slot = NONE
+	above_suit = TRUE

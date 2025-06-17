@@ -129,6 +129,7 @@
 		"firelock_board",
 		"trapdoor_electronics",
 		"blast",
+		"ignition",
 		"big_manipulator",
 		"tile_sprayer",
 		"airlock_painter",
@@ -137,8 +138,8 @@
 		"cable_coil",
 		"welding_helmet",
 		"welding_tool",
+		"mini_welding_tool",
 		"tscanner",
-		"analyzer",
 		"multitool",
 		"wrench",
 		"crowbar",
@@ -178,6 +179,7 @@
 		"inducerengi",
 		"welding_goggles",
 		"tray_goggles",
+		"geigercounter",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	announce_channels = list(RADIO_CHANNEL_ENGINEERING)
@@ -204,6 +206,7 @@
 	description = "Use of holographic technology for signage and barriers."
 	prereq_ids = list(TECHWEB_NODE_ENERGY_MANIPULATION)
 	design_ids = list(
+		"atmosshieldgen",
 		"forcefield_projector",
 		"holosign",
 		"holosignsec",
@@ -218,6 +221,7 @@
 		"holodisk",
 		"modular_shield_generator",
 		"modular_shield_node",
+		"modular_shield_cable",
 		"modular_shield_relay",
 		"modular_shield_charger",
 		"modular_shield_well",

@@ -4,6 +4,8 @@
 	icon = FA_ICON_BOX_OPEN
 	/// the items that will be equipped, formatted in the way of [item_path = list of slots it can be equipped to], will not equip over nodrop items
 	var/list/items = list()
+	/// the items that will be added to storage, formatted in the way of [item_path = list of storage slots it can be inserted into]
+	var/list/stored_items = list()
 	/// the items that will be forcefully equipped, formatted in the way of [item_path = list of slots it can be equipped to], will equip over nodrop items
 	var/list/forced_items = list()
 	/// did we force drop any items? if so, they're in this list. useful for transferring any applicable contents into new items on roundstart
@@ -38,6 +40,17 @@
 				if (success)
 					break
 		equipped_items[item] = success
+	for(var/obj/item/item_path as anything in stored_items)
+		if(!ispath(item_path))
+			continue
+		var/item = new item_path(carbon_holder.loc)
+		var/success = FALSE
+		for(var/slot as anything in stored_items[item_path])
+			success = carbon_holder.equip_to_storage(item, slot, indirect_action = TRUE)
+			if(success)
+				break
+		equipped_items[item] = success
+
 	for (var/item as anything in equipped_items)
 		on_equip_item(item, equipped_items[item])
 

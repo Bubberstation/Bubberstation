@@ -49,7 +49,7 @@
 	id_trim = /datum/id_trim/job/warden
 	uniform = /obj/item/clothing/under/rank/security/warden
 	suit = /obj/item/clothing/suit/armor/vest/warden //SKYRAT EDIT CHANGE - Original: /obj/item/clothing/suit/armor/vest/warden/alt
-	suit_store = /obj/item/gun/energy/disabler
+	suit_store = /obj/item/gun/energy/e_gun/advtaser //BUBBER EDIT CHANGE - Original: /obj/item/gun/energy/disabler
 	backpack_contents = list(
 		/obj/item/evidencebag = 1,
 		/obj/item/flashlight/seclite = 1, //BUBBER EDIT

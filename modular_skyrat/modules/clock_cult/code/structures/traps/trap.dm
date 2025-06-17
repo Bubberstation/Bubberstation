@@ -135,7 +135,7 @@
 	return
 
 /// Signal proc when the trap has PARENT_ATTACKBY called on it
-/datum/component/clockwork_trap/proc/on_attackby(datum/source, obj/item/attack_item, mob/user)
+/datum/component/clockwork_trap/proc/on_attackby(datum/source, obj/item/attack_item, mob/user, list/modifiers)
 	SIGNAL_HANDLER
 
 	if(!IS_CLOCK(user) || !istype(attack_item, /obj/item/clockwork/clockwork_slab))

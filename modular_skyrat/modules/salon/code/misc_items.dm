@@ -179,18 +179,3 @@
 	icon = 'modular_skyrat/modules/salon/icons/items.dmi'
 	icon_state = "barber"
 	buildable_sign = FALSE // Don't want them removed, they look too jank.
-
-/obj/item/storage/box/perfume
-	name = "box of perfumes"
-
-/obj/item/storage/box/perfume/PopulateContents()
-	new /obj/item/perfume/cologne(src)
-	new /obj/item/perfume/wood(src)
-	new /obj/item/perfume/rose(src)
-	new /obj/item/perfume/jasmine(src)
-	new /obj/item/perfume/mint(src)
-	new /obj/item/perfume/vanilla(src)
-	new /obj/item/perfume/pear(src)
-	new /obj/item/perfume/strawberry(src)
-	new /obj/item/perfume/cherry(src)
-	new /obj/item/perfume/amber(src)

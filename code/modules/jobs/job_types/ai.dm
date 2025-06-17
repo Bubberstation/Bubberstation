@@ -33,6 +33,8 @@
 				R.TryConnectToAI()
 	*/ // SKYRAT EDIT REMOVAL END
 	var/mob/living/silicon/ai/ai_spawn = spawned
+	if(player_client)
+		ai_spawn.set_gender(player_client)
 	ai_spawn.log_current_laws()
 	// SKYRAT EDIT ADDITION START
 	for(var/mob/living/silicon/robot/sync_target in GLOB.silicon_mobs)

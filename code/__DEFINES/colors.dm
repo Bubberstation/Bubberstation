@@ -216,6 +216,14 @@
 #define COLOR_SAMPLE_BROWN "#91542d"
 #define COLOR_SAMPLE_GRAY "#5e5856"
 
+///Colors for blood greyscale sprites
+#define BLOOD_COLOR_RED "#AA1010"
+#define BLOOD_COLOR_LIZARD "#035A00"
+#define BLOOD_COLOR_XENO "#96BB00"
+#define BLOOD_COLOR_OIL "#2C2C2C"
+#define BLOOD_COLOR_BLACK "#1F1A00"
+#define BLOOD_COLOR_DRIED "#370404" // Not to be used normally, only exists for mapper convinience
+
 ///Main colors for UI themes
 #define COLOR_THEME_MIDNIGHT "#6086A0"
 #define COLOR_THEME_PLASMAFIRE "#FFB200"
@@ -500,3 +508,8 @@ GLOBAL_LIST_INIT(heretic_path_to_color, list(
 #define CLIENT_COLOR_TEMPORARY_PRIORITY 5 // Temporary flashing effects
 #define CLIENT_COLOR_IMPORTANT_PRIORITY 6 // Gameplay important hints signifying antag status or near-death, should be always shown
 #define CLIENT_COLOR_OVERRIDE_PRIORITY 7 // For effects that are meant to mask all others for technical reasons
+
+//Luma coefficients suggested for HDTVs. If you change these, make sure they add up to 1.
+#define LUMA_R 0.213
+#define LUMA_G 0.715
+#define LUMA_B 0.072

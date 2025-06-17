@@ -224,6 +224,8 @@
 	var/interface_type = "CargoHoldTerminal"
 	///Typecache of things that shouldn't be sold and shouldn't have their contents sold.
 	var/static/list/nosell_typecache
+	///Market this terminal sells to, defaults to pirate
+	var/export_market = EXPORT_MARKET_PIRACY // BUBBER EDIT ADDITION
 
 /obj/machinery/computer/piratepad_control/Initialize(mapload)
 	..()
@@ -363,11 +365,11 @@
 			continue
 		for(var/mob/living/hidden as anything in hidden_mobs)
 			///Sell mobs, but leave their contents intact.
-			export_single_item(hidden, apply_elastic = FALSE, dry_run = dry_run, external_report = report)
+			export_single_item(hidden, apply_elastic = FALSE, dry_run = dry_run, external_report = report, export_market = export_market) // BUBBER EDIT CHANGE - ORIGINAL: export_single_item(hidden, apply_elastic = FALSE, dry_run = dry_run, external_report = report)
 		///there are still licing mobs inside that item. Stop, don't sell it ffs.
 		if(locate(/mob/living) in item_on_pad.get_all_contents())
 			continue
-		export_item_and_contents(item_on_pad, apply_elastic = FALSE, dry_run = dry_run, delete_unsold = FALSE, external_report = report, ignore_typecache = nosell_typecache, export_market = EXPORT_MARKET_PIRACY)
+		export_item_and_contents(item_on_pad, apply_elastic = FALSE, dry_run = dry_run, delete_unsold = FALSE, external_report = report, ignore_typecache = nosell_typecache, export_market = export_market) // BUBBER EDIT CHANGE - ORIGINAL: export_item_and_contents(item_on_pad, apply_elastic = FALSE, dry_run = dry_run, delete_unsold = FALSE, external_report = report, ignore_typecache = nosell_typecache, export_market = EXPORT_MARKET_PIRACY)
 	return report
 
 /// Prepares to sell the items on the pad

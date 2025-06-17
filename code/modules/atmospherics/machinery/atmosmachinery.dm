@@ -179,8 +179,20 @@
 /obj/machinery/atmospherics/proc/destroy_network()
 	return
 
+/**
+ * Turns the machine on/off
+ * Arguments
+ *
+ * * active - the state of the machine
+ */
 /obj/machinery/atmospherics/proc/set_on(active)
+	SHOULD_CALL_PARENT(TRUE)
+
+	if(active == on)
+		return
+
 	on = active
+	update_appearance(UPDATE_ICON)
 	SEND_SIGNAL(src, COMSIG_ATMOS_MACHINE_SET_ON, on)
 
 /// This should only be called by SSair as part of the rebuild queue.
@@ -403,7 +415,7 @@
 	nodes[nodes.Find(reference)] = null
 	update_appearance()
 
-/obj/machinery/atmospherics/attackby(obj/item/W, mob/user, params)
+/obj/machinery/atmospherics/attackby(obj/item/W, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(W, /obj/item/pipe)) //lets you autodrop
 		var/obj/item/pipe/pipe = W
 		if(user.dropItemToGround(pipe))

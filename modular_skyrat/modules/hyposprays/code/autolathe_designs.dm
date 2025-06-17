@@ -99,29 +99,3 @@
 		"hypomkii_deluxe",
 	)
 	return ..()
-
-// Tarkon and similar get enough to work with, but if they want deluxe kits/hypos they still need to trade with the station for 'em.
-/datum/techweb_node/oldstation_surgery/New()
-	design_ids += list(
-		"hypokit",
-		"hypomkii",
-	)
-	return ..()
-
-
-
-/// For reasons unknown, pens are included as an autolathe design here, in the hypospray module of all places.
-/// I'm not touching this unless a maint asks me to because it feels weird and haunted, like the picture of a potato that bricks Source if you remove it.
-/datum/design/pen
-	name = "Pen"
-	id = "pen"
-	build_type = AUTOLATHE | AWAY_LATHE
-	materials = list(
-		/datum/material/iron = SMALL_MATERIAL_AMOUNT,
-		/datum/material/glass = SMALL_MATERIAL_AMOUNT,
-	)
-	build_path = /obj/item/pen
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC,
-	)

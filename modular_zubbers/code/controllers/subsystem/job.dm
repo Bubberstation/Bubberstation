@@ -41,7 +41,7 @@
 			return new /obj/item/modular_computer/pda/detective
 		if(JOB_SECURITY_OFFICER)
 			return new /obj/item/modular_computer/pda/security
-		if(JOB_SECURITY_OFFICER_MEDICAL)
+		if(JOB_SECURITY_MEDIC)
 			return new /obj/item/modular_computer/pda/security
 		if(JOB_CORRECTIONS_OFFICER)
 			return new /obj/item/modular_computer/pda/security
@@ -53,6 +53,16 @@
 			return new /obj/item/modular_computer/pda/engineering
 		if(JOB_TELECOMMS_SPECIALIST)
 			return new /obj/item/modular_computer/pda/telecomms
+		if(JOB_MEDICAL_DOCTOR) //MEDICAL
+			return new /obj/item/modular_computer/pda/medical
+		if(JOB_CORONER)
+			return new /obj/item/modular_computer/pda/coroner
+		if(JOB_CHEMIST)
+			return new /obj/item/modular_computer/pda/chemist
+		if(JOB_PARAMEDIC)
+			return new /obj/item/modular_computer/pda/medical/paramedic
+		if(JOB_ORDERLY)
+			return new /obj/item/modular_computer/pda/medical
 		if(JOB_SCIENTIST) // SCI
 			return new /obj/item/modular_computer/pda/science
 		if(JOB_ROBOTICIST)
@@ -97,4 +107,3 @@
 			return new /obj/item/modular_computer/pda/bar
 		else
 			return null
-

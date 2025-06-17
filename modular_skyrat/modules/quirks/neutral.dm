@@ -103,7 +103,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	icon = FA_ICON_GRIN_TEARS
 
 /datum/quirk/item_quirk/joker/add_unique(client/client_source)
-	give_item_to_holder(/obj/item/paper/joker, list(LOCATION_BACKPACK = ITEM_SLOT_BACKPACK, LOCATION_HANDS = ITEM_SLOT_HANDS))
+	give_item_to_holder(/obj/item/paper/joker, list(LOCATION_BACKPACK, LOCATION_HANDS))
 
 /datum/quirk/item_quirk/joker/process()
 	if(pcooldown > world.time)
@@ -269,6 +269,21 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 /datum/quirk/item_quirk/avian/add_unique(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
 	var/obj/item/organ/tongue/avian/new_tongue = new(get_turf(human_holder))
+
+	new_tongue.copy_traits_from(human_holder.get_organ_slot(ORGAN_SLOT_TONGUE))
+	new_tongue.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
+
+/datum/quirk/item_quirk/bovine
+	name = "Bovine Traits"
+	desc = "Moo. You seem to act like a bovine for whatever reason. This will replace most other tongue-based speech quirks."
+	mob_trait = TRAIT_BOVINE
+	icon = FA_ICON_COW
+	value = 0
+	medical_record_text = "Patient exhibits bovine-adjacent mannerisms."
+
+/datum/quirk/item_quirk/bovine/add_unique(client/client_source)
+	var/mob/living/carbon/human/human_holder = quirk_holder
+	var/obj/item/organ/tongue/bovine/new_tongue = new(get_turf(human_holder))
 
 	new_tongue.copy_traits_from(human_holder.get_organ_slot(ORGAN_SLOT_TONGUE))
 	new_tongue.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)

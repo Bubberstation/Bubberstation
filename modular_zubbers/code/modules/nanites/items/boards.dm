@@ -38,10 +38,10 @@
 
 /obj/item/circuitboard/machine/public_nanite_chamber/multitool_act(mob/living/user)
 	. = ..()
-	var/new_cloud = tgui_input_number(user, "Set the public nanite chamber's Cloud ID (1-100).", "Cloud ID", cloud_id, 100, 1, 0,)
+	var/new_cloud = tgui_input_number(user, "Set the public nanite chamber's Cloud ID ([NANITE_MIN_CLOUD_ID+1]-[NANITE_MAX_CLOUD_ID]).", "Cloud ID", cloud_id, NANITE_MAX_CLOUD_ID, NANITE_MIN_CLOUD_ID+1, 0,)
 	if(!isnum(new_cloud))
 		return
-	cloud_id = clamp(round(new_cloud, 1), 1, 100)
+	cloud_id = clamp(round(new_cloud, 1), NANITE_MIN_CLOUD_ID+1, NANITE_MAX_CLOUD_ID)
 
 /obj/item/circuitboard/machine/public_nanite_chamber/examine(mob/user)
 	. = ..()

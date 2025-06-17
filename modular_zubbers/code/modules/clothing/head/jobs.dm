@@ -33,7 +33,8 @@
 /obj/item/clothing/head/beret/medical/coroner				//Donator request by Gavla
 	name = "coroner beret"
 	desc = "For harvesting organs in style!"
-	icon_state = "beret_badge_med"
+	icon_state = "/obj/item/clothing/head/beret/medical/coroner"
+	post_init_icon_state = "beret_badge_med"
 	greyscale_config = /datum/greyscale_config/beret_badge
 	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
 	greyscale_colors = "#3E3E48#FFFFFF"

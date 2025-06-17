@@ -193,33 +193,6 @@
 			/obj/item/chisel,
 			)
 
-/datum/design/borg_upgrade_botany
-	name = "Botanical Operator Module"
-	id = "borg_upgrade_botany"
-	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/botany
-	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2)
-	construction_time = 10 SECONDS
-	category = list(
-		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_SERVICE
-	)
-
-/obj/item/borg/upgrade/botany
-	name = "botanical operator upgrade"
-	desc = "Provides an assortement of tools for dealing with plants."
-	icon_state = "module_service"
-	require_model = TRUE
-	model_type = list(/obj/item/robot_model/service)
-	model_flags = BORG_MODEL_SERVICE
-
-	items_to_add = list(
-		/obj/item/secateurs,
-		/obj/item/cultivator,
-		/obj/item/shovel/spade,
-		/obj/item/plant_analyzer,
-		/obj/item/storage/bag/plants
-	)
-
 /*
 *	UNIVERSAL CYBORG UPGRADES
 */

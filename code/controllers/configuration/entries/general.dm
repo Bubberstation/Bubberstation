@@ -321,7 +321,7 @@
 /datum/config_entry/string/banappeals
 
 /datum/config_entry/string/wikiurl
-	default = "http://tgstation13.org/wiki"
+	default = "https://wiki.tgstation13.org"
 
 /datum/config_entry/string/forumurl
 	default = "http://tgstation13.org/phpBB/index.php"
@@ -785,3 +785,9 @@
  */
 /datum/config_entry/number/tgui_max_chunk_count
 	default = 32
+
+// If set, enables the "Link forum account" OOC verb
+/datum/config_entry/string/forum_link_uri
+
+/datum/config_entry/flag/generate_assets_in_init
+	default = FALSE

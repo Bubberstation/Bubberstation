@@ -27,7 +27,8 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mo
 		body += "<br>\[<A href='byond://?_src_=holder;[HrefToken()];ppbyckey=[player.ckey];ppbyckeyorigmob=[REF(player)]'>Find Updated Panel</A>\]"
 
 	if(player.client)
-		body += "<br>\[<b>First Seen:</b> [player.client.player_join_date]\]\[<b>Byond account registered on:</b> [player.client.account_join_date]\]"
+		body += "<br>\[<b>First Seen:</b> [player.client.player_join_date]\]"
+		body += "<br>\[<b>Byond account registered on:</b> [player.client.account_join_date]\]"
 		// SKYRAT EDIT ADDITION START - Player Ranks
 		var/list/player_ranks = list()
 
@@ -166,7 +167,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mo
 	body += "<br>"
 	body += "</body></html>"
 
-	user << browse(body, "window=adminplayeropts-[REF(player)];size=550x515")
+	user << browse(body, "window=adminplayeropts-[REF(player)];size=550x540")
 	BLACKBOX_LOG_ADMIN_VERB("Player Panel")
 
 /client/proc/cmd_admin_godmode(mob/mob in GLOB.mob_list)

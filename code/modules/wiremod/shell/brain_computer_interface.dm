@@ -87,6 +87,7 @@
 	/// A reference to the action button to look at charge/get info
 	var/datum/action/innate/bci_charge_action/charge_action
 
+	var/datum/port/input/color_input // BUBBER ADDITION
 	var/datum/port/input/message
 	var/datum/port/input/send_message_signal
 	var/datum/port/input/show_charge_meter
@@ -96,7 +97,7 @@
 	var/obj/item/organ/cyberimp/bci/bci
 
 /obj/item/circuit_component/bci_core/populate_ports()
-
+	color_input =  add_input_port("Color", PORT_TYPE_STRING, default = "Default") // BUBBER ADDITION
 	message = add_input_port("Message", PORT_TYPE_STRING, trigger = null)
 	send_message_signal = add_input_port("Send Message", PORT_TYPE_SIGNAL)
 	show_charge_meter = add_input_port("Show Charge Meter", PORT_TYPE_NUMBER, trigger = PROC_REF(update_charge_action))
@@ -154,13 +155,16 @@
 	if (!sent_message)
 		return
 
+	if(!(color_input.value in GLOB.component_span_color_list)) // BUBBER ADDITION
+		color_input.set_value("Default")
+
 	if (isnull(bci.owner))
 		return
 
 	if (bci.owner.stat == DEAD)
 		return
 
-	to_chat(bci.owner, "<i>You hear a strange, robotic voice in your head...</i> \"[span_robot("[html_encode(sent_message)]")]\"")
+	to_chat(bci.owner, "<i>You hear a strange, robotic voice in your head...</i> \"<span class='[GLOB.component_span_color_list[color_input.value]]'>[span_robot("[html_encode(sent_message)]")]</span>\"") // BUBBER EDIT
 
 /obj/item/circuit_component/bci_core/proc/on_organ_implanted(datum/source, mob/living/carbon/owner)
 	SIGNAL_HANDLER
@@ -357,7 +361,7 @@
 
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
-/obj/machinery/bci_implanter/attackby(obj/item/weapon, mob/user, params)
+/obj/machinery/bci_implanter/attackby(obj/item/weapon, mob/user, list/modifiers, list/attack_modifiers)
 	var/obj/item/organ/cyberimp/bci/new_bci = weapon
 	if (istype(new_bci))
 		if (!(locate(/obj/item/integrated_circuit) in new_bci))
@@ -379,7 +383,7 @@
 
 	return ..()
 
-/obj/machinery/bci_implanter/attackby_secondary(obj/item/weapon, mob/user, params)
+/obj/machinery/bci_implanter/attackby_secondary(obj/item/weapon, mob/user, list/modifiers, list/attack_modifiers)
 	if (!occupant && default_deconstruction_screwdriver(user, icon_state, icon_state, weapon))
 		update_appearance()
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN

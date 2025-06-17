@@ -30,7 +30,7 @@ import './styles/themes/clockwork.scss'; // SKYRAT EDIT ADDITION
 import { perf } from 'common/perf';
 import { setupGlobalEvents } from 'tgui-core/events';
 import { setupHotKeys } from 'tgui-core/hotkeys';
-import { setupHotReloading } from 'tgui-dev-server/link/client.cjs';
+import { setupHotReloading } from 'tgui-dev-server/link/client.mjs';
 
 import { App } from './App';
 import { setGlobalStore } from './backend';
@@ -53,7 +53,12 @@ function setupApp() {
   setGlobalStore(store);
 
   setupGlobalEvents();
-  setupHotKeys();
+  setupHotKeys({
+    keyUpVerb: 'KeyUp',
+    keyDownVerb: 'KeyDown',
+    // In the future you could send a winget here to get mousepos/size from the map here if it's necessary
+    verbParamsFn: (verb, key) => `${verb} "${key}" 0 0 0 0`,
+  });
   captureExternalLinks();
 
   store.subscribe(() => render(<App />));
@@ -62,11 +67,14 @@ function setupApp() {
   Byond.subscribe((type, payload) => store.dispatch({ type, payload }));
 
   // Enable hot module reloading
-  if (module.hot) {
+  if (import.meta.webpackHot) {
     setupHotReloading();
-    module.hot.accept(['./debug', './layouts', './routes', './App'], () => {
-      render(<App />);
-    });
+    import.meta.webpackHot.accept(
+      ['./debug', './layouts', './routes', './App'],
+      () => {
+        render(<App />);
+      },
+    );
   }
 }
 

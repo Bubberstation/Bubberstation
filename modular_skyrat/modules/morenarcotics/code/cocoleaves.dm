@@ -11,7 +11,7 @@
 	growthstages = 1
 	product = /obj/item/food/grown/cocaleaf
 	mutatelist = list()
-	reagents_add = list(/datum/reagent/drug/cocaine = 0.3, /datum/reagent/consumable/nutriment = 0.15)
+	reagents_add = list(/datum/reagent/drug/coca_powder = 0.3, /datum/reagent/consumable/nutriment = 0.15)
 
 /obj/item/food/grown/cocaleaf
 	seed = /obj/item/seeds/cocaleaf

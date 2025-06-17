@@ -1,6 +1,6 @@
 //cut wires
 /datum/surgery_step/cut_wires
-	name = "cut wires (wirecutters)"
+	name = "cut wires (wirecutters/scalpel)"
 	implements = list(
 		TOOL_WIRECUTTER = 100,
 		TOOL_SCALPEL = 75,
@@ -26,10 +26,10 @@
 
 //pry off plating
 /datum/surgery_step/pry_off_plating
-	name = "pry off plating (crowbar)"
+	name = "pry off plating (crowbar/hemostat)"
 	implements = list(
 		TOOL_CROWBAR = 100,
-		TOOL_HEMOSTAT = 10,
+		TOOL_HEMOSTAT = 75,
 	)
 	time = 2.4 SECONDS
 	preop_sound = 'sound/items/tools/crowbar.ogg'

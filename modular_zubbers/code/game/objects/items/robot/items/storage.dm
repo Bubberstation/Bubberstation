@@ -17,6 +17,7 @@
 					/obj/item/disk/design_disk,
 					/obj/item/disk/tech_disk,
 					/obj/item/computer_disk,//ordinance
+					/obj/item/disk/nanite_program,
 					/obj/item/stock_parts,
 					/obj/item/reagent_containers/cup/beaker,
 					/obj/item/healthanalyzer, //To build medibots
@@ -27,6 +28,11 @@
 					/obj/item/reagent_containers/syringe,
 					/obj/item/reagent_containers/dropper,
 					/obj/item/food/monkeycube,
+					/obj/item/nanite_scanner,
+					/obj/item/nanite_injector,
+					/obj/item/biopsy_tool,
+					/obj/item/petri_dish,
+					/obj/item/swab,
 					)
 
 /obj/item/borg/apparatus/research/examine()
@@ -50,10 +56,16 @@
 					/obj/item/integrated_circuit,
 					/obj/item/circuit_component,
 					/obj/item/usb_cable,
-					/obj/item/assembly/signaler,
 					/obj/item/healthanalyzer, //To build medibots
-					/obj/item/assembly/prox_sensor,
 					/obj/item/electronics,
+					/obj/item/assembly/igniter,
+					/obj/item/assembly/infra,
+					/obj/item/assembly/prox_sensor,
+					/obj/item/assembly/timer,
+					/obj/item/assembly/signaler,
+					/obj/item/assembly/trapdoor,
+					/obj/item/assembly/voice,
+					/obj/item/assembly/wiremod,
 					)
 
 /obj/item/borg/apparatus/circuit_sci/examine()
@@ -179,6 +191,8 @@
 	)
 	. = ..()
 
+
+
 //Engineering cyborg apparatus
 /obj/item/borg/apparatus/engineering
 	name = "Engineering manipulation gripper"
@@ -194,7 +208,34 @@
 					/obj/item/wallframe,
 					/obj/item/tank,
 					/obj/item/stock_parts,
+					/obj/item/assembly/control,
+					/obj/item/electronics/airlock
 					)
+
+//Mining cyborg apparatus
+/obj/item/borg/apparatus/mining
+	name = "Mining manipulation gripper"
+	desc = "A simple grasping tool suited to assist in an array of mining applications."
+	icon = 'modular_zubbers/icons/mob/silicon/robot_items.dmi'
+	icon_state = "gripper_mining"
+	storable = list(
+					/obj/item/organ/monster_core/,
+					/obj/item/xenoarch/useless_relic/,
+					/obj/item/xenoarch/broken_item,
+					/obj/item/xenoarch/strange_rock,
+					/obj/item/stack/sheet/animalhide/,
+					/obj/item/stack/sheet/sinew,
+					/obj/item/survivalcapsule/,
+					/obj/item/extraction_pack,
+					/obj/item/fulton_core,
+					)
+
+/obj/item/robot_model/miner/Initialize(mapload)
+	name = "Miner"
+	basic_modules += list(
+		/obj/item/borg/apparatus/mining/,
+	)
+	. = ..()
 
 /obj/item/borg/apparatus/mining/examine()
 	. = ..()

@@ -40,12 +40,12 @@
 	victim = null
 
 /obj/item/clothing/glasses/hypno/Destroy()
-	. = ..()
 	if(!victim)
-		return
+		return ..()
 	if(!(victim.glasses == src))
-		return
+		return ..()
 	victim.cure_trauma_type(/datum/brain_trauma/very_special/induced_hypnosis, TRAUMA_RESILIENCE_MAGIC)
+	. = ..()
 
 /obj/item/clothing/glasses/hypno/attack_self(mob/user)//Setting up hypnotising phrase
 	. = ..()

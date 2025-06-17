@@ -33,13 +33,13 @@
 		. += new /mutable_appearance(charge_overlay)
 		. += new /mutable_appearance(cell_overlay)
 
-/obj/machinery/cell_charger_multi/attack_hand_secondary(mob/user, list/modifiers)
+/obj/machinery/cell_charger_multi/click_alt(mob/user)
 	if(!can_interact(user) || !charging_batteries.len)
 		return
-	to_chat(user, span_notice("You press the quick release as all the cells pop out!"))
+	to_chat(user, span_notice("You activate the quick release as all the cells pop out!"))
 	for(var/i in charging_batteries)
 		removecell()
-	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/cell_charger_multi/examine(mob/user)
 	. = ..()
@@ -51,7 +51,7 @@
 			. += "There's [charging] cell in the charger, current charge: [round(charging.percent(), 1)]%."
 	if(in_range(user, src) || isobserver(user))
 		. += span_notice("The status display reads: Charging power: <b>[display_power(charge_rate, convert = FALSE)]</b> per cell.")
-	. += span_notice("Right click it to remove all the cells at once!")
+	. += span_notice("Alt click it to remove all the cells at once!")
 
 /obj/machinery/cell_charger_multi/attackby(obj/item/tool, mob/user, params)
 	if(istype(tool, /obj/item/stock_parts/power_store/cell) && !panel_open)

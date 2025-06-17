@@ -21,6 +21,9 @@
 	treatable_tools = list(TOOL_ALIEN_BONESET)
 
 /datum/wound/blunt/bone/severe/treat(obj/item/I, mob/user)
+	if(!(TOOL_ALIEN_BONESET in I.get_all_tool_behaviours()))
+		return ..()
+
 	var/scanned = HAS_TRAIT(src, TRAIT_WOUND_SCANNED)
 	var/self_penalty_mult = user == victim ? 1.5 : 1
 	var/scanned_mult = scanned ? 0.5 : 1
@@ -50,6 +53,9 @@
 	treatable_tools = list(TOOL_ALIEN_BONESET)
 
 /datum/wound/blunt/bone/critical/treat(obj/item/I, mob/user)
+	if(!(TOOL_ALIEN_BONESET in I.get_all_tool_behaviours()))
+		return ..()
+
 	var/scanned = HAS_TRAIT(src, TRAIT_WOUND_SCANNED)
 	var/self_penalty_mult = user == victim ? 1.5 : 1
 	var/scanned_mult = scanned ? 0.5 : 1

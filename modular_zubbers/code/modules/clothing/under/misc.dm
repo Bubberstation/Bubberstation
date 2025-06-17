@@ -20,7 +20,9 @@
 /obj/item/clothing/under/costume/playbunny/greyscale
 	name = "bunny suit"
 	desc = "The staple of any bunny themed waiters and the like. It has a little cottonball tail too."
-	icon_state = "playbunny"
+	icon = 'icons/map_icons/clothing/under/costume.dmi'
+	icon_state = "/obj/item/clothing/under/costume/playbunny/greyscale"
+	post_init_icon_state = "playbunny"
 	greyscale_colors = "#39393f#39393f#ffffff#87502e"
 	greyscale_config = /datum/greyscale_config/bunnysuit
 	greyscale_config_worn = /datum/greyscale_config/bunnysuit_worn
@@ -77,7 +79,9 @@
 
 /obj/item/clothing/under/costume/playbunny/custom_playbunny
 	name = "tailormade bunny suit"
-	icon_state = "playbunny"
+	icon = 'icons/map_icons/clothing/under/costume.dmi'
+	icon_state = "/obj/item/clothing/under/costume/playbunny/custom_playbunny"
+	post_init_icon_state = "playbunny"
 	greyscale_colors = "#373768#c9c9c9#ababcd#880088"
 	greyscale_config = /datum/greyscale_config/custom_bunnysuit
 	greyscale_config_worn = /datum/greyscale_config/custom_bunnysuit_worn

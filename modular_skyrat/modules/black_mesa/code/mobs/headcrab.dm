@@ -6,7 +6,7 @@
 	icon_living = "headcrab"
 	icon_dead = "headcrab_dead"
 	icon_gib = null
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	speak_chance = 1
 	speak_emote = list("growls")
 	speed = 1

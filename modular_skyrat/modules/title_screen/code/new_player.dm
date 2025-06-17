@@ -1,8 +1,49 @@
+/// BYOND timestamp corresponding to deadline (Jun. 16, 2025)
+#define DEADLINE_TIMESTAMP 8033472000
+
 /mob/dead/new_player
 	/// Title screen is ready to receive signals
 	var/title_screen_is_ready = FALSE
+	/// Whether the player (if unvetted) has acknowledged the deadline warning
+	var/unvetted_notified = FALSE
 
-/mob/dead/new_player/Topic(href, href_list[])
+/**
+ * Check player vetting status and if necessary warn about upcoming deadline
+ *
+ * Returns FALSE if unvetted and deadline has passed, TRUE otherwise
+ */
+/mob/dead/new_player/proc/trigger_unvetted_warning()
+	if(!CONFIG_GET(flag/check_vetted))
+		unvetted_notified = TRUE
+		return TRUE
+	if(!SSplayer_ranks.initialized)
+		return TRUE
+	if(SSplayer_ranks.is_vetted(client, admin_bypass = FALSE))
+		unvetted_notified = TRUE
+		return TRUE
+
+	// Time's up
+	if(DEADLINE_TIMESTAMP - world.realtime <= 0)
+		tgui_alert(
+			src,
+			"Unvetted players are no longer allowed to join or observe rounds, please visit #get-vetted in the Discord to submit a vetting application",
+			"You are unvetted!",
+			timeout = 10 SECONDS,
+		)
+		return FALSE
+
+	var/remaining_time = round((DEADLINE_TIMESTAMP - world.realtime) / (1 DAYS), 1)
+	tgui_deadline_alert(
+		src,
+		"Unvetted players will lose the ability to join or observe rounds in [remaining_time] day\s!",
+		"Get vetted by [time2text(DEADLINE_TIMESTAMP, "Month DD YYYY")]!",
+		days_remaining = remaining_time,
+		timeout = 10 SECONDS,
+	)
+	unvetted_notified = TRUE
+	return TRUE
+
+/mob/dead/new_player/Topic(href, href_list)
 	if(src != usr)
 		return
 
@@ -12,16 +53,17 @@
 	if(client.interviewee)
 		return FALSE
 
-	if(!client.maturity_prompt_whitelist && !SSmaturity_guard.age_check(src))
-		return
-
 	if(href_list["observe"])
 		play_lobby_button_sound()
+		if(!unvetted_notified && !trigger_unvetted_warning())
+			return FALSE
 		make_me_an_observer()
 		return
 
 	if(href_list["job_traits"])
 		play_lobby_button_sound()
+		if(!unvetted_notified && !trigger_unvetted_warning())
+			return FALSE
 		show_job_traits()
 		return
 
@@ -76,18 +118,29 @@
 				to_chat(src, span_notice("You need at least [CONFIG_GET(number/flavor_text_character_requirement)] characters of Flavor Text to ready up for the round. You have [length_char(client.prefs.read_preference(/datum/preference/text/flavor_text))] characters."))
 				return
 
+		if(!unvetted_notified && !trigger_unvetted_warning())
+			return FALSE
 		ready = !ready
 		client << output(ready, "title_browser:toggle_ready")
 		return
 
 	if(href_list["late_join"])
 		play_lobby_button_sound()
+		if(!unvetted_notified && !trigger_unvetted_warning())
+			return FALSE
 		GLOB.latejoin_menu.ui_interact(usr)
+		return
 
 	if(href_list["title_is_ready"])
 		title_screen_is_ready = TRUE
 		return
 
+	if(href_list["polls_menu"])
+		play_lobby_button_sound()
+		handle_player_polling()
+		return
+
+	. = ..()
 
 /mob/dead/new_player/Login()
 	. = ..()
@@ -215,10 +268,12 @@
 		qdel(query_get_new_polls)
 		return
 	if(query_get_new_polls.NextRow())
-		output +={"<a class="menu_button menu_newpoll" href='byond://?src=[text_ref(src)];viewpoll=1'>POLLS (NEW)</a>"}
+		output +={"<a class="menu_button menu_newpoll" href='byond://?src=[text_ref(src)];polls_menu=1'>POLLS (NEW)</a>"}
 	else
-		output +={"<a class="menu_button" href='byond://?src=[text_ref(src)];viewpoll=1'>POLLS</a>"}
+		output +={"<a class="menu_button" href='byond://?src=[text_ref(src)];polls_menu=1'>POLLS</a>"}
 	qdel(query_get_new_polls)
 	if(QDELETED(src))
 		return
 	return output
+
+#undef DEADLINE_TIMESTAMP

@@ -1220,7 +1220,7 @@ TREK
 /datum/greyscale_config/sneakers/worn/teshari
 	name = "Sneakers (Worn, Teshari)"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/sneakers_teshari.dmi'
-digi
+
 /datum/greyscale_config/sneakers_orange/worn/teshari
 	name = "Orange Sneakers (Worn, Teshari)"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/sneakers_teshari.dmi'

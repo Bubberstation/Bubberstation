@@ -734,7 +734,7 @@
 		return
 	if(listeningTo)
 		UnregisterSignal(listeningTo, signalCache)
-	RegisterSignal(user, signalCache, PROC_REF(disrupt))
+	RegisterSignals(user, signalCache, PROC_REF(disrupt))
 	listeningTo = user
 
 /obj/item/borg_shapeshifter/proc/deactivate(mob/living/silicon/robot/user)

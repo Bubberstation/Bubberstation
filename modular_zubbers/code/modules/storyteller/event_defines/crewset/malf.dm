@@ -8,6 +8,7 @@
 
 	min_players = 20
 	roundstart = FALSE
+	alert_observers = TRUE
 
 	antag_datum = /datum/antagonist/malf_ai
 	antag_flag = ROLE_MALF

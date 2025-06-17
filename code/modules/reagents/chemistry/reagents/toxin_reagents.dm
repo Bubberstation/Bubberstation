@@ -50,11 +50,12 @@
 	ph = 2.3
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
-/datum/reagent/toxin/mutagen/expose_mob(mob/living/carbon/exposed_mob, methods=TOUCH, reac_volume)
+/datum/reagent/toxin/mutagen/expose_mob(mob/living/carbon/exposed_mob, methods=TOUCH, reac_volume, show_message = TRUE, touch_protection = 0)
 	. = ..()
 	if(!exposed_mob.can_mutate())
 		return  //No robots, AIs, aliens, Ians or other mobs should be affected by this.
-	if(((methods & VAPOR) && prob(min(33, reac_volume))) || (methods & (INGEST|PATCH|INJECT|INHALE)))
+
+	if((methods & (PATCH|INGEST|INJECT|INHALE)) || ((methods & (VAPOR|TOUCH)) && prob(min(reac_volume,100)*(1 - touch_protection))))
 		exposed_mob.random_mutate_unique_identity()
 		exposed_mob.random_mutate_unique_features()
 		if(prob(98))
@@ -213,7 +214,7 @@
 /datum/reagent/toxin/slimejelly
 	name = "Slime Jelly"
 	description = "A gooey semi-liquid produced from one of the deadliest lifeforms in existence. SO REAL."
-	color = "#801E28" // rgb: 128, 30, 40
+	color = "#a6959d"
 	toxpwr = 0
 	taste_description = "slime"
 	taste_mult = 1.3
@@ -239,6 +240,11 @@
 	taste_description = "fish"
 	ph = 12
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+
+/datum/reagent/toxin/carpotoxin/on_mob_add(mob/living/affected_mob, amount)
+	. = ..()
+	if (HAS_TRAIT(affected_mob, TRAIT_CARPOTOXIN_IMMUNE))
+		toxpwr = 0
 
 /datum/reagent/toxin/zombiepowder
 	name = "Zombie Powder"

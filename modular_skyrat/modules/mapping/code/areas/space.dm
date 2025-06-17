@@ -191,6 +191,10 @@
 	name = "P-T Solar Control"
 	icon_state = "engine"
 
+/area/ruin/space/has_grav/port_tarkon/power2
+	name = "P-T Backup Generator Room"
+	icon_state = "engine"
+
 /area/ruin/space/has_grav/port_tarkon/centerhall
 	name = "P-T Central Hallway"
 	icon_state = "centralhall"
@@ -247,6 +251,10 @@
 	name = "P-T Dorms"
 	icon_state = "dorms"
 
+/area/ruin/space/has_grav/port_tarkon/random_dorm
+	name = "P-T Deluxe Dorm Room"
+	icon_state = "dorms"
+
 /area/solars/tarkon
 	name = "\improper P-T Solar Array"
 	icon_state = "space_near"
@@ -259,6 +267,17 @@
 /area/ruin/space/has_grav/port_tarkon/aiante
 	name = "P-T AI Antechamber"
 	icon_state = "ai_interior"
+
+/area/ruin/space/has_grav/port_tarkon/asteroid // so thumpers can work
+	name = "Asteroid Space"
+	icon = 'icons/area/areas_ruins.dmi'
+	icon_state = "ruins"
+	outdoors = TRUE
+
+/area/ruin/space/has_grav/port_tarkon/vault
+	name = "P-T Vault"
+	icon_state = "vault"
+	area_flags = UNIQUE_AREA | NOTELEPORT
 
 // Cargodise Lost Freighter
 

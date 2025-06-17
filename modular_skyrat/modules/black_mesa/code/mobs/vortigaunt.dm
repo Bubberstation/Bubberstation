@@ -8,7 +8,7 @@
 	icon_gib = null
 	gender = MALE
 	faction = list(FACTION_STATION, FACTION_NEUTRAL)
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	speak_chance = 1
 	speak_emote = list("galungs")
 	speed = 1

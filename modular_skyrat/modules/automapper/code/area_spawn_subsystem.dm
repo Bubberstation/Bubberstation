@@ -1,6 +1,9 @@
 SUBSYSTEM_DEF(area_spawn)
 	name = "Area Spawn"
 	flags = SS_NO_FIRE
+	dependencies = list(
+		/datum/controller/subsystem/mapping
+	)
 
 	// Can't be on tile or a neighbor.
 	// Usually things where it's important to be sure the players can walk up to them, but aren't dense.
@@ -263,7 +266,7 @@ SUBSYSTEM_DEF(area_spawn)
 	/// See code/__DEFINES/~skyrat_defines/automapper.dm
 	var/mode = AREA_SPAWN_MODE_OPEN
 	/// Map blacklist, this is used to determine what maps we should not spawn on.
-	var/list/blacklisted_stations = list("Void Raptor", "Runtime Station", "MultiZ Debug", "Gateway Test", "Blueshift", "Biodome")
+	var/list/blacklisted_stations = list("Void Raptor", "Runtime Station", "MultiZ Debug", "Gateway Test", "Blueshift", "Biodome", "Moon Station", "Box Station")
 	/// If failing to find a suitable area is OK, then this should be TRUE or CI will fail.
 	/// Should probably be true if the target_areas are random, such as ruins.
 	var/optional = FALSE
@@ -320,7 +323,7 @@ SUBSYSTEM_DEF(area_spawn)
 	/// The atom type that we want to spawn
 	var/desired_atom
 	/// Map blacklist, this is used to determine what maps we should not spawn on.
-	var/list/blacklisted_stations = list("Void Raptor", "Runtime Station", "MultiZ Debug", "Gateway Test")
+	var/list/blacklisted_stations = list("Void Raptor", "Runtime Station", "MultiZ Debug", "Gateway Test", "Moon Station", "Box Station")
 
 /**
  * Spawn the atoms.

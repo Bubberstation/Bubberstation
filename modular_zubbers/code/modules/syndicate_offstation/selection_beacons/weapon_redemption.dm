@@ -5,7 +5,7 @@
 	name = "Standard Syndicate sidearm beacon"
 	desc = "A single use beacon to deliver a weapon kit of your choice. Please use this or store it in your safe."
 	company_source = "Gorlex Marauders"
-	company_message = span_bold("Supply Pod incoming please stand by")
+	company_message = span_bold("Supply pod incoming, please stand by.")
 
 /obj/item/choice_beacon/syndicateoffstation/generate_display_names()
 	var/static/list/selectable_gun_types = list(

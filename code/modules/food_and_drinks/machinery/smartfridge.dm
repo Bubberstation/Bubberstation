@@ -260,7 +260,7 @@
 	playsound(src, SFX_SHATTER, 50, TRUE)
 	return ..()
 
-/obj/machinery/smartfridge/attackby(obj/item/weapon, mob/living/user, params)
+/obj/machinery/smartfridge/attackby(obj/item/weapon, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(!machine_stat)
 		var/shown_contents_length = visible_items()
 		if(shown_contents_length >= max_n_of_items)
@@ -759,7 +759,8 @@
 					/obj/item/reagent_containers/spray,
 					/obj/item/reagent_containers/medigel,
 					/obj/item/reagent_containers/cup/vial, //SKYRAT EDIT ADDITION - HYPOSPRAYS
-					/obj/item/reagent_containers/chem_pack
+					/obj/item/reagent_containers/chem_pack,
+					/obj/item/reagent_containers/hypospray //BUBBER EDIT ADDITION - Hyposprays 2: spray harder
 	))
 	return is_type_in_typecache(weapon, chemfridge_typecache)
 

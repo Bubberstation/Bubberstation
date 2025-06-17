@@ -46,3 +46,25 @@
 	time = 5 SECONDS
 	category = CAT_CLOTHING
 
+/datum/crafting_recipe/modulator_gasmask
+	name = "Voice Modulator Gasmask"
+	result = /obj/item/clothing/mask/gas/modulator
+	reqs = list(/obj/item/clothing/mask/gas = 1,
+				/obj/item/assembly/voice = 1,
+				/obj/item/stack/cable_coil = 5)
+	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER, TOOL_MULTITOOL)
+	time = 5 SECONDS
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/modulator_gasmask/New()
+	..()
+	blacklist += subtypesof(/obj/item/clothing/mask/gas)
+
+/datum/crafting_recipe/berserker_reskin
+	name = "Marked One Grafting"
+	result = /obj/item/clothing/suit/hooded/berserker/gladiator
+	reqs = list(/obj/item/clothing/suit/hooded/berserker = 1,
+				/obj/item/stack/ore/glass/basalt = 5,
+				/obj/item/stack/ore/titanium =5)
+	time = 5 SECONDS
+	category = CAT_CLOTHING

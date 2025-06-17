@@ -22,10 +22,6 @@
 	time = 30
 	category = CAT_CLOTHING
 
-/datum/crafting_recipe/crusader_belt/on_craft_completion(mob/user, atom/result)
-	var/obj/item/storage/belt/crusader/crusader_belt = result
-	crusader_belt.PopulateContents()
-
 /datum/crafting_recipe/crusader_satchel
 	name = "Crusader Satchel"
 	result = /obj/item/storage/backpack/satchel/crusader

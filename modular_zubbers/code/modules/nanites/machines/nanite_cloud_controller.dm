@@ -108,6 +108,8 @@
 			"name" = linked_techweb.id,
 			"organization" = linked_techweb.organization,
 		)
+	data["min_cloud_id"] = NANITE_MIN_CLOUD_ID
+	data["max_cloud_id"] = NANITE_MAX_CLOUD_ID
 
 // a lot of this should be in static data
 /obj/machinery/computer/nanite_cloud_controller/ui_data()
@@ -226,7 +228,7 @@
 			var/cloud_id = new_backup_id
 			if(!isnull(cloud_id))
 				playsound(src, 'sound/machines/terminal/terminal_prompt.ogg', 50, FALSE)
-				cloud_id = clamp(round(cloud_id, 1),1,100)
+				cloud_id = clamp(round(cloud_id, 1),NANITE_MIN_CLOUD_ID+1,NANITE_MAX_CLOUD_ID)
 				generate_backup(cloud_id, usr)
 			. = TRUE
 		if("delete_backup")

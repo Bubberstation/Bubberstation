@@ -11,13 +11,15 @@
 	if(!owner || . & EMP_PROTECT_SELF)
 		return
 
-	switch(severity)
-		if(EMP_HEAVY)
-			to_chat(owner, span_warning("Alert:Severe electromagnetic interference clouds your optics with static. Error Code: I-CS6"))
-			apply_organ_damage(SYNTH_ORGAN_HEAVY_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
-		if(EMP_LIGHT)
-			to_chat(owner, span_warning("Alert: Mild interference clouds your optics with static. Error Code: I-CS0"))
-			apply_organ_damage(SYNTH_ORGAN_LIGHT_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
+	if(COOLDOWN_FINISHED(src, severe_cooldown)) //So we cant just spam emp to kill people.
+		COOLDOWN_START(src, severe_cooldown, 10 SECONDS)
+		switch(severity)
+			if(EMP_HEAVY)
+				to_chat(owner, span_warning("Alert:Severe electromagnetic interference clouds your optics with static. Error Code: I-CS6"))
+				apply_organ_damage(SYNTH_ORGAN_HEAVY_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
+			if(EMP_LIGHT)
+				to_chat(owner, span_warning("Alert: Mild interference clouds your optics with static. Error Code: I-CS0"))
+				apply_organ_damage(SYNTH_ORGAN_LIGHT_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
 
 /datum/design/synth_eyes
 	name = "Optical Sensors"

@@ -14,8 +14,10 @@
 #define COMSIG_NANITE_ADJUST_VOLUME "nanite_adjust"
 ///(amount) Sets maximum nanite volume to the given amount
 #define COMSIG_NANITE_SET_MAX_VOLUME "nanite_set_max_volume"
-///(amount(0-100)) Sets cloud ID to the given amount
+///(amount(NANITE_MIN_CLOUD_ID-NANITE_MAX_CLOUD_ID)) Sets cloud ID to the given amount
 #define COMSIG_NANITE_SET_CLOUD "nanite_set_cloud"
+///() Returns nanite cloud ID
+#define COMSIG_NANITE_GET_CLOUD "nanite_get_cloud"
 ///(method) Modify cloud sync status. Method can be toggle, enable or disable
 #define COMSIG_NANITE_SET_CLOUD_SYNC "nanite_set_cloud_sync"
 ///(amount) Sets safety threshold to the given amount
@@ -38,3 +40,8 @@
 	#define COMPONENT_PROGRAM_NOT_INSTALLED (1<<1)
 ///(datum/component/nanites, full_overwrite, copy_activation) Called to sync the target's nanites to a given nanite component
 #define COMSIG_NANITE_SYNC "nanite_sync"
+
+///Minimum valid value for nanite cloud ID
+#define NANITE_MIN_CLOUD_ID 0
+///Maximum valid value for nanite cloud ID
+#define NANITE_MAX_CLOUD_ID 100

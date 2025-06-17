@@ -28,7 +28,7 @@
 /**
  * check_attack is meant to listen for the COMSIG_ATOM_ATTACKBY signal, where it essentially functions like the attackby proc
  */
-/datum/component/simple_farm/proc/check_attack(datum/source, obj/item/attacking_item, mob/user)
+/datum/component/simple_farm/proc/check_attack(datum/source, obj/item/attacking_item, mob/user, list/modifiers)
 	SIGNAL_HANDLER
 
 	//if its a seed, lets try to plant

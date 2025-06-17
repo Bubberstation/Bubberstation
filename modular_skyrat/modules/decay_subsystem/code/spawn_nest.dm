@@ -26,7 +26,7 @@ ADMIN_VERB(spawn_mob_spawner, R_ADMIN, "Spawn mob spawner", "Spawns a mob spawne
 		)
 	)
 
-	var/list/returned_prefs = presentpreflikepicker(usr, "Spawn mob spawner", "Spawn mob spawner", StealFocus = 1, Timeout = 0, settings=settings)
+	var/list/returned_prefs = present_pref_like_picker(usr, "Spawn mob spawner", "Spawn mob spawner", steal_focus = TRUE, timeout = 0, settings=settings)
 
 	if (isnull(returned_prefs))
 		return FALSE

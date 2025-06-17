@@ -172,7 +172,7 @@ component_cell_out_of_charge/component_cell_removed proc using loc where necessa
 		to_chat(user, span_danger("There is no cell inserted in [equipment]!"))
 
 /// Handling of cell insertion.
-/datum/component/cell/proc/insert_cell(datum/source, obj/item/inserting_item, mob/living/user, params)
+/datum/component/cell/proc/insert_cell(datum/source, obj/item/inserting_item, mob/living/user, list/modifiers)
 	SIGNAL_HANDLER
 	if(!equipment.can_interact(user))
 		return

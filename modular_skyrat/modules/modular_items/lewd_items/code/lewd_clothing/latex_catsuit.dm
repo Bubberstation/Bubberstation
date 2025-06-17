@@ -16,7 +16,7 @@
 	can_adjust = FALSE
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	strip_delay = 80
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION|STYLE_TAUR_ALL
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	var/mutable_appearance/breasts_overlay
 	var/mutable_appearance/breasts_icon_overlay
 

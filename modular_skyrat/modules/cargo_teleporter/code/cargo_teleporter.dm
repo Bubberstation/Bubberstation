@@ -39,6 +39,12 @@ GLOBAL_LIST_EMPTY(cargo_marks)
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/cargo_teleporter/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	if(istype(interacting_with, /obj/effect/decal/cleanable/cargo_mark))
+		to_chat(user, span_notice("You remove [interacting_with] using [src]."))
+		playsound(interacting_with, 'sound/machines/click.ogg', 50)
+		qdel(interacting_with)
+		return ITEM_INTERACT_SUCCESS
+
 	if(!COOLDOWN_FINISHED(src, use_cooldown))
 		to_chat(user, span_warning("[src] is still on cooldown!"))
 		return ITEM_INTERACT_BLOCKING
@@ -102,14 +108,6 @@ GLOBAL_LIST_EMPTY(cargo_marks)
 
 	light_range = 3
 	light_color = COLOR_VIVID_YELLOW
-
-/obj/effect/decal/cleanable/cargo_mark/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/cargo_teleporter))
-		to_chat(user, span_notice("You remove [src] using [W]."))
-		playsound(src, 'sound/machines/click.ogg', 50)
-		qdel(src)
-		return
-	return ..()
 
 /obj/effect/decal/cleanable/cargo_mark/Destroy()
 	if(parent_item)
