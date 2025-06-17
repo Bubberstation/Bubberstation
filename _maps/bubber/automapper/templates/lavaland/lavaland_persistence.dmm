@@ -1109,6 +1109,21 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
+"ch" = (
+/obj/effect/turf_decal/siding/blue{
+	dir = 8
+	},
+/obj/machinery/computer/dna_console{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/machinery/light/directional/west,
+/turf/open/floor/iron/dark/smooth_half{
+	dir = 1
+	},
+/area/ruin/space/has_grav/bubbers/persistance/med)
 "cj" = (
 /obj/structure/flora/bush/jungle/b,
 /obj/structure/flora/grass/green/style_2{
@@ -7991,6 +8006,32 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
+"qw" = (
+/obj/effect/turf_decal/siding/wideplating_new/dark/end{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood/end{
+	dir = 8
+	},
+/obj/item/toy/figure/scientist{
+	pixel_x = -4;
+	pixel_y = 20;
+	desc = "You still got it, kid...";
+	name = "\improper Badass Scientist action figure"
+	},
+/obj/structure/extinguisher_cabinet/directional/north,
+/obj/item/toy/nuke{
+	pixel_x = 0;
+	pixel_y = 13
+	},
+/obj/structure/marker_beacon/burgundy,
+/obj/machinery/suit_storage_unit{
+	mod_type = /obj/item/mod/control/pre_equipped/infiltrator/persistence;
+	storage_type = /obj/item/tank/internals/emergency_oxygen/double;
+	mask_type = /obj/item/clothing/mask/gas/syndicate
+	},
+/turf/open/floor/iron/shuttle/exploration/blanktile,
+/area/ruin/space/has_grav/bubbers/persistance/service/dorms/science)
 "qx" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/siding/dark{
@@ -13545,21 +13586,6 @@
 	},
 /turf/open/floor/iron/dark/herringbone,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
-"Bg" = (
-/obj/effect/turf_decal/siding/blue{
-	dir = 8
-	},
-/obj/machinery/computer/scan_consolenew{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/dark{
-	dir = 4
-	},
-/obj/machinery/light/directional/west,
-/turf/open/floor/iron/dark/smooth_half{
-	dir = 1
-	},
-/area/ruin/space/has_grav/bubbers/persistance/med)
 "Bh" = (
 /obj/machinery/door/poddoor{
 	id = "syndicatemed"
@@ -21582,32 +21608,6 @@
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/persistance/command/liason)
-"Rt" = (
-/obj/effect/turf_decal/siding/wideplating_new/dark/end{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wood/end{
-	dir = 8
-	},
-/obj/item/toy/figure/scientist{
-	pixel_x = -4;
-	pixel_y = 20;
-	desc = "You still got it, kid...";
-	name = "\improper Badass Scientist action figure"
-	},
-/obj/structure/extinguisher_cabinet/directional/north,
-/obj/item/toy/nuke{
-	pixel_x = 0;
-	pixel_y = 13
-	},
-/obj/structure/marker_beacon/burgundy,
-/obj/machinery/suit_storage_unit{
-	mod_type = /obj/item/mod/control/pre_equipped/infiltrator/persistence;
-	storage_type = /obj/item/tank/internals/emergency_oxygen/double;
-	mask_type = /obj/item/clothing/mask/gas/syndicate
-	},
-/turf/open/floor/iron/shuttle/exploration/blanktile,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/science)
 "Ru" = (
 /obj/effect/turf_decal/trimline/white/line{
 	dir = 8
@@ -25972,7 +25972,7 @@ DY
 DY
 DY
 dl
-Rt
+qw
 Fd
 fG
 rq
@@ -28727,7 +28727,7 @@ dQ
 Sl
 QZ
 hg
-Bg
+ch
 To
 De
 BV

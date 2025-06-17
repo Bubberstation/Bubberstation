@@ -334,7 +334,7 @@
 			visible_message(span_warning("[helper] tries to boop [src] on the nose, but [p_they()] move[p_s()] out of the way."))
 			return
 		else
-			playsound(src, 'modular_skyrat/modules/emotes/sound/emotes/Nose_boop.ogg', 50, 0)
+			playsound(src, 'modular_zubbers/sound/emotes/nose_boop.ogg', 50, 0)
 			if(HAS_TRAIT(src, TRAIT_SENSITIVESNOUT) && get_location_accessible(src, BODY_ZONE_PRECISE_MOUTH))
 				to_chat(src, span_warning("[helper] boops you on your sensitive nose, sending you to the ground!"))
 				src.Knockdown(20)
@@ -771,8 +771,5 @@
 		. |= SHOVE_CAN_KICK_SIDE
 	if(HAS_TRAIT(src, TRAIT_NO_SIDE_KICK)) // added as an extra check, just in case
 		. &= ~SHOVE_CAN_KICK_SIDE
-
-/mob/living/carbon/create_splatter(splatter_dir)
-	new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(src), splatter_dir, dna?.blood_type.get_color())
 
 #undef SHAKE_ANIMATION_OFFSET

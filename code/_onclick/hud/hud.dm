@@ -63,7 +63,6 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	var/atom/movable/screen/sleep_icon
 	var/atom/movable/screen/throw_icon
 	var/atom/movable/screen/resist_icon
-	var/atom/movable/screen/module_store_icon
 	var/atom/movable/screen/floor_change
 
 	var/list/static_inventory = list() //the screen objects which are static
@@ -252,7 +251,6 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	QDEL_NULL(listed_actions)
 	QDEL_LIST(floating_actions)
 
-	QDEL_NULL(module_store_icon)
 	QDEL_LIST(static_inventory)
 
 	// all already deleted by static inventory clear
@@ -458,12 +456,6 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 		return
 	var/mob/screenmob = viewmob || mymob
 	hidden_inventory_update(screenmob)
-
-/datum/hud/robot/show_hud(version = 0, mob/viewmob)
-	. = ..()
-	if(!.)
-		return
-	update_robot_modules_display()
 
 /* BUBBER EDIT REMOVAL - We use a different lobby hud
 /datum/hud/new_player/show_hud(version = 0, mob/viewmob)

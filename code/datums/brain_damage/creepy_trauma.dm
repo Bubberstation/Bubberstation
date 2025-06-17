@@ -23,6 +23,10 @@
 		if(!obsession)//we didn't find one
 			lose_text = ""
 			return FALSE
+	// BUBBER EDIT ADDITION BEGIN - Antag banned can't roll obsessed
+	if(is_banned_from(owner.ckey, list(ROLE_SYNDICATE, BAN_ANTAGONIST)))
+		return FALSE
+	// BUBBER EDIT ADDITION END - Antag banned can't roll obsessed
 	gain_text = span_warning("You hear a sickening, raspy voice in your head. It wants one small task of you...")
 	owner.mind.add_antag_datum(/datum/antagonist/obsessed)
 	antagonist = owner.mind.has_antag_datum(/datum/antagonist/obsessed)
