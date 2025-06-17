@@ -84,9 +84,9 @@
 #define SHEATH_MODES list(SHEATH_NONE, SHEATH_NORMAL, SHEATH_SLIT)
 
 #define BUTT_MIN_SIZE 1
-#define BUTT_MAX_SIZE 8
+#define BUTT_MAX_SIZE 4 //size of 8 available
 #define BELLY_MIN_SIZE 1
-#define BELLY_MAX_SIZE 10
+#define BELLY_MAX_SIZE 4 //size of 10 available
 
 #define MANDATORY_FEATURE_LIST list(\
 	"mcolor" = "#FFFFBB",\

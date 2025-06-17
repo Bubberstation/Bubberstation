@@ -102,11 +102,23 @@
 /datum/preference/toggle/erp/aphro
 	savefile_key = "aphro_pref"
 
+/datum/preference/toggle/erp/belly_enlargement
+	savefile_key = "belly_enlargement_pref"
+
+/datum/preference/toggle/erp/belly_shrinkage
+	savefile_key = "belly_shrinkage_pref"
+
 /datum/preference/toggle/erp/breast_enlargement
 	savefile_key = "breast_enlargement_pref"
 
 /datum/preference/toggle/erp/breast_shrinkage
 	savefile_key = "breast_shrinkage_pref"
+
+/datum/preference/toggle/erp/butt_enlargement
+	savefile_key = "butt_enlargement_pref"
+
+/datum/preference/toggle/erp/butt_shrinkage
+	savefile_key = "butt_shrinkage_pref"
 
 /datum/preference/toggle/erp/penis_enlargement
 	savefile_key = "penis_enlargement_pref"
