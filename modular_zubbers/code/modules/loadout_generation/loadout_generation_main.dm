@@ -1,19 +1,14 @@
 GLOBAL_LIST_INIT(loadout_blacklist,list())
 
-/proc/generate_loadout_list(desired_subtype,subtypes_only=TRUE) as /list
+/proc/generate_loadout_list(list/possible_items) as /list
 
 	. = list()
 
 	if(!length(GLOB.armor_by_type))
 		stack_trace("Loadout nonsense generated before armor stuff could initialize! Shit's fucked!")
-		return .
+		return
 
-	var/list/obj/item/found_types = typesof(desired_subtype)
-
-	if(subtypes_only)
-		found_types -= desired_subtype
-
-	for(var/obj/item/found_item as anything in found_types)
+	for(var/obj/item/found_item as anything in possible_items)
 
 		//Manually blacklisted.
 		if(length(GLOB.loadout_blacklist) && GLOB.loadout_blacklist[found_item])

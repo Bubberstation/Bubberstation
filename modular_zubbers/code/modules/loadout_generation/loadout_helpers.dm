@@ -1,4 +1,4 @@
-/loadout_list_to_datums(list/loadout_list)
+proc/loadout_list_to_datums(list/loadout_list) as /list
 
 	var/list/datums = list()
 
