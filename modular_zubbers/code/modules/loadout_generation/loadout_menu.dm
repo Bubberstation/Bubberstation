@@ -2,10 +2,10 @@
 
 	PRIVATE_PROC(TRUE)
 
-	var/path_to_use = text2path(params["path"])
+	var/obj/item/path_to_use = text2path(params["path"])
 
-	if(!ispath(interacted_item))
-		stack_trace("Invalid loadout item: [params["path"]]!")
+	if(!path_to_use)
+		stack_trace("Invalid path: [params["path"]]!")
 		return TRUE
 
 	var/datum/loadout_item/found_loadout_item = GLOB.loadout_item_path_to_datum[path_to_use]
