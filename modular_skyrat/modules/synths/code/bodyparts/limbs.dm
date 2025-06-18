@@ -113,6 +113,7 @@
 
 	wing_types = list(
 		/obj/item/organ/wings/functional/robotic,
+		/obj/item/organ/wings/functional/robotic/virtual
 	)
 
 /datum/design/synth_chest
