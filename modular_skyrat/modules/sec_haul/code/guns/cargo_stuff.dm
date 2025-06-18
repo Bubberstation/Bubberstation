@@ -116,16 +116,6 @@
 
 // RomFed Gun
 
-/datum/supply_pack/security/armory/cmg
-	name = "Romulus Technology CMG Assault Rifle Crate"
-	desc = "Two CMG-1, chambered in experimental steel flechette."
-	cost = CARGO_CRATE_VALUE * 20
-	contains = list(
-		/obj/item/gun/ballistic/automatic/rom_flech = 2,
-		/obj/item/ammo_box/magazine/caflechette = 2,
-	)
-	crate_name = "RomTech CMG-1 Crate"
-
 /datum/supply_pack/security/armory/rom_ceremonial_rifle
 	name = "Romulus Ceremonial Bolt Action Rifle Crate"
 	desc = "Contains Three Ceremonial Bolt Action Rifle in .40 , as well as ammo for it."
