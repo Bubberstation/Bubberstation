@@ -46,9 +46,9 @@ GLOBAL_LIST_EMPTY(dorms_areas)
 	if(station && !is_station_level(player_turf.z))
 		return TRUE
 
-	if(dorms && length(GLOB.dorms_areas))
-		var/area/player_area = player_turf?.loc
-		if(player_area && GLOB.dorms_areas[player_area])
+	if(player_turf && dorms && length(GLOB.dorms_areas))
+		var/area/player_area = player_turf.loc
+		if(GLOB.dorms_areas[player_area])
 			return TRUE
 
 	return FALSE

@@ -192,20 +192,25 @@ SUBSYSTEM_DEF(gamemode)
 		//Don't run any events if the shuttle is in transit in a non-admin no-recall state.
 		return
 
-	///Handle scheduled events
-	for(var/datum/scheduled_event/sch_event in scheduled_events)
-		if(world.time >= sch_event.start_time)
-			sch_event.try_fire()
-		else if(!sch_event.alerted_admins && world.time >= sch_event.start_time - 1 MINUTES)
-			///Alert admins 1 minute before running and allow them to cancel or refund the event, once again.
-			sch_event.alerted_admins = TRUE
-			message_admins("Scheduled Event: [sch_event.event] will run in [(sch_event.start_time - world.time) / 10] seconds. (<a href='byond://?src=[REF(sch_event)];action=cancel'>CANCEL</a>) (<a href='byond://?src=[REF(sch_event)];action=refund'>REFUND</a>)")
+	if(next_storyteller_process <= world.time && storyteller)
 
-	if(!storyteller_halted && next_storyteller_process <= world.time && storyteller)
 		// We update crew information here to adjust population scalling and event thresholds for the storyteller.
 		update_crew_infos()
-		next_storyteller_process = world.time + STORYTELLER_WAIT_TIME
-		storyteller.process(STORYTELLER_WAIT_TIME * 0.1)
+
+		//Process storyteller
+		if(!storyteller_halted)
+			next_storyteller_process = world.time + STORYTELLER_WAIT_TIME
+			storyteller.process(STORYTELLER_WAIT_TIME * 0.1)
+
+		///Handle scheduled events
+		for(var/datum/scheduled_event/sch_event in scheduled_events)
+			if(world.time >= sch_event.start_time)
+				sch_event.try_fire()
+			else if(!sch_event.alerted_admins && world.time >= sch_event.start_time - 1 MINUTES)
+				///Alert admins 1 minute before running and allow them to cancel or refund the event, once again.
+				sch_event.alerted_admins = TRUE
+				message_admins("Scheduled Event: [sch_event.event] will run in [(sch_event.start_time - world.time) / 10] seconds. (<a href='byond://?src=[REF(sch_event)];action=cancel'>CANCEL</a>) (<a href='byond://?src=[REF(sch_event)];action=refund'>REFUND</a>)")
+
 	// Reset the cache value to false
 	pop_data_cached = FALSE
 
@@ -419,13 +424,17 @@ SUBSYSTEM_DEF(gamemode)
 
 	for(var/mob/player_mob as anything in GLOB.alive_player_list)
 
-		if(!player_mob?.client?.is_afk()) //If afk
+		if(!player_mob || !player_mob.mind || !player_mob.client)
+			continue
+
+		if(player_mob.client.is_afk()) //If afk. Don't include.
 			continue
 
 		active_players++
 
-		if(!player_mob.mind?.assigned_role)
+		if(!player_mob.mind.assigned_role)
 			continue
+
 		var/datum/job/player_role = player_mob.mind.assigned_role
 
 		//Check if they're actually a crew job (and not something like an off-station ghost role).
