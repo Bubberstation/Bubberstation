@@ -117,8 +117,7 @@ export const ZubbersStorytellerRoundData = (props) => {
         <LabeledList.Item label="Active Players">
           {pop_data['active']} {'('}Head: {pop_data['head']}, Sec:{' '}
           {pop_data['sec']}, Eng: {pop_data['eng']}, Med: {pop_data['med']}, 
-          All: {pop_data['crew']}
-          {')'}
+          All: {pop_data['crew']}{')'}
         </LabeledList.Item>
         <LabeledList.Item
           label="Antag Cap"
