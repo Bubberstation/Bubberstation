@@ -19,7 +19,7 @@ GLOBAL_LIST_INIT(loadout_blacklist,list())
 		if(length(GLOB.loadout_blacklist) && GLOB.loadout_blacklist[found_item])
 			continue
 
-		if(!initial(found_item.name) || !initial(found_item.desc))
+		if(!initial(found_item.name) || !initial(found_item.desc) || !initial(found_item.icon) || !initial(found_item.icon_state))
 			continue
 
 		//Resistance Flags
@@ -53,7 +53,7 @@ GLOBAL_LIST_INIT(loadout_blacklist,list())
 				continue
 
 			//Armor Stuff
-			var/datum/armor/found_armor = initial(found_clothing.armor)
+			var/datum/armor/found_armor = initial(found_clothing.armor_type)
 			if(found_armor)
 				found_armor = GLOB.armor_by_type[found_armor]
 				//Bio, Acid, and Wounding are excluded from here since some science related items have immunity from this.
