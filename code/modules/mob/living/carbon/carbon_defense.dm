@@ -334,7 +334,7 @@
 			visible_message(span_warning("[helper] tries to boop [src] on the nose, but [p_they()] move[p_s()] out of the way."))
 			return
 		else
-			playsound(src, 'modular_skyrat/modules/emotes/sound/emotes/Nose_boop.ogg', 50, 0)
+			playsound(src, 'modular_zubbers/sound/emotes/nose_boop.ogg', 50, 0)
 			if(HAS_TRAIT(src, TRAIT_SENSITIVESNOUT) && get_location_accessible(src, BODY_ZONE_PRECISE_MOUTH))
 				to_chat(src, span_warning("[helper] boops you on your sensitive nose, sending you to the ground!"))
 				src.Knockdown(20)
