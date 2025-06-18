@@ -194,12 +194,13 @@ SUBSYSTEM_DEF(gamemode)
 
 	if(next_storyteller_process <= world.time && storyteller)
 
+		next_storyteller_process = world.time + STORYTELLER_WAIT_TIME
+
 		// We update crew information here to adjust population scalling and event thresholds for the storyteller.
 		update_crew_infos()
 
 		//Process storyteller
 		if(!storyteller_halted)
-			next_storyteller_process = world.time + STORYTELLER_WAIT_TIME
 			storyteller.process(STORYTELLER_WAIT_TIME * 0.1)
 
 		///Handle scheduled events
