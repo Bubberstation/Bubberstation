@@ -13,7 +13,6 @@
 			"icon" = "star",
 			"products" = list(
 				/obj/item/hairbrush = 3,
-				/obj/item/clothing/head/hair_tie/scrunchie = 3,
 				/obj/item/cigarette = 5,
 				/obj/item/attachable_soulcatcher = 5,
 			),

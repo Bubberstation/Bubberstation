@@ -29,11 +29,6 @@
 	icon_state = "none"
 
 /datum/sprite_accessory/tail_spines/is_hidden(mob/living/carbon/human/wearer)
-	var/list/used_in_turf = list("tail")
-	if(wearer.owned_turf?.name in used_in_turf)
-	// Emote exception
-		return TRUE
-
 	if(!wearer.w_uniform && !wearer.wear_suit)
 		return FALSE
 	if("spines" in wearer.try_hide_mutant_parts)

@@ -1252,9 +1252,6 @@
 		// Resist chance divided by the value imparted by your grab state. It isn't until you reach neckgrab that you gain a penalty to escaping a grab.
 		var/resist_chance = clamp(BASE_GRAB_RESIST_CHANCE / effective_grab_state, 0, 100)
 		//SKYRAT EDIT ADDITION
-		// Akula grab resist
-		if(HAS_TRAIT(src, TRAIT_SLIPPERY))
-			resist_chance += AKULA_GRAB_RESIST_BONUS
 		// Oversized grab resist
 		if(HAS_TRAIT(src, TRAIT_OVERSIZED))
 			resist_chance += OVERSIZED_GRAB_RESIST_BONUS
@@ -1263,17 +1260,6 @@
 		//SKYRAT EDIT END
 
 		if(prob(resist_chance))
-			//SKYRAT EDIT ADDITION
-			// Akula break-out flavor
-			if(HAS_TRAIT(src, TRAIT_SLIPPERY))
-				visible_message(span_cyan("[src] slips free of [pulledby]'s grip!"), \
-								span_cyan("You slip free of [pulledby]'s grip!"), null, null, pulledby)
-				to_chat(pulledby, span_cyan("[src] slips free of your grip!"))
-				playsound(loc, 'sound/misc/slip.ogg', 50, TRUE, -1)
-				log_combat(pulledby, src, "broke grab")
-				pulledby.stop_pulling()
-				return FALSE
-			//SKYRAT EDIT END
 			visible_message(span_danger("[src] breaks free of [pulledby]'s grip!"), \
 							span_danger("You break free of [pulledby]'s grip!"), null, null, pulledby)
 			to_chat(pulledby, span_warning("[src] breaks free of your grip!"))

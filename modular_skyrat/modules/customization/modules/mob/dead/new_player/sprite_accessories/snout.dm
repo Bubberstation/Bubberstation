@@ -72,9 +72,6 @@
 /datum/sprite_accessory/snouts/mammal/tajaran
 	recommended_species = list(SPECIES_MAMMAL, SPECIES_TAJARAN, SPECIES_HUMANOID)
 
-/datum/sprite_accessory/snouts/mammal/akula
-	recommended_species = list(SPECIES_MAMMAL, SPECIES_AKULA, SPECIES_AQUATIC, SPECIES_HUMANOID)
-
 /datum/sprite_accessory/snouts/mammal/bird
 	name = "Beak"
 	icon_state = "bird"
@@ -422,12 +419,6 @@
 /datum/sprite_accessory/snouts/mammal/stubby
 	name = "Stubby"
 	icon_state = "stubby"
-	color_src = USE_MATRIXED_COLORS
-	flags_for_organ = NONE
-
-/datum/sprite_accessory/snouts/mammal/leporid
-	name = "Leporid"
-	icon_state = "leporid"
 	color_src = USE_MATRIXED_COLORS
 	flags_for_organ = NONE
 

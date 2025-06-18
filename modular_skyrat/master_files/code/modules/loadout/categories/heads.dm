@@ -134,18 +134,6 @@
 *	MISC
 */
 
-/datum/loadout_item/head/hair_tie
-	name = "Hair Tie"
-	item_path = /obj/item/clothing/head/hair_tie
-
-/datum/loadout_item/head/hair_tie_scrunchie
-	name = "Scrunchie"
-	item_path = /obj/item/clothing/head/hair_tie/scrunchie
-
-/datum/loadout_item/head/hair_tie_plastic_beads
-	name = "Colorful Hair tie"
-	item_path = /obj/item/clothing/head/hair_tie/plastic_beads
-
 /datum/loadout_item/head/standalone_hood
 	name = "Recolorable Standalone Hood"
 	item_path = /obj/item/clothing/head/hooded/standalone_hood
@@ -269,10 +257,6 @@
 /datum/loadout_item/head/witch
 	name = "Witch Hat"
 	item_path = /obj/item/clothing/head/wizard/marisa/fake
-
-/datum/loadout_item/head/akula_helmet
-	name = "Shoredress Helmet"
-	item_path = /obj/item/clothing/head/helmet/space/akula_wetsuit
 
 /*
 *	MISC
@@ -518,18 +502,6 @@
 /datum/loadout_item/head/jesteralt
 	name = "Jester hat (Alt)"
 	item_path = /obj/item/clothing/head/costume/jesteralt
-
-/datum/loadout_item/head/azulea_oldblood
-	name = "Oldblood's Royal cap"
-	item_path = /obj/item/clothing/head/hats/caphat/azulean/old_blood
-	restricted_roles = list(JOB_CAPTAIN, JOB_NT_REP)
-	restricted_species = list(SPECIES_AKULA)
-
-/datum/loadout_item/head/azulea_upstart
-	name = "Upstart's Noble cap"
-	item_path = /obj/item/clothing/head/hats/caphat/azulean/upstart
-	restricted_roles = list(JOB_CAPTAIN, JOB_NT_REP)
-	restricted_species = list(SPECIES_AKULA)
 
 /*
 *	JOB BERETS

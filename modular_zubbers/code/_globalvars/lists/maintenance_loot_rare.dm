@@ -165,10 +165,6 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items - TODO: FIND THE NE
 		/obj/item/storage/medkit/toxin = 25
 	) = 50,
 	/obj/item/crucifix = 5,
-	list(
-		/obj/item/hairbrush/switchblade = 5,
-		/obj/item/hairbrush/tactical = 1
-	) = 5,
 	/obj/item/geneshears = 5,
 	/obj/item/sign/flag/usa = 5,
 	/obj/item/spess_knife = 5,

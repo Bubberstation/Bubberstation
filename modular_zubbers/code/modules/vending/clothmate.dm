@@ -84,7 +84,6 @@
 			"name" = "Special",
 			"icon" = "star",
 			"products" = list(
-				/obj/item/clothing/mask/animal/wolf = 5,
 				/obj/item/clothing/head/drake_skull = 5,
 			)
 		)

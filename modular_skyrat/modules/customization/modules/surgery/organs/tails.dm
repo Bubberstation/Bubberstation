@@ -21,10 +21,6 @@
 	var/mob/living/carbon/human/wearer = bodypart_owner.owner
 	if(!wearer)
 		return TRUE
-	var/list/used_in_turf = list("tail")
-	// Emote exception
-	if(wearer.owned_turf?.name in used_in_turf)
-		return FALSE
 
 	if(!wearer.w_uniform && !wearer.wear_suit)
 		return ..()

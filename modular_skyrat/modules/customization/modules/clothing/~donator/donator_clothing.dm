@@ -404,42 +404,6 @@
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 
-// Donation reward for ChillyLobster
-
-/obj/item/clothing/under/wetsuit_norm
-	name = "fitted wetsuit"
-	desc = "A fitted wetsuit for trapping in heat and water. Protects against outside elements ever-so-slightly."
-	icon_state = "wetsuit"
-	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
-	armor_type = /datum/armor/clothing_under/wetsuit
-	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	can_adjust = FALSE
-	female_sprite_flags = NO_FEMALE_UNIFORM
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
-
-// Donation reward for TheOOZ
-/obj/item/clothing/mask/animal/wolf
-	name = "wolf mask"
-	desc = "A dark mask in the shape of a wolf's head."
-	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/masks.dmi'
-	icon_state = "kindle"
-	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/mask.dmi'
-	inhand_icon_state = "gasmask_captain"
-	animal_type = "wolf"
-	unique_death = 'modular_skyrat/master_files/sound/effects/wolfhead_curse.ogg'
-	visor_flags_inv = HIDEFACIALHAIR | HIDESNOUT
-	flags_cover = MASKCOVERSMOUTH | MASKCOVERSEYES | PEPPERPROOF
-	visor_flags_cover = MASKCOVERSMOUTH | MASKCOVERSEYES | PEPPERPROOF
-	clothing_flags = VOICEBOX_DISABLED | MASKINTERNALS | BLOCK_GAS_SMOKE_EFFECT | GAS_FILTERING
-	alternate_worn_layer = ABOVE_BODY_FRONT_HEAD_LAYER
-	use_radio_beeps_tts = TRUE
-
-/obj/item/clothing/mask/animal/wolf/Initialize(mapload)
-	. = ..()
-	var/obj/item/clothing/mask/gas/sechailer/sechailer_type = /obj/item/clothing/mask/gas/sechailer
-	voice_filter = initial(sechailer_type.voice_filter)
-
 // Donation reward for Random516
 /obj/item/clothing/head/drake_skull
 	name = "skull of an ashdrake"

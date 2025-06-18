@@ -9,11 +9,6 @@
 	var/fluffy = FALSE
 
 /datum/sprite_accessory/tails/is_hidden(mob/living/carbon/human/wearer)
-	var/list/used_in_turf = list("tail")
-	if(wearer.owned_turf?.name in used_in_turf)
-	// Emote exception
-		return TRUE
-
 	if(!wearer.w_uniform && !wearer.wear_suit)
 		return FALSE
 	if(key in wearer.try_hide_mutant_parts)
@@ -84,9 +79,6 @@
 /datum/sprite_accessory/tails/mammal/wagging
 	organ_type = /obj/item/organ/tail/fluffy
 	flags_for_organ = SPRITE_ACCESSORY_WAG_ABLE
-
-/datum/sprite_accessory/tails/mammal/wagging/akula
-	recommended_species = list(SPECIES_MAMMAL, SPECIES_HUMAN, SPECIES_SYNTH, SPECIES_AKULA, SPECIES_AQUATIC, SPECIES_HUMANOID, SPECIES_GHOUL)
 
 /datum/sprite_accessory/tails/mammal/wagging/tajaran
 	recommended_species = list(SPECIES_MAMMAL, SPECIES_HUMAN, SPECIES_SYNTH, SPECIES_TAJARAN, SPECIES_HUMANOID, SPECIES_GHOUL)
@@ -259,10 +251,6 @@
 /datum/sprite_accessory/tails/mammal/wagging/murid
 	name = "Murid"
 	icon_state = "murid"
-
-/datum/sprite_accessory/tails/mammal/wagging/murid_two
-	name = "Murid II"
-	icon_state = "murid_two"
 
 /datum/sprite_accessory/tails/mammal/wagging/orca
 	name = "Orca"

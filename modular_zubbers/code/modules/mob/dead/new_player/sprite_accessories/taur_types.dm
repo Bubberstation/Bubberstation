@@ -58,11 +58,6 @@
 					if (worn_suit.worn_icon_taur_hoof)
 						return TRUE
 
-	if(target.owned_turf)
-		var/list/used_in_turf = list("tail")
-		if(target.owned_turf.name in used_in_turf)
-			return TRUE
-
 	return FALSE
 
 //Subtype with no loaf sprite needs to be false

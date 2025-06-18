@@ -9,7 +9,6 @@
 #define isroundstartslime(A) (is_species(A,/datum/species/jelly/roundstartslime))
 #define istajaran(A) (is_species(A,/datum/species/tajaran))
 #define isghoul(A) (is_species(A,/datum/species/ghoul))
-#define isakula(A) (is_species(A,/datum/species/akula))
 #define isskrell(A) (is_species(A,/datum/species/skell)) //SKRELL GANG SKRELL GANG
 #define isunathi(A) (is_species(A,/datum/species/unathi))
 #define isvulpkanin(A) (is_species(A,/datum/species/vulpkanin))

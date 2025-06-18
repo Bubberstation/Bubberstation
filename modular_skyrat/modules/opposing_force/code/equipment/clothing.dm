@@ -192,22 +192,6 @@
 	new /obj/item/radio/headset/syndicate/alt(src)
 	new /obj/item/card/id/advanced/chameleon(src)
 
-/datum/opposing_force_equipment/clothing_pirate/akula
-	name = "Azulean Boarder"
-	description = "Advanced Azulean pirate gear, akin to riot-armour yet space-proofed. Never take on an Azulean boarder in zero-gravity."
-	admin_note = "Uniquely spaceproofed."
-	item_type = /obj/item/storage/backpack/duffelbag/syndie/akula
-
-/obj/item/storage/backpack/duffelbag/syndie/akula/PopulateContents()
-	new /obj/item/clothing/under/skinsuit(src)
-	new /obj/item/clothing/suit/armor/riot/skinsuit_armor(src)
-	new /obj/item/clothing/head/helmet/space/skinsuit_helmet(src)
-	new /obj/item/clothing/gloves/tackler/combat(src) //tackles in space
-	new /obj/item/clothing/shoes/combat(src)
-	new /obj/item/storage/belt/military(src)
-	new /obj/item/radio/headset/syndicate/alt(src)
-	new /obj/item/card/id/advanced/chameleon(src)
-
 /datum/opposing_force_equipment/clothing_pirate/nri_soldier
 	name = "NRI Soldier"
 	description = "The station failed the inspection, now they have to deal with you."

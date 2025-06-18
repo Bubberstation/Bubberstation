@@ -22,7 +22,6 @@
 				/obj/item/clothing/gloves/longrubbergloves = 3,
 				/obj/item/clothing/suit/leatherapron = 3,
 				/obj/item/clothing/head/avipilot = 3,
-				/obj/item/clothing/mask/animal/wolf = 3,
 				/obj/item/clothing/head/drake_skull = 3,
 				/obj/item/clothing/suit/toggle/rainbowcoat = 3,
 				/obj/item/clothing/head/recruiter_cap = 3,

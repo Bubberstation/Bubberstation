@@ -109,7 +109,6 @@
 				/obj/item/poster/korpstech = 3,
 				/obj/item/coin/donator/marsoc = 3,
 				/obj/item/donator/transponder = 3,
-				/obj/item/hairbrush/switchblade = 3,
 				/obj/item/holosign_creator/hardlight_wheelchair = 3,
 				/obj/item/instrument/piano_synth/headphones/catear_headphone = 3,
 				/obj/item/clothing/accessory/pocketwatch = 3,

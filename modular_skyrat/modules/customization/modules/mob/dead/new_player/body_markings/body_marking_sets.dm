@@ -4,7 +4,7 @@
 	///List of the body markings in this set
 	var/body_marking_list
 	///Which species is this marking recommended to. Important for randomisations.
-	var/recommended_species = list(SPECIES_MAMMAL, SPECIES_TAJARAN, SPECIES_VULP, SPECIES_AQUATIC, SPECIES_AKULA)
+	var/recommended_species = list(SPECIES_MAMMAL, SPECIES_TAJARAN, SPECIES_VULP, SPECIES_AQUATIC)
 
 /datum/body_marking_set/none
 	name = SPRITE_ACCESSORY_NONE
@@ -194,14 +194,6 @@
 /datum/body_marking_set/plain
 	name = "Plain"
 	body_marking_list = list("Plain")
-
-//AKULA MARKINGS
-/datum/body_marking_set/akula
-	recommended_species = list(SPECIES_AKULA)
-
-/datum/body_marking_set/akula/akula
-	name = "Akula"
-	body_marking_list = list("Akula", "Akula Highlight")
 
 //VOX MARKINGS
 /datum/body_marking_set/vox

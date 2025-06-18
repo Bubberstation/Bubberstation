@@ -419,10 +419,6 @@
 	name = "Medium Braid"
 	icon_state = "hair_mediumbraid"
 
-/datum/sprite_accessory/hair/skyrat/long_over_eye_alt
-	name = "Long Over Eye Alt"
-	icon_state = "hair_longovereye_alt"
-
 /datum/sprite_accessory/hair/skyrat/gentle_bun
 	name = "Gentle Bun"
 	icon_state = "hair_gentle_bun"

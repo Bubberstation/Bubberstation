@@ -1,7 +1,6 @@
 /datum/job/persistence // Job Define
 	title = ROLE_PERSISTENCE
 	policy_index = ROLE_PERSISTENCE
-	akula_outfit = /datum/outfit/akula
 	antagonist_restricted = TRUE
 
 // Persistence mining rig Ghost Spawners

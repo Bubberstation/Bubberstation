@@ -115,7 +115,6 @@
 #define AROUSAL_FULL 3
 
 //Species IDs. If you wanna look at tg's species ID defines, go look in the *other* DNA.dm file
-#define SPECIES_AKULA "akula"
 #define SPECIES_AQUATIC "aquatic"
 #define SPECIES_DWARF "dwarf"
 #define SPECIES_HUMANOID "humanoid"

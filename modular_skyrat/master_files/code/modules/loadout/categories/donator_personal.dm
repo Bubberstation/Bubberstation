@@ -171,16 +171,6 @@
 	item_path = /obj/item/clothing/suit/jacket/hydrogenrobes
 //	ckeywhitelist = list("ChillyLobster")
 
-/datum/loadout_item/suit/wetsuit_norm
-	name = "Fitted Wetsuit"
-	item_path = /obj/item/clothing/under/wetsuit_norm
-	ckeywhitelist = list("ChillyLobster")
-
-/datum/loadout_item/mask/wolf_mask
-	name = "Wolf mask"
-	item_path = /obj/item/clothing/mask/animal/wolf
-	//ckeywhitelist = list("theooz")
-
 /datum/loadout_item/head/drake_skull
 	name = "Skull of an ashdrake"
 	item_path = /obj/item/clothing/head/drake_skull
@@ -703,11 +693,6 @@
 /datum/loadout_item/gloves/lt3_gloves
 	name = "Charcoal Fingerless Gloves"
 	item_path = /obj/item/clothing/gloves/skyy
-
-/datum/loadout_item/toys/switchcomb
-	name = "Switchblade Comb"
-	item_path = /obj/item/hairbrush/switchblade
-	//ckeywhitelist = list("stonetear")
 
 /datum/loadout_item/suit/colorblockhoodie
 	name = "Color-Block Hoodie"
