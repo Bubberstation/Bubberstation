@@ -69,18 +69,18 @@
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_BUTT]
 
 /obj/item/organ/genital/anus/get_sprite_size_string()
-    . = "[genital_type]_[floor(genital_size)]"
-    if(uses_skintones)
-        . += "_s"
+	. = "[genital_type]_[floor(genital_size)]"
+	if(uses_skintones)
+		. += "_s"
 
 /obj/item/organ/genital/anus/build_from_dna(datum/dna/DNA, associated_key)
-    set_size(DNA.features["butt_size"]) // yes
-    uses_skin_color = DNA.features["anus_uses_skincolor"]
-
-    return ..()
+	set_size(DNA.features["butt_size"]) // yes
+	uses_skin_color = DNA.features["anus_uses_skincolor"]
+	
+	return ..()
 
 /datum/bodypart_overlay/mutant/genital/anus
-    layers = EXTERNAL_FRONT
+	layers = EXTERNAL_FRONT
 
 //The Tummy.
 
