@@ -83,14 +83,14 @@
 	genetic = TRUE
 
 /datum/sprite_accessory/genital/butt/none
-    icon_state = "none"
-    name = SPRITE_ACCESSORY_NONE
-    factual = FALSE
-    color_src = null
+	icon_state = "none"
+	name = SPRITE_ACCESSORY_NONE
+	factual = FALSE
+	color_src = null
 
 /datum/sprite_accessory/genital/butt/pair
-    icon_state = "pair"
-    name = "Pair" //a pair of buns i guess
+	icon_state = "pair"
+	name = "Pair" //a pair of buns i guess
 
 /datum/sprite_accessory/genital/anus/alt
 	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/anus.dmi'
