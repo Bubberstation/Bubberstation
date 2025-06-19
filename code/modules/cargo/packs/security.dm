@@ -255,7 +255,7 @@
 	contains = list(/obj/item/gun/energy/disabler/smg = 3)
 	crate_name = "disabler smg crate"
 	crate_type = /obj/structure/closet/crate/secure/plasma
-/* //BUBBER REMOVAL
+
 /datum/supply_pack/security/armory/battle_rifle
 	name = "NT BR-38 Crate"
 	desc = "An experimental energy-based ballistic battle rifle. Only available to \
@@ -267,7 +267,7 @@
 		/obj/item/ammo_box/magazine/m38 = 4,
 	)
 	crate_name = "battle rifle crate"
-*/ //END BUBBER REMOVAL
+
 /datum/supply_pack/security/armory/br_mag
 	name = "NT BR-38 Magazine Crate"
 	desc = "Six .38 magazines, able to fit into the NT BR-38. Contains \
