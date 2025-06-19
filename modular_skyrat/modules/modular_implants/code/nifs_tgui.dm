@@ -77,6 +77,9 @@
 	data["blood_drain"] = blood_drain
 	data["minimum_blood_level"] = minimum_blood_level
 
+	var/datum/component/nif_examine/nif_examine = linked_mob.GetComponent(/datum/component/nif_examine)
+	data["nif_examine_text"] = nif_examine?.nif_examine_text
+
 	//Durability Variables.
 	data["durability"] = durability
 

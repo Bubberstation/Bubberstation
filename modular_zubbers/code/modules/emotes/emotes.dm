@@ -6,7 +6,7 @@
 	message = "chirps!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
-	sound = 'modular_zubbers/code/modules/emotes/sound/voice/chirp.ogg'
+	sound = 'modular_zubbers/sound/voice/chirp.ogg'
 
 /datum/emote/living/caw
 	key = "caw"

@@ -65,7 +65,7 @@
 
 /// Generic proc that is called when the projectile should 'detonate', being either on impact or when the range runs out
 /obj/projectile/bullet/c980grenade/proc/fuse_activation(atom/target)
-	playsound(src, 'modular_skyrat/modules/modular_weapons/sounds/grenade_burst.ogg', 50, TRUE, -3)
+	playsound(src, 'modular_zubbers/sound/weapons/grenade_burst.ogg', 50, TRUE, -3)
 	do_sparks(3, FALSE, src)
 
 
@@ -101,7 +101,7 @@
 
 
 /obj/projectile/bullet/c980grenade/smoke/fuse_activation(atom/target)
-	playsound(src, 'modular_skyrat/modules/modular_weapons/sounds/grenade_burst.ogg', 50, TRUE, -3)
+	playsound(src, 'modular_zubbers/sound/weapons/grenade_burst.ogg', 50, TRUE, -3)
 	playsound(src, 'sound/effects/smoke.ogg', 50, TRUE, -3)
 	var/datum/effect_system/fluid_spread/smoke/bad/smoke = new
 	smoke.set_up(GRENADE_SMOKE_RANGE, holder = src, location = src)
@@ -146,7 +146,7 @@
 	shrapnel_maker.detonate()
 	qdel(shrapnel_maker)
 
-	playsound(src, 'modular_skyrat/modules/modular_weapons/sounds/grenade_burst.ogg', 50, TRUE, -3)
+	playsound(src, 'modular_zubbers/sound/weapons/grenade_burst.ogg', 50, TRUE, -3)
 
 
 /obj/item/ammo_box/c980grenade/shrapnel
@@ -237,7 +237,7 @@
 	name = ".980 Tydhouer tear gas grenade"
 
 /obj/projectile/bullet/c980grenade/riot/fuse_activation(atom/target)
-	playsound(src, 'modular_skyrat/modules/modular_weapons/sounds/grenade_burst.ogg', 50, TRUE, -3)
+	playsound(src, 'modular_zubbers/sound/weapons/grenade_burst.ogg', 50, TRUE, -3)
 	playsound(src, 'sound/effects/smoke.ogg', 50, TRUE, -3)
 	var/datum/effect_system/fluid_spread/smoke/chem/smoke = new()
 	smoke.chemholder.add_reagent(/datum/reagent/consumable/condensedcapsaicin, 10)

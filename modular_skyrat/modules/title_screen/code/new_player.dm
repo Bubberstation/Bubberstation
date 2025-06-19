@@ -1,5 +1,5 @@
-/// BYOND timestamp corresponding to deadline (Sept. 1, 2025)
-#define DEADLINE_TIMESTAMP 8100000000
+/// BYOND timestamp corresponding to deadline (Jun. 16, 2025)
+#define DEADLINE_TIMESTAMP 8033472000
 
 /mob/dead/new_player
 	/// Title screen is ready to receive signals

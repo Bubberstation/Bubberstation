@@ -113,6 +113,13 @@
 	ammo_type = /obj/item/ammo_casing/c10mm/hp
 	ammo_band_color = "#df00ae"
 
+/obj/item/ammo_box/c10mm/speedloader/ihdf
+
+	name = "speed loader (10mm Auto IHDF)"
+	desc = "Designed to quickly reload revolvers."
+	ammo_type = /obj/item/ammo_casing/c10mm/ihdf
+	ammo_band_color = COLOR_AMMO_RUBBER
+
 /obj/item/ammo_box/magazine/firefly
 	name = "pistol magazine (.117 Incapacitator)"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/nanotrasen_system_inc/ammo.dmi'

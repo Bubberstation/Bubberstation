@@ -139,7 +139,6 @@ Creating a chem with a low purity will make you permanently fall in love with so
 	var/enthrall_name
 	var/mob/living/enthrall_mob
 	ph = 10
-	chemical_flags = REAGENT_DONOTSPLIT //Procs on_mob_add when merging into a human
 
 /datum/reagent/mkultra/on_new(list/data)
 	. = ..()

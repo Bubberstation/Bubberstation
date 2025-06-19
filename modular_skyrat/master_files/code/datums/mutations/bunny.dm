@@ -1,4 +1,4 @@
-/datum/mutation/human/strong_legs
+/datum/mutation/strong_legs
 	name = "Strong Legs"
 	desc = "Strengtens the calves of the subject, allowing them to leap across gaps."
 	quality = POSITIVE
@@ -8,7 +8,7 @@
 	power_path = /datum/action/cooldown/mob_cooldown/leap
 	instability = 25
 
-/datum/mutation/human/strong_legs/setup()
+/datum/mutation/strong_legs/setup()
 	. = ..()
 	var/datum/action/cooldown/mob_cooldown/leap/ability = .
 	if(!istype(ability)) // null or invalid
@@ -100,4 +100,4 @@
 /obj/item/dnainjector/strong_legs
 	name = "\improper DNA injector (Strong Legs)"
 	desc = "Makes you leap like a bunny."
-	add_mutations = list(/datum/mutation/human/strong_legs)
+	add_mutations = list(/datum/mutation/strong_legs)

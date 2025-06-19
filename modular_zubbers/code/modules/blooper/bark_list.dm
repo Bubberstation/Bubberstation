@@ -87,7 +87,7 @@
 	name = "Chirp"
 	id = "chirp"
 	allow_random = TRUE
-	soundpath = 'modular_zubbers/code/modules/blooper/voice/bloopers/chirp.ogg'
+	soundpath = 'modular_zubbers/sound/voice/chirp.ogg'
 
 /datum/blooper/caw
 	name = "Caw"

@@ -754,12 +754,6 @@
 	item_path = /obj/item/instrument/piano_synth/headphones/catear_headphone
 	//ckeywhitelist = list("dtfe")
 
-/datum/loadout_item/neck/trenchcoat
-	name = "Graceful Trenchcoat"
-	item_path = /obj/item/clothing/neck/trenchcoat
-	ckeywhitelist = list("Smol42", "Awers855")
-	can_be_reskinned = TRUE
-
 /datum/loadout_item/uniform/old_qm_jumpskirt
 	name = "Old Quartermaster's Jumpskirt"
 	item_path = /obj/item/clothing/under/rank/cargo/qm/skirt/old

@@ -6,4 +6,4 @@
 	desc = "Kinda like that rich golfer, but it's actually blood!"
 	icon = 'modular_zubbers/icons/obj/drinks/soda.dmi'
 	icon_state = "blood_tea"
-	list_reagents = list(/datum/reagent/blood = 25, /datum/reagent/consumable/ethanol/bloodshot = 5)
+	list_reagents = list(/datum/reagent/consumable/icetea/blood_tea = 25, /datum/reagent/consumable/ethanol/bloodshot = 5)

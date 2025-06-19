@@ -49,7 +49,7 @@
 
 /datum/looping_sound/core_heartbeat
 	mid_length = 3 SECONDS
-	mid_sounds = list('modular_skyrat/master_files/sound/effects/heart_beat_loop3.ogg' = 1)
+	mid_sounds = list('modular_zubbers/sound/effects/heart_beat_loop3.ogg' = 1)
 	volume = 20
 
 /**

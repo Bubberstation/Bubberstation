@@ -9,8 +9,6 @@
 	design_ids = list(
 		"solgrenade_extmag",
 		"sol35_shortextmag",
-		"ca_flech",
-		"ca_flechmagnesium",
 		"s12g_slug",
 		"s12c_antitide",
 		"s12g_buckshot"
@@ -62,7 +60,6 @@
 	design_ids += "s12g_hornet"
 	design_ids += "s12g_br"
 	design_ids += "m9mm_mag_ihdf"
-	design_ids += "ca_flechballpoint"
 	design_ids += "m9mm_mag"
 	design_ids += "c10mm_rincin"
 	design_ids += "s12g_antitide"
@@ -70,7 +67,6 @@
 
 /datum/techweb_node/exotic_ammo/New()
 	design_ids += "s12g_incinslug"
-	design_ids += "ca_flechripper"
 	design_ids += "c10mm_rhp"
 	design_ids += "c10mm_rap"
 	. = ..()

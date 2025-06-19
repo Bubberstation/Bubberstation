@@ -790,8 +790,20 @@
 /// Set the initial color of the eyes on insert to be the mob's previous eye color.
 /obj/item/organ/eyes/robotic/glow/on_mob_insert(mob/living/carbon/eye_recipient, special = FALSE, movement_flags)
 	. = ..()
-	left_eye_color_string = eye_color_left
-	right_eye_color_string = eye_color_right
+	//BUBBER EDIT CHANGE BEGIN
+	//left_eye_color_string = eye_color_left
+	//right_eye_color_string = eye_color_right
+	if (ishuman(eye_recipient))
+		var/mob/living/carbon/human/H = eye_recipient
+		left_eye_color_string = H.eye_color_left
+		right_eye_color_string = H.eye_color_right
+		light_color_string = H.eye_color_left
+	else
+		left_eye_color_string = eye_color_left
+		right_eye_color_string = eye_color_right
+		light_color_string = eye_color_left
+	eye.set_light_color(light_color_string)
+	//BUBBER EDIT CHANGE END
 	update_mob_eye_color(eye_recipient)
 	deactivate(close_ui = TRUE)
 	eye.forceMove(eye_recipient)

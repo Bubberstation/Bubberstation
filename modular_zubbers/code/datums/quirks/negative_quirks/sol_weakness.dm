@@ -14,9 +14,14 @@
 		They will have to hide in a coffin or a closet during the day, or risk burning to a crisp."
 	value = -4
 	hardcore_value = 6
-	species_whitelist = list(SPECIES_HEMOPHAGE)
 	quirk_flags = QUIRK_HIDE_FROM_SCAN | QUIRK_HUMAN_ONLY
+	species_whitelist = list(SPECIES_HEMOPHAGE)
 	COOLDOWN_DECLARE(sun_burn)
+
+/datum/quirk/sol_weakness/add_to_holder(mob/living/new_holder, quirk_transfer = FALSE, client/client_source, unique = TRUE)
+	if(IS_BLOODSUCKER(new_holder))
+		return FALSE
+	return ..()
 
 /datum/quirk/sol_weakness/add()
 	RegisterSignal(quirk_holder, COMSIG_MOB_HEMO_BLOOD_REGEN_TICK, PROC_REF(on_blood_healing))
@@ -29,12 +34,6 @@
 	UnregisterSignal(quirk_holder, COMSIG_MOB_HEMO_BLOOD_REGEN_TICK)
 	SSsunlight.remove_sun_sufferer(quirk_holder)
 	UnregisterSignal(SSsunlight, list(COMSIG_SOL_RISE_TICK, COMSIG_SOL_WARNING_GIVEN))
-
-/datum/quirk/sol_weakness/can_add(mob/target)
-	. = ..()
-	if(!.)
-		return
-	return !IS_BLOODSUCKER(target)
 
 /datum/quirk/sol_weakness/proc/on_blood_healing(mob/owner, seconds_between_ticks, datum/status_effect/blood_regen_active/effect)
 	if(effect && in_coffin())

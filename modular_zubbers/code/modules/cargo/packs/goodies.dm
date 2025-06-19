@@ -116,3 +116,10 @@
 	desc = "Contains a treat for your loving companion that'll make them spaceworthy."
 	cost = PAYCHECK_CREW * 5
 	contains = list(/obj/item/pet_food/pet_space_treat)
+
+/datum/supply_pack/goody/rope_implant
+	name = "Climbing Hook Implant"
+	desc = "A specialized climbing hook implant for the vertically challenged."
+	cost = PAYCHECK_CREW * 12
+	contains = list(/obj/item/organ/cyberimp/arm/toolkit/rope)
+
