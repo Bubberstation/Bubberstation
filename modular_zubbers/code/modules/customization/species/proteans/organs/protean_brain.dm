@@ -10,7 +10,7 @@
 
 /obj/item/organ/brain/protean
 	name = "protean core"
-	desc = "An advanced positronic brain, typically found in the core of a protean"
+	desc = "An advanced positronic brain, typically found in the core of a protean."
 	icon = PROTEAN_ORGAN_SPRITE
 	icon_state = "posi1"
 	zone = BODY_ZONE_CHEST
@@ -88,6 +88,7 @@
 	if(!forced)
 		if(!do_after(owner, 5 SECONDS))
 			return
+	owner.visible_message(span_warning("[owner] retreats into [owner.p_their()] control unit!"))
 	owner.extinguish_mob()
 	var/obj/item/mod/control/pre_equipped/protean/suit = protean.species_modsuit
 	owner.invisibility = 101
@@ -128,6 +129,7 @@
 	owner.SetStun(0)
 	owner.remove_traits(TRANSFORM_TRAITS, PROTEAN_TRAIT)
 	owner.apply_status_effect(/datum/status_effect/protean_low_power_mode/reform)
+	owner.visible_message(span_warning("[owner] reforms from [owner.p_their()] control unit!"))
 	if(!HAS_TRAIT(suit, TRAIT_NODROP))
 		ADD_TRAIT(suit, TRAIT_NODROP, "protean")
 
