@@ -85,12 +85,12 @@
 	var/datum/species/protean/protean = owner.dna?.species
 	if(!istype(protean) || owner.loc == protean.species_modsuit)
 		return
+	var/obj/item/mod/control/pre_equipped/protean/suit = protean.species_modsuit
 	if(!forced)
 		if(!do_after(owner, 5 SECONDS))
 			return
-	owner.visible_message(span_warning("[owner] retreats into [owner.p_their()] control unit!"))
+	owner.visible_message(span_warning("[owner] retreats into [suit]!"))
 	owner.extinguish_mob()
-	var/obj/item/mod/control/pre_equipped/protean/suit = protean.species_modsuit
 	owner.invisibility = 101
 	new /obj/effect/temp_visual/protean_to_suit(owner.loc, owner.dir)
 	owner.Stun(INFINITY, TRUE)
@@ -129,7 +129,7 @@
 	owner.SetStun(0)
 	owner.remove_traits(TRANSFORM_TRAITS, PROTEAN_TRAIT)
 	owner.apply_status_effect(/datum/status_effect/protean_low_power_mode/reform)
-	owner.visible_message(span_warning("[owner] reforms from [owner.p_their()] control unit!"))
+	owner.visible_message(span_warning("[owner] reforms from [suit]!"))
 	if(!HAS_TRAIT(suit, TRAIT_NODROP))
 		ADD_TRAIT(suit, TRAIT_NODROP, "protean")
 
