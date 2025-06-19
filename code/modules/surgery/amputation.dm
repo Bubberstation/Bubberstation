@@ -20,7 +20,7 @@
 
 /datum/surgery/amputation/mechanic
 	name = "Disassemble"
-	requires_bodypart_type = BODYTYPE_ROBOTIC | BODYTYPE_NANO // BUBBER ADDITION: Protean limbs.
+	requires_bodypart_type = BODYTYPE_ROBOTIC
 	steps = list(
 		/datum/surgery_step/mechanic_open,
 		/datum/surgery_step/open_hatch,
