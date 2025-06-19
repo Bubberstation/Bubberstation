@@ -79,7 +79,7 @@
 	old_mag.forceMove(drop_location())
 	playsound(old_mag, old_mag.murphy_eject_sound, 50, TRUE)
 	if(magejecting)
-		old_mag.was_ejected = 1
+		old_mag.was_ejected = TRUE
 		old_mag.throw_at(get_edge_target_turf(user, user.dir), range = 7, speed = 7, thrower = user, force = 10)
 	old_mag.update_appearance()
 	update_appearance()
