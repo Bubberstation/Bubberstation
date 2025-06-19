@@ -38,8 +38,8 @@
 	. += span_notice("If toggled on, spin reloads throw empty magazines in the direction you're facing, dealing damage dependant on their type. ")
 
 /obj/item/gun/ballistic/automatic/pistol/sec_glock/attack_self(mob/living/user)
-	var/obj/item/storage/our_belt = user.get_item_by_slot(ITEM_SLOT_BELT)
-	var/obj/item/ammo_box/magazine/m9mm/security/swapped_mag = locate(/obj/item/ammo_box/magazine/m9mm/security) in our_belt.contents
+	var/obj/item/belt_item = user.get_item_by_slot(ITEM_SLOT_BELT)
+	var/obj/item/ammo_box/magazine/swapped_mag = istype(belt_item, accepted_magazine_type) ? belt_item : locate(accepted_magazine_type) in belt_item
 	if(!magazine && swapped_mag) //Empty gun, load in anyhow but without delay. No mag
 		if(insert_magazine(user, swapped_mag))
 			SpinAnimation(2, 1)
