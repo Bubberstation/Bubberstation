@@ -34,8 +34,8 @@
 /obj/item/gun/ballistic/automatic/pistol/sec_glock/examine(mob/user)
 	. = ..()
 	. += span_notice("Using it in hand when out of ammo to start a spin reload. This can only be done if you have a spare magazine in or on your belt.")
-	. += span_notice("Spin reloads can be done on the move and need you only to hold your gun for their 2 second duration. ")
-	. += span_notice("If toggled on, spin reloads throw empty magazines in the direction you're facing, dealing damage dependant on their type. ")
+	. += span_notice("Spin reloads can be done on the move and need you only to hold your gun for their 2 second duration.")
+	. += span_notice("If toggled on, spin reloads throw empty magazines in the direction you're facing, dealing damage dependant on their type.")
 
 /obj/item/gun/ballistic/automatic/pistol/sec_glock/attack_self(mob/living/user)
 	var/obj/item/belt_item = user.get_item_by_slot(ITEM_SLOT_BELT)
