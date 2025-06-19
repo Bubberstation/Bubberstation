@@ -256,7 +256,7 @@
 	crate_name = "disabler smg crate"
 	crate_type = /obj/structure/closet/crate/secure/plasma
 /* //BUBBER REMOVAL
-//datum/supply_pack/security/armory/battle_rifle
+/datum/supply_pack/security/armory/battle_rifle
 	name = "NT BR-38 Crate"
 	desc = "An experimental energy-based ballistic battle rifle. Only available to \
 		Nanotrasen stations for security purposes. DO NOT RESELL TO OUTSIDE COMPANIES. \
