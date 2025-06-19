@@ -14,7 +14,7 @@
 	can_suppress = FALSE
 	projectile_damage_multiplier = 1
 	actions_types = list(/datum/action/item_action/toggle_mageject)
-	var/magejecting = 0 //whether we are launching the mags or not
+	var/magejecting = FALSE //whether we are launching the mags or not
 
 /datum/action/item_action/toggle_mageject
 	button_icon = 'icons/obj/weapons/guns/ammo.dmi'
@@ -26,11 +26,7 @@
 	if(!istype(actiontype, /datum/action/item_action/toggle_mageject))
 		return ..()
 	magejecting = !magejecting
-	if(!magejecting)
-		balloon_alert(user, "not launching magazines")
-	else
-		balloon_alert(user, "launching empty magazines")
-
+	balloon_alert(user, "[magejecting ? "now" : "no longer"] launching empty magazines")
 	playsound(user, 'sound/items/weapons/empty.ogg', 100, TRUE)
 	update_appearance()
 	update_item_action_buttons()

@@ -17,7 +17,7 @@
 
 /obj/item/ammo_box/magazine/m9mm/security/rocket/throw_impact(mob/living/hit_mob, datum/thrownthing/throwingdatum)
 	. = ..()
-	if(!QDELETED(hit_mob) && was_ejected == 1)
+	if(!QDELETED(hit_mob) && was_ejected )
 		hit_mob.Knockdown(2 SECONDS)
 		hit_mob.apply_damage(40, BRUTE, BODY_ZONE_CHEST)
 		playsound(get_turf(src.loc), 'sound/effects/explosion/explosion1.ogg', 40, 1)
