@@ -30,9 +30,9 @@
 	armor_type = /datum/armor/item_dualsaber
 	resistance_flags = FIRE_PROOF
 	wound_bonus = -10
-	bare_wound_bonus = 20
-	special_desc_requirement = EXAMINE_CHECK_SYNDICATE_TOY // Skyrat edit
-	special_desc = "A double bladed energy sword employed by the Syndicate in raids" // Skyrat edit
+	exposed_wound_bonus = 20
+	special_desc_requirement = EXAMINE_CHECK_SYNDICATE_TOY // BUBBER EDIT ADDITION
+	special_desc = "A double bladed energy sword employed by the Syndicate in raids" // BUBBER EDIT ADDITION
 	demolition_mod = 1.5 //1.5x damage to objects, robots, etc.
 	item_flags = NO_BLOOD_ON_ITEM
 	var/w_class_on = WEIGHT_CLASS_BULKY
