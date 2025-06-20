@@ -103,7 +103,7 @@
 	if(.)
 		return
 	var/obj/projectile/energy/fisher/melee/simulated_hit = new
-	simulated_hit.firer = throwingdatum.get_thrower()
+	simulated_hit.firer = throwingdatum?.get_thrower()
 	simulated_hit.on_hit(hit_atom)
 
 /obj/item/gun/ballistic/automatic/pistol/m1911 //ICON OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
