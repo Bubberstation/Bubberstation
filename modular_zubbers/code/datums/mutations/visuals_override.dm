@@ -1,12 +1,12 @@
-/datum/mutation/human/adaptation/cold/get_visual_indicator()
+/datum/mutation/adaptation/cold/get_visual_indicator()
 	return
 
-/datum/mutation/human/adaptation/heat/get_visual_indicator()
+/datum/mutation/adaptation/heat/get_visual_indicator()
 	return
 
-/datum/mutation/human/adaptation/thermal/get_visual_indicator()
+/datum/mutation/adaptation/thermal/get_visual_indicator()
 	return
 
-/datum/mutation/human/adaptation/pressure/get_visual_indicator()
+/datum/mutation/adaptation/pressure/get_visual_indicator()
 	return
 //Removes the visual indicators for various types of adaptation.
