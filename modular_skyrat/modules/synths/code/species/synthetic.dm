@@ -261,8 +261,8 @@
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "band-aid",
-		SPECIES_PERK_NAME = "Brute Weakness",
-		SPECIES_PERK_DESC = "[plural_form] are weak to brute damage.",
+		SPECIES_PERK_NAME = "Structural Damage",
+		SPECIES_PERK_DESC = "[plural_form] are weak to blunt objects.",
 	))
 
 	return perk_descriptions
