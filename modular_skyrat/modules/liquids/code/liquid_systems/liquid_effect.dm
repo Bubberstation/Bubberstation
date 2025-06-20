@@ -381,10 +381,10 @@
 		//Splash
 		if(prob(WATER_HEIGH_DIFFERENCE_SOUND_CHANCE))
 			var/sound_to_play = pick(list(
-				'modular_skyrat/modules/liquids/sound/effects/water_wade1.ogg',
-				'modular_skyrat/modules/liquids/sound/effects/water_wade2.ogg',
-				'modular_skyrat/modules/liquids/sound/effects/water_wade3.ogg',
-				'modular_skyrat/modules/liquids/sound/effects/water_wade4.ogg'
+				'modular_zubbers/sound/effects/water_wade1.ogg',
+				'modular_zubbers/sound/effects/water_wade2.ogg',
+				'modular_zubbers/sound/effects/water_wade3.ogg',
+				'modular_zubbers/sound/effects/water_wade4.ogg',
 				))
 			playsound(my_turf, sound_to_play, 60, 0)
 		var/obj/splashy = new /obj/effect/temp_visual/liquid_splash(my_turf)
@@ -430,10 +430,10 @@
 	if(liquid_state >= LIQUID_STATE_ANKLES)
 		if(prob(30))
 			var/sound_to_play = pick(list(
-				'modular_skyrat/modules/liquids/sound/effects/water_wade1.ogg',
-				'modular_skyrat/modules/liquids/sound/effects/water_wade2.ogg',
-				'modular_skyrat/modules/liquids/sound/effects/water_wade3.ogg',
-				'modular_skyrat/modules/liquids/sound/effects/water_wade4.ogg'
+				'modular_zubbers/sound/effects/water_wade1.ogg',
+				'modular_zubbers/sound/effects/water_wade2.ogg',
+				'modular_zubbers/sound/effects/water_wade3.ogg',
+				'modular_zubbers/sound/effects/water_wade4.ogg',
 				))
 			playsound(T, sound_to_play, 50, 0)
 		if(iscarbon(AM))
@@ -450,7 +450,7 @@
 	SIGNAL_HANDLER
 	var/turf/T = source
 	if(liquid_state >= LIQUID_STATE_ANKLES && T.has_gravity(T))
-		playsound(T, 'modular_skyrat/modules/liquids/sound/effects/splash.ogg', 50, 0)
+		playsound(T, 'modular_zubbers/sound/effects/splash.ogg', 50, 0)
 		if(iscarbon(M))
 			var/mob/living/carbon/falling_carbon = M
 
