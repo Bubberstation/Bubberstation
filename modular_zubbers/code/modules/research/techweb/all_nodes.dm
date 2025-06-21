@@ -38,13 +38,21 @@
 	design_ids = list(
 		"bs_experi_scanner_cyborg",
 		"borg_upgrade_advancedanalyzer",
-		"borg_upgrade_advcutter",
 		"borg_upgrade_inducer_sci",
 		"borg_upgrade_brped",
-		"borg_upgrade_surgicalprocessor_sci"
+		"borg_upgrade_surgicalprocessor_sci",
+		"borg_upgrade_research_rcd"
 	)
 	announce_channels = list(RADIO_CHANNEL_SCIENCE)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+
+//Mining borg upgrades
+/datum/techweb_node/borg_mining/New()
+	.=..()
+	design_ids += list(
+		"borg_upgrade_advcutter",
+		"borg_upgrade_welding",
+	)
 
 
 /datum/techweb_node/ai_laws/New()

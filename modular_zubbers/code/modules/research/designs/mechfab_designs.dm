@@ -56,6 +56,22 @@
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_RESEARCH
 	)
 
+/datum/design/borg_upgrade_research_rcd
+	name = "Research cyborg synthetic repair tool"
+	id = "borg_upgrade_research_rcd"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/robotics_rcd
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT,
+		/datum/material/gold = SMALL_MATERIAL_AMOUNT * 5,
+	)
+	construction_time = 12 SECONDS
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_RESEARCH
+	)
+
 /datum/design/borg_upgrade_inducer_sci
 	name = "Research Cyborg inducer"
 	id = "borg_upgrade_inducer_sci"

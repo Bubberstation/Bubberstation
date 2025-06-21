@@ -111,3 +111,13 @@
 	model_type = list(/obj/item/robot_model/miner)
 	model_flags = BORG_MODEL_MINER
 	items_to_add = list(/obj/item/pinpointer/vent)
+
+//Research cyborg RCD
+
+/obj/item/borg/upgrade/robotics_rcd
+	name = "Research cyborg synthetic repair tool"
+	desc = "A cut down RCD designed to assist in synthetic repairs."
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/sci)
+	model_flags = BORG_MODEL_RESEARCH
+	items_to_add = list(/obj/item/construction/rcd/borg/robotics_rcd)

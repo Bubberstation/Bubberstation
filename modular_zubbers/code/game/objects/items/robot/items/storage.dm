@@ -58,14 +58,7 @@
 					/obj/item/usb_cable,
 					/obj/item/healthanalyzer, //To build medibots
 					/obj/item/electronics,
-					/obj/item/assembly/igniter,
-					/obj/item/assembly/infra,
-					/obj/item/assembly/prox_sensor,
-					/obj/item/assembly/timer,
-					/obj/item/assembly/signaler,
-					/obj/item/assembly/trapdoor,
-					/obj/item/assembly/voice,
-					/obj/item/assembly/wiremod,
+					/obj/item/assembly,
 					)
 
 /obj/item/borg/apparatus/circuit_sci/examine()
@@ -80,20 +73,22 @@
 	return ..()
 
 //Illegal gripper to allow research cyborgs when hacked to do further robotics work
+//TODO: Add more functionality for them to interact with more this is an "illegal item" you should not allow them to even have this in game!
 /obj/item/borg/apparatus/illegal
 	name = "Sketchy looking gripper"
 	desc = "A tool used to expanded robotics work"
 	icon_state = "connector"
 	storable = list(
 					/obj/item/mmi,
-					/obj/item/assembly, //unrestricted assembly building
 					/obj/item/bodypart/arm/left/robot,
 					/obj/item/bodypart/arm/right/robot,
 					/obj/item/bodypart/leg/left/robot,
 					/obj/item/bodypart/leg/right/robot,
 					/obj/item/bodypart/chest/robot,
 					/obj/item/bodypart/head/robot,
-					/obj/item/borg/upgrade/ai, //Shell making
+					/obj/item/borg/upgrade,
+					/obj/item/card/emag,
+					/obj/item/card/emagfake,
 					)
 
 /obj/item/borg/apparatus/illegal/examine()
@@ -228,6 +223,7 @@
 					/obj/item/survivalcapsule/,
 					/obj/item/extraction_pack,
 					/obj/item/fulton_core,
+					/obj/item/card/id/advanced/mining,
 					)
 
 /obj/item/robot_model/miner/Initialize(mapload)
