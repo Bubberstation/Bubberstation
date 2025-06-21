@@ -152,35 +152,30 @@
 	// Adds Crowbars to borg models which do not have them so they do not get stuck behind unpowered doors
 
 /obj/item/robot_model/clown/Initialize(mapload)
-	name = "Clown"
 	basic_modules += list(
 		/obj/item/crowbar/cyborg,
 	)
 	. = ..()
 
 /obj/item/robot_model/medical/Initialize(mapload)
-	name = "Medical"
 	basic_modules += list(
 		/obj/item/crowbar/cyborg,
 	)
 	. = ..()
 
 /obj/item/robot_model/peacekeeper/Initialize(mapload)
-	name = "Peacekeeper"
 	basic_modules += list(
 		/obj/item/crowbar/cyborg,
 	)
 	. = ..()
 
 /obj/item/robot_model/security/Initialize(mapload)
-	name = "Security"
 	basic_modules += list(
 		/obj/item/crowbar/cyborg,
 	)
 	. = ..()
 
 /obj/item/robot_model/service/Initialize(mapload)
-	name = "Service"
 	basic_modules += list(
 		/obj/item/crowbar/cyborg,
 	)
@@ -227,7 +222,6 @@
 					)
 
 /obj/item/robot_model/miner/Initialize(mapload)
-	name = "Miner"
 	basic_modules += list(
 		/obj/item/borg/apparatus/mining/,
 	)
