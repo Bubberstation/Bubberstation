@@ -16,6 +16,10 @@
 
 	job_flags = JOB_NEW_PLAYER_JOINABLE|JOB_REOPEN_ON_ROUNDSTART_LOSS|JOB_ASSIGN_QUIRKS|JOB_CANNOT_OPEN_SLOTS
 
+/datum/job/assistant/stowaway/has_banned_species(datum/preferences/pref)
+	//return false cause no species should be banned from this role
+	return FALSE
+
 /datum/job/assistant/stowaway/after_spawn(mob/living/spawned, client/player_client)
 	. = ..()
 	for(var/obj/item/card/id/to_del in spawned.contents)
