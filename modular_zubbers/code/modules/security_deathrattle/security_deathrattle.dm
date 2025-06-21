@@ -50,13 +50,13 @@ GLOBAL_VAR_INIT(allow_security_deathrattle,TRUE)
 	special_enabled = FALSE
 
 //Disable deathrattles if security already has them
-/datum/station_trait/deathrattle_department/security/New(..,)
+/datum/station_trait/deathrattle_department/security/New(...)
 	. = ..()
 	GLOB.allow_security_deathrattle = FALSE
 	var/datum/supply_pack/security/deathrattle_implants/implant_order = SSshuttle.supply_packs[/datum/supply_pack/security/deathrattle_implants]
 	implant_order.special_enabled = FALSE
 
-/datum/station_trait/deathrattle_all/New(..,)
+/datum/station_trait/deathrattle_all/New(...)
 	. = ..()
 	GLOB.allow_security_deathrattle = FALSE
 	var/datum/supply_pack/security/deathrattle_implants/implant_order = SSshuttle.supply_packs[/datum/supply_pack/security/deathrattle_implants]
