@@ -105,4 +105,5 @@
 	return ITEM_INTERACT_BLOCKING
 
 /obj/item/construction/rcd/borg/robotics_rcd/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	SHOULD_CALL_PARENT(FALSE)
 	return ITEM_INTERACT_BLOCKING
