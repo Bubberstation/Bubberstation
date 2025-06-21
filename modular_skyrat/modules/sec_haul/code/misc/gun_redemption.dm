@@ -9,8 +9,7 @@
 /obj/item/choice_beacon/blueshield/generate_display_names()
 	var/static/list/selectable_gun_types = list(
 		"Energy Revolver" = /obj/item/gun/energy/e_gun/blueshield,
-		"Energy Carbine" = /obj/item/gun/energy/e_gun/stun/blueshield,
-		"c20R" = /obj/item/storage/toolbox/guncase/c20r //God smite me if this will spawn on station
+		"Energy Carbine" = /obj/item/gun/energy/e_gun/stun/blueshield
 	)
 
 	return selectable_gun_types
