@@ -2,7 +2,6 @@
 	name = "imaging nanites"
 	desc = "Nanites designed to collect visual data from the surrounding world"
 	organ_flags = ORGAN_ROBOTIC
-	flash_protect = FLASH_PROTECTION_WELDER
 
 /obj/item/organ/eyes/robotic/protean/Initialize(mapload)
 	if(QDELETED(src))
