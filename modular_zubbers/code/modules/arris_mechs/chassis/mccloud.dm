@@ -8,6 +8,8 @@
 	icon = 'modular_zubbers/code/modules/arris_mechs/icons/mecha.dmi'
 	icon_state = "mccloud"
 	base_icon_state = "mccloud"
+	stepsound = 'sound/vehicles/mecha/powerloader_step.ogg'
+	turnsound = 'sound/vehicles/mecha/powerloader_turn2.ogg'
 	movedelay = MCCLOUD_BIPED_MODE_MOVE
 	overclock_coeff = 1.1
 	overclock_temp_danger = 3 //overclock ability makes this go crazy fast so it has to be significantly limited
@@ -77,10 +79,12 @@
 		else
 			mccloud_chassis.balloon_alert(owner, "switching to jet mode!")
 			mccloud_chassis.switching_modes = TRUE
+			playsound(mccloud_chassis, 'sound/vehicles/mecha/skyfall_power_up.ogg', vol = 20, vary = TRUE, pressure_affected = FALSE)
 			addtimer(CALLBACK(mccloud_chassis, TYPE_PROC_REF(/obj/vehicle/sealed/mecha/mccloud, activate_jet)), 7 DECISECONDS)
 	else
 		mccloud_chassis.balloon_alert(owner, "switching to biped mode!")
 		mccloud_chassis.switching_modes = TRUE
+		playsound(mccloud_chassis, 'sound/vehicles/mecha/skyfall_power_up.ogg', vol = 20, vary = TRUE,  pressure_affected = FALSE)
 		addtimer(CALLBACK(mccloud_chassis, TYPE_PROC_REF(/obj/vehicle/sealed/mecha/mccloud, activate_biped)), 7 DECISECONDS)
 
 /obj/vehicle/sealed/mecha/mccloud/proc/can_switch_jet()
@@ -99,6 +103,7 @@
 	icon_state = "mccloud-jet"
 	jet_mode = TRUE
 	movedelay = !overclock_mode ? MCCLOUD_JET_MODE_MOVE : MCCLOUD_JET_MODE_MOVE / overclock_coeff
+	playsound(src, 'sound/vehicles/mecha/mech_shield_raise.ogg', vol = 20, vary = TRUE, pressure_affected = FALSE)
 	mode_switch_sparks()
 
 /obj/vehicle/sealed/mecha/mccloud/proc/activate_biped()
@@ -109,6 +114,7 @@
 	jet_mode = FALSE
 	movedelay = !overclock_mode ? MCCLOUD_BIPED_MODE_MOVE : MCCLOUD_BIPED_MODE_MOVE / overclock_coeff
 	mode_switch_sparks()
+	playsound(src, 'sound/vehicles/mecha/mech_shield_drop.ogg', vol = 20, vary = TRUE, pressure_affected = FALSE)
 
 /obj/vehicle/sealed/mecha/mccloud/proc/mode_switch_sparks()
 	var/spark_directions = list(NORTHWEST, NORTHEAST, SOUTHEAST, SOUTHWEST)
