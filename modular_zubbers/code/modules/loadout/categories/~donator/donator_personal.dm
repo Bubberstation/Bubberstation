@@ -13,6 +13,7 @@
 //11/08/23: Added as a reward to people who have recommended friends to Bubberstation. Add to this list as you please, you can offer this as a reward for basically anything.
 //Please mark the date and what this was awarded for in code comments here. For example:
 //XX/XX/XX: Added as a reward for EXAMPLE EVENT's winners.
+//6/21/2025: Given as a reward to the duo winners of toolbox tournament held on the same day. Vulpesishot and Destrucktoid.
 
 /datum/loadout_item/head/idmaberet
 	name = "IDMA Beret"
