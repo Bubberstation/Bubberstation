@@ -72,25 +72,25 @@
 
 //weld plating - Act
 /datum/surgery_step/weld_plating_slice
-	name = "weld plating"
+	name = "slice plating (welder)"
 	implements = list(
 		TOOL_WELDER = 100,
 	)
 	time = 2.4 SECONDS
 	preop_sound = 'sound/items/tools/welder.ogg'
 
-/datum/surgery_step/weld_plating/tool_check(mob/user, obj/item/tool)
+/datum/surgery_step/weld_plating_slice/tool_check(mob/user, obj/item/tool)
 	if(implement_type == TOOL_WELDER && !tool.use_tool(user, user, 0, volume=50, amount=1))
 		return FALSE
 	return TRUE
 
-/datum/surgery_step/weld_plating/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+/datum/surgery_step/weld_plating_slice/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(
 		user,
 		target,
-		span_notice("You begin to weld into [target]'s [parse_zone(target_zone)] plating to open it..."),
-		"[user] begins to weld into [target]'s [parse_zone(target_zone)] plating with [tool].",
-		"[user] begins to weld into [target]'s [parse_zone(target_zone)] plating.",
+		span_notice("You begin to slice into [target]'s [parse_zone(target_zone)] plating to open it..."),
+		"[user] begins to slice into [target]'s [parse_zone(target_zone)] plating with [tool].",
+		"[user] begins to slice into [target]'s [parse_zone(target_zone)] plating.",
 	)
 
 //replace wires
