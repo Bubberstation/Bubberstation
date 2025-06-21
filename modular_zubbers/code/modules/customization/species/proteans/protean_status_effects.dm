@@ -27,7 +27,7 @@
 
 /atom/movable/screen/alert/status_effect/protean_low_power_mode/reform
 	name = "Freshly reformed"
-	desc = "You have just reformed from inside your modsuit, leaving you slowed down and weaker as you finalize your form"
+	desc = "You have just reformed from inside your modsuit, leaving you slowed down and weaker as you finalize your form."
 	icon_state = "protean_reform"
 
 /datum/status_effect/protean_low_power_mode/reform/on_apply()

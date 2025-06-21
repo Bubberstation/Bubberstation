@@ -1,5 +1,5 @@
 /obj/item/mod/control/pre_equipped/protean
-	name = "hardsuit rig"
+	name = "protean hardsuit rig"
 	desc = "The hardsuit rig unit of a Protean, allowing them to retract into it, or to deploy a suit that protects against various environments."
 	theme = /datum/mod_theme // Standard theme. TODO: Can be changed with standard mod armors
 
@@ -26,9 +26,11 @@
 	return ..()
 
 /obj/item/mod/control/pre_equipped/protean/wrench_act(mob/living/user, obj/item/wrench)
+	to_chat(user, span_warning("The core is integrated and cannot be removed from the [src]."))
 	return FALSE // Can't remove the core.
 
 /obj/item/mod/control/pre_equipped/protean/emag_act(mob/user, obj/item/card/emag/emag_card)
+	to_chat(user, span_warning("The [src] does not respond to the [emag_card]."))
 	return FALSE // Nope
 
 /obj/item/mod/control/pre_equipped/protean/canStrip(mob/who)
@@ -221,8 +223,13 @@
 /obj/item/mod/control/pre_equipped/protean/examine(mob/user)
 	. = ..()
 	var/obj/item/mod/core/protean/protean_core = core
+	var/mob/living/carbon/human/protean_in_suit = protean_core?.linked_species.owner
 	var/obj/item/organ/brain/protean/brain = protean_core?.linked_species.owner.get_organ_slot(ORGAN_SLOT_BRAIN)
 	var/obj/item/organ/stomach/protean/refactory = protean_core.linked_species.owner.get_organ_slot(ORGAN_SLOT_STOMACH)
+	var/t_He = protean_in_suit.p_They()
+	var/t_him = protean_in_suit.p_them()
+	var/t_has = protean_in_suit.p_have()
+	var/t_is = protean_in_suit.p_are()
 	if(!isnull(brain) || istype(brain))
 		. += span_notice("<b>Control Shift Click</b> to open Protean strip menu.")
 		if(brain.dead)
@@ -230,6 +237,10 @@
 				. += isnull(refactory) ? span_warning("This Protean requires critical repairs! <b>Screwdriver them open</b>") : span_notice("<b>Repairing systems...</b>")
 			else
 				. += isnull(refactory) ? span_warning("<b>Insert a new refactory</b>") : span_notice("<b>Refactory Installed! Repairing systems...</b>")
+		if(protean_in_suit.key && !protean_in_suit.client)  // We have to put these here because you're examining an object, and not a carbon, and players otherwise can't tell if anyone is home.
+			. += span_deadsay("[t_He] [t_has] entered stasis and [t_has] been completely unresponsive to anything for [round(((world.time - protean_in_suit.lastclienttime) / (1 MINUTES)),1)] minutes. [t_He] may snap out of it soon.")
+		if(!protean_in_suit.key)
+			. += span_deadsay("[t_He] [t_is] totally listless. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.")
 
 /obj/item/mod/control/pre_equipped/protean/proc/ooc_escape(mob/living/carbon/user)
 	SIGNAL_HANDLER
@@ -269,6 +280,7 @@
 	if (!isnull(should_strip_proc_path) && !call(species.owner, should_strip_proc_path)(user))
 		return
 	suit.balloon_alert_to_viewers("stripping")
+	suit.wearer.visible_message(span_warning("[source] begins to dump the contents of [suit.wearer]'s control unit!"))
 	ASYNC
 		var/datum/strip_menu/protean/strip_menu = LAZYACCESS(strip_menus, species.owner)
 		if (isnull(strip_menu))
