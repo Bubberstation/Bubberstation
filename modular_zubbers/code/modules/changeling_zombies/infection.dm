@@ -116,8 +116,8 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 		if(length(healing_options))
 			host.heal_damage_type(CHANGELING_ZOMBIE_PASSIVE_HEALING,pick(healing_options))
 
-		if(host.blood_volume <= BLOOD_VOLUME_BAD)
-			host.blood_volume += 3
+		if(host.blood_volume <= BLOOD_VOLUME_NORMAL)
+			host.blood_volume += 5
 
 		if(length(bodypart_zones_to_regenerate) && COOLDOWN_FINISHED(src,limb_regen_cooldown))
 			var/selected_zone = pick_n_take(bodypart_zones_to_regenerate)
