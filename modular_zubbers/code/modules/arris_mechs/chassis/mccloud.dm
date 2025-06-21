@@ -1,7 +1,3 @@
-#define MCCLOUD_JET_MODE_MOVE 0.7
-#define MCCLOUD_BIPED_MODE_MOVE 1.0
-#define MCCLOUD_BIPED_MODE_MOVE_DISABLER 1.7
-
 /obj/vehicle/sealed/mecha/mccloud
 	desc = "An ultralight mech capable of spaceflight. Most popular with mercenaries, wanderers, and pirates; Nanotrasen has their own variation."
 	name = "\improper McCloud"
@@ -10,7 +6,12 @@
 	base_icon_state = "mccloud"
 	stepsound = 'sound/vehicles/mecha/powerloader_step.ogg'
 	turnsound = 'sound/vehicles/mecha/powerloader_turn2.ogg'
-	movedelay = MCCLOUD_BIPED_MODE_MOVE
+
+	var/jet_move_delay = 0.7
+	var/biped_move_delay = 1.0
+	var/biped_move_delay_disabler = 1.7
+	movedelay = 1.0
+
 	overclock_coeff = 1.1
 	overclock_temp_danger = 3 //overclock ability makes this go crazy fast so it has to be significantly limited
 	max_integrity = 150
@@ -36,7 +37,7 @@
 		MECHA_POWER = list(),
 		MECHA_ARMOR = list(),
 	)
-	step_energy_drain = 25 //extremely high energy drain forces user to return to recharge points often
+	step_energy_drain = 40 //extremely high energy drain forces user to return to recharge points often
 
 	var/jet_mode = FALSE
 	var/switching_modes = FALSE
@@ -46,6 +47,10 @@
 	var/obj/item/mecha_parts/mecha_equipment/thrusters/ion/mccloud/jet_mode_thrusters = null
 	COOLDOWN_DECLARE(cooldown_mech_mccloud_landing_skid)
 	COOLDOWN_DECLARE(cooldown_mech_mccloud_stamina_slow)
+
+/obj/vehicle/sealed/mecha/mccloud/Initialize(mapload, built_manually)
+	..()
+	movedelay = biped_move_delay
 
 /datum/armor/mecha_mccloud
 	melee = 10
@@ -102,7 +107,7 @@
 		return
 	icon_state = "mccloud-jet"
 	jet_mode = TRUE
-	movedelay = !overclock_mode ? MCCLOUD_JET_MODE_MOVE : MCCLOUD_JET_MODE_MOVE / overclock_coeff
+	movedelay = !overclock_mode ? jet_move_delay : jet_move_delay / overclock_coeff
 	playsound(src, 'sound/vehicles/mecha/mech_shield_raise.ogg', vol = 20, vary = TRUE, pressure_affected = FALSE)
 	mode_switch_sparks()
 
@@ -112,7 +117,7 @@
 		return
 	icon_state = "mccloud"
 	jet_mode = FALSE
-	movedelay = !overclock_mode ? MCCLOUD_BIPED_MODE_MOVE : MCCLOUD_BIPED_MODE_MOVE / overclock_coeff
+	movedelay = !overclock_mode ? biped_move_delay : biped_move_delay / overclock_coeff
 	mode_switch_sparks()
 	playsound(src, 'sound/vehicles/mecha/mech_shield_drop.ogg', vol = 20, vary = TRUE, pressure_affected = FALSE)
 
@@ -233,14 +238,14 @@
 
 /obj/vehicle/sealed/mecha/mccloud/proc/stamina_damage(obj/projectile/hitting_projectile)
 	if(!jet_mode)
-		movedelay = !overclock_mode ? MCCLOUD_BIPED_MODE_MOVE_DISABLER : MCCLOUD_BIPED_MODE_MOVE_DISABLER / overclock_coeff
+		movedelay = !overclock_mode ? biped_move_delay_disabler : biped_move_delay_disabler / overclock_coeff
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/mecha/mccloud, stamina_reset)), hitting_projectile.damage DECISECONDS)
 
 /obj/vehicle/sealed/mecha/mccloud/proc/stamina_reset()
 	if(jet_mode)
-		movedelay = !overclock_mode ? MCCLOUD_JET_MODE_MOVE : MCCLOUD_JET_MODE_MOVE / overclock_coeff
+		movedelay = !overclock_mode ? jet_move_delay : jet_move_delay / overclock_coeff
 	else
-		movedelay = !overclock_mode ? MCCLOUD_BIPED_MODE_MOVE : MCCLOUD_BIPED_MODE_MOVE / overclock_coeff
+		movedelay = !overclock_mode ? biped_move_delay : biped_move_delay / overclock_coeff
 
 ///bumping things as the jet mode should damage the jet
 /obj/vehicle/sealed/mecha/mccloud/Bump(atom/bumped_thing)
