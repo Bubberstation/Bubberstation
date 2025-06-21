@@ -186,4 +186,18 @@
 	icon_state = "from_puddle"
 	duration = 12
 
+/obj/item/organ/brain/protean/emp_act(severity) // technically, a protean brain isn't a cybernetic brain, so it's not inherting the normal cybernetic proc.
+	. = ..()
+	if(. & EMP_PROTECT_SELF)
+		return
+	if(owner.stat == DEAD)
+		return
+	switch(severity)
+		if (EMP_HEAVY)
+			to_chat(owner, span_boldwarning("Your core nanites [pick("buzz erratically", "surge chaotically")]!"))
+			owner.set_drugginess_if_lower(40 SECONDS)
+		if (EMP_LIGHT)
+			to_chat(owner, span_warning("Your core nanites feel [pick("fuzzy", "unruly", "sluggish")]."))
+			owner.set_drugginess_if_lower(20 SECONDS)
+
 #undef TRANSFORM_TRAITS
