@@ -20,8 +20,6 @@
 
 /datum/deathrattle_group/on_user_statchange(mob/living/owner, new_stat)
 
-	SIGNAL_HANDLER
-
 	if(new_stat != DEAD)
 		return
 
