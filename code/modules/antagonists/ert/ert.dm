@@ -132,14 +132,14 @@
 
 /datum/antagonist/ert/medic/inquisitor/on_gain()
 	. = ..()
-	owner.holy_role = HOLY_ROLE_PRIEST
+	owner.set_holy_role(HOLY_ROLE_PRIEST)
 
 /datum/antagonist/ert/security/inquisitor
 	outfit = /datum/outfit/centcom/ert/security/inquisitor
 
 /datum/antagonist/ert/security/inquisitor/on_gain()
 	. = ..()
-	owner.holy_role = HOLY_ROLE_PRIEST
+	owner.set_holy_role(HOLY_ROLE_PRIEST)
 
 /datum/antagonist/ert/chaplain
 	role = "Chaplain"
@@ -150,14 +150,14 @@
 
 /datum/antagonist/ert/chaplain/on_gain()
 	. = ..()
-	owner.holy_role = HOLY_ROLE_PRIEST
+	owner.set_holy_role(HOLY_ROLE_PRIEST)
 
 /datum/antagonist/ert/commander/inquisitor
 	outfit = /datum/outfit/centcom/ert/commander/inquisitor
 
 /datum/antagonist/ert/commander/inquisitor/on_gain()
 	. = ..()
-	owner.holy_role = HOLY_ROLE_PRIEST
+	owner.set_holy_role(HOLY_ROLE_PRIEST)
 
 /datum/antagonist/ert/intern
 	name = "CentCom Intern"
