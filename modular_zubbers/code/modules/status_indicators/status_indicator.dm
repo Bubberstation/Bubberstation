@@ -1,7 +1,7 @@
 /obj/effect/overlay/status_indicator/
 	icon = 'modular_zubbers/icons/mob/status_indicators.dmi'
 	pixel_z = 16
-	plane = BALLOON_CHAT_PLANE
+	plane = POINT_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	alpha = 0
 
