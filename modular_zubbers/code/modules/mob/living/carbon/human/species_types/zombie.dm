@@ -5,7 +5,7 @@
 	)
 	. = ..()
 
-/obj/item/bodypart/head/zombie //Override of /tg/ default (code\modules\surgery\bodyparts\species_parts\misc_bodyparts.dm), includes EYECOLOR
+/obj/item/bodypart/head/zombie //Override of /tg/ default (code\modules\surgery\bodyparts\species_parts\misc_bodyparts.dm), includes EYECOLOR, HAIR and FACIAL HAIR.
 	head_flags = HEAD_HAIR|HEAD_FACIAL_HAIR|HEAD_EYESPRITES|HEAD_DEBRAIN|HEAD_EYECOLOR
 
 /obj/item/bodypart/head/zombie/New(loc, ...)
