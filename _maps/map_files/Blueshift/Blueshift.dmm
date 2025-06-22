@@ -38684,6 +38684,12 @@
 	pixel_y = 33
 	},
 /obj/structure/sink/directional/south,
+/obj/machinery/button/door/directional/south{
+	id = "SciToilet";
+	name = "Lock Control";
+	normaldoorcontrol = 1;
+	specialfunctions = 4
+	},
 /turf/open/floor/iron/freezer,
 /area/station/science/breakroom)
 "hth" = (
@@ -50483,7 +50489,8 @@
 /area/station/security/prison/safe)
 "jHf" = (
 /obj/machinery/door/airlock/bathroom{
-	name = "Restroom"
+	name = "Restroom";
+	id_tag = "SciToilet"
 	},
 /obj/machinery/duct,
 /turf/open/floor/iron/freezer,
