@@ -322,7 +322,7 @@ All ShuttleMove procs go here
 	var/knockdown = movement_force["KNOCKDOWN"]
 	if(buckled && istype(get_area(src), /area/shuttle/arrival))
 		//if we're on the arrival shuttle, unbuckle so that new player's don't get stuck in there
-		buckled.user_unbuckle_mob(src, src)
+		// buckled.user_unbuckle_mob(src, src) // BUBBER EDIT REMOVAL - The interlink shuttle takes off and then lands, this code will make you unbuckle when it takes off
 		return
 	if(knockdown > 0)
 		if(buckled)
