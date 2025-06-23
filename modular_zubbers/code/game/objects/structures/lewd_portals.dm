@@ -32,7 +32,6 @@
 	register_context()
 
 /obj/structure/lewd_portal/Destroy()
-	unbuckle_all_mobs(TRUE)
 	visible_message("[src] vanishes!")
 	linked_portal?.linked_portal = null
 	if(linked_portal)
@@ -86,7 +85,7 @@
 			mob_scale_manager = current_mob.transform.decompose()
 			offset_algorithm()
 
-	if(istype(current_mob.dna.species))
+	if(!isnull(current_mob.dna.species))
 		relayed_body = new /obj/lewd_portal_relay(linked_portal.loc, current_mob, linked_portal)
 		relayed_body.transform = relayed_body.transform.Scale(mob_scale_manager.scale_x, mob_scale_manager.scale_y)
 		switch(linked_portal.dir)

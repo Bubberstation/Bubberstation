@@ -196,7 +196,7 @@
 			subtler_sound(receiver)
 
 		for(var/obj/lewd_portal_relay/portal in ghostless) //Message portal owners caught in range
-			if(portal?.owner?.client && portal?.owner != user)
+			if(portal?.owner?.client && portal.owner != user)
 				subtler_message = span_subtler("<b>Unknown</b>[space]<i>[user.apply_message_emphasis(subtler_emote)]</i>")
 				portal.owner.show_message(subtler_message, alt_msg = subtler_message)
 			subtler_sound(portal.owner)
