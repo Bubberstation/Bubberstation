@@ -1,5 +1,15 @@
 #define GLORYHOLE "gloryhole"
 #define WALLSTUCK "wallstuck"
+#define PORTAL_SIGNAL_LIST = list( \
+	COMSIG_MOB_POST_EQUIP, \
+	COMSIG_HUMAN_UNEQUIPPED_ITEM, \
+	COMSIG_HUMAN_TOGGLE_UNDERWEAR, \
+	COMSIG_MOB_HANDCUFFED, \
+	COMSIG_MOB_EMOTE, \
+	COMSIG_EMOTE_OVERLAY_EXPIRE, \
+	COMSIG_HUMAN_ADJUST_AROUSAL, \
+	COMSIG_HUMAN_TOGGLE_GENITALS \
+)
 
 /obj/structure/lewd_portal
 	name = "LustWish Portal"
@@ -115,7 +125,7 @@
 			var/obj/item/organ/genital/penis/penis_reference = current_mob.get_organ_slot(ORGAN_SLOT_PENIS)
 			initial_genital_visibility = penis_reference?.visibility_preference
 			hide_penis()
-			RegisterSignals(current_mob, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR, COMSIG_MOB_HANDCUFFED, COMSIG_MOB_EMOTE, COMSIG_EMOTE_OVERLAY_EXPIRE, COMSIG_HUMAN_ADJUST_AROUSAL, COMSIG_HUMAN_TOGGLE_GENITALS), PROC_REF(hide_penis))
+			RegisterSignals(current_mob, PORTAL_SIGNAL_LIST, PROC_REF(hide_penis))
 			current_mob.dir = dir
 			switch(dir)
 				if(NORTH)
@@ -129,7 +139,7 @@
 		else
 			current_mob.dir = SOUTH
 			head_only()
-			RegisterSignals(current_mob, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR, COMSIG_MOB_HANDCUFFED, COMSIG_MOB_EMOTE, COMSIG_EMOTE_OVERLAY_EXPIRE, COMSIG_HUMAN_ADJUST_AROUSAL, COMSIG_HUMAN_TOGGLE_GENITALS), PROC_REF(head_only))
+			RegisterSignals(current_mob, PORTAL_SIGNAL_LIST, PROC_REF(head_only))
 			switch(dir)
 				if(NORTH)
 					current_mob.pixel_y += wallstuck_offset_amount
@@ -184,7 +194,7 @@
 			current_mob.apply_overlay(BODY_LAYER)
 
 /obj/structure/lewd_portal/post_unbuckle_mob(mob/living/unbuckled_mob)
-	UnregisterSignal(current_mob, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR, COMSIG_MOB_HANDCUFFED, COMSIG_MOB_EMOTE, COMSIG_EMOTE_OVERLAY_EXPIRE, COMSIG_HUMAN_ADJUST_AROUSAL, COMSIG_HUMAN_TOGGLE_GENITALS))
+	UnregisterSignal(current_mob, PORTAL_SIGNAL_LIST)
 	visible_message("[current_mob] exits the [src]")
 	current_mob = null
 	mob_scale_manager = null
@@ -332,15 +342,17 @@
 			species_name = owner.dna.features["custom_species"]
 		name = LOWER_TEXT("[species_name] behind")
 
-	RegisterSignals(owner, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR, COMSIG_MOB_HANDCUFFED, COMSIG_MOB_EMOTE, COMSIG_EMOTE_OVERLAY_EXPIRE, COMSIG_HUMAN_ADJUST_AROUSAL, COMSIG_HUMAN_TOGGLE_GENITALS), PROC_REF(update_visuals))
+	RegisterSignals(owner, PORTAL_SIGNAL_LIST, PROC_REF(update_visuals))
 	become_hearing_sensitive(ROUNDSTART_TRAIT)
 	var/datum/component/interactable/interact_component = owner.GetComponent(/datum/component/interactable)
 	interact_component?.body_relay = src
 
 /obj/lewd_portal_relay/Destroy(force)
 	if(!isnull(owner))
-		UnregisterSignal(owner, list(COMSIG_MOB_POST_EQUIP, COMSIG_HUMAN_UNEQUIPPED_ITEM, COMSIG_HUMAN_TOGGLE_UNDERWEAR, COMSIG_MOB_HANDCUFFED, COMSIG_MOB_EMOTE, COMSIG_EMOTE_OVERLAY_EXPIRE, COMSIG_HUMAN_ADJUST_AROUSAL, COMSIG_HUMAN_TOGGLE_GENITALS))
+		UnregisterSignal(owner, PORTAL_SIGNAL_LIST)
 		var/datum/component/interactable/interact_component = owner.GetComponent(/datum/component/interactable)
+		owner = null
+		owning_portal = null
 		interact_component?.body_relay = null
 	visible_message("[src] vanishes into the portal!")
 	lose_hearing_sensitivity(ROUNDSTART_TRAIT)
@@ -440,3 +452,4 @@
 
 #undef GLORYHOLE
 #undef WALLSTUCK
+#undef PORTAL_SIGNAL_LIST
