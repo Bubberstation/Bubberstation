@@ -352,9 +352,9 @@
 		if(genital == ORGAN_SLOT_BREASTS)
 			continue
 		if(owner.dna.species.mutant_bodyparts[genital])
-			var/datum/sprite_accessory/genital/G = SSaccessories.sprite_accessories[genital][owner.dna.species.mutant_bodyparts[genital][MUTANT_INDEX_NAME]]
-			if(G)
-				if(!(G.is_hidden(owner)))
+			var/datum/sprite_accessory/genital/gential_sprite = SSaccessories.sprite_accessories[genital][owner.dna.species.mutant_bodyparts[genital][MUTANT_INDEX_NAME]]
+			if(gential_sprite)
+				if(!(gential_sprite.is_hidden(owner)))
 					. += "<span class='notice'>It has exposed genitals... <a href='byond://?src=[REF(src)];lookup_info=genitals'>\[Look closer...\]</a></span>"
 					break
 
@@ -366,15 +366,15 @@
 			for(var/genital in GLOB.possible_genitals)
 				if(!owner.dna.species.mutant_bodyparts[genital] || genital == ORGAN_SLOT_BREASTS)
 					continue
-				var/datum/sprite_accessory/genital/G = SSaccessories.sprite_accessories[genital][owner.dna.species.mutant_bodyparts[genital][MUTANT_INDEX_NAME]]
-				if(!G)
+				var/datum/sprite_accessory/genital/gential_sprite = SSaccessories.sprite_accessories[genital][owner.dna.species.mutant_bodyparts[genital][MUTANT_INDEX_NAME]]
+				if(!gential_sprite)
 					continue
-				if(G.is_hidden(owner))
+				if(gential_sprite.is_hidden(owner))
 					continue
-				var/obj/item/organ/genital/ORG = owner.get_organ_slot(G.associated_organ_slot)
+				var/obj/item/organ/genital/ORG = owner.get_organ_slot(gential_sprite.associated_organ_slot)
 				if(!ORG)
 					continue
-				line += ORG.get_description_string(G)
+				line += ORG.get_description_string(gential_sprite)
 			if(length(line))
 				to_chat(usr, span_notice("[jointext(line, "\n")]"))
 
