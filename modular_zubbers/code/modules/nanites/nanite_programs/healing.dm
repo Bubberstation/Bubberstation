@@ -166,7 +166,7 @@
 	if(!iscarbon(host_mob)) //nonstandard biology
 		return FALSE
 	var/mob/living/carbon/C = host_mob
-	return C.can_defib() == DEFIB_POSSIBLE
+	return C.can_defib() & DEFIB_POSSIBLE | DEFIB_NOGRAB_AGHOST
 
 /datum/nanite_program/defib/proc/zap()
 	var/mob/living/carbon/C = host_mob
