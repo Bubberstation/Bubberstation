@@ -5,6 +5,7 @@
 	mutantpart_info = list(MUTANT_INDEX_NAME = "Round", MUTANT_INDEX_COLOR_LIST = list("#FF4B19"))
 	slot = ORGAN_SLOT_EXTERNAL_CAP
 	preference = "feature_caps"
+	organ_flags = ORGAN_EXTERNAL
 
 /obj/item/organ/mushroom_cap/Initialize(mapload)
 	if(!ispath(bodypart_overlay))

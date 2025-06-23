@@ -9,6 +9,7 @@
 		TRAIT_MUTANT_COLORS,
 	)
 	mutanttongue = /obj/item/organ/tongue/cat/tajaran
+	mutantlungs = /obj/item/organ/lungs/adaptive/cold
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	mutant_bodyparts = list()
 	payday_modifier = 1.0

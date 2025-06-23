@@ -209,7 +209,7 @@
 	SKIN_HAT_REST_OFFSET = list("north" = list(0, 1), "south" = list(0, 1), "east" = list(2, 1), "west" = list(-2, 1))
 #define DULLAHAN_TAUR_HAT_OFFSET \
 	SKIN_HAT_OFFSET = list("north" = list(1, 15), "south" = list(1, 15), "east" = list(7, 15), "west" = list(-7, 15)), \
-	SKIN_HAT_REST_OFFSET = list("north" = list(1, 1), "south" = list(1, 1), "east" = list(7, 1), "west" = list(-2, 1))
+	SKIN_HAT_REST_OFFSET = list("north" = list(1, 1), "south" = list(1, 1), "east" = list(7, 1), "west" = list(-7, 1))
 #define CORRUPT_HAT_OFFSET \
 	SKIN_HAT_OFFSET = list("north" = list(16, -4), "south" = list(16, -15), "east" = list(35, -7), "west" = list(-3, -7)), \
 	SKIN_HAT_REST_OFFSET = list("north" = list(16, -6), "south" = list(16, -17), "east" = list(35, -14), "west" = list(-3, -14))

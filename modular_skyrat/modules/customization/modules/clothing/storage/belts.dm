@@ -154,7 +154,8 @@
 		/obj/item/reagent_containers/medigel,
 		/obj/item/storage/pill_bottle,
 		/obj/item/implanter,
-		/obj/item/hypospray/mkii,
+		/obj/item/hypospray,
 		/obj/item/reagent_containers/cup/vial,
-		/obj/item/weaponcell/medical
+		/obj/item/weaponcell/medical,
+		/obj/item/reagent_containers/cup/tube
 		))

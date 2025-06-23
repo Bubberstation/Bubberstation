@@ -31,6 +31,28 @@
 		RND_CATEGORY_NRI_CLOTHING,
 	)
 
+/datum/design/colonial_webbing
+	name = "Slim Colonial Webbing"
+	id = "slavic_webbing"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 200)
+	build_path = /obj/item/clothing/accessory/colonial_webbing
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_NRI_CLOTHING,
+	)
+
+/datum/design/genpouch
+	name = "Empty General Purpose Pouch"
+	id = "slavic_genpouch"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 250)
+	build_path = /obj/item/storage/pouch/cin_general
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_NRI_CLOTHING,
+	)
+
 /datum/design/cool_hat
 	name = "Colonial Cap"
 	id = "slavic_cap"

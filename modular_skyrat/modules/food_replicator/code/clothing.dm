@@ -62,3 +62,31 @@
 		return FALSE
 
 	return ..()
+
+/obj/item/clothing/accessory/colonial_webbing
+	name = "slim colonial webbing vest"
+	desc = "A versatile individual carrying equipment, cherished by colonists and hoarders alike. Compact enough to be worn underneath bulky clothing."
+	icon = 'modular_skyrat/modules/food_replicator/icons/clothing.dmi'
+	worn_icon = 'modular_skyrat/modules/food_replicator/icons/clothing_worn.dmi'
+	icon_state = "accessory_webbing"
+	w_class = WEIGHT_CLASS_NORMAL
+
+/obj/item/clothing/accessory/colonial_webbing/Initialize(mapload)
+	. = ..()
+	create_storage(storage_type = /datum/storage/pockets/colonial_webbing)
+
+/obj/item/clothing/accessory/colonial_webbing/can_attach_accessory(obj/item/clothing/under/attach_to, mob/living/user)
+	. = ..()
+	if(!.)
+		return
+
+	if(!isnull(attach_to.atom_storage))
+		if(user)
+			attach_to.balloon_alert(user, "not compatible!")
+		return FALSE
+	return TRUE
+
+/datum/storage/pockets/colonial_webbing
+	do_rustle = TRUE
+	max_slots = 3
+	max_specific_storage = WEIGHT_CLASS_SMALL

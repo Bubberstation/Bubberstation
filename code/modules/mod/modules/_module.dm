@@ -300,9 +300,6 @@
 /obj/item/mod/module/proc/on_uninstall(deleting = FALSE)
 	SHOULD_CALL_PARENT(TRUE)
 
-	if (deleting)
-		return
-
 	if (mask_worn_overlay)
 		for (var/obj/item/part as anything in mod.get_parts(all = TRUE))
 			UnregisterSignal(part, COMSIG_ITEM_GET_SEPARATE_WORN_OVERLAYS)
@@ -524,7 +521,7 @@
 		return FALSE
 	return TRUE
 
-/obj/item/mod/module/anomaly_locked/attackby(obj/item/item, mob/living/user, list/modifiers)
+/obj/item/mod/module/anomaly_locked/attackby(obj/item/item, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(item.type in accepted_anomalies)
 		if(core)
 			balloon_alert(user, "core already in!")

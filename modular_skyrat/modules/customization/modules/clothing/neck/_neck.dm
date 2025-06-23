@@ -75,10 +75,11 @@
 /obj/item/clothing/neck/mantle/recolorable
 	name = "mantle"
 	desc = "A simple drape over the shoulders."
-	icon = 'modular_skyrat/modules/GAGS/icons/neck/neck.dmi'
+	icon = 'icons/map_icons/clothing/neck.dmi'
+	icon_state = "/obj/item/clothing/neck/mantle/recolorable"
+	post_init_icon_state = "mantle"
 	worn_icon = 'modular_skyrat/modules/GAGS/icons/neck/neck.dmi'
 	worn_icon_teshari = 'modular_skyrat/modules/GAGS/icons/neck/neck_teshari.dmi'
-	icon_state = "mantle"
 	greyscale_colors = "#ffffff"
 	greyscale_config = /datum/greyscale_config/mantle
 	greyscale_config_worn = /datum/greyscale_config/mantle/worn
@@ -90,7 +91,9 @@
 /obj/item/clothing/neck/face_scarf
 	name = "face scarf"
 	desc = "A warm looking scarf that you can easily put around your face."
-	icon_state = "face_scarf"
+	icon = 'icons/map_icons/clothing/neck.dmi'
+	icon_state = "/obj/item/clothing/neck/face_scarf"
+	post_init_icon_state = "face_scarf"
 	greyscale_config = /datum/greyscale_config/face_scarf
 	greyscale_config_worn = /datum/greyscale_config/face_scarf/worn
 	greyscale_config_worn_muzzled = /datum/greyscale_config/face_scarf/worn/muzzled
@@ -113,7 +116,9 @@
 /obj/item/clothing/neck/maid_neck_cover
 	name = "maid neck cover"
 	desc = "A neckpiece for a maid costume, it smells faintly of disappointment."
-	icon_state = "maid_neck_cover"
+	icon = 'icons/map_icons/clothing/neck.dmi'
+	icon_state = "/obj/item/clothing/neck/maid_neck_cover"
+	post_init_icon_state = "maid_neck_cover"
 	greyscale_config = /datum/greyscale_config/maid_neck_cover
 	greyscale_config_worn = /datum/greyscale_config/maid_neck_cover/worn
 	greyscale_colors = "#7b9ab5#edf9ff"

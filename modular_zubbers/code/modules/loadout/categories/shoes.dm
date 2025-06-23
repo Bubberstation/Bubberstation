@@ -27,3 +27,11 @@
 /datum/loadout_item/shoes/horseshoes
 	name = "Horseshoes"
 	item_path = /obj/item/clothing/shoes/horseshoe
+
+/datum/loadout_item/shoes/diesel_m
+	name = "Male Diesel Boots"
+	item_path = /obj/item/clothing/shoes/jackboots/diesel_m
+
+/datum/loadout_item/shoes/diesel_f
+	name = "Female Diesel Boots"
+	item_path = /obj/item/clothing/shoes/jackboots/diesel_f

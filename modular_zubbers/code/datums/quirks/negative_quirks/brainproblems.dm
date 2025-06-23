@@ -34,10 +34,10 @@
 	give_item_to_holder(
 		/obj/item/storage/pill_bottle/liquid_solder/braintumor,
 		list(
-			LOCATION_LPOCKET = ITEM_SLOT_LPOCKET,
-			LOCATION_RPOCKET = ITEM_SLOT_RPOCKET,
-			LOCATION_BACKPACK = ITEM_SLOT_BACKPACK,
-			LOCATION_HANDS = ITEM_SLOT_HANDS,
+			LOCATION_LPOCKET,
+			LOCATION_RPOCKET,
+			LOCATION_BACKPACK,
+			LOCATION_HANDS,
 		),
 		flavour_text = "These will keep you alive until you can secure a supply of medication. Don't rely on them too much!",
 	)

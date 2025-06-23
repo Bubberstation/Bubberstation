@@ -113,7 +113,6 @@
 			balloon_alert_to_viewers("not enough power!")
 			cut_that_out()
 
-
 /// Checks the turf we are on to make sure we are outdoors and on a misc turf
 /obj/machinery/power/colony_ore_thumper/proc/see_if_we_can_work(turf/our_turf)
 	var/area/our_current_area = get_area(src)
@@ -122,7 +121,6 @@
 	if(!istype(get_turf(src), /turf/open/misc))
 		return FALSE
 	return TRUE
-
 
 /obj/machinery/power/colony_ore_thumper/attack_hand(mob/user, list/modifiers)
 	. = ..()

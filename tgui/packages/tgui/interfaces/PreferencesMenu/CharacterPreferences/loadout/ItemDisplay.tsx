@@ -7,6 +7,7 @@ import {
   Stack,
   Tooltip,
 } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 
 import type { LoadoutCategory, LoadoutItem, LoadoutManagerData } from './base';
@@ -203,14 +204,20 @@ export function LoadoutTabDisplay(props: TabProps) {
 type SearchProps = {
   loadout_tabs: LoadoutCategory[];
   currentSearch: string;
+  searchingTooltips: BooleanLike; // BUBBER EDIT ADDITION: Search in tooltips
 };
 
 export function SearchDisplay(props: SearchProps) {
-  const { loadout_tabs, currentSearch } = props;
+  const { loadout_tabs, currentSearch, searchingTooltips } = props; // BUBBER EDIT CHANGE: Search in tooltips: ORIGINAL: const { loadout_tabs, currentSearch } = props;
 
   const search = createSearch(
     currentSearch,
-    (loadout_item: LoadoutItem) => loadout_item.name,
+    (loadout_item: LoadoutItem) =>
+      loadout_item.name +
+      // BUBBER EDIT ADDITION BEGIN: Search in tooltips
+      (searchingTooltips &&
+        loadout_item.information.map((entry) => entry.tooltip)),
+    // BUBBER EDIT ADDITION END: Search in tooltips
   );
 
   const validLoadoutItems = loadout_tabs

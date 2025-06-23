@@ -251,6 +251,7 @@ SUBSYSTEM_DEF(gamemode)
 	inherit_required_time = TRUE,
 	no_antags = TRUE,
 	list/restricted_roles,
+	list/restricted_species,
 	)
 
 
@@ -279,10 +280,13 @@ SUBSYSTEM_DEF(gamemode)
 			continue
 		if(restricted_roles && (candidate.mind.assigned_role.title in restricted_roles))
 			continue
+		var/mob/living/carbon/carbon = candidate
+		if(istype(carbon)) // species restrictions
+			if(restricted_species && (carbon.dna.species.id in restricted_species))
+				continue
 		if(special_role_flag)
 			if(!(candidate.client.prefs) || !(special_role_flag in candidate.client.prefs.be_special))
 				continue
-
 			var/time_to_check
 			if(required_time)
 				time_to_check = required_time

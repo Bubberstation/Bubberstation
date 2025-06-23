@@ -2,60 +2,39 @@ GLOBAL_LIST_EMPTY(vetted_list_legacy)
 GLOBAL_PROTECT(vetted_list_legacy)
 GLOBAL_LIST_EMPTY(vetted_list)
 GLOBAL_PROTECT(vetted_list)
-/datum/controller/subsystem/player_ranks
-	var/loaded_vetted_sql = FALSE
 
 /datum/player_rank_controller/vetted
 	rank_title = "vetted user"
 	var/file_path_vetted
 
+/client/
+	var/is_vetted = null
+
 /datum/controller/subsystem/player_ranks/proc/is_vetted(client/user, admin_bypass = TRUE)
 	if(!istype(user))
 		CRASH("Invalid user type provided to is_vetted(), expected 'client' and obtained '[user ? user.type : "null"]'.")
-
-	if(!CONFIG_GET(flag/check_vetted))
-		return TRUE
-
-	if(GLOB.vetted_list[user.ckey])
-		return TRUE
-
-	if(admin_bypass && is_admin(user))
-		return TRUE
-
-	return FALSE
+	if(!isnull(user.is_vetted))
+		return user.is_vetted
+	if(get_user_vetted_status_hot(user.ckey))
+		user.is_vetted = TRUE
+		return user.is_vetted
+	else
+		user.is_vetted = FALSE
+		return user.is_vetted
 
 
-/datum/controller/subsystem/player_ranks/proc/load_vetted_ckeys()
-	PROTECTED_PROC(TRUE)
-	if(loaded_vetted_sql)
-		return
+
+/datum/controller/subsystem/player_ranks/proc/get_user_vetted_status_hot(ckey)
 	if(IsAdminAdvancedProcCall())
 		return
-
-	vetted_controller = new
-	vetted_controller.file_path_vetted = "[global.config.directory]/bubbers/vetted_players.txt"
-	ASYNC
-		for(var/line in world.file2list(vetted_controller.file_path_vetted))
-			if(!line)
-				continue
-
-			if(findtextEx(line, "#", 1, 2))
-				continue
-
-			vetted_controller.add_player(line, legacy = TRUE)
-			world.log << "Added [line] to vetted list."
-		var/datum/db_query/query_load_player_rank = SSdbcore.NewQuery("SELECT * FROM vetted_list")
-		if(!query_load_player_rank.warn_execute())
-			qdel(query_load_player_rank)
-			return
-		while(query_load_player_rank.NextRow())
-			var/ckey = ckey(query_load_player_rank.item[1])
-			vetted_controller.add_player(ckey)
-			world.log << "Added [ckey] to vetted list."
+	var/datum/db_query/query_load_player_rank = SSdbcore.NewQuery("SELECT ckey FROM vetted_list WHERE ckey = :ckey", list("ckey" = ckey))
+	if(!query_load_player_rank.warn_execute())
 		qdel(query_load_player_rank)
-
-	loaded_vetted_sql = TRUE
-	return TRUE
+		return
+	while(query_load_player_rank.NextRow())
+		var/ckey2 = ckey(query_load_player_rank.item[1])
+		. = ckey2
+	qdel(query_load_player_rank)
 
 /datum/player_rank_controller/vetted/proc/convert_all_to_sql()
 	if(!SSdbcore.Connect())
@@ -82,7 +61,8 @@ GLOBAL_PROTECT(vetted_list)
 	if(legacy)
 		GLOB.vetted_list_legacy[ckey] = TRUE
 	GLOB.vetted_list[ckey] = TRUE
-	add_player_to_sql(ckey, admin)
+	if(admin)
+		add_player_to_sql(ckey, admin)
 
 /datum/player_rank_controller/vetted/remove_player(ckey)
 	GLOB.vetted_list -= ckey
@@ -101,6 +81,7 @@ ADMIN_VERB(convert_flatfile_vettedlist_to_sql, R_DEBUG, "Convert Vetted list to 
 	if(consent == "Yes")
 		SSplayer_ranks.vetted_controller.convert_all_to_sql()
 		message_admins("[usr] has forcefully converted the vetted list file to SQL.")
+
 ADMIN_VERB(add_vetted, R_ADMIN, "Add user to Vetted", "Adds a user to the vetted list", ADMIN_CATEGORY_MAIN)
 	var/user_adding = tgui_input_text(usr, "Whom is being added?", "Vetted List")
 	if(length(user_adding))
