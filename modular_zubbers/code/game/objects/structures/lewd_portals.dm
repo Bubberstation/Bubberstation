@@ -1,6 +1,6 @@
 #define GLORYHOLE "gloryhole"
 #define WALLSTUCK "wallstuck"
-#define PORTAL_SIGNAL_LIST = list( \
+#define PORTAL_SIGNAL_LIST list( \
 	COMSIG_MOB_POST_EQUIP, \
 	COMSIG_HUMAN_UNEQUIPPED_ITEM, \
 	COMSIG_HUMAN_TOGGLE_UNDERWEAR, \
