@@ -371,10 +371,10 @@
 					continue
 				if(gential_sprite.is_hidden(owner))
 					continue
-				var/obj/item/organ/genital/ORG = owner.get_organ_slot(gential_sprite.associated_organ_slot)
-				if(!ORG)
+				var/obj/item/organ/genital/organ = owner.get_organ_slot(gential_sprite.associated_organ_slot)
+				if(!organ)
 					continue
-				line += ORG.get_description_string(gential_sprite)
+				line += organ.get_description_string(gential_sprite)
 			if(length(line))
 				to_chat(usr, span_notice("[jointext(line, "\n")]"))
 
