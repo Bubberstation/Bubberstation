@@ -63,7 +63,7 @@
 			liquid_container = cached_item
 
 	if(liquid_container)
-		var/obj/item/organ/external/genital/vagina/vagina = user.get_organ_slot(ORGAN_SLOT_VAGINA)
+		var/obj/item/organ/genital/vagina/vagina = user.get_organ_slot(ORGAN_SLOT_VAGINA)
 		if(vagina?.internal_fluid_datum)
 			var/datum/reagents/R = new(vagina.internal_fluid_maximum)
 			vagina.transfer_internal_fluid(R, vagina.internal_fluid_count)

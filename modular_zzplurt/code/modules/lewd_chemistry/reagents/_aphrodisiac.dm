@@ -177,7 +177,6 @@
 	else if(mob_butt.genital_size == butt_minimum_size)
 		var/message = "Your bottom has completely flattened out."
 		remove_genital(exposed_mob, mob_butt, suppress_chat, message)
-
 /**
 * Handle shrinkage of genitals
 *

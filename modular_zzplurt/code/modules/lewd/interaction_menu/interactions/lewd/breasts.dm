@@ -20,7 +20,7 @@
 	target_arousal = 2
 
 /datum/interaction/lewd/breastfeed/act(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	var/obj/item/organ/external/genital/breasts/breasts = user.get_organ_slot(ORGAN_SLOT_BREASTS)
+	var/obj/item/organ/genital/breasts/breasts = user.get_organ_slot(ORGAN_SLOT_BREASTS)
 	if(!breasts?.internal_fluid_datum)
 		return
 
@@ -34,7 +34,7 @@
 
 /datum/interaction/lewd/breastfeed/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
-	var/obj/item/organ/external/genital/breasts/breasts = user.get_organ_slot(ORGAN_SLOT_BREASTS)
+	var/obj/item/organ/genital/breasts/breasts = user.get_organ_slot(ORGAN_SLOT_BREASTS)
 	if(breasts?.internal_fluid_datum)
 		// Calculate milk amount based on how full the breasts are (0.5 to 2 multiplier)
 		var/milk_multiplier = 0.5
@@ -88,6 +88,16 @@
 		message = original_messages
 		return
 
+	if(user.combat_mode) // AGGRESSIVE TIDDY GRABS
+		message = list(
+			"aggressively gropes %TARGET%'s breast.",
+			"grabs %TARGET%'s breasts.",
+			"tightly squeezes %TARGET%'s breasts.",
+			"slaps at %TARGET%'s breasts.",
+			"gropes %TARGET%'s breasts roughly."
+		)
+
+	/* // Commenting out, we don't use intent on this codebase.
 	// Handle different intents
 	switch(resolve_intent_name(user.combat_mode))
 		if("harm")
@@ -114,6 +124,7 @@
 				"roughly fondles %TARGET%'s breasts.",
 				"greedily squeezes %TARGET%'s breasts."
 			)
+	*/
 	. = ..()
 	message = original_messages
 
@@ -131,7 +142,7 @@
 				liquid_container = cached_item
 
 		if(liquid_container)
-			var/obj/item/organ/external/genital/breasts/breasts = target.get_organ_slot(ORGAN_SLOT_BREASTS)
+			var/obj/item/organ/genital/breasts/breasts = target.get_organ_slot(ORGAN_SLOT_BREASTS)
 			if(breasts?.internal_fluid_datum)
 				// Calculate milk amount based on how full the breasts are (0.5 to 2 multiplier)
 				var/milk_multiplier = 0.5
@@ -144,6 +155,18 @@
 				R.trans_to(liquid_container, R.total_volume)
 				qdel(R)
 
+	if(!user.combat_mode && prob(5 + target.arousal))
+		var/list/arousal_messages // We really don't need this but meh, keeps compat for future changes and really doesn't hurt.
+		arousal_messages = list(
+			"%TARGET% shivers in arousal.",
+			"%TARGET% moans quietly.",
+			"%TARGET% breathes out a soft moan.",
+			"%TARGET% gasps.",
+			"%TARGET% shudders softly.",
+			"%TARGET% trembles as hands run across bare skin."
+		)
+
+	/* // Commenting out, we don't use intent on this codebase.
 	// Handle arousal effects based on intent
 	var/intent = resolve_intent_name(user.combat_mode)
 	if(intent != "harm" && prob(5 + target.arousal))
@@ -174,7 +197,7 @@
 					"%TARGET% quivers with excitement.",
 					"%TARGET% shivers with anticipation."
 				)
-
+		*/
 		if(arousal_messages)
 			var/target_message = list(pick(arousal_messages))
 			target.visible_message(span_lewd(replacetext(target_message, "%TARGET%", target)))

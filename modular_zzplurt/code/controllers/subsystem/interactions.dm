@@ -6,7 +6,7 @@ SUBSYSTEM_DEF(interactions)
 	VAR_PROTECTED/list/blacklisted_mobs = list(
 		/mob/dead,
 		/mob/dview,
-		/mob/camera,
+		/mob/eye,
 		/mob/living/basic/pet,
 		/mob/living/basic/cockroach,
 		/mob/living/basic/butterfly,

@@ -68,7 +68,7 @@
 				span_userlove("You orgasm, it feels great, but nothing comes out of your penis!"))
 
 		else if(is_wearing_condom())
-			var/obj/item/clothing/sextoy/condom/condom = src.penis // bruh 💀⚰️💀⚰️💀⚰️💀⚰️💀
+			var/obj/item/clothing/sextoy/condom/condom = src.penis
 			condom.condom_use()
 			visible_message(span_userlove("[src] shoots [self_their] load into the [condom], filling it up!"), \
 				span_userlove("You shoot your thick load into the [condom] and it catches it all!"))
@@ -96,8 +96,6 @@
 				buttons += CLIMAX_IN_OR_ON
 
 			var/penis_climax_choice = climax_interaction && !manual ? CLIMAX_IN_OR_ON : tgui_alert(src, "Choose where to shoot your load.", "Load preference!", buttons) //SPLURT EDIT CHANGE - Interactions
-
-			var/penis_climax_choice = tgui_alert(src, "Choose where to shoot your load.", "Load preference!", buttons)
 
 			var/create_cum_decal = FALSE
 
@@ -196,6 +194,7 @@
 			//SPLURT EDIT CHANGE BEGIN - Interactions
 			if(!(climax_interaction?.interaction_modifier_flags & INTERACTION_OVERRIDE_FLUID_TRANSFER))
 				if(create_cum_decal)
+					/* // We don't have this trait! TODO: Port Messy, it's a fun trait.
 					if(HAS_TRAIT(src, TRAIT_MESSY))
 						// Transfer reagents to the turf using liquids system
 						var/datum/reagents/R = new(testicles.internal_fluid_maximum)
@@ -208,9 +207,9 @@
 							var/turf/T = get_turf(src)
 							T.add_liquid_from_reagents(R, FALSE, 1)
 						qdel(R)
-					else
-						testicles.transfer_internal_fluid(null, testicles.internal_fluid_count * 0.6)
-						add_cum_splatter_floor(get_turf(src))
+					*/
+					testicles.transfer_internal_fluid(null, testicles.internal_fluid_count * 0.6)
+					add_cum_splatter_floor(get_turf(src))
 				else if(partner)
 					// Transfer reagents directly to partner
 					var/datum/reagents/R = new(testicles.internal_fluid_maximum)
@@ -233,7 +232,7 @@
 		var/obj/item/organ/genital/vagina/vagina = get_organ_slot(ORGAN_SLOT_VAGINA)
 		var/climax_text_override = climax_interaction && !manual && climax_interaction.show_climax(src, partner, interaction_position) //SPLURT EDIT CHANGE - Interactions
 		if(is_bottomless() || vagina.visibility_preference == GENITAL_ALWAYS_SHOW)
-				visible_message(span_userlove("[src] twitches and moans as [p_they()] climax from their vagina!"), span_userlove("You twitch and moan as you climax from your vagina!"))
+			visible_message(span_userlove("[src] twitches and moans as [p_they()] climax from their vagina!"), span_userlove("You twitch and moan as you climax from your vagina!"))
 			add_cum_splatter_floor(get_turf(src), female = TRUE)
 			self_orgasm = TRUE
 		else
@@ -275,7 +274,7 @@
 						target_buttons += ORGAN_SLOT_ANUS
 					if(target_human.has_penis(REQUIRE_GENITAL_EXPOSED))
 						target_buttons += ORGAN_SLOT_PENIS
-						var/obj/item/organ/external/genital/penis/other_penis = target_human.get_organ_slot(ORGAN_SLOT_PENIS)
+						var/obj/item/organ/genital/penis/other_penis = target_human.get_organ_slot(ORGAN_SLOT_PENIS)
 						if(other_penis.sheath != "None")
 							target_buttons += "sheath"
 					target_buttons += "On [target_human_them]"
@@ -307,6 +306,7 @@
 
 			if(!(climax_interaction?.interaction_modifier_flags & INTERACTION_OVERRIDE_FLUID_TRANSFER))
 				if(create_cum_decal)
+					/* // We don't have this trait! TODO: Port Messy, it's a fun trait.
 					if(HAS_TRAIT(src, TRAIT_MESSY))
 						var/datum/reagents/R = new(vagina.internal_fluid_maximum)
 						vagina.transfer_internal_fluid(R, vagina.internal_fluid_count)
@@ -317,9 +317,9 @@
 							var/turf/T = get_turf(src)
 							T.add_liquid_from_reagents(R, FALSE, 1)
 						qdel(R)
-					else
-						vagina.transfer_internal_fluid(null, vagina.internal_fluid_count)
-						add_cum_splatter_floor(get_turf(src), female = TRUE)
+					*/
+					vagina.transfer_internal_fluid(null, vagina.internal_fluid_count)
+					add_cum_splatter_floor(get_turf(src), female = TRUE)
 				else if(partner)
 					var/datum/reagents/R = new(vagina.internal_fluid_maximum)
 					vagina.transfer_internal_fluid(R, vagina.internal_fluid_count)

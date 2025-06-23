@@ -33,9 +33,9 @@
 	user_arousal = 2
 	target_arousal = 2
 
+/* Removing these, we don't use kiss slut trait. TODO: Port this.
 /datum/interaction/lewd/kiss/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
-	
 	// Check if user has TRAIT_KISS_SLUT and increase their lust
 	if(HAS_TRAIT(user, TRAIT_KISS_SLUT))
 		user.adjust_pleasure(10, target, interaction = src, position = CLIMAX_POSITION_USER)
@@ -44,3 +44,4 @@
 	if(HAS_TRAIT(target, TRAIT_KISS_SLUT))
 		target.adjust_pleasure(10, user, interaction = src, position = CLIMAX_POSITION_TARGET)
 		target.adjust_arousal(10)
+*/

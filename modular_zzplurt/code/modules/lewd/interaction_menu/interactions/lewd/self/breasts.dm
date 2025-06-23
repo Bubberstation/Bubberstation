@@ -43,7 +43,7 @@
 			liquid_container = cached_item
 
 	if(liquid_container)
-		var/obj/item/organ/external/genital/breasts/breasts = user.get_organ_slot(ORGAN_SLOT_BREASTS)
+		var/obj/item/organ/genital/breasts/breasts = user.get_organ_slot(ORGAN_SLOT_BREASTS)
 		if(breasts?.internal_fluid_datum)
 			// Calculate milk amount based on how full the breasts are (0.5 to 2 multiplier)
 			var/milk_multiplier = 0.5
@@ -78,7 +78,7 @@
 
 /datum/interaction/lewd/self_nipsuck/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
-	var/obj/item/organ/external/genital/breasts/breasts = user.get_organ_slot(ORGAN_SLOT_BREASTS)
+	var/obj/item/organ/genital/breasts/breasts = user.get_organ_slot(ORGAN_SLOT_BREASTS)
 	if(breasts?.internal_fluid_datum)
 		// Calculate milk amount based on how full the breasts are (0.5 to 2 multiplier)
 		var/milk_multiplier = 0.5

@@ -122,7 +122,7 @@
 				liquid_container = cached_item
 
 		if(liquid_container)
-			var/obj/item/organ/external/genital/testicles/testicles = cumming.get_organ_slot(ORGAN_SLOT_TESTICLES)
+			var/obj/item/organ/genital/testicles/testicles = cumming.get_organ_slot(ORGAN_SLOT_TESTICLES)
 			if(testicles)
 				testicles.transfer_internal_fluid(liquid_container.reagents, testicles.internal_fluid_count)
 

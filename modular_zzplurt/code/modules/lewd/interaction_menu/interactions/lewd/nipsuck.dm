@@ -22,6 +22,15 @@
 /datum/interaction/lewd/nipsuck/act(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/list/original_messages = message.Copy()
 
+	if(user.combat_mode) // AGGRESSIVE TIDDY GRABS
+		message = list(
+			"bites %TARGET%'s nipple.",
+			"aggressively sucks %TARGET%'s nipple."
+		)
+		target_pleasure = 4 // Aggressive sucking has higher rewards
+		target_arousal = 5
+
+	/* // Commenting out, we don't use intent on this codebase.
 	// Handle different intents
 	switch(resolve_intent_name(user.combat_mode))
 		if("harm")
@@ -45,12 +54,13 @@
 			)
 			target_pleasure = 4 // Intent sucking has higher rewards
 			target_arousal = 5
+	*/
 	. = ..()
 	message = original_messages
 
 /datum/interaction/lewd/nipsuck/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
-	var/obj/item/organ/external/genital/breasts/breasts = target.get_organ_slot(ORGAN_SLOT_BREASTS)
+	var/obj/item/organ/genital/breasts/breasts = target.get_organ_slot(ORGAN_SLOT_BREASTS)
 	if(breasts?.internal_fluid_datum)
 		// Calculate milk amount based on how full the breasts are (0.5 to 2 multiplier)
 		var/milk_multiplier = 0.5
@@ -58,8 +68,8 @@
 			milk_multiplier = 0.5 + (1.5 * (breasts.internal_fluid_count / breasts.internal_fluid_maximum))
 
 		var/transfer_amount = rand(1, 2 * milk_multiplier)
-		var/intent = resolve_intent_name(user.combat_mode)
-		if(intent == "harm" || intent == "grab")
+		// var/intent = resolve_intent_name(user.combat_mode)
+		if(user.combat_mode) // Aggressive sucking gets more milk, plus we don't use intent on this codebase
 			transfer_amount = rand(1, 3 * milk_multiplier) // More aggressive sucking gets more milk
 
 		var/datum/reagents/R = new(breasts.internal_fluid_maximum)
@@ -68,7 +78,17 @@
 		qdel(R)
 
 	if(!user.combat_mode && prob(5 + target.arousal))
-		var/list/arousal_messages
+		var/list/arousal_messages // We really don't need this but meh.
+
+		arousal_messages = list(
+			"%TARGET% shivers in arousal.",
+			"%TARGET% moans quietly.",
+			"%TARGET% breathes out a soft moan.",
+			"%TARGET% gasps.",
+			"%TARGET% shudders softly.",
+			"%TARGET% trembles as their chest gets molested."
+		)
+		/* // Commenting out, we don't use intent on this codebase.
 		switch(resolve_intent_name(user.combat_mode))
 			if("help")
 				arousal_messages = list(
@@ -95,6 +115,6 @@
 					"%TARGET% quivers with excitement.",
 					"%TARGET% shivers with anticipation."
 				)
-
+		*/
 		if(arousal_messages)
 			message = list(pick(arousal_messages))
