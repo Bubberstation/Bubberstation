@@ -336,7 +336,7 @@
 	else
 		dir = NORTH
 		var/species_name
-		if(owner.dna?.species?.lore_protected || owner.dna?.features["custom_species"] == "")
+		if(owner.dna?.species?.lore_protected || owner.dna?.features["custom_species"] == FALSE)
 			species_name = owner.dna.species.name
 		else
 			species_name = owner.dna.features["custom_species"]
