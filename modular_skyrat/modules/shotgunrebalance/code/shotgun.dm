@@ -152,7 +152,7 @@
 	damage = 7
 	armour_penetration = 40
 	wound_bonus = 0
-	bare_wound_bonus = 0
+	exposed_wound_bonus = 0
 	sharpness = SHARP_EDGED //Did you knew flechettes fly sideways into people
 	damage_falloff_tile = -0.7 // Five tiles will halve the effectiveness dramatically
 	wound_falloff_tile = -3
@@ -183,7 +183,7 @@
 	damage_falloff_tile = -1
 	stamina_falloff_tile = -1
 	wound_bonus = 5
-	bare_wound_bonus = 5
+	exposed_wound_bonus = 5
 	wound_falloff_tile = 0
 	sharpness = NONE
 	ricochets_max = 5
@@ -218,7 +218,7 @@
 	damage_falloff_tile = -0.2
 	stamina_falloff_tile = -0.3
 	wound_bonus = 40
-	bare_wound_bonus = 40
+	exposed_wound_bonus = 40
 	stutter = 3 SECONDS
 	jitter = 5 SECONDS
 	eyeblur = 1 SECONDS
@@ -251,7 +251,7 @@
 	name = "frangible slug"
 	damage = 15 //I'd kill you if you manage to kill someone with this shit
 	wound_bonus = 30
-	bare_wound_bonus = 30
+	exposed_wound_bonus = 30
 	demolition_mod = 2
 
 /obj/projectile/bullet/frangible_slug/on_hit(atom/target, blocked = 0, pierce_hit)

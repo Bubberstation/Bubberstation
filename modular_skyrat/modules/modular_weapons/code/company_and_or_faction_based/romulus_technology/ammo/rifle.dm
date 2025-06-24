@@ -22,7 +22,7 @@
 	damage = 15
 	armour_penetration = 60
 	wound_bonus = 10
-	bare_wound_bonus = 10
+	exposed_wound_bonus = 10
 	embed_type = /datum/embedding/caflechette
 	dismemberment = 0
 
@@ -46,7 +46,7 @@
 	name = "flechette dart"
 	damage = 10
 	wound_bonus = 25
-	bare_wound_bonus = 35
+	exposed_wound_bonus = 35
 	embed_type = /datum/embedding/ripper
 	armour_penetration = 40 //defeat basic armour
 
@@ -70,10 +70,9 @@
 	name = "high velocity steel ball"
 	damage = 10
 	wound_bonus = 20
-	bare_wound_bonus = 10
 	sharpness = SHARP_EDGED
 	wound_bonus = 0
-	bare_wound_bonus = 20
+	exposed_wound_bonus = 20
 	armour_penetration = 10
 	shrapnel_type = /obj/item/shrapnel/stingball
 	embed_type = /datum/embedding/ballpoint
@@ -102,7 +101,7 @@
 	name = "high velocity magnesium rod"
 	damage = 5
 	wound_bonus = 15
-	bare_wound_bonus = 5
+	exposed_wound_bonus = 5
 	embed_type = /datum/embedding/magnesium
 	armour_penetration = 100 //does really low damage
 

@@ -11,7 +11,7 @@
 	sharpness = SHARP_EDGED
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	wound_bonus = 10
-	bare_wound_bonus = 15
+	exposed_wound_bonus = 15
 	tool_behaviour = TOOL_KNIFE
 	// How long do we take to shave someone's facial hair?
 	var/shaving_time = 10 SECONDS

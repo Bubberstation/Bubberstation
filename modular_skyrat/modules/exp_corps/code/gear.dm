@@ -19,7 +19,7 @@
 /obj/item/circular_saw/field_medic
 	name = "bone saw"
 	desc = "Did that sting? SAW-ry!"
-	force = 20
+	force = 15
 	icon_state = "bonesaw"
 	icon = 'modular_skyrat/modules/exp_corps/icons/bonesaw.dmi'
 	lefthand_file = 'modular_skyrat/modules/exp_corps/icons/bonesaw_l.dmi'

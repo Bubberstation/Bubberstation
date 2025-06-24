@@ -5,7 +5,7 @@
 	force = 21 //Normally 25.
 
 	wound_bonus = 0
-	bare_wound_bonus = 0
+	exposed_wound_bonus = 0
 
 	var/blood_chance = 100
 

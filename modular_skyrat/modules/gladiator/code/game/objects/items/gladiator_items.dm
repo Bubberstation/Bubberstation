@@ -147,7 +147,7 @@
 	slot_flags = null
 	force = 20
 	wound_bonus = 10
-	bare_wound_bonus = 5
+	exposed_wound_bonus = 5
 	resistance_flags = INDESTRUCTIBLE
 	armour_penetration = 35 //this boss is really hard and this sword is really big
 	block_chance = 25

@@ -302,8 +302,8 @@
 /obj/item/toy/plush/lazy_synth
 	name = "lazy synth plush"
 	desc = "A soft plush of an extremely lazy synth. Might be found loafing in random places."
-	attack_verb_continuous = list("squishes")
-	attack_verb_simple = list("squish")
+	attack_verb_continuous = list("squishes", "loafs on", "sleeps on", "eggs")
+	attack_verb_simple = list("squish", "loaf on", "sleep on", "egg")
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "lazy_synth"
 	squeak_override = list('modular_zubbers/sound/misc/squeakle.ogg' = 1)

@@ -258,6 +258,13 @@
 		SPECIES_PERK_DESC = "[plural_form] can sing musical tones using an internal synthesizer.",
 	))
 
+	perk_descriptions += list(list(
+		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+		SPECIES_PERK_ICON = "band-aid",
+		SPECIES_PERK_NAME = "Structural Damage",
+		SPECIES_PERK_DESC = "[plural_form] are weak to blunt objects.",
+	))
+
 	return perk_descriptions
 
 /datum/species/synthetic/prepare_human_for_preview(mob/living/carbon/human/beepboop)

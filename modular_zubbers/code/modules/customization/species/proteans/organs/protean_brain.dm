@@ -10,7 +10,7 @@
 
 /obj/item/organ/brain/protean
 	name = "protean core"
-	desc = "An advanced positronic brain, typically found in the core of a protean"
+	desc = "An advanced positronic brain, typically found in the core of a protean."
 	icon = PROTEAN_ORGAN_SPRITE
 	icon_state = "posi1"
 	zone = BODY_ZONE_CHEST
@@ -85,11 +85,12 @@
 	var/datum/species/protean/protean = owner.dna?.species
 	if(!istype(protean) || owner.loc == protean.species_modsuit)
 		return
+	var/obj/item/mod/control/pre_equipped/protean/suit = protean.species_modsuit
 	if(!forced)
 		if(!do_after(owner, 5 SECONDS))
 			return
+	owner.visible_message(span_warning("[owner] retreats into [suit]!"))
 	owner.extinguish_mob()
-	var/obj/item/mod/control/pre_equipped/protean/suit = protean.species_modsuit
 	owner.invisibility = 101
 	new /obj/effect/temp_visual/protean_to_suit(owner.loc, owner.dir)
 	owner.Stun(INFINITY, TRUE)
@@ -128,6 +129,7 @@
 	owner.SetStun(0)
 	owner.remove_traits(TRANSFORM_TRAITS, PROTEAN_TRAIT)
 	owner.apply_status_effect(/datum/status_effect/protean_low_power_mode/reform)
+	owner.visible_message(span_warning("[owner] reforms from [suit]!"))
 	if(!HAS_TRAIT(suit, TRAIT_NODROP))
 		ADD_TRAIT(suit, TRAIT_NODROP, "protean")
 
@@ -185,5 +187,19 @@
 	icon = PROTEAN_ORGAN_SPRITE
 	icon_state = "from_puddle"
 	duration = 12
+
+/obj/item/organ/brain/protean/emp_act(severity) // technically, a protean brain isn't a cybernetic brain, so it's not inherting the normal cybernetic proc.
+	. = ..()
+	if(. & EMP_PROTECT_SELF)
+		return
+	if(owner.stat == DEAD)
+		return
+	switch(severity)
+		if (EMP_HEAVY)
+			to_chat(owner, span_boldwarning("Your core nanites [pick("buzz erratically", "surge chaotically")]!"))
+			owner.set_drugginess_if_lower(40 SECONDS)
+		if (EMP_LIGHT)
+			to_chat(owner, span_warning("Your core nanites feel [pick("fuzzy", "unruly", "sluggish")]."))
+			owner.set_drugginess_if_lower(20 SECONDS)
 
 #undef TRANSFORM_TRAITS

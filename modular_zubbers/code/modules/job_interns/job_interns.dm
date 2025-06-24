@@ -138,3 +138,6 @@
 
 /datum/job/prisoner
 	can_be_intern = FALSE
+
+/datum/job/assistant
+	can_be_intern = FALSE

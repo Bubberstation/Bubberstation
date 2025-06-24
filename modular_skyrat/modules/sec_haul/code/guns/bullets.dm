@@ -156,7 +156,7 @@
 	ricochets_max = 0
 	sharpness = SHARP_EDGED
 	wound_bonus = 35
-	bare_wound_bonus = 30
+	exposed_wound_bonus = 30
 	embed_type = /datum/embedding/dumdum
 	wound_falloff_tile = -8
 	embed_falloff_tile = -20

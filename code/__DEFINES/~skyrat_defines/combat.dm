@@ -164,7 +164,7 @@
 	var/fun_times_at_the_headbash_factory = (head_knock ? 8 : 3)
 	if(head_knock)
 		target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 15)
-	target.apply_damage(15, BRUTE, affecting, armor_block, wound_bonus = fun_times_at_the_headbash_factory, bare_wound_bonus = fun_times_at_the_headbash_factory)
+	target.apply_damage(15, BRUTE, affecting, armor_block, wound_bonus = fun_times_at_the_headbash_factory, exposed_wound_bonus = fun_times_at_the_headbash_factory)
 	playsound(target, 'sound/effects/hit_kick.ogg', 70)
 	log_combat(user, target, "headsmashes", "against the floor")
 

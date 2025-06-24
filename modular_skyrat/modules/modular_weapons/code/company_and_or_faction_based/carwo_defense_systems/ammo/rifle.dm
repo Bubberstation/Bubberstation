@@ -23,7 +23,7 @@
 	damage = 35
 
 	wound_bonus = -30
-	bare_wound_bonus = -35
+	exposed_wound_bonus = -35
 
 
 /obj/item/ammo_box/c40sol
@@ -66,7 +66,7 @@
 
 	sharpness = SHARP_EDGED
 	wound_bonus = 0
-	bare_wound_bonus = 20
+	exposed_wound_bonus = 20
 
 	shrapnel_type = /obj/item/shrapnel/stingball
 	embed_type = /datum/embedding/c40sol_fragmentation
@@ -119,7 +119,7 @@
 	armour_penetration = 20
 
 	wound_bonus = -30
-	bare_wound_bonus = -10
+	exposed_wound_bonus = -10
 
 	ricochets_max = 2
 	ricochet_chance = 80
