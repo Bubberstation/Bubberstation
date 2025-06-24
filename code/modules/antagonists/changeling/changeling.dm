@@ -242,7 +242,8 @@
 	return ..()
 
 /datum/antagonist/changeling/farewell()
-	to_chat(owner.current, span_userdanger("You grow weak and lose your powers! You are no longer a changeling and are stuck in your current form!"))
+	if(owner.current)
+		to_chat(owner.current, span_userdanger("You grow weak and lose your powers! You are no longer a changeling and are stuck in your current form!"))
 
 /*
  * Instantiate the cellular emporium for the changeling.
@@ -786,7 +787,7 @@
 		return
 
 	var/mob/living/carbon/carbon_owner = owner.current
-	first_profile.dna.transfer_identity(carbon_owner, transfer_SE = TRUE)
+	first_profile.dna.copy_dna(carbon_owner.dna, COPY_DNA_SE|COPY_DNA_SPECIES)
 	carbon_owner.real_name = first_profile.name
 	carbon_owner.updateappearance(mutcolor_update = TRUE)
 	carbon_owner.domutcheck()
@@ -852,7 +853,7 @@
 	user.voice = chosen_profile.voice
 	user.voice_filter = chosen_profile.voice_filter
 
-	chosen_dna.transfer_identity(user, TRUE)
+	chosen_dna.copy_dna(user.dna, COPY_DNA_SE|COPY_DNA_SPECIES)
 
 	for(var/obj/item/bodypart/limb as anything in user.bodyparts)
 		limb.update_limb(is_creating = TRUE)
@@ -957,7 +958,7 @@
 	current_profile = chosen_profile
 	// SKYRAT EDIT START
 	user.visual_only_organs = TRUE
-	chosen_dna.transfer_identity(user, TRUE)
+	chosen_dna.copy_dna(user.dna, COPY_DNA_SE|COPY_DNA_SPECIES)
 	user.visual_only_organs = initial(user.visual_only_organs)
 	user.updateappearance(mutcolor_update = TRUE, eyeorgancolor_update = TRUE)
 	user.regenerate_icons()
