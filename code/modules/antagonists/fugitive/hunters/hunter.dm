@@ -80,10 +80,9 @@
 
 /datum/antagonist/fugitive_hunter/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/owner_mob = mob_override || owner.current
-	//bubber edit; spinwarder removed
+	// BUBBER EDIT CHANGE BEGIN: spinwarder removed
 	owner_mob.remove_language(/datum/language/panslavic, source = LANGUAGE_BOUNTYHUNTER)
-	//edit end
-	return ..()
+	// BUBBER EDIT CHANGE END
 
 /datum/team/fugitive_hunters
 	var/backstory = "error"
