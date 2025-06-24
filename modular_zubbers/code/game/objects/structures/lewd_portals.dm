@@ -329,10 +329,8 @@
 		name = LOWER_TEXT("[penis_type] penis")
 		desc = "Someone's penis hanging out from a portal."
 		dir = SOUTH
-		if (owning_portal.dir == EAST)
-			dir = WEST
-		if (owning_portal.dir == WEST)
-			dir = EAST
+		if (owning_portal.dir == EAST || owning_portal.dir == WEST)
+			dir = REVERSE_DIR(owning_portal.dir)
 	else
 		dir = NORTH
 		var/species_name
