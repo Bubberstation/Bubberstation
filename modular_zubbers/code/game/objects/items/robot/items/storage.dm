@@ -135,6 +135,7 @@
 	basic_modules += list(
 		/obj/item/borg/apparatus/tank_manipulator,
 		/obj/item/borg/apparatus/engineering,
+		/obj/item/storage/part_replacer/cyborg,
 	)
 	. = ..()
 
