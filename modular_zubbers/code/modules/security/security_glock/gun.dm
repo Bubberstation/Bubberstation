@@ -15,6 +15,7 @@
 	projectile_damage_multiplier = 1
 	actions_types = list(/datum/action/item_action/toggle_mageject)
 	var/magejecting = FALSE //whether we are launching the mags or not
+	var/autoswap = TRUE
 
 /datum/action/item_action/toggle_mageject
 	button_icon = 'icons/obj/weapons/guns/ammo.dmi'
@@ -40,26 +41,32 @@
 /obj/item/gun/ballistic/automatic/pistol/sec_glock/attack_self(mob/living/user)
 	var/obj/item/belt_item = user.get_item_by_slot(ITEM_SLOT_BELT)
 	var/obj/item/ammo_box/magazine/swapped_mag = istype(belt_item, accepted_magazine_type) ? belt_item : locate(accepted_magazine_type) in belt_item
-	if(!magazine && swapped_mag) //Empty gun, load in anyhow but without delay. No mag
-		if(insert_magazine(user, swapped_mag))
-			SpinAnimation(2, 1)
+	if(!magazine && !chambered) //Empty gun, load in anyhow but without delay. No mag
+		if(swapped_mag)
 			balloon_alert(user, "you spin your gun, loading in a mag!")
+			SpinAnimation(2, 1)
+			if(do_after(user, 1 SECONDS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE), target = src))
+				insert_magazine(user, swapped_mag) // Just put the new mag in hands off
+				return
 		else
-			balloon_alert(user, "that magazine doesn't fit!")
-	if(!chambered)
+			balloon_alert(user, "no spare magazines in your belt!") // We still say what's wrong
+			default_behaviour(user, 1)
+			return
+	if(!magazine && chambered)
+		default_behaviour(user)
+		return
+	if(!magazine.ammo_count() && !chambered && magazine)
 		if(swapped_mag)
 			balloon_alert(user, "you spin your gun, loading in a mag!")
 			SpinAnimation(2, 1)
 			if(do_after(user, 1 SECONDS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE), target = src))
 				throw_eject_magazine(user, magejecting, swapped_mag)
+				return
 		else
+			default_behaviour(user, 1)
 			balloon_alert(user, "no spare magazines in your belt!")
 			return
-	drop_bolt(user)
-	if(recent_rack > world.time)
-		return
-	recent_rack = world.time + rack_delay
-	rack(user)
+	default_behaviour(user)
 
 
 /obj/item/gun/ballistic/automatic/pistol/sec_glock/proc/throw_eject_magazine(mob/user, display_message = TRUE, obj/item/ammo_box/magazine/m9mm/security/belt_mag, atom/target)
@@ -81,6 +88,7 @@
 	if(magejecting)
 		old_mag.was_ejected = TRUE
 		old_mag.throw_at(get_edge_target_turf(user, user.dir), range = 7, speed = 7, thrower = user, force = 10)
+	autoswap = TRUE
 	old_mag.update_appearance()
 	update_appearance()
 
@@ -118,3 +126,19 @@
 		playsound(src, rack_sound, rack_sound_volume, rack_sound_vary)
 	update_appearance()
 
+/obj/item/gun/ballistic/automatic/pistol/sec_glock/proc/default_behaviour(mob/user = null, var/eject_mag_inside) //Proc that we call to make the gun work as any gun would when not launching magazines etc
+	if(!internal_magazine && magazine && eject_mag_inside) //Eject mag inside prevents someone spamming use in hand from emptying the clip they're going to throw into their hand.
+		if(!magazine.ammo_count())
+			eject_magazine(user)
+			return
+	if(bolt_type == BOLT_TYPE_NO_BOLT)
+		unload_ammo(user)
+		return
+	if(bolt_type == BOLT_TYPE_LOCKING && bolt_locked)
+		drop_bolt(user)
+		return
+	if (recent_rack > world.time)
+		return
+	recent_rack = world.time + rack_delay
+	rack(user)
+	return
