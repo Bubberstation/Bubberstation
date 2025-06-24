@@ -427,13 +427,19 @@
 /obj/lewd_portal_relay/proc/torso_only(limb_icon_list)
 	var/list/new_limb_icon_list = list()//There may be special cases where body overlays should not pass through portals, such as moth wings, this is used to removed them
 	for(var/image/limb_icon in limb_icon_list)
-		if(limb_icon.icon == 'modular_skyrat/master_files/icons/mob/sprite_accessory/moth_wings.dmi') //Moth wings are attached to the upper back so shouldn't be portalled, their weird sprite size also messes with rotations
+		if(compare_organ_icon(ORGAN_SLOT_EXTERNAL_WINGS, limb_icon.icon)) //Moth wings are attached to the upper back so shouldn't be portalled, their weird sprite size also messes with rotations
 			continue
 		var/limb_icon_layer = limb_icon.layer * -1
-		if(limb_icon_layer != BODY_BEHIND_LAYER && limb_icon_layer != BODY_FRONT_LAYER || limb_icon.icon == 'modular_skyrat/master_files/icons/mob/sprite_accessory/genitals/breasts_onmob.dmi') //Tails need to be portaled
+		if(limb_icon_layer != BODY_BEHIND_LAYER && limb_icon_layer != BODY_FRONT_LAYER || compare_organ_icon(ORGAN_SLOT_BREASTS, limb_icon.icon)) //Tails need to be portaled
 			limb_icon.add_filter("upper_body_removal", 1, list("type" = "alpha", "icon" = icon('modular_zubbers/icons/obj/structures/lewd_portals.dmi', "mask")))
 		new_limb_icon_list += limb_icon
 	return new_limb_icon_list
+
+/obj/lewd_portal_relay/proc/compare_organ_icon(organ_slot, icon_to_compare)
+	var/obj/item/organ/organ_ref = owner?.get_organ_slot(organ_slot)
+	var/datum/bodypart_overlay/mutant/overlay_ref = organ_ref?.bodypart_overlay
+	var/datum/sprite_accessory/accessory_ref = overlay_ref?.sprite_datum
+	return accessory_ref?.icon == icon_to_compare
 
 /obj/lewd_portal_relay/attack_hand_secondary(mob/living/user)
 	if(!user.can_perform_action(src, NEED_DEXTERITY|NEED_HANDS|ALLOW_RESTING))
