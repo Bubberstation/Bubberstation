@@ -32,6 +32,7 @@
 		"stomach" = "Stomach",
 		"eyes" = "Eyes",
 		"tongue" = "Tongue",
+		"ears" = "Ears",
 		"Brain implant" = "Brain implant", //BUBBER EDIT
 		"Mouth implant" = "Mouth implant",
 		"Left Arm implant" = "Left Arm implant",
