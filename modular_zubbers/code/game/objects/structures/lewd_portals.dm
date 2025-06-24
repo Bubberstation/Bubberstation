@@ -334,7 +334,7 @@
 	else
 		dir = NORTH
 		var/species_name
-		if(owner.dna?.species?.lore_protected || owner.dna?.features["custom_species"] == FALSE)
+		if(owner.dna?.species?.lore_protected || !owner.dna?.features["custom_species"])
 			species_name = owner.dna.species.name
 		else
 			species_name = owner.dna.features["custom_species"]
@@ -409,15 +409,7 @@
 		if(istype(limb_object))
 			var/limb_icon_list = limb_object.get_limb_icon()
 			if(limb_object == owner.get_bodypart(BODY_ZONE_CHEST))
-				var/list/new_limb_icon_list = list()//There may be special cases where body overlays should not pass through portals, such as moth wings, this is used to removed them
-				for(var/image/limb_icon in limb_icon_list)
-					if(limb_icon.icon == 'modular_skyrat/master_files/icons/mob/sprite_accessory/moth_wings.dmi') //Moth wings are attached to the upper back so shouldn't be portalled, their weird sprite size also messes with rotations
-						continue
-					var/limb_icon_layer = limb_icon.layer * -1
-					if(limb_icon_layer != BODY_BEHIND_LAYER && limb_icon_layer != BODY_FRONT_LAYER || limb_icon.icon == 'modular_skyrat/master_files/icons/mob/sprite_accessory/genitals/breasts_onmob.dmi') //Tails need to be portaled
-						limb_icon.add_filter("upper_body_removal", 1, list("type" = "alpha", "icon" = icon('modular_zubbers/icons/obj/structures/lewd_portals.dmi', "mask")))
-					new_limb_icon_list += limb_icon
-				limb_icon_list = new_limb_icon_list
+				limb_icon_list = torso_only(limb_icon_list)
 			add_overlay(limb_icon_list)
 	if(owner.shoes)
 		add_overlay(owner.overlays_standing[SHOES_LAYER])
@@ -431,6 +423,17 @@
 		new_body_layer_overlay.add_filter("upper_body_removal", 1, list("type" = "alpha", "icon" = icon('modular_zubbers/icons/obj/structures/lewd_portals.dmi', "mask")))
 		body_layer_overlays += new_body_layer_overlay
 	add_overlay(body_layer_overlays)
+
+/obj/lewd_portal_relay/proc/torso_only(limb_icon_list)
+	var/list/new_limb_icon_list = list()//There may be special cases where body overlays should not pass through portals, such as moth wings, this is used to removed them
+	for(var/image/limb_icon in limb_icon_list)
+		if(limb_icon.icon == 'modular_skyrat/master_files/icons/mob/sprite_accessory/moth_wings.dmi') //Moth wings are attached to the upper back so shouldn't be portalled, their weird sprite size also messes with rotations
+			continue
+		var/limb_icon_layer = limb_icon.layer * -1
+		if(limb_icon_layer != BODY_BEHIND_LAYER && limb_icon_layer != BODY_FRONT_LAYER || limb_icon.icon == 'modular_skyrat/master_files/icons/mob/sprite_accessory/genitals/breasts_onmob.dmi') //Tails need to be portaled
+			limb_icon.add_filter("upper_body_removal", 1, list("type" = "alpha", "icon" = icon('modular_zubbers/icons/obj/structures/lewd_portals.dmi', "mask")))
+		new_limb_icon_list += limb_icon
+	return new_limb_icon_list
 
 /obj/lewd_portal_relay/attack_hand_secondary(mob/living/user)
 	if(!user.can_perform_action(src, NEED_DEXTERITY|NEED_HANDS|ALLOW_RESTING))
