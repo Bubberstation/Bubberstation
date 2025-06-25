@@ -53,7 +53,7 @@
  * Reworks the logic for delimbing. Once your limb gets mangled, it will fall off your body.
  */
 #define PROTEAN_DELIMB_DEFINE(path) \
-##path/try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus) {\
+##path/try_dismember(wounding_type, wounding_dmg, wound_bonus, exposed_wound_bonus) {\
 	if(((get_damage() + wounding_dmg) >= max_damage)) {\
 		dismember(); \
 		qdel_timer = QDEL_IN_STOPPABLE(src, PROTEAN_LIMB_TIME); \
@@ -83,6 +83,11 @@ PROTEAN_LIMB_ATTACH(/obj/item/bodypart/head/mutant/protean)
 
 PROTEAN_BODYPART_DEFINE(/obj/item/bodypart/chest/mutant/protean, LIMB_MAX_HP_CORE)
 
+/obj/item/bodypart/chest/mutant/protean
+	wing_types = list(
+		/obj/item/organ/wings/functional/robotic,
+		/obj/item/organ/wings/functional/robotic/virtual
+		)
 
 // Limbs
 PROTEAN_BODYPART_DEFINE(/obj/item/bodypart/arm/left/mutant/protean, 40)
