@@ -1,5 +1,5 @@
 /obj/item/ammo_box/magazine/m9mm/security
-	name = "pistol magazine (9mm Security)"
+	name = "pistol magazine (9mm Murphy)"
 	desc = "A 9mm handgun magazine, suitable for the Service Pistol."
 	ammo_type = /obj/item/ammo_casing/c9mm/security
 	max_ammo = 10
@@ -8,7 +8,7 @@
 	var/was_ejected = 0
 
 /obj/item/ammo_box/magazine/m9mm/security/rocket
-	name = "pistol magazine (9mm Rocket Eject)"
+	name = "pistol magazine (9mm Murphy Rocket Eject)"
 	desc = "A 9mm handgun magazine, suitable for the Service Pistol."
 	ammo_type = /obj/item/ammo_casing/c9mm/security
 	max_ammo = 8

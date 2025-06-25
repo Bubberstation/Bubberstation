@@ -41,7 +41,7 @@
 	max_ammo = 20
 
 /obj/item/ammo_box/c9mm/security //Bubberstation sourced, because I'll finalize all the moving once I merge the adjacent PR's
-	name = "ammo box (9mm security)"
+	name = "ammo box (9mm Murphy)"
 	ammo_type = /obj/item/ammo_casing/c9mm/security
 
 /obj/item/ammo_box/c46x30mm
