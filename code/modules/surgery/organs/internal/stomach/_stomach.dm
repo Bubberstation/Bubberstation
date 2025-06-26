@@ -133,7 +133,8 @@
 		return //hunger is for BABIES
 
 	//The fucking TRAIT_FAT mutation is the dumbest shit ever. It makes the code so difficult to work with
-	if(HAS_TRAIT_FROM(human, TRAIT_FAT, OBESITY))//I share your pain, past coder.
+	//GS13 edit - we don't add/remove fatness based on a simple overeatduration, this conflicts with our own sysems
+	/*if(HAS_TRAIT_FROM(human, TRAIT_FAT, OBESITY))//I share your pain, past coder.
 		if(human.overeatduration < (200 SECONDS))
 			to_chat(human, span_notice("You feel fit again!"))
 			human.remove_traits(list(TRAIT_FAT, TRAIT_OFF_BALANCE_TACKLER), OBESITY)
@@ -141,7 +142,8 @@
 	else
 		if(human.overeatduration >= (200 SECONDS))
 			to_chat(human, span_danger("You suddenly feel blubbery!"))
-			human.add_traits(list(TRAIT_FAT, TRAIT_OFF_BALANCE_TACKLER), OBESITY)
+			human.add_traits(list(TRAIT_FAT, TRAIT_OFF_BALANCE_TACKLER), OBESITY)*/
+	//end GS13 edit
 
 	// nutrition decrease and satiety
 	if (human.nutrition > 0 && human.stat != DEAD)
