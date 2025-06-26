@@ -1,6 +1,7 @@
 /obj/structure/falsewall/calorite            //GS13
 	name = "calorite wall"
 	desc = "A wall with calorite plating. Burp."
+	icon = 'modular_gs/icons/turf/false_walls.dmi'
 	fake_icon = 'modular_gs/icons/turf/calorite_wall.dmi'
 	icon_state = "calorite_wall-open"
 	base_icon_state = "calorite_wall"
