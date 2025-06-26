@@ -10,6 +10,8 @@
 	icon_state = "tile_calorite"
 	turf_type = /turf/open/floor/mineral/calorite
 	mineralType = "calorite"
+	mats_per_unit = list(/datum/material/calorite = SHEET_MATERIAL_AMOUNT*0.25)
+	merge_type = /obj/item/stack/tile/mineral/calorite
 
 /obj/item/stack/tile/mineral/calorite/hide  //GS13 - disguised variant
 	name = "Floor tile"

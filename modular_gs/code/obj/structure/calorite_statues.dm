@@ -1,7 +1,7 @@
 /obj/structure/statue/calorite
 	icon = 'modular_gs/icons/obj/statue.dmi'
 	max_integrity = 400
-	custom_materials = list(/datum/material/calorite=MINERAL_MATERIAL_AMOUNT*5)
+	custom_materials = list(/datum/material/calorite = SHEET_MATERIAL_AMOUNT*5)
 
 /obj/structure/statue/calorite/fatty
 	name = "Fatty statue"
@@ -10,6 +10,12 @@
 	var/active = null
 	var/last_event = 0
 	var/datum/proximity_monitor/proximity_monitor
+
+/obj/structure/statue/calorite/fatty/Initialize(mapload)
+	. = ..()
+	proximity_monitor = new(src, 1, FALSE)
+	proximity_monitor.set_host(src, src)
+	// RegisterSignal(src, COMSIG_MOVABLE_CROSS, .proc/on_crossed)
 
 /obj/structure/statue/calorite/fatty/proc/beckon()
 	if(!active)
@@ -22,9 +28,13 @@
 			return
 	return
 
-/obj/structure/statue/calorite/fatty/proc/statue_fatten(mob/living/carbon/M)
+/obj/structure/statue/calorite/fatty/proc/statue_fatten(mob/living/carbon/M, touch = TRUE)
 	if(!M.adjust_fatness(20, FATTENING_TYPE_ITEM))
 		to_chat(M, "<span class='warning'>Nothing happens.</span>")
+		return
+
+	if (!touch)
+		to_chat(M, "<span class='warning'>As you bump into the statue, you feel your clothes getting tighter around you...</span>")
 		return
 
 	if(M.fatness < FATNESS_LEVEL_FATTER)
@@ -42,13 +52,12 @@
 
 /obj/structure/statue/calorite/fatty/Bumped(atom/movable/AM)
 	beckon()
+	if(istype(AM, /mob/living/carbon))
+		statue_fatten(AM, FALSE)
 	..()
 
-/obj/structure/statue/calorite/fatty/Crossed(var/mob/AM)
-	.=..()
-	if(!.)
-		if(istype(AM))
-			beckon()
+/obj/structure/statue/calorite/fatty/HasProximity(atom/movable/entity)
+	beckon()
 
 /obj/structure/statue/calorite/fatty/Moved(atom/movable/AM)
 	beckon()
