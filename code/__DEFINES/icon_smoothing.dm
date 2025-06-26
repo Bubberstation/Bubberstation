@@ -228,6 +228,11 @@ DEFINE_BITFIELD(smoothing_junction, list(
 #define SMOOTH_GROUP_GIRDER S_OBJ(76)
 #define SMOOTH_GROUP_TEST_WALL S_OBJ(77) // I'm a lazy bum who doesn't want to increment all of these up by 1 ~Lemon
 
+//GS13 EDIT
+#define SMOOTH_GROUP_CALORITE_WALL S_OBJ(78) // I'm of the same opinion as the last guy
+// also none of us noticed that we lost the "S" in WALLS
+//GS13 END EDIT
+
 /// Performs the work to set smoothing_groups and canSmoothWith.
 /// An inlined function used in both turf/Initialize and atom/Initialize.
 #define SETUP_SMOOTHING(...) \
