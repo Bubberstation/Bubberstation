@@ -44,10 +44,14 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 		to_chat(usr, span_warning("You can't narrate right now..."))
 		return
 
+	if(usr.client.prefs?.muted & MUTE_IC)
+		to_chat(usr, span_danger("You are muted from sending IC messages."))
+		return
+
 	var/target
 	var/narrate_range = world.view
 	var/narrated_message = tgui_input_text(usr, "Input the message you would like to send as narration", "Local Narrate", null, MAX_MESSAGE_LEN, TRUE)
-	if(narrated_message == null)
+	if(!narrated_message)
 		return
 
 	var/list/viewers = get_hearers_in_range(narrate_range, usr)
@@ -60,7 +64,7 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 	viewers.Remove(usr)
 
 	for(var/mob/mob in viewers) // Filters out the AI eye and clientless mobs.
-		if(istype(mob, /mob/camera/ai_eye))
+		if(isaicamera(mob))
 			continue
 		if(mob.client)
 			continue
@@ -81,7 +85,7 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 
 	usr.log_message(narrated_message, LOG_EMOTE)
 
-	narrated_message = span_cyan("[usr.say_emphasis(narrated_message)]")
+	narrated_message = span_cyan("[usr.apply_message_emphasis(narrated_message)]")
 
 	if(istype(target, /mob))
 		var/mob/target_mob = target
@@ -106,3 +110,7 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 
 		for(var/mob/receiver in watchers)
 			receiver.show_message(narrated_message, alt_msg = narrated_message)
+
+#undef NARRATE_SAME_TILE_TEXT
+#undef NARRATE_ONE_TILE_TEXT
+#undef NARRATE_CUSTOM_TILE_TEXT
