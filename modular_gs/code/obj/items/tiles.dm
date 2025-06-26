@@ -7,6 +7,9 @@
 	singular_name = "Calorite floor tile"
 	desc = "A tile made out of calorite. Bwoomph."
 	icon = 'modular_gs/icons/obj/tiles.dmi'
+	inhand_icon_state = null
+	lefthand_file = null
+	righthand_file = null
 	icon_state = "tile_calorite"
 	turf_type = /turf/open/floor/mineral/calorite
 	mineralType = "calorite"
