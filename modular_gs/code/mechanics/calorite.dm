@@ -71,9 +71,9 @@
 
 GLOBAL_LIST_INIT(calorite_recipes, list ( \
 	new/datum/stack_recipe("calorite tile", /obj/item/stack/tile/mineral/calorite, 1, 4, 20, crafting_flags = NONE, category = CAT_TILES), \
-	new/datum/stack_recipe("Calorite Ingots", /obj/item/ingot/calorite, time = 30), \
-	/*new/datum/stack_recipe("Fatty statue", /obj/structure/statue/calorite/fatty, 5, one_per_turf = 1, on_floor = 1),\*/
-	/*new/datum/stack_recipe("Calorite doors", /obj/structure/mineral_door/calorite, 5, one_per_turf = 1, on_floor = 1),\*/
+	/*new/datum/stack_recipe("Calorite Ingots", /obj/item/ingot/calorite, time = 30), \*/
+	new/datum/stack_recipe("Fatty statue", /obj/structure/statue/calorite/fatty, 5, time = 10 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND | CRAFT_ONE_PER_TURF),\
+	/*new/datum/stack_recipe("Calorite doors", /obj/structure/mineral_door/calorite, 5, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND | CRAFT_APPLIES_MATS, category = CAT_DOORS),\*/
 	))
 
 /obj/item/stack/sheet/mineral/calorite/get_main_recipes()
