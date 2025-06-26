@@ -7,12 +7,6 @@
 /obj/item/ammo_box/magazine/m9mm
 	custom_premium_price = 50
 
-/obj/item/ammo_box/magazine/m9mm/rubber
-	name = "pistol magazine (9x25mm Rubber)"
-	ammo_type = /obj/item/ammo_casing/c9mm/rubber
-	base_icon_state = "9x19pB"
-
-
 //Extended 9mm
 /obj/item/ammo_box/magazine/m9mm/stendo
 	name = "pistol magazine (9x25mm)"
@@ -25,11 +19,6 @@
 	name = "pistol magazine (9x25mm Incendiary)"
 	ammo_type = /obj/item/ammo_casing/c9mm/fire
 	base_icon_state = "g18_r"
-
-/obj/item/ammo_box/magazine/m9mm/stendo/rubber
-	name = "pistol magazine (9x25mm Incendiary)"
-	ammo_type = /obj/item/ammo_casing/c9mm/rubber
-	base_icon_state = "g18_b"
 
 /obj/item/ammo_box/magazine/m9mm/stendo/hp
 	name = "pistol magazine (9x25mm Hollow Point)"

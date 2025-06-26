@@ -55,10 +55,6 @@
 	name = "ammo box (4.6x30mm AP)"
 	ammo_type = /obj/item/ammo_casing/c46x30mm/ap
 
-/obj/item/ammo_box/c46x30mm/rubber
-	name = "ammo box (4.6x30mm rubber)"
-	ammo_type = /obj/item/ammo_casing/c46x30mm/rubber
-
 /obj/item/ammo_box/c34
 	name = "ammo box (.34)"
 	icon = 'modular_skyrat/modules/company_imports/icons/ammo.dmi'
@@ -69,10 +65,6 @@
 /obj/item/ammo_box/c34/ap
 	name = "ammo box (.34 AP)"
 	ammo_type = /obj/item/ammo_casing/c34/ap
-
-/obj/item/ammo_box/c34/rubber
-	name = "ammo box (.34 rubber)"
-	ammo_type = /obj/item/ammo_casing/c34/rubber
 
 /obj/item/ammo_box/c34/fire
 	name = "ammo box (.34 incendiary)"

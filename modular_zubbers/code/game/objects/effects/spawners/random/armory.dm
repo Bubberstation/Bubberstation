@@ -41,7 +41,7 @@
 
 /obj/effect/spawner/random/armory/laser_gun
 	loot = list(
-		/obj/item/gun/ballistic/automatic/wt550/security/flathead
+		/obj/item/gun/ballistic/automatic/wt550/security
 	)
 	spawn_loot_count = 2
 

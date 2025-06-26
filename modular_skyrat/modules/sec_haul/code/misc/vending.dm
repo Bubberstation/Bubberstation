@@ -30,7 +30,6 @@
 		/obj/item/watertank/pepperspray = 2,
 		/obj/item/storage/belt/holster/energy = 4,
 		/obj/item/storage/box/holobadge = 1,
-		/obj/item/ammo_box/magazine/m9mm/rubber = 12,
 		/obj/item/ammo_box/advanced/s12gauge/frangible = 2,
 	)
 

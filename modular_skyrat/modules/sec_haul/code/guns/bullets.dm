@@ -23,25 +23,6 @@
 	custom_materials = AMMO_MATS_TEMP
 	advanced_print_req = TRUE
 
-/obj/item/ammo_casing/c9mm/rubber
-	name = "9x25mm Mk.12 rubber casing"
-	desc = "A modern 9x25mm Mk.12 bullet casing. This less than lethal round sure hurts to get shot by, but causes little physical harm."
-	projectile_type = /obj/projectile/bullet/c9mm/rubber
-	harmful = FALSE
-
-/obj/projectile/bullet/c9mm/rubber
-	name = "9x25mm rubber bullet"
-	icon_state = "pellet"
-	damage = 18
-	stamina = 32
-	ricochets_max = 6
-	ricochet_incidence_leeway = 0
-	ricochet_chance = 180
-	ricochet_decay_damage = 0.8
-	shrapnel_type = null
-	sharpness = NONE
-	embed_type = null
-
 /obj/projectile/bullet/c9mm
 	damage = 25
 
