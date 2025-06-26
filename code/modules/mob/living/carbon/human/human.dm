@@ -1070,7 +1070,6 @@
 
 /mob/living/carbon/human/get_exp_list(minutes)
 	. = ..()
-
 	if(mind.assigned_role.title in SSjob.name_occupations)
 		.[mind.assigned_role.title] = minutes
 
