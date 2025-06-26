@@ -2,11 +2,11 @@
 	name = "calorite wall"
 	desc = "A wall with calorite plating. Burp."
 	icon = 'modular_gs/icons/turf/calorite_wall.dmi'
-	// icon_state = "calorite"
-	icon_state = "calorite-0"
-	base_icon_state = "calorite"
+	icon_state = "calorite_wall-0"
+	base_icon_state = "calorite_wall"
 	sheet_type = /obj/item/stack/sheet/mineral/calorite
-	canSmoothWith = list(/turf/closed/wall/mineral/calorite, /obj/structure/falsewall/calorite)
+	smoothing_groups = SMOOTH_GROUP_CALORITE_WALL + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
+	canSmoothWith = SMOOTH_GROUP_CALORITE_WALL
 	var/active = null
 	var/last_event = 0
 

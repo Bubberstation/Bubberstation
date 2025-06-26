@@ -1,11 +1,14 @@
 /obj/structure/falsewall/calorite            //GS13
 	name = "calorite wall"
 	desc = "A wall with calorite plating. Burp."
-	icon = 'modular_gs/icons/turf/calorite_wall.dmi'
-	icon_state = "calorite"
+	fake_icon = 'modular_gs/icons/turf/calorite_wall.dmi'
+	icon_state = "calorite_wall-open"
+	base_icon_state = "calorite_wall"
 	mineral = /obj/item/stack/sheet/mineral/calorite
 	walltype = /turf/closed/wall/mineral/calorite
-	canSmoothWith = list(/obj/structure/falsewall/calorite, /turf/closed/wall/mineral/calorite)
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_CALORITE_WALL + SMOOTH_GROUP_WALLS
+	canSmoothWith = SMOOTH_GROUP_CALORITE_WALL
 	var/active = null
 	var/last_event = 0
 

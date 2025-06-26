@@ -60,8 +60,17 @@
 	material_type = /datum/material/calorite
 	walltype = /turf/closed/wall/mineral/calorite
 
+/obj/item/stack/sheet/mineral/calorite/five
+	amount = 5
+
+/obj/item/stack/sheet/mineral/calorite/ten
+	amount = 10
+
+/obj/item/stack/sheet/mineral/calorite/fifty
+	amount = 50
+
 GLOBAL_LIST_INIT(calorite_recipes, list ( \
-	new/datum/stack_recipe("Calorite tile", /obj/item/stack/tile/mineral/calorite, 1, 4, 20), \
+	new/datum/stack_recipe("calorite tile", /obj/item/stack/tile/mineral/calorite, 1, 4, 20, crafting_flags = NONE, category = CAT_TILES), \
 	new/datum/stack_recipe("Calorite Ingots", /obj/item/ingot/calorite, time = 30), \
 	/*new/datum/stack_recipe("Fatty statue", /obj/structure/statue/calorite/fatty, 5, one_per_turf = 1, on_floor = 1),\*/
 	/*new/datum/stack_recipe("Calorite doors", /obj/structure/mineral_door/calorite, 5, one_per_turf = 1, on_floor = 1),\*/
