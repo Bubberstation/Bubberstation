@@ -268,7 +268,7 @@
 		hallucination_duration = 60 SECONDS
 	)
 
-	for(var/mob/living/carbon/carbon_view in view(5, source))
+	for(var/mob/living/carbon/carbon_view in range(7, source))
 		var/carbon_sanity = carbon_view.mob_mood.sanity
 		if(carbon_view.stat != CONSCIOUS)
 			continue
@@ -276,19 +276,35 @@
 			continue
 		if(carbon_view.can_block_magic(MAGIC_RESISTANCE_MIND)) //Somehow a shitty piece of tinfoil is STILL able to hold out against the power of an ascended heretic.
 			continue
-		new /obj/effect/temp_visual/moon_ringleader(get_turf(carbon_view))
+		new moon_effect(get_turf(carbon_view))
+		if(carbon_view.has_status_effect(/datum/status_effect/confusion))
+			to_chat(carbon_view, span_big(span_hypnophrase("YOUR HEAD RATTLES WITH A THOUSAND VOICES JOINED IN A MADDENING CACOPHONY OF SOUND AND MUSIC. EVERY FIBER OF YOUR BEING SAYS 'RUN'.")))
 		carbon_view.adjust_confusion(2 SECONDS)
-		carbon_view.mob_mood.set_sanity(carbon_sanity - 5)
-		if(carbon_sanity < 30)
-			if(SPT_PROB(20, seconds_per_tick))
-				to_chat(carbon_view, span_warning("you feel your mind beginning to rend!"))
-			carbon_view.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
-		if(carbon_sanity < 10)
-			if(SPT_PROB(20, seconds_per_tick))
-				to_chat(carbon_view, span_warning("it echoes through you!"))
-			visible_hallucination_pulse(
-				center = get_turf(carbon_view),
-				radius = 7,
-				hallucination_duration = 50 SECONDS
-			)
-			carbon_view.adjust_temp_blindness(5 SECONDS)
+		carbon_view.mob_mood.adjust_sanity(-25)
+
+		if(carbon_sanity >= 10)
+			return
+		// So our sanity is dead, time to fuck em up
+		if(SPT_PROB(20, seconds_per_tick))
+			to_chat(carbon_view, span_warning("it echoes through you!"))
+		visible_hallucination_pulse(
+			center = get_turf(carbon_view),
+			radius = 7,
+			hallucination_duration = 50 SECONDS
+		)
+		carbon_view.adjust_temp_blindness(5 SECONDS)
+		if(HAS_TRAIT(carbon_view, TRAIT_MINDSHIELD))
+			var/obj/item/bodypart/head/head = locate() in carbon_view.bodyparts
+			to_chat(carbon_view, span_boldbig(span_red(\
+				"YOUR SENSES REEL AS YOUR MIND IS ENVELOPED BY AN OTHERWORLDLY FORCE \ATTEMPTING TO REWRITE YOUR VERY BEING. \
+				YOU CANNOT EVEN BEGIN TO SCREAM BEFORE YOUR IMPLANT ACTIVATES ITS PSIONIC FAIL-SAFE PROTOCOL, TAKING YOUR HEAD WITH IT."\
+			)))
+			if(head)
+				head.dismember()
+			else
+				carbon_view.gib(DROP_ALL_REMAINS)
+			var/datum/effect_system/reagents_explosion/explosion = new()
+			explosion.set_up(1, get_turf(carbon_view), TRUE, 0)
+			explosion.start(src)
+		else
+			attempt_conversion(carbon_view, source)
