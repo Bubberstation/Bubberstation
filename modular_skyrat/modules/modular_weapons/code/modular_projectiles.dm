@@ -24,31 +24,6 @@
 	weak_against_armour = TRUE
 
 /*
-*	8mm Usurpator (renamed tg c46x30mm, used in the WT550)
-*/
-
-/obj/projectile/bullet/c46x30mm_rubber
-	name = "8mm Usurpator rubber bullet"
-	damage = 3
-	stamina = 17
-	ricochets_max = 6
-	ricochet_incidence_leeway = 0
-	ricochet_chance = 130
-	ricochet_decay_damage = 0.7
-	shrapnel_type = null
-	sharpness = NONE
-	embed_data = null
-	wound_bonus = -50
-
-/obj/item/ammo_casing/c46x30mm/rubber
-	name = "8mm Usurpator rubber bullet casing"
-	desc = "An 8mm Usurpator rubber bullet casing.\
-	<br><br>\
-	<i>RUBBER: Less than lethal ammo. Deals both stamina damage and regular damage.</i>"
-	projectile_type = /obj/projectile/bullet/c46x30mm_rubber
-	harmful = FALSE
-
-/*
 *	.277 Aestus (renamed tgcode .223, used in the M-90gl)
 */
 
