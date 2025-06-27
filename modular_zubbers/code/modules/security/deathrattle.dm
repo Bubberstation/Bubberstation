@@ -68,7 +68,7 @@ GLOBAL_VAR_INIT(allow_security_deathrattle,TRUE)
 /datum/round_event_control/security_deathrattle_implants
 	name = "Security Deathrattle Implants"
 	typepath = /datum/round_event/security_deathrattle_implants
-	weight = 10
+	weight = 20
 	category = EVENT_CATEGORY_BUREAUCRATIC
 	description = "Allows security to purchase deathrattle implants."
 	max_occurrences = 1
