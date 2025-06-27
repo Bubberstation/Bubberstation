@@ -72,6 +72,8 @@
 		/obj/item/wrench/medical,
 		/obj/item/knife/ritual,
 		/obj/item/flesh_shears,
+		/obj/item/blood_scanner,
+		/obj/item/reflexhammer,
 		/obj/item/clothing/suit/toggle/labcoat/hospitalgown,	//SKYRAT EDIT ADDITION - adds surgery gowns to belts
 		/obj/item/hypospray/mkii, //SKYRAT EDIT ADDITION - HYPOSPRAYS
 		/obj/item/storage/hypospraykit/, //SKYRAT EDIT ADDITION - HYPOSPRAYS
