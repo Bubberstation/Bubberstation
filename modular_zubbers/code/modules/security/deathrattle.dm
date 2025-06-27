@@ -73,7 +73,7 @@ GLOBAL_VAR_INIT(allow_security_deathrattle,TRUE)
 	description = "Allows security to purchase deathrattle implants."
 	max_occurrences = 1
 
-/datum/round_event_control/can_spawn_event(players_amt, allow_magic = FALSE)
+/datum/round_event_control/security_deathrattle_implants/can_spawn_event(players_amt, allow_magic = FALSE)
 
 	. = ..()
 
