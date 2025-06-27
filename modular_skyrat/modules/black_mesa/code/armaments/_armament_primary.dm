@@ -23,16 +23,16 @@
 	mags_to_spawn = 3
 
 /datum/armament_entry/hecu/primary/assaultrifle/automaties
-	item_type = /obj/item/gun/ballistic/automatic/sol_rifle/machinegun
-	max_purchase = 1
+	item_type = /obj/item/gun/ballistic/automatic/wt550/security
+	max_purchase = 3
 	cost = 14
-	magazine = /obj/item/ammo_box/magazine/c40sol_rifle/drum
+	magazine = /obj/item/ammo_box/magazine/wt550m9
 
-/datum/armament_entry/hecu/primary/assaultrifle/infanteria
-	item_type = /obj/item/gun/ballistic/automatic/sol_rifle
-	max_purchase = 2
+/datum/armament_entry/hecu/primary/assaultrifle/semiauto
+	item_type = /obj/item/gun/ballistic/automatic/wt550
+	max_purchase = 3
 	cost = 11
-	magazine = /obj/item/ammo_box/magazine/c40sol_rifle/standard
+	magazine = /obj/item/ammo_box/magazine/wt550m9
 
 /datum/armament_entry/hecu/primary/shotgun
 	subcategory = ARMAMENT_SUBCATEGORY_SHOTGUN
@@ -52,10 +52,10 @@
 
 /datum/armament_entry/hecu/primary/special
 	subcategory = ARMAMENT_SUBCATEGORY_SPECIAL
-	mags_to_spawn = 2
+	mags_to_spawn = 3
 
-/datum/armament_entry/hecu/primary/special/sniper_rifle
-	item_type = /obj/item/gun/ballistic/automatic/sol_rifle/marksman
+/datum/armament_entry/hecu/primary/special/marksman //Boltrifle has no mag to spawn, so NTBR it is
+	item_type = /obj/item/gun/ballistic/automatic/battle_rifle
 	max_purchase = 1
 	cost = 16
 

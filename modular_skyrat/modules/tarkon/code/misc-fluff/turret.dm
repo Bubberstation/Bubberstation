@@ -16,8 +16,8 @@
 	turret_type = /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/cerberus //To make it more available for subtyping. LET. THEM. COOK.
 	mag_slots = 3 //how many magazines can be held.
 	mag_types_allowed = list( //This is a whitelist for what is allowed. Nothing else may enter.
-		/obj/item/ammo_box/magazine/c35sol_pistol,
-		/obj/item/ammo_box/magazine/c40sol_rifle,
+		/obj/item/ammo_box/magazine/m9mm,
+		/obj/item/ammo_box/magazine/wt550m9,
 		/obj/item/ammo_box/magazine/c585trappiste_pistol,
 		/obj/item/ammo_box/magazine/miecz,
 		/obj/item/ammo_box/magazine/lanca,
@@ -40,19 +40,19 @@
 	easy_deploy = TRUE
 	easy_deploy_timer = 1.5 SECONDS
 	mag_types_allowed = list(
-		/obj/item/ammo_box/magazine/c35sol_pistol,
+		/obj/item/ammo_box/magazine/m9mm/security,
 		/obj/item/ammo_box/magazine/c585trappiste_pistol,
 		/obj/item/ammo_box/magazine/miecz,
 	)
 
 /obj/item/storage/toolbox/emergency/turret/mag_fed/cerberus/pre_filled/PopulateContents()
-	new /obj/item/ammo_box/magazine/c585trappiste_pistol(src)
-	new /obj/item/ammo_box/magazine/c585trappiste_pistol(src)
-	new /obj/item/ammo_box/magazine/c585trappiste_pistol(src)
+	new /obj/item/ammo_box/magazine/wt550m9(src)
+	new /obj/item/ammo_box/magazine/wt550m9(src)
+	new /obj/item/ammo_box/magazine/wt550m9(src)
 
 /obj/item/storage/toolbox/emergency/turret/mag_fed/hoplite/pre_filled/PopulateContents()
-	new /obj/item/ammo_box/magazine/c35sol_pistol(src)
-	new /obj/item/ammo_box/magazine/c35sol_pistol(src)
+	new /obj/item/ammo_box/magazine/m9mm/security(src)
+	new /obj/item/ammo_box/magazine/m9mm/security(src)
 
 ////// Turrets //////
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/cerberus

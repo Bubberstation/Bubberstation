@@ -5,18 +5,6 @@
 	description = "A box of .35 Sol rounds, hollow-tipped for maximum damage against NON-ARMOURED combatants."
 	item_type = /obj/item/ammo_box/c35sol/ripper
 
-/datum/opposing_force_equipment/ammo_exotic/pierce40
-	description = "A box of .40 Sol Match rounds, works best against armoured combatants; the box has a warning about being careful for collateral damage."
-	item_type = /obj/item/ammo_box/c40sol/pierce
-
-/datum/opposing_force_equipment/ammo_exotic/fire40
-	description = "A box of .40 Sol Incendiary rounds, bullet impacts light the victims aflame."
-	item_type = /obj/item/ammo_box/c40sol/incendiary
-
-/datum/opposing_force_equipment/ammo_exotic/frag40
-	description = "A box of .40 Sol Fragmentation rounds, useful for incapacitating your victim ASAP, no matter if they live or die."
-	item_type = /obj/item/ammo_box/c40sol/fragmentation
-
 /datum/opposing_force_equipment/ammo_exotic/pierce310
 	description = "A box of .310 Strilka Piercing rounds, useful against armored combatants."
 	item_type = /obj/item/ammo_box/c310_cargo_box/piercing
