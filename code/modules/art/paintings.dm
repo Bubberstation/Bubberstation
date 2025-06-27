@@ -235,7 +235,7 @@
 			. = TRUE
 			if(isobserver(user)) // Ghosts cant finalize
 				return
-			if(istype(user, /mob/living/silicon) && !Adjacent(user, src)) // Cyborgs cant finalize unless adjacent
+			if(istype(user, /mob/living/silicon) && !Adjacent(user, src)) // Silicons cant finalize unless adjacent
 				return
 			finalize(user)
 		if("patronage")
