@@ -280,7 +280,7 @@
 	if (!isnull(should_strip_proc_path) && !call(species.owner, should_strip_proc_path)(user))
 		return
 	suit.balloon_alert_to_viewers("stripping")
-	suit.wearer.visible_message(span_warning("[source] begins to dump the contents of [suit.wearer]'s control unit!"))
+	user.visible_message(span_warning("[user] begins to dump the contents of [source]!"))
 	ASYNC
 		var/datum/strip_menu/protean/strip_menu = LAZYACCESS(strip_menus, species.owner)
 		if (isnull(strip_menu))
