@@ -66,15 +66,15 @@
 /obj/item/mod/control/pre_equipped/protean/equipped(mob/user, slot, initial)
 	. = ..()
 
-	if(isprotean(wearer))
+	if(isprotean(user))
 		return
-	if(slot == ITEM_SLOT_BACK && wearer)
-		RegisterSignal(wearer, COMSIG_OOC_ESCAPE, PROC_REF(ooc_escape))
+	if(slot == ITEM_SLOT_BACK && user)
+		RegisterSignal(user, COMSIG_OOC_ESCAPE, PROC_REF(ooc_escape))
 		if(modlocked)
 			ADD_TRAIT(src, TRAIT_NODROP, "protean")
-			to_chat(wearer, span_warning("The suit does not seem to be able to come off..."))
+			to_chat(user, span_warning("The suit does not seem to be able to come off..."))
 	else
-		UnregisterSignal(wearer, COMSIG_OOC_ESCAPE)
+		UnregisterSignal(user, COMSIG_OOC_ESCAPE)
 
 /obj/item/mod/control/pre_equipped/protean/choose_deploy(mob/user)
 	if(!isprotean(user) && modlocked && active)
