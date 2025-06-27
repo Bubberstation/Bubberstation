@@ -233,6 +233,10 @@
 			show_grid = !show_grid
 		if("finalize")
 			. = TRUE
+			if(isobserver(user)) // Ghosts cant finalize
+				return
+			if(istype(user, /mob/living/silicon/robot) && !Adjacent(user, src)) // Cyborgs cant finalize unless adjacent
+				return
 			finalize(user)
 		if("patronage")
 			. = TRUE
