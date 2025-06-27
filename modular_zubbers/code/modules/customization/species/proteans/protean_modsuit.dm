@@ -86,7 +86,7 @@
 	if(!force_deactivate && modlocked && !isprotean(user) && active)
 		balloon_alert(user, "it doesn't turn off")
 		return FALSE
-	if(!active && wearer.has_status_effect(/datum/status_effect/protean_low_power_mode))
+	if(!active && user.has_status_effect(/datum/status_effect/protean_low_power_mode))
 		balloon_alert(user, "low power")
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
