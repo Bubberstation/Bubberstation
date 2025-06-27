@@ -30,19 +30,6 @@
 	name = ".38 bullet"
 	damage = 30
 
-/obj/projectile/bullet/c38/match/bouncy
-	name = ".38 Rubber bullet"
-	damage = 15
-	stamina = 35
-	weak_against_armour = TRUE
-	ricochets_max = 6
-	ricochet_incidence_leeway = 0
-	ricochet_chance = 130
-	ricochet_decay_damage = 0.8
-	shrapnel_type = null
-	sharpness = NONE
-	embed_data = null
-
 // premium .38 ammo from cargo, weak against armor, lower base damage, but excellent at embedding and causing slice wounds at close range
 /obj/projectile/bullet/c38/dumdum
 	name = ".38 DumDum bullet"

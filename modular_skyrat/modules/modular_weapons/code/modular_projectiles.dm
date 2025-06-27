@@ -12,27 +12,6 @@
 *	.460 Ceres (renamed tgcode .45)
 */
 
-/obj/item/ammo_casing/c45/rubber
-	name = ".460 Ceres rubber bullet casing"
-	desc = "A .460 bullet casing.\
-	<br><br>\
-	<i>RUBBER: Less than lethal ammo. Deals both stamina damage and regular damage.</i>"
-	projectile_type = /obj/projectile/bullet/c45/rubber
-	harmful = FALSE
-
-/obj/projectile/bullet/c45/rubber
-	name = ".460 Ceres rubber bullet"
-	damage = 10
-	stamina = 30
-	ricochets_max = 6
-	ricochet_incidence_leeway = 0
-	ricochet_chance = 130
-	ricochet_decay_damage = 0.7
-	shrapnel_type = null
-	sharpness = NONE
-	embed_data = null
-	wound_bonus = -50
-
 /obj/item/ammo_casing/c45/hp
 	name = ".460 Ceres hollow-point bullet casing"
 	desc = "A .460 hollow-point bullet casing. Very lethal against unarmored opponents. Suffers against armor."
@@ -73,28 +52,6 @@
 *	.277 Aestus (renamed tgcode .223, used in the M-90gl)
 */
 
-/obj/item/ammo_casing/a223/rubber
-	name = ".277 rubber bullet casing"
-	desc = "A .277 rubber bullet casing.\
-	<br><br>\
-	<i>RUBBER: Less than lethal ammo. Deals both stamina damage and regular damage.</i>"
-	projectile_type = /obj/projectile/bullet/a223/rubber
-	harmful = FALSE
-
-/obj/projectile/bullet/a223/rubber
-	name = ".277 rubber bullet"
-	damage = 10
-	armour_penetration = 10
-	stamina = 30
-	ricochets_max = 6
-	ricochet_incidence_leeway = 0
-	ricochet_chance = 130
-	ricochet_decay_damage = 0.7
-	shrapnel_type = null
-	sharpness = NONE
-	embed_data = null
-	wound_bonus = -50
-
 /obj/item/ammo_casing/a223/ap
 	name = ".277 Aestus armor-piercing bullet casing"
 	desc = "A .277 armor-piercing bullet casing.\
@@ -123,22 +80,6 @@
 	name = ".34 bullet"
 	damage = 15
 	wound_bonus = 0
-
-/obj/item/ammo_casing/c34/rubber
-	name = ".34 rubber bullet casing"
-	desc = "A .34 rubber bullet casing."
-	caliber = "c34acp"
-	projectile_type = /obj/projectile/bullet/c34/rubber
-	harmful = FALSE
-
-/obj/projectile/bullet/c34/rubber
-	name = ".34 rubber bullet"
-	damage = 5
-	stamina = 20
-	wound_bonus = -75
-	shrapnel_type = null
-	sharpness = NONE
-	embed_data = null
 
 /obj/item/ammo_casing/c34/ap
 	name = ".34 armor-piercing bullet casing"
