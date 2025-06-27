@@ -96,6 +96,47 @@
 		/obj/item/mod/module/magboot/advanced,
 	)
 
+
+/datum/mod_theme/frontline/surplus
+	name = "frontline surplus"
+	activation_step_time = MOD_ACTIVATION_STEP_TIME + 3
+	desc = "A Pan-Slavic Commonwealth Defense Collegia protective suit, designed for fortified positions operation and humanitarian aid, this one looks rather old and worn out."
+	extended_desc = "A Pan-Slavic Commonwealth Defense Collegia protective suit, designed for fortified positions operation and humanitarian aid. \
+		This one was purchased at auction, the combat spec modules have been removed but \
+		it would still be right at home in the service of gunrunners and private security forces. \
+		Though, it's internal systems have degraded, and some of the ablative plating has been removed."
+	armor_type = /datum/armor/mod_theme_frontline/surplus
+
+/datum/mod_theme/frontline/surplus/set_skin(obj/item/mod/control/mod, skin)
+	. = ..()
+	mod.set_mod_color("#888888", FIXED_COLOUR_PRIORITY)
+
+/datum/armor/mod_theme_frontline/surplus
+	melee = 30
+	bullet = 40
+	laser = 15
+	energy = 15
+	bomb = 30
+	wound = 10
+
+/datum/mod_theme/frontline/surplus/New()
+	allowed_suit_storage -= /obj/item/shield/riot
+	. = ..()
+
+/obj/item/mod/control/pre_equipped/frontline/surplus
+	theme = /datum/mod_theme/frontline/surplus
+
+/datum/supply_pack/imports/surplus_nri_modsuit
+	name = "Surplus Combat MODsuit Crate"
+	desc = "A crate containing a single surplus MODsuit, \
+		designed for use by the Pan-Slavic Commonwealth Defense Collegia. \
+		This one has been stripped of its combat modules, but is still a good suit for those who need protection and mobility. \
+		Notably, does not use or require a armor module."
+	cost = CARGO_CRATE_VALUE * 22
+	contraband = TRUE
+	contains = list(/obj/item/mod/control/pre_equipped/frontline/surplus)
+	crate_name = "surplus MODsuit crate"
+
 /datum/mod_theme/policing
 	name = "policing"
 	desc = "A Pan-Slavic Commonwealth Internal Affairs Collegia general purpose protective suit, designed for coreworld patrols."
