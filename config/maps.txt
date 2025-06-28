@@ -17,23 +17,25 @@ endmap
 
 # Production-level maps.
 
-map birdshot
+#map birdshot
 	#default
-	maxplayers 66
-	votable
-endmap
+#	maxplayers 66
+#	votable
+#endmap
 
 map deltastation
+	minplayers 50
 	votable
 endmap
 
 map icebox
+	minplayers 25
 	votable
 endmap
 
 map catwalkstation
 	minplayers 25
-	votable
+#	votable
 endmap
 
 map metastation
@@ -54,14 +56,36 @@ map nebulastation
 	votable
 endmap
 
-map nebulastation
-	minplayers 35
+#map wawastation
+#	votable
+#	minplayers 40
+#endmap
+
+# Bubberstation maps.
+
+map biodome
+	minplayers 40
 	votable
 endmap
 
-map wawastation
+map boxstation
+	minplayers 30
 	votable
+endmap
+
+map kilostation
+	maxplayers 40
+	votable
+endmap
+
+map moonstation
+	minplayers 50
+	votable
+endmap
+
+map voidraptor
 	minplayers 40
+	votable
 endmap
 
 # Debug-only maps.
@@ -73,33 +97,4 @@ map multiz_debug
 endmap
 
 map runtimestation
-endmap
-
-##SKYRAT MAPS##
-
-map voidraptor
-	votable
-endmap
-
-map biodome
-	votable
-endmap
-
-##BUBBERSTATION MAPS##
-
-map boxstation
-	votable
-endmap
-
-map moonstation
-	votable
-endmap
-
-map kilostation
-	votable
-endmap
-
-map kilostation
-	maxplayers 75
-	votable
 endmap

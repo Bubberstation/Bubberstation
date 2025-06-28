@@ -1,6 +1,6 @@
 /datum/quirk/bodytemp
-	name = "Abnomal body temperature"
-	desc = "Your body temperature is rather odd compared to your baseline species, being offset a certain amount above or below. This is not recommended to take with coldblooded species. The quirk ranges from -40 to +70, due to how you are delivered to the station taking this at extreme amounts may result in minor burns."
+	name = "Abnormal body temperature"
+	desc = "Your body temperature is strange compared to your baseline species, being offset a certain amount above or below. This is not recommended to take with coldblooded species. The quirk ranges from -40 to +70, due to how you are delivered to the station taking this at extreme amounts may result in minor burns."
 	value = 0
 	gain_text = span_danger("Your body temperature is feeling off.")
 	lose_text = span_notice("Your body temperature is feeling right.")
