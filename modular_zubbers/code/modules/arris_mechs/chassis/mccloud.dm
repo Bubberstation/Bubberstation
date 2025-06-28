@@ -268,9 +268,12 @@
 			visible_message(span_danger("[bumped_mech] braces for impact against [src]!"))
 			bumped_damage = bumped_damage * 0.3
 
-	take_damage(self_damage, BRUTE, 0, 0)
 	force = bumped_damage
-	mech_melee_attack(src, bumped_thing)
+	if(occupants.len > 0 && istype(occupants[1], /mob))
+		bumped_thing.mech_melee_attack(src, occupants[1])
+	else
+		bumped_thing.mech_melee_attack(src, src)
+	take_damage(self_damage, BRUTE, 0, 0)
 
 	playsound(src, 'sound/effects/bang.ogg', 40, TRUE)
 
