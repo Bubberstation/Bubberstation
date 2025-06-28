@@ -155,6 +155,7 @@
 		/obj/item/storage/pill_bottle,
 		/obj/item/implanter,
 		/obj/item/hypospray,
+		/obj/item/reagent_containers/hypospray,
 		/obj/item/reagent_containers/cup/vial,
 		/obj/item/weaponcell/medical,
 		/obj/item/reagent_containers/cup/tube
