@@ -24,7 +24,6 @@
 			/obj/item/melee/cleric_mace,
 			/obj/item/knife,
 			/obj/item/melee/baton,
-			/obj/item/melee/baton,
 			/obj/item/nullrod,	//holds any subset of nullrod in the sheath-storage - - -
 		),
 		canthold = list(	// - - - except the second list's items (no fedora in the sheath)
@@ -39,7 +38,6 @@
 			/obj/item/nullrod/staff,
 			/obj/item/nullrod/fedora,
 			/obj/item/nullrod/godhand,
-			/obj/item/nullrod/staff,
 			/obj/item/nullrod/whip,
 		),
 	)
@@ -75,7 +73,9 @@
 			to_chat(user, span_notice("You fumble for [drawn_item] and it falls on the floor."))
 			update_appearance()
 			return CLICK_ACTION_SUCCESS
-		user.visible_message(span_notice("[user] takes [drawn_item] out of [src]."), span_notice("You take [drawn_item] out of [src]."))
+		user.visible_message(
+			span_notice("[user] takes [drawn_item] out of [src]."),
+			span_notice("You take [drawn_item] out of [src]."))
 		update_appearance()
 	else
 		to_chat(user, span_warning("[src] is empty!"))
