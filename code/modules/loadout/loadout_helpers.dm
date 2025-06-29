@@ -100,6 +100,7 @@
  *
  * Returns a list of singleton datums
  */
+ /* BUBBER EDIT: OVERWRITTEN IN MODULAR FILE
 /proc/loadout_list_to_datums(list/loadout_list) as /list
 	var/list/datums = list()
 
@@ -115,7 +116,7 @@
 		datums += actual_datum
 
 	return datums
-
+*/
 // SKYRAT EDIT ADDITION
 /*
  * Removes all invalid paths from loadout lists.
