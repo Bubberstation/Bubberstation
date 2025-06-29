@@ -96,45 +96,6 @@
 	weak_against_armour = TRUE
 	stamina = 10
 
-/obj/item/ammo_casing/shotgun/magnum
-	name = "magnum blockshot shell"
-	desc = "A 12 gauge shell that fires fewer, larger pellets than buckshot. A favorite of TerraGov anti-piracy enforcers, \
-		especially against the likes of vox."
-	icon_state = "magshell"
-	projectile_type = /obj/projectile/bullet/pellet/shotgun_buckshot/magnum
-	pellets = 4 // Half as many pellets for twice the damage each pellet, same overall damage as buckshot
-	variance = 20
-	advanced_print_req = TRUE
-
-/obj/projectile/bullet/pellet/shotgun_buckshot/magnum
-	name = "magnum blockshot pellet"
-	damage = 15
-	wound_bonus = 10
-	weak_against_armour = FALSE
-
-/obj/projectile/bullet/pellet/shotgun_buckshot/magnum/Initialize(mapload)
-	. = ..()
-	transform = transform.Scale(1.25, 1.25)
-
-/obj/item/ammo_casing/shotgun/express
-	name = "express pelletshot shell"
-	desc = "A 12 gauge shell that fires more and smaller projectiles than buckshot. Considered taboo to speak about \
-		openly near teshari, for reasons you would be personally blessed to not know at least some of."
-	icon_state = "expshell"
-	projectile_type = /obj/projectile/bullet/pellet/shotgun_buckshot/express
-	pellets = 12 // 1.3x The pellets for 0.6x the damage, same overall damage as buckshot
-	variance = 30 // Slightly wider spread than buckshot
-
-/obj/projectile/bullet/pellet/shotgun_buckshot/express
-	name = "express buckshot pellet"
-	damage = 5.5
-	wound_bonus = 10
-	weak_against_armour = FALSE
-
-/obj/projectile/bullet/pellet/shotgun_buckshot/express/Initialize(mapload)
-	. = ..()
-	transform = transform.Scale(0.75, 0.75)
-
 /obj/item/ammo_casing/shotgun/flechette
 	name = "flechette shell"
 	desc = "A 12 gauge flechette shell that specializes in ripping armored targets apart. These are exceptionally strong against armored targets."

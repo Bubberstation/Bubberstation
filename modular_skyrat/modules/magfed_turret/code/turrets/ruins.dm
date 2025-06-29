@@ -10,12 +10,12 @@
 	turret_type = /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/outpost
 	mag_slots = 2
 	mag_types_allowed = list(
-		/obj/item/ammo_box/magazine/c40sol_rifle
+		/obj/item/ammo_box/magazine/wt550m9
 	)
 
 /obj/item/storage/toolbox/emergency/turret/mag_fed/outpost/pre_filled/PopulateContents()
-	new /obj/item/ammo_box/magazine/c40sol_rifle(src)
-	new /obj/item/ammo_box/magazine/c40sol_rifle(src)
+	new /obj/item/ammo_box/magazine/wt550m9(src)
+	new /obj/item/ammo_box/magazine/wt550m9(src)
 
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/outpost
 	name = "\improper Outpost Point-Defense Turret"
@@ -50,12 +50,12 @@
 	easy_deploy = TRUE
 	turret_safety = TRUE
 	mag_types_allowed = list(
-		/obj/item/ammo_box/magazine/c40sol_rifle,
+		/obj/item/ammo_box/magazine/wt550m9,
 	)
 
 /obj/item/storage/toolbox/emergency/turret/mag_fed/colonist/pre_filled/PopulateContents()
-	new /obj/item/ammo_box/magazine/c40sol_rifle(src)
-	new /obj/item/ammo_box/magazine/c40sol_rifle(src)
+	new /obj/item/ammo_box/magazine/wt550m9(src)
+	new /obj/item/ammo_box/magazine/wt550m9(src)
 
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/colonist
 	name = "\improper Colonist Point-Defense Turret"

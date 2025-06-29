@@ -44,18 +44,6 @@
 	ricochet_decay_chance = 1
 	ricochet_decay_damage = 1
 
-/obj/projectile/bullet/c38/match/bouncy
-	name = ".38 Rubber bullet"
-	damage = 10
-	stamina = 30
-	ricochets_max = 6
-	ricochet_incidence_leeway = 0
-	ricochet_chance = 130
-	ricochet_decay_damage = 0.8
-	shrapnel_type = null
-	sharpness = NONE
-	embed_type = null
-
 /obj/projectile/bullet/c38/match/true
 	name = ".38 True Strike bullet"
 	damage = 15

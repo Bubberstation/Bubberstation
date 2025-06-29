@@ -26,13 +26,6 @@
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/ammo_box/c38/match)
 
-/datum/supply_pack/goody/rubber
-	name = ".38 Rubber Speedloader Single-Pack"
-	desc = "Contains one speedloader of bouncy rubber .38 ammunition, for when you want to bounce your shots off anything and everything."
-	cost = PAYCHECK_CREW * 1.5
-	access_view = ACCESS_WEAPONS
-	contains = list(/obj/item/ammo_box/c38/match/bouncy)
-
 /datum/supply_pack/goody/dumdum38br
 	name = ".38 DumDum Magazine Single-Pack"
 	desc = "Contains one magazine of .38 DumDum ammunition, good for embedding in soft targets."
@@ -46,13 +39,6 @@
 	cost = PAYCHECK_CREW * 2
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/ammo_box/magazine/m38/match)
-
-/datum/supply_pack/goody/rubber
-	name = ".38 Rubber Magazine Single-Pack"
-	desc = "Contains one magazine of bouncy rubber .38 ammunition, for when you want to bounce your shots off anything and everything."
-	cost = PAYCHECK_CREW * 1.5
-	access_view = ACCESS_WEAPONS
-	contains = list(/obj/item/ammo_box/magazine/m38/match/bouncy)
 
 /datum/supply_pack/goody/mars_single
 	name = "Colt Detective Special Single-Pack"

@@ -7,8 +7,6 @@
 /// CIN pistol caliber
 #define CALIBER_CESARZOWA ".27-54 Cesarzowa"
 
-/// Standard Sol rifle caliber
-#define CALIBER_SOL40LONG ".40 Sol Long"
 /// Standard Sol pistol caliber
 #define CALIBER_SOL35SHORT ".35 Sol Short"
 
@@ -20,11 +18,3 @@
 
 /// Caliber used by the pepperball gun
 #define CALIBER_PEPPERBALL "pepperball"
-
-/// Used by the Rowland Magnum Pistol
-#define CALIBER_460ROWLAND ".460 Rowland Magnum"
-
-// The Super Big Revolver
-#define CALIBER_457GOVT ".457 Government"
-
-#define CALIBER_FLECHETTE "Flechette"

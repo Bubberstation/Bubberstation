@@ -54,12 +54,6 @@
 	ammo_type = /obj/item/ammo_casing/c38/match
 	ammo_band_color = COLOR_AMMO_MATCH
 
-/obj/item/ammo_box/c38/match/bouncy
-	name = "speed loader (.38 Rubber)"
-	desc = "Designed to quickly reload revolvers. These rounds are incredibly bouncy and MOSTLY nonlethal, making them great to show off trickshots with."
-	ammo_type = /obj/item/ammo_casing/c38/match/bouncy
-	ammo_band_color = COLOR_AMMO_RUBBER
-
 /obj/item/ammo_box/c38/true
 	name = "speed loader (.38 True Strike)"
 	desc = "Designed to quickly reload revolvers. Bullets bounce towards new targets with surprising accuracy."
@@ -108,10 +102,6 @@
 	ammo_type = /obj/item/ammo_casing/a40mm
 	max_ammo = 4
 	multiple_sprites = AMMO_BOX_PER_BULLET
-
-/obj/item/ammo_box/a40mm/rubber
-	name = "ammo box (40mm rubber slug)"
-	ammo_type = /obj/item/ammo_casing/a40mm/rubber
 
 /obj/item/ammo_box/rocket
 	name = "rocket bouquet (84mm HE)"
