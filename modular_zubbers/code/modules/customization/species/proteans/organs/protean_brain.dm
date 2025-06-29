@@ -111,6 +111,9 @@
 		return
 	if(!do_after(owner, 5 SECONDS, suit, IGNORE_INCAPACITATED))
 		return
+	if(istype(suit.loc, /obj/item/reagent_containers/cup/soup_pot)) // If protean inside of soup pot
+		var/obj/item/reagent_containers/cup/soup_pot/pot = suit.loc
+		pot.remove_first_ingredient(null)
 	var/mob/living/carbon/mob = suit.loc
 	if(istype(mob))
 		mob.dropItemToGround(suit, TRUE)
