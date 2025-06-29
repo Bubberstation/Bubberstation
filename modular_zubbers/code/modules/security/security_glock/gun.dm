@@ -7,8 +7,8 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	throwforce = 19 //Nokia of guns, no locker breaking though
 	force = 10 //same as baton
-	accepted_magazine_type = /obj/item/ammo_box/magazine/m9mm/security
-	spawn_magazine_type = /obj/item/ammo_box/magazine/m9mm/security
+	accepted_magazine_type = /obj/item/ammo_box/magazine/security
+	spawn_magazine_type = /obj/item/ammo_box/magazine/security
 	fire_sound = 'modular_zubbers/sound/weapons/gun/lock/shot.ogg'
 	fire_delay = 5
 	can_suppress = FALSE
@@ -69,7 +69,7 @@
 	default_behaviour(user)
 
 
-/obj/item/gun/ballistic/automatic/pistol/sec_glock/proc/throw_eject_magazine(mob/user, display_message = TRUE, obj/item/ammo_box/magazine/m9mm/security/belt_mag, atom/target)
+/obj/item/gun/ballistic/automatic/pistol/sec_glock/proc/throw_eject_magazine(mob/user, display_message = TRUE, obj/item/ammo_box/magazine/security/belt_mag, atom/target)
 	if(bolt_type == BOLT_TYPE_OPEN)
 		chambered = null
 	if(magazine.ammo_count())
@@ -77,7 +77,7 @@
 	else
 		playsound(src, eject_empty_sound, eject_sound_volume, eject_sound_vary)
 	magazine.forceMove(drop_location())
-	var/obj/item/ammo_box/magazine/m9mm/security/old_mag = magazine
+	var/obj/item/ammo_box/magazine/security/old_mag = magazine
 	if(belt_mag)
 		insert_magazine(user, belt_mag)
 	else

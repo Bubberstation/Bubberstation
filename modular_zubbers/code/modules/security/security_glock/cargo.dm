@@ -15,7 +15,7 @@
 	name = "'Murphy' Service Pistol Ammo Crate"
 	desc = "Contains 4 magazines with lethal rounds for the 'Murphy' service pistol."
 	cost = CARGO_CRATE_VALUE * 3
-	contains = list(/obj/item/ammo_box/magazine/m9mm/security = 4)
+	contains = list(/obj/item/ammo_box/magazine/security = 4)
 	crate_name = "'Murphy' service pistol ammo crate"
 
 /datum/supply_pack/security/armory/alert_level_firing_pin

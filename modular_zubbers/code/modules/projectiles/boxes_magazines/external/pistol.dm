@@ -1,21 +1,26 @@
-/obj/item/ammo_box/magazine/m9mm/security
+/obj/item/ammo_box/magazine/security
 	name = "pistol magazine (9mm Murphy)"
 	desc = "A 9mm handgun magazine, suitable for the Service Pistol."
-	ammo_type = /obj/item/ammo_casing/c9mm/security
+	ammo_type = /obj/item/ammo_casing/security
 	max_ammo = 10
 	ammo_band_color = "#971313"
+	icon_state = "9x19p"
+	base_icon_state = "9x19p"
+	ammo_band_icon = "+9x19ab"
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
+	multiple_sprite_use_base = TRUE
 	var/murphy_eject_sound = 'sound/items/weapons/throwhard.ogg'
 	var/was_ejected = 0
 
-/obj/item/ammo_box/magazine/m9mm/security/rocket
+/obj/item/ammo_box/magazine/security/rocket
 	name = "pistol magazine (9mm Murphy Rocket Eject)"
 	desc = "A 9mm handgun magazine, suitable for the Service Pistol."
-	ammo_type = /obj/item/ammo_casing/c9mm/security
+	ammo_type = /obj/item/ammo_casing/security
 	max_ammo = 8
 	ammo_band_color = "#ff9900"
 	murphy_eject_sound = 'sound/items/weapons/gun/general/rocket_launch.ogg'
 
-/obj/item/ammo_box/magazine/m9mm/security/rocket/throw_impact(mob/living/hit_mob, datum/thrownthing/throwingdatum)
+/obj/item/ammo_box/magazine/security/rocket/throw_impact(mob/living/hit_mob, datum/thrownthing/throwingdatum)
 	. = ..()
 	if(!QDELETED(hit_mob) && was_ejected )
 		hit_mob.Knockdown(2 SECONDS)

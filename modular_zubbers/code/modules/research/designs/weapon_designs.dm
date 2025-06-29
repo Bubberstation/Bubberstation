@@ -310,7 +310,7 @@
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 30,
 		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT * 3,
 	)
-	build_path = /obj/item/ammo_box/magazine/m9mm/security
+	build_path = /obj/item/ammo_box/magazine/security
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
@@ -325,7 +325,7 @@
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 10,
 		/datum/material/plasma = HALF_SHEET_MATERIAL_AMOUNT * 5,
 	)
-	build_path = /obj/item/ammo_box/magazine/m9mm/security/rocket
+	build_path = /obj/item/ammo_box/magazine/security/rocket
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
