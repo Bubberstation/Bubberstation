@@ -191,6 +191,21 @@ repeatable_weight_decrease = 2
 repeatable = 0
 minimum_required_age = 0
 
+["Latejoin Bloodsucker"]
+weight = 5
+min_pop = 0
+blacklisted_roles = [
+	"Captain",
+	"Head of Personnel",
+	"Head of Security",
+	"Warden",
+	"Security Officer",
+	"Detective",
+]
+repeatable_weight_decrease = 2
+repeatable = 0
+minimum_required_age = 0
+
 ["Spiders"]
 weight.1 = 0
 weight.2 = 0
@@ -201,7 +216,7 @@ blacklisted_roles = []
 min_antag_cap = 0
 # max_antag_cap = min_antag_cap
 repeatable_weight_decrease = 2
-repeatable = 1
+repeatable = 0
 minimum_required_age = 0
 
 ["Light Pirates"]
@@ -211,7 +226,7 @@ blacklisted_roles = []
 min_antag_cap = 0
 # max_antag_cap = min_antag_cap
 repeatable_weight_decrease = 2
-repeatable = 1
+repeatable = 0
 minimum_required_age = 0
 
 ["Heavy Pirates"]
@@ -221,7 +236,7 @@ blacklisted_roles = []
 min_antag_cap = 0
 # max_antag_cap = min_antag_cap
 repeatable_weight_decrease = 2
-repeatable = 1
+repeatable = 0
 minimum_required_age = 0
 
 ["Midround Wizard"]
@@ -285,7 +300,7 @@ blacklisted_roles = []
 min_antag_cap = 1
 max_antag_cap = 2
 repeatable_weight_decrease = 3
-repeatable = 1
+repeatable = 0
 minimum_required_age = 0
 
 ["Nightmare"]
@@ -295,7 +310,7 @@ blacklisted_roles = []
 min_antag_cap = 1
 max_antag_cap = 1
 repeatable_weight_decrease = 2
-repeatable = 1
+repeatable = 0
 minimum_required_age = 0
 
 ["Space Dragon"]
@@ -318,7 +333,7 @@ blacklisted_roles = []
 min_antag_cap = 2
 # max_antag_cap = min_antag_cap
 repeatable_weight_decrease = 3
-repeatable = 1
+repeatable = 0
 minimum_required_age = 0
 
 ["Space Ninja"]
@@ -326,7 +341,7 @@ weight.1 = 0
 weight.2 = 0
 weight.3 = 1
 weight.4 = 2
-min_pop = 30
+min_pop = 20
 blacklisted_roles = []
 min_antag_cap = 1
 max_antag_cap = 1
@@ -404,6 +419,42 @@ repeatable_weight_decrease = 2
 repeatable = 1
 minimum_required_age = 0
 
+["Midround Cortical Borer Infestation"]
+weight = 3
+min_pop = 20
+blacklisted_roles = []
+min_antag_cap = 1
+# max_antag_cap = min_antag_cap
+repeatable_weight_decrease = 2
+repeatable = 1
+minimum_required_age = 0
+
+["Midround Lone Infiltrator"]
+weight = 4
+min_pop = 10
+blacklisted_roles = [
+	"Cyborg",
+	"AI",
+	"Security Officer",
+	"Warden",
+	"Detective",
+	"Head of Security",
+	"Captain",
+	"Corrections Officer",
+	"Nanotrasen Consultant",
+	"Blueshield",
+	"Orderly",
+	"Bouncer",
+	"Customs Agent",
+	"Engineering Guard",
+	"Science Guard",
+]
+min_antag_cap = 1
+# max_antag_cap = min_antag_cap
+repeatable_weight_decrease = 2
+repeatable = 1
+minimum_required_age = 0
+
 ["Midround Traitor"]
 weight = 10
 min_pop = 3
@@ -444,7 +495,30 @@ weight.4 = 1
 min_pop = 5
 blacklisted_roles = []
 repeatable_weight_decrease = 2
+repeatable = 0
+minimum_required_age = 0
+
+["OPFOR"]
+weight = 0
+min_pop = 0
+blacklisted_roles = []
+repeatable_weight_decrease = 2
 repeatable = 1
+minimum_required_age = 0
+
+["Midround Bloodsucker"]
+weight = 5
+min_pop = 0
+blacklisted_roles = [
+	"Captain",
+	"Head of Personnel",
+	"Head of Security",
+	"Warden",
+	"Security Officer",
+	"Detective",
+]
+repeatable_weight_decrease = 2
+repeatable = 0
 minimum_required_age = 0
 
 ["Roundstart Traitor"]
@@ -610,3 +684,39 @@ min_antag_cap = 0
 repeatable_weight_decrease = 2
 repeatable = 0
 minimum_required_age = 0
+
+["Roundstart Assault Operatives"]
+weight = 3
+min_pop = 50
+blacklisted_roles = [
+	"Captain",
+	"Head of Security",
+	"Head of Security",
+	"Chief Medical Officer",
+	"Chief Engineer",
+]
+min_antag_cap = 5
+max_antag_cap.denominator = 18
+max_antag_cap.offset = 1
+repeatable_weight_decrease = 2
+repeatable = 1
+minimum_required_age = 14
+
+["Roundstart Bloodsucker"]
+weight = 5
+min_pop = 0
+blacklisted_roles = [
+	"Captain",
+	"Head of Personnel",
+	"Head of Security",
+	"Warden",
+	"Security Officer",
+	"Detective",
+]
+min_antag_cap = 1
+max_antag_cap.denominator = 24
+repeatable_weight_decrease = 2
+repeatable = 1
+minimum_required_age = 0
+
+
