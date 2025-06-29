@@ -185,7 +185,7 @@
 // Removes item from soup pot, placing it in hand of user and on tile of soutp pot if user == NULL
 /obj/item/reagent_containers/cup/soup_pot/proc/remove_first_ingredient(mob/user)
 	if(!LAZYLEN(added_ingredients))
-		return FALSE
+		return SECONDARY_ATTACK_CALL_NORMAL
 
 	var/obj/item/removed = added_ingredients[1]
 	removed.forceMove(get_turf(src))
@@ -196,7 +196,7 @@
 		balloon_loc.balloon_alert(user, "ingredient removed")
 		user.face_atom(balloon_loc)
 	update_appearance(UPDATE_OVERLAYS)
-	return TRUE
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/reagent_containers/cup/soup_pot/proc/can_add_ingredient(obj/item/ingredient)
 	// Let default reagent handling take this
