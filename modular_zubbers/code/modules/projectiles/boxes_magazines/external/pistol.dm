@@ -3,7 +3,6 @@
 	desc = "A 9mm handgun magazine, suitable for the Service Pistol."
 	ammo_type = /obj/item/ammo_casing/security
 	max_ammo = 10
-	ammo_band_color = "#971313"
 	icon_state = "9x19p"
 	base_icon_state = "9x19p"
 	ammo_band_icon = "+9x19ab"

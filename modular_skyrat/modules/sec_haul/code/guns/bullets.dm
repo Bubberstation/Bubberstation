@@ -66,12 +66,12 @@
 
 /obj/item/ammo_casing/security
 	name = "9x25mm Mk.12 security casing"
-	desc = "A modern 9x25mm Mk.12 bullet casing. This one fires a bullet of 'Intelligent High-Impact Dispersal Foam', which is best compared to a riot-grade foam dart."
+	desc = "A modern 9x25mm Mk.12 bullet casing. This one fires a law-enfocement grade round, making it less deadly than most, but still lethal enough to do it's job."
 	projectile_type = /obj/projectile/bullet/security
 	harmful = FALSE
 
 /obj/projectile/bullet/security
-	name = "9x25mm IHDF bullet"
+	name = "9x25mm Murphy bullet"
 	damage = 20
 	wound_bonus = -20
 
