@@ -184,19 +184,19 @@
 
 // Removes item from soup pot, placing it in hand of user and on tile of soutp pot if user == NULL
 /obj/item/reagent_containers/cup/soup_pot/proc/remove_first_ingredient(mob/user)
-    if(!LAZYLEN(added_ingredients))
-        return FALSE
+	if(!LAZYLEN(added_ingredients))
+		return FALSE
 
-    var/obj/item/removed = added_ingredients[1]
-    removed.forceMove(get_turf(src))
-    if(user)
-        user.put_in_hands(removed)
-        // Ensures that faceatom works correctly, since we can often be in another atom's loc (a stove)
-        var/atom/movable/balloon_loc = ismovable(loc) ? loc : src
-        balloon_loc.balloon_alert(user, "ingredient removed")
-        user.face_atom(balloon_loc)
-    update_appearance(UPDATE_OVERLAYS)
-    return TRUE
+	var/obj/item/removed = added_ingredients[1]
+	removed.forceMove(get_turf(src))
+	if(user)
+		user.put_in_hands(removed)
+		// Ensures that faceatom works correctly, since we can often be in another atom's loc (a stove)
+		var/atom/movable/balloon_loc = ismovable(loc) ? loc : src
+		balloon_loc.balloon_alert(user, "ingredient removed")
+		user.face_atom(balloon_loc)
+	update_appearance(UPDATE_OVERLAYS)
+	return TRUE
 
 /obj/item/reagent_containers/cup/soup_pot/proc/can_add_ingredient(obj/item/ingredient)
 	// Let default reagent handling take this
