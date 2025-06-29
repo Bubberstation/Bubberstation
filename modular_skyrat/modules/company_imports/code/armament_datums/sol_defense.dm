@@ -134,10 +134,6 @@
 	item_type = /obj/item/gun/ballistic/automatic/sol_smg
 	cost = PAYCHECK_COMMAND * 6
 
-/datum/armament_entry/company_import/sol_defense/longarm/elite
-	item_type = /obj/item/gun/ballistic/automatic/sol_rifle/marksman
-	cost = PAYCHECK_COMMAND * 8
-
 /*
 
 
