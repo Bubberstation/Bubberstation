@@ -21,7 +21,7 @@
 	damage = 15
 	armour_penetration = 30
 	wound_bonus = -30
-	bare_wound_bonus = -10
+	exposed_wound_bonus = -10
 
 /obj/item/ammo_box/c27_54cesarzowa
 	name = "ammo box (.27-54 Cesarzowa piercing)"
@@ -37,4 +37,4 @@
 	caliber = CALIBER_CESARZOWA
 	ammo_type = /obj/item/ammo_casing/c27_54cesarzowa
 	max_ammo = 18
-	
+

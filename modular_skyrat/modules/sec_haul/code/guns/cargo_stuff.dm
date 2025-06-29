@@ -24,6 +24,7 @@
 					/obj/item/ammo_box/c38/iceblox,
 				)
 	special = FALSE
+
 //This makes the Security ammo crate use the cool advanced ammo boxes instead of the old ones
 
 
