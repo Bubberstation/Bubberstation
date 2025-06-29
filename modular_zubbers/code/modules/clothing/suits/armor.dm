@@ -105,3 +105,45 @@
 /obj/item/clothing/suit/armor/vest/maid/Initialize(mapload)
 	. = ..()
 	allowed += GLOB.security_vest_allowed
+
+/obj/item/clothing/head/helmet/elder_atmosian
+	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT | STACKABLE_HELMET_EXEMPT
+	heat_protection = HEAD
+	cold_protection = HEAD
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
+	resistance_flags = FIRE_PROOF
+
+/datum/armor/helmet_elder_atmosian
+	melee = 40
+	bullet = 30
+	laser = 40
+	energy = 40
+	bomb = 100
+	bio = 20
+	fire = 100
+	acid = 50
+	wound = 25
+
+/obj/item/clothing/suit/armor/elder_atmosian
+	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+	resistance_flags = FIRE_PROOF
+	flags_inv = HIDEJUMPSUIT | HIDESHOES | HIDEGLOVES
+/obj/item/clothing/suit/armor/elder_atmosian/Initialize(mapload)
+	. = ..()
+	allowed += list(
+		/obj/item/fireaxe/metal_h2_axe,
+	)
+
+/datum/armor/armor_elder_atmosian
+	melee = 40
+	bullet = 30
+	laser = 40
+	energy = 40
+	bomb = 100
+	bio = 20
+	fire = 100
+	acid = 50
+	wound = 25
