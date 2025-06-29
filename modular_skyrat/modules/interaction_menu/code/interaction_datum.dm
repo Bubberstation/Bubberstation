@@ -1,5 +1,7 @@
 
+/* SPLURT EDIT REMOVAL - Interactions subsystem
 GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
+*/
 
 /datum/interaction
 	/// The name to be displayed in the interaction menu for this interaction
@@ -48,9 +50,12 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 	var/list/interaction_requires = list()
 	/// What color should the interaction button be?
 	var/color = "blue"
+	/* SPLURT EDIT REMOVAL - Interactions
 	/// What sexuality preference do we display for.
 	var/sexuality = ""
+	*/
 
+/* SPLURT EDIT REMOVAL - Interactions - Refractored in modular
 /datum/interaction/proc/allow_act(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(target == user && usage == INTERACTION_OTHER)
 		return FALSE
@@ -82,6 +87,7 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 			else
 				CRASH("Unimplemented interaction requirement '[requirement]'")
 	return TRUE
+*/ //SPLURT EDIT END
 
 /datum/interaction/proc/act(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(!allow_act(user, target))
@@ -115,16 +121,24 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 			message_admins("Deprecated sound handling for '[name]'. Correct format is a list with one entry. This message will only show once.")
 			sound_possible = list(sound_possible)
 		sound_cache = pick(sound_possible)
+		//SPLURT EDIT - Interactions - For some reason the original code didn't send any sound
+		/*
 		for(var/mob/mob in view(sound_range, user))
 			SEND_SOUND(sound_cache, mob)
-
+		*/
+		conditional_pref_sound(user, sound_cache, 80, TRUE, falloff_distance = sound_range, pref_to_check = /datum/preference/toggle/erp/sounds)
+		//SPLURT EDIT END
 	if(lewd)
-		user.adjust_pleasure(user_pleasure)
+		user.adjust_pleasure(user_pleasure * (target.dna.features["sexual_potency"] || 1), target, src, CLIMAX_POSITION_USER) //SPLURT EDIT - Interactions
 		user.adjust_arousal(user_arousal)
-		user.adjust_pain(user_pain)
-		target.adjust_pleasure(target_pleasure)
-		target.adjust_arousal(target_arousal)
-		target.adjust_pain(target_pain)
+		user.adjust_pain(user_pain, target, src, CLIMAX_POSITION_USER) //SPLURT EDIT - Interactions
+		if(usage == INTERACTION_OTHER) //SPLURT EDIT - Interactions
+			target.adjust_pleasure(target_pleasure * (user.dna.features["sexual_potency"] || 1), user, src, CLIMAX_POSITION_TARGET) //SPLURT EDIT - Interactions
+			target.adjust_arousal(target_arousal)
+			target.adjust_pain(target_pain, user, src, CLIMAX_POSITION_TARGET) //SPLURT EDIT - Interactions
+
+	post_interaction(user, target) //SPLURT EDIT - Interactions
+	return TRUE
 
 /datum/interaction/proc/load_from_json(path)
 	var/fpath = path
@@ -157,7 +171,7 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 	target_pleasure = sanitize_integer(json["target_pleasure"], 0, 100, 0)
 	target_pain = sanitize_integer(json["target_pain"], 0, 100, 0)
 	lewd = sanitize_integer(json["lewd"], 0, 1, 0)
-	sexuality = sanitize_text(json["sexuality"])
+	// sexuality = sanitize_text(json["sexuality"]) //SPLURT EDIT REMOVAL - Interactions
 	return TRUE
 
 /datum/interaction/proc/json_save(path)
@@ -187,7 +201,7 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 		"target_pleasure" = target_pleasure,
 		"target_pain" = target_pain,
 		"lewd" = lewd,
-		"sexuality" = sexuality,
+		// "sexuality" = sexuality, //SPLURT EDIT REMOVAL - Interactions
 	)
 	var/file = file(fpath)
 	WRITE_FILE(file, json_encode(json))
@@ -201,7 +215,11 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 /proc/populate_interaction_instances()
 	for(var/spath in subtypesof(/datum/interaction))
 		var/datum/interaction/interaction = new spath()
-		GLOB.interaction_instances[interaction.name] = interaction
+		//SPLURT EDIT - Interactions
+		if(interaction.name == /datum/interaction::name || interaction.description == /datum/interaction::description)
+			continue
+		//SPLURT EDIT END
+		SSinteractions.interactions[interaction.name] = interaction //SPLURT EDIT - Interactions subsystem - Original: GLOB.interaction_instances[interaction.name] = interaction
 	populate_interaction_jsons(INTERACTION_JSON_FOLDER)
 
 /proc/populate_interaction_jsons(directory)
@@ -214,7 +232,7 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 			continue
 		var/datum/interaction/interaction = new()
 		if(interaction.load_from_json(directory + file))
-			GLOB.interaction_instances[interaction.name] = interaction
+			SSinteractions.interactions[interaction.name] = interaction //SPLURT EDIT - Interactions subsystem - Original: GLOB.interaction_instances[interaction.name] = interaction
 		else message_admins("Error loading interaction from file: '[directory + file]'. Inform coders.")
 
 /proc/populate_interaction_jsons_master(path)
@@ -225,7 +243,7 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 	var/list/json = json_load(file)
 
 	for(var/iname in json)
-		if(GLOB.interaction_instances[iname])
+		if(SSinteractions.interactions[iname]) //SPLURT EDIT - Interactions subsystem - Original: if(GLOB.interaction_instances[iname])
 			message_admins("Interaction Master '[path]' contained a duplicate interaction! '[iname]'")
 			continue
 
@@ -257,9 +275,9 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 		interaction.target_pleasure = sanitize_integer(ijson["target_pleasure"], 0, 100, 0)
 		interaction.target_pain = sanitize_integer(ijson["target_pain"], 0, 100, 0)
 		interaction.lewd = sanitize_integer(ijson["lewd"], 0, 1, 0)
-		interaction.sexuality = sanitize_text(ijson["sexuality"])
+		// interaction.sexuality = sanitize_text(ijson["sexuality"]) //SPLURT EDIT REMOVAL - Interactions
 
-		GLOB.interaction_instances[iname] = interaction
+		SSinteractions.interactions[iname] = interaction //SPLURT EDIT - Interactions subsystem - Original: GLOB.interaction_instances[iname] = interaction
 
 ADMIN_VERB(reload_interactions, R_DEBUG, "Reload Interactions", "Force reload interactions.", ADMIN_CATEGORY_DEBUG)
-	populate_interaction_instances()
+	SSinteractions.prepare_interactions() //SPLURT EDIT - Interactions subsystem - Original: populate_interaction_instances()

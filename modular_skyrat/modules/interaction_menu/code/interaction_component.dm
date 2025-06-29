@@ -21,13 +21,31 @@
 
 /datum/component/interactable/proc/build_interactions_list()
 	interactions = list()
-	for(var/iterating_interaction_id in GLOB.interaction_instances)
-		var/datum/interaction/interaction = GLOB.interaction_instances[iterating_interaction_id]
+	//SPLURT EDIT - Interactions subsystem
+	if(!SSinteractions)
+		return // Can't continue, no subsystem
+	for(var/iterating_interaction_id in SSinteractions.interactions)
+		var/datum/interaction/interaction = SSinteractions.interactions[iterating_interaction_id]
+	//SPLURT EDIT END
 		if(interaction.lewd)
 			if(!self.client?.prefs?.read_preference(/datum/preference/toggle/erp))
 				continue
+			// SPLURT EDIT ADDITION - Interaction preferences
+			if(interaction.unsafe_types & INTERACTION_EXTREME)
+				if(self.client?.prefs?.read_preference(/datum/preference/choiced/erp_status_extm) == "No")
+					continue
+			if(interaction.unsafe_types & INTERACTION_HARMFUL)
+				if(self.client?.prefs?.read_preference(/datum/preference/choiced/erp_status_extmharm) == "No")
+					continue
+			if(interaction.unsafe_types & INTERACTION_UNHOLY)
+				if(self.client?.prefs?.read_preference(/datum/preference/choiced/erp_status_unholy) == "No")
+					continue
+			// SPLURT EDIT END
+			/*
+			SPLURT EDIT REMOVAL - Interactions
 			if(interaction.sexuality != "" && interaction.sexuality != self.client?.prefs?.read_preference(/datum/preference/choiced/erp_sexuality))
 				continue
+			*/
 		interactions.Add(interaction)
 
 /datum/component/interactable/RegisterWithParent()
@@ -143,11 +161,11 @@
 
 	if(params["interaction"])
 		var/interaction_id = params["interaction"]
-		if(GLOB.interaction_instances[interaction_id])
+		if(SSinteractions.interactions[interaction_id])
 			var/mob/living/carbon/human/user = locate(params["userref"])
-			if(!can_interact(GLOB.interaction_instances[interaction_id], user))
+			if(!can_interact(SSinteractions.interactions[interaction_id], user))
 				return FALSE
-			GLOB.interaction_instances[interaction_id].act(user, locate(params["selfref"]))
+			SSinteractions.interactions[interaction_id].act(user, locate(params["selfref"]))
 			var/datum/component/interactable/interaction_component = user.GetComponent(/datum/component/interactable)
 			interaction_component.interact_last = world.time
 			interact_next = interaction_component.interact_last + INTERACTION_COOLDOWN
