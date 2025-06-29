@@ -567,4 +567,5 @@
 			picked_organ.aroused = gen_arous_trans[picked_arousal]
 			picked_organ.update_sprite_suffix()
 			update_body()
+			SEND_SIGNAL(src, COMSIG_HUMAN_TOGGLE_AROUSAL)
 	return
