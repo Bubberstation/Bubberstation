@@ -17,10 +17,6 @@
 #define ROLE_TRAITOR "Traitor"
 #define ROLE_WIZARD "Wizard"
 #define ROLE_SPY "Spy"
-// SKYRAT EDIT START
-#define ROLE_ASSAULT_OPERATIVE "Assault Operative"
-#define ROLE_OPFOR_CANDIDATE "OPFOR Candidate"
-// SKYRAT EDIT END
 
 // Midround roles
 #define ROLE_ABDUCTOR "Abductor"
@@ -42,12 +38,6 @@
 #define ROLE_SPACE_DRAGON "Space Dragon"
 #define ROLE_SPIDER "Spider"
 #define ROLE_WIZARD_MIDROUND "Wizard (Midround)"
-//SKYRAT EDIT START
-#define ROLE_BORER "Borer"
-#define ROLE_LONE_INFILTRATOR "Lone Infiltrator"
-#define ROLE_MUTANT "Mutated Abomination"
-#define ROLE_CLOCK_CULTIST "Clock Cultist"
-// SKYRAT EDIT END
 #define ROLE_VOIDWALKER "Voidwalker"
 
 // Latejoin roles

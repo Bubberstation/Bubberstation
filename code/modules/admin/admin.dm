@@ -21,7 +21,7 @@
 
 	var/dat
 
-	dat += "<a href='byond://?src=[REF(src)];[HrefToken()];gamemode_panel=1'>Dynamic Panel</a><BR>"
+	dat += "<a href='byond://?src=[REF(src)];[HrefToken()];gamemode_panel=1'>Storyteller Panel</a><BR>" // BUBBER EDIT CHANGE - Storyteller - Dynamic Panel -> Storyteller Panel
 	dat += "<hr/>"
 	dat += {"
 		<A href='byond://?src=[REF(src)];[HrefToken()];create_object=1'>Create Object</A><br>
