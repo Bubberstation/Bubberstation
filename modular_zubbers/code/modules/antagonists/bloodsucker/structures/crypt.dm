@@ -401,11 +401,11 @@
 			disloyalty_confirm = TRUE
 			target.visible_message(
 				span_notice("[target] gives in to [user]'s offer of servitude!"),
-				span_usernotice("You give in to [user]'s offer of servitude!"))
+				span_userdanger("You give in to [user]'s offer of servitude!"))
 		else
 			target.visible_message(
 				span_danger("[target] stares defiantly at [user], refusing to give in!"),
-				span_userdanger("You stare defiantly at [user], refusing to give in!"))
+				span_danger("You stare defiantly at [user], refusing to give in!"))
 	disloyalty_offered = FALSE
 	return TRUE
 
