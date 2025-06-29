@@ -332,8 +332,10 @@ SUBSYSTEM_DEF(ticker)
 		SSdynamic.queued_rulesets -= ruleset
 		SSdynamic.executed_rulesets += ruleset
 	// Queue roundstart intercept report
+	/* BUBBER EDIT REMOVAL BEGIN - Storyteller
 	if(!CONFIG_GET(flag/no_intercept_report))
 		GLOB.communications_controller.queue_roundstart_report()
+	*/// BUBBER EDIT REMOVAL END - Storyteller
 	// Queue admin logout report
 	addtimer(CALLBACK(src, PROC_REF(display_roundstart_logout_report)), ROUNDSTART_LOGOUT_REPORT_TIME)
 	// Queue suicide slot handling
