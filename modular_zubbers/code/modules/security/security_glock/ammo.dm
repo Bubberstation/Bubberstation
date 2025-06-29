@@ -5,7 +5,7 @@
 	stamina = 5 //Knocks the wind out of you.
 
 	wound_bonus = CANT_WOUND
-	bare_wound_bonus = CANT_WOUND
+	exposed_wound_bonus = CANT_WOUND
 
 	weak_against_armour = TRUE
 	sharpness = NONE
