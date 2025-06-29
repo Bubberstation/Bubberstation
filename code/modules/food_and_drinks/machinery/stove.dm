@@ -182,7 +182,7 @@
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	return SECONDARY_ATTACK_CALL_NORMAL
 
-/* Removes item from soup pot, placing it in hand of user and on tile of soutp pot if user == NULL */
+// Removes item from soup pot, placing it in hand of user and on tile of soutp pot if user == NULL
 /obj/item/reagent_containers/cup/soup_pot/proc/remove_first_ingredient(mob/user)
     if(!LAZYLEN(added_ingredients))
         return FALSE
