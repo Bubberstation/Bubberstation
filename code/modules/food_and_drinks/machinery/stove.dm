@@ -170,6 +170,10 @@
 /obj/item/reagent_containers/cup/soup_pot/item_interaction(mob/living/user, obj/item/item, list/modifiers)
 	if(LAZYACCESS(modifiers, RIGHT_CLICK))
 		return NONE
+	/* Modsuits broken with transfer_from_container_to_pot(), still can be added with compression plate
+	But will be treated as not container, and added as whole thing to avoid bugs. */
+	if(istype(item, /obj/item/mod/control))
+		return NONE
 
 	return transfer_from_container_to_pot(item, user)
 
