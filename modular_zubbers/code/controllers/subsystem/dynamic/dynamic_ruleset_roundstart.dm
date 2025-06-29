@@ -22,8 +22,6 @@
 	var/selected_species = candidate_client.prefs?.read_preference(/datum/preference/choiced/species)
 	if(selected_species in restricted_species)
 		return FALSE
-	if(!candidate.mind.valid_bloodsucker_candidate())
-		return FALSE
 	return ..()
 
 /datum/dynamic_ruleset/roundstart/bloodsucker/assign_role(datum/mind/candidate)

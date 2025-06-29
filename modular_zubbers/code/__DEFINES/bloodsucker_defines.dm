@@ -272,12 +272,6 @@
 	JOB_DETECTIVE, \
 )
 
-#define BLOODSUCKER_RESTRICTED_ROLES list( \
-	JOB_AI, \
-	JOB_CYBORG, \
-	JOB_CURATOR, \
-)
-
 #define BLOODSUCKER_RESTRICTED_SPECIES list( \
 	/datum/species/synthetic, \
 	/datum/species/plasmaman, \
