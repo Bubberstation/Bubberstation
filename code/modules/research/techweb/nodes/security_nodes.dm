@@ -6,6 +6,8 @@
 	design_ids = list(
 		"toy_armblade",
 		"toygun",
+		"c38_sec",
+		"c38_mag",
 		"capbox",
 		"foam_dart",
 		"sec_beanbag_slug",
