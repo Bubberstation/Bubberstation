@@ -41,6 +41,8 @@
 
 /obj/structure/chalkboard/attack_hand_secondary(mob/user)
 	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
 	to_chat(user, span_warning("You pick up the eraser and begin to clear the board."))
 	if(!written_text)
 		to_chat(user, span_warning("You pick up the eraser and give the board a few pap-paps, but it has nothing on it to erase."))
