@@ -55,7 +55,7 @@ would only be recognisable with someone that had the syndicate trait.
 			if(EXAMINE_CHECK_SYNDICATE)
 				if(user.mind)
 					var/datum/mind/M = user.mind
-					if((M.special_role == ROLE_TRAITOR) || (ROLE_SYNDICATE in user.faction))
+					if((ROLE_TRAITOR in M.get_special_roles()) || (ROLE_SYNDICATE in user.faction))
 						composed_message = "You note the following because of your <span class='red'><b>[special_desc_affiliation ? special_desc_affiliation : "Syndicate Affiliation"]</b></span>: <br>"
 						composed_message += special_desc
 						. += composed_message
@@ -67,7 +67,7 @@ would only be recognisable with someone that had the syndicate trait.
 			if(EXAMINE_CHECK_SYNDICATE_TOY)
 				if(user.mind)
 					var/datum/mind/M = user.mind
-					if((M.special_role == ROLE_TRAITOR) || (ROLE_SYNDICATE in user.faction))
+					if((ROLE_TRAITOR in M.get_special_roles()) || (ROLE_SYNDICATE in user.faction))
 						composed_message = "You note the following because of your <span class='red'><b>[special_desc_affiliation ? special_desc_affiliation : "Syndicate Affiliation"]</b></span>: <br>"
 						composed_message += special_desc
 						. += composed_message
@@ -83,7 +83,7 @@ would only be recognisable with someone that had the syndicate trait.
 				if(user.mind)
 					var/datum/mind/M = user.mind
 					for(var/role_i in special_desc_roles)
-						if(M.special_role == role_i)
+						if(role_i in M.get_special_roles())
 							composed_message = "You note the following because of your <b>[role_i]</b> role: <br>"
 							composed_message += special_desc
 							. += composed_message

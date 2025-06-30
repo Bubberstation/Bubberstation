@@ -528,7 +528,7 @@ GLOBAL_VAR(first_officer)
 /datum/antagonist/cop
 	name = "\improper Commonwealth Police Officer"
 	//Even if their goal's almost a complete antithesis to what pirates normally do, their spawn is, well, done via pirate code.
-	job_rank = ROLE_SPACE_PIRATE
+	pref_flag = ROLE_SPACE_PIRATE
 	roundend_category = "nri cops"
 	antagpanel_category = "Commonwealth Police"
 	show_in_antagpanel = FALSE

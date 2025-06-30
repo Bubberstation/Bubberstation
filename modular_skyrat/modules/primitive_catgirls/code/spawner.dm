@@ -111,12 +111,11 @@
 
 /datum/antagonist/primitive_catgirl
 	name = "\improper Icewalker"
-	job_rank = ROLE_LAVALAND // If you're ashwalker banned you should also not be playing this, other way around as well
+	pref_flag = ROLE_LAVALAND // If you're ashwalker banned you should also not be playing this, other way around as well
 	show_in_antagpanel = FALSE
 	show_to_ghosts = TRUE
-	prevent_roundtype_conversion = FALSE
 	antagpanel_category = "Icemoon Dwellers"
-	count_against_dynamic_roll_chance = FALSE
+	antag_flags = ANTAG_FAKE|ANTAG_SKIP_GLOBAL_LIST
 	show_in_roundend = FALSE
 
 	/// Tracks the antag datum's 'team' for showing in the ghost orbit menu

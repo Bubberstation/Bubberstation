@@ -1,10 +1,7 @@
 /datum/antagonist/changeling_zombie
 
 	name = "\improper Changeling Zombie"
-	job_rank = ROLE_CHANGELING_ZOMBIE
-
-	prevent_roundtype_conversion = FALSE
-	can_coexist_with_others = TRUE
+	pref_flag = ROLE_CHANGELING_ZOMBIE
 	replace_banned = FALSE
 	show_to_ghosts = TRUE
 

@@ -57,41 +57,6 @@
 		handle_job_exempt_menu_topic(usr, href, href_list, target_ckey)
 	// BUBBER EDIT END
 
-// SKYRAT EDIT BEGIN -- ONE CLICK ANTAG
-	else if(href_list["makeAntag"])
-
-		message_admins("[key_name_admin(usr)] is attempting to make [href_list["makeAntag"]]")
-
-		if(!check_rights(R_ADMIN))
-			return
-
-		if (!SSticker.HasRoundStarted())
-			to_chat(usr, span_danger("Not until the round starts!"), confidential = TRUE)
-			return
-
-		var/opt = null
-		switch(href_list["makeAntag"])
-			if(ROLE_BLOB)
-				opt = input("Set Blob Resource Gain Rate","Set Resource Rate",1) as num|null
-			if(ROLE_TRAITOR)
-				opt = input("How Many", ROLE_TRAITOR, 1) as num|null
-			if(ROLE_CHANGELING)
-				opt = input("How Many", ROLE_CHANGELING, 1) as num|null
-			if(ROLE_CULTIST)
-				opt = input("How Many", ROLE_CULTIST, 2) as num|null
-			if(ROLE_HERETIC)
-				opt = input("How Many", ROLE_HERETIC, 2) as num|null
-			if(ROLE_REV)
-				opt = input("How Many", ROLE_REV, 1) as num|null
-			if(ROLE_OPERATIVE)
-				opt = input("How Many", ROLE_OPERATIVE, 3) as num|null
-			if(ROLE_BROTHER)
-				opt = input("How Many", ROLE_BROTHER, 2) as num|null
-		if(src.make_antag(href_list["makeAntag"], opt))
-			message_admins("[key_name_admin(usr)] created '[href_list["makeAntag"]]' with a parameter of '[opt]'.")
-		else message_admins("[key_name_admin(usr)] FAILED to create '[href_list["makeAntag"]]' with a parameter of '[opt]'.")
-// SKYRAT EDIT END -- ONE CLICK ANTAG
-
 	else if(href_list["editrightsbrowser"])
 		edit_admin_permissions(0)
 
@@ -111,10 +76,9 @@
 		edit_rights_topic(href_list)
 
 	else if(href_list["gamemode_panel"])
-		if(!check_rights(R_ADMIN))
-			return
-		//SSdynamic.admin_panel() // BUBBER EDIT - STORYTELLER
+		// dynamic_panel(usr) // BUBBER EDIT - STORYTELLER
 		SSgamemode.ui_interact(usr) // BUBBER EDIT - STORYTELLER
+
 	else if(href_list["call_shuttle"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -430,122 +394,6 @@
 		if(!check_rights(R_ADMIN))
 			return
 		cmd_admin_mute(href_list["mute"], text2num(href_list["mute_type"]))
-
-	else if(href_list["f_dynamic_roundstart"])
-		if(!check_rights(R_ADMIN))
-			return
-		if(SSticker.HasRoundStarted())
-			return tgui_alert(usr, "The game has already started.")
-		var/roundstart_rules = list()
-		for (var/rule in subtypesof(/datum/dynamic_ruleset/roundstart))
-			var/datum/dynamic_ruleset/roundstart/newrule = new rule()
-			roundstart_rules[newrule.name] = newrule
-		var/added_rule = input(usr,"What ruleset do you want to force? This will bypass threat level and population restrictions.", "Rigging Roundstart", null) as null|anything in sort_list(roundstart_rules)
-		if (added_rule)
-			GLOB.dynamic_forced_roundstart_ruleset += roundstart_rules[added_rule]
-			log_admin("[key_name(usr)] set [added_rule] to be a forced roundstart ruleset.")
-			message_admins("[key_name(usr)] set [added_rule] to be a forced roundstart ruleset.", 1)
-			Game()
-
-	else if(href_list["f_dynamic_roundstart_clear"])
-		if(!check_rights(R_ADMIN))
-			return
-		GLOB.dynamic_forced_roundstart_ruleset = list()
-		Game()
-		log_admin("[key_name(usr)] cleared the rigged roundstart rulesets. The mode will pick them as normal.")
-		message_admins("[key_name(usr)] cleared the rigged roundstart rulesets. The mode will pick them as normal.", 1)
-
-	else if(href_list["f_dynamic_roundstart_remove"])
-		if(!check_rights(R_ADMIN))
-			return
-		var/datum/dynamic_ruleset/roundstart/rule = locate(href_list["f_dynamic_roundstart_remove"])
-		GLOB.dynamic_forced_roundstart_ruleset -= rule
-		Game()
-		log_admin("[key_name(usr)] removed [rule] from the forced roundstart rulesets.")
-		message_admins("[key_name(usr)] removed [rule] from the forced roundstart rulesets.", 1)
-
-	else if (href_list["f_dynamic_ruleset_manage"])
-		if(!check_rights(R_ADMIN))
-			return
-		dynamic_ruleset_manager(usr)
-	else if (href_list["f_dynamic_ruleset_force_all_on"])
-		if(!check_rights(R_ADMIN))
-			return
-		force_all_rulesets(usr, RULESET_FORCE_ENABLED)
-	else if (href_list["f_dynamic_ruleset_force_all_off"])
-		if(!check_rights(R_ADMIN))
-			return
-		force_all_rulesets(usr, RULESET_FORCE_DISABLED)
-	else if (href_list["f_dynamic_ruleset_force_all_reset"])
-		if(!check_rights(R_ADMIN))
-			return
-		force_all_rulesets(usr, RULESET_NOT_FORCED)
-	else if (href_list["f_dynamic_ruleset_force_on"])
-		if(!check_rights(R_ADMIN))
-			return
-		set_dynamic_ruleset_forced(usr, locate(href_list["f_dynamic_ruleset_force_on"]), RULESET_FORCE_ENABLED)
-	else if (href_list["f_dynamic_ruleset_force_off"])
-		if(!check_rights(R_ADMIN))
-			return
-		set_dynamic_ruleset_forced(usr, locate(href_list["f_dynamic_ruleset_force_off"]), RULESET_FORCE_DISABLED)
-	else if (href_list["f_dynamic_ruleset_force_reset"])
-		if(!check_rights(R_ADMIN))
-			return
-		set_dynamic_ruleset_forced(usr, locate(href_list["f_dynamic_ruleset_force_reset"]), RULESET_NOT_FORCED)
-	else if (href_list["f_inspect_ruleset"])
-		if(!check_rights(R_ADMIN))
-			return
-		usr.client.debug_variables(locate(href_list["f_inspect_ruleset"]))
-
-	else if (href_list["f_dynamic_options"])
-		if(!check_rights(R_ADMIN))
-			return
-
-		if(SSticker.HasRoundStarted())
-			return tgui_alert(usr, "The game has already started.")
-
-		dynamic_mode_options(usr)
-	else if(href_list["f_dynamic_force_extended"])
-		if(!check_rights(R_ADMIN))
-			return
-
-		GLOB.dynamic_forced_extended = !GLOB.dynamic_forced_extended
-		log_admin("[key_name(usr)] set 'forced_extended' to [GLOB.dynamic_forced_extended].")
-		message_admins("[key_name(usr)] set 'forced_extended' to [GLOB.dynamic_forced_extended].")
-		dynamic_mode_options(usr)
-
-	else if(href_list["f_dynamic_no_stacking"])
-		if(!check_rights(R_ADMIN))
-			return
-
-		GLOB.dynamic_no_stacking = !GLOB.dynamic_no_stacking
-		log_admin("[key_name(usr)] set 'no_stacking' to [GLOB.dynamic_no_stacking].")
-		message_admins("[key_name(usr)] set 'no_stacking' to [GLOB.dynamic_no_stacking].")
-		dynamic_mode_options(usr)
-	else if(href_list["f_dynamic_stacking_limit"])
-		if(!check_rights(R_ADMIN))
-			return
-
-		GLOB.dynamic_stacking_limit = input(usr,"Change the threat limit at which round-endings rulesets will start to stack.", "Change stacking limit", null) as num
-		log_admin("[key_name(usr)] set 'stacking_limit' to [GLOB.dynamic_stacking_limit].")
-		message_admins("[key_name(usr)] set 'stacking_limit' to [GLOB.dynamic_stacking_limit].")
-		dynamic_mode_options(usr)
-
-	else if(href_list["f_dynamic_forced_threat"])
-		if(!check_rights(R_ADMIN))
-			return
-
-		if(SSticker.HasRoundStarted())
-			return tgui_alert(usr, "The game has already started.")
-
-		var/new_value = input(usr, "Enter the forced threat level for dynamic mode.", "Forced threat level") as num
-		if (new_value > 100)
-			return tgui_alert(usr, "The value must be under 100.")
-		GLOB.dynamic_forced_threat_level = new_value
-
-		log_admin("[key_name(usr)] set 'forced_threat_level' to [GLOB.dynamic_forced_threat_level].")
-		message_admins("[key_name(usr)] set 'forced_threat_level' to [GLOB.dynamic_forced_threat_level].")
-		dynamic_mode_options(usr)
 
 	else if(href_list["forcespeech"])
 		if(!check_rights(R_FUN))
@@ -1734,7 +1582,7 @@
 		if(!check_rights(R_ADMIN))
 			return
 
-		if(!SSdynamic.picking_specific_rule(/datum/dynamic_ruleset/midround/from_living/opfor_candidate, forced = TRUE, ignore_cost = TRUE))
+		if(!SSdynamic.force_run_midround(/datum/dynamic_ruleset/midround/from_living/opfor_candidate, admin = usr))
 			message_admins("An OPFOR candidate could not be selected.")
 	// SKYRAT EDIT ADDITION END
 	else if(href_list["play_internet"])
