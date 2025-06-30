@@ -34,6 +34,7 @@
 	design_ids += "ammoworkbench_disk_lethal"
 	design_ids += "ammo_workbench"
 	design_ids += "s12g_huntingslug"
+	design_ids += "m9mm_sec"
 
 /datum/techweb_node/magazineresearch_heavy
 	id = "storedmunition_tech_three"
@@ -64,6 +65,7 @@
 	design_ids += "sol_bolt_to_rifle"
 	design_ids += "c10mm_rhp"
 	design_ids += "c10mm_rap"
+	design_ids += "m9mm_sec_rocket"
 	. = ..()
 
 /datum/techweb_node/syndicate_basic/New()
