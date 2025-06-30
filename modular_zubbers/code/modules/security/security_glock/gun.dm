@@ -55,17 +55,18 @@
 	if(!magazine && chambered)
 		default_behaviour(user)
 		return
-	if(!magazine.ammo_count() && !chambered && magazine)
-		if(swapped_mag)
-			balloon_alert(user, "you spin your gun, loading in a mag!")
-			SpinAnimation(2, 1)
-			if(do_after(user, 1 SECONDS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE), target = src))
-				throw_eject_magazine(user, magejecting, swapped_mag)
+	if(magazine)
+		if(!magazine.ammo_count() && !chambered)
+			if(swapped_mag)
+				balloon_alert(user, "you spin your gun, loading in a mag!")
+				SpinAnimation(2, 1)
+				if(do_after(user, 1 SECONDS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE), target = src))
+					throw_eject_magazine(user, magejecting, swapped_mag)
+					return
+			else
+				default_behaviour(user, TRUE)
+				balloon_alert(user, "no spare magazines in your belt!")
 				return
-		else
-			default_behaviour(user, TRUE)
-			balloon_alert(user, "no spare magazines in your belt!")
-			return
 	default_behaviour(user)
 
 
