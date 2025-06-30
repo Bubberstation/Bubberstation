@@ -77,7 +77,7 @@
 		src.loc.balloon_alert(src, "toggle interrupted")
 		return
 	var/datum/status_effect/protean_low_power_mode/effect = /datum/status_effect/protean_low_power_mode/low_power
-	if(has_status_effect(effect) == effect)
+	if(istype(has_status_effect(effect), effect))
 		remove_status_effect(effect)
 	else
 		if(species.species_modsuit.active)
