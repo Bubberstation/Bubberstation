@@ -279,7 +279,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				entry["ijob"] = jobs[trim_assignment]
 
 		// SKYRAT EDIT BEGIN: Checking for robotic race
-		if (issynthetic(tracked_human))
+		if (issynthetic(tracked_human) || isprotean(tracked_human))
 			entry["is_robot"] = TRUE
 		// SKYRAT EDIT END
 
@@ -303,7 +303,15 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 
 		// Current status
 		if (sensor_mode >= SENSOR_LIVING)
-			entry["life_status"] = tracked_living_mob.stat
+			if(!isprotean(tracked_human))
+				entry["life_status"] = tracked_living_mob.stat
+			else
+				// Check if protean is stuck in suit
+				var/obj/item/organ/brain/protean/brain = tracked_human.get_organ_slot(ORGAN_SLOT_BRAIN)
+				if(brain.dead)
+					entry["life_status"] = 4
+				else // If no brain then hendling as usual
+					entry["life_status"] = tracked_living_mob.stat
 
 		// Damage
 		if (sensor_mode >= SENSOR_VITALS)
