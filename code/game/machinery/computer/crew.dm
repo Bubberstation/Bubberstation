@@ -300,9 +300,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		// If sensors are above living tracking, set DNR state
 		if (sensor_mode >= SENSOR_LIVING)
 			entry["is_dnr"] = tracked_human.get_dnr()
-
-		// Current status
-		if (sensor_mode >= SENSOR_LIVING)
+			// Current status
 			if(!isprotean(tracked_human))
 				entry["life_status"] = tracked_living_mob.stat
 			else
