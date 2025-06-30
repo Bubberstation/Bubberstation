@@ -82,6 +82,14 @@
 /mob/proc/get_held_index_of_item(obj/item/I)
 	return held_items.Find(I)
 
+/// Returns what body zone is holding the passed item
+/mob/proc/get_hand_zone_of_item(obj/item/I)
+	var/hand_index = get_held_index_of_item(I)
+	if(!hand_index)
+		return null
+	if(IS_RIGHT_INDEX(hand_index))
+		return BODY_ZONE_R_ARM
+	return BODY_ZONE_L_ARM
 
 ///Find number of held items, multihand compatible
 /mob/proc/get_num_held_items()
@@ -497,6 +505,7 @@
 			to_chat(src, span_warning("You are unable to equip that!"))
 		return FALSE
 	equip_to_slot(W, slot, initial, redraw_mob, indirect_action = indirect_action) //This proc should not ever fail.
+	SEND_SIGNAL(src, COMSIG_MOB_POST_EQUIP, W, slot) //BUBBER EDIT ADDITION
 	return TRUE
 
 /**
