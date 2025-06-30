@@ -310,7 +310,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				var/obj/item/organ/brain/protean/brain = tracked_human.get_organ_slot(ORGAN_SLOT_BRAIN)
 				if(brain.dead)
 					entry["life_status"] = 4
-				else // If no brain then hendling as usual
+				else // If brain not dead/no brain then handling as usual
 					entry["life_status"] = tracked_living_mob.stat
 
 		// Damage
