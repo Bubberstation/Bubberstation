@@ -325,6 +325,8 @@
 	//BUBBER ADDITION BEGIN - Role Selection
 	//model.transform_to(pick(/obj/item/robot_model/syndicate, /obj/item/robot_model/syndicate_medical, /obj/item/robot_model/saboteur)) - SKYRAT EDIT - ORIGINAL
 	var/choice = tgui_input_list(src, "What role do you wish to become?","Select Role", modelselected)
+	if(!choice)
+		choice = pick(modelselected)
 	model.transform_to(modelselected[choice])
 	//BUBBER ADDITION END
 
