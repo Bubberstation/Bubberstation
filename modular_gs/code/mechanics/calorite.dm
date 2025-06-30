@@ -40,6 +40,7 @@
 	mats_per_unit = list(/datum/material/calorite = SHEET_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/calorite
 	mine_experience = 20
+	scan_state = "rock_Calorite"
 	merge_type = /obj/item/stack/ore/calorite
 
 /obj/item/stack/sheet/mineral/calorite

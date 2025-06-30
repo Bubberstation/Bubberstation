@@ -226,7 +226,10 @@
 		/obj/item/stack/ore/uranium = 5,
 		/turf/closed/mineral/gibtonite/volcanic = 4,
 		/obj/item/stack/ore/diamond = 1,
-		/obj/item/stack/ore/bluespace_crystal = 1
+		/obj/item/stack/ore/bluespace_crystal = 1,
+		// GS13 EDIT - calorite
+		/obj/item/stack/ore/calorite = 1
+		// GS13 END EDIT
 		)
 
 /turf/closed/mineral/strange_rock/ice
