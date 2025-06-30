@@ -24,7 +24,6 @@
 			/obj/item/melee/cleric_mace,
 			/obj/item/knife,
 			/obj/item/melee/baton,
-			/obj/item/melee/baton,
 			/obj/item/nullrod,	//holds any subset of nullrod in the sheath-storage - - -
 		),
 		canthold = list(	// - - - except the second list's items (no fedora in the sheath)
@@ -39,13 +38,11 @@
 			/obj/item/nullrod/staff,
 			/obj/item/nullrod/fedora,
 			/obj/item/nullrod/godhand,
-			/obj/item/nullrod/staff,
 			/obj/item/nullrod/whip,
 		),
 	)
 	atom_storage.allow_big_nesting = TRUE // Lets the pouch work
 	AddElement(/datum/element/update_icon_updates_onmob)
-	PopulateContents()
 
 //Overrides normal dumping code to instead dump from the pouch item inside
 /datum/storage/belt/crusader/dump_content_at(atom/dest_object, mob/dumping_mob)
@@ -75,7 +72,9 @@
 			to_chat(user, span_notice("You fumble for [drawn_item] and it falls on the floor."))
 			update_appearance()
 			return CLICK_ACTION_SUCCESS
-		user.visible_message(span_notice("[user] takes [drawn_item] out of [src]."), span_notice("You take [drawn_item] out of [src]."))
+		user.visible_message(
+			span_notice("[user] takes [drawn_item] out of [src]."),
+			span_notice("You take [drawn_item] out of [src]."))
 		update_appearance()
 	else
 		to_chat(user, span_warning("[src] is empty!"))
@@ -155,6 +154,7 @@
 		/obj/item/storage/pill_bottle,
 		/obj/item/implanter,
 		/obj/item/hypospray,
+		/obj/item/reagent_containers/hypospray,
 		/obj/item/reagent_containers/cup/vial,
 		/obj/item/weaponcell/medical,
 		/obj/item/reagent_containers/cup/tube

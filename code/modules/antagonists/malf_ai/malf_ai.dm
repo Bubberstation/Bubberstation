@@ -138,8 +138,6 @@
 	datum_owner.AddComponent(/datum/component/codeword_hearing, GLOB.syndicate_code_response_regex, "red", src)
 
 /datum/antagonist/malf_ai/remove_innate_effects(mob/living/mob_override)
-	. = ..()
-
 	var/mob/living/silicon/ai/datum_owner = mob_override || owner.current
 
 	if(istype(datum_owner))
@@ -270,7 +268,8 @@
 		result += span_greentext("The [special_role_text] was successful!")
 	else
 		result += span_redtext("The [special_role_text] has failed!")
-		SEND_SOUND(owner.current, 'sound/ambience/misc/ambifailure.ogg')
+		if(owner.current)
+			SEND_SOUND(owner.current, 'sound/ambience/misc/ambifailure.ogg')
 
 	return result.Join("<br>")
 
@@ -288,7 +287,7 @@
 	SIGNAL_HANDLER
 
 	var/mob/living/silicon/ai/malf_owner = owner.current
-	if(malf_owner.linked_core)
+	if(malf_owner?.linked_core)
 		return COMPONENT_CORE_ALL_GOOD
 	return COMPONENT_CORE_DISCONNECTED
 
