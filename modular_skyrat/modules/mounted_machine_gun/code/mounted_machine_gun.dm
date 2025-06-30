@@ -183,10 +183,11 @@
 		return
 	if(!cover_open)
 		balloon_alert(user, "cover closed!")
-		return
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(!ammo_box)
-		return
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	remove_ammo_box(user)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/machinery/mounted_machine_gun/attackby(obj/item/weapon, mob/user, params)
 	. = ..()
