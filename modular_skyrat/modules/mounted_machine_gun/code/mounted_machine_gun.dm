@@ -177,6 +177,8 @@
 
 /obj/machinery/mounted_machine_gun/attack_hand_secondary(mob/living/user, list/modifiers)
 	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
 	if(!istype(user))
 		return
 	if(!can_interact(user))
