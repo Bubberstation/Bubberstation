@@ -95,7 +95,7 @@
 	new /obj/effect/temp_visual/protean_to_suit(owner.loc, owner.dir)
 	owner.Stun(INFINITY, TRUE)
 	owner.add_traits(TRANSFORM_TRAITS, PROTEAN_TRAIT)
-	owner.remove_status_effect(/datum/status_effect/protean_low_power_mode)
+	owner.remove_status_effect(/datum/status_effect/protean_low_power_mode/low_power)
 	suit.drop_suit()
 	owner.forceMove(suit)
 	sleep(12) //Sleep is fine here because I'm not returning anything and if the brain gets deleted within 12 ticks of this being ran, we have some other serious issues.
@@ -111,6 +111,9 @@
 		return
 	if(!do_after(owner, 5 SECONDS, suit, IGNORE_INCAPACITATED))
 		return
+	if(istype(suit.loc, /obj/item/reagent_containers/cup/soup_pot)) // If protean inside of soup pot
+		var/obj/item/reagent_containers/cup/soup_pot/pot = suit.loc
+		pot.remove_first_ingredient(null)
 	var/mob/living/carbon/mob = suit.loc
 	if(istype(mob))
 		mob.dropItemToGround(suit, TRUE)
