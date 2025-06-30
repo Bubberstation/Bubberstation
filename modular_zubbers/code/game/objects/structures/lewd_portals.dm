@@ -242,21 +242,24 @@
 
 /obj/structure/lewd_portal/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
 	if(isnull(linked_portal))
 		balloon_alert(user, "portal not linked")
-		return
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(!isnull(current_mob) || !isnull(linked_portal.current_mob))
 		balloon_alert(user, "portal occupied")
-		return
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(portal_mode == GLORYHOLE)
 		portal_mode = WALLSTUCK
 		linked_portal.portal_mode = WALLSTUCK
 		balloon_alert(user, "switched to stuck in wall mode")
-		return
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	else
 		portal_mode = GLORYHOLE
 		linked_portal.portal_mode = GLORYHOLE
 		balloon_alert(user, "switched to gloryhole mode")
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 
 /obj/item/wallframe/lewd_portal
