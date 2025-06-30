@@ -49,6 +49,7 @@
 		owner.fully_heal(HEAL_DAMAGE)
 		qdel(owner.get_organ_slot(ORGAN_SLOT_STOMACH))
 		go_into_suit(TRUE)
+		owner.add_traits(list(TRAIT_CRITICAL_CONDITION)) // Just to make crew monitoring console scream
 
 /obj/item/organ/brain/protean/proc/handle_refactory(obj/item/organ) // Slowly degrade
 	var/datum/species/protean/species = owner?.dna.species
@@ -174,6 +175,7 @@
 	playsound(owner, 'sound/machines/ping.ogg', 30)
 	to_chat(owner, span_warning("You have regained all your mass!"))
 	owner.fully_heal()
+	owner.remove_traits(list(TRAIT_CRITICAL_CONDITION))
 
 /obj/item/organ/brain/protean/proc/revive_timer()
 	balloon_alert_to_viewers("repairing")
