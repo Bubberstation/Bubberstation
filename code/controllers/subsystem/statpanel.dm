@@ -47,7 +47,6 @@ SUBSYSTEM_DEF(statpanels)
 			"Connected: [GLOB.clients.len] | Active: [active_players]/[CONFIG_GET(number/hard_popcap)] | Observing: [observing_players]", // BUBBER EDIT ADDITION - Extra stat panel info
 			"OOC: [GLOB.ooc_allowed ? "Enabled" : "Disabled"]", // BUBBER EDIT ADDITION - Extra stat panel info
 			" ", // BUBBER EDIT ADDITION - Extra stat panel info
-			"Storyteller: [SSgamemode.storyteller ? SSgamemode.storyteller.name : "N/A"]", // BUBBER EDIT ADDITION - Extra stat panel info
 			"Station Time: [station_time_timestamp(format = "hh:mm")], [current_date]", // BUBBER EDIT CHANGE - Extra stat panel info - ORIGINAL: "Station Time: [station_time_timestamp()]"
 			"Round Time: [time2text(real_round_time, "hh:mm:ss", 0)]", // BUBBER EDIT CHANGE - Extra stat panel info - ORIGINAL: "Round Time: [ROUND_TIME()]"
 			"Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss", world.timezone)]",

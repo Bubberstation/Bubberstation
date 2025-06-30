@@ -25,7 +25,8 @@
 #define TAG_SPACE "space"
 /// When the event requires the station to be on planetary.
 #define TAG_PLANETARY "planetary"
-
+/// Used for Nukies/Cult/Revolutions
+#define TAG_BIG_THREE "big_three"
 
 #define EVENT_TRACK_MUNDANE "Mundane"
 #define EVENT_TRACK_MODERATE "Moderate"
@@ -96,3 +97,8 @@
 #define STORYTELLER_TYPE_ALWAYS_AVAILABLE 0
 #define STORYTELLER_TYPE_CALM 1
 #define STORYTELLER_TYPE_INTENSE 2
+
+/// Display methods for storytellers
+#define STORYTELLER_DISPLAY_NEVER_SECRET 0
+#define STORYTELLER_DISPLAY_ALWAYS_SECRET 1
+#define STORYTELLER_DISPLAY_DEFAULT 2
