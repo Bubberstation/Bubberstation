@@ -279,7 +279,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				entry["ijob"] = jobs[trim_assignment]
 
 		// SKYRAT EDIT BEGIN: Checking for robotic race
-		if (issynthetic(tracked_human) || isprotean(tracked_human))
+		if (issynthetic(tracked_human) || isprotean(tracked_human)) // BUBBER EDIT - Added "|| ifsprotean(tracked human)""
 			entry["is_robot"] = TRUE
 		// SKYRAT EDIT END
 
@@ -296,7 +296,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			results[++results.len] = entry
 			continue
 
-		// BUBBERSTATION EDIT BEGIN: Add DNR status
+		// BUBBERSTATION EDIT BEGIN: Add DNR status, proteans sensors.
 		// If sensors are above living tracking, set DNR state
 		if (sensor_mode >= SENSOR_LIVING)
 			entry["is_dnr"] = tracked_human.get_dnr()
