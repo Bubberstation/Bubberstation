@@ -7,6 +7,7 @@
 	description = "In the wake of the NRI Border Conflict, there was a drive to advances our armament, learn how sol does it."
 	prereq_ids = list("exotic_ammo")
 	design_ids = list(
+		"s12g_slug",
 		"s12g_buckshot"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)

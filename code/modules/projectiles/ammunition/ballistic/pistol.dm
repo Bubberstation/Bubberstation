@@ -42,7 +42,7 @@
 	caliber = CALIBER_9MM
 	projectile_type = /obj/projectile/bullet/c9mm/security
 	newtonian_force = 0.75
-// BUBBBE R EDIT END
+// BUBBBER EDIT END
 /obj/item/ammo_casing/c9mm/ap
 	name = "9mm armor-piercing bullet casing"
 	desc = "A 9mm armor-piercing bullet casing."

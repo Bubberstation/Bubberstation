@@ -57,6 +57,18 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
+/datum/design/c38_rubber
+	name = "Speed Loader (.38 Rubber) (Less Lethal)"
+	desc = "Designed to quickly reload revolvers. Rubber bullets are bouncy and less-than-lethal."
+	id = "c38_rubber"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 10)
+	build_path = /obj/item/ammo_box/c38/match/bouncy
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
 /datum/design/c38_true
 	name = "Speedloader (.38 True Strike) (Lethal)"
 	desc = "Designed to quickly reload revolvers. Bullets bounce towards new targets with surprising accuracy."
@@ -137,6 +149,22 @@
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/c38_rubber_mag
+	name = "Magazine (.38 Rubber) (Less Lethal)"
+	desc = "Designed to tactically reload a NT BR-38 Battle Rifle. Rubber bullets are bouncy and less-than-lethal."
+	id = "c38_rubber_mag"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 30,
+		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT * 3,
+	)
+	build_path = /obj/item/ammo_box/magazine/m38/match/bouncy
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
 
 /datum/design/c38_true_mag
 	name = "Magazine (.38 True Strike) (Lethal)"

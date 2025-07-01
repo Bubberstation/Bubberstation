@@ -117,6 +117,7 @@
 	)
 
 /datum/techweb_node/riot_supression/New()
+	design_ids += "wt550_ammo_rubber"
 	design_ids += "s12g_rubber"
 	design_ids += "s12g_bslug"
 	design_ids += "s12g_br"

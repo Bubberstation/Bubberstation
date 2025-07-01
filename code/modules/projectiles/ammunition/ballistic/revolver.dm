@@ -53,6 +53,12 @@
 	desc = "A .38 bullet casing, manufactured to exceedingly high standards."
 	projectile_type = /obj/projectile/bullet/c38/match
 
+/obj/item/ammo_casing/c38/match/bouncy
+	name = ".38 Rubber bullet casing"
+	desc = "A .38 rubber bullet casing, manufactured to exceedingly bouncy standards."
+	projectile_type = /obj/projectile/bullet/c38/match/bouncy
+	harmful = FALSE //SKYRAT EDIT ADDITION
+
 /obj/item/ammo_casing/c38/match/true
 	name = ".38 True Strike bullet casing"
 	desc = "A .38 True Strike bullet casing."
