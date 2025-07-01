@@ -882,7 +882,7 @@
 	icon_state = "plasmaman_jax"
 
 // Donation reward for Raxraus
-/obj/item/clothing/shoes/combat/rax
+/obj/item/clothing/shoes/jackboots/peacekeeper/armadyne/rax
 	name = "tactical boots"
 	desc = "Tactical and sleek. This model seems to resemble Armadyne's."
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/shoes.dmi'
