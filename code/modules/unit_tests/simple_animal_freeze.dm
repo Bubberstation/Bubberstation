@@ -58,7 +58,6 @@
 		/mob/living/simple_animal/hostile/ooze,
 		/mob/living/simple_animal/hostile/ooze/gelatinous,
 		/mob/living/simple_animal/hostile/ooze/grapes,
-		/mob/living/simple_animal/soulscythe,
 
 		// MODULAR SKYRAT ENTRIES
 		// PLEASE REFACTOR THESE AS YOU CAN
