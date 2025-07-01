@@ -251,8 +251,6 @@ SUBSYSTEM_DEF(gamemode)
 	special_role_flag,
 	pick_observers,
 	pick_roundstart_players,
-	required_time,
-	inherit_required_time = TRUE,
 	no_antags = TRUE,
 	list/restricted_roles,
 	list/restricted_species,
@@ -263,7 +261,7 @@ SUBSYSTEM_DEF(gamemode)
 	var/list/candidate_candidates = list() //lol
 	if(pick_roundstart_players)
 		for(var/mob/dead/new_player/player in GLOB.new_player_list)
-			if(player.ready == PLAYER_READY_TO_PLAY && player.mind && player.check_preferences())
+			if(player.ready == PLAYER_READY_TO_PLAY && player.mind && player.check_job_preferences())
 				candidate_candidates += player
 	else if(pick_observers)
 		for(var/mob/player as anything in GLOB.dead_mob_list)
@@ -280,7 +278,7 @@ SUBSYSTEM_DEF(gamemode)
 	for(var/mob/candidate as anything in candidate_candidates)
 		if(QDELETED(candidate) || !candidate.key || !candidate.client || !candidate.mind)
 			continue
-		if(no_antags && candidate.mind.special_role)
+		if(no_antags && LAZYLEN(candidate.mind.special_roles))
 			continue
 		if(restricted_roles && (candidate.mind.assigned_role.title in restricted_roles))
 			continue
@@ -291,17 +289,11 @@ SUBSYSTEM_DEF(gamemode)
 		if(special_role_flag)
 			if(!(candidate.client.prefs) || !(special_role_flag in candidate.client.prefs.be_special))
 				continue
-			var/time_to_check
-			if(required_time)
-				time_to_check = required_time
-			else if (inherit_required_time)
-				time_to_check = GLOB.special_roles[special_role_flag]
-
-			if(time_to_check && candidate.client.get_remaining_days(time_to_check) > 0)
+			if(candidate.client.get_days_to_play_antag(special_role_flag) > 0)
+				continue
+			if(is_banned_from(candidate.ckey, list(special_role_flag, ROLE_SYNDICATE)))
 				continue
 
-		if(special_role_flag && is_banned_from(candidate.ckey, list(special_role_flag, ROLE_SYNDICATE)))
-			continue
 		if(is_banned_from(candidate.client.ckey, BAN_ANTAGONIST))
 			continue
 		if(!candidate.client?.prefs?.read_preference(/datum/preference/toggle/be_antag))
