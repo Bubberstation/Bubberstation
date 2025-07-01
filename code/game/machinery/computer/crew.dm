@@ -279,7 +279,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				entry["ijob"] = jobs[trim_assignment]
 
 		// SKYRAT EDIT BEGIN: Checking for robotic race
-		if (issynthetic(tracked_human) || isprotean(tracked_human)) // BUBBER EDIT - Added "|| ifsprotean(tracked human)""
+		if (issynthetic(tracked_human) || isprotean(tracked_human)) // BUBBER EDIT - Added "|| ifsprotean(tracked human)"
 			entry["is_robot"] = TRUE
 		// SKYRAT EDIT END
 
