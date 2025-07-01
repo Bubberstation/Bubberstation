@@ -299,7 +299,10 @@ const KnowledgeTree = () => {
                     <KnowledgeNode
                       key={node.path}
                       node={node}
-                      purchaseCategory={ShopCategory.Tree}
+                      // hack, free nodes are draft nodes
+                      purchaseCategory={
+                        node.cost > 0 ? ShopCategory.Tree : ShopCategory.Draft
+                      }
                     />
                   ))}
                 </Stack>

@@ -261,6 +261,9 @@ GLOBAL_LIST(heretic_research_tree)
 	var/list/shop = our_heretic.heretic_shops[HERETIC_KNOWLEDGE_SHOP]
 	var/list/final_draft = our_heretic.heretic_shops[HERETIC_KNOWLEDGE_DRAFT]
 
+	/// costs by index mapped to depth
+	var/list/shop_costs = list(1, 2, 2, 2, 3)
+
 	// Gets our current path
 	var/datum/heretic_knowledge_tree_column/current_path
 	for(var/datum/heretic_knowledge_tree_column/column_path as anything in subtypesof(/datum/heretic_knowledge_tree_column))
