@@ -499,11 +499,7 @@
 		addtimer(CALLBACK(src, PROC_REF(kill_wearer), wearer), 5 SECONDS)
 	return SUCCESSFUL_BLOCK
 
-/obj/item/clothing/suit/hooded/cultrobes/eldritch/moon/proc/item_attack_response(mob/living/user)
-	var/visible_message = pick(visible_message_list)
-	var/self_message = pick(self_message_list)
-	var/blind_message = pick(blind_message_list)
-	user.visible_message(visible_message, self_message, blind_message)
+/obj/item/clothing/suit/hooded/cultrobes/eldritch/moon/proc/item_attack_response(datum/source, signal_message, signal_self, signal_blind)
 	//XANTODO Figure this out
 	return SIGNAL_MESSAGE_MODIFIED
 
