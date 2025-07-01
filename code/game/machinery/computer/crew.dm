@@ -296,7 +296,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			results[++results.len] = entry
 			continue
 
-		// BUBBERSTATION EDIT BEGIN: Add DNR status, proteans sensors.
+		// BUBBERSTATION EDIT BEGIN: Add DNR status, proteans death state.
 		// If sensors are above living tracking, set DNR state
 		if (sensor_mode >= SENSOR_LIVING)
 			entry["is_dnr"] = tracked_human.get_dnr()
