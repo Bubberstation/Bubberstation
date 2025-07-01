@@ -17,10 +17,6 @@
 #define ROLE_TRAITOR "Traitor"
 #define ROLE_WIZARD "Wizard"
 #define ROLE_SPY "Spy"
-// SKYRAT EDIT START
-#define ROLE_ASSAULT_OPERATIVE "Assault Operative"
-#define ROLE_OPFOR_CANDIDATE "OPFOR Candidate"
-// SKYRAT EDIT END
 
 // Midround roles
 #define ROLE_ABDUCTOR "Abductor"
@@ -35,18 +31,13 @@
 #define ROLE_NINJA "Space Ninja"
 #define ROLE_OBSESSED "Obsessed"
 #define ROLE_OPERATIVE_MIDROUND "Operative (Midround)"
+#define ROLE_CLOWN_OPERATIVE_MIDROUND "Clown Operative (Midround)"
 #define ROLE_PARADOX_CLONE "Paradox Clone"
 #define ROLE_REV_HEAD "Head Revolutionary"
 #define ROLE_SLEEPER_AGENT "Syndicate Sleeper Agent"
 #define ROLE_SPACE_DRAGON "Space Dragon"
 #define ROLE_SPIDER "Spider"
 #define ROLE_WIZARD_MIDROUND "Wizard (Midround)"
-//SKYRAT EDIT START
-#define ROLE_BORER "Borer"
-#define ROLE_LONE_INFILTRATOR "Lone Infiltrator"
-#define ROLE_MUTANT "Mutated Abomination"
-#define ROLE_CLOCK_CULTIST "Clock Cultist"
-// SKYRAT EDIT END
 #define ROLE_VOIDWALKER "Voidwalker"
 
 // Latejoin roles
@@ -77,13 +68,13 @@
 #define ROLE_REVENANT "Revenant"
 #define ROLE_SENTIENCE "Sentience Potion Spawn"
 #define ROLE_SOULTRAPPED_HERETIC "Soultrapped Heretic"
+/// This flag specifically is used as a generic catch-all antag ban
 #define ROLE_SYNDICATE "Syndicate"
 #define ROLE_EXPERIMENTAL_CLONER "Experimental Cloner"
 
 #define ROLE_CLOWN_OPERATIVE "Clown Operative"
 #define ROLE_FREE_GOLEM "Free Golem"
 #define ROLE_MORPH "Morph"
-#define ROLE_NUCLEAR_OPERATIVE "Nuclear Operative"
 #define ROLE_POSITRONIC_BRAIN "Positronic Brain"
 #define ROLE_SANTA "Santa"
 #define ROLE_SERVANT_GOLEM "Servant Golem"
@@ -132,93 +123,6 @@
 #define ROLE_CYBER_POLICE "Cyber Police"
 #define ROLE_CYBER_TAC "Cyber Tac"
 #define ROLE_NETGUARDIAN "NetGuardian Prime"
-//SKYRAT EDIT START - Skyrat roles
-#define ROLE_BLACK_MARKET_DEALER "Black Market Dealer"
-#define ROLE_DS2 "DS2 Syndicate"
-#define ROLE_FREIGHTER_CREW "Freighter Crew"
-#define ROLE_GHOST_CAFE "Ghost Cafe Visitor"
-#define ROLE_PORT_TARKON "Port Tarkon Survivor"
-//SKYRAT EDIT END
-
-//BUBBER EDIT START
-#define ROLE_DAUNTLESS "Dauntless Syndicate"
-#define ROLE_PERSISTENCE "Persistence Syndicate"
-
-#define ROLE_BLOODSUCKER "Bloodsucker"
-#define ROLE_VAMPIRICACCIDENT "Bloodsucker (Midround)"
-#define ROLE_BLOODSUCKERBREAKOUT "Bloodsucker (Latejoin)"
-#define ROLE_MONSTERHUNTER "Monster Hunter"
-#define ROLE_VASSAL "Ghoul"
-
-#define ROLE_CHANGELING_ZOMBIE "Changeling Zombie"
-//BUBBER EDIT END
-
-/// This defines the antagonists you can operate with in the settings.
-/// Keys are the antagonist, values are the number of days since the player's
-/// first connection in order to play.
-GLOBAL_LIST_INIT(special_roles, list(
-	// Roundstart
-	ROLE_BROTHER = 0,
-	ROLE_CHANGELING = 0,
-	ROLE_CLOWN_OPERATIVE = 14,
-	ROLE_CULTIST = 14,
-	ROLE_HERETIC = 0,
-	ROLE_MALF = 0,
-	ROLE_OPERATIVE = 14,
-	ROLE_REV_HEAD = 14,
-	ROLE_TRAITOR = 0,
-	ROLE_WIZARD = 14,
-	ROLE_SPY = 0,
-	// SKYRAT EDIT ADDITION
-	ROLE_ASSAULT_OPERATIVE = 14,
-	// SKYRAT EDIT END
-
-	// Midround
-	ROLE_ABDUCTOR = 0,
-	ROLE_ALIEN = 0,
-	ROLE_BLOB = 0,
-	ROLE_BLOB_INFECTION = 0,
-	ROLE_CHANGELING_MIDROUND = 0,
-	ROLE_FUGITIVE = 0,
-	ROLE_LONE_OPERATIVE = 14,
-	ROLE_MALF_MIDROUND = 0,
-	ROLE_NIGHTMARE = 0,
-	ROLE_NINJA = 0,
-	ROLE_OBSESSED = 0,
-	ROLE_OPERATIVE_MIDROUND = 14,
-	ROLE_PARADOX_CLONE = 0,
-	ROLE_REVENANT = 0,
-	ROLE_SLEEPER_AGENT = 0,
-	ROLE_SPACE_DRAGON = 0,
-	ROLE_SPIDER = 0,
-	ROLE_WIZARD_MIDROUND = 14,
-	//SKYRAT EDIT START
-	ROLE_LONE_INFILTRATOR = 0,
-	ROLE_BORER = 0,
-	ROLE_MUTANT = 0,
-	//SKYRAT EDIT END
-	ROLE_VOIDWALKER = 0,
-
-	// Latejoin
-	ROLE_HERETIC_SMUGGLER = 0,
-	ROLE_PROVOCATEUR = 14,
-	ROLE_SYNDICATE_INFILTRATOR = 0,
-	ROLE_STOWAWAY_CHANGELING = 0,
-
-	// I'm not too sure why these are here, but they're not moving.
-	ROLE_GLITCH = 0,
-	ROLE_PAI = 0,
-	ROLE_SENTIENCE = 0,
-	ROLE_RECOVERED_CREW = 0,
-
-	//BUBBER EDIT START
-	ROLE_BLOODSUCKER = 14,
-	ROLE_VAMPIRICACCIDENT = 14,
-	ROLE_BLOODSUCKERBREAKOUT = 14,
-	ROLE_MONSTERHUNTER = 14,
-	ROLE_CHANGELING_ZOMBIE = 0
-	//BUBBER EDIT END
-))
 
 //Job defines for what happens when you fail to qualify for any job during job selection
 #define BEOVERFLOW 1
