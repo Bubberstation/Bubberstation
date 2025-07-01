@@ -204,7 +204,3 @@
 /datum/loadout_item/pocket_items/donator/havana_cigar_case
 	name = "Havanian Cigars"
 	item_path = /obj/item/storage/fancy/cigarettes/cigars/havana
-
-/datum/loadout_item/pocket_items/donator/vape
-	name = "E-Cigarette"
-	item_path = /obj/item/vape
