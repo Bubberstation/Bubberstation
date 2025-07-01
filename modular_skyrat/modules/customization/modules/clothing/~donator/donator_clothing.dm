@@ -885,11 +885,6 @@
 /obj/item/clothing/shoes/jackboots/peacekeeper/armadyne/rax
 	name = "tactical boots"
 	desc = "Tactical and sleek. This model seems to resemble Armadyne's."
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/shoes.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/feet.dmi'
-	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/feet_digi.dmi'
-	icon_state = "armadyne_boots"
-	worn_icon_state = "armadyne_boots"
 
 // Donation reward for Raxraus
 /obj/item/clothing/suit/armor/vest/warden/rax
