@@ -1,11 +1,63 @@
 /datum/material/calorite
 	name = "calorite"
-	sheet_type = /obj/item/stack/sheet/mineral/calorite
 	color = list(340/255, 150/255, 50/255,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, 0,0,0,0)
 	strength_modifier = 1.5
-	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
+	categories = list(
+		MAT_CATEGORY_SILO = TRUE,
+		MAT_CATEGORY_RIGID=TRUE,
+		MAT_CATEGORY_BASE_RECIPES = FALSE, // doesn't seem to work :(
+		MAT_CATEGORY_ITEM_MATERIAL = TRUE,
+		MAT_CATEGORY_ITEM_MATERIAL_COMPLEMENTARY = TRUE,
+	)
+	sheet_type = /obj/item/stack/sheet/mineral/calorite
+	ore_type = /obj/item/stack/ore/calorite
+	value_per_unit = 110 / SHEET_MATERIAL_AMOUNT
+	tradable = TRUE
+	tradable_base_quantity = MATERIAL_QUANTITY_RARE
 	beauty_modifier = 0.05
 	armor_modifiers = list(MELEE = 1.1, BULLET = 1.1, LASER = 1.15, ENERGY = 1.15, BOMB = 1, BIO = 1, RAD = 1, FIRE = 0.7, ACID = 1.1) // Same armor as gold.
+	mineral_rarity = MATERIAL_RARITY_PRECIOUS
+	points_per_unit = 40 / SHEET_MATERIAL_AMOUNT
+	fish_weight_modifier = 1.5 // fishing values copied from gold
+	fishing_difficulty_modifier = -8
+	fishing_cast_range = 1
+	fishing_experience_multiplier = 0.75
+	fishing_completion_speed = 1.2
+	fishing_bait_speed_mult = 1.1
+	fishing_deceleration_mult = 1.2
+	fishing_bounciness_mult = 0.8
+	fishing_gravity_mult = 1.2
+
+/obj/item/stack/ore/calorite //GS13
+	name = "calorite ore"
+	singular_name = "calorite ore chunk"
+	icon = 'modular_gs/icons/obj/mining.dmi'
+	icon_state = "calorite ore"
+	inhand_icon_state = "calorite ore"
+	singular_name = "Calorite ore chunk"
+	points = 40
+	// custom_materials = list(/datum/material/calorite=MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/calorite = SHEET_MATERIAL_AMOUNT)
+	refined_type = /obj/item/stack/sheet/mineral/calorite
+	mine_experience = 20
+	scan_state = "rock_Calorite"
+	merge_type = /obj/item/stack/ore/calorite
+
+/obj/item/stack/sheet/mineral/calorite
+	name = "calorite"
+	icon = 'modular_gs/icons/obj/stack_objects.dmi'
+	icon_state = "sheet-calorite"
+	inhand_icon_state = "sheet-calorite"
+	singular_name = "calorite sheet"
+	sheettype = "calorite"
+	novariants = TRUE
+	grind_results = list(/datum/reagent/consumable/lipoifier = 2)
+	// point_value = 40
+	// custom_materials = list(/datum/material/calorite=MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/calorite = SHEET_MATERIAL_AMOUNT)
+	merge_type = /obj/item/stack/sheet/mineral/calorite
+	material_type = /datum/material/calorite
+	walltype = /turf/closed/wall/mineral/calorite
 
 /datum/material/calorite/on_applied(atom/source, amount, multiplier) // used to be material_flags instead of multiplier
 	. = ..()
@@ -29,36 +81,6 @@
 /turf/closed/mineral/calorite //GS13
 	mineralType = /obj/item/stack/ore/calorite
 	scan_state = "rock_Calorite"
-
-/obj/item/stack/ore/calorite //GS13
-	name = "calorite ore"
-	singular_name = "calorite ore chunk"
-	icon = 'modular_gs/icons/obj/mining.dmi'
-	icon_state = "calorite ore"
-	inhand_icon_state = "calorite ore"
-	singular_name = "Calorite ore chunk"
-	points = 40
-	// custom_materials = list(/datum/material/calorite=MINERAL_MATERIAL_AMOUNT)
-	mats_per_unit = list(/datum/material/calorite = SHEET_MATERIAL_AMOUNT)
-	refined_type = /obj/item/stack/sheet/mineral/calorite
-	mine_experience = 20
-	merge_type = /obj/item/stack/ore/calorite
-
-/obj/item/stack/sheet/mineral/calorite
-	name = "calorite"
-	icon = 'modular_gs/icons/obj/stack_objects.dmi'
-	icon_state = "sheet-calorite"
-	inhand_icon_state = "sheet-calorite"
-	singular_name = "calorite sheet"
-	sheettype = "calorite"
-	novariants = TRUE
-	grind_results = list(/datum/reagent/consumable/lipoifier = 2)
-	// point_value = 40
-	// custom_materials = list(/datum/material/calorite=MINERAL_MATERIAL_AMOUNT)
-	mats_per_unit = list(/datum/material/calorite = SHEET_MATERIAL_AMOUNT)
-	merge_type = /obj/item/stack/sheet/mineral/calorite
-	material_type = /datum/material/calorite
-	walltype = /turf/closed/wall/mineral/calorite
 
 /obj/item/stack/sheet/mineral/calorite/five
 	amount = 5
