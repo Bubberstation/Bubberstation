@@ -227,11 +227,13 @@
 
 /obj/structure/deployable_barricade/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
 	if(anchored)
 		to_chat(usr, span_warning("It is secured to the floor, you can't turn it!"))
-		return FALSE
-
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	setDir(turn(dir, 270))
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 
 /*----------------------*/

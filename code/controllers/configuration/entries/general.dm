@@ -321,7 +321,7 @@
 /datum/config_entry/string/banappeals
 
 /datum/config_entry/string/wikiurl
-	default = "http://tgstation13.org/wiki"
+	default = "https://wiki.tgstation13.org"
 
 /datum/config_entry/string/forumurl
 	default = "http://tgstation13.org/phpBB/index.php"
@@ -632,12 +632,6 @@
 /datum/config_entry/number/rounds_until_hard_restart
 	default = -1
 	min_val = 0
-
-/datum/config_entry/string/default_view
-	default = "15x15"
-
-/datum/config_entry/string/default_view_square
-	default = "15x15"
 
 /datum/config_entry/flag/log_pictures
 
