@@ -301,6 +301,15 @@ GLOBAL_LIST(heretic_research_tree)
 		knowledge_tier4,
 	)
 
+	var/list/shop_unlock_order = list(
+		knowledge_tier1,
+		knowledge_tier2,
+		current_path.robes,
+		knowledge_tier3,
+		knowledge_tier4
+	)
+
+	var/list/draft_ineligible = path_knowledges.Copy()
 	draft_ineligible += guaranteed_drafts
 
 	var/list/elligible_knowledge = list()
@@ -327,18 +336,8 @@ GLOBAL_LIST(heretic_research_tree)
 				HKT_COST = 0,
 				// HKT_CATEGORY = HERETIC_KNOWLEDGE_DRAFT
 			)
-			heretic_research_tree[knowledge_type][HKT_NEXT] += list(knowledge_type)
-	// Once we've selected the path, let's let them know what to put in the knowledge shop
-	// // TODO super broke <--->
-	// for(var/tier_index in 1 to length(path_knowledges))
-	// 	var/list/tier_list = elligible_knowledge[tier_index]
-	// 	for(var/datum/heretic_knowledge/knowledge_type as anything in tier_list)
-	// 		var/list/drafting_tier = elligible_knowledge[knowledge_type::drafting_tier]
-	// 		if(!drafting_tier)
-	// 			drafting_tier = list()
-	// 		// add HKT_NEXT based on the path
-	// 		// TODO: make a proc that generates the assoc values
-	// 		var/list/draft = tier_list[knowledge_type]
+			var/unlocked_by = shop_unlock_order[drafting_tier]
+			heretic_research_tree[unlocked_by][HKT_NEXT] += knowledge_type
 
 	// 		draft[HKT_NEXT] = list(path_knowledges[tier_index])
 	// 		// draft[HKT_CATEGORY] = HERETIC_KNOWLEDGE_DRAFT
@@ -359,7 +358,7 @@ GLOBAL_LIST(heretic_research_tree)
 	// Snowflake handling
 	var/datum/heretic_knowledge/gun_path = /datum/heretic_knowledge/rifle
 	var/datum/heretic_knowledge/ammo_path = /datum/heretic_knowledge/rifle_ammo
-	//TODO proc for generating knowledge data
+	//TODO proc for generating knowledge data?
 	shop[gun_path] = list(
 		HKT_NEXT = list(ammo_path),
 		HKT_BAN = list(),
@@ -368,7 +367,7 @@ GLOBAL_LIST(heretic_research_tree)
 		HKT_UI_BGR = BGR_SIDE,
 		HKT_DEPTH = 8,
 	)
-	// shop[gun_path][HKT_CATEGORY] = HERETIC_KNOWLEDGE_DRAFT
+	heretic_research_tree[current_path.blade][HKT_NEXT] += gun_path
 	shop[ammo_path] = list(
 		HKT_NEXT = list(),
 		HKT_BAN = list(),
@@ -377,7 +376,6 @@ GLOBAL_LIST(heretic_research_tree)
 		HKT_UI_BGR = BGR_SIDE,
 		HKT_DEPTH = 8,
 	)
-	// shop[ammo_path][HKT_CATEGORY] = HERETIC_KNOWLEDGE_DRAFT
 
 	var/list/drafts = list(
 		list(
