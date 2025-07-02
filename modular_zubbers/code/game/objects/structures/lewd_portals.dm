@@ -377,8 +377,6 @@
 		return
 	if(SSplayer_ranks.is_vetted(owner?.client, admin_bypass = FALSE))
 		. += span_greenannounce("This player has been vetted as 18+ by staff.")
-	else
-		. += span_velvet("THIS PLAYER IS NOT VETTED! CONTINUE AT YOUR OWN RISK!")
 
 /obj/lewd_portal_relay/Topic(href, href_list)
 	. = ..()
