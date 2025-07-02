@@ -1,7 +1,10 @@
 /// Looking through pillows on sofas when rightclicked
 /obj/structure/chair/sofa/attack_hand_secondary(mob/user, list/modifiers)
+	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
 	if(!ishuman(user) || !user.ckey)
-		return ..()
+		return
 	balloon_alert(user, "searching under pillows...")
 	to_chat(user, span_alert("You start scouring through the sofa's pillows...."))
 	if(do_after(user, 10 SECONDS, src))
@@ -16,3 +19,4 @@
 				new /obj/item/coin/iron(loc)
 		else
 			balloon_alert(user, "nothing")
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN

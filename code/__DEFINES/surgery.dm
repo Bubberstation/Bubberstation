@@ -32,10 +32,12 @@
 #define ORGAN_HAZARDOUS (1<<12)
 /// This is an external organ, not an inner one. Used in several checks.
 #define ORGAN_EXTERNAL (1<<13)
+/// This is a ghost organ, which can be used for wall phasing.
+#define ORGAN_GHOST (1<<14)
 /// This is a mutant organ, having this makes you a -derived mutant to health analyzers.
-#define ORGAN_MUTANT (1<<14)
+#define ORGAN_MUTANT (1<<15)
 /// BUBBER EDIT ADD - Nanoswarm organ
-#define ORGAN_NANOMACHINE (1<<15)
+#define ORGAN_NANOMACHINE (1<<16)
 
 /// Scarring on the right eye
 #define RIGHT_EYE_SCAR (1<<0)

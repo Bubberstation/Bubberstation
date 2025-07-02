@@ -51,4 +51,4 @@
 	. = ..()
 	for(var/datum/mind/new_malf in setup_minds)
 		GLOB.pre_setup_antags += new_malf
-		LAZYADDASSOC(SSjob.dynamic_forced_occupations, new_malf.current, "AI")
+		LAZYSET(SSjob.forced_occupations, new_malf.current, /datum/job/ai)

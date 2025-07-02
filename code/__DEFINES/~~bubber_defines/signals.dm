@@ -16,3 +16,17 @@
 #define COMSIG_OOC_ESCAPE "ooc_escape"
 /// From [/datum/outfit]: (datum/outfit)
 #define COMSIG_OUTFIT_EQUIP "outfit_equip"
+/// From /mob/proc/equip_to_slot_if_possible()
+#define COMSIG_MOB_POST_EQUIP "mob_post_equip"
+/// From /mob/living/carbon/human/verb/toggle_undies()
+#define COMSIG_HUMAN_TOGGLE_UNDERWEAR "human_toggle_undies"
+/// From /obj/item/restraints/handcuffs/proc/apply_cuffs()
+#define COMSIG_MOB_HANDCUFFED "mob_handcuffed"
+/// From /datum/bodypart_overlay/simple/emote/Destroy() - Calls when an emote that applies a temporary visual effect expires
+#define COMSIG_EMOTE_OVERLAY_EXPIRE "emote_overlay_exprie"
+/// From /mob/living/carbon/human/proc/adjust_arousal() - Triggered by status
+#define COMSIG_HUMAN_ADJUST_AROUSAL "human_adjust_arousal"
+/// from /mob/living/carbon/human/verb/toggle_arousal() - Triggered by player toggle
+#define COMSIG_HUMAN_TOGGLE_AROUSAL "human_toggle_arousal"
+/// From /mob/living/carbon/human/verb/toggle_genitals()
+#define COMSIG_HUMAN_TOGGLE_GENITALS "human_toggle_genitals"
