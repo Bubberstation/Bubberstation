@@ -1,3 +1,42 @@
+
+/datum/design/kiboko_mag
+	name = "Kiboko Grenade Magazine"
+	desc = "A standard magazine for compatible grenade launcher."
+	id = "solgrenade_mag"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
+	build_path = /obj/item/ammo_box/magazine/c980_grenade/starts_empty
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/kiboko_box_mag
+	name = "Kiboko Grenade Box Magazine"
+	desc = "An extended capacity box magazine for compatible grenade launcher."
+	id = "solgrenade_extmag"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
+	build_path = /obj/item/ammo_box/magazine/c980_grenade/drum/starts_empty
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+// 12 Gauge Shell.. Individually.
+// Because People will kill me if they realised the scale of economic
+/datum/design/s12c_fslug
+	name = "Frangible slug(Destructive)"
+	desc = "A 12 gauge slug intended for destroying airlocks"
+	id = "s12c_fslug"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1, /datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT)
+	build_path = /obj/item/ammo_casing/shotgun/frangible
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+
 /datum/design/s12c_fslug
 	name = "Frangible slug(Destructive)"
 	desc = "A 12 gauge slug intended for destroying airlocks"
@@ -121,3 +160,28 @@
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_CARGO
+
+
+/datum/design/m9mm_mag
+	name = "9x25mm Mk2 Pistol Magazine(Lethal)"
+	desc = "A standard magazine for pistol using 9x25mm Mk2."
+	id = "m9mm_mag"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 12)
+	build_path = /obj/item/ammo_box/magazine/m9mm
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/m45_mag
+	name = ".460 Ceres Pistol Magazine(Lethal)"
+	desc = "A standard magazine for pistol using .460 Ceres."
+	id = "m45_mag"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5)
+	build_path = /obj/item/ammo_box/magazine/m45
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY

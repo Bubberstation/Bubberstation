@@ -122,6 +122,8 @@
 	design_ids += "s12g_br"
 	design_ids += "s12g_incinslug"
 	design_ids += "wt550_ammo_normal"
+	design_ids += "m9mm_mag"
+	design_ids += "m45_mag"
 	. = ..()
 
 /datum/techweb_node/exotic_ammo/New()

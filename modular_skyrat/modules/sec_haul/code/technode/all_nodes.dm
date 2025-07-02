@@ -7,6 +7,7 @@
 	description = "In the wake of the NRI Border Conflict, there was a drive to advances our armament, learn how sol does it."
 	prereq_ids = list("exotic_ammo")
 	design_ids = list(
+		"solgrenade_extmag",
 		"s12g_slug",
 		"s12g_buckshot"
 	)

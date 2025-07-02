@@ -68,7 +68,7 @@
 	name = "Breaching Slug ammo box"
 	desc = "A box of 7 Breaching slug. It's able to punches through- quite literally anything with ease."
 	icon_state = "fslug"
-	ammo_type = /obj/item/ammo_casing/shotgun/breacher
+	ammo_type = /obj/item/ammo_casing/shotgun/frangible
 
 //This is intended for ERT! Have fun with it
 /obj/item/ammo_box/advanced/s12gauge/pulse
