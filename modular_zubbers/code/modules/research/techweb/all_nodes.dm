@@ -124,6 +124,7 @@
 	design_ids += "wt550_ammo_normal"
 	design_ids += "m9mm_mag"
 	design_ids += "m45_mag"
+	design_ids += "solgrenade_mag"
 	. = ..()
 
 /datum/techweb_node/exotic_ammo/New()
