@@ -23065,16 +23065,13 @@
 /obj/effect/decal/cleanable/dirt{
 	icon_state = "dirt-flat-1"
 	},
-/obj/machinery/door/poddoor/shutters{
+/obj/machinery/button/door/directional/east{
+	id = "Portbowmaints";
+	name = "Shutter Control"
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
 	id = "Portbowmaints";
 	name = "Port Bow Maintenance"
-	},
-/obj/machinery/button/door/directional/north{
-	id = "Portbowmaints";
-	name = "Shutter control";
-	pixel_x = 24;
-	pixel_y = 0;
-	req_access = list("engineering","atmospherics")
 	},
 /turf/open/floor/iron/stairs/right,
 /area/station/maintenance/port/upper)
@@ -27278,7 +27275,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/firedoor,
-/obj/machinery/door/poddoor/shutters{
+/obj/machinery/door/poddoor/shutters/preopen{
 	id = "Portbowmaints";
 	name = "Port Bow Maintenance"
 	},
@@ -48047,7 +48044,7 @@
 /obj/effect/decal/cleanable/dirt{
 	icon_state = "dirt-flat-1"
 	},
-/obj/machinery/door/poddoor/shutters{
+/obj/machinery/door/poddoor/shutters/preopen{
 	id = "Portbowmaints";
 	name = "Port Bow Maintenance"
 	},
@@ -49738,16 +49735,13 @@
 	icon_state = "dirt-flat-1"
 	},
 /obj/machinery/door/firedoor,
-/obj/machinery/button/door/directional/north{
-	id = "Portbowmaints";
-	name = "Shutter control";
-	pixel_x = -24;
-	pixel_y = 0;
-	req_access = list("command")
-	},
-/obj/machinery/door/poddoor/shutters{
+/obj/machinery/door/poddoor/shutters/preopen{
 	id = "Portbowmaints";
 	name = "Port Bow Maintenance"
+	},
+/obj/machinery/button/door/directional/west{
+	id = "Portbowmaints";
+	name = "Shutter Control"
 	},
 /turf/open/floor/iron/stairs/left{
 	dir = 1
@@ -110825,17 +110819,6 @@
 /obj/item/food/grown/banana,
 /turf/open/floor/iron/dark/small,
 /area/station/cargo/storage)
-"vhq" = (
-/obj/machinery/door/airlock/maintenance,
-/obj/effect/decal/cleanable/dirt{
-	icon_state = "dirt-flat-1"
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
-/turf/open/floor/plating,
-/area/station/maintenance/department/medical/central)
 "vhs" = (
 /obj/effect/spawner/random/trash/moisture_trap,
 /turf/open/floor/plating,
@@ -115229,23 +115212,13 @@
 /turf/open/floor/iron,
 /area/station/security/prison/upper)
 "vWp" = (
-/obj/item/trash/syndi_cakes,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/mapping_helpers/broken_floor,
 /obj/machinery/door/firedoor,
-/obj/machinery/door/poddoor/shutters{
-	id = "Starboardbowmaints";
-	name = "Starboard Bow Maintenance"
-	},
-/obj/machinery/button/door/directional/north{
-	id = "Starboardbowmaints";
-	name = "Shutter control";
-	pixel_x = 24;
-	pixel_y = 0;
-	req_access = list("engineering","atmospherics")
-	},
+/obj/machinery/door/airlock/maintenance,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/station/maintenance/fore/upper)
 "vWN" = (
@@ -116217,18 +116190,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/door/firedoor,
-/obj/machinery/button/door/directional/north{
-	id = "Starboardbowmaints";
-	name = "Shutter control";
-	pixel_x = 24;
-	pixel_y = 0;
-	req_access = list("engineering","atmospherics")
-	},
-/obj/machinery/door/poddoor/shutters{
-	id = "Starboardbowmaints";
-	name = "Starboard Bow Maintenance"
-	},
 /turf/open/floor/plating,
 /area/station/maintenance/fore/upper)
 "wfr" = (
@@ -235205,7 +235166,7 @@ uhZ
 uhZ
 uhZ
 uhZ
-vhq
+viS
 xbB
 lcu
 lcu
