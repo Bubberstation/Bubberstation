@@ -7,7 +7,7 @@
 	projectile_type = /obj/projectile/beam/laser/microfusion
 	e_cost = LASER_SHOTS(12, STANDARD_CELL_CHARGE)
 	select_name = "laser"
-	fire_sound = 'modular_skyrat/modules/microfusion/sound/laser_1.ogg'
+	fire_sound = 'modular_zubbers/sound/weapons/laser.ogg'
 	fire_sound_volume = 100
 
 /obj/item/ammo_casing/proc/refresh_shot()

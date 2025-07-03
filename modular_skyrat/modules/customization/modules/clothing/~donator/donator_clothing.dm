@@ -882,14 +882,9 @@
 	icon_state = "plasmaman_jax"
 
 // Donation reward for Raxraus
-/obj/item/clothing/shoes/combat/rax
+/obj/item/clothing/shoes/jackboots/peacekeeper/armadyne/rax
 	name = "tactical boots"
 	desc = "Tactical and sleek. This model seems to resemble Armadyne's."
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/shoes.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/feet.dmi'
-	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/feet_digi.dmi'
-	icon_state = "armadyne_boots"
-	worn_icon_state = "armadyne_boots"
 
 // Donation reward for Raxraus
 /obj/item/clothing/suit/armor/vest/warden/rax
@@ -1846,30 +1841,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	icon_state = "anubite_headpiece"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	worn_y_offset = 4
-
-//  Donator reward Smol42
-
-/obj/item/clothing/neck/trenchcoat
-	name = "Graceful Trenchcoat"
-	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/cloaks.dmi'
-	icon_state = "trenchcoat"
-	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/neck.dmi'
-	body_parts_covered = CHEST|GROIN|LEGS|ARMS
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"White" = list(
-			RESKIN_ICON_STATE = "trenchcoat_white",
-			RESKIN_WORN_ICON_STATE = "trenchcoat_white"
-		),
-		"Tin variant" = list(
-			RESKIN_ICON_STATE = "trenchcoat_tin",
-			RESKIN_WORN_ICON_STATE = "trenchcoat_tin"
-		),
-		"Blue variant" = list(
-			RESKIN_ICON_STATE = "trenchcoat_blue",
-			RESKIN_WORN_ICON_STATE = "trenchcoat_blue"
-		)
-	)
 
 //Donation reward for Jasohavents
 /obj/item/clothing/under/rank/cargo/qm/skirt/old

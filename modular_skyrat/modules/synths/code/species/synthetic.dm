@@ -32,7 +32,7 @@
 	mutantheart = /obj/item/organ/heart/synth
 	mutantliver = /obj/item/organ/liver/synth
 	mutantappendix = null
-	exotic_blood = /datum/reagent/fuel/oil
+	exotic_bloodtype = BLOOD_TYPE_OIL
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/synth,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/synth,
@@ -256,6 +256,13 @@
 		SPECIES_PERK_ICON = "music",
 		SPECIES_PERK_NAME = "Tone Synthesizer",
 		SPECIES_PERK_DESC = "[plural_form] can sing musical tones using an internal synthesizer.",
+	))
+
+	perk_descriptions += list(list(
+		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+		SPECIES_PERK_ICON = "band-aid",
+		SPECIES_PERK_NAME = "Structural Damage",
+		SPECIES_PERK_DESC = "[plural_form] are weak to blunt objects.",
 	))
 
 	return perk_descriptions

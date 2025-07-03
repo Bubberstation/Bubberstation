@@ -14,7 +14,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	throwforce = 15
 	wound_bonus = 10 //scalpel tier
-	bare_wound_bonus = 20 // Very-bigly
+	exposed_wound_bonus = 20 // Very-bigly
 
 /obj/item/storage/belt/bowie_sheath
 	name = "\improper Bowie knife sheath"

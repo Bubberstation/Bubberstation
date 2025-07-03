@@ -6,7 +6,7 @@
 	name = "\improper Clock Cultist"
 	antagpanel_category = "Clock Cultist"
 	preview_outfit = /datum/outfit/clock/preview
-	job_rank = ROLE_CLOCK_CULTIST
+	pref_flag = ROLE_CLOCK_CULTIST
 	antag_moodlet = /datum/mood_event/cult
 	show_to_ghosts = TRUE
 	suicide_cry = ",r For Ratvar!!!"

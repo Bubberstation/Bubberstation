@@ -3,7 +3,7 @@
 #define KNIFE_ATTACK_VERB_CONTINUOUS list("slashes", "tears", "slices", "tears", "lacerates", "rips", "dices", "cuts", "rends")
 #define KNIFE_ATTACK_VERB_SIMPLE list("slash", "tear", "slice", "tear", "lacerate", "rip", "dice", "cut", "rend")
 #define KNIFE_SHARPNESS SHARP_EDGED
-#define KNIFE_BARE_WOUND_BONUS 15
+#define KNIFE_EXPOSED_WOUND_BONUS 15
 #define CUTTER_HITSOUND 'sound/items/tools/wirecutter.ogg'
 #define CUTTER_USESOUND 'sound/items/tools/wirecutter.ogg'
 #define CUTTER_ATTACK_VERB_CONTINUOUS list("bashes", "batters", "bludgeons", "thrashes", "whacks")
@@ -66,7 +66,7 @@
 	var/knife_wound_bonus = 5
 	var/cutter_force = CUTTER_FORCE
 	var/cutter_wound_bonus = CUTTER_WOUND_BONUS
-	var/cutter_bare_wound_bonus = CUTTER_WOUND_BONUS
+	var/cutter_exposed_wound_bonus = CUTTER_WOUND_BONUS
 	tool_behaviour = TOOL_KNIFE
 	toolspeed = 1
 	item_flags = NEEDS_PERMIT //Beepers gets angry if you get caught with this.
@@ -80,7 +80,7 @@
 		inhand_icon_state = "precision_wolverine"
 		force = cutter_force
 		wound_bonus = cutter_wound_bonus
-		bare_wound_bonus = cutter_bare_wound_bonus
+		exposed_wound_bonus = cutter_exposed_wound_bonus
 		sharpness = NONE
 		hitsound = CUTTER_HITSOUND
 		usesound = CUTTER_USESOUND
@@ -94,7 +94,7 @@
 		force = knife_force
 		sharpness = KNIFE_SHARPNESS
 		wound_bonus = knife_wound_bonus
-		bare_wound_bonus = KNIFE_BARE_WOUND_BONUS
+		exposed_wound_bonus = KNIFE_EXPOSED_WOUND_BONUS
 		hitsound = KNIFE_HITSOUND
 		usesound = KNIFE_USESOUND
 		attack_verb_continuous = KNIFE_ATTACK_VERB_CONTINUOUS
@@ -225,7 +225,7 @@
 #undef KNIFE_ATTACK_VERB_CONTINUOUS
 #undef KNIFE_ATTACK_VERB_SIMPLE
 #undef KNIFE_SHARPNESS
-#undef KNIFE_BARE_WOUND_BONUS
+#undef KNIFE_EXPOSED_WOUND_BONUS
 #undef CUTTER_HITSOUND
 #undef CUTTER_USESOUND
 #undef CUTTER_ATTACK_VERB_CONTINUOUS
