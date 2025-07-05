@@ -146,6 +146,7 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/head/costume.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head/costume.dmi'
 	icon_state = "syndimaid_headband"
+	inhand_icon_state = null
 	post_init_icon_state = null
 	greyscale_colors = null
 	greyscale_config = null
