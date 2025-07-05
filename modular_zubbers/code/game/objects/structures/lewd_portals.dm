@@ -242,21 +242,24 @@
 
 /obj/structure/lewd_portal/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
 	if(isnull(linked_portal))
 		balloon_alert(user, "portal not linked")
-		return
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(!isnull(current_mob) || !isnull(linked_portal.current_mob))
 		balloon_alert(user, "portal occupied")
-		return
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(portal_mode == GLORYHOLE)
 		portal_mode = WALLSTUCK
 		linked_portal.portal_mode = WALLSTUCK
 		balloon_alert(user, "switched to stuck in wall mode")
-		return
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	else
 		portal_mode = GLORYHOLE
 		linked_portal.portal_mode = GLORYHOLE
 		balloon_alert(user, "switched to gloryhole mode")
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 
 /obj/item/wallframe/lewd_portal
@@ -368,6 +371,12 @@
 				if(!(gential_sprite.is_hidden(owner)))
 					. += "<span class='notice'>It has exposed genitals... <a href='byond://?src=[REF(src)];lookup_info=genitals'>\[Look closer...\]</a></span>"
 					break
+	if(!CONFIG_GET(flag/check_vetted))
+		return
+	if(!owner?.client || !SSplayer_ranks.initialized)
+		return
+	if(SSplayer_ranks.is_vetted(owner?.client, admin_bypass = FALSE))
+		. += span_greenannounce("This player has been vetted as 18+ by staff.")
 
 /obj/lewd_portal_relay/Topic(href, href_list)
 	. = ..()

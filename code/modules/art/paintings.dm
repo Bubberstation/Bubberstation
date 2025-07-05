@@ -175,8 +175,9 @@
 	if(.)
 		return
 	var/mob/user = usr
-	///this is here to allow observers and viewers to zoom in and out regardless of adjacency.
-	if(action != "zoom_in" && action != "zoom_out" && !can_interact(user))
+	//this is here to allow observers and viewers to zoom in and out regardless of adjacency.
+	//observers need this special check because we allow them to operate the UI in ui_state
+	if((action != "zoom_in" && action != "zoom_out") && (isobserver(user) || !can_interact(user)))
 		return
 	switch(action)
 		if("paint", "fill")
@@ -233,10 +234,6 @@
 			show_grid = !show_grid
 		if("finalize")
 			. = TRUE
-			if(isobserver(user)) // Ghosts cant finalize
-				return
-			if(istype(user, /mob/living/silicon) && !Adjacent(user, src)) // Silicons cant finalize unless adjacent
-				return
 			finalize(user)
 		if("patronage")
 			. = TRUE
