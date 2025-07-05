@@ -7,5 +7,6 @@
 	storyteller_type = STORYTELLER_TYPE_ALWAYS_AVAILABLE
 
 	tag_multipliers = list(
+		TAG_BIG_THREE = 0,
 		TAG_CHAOTIC = 0.7
 	)
