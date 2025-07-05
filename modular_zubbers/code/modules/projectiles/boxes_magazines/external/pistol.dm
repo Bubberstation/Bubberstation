@@ -19,11 +19,15 @@
 	ammo_band_color = "#ff9900"
 	murphy_eject_sound = 'sound/items/weapons/gun/general/rocket_launch.ogg'
 
-/obj/item/ammo_box/magazine/security/rocket/throw_impact(mob/living/hit_mob, datum/thrownthing/throwingdatum)
+/obj/item/ammo_box/magazine/security/rocket/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
-	if(!QDELETED(hit_mob) && was_ejected )
-		hit_mob.Knockdown(2 SECONDS)
-		hit_mob.apply_damage(40, BRUTE, BODY_ZONE_CHEST)
+	if(QDELETED(src))
+		return
+	if(was_ejected)
 		playsound(get_turf(src.loc), 'sound/effects/explosion/explosion1.ogg', 40, 1)
+		visible_message(span_warning("[src] crumbles into scrap from the force of the impact"))
+		if(isliving(hit_atom))
+			var/mob/living/hit_mob = hit_atom
+			hit_mob.Knockdown(2 SECONDS)
+			hit_mob.apply_damage(40, BRUTE, BODY_ZONE_CHEST)
 		qdel(src)
-

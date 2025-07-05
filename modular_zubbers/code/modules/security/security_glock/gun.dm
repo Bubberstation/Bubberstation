@@ -1,7 +1,6 @@
 /obj/item/gun/ballistic/automatic/pistol/sec_glock //This is what you give to the Head of Security.
 	name = "\improper 'Murphy' Service Pistol"
-	desc = "This 9 mm monster was developed during the very first body-modding craze by Nanotrasen, built with every what-if in mind, this timeless brick is near-incapable of failure. 60% more bullet-per-bullet ammo may not have helped it's killing power, but it sure helped this gun hit like an actual brick when used as a bludgeon. \
-	Not only that, but it's 'anti-lawsuit' heavy trigger design allows for safe spinning, if one can handle it and not hit anyone with the magazine flying out the handle."
+	desc = "This 9 mm monster was developed during the very first body-modding craze by Nanotrasen, built with every what-if in mind, this timeless brick is near-incapable of failure. It comes with a revolutionary quick-reload system."
 	icon = 'modular_zubbers/icons/obj/guns/sec_pistol.dmi'
 	icon_state = "black"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -70,7 +69,7 @@
 	default_behaviour(user)
 
 
-/obj/item/gun/ballistic/automatic/pistol/sec_glock/proc/throw_eject_magazine(mob/user, display_message = TRUE, obj/item/ammo_box/magazine/security/belt_mag, atom/target)
+/obj/item/gun/ballistic/automatic/pistol/sec_glock/proc/throw_eject_magazine(mob/user, was_ejected, obj/item/ammo_box/magazine/security/belt_mag, atom/target)
 	if(bolt_type == BOLT_TYPE_OPEN)
 		chambered = null
 	if(magazine.ammo_count())
@@ -86,7 +85,7 @@
 		return
 	old_mag.forceMove(drop_location())
 	playsound(old_mag, old_mag.murphy_eject_sound, 50, TRUE)
-	if(magejecting)
+	if(was_ejected)
 		old_mag.was_ejected = TRUE
 		old_mag.throw_at(get_edge_target_turf(user, user.dir), range = 7, speed = 7, thrower = user, force = 10)
 	old_mag.update_appearance()
