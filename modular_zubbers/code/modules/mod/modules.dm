@@ -6,12 +6,23 @@
 		This module has been partially reverse engineered from competing combat MOD technology, \
 		and does not help reduce the bulkiness of many of the suits it is installed in."
 	space_slowdown = 0 //This is to nerf your armour, not buff your modsuit speed
+	incompatible_modules = list(/obj/item/mod/module/armor_booster, /obj/item/mod/module/headprotector) //removed the flash protection, you CAN use the welding module with this
 	icon = 'icons/obj/clothing/suits/armor.dmi'
 	icon_state = "heavy" //SWAT suit icon, because I want to change the action buttons and these aren't meant to be obtainable outside the suits
 
+/obj/item/mod/module/armor_booster/nanotrasen/on_part_activation() //removes welding protection
+	RegisterSignal(mod, COMSIG_MOD_UPDATE_SPEED, PROC_REF(on_update_speed))
+	mod.update_speed()
+
+/obj/item/mod/module/armor_booster/nanotrasen/on_part_deactivation(deleting = FALSE)
+	if(deleting)
+		return
+	UnregisterSignal(mod, COMSIG_MOD_UPDATE_SPEED)
+	mod.update_speed()
+
 //every security, command, etc mod theme has its own armour booster now, taking half the armour values of their current modsuit armour
 //see modular_zubbers/code/datums/armor_overrides for modsuit changes
-/obj/item/mod/module/armor_booster/nanotrasen/security //secoff modsuits, ERT modsuits also
+/obj/item/mod/module/armor_booster/nanotrasen/security //secoff modsuits
 	armor_mod = /datum/armor/mod_module_armor_boost_security
 
 /datum/armor/mod_module_armor_boost_security
@@ -19,15 +30,6 @@
 	bullet = 15
 	laser = 15
 	energy = 20
-
-/obj/item/mod/module/armor_booster/nanotrasen/security/safeguard //HoS
-	desc = "A retrofitted series of retractable armor plates, allowing the suit to function as essentially power armor, \
-		giving the user incredible protection against conventional firearms, or everyday attacks in close-quarters. \
-		However, the additional plating cannot deploy alongside parts of the suit used for vacuum sealing, \
-		so this extra armor provides zero ability for extravehicular activity while deployed. \
-		This module has been partially reverse engineered from competing combat MOD technology, \
-		though Apadyne has partially mitigated some of the excess power towards improved actuators in the suit."
-	space_slowdown = 0.5 //better actuators on the HoS model
 
 /obj/item/mod/module/armor_booster/nanotrasen/magnate //Captain
 	armor_mod = /datum/armor/mod_module_armor_boost_magnate
@@ -38,7 +40,29 @@
 	laser = 20
 	energy = 20
 
-/obj/item/mod/module/armor_booster/nanotrasen/corporate //CENTCOM
+/obj/item/mod/module/armor_booster/nanotrasen/centcom/ //re-adds welding protection
+	incompatible_modules = list(/obj/item/mod/module/armor_booster, /obj/item/mod/module/welding, /obj/item/mod/module/headprotector)
+
+/obj/item/mod/module/armor_booster/nanotrasen/centcom/on_part_activation()
+	RegisterSignal(mod, COMSIG_MOD_UPDATE_SPEED, PROC_REF(on_update_speed))
+	var/obj/item/clothing/head_cover = mod.get_part_from_slot(ITEM_SLOT_HEAD) || mod.get_part_from_slot(ITEM_SLOT_MASK) || mod.get_part_from_slot(ITEM_SLOT_EYES)
+	if(istype(head_cover))
+		head_cover.flash_protect = FLASH_PROTECTION_WELDER
+	mod.update_speed()
+
+/obj/item/mod/module/armor_booster/nanotrasen/centcom/on_part_deactivation(deleting = FALSE)
+	if(deleting)
+		return
+	UnregisterSignal(mod, COMSIG_MOD_UPDATE_SPEED)
+	var/obj/item/clothing/head_cover = mod.get_part_from_slot(ITEM_SLOT_HEAD) || mod.get_part_from_slot(ITEM_SLOT_MASK) || mod.get_part_from_slot(ITEM_SLOT_EYES)
+	if(istype(head_cover))
+		head_cover.flash_protect = initial(head_cover.flash_protect)
+	mod.update_speed()
+
+/obj/item/mod/module/armor_booster/nanotrasen/centcom/ert //ERTs
+	armor_mod = /datum/armor/mod_module_armor_boost_security //Same values no need to copy paste
+
+/obj/item/mod/module/armor_booster/nanotrasen/centcom/corporate //CENTCOM
 	armor_mod = /datum/armor/mod_module_armor_boost_corporate
 
 /datum/armor/mod_module_armor_boost_corporate
