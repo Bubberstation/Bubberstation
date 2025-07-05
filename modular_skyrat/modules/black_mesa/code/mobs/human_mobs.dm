@@ -219,8 +219,8 @@
 	minimum_distance = 5
 	icon_state = "blackops_ranged"
 	icon_living = "blackops_ranged"
-	casingtype = /obj/item/ammo_casing/c40sol
+	casingtype = /obj/item/ammo_casing/a223 //Edited with SR removal, same damage as sol40 long
 	projectilesound = 'modular_skyrat/modules/modular_weapons/sounds/rifle_heavy.ogg'
 	attack_sound = 'sound/items/weapons/punch1.ogg'
-	loot = list(/obj/effect/gibspawner/human, /obj/item/ammo_box/magazine/c40sol_rifle/standard)
+	loot = list(/obj/effect/gibspawner/human, /obj/item/ammo_box/magazine/wt550m9)
 	rapid_melee = 1

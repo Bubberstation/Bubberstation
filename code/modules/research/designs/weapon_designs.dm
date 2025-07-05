@@ -78,7 +78,7 @@
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 10,
 		/datum/material/bluespace = HALF_SHEET_MATERIAL_AMOUNT,
 	)
-	build_path = /obj/item/ammo_box/magazine/m38/true
+	build_path = /obj/item/ammo_box/c38/true
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
@@ -165,8 +165,9 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
+
 /datum/design/c38_true_mag
-	name = "Magazine (.38 Truee Strike) (Lethal)"
+	name = "Magazine (.38 True Strike) (Lethal)"
 	desc = "Designed to tactically reload a NT BR-38 Battle Rifle. Bullets bounce towards new targets with surprising accuracy."
 	id = "c38_true_strike_mag"
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -176,6 +177,36 @@
 		/datum/material/bluespace = HALF_SHEET_MATERIAL_AMOUNT,
 	)
 	build_path = /obj/item/ammo_box/magazine/m38/true
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/m9mm_sec
+	name = "Magazine (9mm Security) (Lethal)"
+	desc = "Designed to slide in and out of a 9mm 'Murphy' service pistol. It's heavier bullets make this magazine quite heavy, watch where you throw it!"
+	id = "m9mm_sec"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 30,
+		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT * 3,
+	)
+	build_path = /obj/item/ammo_box/magazine/m9mm/security
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/m9mm_sec_rocket
+	name = "Magazine (9mm Security RE) (Lethal)"
+	desc = "A volatile magazine with extra weight and aerodynamic padding, letting it accelerate rapidly upon release - preferrably towards the suspect."
+	id = "m9mm_sec_rocket"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 10,
+		/datum/material/plasma = HALF_SHEET_MATERIAL_AMOUNT * 5,
+	)
+	build_path = /obj/item/ammo_box/magazine/m9mm/security/rocket
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
@@ -497,19 +528,6 @@
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass =SMALL_MATERIAL_AMOUNT * 2)
 	build_path = /obj/item/ammo_casing/shotgun/techshell
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-
-/datum/design/flechette
-	name = "Flechette Shotgun Shell (Lethal)"
-	desc = "A shotgun casing filled with small metal darts. Pokes many tiny holes into meat and kevlar alike. Useful for turning someone's insides \
-		into outsides."
-	id = "flechetteshell"
-	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2)
-	build_path = /obj/item/ammo_casing/shotgun/flechette
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
