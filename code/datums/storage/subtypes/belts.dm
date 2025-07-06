@@ -72,6 +72,8 @@
 		/obj/item/wrench/medical,
 		/obj/item/knife/ritual,
 		/obj/item/flesh_shears,
+		/obj/item/blood_scanner,
+		/obj/item/reflexhammer,
 		/obj/item/clothing/suit/toggle/labcoat/hospitalgown,	//SKYRAT EDIT ADDITION - adds surgery gowns to belts
 		/obj/item/hypospray/mkii, //SKYRAT EDIT ADDITION - HYPOSPRAYS
 		/obj/item/storage/hypospraykit/, //SKYRAT EDIT ADDITION - HYPOSPRAYS
@@ -226,7 +228,7 @@
 
 /datum/storage/wands_belt/New(atom/parent, max_slots, max_specific_storage, max_total_storage)
 	. = ..()
-	set_holdable(/obj/item/gun/magic/wand)
+	set_holdable(list(/obj/item/gun/magic/wand,/obj/item/clothing/sextoy/magic_wand)) // BUBBER EDIT CHANGE: adds /obj/item/clothing/sextoy/magic_wand
 
 ///Janitor belt
 /datum/storage/janitor_belt

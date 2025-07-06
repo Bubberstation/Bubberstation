@@ -140,12 +140,6 @@
 	pickup_sound = SFX_CLOTH_PICKUP
 	drop_sound = SFX_CLOTH_DROP
 
-/obj/item/storage/medkit/combat_surgeon/Initialize(mapload)
-	. = ..()
-	atom_storage.max_specific_storage = WEIGHT_CLASS_NORMAL
-
-/obj/item/storage/medkit/combat_surgeon/stocked
-
 /obj/item/storage/medkit/combat_surgeon/stocked/PopulateContents()
 	var/static/items_inside = list(
 		/obj/item/bonesetter = 1,
