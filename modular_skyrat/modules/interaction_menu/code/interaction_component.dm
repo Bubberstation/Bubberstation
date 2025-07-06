@@ -6,6 +6,8 @@
 	var/list/datum/interaction/interactions
 	var/interact_last = 0
 	var/interact_next = 0
+	///Holds a reference to a relayed body if one exists
+	var/obj/body_relay = null
 
 /datum/component/interactable/Initialize(...)
 	if(QDELETED(parent))
@@ -53,7 +55,8 @@
 	if(interaction.lewd && !target.client?.prefs?.read_preference(/datum/preference/toggle/erp))
 		return FALSE
 	if(!interaction.distance_allowed && !target.Adjacent(self))
-		return FALSE
+		if(!body_relay || !target.Adjacent(body_relay))
+			return FALSE
 	if(interaction.category == INTERACTION_CAT_HIDE)
 		return FALSE
 	if(self == target && interaction.usage == INTERACTION_OTHER)
@@ -98,6 +101,9 @@
 	data["ref_user"] = REF(user)
 	data["ref_self"] = REF(self)
 	data["self"] = self.name
+	if(body_relay)
+		if(!can_see(user, self))
+			data["self"] = body_relay.name
 	data["block_interact"] = interact_next >= world.time
 	data["interactions"] = categories
 
@@ -147,7 +153,10 @@
 			var/mob/living/carbon/human/user = locate(params["userref"])
 			if(!can_interact(GLOB.interaction_instances[interaction_id], user))
 				return FALSE
-			GLOB.interaction_instances[interaction_id].act(user, locate(params["selfref"]))
+			if(body_relay && !can_see(user, self))
+				GLOB.interaction_instances[interaction_id].act(user, locate(params["selfref"]), body_relay)
+			else
+				GLOB.interaction_instances[interaction_id].act(user, locate(params["selfref"]))
 			var/datum/component/interactable/interaction_component = user.GetComponent(/datum/component/interactable)
 			interaction_component.interact_last = world.time
 			interact_next = interaction_component.interact_last + INTERACTION_COOLDOWN
