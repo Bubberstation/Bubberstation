@@ -75,11 +75,6 @@
 	icon_state = "shuttle"
 	requires_power = FALSE //Imagine if your funny gimmick had no power and people had to walk lmao
 
-
-
-
-
-
 /area/station/engineering/storage/eva
 	name = "\improper Engineering EVA Storage"
 	icon_state = "eva"

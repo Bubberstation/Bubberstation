@@ -36206,7 +36206,6 @@
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/firealarm/directional/east,
 /turf/open/floor/iron,
 /area/station/engineering/break_room)
@@ -42148,6 +42147,9 @@
 	dir = 4
 	},
 /obj/effect/spawner/random/maintenance,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/station/maintenance/department/engine)
 "lhC" = (
@@ -44412,13 +44414,13 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos/hfr_room)
 "lKF" = (
-/obj/machinery/atmospherics/components/binary/pump/on{
-	name = "External Waste Ports to Filter"
-	},
 /obj/effect/turf_decal/tile/yellow/opposingcorners{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/blue/opposingcorners,
+/obj/machinery/atmospherics/components/binary/pump/on/scrubbers/visible{
+	name = "External Waste Ports to Filter"
+	},
 /turf/open/floor/iron,
 /area/station/engineering/atmos/pumproom)
 "lKH" = (
@@ -61616,6 +61618,15 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/white,
 /area/station/science/research)
+"qpp" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/station/maintenance/department/engine)
 "qpx" = (
 /obj/machinery/light/small/directional/east,
 /obj/effect/turf_decal/vg_decals/numbers/three,
@@ -63738,9 +63749,6 @@
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 4
 	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
 /area/station/engineering/break_room)
 "qUe" = (
@@ -64821,14 +64829,14 @@
 	},
 /area/station/cargo/miningdock)
 "rin" = (
-/obj/machinery/atmospherics/components/binary/pump/on{
-	dir = 1;
-	name = "Air to External Air Ports"
-	},
 /obj/effect/turf_decal/tile/yellow/opposingcorners{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/blue/opposingcorners,
+/obj/machinery/atmospherics/components/binary/pump/on/supply/visible{
+	dir = 1;
+	name = "Air to External Air Ports"
+	},
 /turf/open/floor/iron,
 /area/station/engineering/atmos/pumproom)
 "rit" = (
@@ -67363,6 +67371,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/engineering/break_room)
 "rSH" = (
@@ -70489,6 +70500,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/engineering/break_room)
 "sLb" = (
@@ -253468,7 +253482,7 @@ xmW
 cWl
 qby
 xCq
-aXJ
+qpp
 xCq
 iXG
 mRq
