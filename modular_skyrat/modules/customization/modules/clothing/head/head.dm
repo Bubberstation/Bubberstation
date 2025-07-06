@@ -46,10 +46,12 @@
 /obj/item/clothing/head/beret/sec/navywarden/syndicate
 	name = "master at arms' beret"
 	desc = "Surprisingly stylish, if you lived in a silent impressionist film."
+	icon = 'icons/map_icons/clothing/head/beret.dmi'
+	icon_state = "/obj/item/clothing/head/beret/sec/navywarden/syndicate"
 	greyscale_config = /datum/greyscale_config/beret_badge
 	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
 	greyscale_colors = "#353535#AAAAAA"
-	icon_state = "beret_badge"
+	post_init_icon_state = "beret_badge"
 	armor_type = /datum/armor/navywarden_syndicate
 	strip_delay = 60
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
@@ -67,7 +69,9 @@
 /obj/item/clothing/head/colourable_flatcap
 	name = "colourable flat cap"
 	desc = "You in the computers son? You work the computers?"
-	icon_state = "flatcap"
+	icon = 'icons/map_icons/clothing/head/_head.dmi'
+	icon_state = "/obj/item/clothing/head/colourable_flatcap"
+	post_init_icon_state = "flatcap"
 	greyscale_config = /datum/greyscale_config/flatcap
 	greyscale_config_worn = /datum/greyscale_config/flatcap/worn
 	greyscale_colors = "#79684c"
@@ -180,10 +184,11 @@
 /obj/item/clothing/head/hooded/standalone_hood
 	name = "hood"
 	desc = "A hood with a bit of support around the neck so it actually stays in place, for all those times you want a hood without the coat."
-	icon = 'modular_skyrat/modules/GAGS/icons/head/head.dmi'
+	icon = 'icons/map_icons/clothing/head/_head.dmi'
+	icon_state = "/obj/item/clothing/head/hooded/standalone_hood"
 	worn_icon = 'modular_skyrat/modules/GAGS/icons/head/head.dmi'
 	worn_icon_teshari = 'modular_skyrat/modules/GAGS/icons/head/head_teshari.dmi'
-	icon_state = "hood"
+	post_init_icon_state = "hood"
 	body_parts_covered = HEAD
 	cold_protection = HEAD
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
@@ -200,7 +205,9 @@
 /obj/item/clothing/head/beret/badge
 	name = "badged beret"
 	desc = "A beret. With a badge. What do you want, a dissertation? It's a hat."
-	icon_state = "beret_badge"
+	icon = 'icons/map_icons/clothing/head/beret.dmi'
+	icon_state = "/obj/item/clothing/head/beret/badge"
+	post_init_icon_state = "beret_badge"
 	greyscale_config = /datum/greyscale_config/beret_badge
 	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
 	greyscale_colors = "#972A2A#EFEFEF"
@@ -219,7 +226,9 @@
 /obj/item/clothing/head/small_bow
 	name = "small bow"
 	desc = "A small compact bow that you can place on the side of your hair."
-	icon_state = "small_bow"
+	icon = 'icons/map_icons/clothing/head/_head.dmi'
+	icon_state = "/obj/item/clothing/head/small_bow"
+	post_init_icon_state = "small_bow"
 	greyscale_config = /datum/greyscale_config/small_bow
 	greyscale_config_worn = /datum/greyscale_config/small_bow/worn
 	greyscale_colors = "#7b9ab5"
@@ -232,7 +241,9 @@
 /obj/item/clothing/head/large_bow
 	name = "large bow"
 	desc = "A large bow that you can place on top of your head."
-	icon_state = "large_bow"
+	icon = 'icons/map_icons/clothing/head/_head.dmi'
+	icon_state = "/obj/item/clothing/head/large_bow"
+	post_init_icon_state = "large_bow"
 	greyscale_config = /datum/greyscale_config/large_bow
 	greyscale_config_worn = /datum/greyscale_config/large_bow/worn
 	greyscale_colors = "#7b9ab5"
@@ -241,7 +252,9 @@
 /obj/item/clothing/head/back_bow
 	name = "back bow"
 	desc = "A large bow that you can place on the back of your head."
-	icon_state = "back_bow"
+	icon = 'icons/map_icons/clothing/head/_head.dmi'
+	icon_state = "/obj/item/clothing/head/back_bow"
+	post_init_icon_state = "back_bow"
 	greyscale_config = /datum/greyscale_config/back_bow
 	greyscale_config_worn = /datum/greyscale_config/back_bow/worn
 	greyscale_colors = "#7b9ab5"
@@ -250,7 +263,9 @@
 /obj/item/clothing/head/sweet_bow
 	name = "sweet bow"
 	desc = "A sweet bow that you can place on the back of your head."
-	icon_state = "sweet_bow"
+	icon = 'icons/map_icons/clothing/head/_head.dmi'
+	icon_state = "/obj/item/clothing/head/sweet_bow"
+	post_init_icon_state = "sweet_bow"
 	greyscale_config = /datum/greyscale_config/sweet_bow
 	greyscale_config_worn = /datum/greyscale_config/sweet_bow/worn
 	greyscale_colors = "#7b9ab5"

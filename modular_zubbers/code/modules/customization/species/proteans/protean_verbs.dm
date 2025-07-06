@@ -58,3 +58,32 @@
 		else
 			balloon_alert(src, "incapacitated!")
 
+/mob/living/carbon/proc/low_power()
+	set name = "Toggle Low Power Mode"
+	set desc = "Toggle whether you are running on low power mode."
+	set category = "Protean"
+
+	var/datum/species/protean/species = dna.species
+	if(!istype(species))
+		return
+	var/obj/item/organ/stomach/protean/stomach = get_organ_slot(ORGAN_SLOT_STOMACH)
+	if(!istype(stomach))
+		to_chat(src, span_warning("You are missing a stomach and can't turn on low power mode"))
+		return
+	if(loc == species.species_modsuit)
+		to_chat(src, span_notice("You can't toggle low power when in a suit form!"))
+		return
+	if(!do_after(src, 2.5 SECONDS)) // Long enough to where our stomach can process inbetween activations
+		src.loc.balloon_alert(src, "toggle interrupted")
+		return
+	var/datum/status_effect/protean_low_power_mode/effect = /datum/status_effect/protean_low_power_mode/low_power
+	if(istype(has_status_effect(effect), effect))
+		remove_status_effect(effect)
+	else
+		if(species.species_modsuit.active)
+			species.species_modsuit.toggle_activate(usr, TRUE)
+		// Preventing low power slowdown being removed by reform cooldown
+		if(has_status_effect(/datum/status_effect/protean_low_power_mode))
+			remove_status_effect(/datum/status_effect/protean_low_power_mode)
+		apply_status_effect(effect)
+

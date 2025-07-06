@@ -105,6 +105,7 @@
 
 /obj/item/modular_computer/pda/nanotrasen_consultant
 	name = "nanotrasen consultant's PDA"
+	icon_state = "/obj/item/modular_computer/pda/nanotrasen_consultant"
 	inserted_disk = /obj/item/computer_disk/command/captain
 	inserted_item = /obj/item/pen/fountain/green
 	greyscale_colors = "#017941#0060b8"
