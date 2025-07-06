@@ -19,7 +19,7 @@
 	armor_type = /datum/armor/mecha_mccloud
 	max_temperature = 25000
 	force = 25
-	destruction_sleep_duration = 80
+	destruction_sleep_duration = 8 SECONDS
 	exit_delay = 40
 	wreckage = /obj/structure/mecha_wreckage/gygax
 	mech_type = EXOSUIT_MODULE_GYGAX
@@ -47,6 +47,12 @@
 	var/obj/item/mecha_parts/mecha_equipment/thrusters/ion/mccloud/jet_mode_thrusters = null
 	COOLDOWN_DECLARE(cooldown_mech_mccloud_landing_skid)
 	COOLDOWN_DECLARE(cooldown_mech_mccloud_stamina_slow)
+
+	//explosion variables
+	var/ex_dev = 0
+	var/ex_heavy = 0
+	var/ex_light = 5
+	var/ex_flame = 1
 
 /obj/vehicle/sealed/mecha/mccloud/Initialize(mapload, built_manually)
 	..()
@@ -331,3 +337,8 @@
 	if(!mech_pilot.client.intended_direction)
 		mech_pilot.face_atom(tracker.given_turf)
 	animate(mech_pilot.client, world.tick_lag, pixel_x = tracker.given_x, pixel_y = tracker.given_y)
+
+/obj/vehicle/sealed/mecha/mccloud/atom_destruction()
+	var/turf/my_turf = get_turf(src)
+	..()
+	explosion(my_turf, ex_dev, ex_heavy, ex_light, ex_flame)
