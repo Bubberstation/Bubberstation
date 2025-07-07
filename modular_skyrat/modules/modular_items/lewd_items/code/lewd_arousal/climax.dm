@@ -60,8 +60,7 @@
 	var/self_their = p_their()
 
 	var/obj/item/organ/genital/testicles/testicles = get_organ_slot(ORGAN_SLOT_TESTICLES)
-	if(get_organ_slot(ORGAN_SLOT_TESTICLES))
-		testicles.calculate_cumshot()
+	testicles?.calculate_cumshot()
 
 	if(climax_choice == CLIMAX_PENIS || climax_choice == CLIMAX_BOTH)
 		var/obj/item/organ/genital/penis/penis = get_organ_slot(ORGAN_SLOT_PENIS)
