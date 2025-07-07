@@ -156,6 +156,9 @@
 		to_chat(user, span_warning("The vitals readout is blank, the stasis unit is unoccupied!"))
 
 /obj/machinery/stasissleeper/attack_hand_secondary(mob/user)
+	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
 	if(occupant)
 		if(occupant == user)
 			to_chat(user, span_notice("You read the bloodstream readout on the inside of the stasis unit."))

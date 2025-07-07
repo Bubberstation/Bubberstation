@@ -153,18 +153,20 @@
 #define BODYTYPE_PLANT (1<<6)
 //This limb is shadowy and will regen if shadowheal is active
 #define BODYTYPE_SHADOW (1<<7)
+//This limb is a ghost limb and can phase through walls.
+#define BODYTYPE_GHOST (1<<8)
 // SKYRAT EDIT ADDITION
 
 /// Nanomachine bodypart
-#define BODYTYPE_NANO (1<<8)
+#define BODYTYPE_NANO (1<<9)
 ///The limb fits a modular custom shape
-#define BODYSHAPE_CUSTOM (1<<9)
+#define BODYSHAPE_CUSTOM (1<<10)
 ///The limb fits a taur body
-#define BODYSHAPE_TAUR (1<<10)
+#define BODYSHAPE_TAUR (1<<11)
 ///The limb causes shoes to no longer be displayed, useful for taurs.
-#define BODYSHAPE_HIDE_SHOES (1<<11)
+#define BODYSHAPE_HIDE_SHOES (1<<12)
 ///The limb causes glasses and hats to be drawn on layers 5 and 4 respectively. Currently used for snouts with the (Top) suffix, which are drawn on layer 6 and would normally cover facewear
-#define BODYSHAPE_ALT_FACEWEAR_LAYER (1<<12)
+#define BODYSHAPE_ALT_FACEWEAR_LAYER (1<<13)
 
 // SKYRAT EDIT END
 
@@ -188,11 +190,14 @@
 #define SPECIES_DULLAHAN "dullahan"
 #define SPECIES_ETHEREAL "ethereal"
 #define SPECIES_ETHEREAL_LUSTROUS "lustrous"
+#define SPECIES_GHOST "ghost"
+#define SPECIES_GOLEM "golem"
 #define SPECIES_FELINE "felinid"
 #define SPECIES_FLYPERSON "fly"
 #define SPECIES_HUMAN "human"
 #define SPECIES_JELLYPERSON "jelly"
 #define SPECIES_SLIMEPERSON "slime"
+#define SPECIES_SPIRIT "spirit"
 #define SPECIES_LUMINESCENT "luminescent"
 #define SPECIES_STARGAZER "stargazer"
 #define SPECIES_LIZARD "lizard"
