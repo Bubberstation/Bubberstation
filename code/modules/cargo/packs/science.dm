@@ -197,7 +197,7 @@
 		When used simultaneously, their excess power used to heat and cool the opposing weapon, \
 		increasing the reload speed."
 	cost = CARGO_CRATE_VALUE * 25
-	access = ACCESS_RD
+	access = ACCESS_ROBOTICS
 	access_view = ACCESS_ROBOTICS
 	contains = list(
 		/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/cryo,
