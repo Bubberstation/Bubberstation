@@ -85,7 +85,9 @@
 	icon_state = "ringgag"
 
 /obj/item/clothing/mask/surgical/greyscale
-	icon = 'modular_skyrat/modules/GAGS/icons/masks.dmi'
+	icon = 'icons/map_icons/clothing/mask.dmi'
+	icon_state = "/obj/item/clothing/mask/surgical/greyscale"
+	post_init_icon_state = "sterile"
 	worn_icon = 'modular_skyrat/modules/GAGS/icons/masks.dmi'
 	flags_1 = IS_PLAYER_COLORABLE_1
 	greyscale_colors = "#AAE4DB"

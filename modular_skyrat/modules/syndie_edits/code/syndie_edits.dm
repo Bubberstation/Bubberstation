@@ -45,9 +45,10 @@
 /obj/item/clothing/head/beret/sec/syndicate
 	name = "brig officer's beret"
 	desc = "A stylish and protective beret, produced and manufactured by Interdyne Pharmaceuticals with help from the Gorlex Marauders."
+	icon_state = "/obj/item/clothing/head/beret/sec/syndicate"
 	greyscale_config = /datum/greyscale_config/beret_badge
 	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
-	icon_state = "beret_badge"
+	post_init_icon_state = "beret_badge"
 	greyscale_colors = "#3F3C40#DB2929"
 
 /obj/item/clothing/mask/gas/syndicate/ds
@@ -139,12 +140,20 @@
 	soft_type = "ds"
 
 //Maid Outfit
-/obj/item/clothing/head/costume/maidheadband/syndicate
+/obj/item/clothing/head/costume/maid_headband/syndicate
 	name = "tactical maid headband"
 	desc = "Tacticute."
-	icon_state = "syndimaid_headband"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/head/costume.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head/costume.dmi'
+	icon_state = "syndimaid_headband"
+	inhand_icon_state = null
+	post_init_icon_state = null
+	greyscale_colors = null
+	greyscale_config = null
+	greyscale_config_worn = null
+	greyscale_config_inhand_left = null
+	greyscale_config_inhand_right = null
+	flags_1 = parent_type::flags_1 & ~IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/gloves/combat/maid
 	name = "combat maid sleeves"

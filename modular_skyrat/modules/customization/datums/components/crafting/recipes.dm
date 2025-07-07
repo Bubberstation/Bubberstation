@@ -56,6 +56,7 @@
 	)
 	result = /obj/item/food/canned/tuna
 	category = CAT_SEAFOOD
+	crafting_flags = parent_type::crafting_flags & ~CRAFT_ENFORCE_MATERIALS_PARITY
 
 // Recipes that provide crafting instructions and don't yield any result
 

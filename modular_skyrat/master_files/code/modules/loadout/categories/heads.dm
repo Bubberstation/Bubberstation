@@ -333,7 +333,7 @@
 
 /datum/loadout_item/head/maidhead2
 	name = "Frilly Maid Headband"
-	item_path = /obj/item/clothing/head/costume/maidheadband
+	item_path = /obj/item/clothing/head/costume/maid_headband
 
 /datum/loadout_item/head/wig
 	name = "Wig"

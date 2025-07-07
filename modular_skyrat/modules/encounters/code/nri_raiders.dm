@@ -146,6 +146,7 @@ GLOBAL_VAR(first_officer)
 
 /obj/item/modular_computer/pda/nri_police
 	name = "\improper Commonwealth police PDA"
+	icon_state = "/obj/item/modular_computer/pda/nri_police"
 	device_theme = PDA_THEME_TERMINAL
 	greyscale_colors = "#363655#7878f7"
 	comp_light_luminosity = 6.3 //Matching a flashlight
@@ -527,7 +528,7 @@ GLOBAL_VAR(first_officer)
 /datum/antagonist/cop
 	name = "\improper Commonwealth Police Officer"
 	//Even if their goal's almost a complete antithesis to what pirates normally do, their spawn is, well, done via pirate code.
-	job_rank = ROLE_SPACE_PIRATE
+	pref_flag = ROLE_SPACE_PIRATE
 	roundend_category = "nri cops"
 	antagpanel_category = "Commonwealth Police"
 	show_in_antagpanel = FALSE

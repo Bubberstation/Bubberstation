@@ -38,8 +38,6 @@
 		/obj/item/clothing/head/collectable/captain = 4,
 		/obj/item/gun/energy/disabler/smoothbore = 5,
 		/obj/item/restraints/legcuffs/bola/energy = 10,
-		/obj/item/ammo_box/magazine/caflechette/ripper = 20,
-		/obj/item/ammo_box/magazine/caflechette = 10,
 	)
 
 	job_flags = STATION_JOB_FLAGS | JOB_CANNOT_OPEN_SLOTS
@@ -74,6 +72,7 @@
 
 /obj/item/modular_computer/pda/blueshield
 	name = "blueshield PDA"
+	icon_state = "/obj/item/modular_computer/pda/blueshield"
 	greyscale_colors = "#2B356D#1E1E1E"
 	inserted_item = /obj/item/pen/red/security
 	starting_programs = list(
