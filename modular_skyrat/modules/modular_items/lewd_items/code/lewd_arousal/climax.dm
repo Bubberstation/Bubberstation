@@ -64,7 +64,7 @@
 
 	if(climax_choice == CLIMAX_PENIS || climax_choice == CLIMAX_BOTH)
 		var/obj/item/organ/genital/penis/penis = get_organ_slot(ORGAN_SLOT_PENIS)
-		if(!get_organ_slot(ORGAN_SLOT_TESTICLES) || !testicles.reagents.total_volume >= MIN_CUM_TRESHOLD) //If we have no god damn balls, we can't cum anywhere... GET BALLS! , OR theres so little in your balls that nothing comes out...
+		if(!testicles || testicles.reagents.total_volume < MIN_CUM_THRESHOLD) //If we have no god damn balls, we can't cum anywhere... GET BALLS! , OR theres so little in your balls that nothing comes out...
 			visible_message(span_userlove("[src] orgasms, but nothing comes out of [self_their] penis!"), \
 				span_userlove("You orgasm, it feels great, but nothing comes out of your penis!"))
 
