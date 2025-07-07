@@ -8,8 +8,8 @@
 #define CLIMAX_PORTAL "Through the portal"
 
 // both of these are pretty much arbitrary
-#define MIN_CUM_TRESHOLD 5
-#define MIN_VAGINA_WETNESS_TRESHOLD 3.33
+#define MIN_CUM_THRESHOLD 5
+#define MIN_VAGINA_WETNESS_THRESHOLD 3.33
 
 /mob/living/carbon/human
 	/// Used to prevent nightmare scenarios.
