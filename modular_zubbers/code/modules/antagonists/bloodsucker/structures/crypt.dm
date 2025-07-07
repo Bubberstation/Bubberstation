@@ -187,6 +187,7 @@
 			unbuckle_mob(buckled_carbons)
 		else
 			user_unbuckle_mob(buckled_carbons, user)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /**
  * Attempts to buckle target into the ghoulrack

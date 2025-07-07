@@ -76,12 +76,14 @@
 	if(!do_after(src, 2.5 SECONDS)) // Long enough to where our stomach can process inbetween activations
 		src.loc.balloon_alert(src, "toggle interrupted")
 		return
-	if(has_status_effect(/datum/status_effect/protean_low_power_mode))
-		stomach.metabolism_modifier *= 16
-		remove_status_effect(/datum/status_effect/protean_low_power_mode)
+	var/datum/status_effect/protean_low_power_mode/effect = /datum/status_effect/protean_low_power_mode/low_power
+	if(istype(has_status_effect(effect), effect))
+		remove_status_effect(effect)
 	else
 		if(species.species_modsuit.active)
 			species.species_modsuit.toggle_activate(usr, TRUE)
-		stomach.metabolism_modifier /= 16
-		apply_status_effect(/datum/status_effect/protean_low_power_mode)
+		// Preventing low power slowdown being removed by reform cooldown
+		if(has_status_effect(/datum/status_effect/protean_low_power_mode))
+			remove_status_effect(/datum/status_effect/protean_low_power_mode)
+		apply_status_effect(effect)
 
