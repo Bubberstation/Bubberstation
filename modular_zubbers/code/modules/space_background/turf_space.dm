@@ -13,10 +13,18 @@
 	icon_state = SPACE_TEXT
 	. = ..()
 
-/turf/open/space/
+/turf/open/space
 	icon = 'modular_zubbers/icons/space/space.dmi'
 
 /turf/open/space/Initialize(mapload)
+	. = ..()
+	icon_state = SPACE_TEXT
+
+/turf/open/floor/fakespace
+	icon_state = "0"
+	icon = 'modular_zubbers/icons/space/space.dmi'
+
+/turf/open/floor/fakespace/Initialize(mapload)
 	. = ..()
 	icon_state = SPACE_TEXT
 

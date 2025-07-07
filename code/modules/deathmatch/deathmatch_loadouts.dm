@@ -284,7 +284,7 @@
 	display_name = "Coder"
 	desc = "What"
 	l_hand = /obj/item/toy/katana
-	uniform = /obj/item/clothing/under/costume/schoolgirl
+	uniform = /obj/item/clothing/under/costume/seifuku
 	suit = /obj/item/clothing/suit/costume/joker
 	shoes = /obj/item/clothing/shoes/clown_shoes/meown_shoes
 	head = /obj/item/clothing/head/costume/kitty

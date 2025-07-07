@@ -119,7 +119,7 @@
 	icon = 'icons/map_icons/clothing/neck.dmi'
 	icon_state = "/obj/item/clothing/neck/maid_neck_cover"
 	post_init_icon_state = "maid_neck_cover"
-	greyscale_config = /datum/greyscale_config/maid_neck_cover
-	greyscale_config_worn = /datum/greyscale_config/maid_neck_cover/worn
+	greyscale_config = /datum/greyscale_config/bubber_maid_neck_cover
+	greyscale_config_worn = /datum/greyscale_config/bubber_maid_neck_cover/worn
 	greyscale_colors = "#7b9ab5#edf9ff"
 	flags_1 = IS_PLAYER_COLORABLE_1

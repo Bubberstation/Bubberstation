@@ -77,10 +77,6 @@
 	name = "Aerostatic Gloves"
 	item_path = /obj/item/clothing/gloves/kim
 
-/datum/loadout_item/gloves/maid
-	name = "Maid Arm Covers"
-	item_path = /obj/item/clothing/gloves/maid
-
 /datum/loadout_item/gloves/maid_arm_covers
 	name = "Colourable Maid Arm Covers"
 	item_path = /obj/item/clothing/gloves/maid_arm_covers

@@ -245,10 +245,6 @@
 	name = "Stethoscope"
 	item_path = /obj/item/clothing/neck/stethoscope
 
-/datum/loadout_item/neck/maid
-	name = "Maid Neck Cover"
-	item_path = /obj/item/clothing/neck/maid
-
 /*
 *	DONATOR
 */

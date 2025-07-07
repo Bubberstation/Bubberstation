@@ -1,4 +1,4 @@
-import { sortBy } from 'common/collections';
+import { sortBy } from 'es-toolkit';
 import {
   ComponentType,
   createElement,
@@ -23,7 +23,7 @@ import { createSetPreference, PreferencesMenuData } from '../../types';
 import { useServerPrefs } from '../../useServerPrefs';
 
 export function sortChoices(array: [string, ReactNode][]) {
-  return sortBy(array, ([name]) => name);
+  return sortBy(array, [([name]) => name]);
 }
 
 export type Feature<
