@@ -221,7 +221,7 @@
 			if(vagina.reagents.total_volume >= MIN_VAGINA_WETNESS_THRESHOLD)
 				add_cum_splatter_floor(get_turf(src), female = TRUE)
 		else
-			if(vagina.reagents.total_volume >= MIN_VAGINA_WETNESS_TRESHOLD)
+			if(vagina.reagents.total_volume >= MIN_VAGINA_WETNESS_THRESHOLD)
 				visible_message(span_userlove("[src] cums in [self_their] underwear from [self_their] vagina!"), \
 					span_userlove("You cum in your underwear from your vagina! Eww."))
 				self_orgasm = TRUE
