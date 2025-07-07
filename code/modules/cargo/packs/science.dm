@@ -190,3 +190,19 @@
 	contains = list(/obj/item/mod/core/standard = 3)
 	crate_name = "\improper MOD core crate"
 	crate_type = /obj/structure/closet/crate/nakamura
+
+/datum/supply_pack/science/mechthermal
+	name = "Heavy Thermal Guns Crate"
+	desc = "Contains two experimental thermal cannons for use by mechs. \
+		When used simultaneously, their excess power used to heat and cool the opposing weapon, \
+		increasing the reload speed."
+	cost = CARGO_CRATE_VALUE * 25
+	access = ACCESS_RD
+	access_view = ACCESS_ROBOTICS
+	contains = list(
+		/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/cryo,
+		/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/inferno,
+	)
+	crate_name = "thermal cannons crate"
+	crate_type = /obj/structure/closet/crate/secure/plasma
+
