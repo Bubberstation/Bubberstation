@@ -12,4 +12,3 @@
 /obj/item/organ/genital/Initialize(mapload)
 	. = ..()
 	create_reagents(internal_fluid_maximum, REAGENT_HOLDER_ALIVE)
-	reagents.maximum_volume = internal_fluid_maximum
