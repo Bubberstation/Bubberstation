@@ -66,15 +66,15 @@
 /obj/item/mod/control/pre_equipped/protean/equipped(mob/user, slot, initial)
 	. = ..()
 
-	if(isprotean(wearer))
+	if(isprotean(user))
 		return
-	if(slot == ITEM_SLOT_BACK && wearer)
-		RegisterSignal(wearer, COMSIG_OOC_ESCAPE, PROC_REF(ooc_escape))
+	if(slot == ITEM_SLOT_BACK && user)
+		RegisterSignal(user, COMSIG_OOC_ESCAPE, PROC_REF(ooc_escape))
 		if(modlocked)
 			ADD_TRAIT(src, TRAIT_NODROP, "protean")
-			to_chat(wearer, span_warning("The suit does not seem to be able to come off..."))
+			to_chat(user, span_warning("The suit does not seem to be able to come off..."))
 	else
-		UnregisterSignal(wearer, COMSIG_OOC_ESCAPE)
+		UnregisterSignal(user, COMSIG_OOC_ESCAPE)
 
 /obj/item/mod/control/pre_equipped/protean/choose_deploy(mob/user)
 	if(!isprotean(user) && modlocked && active)
@@ -86,7 +86,7 @@
 	if(!force_deactivate && modlocked && !isprotean(user) && active)
 		balloon_alert(user, "it doesn't turn off")
 		return FALSE
-	if(!active && wearer.has_status_effect(/datum/status_effect/protean_low_power_mode))
+	if(!active && user.has_status_effect(/datum/status_effect/protean_low_power_mode))
 		balloon_alert(user, "low power")
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
@@ -280,7 +280,7 @@
 	if (!isnull(should_strip_proc_path) && !call(species.owner, should_strip_proc_path)(user))
 		return
 	suit.balloon_alert_to_viewers("stripping")
-	suit.wearer.visible_message(span_warning("[source] begins to dump the contents of [suit.wearer]'s control unit!"))
+	user.visible_message(span_warning("[user] begins to dump the contents of [source]!"))
 	ASYNC
 		var/datum/strip_menu/protean/strip_menu = LAZYACCESS(strip_menus, species.owner)
 		if (isnull(strip_menu))
