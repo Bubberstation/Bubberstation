@@ -24877,7 +24877,9 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical/central)
 "eLa" = (
-/obj/machinery/atmospherics/pipe/smart/simple/dark/visible,
+/obj/machinery/atmospherics/components/binary/pump{
+	name = "Mix To Incinerator"
+	},
 /turf/open/floor/iron/smooth_edge{
 	dir = 8
 	},
@@ -30742,8 +30744,8 @@
 /area/station/security/execution/education)
 "fRn" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold/dark/visible{
-	dir = 1
+/obj/machinery/atmospherics/pipe/smart/simple/dark/visible{
+	dir = 10
 	},
 /turf/open/floor/iron/smooth_corner,
 /area/station/maintenance/disposal/incinerator)
@@ -40007,9 +40009,8 @@
 "hGY" = (
 /obj/structure/cable,
 /obj/machinery/light_switch/directional/north,
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 4;
-	name = "Mix to Incinerator"
+/obj/machinery/atmospherics/pipe/smart/simple/dark/visible{
+	dir = 4
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/maintenance/disposal/incinerator)
@@ -63129,6 +63130,7 @@
 	dir = 4;
 	id = "crematoriumChapel"
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
 /area/station/service/chapel)
 "mbt" = (
@@ -66386,7 +66388,6 @@
 /turf/open/floor/iron,
 /area/station/commons/fitness/recreation)
 "mJK" = (
-/obj/structure/cable,
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/disposal/incinerator)
 "mJL" = (
@@ -77106,9 +77107,7 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/upper)
 "oKJ" = (
-/obj/machinery/atmospherics/components/tank/plasma{
-	dir = 8
-	},
+/obj/structure/cable,
 /turf/open/floor/iron/smooth_corner{
 	dir = 8
 	},
@@ -80094,10 +80093,6 @@
 /area/station/ai_monitored/command/storage/eva)
 "pqj" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 8;
-	name = "Plasma to Incinerator"
-	},
 /turf/open/floor/iron/smooth_edge{
 	dir = 1
 	},
