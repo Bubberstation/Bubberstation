@@ -4343,13 +4343,8 @@
 /turf/open/floor/iron/shuttle/evac/airless,
 /area/space/nearstation)
 "aSG" = (
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 1;
-	name = "Plasma injector"
-	},
-/obj/effect/turf_decal/bot,
 /obj/machinery/camera/autoname/directional/east,
-/turf/open/floor/iron,
+/turf/open/floor/iron/dark,
 /area/station/engineering/atmos/test_chambers)
 "aSL" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
@@ -7187,10 +7182,10 @@
 "bup" = (
 /obj/machinery/camera/autoname/directional/north,
 /obj/structure/cable,
-/obj/machinery/duct,
 /obj/machinery/atmospherics/pipe/smart/simple/dark/visible{
 	dir = 4
 	},
+/obj/machinery/meter,
 /turf/open/floor/iron,
 /area/station/engineering/atmos/test_chambers)
 "buC" = (
@@ -23667,10 +23662,8 @@
 	pixel_x = 8;
 	pixel_y = -23
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold/dark/visible{
-	dir = 4
-	},
 /obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/smart/simple/dark/visible,
 /turf/open/floor/iron/smooth_corner{
 	dir = 4
 	},
@@ -27115,9 +27108,6 @@
 /obj/effect/turf_decal/bot,
 /obj/machinery/computer/atmos_control/nocontrol/incinerator{
 	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/smart/simple/dark/visible{
-	dir = 4
 	},
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
@@ -30752,11 +30742,9 @@
 /area/station/security/execution/education)
 "fRn" = (
 /obj/structure/cable,
-/obj/machinery/duct,
-/obj/machinery/atmospherics/pipe/smart/simple/dark/visible{
-	dir = 10
+/obj/machinery/atmospherics/pipe/smart/manifold/dark/visible{
+	dir = 1
 	},
-/obj/machinery/meter,
 /turf/open/floor/iron/smooth_corner,
 /area/station/maintenance/disposal/incinerator)
 "fRq" = (
@@ -31425,7 +31413,6 @@
 	},
 /obj/structure/cable,
 /obj/machinery/airalarm/directional/north,
-/obj/machinery/duct,
 /obj/machinery/atmospherics/pipe/smart/simple/dark/visible{
 	dir = 4
 	},
@@ -40020,9 +40007,9 @@
 "hGY" = (
 /obj/structure/cable,
 /obj/machinery/light_switch/directional/north,
-/obj/machinery/duct,
-/obj/machinery/atmospherics/pipe/smart/simple/dark/visible{
-	dir = 4
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 4;
+	name = "Mix to Incinerator"
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/maintenance/disposal/incinerator)
@@ -76370,9 +76357,7 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical/morgue)
 "oDe" = (
-/obj/machinery/atmospherics/pipe/layer_manifold/supply/hidden{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
 /area/station/engineering/atmos/test_chambers)
 "oDh" = (
@@ -76559,7 +76544,6 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/atmos,
 /obj/structure/cable,
-/obj/machinery/duct,
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -77122,7 +77106,9 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/upper)
 "oKJ" = (
-/obj/machinery/duct,
+/obj/machinery/atmospherics/components/tank/plasma{
+	dir = 8
+	},
 /turf/open/floor/iron/smooth_corner{
 	dir = 8
 	},
@@ -80108,7 +80094,10 @@
 /area/station/ai_monitored/command/storage/eva)
 "pqj" = (
 /obj/structure/cable,
-/obj/machinery/duct,
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 8;
+	name = "Plasma to Incinerator"
+	},
 /turf/open/floor/iron/smooth_edge{
 	dir = 1
 	},
@@ -80551,12 +80540,6 @@
 /obj/machinery/computer/operating,
 /turf/open/floor/iron/white,
 /area/station/medical/morgue)
-"puX" = (
-/obj/machinery/atmospherics/pipe/smart/simple/supply/hidden{
-	dir = 8
-	},
-/turf/open/floor/iron,
-/area/station/engineering/atmos/test_chambers)
 "puZ" = (
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/machinery/computer/security/mining,
@@ -84558,10 +84541,6 @@
 /obj/machinery/camera/autoname/directional/south,
 /turf/open/floor/iron/dark/small,
 /area/station/cargo/bitrunning/den)
-"qiq" = (
-/obj/machinery/atmospherics/components/binary/pump/on,
-/turf/closed/wall/r_wall,
-/area/station/maintenance/disposal/incinerator)
 "qir" = (
 /obj/structure/grille,
 /obj/effect/decal/cleanable/dirt{
@@ -103154,13 +103133,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/science/research)
-"tHX" = (
-/obj/machinery/atmospherics/pipe/smart/simple/dark/visible{
-	dir = 6
-	},
-/obj/structure/cable,
-/turf/open/floor/iron/dark,
-/area/station/maintenance/disposal/incinerator)
 "tHY" = (
 /turf/closed/wall/r_wall,
 /area/station/maintenance/central)
@@ -103617,7 +103589,6 @@
 /area/station/science/research)
 "tML" = (
 /obj/structure/cable,
-/obj/machinery/duct,
 /obj/machinery/atmospherics/pipe/smart/simple/dark/visible{
 	dir = 4
 	},
@@ -108453,12 +108424,6 @@
 	dir = 4
 	},
 /area/station/hallway/secondary/entry)
-"uIk" = (
-/obj/machinery/atmospherics/components/binary/pump/on{
-	dir = 1
-	},
-/turf/closed/wall/r_wall,
-/area/station/maintenance/disposal/incinerator)
 "uIp" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Gear Room"
@@ -110653,9 +110618,7 @@
 "vgc" = (
 /obj/machinery/light/small/directional/west,
 /obj/machinery/camera/directional/west,
-/obj/machinery/atmospherics/components/binary/pump{
-	name = "Mix To Incinerator"
-	},
+/obj/machinery/atmospherics/pipe/smart/simple/dark/visible,
 /turf/open/floor/iron/smooth_edge{
 	dir = 8
 	},
@@ -114516,7 +114479,6 @@
 /area/station/science/robotics)
 "vOZ" = (
 /obj/structure/cable,
-/obj/machinery/duct,
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden{
 	dir = 10
 	},
@@ -120879,7 +120841,6 @@
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible{
 	dir = 6
 	},
-/obj/machinery/duct,
 /turf/open/floor/iron/smooth_edge{
 	dir = 4
 	},
@@ -121163,10 +121124,7 @@
 /area/station/maintenance/department/medical)
 "xcO" = (
 /obj/machinery/light/directional/east,
-/obj/machinery/atmospherics/components/tank/plasma{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/bridge_pipe/supply/hidden{
+/obj/machinery/atmospherics/pipe/layer_manifold/supply/hidden{
 	dir = 4
 	},
 /turf/open/floor/iron/dark,
@@ -165354,7 +165312,7 @@ sQQ
 sQQ
 sQQ
 sQQ
-puX
+oDe
 biL
 sQQ
 lmd
@@ -165611,7 +165569,7 @@ sQQ
 sQQ
 ovY
 sQQ
-puX
+oDe
 kfT
 sQQ
 lmd
@@ -165868,7 +165826,7 @@ sQQ
 sQQ
 sQQ
 sQQ
-puX
+oDe
 kfT
 sQQ
 lmd
@@ -166125,7 +166083,7 @@ ygq
 eof
 wlM
 sQQ
-puX
+oDe
 kfT
 sQQ
 sQQ
@@ -166382,7 +166340,7 @@ sQQ
 sQQ
 sQQ
 sQQ
-puX
+oDe
 biL
 sQQ
 sQQ
@@ -166637,7 +166595,7 @@ fth
 fYp
 euL
 ecj
-tHX
+laI
 aSG
 xcO
 nZT
@@ -167154,7 +167112,7 @@ eLa
 ezv
 oGL
 tIN
-qiq
+oGL
 gWv
 pDq
 fth
@@ -167668,7 +167626,7 @@ akk
 eZI
 wnP
 ojg
-uIk
+wnP
 hDq
 pDq
 fth
