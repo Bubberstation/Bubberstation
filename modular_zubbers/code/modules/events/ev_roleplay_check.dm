@@ -39,7 +39,7 @@ GLOBAL_LIST_EMPTY(dorms_areas)
 /**
  * Checks if a player meets certain conditions to exclude them from event selection.
  */
-/proc/engaged_role_play_check(mob/living/carbon/human/player, station = TRUE, dorms = TRUE)
+/proc/engaged_role_play_check(mob/player, station = TRUE, dorms = TRUE)
 
 	var/turf/player_turf = get_turf(player)
 
