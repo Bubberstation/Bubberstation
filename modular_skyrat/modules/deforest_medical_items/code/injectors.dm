@@ -159,7 +159,7 @@
 // Stimulant centered around ondansetron
 /obj/item/reagent_containers/hypospray/medipen/deforest/krotozine
 	name = "krotozine manipulative stimulant injector"
-	desc = "A Deforest branded autoinjector, loaded with a mix of stimulants of weak healing agents."
+	desc = "A Deforest branded autoinjector, loaded with a mix of stimulants and weak healing agents."
 	base_icon_state = "krotozine"
 	icon_state = "krotozine"
 	list_reagents = list(

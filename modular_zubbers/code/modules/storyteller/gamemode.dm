@@ -751,7 +751,7 @@ SUBSYSTEM_DEF(gamemode)
 
 /datum/controller/subsystem/gamemode/proc/process_storyteller_vote()
 	var/list/players = list()
-	if(!length(!vote_datum?.choices_by_ckey))
+	if(!length(vote_datum?.choices_by_ckey))
 		return
 
 	for(var/mob/dead/new_player/player as anything in GLOB.new_player_list)

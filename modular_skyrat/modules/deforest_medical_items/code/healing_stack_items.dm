@@ -3,7 +3,7 @@
 
 /obj/item/stack/medical/wound_recovery
 	name = "subdermal splint applicator"
-	desc = "A roll flexible material dotted with millions of micro-scale injectors on one side. \
+	desc = "A roll of flexible material dotted with millions of micro-scale injectors on one side. \
 		On application to a body part with a damaged bone structure, nanomachines stored within those \
 		injectors will surround the wound and form a subdermal, self healing splint. While convenient \
 		for keeping appearances and rapid healing, the nanomachines tend to leave their host particularly \
