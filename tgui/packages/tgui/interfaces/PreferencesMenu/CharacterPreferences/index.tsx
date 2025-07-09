@@ -7,7 +7,7 @@ import { SideDropdown } from '../../../bubber_components/SideDropdown'; // BUBBE
 import { PageButton } from '../components/PageButton';
 import { LanguagesPage } from '../LanguagesMenu'; // BUBBER EDIT ADDITION
 import { LimbsPage } from '../LimbsPage'; // BUBBER EDIT ADDITION
-import { PreferencesMenuData } from '../types';
+import type { PreferencesMenuData } from '../types';
 import { AntagsPage } from './AntagsPage';
 import { JobsPage } from './JobsPage';
 import { LoadoutPage } from './loadout';
