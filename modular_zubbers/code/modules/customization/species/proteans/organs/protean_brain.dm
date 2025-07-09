@@ -159,16 +159,22 @@
 		eyes = new /obj/item/organ/eyes/robotic/protean
 		eyes.on_bodypart_insert()
 		eyes.Insert(owner, TRUE)
+	else
+		eyes.set_organ_damage(0)
 
 	if(isnull(tongue))
 		tongue = new /obj/item/organ/tongue/cybernetic/protean
 		tongue.on_bodypart_insert()
 		tongue.Insert(owner, TRUE)
+	else
+		tongue.set_organ_damage(0)
 
 	if(isnull(ears))
 		ears = new /obj/item/organ/ears/cybernetic/protean
 		ears.on_bodypart_insert()
 		ears.Insert(owner, TRUE)
+	else
+		ears.set_organ_damage(0)
 
 /obj/item/organ/brain/protean/proc/revive()
 	dead = FALSE
