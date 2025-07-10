@@ -107,6 +107,8 @@
 /datum/species/protean/proc/organ_reject(mob/living/source, obj/item/organ)
 	SIGNAL_HANDLER
 
+	if(isnull(owner))
+		return
 	var/obj/item/organ/insert_organ = organ
 	var/list/slots = list(ORGAN_SLOT_BRAIN, ORGAN_SLOT_HEART, ORGAN_SLOT_STOMACH, ORGAN_SLOT_EYES)
 	if(!(insert_organ.slot in slots))
