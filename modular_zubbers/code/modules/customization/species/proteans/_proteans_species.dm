@@ -123,7 +123,7 @@
 /datum/species/protean/on_species_loss(mob/living/carbon/human/gainer, datum/species/new_species, pref_load)
 	. = ..()
 	if(owner)
-		UnregisterSignal(COMSIG_ORGAN_SURGICALLY_INSERTED)
+		UnregisterSignal(owner, COMSIG_CARBON_GAIN_ORGAN)
 	if(species_modsuit.stored_modsuit)
 		species_modsuit.unassimilate_modsuit(owner, TRUE)
 	gainer.dropItemToGround(species_modsuit, TRUE)
