@@ -30,7 +30,7 @@
 	var/log_amount = 10
 
 /obj/structure/flora/gmushroom/attackby(obj/item/W, mob/user, params)
-	if(log_amount && (!(flags_1 & NODECONSTRUCT_1)))
+	if(log_amount && (!(flags_1 & NO_DEBRIS_AFTER_DECONSTRUCTION)))
 		if(W.sharpness && W.force > 0)
 			if(W.hitsound)
 				playsound(get_turf(src), W.hitsound, 100, 0, 0)
@@ -82,7 +82,7 @@
 	var/log_amount = 10
 
 /obj/structure/flora/shadowtree/attackby(obj/item/W, mob/user, params)
-	if(log_amount && (!(flags_1 & NODECONSTRUCT_1)))
+	if(log_amount && (!(flags_1 & NO_DEBRIS_AFTER_DECONSTRUCTION)))
 		if(W.sharpness && W.force > 0)
 			if(W.hitsound)
 				playsound(get_turf(src), W.hitsound, 100, 0, 0)
@@ -133,7 +133,7 @@
 	var/log_amount = 10
 
 /obj/structure/flora/plasmatree/attackby(obj/item/W, mob/user, params)
-	if(log_amount && (!(flags_1 & NODECONSTRUCT_1)))
+	if(log_amount && (!(flags_1 & NO_DEBRIS_AFTER_DECONSTRUCTION)))
 		if(W.sharpness && W.force > 0)
 			if(W.hitsound)
 				playsound(get_turf(src), W.hitsound, 100, 0, 0)

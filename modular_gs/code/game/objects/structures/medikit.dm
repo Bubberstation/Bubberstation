@@ -136,7 +136,7 @@ obj/structure/medkit_cabinet/contents_explosion(severity, target)
 
 //drops medkit when busted
 /obj/structure/medkit_cabinet/obj_break(damage_flag)
-	if(!broken && !(flags_1 & NODECONSTRUCT_1))
+	if(!broken && !(flags_1 & NO_DEBRIS_AFTER_DECONSTRUCTION))
 		broken = 1
 		opened = 1
 		if(stored_medkit)
@@ -146,7 +146,7 @@ obj/structure/medkit_cabinet/contents_explosion(severity, target)
 
 //I think this is the code to determine mats you get out of it?
 /obj/structure/medkit_cabinet/deconstruct(disassembled = TRUE)
-	if(!(flags_1 & NODECONSTRUCT_1))
+	if(!(flags_1 & NO_DEBRIS_AFTER_DECONSTRUCTION))
 		if(disassembled)
 			new /obj/item/wallframe/medkit_cabinet(loc)
 		else

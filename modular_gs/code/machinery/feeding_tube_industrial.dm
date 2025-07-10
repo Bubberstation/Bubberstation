@@ -69,7 +69,7 @@
 
 
 /obj/structure/disposaloutlet/industrial_feeding_tube/deconstruct(disassembled)
-	if(!(flags_1 & NODECONSTRUCT_1))
+	if(!(flags_1 & NO_DEBRIS_AFTER_DECONSTRUCTION))
 		new /obj/item/stack/sheet/metal(loc, 5)
 		new /obj/item/stack/sheet/plastic(loc, 5)
 		new /obj/item/pipe/binary(loc, PIPE_STRAIGHT, NORTH)

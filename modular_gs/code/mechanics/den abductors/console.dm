@@ -151,7 +151,7 @@
 	name = "tracking scale"
 	desc = "A upgraded scale that tracks to weight of all of those that have stepped on it. Using this will add credits to the feeder console"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
-	flags_1 = NODECONSTRUCT_1
+	flags_1 = NO_DEBRIS_AFTER_DECONSTRUCTION
 	/// How much credits do we currently have?
 	var/credits = 0
 	/// How many credits are we going to reward per pound gained?

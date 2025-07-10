@@ -402,6 +402,10 @@
 			render_list += "<span class='alert ml-1'>Blood alcohol content: <b>CRITICAL [blood_alcohol_content]%</b></span><br>"
 		else
 			render_list += "<span class='info ml-1'>Blood alcohol content: [blood_alcohol_content]%</span><br>"
+	//GS13 EDIT START BFI/WEIGHT ON SCANNERS
+	if(istype(carbontarget))
+		render_list += span_info("Subject weighs [carbontarget.calculate_weight_in_pounds()] pounds ([carbontarget.fatness] BFI.)")
+	//GS13 EDIT END
 
 	//Diseases
 	var/disease_hr = FALSE
