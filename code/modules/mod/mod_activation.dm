@@ -85,9 +85,9 @@
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 	if(part_datum.can_overslot)
 		var/obj/item/overslot = wearer.get_item_by_slot(part.slot_flags)
-		if(overslot && istype(overslot, /obj/item/clothing))
-			// Bubber Edit Start - Don't require clothing to be flagged for overslotting
-			// var/obj/item/clothing/clothing = overslot
+		if(overslot && istype(overslot, /obj/item))
+			// Bubber Edit Start - Don't require any equipment to be flagged for overslotting
+			// var/obj/item/ = overslot
 			// if(clothing.clothing_flags & CLOTHING_MOD_OVERSLOTTING)
 			part_datum.overslotting = overslot
 			wearer.transferItemToLoc(overslot, part, force = TRUE)
