@@ -10,7 +10,7 @@
 	hidden_quirk = TRUE
 
 // If blooddeficiency is added to a synth, this detours to the blooddeficiency/synth quirk.
-/datum/quirk/blooddeficiency/add_to_holder(mob/living/new_holder, quirk_transfer = FALSE, client/client_source, unique = TRUE)
+/datum/quirk/blooddeficiency/add_to_holder(mob/living/new_holder, quirk_transfer = FALSE, client/client_source, unique = TRUE, announce = TRUE)
 	if(!issynthetic(new_holder) || type != /datum/quirk/blooddeficiency)
 		// Defer to TG blooddeficiency if the character isn't robotic.
 		return ..()
