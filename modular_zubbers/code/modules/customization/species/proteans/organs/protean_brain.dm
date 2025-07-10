@@ -26,21 +26,6 @@
 	. = ..()
 	if(dead)
 		return
-	var/damage_amount = 4 // How much damage per life() tick this organ should apply
-
-	for(var/obj/item/organ/organ in owner.organs)
-		if(organ.organ_flags & (ORGAN_ROBOTIC | ORGAN_NANOMACHINE | ORGAN_EXTERNAL | ORGAN_UNREMOVABLE))
-			continue
-		if(istype(organ, /obj/item/organ/taur_body))
-			continue
-		organ.apply_organ_damage(damage_amount)
-		if(COOLDOWN_FINISHED(src, message_cooldown))
-			to_chat(owner, span_warning("Your mass violently rips apart [organ]!"))
-			COOLDOWN_START(src, message_cooldown, 30 SECONDS)
-		if(organ.organ_flags & ORGAN_FAILING)
-			to_chat(owner, span_warning("Your mass violently rejects [organ]"))
-			organ.mob_remove(owner, TRUE)
-
 	handle_refactory(owner.get_organ_slot(ORGAN_SLOT_STOMACH))
 	handle_orchestrator(owner.get_organ_slot(ORGAN_SLOT_HEART))
 	if(owner.stat >= HARD_CRIT && !dead)
