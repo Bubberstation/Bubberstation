@@ -111,7 +111,8 @@
 	switching_modes = FALSE
 	if(jet_mode)
 		return
-	icon_state = "mccloud-jet"
+	icon_state = base_icon_state + "-jet"
+	stepsound = 'sound/machines/hiss.ogg'
 	jet_mode = TRUE
 	movedelay = !overclock_mode ? jet_move_delay : jet_move_delay / overclock_coeff
 	playsound(src, 'sound/vehicles/mecha/mech_shield_raise.ogg', vol = 20, vary = TRUE, pressure_affected = FALSE)
@@ -121,8 +122,9 @@
 	switching_modes = FALSE
 	if(!jet_mode)
 		return
-	icon_state = "mccloud"
+	icon_state = base_icon_state
 	jet_mode = FALSE
+	stepsound = 'sound/vehicles/mecha/powerloader_step.ogg'
 	movedelay = !overclock_mode ? biped_move_delay : biped_move_delay / overclock_coeff
 	mode_switch_sparks()
 	playsound(src, 'sound/vehicles/mecha/mech_shield_drop.ogg', vol = 20, vary = TRUE, pressure_affected = FALSE)
@@ -342,3 +344,8 @@
 	var/turf/my_turf = get_turf(src)
 	..()
 	explosion(my_turf, ex_dev, ex_heavy, ex_light, ex_flame)
+
+/obj/vehicle/sealed/mecha/mccloud/mob_toggled_ci(mob/living/source)
+	..()
+	if(jet_mode) //this is just to fix some bug where toggling CI sets you to the wrong icon
+		icon_state = base_icon_state + "-jet"
