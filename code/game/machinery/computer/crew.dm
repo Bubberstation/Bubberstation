@@ -278,10 +278,10 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			if (jobs[trim_assignment] != null)
 				entry["ijob"] = jobs[trim_assignment]
 
-		// SKYRAT EDIT BEGIN: Checking for robotic race
-		if (issynthetic(tracked_human))
+		// BUBBER EDIT BEGIN: Checking for robotic race/Proteans
+		if (issynthetic(tracked_human) || isprotean(tracked_human))
 			entry["is_robot"] = TRUE
-		// SKYRAT EDIT END
+		// BUBBER EDIT END
 
 		// Broken sensors show garbage data
 		if (uniform?.has_sensor == BROKEN_SENSORS) // BUBBER EDIT CHANGE - NANITES - Original: if (uniform.has_sensor == BROKEN_SENSORS)
@@ -296,14 +296,18 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			results[++results.len] = entry
 			continue
 
-		// BUBBERSTATION EDIT BEGIN: Add DNR status
+		// BUBBERSTATION EDIT BEGIN: Add DNR status, proteans death state.
 		// If sensors are above living tracking, set DNR state
 		if (sensor_mode >= SENSOR_LIVING)
 			entry["is_dnr"] = tracked_human.get_dnr()
-
-		// Current status
-		if (sensor_mode >= SENSOR_LIVING)
-			entry["life_status"] = tracked_living_mob.stat
+			// Current status
+			if(!isprotean(tracked_human))
+				entry["life_status"] = tracked_living_mob.stat
+			else
+				// Check if protean is stuck in suit
+				var/obj/item/organ/brain/protean/brain = tracked_human.get_organ_slot(ORGAN_SLOT_BRAIN)
+				entry["life_status"] = brain?.dead ? DEAD : tracked_living_mob.stat // If brain not dead/no brain then handling as usual
+		// BUBBERSTATION EDIT END
 
 		// Damage
 		if (sensor_mode >= SENSOR_VITALS)
