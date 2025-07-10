@@ -243,10 +243,13 @@
 
 	// the actual stunning is here
 	if(!owner.check_stun_immunity(CANSTUN|CANKNOCKDOWN))
-		if(taser == firer) //bubber addition
+		// BUBBER EDIT CHANGE BEGIN
+		// owner.apply_damage(stamina_per_second * seconds_between_ticks, STAMINA)
+		if(taser == firer)
 			owner.apply_damage(stamina_per_second * seconds_between_ticks, STAMINA)
-		else // Bubber addition
-			owner.apply_damage(stamina_per_second * seconds_between_ticks, STAMINA, def_zone, owner.run_armor_check(def_zone, ENERGY)) //bubber addition
+		else
+			owner.apply_damage(stamina_per_second * seconds_between_ticks, STAMINA, def_zone, owner.run_armor_check(def_zone, ENERGY))
+		// BUBBER EDIT CHANGE END
 
 /// Sets the passed atom as the "taser"
 /datum/status_effect/tased/proc/set_taser(datum/new_taser)
@@ -266,7 +269,7 @@
 /datum/status_effect/tased/proc/set_firer(atom/new_firer)
 	firer = new_firer
 	if(taser != firer) // Turrets, notably, are both
-		RegisterSignal(firer, list(COMSIG_QDELETING, COMSIG_MOB_SWAP_HANDS), PROC_REF(end_tase))
+		RegisterSignals(firer, list(COMSIG_QDELETING, COMSIG_MOB_SWAP_HANDS), PROC_REF(end_tase)) // BUBBER EDIT CHANGE - Original: RegisterSignal(firer, COMSIG_QDELETING, PROC_REF(end_tase))
 
 	RegisterSignal(firer, COMSIG_MOB_CLICKON, PROC_REF(user_cancel_tase))
 
