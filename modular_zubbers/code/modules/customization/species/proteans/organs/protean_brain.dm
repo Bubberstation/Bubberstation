@@ -10,7 +10,7 @@
 
 /obj/item/organ/brain/protean
 	name = "protean core"
-	desc = "An advanced positronic brain, typically found in the core of a protean"
+	desc = "An advanced positronic brain, typically found in the core of a protean."
 	icon = PROTEAN_ORGAN_SPRITE
 	icon_state = "posi1"
 	zone = BODY_ZONE_CHEST
@@ -46,9 +46,10 @@
 	if(owner.stat >= HARD_CRIT && !dead)
 		to_chat(owner, span_red("Your fragile refactory withers away with your mass reduced to scraps. Someone will have to help you."))
 		dead = TRUE
-		owner.fully_heal(HEAL_DAMAGE)
+		owner.revive(list(HEAL_DAMAGE, HEAL_ORGANS), TRUE, TRUE) // So we dont get dead human inside of suit
 		qdel(owner.get_organ_slot(ORGAN_SLOT_STOMACH))
 		go_into_suit(TRUE)
+		owner.add_traits(list(TRAIT_CRITICAL_CONDITION)) // Just to make crew monitoring console scream
 
 /obj/item/organ/brain/protean/proc/handle_refactory(obj/item/organ) // Slowly degrade
 	var/datum/species/protean/species = owner?.dna.species
@@ -85,16 +86,17 @@
 	var/datum/species/protean/protean = owner.dna?.species
 	if(!istype(protean) || owner.loc == protean.species_modsuit)
 		return
+	var/obj/item/mod/control/pre_equipped/protean/suit = protean.species_modsuit
 	if(!forced)
 		if(!do_after(owner, 5 SECONDS))
 			return
+	owner.visible_message(span_warning("[owner] retreats into [suit]!"))
 	owner.extinguish_mob()
-	var/obj/item/mod/control/pre_equipped/protean/suit = protean.species_modsuit
 	owner.invisibility = 101
 	new /obj/effect/temp_visual/protean_to_suit(owner.loc, owner.dir)
 	owner.Stun(INFINITY, TRUE)
 	owner.add_traits(TRANSFORM_TRAITS, PROTEAN_TRAIT)
-	owner.remove_status_effect(/datum/status_effect/protean_low_power_mode)
+	owner.remove_status_effect(/datum/status_effect/protean_low_power_mode/low_power)
 	suit.drop_suit()
 	owner.forceMove(suit)
 	sleep(12) //Sleep is fine here because I'm not returning anything and if the brain gets deleted within 12 ticks of this being ran, we have some other serious issues.
@@ -110,6 +112,9 @@
 		return
 	if(!do_after(owner, 5 SECONDS, suit, IGNORE_INCAPACITATED))
 		return
+	if(istype(suit.loc, /obj/item/reagent_containers/cup/soup_pot)) // If protean inside of soup pot
+		var/obj/item/reagent_containers/cup/soup_pot/pot = suit.loc
+		pot.remove_first_ingredient(null)
 	var/mob/living/carbon/mob = suit.loc
 	if(istype(mob))
 		mob.dropItemToGround(suit, TRUE)
@@ -128,6 +133,7 @@
 	owner.SetStun(0)
 	owner.remove_traits(TRANSFORM_TRAITS, PROTEAN_TRAIT)
 	owner.apply_status_effect(/datum/status_effect/protean_low_power_mode/reform)
+	owner.visible_message(span_warning("[owner] reforms from [suit]!"))
 	if(!HAS_TRAIT(suit, TRAIT_NODROP))
 		ADD_TRAIT(suit, TRAIT_NODROP, "protean")
 
@@ -169,6 +175,7 @@
 	playsound(owner, 'sound/machines/ping.ogg', 30)
 	to_chat(owner, span_warning("You have regained all your mass!"))
 	owner.fully_heal()
+	owner.remove_traits(list(TRAIT_CRITICAL_CONDITION))
 
 /obj/item/organ/brain/protean/proc/revive_timer()
 	balloon_alert_to_viewers("repairing")
@@ -185,5 +192,19 @@
 	icon = PROTEAN_ORGAN_SPRITE
 	icon_state = "from_puddle"
 	duration = 12
+
+/obj/item/organ/brain/protean/emp_act(severity) // technically, a protean brain isn't a cybernetic brain, so it's not inherting the normal cybernetic proc.
+	. = ..()
+	if(. & EMP_PROTECT_SELF)
+		return
+	if(owner.stat == DEAD)
+		return
+	switch(severity)
+		if (EMP_HEAVY)
+			to_chat(owner, span_boldwarning("Your core nanites [pick("buzz erratically", "surge chaotically")]!"))
+			owner.set_drugginess_if_lower(40 SECONDS)
+		if (EMP_LIGHT)
+			to_chat(owner, span_warning("Your core nanites feel [pick("fuzzy", "unruly", "sluggish")]."))
+			owner.set_drugginess_if_lower(20 SECONDS)
 
 #undef TRANSFORM_TRAITS

@@ -168,12 +168,12 @@ SUBSYSTEM_DEF(vote)
 	else
 		voted += voter.ckey
 
-	if(current_vote.choices_by_ckey[voter.ckey + their_vote] == 1)
-		current_vote.choices_by_ckey[voter.ckey + their_vote] = 0
+	if(current_vote.choices_by_ckey["[voter.ckey]_[their_vote]"] == 1) // BUBBER EDIT CHANGE - Original: [voter.ckey + their_vote]
+		current_vote.choices_by_ckey["[voter.ckey]_[their_vote]"] = 0 // BUBBER EDIT CHANGE - Original: [voter.ckey + their_vote]
 		current_vote.choices[their_vote]--
 
 	else
-		current_vote.choices_by_ckey[voter.ckey + their_vote] = 1
+		current_vote.choices_by_ckey["[voter.ckey]_[their_vote]"] = 1 // BUBBER EDIT CHANGE - Original: [voter.ckey + their_vote]
 		current_vote.choices[their_vote]++
 
 	return TRUE

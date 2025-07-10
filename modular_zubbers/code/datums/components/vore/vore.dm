@@ -30,9 +30,9 @@
 		return TRUE
 	return ..()
 
-/datum/action/innate/vore_mode/do_ability(mob/living/caller, atom/clicked_on)
+/datum/action/innate/vore_mode/do_ability(mob/living/clicker, atom/clicked_on)
 	var/datum/component/vore/V = target
-	return V.on_voremode_click(caller, clicked_on)
+	return V.on_voremode_click(clicker, clicked_on)
 
 /datum/action/innate/vore_mode/create_button()
 	var/atom/movable/screen/movable/action_button/button = ..()
