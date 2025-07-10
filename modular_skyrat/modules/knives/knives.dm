@@ -12,7 +12,7 @@
 	worn_icon_state = "knife"
 	force = 15 // why was this 20 what the fuck man
 	w_class = WEIGHT_CLASS_NORMAL
-	throwforce = 20
+	throwforce = 25
 	wound_bonus = 10 //scalpel tier
 	exposed_wound_bonus = 20 // Very-bigly
 
