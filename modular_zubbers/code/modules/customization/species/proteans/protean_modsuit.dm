@@ -207,9 +207,11 @@
 			uninstall(protean_storage)
 		if(install(module, user, TRUE))
 			continue
-		to_assimilate.uninstall(module) // Cache it
-		cached_modules += module
-		to_chat(user, span_notice("[module] has been pushed aside!"))
+		if(!module.removable) // Just leave it inside the original suit if it doesn't transfer.
+			continue
+		to_assimilate.uninstall(module) // Drop it
+		module.forceMove(get_turf(src))
+		to_chat(user, span_warning("[module] has dropped onto the floor!"))
 	update_static_data_for_all_viewers()
 
 /obj/item/mod/control/pre_equipped/protean/proc/unassimilate_modsuit(mob/living/user, forced = FALSE)
