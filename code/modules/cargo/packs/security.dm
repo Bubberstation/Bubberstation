@@ -379,4 +379,5 @@
 	access_view = ACCESS_SECURITY
 	contains = list(/obj/item/clothing/glasses/sunglasses = 1)
 	crate_name = "sunglasses crate"
+//Bubber edit, moved mech thermals to science
 
