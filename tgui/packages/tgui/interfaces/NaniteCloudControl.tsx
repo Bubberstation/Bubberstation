@@ -197,7 +197,7 @@ interface NaniteCloudBackupDetailsProps {
 export const NaniteCloudBackupDetails = () => {
   const { act, data } = useBackend<NaniteCloudBackupDetailsProps>();
   const { current_view, disk, has_program, cloud_backup } = data;
-  const can_rule = (disk?.can_rule) || false;
+  const can_rule = disk?.can_rule || false;
   if (!cloud_backup) {
     return <NoticeBox>ERROR: Backup not found</NoticeBox>;
   }

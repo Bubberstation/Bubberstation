@@ -61,11 +61,7 @@ export const GlassBlowing = (props) => {
                     : 'arrow-right'
               }
               color={
-                glass?.isFinished
-                  ? 'good'
-                  : glass?.timeLeft
-                    ? 'red'
-                    : 'default'
+                glass?.isFinished ? 'good' : glass?.timeLeft ? 'red' : 'default'
               }
               tooltipPosition="bottom"
               tooltip={

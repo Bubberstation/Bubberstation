@@ -71,7 +71,7 @@ const BASEICONS = {
   Orderly: 'shield-heart',
   'Science Guard': 'shield-heart',
   'Security Medic': 'heart-pulse',
-   Virologist: 'virus',
+  Virologist: 'virus',
   // SKYRAT EDIT END
 } as const;
 
