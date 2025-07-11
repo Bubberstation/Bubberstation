@@ -15,7 +15,7 @@ import { Window } from '../layouts';
 
 export type Storyteller_Data = {
   storyteller_name: string;
-  storyteller_halt: Boolean;
+  storyteller_halt: boolean;
   antag_count: number;
   antag_cap: number;
 
@@ -38,10 +38,10 @@ export type Storyteller_Event = {
   desc: string;
   tags: string[];
   occurences: number;
-  occurences_shared: Boolean;
+  occurences_shared: boolean;
   min_pop: number;
   start: number;
-  can_run: Boolean;
+  can_run: boolean;
   weight: number;
   weight_raw: number;
   track: string;
