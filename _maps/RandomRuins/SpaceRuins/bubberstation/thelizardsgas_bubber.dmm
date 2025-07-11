@@ -216,7 +216,7 @@
 "hl" = (
 /obj/machinery/computer/atmos_control/noreconnect{
 	name = "gas tank monitor";
-	atmos_chambers = list("lizardgaslava"="Plasma Supply");
+	atmos_chambers = list("lizardgas"="Plasma Supply");
 	desc = "This computer connects to and controls the sensors and equipment in a nearby pressurised gas reservoir."
 	},
 /turf/open/floor/iron/dark/smooth_large,
@@ -496,7 +496,6 @@
 "uh" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters{
-	name = "criminal shutters";
 	id = "lizardshutters"
 	},
 /turf/open/floor/plating,
@@ -521,7 +520,6 @@
 /obj/machinery/atmospherics/pipe/smart/simple/pink/hidden,
 /obj/structure/fans/tiny,
 /obj/machinery/door/poddoor/shutters{
-	name = "criminal shutters";
 	id = "lizardshutters"
 	},
 /obj/structure/cable,
@@ -893,6 +891,10 @@
 /turf/open/floor/iron/white/side{
 	dir = 1
 	},
+/area/ruin/space/has_grav/thelizardsgas)
+"NV" = (
+/obj/machinery/holopad,
+/turf/open/floor/iron/white,
 /area/ruin/space/has_grav/thelizardsgas)
 "Ow" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -1377,7 +1379,7 @@ QQ
 rC
 rs
 bp
-GR
+NV
 ak
 mR
 mR
