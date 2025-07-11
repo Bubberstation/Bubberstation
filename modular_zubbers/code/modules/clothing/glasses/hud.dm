@@ -1,5 +1,6 @@
 /obj/item/clothing/glasses/hud/civilian
 	name = "Civilian HUD"
 	desc = "A heads-up display that scans the humanoids around you and displays their ID status."
-	icon_state = "healthhud"
-	clothing_traits = list(DATA_HUD_SECURITY_BASIC) //thanks honkbots for having that
+	icon = 'modular_zubbers/icons/obj/clothing/head/glasses.dmi'
+	icon_state = "civhud"
+	clothing_traits = list(TRAIT_BASIC_SECURITY_HUD) //thanks honkbots for having that
