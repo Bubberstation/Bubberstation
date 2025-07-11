@@ -23,6 +23,7 @@
 	MAGAZINE_TYPE_INCENDIARY
 	ammo_type = /obj/item/ammo_casing/c46x30mm/inc
 
+
 /obj/item/ammo_box/magazine/smartgun
 	name = "Abielle magazine (.160 Smart)"
 	desc = "A deep .160 Smart magazine, suitable for the Abielle smart-SMG."

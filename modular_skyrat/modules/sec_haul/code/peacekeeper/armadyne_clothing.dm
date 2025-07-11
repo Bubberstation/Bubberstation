@@ -148,12 +148,12 @@
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/peacekeeper/armadyne
 	mask = /obj/item/clothing/mask/gas/sechailer/swat
 	suit = /obj/item/clothing/suit/armor/vest/peacekeeper/armadyne/armor
-	suit_store = /obj/item/gun/ballistic/automatic/wt550/security
+	suit_store = /obj/item/gun/ballistic/automatic/sol_rifle
 	shoes = /obj/item/clothing/shoes/jackboots/peacekeeper/armadyne
 	belt = /obj/item/storage/belt/security/webbing/peacekeeper/armadyne
 	backpack_contents = list(
 		/obj/item/storage/box/handcuffs,
-		/obj/item/ammo_box/magazine/wt550m9,
+		/obj/item/ammo_box/magazine/c40sol_rifle/standard,
 		/obj/item/modular_computer/pda/security,
 	)
 	back = /obj/item/storage/backpack/security
@@ -165,23 +165,23 @@
 /datum/outfit/armadyne_security/high_alert
 	name = "Armadyne Corporate Security (High Alert)"
 	belt = /obj/item/storage/belt/security/webbing/peacekeeper/armadyne
-	suit_store = /obj/item/gun/ballistic/automatic/wt550/security
+	suit_store = /obj/item/gun/ballistic/automatic/sol_rifle
 	backpack_contents = list(
 		/obj/item/melee/baton/telescopic,
 		/obj/item/storage/box/handcuffs,
-		/obj/item/ammo_box/magazine/wt550m9 = 2,
+		/obj/item/ammo_box/magazine/c40sol_rifle/standard = 2,
 	)
 
 
 /datum/outfit/armadyne_security/commander/high_alert
 	name = "Armadyne Corporate Security Commander (High Alert)"
-	suit_store = /obj/item/gun/ballistic/automatic/wt550/security
+	suit_store = /obj/item/gun/ballistic/automatic/sol_rifle
 	backpack_contents = list(
 		/obj/item/melee/baton/telescopic,
 		/obj/item/gun/ballistic/automatic/pistol/trappiste,
 		/obj/item/ammo_box/magazine/c585trappiste_pistol,
 		/obj/item/storage/box/handcuffs,
-		/obj/item/ammo_box/magazine/wt550m9 = 2,
+		/obj/item/ammo_box/magazine/c40sol_rifle/standard = 2,
 	)
 
 /obj/item/card/id/advanced/armadyne

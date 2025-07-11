@@ -22,6 +22,42 @@
 /obj/item/ammo_box/magazine/c35sol_pistol/stendo/starts_empty
 	start_empty = TRUE
 
+// .40 Sol rifle magazines
+
+/obj/item/ammo_box/magazine/c40sol_rifle
+	name = "\improper Sol rifle short magazine"
+	desc = "A shortened magazine for TerraGov rifles, holds fifteen rounds."
+	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/ammo.dmi'
+	icon_state = "rifle_short"
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
+	ammo_type = /obj/item/ammo_casing/c40sol
+	caliber = CALIBER_SOL40LONG
+	max_ammo = 15
+
+/obj/item/ammo_box/magazine/c40sol_rifle/starts_empty
+	start_empty = TRUE
+
+/obj/item/ammo_box/magazine/c40sol_rifle/standard
+	name = "\improper Sol rifle magazine"
+	desc = "A standard size magazine for TerraGov rifles, holds thirty rounds."
+	icon_state = "rifle_standard"
+	w_class = WEIGHT_CLASS_NORMAL
+	max_ammo = 30
+
+/obj/item/ammo_box/magazine/c40sol_rifle/standard/starts_empty
+	start_empty = TRUE
+
+
+/obj/item/ammo_box/magazine/c40sol_rifle/drum
+	name = "\improper Sol rifle drum magazine"
+	desc = "A massive drum magazine for TerraGov rifles, holds sixty rounds."
+	icon_state = "rifle_drum"
+	w_class = WEIGHT_CLASS_NORMAL
+	max_ammo = 60
+
+/obj/item/ammo_box/magazine/c40sol_rifle/drum/starts_empty
+	start_empty = TRUE
+
 // .980 grenade magazines
 
 /obj/item/ammo_box/magazine/c980_grenade
