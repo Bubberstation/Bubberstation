@@ -327,8 +327,8 @@ export function QuirksPage(props) {
   });
 
   // SKYRAT EDIT START - Better Quirk Count Code
-  let balance = -data.quirks_balance;
-  let positiveQuirks = data.positive_quirk_count;
+  const balance = -data.quirks_balance;
+  const positiveQuirks = data.positive_quirk_count;
   // SKYRAT EDIT END
 
   for (const selectedQuirkName of selectedQuirks) {

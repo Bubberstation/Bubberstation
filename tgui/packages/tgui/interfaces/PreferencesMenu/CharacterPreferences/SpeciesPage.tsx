@@ -291,7 +291,7 @@ function SpeciesPageInner(props: SpeciesPageInnerProps) {
             <Box height="calc(100vh - 170px)" overflowY="auto" pr={3}>
               {species.map(([speciesKey, species]) => {
                 // BUBBER EDIT START - Species selction
-                let speciesPage = (
+                const speciesPage = (
                   <Button
                     key={speciesKey}
                     onClick={() => {

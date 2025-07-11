@@ -255,7 +255,7 @@ class FishingMinigame extends Component<
         const distanceFromBottom =
           this.area_height -
           (currentFishState.position + currentFishState.height);
-        let possibleMoves: number[] = [];
+        const possibleMoves: number[] = [];
         if (Math.abs(distanceFromBottom) > 100) {
           possibleMoves.push(randomInteger(100, 200));
         }
