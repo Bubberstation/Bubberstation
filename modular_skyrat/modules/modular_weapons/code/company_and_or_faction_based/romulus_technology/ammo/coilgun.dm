@@ -14,4 +14,4 @@
 	damage = 15
 	armour_penetration = 15
 	wound_bonus = -10
-	bare_wound_bonus = 10
+	exposed_wound_bonus = 10
