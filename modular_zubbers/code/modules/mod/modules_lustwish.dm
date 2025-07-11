@@ -18,6 +18,8 @@
 	var/hypno_message = "Obey"
 
 /obj/item/mod/module/hypno_visor/Destroy()
+	if(!mod)
+		return ..()
 	if(mod.wearer && part_activated)
 		mod.wearer.cure_trauma_type(/datum/brain_trauma/very_special/induced_hypnosis, TRAUMA_RESILIENCE_MAGIC)
 	return ..()
