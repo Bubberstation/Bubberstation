@@ -44,7 +44,7 @@
 				/obj/item/clothing/glasses/regular/betterunshit = 5,
 				/obj/item/clothing/glasses/thin = 5,
 				/obj/item/clothing/glasses/hud/ar/projector = 5,
-				/obj/item/clothing/glasses/hud/civilian = 8,
+				/obj/item/clothing/glasses/hud/civilian = 8, //BUBBER EDIT: CIVHUD GO BRR
 				/obj/item/clothing/neck/face_scarf = 5,
 				/obj/item/clothing/neck/scarf/pride = 5, //BUBBER EDIT: ADDS PRIDE SCARVES
 				/obj/item/clothing/gloves/bracer/wraps,
