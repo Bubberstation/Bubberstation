@@ -6,8 +6,8 @@
 	max_integrity = 200
 	light_range = 1
 	// Sets it open by default
-	state = TRUE
 	density = FALSE
+	door_opened = TRUE
 
 // If you ever want to make any door like this, just simply add the component like this :3
 /obj/structure/mineral_door/calorite/Initialize(mapload)

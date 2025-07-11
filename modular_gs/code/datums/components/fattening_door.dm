@@ -5,8 +5,8 @@
 /datum/component/fattening_door/Initialize()
 	if(!istype(parent, /obj/structure/mineral_door)) // if the attached object isn't a door, return incompatible!
 		return COMPONENT_INCOMPATIBLE
-	
-	RegisterSignal(parent, list(COMSIG_MOVABLE_CROSSED),PROC_REF(Fatten))
+
+	RegisterSignal(parent, list(COMSIG_ATOM_ENTERED),PROC_REF(Fatten))
 
 /datum/component/fattening_door/proc/Fatten() //GS13
 	var/stuck_delay = 0
@@ -22,7 +22,7 @@
 				stuck_delay = 5
 				vis_message_self = "You feel your sides briefly brush against the doorway!"
 				vis_message_others = "[M]'s sides briefly brush against the doorway."
-				
+
 				// Scales depending on this switch.
 				switch(M.fatness)
 					if(FATNESS_LEVEL_BARELYMOBILE to INFINITY)
@@ -37,7 +37,7 @@
 						stuck_delay = 15
 						vis_message_self = "You feel your sides smush against the doorway!."
 						vis_message_others = "[M]'s sides briefly smush against the doorway."
-		
+
 		// Apply the fatstun
 		if(fatten)
 			M.visible_message("<span class='boldnotice'>[vis_message_others]</span>", "<span class='boldwarning'>[vis_message_self]</span>")
