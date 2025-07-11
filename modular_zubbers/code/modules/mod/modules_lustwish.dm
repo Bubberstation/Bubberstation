@@ -15,7 +15,7 @@
 	required_slots = list(ITEM_SLOT_HEAD)
 	overlay_state_inactive = "module_hypno_overlay"
 	overlay_icon_file = 'modular_zubbers/icons/mob/clothing/modsuit/mod_modules.dmi'
-	var/hypno_message = "Obey"
+	var/hypno_message
 
 /obj/item/mod/module/hypno_visor/Destroy()
 	if(!mod)
