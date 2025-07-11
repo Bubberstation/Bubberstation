@@ -170,8 +170,8 @@
 		return 2
 	. = ..()
 
-/obj/item/mod/control/pre_equipped/protean/proc/assimilate_theme(mob/user, theme)
-	var/obj/item/mod/construction/plating/plates = theme
+/obj/item/mod/control/pre_equipped/protean/proc/assimilate_theme(mob/user, plating)
+	var/obj/item/mod/construction/plating/plates = plating
 	var/datum/mod_theme/the_theme = GLOB.mod_themes[plates.theme]
 	theme = the_theme
 	the_theme.set_up_parts(src, the_theme.default_skin)
