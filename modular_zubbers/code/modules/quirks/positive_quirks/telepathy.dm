@@ -91,7 +91,7 @@
 	last_target_ref = WEAKREF(target)
 
 	var/subtler = FALSE
-	if (message && length(message) > 0 && copytext(message, 1, 2) == "#")
+	if (copytext(message, 1, 2) == "#")
 		subtler = TRUE
 		message = copytext(message, 2) // Strip the leading #
 	to_chat(owner, span_boldnotice("You reach out and convey to [target]: \"[span_purple(message)]\""))
