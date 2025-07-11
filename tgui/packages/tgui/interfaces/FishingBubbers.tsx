@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { useDispatch } from 'tgui/backend';
 import { Icon, KeyListener } from 'tgui-core/components';
-import { globalEvents, KeyEvent } from 'tgui-core/events';
+import { globalEvents, type KeyEvent } from 'tgui-core/events';
 import { KEY_CTRL } from 'tgui-core/keycodes';
 import { clamp } from 'tgui-core/math';
 import {

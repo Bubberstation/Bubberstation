@@ -10,7 +10,7 @@ import {
 
 import { useBackend } from '../../backend';
 import { CharacterPreview } from '../common/CharacterPreview';
-import { PreferencesMenuData } from './types';
+import type { PreferencesMenuData } from './types';
 
 export const RotateCharacterButtons = (props) => {
   const { act } = useBackend<PreferencesMenuData>();

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Color } from 'tgui-core/color';
 import { Box, Icon, Image } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 /**
  * Waits until two XMLHttpRequests have loaded at iconSrc before calling cb().

@@ -12,7 +12,7 @@ import {
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { TechwebWarning } from './Nanites/NoTechwebWarning';
-import { NaniteProgram, Techweb } from './Nanites/types';
+import type { NaniteProgram, Techweb } from './Nanites/types';
 
 interface NaniteInfoBoxProps {
   has_disk: boolean;

@@ -14,7 +14,8 @@
  * THIS IS A BUBBER FILE
  */
 
-import React, { Component, createRef, ReactNode, RefObject } from 'react';
+import type React from 'react';
+import { Component, createRef, type ReactNode, type RefObject } from 'react'
 import { clamp } from 'tgui-core/math';
 
 export interface Interaction {
