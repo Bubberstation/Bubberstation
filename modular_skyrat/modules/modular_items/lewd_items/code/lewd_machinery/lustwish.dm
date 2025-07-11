@@ -141,6 +141,14 @@
 			),
 		),
 		list(
+			"name" = "MOD Suit",
+			"icon" = FA_ICON_USER_ASTRONAUT,
+			"products" = list(
+				/obj/item/mod/construction/plating/lustwish = 5,
+				/obj/item/mod/module/hypno_visor = 5,
+			)
+		),
+		list(
 			"name" = "Structures",
 			"icon" = FA_ICON_HAMMER,
 			"products" = list(
