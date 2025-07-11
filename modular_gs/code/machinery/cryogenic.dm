@@ -17,3 +17,5 @@
 /obj/machinery/cryopod
 	/// Do we want to inform comms when someone cryos?
 	var/alert_comms = TRUE
+	var/on_store_message = "has entered long-term storage."
+	var/on_store_name = "Cryogenic Oversight"

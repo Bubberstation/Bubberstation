@@ -7,9 +7,8 @@
 	has_cover = 0
 	scan_range = 9
 	req_access = list(ACCESS_SYNDICATE)
-	mode = TURRET_LETHAL
 	lethal_projectile = /obj/projectile/beam/fattening
-	lethal_projectile_sound = 'sound/weapons/laser.ogg'
+	lethal_projectile_sound = 'sound/items/weapons/laser.ogg'
 	icon_state = "turretCover"
 	base_icon_state = "standard"
 	faction = list(ROLE_SYNDICATE)

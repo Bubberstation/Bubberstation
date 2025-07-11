@@ -176,7 +176,7 @@
 		if(isliving(ROI))
 			var/mob/living/living_subject = ROI
 			//only TP living mobs buckled to non anchored items
-			if(living_subject.buckled && living_subject.buckled.anchored)
+			if(!check_mob_teleportability(living_subject)|| (living_subject.buckled && living_subject.buckled.anchored)) //GS13 EDIT END
 				continue
 
 		do_teleport(ROI, get_turf(target_pad), no_effects = TRUE, channel = TELEPORT_CHANNEL_QUANTUM)

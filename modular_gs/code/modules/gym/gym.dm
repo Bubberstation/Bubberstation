@@ -3,7 +3,6 @@
 	name = "dumbbell"
 	icon = 'modular_gs/icons/obj/dumbbell.dmi'
 	icon_state = "pen"
-	item_state = "pen"
 	throwforce = 20
 	w_class = WEIGHT_CLASS_BULKY
 	throw_speed = 2
@@ -93,7 +92,7 @@
 	materials = list(/datum/material/iron = 50, /datum/material/glass = 50)
 	build_path = /obj/item/circuitboard/machine/treadmill
 	category = list("inital", "Construction")
-	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/dumbbell
 	name = "Dumbbell"
