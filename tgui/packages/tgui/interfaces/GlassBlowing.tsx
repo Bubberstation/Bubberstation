@@ -50,30 +50,30 @@ export const GlassBlowing = (props) => {
     <Window width={335} height={325}>
       <Window.Content scrollable>
         <Section
-          title={glass && glass.timeLeft ? 'Molten Glass' : 'Cooled Glass'}
+          title={glass?.timeLeft ? 'Molten Glass' : 'Cooled Glass'}
           buttons={
             <Button
               icon={
-                glass && glass.isFinished
+                glass?.isFinished
                   ? 'check'
-                  : glass && glass.timeLeft
+                  : glass?.timeLeft
                     ? 'triangle-exclamation'
                     : 'arrow-right'
               }
               color={
-                glass && glass.isFinished
+                glass?.isFinished
                   ? 'good'
-                  : glass && glass.timeLeft
+                  : glass?.timeLeft
                     ? 'red'
                     : 'default'
               }
               tooltipPosition="bottom"
               tooltip={
-                glass && glass.timeLeft
+                glass?.timeLeft
                   ? 'You may want to think twice about touching this right now...'
                   : 'It has cooled and is safe to handle.'
               }
-              content={glass && glass.isFinished ? 'Complete Craft' : 'Remove'}
+              content={glass?.isFinished ? 'Complete Craft' : 'Remove'}
               disabled={!glass || inUse}
               onClick={() => act('Remove')}
             />
@@ -123,7 +123,7 @@ export const GlassBlowing = (props) => {
             </Stack>
           </Section>
         )}
-        {glass && glass.chosenItem && (
+        {glass?.chosenItem && (
           <>
             <Section title="Steps Remaining:">
               <Stack fill vertical>
