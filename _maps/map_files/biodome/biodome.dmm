@@ -1360,7 +1360,7 @@
 	dir = 1
 	},
 /turf/open/floor/iron,
-/area/station/service/chapel)
+/area/station/hallway/primary/central/fore)
 "awm" = (
 /obj/machinery/computer/communications{
 	dir = 4
@@ -7028,15 +7028,12 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port/greater)
 "cuF" = (
-/obj/machinery/door/airlock/external{
-	name = "Engineering External Access"
-	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/smart/simple/orange/hidden{
-	dir = 4
+/obj/machinery/door/airlock/external{
+	name = "Engineering External Access"
 	},
 /turf/open/floor/plating,
 /area/station/engineering/supermatter/room)
@@ -14224,6 +14221,12 @@
 /obj/structure/chair/plastic,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
+"eQT" = (
+/obj/machinery/atmospherics/components/binary/pump/on{
+	name = "Gas To Cold Loop"
+	},
+/turf/open/floor/engine,
+/area/station/engineering/supermatter/room)
 "eRd" = (
 /obj/machinery/light/small/directional/east,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -24233,13 +24236,10 @@
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "isp" = (
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 4;
-	name = "Cooling Loop Bypass"
-	},
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/green/visible,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "isx" = (
@@ -67981,6 +67981,13 @@
 	},
 /turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/captain)
+"xlK" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 4;
+	name = "Cooling Loop Bypass"
+	},
+/turf/open/floor/engine,
+/area/station/engineering/supermatter/room)
 "xlT" = (
 /turf/open/floor/fakespace,
 /area/station/maintenance/port/greater)
@@ -109458,7 +109465,7 @@ kPl
 meW
 gjj
 isp
-gXp
+eQT
 eHk
 afA
 fnZ
@@ -109714,7 +109721,7 @@ vlo
 gXp
 vlo
 gXp
-wqN
+xlK
 tgU
 eHk
 jLf

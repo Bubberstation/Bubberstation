@@ -1,4 +1,5 @@
-/datum/vote/var/has_desc = FALSE
+/datum/vote
+	var/has_desc = FALSE
 
 /datum/vote/proc/return_desc(vote_name)
 	return ""
@@ -7,18 +8,31 @@
 	name = "Storyteller"
 	default_message = "Vote for the storyteller!"
 	has_desc = TRUE
-	count_method = VOTE_COUNT_METHOD_MULTI
-	winner_method = VOTE_WINNER_METHOD_SIMPLE
+	count_method = VOTE_COUNT_METHOD_RANKED
+	winner_method = VOTE_WINNER_METHOD_RANKED
+	ranked_winner_threshold = 70 // 70% threshold for direct win
+	display_statistics = FALSE
 	vote_reminder = TRUE
+	/// Only readied players can vote
+	var/ready_only = TRUE
 
 /datum/vote/storyteller/New()
 	. = ..()
 	default_choices = list()
 	default_choices = SSgamemode.storyteller_vote_choices()
 
+/datum/vote/storyteller/initiate_vote(initiator, duration)
+	. = ..()
+	to_chat(world, vote_font(fieldset_block("Storyteller Vote", "[span_vote_notice("Only players who are ready and joining the game round start will be calculated in voting results.")]", "boxed_message purple_box")))
 
 /datum/vote/storyteller/return_desc(vote_name)
 	return SSgamemode.storyteller_desc(vote_name)
+
+/datum/vote/storyteller/get_result_text(winners, final_winner, non_voters)
+	if(!ready_only)
+		return ..()
+
+	return fieldset_block("Storyteller Vote", "Storyteller voting is now closed! Storyteller will be determined when the round starts.", "boxed_message purple_box")
 
 /datum/vote/storyteller/create_vote()
 	. = ..()
@@ -40,6 +54,8 @@
 /datum/vote/storyteller/finalize_vote(winning_option)
 	SSgamemode.storyteller_vote_result(winning_option)
 	SSgamemode.storyteller_voted = TRUE
+	if(ready_only)
+		SSgamemode.ready_only_vote = TRUE
 
 /*
 ### PERSISTENCE SUBSYSTEM TRACKING BELOW ###
