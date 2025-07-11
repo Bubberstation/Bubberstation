@@ -59,7 +59,7 @@
 /obj/structure/statue/calorite/fatty/HasProximity(atom/movable/entity)
 	beckon()
 
-/obj/structure/statue/calorite/fatty/Moved(atom/movable/AM)
+/obj/structure/statue/calorite/fatty/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	beckon()
 	..()
 
