@@ -16,7 +16,7 @@
 */
 /datum/reagent/consumable/ethanol
 	liquid_fire_power = 10
-	liquid_fire_burnrate = 0.1
+	liquid_fire_burnrate = DEFAULT_BURN_RATE
 
 // 0 fire power
 /datum/reagent/consumable/ethanol/beer/light
@@ -204,19 +204,19 @@
 */
 /datum/reagent/thermite
 	liquid_fire_power = 20
-	liquid_fire_burnrate = 0.1
+	liquid_fire_burnrate = DEFAULT_BURN_RATE
 
 /datum/reagent/phlogiston
 	liquid_fire_power = 20
-	liquid_fire_burnrate = 0.1
+	liquid_fire_burnrate = DEFAULT_BURN_RATE
 
 /datum/reagent/clf3
 	liquid_fire_power = 30
-	liquid_fire_burnrate = 0.1
+	liquid_fire_burnrate = DEFAULT_BURN_RATE
 
 /datum/reagent/napalm
 	liquid_fire_power = 30
-	liquid_fire_burnrate = 0.1
+	liquid_fire_burnrate = DEFAULT_BURN_RATE
 
 /*
 *	OTHER
@@ -224,4 +224,4 @@
 
 /datum/reagent/fuel
 	liquid_fire_power = 10
-	liquid_fire_burnrate = 0.1
+	liquid_fire_burnrate = DEFAULT_BURN_RATE
