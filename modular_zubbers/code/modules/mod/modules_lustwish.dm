@@ -5,7 +5,7 @@
 
 /obj/item/mod/module/hypno_visor
 	name = "Hypnosis Module"
-	desc = "A module inserted into the visor of a suit in which commands can be processed. Use on self to set directives. <b>Only compatable with the lustwish theme.</b>"
+	desc = "A module inserted into the visor of a suit in which commands can be processed. Use on self to set directives."
 	icon = 'modular_zubbers/icons/mob/clothing/modsuit/mod_modules.dmi'
 	icon_state = "module_hypno"
 	module_type = MODULE_PASSIVE
@@ -38,7 +38,12 @@
 /obj/item/mod/module/hypno_visor/on_part_deactivation(deleting = FALSE)
 	mod.wearer.cure_trauma_type(/datum/brain_trauma/very_special/induced_hypnosis, TRAUMA_RESILIENCE_MAGIC)
 
-/obj/item/mod/module/hypno_visor/can_install(obj/item/mod/control/mod) // TODO: Code a overlay theme whitelist. It will look BROKEN on any other modsuit.
-	if(istype(mod.theme, /datum/mod_theme/lustwish))
-		return ..()
-	return FALSE
+/obj/item/mod/module/hypno_visor/on_install()
+	. = ..()
+	if(mod.skin != "lustwish")
+		overlay_state_inactive = null // Visual thing. Removes the overlay if it's not a part of the lustwish suit.
+
+/obj/item/mod/module/hypno_visor/on_uninstall(deleting = FALSE)
+	. = ..()
+	if(isnull(overlay_state_inactive))
+		overlay_state_inactive = initial(overlay_state_inactive)
