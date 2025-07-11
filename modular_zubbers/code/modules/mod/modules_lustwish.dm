@@ -29,7 +29,7 @@
 	hypno_message = tgui_input_text(user, "Change the hypnotic phrase.", max_length = MAX_MESSAGE_LEN)
 
 /obj/item/mod/module/hypno_visor/on_part_activation()
-	if(mod.wearer.client?.prefs?.read_preference(/datum/preference/toggle/erp/hypnosis) && mod.wearer.client.prefs.read_preference(/datum/preference/toggle/erp/sex_toy))
+	if(!(mod.wearer.client?.prefs?.read_preference(/datum/preference/toggle/erp/hypnosis) && mod.wearer.client.prefs.read_preference(/datum/preference/toggle/erp/sex_toy)))
 		return to_chat(mod.wearer, span_warning("Mind resilient to hypnotic effects: Shutting down"))
 	if(hypno_message == "")
 		hypno_message = "Obey"
