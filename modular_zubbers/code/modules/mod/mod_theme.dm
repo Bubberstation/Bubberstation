@@ -113,7 +113,7 @@
 #define LUSTWISH_BOOT_SEAL "squeezes tightly around your ankles"
 #define LUSTWISH_BOOT_UNSEAL "gives room to your feet"
 
-//// Sprites done by Toriate - Commissioned by The Sharkenning for Bubberstation
+//// Sprites done by Toriate - Commissioned by The Sharkenning
 /datum/mod_theme/lustwish
 	name = "lustwish modsuit"
 	desc = "A specialty designed lustwish themed modsuit which is based entirely off of earlier civilian modsuits."
