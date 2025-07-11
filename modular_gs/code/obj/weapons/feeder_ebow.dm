@@ -6,15 +6,15 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt/fattening)
 
 /obj/item/ammo_casing/energy/bolt/fattening
-	projectile_type = /obj/item/projectile/energy/bolt/fattening
+	projectile_type = /obj/projectile/energy/bolt/fattening
 
-/obj/item/projectile/energy/bolt/fattening
+/obj/projectile/energy/bolt/fattening
 	damage = 0
 
-/obj/item/projectile/energy/bolt/fattening/Initialize(mapload)
+/obj/projectile/energy/bolt/fattening/Initialize(mapload)
 	. = ..()
 
-/obj/item/projectile/energy/bolt/fattening/on_hit(atom/target, blocked)
+/obj/projectile/energy/bolt/fattening/on_hit(atom/target, blocked)
 	. = ..()
 	var/mob/living/carbon/target_mob = target
 	if(!istype(target_mob) || (blocked == 100))
@@ -22,4 +22,4 @@
 
 	target_mob.reagents.add_reagent(/datum/reagent/consumable/lipoifier, 2)
 
-	
+

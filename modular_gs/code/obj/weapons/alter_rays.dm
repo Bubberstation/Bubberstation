@@ -4,11 +4,10 @@
 
 /obj/item/gun/energy/laser/alter_ray
 	name = "alter-ray"
-	icon = 'icons/obj/guns/energy.dmi'
-	icon_state = "lasernew"
+	icon = 'icons/obj/weapons/guns/energy.dmi'
+	icon_state = "laser"
 	desc = "This weapon is capable of altering one's body capabilities."
-	item_state = null
-	selfcharge = EGUN_SELFCHARGE
+	selfcharge = TRUE
 	charge_delay = 5
 	ammo_x_offset = 2
 	clumsy_check = 1
@@ -25,52 +24,50 @@
 // 	ammo_type = list(/obj/item/ammo_casing/energy/laser/shrinkray, /obj/item/ammo_casing/energy/laser/growthray)
 
 
-/obj/item/projectile/alter_ray
+/obj/projectile/alter_ray
 	name = "sizeray beam"
 	icon_state = "omnilaser"
 	hitsound = null
 	damage = 0
 	damage_type = STAMINA
-	flag = "laser"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	ricochets_max = 50
 	ricochet_chance = 80
-	is_reflectable = TRUE
 	var/ratechange_amount = 0.1
 
 
 //projectile biz
 
-/obj/item/projectile/alter_ray/gainrate_decrease
+/obj/projectile/alter_ray/gainrate_decrease
 	icon_state="bluelaser"
 
-/obj/item/projectile/alter_ray/gainrate_increase
+/obj/projectile/alter_ray/gainrate_increase
 	icon_state="laser"
 
-/obj/item/projectile/alter_ray/lossrate_decrease
+/obj/projectile/alter_ray/lossrate_decrease
 	icon_state="bluelaser"
 
-/obj/item/projectile/alter_ray/lossrate_increase
+/obj/projectile/alter_ray/lossrate_increase
 	icon_state="laser"
 
-// /obj/item/projectile/alter_ray/breast_decrease
+// /obj/projectile/alter_ray/breast_decrease
 // 	icon_state="bluelaser"
 
-// /obj/item/projectile/alter_ray/breast_increase
+// /obj/projectile/alter_ray/breast_increase
 // 	icon_state="laser"
 
-// /obj/item/projectile/alter_ray/butt_decrease
+// /obj/projectile/alter_ray/butt_decrease
 // 	icon_state="bluelaser"
 
-// /obj/item/projectile/alter_ray/butt_increase
+// /obj/projectile/alter_ray/butt_increase
 // 	icon_state="laser"
 
 //laser hitting / changing code
 
 //wg rate increase
-/obj/item/projectile/alter_ray/gainrate_increase/on_hit(atom/target, blocked)
+/obj/projectile/alter_ray/gainrate_increase/on_hit(atom/target, blocked, pierce_hit)
 	. = ..()
-	
+
 	var/mob/living/carbon/gainer = target
 
 	if(iscarbon(gainer))
@@ -83,9 +80,9 @@
 
 
 //wg rate decrease
-/obj/item/projectile/alter_ray/gainrate_decrease/on_hit(atom/target, blocked)
+/obj/projectile/alter_ray/gainrate_decrease/on_hit(atom/target, blocked, pierce_hit)
 	. = ..()
-	
+
 	var/mob/living/carbon/gainer = target
 
 	if(iscarbon(gainer))
@@ -98,9 +95,9 @@
 	return FALSE
 
 //wl rate increase
-/obj/item/projectile/alter_ray/lossrate_increase/on_hit(atom/target, blocked)
+/obj/projectile/alter_ray/lossrate_increase/on_hit(atom/target, blocked, pierce_hit)
 	. = ..()
-	
+
 	var/mob/living/carbon/gainer = target
 
 	if(iscarbon(gainer))
@@ -112,9 +109,9 @@
 	return FALSE
 
 //wl rate decrease
-/obj/item/projectile/alter_ray/lossrate_decrease/on_hit(atom/target, blocked)
+/obj/projectile/alter_ray/lossrate_decrease/on_hit(atom/target, blocked, pierce_hit)
 	. = ..()
-	
+
 	var/mob/living/carbon/gainer = target
 
 	if(iscarbon(gainer))
@@ -123,24 +120,24 @@
 			return TRUE
 		if(gainer.weight_loss_rate <= 0.1)
 			return FALSE
-		
+
 	return FALSE
 
 //ammo casings - these are needed to allow guns to switch between firing modes
 /obj/item/ammo_casing/energy/laser/gainrate_increase
-	projectile_type = /obj/item/projectile/alter_ray/gainrate_increase
+	projectile_type = /obj/projectile/alter_ray/gainrate_increase
 	select_name = "Weight Gain Increase"
 
 /obj/item/ammo_casing/energy/laser/gainrate_decrease
-	projectile_type = /obj/item/projectile/alter_ray/gainrate_decrease
+	projectile_type = /obj/projectile/alter_ray/gainrate_decrease
 	select_name = "Weight Gain Decrease"
 
 /obj/item/ammo_casing/energy/laser/lossrate_increase
-	projectile_type = /obj/item/projectile/alter_ray/lossrate_increase
+	projectile_type = /obj/projectile/alter_ray/lossrate_increase
 	select_name = "Weight Loss Increase"
 
 /obj/item/ammo_casing/energy/laser/lossrate_decrease
-	projectile_type = /obj/item/projectile/alter_ray/lossrate_decrease
+	projectile_type = /obj/projectile/alter_ray/lossrate_decrease
 	select_name = "Weight Loss Decrease"
 
 
@@ -153,16 +150,16 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/lossrate_reverse)
 
 /obj/item/ammo_casing/energy/laser/lossrate_reverse
-	projectile_type = /obj/item/projectile/alter_ray/lossrate_reverse
+	projectile_type = /obj/projectile/alter_ray/lossrate_reverse
 	select_name = "Weight Loss Reverse"
 
-/obj/item/projectile/alter_ray/lossrate_reverse
+/obj/projectile/alter_ray/lossrate_reverse
 	ratechange_amount = -2
 	icon_state="laser"
 
-/obj/item/projectile/alter_ray/lossrate_reverse/on_hit(atom/target, blocked)
+/obj/projectile/alter_ray/lossrate_reverse/on_hit(atom/target, blocked, pierce_hit)
 	. = ..()
-	
+
 	var/mob/living/carbon/gainer = target
 
 	if(iscarbon(gainer))

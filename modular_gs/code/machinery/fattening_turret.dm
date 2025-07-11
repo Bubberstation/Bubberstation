@@ -8,7 +8,7 @@
 	scan_range = 9
 	req_access = list(ACCESS_SYNDICATE)
 	mode = TURRET_LETHAL
-	lethal_projectile = /obj/item/projectile/beam/fattening
+	lethal_projectile = /obj/projectile/beam/fattening
 	lethal_projectile_sound = 'sound/weapons/laser.ogg'
 	icon_state = "turretCover"
 	base_icon_state = "standard"
@@ -17,7 +17,7 @@
 
 /obj/machinery/porta_turret/fattening/heavy
 	name = "Heavy Fatoray Turret"
-	lethal_projectile = /obj/item/projectile/beam/fattening/cannon
+	lethal_projectile = /obj/projectile/beam/fattening/cannon
 	shot_delay = 30
 
 /obj/machinery/porta_turret/fattening/setup()

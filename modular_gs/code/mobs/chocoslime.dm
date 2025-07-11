@@ -63,7 +63,7 @@
 	icon_dead = "icecream_monster_dead"
 	icon_gib = "icecream_monster_dead"
 	move_to_delay = 10
-	projectiletype = /obj/item/projectile/beam/fattening/icecream
+	projectiletype = /obj/projectile/beam/fattening/icecream
 	projectilesound = 'sound/weapons/pierce.ogg'
 	ranged = 1
 	ranged_message = "schlorps"
@@ -80,7 +80,7 @@
 	gold_core_spawnable = HOSTILE_SPAWN
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/icecream = 4)
 
-/obj/item/projectile/beam/fattening/icecream //might as well make use of this thing to not make ton of different variants of the same thing
+/obj/projectile/beam/fattening/icecream //might as well make use of this thing to not make ton of different variants of the same thing
 	name = "ice cream blob"
 	icon = 'modular_gs/icons/mob/candymonster.dmi'
 	icon_state = "icecream_projectile"
@@ -94,7 +94,7 @@
 	var/food_fed = /datum/reagent/consumable/nutriment
 	var/fullness_add = 30
 
-/obj/item/projectile/beam/fattening/icecream/on_hit(atom/target, blocked)
+/obj/projectile/beam/fattening/icecream/on_hit(atom/target, blocked)
 	. = ..()
 	var/mob/living/carbon/L = target
 	if(!istype(L) || !L.reagents || L.is_mouth_covered(head_only = 1))

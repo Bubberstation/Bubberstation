@@ -8,29 +8,25 @@
 	lefthand_file = 'modular_gs/icons/obj/guns_lefthand.dmi'
 	righthand_file = 'modular_gs/icons/obj/guns_righthand.dmi'
 	icon_state = "fatoray"
-	item_state = "fatoray"
 	pin = /obj/item/firing_pin
-	fire_sound = 'sound/weapons/plasma_cutter.ogg'
+	fire_sound = 'sound/items/weapons/plasma_cutter.ogg'
 	ammo_type = list(/obj/item/ammo_casing/energy/fattening)
 
 /obj/item/ammo_casing/energy/fattening
 	name = "fattening weapon lens"
 	select_name = "fatten"
-	projectile_type = /obj/item/projectile/beam/fattening
+	projectile_type = /obj/projectile/beam/fattening
 
 ///The base projectile used by the fatoray
-/obj/item/projectile/beam/fattening
+/obj/projectile/beam/fattening
 	name = "fat energy"
 	icon = 'modular_gs/icons/obj/fatoray.dmi'
 	icon_state = "ray"
 	ricochets_max = 50
 	ricochet_chance = 80
-	hitsound = 'sound/weapons/sear.ogg'
-	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
 	damage = 0
 	eyeblur = 0
 	damage_type = BURN
-	flag = "energy"
 	light_range = 2
 	light_color = LIGHT_COLOR_ORANGE
 	///How much fat is added to the target mob?
@@ -58,9 +54,9 @@
 	name = "one-shot fattening weapon lens"
 	select_name = "fatten"
 	e_cost = 100
-	projectile_type = /obj/item/projectile/beam/fattening/cannon
+	projectile_type = /obj/projectile/beam/fattening/cannon
 
-/obj/item/projectile/beam/fattening/cannon
+/obj/projectile/beam/fattening/cannon
 	name = "fat energy"
 	icon = 'modular_gs/icons/obj/fatoray.dmi'
 	icon_state = "cannon_ray"
@@ -85,10 +81,10 @@
 /obj/item/ammo_casing/energy/fattening/weak
 	name = "budget fattening weapon lens"
 	select_name = "fatten"
-	projectile_type = /obj/item/projectile/beam/fattening/weak
+	projectile_type = /obj/projectile/beam/fattening/weak
 
 ///The base projectile used by the fatoray
-/obj/item/projectile/beam/fattening/weak
+/obj/projectile/beam/fattening/weak
 	name = "fat energy"
 	icon = 'modular_gs/icons/obj/fatoray.dmi'
 	icon_state = "ray"
@@ -115,9 +111,9 @@
 	name = "one-shot fattening weapon lens"
 	select_name = "fatten"
 	e_cost = 300
-	projectile_type = /obj/item/projectile/beam/fattening/cannon_weak
+	projectile_type = /obj/projectile/beam/fattening/cannon_weak
 
-/obj/item/projectile/beam/fattening/cannon_weak
+/obj/projectile/beam/fattening/cannon_weak
 	name = "fat energy"
 	icon = 'modular_gs/icons/obj/fatoray.dmi'
 	icon_state = "cannon_ray"
@@ -129,7 +125,7 @@
 ///////////////////////////////////////
 
 
-/obj/item/projectile/beam/fattening/on_hit(atom/target, blocked)
+/obj/projectile/beam/fattening/on_hit(atom/target, blocked, pierce_hit)
 	. = ..()
 
 	var/mob/living/carbon/gainer = target

@@ -12,12 +12,12 @@
 	ammo_type = /obj/item/ammo_casing/magic/food/strong
 
 /obj/item/ammo_casing/magic/food
-	projectile_type = /obj/item/projectile/magic/food
+	projectile_type = /obj/projectile/magic/food
 
 /obj/item/ammo_casing/magic/food/strong
-	projectile_type = /obj/item/projectile/magic/food/strong
+	projectile_type = /obj/projectile/magic/food/strong
 
-/obj/item/projectile/magic/food
+/obj/projectile/magic/food
 	name = "bolt of food"
 	pass_flags = PASSGLASS|PASSGRILLE
 	///What foods are able to be spawned by the wand?
@@ -37,7 +37,7 @@
 	///How much Lipoifier should be added to the spawned in food? Keep this at 10 maximum.
 	var/lipoifier_to_add = 5
 
-/obj/item/projectile/magic/food/on_hit(atom/target, blocked)
+/obj/projectile/magic/food/on_hit(atom/target, blocked)
 	. = ..()
 
 	var/turf/floor = get_turf(target)
@@ -52,6 +52,6 @@
 	spawned_food.reagents.add_reagent(/datum/reagent/consumable/lipoifier, lipoifier_to_add)
 	return TRUE
 
-/obj/item/projectile/magic/food/strong
+/obj/projectile/magic/food/strong
 	name = "strong bolt of food"
 	lipoifier_to_add = 10
