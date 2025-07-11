@@ -3714,14 +3714,6 @@
 /obj/machinery/door/poddoor/incinerator_ordmix,
 /turf/open/floor/engine/vacuum,
 /area/station/science/ordnance/burnchamber)
-"bmX" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/sign/poster/official/the_owl/directional/east,
-/turf/open/floor/plating,
-/area/station/maintenance/port/greater)
 "bnl" = (
 /obj/machinery/disposal/bin,
 /obj/effect/turf_decal/bot,
@@ -19484,24 +19476,17 @@
 /obj/structure/closet{
 	name = "detective closet"
 	},
-/obj/item/clothing/suit/jacket{
-	desc = "All the class of a trenchcoat without the security fibers.";
-	icon_state = "noirdet";
-	name = "trenchcoat";
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/clothing/suit/jacket{
-	desc = "All the class of a trenchcoat without the security fibers.";
-	icon_state = "detective";
-	name = "trenchcoat"
-	},
 /obj/item/clothing/head/fedora{
 	pixel_x = 4;
 	pixel_y = 4
 	},
 /obj/item/clothing/head/fedora{
 	icon_state = "detective"
+	},
+/obj/item/clothing/suit/jacket/det_suit,
+/obj/item/clothing/suit/jacket/det_suit/noir{
+	pixel_x = 4;
+	pixel_y = 4
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/port/lesser)
@@ -22612,7 +22597,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/sign/poster/official/the_owl/directional/east,
 /turf/open/floor/plating,
 /area/station/maintenance/port/greater)
 "hqk" = (
@@ -51564,10 +51548,6 @@
 /obj/effect/mapping_helpers/airlock/access/any/medical/maintenance,
 /turf/open/floor/iron/dark,
 /area/station/maintenance/port/fore)
-"qKA" = (
-/obj/structure/sign/poster/official/the_owl/directional/east,
-/turf/closed/wall,
-/area/station/maintenance/port/greater)
 "qKH" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/trimline/purple/filled/corner{
@@ -93353,7 +93333,7 @@ xau
 jhX
 myd
 ycx
-bmX
+kex
 jfy
 vjh
 csa
@@ -93609,7 +93589,7 @@ mPM
 kHw
 oMJ
 tEt
-qKA
+vjh
 hpY
 wVb
 eNQ

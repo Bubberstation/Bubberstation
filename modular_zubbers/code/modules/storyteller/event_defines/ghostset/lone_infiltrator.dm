@@ -3,7 +3,6 @@
 	typepath = /datum/round_event/ghost_role/lone_infiltrator
 	max_occurrences = 2
 	min_players = 10
-	dynamic_should_hijack = TRUE
 	category = EVENT_CATEGORY_ENTITIES
 	description = "Spawns a lone infiltrator, a non-crew syndicate agent."
 	min_wizard_trigger_potency = NEVER_TRIGGERED_BY_WIZARDS
@@ -39,7 +38,6 @@
 
 	player_mind.transfer_to(operative)
 	player_mind.set_assigned_role(SSjob.get_job_type(/datum/job/lone_operative))
-	player_mind.special_role = "Lone Infiltrator"
 	player_mind.add_antag_datum(/datum/antagonist/traitor/lone_infiltrator)
 	spawned_mobs += operative
 

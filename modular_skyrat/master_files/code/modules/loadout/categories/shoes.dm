@@ -69,6 +69,10 @@
 	name = "Work Boots"
 	item_path = /obj/item/clothing/shoes/workboots
 
+/datum/loadout_item/shoes/work_boots/heeled
+	name = "Heeled Work Boots"
+	item_path = /obj/item/clothing/shoes/workboots/heeled
+
 /datum/loadout_item/shoes/work_boots/old
 	name = "Old Work Boots"
 	item_path = /obj/item/clothing/shoes/workboots/old
@@ -76,6 +80,10 @@
 /datum/loadout_item/shoes/mining_boots
 	name = "Mining Boots"
 	item_path = /obj/item/clothing/shoes/workboots/mining
+
+/datum/loadout_item/shoes/mining_boots/heeled
+	name = "Heeled Mining Boots"
+	item_path = /obj/item/clothing/shoes/workboots/mining/heeled
 
 /datum/loadout_item/shoes/russian_boots
 	name = "Russian Boots"

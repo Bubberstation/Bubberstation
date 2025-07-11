@@ -18,7 +18,7 @@
 	species_whitelist = list(SPECIES_HEMOPHAGE)
 	COOLDOWN_DECLARE(sun_burn)
 
-/datum/quirk/sol_weakness/add_to_holder(mob/living/new_holder, quirk_transfer = FALSE, client/client_source, unique = TRUE)
+/datum/quirk/sol_weakness/add_to_holder(mob/living/new_holder, quirk_transfer = FALSE, client/client_source, unique = TRUE, announce = TRUE)
 	if(IS_BLOODSUCKER(new_holder))
 		return FALSE
 	return ..()

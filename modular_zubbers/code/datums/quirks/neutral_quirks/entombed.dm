@@ -22,6 +22,12 @@
 	/// Are we taking damage?
 	var/life_support_failed = FALSE
 
+/datum/quirk/equipping/entombed/add(client/client_source)
+	if(modsuit) return
+	modsuit = quirk_holder.get_item_by_slot(ITEM_SLOT_BACK)
+	if(!istype(modsuit))
+		modsuit = null
+
 /datum/quirk/equipping/entombed/process(seconds_per_tick)
 	var/mob/living/carbon/human/human_holder = quirk_holder
 	if(human_holder.stat == DEAD)
@@ -33,6 +39,7 @@
 			// we've got no modsuit or life support and we're not on stasis. take damage ow
 			human_holder.adjustToxLoss(ENTOMBED_TICK_DAMAGE * seconds_per_tick, updating_health = TRUE, forced = TRUE)
 			human_holder.set_jitter_if_lower(10 SECONDS)
+			return
 
 	if (!modsuit.active)
 		if (!life_support_timer)
@@ -122,6 +129,8 @@
 	modsuit.quick_activation()
 
 /datum/quirk/equipping/entombed/remove()
+	if(!cleanup)
+		return
 	var/mob/living/carbon/human/human_holder = quirk_holder
 	if (deploy_locked && HAS_TRAIT_FROM(human_holder, TRAIT_NODISMEMBER, QUIRK_TRAIT))
 		REMOVE_TRAIT(human_holder, TRAIT_NODISMEMBER, QUIRK_TRAIT)

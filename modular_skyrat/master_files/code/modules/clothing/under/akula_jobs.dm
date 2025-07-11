@@ -231,7 +231,9 @@
 
 
 /obj/item/clothing/head/helmet/space/akula_wetsuit/attack_hand_secondary(mob/user)
-	..()
+	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
 	if(!attached_hat)
 		return
 

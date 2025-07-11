@@ -528,6 +528,7 @@
 		if(picked_visibility && picked_organ && (picked_organ in organs))
 			picked_organ.visibility_preference = gen_vis_trans[picked_visibility]
 			update_body()
+			SEND_SIGNAL(src, COMSIG_HUMAN_TOGGLE_GENITALS)
 	return
 
 //Removing ERP IC verb depending on config
@@ -566,4 +567,5 @@
 			picked_organ.aroused = gen_arous_trans[picked_arousal]
 			picked_organ.update_sprite_suffix()
 			update_body()
+			SEND_SIGNAL(src, COMSIG_HUMAN_TOGGLE_AROUSAL)
 	return

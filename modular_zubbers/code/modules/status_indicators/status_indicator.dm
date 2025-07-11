@@ -1,14 +1,16 @@
+/obj/effect/overlay/status_indicator/
+	icon = 'modular_zubbers/icons/mob/status_indicators.dmi'
+	pixel_z = 16
+	plane = POINT_PLANE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	alpha = 0
 
-GLOBAL_LIST_INIT(potential_indicators, list(
-	STUNNED = image(icon = 'modular_zubbers/icons/mob/status_indicators.dmi', icon_state = STUNNED),
-	WEAKEN = image(icon = 'modular_zubbers/icons/mob/status_indicators.dmi', icon_state = WEAKEN),
-	PARALYSIS = image(icon = 'modular_zubbers/icons/mob/status_indicators.dmi', icon_state = PARALYSIS),
-	SLEEPING = image(icon = 'modular_zubbers/icons/mob/status_indicators.dmi', icon_state = SLEEPING),
-	CONFUSED = image(icon = 'modular_zubbers/icons/mob/status_indicators.dmi', icon_state = CONFUSED),
-))
+/mob/living/carbon/human/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/status_indicator)
 
 /datum/component/status_indicator
-	var/list/status_indicators = null // Will become a list as needed. Contains our status indicator objects. Note, they are actually added to overlays, this just keeps track of what exists.
+	var/list/status_indicators = list() // Will become a list as needed. Contains our status indicator objects. Note, they are actually added to overlays, this just keeps track of what exists.
 	var/mob/living/attached_mob
 
 /// Returns true if the mob is weakened. Also known as floored.
@@ -54,42 +56,23 @@ GLOBAL_LIST_INIT(potential_indicators, list(
 
 /datum/component/status_indicator/RegisterWithParent()
 	attached_mob = parent
-	// The Basics
-	RegisterSignal(parent, COMSIG_LIVING_DEATH, PROC_REF(cut_indicators_overlays))
-	RegisterSignal(parent, COMSIG_LIVING_LIFE, PROC_REF(status_indicator_evaluate))
-	// When things actually happen
-	RegisterSignal(parent, COMSIG_LIVING_STATUS_STUN, PROC_REF(status_indicator_evaluate))
-	RegisterSignal(parent, COMSIG_LIVING_STATUS_KNOCKDOWN, PROC_REF(status_indicator_evaluate))
-	RegisterSignal(parent, COMSIG_LIVING_STATUS_PARALYZE, PROC_REF(status_indicator_evaluate))
-	RegisterSignal(parent, COMSIG_LIVING_STATUS_IMMOBILIZE, PROC_REF(status_indicator_evaluate))
-	RegisterSignal(parent, COMSIG_LIVING_STATUS_UNCONSCIOUS, PROC_REF(status_indicator_evaluate))
-	RegisterSignal(parent, COMSIG_MOB_LOGIN, PROC_REF(apply_pref_on_login))
+	RegisterSignals(parent, list(COMSIG_LIVING_LIFE, COMSIG_LIVING_STATUS_STUN, COMSIG_LIVING_STATUS_KNOCKDOWN, COMSIG_LIVING_STATUS_PARALYZE, COMSIG_LIVING_STATUS_IMMOBILIZE, COMSIG_LIVING_STATUS_UNCONSCIOUS), PROC_REF(status_indicator_evaluate))
 
-/datum/component/status_indicator/proc/apply_pref_on_login()
-	var/atom/movable/screen/plane_master/rendering_plate/game_plate/local_status = locate() in attached_mob.client.screen
-	if(local_status)
-		. = attached_mob.client.prefs.read_preference(/datum/preference/toggle/enable_status_indicators)
-		local_status.alpha = (.) ? 255 : 0
+
+/datum/component/status_indicator/Destroy()
+	QDEL_LIST_ASSOC_VAL(status_indicators)
+	attached_mob = null
+	. = ..()
 
 /datum/component/status_indicator/UnregisterFromParent()
-	QDEL_NULL(status_indicators)
-	UnregisterSignal(attached_mob, COMSIG_LIVING_DEATH)
-	UnregisterSignal(attached_mob, COMSIG_LIVING_LIFE)
-	UnregisterSignal(attached_mob, COMSIG_LIVING_STATUS_STUN)
-	UnregisterSignal(attached_mob, COMSIG_LIVING_STATUS_KNOCKDOWN)
-	UnregisterSignal(attached_mob, COMSIG_LIVING_STATUS_PARALYZE)
-	UnregisterSignal(attached_mob, COMSIG_LIVING_STATUS_IMMOBILIZE)
-	UnregisterSignal(attached_mob, COMSIG_LIVING_STATUS_UNCONSCIOUS)
-	attached_mob = null
-/// This proc makes it so that mobs that have status indicators are checked to remove them, especially in fakeout situations.
-/datum/component/status_indicator/proc/check_indicators()
-	if(status_indicators)
-		status_indicator_evaluate()
+	UnregisterSignal(parent, list(COMSIG_LIVING_LIFE, COMSIG_LIVING_STATUS_STUN, COMSIG_LIVING_STATUS_KNOCKDOWN, COMSIG_LIVING_STATUS_PARALYZE, COMSIG_LIVING_STATUS_IMMOBILIZE, COMSIG_LIVING_STATUS_UNCONSCIOUS))
 
 /// Receives signals to update on carbon health updates. Checks if the mob is dead - if true, removes all the indicators. Then, we determine what status indicators the mob should carry or remove.
 /datum/component/status_indicator/proc/status_indicator_evaluate()
 	SIGNAL_HANDLER
 	if(attached_mob.stat == DEAD)
+		for(var/status_indicator_current in status_indicators)
+			remove_status_indicator(status_indicator_current)
 		return
 	else
 		weaken_indicator_update()
@@ -120,54 +103,38 @@ GLOBAL_LIST_INIT(potential_indicators, list(
 	SIGNAL_HANDLER
 	is_confused() ? add_status_indicator(CONFUSED) : remove_status_indicator(CONFUSED)
 
-/// Adds a status indicator to the mob. Takes an image as an argument. If it exists, it won't dupe it.
-/datum/component/status_indicator/proc/add_status_indicator(image/prospective_indicator)
-	if(get_status_indicator(prospective_indicator)) // No duplicates, please.
-		return
-
-	prospective_indicator = GLOB.potential_indicators[prospective_indicator]
-	prospective_indicator.loc = src
-	LAZYADD(status_indicators, prospective_indicator)
-	handle_status_indicators(prospective_indicator)
+/// Adds a status indicator to the mob. If it exists, it won't dupe it.
+/datum/component/status_indicator/proc/add_status_indicator(prospective_indicator)
+	var/obj/effect/overlay/status_indicator/this_indicator
+	if(!status_indicators[prospective_indicator])
+		this_indicator = new
+		this_indicator.icon_state = prospective_indicator
+		status_indicators[prospective_indicator] = this_indicator
+		animate_new_indicator(this_indicator)
 
 /// Similar to add_status_indicator() but removes it instead, and nulls the list if it becomes empty as a result.
-/datum/component/status_indicator/proc/remove_status_indicator(image/prospective_indicator)
-	prospective_indicator = get_status_indicator(prospective_indicator)
+/datum/component/status_indicator/proc/remove_status_indicator(prospective_indicator)
+	var/obj/effect/overlay/status_indicator/resolved_indicator = status_indicators[prospective_indicator]
+	if(resolved_indicator)
+		status_indicators[prospective_indicator] = null
+		animate(resolved_indicator, pixel_z = rand(1,32), pixel_w = rand(1,32), time = 2 SECONDS, easing = LINEAR_EASING, alpha = 0)
+		addtimer(CALLBACK(src, PROC_REF(cleanup), resolved_indicator), 3 SECONDS)
 
-	attached_mob.cut_overlay(prospective_indicator)
-	LAZYREMOVE(status_indicators, prospective_indicator)
-	handle_status_indicators(prospective_indicator)
-
-/// Finds a status indicator on a mob.
-/datum/component/status_indicator/proc/get_status_indicator(image/prospective_indicator)
-
-	for(var/image/indicator in status_indicators)
-		if(indicator.icon_state == prospective_indicator)
-			return indicator
-	return LAZYACCESS(status_indicators, LAZYFIND(status_indicators, prospective_indicator))
-
-/// Cuts all the indicators on a mob in a loop.
-/datum/component/status_indicator/proc/cut_indicators_overlays()
-	SIGNAL_HANDLER
-	for(var/prospective_indicator in status_indicators)
-		attached_mob.cut_overlay(prospective_indicator)
+/datum/component/status_indicator/proc/cleanup(resolved_indicator)
+	QDEL_IN(resolved_indicator, 2 SECONDS)
+	attached_mob.vis_contents -= resolved_indicator
 
 /// Refreshes the indicators over a mob's head. Should only be called when adding or removing a status indicator with the above procs,
 /// or when the mob changes size visually for some reason.
-/datum/component/status_indicator/proc/handle_status_indicators(image/prospective_indicator)
-	// First, get rid of all the overlays.
+/datum/component/status_indicator/proc/animate_new_indicator(obj/effect/overlay/status_indicator/this_indicator)
 
-	cut_indicators_overlays()
-
-	if(!LAZYLEN(status_indicators))
-		return
 
 	var/mob/living/carbon/my_carbon_mob = attached_mob
 
 	var/icon_scale = get_icon_scale(my_carbon_mob)
-
+	this_indicator.pixel_z = rand(0,32)
+	this_indicator.pixel_w = rand(0,32)
 	if(my_carbon_mob.stat == DEAD)
-		cut_indicators_overlays()
 		return
 
 	// Now put them back on in the right spot.
@@ -185,22 +152,10 @@ GLOBAL_LIST_INIT(potential_indicators, list(
 	// In /mob/living's `update_transform()`, the sprite is horizontally shifted when scaled up, so that the center of the sprite doesn't move to the right.
 	// Because of that, this adjustment needs to happen with the future indicator row as well, or it will look bad.
 	current_x_position -= 16 * (icon_scale - DEFAULT_MOB_SCALE)
+	this_indicator.appearance_flags |= (KEEP_TOGETHER|RESET_COLOR|RESET_TRANSFORM)
+	my_carbon_mob.vis_contents |= this_indicator
 
-	// Now the indicator row can actually be built.
-	for(var/all_indicators in status_indicators)
-		var/image/indicator = all_indicators
-
-		// This is a semi-HUD element, in a similar manner as medHUDs, in that they're 'above' everything else in the world,
-		// but don't pierce obfuscation layers such as blindness or darkness, unlike actual HUD elements like inventory slots.
-		indicator.plane = RENDER_PLANE_GAME
-		indicator.layer = STATUS_LAYER
-		indicator.appearance_flags = PIXEL_SCALE|TILE_BOUND|NO_CLIENT_COLOR|RESET_COLOR|RESET_ALPHA|RESET_TRANSFORM|KEEP_APART
-		indicator.pixel_y = y_offset
-		indicator.pixel_x = current_x_position
-		my_carbon_mob.add_overlay(indicator)
-		// Adding the margin space every time saves a conditional check on the last iteration,
-		// and it won't cause any issues since no more icons will be added, and the var is not used for anything else.
-		current_x_position += STATUS_INDICATOR_ICON_X_SIZE + STATUS_INDICATOR_ICON_MARGIN
+	animate(this_indicator, pixel_z = y_offset, pixel_w = current_x_position, time = 1 SECONDS, easing = BOUNCE_EASING, alpha = 255)
 
 /datum/component/status_indicator/proc/get_icon_scale(livingmob)
 	if(!iscarbon(livingmob)) // normal mobs are always 1 for scale - hopefully all borgs and simplemobs get this one
@@ -209,13 +164,6 @@ GLOBAL_LIST_INIT(potential_indicators, list(
 	var/mysize = (passed_mob.dna?.current_body_size ? passed_mob.dna.current_body_size : DEFAULT_MOB_SCALE)
 	return mysize
 
-/*
-/atom/movable/screen/plane_master/game_world_upper_fov_hidden/status_indicator
-	name = "Status Indicator Plane"
-	documentation = "Status Indicator Plane"
-	plane = GAME_PLANE_UPPER_FOV_HIDDEN
-	start_hidden = FALSE
-*/
 
 #undef STATUS_INDICATOR_Y_OFFSET
 #undef STATUS_INDICATOR_ICON_X_SIZE

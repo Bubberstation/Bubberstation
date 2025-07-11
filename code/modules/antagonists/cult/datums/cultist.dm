@@ -5,7 +5,7 @@
 	antag_moodlet = /datum/mood_event/cult
 	suicide_cry = "FOR NAR'SIE!!"
 	preview_outfit = /datum/outfit/cultist
-	job_rank = ROLE_CULTIST
+	pref_flag = ROLE_CULTIST
 	antag_hud_name = "cult"
 	stinger_sound = 'sound/music/antag/bloodcult/bloodcult_gain.ogg'
 

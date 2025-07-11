@@ -505,6 +505,7 @@
 			to_chat(src, span_warning("You are unable to equip that!"))
 		return FALSE
 	equip_to_slot(W, slot, initial, redraw_mob, indirect_action = indirect_action) //This proc should not ever fail.
+	SEND_SIGNAL(src, COMSIG_MOB_POST_EQUIP, W, slot) //BUBBER EDIT ADDITION
 	return TRUE
 
 /**

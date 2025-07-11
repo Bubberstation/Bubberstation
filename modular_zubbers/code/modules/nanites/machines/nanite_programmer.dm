@@ -58,6 +58,8 @@
 
 /obj/machinery/nanite_programmer/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
 	if(disk && user.can_perform_action(src, !issilicon(user)))
 		to_chat(user, span_notice("You take out [disk] from [src]."))
 		eject(user)

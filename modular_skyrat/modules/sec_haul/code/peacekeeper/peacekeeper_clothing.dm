@@ -237,8 +237,6 @@
 	. = ..()
 	atom_storage.max_slots = 7
 	atom_storage.set_holdable(list(
-		/obj/item/gun/ballistic/automatic/pistol,
-		/obj/item/gun/ballistic/revolver,
 		/obj/item/melee/baton,
 		/obj/item/melee/baton,
 		/obj/item/grenade,

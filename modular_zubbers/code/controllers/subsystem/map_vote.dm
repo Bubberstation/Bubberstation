@@ -1,4 +1,4 @@
-/datum/controller/subsystem/map_vote/finalize_map_vote(datum/vote/map_vote/map_vote)
+/datum/controller/subsystem/map_vote/finalize_map_vote(datum/vote/map_vote/map_vote, winning_option) // BUBBER EDIT CHANGE - Ranked Choice Voting - add winning_option
 	if(already_voted)
 		message_admins("Attempted to finalize a map vote after a map vote has already been finalized.")
 		return
@@ -17,6 +17,9 @@
 		send_map_vote_notice("Admin Override is in effect. Map will not be changed.", "Tallies are recorded and saved.")
 		return
 
+
+	// BUBBER EDIT CHANGE BEGIN - Ranked Choice Voting
+	/*
 	var/list/message_data = list()
 	var/winner
 	var/winner_amount = 0
@@ -48,6 +51,12 @@
 		update_tally_printout()
 	else
 		vote_result_message += "Only one map was possible, tallies were not reset."
+	*/
+	set_next_map(config.maplist[winning_option])
+	var/list/vote_results = map_vote.elimination_results
+	var/serialized_vote_results = "[vote_results.Join("\n")]"
+	var/list/vote_result_message = list("Method: Ranked Vote\n\nElimination order:\n[serialized_vote_results]\n\nNext Map: [span_vote_notice(span_bold(winning_option))]")
+	// BUBBER EDIT CHANGE END - Ranked Choice Voting
 
 	send_map_vote_notice(arglist(vote_result_message))
 
@@ -58,7 +67,8 @@
 	last_message_at = world.time
 
 	var/list/messages = args.Copy()
-	to_chat(world, custom_boxed_message("purple_box", vote_font("[span_bold("Map Vote")]\n<hr>[messages.Join("\n")]")))
+	//to_chat(world, custom_boxed_message("purple_box", vote_font("[span_bold("Map Vote")]\n<hr>[messages.Join("\n")]"))) // BUBBER EDIT CHANGE - Ranked Choice Voting
+	to_chat(world, vote_font(fieldset_block("Map Vote - Results", "[messages.Join("\n")]", "boxed_message purple_box")))
 
 /datum/controller/subsystem/map_vote/update_tally_printout()
 	var/list/data = list()
