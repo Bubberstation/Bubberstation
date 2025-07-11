@@ -1,5 +1,6 @@
 /obj/item/mod/construction/plating/lustwish
 	icon = 'modular_zubbers/icons/mob/clothing/modsuit/mod_modules.dmi'
+	icon_state = "lustwish-plating"
 	theme = /datum/mod_theme/lustwish
 
 /obj/item/mod/module/hypno_visor
