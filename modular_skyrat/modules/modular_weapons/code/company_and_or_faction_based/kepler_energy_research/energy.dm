@@ -33,7 +33,8 @@ Lever Rifle
 	combined with rewoken nostalgia for the old west. Produced in house by Nanotrasen, the Winchester II uses a lever action to charge it's internal cell,\
 	which then discharges a single shot. A punchy, affordable and simple weapon that evokes old school self reliance.\
 	A perfect companion piece on the wagon trail to the stars.."
-	icon_state = "infernopistol"
+	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/kepler_energy_research/gun48x32.dmi'
+	icon_state = "lever"
 	inhand_icon_state = null
 	ammo_type = list(/obj/item/ammo_casing/energy/nanite/inferno/lever, /obj/item/ammo_casing/energy/nanite/cryo/lever)
 	shaded_charge = TRUE
