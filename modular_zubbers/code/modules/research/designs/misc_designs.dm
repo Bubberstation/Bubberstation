@@ -48,7 +48,7 @@
 
 /datum/design/civilian_hud
 	name = "Civilian HUD"
-	desc = "A heads-up display that scans the humanoids around you and displays their ID status."
+	desc = "A heads-up display that scans the humanoids around you and displays their ID status. Experts say this has well over 9000 uses."
 	id = "civ_hud"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
