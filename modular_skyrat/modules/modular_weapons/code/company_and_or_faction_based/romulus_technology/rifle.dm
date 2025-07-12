@@ -35,8 +35,8 @@ Coil Rifle
 
 /*
 Why don't we just use BR-38? well that's because we'd have to rewrite part of it
-This gun closely mimic the BR-38 in many aspects intentionally so, because
-We are testing out a concept for advanced BR-38
+This gun closely mimic the BR-38 in many aspects intentionally
+Because we are testing out a concept for advanced BR-38
 */
 	/// Determines how many shots we can make before the weapon needs to be maintained.
 	var/shots_before_degradation = 20
@@ -79,6 +79,8 @@ We are testing out a concept for advanced BR-38
 		Despite it being made of lightweight polymer because of NCE believing the guns would be 'un-balanced' in the wrong hands.\
 		Some part of the gun feels oddly <b> Hollow. </b>")
 
+//I want to fucking run over a deer after this
+
 /obj/item/gun/ballistic/automatic/coilgun/examine(mob/user)
 	. = ..()
 	if(shots_before_degradation)
@@ -103,7 +105,7 @@ We are testing out a concept for advanced BR-38
 
 /obj/item/gun/ballistic/automatic/coilgun/emp_act(severity)
 	. = ..()
-	if (!(. & EMP_PROTECT_SELF) && prob(50 / severity))
+	if (!(. & EMP_PROTECT_SELF) && prob(35 / severity))
 		shots_before_degradation = 0
 		emp_malfunction = TRUE
 		attempt_degradation(TRUE)
@@ -136,7 +138,7 @@ We are testing out a concept for advanced BR-38
 
 
 /obj/item/gun/ballistic/automatic/coilgun/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
-	if(chambered.loaded_projectile && prob(43) && (emp_malfunction))
+	if(chambered.loaded_projectile && prob(35) && (emp_malfunction))
 		balloon_alert_to_viewers("*click*")
 		playsound(src, dry_fire_sound, dry_fire_sound_volume, TRUE)
 		return
