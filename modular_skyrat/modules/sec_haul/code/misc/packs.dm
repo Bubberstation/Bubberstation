@@ -25,13 +25,6 @@
 	cost = PAYCHECK_COMMAND * 25 //The pistol is more expensive than rifle because of portability. Not Lethality
 	access_view = ACCESS_WEAPONS
 
-/datum/supply_pack/goody/ceremonial_rifle
-	name = "Romulus Ceremonial Bolt Action Rifle"
-	desc = "A sporting rifle made of light polymer material chambered in Sol .40, poor recoil handling but quite accurate."
-	contains = list(/obj/item/gun/ballistic/rifle/carwil, /obj/item/ammo_box/magazine/c40sol_rifle)
-	cost = PAYCHECK_COMMAND * 20
-	access_view = ACCESS_WEAPONS
-
 /datum/supply_pack/goody/nt_shotgun
 	name = "Nanotrasen Woodstock Shotgun"
 	desc = "A classic Shotgun used by hunters, police and frontiersmen alike, now at an affordable price."
