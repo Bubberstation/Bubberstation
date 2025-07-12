@@ -28,6 +28,7 @@
 	action_delegations = list(
 		"give_language" = PROC_REF(give_language),
 		"remove_language" = PROC_REF(remove_language),
+		"adjust_partial_language" = PROC_REF(adjust_partial_language)
 	)
 
 /datum/preference_middleware/languages/apply_to_human(mob/living/carbon/human/target, datum/preferences/preferences, visuals_only = FALSE)
@@ -47,12 +48,12 @@
 	var/datum/species/species = new species_type()
 	var/datum/language_holder/lang_holder = new species.species_language_holder()
 	for(var/language in preferences.get_adjusted_language_holder())
-		preferences.languages[language] = UNDERSTOOD_LANGUAGE | SPOKEN_LANGUAGE
+		LAZYSET(preferences.languages[language], LANGUAGE_FLAGS, UNDERSTOOD_LANGUAGE | SPOKEN_LANGUAGE)
 	qdel(lang_holder)
 	qdel(species)
 
 	for(var/language in lang_holder.spoken_languages)
-		preferences.languages[language] = UNDERSTOOD_LANGUAGE | SPOKEN_LANGUAGE
+		LAZYSET(preferences.languages[language], LANGUAGE_FLAGS, UNDERSTOOD_LANGUAGE | SPOKEN_LANGUAGE)
 
 	qdel(lang_holder)
 	qdel(species)
@@ -72,7 +73,7 @@
 	if(!preferences.languages || !preferences.languages.len || (preferences.languages && preferences.languages.len > max_languages)) // Too many languages, or no languages.
 		preferences.languages = list()
 		for(var/language in lang_holder.spoken_languages)
-			preferences.languages[language] = UNDERSTOOD_LANGUAGE | SPOKEN_LANGUAGE
+			LAZYSET(preferences.languages[language], LANGUAGE_FLAGS, UNDERSTOOD_LANGUAGE | SPOKEN_LANGUAGE)
 
 	var/list/selected_languages = list()
 	var/list/unselected_languages = list()
@@ -86,20 +87,25 @@
 		if(species.always_customizable && !(language.type in lang_holder.spoken_languages)) // For the ghostrole species. We don't want ashwalkers speaking beachtongue now.
 			continue
 		if(preferences.languages[language.type])
+			var/partial_knowledge = 100
+			if (islist(preferences.languages[language.type]) && !isnull(preferences.languages[language.type][LANGUAGE_KNOWLEDGE])) // sanity
+				partial_knowledge = preferences.languages[language.type][LANGUAGE_KNOWLEDGE]
+
 			selected_languages += list(list(
 				"description" = language.desc,
 				"name" = language.name,
 				"icon" = sanitize_css_class_name(language.name),
-				"can_understand" = preferences.languages[language.type] & UNDERSTOOD_LANGUAGE,
-				"can_speak" = preferences.languages[language.type] & SPOKEN_LANGUAGE,
+				"can_understand" = preferences.languages[language.type][LANGUAGE_FLAGS] & UNDERSTOOD_LANGUAGE,
+				"can_speak" = preferences.languages[language.type][LANGUAGE_FLAGS] & SPOKEN_LANGUAGE,
+				"partial_knowledge" = partial_knowledge,
 			))
 		else
 			unselected_languages += list(list(
 				"description" = language.desc,
 				"name" = language.name,
 				"icon" = sanitize_css_class_name(language.name),
-				"can_understand" = 0,
-				"can_speak" = 0,
+				"can_understand" = FALSE,
+				"can_speak" = FALSE,
 			))
 
 	qdel(lang_holder)
@@ -146,7 +152,11 @@
 			flags = UNDERSTOOD_LANGUAGE | SPOKEN_LANGUAGE
 		if("Cancel")
 			return TRUE
-	preferences.languages[name_to_language[language_name]] = flags
+
+	preferences.languages[name_to_language[language_name]] = list()
+	preferences.languages[name_to_language[language_name]][LANGUAGE_FLAGS] = flags
+	preferences.languages[name_to_language[language_name]][LANGUAGE_KNOWLEDGE] = 100
+
 	return TRUE
 
 /**
@@ -161,6 +171,16 @@
 /datum/preference_middleware/languages/proc/remove_language(list/params)
 	var/language_name = params["language_name"]
 	preferences.languages -= name_to_language[language_name]
+	return TRUE
+
+/datum/preference_middleware/languages/proc/adjust_partial_language(list/params)
+	var/language_name = params["language_name"]
+	var/partial_amount = clamp(params["partial_amount"], 0, 100)
+
+	if (isnull(partial_amount) || isnan(partial_amount))
+		partial_amount = 100
+
+	LAZYSET(preferences.languages[name_to_language[language_name]], LANGUAGE_KNOWLEDGE, partial_amount)
 	return TRUE
 
 #undef MAX_LANGUAGES_NORMAL
