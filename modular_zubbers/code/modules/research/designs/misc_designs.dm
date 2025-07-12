@@ -60,3 +60,21 @@
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design/cyberimp_civ_hud
+	name = "Civilian HUD Implant"
+	desc = "These cybernetic eyes will display a civilian HUD over everything you see. Wiggle eyes to control."
+	id = "ci-civhud"
+	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
+	construction_time = 5 SECONDS
+	//just about half the materials of a sechudimplant but no silver
+	materials = list(
+		/datum/material/iron = SMALL_MATERIAL_AMOUNT*3,
+		/datum/material/glass = SMALL_MATERIAL_AMOUNT*3,
+		/datum/material/gold = SMALL_MATERIAL_AMOUNT*4,
+	)
+	build_path = /obj/item/organ/cyberimp/eyes/hud/civilian
+	category = list(
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_UTILITY
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
