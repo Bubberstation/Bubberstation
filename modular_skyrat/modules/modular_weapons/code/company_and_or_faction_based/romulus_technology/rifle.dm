@@ -14,7 +14,7 @@ Coil Rifle
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/romulus_technology/gun48x32.dmi'
 	icon_state = "pcr"
 	inhand_icon_state = "battle_rifle"
-	base_icon_state = "battle_rifle"
+	base_icon_state = "pcr"
 	worn_icon = 'icons/mob/clothing/back.dmi'
 	worn_icon_state = "battle_rifle"
 	slot_flags = ITEM_SLOT_BACK
