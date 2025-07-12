@@ -20,7 +20,7 @@ Coil Rifle
 	slot_flags = ITEM_SLOT_BACK
 
 	weapon_weight = WEAPON_HEAVY
-	accepted_magazine_type = /obj/item/ammo_box/magazine/m38
+	accepted_magazine_type = /obj/item/ammo_box/magazine/cacoilgun
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15
 	mag_display = TRUE
@@ -33,6 +33,11 @@ Coil Rifle
 	fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/smg_heavy.ogg'
 	suppressor_x_offset = 8
 
+/*
+Why don't we just use BR-38? well that's because we'd have to rewrite part of it
+This gun closely mimic the BR-38 in many aspects intentionally so, because
+We are testing out a concept for advanced BR-38
+*/
 	/// Determines how many shots we can make before the weapon needs to be maintained.
 	var/shots_before_degradation = 20
 	/// The max number of allowed shots this gun can have before degradation.

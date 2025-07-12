@@ -23,8 +23,12 @@ Lever Rifle
 		charge_sound_cooldown_time = 0.8 SECONDS, \
 	)
 
+//EspeciallyStrange's Freedom Motif here
+
+//Some background. Me and anne had a crackhead idea of, what if you could recharge thermal pistol
+// While moving... So, here it is, you can do that.
 /obj/item/gun/energy/laser/thermal/lever //the common parent of these guns, it just shoots hard bullets, somoene might like that?
-	name = "hardlight rifle"
+	name = "Winchester ELA"
 	desc = "The frontier is crawling with danger.  The Kepler 'Winchester ELA' was born from a requirement to cheaply arm colonists\
 	combined with rewoken nostalgia for the old west. Produced in house by Nanotrasen, the Winchester II uses a lever action to charge it's internal cell,\
 	which then discharges a single shot. A punchy, affordable and simple weapon that evokes old school self reliance.\
