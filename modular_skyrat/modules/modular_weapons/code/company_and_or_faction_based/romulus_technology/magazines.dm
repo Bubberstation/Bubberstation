@@ -8,7 +8,11 @@
 	max_ammo = 20
 	multitype = TRUE
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
+	base_icon_state = "cmg_penetrator"
 	w_class = WEIGHT_CLASS_NORMAL
+	ammo_type = /obj/item/ammo_casing/c38
+	ammo_band_icon = "+cmgmag_ammo_band"
+	ammo_band_color = null
 
 //Handgun Magazine
 

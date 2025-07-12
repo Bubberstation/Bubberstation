@@ -17,9 +17,9 @@
 
 /datum/techweb_node/magazineresearch_romfed
 	id = "storedmunition_tech_two"
-	display_name = "Improved Ballistic Research"
+	display_name = "Advanced Ballistic Research"
 	description = "There was a time where folklores were dismissed as mere oral tradition, we predicted a cataclysmic have lead to destruction of the previous empires. We will be ready this time."
-	prereq_ids = list("explosives","storedmunition_tech")
+	prereq_ids = list("storedmunition_tech")
 	design_ids = list(
 		"s12g_flechette",
 		"s12g_db"
@@ -37,7 +37,7 @@
 
 /datum/techweb_node/magazineresearch_heavy
 	id = "storedmunition_tech_three"
-	display_name = "Advanced Munitions"
+	display_name = "Experimental Ballistic Research"
 	description = "The absolute pinnacle limited by only what our fabricators can physically produces, anything beyond this may aswell be magic."
 	prereq_ids = list("syndicate_basic","storedmunition_tech_two")
 	design_ids = list(
@@ -63,6 +63,7 @@
 	design_ids += "m9mm_mag"
 	design_ids += "c10mm_rincin"
 	design_ids += "s12g_antitide"
+	design_ids += "ca_coil"
 	. = ..()
 
 /datum/techweb_node/exotic_ammo/New()

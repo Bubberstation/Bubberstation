@@ -29,7 +29,7 @@ Coil Rifle
 	fire_delay = 2
 	burst_size = 1
 	actions_types = list()
-	spread = 5
+	spread = 3
 	fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/smg_heavy.ogg'
 	suppressor_x_offset = 8
 
@@ -51,7 +51,7 @@ Because we are testing out a concept for advanced BR-38
 	/// The maximum speed malus for projectile flight speed. Projectiles probably shouldn't move too slowly or else they will start to cause problems.
 	var/maximum_speed_malus = 0.7
 	/// The maximum spread malus for projectile random spread variation. Projectiles probably shouldn't have too high spread else it can hit walls instead. - Necromanceranne
-	var/maximum_spread_malus = 12
+	var/maximum_spread_malus = 11
 	/// Whether or not our gun is suffering an EMP related malfunction. Bear in mind unlike the BR38 this does not jam unless EMP'd
 	var/emp_malfunction = FALSE
 
@@ -69,7 +69,7 @@ Because we are testing out a concept for advanced BR-38
 	. += span_notice("<b><i>Looking down at \the [src], you recall something you read in a promotional pamphlet... </i></b>")
 
 	. += span_info("The MEC-1E possesses an acceleration rail that launches bullets at higher than typical velocity.\
-		This allows even less powerful cartridges to put out significant amounts of stopping power.")
+		This allows even less powerful cartridges to put out significant amounts of stopping power. This weapon is not rifled and easy to maintain!")
 
 	. += span_notice("<b><i>You remember being taught about this in your firearm history course</i></b>")
 

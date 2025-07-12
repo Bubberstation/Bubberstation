@@ -18,6 +18,13 @@
 
 //Goodies..
 
+/datum/supply_pack/goody/cacoil_mag
+	name = "Coilgun Driver Magazine"
+	desc = "A magazine for the coilgun, this one ."
+	contains = /obj/item/ammo_box/magazine/cacoilgun/ripper
+	cost = PAYCHECK_COMMAND * 1
+	access_view = ACCESS_WEAPONS
+
 /datum/supply_pack/goody/m1911
 	name = "Authentic SR Sector M1911"
 	desc = "Old but gold, the classic pistol from the golden age of SR, whatever that place is. The M1911 chambered in .460 Ceres. It is sure to give anyone daring to fight you, a second thought. Note that this is a reproduction model by Romulus Federation and may be commonly found in the hand of a Kayit"
