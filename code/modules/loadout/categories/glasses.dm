@@ -67,6 +67,3 @@
 	name = "Monocle"
 	item_path = /obj/item/clothing/glasses/monocle
 
-/datum/loadout_item/glasses/civhud
-	name = "Civilian HUD"
-	item_path = /obj/item/clothing/glasses/hud/civilian
