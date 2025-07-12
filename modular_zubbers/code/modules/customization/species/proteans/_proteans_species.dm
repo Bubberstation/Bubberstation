@@ -72,7 +72,10 @@
 
 	inherent_biotypes = MOB_ROBOTIC | MOB_HUMANOID
 	reagent_flags = null
-
+	/// Valid organ slots for rejection
+	var/list/slots = list(ORGAN_SLOT_BRAIN, ORGAN_SLOT_HEART, ORGAN_SLOT_STOMACH, ORGAN_SLOT_EYES)
+	/// Flags excluded from rejection
+	var/exclusion_flags = ORGAN_ROBOTIC | ORGAN_NANOMACHINE | ORGAN_UNREMOVABLE
 	/// Reference to the
 	var/obj/item/mod/control/pre_equipped/protean/species_modsuit
 
@@ -104,26 +107,24 @@
 	)
 	add_verb(gainer, protean_verbs)
 
-/datum/species/protean/proc/organ_reject(mob/living/source, obj/item/organ)
+/datum/species/protean/proc/organ_reject(mob/living/source, obj/item/organ/inserted)
 	SIGNAL_HANDLER
 
-	if(isnull(owner))
+	if(isnull(source))
 		return
-	var/obj/item/organ/insert_organ = organ
-	var/list/slots = list(ORGAN_SLOT_BRAIN, ORGAN_SLOT_HEART, ORGAN_SLOT_STOMACH, ORGAN_SLOT_EYES)
-	if(!(insert_organ.slot in slots))
+	if(!(inserted.slot in slots))
 		return
-	if(insert_organ.organ_flags & (ORGAN_ROBOTIC | ORGAN_NANOMACHINE | ORGAN_UNREMOVABLE))
+	if(inserted.organ_flags & exclusion_flags)
 		return
-	insert_organ.Remove(source)
-	insert_organ.forceMove(get_turf(source))
-	to_chat(source, span_danger("Your mass rejected [insert_organ]!"))
-	insert_organ.balloon_alert_to_viewers("rejected!", vision_distance = 1)
+	inserted.Remove(source)
+	inserted.forceMove(get_turf(source))
+	to_chat(source, span_danger("Your mass rejected [inserted]!"))
+	inserted.balloon_alert_to_viewers("rejected!", vision_distance = 1)
 
 /datum/species/protean/on_species_loss(mob/living/carbon/human/gainer, datum/species/new_species, pref_load)
 	. = ..()
-	if(owner)
-		UnregisterSignal(owner, COMSIG_CARBON_GAIN_ORGAN)
+	if(gainer)
+		UnregisterSignal(gainer, COMSIG_CARBON_GAIN_ORGAN)
 	if(species_modsuit.stored_modsuit)
 		species_modsuit.unassimilate_modsuit(owner, TRUE)
 	gainer.dropItemToGround(species_modsuit, TRUE)
