@@ -186,6 +186,7 @@
 		current_mob.set_handcuffed(cuffs)
 		cuffs.parent_chair = WEAKREF(src)
 		current_mob.update_abstract_handcuffed()
+		RegisterSignal(current_mob, COMSIG_OOC_ESCAPE, PROC_REF(ooc_escape))
 
 	update_overlays()
 	affected_mob.layer = BELOW_MOB_LAYER
@@ -217,6 +218,7 @@
 		current_mob.set_handcuffed(null)
 		current_mob.update_abstract_handcuffed()
 
+	UnregisterSignal(current_mob, COMSIG_OOC_ESCAPE)
 	current_mob = null
 	current_selected_organ = null
 	current_breasts = null
@@ -224,6 +226,12 @@
 	current_vagina = null
 
 	return
+
+/obj/structure/chair/milking_machine/ooc_escape(mob/living/carbon/user)
+	SIGNAL_HANDLER
+
+	unbuckle_mob(user)
+
 
 /obj/structure/chair/milking_machine/is_buckle_possible(mob/living/target, force, check_loc)
 	. = ..()
