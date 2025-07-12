@@ -15,7 +15,7 @@ import { Window } from '../layouts';
 
 export type Storyteller_Data = {
   storyteller_name: string;
-  storyteller_halt: Boolean;
+  storyteller_halt: boolean;
   antag_count: number;
   antag_cap: number;
 
@@ -38,10 +38,10 @@ export type Storyteller_Event = {
   desc: string;
   tags: string[];
   occurences: number;
-  occurences_shared: Boolean;
+  occurences_shared: boolean;
   min_pop: number;
   start: number;
-  can_run: Boolean;
+  can_run: boolean;
   weight: number;
   weight_raw: number;
   track: string;
@@ -115,8 +115,8 @@ export const ZubbersStorytellerRoundData = (props) => {
           </Button>
         </LabeledList.Item>
         <LabeledList.Item label="Active Players">
-          {pop_data['active']} {'('}Head: {pop_data['head']}, Sec:{' '}
-          {pop_data['sec']}, Eng: {pop_data['eng']}, Med: {pop_data['med']}
+          {pop_data.active} {'('}Head: {pop_data.head}, Sec: {pop_data.sec},
+          Eng: {pop_data.eng}, Med: {pop_data.med}
           {')'}
         </LabeledList.Item>
         <LabeledList.Item
@@ -197,7 +197,7 @@ export const ZubbersStorytellerTrackData = (props) => {
                 </ProgressBar>
               </Table.Cell>
               <Table.Cell textAlign="center">
-                {storyteller_halt ? 'N/A' : '~' + track_data['next'] + 'min'}
+                {storyteller_halt ? 'N/A' : '~' + track_data.next + 'min'}
               </Table.Cell>
               <Table.Cell>{forced ? forced.name : ''}</Table.Cell>
               <Table.Cell>
@@ -230,11 +230,11 @@ export const ZubbersStorytellerScheduledData = (props) => {
           <Table.Cell>Actions</Table.Cell>
         </Table.Row>
         {Object.entries(scheduled_data).map(([event_name, event_data]) => {
-          const timeNum = Number(event_data['time'])?.toFixed(1);
+          const timeNum = Number(event_data.time)?.toFixed(1);
           return (
             <Table.Row key={event_name}>
               <Table.Cell>{event_name}</Table.Cell>
-              <Table.Cell>{event_data['track']}</Table.Cell>
+              <Table.Cell>{event_data.track}</Table.Cell>
               <Table.Cell>{timeNum ? timeNum + ' s' : 'Roundstart'}</Table.Cell>
               <Table.Cell>
                 <Button
@@ -242,7 +242,7 @@ export const ZubbersStorytellerScheduledData = (props) => {
                   onClick={() =>
                     act('event_action', {
                       action: 'cancel',
-                      type: event_data['event_type'],
+                      type: event_data.event_type,
                     })
                   }
                 >
@@ -252,7 +252,7 @@ export const ZubbersStorytellerScheduledData = (props) => {
                   onClick={() =>
                     act('event_action', {
                       action: 'refund',
-                      type: event_data['event_type'],
+                      type: event_data.event_type,
                     })
                   }
                 >
@@ -262,7 +262,7 @@ export const ZubbersStorytellerScheduledData = (props) => {
                   onClick={() =>
                     act('event_action', {
                       action: 'reschedule',
-                      type: event_data['event_type'],
+                      type: event_data.event_type,
                     })
                   }
                 >
@@ -273,7 +273,7 @@ export const ZubbersStorytellerScheduledData = (props) => {
                   onClick={() =>
                     act('event_action', {
                       action: 'fire',
-                      type: event_data['event_type'],
+                      type: event_data.event_type,
                     })
                   }
                 >

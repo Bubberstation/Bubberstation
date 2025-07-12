@@ -1,5 +1,5 @@
 // THIS IS A SKYRAT UI FILE
-import { Feature, FeatureShortTextInput } from '../../base';
+import { type Feature, FeatureShortTextInput } from '../../base';
 
 export const headshot: Feature<string> = {
   name: 'Headshot',

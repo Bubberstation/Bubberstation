@@ -1,5 +1,5 @@
 // THIS IS A SKYRAT UI FILE
-import { CheckboxInput, FeatureToggle } from '../../base';
+import { CheckboxInput, type FeatureToggle } from '../../base';
 
 export const looc_admin_pref: FeatureToggle = {
   name: 'See remote LOOC',

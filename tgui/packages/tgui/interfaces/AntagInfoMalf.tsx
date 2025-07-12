@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import { BlockQuote, Button, Section, Stack, Tabs } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { Rules } from './AntagInfoRules'; // SKYRAT EDIT ADDITION
 import { MalfAiModules } from './common/MalfAiModules';
 import {
-  Objective,
+  type Objective,
   ObjectivePrintout,
   ReplaceObjectivesButton,
 } from './common/Objectives';
-import { Item } from './Uplink/GenericUplink';
+import type { Item } from './Uplink/GenericUplink';
 
 const allystyle = {
   fontWeight: 'bold',
