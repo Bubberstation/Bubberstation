@@ -28,18 +28,6 @@
 	desc = parent_type::desc + "<br>Carries match-grade rounds, which are designed to ricochet off walls in an exceedingly stylish, but possibly user-unfriendly manner."
 	ammo_type = /obj/item/ammo_casing/m7mm/match
 
-/obj/item/ammo_box/magazine/m7mm/bouncy
-	name = "box magazine (7mm Rubber)"
-	ammo_band_color = COLOR_AMMO_MATCH // this doesn't seem attainable in game (probably a good thing) so i guess it can get away with a color reuse
-	desc = parent_type::desc + "<br>Carries lethal rubber rounds, which deal less damage and bounce off everything in an incredibly irresponsible, user-unfriendly manner."
-	ammo_type = /obj/item/ammo_casing/m7mm/bouncy
-
-/obj/item/ammo_box/magazine/m7mm/bouncy/hicap
-	name = "hi-cap box magazine (7mm Rubber)"
-	desc = "A very concerningly sizeable 7mm box magazine, suitable for the L6 SAW.<br>\
-	Carries lethal rubber rounds, which deal less damage and bounce off everything in an incredibly irresponsible, user-unfriendly manner."
-	max_ammo = 150
-
 /obj/item/ammo_box/magazine/m7mm/update_icon_state()
 	. = ..()
 	icon_state = "a7mm-[min(round(ammo_count(), 10), 50)]" //Min is used to prevent high capacity magazines from attempting to get sprites with larger capacities

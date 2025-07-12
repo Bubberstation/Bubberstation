@@ -215,7 +215,7 @@
 
 /obj/item/storage/box/breacherslug/PopulateContents()
 	for(var/i in 1 to 7)
-		new /obj/item/ammo_casing/shotgun/breacher(src)
+		new /obj/item/ammo_casing/shotgun/frangible(src)
 
 /obj/item/storage/box/large_dart
 	name = "box of XL shotgun darts"
