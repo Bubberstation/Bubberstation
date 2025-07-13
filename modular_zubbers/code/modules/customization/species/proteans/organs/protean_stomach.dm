@@ -49,8 +49,10 @@
 		if(metal > PROTEAN_STOMACH_FULL * 0.3)
 			if(owner.health < owner.maxHealth)
 				hunger_modifier += 20
-				owner.adjustBruteLoss(-2, forced = TRUE)
-				owner.adjustFireLoss(-2, forced = TRUE)
+				if(owner.getBruteLoss() > owner.getFireLoss())
+					owner.adjustBruteLoss(-1, forced = TRUE)
+				else
+					owner.adjustFireLoss(-1, forced = TRUE)
 			if(owner.blood_volume < BLOOD_VOLUME_NORMAL)
 				hunger_modifier += 100
 				owner.blood_volume = min(owner.blood_volume + (((BLOOD_REGEN_FACTOR * PROTEAN_METABOLISM_RATE) * 0.05) * seconds_per_tick), BLOOD_VOLUME_NORMAL)
