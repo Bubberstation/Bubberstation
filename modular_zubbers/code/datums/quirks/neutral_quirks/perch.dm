@@ -1,5 +1,3 @@
-// Bubber quirks
-
 /datum/quirk/perch
 	name = "Perch"
 	desc = "In some way, you're able to hang from the ceiling. Only devious things can come of this."
