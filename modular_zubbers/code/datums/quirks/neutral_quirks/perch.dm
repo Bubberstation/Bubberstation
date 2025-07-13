@@ -22,7 +22,7 @@
 
 /datum/action/cooldown/spell/perch
 	name = "Perch"
-	desc = "Hang to the ceiling!"
+	desc = "Hang from the ceiling!"
 	button_icon_state = "negative"
 	button_icon = 'icons/hud/screen_alert.dmi'
 	cooldown_time = 1 SECONDS
@@ -30,27 +30,27 @@
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_LYING|AB_CHECK_INCAPACITATED
 	var/hangin = FALSE
 
-/// Adds TRAIT_IMMOBILIZED to our owner.
-/datum/action/cooldown/spell/perch/proc/add_immobilized(mob/living/cast_on)
-	ADD_TRAIT(cast_on, TRAIT_IMMOBILIZED, QUIRK_TRAIT)
-
 /datum/action/cooldown/spell/perch/cast(mob/living/cast_on)
 	. = ..()
 	if(hangin)
 		unflip(cast_on)
 		return
 	else if(check_above(cast_on))
+		RegisterSignal(cast_on, COMSIG_MOVABLE_MOVED, PROC_REF(on_step))
 		cast_on.AddElement(/datum/element/forced_gravity, NEGATIVE_GRAVITY)
 		owner.visible_message("<span class='notice'>[owner] ascends and sticks to the ceiling!")
-		add_immobilized(cast_on)
 		hangin = TRUE
 
 /datum/action/cooldown/spell/perch/proc/unflip(mob/living/flipper)
 	qdel(flipper.RemoveElement(/datum/element/forced_gravity, NEGATIVE_GRAVITY))
 	UnregisterSignal(flipper, COMSIG_MOVABLE_MOVED)
 	owner.visible_message("<span class='notice'>[owner] lowers themselves to the ground!")
-	REMOVE_TRAIT(flipper, TRAIT_IMMOBILIZED, QUIRK_TRAIT)
 	hangin = FALSE
+
+/// Unflips the owner on movement
+/datum/action/cooldown/spell/perch/proc/on_step(mob/living/flipper)
+	SIGNAL_HANDLER
+	unflip(flipper)
 
 /datum/action/cooldown/spell/perch/proc/check_above(mob/living/target)
 	var/turf/open/current_turf = get_turf(target)
