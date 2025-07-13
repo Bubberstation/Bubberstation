@@ -86,6 +86,7 @@
 	desc = "A variation of the syndicate bomb designed to produce a large EMP effect."
 	item = /obj/item/sbeacondrop/emp
 	cost = 7
+	limited_discount_stock = 4
 
 /datum/uplink_item/explosives/syndicate_bomb/emp/New()
 	..()
@@ -103,6 +104,7 @@
 	progression_minimum = 30 MINUTES
 	item = /obj/item/sbeacondrop/bomb
 	cost = 11
+	limited_discount_stock = 4
 
 /datum/uplink_item/explosives/syndicate_bomb/New()
 	. = ..()

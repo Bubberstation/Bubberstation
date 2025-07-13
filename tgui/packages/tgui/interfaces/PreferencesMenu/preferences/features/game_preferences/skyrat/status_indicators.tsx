@@ -1,4 +1,4 @@
-import { CheckboxInput, FeatureToggle } from '../../base';
+import { CheckboxInput, type FeatureToggle } from '../../base';
 
 export const enable_status_indicators: FeatureToggle = {
   name: 'Display Status Indicators',
