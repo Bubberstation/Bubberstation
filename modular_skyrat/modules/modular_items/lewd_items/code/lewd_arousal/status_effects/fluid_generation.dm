@@ -72,11 +72,11 @@
 
 	var/regen = ((owner.nutrition / (NUTRITION_LEVEL_WELL_FED / NUTRITION_MULTIPLIER)) / NUTRITION_MULTIPLIER) * (breasts.reagents.maximum_volume / BREASTS_MULTIPLIER) * BASE_MULTIPLIER
 	if(breasts.reagents.total_volume < breasts.reagents.maximum_volume)
-		var/A = breasts.reagents.maximum_volume
-		var/B = breasts.reagents.total_volume
-		A -= B // how much free space remaining?
-		if(regen > A)
-			regen = A // so we aren't draining nutrition for milk that isn't actually being generated
+		var/free_space = breasts.reagents.maximum_volume
+		var/occp_space = breasts.reagents.total_volume
+		free_space -= occp_space // how much free space remaining?
+		if(regen > free_space)
+			regen = free_space // so we aren't draining nutrition for milk that isn't actually being generated
 		owner.adjust_nutrition(-regen / NUTRITION_COST_MULTIPLIER)
 		breasts.reagents.add_reagent(breasts.internal_fluid_datum, regen)
 
