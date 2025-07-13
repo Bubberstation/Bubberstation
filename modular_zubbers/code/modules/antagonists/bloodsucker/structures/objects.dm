@@ -50,7 +50,8 @@
 ///Bloodbag of Bloodsucker blood (used by Ghouls only)
 /obj/item/reagent_containers/blood/o_minus/bloodsucker
 	name = "blood pack"
-	unique_blood = /datum/reagent/blood/bloodsucker
+	blood_type = null
+	list_reagents = list(/datum/reagent/blood/bloodsucker = 200)
 
 /obj/item/reagent_containers/blood/o_minus/bloodsucker/examine(mob/user)
 	. = ..()
