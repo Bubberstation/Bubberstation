@@ -9,19 +9,19 @@
 	min_wizard_trigger_potency = NEVER_TRIGGERED_BY_WIZARDS
 	max_wizard_trigger_potency = NEVER_TRIGGERED_BY_WIZARDS
 
-	min_players = 30
+	min_players = 40
 	max_occurrences = 1
-	weight = 10
+	weight = 4
 	earliest_start = 60 MINUTES
 
 	track = EVENT_TRACK_MODERATE
-	tags = list(TAG_COMMUNAL,TAG_COMBAT)	
+	tags = list(TAG_COMMUNAL,TAG_COMBAT,TAG_DESTRUCTIVE,TAG_CHAOTIC)	
 
 /datum/round_event/wizard_dice
 	announce_when = 5
 
 /datum/round_event/wizard_dice/announce(fake)
-	if(prob(80)) //Announcement Optimization
+	if(!prob(80)) //Announcement Optimization
 		priority_announce("A magical twenty-sided artifact was detected in the area. Please refrain from interacting with anything that cannot be explained by science.", "Magusologist Expert Warning")
 
 /datum/round_event/wizard_dice/start()
