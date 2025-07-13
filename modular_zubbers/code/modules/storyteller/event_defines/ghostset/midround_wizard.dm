@@ -16,8 +16,6 @@
 	track = EVENT_TRACK_GHOSTSET
 	tags = list(TAG_OUTSIDER_ANTAG, TAG_CHAOTIC)
 
-	lazy_templates = list(LAZY_TEMPLATE_KEY_WIZARDDEN)
-
 /datum/round_event/ghost_role/wizard
 	minimum_required = 1
 	role_name = ROLE_WIZARD_MIDROUND
