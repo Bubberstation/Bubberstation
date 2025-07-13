@@ -1,12 +1,15 @@
 /obj/item/ammo_box/magazine/security
 	name = "pistol magazine (9mm Murphy)"
 	desc = "A 9mm handgun magazine, suitable for the Service Pistol."
+	icon = 'modular_skyrat/modules/aesthetics/guns/icons/magazine.dmi'
+	base_icon_state = "9x19pB"
 	ammo_type = /obj/item/ammo_casing/security
+	caliber = CALIBER_9MM
 	max_ammo = 10
-	icon_state = "9x19p"
-	base_icon_state = "9x19p"
 	ammo_band_icon = "+9x19ab"
-	multiple_sprites = AMMO_BOX_FULL_EMPTY
+	ammo_band_icon_empty = null
+	ammo_band_color = null
+	multiple_sprites = AMMO_BOX_PER_BULLET
 	multiple_sprite_use_base = TRUE
 	var/murphy_eject_sound = 'sound/items/weapons/throwhard.ogg'
 	var/was_ejected = 0
@@ -16,7 +19,7 @@
 	desc = "A 9mm handgun magazine, suitable for the Service Pistol."
 	ammo_type = /obj/item/ammo_casing/security
 	max_ammo = 8
-	ammo_band_color = "#ff9900"
+	base_icon_state = "9x19pI"
 	murphy_eject_sound = 'sound/items/weapons/gun/general/rocket_launch.ogg'
 
 /obj/item/ammo_box/magazine/security/rocket/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
