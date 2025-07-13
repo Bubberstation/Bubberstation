@@ -236,7 +236,23 @@ SUBSYSTEM_DEF(gamemode)
 		return 0
 	if(!storyteller.antag_divisor)
 		return 0
-	return round(max(min(get_correct_popcount() / storyteller.antag_divisor + sec_crew ,sec_crew * 1.5),ANTAG_CAP_FLAT))
+
+	var/current_population = get_correct_popcount()
+
+	var/crew_cap = FLOOR(current_population / storyteller.antag_divisor,1)
+
+	var/alert_cap_multiplier = 0 //Anything above red means 0, like Delta and world ending events.
+	switch(SSsecurity_level.get_current_level_as_number())
+		if(SEC_LEVEL_GREEN to SEC_LEVEL_ORANGE)
+			alert_cap_multiplier = 1.5
+		if(SEC_LEVEL_AMBER)
+			alert_cap_multiplier = 1.25
+		if(SEC_LEVEL_RED)
+			alert_cap_multiplier = 1
+
+	var/sec_cap = FLOOR(sec_crew * alert_cap_multiplier,1)
+
+	return max( min(crew_cap,sec_cap), ANTAG_CAP_FLAT )
 
 /// Whether events can inject more antagonists into the round
 /datum/controller/subsystem/gamemode/proc/can_inject_antags()
