@@ -12,7 +12,7 @@ import {
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { TechwebWarning } from './Nanites/NoTechwebWarning';
-import { NaniteProgram, Techweb } from './Nanites/types';
+import type { NaniteProgram, Techweb } from './Nanites/types';
 
 interface NaniteInfoBoxProps {
   has_disk: boolean;
@@ -197,7 +197,7 @@ interface NaniteCloudBackupDetailsProps {
 export const NaniteCloudBackupDetails = () => {
   const { act, data } = useBackend<NaniteCloudBackupDetailsProps>();
   const { current_view, disk, has_program, cloud_backup } = data;
-  const can_rule = (disk && disk.can_rule) || false;
+  const can_rule = disk?.can_rule || false;
   if (!cloud_backup) {
     return <NoticeBox>ERROR: Backup not found</NoticeBox>;
   }
