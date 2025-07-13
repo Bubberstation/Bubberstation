@@ -3,6 +3,7 @@
 	desc = "In some way, you're able to hang from the ceiling. Only devious things can come of this."
 	value = 0
 	icon = FA_ICON_HAND_POINT_UP
+	medical_record_text = "Patient's body produces an adhesive surface on their skin."
 	/// The ceiling ability we have given our owner. Nullable, if we have no owner.
 	var/datum/action/cooldown/spell/perch/perch_ability
 
