@@ -1,4 +1,4 @@
-/datum/round_event_control/antagonist/wizard
+/datum/round_event_control/antagonist/solo/wizard
 	name = "Wizard"
 	roundstart = TRUE
 
@@ -12,3 +12,9 @@
 	maximum_antags = 1
 
 	ruleset_lazy_templates = list(LAZY_TEMPLATE_KEY_WIZARDDEN)
+
+/datum/round_event_control/antagonist/solo/wizard/midround
+	name = "Wizard (Midround)"
+	roundstart = FALSE
+	weight = 0 // Disabled for now, but put here incase anyone wants to add it later.
+	tags = list(TAG_OUTSIDER_ANTAG, TAG_CHAOTIC)
