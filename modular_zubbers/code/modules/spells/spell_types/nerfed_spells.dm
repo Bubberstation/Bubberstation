@@ -96,3 +96,25 @@
 	item_path = /obj/item/banhammer/real
 	category = "Offensive"
 	cost = 2
+
+
+// Conjure Simian: Spam lesser gorillas that kill you dead and lag the server to shit because of how many overlays monkeys have.
+// Replaces it with the ability to just summon one simplemob gorilla. Lowers the cost from 2 to 1. Now with 100% less free lag.
+/datum/spellbook_entry/summon_simians
+	name = "Summon Lesser Simian"
+	desc = "This spell reaches deep into the elemental plane of bananas (the monkey one, not the clown one), and \
+		summons a gorilla that will promptly flip out and attack everything in sight. Fun! \
+		Their lesser, easily manipulable mind will be convinced you are one of their allies, but only for a minute. Unless you also are a monkey."
+	cost = 1
+
+/datum/action/cooldown/spell/conjure/simian
+	name = "Summon Lesser Simian"
+	desc = "This spell reaches deep into the elemental plane of bananas (the monkey one, not the clown one), and \
+		summons a gorilla that will promptly flip out and attack everything in sight. Fun! \
+		Their lesser, easily manipulable mind will be convinced you are one of their allies, but only for a minute. Unless you also are a monkey."
+	summon_radius = 2
+	summon_type = list(
+		/mob/living/basic/gorilla/lesser
+	)
+	summon_amount = 1
+	invocation = "THIS SHIT'S BANANAS!!!!"
