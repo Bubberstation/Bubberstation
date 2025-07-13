@@ -13,10 +13,10 @@ import {
 import { createSearch } from 'tgui-core/string';
 
 import {
-  PreferencesMenuData,
-  Quirk,
+  type PreferencesMenuData,
+  type Quirk,
   RandomSetting,
-  ServerData,
+  type ServerData,
 } from '../types';
 import { useRandomToggleState } from '../useRandomToggleState';
 import { useServerPrefs } from '../useServerPrefs';
@@ -327,8 +327,8 @@ export function QuirksPage(props) {
   });
 
   // SKYRAT EDIT START - Better Quirk Count Code
-  let balance = -data.quirks_balance;
-  let positiveQuirks = data.positive_quirk_count;
+  const balance = -data.quirks_balance;
+  const positiveQuirks = data.positive_quirk_count;
   // SKYRAT EDIT END
 
   for (const selectedQuirkName of selectedQuirks) {
