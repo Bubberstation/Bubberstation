@@ -192,12 +192,13 @@
 						visible_message(span_userlove("[src] shoots their sticky load onto [target_human]!"), \
 							span_userlove("You shoot string after string of hot cum onto [target_human]!"))
 					else
-						visible_message(span_userlove("[src] hilts [self_their] cock into [target_human]'s [climax_into_choice], shooting cum into [target_human_them]!"), \
+						visible_message(
+							span_userlove("[src] hilts [self_their] cock into [target_human]'s [climax_into_choice], shooting cum into [target_human_them]!"),
 							span_userlove("You hilt your cock into [target_human]'s [climax_into_choice], shooting cum into [target_human_them]!"))
 						to_chat(target_human, span_userlove("Your [climax_into_choice] fills with warm cum as [src] shoots [self_their] load into it."))
 
-					if(climax_into_choice == "mouth")
-						testicles.reagents.trans_to(target_human, testicles.cumshot_size, transferred_by = src, methods = INGEST)
+						if(climax_into_choice == "mouth")
+							testicles.reagents.trans_to(target_human, testicles.cumshot_size, transferred_by = src, methods = INGEST)
 
 					// if someone wanted to, they could add code for actually putting cum inside of a vagina since it's a reagent container now...
 					// would need to change up the fluid_generation.dm and tweak the organ itself for it to make sense though
@@ -217,16 +218,20 @@
 	if(climax_choice == CLIMAX_VAGINA || climax_choice == CLIMAX_BOTH)
 		var/obj/item/organ/genital/vagina/vagina = get_organ_slot(ORGAN_SLOT_VAGINA)
 		if(is_bottomless() || vagina.visibility_preference == GENITAL_ALWAYS_SHOW)
-			visible_message(span_userlove("[src] twitches and moans as [p_they()] climax from their vagina!"), span_userlove("You twitch and moan as you climax from your vagina!"))
+			visible_message(
+				span_userlove("[src] twitches and moans as [p_they()] climax from their vagina!"),
+				span_userlove("You twitch and moan as you climax from your vagina!"))
 			if(vagina.reagents.total_volume >= MIN_VAGINA_WETNESS_THRESHOLD)
 				add_cum_splatter_floor(get_turf(src), female = TRUE)
 		else
 			if(vagina.reagents.total_volume >= MIN_VAGINA_WETNESS_THRESHOLD)
-				visible_message(span_userlove("[src] cums in [self_their] underwear from [self_their] vagina!"), \
+				visible_message(
+					span_userlove("[src] cums in [self_their] underwear from [self_their] vagina!"),
 					span_userlove("You cum in your underwear from your vagina! Eww."))
 				self_orgasm = TRUE
 			else
-				visible_message(span_userlove("[src] cums in [self_their] underwear from [self_their] vagina!"), \
+				visible_message(
+					span_userlove("[src] cums in [self_their] underwear from [self_their] vagina!"),
 					span_userlove("You cum in your underwear from your vagina, but you aren't wet enough to mess it up."))
 
 	apply_status_effect(/datum/status_effect/climax)
