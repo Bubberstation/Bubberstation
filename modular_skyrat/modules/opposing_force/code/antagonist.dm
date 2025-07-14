@@ -2,7 +2,7 @@ GLOBAL_LIST_EMPTY(opfor_passed_ckeys)
 
 /datum/antagonist/opfor_candidate
 	name = "\improper OPFOR Candidate"
-	job_rank = ROLE_OPFOR_CANDIDATE
+	pref_flag = ROLE_OPFOR_CANDIDATE
 	show_name_in_check_antagonists = TRUE
 	ui_name = "AntagInfoOpfor"
 	suicide_cry = "FOR A LACK OF CREATIVITY!!!"

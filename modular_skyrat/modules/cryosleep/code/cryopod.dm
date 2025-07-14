@@ -383,7 +383,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 		// Handle tater cleanup.
 		if(LAZYLEN(mob_occupant.mind.objectives))
 			mob_occupant.mind.objectives.Cut()
-			mob_occupant.mind.special_role = null
+			LAZYNULL(mob_occupant.mind.special_roles)
 		// Handle freeing the high priest role for the next chaplain in line
 		if(mob_occupant.mind.holy_role == HOLY_ROLE_HIGHPRIEST)
 			reset_religion()
@@ -544,7 +544,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 			return
 		to_chat(user, span_notice("You tuck [occupant.name] into their pod!"))
 		qdel(weapon)
-		user.add_mood_event("tucked", /datum/mood_event/tucked_in, 1, occupant)
+		user.add_mood_event("tucked", /datum/mood_event/tucked_in, occupant)
 		tucked = TRUE
 
 /obj/machinery/cryopod/update_icon_state()

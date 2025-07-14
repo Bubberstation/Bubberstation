@@ -170,24 +170,36 @@
 /obj/item/reagent_containers/cup/soup_pot/item_interaction(mob/living/user, obj/item/item, list/modifiers)
 	if(LAZYACCESS(modifiers, RIGHT_CLICK))
 		return NONE
+	/* BUBBERSTATION EDIT BEGIN
+	Modsuits broken with transfer_from_container_to_pot(), still can be added with compression plate
+	But will be treated as not container, and added as whole thing to avoid bugs. */
+	if(istype(item, /obj/item/mod/control))
+		return NONE
 
 	return transfer_from_container_to_pot(item, user)
 
 /obj/item/reagent_containers/cup/soup_pot/attack_hand_secondary(mob/user, list/modifiers)
+	if(remove_first_ingredient(user))
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	return SECONDARY_ATTACK_CALL_NORMAL
+
+/* Proc added by bubber, which completely utilizing logic of original attack_hand_secondary;
+	Removes item from soup pot, placing it in hand of user and on tile of soup pot if user == NULL */
+/obj/item/reagent_containers/cup/soup_pot/proc/remove_first_ingredient(mob/user)
 	if(!LAZYLEN(added_ingredients))
 		return SECONDARY_ATTACK_CALL_NORMAL
 
 	var/obj/item/removed = added_ingredients[1]
 	removed.forceMove(get_turf(src))
-	user.put_in_hands(removed)
-
-	// Ensures that faceatom works correctly, since we can can often be in another atom's loc (a stove)
-	var/atom/movable/balloon_loc = ismovable(loc) ? loc : src
-	balloon_loc.balloon_alert(user, "ingredient removed")
-	user.face_atom(balloon_loc)
-
+	if(user) // If statement added by bubber to drop things on ground if no user
+		user.put_in_hands(removed)
+		// Ensures that faceatom works correctly, since we can often be in another atom's loc (a stove)
+		var/atom/movable/balloon_loc = ismovable(loc) ? loc : src
+		balloon_loc.balloon_alert(user, "ingredient removed")
+		user.face_atom(balloon_loc)
 	update_appearance(UPDATE_OVERLAYS)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	// BUBBERSTATION EDIT END
 
 /obj/item/reagent_containers/cup/soup_pot/proc/can_add_ingredient(obj/item/ingredient)
 	// Let default reagent handling take this
