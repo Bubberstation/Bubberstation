@@ -10,7 +10,7 @@
 /obj/item/mod/module/protean/servo
 	name = "protean servo module"
 	desc = "A module made for use in protean MOD suits that adds new subroutines while folded. Comes with three modes, each partially takes over MOD suit’s motor functions to enhance the wearer's general movement, performing medical duties or construction tasks. Due to high computing power demand, protean can only use this module while worn by someone else."
-	icon_state = "no_baton" 
+	icon_state = "no_baton"
 	complexity = 3
 	use_energy_cost = DEFAULT_CHARGE_DRAIN
 	module_type = MODULE_TOGGLE //with this the module will automaticly deactivate if it's depowered or taken off
@@ -24,9 +24,15 @@
 	. = ..()
 
 	var/obj/item/mod/core/protean/protean_core = mod.core
-	var/mob/living/carbon/human/protean_in_suit = protean_core?.linked_species.owner
+	var/mob/living/carbon/human/protean_in_suit = protean_core.linked_species.owner
 
-	if(protean_in_suit == mod.wearer) //Effects of the module are meant to represent protean helping the wearer so they can't benefit from it
+	if(isnull(protean_in_suit)) //Needs to be in protean mod to turn on
+		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+		to_chat(mod.wearer, span_warning("[src] needs to be in protean MOD suit to work."))
+		deactivate()
+		return
+
+	if(protean_in_suit == mod.wearer) //Protean cant benefit from module they're suposed to be powering
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		to_chat(mod.wearer, span_warning("[src] needs someone else as the wearer, it can't be used on a protean."))
 		deactivate()
