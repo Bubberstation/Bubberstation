@@ -20,39 +20,27 @@
 	subcategory = OPS_SUBCATEGORY_RIFLE
 
 /datum/armament_entry/assault_operatives/primary/rifle/assault_ops_rifle
-	item_type = /obj/item/gun/ballistic/automatic/sol_rifle/evil
+	item_type = /obj/item/gun/ballistic/automatic/wt550/security
 
 /datum/armament_entry/assault_operatives/primary/rifle_ammo
 	subcategory = OPS_SUBCATEGORY_RIFLE_AMMO
 	max_purchase = 10
 	cost = 1
 
-/datum/armament_entry/assault_operatives/primary/rifle_ammo/standard
-	item_type = /obj/item/ammo_box/magazine/c40sol_rifle/starts_empty
-	cost = 0
+/datum/armament_entry/assault_operatives/primary/rifle_ammo/wt550m9
+	item_type = /obj/item/ammo_box/magazine/wt550m9
 
-/datum/armament_entry/assault_operatives/primary/rifle_ammo/drum
-	item_type = /obj/item/ammo_box/magazine/c40sol_rifle/drum/starts_empty
-	cost = 0
+/datum/armament_entry/assault_operatives/primary/rifle_ammo/wt550m9_ap
+	item_type = /obj/item/ammo_box/magazine/wt550m9/wtap
 
-/datum/armament_entry/assault_operatives/primary/rifle_ammo/c40sol
-	item_type = /obj/item/ammo_box/c40sol
-
-/datum/armament_entry/assault_operatives/primary/rifle_ammo/c40sol_disabler
-	item_type = /obj/item/ammo_box/c40sol/fragmentation
-
-/datum/armament_entry/assault_operatives/primary/rifle_ammo/c40sol_pierce
-	item_type = /obj/item/ammo_box/c40sol/pierce
-
-/datum/armament_entry/assault_operatives/primary/rifle_ammo/c40sol_incendiary
-	item_type = /obj/item/ammo_box/c40sol/incendiary
+/datum/armament_entry/assault_operatives/primary/rifle_ammo/wt550m9_incendiary
+	item_type = /obj/item/ammo_box/magazine/wt550m9/wtic
 
 
 /datum/armament_entry/assault_operatives/primary/submachinegun
 	subcategory = OPS_SUBCATEGORY_SMG
 
-/datum/armament_entry/assault_operatives/primary/submachinegun/assault_ops_smg
-	item_type = /obj/item/gun/ballistic/automatic/sol_smg/evil
+/datum/armament_entry/assault_operatives/primary/submachinegun/assault_ops_smg //Assops are dead currently, fill it with nukie weapons since they're fighting the same fights.
 
 /datum/armament_entry/assault_operatives/primary/submachinegun_ammo
 	subcategory = OPS_SUBCATEGORY_SMG_AMMO
@@ -63,18 +51,8 @@
 	item_type = /obj/item/ammo_box/magazine/c35sol_pistol/starts_empty
 	cost = 0
 
-/datum/armament_entry/assault_operatives/primary/submachinegun_ammo/extended
-	item_type = /obj/item/ammo_box/magazine/c35sol_pistol/stendo/starts_empty
-	cost = 0
-
 /datum/armament_entry/assault_operatives/primary/submachinegun_ammo/c35sol
 	item_type = /obj/item/ammo_box/c35sol
-
-/datum/armament_entry/assault_operatives/primary/submachinegun_ammo/c35sol_disabler
-	item_type = /obj/item/ammo_box/c35sol/incapacitator
-
-/datum/armament_entry/assault_operatives/primary/submachinegun_ammo/c35sol_pierce
-	item_type = /obj/item/ammo_box/c35sol/ripper
 
 /datum/armament_entry/assault_operatives/primary/shotgun
 	subcategory = OPS_SUBCATEGORY_SHOTGUN
