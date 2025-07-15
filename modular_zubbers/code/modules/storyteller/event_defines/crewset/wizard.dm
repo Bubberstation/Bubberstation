@@ -10,7 +10,7 @@
 
 	base_antags = 1
 	maximum_antags = 1
-	min_players = 50
+	min_players = 35
 
 	ruleset_lazy_templates = list(LAZY_TEMPLATE_KEY_WIZARDDEN)
 
