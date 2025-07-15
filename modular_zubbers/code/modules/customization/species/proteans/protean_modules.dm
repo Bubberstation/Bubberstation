@@ -2,15 +2,15 @@
 //Modules that only Proteans can use
 
 /obj/item/mod/module/protean
-	name = "Protean module"
+	name = "protean module"
 	desc = "Blank module for proteans"
 
 ////Protean servo module////
 //Module meant to give temporary passive buffs to wearer, gives three options with diffrent effects and shared cooldowns.
 /obj/item/mod/module/protean/servo
-	name = "Protean servo module"
-	desc = "A module made for proteans that allows them to assist with activites."
-	icon_state = "no_baton"
+	name = "protean servo module"
+	desc = "A module made for use in protean MOD suits that adds new subroutines while folded. Comes with three modes, each partially takes over MOD suit’s motor functions to enhance the wearer's general movement, performing medical duties or construction tasks. Due to high computing power demand, protean can only use this module while worn by someone else."
+	icon_state = "no_baton" 
 	complexity = 3
 	use_energy_cost = DEFAULT_CHARGE_DRAIN
 	module_type = MODULE_TOGGLE //with this the module will automaticly deactivate if it's depowered or taken off
