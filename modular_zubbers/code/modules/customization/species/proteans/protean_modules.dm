@@ -40,9 +40,11 @@
 	. = ..()
 	var/obj/item/mod/core/protean/protean_core = mod.core
 	var/mob/living/carbon/human/protean_in_suit = protean_core?.linked_species.owner
+
 	servo_movement.Remove(protean_in_suit) //All the cleanup
 	servo_medical.Remove(protean_in_suit)
 	servo_engineering.Remove(protean_in_suit)
+
 	mod.wearer.remove_status_effect(/datum/status_effect/protean_servo/movement)
 	mod.wearer.remove_status_effect(/datum/status_effect/protean_servo/medical)
 	mod.wearer.remove_status_effect(/datum/status_effect/protean_servo/engineer)
@@ -55,7 +57,7 @@
 	background_icon_state = "bg_mod"
 
 /datum/action/cooldown/protean/servo
-	cooldown_time = 600
+	cooldown_time = 60 SECONDS
 	cooldown_rounding = 1
 	shared_cooldown = MOB_SHARED_COOLDOWN_1 //Using one action puts other two on cooldown
 	text_cooldown = TRUE
@@ -71,6 +73,7 @@
 	var/datum/species/protean/species = protean.dna.species
 	var/obj/item/mod/control/pre_equipped/protean/suit = species.species_modsuit
 	var/mob/living/carbon/wearer = suit.wearer
+
 	wearer.apply_status_effect(/datum/status_effect/protean_servo/movement)
 	wearer.visible_message(span_warning("[protean] speeds up [wearer]'s movement!"))
 	StartCooldown()
@@ -86,6 +89,7 @@
 	var/datum/species/protean/species = protean.dna.species
 	var/obj/item/mod/control/pre_equipped/protean/suit = species.species_modsuit
 	var/mob/living/carbon/wearer = suit.wearer
+
 	wearer.apply_status_effect(/datum/status_effect/protean_servo/medical)
 	wearer.visible_message(span_warning("[protean] assists in [wearer]'s medical actions!"))
 	StartCooldown()
@@ -101,6 +105,7 @@
 	var/datum/species/protean/species = protean.dna.species
 	var/obj/item/mod/control/pre_equipped/protean/suit = species.species_modsuit
 	var/mob/living/carbon/wearer = suit.wearer
+
 	wearer.apply_status_effect(/datum/status_effect/protean_servo/engineer)
 	wearer.visible_message(span_warning("[protean] assists in [wearer]'s construction tasks!"))
 	StartCooldown()
