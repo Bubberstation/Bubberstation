@@ -1,0 +1,1 @@
+/datum/species/human/werewolf
