@@ -9,16 +9,21 @@
 	power_path = /datum/action/cooldown/mob_cooldown/turtle_tree/healer/harmonizing_pulses
 	instability = POSITIVE_INSTABILITY_MAJOR
 
-/datum/action/cooldown/mob_cooldown/turtle_tree/healer/harmonizing_pulse
+/datum/action/cooldown/mob_cooldown/turtle_tree/healer/harmonizing_pulses
 	name = "Harmonizing Pulses"
 	desc = "Emit pulses that heals plants and people alike."
+	button_icon = 'modular_zubbers/icons/mob/actions/actions.dmi'
+	button_icon_state = "harmonizing_pulses"
 	tree_range = 3
 	effect_path = /obj/effect/temp_visual/circle_wave/tree/harmonizing_pulses
 
-/datum/action/cooldown/mob_cooldown/turtle_tree/healer/harmonizing_pulses/tree_effect()
+/datum/action/cooldown/mob_cooldown/turtle_tree/healer/harmonizing_pulses/Activate(atom/target)
 	. = ..()
 	var/mob/living/owner_ref = owner
 	owner_ref.adjust_pacifism((time_between_intervals * maximum_intervals) + 3 SECONDS)
+
+/datum/action/cooldown/mob_cooldown/turtle_tree/healer/harmonizing_pulses/tree_effect()
+	. = ..()
 	for(var/mob/living/creature in oview(tree_range, owner))
 		if(!(creature.mob_biotypes & MOB_ORGANIC))
 			return
