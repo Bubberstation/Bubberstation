@@ -99,13 +99,20 @@
 
 /datum/supply_pack/security/armory/cacoilgun
 	name = "Romulus Technology MEC-1E Coilgun"
-	cost = CARGO_CRATE_VALUE * 22
+	cost = CARGO_CRATE_VALUE * 55
 	desc = "Contains Three standard-issue electromagnetic coilgun and Three magazines for it."
 	contains = list(
 		/obj/item/gun/ballistic/automatic/coilgun = 3,
 		/obj/item/ammo_box/magazine/cacoilgun = 3
 	)
 	crate_name = "Experimental Coilgun Crate"
+
+/datum/supply_pack/security/armory/cacoilgun_ammo
+	name = "5.7mm Coilgun Ammo Crate"
+	cost = CARGO_CRATE_VALUE * 11
+	desc = "Contains Nine magazines for the MEC-1E Coilgun."
+	contains = /obj/item/ammo_box/magazine/cacoilgun = 9
+	crate_name = "Coilgun Ammo Crate"
 
 //Misc
 

@@ -23,3 +23,10 @@
 	projectile_type = /obj/projectile/bullet/cacoil/ripper
 
 /obj/projectile/bullet/cacoil/ripper
+
+	name = "coilgun hedge dart"
+	damage = 10
+	armour_penetration = 0
+	wound_bonus = 15
+	exposed_wound_bonus = 15
+	weak_against_armour = TRUE

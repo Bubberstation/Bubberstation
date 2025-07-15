@@ -14,7 +14,8 @@
 	ammo_band_icon = "+cmgmag_ammo_band"
 	ammo_band_color = null
 
- /obj/item/ammo_box/magazine/cacoilgun/ripper
+/obj/item/ammo_box/magazine/cacoilgun/ripper
+	name = "coilgun magazine (5.7mm Hollow Point)"
 	ammo_type = /obj/item/ammo_casing/cacoil/ripper
 	ammo_band_color = null
 
