@@ -107,12 +107,21 @@
 	)
 	crate_name = "Experimental Coilgun Crate"
 
-/datum/supply_pack/security/armory/cacoilgun_ammo
+/datum/supply_pack/security/cacoilgun_ammo
 	name = "5.7mm Coilgun Ammo Crate"
 	cost = CARGO_CRATE_VALUE * 11
 	desc = "Contains Nine magazines for the MEC-1E Coilgun."
 	contains = /obj/item/ammo_box/magazine/cacoilgun = 9
 	crate_name = "Coilgun Ammo Crate"
+
+// KERI Weapon
+
+/datum/supply_pack/security/armory/thermal_lever
+	name = "Kepler Energy Research Lever Action Rifle"
+	cost = CARGO_CRATE_VALUE * 15
+	desc = "Contains Three Winchester ULA Thermal Lever Action Rifle designed by Kepler Energy Research Institute for Nanotrasen usage."
+	contains = /obj/item/gun/energy/laser/thermal/lever = 3
+	crate_name = "Thermal Lever Action Crate"
 
 //Misc
 

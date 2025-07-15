@@ -25,8 +25,21 @@
 /obj/projectile/bullet/cacoil/ripper
 
 	name = "coilgun hedge dart"
-	damage = 10
+	damage = 12
 	armour_penetration = 0
 	wound_bonus = 15
 	exposed_wound_bonus = 15
 	weak_against_armour = TRUE
+
+
+/obj/item/ammo_casing/cacoil/fp
+
+	projectile_type = /obj/projectile/bullet/cacoil/fp
+
+/obj/projectile/bullet/cacoil/fp
+
+	name = "coilgun fragmenting dart"
+	damage = 12
+	armour_penetration = 0
+	wound_bonus = 15
+	exposed_wound_bonus = -25

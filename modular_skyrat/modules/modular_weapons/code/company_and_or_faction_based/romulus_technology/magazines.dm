@@ -1,6 +1,7 @@
 //Coilgun Driver Magazine or whatever the fuck you wanna call it im done with this shit
 /obj/item/ammo_box/magazine/cacoilgun
 	name = "coilgun magazine (5.7mm)"
+	desc = "A 5.7mm coilgun ammunition box magazine, a bit wide though."
 	ammo_type = /obj/item/ammo_casing/cacoil
 	caliber = CALIBER_COIL
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/romulus_technology/ammo.dmi'
@@ -14,10 +15,21 @@
 	ammo_band_icon = "+cmgmag_ammo_band"
 	ammo_band_color = null
 
+/obj/item/ammo_box/magazine/cacoilgun/update_icon_state()
+	. = ..()
+	icon_state = "[base_icon_state][ammo_count() ? "-ammo" : ""]"
+
 /obj/item/ammo_box/magazine/cacoilgun/ripper
 	name = "coilgun magazine (5.7mm Hollow Point)"
+	desc = parent_type::desc + " Contains highly lethal low penetration projectile that splits into smaller metal shrapnel upon impacting a target."
 	ammo_type = /obj/item/ammo_casing/cacoil/ripper
-	ammo_band_color = null
+	ammo_band_color = COLOR_AMMO_TRUESTRIKE
+
+/obj/item/ammo_box/magazine/cacoilgun/fp
+	name = "coilgun magazine (5.7mm Fragmenting)"
+	desc = parent_type::desc + " Contains highly lethal low penetration projectile that splits into smaller metal shrapnel upon impacting a target."
+	ammo_type = /obj/item/ammo_casing/cacoil/fp
+	ammo_band_color = COLOR_AMMO_TRUESTRIKE
 
 //Handgun Magazine
 
