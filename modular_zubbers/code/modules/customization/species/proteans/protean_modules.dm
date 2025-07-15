@@ -26,12 +26,6 @@
 	var/obj/item/mod/core/protean/protean_core = mod.core
 	var/mob/living/carbon/human/protean_in_suit = protean_core.linked_species.owner
 
-	if(isnull(protean_in_suit)) //Needs to be in protean mod to turn on
-		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
-		to_chat(mod.wearer, span_warning("[src] needs to be in protean MOD suit to work."))
-		deactivate()
-		return
-
 	if(protean_in_suit == mod.wearer) //Protean cant benefit from module they're suposed to be powering
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		to_chat(mod.wearer, span_warning("[src] needs someone else as the wearer, it can't be used on a protean."))
