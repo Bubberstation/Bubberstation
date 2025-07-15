@@ -1,10 +1,3 @@
-/datum/supply_pack/imports_medical
-	access = NONE
-	cost = PAYCHECK_LOWER
-	group = "Medical" //figure this out later
-	goody = TRUE
-	crate_type = null
-	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
 
 /datum/supply_pack/imports_medical/first_aid_kit_civil
 	name = "Civil Defense First Aid Kit"
@@ -236,114 +229,93 @@
 	contains = list(/obj/item/wallframe/defib_mount/charging)
 	cost = PAYCHECK_CREW * 3
 
-/datum/armament_entry/company_import/deforest/equipment/penlite_defib_mount
-	item_type = /obj/item/wallframe/defib_mount/charging
-	cost = PAYCHECK_CREW * 3
+/datum/supply_pack/imports_medical/advanced_scalpel
+	name = "Advanced Scalpel"
+	contains = list(/obj/item/scalpel/advanced)
+	cost = PAYCHECK_COMMAND *3
 
-/datum/armament_entry/company_import/deforest/equipment/advanced_scalpel
-	item_type = /obj/item/scalpel/advanced
+/datum/supply_pack/imports_medical/advanced_retractor
+	name = "Advanced Retractor"
+	contains = list(/obj/item/retractor/advanced)
 	cost = PAYCHECK_COMMAND * 3
 
-/datum/armament_entry/company_import/deforest/equipment/advanced_retractor
-	item_type = /obj/item/retractor/advanced
+/datum/supply_pack/imports_medical/advanced_cautery
+	name = "Advanced Cautery"
+	contains = list(/obj/item/cautery/advanced)
 	cost = PAYCHECK_COMMAND * 3
 
-/datum/armament_entry/company_import/deforest/equipment/advanced_cautery
-	item_type = /obj/item/cautery/advanced
-	cost = PAYCHECK_COMMAND * 3
-
-/datum/armament_entry/company_import/deforest/equipment/advanced_blood_filter
-	item_type = /obj/item/blood_filter/advanced
+/datum/supply_pack/imports_medical/advanced_blood_filter
+	name = "Advanced Blood Filter"
+	contains = list(/obj/item/blood_filter/advanced)
 	cost = PAYCHECK_COMMAND * 9
 
-/datum/armament_entry/company_import/deforest/equipment/medigun_upgrade
-	item_type = /obj/item/device/custom_kit/medigun_fastcharge
+/datum/supply_pack/imports_medical/medigun_upgrade
+	name = "Fast-Charge Medigun Upgrade"
+	contains = list(/obj/item/device/custom_kit/medigun_fastcharge)
 	cost = PAYCHECK_COMMAND * 2
 
-/datum/armament_entry/company_import/deforest/equipment/hypospray_upgrade
-	item_type = /obj/item/device/custom_kit/deluxe_hypo2
+/datum/supply_pack/imports_medical/hypospray_upgrade
+	name = "Hypospray Upgrade"
+	contains = list(/obj/item/device/custom_kit/deluxe_hypo2)
 	cost = PAYCHECK_COMMAND * 2
 
-/datum/armament_entry/company_import/deforest/equipment/advanced_hypospray
-	item_type = /obj/item/hypospray/mkii/piercing
+/datum/supply_pack/imports_medical/advanced_hypospray
+	name = "Advanced Hypospray"
+	contains = list(/obj/item/hypospray/mkii/piercing)
 	cost = PAYCHECK_COMMAND * 7
 
-/datum/armament_entry/company_import/deforest/equipment/afad
-	item_type = /obj/item/gun/medbeam/afad
+/datum/supply_pack/imports_medical/afad
+	name = "AFAD Medbeam" //check this later
+	contains = list(/obj/item/gun/medbeam/afad)
 	cost = PAYCHECK_COMMAND * 5
 
-/datum/armament_entry/company_import/deforest/equipment/medstation
-	item_type = /obj/item/wallframe/frontier_medstation
+/datum/supply_pack/imports_medical/medstation
+	name = "Wallmounted Medstation"
+	contains = list(/obj/item/wallframe/frontier_medstation)
 	cost = PAYCHECK_COMMAND * 5
 
-/datum/armament_entry/company_import/deforest/equipment/medhud
-	item_type = /obj/item/clothing/glasses/hud/health
+/datum/supply_pack/imports_medical/medhud
+	name = "Medical HUD"
+	contains = list(/obj/item/clothing/glasses/hud/health)
 	cost = PAYCHECK_COMMAND * 2
 
-/datum/armament_entry/company_import/deforest/equipment/medhud_night
-	item_type = /obj/item/clothing/glasses/hud/health/night
+/datum/supply_pack/imports_medical/medhud_night
+	name = "Night-Vision Medical HUD"
+	contains = list(/obj/item/clothing/glasses/hud/health/night)
 	cost = PAYCHECK_COMMAND * 4
 
-/datum/armament_entry/company_import/deforest/equipment/medhud_night_sci
-	item_type = /obj/item/clothing/glasses/hud/health/night/science
+/datum/supply_pack/imports_medical/medhud_night_sci
+	name = "Night-Vision Reagent Medical HUD"
+	contains = list(/obj/item/clothing/glasses/hud/health/night/science)
 	cost = PAYCHECK_COMMAND * 6
 
-/datum/armament_entry/company_import/deforest/equipment/hypospray_case
-	item_type = /obj/item/storage/hypospraykit
-	cost = PAYCHECK_LOWER * 2
+/datum/supply_pack/imports_medical/hypospray_case
+	name = "Hypospray Kit"
+	contains = list(/obj/item/storage/hypospraykit)
+	cost = PAYCHECK_LOWER *2
 
-/datum/armament_entry/company_import/deforest/equipment/hypospray
-	item_type = /obj/item/hypospray/mkii
+/datum/supply_pack/imports_medical/hypospray
+	name = "MkII Hypospray"
+	contains = list(/obj/item/hypospray/mkii)
 	cost = PAYCHECK_LOWER * 2
 
 // Cybernetics and other things that go inside you
 
-/datum/armament_entry/company_import/deforest/implant
-	subcategory = "Cybernetics"
-
-/datum/armament_entry/company_import/deforest/implant/surgery
-	item_type = /obj/item/organ/cyberimp/arm/toolkit/surgery
+/datum/supply_pack/imports_medical/implant
 	cost = PAYCHECK_COMMAND * 5
 
-/datum/armament_entry/company_import/deforest/implant/toolset
-	item_type = /obj/item/organ/cyberimp/arm/toolkit/toolset
-	cost = PAYCHECK_COMMAND * 5
+/datum/supply_pack/imports_medical/implant/surgery
+	name = "Surgery Toolset Implant"
+	contains = list(/obj/item/organ/cyberimp/arm/toolkit/surgery)
 
-/datum/armament_entry/company_import/deforest/implant/botany
-	item_type = /obj/item/organ/cyberimp/arm/toolkit/botany
-	cost = PAYCHECK_COMMAND * 5
+/datum/supply_pack/imports_medical/implant/toolset
+	name = "Engineering Toolset Implant"
+	contains = list(/obj/item/organ/cyberimp/arm/toolkit/toolset)
 
-/datum/armament_entry/company_import/deforest/implant/janitor
-	item_type = /obj/item/organ/cyberimp/arm/toolkit/janitor
-	cost = PAYCHECK_COMMAND * 5
+/datum/supply_pack/imports_medical/implant/botany
+	name = "Botany Toolset Implant"
+	contains = list(/obj/item/organ/cyberimp/arm/toolkit/botany)
 
-// Modsuit Modules from the medical category, here instead of in Nakamura because nobody buys from this company
-
-/datum/armament_entry/company_import/deforest/medical_modules
-	subcategory = "MOD Medical Modules"
-	cost = PAYCHECK_COMMAND * 2
-
-/datum/armament_entry/company_import/deforest/medical_modules/injector
-	name = "MOD injector module"
-	item_type = /obj/item/mod/module/injector
-
-/datum/armament_entry/company_import/deforest/medical_modules/organizer
-	name = "MOD organizer module"
-	item_type = /obj/item/mod/module/organizer
-
-/datum/armament_entry/company_import/deforest/medical_modules/patient_transport
-	name = "MOD patient transport module"
-	item_type = /obj/item/mod/module/criminalcapture/patienttransport
-
-/datum/armament_entry/company_import/deforest/medical_modules/thread_ripper
-	name = "MOD thread ripper module"
-	item_type = /obj/item/mod/module/thread_ripper
-
-/datum/armament_entry/company_import/deforest/medical_modules/surgical_processor
-	name = "MOD surgical processor module"
-	item_type = /obj/item/mod/module/surgical_processor
-
-/datum/armament_entry/company_import/deforest/medical_modules/defibrillator
-	name = "MOD defibrillator module"
-	item_type = /obj/item/mod/module/defibrillator
-
+/datum/supply_pack/imports_medical/implant/janitor
+	name = "Janitor Toolset Implant"
+	contains = list(/obj/item/organ/cyberimp/arm/toolkit/janitor)
