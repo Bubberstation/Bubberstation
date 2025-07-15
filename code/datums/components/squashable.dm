@@ -51,7 +51,7 @@
 		return
 
 	if((squash_flags & SQUASHED_SHOULD_BE_DOWN) && parent_as_living.body_position != LYING_DOWN)
-		parent_as_living.Knockdown(1 SECONDS) // BUBBER EDIT - MICRO BALANCE
+		parent_as_living.Stun(1 SECONDS) // BUBBER EDIT - MICRO BALANCE
 		return
 
 	var/should_squash = ((squash_flags & SQUASHED_ALWAYS_IF_DEAD) && parent_as_living.stat == DEAD) || prob(squash_chance)
@@ -62,7 +62,7 @@
 	if(isliving(crossing_movable))
 		var/mob/living/crossing_mob = crossing_movable
 		if(crossing_mob.mob_size > MOB_SIZE_SMALL && !(crossing_mob.movement_type & MOVETYPES_NOT_TOUCHING_GROUND))
-			if(HAS_TRAIT(crossing_mob, TRAIT_PACIFISM) || (crossing_mob.move_intent == MOVE_INTENT_WALK)) // BUBBER EDIT
+			if(HAS_TRAIT(crossing_mob, TRAIT_PACIFISM) || (crossing_mob.move_intent == MOVE_INTENT_WALK) || HAS_TRAIT(crossing_mob, TRAIT_GENTLE_STEP))
 				crossing_mob.visible_message(span_notice("[crossing_mob] carefully steps over [parent_as_living]."), span_notice("You carefully step over [parent_as_living] to avoid hurting it."))
 				return
 			if(should_squash)
@@ -83,6 +83,7 @@
 		target.gib(DROP_ALL_REMAINS)
 	else
 		if(COOLDOWN_FINISHED(src, squish_cooldown))// BUBBER EDIT
+			target.Knockdown(1 SECONDS) // BUBBER EDIT
 			target.take_bodypart_damage(squash_damage, wound_bonus = 5)// BUBBER EDIT
 			target.AddElement(/datum/element/squish, 20 SECONDS) // BUBBER EDIT
 			COOLDOWN_START(src, squish_cooldown, 20 SECONDS)// BUBBER EDIT
