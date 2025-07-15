@@ -41,3 +41,6 @@
 
 // makes it so this mob loses nutrition twice as fast
 #define TRAIT_FAST_METABOLISM "fast_metabolism"
+
+//makes you unable to squish micros
+#define TRAIT_GENTLE_STEP "gentle_step"
