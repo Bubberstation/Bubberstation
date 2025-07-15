@@ -2,11 +2,10 @@
 	name = "pistol magazine (9mm Murphy)"
 	desc = "A 9mm handgun magazine, suitable for the Service Pistol."
 	icon = 'modular_skyrat/modules/aesthetics/guns/icons/magazine.dmi'
-	base_icon_state = "9x19pB"
+	base_icon_state = "9x19p"
 	ammo_type = /obj/item/ammo_casing/security
 	caliber = CALIBER_9MM
 	max_ammo = 10
-	ammo_band_icon = "+9x19ab"
 	ammo_band_icon_empty = null
 	ammo_band_color = null
 	multiple_sprites = AMMO_BOX_PER_BULLET
