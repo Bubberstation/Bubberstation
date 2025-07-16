@@ -13,7 +13,9 @@ Coil Rifle
 		Used by Romulus Federation Military Force and Kepler Colonial Defense"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/romulus_technology/gun48x32.dmi'
 	icon_state = "pcr"
-	inhand_icon_state = "battle_rifle"
+	lefthand_file = 'modular_skyrat/modules/modular_weapons/icons/mob/company_and_or_faction_based/romulus_technology/guns_lefthand.dmi'
+	righthand_file = 'modular_skyrat/modules/modular_weapons/icons/mob/company_and_or_faction_based/romulus_technology/guns_righthand.dmi'
+	inhand_icon_state = "pcr"
 	base_icon_state = "pcr"
 	worn_icon = 'icons/mob/clothing/back.dmi'
 	worn_icon_state = "battle_rifle"
