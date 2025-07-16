@@ -11,4 +11,4 @@
 		/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/inferno,
 	)
 	crate_name = "thermal cannons crate"
-	crate_type = /obj/structure/closet/crate/secure/plasma
+	crate_type = /obj/structure/closet/crate/secure/weapon
