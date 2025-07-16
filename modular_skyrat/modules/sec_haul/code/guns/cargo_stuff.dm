@@ -112,7 +112,7 @@
 	cost = CARGO_CRATE_VALUE * 11
 	desc = "Contains Nine magazines for the MEC-1E Coilgun."
 	contains = list(
-	 	/obj/item/ammo_box/magazine/cacoilgun = 9
+		/obj/item/ammo_box/magazine/cacoilgun = 3
 	)
 	crate_name = "Coilgun Ammo Crate"
 
