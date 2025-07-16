@@ -62,7 +62,7 @@
 	if(isliving(crossing_movable))
 		var/mob/living/crossing_mob = crossing_movable
 		if(crossing_mob.mob_size > MOB_SIZE_SMALL && !(crossing_mob.movement_type & MOVETYPES_NOT_TOUCHING_GROUND))
-			if(HAS_TRAIT(crossing_mob, TRAIT_PACIFISM))
+			if(HAS_TRAIT(crossing_mob, TRAIT_PACIFISM) || (crossing_mob.move_intent == MOVE_INTENT_WALK)) // BUBBER EDIT
 				crossing_mob.visible_message(span_notice("[crossing_mob] carefully steps over [parent_as_living]."), span_notice("You carefully step over [parent_as_living] to avoid hurting it."))
 				return
 			if(should_squash)
