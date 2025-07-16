@@ -7,14 +7,18 @@
 	storyteller_type = STORYTELLER_TYPE_INTENSE
 	track_data = /datum/storyteller_data/tracks/heavy
 	guarantees_roundstart_crewset = TRUE
-	antag_divisor = 5
+	antag_divisor = 6
 	tag_multipliers = list(
 		TAG_COMBAT = 1.5,
 		TAG_DESTRUCTIVE = 0.7,
 		TAG_CHAOTIC = 1.3,
 	)
 
+	population_min = 35
+
 /datum/storyteller_data/tracks/heavy
-	threshold_moderate = 1300
-	threshold_major = 4000
+	threshold_mundane = 1300
+	threshold_moderate = 1800
+	threshold_major = 5000
+	threshold_crewset = 1800
 	threshold_ghostset = 6000
