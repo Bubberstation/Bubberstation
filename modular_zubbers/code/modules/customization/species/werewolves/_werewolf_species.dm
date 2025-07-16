@@ -2,7 +2,7 @@
 	id = SPECIES_WEREWOLF
 	examine_limb_id = SPECIES_WEREWOLF
 
-	name = "Werewolf"
+	name = "\improper Werewolf"
 	sexes = TRUE
 
 	digitigrade_customization = DIGITIGRADE_FORCED

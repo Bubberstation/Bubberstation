@@ -15,13 +15,13 @@
 	if(!istype(werewolf))
 		return
 	owner.visible_message(span_warning("[owner] grows massive, their body quickly getting covered in fur!"))
-	owner.set_species(datum/species/werewolf, TRUE)
+	owner.set_species(SPECIES_WEREWOLF, TRUE, TRUE, FALSE)
 	owner.add_traits(list(TRAIT_OVERSIZED, TRAIT_BEAST_FORM))
 /obj/item/organ/brain/werewolf/proc/leave_beast_form()
 	var/datum/species/werewolf/werewolf = owner.dna?.species
 	if(!istype(werewolf))
 		return
 	owner.visible_message(span_warning("[owner] shrinks down, their fur receding!"))
-	owner.set_species(datum/species/human/werewolf, TRUE)
+	owner.set_species(SPECIES_WEREHUMAN, TRUE, TRUE, FALSE)
 	owner.remove_traits(TRAIT_OVERSIZED, TRAIT_BEAST_FORM)
 	COOLDOWN_START(src, beast_form_cooldown, 15 MINUTES)
