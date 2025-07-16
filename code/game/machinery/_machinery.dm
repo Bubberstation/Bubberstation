@@ -160,12 +160,22 @@
 	fire = 50
 	acid = 70
 
+///Needed by machine frame & flatpacker i.e the named arg board
+/obj/machinery/New(loc, obj/item/circuitboard/board, ...)
+	if(istype(board))
+		circuit = board
+		//we don't want machines that override Initialize() have the board passed as a param e.g. atmos
+		return ..(loc)
+
+	return ..()
+
 /obj/machinery/Initialize(mapload)
 	. = ..()
 	SSmachines.register_machine(src)
 
 	if(ispath(circuit, /obj/item/circuitboard))
 		circuit = new circuit(src)
+	if(istype(circuit))
 		circuit.apply_default_parts(src)
 
 	if(processing_flags & START_PROCESSING_ON_INIT)
@@ -804,13 +814,13 @@
 		return attack_robot(user)
 	return _try_interact(user)
 
-/obj/machinery/attackby(obj/item/weapon, mob/user, list/modifiers)
+/obj/machinery/attackby(obj/item/weapon, mob/user, list/modifiers, list/attack_modifiers)
 	. = ..()
 	if(.)
 		return
 	update_last_used(user)
 
-/obj/machinery/attackby_secondary(obj/item/weapon, mob/user, list/modifiers)
+/obj/machinery/attackby_secondary(obj/item/weapon, mob/user, list/modifiers, list/attack_modifiers)
 	. = ..()
 	if(.)
 		return
@@ -836,8 +846,8 @@
 		return TRUE
 	return ..()
 
-/obj/machinery/CheckParts(list/parts_list)
-	..()
+/obj/machinery/on_craft_completion(list/components, datum/crafting_recipe/current_recipe, atom/crafter)
+	. = ..()
 	RefreshParts()
 
 /obj/machinery/proc/RefreshParts()
@@ -1191,7 +1201,7 @@
 /obj/machinery/examine_more(mob/user)
 	. = ..()
 	if(HAS_TRAIT(user, TRAIT_RESEARCH_SCANNER) && component_parts)
-		. += display_parts(user, TRUE)
+		. += display_parts(user)
 
 //called on machinery construction (i.e from frame to machinery) but not on initialization
 /obj/machinery/proc/on_construction(mob/user)

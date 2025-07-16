@@ -16,12 +16,14 @@
 /obj/item/clothing/head/henchmen_hat/traitor
 	name = "armored henchmen cap"
 	desc = "Alright boss.. I'll handle it. It seems to be armored."
+	icon_state = "/obj/item/clothing/head/henchmen_hat/traitor"
 	armor_type = /datum/armor/suit_armor
 	greyscale_colors = "#240d0d"
 
 /obj/item/clothing/suit/jacket/henchmen_coat/traitor
 	name = "armored henchmen coat"
 	desc = "Alright boss.. I'll handle it. It seems to be armored."
+	icon_state = "/obj/item/clothing/suit/jacket/henchmen_coat/traitor"
 	armor_type = /datum/armor/suit_armor
 	greyscale_colors = "#240d0d"
 

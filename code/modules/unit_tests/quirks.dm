@@ -99,11 +99,6 @@
 		var/mob/living/carbon/human/new_character = allocate(/mob/living/carbon/human/consistent)
 		new_character.mind_initialize()
 		abstract_player.new_character = new_character
-		// BUBBER EDIT ADDITION BEGIN - Code to support testing our species-locked quirks
-		var/datum/quirk/quirk_instance = allocate(quirk_type)
-		if(length(quirk_instance.species_whitelist))
-			new_character.set_species(GLOB.species_list[quirk_instance.species_whitelist[1]])
-		// BUBBER EDIT ADDITION END - Code to support testing our species-locked quirks
 		if (!new_character.add_quirk(quirk_type, roundstart_mock_client))
 			TEST_FAIL("Failed to initialize quirk [quirk_type] on a roundstart character!")
 
@@ -112,10 +107,6 @@
 		latejoin_mock_client.prefs = new(latejoin_mock_client)
 		latejoin_character.mock_client = latejoin_mock_client
 		latejoin_character.mind_initialize()
-		// BUBBER EDIT ADDITION BEGIN - Code to support testing our species-locked quirks
-		if(length(quirk_instance.species_whitelist))
-			latejoin_character.set_species(GLOB.species_list[quirk_instance.species_whitelist[1]])
-		// BUBBER EDIT ADDITION END - Code to support testing our species-locked quirks
 		if (!latejoin_character.add_quirk(quirk_type, latejoin_mock_client))
 			TEST_FAIL("Failed to initialize quirk [quirk_type] on a latejoin character!")
 

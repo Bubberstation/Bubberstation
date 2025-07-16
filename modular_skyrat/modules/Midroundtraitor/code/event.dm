@@ -1,56 +1,43 @@
 /datum/dynamic_ruleset/midround/from_ghosts/lone_infiltrator
 	name = "Lone Infiltrator"
-	antag_datum = /datum/antagonist/traitor/lone_infiltrator
-	midround_ruleset_style = MIDROUND_RULESET_STYLE_LIGHT
-	antag_flag = ROLE_LONE_INFILTRATOR
-	restricted_roles = list(JOB_CYBORG,
-							JOB_AI,
-							JOB_SECURITY_OFFICER,
-							JOB_WARDEN,
-							JOB_DETECTIVE,
-							JOB_HEAD_OF_SECURITY,
-							JOB_CAPTAIN,
-							JOB_CORRECTIONS_OFFICER,
-							JOB_NT_REP,
-							JOB_BLUESHIELD,
-							JOB_ORDERLY,
-							JOB_BOUNCER,
-							JOB_CUSTOMS_AGENT,
-							JOB_ENGINEERING_GUARD,
-							JOB_SCIENCE_GUARD,
-							)
-	required_candidates = 1
+	config_tag = "Midround Lone Infiltrator"
+	preview_antag_datum = /datum/antagonist/traitor/lone_infiltrator
+	midround_type = LIGHT_MIDROUND
+	pref_flag = ROLE_LONE_INFILTRATOR
+	blacklisted_roles = list(
+		JOB_CYBORG,
+		JOB_AI,
+		JOB_SECURITY_OFFICER,
+		JOB_WARDEN,
+		JOB_DETECTIVE,
+		JOB_HEAD_OF_SECURITY,
+		JOB_CAPTAIN,
+		JOB_CORRECTIONS_OFFICER,
+		JOB_NT_REP,
+		JOB_BLUESHIELD,
+		JOB_ORDERLY,
+		JOB_BOUNCER,
+		JOB_CUSTOMS_AGENT,
+		JOB_ENGINEERING_GUARD,
+		JOB_SCIENCE_GUARD,
+	)
+	min_antag_cap = 1
 	weight = 4 //Slightly less common than normal midround traitors.
-	cost = 4 //But also slightly more costly.
-	minimum_players = 10
-	var/list/spawn_locs = list()
+	min_pop = 10
 
-/datum/dynamic_ruleset/midround/from_ghosts/lone_infiltrator/execute()
+/datum/dynamic_ruleset/midround/from_ghosts/lone_infiltrator/create_execute_args()
+	return list(gather_spawns())
+
+/// Create list of valid spawnpoints
+/datum/dynamic_ruleset/midround/from_ghosts/lone_infiltrator/proc/gather_spawns()
+	var/list/spawns = list()
 	for(var/obj/effect/landmark/carpspawn/carp in GLOB.landmarks_list)
-		spawn_locs += carp.loc
-	if(!length(spawn_locs))
-		message_admins("No valid spawn locations found, aborting...")
-		return MAP_ERROR
-	return ..()
+		spawns += carp.loc
+	return spawns
 
-/datum/dynamic_ruleset/midround/from_ghosts/lone_infiltrator/generate_ruleset_body(mob/applicant)
-	var/datum/mind/player_mind = new /datum/mind(applicant.key)
-
-	var/mob/living/carbon/human/operative = new(pick(spawn_locs))
-	applicant.client.prefs.safe_transfer_prefs_to(operative)
-	operative.dna.update_dna_identity()
-	operative.dna.species.pre_equip_species_outfit(null, operative)
-	operative.regenerate_icons()
-	SSquirks.AssignQuirks(operative, applicant.client, TRUE, TRUE, null, FALSE, operative)
-	player_mind.set_assigned_role(SSjob.get_job_type(/datum/job/lone_operative))
-	player_mind.special_role = "Lone Infiltrator"
-	player_mind.active = TRUE
-	player_mind.transfer_to(operative)
-	player_mind.add_antag_datum(/datum/antagonist/traitor/lone_infiltrator)
-
-	message_admins("[ADMIN_LOOKUPFLW(operative)] has been made into lone infiltrator by midround ruleset.")
-	log_game("[key_name(operative)] was spawned as a lone infiltrator by midround ruleset.")
-	return operative
+/datum/dynamic_ruleset/midround/from_ghosts/lone_infiltrator/assign_role(datum/mind/candidate, list/valid_spawns)
+	candidate.add_antag_datum(/datum/antagonist/traitor/lone_infiltrator)
+	candidate.current.forceMove(pick(valid_spawns))
 
 //OUTFIT//
 /datum/outfit/syndicateinfiltrator

@@ -60,9 +60,10 @@
 /obj/item/clothing/suit/jacket/henchmen_coat
 	name = "henchmen coat"
 	desc = "Alright boss.. I'll handle it."
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/jacket/henchmen_coat"
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/jacket_digi.dmi'
-	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
-	icon_state = "greyscale_coat"
+	post_init_icon_state = "greyscale_coat"
 	greyscale_colors = "#201b1a"
 	greyscale_config = /datum/greyscale_config/henchmen
 	greyscale_config_worn = /datum/greyscale_config/henchmen/worn
@@ -79,8 +80,9 @@
 	desc = "A coat usually worn by bunny themed waiters and the like."
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/jacket_digi.dmi'
-	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
-	icon_state = "tailcoat"
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/jacket/tailcoat"
+	post_init_icon_state = "tailcoat"
 	greyscale_colors = "#39393f"
 	greyscale_config = /datum/greyscale_config/tailcoat
 	greyscale_config_worn = /datum/greyscale_config/tailcoat_worn
@@ -89,7 +91,8 @@
 /obj/item/clothing/suit/jacket/tailcoat/bartender
 	name = "bartender's tailcoat"
 	desc = "A coat usually worn by bunny themed bartenders. It has an interior holster for firearms and some extra padding for minor protection."
-	icon_state = "tailcoat_bar"
+	icon_state = "/obj/item/clothing/suit/jacket/tailcoat/bartender"
+	post_init_icon_state = "tailcoat_bar"
 	greyscale_colors = "#39393f#ffffff"
 	greyscale_config = /datum/greyscale_config/tailcoat_bar
 	greyscale_config_worn = /datum/greyscale_config/tailcoat_bar_worn
@@ -108,7 +111,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/syndicate
 	name = "suspicious tailcoat"
 	desc = "A oddly intimidating coat usually worn by bunny themed assassins. It's reinforced with some extremely flexible lightweight alloy. How much did they pay for this?"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "tailcoat_syndi"
+	post_init_icon_state = null
 	armor_type = /datum/armor/wintercoat_syndicate
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -133,7 +138,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/magician
 	name = "magician's tailcoat"
 	desc = "A magnificent, gold-lined tailcoat."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "tailcoat_wiz"
+	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
@@ -151,7 +158,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/centcom
 	name = "Centcom tailcoat"
 	desc = "An official coat usually worn by bunny themed executives. The inside is lined with comfortable yet tasteful bunny fluff."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "tailcoat_centcom"
+	post_init_icon_state = null
 	armor_type = /datum/armor/armor_centcom_formal_nt_consultant
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -161,7 +170,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/british
 	name = "british flag tailcoat"
 	desc = "A tailcoat emblazoned with the Union Jack. Perfect attire for teatime."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "tailcoat_brit"
+	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
@@ -170,7 +181,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/communist
 	name = "really red tailcoat"
 	desc = "A red tailcoat emblazoned with a golden star. The official uniform of the Bunny Waiter Union."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "tailcoat_communist"
+	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
@@ -178,7 +191,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/usa
 	name = "stars tailcoat"
 	desc = "A vintage coat worn by the 5th bunny battalion during the Revolutionary War. Smooth-bore musket not included."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "tailcoat_stars"
+	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
@@ -186,7 +201,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/plasmaman
 	name = "purple tailcoat"
 	desc = "A purple coat that looks to be the same purple used in several plasmaman evirosuits."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "tailcoat_plasma"
+	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
@@ -209,7 +226,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/quartermaster
 	name = "quartermaster's tailcoat"
 	desc = "A fancy brown coat worn by bunny themed quartermasters. The gold accents show everyone who's in charge."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "qm"
+	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
@@ -217,7 +236,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/cargo
 	name = "cargo tailcoat"
 	desc = "A simple brown coat worn by bunny themed cargo technicians. Significantly less stripy than the quartermasters."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "cargo_tech"
+	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
@@ -225,7 +246,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/miner
 	name = "explorer tailcoat"
 	desc = "An adapted explorer suit worn by bunny themed shaft miners. It has attachment points for goliath plates but comparatively little armor."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "explorer"
+	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
@@ -255,7 +278,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/bitrunner
 	name = "bitrunner tailcoat"
 	desc = "A black and gold coat worn by bunny themed cargo technicians. Open your Space Colas and let's fuckin' game!"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "bitrunner"
+	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
@@ -265,7 +290,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/engineer
 	name = "engineering tailcoat"
 	desc = "A high visibility tailcoat worn by bunny themed engineers. Great for working in low-light conditions."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "engi"
+	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
 
@@ -351,56 +378,99 @@
 	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 
-/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/paramedic
+/obj/item/clothing/suit/toggle/labcoat/paramedic/doctor_tailcoat
 	name = "paramedic's tailcoat"
 	desc = "A heavy duty coat worn by bunny themed paramedics. Marked with high visibility lines for emergency operations in the dark."
 	icon_state = "paramedic"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 
-/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/chemist
+/obj/item/clothing/suit/toggle/labcoat/chemist/doctor_tailcoat
 	name = "chemist's tailcoat"
 	desc = "A sterile white and orange coat worn by bunny themed chemists. The open chest isn't the greatest when working with dangerous substances."
 	icon_state = "chem"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	post_init_icon_state = null
+	greyscale_config = null
+	greyscale_config_worn = null
+	greyscale_colors = null
 
-/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/pathologist
+/obj/item/clothing/suit/toggle/labcoat/virologist/doctor_tailcoat
 	name = "pathologist's tailcoat"
 	desc = "A sterile white and green coat worn by bunny themed pathologists. The more stylish and ineffective alternative to a biosuit."
 	icon_state = "virologist"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	post_init_icon_state = null
+	greyscale_config = null
+	greyscale_config_worn = null
+	greyscale_colors = null
 
-/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/coroner
+/obj/item/clothing/suit/toggle/labcoat/coroner/doctor_tailcoat
 	name = "coroner's tailcoat"
 	desc = "A sterile black and white coat worn by bunny themed coroners. Adorned with a skull on the back."
 	icon_state = "coroner"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	post_init_icon_state = null
+	greyscale_config = null
+	greyscale_config_worn = null
+	greyscale_colors = null
 
-/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/cmo
+/obj/item/clothing/suit/toggle/labcoat/cmo/doctor_tailcoat
 	name = "chief medical officer's tailcoat"
 	desc = "A sterile blue coat worn by bunny themed chief medical officers. The blue helps both the wearer and bloodstains stand out from other, lower ranked, and cleaner doctors."
 	icon_state = "cmo"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 
 //SCIENCE
 
-/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/science
+/obj/item/clothing/suit/toggle/labcoat/science/doctor_tailcoat
 	name = "scientist's tailcoat"
 	desc = "A smart white coat worn by bunny themed scientists. Decent protection against slimes."
 	icon_state = "science"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	post_init_icon_state = null
+	greyscale_config = null
+	greyscale_config_worn = null
+	greyscale_colors = null
 
-/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/science/robotics
+/obj/item/clothing/suit/toggle/labcoat/roboticist/doctor_tailcoat
 	name = "roboticist's tailcoat"
 	desc = "A smart white coat with red pauldrons worn by bunny themed roboticists. Looks surprisingly good with oil stains on it."
 	icon_state = "roboticist"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	post_init_icon_state = null
+	greyscale_config = null
+	greyscale_config_worn = null
+	greyscale_colors = null
 
 
-/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/science/genetics
+/obj/item/clothing/suit/toggle/labcoat/genetics/doctor_tailcoat
 	name = "geneticist's tailcoat"
 	desc = "A smart white and blue coat worn by bunny themed geneticists. Nearly looks like a real doctor's lab coat."
 	icon_state = "genetics"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	post_init_icon_state = null
+	greyscale_config = null
+	greyscale_config_worn = null
+	greyscale_colors = null
 
-/obj/item/clothing/suit/jacket/research_director/tailcoat
+/obj/item/clothing/suit/toggle/labcoat/research_director/tailcoat
 	name = "research director's tailcoat"
 	desc = "A smart purple coat worn by bunny themed head researchers. Created from captured abductor technology, what looks like a coat is actually an advanced hologram emitted from the pauldrons. Feels exactly like the real thing, too."
 	icon_state = "rd"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
-	body_parts_covered = CHEST|ARMS|GROIN
+	post_init_icon_state = null
+	greyscale_config = null
+	greyscale_config_worn = null
+	greyscale_colors = null
 
 //SECURITY
 
@@ -427,10 +497,14 @@
 	desc = "A reinforced tailcoat worn by bunny themed wardens. Stylishly holds hidden flak plates."
 	icon_state = "warden"
 
-/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/sec
+/obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic/doctor_tailcoat
 	name = "brig physician's tailcoat"
 	desc = "A mostly sterile red and grey coat worn by bunny themed brig physicians. It lacks the padding of the \"standard\" security tailcoat."
 	icon_state = "brig_phys"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	blood_overlay_type = "coat"
+
 
 /obj/item/clothing/suit/jacket/det_suit/tailcoat
 	name = "detective's tailcoat"
@@ -474,7 +548,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/janitor
 	name = "janitor's tailcoat"
 	desc = "A clean looking coat usually worn by bunny themed janitors. The purple sleeves are a late 24th century style."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "janitor"
+	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
@@ -482,7 +558,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/cook
 	name = "cook's tailcoat"
 	desc = "A professional white coat worn by bunny themed chefs. The red accents pair nicely with the monkey blood that often stains this."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "chef"
+	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
@@ -495,7 +573,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/botanist
 	name = "botanist's tailcoat"
 	desc = "A green leather coat worn by bunny themed botanists. Great for keeping the sun off your back."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "botany"
+	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
@@ -517,7 +597,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/clown
 	name = "clown's tailcoat"
 	desc = "An orange polkadot coat worn by bunny themed clowns. Shows everyone who the real ringmaster is."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "clown"
+	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
@@ -525,7 +607,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/mime
 	name = "mime's tailcoat"
 	desc = "A stripy sleeved black coat worn by bunny themed mimes. The red accents mimic the suspenders seen in more standard mime outfits."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "mime"
+	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
@@ -533,7 +617,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/chaplain
 	name = "chaplain's tailcoat"
 	desc = "A gilded black coat worn by bunny themed chaplains. Traditional vestments of the lagomorphic cults of Cairead."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "chaplain"
+	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
@@ -549,7 +635,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/curator_red
 	name = "curator's red tailcoat"
 	desc = "A red linen coat worn by bunny themed librarians. Keeps the dust off your shoulders during long shifts in the archives."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "curator_red"
+	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
@@ -557,7 +645,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/curator_green
 	name = "curator's green tailcoat"
 	desc = "A green linen coat worn by bunny themed librarians. Keeps the dust off your shoulders during long shifts in the archives."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "curator_green"
+	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
@@ -565,7 +655,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/curator_teal
 	name = "curator's teal tailcoat"
 	desc = "A teal linen coat worn by bunny themed librarians. Keeps the dust off your shoulders during long shifts in the archives."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "curator_teal"
+	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
@@ -573,7 +665,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/lawyer_black
 	name = "lawyer's black tailcoat"
 	desc = "The staple of any bunny themed lawyers. EXTREMELY professional."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "lawyer_black"
+	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
@@ -581,7 +675,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/lawyer_blue
 	name = "lawyer's blue tailcoat"
 	desc = "A blue linen coat worn by bunny themed lawyers. May or may not contain souls of the damned in suit pockets."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "lawyer_blue"
+	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
@@ -589,7 +685,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/lawyer_red
 	name = "lawyer's red tailcoat"
 	desc = "A red linen coat worn by bunny themed lawyers. May or may not contain souls of the damned in suit pockets."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "lawyer_red"
+	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
@@ -597,7 +695,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/lawyer_good
 	name = "good lawyer's tailcoat"
 	desc = "A beige linen coat worn by bunny themed lawyers. May or may not contain souls of the damned in suit pockets."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "lawyer_good"
+	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
@@ -605,7 +705,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/psychologist
 	name = "psychologist's tailcoat"
 	desc = "A black linen coat worn by bunny themed psychologists. A casual open coat for making you seem approachable, maybe too casual."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "psychologist"
+	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null

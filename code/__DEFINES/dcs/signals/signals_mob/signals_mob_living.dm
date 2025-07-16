@@ -293,8 +293,10 @@
 	///cancel post eating
 	#define COMSIG_MOB_TERMINATE_EAT (1<<0)
 
-///From mob/living/carbon/proc/throw_mode_on and throw_mode_off
+///From mob/living/proc/throw_mode_on and throw_mode_off
 #define COMSIG_LIVING_THROW_MODE_TOGGLE "living_throw_mode_toggle"
+///from /atom/movable/screen/alert/give/proc/handle_transfer(): (taker, item)
+#define COMSIG_LIVING_ITEM_GIVEN "living_item_given"
 /// From mob/living/proc/on_fall
 #define COMSIG_LIVING_THUD "living_thud"
 ///From /datum/component/happiness()
@@ -325,5 +327,10 @@
 /// From /obj/item/book/bible/attack() : (mob/living/user, obj/item/book/bible/bible, bless_result)
 #define COMSIG_LIVING_BLESSED "living_blessed"
 
-/// From /mob/living/set_blood_type : (mob/living/user, datum/blood_type, update_cached_blood_dna_info)
-#define COMSIG_LIVING_CHANGED_BLOOD_TYPE "living_set_blood_type"
+/// From /datum/surgery_step/initiate() : (mob/living/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, datum/surgery_step/step, list/modifiers)
+#define COMSIG_LIVING_INITIATE_SURGERY_STEP "living_initiate_surgery_step"
+#define COMSIG_LIVING_SURGERY_STEP_INITIATED_ON "living_surgery_step_initiated_on"
+	/// Index in modifiers containing the modifier to failure chance
+	#define FAIL_PROB_INDEX 1
+	/// Index in modifiers containing the modifer to surgery speed
+	#define SPEED_MOD_INDEX 2

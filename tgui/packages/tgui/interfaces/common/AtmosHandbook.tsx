@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { type ReactNode, useState } from 'react';
 import {
   Box,
   Button,
@@ -59,8 +59,7 @@ const GasSearchBar = (props: {
         {activeInput ? (
           <Input
             fluid
-            expensive
-            onChange={(value) => {
+            onBlur={(value) => {
               setActiveInput(false);
               onChange(value);
             }}

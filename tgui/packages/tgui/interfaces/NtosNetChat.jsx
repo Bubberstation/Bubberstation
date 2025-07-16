@@ -171,17 +171,17 @@ export const NtosNetChat = (props) => {
               </Stack.Item>
               {!!in_channel && (
                 <Input
-                  backgroundColor={this_client && this_client.muted && 'red'}
+                  backgroundColor={this_client?.muted && 'red'}
                   height="22px"
                   placeholder={
-                    (this_client && this_client.muted && 'You are muted!') ||
+                    (this_client?.muted && 'You are muted!') ||
                     'Message ' + title
                   }
                   fluid
-                  disabled={this_client && this_client.muted}
+                  disabled={this_client?.muted}
                   selfClear
                   mt={1}
-                  onEnter={(e, value) =>
+                  onEnter={(value) =>
                     act('PRG_speak', {
                       message: value,
                     })

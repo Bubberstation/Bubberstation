@@ -193,6 +193,14 @@
 		/obj/item/stack/sheet/plasteel = 2,
 	)
 
+/obj/item/circuitboard/machine/modular_shield_cable
+	name = "Modular Shield Cable"
+	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
+	build_path = /obj/machinery/modular_shield/module/node/cable
+	req_components = list(
+		/obj/item/stack/sheet/plasteel = 1,
+	)
+
 /obj/item/circuitboard/machine/modular_shield_well
 	name = "Modular Shield Well"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
@@ -717,6 +725,7 @@
 	build_path = typepath
 	name = "[vending_names_paths[build_path]] Vendor"
 	req_components = list(initial(typepath.refill_canister) = 1)
+	flatpack_components = list(initial(typepath.refill_canister))
 
 /obj/item/circuitboard/machine/vendor/apply_default_parts(obj/machinery/machine)
 	for(var/typepath in vending_names_paths)
@@ -789,7 +798,7 @@
 	req_components = list(
 		/datum/stock_part/scanning_module = 1,
 		/datum/stock_part/micro_laser = 1,
-		/datum/stock_part/servo = 1
+		/datum/stock_part/matter_bin = 1
 	)
 
 //Medical
@@ -1883,3 +1892,30 @@
 	req_components = list(
 		/obj/item/stack/sheet/iron = 5,
 	)
+
+/obj/item/circuitboard/machine/atmos_shield_gen
+	name = /obj/machinery/atmos_shield_gen::name
+	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
+	build_path = /obj/machinery/atmos_shield_gen
+	req_components = list(
+		/datum/stock_part/micro_laser = 1,
+		/datum/stock_part/capacitor = 1,
+	)
+
+/obj/item/circuitboard/machine/engine
+	name = "Shuttle Engine"
+	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
+	build_path = /obj/machinery/power/shuttle_engine
+	needs_anchored = FALSE
+	req_components = list(
+		/datum/stock_part/capacitor = 2,
+		/datum/stock_part/micro_laser = 2,
+	)
+
+/obj/item/circuitboard/machine/engine/heater
+	name = "Shuttle Engine Heater"
+	build_path = /obj/machinery/power/shuttle_engine/heater
+
+/obj/item/circuitboard/machine/engine/propulsion
+	name = "Shuttle Engine Propulsion"
+	build_path = /obj/machinery/power/shuttle_engine/propulsion

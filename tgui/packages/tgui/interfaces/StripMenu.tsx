@@ -1,7 +1,7 @@
-import { range } from 'common/collections';
-import { CSSProperties } from 'react';
+import { range } from 'es-toolkit';
+import type { CSSProperties } from 'react';
 import { Box, Button, Icon, Image, Stack } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
@@ -60,12 +60,12 @@ const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
   },
 
   enable_internals: {
-    icon: 'lungs', // SKYRAT EDIT - TGFONT IS FUCKED AND I DUNNO WHY SO HERE'S A BANDAID - original "tg-air-tank"
+    icon: 'tg-air-tank',
     text: 'Enable internals',
   },
 
   disable_internals: {
-    icon: 'lungs-virus', // SKYRAT EDIT - TGFONT IS FUCKED AND I DUNNO WHY SO HERE'S A BANDAID - original "tg-air-tank-slash"
+    icon: 'tg-air-tank-slash',
     text: 'Disable internals',
   },
 

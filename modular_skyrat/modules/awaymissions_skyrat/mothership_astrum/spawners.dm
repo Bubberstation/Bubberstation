@@ -44,7 +44,7 @@
 	loot = list(/obj/item/organ/heart/cybernetic/tier3 = 10,
 				/obj/item/clothing/suit/armor/abductor/astrum = 10,
 				/obj/item/clothing/head/helmet/astrum = 10,
-				/obj/item/organ/cyberimp/arm/armblade = 5,
+				/obj/item/organ/cyberimp/arm/toolkit/armblade = 5,
 				/obj/effect/gibspawner/generic = 10,
 				/obj/item/organ/eyes/alien = 5,
 				)

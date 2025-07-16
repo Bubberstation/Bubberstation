@@ -1,17 +1,17 @@
 // THIS IS A SKYRAT UI FILE
 import {
   CheckboxInput,
-  Feature,
-  FeatureChoiced,
-  FeatureChoicedServerData,
+  type Feature,
+  type FeatureChoiced,
+  type FeatureChoicedServerData,
   FeatureColorInput,
   FeatureNumberInput,
   FeatureShortTextInput,
   FeatureTextInput,
-  FeatureToggle,
+  type FeatureToggle,
   FeatureTriBoolInput,
   FeatureTriColorInput,
-  FeatureValueProps,
+  type FeatureValueProps,
 } from '../../base';
 import { FeatureDropdownInput } from '../../dropdowns';
 
@@ -658,6 +658,13 @@ export const naga_sole: FeatureToggle = {
   name: 'Taur (Naga) disable hardened soles',
   description:
     'If using a serpentine taur body, determines if you are immune to caltrops and a few other effects of being barefoot.',
+  component: CheckboxInput,
+};
+
+export const synthetic_taur: FeatureToggle = {
+  name: 'Taur (Synthetic)',
+  description:
+    "If using a taur body, determines if the taur body is synthetic, doesn't apply to taur bodies that are already synthetic.",
   component: CheckboxInput,
 };
 

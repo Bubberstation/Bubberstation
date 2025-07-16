@@ -441,7 +441,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 
 	scrambledcodes = TRUE // BUBBER EDIT START
 	SetEmagged(1)
-	SetStun(60) //Borgs were getting into trouble because they would attack the emagger before the new laws were shown
+	SetStun(10 SECONDS) //Borgs were getting into trouble because they would attack the emagger before the new laws were shown
 	lawupdate = FALSE
 	set_connected_ai(null)
 	message_admins("[ADMIN_LOOKUPFLW(user)] emagged cyborg [ADMIN_LOOKUPFLW(src)].  Laws overridden.")
@@ -451,6 +451,8 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		GLOB.lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) emagged [name]([key])")
 	else
 		GLOB.lawchanges.Add("[time] <B>:</B> [name]([key]) emagged by external event.")
+
+	model.rebuild_modules()
 
 	INVOKE_ASYNC(src, PROC_REF(borg_emag_end), user)
 	return TRUE

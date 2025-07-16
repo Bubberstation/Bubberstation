@@ -68,17 +68,3 @@
 	// Config check for if sec has maint access.
 	if(CONFIG_GET(flag/security_has_maint_access))
 		access |= list(ACCESS_MAINT_TUNNELS)
-
-/datum/id_trim/job/blueshield
-	minimal_wildcard_access = list()
-	template_access = list(ACCESS_CAPTAIN) //Blueshield can no longer change to any other ID trim
-
-/datum/id_trim/job/blueshield/New()
-	.=..()
-	minimal_access |= list(ACCESS_CAPTAIN)
-//BUBBER ADDITION: adds ACCESS_CAPTAIN to the Blueshield's minimal_access.
-//Lowering the Blueshield's ID from CENTCOM to silver necessitates moving this access.
-
-/datum/id_trim/job/nanotrasen_consultant
-	minimal_wildcard_access = list()
-	template_access = list(ACCESS_CAPTAIN) //NTRep can no longer change to any other ID trim

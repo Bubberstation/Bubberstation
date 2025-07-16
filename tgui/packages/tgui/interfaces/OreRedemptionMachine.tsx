@@ -12,7 +12,7 @@ import {
   Tabs,
 } from 'tgui-core/components';
 import { formatSiUnit } from 'tgui-core/format';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 import { createSearch, toTitleCase } from 'tgui-core/string';
 
 import { useBackend, useSharedState } from '../backend';
@@ -301,6 +301,7 @@ function MaterialSearchHeader(props: SearchProps) {
         </Stack.Item>
         <Stack.Item>
           <SearchBar
+            expensive
             style={{ height: '23px' }}
             query={searchItem}
             placeholder="Search Material..."

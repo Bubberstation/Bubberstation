@@ -17,7 +17,7 @@ import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type ColorEntry = {
-  index: Number;
+  index: number;
   value: string;
 };
 
@@ -25,7 +25,7 @@ type SpriteData = {
   icon_states: string[];
   finished: string;
   steps: SpriteEntry[];
-  time_spent: Number;
+  time_spent: number;
 };
 
 type SpriteEntry = {
@@ -77,8 +77,7 @@ const ConfigDisplay = (props) => {
           <Button icon="cogs" onClick={() => act('select_config')} />
           <Input
             value={data.greyscale_config}
-            expensive
-            onChange={(value) =>
+            onBlur={(value) =>
               act('load_config_from_string', { config_string: value })
             }
           />
@@ -102,8 +101,7 @@ const ColorDisplay = (props) => {
           />
           <Input
             value={colors.map((item) => item.value).join('')}
-            expensive
-            onChange={(value) =>
+            onBlur={(value) =>
               act('recolor_from_string', { color_string: value })
             }
           />
@@ -128,8 +126,7 @@ const ColorDisplay = (props) => {
             <Input
               value={item.value}
               width={7}
-              expensive
-              onChange={(value) =>
+              onBlur={(value) =>
                 act('recolor', { color_index: item.index, new_color: value })
               }
             />

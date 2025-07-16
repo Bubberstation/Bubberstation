@@ -10,6 +10,7 @@ export function TechwebContent(props) {
     d_disk,
     node_cache,
     points_last_tick,
+    point_types_abbreviations = [],
     points,
     queue_nodes = [],
     sec_protocols,
@@ -32,15 +33,12 @@ export function TechwebContent(props) {
                   {sec_protocols ? 'Engaged' : 'Disengaged'}
                 </span>
               </LabeledList.Item>
-              {/* BUBBER CHANGE START: ADD POINT IDENTIFICATION */}
               {Object.keys(points).map((k) => (
-                <LabeledList.Item key={k} label={`${k} Points`}>
-                  {' '}
+                <LabeledList.Item key={k} label={point_types_abbreviations[k]}>
                   <b>{points[k]}</b>
                   {!!points_last_tick[k] && ` (+${points_last_tick[k]}/sec)`}
                 </LabeledList.Item>
               ))}
-              {/* BUBBER CHANGE END: ADD POINT IDENTIFICATION */}
               <LabeledList.Item label="Queue">
                 {queue_nodes.length !== 0
                   ? Object.keys(queue_nodes).map((node_id) => (

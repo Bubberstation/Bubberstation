@@ -51,7 +51,9 @@
 /obj/item/clothing/mask/gas/clown_colourable
 	name = "colourable clown mask"
 	desc = "The face of pure evil, now multicoloured."
-	icon_state = "gags_mask"
+	icon = 'icons/map_icons/clothing/mask.dmi'
+	icon_state = "/obj/item/clothing/mask/gas/clown_colourable"
+	post_init_icon_state = "gags_mask"
 	clothing_flags = MASKINTERNALS
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
@@ -74,9 +76,10 @@
 /obj/item/clothing/mask/gas/respirator
 	name = "half mask respirator"
 	desc = "A half mask respirator that's really just a standard gas mask with the glass taken off."
-	icon = 'modular_skyrat/modules/GAGS/icons/masks.dmi'
+	icon = 'icons/map_icons/clothing/mask.dmi'
+	icon_state = "/obj/item/clothing/mask/gas/respirator"
 	worn_icon = 'modular_skyrat/modules/GAGS/icons/masks.dmi'
-	icon_state = "respirator"
+	post_init_icon_state = "respirator"
 	inhand_icon_state = "sechailer"
 	w_class = WEIGHT_CLASS_SMALL
 	clothing_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS

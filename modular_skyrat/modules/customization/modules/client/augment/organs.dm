@@ -55,6 +55,12 @@
 /datum/augment_item/organ/lungs
 	slot = AUGMENT_SLOT_LUNGS
 
+/datum/augment_item/organ/lungs/normal
+	name = "Normal Lungs"
+	slot = AUGMENT_SLOT_LUNGS
+	path = /obj/item/organ/lungs
+	cost = 1 // if you dont have normal lungs, still an investment to switch it out
+
 /datum/augment_item/organ/lungs/hot
 	name = "Heat-Adapted Lungs"
 	slot = AUGMENT_SLOT_LUNGS
@@ -147,3 +153,11 @@
 /datum/augment_item/organ/tongue/forked
 	name = "Forked tongue"
 	path = /obj/item/organ/tongue/lizard
+
+//EARS
+/datum/augment_item/organ/ears
+	slot = AUGMENT_SLOT_EARS
+
+/datum/augment_item/organ/ears/cybernetic
+	name = "Cybernetic ears"
+	path = /obj/item/organ/ears/cybernetic

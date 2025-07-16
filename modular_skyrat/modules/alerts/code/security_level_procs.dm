@@ -12,5 +12,5 @@
 		GLOB.force_eng_override = TRUE
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_FORCE_ENG_OVERRIDE, TRUE)
 
-	if(maint_access)
-		make_maint_all_access()
+	if(maint_access && !GLOB.emergency_access)
+		make_maint_all_access(silent = TRUE)

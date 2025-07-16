@@ -12,7 +12,7 @@ import {
 } from 'tgui-core/components';
 
 import { getMedicalRecord } from './helpers';
-import { MedicalNote, MedicalRecordData } from './types';
+import type { MedicalNote, MedicalRecordData } from './types';
 
 /** Small section for adding notes. Passes a ref and note to Byond. */
 export const NoteKeeper = (props) => {
@@ -49,6 +49,7 @@ export const NoteKeeper = (props) => {
     <Section buttons={<NoteTabs />} fill scrollable title="Notes">
       {writing && (
         <TextArea
+          fluid
           height="100%"
           maxLength={1024}
           onEnter={addNote}
