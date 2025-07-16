@@ -6,4 +6,8 @@
 
 	if(!istype(brain))
 		return
-	var/datum/species/werewolf/species = dna.species
+	var/beast_form = TRAIT_BEAST_FORM
+	if(!has_trait(beast_form))
+		enter_beast_form()
+	else
+		leave_beast_form()
