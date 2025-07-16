@@ -512,11 +512,11 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	r_pocket = /obj/item/flashlight/seclite
 	l_pocket = /obj/item/restraints/handcuffs
 	id = /obj/item/card/id/advanced/terragov
-	l_hand = /obj/item/gun/ballistic/automatic/wt550/security
+	l_hand = /obj/item/gun/ballistic/automatic/sol_rifle
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
 		/obj/item/melee/baton/telescopic = 1,
-		/obj/item/ammo_box/magazine/wt550m9 = 3,
+		/obj/item/ammo_box/magazine/c40sol_rifle/standard = 3,
 		/obj/item/terragov_reporter/treason_reporter = 1,
 		/obj/item/beamout_tool = 1,
 	)
@@ -559,12 +559,12 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	l_pocket = /obj/item/restraints/handcuffs
 	r_pocket = /obj/item/flashlight/seclite
 	id = /obj/item/card/id/advanced/terragov
-	r_hand = /obj/item/gun/ballistic/automatic/wt550/security
+	r_hand = /obj/item/gun/ballistic/automatic/sol_rifle
 	backpack_contents = list(
 		/obj/item/storage/box/handcuffs = 1,
 		/obj/item/sacrificial_face_shield = 1,
 		/obj/item/melee/baton/security/loaded = 1,
-		/obj/item/ammo_box/magazine/wt550m9 = 4,
+		/obj/item/ammo_box/magazine/c40sol_rifle/standard = 4,
 	)
 
 	id_trim = /datum/id_trim/terragov

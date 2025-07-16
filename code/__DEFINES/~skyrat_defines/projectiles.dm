@@ -7,6 +7,8 @@
 /// CIN pistol caliber
 #define CALIBER_CESARZOWA ".27-54 Cesarzowa"
 
+/// Standard Sol rifle caliber
+#define CALIBER_SOL40LONG ".40 Sol Long"
 /// Standard Sol pistol caliber
 #define CALIBER_SOL35SHORT ".35 Sol Short"
 
