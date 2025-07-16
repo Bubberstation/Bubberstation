@@ -18,7 +18,7 @@
 
 /datum/storyteller_data/tracks/heavy
 	threshold_mundane = 1300
-	threshold_moderate = 1800
+	threshold_moderate = 1500
 	threshold_major = 5000
 	threshold_crewset = 1800
 	threshold_ghostset = 6000
