@@ -1,4 +1,4 @@
-/datum/supply_pack/security/armory/mechthermal
+/datum/supply_pack/science/mechthermal
 	name = "Heavy Thermal Guns Crate"
 	desc = "Contains two experimental thermal cannons for use by mechs. \
 		When used simultaneously, their excess power used to heat and cool the opposing weapon, \
