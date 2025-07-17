@@ -374,6 +374,10 @@
 /datum/chemical_reaction/smoke_powder/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
 	if(holder.has_reagent(/datum/reagent/stabilizing_agent))
 		return
+	// BUBBER EDIT ADDITION - no ban smoke
+	if(holder.has_reagent(/datum/reagent/drug/aphrodisiac))
+		return
+	// BUBBER EDIT END
 	holder.remove_reagent(/datum/reagent/smoke_powder, created_volume * 3)
 	var/location = get_turf(holder.my_atom)
 	var/datum/effect_system/fluid_spread/smoke/chem/S = new
@@ -393,6 +397,10 @@
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_EXPLOSIVE | REACTION_TAG_DANGEROUS
 
 /datum/chemical_reaction/smoke_powder_smoke/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
+	// BUBBER EDIT ADDITION - no ban smoke
+	if(holder.has_reagent(/datum/reagent/drug/aphrodisiac))
+		return
+	// BUBBER EDIT END
 	var/location = get_turf(holder.my_atom)
 	var/datum/effect_system/fluid_spread/smoke/chem/S = new
 	S.attach(location)

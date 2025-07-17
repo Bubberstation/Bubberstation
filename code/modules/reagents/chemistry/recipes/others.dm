@@ -331,6 +331,10 @@
 	reaction_flags = REACTION_INSTANT
 
 /datum/chemical_reaction/foam/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
+	// BUBBER EDIT ADDITION - no ban foam
+	if(holder.has_reagent(/datum/reagent/drug/aphrodisiac))
+		return
+	// BUBBER EDIT END
 	holder.create_foam(/datum/effect_system/fluid_spread/foam, 2 * created_volume, notification = span_danger("The solution spews out foam!"), log = TRUE)
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_UNIQUE
 
