@@ -282,15 +282,17 @@ function JobRow(props: JobRowProps) {
                 />
               )
             }
-            <CharacterProfiles
-              activeSlot={data.active_slot - 1}
-              onClick={(slot) => {
-                act('set_preferred_character', {
-                  slot: slot + 1,
-                });
-              }}
-              profiles={data.character_profiles}
-            />
+            <Stack.Item width="15%">
+              <CharacterProfiles
+                activeSlot={data.active_slot - 1}
+                onClick={(slot) => {
+                  act('set_preferred_character', {
+                    slot: slot + 1,
+                  });
+                }}
+                profiles={data.character_profiles}
+              />
+            </Stack.Item>
           </Stack.Item>
         </Tooltip>
         {/* // SKYRAT EDIT CHANGE END */}
