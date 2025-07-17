@@ -3,6 +3,7 @@
 		"set_job_preference" = PROC_REF(set_job_preference),
 		// SKYRAT EDIT
 		"set_job_title" = PROC_REF(set_job_title),
+		"set_preferred_character" = PROC_REF(set_preferred_character),
 		// SKYRAT EDIT END
 	)
 
@@ -29,6 +30,16 @@
 	return TRUE
 
 // SKYRAT EDIT
+/datum/preference_middleware/jobs/proc/set_preferred_character(list/params, mob/user)
+
+	var/preferred_character= params["preferred_character"]
+
+
+
+	if (isnull(preferred_character))
+		return FALSE
+
+	return TRUE
 /datum/preference_middleware/jobs/proc/set_job_title(list/params, mob/user)
 	var/job_title = params["job"]
 	var/new_job_title = params["new_title"]
