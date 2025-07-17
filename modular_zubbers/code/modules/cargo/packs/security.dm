@@ -94,7 +94,7 @@
 	. = ..()
 	contains += list(/obj/item/storage/toolbox/guncase/skyrat/pistol/pepperball = 2)
 
-/datum/supply_pack/security/mechthermal
+/datum/supply_pack/security/armory/mechthermal
 	access = FALSE
 	access_any = list(ACCESS_SECURITY, ACCESS_ROBOTICS)
 	access_view = FALSE
