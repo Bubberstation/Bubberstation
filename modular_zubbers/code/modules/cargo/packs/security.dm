@@ -97,5 +97,5 @@
 /datum/supply_pack/security/mechthermal
 	access = FALSE
 	access_any = list(ACCESS_SECURITY, ACCESS_ROBOTICS)
-	access_view = list(ACCESS_SECURITY, ACCESS_ROBOTICS)
+	access_view = FALSE
 	crate_type = /obj/structure/closet/crate/secure/weapon
