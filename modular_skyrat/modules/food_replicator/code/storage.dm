@@ -32,17 +32,5 @@
 	atom_storage.max_specific_storage = WEIGHT_CLASS_SMALL
 	atom_storage.max_total_storage = 4
 	atom_storage.max_slots = 4
-	atom_storage.cant_hold = typecacheof(list(/obj/item/gun, /obj/item/ammo_box, /obj/item/ammo_casing, /obj/item/stack/sheet))
+	atom_storage.cant_hold = typecacheof(list(/obj/item/gun, /obj/item/ammo_box, /obj/item/ammo_casing, /obj/item/stack/sheet, /obj/item/storage/pill_bottle))
 
-/obj/item/storage/pouch/cin_general
-	name = "colonial general pouch"
-	desc = "A synthleather general purpose pouch that goes in your pocket."
-	icon = 'modular_skyrat/modules/food_replicator/icons/pouch.dmi'
-	icon_state = "gen_pouch"
-	w_class = WEIGHT_CLASS_NORMAL
-
-/obj/item/storage/pouch/cin_general/Initialize(mapload)
-	. = ..()
-	atom_storage.max_specific_storage = WEIGHT_CLASS_SMALL
-	atom_storage.max_total_storage = WEIGHT_CLASS_SMALL*3
-	atom_storage.max_slots = 3
