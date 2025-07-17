@@ -1,14 +1,11 @@
 ///////////Protean Modules///////////////
-//Modules that only Proteans can use
+//Modules dedicated for use by proteans
 
-/obj/item/mod/module/protean
-	name = "protean module"
-	desc = "Blank module for proteans"
-
-////Protean servo module////
+/////////Protean servo module////////
 //Module meant to give temporary passive buffs to wearer, gives three options with diffrent effects and shared cooldowns.
-/obj/item/mod/module/protean/servo
-	name = "protean servo module"
+
+/obj/item/mod/module/protean_servo
+	name = "protean MOD servo module"
 	desc = "A module made for use in protean MOD suits that adds new subroutines while folded. Comes with three modes, each partially takes over MOD suit’s motor functions to enhance the wearer's general movement, performing medical duties or construction tasks. Due to high computing power demand, protean can only use this module while worn by someone else."
 	icon_state = "no_baton"
 	complexity = 3
@@ -16,11 +13,11 @@
 	module_type = MODULE_TOGGLE //with this the module will automaticly deactivate if it's depowered or taken off
 
 //abilities that we'll be granting to Protean by activating the module
-	var/datum/action/cooldown/protean/servo/movement/servo_movement = new /datum/action/cooldown/protean/servo/movement
-	var/datum/action/cooldown/protean/servo/medical/servo_medical = new /datum/action/cooldown/protean/servo/medical
-	var/datum/action/cooldown/protean/servo/engineering/servo_engineering = new /datum/action/cooldown/protean/servo/engineering
+	var/datum/action/cooldown/protean_servo/movement/servo_movement = new /datum/action/cooldown/protean_servo/movement
+	var/datum/action/cooldown/protean_servo/medical/servo_medical = new /datum/action/cooldown/protean_servo/medical
+	var/datum/action/cooldown/protean_servo/engineering/servo_engineering = new /datum/action/cooldown/protean_servo/engineering
 
-/obj/item/mod/module/protean/servo/on_activation()
+/obj/item/mod/module/protean_servo/on_activation()
 	. = ..()
 
 	var/obj/item/mod/core/protean/protean_core = mod.core
@@ -36,12 +33,12 @@
 	servo_medical.Grant(protean_in_suit)
 	servo_engineering.Grant(protean_in_suit)
 
-/obj/item/mod/module/protean/servo/on_deactivation(display_message = TRUE, deleting = FALSE)
+/obj/item/mod/module/protean_servo/on_deactivation(display_message = TRUE, deleting = FALSE)
 	. = ..()
 	var/obj/item/mod/core/protean/protean_core = mod.core
 	var/mob/living/carbon/human/protean_in_suit = protean_core?.linked_species.owner
 
-	servo_movement.Remove(protean_in_suit) //All the cleanup
+	servo_movement.Remove(protean_in_suit) //All the cleanup, since module deactivates once out of power, this will remove granted abilities
 	servo_medical.Remove(protean_in_suit)
 	servo_engineering.Remove(protean_in_suit)
 
@@ -49,26 +46,23 @@
 	mod.wearer.remove_status_effect(/datum/status_effect/protean_servo_medical)
 	mod.wearer.remove_status_effect(/datum/status_effect/protean_servo_engineer)
 
-/////////////Protean Abilities////////////////////
-//Abilities granted to Protean by the module
+////Protean servo module: Abilities////
+//The abilities we give to protean once module is active
 
-////Protean servo module////
-/datum/action/cooldown/protean/
+/datum/action/cooldown/protean_servo
 	background_icon_state = "bg_mod"
-
-/datum/action/cooldown/protean/servo
 	cooldown_time = 60 SECONDS
 	cooldown_rounding = 1
 	shared_cooldown = MOB_SHARED_COOLDOWN_1 //Using one action puts other two on cooldown
 	text_cooldown = TRUE
 
-/datum/action/cooldown/protean/servo/movement
-	name = "Enchance movement"
+/datum/action/cooldown/protean_servo/movement
+	name = "Enhance movement"
 	desc = "Aids your wearer's movement for few seconds but makes them clumsy while the effect persists!"
 	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "bci_electricity"
 
-/datum/action/cooldown/protean/servo/movement/Activate()
+/datum/action/cooldown/protean_servo/movement/Activate()
 	var/mob/living/carbon/protean = owner
 	var/datum/species/protean/species = protean.dna.species
 	var/obj/item/mod/control/pre_equipped/protean/suit = species.species_modsuit
@@ -78,13 +72,13 @@
 	wearer.visible_message(span_warning("[protean] speeds up [wearer]'s movement!"))
 	StartCooldown()
 
-/datum/action/cooldown/protean/servo/medical
-	name = "Enchance medical actions"
+/datum/action/cooldown/protean_servo/medical
+	name = "Enhance medical actions"
 	desc = "Aids in your wearer's surgeries, medicicine aplications and carrying patients for moderate amount of time."
 	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "bci_blood"
 
-/datum/action/cooldown/protean/servo/medical/Activate()
+/datum/action/cooldown/protean_servo/medical/Activate()
 	var/mob/living/carbon/protean = owner
 	var/datum/species/protean/species = protean.dna.species
 	var/obj/item/mod/control/pre_equipped/protean/suit = species.species_modsuit
@@ -94,13 +88,13 @@
 	wearer.visible_message(span_warning("[protean] assists in [wearer]'s medical actions!"))
 	StartCooldown()
 
-/datum/action/cooldown/protean/servo/engineering
-	name = "Enchance building"
+/datum/action/cooldown/protean_servo/engineering
+	name = "Enhance building"
 	desc = "Aids in your wearer's construction efforts and broader actions for moderate amount of time."
 	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "bci_repair"
 
-/datum/action/cooldown/protean/servo/engineering/Activate()
+/datum/action/cooldown/protean_servo/engineering/Activate()
 	var/mob/living/carbon/protean = owner
 	var/datum/species/protean/species = protean.dna.species
 	var/obj/item/mod/control/pre_equipped/protean/suit = species.species_modsuit
@@ -110,11 +104,9 @@
 	wearer.visible_message(span_warning("[protean] assists in [wearer]'s construction tasks!"))
 	StartCooldown()
 
-///////////////Protean Module Effects////////////////////
-//Status effects generated by protean modules
+////Protean servo module: Status Effects////
+//Status effects that are granted to wearer
 
-////Protean servo module////
-//Movement option
 /atom/movable/screen/alert/status_effect/protean_servo_movement
 	name = "Faster but clumsy"
 	desc = "You are being aided by your MOD suit but extra speed is hard to control."
@@ -123,13 +115,13 @@
 
 /datum/status_effect/protean_servo_movement
 	id = "protean_servo_movement"
-	duration = 6 SECONDS
+	duration = 7 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/protean_servo_movement
 
 /datum/status_effect/protean_servo_movement/on_apply()
 	. = ..()
 	owner.add_movespeed_modifier(/datum/movespeed_modifier/protean_servo/movement)
-	owner.add_traits(list(TRAIT_CLUMSY),PROTEAN_SERVO_TRAIT) //main drawback to balance this particular effect out
+	owner.add_traits(list(TRAIT_CLUMSY),PROTEAN_SERVO_TRAIT) //main drawback to balance out this particular effect
 
 /datum/status_effect/protean_servo_movement/on_remove()
 	. = ..()
@@ -193,4 +185,5 @@
 
 /datum/actionspeed_modifier/protean_servo_engineer
 	multiplicative_slowdown = -0.35 //action speed modifier
+
 

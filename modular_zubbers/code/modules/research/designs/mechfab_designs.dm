@@ -170,7 +170,7 @@
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
 	)
-	build_path = /obj/item/mod/module/protean/servo
+	build_path = /obj/item/mod/module/protean_servo
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_GENERAL
 	)
