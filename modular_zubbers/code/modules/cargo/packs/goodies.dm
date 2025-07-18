@@ -128,5 +128,12 @@
 	desc = "Contains one pepperball gun, a non-lethal weapon that fires pepper-filled projectiles."
 	cost = PAYCHECK_CREW * 6
 	access = ACCESS_WEAPONS
-	contains = /obj/item/storage/toolbox/guncase/skyrat/pistol/pepperball
+	contains = list(/obj/item/storage/toolbox/guncase/skyrat/pistol/pepperball)
+
+/datum/supply_pack/goody/taser
+	name = "Taser Single-Pack"
+	desc = "Contains one hybrid taser, a non-lethal weapon that fires electric projectiles and features a secondary disabler."
+	cost = PAYCHECK_CREW * 8
+	access = ACCESS_WEAPONS
+	contains = list(/obj/item/gun/energy/e_gun/advtaser)
 
