@@ -46,6 +46,11 @@
 		owner.balloon_alert(owner, "can't bite yourself!")
 		return FALSE
 
+	if(!astype(target_atom, /mob/living/carbon).client?.prefs.read_preference(/datum/preference/toggle/erp/aphro))
+		owner.balloon_alert(owner, "not interested!")
+		log_game("[key_name(owner)] tried to bite [key_name(astype(target_atom, /mob/living/carbon))] but [key_name(astype(target_atom, /mob/living/carbon))] had aphrodisiacs disabled")
+		return
+
 	log_combat(owner, target_atom, "started to bite", null, "with venom: [reagent_typepath::name]")
 	owner.visible_message(span_warning("[owner] starts to bite [target_atom]!"), span_warning("You start to bite [target_atom]!"), ignored_mobs = target_atom)
 	to_chat(target_atom, span_userdanger("[owner] starts to bite you!"))
@@ -59,7 +64,7 @@
 		inject(target_atom)
 	return TRUE
 
-/// Does NOT inject reagents; represents the initial bite. Can end in your teeth being broken by armor. Dumbass.
+/// Does NOT inject reagents; represents the initial bite.
 /datum/action/cooldown/mob_cooldown/aphrodisiacal_bite/proc/try_bite(mob/living/target)
 	PRIVATE_PROC(TRUE)
 	var/target_zone = check_zone(owner.zone_selected)
@@ -67,8 +72,6 @@
 	var/text = "[owner] sinks [owner.p_their()] teeth into [target]'s [target.parse_zone_with_bodypart(target_zone)]!"
 	var/self_message = "You sink your teeth into [target]'s [target.parse_zone_with_bodypart(target_zone)]!"
 	var/victim_message = "[owner] sinks [owner.p_their()] teeth into your [target.parse_zone_with_bodypart(target_zone)]!"
-
-	//erp quirk, can bite through armor and doesn't pass diseases.
 
 	owner.visible_message(span_warning(text), span_warning(self_message), ignored_mobs = list(target))
 	to_chat(target, span_userdanger(victim_message))

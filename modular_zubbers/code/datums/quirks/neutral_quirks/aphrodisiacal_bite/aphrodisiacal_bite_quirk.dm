@@ -105,7 +105,7 @@
 	if (!.)
 		return FALSE
 
-	return "Venomous Bite" in preferences.all_quirks
+	return "Aphrodisiacal Bite" in preferences.all_quirks
 
 /datum/preference/choiced/aphrodisiacal_bite_venom/apply_to_human(mob/living/carbon/human/target, value)
 	return
