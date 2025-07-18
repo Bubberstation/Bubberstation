@@ -36,8 +36,6 @@
 	if (!isliving(target_atom))
 		return FALSE
 
-	log_game("TEST TEST TEST [target_atom]")
-
 	if (astype(owner, /mob/living/carbon)?.is_mouth_covered())
 		owner.balloon_alert(owner, "mouth covered!")
 		return FALSE
