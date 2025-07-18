@@ -3,7 +3,7 @@ import { capitalizeFirst } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
 import { NtosWindow } from '../layouts';
-import { NTOSData } from '../layouts/NtosWindow';
+import type { NTOSData } from '../layouts/NtosWindow';
 
 type Data = {
   authCard: string;

@@ -6,6 +6,7 @@
 		"ci-medhud",
 		"ci-sechud",
 		"ci-diaghud",
+		"ci-civhud",
 		"ci-botany",
 		"ci-janitor",
 		"ci-lighter",
