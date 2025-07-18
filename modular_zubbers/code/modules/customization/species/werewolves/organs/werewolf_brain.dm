@@ -17,8 +17,8 @@
 	owner.visible_message(span_warning("[owner] grows massive, their body quickly getting covered in fur!"))
 	owner.set_species(SPECIES_WEREWOLF, TRUE, TRUE, FALSE)
 	owner.dna.features["body_size"] = 1.24 // Should be big without looking wonky.
-	human_holder.dna.update_body_size()
-	human_holder.mob_size = MOB_SIZE_LARGE
+	owner.dna.update_body_size()
+	owner.mob_size = MOB_SIZE_LARGE
 	owner.add_traits(list(TRAIT_BEAST_FORM))
 
 /obj/item/organ/brain/werewolf/proc/leave_beast_form()
@@ -28,8 +28,8 @@
 	owner.visible_message(span_warning("[owner] shrinks down, their fur receding!"))
 	owner.set_species(SPECIES_WEREHUMAN, TRUE, TRUE, FALSE)
 	owner.dna.features["body_size"] = 1 // Reset to normal size.
-	human_holder.dna.update_body_size()
-	human_holder.mob_size = MOB_SIZE_HUMAN
+	owner.dna.update_body_size()
+	owner.mob_size = MOB_SIZE_HUMAN
 	owner.remove_traits(list(TRAIT_BEAST_FORM))
 	COOLDOWN_START(src, beast_form_cooldown, 15 MINUTES)
 
