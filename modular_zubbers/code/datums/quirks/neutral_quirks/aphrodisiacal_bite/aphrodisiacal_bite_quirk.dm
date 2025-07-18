@@ -1,7 +1,7 @@
 /datum/quirk/aphrodisiacal_bite
 	name = "Aphrodisiacal Bite"
 	desc = "You have a aphrodisiacal gland, and can bite people to inject them with an aphrodisiac of your choosing."
-	icon = FA_ICON_TEETH_OPEN
+	icon = FA_ICON_ICICLES
 	value = 0
 	gain_text = span_notice("You feel a aphrodisiacal gland in the back of your throat.")
 	lose_text = span_warning("Your aphrodisiacal gland vanishes.")
