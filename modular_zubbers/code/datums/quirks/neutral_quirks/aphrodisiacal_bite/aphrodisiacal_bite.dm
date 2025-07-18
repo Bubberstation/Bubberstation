@@ -9,6 +9,8 @@
 
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_INCAPACITATED // can use it if cuffed, enjoy
 
+	shared_cooldown = NONE
+
 	/// The reagent we will inject.
 	var/datum/reagent/reagent_typepath
 	/// How much of [reagent_typepath] we will inject.
@@ -34,6 +36,8 @@
 	if (!isliving(target_atom))
 		return FALSE
 
+	log_game("TEST TEST TEST [target_atom]")
+
 	if (astype(owner, /mob/living/carbon)?.is_mouth_covered())
 		owner.balloon_alert(owner, "mouth covered!")
 		return FALSE
@@ -46,10 +50,14 @@
 		owner.balloon_alert(owner, "can't bite yourself!")
 		return FALSE
 
+	if(!iscarbon(target_atom))
+		owner.balloon_alert(owner, "not carbon!")
+		return FALSE
+
 	if(!astype(target_atom, /mob/living/carbon).client?.prefs.read_preference(/datum/preference/toggle/erp/aphro))
 		owner.balloon_alert(owner, "not interested!")
 		log_game("[key_name(owner)] tried to bite [key_name(astype(target_atom, /mob/living/carbon))] but [key_name(astype(target_atom, /mob/living/carbon))] had aphrodisiacs disabled")
-		return
+		return FALSE
 
 	log_combat(owner, target_atom, "started to bite", null, "with venom: [reagent_typepath::name]")
 	owner.visible_message(span_warning("[owner] starts to bite [target_atom]!"), span_warning("You start to bite [target_atom]!"), ignored_mobs = target_atom)
