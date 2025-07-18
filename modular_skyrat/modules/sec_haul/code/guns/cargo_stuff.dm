@@ -9,16 +9,6 @@
 				)
 	crate_name = ".35 ammo crate"
 
-/datum/supply_pack/security/lethalsolrifles
-	name = ".40 Ammunition Crates"
-	desc = "Contains 6 boxes of lethal ammunition for Sol .40 Rifle."
-	cost = CARGO_CRATE_VALUE * 10
-	contains = list(/obj/item/ammo_box/c40sol= 4,
-					/obj/item/ammo_box/c40sol/pierce = 1,
-					/obj/item/ammo_box/c40sol/incendiary = 1,
-				)
-	crate_name = ".40 ammo crate"
-
 /datum/supply_pack/security/lethalskyratshotgun
 	name = "12 Gauge Ammunition Crates"
 	desc = "Contains 6 boxes of lethal ammunition for all 12 Gauge Shotguns."
@@ -94,15 +84,6 @@
 	)
 	crate_name = "Carwo 'Sindano' Submachinegun Crate"
 
-/datum/supply_pack/security/armory/marksman
-	name = "Carwil Marksman Rifle Crate"
-	desc = "Contains one Carwil Marksman Rifle, as well as 3 spare magazines for it."
-	cost = CARGO_CRATE_VALUE * 12
-	contains = list(/obj/item/gun/ballistic/automatic/sol_rifle/marksman = 1,
-	/obj/item/ammo_box/magazine/c40sol_rifle = 3,
-	)
-	crate_name = "Carwil Marksman Rifle Crate"
-
 //NT Guns and Ammo
 
 /datum/supply_pack/security/sidearmcrate
@@ -116,16 +97,35 @@
 
 // RomFed Gun
 
-/datum/supply_pack/security/armory/rom_ceremonial_rifle
-	name = "Romulus Ceremonial Bolt Action Rifle Crate"
-	desc = "Contains Three Ceremonial Bolt Action Rifle in .40 , as well as ammo for it."
-	cost = CARGO_CRATE_VALUE * 12
-	contains = list(/obj/item/gun/ballistic/rifle/carwil = 3,
-		/obj/item/ammo_box/magazine/c40sol_rifle = 3,
+/datum/supply_pack/security/armory/cacoilgun
+	name = "Romulus Technology MEC-1E Coilgun"
+	cost = CARGO_CRATE_VALUE * 55
+	desc = "Contains Three standard-issue electromagnetic coilgun and Three magazines for it."
+	contains = list(
+		/obj/item/gun/ballistic/automatic/coilgun = 3,
+		/obj/item/ammo_box/magazine/cacoilgun = 3
 	)
-	crate_name = "Romulus Ceremonial Rifle Crate"
+	crate_name = "Experimental Coilgun Crate"
 
+/datum/supply_pack/security/cacoilgun_ammo
+	name = "5.7mm Coilgun Ammo Crate"
+	cost = CARGO_CRATE_VALUE * 11
+	desc = "Contains Nine magazines for the MEC-1E Coilgun."
+	contains = list(
+		/obj/item/ammo_box/magazine/cacoilgun = 3
+	)
+	crate_name = "Coilgun Ammo Crate"
 
+// KERI Weapon
+
+/datum/supply_pack/security/armory/thermal_lever
+	name = "Kepler Energy Research Lever Action Rifle"
+	cost = CARGO_CRATE_VALUE * 15
+	desc = "Contains Three Winchester ULA Thermal Lever Action Rifle designed by Kepler Energy Research Institute for Nanotrasen usage."
+	contains = list(
+		/obj/item/gun/energy/laser/thermal/lever = 3
+	)
+	crate_name = "Thermal Lever Action Crate"
 
 //Misc
 
@@ -147,21 +147,6 @@
 		/obj/item/ammo_box/c980grenade/riot = 3,
 	)
 
-/*
-/datum/supply_pack/imports/lmg
-	name = "Smuggled Sol Light Machinegun Crate"
-	desc = "(*!&@#GOOD NEWS, OPERATIVE! WE GOT YOU THE BIG LEAGUE AUTOMATIC WEAPONS. BY \
-		SMUGGLING THIS CRATE THROUGH A FEW OUTDATED CUSTOMS CHECKPOINTS, WE'VE THE NEXT BEST THING! \
-		A FUCKING LIGHT MACHINE GUN. DON'T WORRY, THE RUMORS ABOUT THE GUN MELTING YOU ARE JUST THAT! RUMORS! \
-		THESE THINGS WORK FINE! MIGHT BE SLIGHTLY DIRTY.!#@*$"
-	hidden = TRUE
-	cost = CARGO_CRATE_VALUE * 52
-	contains = list(
-		/obj/item/gun/ballistic/automatic/sol_rifle/machinegun = 1,
-		/obj/item/ammo_box/magazine/c40sol_rifle/drum = 2,
-	)
-*/ //BUBBER EDIT: IT'S AS BAD AS YOU THOUGHT
-
 /datum/supply_pack/imports/infanterie
 	name = "Carwil Battle Rifle Crate"
 	desc = "(*!&@#GOOD NEWS, OPERATIVE! WE GOT YOU THE BIG LEAGUE AUTOMATIC WEAPONS. BY \
@@ -174,6 +159,20 @@
 	)
 	crate_name = "Carwil Battle Rifle Crate"
 	hidden = TRUE
+
+/datum/supply_pack/imports/cacoilsmg
+	name = "Romulus Coil SMG Crate"
+	desc = "(*!&@#GOOD NEWS, OPERATIVE! WE GOT YOU THE BIG LEAGUE AUTOMATIC WEAPONS. BY \
+		SMUGGLING THIS CRATE THROUGH A FEW OUTDATED CUSTOMS CHECKPOINTS, WE'VE THE NEXT BEST THING! \
+		SERVICE BATTLE RIFLE. DON'T WORRY, THE RUMORS ABOUT THE GUN MELTING YOU ARE JUST THAT! RUMORS! \
+		THESE THINGS WORK FINE! MIGHT BE SLIGHTLY DIRTY.!#@*$"
+	cost = CARGO_CRATE_VALUE * 20
+	contains = list(/obj/item/gun/ballistic/automatic/sol_rifle = 2,
+	/obj/item/ammo_box/magazine/c40sol_rifle = 4,
+	)
+	crate_name = "Carwil Battle Rifle Crate"
+	hidden = TRUE
+
 
 //Goodies
 

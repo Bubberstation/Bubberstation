@@ -24,7 +24,7 @@
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-
+/*
 // Sol 40 Rifle
 //These use plastic so they are still material costly, but should be not as bad
 
@@ -51,7 +51,7 @@
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-
+*/
 //Grenade Launcher stuff
 
 /datum/design/kiboko_mag
@@ -287,6 +287,33 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_CARGO
 
+// PCR, PAR.
+
+/datum/design/cacoil
+	name = "Coilgun Magazine (Lethal)"
+	desc = "A 5.7mm coilgun ammunition box, a bit wide though."
+	id = "ca_coil"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 15, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 9)
+	build_path = /obj/item/ammo_box/magazine/cacoilgun
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/cacoil_fp
+	name = "Fragmenting Coilgun Magazine (Lethal-Wounding)"
+	desc = "A 5.7mm coilgun fragmentation ammunition box, a bit wide though."
+	id = "ca_coil_fp"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 15, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 9)
+	build_path = /obj/item/ammo_box/magazine/cacoilgun
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+
 // Misc Gun Stuff
 
 /datum/design/m9mm_mag
@@ -458,7 +485,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 //Conversion Kit
-
+/*
 /datum/design/sol_rifle_carbine_kit
 	name = "Sol Carbine Conversion Part Kit(Very Lethal)"
 	desc = "The kit to brutalise your functional battle rifle into a short carbine, ideal for close quarter."
@@ -484,3 +511,4 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 	autolathe_exportable = FALSE
+*/

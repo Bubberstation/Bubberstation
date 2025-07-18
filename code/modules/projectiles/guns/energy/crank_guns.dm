@@ -90,7 +90,7 @@
 
 /obj/item/gun/energy/laser/thermal/add_bayonet_point()
 	AddComponent(/datum/component/bayonet_attachable, offset_x = 19, offset_y = 13)
-
+/*
 /obj/item/gun/energy/laser/thermal/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF|EMP_PROTECT_CONTENTS)
@@ -103,7 +103,7 @@
 		charge_sound = 'sound/items/weapons/kinetic_reload.ogg', \
 		charge_sound_cooldown_time = 0.8 SECONDS, \
 	)
-
+*/ //Overriden elsewhere - Bubber Edit
 /obj/item/gun/energy/laser/thermal/add_seclight_point()
 	AddComponent(/datum/component/seclite_attachable, \
 		light_overlay_icon = 'icons/obj/weapons/guns/flashlights.dmi', \
