@@ -8,9 +8,8 @@
 		BRUTE = 1.25,
 		BURN = 1.25,
 	)
-	mutant_bodyparts = list(
+	mutant_bodyparts = list()
 	mutantbrain = /obj/item/organ/brain/werewolf
-	)
 
 /datum/species/human/werewolf/get_species_description()
 	return "Humans are the dominant species in the known galaxy. \
@@ -37,3 +36,6 @@
 	)
 
 /datum/species/human/werewolf/create_pref_unique_perks()
+
+/mob/living/carbon/human/species/werehuman
+	race = /datum/species/human/werewolf

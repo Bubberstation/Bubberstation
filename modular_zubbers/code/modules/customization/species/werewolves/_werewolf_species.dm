@@ -44,3 +44,6 @@
 		TRAIT_LESSER_HULK,
 		TRAIT_WEREWOLF,
 	)
+
+/mob/living/carbon/human/species/werewolf
+	race = /datum/species/werewolf
