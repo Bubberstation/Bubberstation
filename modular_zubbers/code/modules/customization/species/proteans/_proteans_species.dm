@@ -72,7 +72,10 @@
 
 	inherent_biotypes = MOB_ROBOTIC | MOB_HUMANOID
 	reagent_flags = null
-
+	/// Valid organ slots for rejection
+	var/list/slots = list(ORGAN_SLOT_BRAIN, ORGAN_SLOT_HEART, ORGAN_SLOT_STOMACH, ORGAN_SLOT_EYES)
+	/// Flags excluded from rejection
+	var/exclusion_flags = ORGAN_ROBOTIC | ORGAN_NANOMACHINE | ORGAN_UNREMOVABLE
 	/// Reference to the
 	var/obj/item/mod/control/pre_equipped/protean/species_modsuit
 
@@ -92,6 +95,7 @@
 	owner = gainer
 	equip_modsuit(gainer)
 	RegisterSignal(src, COMSIG_OUTFIT_EQUIP, PROC_REF(outfit_handling))
+	RegisterSignal(owner, COMSIG_CARBON_GAIN_ORGAN, PROC_REF(organ_reject))
 	var/obj/item/mod/core/protean/core = species_modsuit.core
 	core?.linked_species = src
 	var/static/protean_verbs = list(
@@ -103,8 +107,24 @@
 	)
 	add_verb(gainer, protean_verbs)
 
+/datum/species/protean/proc/organ_reject(mob/living/source, obj/item/organ/inserted)
+	SIGNAL_HANDLER
+
+	if(isnull(source))
+		return
+	if(!(inserted.slot in slots))
+		return
+	if(inserted.organ_flags & exclusion_flags)
+		return
+	inserted.Remove(source)
+	inserted.forceMove(get_turf(source))
+	to_chat(source, span_danger("Your mass rejected [inserted]!"))
+	inserted.balloon_alert_to_viewers("rejected!", vision_distance = 1)
+
 /datum/species/protean/on_species_loss(mob/living/carbon/human/gainer, datum/species/new_species, pref_load)
 	. = ..()
+	if(gainer)
+		UnregisterSignal(gainer, COMSIG_CARBON_GAIN_ORGAN)
 	if(species_modsuit.stored_modsuit)
 		species_modsuit.unassimilate_modsuit(owner, TRUE)
 	gainer.dropItemToGround(species_modsuit, TRUE)
