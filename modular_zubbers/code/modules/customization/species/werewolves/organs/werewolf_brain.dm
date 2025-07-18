@@ -15,19 +15,20 @@
 	if(!istype(werehuman))
 		return
 	owner.visible_message(span_warning("[owner] grows massive, their body quickly getting covered in fur!"))
-	owner.set_species(SPECIES_WEREHUMAN, TRUE, TRUE, FALSE)
+	owner.set_species(SPECIES_WEREWOLF, TRUE, TRUE, FALSE)
 	owner.add_traits(list(TRAIT_OVERSIZED, TRAIT_BEAST_FORM))
+
 /obj/item/organ/brain/werewolf/proc/leave_beast_form()
 	var/datum/species/werewolf/current_wolf = owner.dna?.species
 	if(!istype(current_wolf))
 		return
 	owner.visible_message(span_warning("[owner] shrinks down, their fur receding!"))
-	owner.set_species(SPECIES_WEREWOLF, TRUE, TRUE, FALSE)
-	owner.remove_traits(TRAIT_OVERSIZED, TRAIT_BEAST_FORM)
+	owner.set_species(SPECIES_WEREHUMAN, TRUE, TRUE, FALSE)
+	owner.remove_traits(list(TRAIT_OVERSIZED, TRAIT_BEAST_FORM))
 	COOLDOWN_START(src, beast_form_cooldown, 15 MINUTES)
 
 /obj/item/organ/brain/werewolf/proc/beast_form(mob/user)
-	set name = "Enter Werewolf Form"
+	set name = "Enter/Leave Werewolf Form"
 	set desc = "Succumb to the rage and turn into a werewolf."
 	set category = "Werewolf"
 	var/beast_form = TRAIT_BEAST_FORM
