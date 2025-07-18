@@ -93,3 +93,10 @@
 /datum/supply_pack/security/armory/swat/New()
 	. = ..()
 	contains += list(/obj/item/storage/toolbox/guncase/skyrat/pistol/pepperball = 2)
+
+/datum/supply_pack/security/pepperballguns
+	name = "Pepperball Gun Crate"
+	desc = "Contains three pepperball guns, a non-lethal weapon that fires pepper-filled projectiles."
+	cost = CARGO_CRATE_VALUE * 4.5
+	contains = list(/obj/item/storage/toolbox/guncase/skyrat/pistol/pepperball = 3
+	access = ACCESS_WEAPONS
