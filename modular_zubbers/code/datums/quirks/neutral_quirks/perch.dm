@@ -36,7 +36,7 @@
 	if(hangin)
 		unflip(cast_on)
 		return
-	else if(check_above(cast_on))
+	if(check_above(cast_on))
 		RegisterSignal(cast_on, COMSIG_MOVABLE_MOVED, PROC_REF(on_step))
 		cast_on.AddElement(/datum/element/forced_gravity, NEGATIVE_GRAVITY)
 		owner.visible_message("<span class='notice'>[owner] ascends and sticks to the ceiling!")
