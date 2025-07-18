@@ -288,6 +288,7 @@ function JobRow(props: JobRowProps) {
                 onClick={(slot) => {
                   act('set_preferred_character', {
                     slot: slot + 1,
+                    job: name,
                   });
                 }}
                 profiles={data.character_profiles}
