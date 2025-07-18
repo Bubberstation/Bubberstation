@@ -6,3 +6,7 @@
 #define TRAIT_BEAST_FORM "beast_form"
 // If the player is a werewolf, and therefore can transform.alist
 #define TRAIT_WEREWOLF "werewolf"
+
+// Species defines
+#define SPECIES_WEREHUMAN "werehuman"
+#define SPECIES_WEREWOLF "werewolf"
