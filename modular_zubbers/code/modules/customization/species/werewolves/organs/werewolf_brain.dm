@@ -25,3 +25,13 @@
 	owner.set_species(SPECIES_WEREHUMAN, TRUE, TRUE, FALSE)
 	owner.remove_traits(TRAIT_OVERSIZED, TRAIT_BEAST_FORM)
 	COOLDOWN_START(src, beast_form_cooldown, 15 MINUTES)
+
+/obj/item/organ/brain/werewolf/proc/beast_form(mob/user)
+	set name = "Enter Werewolf Form"
+	set desc = "Succumb to the rage and turn into a werewolf."
+	set category = "Werewolf"
+	var/beast_form = TRAIT_BEAST_FORM
+	if(!HAS_TRAIT(user, beast_form))
+		enter_beast_form()
+	else
+		leave_beast_form()
