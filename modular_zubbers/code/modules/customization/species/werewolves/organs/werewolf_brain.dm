@@ -8,21 +8,21 @@
 		to_chat(owner, span_warning("You feel the hunger returning!"))
 
 /obj/item/organ/brain/werewolf/proc/enter_beast_form()
-	var/datum/species/human/werewolf/werewolf = owner.dna?.species
+	var/datum/species/human/werewolf/werehuman = owner.dna?.species
 	if(beast_form_cooldown)
 		to_chat(owner, span_warning("You feel too exhausted to transform again so soon!"))
 		return
-	if(!istype(werewolf))
+	if(!istype(werehuman))
 		return
 	owner.visible_message(span_warning("[owner] grows massive, their body quickly getting covered in fur!"))
-	owner.set_species(SPECIES_WEREWOLF, TRUE, TRUE, FALSE)
+	owner.set_species(datum/species/werewolf, TRUE, TRUE, FALSE)
 	owner.add_traits(list(TRAIT_OVERSIZED, TRAIT_BEAST_FORM))
 /obj/item/organ/brain/werewolf/proc/leave_beast_form()
-	var/datum/species/werewolf/werewolf = owner.dna?.species
-	if(!istype(werewolf))
+	var/datum/species/werewolf/current_wolf = owner.dna?.species
+	if(!istype(current_wolf))
 		return
 	owner.visible_message(span_warning("[owner] shrinks down, their fur receding!"))
-	owner.set_species(SPECIES_WEREHUMAN, TRUE, TRUE, FALSE)
+	owner.set_species(datum/species/human/werewolf, TRUE, TRUE, FALSE)
 	owner.remove_traits(TRAIT_OVERSIZED, TRAIT_BEAST_FORM)
 	COOLDOWN_START(src, beast_form_cooldown, 15 MINUTES)
 
