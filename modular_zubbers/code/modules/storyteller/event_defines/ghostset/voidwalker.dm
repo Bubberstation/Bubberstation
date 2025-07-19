@@ -29,11 +29,10 @@
 	var/datum/mind/player_mind = new /datum/mind(chosen_one.key)
 	player_mind.active = TRUE
 
-	var/mob/living/carbon/human/walker = new (spawn_location)
+	var/mob/living/basic/voidwalker/walker = new (spawn_location)
 	player_mind.transfer_to(walker)
 	player_mind.set_assigned_role(SSjob.get_job_type(/datum/job/voidwalker))
 	player_mind.add_antag_datum(/datum/antagonist/voidwalker)
-	walker.set_species(/datum/species/voidwalker)
 	playsound(walker, 'sound/effects/magic/ethereal_exit.ogg', 50, TRUE, -1)
 	message_admins("[ADMIN_LOOKUPFLW(walker)] has been made into a Voidwalker by the midround event.")
 	walker.log_message("[key_name(walker)] was spawned as a Voidwalker by an event.", LOG_GAME)
