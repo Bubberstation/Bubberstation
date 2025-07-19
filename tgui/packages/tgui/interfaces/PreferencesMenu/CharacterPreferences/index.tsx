@@ -28,13 +28,13 @@ enum Page {
   // BUBBER EDIT ADDITION END
 }
 
-type ProfileProps = {
+export type ProfileProps = {
   activeSlot: number;
   onClick: (index: number) => void;
   profiles: (string | null)[];
 };
 
-function CharacterProfiles(props: ProfileProps) {
+export function CharacterProfiles(props: ProfileProps) {
   const { activeSlot, onClick, profiles } = props;
 
   /* BUBBER EDIT CHANGE BEGIN
