@@ -34,7 +34,7 @@
 	set name = "Enter/Leave Werewolf Form"
 	set desc = "Succumb to the rage and turn into a werewolf."
 	set category = "Werewolf"
-	if(!HAS_TRAIT(user, TRAIT_BEAST_FORM))
+	if(user && !HAS_TRAIT(user, TRAIT_BEAST_FORM))
 		enter_beast_form()
 	else
 		leave_beast_form()
