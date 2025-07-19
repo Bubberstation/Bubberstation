@@ -3,6 +3,10 @@
 	desc = "A larger than average brain. This one seems slightly smoother than a human's brain. The hypothalamus seems larger than normal." // I read in a random medical artical that the hypothalamus controls aggression.
 	COOLDOWN_DECLARE(beast_form_cooldown)
 
+/obj/item/organ/brain/werewolf/on_mob_insert(mob/living/carbon/brain_owner, special = FALSE)
+	. = ..()
+	brain_owner.grant_actions_by_list(/datum/action/item_action/organ_action/beast_form)
+
 /obj/item/organ/brain/werewolf/on_life()
 	if(beast_form_cooldown && COOLDOWN_FINISHED(src, beast_form_cooldown))
 		to_chat(owner, span_warning("You feel the hunger returning!"))
