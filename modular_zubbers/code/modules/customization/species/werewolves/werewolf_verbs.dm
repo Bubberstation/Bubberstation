@@ -5,6 +5,7 @@
 
 /datum/action/item_action/organ_action/beast_form/New(Target)
 	..()
+	var/mob/user = owner.client?.mob
 	if(!HAS_TRAIT(user, TRAIT_BEAST_FORM))
 		name = "Human Form"
 	else
