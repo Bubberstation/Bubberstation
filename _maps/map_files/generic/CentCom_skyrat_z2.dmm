@@ -85,11 +85,9 @@
 /turf/closed/indestructible/wood,
 /area/centcom/holding/cafe)
 "adU" = (
-/obj/effect/turf_decal/delivery,
 /obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
+/obj/effect/turf_decal/delivery,
+/obj/structure/disposalpipe/trunk,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "aek" = (
@@ -2156,6 +2154,10 @@
 "aBm" = (
 /obj/structure/chair/sofa/bench/right{
 	dir = 8
+	},
+/obj/effect/turf_decal/trimline/tram/warning{
+	dir = 1;
+	use_holiday_colors = 0
 	},
 /turf/open/floor/iron,
 /area/centcom/interlink)
@@ -4605,7 +4607,6 @@
 /obj/effect/turf_decal/trimline/dark_green/filled/warning{
 	dir = 6
 	},
-/obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "boT" = (
@@ -5092,6 +5093,10 @@
 	dir = 4
 	},
 /obj/effect/landmark/latejoin,
+/obj/effect/turf_decal/trimline/tram/warning{
+	dir = 1;
+	use_holiday_colors = 0
+	},
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "bTK" = (
@@ -5288,8 +5293,12 @@
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe/park)
 "cbl" = (
-/obj/machinery/light/directional/east,
-/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/trimline/dark_green/filled/corner{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "cby" = (
@@ -5657,6 +5666,7 @@
 /obj/structure/chair/sofa/bench{
 	dir = 4
 	},
+/obj/effect/landmark/latejoin,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "cBm" = (
@@ -5904,6 +5914,7 @@
 /area/cruiser_dock)
 "cVm" = (
 /obj/effect/turf_decal/siding/dark,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "cVK" = (
@@ -7055,6 +7066,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
 	},
+/obj/effect/landmark/latejoin,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "eNw" = (
@@ -7083,11 +7095,13 @@
 	},
 /area/centcom/holding/cafe/park)
 "eOx" = (
-/obj/structure/chair/sofa/bench{
+/obj/effect/turf_decal/trimline/dark_green/filled/corner{
 	dir = 8
 	},
-/obj/effect/landmark/latejoin,
-/turf/open/floor/iron/dark,
+/obj/structure/disposalpipe/junction/yjunction{
+	dir = 1
+	},
+/turf/open/floor/iron,
 /area/centcom/interlink)
 "ePw" = (
 /obj/effect/turf_decal/siding/white{
@@ -7338,9 +7352,16 @@
 /area/centcom/interlink)
 "fnX" = (
 /obj/structure/disposalpipe/segment{
-	dir = 5
+	dir = 4
 	},
-/turf/open/floor/iron,
+/obj/machinery/conveyor{
+	id = "interlink-shuttle";
+	name = "Advanced Accesibility Moving Assistant";
+	dir = 1;
+	operating = 1;
+	speed = 0.2
+	},
+/turf/open/floor/catwalk_floor,
 /area/centcom/interlink)
 "fol" = (
 /turf/open/floor/iron/stairs/medium{
@@ -7514,7 +7535,8 @@
 	},
 /area/centcom/holding/cafe)
 "fBP" = (
-/obj/structure/disposalpipe/junction{
+/obj/effect/turf_decal/trimline/dark_green/filled/line,
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/open/floor/iron,
@@ -7625,9 +7647,7 @@
 /obj/effect/turf_decal/trimline/dark_green/filled/warning{
 	dir = 1
 	},
-/obj/structure/disposalpipe/junction/yjunction{
-	dir = 4
-	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "fIS" = (
@@ -7902,6 +7922,13 @@
 	},
 /turf/open/floor/fakebasalt,
 /area/centcom/holding/cafe/park)
+"ger" = (
+/obj/machinery/conveyor{
+	id = "interlink-shuttle";
+	dir = 1
+	},
+/turf/open/floor/catwalk_floor,
+/area/centcom/interlink)
 "geG" = (
 /turf/open/floor/iron/stairs,
 /area/centcom/holding/cafe/park)
@@ -8183,9 +8210,6 @@
 /obj/effect/turf_decal/trimline/dark_green/filled/line{
 	dir = 1
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "gyS" = (
@@ -8299,6 +8323,15 @@
 	icon_state = "darkfull"
 	},
 /area/centcom/holding/cafe)
+"gJq" = (
+/obj/effect/turf_decal/trimline/dark_green/filled/corner{
+	dir = 1
+	},
+/obj/structure/disposalpipe/junction/flip{
+	dir = 4
+	},
+/turf/open/floor/iron,
+/area/centcom/interlink)
 "gKe" = (
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/structure/table{
@@ -8427,6 +8460,13 @@
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /turf/open/floor/iron/dark,
 /area/centcom/holding/cafe)
+"gVk" = (
+/obj/effect/turf_decal/trimline/tram/warning{
+	dir = 4;
+	use_holiday_colors = 0
+	},
+/turf/open/floor/iron,
+/area/centcom/interlink)
 "gVD" = (
 /obj/machinery/light/directional/east,
 /obj/structure/flora/bush/jungle/b,
@@ -8617,6 +8657,16 @@
 	},
 /turf/open/indestructible/plating,
 /area/centcom/holding/cafe/park)
+"heh" = (
+/obj/machinery/conveyor{
+	id = "interlink-shuttle";
+	name = "Advanced Accesibility Moving Assistant";
+	dir = 4;
+	operating = 1;
+	speed = 0.2
+	},
+/turf/open/floor/catwalk_floor,
+/area/centcom/interlink)
 "heB" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 1
@@ -8652,13 +8702,14 @@
 /turf/open/floor/iron,
 /area/centcom/holding/cafe)
 "hhj" = (
-/obj/effect/turf_decal/trimline/dark_green/filled/warning{
-	dir = 1
+/obj/machinery/conveyor{
+	id = "interlink-shuttle";
+	name = "Advanced Accesibility Moving Assistant";
+	dir = 1;
+	operating = 1;
+	speed = 0.2
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/turf/open/floor/iron,
+/turf/open/floor/catwalk_floor,
 /area/centcom/interlink)
 "hje" = (
 /obj/structure/stone_tile/block{
@@ -8909,6 +8960,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/light_switch/default_on/directional/south,
 /turf/open/floor/plating,
 /area/centcom/interlink)
 "hzz" = (
@@ -9346,6 +9398,13 @@
 "iax" = (
 /obj/effect/turf_decal/trimline/green/line,
 /turf/open/floor/iron/dark,
+/area/centcom/interlink)
+"ibw" = (
+/obj/effect/turf_decal/trimline/tram/warning{
+	dir = 8;
+	use_holiday_colors = 0
+	},
+/turf/open/floor/iron,
 /area/centcom/interlink)
 "ibU" = (
 /obj/structure/chair/sofa/bench,
@@ -10292,6 +10351,13 @@
 	},
 /turf/open/floor/plating,
 /area/cruiser_dock)
+"jpM" = (
+/obj/effect/turf_decal/trimline/tram/warning{
+	dir = 1;
+	use_holiday_colors = 0
+	},
+/turf/open/floor/iron,
+/area/centcom/interlink)
 "jqm" = (
 /obj/effect/turf_decal/bot_blue,
 /turf/open/floor/iron/freezer,
@@ -10352,8 +10418,8 @@
 /turf/open/floor/grass,
 /area/centcom/interlink)
 "jtl" = (
-/obj/structure/chair/sofa/bench/left{
-	dir = 8
+/obj/structure/disposalpipe/segment{
+	dir = 5
 	},
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
@@ -10421,11 +10487,14 @@
 /turf/open/floor/wood/tile,
 /area/centcom/interlink)
 "jzj" = (
+/obj/effect/turf_decal/siding/dark,
+/obj/effect/turf_decal/trimline/tram/warning{
+	dir = 6;
+	use_holiday_colors = 0
+	},
 /obj/machinery/door/airlock/multi_tile/public/glass{
 	name = "Interlink"
 	},
-/obj/effect/turf_decal/siding/dark,
-/obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "jzL" = (
@@ -10489,7 +10558,9 @@
 /obj/effect/turf_decal/trimline/dark_green/filled/warning{
 	dir = 1
 	},
-/obj/structure/disposalpipe/segment,
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "jHv" = (
@@ -10541,9 +10612,6 @@
 /obj/effect/turf_decal/trimline/dark_green/filled/line{
 	dir = 1
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "jKj" = (
@@ -10587,6 +10655,13 @@
 /obj/structure/stone_tile/surrounding_tile/cracked,
 /turf/open/floor/fakebasalt,
 /area/centcom/holding/cafe/park)
+"jOT" = (
+/obj/effect/turf_decal/trimline/tram/warning{
+	dir = 9;
+	use_holiday_colors = 0
+	},
+/turf/open/floor/iron,
+/area/centcom/interlink)
 "jQk" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -10599,6 +10674,13 @@
 	},
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe)
+"jQI" = (
+/obj/effect/turf_decal/trimline/tram/corner{
+	use_holiday_colors = 0;
+	dir = 4
+	},
+/turf/open/floor/iron,
+/area/centcom/interlink)
 "jQJ" = (
 /obj/machinery/button/door{
 	id = "ghostcafecabin3";
@@ -10653,6 +10735,19 @@
 	name = "Interlink Medbay"
 	},
 /turf/open/floor/iron,
+/area/centcom/interlink)
+"jVr" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Interlink Shuttle"
+	},
+/obj/machinery/conveyor{
+	id = "interlink-shuttle";
+	name = "Advanced Accesibility Moving Assistant";
+	dir = 1;
+	operating = 1;
+	speed = 0.2
+	},
+/turf/open/floor/catwalk_floor,
 /area/centcom/interlink)
 "jXq" = (
 /obj/structure/chair/sofa/bench/left{
@@ -11422,7 +11517,10 @@
 /area/centcom/interlink/dorm_rooms)
 "ldc" = (
 /obj/machinery/light/directional/west,
-/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/trimline/tram/warning{
+	dir = 4;
+	use_holiday_colors = 0
+	},
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "ldK" = (
@@ -11586,8 +11684,8 @@
 /turf/open/water/beach,
 /area/centcom/holding/cafe/park)
 "lkp" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
+/obj/structure/disposalpipe/junction/yjunction{
+	dir = 1
 	},
 /turf/open/floor/iron,
 /area/centcom/interlink)
@@ -11643,6 +11741,9 @@
 /area/centcom/holding/cafe/park)
 "lrp" = (
 /obj/effect/turf_decal/trimline/dark_green/filled/corner,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "lrB" = (
@@ -12018,13 +12119,14 @@
 /turf/open/floor/iron/smooth_large,
 /area/cruiser_dock)
 "lTq" = (
-/obj/effect/turf_decal/trimline/dark_green/filled/warning{
-	dir = 1
+/obj/machinery/conveyor{
+	id = "interlink-shuttle";
+	name = "Advanced Accesibility Moving Assistant";
+	dir = 8;
+	operating = 1;
+	speed = 0.2
 	},
-/obj/structure/disposalpipe/junction/yjunction{
-	dir = 1
-	},
-/turf/open/floor/iron,
+/turf/open/floor/catwalk_floor,
 /area/centcom/interlink)
 "lTw" = (
 /obj/structure/chair/comfy/black{
@@ -12256,7 +12358,6 @@
 /obj/effect/turf_decal/trimline/dark_green/filled/warning{
 	dir = 5
 	},
-/obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "mmL" = (
@@ -12298,6 +12399,16 @@
 /obj/structure/flora/bush/jungle/b,
 /turf/open/misc/grass/planet,
 /area/centcom/holding/cafe/park)
+"mos" = (
+/obj/machinery/conveyor{
+	id = "interlink-shuttle";
+	name = "Advanced Accesibility Moving Assistant";
+	dir = 5;
+	operating = 1;
+	speed = 0.2
+	},
+/turf/open/floor/catwalk_floor,
+/area/centcom/interlink)
 "moG" = (
 /obj/item/kirbyplants/organic/plant22,
 /turf/open/floor/iron/dark,
@@ -12369,8 +12480,8 @@
 	},
 /area/centcom/holding/cafe)
 "mtv" = (
-/obj/structure/chair/sofa/bench/right{
-	dir = 8
+/obj/structure/disposalpipe/segment{
+	dir = 10
 	},
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
@@ -12638,6 +12749,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 9
 	},
+/obj/effect/landmark/latejoin,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "mDR" = (
@@ -13296,6 +13408,12 @@
 	},
 /turf/open/floor/iron,
 /area/centcom/interlink)
+"nrN" = (
+/obj/effect/turf_decal/trimline/tram/corner{
+	use_holiday_colors = 0
+	},
+/turf/open/floor/iron/dark,
+/area/centcom/interlink)
 "nsr" = (
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted{
 	dir = 8
@@ -13469,6 +13587,12 @@
 /area/centcom/holding/cafe)
 "nGq" = (
 /obj/structure/sign/poster/random/directional/west,
+/obj/machinery/conveyor_switch/oneway{
+	conveyor_speed = 0.2;
+	id = "interlink-shuttle";
+	name = "Advanced Accesibility Moving Assistant power switch";
+	position = 1
+	},
 /turf/open/floor/plating,
 /area/centcom/interlink)
 "nGL" = (
@@ -14024,10 +14148,13 @@
 /turf/open/floor/wood,
 /area/centcom/interlink/dorm_rooms)
 "otM" = (
-/obj/structure/disposalpipe/junction/flip{
-	dir = 8
+/obj/machinery/conveyor{
+	id = "interlink-shuttle";
+	name = "Advanced Accesibility Moving Assistant";
+	operating = 1;
+	speed = 0.2
 	},
-/turf/open/floor/iron/dark,
+/turf/open/floor/catwalk_floor,
 /area/centcom/interlink)
 "ouF" = (
 /obj/item/toy/plush/moth{
@@ -15039,11 +15166,14 @@
 /turf/open/floor/wood/tile,
 /area/centcom/interlink)
 "pHQ" = (
-/obj/structure/chair/sofa/bench/right{
-	dir = 8
+/obj/machinery/conveyor/inverted{
+	dir = 10;
+	id = "interlink-shuttle";
+	name = "Advanced Accesibility Moving Assistant";
+	operating = 1;
+	speed = 0.2
 	},
-/obj/effect/landmark/latejoin,
-/turf/open/floor/iron/dark,
+/turf/open/floor/catwalk_floor,
 /area/centcom/interlink)
 "pKF" = (
 /obj/machinery/processor,
@@ -15366,10 +15496,16 @@
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe)
 "pZh" = (
-/obj/structure/chair/sofa/bench{
-	dir = 8
+/obj/machinery/conveyor{
+	id = "interlink-shuttle";
+	name = "Advanced Accesibility Moving Assistant";
+	operating = 1;
+	speed = 0.2
 	},
-/turf/open/floor/iron/dark,
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/catwalk_floor,
 /area/centcom/interlink)
 "pZn" = (
 /mob/living/basic/crab{
@@ -15727,6 +15863,16 @@
 "qvk" = (
 /obj/machinery/oven/range,
 /turf/open/floor/iron/cafeteria,
+/area/centcom/interlink)
+"qvt" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/obj/structure/chair/sofa/bench/right{
+	dir = 4
+	},
+/obj/effect/landmark/latejoin,
+/turf/open/floor/iron,
 /area/centcom/interlink)
 "qwk" = (
 /obj/structure/chair/sofa/bench{
@@ -16191,7 +16337,9 @@
 /area/centcom/interlink)
 "raA" = (
 /obj/effect/turf_decal/trimline/dark_green/filled/corner,
-/obj/structure/disposalpipe/segment,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "raS" = (
@@ -16468,6 +16616,10 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/iron/dark/textured_large,
 /area/centcom/interlink)
+"rrU" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/iron/dark,
+/area/centcom/interlink)
 "ruq" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/indestructible/plating,
@@ -16529,6 +16681,11 @@
 	greyscale_colors = "#AA8A61"
 	},
 /turf/open/floor/wood,
+/area/centcom/interlink)
+"rAI" = (
+/obj/machinery/light/directional/east,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "rCf" = (
 /obj/structure/fans/tiny/invisible,
@@ -17348,6 +17505,11 @@
 /obj/effect/turf_decal/siding/white,
 /turf/open/floor/iron/white,
 /area/centcom/interlink)
+"svy" = (
+/obj/effect/turf_decal/siding/dark,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/iron,
+/area/centcom/interlink)
 "svW" = (
 /obj/effect/turf_decal/tile/neutral/anticorner/contrasted,
 /obj/effect/turf_decal/tile/dark_blue{
@@ -17436,6 +17598,10 @@
 	icon_state = "darkfull"
 	},
 /area/centcom/holding/cafe/park)
+"sBv" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/iron,
+/area/centcom/interlink)
 "sBJ" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/arrow_cw,
 /obj/effect/turf_decal/trimline/green/filled/arrow_cw{
@@ -17547,6 +17713,15 @@
 	icon_state = "white"
 	},
 /area/centcom/holding/cafe/park)
+"sGq" = (
+/obj/effect/turf_decal/trimline/dark_green/filled/line{
+	dir = 8
+	},
+/obj/structure/disposalpipe/junction/yjunction{
+	dir = 4
+	},
+/turf/open/floor/iron,
+/area/centcom/interlink)
 "sGw" = (
 /obj/structure/stone_tile/surrounding_tile/cracked{
 	dir = 1
@@ -18315,6 +18490,12 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding/cafe)
+"tHQ" = (
+/obj/structure/disposalpipe/junction{
+	dir = 1
+	},
+/turf/open/floor/iron,
+/area/centcom/interlink)
 "tHV" = (
 /obj/structure/table/wood,
 /obj/item/storage/fancy/donut_box{
@@ -18406,12 +18587,11 @@
 /turf/open/floor/grass,
 /area/centcom/interlink)
 "tUz" = (
-/obj/structure/chair/sofa/bench/right{
-	dir = 4
-	},
-/obj/effect/landmark/latejoin,
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 10
 	},
 /turf/open/floor/iron,
 /area/centcom/interlink)
@@ -18437,7 +18617,6 @@
 /obj/effect/turf_decal/trimline/dark_green/filled/line{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "tXa" = (
@@ -18718,12 +18897,11 @@
 /turf/open/floor/plating,
 /area/centcom/interlink)
 "uii" = (
-/obj/effect/turf_decal/delivery,
-/obj/structure/disposalpipe/trunk{
-	dir = 1
+/obj/effect/turf_decal/trimline/dark_green/filled/warning{
+	dir = 8
 	},
-/obj/machinery/disposal/bin,
-/turf/open/floor/iron/dark,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/iron,
 /area/centcom/interlink)
 "uis" = (
 /obj/structure/reagent_dispensers/plumbed,
@@ -18878,11 +19056,17 @@
 /turf/open/indestructible/dark/smooth_large,
 /area/centcom/holding/cafe)
 "uyr" = (
-/obj/structure/chair/sofa/bench/right{
+/obj/machinery/conveyor{
+	id = "interlink-shuttle";
+	name = "Advanced Accesibility Moving Assistant";
+	dir = 1;
+	operating = 1;
+	speed = 0.2
+	},
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/landmark/latejoin,
-/turf/open/floor/iron,
+/turf/open/floor/catwalk_floor,
 /area/centcom/interlink)
 "uAi" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/arrow_cw{
@@ -19099,6 +19283,13 @@
 	icon_state = "darkfull"
 	},
 /area/centcom/holding/cafe)
+"uSq" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/iron,
+/area/centcom/interlink)
 "uSQ" = (
 /obj/structure/table/reinforced,
 /obj/machinery/chem_dispenser/drinks,
@@ -19189,6 +19380,11 @@
 /turf/open/floor/iron/dark/textured_large,
 /area/cruiser_dock)
 "uYo" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/effect/turf_decal/delivery,
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
 	},
@@ -19393,6 +19589,24 @@
 	icon_state = "floor"
 	},
 /area/centcom/holding/cafe/park)
+"vmv" = (
+/obj/structure/sign/poster/random/directional/north,
+/obj/machinery/conveyor{
+	id = "interlink-shuttle";
+	name = "Advanced Accesibility Moving Assistant";
+	dir = 8;
+	operating = 1;
+	speed = 0.2
+	},
+/turf/open/floor/catwalk_floor,
+/area/centcom/interlink)
+"voU" = (
+/obj/effect/turf_decal/trimline/tram/warning{
+	dir = 5;
+	use_holiday_colors = 0
+	},
+/turf/open/floor/iron,
+/area/centcom/interlink)
 "vpT" = (
 /obj/structure/table/reinforced,
 /obj/machinery/chem_dispenser/drinks/beer,
@@ -19462,6 +19676,16 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/wood,
 /area/centcom/interlink/dorm_rooms)
+"vvc" = (
+/obj/effect/turf_decal/siding/dark,
+/obj/machinery/conveyor{
+	id = "interlink-shuttle";
+	name = "Advanced Accesibility Moving Assistant";
+	operating = 1;
+	speed = 0.2
+	},
+/turf/open/floor/catwalk_floor,
+/area/centcom/interlink)
 "vxh" = (
 /obj/item/instrument/accordion,
 /obj/item/instrument/banjo,
@@ -19739,12 +19963,10 @@
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "vRs" = (
-/obj/effect/turf_decal/trimline/dark_green/filled/corner{
-	dir = 4
+/obj/effect/turf_decal/trimline/dark_green/filled/line{
+	dir = 8
 	},
-/obj/structure/disposalpipe/junction/yjunction{
-	dir = 1
-	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "vRE" = (
@@ -19757,8 +19979,9 @@
 /turf/closed/indestructible/steel,
 /area/centcom/holding/cafe)
 "vUg" = (
-/obj/structure/disposalpipe/junction{
-	dir = 1
+/obj/effect/turf_decal/trimline/tram/warning{
+	dir = 4;
+	use_holiday_colors = 0
 	},
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
@@ -20270,9 +20493,7 @@
 /obj/effect/turf_decal/trimline/dark_green/filled/line{
 	dir = 8
 	},
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
+/obj/structure/disposalpipe/trunk,
 /obj/machinery/disposal/bin,
 /turf/open/floor/iron,
 /area/centcom/interlink)
@@ -20603,6 +20824,16 @@
 	},
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe/park)
+"xfl" = (
+/obj/machinery/conveyor{
+	id = "interlink-shuttle";
+	name = "Advanced Accesibility Moving Assistant";
+	dir = 10;
+	operating = 1;
+	speed = 0.2
+	},
+/turf/open/floor/catwalk_floor,
+/area/centcom/interlink)
 "xfD" = (
 /obj/structure/punching_bag,
 /turf/open/indestructible/hotelwood,
@@ -20881,6 +21112,13 @@
 "xuY" = (
 /turf/closed/indestructible/syndicate,
 /area/cruiser_dock)
+"xva" = (
+/obj/effect/turf_decal/trimline/dark_green/filled/warning{
+	dir = 9
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/iron,
+/area/centcom/interlink)
 "xvH" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/wood/parquet,
@@ -21318,6 +21556,20 @@
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/cruiser_dock)
+"yar" = (
+/obj/effect/turf_decal/trimline/tram/corner{
+	use_holiday_colors = 0;
+	dir = 1
+	},
+/turf/open/floor/iron,
+/area/centcom/interlink)
+"yaQ" = (
+/obj/effect/turf_decal/trimline/dark_green/filled/warning{
+	dir = 10
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/iron,
+/area/centcom/interlink)
 "ybu" = (
 /obj/structure/flora/rock/pile/jungle/style_3,
 /turf/open/misc/grass/planet,
@@ -21411,8 +21663,8 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/structure/disposalpipe/junction{
+	dir = 1
 	},
 /turf/open/floor/iron,
 /area/centcom/interlink)
@@ -32891,7 +33143,7 @@ oIK
 kOZ
 kOZ
 wFF
-ivR
+gJq
 pSt
 cWG
 exf
@@ -33147,8 +33399,8 @@ eYX
 mqE
 hvQ
 hvQ
-fBP
-lkp
+hvQ
+eKW
 hvQ
 hvQ
 hvQ
@@ -33404,12 +33656,12 @@ lPi
 aUh
 hvQ
 hvQ
+hvQ
 eKW
-hvQ
-hvQ
-hvQ
-hvQ
-hvQ
+mos
+hhj
+hhj
+sBv
 uQt
 qey
 kmV
@@ -33661,12 +33913,12 @@ lPi
 crf
 anv
 ybB
-neS
-hvQ
-hvQ
-hvQ
-hvQ
-hvQ
+mqE
+eKW
+heh
+jOT
+ibw
+yar
 uQt
 qey
 onb
@@ -33918,9 +34170,9 @@ tvw
 lPi
 lPi
 tvw
-hpl
-hvQ
-hvQ
+iMY
+eKW
+heh
 aBm
 axB
 uny
@@ -34175,10 +34427,10 @@ xKN
 olE
 olE
 bwP
-wUm
-hvQ
-hvQ
-hvQ
+dGD
+eKW
+heh
+jpM
 hvQ
 hvQ
 uQt
@@ -34432,9 +34684,9 @@ fYY
 olE
 olE
 wtI
-wUm
-hvQ
-hvQ
+dGD
+eKW
+heh
 bTH
 fsl
 bNh
@@ -34674,7 +34926,7 @@ aDg
 cal
 aXG
 vWy
-axB
+uny
 afe
 hvQ
 tvw
@@ -34690,11 +34942,11 @@ lPi
 lPi
 tvw
 gyK
-hvQ
-hvQ
-hvQ
-hvQ
-hvQ
+eKW
+heh
+voU
+gVk
+jQI
 uQt
 qey
 kmV
@@ -34931,27 +35183,27 @@ aDg
 cal
 aXG
 mac
-uyr
+tEq
 adU
-hvQ
-hvQ
-tGG
-lvR
-kOZ
-oIK
-oIK
-kOZ
-kOZ
-kOZ
-kOZ
-wHJ
-tGG
-wUm
-hvQ
-hvQ
-hvQ
-hvQ
-hvQ
+nRe
+nRe
+xLe
+xva
+sGq
+uii
+uii
+vRs
+vRs
+vRs
+vRs
+yaQ
+xLe
+fIx
+lkp
+heh
+hhj
+hhj
+sBv
 uQt
 qey
 onb
@@ -35187,25 +35439,25 @@ aqG
 aVs
 rMF
 hES
-rDL
-hvQ
-eKW
-hvQ
-hvQ
-tGG
-dGD
-hvQ
-hvQ
-hvQ
-hvQ
-hvQ
-hvQ
-hvQ
-cGt
-tGG
+hhj
+hhj
+hhj
+hhj
+hhj
+jVr
+hhj
+uyr
+hhj
+hhj
+hhj
+hhj
+ger
+hhj
+hhj
+jVr
 hhj
 fnX
-hvQ
+pHQ
 hvQ
 hvQ
 hvQ
@@ -35446,22 +35698,22 @@ aXG
 jXO
 rDL
 hvQ
-xxO
-nRe
-cbl
-xLe
-fIx
-raA
-rkX
+hvQ
+hvQ
+aTS
+tGG
+dGD
+lrp
+eYX
 tWA
-rkX
-rkX
-rkX
-rkX
+eYX
+eYX
+eYX
+eYX
 bod
-xLe
+tGG
 mjK
-vRs
+neS
 fxA
 jsN
 eYX
@@ -35707,8 +35959,8 @@ lPi
 lPi
 tvw
 hoS
-hpl
-nJp
+lTq
+fBP
 tvw
 tvw
 tvw
@@ -35964,8 +36216,8 @@ vat
 vat
 cNw
 tvw
-hpl
-nJp
+lTq
+fBP
 tvw
 iVr
 rbT
@@ -36221,8 +36473,8 @@ vat
 iov
 vat
 lPi
-hpl
-nJp
+lTq
+fBP
 tvw
 tfe
 wlA
@@ -36478,8 +36730,8 @@ vat
 vat
 vat
 lPi
-hpl
-nJp
+lTq
+fBP
 tvw
 tvw
 tvw
@@ -36735,8 +36987,8 @@ vat
 vat
 xmn
 lPi
-hpl
-pSt
+lTq
+cbl
 kOZ
 sga
 tvw
@@ -36992,7 +37244,7 @@ vat
 vat
 vat
 tvw
-hpl
+lTq
 lrp
 eYX
 aPe
@@ -37249,8 +37501,8 @@ lPi
 lPi
 tvw
 tvw
-vzH
-nJp
+vmv
+fBP
 tvw
 tvw
 tvw
@@ -37492,22 +37744,22 @@ nGq
 gqT
 fbS
 jHi
-dfW
-dfW
-dfW
-ldc
-dfW
+aXG
+aXG
+aXG
+pmJ
+nrN
 vUg
-dfW
+vUg
 ldc
-dfW
-dfW
-dfW
-dfW
-dfW
+vUg
+vUg
+vUg
+vUg
+vUg
 jzj
 lTq
-nJp
+fBP
 tvw
 iVr
 rbT
@@ -37749,22 +38001,22 @@ aqG
 hzy
 tvw
 mtv
-eOx
-pZh
-pZh
+dfW
+dfW
+dfW
 jtl
-aXG
+rrU
 otM
-uii
-pHQ
 pZh
 pZh
-eOx
-jtl
-aXG
-cVm
-wUm
-nJp
+pZh
+pZh
+pZh
+pZh
+otM
+vvc
+xfl
+fBP
 tvw
 tfe
 wlA
@@ -38008,9 +38260,9 @@ tvw
 bjh
 cAI
 mDs
-xqq
+qvt
 tUz
-uYo
+uSq
 ydI
 uYo
 eNn
@@ -38020,8 +38272,8 @@ cAI
 phk
 aXG
 pPI
-wUm
-nJp
+dGD
+fBP
 tvw
 tvw
 tvw
@@ -38271,14 +38523,14 @@ hvQ
 xxO
 nRe
 nRe
-fnX
-rSK
-aXG
-aXG
-jXO
+tHQ
+svy
+dfW
+dfW
+rAI
 cVm
-wUm
-pSt
+fIx
+eOx
 kOZ
 ubH
 tvw
