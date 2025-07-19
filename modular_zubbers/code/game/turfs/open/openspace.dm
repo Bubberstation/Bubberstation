@@ -8,11 +8,12 @@
 
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_TURF_CHASM
-	canSmoothWith = SMOOTH_GROUP_TURF_CHASM
+	canSmoothWith = SMOOTH_GROUP_TURF_CHASM + SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_OPEN_FLOOR
 
 	baseturfs = /turf/open/openspace/moonstation
 
 /turf/open/openspace/moonstation/Initialize(mapload)
+	plane = FLOOR_PLANE
 	icon_state = ""
 	. = ..()
 
