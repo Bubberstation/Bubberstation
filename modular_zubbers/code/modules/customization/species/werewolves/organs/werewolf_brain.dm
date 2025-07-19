@@ -15,7 +15,7 @@
 	if(!istype(werehuman))
 		return
 	owner.visible_message(span_warning("[owner] grows massive, their body quickly getting covered in fur!"))
-	owner.set_species(SPECIES_WEREWOLF, TRUE, TRUE, FALSE)
+	owner.set_species(/datum/species/werewolf, TRUE, TRUE, FALSE)
 	owner.dna.features["body_size"] = 1.24 // Should be big without looking wonky.
 	owner.dna.update_body_size()
 	owner.mob_size = MOB_SIZE_LARGE
@@ -26,7 +26,7 @@
 	if(!istype(current_wolf))
 		return
 	owner.visible_message(span_warning("[owner] shrinks down, their fur receding!"))
-	owner.set_species(SPECIES_WEREHUMAN, TRUE, TRUE, FALSE)
+	owner.set_species(/datum/species/human/werewolf, TRUE, TRUE, FALSE)
 	owner.dna.features["body_size"] = 1 // Reset to normal size.
 	owner.dna.update_body_size()
 	owner.mob_size = MOB_SIZE_HUMAN
