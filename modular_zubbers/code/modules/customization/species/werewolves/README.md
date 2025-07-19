@@ -12,4 +12,5 @@ Almost every file involving werewolves is stored here.
 
 ## Credits
 
-- xPoke / @xPokee
+- xPoke / @xPokee (The majority of the codework)
+- BeoTheKobold (The bounty issuer and ideas woman)
