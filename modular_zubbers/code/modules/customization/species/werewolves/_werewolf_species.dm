@@ -45,5 +45,18 @@
 		TRAIT_WEREWOLF,
 	)
 
+/datum/species/werewolf/prepare_human_for_preview(mob/living/carbon/human/werewolf)
+	var/main_color = "#362d23"
+	var/secondary_color = "#9c5852"
+	var/tertiary_color = "#CCF6E2"
+	werewolf.dna.features["mcolor"] = main_color
+	werewolf.dna.features["mcolor2"] = secondary_color
+	werewolf.dna.features["mcolor3"] = tertiary_color
+	werewolf.dna.mutant_bodyparts["ears"] = list(MUTANT_INDEX_NAME = "Wolf", MUTANT_INDEX_COLOR_LIST = list(main_color, secondary_color, tertiary_color))
+	werewolf.dna.mutant_bodyparts["tail"] = list(MUTANT_INDEX_NAME = "Wolf", MUTANT_INDEX_COLOR_LIST = list(main_color, secondary_color, tertiary_color))
+	werewolf.dna.features["legs"] = "Digitigrade Legs"
+	regenerate_organs(werewolf, src, visual_only = TRUE)
+	werewolf.update_body(TRUE)
+
 /mob/living/carbon/human/species/werewolf
 	race = /datum/species/werewolf
