@@ -16,3 +16,9 @@
 	default_pins = list(
 		/obj/item/mod/module/jetpack,
 	)
+
+/obj/item/mod/control/pre_equipped/lustwish
+	worn_icon = 'modular_zubbers/icons/mob/clothing/modsuit/mod_lustwish.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/modsuit/mod_lustwish.dmi'
+	icon_state = "lustwish-control"
+	theme = /datum/mod_theme/lustwish

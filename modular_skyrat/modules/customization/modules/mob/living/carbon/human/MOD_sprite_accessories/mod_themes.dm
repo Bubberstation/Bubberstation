@@ -2,15 +2,6 @@
 // Remember these are read from:
 // 'modular_skyrat/modules/customization/modules/mob/living/carbon/human/MOD_sprite_accessories/icons/MOD_mask.dmi'
 
-#define STANDARD_BLUE "standard_blue"
-#define ALERT_AMBER "alert_amber"
-#define CONTRACTOR_RED "contractor_red"
-#define EXTRASHIELD_GREEN "extrashield_green"
-#define EVIL_GREEN "evil_green"
-#define ROYAL_PURPLE "royal_purple"
-#define HAZARD_ORANGE "hazard_orange"
-#define COSMIC_BLUE "cosmic_blue"
-
 /datum/mod_theme
 	/// Wether or not the MOD projects hardlight at all
 	var/hardlight = TRUE
@@ -110,12 +101,3 @@
 /datum/mod_theme/administrative
 	hardlight_theme = COSMIC_BLUE
 
-
-#undef STANDARD_BLUE
-#undef ALERT_AMBER
-#undef CONTRACTOR_RED
-#undef EXTRASHIELD_GREEN
-#undef EVIL_GREEN
-#undef ROYAL_PURPLE
-#undef HAZARD_ORANGE
-#undef COSMIC_BLUE
