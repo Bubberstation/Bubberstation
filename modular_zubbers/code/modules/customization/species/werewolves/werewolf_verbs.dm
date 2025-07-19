@@ -7,18 +7,19 @@
 	..()
 	var/obj/item/organ/brain/werewolf/werewolf_brain = target
 	if(!HAS_TRAIT(werewolf_brain, TRAIT_BEAST_FORM))
-		name = "Human Form"
-	else
 		name = "Werewolf Form"
+	else
+		name = "Human Form"
 
 /datum/action/item_action/organ_action/beast_form/do_effect(trigger_flags)
 	var/obj/item/organ/brain/werewolf/werewolf_brain = target
-	werewolf_brain.beast_form()
 	if(!HAS_TRAIT(werewolf_brain, TRAIT_BEAST_FORM))
 		background_icon_state = "bg_default"
 		button_icon_state = "werewolf_form"
+		werewolf_brain.enter_beast_form()
 	else
 		background_icon_state = "bg_default"
 		button_icon_state = "human_form"
+		werewolf_brain.leave_beast_form()
 	build_all_button_icons()
 	return TRUE
