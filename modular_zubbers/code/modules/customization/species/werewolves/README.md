@@ -6,11 +6,9 @@ Almost every file involving werewolves is stored here.
 
 - code/\_\_HELPERS/~skyrat_helpers/is_helpers.dm (lines 23 & 24)
 
-## TGUI Files:
+## Non-Modular Edits:
 
-## Core Proc Edits:
-
--
+- code/\_onclick/hud/human.dm
 
 ## Credits
 
