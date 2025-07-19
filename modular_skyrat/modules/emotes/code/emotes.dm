@@ -415,7 +415,7 @@
 	sound = 'modular_skyrat/modules/emotes/sound/voice/howl.ogg'
 
 /datum/emote/living/howl/can_run_emote(mob/living/carbon/user, status_check = TRUE , intentional)
-	if(!HAS_TRAIT(user, TRAIT_CANINE) || !HAS_TRAIT(user, TRAIT_BEAST_FORM))
+	if(!HAS_TRAIT(user, TRAIT_CANINE) || !iswerewolf(user))
 		return FALSE
 	return ..()
 
