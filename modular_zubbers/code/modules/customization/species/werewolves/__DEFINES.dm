@@ -6,8 +6,6 @@
 #define TRAIT_BEAST_FORM "beast_form"
 // If the player is a werewolf, and therefore can transform.
 #define TRAIT_WEREWOLF "werewolf"
-// Whether or not the player can wear clothes.
-#define TRAIT_NO_CLOTHES "no_clothes" (1<<20)
 
 
 
