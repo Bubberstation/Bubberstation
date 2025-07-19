@@ -82,7 +82,7 @@
 				if((uplink_handler.assigned_role in item.restricted_roles) || (uplink_handler.assigned_species in item.restricted_species))
 					uplink_items += item
 					continue
-		uplink_handler.extra_purchasable += create_uplink_sales(rand(uplink_sales_min, uplink_sales_max), /datum/uplink_category/discounts, 1, uplink_items)
+		uplink_handler.extra_purchasable += create_uplink_sales(rand(uplink_sales_min, uplink_sales_max), /datum/uplink_category/discounts, -1, uplink_items)
 
 	if(give_objectives)
 		forge_traitor_objectives()
@@ -127,11 +127,9 @@
 /datum/antagonist/traitor/proc/forge_traitor_objectives()
 	var/objective_count = 0
 
-	/* // BUBBER EDIT BEGIN
 	if((GLOB.joined_player_list.len >= HIJACK_MIN_PLAYERS) && prob(HIJACK_PROB))
 		is_hijacker = TRUE
 		objective_count++
-	*/ // BUBBER EDIT END
 
 	var/objective_limit = CONFIG_GET(number/traitor_objectives_amount)
 
@@ -146,12 +144,10 @@
  * Forges the endgame objective and adds it to this datum's objective list.
  */
 /datum/antagonist/traitor/proc/forge_ending_objective()
-	/* // BUBBER EDIT BEGIN
 	if(is_hijacker)
 		ending_objective = new /datum/objective/hijack
 		ending_objective.owner = owner
 		return
-
 
 	var/martyr_compatibility = TRUE
 
@@ -165,7 +161,6 @@
 		ending_objective.owner = owner
 		objectives += ending_objective
 		return
-	*/ // BUBBER EDIT END
 
 	ending_objective = new /datum/objective/escape
 	ending_objective.owner = owner
