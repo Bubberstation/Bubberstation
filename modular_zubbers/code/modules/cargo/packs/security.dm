@@ -93,3 +93,9 @@
 /datum/supply_pack/security/armory/swat/New()
 	. = ..()
 	contains += list(/obj/item/storage/toolbox/guncase/skyrat/pistol/pepperball = 2)
+
+/datum/supply_pack/security/armory/mechthermal
+	access = FALSE
+	access_any = list(ACCESS_SECURITY, ACCESS_ROBOTICS)
+	access_view = FALSE
+	crate_type = /obj/structure/closet/crate/secure/weapon
