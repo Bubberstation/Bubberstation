@@ -19,6 +19,7 @@
 	owner.set_species(/datum/species/werewolf, TRUE, TRUE, FALSE)
 	owner.add_traits(list(TRAIT_BEAST_FORM, TRAIT_OVERSIZED))
 	owner.dna.update_body_size()
+	owner.drop_everything(FALSE, TRUE, FALSE)
 
 /obj/item/organ/brain/werewolf/proc/leave_beast_form()
 	var/datum/species/werewolf/current_wolf = owner.dna?.species
