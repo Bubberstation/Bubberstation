@@ -43,7 +43,6 @@
 		TRAIT_PUSHIMMUNE,
 		TRAIT_LESSER_HULK,
 		TRAIT_WEREWOLF,
-		TRAIT_OVERSIZED,
 	)
 
 /datum/species/werewolf/prepare_human_for_preview(mob/living/carbon/human/werewolf)
