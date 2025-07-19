@@ -127,7 +127,7 @@
 	name = "Pepperball Gun Single-Pack"
 	desc = "Contains one pepperball gun, a non-lethal weapon that fires pepper-filled projectiles."
 	cost = PAYCHECK_CREW * 9
-	access = ACCESS_WEAPONS
+	access = ACCESS_SECURITY
 	contains = list(/obj/item/storage/toolbox/guncase/skyrat/pistol/pepperball)
 
 /datum/supply_pack/goody/taser
