@@ -36,8 +36,16 @@
 
 /obj/item/bodypart/leg/left/mutant/werewolf
 	icon_greyscale = 'modular_zubbers/code/modules/customization/species/werewolves/bodyparts/bodyparts.dmi'
+	digitigrade_type = /obj/item/bodypart/leg/left/digitigrade/werewolf
 	limb_id = SPECIES_WEREWOLF
 
 /obj/item/bodypart/leg/right/mutant/werewolf
 	icon_greyscale = 'modular_zubbers/code/modules/customization/species/werewolves/bodyparts/bodyparts.dmi'
+	digitigrade_type = /obj/item/bodypart/leg/left/digitigrade/werewolf
 	limb_id = SPECIES_WEREWOLF
+
+/obj/item/bodypart/leg/left/digitigrade/werewolf
+	icon_greyscale = 'modular_zubbers/code/modules/customization/species/werewolves/bodyparts/bodyparts.dmi'
+
+/obj/item/bodypart/leg/right/digitigrade/werewolf
+	icon_greyscale = 'modular_zubbers/code/modules/customization/species/werewolves/bodyparts/bodyparts.dmi'

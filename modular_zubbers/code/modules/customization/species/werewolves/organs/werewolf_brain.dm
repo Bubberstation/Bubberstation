@@ -20,10 +20,8 @@
 		return
 	owner.visible_message(span_warning("[owner] grows massive, their body quickly getting covered in fur!"))
 	owner.set_species(/datum/species/werewolf, TRUE, TRUE, FALSE)
-	owner.dna.features["body_size"] = 1.24 // Should be big without looking wonky.
+	owner.add_traits(list(TRAIT_BEAST_FORM, TRAIT_OVERSIZED))
 	owner.dna.update_body_size()
-	owner.mob_size = MOB_SIZE_LARGE
-	owner.add_traits(list(TRAIT_BEAST_FORM))
 
 /obj/item/organ/brain/werewolf/proc/leave_beast_form()
 	var/datum/species/werewolf/current_wolf = owner.dna?.species
@@ -31,10 +29,8 @@
 		return
 	owner.visible_message(span_warning("[owner] shrinks down, their fur receding!"))
 	owner.set_species(/datum/species/human/werewolf, TRUE, TRUE, FALSE)
-	owner.dna.features["body_size"] = 1 // Reset to normal size.
+	owner.remove_traits(list(TRAIT_BEAST_FORM, TRAIT_OVERSIZED))
 	owner.dna.update_body_size()
-	owner.mob_size = MOB_SIZE_HUMAN
-	owner.remove_traits(list(TRAIT_BEAST_FORM))
 	COOLDOWN_START(src, beast_form_cooldown, 15 MINUTES)
 
 /obj/item/organ/brain/werewolf/proc/beast_form(mob/user)
