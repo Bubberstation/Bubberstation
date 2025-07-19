@@ -16,6 +16,14 @@
 #define COMSIG_OOC_ESCAPE "ooc_escape"
 /// From [/datum/outfit]: (datum/outfit)
 #define COMSIG_OUTFIT_EQUIP "outfit_equip"
+/// at the end of /mob/living/proc/can_enter_vent(obj/machinery/atmospherics/components/ventcrawl_target, provide_feedback = TRUE)
+/// Return true in this signal to allow ventcrawling, but you need atleast TRAIT_VENTCRAWLER_NUDE on the mob. Sorry. It does allow for custom config via the signal, however
+#define COMSIG_CAN_VENTCRAWL "can_ventcrawl"
+#define COMISG_VENTCRAWL_PRE_ENTER "ventcrawling_pre_enter"
+#define COMSIG_VENTCRAWL_PRE_EXIT "ventcrawling_pre_exit"
+#define COMSIG_VENTCRAWL_ENTER "ventcrawling_enter"
+#define COMSIG_VENTCRAWL_EXIT "ventcrawling_exit"
+#define COMSIG_VENTCRAWL_PRE_CANCEL "ventcrawling_pre_cancel"
 /// From /mob/proc/equip_to_slot_if_possible()
 #define COMSIG_MOB_POST_EQUIP "mob_post_equip"
 /// From /mob/living/carbon/human/verb/toggle_undies()
@@ -30,3 +38,4 @@
 #define COMSIG_HUMAN_TOGGLE_AROUSAL "human_toggle_arousal"
 /// From /mob/living/carbon/human/verb/toggle_genitals()
 #define COMSIG_HUMAN_TOGGLE_GENITALS "human_toggle_genitals"
+
