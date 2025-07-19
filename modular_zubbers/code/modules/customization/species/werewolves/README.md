@@ -8,7 +8,7 @@ Almost every file involving werewolves is stored here.
 
 ## Non-Modular Edits:
 
-- code/\_onclick/hud/human.dm
+-
 
 ## Credits
 
