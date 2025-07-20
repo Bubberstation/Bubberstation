@@ -89,6 +89,7 @@
 	ambience_index = AMBIENCE_ICEMOON
 	sound_environment = SOUND_AREA_ICEMOON
 	ambient_buzz = 'sound/ambience/lavaland/magma.ogg'
+	allow_shuttle_docking = TRUE
 
 /area/moonstation/surface
 	name = "\improper Lunar Surface"
@@ -150,16 +151,6 @@
 
 /area/station/cargo/miningfoundry/event_protected
 	area_flags = UNIQUE_AREA | EVENT_PROTECTED
-
-//Missing Lavaland Generators
-/area/lavaland/underground/unexplored
-	icon_state = "unexplored"
-	area_flags = VALID_TERRITORY | UNIQUE_AREA | CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED
-	map_generator = /datum/map_generator/cave_generator/lavaland
-
-/area/lavaland/underground/unexplored/danger
-	icon_state = "danger"
-	area_flags = VALID_TERRITORY | UNIQUE_AREA | CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED | MEGAFAUNA_SPAWN_ALLOWED
 
 /area/station/maintenance/department/medical/psychology
 	name = "\improper Psychology Maintenance"

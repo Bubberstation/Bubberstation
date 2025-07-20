@@ -12,8 +12,10 @@
 
 	baseturfs = /turf/open/openspace/moonstation
 
-/turf/open/openspace/moonstation/Initialize(mapload)
 	plane = FLOOR_PLANE
+	layer = TOPDOWN_LAYER
+
+/turf/open/openspace/moonstation/Initialize(mapload)
 	icon_state = ""
 	. = ..()
 
