@@ -24,6 +24,12 @@
 	unarmed_miss_sound = 'sound/items/weapons/slashmiss.ogg'
 	bodypart_traits = list(TRAIT_CHUNKYFINGERS)
 
+	unarmed_damage_low = 10
+	unarmed_damage_high = 20
+	unarmed_effectiveness = 15
+	unarmed_pummeling_bonus = 2
+	unarmed_sharpness = SHARP_EDGED
+
 /obj/item/bodypart/arm/right/mutant/werewolf
 	icon_greyscale = 'modular_zubbers/code/modules/customization/species/werewolves/bodyparts/bodyparts.dmi'
 	limb_id = SPECIES_WEREWOLF
@@ -33,6 +39,12 @@
 	unarmed_attack_sound = 'sound/items/weapons/slash.ogg'
 	unarmed_miss_sound = 'sound/items/weapons/slashmiss.ogg'
 	bodypart_traits = list(TRAIT_CHUNKYFINGERS)
+
+	unarmed_damage_low = 10
+	unarmed_damage_high = 20
+	unarmed_effectiveness = 15
+	unarmed_pummeling_bonus = 2
+	unarmed_sharpness = SHARP_EDGED
 
 /obj/item/bodypart/leg/left/mutant/werewolf
 	icon_greyscale = 'modular_zubbers/code/modules/customization/species/werewolves/bodyparts/bodyparts.dmi'
