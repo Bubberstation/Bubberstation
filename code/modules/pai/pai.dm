@@ -481,7 +481,7 @@
 
 /// Updates the distance we can be from our pai card
 /mob/living/silicon/pai/proc/increment_range(increment_amount)
-	if(!holo_leash) // BUBBER EDIT: PAI Freedom: ORIGINAL: if(emagged)
+	if(!holo_leash) // BUBBER EDIT: PAI OPTIONAL Freedom: ORIGINAL: if(emagged)
 		return
 
 	var/new_distance = leash.distance + increment_amount
