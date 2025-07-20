@@ -38,10 +38,7 @@
 		// Werewolf Specific Things
 		TRAIT_LUPINE,
 		TRAIT_BEAST_FORM,
-		TRAIT_CHUNKYFINGERS,
 		TRAIT_NOGUNS,
-		TRAIT_PUSHIMMUNE,
-		TRAIT_LESSER_HULK,
 		TRAIT_WEREWOLF,
 	)
 
@@ -57,6 +54,11 @@
 	werewolf.dna.features["legs"] = "Digitigrade Legs"
 	regenerate_organs(werewolf, src, visual_only = TRUE)
 	werewolf.update_body(TRUE)
+
+/datum/species/werewolf/on_species_gain(mob/living/carbon/human/werewolf, datum/species/old_species, regenerate_icons)
+	. = ..()
+	var/datum/mutation/lesser_hulk/granted_mutation
+	granted_mutation = new(werewolf)
 
 /mob/living/carbon/human/species/werewolf
 	race = /datum/species/werewolf

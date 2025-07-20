@@ -10,8 +10,9 @@
 
 /obj/item/organ/brain/werewolf/proc/enter_beast_form()
 	var/erp_area = is_type_in_list(get_area(owner), SIZE_WHITELISTED_AREAS) // It's not for size, but because it lists ERP areas.
+	var/datum/callback/werewolf_timer = new(/obj/item/organ/brain/werewolf, PROC_REF(leave_beast_form), owner)
 	if(!erp_area)
-		_addtimer(leave_beast_form, 5 MINUTES)
+		_addtimer(werewolf_timer, 5 MINUTES)
 	var/datum/species/human/werewolf/werehuman = owner.dna?.species
 	if(beast_form_cooldown)
 		to_chat(owner, span_warning("You feel too exhausted to transform again so soon!"))
