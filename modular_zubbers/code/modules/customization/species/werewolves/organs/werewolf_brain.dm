@@ -1,6 +1,6 @@
 /obj/item/organ/brain/werewolf
 	name = "lupine brain"
-	desc = "A larger than average brain. This one seems slightly smoother than a human's brain. The hypothalamus seems larger than normal." // I read in a random medical artical that the hypothalamus controls aggression.
+	desc = "A larger than average, albeit slightly smoother brain. The hypothalamus seems larger than normal." // I read in a random medical artical that the hypothalamus controls aggression.
 	COOLDOWN_DECLARE(beast_form_cooldown)
 	actions_types = list(/datum/action/item_action/organ_action/beast_form)
 
@@ -30,7 +30,7 @@
 	owner.remove_traits(list(TRAIT_BEAST_FORM))
 	owner.remove_quirk(/datum/quirk/oversized)
 	owner.dna.update_body_size()
-	COOLDOWN_START(src, beast_form_cooldown, 15 MINUTES)
+	COOLDOWN_START(src, beast_form_cooldown, 10 MINUTES)
 
 /obj/item/organ/brain/werewolf/proc/beast_form(mob/user)
 	set name = "Enter/Leave Werewolf Form"
