@@ -73,7 +73,7 @@
 	return ..()
 
 //Illegal gripper to allow research cyborgs when hacked to do further robotics work
-//TODO: Add more functionality for them to interact with more this is an "illegal item" you should not allow them to even have this in game!
+//TODO: Add more functionality for them to interact with more this is an "illegal item"!
 /obj/item/borg/apparatus/illegal
 	name = "Sketchy looking gripper"
 	desc = "A tool used to expanded robotics work"
@@ -135,7 +135,6 @@
 	basic_modules += list(
 		/obj/item/borg/apparatus/tank_manipulator,
 		/obj/item/borg/apparatus/engineering,
-		/obj/item/storage/part_replacer/cyborg,
 	)
 	. = ..()
 

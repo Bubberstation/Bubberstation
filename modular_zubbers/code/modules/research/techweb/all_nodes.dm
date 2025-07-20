@@ -44,7 +44,7 @@
 		"borg_upgrade_research_rcd"
 	)
 	announce_channels = list(RADIO_CHANNEL_SCIENCE)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
 
 //Mining borg upgrades
 /datum/techweb_node/borg_mining/New()

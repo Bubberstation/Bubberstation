@@ -59,7 +59,6 @@
 	icon_state = "module_engineer"
 	items_to_add = list(/obj/item/storage/part_replacer/bluespace)
 	items_to_add -= list(/obj/item/storage/part_replacer)
-	items_to_remove = list(/obj/item/storage/part_replacer)
 
 //Upgrade for the experi scanner
 /obj/item/borg/upgrade/experi_scanner
