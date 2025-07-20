@@ -224,6 +224,10 @@
 	name = "Friendly Janiborg Plush"
 	item_path = /obj/item/toy/plush/skyrat/plush_janiborg
 
+/datum/loadout_item/toys/tian_plush
+	name = "Bureaucratic Goat Plush"
+	item_path = /obj/item/toy/plush/tian_plush
+
 /*
 *	CARDS
 */
