@@ -104,36 +104,7 @@
 		to_chat(user, span_warning("You cannot seem to get [src] out of your hands!"))
 		return FALSE
 
-// /obj/item/gun/ballistic/proc/insert_magazine(mob/user, obj/item/ammo_box/magazine/AM, display_message = TRUE)
-// 	if(!istype(AM, accepted_magazine_type))
-// 		balloon_alert(user, "[AM.name] doesn't fit!")
-// 		return FALSE
-// 	if(user.transferItemToLoc(AM, src))
-// 		magazine = AM
-// 		if (display_message)
-// 			balloon_alert(user, "[magazine_wording] loaded")
-// 		if (magazine.ammo_count())
-// 			playsound(src, load_sound, load_sound_volume, load_sound_vary)
-// 		else
-// 			playsound(src, load_empty_sound, load_sound_volume, load_sound_vary)
-// 		if (bolt_type == BOLT_TYPE_OPEN && !bolt_locked)
-// 			chamber_round()
-// 		update_appearance()
-// 		return TRUE
-// 	else
-// 		to_chat(user, span_warning("You cannot seem to get [src] out of your hands!"))
-// 		return FALSE
 
-// 	if(!istype(AM, accepted_magazine_type))
-// 		balloon_alert(user, "[AM.name] doesn't fit!")
-// 		return FALSE
-// 	user.transferItemToLoc(AM, src)
-// 	magazine = AM
-// 	if(bolt_type == BOLT_TYPE_OPEN && !bolt_locked)
-// 		chamber_round(TRUE)
-// 	drop_bolt()
-// 	update_appearance()
-// 	..()
 // for your viewing convenience, same procs, just without bubbles
 /obj/item/gun/ballistic/automatic/pistol/sec_glock/drop_bolt(mob/user = null)
 	playsound(src, bolt_drop_sound, bolt_drop_sound_volume, FALSE)
@@ -172,7 +143,8 @@
 	recent_rack = world.time + rack_delay
 	rack(user)
 	return
-//oh BROTHER I am NOT getting a coder of the year award with this... But yeah overriding the item_interaction was my best idea out of MULTPLE attempts. Not lazy, just stupid. 
+
+//oh BROTHER I am NOT getting a coder of the year award with this... But yeah overriding the item_interaction was my best idea out of MULTPLE attempts. Not lazy, just stupid.
 /obj/item/gun/ballistic/automatic/pistol/sec_glock/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	. = ..()
 	if (.)
@@ -180,7 +152,7 @@
 
 	if (!internal_magazine && istype(tool, /obj/item/ammo_box/magazine))
 		if (tac_reloads)
-			default_behaviour(user, TRUE)
+			eject_magazine(user)
 			insert_magazine(user, tool)
 			return ITEM_INTERACT_SUCCESS
 	..()
