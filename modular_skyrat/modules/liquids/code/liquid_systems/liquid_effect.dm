@@ -116,6 +116,9 @@
 	. = ..()
 	if(fire_state)
 		set_fire_state(LIQUID_FIRE_STATE_NONE)
+		// Adding this fixes tiles always re-igniting.
+		// It's probably because check_fire() always ingites if it's possible to burn.
+		SSliquids.processing_fire -= my_turf
 
 /obj/effect/abstract/liquid_turf/proc/process_fire()
 	if(!fire_state)
@@ -124,10 +127,11 @@
 	if(!check_fire())
 		SSliquids.processing_fire -= my_turf
 	//Try spreading
-	if(fire_state == old_state) //If an extinguisher made our fire smaller, dont spread, else it's too hard to put out
+	if(fire_state == old_state) // This check seems to do nothing.  Aledgedly was for extingishing.
 		for(var/turf/adjacent_turf in my_turf.atmos_adjacent_turfs)
-			if(adjacent_turf.liquids && !adjacent_turf.liquids.fire_state && adjacent_turf.liquids.check_fire(TRUE))
-				SSliquids.processing_fire[adjacent_turf] = TRUE
+			if(prob(70)) // 70% chance to spread
+				if(adjacent_turf.liquids && !adjacent_turf.liquids.fire_state && adjacent_turf.liquids.check_fire(TRUE))
+					SSliquids.processing_fire[adjacent_turf] = TRUE
 	//Burn our resources
 	var/datum/reagent/reagent //Faster declaration
 	var/burn_rate
@@ -143,6 +147,7 @@
 				reagent_list[reagent_type] -= burn_rate
 				total_reagents -= burn_rate
 
+	// This seemingly does nothing.
 	my_turf.hotspot_expose((T20C+50) + (50*fire_state), 125)
 	for(var/atom/content in my_turf.contents)
 		if(!QDELETED(content))
