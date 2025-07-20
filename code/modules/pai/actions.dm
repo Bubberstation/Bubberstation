@@ -31,7 +31,7 @@
 		else
 			pai_owner.holo_leash = TRUE
 	else
-		balloon_alert(src, "You cannot reconfigure your emitters while they are active")
+		pai_owner.balloon_alert(src, "You cannot reconfigure your emitters while they are active!")
 
 /datum/action/innate/pai/shell
 	name = "Toggle Holoform"
