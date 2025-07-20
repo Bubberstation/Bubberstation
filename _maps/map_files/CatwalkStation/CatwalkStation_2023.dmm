@@ -11347,6 +11347,11 @@
 "drX" = (
 /turf/closed/wall/r_wall,
 /area/station/ai_monitored/command/storage/eva)
+"drY" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/vending/wallmed/directional/west,
+/turf/open/floor/iron,
+/area/station/hallway/secondary/construction)
 "dsg" = (
 /obj/structure/table/wood,
 /turf/open/floor/carpet,
@@ -22531,6 +22536,13 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/station/commons/storage/art)
+"gIN" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 4
+	},
+/obj/machinery/vending/wallmed/directional/east,
+/turf/open/floor/iron/dark,
+/area/station/engineering/lobby)
 "gJg" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction{
 	dir = 8
@@ -23275,6 +23287,7 @@
 /obj/structure/chair{
 	dir = 8
 	},
+/obj/machinery/vending/wallmed/directional/east,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
 "gVi" = (
@@ -32366,11 +32379,8 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/structure/table/glass,
 /obj/item/storage/medkit/regular,
-/obj/item/storage/medkit/regular{
-	pixel_x = 0;
-	pixel_y = 5
-	},
 /obj/structure/cable,
+/obj/machinery/vending/wallmed/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/security/medical)
 "jAc" = (
@@ -44324,13 +44334,11 @@
 /area/station/hallway/primary/central)
 "nhD" = (
 /obj/structure/table/glass,
-/obj/item/storage/medkit/regular{
-	pixel_y = 1
-	},
 /obj/machinery/vending/wallmed/directional/west,
 /obj/effect/turf_decal/tile/blue/opposingcorners{
 	dir = 1
 	},
+/obj/item/storage/medkit/advanced,
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "nhE" = (
@@ -55352,6 +55360,10 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/security/eva)
+"qsu" = (
+/obj/machinery/vending/wallmed/directional/south,
+/turf/open/floor/wood,
+/area/station/hallway/secondary/service)
 "qsv" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating/airless,
@@ -58140,6 +58152,10 @@
 /obj/machinery/chem_master,
 /turf/open/floor/iron/dark/textured,
 /area/station/science/xenobiology)
+"rlw" = (
+/obj/machinery/vending/wallmed/directional/south,
+/turf/open/floor/iron/large,
+/area/station/hallway/primary/central)
 "rly" = (
 /obj/structure/chair/comfy/brown{
 	dir = 4
@@ -58624,6 +58640,7 @@
 "rrT" = (
 /obj/effect/turf_decal/trimline/purple/filled/line,
 /obj/structure/sign/poster/official/work_for_a_future/directional/south,
+/obj/machinery/vending/wallmed/directional/south,
 /turf/open/floor/iron,
 /area/station/science/research)
 "rrY" = (
@@ -61713,6 +61730,7 @@
 	},
 /obj/machinery/autolathe,
 /obj/structure/sign/poster/official/do_not_question/directional/north,
+/obj/machinery/vending/wallmed/directional/west,
 /turf/open/floor/iron,
 /area/station/cargo/storage)
 "soH" = (
@@ -78784,6 +78802,13 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/wood,
 /area/station/commons/lounge)
+"xtY" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 4
+	},
+/obj/machinery/vending/wallmed/directional/east,
+/turf/open/floor/iron,
+/area/station/hallway/primary/starboard)
 "xub" = (
 /obj/effect/turf_decal/trimline/yellow/filled/corner{
 	dir = 1
@@ -106833,7 +106858,7 @@ gPW
 xRU
 xOn
 xAj
-gse
+qsu
 own
 wik
 uxl
@@ -113521,7 +113546,7 @@ bOk
 bOk
 wrI
 fjt
-fLr
+rlw
 vuO
 ilg
 wmy
@@ -121546,7 +121571,7 @@ hFi
 hFi
 hFi
 hFi
-hFi
+drY
 gnT
 hFi
 hFi
@@ -122024,7 +122049,7 @@ iYq
 caE
 dUe
 oDH
-oDH
+xtY
 iKT
 oDH
 oDH
@@ -125857,7 +125882,7 @@ xSq
 irJ
 grE
 rTW
-dPD
+gIN
 dPD
 dPD
 sNK
