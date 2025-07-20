@@ -18,21 +18,6 @@
 	..()
 	pai_owner.ui_act()
 
-/datum/action/innate/pai/holo_leashed
-	name = "Toggle Leash"
-	button_icon_state = "template"
-	background_icon_state = "bg_tech"
-	overlay_icon_state = "bg_tech_border"
-
-/datum/action/innate/pai/Holo_leashed/Trigger(trigger_flags)
-	if(!pai_owner.holoform)
-		if(pai_owner.holo_leash)
-			pai_owner.holo_leash = FALSE
-		else
-			pai_owner.holo_leash = TRUE
-	else
-		pai_owner.balloon_alert(src, "You cannot reconfigure your emitters while they are active!")
-
 /datum/action/innate/pai/shell
 	name = "Toggle Holoform"
 	button_icon_state = "pai_holoform"

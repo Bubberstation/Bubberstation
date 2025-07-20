@@ -35,8 +35,6 @@
 	var/can_receive = TRUE
 	/// Whether this pAI can transmit radio messages
 	var/can_transmit = TRUE
-	/// Whetever this pAI has leashing enabled
-	var/holo_leash = FALSE
 	/// The card we inhabit
 	var/obj/item/pai_card/card
 	/// The current chasis that will appear when in holoform
@@ -181,10 +179,6 @@
 		. += "Emitter Integrity: [holochassis_health * (100 / HOLOCHASSIS_MAX_HEALTH)]."
 	else
 		. += "Systems nonfunctional."
-	if(!holo_leash)
-		. += "Mobile Emitter: enabled"
-	else
-		. += "Mobile Emitter: disabled"
 
 /mob/living/silicon/pai/Exited(atom/movable/gone, direction)
 	if(gone == atmos_analyzer)
@@ -267,10 +261,12 @@
 	SEND_SIGNAL(src, COMSIG_LIVING_HEALTH_UPDATE)
 
 /mob/living/silicon/pai/update_desc(updates)
+// BUBBER EDIT START: PAI ReLeashed: ORIGINAL: desc = "A hard-light holographic avatar representing a pAI. This one appears in the form of a [chassis]."
 	if(!holo_leash)
-		desc = "A pAI mobile hard-light holographics emitter. This one appears in the form of a [chassis]." // BUBBER EDIT: PAI Freedom: ORIGINAL: desc = "A hard-light holographic avatar representing a pAI. This one appears in the form of a [chassis]."
+		desc = "A pAI mobile hard-light holographics emitter. This one appears in the form of a [chassis]."
 	else
 		desc = "A hard-light holographic avatar representing a pAI. This one appears in the form of a [chassis]."
+// BUBBER EDIT END
 	return ..()
 
 /mob/living/silicon/pai/update_icon_state()
@@ -481,7 +477,7 @@
 
 /// Updates the distance we can be from our pai card
 /mob/living/silicon/pai/proc/increment_range(increment_amount)
-	if(!holo_leash) // BUBBER EDIT: PAI OPTIONAL Freedom: ORIGINAL: if(emagged)
+	if(!holo_leash) // BUBBER EDIT: PAI ReLeashed: ORIGINAL: if(emagged)
 		return
 
 	var/new_distance = leash.distance + increment_amount

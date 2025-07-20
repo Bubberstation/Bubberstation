@@ -37,19 +37,6 @@
 	else
 		pAI.fold_out()
 
-/atom/movable/screen/pai/holo_leashed
-	name = "Toggle Leash"
-	icon_state = "template"
-
-/atom/movable/screen/pai/holo_leashed/Click()
-	if(!..())
-		return
-	var/mob/living/silicon/pai/pAI = usr
-	if(pAI.holo_leash)
-		pAI.holo_leash = FALSE
-	else
-		pAI.holo_leash = TRUE
-
 /atom/movable/screen/pai/chassis
 	name = "Holochassis Appearance Composite"
 	icon_state = "pai_chassis"
@@ -197,10 +184,6 @@
 // Software menu
 	using = new /atom/movable/screen/pai/software(null, src)
 	using.screen_loc = ui_pai_software
-	static_inventory += using
-
-	using = new /atom/movable/screen/pai/holo_leashed(null, src)
-	using.screen_loc = ui_pai_hololeash
 	static_inventory += using
 
 // Holoform
