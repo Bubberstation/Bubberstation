@@ -71,8 +71,7 @@
 		/obj/structure/ore_vein/plasma = 15,
 		/obj/structure/ore_vein/silver = 6,
 		/obj/structure/ore_vein/stone = 80,
-		/obj/structure/ore_vent/random/moonstation/cave = 100,
-		/obj/effect/mapping_helpers/turf_spreader/moonstation_water = 200
+		/obj/structure/ore_vent/random/moonstation/cave = 100
 	)
 
 	flora_spawn_chance = 2

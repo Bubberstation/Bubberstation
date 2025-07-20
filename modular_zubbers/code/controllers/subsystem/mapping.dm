@@ -6,8 +6,7 @@
 	for (var/moon_z in moonstation_ruins)
 		spawn_rivers(moon_z, 4, /turf/open/lava/smooth/lava_land_surface, /area/lavaland/surface/outdoors/unexplored)
 		spawn_rivers(moon_z, 8, /turf/open/water/moonstation, /area/moonstation/underground/unexplored)
-
-
+		spawn_rivers(moon_z, 8, /turf/open/water/moonstation/surface, /area/moonstation/surface/unexplored)
 
 /datum/controller/subsystem/mapping/setup_ruins()
 	. = ..()
