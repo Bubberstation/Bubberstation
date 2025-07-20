@@ -15,6 +15,6 @@
 	..()
 	var/atom/movable/screen/using
 // Hololeash
-	using = new /atom/movable/screen/pai/holo_leashed(null, src)
+	using = new /atom/movable/screen/pai/shell/holo_leashed(null, src)
 	using.screen_loc = "SOUTH:6,WEST+14"
 	static_inventory += using
