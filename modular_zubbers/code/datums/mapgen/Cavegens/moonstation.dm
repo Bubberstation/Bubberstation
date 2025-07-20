@@ -84,6 +84,7 @@
 	death_limit = 3
 
 
+/* Here lies dead code that I wish to get working again. Because of how changeturf works, this cannot work without causing ruintimes. Maybe in the future this can be re-added.  ~ Burger
 /obj/effect/mapping_helpers/turf_spreader
 	name = "turf spreader"
 	desc = "Spread the love!"
@@ -102,18 +103,16 @@
 	if(!our_turf) //huh
 		return
 
-	if(desired_spread_type && desired_spread_type == our_turf.type) //Prevent excessive spreading.
+	if(our_turf.turf_flags & NO_LAVA_GEN)
 		return .
 
 	var/area/our_area = our_turf.loc
 
-	if(desired_spread_type)
+	if(desired_spread_type && our_turf.type != desired_spread_type)
 		our_turf.ChangeTurf(desired_spread_type)
 
 	our_turf.Spread(spread_prob_base,spread_prob_loss,our_area.type)
 
-
-
 /obj/effect/mapping_helpers/turf_spreader/moonstation_water
 	desired_spread_type = /turf/open/water/moonstation
-
+*/
