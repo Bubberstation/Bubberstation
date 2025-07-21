@@ -276,7 +276,7 @@
 	name = "Otter"
 	icon_state = "otter"
 
-/datum/sprite_accessory/tails/mammal/plug
+/datum/sprite_accessory/tails/mammal/wagging/plug
 	name = "Plug"
 	icon_state = "plugtail"
 
