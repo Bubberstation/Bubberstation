@@ -46,19 +46,6 @@
 /obj/item/mod/module/chameleon/contractor // zero complexity module to match pre-TGification
 	complexity = 0
 
-/obj/item/mod/module/armor_booster/contractor // Much flatter distribution because contractor suit gets a shitton of armor already
-	armor_mod = /datum/armor/contract_booster
-	space_slowdown = 0.5 //Bulky as shit
-	desc = "An embedded set of armor plates, allowing the suit's already extremely high protection \
-		to be increased further. However, the plating, while deployed, will slow down the user \
-		and make the suit unable to vacuum seal so this extra armor provides zero ability for extravehicular activity while deployed."
-
-/datum/armor/contract_booster
-	melee = 20
-	bullet = 20
-	laser = 20
-	energy = 20
-
 /obj/item/mod/module/springlock/contractor
 	name = "MOD magnetic deployment module"
 	desc = "A much more modern version of a springlock system. \

@@ -3,12 +3,12 @@ import { Button, Stack } from 'tgui-core/components';
 import { useBackend } from '../../../../../../backend';
 import {
   CheckboxInput,
-  Feature,
-  FeatureChoiced,
+  type Feature,
+  type FeatureChoiced,
   FeatureNumberInput,
-  FeatureNumeric,
+  type FeatureNumeric,
   FeatureSliderInput,
-  FeatureToggle,
+  type FeatureToggle,
 } from '../../base';
 import { FeatureDropdownInput } from '../../dropdowns';
 

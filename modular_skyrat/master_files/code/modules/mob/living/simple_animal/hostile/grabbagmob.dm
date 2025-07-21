@@ -740,37 +740,6 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
 
-/mob/living/simple_animal/hostile/mannequin
-	name = "living mannequin"
-	desc = "A strange, living, wooden mannequin. Spooky!"
-	icon = 'modular_skyrat/master_files/icons/mob/newmobs.dmi'
-	icon_state = "mannequin"
-	icon_living = "mannequin"
-	mob_biotypes = MOB_UNDEAD
-	speak_chance = 0
-	turns_per_move = 5
-	response_help_continuous = "poke"
-	response_help_simple = "poke"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
-	speed = 2
-	maxHealth = 50
-	health = 50
-	harm_intent_damage = 3
-	obj_damage = 15
-	melee_damage_lower = 10
-	melee_damage_upper = 10
-	attack_verb_continuous = "punches"
-	attack_verb_simple = "punch"
-	attack_sound = 'sound/items/weapons/cqchit1.ogg'
-	speak_emote = list("clacks")
-	atmos_requirements = null
-	minbodytemp = 0
-	maxbodytemp = 1500
-	faction = list(FACTION_HOSTILE)
-	pressure_resistance = 200
-	gold_core_spawnable = HOSTILE_SPAWN
-
 /mob/living/simple_animal/hostile/engorge
 	name = "Talon Demon"
 	desc = "A demonic creature that moves relatively fast, but doesn't do a lot of damage."
