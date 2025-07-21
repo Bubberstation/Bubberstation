@@ -1,4 +1,4 @@
-import { map } from 'common/collections';
+import { map } from 'es-toolkit/compat';
 import React from 'react';
 import {
   Button,
@@ -12,7 +12,7 @@ import {
 import { useBackend, useSharedState } from '../backend';
 import { Window } from '../layouts';
 import { TechwebWarning } from './Nanites/NoTechwebWarning';
-import { NaniteProgram, Techweb } from './Nanites/types';
+import type { NaniteProgram, Techweb } from './Nanites/types';
 
 interface NaniteProgramHubProps {
   detail_view: boolean;

@@ -731,10 +731,10 @@
 /obj/item/organ/eyes/robotic/flashlight
 	name = "flashlight eyes"
 	desc = "It's two flashlights rigged together with some wire. Why would you put these in someone's head?"
-	eye_color_left ="#fee5a3"
-	eye_color_right ="#fee5a3"
-	icon = 'icons/obj/lighting.dmi'
 	icon_state = "flashlight_eyes"
+	eye_color_left = "#fee5a3"
+	eye_color_right = "#fee5a3"
+	iris_overlay = null
 	flash_protect = FLASH_PROTECTION_WELDER
 	tint = INFINITY
 	var/obj/item/flashlight/eyelight/eye
@@ -1132,6 +1132,14 @@
 	blink_animation = FALSE
 	pupils_name = "sensor clusters"
 	penlight_message = "are two clustered hemispheres of thermal sensors"
+
+/obj/item/organ/eyes/ghost
+	name = "ghost eyes"
+	desc = "Despite lacking pupils, these can see pretty well."
+	icon_state = "eyes-ghost"
+	blink_animation = FALSE
+	movement_type = PHASING
+	organ_flags = parent_type::organ_flags | ORGAN_GHOST
 
 /obj/item/organ/eyes/snail
 	name = "snail eyes"
