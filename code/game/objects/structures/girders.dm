@@ -96,12 +96,15 @@
 					transfer_fingerprints_to(FW)
 					qdel(src)
 					return
+			else if(state == GIRDER_REINF)
+				balloon_alert(user, "need plasteel sheet!")
+				return
 			else
 				if(rod.get_amount() < amount)
 					balloon_alert(user, "need [amount] rods!")
 					return
-				balloon_alert(user, "adding plating...")
-				if(do_after(user, 4 SECONDS * skill_modifier, target = src)) //SKYRAT EDIT
+				balloon_alert(user, "adding rods...")
+				if(do_after(user, 4 SECONDS * skill_modifier, target = src)) // BUBBER EDIT CHANGE - Skills - ORIGINAL: if(do_after(user, 4 SECONDS, target = src))
 					if(rod.get_amount() < amount)
 						return
 					rod.use(amount)
