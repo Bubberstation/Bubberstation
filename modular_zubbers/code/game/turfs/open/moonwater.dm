@@ -21,8 +21,8 @@
 
 	//Copied from lava because why not.
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
-	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_WATER
-	canSmoothWith = SMOOTH_GROUP_WATER
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_MOONWATER
+	canSmoothWith = SMOOTH_GROUP_MOONWATER
 
 /turf/open/water/moonstation/surface
 

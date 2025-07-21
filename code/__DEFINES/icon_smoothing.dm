@@ -146,7 +146,7 @@ DEFINE_BITFIELD(smoothing_junction, list(
 
 #define SMOOTH_GROUP_FISSURE S_TURF(65)
 
-#define SMOOTH_GROUP_WATER S_TURF(66) //turf/open/water/moonstation
+#define SMOOTH_GROUP_MOONWATER S_TURF(66) //turf/open/water/moonstation
 
 #define MAX_S_TURF 66 //Always match this value with the one above it.
 //BUBBER EDIT END
