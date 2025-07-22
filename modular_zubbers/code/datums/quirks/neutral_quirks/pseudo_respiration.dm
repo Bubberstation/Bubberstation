@@ -17,7 +17,7 @@
 	if(HAS_TRAIT(breather, TRAIT_NOBREATH))
 		breather.remove_traits(list(TRAIT_NOBREATH))
 	var/obj/item/organ/lungs/lungs_added = new()
-	lungs_added.type = /obj/item/organ/lungs
+	breather.dna.species.mutantlungs = lungs_added.type
 
 /datum/quirk/pseudo_respiration/remove()
 	var/mob/living/carbon/human/no_breather = quirk_holder
