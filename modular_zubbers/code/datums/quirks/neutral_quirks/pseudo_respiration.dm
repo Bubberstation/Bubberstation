@@ -12,17 +12,19 @@
 
 /datum/quirk/pseudo_respiration/add(client/client_source)
 	var/mob/living/carbon/human/breather = quirk_holder
-	if(istype(breather) && HAS_TRAIT(breather, TRAIT_NOBREATH))
-		breather.remove_traits(list(TRAIT_NOBREATH))
 	if(!istype(breather))
 		return
+	if(HAS_TRAIT(breather, TRAIT_NOBREATH))
+		breather.remove_traits(list(TRAIT_NOBREATH))
 	var/obj/item/organ/lungs/lungs_added = new()
-	lungs_added.Insert(breather, special = TRUE, movement_flags = DELETE_IF_REPLACED)
-	breather.dna.species.mutantlungs = /obj/item/organ/lungs
+	lungs_added.type = /obj/item/organ/lungs
 
 /datum/quirk/pseudo_respiration/remove()
 	var/mob/living/carbon/human/no_breather = quirk_holder
-	if(istype(no_breather) && !HAS_TRAIT(no_breather, TRAIT_NOBREATH))
+	if(!istype(no_breather))
+		return
+	if(!HAS_TRAIT(no_breather, TRAIT_NOBREATH))
 		no_breather.add_traits(list(TRAIT_NOBREATH))
 	var/obj/item/organ/lungs/lungs_added = new()
 	lungs_added.Remove(no_breather, special = TRUE, movement_flags = DELETE_IF_REPLACED)
+
