@@ -1,7 +1,7 @@
 /datum/quirk/item_quirk/settler
 	name = "Settler"
-	desc = "You are from a lineage of the earliest space settlers! While your family's generational exposure to varying gravity \
-		has resulted in a ... smaller height than is typical for your species, you make up for it by being much better at outdoorsmanship and \
+	//BUBBER EDIT (Changes text a bit)
+	desc = "You are from a lineage of the earliest space settlers!  You are much better at outdoorsmanship and \
 		carrying heavy equipment. You also get along great with animals. However, you are a bit on the slow side due to your small legs."
 	gain_text = span_bold("You feel like the world is your oyster!")
 	lose_text = span_danger("You think you might stay home today.")
@@ -26,8 +26,10 @@
 /datum/quirk/item_quirk/settler/add(client/client_source)
 	var/mob/living/carbon/human/human_quirkholder = quirk_holder
 	//SKYRAT EDIT BEGIN - This is so Teshari don't get the height decrease.
-	if(!isteshari(human_quirkholder))
-		human_quirkholder.set_mob_height(HUMAN_HEIGHT_SHORTEST)
+	//BUBBER EDIT REMOVAL START - Lol, not any more.
+	//if(!isteshari(human_quirkholder))
+	//	human_quirkholder.set_mob_height(HUMAN_HEIGHT_SHORTEST)
+	//BUBBER EDIT REMOVAL END
 	//SKYRAT EDIT END
 	human_quirkholder.add_movespeed_modifier(/datum/movespeed_modifier/settler)
 	human_quirkholder.physiology.hunger_mod *= 0.75 //good for you, shortass, you don't get hungry nearly as often
@@ -41,7 +43,9 @@
 	if(QDELING(quirk_holder))
 		return
 	var/mob/living/carbon/human/human_quirkholder = quirk_holder
-	human_quirkholder.set_mob_height(HUMAN_HEIGHT_MEDIUM)
+	//BUBBER EDIT REMOVAL START
+	//human_quirkholder.set_mob_height(HUMAN_HEIGHT_MEDIUM)
+	//BUBBER EDIT REMOVAL END
 	human_quirkholder.remove_movespeed_modifier(/datum/movespeed_modifier/settler)
 	human_quirkholder.physiology.hunger_mod /= 0.75
 	human_quirkholder.remove_traits(settler_traits, QUIRK_TRAIT)
