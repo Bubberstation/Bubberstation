@@ -123,3 +123,26 @@
 	cost = PAYCHECK_CREW * 12
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/rope)
 
+/datum/supply_pack/goody/standard_mod_core
+	name = "Standard MOD Core"
+	desc = "The basic core module for all MODsuits. Provides essential functionality and compatibility."
+	cost = PAYCHECK_CREW * 4
+	contains = list(/obj/item/mod/core/standard)
+
+/datum/supply_pack/goody/plasma_mod_core
+	name = "Plasma MOD Core"
+	desc = "Nanotrasen's attempt at capitalizing on their plasma research. These plasma cores are refueled through plasma fuel, allowing for easy continued use by their mining squads."
+	cost = PAYCHECK_CREW * 4
+	contains = list(/obj/item/mod/core/plasma)
+
+/datum/supply_pack/goody/ethereal_mod_core
+	name = "Ethereal MOD Core"
+	desc = "A reverse engineered core of a Modular Outerwear Device. Using natural liquid electricity from Ethereals, preventing the need to use external sources to convert electric charge. As the suits are naturally charged by liquid electricity, this core makes it much more efficient, running all soft, hard, and wetware with several times less energy usage."
+	cost = PAYCHECK_CREW * 4
+	contains = list(/obj/item/mod/core/ethereal)
+
+/datum/supply_pack/goody/magnetic_deployable
+	name = "MOD Magnetic Deployment Module"
+	desc = "A much more modern version of a springlock system. This is a module that uses magnets to speed up the deployment and retraction time of your MODsuit."
+	cost = PAYCHECK_CREW * 8
+	contains = list(/obj/item/mod/module/springlock/contractor)
