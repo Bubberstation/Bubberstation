@@ -25,16 +25,23 @@
 /datum/action/cooldown/mob_cooldown/turtle_tree/healer/harmonizing_pulses/tree_effect()
 	. = ..()
 	for(var/mob/living/creature in oview(tree_range, owner))
+		var/damage_total = creature.getBruteLoss() + creature.getFireLoss()
 		if(!(creature.mob_biotypes & MOB_ORGANIC))
 			return
-		creature.adjustBruteLoss(-heal_amount, updating_health = FALSE)
-		creature.adjustFireLoss(-heal_amount, updating_health = FALSE)
 		if (iscarbon(creature))
-			creature.adjustToxLoss(-heal_amount, updating_health = FALSE, forced = TRUE)
-			creature.adjustOxyLoss(-heal_amount, updating_health = FALSE)
+			damage_total = damage_total + creature.getToxLoss() + creature.getOxyLoss()
+			if(!damage_total)
+				return //Div by zero prevention
+			creature.adjustToxLoss(-floor((heal_amount * (creature.getToxLoss() / damage_total)) + 0.5), updating_health = FALSE, forced = TRUE)
+			creature.adjustOxyLoss(-floor((heal_amount * (creature.getOxyLoss() / damage_total)) + 0.5), updating_health = FALSE)
+		if(!damage_total)
+			return
+		creature.adjustBruteLoss(-floor((heal_amount * (creature.getBruteLoss() / damage_total)) + 0.5), updating_health = FALSE)
+		creature.adjustFireLoss(-floor((heal_amount * (creature.getFireLoss() / damage_total)) + 0.5), updating_health = FALSE)
 		creature.updatehealth()
 
 /obj/effect/temp_visual/circle_wave/tree/harmonizing_pulses
 	color = "#1cad2d"
+	amount_to_scale = 2
 
 
