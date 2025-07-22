@@ -46,6 +46,10 @@
 	name = "\improper Coroner's Office"
 	icon_state = "ass_line" //You try finding a matching area icon, fucko.
 
+/area/station/commons/public_dock
+	name = "\improper Public Shuttle Dock"
+	icon_state = "podbay"
+
 /area/station/terminal
 	name = "\improper Arrivals Terminal"
 	icon_state = "station"
@@ -187,6 +191,8 @@
 /area/loopstation/engineering
 	name = "Loop Station Engineering"
 	icon_state = "engie"
+	airlock_wires = /datum/wires/airlock/engineering
+	ambience_index = AMBIENCE_ENGI
 
 /area/loopstation/engineering/telecomms
 	name = "Loop Station Telecommunications"
@@ -204,3 +210,12 @@
 	name = "Loop Station Radiation Shelter"
 	icon_state = "radstorm_shelter"
 
+/area/loopstation/solars
+	icon_state = "panels"
+	requires_power = FALSE
+	area_flags = UNIQUE_AREA | NO_GRAVITY | EVENT_PROTECTED
+	flags_1 = NONE
+	ambience_index = AMBIENCE_ENGI
+	airlock_wires = /datum/wires/airlock/engineering
+	sound_environment = SOUND_AREA_SPACE
+	default_gravity = ZERO_GRAVITY
