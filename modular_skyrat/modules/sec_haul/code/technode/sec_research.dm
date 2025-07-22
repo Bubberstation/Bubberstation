@@ -301,13 +301,13 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
-/datum/design/cacoil_fp
-	name = "Fragmenting Coilgun Magazine (Lethal-Wounding)"
-	desc = "A 5.7mm coilgun fragmentation ammunition box, a bit wide though."
-	id = "ca_coil_fp"
+/datum/design/cacoil_match
+	name = "Smart-Bounce Coilgun Magazine (Lethal)"
+	desc = "A 5.7mm coilgun Bouncing ammunition box, a bit wide though."
+	id = "ca_coil_match"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 15, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 9)
-	build_path = /obj/item/ammo_box/magazine/cacoilgun
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 15, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 9, /datum/material/silver = SMALL_MATERIAL_AMOUNT * 2)
+	build_path = /obj/item/ammo_box/magazine/cacoilgun/match
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)

@@ -15,22 +15,8 @@
 	name = "coilgun dart"
 	damage = 15
 	armour_penetration = 15
-	wound_bonus = -10
-	exposed_wound_bonus = 10
-
-/obj/item/ammo_casing/cacoil/ripper
-
-	projectile_type = /obj/projectile/bullet/cacoil/ripper
-
-/obj/projectile/bullet/cacoil/ripper
-
-	name = "coilgun hedge dart"
-	damage = 12
-	armour_penetration = 0
-	wound_bonus = 15
+	wound_bonus = -20
 	exposed_wound_bonus = 15
-	weak_against_armour = TRUE
-
 
 /obj/item/ammo_casing/cacoil/fp
 
@@ -39,7 +25,21 @@
 /obj/projectile/bullet/cacoil/fp
 
 	name = "coilgun fragmenting dart"
-	damage = 12
+	damage = 10
 	armour_penetration = 0
 	wound_bonus = 15
-	exposed_wound_bonus = -25
+	exposed_wound_bonus = 20
+	weak_against_armour = TRUE
+
+
+/obj/item/ammo_casing/cacoil/match
+
+	projectile_type = /obj/projectile/bullet/cacoil/match
+
+/obj/projectile/bullet/cacoil/match
+
+	name = "coilgun hedge dart"
+	damage = 12
+	armour_penetration = 10
+	wound_bonus = 5
+	exposed_wound_bonus = 10

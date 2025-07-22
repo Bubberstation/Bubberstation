@@ -70,7 +70,7 @@
 	design_ids += "s12g_incinslug"
 	design_ids += "c10mm_rhp"
 	design_ids += "c10mm_rap"
-	design_ids += "ca_coil_fp"
+	design_ids += "ca_coil_match"
 	. = ..()
 
 /datum/techweb_node/syndicate_basic/New()

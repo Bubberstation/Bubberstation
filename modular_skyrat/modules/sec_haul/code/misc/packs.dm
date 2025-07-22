@@ -19,9 +19,9 @@
 //Goodies..
 
 /datum/supply_pack/goody/cacoil_mag
-	name = "Coilgun Driver Magazine"
-	desc = "A magazine for the coilgun, this one ."
-	contains = /obj/item/ammo_box/magazine/cacoilgun/ripper
+	name = "Coilgun Fragmenting Driver Magazine"
+	desc = "A magazine for the coilgun, this one contains a shaped head that split into smaller fragments."
+	contains = /obj/item/ammo_box/magazine/cacoilgun/fp
 	cost = PAYCHECK_COMMAND * 1
 	access_view = ACCESS_WEAPONS
 

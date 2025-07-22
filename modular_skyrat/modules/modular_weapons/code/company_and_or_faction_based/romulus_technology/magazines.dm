@@ -19,17 +19,17 @@
 	. = ..()
 	icon_state = "[base_icon_state][ammo_count() ? "-ammo" : ""]"
 
-/obj/item/ammo_box/magazine/cacoilgun/ripper
-	name = "coilgun magazine (5.7mm Hollow Point)"
-	desc = parent_type::desc + " Contains highly lethal low penetration projectile that splits into smaller metal shrapnel upon impacting a target."
-	ammo_type = /obj/item/ammo_casing/cacoil/ripper
-	ammo_band_color = COLOR_AMMO_TRUESTRIKE
-
 /obj/item/ammo_box/magazine/cacoilgun/fp
 	name = "coilgun magazine (5.7mm Fragmenting)"
 	desc = parent_type::desc + " Contains highly lethal low penetration projectile that splits into smaller metal shrapnel upon impacting a target."
 	ammo_type = /obj/item/ammo_casing/cacoil/fp
 	ammo_band_color = COLOR_AMMO_TRUESTRIKE
+
+/obj/item/ammo_box/magazine/cacoilgun/match
+	name = "coilgun magazine (5.7mm Match)"
+	desc = parent_type::desc + " ."
+	ammo_type = /obj/item/ammo_casing/cacoil/match
+	ammo_band_color = COLOR_AMMO_MATCH
 
 //Handgun Magazine
 
