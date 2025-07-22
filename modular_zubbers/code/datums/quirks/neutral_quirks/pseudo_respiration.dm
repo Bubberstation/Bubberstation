@@ -10,12 +10,11 @@
 	hardcore_value = 2
 	species_whitelist = list(SPECIES_HEMOPHAGE)
 
-/datum/quirk/pseudo_respiration/add(client/client_source)
+/datum/quirk/pseudo_respiration/add()
 	var/mob/living/carbon/human/breather = quirk_holder
 	if(!istype(breather))
 		return
-	if(HAS_TRAIT(breather, TRAIT_NOBREATH))
-		breather.remove_traits(list(TRAIT_NOBREATH))
+	REMOVE_TRAIT(breather, TRAIT_NOBREATH, SPECIES_TRAIT)
 	var/obj/item/organ/lungs/lungs_added = new()
 	lungs_added.Insert(breather, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 	breather.dna.species.mutantlungs = lungs_added.type
@@ -24,8 +23,7 @@
 	var/mob/living/carbon/human/no_breather = quirk_holder
 	if(!istype(no_breather))
 		return
-	if(!HAS_TRAIT(no_breather, TRAIT_NOBREATH))
-		no_breather.add_traits(list(TRAIT_NOBREATH))
+	ADD_TRAIT(no_breather, TRAIT_NOBREATH, SPECIES_TRAIT)
 	var/obj/item/organ/lungs/lungs_added = new()
 	lungs_added.Remove(no_breather, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
