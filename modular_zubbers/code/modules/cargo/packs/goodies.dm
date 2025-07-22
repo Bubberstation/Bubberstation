@@ -124,19 +124,19 @@
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/rope)
 
 /datum/supply_pack/goody/standard_mod_core
-	name = "Standard MOD Core"
+	name = "MOD standard core"
 	desc = "The basic core module for all MODsuits. Provides essential functionality and compatibility."
 	cost = PAYCHECK_CREW * 4
 	contains = list(/obj/item/mod/core/standard)
 
 /datum/supply_pack/goody/plasma_mod_core
-	name = "Plasma MOD Core"
+	name = "MOD plasma core"
 	desc = "Nanotrasen's attempt at capitalizing on their plasma research. These plasma cores are refueled through plasma fuel, allowing for easy continued use by their mining squads."
 	cost = PAYCHECK_CREW * 4
 	contains = list(/obj/item/mod/core/plasma)
 
 /datum/supply_pack/goody/ethereal_mod_core
-	name = "Ethereal MOD Core"
+	name = "MOD ethereal core"
 	desc = "A reverse engineered core of a Modular Outerwear Device. Using natural liquid electricity from Ethereals, preventing the need to use external sources to convert electric charge. As the suits are naturally charged by liquid electricity, this core makes it much more efficient, running all soft, hard, and wetware with several times less energy usage."
 	cost = PAYCHECK_CREW * 4
 	contains = list(/obj/item/mod/core/ethereal)
