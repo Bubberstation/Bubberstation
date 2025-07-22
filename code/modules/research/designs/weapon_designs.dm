@@ -84,6 +84,22 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
+/datum/design/c38_flare
+	name = "Speedloader (.38 Flare) (VERY Lethal)"
+	desc = "Designed to quickly reload revolvers. Flare casings launch a concentrated particle beam towards a target, lighting them up for everyone to see."
+	id = "c38_flare"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/uranium = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT,
+	)
+	build_path = /obj/item/ammo_box/c38/flare
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
 /datum/design/c38_mag
 	name = "Magazine (.38) (Lethal)"
 	desc = "Designed to tactically reload a NT BR-38 Battle Rifle. Less powerful by design, guns chambered in .38 caliber rounds are still quite popular for use by police forces, \
@@ -165,7 +181,6 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
-
 /datum/design/c38_true_mag
 	name = "Magazine (.38 True Strike) (Lethal)"
 	desc = "Designed to tactically reload a NT BR-38 Battle Rifle. Bullets bounce towards new targets with surprising accuracy."
@@ -177,6 +192,24 @@
 		/datum/material/bluespace = HALF_SHEET_MATERIAL_AMOUNT,
 	)
 	build_path = /obj/item/ammo_box/magazine/m38/true
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/c38_flare_mag
+	name = "Magazine (.38 Flae) (VERY Lethal)"
+	desc = "Designed to tactically reload a NT BR-38 Battle Rifle. Flare casings launch a concentrated particle beam towards a target, lighting them up for everyone to see."
+	id = "c38_flare_mag"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT * 4,
+		/datum/material/uranium = HALF_SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT * 1.5,
+
+	)
+	build_path = /obj/item/ammo_box/magazine/m38/flare
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
@@ -515,6 +548,19 @@
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/ammo_casing/shotgun/scatterlaser
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/flechette
+	name = "Flechette Shotgun Shell (Lethal)"
+	desc = "A shotgun casing filled with small metal darts. Pokes many tiny holes into meat and kevlar alike. Useful for turning someone's insides \
+		into outsides."
+	id = "flechetteshell"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2)
+	build_path = /obj/item/ammo_casing/shotgun/flechette
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
