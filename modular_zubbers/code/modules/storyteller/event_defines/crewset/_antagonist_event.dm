@@ -150,6 +150,7 @@
 	SHOULD_CALL_PARENT(FALSE)
 
 	LAZYADD(candidate.mind.special_roles, antag_flag)
+	LAZYADDASSOC(SSjob.prevented_occupations, candidate.mind, restricted_roles)
 
 /datum/round_event/antagonist/proc/template_setup(datum/round_event_control/antagonist/cast_control)
 	for(var/template in cast_control.ruleset_lazy_templates)

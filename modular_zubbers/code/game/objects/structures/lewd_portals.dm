@@ -371,6 +371,12 @@
 				if(!(gential_sprite.is_hidden(owner)))
 					. += "<span class='notice'>It has exposed genitals... <a href='byond://?src=[REF(src)];lookup_info=genitals'>\[Look closer...\]</a></span>"
 					break
+	if(!CONFIG_GET(flag/check_vetted))
+		return
+	if(!owner?.client || !SSplayer_ranks.initialized)
+		return
+	if(SSplayer_ranks.is_vetted(owner?.client, admin_bypass = FALSE))
+		. += span_greenannounce("This player has been vetted as 18+ by staff.")
 
 /obj/lewd_portal_relay/Topic(href, href_list)
 	. = ..()

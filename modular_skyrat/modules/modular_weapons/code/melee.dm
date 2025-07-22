@@ -23,6 +23,7 @@
 	righthand_file = 'modular_skyrat/modules/modular_weapons/icons/mob/inhands/weapons/swords_righthand.dmi'
 	block_chance = 20
 	armour_penetration = 25
+	force = 15
 
 
 // This is here so that people can't buy the Sabres and craft them into powercrepes

@@ -31,6 +31,12 @@
 	icon_state = "cargo_long"
 	alt_covers_chest = FALSE
 
+/obj/item/clothing/under/rank/cargo/tech/skyrat/long/skirt
+	name = "cargo technician's long jumpskirt"
+	desc = "For crate-pushers who'd rather protect their legs than show them off, but with a skirt that doesn't protect the legs."
+	icon_state = "cargo_long_skirt"
+	alt_covers_chest = FALSE
+
 /obj/item/clothing/under/rank/cargo/tech/skyrat/gorka
 	name = "supply gorka"
 	desc = "A rugged, utilitarian gorka worn by the Supply department."
