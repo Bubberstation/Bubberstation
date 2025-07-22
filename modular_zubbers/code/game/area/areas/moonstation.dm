@@ -24,6 +24,11 @@
 	name = "\improper Public Xenoarchaeology"
 	icon_state = "exp_lab"
 
+/area/station/maintenance/department/engine/shuttle_construction_bay
+	name = "\improper Shuttle Construction Bay"
+	icon_state = "maint_eva"
+	allow_shuttle_docking = TRUE
+
 /area/station/maintenance/department/public_mining
 	name = "\improper Public Mining Maintenance"
 	icon_state = "centralmaint"
@@ -158,3 +163,44 @@
 
 /area/station/maintenance/department/engine/lower
 	name = "\improper Lower Engineering Maintenance"
+
+
+//Loopstation Areas
+/area/loopstation
+	name = "Loop Station"
+	icon = 'icons/area/areas_station.dmi'
+	icon_state = "station"
+	default_gravity = ZERO_GRAVITY
+	ambience_index = AMBIENCE_AWAY
+	sound_environment = SOUND_ENVIRONMENT_ROOM
+	area_flags = UNIQUE_AREA | EVENT_PROTECTED
+
+
+/area/loopstation/gateway
+	name = "Loop Station Gateway"
+	icon_state = "gateway"
+
+/area/loopstation/hallway
+	name = "Loop Station Central Hallway"
+	icon_state = "hall"
+
+/area/loopstation/engineering
+	name = "Loop Station Engineering"
+	icon_state = "engie"
+
+/area/loopstation/engineering/telecomms
+	name = "Loop Station Telecommunications"
+	icon_state = "tcomsatcham"
+
+/area/loopstation/engineering/power
+	name = "Loop Station Power Room"
+	icon_state = "engine_smes"
+
+/area/loopstation/engineering/gravity
+	name = "Loop Station Gravity Room"
+	icon_state = "grav_gen"
+
+/area/loopstation/radshelter
+	name = "Loop Station Radiation Shelter"
+	icon_state = "radstorm_shelter"
+
