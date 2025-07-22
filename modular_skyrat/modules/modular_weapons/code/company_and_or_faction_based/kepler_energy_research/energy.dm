@@ -35,7 +35,12 @@ Lever Rifle
 	A perfect companion piece on the wagon trail to the stars.."
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/kepler_energy_research/gun48x32.dmi'
 	icon_state = "lever"
-	inhand_icon_state = null
+	lefthand_file = 'modular_skyrat/modules/modular_weapons/icons/mob/company_and_or_faction_based/kepler_energy_research/guns_lefthand.dmi'
+	righthand_file = 'modular_skyrat/modules/modular_weapons/icons/mob/company_and_or_faction_based/kepler_energy_research/guns_righthand.dmi'
+	inhand_icon_state = "lever"
+	base_icon_state = "lever"
+	worn_icon = 'modular_skyrat/modules/modular_weapons/icons/mob/company_and_or_faction_based/kepler_energy_research/guns_righthand.dmi'
+	worn_icon_state = "lever"
 	ammo_type = list(/obj/item/ammo_casing/energy/nanite/inferno/lever, /obj/item/ammo_casing/energy/nanite/cryo/lever)
 	shaded_charge = TRUE
 	ammo_x_offset = 1
@@ -69,8 +74,8 @@ Lever Rifle
 
 	return NONE
 
-/obj/item/gun/energy/laser/lever/give_manufacturer_examine()
+/obj/item/gun/energy/laser/thermal/lever/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_KERI)
 
-/obj/item/gun/energy/laser/lever/add_bayonet_point()
+/obj/item/gun/energy/laser/thermal/lever/add_bayonet_point()
 	AddComponent(/datum/component/bayonet_attachable, offset_x = 5, offset_y = 20)
