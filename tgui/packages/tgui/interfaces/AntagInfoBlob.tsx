@@ -9,8 +9,8 @@ import {
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-import { Rules } from './AntagInfoRules'; // SKYRAT EDIT ADDITION
-import { Objective } from './common/Objectives';
+import { Rules } from './AntagInfoRules'; // BUBBER EDIT ADDITION
+import type { Objective } from './common/Objectives';
 
 type Data = {
   color: string;

@@ -210,7 +210,7 @@
 		if (base_degradation_reduction_per_second_while_alive < 0) // if you wanna die slowly while alive, go ahead bud
 			increase -= base_degradation_reduction_per_second_while_alive
 
-	if (HAS_TRAIT(owner, TRAIT_STASIS))
+	if (HAS_TRAIT(owner, TRAIT_STASIS) || owner.has_reagent(/datum/reagent/cryostylane, needs_metabolizing = FALSE)) // Cryostylane gives a stasis-like effect, so I'm throwing this here.
 		increase *= stasis_passive_degradation_multiplier
 
 	return increase

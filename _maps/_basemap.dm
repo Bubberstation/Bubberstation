@@ -4,7 +4,6 @@
 
 #ifndef LOWMEMORYMODE
 	#ifdef ALL_MAPS
-		//#include "map_files\Birdshot\birdshot.dmm" BUBBER EDIT - UNUSED
 		#include "map_files\debug\multiz.dmm"
 		#include "map_files\debug\runtimestation.dmm"
 		#include "map_files\Deltastation\DeltaStation2.dmm"
@@ -16,6 +15,7 @@
 		#include "map_files\CatwalkStation\CatwalkStation_2023.dmm"
 		#include "map_files\NebulaStation\NebulaStation.dmm"
 		// SKYRAT EDIT ADDITON START - Compiling our modular maps too!
+		#include "map_files\Blueshift\Blueshift.dmm"
 		#include "map_files\VoidRaptor\VoidRaptor.dmm"
 		#include "map_files\KiloStation\KiloStation.dmm"
 		// SKYRAT EDIT END
