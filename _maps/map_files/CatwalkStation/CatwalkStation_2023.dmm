@@ -4032,22 +4032,6 @@
 	},
 /turf/open/floor/iron/white/smooth_large,
 /area/station/ai_monitored/turret_protected/aisat_interior)
-"bmk" = (
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/requests_console/directional/east{
-	name = "Quartermaster's Requests Console";
-	department = "Quartermaster's Desk"
-	},
-/obj/effect/mapping_helpers/requests_console/assistance,
-/obj/effect/mapping_helpers/requests_console/ore_update,
-/obj/effect/mapping_helpers/requests_console/announcement,
-/obj/effect/mapping_helpers/requests_console/information,
-/turf/open/floor/iron,
-/area/station/command/heads_quarters/qm)
 "bmx" = (
 /obj/structure/transport/linear/public,
 /turf/open/openspace,
@@ -20769,10 +20753,6 @@
 "geK" = (
 /turf/open/floor/iron,
 /area/station/cargo/storage)
-"geL" = (
-/obj/item/kirbyplants/random,
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/cmo)
 "geM" = (
 /obj/structure/lattice/catwalk,
 /turf/open/openspace,
@@ -22859,6 +22839,22 @@
 /obj/machinery/vending/cytopro,
 /turf/open/floor/iron/dark,
 /area/station/science/cytology)
+"gLD" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/requests_console/directional/east{
+	name = "Quartermaster's Requests Console";
+	department = "Quartermaster's Desk"
+	},
+/obj/effect/mapping_helpers/requests_console/assistance,
+/obj/effect/mapping_helpers/requests_console/ore_update,
+/obj/effect/mapping_helpers/requests_console/announcement,
+/obj/effect/mapping_helpers/requests_console/information,
+/turf/open/floor/iron,
+/area/station/command/heads_quarters/qm)
 "gLM" = (
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible{
 	dir = 1
@@ -27671,6 +27667,10 @@
 /obj/structure/lattice/catwalk,
 /turf/open/openspace,
 /area/station/security/checkpoint/supply)
+"igd" = (
+/obj/machinery/pdapainter/medbay,
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/cmo)
 "ige" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -44326,6 +44326,12 @@
 "ncO" = (
 /turf/open/floor/glass/reinforced,
 /area/station/hallway/secondary/entry)
+"ncW" = (
+/obj/machinery/light/directional/south,
+/obj/structure/extinguisher_cabinet/directional/south,
+/obj/item/kirbyplants/random,
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/cmo)
 "ndc" = (
 /obj/effect/turf_decal/trimline/yellow/filled/corner{
 	dir = 1
@@ -47120,6 +47126,13 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/customs)
+"nRz" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/wood/parquet,
+/area/station/command/heads_quarters/qm)
 "nRE" = (
 /turf/open/openspace,
 /area/station/medical/medbay/central)
@@ -70949,11 +70962,6 @@
 	},
 /turf/open/openspace,
 /area/station/maintenance/port/aft)
-"uUK" = (
-/obj/machinery/light/directional/south,
-/obj/structure/extinguisher_cabinet/directional/south,
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/cmo)
 "uUL" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 4
@@ -73690,13 +73698,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/station/security/execution/education)
-"vLn" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/wood/parquet,
-/area/station/command/heads_quarters/qm)
 "vLv" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 5
@@ -126368,10 +126369,10 @@ pbc
 oJd
 yco
 hYo
-bmk
+gLD
 gQa
 fZg
-vLn
+nRz
 wmt
 hIA
 raF
@@ -178034,7 +178035,7 @@ gZq
 nde
 wwx
 ouo
-uUK
+ncW
 jKX
 jKX
 kXI
@@ -178291,7 +178292,7 @@ yfv
 nuU
 kwR
 gGJ
-geL
+igd
 jKX
 dIT
 kXI
