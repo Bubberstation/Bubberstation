@@ -21,7 +21,7 @@
 		return
 	owner.visible_message(span_warning("[owner] grows massive, their body quickly getting covered in fur!"))
 	owner.set_species(/datum/species/werewolf, TRUE, TRUE, FALSE)
-	owner.add_traits(list(TRAIT_BEAST_FORM))
+	ADD_TRAIT(owner, TRAIT_BEAST_FORM, SPECIES_TRAIT)
 	owner.add_quirk(/datum/quirk/oversized)
 	owner.drop_everything(FALSE, TRUE, FALSE)
 
@@ -31,7 +31,7 @@
 		return
 	owner.visible_message(span_warning("[owner] shrinks down, their fur receding!"))
 	owner.set_species(/datum/species/human/werewolf, TRUE, TRUE, FALSE)
-	owner.remove_traits(list(TRAIT_BEAST_FORM))
+	REMOVE_TRAIT(owner, TRAIT_BEAST_FORM, SPECIES_TRAIT)
 	owner.remove_quirk(/datum/quirk/oversized)
 	owner.dna.update_body_size()
 	COOLDOWN_START(src, beast_form_cooldown, 10 MINUTES)
