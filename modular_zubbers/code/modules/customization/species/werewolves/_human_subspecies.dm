@@ -13,8 +13,10 @@
 	mutantbrain = /obj/item/organ/brain/werewolf
 
 /datum/species/human/werewolf/get_species_description()
-	return "Humans are the dominant species in the known galaxy. \
-		Their kind extend from old Earth to the edges of known space."
+	return list(
+		"Humans are the dominant species in the known galaxy. \
+		Their kind extend from old Earth to the edges of known space.",
+	)
 
 /datum/species/human/werewolf/get_species_lore()
 	return list(
