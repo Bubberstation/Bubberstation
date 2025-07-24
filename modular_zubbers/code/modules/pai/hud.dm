@@ -1,20 +1,26 @@
-/atom/movable/screen/pai/shell/holo_leashed
+/atom/movable/screen/pai/leash
 	name = "Toggle Leash"
-	icon_state = "template"
+	icon = 'modular_zubbers/icons/hud/screen_pai.dmi'
+	icon_state = "pai_leash"
 
-/atom/movable/screen/pai/shell/holo_leashed/Click()
+/atom/movable/screen/pai/leash/Click()
 	if(!..())
 		return
 	var/mob/living/silicon/pai/pAI = usr
-	if(pAI.holo_leash)
-		pAI.holo_leash = FALSE
-	else
-		pAI.holo_leash = TRUE
+	if(!pAI.holoform)
+		if(pAI.holo_leash)
+			pAI.balloon_alert(usr, "Emitters set to Move")
+			pAI.holo_leash = FALSE
+		else
+			pAI.balloon_alert(usr, "Emitters set to Project")
+			pAI.holo_leash = TRUE
+	else(pAI.holoform)
+		pAI.balloon_alert(usr, "Your emitters are active!")
 
 /datum/hud/pai/New(mob/living/silicon/pai/owner)
 	..()
 	var/atom/movable/screen/using
 // Hololeash
-	using = new /atom/movable/screen/pai/shell/holo_leashed(null, src)
+	using = new /atom/movable/screen/pai/leash(null, src)
 	using.screen_loc = "SOUTH:6,WEST+14"
 	static_inventory += using

@@ -5,6 +5,6 @@
 /mob/living/silicon/pai/get_status_tab_items()
 	. = ..()
 	if(!holo_leash)
-		. += "Mobile Emitter: enabled"
+		. += "Emitter set to: Move"
 	else
-		. += "Mobile Emitter: disabled"
+		. += "Emitter set to: Project"
