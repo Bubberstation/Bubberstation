@@ -9,13 +9,13 @@
 	var/mob/living/silicon/pai/pAI = usr
 	if(!pAI.holoform)
 		if(pAI.holo_leash)
-			pAI.balloon_alert(usr, "Emitters set to Move")
+			pAI.balloon_alert(usr, "emitters set to Move")
 			pAI.holo_leash = FALSE
 		else
-			pAI.balloon_alert(usr, "Emitters set to Project")
+			pAI.balloon_alert(usr, "emitters set to Project")
 			pAI.holo_leash = TRUE
 	else
-		pAI.balloon_alert(usr, "Your emitters are active!")
+		pAI.balloon_alert(usr, "your emitters are active!")
 
 /datum/hud/pai/New(mob/living/silicon/pai/owner)
 	..()
