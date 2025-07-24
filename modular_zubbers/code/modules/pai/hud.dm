@@ -14,7 +14,7 @@
 		else
 			pAI.balloon_alert(usr, "Emitters set to Project")
 			pAI.holo_leash = TRUE
-	else(pAI.holoform)
+	else
 		pAI.balloon_alert(usr, "Your emitters are active!")
 
 /datum/hud/pai/New(mob/living/silicon/pai/owner)
