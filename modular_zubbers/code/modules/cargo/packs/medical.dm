@@ -1,3 +1,9 @@
+/datum/supply_pack/imports_medical
+	access = NONE
+	group = "Medical" //figure this out later
+	goody = TRUE
+	crate_type = null
+	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
 
 /datum/supply_pack/imports_medical/first_aid_kit_civil
 	name = "Civil Defense First Aid Kit"
