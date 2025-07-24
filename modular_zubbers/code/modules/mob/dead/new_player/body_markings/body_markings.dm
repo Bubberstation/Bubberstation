@@ -232,3 +232,8 @@
 	name = "Protogen Chest"
 	icon_state = "protogen"
 	affected_bodyparts = CHEST
+
+/datum/body_marking/bubber/protogencrotch // Sprite by xPokee
+	name = "Protogen Crotch Plate"
+	icon_state = "protogen_c"
+	affected_bodyparts = CHEST
