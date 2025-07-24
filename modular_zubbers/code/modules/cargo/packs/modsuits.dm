@@ -234,3 +234,13 @@
 /datum/supply_pack/imports_modsuit/mod_module/medical/defibrillator
 	name = "MOD Defibrillator Module"
 	contains = list(/obj/item/mod/module/defibrillator)
+
+/datum/supply_pack/imports_modsuit/mod_module/donk/dart_collector_safe
+	name = "MOD Dart Collector"
+	cost = PAYCHECK_COMMAND
+	contains = list(/obj/item/mod/module/recycler/donk/safe)
+
+/datum/supply_pack/imports_modsuit/mod_module/donk/dart_collector_unsafe
+	name = "MOD Dart Collector (Unsafe)"
+	cost = PAYCHECK_COMMAND * 4
+	contains = list(/obj/item/mod/module/recycler/donk)
