@@ -1,8 +1,23 @@
 //Pistol, Handguns and Revolvers
 //Now improved
+//Yes I am aware I could've just made a subtype but the whole point is you don't need to use multitool on this one
+/obj/item/gun/ballistic/automatic/pistol/coilgun
+	name = "MEC-2CE Coil Pistol"
+	desc = "A standard issue pistol given to military police and border patrol in Romulus Federation, this one is stripped down to the bare minimum for ease of usage, no field maintenance needed."
+	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/romulus_technology/pistol.dmi'
+	icon_state = "m45a5"
+	fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/pistol_heavy.ogg'
+	fire_delay = 1 SECONDS
+	special_mags = TRUE
+
+	accepted_magazine_type = /obj/item/ammo_box/magazine/cacoilgun
+	spawn_magazine_type = /obj/item/ammo_box/magazine/cacoilgun
+
+/obj/item/gun/ballistic/automatic/pistol/coilgun/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_ROMTECH)
 
 /obj/item/gun/ballistic/revolver/hos_revolver
-	name = "\improper HR-460MS"
+	name = "\improper HR-457MS"
 	desc = "An experimental revolver design that can only be loaded one shot at a time, if the initial damage did not kill, the bleedout would. Chambered in .457 Government."
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/c457
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/romulus_technology/revolver.dmi'
@@ -13,7 +28,7 @@
 	AddElement(/datum/element/manufacturer_examine, COMPANY_ROMTECH)
 
 /obj/item/gun/ballistic/revolver/hos_revolver/long
-	name = "\improper HR-460LR"
+	name = "\improper HR-457LR"
 	desc = "A long unwiedly revolver from Romulus Technology. chambered in the rare .457 Government. You might be able to kill someone by whacking it over the head"
 	icon_state = "tracker"
 	force = 18

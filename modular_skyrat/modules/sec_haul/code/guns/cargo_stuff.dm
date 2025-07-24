@@ -107,12 +107,22 @@
 	)
 	crate_name = "Experimental Coilgun Crate"
 
+/datum/supply_pack/security/cacoilgun
+	name = "Romulus Technology MEC-2E Coil Pistol"
+	cost = CARGO_CRATE_VALUE * 55
+	desc = "Contains Three standard-issue electromagnetic coilgun and Three magazines for it."
+	contains = list(
+		/obj/item/gun/ballistic/automatic/coilgun = 3,
+		/obj/item/ammo_box/magazine/cacoilgun = 3
+	)
+	crate_name = "Experimental Coilgun Crate"
+
 /datum/supply_pack/security/cacoilgun_ammo
 	name = "5.7mm Coilgun Ammo Crate"
 	cost = CARGO_CRATE_VALUE * 11
 	desc = "Contains Nine magazines for the MEC-1E Coilgun."
 	contains = list(
-		/obj/item/ammo_box/magazine/cacoilgun = 3
+		/obj/item/ammo_box/magazine/cacoilgun = 9
 	)
 	crate_name = "Coilgun Ammo Crate"
 
@@ -159,20 +169,6 @@
 	)
 	crate_name = "Carwil Battle Rifle Crate"
 	hidden = TRUE
-
-/datum/supply_pack/imports/cacoilsmg
-	name = "Romulus Coil SMG Crate"
-	desc = "(*!&@#GOOD NEWS, OPERATIVE! WE GOT YOU THE BIG LEAGUE AUTOMATIC WEAPONS. BY \
-		SMUGGLING THIS CRATE THROUGH A FEW OUTDATED CUSTOMS CHECKPOINTS, WE'VE THE NEXT BEST THING! \
-		SERVICE BATTLE RIFLE. DON'T WORRY, THE RUMORS ABOUT THE GUN MELTING YOU ARE JUST THAT! RUMORS! \
-		THESE THINGS WORK FINE! MIGHT BE SLIGHTLY DIRTY.!#@*$"
-	cost = CARGO_CRATE_VALUE * 20
-	contains = list(/obj/item/gun/ballistic/automatic/sol_rifle = 2,
-	/obj/item/ammo_box/magazine/c40sol_rifle = 4,
-	)
-	crate_name = "Carwil Battle Rifle Crate"
-	hidden = TRUE
-
 
 //Goodies
 
