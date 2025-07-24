@@ -9,8 +9,6 @@
 	projectile_type = /obj/projectile/bullet/cacoil
 	can_be_printed = TRUE
 
-
-
 /obj/projectile/bullet/cacoil
 	name = "coilgun dart"
 	damage = 15
@@ -31,13 +29,11 @@
 	exposed_wound_bonus = 20
 	weak_against_armour = TRUE
 
-
 /obj/item/ammo_casing/cacoil/match
 
 	projectile_type = /obj/projectile/bullet/cacoil/match
 
 /obj/projectile/bullet/cacoil/match
-
 	name = "coilgun hedge dart"
 	damage = 12
 	armour_penetration = 10
