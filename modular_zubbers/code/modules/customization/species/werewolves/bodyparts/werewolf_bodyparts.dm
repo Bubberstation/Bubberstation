@@ -24,9 +24,9 @@
 	unarmed_miss_sound = 'sound/items/weapons/slashmiss.ogg'
 	bodypart_traits = list(TRAIT_CHUNKYFINGERS)
 
-	unarmed_damage_low = 10
-	unarmed_damage_high = 20
-	unarmed_effectiveness = 15
+	unarmed_damage_low = 13
+	unarmed_damage_high = 13
+	unarmed_effectiveness = 25
 	unarmed_pummeling_bonus = 2
 	unarmed_sharpness = SHARP_EDGED
 
@@ -40,9 +40,9 @@
 	unarmed_miss_sound = 'sound/items/weapons/slashmiss.ogg'
 	bodypart_traits = list(TRAIT_CHUNKYFINGERS)
 
-	unarmed_damage_low = 10
-	unarmed_damage_high = 20
-	unarmed_effectiveness = 15
+	unarmed_damage_low = 13
+	unarmed_damage_high = 13
+	unarmed_effectiveness = 25
 	unarmed_pummeling_bonus = 2
 	unarmed_sharpness = SHARP_EDGED
 
