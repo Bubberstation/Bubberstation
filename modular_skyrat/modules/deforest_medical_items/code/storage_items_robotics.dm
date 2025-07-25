@@ -52,7 +52,6 @@
 
 /obj/item/storage/medkit/robotic_repair/preemo/Initialize(mapload)
 	. = ..()
-	atom_storage.max_specific_storage = WEIGHT_CLASS_NORMAL
 	atom_storage.max_slots = 12
 	atom_storage.max_total_storage = 12 * WEIGHT_CLASS_NORMAL
 
