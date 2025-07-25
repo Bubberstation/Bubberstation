@@ -31,7 +31,8 @@
 	human_holder.physiology.hunger_mod *= OVERSIZED_HUNGER_MOD //50% hungrier
 	human_holder.add_movespeed_modifier(/datum/movespeed_modifier/oversized)
 	var/datum/action/sizecode_smallsprite/action = new /datum/action/sizecode_smallsprite(human_holder)
-	action.Grant(human_holder)
+	if(!action)
+		action.Grant(human_holder)
 	var/obj/item/organ/stomach/old_stomach = human_holder.get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(!istype(old_stomach) || old_stomach.organ_flags & ORGAN_ROBOTIC || old_stomach.organ_traits & TRAIT_NOHUNGER)
 		return
@@ -53,7 +54,8 @@
 	human_holder.dna.update_body_size()
 	human_holder.mob_size = MOB_SIZE_HUMAN
 	var/datum/action/sizecode_smallsprite/action = locate(/datum/action/sizecode_smallsprite) in quirk_holder.actions
-	action.Remove()
+	if(action)
+		action.Remove()
 
 	var/obj/item/bodypart/arm/left/left_arm = human_holder.get_bodypart(BODY_ZONE_L_ARM)
 	if(left_arm)
