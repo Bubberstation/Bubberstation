@@ -14,6 +14,7 @@ import type { BooleanLike } from 'tgui-core/react';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { logger } from '../logging';
+import { Rules } from './AntagInfoRules';
 import {
   type Objective,
   ObjectivePrintout,
