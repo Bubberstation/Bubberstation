@@ -263,12 +263,14 @@ GLOBAL_LIST(heretic_paths)
 	var/knowledge_tier3 = heretic_path.knowledge_tier3
 	var/knowledge_tier4 = heretic_path.knowledge_tier4
 
+
 	var/list/path_knowledges = list(
 		knowledge_tier1,
 		knowledge_tier2,
 		knowledge_tier3,
 		knowledge_tier4
 	)
+
 	// Every path can have a guaranteed option that will show up in the first 3 drafts (Otherwise we just run as normal)
 	var/datum/heretic_knowledge/guaranteed_draft_t1 = heretic_path.guaranteed_side_tier1
 	var/datum/heretic_knowledge/guaranteed_draft_t2 = heretic_path.guaranteed_side_tier2
@@ -278,13 +280,6 @@ GLOBAL_LIST(heretic_paths)
 		guaranteed_draft_t1,
 		guaranteed_draft_t2,
 		guaranteed_draft_t3
-	)
-
-	var/list/draft_ineligible = list(
-		knowledge_tier1,
-		knowledge_tier2,
-		knowledge_tier3,
-		knowledge_tier4,
 	)
 
 	var/list/shop_unlock_order = list(
@@ -304,7 +299,7 @@ GLOBAL_LIST(heretic_paths)
 		elligible_knowledge += list(list())
 		shop_knowledge += list(list())
 
-	for(var/datum/heretic_knowledge/potential_type as anything in heretic_research_tree)
+	for(var/datum/heretic_knowledge/potential_type as anything in subtypesof(/datum/heretic_knowledge))
 		if(potential_type::drafting_tier == 0)
 			continue
 		// Don't add the knowledge if it's obtainable later in the path
@@ -341,7 +336,6 @@ GLOBAL_LIST(heretic_paths)
 	)
 	/// generate 3 drafts for each draft tier, while banning you from picking multiple drafts
 	for(var/draft in drafts)
-		index++
 		var/parent_knowledge_path = draft["parent_knowledge"]
 		var/datum/heretic_knowledge/guaranteed_draft = draft["guaranteed_knowledge"]
 		var/list/probabilities = draft["probabilities"]

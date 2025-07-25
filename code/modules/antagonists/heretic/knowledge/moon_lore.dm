@@ -84,7 +84,7 @@
 	var/mob/living/carbon/carbon_target = target
 	to_chat(carbon_target, span_danger("You hear echoing laughter from above"))
 	carbon_target.cause_hallucination(/datum/hallucination/delusion/preset/moon, "delusion/preset/moon hallucination caused by mansus grasp")
-	carbon_target.mob_mood.set_sanity(carbon_target.mob_mood.sanity - 30)
+	carbon_target.mob_mood.adjust_sanity(-30)
 
 /datum/heretic_knowledge/spell/mind_gate
 	name = "Mind Gate"
@@ -245,11 +245,11 @@
 	lunatic.set_master(user.mind, user)
 	var/obj/item/clothing/neck/heretic_focus/moon_amulet/amulet = new(convertee.drop_location())
 	var/static/list/slots = list(
-		"neck" = ITEM_SLOT_NECK,
-		"hands" = ITEM_SLOT_HANDS,
-		"backpack" = ITEM_SLOT_BACKPACK,
-		"right pocket" = ITEM_SLOT_RPOCKET,
-		"left pocket" = ITEM_SLOT_RPOCKET,
+		LOCATION_NECK,
+		LOCATION_HANDS,
+		LOCATION_RPOCKET,
+		LOCATION_LPOCKET,
+		LOCATION_BACKPACK,
 	)
 	convertee.equip_in_one_of_slots(amulet, slots, qdel_on_fail = FALSE)
 	INVOKE_ASYNC(convertee, TYPE_PROC_REF(/mob, emote), "laugh")
@@ -271,7 +271,7 @@
 			continue
 		if(carbon_view.can_block_magic(MAGIC_RESISTANCE_MIND)) //Somehow a shitty piece of tinfoil is STILL able to hold out against the power of an ascended heretic.
 			continue
-		new moon_effect(get_turf(carbon_view))
+		new /obj/effect/temp_visual/moon_ringleader(get_turf(carbon_view))
 		if(carbon_view.has_status_effect(/datum/status_effect/confusion))
 			to_chat(carbon_view, span_big(span_hypnophrase("YOUR HEAD RATTLES WITH A THOUSAND VOICES JOINED IN A MADDENING CACOPHONY OF SOUND AND MUSIC. EVERY FIBER OF YOUR BEING SAYS 'RUN'.")))
 		carbon_view.adjust_confusion(2 SECONDS)
