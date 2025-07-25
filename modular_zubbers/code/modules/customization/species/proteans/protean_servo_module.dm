@@ -138,7 +138,7 @@
 	UnregisterSignal(thing, list(COMSIG_ITEM_DROPPED, COMSIG_MOVABLE_MOVED))
 
 /datum/movespeed_modifier/protean_servo/movement
-	multiplicative_slowdown = -0.5 //movement speed modifier
+	multiplicative_slowdown = -0.4 //movement speed modifier
 	blacklisted_movetypes = (FLYING|FLOATING)
 
 //Medical option
