@@ -1,3 +1,5 @@
+
+
 /*
  * Simple helper to generate a string of
  * garbled symbols up to [length] characters.
@@ -274,9 +276,6 @@
 
 			if(!purchase_knowledge(researched_path, shop_category))
 				return FALSE
-
-			if(!purchase_knowledge(researched_path, shop_category))
-				return FALSE
 			update_data_for_all_viewers()
 			log_heretic_knowledge("[key_name(owner)] gained knowledge: [initial(researched_path.name)]")
 			return TRUE
@@ -358,6 +357,7 @@
 			knowledge.on_lose(owner.current, src)
 			QDEL_NULL(researched_knowledge[knowledge_path][HKT_INSTANCE])
 
+	REMOVE_TRAIT(owner, TRAIT_SEE_BLESSED_TILES, REF(src))
 	owner.current.RemoveElement(/datum/element/leeching_walk/minor)
 	QDEL_NULL(heretic_path)
 
@@ -721,7 +721,7 @@
 /datum/antagonist/heretic/roundend_report()
 	var/list/parts = list()
 
-	//var/succeeded = TRUE // SKYRAT EDIT REMOVAL
+	var/succeeded = TRUE
 
 	parts += printplayer(owner)
 	parts += "<b>Sacrifices Made:</b> [total_sacrifices]"
@@ -729,18 +729,10 @@
 	if(length(objectives))
 		var/count = 1
 		for(var/datum/objective/objective as anything in objectives)
-			// SKYRAT EDIT START - No greentext
-			/*
 			if(!objective.check_completion())
 				succeeded = FALSE
 			parts += "<b>Objective #[count]</b>: [objective.explanation_text] [objective.get_roundend_success_suffix()]"
-			*/
-			parts += "<b>Objective #[count]</b>: [objective.explanation_text]"
-			// SKYRAT EDIT END - No greentext
 			count++
-
-	// SKYRAT EDIT START - No greentext
-	/*
 	if(feast_of_owls)
 		parts += span_greentext("Ascension Forsaken")
 	if(ascended)
@@ -751,8 +743,6 @@
 			parts += span_greentext("The heretic was successful, but did not ascend!")
 		else
 			parts += span_redtext("The heretic has failed.")
-	*/
-	// SKYRAT EDIT END - No greentext
 
 	parts += "<b>Knowledge Researched:</b> "
 

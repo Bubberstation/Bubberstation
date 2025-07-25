@@ -14,7 +14,6 @@ import type { BooleanLike } from 'tgui-core/react';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { logger } from '../logging';
-import { Rules } from './AntagInfoRules';
 import {
   type Objective,
   ObjectivePrintout,
@@ -120,12 +119,6 @@ const IntroductionSection = (props) => {
           <Stack vertical>
             <FlavorSection />
             <Stack.Divider />
-            {/* SKYRAT EDIT ADDITION START */}
-            <Stack.Item>
-              <Rules />
-            </Stack.Item>
-            {/* SKYRAT EDIT ADDITION END */}
-            <Stack.Divider />
             <GuideSection />
             <Stack.Divider />
             <InformationSection />
@@ -136,8 +129,8 @@ const IntroductionSection = (props) => {
                   fill
                   titleMessage={
                     can_change_objective
-                      ? 'Your OPFOR objectives are your primary ones, but in order to ascend, you have these tasks to fulfill' /* SKYRAT EDIT CHANGE - opfor objectives */
-                      : 'Your OPFOR objectives are your primary ones. Use your dark knowledge to fulfill your personal goal' /* SKYRAT EDIT CHANGE - opfor objectives  */
+                      ? 'In order to ascend, you have these tasks to fulfill'
+                      : 'Use your dark knowledge to fulfil your personal goal'
                   }
                   objectives={objectives}
                   objectiveFollowup={
@@ -390,8 +383,7 @@ const KnowledgeNode = (props: KnowledgeNodeProps) => {
           bold
           style={{ margin: '2px', borderRadius: '100%' }}
         >
-          {/* {isBuyable && (node.cost > 0 ? node.cost : 'FREE')} */}
-          {node.depth}
+          {isBuyable && (node.cost > 0 ? node.cost : 'FREE')}
         </Box>
       </Button>
       {!!node.ascension && (
