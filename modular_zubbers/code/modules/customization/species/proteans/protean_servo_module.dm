@@ -1,6 +1,3 @@
-///////////Protean Modules///////////////
-//Modules dedicated for use by proteans
-
 /////////Protean servo module////////
 //Module meant to give temporary passive buffs to wearer, gives three options with diffrent effects and shared cooldowns.
 
@@ -58,7 +55,7 @@
 
 /datum/action/cooldown/protean_servo/movement
 	name = "Enhance movement"
-	desc = "Aids your wearer's movement for few seconds but makes them clumsy while the effect persists!"
+	desc = "Aids your wearer's movement for few seconds but restrains their hands and makes them easier to get grabbed"
 	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "bci_electricity"
 
@@ -109,7 +106,7 @@
 
 /atom/movable/screen/alert/status_effect/protean_servo_movement
 	name = "Faster but clumsy"
-	desc = "You are being aided by your MOD suit but extra speed is hard to control."
+	desc = "Your MOD is making you faster but also easier to grab and unable to use hands."
 	icon = 'icons/mob/actions/actions_items.dmi'
 	icon_state = "bci_electricity"
 
@@ -121,16 +118,27 @@
 /datum/status_effect/protean_servo_movement/on_apply()
 	. = ..()
 	owner.add_movespeed_modifier(/datum/movespeed_modifier/protean_servo/movement)
-	owner.add_traits(list(TRAIT_CLUMSY),PROTEAN_SERVO_TRAIT) //main drawback to balance out this particular effect
+	for(var/obj/item/thing in owner.held_items)
+		ADD_TRAIT(thing, TRAIT_NODROP, PROTEAN_SERVO_TRAIT) //to prevent items droping out of wearer's hands
+		RegisterSignals(thing, list(COMSIG_ITEM_DROPPED, COMSIG_MOVABLE_MOVED), PROC_REF(clear_servo_trait)) //In case you somehow drop it anyway
+	owner.add_traits(list(TRAIT_RESTRAINED),PROTEAN_SERVO_TRAIT) //main drawback to balance out this particular effect
+	return ..()
 
 /datum/status_effect/protean_servo_movement/on_remove()
 	. = ..()
 	owner.remove_movespeed_modifier(/datum/movespeed_modifier/protean_servo/movement)
-	owner.remove_traits(list(TRAIT_CLUMSY),PROTEAN_SERVO_TRAIT)
+	owner.remove_traits(list(TRAIT_RESTRAINED),PROTEAN_SERVO_TRAIT)
+	for(var/obj/item/thing in owner.held_items)
+		clear_servo_trait(thing)
 	owner.visible_message(span_warning("[owner]'s movement return to normal as protean module runs out of power"))
 
+/datum/status_effect/protean_servo_movement/proc/clear_servo_trait(obj/item/thing, ...)
+	SIGNAL_HANDLER
+	REMOVE_TRAIT(thing, TRAIT_NODROP, PROTEAN_SERVO_TRAIT)
+	UnregisterSignal(thing, list(COMSIG_ITEM_DROPPED, COMSIG_MOVABLE_MOVED))
+
 /datum/movespeed_modifier/protean_servo/movement
-	multiplicative_slowdown = -0.4 //movement speed modifier
+	multiplicative_slowdown = -0.5 //movement speed modifier
 	blacklisted_movetypes = (FLYING|FLOATING)
 
 //Medical option
