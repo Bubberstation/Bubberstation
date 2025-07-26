@@ -7,7 +7,7 @@
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/romulus_technology/pistol.dmi'
 	icon_state = "m45a5"
 	fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/pistol_heavy.ogg'
-	fire_delay = 1 SECONDS
+	fire_delay = 3
 	special_mags = TRUE
 
 	accepted_magazine_type = /obj/item/ammo_box/magazine/cacoilgun
