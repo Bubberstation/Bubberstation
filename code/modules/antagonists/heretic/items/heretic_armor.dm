@@ -395,9 +395,11 @@
 	var/mob/living/carbon/victim = user
 	for(var/_limb in victim.bodyparts)
 		var/obj/item/bodypart/limb = _limb
-		limb.force_wound_upwards(/datum/wound/slash/flesh/critical)
-	for(var/obj/item/bodypart/limb as anything in victim.bodyparts)
-		victim.cause_wound_of_type_and_severity(WOUND_BLUNT, limb, WOUND_SEVERITY_CRITICAL)
+		// BUBBER CHANGE START
+		limb.force_wound_upwards(/datum/wound/slash/flesh/severe)
+	// for(var/obj/item/bodypart/limb as anything in victim.bodyparts)
+	// 	victim.cause_wound_of_type_and_severity(WOUND_BLUNT, limb, WOUND_SEVERITY_CRITICAL)\
+	// BUBBER CHANGE END
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch/flesh
 	icon_state = "flesh_armor"
@@ -443,8 +445,11 @@
 	var/list/things = victim.get_all_contents_ignoring((typecacheof(/obj/item/organ) + typecacheof(/obj/item/bodypart)))
 	things -= src
 	things -= victim
-	for(var/obj/item/to_delete in things)
-		qdel(to_delete)
+	// BUBBER EDIT START
+	for(var/obj/item/to_throw in things)
+		user.dropItemToGround(to_throw)
+		to_throw.safe_throw_at(get_edge_target_turf(get_turf(to_throw), pick(GLOB.alldirs)), 2, 1, spin = TRUE)
+	// BUBBER EDIT END
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch/lock
 	icon_state = "lock_armor"
