@@ -90,10 +90,6 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 			player_ranks += "Donator"
 		if(SSplayer_ranks.is_mentor(targetClient, admin_bypass = FALSE))
 			player_ranks += "Mentor"
-		// SPLURT EDIT: Remove Veteran. Veteran cut from the Bubberstation build.
-		// if(SSplayer_ranks.is_veteran(targetClient, admin_bypass = FALSE))
-		//	player_ranks += "Veteran"
-		//
 		if(SSplayer_ranks.is_vetted(targetClient, admin_bypass = FALSE))
 			player_ranks |= "Vetted"
 		.["ranks"] = length(player_ranks) ? player_ranks.Join(", ") : null
@@ -230,8 +226,8 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		if ("orbit")
 			if(!isobserver(adminMob))
 				SSadmin_verbs.dynamic_invoke_verb(adminClient, /datum/admin_verb/admin_ghost)
-			var/mob/dead/observer/O = adminClient.mob
-			O.ManualFollow(targetMob)
+			var/mob/dead/observer/orbiter = adminClient.mob
+			orbiter.ManualFollow(targetMob)
 
 		if ("jump_to")
 			SSadmin_verbs.dynamic_invoke_verb(adminClient, /datum/admin_verb/jump_to_mob, targetMob)
@@ -248,16 +244,16 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 			log_admin("[key_name(adminClient)] has sent [key_name(targetMob)] back to the Lobby.")
 			message_admins("[key_name(adminClient)] has sent [key_name(targetMob)] back to the Lobby.")
 
-			var/mob/dead/new_player/NP = new()
-			NP.ckey = targetMob.ckey
+			var/mob/dead/new_player/new_player = new()
+			new_player.ckey = targetMob.ckey
 			qdel(targetMob)
 
 		if ("select_equipment")
 			SSadmin_verbs.dynamic_invoke_verb(adminClient, /datum/admin_verb/select_equipment, targetMob)
 
 		if ("strip")
-			for(var/obj/item/I in targetMob)
-				targetMob.dropItemToGround(I, TRUE) //The TRUE forces all items to drop, since this is an admin undress.
+			for(var/obj/item/item in targetMob)
+				targetMob.dropItemToGround(item, TRUE) //The TRUE forces all items to drop, since this is an admin undress.
 
 		if ("cryo")
 			targetMob.vv_send_cryo()
