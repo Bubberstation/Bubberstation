@@ -64,12 +64,6 @@
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/on_hood_down(obj/item/clothing/head/hooded/hood)
 	hood_up = FALSE
 
-/obj/item/clothing/suit/hooded/cultrobes/eldritch/on_hood_up(obj/item/clothing/head/hooded/hood)
-	hood_up = TRUE
-
-/obj/item/clothing/suit/hooded/cultrobes/eldritch/on_hood_down(obj/item/clothing/head/hooded/hood)
-	hood_up = FALSE
-
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/examine(mob/user)
 	. = ..()
 	if(!IS_HERETIC(user))
@@ -160,7 +154,7 @@
 		if(istype(limb, /obj/item/bodypart/head) || istype(limb, /obj/item/bodypart/chest))
 			continue
 		sleep(10)
-		limb.dismember(BURN) // BUBBER CHANGE
+		limb.dismember(BURN)
 
 /datum/action/item_action/toggle/flames
 	button_icon = 'icons/effects/magic.dmi'
@@ -395,12 +389,8 @@
 	var/mob/living/carbon/victim = user
 	for(var/_limb in victim.bodyparts)
 		var/obj/item/bodypart/limb = _limb
-		// BUBBER CHANGE START
 		sleep(10)
 		limb.force_wound_upwards(/datum/wound/slash/flesh/severe)
-	// for(var/obj/item/bodypart/limb as anything in victim.bodyparts)
-	// 	victim.cause_wound_of_type_and_severity(WOUND_BLUNT, limb, WOUND_SEVERITY_CRITICAL)\
-	// BUBBER CHANGE END
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch/flesh
 	icon_state = "flesh_armor"
@@ -445,13 +435,11 @@
 	var/mob/living/carbon/victim = user
 	var/list/things = victim.get_all_contents_ignoring((typecacheof(/obj/item/organ) + typecacheof(/obj/item/bodypart)))
 	things -= victim
-	// BUBBER EDIT START
 	var/turf/our_turf = get_turf(victim)
 	var/list/turf/nearby_turfs = RANGE_TURFS(5, our_turf) - our_turf
 	for(var/obj/item/to_throw in things)
 		user.dropItemToGround(to_throw)
 		to_throw.safe_throw_at(pick(nearby_turfs), 2, 1, spin = TRUE)
-	// BUBBER EDIT END
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch/lock
 	icon_state = "lock_armor"
@@ -637,7 +625,11 @@
 		addtimer(CALLBACK(src, PROC_REF(kill_wearer), wearer), 5 SECONDS)
 	return SUCCESSFUL_BLOCK
 
-/obj/item/clothing/suit/hooded/cultrobes/eldritch/moon/proc/item_attack_response(datum/source, signal_message, signal_self, signal_blind)
+/obj/item/clothing/suit/hooded/cultrobes/eldritch/moon/proc/item_attack_response(mob/living/user)
+	var/visible_message = pick(visible_message_list)
+	var/self_message = pick(self_message_list)
+	var/blind_message = pick(blind_message_list)
+	user.visible_message(visible_message, self_message, blind_message)
 	//XANTODO Figure this out
 	return SIGNAL_MESSAGE_MODIFIED
 
@@ -695,12 +687,6 @@
 	var/obj/item/bodypart/head/to_explode = human_wearer.get_bodypart(BODY_ZONE_HEAD)
 	if(!to_explode)
 		return
-	// BUBBER REMOVAL START
-	// if(brain)
-	// 	brain.Remove(human_wearer, special = TRUE, movement_flags = NO_ID_TRANSFER)
-	// 	brain.zone = BODY_ZONE_CHEST
-	// 	brain.Insert(human_wearer, special = TRUE, movement_flags = NO_ID_TRANSFER)
-	// BUBBER REMOVAL END
 	human_wearer.visible_message(span_warning("[human_wearer]'s head splatters with a sickening crunch!"), ignored_mobs = list(human_wearer))
 	new /obj/effect/gibspawner/generic(get_turf(human_wearer), human_wearer)
 	to_explode.dismember(dam_type = BRUTE, silent = TRUE)
