@@ -446,6 +446,7 @@
 	var/list/things = victim.get_all_contents_ignoring((typecacheof(/obj/item/organ) + typecacheof(/obj/item/bodypart)))
 	things -= victim
 	// BUBBER EDIT START
+	var/turf/our_turf = get_turf(victim)
 	var/list/turf/nearby_turfs = RANGE_TURFS(5, our_turf) - our_turf
 	for(var/obj/item/to_throw in things)
 		user.dropItemToGround(to_throw)
@@ -875,7 +876,7 @@
 
 	for(var/obj/item/organ/to_puke as anything in organ_list)
 		sleep(50) // XANTODO, timer system to make this not cringe
-		victim.vomit(VOMIT_CATEGORY_BLOOD, force = TRUE)
+		victim.vomit(MOB_VOMIT_BLOOD | MOB_VOMIT_MESSAGE | MOB_VOMIT_HARM | MOB_VOMIT_FORCE)
 		victim.spew_organ(rand(4, 6))
 
 /*
