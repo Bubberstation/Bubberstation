@@ -58,7 +58,7 @@
 /datum/quirk/unique_blood_color/proc/change_blood_color(datum/source, mob/living/carbon/human/quirked, override, update_cached_blood_dna_info)
 	SIGNAL_HANDLER
 ///Making the new blood type
-	var/datum/blood_type/new_type = get_blood_type("[quirked.dna.blood_type]_alt_[override]") //for example, A-_alt_#69af19
+	var/datum/blood_type/new_type = get_blood_type("[quirked.dna.blood_type]_[override]") //for example, A-_alt_#69af19
 ///check if blood type already exists before making it new
 	if(isnull(new_type))
 		var/recolor_type = quirked.dna.blood_type.recolor_blood_type

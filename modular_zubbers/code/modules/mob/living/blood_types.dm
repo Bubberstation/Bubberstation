@@ -1,7 +1,10 @@
 /datum/blood_type
 	///blood type to be edited for change_blood_color
 	var/recolor_blood_type //datum typepath for the alt_color version of the blood type
-	var/alternate_of //placeholder var used individually for populating blood type compatabilities in alt-color or etc
+//	var/alternate_of //placeholder var used individually for populating blood type compatabilities in alt-color or etc
+
+/datum/blood_type/proc/get_compatibility()
+	return compatible_types
 
 // For Skrell
 /datum/blood_type/copper
@@ -69,8 +72,8 @@
 		readout += "[i], "
 	testing("id_as_list contains [readout]")
 	var/datum/blood_type/filter = GLOB.blood_types[alternate_of]
-	testing("invoking mass_edit_blood_compatability() for [id] and filter as [alternate_of]")
-	mass_edit_blood_compatability(to_append = id_as_list, filter = filter)
+	testing("invoking mass_edit_blood_compatibility() for [id] and filter as [alternate_of]")
+	mass_edit_blood_compatibility(to_append = id_as_list, filter = filter)
 
 /datum/blood_type/alt_color/type_key()
 	return "[name]_alt_[color]"
@@ -101,9 +104,9 @@
 	for(var/i as anything in id_as_list)
 		readout += "[i], "
 	testing("id_as_list contains [readout]")
-	var/datum/blood_type/filter = GLOB.blood_types[alternate_of]
-	testing("invoking mass_edit_blood_compatability() for [id] and filter as [alternate_of]")
-	mass_edit_blood_compatability(to_append = id_as_list, filter = filter)
+	var/datum/blood_type/filter = GLOB.blood_types[parent_type]
+	testing("invoking mass_edit_blood_compatibility() for [id] and filter as [filter]")
+	mass_edit_blood_compatibility(to_append = id_as_list, filter = filter)
 
 ///A+
 /datum/blood_type/human/a_plus
@@ -239,25 +242,23 @@
 
 /datum/blood_type/lizard/alt_color
 	/* root_abstract_type = /datum/blood_type/lizard/alt_color */
-	alternate_of = /datum/blood_type/lizard
 
 /datum/blood_type/lizard/alt_color/New(override, datum/blood_type/orig)
-	if(!isnull(override))
-		color = override
-		id = type_key()
-	else
-		CRASH("attempt to generate alt-color blood type failed, override arg is null")
+	var/old_name = orig.name
+	name = "[old_name] ([override])"
+	color = override
+	id = type_key(old_name, override)
 	testing("created alternate [id]")
-	var/list/to_append = list(recolor_blood_type,)
+	var/list/to_append = list(type,)
 	var/readout = ""
 	for(var/i as anything in to_append)
 		readout += "[i],"
-	testing("invoking mass_edit_blood_compatability() for [readout] and filter as [alternate_of]")
-	mass_edit_blood_compatability(to_append = to_append, filter = alternate_of)
+	testing("invoking mass_edit_blood_compatibility() for [readout] and filter as [orig]")
+	mass_edit_blood_compatibility(to_append = to_append, filter = orig)
 	compatible_types = LAZYCOPY(orig?.compatible_types)
 
-/datum/blood_type/lizard/alt_color/type_key()
-	return "[name]_alt_[color]"
+/datum/blood_type/lizard/alt_color/type_key(old_name, override)
+	return "[old_name]_[override]"
 
 ///LE
 /datum/blood_type/ethereal
