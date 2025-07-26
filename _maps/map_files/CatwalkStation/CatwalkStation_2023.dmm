@@ -20753,6 +20753,10 @@
 "geK" = (
 /turf/open/floor/iron,
 /area/station/cargo/storage)
+"geL" = (
+/obj/machinery/pdapainter/medbay,
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/cmo)
 "geM" = (
 /obj/structure/lattice/catwalk,
 /turf/open/openspace,
@@ -27667,10 +27671,6 @@
 /obj/structure/lattice/catwalk,
 /turf/open/openspace,
 /area/station/security/checkpoint/supply)
-"igd" = (
-/obj/machinery/pdapainter/medbay,
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/cmo)
 "ige" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -44326,12 +44326,6 @@
 "ncO" = (
 /turf/open/floor/glass/reinforced,
 /area/station/hallway/secondary/entry)
-"ncW" = (
-/obj/machinery/light/directional/south,
-/obj/structure/extinguisher_cabinet/directional/south,
-/obj/item/kirbyplants/random,
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/cmo)
 "ndc" = (
 /obj/effect/turf_decal/trimline/yellow/filled/corner{
 	dir = 1
@@ -57392,6 +57386,22 @@
 /obj/effect/landmark/start/hangover,
 /turf/open/floor/grass,
 /area/station/hallway/primary/central)
+"qTQ" = (
+/obj/structure/table,
+/obj/item/storage/box/hug/plushes{
+	pixel_x = -11;
+	pixel_y = 16
+	},
+/obj/item/toy/figure/mime{
+	pixel_x = -6;
+	pixel_y = 5
+	},
+/obj/item/toy/figure/clown{
+	pixel_x = 4;
+	pixel_y = 3
+	},
+/turf/open/floor/eighties,
+/area/station/construction/storage_wing)
 "qTX" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/computer/security{
@@ -70962,6 +70972,12 @@
 	},
 /turf/open/openspace,
 /area/station/maintenance/port/aft)
+"uUK" = (
+/obj/machinery/light/directional/south,
+/obj/structure/extinguisher_cabinet/directional/south,
+/obj/item/kirbyplants/random,
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/cmo)
 "uUL" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 4
@@ -73592,26 +73608,6 @@
 /obj/structure/disposalpipe/junction,
 /turf/open/floor/iron/large,
 /area/station/hallway/primary/central)
-"vJP" = (
-/obj/structure/table,
-/obj/item/toy/plush/goatplushie{
-	pixel_x = 6;
-	pixel_y = 13
-	},
-/obj/item/storage/box/hug/plushes{
-	pixel_x = -11;
-	pixel_y = 16
-	},
-/obj/item/toy/figure/mime{
-	pixel_x = -6;
-	pixel_y = 5
-	},
-/obj/item/toy/figure/clown{
-	pixel_x = 4;
-	pixel_y = 3
-	},
-/turf/open/floor/eighties,
-/area/station/construction/storage_wing)
 "vJV" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -166916,7 +166912,7 @@ nlm
 nlm
 nlm
 rDv
-vJP
+qTQ
 rDv
 rDv
 rDv
@@ -178035,7 +178031,7 @@ gZq
 nde
 wwx
 ouo
-ncW
+uUK
 jKX
 jKX
 kXI
@@ -178292,7 +178288,7 @@ yfv
 nuU
 kwR
 gGJ
-igd
+geL
 jKX
 dIT
 kXI
