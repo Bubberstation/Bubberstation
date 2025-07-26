@@ -1,5 +1,5 @@
 #define RECORDS_TEXT_CHAR_REQUIREMENT 15
-#define JOB_UNAVAILABLE_FLAVOUR_SILICON (JOB_UNAVAILABLE_AUGMENT + 1)
+#define JOB_UNAVAILABLE_FLAVOUR_SILICON (JOB_UNAVAILABLE_NOHANDS + 1)
 //A proc to determine if a job is a silicon job.
 #define is_silicon_job(A) (istype(A, /datum/job/ai) || istype(A, /datum/job/cyborg))
 

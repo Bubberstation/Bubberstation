@@ -1008,6 +1008,10 @@ SUBSYSTEM_DEF(job)
 		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_AUGMENT)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_AUGMENT
 
+	if (!possible_job.has_enough_hands(player.client.prefs))
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_NOHANDS)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		return JOB_UNAVAILABLE_NOHANDS
+
 
 	//SKYRAT EDIT END
 
