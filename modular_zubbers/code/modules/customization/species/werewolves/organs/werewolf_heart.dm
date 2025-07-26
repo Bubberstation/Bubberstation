@@ -13,7 +13,6 @@
 	var/mob/living/carbon/human/human_owner = organ_owner
 
 	RegisterSignal(human_owner, COMSIG_MOB_APPLY_DAMAGE_MODIFIERS, PROC_REF(modify_damage))
-	RegisterSignal(human_owner, COMSIG_MOB_AFTER_APPLY_DAMAGE, PROC_REF(do_block_effect))
 
 /obj/item/organ/heart/werewolf/on_mob_remove(mob/living/carbon/organ_owner, special)
 	. = ..()
@@ -31,7 +30,7 @@
  */
 /obj/item/organ/heart/werewolf/proc/modify_damage(mob/living/carbon/human/source, list/damage_mods, damage_amount, damagetype, def_zone, sharpness, attack_direction, obj/item/attacking_item)
 	SIGNAL_HANDLER
-	if(damagetype = BRUTE)
+	if(source.damagetype = BRUTE)
 		damage_mods += 0.5 // 50% damage resistance on brute attacks.
-	else if(damagetype = BURN)
+	else if(source.damagetype = BURN)
 		damage_mods += 0.8 // 20% damage resistance on burn/energy attacks.
