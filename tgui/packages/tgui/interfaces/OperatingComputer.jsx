@@ -129,7 +129,7 @@ const PatientStateView = (props) => {
             </LabeledList.Item>
             {procedure.chems_needed && (
               <LabeledList.Item label="Required Chems">
-                <NoticeBox success={procedure.chems_present ? true : false}>
+                <NoticeBox success={!!procedure.chems_present}>
                   {procedure.chems_needed}
                 </NoticeBox>
               </LabeledList.Item>
@@ -141,7 +141,7 @@ const PatientStateView = (props) => {
             )}
             {procedure.alt_chems_needed && (
               <LabeledList.Item label="Required Chems">
-                <NoticeBox success={procedure.alt_chems_present ? true : false}>
+                <NoticeBox success={!!procedure.alt_chems_present}>
                   {procedure.alt_chems_needed}
                 </NoticeBox>
               </LabeledList.Item>
