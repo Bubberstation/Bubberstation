@@ -60,13 +60,14 @@
 
 /datum/armor/berserker_gatsu
 	melee = 40
-	bullet = 30
-	laser = 15
-	energy = 25
+	bullet = 10
+	laser = -15
+	energy = -25
 	bomb = 70
 	bio = 70
 	fire = 100
 	acid = 100
+	wound = -15
 
 /datum/armor/drake_empowerment //Modular Override: nerfs beserker armour so I can keep this armour balanced
 	laser = 10
