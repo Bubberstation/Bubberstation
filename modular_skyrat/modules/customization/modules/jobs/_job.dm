@@ -80,22 +80,27 @@
 //Security
 /datum/job/security_officer
 	banned_quirks = list(SEC_RESTRICTED_QUIRKS)
+	banned_augments = list(SEC_RESTRICTED_AUGMENTS)
 	is_hand_required = TRUE
 
 /datum/job/detective
 	banned_quirks = list(SEC_RESTRICTED_QUIRKS)
+	banned_augments = list(SEC_RESTRICTED_AUGMENTS)
 	is_hand_required = TRUE
 
 /datum/job/warden
 	banned_quirks = list(SEC_RESTRICTED_QUIRKS)
+	banned_augments = list(SEC_RESTRICTED_AUGMENTS)
 	is_hand_required = TRUE
 
 /datum/job/blueshield
 	banned_quirks = list(SEC_RESTRICTED_QUIRKS)
+	banned_augments = list(SEC_RESTRICTED_AUGMENTS)
 	is_hand_required = TRUE
 
 /datum/job/corrections_officer
 	banned_quirks = list(SEC_RESTRICTED_QUIRKS)
+	banned_augments = list(SEC_RESTRICTED_AUGMENTS)
 	is_hand_required = TRUE
 
 // Command
