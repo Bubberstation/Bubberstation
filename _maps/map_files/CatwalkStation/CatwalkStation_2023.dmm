@@ -29027,6 +29027,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/engine/hull/air,
 /area/station/construction/storage_wing)
+"iBz" = (
+/obj/structure/cable,
+/obj/machinery/vending/sustenance{
+	req_access = list("command")
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small/directional/north,
+/turf/open/floor/plating,
+/area/station/maintenance/central)
 "iBG" = (
 /obj/structure/broken_flooring/singular/directional/south,
 /turf/open/floor/plating,
@@ -57386,22 +57395,6 @@
 /obj/effect/landmark/start/hangover,
 /turf/open/floor/grass,
 /area/station/hallway/primary/central)
-"qTQ" = (
-/obj/structure/table,
-/obj/item/storage/box/hug/plushes{
-	pixel_x = -11;
-	pixel_y = 16
-	},
-/obj/item/toy/figure/mime{
-	pixel_x = -6;
-	pixel_y = 5
-	},
-/obj/item/toy/figure/clown{
-	pixel_x = 4;
-	pixel_y = 3
-	},
-/turf/open/floor/eighties,
-/area/station/construction/storage_wing)
 "qTX" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/computer/security{
@@ -64179,13 +64172,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/station/commons/dorms)
-"sVj" = (
-/obj/structure/cable,
-/obj/machinery/vending/sustenance,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/light/small/directional/north,
-/turf/open/floor/plating,
-/area/station/maintenance/central)
 "sVn" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 9
@@ -73608,6 +73594,22 @@
 /obj/structure/disposalpipe/junction,
 /turf/open/floor/iron/large,
 /area/station/hallway/primary/central)
+"vJP" = (
+/obj/structure/table,
+/obj/item/storage/box/hug/plushes{
+	pixel_x = -11;
+	pixel_y = 16
+	},
+/obj/item/toy/figure/mime{
+	pixel_x = -6;
+	pixel_y = 5
+	},
+/obj/item/toy/figure/clown{
+	pixel_x = 4;
+	pixel_y = 3
+	},
+/turf/open/floor/eighties,
+/area/station/construction/storage_wing)
 "vJV" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -166912,7 +166914,7 @@ nlm
 nlm
 nlm
 rDv
-qTQ
+vJP
 rDv
 rDv
 rDv
@@ -182628,7 +182630,7 @@ uWi
 uWi
 uWi
 nNj
-sVj
+iBz
 uyn
 jni
 nNj
