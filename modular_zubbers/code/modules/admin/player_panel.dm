@@ -49,11 +49,9 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 	.["admin_mob_type"] = user.client?.mob.type
 	.["godmode"] = HAS_TRAIT(user, TRAIT_GODMODE)
 
-	var/mob/living/L = targetMob
-	if (istype(L))
-		.["is_frozen"] = L.admin_frozen
-		.["is_slept"] = L.admin_sleeping
-		.["mob_scale"] = L.current_size
+	var/mob/living/livingmob = targetMob
+	if (istype(livingmob))
+		.["mob_scale"] = livingmob.current_size
 
 	if(targetMob.client)
 		targetClient = targetMob.client
@@ -70,7 +68,6 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 /datum/player_panel/ui_static_data(mob/user)
 	. = list()
 
-	.["transformables"] = GLOB.pp_transformables
 	.["glob_limbs"] = GLOB.pp_limbs
 	.["glob_mute_bits"] = GLOB.mute_bits
 	.["current_time"] = time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")
@@ -174,17 +171,17 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 			if (sender == "Voice in head")
 				to_chat(targetMob, "<i>You hear a voice in your head... <b>[msg]</i></b>")
 			else
-				var/mob/living/carbon/human/H = targetMob
+				var/mob/living/carbon/human/humanmob = targetMob
 
-				if(!istype(H))
+				if(!istype(humanmob))
 					to_chat(adminClient, "The person you are trying to contact is not human. Unsent message: [msg]")
 					return
 
-				if(!istype(H.ears, /obj/item/radio/headset))
+				if(!istype(humanmob.ears, /obj/item/radio/headset))
 					to_chat(adminClient, "The person you are trying to contact is not wearing a headset. Unsent message: [msg]")
 					return
 
-				to_chat(H, "You hear something crackle in your ears for a moment before a voice speaks.  \"Please stand by for a message from [sender == RADIO_CHANNEL_SYNDICATE ? "your benefactor" : "Central Command"].  Message as follows[sender == RADIO_CHANNEL_SYNDICATE ? ", agent." : ":"] <span class='bold'>[msg].</span> Message ends.\"")
+				to_chat(humanmob, "You hear something crackle in your ears for a moment before a voice speaks.  \"Please stand by for a message from [sender == RADIO_CHANNEL_SYNDICATE ? "your benefactor" : "Central Command"].  Message as follows[sender == RADIO_CHANNEL_SYNDICATE ? ", agent." : ":"] <span class='bold'>[msg].</span> Message ends.\"")
 
 
 			log_admin("SubtlePM ([sender]): [key_name(adminClient)] -> [key_name(targetMob)] : [msg]")
@@ -238,16 +235,6 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 
 		if ("jump_to")
 			SSadmin_verbs.dynamic_invoke_verb(adminClient, /datum/admin_verb/jump_to_mob, targetMob)
-
-		if ("freeze")
-			var/mob/living/L = targetMob
-			if (istype(L))
-				L.toggle_admin_freeze(adminClient)
-
-		if ("sleep")
-			var/mob/living/L = targetMob
-			if (istype(L))
-				L.toggle_admin_sleep(adminClient)
 
 		if ("lobby")
 			if(!isobserver(targetMob))
@@ -397,25 +384,25 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 			if(!params["limbs"] || !ishuman(targetMob))
 				return
 
-			var/mob/living/carbon/human/H = targetMob
+			var/mob/living/carbon/human/humanmob = targetMob
 
 			for(var/limb in params["limbs"])
 				if (!limb)
 					continue
 
 				if (params["delimb_mode"])
-					var/obj/item/bodypart/L = H.get_bodypart(limb)
-					if (!L)
+					var/obj/item/bodypart/part = humanmob.get_bodypart(limb)
+					if (!part)
 						continue
-					L.dismember()
-					playsound(H, 'sound/effects/cartoon_sfx/cartoon_pop.ogg', 70)
+					part.dismember()
+					playsound(humanmob, 'sound/effects/cartoon_sfx/cartoon_pop.ogg', 70)
 				else
-					H.regenerate_limb(limb)
+					humanmob.regenerate_limb(limb)
 
 		if ("scale")
-			var/mob/living/L = targetMob
-			if(!isnull(params["new_scale"]) && istype(L))
-				L.vv_edit_var("current_size", params["new_scale"])
+			var/mob/living/livingmob = targetMob
+			if(!isnull(params["new_scale"]) && istype(livingmob))
+				livingmob.vv_edit_var("current_size", params["new_scale"])
 
 		if ("explode")
 			var/power = text2num(params["power"])
@@ -450,8 +437,8 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 				message_admins(span_adminnotice("<b> LocalNarrate: [key_name_admin(adminClient)] at [ADMIN_VERBOSEJMP(adminMob)]:</b> [params["message"]]<BR>"))
 
 		if ("languages")
-			var/datum/language_holder/H = targetMob.get_language_holder()
-			H.open_language_menu(adminMob)
+			var/datum/language_holder/holder = targetMob.get_language_holder()
+			holder.open_language_menu(adminMob)
 
 		if ("traitor_panel")
 			SSadmin_verbs.dynamic_invoke_verb(adminClient, /datum/admin_verb/show_traitor_panel, targetMob)
@@ -480,14 +467,14 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 				SSadmin_verbs.dynamic_invoke_verb(adminClient, /datum/admin_verb/play_direct_mob_sound, soundFile, targetMob)
 
 		if ("apply_client_quirks")
-			var/mob/living/carbon/human/H = targetMob
-			if(!istype(H))
+			var/mob/living/carbon/human/humanmob = targetMob
+			if(!istype(humanmob))
 				to_chat(adminClient, "this can only be used on instances of type /mob/living/carbon/human.", confidential = TRUE)
 				return
-			if(!H.client)
-				to_chat(adminClient, "[H] has no client!", confidential = TRUE)
+			if(!humanmob.client)
+				to_chat(adminClient, "[humanmob] has no client!", confidential = TRUE)
 				return
-			SSquirks.AssignQuirks(H, H.client)
-			log_admin("[key_name(adminClient)] applied client quirks to [key_name(H)].")
-			message_admins(span_adminnotice("[key_name_admin(adminClient)] applied client quirks to [key_name_admin(H)]."))
+			SSquirks.AssignQuirks(humanmob, humanmob.client)
+			log_admin("[key_name(adminClient)] applied client quirks to [key_name(humanmob)].")
+			message_admins(span_adminnotice("[key_name_admin(adminClient)] applied client quirks to [key_name_admin(humanmob)]."))
 
