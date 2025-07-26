@@ -30,7 +30,7 @@
  */
 /obj/item/organ/heart/werewolf/proc/modify_damage(mob/living/carbon/human/source, list/damage_mods, damage_amount, damagetype, def_zone, sharpness, attack_direction, obj/item/attacking_item)
 	SIGNAL_HANDLER
-	if(source.damagetype = BRUTE)
+	if(damagetype == BRUTE)
 		damage_mods += 0.5 // 50% damage resistance on brute attacks.
-	else if(source.damagetype = BURN)
+	else if(damagetype == BURN)
 		damage_mods += 0.8 // 20% damage resistance on burn/energy attacks.
