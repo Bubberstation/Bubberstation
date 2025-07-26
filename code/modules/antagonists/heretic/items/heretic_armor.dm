@@ -159,8 +159,8 @@
 	for(var/obj/item/bodypart/limb as anything in victim.bodyparts)
 		if(istype(limb, /obj/item/bodypart/head) || istype(limb, /obj/item/bodypart/chest))
 			continue
-		limb.drop_limb()
-		limb.dust()
+		sleep(10)
+		limb.dismember(BURN) // BUBBER CHANGE
 
 /datum/action/item_action/toggle/flames
 	button_icon = 'icons/effects/magic.dmi'
@@ -396,6 +396,7 @@
 	for(var/_limb in victim.bodyparts)
 		var/obj/item/bodypart/limb = _limb
 		// BUBBER CHANGE START
+		sleep(10)
 		limb.force_wound_upwards(/datum/wound/slash/flesh/severe)
 	// for(var/obj/item/bodypart/limb as anything in victim.bodyparts)
 	// 	victim.cause_wound_of_type_and_severity(WOUND_BLUNT, limb, WOUND_SEVERITY_CRITICAL)\
@@ -443,12 +444,12 @@
 		return
 	var/mob/living/carbon/victim = user
 	var/list/things = victim.get_all_contents_ignoring((typecacheof(/obj/item/organ) + typecacheof(/obj/item/bodypart)))
-	things -= src
 	things -= victim
 	// BUBBER EDIT START
+	var/list/turf/nearby_turfs = RANGE_TURFS(5, our_turf) - our_turf
 	for(var/obj/item/to_throw in things)
 		user.dropItemToGround(to_throw)
-		to_throw.safe_throw_at(get_edge_target_turf(get_turf(to_throw), pick(GLOB.alldirs)), 2, 1, spin = TRUE)
+		to_throw.safe_throw_at(pick(nearby_turfs), 2, 1, spin = TRUE)
 	// BUBBER EDIT END
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch/lock
@@ -693,15 +694,16 @@
 	var/obj/item/bodypart/head/to_explode = human_wearer.get_bodypart(BODY_ZONE_HEAD)
 	if(!to_explode)
 		return
-	var/obj/item/organ/brain/brain = human_wearer.get_organ_slot(ORGAN_SLOT_BRAIN)
-	if(brain)
-		brain.Remove(human_wearer, special = TRUE, movement_flags = NO_ID_TRANSFER)
-		brain.zone = BODY_ZONE_CHEST
-		brain.Insert(human_wearer, special = TRUE, movement_flags = NO_ID_TRANSFER)
+	// BUBBER REMOVAL START
+	// if(brain)
+	// 	brain.Remove(human_wearer, special = TRUE, movement_flags = NO_ID_TRANSFER)
+	// 	brain.zone = BODY_ZONE_CHEST
+	// 	brain.Insert(human_wearer, special = TRUE, movement_flags = NO_ID_TRANSFER)
+	// BUBBER REMOVAL END
 	human_wearer.visible_message(span_warning("[human_wearer]'s head splatters with a sickening crunch!"), ignored_mobs = list(human_wearer))
 	new /obj/effect/gibspawner/generic(get_turf(human_wearer), human_wearer)
-	to_explode.drop_organs()
 	to_explode.dismember(dam_type = BRUTE, silent = TRUE)
+	to_explode.drop_organs()
 	qdel(to_explode)
 
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/moon/process(seconds_per_tick)
@@ -872,8 +874,8 @@
 		return
 
 	for(var/obj/item/organ/to_puke as anything in organ_list)
-		sleep(5) // XANTODO, timer system to make this not cringe
-		victim.vomit()
+		sleep(50) // XANTODO, timer system to make this not cringe
+		victim.vomit(VOMIT_CATEGORY_BLOOD, force = TRUE)
 		victim.spew_organ(rand(4, 6))
 
 /*
