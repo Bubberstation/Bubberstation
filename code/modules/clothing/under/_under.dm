@@ -9,9 +9,10 @@
 	interaction_flags_click = NEED_DEXTERITY
 	armor_type = /datum/armor/clothing_under
 	supports_variations_flags = CLOTHING_DIGITIGRADE_MASK
+	digitigrade_greyscale_config_worn = /datum/greyscale_config/jumpsuit/worn_digi
 	equip_sound = 'sound/items/equip/jumpsuit_equip.ogg'
-	drop_sound = 'sound/items/handling/cloth/cloth_drop1.ogg'
-	pickup_sound = 'sound/items/handling/cloth/cloth_pickup1.ogg'
+	drop_sound = 'sound/items/handling/cloth_drop.ogg'
+	pickup_sound = 'sound/items/handling/cloth_pickup.ogg'
 	limb_integrity = 30
 	interaction_flags_click = ALLOW_RESTING
 
@@ -69,7 +70,7 @@
 
 	var/changed = FALSE
 
-	if((isnull(held_item) || held_item == src) && has_sensor == HAS_SENSORS)
+	if(isnull(held_item) && has_sensor == HAS_SENSORS)
 		context[SCREENTIP_CONTEXT_RMB] = "Toggle suit sensors"
 		context[SCREENTIP_CONTEXT_CTRL_LMB] = "Set suit sensors to tracking"
 		changed = TRUE
@@ -100,18 +101,12 @@
 
 	if(damaged_clothes)
 		. += mutable_appearance('icons/effects/item_damage.dmi', "damageduniform")
+	if(GET_ATOM_BLOOD_DNA_LENGTH(src))
+		. += mutable_appearance(colored_blood_icon('icons/effects/blood.dmi'), "uniformblood", color = blood_DNA_to_color(), blend_mode = blood_DNA_to_blend()) // SPLURT EDIT - Colored Blood
 	if(accessory_overlay)
 		. += modify_accessory_overlay() // SKYRAT EDIT CHANGE - ORIGINAL: . += accessory_overlay
 
-/obj/item/clothing/under/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands = FALSE, icon_file)
-	. = ..()
-	if (isinhands)
-		return
-	var/blood_overlay = get_blood_overlay("uniform")
-	if (blood_overlay)
-		. += blood_overlay
-
-/obj/item/clothing/under/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
+/obj/item/clothing/under/attackby(obj/item/attacking_item, mob/user, params)
 	if(repair_sensors(attacking_item, user))
 		return TRUE
 
@@ -121,14 +116,6 @@
 	return ..()
 
 /obj/item/clothing/under/attack_hand_secondary(mob/user, params)
-	. = ..()
-	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
-		return
-
-	toggle()
-	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-
-/obj/item/clothing/under/attack_self_secondary(mob/user, modifiers)
 	. = ..()
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
 		return
@@ -156,10 +143,6 @@
 			adjusted = DIGITIGRADE_STYLE
 			update_appearance()
 		*/ // SKYRAT EDIT END
-
-/obj/item/clothing/under/generate_digitigrade_icons(icon/base_icon, greyscale_colors)
-	var/icon/legs = icon(SSgreyscale.GetColoredIconByType(/datum/greyscale_config/digitigrade, greyscale_colors), "jumpsuit_worn")
-	return replace_icon_legs(base_icon, legs)
 
 /obj/item/clothing/under/equipped(mob/living/user, slot)
 	..()

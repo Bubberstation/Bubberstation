@@ -1,99 +1,79 @@
-/datum/reagent/mutationtoxin/akula
-	name = "Akula Mutation Toxin"
-	description = "An akula toxin."
-	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/akula
-	taste_description = "fishy"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
+/datum/reagent/blood
+	//data = /datum/reagent/blood::data + list("bloodcolor" = BLOOD_COLOR_STANDARD,"bloodblend" = BLEND_MULTIPLY) // recursive constant reference: data
+	color = BLOOD_COLOR_STANDARD
 
-/datum/reagent/mutationtoxin/dwarf
-	name = "Dwarf Mutation Toxin"
-	description = "A dwarf toxin."
-	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/dwarf
-	taste_description = "earthy"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
-
-/datum/reagent/mutationtoxin/felinid/primitive
-	name = "Ice Walker Mutation Toxin"
-	description = "A ice Walker toxin."
-	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/human/felinid/primitive
-	taste_description = "something ancient and cold"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
-
-/datum/reagent/mutationtoxin/ghoul
-	name = "Ghoul Mutation Toxin"
-	description = "A ghoul toxin."
-	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/ghoul
-	taste_description = "rotting flesh"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
-
-/datum/reagent/mutationtoxin/hemophage
-	name = "Hemophage Corruption Virus"
-	description = "A hemophage virus."
-	color = BLOOD_COLOR_RED
-	taste_description = "blood"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
-
-/datum/reagent/mutationtoxin/hemophage/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message = TRUE, touch_protection = 0)
+/datum/reagent/blood/New()
 	. = ..()
-	if((methods & (PATCH|INGEST|INJECT|INHALE)) || ((methods & (VAPOR|TOUCH)) && prob(min(reac_volume,100)*(1 - touch_protection))))
-		exposed_mob.ForceContractDisease(new /datum/disease/transformation/hemophage(), FALSE, TRUE)
+	if(!data["bloodcolor"])
+		data["bloodcolor"] = BLOOD_COLOR_STANDARD
+	if(!data["bloodblend"])
+		data["bloodblend"] = BLEND_MULTIPLY
 
-/datum/reagent/mutationtoxin/monkey
-	name = "Monkey Mutation Toxin"
-	description = "A monkey toxin."
-	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/monkey
-	taste_description = "bananas"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
+/**
+ * This is a special reagent used by 'alternative food' quirks
+ * It functionally matches Nutriment, but can be processed with liverless metabolism
+ * It should not be used for any other purpose outside quirks
+ */
+/datum/reagent/consumable/notriment
+	name = "Strange Nutriment"
+	description = "An exotic form of nutriment produced by unusual digestive systems."
+	reagent_state = /datum/reagent/consumable/nutriment::reagent_state
+	nutriment_factor = /datum/reagent/consumable/nutriment::nutriment_factor
+	color = /datum/reagent/consumable/nutriment::color
+	// Allow processing without a liver
+	self_consuming = TRUE
 
-/datum/reagent/mutationtoxin/skrell
-	name = "Skrell Mutation Toxin"
-	description = "A skrell toxin."
-	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/skrell
-	taste_description = "squid"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
+// Reagent process: Hell Water
+/datum/reagent/hellwater/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
+	// Check for Cursed Blood
+	if(HAS_TRAIT(affected_mob, TRAIT_CURSED_BLOOD))
+		// Send signal for processing reagent
+		SEND_SIGNAL(affected_mob, COMSIG_REAGENT_PROCESS_HELLWATER, src, seconds_per_tick, times_fired)
 
-/datum/reagent/mutationtoxin/tajaran
-	name = "Tajaran Mutation Toxin"
-	description = "A tajaran toxin."
-	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/tajaran
-	taste_description = "toxoplasmosis"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
+		// Block other effects
+		return
 
-/datum/reagent/mutationtoxin/teshari
-	name = "Teshari Mutation Toxin"
-	description = "A teshari toxin."
-	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/teshari
-	taste_description = "fried chicken"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
+	// Run normally
+	. = ..()
 
-/datum/reagent/mutationtoxin/vox
-	name = "Vox Mutation Toxin"
-	description = "A voxin."
-	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/vox
-	taste_description = "skreeing with a metallic tinge"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
+// Reagent metabolize: Holy Water
+/datum/reagent/water/holywater/on_mob_metabolize(mob/living/affected_mob)
+	. = ..()
 
-/datum/reagent/mutationtoxin/vox_primalis
-	name = "Vox Primalis Mutation Toxin"
-	description = "A vox primalis toxin."
-	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/vox_primalis
-	taste_description = "screeching with a metallic tinge"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
+	SEND_SIGNAL(affected_mob, COMSIG_REAGENT_METABOLIZE_HOLYWATER)
 
-/datum/reagent/mutationtoxin/xenohybrid
-	name = "Xenohybrid Mutation Toxin"
-	description = "A xenohybrid toxin."
-	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/xeno
-	taste_description = "sour"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
+// Reagent end metabolize: Holy Water
+/datum/reagent/water/holywater/on_mob_end_metabolize(mob/living/affected_mob)
+	. = ..()
+
+	SEND_SIGNAL(affected_mob, COMSIG_REAGENT_METABOLIZE_END_HOLYWATER)
+
+// Reagent process: Holy Water
+/datum/reagent/water/holywater/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
+	. = ..()
+
+	SEND_SIGNAL(affected_mob, COMSIG_REAGENT_PROCESS_HOLYWATER, src, seconds_per_tick, times_fired)
+
+// Reagent expose: Holy Water
+/datum/reagent/water/holywater/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message=TRUE, touch_protection=0)
+	. = ..()
+
+	SEND_SIGNAL(exposed_mob, COMSIG_REAGENT_EXPOSE_HOLYWATER, src, methods, reac_volume, show_message, touch_protection)
+
+// Reagent Add: Blood
+/datum/reagent/blood/on_mob_add(mob/living/affected_mob, amount)
+	. = ..()
+
+	SEND_SIGNAL(affected_mob, COMSIG_REAGENT_ADD_BLOOD, src, amount, data)
+
+// Reagent process: Salt Water
+/datum/reagent/water/salt/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
+	. = ..()
+
+	SEND_SIGNAL(affected_mob, COMSIG_REAGENT_PROCESS_SALT, src, seconds_per_tick, times_fired)
+
+// Reagent expose: Salt Water
+/datum/reagent/water/salt/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message=TRUE, touch_protection=0)
+	. = ..()
+
+	SEND_SIGNAL(exposed_mob, COMSIG_REAGENT_EXPOSE_SALT, src, methods, reac_volume, show_message, touch_protection)

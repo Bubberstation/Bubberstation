@@ -316,7 +316,7 @@
 	cortical_owner.chemical_evolution -= chemical_evo_points
 	cortical_owner.known_chemicals += reagent_choice.type
 	cortical_owner.blood_chems_learned++
-	var/obj/item/organ/brain/victim_brain = cortical_owner.human_host.get_organ_slot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/internal/brain/victim_brain = cortical_owner.human_host.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(victim_brain)
 		cortical_owner.human_host.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5 * cortical_owner.host_harm_multiplier)
 	if(cortical_owner.blood_chems_learned == BLOOD_CHEM_OBJECTIVE)
@@ -354,7 +354,7 @@
 	cortical_owner.chemical_evolution -= chemical_evo_points
 	cortical_owner.known_chemicals += reagent_choice
 	cortical_owner.potential_chemicals -= reagent_choice
-	var/obj/item/organ/brain/victim_brain = cortical_owner.human_host.get_organ_slot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/internal/brain/victim_brain = cortical_owner.human_host.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(victim_brain)
 		cortical_owner.human_host.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5 * cortical_owner.host_harm_multiplier)
 	owner.balloon_alert(owner, "[initial(reagent_choice.name)] learned")
@@ -386,7 +386,7 @@
 	cortical_owner.max_chemical_storage += cortical_owner.chem_storage_per_level
 	cortical_owner.chemical_regen += cortical_owner.chem_regen_per_level
 	cortical_owner.level += 1
-	var/obj/item/organ/brain/victim_brain = cortical_owner.human_host.get_organ_slot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/internal/brain/victim_brain = cortical_owner.human_host.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(victim_brain)
 		cortical_owner.human_host.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10 * cortical_owner.host_harm_multiplier)
 	cortical_owner.human_host.adjust_eye_blur(6 SECONDS * cortical_owner.host_harm_multiplier) //about 12 seconds' worth by default
@@ -543,7 +543,7 @@
 
 	var/mob/living/carbon/human/cortical_host = cortical_owner.human_host
 	to_chat(cortical_host, span_boldwarning("Your voice moves without your permission!"))
-	var/obj/item/organ/brain/victim_brain = cortical_owner.human_host.get_organ_slot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/internal/brain/victim_brain = cortical_owner.human_host.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(victim_brain)
 		cortical_owner.human_host.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2 * cortical_owner.host_harm_multiplier)
 
@@ -578,7 +578,7 @@
 		StartCooldown()
 		return
 	produce_egg()
-	var/obj/item/organ/brain/victim_brain = cortical_owner.human_host.get_organ_slot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/internal/brain/victim_brain = cortical_owner.human_host.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(victim_brain)
 		cortical_owner.human_host.adjustOrganLoss(ORGAN_SLOT_BRAIN, 25 * cortical_owner.host_harm_multiplier)
 		var/eggroll = rand(1,100)
@@ -606,7 +606,12 @@
 	cortical_owner.health = max(cortical_owner.health, 1, cortical_owner.health -= OUT_OF_HOST_EGG_COST)
 	produce_egg()
 	var/turf/borer_turf = get_turf(cortical_owner)
-	new/obj/effect/decal/cleanable/blood/splatter(borer_turf)
+	// SPLURT EDIT - Colored Blood
+	//new /obj/effect/decal/cleanable/blood/splatter(borer_turf)
+	var/obj/effect/decal/cleanable/blood/splatter/splatter = new /obj/effect/decal/cleanable/blood/splatter(borer_turf)
+	splatter.color = splatter.blood_DNA_to_color(splatter.color)
+	splatter.icon = splatter.colored_blood_icon(splatter.icon)
+	// SPLURT EDIT END - Colored Blood
 	playsound(borer_turf, 'sound/effects/splat.ogg', 50, TRUE)
 	var/logging_text = "[key_name(cortical_owner)] gave birth alone at [loc_name(borer_turf)]"
 	cortical_owner.log_message(logging_text, LOG_GAME)
@@ -640,9 +645,6 @@
 	if(!cortical_owner.inside_human())
 		owner.balloon_alert(owner, "host required")
 		return
-	if(cortical_owner.human_host.has_quirk(/datum/quirk/dnr))
-		owner.balloon_alert(owner, "host unrevivable")
-		return
 	cortical_owner.chemical_storage -= chemical_cost
 	if(cortical_owner.human_host.getBruteLoss())
 		cortical_owner.human_host.adjustBruteLoss(-(cortical_owner.human_host.getBruteLoss()*0.5))
@@ -654,7 +656,7 @@
 		cortical_owner.human_host.adjustOxyLoss(-(cortical_owner.human_host.getOxyLoss()*0.5))
 	if(cortical_owner.human_host.blood_volume < BLOOD_VOLUME_BAD)
 		cortical_owner.human_host.blood_volume = BLOOD_VOLUME_BAD
-	for(var/obj/item/organ/internal_target in cortical_owner.human_host.organs)
+	for(var/obj/item/organ/internal/internal_target in cortical_owner.human_host.organs)
 		internal_target.apply_organ_damage(-internal_target.damage * 0.5)
 	cortical_owner.human_host.revive()
 	to_chat(cortical_owner.human_host, span_boldwarning("Your heart jumpstarts!"))
@@ -752,8 +754,8 @@
 	cortical_owner.chemical_storage -= chemical_cost
 	var/turf/borer_turf = get_turf(cortical_owner)
 	var/obj/item/bodypart/chest/chest = cortical_owner.human_host.get_bodypart(BODY_ZONE_CHEST)
-	if((!chest || IS_ORGANIC_LIMB(chest)) && !cortical_owner.human_host.get_organ_by_type(/obj/item/organ/empowered_borer_egg))
-		var/obj/item/organ/empowered_borer_egg/spawned_egg = new(cortical_owner.human_host)
+	if((!chest || IS_ORGANIC_LIMB(chest)) && !cortical_owner.human_host.get_organ_by_type(/obj/item/organ/internal/empowered_borer_egg))
+		var/obj/item/organ/internal/empowered_borer_egg/spawned_egg = new(cortical_owner.human_host)
 		spawned_egg.generation = (cortical_owner.generation + 1)
 
 	cortical_owner.children_produced += 1

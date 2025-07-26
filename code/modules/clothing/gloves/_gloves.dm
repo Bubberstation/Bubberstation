@@ -12,6 +12,7 @@
 	siemens_coefficient = 0.5
 	body_parts_covered = HANDS
 	slot_flags = ITEM_SLOT_GLOVES
+	equip_sound = 'sound/items/equip/glove_equip.ogg'
 	drop_sound = 'sound/items/handling/glove_drop.ogg'
 	pickup_sound = 'sound/items/handling/glove_pick_up.ogg'
 	attack_verb_continuous = list("challenges")
@@ -37,7 +38,7 @@
 	. = ..()
 	if((clean_types & CLEAN_TYPE_BLOOD) && transfer_blood > 0)
 		transfer_blood = 0
-		. |= COMPONENT_CLEANED|COMPONENT_CLEANED_GAIN_XP
+		return TRUE
 
 /obj/item/clothing/gloves/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("\the [src] are forcing [user]'s hands around [user.p_their()] neck! It looks like the gloves are possessed!"))
@@ -47,16 +48,11 @@
 	. = ..()
 	if(isinhands)
 		return
+
 	if(damaged_clothes)
 		. += mutable_appearance('icons/effects/item_damage.dmi', "damagedgloves")
-
-/obj/item/clothing/gloves/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands, icon_file)
-	. = ..()
-	if (isinhands)
-		return
-	var/blood_overlay = get_blood_overlay("glove")
-	if (blood_overlay)
-		. += blood_overlay
+	if(GET_ATOM_BLOOD_DNA_LENGTH(src))
+		. += mutable_appearance(colored_blood_icon('icons/effects/blood.dmi'), "gloveblood", color = blood_DNA_to_color(), blend_mode = blood_DNA_to_blend()) // SPLURT EDIT - Colored Blood
 
 /obj/item/clothing/gloves/update_clothes_damaged_state(damaged_state = CLOTHING_DAMAGED)
 	..()
@@ -71,7 +67,7 @@
 		return FALSE // We don't want to cut dyed gloves.
 	return TRUE
 
-/obj/item/clothing/gloves/attackby(obj/item/tool, mob/user, list/modifiers, list/attack_modifiers)
+/obj/item/clothing/gloves/attackby(obj/item/tool, mob/user, params)
 	. = ..()
 	if(.)
 		return

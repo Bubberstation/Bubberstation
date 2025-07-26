@@ -272,7 +272,7 @@
 							break
 
 		var/icon_file = I.lefthand_file
-		if(IS_RIGHT_INDEX(get_held_index_of_item(I)))
+		if(get_held_index_of_item(I) % 2 == 0)
 			icon_file = I.righthand_file
 
 		hands += I.build_worn_icon(default_layer = HANDS_LAYER, default_icon_file = icon_file, isinhands = TRUE)
@@ -286,7 +286,7 @@
 			'icons/mob/effects/onfire.dmi',
 			fire_icon,
 			-HIGHEST_LAYER,
-			appearance_flags = RESET_COLOR|KEEP_APART,
+			appearance_flags = RESET_COLOR,
 		)
 
 	return GLOB.fire_appearances[fire_icon]
@@ -299,14 +299,13 @@
 		if(!iter_part.dmg_overlay_type)
 			continue
 		if(isnull(damage_overlay) && (iter_part.brutestate || iter_part.burnstate))
-			damage_overlay = mutable_appearance('icons/mob/effects/dam_mob.dmi', "blank", -DAMAGE_LAYER, appearance_flags = KEEP_TOGETHER)
-			damage_overlay.color = iter_part.damage_overlay_color
+			// SPLURT EDIT - Colored Blood
+			damage_overlay = mutable_appearance(colored_blood_icon('icons/mob/effects/dam_mob.dmi'), "blank", -DAMAGE_LAYER, appearance_flags = KEEP_TOGETHER, color = blood_DNA_to_color(), blend_mode = blood_DNA_to_blend()) // SPLURT EDIT - Colored Blood
+			if(iter_part.damage_overlay_color)
+				damage_overlay.color = iter_part.damage_overlay_color
+			// SPLURT EDIT END
 		if(iter_part.brutestate)
-			var/mutable_appearance/blood_damage_overlay = mutable_appearance('icons/mob/effects/dam_mob.dmi', "[iter_part.dmg_overlay_type]_[iter_part.body_zone]_[iter_part.brutestate]0", appearance_flags = RESET_COLOR) //we're adding icon_states of the base image as overlays
-			blood_damage_overlay.color = get_bloodtype()?.get_damage_color(src)
-			var/mutable_appearance/brute_damage_overlay = mutable_appearance('icons/mob/effects/dam_mob.dmi', "[iter_part.dmg_overlay_type]_[iter_part.body_zone]_[iter_part.brutestate]0_overlay", appearance_flags = RESET_COLOR)
-			blood_damage_overlay.overlays += brute_damage_overlay
-			damage_overlay.add_overlay(blood_damage_overlay)
+			damage_overlay.add_overlay("[iter_part.dmg_overlay_type]_[iter_part.body_zone]_[iter_part.brutestate]0") //we're adding icon_states of the base image as overlays
 		if(iter_part.burnstate)
 			damage_overlay.add_overlay("[iter_part.dmg_overlay_type]_[iter_part.body_zone]_0[iter_part.burnstate]")
 
@@ -316,20 +315,13 @@
 	overlays_standing[DAMAGE_LAYER] = damage_overlay
 	apply_overlay(DAMAGE_LAYER)
 
-/// Handles bleeding overlays
-/mob/living/carbon/proc/update_wound_overlays()
+/mob/living/carbon/update_wound_overlays()
 	remove_overlay(WOUND_LAYER)
-
-	var/datum/blood_type/blood_type = get_bloodtype()
-	if(!blood_type || !can_bleed())
-		return
 
 	var/mutable_appearance/wound_overlay
 	for(var/obj/item/bodypart/iter_part as anything in bodyparts)
 		if(iter_part.bleed_overlay_icon)
-			var/mutable_appearance/blood_overlay = mutable_appearance('icons/mob/effects/bleed_overlays.dmi', "blank", -WOUND_LAYER, appearance_flags = KEEP_TOGETHER)
-			blood_overlay.color = blood_type.get_wound_color(src)
-			wound_overlay ||= blood_overlay
+			wound_overlay ||= mutable_appearance(colored_blood_icon('icons/mob/effects/bleed_overlays.dmi'), "blank", -WOUND_LAYER, appearance_flags = KEEP_TOGETHER, color = blood_DNA_to_color(), blend_mode = blood_DNA_to_blend()) // SPLURT EDIT - Colored Blood
 			wound_overlay.add_overlay(iter_part.bleed_overlay_icon)
 
 	if(isnull(wound_overlay))
@@ -415,7 +407,7 @@
 	if(!get_bodypart(BODY_ZONE_HEAD)) //Decapitated
 		return
 
-	if(client && hud_used?.inv_slots[TOBITSHIFT(ITEM_SLOT_HEAD) + 1])
+	if(client && hud_used?.inv_slots[TOBITSHIFT(ITEM_SLOT_BACK) + 1])
 		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_HEAD) + 1]
 		inv.update_appearance()
 
@@ -470,9 +462,9 @@
 /mob/living/carbon/proc/update_hud_back(obj/item/I)
 	return
 
-/// Overlays for the worn overlay so you can overlay while you overlay
-/// eg: ammo counters, primed grenade flashing, etc.
-/// "icon_file" is used automatically for inhands etc. to make sure it gets the right inhand file
+//Overlays for the worn overlay so you can overlay while you overlay
+//eg: ammo counters, primed grenade flashing, etc.
+//"icon_file" is used automatically for inhands etc. to make sure it gets the right inhand file
 // SKYRAT EDIT CHANGE BEGIN - CUSTOMIZATION
 // obj/item/proc/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file) - original
 /obj/item/proc/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file, mutant_styles = NONE)
@@ -484,13 +476,6 @@
 	if(blocks_emissive != EMISSIVE_BLOCK_NONE)
 		. += emissive_blocker(standing.icon, standing.icon_state, src, alpha = standing.alpha)
 	SEND_SIGNAL(src, COMSIG_ITEM_GET_WORN_OVERLAYS, ., standing, isinhands, icon_file)
-
-/// worn_overlays to use when you'd want to use KEEP_APART. Don't use KEEP_APART neither there nor here, as it would break floating overlays
-/obj/item/proc/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands = FALSE, icon_file)
-	SHOULD_CALL_PARENT(TRUE)
-	RETURN_TYPE(/list)
-	. = list()
-	SEND_SIGNAL(src, COMSIG_ITEM_GET_SEPARATE_WORN_OVERLAYS, ., standing, draw_target, isinhands, icon_file)
 
 ///Checks to see if any bodyparts need to be redrawn, then does so. update_limb_data = TRUE redraws the limbs to conform to the owner.
 ///Returns an integer representing the number of limbs that were updated.
@@ -527,11 +512,12 @@
 	var/list/new_limbs = list()
 	for(var/obj/item/bodypart/limb as anything in bodyparts)
 		if(limb in needs_update)
-			var/bodypart_icon = limb.get_limb_icon(dropped = FALSE, update_on = src)
+			var/bodypart_icon = limb.get_limb_icon()
 			new_limbs += bodypart_icon
 			limb_icon_cache[icon_render_keys[limb.body_zone]] = bodypart_icon //Caches the icon with the bodypart key, as it is new
 		else
 			new_limbs += limb_icon_cache[icon_render_keys[limb.body_zone]] //Pulls existing sprites from the cache
+
 
 	remove_overlay(BODYPARTS_LAYER)
 
@@ -565,12 +551,12 @@
 	if(is_invisible)
 		. += "-invisible"
 	for(var/datum/bodypart_overlay/overlay as anything in bodypart_overlays)
-		if(!overlay.can_draw_on_bodypart(src, owner))
+		if(!overlay.can_draw_on_bodypart(owner))
 			continue
 		. += "-[jointext(overlay.generate_icon_cache(), "-")]"
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_owner = owner
-		. += "-[human_owner.mob_height]"
+		. += "-[human_owner.get_mob_height()]"
 	return .
 
 ///Generates a cache key specifically for husks
@@ -583,7 +569,7 @@
 	. += "-[body_zone]"
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_owner = owner
-		. += "-[human_owner.mob_height]"
+		. += "-[human_owner.get_mob_height()]"
 	return .
 
 /obj/item/bodypart/head/generate_icon_key()
@@ -617,8 +603,6 @@
 		if(gradient_styles?[GRADIENT_HAIR_KEY])
 			. += "-[gradient_styles[GRADIENT_HAIR_KEY]]"
 			. += "-[gradient_colors[GRADIENT_HAIR_KEY]]"
-		if(LAZYLEN(hair_masks))
-			. += "-[jointext(hair_masks, "-")]"
 
 	return .
 
@@ -631,9 +615,11 @@ GLOBAL_LIST_EMPTY(masked_leg_icons_cache)
  *
  * Arguments:
  * * limb_overlay - The limb image being masked, not necessarily the original limb image as it could be an overlay on top of it
+ * * image_dir - Direction of the masked images.
+ *
  * Returns the list of masked images, or `null` if the limb_overlay didn't exist
  */
-/obj/item/bodypart/leg/proc/generate_masked_leg(image/limb_overlay)
+/obj/item/bodypart/leg/proc/generate_masked_leg(mutable_appearance/limb_overlay, image_dir = NONE)
 	RETURN_TYPE(/list)
 	if(!limb_overlay)
 		return
@@ -659,66 +645,14 @@ GLOBAL_LIST_EMPTY(masked_leg_icons_cache)
 	new_leg_icon_lower = GLOB.masked_leg_icons_cache[icon_cache_key][2]
 
 	//this could break layering in oddjob cases, but i'm sure it will work fine most of the time... right?
-	var/image/new_leg_appearance = new(limb_overlay)
+	var/mutable_appearance/new_leg_appearance = new(limb_overlay)
 	new_leg_appearance.icon = new_leg_icon
 	new_leg_appearance.layer = -BODYPARTS_LAYER
+	new_leg_appearance.dir = image_dir //for some reason, things do not work properly otherwise
 	. += new_leg_appearance
-	var/image/new_leg_appearance_lower = new(limb_overlay)
+	var/mutable_appearance/new_leg_appearance_lower = new(limb_overlay)
 	new_leg_appearance_lower.icon = new_leg_icon_lower
 	new_leg_appearance_lower.layer = -BODYPARTS_LOW_LAYER
+	new_leg_appearance_lower.dir = image_dir
 	. += new_leg_appearance_lower
 	return .
-
-/proc/get_default_icon_by_slot(slot_flag)
-	switch(slot_flag)
-		if(ITEM_SLOT_HEAD)
-			return 'icons/mob/clothing/head/default.dmi'
-		if(ITEM_SLOT_EYES)
-			return 'icons/mob/clothing/eyes.dmi'
-		if(ITEM_SLOT_EARS)
-			return 'icons/mob/clothing/ears.dmi'
-		if(ITEM_SLOT_MASK)
-			return 'icons/mob/clothing/mask.dmi'
-		if(ITEM_SLOT_NECK)
-			return 'icons/mob/clothing/neck.dmi'
-		if(ITEM_SLOT_BACK)
-			return 'icons/mob/clothing/back.dmi'
-		if(ITEM_SLOT_BELT)
-			return 'icons/mob/clothing/belt.dmi'
-		if(ITEM_SLOT_ID)
-			return 'icons/mob/clothing/id.dmi'
-		if(ITEM_SLOT_ICLOTHING)
-			return DEFAULT_UNIFORM_FILE
-		if(ITEM_SLOT_OCLOTHING)
-			return DEFAULT_SUIT_FILE
-		if(ITEM_SLOT_GLOVES)
-			return 'icons/mob/clothing/hands.dmi'
-		if(ITEM_SLOT_FEET)
-			return DEFAULT_SHOES_FILE
-
-/proc/get_default_layer_by_slot(slot_flag)
-	switch(text2num(slot_flag))
-		if(ITEM_SLOT_HEAD)
-			return HEAD_LAYER
-		if(ITEM_SLOT_EYES)
-			return GLASSES_LAYER
-		if(ITEM_SLOT_EARS)
-			return EARS_LAYER
-		if(ITEM_SLOT_MASK)
-			return FACEMASK_LAYER
-		if(ITEM_SLOT_NECK)
-			return NECK_LAYER
-		if(ITEM_SLOT_BACK)
-			return BACK_LAYER
-		if(ITEM_SLOT_BELT)
-			return BELT_LAYER
-		if(ITEM_SLOT_ID)
-			return ID_LAYER
-		if(ITEM_SLOT_ICLOTHING)
-			return UNIFORM_LAYER
-		if(ITEM_SLOT_OCLOTHING)
-			return SUIT_LAYER
-		if(ITEM_SLOT_GLOVES)
-			return GLOVES_LAYER
-		if(ITEM_SLOT_FEET)
-			return SHOES_LAYER
