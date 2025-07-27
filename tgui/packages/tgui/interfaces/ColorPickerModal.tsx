@@ -7,7 +7,7 @@
 import {
   colorList,
   hexToHsva,
-  HsvaColor,
+  type HsvaColor,
   hsvaToHex,
   hsvaToHslString,
   hsvaToRgba,
@@ -32,7 +32,7 @@ import { classes } from 'tgui-core/react';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { InputButtons } from './common/InputButtons';
-import { Interaction, Interactive } from './common/Interactive';
+import { type Interaction, Interactive } from './common/Interactive';
 import { Loader } from './common/Loader';
 import { Pointer } from './common/Pointer';
 

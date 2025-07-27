@@ -1,7 +1,7 @@
 import { sortBy } from 'es-toolkit';
 import { filter, map } from 'es-toolkit/compat';
-import { ReactNode, useState } from 'react';
-import { sendAct, useBackend } from 'tgui/backend';
+import { type ReactNode, useState } from 'react';
+import { type sendAct, useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
@@ -21,15 +21,15 @@ import { PageButton } from '../components/PageButton'; // BUBBER EDIT ADDITION
 import { RandomizationButton } from '../components/RandomizationButton';
 import { features } from '../preferences/features';
 import {
-  FeatureChoicedServerData,
+  type FeatureChoicedServerData,
   FeatureValueInput,
 } from '../preferences/features/base';
 import { Gender, GENDERS } from '../preferences/gender';
 import {
   createSetPreference,
-  PreferencesMenuData,
+  type PreferencesMenuData,
   RandomSetting,
-  ServerData,
+  type ServerData,
 } from '../types';
 import { useRandomToggleState } from '../useRandomToggleState';
 import { useServerPrefs } from '../useServerPrefs';
@@ -490,7 +490,7 @@ export function MainPage(props: MainPageProps) {
   const serverData = useServerPrefs();
 
   const currentSpeciesData =
-    serverData && serverData.species[data.character_preferences.misc.species];
+    serverData?.species[data.character_preferences.misc.species];
 
   const contextualPreferences =
     data.character_preferences.secondary_features || [];
@@ -515,12 +515,12 @@ export function MainPage(props: MainPageProps) {
   };
 
   if (randomBodyEnabled) {
-    nonContextualPreferences['random_species'] =
-      data.character_preferences.randomization['species'];
+    nonContextualPreferences.random_species =
+      data.character_preferences.randomization.species;
   } else {
     // We can't use random_name/is_accessible because the
     // server doesn't know whether the random toggle is on.
-    delete nonContextualPreferences['random_name'];
+    delete nonContextualPreferences.random_name;
   }
 
   // BUBBER EDIT ADDITION BEGIN: SWAPPABLE PREF MENUS

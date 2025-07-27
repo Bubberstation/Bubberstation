@@ -357,7 +357,7 @@
 	desc = "A module that collects ash from the terrain, covering the suit in a protective layer, this layer is \
 		lost when moving across standard terrain."
 	icon_state = "ash_accretion"
-	removable = FALSE
+	removable = TRUE // BUBBER EDIT CHANGE - ORIGINAL: removable = FALSE
 	incompatible_modules = list(/obj/item/mod/module/ash_accretion)
 	overlay_state_inactive = "module_ash"
 	use_mod_colors = TRUE

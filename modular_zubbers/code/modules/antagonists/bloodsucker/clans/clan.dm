@@ -33,6 +33,7 @@
 	// what percentage of blood you need to spend to level up, divided by 100
 	var/level_cost = BLOODSUCKER_LEVELUP_PERCENTAGE
 
+// TODO add handling for body transfers
 /datum/bloodsucker_clan/New(datum/antagonist/bloodsucker/owner_datum)
 	. = ..()
 	src.bloodsuckerdatum = owner_datum

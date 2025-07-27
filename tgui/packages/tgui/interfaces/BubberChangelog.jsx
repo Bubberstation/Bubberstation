@@ -182,12 +182,12 @@ const BubberChangelogEntry = (props) => {
                     color={
                       icons[changeType]
                         ? icons[changeType].color
-                        : icons['unknown'].color
+                        : icons.unknown.color
                     }
                     name={
                       icons[changeType]
                         ? icons[changeType].icon
-                        : icons['unknown'].icon
+                        : icons.unknown.icon
                     }
                     verticalAlign="middle"
                   />
@@ -231,12 +231,12 @@ const ChangelogEntry = (props) => {
                     color={
                       icons[changeType]
                         ? icons[changeType].color
-                        : icons['unknown'].color
+                        : icons.unknown.color
                     }
                     name={
                       icons[changeType]
                         ? icons[changeType].icon
-                        : icons['unknown'].icon
+                        : icons.unknown.icon
                     }
                     verticalAlign="middle"
                   />

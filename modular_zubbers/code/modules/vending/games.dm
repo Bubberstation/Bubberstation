@@ -27,6 +27,7 @@
 				/obj/item/toy/plush/chirp_plush = 3,
 				/obj/item/toy/plush/bigdeer = 3,
 				/obj/item/toy/plush/bubbledragon = 3,
+				/obj/item/toy/plush/tian_plush = 3,
 				/obj/item/toy/plush/headcrab = 3,
 				/obj/item/toy/plush/bellybird = 3,
 				/obj/item/toy/plush/tiredtesh = 3,

@@ -187,8 +187,8 @@
 			to_chat(target, span_warning("SPECIAL DELIVERY!"))
 		if(8)
 			//You turn into a lizard. If you're already a lizard, you're now scared of lizards.
-			if(target.dna && !istype(target.dna.species,/datum/species/lizard/))
-				target.set_species(/datum/species/lizard/, TRUE, FALSE, null, null, null, null, TRUE, TRUE)
+			if(target.dna && !istype(target.dna.species,/datum/species/lizard))
+				target.set_species(/datum/species/lizard)
 				to_chat(target, span_warning("You're a lizard, Harry."))
 			else
 				target.gain_trauma(/datum/brain_trauma/mild/phobia/lizards, TRAUMA_RESILIENCE_SURGERY)

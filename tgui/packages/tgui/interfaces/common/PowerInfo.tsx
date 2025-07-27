@@ -9,7 +9,7 @@ import {
 } from 'tgui-core/components';
 
 import { resolveAsset } from '../../assets';
-import { PowerInfo } from './../AntagInfoBloodsucker';
+import type { PowerInfo } from './../AntagInfoBloodsucker';
 
 type PowerDetailsProps = {
   powers: PowerInfo[];
@@ -62,7 +62,7 @@ export const PowerDetails = (props: PowerDetailsProps) => {
         </Stack.Item>
         <Stack.Divider />
         <Stack.Item grow={1} fontSize="16px">
-          {selectedPower && selectedPower.power_explanation}
+          {selectedPower?.power_explanation}
         </Stack.Item>
       </Stack>
     </Section>

@@ -11,7 +11,7 @@ import {
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-import { NaniteProgram } from './Nanites/types';
+import type { NaniteProgram } from './Nanites/types';
 
 export const NaniteChamberControl = (props, context) => {
   return (

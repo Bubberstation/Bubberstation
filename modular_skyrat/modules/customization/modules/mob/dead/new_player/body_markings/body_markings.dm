@@ -353,7 +353,7 @@
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
 /datum/body_marking/secondary/guilmon
-	name = "Guilmon"
+	name = "Toraxen"
 	icon_state = "guilmon"
 	affected_bodyparts = CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 
@@ -538,7 +538,7 @@
 	affected_bodyparts = CHEST
 
 /datum/body_marking/tertiary/guilmon
-	name = "Guilmon Mark"
+	name = "Toraxen Mark"
 	icon_state = "guilmon"
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
 

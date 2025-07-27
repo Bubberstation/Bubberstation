@@ -25,6 +25,7 @@
 	var/mob/chosen_one = SSpolling.poll_ghost_candidates(check_jobban = ROLE_CHANGELING, role = ROLE_CHANGELING_MIDROUND, alert_pic = /obj/item/melee/arm_blade, role_name_text = role_name, amount_to_pick = 1)
 	if(isnull(chosen_one))
 		return NOT_ENOUGH_PLAYERS
-	spawned_mobs += generate_changeling_meteor(chosen_one)
+	var/datum/mind/player_mind = new(chosen_one.key)
+	spawned_mobs += generate_changeling_meteor(player_mind)
 	if(spawned_mobs)
 		return SUCCESSFUL_SPAWN

@@ -83,9 +83,9 @@ export const ListMapper = (props) => {
   const ListMapperInner = (element, i) => {
     const { key, value } = element;
     const basePath = path ? path : [];
-    let keyPath = [...basePath, { index: i + 1, type: 'key' }];
-    let valuePath = [...basePath, { index: i + 1, type: 'value' }];
-    let entryPath = [...basePath, { index: i + 1, type: 'entry' }];
+    const keyPath = [...basePath, { index: i + 1, type: 'key' }];
+    const valuePath = [...basePath, { index: i + 1, type: 'value' }];
+    const entryPath = [...basePath, { index: i + 1, type: 'entry' }];
 
     if (key === null && skipNulls) {
       return;
@@ -95,7 +95,7 @@ export const ListMapper = (props) => {
      * Finding a function only accessible as a table's key is too awkward to
      * deal with for now
      */
-    let keyNode = ThingNode(key, keyPath, { callType: null });
+    const keyNode = ThingNode(key, keyPath, { callType: null });
 
     /*
      * Likewise, since table, thread, and userdata equality is tested by
@@ -106,7 +106,7 @@ export const ListMapper = (props) => {
       (typeof key === 'string' &&
         !(UnconvertibleLuaValueRegex.test(key) || RefRegex.test(key))) ||
       typeof key === 'number';
-    let valueNode = ThingNode(value, valuePath, {
+    const valueNode = ThingNode(value, valuePath, {
       callType: uniquelyIndexable && callType,
     });
     return (
@@ -144,7 +144,7 @@ export const ListMapper = (props) => {
 
   const inner = (
     <>
-      {list && list.map(ListMapperInner)}
+      {list?.map(ListMapperInner)}
       {editable && (
         <Button
           icon="plus"

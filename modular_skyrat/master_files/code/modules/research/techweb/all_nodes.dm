@@ -153,6 +153,7 @@
 		"meson_hud_projector",
 		"science_hud_projector",
 		"permit_glasses",
+		"civ_hud",
 		"nifsoft_money_sense",
 		"nifsoft_hud_kit",
 		"nifsoft_hud_science",
