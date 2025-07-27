@@ -19,7 +19,7 @@
 	icon = 'modular_zubbers/icons/customization/ears.dmi'
 
 /datum/sprite_accessory/ears/renamon
-	name = "Renamon"
+	name = "Cyvian"
 	icon_state = "renamon"
 	icon = 'modular_zubbers/icons/customization/ears.dmi'
 

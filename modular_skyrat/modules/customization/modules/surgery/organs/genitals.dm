@@ -162,17 +162,31 @@
 				returned_string = "You see a sheath."
 			if(SHEATH_SLIT)
 				returned_string = "You see a slit." ///Typo fix.
-		if(aroused == AROUSAL_PARTIAL)
-			returned_string += " There's a [pname]penis poking out of it."
+		if(aroused != AROUSAL_PARTIAL)
+			return
+		returned_string += " There's a [pname]penis poking out of it. "
 	else
-		returned_string = "You see a [pname]penis. You estimate it's [genital_size] inches long, and [girth] inches in circumference."
-		switch(aroused)
-			if(AROUSAL_NONE)
-				returned_string += " It seems flaccid."
-			if(AROUSAL_PARTIAL)
-				returned_string += " It's partically erect."
-			if(AROUSAL_FULL)
-				returned_string += " It's fully erect."
+		returned_string += "You see a [pname]penis. "
+
+	var/reported_girth = CEILING( girth / 3.1415, 0.25) //Circum to Diameter
+	var/reported_length = genital_size
+	if(aroused != AROUSAL_FULL) //Only when not full mast.
+		var/temperature_difference = owner.bodytemperature - owner.get_body_temp_normal()
+		if(temperature_difference <= 2) //2 kelvin difference (colder)
+			// https://www.desmos.com/calculator/ivauzad62s
+			//I love penis math
+			reported_length *= max(0.5, 1 - (-temperature_difference/50)**4)
+	reported_length = CEILING(reported_length,0.25)
+	returned_string = "You estimate it's about [reported_length] inches long, and about [reported_girth] inches in diameter."
+
+	switch(aroused)
+		if(AROUSAL_NONE)
+			returned_string += " It seems flaccid."
+		if(AROUSAL_PARTIAL)
+			returned_string += " It's partically erect."
+		if(AROUSAL_FULL)
+			returned_string += " It's fully erect."
+
 	return returned_string
 
 /obj/item/organ/genital/penis/update_genital_icon_state()

@@ -166,14 +166,13 @@
 	if(!iscarbon(host_mob)) //nonstandard biology
 		return FALSE
 	var/mob/living/carbon/C = host_mob
-	if(C.get_ghost())
-		return FALSE
-	return C.can_defib() == DEFIB_POSSIBLE
+	return C.can_defib() & DEFIB_POSSIBLE | DEFIB_NOGRAB_AGHOST
 
 /datum/nanite_program/defib/proc/zap()
 	var/mob/living/carbon/C = host_mob
 	playsound(C, 'sound/machines/defib/defib_zap.ogg', 50, FALSE)
 	C.balloon_alert_to_viewers("twitches violently")
+	C.get_ghost()
 	if(check_revivable())
 		if(C.stat == DEAD)
 			var/original_oxyloss = C.getOxyLoss()

@@ -47,7 +47,6 @@
 		/obj/item/mod/module/waddle,
 	)
 	default_pins = list(
-		/obj/item/mod/module/armor_booster,
 		/obj/item/mod/module/jetpack,
 		/obj/item/mod/module/jump_jet,
 	)

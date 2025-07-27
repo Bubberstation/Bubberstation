@@ -307,3 +307,13 @@
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "lazy_synth"
 	squeak_override = list('modular_zubbers/sound/misc/squeakle.ogg' = 1)
+
+
+/obj/item/toy/plush/tian_plush
+	name = "bureaucratic goat plush"
+	desc = "A big, soft plush of a goat-carp creature, that clearly hasn't slept in a lot. It has a faint smell of ink and weed."
+	attack_verb_continuous = list("chomps", "nibbles", "gnashes", "bites")
+	attack_verb_simple = list("gnashes")
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "tian_plush"
+	squeak_override = list('modular_skyrat/modules/emotes/sound/voice/baa.ogg' = 1)

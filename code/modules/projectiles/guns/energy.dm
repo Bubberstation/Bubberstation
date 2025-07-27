@@ -183,10 +183,9 @@
 	. = ..()
 	if(.)
 		return
-//Bubber Edit - Lever action. also to whom it may concerns, yes, we will put it on TG at some point.  It was just easier to do it here anyway
+
 	if(ammo_type.len > 1 && can_select)
 		select_fire(user)
-//	return ..() bubber edit
 
 /obj/item/gun/energy/can_shoot()
 	var/obj/item/ammo_casing/energy/shot = ammo_type[select]

@@ -191,7 +191,7 @@
 	icon_state = "fox3"
 
 /datum/sprite_accessory/tails/mammal/wagging/guilmon
-	name = "Guilmon"
+	name = "Toraxen"
 	icon_state = "guilmon"
 
 /datum/sprite_accessory/tails/mammal/wagging/hawk

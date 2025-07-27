@@ -1,5 +1,5 @@
-import { ComponentProps, type ReactNode, useRef, useState } from 'react';
-import { Box, Button, Floating, Icon } from 'tgui-core/components';
+import { type ComponentProps, type ReactNode, useRef, useState } from 'react';
+import { type Box, Button, Floating, Icon } from 'tgui-core/components';
 import { KEY } from 'tgui-core/keys';
 import { classes } from 'tgui-core/react';
 import { unit } from 'tgui-core/ui';
