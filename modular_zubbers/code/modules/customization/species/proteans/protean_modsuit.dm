@@ -173,6 +173,17 @@
 /obj/item/mod/control/pre_equipped/protean/proc/assimilate_theme(mob/user, plating)
 	var/obj/item/mod/construction/plating/plates = plating
 	var/datum/mod_theme/the_theme = GLOB.mod_themes[plates.theme]
+
+	name = initial(name)
+	name = initial(desc)
+
+	for(var/obj/item/part as anything in get_parts())
+		part.name = initial(name)
+		part.desc = initial(desc)
+		if(part.loc == src)
+			continue
+		retract(null, part, instant = TRUE)
+
 	theme = the_theme
 	the_theme.set_up_parts(src, the_theme.default_skin)
 	update_static_data_for_all_viewers()
@@ -184,7 +195,7 @@
 		if(forced)
 			stack_trace("assimilate_modsuit: Tried to assimilate modsuit while there's already a stored modsuit. stored_modsuit: [stored_modsuit], new_modsuit: [to_assimilate]")
 		return
-	if(!user.transferItemToLoc(to_assimilate, src, forced))
+	if(!user?.transferItemToLoc(to_assimilate, src, forced))
 		balloon_alert(user, "stuck!")
 		return
 	if(!forced)
@@ -202,7 +213,7 @@
 	extended_desc = to_assimilate.extended_desc
 	for(var/obj/item/mod/module/module in to_assimilate.modules) // Insert every module
 		var/obj/item/mod/module/storage/protean_storage = locate() in modules
-		if(istype(module, /obj/item/mod/module/storage) && protean_storage) //snowflake storage module code
+		if(protean_storage) //snowflake storage module code
 			cached_modules += protean_storage
 			to_chat(user, span_notice("[protean_storage] has been pushed aside!"))
 			uninstall(protean_storage)
