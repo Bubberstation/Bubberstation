@@ -35,7 +35,7 @@ SUBSYSTEM_DEF(ticker)
 	var/start_at
 
 	var/gametime_offset = 432000 //Deciseconds to add to world.time for station time.
-	var/station_time_rate_multiplier = 12 //factor of station time progressal vs real time.
+	var/station_time_rate_multiplier = 2 //factor of station time progressal vs real time.
 
 	/// Num of players, used for pregame stats on statpanel
 	var/totalPlayers = 0
