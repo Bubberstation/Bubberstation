@@ -41,7 +41,6 @@
 	var/static/list/selectable_gun_types = list(
 		"M90-GL" = /obj/item/storage/toolbox/guncase/m90gl,
 		"Bulldog" = /obj/item/storage/toolbox/guncase/bulldog,
-		"Stolen Revolver" = /obj/item/storage/toolbox/guncase/skyrat/hos_revolver,
 		"Energy Sword" = /obj/item/melee/energy/sword/saber,
 	)
 
