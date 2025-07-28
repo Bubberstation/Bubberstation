@@ -150,7 +150,7 @@
 
 /datum/supply_pack/goody/magnetic_deployable
 	name = "MOD Magnetic Deployment Module"
-	desc = "A much more modern version of a springlock system. This is a module that uses magnets to speed up the deployment and retraction time of your MODsuit."
+	desc = "A much more modern version of a springlock system. This is a module that uses magnets to speed up the deployment and retraction time of your MODsuit. Unlike the outdated springlock module, this one does not have unforseen issues regarding its springs when exposed to moisture."
 	cost = PAYCHECK_COMMAND * 5
 	contains = list(/obj/item/mod/module/springlock/contractor)
 
