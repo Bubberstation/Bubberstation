@@ -43,6 +43,7 @@
 /obj/item/ammo_box/c9mm/security //Bubberstation sourced, because I'll finalize all the moving once I merge the adjacent PR's
 	name = "ammo box (9mm Murphy)"
 	ammo_type = /obj/item/ammo_casing/security
+	caliber = CALIBER_9MM_SEC
 
 /obj/item/ammo_box/c46x30mm
 	name = "ammo box (4.6x30mm)"

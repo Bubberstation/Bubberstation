@@ -5,7 +5,7 @@
 	icon_state = "9x19p"
 	base_icon_state = "9x19p"
 	ammo_type = /obj/item/ammo_casing/security
-	caliber = CALIBER_9MM
+	caliber = CALIBER_9MM_SEC
 	max_ammo = 10
 	ammo_band_color = null
 	multiple_sprites = AMMO_BOX_PER_BULLET
