@@ -1,6 +1,6 @@
 /obj/item/mod/control/pre_equipped/protean
-	name = "protean hardsuit rig"
-	desc = "The hardsuit rig unit of a Protean, allowing them to retract into it, or to deploy a suit that protects against various environments."
+	name = "protean modsuit"
+	desc = "The modsuit unit of a Protean, allowing them to retract into it, or to deploy a suit that protects against various environments."
 	theme = /datum/mod_theme // Standard theme. TODO: Can be changed with standard mod armors
 
 	applied_core = /obj/item/mod/core/protean
@@ -9,10 +9,11 @@
 	/// Whether or not the wearer can undeploy parts.
 	var/modlocked = FALSE
 	var/obj/item/mod/control/stored_modsuit
+	var/list/cached_modules = list()
 	var/datum/mod_theme/stored_theme
 
 /datum/mod_theme/protean
-	name = "Protean"
+	name = "protean"
 
 /obj/item/mod/control/pre_equipped/protean/Initialize(mapload, datum/mod_theme/new_theme, new_skin, obj/item/mod/core/new_core)
 	. = ..()
@@ -21,6 +22,13 @@
 
 /obj/item/mod/control/pre_equipped/protean/Destroy()
 	if(stored_modsuit)
+		for(var/obj/item/mod/module/modules in cached_modules)
+			if(!modules.removable)
+				qdel(modules)
+				continue
+			modules.forceMove(get_turf(src))
+
+		cached_modules = null
 		drop_suit()
 		INVOKE_ASYNC(src, PROC_REF(unassimilate_modsuit), null, forced = TRUE)
 	return ..()
@@ -120,6 +128,21 @@
 		brain.revive_timer()
 		return ITEM_INTERACT_SUCCESS
 
+	if(istype(tool, /obj/item/mod/construction/plating))
+		if(stored_modsuit)
+			balloon_alert(user, "remove assimilated suit")
+			return ITEM_INTERACT_BLOCKING
+		if(active)
+			balloon_alert(user, "turn it off")
+			return ITEM_INTERACT_BLOCKING
+		to_chat(user, span_notice("You begin to copy [tool], destroying it in the process!"))
+		if(!do_after(user, 4 SECONDS))
+			return ITEM_INTERACT_BLOCKING
+		assimilate_theme(user, tool)
+		qdel(tool)
+		playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
+		return ITEM_INTERACT_SUCCESS
+
 	if(istype(tool, /obj/item/mod/control))
 		if(active)
 			balloon_alert(user, "turn it off")
@@ -137,6 +160,7 @@
 		if(!do_after(user, 4 SECONDS))
 			return ITEM_INTERACT_BLOCKING
 		assimilate_modsuit(user, tool)
+		playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return ITEM_INTERACT_SUCCESS
 
 /obj/item/mod/control/pre_equipped/protean/ui_status(mob/user, datum/ui_state/state)
@@ -146,6 +170,24 @@
 		return 2
 	. = ..()
 
+/obj/item/mod/control/pre_equipped/protean/proc/assimilate_theme(mob/user, plating)
+	var/obj/item/mod/construction/plating/plates = plating
+	var/datum/mod_theme/the_theme = GLOB.mod_themes[plates.theme]
+
+	name = initial(name)
+	name = initial(desc)
+
+	for(var/obj/item/part as anything in get_parts())
+		part.name = initial(name)
+		part.desc = initial(desc)
+		if(part.loc == src)
+			continue
+		retract(null, part, instant = TRUE)
+
+	theme = the_theme
+	the_theme.set_up_parts(src, the_theme.default_skin)
+	update_static_data_for_all_viewers()
+
 /obj/item/mod/control/pre_equipped/protean/proc/assimilate_modsuit(mob/user, modsuit, forced)
 	var/obj/item/mod/control/to_assimilate = modsuit
 	if(stored_modsuit)
@@ -153,7 +195,7 @@
 		if(forced)
 			stack_trace("assimilate_modsuit: Tried to assimilate modsuit while there's already a stored modsuit. stored_modsuit: [stored_modsuit], new_modsuit: [to_assimilate]")
 		return
-	if(!user.transferItemToLoc(to_assimilate, src, forced))
+	if(!user?.transferItemToLoc(to_assimilate, src, forced))
 		balloon_alert(user, "stuck!")
 		return
 	if(!forced)
@@ -164,23 +206,34 @@
 	stored_modsuit = to_assimilate
 	stored_theme = theme // Store the old theme in cache
 	theme = to_assimilate.theme // Set new theme
-	complexity_max = to_assimilate.complexity_max // Inheret complexity
 	skin = to_assimilate.skin // Inheret skin
 	theme.set_up_parts(src, skin) // Put everything together
 	name = to_assimilate.name
 	desc = to_assimilate.desc
 	extended_desc = to_assimilate.extended_desc
 	for(var/obj/item/mod/module/module in to_assimilate.modules) // Insert every module
+		var/obj/item/mod/module/storage/protean_storage = locate() in modules
+		if(protean_storage) //snowflake storage module code
+			cached_modules += protean_storage
+			to_chat(user, span_notice("[protean_storage] has been pushed aside!"))
+			uninstall(protean_storage)
 		if(install(module, user, TRUE))
 			continue
-		uninstall(module) // Drop it if failed
+		if(!module.removable) // Just leave it inside the original suit if it doesn't transfer.
+			continue
+		to_assimilate.uninstall(module) // Drop it
+		module.forceMove(get_turf(src))
+		to_chat(user, span_warning("[module] has dropped onto the floor!"))
 	update_static_data_for_all_viewers()
 
 /obj/item/mod/control/pre_equipped/protean/proc/unassimilate_modsuit(mob/living/user, forced = FALSE)
+	if(!stored_modsuit)
+		to_chat(user, span_warning("There is no assimilated suit."))
+		return
 	if(active && !forced)
 		balloon_alert(user, "deactivate modsuit")
 		return
-	if(!(user.has_active_hand()) && !forced)
+	if(!(user?.has_active_hand()) && !forced)
 		balloon_alert(user, "need active hand")
 		return
 
@@ -199,6 +252,14 @@
 		if(stored_modsuit.install(module, user, TRUE))
 			continue
 		uninstall(module)
+		to_chat(user, span_notice("[module] has fallen to the floor!"))
+		module.forceMove(get_turf(src))
+
+	for(var/obj/item/mod/module/cached in cached_modules)
+		if(!install(cached, user, TRUE))
+			to_chat(user, span_warning("[cached] failed to return to its original place! REPORT THIS"))
+			stack_trace("Modsuit Unassimilate: cached module [cached] failed to return to original modsuit! [src]")
+		cached_modules -= cached
 
 	theme = stored_theme
 	stored_theme = null
