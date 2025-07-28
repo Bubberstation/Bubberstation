@@ -141,6 +141,13 @@
 	cost = PAYCHECK_CREW * 4
 	contains = list(/obj/item/mod/core/ethereal)
 
+/datum/supply_pack/goody/cosmohonk
+	name = "MOD Cosmohonk Plating"
+	desc ="A suit by Honk Ltd. Protects against low humor environments. Most of the tech went to lower the power cost."
+	cost = PAYCHECK_COMMAND * 2
+	contains = list(/obj/item/mod/construction/plating/cosmohonk)
+	contraband = TRUE
+
 /datum/supply_pack/goody/magnetic_deployable
 	name = "MOD Magnetic Deployment Module"
 	desc = "A much more modern version of a springlock system. This is a module that uses magnets to speed up the deployment and retraction time of your MODsuit."
