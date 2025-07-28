@@ -13,7 +13,7 @@
 	var/datum/mod_theme/stored_theme
 
 /datum/mod_theme/protean
-	name = "Protean"
+	name = "protean"
 
 /obj/item/mod/control/pre_equipped/protean/Initialize(mapload, datum/mod_theme/new_theme, new_skin, obj/item/mod/core/new_core)
 	. = ..()
