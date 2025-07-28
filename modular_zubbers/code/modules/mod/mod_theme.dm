@@ -115,7 +115,7 @@
 
 //// Sprites done by Toriate - Commissioned by The Sharkenning
 /datum/mod_theme/lustwish
-	name = "lustwish modsuit"
+	name = "lustwish"
 	desc = "A specialty designed lustwish themed modsuit which is based entirely off of earlier civilian modsuits."
 	default_skin = "lustwish"
 	hardlight_theme = ROYAL_PURPLE
