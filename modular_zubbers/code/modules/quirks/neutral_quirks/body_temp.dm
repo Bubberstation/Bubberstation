@@ -34,7 +34,7 @@
 /datum/preference/numeric/bodytemp_customization/bodytemp
 	savefile_key = "bodytemp"
 
-/datum/quirk/bodytemp/post_add()
+/datum/quirk/bodytemp/add()
 	. = ..()
 
 	var/mob/living/carbon/human/user = quirk_holder
