@@ -67,6 +67,7 @@
 		for(var/obj/item/I in affected_mob.held_items)
 			affected_mob.dropItemToGround(I)
 		var/mob/living/new_mob = new new_form(affected_mob.loc)
+
 		if(istype(new_mob))
 			if(bantype && is_banned_from(affected_mob.ckey, bantype))
 				replace_banned_player(new_mob)
@@ -80,6 +81,7 @@
 		new_mob.name = affected_mob.real_name
 		new_mob.real_name = new_mob.name
 		qdel(affected_mob)
+
 
 /datum/disease/transformation/proc/replace_banned_player(mob/living/new_mob) // This can run well after the mob has been transferred, so need a handle on the new mob to kill it if needed.
 	set waitfor = FALSE
