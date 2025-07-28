@@ -42,6 +42,8 @@
 		TRAIT_WEREWOLF,
 	)
 
+no_equip_flags = ITEM_SLOT_OCLOTHING | ITEM_SLOT_GLOVES | ITEM_SLOT_FEET | ITEM_SLOT_SUITSTORE | ITEM_SLOT_BACK | ITEM_SLOT_BELT | ITEM_SLOT_EARS | ITEM_SLOT_HEAD | ITEM_SLOT_MASK | ITEM_SLOT_EYES | ITEM_SLOT_BACK
+
 /datum/species/werewolf/prepare_human_for_preview(mob/living/carbon/human/werewolf)
 	var/main_color = "#362d23"
 	var/secondary_color = "#9c5852"
