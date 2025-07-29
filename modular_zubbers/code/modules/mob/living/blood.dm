@@ -19,7 +19,7 @@
 		CRASH("target null. breaking")
 	if(isnull(filter))
 		CRASH("filter null. breaking. Run using init_mass_edit_blood_compatibility")
-	compat_list = target.get_compatibile() //can not execute?
+	compat_list = target.get_compatible() //can not execute?
 	if(isnull(compat_list))
 		CRASH("[target] skipped, could not retrieve compatible_types OR compatible_types empty... for some reason")
 	testing("compat_list generated")
