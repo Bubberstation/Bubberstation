@@ -42,7 +42,7 @@ const RemoteSection = (props) => {
             onChange={setEmote}
             disabled={!erp_pref_check}
             onEnter={() => act('emote', { emote: emote })}
-          ></Input>
+          />
         </LabeledList.Item>
       </LabeledList>
     </Section>
