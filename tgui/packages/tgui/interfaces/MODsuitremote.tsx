@@ -1,10 +1,10 @@
 // BUBBER UI FILE
 
-import { MODsuitContent } from './MODsuit';
+import { useState } from 'react';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { Icon, LabeledList, Modal, Section, Input } from 'tgui-core/components';
-import { useState } from 'react';
+import { MODsuitContent } from './MODsuit';
 
 type Data = {
   ui_theme?: string;
