@@ -68,7 +68,7 @@
 	overlay_state_inactive = "module_remote_overlay"
 	overlay_icon_file = 'modular_zubbers/icons/mob/clothing/modsuit/mod_modules.dmi'
 
-/obj/item/mod/module/remote_control/Initialize()
+/obj/item/mod/module/remote_control/Initialize(mapload)
 	. = ..()
 	create_storage(storage_type = /datum/storage/pockets/small/remote_module)
 	var/obj/item/remote_controller/remote = new /obj/item/remote_controller()
