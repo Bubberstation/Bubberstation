@@ -25,19 +25,19 @@
 
 //Hat Stabilizer Module added as default module to the Blueshield, Security, and Safeguard Modsuits
 /obj/item/mod/control/pre_equipped/blueshield/New()
-    applied_modules += list(
-        /obj/item/mod/module/hat_stabilizer,
-    )
-    return ..()
+	applied_modules += list(
+		/obj/item/mod/module/hat_stabilizer,
+	)
+	return ..()
 
 /obj/item/mod/control/pre_equipped/security/New()
-    applied_modules += list(
-        /obj/item/mod/module/hat_stabilizer,
-    )
-    return ..()
+	applied_modules += list(
+		/obj/item/mod/module/hat_stabilizer,
+	)
+	return ..()
 
 /obj/item/mod/control/pre_equipped/safeguard/New()
-    applied_modules += list(
-        /obj/item/mod/module/hat_stabilizer,
-    )
-    return ..()
+	applied_modules += list(
+		/obj/item/mod/module/hat_stabilizer,
+	)
+	return ..()
