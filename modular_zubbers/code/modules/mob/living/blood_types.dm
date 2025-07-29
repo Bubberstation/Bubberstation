@@ -2,6 +2,14 @@
 	///blood type to be edited for change_blood_color
 	var/recolor_blood_type //datum typepath for the alt_color version of the blood type
 
+/datum/blood_type/proc/make_alt_color(override, datum/blood_type/orig)
+	var/datum/blood_type/original = orig
+	name = "[name] ([override])"
+	color = override
+	id = name
+	testing("created alternate [id]")
+	compatible_types = LAZYLISTDUPLICATE(original?.compatible_types)
+
 // For Skrell
 /datum/blood_type/copper
 	name = BLOOD_TYPE_COPPER
@@ -15,7 +23,7 @@
 /* 	root_abstract_type = /datum/blood_type/copper/alt_color */
 
 /datum/blood_type/copper/alt_color/type_key()
-	return "[name]_alt_[color]"
+	return /datum/blood_type/copper
 
 /datum/blood_type/copper/alt_color/New(override)
 
@@ -36,7 +44,7 @@
 	/* root_abstract_type = /datum/blood_type/nanite_slurry/alt_color */
 
 /datum/blood_type/nanite_slurry/alt_color/type_key()
-	return "[name]_alt_[color]"
+	return /datum/blood_type/nanite_slurry
 
 /datum/blood_type/nanite_slurry/alt_color/New(override)
 
@@ -82,17 +90,11 @@
 /datum/blood_type/human/a_minus/alt_color
 	/* root_abstract_type = /datum/blood_type/human/a_minus/alt_color */
 
-/datum/blood_type/human/a_minus/alt_color/type_key()
-	return "[name]_alt_[color]"
-
 /datum/blood_type/human/a_minus/alt_color/New(override, datum/blood_type/orig)
-	if(!isnull(override))
-		color = override
-		testing("created alternate [name] in [color]")
-		id = type_key()
-	else
-		CRASH("attempt to generate alt-color blood type failed, override arg is null")
-	compatible_types = LAZYCOPY(orig?.compatible_types)
+	make_alt_color(override, orig)
+
+/datum/blood_type/human/a_minus/alt_color/type_key()
+	return /datum/blood_type/human/a_minus
 
 ///A+
 /datum/blood_type/human/a_plus
@@ -108,7 +110,7 @@
 	root_abstract_type = null
 
 /datum/blood_type/human/a_plus/alt_color/type_key()
-	return "[name]_alt_[color]"
+	return /datum/blood_type/human/a_plus
 
 ///B+
 /datum/blood_type/human/b_plus
@@ -124,7 +126,7 @@
 	root_abstract_type = null
 
 /datum/blood_type/human/b_plus/alt_color/type_key()
-	return "[name]_alt_[color]"
+	return /datum/blood_type/human/b_plus
 
 ///B-
 /datum/blood_type/human/b_minus
@@ -140,7 +142,7 @@
 	root_abstract_type = null
 
 /datum/blood_type/human/b_minus/alt_color/type_key()
-	return "[name]_alt_[color]"
+	return /datum/blood_type/human/b_minus
 
 ///AB-
 /datum/blood_type/human/ab_minus
@@ -156,7 +158,7 @@
 	root_abstract_type = null
 
 /datum/blood_type/human/ab_minus/alt_color/type_key()
-	return "[name]_alt_[color]"
+	return /datum/blood_type/human/ab_minus
 
 ///AB+
 /datum/blood_type/human/ab_plus
@@ -172,7 +174,7 @@
 	root_abstract_type = null
 
 /datum/blood_type/human/ab_plus/alt_color/type_key()
-	return "[name]_alt_[color]"
+	return /datum/blood_type/human/ab_plus
 
 ///O-
 /datum/blood_type/human/o_minus
@@ -188,7 +190,7 @@
 	root_abstract_type = null
 
 /datum/blood_type/human/o_minus/alt_color/type_key()
-	return "[name]_alt_[color]"
+	return /datum/blood_type/human/o_minus
 
 ///O+
 /datum/blood_type/human/o_plus
@@ -204,7 +206,7 @@
 	root_abstract_type = null
 
 /datum/blood_type/human/o_plus/alt_color/type_key()
-	return "[name]_alt_[color]"
+	return /datum/blood_type/human/o_plus
 
 ///Y-
 /datum/blood_type/animal
@@ -220,7 +222,7 @@
 	root_abstract_type = null
 
 /datum/blood_type/animal/alt_color/type_key()
-	return "[name]_alt_[color]"
+	return /datum/blood_type/animal
 
 ///L
 /datum/blood_type/lizard
@@ -230,17 +232,10 @@
 	root_abstract_type = /datum/blood_type/lizard/alt_color
 
 /datum/blood_type/lizard/alt_color/New(override, datum/blood_type/orig)
-	var/datum/blood_type/original = orig
-	name = "[name] ([override])"
-	color = override
-	id = name
-	testing("created alternate [id]")
-	testing("invoking mass_edit_blood_compatibility() for [id] and filter as [original]")
-	compatible_types = LAZYCOPY(original?.compatible_types) //so MEBC can target it, just in case MEBC fails
-	init_mass_edit_blood_compatibility(filter = original.type)
+	make_alt_color(override, orig)
 
-/datum/blood_type/lizard/alt_color/type_key(base, addon)
-	return "[base]/[addon]"
+/datum/blood_type/lizard/alt_color/type_key()
+	return /datum/blood_type/lizard
 
 ///LE
 /datum/blood_type/ethereal
@@ -256,7 +251,7 @@
 	root_abstract_type = null
 
 /datum/blood_type/ethereal/alt_color/type_key()
-	return "[name]_alt_[color]"
+	return /datum/blood_type/ethereal
 
 ///Oil
 /datum/blood_type/oil
@@ -271,7 +266,7 @@
 	root_abstract_type = null
 
 /datum/blood_type/oil/alt_color/type_key()
-	return "[name]_alt_[color]"
+	return /datum/blood_type/oil
 
 ///V
 /datum/blood_type/vampire
@@ -287,7 +282,7 @@
 	root_abstract_type = null
 
 /datum/blood_type/vampire/alt_color/type_key()
-	return "[name]_alt_[color]"
+	return /datum/blood_type/vampire
 
 ///U
 /datum/blood_type/universal
@@ -303,7 +298,7 @@
 	root_abstract_type = null
 
 /datum/blood_type/universal/alt_color/type_key()
-	return "[name]_alt_[color]"
+	return /datum/blood_type/universal
 
 ///MT-
 /datum/blood_type/meat
@@ -319,7 +314,7 @@
 	root_abstract_type = null
 
 /datum/blood_type/meat/alt_color/type_key()
-	return "[name]_alt_[color]"
+	return /datum/blood_type/meat
 
 ///TOX
 /datum/blood_type/slime
@@ -335,7 +330,7 @@
 	root_abstract_type = null
 
 /datum/blood_type/slime/alt_color/type_key()
-	return "[name]_alt_[color]"
+	return /datum/blood_type/slime
 
 ///H2O
 /datum/blood_type/water
@@ -351,7 +346,7 @@
 	root_abstract_type = null
 
 /datum/blood_type/water/alt_color/type_key()
-	return "[name]_alt_[color]"
+	return /datum/blood_type/water
 
 ///S
 /datum/blood_type/snail
@@ -367,4 +362,4 @@
 	root_abstract_type = null
 
 /datum/blood_type/snail/alt_color/type_key()
-	return "[name]_alt_[color]"
+	return /datum/blood_type/snail
