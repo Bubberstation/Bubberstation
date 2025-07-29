@@ -5,6 +5,7 @@
 /datum/design/mod_remote
 	name = "MODsuit Remote Module"
 	id = "mod_remote_module"
+	build_type = MECHFAB
 	build_path = /obj/item/mod/module/remote_control
 	materials = list(
 		/datum/material/iron =SHEET_MATERIAL_AMOUNT*3,
