@@ -27,7 +27,7 @@
 	unarmed_damage_low = 13
 	unarmed_damage_high = 13
 	unarmed_effectiveness = 25
-	unarmed_pummeling_bonus = 2
+	unarmed_pummeling_bonus = 1.75 // Turns out 2 was way too much.
 	unarmed_sharpness = SHARP_EDGED
 
 /obj/item/bodypart/arm/right/mutant/werewolf
@@ -43,7 +43,7 @@
 	unarmed_damage_low = 13
 	unarmed_damage_high = 13
 	unarmed_effectiveness = 25
-	unarmed_pummeling_bonus = 2
+	unarmed_pummeling_bonus = 1.75 // Turns out 2 was way too much.
 	unarmed_sharpness = SHARP_EDGED
 
 /obj/item/bodypart/leg/left/mutant/werewolf
