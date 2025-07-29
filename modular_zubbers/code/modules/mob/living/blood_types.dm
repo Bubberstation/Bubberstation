@@ -1,10 +1,6 @@
 /datum/blood_type
 	///blood type to be edited for change_blood_color
 	var/recolor_blood_type //datum typepath for the alt_color version of the blood type
-//	var/alternate_of //placeholder var used individually for populating blood type compatabilities in alt-color or etc
-
-/datum/blood_type/proc/get_compatibility()
-	return compatible_types
 
 // For Skrell
 /datum/blood_type/copper
@@ -244,10 +240,10 @@
 	/* root_abstract_type = /datum/blood_type/lizard/alt_color */
 
 /datum/blood_type/lizard/alt_color/New(override, datum/blood_type/orig)
-	var/old_name = orig.name
-	name = "[old_name] ([override])"
+	var/original = orig
+	name = "[name] ([override])"
 	color = override
-	id = type_key(old_name, override)
+	id = type_key(original, override)
 	testing("created alternate [id]")
 	var/list/to_append = list(type,)
 	var/readout = ""
@@ -257,8 +253,8 @@
 	mass_edit_blood_compatibility(to_append = to_append, filter = orig)
 	compatible_types = LAZYCOPY(orig?.compatible_types)
 
-/datum/blood_type/lizard/alt_color/type_key(old_name, override)
-	return "[old_name]_[override]"
+/datum/blood_type/lizard/alt_color/type_key(original, override)
+	return "/[original?.type]/[override]"
 
 ///LE
 /datum/blood_type/ethereal

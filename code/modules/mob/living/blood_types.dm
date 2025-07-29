@@ -48,6 +48,11 @@
 /datum/blood_type/proc/get_blood_name()
 	return capitalize(LOWER_TEXT(reagent_type::name))
 
+/// BUBBER EDIT - Fetching compatibility
+/datum/blood_type/proc/get_compatibility()
+	return LAZYLISTDUPLICATE(compatible_types)
+// edit end
+
 /// Type string of this bloodtype. Used to prevent "Oil type: Oil" scenarios
 /datum/blood_type/proc/get_type()
 	if (reagent_type != /datum/reagent/blood)

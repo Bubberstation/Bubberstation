@@ -45,6 +45,6 @@
 		"Lime/Xeno",
 		"Violet/Avali",
 		"Cyan/Vox",
-		"White/Synth",
+		"White/Nanites",
 		"Custom",
 	)

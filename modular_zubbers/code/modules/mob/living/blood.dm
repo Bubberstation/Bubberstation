@@ -5,17 +5,19 @@
 	var/list/compat_list = list()
 	for(var/datum/blood_type/target as anything in subtypesof(/datum/blood_type))
 		testing("mass_edit_blood_compatibility target is [target.type]") //this reads as the datum typepath...
-		if(target::root_abstract_type == target) // Let's not modify placeholders
+		if(target?.root_abstract_type == target) // Let's not modify placeholders
 			testing("[target] skipped, abstract")
 			testing("printing [target::root_abstract_type]")
 			continue
-		compat_list = target.get_compatibility()
+		testing("[target] isn't abstract. If it stops here... idk?")
+		compat_list = target?.get_compatibility()
+		if(isnull(compat_list))
+			testing("[target] skipped, could not retrieve compatible_types OR compatible_types empty... for some reason")
+			continue
+		testing("compat_list generated")
 		for(var/datum/blood_type/to_list as anything in compat_list)
 			compat_list |= initial(to_list.name)
 			testing("[to_list] added to [target].compatible_types")
-		if(isnull(compat_list))
-			testing("[target] skipped, could not retrieve compatible_types")
-			continue
 		readout = ""
 		if(isnull(filter))  //cascading error from above.... compat_list can't be retrieved
 			testing("filter null")
