@@ -25,11 +25,8 @@
 /datum/blood_type/copper/alt_color/type_key()
 	return /datum/blood_type/copper
 
-/datum/blood_type/copper/alt_color/New(override)
-
-	id = type_key()
-	color = override
-	root_abstract_type = null
+/datum/blood_type/copper/alt_color/New(override, datum/blood_type/orig)
+	make_alt_color(override, orig)
 
 // For Proteans
 /datum/blood_type/nanite_slurry
@@ -200,11 +197,8 @@
 /datum/blood_type/ethereal/alt_color
 	root_abstract_type = /datum/blood_type/ethereal/alt_color
 
-/datum/blood_type/ethereal/alt_color/New(override)
-
-	id = type_key()
-	color = override
-	root_abstract_type = null
+/datum/blood_type/ethereal/alt_color/New(override, datum/blood_type/orig)
+	make_alt_color(override, orig)
 
 /datum/blood_type/ethereal/alt_color/type_key()
 	return /datum/blood_type/ethereal
@@ -216,10 +210,8 @@
 /datum/blood_type/oil/alt_color
 	root_abstract_type = /datum/blood_type/oil/alt_color
 
-/datum/blood_type/oil/alt_color/New(override)
-	id = type_key()
-	color = override
-	root_abstract_type = null
+/datum/blood_type/oil/alt_color/New(override, datum/blood_type/orig)
+	make_alt_color(override, orig)
 
 /datum/blood_type/oil/alt_color/type_key()
 	return /datum/blood_type/oil
@@ -231,11 +223,8 @@
 /datum/blood_type/vampire/alt_color
 	root_abstract_type = /datum/blood_type/vampire/alt_color
 
-/datum/blood_type/vampire/alt_color/New(override)
-
-	id = type_key()
-	color = override
-	root_abstract_type = null
+/datum/blood_type/vampire/alt_color/New(override, datum/blood_type/orig)
+	make_alt_color(override, orig)
 
 /datum/blood_type/vampire/alt_color/type_key()
 	return /datum/blood_type/vampire
@@ -247,11 +236,8 @@
 /datum/blood_type/universal/alt_color
 	root_abstract_type = /datum/blood_type/universal/alt_color
 
-/datum/blood_type/universal/alt_color/New(override)
-
-	id = type_key()
-	color = override
-	root_abstract_type = null
+/datum/blood_type/universal/alt_color/New(override, datum/blood_type/orig)
+	make_alt_color(override, orig)
 
 /datum/blood_type/universal/alt_color/type_key()
 	return /datum/blood_type/universal
@@ -263,11 +249,8 @@
 /datum/blood_type/meat/alt_color
 	root_abstract_type = /datum/blood_type/meat/alt_color
 
-/datum/blood_type/meat/alt_color/New(override)
-
-	id = type_key()
-	color = override
-	root_abstract_type = null
+/datum/blood_type/meat/alt_color/New(override, datum/blood_type/orig)
+	make_alt_color(override, orig)
 
 /datum/blood_type/meat/alt_color/type_key()
 	return /datum/blood_type/meat
@@ -279,11 +262,8 @@
 /datum/blood_type/slime/alt_color
 	root_abstract_type = /datum/blood_type/slime/alt_color
 
-/datum/blood_type/slime/alt_color/New(override)
-
-	id = type_key()
-	color = override
-	root_abstract_type = null
+/datum/blood_type/slime/alt_color/New(override, datum/blood_type/orig)
+	make_alt_color(override, orig)
 
 /datum/blood_type/slime/alt_color/type_key()
 	return /datum/blood_type/slime
@@ -295,11 +275,8 @@
 /datum/blood_type/water/alt_color
 	root_abstract_type = /datum/blood_type/water/alt_color
 
-/datum/blood_type/water/alt_color/New(override)
-
-	id = type_key()
-	color = override
-	root_abstract_type = null
+/datum/blood_type/water/alt_color/New(override, datum/blood_type/orig)
+	make_alt_color(override, orig)
 
 /datum/blood_type/water/alt_color/type_key()
 	return /datum/blood_type/water
@@ -311,11 +288,8 @@
 /datum/blood_type/snail/alt_color
 	root_abstract_type = /datum/blood_type/snail/alt_color
 
-/datum/blood_type/snail/alt_color/New(override)
-
-	id = type_key()
-	color = override
-	root_abstract_type = null
+/datum/blood_type/snail/alt_color/New(override, datum/blood_type/orig)
+	make_alt_color(override, orig)
 
 /datum/blood_type/snail/alt_color/type_key()
 	return /datum/blood_type/snail
