@@ -18,7 +18,6 @@ GLOBAL_LIST_INIT(chat_colors_by_mob_name, list(
 #define BLOOD_COLOR_VIOLET "#9966FF"
 //cyan vox blood
 #define BLOOD_COLOR_CYAN "#33FFFF"
-#define BLOOD_COLOR_BLACK "#1d1d1d"
 
 /// Modsuit hardlight colors
 
