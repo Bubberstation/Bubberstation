@@ -1,6 +1,5 @@
 ///Attempts to add/remove the origin blood type to the compatible_types list of all blood types (with the filter)
 /datum/blood_type/proc/init_mass_edit_blood_compatibility(datum/blood_type/filter, mode_remove = FALSE)
-	var/to_insert = type
 	testing("mass_edit_blood_compatibility initialized with filter as [filter], and injection as [to_insert]")
 	for(var/datum/blood_type/target as anything in subtypesof(/datum/blood_type))
 		testing("mass_edit_blood_compatibility target is [target.type]") //this reads as the datum typepath...
@@ -9,14 +8,17 @@
 			testing("printing [target::root_abstract_type]")
 			continue
 		testing("[target] isn't abstract. If it stops here... idk?")
-		exec_MEBC(target, filter, to_insert, mode_remove)
+		exec_MEBC(target, filter, type, mode_remove)
 	return
 
 /datum/blood_type/proc/exec_MEBC(datum/blood_type/target, datum/blood_type/filter, datum/blood_type/to_insert, mode_remove)
-	testing("exec_MEBC initialized. If it stops here... idk?")
+	testing("exec_MEBC initialized. target is [target], filter is [filter], to_insert is [to_insert], mode is [mode_remove]")
 	var/list/compat_list = list()
 	var/readout
-	compat_list = target?.get_compatibility() //can not execute?
+	if(isnull(target))
+		testing("target null. breaking")
+		return
+	compat_list = target.get_compatibile() //can not execute?
 	if(isnull(compat_list))
 		testing("[target] skipped, could not retrieve compatible_types OR compatible_types empty... for some reason")
 		return
