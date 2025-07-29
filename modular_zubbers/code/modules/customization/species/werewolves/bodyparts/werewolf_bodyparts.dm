@@ -12,7 +12,7 @@
 	wing_types = list(/obj/item/organ/wings/functional/angel) // Sure, I guess.
 
 /obj/item/bodypart/chest/mutant/werewolf/get_butt_sprite()
-	return icon('icons/mob/butts.dmi', BUTT_SPRITE_FUZZY) // I can't be bothered making a new sprite.
+	return icon('modular_skyrat/master_files/icons/mob/butts.dmi', BUTT_SPRITE_VULP) // I can't be bothered making a new sprite.
 
 /obj/item/bodypart/arm/left/mutant/werewolf
 	icon_greyscale = 'modular_zubbers/code/modules/customization/species/werewolves/bodyparts/bodyparts.dmi'
