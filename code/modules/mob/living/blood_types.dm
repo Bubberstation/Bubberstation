@@ -48,9 +48,14 @@
 /datum/blood_type/proc/get_blood_name()
 	return capitalize(LOWER_TEXT(reagent_type::name))
 
-/// BUBBER EDIT - Fetching compatibility
+/// BUBBER EDIT - Fetching compatibility... hate that only human blood starts with compatible_types
 /datum/blood_type/proc/get_compatibility()
-	return LAZYLISTDUPLICATE(compatible_types)
+	var/list/returnvalue = list()
+	if(isnull(compatible_types))
+		returnvalue |= type_key()
+	else
+		returnvalue = compatible_types
+	return returnvalue
 // edit end
 
 /// Type string of this bloodtype. Used to prevent "Oil type: Oil" scenarios

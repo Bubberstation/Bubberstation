@@ -102,7 +102,7 @@
 	testing("id_as_list contains [readout]")
 	var/datum/blood_type/filter = GLOB.blood_types[parent_type]
 	testing("invoking mass_edit_blood_compatibility() for [id] and filter as [filter]")
-	mass_edit_blood_compatibility(to_append = id_as_list, filter = filter)
+	init_mass_edit_blood_compatibility(to_append = id_as_list, filter = filter)
 
 ///A+
 /datum/blood_type/human/a_plus
@@ -237,24 +237,20 @@
 	recolor_blood_type = /datum/blood_type/lizard/alt_color
 
 /datum/blood_type/lizard/alt_color
-	/* root_abstract_type = /datum/blood_type/lizard/alt_color */
+	root_abstract_type = /datum/blood_type/lizard/alt_color
 
 /datum/blood_type/lizard/alt_color/New(override, datum/blood_type/orig)
-	var/original = orig
+	var/datum/blood_type/original = orig
 	name = "[name] ([override])"
 	color = override
-	id = type_key(original, override)
+	id = name
 	testing("created alternate [id]")
-	var/list/to_append = list(type,)
-	var/readout = ""
-	for(var/i as anything in to_append)
-		readout += "[i],"
-	testing("invoking mass_edit_blood_compatibility() for [readout] and filter as [orig]")
-	mass_edit_blood_compatibility(to_append = to_append, filter = orig)
-	compatible_types = LAZYCOPY(orig?.compatible_types)
+	testing("invoking mass_edit_blood_compatibility() for [id] and filter as [original]")
+	compatible_types = LAZYCOPY(original?.compatible_types) //so MEBC can target it, just in case MEBC fails
+	init_mass_edit_blood_compatibility(filter = original.type)
 
-/datum/blood_type/lizard/alt_color/type_key(original, override)
-	return "/[original?.type]/[override]"
+/datum/blood_type/lizard/alt_color/type_key(base, addon)
+	return "[base]/[addon]"
 
 ///LE
 /datum/blood_type/ethereal
