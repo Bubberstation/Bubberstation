@@ -153,3 +153,15 @@
 /datum/augment_item/organ/tongue/forked
 	name = "Forked tongue"
 	path = /obj/item/organ/tongue/lizard
+
+/datum/augment_item/organ/tongue/akula
+	name = "Aquatic tongue"
+	path = /obj/item/organ/tongue/akula
+
+//EARS
+/datum/augment_item/organ/ears
+	slot = AUGMENT_SLOT_EARS
+
+/datum/augment_item/organ/ears/cybernetic
+	name = "Cybernetic ears"
+	path = /obj/item/organ/ears/cybernetic
