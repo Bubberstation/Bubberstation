@@ -163,7 +163,7 @@
 	)
 
 /datum/design/module/protean/servo
-	name = "protean servo module"
+	name = "Protean Servo Module"
 	id = "mod_protean_servo"
 	build_type = MECHFAB
 	materials = list(
