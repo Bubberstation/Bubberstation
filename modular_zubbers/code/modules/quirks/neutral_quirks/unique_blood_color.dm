@@ -39,7 +39,7 @@
 		if("Cyan/Vox")
 			override = BLOOD_COLOR_CYAN
 		if("White/Synth")
-			override = BLOOD_COLOR_WHITE
+			override = BLOOD_COLOR_NANITE_SLURRY
 		else
 			CRASH("incorrect/missing /datum/preference/choiced/select_blood_color - [selected_color]")
 	testing("override set to [override]")
