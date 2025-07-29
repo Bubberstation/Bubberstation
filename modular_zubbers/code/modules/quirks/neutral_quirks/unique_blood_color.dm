@@ -40,6 +40,8 @@
 			override = BLOOD_COLOR_CYAN
 		if("White/Nanites")
 			override = BLOOD_COLOR_NANITE_SLURRY
+		if("Black/Evil")
+			override = BLOOD_COLOR_BLACK
 		else
 			CRASH("incorrect/missing /datum/preference/choiced/select_blood_color - [selected_color]")
 	testing("override set to [override]")
