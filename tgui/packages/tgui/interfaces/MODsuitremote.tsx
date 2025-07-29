@@ -1,9 +1,10 @@
 // BUBBER UI FILE
 
 import { useState } from 'react';
+import { Icon, Input, LabeledList, Modal, Section } from 'tgui-core/components';
+
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-import { Icon, LabeledList, Modal, Section, Input } from 'tgui-core/components';
 import { MODsuitContent } from './MODsuit';
 
 type Data = {
