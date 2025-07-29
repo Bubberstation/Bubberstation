@@ -5,7 +5,7 @@ export const TaskManager = (props) => {
   const { act, data } = useBackend();
   const [, setToCall] = useLocalState('toCallTaskInfo');
   const [, setModal] = useLocalState('modal');
-  let { tasks } = data;
+  const { tasks } = data;
   tasks?.sort((a, b) => {
     if (a.status < b.status) {
       return -1;

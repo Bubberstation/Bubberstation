@@ -27,7 +27,7 @@
 
 /atom/movable/screen/alert/status_effect/protean_low_power_mode/reform
 	name = "Freshly reformed"
-	desc = "You have just reformed from inside your modsuit, leaving you slowed down and weaker as you finalize your form"
+	desc = "You have just reformed from inside your modsuit, leaving you slowed down and weaker as you finalize your form."
 	icon_state = "protean_reform"
 
 /datum/status_effect/protean_low_power_mode/reform/on_apply()
@@ -42,3 +42,17 @@
 	if(istype(human_owner))
 		human_owner.physiology.damage_resistance += 100
 
+/datum/status_effect/protean_low_power_mode/low_power
+	var/metabolism_modifier_factor = 16
+
+/datum/status_effect/protean_low_power_mode/low_power/on_apply()
+	. = ..()
+	var/obj/item/organ/stomach/protean/stomach = owner.get_organ_slot(ORGAN_SLOT_STOMACH)
+	if(istype(stomach))
+		stomach.metabolism_modifier /= metabolism_modifier_factor
+
+/datum/status_effect/protean_low_power_mode/low_power/on_remove()
+	. = ..()
+	var/obj/item/organ/stomach/protean/stomach = owner.get_organ_slot(ORGAN_SLOT_STOMACH)
+	if(istype(stomach))
+		stomach.metabolism_modifier *= metabolism_modifier_factor

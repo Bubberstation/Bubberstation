@@ -13,7 +13,7 @@
 /obj/item/melee/sabre
 	force = 20 // Original: 15
 	wound_bonus = 5 // Original: 10
-	bare_wound_bonus = 20 // Original: 25 Both down slightly, to make up for the damage buff, since it'd get a bit wacky ontop of the armor pen.
+	exposed_wound_bonus = 20 // Original: 25 Both down slightly, to make up for the damage buff, since it'd get a bit wacky ontop of the armor pen.
 
 /obj/item/melee/sabre/cargo
 	name = "authentic shamshir sabre"
@@ -23,6 +23,7 @@
 	righthand_file = 'modular_skyrat/modules/modular_weapons/icons/mob/inhands/weapons/swords_righthand.dmi'
 	block_chance = 20
 	armour_penetration = 25
+	force = 15
 
 
 // This is here so that people can't buy the Sabres and craft them into powercrepes

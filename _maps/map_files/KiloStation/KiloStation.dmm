@@ -3714,14 +3714,6 @@
 /obj/machinery/door/poddoor/incinerator_ordmix,
 /turf/open/floor/engine/vacuum,
 /area/station/science/ordnance/burnchamber)
-"bmX" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/sign/poster/official/the_owl/directional/east,
-/turf/open/floor/plating,
-/area/station/maintenance/port/greater)
 "bnl" = (
 /obj/machinery/disposal/bin,
 /obj/effect/turf_decal/bot,
@@ -5440,7 +5432,7 @@
 	name = "science camera";
 	network = list("ss13","rd")
 	},
-/obj/machinery/computer/scan_consolenew{
+/obj/machinery/computer/dna_console{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
@@ -15107,7 +15099,6 @@
 /area/station/engineering/atmos)
 "fdp" = (
 /obj/machinery/power/smes{
-	capacity = 9e+006;
 	charge = 10000
 	},
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
@@ -19484,24 +19475,17 @@
 /obj/structure/closet{
 	name = "detective closet"
 	},
-/obj/item/clothing/suit/jacket{
-	desc = "All the class of a trenchcoat without the security fibers.";
-	icon_state = "noirdet";
-	name = "trenchcoat";
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/clothing/suit/jacket{
-	desc = "All the class of a trenchcoat without the security fibers.";
-	icon_state = "detective";
-	name = "trenchcoat"
-	},
 /obj/item/clothing/head/fedora{
 	pixel_x = 4;
 	pixel_y = 4
 	},
 /obj/item/clothing/head/fedora{
 	icon_state = "detective"
+	},
+/obj/item/clothing/suit/jacket/det_suit,
+/obj/item/clothing/suit/jacket/det_suit/noir{
+	pixel_x = 4;
+	pixel_y = 4
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/port/lesser)
@@ -22612,7 +22596,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/sign/poster/official/the_owl/directional/east,
 /turf/open/floor/plating,
 /area/station/maintenance/port/greater)
 "hqk" = (
@@ -34558,7 +34541,6 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
-/obj/structure/sign/poster/contraband/random/directional/south,
 /turf/open/floor/plating,
 /area/station/maintenance/port/lesser)
 "lbK" = (
@@ -46583,6 +46565,12 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/command/storage/eva)
+"pcS" = (
+/obj/effect/mapping_helpers/burnt_floor,
+/obj/machinery/light/small/directional/west,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/station/maintenance/port/lesser)
 "pdg" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -51559,10 +51547,6 @@
 /obj/effect/mapping_helpers/airlock/access/any/medical/maintenance,
 /turf/open/floor/iron/dark,
 /area/station/maintenance/port/fore)
-"qKA" = (
-/obj/structure/sign/poster/official/the_owl/directional/east,
-/turf/closed/wall,
-/area/station/maintenance/port/greater)
 "qKH" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/trimline/purple/filled/corner{
@@ -53637,10 +53621,8 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port/fore)
 "rrt" = (
-/obj/effect/turf_decal/delivery,
 /obj/machinery/space_heater,
-/obj/machinery/light/small/directional/west,
-/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/delivery,
 /turf/open/floor/plating,
 /area/station/maintenance/port/lesser)
 "rrG" = (
@@ -74280,7 +74262,7 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
 "xJB" = (
-/obj/machinery/computer/scan_consolenew{
+/obj/machinery/computer/dna_console{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
@@ -88999,7 +88981,7 @@ vjh
 vjh
 pqD
 lbJ
-iza
+rrt
 qKv
 fKs
 iza
@@ -89255,8 +89237,8 @@ uOo
 qSJ
 hIT
 iza
-wyY
-rrt
+iVR
+iza
 gBf
 pqD
 pqD
@@ -89513,7 +89495,7 @@ hyQ
 iIP
 dfS
 wyY
-jqI
+pcS
 wgK
 nCL
 nCL
@@ -93350,7 +93332,7 @@ xau
 jhX
 myd
 ycx
-bmX
+kex
 jfy
 vjh
 csa
@@ -93606,7 +93588,7 @@ mPM
 kHw
 oMJ
 tEt
-qKA
+vjh
 hpY
 wVb
 eNQ

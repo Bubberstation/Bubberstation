@@ -37,7 +37,7 @@
 		return FALSE
 	return TRUE
 
-/datum/action/innate/constrict/do_ability(mob/living/caller, atom/clicked_on)
+/datum/action/innate/constrict/do_ability(mob/living/clicker, atom/clicked_on)
 	if (!isliving(clicked_on))
 		if (tail)
 			qdel(tail)
@@ -48,19 +48,19 @@
 
 	var/mob/living/living_target = clicked_on
 
-	if (living_target == caller)
+	if (living_target == clicker)
 		return TRUE
 
 	if (!can_coil_target(living_target))
 		return TRUE
 
-	caller.balloon_alert_to_viewers("starts coiling tail")
-	caller.visible_message(span_warning("[caller] starts coiling [caller.p_their()] tail around [living_target]..."), span_notice("You start coiling your tail around [living_target]..."), ignored_mobs = list(living_target))
-	to_chat(living_target, span_userdanger("[caller] starts coiling [caller.p_their()] tail around you!"))
+	clicker.balloon_alert_to_viewers("starts coiling tail")
+	clicker.visible_message(span_warning("[clicker] starts coiling [clicker.p_their()] tail around [living_target]..."), span_notice("You start coiling your tail around [living_target]..."), ignored_mobs = list(living_target))
+	to_chat(living_target, span_userdanger("[clicker] starts coiling [clicker.p_their()] tail around you!"))
 
 	owner.changeNext_move(base_coil_delay) // prevent interaction during this
 	unset_ranged_ability(owner) // because we sleep
-	var/result = do_after(caller, base_coil_delay, living_target, IGNORE_HELD_ITEM, extra_checks = CALLBACK(src, PROC_REF(can_coil_target), living_target))
+	var/result = do_after(clicker, base_coil_delay, living_target, IGNORE_HELD_ITEM, extra_checks = CALLBACK(src, PROC_REF(can_coil_target), living_target))
 	owner.changeNext_move(-base_coil_delay)
 	if (!result)
 		return TRUE

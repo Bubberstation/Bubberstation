@@ -96,12 +96,15 @@
 					transfer_fingerprints_to(FW)
 					qdel(src)
 					return
+			else if(state == GIRDER_REINF)
+				balloon_alert(user, "need plasteel sheet!")
+				return
 			else
 				if(rod.get_amount() < amount)
 					balloon_alert(user, "need [amount] rods!")
 					return
-				balloon_alert(user, "adding plating...")
-				if(do_after(user, 4 SECONDS * skill_modifier, target = src)) //SKYRAT EDIT
+				balloon_alert(user, "adding rods...")
+				if(do_after(user, 4 SECONDS * skill_modifier, target = src)) // BUBBER EDIT CHANGE - Skills - ORIGINAL: if(do_after(user, 4 SECONDS, target = src))
 					if(rod.get_amount() < amount)
 						return
 					rod.use(amount)
@@ -490,7 +493,7 @@
 	return
 
 /obj/structure/girder/cult/atom_deconstruct(disassembled = TRUE)
-	new /obj/item/stack/sheet/runed_metal(drop_location(), 1)
+	new /obj/item/stack/sheet/runed_metal(drop_location())
 
 /obj/structure/girder/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	switch(the_rcd.mode)
