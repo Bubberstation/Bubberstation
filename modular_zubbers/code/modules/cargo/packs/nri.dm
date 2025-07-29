@@ -97,3 +97,43 @@
 	name = "NRI Food Replicator Circuitboard"
 	contains = list(/obj/item/circuitboard/machine/biogenerator/food_replicator)
 	cost = CARGO_CRATE_VALUE * 9
+
+/datum/supply_pack/imports/nri/pods/botany
+	name = "Botany Survival Pod"
+	contains = list(/obj/item/survivalcapsule/botany)
+	cost = PAYCHECK_COMMAND * 4
+
+/datum/supply_pack/imports/nri/pods/botany_trays
+	name = "Botany Trays Survival Pod Addon"
+	contains = list(/obj/item/survivalcapsule/trays)
+	cost = PAYCHECK_COMMAND * 2
+
+/datum/supply_pack/imports/nri/pods/kitchen
+	name = "Kitchen Survival Pod"
+	contains = list(/obj/item/survivalcapsule/kitchen)
+	cost = PAYCHECK_COMMAND * 4
+
+/datum/supply_pack/imports/nri/pods/oxygen
+	name = "Oxygen Survival Pod"
+	contains = list(/obj/item/survivalcapsule/o2)
+	cost = PAYCHECK_COMMAND * 4
+
+/datum/supply_pack/imports/nri/pods/fanpod
+	name = "Fan Survival Pod"
+	contains = list(/obj/item/survivalcapsule/fan)
+	cost = PAYCHECK_COMMAND
+
+/datum/supply_pack/imports/nri/pods/threebythree
+	name = "3x3 Survival Pod"
+	contains = list(/obj/item/survivalcapsule/threebythree)
+	cost = PAYCHECK_COMMAND
+
+/datum/supply_pack/imports/nri/pods/sixbysix
+	name = "6x6 Survival Pod"
+	contains = list(/obj/item/survivalcapsule/)
+	cost = PAYCHECK_COMMAND * 2
+
+/datum/supply_pack/imports/nri/pods/cabin
+	name = "Cabin Survival Pod"
+	contains = list(/obj/item/survivalcapsule/cabin)
+	cost = PAYCHECK_COMMAND * 2

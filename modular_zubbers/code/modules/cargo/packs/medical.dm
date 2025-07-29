@@ -331,3 +331,13 @@
 /datum/supply_pack/imports_medical/implant/janitor
 	name = "Janitor Toolset Implant"
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/janitor)
+
+/datum/supply_pack/imports_medical/medpod
+	name = "Medical Pod Capsule"
+	contains = list(/obj/item/survivalcapsule/medical)
+	cost = PAYCHECK_COMMAND * 40
+
+/datum/supply_pack/imports_medical/chempod
+	name = "Chemistry Pod Capsule"
+	contains = list(/obj/item/survivalcapsule/chemistry)
+	cost = PAYCHECK_COMMAND * 20
