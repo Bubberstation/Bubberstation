@@ -5,13 +5,14 @@
 	name = "MEC-2CE Coil Pistol"
 	desc = "A standard issue pistol given to military police and border patrol in Romulus Federation, this one is stripped down to the bare minimum for ease of usage, no field maintenance needed."
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/romulus_technology/pistol.dmi'
-	icon_state = "m45a5"
-	fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/pistol_heavy.ogg'
-	fire_delay = 3
+	icon_state = "coilpistol"
+	fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/smg_light.ogg'
+	can_suppress = FALSE
+	fire_delay = 4
 	special_mags = TRUE
-
 	accepted_magazine_type = /obj/item/ammo_box/magazine/cacoilgun
 	spawn_magazine_type = /obj/item/ammo_box/magazine/cacoilgun
+	spread = 5
 
 /obj/item/gun/ballistic/automatic/pistol/coilgun/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_ROMTECH)

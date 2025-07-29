@@ -20,7 +20,6 @@ Coil Rifle
 	worn_icon = 'icons/mob/clothing/back.dmi'
 	worn_icon_state = "battle_rifle"
 	slot_flags = ITEM_SLOT_BACK
-
 	weapon_weight = WEAPON_HEAVY
 	accepted_magazine_type = /obj/item/ammo_box/magazine/cacoilgun
 	w_class = WEIGHT_CLASS_BULKY
@@ -28,7 +27,7 @@ Coil Rifle
 	mag_display = TRUE
 	projectile_damage_multiplier = 2
 	projectile_speed_multiplier = 1.4
-	fire_delay = 2
+	fire_delay = 7
 	burst_size = 1
 	actions_types = list()
 	spread = 3

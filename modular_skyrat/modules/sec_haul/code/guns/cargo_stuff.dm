@@ -85,13 +85,13 @@
 	crate_name = "Carwo 'Sindano' Submachinegun Crate"
 
 //NT Guns and Ammo
-
+//Remove this alongside wespe and eland on future PR. We're killing off the GP9 with the coilpistol and murphy. If you're still reading this, that mean it hasn't been done yet
 /datum/supply_pack/security/sidearmcrate
-	name = "Sidearm Crate"
-	desc = "Contains Two Sidearm Beacon, rated for Nanotrasen usage."
+	name = "Revolver Sidearm Crate"
+	desc = "Contains Two 10mm Revolvers, rated for Nanotrasen usage."
 	access_view = ACCESS_ARMORY
 	cost = CARGO_CRATE_VALUE * 12
-	contains = list(/obj/item/choice_beacon/security_pistol = 2,
+	contains = list(/obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/nt_revolver = 2,
 	)
 	crate_name = "Nanotrasen Sidearm Crate"
 
@@ -112,8 +112,8 @@
 	cost = CARGO_CRATE_VALUE * 55
 	desc = "Contains Three standard-issue electromagnetic coilgun and Three magazines for it."
 	contains = list(
-		/obj/item/gun/ballistic/automatic/coilgun = 3,
-		/obj/item/ammo_box/magazine/cacoilgun = 3
+		/obj/item/gun/ballistic/automatic/coilgun = 2,
+		/obj/item/ammo_box/magazine/cacoilgun =2
 	)
 	crate_name = "Experimental Coilgun Crate"
 
@@ -130,10 +130,10 @@
 
 /datum/supply_pack/security/armory/thermal_lever
 	name = "Kepler Energy Research Lever Action Rifle"
-	cost = CARGO_CRATE_VALUE * 15
-	desc = "Contains Three Winchester ULA Thermal Lever Action Rifle designed by Kepler Energy Research Institute for Nanotrasen usage."
+	cost = CARGO_CRATE_VALUE * 18
+	desc = "Contains Two Winchester ULA Thermal Lever Action Rifle designed by Kepler Energy Research Institute for Nanotrasen usage."
 	contains = list(
-		/obj/item/gun/energy/laser/thermal/lever = 3
+		/obj/item/gun/energy/laser/thermal/lever = 2
 	)
 	crate_name = "Thermal Lever Action Crate"
 
