@@ -18,7 +18,7 @@
 	mutantears = /obj/item/organ/ears/werewolf
 	mutanttongue = /obj/item/organ/tongue/werewolf
 
-	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC
 
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/mutant/werewolf,
