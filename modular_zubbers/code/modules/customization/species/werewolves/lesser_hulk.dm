@@ -38,8 +38,6 @@
 		return COMPONENT_SKIP_ATTACK
 	if(!target.attack_hulk(owner))
 		return NONE
-	if(target.type == /obj/machinery/door && source.combat_mode)
-		target.hulk_damage() // SMASH the door.
 
 	log_combat(source, target, "punched", "werewolf powers")
 	source.do_attack_animation(target, ATTACK_EFFECT_SMASH)

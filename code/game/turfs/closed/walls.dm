@@ -152,6 +152,8 @@
 		return
 	if(arm.bodypart_disabled)
 		return
+	if(user.dna.check_mutation(/datum/mutation/lesser_hulk)) // Bubber Edit Addition - Werewolves
+		return // Bubber Edit Addition - Werewolves
 	if(prob(hardness))
 		playsound(src, 'sound/effects/meteorimpact.ogg', 100, TRUE)
 		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ), forced = "hulk")

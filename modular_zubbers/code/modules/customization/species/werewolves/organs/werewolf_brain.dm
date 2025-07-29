@@ -10,9 +10,9 @@
 
 /obj/item/organ/brain/werewolf/proc/enter_beast_form()
 	var/erp_area = is_type_in_list(get_area(owner), SIZE_WHITELISTED_AREAS) // It's not for size, but because it lists ERP areas.
-	var/datum/callback/werewolf_timer = new(/obj/item/organ/brain/werewolf, PROC_REF(leave_beast_form), owner)
+	var/obj/item/organ/brain/werewolf/werewolf_brain = owner.get_organ_by_type(/obj/item/organ/brain/werewolf)
 	if(!erp_area)
-		_addtimer(werewolf_timer, 5 MINUTES)
+		addtimer(CALLBACK(werewolf_brain, PROC_REF(leave_beast_form)), 5 MINUTES)
 	var/datum/species/human/werewolf/werehuman = owner.dna?.species
 	if(beast_form_cooldown)
 		to_chat(owner, span_warning("You feel too exhausted to transform again so soon!"))
@@ -36,11 +36,11 @@
 	owner.dna.update_body_size()
 	COOLDOWN_START(src, beast_form_cooldown, 10 MINUTES)
 
-/obj/item/organ/brain/werewolf/proc/beast_form(mob/user)
+/obj/item/organ/brain/werewolf/proc/toggle_beast_form(mob/user)
 	set name = "Enter/Leave Werewolf Form"
 	set desc = "Succumb to the rage and turn into a werewolf."
 	set category = "Werewolf"
 	if(user && !HAS_TRAIT(user, TRAIT_BEAST_FORM))
 		enter_beast_form()
-	else
+	else if(user && HAS_TRAIT(user, TRAIT_BEAST_FORM))
 		leave_beast_form()

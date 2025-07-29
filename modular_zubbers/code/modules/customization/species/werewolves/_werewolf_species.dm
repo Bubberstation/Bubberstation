@@ -59,8 +59,8 @@
 
 /datum/species/werewolf/on_species_gain(mob/living/carbon/human/werewolf, datum/species/old_species, regenerate_icons)
 	. = ..()
-	var/datum/mutation/lesser_hulk/granted_mutation
-	granted_mutation = new(werewolf)
+	if(werewolf.dna)
+		werewolf.dna.add_mutation(/datum/mutation/lesser_hulk, SPECIES_TRAIT)
 
 /mob/living/carbon/human/species/werewolf
 	race = /datum/species/werewolf
