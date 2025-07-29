@@ -65,3 +65,8 @@
 /mob/living/carbon/human/species/werewolf
 	race = /datum/species/werewolf
 
+/datum/species/werewolf/get_species_description()
+	return list(placeholder_description)
+
+/datum/species/werewolf/get_species_lore()
+	return list(placeholder_lore)
