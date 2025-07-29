@@ -1,19 +1,9 @@
 /// BUBBER UI FILE
 import { MODsuitContent } from './MODsuit';
 import { useBackend } from '../backend';
-import { NtosWindow, Window } from '../layouts';
-import {
-  Button,
-  Icon,
-  LabeledList,
-  Modal,
-  Section,
-  Stack,
-  Input,
-  Dimmer,
-} from 'tgui-core/components';
+import { Window } from '../layouts';
+import { Icon, LabeledList, Modal, Section, Input } from 'tgui-core/components';
 import { useState } from 'react';
-import { erp_pref } from './PreferencesMenu/preferences/features/game_preferences/skyrat/erp_preferences';
 
 type Data = {
   ui_theme?: string;

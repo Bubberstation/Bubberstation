@@ -75,6 +75,12 @@
 	remote.module = src
 	remote.forceMove(src)
 
+/obj/item/mod/module/remote_control/can_install(obj/item/mod/control/mod)
+	if(locate(/obj/item/remote_controller) in contents)
+		balloon_alert(usr, "remove remote from storage")
+		return FALSE
+	return TRUE
+
 /obj/item/mod/module/remote_control/attack_self(mob/user)
 	. = ..()
 	atom_storage?.open_storage(user)
