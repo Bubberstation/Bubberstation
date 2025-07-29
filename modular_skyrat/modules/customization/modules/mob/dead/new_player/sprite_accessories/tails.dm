@@ -191,7 +191,7 @@
 	icon_state = "fox3"
 
 /datum/sprite_accessory/tails/mammal/wagging/guilmon
-	name = "Guilmon"
+	name = "Toraxen"
 	icon_state = "guilmon"
 
 /datum/sprite_accessory/tails/mammal/wagging/hawk
@@ -271,6 +271,10 @@
 /datum/sprite_accessory/tails/mammal/wagging/otie
 	name = "Otusian"
 	icon_state = "otie"
+
+/datum/sprite_accessory/tails/mammal/wagging/otter
+	name = "Otter"
+	icon_state = "otter"
 
 /datum/sprite_accessory/tails/mammal/wagging/plug
 	name = "Plug"
