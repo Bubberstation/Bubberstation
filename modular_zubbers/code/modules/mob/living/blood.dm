@@ -16,20 +16,19 @@
 	var/list/compat_list = list()
 	var/readout
 	if(isnull(target))
-		testing("target null. breaking")
-		return
+		CRASH("target null. breaking")
+	if(isnull(filter))
+		CRASH("filter null. breaking. Run using init_mass_edit_blood_compatibility")
 	compat_list = target.get_compatibile() //can not execute?
 	if(isnull(compat_list))
-		testing("[target] skipped, could not retrieve compatible_types OR compatible_types empty... for some reason")
-		return
+		CRASH("[target] skipped, could not retrieve compatible_types OR compatible_types empty... for some reason")
 	testing("compat_list generated")
 	if(isnull(filter))
 		testing("filter null")
 	if(filter in compat_list)
 		testing("filter found in target.compatible_types")
 	else
-		testing("filter not found in target.compatible_types, AND not null")
-		return
+		CRASH("filter not found in target.compatible_types, AND not null")
 	switch(mode_remove)
 		if(TRUE)
 			compat_list -= to_insert

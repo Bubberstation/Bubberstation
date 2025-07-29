@@ -49,7 +49,7 @@
 	return capitalize(LOWER_TEXT(reagent_type::name))
 
 /// BUBBER EDIT - Fetching compatability... hate that only human blood starts with compatible_types
-/datum/blood_type/proc/get_compatibile()
+/datum/blood_type/proc/get_compatible()
 	var/list/returnlist = list()
 	if(isnull(compatible_types))
 		returnlist |= type_key()
