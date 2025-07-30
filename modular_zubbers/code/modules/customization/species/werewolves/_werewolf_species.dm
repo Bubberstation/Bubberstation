@@ -40,6 +40,8 @@
 		TRAIT_BEAST_FORM,
 		TRAIT_NOGUNS,
 		TRAIT_WEREWOLF,
+		TRAIT_QUICKER_CARRY, // It'd be on par with nitrile gloves.
+		TRAIT_PIERCEIMMUNE, // Thick skin
 	)
 
 	no_equip_flags = ITEM_SLOT_ICLOTHING | ITEM_SLOT_OCLOTHING | ITEM_SLOT_GLOVES | ITEM_SLOT_FEET | ITEM_SLOT_SUITSTORE | ITEM_SLOT_BACK | ITEM_SLOT_BELT | ITEM_SLOT_EARS | ITEM_SLOT_HEAD | ITEM_SLOT_MASK | ITEM_SLOT_EYES | ITEM_SLOT_BACK | ITEM_SLOT_NECK
@@ -65,3 +67,11 @@
 
 /datum/species/werewolf/get_species_lore()
 	return list(placeholder_lore)
+
+/mob/living/carbon/human/species/werewolf/Life(seconds_per_tick, times_fired)
+	. = ..()
+	var/erp_area = is_type_in_list(get_area(src), SIZE_WHITELISTED_AREAS) // It's not for size, but because it lists ERP areas.
+	if(!erp_area)
+		ADD_TRAIT(src, TRAIT_FAST_METABOLISM, SPECIES_TRAIT)
+	else if(erp_area)
+		REMOVE_TRAIT(src, TRAIT_FAST_METABOLISM, SPECIES_TRAIT)

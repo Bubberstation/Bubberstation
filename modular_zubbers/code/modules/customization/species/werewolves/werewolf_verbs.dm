@@ -1,24 +1,22 @@
-/datum/action/item_action/organ_action/beast_form
-	name = "Werewolf Form"
+/datum/action/cooldown/spell/beast_form
+	name = "Toggle Beast Form"
+	desc = "Transform between human and werewolf form."
 	button_icon = 'modular_zubbers/code/modules/customization/species/werewolves/werewolf_verbs.dmi'
 	button_icon_state = "werewolf_form"
 
-/datum/action/item_action/organ_action/beast_form/New(Target)
-	..()
-	var/obj/item/organ/brain/werewolf/werewolf_brain = target
-	if(!HAS_TRAIT(werewolf_brain, TRAIT_BEAST_FORM))
-		name = "Werewolf Form"
-	else
-		name = "Human Form"
+	cooldown_time = 3 MINUTES
+	antimagic_flags = SPELL_REQUIRES_NO_ANTIMAGIC
+	spell_requirements = NONE
 
-/datum/action/item_action/organ_action/beast_form/do_effect(trigger_flags)
-	var/obj/item/organ/brain/werewolf/werewolf_brain = target
-	werewolf_brain.toggle_beast_form(owner)
-	if(!HAS_TRAIT(werewolf_brain, TRAIT_BEAST_FORM))
-		background_icon_state = "bg_default"
-		button_icon_state = "werewolf_form"
+/datum/action/cooldown/spell/beast_form/proc/update_button_state(new_state) //This makes it so that the button icon changes dynamically based on ears being up or not.
+	button_icon_state = new_state
+	owner.update_action_buttons()
+
+/datum/action/cooldown/spell/beast_form/cast(atom/target)
+	. = ..()
+	var/obj/item/organ/brain/werewolf/brain = owner?.get_organ_slot(ORGAN_SLOT_BRAIN)
+	brain.toggle_beast_form(target)
+	if(!HAS_TRAIT(owner, TRAIT_BEAST_FORM))
+		update_button_state("werewolf_form")
 	else
-		background_icon_state = "bg_default"
-		button_icon_state = "human_form"
-	build_all_button_icons()
-	return TRUE
+		update_button_state("human_form")

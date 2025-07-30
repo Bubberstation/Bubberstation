@@ -24,10 +24,8 @@
 	unarmed_miss_sound = 'sound/items/weapons/slashmiss.ogg'
 	bodypart_traits = list(TRAIT_CHUNKYFINGERS)
 
-	unarmed_damage_low = 13
-	unarmed_damage_high = 13
-	unarmed_effectiveness = 25
-	unarmed_pummeling_bonus = 1.75 // Turns out 2 was way too much.
+	unarmed_damage_low = 15
+	unarmed_damage_high = 15
 	unarmed_sharpness = SHARP_EDGED
 
 /obj/item/bodypart/arm/right/mutant/werewolf
@@ -40,10 +38,8 @@
 	unarmed_miss_sound = 'sound/items/weapons/slashmiss.ogg'
 	bodypart_traits = list(TRAIT_CHUNKYFINGERS)
 
-	unarmed_damage_low = 13
-	unarmed_damage_high = 13
-	unarmed_effectiveness = 25
-	unarmed_pummeling_bonus = 1.75 // Turns out 2 was way too much.
+	unarmed_damage_low = 15
+	unarmed_damage_high = 15
 	unarmed_sharpness = SHARP_EDGED
 
 /obj/item/bodypart/leg/left/mutant/werewolf
