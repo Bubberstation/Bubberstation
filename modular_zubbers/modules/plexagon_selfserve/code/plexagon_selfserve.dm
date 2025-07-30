@@ -75,7 +75,7 @@
 			return FALSE
 
 	if(istype(authenticated_card.trim, /datum/id_trim/job/prisoner))
-		if(tgui_alert(usr, "You cannot clock out of prison. Nice try, inmate."))
+		tgui_alert(usr, "You cannot clock out of prison. Nice try, inmate.")
 			return TRUE
 
 	log_econ("[authenticated_card.registered_name] clocked out from role [authenticated_card.get_trim_assignment()]")
