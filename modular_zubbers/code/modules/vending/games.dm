@@ -47,7 +47,6 @@
 				/obj/item/toy/plush/moth = 3,
 				/obj/item/toy/plush/pkplush = 3,
 				/obj/item/toy/plush/carpplushie = 3,
-				/obj/item/toy/plush/goatplushie = 3,
 				/obj/item/toy/plush/rouny = 3,
 				/obj/item/toy/plush/abductor = 3,
 				/obj/item/toy/plush/abductor/agent = 3,
