@@ -9,7 +9,7 @@ Almost every file involving werewolves is stored here.
 
 ## Non-Modular Edits:
 
-- code/game/turfs/closed/walls.dm (lines 155 - 156)
+-
 
 ## Credits
 

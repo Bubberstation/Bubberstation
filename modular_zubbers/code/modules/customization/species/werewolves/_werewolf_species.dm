@@ -57,11 +57,6 @@
 	regenerate_organs(werewolf, src, visual_only = TRUE)
 	werewolf.update_body(TRUE)
 
-/datum/species/werewolf/on_species_gain(mob/living/carbon/human/werewolf, datum/species/old_species, regenerate_icons)
-	. = ..()
-	if(werewolf.dna)
-		werewolf.dna.add_mutation(/datum/mutation/lesser_hulk, SPECIES_TRAIT)
-
 /mob/living/carbon/human/species/werewolf
 	race = /datum/species/werewolf
 
