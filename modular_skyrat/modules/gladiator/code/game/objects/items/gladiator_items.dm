@@ -161,9 +161,9 @@
 	var/roll_stamcost = 10
 	/// how far do we roll?
 	var/roll_range = 3
-	var/charged = TRUE 
-    	var/charge_time = 2 SECONDS
-    	// prevents you from becoming a bayblade
+	var/roll_delay = 2 SECONDS
+	// prevents you from becoming a bayblade
+	COOLDOWN_DECLARE(gatsu_cooldown)
 
 /obj/item/claymore/dragonslayer/examine()
 	. = ..()
@@ -183,16 +183,15 @@
 /obj/item/claymore/dragonslayer/ranged_interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	if(user.IsImmobilized()) // no free dodgerolls
 		return NONE
-	if(!charged)
-        	return
 	var/turf/where_to = get_turf(interacting_with)
+	COOLDOWN_START(src, gatsu_cooldown, roll_delay)
 	user.apply_damage(damage = roll_stamcost, damagetype = STAMINA)
 	user.Immobilize(0.1 SECONDS) // you dont get to adjust your roll
 	user.throw_at(where_to, range = roll_range, speed = 1, force = MOVE_FORCE_NORMAL)
 	user.apply_status_effect(/datum/status_effect/dodgeroll_iframes)
 	playsound(user, SFX_BODYFALL, 50, TRUE)
 	playsound(user, SFX_RUSTLE, 50, TRUE)
-	charged = FALSE
+	
 	return ITEM_INTERACT_SUCCESS
 
 /datum/status_effect/dodgeroll_iframes
