@@ -336,7 +336,7 @@
 
 
 	if(mod.ai_assistant)
-		balloon_alert(mod.wearer, "Getting Suit AI opinion first...")
+		balloon_alert(mod.wearer, "getting Suit AI opinion first...")
 		var/picked_name = "None"
 		switch(tgui_alert(mod.ai_assistant, "Would you like to to choose the disguise?", "<3?", list("Yes!", "Nope"), timeout = 5 SECONDS))
 			if("Yes!")
