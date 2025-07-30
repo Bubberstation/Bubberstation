@@ -122,7 +122,6 @@
 		ADD_TRAIT(thing, TRAIT_NODROP, PROTEAN_SERVO_TRAIT) //to prevent items droping out of wearer's hands
 		RegisterSignals(thing, list(COMSIG_ITEM_DROPPED, COMSIG_MOVABLE_MOVED), PROC_REF(clear_servo_trait)) //In case you somehow drop it anyway
 	owner.add_traits(list(TRAIT_RESTRAINED),PROTEAN_SERVO_TRAIT) //main drawback to balance out this particular effect
-	return ..()
 
 /datum/status_effect/protean_servo_movement/on_remove()
 	. = ..()
