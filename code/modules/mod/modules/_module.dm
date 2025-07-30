@@ -111,7 +111,6 @@
 			balloon_alert(mod.loc, "not equipped!")
 		// BLUBBER ADDITION BEGIN - pAI and protean nonsense
 		if(allow_flags & MODULE_ALLOW_INACTIVE && module_type == MODULE_USABLE)
-			balloon_alert_to_viewers("attempting no-wear activation")
 			used()
 			SEND_SIGNAL(mod, COMSIG_MOD_MODULE_SELECTED, src)
 		// BLUBBER ADDITION END

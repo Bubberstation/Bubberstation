@@ -324,7 +324,6 @@
 		return
 	// BLUBBER EDIT BEGIN - This is awful, I'm sorry.  Needs upsteam PR for parameters.
 	if(istype(mod, /obj/item/mod/control/pre_equipped/protean) && !mod.wearer)
-		balloon_alert_to_viewers("Protean detected")
 		for(var/stuff in mod.contents)
 			if(ishuman(stuff))
 				var/picked_name = tgui_input_list(mod.wearer, "Select look to change into", "Chameleon Settings", possible_disguises)
