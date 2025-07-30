@@ -76,7 +76,7 @@
 
 	if(istype(authenticated_card.trim, /datum/id_trim/job/prisoner))
 		tgui_alert(usr, "You cannot clock out of prison. Nice try, inmate.")
-			return TRUE
+		return TRUE
 
 	log_econ("[authenticated_card.registered_name] clocked out from role [authenticated_card.get_trim_assignment()]")
 	var/datum/component/off_duty_timer/timer_component = authenticated_card.AddComponent(/datum/component/off_duty_timer, TIMECLOCK_COOLDOWN)
