@@ -6,6 +6,7 @@ Almost every file involving werewolves is stored here.
 
 - code/\_\_HELPERS/~skyrat_helpers/is_helpers.dm (lines 23 - 24)
 - modular_skyrat/modules/emotes/code/emotes.dm (line 418)
+- code/\_\_DEFINES/~~bubber_defines/mobs.dm (line 32)
 
 ## Non-Modular Edits:
 
