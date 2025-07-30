@@ -26,6 +26,7 @@
 		/datum/action/item_action/toggle_hearing,
 		/datum/action/item_action/toggle_speech,
 	)
+	action_slots = ITEM_SLOT_HANDS | ITEM_SLOT_HEAD
 
 //Declare action types
 /datum/action/item_action/toggle_vision
