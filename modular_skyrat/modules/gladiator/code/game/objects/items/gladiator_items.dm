@@ -191,6 +191,8 @@
 	user.apply_status_effect(/datum/status_effect/dodgeroll_iframes)
 	playsound(user, SFX_BODYFALL, 50, TRUE)
 	playsound(user, SFX_RUSTLE, 50, TRUE)
+	if (!COOLDOWN_FINISHED(src, gatsu_cooldown))
+        	return TRUE
 	return ITEM_INTERACT_SUCCESS
 
 /datum/status_effect/dodgeroll_iframes
