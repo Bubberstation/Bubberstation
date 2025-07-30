@@ -1,4 +1,5 @@
 /obj/item/bodypart/head/mutant/werewolf
+	icon = 'modular_zubbers/code/modules/customization/species/werewolves/bodyparts/bodyparts.dmi'
 	icon_greyscale = 'modular_zubbers/code/modules/customization/species/werewolves/bodyparts/bodyparts.dmi'
 	limb_id = SPECIES_WEREWOLF
 	is_dimorphic = FALSE
@@ -6,6 +7,7 @@
 	teeth_count = 42 // Wolves have 42 teeth :)
 
 /obj/item/bodypart/chest/mutant/werewolf
+	icon = 'modular_zubbers/code/modules/customization/species/werewolves/bodyparts/bodyparts.dmi'
 	icon_greyscale = 'modular_zubbers/code/modules/customization/species/werewolves/bodyparts/bodyparts.dmi'
 	limb_id = SPECIES_WEREWOLF
 	is_dimorphic = TRUE
@@ -15,6 +17,7 @@
 	return icon('modular_skyrat/master_files/icons/mob/butts.dmi', BUTT_SPRITE_VULP) // I can't be bothered making a new sprite.
 
 /obj/item/bodypart/arm/left/mutant/werewolf
+	icon = 'modular_zubbers/code/modules/customization/species/werewolves/bodyparts/bodyparts.dmi'
 	icon_greyscale = 'modular_zubbers/code/modules/customization/species/werewolves/bodyparts/bodyparts.dmi'
 	limb_id = SPECIES_WEREWOLF
 	unarmed_attack_verbs = list("slash", "scratch", "claw")
@@ -29,6 +32,7 @@
 	unarmed_sharpness = SHARP_EDGED
 
 /obj/item/bodypart/arm/right/mutant/werewolf
+	icon = 'modular_zubbers/code/modules/customization/species/werewolves/bodyparts/bodyparts.dmi'
 	icon_greyscale = 'modular_zubbers/code/modules/customization/species/werewolves/bodyparts/bodyparts.dmi'
 	limb_id = SPECIES_WEREWOLF
 	unarmed_attack_verbs = list("slash", "scratch", "claw")
@@ -43,17 +47,21 @@
 	unarmed_sharpness = SHARP_EDGED
 
 /obj/item/bodypart/leg/left/mutant/werewolf
+	icon = 'modular_zubbers/code/modules/customization/species/werewolves/bodyparts/bodyparts.dmi'
 	icon_greyscale = 'modular_zubbers/code/modules/customization/species/werewolves/bodyparts/bodyparts.dmi'
 	digitigrade_type = /obj/item/bodypart/leg/left/digitigrade/werewolf
 	limb_id = SPECIES_WEREWOLF
 
 /obj/item/bodypart/leg/right/mutant/werewolf
+	icon = 'modular_zubbers/code/modules/customization/species/werewolves/bodyparts/bodyparts.dmi'
 	icon_greyscale = 'modular_zubbers/code/modules/customization/species/werewolves/bodyparts/bodyparts.dmi'
 	digitigrade_type = /obj/item/bodypart/leg/right/digitigrade/werewolf
 	limb_id = SPECIES_WEREWOLF
 
 /obj/item/bodypart/leg/left/digitigrade/werewolf
+	icon = 'modular_zubbers/code/modules/customization/species/werewolves/bodyparts/bodyparts.dmi'
 	icon_greyscale = 'modular_zubbers/code/modules/customization/species/werewolves/bodyparts/bodyparts.dmi'
 
 /obj/item/bodypart/leg/right/digitigrade/werewolf
+	icon = 'modular_zubbers/code/modules/customization/species/werewolves/bodyparts/bodyparts.dmi'
 	icon_greyscale = 'modular_zubbers/code/modules/customization/species/werewolves/bodyparts/bodyparts.dmi'
