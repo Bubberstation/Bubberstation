@@ -101,7 +101,7 @@ const PatientStateView = (props) => {
       </Section>
       {/* BUBBER EDIT ADDITION BEGIN - SURGERY COMPUTER INFO */}
       {traumas.map((trauma) => (
-        <Section key={trauma.name} title={'Trauma: ' + trauma.name}>
+        <Section key={trauma.name} title={`Trauma: ${trauma.name}`}>
           <LabeledList>
             <LabeledList.Item label="Diagnosis">{trauma.info}</LabeledList.Item>
             <LabeledList.Item label="Treatment">

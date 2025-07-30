@@ -71,7 +71,7 @@ const ProductCategory = (props) => {
               title={
                 <span>
                   {<Icon name={product.ui_icon} />}
-                  {' ' + product.name}
+                  {` ${product.name}`}
                 </span>
               }
               fill={false}
@@ -115,12 +115,10 @@ const ProductCategory = (props) => {
                 Purchasing this item will give you:{' '}
                 {product.rewards_points_rate * product.price} rewards points
               </Box>
-              {product.keepable ? (
+              {product.keepable && (
                 <Box opacity={0.85} textAlign="center" bold>
                   This NIFSoft carries between shifts
                 </Box>
-              ) : (
-                <> </>
               )}
               <br />
             </Section>
