@@ -290,7 +290,7 @@
 	complexity = 2
 	incompatible_modules = list(/obj/item/mod/module/chameleon)
 	cooldown_time = 0.5 SECONDS
-	allow_flags = MODULE_ALLOW_INACTIVE
+	allow_flags = MODULE_ALLOW_INACTIVE|MODULE_ALLOW_UNWORN // BLUBBER EDIT ADDITION
 	/// A list of all the items the suit can disguise as.
 	var/list/possible_disguises = list()
 	/// The path of the item we're disguised as.
@@ -322,6 +322,35 @@
 	if(current_disguise)
 		return_look()
 		return
+	// BLUBBER EDIT BEGIN - This is awful, I'm sorry.  Needs upsteam PR for parameters.
+	if(istype(mod, /obj/item/mod/control/pre_equipped/protean) && !mod.wearer)
+		balloon_alert_to_viewers("Protean detected")
+		for(var/stuff in mod.contents)
+			if(ishuman(stuff))
+				var/picked_name = tgui_input_list(mod.wearer, "Select look to change into", "Chameleon Settings", possible_disguises)
+				if(!possible_disguises[picked_name] || mod.active || mod.activating)
+					return
+				current_disguise = possible_disguises[picked_name]
+				update_look()
+				return
+		return
+
+
+	if(mod.ai_assistant)
+		balloon_alert(mod.wearer, "Getting Suit AI opinion first...")
+		var/picked_name = "None"
+		switch(tgui_alert(mod.ai_assistant, "Would you like to to choose the disguise?", "<3?", list("Yes!", "Nope"), timeout = 5 SECONDS))
+			if("Yes!")
+				picked_name = tgui_input_list(mod.ai_assistant, "Select look to change into", "Chameleon Settings", possible_disguises)
+			else
+				picked_name = tgui_input_list(mod.wearer, "Select look to change into", "Chameleon Settings", possible_disguises)
+
+		if(!possible_disguises[picked_name] || mod.active || mod.activating)
+			return
+		current_disguise = possible_disguises[picked_name]
+		update_look()
+		return
+	// BLUBBER EDIT END
 	var/picked_name = tgui_input_list(mod.wearer, "Select look to change into", "Chameleon Settings", possible_disguises)
 	if(!possible_disguises[picked_name] || mod.active || mod.activating)
 		return

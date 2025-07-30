@@ -109,6 +109,12 @@
 	if(!mod.wearer)
 		if(ismob(mod.loc))
 			balloon_alert(mod.loc, "not equipped!")
+		// BLUBBER ADDITION BEGIN - pAI and protean nonsense
+		if(allow_flags & MODULE_ALLOW_INACTIVE && module_type == MODULE_USABLE)
+			balloon_alert_to_viewers("attempting no-wear activation")
+			used()
+			SEND_SIGNAL(mod, COMSIG_MOD_MODULE_SELECTED, src)
+		// BLUBBER ADDITION END
 		return
 	if(((!mod.active || mod.activating) && !(allow_flags & MODULE_ALLOW_INACTIVE)) || module_type == MODULE_PASSIVE)
 		if(mod.wearer)
@@ -213,10 +219,21 @@
 	else if (length(required_slots))
 		for (var/slot in required_slots)
 			updated_slots |= slot
-	mod.wearer.update_clothing(updated_slots)
+	// BLUBBER EDIT ADDITION BEGIN - No wearer checks
+	if(mod.wearer)
+		mod.wearer.update_clothing(updated_slots)
+	// BLUBBER EDIT ADDITION BEGIN - No suit checks
 
 /// Called when the module is used
 /obj/item/mod/module/proc/used()
+	// BLUBBER EDIT ADDITION BEGIN - No suit checks
+	if(allow_flags & MODULE_ALLOW_UNWORN && !mod.wearer)
+		start_cooldown()
+		update_clothing_slots()
+		SEND_SIGNAL(src, COMSIG_MODULE_USED)
+		on_use()
+		return TRUE
+	// BLUBBER EDIT ADDITION END
 	if(!COOLDOWN_FINISHED(src, cooldown_timer))
 		balloon_alert(mod.wearer, "on cooldown!")
 		return FALSE
