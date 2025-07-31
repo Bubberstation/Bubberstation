@@ -33,6 +33,7 @@
 		/datum/action/item_action/mask_inhale,
 		/datum/action/item_action/toggle_gag,
 	)
+	action_slots = ITEM_SLOT_HANDS | ITEM_SLOT_MASK
 	var/list/moans = list("Mmmph...", "Hmmphh", "Mmmfhg", "Gmmmh...") // Phrases to be said when the player attempts to talk when speech modification / voicebox is enabled.
 	var/list/moans_alt = list("Mhgm...", "Hmmmp!...", "Gmmmhp!") // Power probability phrases to be said when talking.
 	var/moans_alt_probability = 5 // Probability for alternative sounds to play.
