@@ -47,7 +47,6 @@
 				/obj/item/toy/plush/moth = 3,
 				/obj/item/toy/plush/pkplush = 3,
 				/obj/item/toy/plush/carpplushie = 3,
-				/obj/item/toy/plush/goatplushie = 3,
 				/obj/item/toy/plush/rouny = 3,
 				/obj/item/toy/plush/abductor = 3,
 				/obj/item/toy/plush/abductor/agent = 3,
@@ -104,7 +103,7 @@
 			"products" = list(
 				/obj/item/canvas/drawingtablet = 3,
 				/obj/item/toy/darksabre = 3,
-				/obj/item/storage/belt/sabre/darksabre = 3,
+				/obj/item/storage/belt/sheath/sabre/darksabre = 3,
 				/obj/item/holocigarette/cigar = 6,
 				/obj/item/card/fuzzy_license = 3,
 				/obj/item/poster/korpstech = 3,

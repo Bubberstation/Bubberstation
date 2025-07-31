@@ -9,6 +9,7 @@
 
 /obj/machinery/vending/security/noaccess
 	req_access = null
+	allow_custom = FALSE
 
 /obj/structure/closet/secure_closet/medical2/unlocked/Initialize(mapload)
 	. = ..()
