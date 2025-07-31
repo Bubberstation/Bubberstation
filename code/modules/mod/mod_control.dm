@@ -585,7 +585,7 @@
 			if(user && !silent) // Bubber Edit: Silent arg
 				balloon_alert(user, "incompatible with [old_module]!")
 				playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
-			return //Bubber Edit: Return False
+			return FALSE //Bubber Edit: Return False
 	var/complexity_with_module = complexity
 	complexity_with_module += new_module.complexity
 	if(complexity_with_module > complexity_max)

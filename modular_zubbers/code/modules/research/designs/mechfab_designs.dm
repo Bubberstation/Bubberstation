@@ -161,3 +161,13 @@
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_MINING
 	)
+
+/datum/design/module/protean/servo
+	name = "Protean Servo Module"
+	id = "mod_protean_servo"
+	build_type = MECHFAB
+	materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
+	)
+	build_path = /obj/item/mod/module/protean_servo

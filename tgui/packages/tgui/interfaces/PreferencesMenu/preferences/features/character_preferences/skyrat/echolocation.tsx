@@ -1,10 +1,10 @@
 // THIS IS A Skyrat  SECTOR UI FILE
 import {
   CheckboxInput,
-  Feature,
-  FeatureChoiced,
+  type Feature,
+  type FeatureChoiced,
   FeatureColorInput,
-  FeatureToggle,
+  type FeatureToggle,
 } from '../../base';
 import { FeatureDropdownInput } from '../../dropdowns';
 
