@@ -89,7 +89,7 @@
 
 // Silver Jacket Mk2 but for all of Command
 /datum/loadout_item/suit/lt3_armor/New()
-	restricted_roles += list(JOB_HEAD_OF_SECURITY, JOB_BLUESHIELD, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_ENGINEER, JOB_CAPTAIN, JOB_CHIEF_MEDICAL_OFFICER)
+	restricted_roles += list(JOB_HEAD_OF_SECURITY, JOB_BLUESHIELD, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_ENGINEER, JOB_CAPTAIN, JOB_QUARTERMASTER, JOB_CHIEF_MEDICAL_OFFICER)
 	return ..()
 
 // Fancy crop-top jackets
