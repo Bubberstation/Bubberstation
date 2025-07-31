@@ -181,7 +181,7 @@
 		force -= faction_bonus_force
 
 /obj/item/claymore/dragonslayer/ranged_interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
-	if(user.IsImmobilized() || COOLDOWN_FINISHED(src, dodgeroll_cooldown)) // no free dodgerolls
+	if(user.IsImmobilized() || !COOLDOWN_FINISHED(src, dodgeroll_cooldown)) // can't dodge
 		return NONE
 	var/turf/where_to = get_turf(interacting_with)
 	COOLDOWN_START(src, dodgeroll_cooldown, roll_delay)
