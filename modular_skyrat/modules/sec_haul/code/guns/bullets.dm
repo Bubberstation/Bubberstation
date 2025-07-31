@@ -64,6 +64,17 @@
 	sharpness = NONE
 	embed_type = null
 
+/obj/item/ammo_casing/security
+	name = "9x25mm Mk.12 security casing"
+	desc = "A modern 9x25mm Mk.12 bullet casing. This one fires a law-enfocement grade round, making it less deadly than most, but still lethal enough to do it's job."
+	caliber = CALIBER_9MM_SEC
+	projectile_type = /obj/projectile/bullet/security
+
+/obj/projectile/bullet/security
+	name = "9x25mm Murphy bullet"
+	damage = 20
+	wound_bonus = -20
+
 /obj/projectile/bullet/c9mm
 	damage = 25
 /*
