@@ -162,7 +162,6 @@
 	/// how far do we roll?
 	var/roll_range = 3
 	var/roll_delay = 2 SECONDS
-	var/dodgeroll_cooldown = 2 SECONDS
 	// prevents you from becoming a bayblade
 	COOLDOWN_DECLARE(dodgeroll_cooldown)
 
