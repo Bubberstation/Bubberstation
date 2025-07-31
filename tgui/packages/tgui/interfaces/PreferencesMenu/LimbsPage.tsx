@@ -191,7 +191,7 @@ export const OrganPage = (props) => {
   return (
     <Stack.Item>
       <Stack fill>
-        <Stack.Item>{props.organ.name + ': '}</Stack.Item>
+        <Stack.Item>{`${props.organ.name}: `}</Stack.Item>
         <Stack.Item grow>
           <Dropdown
             width="100%"

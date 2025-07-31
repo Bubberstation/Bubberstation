@@ -305,6 +305,9 @@ GLOBAL_LIST_INIT(dildo_colors, list(//mostly neon colors
 	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 
+/obj/item/clothing/sextoy/dildo/double_dildo/item_action_slot_check(slot, mob/user, datum/action/action)
+	return is_inside_lewd_slot(user)
+
 /obj/item/clothing/sextoy/dildo/double_dildo/populate_dildo_designs()
 	return
 
