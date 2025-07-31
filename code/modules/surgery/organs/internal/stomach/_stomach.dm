@@ -31,7 +31,7 @@
 	var/metabolism_efficiency = 0.05 // the lowest we should go is 0.025
 
 	/// Multiplier for hunger rate
-	var/hunger_modifier = 1
+	var/hunger_modifier = 0.75 // BUBBER EDIT: FROM 1 TO 0.75. REDUCED HUNGER RATE.
 	/// Whether the stomach's been repaired with surgery and can be fixed again or not
 	var/operated = FALSE
 	/// List of all atoms within the stomach
