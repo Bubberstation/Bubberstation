@@ -114,6 +114,7 @@
 
 /datum/job/head_of_security
 	banned_quirks = list(SEC_RESTRICTED_QUIRKS, HEAD_RESTRICTED_QUIRKS)
+	banned_augments = list(SEC_RESTRICTED_AUGMENTS)
 	is_hand_required = TRUE
 
 /datum/job/chief_medical_officer
