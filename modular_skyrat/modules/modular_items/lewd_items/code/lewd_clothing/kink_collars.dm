@@ -256,7 +256,7 @@
 /obj/item/mind_controller/Destroy(force)
 	collar?.remote = null
 	collar = null
-	. = ..()
+	return ..()
 
 /obj/item/mind_controller/attack_self(mob/user)
 	if(!collar)
@@ -274,7 +274,7 @@
 	inhand_icon_state = null
 	kink_collar = TRUE
 	/// Reference to the mind control remote
-	var/obj/item/mind_controller/remote = null
+	var/obj/item/mind_controller/remote
 	var/emoting = "Shivers."
 
 /obj/item/clothing/neck/mind_collar/Initialize(mapload)

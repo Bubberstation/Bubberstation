@@ -146,6 +146,7 @@
 			"products" = list(
 				/obj/item/mod/construction/plating/lustwish = 5,
 				/obj/item/mod/module/hypno_visor = 5,
+				/obj/item/mod/module/remote_control = 5,
 			)
 		),
 		list(
