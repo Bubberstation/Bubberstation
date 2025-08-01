@@ -31,7 +31,7 @@
 	var/metabolism_efficiency = 0.05 // the lowest we should go is 0.025
 
 	/// Multiplier for hunger rate
-	var/hunger_modifier = 0.75 // BUBBER EDIT: FROM 1 TO 0.75. REDUCED HUNGER RATE.
+	var/hunger_modifier = 1
 	/// Whether the stomach's been repaired with surgery and can be fixed again or not
 	var/operated = FALSE
 	/// List of all atoms within the stomach
@@ -162,6 +162,7 @@
 				human.set_jitter_if_lower(10 SECONDS)
 			hunger_rate = 3 * HUNGER_FACTOR
 		hunger_rate *= hunger_modifier
+		hunger_rate *= CONFIG_GET(number/hunger_multiplier) //BUBBER CHANGE: Reduced Hunger.
 		hunger_rate *= human.physiology.hunger_mod
 		human.adjust_nutrition(-hunger_rate * seconds_per_tick)
 
