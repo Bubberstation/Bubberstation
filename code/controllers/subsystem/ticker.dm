@@ -146,15 +146,17 @@ SUBSYSTEM_DEF(ticker)
 		GLOB.syndicate_code_response_regex = codeword_match
 
 	start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
+	var/server_time_offset = (CONFIG_GET(number/shift_time_clock_offset) MINUTES) // BUBBER EDIT ADD: SERVER TIME OFFSET
 	if(CONFIG_GET(flag/randomize_shift_time))
 		gametime_offset = rand(0, 23) HOURS
 	else if(CONFIG_GET(flag/shift_time_realtime))
-	//BUBBER EDIT: ADDS AN OFFSET TO SERVER TIME
-		var/server_time_offset = (CONFIG_GET(number/shift_time_clock_offset))
-		gametime_offset = world.timeofday + server_time_offset
-	//BUBBER EDIT: ADDS AN OFFSET TO SERVER TIME
+		gametime_offset = world.timeofday + server_time_offset // BUBBER EDIT CHANGE - SERVER TIME OFFSET - ORIGINAL: gametime_offset = world.timeofday
 	else
 		gametime_offset = (CONFIG_GET(number/shift_time_start_hour) HOURS)
+	// BUBBER EDIT ADD BEGIN - SERVER TIME OFFSET
+	message_admins("Station time set to [station_time_timestamp(format = "hh:mm")]. Night shift transitions are [SSnightshift.can_fire ? span_vote_notice("enabled") : span_comradio("disabled")].")
+	log_game("TICKER: Station time set to [station_time_timestamp(format = "hh:mm")] (Server time offset [DisplayTimeText(server_time_offset)]). Night shift transitions are [SSnightshift.can_fire ? "enabled" : "disabled"].")
+	// BUBBER EDIT ADD END - SERVER TIME OFFSET
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/ticker/fire()
