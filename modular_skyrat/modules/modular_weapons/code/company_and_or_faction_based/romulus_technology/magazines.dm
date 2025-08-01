@@ -5,7 +5,7 @@
 	ammo_type = /obj/item/ammo_casing/cacoil
 	caliber = CALIBER_COIL
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/romulus_technology/ammo.dmi'
-	icon_state = "cmg_penetrator"
+	icon_state = "cmg"
 	max_ammo = 20
 	multitype = FALSE
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
