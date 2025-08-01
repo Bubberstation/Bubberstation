@@ -16,6 +16,10 @@
 	backblast = FALSE
 	var/self_targeting = FALSE
 
+/obj/item/gun/ballistic/rocketlauncher/security/debug
+	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/security_rocketlauncher/debug
+	item_flags = NEEDS_PERMIT|ABSTRACT
+
 /obj/item/gun/ballistic/rocketlauncher/security/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(self_targeting)
 		return FALSE
@@ -30,3 +34,6 @@
 	ammo_type = /obj/item/ammo_casing/security_missile
 	caliber = CALIBER_69MM
 	max_ammo = 1
+
+/obj/item/ammo_box/magazine/internal/security_rocketlauncher/debug
+	max_ammo = 69
