@@ -11,7 +11,8 @@
 		"sol35_shortextmag",
 		"s12g_slug",
 		"s12c_antitide",
-		"s12g_buckshot"
+		"s12g_buckshot",
+		"ca_coil_hornet"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 

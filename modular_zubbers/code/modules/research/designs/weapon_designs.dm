@@ -313,21 +313,19 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
-
-// Misc Gun Stuff
-
-/datum/design/m9mm_mag
-	name = "9x25mm Mk2 Pistol Magazine(Lethal)"
-	desc = "A standard magazine for pistol using 9x25mm Mk2."
-	id = "m9mm_mag"
+/datum/design/cacoil_hornet
+	name = "Advanced Fragmenting Coilgun Magazine (Lethal)"
+	desc = "A 5.7mm coilgun ammunition box loaded with specialised armor piercing plasteel nail, a bit wide though."
+	id = "ca_coil_hornet"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 12)
-	build_path = /obj/item/ammo_box/magazine/m9mm
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 15, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 9, /datum/material/titanium = SMALL_MATERIAL_AMOUNT * 5)
+	build_path = /obj/item/ammo_box/magazine/cacoilgun/fp/hornet
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
+// Misc Gun Stuff
 /datum/design/m9mm_sec
 	name = "Magazine (9x25mm Murphy) (Lethal)"
 	desc = "Designed to slide in and out of a 9mm 'Murphy' service pistol. It's heavier bullets make this magazine quite heavy, watch where you throw it!"
@@ -353,30 +351,6 @@
 		/datum/material/plasma = HALF_SHEET_MATERIAL_AMOUNT * 5,
 	)
 	build_path = /obj/item/ammo_box/magazine/security/rocket
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-
-/datum/design/m9mm_mag_rubber
-	name = "9x25mm Mk2 Pistol Magazine(Less-Lethal)"
-	desc = "A standard magazine for pistol using 9x25mm Mk2."
-	id = "m9mm_mag_rubber"
-	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5)
-	build_path = /obj/item/ammo_box/magazine/m9mm/rubber
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-
-/datum/design/m9mm_mag_ihdf
-	name = "9x25mm Mk2 Pistol Magazine(Non-Lethal)"
-	desc = "A standard magazine for pistol using 9x25mm Mk2."
-	id = "m9mm_mag_ihdf"
-	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 5)
-	build_path = /obj/item/ammo_box/magazine/m9mm/ihdf
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
