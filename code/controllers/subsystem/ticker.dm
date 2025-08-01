@@ -149,7 +149,10 @@ SUBSYSTEM_DEF(ticker)
 	if(CONFIG_GET(flag/randomize_shift_time))
 		gametime_offset = rand(0, 23) HOURS
 	else if(CONFIG_GET(flag/shift_time_realtime))
-		gametime_offset = world.timeofday
+	//BUBBER EDIT: ADDS AN OFFSET TO SERVER TIME
+		var/server_time_offset = (CONFIG_GET(number/shift_time_clock_offset))
+		gametime_offset = world.timeofday + server_time_offset
+	//BUBBER EDIT: ADDS AN OFFSET TO SERVER TIME
 	else
 		gametime_offset = (CONFIG_GET(number/shift_time_start_hour) HOURS)
 	return SS_INIT_SUCCESS
