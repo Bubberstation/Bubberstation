@@ -49,11 +49,10 @@
 /obj/projectile/bullet/cacoil/fp/hornet
 
 	name = "coilgun hornet dart"
-	damage = 2
 	armour_penetration = 10
-	wound_bonus = 0
-	exposed_wound_bonus = 15
-	stamina = 5 // 5*8 for 40 stamina is quite okay, it's only slightly more than a disabler
+	wound_bonus = 5
+	exposed_wound_bonus = 5
+	weak_against_armour = FALSE
 
 /obj/item/ammo_casing/cacoil/match
 
