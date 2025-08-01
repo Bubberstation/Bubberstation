@@ -129,6 +129,18 @@
 	icon_state = "drider"
 	organ_type = /obj/item/organ/taur_body/spider
 
+/datum/sprite_accessory/taur/insect
+	name = "Insect"
+	icon_state = "ant"
+	organ_type = /obj/item/organ/taur_body/spider
+	icon = 'modular_zubbers/icons/customization/taur.dmi'
+
+/datum/sprite_accessory/taur/wingedinsect
+	name = "Winged Insect"
+	icon_state = "antwings"
+	organ_type = /obj/item/organ/taur_body/spider
+	icon = 'modular_zubbers/icons/customization/taur.dmi'
+
 /datum/sprite_accessory/taur/eevee
 	name = "Eevee"
 	icon_state = "eevee"
