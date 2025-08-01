@@ -21,7 +21,7 @@ export const BorerChem = (props) => {
           <LabeledList>
             <LabeledList.Item label="Storage">
               <ProgressBar value={data.energy / data.maxEnergy}>
-                {toFixed(data.energy) + ' units'}
+                {`${toFixed(data.energy)} units`}
               </ProgressBar>
             </LabeledList.Item>
           </LabeledList>

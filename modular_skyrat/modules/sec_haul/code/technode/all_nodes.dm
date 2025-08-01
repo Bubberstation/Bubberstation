@@ -34,6 +34,7 @@
 	design_ids += "ammoworkbench_disk_lethal"
 	design_ids += "ammo_workbench"
 	design_ids += "s12g_huntingslug"
+	design_ids += "m9mm_sec"
 
 /datum/techweb_node/magazineresearch_heavy
 	id = "storedmunition_tech_three"
@@ -59,8 +60,6 @@
 /datum/techweb_node/riot_supression/New()
 	design_ids += "s12g_hornet"
 	design_ids += "s12g_br"
-	design_ids += "m9mm_mag_ihdf"
-	design_ids += "m9mm_mag"
 	design_ids += "c10mm_rincin"
 	design_ids += "s12g_antitide"
 	design_ids += "ca_coil"
@@ -71,6 +70,7 @@
 	design_ids += "c10mm_rhp"
 	design_ids += "c10mm_rap"
 	design_ids += "ca_coil_match"
+	design_ids += "m9mm_sec_rocket"
 	. = ..()
 
 /datum/techweb_node/syndicate_basic/New()

@@ -228,8 +228,8 @@ const ClockworkSpellList = (props) => {
                   color={script.purchased ? 'default' : 'average'}
                   content={
                     script.purchased
-                      ? 'Invoke ' + convertPower(script.cost)
-                      : script.cog_cost + ' Cogs'
+                      ? `Invoke ${convertPower(script.cost)}`
+                      : `${script.cog_cost} Cogs`
                   }
                   tooltip={
                     script.research_required
@@ -326,7 +326,7 @@ const ClockworkOverviewStat = (props) => {
               bad: [-Infinity, maxAmount / 4],
             }}
           >
-            {overrideText ? overrideText : amount + ' ' + unit}
+            {overrideText ? overrideText : `${amount} ${unit}`}
           </ProgressBar>
         </Stack.Item>
       </Stack>

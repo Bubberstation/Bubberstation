@@ -18,7 +18,6 @@
 	contraband = list(
 		/obj/item/clothing/glasses/sunglasses = 2,
 		/obj/item/storage/fancy/donut_box = 2,
-		/obj/item/ammo_box/magazine/m9mm = 4,
 	)
 	premium = list(
 		/obj/item/storage/belt/security/webbing = 5,
@@ -30,8 +29,7 @@
 		/obj/item/watertank/pepperspray = 2,
 		/obj/item/storage/belt/holster/energy = 4,
 		/obj/item/storage/box/holobadge = 1,
-		/obj/item/ammo_box/magazine/m9mm/rubber = 12,
-		/obj/item/ammo_box/magazine/m9mm/ihdf = 12,
+		/obj/item/ammo_box/magazine/security = 12,
 		/obj/item/ammo_box/c10mm/speedloader/rubber = 12,
 		/obj/item/ammo_box/advanced/s12gauge/frangible = 2,
 	)

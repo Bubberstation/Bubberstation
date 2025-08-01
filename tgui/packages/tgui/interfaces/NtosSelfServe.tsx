@@ -50,7 +50,7 @@ const SelfServePage = (props) => {
 
   return (
     <Section title="Enterprise Resource Planning">
-      <Section title={'Welcome ' + authIDName}>
+      <Section title={`Welcome ${authIDName}`}>
         <Stack wrap="wrap">
           <Stack.Item width="100%" mt={1} ml={0}>
             Current Assignment: {trimAssignment || '-----'}

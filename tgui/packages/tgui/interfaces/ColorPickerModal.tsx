@@ -47,7 +47,7 @@ interface ColorPickerData {
   default_color: string;
 }
 
-interface ColorPickerModalProps {}
+type ColorPickerModalProps = {}
 
 export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
   const { data } = useBackend<ColorPickerData>();
@@ -132,7 +132,7 @@ const ColorPresets: React.FC<ColorPresetsProps> = React.memo(
                         onClick={() => setColor(hexToHsva(entry))}
                       >
                         <Box
-                          backgroundColor={'#' + entry}
+                          backgroundColor={`#${entry}`}
                           width="21px"
                           height="14px"
                         />

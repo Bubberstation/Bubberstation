@@ -22,14 +22,6 @@
 	/// Multiplier for magazine costs
 	var/magazine_cost_mult = 1
 
-// Nakamura engineering's MOD division, sells modsuits and modsuit accessories
-/datum/cargo_company/nakamura_modsuits
-	name = COMPANY_NAME_NAKAMURA_ENGINEERING_MODSUITS
-	company_flag = CARGO_COMPANY_NAKAMURA_MODSUITS
-	cost = 6000
-	cost_change_lower = -1000
-	cost_change_upper = 4000
-
 // Jarnsmiour sells some melee weapons and some forging related items
 /datum/cargo_company/jarnsmiour
 	name = COMPANY_NAME_BLACKSTEEL_FOUNDATION

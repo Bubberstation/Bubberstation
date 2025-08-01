@@ -1,4 +1,4 @@
-import { Feature, FeatureSliderInput } from '../../base';
+import { type Feature, FeatureSliderInput } from '../../base';
 
 export const sound_emote: Feature<number> = {
   name: 'Emote sound volume',

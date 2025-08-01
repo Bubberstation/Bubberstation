@@ -22,13 +22,15 @@
 /datum/round_event_control/antagonist/solo/malf/get_candidates()
 	var/list/candidates = list()
 	for(var/mob/living/silicon/ai/candidate as anything in GLOB.ai_list)
+		if(QDELETED(candidate) || !candidate.key || !candidate.client || !candidate.mind)
+			continue
 		if(!(candidate.client.prefs) || !(antag_flag in candidate.client.prefs.be_special))
 			continue
 		if(candidate.client.get_days_to_play_antag(antag_flag) > 0)
 			continue
 		if(is_banned_from(candidate.ckey, list(antag_flag, ROLE_SYNDICATE, BAN_ANTAGONIST)))
 			continue
-		if(!candidate.client?.prefs?.read_preference(/datum/preference/toggle/be_antag))
+		if(!candidate.client.prefs.read_preference(/datum/preference/toggle/be_antag))
 			continue
 		candidates += candidate
 	return candidates

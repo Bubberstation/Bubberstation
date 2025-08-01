@@ -1,5 +1,4 @@
 // Bitflags for what company a cargo order datum should belong to
-#define CARGO_COMPANY_NAKAMURA_MODSUITS (1<<0)
 #define CARGO_COMPANY_BLACKSTEEL (1<<1)
 #define CARGO_COMPANY_NRI_SURPLUS (1<<2)
 #define CARGO_COMPANY_DEFOREST (1<<3)
@@ -12,7 +11,6 @@
 #define CARGO_COMPANY_ALLSTAR_ENERGY (1<<10)
 
 // Company names, because the armament category and company name need to be the exact same, so use defines like this
-#define COMPANY_NAME_NAKAMURA_ENGINEERING_MODSUITS "Nakamura Engineering MOD Divison"
 #define COMPANY_NAME_BLACKSTEEL_FOUNDATION "Jarnsmiour Blacksteel Foundation"
 #define COMPANY_NAME_NRI_SURPLUS "Izlishek Company Military Supplier"
 #define COMPANY_NAME_DEFOREST_MEDICAL "DeForest Medical Corporation"

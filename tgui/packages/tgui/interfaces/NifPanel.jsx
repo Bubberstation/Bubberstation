@@ -66,7 +66,7 @@ export const NifPanel = (props) => {
                         title={
                           <>
                             {<Icon name={nifsoft.ui_icon} />}
-                            {nifsoft.name + '  '}
+                            {`${nifsoft.name}  `}
                           </>
                         }
                         buttons={
@@ -125,7 +125,7 @@ export const NifPanel = (props) => {
                         <BlockQuote preserveWhitespace>
                           {nifsoft.desc}
                         </BlockQuote>
-                        {nifsoft.able_to_keep ? (
+                        {nifsoft.able_to_keep && (
                           <box>
                             <br />
                             <Button
@@ -145,8 +145,6 @@ export const NifPanel = (props) => {
                               }
                             />
                           </box>
-                        ) : (
-                          <> </>
                         )}
                         <box>
                           <br />

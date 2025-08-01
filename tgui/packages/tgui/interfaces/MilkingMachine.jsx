@@ -561,7 +561,7 @@ const MilkingMachineContent = (props) => {
 const modeButtonStates = (Name, data, palette) => {
   const { act } = useBackend();
   const ModeNameCapital = capitalize(data.mode);
-  const action = 'set' + Name + 'Mode';
+  const action = `set${Name}Mode`;
 
   if (
     data.mobName !== null &&
@@ -639,7 +639,7 @@ const organButtonStates = (Name, data, palette) => {
   } else {
     OrganNameCapital = '';
   }
-  const action = 'set' + Name;
+  const action = `set${Name}`;
 
   if (
     OrganNameCapital !== Name &&

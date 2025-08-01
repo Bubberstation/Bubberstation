@@ -148,7 +148,7 @@ export const ArmamentStation = (props) => {
                                   : 'green'
                               }
                             >
-                              {'Cost: ' + item.cost}
+                              {`Cost: ${item.cost}`}
                             </Stack.Item>
                             {!!item.buyable_ammo && (
                               <Stack.Item
@@ -159,7 +159,7 @@ export const ArmamentStation = (props) => {
                                     : 'green'
                                 }
                               >
-                                {'Ammo Cost: ' + item.magazine_cost}
+                                {`Ammo Cost: ${item.magazine_cost}`}
                               </Stack.Item>
                             )}
                             <Stack.Item>

@@ -26,21 +26,6 @@
 	. = ..()
 	if(dead)
 		return
-	var/damage_amount = 4 // How much damage per life() tick this organ should apply
-
-	for(var/obj/item/organ/organ in owner.organs)
-		if(organ.organ_flags & (ORGAN_ROBOTIC | ORGAN_NANOMACHINE | ORGAN_EXTERNAL | ORGAN_UNREMOVABLE))
-			continue
-		if(istype(organ, /obj/item/organ/taur_body))
-			continue
-		organ.apply_organ_damage(damage_amount)
-		if(COOLDOWN_FINISHED(src, message_cooldown))
-			to_chat(owner, span_warning("Your mass violently rips apart [organ]!"))
-			COOLDOWN_START(src, message_cooldown, 30 SECONDS)
-		if(organ.organ_flags & ORGAN_FAILING)
-			to_chat(owner, span_warning("Your mass violently rejects [organ]"))
-			organ.mob_remove(owner, TRUE)
-
 	handle_refactory(owner.get_organ_slot(ORGAN_SLOT_STOMACH))
 	handle_orchestrator(owner.get_organ_slot(ORGAN_SLOT_HEART))
 	if(owner.stat >= HARD_CRIT && !dead)
@@ -159,16 +144,22 @@
 		eyes = new /obj/item/organ/eyes/robotic/protean
 		eyes.on_bodypart_insert()
 		eyes.Insert(owner, TRUE)
+	else if(organ_flags & ORGAN_NANOMACHINE)
+		eyes.set_organ_damage(0)
 
 	if(isnull(tongue))
 		tongue = new /obj/item/organ/tongue/cybernetic/protean
 		tongue.on_bodypart_insert()
 		tongue.Insert(owner, TRUE)
+	else if(organ_flags & ORGAN_NANOMACHINE)
+		tongue.set_organ_damage(0)
 
 	if(isnull(ears))
 		ears = new /obj/item/organ/ears/cybernetic/protean
 		ears.on_bodypart_insert()
 		ears.Insert(owner, TRUE)
+	else if(organ_flags & ORGAN_NANOMACHINE)
+		ears.set_organ_damage(0)
 
 /obj/item/organ/brain/protean/proc/revive()
 	dead = FALSE

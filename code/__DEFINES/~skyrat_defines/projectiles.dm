@@ -30,3 +30,7 @@
 #define CALIBER_FLECHETTE "Flechette"
 
 #define CALIBER_COIL "Coil"
+// Murphy caliber, there was no other way to make it non-compatible with syndie ammo and prevent gaming it
+// But there is. You just didn't try hard enough.
+#define CALIBER_9MM_SEC "9mm Security"
+
