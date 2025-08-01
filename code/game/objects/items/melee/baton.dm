@@ -900,7 +900,7 @@
 
 /obj/item/melee/baton/security/boomerang/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/boomerang, throw_range + 2, TRUE)
+	AddComponent(/datum/component/boomerang, throw_range+2, TRUE)
 
 /obj/item/melee/baton/security/boomerang/loaded //Same as above, comes with a cell.
 	preload_cell_type = /obj/item/stock_parts/power_store/cell/high
