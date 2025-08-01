@@ -60,20 +60,21 @@
 
 /datum/armor/berserker_gatsu
 	melee = 40
-	bullet = 30
-	laser = 15
-	energy = 25
+	bullet = 10
+	laser = 10
+	energy = 10
 	bomb = 70
 	bio = 70
 	fire = 100
 	acid = 100
+	wound = -5
 
 /datum/armor/drake_empowerment //Modular Override: nerfs beserker armour so I can keep this armour balanced
 	laser = 10
 	energy = 0
 
 /datum/armor/drake_empowerment_gatsu
-	melee = 35
+	melee = 30
 	laser = 10
 	bomb = 20
 
@@ -160,6 +161,9 @@
 	var/roll_stamcost = 10
 	/// how far do we roll?
 	var/roll_range = 3
+	var/roll_delay = 2 SECONDS
+	// prevents you from becoming a bayblade
+	COOLDOWN_DECLARE(dodgeroll_cooldown)
 
 /obj/item/claymore/dragonslayer/examine()
 	. = ..()
@@ -177,9 +181,10 @@
 		force -= faction_bonus_force
 
 /obj/item/claymore/dragonslayer/ranged_interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
-	if(user.IsImmobilized()) // no free dodgerolls
+	if(user.IsImmobilized() || !COOLDOWN_FINISHED(src, dodgeroll_cooldown)) // can't dodge
 		return NONE
 	var/turf/where_to = get_turf(interacting_with)
+	COOLDOWN_START(src, dodgeroll_cooldown, roll_delay)
 	user.apply_damage(damage = roll_stamcost, damagetype = STAMINA)
 	user.Immobilize(0.1 SECONDS) // you dont get to adjust your roll
 	user.throw_at(where_to, range = roll_range, speed = 1, force = MOVE_FORCE_NORMAL)
@@ -239,22 +244,6 @@
 	new /obj/item/clothing/suit/hooded/berserker/gatsu(src)
 	new /obj/item/clothing/neck/warrior_cape(src)
 	new /obj/item/crusher_trophy/gladiator(src)
-
-// Bubber Edit and alt varient for berserker suit
-
-/obj/item/clothing/suit/hooded/berserker/gladiator
-	desc = "A suit of ancient body armor imbued with potent spiritual magnetism, capable of massively boosting a wearer's close combat skills at the cost of ravaging their mind and overexerting their body."
-	icon_state = "berk_suit"
-	icon = 'modular_skyrat/modules/gladiator/icons/berserk_icons.dmi'
-	worn_icon = 'modular_skyrat/modules/gladiator/icons/berserk_suit.dmi'
-	worn_icon_digi = 'modular_skyrat/modules/gladiator/icons/berserk_suit_digi.dmi'
-	hoodtype = /obj/item/clothing/head/hooded/berserker/gladiator
-
-/obj/item/clothing/head/hooded/berserker/gladiator
-	desc = "A uniquely styled helmet with ghastly red eyes that seals it's user inside."
-	icon_state = "berk_helm"
-	icon = 'modular_skyrat/modules/gladiator/icons/berserk_icons.dmi'
-	worn_icon = 'modular_skyrat/modules/gladiator/icons/berserk_suit.dmi'
 
 #undef BERSERK_MAX_CHARGE
 #undef PROJECTILE_HIT_MULTIPLIER
