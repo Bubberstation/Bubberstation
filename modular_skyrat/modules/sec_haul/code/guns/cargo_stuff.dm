@@ -31,7 +31,7 @@
 				)
 	crate_name = "exotic shotgun ammo crate"
 	contraband = TRUE
-
+//Remind me to deal with the above later. - Kali
 /datum/supply_pack/security/antiriotskyratshotgunammo
 	name = "12 Gauge Anti Riot Ammunition Crates"
 	desc = "Contains 6 boxes of anti riot grade ammunition for all 12 Gauge Shotguns."
@@ -90,7 +90,7 @@
 	name = "Revolver Sidearm Crate"
 	desc = "Contains Two 10mm Revolvers, rated for Nanotrasen usage."
 	access_view = ACCESS_ARMORY
-	cost = CARGO_CRATE_VALUE * 12
+	cost = CARGO_CRATE_VALUE * 20
 	contains = list(/obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/nt_revolver = 2,
 	)
 	crate_name = "Nanotrasen Sidearm Crate"
@@ -109,11 +109,11 @@
 
 /datum/supply_pack/security/cacoilgun
 	name = "Romulus Technology MEC-2E Coil Pistol"
-	cost = CARGO_CRATE_VALUE * 55
+	cost = CARGO_CRATE_VALUE * 14
 	desc = "Contains Three standard-issue electromagnetic coilgun and Three magazines for it."
 	contains = list(
-		/obj/item/gun/ballistic/automatic/coilgun = 2,
-		/obj/item/ammo_box/magazine/cacoilgun =2
+		/obj/item/gun/ballistic/automatic/coilgun = 3,
+		/obj/item/ammo_box/magazine/cacoilgun = 3
 	)
 	crate_name = "Experimental Coilgun Crate"
 
@@ -156,19 +156,6 @@
 	contains = list(
 		/obj/item/ammo_box/c980grenade/riot = 3,
 	)
-
-/datum/supply_pack/imports/infanterie
-	name = "Carwil Battle Rifle Crate"
-	desc = "(*!&@#GOOD NEWS, OPERATIVE! WE GOT YOU THE BIG LEAGUE AUTOMATIC WEAPONS. BY \
-		SMUGGLING THIS CRATE THROUGH A FEW OUTDATED CUSTOMS CHECKPOINTS, WE'VE THE NEXT BEST THING! \
-		SERVICE BATTLE RIFLE. DON'T WORRY, THE RUMORS ABOUT THE GUN MELTING YOU ARE JUST THAT! RUMORS! \
-		THESE THINGS WORK FINE! MIGHT BE SLIGHTLY DIRTY.!#@*$"
-	cost = CARGO_CRATE_VALUE * 20
-	contains = list(/obj/item/gun/ballistic/automatic/sol_rifle = 2,
-	/obj/item/ammo_box/magazine/c40sol_rifle = 4,
-	)
-	crate_name = "Carwil Battle Rifle Crate"
-	hidden = TRUE
 
 //Goodies
 

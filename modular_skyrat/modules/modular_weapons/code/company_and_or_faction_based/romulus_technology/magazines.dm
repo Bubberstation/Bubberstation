@@ -25,9 +25,13 @@
 	ammo_type = /obj/item/ammo_casing/cacoil/fp
 	ammo_band_color = COLOR_AMMO_TRUESTRIKE
 
+/obj/item/ammo_box/magazine/cacoilgun/fp/hornet
+	name = "coilgun magazine (5.7mm Hornet Nest)"
+	ammo_type = /obj/item/ammo_casing/cacoil/fp/hornet
+
 /obj/item/ammo_box/magazine/cacoilgun/match
 	name = "coilgun magazine (5.7mm Match)"
-	desc = parent_type::desc + " ."
+	desc = parent_type::desc + "The induction on this projectile causes it to be accelerated at a slower speed, however, it is more prone to bouncing off of objects."
 	ammo_type = /obj/item/ammo_casing/cacoil/match
 	ammo_band_color = COLOR_AMMO_MATCH
 

@@ -35,6 +35,7 @@
 	design_ids += "ammo_workbench"
 	design_ids += "s12g_huntingslug"
 	design_ids += "m9mm_sec"
+	design_ids += "ca_coil"
 
 /datum/techweb_node/magazineresearch_heavy
 	id = "storedmunition_tech_three"
@@ -61,7 +62,6 @@
 	design_ids += "s12g_br"
 	design_ids += "c10mm_rincin"
 	design_ids += "s12g_antitide"
-	design_ids += "ca_coil"
 	. = ..()
 
 /datum/techweb_node/exotic_ammo/New()
