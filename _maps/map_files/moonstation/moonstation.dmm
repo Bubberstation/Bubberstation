@@ -3523,6 +3523,14 @@
 /obj/machinery/door/airlock/public/glass,
 /turf/open/floor/iron,
 /area/station/hallway/primary/aft)
+"aRS" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/firealarm/directional/east,
+/turf/open/floor/wood,
+/area/station/commons/vacant_room/office)
 "aSa" = (
 /turf/open/floor/iron/dark,
 /area/station/security/prison/work)
@@ -8327,10 +8335,10 @@
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 8
 	},
-/obj/item/radio/intercom/directional/west,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
+/obj/item/radio/intercom/directional/west,
 /turf/open/floor/iron,
 /area/station/security/prison/visit)
 "cjx" = (
@@ -11152,7 +11160,6 @@
 /obj/machinery/recharger{
 	pixel_y = 4
 	},
-/obj/structure/cable,
 /obj/machinery/newscaster/directional/east,
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/iron/dark,
@@ -21765,6 +21772,12 @@
 "fHR" = (
 /turf/closed/wall/r_wall,
 /area/station/tcommsat/computer)
+"fHV" = (
+/obj/effect/landmark/firealarm_sanity,
+/turf/open/floor/engine{
+	name = "Holodeck Projector Floor"
+	},
+/area/station/holodeck/rec_center)
 "fHZ" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -26019,7 +26032,6 @@
 	dir = 8
 	},
 /obj/item/kirbyplants/random,
-/obj/structure/sign/poster/official/random/directional/west,
 /obj/machinery/firealarm/directional/north,
 /turf/open/floor/iron,
 /area/station/security/prison/visit)
@@ -31308,6 +31320,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/machinery/firealarm/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/security/prison)
 "ijP" = (
@@ -34824,7 +34837,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/toolbox,
-/obj/machinery/firealarm/directional/west,
 /turf/open/floor/wood,
 /area/station/commons/vacant_room/office)
 "jdz" = (
@@ -40330,6 +40342,7 @@
 /obj/effect/mapping_helpers/requests_console/supplies,
 /obj/machinery/light/small/directional/west,
 /obj/machinery/requests_console/auto_name/directional/west,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/science/research)
 "kzP" = (
@@ -88122,6 +88135,7 @@
 "wZm" = (
 /obj/machinery/light/small/directional/west,
 /obj/structure/chair,
+/obj/structure/sign/poster/official/random/directional/west,
 /turf/open/floor/iron,
 /area/station/security/prison/visit)
 "wZn" = (
@@ -244849,7 +244863,7 @@ brk
 jYF
 liv
 lyz
-cpv
+aRS
 dVv
 qAB
 jzL
@@ -247943,7 +247957,7 @@ ilb
 ilb
 ilb
 ilb
-ilb
+fHV
 ilb
 ilb
 ilb
