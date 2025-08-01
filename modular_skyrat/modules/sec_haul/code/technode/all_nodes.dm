@@ -53,7 +53,6 @@
 	design_ids += "s12g_rubber"
 	design_ids += "s12g_bslug"
 	design_ids += "c457_casing"
-	design_ids += "m9mm_mag_rubber"
 	design_ids += "c10mm_rl"
 	. = ..()
 

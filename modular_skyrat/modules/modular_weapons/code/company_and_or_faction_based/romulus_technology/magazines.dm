@@ -7,9 +7,9 @@
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/romulus_technology/ammo.dmi'
 	icon_state = "cmg_penetrator"
 	max_ammo = 20
-	multitype = TRUE
+	multitype = FALSE
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
-	base_icon_state = "cmg_penetrator"
+	base_icon_state = "cmg"
 	w_class = WEIGHT_CLASS_NORMAL
 	ammo_type = /obj/item/ammo_casing/cacoil
 	ammo_band_icon = "+cmgmag_ammo_band"
