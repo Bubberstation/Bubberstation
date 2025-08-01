@@ -15,11 +15,6 @@
 /datum/augment_item/implant/chest
 	slot = AUGMENT_SLOT_CHEST_IMPLANT
 
-/datum/augment_item/implant/chest/nutriment
-	name = "Nutriment Pump Implant"
-	cost = 4
-	path = /obj/item/organ/cyberimp/chest/nutriment
-
 //LEFT ARM IMPLANTS
 /datum/augment_item/implant/l_arm
 	slot = AUGMENT_SLOT_LEFT_ARM_IMPLANT

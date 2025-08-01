@@ -36,7 +36,6 @@
 		"Brain implant" = "Brain implant", //BUBBER EDIT
 		"Eyes Implant" = "Eyes implant",
 		"Mouth implant" = "Mouth implant",
-		"Chest implant" = "Chest implant", //BUBBER EDIT
 		"Left Arm implant" = "Left Arm implant",
 		"Right Arm implant" = "Right Arm implant",
 	)
