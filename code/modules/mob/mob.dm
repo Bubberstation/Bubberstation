@@ -1532,7 +1532,7 @@
 		return
 	//Bubber edit BEGIN - Allow for people to get hungry faster
 	if(HAS_TRAIT(src, TRAIT_FAST_METABOLISM) && change < 0)
-		change = (change * CONFIG_GET(number/hunger_multiplier) * 1.5)
+		change = change * 1.5
 	//Bubber edit END
 
 	nutrition = max(0, nutrition + change)
