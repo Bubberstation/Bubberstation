@@ -664,7 +664,7 @@
 
 //Shadekin Fur Scarf Sprites by Boviro of Bubberstation
 /obj/item/clothing/neck/scarf/shadekin
-	name = "Shadekin Fur Scarf"
+	name = "shadekin fur scarf"
 	desc = "An unethical scarf made from the soft fur and supple hides of Shadekin. Illegal in almost all areas of occupied space, but highly sought after by elites and pirates nonetheless."
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_preview = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
