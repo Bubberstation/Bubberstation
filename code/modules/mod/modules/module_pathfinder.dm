@@ -13,10 +13,16 @@
 	complexity = 1
 	module_type = MODULE_USABLE
 	use_energy_cost = DEFAULT_CHARGE_DRAIN * 10
-	incompatible_modules = list(/obj/item/mod/module/pathfinder)
-	required_slots = list(ITEM_SLOT_BACK|ITEM_SLOT_BELT)
+	incompatible_modules = list() // BLUBBER EDIT REMOVAL - Jarvis, do the funniest thing ever
+	required_slots = list(ITEM_SLOT_BACK|ITEM_SLOT_BELT) // BLUBBER EDIT REMOVAL
 	/// The pathfinding implant.
 	var/obj/item/implant/mod/implant
+	// BLUBBER EDIT BEGIN
+	/// The implant as implanted in someone
+	var/obj/item/implant/mod/implant_implanted
+	allow_flags = list(MODULE_ALLOW_INACTIVE|MODULE_ALLOW_UNWORN) // lets pAIs actually hit the button
+	cooldown_time = 20
+	// BLUBBER EDIT END
 
 /obj/item/mod/module/pathfinder/Initialize(mapload)
 	. = ..()
@@ -28,6 +34,7 @@
 
 /obj/item/mod/module/pathfinder/Exited(atom/movable/gone, direction)
 	if(gone == implant)
+		implant_implanted = gone
 		implant = null
 		update_icon_state()
 	return ..()
@@ -57,7 +64,18 @@
 	else
 		target.visible_message(span_notice("[user] implants [target]."), span_notice("[user] implants you with [implant]."))
 	playsound(src, 'sound/effects/spray.ogg', 30, TRUE, -6)
-	module_type = MODULE_PASSIVE
+	//module_type = MODULE_PASSIVE // BLUBBER EDIT REMOVAL - More compatable with pAIs
+
+// BLUBBER EDIT ADDITION BEGIN
+/obj/item/mod/module/pathfinder/used()
+	if(implant_implanted)
+		balloon_alert_to_viewers("attempting to recall")
+		implant_implanted.recall() // Lets pAIs fly to you.
+		return FALSE
+
+	return ..()
+// BLUBBER EDIT ADDITION END
+
 
 /obj/item/mod/module/pathfinder/on_use()
 	. = ..()
@@ -68,7 +86,7 @@
 		return
 	balloon_alert(mod.wearer, "implanted")
 	playsound(src, 'sound/effects/spray.ogg', 30, TRUE, -6)
-	module_type = MODULE_PASSIVE
+	//module_type = MODULE_PASSIVE // BLUBBER EDIT REMOVAL - More compatable with pAIs
 	var/datum/action/item_action/mod/pinnable/module/existing_action = pinned_to[REF(mod.wearer)]
 	if(existing_action)
 		mod.remove_item_action(existing_action)
@@ -95,6 +113,9 @@
 	var/obj/item/mod/module/pathfinder/module
 	/// The jet icon we apply to the MOD.
 	var/image/jet_icon
+	// BLUBBER EDIT ADDITION BEGIN
+	allow_multiple = TRUE //If you lose your suit/module, you can just replace it (No more surgery to remove the old one)
+	// BLUBBER EDIT ADDITION END
 
 /obj/item/implant/mod/Initialize(mapload)
 	. = ..()

@@ -22,6 +22,9 @@
 #define MODULE_ALLOW_INCAPACITATED (1<<1)
 /// This module can be used while the suit is off
 #define MODULE_ALLOW_INACTIVE (1<<2)
+/// This module can be activated while unworn
+#define MODULE_ALLOW_UNWORN (1<<3) // BLUBBER ADDITION ADD
+
 
 #define UNSEALED_LAYER "unsealed_layer"
 #define SEALED_LAYER "sealed_layer"
