@@ -11,3 +11,31 @@
 /datum/area_spawn_over/big_bertha/New(...)
 	. = ..()
 	blacklisted_stations = null //Weird, but it werks.
+
+/datum/area_spawn_over/security_missile_launcher
+	target_areas = list(
+		/area/station/ai_monitored/security/armory,
+		/area/station/ai_monitored/security/armory/upper
+	)
+	over_atoms = list(
+		/obj/item/gun/energy/temperature
+	)
+	desired_atom = /obj/item/gun/ballistic/rocketlauncher/security
+
+/datum/area_spawn_over/security_missile_launcher/New(...)
+	. = ..()
+	blacklisted_stations = null //Weird, but it werks.
+
+/datum/area_spawn_over/security_missile_launcher_ammo
+	target_areas = list(
+		/area/station/ai_monitored/security/armory,
+		/area/station/ai_monitored/security/armory/upper
+	)
+	over_atoms = list(
+		/obj/item/gun/energy/temperature
+	)
+	desired_atom = /obj/item/storage/box/security_missiles
+
+/datum/area_spawn_over/security_missile_launcher_ammo/New(...)
+	. = ..()
+	blacklisted_stations = null //Weird, but it werks.
