@@ -16,9 +16,9 @@
 		if("Yes.")
 			fold_in(TRUE)
 			send_applicable_messages()
-			src.ghostize(FALSE)
+			ghostize(FALSE)
 			playsound(src, 'sound/machines/buzz/buzz-two.ogg', 30, TRUE)
-			LAZYNULL(src.mind.special_roles)
+			LAZYNULL(mind?.special_roles)
 			qdel(src)
 		else
 			return
