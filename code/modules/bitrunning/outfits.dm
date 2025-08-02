@@ -10,12 +10,6 @@
 	suit = /obj/item/clothing/suit/jacket/leather_trenchcoat
 	id = /obj/item/card/id/advanced
 
-
-/datum/outfit/echolocator/post_equip(mob/living/carbon/human/user, visuals_only)
-	. = ..()
-	user.psykerize(is_blinding = FALSE)
-
-
 /datum/outfit/bitductor
 	name = "Bitrunning Abductor"
 	uniform = /obj/item/clothing/under/abductor
