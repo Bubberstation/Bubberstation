@@ -85,6 +85,15 @@ function SystemInfo(props) {
           >
             Display
           </Button>
+          {/** BUBBER EDIT: pAI self Wipe */}
+          <Button
+            icon="skull"
+            color="bad"
+            onClick={() => act('wipe files')}
+          >
+            WIPE
+          </Button>
+          {/** BUBBER EDIT END: pAI self wipe */}
         </>
       }
       fill
