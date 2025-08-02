@@ -18,7 +18,7 @@
 
 	var/cached_range = 0 //Cheaper than calling initial(range) constantly.
 
-	can_hit_turfs = TRUE
+	can_hit_turfs = FALSE
 
 /obj/projectile/bullet/security_missile/Initialize(mapload)
 	. = ..()
@@ -83,7 +83,7 @@
 		return
 
 	//Gets all the turfs that it can see.
-	var/list/possible_turfs = circle_view_turfs(src,6)
+	var/list/possible_turfs = circle_view_turfs(src,6) - src.loc
 
 	var/list/turf_to_weight = list()
 
@@ -100,6 +100,8 @@
 			if(found_angle_difference > scanning_angle)
 				continue
 
+		var/found_distance_difference = get_dist(src,found_turf)
+
 		//This is where the fun begins.
 		var/calculated_weight = 0
 
@@ -111,7 +113,12 @@
 				calculated_weight = (found_turf.heat_capacity / 20000)
 
 		if(!found_turf.density) //Are we a walkable floor? If so, check for contents (and multiply the turf's weight by 0.25)
-			calculated_weight *= 0.25
+
+			if(found_distance_difference <= 2)
+				calculated_weight = 0 //Too close to consider!
+			else
+				calculated_weight *= 0.25
+
 			//Check the contents of the turf. Will add to the calculated weight.
 			var/scan_limit = 30 //Prevents shinegeansans.
 			for(var/atom/movable/found_movable as null|anything in found_turf.contents)
@@ -125,15 +132,19 @@
 					continue
 				if(isliving(found_movable))
 					var/mob/living/found_living = found_movable
-					calculated_weight += min(found_living.maxHealth,400)/100 //400 is the health of a space dragon.
+					calculated_weight += max(100,min(found_living.maxHealth,400))/100 //400 is the health of a space dragon.
 					continue
 
 		if(calculated_weight > 0)
-			calculated_weight /= (1 + max(1,get_dist(src,found_turf))/3) //Half weight at 3 tiles distance, however with a minimum value of 1 for distance Remember, max means get largest.
+			var/original_weight = calculated_weight
+			calculated_weight /= (1 + max(1,found_distance_difference)/5) //Half weight at 5 tiles distance, however with a minimum value of 1 for distance Remember, max means get largest.
 			calculated_weight /= (1 + found_angle_difference/90) //Half weight at 90 degrees difference.
-			calculated_weight = CEILING(calculated_weight,1)
+			calculated_weight = FLOOR(calculated_weight,1)
+			if(calculated_weight <= 0 && original_weight > 0)
+				calculated_weight = 1
 			found_turf.maptext = MAPTEXT("[calculated_weight]")
-			turf_to_weight[found_turf] = calculated_weight
+			if(calculated_weight > 0) //The floor calculation above can set this to 0.
+				turf_to_weight[found_turf] = calculated_weight
 
 	if(!length(turf_to_weight))
 		//Reset homing. Using set_homing_target(null) does not work.
@@ -143,14 +154,9 @@
 		homing_offset_y = 0
 		return
 
-
 	var/turf/targeting_turf = pick_weight(turf_to_weight)
 	set_homing_target(targeting_turf)
 	original = targeting_turf
+	targeting_turf.maptext = MAPTEXT("([turf_to_weight[targeting_turf]])")
 
 	return TRUE
-
-
-
-
-
