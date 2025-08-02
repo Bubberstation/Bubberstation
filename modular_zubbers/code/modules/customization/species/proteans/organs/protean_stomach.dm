@@ -1,4 +1,4 @@
-#define REGEN_TIME 60 SECONDS
+#define REGEN_TIME (60 SECONDS) // () are important for order of operations. Fuck you too, byond
 /obj/item/organ/stomach/protean
 	name = "refactory"
 	desc = "An extremely fragile factory used to recycle materials and create more nanite mass. Needed to facilitate the repair process on a collapsed Protean; it can be installed as a module in the rig, or as an organ."
@@ -55,7 +55,7 @@
 				var/healing_amount = -2
 				hunger_modifier += 20
 				if(!COOLDOWN_FINISHED(src, damage_delay))
-					var/cooldown_left = (REGEN_TIME - COOLDOWN_TIMELEFT(src, damage_delay)) / (REGEN_TIME) // Must have () around REGEN_TIME due to sequence of operations. Yeah, I fuck you too, byond
+					var/cooldown_left = (REGEN_TIME - COOLDOWN_TIMELEFT(src, damage_delay)) / REGEN_TIME
 					hunger_modifier *= cooldown_left
 					healing_amount *= cooldown_left
 				owner.adjustBruteLoss(healing_amount, forced = TRUE)
