@@ -1,4 +1,4 @@
-#define REGEN_TIME (60 SECONDS) // () are important for order of operations. Fuck you too, byond
+#define REGEN_TIME (30 SECONDS) // () are important for order of operations. Fuck you too, byond
 /obj/item/organ/stomach/protean
 	name = "refactory"
 	desc = "An extremely fragile factory used to recycle materials and create more nanite mass. Needed to facilitate the repair process on a collapsed Protean; it can be installed as a module in the rig, or as an organ."
