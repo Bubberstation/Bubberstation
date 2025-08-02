@@ -34,5 +34,5 @@
 	illustration = null
 
 /obj/item/storage/box/security_missiles/PopulateContents()
-	for(var/i in 1 to 4)
+	for(var/i in 1 to 7)
 		new /obj/item/ammo_casing/security_missile(src)
