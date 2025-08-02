@@ -1,3 +1,4 @@
+#define REGEN_TIME 60 SECONDS
 /obj/item/organ/stomach/protean
 	name = "refactory"
 	desc = "An extremely fragile factory used to recycle materials and create more nanite mass. Needed to facilitate the repair process on a collapsed Protean; it can be installed as a module in the rig, or as an organ."
@@ -54,10 +55,9 @@
 				var/healing_amount = -2
 				hunger_modifier += 20
 				if(!COOLDOWN_FINISHED(src, damage_delay))
-					var/cooldown_left = (60 SECONDS - COOLDOWN_TIMELEFT(src, damage_delay)) / 600 // snowflake math code built for having things around 60 SECONDS.
+					var/cooldown_left = (REGEN_TIME - COOLDOWN_TIMELEFT(src, damage_delay)) / (REGEN_TIME) // Must have () around REGEN_TIME due to sequence of operations. Yeah, I fuck you too, byond
 					hunger_modifier *= cooldown_left
 					healing_amount *= cooldown_left
-					message_admins(cooldown_left)
 				owner.adjustBruteLoss(healing_amount, forced = TRUE)
 				owner.adjustFireLoss(healing_amount, forced = TRUE)
 			if(owner.blood_volume < BLOOD_VOLUME_NORMAL)
@@ -76,7 +76,7 @@
 
 	if(COOLDOWN_STARTED(src, damage_delay))
 		COOLDOWN_RESET(src, damage_delay)
-	COOLDOWN_START(src, damage_delay, 60 SECONDS)
+	COOLDOWN_START(src, damage_delay, REGEN_TIME)
 
 /// Check to see if our metal storage is full.
 /obj/item/organ/stomach/protean/proc/try_stomach_eat(mob/eater, atom/eating)
@@ -98,5 +98,6 @@
 			var/health_check = owner.health >= owner.maxHealth ? "fully healed!" : "healed!"
 			owner.balloon_alert_to_viewers("[health_check]")
 
+#undef REGEN_TIME
 #undef PROTEAN_STOMACH_FULL
 #undef PROTEAN_STOMACH_FALTERING
