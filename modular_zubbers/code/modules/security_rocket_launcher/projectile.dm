@@ -68,7 +68,6 @@
 
 		return BULLET_ACT_HIT //Will still do damage, but it won't explode like below.
 
-	//We call the explosion on ourturf because if we call it on target, there is a 100% chance to delimb the target, which is not very poggers.
 	explosion(our_turf, light_impact_range = 1, flame_range = 1, flash_range = 1,  explosion_cause = src)
 
 	return BULLET_ACT_HIT
@@ -152,5 +151,6 @@
 	var/turf/targeting_turf = pick_weight(turf_to_weight)
 	set_homing_target(targeting_turf)
 	original = targeting_turf
+	can_hit_turfs = TRUE
 
 	return TRUE
