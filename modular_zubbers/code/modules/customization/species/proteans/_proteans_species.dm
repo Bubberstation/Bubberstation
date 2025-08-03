@@ -71,7 +71,7 @@
 	)
 
 	inherent_biotypes = MOB_ROBOTIC | MOB_HUMANOID
-	reagent_flags = null
+	reagent_flags = PROCESS_PROTEAN
 
 	/// Reference to the
 	var/obj/item/mod/control/pre_equipped/protean/species_modsuit
