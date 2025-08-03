@@ -18,7 +18,7 @@
 	mutantheart = /obj/item/organ/heart/protean
 	mutantstomach = /obj/item/organ/stomach/protean
 	mutantlungs = null
-	mutantliver = null
+	mutantliver = /obj/item/organ/liver/protean
 	mutantappendix = null
 	mutanteyes = /obj/item/organ/eyes/robotic/protean
 	mutantears = /obj/item/organ/ears/cybernetic/protean
