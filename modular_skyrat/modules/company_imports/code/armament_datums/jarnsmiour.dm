@@ -20,7 +20,7 @@
 	cost = PAYCHECK_COMMAND * 3
 
 /datum/armament_entry/company_import/blacksteel/blade/shamshir_sabre
-	item_type = /obj/item/storage/belt/sabre/cargo
+	item_type = /obj/item/storage/belt/sheath/sabre/cargo
 	cost = PAYCHECK_COMMAND * 6
 
 // Forging tools, blacksteel company sells the tools and materials they use as well!
