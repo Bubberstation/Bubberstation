@@ -44,12 +44,17 @@
 									"You struggle to breathe." = MUT_MSG_EXTENDED,
 									"You need to find water, NOW!" = MUT_MSG_ABOUT2TURN)
 
-/datum/reagent/mutationtoxin/android
-	mutationtexts = list( "Your joints feel stiff." = MUT_MSG_IMMEDIATE,
-									"Your hair falls out in clumps." = MUT_MSG_IMMEDIATE,
-									"Your joints feel very stiff." = MUT_MSG_EXTENDED,
-									"Your skin feels loose." = MUT_MSG_EXTENDED,
-									"Your joints clank." = MUT_MSG_ABOUT2TURN)
+/datum/reagent/transformative_virus/android
+	name = "Android Nanomachines"
+	description = "One with the machine."
+	color = "#535E66"  //RGB: 94, 255, 59
+	taste_description = "circuitry and steel"
+	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
+
+/datum/reagent/transformative_virus/android/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message = TRUE, touch_protection = 0)
+	. = ..()
+	if((methods & (PATCH|INGEST|INJECT|INHALE)) || ((methods & (VAPOR|TOUCH)) && prob(min(reac_volume,100)*(1 - touch_protection))))
+		exposed_mob.ForceContractDisease(new /datum/disease/transformation_race/android(), FALSE, TRUE)
 
 /datum/reagent/mutationtoxin/anthromorph
 	name = "Anthromorph Mutation Toxin"
@@ -269,7 +274,7 @@
 /datum/reagent/transformative_virus/synthetic
 	name = "Synthetic Nanomachines"
 	description = "We can rebuild them."
-	color = "#6e756b" //RGB: 94, 255, 59
+	color = "#535E66"  //RGB: 94, 255, 59
 	taste_description = "metal"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 

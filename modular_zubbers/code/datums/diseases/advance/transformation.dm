@@ -85,5 +85,26 @@
 	race = /datum/species/synthetic
 	infectable_biotypes = MOB_ORGANIC|MOB_UNDEAD|MOB_ROBOTIC
 
+/datum/disease/transformation_race/android
+	name = "Android Transformation"
+	cure_text = "An injection of copper."
+	cures = list(/datum/reagent/copper)
+	cure_chance = 2.5
+	agent = "BB-8 Nanomachines"
+	desc = "This disease, actually acute nanomachine infection, converts the victim into an android."
+	severity = DISEASE_SEVERITY_BIOHAZARD
+	visibility_flags = NONE
+	stage1 = list()
+	stage2 = list(span_danger ("Your joints feel stiff."))
+	stage3 = list(
+		span_danger("You can feel something move...inside."),
+		span_danger("Your joints feel very stiff."),
+		span_warning("Your skin feels loose."),
+	)
+	stage4 = list(span_danger("You can feel... something...inside you."), span_danger("Your skin feels very loose."),)
+	stage5 = list(span_danger("Your skin feels as if it's about to burst off!"))
+	race = /datum/species/android
+	infectable_biotypes = MOB_ORGANIC|MOB_UNDEAD|MOB_ROBOTIC
+
 /datum/disease/transformation/xeno
 	new_form = /mob/living/carbon/alien/adult/skyrat/drone

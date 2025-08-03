@@ -8,9 +8,9 @@
 	required_reagents  = list(/datum/reagent/consumable/ethanol/salt_and_swell = 3, /datum/reagent/toxin/carpotoxin = 2, /datum/reagent/ammonia = 2, /datum/reagent/mutationtoxin = 1)
 	required_temp = 300
 
-/datum/chemical_reaction/mutationtoxin/android
-	results = list(/datum/reagent/mutationtoxin/android = 1)
-	required_reagents  = list(/datum/reagent/consumable/ethanol/oil_drum = 3, /datum/reagent/medicine/nanite_slurry = 2, /datum/reagent/consumable/ethanol/synthanol/robottears = 2, /datum/reagent/mutationtoxin = 1)
+/datum/chemical_reaction/transformative_virus/android
+	results = list(/datum/reagent/transformative_virus/android = 1)
+	required_reagents  = list(/datum/reagent/consumable/ethanol/oil_drum = 3, /datum/reagent/medicine/nanite_slurry = 2, /datum/reagent/medicine/liquid_solder = 2, /datum/reagent/medicine/system_cleaner = 2, /datum/reagent/consumable/ethanol/synthanol/robottears = 2, /datum/reagent/mutationtoxin = 1)
 	required_temp = 320
 
 /datum/chemical_reaction/mutationtoxin/anthromorph
