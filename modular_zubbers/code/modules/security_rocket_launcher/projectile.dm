@@ -54,7 +54,7 @@
 		return BULLET_ACT_BLOCK //Some fuckery afoot.
 
 	if(range >= cached_range - minimum_range)
-		new /obj/item/broken_missile/security(found_turf)
+		new /obj/item/broken_missile/security(our_turf)
 		if(isliving(target))
 			var/mob/living/target_as_living = target
 			var/head_armor = target_as_living.run_armor_check(BODY_ZONE_HEAD, MELEE, silent = TRUE)
@@ -68,8 +68,8 @@
 
 		return BULLET_ACT_HIT //Will still do damage, but it won't explode like below.
 
-	//We call the explosion on ourturf because if we call it on target, there is a 100% chance to delimb the target.
-	explosion(our_turf, light_impact_range = 1, flame_range = 1, flash_range = 2,  explosion_cause = src)
+	//We call the explosion on ourturf because if we call it on target, there is a 100% chance to delimb the target, which is not very poggers.
+	explosion(our_turf, light_impact_range = 1, flame_range = 1, flash_range = 1,  explosion_cause = src)
 
 	return BULLET_ACT_HIT
 
@@ -90,7 +90,7 @@
 		return
 
 	//Gets all the turfs that it can see.
-	var/list/possible_turfs = circle_view_turfs(src,6) - src.loc
+	var/list/possible_turfs = circle_view_turfs(src,7) - src.loc
 
 	var/list/turf_to_weight = list()
 
@@ -113,7 +113,7 @@
 			//312500 is the same heat capacity as a rwall
 			//20000 is the same heat capacity as a floor tile.
 			if(found_turf.heat_capacity == INFINITY)
-				calculated_weight = 312500 / 20000 // Same as an rwall.
+				calculated_weight = 312500 / 20000
 			else
 				calculated_weight = (found_turf.heat_capacity / 20000)
 		else //A floor.
