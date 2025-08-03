@@ -5,3 +5,12 @@
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_LIVER
 	organ_flags = ORGAN_ROBOTIC | ORGAN_NANOMACHINE
+
+/obj/item/organ/liver/protean/Insert(mob/living/carbon/receiver, special, movement_flags)
+	if(QDELETED(src))
+		return FALSE
+	return ..()
+
+/obj/item/organ/liver/protean/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/nanite_organ)
