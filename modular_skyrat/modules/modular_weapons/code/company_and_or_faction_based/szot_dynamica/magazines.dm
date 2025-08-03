@@ -43,9 +43,10 @@
 	base_icon_state = "plasma_battery"
 	icon_state = "plasma_battery"
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
-	ammo_type = /obj/item/ammo_casing/energy/laser/plasma_glob
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/plasma_glob, /obj/item/ammo_casing/energy/laser/plasma_glob/supercharged)
 	caliber = CALIBER_LASER
 	max_ammo = 15
+	var/overcharged = FALSE
 
 /obj/item/ammo_box/magazine/recharge/plasma_battery/update_icon_state() // FUCK YOU /OBJ/ITEM/AMMO_BOX/MAGAZINE/RECHARGE
 	. = ..()

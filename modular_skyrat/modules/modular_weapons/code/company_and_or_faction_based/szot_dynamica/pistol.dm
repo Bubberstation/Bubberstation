@@ -73,6 +73,10 @@
 	bolt_type = BOLT_TYPE_OPEN
 	fire_delay = 0.6 SECONDS
 	spread = 2.5
+	actions_types = list(/datum/action/item_action/activate_plasma_overclock)
+	var/current_projspeed_mod
+	var/overclocking = FALSE
+	var/self_destruct_timer
 
 	projectile_damage_multiplier = 3 // 30 damage a shot
 	projectile_wound_bonus = 10 // +55 of the base projectile, burn baby burn
@@ -80,13 +84,14 @@
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_SZOT)
 
-/obj/item/gun/ballistic/automatic/pistol/plasma_marksman/examine(mob/user)
+/obj/item/gun/ballistic/automatic/pistol/plasma_marksman/examine(mob/user, overclocking)
 	. = ..()
+	if(overclocking)
+		. += span_notice("The weapon is glowing red and steaming!")
 	. += span_notice("You can <b>examine closer</b> to learn a little more about this weapon.")
 
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman/examine_more(mob/user)
 	. = ..()
-
 	. += "The 'Gwiazda' is a further refinement of the 'Słońce' design. with improved \
 		energy cycling, magnetic launchers built to higher precision, and an overall more \
 		ergonomic design. While it still fails to perform against armor, the weapon is \
@@ -97,6 +102,69 @@
 
 	return .
 
+/obj/item/gun/ballistic/automatic/pistol/plasma_marksman/shoot_live_shot(mob/living/user, pointblank, atom/pbtarget, message)
+	. = ..()
+	update_projspeed(user, overclocking)
+
+/obj/item/gun/ballistic/automatic/pistol/plasma_marksman/proc/update_projspeed(mob/user, current_proj_speed, overclocking)
+	var/shots_in_mag = src.get_ammo()
+	src.say("[shots_in_mag]")
+	if(overclocking == FALSE)
+		if(shots_in_mag >= 1 && shots_in_mag <= 4)
+			current_proj_speed = 1
+		else if(shots_in_mag >= 5 && shots_in_mag <= 7)
+			current_proj_speed = 1.1
+		else if(shots_in_mag >= 8 && shots_in_mag <= 9)
+			current_proj_speed = 1.2
+		else if(shots_in_mag >= 10 && shots_in_mag <= 12)
+			current_proj_speed = 1.3
+		else if(shots_in_mag >= 13 && shots_in_mag <= 16)
+			current_proj_speed = 1.5
+		else
+			current_proj_speed = 0.8
+	else
+		current_proj_speed = 1.6 //CRANK IT UP!
+	src.projectile_speed_multiplier = current_proj_speed
+
+/obj/item/gun/ballistic/automatic/pistol/plasma_marksman/proc/activate_oveclock(mob/user, current_proj_speed, overclocking)
+
+/datum/action/item_action/activate_plasma_overclock //Gotta be hud, its un-revertable. Imagine misclicking and blowing up your gun without knowing...
+	button_icon = 'icons/obj/weapons/guns/ammo.dmi'
+	button_icon_state = "9x19p"
+	name = "Overclock Plasma Charger"
+	check_flags = AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS
+
+//Checks if we can overclock the gun, if so, starts the process
+/obj/item/gun/ballistic/automatic/pistol/plasma_marksman/ui_action_click(mob/user, actiontype)
+	if(!istype(actiontype, /datum/action/item_action/activate_plasma_overclock))
+		return ..()
+	if(!overclocking)
+		overclocking = !overclocking
+	balloon_alert(user, "[overclocking ? "Plasma coils overheated, it's going to blow!" : "It's not shutting down!"]")
+	if(overclocking)
+		playsound(user, 'sound/items/weapons/rust_sower_armbomb.ogg', 100, TRUE)
+		overclock(user)
+	update_item_action_buttons()
+
+	//Base overclock proc, changes our projectile for releasing the flare + explosion
+/obj/item/gun/ballistic/automatic/pistol/plasma_marksman/proc/overclock(mob/living/user, slot)
+	if(user)
+		START_PROCESSING(SSprocessing, src)
+		addtimer(CALLBACK(src, PROC_REF(kaboom)), 10 SECONDS)
+
+/obj/item/gun/ballistic/automatic/pistol/plasma_marksman/proc/kaboom(mob/living/user)
+	STOP_PROCESSING(SSprocessing, src)
+	var/turf/last_surprise = loc
+	explosion(src, light_impact_range = 6, explosion_cause = src)
+	last_surprise.add_liquid(/datum/reagent/toxin/plasma, 20, no_react = FALSE, chem_temp = 600)
+	new /obj/effect/hotspot(last_surprise)
+
+/obj/item/gun/ballistic/automatic/pistol/plasma_marksman/process(seconds_per_tick)
+	var/mob/living/carbon/wielder = loc
+	var/obj/item/bodypart/affecting = wielder.get_bodypart("[(wielder.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
+	if(wielder.is_holding(src))
+		wielder.apply_damage(5, BURN, affecting)
+		to_chat(wielder, span_warning("[src] burns your hand, it's too hot!"))
 // A revolver, but it can hold shotgun shells
 // Woe, buckshot be upon ye
 
