@@ -6,7 +6,7 @@
 	sexes = TRUE
 
 	siemens_coeff = 1.5 // Electricty messes you up.
-	payday_modifier = 0.7 // 30 percent poorer
+	payday_modifier = 1
 
 	exotic_bloodtype = BLOOD_TYPE_NANITE_SLURRY
 	digitigrade_customization = DIGITIGRADE_OPTIONAL
