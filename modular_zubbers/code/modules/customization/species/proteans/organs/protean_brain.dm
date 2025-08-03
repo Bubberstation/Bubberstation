@@ -163,11 +163,11 @@
 		ears.set_organ_damage(0)
 
 	if(isnull(liver))
-		ears = new /obj/item/organ/liver/protean
-		ears.on_bodypart_insert()
-		ears.Insert(owner, TRUE)
+		liver = new /obj/item/organ/liver/protean
+		liver.on_bodypart_insert()
+		liver.Insert(owner, TRUE)
 	else if(organ_flags & ORGAN_NANOMACHINE)
-		ears.set_organ_damage(0)
+		liver.set_organ_damage(0)
 
 /obj/item/organ/brain/protean/proc/revive()
 	dead = FALSE
