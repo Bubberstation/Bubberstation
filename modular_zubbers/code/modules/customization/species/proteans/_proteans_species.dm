@@ -44,7 +44,6 @@
 
 		// Needed to exist without dying and robot specific stuff.
 		TRAIT_NOBREATH,
-		TRAIT_LIVERLESS_METABOLISM,
 		TRAIT_ROCK_EATER,
 		TRAIT_STABLEHEART, // TODO: handle orchestrator code
 		TRAIT_NOHUNGER, // They will have metal stored in the stomach. Fuck nutrition code.
