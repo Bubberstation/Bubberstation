@@ -127,6 +127,7 @@
 	var/obj/item/organ/eyes/robotic/protean/eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
 	var/obj/item/organ/tongue/cybernetic/protean/tongue = owner.get_organ_slot(ORGAN_SLOT_TONGUE)
 	var/obj/item/organ/ears/cybernetic/protean/ears = owner.get_organ_slot(ORGAN_SLOT_EARS)
+	var/obj/item/organ/liver/protean/liver = owner.get_organ_slot(ORGAN_SLOT_LIVER)
 
 	if(stomach.metal <= PROTEAN_STOMACH_FULL * 0.6 && istype(stomach))
 		to_chat(owner, span_warning("Not enough metal to heal body!"))
@@ -156,6 +157,13 @@
 
 	if(isnull(ears))
 		ears = new /obj/item/organ/ears/cybernetic/protean
+		ears.on_bodypart_insert()
+		ears.Insert(owner, TRUE)
+	else if(organ_flags & ORGAN_NANOMACHINE)
+		ears.set_organ_damage(0)
+
+	if(isnull(liver))
+		ears = new /obj/item/organ/liver/protean
 		ears.on_bodypart_insert()
 		ears.Insert(owner, TRUE)
 	else if(organ_flags & ORGAN_NANOMACHINE)
