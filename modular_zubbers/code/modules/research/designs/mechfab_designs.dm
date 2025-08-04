@@ -175,6 +175,7 @@
 /datum/design/module/hat_stabilizer
 	name = "Hat Stabilizer Module"
 	id = "mod_hat_stabilizer"
+	build_type = MECHFAB
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
 	)

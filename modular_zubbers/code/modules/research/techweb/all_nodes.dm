@@ -182,12 +182,6 @@
 	)
 
 /datum/techweb_node/mod_equip/New()
-	design_ids += "mod_protean_servo"
-	. = ..()
-
-// MOD suits
-/datum/techweb_node/mod_equip/New()
-	design_ids += list(
-		"mod_hat_stabilizer",
+	design_ids += list("mod_protean_servo", "mod_hat_stabilizer",
 	)
-	return ..()
+	. = ..()
