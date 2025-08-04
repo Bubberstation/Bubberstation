@@ -105,6 +105,8 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 			return rainbow_datum.get_holiday_colors(thing_to_color, PATTERN_DEFAULT)
 	//if(!length(GLOB.holidays)) // BUBBER EDIT REMOVAL - Pride Flag Colors
 	//	return // BUBBER EDIT REMOVAL - Pride Flag Colors
+	if(!length(GLOB.holidays))
+		return
 	for(var/holiday_key in GLOB.holidays)
 		var/datum/holiday/holiday_real = GLOB.holidays[holiday_key]
 		if(!holiday_real.holiday_colors)
