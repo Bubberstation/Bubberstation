@@ -367,3 +367,11 @@
 									"Your flesh rots but you feel nothing!" = MUT_MSG_EXTENDED,
 									"Your blood coagulates!" = MUT_MSG_EXTENDED,
 									"You feel a yearning for flesh and brains" = MUT_MSG_ABOUT2TURN)
+
+#undef MUT_MSG_IMMEDIATE
+#undef MUT_MSG_EXTENDED
+#undef MUT_MSG_ABOUT2TURN
+
+#undef CYCLES_TO_TURN
+#undef CYCLES_MSG_IMMEDIATE
+#undef CYCLES_MSG_EXTENDED
