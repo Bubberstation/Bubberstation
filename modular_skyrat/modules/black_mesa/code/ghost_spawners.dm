@@ -150,7 +150,6 @@
 	backpack_contents = list(
 							/obj/item/storage/box/survival/radio,
 							/obj/item/storage/medkit/emergency,
-							/obj/item/armament_points_card/hecu,
 	)
 	id = /obj/item/card/id
 	id_trim = /datum/id_trim/hecu
@@ -200,7 +199,6 @@
 	backpack_contents = list(
 							/obj/item/storage/box/survival/radio,
 							/obj/item/storage/medkit/emergency,
-							/obj/item/armament_points_card/hecu,
 							/obj/item/book/granter/martial/cqc,
 							/obj/item/grenade/smokebomb,
 	)
