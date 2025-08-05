@@ -6,13 +6,6 @@
 	crate_type = null
 	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
 
-
-/datum/supply_pack/imports_modsuit/mod_plate/clown
-	name = "MOD CosmoHonk(TM) Plating"
-	desc = "An extremely funny modsuit plating type."
-	contains = list(/obj/item/mod/construction/plating/cosmohonk)
-	cost = PAYCHECK_COMMAND * 2
-
 /datum/supply_pack/imports_modsuit/mod_module/retract_plates
 	name = "MOD Plate Retraction Module"
 	desc = "A MODSuit Module that retracts plates." //figure out later
