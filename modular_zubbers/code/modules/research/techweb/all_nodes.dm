@@ -180,3 +180,8 @@
 	research_costs = list(
 		TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS
 	)
+
+/datum/techweb_node/mod_equip/New()
+	design_ids += list("mod_protean_servo", "mod_hat_stabilizer",
+	)
+	. = ..()
