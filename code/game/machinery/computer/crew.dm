@@ -1,5 +1,5 @@
-/// How often the sensor data is updated
-#define SENSORS_UPDATE_PERIOD (10 SECONDS) //How often the sensor data updates.
+/// How often the sensor data is updated // BUBBER EDIT REMOVAL - Defined in code/__DEFINES/~~bubber_defines/misc.dm
+// #define SENSORS_UPDATE_PERIOD (10 SECONDS) //How often the sensor data updates.
 /// The job sorting ID associated with otherwise unknown jobs
 #define UNKNOWN_JOB_ID 998
 
@@ -347,5 +347,5 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				return
 			AI.ai_tracking_tool.track_name(AI, params["name"])
 
-#undef SENSORS_UPDATE_PERIOD
+// #undef SENSORS_UPDATE_PERIOD // BUBBER EDIT REMOVAL - Defined in code/__DEFINES/~~bubber_defines/misc.dm
 #undef UNKNOWN_JOB_ID
