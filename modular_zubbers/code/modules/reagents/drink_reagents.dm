@@ -28,16 +28,14 @@
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	chemical_flags_skyrat = REAGENT_BLOOD_REGENERATING
 
-/datum/reagent/consumable/icetea/blood_tea/on_transfer(atom/A, methods=INGEST, trans_volume)
+/datum/reagent/consumable/icetea/blood_tea/expose_mob(mob/living/exposed_mob, methods, reac_volume)
+	. = ..()
 	if(!(methods & INGEST))
 		return
-	var/obj/item/organ/stomach/stomach = A
-	if(!istype(stomach) || !stomach.owner || !ishemophage(stomach.owner) || trans_volume <= 0)
+	var/obj/item/organ/stomach/stomach = exposed_mob.get_organ_slot(ORGAN_SLOT_STOMACH)
+	if(!istype(stomach) || !ishemophage(exposed_mob) || reac_volume <= 0)
 		return
-
-	stomach.owner.blood_volume = min(stomach.owner.blood_volume + trans_volume, BLOOD_VOLUME_MAXIMUM)
-
-	..()
+	exposed_mob.blood_volume = min(exposed_mob.blood_volume + reac_volume, BLOOD_VOLUME_MAXIMUM)
 
 /datum/glass_style/drinking_glass/blood_tea
 	required_drink_type = /datum/reagent/consumable/icetea/blood_tea
@@ -56,16 +54,14 @@
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	chemical_flags_skyrat = REAGENT_BLOOD_REGENERATING
 
-/datum/reagent/consumable/coffee/blood_coffee/on_transfer(atom/A, methods=INGEST, trans_volume)
+/datum/reagent/consumable/coffee/blood_coffee/expose_mob(mob/living/exposed_mob, methods, reac_volume)
+	. = ..()
 	if(!(methods & INGEST))
 		return
-	var/obj/item/organ/stomach/stomach = A
-	if(!istype(stomach) || !stomach.owner || !ishemophage(stomach.owner) || trans_volume <= 0)
+	var/obj/item/organ/stomach/stomach = exposed_mob.get_organ_slot(ORGAN_SLOT_STOMACH)
+	if(!istype(stomach) || !ishemophage(exposed_mob) || reac_volume <= 0)
 		return
-
-	stomach.owner.blood_volume = min(stomach.owner.blood_volume + trans_volume, BLOOD_VOLUME_MAXIMUM)
-
-	..()
+	exposed_mob.blood_volume = min(exposed_mob.blood_volume + reac_volume, BLOOD_VOLUME_MAXIMUM)
 
 /datum/glass_style/drinking_glass/blood_coffee
 	required_drink_type = /datum/reagent/consumable/coffee/blood_coffee
