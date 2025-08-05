@@ -285,7 +285,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 
 		// Broken sensors show garbage data
 		if (uniform?.has_sensor == BROKEN_SENSORS) // BUBBER EDIT CHANGE - NANITES - Original: if (uniform.has_sensor == BROKEN_SENSORS)
-			entry["life_status"] = rand(0,1)
+			entry["life_status"] = 1 // BUBBER EDIT CHANGE - Original:  rand(0,1) - Mob stays in consistent list position when sensors are broken
 			entry["area"] = pick_list (ION_FILE, "ionarea")
 			entry["oxydam"] = rand(0,175)
 			entry["toxdam"] = rand(0,175)
