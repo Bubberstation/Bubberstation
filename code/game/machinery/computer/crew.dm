@@ -306,7 +306,10 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			else
 				// Check if protean is stuck in suit
 				var/obj/item/organ/brain/protean/brain = tracked_human.get_organ_slot(ORGAN_SLOT_BRAIN)
-				entry["life_status"] = brain?.dead ? DEAD : tracked_living_mob.stat // If brain not dead/no brain then handling as usual
+				if(istype(brain, /obj/item/organ/brain/protean))
+					entry["life_status"] = brain?.dead ? DEAD : tracked_living_mob.stat // If brain not dead/no brain then handling as usual
+				else
+					entry["life_status"] = tracked_living_mob.stat
 		// BUBBERSTATION EDIT END
 
 		// Damage
