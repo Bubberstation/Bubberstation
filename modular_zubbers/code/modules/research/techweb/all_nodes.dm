@@ -146,6 +146,11 @@
 	design_ids += "mod_mind_transfer"
 	. = ..()
 
+// Modsuit tech
+/datum/techweb_node/mod_equip/New()
+	. = ..()
+	design_ids += list("mod_remote_module")
+
 /datum/techweb_node/nerd
 	id = TECHWEB_NODE_NERD
 	display_name = "Theoretical Physics"
