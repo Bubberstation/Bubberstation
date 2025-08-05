@@ -94,6 +94,11 @@
 	. = ..()
 	contains += list(/obj/item/storage/toolbox/guncase/skyrat/pistol/pepperball = 2)
 
+/datum/supply_pack/security/armory/mechthermal
+	access = FALSE
+	access_any = list(ACCESS_SECURITY, ACCESS_ROBOTICS)
+	access_view = FALSE
+
 /datum/supply_pack/security/pepperballguns
 	name = "Pepperball Gun Crate"
 	desc = "Contains three pepperball guns, a non-lethal weapon that fires pepper-filled projectiles."
@@ -107,3 +112,4 @@
 	cost = CARGO_CRATE_VALUE * 5.5
 	contains = list(/obj/item/gun/energy/e_gun/advtaser = 3)
 	access = ACCESS_SECURITY
+
