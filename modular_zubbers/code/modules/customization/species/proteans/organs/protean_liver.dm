@@ -6,7 +6,7 @@
 	filterToxins = FALSE //We dont filter them, we're immune to them
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_LIVER
-	organ_flags = ORGAN_ROBOTIC | ORGAN_NANOMACHINE
+	organ_flags = ORGAN_ROBOTIC | ORGAN_NANOMACHINE | ORGAN_UNREMOVABLE
 
 /obj/item/organ/liver/protean/Insert(mob/living/carbon/receiver, special, movement_flags)
 	if(QDELETED(src))
