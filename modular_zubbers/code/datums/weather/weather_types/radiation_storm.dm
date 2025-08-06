@@ -10,7 +10,7 @@
 		/area/moonstation/underground,
 		/area/station/cargo/miningelevators,
 		/area/station/cargo/miningfoundry/event_protected,
-
+		/area/loopstation/radshelter,
 		/area/ruin/unpowered/primitive_catgirl_den,
 	))
 	. = ..()
