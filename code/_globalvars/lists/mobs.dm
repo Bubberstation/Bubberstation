@@ -214,5 +214,9 @@ GLOBAL_LIST_INIT(dna_feature_blocks, init_feature_block_types())
 /proc/init_feature_block_types()
 	. = list()
 	for(var/datum/dna_block/feature/block_path as anything in subtypesof(/datum/dna_block/feature))
+		// BUBBER EDIT ADDITION BEGIN - Prevent abstract types from being instantiated
+		if(block_path == block_path::abstract_type)
+			continue
+		// BUBBER EDIT ADDITION END
 		var/datum/dna_block/feature/new_block = new block_path()
 		.[block_path] = new_block

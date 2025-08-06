@@ -67,15 +67,7 @@ SUBSYSTEM_DEF(accessories) // just 'accessories' for brevity
 
 	// SKYRAT EDIT ADDITION START - Customization
 	var/list/sprite_accessories = list()
-	var/list/genetic_accessories = list()
-	var/list/generic_accessories = list()
-
 	var/list/cached_mutant_icon_files = list()
-
-	// we are loading them along with sprite_accessories, so they can't be GLOB :(
-	var/dna_total_feature_blocks = DNA_MANDATORY_COLOR_BLOCKS
-	var/list/dna_mutant_bodypart_blocks = list()
-	var/list/features_block_lengths = list()
 	// SKYRAT EDIT ADDITION END
 
 /datum/controller/subsystem/accessories/PreInit() // this stuff NEEDS to be set up before GLOB for preferences and stuff to work so this must go here. sorry
@@ -137,15 +129,6 @@ SUBSYSTEM_DEF(accessories) // just 'accessories' for brevity
 	moth_antennae_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_antennae)[DEFAULT_SPRITE_LIST]
 	moth_markings_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_markings, add_blank = TRUE)[DEFAULT_SPRITE_LIST]
 	pod_hair_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/pod_hair)[DEFAULT_SPRITE_LIST]
-	// SKYRAT EDIT ADDITION START - Customization
-	features_block_lengths = list(
-		"[DNA_MUTANT_COLOR_BLOCK]" = DNA_BLOCK_SIZE_COLOR,
-		"[DNA_MUTANT_COLOR_2_BLOCK]" = DNA_BLOCK_SIZE_COLOR,
-		"[DNA_MUTANT_COLOR_3_BLOCK]" = DNA_BLOCK_SIZE_COLOR,
-		"[DNA_ETHEREAL_COLOR_BLOCK]" = DNA_BLOCK_SIZE_COLOR,
-		"[DNA_SKIN_COLOR_BLOCK]" = DNA_BLOCK_SIZE_COLOR,
-	)
-	// SKYRAT EDIT ADDITION END
 
 /// This proc just intializes all /datum/sprite_accessory/hair_gradient into an list indexed by gradient-style name
 /datum/controller/subsystem/accessories/proc/init_hair_gradients()

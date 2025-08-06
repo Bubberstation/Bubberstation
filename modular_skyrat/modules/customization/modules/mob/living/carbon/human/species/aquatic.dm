@@ -63,9 +63,9 @@
 		if(5)
 			main_color = "#444444"
 			second_color = "#DDDDEE"
-	features["mcolor"] = main_color
-	features["mcolor2"] = second_color
-	features["mcolor3"] = second_color
+	features[FEATURE_MUTANT_COLOR] = main_color
+	features[FEATURE_MUTANT_COLOR_TWO] = second_color
+	features[FEATURE_MUTANT_COLOR_THREE] = second_color
 	return features
 
 /datum/species/aquatic/prepare_human_for_preview(mob/living/carbon/human/aquatic)

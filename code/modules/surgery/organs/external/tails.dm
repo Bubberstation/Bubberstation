@@ -68,6 +68,7 @@
 	// SKYRAT EDIT ADDITION START
 	if(!bodypart.owner.dna.mutant_bodyparts[FEATURE_SPINES])
 		bodypart.owner.dna.mutant_bodyparts[FEATURE_SPINES] = list(MUTANT_INDEX_NAME = "None", MUTANT_INDEX_COLOR_LIST = list("#886600", "#886600", "#886600"))
+		bodypart.owner.dna.update_uf_block(/datum/dna_block/feature/mutant/spines)
 	// SKYRAT EDIT ADDITION END
 	var/feature_name = bodypart.owner.dna.mutant_bodyparts[FEATURE_SPINES][MUTANT_INDEX_NAME] // SKYRAT EDIT CHANGE - ORIGINAL: var/feature_name = bodypart.owner.dna.features[FEATURE_SPINES] //tail spines don't live in DNA, but share feature names with regular spines
 	tail_spines_overlay.set_appearance_from_dna(bodypart.owner.dna, feature_name, feature_key = FEATURE_SPINES) // SKYRAT EDIT CHANGE - ORIGINAL: tail_spines_overlay.set_appearance_from_name(feature_name)
@@ -153,7 +154,7 @@
 
 // SKYRAT EDIT ADDITION - CUSTOMIZATION
 /datum/bodypart_overlay/mutant/tail/get_global_feature_list()
-	return SSaccessories.sprite_accessories["tail"]
+	return SSaccessories.sprite_accessories[FEATURE_TAIL_GENERIC]
 // SKYRAT EDIT ADDITION END
 
 /datum/bodypart_overlay/mutant/tail/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner)
@@ -174,18 +175,18 @@
 	wag_flags = WAG_ABLE
 
 /datum/bodypart_overlay/mutant/tail/get_global_feature_list()
-	return SSaccessories.sprite_accessories["tail"] // SKYRAT EDIT - Customization - ORIGINAL: return SSaccessories.tails_list_human
+	return SSaccessories.sprite_accessories[FEATURE_TAIL_GENERIC] // SKYRAT EDIT - Customization - ORIGINAL: return SSaccessories.tails_list_human
 
 /obj/item/organ/tail/cat/get_butt_sprite()
 	return icon('icons/mob/butts.dmi', BUTT_SPRITE_CAT)
 
 ///Cat tail bodypart overlay
 /datum/bodypart_overlay/mutant/tail/cat
-	feature_key = "tail" // SKYRAT EDIT - Customization - ORIGINAL: feature_key = FEATURE_TAIL
+	feature_key = FEATURE_TAIL_GENERIC // SKYRAT EDIT - Customization - ORIGINAL: feature_key = FEATURE_TAIL
 	// color_source = ORGAN_COLOR_HAIR // SKYRAT EDIT REMOVAL
 
 /datum/bodypart_overlay/mutant/tail/cat/get_global_feature_list()
-	return SSaccessories.sprite_accessories["tail"] // BUBBER EDIT ORIGINAL: return SSaccessories.tails_list_felinid
+	return SSaccessories.sprite_accessories[FEATURE_TAIL_GENERIC] // BUBBER EDIT ORIGINAL: return SSaccessories.tails_list_felinid
 
 /obj/item/organ/tail/monkey
 	name = "monkey tail"
@@ -197,7 +198,7 @@
 ///Monkey tail bodypart overlay
 /datum/bodypart_overlay/mutant/tail/monkey
 	color_source = NONE
-	feature_key = "tail" // SKYRAT EDIT - Customization - ORIGINAL: feature_key = FEATURE_TAIL_MONKEY
+	feature_key = FEATURE_TAIL_GENERIC // SKYRAT EDIT - Customization - ORIGINAL: feature_key = FEATURE_TAIL_MONKEY
 
 /datum/bodypart_overlay/mutant/tail/monkey/get_global_feature_list()
 	return SSaccessories.tails_list_monkey
@@ -270,10 +271,10 @@
 
 ///Lizard tail bodypart overlay datum
 /datum/bodypart_overlay/mutant/tail/lizard
-	feature_key = "tail" // SKYRAT EDIT - Customization - ORIGINAL: feature_key = FEATURE_TAIL_LIZARD
+	feature_key = FEATURE_TAIL_GENERIC // SKYRAT EDIT - Customization - ORIGINAL: feature_key = FEATURE_TAIL_LIZARD
 
 /datum/bodypart_overlay/mutant/tail/lizard/get_global_feature_list()
-	return SSaccessories.sprite_accessories["tail"] // SKYRAT EDIT - Customization - ORIGINAL: return SSaccessories.tails_list_lizard
+	return SSaccessories.sprite_accessories[FEATURE_TAIL_GENERIC] // SKYRAT EDIT - Customization - ORIGINAL: return SSaccessories.tails_list_lizard
 
 /obj/item/organ/tail/lizard/fake
 	name = "fabricated lizard tail"

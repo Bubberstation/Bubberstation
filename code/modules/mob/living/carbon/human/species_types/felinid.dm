@@ -40,7 +40,7 @@
 			var/obj/item/organ/ears/cat/ears = new(FALSE, target_human.dna.features[FEATURE_EARS])
 			ears.Insert(target_human, movement_flags = DELETE_IF_REPLACED)
 		*/
-		if(target_human.dna.features["ears"] == "Cat")
+		if(target_human.dna.features[FEATURE_EARS] == "Cat")
 			var/obj/item/organ/ears/cat/ears = new
 			ears.Insert(target_human, movement_flags = DELETE_IF_REPLACED)
 		else
@@ -210,8 +210,8 @@
 		cat_ears.color = human_for_preview.hair_color
 		human_for_preview.update_body()
 	*/ // START
-	human_for_preview.dna.mutant_bodyparts["tail"] = list(MUTANT_INDEX_NAME = "Cat", MUTANT_INDEX_COLOR_LIST = list(human_for_preview.hair_color))
-	human_for_preview.dna.mutant_bodyparts["ears"] = list(MUTANT_INDEX_NAME = "Cat", MUTANT_INDEX_COLOR_LIST = list(human_for_preview.hair_color))
+	human_for_preview.dna.mutant_bodyparts[FEATURE_TAIL_GENERIC] = list(MUTANT_INDEX_NAME = "Cat", MUTANT_INDEX_COLOR_LIST = list(human_for_preview.hair_color))
+	human_for_preview.dna.mutant_bodyparts[FEATURE_EARS] = list(MUTANT_INDEX_NAME = "Cat", MUTANT_INDEX_COLOR_LIST = list(human_for_preview.hair_color))
 	regenerate_organs(human_for_preview, src, visual_only = TRUE)
 	human_for_preview.update_body(TRUE)
 	// SKYRAT EDIT END
