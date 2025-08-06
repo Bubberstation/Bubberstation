@@ -36,7 +36,7 @@ SUBSYSTEM_DEF(ticker)
 
 	var/gametime_offset = 432000 //Deciseconds to add to world.time for station time.
 	var/station_time_rate_multiplier = 12 //factor of station time progressal vs real time.
-	var/server_time_offset // Offset between server time and station time // BUBBER EDIT ADDITION
+	var/server_time_offset // Offset between server time and station time // BUBBER EDIT ADDITION - SERVER TIME OFFSET
 
 	/// Num of players, used for pregame stats on statpanel
 	var/totalPlayers = 0
