@@ -130,7 +130,7 @@
 /datum/supply_pack/imports/security/ammo/cell_blue_bulk
 	name = "Box of Bluespace MCR Cells"
 	contains = list(/obj/item/storage/box/ammo_box/microfusion/bluespace/bagless)
-	cost = cost = PAYCHECK_CREW * 4
+	cost = PAYCHECK_CREW * 4
 
 /datum/supply_pack/imports/security/mcr_parts/grip
 	name = "MCR Grip"
