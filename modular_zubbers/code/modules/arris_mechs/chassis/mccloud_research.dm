@@ -1,4 +1,6 @@
 #define TECHWEB_NODE_MECH_AGILE "mech_agile"
+#define RND_CATEGORY_MECHFAB_MCCLOUD "/McCloud"
+#define RND_SUBCATEGORY_EXOSUIT_BOARDS_MCCLOUD "/McCloud"
 
 /datum/techweb_node/mech_agile
 	id = TECHWEB_NODE_MECH_AGILE
@@ -26,7 +28,7 @@
 	id = "mccloud_main"
 	build_path = /obj/item/circuitboard/mecha/mccloud/main
 	category = list(
-		RND_CATEGORY_EXOSUIT_BOARDS + RND_SUBCATEGORY_EXOSUIT_BOARDS_SAVANNAH_IVANOV
+		RND_CATEGORY_EXOSUIT_BOARDS + RND_SUBCATEGORY_EXOSUIT_BOARDS_MCCLOUD
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
@@ -36,7 +38,7 @@
 	id = "mccloud_peri"
 	build_path = /obj/item/circuitboard/mecha/mccloud/peripherals
 	category = list(
-		RND_CATEGORY_EXOSUIT_BOARDS + RND_SUBCATEGORY_EXOSUIT_BOARDS_SAVANNAH_IVANOV
+		RND_CATEGORY_EXOSUIT_BOARDS + RND_SUBCATEGORY_EXOSUIT_BOARDS_MCCLOUD
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
@@ -46,24 +48,34 @@
 	id = "mccloud_targ"
 	build_path = /obj/item/circuitboard/mecha/mccloud/targeting
 	category = list(
-		RND_CATEGORY_EXOSUIT_BOARDS + RND_SUBCATEGORY_EXOSUIT_BOARDS_SAVANNAH_IVANOV
+		RND_CATEGORY_EXOSUIT_BOARDS + RND_SUBCATEGORY_EXOSUIT_BOARDS_MCCLOUD
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
-//McCloud
+/datum/design/mccloud_armor
+	name = "Exosuit Armor (\"McCloud\")"
+	id = "mccloud_armor"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/mccloud_armor
+	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*10, /datum/material/glass=SHEET_MATERIAL_AMOUNT * 5)
+	construction_time = 10 SECONDS
+	category = list(
+		RND_CATEGORY_MECHFAB_MCCLOUD + RND_SUBCATEGORY_MECHFAB_CHASSIS
+	)
+
 /datum/design/mccloud_chassis
-	name = "Exosuit Chassis (APLU \"McCloud\")"
+	name = "Exosuit Chassis (\"McCloud\")"
 	id = "mccloud_chassis"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/chassis/mccloud
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*10)
 	construction_time = 10 SECONDS
 	category = list(
-		RND_CATEGORY_MECHFAB_RIPLEY + RND_SUBCATEGORY_MECHFAB_CHASSIS
+		RND_CATEGORY_MECHFAB_MCCLOUD + RND_SUBCATEGORY_MECHFAB_CHASSIS
 	)
 
 /datum/design/mccloud_torso
-	name = "Exosuit Torso (APLU \"McCloud\")"
+	name = "Exosuit Torso (\"McCloud\")"
 	id = "mccloud_torso"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/mccloud_torso
@@ -73,49 +85,49 @@
 	)
 	construction_time = 20 SECONDS
 	category = list(
-		RND_CATEGORY_MECHFAB_RIPLEY + RND_SUBCATEGORY_MECHFAB_CHASSIS
+		RND_CATEGORY_MECHFAB_MCCLOUD + RND_SUBCATEGORY_MECHFAB_CHASSIS
 	)
 
 /datum/design/mccloud_left_arm
-	name = "Exosuit Left Arm (APLU \"McCloud\")"
+	name = "Exosuit Left Arm (\"McCloud\")"
 	id = "mccloud_left_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/mccloud_left_arm
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*7.5)
 	construction_time = 15 SECONDS
 	category = list(
-		RND_CATEGORY_MECHFAB_RIPLEY + RND_SUBCATEGORY_MECHFAB_CHASSIS
+		RND_CATEGORY_MECHFAB_MCCLOUD + RND_SUBCATEGORY_MECHFAB_CHASSIS
 	)
 
 /datum/design/mccloud_right_arm
-	name = "Exosuit Right Arm (APLU \"McCloud\")"
+	name = "Exosuit Right Arm (\"McCloud\")"
 	id = "mccloud_right_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/mccloud_right_arm
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*7.5)
 	construction_time = 15 SECONDS
 	category = list(
-		RND_CATEGORY_MECHFAB_RIPLEY + RND_SUBCATEGORY_MECHFAB_CHASSIS
+		RND_CATEGORY_MECHFAB_MCCLOUD + RND_SUBCATEGORY_MECHFAB_CHASSIS
 	)
 
 /datum/design/mccloud_left_leg
-	name = "Exosuit Left Leg (APLU \"McCloud\")"
+	name = "Exosuit Left Leg (\"McCloud\")"
 	id = "mccloud_left_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/mccloud_left_leg
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*7.5)
 	construction_time = 15 SECONDS
 	category = list(
-		RND_CATEGORY_MECHFAB_RIPLEY + RND_SUBCATEGORY_MECHFAB_CHASSIS
+		RND_CATEGORY_MECHFAB_MCCLOUD + RND_SUBCATEGORY_MECHFAB_CHASSIS
 	)
 
 /datum/design/mccloud_right_leg
-	name = "Exosuit Right Leg (APLU \"McCloud\")"
+	name = "Exosuit Right Leg (\"McCloud\")"
 	id = "mccloud_right_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/mccloud_right_leg
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*7.5)
 	construction_time = 15 SECONDS
 	category = list(
-		RND_CATEGORY_MECHFAB_RIPLEY + RND_SUBCATEGORY_MECHFAB_CHASSIS
+		RND_CATEGORY_MECHFAB_MCCLOUD + RND_SUBCATEGORY_MECHFAB_CHASSIS
 	)

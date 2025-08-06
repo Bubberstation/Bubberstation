@@ -1,8 +1,9 @@
 /obj/vehicle/sealed/mecha/mccloud
 	desc = "An ultralight mech capable of spaceflight. Most popular with mercenaries, wanderers, and pirates; Nanotrasen has their own variation."
 	name = "\improper McCloud"
-	icon = 'modular_zubbers/code/modules/arris_mechs/icons/mecha.dmi'
+	icon = 'modular_zubbers/code/modules/arris_mechs/icons/mecha_64x32.dmi'
 	icon_state = "mccloud"
+	silicon_icon_state =  "mccloud-empty"
 	base_icon_state = "mccloud"
 	stepsound = 'sound/vehicles/mecha/powerloader_step.ogg'
 	turnsound = 'sound/vehicles/mecha/powerloader_turn2.ogg'
@@ -21,7 +22,7 @@
 	force = 25
 	destruction_sleep_duration = 8 SECONDS
 	exit_delay = 40
-	wreckage = /obj/structure/mecha_wreckage/gygax
+	wreckage = /obj/structure/mecha_wreckage/mccloud
 	mech_type = EXOSUIT_MODULE_GYGAX
 	max_equip_by_category = list(
 		MECHA_L_ARM = 1,
@@ -47,7 +48,7 @@
 	var/obj/item/mecha_parts/mecha_equipment/thrusters/ion/mccloud/jet_mode_thrusters = null
 	COOLDOWN_DECLARE(cooldown_mech_mccloud_landing_skid)
 	COOLDOWN_DECLARE(cooldown_mech_mccloud_stamina_slow)
-
+	SET_BASE_PIXEL(-16, 0)
 	//explosion variables
 	var/ex_dev = 0
 	var/ex_heavy = 0
@@ -349,3 +350,8 @@
 	..()
 	if(jet_mode) //this is just to fix some bug where toggling CI sets you to the wrong icon
 		icon_state = base_icon_state + "-jet"
+
+/obj/structure/mecha_wreckage/mccloud
+	icon = 'modular_zubbers/code/modules/arris_mechs/icons/mecha_64x32.dmi'
+	icon_state = "mccloud-broken"
+	SET_BASE_PIXEL(-16, 0)
