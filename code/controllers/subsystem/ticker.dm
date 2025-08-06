@@ -35,7 +35,7 @@ SUBSYSTEM_DEF(ticker)
 	var/start_at
 
 	var/gametime_offset = 432000 //Deciseconds to add to world.time for station time.
-	var/station_time_rate_multiplier = 12 //factor of station time progressal vs real time.
+	var/station_time_rate_multiplier = 2 //factor of station time progressal vs real time. // BUBBER EDIT CHANGE - SERVER TIME OFFSET - ORIGINAL: 12
 	var/server_time_offset // Offset between server time and station time // BUBBER EDIT ADDITION - SERVER TIME OFFSET
 
 	/// Num of players, used for pregame stats on statpanel
@@ -155,7 +155,7 @@ SUBSYSTEM_DEF(ticker)
 		log_dynamic("Station time source is RANDOM. Time multiplier adjusted to [station_time_rate_multiplier]x. Gametime Offset [gametime_offset]")
 	else if(CONFIG_GET(flag/shift_time_realtime))
 		gametime_offset = world.timeofday + GLOB.timezoneOffset + server_time_offset // BUBBER EDIT CHANGE - SERVER TIME OFFSET - ORIGINAL: gametime_offset = world.timeofday + GLOB.timezoneOffset
-		station_time_rate_multiplier = 2 // BUBBER EDIT CHANGE - Original: 1
+		// station_time_rate_multiplier = 1 // BUBBER EDIT REMOVAL
 		message_admins("Station time source is REALTIME. Time multiplier adjusted to [station_time_rate_multiplier]x")
 		log_dynamic("Station time source is REALTIME. Time multiplier adjusted to [station_time_rate_multiplier]x. Gametime Offset [gametime_offset]")
 	else
