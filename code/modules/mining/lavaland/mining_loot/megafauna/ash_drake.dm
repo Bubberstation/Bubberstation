@@ -185,7 +185,7 @@
 			// 	FEATURE_LIZARD_MARKINGS = "Dark Tiger Body",
 			// 	FEATURE_LEGS = DIGITIGRADE_LEGS,
 			consumer.dna.features[FEATURE_MUTANT_COLOR] = "#A02720"
-			consumer.dna.mutant_bodyparts["tail"] = list(
+			consumer.dna.mutant_bodyparts[FEATURE_TAIL_GENERIC] = list(
 				MUTANT_INDEX_NAME = "Dark Tiger",
 				MUTANT_INDEX_COLOR_LIST = list("#A02720", "#A02720", "#A02720")
 			)

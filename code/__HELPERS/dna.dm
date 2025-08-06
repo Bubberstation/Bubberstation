@@ -13,4 +13,4 @@
 #define GET_MUTATION_ENERGY(A) ((A.energy_coeff < 0) ? 1 : A.energy_coeff)
 
 ///Ditto, but for a feature.
-#define GET_UF_BLOCK_LEN(blocknum) (SSaccessories.features_block_lengths["[blocknum]"] || DNA_BLOCK_SIZE) //SKYRAT CHANGE EDIT - Customization ORIGINAL: #define GET_UF_BLOCK_LEN(blocknum) (GLOB.features_block_lengths["[blocknum]"] || DNA_BLOCK_SIZE)
+#define GET_UF_BLOCK_LEN(blocknum) (GLOB.features_block_lengths["[blocknum]"] || DNA_BLOCK_SIZE)

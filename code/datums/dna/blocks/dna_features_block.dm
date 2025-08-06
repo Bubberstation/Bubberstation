@@ -18,6 +18,7 @@
 /datum/dna_block/feature/ethereal_color/apply_to_mob(mob/living/carbon/human/target, dna_hash)
 	target.dna.features[feature_key] = sanitize_hexcolor(get_block(dna_hash))
 
+/* BUBBER EDIT REMOVAL BEGIN - We use the mutant parts system, not features, see modular_zubbers/code/datums/dna/blocks/dna_features_block.dm
 /datum/dna_block/feature/ears
 	feature_key = FEATURE_EARS
 
@@ -46,7 +47,7 @@
 
 /datum/dna_block/feature/tail_lizard/apply_to_mob(mob/living/carbon/human/target, dna_hash)
 	target.dna.features[feature_key] = SSaccessories.tails_list_lizard[deconstruct_block(get_block(dna_hash), length(SSaccessories.tails_list_lizard))]
-
+*/
 /datum/dna_block/feature/tail_fish
 	feature_key = FEATURE_TAIL_FISH
 
@@ -55,7 +56,7 @@
 
 /datum/dna_block/feature/tail_fish/apply_to_mob(mob/living/carbon/human/target, dna_hash)
 	target.dna.features[feature_key] = SSaccessories.tails_list_fish[deconstruct_block(get_block(dna_hash), length(SSaccessories.tails_list_fish))]
-
+/*
 /datum/dna_block/feature/snout
 	feature_key = FEATURE_SNOUT
 
@@ -149,3 +150,4 @@
 
 /datum/dna_block/feature/pod_hair/apply_to_mob(mob/living/carbon/human/target, dna_hash)
 	target.dna.features[feature_key] = SSaccessories.pod_hair_list[deconstruct_block(get_block(dna_hash), length(SSaccessories.pod_hair_list))]
+*/// BUBBER EDIT REMOVAL END

@@ -6,7 +6,6 @@
 	default_color = null
 	name = "Synthetic Lizard - Snout"
 	icon_state = "synthliz_basic"
-	genetic = FALSE
 
 /datum/sprite_accessory/snouts/synthliz/synthliz_under
 	color_src = USE_MATRIXED_COLORS
@@ -78,7 +77,6 @@
 	name = "Synthetic Lizard"
 	icon_state = "synthliz"
 	flags_for_organ = SPRITE_ACCESSORY_WAG_ABLE
-	genetic = FALSE
 	spine_key = SPINE_KEY_LIZARD
 
 //Synth Antennae
@@ -146,7 +144,6 @@
 	icon_state = "synthlizard"
 	taur_mode = STYLE_TAUR_PAW
 	recommended_species = list()
-	genetic = FALSE
 	organ_type = /obj/item/organ/taur_body/horselike/synth
 	can_lay_down = TRUE
 	laydown_offset = -3

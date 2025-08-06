@@ -76,9 +76,9 @@
 			main_color = "#[random_color()]"
 			second_color = "#[random_color()]"
 			third_color = "#[random_color()]"
-	features["mcolor"] = main_color
-	features["mcolor2"] = second_color
-	features["mcolor3"] = third_color
+	features[FEATURE_MUTANT_COLOR] = main_color
+	features[FEATURE_MUTANT_COLOR_TWO] = second_color
+	features[FEATURE_MUTANT_COLOR_THREE] = third_color
 	return features
 
 /datum/species/mammal/get_random_body_markings(list/passed_features)
@@ -106,11 +106,11 @@
 /datum/species/mammal/prepare_human_for_preview(mob/living/carbon/human/human)
 	var/main_color = "#333333"
 	var/secondary_color = "#b8b8b8"
-	human.dna.features["mcolor"] = main_color
-	human.dna.features["mcolor2"] = secondary_color
-	human.dna.features["mcolor3"] = secondary_color
-	human.dna.mutant_bodyparts["ears"] = list(MUTANT_INDEX_NAME = "Husky", MUTANT_INDEX_COLOR_LIST = list(main_color, secondary_color, "#464646"))
-	human.dna.mutant_bodyparts["snout"] = list(MUTANT_INDEX_NAME = "Husky", MUTANT_INDEX_COLOR_LIST = list(main_color, secondary_color, secondary_color))
-	human.dna.mutant_bodyparts["tail"] = list(MUTANT_INDEX_NAME = "Husky", MUTANT_INDEX_COLOR_LIST = list(main_color, "#4D4D4D", secondary_color))
+	human.dna.features[FEATURE_MUTANT_COLOR] = main_color
+	human.dna.features[FEATURE_MUTANT_COLOR_TWO] = secondary_color
+	human.dna.features[FEATURE_MUTANT_COLOR_THREE] = secondary_color
+	human.dna.mutant_bodyparts[FEATURE_EARS] = list(MUTANT_INDEX_NAME = "Husky", MUTANT_INDEX_COLOR_LIST = list(main_color, secondary_color, "#464646"))
+	human.dna.mutant_bodyparts[FEATURE_SNOUT] = list(MUTANT_INDEX_NAME = "Husky", MUTANT_INDEX_COLOR_LIST = list(main_color, secondary_color, secondary_color))
+	human.dna.mutant_bodyparts[FEATURE_TAIL_GENERIC] = list(MUTANT_INDEX_NAME = "Husky", MUTANT_INDEX_COLOR_LIST = list(main_color, "#4D4D4D", secondary_color))
 	regenerate_organs(human, src, visual_only = TRUE)
 	human.update_body(TRUE)

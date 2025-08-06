@@ -1,10 +1,8 @@
 /datum/sprite_accessory/tails
 	key = "tail"
-	generic = "Tail"
 	organ_type = /obj/item/organ/tail
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/tails.dmi'
 	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER)
-	genetic = TRUE
 	/// Can we use this tail for the fluffy tail turf emote?
 	var/fluffy = FALSE
 

@@ -7,7 +7,7 @@
 	// Test lizards as their own thing so we can get more coverage on their features
 	var/mob/living/carbon/human/lizard = allocate(/mob/living/carbon/human/dummy/consistent)
 	lizard.dna.features[FEATURE_MUTANT_COLOR] = "#099"
-	lizard.dna.mutant_bodyparts["tail"] = list(MUTANT_INDEX_NAME = "Light Tiger", MUTANT_INDEX_COLOR_LIST = list("#009999", "#009999", "#009999")) // SKYRAT EDIT - Customization - ORIGINAL: lizard.dna.features[FEATURE_TAIL_LIZARD] = "Light Tiger"
+	lizard.dna.mutant_bodyparts[FEATURE_TAIL_GENERIC] = list(MUTANT_INDEX_NAME = "Light Tiger", MUTANT_INDEX_COLOR_LIST = list("#009999", "#009999", "#009999")) // SKYRAT EDIT - Customization - ORIGINAL: lizard.dna.features[FEATURE_TAIL_LIZARD] = "Light Tiger"
 	lizard.dna.mutant_bodyparts[FEATURE_SNOUT] = list(MUTANT_INDEX_NAME = "Sharp + Light", MUTANT_INDEX_COLOR_LIST = list("#009999", "#009999", "#009999")) // SKYRAT EDIT - Customization - ORIGINAL: lizard.dna.features[FEATURE_SNOUT] = "Sharp + Light"
 	lizard.dna.mutant_bodyparts[FEATURE_HORNS] = list(MUTANT_INDEX_NAME = "Simple", MUTANT_INDEX_COLOR_LIST = list("#009999", "#009999", "#009999")) // SKYRAT EDIT - Customization - ORIGINAL: lizard.dna.features[FEATURE_HORNS] = "Simple"
 	lizard.dna.mutant_bodyparts[FEATURE_FRILLS] = list(MUTANT_INDEX_NAME = "Aquatic", MUTANT_INDEX_COLOR_LIST = list("#009999", "#009999", "#009999")) // SKYRAT EDIT - Customization - ORIGINAL: lizard.dna.features[FEATURE_FRILLS] = "Aquatic"
