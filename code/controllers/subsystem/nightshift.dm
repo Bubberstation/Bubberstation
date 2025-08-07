@@ -51,7 +51,6 @@ SUBSYSTEM_DEF(nightshift)
 
 /datum/controller/subsystem/nightshift/proc/update_nightshift(active, announce = TRUE, resumed = FALSE, forced = FALSE)
 	if(!resumed)
-		log_dynamic("Night shift transitioning to [active ? "NIGHT" : "DAY"]. Station time: [station_time_timestamp(format = "hh:mm")]. Server time: [time2text(world.timeofday, "hh:mm", world.timezone)]. Server time offset: [SSticker.server_time_offset / (1 MINUTES)] min") // BUBBER EDIT ADD - SERVER TIME OFFSET
 		currentrun = SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/power/apc)
 		nightshift_active = active
 		if(announce)
