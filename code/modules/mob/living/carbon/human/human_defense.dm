@@ -327,13 +327,14 @@
 
 	//BUBBERSTATION CHANGE START. REWORKS HOW DISMEMBERMENT IS APPLIED.
 	var/list/obj/item/bodypart/possible_parts = get_damageable_bodyparts()
-	if(length(possible_parts))
+	var/possible_parts_length = length(possible_parts)
+	if(possible_parts_length)
 		var/attack_direction = get_dir(src,origin)
 		possible_parts = shuffle(possible_parts)
-		var/flat_brute_loss = CEILING( brute_loss*(1/length(possible_parts))*0.5, DAMAGE_PRECISION)
-		var/flat_burn_loss = CEILING( burn_loss*(1/length(possible_parts))*0.5, DAMAGE_PRECISION)
-		brute_loss -= flat_brute_loss
-		burn_loss -= flat_burn_loss
+		var/flat_brute_loss = CEILING( brute_loss*(1/possible_parts_length)*0.5, DAMAGE_PRECISION)
+		var/flat_burn_loss = CEILING( burn_loss*(1/possible_parts_length)*0.5, DAMAGE_PRECISION)
+		brute_loss -= flat_brute_loss*possible_parts_length
+		burn_loss -= flat_burn_loss*possible_parts_length
 		var/did_damage = FALSE
 		for(var/obj/item/bodypart/limb as anything in possible_parts)
 			var/brute_damage_to_deal = 5 + CEILING( brute_loss*Rand(), DAMAGE_PRECISION)
