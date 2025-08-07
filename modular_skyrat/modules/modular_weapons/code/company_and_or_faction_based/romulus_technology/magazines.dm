@@ -23,17 +23,18 @@
 	name = "coilgun magazine (5.7mm Fragmenting)"
 	desc = parent_type::desc + " Contains highly lethal low penetration projectile that splits into smaller metal shrapnel upon impacting a target."
 	ammo_type = /obj/item/ammo_casing/cacoil/fp
-	ammo_band_color = COLOR_AMMO_TRUESTRIKE
+	ammo_band_color = "#ff05de"
 
 /obj/item/ammo_box/magazine/cacoilgun/fp/hornet
 	name = "coilgun magazine (5.7mm Hornet Nest)"
 	ammo_type = /obj/item/ammo_casing/cacoil/fp/hornet
+	ammo_band_color = "#bd0ed4"
 
 /obj/item/ammo_box/magazine/cacoilgun/match
 	name = "coilgun magazine (5.7mm Match)"
 	desc = parent_type::desc + "The induction on this projectile causes it to be accelerated at a slower speed, however, it is more prone to bouncing off of objects."
 	ammo_type = /obj/item/ammo_casing/cacoil/match
-	ammo_band_color = COLOR_AMMO_MATCH
+	ammo_band_color = "#ff0000a8"
 
 //Handgun Magazine
 
