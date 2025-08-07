@@ -74,3 +74,7 @@
 /datum/loadout_item/neck/warrior_cape_worn
 	name = "tattered cloak"
 	item_path = /obj/item/clothing/neck/warrior_cape/loadout
+
+/datum/loadout_item/neck/scarf/shadekin
+	name = "Shadekin Fur Scarf"
+	item_path = /obj/item/clothing/neck/scarf/shadekin

@@ -44,7 +44,7 @@
 	if(. & SPELL_CANCEL_CAST || blocked)
 		return
 
-	message = autopunct_bare(capitalize(tgui_input_text(owner, "What do you wish to whisper to [cast_on]?", "[src]", max_length = MAX_MESSAGE_LEN)))
+	message = autopunct_bare(capitalize(tgui_input_text(owner, "What do you wish to whisper to [cast_on]? You can also use # in front of the message for subtler.", "[src]", max_length = MAX_MESSAGE_LEN)))
 	if(QDELETED(src) || QDELETED(owner) || QDELETED(cast_on) || !can_cast_spell())
 		return . | SPELL_CANCEL_CAST
 
@@ -90,6 +90,10 @@
 
 	last_target_ref = WEAKREF(target)
 
+	var/subtler = FALSE
+	if (copytext(message, 1, 2) == "#")
+		subtler = TRUE
+		message = copytext(message, 2) // Strip the leading #
 	to_chat(owner, span_boldnotice("You reach out and convey to [target]: \"[span_purple(message)]\""))
 	// flub a runechat chat message, do something with the language later
 	if(owner.client?.prefs.read_preference(/datum/preference/toggle/enable_runechat))
@@ -112,6 +116,8 @@
 		to_chat(owner, span_warning("Your mind encounters impassable resistance: the thought was blocked!"))
 		return
 
+	if (subtler)
+		return // Don't show the telepathy to ghosts
 	// send to ghosts as well i guess
 	for(var/mob/dead/ghost as anything in GLOB.dead_mob_list)
 		if(!isobserver(ghost))

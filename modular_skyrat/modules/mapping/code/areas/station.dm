@@ -561,6 +561,10 @@
 	name = "Starboard Thruster Room"
 	icon_state = "sb_thrust_room"
 
+/area/station/maintenance/shuttle_maint_bay
+	name = "Shuttle Maintenance Bay"
+	icon_state = "construction"
+
 // EVA Sheds used on BlueShift
 /area/station/maintenance/eva_shed
 	name = "EVA Shed"
