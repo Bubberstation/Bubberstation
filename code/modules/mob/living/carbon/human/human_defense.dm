@@ -321,8 +321,43 @@
 				ears.adjustEarDamage(15,60)
 			Knockdown(160 - (bomb_armor * 1.6)) //100 bomb armor will prevent knockdown altogether
 
-	take_overall_damage(brute_loss,burn_loss)
 
+	// take_overall_damage(brute_loss,burn_loss) BUBBERSTATION CHANGE: REWORKS HOW EXPLOSION DAMAGE IS APPLIED.
+
+
+	//BUBBERSTATION CHANGE START. REWORKS HOW DISMEMBERMENT IS APPLIED.
+	var/list/obj/item/bodypart/possible_parts = get_damageable_bodyparts()
+	if(length(possible_parts))
+		var/attack_direction = get_dir(src,origin)
+		possible_parts = shuffle(possible_parts)
+		var/flat_brute_loss = CEILING( brute_loss*(1/length(possible_parts))*0.5, DAMAGE_PRECISION)
+		var/flat_burn_loss = CEILING( burn_loss*(1/length(possible_parts))*0.5, DAMAGE_PRECISION)
+		brute_loss -= flat_brute_loss
+		burn_loss -= flat_burn_loss
+		var/did_damage = FALSE
+		for(var/obj/item/bodypart/limb as anything in possible_parts)
+			var/brute_damage_to_deal = 5 + CEILING( brute_loss*Rand(), DAMAGE_PRECISION)
+			brute_loss -= brute_damage_to_deal
+			var/burn_damage_to_deal = 5 + CEILING( burn_loss*Rand(), DAMAGE_PRECISION)
+			burn_loss -= burn_damage_to_deal
+			did_damage += limb.receive_damage(
+				flat_brute_loss + brute_damage_to_deal,
+				flat_burn_loss + burn_damage_to_deal,
+				getarmor(limb, BOMB),
+				updating_health = FALSE,
+				wound_bonus = DISMEMBER_MINIMUM_DAMAGE,
+				exposed_wound_bonus = DISMEMBER_MINIMUM_DAMAGE,
+				attack_direction = attack_direction,
+				damage_source = origin
+			)
+		if(did_damage)
+			updatehealth()
+
+	//BUBBERSTATION CHANGE END
+
+
+
+	/* BUBBERSTAION CHANGE: REMOVES FORCED DISMEMBERMENT
 	//attempt to dismember bodyparts
 	if(severity >= EXPLODE_HEAVY || !bomb_armor)
 		var/max_limb_loss = 0
@@ -348,6 +383,7 @@
 				max_limb_loss--
 				if(!max_limb_loss)
 					break
+	BUBBERSTATION CHANGE END.*/
 
 	return TRUE
 
