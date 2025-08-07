@@ -151,17 +151,11 @@ SUBSYSTEM_DEF(ticker)
 	server_time_offset = (CONFIG_GET(number/shift_time_clock_offset) * (1 MINUTES)) // BUBBER EDIT ADD: SERVER TIME OFFSET
 	if(CONFIG_GET(flag/randomize_shift_time))
 		gametime_offset = rand(0, 23) * (1 HOURS)
-		message_admins("Station time source is RANDOM. Time multiplier adjusted to [station_time_rate_multiplier]x")
-		log_dynamic("Station time source is RANDOM. Time multiplier adjusted to [station_time_rate_multiplier]x. Gametime Offset [gametime_offset]")
 	else if(CONFIG_GET(flag/shift_time_realtime))
 		gametime_offset = world.timeofday + GLOB.timezoneOffset + server_time_offset // BUBBER EDIT CHANGE - SERVER TIME OFFSET - ORIGINAL: gametime_offset = world.timeofday + GLOB.timezoneOffset
 		// station_time_rate_multiplier = 1 // BUBBER EDIT REMOVAL
-		message_admins("Station time source is REALTIME. Time multiplier adjusted to [station_time_rate_multiplier]x")
-		log_dynamic("Station time source is REALTIME. Time multiplier adjusted to [station_time_rate_multiplier]x. Gametime Offset [gametime_offset]")
 	else
 		gametime_offset = (CONFIG_GET(number/shift_time_start_hour) * (1 HOURS))
-		message_admins("Station time source is CONFIG. Time multiplier adjusted to [station_time_rate_multiplier]x")
-		log_dynamic("Station time source is CONFIG. Time multiplier adjusted to [station_time_rate_multiplier]x. Gametime Offset [gametime_offset]")
 	// BUBBER EDIT ADD BEGIN - SERVER TIME OFFSET
 	message_admins("Station time set to [station_time_timestamp(format = "hh:mm")]. Night shift transitions are [SSnightshift.can_fire ? span_vote_notice("enabled") : span_comradio("disabled")].")
 	log_dynamic("Station time set to [station_time_timestamp(format = "hh:mm")]. Server time: [time2text(world.timeofday, "hh:mm", world.timezone)]. Server time offset: [server_time_offset / (1 MINUTES)] min. Night shift transitions are [SSnightshift.can_fire ? "enabled" : "disabled"].")
