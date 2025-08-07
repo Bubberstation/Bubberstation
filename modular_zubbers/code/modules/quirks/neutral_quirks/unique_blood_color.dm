@@ -69,7 +69,6 @@ GLOBAL_LIST_INIT(custom_blood_colors, list(
 		remove_from_current_holder()
 		WARNING("quirk 'unique_blood_color' automatically removed from [quirked.name]")
 		return
-	testing("Passing [color_code] to change_blood_color()")
 ///Making the new blood type
 	new_blood = get_blood_type("[quirked.dna.blood_type]_[override]") //for example, A-_#69af19
 ///check if blood type already exists before making it new
