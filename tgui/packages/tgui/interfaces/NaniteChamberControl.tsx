@@ -61,7 +61,7 @@ export const NaniteChamberControlContent = () => {
 
   return (
     <Section
-      title={'Chamber: ' + occupant_name}
+      title={`Chamber: ${occupant_name}`}
       buttons={
         <Button
           icon={locked ? 'lock' : 'lock-open'}

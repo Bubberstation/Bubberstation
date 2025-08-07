@@ -154,6 +154,10 @@
 	name = "Forked tongue"
 	path = /obj/item/organ/tongue/lizard
 
+/datum/augment_item/organ/tongue/akula
+	name = "Aquatic tongue"
+	path = /obj/item/organ/tongue/akula
+
 //EARS
 /datum/augment_item/organ/ears
 	slot = AUGMENT_SLOT_EARS

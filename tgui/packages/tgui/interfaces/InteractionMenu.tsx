@@ -44,7 +44,7 @@ export const InteractionMenu = (props) => {
   } = data;
 
   return (
-    <Window width={500} height={600} title={'Interact - ' + self}>
+    <Window width={500} height={600} title={`Interact - ${self}`}>
       <Window.Content scrollable>
         {(block_interact && <NoticeBox>Unable to Interact</NoticeBox>) || (
           <NoticeBox>Able to Interact</NoticeBox>
@@ -105,7 +105,7 @@ export const InteractionMenu = (props) => {
                         >
                           {element.img ? (
                             <img
-                              src={'data:image/png;base64,' + element.img}
+                              src={`data:image/png;base64,${element.img}`}
                               style={{
                                 width: '100%',
                                 height: '100%',

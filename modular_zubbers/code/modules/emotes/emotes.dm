@@ -189,3 +189,17 @@
 /datum/emote/living/kweh_sad/get_sound(mob/living/user)
 	return pick('sound/mobs/non-humanoids/raptor/raptor_2.ogg',
 				'sound/mobs/non-humanoids/raptor/raptor_3.ogg')
+
+/datum/emote/living/xenogrowl
+	key = "xenogrowl"
+	key_third_person = "xenogrowls"
+	message = "growls unnervingly."
+	emote_type = EMOTE_AUDIBLE
+	sound = 'modular_zubbers/code/modules/emotes/sound/voice/xenogrowl.ogg'
+
+/datum/emote/living/xenohiss
+	key = "xenohiss"
+	key_third_person = "xenohisses"
+	message = "hisses unnervingly."
+	emote_type = EMOTE_AUDIBLE
+	sound = 'modular_zubbers/code/modules/emotes/sound/voice/xenohiss.ogg'
