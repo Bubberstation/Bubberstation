@@ -138,7 +138,7 @@ export const CargoImportConsole = (props) => {
                                 item.cost > budget_points ? 'red' : 'green'
                               }
                             >
-                              {'Cost: ' + item.cost}
+                              {`Cost: ${item.cost}`}
                             </Stack.Item>
                             <Stack.Item>
                               <Button

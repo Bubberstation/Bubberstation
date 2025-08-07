@@ -7,12 +7,14 @@
 #define USE_ONE_COLOR		31
 #define USE_MATRIXED_COLORS	32
 
-//Defines for processing reagents, for synths, IPC's and Vox
-#define PROCESS_ORGANIC 1		//Only processes reagents with "ORGANIC" or "ORGANIC | SYNTHETIC"
-#define PROCESS_SYNTHETIC 2		//Only processes reagents with "SYNTHETIC" or "ORGANIC | SYNTHETIC"
+//Defines for processing reagents, for synths, IPC's, Protean's and Vox
+#define PROCESS_ORGANIC 1		//Only processes reagents with "ORGANIC" or "ORGANIC | SYNTHETIC" or "ORGANIC | PROTEAN" or "ORGANIC | SYNTHETIC | PROTEAN"
+#define PROCESS_SYNTHETIC 2		//Only processes reagents with "SYNTHETIC" or "ORGANIC | SYNTHETIC" or "SYNTHETIC | PROTEAN" or "ORGANIC | SYNTHETIC | PROTEAN"
+#define PROCESS_PROTEAN 3		//Only processes reagents with "PROTEAN" or "ORGANIC | PROTEAN" or "ORGANIC | SYNTHETIC | PROTEAN"
 
 #define REAGENT_ORGANIC 1
 #define REAGENT_SYNTHETIC 2
+#define REAGENT_PROTEAN 3
 
 //Some defines for sprite accessories
 // Which color source we're using when the accessory is added
