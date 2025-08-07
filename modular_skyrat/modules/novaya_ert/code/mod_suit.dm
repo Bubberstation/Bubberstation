@@ -12,6 +12,7 @@
 	armor_type = /datum/armor/mod_theme_frontline
 	complexity_max = DEFAULT_MAX_COMPLEXITY
 	charge_drain = DEFAULT_CHARGE_DRAIN * 1.5
+	inbuilt_modules = list(/obj/item/mod/module/hearing_protection)
 	allowed_suit_storage = list(
 		/obj/item/flashlight,
 		/obj/item/tank/internals,
@@ -106,6 +107,7 @@
 		it would still be right at home in the service of gunrunners and private security forces. \
 		Though, it's internal systems have degraded, and some of the ablative plating has been removed."
 	armor_type = /datum/armor/mod_theme_frontline/surplus
+	inbuilt_modules = list(/obj/item/mod/module/hearing_protection)
 
 /datum/mod_theme/frontline/surplus/set_skin(obj/item/mod/control/mod, skin)
 	. = ..()
