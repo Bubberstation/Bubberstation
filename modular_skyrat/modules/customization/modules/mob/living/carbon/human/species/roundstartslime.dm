@@ -24,7 +24,7 @@
 	Slime hybrids have developed a beautiful system of body language, typically involving light and the fluidity of their bodies in elaborate dances and gestures.\
 	Due to their chemical makeup, they are able to produce bioluminescent lighting within their membrane.\
 	It has been documented that a person can be 'melted' into a slimeperson much like with non-sentient, xenobiological slimes.\
-	It has little effect on sapience, and as a result, a few researchers in Nanotrasen R&D have transformed themselves this way.\
+	It has little effect on sapience, and as a result, a few researchers in Nanotrasen R&D have transformed themselves this way."
 
 /datum/species/jelly/get_species_lore()
 	return list(placeholder_lore)
