@@ -13,7 +13,7 @@
 	if (!..(preferences))
 		return FALSE
 
-	return /datum/quirk/unique_blood_color::name in preferences.all_quirks
+	return /datum/quirk/item_quirk/unique_blood_color::name in preferences.all_quirks
 
 /datum/preference/color/input_blood_color/apply_to_human(mob/living/carbon/human/target, value)
 	return
@@ -32,20 +32,10 @@
 	if (!..(preferences))
 		return FALSE
 
-	return /datum/quirk/unique_blood_color::name in preferences.all_quirks
+	return /datum/quirk/item_quirk/unique_blood_color::name in preferences.all_quirks
 
 /datum/preference/choiced/select_blood_color/apply_to_human(mob/living/carbon/human/target, value)
 	return
 
 /datum/preference/choiced/select_blood_color/init_possible_values()
-	return list(
-		"Red/Human",
-		"D.Green/Lizard",
-		"Green/alt-Lizard",
-		"Lime/Xeno",
-		"Violet/Avali",
-		"Cyan/Vox",
-		"White/Nanites",
-		"Black/Evil",
-		"Custom",
-	)
+	return list("Custom") + assoc_to_keys(GLOB.custom_blood_colors)
