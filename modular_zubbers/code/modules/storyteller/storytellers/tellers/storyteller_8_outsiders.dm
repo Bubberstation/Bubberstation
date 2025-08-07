@@ -12,7 +12,7 @@
 	antag_divisor = 6
 	storyteller_type = STORYTELLER_TYPE_INTENSE
 
-guarantees_roundstart_crewset = TRUE
+	guarantees_roundstart_crewset = TRUE
 
 	track_data = /datum/storyteller_data/tracks/outsiders
 
