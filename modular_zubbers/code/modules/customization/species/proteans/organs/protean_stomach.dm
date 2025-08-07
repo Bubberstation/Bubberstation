@@ -9,14 +9,6 @@
 	var/metabolism_modifier = 1
 	COOLDOWN_DECLARE(starving_message)
 
-/obj/item/organ/stomach/protean/on_mob_insert(mob/living/carbon/receiver, special, movement_flags)
-	. = ..()
-	RegisterSignal(receiver, COMSIG_MOB_AFTER_APPLY_DAMAGE, PROC_REF(damage_listener))
-
-/obj/item/organ/stomach/protean/on_mob_remove(mob/living/carbon/stomach_owner, special, movement_flags)
-	. = ..()
-	UnregisterSignal(stomach_owner, COMSIG_MOB_AFTER_APPLY_DAMAGE)
-
 /obj/item/organ/stomach/protean/on_life(seconds_per_tick, times_fired)
 	if(isnull(owner.client)) // So we dont die from afk/crashing out
 		return
@@ -51,13 +43,6 @@
 		to_chat(owner, span_warning("You are starving! You must find metal now!"))
 		owner.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/protean_slowdown, multiplicative_slowdown = 2)
 		COOLDOWN_START(src, starving_message, 20 SECONDS)
-
-/obj/item/organ/stomach/protean/proc/damage_listener()
-	SIGNAL_HANDLER
-
-	if(COOLDOWN_STARTED(src, damage_delay))
-		COOLDOWN_RESET(src, damage_delay)
-	COOLDOWN_START(src, damage_delay, REGEN_TIME)
 
 /// If we ate a sheet of metal, add it to storage.
 /obj/item/organ/stomach/protean/after_eat(atom/edible)
