@@ -31,7 +31,7 @@
 
 /obj/item/organ/stomach/protean/proc/health_calculations() // Heals one at 4 ticks or both damages at 2 ticks
 	var/health_amount = 4
-	if(owner.getBruteLoss() > 0 && owner.getFireLoss() > 0)
+	if((owner.getBruteLoss() > 0) && (owner.getFireLoss() > 0))
 		health_amount -= 2
 	return health_amount
 
@@ -47,7 +47,7 @@
 		// If we're high enough on metal we might try to heal or recover blood
 		if(nutrition > NUTRITION_LEVEL_HUNGRY)
 			if(owner.health < owner.maxHealth)
-				var/healing_amount = health_calculations()
+				var/healing_amount = health_calculations() * -1
 				hunger_modifier += 20
 				if(!COOLDOWN_FINISHED(src, damage_delay))
 					var/cooldown_left = (REGEN_TIME - COOLDOWN_TIMELEFT(src, damage_delay)) / REGEN_TIME
