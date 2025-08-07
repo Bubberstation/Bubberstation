@@ -18,6 +18,7 @@
 	extra_price = PAYCHECK_ZERO
 	default_price = PAYCHECK_ZERO
 	resistance_flags = INDESTRUCTIBLE
+	allow_custom = FALSE
 
 /obj/machinery/vending/tool/super/screwdriver_act(mob/living/user, obj/item/attack_item)
 	return FALSE
