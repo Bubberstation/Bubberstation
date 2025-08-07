@@ -129,7 +129,9 @@
 	var/obj/item/organ/ears/cybernetic/protean/ears = owner.get_organ_slot(ORGAN_SLOT_EARS)
 	var/obj/item/organ/liver/protean/liver = owner.get_organ_slot(ORGAN_SLOT_LIVER)
 
-	if(stomach.metal <= PROTEAN_STOMACH_FULL * 0.6 && istype(stomach))
+	if(!istype(stomach))
+		return to_chat(owner, span_warning("Missing refactory!"))
+	if(stomach.owner.nutrition <= NUTRITION_LEVEL_WELL_FED)
 		to_chat(owner, span_warning("Not enough metal to heal body!"))
 		return
 	if(!istype(owner.loc, /obj/item/mod/control))
@@ -139,7 +141,7 @@
 	if(!do_after(owner, 30 SECONDS, species.species_modsuit, IGNORE_INCAPACITATED))
 		return
 
-	stomach.metal = clamp(stomach.metal - (PROTEAN_STOMACH_FULL * 0.6), 0, 10)
+	stomach.owner.nutrition = clamp(stomach.owner.nutrition - 200, NUTRITION_LEVEL_STARVING, NUTRITION_LEVEL_FULL)
 	owner.fully_heal(HEAL_LIMBS)
 	if(isnull(eyes))
 		eyes = new /obj/item/organ/eyes/robotic/protean
