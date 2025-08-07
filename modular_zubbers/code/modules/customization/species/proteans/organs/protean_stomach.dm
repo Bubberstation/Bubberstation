@@ -11,19 +11,11 @@
 
 /obj/item/organ/stomach/protean/on_mob_insert(mob/living/carbon/receiver, special, movement_flags)
 	. = ..()
-<<<<<<< Updated upstream
-	RegisterSignal(receiver, COMSIG_CARBON_ATTEMPT_EAT, PROC_REF(try_stomach_eat))
-
-/obj/item/organ/stomach/protean/on_mob_remove(mob/living/carbon/stomach_owner, special, movement_flags)
-	. = ..()
-	UnregisterSignal(stomach_owner, COMSIG_CARBON_ATTEMPT_EAT)
-=======
 	RegisterSignal(receiver, COMSIG_MOB_AFTER_APPLY_DAMAGE, PROC_REF(damage_listener))
 
 /obj/item/organ/stomach/protean/on_mob_remove(mob/living/carbon/stomach_owner, special, movement_flags)
 	. = ..()
 	UnregisterSignal(stomach_owner, COMSIG_MOB_AFTER_APPLY_DAMAGE)
->>>>>>> Stashed changes
 
 /obj/item/organ/stomach/protean/on_life(seconds_per_tick, times_fired)
 	if(isnull(owner.client)) // So we dont die from afk/crashing out
@@ -60,24 +52,12 @@
 		owner.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/protean_slowdown, multiplicative_slowdown = 2)
 		COOLDOWN_START(src, starving_message, 20 SECONDS)
 
-<<<<<<< Updated upstream
-/// Check to see if our metal storage is full.
-/obj/item/organ/stomach/protean/proc/try_stomach_eat(mob/eater, atom/eating)
-	SIGNAL_HANDLER
-
-	if(istype(eating, /obj/item/food/golem_food))
-		var/obj/item/food/golem_food/food = eating
-		if(metal > (PROTEAN_STOMACH_FULL - 0.3) && food.owner.loc == owner)
-			balloon_alert(owner, "storage full!")
-			return COMSIG_CARBON_BLOCK_EAT
-=======
 /obj/item/organ/stomach/protean/proc/damage_listener()
 	SIGNAL_HANDLER
 
 	if(COOLDOWN_STARTED(src, damage_delay))
 		COOLDOWN_RESET(src, damage_delay)
 	COOLDOWN_START(src, damage_delay, REGEN_TIME)
->>>>>>> Stashed changes
 
 /// If we ate a sheet of metal, add it to storage.
 /obj/item/organ/stomach/protean/after_eat(atom/edible)
