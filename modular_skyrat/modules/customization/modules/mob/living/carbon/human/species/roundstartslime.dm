@@ -17,7 +17,14 @@
 	)
 
 /datum/species/jelly/get_species_description()
-	return placeholder_description
+	return "A species essentially crafted whole-cloth by Nanotrasen's R&D department in Sector C7, slimepeople were produced by uplifting xenobiological slimes made in a laboratory environment.\
+	Their bodies are malleable, and structurally resemble a cell, with simple organs in the center of their bodies.\
+	They have no defined appearance, but struggle to fully pass as other species.\
+	They have since spread out in small numbers all over the universe, but the majority remain in the company's orbit.\
+	Slime hybrids have developed a beautiful system of body language, typically involving light and the fluidity of their bodies in elaborate dances and gestures.\
+	Due to their chemical makeup, they are able to produce bioluminescent lighting within their membrane.\
+	It has been documented that a person can be 'melted' into a slimeperson much like with non-sentient, xenobiological slimes.\
+	It has little effect on sapience, and as a result, a few researchers in Nanotrasen R&D have transformed themselves this way.\
 
 /datum/species/jelly/get_species_lore()
 	return list(placeholder_lore)
