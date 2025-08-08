@@ -30,7 +30,6 @@
 	implements = list(
 		TOOL_MULTITOOL = 100,
 		TOOL_HEMOSTAT = 90,
-		TOOL_SCREWDRIVER = 35,
 		/obj/item/pen = 15)
 	repeatable = TRUE
 	preop_sound = 'sound/items/handling/tools/multitool_pickup.ogg'
