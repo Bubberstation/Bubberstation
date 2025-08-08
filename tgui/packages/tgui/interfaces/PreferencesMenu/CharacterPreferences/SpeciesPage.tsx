@@ -377,7 +377,7 @@ function SpeciesPageInner(props: SpeciesPageInnerProps) {
                     maxHeight="45vh"
                     mr={-1} /* SKYRAT EDIT END */
                   >
-                    {currentSpecies.desc}
+                    {currentSpecies.lore}
                   </BlockQuote>
                 </Section>
               </Box>
