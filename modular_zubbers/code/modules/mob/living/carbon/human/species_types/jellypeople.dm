@@ -10,7 +10,8 @@
 /datum/species/jelly/get_species_description()
 	return list(
 		"Slimepeople are the product of many years of xenobiological experimentation,\
-		Their bodies are simple yet fluid, and resemble single-celled organisms."
+		Their bodies are simple yet fluid, and resemble single-celled organisms. They are composed of slime jelly.\
+		They struggle in cold environments, and things that are normally toxic to living species heal them."
 	)
 
 /datum/species/jelly/get_species_lore()
