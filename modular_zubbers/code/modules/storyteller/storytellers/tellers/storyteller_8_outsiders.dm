@@ -9,7 +9,7 @@
 		TAG_CREW_ANTAG = 0.25,
 	)
 	population_min = 35
-	antag_divisor = 10
+	antag_divisor = 5
 	storyteller_type = STORYTELLER_TYPE_INTENSE
 
 	guarantees_roundstart_crewset = TRUE
