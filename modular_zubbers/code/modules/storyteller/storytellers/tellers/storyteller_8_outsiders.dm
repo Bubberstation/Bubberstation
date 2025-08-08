@@ -5,7 +5,7 @@
 
 	tag_multipliers = list(
 		TAG_DESTRUCTIVE = 1,
-		TAG_CHAOTIC = 0.25,
+		TAG_CHAOTIC = 0.75,
 		TAG_CREW_ANTAG = 0.25,
 	)
 	population_min = 35
