@@ -19,9 +19,9 @@
 	starting_point_multipliers = list(
 		EVENT_TRACK_MUNDANE = 0.5,
 		EVENT_TRACK_MODERATE = 0.5,
-		EVENT_TRACK_MAJOR = 0.75,
+		EVENT_TRACK_MAJOR = 2,
 		EVENT_TRACK_CREWSET = 0.15,
-		EVENT_TRACK_GHOSTSET = 1
+		EVENT_TRACK_GHOSTSET = 2
 	)
 
 	event_repetition_multiplier = 1
