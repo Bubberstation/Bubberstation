@@ -14,14 +14,16 @@
 	)
 
 /datum/species/lizard/get_species_lore()
-	return list("Tizirans (known as Lizardpeople in Federation spaces) are a militaristic species that once conquered large swathes of territory \
+	return list(
+		"Tizirans (known as Lizardpeople in Federation spaces) have a militaristic culture that once conquered large swathes of territory \
 		before their capital of Zagoskeld was turned to a glass canyon by Federation plasma ships, ending the Coalition War. \
-		The colony of Kesa'aresz, once a Tiziran fortress world, is now where the majority of Federation lizards vote and hail from. \
-		In the modern day, many Tizirans have to deal with stigma and stereotypes based around their martial culture, \
-		which has led to a boom of Tiziran artists, writers and philosophers in the past half-century. \
-		\n \
-		Tiziran bodies are clad in thick scale, known for their constitution and resilience against high temperatures. \
-		They frequently have horns, and frills, as these are signs of a good warrior, the latter of which tend to be wider in females. \
-		They generally grow higher than humans, being six to seven feet tall on average, and grow tall before they grow wide. \
-		They have a critical weakness in their coldbloodedness, their bodies unable to cope with truly extreme temperatures."
+		The colony of Kesa'aresz, once a Tiziran fortress world, is now where the majority of Federation lizards vote and hail from.",
+
+		"In the modern day, many Tizirans have to deal with stigma and stereotypes based around their martial culture, \
+		which has led to a boom of Tiziran artists, writers and philosophers in the past half-century.",
+
+		"Tiziran bodies are clad in thick scale, known for their constitution and resilience. \
+		They frequently have horns, and frills, signs of a good warrior, the latter of which tend to be wider in females. \
+		They generally grow higher than humans, being six to seven feet tall on average, and tend to grow tall before they grow wide. \
+		This means younger Tizirans are typically thinner than their human counterparts, and stop growing later in life."
 	)
