@@ -18,7 +18,7 @@
 	mutantheart = /obj/item/organ/heart/protean
 	mutantstomach = /obj/item/organ/stomach/protean
 	mutantlungs = null
-	mutantliver = null
+	mutantliver = /obj/item/organ/liver/protean
 	mutantappendix = null
 	mutanteyes = /obj/item/organ/eyes/robotic/protean
 	mutantears = /obj/item/organ/ears/cybernetic/protean
@@ -44,7 +44,6 @@
 
 		// Needed to exist without dying and robot specific stuff.
 		TRAIT_NOBREATH,
-		TRAIT_LIVERLESS_METABOLISM,
 		TRAIT_ROCK_EATER,
 		TRAIT_STABLEHEART, // TODO: handle orchestrator code
 		TRAIT_NOHUNGER, // They will have metal stored in the stomach. Fuck nutrition code.
@@ -71,7 +70,7 @@
 	)
 
 	inherent_biotypes = MOB_ROBOTIC | MOB_HUMANOID
-	reagent_flags = null
+	reagent_flags = PROCESS_PROTEAN
 
 	/// Reference to the
 	var/obj/item/mod/control/pre_equipped/protean/species_modsuit
