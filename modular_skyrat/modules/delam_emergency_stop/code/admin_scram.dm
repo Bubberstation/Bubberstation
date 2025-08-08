@@ -8,7 +8,7 @@ ADMIN_VERB(try_stop_delam, R_ADMIN, "Delam Emergency Stop", "Activate the delam 
 		return
 
 	// Warn them if they're intervening in the work of God
-	if(world.time - SSticker.round_start_time < 30 MINUTES)
+	if(world.time - SSticker.round_start_time < SCRAM_TIME_RESTRICTION)
 		var/go_early = tgui_alert(user, "The [suppression_system.name] is set to automatically start at the programmed time. \
 			Are you sure you want to override this and fire it early? It's less scary that way.", "Suffering premature delamination?", list("No", "Yes"))
 		if(go_early != "Yes")

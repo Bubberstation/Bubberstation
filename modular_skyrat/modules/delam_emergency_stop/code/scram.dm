@@ -123,7 +123,7 @@
 	if(trigger_reason == SCRAM_DIVINE_INTERVENTION)
 		return TRUE
 
-	if(world.time - SSticker.round_start_time > 30 MINUTES)
+	if(world.time - SSticker.round_start_time > SCRAM_TIME_RESTRICTION)
 		audible_message(span_danger("[src] makes a series of sad beeps. The internal gas buffer is past its 30 minute expiry... what a feat of engineering!"))
 		investigate_log("Delam SCRAM signal was received but failed precondition check. (Round time or trigger reason)", INVESTIGATE_ENGINE)
 		radio.talk_into(src, "Supermatter delam suppression system fault! Unable to trigger, internal gas mix integrity check failed.", emergency_channel, list(SPAN_COMMAND))
@@ -346,7 +346,7 @@
 	visible_message(span_danger("[user] smashes [src] with their hand!"))
 	message_admins("[ADMIN_LOOKUPFLW(user)] pushed [src]!")
 	investigate_log("[key_name(user)] pushed [src]!", INVESTIGATE_ENGINE)
-	if(world.time - SSticker.round_start_time > 30 MINUTES)
+	if(world.time - SSticker.round_start_time > SCRAM_TIME_RESTRICTION)
 		playsound(
 			source = src.loc,
 			soundin = 'sound/machines/compiler/compiler-failure.ogg',
