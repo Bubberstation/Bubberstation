@@ -181,7 +181,7 @@ export const NaniteCloudBackupList = () => {
         })
       }
     >
-      {'Backup #' + backup.cloud_id}
+      {`Backup #${backup.cloud_id}`}
     </Button>
   ));
 };
@@ -204,7 +204,7 @@ export const NaniteCloudBackupDetails = () => {
   const cloud_programs = data.cloud_programs || [];
   return (
     <Section
-      title={'Backup #' + current_view}
+      title={`Backup #${current_view}`}
       buttons={
         !!has_program && (
           <Button
