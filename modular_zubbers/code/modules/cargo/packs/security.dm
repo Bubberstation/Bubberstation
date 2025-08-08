@@ -139,7 +139,7 @@
 
 /datum/supply_pack/imports/security/mcr_parts/scatter
 	name = "MCR Scatter Barrel"
-	contains = list(/obj/item/microfusion_gun_attachment/scatter)
+	contains = list(/obj/item/microfusion_gun_attachment/barrel/scatter)
 	cost = PAYCHECK_CREW * 4
 
 /datum/supply_pack/imports/security/mcr_parts/scope
