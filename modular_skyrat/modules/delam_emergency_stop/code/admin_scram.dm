@@ -21,7 +21,7 @@ ADMIN_VERB(try_stop_delam, R_ADMIN, "Delam Emergency Stop", "Activate the delam 
 	// Send the signal to start, unlock the temp emergency exits
 	log_admin("[key_name_admin(user)] started a supermatter emergency stop!")
 	message_admins("[ADMIN_LOOKUPFLW(user)] started a supermatter emergency stop! [ADMIN_COORDJMP(suppression_system)]")
-	suppression_system.investigate_log("[key_name_admin(user)] started a supermatter emergency stop!", INVESTIGATE_ATMOS)
+	suppression_system.investigate_log("[key_name_admin(user)] started a supermatter emergency stop!", INVESTIGATE_ENGINE)
 	SEND_GLOBAL_SIGNAL(COMSIG_MAIN_SM_DELAMINATING, SCRAM_DIVINE_INTERVENTION)
 	for(var/obj/machinery/door/airlock/escape_route in range(14, suppression_system)) // a little more space here due to positioning
 		if(istype(escape_route, /obj/machinery/door/airlock/command))
