@@ -1,3 +1,8 @@
+/datum/antagonist/traitor
+	//Double what is normally there.
+	uplink_sales_min = 8
+	uplink_sales_max = 12
+
 /datum/uplink_category
 	var/allowed_discount = TRUE
 
