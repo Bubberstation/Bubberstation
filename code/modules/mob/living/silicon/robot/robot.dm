@@ -21,6 +21,9 @@
 	RegisterSignal(src, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, PROC_REF(charge))
 	RegisterSignal(src, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
 	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_GOT_DAMPENED), PROC_REF(on_dampen))
+	// BUBBER EDIT: Register buckle/unbuckle signal to update sprite on tallborgs
+	RegisterSignal(src, COMSIG_MOB_BUCKLED, PROC_REF(on_buckled))
+	RegisterSignal(src, COMSIG_MOB_UNBUCKLED, PROC_REF(on_unbuckled))
 
 	inv1 = new /atom/movable/screen/robot/module1()
 	inv2 = new /atom/movable/screen/robot/module2()
@@ -515,7 +518,7 @@
 		balloon_alert(src, "disrupted!")
 		return FALSE
 	//BUBBER EDIT - Disables flashlight when held
-	if(!(update_color && lamp_enabled) && (turn_off || lamp_enabled || update_color || !lamp_functional || stat || low_power_mode || istype(loc, /obj/item/clothing/head/mob_holder)))
+	if(!(update_color && lamp_enabled) && (turn_off || lamp_enabled || update_color || !lamp_functional || stat || low_power_mode || istype(loc, /obj/item/mob_holder)))
 		set_light_on(lamp_functional && stat != DEAD && lamp_doom) //If the lamp isn't broken and borg isn't dead, doomsday borgs cannot disable their light fully.
 		set_light_color(COLOR_RED) //This should only matter for doomsday borgs, as any other time the lamp will be off and the color not seen
 		set_light_range(1) //Again, like above, this only takes effect when the light is forced on by doomsday mode.
@@ -1096,3 +1099,10 @@
 		buckled_mob.Paralyze(1 SECONDS)
 		unbuckle_mob(buckled_mob)
 	do_sparks(5, 0, src)
+
+// BUBBER EDIT: Update sprites on buckle/unbuckle(for tallborgs)
+/mob/living/silicon/robot/proc/on_buckled(mob/living/silicon/buckling)
+	update_icons()
+
+/mob/living/silicon/robot/proc/on_unbuckled(mob/living/silicon/buckling)
+	update_icons()

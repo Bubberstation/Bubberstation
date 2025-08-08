@@ -103,9 +103,9 @@
 
 	if(methods & (TOUCH|VAPOR|PATCH))
 		exposed_mob.adjust_fire_stacks(reac_volume / 15)
-		var/power_multiplier = boozepwr / 65 // Weak alcohol has less sterilizing power
+		var/sterilizing_power = boozepwr / 650 // Weak alcohol has less sterilizing power
 		for(var/datum/surgery/surgery as anything in exposed_mob.surgeries)
-			surgery.speed_modifier = max(0.1 * power_multiplier, surgery.speed_modifier)
+			surgery.speed_modifier = min(1 - sterilizing_power, surgery.speed_modifier)
 
 /datum/reagent/consumable/ethanol/beer
 	name = "Beer"
@@ -353,12 +353,12 @@
 
 /datum/reagent/consumable/ethanol/rum/aged/on_mob_metabolize(mob/living/drinker)
 	. = ..()
-	drinker.add_blocked_language(subtypesof(/datum/language) - /datum/language/piratespeak, LANGUAGE_DRINK)
+	drinker.add_blocked_language(subtypesof(/datum/language) - /datum/language/piratespeak, source = LANGUAGE_DRINK)
 	drinker.grant_language(/datum/language/piratespeak, source = LANGUAGE_DRINK)
 
 /datum/reagent/consumable/ethanol/rum/aged/on_mob_end_metabolize(mob/living/drinker)
 	if(!QDELING(drinker))
-		drinker.remove_blocked_language(subtypesof(/datum/language), LANGUAGE_DRINK)
+		drinker.remove_blocked_language(subtypesof(/datum/language), source = LANGUAGE_DRINK)
 		drinker.remove_language(/datum/language/piratespeak, source = LANGUAGE_DRINK)
 	return ..()
 
@@ -500,14 +500,16 @@
 
 	return ..()
 
-/datum/reagent/consumable/ethanol/goldschlager/on_transfer(atom/atom, methods = TOUCH, trans_volume)
+/datum/reagent/consumable/ethanol/goldschlager/expose_mob(mob/living/exposed_mob, methods, reac_volume)
+	. = ..()
 	if(!(methods & INGEST))
-		return ..()
+		return
 
-	var/convert_amount = trans_volume * min(GOLDSCHLAGER_GOLD_RATIO, 1)
-	atom.reagents.remove_reagent(/datum/reagent/consumable/ethanol/goldschlager, convert_amount)
-	atom.reagents.add_reagent(/datum/reagent/gold, convert_amount)
-	return ..()
+	var/convert_amount = reac_volume * min(GOLDSCHLAGER_GOLD_RATIO, 1)
+	var/datum/reagents/mob_reagents = exposed_mob.reagents
+
+	mob_reagents.remove_reagent(/datum/reagent/consumable/ethanol/goldschlager, convert_amount)
+	mob_reagents.add_reagent(/datum/reagent/gold, convert_amount)
 
 /datum/reagent/consumable/ethanol/patron
 	name = "Patron"

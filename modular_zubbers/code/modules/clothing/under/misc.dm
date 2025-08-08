@@ -545,6 +545,22 @@
 
 //BUNNY STUFF END, SPRITES BY DimWhat OF MONKE STATION
 
+/obj/item/clothing/under/rank/civilian/microstar_suit
+	name = "\improper MicroStar SCI-MED suit"
+	desc = "A non-spaceproof partial pressure suit manufactured by MicroStar Inc; designed for maximum comfort, safety, and enhancement of productivity. Its proprietary helmet seems to be missing."
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	icon = 'modular_zubbers/icons/obj/clothing/under/scimed_suit.dmi'
+	icon_state = "scimed_suit"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/scimed_suit.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/scimed_suit_digi.dmi'
+	inhand_icon_state = "w_suit"
+	can_adjust = FALSE
+	equip_sound = 'modular_skyrat/modules/modular_items/lewd_items/sounds/latex.ogg'
+	/*
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/clothing/scimed_suit_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/clothing/scimed_suit_righthand.dmi'
+	*/
+
 /obj/item/clothing/under/costume/loincloth
 	name = "loincloth"
 	desc = "A simple leather covering. It's better than wearing nothing at least."

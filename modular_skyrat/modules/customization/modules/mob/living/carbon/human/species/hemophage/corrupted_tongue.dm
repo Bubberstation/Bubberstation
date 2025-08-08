@@ -66,7 +66,7 @@
 		hemophage.balloon_alert(hemophage, "needs a living victim!")
 		return FALSE
 
-	if(!victim.blood_volume || (victim.dna && ((HAS_TRAIT(victim, TRAIT_NOBLOOD)) || victim.dna.species.exotic_bloodtype)))
+	if(!victim.blood_volume || HAS_TRAIT(victim, TRAIT_NOBLOOD) || victim.get_blood_reagent() != /datum/reagent/blood)
 		hemophage.balloon_alert(hemophage, "[victim] doesn't have blood!")
 		return FALSE
 
