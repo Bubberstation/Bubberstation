@@ -272,7 +272,6 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 	list(
 		/obj/item/airlock_painter = 1,
 		/obj/item/airlock_painter/decal = 1,
-		/obj/item/airlock_painter/decal/tile = 1,
 		/obj/item/hand_labeler = 1,
 		/obj/item/paint/anycolor = 1,
 		/obj/item/paint/paint_remover = 1,

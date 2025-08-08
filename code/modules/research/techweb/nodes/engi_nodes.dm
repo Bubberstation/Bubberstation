@@ -131,7 +131,6 @@
 		"blast",
 		"ignition",
 		"big_manipulator",
-		"tile_sprayer",
 		"airlock_painter",
 		"decal_painter",
 		"rwd",
@@ -196,6 +195,7 @@
 		"shuttle_control",
 		"shuttle_docker",
 		"shuttlerods",
+		"shuttle_remote",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	announce_channels = list(RADIO_CHANNEL_ENGINEERING, RADIO_CHANNEL_SCIENCE, RADIO_CHANNEL_SUPPLY)
@@ -219,12 +219,14 @@
 		"holopad",
 		"vendatray",
 		"holodisk",
+		"modular_shield_gate",
 		"modular_shield_generator",
 		"modular_shield_node",
 		"modular_shield_cable",
 		"modular_shield_relay",
 		"modular_shield_charger",
 		"modular_shield_well",
+		"modular_shield_console",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 

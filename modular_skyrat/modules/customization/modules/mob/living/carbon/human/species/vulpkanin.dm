@@ -64,7 +64,7 @@
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "stomach",
 		SPECIES_PERK_NAME = "Hunger",
-		SPECIES_PERK_DESC = "Vulpkanin will get hungry twice as fast as most species",
+		SPECIES_PERK_DESC = "Vulpkanin will get hungrier 50% faster than most species",
 	))
 
 	return to_add

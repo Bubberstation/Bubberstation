@@ -30,7 +30,7 @@
 
 /datum/armament_entry/company_import/deforest/first_aid_kit/robo_repair_super
 	item_type = /obj/item/storage/medkit/robotic_repair/preemo/stocked
-	cost = PAYCHECK_COMMAND * 8
+	cost = PAYCHECK_COMMAND * 4.5
 
 /datum/armament_entry/company_import/deforest/first_aid_kit/first_responder
 	item_type = /obj/item/storage/backpack/duffelbag/deforest_surgical/stocked

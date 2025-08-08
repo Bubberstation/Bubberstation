@@ -11,6 +11,11 @@ If the scythe isn't empowered when you sheath it, you take a heap of damage and 
 	items_to_create = list(/obj/item/vorpalscythe)
 	organ_traits = list(TRAIT_MORBID)
 
+/obj/item/organ/cyberimp/arm/toolkit/shard/scythe/Initialize(mapload)
+	. = ..()
+	for (var/obj/item/scythe as anything in items_list)
+		ADD_TRAIT(scythe, TRAIT_NULLROD_ITEM, INNATE_TRAIT)
+
 /obj/item/organ/cyberimp/arm/toolkit/shard/scythe/Retract()
 	var/obj/item/vorpalscythe/scythe = active_item
 	if(!scythe)
@@ -44,7 +49,7 @@ If the scythe isn't empowered when you sheath it, you take a heap of damage and 
 	attack_verb_continuous = list("chops", "slices", "cuts", "reaps")
 	attack_verb_simple = list("chop", "slice", "cut", "reap")
 	wound_bonus = 10
-	bare_wound_bonus = 15
+	exposed_wound_bonus = 15
 	/*What state is our scythe in?
 
 	If it is SCYTHE_WEAK, it will harm our reaper on being sheathed.

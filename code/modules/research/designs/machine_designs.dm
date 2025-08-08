@@ -197,6 +197,16 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
+/datum/design/board/modular_shield_gate
+	name = "Modular Shield Gate Board"
+	desc = "The circuit board for a modular shield gate."
+	id = "modular_shield_gate"
+	build_path = /obj/item/circuitboard/machine/modular_shield_generator/gate
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
+
 /datum/design/board/modular_shield_generator
 	name = "Modular Shield Generator Board"
 	desc = "The circuit board for a modular shield generator."
@@ -252,6 +262,16 @@
 	desc = "The circuit board for a modular shield well."
 	id = "modular_shield_well"
 	build_path = /obj/item/circuitboard/machine/modular_shield_well
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design/board/modular_shield_console
+	name = "Modular Shield Console Board"
+	desc = "The circuit board for a modular shield console."
+	id = "modular_shield_console"
+	build_path = /obj/item/circuitboard/computer/modular_shield_console
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
 	)

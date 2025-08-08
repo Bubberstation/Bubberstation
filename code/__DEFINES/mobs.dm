@@ -153,18 +153,20 @@
 #define BODYTYPE_PLANT (1<<6)
 //This limb is shadowy and will regen if shadowheal is active
 #define BODYTYPE_SHADOW (1<<7)
+//This limb is a ghost limb and can phase through walls.
+#define BODYTYPE_GHOST (1<<8)
 // SKYRAT EDIT ADDITION
 
 /// Nanomachine bodypart
-#define BODYTYPE_NANO (1<<8)
+#define BODYTYPE_NANO (1<<9)
 ///The limb fits a modular custom shape
-#define BODYSHAPE_CUSTOM (1<<9)
+#define BODYSHAPE_CUSTOM (1<<10)
 ///The limb fits a taur body
-#define BODYSHAPE_TAUR (1<<10)
+#define BODYSHAPE_TAUR (1<<11)
 ///The limb causes shoes to no longer be displayed, useful for taurs.
-#define BODYSHAPE_HIDE_SHOES (1<<11)
+#define BODYSHAPE_HIDE_SHOES (1<<12)
 ///The limb causes glasses and hats to be drawn on layers 5 and 4 respectively. Currently used for snouts with the (Top) suffix, which are drawn on layer 6 and would normally cover facewear
-#define BODYSHAPE_ALT_FACEWEAR_LAYER (1<<12)
+#define BODYSHAPE_ALT_FACEWEAR_LAYER (1<<13)
 
 // SKYRAT EDIT END
 
@@ -188,11 +190,14 @@
 #define SPECIES_DULLAHAN "dullahan"
 #define SPECIES_ETHEREAL "ethereal"
 #define SPECIES_ETHEREAL_LUSTROUS "lustrous"
+#define SPECIES_GHOST "ghost"
+#define SPECIES_GOLEM "golem"
 #define SPECIES_FELINE "felinid"
 #define SPECIES_FLYPERSON "fly"
 #define SPECIES_HUMAN "human"
 #define SPECIES_JELLYPERSON "jelly"
 #define SPECIES_SLIMEPERSON "slime"
+#define SPECIES_SPIRIT "spirit"
 #define SPECIES_LUMINESCENT "luminescent"
 #define SPECIES_STARGAZER "stargazer"
 #define SPECIES_LIZARD "lizard"
@@ -725,19 +730,21 @@ GLOBAL_LIST_INIT(human_heights_to_offsets, list(
 /// Total number of layers for mob overlays
 /// KEEP THIS UP-TO-DATE OR SHIT WILL BREAK
 /// Also consider updating layers_to_offset
-#define TOTAL_LAYERS 42 // SKYRAT EDIT CHANGE - ORIGINAL: 36
+#define TOTAL_LAYERS 44 // SKYRAT EDIT CHANGE - ORIGINAL: 38
 /// Mutations layer - Tk headglows, cold resistance glow, etc
-#define MUTATIONS_LAYER 42 // SKYRAT EDIT CHANGE - ORIGINAL: 36
+#define MUTATIONS_LAYER 43 // SKYRAT EDIT CHANGE - ORIGINAL: 37
 /// Mutantrace features (tail when looking south) that must appear behind the body parts
-#define BODY_BEHIND_LAYER 41 // SKYRAT EDIT CHANGE - ORIGINAL: 35
+#define BODY_BEHIND_LAYER 42 // SKYRAT EDIT CHANGE - ORIGINAL: 36
 /// Layer for bodyparts that should appear behind every other bodypart - Mostly, legs when facing WEST or EAST
-#define BODYPARTS_LOW_LAYER 40 // SKYRAT EDIT CHANGE - ORIGINAL: 34
+#define BODYPARTS_LOW_LAYER 41 // SKYRAT EDIT CHANGE - ORIGINAL: 35
 /// Layer for most bodyparts, appears above BODYPARTS_LOW_LAYER and below BODYPARTS_HIGH_LAYER
-#define BODYPARTS_LAYER 39 // SKYRAT EDIT CHANGE - ORIGINAL: 33
+#define BODYPARTS_LAYER 40 // SKYRAT EDIT CHANGE - ORIGINAL: 34
 /// Mutantrace features (snout, body markings) that must appear above the body parts
-#define BODY_ADJ_LAYER 38 // SKYRAT EDIT CHANGE - ORIGINAL: 32
-/// Underwear, undershirts, socks, eyes, lips(makeup)
-#define BODY_LAYER 37 // SKYRAT EDIT CHANGE - ORIGINAL: 31
+#define BODY_ADJ_LAYER 39 // SKYRAT EDIT CHANGE - ORIGINAL: 33
+/// Underwear, undershirts, socks
+#define BODY_LAYER 38 // SKYRAT EDIT CHANGE - ORIGINAL: 32
+/// Eyes and eyelids
+#define EYES_LAYER 37 // SKYRAT EDIT CHANGE - ORIGINAL: 31
 /// Mutations that should appear above body, body_adj and bodyparts layer (e.g. laser eyes)
 #define FRONT_MUTATIONS_LAYER 36 // SKYRAT EDIT CHANGE - ORIGINAL: 30
 /// Damage indicators (cuts and burns)
@@ -847,7 +854,8 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 	// to show how many filters are added at a glance
 	// BACK_LAYER (backpacks are big)
 	// BODYPARTS_HIGH_LAYER (arms)
-	// BODY_LAYER (body markings (full body), underwear (full body), eyes)
+	// BODY_LAYER (body markings (full body), underwear (full body))
+	// EYES_LAYER,
 	// BODY_ADJ_LAYER (external organs like wings)
 	// BODY_BEHIND_LAYER (external organs like wings)
 	// BODY_FRONT_LAYER (external organs like wings)
