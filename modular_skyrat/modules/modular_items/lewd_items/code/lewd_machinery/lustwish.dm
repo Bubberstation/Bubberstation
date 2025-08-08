@@ -146,6 +146,7 @@
 			"products" = list(
 				/obj/item/mod/construction/plating/lustwish = 5,
 				/obj/item/mod/module/hypno_visor = 5,
+				/obj/item/mod/module/remote_control = 5,
 			)
 		),
 		list(
@@ -187,6 +188,7 @@
 	payment_department = ACCOUNT_SRV
 	default_price = PAYCHECK_CREW * 0.6
 	extra_price = PAYCHECK_COMMAND * 2.5
+	allow_custom = TRUE
 
 //Changes the settings on the vendor, if the user uses the discount card.
 /obj/machinery/vending/dorms/attackby(obj/item/used_item, mob/living/user, params)

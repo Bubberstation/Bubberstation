@@ -175,7 +175,7 @@
 	var/datum/mod_theme/the_theme = GLOB.mod_themes[plates.theme]
 
 	name = initial(name)
-	name = initial(desc)
+	desc = initial(desc)
 
 	for(var/obj/item/part as anything in get_parts())
 		part.name = initial(name)
@@ -212,11 +212,12 @@
 	desc = to_assimilate.desc
 	extended_desc = to_assimilate.extended_desc
 	for(var/obj/item/mod/module/module in to_assimilate.modules) // Insert every module
-		var/obj/item/mod/module/storage/protean_storage = locate() in modules
-		if(protean_storage) //snowflake storage module code
-			cached_modules += protean_storage
-			to_chat(user, span_notice("[protean_storage] has been pushed aside!"))
-			uninstall(protean_storage)
+		if(istype(module, /obj/item/mod/module/storage))
+			var/obj/item/mod/module/storage/existing_storage = locate() in modules
+			if(existing_storage)
+				cached_modules += existing_storage
+				to_chat(user, span_notice("[existing_storage] has been pushed aside!"))
+				uninstall(existing_storage)
 		if(install(module, user, TRUE))
 			continue
 		if(!module.removable) // Just leave it inside the original suit if it doesn't transfer.
