@@ -87,7 +87,7 @@
 /obj/item/reagent_containers/venom_milker/proc/siphon(mob/living/target, mob/living/user)
 	if (!can_milk(target, user))
 		return FALSE
-	var/datum/action/cooldown/mob_cooldown/aphrodisiacal_bite/bite = locate(/datum/action/cooldown/mob_cooldown/aphrodisiacal_bite) in target.actions
+	var/datum/action/cooldown/mob_cooldown/aphrodisiacal_bite/bite = locate() in target.actions
 	if (isnull(bite))
 		return FALSE
 
