@@ -6,18 +6,15 @@
 	// regenerate_organs with replace doesn't seem to automatically remove invalid organs unfortunately
 	normalize_organs()
 
-
 /datum/species/jelly/get_species_description()
-	return list(
-		"Slimepeople are the product of many years of xenobiological experimentation, \
+	return "Slimepeople are the product of many years of xenobiological experimentation, \
 		Their bodies are simple yet fluid, and resemble single-celled organisms. They are susceptible to the cold. \
 		They are composed of slime jelly, and things that are normally toxic to living species heal them."
-	)
 
 /datum/species/jelly/get_species_lore()
 	return list(
 		"A species essentially crafted whole-cloth by Nanotrasen's R&D department in Sector C7, \
-		slimepeople were produced by uplifting xenobiological slimes made in a laboratory environment.\
+		slimepeople were produced by uplifting xenobiological slimes made in a laboratory environment. \
 		They have since spread out in small numbers all over the universe, but the majority remain in the company's orbit.",
 
 		"Their bodies are malleable, and structurally resemble a single cell, with simple organs in the center of their bodies. \
