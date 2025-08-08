@@ -4,7 +4,7 @@
 	welcome_text = "Damn, they're certainly at that gate alright. Fucked up."
 
 	tag_multipliers = list(
-		TAG_DESTRUCTIVE = 1,
+		TAG_DESTRUCTIVE = 0.75,
 		TAG_CHAOTIC = 0.75,
 		TAG_CREW_ANTAG = 0.25,
 	)
