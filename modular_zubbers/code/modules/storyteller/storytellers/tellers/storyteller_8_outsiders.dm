@@ -9,7 +9,7 @@
 		TAG_CREW_ANTAG = 0.25,
 	)
 	population_min = 35
-	antag_divisor = 8
+	antag_divisor = 10
 	storyteller_type = STORYTELLER_TYPE_INTENSE
 
 	guarantees_roundstart_crewset = TRUE
@@ -17,10 +17,10 @@
 	track_data = /datum/storyteller_data/tracks/outsiders
 
 	starting_point_multipliers = list(
-		EVENT_TRACK_MUNDANE = 0,
-		EVENT_TRACK_MODERATE = 0,
-		EVENT_TRACK_MAJOR = 0,
-		EVENT_TRACK_CREWSET = 0.5,
+		EVENT_TRACK_MUNDANE = 0.5,
+		EVENT_TRACK_MODERATE = 0.5,
+		EVENT_TRACK_MAJOR = 0.75,
+		EVENT_TRACK_CREWSET = 0.15,
 		EVENT_TRACK_GHOSTSET = 1
 	)
 
@@ -29,6 +29,6 @@
 /datum/storyteller_data/tracks/outsiders
 	threshold_mundane = 1200
 	threshold_moderate = 1800
-	threshold_major = 4500
+	threshold_major = 4000
 	threshold_crewset = 5000
-	threshold_ghostset = 3000
+	threshold_ghostset = 4000
