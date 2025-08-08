@@ -9,7 +9,7 @@
 		TAG_CREW_ANTAG = 0.25,
 	)
 	population_min = 35
-	antag_divisor = 6
+	antag_divisor = 8
 	storyteller_type = STORYTELLER_TYPE_INTENSE
 
 	guarantees_roundstart_crewset = TRUE
@@ -26,7 +26,7 @@
 
 	event_repetition_multiplier = 1
 
-/datum/storyteller_data/tracks/enemy
+/datum/storyteller_data/tracks/outsiders
 	threshold_mundane = 1200
 	threshold_moderate = 1800
 	threshold_major = 4500
