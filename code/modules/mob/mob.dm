@@ -1354,7 +1354,7 @@
 	var/pen_info = writing_instrument.get_writing_implement_details()
 	if(!pen_info || (pen_info["interaction_mode"] != MODE_WRITING))
 		if(!silent_if_not_writing_tool)
-			to_chat(src, span_warning("You can't write with the [writing_instrument]!"))
+			to_chat(src, span_warning("You can't write with \the [writing_instrument]!"))
 		return FALSE
 
 	if(!is_literate())
@@ -1371,7 +1371,7 @@
 	var/obj/item/pen/pen = writing_instrument
 
 	if(istype(pen) && pen.requires_gravity)
-		to_chat(src, span_warning("You try to write, but the [writing_instrument] doesn't work in zero gravity!"))
+		to_chat(src, span_warning("You try to write, but \the [writing_instrument] doesn't work in zero gravity!"))
 		return FALSE
 
 	return TRUE
@@ -1532,7 +1532,7 @@
 		return
 	//Bubber edit BEGIN - Allow for people to get hungry faster
 	if(HAS_TRAIT(src, TRAIT_FAST_METABOLISM) && change < 0)
-		change = change * 2
+		change = change * 1.5
 	//Bubber edit END
 
 	nutrition = max(0, nutrition + change)
