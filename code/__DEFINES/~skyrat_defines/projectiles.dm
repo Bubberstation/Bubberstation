@@ -20,3 +20,6 @@
 
 /// Caliber used by the pepperball gun
 #define CALIBER_PEPPERBALL "pepperball"
+
+// Murphy caliber, there was no other way to make it non-compatible with syndie ammo and prevent gaming it
+#define CALIBER_9MM_SEC "9mm Security"

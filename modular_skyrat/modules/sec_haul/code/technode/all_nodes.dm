@@ -13,17 +13,6 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 
-/datum/design/kiboko_box_mag
-	name = "Kiboko Grenade Box Magazine"
-	desc = "An extended capacity box magazine for compatible grenade launcher."
-	id = "solgrenade_extmag"
-	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
-	build_path = /obj/item/ammo_box/magazine/c980_grenade/drum/starts_empty
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/techweb_node/magazineresearch_romfed
 	id = "storedmunition_tech_two"
@@ -41,10 +30,19 @@
 	design_ids += "ammoworkbench_disk_lethal"
 	design_ids += "ammo_workbench"
 
+	design_ids += "s12g_huntingslug"
+	design_ids += "m9mm_sec"
+
 /datum/techweb_node/sec_equip/New()
 	. = ..()
 
 /datum/techweb_node/riot_supression/New()
+	design_ids += "s12g_br"
+
+	. = ..()
+
+/datum/techweb_node/exotic_ammo/New()
+	design_ids += "m9mm_sec_rocket"
 	. = ..()
 
 /datum/techweb_node/syndicate_basic/New()

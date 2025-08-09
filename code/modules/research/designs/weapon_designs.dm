@@ -100,22 +100,6 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
-/datum/design/c38_flare
-	name = "Speedloader (.38 Flare) (VERY Lethal)"
-	desc = "Designed to quickly reload revolvers. Flare casings launch a concentrated particle beam towards a target, lighting them up for everyone to see."
-	id = "c38_flare"
-	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(
-		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 3,
-		/datum/material/uranium = HALF_SHEET_MATERIAL_AMOUNT,
-		/datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT,
-	)
-	build_path = /obj/item/ammo_box/c38/flare
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-
 /datum/design/c38_mag
 	name = "Magazine (.38) (Lethal)"
 	desc = "Designed to tactically reload a NT BR-38 Battle Rifle. Less powerful by design, guns chambered in .38 caliber rounds are still quite popular for use by police forces, \
@@ -214,7 +198,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/c38_flare_mag
-	name = "Magazine (.38 Flae) (VERY Lethal)"
+	name = "Magazine (.38 Flare) (VERY Lethal)"
 	desc = "Designed to tactically reload a NT BR-38 Battle Rifle. Flare casings launch a concentrated particle beam towards a target, lighting them up for everyone to see."
 	id = "c38_flare_mag"
 	build_type = PROTOLATHE | AWAY_LATHE

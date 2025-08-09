@@ -217,3 +217,23 @@
 	name = "Angled Eyes"
 	default_color = "#FFFFFF"
 	affected_bodyparts = HEAD
+
+/datum/body_marking/bubber/protogenlegs // Sprites by CandleJaxx on NovaSector
+	name = "Protogen Leg - Digitigrade"
+	icon_state = "protogen"
+	affected_bodyparts = LEG_RIGHT | LEG_LEFT
+
+/datum/body_marking/bubber/protogenarms
+	name = "Protogen Arm"
+	icon_state = "protogen"
+	affected_bodyparts = ARM_RIGHT | ARM_LEFT
+
+/datum/body_marking/bubber/protogenchest
+	name = "Protogen Chest"
+	icon_state = "protogen"
+	affected_bodyparts = CHEST
+
+/datum/body_marking/bubber/protogencrotch // Sprite by xPokee
+	name = "Protogen Crotch Plate"
+	icon_state = "protogen_c"
+	affected_bodyparts = CHEST

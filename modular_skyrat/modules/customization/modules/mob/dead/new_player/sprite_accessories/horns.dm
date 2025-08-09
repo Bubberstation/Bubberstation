@@ -38,7 +38,7 @@
 	icon_state = "ram"
 
 /datum/sprite_accessory/horns/guilmon
-	name = "Guilmon"
+	name = "Toraxen"
 	icon_state = "guilmon"
 
 /datum/sprite_accessory/horns/drake
