@@ -34,15 +34,24 @@
 /datum/preference/numeric/bodytemp_customization/bodytemp
 	savefile_key = "bodytemp"
 
+
+/datum/quirk/bodytemp/add(client/client_source)
+	. = ..()
+
+	var/mob/living/carbon/human/user = quirk_holder
+	species_normal = user.dna.species.bodytemp_normal
+	species_heat = user.dna.species.bodytemp_heat_damage_limit //Storing the species's default body temps incase the quirk is removed.
+	species_cold = user.dna.species.bodytemp_cold_damage_limit
+	user.dna.species.bodytemp_normal += bodytemp
+	user.dna.species.bodytemp_heat_damage_limit += bodytemp
+	user.dna.species.bodytemp_cold_damage_limit += bodytemp
+
 /datum/quirk/bodytemp/post_add()
 	. = ..()
 
 	var/mob/living/carbon/human/user = quirk_holder
 	var/datum/preferences/prefs = user.client.prefs
 	bodytemp = prefs.read_preference(/datum/preference/numeric/bodytemp_customization/bodytemp)
-	species_normal = user.dna.species.bodytemp_normal
-	species_heat = user.dna.species.bodytemp_heat_damage_limit //Storing the species's default body temps incase the quirk is removed.
-	species_cold = user.dna.species.bodytemp_cold_damage_limit
 	user.dna.species.bodytemp_normal += bodytemp
 	user.dna.species.bodytemp_heat_damage_limit += bodytemp
 	user.dna.species.bodytemp_cold_damage_limit += bodytemp
@@ -53,7 +62,8 @@
 	if(QDELETED(quirk_holder))
 		return
 	var/mob/living/carbon/human/user = quirk_holder
-	bodytemp = 0
 	user.dna.species.bodytemp_normal = species_normal
 	user.dna.species.bodytemp_heat_damage_limit = species_heat
 	user.dna.species.bodytemp_cold_damage_limit = species_cold
+
+
