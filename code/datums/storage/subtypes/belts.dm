@@ -106,7 +106,7 @@
 		/obj/item/radio,
 		/obj/item/reagent_containers/spray/pepper,
 		/obj/item/restraints/handcuffs,
-		/obj/item/restraints/legcuffs/bola, //SKYRAT EDIT ADDITION
+		/obj/item/restraints/legcuffs/bola,
 	))
 
 ///Webbing security belt
