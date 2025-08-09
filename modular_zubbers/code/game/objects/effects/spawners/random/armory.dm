@@ -29,7 +29,6 @@
 		/obj/item/storage/box/rubbershot,
 		/obj/item/storage/box/beanbag,
 		/obj/item/storage/box/beanbag,
-		/obj/item/storage/box/breacherslug
 	)
 	spawn_all_loot = TRUE
 
