@@ -35,8 +35,6 @@
 	. = ..()
 
 /datum/techweb_node/riot_supression/New()
-	design_ids += "s12g_br"
-
 	. = ..()
 
 /datum/techweb_node/exotic_ammo/New()
