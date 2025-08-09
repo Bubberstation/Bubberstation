@@ -8,7 +8,6 @@
 	. = ..()
 	var/old_death_sound = death_sound // You can't do this with initial() as the death sound is set after by the species datum
 	death_sound = null // We don't need them screaming
-	death()
 
 	var/obj/item/organ/stomach/to_remove_stomach = get_organ_slot(ORGAN_SLOT_STOMACH) //No free parts for Proteans.
 	QDEL_NULL(to_remove_stomach)
