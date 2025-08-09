@@ -43,7 +43,7 @@
 	base_icon_state = "plasma_battery"
 	icon_state = "plasma_battery"
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
-	ammo_type = list(/obj/item/ammo_casing/energy/laser/plasma_glob, /obj/item/ammo_casing/energy/laser/plasma_glob/supercharged)
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/plasma_glob)
 	caliber = CALIBER_LASER
 	max_ammo = 15
 	var/overcharged = FALSE

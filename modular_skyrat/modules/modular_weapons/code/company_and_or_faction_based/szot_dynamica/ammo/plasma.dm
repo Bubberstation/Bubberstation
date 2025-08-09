@@ -21,6 +21,7 @@
 	weak_against_armour = TRUE
 
 /obj/item/ammo_casing/energy/laser/plasma_glob/supercharged
+	name = "overcharged plasma globule"
 	projectile_type = /obj/projectile/beam/laser/plasma_glob/supercharged
 	fire_sound = 'modular_zubbers/sound/weapons/incinerate.ogg'
 

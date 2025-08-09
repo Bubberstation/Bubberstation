@@ -81,6 +81,11 @@
 	projectile_damage_multiplier = 3 // 30 damage a shot
 	projectile_wound_bonus = 10 // +55 of the base projectile, burn baby burn
 
+/obj/item/gun/ballistic/automatic/pistol/plasma_marksman/Initialize(mapload)
+	. = ..()
+
+	RegisterSignal(src, COMSIG_MOVABLE_POST_THROW, PROC_REF(shakeit))
+
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_SZOT)
 
@@ -108,23 +113,20 @@
 
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman/proc/update_projspeed(mob/user, current_proj_speed, overclocking)
 	var/shots_in_mag = src.get_ammo()
-	src.say("[shots_in_mag]")
-	if(overclocking == FALSE)
-		if(shots_in_mag >= 1 && shots_in_mag <= 4)
-			current_proj_speed = 1
-		else if(shots_in_mag >= 5 && shots_in_mag <= 7)
-			current_proj_speed = 1.1
-		else if(shots_in_mag >= 8 && shots_in_mag <= 9)
-			current_proj_speed = 1.2
-		else if(shots_in_mag >= 10 && shots_in_mag <= 12)
-			current_proj_speed = 1.3
-		else if(shots_in_mag >= 13 && shots_in_mag <= 16)
-			current_proj_speed = 1.5
-		else
-			current_proj_speed = 0.8
+	if(overclocking)
+		src.projectile_speed_multiplier = 1.6
+	else if(shots_in_mag >= 13 && shots_in_mag <= 16)
+		src.projectile_speed_multiplier = 1.5
+	else if(shots_in_mag >= 10 && shots_in_mag <= 12)
+		src.projectile_speed_multiplier = 1.3
+	else if(shots_in_mag >= 8 && shots_in_mag <= 9)
+		src.projectile_speed_multiplier = 1.2
+	else if(shots_in_mag >= 5 && shots_in_mag <= 7)
+		src.projectile_speed_multiplier = 1.1
+	else if(shots_in_mag >= 1 && shots_in_mag <= 4)
+		src.projectile_speed_multiplier = 1.0
 	else
-		current_proj_speed = 1.6 //CRANK IT UP!
-	src.projectile_speed_multiplier = current_proj_speed
+		src.projectile_speed_multiplier = 0.8
 
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman/proc/activate_oveclock(mob/user, current_proj_speed, overclocking)
 
@@ -142,7 +144,6 @@
 		overclocking = !overclocking
 	balloon_alert(user, "[overclocking ? "Plasma coils overheated, it's going to blow!" : "It's not shutting down!"]")
 	if(overclocking)
-		playsound(user, 'sound/items/weapons/rust_sower_armbomb.ogg', 100, TRUE)
 		overclock(user)
 	update_item_action_buttons()
 
@@ -150,14 +151,34 @@
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman/proc/overclock(mob/living/user, slot)
 	if(user)
 		START_PROCESSING(SSprocessing, src)
+		addtimer(CALLBACK(src, PROC_REF(audio_warning)), 8 SECONDS)
 		addtimer(CALLBACK(src, PROC_REF(kaboom)), 10 SECONDS)
+		shakeit()
+		add_shared_particles(/particles/smoke/steam)
+
+/obj/item/gun/ballistic/automatic/pistol/plasma_marksman/proc/shakeit()
+	SIGNAL_HANDLER
+
+	if(!overclocking)
+		return
+	spasm_animation()
 
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman/proc/kaboom(mob/living/user)
 	STOP_PROCESSING(SSprocessing, src)
-	var/turf/last_surprise = loc
-	explosion(src, light_impact_range = 6, explosion_cause = src)
-	last_surprise.add_liquid(/datum/reagent/toxin/plasma, 20, no_react = FALSE, chem_temp = 600)
+	var/turf/last_surprise = user.loc
+	explosion(src, light_impact_range = 1, flame_range = 3, explosion_cause = src)
+	last_surprise.add_liquid(/datum/reagent/toxin/plasma, 3, no_react = FALSE, chem_temp = 300)
 	new /obj/effect/hotspot(last_surprise)
+	// playsound(src, 'sound/items/weapons/beam_sniper.ogg', 100, 0, 20, 1, ignore_walls = TRUE, falloff_distance = 5)
+	UnregisterSignal(src, COMSIG_MOVABLE_POST_THROW)
+	remove_shared_particles(/particles/bonfire)
+	qdel(src)
+
+/obj/item/gun/ballistic/automatic/pistol/plasma_marksman/proc/audio_warning(mob/living/user)
+	playsound(src, 'modular_zubbers/sound/weapons/plasma_explosion.ogg', 100, FALSE, 20, , , , TRUE)
+	for(var/mob/living/carbon/M in orange(20, src))
+		if(!HAS_TRAIT(M, TRAIT_DEAF))
+			to_chat(M, span_warning("You feel something is very wrong..."))
 
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman/process(seconds_per_tick)
 	var/mob/living/carbon/wielder = loc
