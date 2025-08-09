@@ -11,12 +11,12 @@
 	death()
 
 	var/obj/item/organ/stomach/to_remove_stomach = get_organ_slot(ORGAN_SLOT_STOMACH) //No free parts for Proteans.
-	QDEL_NULL(to_remove)
+	QDEL_NULL(to_remove_stomach)
 
 	var/obj/item/organ/heart/to_remove_heart = get_organ_slot(ORGAN_SLOT_HEART) //No free parts for Proteans.
-	QDEL_NULL(to_remove)
+	QDEL_NULL(to_remove_heart)
 
 	var/obj/item/organ/brain/to_remove_brain = get_organ_slot(ORGAN_SLOT_BRAIN)
-	QDEL_NULL(to_remove)
+	QDEL_NULL(to_remove_brain)
 
 	death_sound = old_death_sound // Now they can die loudly again
