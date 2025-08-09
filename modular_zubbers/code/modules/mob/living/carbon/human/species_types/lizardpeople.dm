@@ -11,7 +11,7 @@
 	return list(
 	"Tizirans (known as Lizardpeople in Federation spaces) are a lizard-like species that once possessed a vast empire.",
 	"They mainly eat raw meat, fish, mushrooms and nuts. Spicy foods cause their bodies to break out in boils. \
-	They are cold-blooded due to their dry and arid homeworld, and their bodies are unable to cope with truly extreme temperatures."
+	They are cold-blooded due to their dry and arid homeworld, and their bodies are unable to cope with truly extreme temperatures.",
 	)
 
 /datum/species/lizard/get_species_lore()
