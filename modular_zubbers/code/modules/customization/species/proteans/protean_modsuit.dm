@@ -364,22 +364,22 @@
 		),
 	)
 
-//Memory Wipe - Activating the Protean's MODSuit inhand for x seconds will cause the Protean to forget the current encounter..
+//Memory Wipe - Shift Right Clicking the Protean's MODSuit inhand and pressing Reset Protean's Memories for x seconds will cause the Protean to forget the current encounter..
 
-/obj/item/mod/control/pre_equipped/protean/proc/reset_ram(mob/living/user, forced = FALSE)
-if(active && !forced)
-		balloon_alert(user, "deactivate modsuit")
+/obj/item/mod/control/pre_equipped/protean/proc/reset_ram(mob/living/user)
+
+	var/obj/item/mod/core/protean/protean_core = core
+	var/mob/living/carbon/human/protean_in_suit = protean_core.linked_species.owner
+	to_chat(user, span_notice("You begin to reset the proteans random access memory."))
+	user.balloon_alert_to_viewers("Resetting Random Access Memory")
+	user.visible_message(span_boldwarning("Warning - [user] has pressed the emergancy memory reboot on [protean_in_suit]!"))
+	playsound(src, 'sound/machines/synth/synth_no.ogg', 100)
+	if(!do_after(user, 30 SECONDS))
 		return
-
-	if(!forced)
-		to_chat(user, span_notice("You begin to reset the proteans random access memory."))
-		suit.balloon_alert_to_viewers("Resetting Random Access Memory")
-		user.visible_message(span_warning("Warning - [user] has pressed the emergancy memory reboot on [source]!"))
-		if(!do_after(user, 30 SECONDS))
-			user.visible_message(span_warning("Alert - [source]'s Random Access Memory Reset. Current memories lost. Any interactions that were ongoing have been forgotten."))
-			to_chat(source, span_warning("Your memories have been reset. You cannot remember who reset you or any of the events leading up to your reset."))
-
-/obj/item/mod/control/pre_equipped/protean/verb/remove_modsuit()
+	user.visible_message(span_warning("Alert - [protean_in_suit]'s Random Access Memory Reset. Current memories lost. Any interactions that were ongoing have been forgotten."))
+	to_chat(protean_in_suit, span_boldwarning("Your memories have been reset. You cannot remember who reset you or any of the events leading up to your reset."))
+	playsound(src, 'sound/machines/synth/synth_yes.ogg', 100)
+/obj/item/mod/control/pre_equipped/protean/verb/ram_reset()
 	set name = "Reset Protean's Memories"
 
 	reset_ram(usr)
