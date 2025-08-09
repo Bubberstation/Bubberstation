@@ -292,7 +292,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	name = "Muridae Traits"
 	desc = "You always thought those jokes were cheesy. This will replace most other tongue-based speech quirks."
 	mob_trait = TRAIT_MURIDAE
-	icon = FA_ICON_MOUSE
+	icon = FA_ICON_CHEESE
 	value = 0
 	medical_record_text = "Patient has an insatiable love for dairy and terrible puns."
 
