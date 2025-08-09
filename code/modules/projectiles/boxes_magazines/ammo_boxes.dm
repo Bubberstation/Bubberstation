@@ -128,6 +128,10 @@
 	max_ammo = 4
 	multiple_sprites = AMMO_BOX_PER_BULLET
 
+/obj/item/ammo_box/a40mm/rubber
+	name = "ammo box (40mm rubber slug)"
+	ammo_type = /obj/item/ammo_casing/a40mm/rubber
+
 /obj/item/ammo_box/rocket
 	name = "rocket bouquet (84mm HE)"
 	icon_state = "rocketbundle"

@@ -50,6 +50,11 @@
 	projectile_type = /obj/projectile/bullet/a40mm
 	newtonian_force = 1.25
 
+/obj/item/ammo_casing/a40mm/rubber
+	name = "40mm rubber shell"
+	desc = "A cased rubber slug. The big brother of the beanbag slug, this thing will knock someone out in one. Doesn't do so great against anyone in armor."
+	projectile_type = /obj/projectile/bullet/shotgun_beanbag/a40mm
+
 /obj/item/ammo_casing/rebar
 	name = "Sharpened Iron Rod"
 	desc = "A Sharpened Iron rod. It's Pointy!"
