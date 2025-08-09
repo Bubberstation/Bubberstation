@@ -116,13 +116,9 @@
 	add_reagents(target.reagents)
 	return TRUE
 
-/datum/action/cooldown/mob_cooldown/venomous_bite/proc/add_reagents(datum/reagents/target, harvesting = FALSE)
+/datum/action/cooldown/mob_cooldown/venomous_bite/proc/add_reagents(datum/reagents/target)
 	var/temp = astype(owner, /mob/living/carbon/human)?.coretemperature
 	var/datum/reagent/local_typepath = reagent_typepath
-	if (harvesting)
-		var/list/spec = /datum/preference/choiced/venomous_bite_venom::venomous_bite_choice_specs[local_typepath]
-		if (!spec[3])
-			local_typepath = /datum/reagent/generic_milked_venom
 
 	target.add_reagent(local_typepath, to_inject, reagtemp = temp)
 	return TRUE

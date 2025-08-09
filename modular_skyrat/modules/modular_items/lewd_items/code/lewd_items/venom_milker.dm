@@ -14,7 +14,7 @@
 /obj/item/reagent_containers/venom_milker/Initialize(mapload)
 	. = ..()
 
-	var/filter_immune_string = /datum/preference/choiced/venomous_bite_venom::filter_immune_string
+	var/filter_immune_string = /datum/preference/choiced/aphrodisiacal_bite_venom::filter_immune_string
 	if (length(filter_immune_string))
 		desc += span_notice("\nThe following reagents cannot be filtered by the neutralizer: [filter_immune_string]")
 
@@ -52,7 +52,7 @@
  * * silent = FALSE: If TRUE, will not give user any feedback.
  */
 /obj/item/reagent_containers/venom_milker/proc/can_milk(mob/living/target, mob/living/user, silent = FALSE)
-	var/datum/action/cooldown/mob_cooldown/venomous_bite/bite = locate() in target.actions
+	var/datum/action/cooldown/mob_cooldown/aphrodisiacal_bite/bite = locate() in target.actions
 	if (isnull(bite))
 		if (!silent)
 			user?.balloon_alert(user, "no fangs!")
@@ -87,7 +87,7 @@
 /obj/item/reagent_containers/venom_milker/proc/siphon(mob/living/target, mob/living/user)
 	if (!can_milk(target, user))
 		return FALSE
-	var/datum/action/cooldown/mob_cooldown/venomous_bite/bite = locate(/datum/action/cooldown/mob_cooldown/venomous_bite) in target.actions
+	var/datum/action/cooldown/mob_cooldown/aphrodisiacal_bite/bite = locate() in target.actions
 	if (isnull(bite))
 		return FALSE
 
@@ -106,7 +106,7 @@
 	return TRUE
 
 /**
- * If a reagent milked from someone with the venom quirk is NOT in /datum/preference/choiced/venomous_bite_venom::milkable_venoms, it will be transformed into this
+ * If a reagent milked from someone with the venom quirk is NOT in /datum/preference/choiced/aphrodisiacal_bite_venom::milkable_venoms, it will be transformed into this
  * generic chem that has no effects.
  */
 /datum/reagent/generic_milked_venom
