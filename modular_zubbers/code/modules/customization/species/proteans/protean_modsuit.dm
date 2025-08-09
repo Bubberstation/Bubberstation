@@ -363,3 +363,23 @@
 			ui_status_user_is_abled(user, owner),
 		),
 	)
+
+//Memory Wipe - Activating the Protean's MODSuit inhand for x seconds will cause the Protean to forget the current encounter..
+
+/obj/item/mod/control/pre_equipped/protean/proc/reset_ram(mob/living/user, forced = FALSE)
+if(active && !forced)
+		balloon_alert(user, "deactivate modsuit")
+		return
+
+	if(!forced)
+		to_chat(user, span_notice("You begin to reset the proteans random access memory."))
+		suit.balloon_alert_to_viewers("Resetting Random Access Memory")
+		user.visible_message(span_warning("Warning - [user] has pressed the emergancy memory reboot on [source]!"))
+		if(!do_after(user, 30 SECONDS))
+			user.visible_message(span_warning("Alert - [source]'s Random Access Memory Reset. Current memories lost. Any interactions that were ongoing have been forgotten."))
+			to_chat(source, span_warning("Your memories have been reset. You cannot remember who reset you or any of the events leading up to your reset."))
+
+/obj/item/mod/control/pre_equipped/protean/verb/remove_modsuit()
+	set name = "Reset Protean's Memories"
+
+	reset_ram(usr)
