@@ -2179,17 +2179,22 @@
 		for (var/obj/item/to_color in exposed_mob.get_equipped_items(include_flags))
 			to_color.add_atom_colour(color_filter, WASHABLE_COLOUR_PRIORITY)
 
+	// BUBBER EDIT REMOVAL BEGIN - COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
+	/*
 	if (ishuman(exposed_mob))
 		var/mob/living/carbon/human/exposed_human = exposed_mob
 		exposed_human.set_facial_haircolor(picked_color, update = FALSE)
 		exposed_human.set_haircolor(picked_color)
+	*/
+	// BUBBER EDIT REMOVAL END - COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
 
 	if (!can_color_mobs)
 		return
 
-	exposed_mob.add_atom_colour(color_filter, WASHABLE_COLOUR_PRIORITY) // BUBBERSTATION CHANGE: REVERTS COLORFUL REAGENT BACK TO THE WAY IT USED TO BE
+	exposed_mob.add_atom_colour(color_filter, WASHABLE_COLOUR_PRIORITY) // BUBBER EDIT ADDITION: COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
 
-	/* BUBBERSTATION CHANGE: REVERTS COLORFUL REAGENT BACK TO THE WAY IT USED TO BE
+	// BUBBER EDIT REMOVAL BEGIN - COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
+	/*
 	if (!iscarbon(exposed_mob))
 		exposed_mob.add_atom_colour(color_filter, WASHABLE_COLOUR_PRIORITY)
 		return
@@ -2201,6 +2206,7 @@
 	for (var/obj/item/bodypart/part as anything in exposed_carbon.bodyparts)
 		part.add_atom_colour(color_filter, WASHABLE_COLOUR_PRIORITY)
 	*/
+	// BUBBER EDIT REMOVAL END - COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
 
 /datum/reagent/colorful_reagent/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
@@ -2215,8 +2221,12 @@
 
 	var/mob/living/carbon/carbon_mob = affected_mob
 	var/color_priority = WASHABLE_COLOUR_PRIORITY
+	// BUBBER EDIT REMOVAL BEGIN - COLORFUL REAGENT IS ALWAYS TEMPORARY
+	/*
 	if (current_cycle >= 30) // Seeps deep into your tissues
 		color_priority = FIXED_COLOUR_PRIORITY
+	*/
+	// BUBBER EDIT REMOVAL END - COLORFUL REAGENT IS ALWAYS TEMPORARY
 
 	for (var/obj/item/organ/organ as anything in carbon_mob.organs)
 		organ.add_atom_colour(color_transition_filter(pick(random_color_list), SATURATION_OVERRIDE), color_priority)
