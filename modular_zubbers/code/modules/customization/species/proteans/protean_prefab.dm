@@ -6,16 +6,10 @@
 
 /mob/living/carbon/human/species/protean/Initialize(mapload)
 	. = ..()
-	var/old_death_sound = death_sound // You can't do this with initial() as the death sound is set after by the species datum
-	death_sound = null // We don't need them screaming
-
-	var/obj/item/organ/stomach/to_remove_stomach = get_organ_slot(ORGAN_SLOT_STOMACH) //No free parts for Proteans.
-	QDEL_NULL(to_remove_stomach)
-
 	var/obj/item/organ/heart/to_remove_heart = get_organ_slot(ORGAN_SLOT_HEART) //No free parts for Proteans.
 	QDEL_NULL(to_remove_heart)
 
+	src.adjustBruteLoss(250) //Death is not apart of our species, so we must take another approach for vessels. (This will not kill them, but leave them in a state in which a head maybe entered, in which the vessel will turn into a MODSuit)
+
 	var/obj/item/organ/brain/to_remove_brain = get_organ_slot(ORGAN_SLOT_BRAIN)
 	QDEL_NULL(to_remove_brain)
-
-	death_sound = old_death_sound // Now they can die loudly again
