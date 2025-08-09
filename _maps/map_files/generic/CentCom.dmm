@@ -2,13 +2,6 @@
 "aa" = (
 /turf/open/space/basic,
 /area/space)
-"ad" = (
-/turf/open/space,
-/area/space)
-"ae" = (
-/obj/machinery/photocopier/gratis/prebuilt,
-/turf/open/floor/iron/grimy,
-/area/centcom/central_command_areas/briefing)
 "ak" = (
 /obj/item/kirbyplants/organic/plant21,
 /obj/effect/turf_decal/tile/red/anticorner/contrasted{
@@ -430,33 +423,6 @@
 /obj/structure/table/reinforced,
 /obj/machinery/computer/records/medical/laptop,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/turf/open/floor/iron/dark,
-/area/centcom/central_command_areas/control)
-"bY" = (
-/obj/machinery/button/door/indestructible{
-	id = "CCsec3";
-	name = "CC Shutter 3 Control";
-	pixel_y = 24
-	},
-/obj/machinery/button/door/indestructible{
-	id = "CCcustoms2";
-	name = "CC Shutter 2 Control";
-	pixel_x = 9;
-	pixel_y = 32
-	},
-/obj/machinery/button/door/indestructible{
-	id = "CCsec1";
-	name = "CC Shutter 1 Control";
-	pixel_y = 40
-	},
-/obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/machinery/button/door/indestructible{
-	id = "CCsec4";
-	name = "CC Shutter 4 Control";
-	pixel_x = -9;
-	pixel_y = 32
-	},
-/obj/machinery/photocopier/gratis/prebuilt,
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/control)
 "bZ" = (
@@ -1631,6 +1597,10 @@
 /obj/machinery/griddle,
 /turf/open/floor/iron/dark,
 /area/centcom/tdome/observation)
+"hx" = (
+/obj/machinery/photocopier/gratis/prebuilt,
+/turf/open/floor/iron/grimy,
+/area/centcom/central_command_areas/briefing)
 "hz" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
@@ -3172,6 +3142,13 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/supply)
+"ou" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/photocopier/gratis/prebuilt,
+/turf/open/floor/iron,
+/area/centcom/central_command_areas/supply)
 "ov" = (
 /obj/machinery/computer/cargo{
 	dir = 8
@@ -3731,13 +3708,6 @@
 /obj/effect/mapping_helpers/airlock/access/all/admin/captain,
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/prison)
-"qM" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/machinery/photocopier/gratis/prebuilt,
-/turf/open/floor/iron,
-/area/centcom/central_command_areas/supply)
 "qO" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -4562,18 +4532,6 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/control)
-"uz" = (
-/obj/docking_port/stationary{
-	dir = 4;
-	dwidth = 25;
-	height = 50;
-	json_key = "emergency";
-	name = "CentCom Emergency Shuttle Dock";
-	shuttle_id = "emergency_away";
-	width = 50
-	},
-/turf/open/space,
-/area/space)
 "uA" = (
 /obj/structure/chair{
 	dir = 4
@@ -5565,18 +5523,6 @@
 	},
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/armory)
-"yV" = (
-/obj/docking_port/stationary{
-	dir = 8;
-	dwidth = 8;
-	height = 8;
-	json_key = "cargo";
-	name = "CentCom";
-	shuttle_id = "cargo_away";
-	width = 20
-	},
-/turf/open/space,
-/area/space)
 "yW" = (
 /obj/item/kirbyplants/organic/plant21,
 /obj/effect/turf_decal/tile/green{
@@ -6707,6 +6653,18 @@
 /obj/effect/light_emitter/thunderdome,
 /turf/open/floor/iron,
 /area/centcom/tdome/arena)
+"DT" = (
+/obj/docking_port/stationary{
+	dir = 8;
+	dwidth = 10;
+	height = 30;
+	json_key = "ferry";
+	name = "CentCom Ferry Dock";
+	shuttle_id = "ferry_away";
+	width = 21
+	},
+/turf/open/space/basic,
+/area/space)
 "DU" = (
 /obj/item/kirbyplants/organic/plant21,
 /obj/effect/turf_decal/stripes/line,
@@ -7379,6 +7337,33 @@
 /obj/structure/closet/secure_closet/quartermaster,
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/supply)
+"HY" = (
+/obj/machinery/button/door/indestructible{
+	id = "CCsec3";
+	name = "CC Shutter 3 Control";
+	pixel_y = 24
+	},
+/obj/machinery/button/door/indestructible{
+	id = "CCcustoms2";
+	name = "CC Shutter 2 Control";
+	pixel_x = 9;
+	pixel_y = 32
+	},
+/obj/machinery/button/door/indestructible{
+	id = "CCsec1";
+	name = "CC Shutter 1 Control";
+	pixel_y = 40
+	},
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/button/door/indestructible{
+	id = "CCsec4";
+	name = "CC Shutter 4 Control";
+	pixel_x = -9;
+	pixel_y = 32
+	},
+/obj/machinery/photocopier/gratis/prebuilt,
+/turf/open/floor/iron/dark,
+/area/centcom/central_command_areas/control)
 "HZ" = (
 /obj/structure/railing{
 	dir = 6
@@ -7443,18 +7428,6 @@
 	},
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/control)
-"Io" = (
-/obj/docking_port/stationary{
-	dir = 8;
-	dwidth = 10;
-	height = 30;
-	json_key = "ferry";
-	name = "CentCom Ferry Dock";
-	shuttle_id = "ferry_away";
-	width = 21
-	},
-/turf/open/space,
-/area/space)
 "Ip" = (
 /obj/structure/chair/stool/bar/directional/east,
 /turf/open/floor/carpet/red,
@@ -7878,6 +7851,18 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/textured_large,
 /area/centcom/central_command_areas/evacuation/ship)
+"Lr" = (
+/obj/docking_port/stationary{
+	dir = 8;
+	dwidth = 8;
+	height = 8;
+	json_key = "cargo";
+	name = "CentCom";
+	shuttle_id = "cargo_away";
+	width = 20
+	},
+/turf/open/space/basic,
+/area/space)
 "Lt" = (
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/centcom/central_command_areas/evacuation/ship)
@@ -10573,6 +10558,18 @@
 	},
 /turf/open/floor/iron/grimy,
 /area/centcom/central_command_areas/admin)
+"XO" = (
+/obj/docking_port/stationary{
+	dir = 4;
+	dwidth = 25;
+	height = 50;
+	json_key = "emergency";
+	name = "CentCom Emergency Shuttle Dock";
+	shuttle_id = "emergency_away";
+	width = 50
+	},
+/turf/open/space/basic,
+/area/space)
 "XQ" = (
 /obj/machinery/computer/crew{
 	dir = 1
@@ -45350,7 +45347,7 @@ ZN
 oe
 aa
 aa
-Io
+DT
 aa
 aa
 aa
@@ -47925,7 +47922,7 @@ wz
 qR
 Rd
 eF
-ae
+hx
 TE
 az
 eF
@@ -49950,7 +49947,7 @@ aa
 aa
 aa
 aa
-yV
+Lr
 aa
 aa
 aa
@@ -52533,7 +52530,7 @@ kj
 kj
 nm
 iF
-qM
+ou
 iR
 oJ
 lo
@@ -53829,7 +53826,7 @@ Za
 tK
 gL
 io
-bY
+HY
 uc
 kl
 xV
@@ -63851,7 +63848,7 @@ aa
 aa
 aa
 aa
-uz
+XO
 aa
 aa
 aa
@@ -65296,7 +65293,7 @@ aa
 aa
 aa
 aa
-ad
+aa
 aa
 aa
 aa

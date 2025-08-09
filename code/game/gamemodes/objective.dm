@@ -207,7 +207,7 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 	button_icon = 'icons/obj/devices/tracker.dmi'
 	button_icon_state = "beacon"
 
-/datum/action/special_equipment_fallback/Trigger(trigger_flags)
+/datum/action/special_equipment_fallback/Trigger(mob/clicker, trigger_flags)
 	. = ..()
 	if(!.)
 		return FALSE

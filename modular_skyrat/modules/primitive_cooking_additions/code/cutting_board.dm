@@ -100,7 +100,7 @@
 		if(!processed_thing.reagents) //backup in case we really fuck up
 			continue
 
-		processed_thing.reagents.copy_to(new_food_item, processed_thing.reagents.total_volume, multiplier = 1 / food_multiplier)
+		processed_thing.reagents.trans_to(new_food_item, processed_thing.reagents.total_volume, multiplier = 1 / food_multiplier, copy_only = TRUE)
 
 	qdel(processed_thing)
 	update_appearance()

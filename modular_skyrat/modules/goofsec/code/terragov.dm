@@ -307,7 +307,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 			ID_to_give.registered_age = human_to_equip.age
 		ID_to_give.update_label()
 		ID_to_give.update_icon()
-		human_to_equip.sec_hud_set_ID()
+		human_to_equip.update_ID_card()
 
 /obj/item/modular_computer/pda/request_911
 	name = "Terragov PDA"
