@@ -4,12 +4,12 @@
  * Returns STYLE_TAUR_* or NONE.
  */
 /mob/living/carbon/human/proc/get_taur_mode()
-	var/taur_mutant_bodypart = dna.species.mutant_bodyparts["taur"]
+	var/taur_mutant_bodypart = dna.species.mutant_bodyparts[FEATURE_TAUR]
 	if(!taur_mutant_bodypart)
 		return NONE
 
 	var/bodypart_name = taur_mutant_bodypart[MUTANT_INDEX_NAME]
-	var/datum/sprite_accessory/taur/taur = SSaccessories.sprite_accessories["taur"][bodypart_name]
+	var/datum/sprite_accessory/taur/taur = SSaccessories.sprite_accessories[FEATURE_TAUR][bodypart_name]
 	if(!taur)
 		return NONE
 
@@ -18,12 +18,10 @@
 /datum/sprite_accessory/taur
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/taur.dmi'
 	key = "taur"
-	generic = "Taur Type"
 	color_src = USE_MATRIXED_COLORS
 	dimension_x = 64
 	center = TRUE
 	relevent_layers = list(BODY_FRONT_LAYER, BODY_ADJ_LAYER, BODY_FRONT_UNDER_CLOTHES, ABOVE_BODY_FRONT_HEAD_LAYER)
-	genetic = TRUE
 	organ_type = /obj/item/organ/taur_body/horselike // horselike by default, dont forget to override if you make another bodytype
 	flags_for_organ = SPRITE_ACCESSORY_HIDE_SHOES
 	/// Must be a single specific tauric suit variation bitflag. Don't do FLAG_1|FLAG_2

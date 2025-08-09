@@ -2,7 +2,6 @@
 	icon = 'modular_zubbers/icons/mob/sprite_accesory/ipc_screens.dmi'
 	color_src = null
 	key = MUTANT_SYNTH_SCREEN
-	generic = "Screen"
 	relevent_layers = list(BODY_FRONT_UNDER_CLOTHES)
 	organ_type = /obj/item/organ/synth_screen
 

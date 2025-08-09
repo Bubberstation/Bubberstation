@@ -1,10 +1,8 @@
 /datum/sprite_accessory/xenodorsal
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/xeno_parts.dmi'
-	generic = "Dorsal Spines"
 	key = "xenodorsal"
 	color_src = USE_ONE_COLOR
 	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER)
-	genetic = TRUE
 	organ_type = /obj/item/organ/xenodorsal
 
 /datum/sprite_accessory/xenodorsal/none
@@ -44,10 +42,8 @@
 //HEADS
 /datum/sprite_accessory/xenohead
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/xeno_parts.dmi'
-	generic = "Caste Head"
 	key = "xenohead"
 	relevent_layers = list(BODY_ADJ_LAYER)
-	genetic = TRUE
 	organ_type = /obj/item/organ/xenohead
 
 /datum/sprite_accessory/xenohead/none

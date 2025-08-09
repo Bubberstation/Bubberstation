@@ -73,12 +73,12 @@
 
 /datum/species/xeno/prepare_human_for_preview(mob/living/carbon/human/xeno)
 	var/xeno_color = "#525288"
-	xeno.dna.features["mcolor"] = xeno_color
+	xeno.dna.features[FEATURE_MUTANT_COLOR] = xeno_color
 	xeno.eye_color_left = "#30304F"
 	xeno.eye_color_right = "#30304F"
-	xeno.dna.mutant_bodyparts["tail"] = list(MUTANT_INDEX_NAME = "Xenomorph Tail", MUTANT_INDEX_COLOR_LIST = list(xeno_color, xeno_color, xeno_color))
-	xeno.dna.mutant_bodyparts["xenodorsal"] = list(MUTANT_INDEX_NAME = "Standard", MUTANT_INDEX_COLOR_LIST = list(xeno_color))
-	xeno.dna.mutant_bodyparts["xenohead"] = list(MUTANT_INDEX_NAME = "Standard", MUTANT_INDEX_COLOR_LIST = list(xeno_color, xeno_color, xeno_color))
+	xeno.dna.mutant_bodyparts[FEATURE_TAIL_GENERIC] = list(MUTANT_INDEX_NAME = "Xenomorph Tail", MUTANT_INDEX_COLOR_LIST = list(xeno_color, xeno_color, xeno_color))
+	xeno.dna.mutant_bodyparts[FEATURE_XENODORSAL] = list(MUTANT_INDEX_NAME = "Standard", MUTANT_INDEX_COLOR_LIST = list(xeno_color))
+	xeno.dna.mutant_bodyparts[FEATURE_XENOHEAD] = list(MUTANT_INDEX_NAME = "Standard", MUTANT_INDEX_COLOR_LIST = list(xeno_color, xeno_color, xeno_color))
 	regenerate_organs(xeno, src, visual_only = TRUE)
 	xeno.update_body(TRUE)
 

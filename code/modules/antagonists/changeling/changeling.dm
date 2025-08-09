@@ -858,7 +858,7 @@
 	for(var/obj/item/bodypart/limb as anything in user.bodyparts)
 		limb.update_limb(is_creating = TRUE)
 
-	user.updateappearance(mutcolor_update = TRUE, eyeorgancolor_update = TRUE) // SKYRAT EDIT
+	user.updateappearance(mutcolor_update = TRUE)
 	user.domutcheck()
 
 	// Get rid of any scars from previous Changeling-ing
@@ -960,7 +960,7 @@
 	user.visual_only_organs = TRUE
 	chosen_dna.copy_dna(user.dna, COPY_DNA_SE|COPY_DNA_SPECIES)
 	user.visual_only_organs = initial(user.visual_only_organs)
-	user.updateappearance(mutcolor_update = TRUE, eyeorgancolor_update = TRUE)
+	user.updateappearance(mutcolor_update = TRUE)
 	user.regenerate_icons()
 	user.name = user.get_visible_name()
 	current_profile = chosen_profile
