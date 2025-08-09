@@ -29,8 +29,6 @@
 	design_ids += "s12g_huntingslug"
 	design_ids += "ammoworkbench_disk_lethal"
 	design_ids += "ammo_workbench"
-
-	design_ids += "s12g_huntingslug"
 	design_ids += "m9mm_sec"
 
 /datum/techweb_node/sec_equip/New()

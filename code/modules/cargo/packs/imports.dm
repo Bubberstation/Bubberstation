@@ -163,7 +163,7 @@
 	crate_type = /obj/structure/closet/crate/secure/syndicate/gorlex/weapons/bustedlock
 
 /datum/supply_pack/imports/wt550ammo
-	name = "Smuggled WT-550 Ammo Crate (Mixed)"
+	name = "Smuggled WT-550 Ammo Crate"
 	desc = "(*!&@#OPERATIVE, YOU LIKE THAT WT-550? THEN WHY NOT EQUIP YOURSELF WITH SOME MORE AMMO!!#@*$"
 	hidden = TRUE
 	cost = CARGO_CRATE_VALUE * 4
