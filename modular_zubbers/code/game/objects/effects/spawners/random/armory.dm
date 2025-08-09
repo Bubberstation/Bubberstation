@@ -29,7 +29,6 @@
 		/obj/item/storage/box/rubbershot,
 		/obj/item/storage/box/beanbag,
 		/obj/item/storage/box/beanbag,
-		/obj/item/storage/box/breacherslug
 	)
 	spawn_all_loot = TRUE
 
@@ -41,14 +40,12 @@
 
 /obj/effect/spawner/random/armory/laser_gun
 	loot = list(
-		/obj/item/gun/ballistic/automatic/wt550/security/flathead
+		/obj/item/gun/ballistic/automatic/wt550/security
 	)
 	spawn_loot_count = 2
 
 /obj/effect/spawner/random/armory/e_gun
 	loot = list(
-		/obj/item/gun/microfusion/mcr01,
-		/obj/item/gun/microfusion/mcr01,
 		/obj/item/gun/energy/e_gun,
 		/obj/item/gun/energy/e_gun,
 		/obj/item/gun/energy/laser,

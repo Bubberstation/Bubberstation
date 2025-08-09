@@ -263,3 +263,4 @@
 	roles = list(/datum/antagonist/ert/armadyne/high_alert)
 	leader_role = /datum/antagonist/ert/armadyne/leader/high_alert
 	rename_team = "Armadyne PMC (High Alert)"
+
