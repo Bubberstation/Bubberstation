@@ -25,19 +25,10 @@
 	for(var/datum/crafting_recipe/recipe as anything in (GLOB.cooking_recipes))
 		if(istype(edible, /obj/item/food))
 			possible_recipes += recipe
-			return possible_recipes
 		if(length(possible_recipes))
 			if(length(possible_recipes) > 2)
 				possible_recipes -= src.last_recipe
-				return possible_recipes
 			var/datum/crafting_recipe/chosen = pick(possible_recipes)
 			to_chat(owner, span_notice("[edible] could probably be used to make [chosen]"))
 		else
 			to_chat(owner, span_notice("Nothing more can be made from this."))
-
-/proc/random_recipe()
-	var/list/possible_recipes = list()
-	for(var/datum/crafting_recipe/recipe in GLOB.cooking_recipes)
-		if(istype(edible, /obj/item/food))
-			possible_recipes += recipe
-			return possible_recipes
