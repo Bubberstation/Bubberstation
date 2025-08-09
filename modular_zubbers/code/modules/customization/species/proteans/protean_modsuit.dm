@@ -370,7 +370,7 @@
 
 	var/obj/item/mod/core/protean/protean_core = core
 	var/mob/living/carbon/human/protean_in_suit = protean_core.linked_species.owner
-	to_chat(user, span_notice("You begin to reset the proteans random access memory."))
+	to_chat(user, span_notice("You begin to reset the protean's random access memory."))
 	user.balloon_alert_to_viewers("Resetting Random Access Memory")
 	user.visible_message(span_boldwarning("Warning - [user] has pressed the emergancy memory reboot on [protean_in_suit]!"))
 	playsound(src, 'sound/machines/synth/synth_no.ogg', 100)
