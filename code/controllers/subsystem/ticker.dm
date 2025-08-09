@@ -35,7 +35,8 @@ SUBSYSTEM_DEF(ticker)
 	var/start_at
 
 	var/gametime_offset = 432000 //Deciseconds to add to world.time for station time.
-	var/station_time_rate_multiplier = 12 //factor of station time progressal vs real time.
+	var/station_time_rate_multiplier = 2 //factor of station time progressal vs real time. // BUBBER EDIT CHANGE - SERVER TIME OFFSET - ORIGINAL: 12
+	var/server_time_offset // Offset between server time and station time // BUBBER EDIT ADDITION - SERVER TIME OFFSET
 
 	/// Num of players, used for pregame stats on statpanel
 	var/totalPlayers = 0
@@ -147,13 +148,18 @@ SUBSYSTEM_DEF(ticker)
 
 	start_at = world.time + (CONFIG_GET(number/lobby_countdown) * (1 SECONDS))
 	round_start_time = start_at // May be changed later, but prevents the time from jumping back when the round actually starts
+	server_time_offset = (CONFIG_GET(number/shift_time_clock_offset) * (1 MINUTES)) // BUBBER EDIT ADD: SERVER TIME OFFSET
 	if(CONFIG_GET(flag/randomize_shift_time))
 		gametime_offset = rand(0, 23) * (1 HOURS)
 	else if(CONFIG_GET(flag/shift_time_realtime))
-		gametime_offset = world.timeofday + GLOB.timezoneOffset
-		station_time_rate_multiplier = 1
+		gametime_offset = world.timeofday + GLOB.timezoneOffset + server_time_offset // BUBBER EDIT CHANGE - SERVER TIME OFFSET - ORIGINAL: gametime_offset = world.timeofday + GLOB.timezoneOffset
+		// station_time_rate_multiplier = 1 // BUBBER EDIT REMOVAL
 	else
 		gametime_offset = (CONFIG_GET(number/shift_time_start_hour) * (1 HOURS))
+	// BUBBER EDIT ADD BEGIN - SERVER TIME OFFSET
+	message_admins("Station time set to [station_time_timestamp(format = "hh:mm")]. Night shift transitions are [SSnightshift.can_fire ? span_vote_notice("enabled") : span_comradio("disabled")].")
+	log_dynamic("Station time set to [station_time_timestamp(format = "hh:mm")]. Server time: [time2text(world.timeofday, "hh:mm", world.timezone)]. Server time offset: [server_time_offset / (1 MINUTES)] min. Night shift transitions are [SSnightshift.can_fire ? "enabled" : "disabled"].")
+	// BUBBER EDIT ADD END - SERVER TIME OFFSET
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/ticker/fire()
