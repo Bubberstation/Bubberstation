@@ -377,7 +377,17 @@ function SpeciesPageInner(props: SpeciesPageInnerProps) {
                     maxHeight="45vh"
                     mr={-1} /* SKYRAT EDIT END */
                   >
-                    {currentSpecies.desc}
+                    {currentSpecies.lore.map((text, index) => (
+                      <Box key={index} maxWidth="100%">
+                        {text}
+                        {index !== currentSpecies.lore.length - 1 && (
+                          <>
+                            <br />
+                            <br />
+                          </>
+                        )}
+                      </Box>
+                    ))}
                   </BlockQuote>
                 </Section>
               </Box>
