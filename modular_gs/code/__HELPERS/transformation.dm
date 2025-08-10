@@ -1,5 +1,5 @@
 /client/proc/breadify(atom/movable/target)
-	var/obj/item/reagent_containers/food/snacks/store/bread/plain/funnyBread = new(get_turf(target))
+	var/obj/item/food/store/bread/plain/funnyBread = new(get_turf(target))
 	target.forceMove(funnyBread)
 
 GLOBAL_LIST_EMPTY(transformation_animation_objects)

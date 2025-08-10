@@ -35,9 +35,9 @@
 	)
 
 	mail_goodies = list(
-		/obj/item/reagent_containers/food/snacks/donut/caramel = 10,
-		/obj/item/reagent_containers/food/snacks/donut/matcha = 10,
-		/obj/item/reagent_containers/food/snacks/donut/blumpkin = 5,
+		/obj/item/food/donut/caramel = 10,
+		/obj/item/food/donut/matcha = 10,
+		/obj/item/food/donut/blumpkin = 5,
 //		/obj/item/clothing/mask/whistle = 5,
 //		/obj/item/melee/baton/boomerang/loaded = 1
 	)

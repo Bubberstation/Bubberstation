@@ -5,7 +5,7 @@
 	icon_state = "thaadra"
 	species = "thaadra"
 	plantname = "Thaadra Plant"
-	product = /obj/item/reagent_containers/food/snacks/grown/thaadra
+	product = /obj/item/food/grown/thaadra
 	lifespan = 55
 	endurance = 35
 	yield = 5
@@ -15,7 +15,7 @@
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
 	reagents_add = list(/datum/reagent/silver = 0.1)
 
-/obj/item/reagent_containers/food/snacks/grown/thaadra
+/obj/item/food/grown/thaadra
 	seed = /obj/item/seeds/thaadra
 	name = "thaadra"
 	desc = "It's a little piece of thaadra."

@@ -5,7 +5,7 @@
 	icon_state = "surik"
 	species = "surik"
 	plantname = "Surik Plant"
-	product = /obj/item/reagent_containers/food/snacks/grown/surik
+	product = /obj/item/food/grown/surik
 	lifespan = 55
 	endurance = 35
 	yield = 5
@@ -15,7 +15,7 @@
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
 	reagents_add = list(/datum/reagent/consumable/frostoil = 0.1)
 
-/obj/item/reagent_containers/food/snacks/grown/surik
+/obj/item/food/grown/surik
 	seed = /obj/item/seeds/surik
 	name = "surik"
 	desc = "It's a little piece of surik."

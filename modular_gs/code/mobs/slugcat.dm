@@ -16,7 +16,7 @@
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	minbodytemp = 200
 	maxbodytemp = 400
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 2)
+	butcher_results = list(/obj/item/food/meat/slab = 2)
 	unsuitable_atmos_damage = 0.5
 	animal_species = /mob/living/simple_animal/pet/slugcat
 	response_help = "pets"

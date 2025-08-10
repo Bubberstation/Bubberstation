@@ -5,7 +5,7 @@
 	icon_state = "shand"
 	species = "shand"
 	plantname = "Shand Plant"
-	product = /obj/item/reagent_containers/food/snacks/grown/shand
+	product = /obj/item/food/grown/shand
 	lifespan = 55
 	endurance = 35
 	yield = 5
@@ -15,7 +15,7 @@
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
 	reagents_add = list(/datum/reagent/pax = 0.1)
 
-/obj/item/reagent_containers/food/snacks/grown/shand
+/obj/item/food/grown/shand
 	seed = /obj/item/seeds/shand
 	name = "shand"
 	desc = "It's a little piece of shand."

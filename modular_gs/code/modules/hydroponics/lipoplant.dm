@@ -3,7 +3,7 @@
 	desc = "These seeds grow into a foreign plant."
 	species = "adipolipus"
 	plantname = "Adipolipus"
-	product = /obj/item/reagent_containers/food/snacks/grown/lipofruit
+	product = /obj/item/food/grown/lipofruit
 	lifespan = 30
 	potency = 20
 	maturation = 8
@@ -17,7 +17,7 @@
 	icon_dead = "lipo-dead" // Same for the dead icon
 	icon_harvest = "lipo-harvest"
 
-/obj/item/reagent_containers/food/snacks/grown/lipofruit
+/obj/item/food/grown/lipofruit
 	seed = /obj/item/seeds/lipoplant
 	name = "lipofruit"
 	desc = "A foreign fruit with an hard shell. Perhaps something sharp could open it?"
@@ -36,7 +36,7 @@
 	distill_reagent = "creme_de_coconut"
 	var/opened = FALSE
 
-/obj/item/reagent_containers/food/snacks/grown/lipofruit/attackby(obj/item/W, mob/user, params)
+/obj/item/food/grown/lipofruit/attackby(obj/item/W, mob/user, params)
 	if(!opened && W.sharpness)
 		user.show_message("<span class='notice'>You slice the fruit open!</span>", 1)
 		opened = TRUE
@@ -49,7 +49,7 @@
 		return
 	return ..()
 
-/obj/item/reagent_containers/food/snacks/grown/lipofruit/attack(mob/living/M, mob/user, obj/target)
+/obj/item/food/grown/lipofruit/attack(mob/living/M, mob/user, obj/target)
 	if(!opened)
 		return
 	if(!canconsume(M, user))
@@ -92,7 +92,7 @@
 		icon_state = "lipo_nutcut_empty"
 		desc = "A foreign fruit with an hard shell."
 
-/obj/item/reagent_containers/food/snacks/grown/lipofruit/afterattack(obj/target, mob/user, proximity)
+/obj/item/food/grown/lipofruit/afterattack(obj/target, mob/user, proximity)
 	. = ..()
 	if((!proximity) || !check_allowed_items(target,target_self=1))
 		return

@@ -415,11 +415,6 @@
 		else
 			render_list += "<span class='info ml-1'>[blood_type?.get_blood_name() || "Blood"] alcohol content: [blood_alcohol_content]%</span><br>"
 
-	//GS13 EDIT START BFI/WEIGHT ON SCANNERS
-	if(istype(carbontarget))
-		render_list += span_info("Subject weighs [carbontarget.calculate_weight_in_pounds()] pounds ([carbontarget.fatness] BFI.)")
-	//GS13 EDIT END
-
 	//Diseases
 	var/disease_hr = FALSE
 	for(var/datum/disease/disease as anything in target.diseases)
@@ -446,6 +441,11 @@
 		if(consequences)
 			render_list += consequences.get_health_analyzer_link_text(user)
 	// SKYRAT EDIT END
+
+	//GS13 EDIT START BFI/WEIGHT ON SCANNERS
+	if(istype(carbontarget))
+		render_list += span_info("Subject weighs [carbontarget.calculate_weight_in_pounds()] pounds ([carbontarget.fatness] BFI.)")
+	//GS13 EDIT END
 
 	//BUBBERSTATION EDIT ADDITION - CHANGELING ZOMBIE STUFF
 	var/datum/component/changeling_zombie_infection/cling_infection = target.GetComponent(/datum/component/changeling_zombie_infection)

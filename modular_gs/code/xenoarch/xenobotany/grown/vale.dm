@@ -5,7 +5,7 @@
 	icon_state = "vale"
 	species = "vale"
 	plantname = "Vale Plant"
-	product = /obj/item/reagent_containers/food/snacks/grown/vale
+	product = /obj/item/food/grown/vale
 	lifespan = 55
 	endurance = 35
 	yield = 5
@@ -15,7 +15,7 @@
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
 	reagents_add = list(/datum/reagent/slime_toxin = 0.1)
 
-/obj/item/reagent_containers/food/snacks/grown/vale
+/obj/item/food/grown/vale
 	seed = /obj/item/seeds/vale
 	name = "vale"
 	desc = "It's a little piece of vale."

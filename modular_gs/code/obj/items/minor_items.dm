@@ -46,7 +46,7 @@
 
 //evil fucking donut
 
-/obj/item/reagent_containers/food/snacks/donut/evil_superfat
+/obj/item/food/donut/evil_superfat
 	name = "Evil Fuckin' Donut"
 	desc = "Merely looking at this thing makes you feel like you're getting fat..."
 	bitesize = 100 // Always eat it in one bite
@@ -55,7 +55,7 @@
 
 //blueberry gum snack
 
-/obj/item/reagent_containers/food/snacks/blueberry_gum
+/obj/item/food/blueberry_gum
 	name = "blueberry gum"
 	icon = 'modular_gs/icons/obj/gum.dmi'
 	icon_state = "gum_wrapped"

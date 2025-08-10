@@ -44,7 +44,7 @@
 /datum/reagent/blueberry_juice/proc/fat_hide()
 	return (124 * (volume * volume))/1000	//123'840 600% size, about 56'000 400% size, calc was: (3 * (volume * volume))/50
 
-// /obj/item/reagent_containers/food/snacks/meat/steak/troll
+// /obj/item/food/meat/steak/troll
 // 	name = "Troll steak"
 // 	desc = "In its sliced state it remains dormant, but once the troll meat comes in contact with stomach acids, it begins a perpetual cycle of constant regrowth and digestion. You probably shouldn't eat this."
 // 	var/hunger_threshold = NUTRITION_LEVEL_FULL
