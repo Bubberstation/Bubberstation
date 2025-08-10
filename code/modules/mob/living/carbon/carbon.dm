@@ -1152,6 +1152,11 @@
 			// /obj/item/wash() already updates our clothing slot
 			. = worn.wash(clean_types) || .
 
+	// BUBBER EDIT ADDITION BEGIN - COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
+	if(clean_types & CLEAN_TYPE_LIGHT_DECAL)
+		remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
+	// BUBBER EDIT ADDITION END - COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
+
 /// if any of our bodyparts are bleeding
 /mob/living/carbon/proc/is_bleeding()
 	for(var/obj/item/bodypart/part as anything in bodyparts)
@@ -1342,6 +1347,11 @@
 	SHOULD_CALL_PARENT(TRUE)
 
 	if(isnull(dna))
+		return
+
+	if(istext(new_blood_type))
+		new_blood_type = get_blood_type(new_blood_type)
+	if(!istype(new_blood_type))
 		return
 
 	if(get_bloodtype() == new_blood_type) // already has this blood type, we don't need to do anything.
