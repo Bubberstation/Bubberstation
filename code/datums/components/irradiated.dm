@@ -26,6 +26,11 @@
 	if (!CAN_IRRADIATE(parent))
 		return COMPONENT_INCOMPATIBLE
 
+	// BUBBER EDIT - Prevent double-whammies for Isotropic Stability quirk
+	if(HAS_TRAIT(parent, TRAIT_IRRADIATED))
+		return
+	// BUBBER EDIT END
+
 	// This isn't incompatible, it's just wrong
 	if (HAS_TRAIT(parent, TRAIT_RADIMMUNE))
 		qdel(src)
@@ -61,6 +66,11 @@
 	))
 
 /datum/component/irradiated/Destroy(force)
+	// BUBBER EDIT- Prevent double-whammies for Isotropic Stability quirk
+	if(src != parent.GetComponent(/datum/component/irradiated))
+		return ..()
+	// BUBBER EDIT END
+
 	var/mob/living/parent_movable = parent //BUBBERSTATION CHANGE: MOVABLE TO LIVING
 	if (istype(parent_movable))
 		parent_movable.remove_filter("rad_glow")
@@ -90,6 +100,13 @@
 		return PROCESS_KILL
 
 	if (should_halt_effects(parent))
+		// BUBBER EDIT BEGIN
+		// Mob is radiation resistant but still metabolizes sources into toxins
+		if(HAS_TRAIT(parent, TRAIT_RAD_RESISTANT))
+			if(exposed_to_danger)
+				process_tox_damage(human_parent, seconds_per_tick)
+			exposed_to_danger = FALSE
+		// BUBBER EDIT END
 		return
 
 	if (human_parent.stat != DEAD)

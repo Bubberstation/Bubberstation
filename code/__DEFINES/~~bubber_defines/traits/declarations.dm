@@ -41,3 +41,6 @@
 
 // makes it so this mob loses nutrition twice as fast
 #define TRAIT_FAST_METABOLISM "fast_metabolism"
+
+// Makes it do this mob resists negative effects of being irradiated
+#define TRAIT_RAD_RESISTANT "radiation_resistant"
