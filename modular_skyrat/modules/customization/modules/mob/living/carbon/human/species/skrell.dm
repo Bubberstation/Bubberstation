@@ -72,7 +72,7 @@
 	skrell.dna.features["mcolor"] = skrell_color
 	skrell.dna.features["mcolor2"] = skrell_color
 	skrell.dna.features["mcolor3"] = skrell_color
-	skrell.dna.mutant_bodyparts["skrell_hair"] = list(MUTANT_INDEX_NAME = "Female", MUTANT_INDEX_COLOR_LIST = list(skrell_color, skrell_color, skrell_color))
+	skrell.dna.mutant_bodyparts["skrell_hair"] = list(MUTANT_INDEX_NAME = "Female (Long)", MUTANT_INDEX_COLOR_LIST = list(skrell_color, skrell_color, skrell_color))
 	regenerate_organs(skrell, src, visual_only = TRUE)
 	skrell.update_body(TRUE)
 

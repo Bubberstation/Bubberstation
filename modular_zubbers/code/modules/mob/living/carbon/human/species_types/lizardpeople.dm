@@ -12,3 +12,16 @@
 		throughout their centuries in the stars to possess a large spacefaring \
 		empire: though now they must contend with their younger, more \
 		technologically advanced Human neighbours.",)
+
+/datum/species/lizard/prepare_human_for_preview(mob/living/carbon/human/lizard, lizard_color = "#FFA756")
+	lizard.dna.features["mcolor"] = lizard_color
+	lizard.dna.features["mcolor2"] = "#DE893A"
+	lizard.dna.features["mcolor3"] = "#DE893A"
+	lizard.dna.mutant_bodyparts["tail"] = list(MUTANT_INDEX_NAME = "Light Tiger", MUTANT_INDEX_COLOR_LIST = list(lizard_color, "#DE893A", "#DE893A"))
+	lizard.dna.mutant_bodyparts["snout"] = list(MUTANT_INDEX_NAME = "Sharp + Light", MUTANT_INDEX_COLOR_LIST = list(lizard_color, "#DE893A", "#DE893A"))
+	lizard.dna.mutant_bodyparts["horns"] = list(MUTANT_INDEX_NAME = "Drake", MUTANT_INDEX_COLOR_LIST = list(lizard_color, "#DE893A", "#DE893A"))
+	lizard.dna.mutant_bodyparts["frills"] = list(MUTANT_INDEX_NAME = "Neck Frills (New)", MUTANT_INDEX_COLOR_LIST = list(lizard_color, "#DE893A", "#DE893A"))
+	lizard.dna.features["legs"] = "Normal Legs"
+	lizard.set_facial_hairstyle("Lizard Tongue Flick")
+	regenerate_organs(lizard, src, visual_only = TRUE)
+	lizard.update_body(TRUE)
