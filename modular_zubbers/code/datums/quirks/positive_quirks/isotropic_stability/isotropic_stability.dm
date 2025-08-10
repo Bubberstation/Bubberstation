@@ -40,7 +40,8 @@
 	SIGNAL_HANDLER
 
 	var/datum/component/irradiated/irradiated_component = quirk_holder.GetComponent(/datum/component/irradiated)
-	if(!isnull(irradiated_component))
-		var/radiation_danger = get_perceived_radiation_danger(pulse_information, insulation_to_target)
-		if (radiation_danger >= PERCEIVED_RADIATION_DANGER_HIGH)
-			irradiated_component.exposed_to_danger = TRUE
+	if(isnull(irradiated_component))
+		return
+	var/radiation_danger = get_perceived_radiation_danger(pulse_information, insulation_to_target)
+	if (radiation_danger >= PERCEIVED_RADIATION_DANGER_HIGH)
+		irradiated_component.exposed_to_danger = TRUE
