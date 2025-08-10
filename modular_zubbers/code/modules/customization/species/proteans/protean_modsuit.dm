@@ -177,7 +177,7 @@
 		to_chat(protean_in_suit, span_boldwarning("Your memories have been reset. You cannot remember who reset you or any of the events leading up to your reset."))
 		playsound(src, 'sound/machines/synth/synth_yes.ogg', 100)
 		playsound(src, 'sound/machines/click.ogg', 100)
-
+		protean_in_suit.SetSleeping(5 SECONDS)
 
 
 /obj/item/mod/control/pre_equipped/protean/ui_status(mob/user, datum/ui_state/state)
@@ -396,6 +396,7 @@
 	user.visible_message(span_warning("Alert - [protean_in_suit]'s Random Access Memory Reset. Current memories lost. Any interactions that were ongoing have been forgotten."))
 	to_chat(protean_in_suit, span_boldwarning("Your memories have been reset. You cannot remember who reset you or any of the events leading up to your reset."))
 	playsound(src, 'sound/machines/synth/synth_yes.ogg', 100)
+	protean_in_suit.SetSleeping(5 SECONDS)
 
 /obj/item/mod/control/pre_equipped/protean/verb/ram_reset()
 	set name = "Reset Protean's Memories"
