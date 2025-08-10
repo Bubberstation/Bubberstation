@@ -114,11 +114,12 @@
 
 /// Protean Revivial
 
-/obj/item/mod/control/pre_equipped/protean/tool_act(mob/living/user, obj/item/tool, list/modifiers)
+/obj/item/mod/control/pre_equipped/protean/tool_act(mob/living/user, obj/item/tool, list/modifiers, obj/item/pen)
 	. = ..()
 	var/obj/item/mod/core/protean/protean_core = core
 	var/obj/item/organ/brain/protean/brain = protean_core?.linked_species.owner.get_organ_slot(ORGAN_SLOT_BRAIN)
 	var/obj/item/organ/stomach/protean/refactory = protean_core.linked_species.owner.get_organ_slot(ORGAN_SLOT_STOMACH)
+	var/mob/living/carbon/human/protean_in_suit = protean_core.linked_species.owner
 
 	if(brain?.dead && open && istype(tool, /obj/item/organ/stomach/protean) && do_after(user, 10 SECONDS) && !refactory)
 		var/obj/item/organ/stomach = tool
@@ -162,6 +163,22 @@
 		assimilate_modsuit(user, tool)
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return ITEM_INTERACT_SUCCESS
+
+///Memory Wipe Via Screwdriver
+
+	if(brain?.dead && istype(pen, /obj/item/pen))
+		to_chat(user, span_notice("You begin to reset the protean's random access memory using a pen."))
+		user.balloon_alert_to_viewers("Resetting Random Access Memory")
+		user.visible_message(span_boldwarning("Warning - [user] has pressed the emergancy memory reboot on [protean_in_suit]!"))
+		playsound(src, 'sound/machines/synth/synth_no.ogg', 100)
+		if(!do_after(user, 20 SECONDS))
+			return
+		user.visible_message(span_warning("Alert - [protean_in_suit]'s Random Access Memory Reset. Current memories lost. Any interactions that were ongoing have been forgotten."))
+		to_chat(protean_in_suit, span_boldwarning("Your memories have been reset. You cannot remember who reset you or any of the events leading up to your reset."))
+		playsound(src, 'sound/machines/synth/synth_yes.ogg', 100)
+		playsound(src, 'sound/machines/click.ogg', 100)
+
+
 
 /obj/item/mod/control/pre_equipped/protean/ui_status(mob/user, datum/ui_state/state)
 	var/obj/item/mod/core/protean/source = core
@@ -364,7 +381,8 @@
 		),
 	)
 
-//Memory Wipe - Shift Right Clicking the Protean's MODSuit inhand and pressing Reset Protean's Memories for x seconds, or using a pen on a dead Protean will cause the Protean to forget the current encounter..
+//Memory Wipe Verb
+
 /obj/item/mod/control/pre_equipped/protean/proc/reset_ram(mob/living/user) //Takes longer, it can be done while the protean is alive, but doesn't need a pen
 
 	var/obj/item/mod/core/protean/protean_core = core
@@ -383,21 +401,3 @@
 	set name = "Reset Protean's Memories"
 
 	reset_ram(usr)
-
-/obj/item/mod/control/pre_equipped/protean/tool_act(mob/living/user, obj/item/pen)
-	var/obj/item/mod/core/protean/protean_core = core
-	var/mob/living/carbon/human/protean_in_suit = protean_core.linked_species.owner
-	var/obj/item/organ/brain/protean/brain = protean_core?.linked_species.owner.get_organ_slot(ORGAN_SLOT_BRAIN)
-
-	if(brain?.dead && istype(pen, /obj/item/pen))
-		to_chat(user, span_notice("You begin to reset the protean's random access memory using a pen."))
-		user.balloon_alert_to_viewers("Resetting Random Access Memory")
-		user.visible_message(span_boldwarning("Warning - [user] has pressed the emergancy memory reboot on [protean_in_suit]!"))
-		playsound(src, 'sound/machines/synth/synth_no.ogg', 100)
-		if(!do_after(user, 20 SECONDS))
-			return
-		user.visible_message(span_warning("Alert - [protean_in_suit]'s Random Access Memory Reset. Current memories lost. Any interactions that were ongoing have been forgotten."))
-		to_chat(protean_in_suit, span_boldwarning("Your memories have been reset. You cannot remember who reset you or any of the events leading up to your reset."))
-		playsound(src, 'sound/machines/synth/synth_yes.ogg', 100)
-		playsound(src, 'sound/machines/click.ogg', 100)
-
