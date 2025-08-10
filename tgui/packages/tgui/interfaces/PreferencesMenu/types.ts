@@ -1,11 +1,11 @@
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
-import { sendAct } from '../../backend';
-import {
+import type { sendAct } from '../../backend';
+import type {
   LoadoutCategory,
   LoadoutList,
 } from './CharacterPreferences/loadout/base';
-import { Gender } from './preferences/gender';
+import type { Gender } from './preferences/gender';
 
 export enum Food {
   Alcohol = 'ALCOHOL',
@@ -93,7 +93,6 @@ export type Quirk = {
   value: number;
   customizable: boolean;
   customization_options?: string[];
-  species_whitelist: Record<string, string>[]; // BUBBER EDIT ADDITION - Species quirks
 };
 
 // SKYRAT EDIT START

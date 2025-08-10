@@ -64,6 +64,17 @@
 	sharpness = NONE
 	embed_type = null
 
+/obj/item/ammo_casing/security
+	name = "9x25mm Mk.12 security casing"
+	desc = "A modern 9x25mm Mk.12 bullet casing. This one fires a law-enfocement grade round, making it less deadly than most, but still lethal enough to do it's job."
+	caliber = CALIBER_9MM_SEC
+	projectile_type = /obj/projectile/bullet/security
+
+/obj/projectile/bullet/security
+	name = "9x25mm Murphy bullet"
+	damage = 20
+	wound_bonus = -20
+
 /obj/projectile/bullet/c9mm
 	damage = 25
 /*
@@ -121,48 +132,6 @@
 
 /datum/embedding/c10mm_ihdf
 	embed_chance = 0
-	fall_chance = 3
-	jostle_chance = 4
-	ignore_throwspeed_threshold = TRUE
-	pain_stam_pct = 0.4
-	pain_mult = 5
-	jostle_pain_mult = 6
-	rip_time = 1 SECONDS
-
-// .38 Detective Bullets Override
-
-/obj/projectile/bullet/c38
-	name = ".38 bullet"
-	damage = 30
-
-/obj/projectile/bullet/c38/match/bouncy
-	name = ".38 Rubber bullet"
-	damage = 15
-	stamina = 35
-	weak_against_armour = TRUE
-	ricochets_max = 6
-	ricochet_incidence_leeway = 0
-	ricochet_chance = 130
-	ricochet_decay_damage = 0.8
-	shrapnel_type = null
-	sharpness = NONE
-	embed_data = null
-
-// premium .38 ammo from cargo, weak against armor, lower base damage, but excellent at embedding and causing slice wounds at close range
-/obj/projectile/bullet/c38/dumdum
-	name = ".38 DumDum bullet"
-	damage = 20
-	weak_against_armour = TRUE
-	ricochets_max = 0
-	sharpness = SHARP_EDGED
-	wound_bonus = 35
-	bare_wound_bonus = 30
-	embed_type = /datum/embedding/dumdum
-	wound_falloff_tile = -8
-	embed_falloff_tile = -20
-
-/datum/embedding/dumdum
-	embed_chance = 90
 	fall_chance = 3
 	jostle_chance = 4
 	ignore_throwspeed_threshold = TRUE

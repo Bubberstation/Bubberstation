@@ -77,7 +77,7 @@
 
 /obj/effect/mob_spawn/corpse/human/legioninfested/dwarf/special(mob/living/carbon/human/spawned_human)
 	. = ..()
-	spawned_human.dna.add_mutation(/datum/mutation/human/dwarfism)
+	spawned_human.dna.add_mutation(/datum/mutation/dwarfism, MUTATION_SOURCE_MUTATOR)
 
 /// Corpse spawner used by snow legions with alternate costumes
 /obj/effect/mob_spawn/corpse/human/legioninfested/snow
@@ -379,7 +379,6 @@
 	back = /obj/item/storage/backpack/cultpack
 	backpack_contents = list(
 		/obj/item/cult_shift = 1,
-		/obj/item/flashlight/flare/culttorch = 1,
 		/obj/item/reagent_containers/cup/beaker/unholywater = 1,
 		/obj/item/stack/sheet/runed_metal = 15,
 		)
@@ -406,4 +405,3 @@
 			/obj/item/knife/combat/survival = 2,
 		))
 		backpack_contents += backpack_loot
-

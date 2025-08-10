@@ -85,6 +85,7 @@
 	key = "wings_functional"
 
 /datum/sprite_accessory/wings/robotic
+	recommended_species = list(SPECIES_PROTEAN, SPECIES_SYNTH)
 	locked = FALSE
 
 /datum/sprite_accessory/wings/skeleton
@@ -295,7 +296,7 @@
 	icon_state = "low_jewel_top"
 
 /datum/sprite_accessory/wings/low_wings/renamon
-	name = "Renamon"
+	name = "Cyvian"
 	icon_state = "renamon"
 	color_src = USE_MATRIXED_COLORS
 // Ryva was here :3
