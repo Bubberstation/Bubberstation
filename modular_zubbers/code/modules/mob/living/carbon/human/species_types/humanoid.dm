@@ -8,5 +8,5 @@
 	return list(
 		"This is a template species for your own creation. Humanoids exist in all shape and sizes across the known galaxy, most frequently being loose genetic modifications of \
 		human DNA. They are most commonly seen on Mars, where transhumanism is rife, and personal wealth is quite high for Terran space. They may be from a distant Rimworld, or \
-		just be some sort of novelty-seeking furry. Other species generally look down upon seeing humans modified to look like their species, as it leads to a serious uncanny \ valley effect.",
+		just be some sort of novelty-seeking furry. Other species generally look down upon seeing humans modified to look like their species, as it leads to a serious uncanny \ valley effect. How does your character navigate this, if an issue at all?",
 	)
