@@ -22,7 +22,6 @@
 /datum/quirk/isotropic_stability/add(client/client_source)
 	quirk_holder.add_traits(list(
 		TRAIT_RAD_RESISTANCE,
-		TRAIT_HALT_RADIATION_EFFECTS,
 		TRAIT_BYPASS_EARLY_IRRADIATED_CHECK,
 	), QUIRK_TRAIT)
 	RegisterSignal(quirk_holder, COMSIG_IN_RANGE_OF_IRRADIATION, PROC_REF(on_pre_potential_irradiation))
@@ -30,7 +29,6 @@
 /datum/quirk/isotropic_stability/remove(client/client_source)
 	quirk_holder.remove_traits(list(
 		TRAIT_RAD_RESISTANCE,
-		TRAIT_HALT_RADIATION_EFFECTS,
 		TRAIT_BYPASS_EARLY_IRRADIATED_CHECK,
 	), QUIRK_TRAIT)
 	UnregisterSignal(quirk_holder, COMSIG_IN_RANGE_OF_IRRADIATION)
