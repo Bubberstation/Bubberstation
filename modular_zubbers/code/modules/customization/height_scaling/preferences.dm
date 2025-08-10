@@ -13,8 +13,10 @@
 	)
 
 	var/static/list/incompatable_quirk_ids = list(
-		"Spacer",
-		"Settler"
+		//BUBBER EDIT REMOVAL START
+		//"Spacer",
+		//"Settler"
+		//BUBBER EDIT REMOVAL END
 	)
 
 /datum/preference/choiced/height_scaling/init_possible_values()

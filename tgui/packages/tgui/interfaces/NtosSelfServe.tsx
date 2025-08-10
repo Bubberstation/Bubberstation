@@ -3,7 +3,7 @@ import { capitalizeFirst } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
 import { NtosWindow } from '../layouts';
-import { NTOSData } from '../layouts/NtosWindow';
+import type { NTOSData } from '../layouts/NtosWindow';
 
 type Data = {
   authCard: string;
@@ -50,7 +50,7 @@ const SelfServePage = (props) => {
 
   return (
     <Section title="Enterprise Resource Planning">
-      <Section title={'Welcome ' + authIDName}>
+      <Section title={`Welcome ${authIDName}`}>
         <Stack wrap="wrap">
           <Stack.Item width="100%" mt={1} ml={0}>
             Current Assignment: {trimAssignment || '-----'}
