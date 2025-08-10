@@ -8,6 +8,8 @@
 	framestackamount = 2
 	resistance_flags = FLAMMABLE | ACID_PROOF
 
+
+/*
 /obj/structure/table_frame/plaswood/attackby(obj/item/I, mob/user, params)
 	if (istype(I, /obj/item/stack))
 		var/obj/item/stack/material = I
@@ -26,7 +28,7 @@
 				make_new_table(toConstruct)
 		else
 			return ..()
-
+*/
 
 //Mushroom Frames
 /obj/structure/table_frame/gmushroom
@@ -38,6 +40,7 @@
 	framestackamount = 2
 	resistance_flags = FIRE_PROOF
 
+/*
 /obj/structure/table_frame/gmushroom/attackby(obj/item/I, mob/user, params)
 	if (istype(I, /obj/item/stack))
 		var/obj/item/stack/material = I
@@ -56,6 +59,7 @@
 				make_new_table(toConstruct)
 	else
 		return ..()
+*/
 
 
 //Shadow Wood Frames
@@ -68,6 +72,7 @@
 	framestackamount = 2
 	resistance_flags = FLAMMABLE
 
+/*
 /obj/structure/table_frame/shadoww/attackby(obj/item/I, mob/user, params)
 	if (istype(I, /obj/item/stack))
 		var/obj/item/stack/material = I
@@ -86,3 +91,4 @@
 				make_new_table(toConstruct)
 	else
 		return ..()
+*/

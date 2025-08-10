@@ -39,31 +39,25 @@
 	name = "shadow wood chair"
 	icon = 'modular_gs/icons/obj/chairs.dmi'
 	icon_state = "shadoww_chair_toppled"
-	item_state = "shadowwchair"
 	resistance_flags = FLAMMABLE
 	max_integrity = 70
-	hitsound = 'sound/weapons/genhit1.ogg'
+	hitsound = 'sound/items/weapons/genhit1.ogg'
 	origin_type = /obj/structure/chair/shadoww
-	break_chance = 50
 
 /obj/item/chair/plaswood
 	name = "plaswood chair"
 	icon = 'modular_gs/icons/obj/chairs.dmi'
 	icon_state = "plaswood_chair_toppled"
-	item_state = "plaswoodchair"
 	resistance_flags = FLAMMABLE | ACID_PROOF
 	max_integrity = 90
-	hitsound = 'sound/weapons/genhit1.ogg'
+	hitsound = 'sound/items/weapons/genhit1.ogg'
 	origin_type = /obj/structure/chair/plaswood
-	break_chance = 70
 
 /obj/item/chair/gmushroom
 	name = "mushroom chair"
 	icon = 'modular_gs/icons/obj/chairs.dmi'
 	icon_state = "gmushroom_chair_toppled"
-	item_state = "gmushroomchair"
 	resistance_flags = FIRE_PROOF
 	max_integrity = 70
-	hitsound = 'sound/weapons/genhit1.ogg'
+	hitsound = 'sound/items/weapons/genhit1.ogg'
 	origin_type = /obj/structure/chair/gmushroom
-	break_chance = 50

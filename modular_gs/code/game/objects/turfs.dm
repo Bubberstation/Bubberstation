@@ -23,8 +23,6 @@
 	desc = "Stylish plaswood."
 	icon = 'modular_gs/icons/turf/floors.dmi'
 	icon_state = "plaswood"
-	broken_states = list("plaswood-broken", "plaswood-broken2", "plaswood-broken3", "plaswood-broken4", "plaswood-broken5", "plaswood-broken6", "plaswood-broken7")
-	footstep = FOOTSTEP_WOOD
 	barefootstep = FOOTSTEP_WOOD_BAREFOOT
 	clawfootstep = FOOTSTEP_WOOD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
@@ -34,7 +32,7 @@
 	name = "concrete"
 	icon = 'modular_gs/icons/turf/floors.dmi'
 	icon_state = "concrete"
-	baseturfs = /turf/open/floor/plating/asteroid
+	baseturfs = /turf/open/misc/asteroid
 
 /turf/open/floor/concrete/smooth
 	icon = 'modular_gs/icons/turf/floors.dmi'
@@ -53,7 +51,7 @@
 	desc = "A simple but beautiful path made of various sized stones."
 	icon = 'modular_gs/icons/turf/floors.dmi'
 	icon_state = "cobble"
-	baseturfs = /turf/open/floor/plating/asteroid
+	baseturfs = /turf/open/misc/asteroid
 	footstep = FOOTSTEP_FLOOR
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
 	clawfootstep = FOOTSTEP_HARD_CLAW
