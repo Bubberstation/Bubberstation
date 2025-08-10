@@ -222,8 +222,6 @@
 							/area/moonstation/surface/unexplored,
 							/area/moonstation/underground,
 							/area/moonstation/underground/unexplored,
-							/area/lavaland/underground/unexplored,
-							/area/lavaland/underground/unexplored/danger,
 							/area/lavaland/surface/outdoors,
 							/area/lavaland/surface/outdoors/unexplored/danger,
 							/area/lavaland/surface/outdoors/unexplored,
