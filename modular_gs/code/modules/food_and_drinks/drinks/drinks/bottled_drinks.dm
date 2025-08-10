@@ -30,7 +30,6 @@
 	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
 	isGlass = FALSE
 	list_reagents = list(/datum/reagent/consumable/tomatojuice = 100)
-	foodtype = VEGETABLES
 
 /obj/item/reagent_containers/cup/glass/bottle/limejuice
 	name = "lime juice"
@@ -40,7 +39,6 @@
 	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
 	isGlass = FALSE
 	list_reagents = list(/datum/reagent/consumable/limejuice = 100)
-	foodtype = FRUIT
 
 /obj/item/reagent_containers/cup/glass/bottle/pineapplejuice
 	name = "pineapple juice"
@@ -50,7 +48,6 @@
 	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
 	isGlass = FALSE
 	list_reagents = list(/datum/reagent/consumable/pineapplejuice = 100)
-	foodtype = FRUIT | PINEAPPLE
 
 /obj/item/reagent_containers/cup/glass/bottle/strawberryjuice
 	name = "strawberry juice"
