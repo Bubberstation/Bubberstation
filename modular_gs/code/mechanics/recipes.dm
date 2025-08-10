@@ -5,6 +5,7 @@
 	subcategory = CAT_MISCELLANEOUS
 	category = CAT_MISCELLANEOUS
 
+/*
 /datum/crafting_recipe/nutribot
 	name = "Nutribot"
 	reqs = list(/obj/item/stack/sheet/cardboard = 1,
@@ -13,3 +14,4 @@
 				/obj/item/assembly/prox_sensor = 1)
 	result = /mob/living/simple_animal/bot/nutribot
 	category = CAT_ROBOT
+*/

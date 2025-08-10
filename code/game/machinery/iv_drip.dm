@@ -73,7 +73,7 @@
 /obj/machinery/iv_drip/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	if(isnull(held_item))
 		if(attachment)
-			context[SCREENTIP_CONTEXT_RMB] = "Take needle out"
+			context[SCREENTIP_CONTEXT_RMB] = "Take [attachment_point] out" //GS13 EDIT
 		else if(reagent_container && !use_internal_storage)
 			context[SCREENTIP_CONTEXT_RMB] = "Eject container"
 		else if(!inject_only)
@@ -178,7 +178,7 @@
 		to_chat(user, span_warning("You can't do that!"))
 		return
 	if(!get_reagents())
-		to_chat(user, span_warning("There's nothing attached to the IV drip!"))
+		to_chat(user, span_warning("There's nothing attached to the [src]!")) //GS13 EDIT
 		return
 	if(!target.is_injectable(user))
 		to_chat(user, span_warning("Can't inject into this!"))
