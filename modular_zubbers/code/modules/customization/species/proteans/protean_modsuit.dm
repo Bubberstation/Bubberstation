@@ -385,7 +385,6 @@
 	reset_ram(usr)
 
 /obj/item/mod/control/pre_equipped/protean/tool_act(mob/living/user, obj/item/pen)
-	. = ..()
 	var/obj/item/mod/core/protean/protean_core = core
 	var/mob/living/carbon/human/protean_in_suit = protean_core.linked_species.owner
 	var/obj/item/organ/brain/protean/brain = protean_core?.linked_species.owner.get_organ_slot(ORGAN_SLOT_BRAIN)
