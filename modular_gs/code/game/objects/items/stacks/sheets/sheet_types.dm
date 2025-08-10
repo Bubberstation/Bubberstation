@@ -1,14 +1,14 @@
 //GS13: Shadow Wood
 
 GLOBAL_LIST_INIT(shadoww_recipes, list ( \
-		new/datum/stack_recipe("Shadow wood floor tile", /obj/item/stack/tile/shadoww, 1, 4, 20), \
-		new/datum/stack_recipe("Shadow wood table frame", /obj/structure/table_frame/shadoww, 2, time = 10), \
-		new/datum/stack_recipe("Shadow wood barricade", /obj/structure/barricade/shadoww, 5, time = 50, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
-		new/datum/stack_recipe("Shadow wood chair", /obj/structure/chair/shadoww, 3, time = 10, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
-		new/datum/stack_recipe("Shadow wood barricade", /obj/structure/barricade/shadoww, 5, time = 50, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
-		new/datum/stack_recipe("Dog bed", /obj/structure/bed/shadowwdogbed, 10, time = 10, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
-		new/datum/stack_recipe("Dresser", /obj/structure/dresser/shadoww, 10, time = 15, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
-		new/datum/stack_recipe("shadow wood crate", /obj/structure/closet/crate/shadoww, 6, time = 50, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND),\
+		new/datum/stack_recipe("Shadow wood floor tile", /obj/item/stack/tile/shadoww, 1, 4, 20, category = CAT_TILES), \
+		new/datum/stack_recipe("Shadow wood table frame", /obj/structure/table_frame/shadoww, 2, time = 10, category = CAT_STRUCTURE), \
+		new/datum/stack_recipe("Shadow wood barricade", /obj/structure/barricade/shadoww, 5, time = 50, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE), \
+		new/datum/stack_recipe("Shadow wood chair", /obj/structure/chair/shadoww, 3, time = 10, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_FURNITURE), \
+		new/datum/stack_recipe("Shadow wood barricade", /obj/structure/barricade/shadoww, 5, time = 50, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE), \
+		new/datum/stack_recipe("Dog bed", /obj/structure/bed/shadowwdogbed, 10, time = 10, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_FURNITURE), \
+		new/datum/stack_recipe("Dresser", /obj/structure/dresser/shadoww, 10, time = 15, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_FURNITURE), \
+		new/datum/stack_recipe("shadow wood crate", /obj/structure/closet/crate/shadoww, 6, time = 50, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE),\
 ))
 
 
@@ -87,13 +87,13 @@ GLOBAL_LIST_INIT(gmushroom_recipes, list ( \
 //GS13: Plaswood
 
 GLOBAL_LIST_INIT(plaswood_recipes, list ( \
-		new/datum/stack_recipe("Plaswood floor tile", /obj/item/stack/tile/plaswood, 1, 4, 20), \
-		new/datum/stack_recipe("Plaswood table frame", /obj/structure/table_frame/plaswood, 2, time = 10), \
-		new/datum/stack_recipe("Plaswood chair", /obj/structure/chair/plaswood, 3, time = 10, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
-		new/datum/stack_recipe("Plaswood barricade", /obj/structure/barricade/plaswood, 5, time = 50, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
-		new/datum/stack_recipe("Dog bed", /obj/structure/bed/plaswooddogbed, 10, time = 10, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
-		new/datum/stack_recipe("Dresser", /obj/structure/dresser/plaswood, 10, time = 15, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
-		new/datum/stack_recipe("Plaswood crate", /obj/structure/closet/crate/plaswood, 6, time = 50, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND),\
+		new/datum/stack_recipe("Plaswood floor tile", /obj/item/stack/tile/plaswood, 1, 4, 20, category=CAT_TILES), \
+		new/datum/stack_recipe("Plaswood table frame", /obj/structure/table_frame/plaswood, 2, time = 10, category=CAT_STRUCTURE), \
+		new/datum/stack_recipe("Plaswood chair", /obj/structure/chair/plaswood, 3, time = 10, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category=CAT_FURNITURE), \
+		new/datum/stack_recipe("Plaswood barricade", /obj/structure/barricade/plaswood, 5, time = 50, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category=CAT_STRUCTURE), \
+		new/datum/stack_recipe("Dog bed", /obj/structure/bed/plaswooddogbed, 10, time = 10, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category=CAT_FURNITURE), \
+		new/datum/stack_recipe("Dresser", /obj/structure/dresser/plaswood, 10, time = 15, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category=CAT_FURNITURE), \
+		new/datum/stack_recipe("Plaswood crate", /obj/structure/closet/crate/plaswood, 6, time = 50, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category=CAT_STRUCTURE),\
 ))
 
 

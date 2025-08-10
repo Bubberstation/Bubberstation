@@ -71,6 +71,11 @@
 		/obj/item/stack/ore/glass = GLOB.sand_recipes,
 		/obj/item/stack/rods = GLOB.rod_recipes,
 		/obj/item/stack/sheet/runed_metal = GLOB.runed_metal_recipes,
+		// GS13 EDIT MATERIALS
+		/obj/item/stack/sheet/mineral/shadoww = GLOB.shadoww_recipes,
+		/obj/item/stack/sheet/mineral/plaswood = GLOB.plaswood_recipes,
+		/obj/item/stack/sheet/mineral/gmushroom = GLOB.gmushroom_recipes,
+		// GS13 EDIT END
 	)
 
 	for(var/stack in global_stack_recipes)
