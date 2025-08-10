@@ -62,6 +62,7 @@
 	default_price = PAYCHECK_CREW * 0.5
 	extra_price = PAYCHECK_COMMAND
 	payment_department = NO_FREEBIES
+	allow_custom = TRUE
 
 /obj/item/vending_refill/snack/imported
 	machine_name = "NT Sustenance Supplier"

@@ -61,6 +61,14 @@
 /obj/item/swab,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/medicalwaste)
+"hv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/reagent_containers/applicator/pill/maintenance{
+	pixel_x = 3;
+	pixel_y = 7
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/garbagetruck/medicalwaste)
 "io" = (
 /obj/structure/closet/body_bag,
 /obj/structure/table/optable,
@@ -90,6 +98,13 @@
 "kl" = (
 /obj/structure/cable,
 /turf/open/floor/catwalk_floor/iron,
+/area/ruin/space/has_grav/garbagetruck/medicalwaste)
+"kp" = (
+/obj/structure/safe,
+/obj/item/stamp/syndicate,
+/obj/item/eyesnatcher,
+/obj/item/stack/spacecash/c1000,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/medicalwaste)
 "kx" = (
 /obj/structure/lattice,
@@ -148,7 +163,7 @@
 /obj/effect/decal/cleanable/fuel_pool,
 /obj/item/rack_parts,
 /obj/item/storage/pill_bottle/mannitol,
-/obj/effect/decal/cleanable/oil/slippery,
+/obj/effect/decal/cleanable/blood/oil/slippery,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/medicalwaste)
 "qC" = (
@@ -169,13 +184,6 @@
 /obj/item/poster/random_contraband,
 /obj/item/organ/tongue/zombie,
 /obj/structure/closet/crate/trashcart,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/garbagetruck/medicalwaste)
-"re" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/applicator/pill/cyanide{
-	pixel_y = 8
-	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/medicalwaste)
 "rB" = (
@@ -213,13 +221,6 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/iron/smooth,
-/area/ruin/space/has_grav/garbagetruck/medicalwaste)
-"uu" = (
-/obj/structure/safe,
-/obj/item/stamp/syndicate,
-/obj/item/eyesnatcher,
-/obj/item/stack/spacecash/c1000,
-/turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/medicalwaste)
 "uG" = (
 /obj/structure/chair/plastic,
@@ -263,11 +264,18 @@
 /obj/structure/grille,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/medicalwaste)
+"xw" = (
+/obj/item/restraints/handcuffs/cable/zipties/used,
+/obj/structure/closet/crate/trashcart/filled,
+/obj/item/reagent_containers/condiment/soysauce,
+/obj/item/reagent_containers/applicator/pill/mannitol,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/garbagetruck/medicalwaste)
 "xH" = (
 /obj/item/food/badrecipe/moldy,
 /obj/item/food/badrecipe/moldy,
 /obj/structure/closet/mini_fridge/grimy,
-/obj/effect/decal/cleanable/oil,
+/obj/effect/decal/cleanable/blood/oil,
 /obj/item/reagent_containers/cup/bottle/morphine,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/medicalwaste)
@@ -281,16 +289,6 @@
 	desc = "An Interdyne Pharmaceutics brand 'Crash Cart Classic' rolling table for surgical tools. It can and will move.";
 	name = "rolling surgical tray"
 	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/garbagetruck/medicalwaste)
-"zn" = (
-/obj/structure/closet/cardboard,
-/obj/item/stack/medical/suture,
-/obj/item/stack/medical/gauze,
-/obj/item/stack/sticky_tape/surgical,
-/obj/structure/broken_flooring/corner,
-/obj/item/organ/cyberimp/arm/surgery,
-/obj/item/organ/cyberimp/eyes/hud/medical,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/medicalwaste)
 "zu" = (
@@ -314,14 +312,6 @@
 /obj/item/clothing/suit/toggle/labcoat,
 /obj/item/clothing/suit/toggle/labcoat,
 /obj/item/clothing/suit/toggle/labcoat,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/garbagetruck/medicalwaste)
-"Ag" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/reagent_containers/applicator/pill/maintenance{
-	pixel_x = 3;
-	pixel_y = 7
-	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/medicalwaste)
 "Al" = (
@@ -408,6 +398,13 @@
 /obj/item/stack/sticky_tape/surgical,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/medicalwaste)
+"Go" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/reagent_containers/applicator/pill/cyanide{
+	pixel_y = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/garbagetruck/medicalwaste)
 "Gp" = (
 /obj/item/organ/eyes/robotic/basic,
 /obj/item/kitchen/spoon,
@@ -427,7 +424,7 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/medicalwaste)
 "IM" = (
-/obj/effect/decal/cleanable/robot_debris,
+/obj/effect/decal/cleanable/blood/gibs/robot_debris,
 /obj/structure/closet/crate/freezer,
 /obj/item/organ/liver/roach,
 /obj/item/organ/stomach,
@@ -456,22 +453,8 @@
 /obj/effect/spawner/random/maintenance/three,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/medicalwaste)
-"Kq" = (
-/obj/item/restraints/handcuffs/cable/zipties/used,
-/obj/structure/closet/crate/trashcart/filled,
-/obj/item/reagent_containers/condiment/soysauce,
-/obj/item/reagent_containers/applicator/pill/mannitol,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/garbagetruck/medicalwaste)
 "Ky" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/garbagetruck/medicalwaste)
-"KK" = (
-/obj/item/reagent_containers/applicator/pill/cyanide,
-/obj/effect/spawner/random/medical/minor_healing,
-/obj/effect/spawner/random/medical/surgery_tool,
-/obj/item/reagent_containers/blood/o_minus,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/medicalwaste)
 "Lh" = (
@@ -550,6 +533,13 @@
 /obj/structure/cable,
 /turf/open/floor/catwalk_floor/iron,
 /area/ruin/space/has_grav/garbagetruck/medicalwaste)
+"Ok" = (
+/obj/item/reagent_containers/applicator/pill/cyanide,
+/obj/effect/spawner/random/medical/minor_healing,
+/obj/effect/spawner/random/medical/surgery_tool,
+/obj/item/reagent_containers/blood/o_minus,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/garbagetruck/medicalwaste)
 "OA" = (
 /obj/machinery/door/airlock/shuttle,
 /turf/open/floor/plating,
@@ -560,7 +550,7 @@
 /turf/template_noop,
 /area/ruin/space/has_grav/garbagetruck/medicalwaste)
 "Pe" = (
-/obj/effect/decal/cleanable/robot_debris/up,
+/obj/effect/decal/cleanable/blood/gibs/robot_debris/up,
 /obj/structure/frame/computer,
 /obj/item/stack/sheet/glass{
 	amount = 2
@@ -581,7 +571,7 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/medicalwaste)
 "QK" = (
-/obj/effect/decal/cleanable/robot_debris/down,
+/obj/effect/decal/cleanable/blood/gibs/robot_debris/down,
 /obj/item/circular_saw,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/medicalwaste)
@@ -660,6 +650,16 @@
 /obj/machinery/power/shuttle_engine/propulsion,
 /turf/template_noop,
 /area/template_noop)
+"Wy" = (
+/obj/structure/closet/cardboard,
+/obj/item/stack/medical/suture,
+/obj/item/stack/medical/gauze,
+/obj/item/stack/sticky_tape/surgical,
+/obj/structure/broken_flooring/corner,
+/obj/item/organ/cyberimp/arm/toolkit/surgery,
+/obj/item/organ/cyberimp/eyes/hud/medical,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/garbagetruck/medicalwaste)
 "WX" = (
 /obj/machinery/light/warm,
 /obj/structure/cable,
@@ -781,7 +781,7 @@ tI
 CJ
 uG
 CJ
-KK
+Ok
 MC
 "}
 (5,1,1) = {"
@@ -802,7 +802,7 @@ CJ
 Kk
 CJ
 zj
-re
+Go
 bv
 MC
 "}
@@ -845,9 +845,9 @@ JW
 CJ
 EJ
 AB
-Kq
+xw
 CJ
-uu
+kp
 MC
 "}
 (8,1,1) = {"
@@ -861,7 +861,7 @@ MC
 uR
 CJ
 CJ
-Ag
+hv
 Ka
 CJ
 CJ
@@ -911,7 +911,7 @@ LA
 CJ
 Am
 Tp
-zn
+Wy
 AU
 qX
 XC

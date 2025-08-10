@@ -2377,7 +2377,9 @@
 /turf/open/floor/iron/airless,
 /area/ruin/space/bb13/service)
 "Ms" = (
-/obj/machinery/door/airlock/vault/derelict,
+/obj/machinery/door/airlock/vault/derelict{
+	id_tag = "babylonvault"
+	},
 /obj/structure/cable,
 /turf/open/floor/iron/airless,
 /area/ruin/space/bb13/engineering/vault)
@@ -3032,7 +3034,9 @@
 /turf/template_noop,
 /area/ruin/space/bb13/engineering/n_solars_control)
 "WF" = (
-/obj/machinery/computer/vaultcontroller,
+/obj/machinery/computer/vaultcontroller{
+	door_id = "babylonvault"
+	},
 /obj/structure/cable,
 /turf/open/floor/iron/airless,
 /area/ruin/space/bb13/engineering/sec_eng)

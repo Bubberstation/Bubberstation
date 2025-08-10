@@ -1,6 +1,6 @@
 /datum/antagonist/mutant
 	name = "\improper Mutated Abomination"
-	job_rank = ROLE_MUTANT
+	pref_flag = ROLE_MUTANT
 	roundend_category = "mutants"
 	antagpanel_category = "Mutant"
 	show_in_antagpanel = TRUE

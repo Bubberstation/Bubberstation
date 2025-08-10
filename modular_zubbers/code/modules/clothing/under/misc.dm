@@ -20,7 +20,9 @@
 /obj/item/clothing/under/costume/playbunny/greyscale
 	name = "bunny suit"
 	desc = "The staple of any bunny themed waiters and the like. It has a little cottonball tail too."
-	icon_state = "playbunny"
+	icon = 'icons/map_icons/clothing/under/costume.dmi'
+	icon_state = "/obj/item/clothing/under/costume/playbunny/greyscale"
+	post_init_icon_state = "playbunny"
 	greyscale_colors = "#39393f#39393f#ffffff#87502e"
 	greyscale_config = /datum/greyscale_config/bunnysuit
 	greyscale_config_worn = /datum/greyscale_config/bunnysuit_worn
@@ -77,7 +79,9 @@
 
 /obj/item/clothing/under/costume/playbunny/custom_playbunny
 	name = "tailormade bunny suit"
-	icon_state = "playbunny"
+	icon = 'icons/map_icons/clothing/under/costume.dmi'
+	icon_state = "/obj/item/clothing/under/costume/playbunny/custom_playbunny"
+	post_init_icon_state = "playbunny"
 	greyscale_colors = "#373768#c9c9c9#ababcd#880088"
 	greyscale_config = /datum/greyscale_config/custom_bunnysuit
 	greyscale_config_worn = /datum/greyscale_config/custom_bunnysuit_worn
@@ -540,6 +544,22 @@
 	alt_covers_chest = TRUE
 
 //BUNNY STUFF END, SPRITES BY DimWhat OF MONKE STATION
+
+/obj/item/clothing/under/rank/civilian/microstar_suit
+	name = "\improper MicroStar SCI-MED suit"
+	desc = "A non-spaceproof partial pressure suit manufactured by MicroStar Inc; designed for maximum comfort, safety, and enhancement of productivity. Its proprietary helmet seems to be missing."
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	icon = 'modular_zubbers/icons/obj/clothing/under/scimed_suit.dmi'
+	icon_state = "scimed_suit"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/scimed_suit.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/scimed_suit_digi.dmi'
+	inhand_icon_state = "w_suit"
+	can_adjust = FALSE
+	equip_sound = 'modular_skyrat/modules/modular_items/lewd_items/sounds/latex.ogg'
+	/*
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/clothing/scimed_suit_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/clothing/scimed_suit_righthand.dmi'
+	*/
 
 /obj/item/clothing/under/costume/loincloth
 	name = "loincloth"

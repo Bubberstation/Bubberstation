@@ -19,7 +19,7 @@
 		/obj/item/organ/alien/resinspinner/roundstart,
 		/obj/item/organ/alien/hivenode,
 		)
-	exotic_blood = /datum/reagent/toxin/acid
+	exotic_bloodtype = BLOOD_TYPE_XENO
 	heatmod = 2.5
 	mutant_bodyparts = list()
 	payday_modifier = 1.0
@@ -50,7 +50,7 @@
 
 /datum/species/xeno/get_species_lore()
 	return list(placeholder_lore)
-
+/*  BUBBER EDIT REMOVAL BEGIN - moved to modular_zubbers/code/modules/mob/living/carbon/human/species/xeno.dm
 /datum/species/xeno/create_pref_unique_perks()
 	var/list/to_add = list()
 
@@ -69,6 +69,7 @@
 	))
 
 	return to_add
+*/// BUBBER EDIT REMOVAL END
 
 /datum/species/xeno/prepare_human_for_preview(mob/living/carbon/human/xeno)
 	var/xeno_color = "#525288"
@@ -131,7 +132,7 @@
 //Liver modification (xenohybrids can process plasma!)
 /obj/item/organ/liver/xeno_hybrid/handle_chemical(mob/living/carbon/owner, datum/reagent/toxin/chem, seconds_per_tick, times_fired)
 	. = ..()
-	if(. & COMSIG_MOB_STOP_REAGENT_CHECK)
+	if(. & COMSIG_MOB_STOP_REAGENT_TICK)
 		return
 	if(chem.type == /datum/reagent/toxin/plasma)
 		chem.toxpwr = 0

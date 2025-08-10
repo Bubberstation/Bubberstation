@@ -96,12 +96,15 @@
 					transfer_fingerprints_to(FW)
 					qdel(src)
 					return
+			else if(state == GIRDER_REINF)
+				balloon_alert(user, "need plasteel sheet!")
+				return
 			else
 				if(rod.get_amount() < amount)
 					balloon_alert(user, "need [amount] rods!")
 					return
-				balloon_alert(user, "adding plating...")
-				if(do_after(user, 4 SECONDS * skill_modifier, target = src)) //SKYRAT EDIT
+				balloon_alert(user, "adding rods...")
+				if(do_after(user, 4 SECONDS * skill_modifier, target = src)) // BUBBER EDIT CHANGE - Skills - ORIGINAL: if(do_after(user, 4 SECONDS, target = src))
 					if(rod.get_amount() < amount)
 						return
 					rod.use(amount)
@@ -227,9 +230,25 @@
 					qdel(src)
 				return
 
+		if(istype(sheets, /obj/item/stack/sheet/mineral/plastitanium))
+			if(state == GIRDER_REINF)
+				if(sheets.get_amount() < 1)
+					return
+				balloon_alert(user, "adding plating...")
+				if(do_after(user, 50*platingmodifier, target = src))
+					if(sheets.get_amount() < 1)
+						return
+					sheets.use(1)
+					var/turf/T = get_turf(src)
+					T.place_on_top(/turf/closed/wall/r_wall/plastitanium)
+					transfer_fingerprints_to(T)
+					qdel(src)
+				return
+			// No return here because generic material construction handles making normal plastitanium walls
+
 		if(!sheets.has_unique_girder && sheets.material_type)
 			if(istype(src, /obj/structure/girder/reinforced))
-				balloon_alert(user, "need plasteel!")
+				balloon_alert(user, "need plasteel or plastitanium!")
 				return
 			var/M = sheets.sheettype
 			var/amount = construction_cost["exotic_material"]
@@ -305,7 +324,7 @@
 	else if(istype(W, /obj/item/pipe))
 		var/obj/item/pipe/P = W
 		if (P.pipe_type in list(0, 1, 5)) //simple pipes, simple bends, and simple manifolds.
-			if(!user.transferItemToLoc(P, drop_location()))
+			if(!user.transfer_item_to_turf(P, drop_location()))
 				return
 			balloon_alert(user, "inserted pipe")
 	else
@@ -490,7 +509,7 @@
 	return
 
 /obj/structure/girder/cult/atom_deconstruct(disassembled = TRUE)
-	new /obj/item/stack/sheet/runed_metal(drop_location(), 1)
+	new /obj/item/stack/sheet/runed_metal(drop_location())
 
 /obj/structure/girder/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	switch(the_rcd.mode)

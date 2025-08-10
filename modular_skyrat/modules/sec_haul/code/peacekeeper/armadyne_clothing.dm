@@ -15,10 +15,11 @@
 /obj/item/clothing/head/beret/sec/peacekeeper/armadyne
 	name = "armadyne corporate beret"
 	desc = "A comfy yet robust beret worn by Armadyne corporate."
+	icon_state = "/obj/item/clothing/head/beret/sec/peacekeeper/armadyne"
 	greyscale_config = /datum/greyscale_config/beret_badge_fancy
 	greyscale_config_worn = /datum/greyscale_config/beret_badge_fancy/worn
 	greyscale_colors = "#3F3C40#5B2423#491716"
-	icon_state = "beret_badge_fancy_diagonal"
+	post_init_icon_state = "beret_badge_fancy_diagonal"
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/suit/armor/hos/trenchcoat/armadyne

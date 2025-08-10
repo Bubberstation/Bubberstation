@@ -2,7 +2,7 @@
 	name = "\improper Ghoul"
 	roundend_category = "ghouls"
 	antagpanel_category = "Bloodsucker"
-	job_rank = ROLE_VASSAL
+	pref_flag = ROLE_VASSAL
 	antag_hud_name = "ghoul"
 	show_in_roundend = FALSE
 	hud_icon = 'modular_zubbers/icons/mob/huds/bloodsucker.dmi'
@@ -155,7 +155,7 @@
 		return
 
 	owner.current.visible_message(
-		span_deconversion_message("[owner.current]'s eyes dart feverishly from side to side, and then stop. [owner.current.p_they(TRUE)] seem[owner.current.p_s()] calm, \
+		span_deconversion_message("[owner.current]'s eyes dart feverishly from side to side, and then stop. [owner.current.p_They(TRUE)] seem[owner.current.p_s()] to calm, \
 			like [owner.current.p_they()] [owner.current.p_have()] regained some lost part of [owner.current.p_them()]self."), \
 		span_deconversion_message("With a snap, you are no longer enslaved to [master.owner]! You breathe in heavily, having regained your free will."))
 	owner.current.playsound_local(null, 'sound/effects/magic/mutate.ogg', 100, FALSE, pressure_affected = FALSE)
