@@ -114,7 +114,7 @@
 
 /// Protean Revivial
 
-/obj/item/mod/control/pre_equipped/protean/tool_act(mob/living/user, obj/item/tool, list/modifiers, obj/item/pen)
+/obj/item/mod/control/pre_equipped/protean/tool_act(mob/living/user, obj/item/tool, list/modifiers)
 	. = ..()
 	var/obj/item/mod/core/protean/protean_core = core
 	var/obj/item/organ/brain/protean/brain = protean_core?.linked_species.owner.get_organ_slot(ORGAN_SLOT_BRAIN)
@@ -164,9 +164,9 @@
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return ITEM_INTERACT_SUCCESS
 
-///Memory Wipe Via Screwdriver
+	///Memory Wipe Via Screwdriver
 
-	if(brain?.dead && istype(pen, /obj/item/pen))
+	if(brain?.dead && istype(tool, /obj/item/pen))
 		to_chat(user, span_notice("You begin to reset the protean's random access memory using a pen."))
 		user.balloon_alert_to_viewers("Resetting Random Access Memory")
 		user.visible_message(span_boldwarning("Warning - [user] has pressed the emergancy memory reboot on [protean_in_suit]!"))
