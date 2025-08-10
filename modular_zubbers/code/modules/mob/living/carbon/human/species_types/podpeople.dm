@@ -5,7 +5,7 @@
 	return list(
 	"Aeons ago, the precursor podpeople stood alone among the sea of stars. They resolved to spread the seeds of life \
 	that would ultimately survive them. Disease forced the last remnants into scarce few seedvaults, sequestered away. \
-	Genetic reconstruction has revived this species from bone and dust.",
+	Genetic reconstruction has revived this species from bone and dust, growing new life from replica pods designed to simulate the genesis of Podpeople.",
 
 	"Their complex biology is benign to medical scanners, and they heal in starlight, at the cost of being more susceptible to heat and burns.",
 	)
