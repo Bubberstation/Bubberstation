@@ -1,5 +1,5 @@
-/// How often the sensor data is updated
-#define SENSORS_UPDATE_PERIOD (10 SECONDS) //How often the sensor data updates.
+/// How often the sensor data is updated // BUBBER EDIT REMOVAL - Defined in code/__DEFINES/~~bubber_defines/misc.dm
+// #define SENSORS_UPDATE_PERIOD (10 SECONDS) //How often the sensor data updates.
 /// The job sorting ID associated with otherwise unknown jobs
 #define UNKNOWN_JOB_ID 998
 
@@ -182,7 +182,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 /datum/crewmonitor/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, "CrewConsoleSkyrat")
+		ui = new(user, src, "CrewConsoleBubbers") // BUBBER EDIT CHANGE - Crew Console
 		ui.open()
 
 /datum/crewmonitor/proc/show(mob/M, source)
@@ -285,7 +285,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 
 		// Broken sensors show garbage data
 		if (uniform?.has_sensor == BROKEN_SENSORS) // BUBBER EDIT CHANGE - NANITES - Original: if (uniform.has_sensor == BROKEN_SENSORS)
-			entry["life_status"] = rand(0,1)
+			entry["life_status"] = 1 // BUBBER EDIT CHANGE - Original:  rand(0,1) - Mob stays in consistent list position when sensors are broken
 			entry["area"] = pick_list (ION_FILE, "ionarea")
 			entry["oxydam"] = rand(0,175)
 			entry["toxdam"] = rand(0,175)
@@ -301,12 +301,13 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		if (sensor_mode >= SENSOR_LIVING)
 			entry["is_dnr"] = tracked_human.get_dnr()
 			// Current status
-			if(!isprotean(tracked_human))
-				entry["life_status"] = tracked_living_mob.stat
+			var/obj/item/organ/brain/protean/protean_brain = tracked_human.get_organ_slot(ORGAN_SLOT_BRAIN)
+			if(istype(protean_brain))
+				if(!isprotean(tracked_human))
+					stack_trace("[tracked_human] brain-species mismatch! Species is [tracked_human.dna.species] but brain is Protean")
+				entry["life_status"] = protean_brain?.dead ? DEAD : tracked_living_mob.stat // If brain not dead/no brain then handling as usual
 			else
-				// Check if protean is stuck in suit
-				var/obj/item/organ/brain/protean/brain = tracked_human.get_organ_slot(ORGAN_SLOT_BRAIN)
-				entry["life_status"] = brain?.dead ? DEAD : tracked_living_mob.stat // If brain not dead/no brain then handling as usual
+				entry["life_status"] = tracked_living_mob.stat
 		// BUBBERSTATION EDIT END
 
 		// Damage
@@ -346,5 +347,5 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				return
 			AI.ai_tracking_tool.track_name(AI, params["name"])
 
-#undef SENSORS_UPDATE_PERIOD
+// #undef SENSORS_UPDATE_PERIOD // BUBBER EDIT REMOVAL - Defined in code/__DEFINES/~~bubber_defines/misc.dm
 #undef UNKNOWN_JOB_ID

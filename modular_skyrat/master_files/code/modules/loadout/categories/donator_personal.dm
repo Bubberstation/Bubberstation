@@ -250,7 +250,7 @@
 
 /datum/loadout_item/pocket_items/darksabresheath
 	name = "Dark Sabre Sheath"
-	item_path = /obj/item/storage/belt/sabre/darksabre
+	item_path = /obj/item/storage/belt/sheath/sabre/darksabre
 	//ckeywhitelist = list("inferno707")
 
 /datum/loadout_item/pocket_items/darkarmor

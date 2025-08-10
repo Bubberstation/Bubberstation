@@ -103,18 +103,13 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 		if(PATTERN_RAINBOW)
 			var/datum/holiday/pride_week/rainbow_datum = new()
 			return rainbow_datum.get_holiday_colors(thing_to_color, PATTERN_DEFAULT)
-	//if(!length(GLOB.holidays)) // BUBBER EDIT REMOVAL - Pride Flag Colors
-	//	return // BUBBER EDIT REMOVAL - Pride Flag Colors
+	if(!length(GLOB.holidays))
+		return
 	for(var/holiday_key in GLOB.holidays)
 		var/datum/holiday/holiday_real = GLOB.holidays[holiday_key]
 		if(!holiday_real.holiday_colors)
 			continue
 		return holiday_real.get_holiday_colors(thing_to_color, pattern || holiday_real.holiday_pattern)
-	// BUBBER EDIT ADDITION BEGIN - Pride Flag Colors
-	if(prob(20))
-		var/datum/holiday/pride_week/rainbow_datum = new()
-		return rainbow_datum.get_holiday_colors(thing_to_color, pattern)
-	// BUBBER EDIT ADDITION END - Pride Flag Colors
 
 // The actual holidays
 
