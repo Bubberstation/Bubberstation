@@ -102,7 +102,7 @@
 	if (should_halt_effects(parent))
 		// BUBBER EDIT BEGIN
 		// Mob is radiation resistant but still metabolizes sources into toxins
-		if(HAS_TRAIT(parent, TRAIT_RAD_RESISTANT))
+		if(HAS_TRAIT(parent, TRAIT_RAD_RESISTANCE))
 			if(exposed_to_danger)
 				process_tox_damage(human_parent, seconds_per_tick)
 			exposed_to_danger = FALSE

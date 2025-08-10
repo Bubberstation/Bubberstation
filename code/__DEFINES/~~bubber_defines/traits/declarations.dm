@@ -43,4 +43,4 @@
 #define TRAIT_FAST_METABOLISM "fast_metabolism"
 
 // Makes it do this mob resists negative effects of being irradiated
-#define TRAIT_RAD_RESISTANT "radiation_resistant"
+#define TRAIT_RAD_RESISTANCE "radiation_resistance"
