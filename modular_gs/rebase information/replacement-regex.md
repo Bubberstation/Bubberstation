@@ -9,5 +9,5 @@ Cake:
 `/cake`
 
 Bottles:
-`/obj/item/reagent_containers/food/drinks/bottle`
-`/obj/item/reagent_containers/cup/glass/bottle`
+`/obj/item/reagent_containers/food/drinks`
+`/obj/item/reagent_containers/cup`
