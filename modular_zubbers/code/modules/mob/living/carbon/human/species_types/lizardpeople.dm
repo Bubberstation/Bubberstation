@@ -16,6 +16,16 @@
 
 /datum/species/lizard/get_species_lore()
 	return list(
+		"Tiziran bodies are clad in thick scale, known for their constitution and resilience to higher temperatures. \
+		They frequently have horns, and frills, signs of a good warrior, the latter of which tend to be wider in females. \
+		They generally grow higher than humans, being six to seven feet tall on average, and tend to grow tall before they grow wide. \
+		This means younger Tizirans are typically thinner than their human counterparts, and stop growing later in life.",
+
+		"Tiziran religion is closely intertwined with the way they act. The imperial motto, \"Oath and Scale,\" is often used as a symbol of community, \
+		along with chest and tail thumping often being used to emphasize sincerity or honesty. They tend to hiss when angry, displeased or threatened. \
+		Tizirans tend to decorate their bodies, particularly frills and horns, in similar fashion to human tattoos and piercings, \
+		to symbolize important events and allegiances. They often value physicality and action over words, making them put less cultural emphasis on fashion.",
+
 		"Tizirans (known as Lizardpeople in Federation spaces) have a militaristic culture that once conquered large swathes of territory \
 		before their capital of Zagoskeld was turned to a glass canyon by Federation plasma ships, ending the Coalition War. \
 		Their territory has since reduced in size, but is one of the faster growing economies of the modern age. \
@@ -23,9 +33,4 @@
 
 		"In the modern day, many Tizirans have to deal with stigma and stereotypes based around their martial culture, \
 		which has led to a boom of Tiziran artists, writers and philosophers in the past half-century.",
-
-		"Tiziran bodies are clad in thick scale, known for their constitution and resilience. \
-		They frequently have horns, and frills, signs of a good warrior, the latter of which tend to be wider in females. \
-		They generally grow higher than humans, being six to seven feet tall on average, and tend to grow tall before they grow wide. \
-		This means younger Tizirans are typically thinner than their human counterparts, and stop growing later in life."
 	)
