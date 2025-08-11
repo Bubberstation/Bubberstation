@@ -17,12 +17,13 @@
 /datum/species/lizard/get_species_lore()
 	return list(
 		"Tiziran bodies are clad in thick scale, known for their constitution and resilience to higher temperatures. \
-		They frequently have horns, and frills, signs of a good warrior, the latter of which tend to be wider in females. \
+		They frequently have horns, and frills, the latter of which tend to be wider in females. \
 		They generally grow higher than humans, being six to seven feet tall on average, and tend to grow tall before they grow wide. \
 		This means younger Tizirans are typically thinner than their human counterparts, and stop growing later in life.",
 
-		"Tiziran religion is closely intertwined with the way they act. The imperial motto, \"Oath and Scale,\" is often used as a symbol of community, \
-		along with chest and tail thumping often being used to emphasize sincerity or honesty. They tend to hiss when angry, displeased or threatened. \
+		"The imperial motto, \"Oath and Scale,\" is often used to emphasize community, and their sense of community tends to define how a Tiziran acts. \
+		This gives them a surprising amount in common with their companions in the CIN, the Teshari. Tizirans often seek out community first. \
+		Chest and tail thumping is often used to emphasize sincerity or honesty. They tend to hiss when angry, displeased or threatened. \
 		Tizirans tend to decorate their bodies, particularly frills and horns, in similar fashion to human tattoos and piercings, \
 		to symbolize important events and allegiances. They often value physicality and action over words, making them put less cultural emphasis on fashion.",
 
@@ -31,6 +32,6 @@
 		Their territory has since reduced in size, but is one of the faster growing economies of the modern age. \
 		The colony of Kesa'aresz, once a Tiziran fortress world, is now where the majority of Federation lizards vote and hail from.",
 
-		"In the modern day, many Tizirans have to deal with stigma and stereotypes based around their martial culture, \
-		which has led to a boom of Tiziran artists, writers and philosophers in the past half-century.",
+		"In the modern day, many Tizirans have to deal with stigma and stereotypes based around their former jingoism, \
+		which has led to a cultural renaissance of Tiziran artists, writers and philosophers in the past half-century.",
 	)
