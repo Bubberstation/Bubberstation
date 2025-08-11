@@ -100,3 +100,8 @@
 	icon = 'modular_zubbers/icons/customization/hair.dmi'
 	name = "Fluffball"
 	icon_state = "hair_fluffball"
+
+/datum/sprite_accessory/hair/moth_ponytail_1
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
+	name = "Moth Ponytail 1"
+	icon_state = "hair_moth_ponytail1"
