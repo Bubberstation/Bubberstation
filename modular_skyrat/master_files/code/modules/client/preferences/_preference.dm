@@ -122,6 +122,8 @@
 	var/list/crop_area
 	/// A color to apply to the icon if it's greyscale, and `generate_icons` is enabled.
 	var/greyscale_color
+	/// what sprite accessory list to get options from, by default uses relevant_mutant_bodypart if null
+	var/sprite_accessory_category
 
 /datum/preference/choiced/mutant_choice/is_accessible(datum/preferences/preferences)
 	var/passed_initial_check = ..(preferences)
@@ -162,7 +164,7 @@
 	return icon_to_process
 
 /datum/preference/choiced/mutant_choice/init_possible_values()
-		return assoc_to_keys_features(SSaccessories.sprite_accessories[relevant_mutant_bodypart])
+		return assoc_to_keys_features(SSaccessories.sprite_accessories[sprite_accessory_category ? sprite_accessory_category : relevant_mutant_bodypart])
 
 /datum/preference/choiced/mutant_choice/create_default_value()
 	return initial(default_accessory_type.name)
