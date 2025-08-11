@@ -14,7 +14,7 @@
 	icon = 'modular_gs/icons/obj/fatoray.dmi'
 	icon_state = "fatoray_scrap2"
 	desc = "Small parts that seemingly once belonged to some sort of a raygun."
-
+/*
 // GS13 fatty liquid beakers defs, for admin stuff and mapping junk
 
 /obj/item/reagent_containers/glass/beaker/lipoifier
@@ -275,3 +275,5 @@
 	throwforce = 10
 	force = 20
 	attack_verb = list("fattened")
+
+*/

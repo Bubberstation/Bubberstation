@@ -3,7 +3,7 @@
 	desc = "A belt made using bluespace technology. The power of space and time, used to hide the fact you are fat."
 	icon = 'modular_gs/icons/obj/clothing/bluespace_belt.dmi'
 	icon_state = "bluespace_belt"
-	item_state = "bluespace_belt"
+	inhand_icon_state = "bluespace_belt"
 	slot_flags = ITEM_SLOT_BELT
 	equip_sound = 'modular_gs/sound/items/equip/toolbelt_equip.ogg'
 	drop_sound = 'modular_gs/sound/items/handling/toolbelt_drop.ogg'
@@ -41,19 +41,20 @@
 	desc = "A primitive belt made using bluespace technology. The power of space and time, used to hide the fact you are fat. This one requires cells to continue operating, and may suffer from random failures."
 	icon = 'modular_gs/icons/obj/clothing/bluespace_belt.dmi'
 	icon_state = "primitive_belt"
-	item_state = "primitive_belt"
+	inhand_icon_state = "primitive_belt"
 
-	var/cell_type = /obj/item/stock_parts/cell/high
-	var/obj/item/stock_parts/cell/cell
-	var/maximum_power_drain = 50
-	var/fatness_to_power_coefficient = 136 // FATNESS_LEVEL_BLOB*2 BFI divided by this equals 50, our maximum power drain
+	var/cell_type = /obj/item/stock_parts/power_store/cell/high
+	var/obj/item/stock_parts/power_store/cell/cell
+	var/power_drain = 3
 	var/mob/living/carbon/user		// the fatass who's weight we must track for power drain calcs
 	var/overloaded = FALSE		// is it EMP'ed?
+
+	// RegisterSignal(user, COMSIG_MOB_CLICKON, PROC_REF(on_clicked), TRUE)
 
 /obj/item/bluespace_belt/primitive/examine(mob/user)
 	. = ..()
 	if(cell && cell.charge)
-		. += "<span class='notice'>It seems to have [DisplayEnergy(cell.charge)] of power remaining.</span>"
+		. += "<span class='notice'>It seems to have [display_energy(cell.charge)] of power remaining.</span>"
 	else
 		. += "<span class='notice'>It seems to be out of power.</span>"
 
@@ -105,11 +106,11 @@
 
 /obj/item/bluespace_belt/primitive/fat_hide(var/mob/living/carbon/user)
 	var/weight_to_hide = 0
-	if (user?.client?.prefs.helplessness_belts)
-		var/belts_pref = user?.client?.prefs.helplessness_belts
-		weight_to_hide = min(belts_pref, user.fatness_real - 1)
-	else
-		weight_to_hide = min(FATNESS_LEVEL_BLOB*2, user.fatness_real - 1)
+	// if (user?.client?.prefs.helplessness_belts)
+	// 	var/belts_pref = user?.client?.prefs.helplessness_belts
+	// 	weight_to_hide = min(belts_pref, user.fatness_real - 1)
+	// else		//make sure to indent this bit below later
+	weight_to_hide = min(FATNESS_LEVEL_BLOB, user.fatness_real - 1)
 	return -(weight_to_hide)
 
 
@@ -137,10 +138,9 @@
 			equipped = FALSE
 			to_chat(user, "<span class='notice'>The belt is opened, letting your mass flow out!</span>")
 			user.hider_remove(src)
-		// user = null
 
-/obj/item/bluespace_belt/primitive/attackby(obj/item/W, mob/person)
-	if (istype(W, /obj/item/stock_parts/cell))
+/obj/item/bluespace_belt/primitive/item_interaction(mob/living/person, obj/item/W, list/modifiers)
+	if (istype(W, /obj/item/stock_parts/power_store/cell))
 		if(!person.transferItemToLoc(W, src))
 			return
 		if (!cell)
@@ -150,64 +150,26 @@
 			person.put_in_hands(cell)
 		cell = W
 
-		// if (cell.charge)
-		// 	icon_state = "primitive_belt"
-		// else
-		// 	icon_state = "primitive_belt_off"
-
-		// START_PROCESSING(SSprocessing, src)
-
-		// if(cell.charge)
-		// 	if(equipped)
-		// 		to_chat(person, "<span class='notice'>Your mass begins to shrink as the belt is powered again...</span>")
-		// 		user = person
-		// 	activate()
-
-
-
 		if (equipped && cell.charge)
 			to_chat(person, "<span class='notice'>Your mass begins to shrink as the belt is powered again...</span>")
 			user = person
 
-		// 	// user.hider_add(src)
 		activate()
-
-
 
 /obj/item/bluespace_belt/primitive/attack_self(mob/person)
 	if (!cell)
 		return
 
-	// if(!isnull(user))
-	// 	user.hider_remove(src)
-
 	to_chat(person, "<span class='notice'>You take the cell out of the belt, letting your mass flow out!</span>")
 	person.put_in_hands(cell)
 	cell = null
-	deactivate()
-	// user = null
-
-/obj/item/bluespace_belt/primitive/AltClick(mob/person)
-	. = ..()
-
-	if (!cell)
-		return
-
-	// if(!isnull(user))
-	// 	user.hider_remove(src)
-
-	to_chat(person, "<span class='notice'>You take the cell out of the belt, letting your mass flow out!</span>")
-	// icon_state = "primitive_belt_off"
-	// user = null
-	person.put_in_hands(cell)
-	cell = null
-	// STOP_PROCESSING(SSprocessing, src)
 	deactivate()
 
 
 /obj/item/bluespace_belt/primitive/dropped(mob/person)
 	..()
 	user = null
+	equipped = FALSE
 
 /obj/item/bluespace_belt/primitive/process()
 	if(isnull(user))
@@ -217,16 +179,14 @@
 		return
 
 	if (!cell.charge)
-		// icon_state = "primitive_belt_off"
-		// user.hider_remove(src)
 		to_chat(user, "<span class='notice'>The belt beeps as it's battery runs out, and your mass starts flowing out!</span>")
-		// user = null
-		// STOP_PROCESSING(SSprocessing, src)
 		deactivate()
 		return
 
+	if(!equipped)
+		STOP_PROCESSING(SSprocessing, src)
+		return
 
-	var/power_drain = clamp(user.fatness_real / fatness_to_power_coefficient, 0, maximum_power_drain)
 	power_drain = min(power_drain, cell.charge)
 	cell.use(power_drain)
 	cell.update_icon()
