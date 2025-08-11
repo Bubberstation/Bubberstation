@@ -11,7 +11,6 @@
 	owner.set_species(/datum/species/werewolf, TRUE, TRUE, FALSE)
 	ADD_TRAIT(owner, TRAIT_BEAST_FORM, SPECIES_TRAIT)
 	owner.add_quirk(/datum/quirk/oversized)
-	owner.drop_everything(FALSE, TRUE, FALSE) // If FORCE causes errors, I'll update it. It's currently set to TRUE to prevent cheesing, but I could see issues arising.
 
 /obj/item/organ/brain/werewolf/proc/leave_beast_form()
 	var/datum/species/werewolf/current_wolf = owner.dna?.species
