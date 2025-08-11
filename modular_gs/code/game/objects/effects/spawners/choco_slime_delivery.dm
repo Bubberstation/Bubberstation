@@ -25,5 +25,5 @@
 /obj/effect/spawner/lootdrop/fiftypercent_chocoslimespawn
 	name = "50% Chocolate Slime Spawn"
 	loot = list(
-		/obj/item/reagent_containers/food/snacks/chocolatebar = 70,
+		/obj/item/food/chocolatebar = 70,
 		/obj/effect/spawner/chocoslime_delivery = 30)

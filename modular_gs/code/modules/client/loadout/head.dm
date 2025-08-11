@@ -10,8 +10,8 @@
 
 /datum/gear/head/poppy
 	name = "Poppy"
-	path = /obj/item/reagent_containers/food/snacks/grown/poppy
+	path = /obj/item/food/grown/poppy
 
 /datum/gear/head/harebell
 	name = "Harebell"
-	path = /obj/item/reagent_containers/food/snacks/grown/harebell
+	path = /obj/item/food/grown/harebell

@@ -3,7 +3,6 @@
 	desc = "Stylish shadow wood."
 	icon_state = "shadoww"
 	floor_tile = /obj/item/stack/tile/shadoww
-	broken_states = list("shadoww-broken", "shadoww-broken2", "shadoww-broken3", "shadoww-broken4", "shadoww-broken5", "shadoww-broken6", "shadoww-broken7")
 	footstep = FOOTSTEP_WOOD
 	barefootstep = FOOTSTEP_WOOD_BAREFOOT
 	clawfootstep = FOOTSTEP_WOOD_CLAW
@@ -36,29 +35,11 @@
 	C.play_tool_sound(src, 80)
 	return remove_tile(user, silent, (C.tool_behaviour == TOOL_SCREWDRIVER))
 
-/turf/open/floor/shadoww/remove_tile(mob/user, silent = FALSE, make_tile = TRUE, forced = FALSE)
-	if(broken || burnt)
-		broken = 0
-		burnt = 0
-		if(user && !silent)
-			to_chat(user, "<span class='notice'>You remove the broken planks.</span>")
-	else
-		if(make_tile)
-			if(user && !silent)
-				to_chat(user, "<span class='notice'>You unscrew the planks.</span>")
-			if(floor_tile)
-				new floor_tile(src)
-		else
-			if(user && !silent)
-				to_chat(user, "<span class='notice'>You forcefully pry off the planks, destroying them in the process.</span>")
-	return make_plating()
-
 //Mushroom wood
 /turf/open/floor/gmushroom
 	desc = "Stylish mushroom 'wood'."
 	icon_state = "gmushroom"
 	floor_tile = /obj/item/stack/tile/gmushroom
-	broken_states = list("gmushroom-broken", "gmushroom-broken2", "gmushroom-broken3", "gmushroom-broken4", "gmushroom-broken5", "gmushroom-broken6", "gmushroom-broken7")
 	footstep = FOOTSTEP_WOOD
 	barefootstep = FOOTSTEP_WOOD_BAREFOOT
 	clawfootstep = FOOTSTEP_WOOD_CLAW
@@ -91,29 +72,11 @@
 	C.play_tool_sound(src, 80)
 	return remove_tile(user, silent, (C.tool_behaviour == TOOL_SCREWDRIVER))
 
-/turf/open/floor/gmushroom/remove_tile(mob/user, silent = FALSE, make_tile = TRUE, forced = FALSE)
-	if(broken || burnt)
-		broken = 0
-		burnt = 0
-		if(user && !silent)
-			to_chat(user, "<span class='notice'>You remove the broken planks.</span>")
-	else
-		if(make_tile)
-			if(user && !silent)
-				to_chat(user, "<span class='notice'>You unscrew the planks.</span>")
-			if(floor_tile)
-				new floor_tile(src)
-		else
-			if(user && !silent)
-				to_chat(user, "<span class='notice'>You forcefully pry off the planks, destroying them in the process.</span>")
-	return make_plating()
-
 //Plaswood
 /turf/open/floor/plaswood
 	desc = "Stylish plaswood."
 	icon_state = "plaswood"
 	floor_tile = /obj/item/stack/tile/plaswood
-	broken_states = list("plaswood-broken", "plaswood-broken2", "plaswood-broken3", "plaswood-broken4", "plaswood-broken5", "plaswood-broken6", "plaswood-broken7")
 	footstep = FOOTSTEP_WOOD
 	barefootstep = FOOTSTEP_WOOD_BAREFOOT
 	clawfootstep = FOOTSTEP_WOOD_CLAW
@@ -146,19 +109,3 @@
 	C.play_tool_sound(src, 80)
 	return remove_tile(user, silent, (C.tool_behaviour == TOOL_SCREWDRIVER))
 
-/turf/open/floor/plaswood/remove_tile(mob/user, silent = FALSE, make_tile = TRUE, forced = FALSE)
-	if(broken || burnt)
-		broken = 0
-		burnt = 0
-		if(user && !silent)
-			to_chat(user, "<span class='notice'>You remove the broken planks.</span>")
-	else
-		if(make_tile)
-			if(user && !silent)
-				to_chat(user, "<span class='notice'>You unscrew the planks.</span>")
-			if(floor_tile)
-				new floor_tile(src)
-		else
-			if(user && !silent)
-				to_chat(user, "<span class='notice'>You forcefully pry off the planks, destroying them in the process.</span>")
-	return make_plating()

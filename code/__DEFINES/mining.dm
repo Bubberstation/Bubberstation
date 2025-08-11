@@ -33,6 +33,8 @@
 #define WAVE_DURATION_MEDIUM 90 SECONDS
 /// Duration for wave defense for a large vent.
 #define WAVE_DURATION_LARGE 150 SECONDS
+/// Duration for wave defense for the tarkon emergency engines.
+#define WAVE_DURATION_TARKON 120 SECONDS
 
 /// Proximity to a vent that a wall ore needs to be for 5 ore to be mined.
 #define VENT_PROX_VERY_HIGH 3

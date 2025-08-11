@@ -5,7 +5,7 @@
 	icon_state = "gelthi"
 	species = "gelthi"
 	plantname = "Gelthi Plant"
-	product = /obj/item/reagent_containers/food/snacks/grown/gelthi
+	product = /obj/item/food/grown/gelthi
 	lifespan = 55
 	endurance = 35
 	yield = 5
@@ -15,7 +15,7 @@
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
 	reagents_add = list(/datum/reagent/gold = 0.1)
 
-/obj/item/reagent_containers/food/snacks/grown/gelthi
+/obj/item/food/grown/gelthi
 	seed = /obj/item/seeds/gelthi
 	name = "gelthi"
 	desc = "It's a little piece of gelthi."

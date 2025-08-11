@@ -5,6 +5,7 @@
 	icon_state = "posibrain"
 	base_icon_state = "posibrain"
 	greyscale_config = null
+	post_init_icon_state = null
 	base_active_power_usage = 0 WATTS
 	base_idle_power_usage = 0 WATTS
 

@@ -8,23 +8,23 @@
 /datum/crafting_recipe/food/doner
 	name = "Doner Kebab"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/bun = 1,
-		/obj/item/reagent_containers/food/snacks/meat/cutlet = 1,
-		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
+		/obj/item/food/bun = 1,
+		/obj/item/food/meat/cutlet = 1,
+		/obj/item/food/grown/tomato = 1
 	)
-	result = /obj/item/reagent_containers/food/snacks/doner_kebab
+	result = /obj/item/food/doner_kebab
 	subcategory = CAT_BURGER
 
 
 /datum/crafting_recipe/food/lasagna
 	name = "Lasagna"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/boiledspaghetti = 1,
-		/obj/item/reagent_containers/food/snacks/meat/cutlet = 1,
-		/obj/item/reagent_containers/food/snacks/grown/tomato = 1,
-		/obj/item/reagent_containers/food/snacks/cheesewedge = 1
+		/obj/item/food/boiledspaghetti = 1,
+		/obj/item/food/meat/cutlet = 1,
+		/obj/item/food/grown/tomato = 1,
+		/obj/item/food/cheesewedge = 1
 	)
-	result = /obj/item/reagent_containers/food/snacks/lasagna
+	result = /obj/item/food/lasagna
 	subcategory = CAT_SPAGHETTI
 
 
@@ -32,21 +32,21 @@
 	name = "Corndog"
 	reqs = list(
 		/datum/reagent/consumable/flour = 5,
-		/obj/item/reagent_containers/food/snacks/sausage = 1,
+		/obj/item/food/sausage = 1,
 		/datum/reagent/consumable/cooking_oil = 5
 	)
-	result = /obj/item/reagent_containers/food/snacks/corndog
+	result = /obj/item/food/corndog
 	subcategory = CAT_MEAT
 
 
 /datum/crafting_recipe/food/turkey
 	name = "Whole Turkey"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/meat/slab/chicken = 2,
-		/obj/item/reagent_containers/food/snacks/sausage = 1,
-		/obj/item/reagent_containers/food/snacks/grown/potato = 2,
+		/obj/item/food/meat/slab/chicken = 2,
+		/obj/item/food/sausage = 1,
+		/obj/item/food/grown/potato = 2,
 	)
-	result = /obj/item/reagent_containers/food/snacks/turkey
+	result = /obj/item/food/turkey
 	subcategory = CAT_MEAT
 
 
@@ -56,49 +56,49 @@
 		/datum/reagent/consumable/flour = 5,
 		/datum/reagent/consumable/ethanol/creme_de_cacao = 10,
 		/datum/reagent/consumable/sugar = 5,
-		/obj/item/reagent_containers/food/snacks/butter = 2
+		/obj/item/food/butter = 2
 	)
-	result = /obj/item/reagent_containers/food/snacks/brownies
+	result = /obj/item/food/brownies
 	subcategory = CAT_CAKE
 
 
 /datum/crafting_recipe/food/cosmic_brownies
 	name = "Cosmic Brownies"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/brownies = 1,
+		/obj/item/food/brownies = 1,
 		/datum/reagent/consumable/sprinkles = 10
 	)
-	result = /obj/item/reagent_containers/food/snacks/brownies_cosmic
+	result = /obj/item/food/brownies_cosmic
 	subcategory = CAT_CAKE
 
 
 /datum/crafting_recipe/food/cosmic_brownies
 	name = "Cosmic Brownies"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/brownies = 1,
+		/obj/item/food/brownies = 1,
 		/datum/reagent/consumable/sprinkles = 10
 	)
-	result = /obj/item/reagent_containers/food/snacks/brownies_cosmic
+	result = /obj/item/food/brownies_cosmic
 	subcategory = CAT_CAKE
 
 
 /datum/crafting_recipe/food/bacon_and_eggs
 	name = "Bacon and Eggs"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/friedegg = 2,
-		/obj/item/reagent_containers/food/snacks/meat/bacon = 1
+		/obj/item/food/friedegg = 2,
+		/obj/item/food/meat/bacon = 1
 	)
-	result = /obj/item/reagent_containers/food/snacks/bacon_and_eggs
+	result = /obj/item/food/bacon_and_eggs
 	subcategory = CAT_EGG
 
 
 /datum/crafting_recipe/food/egg_muffin
 	name = "Egg muffin"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/friedegg = 1,
-		/obj/item/reagent_containers/food/snacks/muffin = 1
+		/obj/item/food/friedegg = 1,
+		/obj/item/food/muffin = 1
 	)
-	result = /obj/item/reagent_containers/food/snacks/eggmuffin
+	result = /obj/item/food/eggmuffin
 	subcategory = CAT_EGG
 
 
@@ -107,9 +107,9 @@
 	reqs = list(
 		/datum/reagent/consumable/sugar = 3,
 		/datum/reagent/consumable/vanilla = 2,
-		/obj/item/reagent_containers/food/snacks/pastrybase = 1
+		/obj/item/food/pastrybase = 1
 	)
-	result = /obj/item/reagent_containers/food/snacks/cinammonbun
+	result = /obj/item/food/cinammonbun
 	subcategory = CAT_PASTRY
 
 //GS Food
@@ -117,10 +117,10 @@
 /datum/crafting_recipe/food/lavaland_stew
 	name = "Lavaland Stew"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_leaf = 1,
-		/obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_stem = 1,
-		/obj/item/reagent_containers/food/snacks/grown/ash_flora/cactus_fruit = 2,
+		/obj/item/food/grown/ash_flora/mushroom_leaf = 1,
+		/obj/item/food/grown/ash_flora/mushroom_stem = 1,
+		/obj/item/food/grown/ash_flora/cactus_fruit = 2,
 		/obj/item/reagent_containers/glass/bowl/mushroom_bowl = 1
 	)
-	result = /obj/item/reagent_containers/food/snacks/soup/lavaland_stew
+	result = /obj/item/food/soup/lavaland_stew
 	subcategory = CAT_SOUP

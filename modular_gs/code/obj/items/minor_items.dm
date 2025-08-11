@@ -46,7 +46,7 @@
 
 //evil fucking donut
 
-/obj/item/reagent_containers/food/snacks/donut/evil_superfat
+/obj/item/food/donut/evil_superfat
 	name = "Evil Fuckin' Donut"
 	desc = "Merely looking at this thing makes you feel like you're getting fat..."
 	bitesize = 100 // Always eat it in one bite
@@ -55,7 +55,7 @@
 
 //blueberry gum snack
 
-/obj/item/reagent_containers/food/snacks/blueberry_gum
+/obj/item/food/blueberry_gum
 	name = "blueberry gum"
 	icon = 'modular_gs/icons/obj/gum.dmi'
 	icon_state = "gum_wrapped"
@@ -188,7 +188,7 @@
 	desc = "A dusty disk, desconstruction will be needed to recover data."
 
 //GS 13 Port - Big gulps in all sizes
-/obj/item/reagent_containers/food/drinks/flask/paper_cup
+/obj/item/reagent_containers/cup/flask/paper_cup
 	name = "paper cup"
 	icon = 'modular_gs/icons/obj/paper_cups.dmi'
 	amount_per_transfer_from_this = 10
@@ -200,14 +200,14 @@
 	pickup_sound = 'sound/items/handling/cardboardbox_pickup.ogg'
 	drop_sound = 'sound/items/handling/cardboardbox_drop.ogg'
 
-/obj/item/reagent_containers/food/drinks/flask/paper_cup/small
+/obj/item/reagent_containers/cup/flask/paper_cup/small
 	name = "Small Gulp Cup"
 	desc = "A paper cup. It can hold up to 50 units. It's not very strong."
 	icon_state = "small"
 	custom_materials = list(/datum/material/plastic=200)
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/reagent_containers/food/drinks/flask/paper_cup/medium
+/obj/item/reagent_containers/cup/flask/paper_cup/medium
 	name = "Medium Gulp Cup"
 	desc = "It's a paper cup, but you wouldn't call it 'medium' though. It can hold up to 75 units. It's not very strong."
 	icon_state = "medium"
@@ -215,7 +215,7 @@
 	custom_materials = list(/datum/material/plastic=300)
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/reagent_containers/food/drinks/flask/paper_cup/big
+/obj/item/reagent_containers/cup/flask/paper_cup/big
 	name = "Big Gulp Cup"
 	desc = "A huge paper cup, a normal person would struggle to drink it all in one sitting. It can hold up to 120 units. It's not very strong."
 	icon_state = "big"
@@ -223,7 +223,7 @@
 	custom_materials = list(/datum/material/plastic=500)
 	w_class = WEIGHT_CLASS_NORMAL
 
-/obj/item/reagent_containers/food/drinks/flask/paper_cup/extra_big
+/obj/item/reagent_containers/cup/flask/paper_cup/extra_big
 	name = "Extra Big Gulp Cup"
 	desc = "A comically large paper cup. It can hold up to 160 units. It's not very strong."
 	icon_state = "extra_big"
@@ -231,7 +231,7 @@
 	custom_materials = list(/datum/material/plastic=600)
 	w_class = WEIGHT_CLASS_BULKY
 
-/obj/item/reagent_containers/food/drinks/flask/paper_cup/super_extra_big
+/obj/item/reagent_containers/cup/flask/paper_cup/super_extra_big
 	name = "Super Extra Big Gulp Cup"
 	desc = "Its called a paper 'cup', but it looks more like an oversized bucket to you. It can hold up to 250 units. It's not very strong."
 	icon_state = "super_extra_big"

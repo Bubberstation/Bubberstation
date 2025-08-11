@@ -2,7 +2,7 @@
 	name = "4.6x30mm bullet"
 	damage = 20
 	wound_bonus = -5
-	bare_wound_bonus = 5
+	exposed_wound_bonus = 5
 	embed_falloff_tile = -4
 
 /obj/projectile/bullet/c46x30mm/ap
@@ -23,7 +23,7 @@
 	stamina = 5 //Knocks the wind out of you.
 
 	wound_bonus = CANT_WOUND
-	bare_wound_bonus = CANT_WOUND
+	exposed_wound_bonus = CANT_WOUND
 
 	weak_against_armour = TRUE
 	sharpness = NONE
@@ -36,7 +36,7 @@
 	stamina = 15
 
 	wound_bonus = CANT_WOUND
-	bare_wound_bonus = CANT_WOUND
+	exposed_wound_bonus = CANT_WOUND
 
 	weak_against_armour = TRUE
 	sharpness = NONE

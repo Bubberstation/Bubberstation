@@ -5,7 +5,7 @@
 	icon_state = "nofruit"
 	species = "nofruit"
 	plantname = "Nofruit Plant"
-	product = /obj/item/reagent_containers/food/snacks/grown/nofruit
+	product = /obj/item/food/grown/nofruit
 	lifespan = 55
 	endurance = 35
 	yield = 5
@@ -15,7 +15,7 @@
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
 	reagents_add = list(/datum/reagent/consumable/nothing = 0.1, /datum/reagent/consumable/laughter = 0.1)
 
-/obj/item/reagent_containers/food/snacks/grown/nofruit
+/obj/item/food/grown/nofruit
 	seed = /obj/item/seeds/nofruit
 	name = "nofruit"
 	desc = "It's a little piece of nofruit."

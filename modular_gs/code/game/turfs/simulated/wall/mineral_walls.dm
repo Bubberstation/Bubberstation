@@ -6,7 +6,6 @@
 	icon_state = "gmushroom"
 	sheet_type = /obj/item/stack/sheet/mineral/gmushroom
 	hardness = 70
-	explosion_block = 0
 	canSmoothWith = list(/turf/closed/wall/mineral/gmushroom, /obj/structure/falsewall/gmushroom, /turf/closed/wall/mineral/gmushroom/nonmetal)
 
 /turf/closed/wall/mineral/gmushroom/attackby(obj/item/W, mob/user)
@@ -21,7 +20,6 @@
 
 /turf/closed/wall/mineral/gmushroom/nonmetal
 	desc = "A solidly mushroom wall. It's a bit weaker than a wall made with metal."
-	girder_type = /obj/structure/barricade/gmushroom
 	hardness = 50
 	canSmoothWith = list(/turf/closed/wall/mineral/gmushroom, /obj/structure/falsewall/gmushroom, /turf/closed/wall/mineral/gmushroom/nonmetal)
 
@@ -32,7 +30,6 @@
 	icon_state = "plaswood"
 	sheet_type = /obj/item/stack/sheet/mineral/plaswood
 	hardness = 90
-	explosion_block = 35
 	canSmoothWith = list(/turf/closed/wall/mineral/plaswood, /obj/structure/falsewall/plaswood, /turf/closed/wall/mineral/plaswood/nonmetal)
 
 /turf/closed/wall/mineral/plaswood/attackby(obj/item/W, mob/user)
@@ -58,7 +55,6 @@
 	icon_state = "shadoww"
 	sheet_type = /obj/item/stack/sheet/mineral/shadoww
 	hardness = 70
-	explosion_block = 0
 	canSmoothWith = list(/turf/closed/wall/mineral/shadoww, /obj/structure/falsewall/shadoww, /turf/closed/wall/mineral/shadoww/nonmetal)
 
 /turf/closed/wall/mineral/shadoww/attackby(obj/item/W, mob/user)

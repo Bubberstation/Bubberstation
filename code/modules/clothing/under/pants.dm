@@ -11,7 +11,9 @@
 /obj/item/clothing/under/pants/slacks
 	name = "slacks"
 	desc = "A pair of comfy slacks."
-	icon_state = "slacks"
+	icon = 'icons/map_icons/clothing/under/_under.dmi'
+	icon_state = "/obj/item/clothing/under/pants/slacks"
+	post_init_icon_state = "slacks"
 	greyscale_config = /datum/greyscale_config/slacks
 	greyscale_config_worn = /datum/greyscale_config/slacks/worn
 	greyscale_config_worn_digi = /datum/greyscale_config/slacks/worn/digi //SKYRAT EDIT ADDITION - DigiGreyscale
@@ -21,7 +23,9 @@
 /obj/item/clothing/under/pants/jeans
 	name = "jeans"
 	desc = "A nondescript pair of tough jeans."
-	icon_state = "jeans"
+	icon = 'icons/map_icons/clothing/under/_under.dmi'
+	icon_state = "/obj/item/clothing/under/pants/jeans"
+	post_init_icon_state = "jeans"
 	greyscale_config = /datum/greyscale_config/jeans
 	greyscale_config_worn = /datum/greyscale_config/jeans/worn
 	greyscale_config_worn_digi = /datum/greyscale_config/jeans/worn/digi //SKYRAT EDIT ADDITION - DigiGreyscale

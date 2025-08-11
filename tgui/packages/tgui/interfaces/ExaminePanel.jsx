@@ -16,7 +16,7 @@ import { Window } from '../layouts';
 const formatURLs = (text) => {
   if (!text) return;
   const parts = [];
-  let regex = /https?:\/\/[^\s/$.?#].[^\s]*/gi;
+  const regex = /https?:\/\/[^\s/$.?#].[^\s]*/gi;
   let lastIndex = 0;
 
   text.replace(regex, (url, index) => {
@@ -68,7 +68,7 @@ export const ExaminePanel = () => {
 
   return (
     <Window
-      title={character_name + "'s Examine Panel"}
+      title={`${character_name}'s Examine Panel`}
       width={900}
       height={670}
     >

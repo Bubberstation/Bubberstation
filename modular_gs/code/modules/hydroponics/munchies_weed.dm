@@ -15,7 +15,7 @@
 	desc = "These seeds grow into munchies weed."
 	species = "munchycannabis"
 	plantname = "Munchies Weed"
-	product = /obj/item/reagent_containers/food/snacks/grown/cannabis/munchies
+	product = /obj/item/food/grown/cannabis/munchies
 	genes = list(/datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/glow/orange)
 	mutatelist = list()
 	reagents_add = list(/datum/reagent/drug/space_drugs = 0.05,
@@ -28,7 +28,7 @@
 	icon_dead = "munchycannabis-dead" // Same for the dead icon
 	icon_harvest = "munchycannabis-harvest"
 
-/obj/item/reagent_containers/food/snacks/grown/cannabis/munchies
+/obj/item/food/grown/cannabis/munchies
 	seed = /obj/item/seeds/cannabis/munchies
 	name = "munchies cannabis leaf"
 	desc = "You feel hungry just looking at it."

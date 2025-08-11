@@ -36,7 +36,7 @@
 	speak_chance = 5
 	turns_per_move = 5
 	see_in_dark = 10
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/chocolatebar = 4)
+	butcher_results = list(/obj/item/food/chocolatebar = 4)
 	maxHealth = 100
 	health = 100
 	obj_damage = 0
@@ -78,7 +78,7 @@
 	turns_per_move = 5
 	blood_volume = 0
 	gold_core_spawnable = HOSTILE_SPAWN
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/icecream = 4)
+	butcher_results = list(/obj/item/food/icecream = 4)
 
 /obj/projectile/beam/fattening/icecream //might as well make use of this thing to not make ton of different variants of the same thing
 	name = "ice cream blob"

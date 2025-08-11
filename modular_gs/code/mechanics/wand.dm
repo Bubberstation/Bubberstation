@@ -22,16 +22,16 @@
 	pass_flags = PASSGLASS|PASSGRILLE
 	///What foods are able to be spawned by the wand?
 	var/list/spawnable_foods = list(
-		/obj/item/reagent_containers/food/snacks/burger/bigbite,
-		/obj/item/reagent_containers/food/snacks/donut/plain,
-		/obj/item/reagent_containers/food/snacks/donut/glaze,
-		/obj/item/reagent_containers/food/snacks/store/cake/cheese,
-		/obj/item/reagent_containers/food/snacks/store/cake/bscc,
-		/obj/item/reagent_containers/food/snacks/store/cake/bsvc,
-		/obj/item/reagent_containers/food/snacks/store/cake/chocolate,
-		/obj/item/reagent_containers/food/snacks/hotdog,
-		/obj/item/reagent_containers/food/snacks/pizza/margherita,
-		/obj/item/reagent_containers/food/snacks/pizza/meat,
+		/obj/item/food/burger/bigbite,
+		/obj/item/food/donut/plain,
+		/obj/item/food/donut/glaze,
+		/obj/item/food/cake/cheese,
+		/obj/item/food/cake/bscc,
+		/obj/item/food/cake/bsvc,
+		/obj/item/food/cake/chocolate,
+		/obj/item/food/hotdog,
+		/obj/item/food/pizza/margherita,
+		/obj/item/food/pizza/meat,
 	)
 
 	///How much Lipoifier should be added to the spawned in food? Keep this at 10 maximum.
@@ -45,7 +45,7 @@
 		return FALSE
 
 	var/food_to_spawn = pick(spawnable_foods)
-	var/obj/item/reagent_containers/food/snacks/spawned_food = new food_to_spawn(floor)
+	var/obj/item/food/spawned_food = new food_to_spawn(floor)
 	if(!spawned_food)
 		return FALSE
 

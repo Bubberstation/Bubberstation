@@ -1,7 +1,7 @@
 /datum/reagent/consumable
 	var/use_gs_icon = FALSE
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/on_reagent_change(changetype)
+/obj/item/reagent_containers/cup/drinkingglass/on_reagent_change(changetype)
 	icon = 'icons/obj/drinks.dmi'
 	if(reagents.reagent_list.len)
 		var/datum/reagent/R = reagents.get_master_reagent()

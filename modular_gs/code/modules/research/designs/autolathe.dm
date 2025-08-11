@@ -11,7 +11,7 @@
 	id = "Small_Gulp"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/plastic=200)
-	build_path = /obj/item/reagent_containers/food/drinks/flask/paper_cup/small
+	build_path = /obj/item/reagent_containers/cup/flask/paper_cup/small
 	category = list("initial","Dinnerware")
 
 /datum/design/medium_cup
@@ -19,7 +19,7 @@
 	id = "Medium_Gulp"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/plastic=300)
-	build_path = /obj/item/reagent_containers/food/drinks/flask/paper_cup/medium
+	build_path = /obj/item/reagent_containers/cup/flask/paper_cup/medium
 	category = list("initial","Dinnerware")
 
 /datum/design/small_cup
@@ -27,7 +27,7 @@
 	id = "Big_Gulp"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/plastic=500)
-	build_path = /obj/item/reagent_containers/food/drinks/flask/paper_cup/big
+	build_path = /obj/item/reagent_containers/cup/flask/paper_cup/big
 	category = list("initial","Dinnerware")
 
 /datum/design/extra_big_cup
@@ -35,7 +35,7 @@
 	id = "Extra_Big_Gulp"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/plastic=600)
-	build_path = /obj/item/reagent_containers/food/drinks/flask/paper_cup/extra_big
+	build_path = /obj/item/reagent_containers/cup/flask/paper_cup/extra_big
 	category = list("initial","Dinnerware")
 
 /datum/design/super_extra_big_cup
@@ -43,5 +43,5 @@
 	id = "Super_Extra_Big_Gulp"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/plastic=1000)
-	build_path = /obj/item/reagent_containers/food/drinks/flask/paper_cup/super_extra_big
+	build_path = /obj/item/reagent_containers/cup/flask/paper_cup/super_extra_big
 	category = list("initial","Dinnerware")

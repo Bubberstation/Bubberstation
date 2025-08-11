@@ -759,7 +759,8 @@
 					/obj/item/reagent_containers/spray,
 					/obj/item/reagent_containers/medigel,
 					/obj/item/reagent_containers/cup/vial, //SKYRAT EDIT ADDITION - HYPOSPRAYS
-					/obj/item/reagent_containers/chem_pack
+					/obj/item/reagent_containers/chem_pack,
+					/obj/item/reagent_containers/hypospray //BUBBER EDIT ADDITION - Hyposprays 2: spray harder
 	))
 	return is_type_in_typecache(weapon, chemfridge_typecache)
 

@@ -82,6 +82,15 @@ required_map = "birdshot.dmm"
 coordinates = [117, 145, 1]
 trait_name = "Station"
 
+# BLUESHIFT MAP EDITS
+# Blueshift Book of Kindred
+[templates.blueshift_book_of_kindred]
+map_files = ["book_of_kindred_display.dmm"]
+directory = "_maps/bubber/automapper/templates/generic/"
+required_map = "Blueshift.dmm"
+coordinates = [100, 129, 1]
+trait_name = "Station"
+
 # CATWALK MAP EDITS
 # Catwalk Arrivals
 [templates.catwalk_arrivals]
@@ -318,6 +327,22 @@ required_map = "IceBoxStation.dmm"
 coordinates = [114, 65, 3]
 trait_name = "Station"
 
+# IceBoxStation SW Persistence
+[templates.iceboxstation_persistence]
+map_files = ["iceboxstation_persistence.dmm"]
+directory = "_maps/bubber/automapper/templates/IceBoxStation/"
+required_map = "IceBoxStation.dmm"
+coordinates = [19, 5, 1]
+trait_name = "Station"
+
+# IceBoxStation SW Persistence Roof
+[templates.iceboxstation_persistence_roof]
+map_files = ["iceboxstation_persistence_roof.dmm"]
+directory = "_maps/bubber/automapper/templates/IceBoxStation/"
+required_map = "IceBoxStation.dmm"
+coordinates = [19, 5, 2]
+trait_name = "Station"
+
 # KILOSTATION MAP EDITS
 # KiloStation Book of Kindred
 [templates.kilostation_book_of_kindred]
@@ -342,6 +367,14 @@ map_files = ["lavaland_persistence.dmm"]
 directory = "_maps/bubber/automapper/templates/lavaland/"
 required_map = "Lavaland.dmm"
 coordinates = [8, 161, 1]
+trait_name = "Mining"
+
+#Lavaland Power Turbines
+[templates.lavaland_turbines]
+map_files = ["lavaland_turbines.dmm"]
+directory = "_maps/bubber/automapper/templates/lavaland/"
+required_map = "Lavaland.dmm"
+coordinates = [107, 49, 1]
 trait_name = "Mining"
 
 # METASTATION MAP EDITS

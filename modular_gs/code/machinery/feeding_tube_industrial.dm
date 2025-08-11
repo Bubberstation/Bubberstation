@@ -252,8 +252,8 @@
 		if(isliving(output_dest))
 			var/list/not_food = list()
 			for(var/atom/movable/AM in this_pump)
-				if(istype(AM, /obj/item/reagent_containers/food/snacks))
-					var/obj/item/reagent_containers/food/snacks/food = AM
+				if(istype(AM, /obj/item/food))
+					var/obj/item/food/food = AM
 					var/datum/reagents/food_reagents = food.reagents
 					if(food_reagents.total_volume)
 						var/food_size = food_reagents.total_volume //We're cramming the Whole Thing down your throat~

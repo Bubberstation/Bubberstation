@@ -6,7 +6,7 @@
 	desc = "These seeds grow into blueberry bushes."
 	species = "blueberry"
 	plantname = "Blueberry Bush"
-	product = /obj/item/reagent_containers/food/snacks/grown/berries/blueberry
+	product = /obj/item/food/grown/berries/blueberry
 	mutatelist = list()
 	reagents_add = list(/datum/reagent/blueberry_juice = 0.1)
 	potency = 1
@@ -20,7 +20,7 @@
 	icon_dead = "berry-dead" // Same for the dead icon
 	icon_harvest = "blueberry-harvest"
 
-/obj/item/reagent_containers/food/snacks/grown/berries/blueberry
+/obj/item/food/grown/berries/blueberry
 	seed = /obj/item/seeds/berry/blueberry
 	name = "bunch of blueberries"
 	desc = "Taste so good, you might turn blue!"

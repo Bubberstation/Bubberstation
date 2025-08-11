@@ -5,7 +5,7 @@
 //unfortunately I wasn't able to code in a fancy overlay that changes depending on bottle's contents volume
 //however if anyone would like to give it a go, the sprites for it are already there, in the .dmi
 
-/obj/item/reagent_containers/food/drinks/bigbottle
+/obj/item/reagent_containers/cup/bigbottle
 	name = "Bottle"
 	desc = "You shouldn't see this."
 	icon = 'modular_gs/icons/obj/food/bigbottle.dmi'
@@ -14,25 +14,25 @@
 	custom_materials = list(/datum/material/plastic=200)
 	volume = 100
 
-/obj/item/reagent_containers/food/drinks/bigbottle/starkist
+/obj/item/reagent_containers/cup/bigbottle/starkist
 	name = "StarKist Bottle"
 	desc = "A big bottle of Sunkist - for all your chuggin' needs."
 	icon_state = "bigbottle_fan"
 	list_reagents = list(/datum/reagent/consumable/sodawater = 20, /datum/reagent/consumable/orangejuice = 60)
 
-/obj/item/reagent_containers/food/drinks/bigbottle/cola
+/obj/item/reagent_containers/cup/bigbottle/cola
 	name = "GT-Cola Bottle"
 	desc = "A big bottle of GT-Cola - for all your chuggin' needs."
 	icon_state = "bigbottle_cola"
 	list_reagents = list(/datum/reagent/consumable/space_cola = 80)
 
-/obj/item/reagent_containers/food/drinks/bigbottle/spaceup
+/obj/item/reagent_containers/cup/bigbottle/spaceup
 	name = "Space-Up! Bottle"
 	desc = "A big bottle of Space-Up! - for all your chuggin' needs."
 	icon_state = "bigbottle_spr"
 	list_reagents = list(/datum/reagent/consumable/space_up = 60, /datum/reagent/consumable/sodawater = 20)
 
-/obj/item/reagent_containers/food/drinks/bigbottle/fizz
+/obj/item/reagent_containers/cup/bigbottle/fizz
 	name = "Fizz-Wizz Bottle"
 	desc = "A big bottle of Fizz-Wizz - for all your chuggin' needs."
 	icon_state = "bigbottle_fizz"
@@ -40,7 +40,7 @@
 
 
 //code for overlays
-/obj/item/reagent_containers/food/drinks/bigbottle/on_reagent_change()
+/obj/item/reagent_containers/cup/bigbottle/on_reagent_change()
   cut_overlays()
   var/mutable_appearance/reagent_overlay = mutable_appearance(icon, "reagent")
   if(reagents.reagent_list.len)

@@ -15,6 +15,7 @@
 	bar_material = WOOD
 	var/drop_amount = 3
 
+/*
 /obj/structure/barricade/shadoww/attackby(obj/item/I, mob/user)
 	if(istype(I,/obj/item/stack/sheet/mineral/shadoww))
 		var/obj/item/stack/sheet/mineral/shadoww/W = I
@@ -29,6 +30,7 @@
 				qdel(src)
 				return
 	return ..()
+*/
 
 /obj/structure/barricade/shadoww/make_debris()
 	new /obj/item/stack/sheet/mineral/shadoww(get_turf(src), drop_amount)
@@ -43,6 +45,7 @@
 	bar_material = WOOD
 	var/drop_amount = 3
 
+/*
 /obj/structure/barricade/plaswood/attackby(obj/item/I, mob/user)
 	if(istype(I,/obj/item/stack/sheet/mineral/plaswood))
 		var/obj/item/stack/sheet/mineral/plaswood/W = I
@@ -57,6 +60,7 @@
 				qdel(src)
 				return
 	return ..()
+*/
 
 /obj/structure/barricade/plaswood/make_debris()
 	new /obj/item/stack/sheet/mineral/plaswood(get_turf(src), drop_amount)
@@ -71,6 +75,7 @@
 	bar_material = WOOD
 	var/drop_amount = 3
 
+/*
 /obj/structure/barricade/gmushroom/attackby(obj/item/I, mob/user)
 	if(istype(I,/obj/item/stack/sheet/mineral/gmushroom))
 		var/obj/item/stack/sheet/mineral/gmushroom/W = I
@@ -85,6 +90,7 @@
 				qdel(src)
 				return
 	return ..()
+*/
 
 /obj/structure/barricade/gmushroom/make_debris()
 	new /obj/item/stack/sheet/mineral/gmushroom(get_turf(src), drop_amount)

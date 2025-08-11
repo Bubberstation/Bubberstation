@@ -3,7 +3,7 @@
 	desc = "For when security just can't get enough."
 	icon = 'modular_gs/icons/obj/food/containers.dmi'
 	icon_state = "large_donut_box"
-	spawn_type = /obj/item/reagent_containers/food/snacks/donut
+	spawn_type = /obj/item/food/donut
 	fancy_open = FALSE
 	custom_price = PRICE_NORMAL
 	appearance_flags = KEEP_TOGETHER
@@ -13,7 +13,7 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 16
 	STR.max_combined_w_class = WEIGHT_CLASS_SMALL * 16
-	STR.can_hold = typecacheof(list(/obj/item/reagent_containers/food/snacks/donut))
+	STR.can_hold = typecacheof(list(/obj/item/food/donut))
 
 /obj/item/storage/fancy/large_donut_box/update_icon_state()
 	if(fancy_open)
@@ -34,7 +34,7 @@
 	var/donuts = 0
 
 	for (var/_donut in contents)
-		var/obj/item/reagent_containers/food/snacks/donut/donut = _donut
+		var/obj/item/food/donut/donut = _donut
 		if (!istype(donut))
 			continue
 

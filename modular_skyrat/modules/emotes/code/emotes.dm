@@ -126,7 +126,7 @@
 	message = "lets out a tiny squeak!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
-	sound = 'modular_skyrat/modules/emotes/sound/voice/mothsqueak.ogg'
+	sound = 'modular_zubbers/sound/emotes/mothsqueak.ogg'
 
 /datum/emote/living/mousesqueak
 	key = "squeak"
@@ -272,8 +272,8 @@
 	mob_type_allowed_typecache = list(/mob/living/carbon, /mob/living/silicon/pai)
 
 /datum/emote/living/clap1/get_sound(mob/living/user)
-	return pick('modular_skyrat/modules/emotes/sound/emotes/claponce1.ogg',
-				'modular_skyrat/modules/emotes/sound/emotes/claponce2.ogg')
+	return pick('modular_zubbers/sound/emotes/claponce1.ogg',
+				'modular_zubbers/sound/emotes/claponce2.ogg')
 
 /datum/emote/living/clap1/can_run_emote(mob/living/carbon/user, status_check = TRUE , intentional)
 	if(user.usable_hands < 2)

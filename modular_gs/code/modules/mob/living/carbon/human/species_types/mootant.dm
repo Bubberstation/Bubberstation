@@ -13,7 +13,7 @@
 	attack_verb = "claw"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
-	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/mammal
+	meat = /obj/item/food/meat/slab/human/mutant/mammal
 	// mutant_organs = list(/obj/item/organ/genital/breasts) //moo
 	liked_food = FRIED | DAIRY
 	disliked_food = TOXIC | MEAT

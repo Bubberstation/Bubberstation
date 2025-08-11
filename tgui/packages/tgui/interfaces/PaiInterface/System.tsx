@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
 
-import { PaiData } from './types';
+import type { PaiData } from './types';
 
 export function SystemDisplay(props) {
   return (
@@ -85,6 +85,15 @@ function SystemInfo(props) {
           >
             Display
           </Button>
+          {/** BUBBER EDIT: pAI self Wipe */}
+          <Button
+            icon="skull"
+            color="bad"
+            onClick={() => act('wipe files')}
+          >
+            WIPE
+          </Button>
+          {/** BUBBER EDIT END: pAI self wipe */}
         </>
       }
       fill

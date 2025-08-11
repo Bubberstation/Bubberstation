@@ -1,4 +1,4 @@
-/obj/item/reagent_containers/food/snacks/proc/handle_tf(mob/living/eater)
+/obj/item/food/proc/handle_tf(mob/living/eater)
 	var/datum/component/transformation_item/transformation_component = GetComponent(/datum/component/transformation_item)
 	if(!istype(transformation_component) || transformation_component.transfer_to_vore || (transformation_component.transformed_mob != src))
 		return FALSE

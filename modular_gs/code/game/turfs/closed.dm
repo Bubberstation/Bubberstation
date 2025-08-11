@@ -32,7 +32,6 @@
 	icon = 'modular_gs/icons/turf/walls/shadoww_wall.dmi'
 	icon_state = "shadoww"
 	baseturfs = /turf/closed/indestructible/shadoww
-	smooth = SMOOTH_TRUE
 	canSmoothWith = list(/turf/closed/wall/mineral/shadoww, /obj/structure/falsewall/shadoww, /turf/closed/indestructible/shadoww)
 
 /turf/closed/indestructible/plaswood
@@ -41,7 +40,6 @@
 	icon = 'modular_gs/icons/turf/walls/plaswood_wall.dmi'
 	icon_state = "plaswood"
 	baseturfs = /turf/closed/indestructible/plaswood
-	smooth = SMOOTH_TRUE
 	canSmoothWith = list(/turf/closed/wall/mineral/plaswood, /obj/structure/falsewall/plaswood, /turf/closed/indestructible/shadoww)
 
 /turf/closed/indestructible/gmushroom
@@ -50,5 +48,4 @@
 	icon = 'modular_gs/icons/turf/walls/gmushroom_wall.dmi'
 	icon_state = "gmushroom"
 	baseturfs = /turf/closed/indestructible/gmushroom
-	smooth = SMOOTH_TRUE
 	canSmoothWith = list(/turf/closed/wall/mineral/gmushroom, /obj/structure/falsewall/gmushroom, /turf/closed/indestructible/gmushroom)

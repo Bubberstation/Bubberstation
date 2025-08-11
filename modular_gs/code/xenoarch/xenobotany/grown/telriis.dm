@@ -5,7 +5,7 @@
 	icon_state = "telriis"
 	species = "telriis"
 	plantname = "Telriis Plant"
-	product = /obj/item/reagent_containers/food/snacks/grown/telriis
+	product = /obj/item/food/grown/telriis
 	lifespan = 55
 	endurance = 35
 	yield = 5
@@ -15,7 +15,7 @@
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
 	reagents_add = list(/datum/reagent/mutationtoxin/pod = 0.1)
 
-/obj/item/reagent_containers/food/snacks/grown/telriis
+/obj/item/food/grown/telriis
 	seed = /obj/item/seeds/telriis
 	name = "telriis"
 	desc = "It's a little piece of telriis."
