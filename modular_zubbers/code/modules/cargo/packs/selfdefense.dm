@@ -1,7 +1,7 @@
 /datum/supply_pack/imports/selfdef
 	access = NONE
 	cost = PAYCHECK_CREW
-	group = "Goodies" //figure this out later
+	group = "Sol Federation Imports" //figure this out later
 	goody = TRUE
 	crate_type = null
 	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
@@ -77,8 +77,8 @@
 	contains = list(/obj/item/clothing/suit/armor/sf_sacrificial)
 
 /datum/supply_pack/imports/selfdef/guns
- 	access = ACCESS_WEAPONS
-	cost = PAYCHECK_COMMAND * 4
+	access = ACCESS_WEAPONS
+	cost = PAYCHECK_COMMAND * 4.0
 
 /datum/supply_pack/imports/selfdef/guns/eland
 	name = "Eland Revolver"

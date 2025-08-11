@@ -98,7 +98,7 @@
 /datum/supply_pack/imports/medical/subdermal_splint
 	name = "Subdermal Splint"
 	contains = list(/obj/item/stack/medical/wound_recovery)
-	cost = PAYCHECK_CREW 6.5
+	cost = PAYCHECK_CREW * 6.5
 
 /datum/supply_pack/imports/medical/rapid_coagulant
 	name = "Rapid Coagulant"

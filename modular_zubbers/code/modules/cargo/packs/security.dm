@@ -119,7 +119,7 @@
 
 /datum/supply_pack/imports/security/ammo/cell_adv_bulk
 	name = "Box of Advanced MCR Cells"
-	contains = list(/obj/item/)
+	contains = list(/obj/item/storage/box/ammo_box/microfusion/advanced/bagless)
 	cost = PAYCHECK_CREW *3
 
 /datum/supply_pack/imports/security/ammo/cell_blue

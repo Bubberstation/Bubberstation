@@ -1,7 +1,7 @@
 /datum/supply_pack/imports/nri
 	access = NONE
 	cost = PAYCHECK_LOWER
-	group = "Goodies" //figure this out later
+	group = "NRI Surplus" //figure this out later
 	goody = TRUE
 	crate_type = null
 	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
