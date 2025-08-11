@@ -772,3 +772,31 @@ export const pod_hair_emissive: Feature<boolean> = {
   description: 'Emissive parts glow in the dark.',
   component: CheckboxInput,
 };
+
+export const werewolf_ears_toggle: FeatureToggle = {
+  name: 'Werewolf Ears',
+  component: CheckboxInput,
+};
+
+export const feature_werewolf_ears: FeatureChoiced = {
+  name: 'Werewolf Ears',
+  component: (
+    props: FeatureValueProps<string, string, FeatureChoicedServerData>,
+  ) => {
+    return <FeatureDropdownInput buttons {...props} />;
+  },
+};
+
+export const werewolf_tail_toggle: FeatureToggle = {
+  name: 'Werewolf Tail',
+  component: CheckboxInput,
+};
+
+export const feature_werewolf_tail: FeatureChoiced = {
+  name: 'Werewolf Tail',
+  component: (
+    props: FeatureValueProps<string, string, FeatureChoicedServerData>,
+  ) => {
+    return <FeatureDropdownInput buttons {...props} />;
+  },
+};

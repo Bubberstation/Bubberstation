@@ -17,6 +17,9 @@
 	mutanteyes = /obj/item/organ/eyes/werewolf
 	mutantears = /obj/item/organ/ears/werewolf
 	mutanttongue = /obj/item/organ/tongue/werewolf
+	mutant_organs = list(
+		/obj/item/organ/tail/fluffy/werewolf,
+	)
 
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC
 
@@ -33,7 +36,7 @@
 		// Default Species
 		TRAIT_CAN_STRIP,
 		TRAIT_LITERATE,
-		TRAIT_MUTANT_COLORS,
+		TRAIT_MUTANT_COLORS_2,
 		TRAIT_NO_UNDERWEAR, // They should still be able to toggle genitals if needed.
 		// Werewolf Specific Things
 		TRAIT_LUPINE,
