@@ -73,7 +73,7 @@
 		total_damage_dealt += limb_damage_dealt
 
 		//Handle dismemberment here, if it already wasn't somehow dismembered by damage.
-		if( (limb.loc != src && !QDELETED(limb)) || ((total_damage_dealt >= limb.max_damage*0.5) && maximum_dismemberments > 0 && limb.can_be_disabled && limb.try_dismember(WOUND_BLUNT,limb_damage_dealt,0,0)) ) //Limb was removed. Make it fly.
+		if( (limb.loc != src && !QDELETED(limb)) || ((total_damage_dealt >= limb.max_damage*0.75) && maximum_dismemberments > 0 && limb.can_be_disabled && limb.try_dismember(WOUND_BLUNT,limb_damage_dealt,0,0)) ) //Limb was removed. Make it fly.
 			SSexplosions.high_mov_atom += limb
 			maximum_dismemberments--
 
