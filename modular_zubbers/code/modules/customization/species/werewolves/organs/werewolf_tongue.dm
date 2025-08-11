@@ -5,6 +5,10 @@
 	icon_state = "tongue"
 	modifies_speech = TRUE
 
+	liked_foodtypes = RAW | MEAT | GORE
+	disliked_foodtypes = CLOTH | GROSS
+	toxic_foodtypes = TOXIC
+
 /obj/item/organ/tongue/werewolf/on_mob_insert(mob/living/carbon/signer, special = FALSE, movement_flags = DELETE_IF_REPLACED)
 	. = ..()
 	signer.verb_ask = "grumbles"
