@@ -278,11 +278,8 @@
 			bumped_damage = bumped_damage * 0.3
 
 	force = bumped_damage
-	if(occupants.len > 0 && istype(occupants[1], /mob))
-		bumped_thing.mech_melee_attack(src, occupants[1])
-	else
-		bumped_thing.mech_melee_attack(src, src)
 	take_damage(self_damage, BRUTE, 0, 0)
+	bumped_thing.mech_newtonian_crash(src)
 
 	playsound(src, 'sound/effects/bang.ogg', 40, TRUE)
 
