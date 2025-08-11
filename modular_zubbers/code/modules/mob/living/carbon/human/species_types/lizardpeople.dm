@@ -42,4 +42,5 @@
 	lizard.set_facial_hairstyle("Lizard Tongue Flick")
 	regenerate_organs(lizard, src, visual_only = TRUE)
 	lizard.update_body(TRUE)
+	lizard.set_mob_height(HUMAN_HEIGHT_TALLEST)
 
