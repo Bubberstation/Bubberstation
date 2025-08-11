@@ -120,3 +120,13 @@
 	icon = 'modular_zubbers/icons/customization/hair.dmi'
 	name = "Moth Hair Messy"
 	icon_state = "hair_moth_messy"
+
+/datum/sprite_accessory/hair/moth_tuft
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
+	name = "Moth Hair Tuft"
+	icon_state = "hair_moth_tuft"
+
+/datum/sprite_accessory/hair/moth_short
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
+	name = "Moth Hair Short"
+	icon_state = "hair_moth_short"
