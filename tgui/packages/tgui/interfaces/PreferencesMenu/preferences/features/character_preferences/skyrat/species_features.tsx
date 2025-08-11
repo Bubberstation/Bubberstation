@@ -787,6 +787,17 @@ export const feature_werewolf_ears: FeatureChoiced = {
   },
 };
 
+export const werewolf_ears_color: Feature<string[]> = {
+  name: 'Werewolf Ears Colors',
+  component: FeatureTriColorInput,
+};
+
+export const werewolf_ears_emissive: Feature<boolean[]> = {
+  name: 'Werewolf Ears Emissives',
+  description: 'Emissive parts glow in the dark.',
+  component: FeatureTriBoolInput,
+};
+
 export const werewolf_tail_toggle: FeatureToggle = {
   name: 'Werewolf Tail',
   component: CheckboxInput,

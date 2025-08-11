@@ -9,7 +9,9 @@
 		return
 	if(should_draw_greyscale)
 		if(owner)
-			if(HAS_TRAIT(owner, TRAIT_MUTANT_COLORS_2))
+			if(HAS_TRAIT(owner, TRAIT_MUTANT_COLORS))
+				draw_color = owner?.dna?.features?["mcolor"] || species_color || (skin_tone ? skintone2hex(skin_tone) : null)
+			else if(HAS_TRAIT(owner, TRAIT_MUTANT_COLORS_2))
 				draw_color = owner?.dna?.features?["mcolor2"] || species_color || (skin_tone ? skintone2hex(skin_tone) : null)
 			else if(HAS_TRAIT(owner, TRAIT_MUTANT_COLORS_3))
 				draw_color = owner?.dna?.features?["mcolor3"] || species_color || (skin_tone ? skintone2hex(skin_tone) : null)

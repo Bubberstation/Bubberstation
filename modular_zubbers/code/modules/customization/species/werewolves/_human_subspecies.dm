@@ -8,8 +8,6 @@
 	mutant_bodyparts = list()
 	mutantbrain = /obj/item/organ/brain/werewolf
 
-	var/mob/living/carbon/human/owner
-
 /datum/species/human/werewolf/get_species_description()
 	return list(placeholder_description)
 
@@ -29,8 +27,7 @@
 
 /datum/species/human/werewolf/on_species_gain(mob/living/carbon/human/gainer, datum/species/old_species, pref_load, regenerate_icons = TRUE)
 	. = ..()
-	owner = gainer
-	RegisterSignal(owner, COMSIG_CARBON_GAIN_ORGAN, PROC_REF(organ_reject))
+	RegisterSignal(gainer, COMSIG_CARBON_GAIN_ORGAN, PROC_REF(organ_reject))
 
 /datum/species/human/werewolf/proc/organ_reject(mob/living/source, obj/item/organ/inserted)
 	SIGNAL_HANDLER
@@ -52,4 +49,4 @@
 /datum/species/human/werewolf/on_species_loss(mob/living/carbon/human/gainer, datum/species/new_species, pref_load)
 	. = ..()
 	if(gainer)
-		UnregisterSignal(owner, COMSIG_CARBON_GAIN_ORGAN)
+		UnregisterSignal(gainer, COMSIG_CARBON_GAIN_ORGAN)
