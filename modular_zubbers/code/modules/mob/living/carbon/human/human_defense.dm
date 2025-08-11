@@ -26,17 +26,17 @@
 	switch(severity)
 		if(EXPLODE_LIGHT)
 			brute_loss = EXPLOSION_DAMAGE_LIGHT
-			maximum_dismemberments = 1
+			maximum_dismemberments = rand(0.1)
 		if(EXPLODE_HEAVY)
 			brute_loss = EXPLOSION_DAMAGE_HEAVY*0.5
 			burn_loss = EXPLOSION_DAMAGE_HEAVY*0.5
 			armor_penetration = EXPLODE_GIB_THRESHOLD*0.5
-			maximum_dismemberments = rand(1,2)
+			maximum_dismemberments = rand(0,2)
 		if(EXPLODE_DEVASTATE)
 			brute_loss = EXPLOSION_DAMAGE_DEVASTATE*0.5
 			burn_loss = EXPLOSION_DAMAGE_DEVASTATE*0.5
 			armor_penetration = EXPLODE_GIB_THRESHOLD
-			maximum_dismemberments = rand(1,4) //chimken nuget
+			maximum_dismemberments = rand(0,4) //chimken nuget
 
 	var/flat_brute_loss = brute_loss*(1/possible_parts_length)*0.5 //Always deal this amount per part.
 	var/flat_burn_loss = burn_loss*(1/possible_parts_length)*0.5 //Always deal this amount per part.
