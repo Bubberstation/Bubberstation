@@ -9,6 +9,12 @@
 	projectile_type = /obj/projectile/bullet/cacoil
 	can_be_printed = TRUE
 
+/obj/item/ammo_casing/cacoil/Initialize(mapload)
+	. = ..()
+
+	AddElement(/datum/element/caseless)
+
+
 /obj/projectile/bullet/cacoil
 	name = "coilgun dart"
 	damage = 15
