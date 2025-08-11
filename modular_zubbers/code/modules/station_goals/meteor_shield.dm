@@ -48,3 +48,12 @@
 		"It appears a meteor point-defense satellite was tampered with, and may or may not have attracted an elongated object. Please check your GPSs to resolve the issue.",
 		"Clarification on what the fuck that was."
 	)
+
+/obj/machinery/satellite/meteor_shield/update_emagged_meteor_sat()
+	return
+
+/obj/machinery/satellite/meteor_shield/handle_new_emagged_shield_threshold()
+	return
+
+/obj/machinery/satellite/meteor_shield/change_meteor_chance(mod)
+	return
