@@ -78,7 +78,7 @@
 			maximum_dismemberments--
 
 
-	if(total_damage_dealt > EXPLOSION_DAMAGE_DEVASTATE*1.05) //Not enough damage to protect you. The +5% multiplier is a little bit of forgiveness in case of rounding errors.
+	if(total_damage_dealt > EXPLOSION_DAMAGE_DEVASTATE*0.95) //Not enough damage to protect you. The 95% multiplier is a little bit of forgiveness in case of rounding errors.
 		for(var/atom/movable/oh_no_my_organs as anything in contents)
 			SSexplosions.high_mov_atom += oh_no_my_organs
 		investigate_log("has been gibbed by an explosion.", INVESTIGATE_DEATHS)
