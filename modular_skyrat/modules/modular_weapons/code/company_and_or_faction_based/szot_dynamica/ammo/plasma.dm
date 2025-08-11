@@ -20,14 +20,7 @@
 	pass_flags = PASSTABLE | PASSGRILLE // His ass does NOT pass through glass!
 	weak_against_armour = TRUE
 
-/obj/item/ammo_casing/energy/laser/plasma_glob/supercharged
-	name = "overcharged plasma globule"
-	projectile_type = /obj/projectile/beam/laser/plasma_glob/supercharged
-	fire_sound = 'modular_zubbers/sound/weapons/incinerate.ogg'
-
-
 /obj/projectile/beam/laser/plasma_glob/supercharged
-	name = "plasma globule"
-	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/ammo.dmi'
-	icon_state = "plasma_glob"
+	name = "overcharged plasma globule"
+	icon_state = "plasma_glob_super"
 	weak_against_armour = FALSE

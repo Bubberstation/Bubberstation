@@ -107,15 +107,17 @@
 
 	return .
 
-/obj/item/gun/ballistic/automatic/pistol/plasma_marksman/shoot_live_shot(mob/living/user, pointblank, atom/pbtarget, message)
+/obj/item/gun/ballistic/automatic/pistol/plasma_marksman/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	. = ..()
-	update_projspeed(user, overclocking)
+	if(overclocking && chambered)
+		chambered.projectile_type = /obj/projectile/beam/laser/plasma_glob/supercharged
+	update_projspeed(user)
 
-/obj/item/gun/ballistic/automatic/pistol/plasma_marksman/proc/update_projspeed(mob/user, current_proj_speed, overclocking)
+/obj/item/gun/ballistic/automatic/pistol/plasma_marksman/proc/update_projspeed(mob/user)
 	var/shots_in_mag = src.get_ammo()
 	if(overclocking)
 		src.projectile_speed_multiplier = 1.6
-	else if(shots_in_mag >= 13 && shots_in_mag <= 16)
+	else if(shots_in_mag >= 13)
 		src.projectile_speed_multiplier = 1.5
 	else if(shots_in_mag >= 10 && shots_in_mag <= 12)
 		src.projectile_speed_multiplier = 1.3
@@ -128,7 +130,7 @@
 	else
 		src.projectile_speed_multiplier = 0.8
 
-/obj/item/gun/ballistic/automatic/pistol/plasma_marksman/proc/activate_oveclock(mob/user, current_proj_speed, overclocking)
+/obj/item/gun/ballistic/automatic/pistol/plasma_marksman/proc/activate_oveclock(mob/user, current_proj_speed)
 
 /datum/action/item_action/activate_plasma_overclock //Gotta be hud, its un-revertable. Imagine misclicking and blowing up your gun without knowing...
 	button_icon = 'icons/obj/weapons/guns/ammo.dmi'
@@ -145,16 +147,20 @@
 	balloon_alert(user, "[overclocking ? "Plasma coils overheated, it's going to blow!" : "It's not shutting down!"]")
 	if(overclocking)
 		overclock(user)
+	playsound(src, 'sound/effects/magic/lightning_chargeup.ogg', 50)
 	update_item_action_buttons()
 
 	//Base overclock proc, changes our projectile for releasing the flare + explosion
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman/proc/overclock(mob/living/user, slot)
 	if(user)
 		START_PROCESSING(SSprocessing, src)
-		addtimer(CALLBACK(src, PROC_REF(audio_warning)), 8 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(audio_warning)), 7 SECONDS)
 		addtimer(CALLBACK(src, PROC_REF(kaboom)), 10 SECONDS)
 		shakeit()
 		add_shared_particles(/particles/smoke/steam)
+		for(var/obj/item/ammo_casing/energy/laser/plasma_glob/old in magazine.stored_ammo)
+			old.projectile_type = /obj/projectile/beam/laser/plasma_glob/supercharged
+			old.loaded_projectile = /obj/projectile/beam/laser/plasma_glob/supercharged
 
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman/proc/shakeit()
 	SIGNAL_HANDLER
@@ -165,7 +171,7 @@
 
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman/proc/kaboom(mob/living/user)
 	STOP_PROCESSING(SSprocessing, src)
-	var/turf/last_surprise = user.loc
+	var/turf/last_surprise = get_turf(src)
 	explosion(src, light_impact_range = 1, flame_range = 3, explosion_cause = src)
 	last_surprise.add_liquid(/datum/reagent/toxin/plasma, 3, no_react = FALSE, chem_temp = 300)
 	new /obj/effect/hotspot(last_surprise)
@@ -181,11 +187,12 @@
 			to_chat(M, span_warning("You feel something is very wrong..."))
 
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman/process(seconds_per_tick)
-	var/mob/living/carbon/wielder = loc
+	var/mob/living/carbon/wielder = ismob(loc) ? loc : null
 	var/obj/item/bodypart/affecting = wielder.get_bodypart("[(wielder.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
 	if(wielder.is_holding(src))
 		wielder.apply_damage(5, BURN, affecting)
 		to_chat(wielder, span_warning("[src] burns your hand, it's too hot!"))
+
 // A revolver, but it can hold shotgun shells
 // Woe, buckshot be upon ye
 
