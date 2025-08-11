@@ -9,6 +9,16 @@
 				)
 	crate_name = ".35 ammo crate"
 
+/datum/supply_pack/security/lethalsolrifles
+	name = ".40 Ammunition Crates"
+	desc = "Contains 6 boxes of lethal ammunition for Sol .40 Rifle."
+	cost = CARGO_CRATE_VALUE * 10
+	contains = list(/obj/item/ammo_box/c40sol= 4,
+					/obj/item/ammo_box/c40sol/pierce = 1,
+					/obj/item/ammo_box/c40sol/incendiary = 1,
+				)
+	crate_name = ".40 ammo crate"
+
 /datum/supply_pack/security/lethalskyratshotgun
 	name = "12 Gauge Ammunition Crates"
 	desc = "Contains 6 boxes of lethal ammunition for all 12 Gauge Shotguns."

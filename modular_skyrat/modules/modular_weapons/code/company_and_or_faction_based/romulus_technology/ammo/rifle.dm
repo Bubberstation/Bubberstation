@@ -1,27 +1,3 @@
-/obj/item/ammo_casing/cacoil
-	name = "coilgun driver (5.7mm)"
-	desc = "A Commonwealth Standard coilgun casing. Contains a dart inside the metallic casing"
-
-	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/romulus_technology/ammo.dmi'
-	icon_state = "sl-casing"
-
-	caliber = CALIBER_COIL
-	projectile_type = /obj/projectile/bullet/cacoil
-	can_be_printed = TRUE
-
-/obj/item/ammo_casing/cacoil/Initialize(mapload)
-	. = ..()
-
-	AddElement(/datum/element/caseless)
-
-
-/obj/projectile/bullet/cacoil
-	name = "coilgun dart"
-	damage = 15
-	armour_penetration = 10
-	wound_bonus = 15
-	bare_wound_bonus = 0
-
 /obj/item/ammo_casing/caflechette
 	name = "flechette steel penetrator"
 	desc = "A Romfed standard rifle flechette."
