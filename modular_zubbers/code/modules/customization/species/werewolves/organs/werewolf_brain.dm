@@ -10,7 +10,10 @@
 	owner.visible_message(span_warning("[owner] grows massive, their body quickly getting covered in fur!"))
 	owner.set_species(/datum/species/werewolf, TRUE, TRUE, FALSE)
 	ADD_TRAIT(owner, TRAIT_BEAST_FORM, SPECIES_TRAIT)
-	owner.add_quirk(/datum/quirk/oversized)
+	owner.dna.features["body_size"] = 2
+	owner.maptext_height = 32 * owner.dna.features["body_size"] //Adjust runechat height
+	owner.dna.update_body_size()
+	owner.mob_size = MOB_SIZE_LARGE
 
 /obj/item/organ/brain/werewolf/proc/leave_beast_form()
 	var/datum/species/werewolf/current_wolf = owner.dna?.species
@@ -19,8 +22,10 @@
 	owner.visible_message(span_warning("[owner] shrinks down, their fur receding!"))
 	owner.set_species(/datum/species/human/werewolf, TRUE, TRUE, FALSE)
 	REMOVE_TRAIT(owner, TRAIT_BEAST_FORM, SPECIES_TRAIT)
-	owner.remove_quirk(/datum/quirk/oversized)
+	owner.dna.features["body_size"] = owner?.client?.prefs ?owner?.client?.prefs?.read_preference(/datum/preference/numeric/body_size) : 1
+	owner.maptext_height = 32 * owner.dna.features["body_size"]
 	owner.dna.update_body_size()
+	owner.mob_size = MOB_SIZE_HUMAN
 
 /obj/item/organ/brain/werewolf/proc/toggle_beast_form(mob/user)
 	set name = "Enter/Leave Werewolf Form"

@@ -79,3 +79,9 @@
 		ADD_TRAIT(src, TRAIT_FAST_METABOLISM, SPECIES_TRAIT)
 	else if(erp_area)
 		REMOVE_TRAIT(src, TRAIT_FAST_METABOLISM, SPECIES_TRAIT)
+
+/datum/species/werewolf/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons)
+	. = ..()
+
+/datum/species/werewolf/on_species_loss(mob/living/carbon/human/human, datum/species/new_species, pref_load)
+	. = ..()

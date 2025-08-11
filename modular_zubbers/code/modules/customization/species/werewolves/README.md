@@ -8,7 +8,7 @@ Almost every file involving werewolves is stored here.
 - modular_skyrat/modules/emotes/code/emotes.dm (line 418)
 - code/\_\_DEFINES/~~bubber_defines/mobs.dm (line 32)
 - code/\_\_DEFINES/~~bubber_defines/traits/declarations.dm (lines 45 - 49)
-- tgui/packages/tgui/interfaces/PreferencesMenu/preferences/features/character_preferences/skyrat/species_features.tsx (lines 776 - 813)
+- tgui/packages/tgui/interfaces/PreferencesMenu/preferences/features/character_preferences/skyrat/species_features.tsx (lines 776 - 824)
 - modular_zubbers/code/modules/surgery/bodyparts/\_bodyparts.dm
 
 ## Non-Modular Edits:

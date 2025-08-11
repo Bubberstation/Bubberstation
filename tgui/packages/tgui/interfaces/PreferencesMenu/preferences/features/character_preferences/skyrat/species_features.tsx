@@ -811,3 +811,14 @@ export const feature_werewolf_tail: FeatureChoiced = {
     return <FeatureDropdownInput buttons {...props} />;
   },
 };
+
+export const werewolf_tail_color: Feature<string[]> = {
+  name: 'Werewolf Tail Colors',
+  component: FeatureTriColorInput,
+};
+
+export const werewolf_tail_emissive: Feature<boolean[]> = {
+  name: 'Werewolf Tail Emissives',
+  description: 'Emissive parts glow in the dark.',
+  component: FeatureTriBoolInput,
+};
