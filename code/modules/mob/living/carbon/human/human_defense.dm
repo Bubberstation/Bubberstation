@@ -265,6 +265,7 @@
 		var/armor_block = run_armor_check(affecting, MELEE)
 		apply_damage(damage, BRUTE, affecting, armor_block)
 
+/* BUBBERSTATION CHANGE: SEE MODULAR FILE.
 /mob/living/carbon/human/ex_act(severity, target, origin)
 	if(HAS_TRAIT(src, TRAIT_BOMBIMMUNE))
 		return FALSE
@@ -351,6 +352,7 @@
 
 	return TRUE
 
+*/
 
 /mob/living/carbon/human/blob_act(obj/structure/blob/B)
 	if(stat == DEAD)
