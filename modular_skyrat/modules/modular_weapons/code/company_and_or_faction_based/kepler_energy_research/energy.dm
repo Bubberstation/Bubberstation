@@ -1,7 +1,3 @@
-/*
-Lever Rifle
-*/
-
 /obj/item/gun/energy/laser/lever //the common parent of these guns, it just shoots hard bullets, somoene might like that?
 	name = "hardlight rifle"
 	desc = "The frontier is crawling with danger.  The Kepler 'Winchester ELA' was born from a requirement to cheaply arm colonists\
