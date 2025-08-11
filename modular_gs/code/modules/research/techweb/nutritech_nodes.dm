@@ -41,7 +41,7 @@
 		"fatoray_cannon_weak", 
 		"alter_ray_metabolism", 
 		"alter_ray_reverser", 
-		"borg_upgrade_fatoray", 
+		// "borg_upgrade_fatoray", 
 		// "bwomf_nanites", 
 		// "docility_implant"
 		)
