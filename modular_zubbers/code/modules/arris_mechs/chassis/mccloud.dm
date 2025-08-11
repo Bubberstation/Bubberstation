@@ -55,6 +55,9 @@
 	var/ex_light = 5
 	var/ex_flame = 1
 
+	var/newtonian_acceleration = 6 NEWTONS
+	var/newtonian_accel_cap = 18 NEWTONS
+
 /obj/vehicle/sealed/mecha/mccloud/Initialize(mapload, built_manually)
 	..()
 	movedelay = biped_move_delay
@@ -194,7 +197,7 @@
 		if(keyheld || !pivot_step) //If we pivot step, we don't return here so we don't just come to a stop
 			return TRUE
 	jet_mode_thruster_effects(direction)
-	newtonian_move(dir2angle(direction), FALSE, 0, 6 NEWTONS, 18 NEWTONS, FALSE)
+	newtonian_move(dir2angle(direction), FALSE, 0, newtonian_acceleration, newtonian_accel_cap, FALSE)
 	if(strafe)
 		setDir(olddir)
 
