@@ -26,7 +26,7 @@
 		Tizirans tend to decorate their bodies, particularly frills and horns, in similar fashion to human tattoos and piercings, \
 		to symbolize important events and allegiances. They often value physicality and action over words, making them put less cultural emphasis on fashion.",
 
-		"Tizirans (known as Lizardpeople in Federation spaces) have a militaristic culture that once conquered large swathes of territory \
+		"Tizirans have a militaristic culture that once conquered large swathes of territory \
 		before their capital of Zagoskeld was turned to a glass canyon by Federation plasma ships, ending the Coalition War. \
 		Their territory has since reduced in size, but is one of the faster growing economies of the modern age. \
 		The colony of Kesa'aresz, once a Tiziran fortress world, is now where the majority of Federation lizards vote and hail from.",
