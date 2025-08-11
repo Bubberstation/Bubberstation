@@ -38,8 +38,8 @@
 			armor_penetration = EXPLODE_GIB_THRESHOLD
 			maximum_dismemberments = rand(0,4) //chimken nuget
 
-	var/flat_brute_loss = brute_loss*(1/possible_parts_length)*0.5 //Always deal this amount per part.
-	var/flat_burn_loss = burn_loss*(1/possible_parts_length)*0.5 //Always deal this amount per part.
+	var/flat_brute_loss = CEILING( brute_loss*(1/possible_parts_length)*0.5, 1) //Always deal this amount per part.
+	var/flat_burn_loss = CEILING( burn_loss*(1/possible_parts_length)*0.5, 1) //Always deal this amount per part.
 	brute_loss -= flat_brute_loss*possible_parts_length
 	burn_loss -= flat_burn_loss*possible_parts_length
 
@@ -50,8 +50,8 @@
 		var/part_mod = 1 - (parts_left/possible_parts_length)
 		parts_left--
 
-		var/random_brute_damage_to_deal = brute_loss > 0 ? rand( part_mod*brute_loss, brute_loss) : 0
-		var/random_burn_damage_to_deal = burn_loss > 0 ? rand( part_mod*burn_loss, burn_loss) : 0
+		var/random_brute_damage_to_deal = brute_loss > 0 ? rand( CEILING(part_mod*brute_loss,1), brute_loss) : 0
+		var/random_burn_damage_to_deal = burn_loss > 0 ? rand( CEILING(part_mod*burn_loss,1), burn_loss) : 0
 		brute_loss -= random_brute_damage_to_deal
 		burn_loss -= random_burn_damage_to_deal
 
@@ -78,7 +78,7 @@
 			maximum_dismemberments--
 
 
-	if(total_damage_dealt > EXPLOSION_DAMAGE_DEVASTATE*0.95) //Not enough damage to protect you. The 95% multiplier is a little bit of forgiveness in case of rounding errors.
+	if(total_damage_dealt >= EXPLOSION_DAMAGE_DEVASTATE) //Not enough damage to protect you.
 		for(var/atom/movable/oh_no_my_organs as anything in contents)
 			SSexplosions.high_mov_atom += oh_no_my_organs
 		investigate_log("has been gibbed by an explosion.", INVESTIGATE_DEATHS)
