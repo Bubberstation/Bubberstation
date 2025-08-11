@@ -164,7 +164,7 @@
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return ITEM_INTERACT_SUCCESS
 
-	///Memory Wipe Via Screwdriver
+	///Memory Wipe Via Pen
 
 	if(brain?.dead && istype(tool, /obj/item/pen))
 		to_chat(user, span_notice("You begin to reset the protean's random access memory using a pen."))
