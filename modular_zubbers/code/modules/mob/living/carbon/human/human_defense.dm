@@ -20,16 +20,23 @@
 
 	var/brute_loss = 0
 	var/burn_loss = 0
+	var/armor_penetration = 0
+	var/maximum_dismemberments = 0
 
 	switch(severity)
 		if(EXPLODE_LIGHT)
 			brute_loss = EXPLOSION_DAMAGE_LIGHT
+			maximum_dismemberments = 1
 		if(EXPLODE_HEAVY)
 			brute_loss = EXPLOSION_DAMAGE_HEAVY*0.5
 			burn_loss = EXPLOSION_DAMAGE_HEAVY*0.5
+			armor_penetration = EXPLODE_GIB_THRESHOLD*0.5
+			maximum_dismemberments = rand(1,2)
 		if(EXPLODE_DEVASTATE)
 			brute_loss = EXPLOSION_DAMAGE_DEVASTATE*0.5
 			burn_loss = EXPLOSION_DAMAGE_DEVASTATE*0.5
+			armor_penetration = EXPLODE_GIB_THRESHOLD
+			maximum_dismemberments = rand(1,4) //chimken nuget
 
 	var/flat_brute_loss = brute_loss*(1/possible_parts_length)*0.5 //Always deal this amount per part.
 	var/flat_burn_loss = burn_loss*(1/possible_parts_length)*0.5 //Always deal this amount per part.
@@ -48,7 +55,7 @@
 		brute_loss -= random_brute_damage_to_deal
 		burn_loss -= random_burn_damage_to_deal
 
-		var/wound_bonus = DISMEMBER_MINIMUM_DAMAGE + random_brute_damage_to_deal + random_burn_damage_to_deal
+		var/armor_to_use = max(0,getarmor(limb, BOMB) - armor_penetration)
 
 		var/old_brute = limb.brute_dam
 		var/old_burn = limb.burn_dam
@@ -56,10 +63,8 @@
 		limb.receive_damage(
 			flat_brute_loss + random_brute_damage_to_deal,
 			flat_burn_loss + random_burn_damage_to_deal,
-			getarmor(limb, BOMB),
+			armor_to_use,
 			updating_health = FALSE,
-			wound_bonus = wound_bonus,
-			exposed_wound_bonus = wound_bonus,
 			attack_direction = attack_direction,
 			damage_source = origin
 		)
@@ -67,10 +72,13 @@
 		var/limb_damage_dealt = (limb.brute_dam + limb.burn_dam) - (old_brute + old_burn)
 		total_damage_dealt += limb_damage_dealt
 
-		if(limb.loc != src && !QDELETED(limb) ) //Limb was removed. Make it fly.
+		//Handle dismemberment here, if it already wasn't somehow dismembered by damage.
+		if( (limb.loc != src && !QDELETED(limb)) || ((total_damage_dealt >= limb.max_damage*0.5) && maximum_dismemberments > 0 && limb.can_be_disabled && limb.try_dismember(WOUND_BLUNT,limb_damage_dealt,0,0)) ) //Limb was removed. Make it fly.
 			SSexplosions.high_mov_atom += limb
+			maximum_dismemberments--
 
-	if(total_damage_dealt > EXPLOSION_DAMAGE_DEVASTATE*(EXPLODE_GIB_THRESHOLD/100)) //Not enough damage to protect you.
+
+	if(total_damage_dealt > EXPLOSION_DAMAGE_DEVASTATE*1.05) //Not enough damage to protect you. The +5% multiplier is a little bit of forgiveness in case of rounding errors.
 		for(var/atom/movable/oh_no_my_organs as anything in contents)
 			SSexplosions.high_mov_atom += oh_no_my_organs
 		investigate_log("has been gibbed by an explosion.", INVESTIGATE_DEATHS)
@@ -78,6 +86,9 @@
 		return TRUE
 
 	if(total_damage_dealt > 0)
+		//Handle clothing damage.
+		damage_clothes(total_damage_dealt, BRUTE, BOMB)
+
 		//Handle knockdown
 		var/knockdown_amount = (4 SECONDS) * (total_damage_dealt / EXPLOSION_DAMAGE_LIGHT)
 		if(knockdown_amount >= 2 SECONDS )
