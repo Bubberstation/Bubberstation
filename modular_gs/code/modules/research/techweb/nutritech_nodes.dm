@@ -12,7 +12,7 @@
 		// "calorite_collar", 
 		// "ci-nutrimentturbo", 
 		"bluespace_belt", 
-		// "primitive_bluespace_belt", 
+		"primitive_bluespace_belt", 
 		// "adipoelectric_transformer", 
 		// "adipoelectric_generator",
 		// "cookie_synthesizer", 
