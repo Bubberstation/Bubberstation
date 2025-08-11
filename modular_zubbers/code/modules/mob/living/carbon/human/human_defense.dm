@@ -33,6 +33,13 @@
 			armor_penetration = EXPLODE_GIB_THRESHOLD*0.5
 			maximum_dismemberments = rand(0,2)
 		if(EXPLODE_DEVASTATE)
+			var/obj/item/bodypart/chest/found_chest = locate() in possible_parts
+			if(found_chest && getarmor(found_chest, BOMB) < EXPLODE_GIB_THRESHOLD)
+				for(var/atom/movable/flying_brains as anything in contents)
+					SSexplosions.high_mov_atom += flying_brains
+				investigate_log("has been gibbed by an explosion.", INVESTIGATE_DEATHS)
+				gib(DROP_ALL_REMAINS)
+				return TRUE
 			brute_loss = EXPLOSION_DAMAGE_DEVASTATE*0.5
 			burn_loss = EXPLOSION_DAMAGE_DEVASTATE*0.5
 			armor_penetration = EXPLODE_GIB_THRESHOLD
@@ -72,18 +79,13 @@
 		var/limb_damage_dealt = (limb.brute_dam + limb.burn_dam) - (old_brute + old_burn)
 		total_damage_dealt += limb_damage_dealt
 
+		if((severity == EXPLODE_DEVASTATE && armor_to_use <= 0) || (maximum_dismemberments > 0 && limb.can_be_disabled) )
+			limb.try_dismember(WOUND_BLUNT,limb_damage_dealt,0,0)
+
 		//Handle dismemberment here, if it already wasn't somehow dismembered by damage.
-		if( (limb.loc != src && !QDELETED(limb)) || ((total_damage_dealt >= limb.max_damage*0.75) && maximum_dismemberments > 0 && limb.can_be_disabled && limb.try_dismember(WOUND_BLUNT,limb_damage_dealt,0,0)) ) //Limb was removed. Make it fly.
+		if( (limb.loc != src && !QDELETED(limb))) //Limb was removed. Make it fly.
 			SSexplosions.high_mov_atom += limb
 			maximum_dismemberments--
-
-
-	if(total_damage_dealt >= EXPLOSION_DAMAGE_DEVASTATE) //Not enough damage to protect you.
-		for(var/atom/movable/oh_no_my_organs as anything in contents)
-			SSexplosions.high_mov_atom += oh_no_my_organs
-		investigate_log("has been gibbed by an explosion.", INVESTIGATE_DEATHS)
-		gib(DROP_ALL_REMAINS)
-		return TRUE
 
 	if(total_damage_dealt > 0)
 		//Handle clothing damage.
