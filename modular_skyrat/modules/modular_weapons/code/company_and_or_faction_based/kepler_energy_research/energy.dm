@@ -20,7 +20,8 @@
 /obj/item/gun/energy/laser/lever/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF|EMP_PROTECT_CONTENTS)
-	AddComponent(, \
+
+	AddComponent(\
 		/datum/component/crank_recharge, \
 		charging_cell = get_cell(), \
 		spin_to_win = TRUE, \
@@ -28,5 +29,5 @@
 		cooldown_time = 0.1 SECONDS, \
 		charge_sound = 'sound/items/weapons/kinetic_reload.ogg', \
 		charge_sound_cooldown_time = 0.6 SECONDS, \
-		charge_move = IGNORE_USER_LOC_CHANGE
+		charge_move = IGNORE_USER_LOC_CHANGE \
 	)
