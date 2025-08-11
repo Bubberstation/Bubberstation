@@ -26,7 +26,7 @@
 	switch(severity)
 		if(EXPLODE_LIGHT)
 			brute_loss = EXPLOSION_DAMAGE_LIGHT
-			maximum_dismemberments = rand(0.1)
+			maximum_dismemberments = rand(0,1)
 		if(EXPLODE_HEAVY)
 			brute_loss = EXPLOSION_DAMAGE_HEAVY*0.5
 			burn_loss = EXPLOSION_DAMAGE_HEAVY*0.5
