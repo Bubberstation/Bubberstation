@@ -349,7 +349,16 @@
 /obj/vehicle/sealed/mecha/mccloud/mob_toggled_ci(mob/living/source)
 	..()
 	if(jet_mode) //this is just to fix some bug where toggling CI sets you to the wrong icon
-		icon_state = base_icon_state + "-jet"
+		if(mecha_flags & SILICON_PILOT)
+			icon_state = silicon_icon_state + "-jet"
+		else
+			icon_state = base_icon_state + "-jet"
+	else
+		if(mecha_flags & SILICON_PILOT)
+			icon_state = silicon_icon_state
+		else
+			icon_state = base_icon_state
+
 
 /obj/structure/mecha_wreckage/mccloud
 	icon = 'modular_zubbers/code/modules/arris_mechs/icons/mecha_64x32.dmi'
