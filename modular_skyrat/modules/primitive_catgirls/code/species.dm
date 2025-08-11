@@ -60,8 +60,6 @@
 	human_for_preview.skin_tone = "albino"
 	human_for_preview.set_eye_color("#6ca580")
 
-	human_for_preview.update_body_parts()
-
 	human_for_preview.dna.species.mutant_bodyparts["tail"] = list(MUTANT_INDEX_NAME = "Cat", MUTANT_INDEX_COLOR_LIST = list(human_for_preview.hair_color))
 	human_for_preview.dna.mutant_bodyparts["ears"] = list(MUTANT_INDEX_NAME = "Lynx", MUTANT_INDEX_COLOR_LIST = list(human_for_preview.hair_color))
 
