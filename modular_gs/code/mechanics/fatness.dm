@@ -63,6 +63,7 @@
 	perma_apply()	//Check and apply for permanent fat
 	xwg_resize()	//Apply XWG
 
+	/*
 	// Handle Awards
 	if(client)
 		if(fatness > FATNESS_LEVEL_BLOB)
@@ -81,6 +82,7 @@
 			client.give_award(/datum/award/achievement/fat/milestone_six, src)
 		if(fatness > 10000000)
 			client.give_award(/datum/award/achievement/fat/milestone_seven, src)
+		*/
 
 	return TRUE
 
