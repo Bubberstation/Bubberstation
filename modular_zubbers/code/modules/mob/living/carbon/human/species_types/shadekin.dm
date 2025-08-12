@@ -130,8 +130,7 @@
 		It has become a notable tourist attraction in the few habitable areas. Neoma also serves an important function of containing the collective knowledge and many of the covens of Shadekin society.",
 
 		"Covens are groups of Shadekin of similar thought formed to maintain themselves and records of their existence, as well as guide new Shadekin \
-		as they develop. They are rarely associated with ideology, rather concepts and what they imply. Business, emotion, darkness-- \
-		the Dark Star Syndicate, the Cenochists, and the Cult of Sluithian, these are examples of covens that exist, and within a coven exist Coteries, subfactions \
+		as they develop. They are rarely associated with ideology, rather concepts and what they imply, and within a coven exist Coteries, subfactions \
 		of interest within a coven, tailored to a specific task and aspect. In this regard, covens are societies in and of themselves, organized in a somewhat tribal manner. \
 		Covens do not solely exist on Neoma, they are spread throughout the universe, but most covens at least have some form of archive on the moon, called \"Mindtrusts\".",
 	)
