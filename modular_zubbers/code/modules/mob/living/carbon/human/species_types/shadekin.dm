@@ -130,7 +130,7 @@
 		into their ranks. They are rarely associated with ideology, rather concepts and the ideology that sprouts from them. Business, emotion, darkness-- \
 		the Dark Star Syndicate, the Cenochists, and the Cult of Sluithian, these are just three such covens that exist, and within a coven exist Coteries, subfactions \
 		of interest within a coven, tailored to a specific task and aspect. In this regard, covens are societies in and of themselves, organized much like the Shadekin are. \
-		Covens do not solely exist on Neoma, they are spread throughout the universe, but most covens at least have some form of archive on the moon.",
+		Covens do not solely exist on Neoma, they are spread throughout the universe, but most covens at least have some form of archive on the moon, called \"Mindtrusts\".",
 	)
 
 /obj/item/organ/brain/shadekin
