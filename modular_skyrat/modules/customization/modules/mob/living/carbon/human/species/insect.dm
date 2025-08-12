@@ -1,5 +1,5 @@
 /datum/species/insect
-	name = "Anthromorphic Insect"
+	name = "Insectoid"
 	id = SPECIES_INSECT
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,
