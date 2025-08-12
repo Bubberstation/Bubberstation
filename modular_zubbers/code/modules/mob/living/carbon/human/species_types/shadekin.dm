@@ -122,9 +122,9 @@
 		They are generally more expressive than other species to compensate for a lack of psionic connection that Shadekin tend to expect from each other. \
 		Their language, Marish, is purely empathic and cannot be spoken by psychopaths.",
 
-		"Shadekin have many places in the universe to congregate and learn about their species, by necessity being decentralized. \
-		The closest thing Shadekin have to a home planet is the moon Neoma, which remains in total darkness due to its orbit around Lusine. \
-		It has become a notable tourist attraction, with nightlife center stage. Tourism is the main export of Neoma. \
+		"A shadekin trying to navigate the sea of stars is not truly alone, however, as Shadekin have founded a home to provide guidance, Neoma. \
+		This is the closest thing Shadekin have to a homeworld, which remains in total darkness due to its orbit around Lusine. \
+		It has become a notable tourist attraction, with nightlife center stage. Tourism is the main export of Neoma, after years of development to make it breathable. \
 		Neoma also serves an important function of containing the collective knowledge and many of the covens of Shadekin society.",
 		"Covens are large groups of Shadekin of similar thought formed to maintain themselves and records of their existence, as well as induct new Shadekin \
 		into their ranks. They are rarely associated with ideology, rather concepts and the ideology that sprouts from them. Business, emotion, darkness-- \
