@@ -21,10 +21,22 @@
 	default_parts["spines"] = list("None", TRUE)
 	return default_parts
 
+/datum/species/lizard/ashwalker/get_species_description()
+	return list(placeholder_description)
+
+/datum/species/lizard/ashwalker/get_species_lore()
+	return list(placeholder_lore)
+
 /datum/species/lizard/silverscale/get_default_mutant_bodyparts()
 	var/list/default_parts = ..()
 	default_parts["spines"] = list("None", TRUE)
 	return default_parts
+
+/datum/species/lizard/silverscale/get_species_description()
+	return list(placeholder_description)
+
+/datum/species/lizard/silverscale/get_species_lore()
+	return list(placeholder_lore)
 
 /datum/species/lizard/randomize_features()
 	var/list/features = ..()
@@ -65,10 +77,8 @@
 		TRAIT_TACKLING_TAILED_DEFENDER,
 	)
 
-
 /datum/species/lizard/ashwalker/prepare_human_for_preview(mob/living/carbon/human/lizard, lizard_color = "#990000")
 	. = ..(lizard, lizard_color)
-
 
 /datum/species/lizard/silverscale/prepare_human_for_preview(mob/living/carbon/human/lizard, lizard_color = "#eeeeee")
 	lizard.eye_color_left = "#0000a0"
