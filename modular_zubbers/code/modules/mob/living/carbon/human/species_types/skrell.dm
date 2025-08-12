@@ -2,7 +2,7 @@
 	return list(
 	"The skrell are a dying amphibious species from the marshworld Qerrbalak, \
 	possessing some of the most intelligent minds in the galaxy due to their often singular focus.",
-	"Their blood has a high concentration of copper, giving their skin a blue tint from oxidization. \
+	"Their blood is rich in copper, oxidizing their skin to a blue tint. \
 	Amebocytes in their blood filter out smaller doses of toxins, \
 	though their livers are unable to break down alcohol, among other things. \
 	They are resistant to heat and burns by retaining potable water, but bruise more easily than humans. \
