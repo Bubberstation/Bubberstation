@@ -121,4 +121,3 @@
 		A meeting of Teshari elders have named the species after the Teshari word for \"bastard\". \
 		Needless to say, this very quickly led to the normalization of relations and formal recognition by the then NRI.",
 	)
-B
