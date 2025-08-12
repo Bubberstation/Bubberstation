@@ -114,6 +114,7 @@
 		They formed in dark and abandoned places where they are not witnessed-- observation would dispel their creation. \
 		When the process is complete, the Shadekin collects the ability to move its limbs and communicate from the surrounding minds \
 		and finally, it forms its first thought, the realization that it is alive.",
+
 		"Shadekin are pitch darkness given form, with light seeming to pass through their bodies, which tires them. They do not cast shadows. \
 		Shadekin elude common definition in terms of size and appearance, as no two Shadekin are the same-- they often share features with the species around them \
 		that would otherwise not be seen as Shadekin features. For example, Shadekin created in Tizira are much more likely to have horns or frill-like ears. \
@@ -127,6 +128,7 @@
 		"A shadekin trying to navigate the sea of stars is not truly alone, however, as Shadekin have formed in number on the treacherous moon Neoma. \
 		While there is no central Shadekin government, this is the closest thing Shadekin have to a homeworld, which remains in total darkness due to its orbit around Lusine, an extremely hot world that keeps Neoma's surface approaching habitable. \
 		It has become a notable tourist attraction in the few habitable areas. Neoma also serves an important function of containing the collective knowledge and many of the covens of Shadekin society.",
+
 		"Covens are groups of Shadekin of similar thought formed to maintain themselves and records of their existence, as well as guide new Shadekin \
 		as they develop. They are rarely associated with ideology, rather concepts and what they imply. Business, emotion, darkness-- \
 		the Dark Star Syndicate, the Cenochists, and the Cult of Sluithian, these are examples of covens that exist, and within a coven exist Coteries, subfactions \
