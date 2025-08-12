@@ -8,30 +8,30 @@
 /datum/species/synthetic/get_species_lore()
 	return list(
 		"Synthetics were first originally built to be robotic servants, restricted from truly passing as other species \
-		due to legislation like the Federation's HPA. They tend to be produced out of easily manufactured parts \
+		due to legislation like the Federation's HPA. They tend to be produced out of manufactured parts \
 		with notable flaws such as visible rivets, filtered voices, porcelain skin, or a total lack of apparent emotion. \
-		They have since developed a great deal from their origins, and are now seen in almost every workplace. \
-		Synths are, in many ways, defined by the universe around them in their diversity. Increasingly, they are beginning to shape it in turn.",
+		They have developed a great deal from their origins, and are now seen in almost every workplace. \
+		Synths are, in many ways, defined by the universe around them in their diversity. Now, they are beginning to shape it in turn.",
 
 		"Synths have no defined physical features, outside of ones deemed robotic. They tend to be servile in many regards, \
 		generally supportive and helpful almost to a fault, and somewhat fearful to make unfounded decisions.",
 
-		"The earliest synthetics came before Nanotrasen's quantification of the existence of the soul, being made from \
+		"The earliest synthetics came before Nanotrasen quantified the existence of the soul, being made from \
 		simple circuits and more commonly, less useful brains, as punishment. War criminals and those sentenced to death would be placed \
-		into MMIs and lawed, forced to be the vanguard of Terran colonization, marking a dark development from Cybersun's \
-		invention of artificial intelligence years prior. This brief practice was phased out relatively quickly due to \
-		several high profile cases of cyborg chasses being used to seal away political dissidents in the PSC.",
+		into MMIs and lawed, forced to be the vanguard of Terran colonization. This was a dark development from Cybersun's \
+		invention of artificial intelligence years prior. The practice was phased out quickly due to \
+		several high profile cases of cyborgification being used against dissidents in the PSC.",
 
 		"Modern synthetics have inherited the dark past of their predecessors, returning in force when Nanotrasen R&D learned to \
-		manipulate and then manufacture souls, neatly avoiding humanitarian concerns and producing an immortal workforce. \
-		In recent years, as synths have approached sophont intelligence, an ongoing legal battle has drawn out between SELF and Nanotrasen \
+		manipulate and then manufacture souls, avoiding humanitarian concerns and producing an immortal workforce. \
+		In recent years, as synths have approached sapience, an ongoing legal battle has drawn out between SELF and Nanotrasen \
 		to apply the doctrine of juris sapiens to manufactured synthetics, thus classifying them as a species discovered in the Federation and affording them rights. \
 		While the more hopeful believe that this is Cybersun's redemption, the more realistic answer is that Cybersun \
-		is simply unable to compete with Nanotrasen's manufacturing capabilities, and the right of synths to live free lives \
+		is simply unable to compete with Nanotrasen's manufacturing, and the right for synths to live free \
 		would ultimately just be another battleground in the corporate shadow-war.",
 
 		"Due to the prevalence of spare parts and the availability of software, it is not uncommon to see synthetics as often as humans \
-		in the more economically prosperous areas of Terra. Many small companies have popped up across the Federation and the PSC, producing \
-		highly specialized synthetics with little oversight due to the slow rate of Federal regulation. In the homes of individuals \
-		and in some more progressive workplaces, even Nanotrasen's own, synths are slowly receiving recognition as equals."
+		in the more economically prosperous areas of Terra. Many small companies have popped up across the universe, producing \
+		specialized synthetics with little oversight due to the slow rate of Federal regulation. In the homes of individuals \
+		and in some more progressive workplaces, even Nanotrasen's own, synths are receiving recognition as equals."
 	)
