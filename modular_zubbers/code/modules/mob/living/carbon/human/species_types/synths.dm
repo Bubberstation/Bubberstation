@@ -17,18 +17,16 @@
 		generally supportive and helpful almost to a fault, and somewhat fearful to make unfounded decisions.",
 
 		"The earliest synthetics came before Nanotrasen quantified the existence of the soul, being made from \
-		simple circuits and more commonly, less useful brains, as punishment. War criminals and those sentenced to death would be placed \
+		simple circuits and more commonly, less useful brains as punishment. Those sentenced to death would be placed \
 		into MMIs and lawed, forced to be the vanguard of Terran colonization. This was a dark development from Cybersun's \
 		invention of artificial intelligence years prior. The practice was phased out quickly due to \
 		several high profile cases of cyborgification being used against dissidents in the PSC.",
 
-		"Modern synthetics have inherited the dark past of their predecessors, returning in force when Nanotrasen R&D learned to \
-		manipulate and then manufacture souls, avoiding humanitarian concerns and producing an immortal workforce. \
-		In recent years, as synths have approached sapience, an ongoing legal battle has drawn out between SELF and Nanotrasen \
-		to apply the doctrine of juris sapiens to manufactured synthetics, thus classifying them as a species discovered in the Federation and affording them rights. \
+		"Modern synthetics have returned in force when Nanotrasen R&D learned to manipulate and manufacture souls, \
+		avoiding humanitarian concerns and producing an immortal workforce. In recent years, as synths have approached sapience, an ongoing legal battle has drawn out \
+		between SELF and Nanotrasen	to apply the doctrine of juris sapiens to manufactured synthetics, thus classifying them as a Federation species and affording them rights. \
 		While the more hopeful believe that this is Cybersun's redemption, the more realistic answer is that Cybersun \
-		is simply unable to compete with Nanotrasen's manufacturing, and the right for synths to live free \
-		would ultimately just be another battleground in the corporate shadow-war.",
+		is simply unable to compete with Nanotrasen's manufacturing, and the right for synths to live free is just another battleground in the corporate shadow-war.",
 
 		"Due to the prevalence of spare parts and the availability of software, it is not uncommon to see synthetics as often as humans \
 		in the more economically prosperous areas of Terra. Many small companies have popped up across the universe, producing \
