@@ -65,13 +65,13 @@
 	embed_type = null
 
 /obj/item/ammo_casing/security
-	name = "9x25mm Mk.12 security casing"
-	desc = "A modern 9x25mm Mk.12 bullet casing. This one fires a law-enfocement grade round, making it less deadly than most, but still lethal enough to do it's job."
+	name = "9x19 security casing"
+	desc = "A lower power cartridges intended for usage by on-board Nanotrasen security force, this is designed to minimise collateral damage and hull breach while maintaining lethality."
 	caliber = CALIBER_9MM_SEC
 	projectile_type = /obj/projectile/bullet/security
 
 /obj/projectile/bullet/security
-	name = "9x25mm Murphy bullet"
+	name = "9x19mm Murphy bullet"
 	damage = 20
 	wound_bonus = -20
 
