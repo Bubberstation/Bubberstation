@@ -375,3 +375,8 @@
 /datum/sprite_accessory/synth_head/e3n
 	name = "E3N AI"
 	icon_state = "e3n"
+
+/datum/sprite_accessory/synth_head/mcgreyscale
+	name = "Synthetic Moth Head (Greyscale)"
+	icon_state = "ipc_moth_head"
+	color_src = MUTANT_COLOR
