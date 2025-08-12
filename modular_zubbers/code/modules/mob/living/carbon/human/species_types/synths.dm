@@ -2,7 +2,7 @@
 	return list(
 		"Synthetics are generally robotic servants produced out of manufactured metal parts. Ever since the Humanities Protection Act passed, \
 		they are commonly known for having some form of robotic voice, unnatural movement, or incomplete emotional processes.",
-		"Synthetics are totally unrecognizable to most organics, with oil in place of blood. They are weak to blunt damage and extreme temperatures."
+		"Synthetics avoid many organic interactions, with oil in place of blood. They are weak to blunt damage and extreme temperatures."
 	)
 
 /datum/species/synthetic/get_species_lore()
