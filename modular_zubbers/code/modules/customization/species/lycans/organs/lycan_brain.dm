@@ -13,6 +13,7 @@
 	owner.maptext_height = 32 * owner.dna.features["body_size"] //Adjust runechat height
 	owner.dna.update_body_size()
 	owner.mob_size = MOB_SIZE_LARGE
+	playsound(owner, 'modular_zubbers/code/modules/customization/species/lycans/transform.ogg', 100)
 
 /obj/item/organ/brain/lycan/proc/leave_beast_form()
 	var/datum/species/lycan/current_wolf = owner.dna?.species
@@ -25,6 +26,7 @@
 	owner.maptext_height = 32 * owner.dna.features["body_size"]
 	owner.dna.update_body_size()
 	owner.mob_size = MOB_SIZE_HUMAN
+	playsound(owner, 'modular_zubbers/code/modules/customization/species/lycans/transform.ogg', 100)
 
 /obj/item/organ/brain/lycan/proc/toggle_beast_form(mob/user)
 	set name = "Enter/Leave Lycan Form"
