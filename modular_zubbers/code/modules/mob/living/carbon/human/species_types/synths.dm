@@ -11,10 +11,10 @@
 		due to legislation like the Federation's HPA. They tend to be produced out of easily manufactured parts \
 		with notable flaws such as visible rivets, filtered voices, porcelain skin, or a total lack of apparent emotion. \
 		They have since developed a great deal from their origins, and are now seen in almost every workplace. \
-		Synths are, in many ways, defined by the universe around them in their diversity. Increasingly, they are beginning to shape it in turn."
+		Synths are, in many ways, defined by the universe around them in their diversity. Increasingly, they are beginning to shape it in turn.",
 
 		"Synths have no defined physical features, outside of ones deemed robotic. They tend to be servile in many regards, \
-		generally supportive and helpful almost to a fault, and somewhat fearful to make unfounded decisions."
+		generally supportive and helpful almost to a fault, and somewhat fearful to make unfounded decisions.",
 
 		"The earliest synthetics came before Nanotrasen's quantification of the existence of the soul, being made from \
 		simple circuits and more commonly, less useful brains, as punishment. War criminals and those sentenced to death would be placed \
