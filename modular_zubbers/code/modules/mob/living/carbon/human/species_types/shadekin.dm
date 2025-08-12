@@ -118,10 +118,11 @@
 		"Shadekin are pitch darkness given form, with light seeming to pass through their bodies, which tires them. They do not cast shadows. \
 		Shadekin elude common definition in terms of size and appearance, as no two Shadekin are the same-- they often share features with the species around them \
 		that would otherwise not be seen as Shadekin features. For example, Shadekin created in Tizira are much more likely to have horns or frill-like ears. \
-		A truly average Shadekin would be slightly shorter than a human, with a comparable lifespan. Shadekin are capable of reproducing sexually, though their minds \
-		need diverse surroundings to properly develop, making them fairly self-guided, with little in the way of direction provided by their society. Shadekin that do not \
-		make use of another species' naming conventions often name themselves after their place in the community, often a job or societal function. \
-		This can be overwhelming, but Shadekin generally find a space of their own, and become staples of their communities when accepted. While antisocial Shadekin exist, they are rarely seen. \
+		A truly average Shadekin would be slightly shorter than a human, with a comparable lifespan.",
+
+		"Shadekin are capable of reproducing sexually, though their minds need diverse surroundings to properly develop, making them fairly self-guided, \
+		with little in the way of direction provided by their society. Shadekin that do not make use of another species' naming conventions often \
+		name themselves after their place in the community, often a job or societal function. Shadekin easily find a space of their own, and become staples of their communities. \
 		They are generally more expressive than other species to compensate for a lack of psionic connection that Shadekin tend to expect from each other. \
 		Their language, Marish, is purely empathic and cannot be spoken by psychopaths. Their eye color is often an important part of their biology, as it indicates temperament.",
 
