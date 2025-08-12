@@ -7,7 +7,7 @@
 	)
 	mutant_bodyparts = list()
 	mutantbrain = /obj/item/organ/brain/lycan
-	var/lycantrophy_species = /datum/species/lycan
+	var/lycanthropy_species = /datum/species/lycan
 
 /datum/species/human/cursekin/get_species_description()
 	return list(
@@ -47,7 +47,7 @@
 	var/main_color = "#362d23"
 	var/secondary_color = "#9c5852"
 	var/tertiary_color = "#CCF6E2"
-	cursekin.set_species(lycantrophy_species)
+	cursekin.set_species(lycanthropy_species)
 	cursekin.dna.features["mcolor"] = main_color
 	cursekin.dna.features["mcolor2"] = secondary_color
 	cursekin.dna.features["mcolor3"] = tertiary_color

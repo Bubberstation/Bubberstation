@@ -2,14 +2,14 @@
 	name = "lupine brain"
 	desc = "A larger than average, albeit slightly smoother brain. The hypothalamus seems larger than normal." // I read in a random medical artical that the hypothalamus controls aggression.
 	actions_types = list(/datum/action/cooldown/spell/beast_form)
-	var/size_increase = 0.5 // The brain is larger than a human's brain, so it should be more effective.
+	var/size_increase = 1
 
 /obj/item/organ/brain/lycan/proc/enter_beast_form()
 	var/datum/species/human/cursekin/current_wolf = owner.dna.species
 	if(!istype(current_wolf) && HAS_TRAIT_FROM(owner, TRAIT_BEAST_FORM, SPECIES_TRAIT))
 		return
 	owner.visible_message(span_warning("[owner] grows massive, their body quickly getting covered in fur!"))
-	owner.set_species(current_wolf.lycantrophy_species, TRUE, TRUE, FALSE)
+	owner.set_species(current_wolf.lycanthropy_species, TRUE, TRUE, FALSE)
 	ADD_TRAIT(owner, TRAIT_BEAST_FORM, SPECIES_TRAIT)
 	if(isnull(owner.dna.features["body_size"]))
 		owner.dna.features["body_size"] = 1 + size_increase
