@@ -1,5 +1,5 @@
 /datum/species/aquatic
-	name = "Akula (Generic)"
+	name = "Aquatic"
 	id = SPECIES_AQUATIC
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,
@@ -67,6 +67,18 @@
 	features["mcolor2"] = second_color
 	features["mcolor3"] = second_color
 	return features
+
+/datum/species/aquatic/prepare_human_for_preview(mob/living/carbon/human/aquatic)
+	var/main_color = "#1CD3E5"
+	var/secondary_color = "#6AF1D6"
+	var/tertiary_color = "#CCF6E2"
+	aquatic.dna.features["mcolor"] = main_color
+	aquatic.dna.features["mcolor2"] = secondary_color
+	aquatic.dna.features["mcolor3"] = tertiary_color
+	aquatic.dna.mutant_bodyparts["tail"] = list(MUTANT_INDEX_NAME = "Akula", MUTANT_INDEX_COLOR_LIST = list(main_color, secondary_color, tertiary_color))
+	aquatic.dna.features["legs"] = "Normal Legs"
+	regenerate_organs(aquatic, src, visual_only = TRUE)
+	aquatic.update_body(TRUE)
 
 /datum/species/aquatic/get_random_body_markings(list/passed_features)
 	var/name = "Shark"

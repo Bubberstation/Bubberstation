@@ -54,6 +54,13 @@
 
 	return perk_descriptions
 
+/datum/species/jelly/roundstartslime/prepare_human_for_preview(mob/living/carbon/human/slime)
+	slime.dna.features["mcolor"] = "#AA07DE"
+	regenerate_organs(slime, src, visual_only = TRUE)
+	slime.hairstyle = "Bob Hair 2"
+	slime.hair_color = COLOR_PINK
+	slime.update_body(is_creating = TRUE)
+
 /datum/species/jelly/roundstartslime/apply_supplementary_body_changes(mob/living/carbon/human/target, datum/preferences/preferences, visuals_only = FALSE)
 	if(preferences.read_preference(/datum/preference/toggle/allow_mismatched_hair_color))
 		target.dna.species.hair_color_mode = null
