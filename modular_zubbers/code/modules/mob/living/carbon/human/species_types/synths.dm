@@ -29,7 +29,7 @@
 		is simply unable to compete with Nanotrasen's manufacturing, and the right for synths to live free is just another battleground in the corporate shadow-war.",
 
 		"Due to the prevalence of spare parts and the availability of software, it is not uncommon to see synthetics as often as humans \
-		in the more economically prosperous areas of Terra. Many small companies have popped up across the universe, producing \
+		in more economically prosperous areas. Many small companies have popped up, producing \
 		specialized synthetics with little oversight due to the slow rate of Federal regulation. In the homes of individuals \
 		and in some more progressive workplaces, even Nanotrasen's own, synths are receiving recognition as equals."
 	)
