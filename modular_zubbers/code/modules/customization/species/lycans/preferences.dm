@@ -9,6 +9,7 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/ears/lycan
 	relevant_mutant_bodypart = "lupine ears"
 	sprite_accessory_category = "ears"
+	default_accessory_type = /datum/sprite_accessory/ears/mutant/bigwolf
 
 /datum/preference/tri_color/ears/lycan
 	savefile_key = "lycan_ears_color"
@@ -32,6 +33,7 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/tail/lycan
 	relevant_mutant_bodypart = "lupine tail"
 	sprite_accessory_category = "tail"
+	default_accessory_type = /datum/sprite_accessory/tails/mammal/wagging/wolf
 
 /datum/preference/tri_color/tail/lycan
 	savefile_key = "lycan_tail_color"
