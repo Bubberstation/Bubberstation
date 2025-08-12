@@ -110,10 +110,10 @@
 
 /datum/species/shadekin/get_species_lore()
 	return list(
-		"It is unclear when exactly Shadekin first began showing up, though it is assumed that it is a relatively recent development. \
+		"It is unclear when exactly Shadekin first spawned, though it is assumedly a relatively recent development. \
 		They formed in dark and abandoned places where they are not witnessed-- observation would dispel their creation. \
-		When the process is complete, the Shadekin collects the ability to move its limbs and communicate from the surrounding minds \
-		and finally, it forms its first thought, the realization that it is alive.",
+		When the process completed, the Shadekin collected its ability to move its limbs and communicate from surrounding minds \
+		and finally, it formed its first thought, the realization that it is alive.",
 
 		"Shadekin are pitch darkness given form, with light seeming to pass through their bodies, which tires them. They do not cast shadows. \
 		Shadekin elude common definition in terms of size and appearance, as no two Shadekin are the same-- they tend to share features with the species around them \
