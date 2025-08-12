@@ -38,12 +38,6 @@
 		"skrell_hair" = list("Male", TRUE),
 	)
 
-/datum/species/skrell/get_species_description()
-	return placeholder_description
-
-/datum/species/skrell/get_species_lore()
-	return list(placeholder_lore)
-
 /datum/species/skrell/randomize_features()
 	var/list/features = ..()
 	var/main_color
