@@ -103,7 +103,7 @@
 
 /datum/species/shadekin/get_species_description()
 	return list(
-		"Shadekin come about like dust bunnies that collect under a bed, of the collective consciousness \
+		"Shadekin first came about like dust bunnies that collect under a bed, of the collective consciousness \
 		\"Welcome, sibling,\" the first words felt in a sea of thought, guiding them to their first connection",
 		"Shadekin do not respirate, and their bodies are reformed in the darkness, although frail."
 	)
@@ -111,26 +111,26 @@
 /datum/species/shadekin/get_species_lore()
 	return list(
 		"It is unclear when exactly Shadekin first began showing up, though it is assumed that it is a relatively recent development. \
-		They form in dark and abandoned places where they are not witnessed-- observation will dispel their creation. \
+		They formed in dark and abandoned places where they are not witnessed-- observation would dispel their creation. \
 		When the process is complete, the Shadekin collects the ability to move its limbs and communicate from the surrounding minds \
 		and finally, it forms its first thought, the realization that it is alive.",
-		"Shadekin are pitch darkness given form, with light seeming to pass through their bodies, which tires them. Shadekin do not cast shadows. \
+		"Shadekin are pitch darkness given form, with light seeming to pass through their bodies, which tires them. They do not cast shadows. \
 		Shadekin elude common definition in terms of size and appearance, as no two Shadekin are the same-- they often share features with the species around them \
 		that would otherwise not be seen as Shadekin features. For example, Shadekin created in Tizira are much more likely to have horns or frill-like ears. \
-		A truly average Shadekin would be slightly shorter than a human, with a comparable lifespan. \
-		They are self-guided, with little in the way of direction provided by their society, only encouragement to find one's own. This can be overwhelming, \
-		but Shadekin generally find a space of their own, and become staples of their communities when accepted. While antisocial Shadekin exist, they are rarely seen. \
+		A truly average Shadekin would be slightly shorter than a human, with a comparable lifespan. Shadekin are capable of reproducing sexually, though their minds \
+		need diverse surroundings to properly develop, making them fairly self-guided, with little in the way of direction provided by their society. Shadekin that do not \
+		make use of another species' naming conventions often name themselves after their place in the community, often a job or societal function. \
+		This can be overwhelming, but Shadekin generally find a space of their own, and become staples of their communities when accepted. While antisocial Shadekin exist, they are rarely seen. \
 		They are generally more expressive than other species to compensate for a lack of psionic connection that Shadekin tend to expect from each other. \
-		Their language, Marish, is purely empathic and cannot be spoken by psychopaths.",
+		Their language, Marish, is purely empathic and cannot be spoken by psychopaths. Their eye color is often an important part of their biology, as it indicates temperament.",
 
-		"A shadekin trying to navigate the sea of stars is not truly alone, however, as Shadekin have founded a home to provide guidance, Neoma. \
-		This is the closest thing Shadekin have to a homeworld, which remains in total darkness due to its orbit around Lusine. \
-		It has become a notable tourist attraction, with nightlife center stage. Tourism is the main export of Neoma, after years of development to make it breathable. \
-		Neoma also serves an important function of containing the collective knowledge and many of the covens of Shadekin society.",
-		"Covens are large groups of Shadekin of similar thought formed to maintain themselves and records of their existence, as well as induct new Shadekin \
-		into their ranks. They are rarely associated with ideology, rather concepts and the ideology that sprouts from them. Business, emotion, darkness-- \
-		the Dark Star Syndicate, the Cenochists, and the Cult of Sluithian, these are just three such covens that exist, and within a coven exist Coteries, subfactions \
-		of interest within a coven, tailored to a specific task and aspect. In this regard, covens are societies in and of themselves, organized much like the Shadekin are. \
+		"A shadekin trying to navigate the sea of stars is not truly alone, however, as Shadekin have formed in number on the treacherous moon Neoma. \
+		While there is no central Shadekin government, this is the closest thing Shadekin have to a homeworld, which remains in total darkness due to its orbit around Lusine, an extremely hot world that keeps Neoma's surface approaching habitable. \
+		It has become a notable tourist attraction in the few habitable areas. Neoma also serves an important function of containing the collective knowledge and many of the covens of Shadekin society.",
+		"Covens are groups of Shadekin of similar thought formed to maintain themselves and records of their existence, as well as guide new Shadekin \
+		as they develop. They are rarely associated with ideology, rather concepts and what they imply. Business, emotion, darkness-- \
+		the Dark Star Syndicate, the Cenochists, and the Cult of Sluithian, these are examples of covens that exist, and within a coven exist Coteries, subfactions \
+		of interest within a coven, tailored to a specific task and aspect. In this regard, covens are societies in and of themselves, organized in a somewhat tribal manner. \
 		Covens do not solely exist on Neoma, they are spread throughout the universe, but most covens at least have some form of archive on the moon, called \"Mindtrusts\".",
 	)
 
