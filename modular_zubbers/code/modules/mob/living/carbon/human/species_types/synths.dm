@@ -17,7 +17,7 @@
 		generally supportive and helpful almost to a fault, and somewhat fearful to make unfounded decisions."
 
 		"The earliest synthetics came before Nanotrasen's quantification of the existence of the soul, being made from \
-		simple circuits and more commonly, less useful brains, as punishment. War criminals and those sentenced to death would be stuffed \
+		simple circuits and more commonly, less useful brains, as punishment. War criminals and those sentenced to death would be placed \
 		into MMIs and lawed, forced to be the vanguard of Terran colonization, marking a dark development from Cybersun's \
 		invention of artificial intelligence years prior. This brief practice was phased out relatively quickly due to \
 		several high profile cases of cyborg chasses being used to seal away political dissidents in the PSC.",
