@@ -7,9 +7,9 @@
 
 /datum/species/synthetic/get_species_lore()
 	return list(
-		"Synthetics were originally built to be robotic servants, restricted from truly passing as other species \
-		due to cost and legislation like the Federation's HPA. They tend to be produced out of easily manufactured parts \
-		with notable flaws such as visible rivets, filtered voices, or a total lack of apparent emotion. \
+		"Synthetics were first originally built to be robotic servants, restricted from truly passing as other species \
+		due to legislation like the Federation's HPA. They tend to be produced out of easily manufactured parts \
+		with notable flaws such as visible rivets, filtered voices, porcelain skin, or a total lack of apparent emotion. \
 		They have since developed a great deal from their origins, and are now seen in almost every workplace. \
 		Synths are, in many ways, defined by the universe around them in their diversity. Increasingly, they are beginning to shape it in turn."
 
