@@ -248,3 +248,7 @@
 #define MYOMER_HAT_OFFSET \
 	SKIN_HAT_OFFSET = list("north" = list(16, 1), "south" = list(16, 1), "east" = list(26, 1), "west" = list(6, 1)), \
 	SKIN_HAT_REST_OFFSET = list("north" = list(16, -11), "south" = list(16, -11), "east" = list(26, -11), "west" = list(6, -11))
+#define LUPUS_HAT_OFFSET \
+    SKIN_HAT_OFFSET = list("north" = list(0, 0), "south" = list(-1, -8), "east" = list(8, -6), "west" = list(-8, -6)), \
+    SKIN_HAT_REST_OFFSET = list("north" = list(-8, -12), "south" = list(8, -12), "east" = list(8, -12), "west" = list(-8, -12))
+
