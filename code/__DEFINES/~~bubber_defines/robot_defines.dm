@@ -180,7 +180,7 @@
 #define CYBORG_ICON_SERVICE_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerService.dmi'
 #define CYBORG_ICON_SYNDI_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerSyndi.dmi'
 
-// LUPUS BORG ICON DEFINES
+// LUPUS BORG ICON DEFINES - Spritework done by artist asked to be anonymous
 
 #define CYBORG_ICON_LUPUS_ENGI 'modular_zubbers/code/modules/silicons/borgs/sprites/lupus/lupus_eng.dmi'
 #define CYBORG_ICON_LUPUS_PEACE 'modular_zubbers/code/modules/silicons/borgs/sprites/lupus/lupus_peace.dmi'
@@ -238,3 +238,7 @@
 #define CORRUPT_HAT_OFFSET \
 	SKIN_HAT_OFFSET = list("north" = list(16, -4), "south" = list(16, -15), "east" = list(35, -7), "west" = list(-3, -7)), \
 	SKIN_HAT_REST_OFFSET = list("north" = list(16, -6), "south" = list(16, -17), "east" = list(35, -14), "west" = list(-3, -14))
+#define LUPUS_HAT_OFFSET \
+    SKIN_HAT_OFFSET = list("north" = list(0, 0), "south" = list(-1, -8), "east" = list(8, -6), "west" = list(-8, -6)), \
+    SKIN_HAT_REST_OFFSET = list("north" = list(-8, -12), "south" = list(8, -12), "east" = list(8, -12), "west" = list(-8, -12))
+
