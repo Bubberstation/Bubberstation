@@ -7,6 +7,7 @@
 	)
 	mutant_bodyparts = list()
 	mutantbrain = /obj/item/organ/brain/lycan
+	var/lycantrophy_species = /datum/species/lycan
 
 /datum/species/human/cursekin/get_species_description()
 	return list(
@@ -46,7 +47,7 @@
 	var/main_color = "#362d23"
 	var/secondary_color = "#9c5852"
 	var/tertiary_color = "#CCF6E2"
-	cursekin.set_species(/datum/species/lycan)
+	cursekin.set_species(lycantrophy_species)
 	cursekin.dna.features["mcolor"] = main_color
 	cursekin.dna.features["mcolor2"] = secondary_color
 	cursekin.dna.features["mcolor3"] = tertiary_color
@@ -65,7 +66,6 @@
 
 /datum/species/human/cursekin/proc/organ_reject(mob/living/source, obj/item/organ/inserted)
 	SIGNAL_HANDLER
-
 	if(isnull(source))
 		return
 	var/obj/item/organ/insert_organ = inserted
@@ -74,7 +74,6 @@
 	addtimer(CALLBACK(src, PROC_REF(reject_now), source, inserted), 1 SECONDS)
 
 /datum/species/human/cursekin/proc/reject_now(mob/living/source, obj/item/organ/organ)
-
 	organ.Remove(source)
 	organ.forceMove(get_turf(source))
 	to_chat(source, span_danger("Your body rejected [organ]!"))
@@ -82,5 +81,20 @@
 
 /datum/species/human/cursekin/on_species_loss(mob/living/carbon/human/gainer, datum/species/new_species, pref_load)
 	. = ..()
-	if(gainer)
-		UnregisterSignal(gainer, COMSIG_CARBON_GAIN_ORGAN)
+	UnregisterSignal(gainer, COMSIG_CARBON_GAIN_ORGAN)
+
+/datum/species/human/cursekin/get_features()
+	var/list/features = ..()
+
+	features += list(
+		"lycan_ears_toggle",
+		"feature_lycan_ears",
+		"lycan_ears_color",
+		"lycan_ears_emissive",
+		"lycan_tail_toggle",
+		"feature_lycan_tail",
+		"lycan_tail_color",
+		"lycan_tail_emissive",
+	)
+
+	return features

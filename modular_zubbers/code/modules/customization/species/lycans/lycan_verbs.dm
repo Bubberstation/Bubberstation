@@ -4,7 +4,11 @@
 	button_icon = 'modular_zubbers/code/modules/customization/species/lycans/lycan_verbs.dmi'
 	button_icon_state = "lycan_form"
 
+#ifndef TESTING
 	cooldown_time = 3 MINUTES
+#else
+	cooldown_time = 1 SECONDS // I don't wanna wait
+#endif
 	antimagic_flags = SPELL_REQUIRES_NO_ANTIMAGIC
 	spell_requirements = NONE
 
