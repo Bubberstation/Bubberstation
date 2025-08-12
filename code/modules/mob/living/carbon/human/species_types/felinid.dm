@@ -209,12 +209,12 @@
 	if (cat_ears)
 		cat_ears.color = human_for_preview.hair_color
 		human_for_preview.update_body()
-	*/ // START
+	*/
 	human_for_preview.dna.mutant_bodyparts[FEATURE_TAIL_GENERIC] = list(MUTANT_INDEX_NAME = "Cat", MUTANT_INDEX_COLOR_LIST = list(human_for_preview.hair_color))
 	human_for_preview.dna.mutant_bodyparts[FEATURE_EARS] = list(MUTANT_INDEX_NAME = "Cat", MUTANT_INDEX_COLOR_LIST = list(human_for_preview.hair_color))
 	regenerate_organs(human_for_preview, src, visual_only = TRUE)
 	human_for_preview.update_body(TRUE)
-	// SKYRAT EDIT END
+	// BUBBER EDIT CHANGE END
 
 /datum/species/human/felinid/get_physical_attributes()
 	return "Felinids are very similar to humans in almost all respects, with their biggest differences being the ability to lick their wounds, \

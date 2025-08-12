@@ -137,8 +137,8 @@
 	brother1.set_species(/datum/species/ethereal)
 
 
-	brother2.dna.features[FEATURE_MUTANT_COLOR] = "#E5CD99" // SKYRAT EDIT ADDITION - Customization
-	brother2.dna.mutant_bodyparts[FEATURE_MOTH_ANTENNAE] = list(MUTANT_INDEX_NAME = "Plain", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF")) // SKYRAT EDIT - Customization - ORIGINAL: brother2.dna.features[FEATURE_MOTH_ANTENNAE] = "Plain"
+	brother2.dna.features[FEATURE_MUTANT_COLOR] = "#E5CD99" // BUBBER EDIT ADDITION - Customization
+	brother2.dna.mutant_bodyparts[FEATURE_MOTH_ANTENNAE] = list(MUTANT_INDEX_NAME = "Plain", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF")) // BUBBER EDIT CHANGE - Customization - ORIGINAL: brother2.dna.features[FEATURE_MOTH_ANTENNAE] = "Plain"
 	brother2.dna.mutant_bodyparts[FEATURE_MOTH_MARKINGS] = list(MUTANT_INDEX_NAME = "None", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF")) // SKYRAT EDIT - Customization - ORIGINAL: brother2.dna.features[FEATURE_MOTH_MARKINGS] = "None"
 	brother2.dna.mutant_bodyparts[FEATURE_WINGS] = list(MUTANT_INDEX_NAME = "Moth (Plain)", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF")) // SKYRAT EDIT - Customization - ORIGINAL: brother2.dna.features[FEATURE_MOTH_WINGS] = "Plain"
 	brother2.set_species(/datum/species/moth)

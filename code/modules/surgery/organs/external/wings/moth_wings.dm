@@ -7,7 +7,7 @@
 
 	preference = "feature_moth_wings"
 
-	//dna_block = /datum/dna_block/feature/moth_wing // SKYRAT EDIT REMOVAL
+	//dna_block = /datum/dna_block/feature/moth_wing // BUBBER EDIT REMOVAL
 
 	bodypart_overlay = /datum/bodypart_overlay/mutant/wings/moth
 	restyle_flags = EXTERNAL_RESTYLE_FLESH
@@ -101,7 +101,7 @@
 
 ///Moth wing bodypart overlay, including burn functionality!
 /datum/bodypart_overlay/mutant/wings/moth
-	feature_key = FEATURE_WINGS // SKYRAT EDIT - Customization - ORIGINAL: feature_key = FEATURE_MOTH_WINGS
+	feature_key = FEATURE_WINGS // BUBBER EDIT CHANGE - Customization - ORIGINAL: feature_key = FEATURE_MOTH_WINGS
 	layers = EXTERNAL_BEHIND | EXTERNAL_FRONT
 	///Accessory datum of the burn sprite
 	var/datum/sprite_accessory/burn_datum = /datum/sprite_accessory/moth_wings/burnt_off

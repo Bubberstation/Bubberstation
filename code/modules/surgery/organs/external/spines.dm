@@ -9,7 +9,7 @@
 
 	preference = "feature_lizard_spines"
 
-	//dna_block = /datum/dna_block/feature/spine // SKYRAT EDIT REMOVAL - Customization - We have our own system to handle DNA.
+	//dna_block = /datum/dna_block/feature/spine // BUBBER EDIT REMOVAL - Customization - We have our own system to handle DNA.
 	restyle_flags = EXTERNAL_RESTYLE_FLESH
 
 	bodypart_overlay = /datum/bodypart_overlay/mutant/spines

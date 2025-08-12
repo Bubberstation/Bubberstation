@@ -7,10 +7,10 @@
 	// Test lizards as their own thing so we can get more coverage on their features
 	var/mob/living/carbon/human/lizard = allocate(/mob/living/carbon/human/dummy/consistent)
 	lizard.dna.features[FEATURE_MUTANT_COLOR] = "#099"
-	lizard.dna.mutant_bodyparts[FEATURE_TAIL_GENERIC] = list(MUTANT_INDEX_NAME = "Light Tiger", MUTANT_INDEX_COLOR_LIST = list("#009999", "#009999", "#009999")) // SKYRAT EDIT - Customization - ORIGINAL: lizard.dna.features[FEATURE_TAIL_LIZARD] = "Light Tiger"
-	lizard.dna.mutant_bodyparts[FEATURE_SNOUT] = list(MUTANT_INDEX_NAME = "Sharp + Light", MUTANT_INDEX_COLOR_LIST = list("#009999", "#009999", "#009999")) // SKYRAT EDIT - Customization - ORIGINAL: lizard.dna.features[FEATURE_SNOUT] = "Sharp + Light"
-	lizard.dna.mutant_bodyparts[FEATURE_HORNS] = list(MUTANT_INDEX_NAME = "Simple", MUTANT_INDEX_COLOR_LIST = list("#009999", "#009999", "#009999")) // SKYRAT EDIT - Customization - ORIGINAL: lizard.dna.features[FEATURE_HORNS] = "Simple"
-	lizard.dna.mutant_bodyparts[FEATURE_FRILLS] = list(MUTANT_INDEX_NAME = "Aquatic", MUTANT_INDEX_COLOR_LIST = list("#009999", "#009999", "#009999")) // SKYRAT EDIT - Customization - ORIGINAL: lizard.dna.features[FEATURE_FRILLS] = "Aquatic"
+	lizard.dna.mutant_bodyparts[FEATURE_TAIL_GENERIC] = list(MUTANT_INDEX_NAME = "Light Tiger", MUTANT_INDEX_COLOR_LIST = list("#009999", "#009999", "#009999")) // BUBBER EDIT CHANGE - Customization - ORIGINAL: lizard.dna.features[FEATURE_TAIL_LIZARD] = "Light Tiger"
+	lizard.dna.mutant_bodyparts[FEATURE_SNOUT] = list(MUTANT_INDEX_NAME = "Sharp + Light", MUTANT_INDEX_COLOR_LIST = list("#009999", "#009999", "#009999")) // BUBBER EDIT CHANGE - Customization - ORIGINAL: lizard.dna.features[FEATURE_SNOUT] = "Sharp + Light"
+	lizard.dna.mutant_bodyparts[FEATURE_HORNS] = list(MUTANT_INDEX_NAME = "Simple", MUTANT_INDEX_COLOR_LIST = list("#009999", "#009999", "#009999")) // BUBBER EDIT CHANGE - Customization - ORIGINAL: lizard.dna.features[FEATURE_HORNS] = "Simple"
+	lizard.dna.mutant_bodyparts[FEATURE_FRILLS] = list(MUTANT_INDEX_NAME = "Aquatic", MUTANT_INDEX_COLOR_LIST = list("#009999", "#009999", "#009999")) // BUBBER EDIT CHANGE - Customization - ORIGINAL: lizard.dna.features[FEATURE_FRILLS] = "Aquatic"
 	lizard.dna.features[FEATURE_LEGS] = "Normal Legs"
 	lizard.set_species(/datum/species/lizard)
 	lizard.equipOutfit(/datum/outfit/job/engineer)
@@ -24,10 +24,10 @@
 
 	// let me have this
 	var/mob/living/carbon/human/moth = allocate(/mob/living/carbon/human/dummy/consistent)
-	moth.dna.features[FEATURE_MUTANT_COLOR] = "#E5CD99" // SKYRAT EDIT ADDITION - Customization
-	moth.dna.mutant_bodyparts[FEATURE_MOTH_ANTENNAE] = list(MUTANT_INDEX_NAME = "Firewatch", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF")) // SKYRAT EDIT - Customization - ORIGINAL: moth.dna.features[FEATURE_MOTH_ANTENNAE] = "Firewatch"
-	moth.dna.mutant_bodyparts[FEATURE_MOTH_MARKINGS] = list(MUTANT_INDEX_NAME = "None", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF")) // SKYRAT EDIT - Customization - ORIGINAL: moth.dna.features[FEATURE_MOTH_MARKINGS] = "None"
-	moth.dna.mutant_bodyparts[FEATURE_WINGS] = list(MUTANT_INDEX_NAME = "Moth (Firewatch)", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF")) // SKYRAT EDIT - Customization - ORIGINAL: moth.dna.features[FEATURE_MOTH_WINGS] = "Firewatch"
+	moth.dna.features[FEATURE_MUTANT_COLOR] = "#E5CD99" // BUBBER EDIT ADDITION - Customization
+	moth.dna.mutant_bodyparts[FEATURE_MOTH_ANTENNAE] = list(MUTANT_INDEX_NAME = "Firewatch", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF")) // BUBBER EDIT CHANGE - Customization - ORIGINAL: moth.dna.features[FEATURE_MOTH_ANTENNAE] = "Firewatch"
+	moth.dna.mutant_bodyparts[FEATURE_MOTH_MARKINGS] = list(MUTANT_INDEX_NAME = "None", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF")) // BUBBER EDIT CHANGE - Customization - ORIGINAL: moth.dna.features[FEATURE_MOTH_MARKINGS] = "None"
+	moth.dna.mutant_bodyparts[FEATURE_WINGS] = list(MUTANT_INDEX_NAME = "Moth (Firewatch)", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF")) // BUBBER EDIT CHANGE - Customization - ORIGINAL: moth.dna.features[FEATURE_MOTH_WINGS] = "Firewatch"
 	moth.set_species(/datum/species/moth)
 	moth.equipOutfit(/datum/outfit/job/cmo, visuals_only = TRUE)
 	test_screenshot("[/datum/species/moth]", get_flat_icon_for_all_directions(moth))
