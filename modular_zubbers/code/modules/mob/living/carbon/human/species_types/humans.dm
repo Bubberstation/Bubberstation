@@ -23,8 +23,13 @@
 		the relationship and trade between the Terran Systems and their neighbors, but the geriatric apparatus of the former United Nations and \
 		the rate of communications and space travel at the time would make developments extremely slow, and small incidents more impactful on relations. \
 		After many years of looking inward, as a result of the Coalition War and border conflicts with the PSC, \
-		in 2462 the United Terran Systems would ratify the Heartworlds Treaty, \
-		forming the Galactic Federation as we know it today, and paving the way for a modern, Federal army that could better stand up to outside incursion.",
+		in 2462 the United Terran Systems would ratify the Heartworlds Treaty, forming the Galactic Federation as we know it today, \
+		and paving the way for a modern, Federal army that could better stand up to outside incursion.",
 
-		"The origin and structure of the Pan-Slavic Commonwealth.",
+		"The Pan-Slavic Commonwealth traces its roots to the earliest days of space pioneering, when the United Nations still existed as a political identity. \
+		During initial colonization efforts, many nations felt excluded by the space programs dominated by larger, often Western and Asian nations. \
+		There is little information on how exactly the Commonwealth came to be, though it was preceded by the smaller Third Soviet Union, which would later become \
+		The NRI, or Novaya Russiya Imperiya, through a bloody revolution, and finally, the Pan-Slavic Commonwealth, which continuesto stand as a legacy \
+		of inequality during Earth's early colonization efforts and its alliance is still a cause for concern to the Federation at large. The standard of living \
+		in the Pan-Slavic Commonwealth's border regions is particularly poor, making piracy common in states bordering the PSC, even by the Colonial Police.",
 	)
