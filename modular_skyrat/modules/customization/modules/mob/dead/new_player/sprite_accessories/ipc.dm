@@ -380,3 +380,4 @@
 	name = "Synthetic Moth Head (Greyscale)"
 	icon_state = "ipc_moth_head"
 	color_src = MUTANT_COLOR
+	dimorphic = TRUE
