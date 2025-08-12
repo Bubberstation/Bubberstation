@@ -1,6 +1,6 @@
-## Title: Werewolves
+## Title: Lycans
 
-Almost every file involving werewolves is stored here.
+Almost every file involving lycans is stored here.
 
 ## Files Not In This Folder:
 

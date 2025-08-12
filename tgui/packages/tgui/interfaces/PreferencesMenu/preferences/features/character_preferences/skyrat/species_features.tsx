@@ -773,13 +773,13 @@ export const pod_hair_emissive: Feature<boolean> = {
   component: CheckboxInput,
 };
 
-export const werewolf_ears_toggle: FeatureToggle = {
-  name: 'Werewolf Ears',
+export const lycan_ears_toggle: FeatureToggle = {
+  name: 'Lycan Ears',
   component: CheckboxInput,
 };
 
-export const feature_werewolf_ears: FeatureChoiced = {
-  name: 'Werewolf Ears',
+export const feature_lycan_ears: FeatureChoiced = {
+  name: 'Lycan Ears',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -787,24 +787,24 @@ export const feature_werewolf_ears: FeatureChoiced = {
   },
 };
 
-export const werewolf_ears_color: Feature<string[]> = {
-  name: 'Werewolf Ears Colors',
+export const lycan_ears_color: Feature<string[]> = {
+  name: 'Lycan Ears Colors',
   component: FeatureTriColorInput,
 };
 
-export const werewolf_ears_emissive: Feature<boolean[]> = {
-  name: 'Werewolf Ears Emissives',
+export const lycan_ears_emissive: Feature<boolean[]> = {
+  name: 'Lycan Ears Emissives',
   description: 'Emissive parts glow in the dark.',
   component: FeatureTriBoolInput,
 };
 
-export const werewolf_tail_toggle: FeatureToggle = {
-  name: 'Werewolf Tail',
+export const lycan_tail_toggle: FeatureToggle = {
+  name: 'Lycan Tail',
   component: CheckboxInput,
 };
 
-export const feature_werewolf_tail: FeatureChoiced = {
-  name: 'Werewolf Tail',
+export const feature_lycan_tail: FeatureChoiced = {
+  name: 'Lycan Tail',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -812,13 +812,13 @@ export const feature_werewolf_tail: FeatureChoiced = {
   },
 };
 
-export const werewolf_tail_color: Feature<string[]> = {
-  name: 'Werewolf Tail Colors',
+export const lycan_tail_color: Feature<string[]> = {
+  name: 'Lycan Tail Colors',
   component: FeatureTriColorInput,
 };
 
-export const werewolf_tail_emissive: Feature<boolean[]> = {
-  name: 'Werewolf Tail Emissives',
+export const lycan_tail_emissive: Feature<boolean[]> = {
+  name: 'Lycan Tail Emissives',
   description: 'Emissive parts glow in the dark.',
   component: FeatureTriBoolInput,
 };

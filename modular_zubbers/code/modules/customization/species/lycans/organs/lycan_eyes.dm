@@ -1,4 +1,4 @@
-/obj/item/organ/eyes/werewolf
+/obj/item/organ/eyes/lycan
 	name = "lupine eyes"
 	desc = "These eyes are large, all the better to see you with, my dear."
 	flash_protect = FLASH_PROTECTION_SENSITIVE // Bright lights fuck us up but...
