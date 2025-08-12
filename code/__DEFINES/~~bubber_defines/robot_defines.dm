@@ -239,6 +239,6 @@
 	SKIN_HAT_OFFSET = list("north" = list(16, -4), "south" = list(16, -15), "east" = list(35, -7), "west" = list(-3, -7)), \
 	SKIN_HAT_REST_OFFSET = list("north" = list(16, -6), "south" = list(16, -17), "east" = list(35, -14), "west" = list(-3, -14))
 #define LUPUS_HAT_OFFSET \
-    SKIN_HAT_OFFSET = list("north" = list(0, 0), "south" = list(-1, -8), "east" = list(8, -6), "west" = list(-8, -6)), \
-    SKIN_HAT_REST_OFFSET = list("north" = list(-8, -12), "south" = list(8, -12), "east" = list(8, -12), "west" = list(-8, -12))
+	SKIN_HAT_OFFSET = list("north" = list(0, 0), "south" = list(-1, -8), "east" = list(8, -6), "west" = list(-8, -6)), \
+	SKIN_HAT_REST_OFFSET = list("north" = list(-8, -12), "south" = list(8, -12), "east" = list(8, -12), "west" = list(-8, -12))
 
