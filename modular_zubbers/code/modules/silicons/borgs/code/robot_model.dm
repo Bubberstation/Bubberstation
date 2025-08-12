@@ -25,7 +25,7 @@
 		/obj/item/crowbar/cyborg,
 		/obj/item/picket_sign/cyborg,
 		/obj/item/borg/stun,
-	),
+	)
 	radio_channels = list(RADIO_CHANNEL_CENTCOM, RADIO_CHANNEL_COMMAND)
 	model_traits = list(TRAIT_PUSHIMMUNE, TRAIT_NOFLASH)
 	emag_modules = list(
@@ -794,12 +794,12 @@
 			SKIN_ICON_STATE = "dragon-serv",
 			SKIN_ICON = CYBORG_ICON_SERV_DRAGONBORG,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUEPANEL, TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS, TRAIT_R_EXPANDER_BLOCKED, TRAIT_R_BIG)
-		)
+		),
 		"Lupus" = list(
 			SKIN_ICON_STATE = "lupus_serv",
 			SKIN_ICON = CYBORG_ICON_LUPUS_SERV,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEPANEL, TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS)
-		),
+		)
 	)
 
 // Cargo borgs
