@@ -115,25 +115,24 @@
 		When the process completed, the Shadekin collected its ability to move its limbs and communicate from surrounding minds \
 		and finally, it formed its first thought, the realization that it is alive.",
 
-		"Shadekin are pitch darkness given form, with light seeming to pass through their bodies, which tires them. They do not cast shadows. \
-		Shadekin elude common definition in terms of size and appearance, as no two Shadekin are the same-- they tend to share features with the species around them \
-		that would otherwise not be seen as Shadekin features. For example, Shadekin created in Tizira are much more likely to have horns or frill-like ears. \
-		A truly average Shadekin would be slightly shorter than a human, with a comparable lifespan. Shadekin that do not make use of another species' naming conventions will \
-		name themselves after their place in the community, like a job or societal function.",
+		"Shadekin are pitch darkness given form. Light seems to pass through their bodies, which tires them. They do not cast shadows. \
+		Shadekin elude definition in terms of size and appearance, as no two Shadekin are the same-- they tend to take features from the species around them \
+		that would otherwise not be seen as theirs. For example, Shadekin spawned in Tizira tend to have horns or frill-like ears. \
+		An average Shadekin would be slightly shorter than a human, with a similar lifespan. Shadekin that do not use other species' naming conventions will \
+		tend to name themselves after their place in the community, like a job or societal function.",
 
-		"Shadekin are capable of reproducing sexually, though their minds need diverse surroundings to properly develop, making them fairly self-guided, \
-		with little in the way of direction provided by their society. Despite this, Shadekin easily find a space of their own, and become staples of their communities. \
-		They are generally more expressive than other species to compensate for a lack of psionic connection that Shadekin tend to expect from each other. \
+		"Shadekin are capable of reproducing sexually, though their minds need diverse surroundings to properly develop, making them fairly self-guided. \
+		Despite this, Shadekin easily find a space of their own, and become staples of their communities. They are more expressive than other species to compensate for a lack of psionic connection. \
 		Their language, Marish, is purely empathic and cannot be spoken by psychopaths. Their eye color is an important part of their biology, as it indicates temperament.",
 
-		"A shadekin trying to navigate the sea of stars is not truly alone, however, as Shadekin have formed in number on the treacherous moon Neoma. \
-		While there is no central Shadekin government, this is the closest thing Shadekin have to a homeworld, which remains in total darkness due to its orbit around Lusine, an extremely hot world that keeps Neoma's surface approaching habitable. \
-		It has become a notable tourist attraction in the few habitable areas. Neoma also serves an important function of containing the collective knowledge and many of the covens of Shadekin society.",
+		"A shadekin is never truly alone, however, as Shadekin have formed in number on the treacherous moon Neoma, due to its darkness and isolation. \
+		While there is no central Shadekin government, this is the closest thing Shadekin have to a homeworld, devoid of light due to its orbit around Lusine, an extremely hot world that keeps Neoma's surface approaching habitable. \
+		It has become a notable tourist attraction in the few habitable areas. Neoma serves an important function of containing the collective knowledge of Shadekin society and its covens.",
 
-		"Covens are groups of Shadekin of similar thought formed to maintain themselves and records of their existence, as well as guide new Shadekin \
-		as they develop. They are rarely associated with ideology, rather concepts and what they imply, and within a coven exist Coteries, subfactions \
-		of interest within a coven, tailored to a specific task and aspect. In this regard, covens are societies in and of themselves, organized in a somewhat tribal manner. \
-		Covens do not solely exist on Neoma, they are spread throughout the universe, but most covens at least have some form of archive on the moon, called \"Mindtrusts\".",
+		"Covens are groups of Shadekin formed to maintain themselves and records of their existence, as well as guide new Shadekin as they develop. \
+		They are rarely associated with ideology alone, rather concepts and what they imply, and within a coven exist Coteries, interest groups within a coven, tailored to a specific aspect. \
+		In this regard, covens are societies in and of themselves, organized in a somewhat tribal manner. Covens do not solely exist on Neoma, they are spread throughout the universe, \
+		but most covens at least have archives on the moon, called \"Mindtrusts\".",
 	)
 
 /obj/item/organ/brain/shadekin
