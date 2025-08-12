@@ -44,3 +44,8 @@
 	name = "Porcine + Tusks"
 	icon = 'modular_zubbers/icons/customization/snouts.dmi'
 	icon_state = "boar"
+
+/datum/sprite_accessory/snouts/mammal/synth_shark
+	name = "Synthetic Shark"
+	icon = 'modular_zubbers/icons/customization/snouts.dmi'
+	icon_state = "synthshark"
