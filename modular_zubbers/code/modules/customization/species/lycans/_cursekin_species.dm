@@ -9,12 +9,38 @@
 	mutantbrain = /obj/item/organ/brain/lycan
 
 /datum/species/human/cursekin/get_species_description()
-	return list(placeholder_description)
+	return list(
+		"Less of a species and more of a collective group of people sharing the same curse, the origins of the cursekin are largely \
+		unknown, however, many differing cultures seem to have their own names and mythologies behind the affliction, granting credence \
+		to the belief the curse has been around for quite some time.",
+		"The main traits shared by everyone afflicted are their transformations into a far more bestial form, and their body's rejection \
+		of anything inorganic. Those suffering from the curse seem to have varying levels of control over if and when they transform."
+	)
 
 /datum/species/human/cursekin/get_species_lore()
 	return list(placeholder_lore)
 
 /datum/species/human/cursekin/create_pref_unique_perks()
+	var/list/to_add = list()
+
+	to_add += list(
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "robot",
+			SPECIES_PERK_NAME = "Inorganic rejection",
+			SPECIES_PERK_DESC = "The curse afflicting the cursekin prevents their bodies from being augmented with cybernetic organs \
+			or implants."
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "moon",
+			SPECIES_PERK_NAME = "Lycan transformation",
+			SPECIES_PERK_DESC = "Due to the curse, cursekin are capable of transforming into lycans, taking on all of the perks and \
+			drawbacks of that form.",
+		),
+	)
+
+	return to_add
 
 /datum/species/human/cursekin/prepare_human_for_preview(mob/living/carbon/human/cursekin)
 	var/main_color = "#362d23"
