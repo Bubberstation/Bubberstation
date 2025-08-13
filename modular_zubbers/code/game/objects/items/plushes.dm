@@ -331,23 +331,23 @@
 
 // Lazhannya's plushie, code and sprite by Cepha
 /obj/item/toy/plush/slimey_scav
-    name = "slimey scav plushie"
-    desc = "A marketable plushie fresh from the mollusc sector."
-    icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
-    icon_state = "slimey_scav"
-    attack_verb_continuous = list("bites","chomps","nibbles")
-    attack_verb_simple = list("bite","chomp","nibble")
-    squeak_override = list('sound/items/weapons/bite.ogg' = 1)
+	name = "slimey scav plushie"
+	desc = "A marketable plushie fresh from the mollusc sector."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "slimey_scav"
+	attack_verb_continuous = list("bites","chomps","nibbles")
+	attack_verb_simple = list("bite","chomp","nibble")
+	squeak_override = list('sound/items/weapons/bite.ogg' = 1)
 
 //Willow Temnora plushie, code and sprite by Cepha
 /obj/item/toy/plush/marine_moth
-    name = "marine moth plushie"
-    desc = "A Marine moth that squeaks and chitters to motivate you along through your troubles! Yesyes! Intended for therapeutic use in the Marine Corps during high intensity missions."
-    icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
-    icon_state = "marine_moth"
-    attack_verb_continuous = list("headbutts","punches","shoots","grenades")
-    attack_verb_simple = list("headbutt","punch","shoot","grenade")
-    squeak_override = list('modular_zubbers/code/modules/blooper/voice/bloopers/mothsqueak.ogg' = 1)
+	name = "marine moth plushie"
+	desc = "A Marine moth that squeaks and chitters to motivate you along through your troubles! Yesyes! Intended for therapeutic use in the Marine Corps during high intensity missions."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "marine_moth"
+	attack_verb_continuous = list("headbutts","punches","shoots","grenades")
+	attack_verb_simple = list("headbutt","punch","shoot","grenade")
+	squeak_override = list('modular_zubbers/code/modules/blooper/voice/bloopers/mothsqueak.ogg' = 1)
 
 
 /obj/item/toy/plush/goatplushie/Initialize(mapload)
