@@ -23,7 +23,6 @@
 	savefile_key = "feature_lycan_ears"
 	type_to_check = /datum/preference/toggle/mutant_toggle/ears/lycan
 	sprite_accessory_category = "ears"
-	default_accessory_type = /datum/sprite_accessory/ears/mutant/bigwolf
 	relevant_inherent_trait = TRAIT_LYCAN
 
 /datum/preference/tri_color/ears/lycan
@@ -46,7 +45,6 @@
 	savefile_key = "feature_lycan_tail"
 	type_to_check = /datum/preference/toggle/mutant_toggle/tail/lycan
 	sprite_accessory_category = "tail"
-	default_accessory_type = /datum/sprite_accessory/tails/mammal/wagging/wolf
 	relevant_inherent_trait = TRAIT_LYCAN
 
 /datum/preference/tri_color/tail/lycan
