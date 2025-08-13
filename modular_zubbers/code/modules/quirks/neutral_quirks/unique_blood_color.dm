@@ -2,8 +2,8 @@
 
 GLOBAL_LIST_INIT(custom_blood_colors, list(
 	"Red/Human" = BLOOD_COLOR_RED,
-	"Green/Lizard" = BLOOD_COLOR_LIZARD,
-	"LtGreen/alt-Lizard" = BLOOD_COLOR_GREEN,
+	"D.Green/Lizard" = BLOOD_COLOR_LIZARD,
+	"Green/alt-Lizard" = BLOOD_COLOR_GREEN,
 	"Lime/Zeno" = BLOOD_COLOR_XENO,
 	"Violet/Avali" = BLOOD_COLOR_VIOLET,
 	"Cyan/Vox" = BLOOD_COLOR_CYAN,
