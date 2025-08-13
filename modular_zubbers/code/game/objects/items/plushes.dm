@@ -347,7 +347,7 @@
     icon_state = "marine_moth"
     attack_verb_continuous = list("headbutts","punches","shoots","grenades")
     attack_verb_simple = list("headbutt","punch","shoot","grenade")
-    squeak_override = list('modular_zubbers/code/modules/blooper/voice/bloopers/mothsqueak.ogg' = 1)
+    squeak_override = list('sound/items/weapons/bite.ogg' = 1)
 
 
 /obj/item/toy/plush/goatplushie/Initialize(mapload)
