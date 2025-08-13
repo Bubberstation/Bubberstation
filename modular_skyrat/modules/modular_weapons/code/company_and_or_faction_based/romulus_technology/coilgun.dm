@@ -1,4 +1,5 @@
 // At the end of the day, we make choices we don't want to make, because we hope it'll pay off, but this is a choice I will make.
+// Our choices that we make now. We best not regret it
 /*
 Coil Rifle
 */
@@ -39,14 +40,11 @@ Coil Rifle
 	var/degradation_stage_max = 10
 	/// The probability of degradation increasing per shot.
 	var/degradation_probability = 10
-	/// The maximum speed malus for projectile flight speed. Projectiles probably shouldn't move too slowly or else they will start to cause problems.
-	var/maximum_speed_malus = 0.7
+	/// The maximum spread malus for projectiles, should not be too much
+	var/maximum_spread_malus = 5
 
 	/// Whether or not our gun is suffering an EMP related malfunction.
 	var/emp_malfunction = FALSE
-
-	/// Our timer for when our gun is suffering an extreme malfunction. AKA it is going to explode
-	var/explosion_timer
 
 	SET_BASE_PIXEL(-8, 0)
 
