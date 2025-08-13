@@ -452,6 +452,7 @@
 	name = "Nuka Cola"
 	description = "Cola, cola never changes."
 	color = "#100800" // rgb: 16, 8, 0
+	process_flags = REAGENT_ORGANIC | REAGENT_PROTEAN
 	quality = DRINK_VERYGOOD
 	taste_description = "the future"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -998,12 +999,12 @@
 	. = ..()
 	if(IS_REVOLUTIONARY(drinker))
 		to_chat(drinker, span_warning("Antioxidants are weakening your radical spirit!"))
-		
+
 /datum/reagent/consumable/grenadine/on_mob_life(mob/living/carbon/drinker, seconds_per_tick, times_fired)
 	. = ..()
 	if(IS_REVOLUTIONARY(drinker))
 		drinker.set_dizzy_if_lower(10 SECONDS * REM * seconds_per_tick)
-		if(drinker.getStaminaLoss() < 80) 
+		if(drinker.getStaminaLoss() < 80)
 			drinker.adjustStaminaLoss(12, required_biotype = affected_biotype) //The pomegranate stops free radicals! Har har.
 
 /datum/reagent/consumable/parsnipjuice
