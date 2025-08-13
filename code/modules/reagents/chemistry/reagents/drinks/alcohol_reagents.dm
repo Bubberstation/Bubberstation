@@ -481,6 +481,7 @@
 	name = "Goldschlager"
 	description = "100 proof cinnamon schnapps, made for alcoholic teen girls on spring break."
 	color = "#FFFF91" // rgb: 255, 255, 145
+	process_flags = REAGENT_ORGANIC | REAGENT_PROTEAN
 	boozepwr = 25
 	quality = DRINK_NICE
 	taste_description = "burning cinnamon"
