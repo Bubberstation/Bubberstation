@@ -132,14 +132,15 @@
 	if (!COOLDOWN_FINISHED(src, last_tox_damage))
 		return
 
-	target.apply_damage(RADIATION_TOX_DAMAGE_PER_INTERVAL, TOX)
+	// BUBBER EDIT BEGIN - Isotropic Stability
+	var/damage_to_apply = RADIATION_TOX_DAMAGE_PER_INTERVAL
+	if(HAS_TRAIT(parent, TRAIT_RAD_RESISTANCE))
+		damage_to_apply += 2
+	target.apply_damage(damage_to_apply, TOX) // BUBBER EDIT - Original: target.apply_damage(RADIATION_TOX_DAMAGE_PER_INTERVAL, TOX)
+	// BUBBER EDIT END
 	COOLDOWN_START(src, last_tox_damage, RADIATION_TOX_INTERVAL)
 
 /datum/component/irradiated/proc/start_burn_splotch_timer()
-	// BUBBER EDIT BEGIN
-	if(HAS_TRAIT(parent, TRAIT_RAD_RESISTANCE))
-		return
-	// BUBBER EDIT END
 	addtimer(CALLBACK(src, PROC_REF(give_burn_splotches)), rand(RADIATION_BURN_INTERVAL_MIN, RADIATION_BURN_INTERVAL_MAX), TIMER_STOPPABLE)
 
 /datum/component/irradiated/proc/give_burn_splotches()
@@ -153,6 +154,11 @@
 
 	if (should_halt_effects(parent))
 		return
+
+	// BUBBER EDIT BEGIN - Isotropic Stability
+	if(HAS_TRAIT(parent, TRAIT_RAD_RESISTANCE) && prob(75))
+		return
+	// BUBBER EDIT END
 
 	var/obj/item/bodypart/affected_limb = human_parent.get_bodypart(human_parent.get_random_valid_zone())
 	human_parent.visible_message(
