@@ -359,7 +359,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 		return FALSE
 	return TRUE
 
-/*
+/datum/action/cooldown/spell/sniff/proc/check_recipes(obj/item/food/potential_food)
 	var/list/possible_recipes = list()
 	for(var/datum/crafting_recipe/recipe as anything in (GLOB.cooking_recipes))
 		if(istype(edible, /obj/item/food))
@@ -371,7 +371,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 			to_chat(owner, span_notice("[edible] could probably be used to make [chosen]"))
 		else
 			to_chat(owner, span_notice("Nothing more can be made from this."))
-*/
+
 ///Mouse Traits End
 
 /datum/quirk/sensitivesnout
