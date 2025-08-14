@@ -302,8 +302,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/m9mm_sec
-	name = "Magazine (9x25mm Murphy) (Lethal)"
-	desc = "Designed to slide in and out of a 9mm 'Murphy' service pistol. It's heavier bullets make this magazine quite heavy, watch where you throw it!"
+	name = "Magazine (9x19mm Murphy) (Lethal)"
+	desc = "Designed to slide in and out of a 9mm 'Murphy' service pistol. It hold less round than a traditional pistol magazine, at the bottom is a dense gas tank which connect directly to the pistol and store excesses gas created from the combustion. "
 	id = "m9mm_sec"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -317,7 +317,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/m9mm_sec_rocket
-	name = "Magazine (9x25mm Murphy RE) (Lethal)"
+	name = "Magazine (9x19mm Murphy RE) (Lethal)"
 	desc = "A volatile magazine with extra weight and aerodynamic padding, letting it accelerate rapidly upon release - preferrably towards the suspect."
 	id = "m9mm_sec_rocket"
 	build_type = PROTOLATHE | AWAY_LATHE
