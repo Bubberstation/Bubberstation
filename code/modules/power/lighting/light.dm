@@ -213,7 +213,7 @@
 
 /obj/machinery/light/proc/handle_fire(area/source, new_fire)
 	SIGNAL_HANDLER
-	update(play_sound = FALSE) // BUBBER EDIT CHANGE - ORIGINAL: update()
+	update(play_sound = FALSE) // BUBBER EDIT CHANGE - LIGHTING - ORIGINAL: update()
 
 // update the icon_state and luminosity of the light depending on its state
 /obj/machinery/light/proc/update(trigger = TRUE, play_sound = TRUE) // BUBBER EDIT CHANGE - LIGHTING - add play_sound
@@ -309,7 +309,7 @@
 
 /obj/machinery/light/update_atom_colour()
 	..()
-	update()
+	update(play_sound = FALSE) // BUBBER EDIT CHANGE - LIGHTING - ORIGINAL: update()
 
 /obj/machinery/light/proc/broken_sparks(start_only=FALSE)
 	if(!QDELETED(src) && status == LIGHT_BROKEN && has_power() && MC_RUNNING())
@@ -334,7 +334,7 @@
 		reagents.adjust_thermal_energy(8 * reagents.total_volume * SPECIFIC_HEAT_DEFAULT * seconds_per_tick)
 		reagents.handle_reactions()
 	if(low_power_mode && !use_emergency_power(LIGHT_EMERGENCY_POWER_USE * seconds_per_tick))
-		update(FALSE) //Disables emergency mode and sets the color to normal
+		update(trigger = FALSE, play_sound = FALSE) // BUBBER EDIT CHANGE - LIGHTING - Original: update(FALSE) //Disables emergency mode and sets the color to normal
 
 /obj/machinery/light/proc/burn_out()
 	if(status == LIGHT_OK)
@@ -562,7 +562,7 @@
 /obj/machinery/light/attack_ai(mob/user)
 	no_low_power = !no_low_power
 	to_chat(user, span_notice("Emergency lights for this fixture have been [no_low_power ? "disabled" : "enabled"]."))
-	update(FALSE)
+	update(trigger = FALSE, play_sound = FALSE) // BUBBER EDIT CHANGE - LIGHTING - Original: update(FALSE)
 	return
 
 // attack with hand - remove tube/bulb
@@ -634,11 +634,11 @@
 
 /obj/machinery/light/proc/set_major_emergency_light()
 	major_emergency = TRUE
-	update()
+	update(trigger = FALSE, play_sound = FALSE) // BUBBER EDIT CHANGE - LIGHTING - Original: update()
 
 /obj/machinery/light/proc/unset_major_emergency_light()
 	major_emergency = FALSE
-	update()
+	update(trigger = FALSE, play_sound = FALSE) // BUBBER EDIT CHANGE - LIGHTING - Original: update()
 
 /obj/machinery/light/proc/drop_light_tube(mob/user)
 	var/obj/item/light/light_object = new light_type()
