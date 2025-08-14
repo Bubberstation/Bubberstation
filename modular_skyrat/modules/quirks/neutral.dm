@@ -322,12 +322,13 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 
 /datum/action/cooldown/spell/sniff
 	name = "Sniff Food"
-	desc = "This would probably make..."
+	desc = "Anyone can cook!"
 	button_icon_state = "food_french"
 	button_icon = 'icons/hud/screen_alert.dmi'
 	cooldown_time = 10 SECONDS
 	spell_requirements = NONE
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_INCAPACITATED
+	var/last_recipe = null // prevents same recipe from being chosen twice
 
 /datum/action/cooldown/spell/sniff/cast(mob/living/caster)
 	. = ..()
@@ -357,20 +358,20 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	if(!do_after(caster, 5 SECONDS, potential_food))
 		to_chat(caster, span_notice("You didn't get a good enough whiff of [potential_food]."))
 		return FALSE
+	check_recipes(potential_food)
 	return TRUE
 
 /datum/action/cooldown/spell/sniff/proc/check_recipes(obj/item/food/potential_food)
-	var/list/possible_recipes = list()
 	for(var/datum/crafting_recipe/recipe as anything in (GLOB.cooking_recipes))
-		if(istype(edible, /obj/item/food))
-			possible_recipes += recipe
-		if(length(possible_recipes))
-			if(length(possible_recipes) > 2)
-				possible_recipes -= src.last_recipe
-			var/datum/crafting_recipe/chosen = pick(possible_recipes)
-			to_chat(owner, span_notice("[edible] could probably be used to make [chosen]"))
-		else
+
+		var/list/type_recipe_list = recipe.reqs
+		if(length(type_recipe_list) == 1)
 			to_chat(owner, span_notice("Nothing more can be made from this."))
+		if(length(type_recipe_list) > 2)
+			type_recipe_list -= src.last_recipe
+			LAZYADD(type_recipe_list, recipe)
+		var/datum/crafting_recipe/chosen = pick(type_recipe_list)
+		to_chat(owner, span_notice("[potential_food] could probably be used to make [chosen]"))
 
 ///Mouse Traits End
 
