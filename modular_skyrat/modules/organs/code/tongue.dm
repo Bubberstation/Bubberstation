@@ -127,6 +127,8 @@
 		speech_args[SPEECH_MESSAGE] = replacetext(message, "blue", "bleu")
 	if(findtext(message, "gotta"))
 		speech_args[SPEECH_MESSAGE] = replacetext(message, "gotta", "ricotta")
+	if(findtext(message, "pos"))
+		speech_args[SPEECH_MESSAGE] = replacetext(message, "pos", "paws") // This is prepawsterous! ...Or something like that.
 
 /obj/item/organ/tongue/mouse/on_mob_insert(mob/living/carbon/tongue_owner, special, movement_flags)
 	. = ..()
