@@ -311,7 +311,6 @@
 	name = "Three Mile Island Iced Tea"
 	description = "Made for a woman, strong enough for a man."
 	color = "#666340" // rgb: 102, 99, 64
-	process_flags = REAGENT_ORGANIC | REAGENT_PROTEAN
 	boozepwr = 10
 	quality = DRINK_FANTASTIC
 	taste_description = "dryness"
@@ -482,7 +481,6 @@
 	name = "Goldschlager"
 	description = "100 proof cinnamon schnapps, made for alcoholic teen girls on spring break."
 	color = "#FFFF91" // rgb: 255, 255, 145
-	process_flags = REAGENT_ORGANIC | REAGENT_PROTEAN
 	boozepwr = 25
 	quality = DRINK_NICE
 	taste_description = "burning cinnamon"
@@ -517,7 +515,6 @@
 	name = "Patron"
 	description = "Tequila with silver in it, a favorite of alcoholic women in the club scene."
 	color = "#585840" // rgb: 88, 88, 64
-	process_flags = REAGENT_ORGANIC | REAGENT_PROTEAN
 	boozepwr = 60
 	quality = DRINK_VERYGOOD
 	taste_description = "metallic and expensive"
@@ -736,7 +733,6 @@
 	name = "Toxins Special"
 	description = "This thing is ON FIRE! CALL THE DAMN SHUTTLE!"
 	color = "#8880a8" // rgb: 136,128,168
-	process_flags = REAGENT_ORGANIC | REAGENT_PROTEAN
 	boozepwr = 25
 	quality = DRINK_VERYGOOD
 	taste_description = "spicy toxins"
@@ -750,7 +746,6 @@
 	name = "Beepsky Smash"
 	description = "Drink this and prepare for the LAW."
 	color = COLOR_OLIVE // rgb: 128,128,0
-	process_flags = REAGENT_ORGANIC | REAGENT_PROTEAN
 	boozepwr = 60 //THE FIST OF THE LAW IS STRONG AND HARD
 	quality = DRINK_GOOD
 	metabolization_rate = 1.25 * REAGENTS_METABOLISM
@@ -906,7 +901,6 @@
 	name = "Manhattan Project"
 	description = "A scientist's drink of choice, for pondering ways to blow up the station."
 	color = COLOR_MOSTLY_PURE_RED
-	process_flags = REAGENT_ORGANIC | REAGENT_PROTEAN
 	boozepwr = 45
 	quality = DRINK_VERYGOOD
 	taste_description = "death, the destroyer of worlds"
@@ -1335,7 +1329,6 @@
 	name = "Fetching Fizz"
 	description = "Whiskey sour/iron/uranium mixture resulting in a highly magnetic slurry. Mild alcohol content." //Requires no alcohol to make but has alcohol anyway because ~magic~
 	color = rgb(255, 91, 15)
-	process_flags = REAGENT_ORGANIC | REAGENT_PROTEAN
 	boozepwr = 10
 	quality = DRINK_VERYGOOD
 	metabolization_rate = 0.1 * REAGENTS_METABOLISM
@@ -1381,7 +1374,6 @@
 	name = "Atomic Bomb"
 	description = "Nuclear proliferation never tasted so good."
 	color = "#666300" // rgb: 102, 99, 0
-	process_flags = REAGENT_ORGANIC | REAGENT_PROTEAN
 	boozepwr = 0 //custom drunk effect
 	quality = DRINK_FANTASTIC
 	taste_description = "da bomb"
@@ -1946,7 +1938,6 @@
 	description = "A bubbling glass of blank paper. Just looking at it makes you feel fresh."
 	nutriment_factor = 1
 	color = "#DCDCDC" // rgb: 220, 220, 220
-	process_flags = REAGENT_ORGANIC | REAGENT_PROTEAN
 	boozepwr = 20
 	quality = DRINK_GOOD
 	taste_description = "bubbling possibility"
@@ -2215,7 +2206,6 @@
 /datum/reagent/consumable/ethanol/blazaam
 	name = "Blazaam"
 	description = "A strange drink that few people seem to remember existing. Doubles as a Berenstain remover."
-	process_flags = REAGENT_ORGANIC | REAGENT_PROTEAN
 	boozepwr = 70
 	quality = DRINK_FANTASTIC
 	taste_description = "alternate realities"
@@ -2236,7 +2226,6 @@
 /datum/reagent/consumable/ethanol/planet_cracker
 	name = "Planet Cracker"
 	description = "This jubilant drink celebrates humanity's triumph over the alien menace. May be offensive to non-human crewmembers."
-	process_flags = REAGENT_ORGANIC | REAGENT_PROTEAN
 	boozepwr = 50
 	quality = DRINK_FANTASTIC
 	taste_description = "triumph with a hint of bitterness"
@@ -2441,7 +2430,6 @@
 	name = "The Juice"
 	description = "Woah man, this like, feels familiar to you dude."
 	color = "#4c14be"
-	process_flags = REAGENT_ORGANIC | REAGENT_PROTEAN
 	boozepwr = 50
 	quality = DRINK_GOOD
 	taste_description = "like, the future, man"

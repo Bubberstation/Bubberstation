@@ -452,7 +452,6 @@
 	name = "Nuka Cola"
 	description = "Cola, cola never changes."
 	color = "#100800" // rgb: 16, 8, 0
-	process_flags = REAGENT_ORGANIC | REAGENT_PROTEAN
 	quality = DRINK_VERYGOOD
 	taste_description = "the future"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
