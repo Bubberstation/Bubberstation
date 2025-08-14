@@ -56,6 +56,7 @@
 		TRAIT_SYNTHETIC, // Not used in any code, but just in case
 		TRAIT_TOXIMMUNE,
 		TRAIT_NEVER_WOUNDED, // Does not wound.
+		TRAIT_VIRUSIMMUNE, // So they can't roll for fake virus, they can't get sick anyways
 
 		// Extra cool stuff
 		TRAIT_RADIMMUNE,
