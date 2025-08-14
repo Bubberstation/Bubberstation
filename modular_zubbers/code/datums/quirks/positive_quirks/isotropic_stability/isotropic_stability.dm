@@ -1,7 +1,7 @@
 /datum/quirk/isotropic_stability
 	name = "Isotropic Stability"
-	desc = "Nuka Cola lovers rejoice! Your body is highly resistant to the effects of radiation poisoning, and radiation will never cause burns, vomiting, mutations, or hairloss. Active sources of radiation still metabolize into harmful toxins."
-	value = 4
+	desc = "Nuka Cola lovers rejoice! Your body is highly resistant to the effects of radiation poisoning. You can become irradiated without receiving passive toxins, vomiting, mutations, or hairloss. Burns are 75% less likely to occur. As a drawback, you metabolize active sources of radiation into twice as many toxins."
+	value = 6
 	medical_record_text = "Patient's body is highly resistant to radiation poisoning."
 	icon = FA_ICON_ATOM
 	// Blacklisted for species which are already immune to radiation
