@@ -231,7 +231,7 @@
 			START_PROCESSING(SSmachines, src)
 		var/area/local_area = get_room_area()
 		if (flickering)
-			brightness_set = brightness * bulb_low_power_brightness_mul
+			brightness_set = brightness * 0.25 // BUBBER EDIT CHANGE - LIGHTING - Original: brightness * bulb_low_power_brightness_mul
 			power_set = bulb_low_power_pow_mul
 			color_set = nightshift_light_color
 		else if (local_area?.fire)
@@ -533,7 +533,7 @@
 
 	. = TRUE // did we actually flicker? Send this now because we expect immediate response, before sleeping.
 	set_light(
-		l_range = brightness * bulb_low_power_brightness_mul,
+		l_range = brightness * 0.25, // BUBBER EDIT CHANGE - LIGHTING - Original: brightness * bulb_low_power_brightness_mul,
 		l_power = bulb_low_power_pow_mul,
 		l_color = nightshift_light_color,
 	)
