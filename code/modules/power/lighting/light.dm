@@ -277,7 +277,7 @@
 					l_color = color_set
 					)
 				// BUBBER EDIT ADDITION BEGIN - LIGHTING
-				if(trigger && play_sound)
+				if(play_sound)
 					playsound(src.loc, 'modular_skyrat/modules/aesthetics/lights/sound/light_on.ogg', 65, 1)
 				// BUBBER EDIT ADDITION END
 	else if(has_emergency_power(LIGHT_EMERGENCY_POWER_USE) && !turned_off())
