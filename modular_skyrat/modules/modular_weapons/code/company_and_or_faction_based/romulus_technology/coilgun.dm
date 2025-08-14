@@ -40,7 +40,7 @@ Coil Rifle
 	var/degradation_stage_max = 10
 	/// The probability of degradation increasing per shot.
 	var/degradation_probability = 10
-	/// The maximum spread malus for projectiles, should not be too much
+	/// The maximum spread malus for projectiles, should not be too much because it can make the weapon behave weirdly - Necromanceranne
 	var/maximum_spread_malus = 5
 
 	/// Whether or not our gun is suffering an EMP related malfunction.
