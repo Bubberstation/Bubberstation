@@ -171,3 +171,15 @@
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
 	)
 	build_path = /obj/item/mod/module/protean_servo
+
+/datum/design/module/hat_stabilizer
+	name = "Hat Stabilizer Module"
+	id = "mod_hat_stabilizer"
+	build_type = MECHFAB
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
+	)
+	build_path = /obj/item/mod/module/hat_stabilizer
+	category = list(
+		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_GENERAL
+	)

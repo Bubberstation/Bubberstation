@@ -39,7 +39,8 @@
 		images_are_static = FALSE, \
 		use_echo = FALSE, \
 		show_own_outline = client_show_outline, \
-		personal_color = col \
+		personal_color = col, \
+		blinding = TRUE \
 	)
 	esp = human_holder.GetComponent(/datum/component/echolocation)
 
