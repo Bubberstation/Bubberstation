@@ -1,21 +1,3 @@
-/datum/supply_pack/goody/sol_pistol_single
-	name = "Sol 'Wespe' Pistol Single Pack"
-	desc = "The standard issue service pistol of the Terran Government's various military branches. Comes with an attached light and a spare magazine."
-	contains = list(/obj/item/gun/ballistic/automatic/pistol/sol = 1,
-	/obj/item/ammo_box/magazine/c35sol_pistol/starts_empty = 1,
-	)
-	cost = PAYCHECK_COMMAND * 10 //Half the cost of a Detective Revolver
-	access_view = ACCESS_WEAPONS
-
-/datum/supply_pack/goody/sol_revolver_single
-	name = "Sol 'Eland' Revolver Single Pack"
-	desc = "A stubby revolver chiefly found in the hands of Private Security forces due to its cheap price and decent stopping power. Comes with an ammo box."
-	contains = list(/obj/item/gun/ballistic/revolver/sol = 1,
-	/obj/item/ammo_box/c35sol = 1,
-	)
-	cost = PAYCHECK_COMMAND * 10 //Half the cost of a Detective Revolver
-	access_view = ACCESS_WEAPONS
-
 /datum/supply_pack/goody/disablersmg_single
 	name = "Disabler SMG Single-Pack"
 	desc = "Contains one disabler SMG, an automatic variant of the original workhorse."
@@ -26,7 +8,7 @@
 /datum/supply_pack/goody/lasercarbine_single
 	name = "Laser Carbine Single-Pack"
 	desc = "Contains one laser carbine, an automatic variant of the laser gun. For when you need a fast-firing lethal-only solution."
-	cost = PAYCHECK_COMMAND * 12
+	cost = PAYCHECK_COMMAND * 7
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/laser/carbine)
 
@@ -37,29 +19,32 @@
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/e_gun/mini)
 
-/datum/supply_pack/goody/shotgun_revolver
-	name = "Bóbr 12 GA Revolver Single-Pack"
-	desc = "Contains 1 civilian-modified Bóbr revolver, chambered in 12 gauge. For when you really want the power of a shotgun in the palm of your hand. Comes with a box of beanbag shells."
-	contains = list(/obj/item/gun/ballistic/revolver/shotgun_revolver/civvie = 1,
-	/obj/item/ammo_box/advanced/s12gauge/bean = 1)
-	access_view = ACCESS_WEAPONS
-	cost = PAYCHECK_COMMAND * 20
+/datum/supply_pack/goody/murphy_single
+	name = "'Murphy' Service Pistol Single-Pack"
+	desc = "A rugged, law-enforcement-grade service pistol, once famously sold for just a dollar. Comes as a single-pack with one 'Murphy' pistol ready for action."
+	cost = PAYCHECK_COMMAND * 5
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/sec_glock = 3)
+	crate_name = "'Murphy' service pistol crate"
 
-/datum/supply_pack/goody/plasma_projector
-	name = "Słońce Plasma Projector Single-Pack"
-	desc = "Contains one Słońce Plasma Projector. Spews an inaccurate stream of searing plasma out the magnetic barrel so long as it has power."
-	contains = list(/obj/item/gun/ballistic/automatic/pistol/plasma_thrower = 1,
-	/obj/item/ammo_box/magazine/recharge/plasma_battery = 1)
+/datum/supply_pack/goody/wt550_single
+	name = "WT-551 Autorifle Single-Pack"
+	desc = "An NT-security grade autorifle, it comes with excellent heating and poses no health-related risks for the user. Comes as a single-pack with one WT-551 locked and loaded"
+	cost = PAYCHECK_COMMAND * 6 //Cheaper cause you need ammo unlike the laser
 	access_view = ACCESS_WEAPONS
-	cost = PAYCHECK_COMMAND * 6
+	contains = list(/obj/item/gun/ballistic/automatic/wt550/security)
 
-/datum/supply_pack/goody/sakhno_derringer_single
-	name = "Sakhno 'Yinbi' Derringer Single Pack"
-	desc = "A compact self-defense pistol, chambered in .310 strilka. Comes with a box of modern reproduction cartridges."
-	contains = list(/obj/item/gun/ballistic/derringer = 1,
-	/obj/item/ammo_box/c310_cargo_box = 1)
+/datum/supply_pack/goody/wt550_ammo
+	name = "WT-550/WT-551 Autorifle Magazine Single-Pack"
+	desc = "A single-pack magazine with lethal regular rounds for the WT-551."
+	cost = PAYCHECK_CREW * 5 //Scale it like all guns
+	contains = list(/obj/item/ammo_box/magazine/wt550m9 = 1)
+
+/datum/supply_pack/goody/woodstock
+	name = "Woodstock Shotgun Single-Pack"
+	desc = "Have faith in your aim and plan to send someone to god? Open up this case and put them in one, a single woodstock shotgun fit snugly inside."
+	cost = PAYCHECK_COMMAND * 14
 	access_view = ACCESS_WEAPONS
-	cost = PAYCHECK_COMMAND * 4.5 //It's a close-range cannon, very poor ranged performance. Slightly pricer than imported Sol pistols
+	contains = list(/obj/item/gun/ballistic/shotgun)
 
 /datum/supply_pack/goody/mars_single
 	special = FALSE
@@ -80,9 +65,11 @@
 	special = FALSE
 
 /datum/supply_pack/goody/energy_single
+	cost = PAYCHECK_COMMAND * 7
 	special = FALSE
 
 /datum/supply_pack/goody/laser_single
+	cost = PAYCHECK_COMMAND * 7
 	special = FALSE
 
 /datum/supply_pack/goody/hell_single

@@ -7,8 +7,8 @@
 /datum/supply_pack/security/armory/sec_glock
 	name = "'Murphy' Service Pistol Crate"
 	desc = "Contains a pair of 'Murphy' service pistols pre-loaded with lethal rounds. Additional ammo sold seperately. Nanotrasen reminds you that the other weapon is for a friend, and not for going guns akimbo."
-	cost = CARGO_CRATE_VALUE * 6
-	contains = list(/obj/item/gun/ballistic/automatic/pistol/sec_glock = 2)
+	cost = CARGO_CRATE_VALUE * 4
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/sec_glock = 3)
 	crate_name = "'Murphy' service pistol crate"
 
 /datum/supply_pack/security/armory/sec_glock_ammo
