@@ -158,3 +158,10 @@ Coil Rifle
 			projectile_speed_multiplier = initial(projectile_speed_multiplier)
 
 	update_appearance()
+
+/datum/supply_pack/goody/cacoil_mag
+	name = "Coilgun Magazine Single Pack"
+	desc = "A single 5.7mm magazine for the coilgun.."
+	contains = list(/obj/item/ammo_box/magazine/cacoil = 1)
+	cost = PAYCHECK_COMMAND * 1
+	access_view = ACCESS_WEAPONS
