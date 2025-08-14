@@ -138,6 +138,8 @@
 		//BUBBER EDIT END: Silicon flavor text
 		if(JOB_UNAVAILABLE_AUGMENT)
 			return "[jobtitle] is restricted due to your selected body augments."
+		if(JOB_UNAVAILABLE_NOHANDS)
+			return "[jobtitle] requires at least one hand."
 		//SKYRAT EDIT END
 		if(JOB_UNAVAILABLE_ANTAG_INCOMPAT)
 			return "[jobtitle] is not compatible with some antagonist role assigned to you."
