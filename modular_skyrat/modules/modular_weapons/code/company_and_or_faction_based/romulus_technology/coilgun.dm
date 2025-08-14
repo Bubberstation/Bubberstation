@@ -23,7 +23,7 @@ Coil Rifle
 	mag_display = TRUE
 	projectile_damage_multiplier = 2
 	projectile_speed_multiplier = 1.4
-	fire_delay = 2
+	fire_delay = 5
 	burst_size = 1
 	actions_types = list()
 	spread = 7
@@ -94,7 +94,7 @@ Coil Rifle
 
 /obj/item/gun/ballistic/automatic/coilgun/emp_act(severity)
 	. = ..()
-	if (!(. & EMP_PROTECT_SELF) && prob(50 / severity))
+	if (!(. & EMP_PROTECT_SELF) && prob(30 / severity))
 		shots_before_degradation = 0
 		emp_malfunction = TRUE
 		attempt_degradation(TRUE)
@@ -107,8 +107,7 @@ Coil Rifle
 	emp_malfunction = FALSE
 	shots_before_degradation = initial(shots_before_degradation)
 	degradation_stage = initial(degradation_stage)
-	projectile_speed_multiplier = initial(projectile_speed_multiplier)
-	fire_delay = initial(fire_delay)
+	spread = initial(spread)
 	update_appearance()
 	balloon_alert(user, "system reset")
 	return ITEM_INTERACT_SUCCESS
@@ -127,7 +126,7 @@ Coil Rifle
 
 
 /obj/item/gun/ballistic/automatic/coilgun/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
-	if(chambered.loaded_projectile && prob(75) && (emp_malfunction || degradation_stage == degradation_stage_max))
+	if(chambered.loaded_projectile && prob(45) && (emp_malfunction))
 		balloon_alert_to_viewers("*click*")
 		playsound(src, dry_fire_sound, dry_fire_sound_volume, TRUE)
 		return
@@ -140,8 +139,7 @@ Coil Rifle
 		return //Only update if we actually increment our degradation stage
 
 	degradation_stage = clamp(degradation_stage + (obj_flags ? 2 : 1), 0, degradation_stage_max)
-	projectile_speed_multiplier = clamp(initial(projectile_speed_multiplier) + degradation_stage * 0.1, initial(projectile_speed_multiplier), maximum_speed_malus)
-	fire_delay = initial(fire_delay) + (degradation_stage * 0.5)
+	spread = clamp
 	do_sparks(1, TRUE, src)
 	update_appearance()
 
@@ -156,9 +154,7 @@ Coil Rifle
 		degradation_stage = clamp(degradation_stage - 1, 0, degradation_stage_max)
 		if(degradation_stage)
 			projectile_speed_multiplier = clamp(initial(projectile_speed_multiplier) - degradation_stage * 0.1, maximum_speed_malus, initial(projectile_speed_multiplier))
-			fire_delay = initial(fire_delay) + (degradation_stage * 0.5)
 		else
 			projectile_speed_multiplier = initial(projectile_speed_multiplier)
-			fire_delay = initial(fire_delay)
 
 	update_appearance()
