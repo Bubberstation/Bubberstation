@@ -393,7 +393,7 @@
 			var/list/new_acc_list = list()
 			new_acc_list[MUTANT_INDEX_NAME] = selected_sprite_accessory.name
 			// using a var here to save some horizontal space
-			var/color = alterer.dna.mutant_bodyparts[chosen_key]?["color"] || selected_sprite_accessory.get_default_color(alterer.dna.features, alterer.dna.species)
+			var/color = alterer.dna.mutant_bodyparts[chosen_key]?[MUTANT_INDEX_COLOR_LIST] || selected_sprite_accessory.get_default_color(alterer.dna.features, alterer.dna.species)
 			new_acc_list[MUTANT_INDEX_COLOR_LIST] = color
 			alterer.dna.mutant_bodyparts[chosen_key] = new_acc_list.Copy()
 
