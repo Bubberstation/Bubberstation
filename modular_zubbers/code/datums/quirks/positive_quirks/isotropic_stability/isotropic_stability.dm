@@ -24,22 +24,9 @@
 		TRAIT_RAD_RESISTANCE,
 		TRAIT_BYPASS_EARLY_IRRADIATED_CHECK,
 	), QUIRK_TRAIT)
-	RegisterSignal(quirk_holder, COMSIG_IN_RANGE_OF_IRRADIATION, PROC_REF(on_pre_potential_irradiation))
 
 /datum/quirk/isotropic_stability/remove(client/client_source)
 	quirk_holder.remove_traits(list(
 		TRAIT_RAD_RESISTANCE,
 		TRAIT_BYPASS_EARLY_IRRADIATED_CHECK,
 	), QUIRK_TRAIT)
-	UnregisterSignal(quirk_holder, COMSIG_IN_RANGE_OF_IRRADIATION)
-
-///Records if the mob was recently hit with a dangerous radiation pulse
-/datum/quirk/isotropic_stability/proc/on_pre_potential_irradiation(datum/source, datum/radiation_pulse_information/pulse_information, insulation_to_target)
-	SIGNAL_HANDLER
-
-	var/datum/component/irradiated/irradiated_component = quirk_holder.GetComponent(/datum/component/irradiated)
-	if(isnull(irradiated_component))
-		return
-	var/radiation_danger = get_perceived_radiation_danger(pulse_information, insulation_to_target)
-	if (radiation_danger >= PERCEIVED_RADIATION_DANGER_HIGH)
-		irradiated_component.exposed_to_danger = TRUE

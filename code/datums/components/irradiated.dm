@@ -26,9 +26,10 @@
 	if (!CAN_IRRADIATE(parent))
 		return COMPONENT_INCOMPATIBLE
 
-	// BUBBER EDIT - Prevent double-whammies for Isotropic Stability quirk
+	// BUBBER EDIT - Isotropic Stability quirk
 	if(HAS_TRAIT(parent, TRAIT_IRRADIATED))
 		return
+	RegisterSignal(parent, COMSIG_IN_RANGE_OF_IRRADIATION, PROC_REF(on_pre_potential_irradiation))
 	// BUBBER EDIT END
 
 	// This isn't incompatible, it's just wrong
@@ -69,6 +70,7 @@
 	// BUBBER EDIT- Prevent double-whammies for Isotropic Stability quirk
 	if(src != parent.GetComponent(/datum/component/irradiated))
 		return ..()
+	UnregisterSignal(parent, COMSIG_IN_RANGE_OF_IRRADIATION)
 	// BUBBER EDIT END
 
 	var/mob/living/parent_movable = parent //BUBBERSTATION CHANGE: MOVABLE TO LIVING
