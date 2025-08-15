@@ -23,8 +23,13 @@
 	name = "'Murphy' Service Pistol Single-Pack"
 	desc = "A rugged, law-enforcement-grade service pistol, once famously sold for just a dollar. Comes as a single-pack with one 'Murphy' pistol ready for action."
 	cost = PAYCHECK_COMMAND * 5
-	contains = list(/obj/item/gun/ballistic/automatic/pistol/sec_glock = 3)
-	crate_name = "'Murphy' service pistol crate"
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/sec_glock = 1)
+
+/datum/supply_pack/goody/murphy_ammo
+	name = "'Murphy' Service Pistol Magazine Single-Pack"
+	desc = "full magazine with an extra-robust ejection spring. Fits into the Murphy Service Pistol."
+	cost = PAYCHECK_COMMAND * 2
+	contains = list(/obj/item/ammo_box/magazine/security = 1)
 
 /datum/supply_pack/goody/wt550_single
 	name = "WT-551 Autorifle Single-Pack"
@@ -73,6 +78,7 @@
 	special = FALSE
 
 /datum/supply_pack/goody/hell_single
+	cost = PAYCHECK_CREW * 250
 	special = FALSE
 
 /datum/supply_pack/goody/thermal_single

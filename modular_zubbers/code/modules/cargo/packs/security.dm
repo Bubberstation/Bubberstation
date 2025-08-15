@@ -21,7 +21,7 @@
 
 /datum/supply_pack/security/armory/wt550_ammo_regular
 	name = "WT-550/WT-551 Autorifle Ammo Crate (Regular)"
-	desc = "Contains 3 magazines with lethal regular rounds for the WT-551."
+	desc = "Contains 4 magazines with lethal regular rounds for the WT-551."
 	cost = CARGO_CRATE_VALUE * 7
 	contains = list(/obj/item/ammo_box/magazine/wt550m9 = 4)
 	crate_name = "wt-550 magazine crate (regular)"
