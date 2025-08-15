@@ -26,6 +26,12 @@
 	if (!CAN_IRRADIATE(parent))
 		return COMPONENT_INCOMPATIBLE
 
+	// BUBBER EDIT - Isotropic Stability quirk
+	if(HAS_TRAIT(parent, TRAIT_IRRADIATED))
+		return
+	RegisterSignal(parent, COMSIG_IN_RANGE_OF_IRRADIATION, PROC_REF(on_pre_potential_irradiation))
+	// BUBBER EDIT END
+
 	// This isn't incompatible, it's just wrong
 	if (HAS_TRAIT(parent, TRAIT_RADIMMUNE))
 		qdel(src)
@@ -61,6 +67,12 @@
 	))
 
 /datum/component/irradiated/Destroy(force)
+	// BUBBER EDIT- Prevent double-whammies for Isotropic Stability quirk
+	if(src != parent.GetComponent(/datum/component/irradiated))
+		return ..()
+	UnregisterSignal(parent, COMSIG_IN_RANGE_OF_IRRADIATION)
+	// BUBBER EDIT END
+
 	var/mob/living/parent_movable = parent //BUBBERSTATION CHANGE: MOVABLE TO LIVING
 	if (istype(parent_movable))
 		parent_movable.remove_filter("rad_glow")
@@ -92,6 +104,15 @@
 	if (should_halt_effects(parent))
 		return
 
+	// BUBBER EDIT BEGIN
+	// Mob is radiation resistant but still metabolizes sources into toxins
+	if(HAS_TRAIT(parent, TRAIT_RAD_RESISTANCE))
+		if(exposed_to_danger)
+			process_tox_damage(human_parent, seconds_per_tick)
+		exposed_to_danger = FALSE
+		return
+	// BUBBER EDIT END
+
 	if (human_parent.stat != DEAD)
 		human_parent.dna?.species?.handle_radiation(human_parent, world.time - beginning_of_irradiation, seconds_per_tick)
 
@@ -113,7 +134,12 @@
 	if (!COOLDOWN_FINISHED(src, last_tox_damage))
 		return
 
-	target.apply_damage(RADIATION_TOX_DAMAGE_PER_INTERVAL, TOX)
+	// BUBBER EDIT BEGIN - Isotropic Stability
+	var/damage_to_apply = RADIATION_TOX_DAMAGE_PER_INTERVAL
+	if(HAS_TRAIT(parent, TRAIT_RAD_RESISTANCE))
+		damage_to_apply += 2
+	target.apply_damage(damage_to_apply, TOX) // BUBBER EDIT - Original: target.apply_damage(RADIATION_TOX_DAMAGE_PER_INTERVAL, TOX)
+	// BUBBER EDIT END
 	COOLDOWN_START(src, last_tox_damage, RADIATION_TOX_INTERVAL)
 
 /datum/component/irradiated/proc/start_burn_splotch_timer()
@@ -130,6 +156,11 @@
 
 	if (should_halt_effects(parent))
 		return
+
+	// BUBBER EDIT BEGIN - Isotropic Stability
+	if(HAS_TRAIT(parent, TRAIT_RAD_RESISTANCE) && prob(75))
+		return
+	// BUBBER EDIT END
 
 	var/obj/item/bodypart/affected_limb = human_parent.get_bodypart(human_parent.get_random_valid_zone())
 	human_parent.visible_message(
