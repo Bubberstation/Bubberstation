@@ -31,3 +31,5 @@
 
 // Murphy caliber, there was no other way to make it non-compatible with syndie ammo and prevent gaming it
 #define CALIBER_9MM_SEC "9mm Security"
+
+#define CALIBER_COIL "Coil"
