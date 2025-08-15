@@ -81,23 +81,22 @@
 			main_color = "#DB35DE"
 			secondary_color = "#BE3AFE"
 			tertiary_color = "#F5E2EE"
-	features["mcolor"] = main_color
-	features["mcolor2"] = secondary_color
-	features["mcolor3"] = tertiary_color
+	features[FEATURE_MUTANT_COLOR] = main_color
+	features[FEATURE_MUTANT_COLOR_TWO] = secondary_color
+	features[FEATURE_MUTANT_COLOR_THREE] = tertiary_color
 	return features
 
 /datum/species/shadekin/prepare_human_for_preview(mob/living/carbon/human/shadekin)
 	var/main_color = "#222222"
 	var/secondary_color = "#b8b8b8"
 	var/tertiary_color = "#b8b8b8"
-	shadekin.dna.features["mcolor"] = main_color
-	shadekin.dna.features["mcolor2"] = secondary_color
-	shadekin.dna.features["mcolor3"] = tertiary_color
-	shadekin.dna.mutant_bodyparts["ears"] = list(MUTANT_INDEX_NAME = "Shadekin", MUTANT_INDEX_COLOR_LIST = list(main_color, secondary_color, tertiary_color))
-	shadekin.dna.mutant_bodyparts["snout"] = list(MUTANT_INDEX_NAME = "None", MUTANT_INDEX_COLOR_LIST = list(main_color, secondary_color, tertiary_color))
-	shadekin.dna.mutant_bodyparts["tail"] = list(MUTANT_INDEX_NAME = "Shadekin", MUTANT_INDEX_COLOR_LIST = list(main_color, secondary_color, tertiary_color))
-	shadekin.eye_color_left = "#c4c400"
-	shadekin.eye_color_right = "#c4c400"
+	shadekin.dna.features[FEATURE_MUTANT_COLOR] = main_color
+	shadekin.dna.features[FEATURE_MUTANT_COLOR_TWO] = secondary_color
+	shadekin.dna.features[FEATURE_MUTANT_COLOR_THREE] = tertiary_color
+	shadekin.dna.mutant_bodyparts[FEATURE_EARS] = list(MUTANT_INDEX_NAME = "Shadekin", MUTANT_INDEX_COLOR_LIST = list(main_color, secondary_color, tertiary_color))
+	shadekin.dna.mutant_bodyparts[FEATURE_SNOUT] = list(MUTANT_INDEX_NAME = "None", MUTANT_INDEX_COLOR_LIST = list(main_color, secondary_color, tertiary_color))
+	shadekin.dna.mutant_bodyparts[FEATURE_TAIL_GENERIC] = list(MUTANT_INDEX_NAME = "Shadekin", MUTANT_INDEX_COLOR_LIST = list(main_color, secondary_color, tertiary_color))
+	shadekin.set_eye_color("#5ec7e4")
 	regenerate_organs(shadekin, src, visual_only = TRUE)
 	shadekin.update_body(TRUE)
 

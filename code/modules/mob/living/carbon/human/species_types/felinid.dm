@@ -30,17 +30,17 @@
 	if(ishuman(carbon_being))
 		var/mob/living/carbon/human/target_human = carbon_being
 		if(!pref_load) //Hah! They got forcefully purrbation'd. Force default felinid parts on them if they have no mutant parts in those areas!
-			target_human.dna.features["tail_cat"] = "Cat"
-			if(target_human.dna.features["ears"] == "None")
-				target_human.dna.features["ears"] = "Cat"
+			target_human.dna.features[FEATURE_TAIL] = "Cat"
+			if(target_human.dna.features[FEATURE_EARS] == "None")
+				target_human.dna.features[FEATURE_EARS] = "Cat"
 		/* SKYRAT EDIT -- START -- ORIGINAL
-		if(target_human.dna.features["ears"] == "None")
+		if(target_human.dna.features[FEATURE_EARS] == "None")
 			mutantears = /obj/item/organ/ears
 		else
-			var/obj/item/organ/ears/cat/ears = new(FALSE, target_human.dna.features["ears"])
+			var/obj/item/organ/ears/cat/ears = new(FALSE, target_human.dna.features[FEATURE_EARS])
 			ears.Insert(target_human, movement_flags = DELETE_IF_REPLACED)
 		*/
-		if(target_human.dna.features["ears"] == "Cat")
+		if(target_human.dna.features[FEATURE_EARS] == "Cat")
 			var/obj/item/organ/ears/cat/ears = new
 			ears.Insert(target_human, movement_flags = DELETE_IF_REPLACED)
 		else
@@ -50,7 +50,7 @@
 
 /datum/species/human/felinid/randomize_features(mob/living/carbon/human/human_mob)
 	var/list/features = ..()
-	features["ears"] = pick("None", "Cat")
+	features[FEATURE_EARS] = pick("None", "Cat")
 	return features
 
 /datum/species/human/felinid/get_laugh_sound(mob/living/carbon/human/felinid)
@@ -209,12 +209,12 @@
 	if (cat_ears)
 		cat_ears.color = human_for_preview.hair_color
 		human_for_preview.update_body()
-	*/ // START
-	human_for_preview.dna.mutant_bodyparts["tail"] = list(MUTANT_INDEX_NAME = "Cat", MUTANT_INDEX_COLOR_LIST = list(human_for_preview.hair_color))
-	human_for_preview.dna.mutant_bodyparts["ears"] = list(MUTANT_INDEX_NAME = "Cat", MUTANT_INDEX_COLOR_LIST = list(human_for_preview.hair_color))
+	*/
+	human_for_preview.dna.mutant_bodyparts[FEATURE_TAIL_GENERIC] = list(MUTANT_INDEX_NAME = "Cat", MUTANT_INDEX_COLOR_LIST = list(human_for_preview.hair_color))
+	human_for_preview.dna.mutant_bodyparts[FEATURE_EARS] = list(MUTANT_INDEX_NAME = "Cat", MUTANT_INDEX_COLOR_LIST = list(human_for_preview.hair_color))
 	regenerate_organs(human_for_preview, src, visual_only = TRUE)
 	human_for_preview.update_body(TRUE)
-	// SKYRAT EDIT END
+	// BUBBER EDIT CHANGE END
 
 /datum/species/human/felinid/get_physical_attributes()
 	return "Felinids are very similar to humans in almost all respects, with their biggest differences being the ability to lick their wounds, \

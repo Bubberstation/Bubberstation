@@ -1152,6 +1152,11 @@
 			// /obj/item/wash() already updates our clothing slot
 			. = worn.wash(clean_types) || .
 
+	// BUBBER EDIT ADDITION BEGIN - COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
+	if(clean_types & CLEAN_TYPE_LIGHT_DECAL)
+		remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
+	// BUBBER EDIT ADDITION END - COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
+
 /// if any of our bodyparts are bleeding
 /mob/living/carbon/proc/is_bleeding()
 	for(var/obj/item/bodypart/part as anything in bodyparts)
