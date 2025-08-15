@@ -6,7 +6,7 @@
 	bulb_colour = COLOR_OFF_WHITE
 	bulb_power = 0.9
 	nightshift_light_power = 0.5
-	bulb_low_power_colour = LIGHT_COLOR_BROWN
+	bulb_low_power_colour = LIGHT_COLOR_INTENSE_RED
 	bulb_low_power_brightness_mul = 0.75
 	bulb_low_power_pow_min = 0.75
 	bulb_emergency_colour = LIGHT_COLOR_INTENSE_RED
