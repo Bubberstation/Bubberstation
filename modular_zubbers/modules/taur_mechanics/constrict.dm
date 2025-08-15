@@ -214,8 +214,8 @@
 /obj/structure/serpentine_tail/proc/sync_sprite()
 	//coloring
 	var/list/finished_list = list()
-	var/list/color_list = owner.dna.species.mutant_bodyparts["taur"][MUTANT_INDEX_COLOR_LIST] //identify color
-	var/datum/sprite_accessory/sprite_type = SSaccessories.sprite_accessories["taur"][owner.dna.species.mutant_bodyparts["taur"][MUTANT_INDEX_NAME]] //identify type
+	var/list/color_list = owner.dna.species.mutant_bodyparts[FEATURE_TAUR][MUTANT_INDEX_COLOR_LIST] //identify color
+	var/datum/sprite_accessory/sprite_type = SSaccessories.sprite_accessories["taur"][owner.dna.species.mutant_bodyparts[FEATURE_TAUR][MUTANT_INDEX_NAME]] //identify type
 
 	switch(sprite_type.color_src)
 		if(USE_MATRIXED_COLORS)

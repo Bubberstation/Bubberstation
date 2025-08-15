@@ -3,6 +3,7 @@
 
 /obj/item/clothing/under/rank/centcom
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/centcom_digi.dmi'	// Anything that was in the rnd.dmi, should be in the rnd_digi.dmi
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/centcom/skyrat
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/centcom.dmi'

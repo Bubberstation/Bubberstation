@@ -7,6 +7,8 @@
 	var/list/banned_quirks
 	/// List of banned augments
 	var/list/banned_augments
+	/// Whether or not a hand is required
+	var/is_hand_required = FALSE
 	///A list of slots that can't have loadout items assigned to them if no_dresscode is applied, used for important items such as ID, PDA, backpack and headset
 	var/list/blacklist_dresscode_slots
 	//Whitelist of allowed species for this job. If not specified then all roundstart races can be used. Associative with TRUE
@@ -53,6 +55,19 @@
 
 	return FALSE
 
+/datum/job/proc/has_enough_hands(datum/preferences/pref)
+	if(!pref)
+		return TRUE
+
+	var/list/player_augments = pref.augments
+	var/is_missing_left_arm = player_augments["Left Arm"] == /obj/item/bodypart/arm/left/self_destruct
+	var/is_missing_right_arm = player_augments["Right Arm"] == /obj/item/bodypart/arm/right/self_destruct
+
+	if(is_hand_required && is_missing_left_arm && is_missing_right_arm)
+		return FALSE
+
+	return TRUE
+
 // Misc
 /datum/job/assistant
 	no_dresscode = TRUE
@@ -66,55 +81,61 @@
 /datum/job/security_officer
 	banned_quirks = list(SEC_RESTRICTED_QUIRKS)
 	banned_augments = list(SEC_RESTRICTED_AUGMENTS)
+	is_hand_required = TRUE
 
 /datum/job/detective
 	banned_quirks = list(SEC_RESTRICTED_QUIRKS)
 	banned_augments = list(SEC_RESTRICTED_AUGMENTS)
+	is_hand_required = TRUE
 
 /datum/job/warden
 	banned_quirks = list(SEC_RESTRICTED_QUIRKS)
 	banned_augments = list(SEC_RESTRICTED_AUGMENTS)
+	is_hand_required = TRUE
 
 /datum/job/blueshield
 	banned_quirks = list(SEC_RESTRICTED_QUIRKS)
 	banned_augments = list(SEC_RESTRICTED_AUGMENTS)
+	is_hand_required = TRUE
 
 /datum/job/corrections_officer
 	banned_quirks = list(SEC_RESTRICTED_QUIRKS)
 	banned_augments = list(SEC_RESTRICTED_AUGMENTS)
+	is_hand_required = TRUE
 
 // Command
 /datum/job/captain
 	banned_quirks = list(HEAD_RESTRICTED_QUIRKS)
-	banned_augments = list(HEAD_RESTRICTED_AUGMENTS)
+	is_hand_required = TRUE
 
 /datum/job/nanotrasen_consultant
 	banned_quirks = list(HEAD_RESTRICTED_QUIRKS)
-	banned_augments = list(HEAD_RESTRICTED_AUGMENTS)
+	is_hand_required = TRUE
 
 /datum/job/head_of_security
 	banned_quirks = list(SEC_RESTRICTED_QUIRKS, HEAD_RESTRICTED_QUIRKS)
 	banned_augments = list(SEC_RESTRICTED_AUGMENTS)
+	is_hand_required = TRUE
 
 /datum/job/chief_medical_officer
 	banned_quirks = list(HEAD_RESTRICTED_QUIRKS)
-	banned_augments = list(HEAD_RESTRICTED_AUGMENTS)
+	is_hand_required = TRUE
 
 /datum/job/chief_engineer
 	banned_quirks = list(HEAD_RESTRICTED_QUIRKS, "Paraplegic" = TRUE)
-	banned_augments = list(HEAD_RESTRICTED_AUGMENTS)
+	is_hand_required = TRUE
 
 /datum/job/research_director
 	banned_quirks = list(HEAD_RESTRICTED_QUIRKS)
-	banned_augments = list(HEAD_RESTRICTED_AUGMENTS)
+	is_hand_required = TRUE
 
 /datum/job/head_of_personnel
 	banned_quirks = list(HEAD_RESTRICTED_QUIRKS)
-	banned_augments = list(HEAD_RESTRICTED_AUGMENTS)
+	is_hand_required = TRUE
 
 /datum/job/quartermaster
 	banned_quirks = list(HEAD_RESTRICTED_QUIRKS)
-	banned_augments = list(HEAD_RESTRICTED_AUGMENTS)
+	is_hand_required = TRUE
 
 //Silicon
 /datum/job/ai
@@ -239,16 +260,16 @@
 // Nanotrasen Fleet
 /datum/job/fleetmaster
 	banned_quirks = list(HEAD_RESTRICTED_QUIRKS)
-	banned_augments = list(HEAD_RESTRICTED_AUGMENTS)
+	is_hand_required = TRUE
 
 /datum/job/operations_inspector
 	banned_quirks = list(HEAD_RESTRICTED_QUIRKS)
-	banned_augments = list(HEAD_RESTRICTED_AUGMENTS)
+	is_hand_required = TRUE
 
 /datum/job/deck_crew
 	banned_quirks = list(HEAD_RESTRICTED_QUIRKS)
-	banned_augments = list(HEAD_RESTRICTED_AUGMENTS)
+	is_hand_required = TRUE
 
 /datum/job/bridge_officer
 	banned_quirks = list(HEAD_RESTRICTED_QUIRKS)
-	banned_augments = list(HEAD_RESTRICTED_AUGMENTS)
+	is_hand_required = TRUE

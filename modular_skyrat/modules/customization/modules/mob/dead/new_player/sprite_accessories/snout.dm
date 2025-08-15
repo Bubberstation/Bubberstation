@@ -1,12 +1,10 @@
 /datum/sprite_accessory/snouts
 	key = "snout"
-	generic = "Snout"
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/lizard_snouts.dmi'
 	flags_for_organ = SPRITE_ACCESSORY_USE_MUZZLED_SPRITE
 	organ_type = /obj/item/organ/snout
 	recommended_species = list(SPECIES_MAMMAL, SPECIES_LIZARD, SPECIES_UNATHI, SPECIES_LIZARD_ASH, SPECIES_LIZARD_SILVER)
 	relevent_layers = list(BODY_ADJ_LAYER, BODY_FRONT_LAYER)
-	genetic = TRUE
 
 /datum/sprite_accessory/snouts/is_hidden(mob/living/carbon/human/human)
 	if((human.wear_mask?.flags_inv & HIDESNOUT) || (human.head?.flags_inv & HIDESNOUT))
