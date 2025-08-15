@@ -327,7 +327,6 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	cooldown_time = 10 SECONDS
 	spell_requirements = NONE
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_INCAPACITATED
-	var/list/last_recipe = list() // prevents same recipe from being chosen twice
 
 /datum/action/cooldown/spell/sniff/cast(mob/living/caster)
 	. = ..()
@@ -365,9 +364,6 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	for(var/datum/crafting_recipe/recipe as anything in GLOB.cooking_recipes)
 		if(food_type in recipe.reqs)
 			type_recipe_list += recipe.result
-			recipe.result += last_recipe
-		if(length(type_recipe_list) > 2)
-			type_recipe_list -= last_recipe
 	if(length(type_recipe_list) == 0)
 		to_chat(owner, span_notice("Nothing more can be made from this."))
 		return FALSE
