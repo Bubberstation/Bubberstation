@@ -304,7 +304,7 @@
 /obj/effect/abstract/liquid_turf/immutable/take_reagents_flat(flat_amount)
 	return simulate_reagents_flat(flat_amount)
 
-//Returns a reagents holder with all the reagents with a higher volume than the threshold
+//Returns a reagents holder with all the reagents with a higher volume than the threshold, returns null if no reagents exceeded the threshold
 /obj/effect/abstract/liquid_turf/proc/simulate_reagents_threshold(amount_threshold)
 	var/datum/reagents/tempr = new(10000)
 	var/passed_list = list()
@@ -315,6 +315,9 @@
 		passed_list[reagent_type] = amount
 	tempr.add_noreact_reagent_list(passed_list)
 	tempr.chem_temp = temp
+	if(tempr.total_volume == 0)
+		qdel(tempr)
+		return null
 	return tempr
 
 //Returns a flat of our reagents without any effects on the liquids
@@ -525,6 +528,9 @@
 //Exposes my turf with simulated reagents
 /obj/effect/abstract/liquid_turf/proc/ExposeMyTurf()
 	var/datum/reagents/tempr = simulate_reagents_threshold(LIQUID_REAGENT_THRESHOLD_TURF_EXPOSURE)
+	// Nothing met the threshold
+	if(isnull(tempr))
+		return
 	tempr.expose(my_turf, TOUCH, tempr.total_volume)
 	qdel(tempr)
 
