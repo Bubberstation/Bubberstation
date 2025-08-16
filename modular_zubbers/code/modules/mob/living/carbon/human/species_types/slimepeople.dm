@@ -17,7 +17,7 @@
 	)
 
 /datum/species/jelly/roundstartslime
-	name = "Xenobiological Slimepeople"
+	name = "Slimepeople"
 	id = SPECIES_SLIMESTART
 	examine_limb_id = SPECIES_SLIMEPERSON
 	coldmod = 3
@@ -37,7 +37,7 @@
 	)
 /datum/species/jelly/roundstartslime/get_species_description()
 	return list(
-		"Slimepeople are the product of many years of xenobiological experimentation. Their bodies are simple yet fluid, and resemble single-celled organisms. They are susceptible to the cold.",
+		"Slimepeople are the product of many years of xenobiological experimentation by Nanotrasen. Their bodies are simple yet fluid, and resemble single-celled organisms. They are susceptible to the cold.",
 		"They are composed of slime jelly, and healed by toxicity.",
 	)
 
