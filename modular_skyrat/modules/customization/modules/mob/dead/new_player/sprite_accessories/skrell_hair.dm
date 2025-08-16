@@ -1,10 +1,8 @@
 /datum/sprite_accessory/skrell_hair
 	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/skrell_hair.dmi'
-	generic = "Skrell Headtails"
 	key = "skrell_hair"
 	color_src = USE_MATRIXED_COLORS
 	relevent_layers = list(BODY_ADJ_LAYER, BODY_FRONT_LAYER)
-	genetic = TRUE
 	organ_type = /obj/item/organ/skrell_hair
 
 /datum/sprite_accessory/skrell_hair/is_hidden(mob/living/carbon/human/wearer)
