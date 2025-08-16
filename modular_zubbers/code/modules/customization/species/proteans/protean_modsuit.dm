@@ -175,7 +175,7 @@
 	var/datum/mod_theme/the_theme = GLOB.mod_themes[plates.theme]
 
 	name = initial(name)
-	name = initial(desc)
+	desc = initial(desc)
 
 	for(var/obj/item/part as anything in get_parts())
 		part.name = initial(name)
