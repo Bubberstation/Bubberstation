@@ -16,12 +16,6 @@
 		"frills" = list("None", FALSE),
 	)
 
-/datum/species/jelly/get_species_description()
-	return placeholder_description
-
-/datum/species/jelly/get_species_lore()
-	return list(placeholder_lore)
-
 /datum/species/jelly/roundstartslime
 	name = "Xenobiological Slime Hybrid"
 	id = SPECIES_SLIMESTART
