@@ -1,6 +1,7 @@
 
 /obj/item/clothing/under/suit
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/suits_digi.dmi' //Anything that was in TG's suits.dmi, should be in our suits_digi.dmi
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/suit/skyrat
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/suits.dmi'
