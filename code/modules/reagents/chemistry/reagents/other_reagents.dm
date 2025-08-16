@@ -2216,10 +2216,11 @@
 			affected_mob.add_atom_colour(color_transition_filter(pick(random_color_list), SATURATION_OVERRIDE), WASHABLE_COLOUR_PRIORITY)
 		return
 
+	/* BUBBERSTATION CHANGE START: ORGANS CANNOT BE COLORED.
+
 	if(!can_color_organs)
 		return
 
-	/* BUBBERSTATION CHANGE START: ORGANS CANNOT BE COLORED.
 	var/mob/living/carbon/carbon_mob = affected_mob
 	var/color_priority = WASHABLE_COLOUR_PRIORITY
 	if (current_cycle >= 30) // Seeps deep into your tissues
