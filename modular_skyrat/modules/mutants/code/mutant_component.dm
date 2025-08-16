@@ -151,6 +151,7 @@
 	SIGNAL_HANDLER
 	var/revive_time = rand(REVIVE_TIME_LOWER, REVIVE_TIME_UPPER)
 	to_chat(host, span_cult_large("You can feel your heart stopping, but something isn't right... you will rise again!"))
+	to_chat(host, span_redtext("You will revive in approximately [revive_time/10] seconds."))
 	timer_id = addtimer(CALLBACK(src, PROC_REF(regenerate)), revive_time, TIMER_STOPPABLE)
 
 /datum/component/mutant_infection/proc/regenerate()
