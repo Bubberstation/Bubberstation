@@ -41,3 +41,6 @@
 
 // makes it so this mob loses nutrition twice as fast
 #define TRAIT_FAST_METABOLISM "fast_metabolism"
+
+/// Any model that can JUST FUCKING REST as GOD INTENDED
+#define TRAIT_R_CANREST "can_rest"
