@@ -51,7 +51,7 @@
 
 
 /datum/species/pod/prepare_human_for_preview(mob/living/carbon/human/human)
-	human.dna.mutant_bodyparts["pod_hair"] = list(MUTANT_INDEX_NAME = "Ivy", MUTANT_INDEX_COLOR_LIST = list(COLOR_VIBRANT_LIME, COLOR_VIBRANT_LIME, COLOR_VIBRANT_LIME))
+	human.dna.features[FEATURE_MUTANT_COLOR] = COLOR_OLIVE_GREEN
+	human.dna.mutant_bodyparts[FEATURE_POD_HAIR] = list(MUTANT_INDEX_NAME = "Ivy", MUTANT_INDEX_COLOR_LIST = list("#9E4141"))
 	regenerate_organs(human, src, visual_only = TRUE)
-	human.update_body(TRUE)
-
+	human.update_body(is_creating = TRUE)

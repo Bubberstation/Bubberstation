@@ -10,11 +10,11 @@
 //Defines for processing reagents, for synths, IPC's, Protean's and Vox
 #define PROCESS_ORGANIC 1		//Only processes reagents with "ORGANIC" or "ORGANIC | SYNTHETIC" or "ORGANIC | PROTEAN" or "ORGANIC | SYNTHETIC | PROTEAN"
 #define PROCESS_SYNTHETIC 2		//Only processes reagents with "SYNTHETIC" or "ORGANIC | SYNTHETIC" or "SYNTHETIC | PROTEAN" or "ORGANIC | SYNTHETIC | PROTEAN"
-#define PROCESS_PROTEAN 3		//Only processes reagents with "PROTEAN" or "ORGANIC | PROTEAN" or "ORGANIC | SYNTHETIC | PROTEAN"
+#define PROCESS_PROTEAN 4		//Only processes reagents with "PROTEAN" or "ORGANIC | PROTEAN" or "ORGANIC | SYNTHETIC | PROTEAN"
 
 #define REAGENT_ORGANIC 1
 #define REAGENT_SYNTHETIC 2
-#define REAGENT_PROTEAN 3
+#define REAGENT_PROTEAN 4
 
 //Some defines for sprite accessories
 // Which color source we're using when the accessory is added
@@ -137,6 +137,7 @@
 #define SPECIES_TESHARI "teshari"
 #define SPECIES_HEMOPHAGE "hemophage"
 #define SPECIES_FELINE_PRIMITIVE "primitive_felinid"
+#define SPECIES_PROTEAN "protean"
 
 #define SPECIES_MUTANT "mutant"
 #define SPECIES_MUTANT_INFECTIOUS "infectious_mutant"
@@ -146,10 +147,24 @@
 // Leaving this here because it's used for bodyparts, like SPECIES_X are, but since taurs aren't a species... Named it LIMBS instead.
 #define LIMBS_TAUR "taur"
 
-#define DNA_BLOCKS_PER_FEATURE 4
 #define DNA_FEATURE_COLOR_BLOCKS_PER_FEATURE 3
 #define DNA_FEATURE_BLOCKS_TOTAL_SIZE_PER_FEATURE (DNA_BLOCK_SIZE + DNA_BLOCK_SIZE_COLOR * DNA_FEATURE_COLOR_BLOCKS_PER_FEATURE)
-#define DNA_BLOCKS_PER_MARKING 2
-#define DNA_MARKING_COLOR_BLOCKS_PER_MARKING 1
-#define DNA_BLOCKS_PER_MARKING_ZONE (MAXIMUM_MARKINGS_PER_LIMB * DNA_BLOCKS_PER_MARKING + 1)
-#define DNA_MARKING_BLOCKS_TOTAL_SIZE_PER_MARKING (DNA_BLOCK_SIZE + DNA_BLOCK_SIZE_COLOR * DNA_MARKING_COLOR_BLOCKS_PER_MARKING)
+
+#define FEATURE_MUTANT_COLOR_TWO "mcolor2"
+#define FEATURE_MUTANT_COLOR_THREE "mcolor3"
+#define FEATURE_SKIN_COLOR "skin_color"
+#define FEATURE_TAIL_GENERIC "tail"
+#define FEATURE_FLUFF "fluff"
+#define FEATURE_PENIS "penis"
+#define FEATURE_TESTICLES "testicles"
+#define FEATURE_VAGINA "vagina"
+#define FEATURE_WOMB "womb"
+#define FEATURE_ANUS "anus"
+#define FEATURE_BREASTS "breasts"
+#define FEATURE_SKRELL_HAIR "skrell_hair"
+#define FEATURE_XENODORSAL "xenodorsal"
+#define FEATURE_XENOHEAD "xenohead"
+#define FEATURE_TAUR "taur"
+
+#define MUTATION_SOURCE_SPECIES "species"
+#define MUTATION_SOURCE_QUIRK "quirk"

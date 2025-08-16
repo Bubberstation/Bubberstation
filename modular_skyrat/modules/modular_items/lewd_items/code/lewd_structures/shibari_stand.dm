@@ -117,7 +117,7 @@
 			ropee.set_greyscale(rope.greyscale_colors)
 			rope.use(1)
 			add_overlay(shibari_shadow_overlay)
-			add_rope_overlays(ropee.greyscale_colors, hooman?.dna?.species?.mutant_bodyparts["taur"])
+			add_rope_overlays(ropee.greyscale_colors, hooman?.dna?.species?.mutant_bodyparts[FEATURE_TAUR])
 			buckled.visible_message(span_warning("[user] tied [buckled] to \the [src]!"),\
 				span_userdanger("[user] tied you to \the [src]!"),\
 				span_hear("You hear ropes being completely tightened."))
