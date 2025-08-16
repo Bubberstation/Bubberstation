@@ -20,7 +20,7 @@
 		simple circuits and more commonly, less useful brains as punishment. Those sentenced to death would be placed \
 		into MMIs and lawed, forced to be the vanguard of Terran colonization. This was a dark development from Cybersun's \
 		invention of artificial intelligence years prior. The practice was phased out quickly due to \
-		several high profile cases of cyborgification being used against dissidents in the PSC.",
+		several high profile cases of cyborgification being used against dissidents in the former NRI.",
 
 		"Modern synthetics have returned in force when Nanotrasen R&D learned to manipulate and manufacture souls, \
 		avoiding humanitarian concerns and producing an immortal workforce. In recent years, as synths have approached sapience, an ongoing legal battle has drawn out \
