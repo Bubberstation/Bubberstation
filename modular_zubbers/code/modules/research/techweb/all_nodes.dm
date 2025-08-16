@@ -108,6 +108,17 @@
 		"pinpointer_vent_cyborg",
 		"adv_xenoarchbag_cyborg"
 	)
+/datum/techweb_node/mechlaunchpad
+	id = TECHWEB_NODE_MECHLAUNCHPAD
+	display_name = "Mech Logistics Solutions"
+	description = "Advancements in utilizing bluespace technology allow us to rapidly deliver mechs from workshop to destination."
+	prereq_ids = list(TECHWEB_NODE_BLUESPACE_TRAVEL, TECHWEB_NODE_MECH_EQUIPMENT)
+	design_ids = list(
+		"mechlauncher_pad",
+		"mechlauncher_console",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
+	announce_channels = list(RADIO_CHANNEL_SCIENCE)
 
 // Computer Tech
 /datum/techweb_node/gaming/New()
@@ -146,6 +157,11 @@
 	design_ids += "mod_mind_transfer"
 	. = ..()
 
+// Modsuit tech
+/datum/techweb_node/mod_equip/New()
+	. = ..()
+	design_ids += list("mod_remote_module")
+
 /datum/techweb_node/nerd
 	id = TECHWEB_NODE_NERD
 	display_name = "Theoretical Physics"
@@ -180,3 +196,8 @@
 	research_costs = list(
 		TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS
 	)
+
+/datum/techweb_node/mod_equip/New()
+	design_ids += list("mod_protean_servo", "mod_hat_stabilizer",
+	)
+	. = ..()

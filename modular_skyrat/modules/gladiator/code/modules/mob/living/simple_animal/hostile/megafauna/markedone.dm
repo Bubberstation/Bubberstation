@@ -29,6 +29,7 @@
 	gender = MALE
 	rapid_melee = 1
 	melee_queue_distance = 2
+	armour_penetration = 40
 	melee_damage_lower = 40
 	melee_damage_upper = 40
 	speed = 1
@@ -76,7 +77,7 @@
 	get_calm()
 	return ..()
 
-/mob/living/simple_animal/hostile/megafauna/gladiator/Life()
+/mob/living/simple_animal/hostile/megafauna/gladiator/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(stat >= DEAD)
 		return
@@ -227,7 +228,7 @@
 									"Show me a good time, miner!",
 									"I'll give you the first hit.",
 								)
-			//say(message = pick(human_messages))
+			INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), message = pick(human_messages))
 			introduced |= WEAKREF(target)
 		else if(targetspecies.id == SPECIES_LIZARD_ASH)
 			var/static/list/ashie_messages = list(
@@ -237,7 +238,7 @@
 									"GET OVER HERE!!",
 								)
 
-			//say(message = pick(ashie_messages), language = /datum/language/ashtongue)
+			INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), message = pick(ashie_messages), language = /datum/language/ashtongue)
 			introduced |= WEAKREF(target)
 			get_angry()
 			GiveTarget(target)
@@ -249,13 +250,13 @@
 									"You will make a fine rug!",
 									"For the necropolis!"
 									)
-			//say(message = pick(other_humanoid_messages))
+			INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), message = pick(other_humanoid_messages))
 			introduced |= WEAKREF(target)
 			get_angry()
 			GiveTarget(target)
 	else
 		//simplemobs beware
-		//say("It's berserkin' time!")
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "It's berserkin' time!")
 		introduced |= WEAKREF(target)
 
 /// Checks against the Marked One's current health and updates his phase accordingly. Uses variable shitcode to make sure his phase updates only ever happen *once*
@@ -278,6 +279,7 @@
 				icon_state = "marked2"
 				rapid_melee = 2
 				move_to_delay = 2
+				armour_penetration = 30
 				melee_damage_upper = 30
 				melee_damage_lower = 30
 		if(SHOWDOWN_PERCENT to FIFTY_PERCENT)
@@ -286,6 +288,7 @@
 				INVOKE_ASYNC(src, PROC_REF(charge), target, 21)
 				ranged_cooldown += 5 SECONDS
 				rapid_melee = 4
+				armour_penetration = 25
 				melee_damage_upper = 25
 				melee_damage_lower = 25
 				move_to_delay = 1.5
@@ -298,6 +301,7 @@
 				ranged_cooldown += 8 SECONDS
 				icon_state = "marked3"
 				rapid_melee = 1
+				armour_penetration = 50
 				melee_damage_upper = 50
 				melee_damage_lower = 50
 				move_to_delay = 1.2
@@ -318,7 +322,7 @@
 							"Come on, HIT ME!",
 							"CLANG!!",
 						)
-	say(message = pick(spin_messages))
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), message = pick(spin_messages))
 	spinning = TRUE
 	animate(src, color = "#ff6666", 1 SECONDS)
 	SLEEP_CHECK_DEATH(5, src)
@@ -365,7 +369,7 @@
 							"Looking for this?!",
 							"COME ON!!",
 						)
-	say(message = pick(charge_messages))
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), message = pick(charge_messages))
 	animate(src, color = "#ff6666", 0.3 SECONDS)
 	SLEEP_CHECK_DEATH(4, src)
 	face_atom(target)
@@ -416,7 +420,7 @@
 			)
 
 			if(prob(TELE_QUIP_CHANCE))
-				say(message = pick(tele_messages))
+				INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), message = pick(tele_messages))
 
 /// Bone Knife Throw makes him throw bone knives. woah.
 /mob/living/simple_animal/hostile/megafauna/gladiator/proc/bone_knife_throw(atom/target)

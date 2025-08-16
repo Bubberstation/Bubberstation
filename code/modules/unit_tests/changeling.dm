@@ -26,7 +26,7 @@
 	TEST_ASSERT_EQUAL(victim.real_name, ling_name, "Victim real name did not change on being transformation stung.")
 	TEST_ASSERT_EQUAL(victim.name, ling_name, "Victim name did not change on being transformation stung.")
 	TEST_ASSERT_EQUAL(victim.dna.species.type, ling.dna.species.type, "Victim species did not change on being transformation stung.")
-	TEST_ASSERT_EQUAL(victim.dna.features["mcolor"], ling.dna.features["mcolor"], "Victim mcolor did not change on being transformation stung.")
+	TEST_ASSERT_EQUAL(victim.dna.features[FEATURE_MUTANT_COLOR], ling.dna.features[FEATURE_MUTANT_COLOR], "Victim mcolor did not change on being transformation stung.")
 	// Check they actually look the same
 	add_to_screenshot(ling, victim)
 
@@ -37,7 +37,7 @@
 	TEST_ASSERT_EQUAL(victim.name, base_victim_name, "Victim name did not change back after transformation sting expired.")
 	TEST_ASSERT_EQUAL(victim.real_name, base_victim_name, "Victim real name did not change back after transformation sting expired.")
 	TEST_ASSERT_NOTEQUAL(victim.dna.species.type, ling.dna.species.type, "Victim species did not change back after transformation sting expired.")
-	TEST_ASSERT_NOTEQUAL(victim.dna.features["mcolor"], ling.dna.features["mcolor"], "Victim mcolor did not reset after transformation sting expired.")
+	TEST_ASSERT_NOTEQUAL(victim.dna.features[FEATURE_MUTANT_COLOR], ling.dna.features[FEATURE_MUTANT_COLOR], "Victim mcolor did not reset after transformation sting expired.")
 	// Check they actually look different again
 	add_to_screenshot(ling, victim, both_species = TRUE)
 
@@ -74,17 +74,16 @@
 	// Because we use two consistent humans, we need to change some of the features to know they're actually updating to new values.
 	// The more DNA features and random things we change, the more likely we are to catch something not updating correctly.
 	// Yeah guess who/what this is, I dare you.
-	ling.dna.features["mcolor"] = "#886600"
-	ling.dna.mutant_bodyparts["tail"] = list(MUTANT_INDEX_NAME = "Smooth", MUTANT_INDEX_COLOR_LIST = list("#886600", "#886600", "#886600")) // SKYRAT EDIT CHANGE - ORIGINAL: ling.dna.features["tail_lizard"] = "Smooth"
-	ling.dna.mutant_bodyparts["snout"] = list(MUTANT_INDEX_NAME = "Sharp + Light", MUTANT_INDEX_COLOR_LIST = list("#886600", "#886600", "#886600")) // SKYRAT EDIT CHANGE - ORIGINAL: ling.dna.features["snout"] = "Sharp + Light"
-	ling.dna.mutant_bodyparts["horns"] = list(MUTANT_INDEX_NAME = "Curled", MUTANT_INDEX_COLOR_LIST = list("#292826", "#292826", "#8292826")) // SKYRAT EDIT CHANGE - ORIGINAL: ling.dna.features["horns"] = "Curved"
-	ling.dna.mutant_bodyparts["frills"] = list(MUTANT_INDEX_NAME = "Short", MUTANT_INDEX_COLOR_LIST = list("#886600", "#886600", "#886600")) // SKYRAT EDIT CHANGE - ORIGINAL: ling.dna.features["frills"] = "Sort"
-	ling.dna.mutant_bodyparts["spines"] = list(MUTANT_INDEX_NAME = "Long + Membrane", MUTANT_INDEX_COLOR_LIST = list("#886600", "#886600", "#886600")) // SKYRAT EDIT CHANGE - ORIGINAL: ling.dna.features["spines"] = "Long + Membrane"
-	ling.dna.body_markings["chest"] = list("Light Belly" = list("#886600", 0)) // SKYRAT EDIT CHANGE - ORIGINAL : ling.dna.features[lizard_markings] = list("Light Belly")
-	ling.dna.features["legs"] = DIGITIGRADE_LEGS
+	ling.dna.features[FEATURE_MUTANT_COLOR] = "#886600"
+	ling.dna.mutant_bodyparts[FEATURE_TAIL_GENERIC] = list(MUTANT_INDEX_NAME = "Smooth", MUTANT_INDEX_COLOR_LIST = list("#886600", "#886600", "#886600")) // BUBBER EDIT CHANGE - ORIGINAL: ling.dna.features[FEATURE_TAIL_LIZARD] = "Smooth"
+	ling.dna.mutant_bodyparts[FEATURE_SNOUT] = list(MUTANT_INDEX_NAME = "Sharp + Light", MUTANT_INDEX_COLOR_LIST = list("#886600", "#886600", "#886600")) // BUBBER EDIT CHANGE - ORIGINAL: ling.dna.features[FEATURE_SNOUT] = "Sharp + Light"
+	ling.dna.mutant_bodyparts[FEATURE_HORNS] = list(MUTANT_INDEX_NAME = "Curled", MUTANT_INDEX_COLOR_LIST = list("#292826", "#292826", "#292826")) // BUBBER EDIT CHANGE - ORIGINAL: ling.dna.features[FEATURE_HORNS] = "Curled"
+	ling.dna.mutant_bodyparts[FEATURE_FRILLS] = list(MUTANT_INDEX_NAME = "Short", MUTANT_INDEX_COLOR_LIST = list("#886600", "#886600", "#886600")) // BUBBER EDIT CHANGE - ORIGINAL: ling.dna.features[FEATURE_FRILLS] = "Short"
+	ling.dna.mutant_bodyparts[FEATURE_SPINES] = list(MUTANT_INDEX_NAME = "Long + Membrane", MUTANT_INDEX_COLOR_LIST = list("#886600", "#886600", "#886600")) // BUBBER EDIT CHANGE - ORIGINAL: ling.dna.features[FEATURE_SPINES] = "Long + Membrane"
+	ling.dna.body_markings[BODY_ZONE_CHEST] = list("Light Belly" = list("#886600", 0)) // BUBBER EDIT CHANGE - ORIGINAL : ling.dna.features[FEATURE_LIZARD_MARKINGS] = "Light Belly"
+	ling.dna.features[FEATURE_LEGS] = DIGITIGRADE_LEGS
 	ling.set_eye_color(COLOR_WHITE)
-	ling.dna.update_ui_block(DNA_EYE_COLOR_LEFT_BLOCK)
-	ling.dna.update_ui_block(DNA_EYE_COLOR_RIGHT_BLOCK)
+	ling.dna.update_ui_block(/datum/dna_block/identity/eye_colors)
 	ling.set_species(/datum/species/lizard)
 
 	ling.real_name = ling_name

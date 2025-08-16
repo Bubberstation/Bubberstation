@@ -11,16 +11,15 @@
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 	w_class = WEIGHT_CLASS_BULKY
-	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
+	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	hoodtype = /obj/item/clothing/head/hooded/seva
 	armor_type = /datum/armor/hooded_seva
 	resistance_flags = FIRE_PROOF
 	transparent_protection = HIDEJUMPSUIT
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/recharge/kinetic_accelerator, /obj/item/pickaxe)
 
 /datum/armor/hooded_seva
-	melee = 20
+	melee = 30
 	bullet = 10
 	laser = 10
 	energy = 10
@@ -41,12 +40,17 @@
 	body_parts_covered = HEAD
 	flags_inv = HIDEHAIR|HIDEFACE|HIDEEARS|HIDESNOUT
 	cold_protection = HEAD
+	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 	heat_protection = HEAD
-	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
+	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
 	clothing_traits = list(TRAIT_ASHSTORM_IMMUNE)
 	armor_type = /datum/armor/hooded_seva
 	resistance_flags = FIRE_PROOF
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION //I can't find the snout sprite so I'm just gonna force it to do this
+
+/obj/item/clothing/suit/hooded/seva/Initialize(mapload)
+	. = ..()
+	allowed = GLOB.mining_suit_allowed
 
 /obj/item/clothing/mask/gas/seva
 	name = "SEVA mask"
