@@ -35,14 +35,6 @@
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/jelly/slime/roundstart,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/jelly/slime/roundstart,
 	)
-
-/datum/species/jelly/on_bloodsucker_gain(mob/living/carbon/human/target)
-	humanize_organs(target)
-
-/datum/species/jelly/on_bloodsucker_loss(mob/living/carbon/human/target)
-	// regenerate_organs with replace doesn't seem to automatically remove invalid organs unfortunately
-	normalize_organs()
-
 /datum/species/jelly/roundstartslime/get_species_description()
 	return list(
 		"Slimepeople are the product of many years of xenobiological experimentation. Their bodies are simple yet fluid, and resemble single-celled organisms. They are susceptible to the cold.",
@@ -551,3 +543,10 @@
 			if(new_size)
 				alterer.dna.features["balls_size"] = avocados.balls_description_to_size(new_size)
 				avocados.set_size(alterer.dna.features["balls_size"])
+
+/datum/species/jelly/on_bloodsucker_gain(mob/living/carbon/human/target)
+	humanize_organs(target)
+
+/datum/species/jelly/on_bloodsucker_loss(mob/living/carbon/human/target)
+	// regenerate_organs with replace doesn't seem to automatically remove invalid organs unfortunately
+	normalize_organs()
