@@ -64,8 +64,7 @@
 /datum/component/mutant_infection/proc/remove_infection()
 	if(ismutant(host) && old_species)
 		host.set_species(old_species)
-	host.grab_ghost()
-	host.revive(TRUE, TRUE)
+	host.revive(HEAL_ALL,force_grab_ghost = TRUE)
 	to_chat(host, span_greentext("You feel like you're free of that foul disease!"))
 	ADD_TRAIT(host, TRAIT_MUTANT_IMMUNE, "mutant_virus")
 	host.mind?.remove_antag_datum(/datum/antagonist/mutant)
@@ -160,12 +159,10 @@
 		if(!istype(canidate))
 			return
 		host.key = canidate.key
-	else
-		host.grab_ghost()
 	to_chat(host, span_notice("You feel an itching, both inside and \
 		outside as your tissues knit and reknit."))
 	playsound(host, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
-	host.revive(TRUE, TRUE)
+	host.revive(HEAL_ALL, force_grab_ghost = TRUE)
 
 /datum/component/mutant_infection/proc/create_glow()
 	var/atom/movable/parent_movable = parent
