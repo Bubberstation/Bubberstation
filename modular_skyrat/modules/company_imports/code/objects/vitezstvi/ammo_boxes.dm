@@ -13,6 +13,10 @@
 /obj/item/ammo_box/c38
 	w_class = WEIGHT_CLASS_SMALL
 
+/obj/item/ammo_box/c9mm/security
+	name = "ammo box (9mm security)"
+	ammo_type = /obj/item/ammo_casing/c9mm/security
+
 /obj/item/ammo_box/c9mm/ap
 	name = "ammo box (9mm AP)"
 	ammo_type = /obj/item/ammo_casing/c9mm/ap
@@ -56,10 +60,6 @@
 	name = "ammo box (4.6x30mm AP)"
 	ammo_type = /obj/item/ammo_casing/c46x30mm/ap
 
-/obj/item/ammo_box/c46x30mm/rubber
-	name = "ammo box (4.6x30mm rubber)"
-	ammo_type = /obj/item/ammo_casing/c46x30mm/rubber
-
 /obj/item/ammo_box/c34
 	name = "ammo box (.34)"
 	icon = 'modular_skyrat/modules/company_imports/icons/ammo.dmi'
@@ -71,27 +71,6 @@
 	name = "ammo box (.34 AP)"
 	ammo_type = /obj/item/ammo_casing/c34/ap
 
-/obj/item/ammo_box/c34/rubber
-	name = "ammo box (.34 rubber)"
-	ammo_type = /obj/item/ammo_casing/c34/rubber
-
 /obj/item/ammo_box/c34/fire
 	name = "ammo box (.34 incendiary)"
 	ammo_type = /obj/item/ammo_casing/c34_incendiary
-
-/obj/item/storage/box/ammo_box/microfusion/bluespace
-	name = "bluespace microfusion cell container"
-	desc = "A box filled with microfusion cells."
-
-/obj/item/storage/box/ammo_box/microfusion/bluespace/PopulateContents()
-	new /obj/item/storage/pouch/ammo(src)
-	new /obj/item/stock_parts/power_store/cell/microfusion/bluespace(src)
-	new /obj/item/stock_parts/power_store/cell/microfusion/bluespace(src)
-	new /obj/item/stock_parts/power_store/cell/microfusion/bluespace(src)
-
-
-/obj/item/storage/box/ammo_box/microfusion/bluespace/bagless/PopulateContents()
-	new /obj/item/stock_parts/power_store/cell/microfusion/bluespace(src)
-	new /obj/item/stock_parts/power_store/cell/microfusion/bluespace(src)
-	new /obj/item/stock_parts/power_store/cell/microfusion/bluespace(src)
-

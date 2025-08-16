@@ -53,7 +53,7 @@
 	cost = PAYCHECK_CREW * 1.5
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/ammo_box/magazine/m38/match/bouncy)
-
+	
 /datum/supply_pack/goody/mars_single
 	name = "Colt Detective Special Single-Pack"
 	desc = "The HoS took your gun and your badge? No problem! Just pay the absurd taxation fee and you too can be reunited with the lethal power of a .38!"
