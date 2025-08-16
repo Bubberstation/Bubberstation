@@ -17,7 +17,7 @@
 	)
 
 /datum/species/jelly/roundstartslime
-	name = "Xenobiological Slime Hybrid"
+	name = "Xenobiological Slimeperson"
 	id = SPECIES_SLIMESTART
 	examine_limb_id = SPECIES_SLIMEPERSON
 	coldmod = 3
