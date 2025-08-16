@@ -1,5 +1,6 @@
 /obj/item/clothing/under/rank/cargo
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/cargo_digi.dmi' // Anything that was in the cargo.dmi, should be in the cargo_digi.dmi
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/cargo/tech/skyrat
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/cargo.dmi'

@@ -527,7 +527,7 @@
 		return FALSE
 	return ..()
 
-/datum/action/toggle_buffer/Trigger(trigger_flags)
+/datum/action/toggle_buffer/Trigger(mob/clicker, trigger_flags)
 	. = ..()
 	if(!.)
 		return
