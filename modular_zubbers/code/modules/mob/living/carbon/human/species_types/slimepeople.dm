@@ -546,6 +546,3 @@
 			if(new_size)
 				alterer.dna.features["balls_size"] = avocados.balls_description_to_size(new_size)
 				avocados.set_size(alterer.dna.features["balls_size"])
-
-/datum/species/jelly/get_species_description()
-	return list(placeholder_description,)
