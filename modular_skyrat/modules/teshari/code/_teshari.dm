@@ -66,9 +66,9 @@
 	var/base_color = "#c0965f"
 	var/ear_color = "#e4c49b"
 
-	tesh.dna.features["mcolor"] = base_color
-	tesh.dna.mutant_bodyparts["ears"] = list(MUTANT_INDEX_NAME = "Teshari Feathers Upright", MUTANT_INDEX_COLOR_LIST = list(ear_color, ear_color, ear_color))
-	tesh.dna.mutant_bodyparts["tail"] = list(MUTANT_INDEX_NAME = "Teshari (Default)", MUTANT_INDEX_COLOR_LIST = list(base_color, base_color, ear_color))
+	tesh.dna.features[FEATURE_MUTANT_COLOR] = base_color
+	tesh.dna.mutant_bodyparts[FEATURE_EARS] = list(MUTANT_INDEX_NAME = "Teshari Feathers Upright", MUTANT_INDEX_COLOR_LIST = list(ear_color, ear_color, ear_color))
+	tesh.dna.mutant_bodyparts[FEATURE_TAIL_GENERIC] = list(MUTANT_INDEX_NAME = "Teshari (Default)", MUTANT_INDEX_COLOR_LIST = list(base_color, base_color, ear_color))
 	regenerate_organs(tesh, src, visual_only = TRUE)
 	tesh.update_body(TRUE)
 
@@ -91,3 +91,33 @@
 	))
 
 	return perk_descriptions
+
+/datum/species/teshari/get_species_description()
+	return list(
+		"A species of birdperson hailing from the tropical planet Sirisai, their introduction \
+		came in the form of the complete and utter destruction of their oppressors on Penelope 3.",
+		"They are extremely agile, owing to their low mass, but their hollow bones make them more vulnerable to being hurt."
+	)
+
+/datum/species/teshari/get_species_lore()
+	return list(
+		"Teshari are a bird-like species that hail from a tropical world, Sirisai (or Penelope 3a by NRI naming standards) \
+		They generally are between 3'5 and 4'0 tall, bearing raptor-like bodies with large plumes of feathers, and vestigial wings. \
+		They often have beaks, but some have developed muzzles as Teshari have spread across the galactic sea. \
+		Teshari are very colorful, and their plumage generally relates to where they were born, as well as genetics. They have very large ears for hearing. \
+		Teshari tend to live to 60-70 before dying of natural causes, though medical care can extend this significantly. \
+		Teshari are omnivores with a preference for fish, and a blatant dislike for grain. They prefer nuts and vegetation.",
+		"Teshari have a genetic need for socialization, and will get sick if not social at all for an extended period. \
+		which has caused them to form tight-knit groups known as flocks. Teshari generally lack parental figures, and are often \
+		raised communally. When they reach adulthood, they feel an ingrained need to move away from their nesting flock and find or develop a new one. \
+		Teshari tend to be cloistered and quiet when entering a new social space, but are very vocal and impassioned when they fit in, often enjoying making and parroting noises.",
+		"Sirisai (or Penelope 3a) is a tropical world with temperatures ranging from 20 to 30 celsius on average. \
+		It has three notable mountain ranges, the only places on the planet where snow can be seen year-round. Temperatures can go as low as -15 Celsius. \
+		The planet itself is generally very biologically diverse, mostly undisturbed ecologically by the Teshari or their predecessors.",
+		"Teshari had a generally uneventful early history, until they were discovered by a species that resided \
+		on the planet Penelope 3. After years of oppression and being sold as a labor force, \
+		the Teshari made their demand: Comply, or explode. This species seemed to not have taken the threat seriously, \
+		and were made extinct by the destruction of their entire planet. Fossils have been uncovered on Penelope 3a, and while they have yet to be named, \
+		A meeting of Teshari flocks have democratically named the species after the Teshari word for \"bastard\". \
+		Needless to say, this very quickly led to the normalization of relations and formal recognition by the then NRI.",
+	)
