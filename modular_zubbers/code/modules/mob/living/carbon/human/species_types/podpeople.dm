@@ -1,5 +1,6 @@
 /datum/species/pod
 	inert_mutation = /datum/mutation/harmonizing_pulses
+	sort_bottom = TRUE
 
 /datum/species/pod/get_species_description()
 	return list(

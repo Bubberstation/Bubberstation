@@ -49,6 +49,7 @@ export type Species = {
   desc: string[];
   lore: string[];
   icon: string;
+  sort_bottom: BooleanLike; //Bubber edit: adds bottom sorting
 
   use_skintones: BooleanLike;
   sexes: BooleanLike;

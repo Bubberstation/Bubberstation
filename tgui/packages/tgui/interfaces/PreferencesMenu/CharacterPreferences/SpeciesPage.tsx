@@ -266,12 +266,21 @@ function SpeciesPageInner(props: SpeciesPageInnerProps) {
       return [species, data];
     },
   );
-
   // Humans are always the top of the list
   const humanIndex = species.findIndex(([species]) => species === 'human');
   const swapWith = species[0];
   species[0] = species[humanIndex];
   species[humanIndex] = swapWith;
+
+  //Bubber edit begin: species menu sorting
+  species.sort(([, speciesA], [, speciesB]) => {
+    if (speciesA.sort_bottom !== speciesB.sort_bottom) {
+      return speciesA.sort_bottom ? 1 : -1;
+    }
+
+    return speciesB.lore.length - speciesA.lore.length;
+  });
+  //Bubber edit end: Species menu sorting
 
   const currentSpecies = species.filter(([speciesKey]) => {
     return speciesKey === data.character_preferences.misc.species;

@@ -22,6 +22,7 @@
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/mutant/insect,
 	)
 	eyes_icon = 'modular_skyrat/modules/organs/icons/insect_eyes.dmi'
+	sort_bottom = TRUE
 
 /datum/species/insect/get_default_mutant_bodyparts()
 	return list(

@@ -1,3 +1,7 @@
+/datum/species
+	var/sort_bottom = FALSE
+//Whether or not a given species is sorted to the bottom of the list
+
 /// Called once the target is made into a bloodsucker. Used for removing conflicting species organs mostly
 /datum/species/proc/on_bloodsucker_gain(mob/living/carbon/human/target)
 	return null
@@ -32,7 +36,6 @@
 	mutantstomach = initial(mutantstomach)
 	mutanttongue = initial(mutanttongue)
 	regenerate_organs(target, replace_current = TRUE)
-
 
 /datum/species/get_species_description()
 	SHOULD_CALL_PARENT(FALSE)

@@ -32,6 +32,7 @@
 		TRAIT_RESISTCOLD,
 		TRAIT_USES_SKINTONES,
 	)
+	sort_bottom = TRUE
 
 	always_customizable = TRUE
 
