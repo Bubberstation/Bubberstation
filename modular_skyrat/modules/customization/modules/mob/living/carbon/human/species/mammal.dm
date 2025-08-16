@@ -20,6 +20,7 @@
 		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/mutant,
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/mutant,
 	)
+	sort_bottom = TRUE
 
 /datum/species/mammal/get_default_mutant_bodyparts()
 	return list(

@@ -25,6 +25,7 @@
 		TRAIT_LITERATE,
 		TRAIT_MUTANT_COLORS,
 	)
+	sort_bottom = FALSE
 
 	always_customizable = FALSE
 

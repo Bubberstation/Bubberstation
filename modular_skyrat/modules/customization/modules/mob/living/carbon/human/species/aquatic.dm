@@ -24,6 +24,7 @@
 	)
 
 	meat = /obj/item/food/fishmeat/moonfish/akula
+	sort_bottom = TRUE
 
 /datum/species/aquatic/get_default_mutant_bodyparts()
 	return list(
