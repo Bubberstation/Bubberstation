@@ -7,3 +7,6 @@
 	. = ..()
 	var/datum/action/sing_tones/sing_action = new
 	sing_action.Grant(new_ethereal)
+
+/datum/species/ethereal/allows_food_preferences()
+	return TRUE

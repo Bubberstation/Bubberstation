@@ -16,3 +16,10 @@
 /datum/species/abductor/get_species_description()
 	return list("Abductors, colloquially known as \"Greys\" (or \"Grays\"), \
 		are, three fingered, pale skinned inquisitive aliens who can't communicate well to the average crew-member.",)
+
+// Various adjustments to abductor
+/datum/species/abductor
+	remove_features = TRUE
+
+/obj/item/melee/baton/abductor
+	sleep_time = 30 SECONDS

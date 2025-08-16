@@ -1,3 +1,6 @@
+/datum/species/plasmaman/allows_food_preferences()
+	return FALSE
+
 /datum/species/plasmaman/get_species_description()
 	return list("Plasmamen are a relatively new and complex organism that has entered onto the galactic stage. \
 			Their biology is truly unique when compared to most other species that travel the stars, rather than being a lifeform with skin, organs, and a brain, \

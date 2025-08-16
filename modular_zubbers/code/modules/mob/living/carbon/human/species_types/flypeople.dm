@@ -3,3 +3,6 @@
 		this species, they remain a mystery to most. Any and all rumours among \
 		Nanotrasen staff regarding flypeople are often quickly silenced by high \
 		ranking staff or officials.",)
+
+/datum/species/fly/allows_food_preferences()
+	return FALSE
