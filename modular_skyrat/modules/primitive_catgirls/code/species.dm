@@ -13,7 +13,7 @@
 	selected_language = /datum/language/primitive_catgirl
 
 /datum/species/human/felinid/primitive
-	name = "Primitive Demihuman"
+	name = "Hearthkin"
 	id = SPECIES_FELINE_PRIMITIVE
 
 	mutantlungs = /obj/item/organ/lungs/icebox_adapted
@@ -55,15 +55,15 @@
 	hearthkin.dna.remove_mutation(/datum/mutation/olfaction, MUTATION_SOURCE_SPECIES)
 
 /datum/species/human/felinid/primitive/prepare_human_for_preview(mob/living/carbon/human/human_for_preview)
-	human_for_preview.hairstyle = "Blunt Bangs Alt"
-	human_for_preview.hair_color = "#323442"
-	human_for_preview.skin_tone = "mediterranean"
+	human_for_preview.hairstyle = "Slightly Messy"
+	human_for_preview.hair_color = "#954535"
+	human_for_preview.skin_tone = "albino"
+	human_for_preview.set_eye_color("#6ca580")
 
-	human_for_preview.update_body_parts()
+	human_for_preview.dna.species.mutant_bodyparts[FEATURE_TAIL_GENERIC] = list(MUTANT_INDEX_NAME = "Cat", MUTANT_INDEX_COLOR_LIST = list(human_for_preview.hair_color))
+	human_for_preview.dna.mutant_bodyparts[FEATURE_EARS] = list(MUTANT_INDEX_NAME = "Lynx", MUTANT_INDEX_COLOR_LIST = list(human_for_preview.hair_color))
 
-	human_for_preview.dna.species.mutant_bodyparts["tail"] = list(MUTANT_INDEX_NAME = "Cat", MUTANT_INDEX_COLOR_LIST = list(human_for_preview.hair_color))
-	human_for_preview.dna.species.mutant_bodyparts["ears"] = list(MUTANT_INDEX_NAME = "Cat", MUTANT_INDEX_COLOR_LIST = list(human_for_preview.hair_color))
-
+	regenerate_organs(human_for_preview, src, visual_only = TRUE)
 	human_for_preview.update_body_parts()
 	human_for_preview.update_body(is_creating = TRUE)
 

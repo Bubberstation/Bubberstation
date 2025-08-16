@@ -103,12 +103,12 @@
 
 
 /datum/species/hemophage/prepare_human_for_preview(mob/living/carbon/human/human)
-	human.skin_tone = "albino"
+	human.dna.features["mcolor"] = "#fff4e6"
+	human.set_eye_color(COLOR_RED)
 	human.hair_color = "#1d1d1d"
-	human.hairstyle = "Pompadour (Big)"
+	human.hairstyle = "Royal Curls"
 	regenerate_organs(human, src, visual_only = TRUE)
 	human.update_body(TRUE)
-
 
 /datum/species/hemophage/create_pref_unique_perks()
 	var/list/to_add = list()
