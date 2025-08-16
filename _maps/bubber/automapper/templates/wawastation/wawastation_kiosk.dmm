@@ -48,6 +48,13 @@
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/station/commons/kiosk)
+"fj" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/landmark/start/assistant,
+/turf/open/floor/iron/dark,
+/area/station/commons/kiosk)
 "fM" = (
 /obj/structure/rack,
 /obj/item/food/sticko{
@@ -176,6 +183,7 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 1
 	},
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/iron/dark,
 /area/station/commons/kiosk)
 "nO" = (
@@ -255,6 +263,14 @@
 /obj/item/radio/intercom/directional/west,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/commons/kiosk)
+"sR" = (
+/obj/effect/turf_decal/siding/white,
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/landmark/start/hangover,
+/turf/open/floor/iron/dark,
+/area/station/commons/kiosk)
 "sY" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -263,6 +279,16 @@
 	name = "Wawastation Convienence Store"
 	},
 /obj/structure/disposalpipe/segment,
+/turf/open/floor/iron/dark,
+/area/station/commons/kiosk)
+"td" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment,
+/obj/effect/landmark/start/hangover,
 /turf/open/floor/iron/dark,
 /area/station/commons/kiosk)
 "to" = (
@@ -371,9 +397,18 @@
 /obj/structure/window/fulltile,
 /turf/open/floor/iron/dark,
 /area/station/commons/kiosk)
+"El" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/white,
+/obj/effect/landmark/start/assistant,
+/turf/open/floor/iron/dark,
+/area/station/commons/kiosk)
 "ER" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/iron/dark,
 /area/station/commons/kiosk)
 "Fg" = (
@@ -532,6 +567,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/white/corner,
+/obj/effect/landmark/start/hangover,
 /turf/open/floor/iron/dark,
 /area/station/commons/kiosk)
 "PA" = (
@@ -542,6 +578,7 @@
 	dir = 8
 	},
 /obj/machinery/firealarm/directional/east,
+/obj/effect/landmark/start/hangover,
 /turf/open/floor/iron/dark,
 /area/station/commons/kiosk)
 "PP" = (
@@ -563,6 +600,13 @@
 	},
 /obj/item/reagent_containers/condiment/olive_oil,
 /turf/open/floor/iron/large,
+/area/station/commons/kiosk)
+"Ri" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/landmark/start/hangover,
+/turf/open/floor/iron/dark,
 /area/station/commons/kiosk)
 "Tq" = (
 /obj/structure/rack,
@@ -642,6 +686,13 @@
 	},
 /turf/open/floor/iron/large,
 /area/station/commons/kiosk)
+"Yh" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/landmark/start/assistant,
+/turf/open/floor/iron/dark,
+/area/station/commons/kiosk)
 "ZP" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
@@ -701,7 +752,7 @@ LI
 zd
 to
 to
-to
+td
 pr
 pr
 sY
@@ -725,9 +776,9 @@ LI
 FM
 Ps
 eL
-eL
+fj
 PP
-eL
+Ri
 TQ
 GB
 "}
@@ -735,7 +786,7 @@ GB
 GB
 LI
 Ur
-Ht
+El
 BU
 Qs
 mC
@@ -750,7 +801,7 @@ kp
 Ht
 nO
 fM
-mC
+sR
 jR
 DA
 GB
@@ -759,10 +810,10 @@ GB
 GB
 LI
 uq
-Ht
+El
 Wm
 vH
-mC
+sR
 Tq
 DA
 GB
@@ -773,7 +824,7 @@ LI
 oj
 PA
 Hy
-mo
+Yh
 gu
 mo
 DA
@@ -787,7 +838,7 @@ LI
 LI
 mi
 eL
-eL
+Ri
 DA
 GB
 "}
