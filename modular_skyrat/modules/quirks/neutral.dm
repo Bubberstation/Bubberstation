@@ -288,6 +288,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	new_tongue.copy_traits_from(human_holder.get_organ_slot(ORGAN_SLOT_TONGUE))
 	new_tongue.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
+///Start of Mouse Traits
 /datum/quirk/item_quirk/mouse
 	name = "Muridae Traits"
 	desc = "You always thought those jokes were cheesy. This will replace most other tongue-based speech quirks."
@@ -369,6 +370,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 		return FALSE
 	var/datum/crafting_recipe/chosen = pick(type_recipe_list)
 	to_chat(owner, span_notice("[potential_food] could probably be used to make [chosen::name]"))
+///End of Mouse Traits
 
 /datum/quirk/sensitivesnout
 	name = "Sensitive Snout"
