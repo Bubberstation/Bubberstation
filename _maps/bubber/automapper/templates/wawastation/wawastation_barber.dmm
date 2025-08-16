@@ -1,21 +1,46 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/template_noop,
-/area/template_noop)
-"b" = (
-/obj/structure/table/glass,
-/obj/item/hairbrush,
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/item/lipstick/random,
-/obj/machinery/camera/directional/east{
-	c_tag = "Salon - Massage Parlour"
-	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
 /area/station/service/barber)
-"c" = (
+"b" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/item/kirbyplants/random,
+/obj/machinery/firealarm/directional/south,
+/obj/machinery/light/warm/directional/south,
+/turf/open/floor/iron,
+/area/station/service/barber)
+"f" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/machinery/dryer,
+/turf/closed/wall,
+/area/station/service/barber)
+"g" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/machinery/door/airlock/public/glass{
+	name = "Massage Parlour"
+	},
+/obj/structure/curtain/cloth/fancy/mechanical{
+	id = "barbershopcurtains1"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron,
+/area/station/service/barber)
+"i" = (
 /obj/machinery/camera/directional/north{
 	c_tag = "Salon"
 	},
@@ -23,170 +48,86 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/structure/chair/sofa/bench/right,
-/obj/machinery/button/curtain{
-	id = "barbershopcurtains";
-	pixel_y = 24;
-	pixel_x = -4
-	},
-/turf/open/floor/iron,
-/area/station/service/barber)
-"d" = (
-/obj/structure/extinguisher_cabinet/directional/west,
-/obj/structure/chair/office/light{
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple,
-/turf/open/floor/iron,
-/area/station/service/barber)
-"e" = (
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple,
 /obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/north,
-/turf/open/floor/iron,
-/area/station/service/barber)
-"f" = (
-/obj/structure/bed/pod,
-/obj/machinery/light/warm/directional/north,
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple,
-/obj/effect/landmark/start/hangover,
-/turf/open/floor/iron,
-/area/station/service/barber)
-"g" = (
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple,
-/turf/open/floor/iron,
-/area/station/service/barber)
-"h" = (
-/obj/structure/table/glass,
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple,
-/obj/structure/mirror/directional/east,
-/obj/item/reagent_containers/spray/barbers_aid{
-	pixel_x = 6
-	},
-/obj/item/razor{
-	pixel_x = -6
-	},
-/turf/open/floor/iron,
-/area/station/service/barber)
-"i" = (
-/obj/structure/chair/office/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple,
-/obj/machinery/button/curtain{
-	id = "barbershopcurtains1";
-	pixel_x = -25;
-	pixel_y = 6
-	},
-/turf/open/floor/iron,
-/area/station/service/barber)
-"j" = (
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple,
-/obj/machinery/dryer{
-	dir = 4;
-	pixel_x = -6;
-	pixel_y = -6
-	},
-/turf/open/floor/iron,
-/area/station/service/barber)
-"k" = (
-/obj/structure/cable,
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/service/barber)
+"k" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/structure/chair/comfy/barber_chair{
+	dir = 1
+	},
+/turf/open/floor/iron,
+/area/station/service/barber)
 "l" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple,
 /obj/structure/curtain/cloth/fancy/mechanical{
 	id = "barbershopcurtains1"
 	},
 /obj/effect/spawner/structure/window,
-/turf/open/floor/plating,
+/turf/open/space/basic,
 /area/station/service/barber)
 "m" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/vending/barbervend,
+/turf/open/floor/iron,
+/area/station/service/barber)
+"n" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/structure/sink/directional/west,
+/obj/structure/mirror/directional/east,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/light_switch/directional/south,
 /turf/open/floor/iron,
 /area/station/service/barber)
 "o" = (
+/turf/template_noop,
+/area/template_noop)
+"p" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/structure/closet/secure_closet/barber,
-/obj/machinery/light/warm/directional/west,
-/turf/open/floor/iron,
-/area/station/service/barber)
-"p" = (
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/turf_decal/tile/purple,
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/public/glass{
-	name = "Massage Parlour"
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/iron,
 /area/station/service/barber)
 "q" = (
-/obj/machinery/light/small/directional/east,
-/obj/structure/table/glass,
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/item/lipstick/random,
-/obj/item/reagent_containers/spray/quantum_hair_dye{
-	pixel_x = 6
-	},
+/obj/machinery/door/window/right/directional/east,
 /turf/open/floor/iron,
+/area/station/service/barber)
+"r" = (
+/turf/template_noop,
 /area/station/service/barber)
 "s" = (
-/obj/machinery/holopad,
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
+/obj/structure/curtain/cloth/fancy/mechanical{
+	id = "barbershopcurtains1"
 	},
-/obj/effect/turf_decal/tile/purple,
-/turf/open/floor/iron,
-/area/station/service/barber)
-"t" = (
-/obj/structure/bed/pod,
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple,
-/turf/open/floor/iron,
+/obj/effect/spawner/structure/window,
+/turf/open/space/basic,
 /area/station/service/barber)
 "u" = (
 /obj/structure/table/glass,
@@ -194,11 +135,11 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/structure/mirror/directional/east,
 /obj/item/reagent_containers/dropper,
 /obj/item/hairbrush/comb{
 	pixel_y = 10
 	},
+/obj/structure/mirror/directional/north,
 /turf/open/floor/iron,
 /area/station/service/barber)
 "v" = (
@@ -206,25 +147,11 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/effect/landmark/start/barber,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+/obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/turf/open/floor/iron,
-/area/station/service/barber)
-"w" = (
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 1
-	},
-/obj/machinery/button/curtain{
-	id = "barbershopcurtains";
-	pixel_y = -24;
-	pixel_x = -4
-	},
+/obj/machinery/disposal/bin,
+/obj/structure/window/spawner/directional/east,
 /turf/open/floor/iron,
 /area/station/service/barber)
 "x" = (
@@ -232,18 +159,8 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/obj/effect/landmark/start/barber,
-/turf/open/floor/iron,
-/area/station/service/barber)
-"y" = (
-/obj/structure/table/glass,
-/obj/item/hairbrush,
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple,
-/obj/item/lipstick/random,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/service/barber)
 "z" = (
@@ -251,8 +168,14 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/machinery/power/apc/auto_name/directional/east,
 /obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/station/service/barber)
 "A" = (
@@ -260,9 +183,9 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 1
+	},
 /turf/open/floor/iron,
 /area/station/service/barber)
 "B" = (
@@ -270,10 +193,10 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
+/obj/machinery/light/warm/directional/south,
 /obj/structure/chair/sofa/bench/right{
 	dir = 1
 	},
-/obj/effect/landmark/start/hangover,
 /turf/open/floor/iron,
 /area/station/service/barber)
 "C" = (
@@ -281,8 +204,14 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/landmark/start/barber,
+/obj/effect/landmark/event_spawn,
+/obj/machinery/button/curtain{
+	id = "barbershopcurtains1";
+	pixel_y = 32
+	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/service/barber)
 "D" = (
@@ -290,9 +219,44 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/structure/chair/sofa/bench/left{
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/obj/machinery/firealarm/directional/north,
+/obj/item/kirbyplants/random,
+/turf/open/floor/iron,
+/area/station/service/barber)
+"E" = (
+/obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
+/obj/effect/turf_decal/tile/purple,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/iron,
+/area/station/service/barber)
+"F" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/landmark/event_spawn,
+/obj/structure/chair/office/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/iron,
+/area/station/service/barber)
+"G" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple,
 /turf/open/floor/iron,
 /area/station/service/barber)
 "H" = (
@@ -300,32 +264,31 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/structure/sink/directional/east,
-/obj/structure/mirror/directional/west,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 4
-	},
+/obj/machinery/light/small/directional/east,
 /turf/open/floor/iron,
 /area/station/service/barber)
 "I" = (
+/obj/machinery/light/warm/directional/north,
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/machinery/light_switch/directional/west,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/cable,
+/obj/structure/table/glass,
+/obj/item/reagent_containers/spray/quantum_hair_dye{
+	pixel_x = 6
+	},
+/obj/item/lipstick/random,
 /turf/open/floor/iron,
 /area/station/service/barber)
-"K" = (
+"L" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/effect/landmark/event_spawn,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/chair/sofa/bench/left{
+	dir = 1
+	},
+/obj/effect/landmark/start/hangover,
 /turf/open/floor/iron,
 /area/station/service/barber)
 "M" = (
@@ -333,17 +296,15 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/item/lipstick/random,
-/obj/structure/table/wood,
+/obj/structure/chair/sofa/bench/right,
 /turf/open/floor/iron,
 /area/station/service/barber)
 "N" = (
-/obj/machinery/firealarm/directional/east,
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/item/kirbyplants/random,
+/obj/machinery/airalarm/directional/south,
 /turf/open/floor/iron,
 /area/station/service/barber)
 "O" = (
@@ -351,44 +312,54 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/structure/chair/comfy/barber_chair{
-	dir = 4
-	},
+/obj/structure/table/wood,
+/obj/item/lipstick/random,
 /turf/open/floor/iron,
 /area/station/service/barber)
 "P" = (
-/turf/closed/wall,
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/machinery/light_switch/directional/south,
+/obj/item/kirbyplants/random,
+/turf/open/floor/iron,
 /area/station/service/barber)
 "Q" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/item/kirbyplants/random,
+/obj/structure/table/glass,
+/obj/item/lipstick/random,
+/obj/item/hairbrush,
 /turf/open/floor/iron,
+/area/station/service/barber)
+"R" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple,
+/turf/closed/wall,
 /area/station/service/barber)
 "S" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/cable,
+/obj/structure/bed/pod,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 1
+	},
+/obj/effect/landmark/start/hangover,
 /turf/open/floor/iron,
 /area/station/service/barber)
 "T" = (
-/obj/effect/turf_decal/tile/purple,
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
-/obj/machinery/door/airlock/public/glass{
-	name = "Barbershop"
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/door/firedoor,
-/obj/structure/cable,
+/obj/effect/turf_decal/tile/purple,
+/obj/structure/closet/secure_closet/barber,
 /turf/open/floor/iron,
 /area/station/service/barber)
 "U" = (
@@ -397,160 +368,200 @@
 	},
 /obj/effect/turf_decal/tile/purple,
 /obj/structure/chair/sofa/bench/left,
-/obj/machinery/airalarm/directional/north,
 /turf/open/floor/iron,
 /area/station/service/barber)
 "V" = (
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple,
-/obj/item/book/manual/fish_catalog,
-/obj/structure/table/wood,
-/turf/open/floor/iron,
+/turf/closed/wall,
 /area/station/service/barber)
 "X" = (
-/obj/item/radio/intercom/directional/north,
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/machinery/vending/barbervend,
+/obj/structure/table/glass,
+/obj/item/razor{
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/spray/barbers_aid{
+	pixel_x = 6
+	},
 /turf/open/floor/iron,
 /area/station/service/barber)
 "Y" = (
-/obj/effect/spawner/structure/window,
-/obj/structure/curtain/cloth/fancy/mechanical{
-	id = "barbershopcurtains"
-	},
-/turf/open/floor/plating,
-/area/station/service/barber)
-"Z" = (
-/obj/machinery/light/warm/directional/north,
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/structure/chair/comfy/barber_chair{
-	dir = 4
-	},
+/obj/structure/table/wood,
+/obj/item/book/manual/fish_catalog,
 /turf/open/floor/iron,
 /area/station/service/barber)
 
 (1,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
+o
+o
+o
+o
+r
+r
+r
+r
+r
+r
+r
+o
 "}
 (2,1,1) = {"
-P
-i
-j
-H
-d
-l
-a
+o
+o
+o
+V
+u
+k
+E
+M
+Y
+L
+V
+o
 "}
 (3,1,1) = {"
-P
-f
-x
-K
-t
-l
-a
+o
+o
+o
+V
+I
+G
+p
+U
+O
+B
+V
+o
 "}
 (4,1,1) = {"
+o
+o
+o
+V
+X
+k
+i
+x
+A
 P
-b
-Q
-C
-y
-P
-a
+V
+o
 "}
 (5,1,1) = {"
-P
-P
-P
-p
-P
-P
-a
-"}
-(6,1,1) = {"
-P
-X
 o
-C
-I
-T
-a
-"}
-(7,1,1) = {"
-P
-Q
-g
-s
-A
-P
-a
-"}
-(8,1,1) = {"
-P
-c
+o
+o
 V
 D
-m
-P
 a
+z
+x
+G
+N
+V
+o
+"}
+(6,1,1) = {"
+o
+o
+o
+V
+v
+q
+R
+g
+l
+s
+V
+o
+"}
+(7,1,1) = {"
+o
+o
+o
+V
+m
+G
+R
+C
+F
+b
+V
+o
+"}
+(8,1,1) = {"
+o
+o
+o
+V
+T
+H
+f
+n
+S
+Q
+V
+o
 "}
 (9,1,1) = {"
-P
-U
-M
-B
-A
-Y
-a
+o
+o
+o
+V
+V
+V
+V
+V
+R
+R
+V
+o
 "}
 (10,1,1) = {"
-P
-e
-k
-z
-S
-Y
-a
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
 "}
 (11,1,1) = {"
-P
-Z
-v
-O
-w
-P
-a
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
 "}
 (12,1,1) = {"
-P
-u
-q
-h
-N
-P
-a
-"}
-(13,1,1) = {"
-P
-P
-P
-P
-P
-P
-a
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
 "}
