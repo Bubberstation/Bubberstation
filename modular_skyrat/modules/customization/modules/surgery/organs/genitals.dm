@@ -649,12 +649,12 @@
 
 	if(gen_vis_trans[picked_visibility] == GENITAL_LAYER_NORMAL || gen_vis_trans[picked_visibility] == GENITAL_LAYER_HIGH)
 		picked_organ.layer_mode = gen_vis_trans[picked_visibility]
-		balloon_alert(src, "set layering to [lowertext(picked_visibility)]")
+		balloon_alert(src, "set layering to [LOWER_TEXT(picked_visibility)]")
 		update_body()
 		return
 
 	picked_organ.visibility_preference = gen_vis_trans[picked_visibility]
-	balloon_alert(src, "set to [lowertext(picked_visibility)]")
+	balloon_alert(src, "set to [LOWER_TEXT(picked_visibility)]")
 	update_body()
 
 //Removing ERP IC verb depending on config
@@ -698,5 +698,5 @@
 
 	picked_organ.aroused = gen_arous_trans[picked_arousal]
 	picked_organ.update_sprite_suffix()
-	balloon_alert(src, "set to [lowertext(picked_arousal)]")
+	balloon_alert(src, "set to [LOWER_TEXT(picked_arousal)]")
 	update_body()
