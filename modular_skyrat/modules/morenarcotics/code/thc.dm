@@ -3,6 +3,7 @@
 	if(HAS_TRAIT(src, TRAIT_DRIED))
 		reagents.clear_reagents()
 		reagents.add_reagent(/datum/reagent/drug/thc/hash, 0.15 * seed.potency)
+		return TRUE
 
 /datum/chemical_reaction/hash
 	required_reagents = list(/datum/reagent/drug/thc/hash = 10)

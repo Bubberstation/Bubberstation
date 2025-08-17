@@ -66,7 +66,6 @@
 	special_x_dimension = TRUE
 	//default_color = DEFAULT_SKIN_OR_PRIMARY //This is the price we're paying for sheaths
 	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER)
-	genetic = TRUE
 	var/can_have_sheath = TRUE
 
 /datum/sprite_accessory/genital/penis/get_special_icon(mob/living/carbon/human/target_mob)
@@ -140,7 +139,6 @@
 	special_x_dimension = TRUE
 	default_color = DEFAULT_SKIN_OR_PRIMARY
 	relevent_layers = list(BODY_ADJ_LAYER, BODY_BEHIND_LAYER)
-	genetic = TRUE
 	var/has_size = TRUE
 
 /datum/sprite_accessory/genital/testicles/get_special_icon(mob/living/carbon/human/target_mob)
@@ -184,7 +182,6 @@
 	always_color_customizable = TRUE
 	default_color = "#FFCCCC"
 	relevent_layers = list(BODY_FRONT_LAYER)
-	genetic = TRUE
 	var/alt_aroused = TRUE
 
 /datum/sprite_accessory/genital/vagina/none
@@ -232,7 +229,6 @@
 	organ_type = /obj/item/organ/genital/womb
 	associated_organ_slot = ORGAN_SLOT_WOMB
 	key = ORGAN_SLOT_WOMB
-	genetic = TRUE
 
 /datum/sprite_accessory/genital/womb/none
 	icon_state = "none"
@@ -249,7 +245,6 @@
 	organ_type = /obj/item/organ/genital/anus
 	associated_organ_slot = ORGAN_SLOT_ANUS
 	key = ORGAN_SLOT_ANUS
-	genetic = TRUE
 
 /datum/sprite_accessory/genital/anus/none
 	icon_state = "none"
@@ -272,7 +267,6 @@
 	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER)
 	has_skintone_shading = TRUE
 	genital_location = CHEST
-	genetic = TRUE
 
 /datum/sprite_accessory/genital/breasts/none
 	icon_state = "none"
