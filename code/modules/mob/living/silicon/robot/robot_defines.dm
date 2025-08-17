@@ -9,8 +9,8 @@
 	real_name = "Cyborg"
 	icon = 'icons/mob/silicon/robots.dmi' //SKYRAT EDIT - Modified in modular_skyrat\modules\altborgs\code\robot_defines.dm (to allow for custom transformation animations)
 	icon_state = "robot"
-	maxHealth = 135 // Bubber Edit
-	health = 135 // Bubber Edit
+	maxHealth = 100
+	health = 100
 	bubble_icon = "robot"
 	designation = "Default" //used for displaying the prefix & getting the current model of cyborg
 	has_limbs = TRUE

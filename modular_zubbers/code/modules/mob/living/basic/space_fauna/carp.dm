@@ -1,11 +1,11 @@
 /mob/living/basic/carp
-	health = 50
-	maxHealth = 50
+	health = 25
+	maxHealth = 25
 
 
 /mob/living/basic/carp/advanced
-	health = 100
-	maxHealth = 100
+	health = 40
+	maxHealth = 40
 
 /mob/living/basic/carp/mega/Initialize(mapload)
 	. = ..()
