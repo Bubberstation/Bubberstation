@@ -6,7 +6,7 @@
 		Dogginos = list(fax_name = "Dogginos Delivery", fax_id = "Dogginos Delivery", color = "red", emag_needed = TRUE),
 		//Embassies or Factions
 		UnHives = list(fax_name = "United Hives", fax_id = "UnHives", color = "orange", emag_needed = FALSE),
-		Tizira = list(fax_name = "Tiziran", fax_id = "Tirizian", color = "orange", emag_needed = FALSE),
+		Tizira = list(fax_name = "Tiziran", fax_id = "Tizira", color = "orange", emag_needed = FALSE),
 		Moghes = list(fax_name = "Moghes", fax_id = "Moghes", color = "orange", emag_needed = FALSE),
 		Nri = list(fax_name = "PSC", fax_id = "NRI", color = "orange", emag_needed = FALSE),
 		Ombrux = list(fax_name = "Ombrux", fax_id = "Ombrux", color = "orange", emag_needed = TRUE),

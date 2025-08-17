@@ -1,6 +1,7 @@
 /obj/item/clothing/under/rank/captain
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/command_digi.dmi' //Anything that was in TG's captain.dmi, should be in our command_digi.dmi
 	//NOTE - TG uses "captain.dmi"; because we have a few non-captain items going in here for ease of access, this will just be "command.dmi"
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/captain/skyrat
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/command.dmi'
