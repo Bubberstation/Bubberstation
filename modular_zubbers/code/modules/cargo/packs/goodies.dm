@@ -19,18 +19,6 @@
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/e_gun/mini)
 
-/datum/supply_pack/goody/murphy_single
-	name = "'Murphy' Service Pistol Single-Pack"
-	desc = "A rugged, law-enforcement-grade service pistol, once famously sold for just a dollar. Comes as a single-pack with one 'Murphy' pistol ready for action."
-	cost = PAYCHECK_COMMAND * 5
-	contains = list(/obj/item/gun/ballistic/automatic/pistol/sec_glock = 1)
-
-/datum/supply_pack/goody/murphy_ammo
-	name = "'Murphy' Service Pistol Magazine Single-Pack"
-	desc = "full magazine with an extra-robust ejection spring. Fits into the Murphy Service Pistol."
-	cost = PAYCHECK_COMMAND * 2
-	contains = list(/obj/item/ammo_box/magazine/security = 1)
-
 /datum/supply_pack/goody/wt550_single
 	name = "WT-551 Autorifle Single-Pack"
 	desc = "An NT-security grade autorifle, it comes with excellent heating and poses no health-related risks for the user. Comes as a single-pack with one WT-551 locked and loaded"
@@ -43,13 +31,6 @@
 	desc = "A single-pack magazine with lethal regular rounds for the WT-551."
 	cost = PAYCHECK_CREW * 5 //Scale it like all guns
 	contains = list(/obj/item/ammo_box/magazine/wt550m9 = 1)
-
-/datum/supply_pack/goody/woodstock
-	name = "Woodstock Shotgun Single-Pack"
-	desc = "Have faith in your aim and plan to send someone to god? Open up this case and put them in one, a single woodstock shotgun fit snugly inside."
-	cost = PAYCHECK_COMMAND * 14
-	access_view = ACCESS_WEAPONS
-	contains = list(/obj/item/gun/ballistic/shotgun)
 
 /datum/supply_pack/goody/mars_single
 	special = FALSE
