@@ -20,6 +20,7 @@
 	human_holder.maptext_height = 32 * human_holder.dna.features["body_size"] //Adjust runechat height
 	human_holder.dna.update_body_size()
 	human_holder.mob_size = MOB_SIZE_LARGE
+	human_holder.maxHealth = HUMAN_MAXHEALTH * OVERSIZED_HEALTH_BUFF
 
 	RegisterSignal(human_holder, COMSIG_CARBON_POST_ATTACH_LIMB, PROC_REF(on_gain_limb)) // make sure we handle this when new ones are applied
 
@@ -50,6 +51,7 @@
 	human_holder.maptext_height = 32 * human_holder.dna.features["body_size"]
 	human_holder.dna.update_body_size()
 	human_holder.mob_size = MOB_SIZE_HUMAN
+	human_holder.maxHealth = HUMAN_MAXHEALTH
 
 	var/obj/item/bodypart/arm/left/left_arm = human_holder.get_bodypart(BODY_ZONE_L_ARM)
 	if(left_arm)
