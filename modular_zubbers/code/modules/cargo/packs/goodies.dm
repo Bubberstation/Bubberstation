@@ -22,7 +22,7 @@
 /datum/supply_pack/goody/wt550_single
 	name = "WT-551 Autorifle Single-Pack"
 	desc = "An NT-security grade autorifle, it comes with excellent heating and poses no health-related risks for the user. Comes as a single-pack with one WT-551 locked and loaded"
-	cost = PAYCHECK_COMMAND * 6 //Cheaper cause you need ammo unlike the laser
+	cost = PAYCHECK_COMMAND * 8 //Nvm these are stronger than lasers in most scenarios so let's get them a bit of an edge. Plus gun price variety looks better
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/ballistic/automatic/wt550/security)
 
