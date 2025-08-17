@@ -29,7 +29,8 @@
 	// BUBBER EDIT - Isotropic Stability quirk
 	if(HAS_TRAIT(parent, TRAIT_IRRADIATED))
 		return
-	RegisterSignal(parent, COMSIG_IN_RANGE_OF_IRRADIATION, PROC_REF(on_pre_potential_irradiation))
+	if(HAS_TRAIT(parent, TRAIT_RAD_RESISTANCE))
+		RegisterSignal(parent, COMSIG_IN_RANGE_OF_IRRADIATION, PROC_REF(on_pre_potential_irradiation))
 	// BUBBER EDIT END
 
 	// This isn't incompatible, it's just wrong
@@ -70,7 +71,8 @@
 	// BUBBER EDIT- Prevent double-whammies for Isotropic Stability quirk
 	if(src != parent.GetComponent(/datum/component/irradiated))
 		return ..()
-	UnregisterSignal(parent, COMSIG_IN_RANGE_OF_IRRADIATION)
+	if(HAS_TRAIT(parent, TRAIT_RAD_RESISTANCE))
+		UnregisterSignal(parent, COMSIG_IN_RANGE_OF_IRRADIATION)
 	// BUBBER EDIT END
 
 	var/mob/living/parent_movable = parent //BUBBERSTATION CHANGE: MOVABLE TO LIVING
@@ -108,8 +110,8 @@
 	// Mob is radiation resistant but still metabolizes sources into toxins
 	if(HAS_TRAIT(parent, TRAIT_RAD_RESISTANCE))
 		if(exposed_to_danger)
-			process_tox_damage(human_parent, seconds_per_tick)
-		exposed_to_danger = FALSE
+			process_tox_damage(parent, seconds_per_tick)
+			exposed_to_danger = FALSE
 		return
 	// BUBBER EDIT END
 
@@ -137,7 +139,7 @@
 	// BUBBER EDIT BEGIN - Isotropic Stability
 	var/damage_to_apply = RADIATION_TOX_DAMAGE_PER_INTERVAL
 	if(HAS_TRAIT(parent, TRAIT_RAD_RESISTANCE))
-		damage_to_apply += 2
+		damage_to_apply = 2 * damage_to_apply
 	target.apply_damage(damage_to_apply, TOX) // BUBBER EDIT - Original: target.apply_damage(RADIATION_TOX_DAMAGE_PER_INTERVAL, TOX)
 	// BUBBER EDIT END
 	COOLDOWN_START(src, last_tox_damage, RADIATION_TOX_INTERVAL)
