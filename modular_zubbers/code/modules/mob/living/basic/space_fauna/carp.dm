@@ -1,12 +1,3 @@
-/mob/living/basic/carp
-	health = 25
-	maxHealth = 25
-
-
-/mob/living/basic/carp/advanced
-	health = 40
-	maxHealth = 40
-
 /mob/living/basic/carp/mega/Initialize(mapload)
 	. = ..()
 	maxHealth += rand(15, 40)
