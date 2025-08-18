@@ -22,7 +22,7 @@
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/mutant/insect,
 	)
 	eyes_icon = 'modular_skyrat/modules/organs/icons/insect_eyes.dmi'
-	sort_bottom = TRUE
+	sort_bottom = TRUE //BUBBER EDIT ADDITION: We want to sort this to the bottom because it's a custom species template. It can't have its own lore.
 
 /datum/species/insect/get_default_mutant_bodyparts()
 	return list(

@@ -32,7 +32,7 @@
 		TRAIT_RESISTCOLD,
 		TRAIT_USES_SKINTONES,
 	)
-	sort_bottom = TRUE
+	sort_bottom = TRUE //BUBBER EDIT ADDITION: We want to sort this to the bottom because it's a ghostrole only species.
 
 	always_customizable = TRUE
 
