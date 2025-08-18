@@ -48,6 +48,11 @@
 	icon_state = "shadekinfluffy"
 	icon = 'modular_zubbers/icons/customization/ears.dmi'
 
+/datum/sprite_accessory/ears/shadekinfluffygradient
+	name = "Shadekin Fluffy Gradient"
+	icon_state = "shadekinfluffygradient"
+	icon = 'modular_zubbers/icons/customization/ears.dmi'
+
 /datum/sprite_accessory/ears/shadekinfluffyrings
 	name = "Shadekin Fluffy Rings"
 	icon_state = "shadekinfluffyrings"
