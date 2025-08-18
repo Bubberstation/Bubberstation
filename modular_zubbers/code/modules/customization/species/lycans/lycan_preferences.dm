@@ -35,6 +35,24 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/ears/lycan
 	relevant_inherent_trait = TRAIT_LYCAN
 
+/datum/preference/toggle/mutant_toggle/ears/lycan/has_relevant_feature(datum/preferences/preferences)
+	var/species_type = preferences.read_preference(/datum/preference/choiced/species)
+	if(istype(species_type, /datum/species/lycan) || istype(species_type, /datum/species/human/cursekin))
+		return TRUE
+	return current_species_has_savekey(preferences)
+
+/datum/preference/choiced/mutant_choice/ears/lycan/is_part_enabled(datum/preferences/preferences)
+	var/species_type = preferences.read_preference(/datum/preference/choiced/species)
+	if(istype(species_type, /datum/species/lycan))
+		return TRUE
+	return ..()
+
+/datum/preference/choiced/mutant_choice/ears/lycan/has_relevant_feature(datum/preferences/preferences)
+	var/species_type = preferences.read_preference(/datum/preference/choiced/species)
+	if(istype(species_type, /datum/species/lycan) || istype(species_type, /datum/species/human/cursekin))
+		return TRUE
+	return current_species_has_savekey(preferences)
+
 /// Tails
 
 /datum/preference/toggle/mutant_toggle/tail/lycan
@@ -56,3 +74,21 @@
 	savefile_key = "lycan_tail_emissive"
 	type_to_check = /datum/preference/toggle/mutant_toggle/tail/lycan
 	relevant_inherent_trait = TRAIT_LYCAN
+
+/datum/preference/toggle/mutant_toggle/tail/lycan/has_relevant_feature(datum/preferences/preferences)
+	var/species_type = preferences.read_preference(/datum/preference/choiced/species)
+	if(istype(species_type, /datum/species/lycan) || istype(species_type, /datum/species/human/cursekin))
+		return TRUE
+	return current_species_has_savekey(preferences)
+
+/datum/preference/choiced/mutant_choice/tail/lycan/is_part_enabled(datum/preferences/preferences)
+	var/species_type = preferences.read_preference(/datum/preference/choiced/species)
+	if(istype(species_type, /datum/species/lycan))
+		return TRUE
+	return ..()
+
+/datum/preference/choiced/mutant_choice/tail/lycan/has_relevant_feature(datum/preferences/preferences)
+	var/species_type = preferences.read_preference(/datum/preference/choiced/species)
+	if(istype(species_type, /datum/species/lycan) || istype(species_type, /datum/species/human/cursekin))
+		return TRUE
+	return current_species_has_savekey(preferences)
