@@ -1,6 +1,4 @@
-//Gives you wizard if you land on 6. Fail, and the dice teleports somewhere else.
-
-
+//Gives you wizard if you land on 20. Fail, and the dice teleports somewhere else.
 
 /obj/item/dice/d20/teleporting_die_of_fate
 	name = "wizardly die of fate"
@@ -15,13 +13,22 @@
 	var/teleport_delay = 10 MINUTES
 	var/teleport_delay_pickup = 5 MINUTES
 
+	rigged = DICE_BASICALLY_RIGGED
+	rigged_value = 1
+
+	var/uses_left = 20 //The dice will still get consumed if someone gets wizard. Set to a value already less than 0 and it will be infinite.
+
 /obj/item/dice/d20/teleporting_die_of_fate/no_teleport
 	do_teleport = FALSE
 
-/obj/item/dice/d20/teleporting_die_of_fate/cursed //Always rolls 1. Careful with this, as this is a reliable way to summon a smite.
+/obj/item/dice/d20/teleporting_die_of_fate/cursed //Always rolls 1. Careful with this, as this is a reliable way to summon a smite. One time use.
 	rigged = DICE_TOTALLY_RIGGED
 	rigged_value = 1
 	do_teleport = FALSE
+	uses_left = 1
+
+/obj/item/dice/d20/teleporting_die_of_fate/cursed/infinite //Just in case you needed to make (nearly) infinite pain.
+	uses_left = 1337
 
 /obj/item/dice/d20/teleporting_die_of_fate/blessed //Always rolls 20. This is basically single use since it just makes you wizard and deletes itself.
 	rigged = DICE_TOTALLY_RIGGED
@@ -52,11 +59,12 @@
 	. += span_warning("Roll a 1, and you will end up in medical!")
 	if(relocation_timer && isobserver(user))
 		. += span_notice("The dice will relocate in [DisplayTimeText(timeleft(relocation_timer),1)]!")
+		. += span_warning("It has <b>[uses_left]</b> use[uses_left == 1 ? "" : "s"] left...")
 
 /obj/item/dice/d20/teleporting_die_of_fate/equipped(mob/user, slot)
 	. = ..()
 	if(!ishuman(user) || !user.mind || IS_WIZARD(user))
-		to_chat(user, span_warning("You feel the magic of the dice is restricted to ordinary humans! You should leave it alone."))
+		to_chat(user, span_warning("You feel the magic of the dice is restricted to ordinary people! You should leave it alone."))
 		user.dropItemToGround(src)
 	else if(do_teleport && !was_touched)
 		create_timer(teleport_delay_pickup)
@@ -71,7 +79,7 @@
 	. = ..()
 
 	if(!ishuman(user) || !user.mind || IS_WIZARD(user))
-		to_chat(user, span_warning("You feel the magic of the dice is restricted to ordinary humans!"))
+		to_chat(user, span_warning("You feel the magic of the dice is restricted to ordinary people!"))
 		return
 
 	var/turf/current_turf = get_turf(src)
@@ -80,14 +88,70 @@
 	addtimer(CALLBACK(src, PROC_REF(effect), user, .), 1 SECONDS)
 	COOLDOWN_START(src, roll_cd, 2.5 SECONDS)
 
+
+/obj/item/dice/d20/proc/find_lucky_player_turf()
+
+	if(!length(GLOB.alive_player_list))
+		return
+
+	for(var/mob/player_mob as anything in shuffle(GLOB.alive_player_list))
+
+		//Safety bullshit in case of race conditions.
+		if(!player_mob || !player_mob.mind || !player_mob.client)
+			continue
+
+		//Don't include afk people.
+		if(player_mob.client.is_afk())
+			continue
+
+		var/datum/job/player_role = player_mob.mind.assigned_role
+
+		//Don't include people who aren't crew.
+		if(!(player_role.job_flags & JOB_CREW_MEMBER))
+			continue
+
+		//Don't include people who aren't even on the station or doing something "important"
+		if(engaged_role_play_check(player_mob, station = TRUE, dorms = TRUE))
+			continue
+
+		var/turf/player_turf = get_turf(player_mob)
+		if(!player_turf)
+			continue //Safety
+
+		var/area/player_area = player_turf.loc
+		var/turf/found_turf = get_safe_random_station_turf(player_area)
+		if(!found_turf)
+			continue //Safety
+
+		return found_turf
+
+
+
 /obj/item/dice/d20/teleporting_die_of_fate/proc/relocate()
 
 	var/turf/current_turf = get_turf(src)
 
-	var/turf/desired_turf = get_safe_random_station_turf()
-	if(!desired_turf) //This should never happen, but you never know.
-		current_turf.visible_message(span_userdanger("[src] is erased from reality! Darn!"))
-		qdel(src)
+	if(uses_left > 0)
+		uses_left--
+		if(uses_left <= 0)
+			if(rigged != DICE_TOTALLY_RIGGED)
+				notify_ghosts(
+					"[src] was all used up, and was removed from reality.",
+					source = src
+				)
+			current_turf.visible_message(span_warning("[src] phases out of reality..."))
+			qdel(src)
+			return
+
+	create_timer(teleport_delay)
+	was_touched = FALSE //Reset
+
+	var/turf/desired_turf = lucky_player_turf(areas_to_exclude = list(get_area(src)))
+
+	if(!desired_turf) //Failsafe.
+		desired_turf = get_safe_random_station_turf()
+
+	if(!desired_turf) //Do nothing as a failsafe for a failsafe.
 		return
 
 	current_turf.visible_message(span_warning("[src] phases out to another location!"))
@@ -103,10 +167,6 @@
 		source = src
 	)
 
-	create_timer(teleport_delay)
-
-	was_touched = FALSE //Reset
-
 
 /obj/item/dice/d20/teleporting_die_of_fate/proc/effect(mob/living/carbon/human/user,roll)
 
@@ -119,6 +179,10 @@
 		if(roll == 1) //lol. lmao
 			user.emote("scream")
 			user.investigate_log("has been smited by a wizardly die of fate.", INVESTIGATE_DEATHS)
+			notify_ghosts(
+				"[user] got a 1 while rolling [src]! Point and laugh at them!",
+				source = user
+			)
 			addtimer(CALLBACK(src, PROC_REF(apply_random_smite), user), 1 SECONDS)
 
 		if(do_teleport)
@@ -126,8 +190,14 @@
 
 		return
 
+	user.emote("laugh")
 	current_turf.visible_message(span_userdanger("Magic flows out of [src] and into [user]!"))
 	user.mind.make_wizard()
+
+	notify_ghosts(
+		"[user] got a nat 20 while rolling [src]!",
+		source = user
+	)
 
 	qdel(src)
 
@@ -142,7 +212,7 @@
 		if(1)
 			//Drain bamage.
 			target.adjustOrganLoss(ORGAN_SLOT_BRAIN, BRAIN_DAMAGE_DEATH - 1, BRAIN_DAMAGE_DEATH - 1)
-			to_chat(target, span_warning("You feel <b>stupid</b> about rolling [src]..."))
+			to_chat(target, span_warning("You feel <b>stupid</b> for rolling [src]..."))
 		if(2)
 			//Forced to speak a random language.
 			target.apply_status_effect(/datum/status_effect/tower_of_babel, teleport_delay_pickup)
@@ -151,7 +221,7 @@
 			//Raining fireball.
 			target.Immobilize(3 SECONDS)
 			new /obj/effect/temp_visual/target(get_turf(target))
-			to_chat(target, span_warning("I CAST FIREBALL."))
+			to_chat(target, span_warning("I CAST FIREBALL!"))
 		if(4)
 			//Lighting bolt smite.
 			var/turf/lightning_source = get_turf(src)
@@ -187,6 +257,7 @@
 			to_chat(target, span_warning("SPECIAL DELIVERY!"))
 		if(8)
 			//You turn into a lizard. If you're already a lizard, you're now scared of lizards.
+			//Can be fixed via SAD.
 			if(target.dna && !istype(target.dna.species,/datum/species/lizard))
 				target.set_species(/datum/species/lizard)
 				to_chat(target, span_warning("You're a lizard, Harry."))
