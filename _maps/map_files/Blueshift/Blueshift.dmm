@@ -16953,6 +16953,13 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 10
 	},
+/obj/machinery/button/door/directional/west{
+	id = "MedbayFoyer";
+	name = "Medbay Doors Control";
+	normaldoorcontrol = 1;
+	pixel_y = -32;
+	pixel_x = 0
+	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "diA" = (
@@ -17936,6 +17943,11 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/camera/directional/east{
+	c_tag = "Medbay - Waiting Room";
+	name = "medbay camera";
+	network = list("ss13","medbay")
+	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "dsK" = (
@@ -24718,6 +24730,14 @@
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
 /area/station/maintenance/fore/upper)
+"eIZ" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "cargodeliver"
+	},
+/obj/effect/landmark/firealarm_sanity,
+/turf/open/floor/iron/dark,
+/area/station/cargo/office)
 "eJa" = (
 /obj/machinery/conveyor/inverted{
 	dir = 5;
@@ -56911,6 +56931,16 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/iron,
 /area/station/science/breakroom)
+"kPG" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/newscaster/directional/north,
+/turf/open/floor/iron/white,
+/area/station/medical/medbay/lobby)
 "kPK" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/white,
@@ -59042,10 +59072,9 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
-/obj/machinery/newscaster/directional/east,
-/obj/machinery/light/directional/east,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/light/floor,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "lmd" = (
@@ -98319,6 +98348,7 @@
 	},
 /obj/structure/filingcabinet/chestdrawer,
 /obj/effect/turf_decal/bot,
+/obj/item/radio/intercom/directional/north,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "sKW" = (
@@ -109327,9 +109357,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
 	},
-/obj/machinery/light_switch/directional/west{
-	pixel_x = -24
-	},
+/obj/machinery/light_switch/directional/west,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "uQl" = (
@@ -110023,6 +110051,12 @@
 /obj/structure/window/spawner/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics/garden)
+"uWN" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/structure/cable,
+/obj/machinery/vending/wallmed/directional/south,
+/turf/open/floor/iron/white,
+/area/station/medical/medbay/lobby)
 "uWV" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -117784,7 +117818,7 @@
 	pixel_x = -2;
 	pixel_y = 6
 	},
-/obj/item/grenade/chem_grenade/glitter/white,
+/obj/item/grenade/chem_grenade/glitter,
 /obj/item/grenade/chem_grenade/cleaner{
 	pixel_x = 10;
 	pixel_y = 4
@@ -120035,14 +120069,8 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
-/obj/machinery/vending/wallmed/directional/east,
-/obj/machinery/camera/directional/east{
-	c_tag = "Medbay - Waiting Room";
-	name = "medbay camera";
-	network = list("ss13","medbay")
-	},
-/obj/machinery/light/directional/east,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/light/floor,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "wPg" = (
@@ -166064,7 +166092,7 @@ qvv
 iYm
 tsu
 mTQ
-mTQ
+eIZ
 nup
 iVN
 sBw
@@ -227972,11 +228000,11 @@ mPh
 dNE
 vNX
 iRR
-bCf
+hHN
 qjF
 mDm
 dBE
-bCf
+hHN
 ogN
 dHb
 cra
@@ -228228,13 +228256,13 @@ jxM
 xXG
 dsJ
 tAn
-iRR
-hHN
+uWN
+bCf
 sKP
 rpa
 diy
-hHN
-ogN
+bCf
+kPG
 wWk
 uzK
 xsM
