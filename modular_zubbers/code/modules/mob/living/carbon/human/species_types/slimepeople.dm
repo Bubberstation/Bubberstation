@@ -35,6 +35,7 @@
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/jelly/slime/roundstart,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/jelly/slime/roundstart,
 	)
+
 /datum/species/jelly/roundstartslime/get_species_description()
 	return list(
 		"Slimepeople are the product of many years of xenobiological experimentation by Nanotrasen. Their bodies are simple yet fluid, and resemble single-celled organisms. They are susceptible to the cold.",
