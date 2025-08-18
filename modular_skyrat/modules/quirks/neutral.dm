@@ -309,7 +309,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 /datum/quirk/item_quirk/mouse/add(client/client_source)
 	. = ..()
 
-	sniff_food = new /datum/action/cooldown/spell/sniff(quirk_holder)
+	sniff_food = new()
 	sniff_food.Grant(quirk_holder)
 
 /datum/quirk/item_quirk/mouse/remove()
