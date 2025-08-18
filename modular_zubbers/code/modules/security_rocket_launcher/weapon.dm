@@ -31,6 +31,10 @@
 	weapon_weight = WEAPON_HEAVY
 	slot_flags = null
 
+	//The funny
+	special_desc_requirement = EXAMINE_CHECK_SYNDICATE
+	special_desc = "Using a cryptographic sequencer on this should overload the radar systems."
+
 	var/self_targeting = FALSE //emag interaction
 
 	var/warning_label //Generated on examine for the first time.

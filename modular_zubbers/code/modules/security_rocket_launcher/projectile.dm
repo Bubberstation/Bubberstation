@@ -69,7 +69,7 @@
 
 		return BULLET_ACT_HIT //Will still do damage, but it won't explode like below.
 
-	fake_explode(src, explosion_damage)
+	fake_explode(src, explosion_damage, src)
 
 	return BULLET_ACT_HIT
 
@@ -104,7 +104,7 @@
 		var/found_angle_difference = 0
 		if(found_turf != loc)
 			var/turf_angle = get_angle(src, found_turf)
-			found_angle_difference = abs( closer_angle_difference(turf_angle, angle) )
+			found_angle_difference = abs(closer_angle_difference(turf_angle, angle))
 			if(found_angle_difference > scanning_angle)
 				continue
 

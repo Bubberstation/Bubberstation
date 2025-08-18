@@ -1,7 +1,7 @@
 //Makes a fake 3x3 explosion centered around the origin. Doesn't delimb or use explosion code (other than calling act_ex on non-living objects).
 //Other than the custom damage, this is similiar to calling EXPLODE_LIGHT.
 
-/proc/fake_explode(atom/origin, explosion_damage=30)
+/proc/fake_explode(atom/origin, explosion_damage=30, atom/cause)
 
 	var/turf/our_turf = isturf(origin) ? origin : get_turf(origin)
 
@@ -27,7 +27,7 @@
 			0,
 			NONE,
 			get_dir(our_turf, victim),
-			src,
+			cause ? cause : origin,
 			TRUE
 		)
 		//Do the knockdown
