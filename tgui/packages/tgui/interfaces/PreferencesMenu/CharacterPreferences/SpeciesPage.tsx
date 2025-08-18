@@ -273,6 +273,7 @@ function SpeciesPageInner(props: SpeciesPageInnerProps) {
   species[0] = species[humanIndex];
   species[humanIndex] = swapWith;
 
+  /* BUBBER EDIT START - SPECIES LIST SORTING */
   species.sort(([, speciesA], [, speciesB]) => {
     if (speciesA.sort_bottom !== speciesB.sort_bottom) {
       return speciesA.sort_bottom ? 1 : -1;
@@ -280,6 +281,7 @@ function SpeciesPageInner(props: SpeciesPageInnerProps) {
 
     return speciesB.lore.length - speciesA.lore.length;
   });
+  /* BUBBER EDIT END - SPECIES LIST SORTING */
 
   const currentSpecies = species.filter(([speciesKey]) => {
     return speciesKey === data.character_preferences.misc.species;
