@@ -85,7 +85,7 @@
 	if(!isnum(angle)) //Our current angle. can be null
 		return
 
-	var/scanning_angle = homing_target ? (range/cached_range)*45 : 45 //Field of view decreases as time goes on.
+	var/scanning_angle = homing_target ? (range/cached_range) * 45 : 45 //Field of view decreases as time goes on.
 
 	if(scanning_angle <= 0)
 		return
@@ -110,13 +110,11 @@
 
 		var/calculated_weight = 0
 		if(found_turf.density && (found_turf.turf_flags & IS_SOLID)) //A wall
-			//Where these numbers came from:
-			//312500 is the same heat capacity as a rwall
-			//20000 is the same heat capacity as a floor tile.
+			var/heat_capacity_compare = /turf/open/misc::heat_capacity
 			if(found_turf.heat_capacity == INFINITY)
-				calculated_weight = 312500 / 20000
+				calculated_weight = /turf/closed/wall/r_wall::heat_capacity / heat_capacity_compare
 			else
-				calculated_weight = (found_turf.heat_capacity / 20000)
+				calculated_weight = (found_turf.heat_capacity / heat_capacity_compare)
 		else //A floor.
 			//Check the contents of the turf. Will add to the calculated weight.
 			var/scan_limit = 30 //Prevents shinegeansans.

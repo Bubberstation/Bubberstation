@@ -106,7 +106,7 @@
 			"KEEP AWAY FROM SIZE QUEENS",
 		)
 
-	var/total_good_length_mod = FLOOR(length(possible_good_instructions)*0.5, 1)
+	var/total_good_length_mod = FLOOR(length(possible_good_instructions) * 0.5, 1)
 
 	//Generate the first half. Always useful.
 	for(var/i in 1 to total_good_length_mod)
