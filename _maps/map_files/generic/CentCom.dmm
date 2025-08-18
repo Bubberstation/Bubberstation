@@ -4532,6 +4532,18 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/control)
+"uz" = (
+/obj/docking_port/stationary{
+	dir = 4;
+	dwidth = 25;
+	height = 50;
+	json_key = "emergency";
+	name = "CentCom Emergency Shuttle Dock";
+	shuttle_id = "emergency_away";
+	width = 50
+	},
+/turf/open/space/basic,
+/area/space)
 "uA" = (
 /obj/structure/chair{
 	dir = 4
@@ -5523,6 +5535,18 @@
 	},
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/armory)
+"yV" = (
+/obj/docking_port/stationary{
+	dir = 8;
+	dwidth = 8;
+	height = 8;
+	json_key = "cargo";
+	name = "CentCom";
+	shuttle_id = "cargo_away";
+	width = 20
+	},
+/turf/open/space/basic,
+/area/space)
 "yW" = (
 /obj/item/kirbyplants/organic/plant21,
 /obj/effect/turf_decal/tile/green{
@@ -6653,18 +6677,6 @@
 /obj/effect/light_emitter/thunderdome,
 /turf/open/floor/iron,
 /area/centcom/tdome/arena)
-"DT" = (
-/obj/docking_port/stationary{
-	dir = 8;
-	dwidth = 10;
-	height = 30;
-	json_key = "ferry";
-	name = "CentCom Ferry Dock";
-	shuttle_id = "ferry_away";
-	width = 21
-	},
-/turf/open/space/basic,
-/area/space)
 "DU" = (
 /obj/item/kirbyplants/organic/plant21,
 /obj/effect/turf_decal/stripes/line,
@@ -7428,6 +7440,18 @@
 	},
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/control)
+"Io" = (
+/obj/docking_port/stationary{
+	dir = 8;
+	dwidth = 10;
+	height = 30;
+	json_key = "ferry";
+	name = "CentCom Ferry Dock";
+	shuttle_id = "ferry_away";
+	width = 21
+	},
+/turf/open/space/basic,
+/area/space)
 "Ip" = (
 /obj/structure/chair/stool/bar/directional/east,
 /turf/open/floor/carpet/red,
@@ -7851,18 +7875,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/textured_large,
 /area/centcom/central_command_areas/evacuation/ship)
-"Lr" = (
-/obj/docking_port/stationary{
-	dir = 8;
-	dwidth = 8;
-	height = 8;
-	json_key = "cargo";
-	name = "CentCom";
-	shuttle_id = "cargo_away";
-	width = 20
-	},
-/turf/open/space/basic,
-/area/space)
 "Lt" = (
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/centcom/central_command_areas/evacuation/ship)
@@ -10558,18 +10570,6 @@
 	},
 /turf/open/floor/iron/grimy,
 /area/centcom/central_command_areas/admin)
-"XO" = (
-/obj/docking_port/stationary{
-	dir = 4;
-	dwidth = 25;
-	height = 50;
-	json_key = "emergency";
-	name = "CentCom Emergency Shuttle Dock";
-	shuttle_id = "emergency_away";
-	width = 50
-	},
-/turf/open/space/basic,
-/area/space)
 "XQ" = (
 /obj/machinery/computer/crew{
 	dir = 1
@@ -45347,7 +45347,7 @@ ZN
 oe
 aa
 aa
-DT
+Io
 aa
 aa
 aa
@@ -49947,7 +49947,7 @@ aa
 aa
 aa
 aa
-Lr
+yV
 aa
 aa
 aa
@@ -63848,7 +63848,7 @@ aa
 aa
 aa
 aa
-XO
+uz
 aa
 aa
 aa
