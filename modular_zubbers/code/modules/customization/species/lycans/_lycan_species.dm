@@ -17,9 +17,6 @@
 	mutanteyes = /obj/item/organ/eyes/lycan
 	mutantears = /obj/item/organ/ears/lycan
 	mutanttongue = /obj/item/organ/tongue/lycan
-	mutant_organs = list(
-		/obj/item/organ/tail/fluffy/lycan,
-	)
 
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC
 
