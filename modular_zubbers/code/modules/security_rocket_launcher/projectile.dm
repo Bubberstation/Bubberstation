@@ -6,20 +6,20 @@
 	icon_state = "rocket_launched"
 
 	damage = 13 //Bonk. Same as a toolbox.
-	var/explosion_damage = 30 //Same as a light explosion.
 	sharpness = NONE
 	embed_type = null
 	shrapnel_type = null
 	ricochets_max = 0
 	speed = 0.35
-	var/ignition_speed = 1 //Speed is set to this value after meeting minimium range.
 	//Note that range measurements are not measured in turfs, but rather ticks.
 	range = 100
-	var/minimum_range = 2
+	can_hit_turfs = FALSE
 
+	var/explosion_damage = 30 //Same as a light explosion.
+	var/ignition_speed = 1 //Speed is set to this value after meeting minimium range.
+	var/minimum_range = 2
 	var/cached_range = 0 //Cheaper than calling initial(range) constantly.
 
-	can_hit_turfs = FALSE
 
 /obj/projectile/bullet/security_missile/Initialize(mapload)
 	. = ..()
@@ -30,12 +30,12 @@
 	. = ..()
 	if(speed != ignition_speed)
 		if(speed > 0.1)
-			speed = max(0.1,speed-0.01)
+			speed = max(0.1, speed-0.01)
 		if(range <= (cached_range - minimum_range))
 			speed = ignition_speed
 			icon_state = "rocket_ignition"
 			playsound(src, 'modular_zubbers/sound/weapons/gun/sec_missile/launch.ogg', 50, FALSE, -1)
-			if(istype(fired_from,/obj/item/gun/ballistic/rocketlauncher/security))
+			if(istype(fired_from, /obj/item/gun/ballistic/rocketlauncher/security))
 				var/obj/item/gun/ballistic/rocketlauncher/security/missile_launcher = fired_from
 				if(missile_launcher.self_targeting)
 					set_homing_target(fired_from)
@@ -69,7 +69,7 @@
 
 		return BULLET_ACT_HIT //Will still do damage, but it won't explode like below.
 
-	fake_explode(src,explosion_damage)
+	fake_explode(src, explosion_damage)
 
 	return BULLET_ACT_HIT
 
@@ -91,7 +91,7 @@
 		return
 
 	//Gets all the turfs that it can see.
-	var/list/possible_turfs = circle_view_turfs(src,7) - src.loc
+	var/list/possible_turfs = circle_view_turfs(src, 7) - loc
 
 	var/list/turf_to_weight = list()
 
@@ -102,9 +102,9 @@
 
 		//Check the angle of incidence and filter it out to stuff in front of it.
 		var/found_angle_difference = 0
-		if(found_turf != src.loc)
-			var/turf_angle = get_angle(src,found_turf)
-			found_angle_difference = abs( closer_angle_difference(turf_angle,angle) )
+		if(found_turf != loc)
+			var/turf_angle = get_angle(src, found_turf)
+			found_angle_difference = abs( closer_angle_difference(turf_angle, angle) )
 			if(found_angle_difference > scanning_angle)
 				continue
 
@@ -131,14 +131,14 @@
 					continue
 				if(isliving(found_movable))
 					var/mob/living/found_living = found_movable
-					calculated_weight += max(100,min(found_living.maxHealth,400))/100 //400 is the health of a space dragon.
+					calculated_weight += max(100, min(found_living.maxHealth, 400))/100 //400 is the health of a space dragon.
 					continue
 
 		if(calculated_weight > 0)
 			calculated_weight *= 100 //Increases precision for the below calculations.
-			calculated_weight /= (1 + max(1,get_dist(src,found_turf))/5) //Half weight at 5 tiles distance, however with a minimum value of 1 for distance Remember, max means get largest.
+			calculated_weight /= (1 + max(1, get_dist(src, found_turf))/5) //Half weight at 5 tiles distance, however with a minimum value of 1 for distance Remember, max means get largest.
 			calculated_weight /= (1 + found_angle_difference/90) //Half weight at 90 degrees difference.
-			calculated_weight = FLOOR(calculated_weight,1)
+			calculated_weight = FLOOR(calculated_weight, 1)
 			if(calculated_weight > 0) //The calculation above can set this to 0.
 				turf_to_weight[found_turf] = calculated_weight
 

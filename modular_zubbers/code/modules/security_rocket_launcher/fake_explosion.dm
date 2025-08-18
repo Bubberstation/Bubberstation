@@ -1,12 +1,12 @@
 //Makes a fake 3x3 explosion centered around the origin. Doesn't delimb or use explosion code (other than calling act_ex on non-living objects).
 //Other than the custom damage, this is similiar to calling EXPLODE_LIGHT.
 
-/proc/fake_explode(atom/origin,explosion_damage=30)
+/proc/fake_explode(atom/origin, explosion_damage=30)
 
 	var/turf/our_turf = isturf(origin) ? origin : get_turf(origin)
 
 	//Fake explosion code. Doesn't delimb humans.
-	for(var/atom/victim as anything in view(1,our_turf))
+	for(var/atom/victim as anything in view(1, our_turf))
 		if(!isliving(victim))
 			if(!(SEND_SIGNAL(victim, COMSIG_ATOM_PRE_EX_ACT, EXPLODE_LIGHT) & COMPONENT_CANCEL_EX_ACT))
 				SEND_SIGNAL(victim, COMSIG_ATOM_EX_ACT, EXPLODE_LIGHT)
@@ -26,7 +26,7 @@
 			0,
 			0,
 			NONE,
-			get_dir(our_turf,victim),
+			get_dir(our_turf, victim),
 			src,
 			TRUE
 		)
@@ -35,7 +35,7 @@
 		//Do the ear damage
 		var/obj/item/organ/ears/ears = victim_as_living.get_organ_slot(ORGAN_SLOT_EARS)
 		if(ears && !HAS_TRAIT_FROM_ONLY(victim_as_living, TRAIT_DEAF, EAR_DAMAGE))
-			ears.adjustEarDamage(15,60)
+			ears.adjustEarDamage(15, 60)
 
 		continue
 
