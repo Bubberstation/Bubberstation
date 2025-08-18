@@ -88,45 +88,6 @@
 	addtimer(CALLBACK(src, PROC_REF(effect), user, .), 1 SECONDS)
 	COOLDOWN_START(src, roll_cd, 2.5 SECONDS)
 
-
-/obj/item/dice/d20/proc/find_lucky_player_turf()
-
-	if(!length(GLOB.alive_player_list))
-		return
-
-	for(var/mob/player_mob as anything in shuffle(GLOB.alive_player_list))
-
-		//Safety bullshit in case of race conditions.
-		if(!player_mob || !player_mob.mind || !player_mob.client)
-			continue
-
-		//Don't include afk people.
-		if(player_mob.client.is_afk())
-			continue
-
-		var/datum/job/player_role = player_mob.mind.assigned_role
-
-		//Don't include people who aren't crew.
-		if(!(player_role.job_flags & JOB_CREW_MEMBER))
-			continue
-
-		//Don't include people who aren't even on the station or doing something "important"
-		if(engaged_role_play_check(player_mob, station = TRUE, dorms = TRUE))
-			continue
-
-		var/turf/player_turf = get_turf(player_mob)
-		if(!player_turf)
-			continue //Safety
-
-		var/area/player_area = player_turf.loc
-		var/turf/found_turf = get_safe_random_station_turf(player_area)
-		if(!found_turf)
-			continue //Safety
-
-		return found_turf
-
-
-
 /obj/item/dice/d20/teleporting_die_of_fate/proc/relocate()
 
 	var/turf/current_turf = get_turf(src)
@@ -146,7 +107,7 @@
 	create_timer(teleport_delay)
 	was_touched = FALSE //Reset
 
-	var/turf/desired_turf = lucky_player_turf(areas_to_exclude = list(get_area(src)))
+	var/turf/desired_turf = get_safe_lucky_player_turf(areas_to_exclude = list(get_area(src)))
 
 	if(!desired_turf) //Failsafe.
 		desired_turf = get_safe_random_station_turf()

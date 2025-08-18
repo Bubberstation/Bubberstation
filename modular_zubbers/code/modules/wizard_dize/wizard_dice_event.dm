@@ -18,7 +18,7 @@
 	tags = list(TAG_COMMUNAL,TAG_COMBAT)
 
 /datum/round_event/wizard_dice
-	announce_chance = 20
+	announce_chance = 100
 	announce_when = 1 MINUTES
 	end_when = 10 MINUTES
 	var/obj/item/dice/d20/teleporting_die_of_fate/created_dice
@@ -26,7 +26,7 @@
 
 /datum/round_event/wizard_dice/setup()
 	//Create the dice and add the signal.
-	created_dice = new(lucky_player_turf())
+	created_dice = new(get_safe_lucky_player_turf())
 	RegisterSignal(created_dice, COMSIG_QDELETING, PROC_REF(on_dice_destroy))
 
 /datum/round_event/wizard_dice/start()

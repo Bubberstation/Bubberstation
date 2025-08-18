@@ -1,7 +1,7 @@
-/proc/lucky_player_turf(list/mobs_to_check = GLOB.alive_player_list,list/mobs_to_exclude,list/areas_to_exclude)
+/proc/get_safe_lucky_player_turf(list/mobs_to_check = GLOB.alive_player_list,list/mobs_to_exclude,list/areas_to_exclude)
 
 	var/list/list_to_check = shuffle(mobs_to_check)
-	if(mobs_to_exclude)
+	if(length(mobs_to_exclude))
 		list_to_check -= mobs_to_exclude
 
 	if(length(list_to_check))
