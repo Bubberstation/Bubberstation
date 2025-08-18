@@ -19,8 +19,9 @@
 
 /datum/round_event/wizard_dice
 	announce_chance = 100
-	announce_when = 1 MINUTES
-	end_when = 10 MINUTES
+	//the "when" stuff is measured in 2 second ticks, not deciseconds.
+	announce_when = 30 //1 minute
+	end_when = 300 //10 minutes
 	var/obj/item/dice/d20/teleporting_die_of_fate/created_dice
 	var/did_announce = FALSE
 
@@ -38,17 +39,14 @@
 	did_announce = TRUE
 
 /datum/round_event/wizard_dice/kill()
+	UnregisterSignal(created_dice, COMSIG_QDELETING) //Remove this signal first.
 	. = ..()
 	if(did_announce)
 		priority_announce("Traces of twenty-sided magic have been reduced to acceptable levels.", "Magusologist Expert Warning")
 	//Garbage day!
-	UnregisterSignal(created_dice, COMSIG_QDELETING)
-	created_dice = null
-
-/datum/round_event/wizard_dice/end() //This is a natural end (or forced by admin, this doesn't get called when the dice is destroyed)
-	//Destroy the dice if it hasn't been destroyed already... somehow.
-	if(!QDELETED(created_dice))
+	if(created_dice && !QDELETED(created_dice))
 		qdel(created_dice)
+	created_dice = null
 
 /datum/round_event/wizard_dice/proc/on_dice_destroy()
 	processing = FALSE //Stop processing the event.

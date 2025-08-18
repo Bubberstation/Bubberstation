@@ -201,7 +201,8 @@
 			var/startside = pick(GLOB.cardinals)
 			var/turf/start_turf = spaceDebrisStartLoc(startside, target_turf.z)
 			var/turf/end_turf = spaceDebrisFinishLoc(startside, target_turf.z)
-			new /obj/effect/immovablerod(start_turf, end_turf, target, FALSE)
+			if(start_turf && end_turf)
+				new /obj/effect/immovablerod(start_turf, end_turf, target, FALSE)
 			to_chat(target, span_warning("Huh. Nothing seems to have happened. I guess I am unstoppable..."))
 		if(7)
 			//A pod comes down and slams you.
