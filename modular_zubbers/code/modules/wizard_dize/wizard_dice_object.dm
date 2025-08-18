@@ -153,6 +153,7 @@
 
 	user.emote("laugh")
 	current_turf.visible_message(span_userdanger("Magic flows out of [src] and into [user]!"))
+	user.drop_everything(del_on_drop = FALSE, force = TRUE, del_if_nodrop = TRUE)
 	user.mind.make_wizard()
 
 	notify_ghosts(
