@@ -82,19 +82,3 @@
 /datum/species/human/cursekin/on_species_loss(mob/living/carbon/human/gainer, datum/species/new_species, pref_load)
 	. = ..()
 	UnregisterSignal(gainer, COMSIG_CARBON_GAIN_ORGAN)
-
-/datum/species/human/cursekin/get_features()
-	var/list/features = ..()
-
-	features += list(
-		"lycan_ears_toggle",
-		"feature_lycan_ears",
-		"lycan_ears_color",
-		"lycan_ears_emissive",
-		"lycan_tail_toggle",
-		"feature_lycan_tail",
-		"lycan_tail_color",
-		"lycan_tail_emissive",
-	)
-
-	return features

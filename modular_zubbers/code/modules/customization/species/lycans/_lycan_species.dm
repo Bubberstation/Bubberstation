@@ -72,25 +72,3 @@
 
 /datum/species/lycan/get_species_lore()
 	return list(placeholder_lore)
-
-/datum/species/lycan/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons)
-	. = ..()
-
-/datum/species/lycan/on_species_loss(mob/living/carbon/human/human, datum/species/new_species, pref_load)
-	. = ..()
-
-/datum/species/lycan/get_features()
-	var/list/features = ..()
-
-	features += list(
-		"lycan_ears_toggle",
-		"feature_lycan_ears",
-		"lycan_ears_color",
-		"lycan_ears_emissive",
-		"lycan_tail_toggle",
-		"feature_lycan_tail",
-		"lycan_tail_color",
-		"lycan_tail_emissive",
-	)
-
-	return features
