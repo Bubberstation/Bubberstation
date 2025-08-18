@@ -16,7 +16,7 @@ proc/loadout_list_to_datums(list/loadout_list) as /list
 		if(!found_item_path)
 			continue
 
-		var/datum/loadout_item/actual_loadout_item = GLOB.loadout_item_path_to_datum[found_item_path]
+		var/datum/loadout_item/actual_loadout_item = GLOB.all_loadout_datums[found_item_path]
 		if(!actual_loadout_item)
 			continue
 

@@ -8,7 +8,7 @@
 		stack_trace("Invalid path: [params["path"]]!")
 		return TRUE
 
-	var/datum/loadout_item/found_loadout_item = GLOB.loadout_item_path_to_datum[path_to_use]
+	var/datum/loadout_item/found_loadout_item = GLOB.all_loadout_datums[path_to_use]
 
 	if(!istype(found_loadout_item))
 		stack_trace("Failed to locate desired loadout item (path: [path_to_use]) in the global list of loadout to item datums!")
