@@ -1,5 +1,6 @@
 /obj/item/clothing/under/rank/medical
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/medical_digi.dmi'	// Anything that was in the medical.dmi, should be in the medical_digi.dmi
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/medical/doctor/skyrat
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/medical.dmi'

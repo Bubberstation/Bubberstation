@@ -465,7 +465,13 @@
 		/obj/item/mod/module/magnetic_harness,
 		/obj/item/mod/module/flashlight,
 		/obj/item/mod/module/quick_cuff,
+		/obj/item/mod/module/jetpack // BUBBER EDIT ADDITION
 	)
+	// BUBBER EDIT ADDITION START - jetpack
+	default_pins = list(
+		/obj/item/mod/module/jetpack
+	)
+	// BUBBER EDIT ADDITION END
 	/// The insignia type, insignias show what sort of member of the ERT you're dealing with.
 	var/insignia_type = /obj/item/mod/module/insignia
 	/// Additional module (or modules if list) we add, as a treat.
