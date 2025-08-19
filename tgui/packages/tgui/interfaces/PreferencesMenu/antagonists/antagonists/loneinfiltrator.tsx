@@ -7,7 +7,9 @@ const LoneInfiltrator: Antagonist = {
   description: [
     `A midround traitor that can spawn near the station, equipped with
     a Syndicate Modsuit and equipment befitting a station boarder.
-    Float onto the station and complete your objectives.`,
+    Float onto the station and complete your objectives.
+    This is a significantly harder version of traitor, meant to provide a challenge.
+    Not to be confused with Lone Operative.`,
   ],
   category: Category.Midround,
 };
