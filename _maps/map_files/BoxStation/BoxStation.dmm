@@ -433,6 +433,7 @@
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk,
 /obj/structure/cable,
+/obj/machinery/firealarm/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/hos)
 "adk" = (
@@ -3489,7 +3490,7 @@
 /area/station/maintenance/starboard/fore)
 "ato" = (
 /obj/machinery/light_switch{
-	pixel_y = -23
+	pixel_y = -28
 	},
 /obj/effect/landmark/event_spawn,
 /obj/structure/cable,
@@ -14265,10 +14266,10 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
 "bbl" = (
-/obj/machinery/bluespace_vendor/directional/north,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
+/obj/machinery/bluespace_vendor/directional/north,
 /turf/open/floor/iron/dark/side{
 	dir = 1
 	},
@@ -42604,6 +42605,7 @@
 	dir = 6
 	},
 /obj/structure/cable,
+/obj/effect/landmark/firealarm_sanity,
 /turf/open/floor/iron/cafeteria,
 /area/station/maintenance/abandon_cafeteria)
 "eCW" = (
@@ -44749,10 +44751,6 @@
 	},
 /turf/open/floor/iron/corner,
 /area/station/hallway/primary/aft)
-"fxB" = (
-/obj/structure/lattice/catwalk,
-/turf/closed/wall,
-/area/station/construction/mining/aux_base)
 "fxY" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
@@ -47803,6 +47801,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
+/obj/effect/landmark/firealarm_sanity,
 /turf/open/floor/plating,
 /area/station/maintenance/fore)
 "hbk" = (
@@ -54962,7 +54961,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/mapping_helpers/airlock/access/any/security/general,
 /obj/machinery/door/airlock/multi_tile/public/glass{
-	name = "prison wing"
+	name = "Prison Wing"
 	},
 /turf/open/floor/iron,
 /area/station/security/brig)
@@ -56692,7 +56691,6 @@
 /obj/machinery/door/airlock/public/glass{
 	name = "Central Access"
 	},
-/obj/machinery/firealarm/directional/west,
 /obj/effect/turf_decal/trimline/dark_blue/corner{
 	dir = 1;
 	alpha = 200
@@ -72737,9 +72735,14 @@
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "rMv" = (
-/obj/structure/lattice,
-/turf/closed/wall,
-/area/station/maintenance/port/aft)
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/mob/living/basic/axolotl{
+	name = "Danger"
+	},
+/turf/open/floor/iron,
+/area/station/service/hydroponics/garden)
 "rMz" = (
 /obj/structure/table,
 /turf/open/floor/iron/dark,
@@ -73906,9 +73909,14 @@
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "snH" = (
-/obj/structure/lattice,
-/turf/closed/wall,
-/area/station/construction/mining/aux_base)
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/firealarm/directional/west,
+/turf/open/floor/iron/dark/side{
+	dir = 8
+	},
+/area/station/hallway/primary/central/fore)
 "snU" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/line{
 	dir = 10
@@ -79741,9 +79749,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
-	dir = 8
-	},
 /turf/open/floor/iron/dark/small,
 /area/station/medical/morgue)
 "uRa" = (
@@ -81519,14 +81524,10 @@
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/cmo)
 "vEh" = (
-/obj/machinery/firealarm/directional/north,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/iron/dark/side{
-	dir = 1
-	},
-/area/station/hallway/primary/central/fore)
+/obj/structure/disposalpipe/segment,
+/obj/machinery/firealarm/directional/east,
+/turf/open/floor/iron,
+/area/station/hallway/primary/fore)
 "vEn" = (
 /obj/structure/extinguisher_cabinet/directional/south,
 /obj/effect/turf_decal/trimline/yellow/filled/line{
@@ -81832,9 +81833,6 @@
 /obj/machinery/light/directional/west,
 /obj/effect/turf_decal/siding/white{
 	dir = 8
-	},
-/mob/living/basic/axolotl{
-	name = "Danger"
 	},
 /turf/open/water/no_planet_atmos/deep,
 /area/station/service/hydroponics/garden)
@@ -86629,6 +86627,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/machinery/firealarm/directional/east,
 /turf/open/floor/iron/smooth_edge{
 	dir = 8
 	},
@@ -96147,8 +96146,8 @@ apJ
 apJ
 apJ
 apJ
-fxB
-snH
+apJ
+apJ
 bgR
 sUX
 asE
@@ -103852,7 +103851,7 @@ oKp
 alU
 bbV
 miW
-miW
+rMv
 miW
 hre
 aAQ
@@ -105450,7 +105449,7 @@ bCq
 vTq
 kmT
 hrb
-rMv
+bCq
 hcF
 szE
 bCq
@@ -105707,7 +105706,7 @@ bCq
 dAl
 drz
 joV
-rMv
+bCq
 ceY
 szE
 bCq
@@ -105964,7 +105963,7 @@ bCq
 vTj
 vXv
 bCq
-rMv
+bCq
 tKn
 szE
 bCq
@@ -116963,7 +116962,7 @@ bBL
 ayZ
 vPx
 vPx
-vPx
+vEh
 atj
 azY
 vPx
@@ -117475,7 +117474,7 @@ frn
 awn
 aAb
 bYy
-vEh
+ffV
 aBz
 cvP
 tti
@@ -119016,7 +119015,7 @@ asl
 aAX
 mib
 dFo
-ffV
+bbl
 ath
 aSv
 azc
@@ -119273,7 +119272,7 @@ dFo
 dFo
 dFo
 dFo
-bbl
+ffV
 nMd
 lvJ
 eTt
@@ -119529,7 +119528,7 @@ amY
 aoH
 bYy
 cxW
-azc
+snH
 aws
 akV
 aNS
@@ -130902,7 +130901,7 @@ ylY
 vWx
 ylY
 ylY
-vWx
+fKY
 ylY
 ylY
 fKY
