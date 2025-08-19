@@ -378,7 +378,7 @@
 		. += "goat_dart"
 
 /obj/item/toy/plush/sunny_plush
-	name = "Weighty Moostoat Plushie"
+	name = "weighty moostoat plushie"
 	desc = "A soft, weighted plushie of a moostoat. Very comfortable to hug and have lying on you. It smells of fresh milk."
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "sunny_plush"
