@@ -75,11 +75,11 @@
 	crate_name = "eland pistols crate"
 
 /datum/supply_pack/security/armory/renoster
-	name = "Carwo 'Renoster' Shotgun Crate"
+	name = "Carwo 'Renoster' Shotguns Crate"
 	desc = "Contains two Carwo 'Renoster' shotguns. Additional ammmo sold separately."
-	cost = CARGO_CRATE_VALUE * 30
-	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol = 2,
-	/obj/item/ammo_box/advanced/s12gauge/buckshot = 2,
+	cost = CARGO_CRATE_VALUE * 15 //Why did someone set this to *30 before? Jesus christ that's an awful price for what used to be 2 shotguns
+	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol = 3,
+	/obj/item/ammo_box/advanced/s12gauge/buckshot = 3,
 	)
 	crate_name = "Carwo 'Renoster' Shotgun Crate"
 
