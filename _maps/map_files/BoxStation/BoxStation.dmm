@@ -3929,6 +3929,7 @@
 /obj/effect/turf_decal/tile/dark_blue{
 	dir = 1
 	},
+/obj/machinery/vending/wallmed/directional/north,
 /turf/open/floor/iron/white,
 /area/station/maintenance/port/fore)
 "ava" = (
@@ -6397,7 +6398,8 @@
 /area/station/ai_monitored/turret_protected/ai_upload)
 "aCO" = (
 /obj/item/toy/plush/skyrat/duffmoth{
-	resistance_flags = 2
+	resistance_flags = 2;
+	name = "lightly roasted moth plushie"
 	},
 /obj/structure/lattice/catwalk/mining,
 /turf/open/lava/fake,
@@ -8643,6 +8645,7 @@
 	},
 /obj/structure/railing,
 /obj/effect/landmark/start/hangover,
+/obj/structure/platform/wood/stage,
 /turf/open/floor/wood/large,
 /area/station/service/bar)
 "aKr" = (
@@ -8733,6 +8736,7 @@
 	dir = 6
 	},
 /obj/structure/railing,
+/obj/structure/platform/wood/stage,
 /turf/open/floor/wood/large,
 /area/station/service/bar)
 "aKO" = (
@@ -10838,6 +10842,7 @@
 /obj/effect/turf_decal/tile/dark_green/anticorner{
 	dir = 4
 	},
+/obj/machinery/vending/wallmed/directional/east,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/command/bridge)
 "aRt" = (
@@ -28506,11 +28511,9 @@
 /turf/open/floor/engine,
 /area/station/engineering/atmos/hfr_room)
 "bQT" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/sign/poster/official/enlist/directional/east,
-/turf/open/floor/iron,
-/area/station/hallway/primary/fore)
+/obj/machinery/vending/wallmed/directional/east,
+/turf/open/floor/iron/dark,
+/area/station/commons/fitness/recreation/entertainment)
 "bQU" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -40084,7 +40087,7 @@
 /turf/open/floor/carpet/purple,
 /area/station/commons/dorms)
 "dvc" = (
-/obj/machinery/atmospherics/components/binary/valve/layer4,
+/obj/machinery/atmospherics/components/binary/pump/off/general/visible/layer4,
 /obj/effect/spawner/random/structure/grille,
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
@@ -41749,9 +41752,9 @@
 /turf/open/floor/iron/dark,
 /area/station/security/evidence)
 "ehK" = (
-/obj/structure/rack/shelf,
-/obj/item/pointman_broken,
 /obj/machinery/light/small/dim/directional/west,
+/obj/structure/rack,
+/obj/effect/spawner/random/maintenance,
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
 "ehM" = (
@@ -42232,7 +42235,9 @@
 	name = "Synth Disposal"
 	},
 /obj/structure/sign/warning/bodysposal/directional/north{
-	sign_change_name = "Warning - Disposals: Leads to Robotics"
+	sign_change_name = "Warning - Disposals: Leads to Robotics";
+	name = "DISPOSAL: LEADS TO ROBOTICS";
+	desc = "A warning sign which reads 'DISPOSAL: LEADS TO ROBOTICS'."
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/medical/morgue)
@@ -59067,6 +59072,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
 	},
+/obj/structure/platform/pizza,
 /mob/living/basic/goat/pete,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen)
@@ -59980,10 +59986,9 @@
 /turf/closed/wall,
 /area/station/security/execution/education)
 "mpq" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/maintenance,
 /obj/effect/turf_decal/trimline/dark_blue/filled/line,
 /obj/effect/turf_decal/trimline/dark/line,
+/obj/effect/spawner/random/burgerstation/loot/with_maintenance_loot,
 /turf/open/floor/iron/dark,
 /area/station/maintenance/port/aft)
 "mpB" = (
@@ -63203,9 +63208,9 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
 "nKX" = (
-/obj/structure/rack,
 /obj/effect/spawner/random/maintenance,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/structure/rack/shelf,
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
 "nLs" = (
@@ -77798,7 +77803,6 @@
 	dir = 4
 	},
 /obj/effect/spawner/random/burgerstation/blocking,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 6
 	},
@@ -85330,7 +85334,9 @@
 /turf/open/floor/iron/dark/herringbone,
 /area/station/cargo/storage)
 "xna" = (
-/obj/item/toy/plush/lizard_plushie,
+/obj/item/toy/plush/lizard_plushie{
+	name = "hungry lizard plushie"
+	},
 /obj/structure/bed/maint,
 /obj/item/kitchen/fork{
 	pixel_x = 11
@@ -87548,11 +87554,6 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/medical/medbay/lobby)
-"yjq" = (
-/obj/effect/turf_decal/tile/red/opposingcorners,
-/obj/machinery/vending/wallmed/directional/south,
-/turf/open/floor/iron,
-/area/station/commons/fitness/recreation)
 "yjZ" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/bot,
@@ -102205,7 +102206,7 @@ bCq
 bCq
 dpw
 bHE
-nDM
+bHE
 bHE
 lCC
 kME
@@ -116541,7 +116542,7 @@ jXa
 amQ
 vcx
 hTf
-bQT
+uvZ
 uvZ
 tTn
 tTn
@@ -122961,7 +122962,7 @@ jij
 mnf
 apu
 ePn
-aAd
+bQT
 dyw
 anp
 beZ
@@ -123988,7 +123989,7 @@ asm
 uem
 cXx
 diW
-yjq
+uem
 qwZ
 lFo
 sBI
