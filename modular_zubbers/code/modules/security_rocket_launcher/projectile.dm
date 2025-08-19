@@ -47,14 +47,14 @@
 
 /obj/projectile/bullet/security_missile/on_hit(atom/target, blocked = 0, pierce_hit)
 
-	..()
-
 	var/turf/our_turf = get_turf(src)
+
+	..()
 
 	if(!our_turf)
 		return BULLET_ACT_BLOCK //Some fuckery afoot.
 
-	if(range >= cached_range - minimum_range)
+	if(speed < ignition_speed) //We're not fast enough to explode.
 		new /obj/item/broken_missile/security(our_turf)
 		if(isliving(target))
 			var/mob/living/target_as_living = target
