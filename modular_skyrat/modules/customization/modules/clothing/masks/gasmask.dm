@@ -183,11 +183,11 @@
 
 	if(src && choice && !user.incapacitated && in_range(user,src))
 		var/mob/living/carbon/human/human_user = user
-		if(human_user.dna.species.mutant_bodyparts["snout"])
+		if(human_user.dna.species.mutant_bodyparts[FEATURE_SNOUT])
 			icon = 'modular_skyrat/master_files/icons/obj/clothing/masks.dmi'
 			worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/mask_muzzled.dmi'
 			var/list/avian_snouts = list("Beak", "Big Beak", "Corvid Beak")
-			if(human_user.dna.species.mutant_bodyparts["snout"][MUTANT_INDEX_NAME] in avian_snouts)
+			if(human_user.dna.species.mutant_bodyparts[FEATURE_SNOUT][MUTANT_INDEX_NAME] in avian_snouts)
 				icon_state = "[options[choice]]_b"
 		else
 			icon = 'modular_skyrat/master_files/icons/mob/clothing/species/vox/mask.dmi'
