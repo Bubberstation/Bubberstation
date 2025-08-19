@@ -69,13 +69,13 @@ export const custom_species_lore: Feature<string> = {
 
 export const custom_taste: Feature<string> = {
   name: 'Character Taste',
-  description: 'How does your character taste?',
+  description: 'What does your character taste like when licked?',
   component: FeatureShortTextInput,
 };
 
 export const custom_smell: Feature<string> = {
   name: 'Character Smell',
-  description: 'How does your character smell?',
+  description: 'What does your character smell like when sniffed?',
   component: FeatureShortTextInput,
 };
 
