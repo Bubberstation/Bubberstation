@@ -36,7 +36,7 @@ export const feature_mcolor3: Feature<string> = {
 export const flavor_text: Feature<string> = {
   name: 'Flavor Text',
   description:
-    'Appears when examined, provides a visual description with indicators of personality in order to have other characters form their first impression of you. Check the wiki guides for help.',
+    'Appears when examined, provides a visual description with personality, allowing other characters to form their first impression of you. Check the wiki guides for help.',
   component: FeatureTextInput,
 };
 
