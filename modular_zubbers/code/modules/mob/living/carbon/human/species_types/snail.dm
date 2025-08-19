@@ -26,7 +26,7 @@
 		They can also die due to prolonged exposure to sea air, making them less common in oceanic planets. This means that when leaving Elizabeth II, \
 		they naturally trend towards dangerous environs in order to find work, which also increases their already high mortality rate. \
 		They are extremely effective janitors and have an impressive eye for messes and beauty. Socially, their habits resemble humanity's in many ways, \
-		though they never developed monogamy. It is the natural fate of a snerson to stop and smell the roses.",
+		though they never developed monogamy. Due to their prolific mating, Snailperson researchers have directly cured most STDs in the known universe.",
 
 		"This is not a joke species. This is real snife.",
 	)
