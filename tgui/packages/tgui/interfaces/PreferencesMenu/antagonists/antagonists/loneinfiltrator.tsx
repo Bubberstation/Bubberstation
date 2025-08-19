@@ -3,7 +3,7 @@ import { type Antagonist, Category } from '../base';
 
 const LoneInfiltrator: Antagonist = {
   key: 'loneinfiltrator',
-  name: 'Lone Infiltrator',
+  name: 'Syndicate Boarder',
   description: [
     `A midround traitor that can spawn near the station, equipped with
     a Syndicate Modsuit and equipment befitting a station boarder.
