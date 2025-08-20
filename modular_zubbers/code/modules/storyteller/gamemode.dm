@@ -694,6 +694,8 @@ SUBSYSTEM_DEF(gamemode)
 			continue
 		if((storyboy.population_min && storyboy.population_min > client_amount) || (storyboy.population_max && storyboy.population_max < client_amount))
 			continue
+		if(!prob(storyboy.chance))
+			continue
 		choices += storyboy.name
 		///Because the vote subsystem is dumb and does not support any descriptions, we dump them into world.
 		vote_message += "<b>[storyboy.name]</b>"

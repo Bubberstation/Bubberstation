@@ -42,6 +42,8 @@
 	var/population_max
 	/// The antag divisor, the higher it is the lower the antag cap gets. Basically means "for every antag_divisor crew, spawn 1 antag".
 	var/antag_divisor = 8
+	/// The chance, 0-100, of this storyteller to be picked. Checked after all other checks.
+	var/chance = 100
 
 	/// Two tellers of the same intensity group can't run in 2 consecutive rounds
 	var/storyteller_type = STORYTELLER_TYPE_ALWAYS_AVAILABLE

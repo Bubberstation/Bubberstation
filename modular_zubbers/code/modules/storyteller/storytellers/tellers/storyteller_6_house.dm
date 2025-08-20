@@ -9,8 +9,4 @@
 	population_min = 50
 	storyteller_type = STORYTELLER_TYPE_INTENSE
 
-// All the weights are the same to the house
-/datum/storyteller/house/calculate_weights(track)
-	for(var/datum/round_event_control/event as anything in SSgamemode.event_pools[track])
-		if(event.weight)
-			event.calculated_weight = 1
+	chance = 10 // rare
