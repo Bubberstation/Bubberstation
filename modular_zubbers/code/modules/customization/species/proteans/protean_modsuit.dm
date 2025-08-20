@@ -171,7 +171,7 @@
 		user.balloon_alert_to_viewers("resetting memory")
 		user.visible_message(span_boldwarning("[user] is reaching a pen into [protean_in_suit]!"))
 		playsound(src, 'sound/machines/synth/synth_no.ogg', 100)
-		if(!do_after(user, 20 SECONDS))
+		if(!do_after(user, 10 SECONDS))
 			return
 		user.visible_message(span_warning("Alert - [protean_in_suit]'s Random Access Memory Reset. Current memories lost. Any interactions that were ongoing have been forgotten."))
 		to_chat(protean_in_suit, span_boldwarning("Your memories have been reset. You cannot remember who reset you or any of the events leading up to your reset."))
