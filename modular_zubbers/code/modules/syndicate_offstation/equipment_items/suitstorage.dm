@@ -62,5 +62,10 @@
 		/obj/item/mod/module/quick_cuff,
 	)
 
+//Empty infiltrator MOD for the Syndicate Boarder preview
 /obj/item/mod/control/pre_equipped/empty/infiltrator
-	theme = /datum/mod_theme/infiltrator
+	theme = /datum/mod_theme/infiltrator/empty
+
+//Making this so it has no modules
+/datum/mod_theme/infiltrator/empty
+	inbuilt_modules = list()
