@@ -18,7 +18,7 @@
 		"They were wrong. Snailpeople just have way too many children, and they taste horrible to predators. \
 		Almost 100 years later, they have formed something resembling a functioning civilization. Snailpeople are relatively new to the universe, \
 		being forcibly uplifted mostly out of a sense of \"We can't just leave them like this.\" \
-		They have tightly packed residential snities (snail cities), complete with functioning snewer systems, (snail sewer systems) \
+		They have tightly packed residential cities, complete with functioning sewer systems, \
 		and more, all as a result of generous research investments on the first unique species to be accidentally created by Humanity.",
 
 		"Despite this, the evolutionary failures of Snailpeople mean that their causes of death are usually mundane and deeply saddening. \
@@ -27,6 +27,4 @@
 		they naturally trend towards dangerous environs in order to find work, which also increases their already high mortality rate. \
 		They are extremely effective janitors and have an impressive eye for messes and beauty. Socially, their habits resemble humanity's in many ways, \
 		though they never developed monogamy. Due to their prolific mating, Snailperson researchers have directly cured most STDs in the known universe.",
-
-		"This is not a joke species. This is real snife.",
 	)
