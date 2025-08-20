@@ -114,7 +114,7 @@
 		"Sirisai is a tropical world with temperatures ranging from 20 to 30 celsius on average. \
 		It has three notable mountain ranges, the only places on the planet where snow can be seen year-round. Temperatures can go as low as -15 Celsius. \
 		The planet itself is generally very biologically diverse, mostly undisturbed ecologically by the Teshari or their predecessors.",
-		"Teshari had a generally uneventful early history, until they were discovered by a species that resided on the planet Sirisai. \
+		"Teshari had a generally uneventful early history, until they were discovered by a species that resided on the planet Penelope 3, which Sirisai once orbited. \
 		After years of oppression and being sold as a labor force, the Teshari made their demand: Comply, or explode. This species seemed to not have taken the threat seriously, \
 		and were made extinct by the destruction of their entire planet. Fossils have been uncovered on Sirisai, and while they have yet to be named, \
 		A meeting of Teshari flocks have democratically named the species after the Teshari word for \"bastard\". \
