@@ -63,9 +63,11 @@
 	)
 
 //Empty infiltrator MOD for the Syndicate Boarder preview
-/obj/item/mod/control/pre_equipped/empty/infiltrator
-	theme = /datum/mod_theme/infiltrator/empty
+/obj/item/mod/control/pre_equipped/empty/infiltrator/preview_only
+	theme = /datum/mod_theme/infiltrator/preview_only
 
 //Making this so it has no modules
-/datum/mod_theme/infiltrator/empty
+/datum/mod_theme/infiltrator/preview_only
 	inbuilt_modules = list()
+	slot_flags = ITEM_SLOT_BACK
+
