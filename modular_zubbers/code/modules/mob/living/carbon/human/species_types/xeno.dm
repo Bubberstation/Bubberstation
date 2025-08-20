@@ -18,7 +18,7 @@
 		That hasn't stopped the beginnings of a new project-- as part of Operation Chimera, the Solar Bureau of Intelligence \
 		planned to use the xenomorphs' ability to bond with others of their species to turn a bioweapon \
 		into a species that could be reasoned, communicated with, and most of all, controlled. Time was short for solutions \
-		as a xenomorph infestation had begun to take over multiple independent worlds in the Ombrux sector.",
+		as a xenomorph infestation had begun to take over multiple independent worlds in the Ombrux sector, threatening the interior.",
 
 		"Hybrids were meant to achieve two goals: One, to open up the xenomorph species to communication, and two, to significantly weaken their genome. \
 		Both goals were achieved handily. In just a few years, the contained xenomorphs began to develop modern bureaucracy. \
