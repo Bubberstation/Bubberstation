@@ -248,31 +248,16 @@
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
 
-/obj/item/forging/reagent_weapon/axe/attack(mob/living/M, mob/living/user, params) //Damage shields, if shield cannot be damaged, then damage the user's stamina.
-	. = ..()
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		for(var/obj/item/shield/I in H.held_items)
-			if(I.hit_reaction())
-				if(I.breakable_by_damage)
-					I.take_damage(20, MELEE, armour_penetration = 100)
-					user.balloon_alert(user, "Devastating blow!")
-				else
-					user.balloon_alert(user, "Crippling blow!")
-					H.apply_damage(15, STAMINA)
-			else
-				return
-
 /obj/item/forging/reagent_weapon/axe/pre_attack(mob/living/M, mob/living/user, params)
 	. = ..()
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		for(var/obj/item/shield/I in H.held_items)
 			if(I.breakable_by_damage)
-				user.balloon_alert(user, "Devastating blow!")
+				user.balloon_alert(user, "devastating blow!")
 				I.take_damage(15, BRUTE, 0, FALSE, get_dir(user, H))
 			else
-				user.balloon_alert(user, "Crippling blow!")
+				user.balloon_alert(user, "crippling blow!")
 				H.apply_damage(15, STAMINA)
 
 /obj/item/forging/reagent_weapon/hammer
