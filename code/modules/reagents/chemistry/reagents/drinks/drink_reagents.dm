@@ -998,7 +998,7 @@
 	. = ..()
 	if(IS_REVOLUTIONARY(drinker))
 		to_chat(drinker, span_warning("Antioxidants are weakening your radical spirit!"))
-    	
+        
 /datum/reagent/consumable/grenadine/on_mob_life(mob/living/carbon/drinker, seconds_per_tick, times_fired)
 	. = ..()
 	if(IS_REVOLUTIONARY(drinker))
