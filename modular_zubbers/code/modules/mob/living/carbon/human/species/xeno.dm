@@ -39,7 +39,7 @@
 		as a xenomorph infestation had begun to take over multiple independent worlds in the Ombrux sector, threatening the interior.",
 
 		"It didn't really work. That said, the infestation has been stalled as a result of effective orbital bombardment. \
-		These days, Xenomorph hybrids are in an odd place, rejected both by society and the species that created them \
+		These days, Xenomorph hybrids are in an odd place, rejected both by society and the species that created them. \
 		Nanotrasen's xenoscience division offers an acclimitization program for these outcasts, \
 		marking the beginnings of integration. In this slow drive to acceptance, they find comfort in their shared hive.",
 	)
