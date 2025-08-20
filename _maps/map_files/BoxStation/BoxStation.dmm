@@ -22706,6 +22706,7 @@
 	name = "Containment Blast Door"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/science/xenobiology)
 "bJM" = (
@@ -24146,6 +24147,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
+/obj/structure/cable,
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
 "bPJ" = (
@@ -24357,6 +24359,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor,
+/obj/structure/cable,
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
 "bQN" = (
@@ -38907,6 +38910,11 @@
 	},
 /turf/open/floor/wood,
 /area/station/hallway/secondary/service)
+"goW" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/turf/open/floor/iron/white,
+/area/station/science/xenobiology)
 "goZ" = (
 /obj/machinery/hydroponics/constructable,
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -42734,6 +42742,7 @@
 "iFN" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
+/obj/structure/cable,
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
 "iFY" = (
@@ -51473,6 +51482,11 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
+"nWP" = (
+/obj/structure/sink/directional/west,
+/obj/structure/cable,
+/turf/open/floor/iron/white,
+/area/station/science/xenobiology)
 "nXf" = (
 /obj/effect/spawner/random/burgerstation/atmos,
 /turf/open/floor/plating,
@@ -53190,6 +53204,7 @@
 	name = "Containment Blast Door"
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/visible,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/science/xenobiology)
 "pfa" = (
@@ -62768,6 +62783,18 @@
 	},
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
+"uZd" = (
+/obj/machinery/disposal/bin,
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/iron,
+/area/station/science/xenobiology)
 "uZR" = (
 /obj/effect/turf_decal/trimline/green/filled/line,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden{
@@ -65958,6 +65985,10 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
+"wUx" = (
+/obj/structure/cable,
+/turf/closed/wall,
+/area/station/science/xenobiology)
 "wUD" = (
 /obj/structure/filingcabinet,
 /obj/effect/turf_decal/tile/red{
@@ -68262,6 +68293,7 @@
 	id = "xenobiomain";
 	name = "Containment Blast Door"
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/science/xenobiology)
 
@@ -111602,7 +111634,7 @@ bJN
 mdh
 rjh
 bJN
-qCt
+uZd
 gbS
 bJN
 qCt
@@ -111616,7 +111648,7 @@ mqu
 bJN
 wBO
 hjI
-bJN
+wUx
 bDb
 xzh
 cNW
@@ -111859,7 +111891,7 @@ ccP
 bMi
 mQw
 jQC
-bMi
+blq
 bMi
 jsG
 bMi
@@ -111873,7 +111905,7 @@ bMi
 bRo
 bMi
 bMi
-bMi
+blq
 mdh
 sUX
 cOT
@@ -112110,11 +112142,16 @@ aWv
 bgC
 blq
 bIu
-bMi
+blq
 bPC
 bQL
-lNo
+goW
 iFN
+goW
+goW
+goW
+goW
+goW
 lNo
 lNo
 lNo
@@ -112125,12 +112162,7 @@ lNo
 lNo
 lNo
 lNo
-lNo
-lNo
-lNo
-lNo
-lNo
-lNo
+goW
 ouV
 nPP
 czZ
@@ -112376,7 +112408,7 @@ pOC
 bMi
 bMi
 bMi
-pOC
+nWP
 bMi
 bMi
 qSS
@@ -112387,7 +112419,7 @@ bMi
 bMi
 qSS
 bMi
-bMi
+blq
 mdh
 sUX
 cOT
@@ -112633,7 +112665,7 @@ bJN
 sAR
 pIw
 pIw
-bJN
+wUx
 dHi
 eJI
 bJN
