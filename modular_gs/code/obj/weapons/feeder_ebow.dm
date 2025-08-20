@@ -2,7 +2,6 @@
 	name = "feeder's mini energy crossbow"
 	desc = "a modified version of the standard mini energy crossbow, designed to fatten up a target while incapacitating them."
 	icon_state = "crossbow_halloween"
-	item_state = "crossbow"
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt/fattening)
 
 /obj/item/ammo_casing/energy/bolt/fattening
@@ -14,7 +13,7 @@
 /obj/projectile/energy/bolt/fattening/Initialize(mapload)
 	. = ..()
 
-/obj/projectile/energy/bolt/fattening/on_hit(atom/target, blocked)
+/obj/projectile/energy/bolt/fattening/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
 	var/mob/living/carbon/target_mob = target
 	if(!istype(target_mob) || (blocked == 100))
