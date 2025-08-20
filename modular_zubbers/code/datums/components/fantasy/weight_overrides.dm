@@ -9,19 +9,19 @@
 	weight = 15
 
 /datum/fantasy_affix/tactical
-	weight = 0
+	weight = 5
 
 /datum/fantasy_affix/vampiric
-	weight = 0
+	weight = 5
 
 /datum/fantasy_affix/beautiful
-	weight = 3
+	weight = 5
 
 /datum/fantasy_affix/ugly
 	weight = 0
 
 /datum/fantasy_affix/venomous
-	weight = 0
+	weight = 5
 
 /datum/fantasy_affix/soul_stealer
 	weight = 0
@@ -31,16 +31,16 @@
 	weight = 15
 
 /datum/fantasy_affix/bane
-	weight = 3
+	weight = 5
 
 /datum/fantasy_affix/summoning
 	weight = 0
 
 /datum/fantasy_affix/shrapnel
-	weight = 0
+	weight = 5
 
 /datum/fantasy_affix/strength
-	weight = 3
+	weight = 5
 
 /datum/fantasy_affix/fool
 	weight = 0
@@ -52,10 +52,10 @@
 	weight = 0
 
 /datum/fantasy_affix/speed
-	weight = 3
+	weight = 5
 
 /datum/fantasy_affix/doot
 	weight = 0
 
 /datum/fantasy_affix/windseeker
-	weight = 3
+	weight = 5
