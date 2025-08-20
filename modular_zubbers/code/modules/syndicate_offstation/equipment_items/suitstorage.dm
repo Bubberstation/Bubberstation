@@ -61,3 +61,6 @@
 		/obj/item/mod/module/hat_stabilizer/syndicate,
 		/obj/item/mod/module/quick_cuff,
 	)
+
+/obj/item/mod/control/pre_equipped/empty/infiltrator
+	theme = /datum/mod_theme/infiltrator

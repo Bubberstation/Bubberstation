@@ -15,7 +15,7 @@
 /datum/outfit/lone_infiltrator_preview
 	name = "Lone Infiltrator (Preview only)"
 
-	belt = /obj/item/mod/control/pre_equipped/infiltrator
+	belt = /obj/item/mod/control/pre_equipped/empty/infiltrator
 	uniform = /obj/item/clothing/under/syndicate
 	l_hand = /obj/item/shield/energy
 	r_hand = /obj/item/gun/ballistic/automatic/c20r
