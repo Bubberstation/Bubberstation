@@ -1,6 +1,3 @@
-/mob/living/carbon/human/species/protean
-	race = /datum/species/protean
-
 // Used for printing dead protean bodies
 /mob/living/carbon/human/species/protean/empty
 
