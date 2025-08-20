@@ -173,7 +173,7 @@
 		playsound(src, 'sound/machines/synth/synth_no.ogg', 100)
 		if(!do_after(user, 10 SECONDS))
 			return
-		protean_in_suit.say(span_warning("Alert - Random Access Memory Reset. Current memories lost. Any interactions that were ongoing have been forgotten."), forced = TRUE)
+		protean_in_suit.say("Alert - Random Access Memory Reset. Current memories lost. Any interactions that were ongoing have been forgotten.", forced = TRUE)
 		protean_in_suit.log_message("has had their memory reset.", LOG_ATTACK)
 		to_chat(protean_in_suit, span_boldwarning("Your memories have been reset. You cannot remember who reset you or any of the events leading up to your reset."))
 		playsound(src, 'sound/machines/synth/synth_yes.ogg', 100)
