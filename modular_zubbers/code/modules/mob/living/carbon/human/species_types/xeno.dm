@@ -10,7 +10,7 @@
 		"Xenomorph Hybrids are a species of creature hybridized with xenomorph genes, most often humans, but in increasing numbers, various other species have also received treatments. \
 		They tend to stand taller than their original species, with notably longer lifespans, and sharp claws regardless of if their original species had them. \
 		They lack a true organized society, mostly fitting in small numbers into spaces where their original species would inhabit. Some hybrids can pass, others cannot and are more stigmatized. \
-		They tend to lack social skills, being notably quieter than their galactic counterparts, and can get overstimulated due to their extremely keen senses \
+		They tend to lack social skills, being notably quieter than their galactic counterparts, and can get overstimulated due to their extremely keen senses, \
 		but with experience, most hybrids can easily do away with this problem and fit well into the social spaces they are brought into. If you can forgive the teeth.",
 
 		"Hybrids were first documented as part of a research project on the Xenomorph genome, originally \
