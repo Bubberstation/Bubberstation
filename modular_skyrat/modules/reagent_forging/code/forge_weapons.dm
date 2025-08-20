@@ -1,3 +1,4 @@
+// Damage is technically 10 by default since that's the max you get from perfect hits when crafting. Find a non-third-of-sth value for the multiplier to get to 18, I'll wait
 /obj/item/forging/reagent_weapon
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_items.dmi'
 	lefthand_file = 'modular_skyrat/modules/reagent_forging/icons/mob/forge_weapon_l.dmi'
@@ -18,7 +19,7 @@
 /obj/item/forging/reagent_weapon/sword
 	name = "reagent sword"
 	desc = "A sharp, one-handed sword most adept at blocking opposing melee strikes."
-	force = 10
+	force = 7
 	armour_penetration = 10
 	wound_bonus = -5
 	icon_state = "sword"
@@ -40,7 +41,7 @@
 
 /obj/item/forging/reagent_weapon/sword/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/two_handed, force_multiplier = 1.8)
+	AddComponent(/datum/component/two_handed, force_multiplier = 2)
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
 /obj/item/forging/reagent_weapon/sword/proc/on_wield()
@@ -54,7 +55,7 @@
 /obj/item/forging/reagent_weapon/katana
 	name = "reagent katana"
 	desc = "A katana sharp enough to penetrate body armor, but not quite million-times-folded sharp."
-	force = 10
+	force = 7
 	armour_penetration = 25 //Slices through armour like butter, but can't quite bisect a knight like the real thing.
 	wound_bonus = -5
 	icon_state = "katana"
@@ -72,13 +73,13 @@
 
 /obj/item/forging/reagent_weapon/katana/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/two_handed, force_multiplier = 1.8)
+	AddComponent(/datum/component/two_handed, force_multiplier = 2)
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
 /obj/item/forging/reagent_weapon/dagger
 	name = "reagent dagger"
 	desc = "A lightweight dagger historically used to stab at the gaps in armour of fallen knights of old."
-	force = 10
+	force = 5
 	icon_state = "dagger"
 	inhand_icon_state = "dagger"
 	worn_icon_state = "dagger_back"
@@ -92,8 +93,8 @@
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 	sharpness = SHARP_EDGED
-	exposed_wound_bonus = 15
-	wound_bonus = 5 //todo add wounding against prone targets
+	wound_bonus = 5
+	exposed_wound_bonus = 30
 
 /datum/embedding/forged_dagger
 	embed_chance = 50
@@ -105,9 +106,68 @@
 	AddComponent(/datum/component/butchering, speed = 10 SECONDS, effectiveness = 70)
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
-/obj/item/forging/reagent_weapon/dagger/attack(mob/living/M, mob/living/user, params)
+
+//We're not reinventing the wheel, give it extra wounding if you land it, either you do or you dont, no dmg ups. Nullblade code but modified
+
+/obj/item/forging/reagent_weapon/dagger/attack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
 	. = ..()
-	user.changeNext_move(CLICK_CD_RANGE)
+	//Wounds scale off damage applied, so we're going to give the illusion of damaging people with the swing, when in reality it's all in the proc.
+	if(!isliving(target))
+		return
+
+	var/mob/living/carbon/living_target = target //Only wounds, so we don't care about mobs
+
+	if(user == living_target)
+		return
+
+	if(living_target.stat == DEAD)
+		return
+
+	sneak_attack(living_target, user)
+
+/obj/item/forging/reagent_weapon/dagger/proc/sneak_attack(mob/living/carbon/carbon_target, mob/user)
+	// Check chaplain_nullrod.dm for original comments, I'm only leaving new ones in
+	var/successful_sneak_attack = FALSE
+
+	var/sneak_attack_fail_message = FALSE
+
+	if(carbon_target.is_blind())
+		successful_sneak_attack = TRUE
+
+	else if(carbon_target.get_timed_status_effect_duration(/datum/status_effect/staggered))
+		successful_sneak_attack = TRUE
+
+	else if(carbon_target.get_timed_status_effect_duration(/datum/status_effect/confusion))
+		successful_sneak_attack = TRUE
+
+	else if(carbon_target.pulledby && carbon_target.pulledby.grab_state >= GRAB_AGGRESSIVE)
+		successful_sneak_attack = TRUE
+
+	else if(HAS_TRAIT(carbon_target, TRAIT_HANDS_BLOCKED))
+		successful_sneak_attack = TRUE
+
+	else if(check_behind(user, carbon_target))
+		successful_sneak_attack = TRUE
+
+	else if(HAS_TRAIT(carbon_target, TRAIT_MIND_READER) && !user.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
+		successful_sneak_attack = FALSE
+		sneak_attack_fail_message = TRUE
+
+	else if(user.is_blind())
+		successful_sneak_attack = FALSE
+		sneak_attack_fail_message = TRUE
+
+	if(!successful_sneak_attack)
+		if(sneak_attack_fail_message)
+			user.balloon_alert(carbon_target, "sneak attack avoided!")
+		return
+
+	var/obj/item/bodypart/affecting = carbon_target.get_bodypart(user.get_random_valid_zone(user.zone_selected))
+	var/armor_block = carbon_target.run_armor_check(affecting, MELEE, armour_penetration = armour_penetration)
+
+	carbon_target.apply_damage(10, BRUTE, def_zone = affecting, blocked = armor_block, wound_bonus = exposed_wound_bonus, sharpness = SHARP_EDGED)
+	carbon_target.balloon_alert(user, "sneak attack!")
+	playsound(carbon_target, 'sound/items/weapons/guillotine.ogg', 50, TRUE)
 
 /obj/item/forging/reagent_weapon/staff //doesn't do damage. Useful for healing reagents.
 	name = "reagent staff"
@@ -130,7 +190,7 @@
 /obj/item/forging/reagent_weapon/spear
 	name = "reagent spear"
 	desc = "A long spear that can be wielded in two hands to boost damage at the cost of single-handed versatility."
-	force = 10
+	force = 7
 	throwforce = 22
 	armour_penetration = 10
 	icon_state = "spear"
@@ -152,14 +212,14 @@
 	. = ..()
 	AddComponent(/datum/component/jousting, max_tile_charge = 9, min_tile_charge = 6)
 	AddComponent(/datum/component/butchering, speed = 10 SECONDS, effectiveness = 70)
-	AddComponent(/datum/component/two_handed, force_multiplier = 1.8)
+	AddComponent(/datum/component/two_handed, force_multiplier = 2)
 	AddComponent(/datum/component/two_hand_reach, unwield_reach = 1, wield_reach = 2)
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
-/obj/item/forging/reagent_weapon/axe
+/obj/item/forging/reagent_weapon/axe //>Made to be thrown, >Bulky, >Respects extra shield blockchance against throw
 	name = "reagent axe"
-	desc = "An axe especially balanced for throwing and embedding into fleshy targets. Nonetheless useful as a traditional melee tool."
-	force = 10
+	desc = "An axe especially balanced for throwing and embedding into fleshy targets, yet also effective at destroying shields of all sorts."
+	force = 7
 	armour_penetration = 10
 	icon_state = "axe"
 	inhand_icon_state = "axe"
@@ -177,18 +237,46 @@
 /datum/embedding/forged_axe
 	embed_chance = 65
 	fall_chance = 10
-	pain_mult = 4
+	pain_mult = 3
 
 /obj/item/forging/reagent_weapon/axe/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, speed = 10 SECONDS, effectiveness = 70)
-	AddComponent(/datum/component/two_handed, force_multiplier = 1.8)
+	AddComponent(/datum/component/two_handed, force_multiplier = 2)
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
+
+
+/obj/item/forging/reagent_weapon/axe/attack(mob/living/M, mob/living/user, params)
+	. = ..()
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		for(var/obj/item/shield/I in H.held_items)
+			if(I.hit_reaction())
+				if(I.breakable_by_damage)
+					I.take_damage(20, MELEE, armour_penetration = 100)
+					user.balloon_alert(user, "Devastating blow!")
+				else
+					user.balloon_alert(user, "Crippling blow!")
+					H.apply_damage(15, STAMINA)
+			else
+				return
+
+/obj/item/forging/reagent_weapon/axe/pre_attack(mob/living/M, mob/living/user, params)
+	. = ..()
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		for(var/obj/item/shield/I in H.held_items)
+			if(I.breakable_by_damage)
+				user.balloon_alert(user, "Devastating blow!")
+				I.take_damage(15, BRUTE, 0, FALSE, get_dir(user, H))
+			else
+				user.balloon_alert(user, "Crippling blow!")
+				H.apply_damage(15, STAMINA)
 
 /obj/item/forging/reagent_weapon/hammer
 	name = "reagent hammer"
 	desc = "A heavy, weighted hammer that packs an incredible punch but can prove to be unwieldy. Useful for forging!"
-	force = 10 //strong when wielded, but boring.
+	force = 7 //strong when wielded, but boring.
 	armour_penetration = 10
 	icon_state = "crush_hammer"
 	inhand_icon_state = "crush_hammer"
@@ -209,12 +297,12 @@
 /obj/item/forging/reagent_weapon/hammer/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/kneejerk)
-	AddComponent(/datum/component/two_handed, force_multiplier = 2)
+	AddComponent(/datum/component/two_handed, force_multiplier = 2.4)
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
 /obj/item/forging/reagent_weapon/hammer/attack(mob/living/M, mob/living/user, params)
 	. = ..()
-	user.changeNext_move(CLICK_CD_HANDCUFFED)
+	user.changeNext_move(CLICK_CD_SLOW) //The hammer attacks slower but has more damage, that's it's thing now
 
 /obj/item/shield/buckler/reagent_weapon //Same as a buckler, but metal.
 	name = "reagent plated buckler shield"
@@ -341,7 +429,7 @@
 /obj/item/forging/reagent_weapon/bokken/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed,\
-		force_multiplier = 1.8, \
+		force_multiplier = 2, \
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
