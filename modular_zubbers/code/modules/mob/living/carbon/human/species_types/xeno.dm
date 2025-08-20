@@ -15,7 +15,7 @@
 
 		"Hybrids were first documented as part of a research project on the Xenomorph genome, originally \
 		meant to produce super-soldiers. Efforts to do so for the most part, have failed. \
-		That hasn't stopped the beginnings of a new project-- As part of Operation Chimera, the Solar Bureau of Intelligence \
+		That hasn't stopped the beginnings of a new project-- as part of Operation Chimera, the Solar Bureau of Intelligence \
 		planned to use the xenomorphs' ability to bond with others of their species to turn a bioweapon \
 		into a species that could be reasoned, communicated with, and most of all, controlled. Time was short for solutions \
 		as a xenomorph infestation had begun to take over multiple independent worlds in the Ombrux sector.",
