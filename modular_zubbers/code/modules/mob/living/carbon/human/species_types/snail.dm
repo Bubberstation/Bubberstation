@@ -12,8 +12,8 @@
 	return list(
 		"Snailpeople are a species of snail that has evolved from the Common Mollusk, \
 		defying expectations after its introduction to the planet Elizabeth II in the Australicus sector. \
-		Galactic observers believed that the sentient species that came about as a result of extensive terraforming and \
-		sheer luck in terms of natural predators would surely die out due to their slow speed.",
+		Galactic observers believed that the sentient species that came about mostly by accident during \
+		the terraforming process would surely die out due to their slow speed.",
 
 		"They were wrong. Snailpeople just have way too many children, and they taste horrible to predators. \
 		Almost 100 years later, they have formed something resembling a functioning civilization. Snailpeople are relatively new to the universe, \
