@@ -222,6 +222,7 @@
 	desc = "An axe especially balanced for throwing and embedding into fleshy targets, yet also effective at destroying shields of all sorts."
 	force = 7
 	armour_penetration = 10
+	wound_bonus = -5
 	icon_state = "axe"
 	inhand_icon_state = "axe"
 	worn_icon_state = "axe_back"
@@ -238,7 +239,7 @@
 /datum/embedding/forged_axe
 	embed_chance = 65
 	fall_chance = 10
-	pain_mult = 3
+	pain_mult = 2
 
 /obj/item/forging/reagent_weapon/axe/Initialize(mapload)
 	. = ..()
@@ -279,6 +280,7 @@
 	desc = "A heavy, weighted hammer that packs an incredible punch but can prove to be unwieldy. Useful for forging!"
 	force = 7 //strong when wielded, but boring.
 	armour_penetration = 10
+	wound_bonus = -5
 	icon_state = "crush_hammer"
 	inhand_icon_state = "crush_hammer"
 	worn_icon_state = "hammer_back"
