@@ -36,10 +36,11 @@
 		Another initiative that has produced hybrids is Operation Chimera, the Solar Bureau of Intelligence's \
 		interesting and desperate plan to use the xenomorphs' ability to bond with others \
 		to turn a bioweapon	into a species that could be controlled. Time was short for solutions \
-		as a xenomorph infestation had begun to take over multiple independent worlds in the Ombrux sector, threatening the interior.",
+		as a xenomorph infestation had begun to take over multiple independent worlds in the Ombrux sector, threatening the interior, \
+		and... it didn't really work. That said, the infestation has been stalled as a result of effective orbital bombardment.",
 
-		"It didn't really work. That said, the infestation has been stalled as a result of effective orbital bombardment. \
-		These days, Xenomorph hybrids are in an odd place, rejected both by society and the species that created them. \
+
+		"These days, Xenomorph hybrids are in an odd place, rejected both by society and the species that created them. \
 		Nanotrasen's xenoscience division offers an acclimitization program for these outcasts, \
 		marking the beginnings of integration. In this slow drive to acceptance, they find comfort in their shared hive.",
 	)
