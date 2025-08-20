@@ -27,17 +27,18 @@
 	worn_icon_state = "sword_back"
 	inside_belt_icon_state = "sword_belt"
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
-	throwforce = 10 //either we make it melee block only or we don't give it too much. It's bulkly so the buckler is superior
+	throwforce = 10
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = FIRE_PROOF
+	block_chance = 30
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 	sharpness = SHARP_EDGED
 	max_integrity = 150
 	var/wielded = FALSE
 	var/unwielded_block_chance = 30
-	var/wielded_block_chance = 40
+	var/wielded_block_chance = 45
 
 /obj/item/forging/reagent_weapon/sword/Initialize(mapload)
 	. = ..()
@@ -204,8 +205,8 @@
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("attack", "poke", "jab", "tear", "lacerate", "gore")
-	wound_bonus = -20
-	exposed_wound_bonus = 15
+	wound_bonus = -10
+	exposed_wound_bonus = 20
 	sharpness = SHARP_POINTY
 
 /obj/item/forging/reagent_weapon/spear/Initialize(mapload)
@@ -216,7 +217,7 @@
 	AddComponent(/datum/component/two_hand_reach, unwield_reach = 1, wield_reach = 2)
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
-/obj/item/forging/reagent_weapon/axe //>Made to be thrown, >Bulky, >Respects extra shield blockchance against throw
+/obj/item/forging/reagent_weapon/axe
 	name = "reagent axe"
 	desc = "An axe especially balanced for throwing and embedding into fleshy targets, yet also effective at destroying shields of all sorts."
 	force = 7
@@ -246,7 +247,7 @@
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
 
-/obj/item/forging/reagent_weapon/axe/attack(mob/living/M, mob/living/user, params)
+/obj/item/forging/reagent_weapon/axe/attack(mob/living/M, mob/living/user, params) //Damage shields, if shield cannot be damaged, then damage the user's stamina.
 	. = ..()
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
