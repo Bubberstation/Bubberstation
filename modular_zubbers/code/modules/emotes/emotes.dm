@@ -217,3 +217,10 @@
 	message = "quickly moos!"
 	emote_type = EMOTE_AUDIBLE
 	sound = 'goon/sounds/cow.ogg'
+
+/datum/emote/living/deermah
+	key = "mah"
+	key_third_person = "mahs"
+	message = "bleats like a deer!"
+	emote_type = EMOTE_AUDIBLE
+	sound = 'modular_skyrat/modules/customization/game/objects/items/sound/leaplush.ogg'
