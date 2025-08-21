@@ -61,3 +61,13 @@
 		/obj/item/mod/module/hat_stabilizer/syndicate,
 		/obj/item/mod/module/quick_cuff,
 	)
+
+//Empty infiltrator MOD for the Syndicate Boarder preview
+/obj/item/mod/control/pre_equipped/empty/infiltrator/preview_only
+	theme = /datum/mod_theme/infiltrator/preview_only
+
+//Making this so it has no modules
+/datum/mod_theme/infiltrator/preview_only
+	inbuilt_modules = list()
+	slot_flags = ITEM_SLOT_BACK
+
