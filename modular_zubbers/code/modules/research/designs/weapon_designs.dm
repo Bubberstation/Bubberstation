@@ -1,4 +1,3 @@
-
 /datum/design/kiboko_mag
 	name = "Kiboko Grenade Magazine"
 	desc = "A standard magazine for compatible grenade launcher."
@@ -52,6 +51,18 @@
 //This shit is a mistake but we embraced it instead of removing it, They all will require plastic to make alongside the iron cost
 //I hate it
 
+/datum/design/advancedgaugeboxes
+	name = "12 Gauge Advanced Buckshot Ammunition Box(Lethal)"
+	desc = "A 12 gauge ammunition box for shotgun shells."
+	id = "s12g_buckshot"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 20, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 25)
+	build_path = /obj/item/ammo_box/advanced/s12gauge/buckshot
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
 /datum/design/advancedgaugeboxes_slug
 	name = "12 Gauge Advanced Slug Ammunition Box(Lethal)"
 	desc = "A 12 gauge ammunition box for shotgun shells."
@@ -64,13 +75,13 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
-/datum/design/advancedgaugeboxes
-	name = "12 Gauge Advanced Buckshot Ammunition Box(Lethal)"
+/datum/design/advancedgaugeboxes_flech
+	name = "12 Gauge Advanced Flechette Ammunition Box(Lethal)"
 	desc = "A 12 gauge ammunition box for shotgun shells."
-	id = "s12g_buckshot"
+	id = "s12g_flechette"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 20, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 25)
-	build_path = /obj/item/ammo_box/advanced/s12gauge/buckshot
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 20, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 6, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 25)
+	build_path = /obj/item/ammo_box/advanced/s12gauge/flechette
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
