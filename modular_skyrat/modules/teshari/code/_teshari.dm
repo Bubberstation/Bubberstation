@@ -1,4 +1,4 @@
-#define TESHARI_TEMP_OFFSET -30 // K, added to comfort/damage limit etc
+#define TESHARI_TEMP_OFFSET -10 // K, added to comfort/damage limit etc
 #define TESHARI_HEATMOD 1.3
 #define TESHARI_COLDMOD 0.67 // Except cold.
 
@@ -59,7 +59,7 @@
 	)
 
 /obj/item/organ/tongue/teshari
-	liked_foodtypes = MEAT | GORE | RAW
+	liked_foodtypes = SEAFOOD | VEGETABLES | NUTS
 	disliked_foodtypes = GROSS | GRAIN
 
 /datum/species/teshari/prepare_human_for_preview(mob/living/carbon/human/tesh)
