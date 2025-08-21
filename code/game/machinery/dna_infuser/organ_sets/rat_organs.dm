@@ -16,8 +16,8 @@
 	name = "mutated rat-eyes"
 	desc = "Rat DNA infused into what was once a normal pair of eyes."
 	flash_protect = FLASH_PROTECTION_HYPER_SENSITIVE
-	//eye_color_left = COLOR_BLACK // BUBBER EDIT REMOVAL
-	//eye_color_right = COLOR_BLACK // BUBBER EDIT REMOVAL
+	eye_color_left = COLOR_BLACK
+	eye_color_right = COLOR_BLACK
 
 	iris_overlay = null
 	icon = 'icons/map_icons/items/_item.dmi'
