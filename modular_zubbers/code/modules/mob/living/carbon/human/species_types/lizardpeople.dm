@@ -1,7 +1,3 @@
-/datum/species/lizard
-	name = "\improper Tiziran Lizardperson"
-	//renames Lizardpeople to Tizirans for clarity.
-
 /datum/species/lizard/on_bloodsucker_gain(mob/living/carbon/human/target, datum/species/current_species)
 	bodytemp_heat_damage_limit = BODYTEMP_HEAT_DAMAGE_LIMIT
 	bodytemp_cold_damage_limit = BODYTEMP_COLD_DAMAGE_LIMIT
