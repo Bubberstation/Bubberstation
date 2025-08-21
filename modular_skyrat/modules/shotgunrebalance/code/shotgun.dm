@@ -70,58 +70,6 @@
 	<i>HORNET'S NEST: Fire an overwhelming amount of projectiles in a single shot.</i>"
 	can_be_printed = FALSE
 
-/obj/item/ammo_casing/shotgun/buckshot
-	name = "buckshot shell"
-	desc = "A 12 gauge buckshot shell."
-	icon_state = "gshell"
-	projectile_type = /obj/projectile/bullet/pellet/shotgun_buckshot
-	pellets = 8 // 8 * 6 for 48 damage if every pellet hits, we want to keep lethal shells ~50 damage
-	variance = 25
-
-/obj/projectile/bullet/pellet/shotgun_buckshot
-	name = "buckshot pellet"
-	damage = 6
-	weak_against_armour = TRUE
-
-/obj/item/ammo_casing/shotgun/rubbershot
-	name = "rubber shot"
-	desc = "A shotgun casing filled with densely-packed rubber balls, used to incapacitate crowds from a distance."
-	icon_state = "rshell"
-	projectile_type = /obj/projectile/bullet/pellet/shotgun_rubbershot
-	pellets = 6 // 6 * 10 for 60 stamina damage, + some small amount of brute, we want to keep less lethal shells ~60
-	variance = 20
-	harmful = FALSE
-
-/obj/projectile/bullet/pellet/shotgun_rubbershot
-	weak_against_armour = TRUE
-	stamina = 10
-
-/obj/item/ammo_casing/shotgun/flechette
-	name = "flechette shell"
-	desc = "A 12 gauge flechette shell that specializes in ripping armored targets apart. These are exceptionally strong against armored targets."
-	icon_state = "fshell"
-	projectile_type = /obj/projectile/bullet/pellet/shotgun_buckshot/flechette
-	pellets = 5
-	variance = 15
-	custom_materials = AMMO_MATS_SHOTGUN_FLECH
-	advanced_print_req = TRUE
-
-/obj/projectile/bullet/pellet/shotgun_buckshot/flechette
-	name = "flechette"
-	icon = 'modular_skyrat/modules/shotgunrebalance/icons/projectiles.dmi'
-	icon_state = "flechette"
-	damage = 7
-	armour_penetration = 40
-	wound_bonus = 0
-	exposed_wound_bonus = 0
-	sharpness = SHARP_EDGED //Did you knew flechettes fly sideways into people
-	damage_falloff_tile = -0.7 // Five tiles will halve the effectiveness dramatically
-	wound_falloff_tile = -3
-
-/obj/projectile/bullet/pellet/shotgun_buckshot/flechette/Initialize(mapload)
-	. = ..()
-	SpinAnimation()
-
 /obj/item/ammo_casing/shotgun/beehive
 	name = "hornet shell"
 	desc = "A less-lethal 12 gauge shell that fires four pellets capable of bouncing off nearly any surface \
