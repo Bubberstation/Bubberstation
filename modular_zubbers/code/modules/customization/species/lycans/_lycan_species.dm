@@ -5,6 +5,9 @@
 	name = "\improper Lycan"
 	sexes = TRUE
 
+	coldmod = 0.67 // They have thick fur so I guess this makes sense.
+	heatmod = 1.3
+
 	digitigrade_customization = DIGITIGRADE_FORCED
 
 	mutant_bodyparts = list()
