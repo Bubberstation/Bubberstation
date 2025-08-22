@@ -15,7 +15,7 @@
 //Quirk addition
 /datum/quirk/egg_production/add(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
-	var/datum/action/cooldown/mob_cooldown/egg_production/action = new /datum/action/cooldown/mob_cooldown/egg_production(human_holder, our_reagent = reagent)
+	var/datum/action/cooldown/mob_cooldown/egg_production/action = new /datum/action/cooldown/mob_cooldown/egg_production(quirk_holder)
 	action.Grant(human_holder)
 //Quirk removal
 /datum/quirk/egg_production/remove()
@@ -29,24 +29,24 @@
 //List of valid reagents
 GLOBAL_LIST_INIT(egg_production_reagents, list(
 	/// Format: (Reagent typepath -> list(amount of reagent required per egg, cooldown per egg added to buffer))
-	/datum/reagent/consumable/cum = list(15, 10 SECONDS)
-	/datum/reagent/drug/aphrodisiac/crocin = list(20, 20 SECONDS)
-	/datum/reagent/drug/aphrodisiac/crocin/hexacrocin = list(10, 30 SECONDS)
+	/datum/reagent/consumable/cum = list(15, 10 SECONDS),
+	/datum/reagent/drug/aphrodisiac/crocin = list(20, 20 SECONDS),
+	/datum/reagent/drug/aphrodisiac/crocin/hexacrocin = list(10, 30 SECONDS),
 ))
 
 /// Egg creation segment
-/datum/quirks/neutral_quirks/egg_production/proc/on_life(seconds_per_tick, times_fired)
+/datum/quirk/egg_production/proc/on_life(seconds_per_tick, times_fired)
 	. = ..()
 	create_egg(owner)
 
-/datum/quirk/neutral_quirks/egg_production/proc/refresh_cooldown()
+/datum/quirk/egg_production/proc/refresh_cooldown()
 	production_cooldown = FALSE
 
 //checks which reagent is a valid value and procs to increment stored eggs by 1, if it is below the maximum eggs stored
-/datum/quirks/neutral_quirks/egg_production/proc/create_egg(mob/living/human/human_holder, seconds_per_tick, times_fired)
+/datum/quirk/egg_production/proc/create_egg(mob/living/human/human_holder, seconds_per_tick, times_fired)
 	var/list/cached_reagents = egg_production_reagents
 	for(var/datum/reagent/reagent as anything in cached_reagents)
-		if(reagents.amount >= egg_production_reagents[reagent[1]] && eggs_stored.amount <= maximum_eggs)
+		if(reagents.amount >= egg_production_reagents[reagent[1]] && eggs_stored <= maximum_eggs)
 			eggs_stored += 1
 			production_cooldown = TRUE
 			addtimer(CALLBACK(src, PROC_REF(refresh_cooldown(reagent))), egg_production_reagents[reagent[2]])
@@ -65,11 +65,9 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 	/// The the object we will produce.
 	var/obj/item/food/egg/egg
 
-/datum/action/cooldown/mob_cooldown/egg_production/activate()
+/datum/action/cooldown/mob_cooldown/egg_production/Activate()
 	owner.visible_message(span_alertalien("[owner] starts to lay an egg..."), span_alertalien("You start laying an egg..."))
-	. = ..()
-
-	if(eggs_stored.amount <= 0)
+	if(eggs_stored <= 0)
 		owner.balloon_alert(owner, "no eggs to lay!")
 		return FALSE
 
