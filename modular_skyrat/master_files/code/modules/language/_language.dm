@@ -26,8 +26,5 @@
 /datum/language/marish/empathy
 	secret = TRUE
 
-/datum/language/terrum
-	secret = TRUE
-
 /datum/language/sylvan
 	secret = TRUE
