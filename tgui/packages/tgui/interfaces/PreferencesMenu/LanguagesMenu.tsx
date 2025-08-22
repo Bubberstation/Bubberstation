@@ -9,26 +9,32 @@ export const KnownLanguage = (props) => {
     <Stack.Item>
       <Section
         title={
-          <>
-            {props.language.name}{' '}
-            <Button
-              color="bad"
-              onClick={() =>
-                act('remove_language', { language_name: props.language.name })
-              }
-            >
-              Forget <Box className={`languages16x16 ${props.language.icon}`} />
-            </Button>
-          </>
+          <Tooltip
+            content={
+              <>
+                <div>Spoken? {props.language.can_speak ? 'Yes' : 'No'}</div>
+                <div>
+                  Understood? {props.language.can_understand ? 'Yes' : 'No'}
+                </div>
+              </>
+            }
+          >
+            <Box as="span">
+              {props.language.name}{' '}
+              <Button
+                color="bad"
+                onClick={() =>
+                  act('remove_language', { language_name: props.language.name })
+                }
+              >
+                Forget{' '}
+                <Box className={`languages16x16 ${props.language.icon}`} />
+              </Button>
+            </Box>
+          </Tooltip>
         }
       >
         {props.language.description}
-        <br />
-        <br />
-        {props.language.can_understand
-          ? 'Can understand.'
-          : 'Cannot understand.'}{' '}
-        {props.language.can_speak ? 'Can speak.' : 'Cannot speak.'}
       </Section>
     </Stack.Item>
   );
