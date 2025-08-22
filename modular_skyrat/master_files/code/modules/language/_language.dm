@@ -18,7 +18,7 @@
 	secret = TRUE
 
 /datum/language/xenocommon
-	secret = FALSE
+	secret = TRUE
 
 /datum/language/monkey
 	secret = TRUE
