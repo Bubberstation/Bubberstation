@@ -47,9 +47,12 @@
 
 /obj/projectile/bullet/security_missile/on_hit(atom/target, blocked = 0, pierce_hit)
 
-	var/turf/our_turf = get_turf(src)
+	var/turf/our_turf = get_turf(src) //get our current turf before the below code is called.
 
-	..()
+	. = ..()
+
+	if(. == BULLET_ACT_FORCE_PIERCE)
+		return .
 
 	if(!our_turf)
 		return BULLET_ACT_BLOCK //Some fuckery afoot.
@@ -58,20 +61,22 @@
 		new /obj/item/broken_missile/security(our_turf)
 		if(isliving(target))
 			var/mob/living/target_as_living = target
-			var/head_armor = target_as_living.run_armor_check(BODY_ZONE_HEAD, MELEE, silent = TRUE)
-			if(head_armor < 15 && target_as_living.Stun(2 SECONDS)) //Stuns if you have less than 15 head armor.
-				playsound(target, 'modular_zubbers/code/modules/emotes/sound/effects/bonk.ogg', 50, FALSE, -1)
-			else
-				playsound(target, 'sound/items/weapons/smash.ogg', 50, TRUE, -1)
-				if(isliving(firer) && prob(5))
-					var/mob/living/firer_as_living = firer
-					firer_as_living.say("A DUD!!", forced = "rocket dud")
 
-		return BULLET_ACT_HIT //Will still do damage, but it won't explode like below.
+			if(. != BULLET_ACT_BLOCK && blocked < 15 && target_as_living.Stun(1.5 SECONDS)) //If it was a hit, you have less than 15 armor on that spot, and the stun went through...
+				playsound(target, 'modular_zubbers/code/modules/emotes/sound/effects/bonk.ogg', 50, FALSE, -1) //Bonk!
+				return .
+
+			if(isliving(firer) && prob(5))
+				var/mob/living/firer_as_living = firer
+				firer_as_living.say("A DUD!!", forced = "rocket dud")
+
+		playsound(target, 'sound/items/weapons/smash.ogg', 50, TRUE, -1)
+
+		return . //Will still do damage (if not blocked), but it won't explode like below.
 
 	fake_explode(src, explosion_damage, src)
 
-	return BULLET_ACT_HIT
+	return .
 
 
 /obj/projectile/bullet/security_missile/proc/initialize_radar()
@@ -109,8 +114,8 @@
 				continue
 
 		var/calculated_weight = 0
-		if(found_turf.density && (found_turf.turf_flags & IS_SOLID)) //A wall
-			var/heat_capacity_compare = /turf/open/misc::heat_capacity
+		if(found_turf.density && (found_turf.turf_flags & IS_SOLID)) //A wall or floor.
+			var/heat_capacity_compare = /turf/open/misc::heat_capacity //Compare it to a regular floor.
 			if(found_turf.heat_capacity == INFINITY)
 				calculated_weight = /turf/closed/wall/r_wall::heat_capacity / heat_capacity_compare
 			else
@@ -125,11 +130,11 @@
 				if(found_movable.invisibility > INVISIBILITY_REVENANT) //No radar signature.
 					continue
 				if(found_movable.uses_integrity)
-					calculated_weight += found_movable.max_integrity/100
+					calculated_weight += found_movable.max_integrity/HUMAN_MAXHEALTH
 					continue
 				if(isliving(found_movable))
 					var/mob/living/found_living = found_movable
-					calculated_weight += (max(100, min(found_living.maxHealth, 400))/100)*2 //400 is the health of a space dragon.
+					calculated_weight += clamp(found_living.maxHealth/HUMAN_MAXHEALTH,1,4)*2 //4 times human health is roughly the same as a space dragon.
 					continue
 
 		if(calculated_weight > 0)
