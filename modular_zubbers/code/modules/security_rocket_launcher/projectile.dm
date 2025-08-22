@@ -129,13 +129,13 @@
 					continue
 				if(isliving(found_movable))
 					var/mob/living/found_living = found_movable
-					calculated_weight += max(100, min(found_living.maxHealth, 400))/100 //400 is the health of a space dragon.
+					calculated_weight += (max(100, min(found_living.maxHealth, 400))/100)*2 //400 is the health of a space dragon.
 					continue
 
 		if(calculated_weight > 0)
 			calculated_weight *= 100 //Increases precision for the below calculations.
 			calculated_weight /= (1 + max(1, get_dist(src, found_turf))/5) //Half weight at 5 tiles distance, however with a minimum value of 1 for distance Remember, max means get largest.
-			calculated_weight /= (1 + found_angle_difference/90) //Half weight at 90 degrees difference.
+			calculated_weight /= (1 + found_angle_difference/45) //Half weight at 45 degrees difference.
 			calculated_weight = FLOOR(calculated_weight, 1)
 			if(calculated_weight > 0) //The calculation above can set this to 0.
 				turf_to_weight[found_turf] = calculated_weight
