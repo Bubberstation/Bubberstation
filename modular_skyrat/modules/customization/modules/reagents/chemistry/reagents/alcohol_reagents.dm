@@ -37,7 +37,7 @@
 	name = "Synthanol"
 	description = "A runny liquid with conductive capacities. Its effects on synthetics are similar to those of alcohol on organics."
 	color = "#1BB1FF"
-	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC
+	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC | REAGENT_PROTEAN
 	boozepwr = 50
 	quality = DRINK_NICE
 	taste_description = "motor oil"
