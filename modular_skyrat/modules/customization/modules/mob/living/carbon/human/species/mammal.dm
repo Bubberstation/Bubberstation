@@ -20,7 +20,7 @@
 		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/mutant,
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/mutant,
 	)
-	language_prefs_whitelist = list(/datum/language/nekomimetic) //In case you're making a cat anthro
+	language_prefs_whitelist = list(/datum/language/nekomimetic, /datum/language/carptongue) //In case you're making a cat anthro or a shark
 
 /datum/species/mammal/get_default_mutant_bodyparts()
 	return list(
