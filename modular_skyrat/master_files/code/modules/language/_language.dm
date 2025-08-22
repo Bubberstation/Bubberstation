@@ -17,6 +17,9 @@
 /datum/language/piratespeak
 	secret = TRUE
 
+/datum/language/xenocommon
+	secret = FALSE
+
 /datum/language/monkey
 	secret = TRUE
 
