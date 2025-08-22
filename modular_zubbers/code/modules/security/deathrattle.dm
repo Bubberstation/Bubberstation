@@ -92,4 +92,19 @@ GLOBAL_VAR_INIT(allow_security_deathrattle,TRUE)
 	implant_order.special_enabled = TRUE
 
 /datum/round_event/security_deathrattle_implants/announce(fake)
-	priority_announce("Due to \"[pick(GLOB.card_decks["white"])]\", Deathrattle Implants are available to be purchased for security from Cargo.", "Nanotrasen Safety Division")
+
+	var/reason = "SHITCODE"
+	switch(rand(1,3))
+		if(1)
+			var/adjectives = pick_list(ION_FILE, "ionadjectives")
+			var/threats = pick_list(ION_FILE, "ionthreats")
+			reason = "[adjectives] [threats]"
+		if(2)
+			var/abstract = pick_list(ION_FILE, "ionabstract")
+			reason = "the spirit of [abstract]"
+		if(3)
+			var/allergy = pick_list(ION_FILE, "ionallergy")
+			var/food = prob(80) ? pick_list(ION_FILE, "ionfood") : pick_list(ION_FILE, "iondrinks")
+			reason = "the presence of [allergy] in the station's [food]"
+
+	priority_announce("Due to \"[LOWER_TEXT(reason)]\", Security Deathrattle Implants are available to be purchased via the Cargo Ordering System.", "Nanotrasen Safety Division")
