@@ -24,7 +24,6 @@
 	)
 
 	meat = /obj/item/food/fishmeat/moonfish/akula
-	language_prefs_whitelist = list(/datum/language/carptongue)
 
 /datum/species/aquatic/get_default_mutant_bodyparts()
 	return list(

@@ -20,7 +20,7 @@
 		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/mutant,
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/mutant,
 	)
-	language_prefs_whitelist = list(/datum/language/carptongue, /datum/language/monkey)
+	language_prefs_whitelist = list(/datum/language/monkey)
 
 /datum/species/mammal/get_default_mutant_bodyparts()
 	return list(
