@@ -17,9 +17,6 @@
 /datum/language/piratespeak
 	secret = TRUE
 
-/datum/language/xenocommon
-	secret = TRUE
-
 /datum/language/monkey
 	secret = TRUE
 
@@ -30,9 +27,6 @@
 	secret = TRUE
 
 /datum/language/terrum
-	secret = TRUE
-
-/datum/language/slime
 	secret = TRUE
 
 /datum/language/sylvan
