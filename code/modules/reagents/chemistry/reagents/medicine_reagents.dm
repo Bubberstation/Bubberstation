@@ -1377,7 +1377,10 @@
 		need_mob_update += affected_mob.adjustStaminaLoss(-8 * REM * seconds_per_tick, updating_stamina = FALSE, required_biotype = affected_biotype)
 		need_mob_update += affected_mob.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2 * REM * seconds_per_tick, 150, affected_organ_flags)
 		affected_mob.adjust_jitter_up_to(6 SECONDS * REM * seconds_per_tick, 1 MINUTES)
-		affected_mob.grant_language(/datum/language/sylvan, source = LANGUAGE_MIND) //BUBBER EDIT ADDITION: Processing at least 10u of Earthsblood lets you permanently speak Sylvan, the precursor language
+		//BUBBER EDIT ADDITION BEGIN: Processing at least 10u of Earthsblood lets you permanently speak Sylvan, the precursor language
+		affected_mob.grant_language(/datum/language/sylvan, source = LANGUAGE_MIND)
+		to_chat(affected_mob, span_warning("As the Earthsblood courses through your veins, stoned out of your mind, you feel like your legs are becoming rooted to the ground. In moments, you are a plant, a beautiful dandelion, basking in the sun for your brief but inexhaustible life. All is perfect in the universe. You are in your element,  And then, you come to as the comparatively disappointing you, your connection to nature making Sylvan, the language of the precursor Podpeople, make sense to you."))
+		//BUBBER EDIT ADDITION END: Processing at least 10u of Earthsblood lets you permanently speak Sylvan, the precursor language
 		if(SPT_PROB(5, seconds_per_tick))
 			affected_mob.say(return_hippie_line(), forced = /datum/reagent/medicine/earthsblood)
 	affected_mob.adjust_drugginess_up_to(20 SECONDS * REM * seconds_per_tick, 30 SECONDS * REM * seconds_per_tick)
