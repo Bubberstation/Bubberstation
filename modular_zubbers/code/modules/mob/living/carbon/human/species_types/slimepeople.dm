@@ -2,7 +2,7 @@
 	mutant_bodyparts = list()
 	hair_alpha = 160 //a notch brighter so it blends better.
 	facial_hair_alpha = 160
-	language_prefs_whitelist = list(/datum/language/slime, /datum/language/terrum, /datum/language/carptongue, /datum/language/nekomimetic)
+	language_prefs_whitelist = list(/datum/language/slime, /datum/language/terrum, /datum/language/carptongue)
 
 /datum/species/jelly/get_default_mutant_bodyparts()
 	return list(

@@ -1,7 +1,3 @@
-/datum/species/human/felinid
-	language_prefs_whitelist = list(/datum/language/nekomimetic)
-	//Makes nekomimetic exclusive to felinids
-
 /datum/species/human/felinid/get_species_description()
 	return list(
 		"Felinids are one of the many types of bespoke genetic \

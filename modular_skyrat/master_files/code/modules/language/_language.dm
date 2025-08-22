@@ -29,9 +29,6 @@
 /datum/language/marish/empathy
 	secret = TRUE
 
-/datum/language/nekomimetic
-	secret = TRUE
-
 /datum/language/carptongue
 	secret = TRUE
 
