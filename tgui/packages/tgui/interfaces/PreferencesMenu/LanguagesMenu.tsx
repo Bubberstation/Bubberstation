@@ -77,8 +77,16 @@ export const LanguagesPage = (props) => {
 
   return (
     <Stack>
-      <Stack.Item minWidth="50%">
-        <Section title={`Available Languages (${remaining} remaining)`}>
+      <Stack.Item minWidth="50%" style={{ marginRight: '4px' }}>
+        <Box style={{ maxHeight: '80vh', overflowY: 'auto' }}>
+          <Section
+            style={{
+              position: 'sticky',
+              top: 0,
+              zIndex: 1,
+            }}
+            title={`Available Languages (${remaining} remaining)`}
+          />
           <Stack vertical>
             {data.unselected_languages.map((val) => (
               <UnknownLanguage
@@ -89,22 +97,30 @@ export const LanguagesPage = (props) => {
               />
             ))}
           </Stack>
-        </Section>
+        </Box>
       </Stack.Item>
-
-      <Stack.Item minWidth="50%" style={{ marginLeft: '6px' }}>
-        <Section title={`Known Languages (${currentCount} of ${maxAllowed})`}>
-          {isAtLimit && (
-            <Box color="bad" mb={1}>
-              You have reached the maximum number of languages.
-            </Box>
-          )}
+      <Stack.Item minWidth="50%">
+        <Box style={{ maxHeight: '80vh', overflowY: 'auto' }}>
+          <Section
+            style={{
+              position: 'sticky',
+              top: 0,
+              zIndex: 1,
+            }}
+            title={`Known Languages (${currentCount} of ${maxAllowed})`}
+          >
+            {isAtLimit && (
+              <Box color="bad" mt={1}>
+                You have reached the maximum number of languages.
+              </Box>
+            )}
+          </Section>
           <Stack vertical>
             {data.selected_languages.map((val) => (
               <KnownLanguage key={val.icon} language={val} />
             ))}
           </Stack>
-        </Section>
+        </Box>
       </Stack.Item>
     </Stack>
   );

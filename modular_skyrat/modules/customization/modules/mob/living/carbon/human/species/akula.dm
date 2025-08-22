@@ -40,6 +40,7 @@
 		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/mutant/akula,
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/mutant/akula,
 	)
+	language_prefs_whitelist = list(/datum/language/carptongue)
 
 	meat = /obj/item/food/fishmeat/moonfish/akula
 
