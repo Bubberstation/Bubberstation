@@ -1,5 +1,5 @@
 /datum/language/akulan
-	name = "Tevelu"
+	name = "Te Velu Akko"
 	desc = "The flowing, rhythmic language of the Akula, a language created in their distant times by one of their first leaders. \
 		The older form has much more flow and cadence, while the current popular form is more quick and harsh, making it easy to find most Old Nobles and hardliners just by dialect. \
 		One could compare the sound of Akko to that of the Terran Maori language."
