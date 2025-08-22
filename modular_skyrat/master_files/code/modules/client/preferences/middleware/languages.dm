@@ -63,9 +63,9 @@
 	var/list/data = list()
 
 	var/max_languages = 3
-	if(preferences.all_quirks.Find("Linguist"))
+	if(/datum/quirk/linguist::name in preferences.all_quirks)
 		max_languages++
-	if(preferences.all_quirks.Find("bilingual"))
+	if(/datum/quirk/bilingual::name in preferences.all_quirks)
 		max_languages++
 	var/species_type = preferences.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type()
@@ -131,9 +131,9 @@
 /datum/preference_middleware/languages/proc/give_language(list/params, mob/user)
 	var/language_name = params["language_name"]
 	var/max_languages = 3
-	if(preferences.all_quirks.Find("Linguist"))
+	if(/datum/quirk/linguist::name in preferences.all_quirks)
 		max_languages++
-	if(preferences.all_quirks.Find("Bilingual"))
+	if(/datum/quirk/bilingual::name in preferences.all_quirks)
 		max_languages++
 
 	if(preferences.languages && preferences.languages.len == max_languages) // too many languages
