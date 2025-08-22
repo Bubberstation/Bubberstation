@@ -77,7 +77,7 @@
 	return list(
 		/datum/language/common,
 		/datum/language/uncommon,
-		/datum/language/panslavic, //bubber edit; spinwarder removed
+		/datum/language/spinwarder, //bubber edit; spinwarder removed
 		/datum/language/draconic,
 		/datum/language/codespeak,
 		/datum/language/monkey,

@@ -29,6 +29,7 @@
 
 	)
 	species_language_holder = /datum/language_holder/shadekin
+	language_prefs_whitelist = list(/datum/language/marish/empathy)
 
 
 /datum/species/shadekin/create_pref_unique_perks()

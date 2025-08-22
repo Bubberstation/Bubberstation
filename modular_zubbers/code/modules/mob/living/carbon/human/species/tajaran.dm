@@ -20,6 +20,7 @@
 	bodytemp_cold_damage_limit = (BODYTEMP_COLD_DAMAGE_LIMIT - 35)
 	meat = /obj/item/food/meat/slab/human/mutant/feline //you monster! //mmmfghghgf cat meat
 	skinned_type = /obj/item/stack/sheet/animalhide/cat
+	language_prefs_whitelist = (/datum/language/nekomimetic)
 
 /obj/item/bodypart/chest/mutant/tajaran
 

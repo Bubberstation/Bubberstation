@@ -1,6 +1,9 @@
 /datum/language/siiktajr
 	name = "Siik'tajr"
-	desc = "Overly complicated and with a turbulent history, this tongue comprised of short-form speech mixed with growls and meows is native to the Tajara. Due to the size of their Empire, countless dialects and different idioms exist - making a simple uniform way to teach this language almost impossible. After first contact, Humans describe the tongue as sounding somewhat similar to old Scandinavian languages in some form or another. It's rarely seen spoken by those not native to Taj, though certain genemodder groups have picked up a form of the tongue."
+	desc = "Siik'tajr is an overly complicated tongue comprised of short-form speech mixed with growls and meows is native to the Tajara. \
+		Due to the breadth of their lands, countless dialects and different idioms exist - making a simple uniform way to teach this language almost impossible. \
+		After first contact, Humans describe the tongue as sounding somewhat similar to old Scandinavian languages. \
+		It's rarely seen spoken by those not native to Taj, though certain genemodder groups have picked up a form of it."
 	key = "3"
 	flags = TONGUELESS_SPEECH
 	sentence_chance = 9
