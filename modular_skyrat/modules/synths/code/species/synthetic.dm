@@ -52,7 +52,7 @@
 
 	/// Set to TRUE if the species was emagged before
 	var/emag_effect = FALSE
-	language_prefs_whitelist = list(/datum/language/slime, /datum/language/carptongue, /datum/language/chimpanzee)
+	language_prefs_whitelist = list(/datum/language/slime, /datum/language/carptongue, /datum/language/chimpanzee, /datum/language/xenocommon)
 
 /datum/species/synthetic/allows_food_preferences()
 	return FALSE
