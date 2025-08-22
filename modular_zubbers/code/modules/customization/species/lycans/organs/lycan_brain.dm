@@ -37,3 +37,8 @@
 		enter_beast_form()
 	else if(user && HAS_TRAIT(user, TRAIT_BEAST_FORM))
 		leave_beast_form()
+
+/obj/item/organ/brain/lycan/on_death(seconds_per_tick, times_fired)
+	. = ..()
+	if(owner && HAS_TRAIT(owner, TRAIT_BEAST_FORM))
+		leave_beast_form()
