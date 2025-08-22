@@ -1,4 +1,3 @@
-// THIS IS A SKYRAT UI FILE
 import { Box, Button, Section, Stack, Tooltip } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
@@ -8,7 +7,21 @@ export const KnownLanguage = (props) => {
   const { act } = useBackend<PreferencesMenuData>();
   return (
     <Stack.Item>
-      <Section title={props.language.name}>
+      <Section
+        title={
+          <>
+            {props.language.name}{' '}
+            <Button
+              color="bad"
+              onClick={() =>
+                act('remove_language', { language_name: props.language.name })
+              }
+            >
+              Forget <Box className={`languages16x16 ${props.language.icon}`} />
+            </Button>
+          </>
+        }
+      >
         {props.language.description}
         <br />
         <br />
@@ -16,15 +29,6 @@ export const KnownLanguage = (props) => {
           ? 'Can understand.'
           : 'Cannot understand.'}{' '}
         {props.language.can_speak ? 'Can speak.' : 'Cannot speak.'}
-        <br />
-        <Button
-          color="bad"
-          onClick={() =>
-            act('remove_language', { language_name: props.language.name })
-          }
-        >
-          Forget <Box className={`languages16x16 ${props.language.icon}`} />
-        </Button>
       </Section>
     </Stack.Item>
   );
@@ -38,21 +42,26 @@ export const UnknownLanguage = ({ language, isAtLimit, remaining }) => {
 
   return (
     <Stack.Item>
-      <Section title={language.name}>
+      <Section
+        title={
+          <>
+            {language.name}{' '}
+            <Tooltip content={tooltipContent}>
+              <Button
+                color="good"
+                disabled={isAtLimit}
+                onClick={() =>
+                  !isAtLimit &&
+                  act('give_language', { language_name: language.name })
+                }
+              >
+                Learn <Box className={`languages16x16 ${language.icon}`} />
+              </Button>
+            </Tooltip>
+          </>
+        }
+      >
         {language.description}
-        <br />
-        <Tooltip content={tooltipContent}>
-          <Button
-            color="good"
-            disabled={isAtLimit}
-            onClick={() =>
-              !isAtLimit &&
-              act('give_language', { language_name: language.name })
-            }
-          >
-            Learn <Box className={`languages16x16 ${language.icon}`} />
-          </Button>
-        </Tooltip>
       </Section>
     </Stack.Item>
   );
@@ -68,7 +77,7 @@ export const LanguagesPage = (props) => {
 
   return (
     <Stack>
-      <Stack.Item minWidth="50%" style={{ marginRight: '6px' }}>
+      <Stack.Item minWidth="50%">
         <Section title={`Available Languages (${remaining} remaining)`}>
           <Stack vertical>
             {data.unselected_languages.map((val) => (
@@ -83,7 +92,7 @@ export const LanguagesPage = (props) => {
         </Section>
       </Stack.Item>
 
-      <Stack.Item minWidth="50%">
+      <Stack.Item minWidth="50%" style={{ marginLeft: '6px' }}>
         <Section title={`Known Languages (${currentCount} of ${maxAllowed})`}>
           {isAtLimit && (
             <Box color="bad" mb={1}>
