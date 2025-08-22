@@ -1394,7 +1394,7 @@
 	if(iscarbon(affected_mob))
 		var/mob/living/carbon/hippie = affected_mob
 		hippie.gain_trauma(/datum/brain_trauma/severe/pacifism)
-		hippe.grant_language(/datum/language/sylvan, source = LANGUAGE_MIND) //BUBBER EDIT: Overdosing Earthsblood lets you permanently speak Sylvan, the precursor language
+		hippie.grant_language(/datum/language/sylvan, source = LANGUAGE_MIND) //BUBBER EDIT: Overdosing Earthsblood lets you permanently speak Sylvan, the precursor language
 	if(need_mob_update)
 		return UPDATE_MOB_HEALTH
 
