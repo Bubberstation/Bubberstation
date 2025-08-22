@@ -49,9 +49,8 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 		if(reagents.amount >= egg_production_reagents[reagent[1]] && eggs_stored.amount <= maximum_eggs)
 			eggs_stored += 1
 			production_cooldown = TRUE
-return
-
-addtimer(CALLBACK(src, PROC_REF(refresh_cooldown(reagent))), egg_production_reagents[reagent[2]])
+			addtimer(CALLBACK(src, PROC_REF(refresh_cooldown(reagent))), egg_production_reagents[reagent[2]])
+	return
 
 // The action button segment.
 /datum/action/cooldown/mob_cooldown/egg_production
