@@ -1,3 +1,6 @@
+/datum/species/human
+	language_prefs_whitelist = list(/datum/language/chimpanzee) //I'm so sorry.
+
 /datum/species/human/get_species_description()
 	return list("Humans are found just about everywhere in the Known Galaxy thanks to their adaptive biology. \
 			Humans tend to make good spacers, and many have taken the role of nomads travelling the Known Galaxy.",
