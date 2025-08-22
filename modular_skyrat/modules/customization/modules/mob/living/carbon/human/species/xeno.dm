@@ -35,7 +35,6 @@
 
 	meat = /obj/item/food/meat/slab/xeno
 	skinned_type = /obj/item/stack/sheet/animalhide/xeno
-	language_prefs_whitelist = (/datum/language/xenocommon)
 
 /datum/species/xeno/get_default_mutant_bodyparts()
 	return list(
