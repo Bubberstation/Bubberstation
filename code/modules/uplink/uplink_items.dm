@@ -4,10 +4,25 @@
 	var/list/sales = list()
 	var/list/per_category = list()
 
+	/* BUBBERSTATION CHANGE START: DISCOUNT OVERHAUL
 	for (var/datum/uplink_item/possible_sale as anything in sale_items)
 		if (!(possible_sale.category in per_category))
 			per_category[possible_sale.category] = list()
 		per_category[possible_sale.category] += possible_sale
+	BUBBERSTATION CHANGE END*/
+
+
+	//BUBBERSTATION CHANGE START: DISCOUNT OVERHAUL.
+	//SEE MODULAR FILE DISCOUNT_TWEAKS.DM FOR SETTINGS.
+	for (var/datum/uplink_item/possible_sale as anything in sale_items)
+		var/datum/uplink_category/our_category = possible_sale.category
+		if(!initial(our_category.allowed_discount))
+			continue
+		if (!(possible_sale.category in per_category))
+			per_category[our_category] = list()
+		per_category[our_category] += possible_sale
+	//BUBBERSTATION CHANGE END.
+
 
 	for (var/i in 1 to num)
 		var/datum/uplink_category/item_category = pick(per_category)
