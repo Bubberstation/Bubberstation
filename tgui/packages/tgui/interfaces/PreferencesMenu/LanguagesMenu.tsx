@@ -135,14 +135,22 @@ export const LanguagesPage = (props) => {
           }}
         >
           <Stack vertical>
-            {data.unselected_languages.map((val) => (
-              <UnknownLanguage
-                key={val.icon}
-                language={val}
-                isAtLimit={isAtLimit}
-                remaining={remaining}
-              />
-            ))}
+            {[...data.unselected_languages]
+              .sort((a, b) => {
+                // GalCom first
+                if (a.name === 'Galactic Common') return -1;
+                if (b.name === 'Galactic Common') return 1;
+                // Then sort by name length ascending
+                return b.description.length - a.description.length;
+              })
+              .map((val) => (
+                <UnknownLanguage
+                  key={val.icon}
+                  language={val}
+                  isAtLimit={isAtLimit}
+                  remaining={remaining}
+                />
+              ))}
           </Stack>
         </Box>
 
