@@ -29,7 +29,7 @@
 
 	)
 	species_language_holder = /datum/language_holder/shadekin
-
+	language_prefs_whitelist = (/datum/language/sylvan) //BUBBER EDIT: Shadekin can be (extremely rarely) formed from Sylvan cloisters.
 
 /datum/species/shadekin/create_pref_unique_perks()
 	var/list/to_add = list()

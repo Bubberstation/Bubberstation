@@ -20,3 +20,6 @@
 
 /datum/language/xenocommon
 	secret = FALSE
+
+/datum/language/sylvan
+	secret = TRUE

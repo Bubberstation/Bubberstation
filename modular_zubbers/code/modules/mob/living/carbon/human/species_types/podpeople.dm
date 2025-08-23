@@ -1,5 +1,6 @@
 /datum/species/pod
 	inert_mutation = /datum/mutation/harmonizing_pulses
+	language_prefs_whitelist = list(/datum/language/sylvan)
 
 /datum/species/pod/get_species_description()
 	return list(
