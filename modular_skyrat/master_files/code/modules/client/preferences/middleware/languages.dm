@@ -133,7 +133,6 @@
 
 	if(preferences.languages && preferences.languages.len == max_languages) // too many languages
 		return TRUE
-
 	var/choice = tgui_input_list(user, \
 								"Choose understanding level", \
 								title = "Language level", \
