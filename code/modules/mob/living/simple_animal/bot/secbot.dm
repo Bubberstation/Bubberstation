@@ -498,7 +498,7 @@
 		if(nearby_carbons.client && nearby_carbons.client.move_delay + 4 SECONDS <= world.time)
 			continue
 		else if(nearby_carbons.next_move + 4 SECONDS <= world.time)
-			cotninue
+			continue
 		else if(nearby_carbons.next_click + 4 SECONDS <= world.time)
 			continue
 		//BUBBERSTATION CHANGE END: BEEPSKY IS A DINOSAUR NOW. CAN'T SEE YOU IF YOU DON'T MOVE.
