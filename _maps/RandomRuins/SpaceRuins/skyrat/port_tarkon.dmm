@@ -13,7 +13,9 @@
 	dir = 9
 	},
 /obj/effect/turf_decal/tile/neutral/anticorner,
-/obj/machinery/camera/emp_proof/directional/south,
+/obj/machinery/camera/emp_proof/directional/south{
+	network = list("tarkon")
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/centerhall)
 "ai" = (
@@ -282,7 +284,7 @@
 /obj/effect/turf_decal/tile/yellow/half{
 	dir = 1
 	},
-/obj/machinery/camera/directional/north,
+/obj/machinery/camera/preset/tarkon/directional/north,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/atmos)
 "bc" = (
@@ -457,10 +459,10 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 10
 	},
-/obj/machinery/camera/directional/north{
+/obj/machinery/camera/preset/tarkon/directional/north{
 	c_tag = "Xenobiology - Cytology Cell";
 	name = "xenobiology camera";
-	network = list("ss13","xeno","rd")
+	network = list("tarkon","xeno","rd")
 	},
 /obj/structure/alien/egg/burst,
 /turf/open/floor/iron/dark/textured_corner{
@@ -503,7 +505,9 @@
 /obj/effect/turf_decal/tile/red/real_red/half{
 	dir = 8
 	},
-/obj/machinery/camera/emp_proof/directional/west,
+/obj/machinery/camera/emp_proof/directional/west{
+	network = list("tarkon")
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/secoff)
 "bQ" = (
@@ -634,7 +638,7 @@
 /obj/effect/turf_decal/tile/purple/anticorner{
 	dir = 1
 	},
-/obj/machinery/camera/directional/north,
+/obj/machinery/camera/preset/tarkon/directional/north,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
 "cq" = (
@@ -815,7 +819,7 @@
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/trauma)
 "cV" = (
-/obj/machinery/camera/directional/west,
+/obj/machinery/camera/preset/tarkon/directional/west,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/engineering)
 "cW" = (
@@ -935,7 +939,7 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/mining)
 "dl" = (
-/obj/machinery/camera/directional/east,
+/obj/machinery/camera/preset/tarkon/directional/east,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/engineering)
 "dm" = (
@@ -981,7 +985,7 @@
 /turf/template_noop,
 /area/solars/tarkon)
 "dt" = (
-/obj/machinery/camera/directional/west,
+/obj/machinery/camera/preset/tarkon/directional/west,
 /obj/structure/alien/egg/burst,
 /turf/open/floor/circuit,
 /area/ruin/space/has_grav/port_tarkon/aichamber)
@@ -1008,7 +1012,7 @@
 /obj/item/storage/backpack/satchel/eng,
 /obj/item/clothing/head/utility/welding/hat,
 /obj/item/clothing/head/utility/welding/hat,
-/obj/machinery/camera/directional/north,
+/obj/machinery/camera/preset/tarkon/directional/north,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/port_tarkon/dorms)
 "dx" = (
@@ -1347,7 +1351,7 @@
 	id = "tarkonconstruction";
 	name = "Construction Shutters"
 	},
-/obj/machinery/camera/directional/west,
+/obj/machinery/camera/preset/tarkon/directional/west,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/engineering)
 "eG" = (
@@ -1361,7 +1365,7 @@
 /obj/effect/turf_decal/tile/purple/half{
 	dir = 1
 	},
-/obj/machinery/camera/directional/north,
+/obj/machinery/camera/preset/tarkon/directional/north,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/scienceaway)
 "eI" = (
@@ -1421,7 +1425,7 @@
 /obj/modular_map_root/port_tarkon{
 	key = "cargo"
 	},
-/obj/machinery/camera/directional/west,
+/obj/machinery/camera/preset/tarkon/directional/west,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/storage)
 "eQ" = (
@@ -1473,7 +1477,7 @@
 /turf/open/floor/engine/n2,
 /area/ruin/space/has_grav/port_tarkon/atmos)
 "eW" = (
-/obj/machinery/camera/directional/east,
+/obj/machinery/camera/preset/tarkon/directional/east,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/port_tarkon/cargo)
 "eX" = (
@@ -1505,7 +1509,7 @@
 /obj/effect/turf_decal/tile/yellow/half{
 	dir = 8
 	},
-/obj/machinery/camera/directional/west,
+/obj/machinery/camera/preset/tarkon/directional/west,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/atmos)
 "fe" = (
@@ -1856,7 +1860,9 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/comms)
 "gt" = (
-/obj/machinery/camera/emp_proof/directional/east,
+/obj/machinery/camera/emp_proof/directional/east{
+	network = list("tarkon")
+	},
 /turf/open/floor/circuit,
 /area/ruin/space/has_grav/port_tarkon/aichamber)
 "gu" = (
@@ -2244,7 +2250,9 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/cargo)
 "hD" = (
-/obj/machinery/camera/emp_proof/directional/north,
+/obj/machinery/camera/emp_proof/directional/north{
+	network = list("tarkon")
+	},
 /obj/structure/trash_pile,
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -2283,7 +2291,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/machinery/camera/directional/south,
+/obj/machinery/camera/preset/tarkon/directional/south,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/power2)
 "hJ" = (
@@ -2401,13 +2409,15 @@
 	pixel_x = 4;
 	pixel_y = 5
 	},
-/obj/machinery/camera/directional/west,
+/obj/machinery/camera/preset/tarkon/directional/west,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/port_tarkon/cargo)
 "ie" = (
 /obj/machinery/light_switch/directional/south,
 /obj/effect/turf_decal/tile/neutral/anticorner,
-/obj/machinery/camera/emp_proof/directional/south,
+/obj/machinery/camera/emp_proof/directional/south{
+	network = list("tarkon")
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/centerhall)
 "if" = (
@@ -2477,7 +2487,7 @@
 	dir = 1
 	},
 /obj/machinery/smartfridge/chemistry/virology/preloaded,
-/obj/machinery/camera/directional/north,
+/obj/machinery/camera/preset/tarkon/directional/north,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/viro)
 "is" = (
@@ -2517,7 +2527,7 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/comms)
 "iw" = (
-/obj/machinery/camera/directional/east,
+/obj/machinery/camera/preset/tarkon/directional/east,
 /obj/machinery/light/directional/east,
 /obj/machinery/modular_computer/preset/research/away,
 /turf/open/floor/iron/dark,
@@ -2608,10 +2618,10 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/camera/directional/north{
+/obj/machinery/camera/preset/tarkon/directional/north{
 	c_tag = "Science - Experimentor";
 	name = "science camera";
-	network = list("ss13","rd")
+	network = list("tarkon","rd")
 	},
 /obj/structure/alien/weeds/node,
 /turf/open/floor/engine,
@@ -2834,7 +2844,7 @@
 	dir = 4
 	},
 /obj/machinery/light_switch/directional/east,
-/obj/machinery/camera/directional/east,
+/obj/machinery/camera/preset/tarkon/directional/east,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
 	},
@@ -2954,7 +2964,7 @@
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 8
 	},
-/obj/machinery/camera/directional/south,
+/obj/machinery/camera/preset/tarkon/directional/south,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/atmos)
 "kf" = (
@@ -3067,7 +3077,9 @@
 /area/ruin/space/has_grav/port_tarkon/developement)
 "kB" = (
 /obj/machinery/light/small/directional/south,
-/obj/machinery/camera/emp_proof/directional/south,
+/obj/machinery/camera/emp_proof/directional/south{
+	network = list("tarkon")
+	},
 /turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/port_tarkon/kitchen)
 "kC" = (
@@ -3286,8 +3298,8 @@
 /obj/structure/table,
 /obj/item/stack/sheet/cardboard,
 /obj/item/food/donkpocket/pizza,
-/obj/machinery/camera/directional/east{
-	network = list("ss13","medbay");
+/obj/machinery/camera/preset/tarkon/directional/east{
+	network = list("tarkon","medbay");
 	c_tag = "Medical - Virology Break Room"
 	},
 /turf/open/floor/iron/dark,
@@ -3923,7 +3935,9 @@
 /obj/effect/turf_decal/tile/neutral/half{
 	dir = 8
 	},
-/obj/machinery/camera/emp_proof/directional/west,
+/obj/machinery/camera/emp_proof/directional/west{
+	network = list("tarkon")
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/centerhall)
 "nU" = (
@@ -4218,7 +4232,7 @@
 /obj/effect/turf_decal/tile/yellow/half{
 	dir = 1
 	},
-/obj/machinery/camera/directional/north,
+/obj/machinery/camera/preset/tarkon/directional/north,
 /obj/structure/table/reinforced,
 /obj/item/flashlight/lantern,
 /obj/item/flashlight/lantern,
@@ -4268,7 +4282,7 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/vault)
 "pl" = (
-/obj/machinery/camera/directional/south,
+/obj/machinery/camera/preset/tarkon/directional/south,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/secoff)
 "pn" = (
@@ -4596,7 +4610,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
-/obj/machinery/camera/directional/south,
+/obj/machinery/camera/preset/tarkon/directional/south,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/secoff)
 "qn" = (
@@ -4705,7 +4719,9 @@
 /area/ruin/space/has_grav/port_tarkon/atmos)
 "qE" = (
 /obj/effect/turf_decal/tile/neutral/half,
-/obj/machinery/camera/emp_proof/directional/south,
+/obj/machinery/camera/emp_proof/directional/south{
+	network = list("tarkon")
+	},
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -5;
 	pixel_y = -31
@@ -4973,7 +4989,9 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
 "rC" = (
-/obj/machinery/camera/emp_proof/directional/south,
+/obj/machinery/camera/emp_proof/directional/south{
+	network = list("tarkon")
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/aiante)
 "rD" = (
@@ -4983,7 +5001,7 @@
 "rF" = (
 /obj/structure/table/reinforced,
 /obj/item/assembly/signaler,
-/obj/machinery/camera/directional/north,
+/obj/machinery/camera/preset/tarkon/directional/north,
 /obj/effect/turf_decal/tile/yellow/anticorner{
 	dir = 4
 	},
@@ -5042,7 +5060,9 @@
 /area/ruin/space/has_grav/port_tarkon/trauma)
 "rS" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
-/obj/machinery/camera/emp_proof/directional/north,
+/obj/machinery/camera/emp_proof/directional/north{
+	network = list("tarkon")
+	},
 /obj/effect/turf_decal/tile/blue/half{
 	dir = 1
 	},
@@ -5210,7 +5230,7 @@
 /obj/effect/turf_decal/tile/brown/half{
 	dir = 1
 	},
-/obj/machinery/camera/directional/north,
+/obj/machinery/camera/preset/tarkon/directional/north,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/mining)
 "sz" = (
@@ -5330,10 +5350,10 @@
 /obj/structure/table/reinforced,
 /obj/structure/extinguisher_cabinet/directional/north,
 /obj/item/folder/white,
-/obj/machinery/camera/directional/north{
+/obj/machinery/camera/preset/tarkon/directional/north{
 	c_tag = "Xenobiology - Cytology Desk";
 	name = "xenobiology camera";
-	network = list("ss13","xeno","rd")
+	network = list("tarkon","xeno","rd")
 	},
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 1
@@ -5506,7 +5526,7 @@
 /obj/effect/turf_decal/tile/purple/half{
 	dir = 4
 	},
-/obj/machinery/camera/directional/east,
+/obj/machinery/camera/preset/tarkon/directional/east,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
 	},
@@ -5889,7 +5909,7 @@
 "uX" = (
 /obj/machinery/firealarm/directional/east,
 /obj/structure/table/wood,
-/obj/machinery/camera/directional/east,
+/obj/machinery/camera/preset/tarkon/directional/east,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/port_tarkon/dorms)
 "uZ" = (
@@ -5970,7 +5990,7 @@
 /obj/effect/turf_decal/tile/brown/half{
 	dir = 4
 	},
-/obj/machinery/camera/directional/east,
+/obj/machinery/camera/preset/tarkon/directional/east,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/cargo)
 "vl" = (
@@ -6045,7 +6065,7 @@
 /obj/machinery/computer/operating/oldstation{
 	dir = 1
 	},
-/obj/machinery/camera/directional/east,
+/obj/machinery/camera/preset/tarkon/directional/east,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
 "vx" = (
@@ -6063,7 +6083,7 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/atmos)
 "vz" = (
-/obj/machinery/camera/directional/west,
+/obj/machinery/camera/preset/tarkon/directional/west,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/aichamber)
 "vA" = (
@@ -6115,7 +6135,9 @@
 /obj/item/reagent_containers/cup/bucket,
 /obj/item/soap/nanotrasen,
 /obj/item/tape/ruins/tarkon/celebration,
-/obj/machinery/camera/emp_proof/directional/west,
+/obj/machinery/camera/emp_proof/directional/west{
+	network = list("tarkon")
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/porthall)
 "vG" = (
@@ -6123,7 +6145,9 @@
 	dir = 4
 	},
 /obj/machinery/light/directional/east,
-/obj/machinery/camera/emp_proof/directional/east,
+/obj/machinery/camera/emp_proof/directional/east{
+	network = list("tarkon")
+	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
 	},
@@ -6240,7 +6264,7 @@
 /area/ruin/space/has_grav/port_tarkon/porthall)
 "wd" = (
 /obj/structure/flora/bush/sunny,
-/obj/machinery/camera/directional/east,
+/obj/machinery/camera/preset/tarkon/directional/east,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
 	},
@@ -6328,7 +6352,7 @@
 /obj/effect/turf_decal/tile/yellow/half{
 	dir = 1
 	},
-/obj/machinery/camera/directional/north,
+/obj/machinery/camera/preset/tarkon/directional/north,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/atmos)
 "wp" = (
@@ -6625,7 +6649,7 @@
 /obj/effect/turf_decal/tile/purple/half{
 	dir = 1
 	},
-/obj/machinery/camera/directional/north,
+/obj/machinery/camera/preset/tarkon/directional/north,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
 "xx" = (
@@ -6640,7 +6664,7 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/secoff)
 "xy" = (
-/obj/machinery/camera/directional/east,
+/obj/machinery/camera/preset/tarkon/directional/east,
 /turf/open/floor/circuit,
 /area/ruin/space/has_grav/port_tarkon/aichamber)
 "xz" = (
@@ -6867,10 +6891,10 @@
 "yq" = (
 /obj/structure/bed/medical/emergency,
 /obj/machinery/iv_drip,
-/obj/machinery/camera/directional/east{
+/obj/machinery/camera/preset/tarkon/directional/east{
 	c_tag = "Medbay - Operating Room";
 	name = "medbay camera";
-	network = list("ss13","medbay")
+	network = list("tarkon","medbay")
 	},
 /obj/effect/turf_decal/tile/blue/opposingcorners,
 /turf/open/floor/iron/white,
@@ -6920,7 +6944,7 @@
 	dir = 1
 	},
 /obj/item/dice,
-/obj/machinery/camera/directional/north,
+/obj/machinery/camera/preset/tarkon/directional/north,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/comms)
 "yC" = (
@@ -6938,7 +6962,7 @@
 /turf/template_noop,
 /area/template_noop)
 "yF" = (
-/obj/machinery/camera/directional/south,
+/obj/machinery/camera/preset/tarkon/directional/south,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/port_tarkon/park)
 "yG" = (
@@ -7145,7 +7169,7 @@
 /obj/effect/turf_decal/tile/purple/half{
 	dir = 1
 	},
-/obj/machinery/camera/directional/north,
+/obj/machinery/camera/preset/tarkon/directional/north,
 /obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
@@ -7213,7 +7237,7 @@
 /obj/effect/turf_decal/tile/brown/half{
 	dir = 1
 	},
-/obj/machinery/camera/directional/north,
+/obj/machinery/camera/preset/tarkon/directional/north,
 /obj/machinery/recharge_station,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/mining)
@@ -7471,7 +7495,7 @@
 /area/template_noop)
 "An" = (
 /mob/living/basic/carp/mega,
-/obj/machinery/camera/directional/north,
+/obj/machinery/camera/preset/tarkon/directional/north,
 /turf/open/floor/plating/airless,
 /area/template_noop)
 "Ao" = (
@@ -7620,7 +7644,9 @@
 /area/ruin/space/has_grav/port_tarkon/viro)
 "AK" = (
 /obj/machinery/griddle,
-/obj/machinery/camera/emp_proof/directional/south,
+/obj/machinery/camera/emp_proof/directional/south{
+	network = list("tarkon")
+	},
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/kitchen)
@@ -7788,7 +7814,7 @@
 /obj/effect/turf_decal/tile/purple/half{
 	dir = 8
 	},
-/obj/machinery/camera/directional/west,
+/obj/machinery/camera/preset/tarkon/directional/west,
 /obj/machinery/component_printer,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
@@ -8130,7 +8156,7 @@
 /area/ruin/space/has_grav/port_tarkon/developement)
 "CC" = (
 /obj/machinery/power/smes,
-/obj/machinery/camera/directional/east,
+/obj/machinery/camera/preset/tarkon/directional/east,
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/atmos)
@@ -8152,7 +8178,7 @@
 /obj/effect/turf_decal/tile/purple/half{
 	dir = 8
 	},
-/obj/machinery/camera/directional/west,
+/obj/machinery/camera/preset/tarkon/directional/west,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
 "CF" = (
@@ -8401,7 +8427,7 @@
 /obj/effect/turf_decal/tile/purple/half{
 	dir = 1
 	},
-/obj/machinery/camera/directional/north,
+/obj/machinery/camera/preset/tarkon/directional/north,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/scienceaway)
 "DF" = (
@@ -8459,7 +8485,9 @@
 /obj/effect/turf_decal/tile/neutral/half{
 	dir = 1
 	},
-/obj/machinery/camera/emp_proof/directional/north,
+/obj/machinery/camera/emp_proof/directional/north{
+	network = list("tarkon")
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/centerhall)
 "DS" = (
@@ -8665,7 +8693,9 @@
 /obj/effect/turf_decal/tile/green/anticorner{
 	dir = 1
 	},
-/obj/machinery/camera/emp_proof/directional/north,
+/obj/machinery/camera/emp_proof/directional/north{
+	network = list("tarkon")
+	},
 /obj/structure/extinguisher_cabinet/directional/west,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/viro)
@@ -8723,7 +8753,7 @@
 /area/ruin/space/has_grav/port_tarkon/asteroid)
 "EJ" = (
 /obj/machinery/autolathe,
-/obj/machinery/camera/directional/north,
+/obj/machinery/camera/preset/tarkon/directional/north,
 /obj/effect/turf_decal/tile/yellow/anticorner{
 	dir = 1
 	},
@@ -9050,7 +9080,7 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
 "FT" = (
-/obj/machinery/camera/directional/north{
+/obj/machinery/camera/preset/tarkon/directional/north{
 	c_tag = "MiniSat AI Chamber South";
 	network = list("aicore")
 	},
@@ -9110,7 +9140,7 @@
 /area/ruin/space/has_grav/port_tarkon/dorms)
 "Ge" = (
 /obj/effect/turf_decal/sand/plating,
-/obj/machinery/camera/directional/east,
+/obj/machinery/camera/preset/tarkon/directional/east,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/mining)
 "Gf" = (
@@ -9148,7 +9178,7 @@
 /area/ruin/space/has_grav/port_tarkon/comms)
 "Gk" = (
 /obj/structure/table,
-/obj/machinery/camera/directional/west,
+/obj/machinery/camera/preset/tarkon/directional/west,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/viro)
 "Gl" = (
@@ -9206,7 +9236,7 @@
 /obj/effect/turf_decal/tile/purple/half{
 	dir = 4
 	},
-/obj/machinery/camera/directional/east,
+/obj/machinery/camera/preset/tarkon/directional/east,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/scienceaway)
 "Gy" = (
@@ -9537,7 +9567,9 @@
 /obj/effect/turf_decal/tile/blue/anticorner{
 	dir = 1
 	},
-/obj/machinery/camera/emp_proof/directional/north,
+/obj/machinery/camera/emp_proof/directional/north{
+	network = list("tarkon")
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/comms)
 "HL" = (
@@ -9655,7 +9687,9 @@
 "Ii" = (
 /obj/machinery/hydroponics/constructable,
 /obj/structure/window/reinforced/spawner/directional/north,
-/obj/machinery/camera/emp_proof/directional/east,
+/obj/machinery/camera/emp_proof/directional/east{
+	network = list("tarkon")
+	},
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/port_tarkon/garden)
 "Ij" = (
@@ -9805,7 +9839,7 @@
 /area/ruin/space/has_grav/port_tarkon/trauma)
 "IQ" = (
 /obj/effect/turf_decal/tile/purple/half,
-/obj/machinery/camera/directional/south,
+/obj/machinery/camera/preset/tarkon/directional/south,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/scienceaway)
 "IR" = (
@@ -9898,7 +9932,9 @@
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/trauma)
 "Jg" = (
-/obj/machinery/camera/emp_proof/directional/north,
+/obj/machinery/camera/emp_proof/directional/north{
+	network = list("tarkon")
+	},
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
 /obj/item/toy/figure/borg,
@@ -10149,7 +10185,9 @@
 /obj/effect/turf_decal/tile/brown/half{
 	dir = 1
 	},
-/obj/machinery/camera/emp_proof/directional/north,
+/obj/machinery/camera/emp_proof/directional/north{
+	network = list("tarkon")
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/cargo)
 "Kg" = (
@@ -10164,7 +10202,9 @@
 /obj/effect/turf_decal/tile/neutral/half{
 	dir = 8
 	},
-/obj/machinery/camera/emp_proof/directional/west,
+/obj/machinery/camera/emp_proof/directional/west{
+	network = list("tarkon")
+	},
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/centerhall)
@@ -10184,7 +10224,9 @@
 /area/ruin/space/has_grav/port_tarkon/secoff)
 "Kn" = (
 /obj/structure/sign/departments/med/directional/west,
-/obj/machinery/camera/emp_proof/directional/west,
+/obj/machinery/camera/emp_proof/directional/west{
+	network = list("tarkon")
+	},
 /obj/machinery/light/directional/west,
 /obj/effect/turf_decal/tile/blue/half{
 	dir = 8
@@ -10326,7 +10368,7 @@
 /obj/effect/turf_decal/tile/blue/half{
 	dir = 4
 	},
-/obj/machinery/camera/directional/east,
+/obj/machinery/camera/preset/tarkon/directional/east,
 /obj/structure/spawner/tarkon_xenos/minor,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/comms)
@@ -10458,7 +10500,9 @@
 /obj/effect/turf_decal/tile/neutral/half{
 	dir = 1
 	},
-/obj/machinery/camera/emp_proof/directional/north,
+/obj/machinery/camera/emp_proof/directional/north{
+	network = list("tarkon")
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/porthall)
 "Lh" = (
@@ -10505,7 +10549,7 @@
 /area/ruin/space/has_grav/port_tarkon/scienceaway)
 "Lp" = (
 /obj/effect/turf_decal/tile/purple/anticorner,
-/obj/machinery/camera/directional/east,
+/obj/machinery/camera/preset/tarkon/directional/east,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/scienceaway)
 "Lq" = (
@@ -10823,7 +10867,9 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
 "Mr" = (
-/obj/machinery/camera/emp_proof/directional/west,
+/obj/machinery/camera/emp_proof/directional/west{
+	network = list("tarkon")
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/forehall)
 "Ms" = (
@@ -11021,7 +11067,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
 	},
-/obj/machinery/camera/directional/north,
+/obj/machinery/camera/preset/tarkon/directional/north,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/centerhall)
 "Ng" = (
@@ -11156,7 +11202,9 @@
 /obj/effect/turf_decal/tile/blue/half{
 	dir = 1
 	},
-/obj/machinery/camera/emp_proof/directional/north,
+/obj/machinery/camera/emp_proof/directional/north{
+	network = list("tarkon")
+	},
 /obj/machinery/light/directional/north,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/trauma)
@@ -11168,7 +11216,7 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/centerhall)
 "NH" = (
-/obj/machinery/camera/directional/east,
+/obj/machinery/camera/preset/tarkon/directional/east,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/port_tarkon/lounge)
@@ -11197,7 +11245,9 @@
 "NO" = (
 /obj/structure/sign/departments/science/directional/north,
 /obj/machinery/light/directional/north,
-/obj/machinery/camera/emp_proof/directional/north,
+/obj/machinery/camera/emp_proof/directional/north{
+	network = list("tarkon")
+	},
 /obj/effect/turf_decal/tile/purple/half{
 	dir = 1
 	},
@@ -11387,7 +11437,7 @@
 /obj/effect/turf_decal/tile/blue/half{
 	dir = 4
 	},
-/obj/machinery/camera/directional/east,
+/obj/machinery/camera/preset/tarkon/directional/east,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/trauma)
 "OB" = (
@@ -11890,7 +11940,7 @@
 /obj/effect/turf_decal/tile/blue/half{
 	dir = 8
 	},
-/obj/machinery/camera/directional/west,
+/obj/machinery/camera/preset/tarkon/directional/west,
 /obj/machinery/chem_mass_spec,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/trauma)
@@ -11970,12 +12020,16 @@
 /obj/effect/turf_decal/tile/neutral/half{
 	dir = 8
 	},
-/obj/machinery/camera/emp_proof/directional/west,
+/obj/machinery/camera/emp_proof/directional/west{
+	network = list("tarkon")
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/forehall)
 "QB" = (
 /obj/effect/turf_decal/tile/blue/half,
-/obj/machinery/camera/emp_proof/directional/south,
+/obj/machinery/camera/emp_proof/directional/south{
+	network = list("tarkon")
+	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/trauma)
@@ -12039,7 +12093,9 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/centerhall)
 "QN" = (
-/obj/machinery/camera/emp_proof/directional/west,
+/obj/machinery/camera/emp_proof/directional/west{
+	network = list("tarkon")
+	},
 /obj/structure/alien/resin,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/aichamber)
@@ -12048,7 +12104,9 @@
 	dir = 4
 	},
 /obj/structure/sign/departments/engineering/directional/west,
-/obj/machinery/camera/emp_proof/directional/west,
+/obj/machinery/camera/emp_proof/directional/west{
+	network = list("tarkon")
+	},
 /obj/effect/turf_decal/tile/yellow/half{
 	dir = 8
 	},
@@ -12076,7 +12134,9 @@
 /obj/structure/closet/generic/wall{
 	pixel_x = -32
 	},
-/obj/machinery/camera/emp_proof/directional/west,
+/obj/machinery/camera/emp_proof/directional/west{
+	network = list("tarkon")
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/dorms)
 "QX" = (
@@ -12118,7 +12178,9 @@
 /obj/effect/turf_decal/tile/neutral/anticorner{
 	dir = 8
 	},
-/obj/machinery/camera/emp_proof/directional/west,
+/obj/machinery/camera/emp_proof/directional/west{
+	network = list("tarkon")
+	},
 /obj/machinery/vending/cigarette,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/centerhall)
@@ -12257,7 +12319,7 @@
 "RF" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/yellow/half,
-/obj/machinery/camera/directional/south,
+/obj/machinery/camera/preset/tarkon/directional/south,
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -5;
 	pixel_y = -31
@@ -12549,7 +12611,9 @@
 /obj/effect/turf_decal/tile/red/real_red/half{
 	dir = 8
 	},
-/obj/machinery/camera/emp_proof/directional/west,
+/obj/machinery/camera/emp_proof/directional/west{
+	network = list("tarkon")
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/secoff)
 "SD" = (
@@ -12603,8 +12667,8 @@
 	pixel_y = 4
 	},
 /obj/item/pen/red,
-/obj/machinery/camera/directional/south{
-	network = list("ss13","medbay");
+/obj/machinery/camera/preset/tarkon/directional/south{
+	network = list("tarkon","medbay");
 	c_tag = "Medical - Virology Patient Room B"
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
@@ -12879,7 +12943,7 @@
 	},
 /obj/structure/alien/weeds/node,
 /obj/machinery/light_switch/directional/west,
-/obj/machinery/camera/directional/west,
+/obj/machinery/camera/preset/tarkon/directional/west,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/scienceaway)
 "TC" = (
@@ -13531,7 +13595,7 @@
 	dir = 4
 	},
 /obj/structure/reagent_dispensers/watertank,
-/obj/machinery/camera/directional/north,
+/obj/machinery/camera/preset/tarkon/directional/north,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/trauma)
 "VH" = (
@@ -13759,7 +13823,7 @@
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/port_tarkon/trauma)
 "Wr" = (
-/obj/machinery/camera/directional/north,
+/obj/machinery/camera/preset/tarkon/directional/north,
 /obj/structure/trash_pile,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/developement)
@@ -13816,7 +13880,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/camera/directional/north,
+/obj/machinery/camera/preset/tarkon/directional/north,
 /obj/machinery/light_switch/directional/north,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/observ)
@@ -13941,7 +14005,9 @@
 /obj/effect/turf_decal/tile/neutral/half{
 	dir = 1
 	},
-/obj/machinery/camera/emp_proof/directional/north,
+/obj/machinery/camera/emp_proof/directional/north{
+	network = list("tarkon")
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/centerhall)
 "WY" = (
@@ -14280,7 +14346,7 @@
 	dir = 5
 	},
 /obj/structure/cable,
-/obj/machinery/camera/directional/east,
+/obj/machinery/camera/preset/tarkon/directional/east,
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/port_tarkon/scienceaway)
 "Yf" = (
@@ -14298,7 +14364,7 @@
 /obj/item/stack/sheet/mineral/gold{
 	amount = 25
 	},
-/obj/machinery/camera/directional/east,
+/obj/machinery/camera/preset/tarkon/directional/east,
 /obj/item/stack/sheet/mineral/uranium/five,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
@@ -14316,7 +14382,7 @@
 /obj/effect/turf_decal/tile/brown/half{
 	dir = 1
 	},
-/obj/machinery/camera/directional/north,
+/obj/machinery/camera/preset/tarkon/directional/north,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/storage)
 "Yi" = (
@@ -14395,7 +14461,7 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/scienceaway)
 "Yw" = (
-/obj/machinery/camera/directional/west,
+/obj/machinery/camera/preset/tarkon/directional/west,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/wood/parquet,
 /area/ruin/space/has_grav/port_tarkon/lounge)
@@ -14405,7 +14471,7 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/aiante)
 "Yy" = (
-/obj/machinery/camera/directional/east,
+/obj/machinery/camera/preset/tarkon/directional/east,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/port_tarkon/random_dorm)
 "Yz" = (
@@ -14634,7 +14700,7 @@
 /obj/machinery/airalarm/directional/east,
 /obj/effect/mapping_helpers/airalarm/all_access,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/camera/directional/east{
+/obj/machinery/camera/preset/tarkon/directional/east{
 	network = list("tarkon")
 	},
 /turf/open/floor/iron/dark,
