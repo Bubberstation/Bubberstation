@@ -5,8 +5,8 @@
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list(JOB_NT_REP)
 	faction = FACTION_STATION
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 0
+	spawn_positions = 0
 	supervisors = "All Command Staff and Central Command when applicable"
 	minimal_player_age = 7
 	exp_requirements = 2400
@@ -41,7 +41,7 @@
 		/obj/item/restraints/legcuffs/bola/energy = 10,
 	)
 
-	job_flags = STATION_JOB_FLAGS | JOB_CANNOT_OPEN_SLOTS
+	job_flags = STATION_JOB_FLAGS | JOB_CANNOT_OPEN_SLOTS | STATION_TRAIT_JOB_FLAGS
 
 /datum/outfit/job/blueshield
 	name = "Blueshield"
@@ -64,6 +64,10 @@
 	suit_store = /obj/item/gun/energy/e_gun
 
 	id_trim = /datum/id_trim/job/blueshield
+
+	backpack_contents = list(
+		/obj/item/choice_beacon/blueshield_locker = 1,
+	)
 
 /datum/outfit/plasmaman/blueshield
 	name = "Blueshield Plasmaman"
