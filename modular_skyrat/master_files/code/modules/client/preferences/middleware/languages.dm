@@ -1,6 +1,3 @@
-#define MAX_LANGUAGES_NORMAL 3
-#define MAX_LANGUAGES_LINGUIST 4
-
 /datum/asset/spritesheet/languages
 	name = "languages"
 	early = TRUE
@@ -65,7 +62,11 @@
 
 	var/list/data = list()
 
-	var/max_languages = preferences.all_quirks.Find(TRAIT_LINGUIST) ? MAX_LANGUAGES_LINGUIST : MAX_LANGUAGES_NORMAL
+	var/max_languages = 3
+	if(/datum/quirk/linguist::name in preferences.all_quirks)
+		max_languages++
+	if(/datum/quirk/bilingual::name in preferences.all_quirks)
+		max_languages++
 	var/species_type = preferences.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type()
 	var/datum/language_holder/lang_holder = preferences.get_adjusted_language_holder()
@@ -129,7 +130,11 @@
  */
 /datum/preference_middleware/languages/proc/give_language(list/params, mob/user)
 	var/language_name = params["language_name"]
-	var/max_languages = preferences.all_quirks.Find(TRAIT_LINGUIST) ? MAX_LANGUAGES_LINGUIST : MAX_LANGUAGES_NORMAL
+	var/max_languages = 3
+	if(/datum/quirk/linguist::name in preferences.all_quirks)
+		max_languages++
+	if(/datum/quirk/bilingual::name in preferences.all_quirks)
+		max_languages++
 
 	if(preferences.languages && preferences.languages.len == max_languages) // too many languages
 		return TRUE
@@ -162,6 +167,3 @@
 	var/language_name = params["language_name"]
 	preferences.languages -= name_to_language[language_name]
 	return TRUE
-
-#undef MAX_LANGUAGES_NORMAL
-#undef MAX_LANGUAGES_LINGUIST
