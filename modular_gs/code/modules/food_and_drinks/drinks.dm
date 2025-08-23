@@ -19,3 +19,4 @@
 	righthand_file = 'modular_gs/icons/obj/food_righthand.dmi'
 	icon_state = "soothseltz"
 	list_reagents = list(/datum/reagent/consumable/space_cola = 25, /datum/reagent/consumable/extilphite = 15)
+
