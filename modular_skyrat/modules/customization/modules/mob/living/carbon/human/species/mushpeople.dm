@@ -2,6 +2,7 @@
 	return list(
 		"caps" = list("Round", FALSE), // we don't want cap-less mushpeople
 	)
+	language_prefs_whitelist = (/datum/language/mushroom)
 
 /datum/species/mush/randomize_features()
 	var/list/features = ..()

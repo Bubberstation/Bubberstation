@@ -15,8 +15,11 @@
 /datum/language/narsie
 	secret = TRUE
 
-/datum/language/piratespeak
-	secret = TRUE
-
 /datum/language/xenocommon
 	secret = FALSE
+
+/datum/language/monkey
+	secret = TRUE
+
+/datum/language/mushroom
+	secret = TRUE
