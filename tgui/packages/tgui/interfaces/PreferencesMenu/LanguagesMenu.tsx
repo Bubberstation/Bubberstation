@@ -1,5 +1,4 @@
-// THIS IS A SKYRAT UI FILE
-import { Box, Button, Section, Stack } from 'tgui-core/components';
+import { Box, Button, Section, Stack, Tooltip } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
 import type { PreferencesMenuData } from './types';
@@ -8,43 +7,67 @@ export const KnownLanguage = (props) => {
   const { act } = useBackend<PreferencesMenuData>();
   return (
     <Stack.Item>
-      <Section title={props.language.name}>
+      <Section
+        title={
+          <Tooltip
+            content={
+              <>
+                <div>Spoken? {props.language.can_speak ? 'Yes' : 'No'}</div>
+                <div>
+                  Understood? {props.language.can_understand ? 'Yes' : 'No'}
+                </div>
+              </>
+            }
+          >
+            <Box as="span">
+              {props.language.name}{' '}
+              <Button
+                color="bad"
+                onClick={() =>
+                  act('remove_language', { language_name: props.language.name })
+                }
+              >
+                Forget{' '}
+                <Box className={`languages16x16 ${props.language.icon}`} />
+              </Button>
+            </Box>
+          </Tooltip>
+        }
+      >
         {props.language.description}
-        <br />
-        <br />
-        {props.language.can_understand
-          ? 'Can understand.'
-          : 'Cannot understand.'}{' '}
-        {props.language.can_speak ? 'Can speak.' : 'Cannot speak.'}
-        <br />
-        <Button
-          color="bad"
-          onClick={() =>
-            act('remove_language', { language_name: props.language.name })
-          }
-        >
-          Forget <Box className={`languages16x16 ${props.language.icon}`} />
-        </Button>
       </Section>
     </Stack.Item>
   );
 };
 
-export const UnknownLanguage = (props) => {
+export const UnknownLanguage = ({ language, isAtLimit, remaining }) => {
   const { act } = useBackend<PreferencesMenuData>();
+  const tooltipContent = isAtLimit
+    ? "You've reached the maximum number of languages."
+    : `You have ${remaining} language${remaining === 1 ? '' : 's'} remaining.`;
+
   return (
     <Stack.Item>
-      <Section title={props.language.name}>
-        {props.language.description}
-        <br />
-        <Button
-          color="good"
-          onClick={() =>
-            act('give_language', { language_name: props.language.name })
-          }
-        >
-          Learn <Box className={`languages16x16 ${props.language.icon}`} />
-        </Button>
+      <Section
+        title={
+          <>
+            {language.name}{' '}
+            <Tooltip content={tooltipContent}>
+              <Button
+                color="good"
+                disabled={isAtLimit}
+                onClick={() =>
+                  !isAtLimit &&
+                  act('give_language', { language_name: language.name })
+                }
+              >
+                Learn <Box className={`languages16x16 ${language.icon}`} />
+              </Button>
+            </Tooltip>
+          </>
+        }
+      >
+        {language.description}
       </Section>
     </Stack.Item>
   );
@@ -52,39 +75,64 @@ export const UnknownLanguage = (props) => {
 
 export const LanguagesPage = (props) => {
   const { data } = useBackend<PreferencesMenuData>();
+
+  const currentCount = data.selected_languages.length;
+  const maxAllowed = data.total_language_points;
+  const isAtLimit = currentCount >= maxAllowed;
+  const remaining = Math.max(maxAllowed - currentCount, 0);
+
   return (
-    <Stack>
-      <Stack.Item minWidth="33%">
-        <Section title="Available Languages">
-          <Stack vertical>
-            {data.unselected_languages.map((val) => (
-              <UnknownLanguage key={val.icon} language={val} />
-            ))}
-          </Stack>
-        </Section>
-      </Stack.Item>
-      <Stack.Item minWidth="33%">
-        <Section
-          title={
-            'Points: ' +
-            data.selected_languages.length +
-            '/' +
-            data.total_language_points
-          }
+    <Box style={{ height: '100vh' }}>
+      <Stack style={{ height: '100%' }}>
+        <Stack.Item
+          minWidth="50%"
+          style={{ marginRight: '2px', height: '100%' }}
         >
-          Here, you can purchase languages using a point buy system. Each
-          Language is worth 1 point.
-        </Section>
-      </Stack.Item>
-      <Stack.Item minWidth="33%">
-        <Section title="Known Languages">
-          <Stack vertical>
-            {data.selected_languages.map((val) => (
-              <KnownLanguage key={val.icon} language={val} />
-            ))}
-          </Stack>
-        </Section>
-      </Stack.Item>
-    </Stack>
+          <Box style={{ height: '100%', overflowY: 'auto' }}>
+            <Section
+              style={{
+                position: 'sticky',
+                top: 0,
+                zIndex: 1,
+              }}
+              title={`Available Languages (${remaining} remaining)`}
+            />
+            <Stack vertical>
+              {data.unselected_languages.map((val) => (
+                <UnknownLanguage
+                  key={val.icon}
+                  language={val}
+                  isAtLimit={isAtLimit}
+                  remaining={remaining}
+                />
+              ))}
+            </Stack>
+          </Box>
+        </Stack.Item>
+        <Stack.Item minWidth="50%" style={{ height: '100%' }}>
+          <Box style={{ height: '100%', overflowY: 'auto' }}>
+            <Section
+              style={{
+                position: 'sticky',
+                top: 0,
+                zIndex: 1,
+              }}
+              title={`Known Languages (${currentCount} of ${maxAllowed})`}
+            >
+              {isAtLimit && (
+                <Box color="bad" mt={1}>
+                  You have reached the maximum number of languages.
+                </Box>
+              )}
+            </Section>
+            <Stack vertical>
+              {data.selected_languages.map((val) => (
+                <KnownLanguage key={val.icon} language={val} />
+              ))}
+            </Stack>
+          </Box>
+        </Stack.Item>
+      </Stack>
+    </Box>
   );
 };
