@@ -39,6 +39,7 @@
 //Mushroom wood
 /turf/open/floor/gmushroom
 	desc = "Stylish mushroom 'wood'."
+	icon = 'modular_gs/icons/turf/floors.dmi'
 	icon_state = "gmushroom"
 	floor_tile = /obj/item/stack/tile/gmushroom
 	footstep = FOOTSTEP_WOOD
@@ -77,6 +78,7 @@
 /turf/open/floor/plaswood
 	desc = "Stylish plaswood."
 	icon_state = "plaswood"
+	icon = 'modular_gs/icons/turf/floors.dmi'
 	floor_tile = /obj/item/stack/tile/plaswood
 	footstep = FOOTSTEP_WOOD
 	barefootstep = FOOTSTEP_WOOD_BAREFOOT
