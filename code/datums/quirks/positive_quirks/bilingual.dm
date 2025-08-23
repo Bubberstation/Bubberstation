@@ -3,13 +3,19 @@
 	desc = "Over the years you've picked up an extra language!"
 	icon = FA_ICON_GLOBE
 	value = 4
-	mob_trait = TRAIT_BILINGUAL //BUBBER EDIT ADDITION: Marks down that you're bilingual
 	gain_text = span_notice("Some of the words of the people around you certainly aren't common. Good thing you studied for this.")
 	lose_text = span_notice("You seem to have forgotten your second language.")
 	medical_record_text = "Patient speaks multiple languages."
 	mail_goodies = list(/obj/item/taperecorder, /obj/item/clothing/head/beret/frenchberet, /obj/item/clothing/mask/fakemoustache/italian)
 
-/* //BUBBER EDIT REMOVAL: MAKING THIS DO THE SAME THING AS LINGUIST
+/datum/quirk_constant_data/bilingual
+	associated_typepath = /datum/quirk/bilingual
+	customization_options = list(
+		/datum/preference/choiced/language,
+		/datum/preference/toggle/language_speakable,
+		/datum/preference/choiced/language_skill,
+	)
+
 /datum/quirk/bilingual/add(client/client_source)
 	var/wanted_language = client_source?.prefs.read_preference(/datum/preference/choiced/language)
 	var/datum/language/language_type
@@ -38,5 +44,4 @@
 		return
 	quirk_holder.remove_all_languages(source = LANGUAGE_QUIRK)
 	quirk_holder.remove_all_partial_languages(source = LANGUAGE_QUIRK)
-*/ //BUBBER EDIT REMOVAL: MAKING THIS DO THE SAME THING AS LINGUIST
 
