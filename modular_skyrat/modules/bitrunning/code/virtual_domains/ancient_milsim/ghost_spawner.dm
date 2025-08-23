@@ -17,7 +17,7 @@
 
 /obj/effect/mob_spawn/ghost_role/human/ancient_milsim/special(mob/living/carbon/human/spawned_human)
 	. = ..()
-	spawned_human.grant_language(/datum/language/panslavic, source = LANGUAGE_SPAWNER)
+	spawned_human.grant_language(/datum/language/spinwarder, source = LANGUAGE_SPAWNER)
 	apply_codename(spawned_human)
 
 /obj/effect/mob_spawn/ghost_role/human/ancient_milsim/post_transfer_prefs(mob/living/carbon/human/spawned_human)
