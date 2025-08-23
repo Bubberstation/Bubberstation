@@ -12,34 +12,6 @@
 	M.adjust_fatness(15, FATTENING_TYPE_CHEM)
 	return ..()
 
-/datum/reagent/medicine/lipolicide
-	name = "Lipolicide"
-	description = "A powerful toxin that will destroy fat cells, massively reducing body weight in a short time. Deadly to those without nutriment in their body."
-	taste_description = "mothballs"
-	color = "#F0FFF0"
-	// GS13 tweak
-	metabolization_rate = 0.7 * REAGENTS_METABOLISM
-	overdose_threshold = 105
-
-/datum/reagent/medicine/lipolicide/overdose_process(mob/living/carbon/C)
-	. = ..()
-	if(current_cycle >=41 && prob(10))
-		to_chat(C, "<span class='userdanger'>You feel like your organs are on fire!</span>")
-		C.ignite_mob()
-
-/datum/reagent/medicine/lipolicide/on_mob_life(mob/living/carbon/M)
-	if(M.nutrition <= NUTRITION_LEVEL_STARVING)
-		M.adjustToxLoss(1*REAGENTS_EFFECT_MULTIPLIER, 0)
-	if(M.fatness_real == 0)
-		M.nutrition = max(M.nutrition - 3, 0) // making the chef more valuable, one meme trap at a time
-	if(HAS_TRAIT(M, TRAIT_LIPOLICIDE_TOLERANCE)) //GS13 edit
-		M.adjust_fatness(-0.5, FATTENING_TYPE_WEIGHT_LOSS)
-	else
-		M.adjust_fatness(-10, FATTENING_TYPE_WEIGHT_LOSS)
-
-	M.overeatduration = 0
-	return ..()
-
 //BURPY CHEM
 
 /datum/reagent/consumable/fizulphite

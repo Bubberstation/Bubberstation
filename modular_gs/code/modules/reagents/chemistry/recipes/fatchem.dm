@@ -10,8 +10,8 @@
 
 /datum/chemical_reaction/lipolicide
 	name = "lipolicide"
-	id = /datum/reagent/medicine/lipolicide
-	results = list(/datum/reagent/medicine/lipolicide = 3)
+	id = /datum/reagent/toxin/lipolicide
+	results = list(/datum/reagent/toxin/lipolicide = 3)
 	required_reagents = list(/datum/reagent/mercury = 1, /datum/reagent/diethylamine = 1, /datum/reagent/medicine/ephedrine = 1)
 
 //BURP CHEM

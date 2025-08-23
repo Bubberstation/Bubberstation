@@ -6,6 +6,7 @@
 	turf_type = /turf/open/floor/mineral/sandstone_floor
 	mineralType = "sandstone"
 	custom_materials = list(/datum/material/sandstone=500)
+	merge_type = /obj/item/stack/tile/mineral/sandstone
 
 /obj/item/stack/tile/mineral/crimsonstone
 	name = "crimson tile"
@@ -15,6 +16,7 @@
 	turf_type = /turf/open/floor/mineral/crimsonstone_floor
 	mineralType = "sandstone"
 	custom_materials = list(/datum/material/sandstone=500)
+	merge_type = /obj/item/stack/tile/mineral/crimsonstone
 
 /obj/item/stack/tile/mineral/basaltstone
 	name = "basalt tile"
@@ -24,3 +26,4 @@
 	turf_type = /turf/open/floor/mineral/basaltstone_floor
 	mineralType = "sandstone"
 	custom_materials = list(/datum/material/sandstone=500)
+	merge_type = /obj/item/stack/tile/mineral/basaltstone
