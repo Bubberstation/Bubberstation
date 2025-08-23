@@ -3,6 +3,7 @@
 	desc = "Stylish shadow wood."
 	icon_state = "shadoww"
 	floor_tile = /obj/item/stack/tile/shadoww
+	icon = 'modular_gs/icons/turf/floors.dmi'
 	footstep = FOOTSTEP_WOOD
 	barefootstep = FOOTSTEP_WOOD_BAREFOOT
 	clawfootstep = FOOTSTEP_WOOD_CLAW

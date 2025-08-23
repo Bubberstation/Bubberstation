@@ -1,6 +1,7 @@
 /turf/open/floor/mineral/calorite
 	name = "Calorite floor"
 	icon = 'modular_gs/icons/turf/floors.dmi'
+	damaged_dmi = 'modular_gs/icons/turf/floors.dmi'
 	icon_state = "calorite"
 	floor_tile = /obj/item/stack/tile/mineral/calorite
 	icons = list("calorite","calorite_dam")
