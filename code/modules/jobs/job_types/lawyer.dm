@@ -59,6 +59,10 @@
 		use_purple_suit = TRUE
 	..()
 
+//BUBBER EDIT ADDITION: FREE LEGALESE FOR LAWYERS
+/datum/outfit/lawyer/post_equip(mob/living/carbon/human/user, visuals_only)
+	user.grant_language(/datum/language/legalese)
+//BUBBER EDIT ADDITION: FREE LEGALESE FOR LAWYERS
 /datum/outfit/job/lawyer/get_types_to_preload()
 	. = ..()
 	. += /obj/item/clothing/under/rank/civilian/lawyer/purpsuit
