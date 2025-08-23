@@ -5,7 +5,5 @@
 
 mkdir -p \
     $1/modular_gs/icons \
-    $1/modular_gs/code/datums/greyscale/json_configs
 
 cp -r modular_gs/icons/* $1/modular_gs/icons/
-cp -r modular_gs/code/datums/greyscale/json_configs/* $1/modular_gs/code/datums/greyscale/json_configs/
