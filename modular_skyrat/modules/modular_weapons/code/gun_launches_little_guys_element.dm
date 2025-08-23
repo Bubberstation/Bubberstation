@@ -7,14 +7,20 @@
 	var/throwing_force
 	/// The throwing range applied to the gun's user
 	var/throwing_range
+	/// The knockdown time applied to the gun's user
+	var/knockdown_time
+	/// Is the throw gentle?
+	var/gentle
 
-/datum/element/gun_launches_little_guys/Attach(datum/target, throwing_force = 2, throwing_range = 3)
+/datum/element/gun_launches_little_guys/Attach(datum/target, throwing_force = 2, throwing_range = 3, knockdown_time = 1 SECONDS, gentle = FALSE)
 	. = ..()
 	if(!isgun(target))
 		return ELEMENT_INCOMPATIBLE
 
 	src.throwing_force = throwing_force
 	src.throwing_range = throwing_range
+	src.knockdown_time = knockdown_time
+	src.gentle = gentle
 
 	RegisterSignal(target, COMSIG_ATOM_EXAMINE, PROC_REF(examine))
 	RegisterSignal(target, COMSIG_GUN_FIRED, PROC_REF(throw_it_back))
@@ -39,8 +45,9 @@
 
 	var/fling_direction = REVERSE_DIR(user.dir)
 	var/atom/throw_target = get_edge_target_turf(user, fling_direction)
-	user.Knockdown(1 SECONDS)
-	user.throw_at(throw_target, throwing_range, throwing_force)
+	if (knockdown_time > 0)
+		user.Knockdown(knockdown_time)
+	user.throw_at(throw_target, throwing_range, throwing_force, gentle = gentle)
 
 	user.visible_message(span_warning("[weapon] sends [user] flying back as it fires!"), \
 		span_warning("[weapon] sends you flying back as it fires!"))
