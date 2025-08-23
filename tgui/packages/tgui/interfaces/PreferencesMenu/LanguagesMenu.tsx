@@ -91,7 +91,7 @@ export const LanguagesPage = (props) => {
         boxSizing: 'border-box',
       }}
     >
-      {/* Header section */}
+      {/* Headers */}
       <Box
         style={{
           padding: '0 1rem',
@@ -116,8 +116,6 @@ export const LanguagesPage = (props) => {
           </Stack.Item>
         </Stack>
       </Box>
-
-      {/* Scrollable columns container */}
       <Box
         style={{
           flex: 1,
@@ -125,7 +123,7 @@ export const LanguagesPage = (props) => {
           overflow: 'hidden',
         }}
       >
-        {/* Available Languages List */}
+        {/* Available Languages */}
         <Box
           style={{
             width: '50%',
@@ -148,7 +146,7 @@ export const LanguagesPage = (props) => {
           </Stack>
         </Box>
 
-        {/* Known Languages List */}
+        {/* Known Languages */}
         <Box
           style={{
             width: '50%',
