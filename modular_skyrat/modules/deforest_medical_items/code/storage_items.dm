@@ -207,6 +207,7 @@
 
 	can_hold = typecacheof(list(
 		/obj/item/bonesetter,
+		/obj/item/blood_scanner,
 		/obj/item/cautery,
 		/obj/item/clothing/neck/stethoscope,
 		/obj/item/clothing/mask/breath,
@@ -235,9 +236,11 @@
 		/obj/item/reagent_containers/cup/tube,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/reagent_containers/medigel,
+		/obj/item/reagent_containers/applicator/patch/,
 		/obj/item/reagent_containers/applicator/pill,
 		/obj/item/reagent_containers/spray,
 		/obj/item/reagent_containers/syringe,
+		/obj/item/reflexhammer,
 		/obj/item/stack/medical,
 		/obj/item/stack/sticky_tape,
 		/obj/item/sensor_device,
@@ -297,7 +300,9 @@
 	. = ..()
 
 	can_hold = typecacheof(list(
+		/obj/item/autopsy_scanner,
 		/obj/item/blood_filter,
+		/obj/item/blood_scanner,
 		/obj/item/bonesetter,
 		/obj/item/cautery,
 		/obj/item/circular_saw,
@@ -334,9 +339,11 @@
 		/obj/item/reagent_containers/cup/tube,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/reagent_containers/medigel,
+		/obj/item/reagent_containers/applicator/patch/,
 		/obj/item/reagent_containers/applicator/pill,
 		/obj/item/reagent_containers/spray,
 		/obj/item/reagent_containers/syringe,
+		/obj/item/reflexhammer,
 		/obj/item/retractor,
 		/obj/item/scalpel,
 		/obj/item/shears,
@@ -348,6 +355,7 @@
 		/obj/item/storage/hypospraykit,
 		/obj/item/storage/pill_bottle,
 		/obj/item/surgical_drapes,
+		/obj/item/surgical_processor,
 		/obj/item/surgicaldrill,
 		/obj/item/tank/internals/emergency_oxygen,
 		/obj/item/weaponcell/medical,
@@ -408,6 +416,7 @@
 
 	can_hold = typecacheof(list(
 		/obj/item/blood_filter,
+		/obj/item/blood_scanner,
 		/obj/item/bonesetter,
 		/obj/item/cautery,
 		/obj/item/circular_saw,
@@ -438,9 +447,11 @@
 		/obj/item/reagent_containers/cup/tube,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/reagent_containers/medigel,
+		/obj/item/reagent_containers/applicator/patch/,
 		/obj/item/reagent_containers/applicator/pill,
 		/obj/item/reagent_containers/spray,
 		/obj/item/reagent_containers/syringe,
+		/obj/item/reflexhammer,
 		/obj/item/retractor,
 		/obj/item/scalpel,
 		/obj/item/surgical_drapes,
