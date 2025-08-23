@@ -44,4 +44,3 @@
 		return
 	quirk_holder.remove_all_languages(source = LANGUAGE_QUIRK)
 	quirk_holder.remove_all_partial_languages(source = LANGUAGE_QUIRK)
-
