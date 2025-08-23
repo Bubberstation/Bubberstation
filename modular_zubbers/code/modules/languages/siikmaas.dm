@@ -5,6 +5,7 @@
 		Due to the breadth of their lands, countless dialects and different idioms exist - making a simple uniform way to teach this language almost impossible. \
 		After first contact, Humans describe the tongue as sounding somewhat similar to old Scandinavian languages. \
 		It's rarely seen spoken by those not native to Taj, though certain genemodder groups have picked up a form of it."
+	key = "3"
 	flags = TONGUELESS_SPEECH
 	sentence_chance = 9
 	space_chance = 60
@@ -17,7 +18,7 @@
 		"sen","sii","sse","sä","säi","taj","tajr","tärr","tau","tuu","tuss","ut","utt","va","veii","vai","varr",
 		"ven","vel","velt","verr","vit","vii","viik","virr","vir","vo","vå","vår","vårr","vorr","vyy","vy","vä","ä",
 		"äh","äk","äl","äm","än","ån","är","år","äs","ås","ää","har","för","svar","på","stra","sve","sverr","då",
-		"län","ny","kor","stå","vär","nning","mmen","ärr","det","vil"
+		"län","ny","kor","stå","vär","nning","mmen","ärr","det","vil",
 	)
 	icon_state = "siiktajr"
 	icon = 'modular_skyrat/master_files/icons/misc/language.dmi'
