@@ -29,14 +29,6 @@
 	description = "A box of .310 Strilka Piercing rounds, useful against armored combatants."
 	item_type = /obj/item/ammo_box/c310_cargo_box/piercing
 
-/datum/opposing_force_equipment/ammo_exotic/magnum
-	description = "A box of magnum flechette shotgun shells, the first choice munition of many shotgun fanatics."
-	item_type = /obj/item/ammo_box/advanced/s12gauge/magnum
-
-/datum/opposing_force_equipment/ammo_exotic/express
-	description = "A box of express buckshot shotgun shells, for when the regular shells can't keep up with you."
-	item_type = /obj/item/ammo_box/advanced/s12gauge/express
-
 /datum/opposing_force_equipment/ammo_exotic/flechette
 	description = "A box of flechette shotgun shells, tighter spread than buckshot plus more armour damage."
 	item_type = /obj/item/ammo_box/advanced/s12gauge/flechette

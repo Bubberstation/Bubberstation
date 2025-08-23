@@ -179,30 +179,6 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
-/datum/design/advancedgaugeboxes_magnum
-	name = "12 Gauge Advanced Magnum Ammunition Box(Very Lethal)"
-	desc = "A 12 gauge ammunition box for shotgun shells."
-	id = "s12g_magnum"
-	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 35, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 25)
-	build_path = /obj/item/ammo_box/advanced/s12gauge/magnum
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-
-/datum/design/advancedgaugeboxes_express
-	name = "12 Gauge Advanced Express Ammunition Box(Very Lethal)"
-	desc = "A 12 gauge ammunition box for shotgun shells."
-	id = "s12g_express"
-	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 25, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 25)
-	build_path = /obj/item/ammo_box/advanced/s12gauge/express
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-
 /datum/design/advancedgaugeboxes_beanbagslug
 	name = "12 Gauge Advanced Bean Bag Ammunition Box(Less-Lethal)"
 	desc = "A 12 gauge ammunition box for shotgun shells."

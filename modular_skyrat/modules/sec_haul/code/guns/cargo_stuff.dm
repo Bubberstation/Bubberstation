@@ -34,8 +34,6 @@
 	cost = CARGO_CRATE_VALUE * 20
 	contains = list(/obj/item/ammo_box/advanced/s12gauge/incendiary= 1,
 					/obj/item/ammo_box/advanced/s12gauge/flechette = 1,
-					/obj/item/ammo_box/advanced/s12gauge/express = 1,
-					/obj/item/ammo_box/advanced/s12gauge/magnum = 1,
 					/obj/item/ammo_box/advanced/s12gauge/flechette = 1,
 					/obj/item/ammo_box/advanced/s12gauge/antitide = 1,
 				)

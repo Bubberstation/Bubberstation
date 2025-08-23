@@ -33,17 +33,6 @@
 	icon_state = "bean"
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 
-/obj/item/ammo_box/advanced/s12gauge/magnum
-	name = "Magnum buckshot ammo box"
-	desc = "A box of 7 magnum buckshot shells. The size of the pellet is larger in diameter than the typical shot, but there are less of them inside each shell."
-	icon_state = "magnum"
-	ammo_type = /obj/item/ammo_casing/shotgun/magnum
-
-/obj/item/ammo_box/advanced/s12gauge/express
-	name = "Express pelletshot ammo box"
-	desc = "A box of 7 express pelletshot shells. The size of the pellet is smaller in diameter than the typical shot, but there are more of them inside each shell."
-	icon_state = "express"
-	ammo_type = /obj/item/ammo_casing/shotgun/express
 
 /obj/item/ammo_box/advanced/s12gauge/hunter
 	name = "Hunter slug ammo box"
