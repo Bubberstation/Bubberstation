@@ -74,6 +74,14 @@
 	starting_title = "Space Law"
 	page_link = "Space_Law"
 
+//BUBBER EDIT ADDITION BEGIN: READING SPACE LAW TEACHES YOU LEGALESE
+/obj/item/book/manual/wiki/security_space_law/attack_self(mob/user)
+	if(!user.can_read(src))
+		return FALSE
+	to_chat(user, span_notice("As you inhale the book's contents, you feel more sophisticated. after reading Space Law just once, you are an expert in pretending you know Latin. You can now speak Legalese."))
+	user.grant_language(/datum/language/legalese)
+//BUBBER EDIT ADDITION END
+
 /obj/item/book/manual/wiki/security_space_law/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] pretends to read \the [src] intently... then promptly dies of laughter!"))
 	return OXYLOSS
