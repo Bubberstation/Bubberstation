@@ -82,57 +82,89 @@ export const LanguagesPage = (props) => {
   const remaining = Math.max(maxAllowed - currentCount, 0);
 
   return (
-    <Box style={{ height: '100vh' }}>
-      <Stack style={{ height: '100%' }}>
-        <Stack.Item
-          minWidth="50%"
-          style={{ marginRight: '2px', height: '100%' }}
+    <Box
+      style={{
+        maxHeight: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        overflow: 'hidden',
+        boxSizing: 'border-box',
+      }}
+    >
+      {/* Header section */}
+      <Box
+        style={{
+          padding: '0 1rem',
+          flex: '0 0 auto',
+        }}
+      >
+        <Stack>
+          <Stack.Item minWidth="50%" style={{ marginRight: '2px' }}>
+            <Box fontWeight="bold">
+              Available Languages ({remaining} remaining)
+            </Box>
+          </Stack.Item>
+          <Stack.Item minWidth="50%">
+            <Box fontWeight="bold">
+              Known Languages ({currentCount} of {maxAllowed})
+            </Box>
+            {isAtLimit && (
+              <Box color="bad" mt={1}>
+                You have reached the maximum number of languages.
+              </Box>
+            )}
+          </Stack.Item>
+        </Stack>
+      </Box>
+
+      {/* Scrollable columns container */}
+      <Box
+        style={{
+          flex: 1,
+          display: 'flex',
+          overflow: 'hidden',
+        }}
+      >
+        {/* Available Languages List */}
+        <Box
+          style={{
+            width: '50%',
+            overflowY: 'auto',
+            maxHeight: '100%',
+            marginRight: '2px',
+            padding: '0 1rem',
+            boxSizing: 'border-box',
+          }}
         >
-          <Box style={{ height: '100%', overflowY: 'auto' }}>
-            <Section
-              style={{
-                position: 'sticky',
-                top: 0,
-                zIndex: 1,
-              }}
-              title={`Available Languages (${remaining} remaining)`}
-            />
-            <Stack vertical>
-              {data.unselected_languages.map((val) => (
-                <UnknownLanguage
-                  key={val.icon}
-                  language={val}
-                  isAtLimit={isAtLimit}
-                  remaining={remaining}
-                />
-              ))}
-            </Stack>
-          </Box>
-        </Stack.Item>
-        <Stack.Item minWidth="50%" style={{ height: '100%' }}>
-          <Box style={{ height: '100%', overflowY: 'auto' }}>
-            <Section
-              style={{
-                position: 'sticky',
-                top: 0,
-                zIndex: 1,
-              }}
-              title={`Known Languages (${currentCount} of ${maxAllowed})`}
-            >
-              {isAtLimit && (
-                <Box color="bad" mt={1}>
-                  You have reached the maximum number of languages.
-                </Box>
-              )}
-            </Section>
-            <Stack vertical>
-              {data.selected_languages.map((val) => (
-                <KnownLanguage key={val.icon} language={val} />
-              ))}
-            </Stack>
-          </Box>
-        </Stack.Item>
-      </Stack>
+          <Stack vertical>
+            {data.unselected_languages.map((val) => (
+              <UnknownLanguage
+                key={val.icon}
+                language={val}
+                isAtLimit={isAtLimit}
+                remaining={remaining}
+              />
+            ))}
+          </Stack>
+        </Box>
+
+        {/* Known Languages List */}
+        <Box
+          style={{
+            width: '50%',
+            overflowY: 'auto',
+            maxHeight: '100%',
+            padding: '0 1rem',
+            boxSizing: 'border-box',
+          }}
+        >
+          <Stack vertical>
+            {data.selected_languages.map((val) => (
+              <KnownLanguage key={val.icon} language={val} />
+            ))}
+          </Stack>
+        </Box>
+      </Box>
     </Box>
   );
 };
