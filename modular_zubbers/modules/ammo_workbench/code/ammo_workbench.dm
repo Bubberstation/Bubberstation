@@ -1,7 +1,7 @@
 /obj/machinery/ammo_workbench
 	name = "ammunitions workbench"
 	desc = "A machine, somewhat akin to a lathe, made specifically for manufacturing ammunition. It has a slot for magazines, ammo boxes, clips... anything that holds ammo."
-	icon = 'modular_skyrat/modules/ammo_workbench/icons/ammo_workbench.dmi'
+	icon = 'modular_zubbers/icons/obj/structures/ammo_workbench.dmi'
 	icon_state = "ammobench"
 	density = TRUE
 	use_power = IDLE_POWER_USE
