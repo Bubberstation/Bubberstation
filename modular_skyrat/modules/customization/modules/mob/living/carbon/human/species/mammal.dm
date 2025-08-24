@@ -21,6 +21,7 @@
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/mutant,
 	)
 	language_prefs_whitelist = list(/datum/language/monkey)
+	sort_bottom = TRUE //BUBBER EDIT ADDITION: We want to sort this to the bottom because it's a custom species template.
 
 /datum/species/mammal/get_default_mutant_bodyparts()
 	return list(
