@@ -2,6 +2,10 @@
 	if(!M || !ismob(M))
 		return
 
+	// BUBBER EDIT START: TGUI Individual Logging Panel from SPLURT-TG
+	show_individual_logging_panel_tgui(M, source)
+	// BUBBER EDIT END
+
 	var/ntype = text2num(type)
 
 	//Add client links
