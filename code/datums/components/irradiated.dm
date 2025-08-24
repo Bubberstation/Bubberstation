@@ -10,6 +10,8 @@
 // Showers process on SSmachines
 #define RADIATION_CLEAN_IMMUNITY_TIME (SSMACHINES_DT + (1 SECONDS))
 
+#define RADIATION_TOX_DAMAGE_FROM_QUIRK 10 // BUBBER EDIT - Isotropic Stability quirk
+
 /// This atom is irradiated, and will glow green.
 /// Humans will take toxin damage until all their toxin damage is cleared.
 /datum/component/irradiated
@@ -139,7 +141,7 @@
 	// BUBBER EDIT BEGIN - Isotropic Stability
 	var/damage_to_apply = RADIATION_TOX_DAMAGE_PER_INTERVAL
 	if(HAS_TRAIT(parent, TRAIT_RAD_RESISTANCE))
-		damage_to_apply = 2 * damage_to_apply
+		damage_to_apply = RADIATION_TOX_DAMAGE_FROM_QUIRK
 	target.apply_damage(damage_to_apply, TOX) // BUBBER EDIT - Original: target.apply_damage(RADIATION_TOX_DAMAGE_PER_INTERVAL, TOX)
 	// BUBBER EDIT END
 	COOLDOWN_START(src, last_tox_damage, RADIATION_TOX_INTERVAL)
@@ -240,3 +242,4 @@
 #undef RADIATION_IMMEDIATE_TOX_DAMAGE
 #undef RADIATION_TOX_INTERVAL
 #undef RADIATION_TOX_DAMAGE_PER_INTERVAL
+#undef RADIATION_TOX_DAMAGE_FROM_QUIRK // BUBBER EDIT - Isotropic Stability quirk
