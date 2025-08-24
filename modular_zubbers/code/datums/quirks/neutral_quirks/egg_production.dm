@@ -6,12 +6,6 @@
 	gain_text = span_notice("You suddenly feel rather productive.")
 	lose_text = span_warning("You no longer feel productive. Sad.")
 	medical_record_text = "Patient possesses the capability to produce eggs."
-	//this tracks how many eggs are stored
-	var/eggs_stored = 0
-	//whether we can produce another egg yet or not
-	var/can_produce = TRUE
-	//max amount of eggs able to be stored
-	var/maximum_eggs = 100
 
 //Quirk addition
 /datum/quirk/egg_production/add(client/client_source)
@@ -28,7 +22,7 @@
 
 	return ..()
 
-//List of valid reagents
+//GLOBAL LIST of valid reagents
 GLOBAL_LIST_INIT(egg_production_reagents, list(
 	/// Format: (Reagent typepath -> list(amount of reagent required per egg, cooldown per egg added to buffer))
 	/datum/reagent/consumable/cum = list(15, 10 SECONDS),
@@ -36,22 +30,41 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 	/datum/reagent/drug/aphrodisiac/crocin/hexacrocin = list(10, 30 SECONDS),
 ))
 
+/// The full action functionality segment
+/datum/action/cooldown/mob_cooldown/egg_production
+	name = "Produce an Egg"
+	desc = "Concentrate your efforts to lay an egg. Questionable use in public."
+
+	button_icon = 'icons/obj/food/egg.dmi'
+	button_icon_state = "egg"
+
+	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_INCAPACITATED
+
+	// The the object we will produce.
+	var/obj/item/food/egg/egg
+	//this tracks how many eggs are stored
+	var/eggs_stored = 0
+	//whether we can produce another egg yet or not
+	var/can_produce = TRUE
+	//max amount of eggs able to be stored
+	var/maximum_eggs = 100
+
 /// Egg creation segment
-/datum/quirk/egg_production/proc/on_life(seconds_per_tick, times_fired)
+/datum/action/cooldown/mob_cooldown/egg_production/proc/on_life(seconds_per_tick, times_fired)
 	if(can_produce == TRUE)
 		create_egg()
 	return
 
-/datum/quirk/egg_production/proc/toggle_cooldown()
+/datum/action/cooldown/mob_cooldown/egg_production/proc/toggle_cooldown()
 	can_produce = !can_produce
 
 //checks which reagent is a valid value and procs to increment stored eggs by 1, if it is below the maximum eggs stored
-/datum/quirk/egg_production/proc/create_egg(datum/reagent/reagent)
-	var/mob/living/carbon/human/human_holder = quirk_holder
+/datum/action/cooldown/mob_cooldown/egg_production/proc/create_egg(datum/reagent/reagent)
+	var/mob/living/carbon/human/human_holder = owner
 	var/list/cached_reagents = human_holder.reagents?.reagent_list
 	if(!length(cached_reagents))
 		return
-	for(var/datum/reagent/reagent as anything in cached_reagents)
+	for(var/datum/reagent/target as anything in cached_reagents)
 		if(reagent.volume >= GLOB.egg_production_reagents[reagent[1]] && eggs_stored <= maximum_eggs)
 			egg_update(1)
 			human_holder.reagents.remove_reagent(reagent.type, GLOB.egg_production_reagents[reagent[1]])
@@ -59,28 +72,14 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 			addtimer(CALLBACK(src, PROC_REF(toggle_cooldown)), GLOB.egg_production_reagents[reagent[2]])
 	return
 
-/datum/quirk/egg_production/proc/egg_update(delta)
-	var/mob/living/carbon/human/human_holder = quirk_holder
+/datum/action/cooldown/mob_cooldown/egg_production/proc/egg_update(delta)
 	eggs_stored += delta
 	//need to add a portion that adjusts movespeed here when overburdened
-
-// The action button segment.
-/datum/action/cooldown/mob_cooldown/egg_production
-	name = "Produce an Egg"
-	desc = "Concentrate your efforts to lay an egg. Questionable use in public."
-
-	button_icon = 'icons\obj\food\egg.dmi'
-	button_icon_state = "egg"
-
-	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_INCAPACITATED
-
-	/// The the object we will produce.
-	var/obj/item/food/egg/egg
 
 /datum/action/cooldown/mob_cooldown/egg_production/Activate()
 	.=..()
 	owner.visible_message(span_alertalien("[owner] starts to lay an egg..."), span_alertalien("You start laying an egg..."))
-	if(eggs_stored <= 0) //THIS needs a way to get the eggs_stored var from /datum/quirk/egg_production somehow
+	if(eggs_stored <= 0) //this should work now
 		owner.balloon_alert(owner, "no eggs to lay!")
 		return
 
@@ -88,8 +87,8 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 		owner.balloon_alert(owner, "stopped attempting to lay an egg.")
 		return
 
-	CALLBACK(TYPE_PROC_REF(/datum/quirk/egg_production, egg_update), -1) //this line might not work we think
-	new egg
+	egg_update(-1) //this should also work now
+	egg = new(owner)
 	owner.put_in_hands(egg)
 	owner.visible_message(span_alertalien("[owner] laid an egg!"), span_alertalien("You laid an egg!"))
 	return
