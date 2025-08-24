@@ -90,6 +90,15 @@ const areaSort = (a: CrewSensor, b: CrewSensor) => {
   return 0;
 };
 
+const getHealthLevel = (healthSum: number): number => {
+  if (healthSum <= 74) return 0;
+  if (healthSum <= 95) return 1;
+  if (healthSum <= 116) return 2;
+  if (healthSum <= 137) return 3;
+  if (healthSum <= 158) return 4;
+  return 5; // over 158 (near crit)
+};
+
 const healthToAttribute = (
   oxy: number,
   tox: number,
@@ -98,7 +107,7 @@ const healthToAttribute = (
   attributeList: string[],
 ) => {
   const healthSum = oxy + tox + burn + brute;
-  const level = Math.min(Math.max(Math.ceil(healthSum / 25), 0), 5);
+  const level = getHealthLevel(healthSum);
   return attributeList[level];
 };
 

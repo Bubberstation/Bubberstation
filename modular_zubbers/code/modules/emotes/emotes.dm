@@ -203,3 +203,24 @@
 	message = "hisses unnervingly."
 	emote_type = EMOTE_AUDIBLE
 	sound = 'modular_zubbers/code/modules/emotes/sound/voice/xenohiss.ogg'
+
+/datum/emote/living/stoatchirp
+	key = "schirp" // short for stoatchirp
+	key_third_person = "schirps"
+	message = "chirp chirp chirps!"
+	emote_type = EMOTE_AUDIBLE
+	sound = 'sound/mobs/non-humanoids/stoat/stoat_sounds.ogg'
+
+/datum/emote/living/shortmoo
+	key = "smoo" // short for shortmoo
+	key_third_person = "smoos"
+	message = "quickly moos!"
+	emote_type = EMOTE_AUDIBLE
+	sound = 'goon/sounds/cow.ogg'
+
+/datum/emote/living/deermah
+	key = "mah"
+	key_third_person = "mahs"
+	message = "bleats like a deer!"
+	emote_type = EMOTE_AUDIBLE
+	sound = 'modular_skyrat/modules/customization/game/objects/items/sound/leaplush.ogg'
