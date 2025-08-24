@@ -1,2 +1,2 @@
 /datum/language/piratespeak
-	secret = TRUE
+	secret = FALSE
