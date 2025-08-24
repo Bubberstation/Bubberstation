@@ -1,6 +1,8 @@
 /datum/language/spacer
 	name = "Spacer"
-	desc = "A rough, informal tongue used as a last resort when attempts to establish dialogue in more proper languages fail and no automatic translators are available. It relies heavily on tone, body language, signing, and a multitude of creole loanwords. While its use has fallen severely over the years, it's still practiced by a quantity of Frontier crews and favored by the Free Trade Union."
+	desc = "If Common is the language of commerce, then Spacer is its dark cousin, often used when attempts to establish dialogue in more proper languages fail \
+		and no automatic translators are available.	It relies heavily on tone, body language, signing, and a multitude of creole loanwords. While its use has fallen severely over the years, \
+		it remains in use in seedier Frontier sectors where knowledge of Common is not guaranteed, and privacy is valued."
 	key = "j"
 	flags = TONGUELESS_SPEECH
 	syllables = list(
