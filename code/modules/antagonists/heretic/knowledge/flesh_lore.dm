@@ -1,7 +1,7 @@
 /// The max amount of health a ghoul has.
-#define GHOUL_MAX_HEALTH HUMAN_MAXHEALTH - 35 // BUBBER EDIT
+#define GHOUL_MAX_HEALTH HUMAN_MAXHEALTH - 30 // BUBBER EDIT - 70 because we're going back to 100hp
 /// The max amount of health a voiceless dead has.
-#define MUTE_MAX_HEALTH HUMAN_MAXHEALTH // BUBBER EDIT
+#define MUTE_MAX_HEALTH HUMAN_MAXHEALTH // BUBBER EDIT - I mean i guess this'll keep it at 100hp so I don't need to change it
 
 /datum/heretic_knowledge_tree_column/main/flesh
 	neighbour_type_left = /datum/heretic_knowledge_tree_column/lock_to_flesh
@@ -119,7 +119,7 @@
 	// BUBBER CHANGE BELOW - GHOUL MAXHP
 	desc = "Allows you to transmute a corpse and a poppy to create a Voiceless Dead. \
 		The corpse does not need to have a soul. \
-		Voiceless Dead are mute ghouls and have 135 health, but can use Bloody Blades effectively. \
+		Voiceless Dead are mute ghouls and have 100 health, but can use Bloody Blades effectively. \
 		You can only create two at a time."
 	gain_text = "I found notes of a dark ritual, unfinished... yet still, I pushed forward."
 	required_atoms = list(
