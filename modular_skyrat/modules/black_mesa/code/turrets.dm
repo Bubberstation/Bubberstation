@@ -40,7 +40,7 @@
 	..()
 
 /obj/machinery/porta_turret/syndicate/pod/toolbox/mesa
-	stun_projectile = /obj/projectile/bullet/c9mm/rubber
+	stun_projectile = /obj/projectile/bullet/c9mm
 	lethal_projectile = /obj/projectile/bullet/c9mm/ap
 	max_integrity = 150
 	req_access = list(ACCESS_AWAY_SEC)
