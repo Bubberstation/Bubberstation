@@ -25,6 +25,7 @@
 		TRAIT_LITERATE,
 		TRAIT_MUTANT_COLORS,
 	)
+	sort_bottom = FALSE //We don't want this to sort to the bottom like regular podpeople, because it's not a ghostrole species
 
 	always_customizable = FALSE
 
