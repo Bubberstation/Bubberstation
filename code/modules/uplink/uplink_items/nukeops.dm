@@ -308,8 +308,7 @@
 /datum/uplink_item/weapon_kits/high_cost/carbine
 	name = "M-90gl Carbine Case (Hard)"
 	desc = "A fully-loaded, specialized three-round burst carbine that fires .223 ammunition from a 30 round magazine.\
-		Comes with a 40mm underbarrel grenade launcher. Use secondary-fire to fire the grenade launcher. Also comes with two spare magazines \
-		and a box of 40mm rubber slugs."
+		Comes with a 40mm underbarrel grenade launcher. Use secondary-fire to fire the grenade launcher. Also comes with two spare magazines."
 	item = /obj/item/storage/toolbox/guncase/m90gl
 
 /datum/uplink_item/ammo_nuclear/basic/carbine
