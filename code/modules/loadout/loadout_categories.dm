@@ -25,6 +25,7 @@
 			stack_trace("Loadout datum collision - [item.item_path] is shared between multiple loadout datums.")
 		GLOB.all_loadout_datums[item.item_path] = item
 
+
 /datum/loadout_category/Destroy(force, ...)
 	if(!force)
 		stack_trace("QDEL called on loadout category [type]. This shouldn't ever happen. (Use FORCE if necessary.)")
