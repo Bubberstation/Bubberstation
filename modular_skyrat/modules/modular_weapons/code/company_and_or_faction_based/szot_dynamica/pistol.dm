@@ -116,19 +116,19 @@
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman/proc/update_projspeed(mob/user)
 	var/shots_in_mag = src.get_ammo()
 	if(overclocking)
-		src.projectile_speed_multiplier = 1.6
+		projectile_speed_multiplier = 1.6
 	else if(shots_in_mag >= 13)
-		src.projectile_speed_multiplier = 1.5
+		projectile_speed_multiplier = 1.5
 	else if(shots_in_mag >= 10 && shots_in_mag <= 12)
-		src.projectile_speed_multiplier = 1.3
+		projectile_speed_multiplier = 1.3
 	else if(shots_in_mag >= 8 && shots_in_mag <= 9)
-		src.projectile_speed_multiplier = 1.2
+		projectile_speed_multiplier = 1.2
 	else if(shots_in_mag >= 5 && shots_in_mag <= 7)
-		src.projectile_speed_multiplier = 1.1
+		projectile_speed_multiplier = 1.1
 	else if(shots_in_mag >= 1 && shots_in_mag <= 4)
-		src.projectile_speed_multiplier = 1.0
+		projectile_speed_multiplier = 1.0
 	else
-		src.projectile_speed_multiplier = 0.8
+		projectile_speed_multiplier = 0.8
 
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman/proc/activate_oveclock(mob/user, current_proj_speed)
 
@@ -161,6 +161,17 @@
 		for(var/obj/item/ammo_casing/energy/laser/plasma_glob/old in magazine.stored_ammo)
 			old.projectile_type = /obj/projectile/beam/laser/plasma_glob/supercharged
 			old.loaded_projectile = /obj/projectile/beam/laser/plasma_glob/supercharged
+			chamber_round
+
+/obj/item/ammo_casing/energy/laser/plasma_glob/ready_proj(atom/target, mob/living/user, quiet, zone_override, atom/fired_from)
+	var/obj/item/gun/ballistic/automatic/pistol/plasma_marksman/gun = fired_from
+	if(!istype(gun) && gun.overclocking)
+		return ..()
+
+	loaded_projectile.name = "overcharged plasma globule"
+	loaded_projectile.icon_state = "plasma_glob_super"
+	loaded_projectile.weak_against_armour = FALSE
+	. = ..()
 
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman/proc/shakeit()
 	SIGNAL_HANDLER
@@ -189,6 +200,10 @@
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman/process(seconds_per_tick)
 	var/mob/living/carbon/wielder = ismob(loc) ? loc : null
 	var/obj/item/bodypart/affecting = wielder.get_bodypart("[(wielder.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
+	if(isnull(wielder))
+		return
+	if(isnull(affecting))
+		return
 	if(wielder.is_holding(src))
 		wielder.apply_damage(5, BURN, affecting)
 		to_chat(wielder, span_warning("[src] burns your hand, it's too hot!"))

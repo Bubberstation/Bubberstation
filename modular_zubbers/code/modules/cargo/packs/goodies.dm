@@ -53,6 +53,21 @@
 	access_view = ACCESS_WEAPONS
 	cost = PAYCHECK_COMMAND * 6
 
+/datum/supply_pack/goody/plasma_marksman
+	name = "Gwiazda Plasma Sharpshooters Single-pack"
+	desc = "Contains a Gwiazda Plasma Sharpshooter and one plasma battery free of additional charge."
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/plasma_marksman = 1,
+	/obj/item/ammo_box/magazine/recharge/plasma_battery = 1)
+	access_view = ACCESS_WEAPONS
+	cost = PAYCHECK_COMMAND * 4
+
+/datum/supply_pack/goody/plasma_marksman
+	name = "Plasma Battery Single-pack"
+	desc = "Contains a single plasma battery."
+	contains = list(/obj/item/ammo_box/magazine/recharge/plasma_battery = 1)
+	access_view = ACCESS_WEAPONS
+	cost = PAYCHECK_COMMAND * 1
+
 /datum/supply_pack/goody/sakhno_derringer_single
 	name = "Sakhno 'Yinbi' Derringer Single Pack"
 	desc = "A compact self-defense pistol, chambered in .310 strilka. Comes with a box of modern reproduction cartridges."
