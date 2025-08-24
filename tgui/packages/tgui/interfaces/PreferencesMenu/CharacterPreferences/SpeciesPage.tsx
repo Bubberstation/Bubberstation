@@ -273,6 +273,22 @@ function SpeciesPageInner(props: SpeciesPageInnerProps) {
   species[0] = species[humanIndex];
   species[humanIndex] = swapWith;
 
+  /* BUBBER EDIT START - SPECIES LIST SORTING */
+  species.sort(([keyA, speciesA], [keyB, speciesB]) => {
+    // Human first
+    if (keyA === 'human') return -1;
+    if (keyB === 'human') return 1;
+
+    // Species with sort_bottom = true go to the bottom
+    if (speciesA.sort_bottom !== speciesB.sort_bottom) {
+      return speciesA.sort_bottom ? 1 : -1;
+    }
+
+    // Otherwise sort by lore length descending
+    return speciesB.lore.length - speciesA.lore.length;
+  });
+  /* BUBBER EDIT END - SPECIES LIST SORTING */
+
   const currentSpecies = species.filter(([speciesKey]) => {
     return speciesKey === data.character_preferences.misc.species;
   })[0][1];

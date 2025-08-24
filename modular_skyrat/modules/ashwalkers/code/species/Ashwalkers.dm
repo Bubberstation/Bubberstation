@@ -8,6 +8,7 @@
 		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/lizard/ashwalker,
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/lizard/ashwalker,
 	)
+	sort_bottom = TRUE //BUBBER EDIT ADDITION: We want to sort this to the bottom because it's a ghostrole only species.
 
 /datum/species/lizard/ashwalker/on_species_gain(mob/living/carbon/carbon_target, datum/species/old_species, regenerate_icons)
 	. = ..()

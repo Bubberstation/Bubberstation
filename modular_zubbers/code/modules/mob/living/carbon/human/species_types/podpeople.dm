@@ -1,5 +1,6 @@
 /datum/species/pod
 	inert_mutation = /datum/mutation/harmonizing_pulses
+	sort_bottom = TRUE //BUBBER EDIT ADDITION: We want to sort this to the bottom because it's a ghostrole only species.
 
 /datum/species/pod/get_species_description()
 	return list(

@@ -49,6 +49,8 @@ export type Species = {
   desc: string[];
   lore: string[];
   icon: string;
+  sort_bottom: BooleanLike;
+  //BUBBER EDIT ADD: Sort_bottom, whether a species is sorted to the bottom of the list.
 
   use_skintones: BooleanLike;
   sexes: BooleanLike;
