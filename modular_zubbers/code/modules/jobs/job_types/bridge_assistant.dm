@@ -36,6 +36,11 @@
 	job_flags = STATION_JOB_FLAGS | JOB_ANTAG_PROTECTED | JOB_CANNOT_OPEN_SLOTS
 	human_authority = JOB_AUTHORITY_NON_HUMANS_ALLOWED
 
+/obj/effect/landmark/start/bridge_assistant
+	name = "Bridge Assistant"
+	icon_state = "Blueshield"
+	icon = 'modular_skyrat/master_files/icons/mob/landmarks.dmi'
+
 /datum/job/bridge_assistant/after_spawn(mob/living/spawned, client/player_client)
 	. = ..()
 	var/mob/living/carbon/bridgie = spawned
