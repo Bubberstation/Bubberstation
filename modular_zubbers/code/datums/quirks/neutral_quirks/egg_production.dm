@@ -56,7 +56,7 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 	if(can_produce == TRUE)
 		create_egg()
 	return
-
+/// Action datum segment
 /datum/action/cooldown/spell/egg_production/proc/toggle_cooldown()
 	can_produce = !can_produce
 
@@ -67,30 +67,30 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 	if(!length(cached_reagents))
 		return
 	for(var/datum/reagent/target as anything in cached_reagents)
-		if(reagent.volume >= GLOB.egg_production_reagents[reagent[1]] && eggs_stored <= maximum_eggs)
+		if(reagent.volume >= GLOB.egg_production_reagents[target[1]] && eggs_stored <= maximum_eggs)
 			egg_update(1)
-			human_holder.reagents.remove_reagent(reagent.type, GLOB.egg_production_reagents[reagent[1]])
+			human_holder.reagents.remove_reagent(reagent.type, GLOB.egg_production_reagents[target[1]])
 			toggle_cooldown()
-			addtimer(CALLBACK(src, PROC_REF(toggle_cooldown)), GLOB.egg_production_reagents[reagent[2]])
+			addtimer(CALLBACK(src, PROC_REF(toggle_cooldown)), GLOB.egg_production_reagents[target[2]])
 	return
 
 /datum/action/cooldown/spell/egg_production/proc/egg_update(delta)
-	eggs_stored += delta
+	eggs_stored += clamp(delta, 0, maximum_eggs) // clamps the stored eggs value between 0 and the maximum
 	//need to add a portion that adjusts movespeed here when overburdened
 
 /datum/action/cooldown/spell/egg_production/cast(mob/living/cast_on)
 	.=..()
 	if(eggs_stored <= 0) //this should work now
 		owner.balloon_alert(owner, "no eggs to lay!")
-		return
+		return FALSE
 
 	owner.visible_message(span_alertalien("[owner] starts to lay an egg..."), span_alertalien("You start laying an egg..."))
 	if(!do_after(owner, 0.5 SECONDS, IGNORE_HELD_ITEM))
 		owner.balloon_alert(owner, "stopped attempting to lay an egg.")
-		return
+		return FALSE
 
 	egg_update(-1) //this should also work now
 	egg = new(owner)
 	owner.put_in_hands(egg)
 	owner.visible_message(span_alertalien("[owner] laid an egg!"), span_alertalien("You laid an egg!"))
-	return
+	return TRUE
