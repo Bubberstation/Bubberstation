@@ -5163,6 +5163,7 @@
 /obj/effect/mapping_helpers/airlock/access/any/command/eva,
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/red_alert_access,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/maintenance/fore)
 "ayT" = (
@@ -17466,9 +17467,6 @@
 "bkD" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1
-	},
-/obj/structure/fence/door{
-	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
@@ -39413,8 +39411,15 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port)
 "dfC" = (
-/obj/structure/fence{
-	dir = 4;
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/table{
+	color = "#999999"
+	},
+/obj/effect/spawner/random/entertainment/cigarette_pack,
+/obj/effect/spawner/random/entertainment/lighter{
+	pixel_x = 4;
 	pixel_y = 0
 	},
 /turf/open/floor/plating,
@@ -41723,10 +41728,6 @@
 /area/station/cargo/miningdock)
 "efM" = (
 /obj/effect/decal/cleanable/blood/footprints{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/blood/hitsplatter{
-	pixel_x = 1;
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
@@ -45848,10 +45849,6 @@
 /turf/open/floor/engine,
 /area/station/science/explab)
 "gah" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
-	dir = 4
-	},
 /obj/structure/tank_dispenser/oxygen,
 /obj/effect/turf_decal/tile/dark/full,
 /turf/open/floor/iron/dark/smooth_large,
@@ -45937,6 +45934,9 @@
 	},
 /obj/machinery/computer/nanite_chamber_control,
 /obj/effect/turf_decal/siding/dark{
+	dir = 9
+	},
+/obj/structure/railing{
 	dir = 9
 	},
 /turf/open/floor/iron/white,
@@ -53499,17 +53499,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/execution/transfer)
-"jtP" = (
-/obj/structure/table{
-	color = "#999999"
-	},
-/obj/effect/spawner/random/entertainment/cigarette_pack,
-/obj/effect/spawner/random/entertainment/lighter{
-	pixel_x = 4;
-	pixel_y = 0
-	},
-/turf/open/floor/plating,
-/area/station/maintenance/starboard/aft)
 "jtQ" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
@@ -63030,6 +63019,9 @@
 /area/station/security/office)
 "nDM" = (
 /obj/effect/spawner/random/burgerstation/loot/with_maintenance_loot,
+/obj/structure/railing{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
 "nDN" = (
@@ -69436,12 +69428,17 @@
 	},
 /area/station/medical/medbay/central)
 "qum" = (
-/obj/structure/fence{
-	dir = 4;
-	pixel_y = 0
+/obj/structure/disposalpipe/segment{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/railing/corner/end/flip{
+	dir = 4
 	},
 /turf/open/floor/plating,
-/area/station/maintenance/port)
+/area/station/maintenance/port/aft)
 "quB" = (
 /obj/structure/closet{
 	name = "Evidence Closet"
@@ -86444,8 +86441,8 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/fence/door{
-	dir = 2
+/obj/structure/railing/corner/end{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
@@ -102930,7 +102927,7 @@ bdR
 bdR
 wFd
 bkD
-pJD
+qum
 ykb
 dQs
 wEo
@@ -103186,7 +103183,7 @@ bdt
 lAk
 aTu
 sCj
-qum
+aSg
 nDM
 bCq
 bCq
@@ -133809,8 +133806,8 @@ xaZ
 dqL
 dtO
 dfC
-jtP
 bZX
+cOe
 idU
 cOe
 cOe
