@@ -1,3 +1,11 @@
+//GLOBAL LIST of valid reagents
+GLOBAL_LIST_INIT(egg_production_reagents, list(
+	/// Format: (Reagent name = list(amount of reagent required per egg, cooldown per egg added to buffer))
+	"cum" = list(15, 10 SECONDS),
+	"crocin" = list(20, 20 SECONDS),
+	"hexacrocin" = list(10, 30 SECONDS),
+))
+
 /datum/quirk/egg_production
 	name = "Oviparity"
 	desc = "Whether it be genetics or some other factor, you are capable of producing eggs."
@@ -21,14 +29,6 @@
 	action.Remove()
 
 	return ..()
-
-//GLOBAL LIST of valid reagents
-GLOBAL_LIST_INIT(egg_production_reagents, list(
-	/// Format: (Reagent typepath -> list(amount of reagent required per egg, cooldown per egg added to buffer))
-	/datum/reagent/consumable/cum = list(15, 10 SECONDS),
-	/datum/reagent/drug/aphrodisiac/crocin = list(20, 20 SECONDS),
-	/datum/reagent/drug/aphrodisiac/crocin/hexacrocin = list(10, 30 SECONDS),
-))
 
 /// The full action functionality segment
 /datum/action/cooldown/spell/egg_production
@@ -76,11 +76,11 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 	if(!length(cached_reagents))
 		return
 	for(var/datum/reagent/target_reagent as anything in cached_reagents)
-		if(target_reagent.volume >= GLOB.egg_production_reagents[target_reagent][1] && ISINRANGE (eggs_stored, 0, maximum_eggs))
+		if(target_reagent.volume >= GLOB.egg_production_reagents[target_reagent.name][1] && ISINRANGE (eggs_stored, 0, maximum_eggs))
 			egg_update(1)
-			human_holder.reagents.remove_reagent(target_reagent.type, GLOB.egg_production_reagents[target_reagent][1])
+			human_holder.reagents.remove_reagent(target_reagent.type, GLOB.egg_production_reagents[target_reagent.name][1])
 			toggle_cooldown()
-			addtimer(CALLBACK(src, PROC_REF(toggle_cooldown)), GLOB.egg_production_reagents[target_reagent][2])
+			addtimer(CALLBACK(src, PROC_REF(toggle_cooldown)), GLOB.egg_production_reagents[target_reagent.name][2])
 	return
 
 /datum/action/cooldown/spell/egg_production/proc/egg_update(delta)
