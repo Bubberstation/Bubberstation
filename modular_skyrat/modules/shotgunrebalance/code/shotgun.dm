@@ -288,3 +288,8 @@
 
 /obj/item/ammo_casing/shotgun/beanbag
 	harmful = FALSE
+
+/obj/item/gun/ballistic/shotgun/Initialize(mapload)
+	AddElement(/datum/element/gun_launches_little_guys, throwing_force = 1, throwing_range = 1, knockdown_time = 0, gentle = TRUE)
+
+	return ..()
