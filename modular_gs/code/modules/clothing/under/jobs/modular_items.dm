@@ -188,17 +188,17 @@
 //General function to get the appropriate size for the breasts
 /obj/item/proc/get_modular_breasts(obj/item/organ/genital/G)
 	var/size
-	if(G.genital_size <= "o")
+	if(G.genital_size <= 15)
 		size = G.genital_size
 	else
 		switch(G.genital_size)
-			if("huge")
+			if(16)
 				size = "huge"
-			if("massive")
+			if(17)
 				size = "massive"
-			if("giga")
+			if(18)
 				size = "giga"
-			if("impossible")
+			if(19)
 				size = "impossible"
 	return "breasts_[size][get_breasts_alt()]"
 
@@ -221,42 +221,38 @@
 	name = "service grey jumpsuit (Modular)"
 	desc = "Grey only in name"
 	color = "#6AD427"
-	// armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0, WOUND = 5)
-	// armor_type = 
 
 /obj/item/clothing/under/color/grey/medical
 	name = "medical grey jumpsuit (Modular)"
 	desc = "Grey only in name"
 	color = "#5A96BB"
-	// armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 10, RAD = 0, FIRE = 0, ACID = 0, WOUND = 5)
+	armor_type = /datum/armor/clothing_under/rank_medical
 
 /obj/item/clothing/under/color/grey/cargo
 	name = "cargo grey jumpsuit (Modular)"
 	desc = "Grey only in name"
 	color = "#BB9042"
-	// armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 0, WOUND = 10)
 
 /obj/item/clothing/under/color/grey/engi
 	name = "engineering grey jumpsuit (Modular)"
 	desc = "Grey only in name"
 	color = "#FF8800"
-	// armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 10, FIRE = 60, ACID = 20, WOUND = 5)
 	armor_type = /datum/armor/clothing_under/rank_engineering
 
 /obj/item/clothing/under/color/grey/science
 	name = "science grey jumpsuit (Modular)"
 	desc = "Grey only in name"
 	color = "#9900FF"
-	// armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 10, BIO = 0, RAD = 0, FIRE = 0, ACID = 0, WOUND = 5)
+	armor_type = /datum/armor/clothing_under/science
 
 /obj/item/clothing/under/color/grey/security
 	name = "security grey jumpsuit (Modular)"
 	desc = "Grey only in name"
 	color = "#F4080C"
-	// armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 30, ACID = 30, WOUND = 10)
+	armor_type = /datum/armor/clothing_under/rank_security
 
 /obj/item/clothing/under/color/grey/command
 	name = "command grey jumpsuit (Modular)"
 	desc = "Grey only in name"
 	color = "#004B8F"
-	// armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0, WOUND = 15)
+	armor_type = /datum/armor/clothing_under/rank_captain
