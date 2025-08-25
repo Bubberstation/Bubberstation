@@ -18,7 +18,7 @@
 
 /obj/item/forging/reagent_weapon/sword
 	name = "reagent sword"
-	desc = "A sharp, one-handed sword most adept at blocking opposing melee strikes."
+	desc = "A sharp, maneuverable bastard sword most adept at blocking opposing melee strikes."
 	force = 7
 	armour_penetration = 10
 	wound_bonus = -5
