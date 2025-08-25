@@ -10,14 +10,14 @@
 //Quirk addition
 /datum/quirk/egg_production/add(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
-	var/datum/action/cooldown/mob_cooldown/egg_production/action = new /datum/action/cooldown/mob_cooldown/egg_production()
+	var/datum/action/cooldown/spell/egg_production/action = new /datum/action/cooldown/spell/egg_production()
 	action.Grant(human_holder)
 
 //Quirk removal
 /datum/quirk/egg_production/remove()
 	if(QDELETED(quirk_holder))
 		return ..()
-	var/datum/action/cooldown/mob_cooldown/egg_production/action = locate(/datum/action/cooldown/mob_cooldown/egg_production) in quirk_holder.actions
+	var/datum/action/cooldown/spell/egg_production/action = locate(/datum/action/cooldown/spell/egg_production) in quirk_holder.actions
 	action.Remove()
 
 	return ..()
@@ -31,12 +31,14 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 ))
 
 /// The full action functionality segment
-/datum/action/cooldown/mob_cooldown/egg_production
+/datum/action/cooldown/spell/egg_production
 	name = "Produce an Egg"
 	desc = "Concentrate your efforts to lay an egg. Questionable use in public."
 
 	button_icon = 'icons/obj/food/egg.dmi'
 	button_icon_state = "egg"
+	cooldown_time = 1 SECONDS
+	spell_requirements = NONE
 
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_INCAPACITATED
 
@@ -50,16 +52,16 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 	var/maximum_eggs = 100
 
 /// Egg creation segment
-/datum/action/cooldown/mob_cooldown/egg_production/proc/on_life(seconds_per_tick, times_fired)
+/datum/action/cooldown/spell/egg_production/proc/on_life(seconds_per_tick, times_fired)
 	if(can_produce == TRUE)
 		create_egg()
 	return
 
-/datum/action/cooldown/mob_cooldown/egg_production/proc/toggle_cooldown()
+/datum/action/cooldown/spell/egg_production/proc/toggle_cooldown()
 	can_produce = !can_produce
 
 //checks which reagent is a valid value and procs to increment stored eggs by 1, if it is below the maximum eggs stored
-/datum/action/cooldown/mob_cooldown/egg_production/proc/create_egg(datum/reagent/reagent)
+/datum/action/cooldown/spell/egg_production/proc/create_egg(datum/reagent/reagent)
 	var/mob/living/carbon/human/human_holder = owner
 	var/list/cached_reagents = human_holder.reagents?.reagent_list
 	if(!length(cached_reagents))
@@ -72,17 +74,17 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 			addtimer(CALLBACK(src, PROC_REF(toggle_cooldown)), GLOB.egg_production_reagents[reagent[2]])
 	return
 
-/datum/action/cooldown/mob_cooldown/egg_production/proc/egg_update(delta)
+/datum/action/cooldown/spell/egg_production/proc/egg_update(delta)
 	eggs_stored += delta
 	//need to add a portion that adjusts movespeed here when overburdened
 
-/datum/action/cooldown/mob_cooldown/egg_production/Activate()
+/datum/action/cooldown/spell/egg_production/cast(mob/living/cast_on)
 	.=..()
-	owner.visible_message(span_alertalien("[owner] starts to lay an egg..."), span_alertalien("You start laying an egg..."))
 	if(eggs_stored <= 0) //this should work now
 		owner.balloon_alert(owner, "no eggs to lay!")
 		return
 
+	owner.visible_message(span_alertalien("[owner] starts to lay an egg..."), span_alertalien("You start laying an egg..."))
 	if(!do_after(owner, 0.5 SECONDS, IGNORE_HELD_ITEM))
 		owner.balloon_alert(owner, "stopped attempting to lay an egg.")
 		return
