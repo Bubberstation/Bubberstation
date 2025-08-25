@@ -51,12 +51,21 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 	//max amount of eggs able to be stored
 	var/maximum_eggs = 100
 
+/datum/action/cooldown/spell/egg_production/Grant(mob/granted_to)
+	RegisterSignal(granted_to, COMSIG_LIVING_LIFE, PROC_REF(on_life))
+	can_produce = TRUE //redundancy
+	return ..()
+
+/datum/action/cooldown/spell/egg_production/Remove(mob/removed_from)
+	UnregisterSignal(removed_from, COMSIG_LIVING_LIFE)
+	return ..()
+
 /// Egg creation segment
 /datum/action/cooldown/spell/egg_production/proc/on_life(seconds_per_tick, times_fired)
 	if(can_produce == TRUE)
 		create_egg()
 	return
-/// Action datum segment
+
 /datum/action/cooldown/spell/egg_production/proc/toggle_cooldown()
 	can_produce = !can_produce
 
@@ -66,12 +75,12 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 	var/list/cached_reagents = human_holder.reagents?.reagent_list
 	if(!length(cached_reagents))
 		return
-	for(var/datum/reagent/target as anything in cached_reagents)
-		if(reagent.volume >= GLOB.egg_production_reagents[target[1]] && eggs_stored <= maximum_eggs)
+	for(var/datum/reagent/target_reagent as anything in cached_reagents)
+		if(target_reagent.volume >= GLOB.egg_production_reagents[target_reagent][1] && ISINRANGE (eggs_stored, 0, maximum_eggs))
 			egg_update(1)
-			human_holder.reagents.remove_reagent(reagent.type, GLOB.egg_production_reagents[target[1]])
+			human_holder.reagents.remove_reagent(target_reagent.type, GLOB.egg_production_reagents[target_reagent][1])
 			toggle_cooldown()
-			addtimer(CALLBACK(src, PROC_REF(toggle_cooldown)), GLOB.egg_production_reagents[target[2]])
+			addtimer(CALLBACK(src, PROC_REF(toggle_cooldown)), GLOB.egg_production_reagents[target_reagent][2])
 	return
 
 /datum/action/cooldown/spell/egg_production/proc/egg_update(delta)
