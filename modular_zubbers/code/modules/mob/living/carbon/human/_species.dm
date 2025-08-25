@@ -1,3 +1,7 @@
+/datum/species
+	var/sort_bottom = FALSE
+//Whether or not a given species is sorted to the bottom of the list. We mainly want to do this for species that are used only for ghostroles, and template species.
+
 /// Called once the target is made into a bloodsucker. Used for removing conflicting species organs mostly
 /datum/species/proc/on_bloodsucker_gain(mob/living/carbon/human/target)
 	return null
