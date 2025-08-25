@@ -29,7 +29,6 @@
 	gender = MALE
 	rapid_melee = 1
 	melee_queue_distance = 2
-	armour_penetration = 40
 	melee_damage_lower = 40
 	melee_damage_upper = 40
 	speed = 1
@@ -279,7 +278,6 @@
 				icon_state = "marked2"
 				rapid_melee = 2
 				move_to_delay = 2
-				armour_penetration = 30
 				melee_damage_upper = 30
 				melee_damage_lower = 30
 		if(SHOWDOWN_PERCENT to FIFTY_PERCENT)
@@ -288,7 +286,6 @@
 				INVOKE_ASYNC(src, PROC_REF(charge), target, 21)
 				ranged_cooldown += 5 SECONDS
 				rapid_melee = 4
-				armour_penetration = 25
 				melee_damage_upper = 25
 				melee_damage_lower = 25
 				move_to_delay = 1.5
@@ -301,7 +298,6 @@
 				ranged_cooldown += 8 SECONDS
 				icon_state = "marked3"
 				rapid_melee = 1
-				armour_penetration = 50
 				melee_damage_upper = 50
 				melee_damage_lower = 50
 				move_to_delay = 1.2
