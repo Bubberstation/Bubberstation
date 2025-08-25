@@ -2216,20 +2216,19 @@
 			affected_mob.add_atom_colour(color_transition_filter(pick(random_color_list), SATURATION_OVERRIDE), WASHABLE_COLOUR_PRIORITY)
 		return
 
+	/* BUBBERSTATION CHANGE START: ORGANS CANNOT BE COLORED.
+
 	if(!can_color_organs)
 		return
 
 	var/mob/living/carbon/carbon_mob = affected_mob
 	var/color_priority = WASHABLE_COLOUR_PRIORITY
-	// BUBBER EDIT REMOVAL BEGIN - COLORFUL REAGENT IS ALWAYS TEMPORARY
-	/*
 	if (current_cycle >= 30) // Seeps deep into your tissues
 		color_priority = FIXED_COLOUR_PRIORITY
-	*/
-	// BUBBER EDIT REMOVAL END - COLORFUL REAGENT IS ALWAYS TEMPORARY
 
 	for (var/obj/item/organ/organ as anything in carbon_mob.organs)
 		organ.add_atom_colour(color_transition_filter(pick(random_color_list), SATURATION_OVERRIDE), color_priority)
+	BUBBERSTATION CHANGE END*/
 
 /// Colors anything it touches a random color.
 /datum/reagent/colorful_reagent/expose_atom(atom/exposed_atom, reac_volume)
