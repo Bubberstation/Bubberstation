@@ -10,6 +10,7 @@
 #define UNDERWEAR_HIDE_SHIRT (1<<1)
 #define UNDERWEAR_HIDE_UNDIES (1<<2)
 #define UNDERWEAR_HIDE_BRA (1<<3)
+#define UNDERWEAR_HIDE_ALL (UNDERWEAR_HIDE_SOCKS | UNDERWEAR_HIDE_SHIRT | UNDERWEAR_HIDE_UNDIES | UNDERWEAR_HIDE_BRA)
 
 ///Defines for icons used for modular bodyparts, created to make it easier to relocate the module or files if necessary.
 #define BODYPART_ICON_HUMAN 'modular_skyrat/modules/bodyparts/icons/human_parts_greyscale.dmi'
