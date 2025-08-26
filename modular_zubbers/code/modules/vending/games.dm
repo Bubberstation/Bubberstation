@@ -25,6 +25,7 @@
 				/obj/item/toy/plush/skyrat/plushie_syntax1112 = 3,
 				/obj/item/toy/plush/moth/lovers = 3,
 				/obj/item/toy/plush/goatplushie = 3,
+				/obj/item/toy/plush/sunny_plush = 3,
 				/obj/item/toy/plush/chirp_plush = 3,
 				/obj/item/toy/plush/bigdeer = 3,
 				/obj/item/toy/plush/bubbledragon = 3,
