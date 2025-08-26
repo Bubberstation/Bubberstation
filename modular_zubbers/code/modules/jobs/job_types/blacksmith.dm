@@ -34,7 +34,7 @@
 	job_spawn_title = JOB_ASSISTANT
 
 	voice_of_god_silence_power = 3
-	rpg_title = "Ye olde Smithy"
+	rpg_title = "Smithy"
 
 /datum/outfit/job/blacksmith
 	name = "Blacksmith"
