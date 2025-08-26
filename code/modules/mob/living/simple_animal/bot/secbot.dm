@@ -495,11 +495,13 @@
 			continue
 
 		//BUBBERSTATION CHANGE START: BEEPSKY IS A DINOSAUR NOW. CAN'T SEE YOU IF YOU DON'T MOVE.
-		if(nearby_carbons.client && nearby_carbons.client.move_delay + 4 SECONDS <= world.time)
-			continue
-		else if(nearby_carbons.next_move + 4 SECONDS <= world.time)
-			continue
-		else if(nearby_carbons.next_click + 4 SECONDS <= world.time)
+		if(nearby_carbons.client) //We have a client. We're a player that uses move_delay.
+			if(nearby_carbons.client.move_delay + 4 SECONDS <= world.time)
+				continue
+		else //No client. We're a mob that uses next_move.
+			if(nearby_carbons.next_move + 4 SECONDS <= world.time)
+				continue
+		if(nearby_carbons.next_click + 4 SECONDS <= world.time)
 			continue
 		//BUBBERSTATION CHANGE END: BEEPSKY IS A DINOSAUR NOW. CAN'T SEE YOU IF YOU DON'T MOVE.
 
