@@ -34,10 +34,7 @@
 	cost = CARGO_CRATE_VALUE * 20
 	contains = list(/obj/item/ammo_box/advanced/s12gauge/incendiary= 1,
 					/obj/item/ammo_box/advanced/s12gauge/flechette = 1,
-					/obj/item/ammo_box/advanced/s12gauge/express = 1,
-					/obj/item/ammo_box/advanced/s12gauge/magnum = 1,
-					/obj/item/ammo_box/advanced/s12gauge/flechette = 1,
-					/obj/item/ammo_box/advanced/s12gauge/antitide = 1,
+					/obj/item/ammo_box/advanced/s12gauge/dragonsbreath = 1,
 				)
 	crate_name = "exotic shotgun ammo crate"
 	contraband = TRUE
@@ -47,7 +44,6 @@
 	desc = "Contains 6 boxes of anti riot grade ammunition for all 12 Gauge Shotguns."
 	cost = CARGO_CRATE_VALUE * 12
 	contains = list(/obj/item/ammo_box/advanced/s12gauge/bean = 2,
-					/obj/item/ammo_box/advanced/s12gauge/beehive = 2,
 					/obj/item/ammo_box/advanced/s12gauge/rubber = 2,
 				)
 	crate_name = "anti riot shotgun ammo crate"
