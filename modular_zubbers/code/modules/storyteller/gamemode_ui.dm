@@ -21,6 +21,7 @@
 /datum/controller/subsystem/gamemode/proc/get_ui_pop_data()
 	var/list/pop_data = list(
 		"active" = get_correct_popcount(),
+		"crew" = active_crew,
 		"head" = head_crew,
 		"sec" = sec_crew,
 		"eng" = eng_crew,

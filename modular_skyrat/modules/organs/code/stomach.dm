@@ -13,4 +13,3 @@
 	icon_state = "stomach_big_synth" //ugly placeholder sorry im not an artist hehe
 	maxHealth = 1.5 * STANDARD_ORGAN_THRESHOLD
 	metabolism_efficiency = 0.07
-

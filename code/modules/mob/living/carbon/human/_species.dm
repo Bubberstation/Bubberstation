@@ -644,8 +644,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 /datum/species/proc/spec_life(mob/living/carbon/human/H, seconds_per_tick, times_fired)
 	SHOULD_CALL_PARENT(TRUE)
-	if(H.stat == DEAD)
-		return
 	if(HAS_TRAIT(H, TRAIT_NOBREATH) && (H.health < H.crit_threshold) && !HAS_TRAIT(H, TRAIT_NOCRITDAMAGE))
 		H.adjustBruteLoss(0.5 * seconds_per_tick)
 
@@ -1148,19 +1146,19 @@ GLOBAL_LIST_EMPTY(features_by_species)
  * * humi (required)(type: /mob/living/carbon/human) The mob we will target
  */
 /datum/species/proc/handle_body_temperature(mob/living/carbon/human/humi, seconds_per_tick, times_fired)
-	//when in a cryo unit we suspend all natural body regulation
+	// When in a cryo unit we suspend all natural body regulation
 	if(istype(humi.loc, /obj/machinery/cryo_cell))
 		return
 
-	//Only stabilise core temp when alive and not in statis
+	// Only stabilise core temp when alive and not in statis
 	if(humi.stat < DEAD && !HAS_TRAIT(humi, TRAIT_STASIS))
 		body_temperature_core(humi, seconds_per_tick, times_fired)
 
-	//These do run in statis
+	// These do run in statis
 	body_temperature_skin(humi, seconds_per_tick, times_fired)
 	body_temperature_alerts(humi, seconds_per_tick, times_fired)
 
-	//Do not cause more damage in statis
+	// Do not cause more damage in statis
 	if(!HAS_TRAIT(humi, TRAIT_STASIS))
 		body_temperature_damage(humi, seconds_per_tick, times_fired)
 
@@ -2094,12 +2092,12 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	var/list/final_bodypart_overrides = new_species.bodypart_overrides.Copy()
 
-	// BUBBER EDIT BEGIN REMOVAL - We bake these into the species
+	// BUBBER EDIT REMOVAL BEGIN - We bake these into the species
 	/*
-	if((new_species.digitigrade_customization == DIGITIGRADE_OPTIONAL && target.dna.features["legs"] == DIGITIGRADE_LEGS) || new_species.digitigrade_customization == DIGITIGRADE_FORCED)
+	if((new_species.digitigrade_customization == DIGITIGRADE_OPTIONAL && target.dna.features[FEATURE_LEGS] == DIGITIGRADE_LEGS) || new_species.digitigrade_customization == DIGITIGRADE_FORCED)
 		final_bodypart_overrides[BODY_ZONE_R_LEG] = /obj/item/bodypart/leg/right/digitigrade
 		final_bodypart_overrides[BODY_ZONE_L_LEG] = /obj/item/bodypart/leg/left/digitigrade
-	*/ // BUBBER EDIT END
+	*/ // BUBBER EDIT REMOVAL END
 
 	for(var/obj/item/bodypart/old_part as anything in target.bodyparts)
 		if((old_part.change_exempt_flags & BP_BLOCK_CHANGE_SPECIES) || (old_part.bodypart_flags & BODYPART_IMPLANTED))
@@ -2149,7 +2147,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	ASSERT(!isnull(for_mob))
 	switch(hair_color_mode)
 		if(USE_MUTANT_COLOR)
-			return for_mob.dna.features["mcolor"]
+			return for_mob.dna.features[FEATURE_MUTANT_COLOR]
 		if(USE_FIXED_MUTANT_COLOR)
 			return fixed_mut_color
 
@@ -2166,7 +2164,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				continue
 
 			var/datum/bodypart_overlay/simple/body_marking/overlay = new markings_type()
-			overlay.set_appearance(accessory_name, hooman.dna.features["mcolor"])
+			overlay.set_appearance(accessory_name, hooman.dna.features[FEATURE_MUTANT_COLOR])
 			people_part.add_bodypart_overlay(overlay)
 
 		qdel(markings)

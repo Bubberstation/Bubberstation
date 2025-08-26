@@ -4,3 +4,5 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/civilian.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/civilian.dmi'
 	icon_state = "barber"
+	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/civilian_digi.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
