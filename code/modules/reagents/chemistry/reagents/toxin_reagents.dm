@@ -971,6 +971,13 @@
 	affected_mob.adjust_nutrition(-3 * REM * normalise_creation_purity() * seconds_per_tick) // making the chef more valuable, one meme trap at a time
 	affected_mob.overeatduration = 0
 
+	//GS13 EDIT Lipolicide removes fat
+	if(HAS_TRAIT(affected_mob, TRAIT_LIPOLICIDE_TOLERANCE))
+		affected_mob.adjust_fatness(-0.5, FATTENING_TYPE_WEIGHT_LOSS)
+	else
+		affected_mob.adjust_fatness(-10, FATTENING_TYPE_WEIGHT_LOSS)
+	//GS13 EDIT END
+
 /datum/reagent/toxin/coniine
 	name = "Coniine"
 	description = "Coniine metabolizes extremely slowly, but deals high amounts of toxin damage and stops breathing."

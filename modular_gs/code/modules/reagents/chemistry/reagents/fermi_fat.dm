@@ -158,7 +158,7 @@
 	name = "FermiSlim"
 	id = /datum/reagent/fermi_slim
 	mix_message = "the reaction seems to become thinner!"
-	required_reagents = list(/datum/reagent/medicine/lipolicide = 0.1, /datum/reagent/ammonia = 0.1, /datum/reagent/oxygen = 0.1)
+	required_reagents = list(/datum/reagent/toxin/lipolicide = 0.1, /datum/reagent/ammonia = 0.1, /datum/reagent/oxygen = 0.1)
 	results = list(/datum/reagent/fermi_slim = 0.2)
 	required_temp = 1
 	OptimalTempMin 		= 600		// Lower area of bell curve for determining heat based rate reactions

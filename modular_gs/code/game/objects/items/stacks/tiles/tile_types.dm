@@ -7,6 +7,7 @@
 	icon_state = "tile-gmushroom"
 	turf_type = /turf/open/floor/gmushroom
 	resistance_flags = FIRE_PROOF
+	merge_type = /obj/item/stack/tile/gmushroom
 
 //Shadow Wood
 /obj/item/stack/tile/shadoww
@@ -17,6 +18,7 @@
 	icon_state = "tile-shadoww"
 	turf_type = /turf/open/floor/shadoww
 	resistance_flags = FLAMMABLE
+	merge_type = /obj/item/stack/tile/shadoww
 
 //Plaswood
 /obj/item/stack/tile/plaswood
@@ -27,3 +29,4 @@
 	icon_state = "tile-plaswood"
 	turf_type = /turf/open/floor/plaswood
 	resistance_flags = FLAMMABLE | ACID_PROOF
+	merge_type = /obj/item/stack/tile/plaswood

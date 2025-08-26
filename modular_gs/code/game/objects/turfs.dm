@@ -3,6 +3,7 @@
 	icon_state = "sandstonef"
 	floor_tile = /obj/item/stack/tile/mineral/sandstone
 	icon = 'modular_gs/icons/turf/floors.dmi'
+	damaged_dmi = 'modular_gs/icons/turf/floors.dmi'
 	icons = list("sandstonef","sandstonef_dam")
 
 /turf/open/floor/mineral/crimsonstone_floor
@@ -10,6 +11,7 @@
 	icon_state = "crimsonstone"
 	floor_tile = /obj/item/stack/tile/mineral/crimsonstone
 	icon = 'modular_gs/icons/turf/floors.dmi'
+	damaged_dmi = 'modular_gs/icons/turf/floors.dmi'
 	icons = list("crimsonstone","crimsonstone_dam")
 
 /turf/open/floor/mineral/basaltstone_floor
@@ -17,6 +19,7 @@
 	icon_state = "basaltstone"
 	floor_tile = /obj/item/stack/tile/mineral/basaltstone
 	icon = 'modular_gs/icons/turf/floors.dmi'
+	damaged_dmi = 'modular_gs/icons/turf/floors.dmi'
 	icons = list("basaltstone","basaltstone_dam")
 
 /turf/open/floor/plaswood
