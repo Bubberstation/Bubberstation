@@ -20,9 +20,6 @@
 	if(. != VOTE_AVAILABLE)
 		return .
 
-	if(!SSticker.current_state == GAME_STATE_PLAYING || EMERGENCY_AT_LEAST_DOCKED)
-		return .
-
 	if(forced)
 		return VOTE_AVAILABLE
 
