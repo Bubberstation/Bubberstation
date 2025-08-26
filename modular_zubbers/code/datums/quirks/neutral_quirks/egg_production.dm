@@ -94,7 +94,7 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 		return FALSE
 
 	owner.visible_message(span_alertalien("[owner] starts to lay an egg..."), span_alertalien("You start laying an egg..."))
-	if(!do_after(owner, 0.5 SECONDS, IGNORE_HELD_ITEM))
+	if(!do_after(owner, 0.5 SECONDS, cast_on, IGNORE_HELD_ITEM))
 		owner.balloon_alert(owner, "stopped attempting to lay an egg.")
 		return FALSE
 
