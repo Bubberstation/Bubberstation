@@ -6,8 +6,8 @@
 
 /datum/supply_pack/security/armory/sec_glock
 	name = "'Murphy' Service Pistol Crate"
-	desc = "Contains a pair of 'Murphy' service pistols pre-loaded with lethal rounds. Additional ammo sold seperately. Nanotrasen reminds you that the other weapon is for a friend, and not for going guns akimbo."
-	cost = CARGO_CRATE_VALUE * 4
+	desc = "Contains a three 'Murphy' service pistols pre-loaded with lethal rounds. Additional ammo sold seperately. Nanotrasen reminds you that the other weapon is for a friend, and not for going guns akimbo."
+	cost = CARGO_CRATE_VALUE * 10
 	contains = list(/obj/item/gun/ballistic/automatic/pistol/sec_glock = 3)
 	crate_name = "'Murphy' service pistol crate"
 
@@ -36,13 +36,3 @@
 	desc = "full magazine with an extra-robust ejection spring. Fits into the Murphy Service Pistol."
 	cost = PAYCHECK_COMMAND * 2
 	contains = list(/obj/item/ammo_box/magazine/security = 1)
-
-/datum/supply_pack/science/protean_organs
-	name = "Protean Organs"
-	desc = "Contains two sets of organs for Protean crewmembers."
-	cost = CARGO_CRATE_VALUE * 10 // Not cheap
-	contains = list(/obj/item/organ/stomach/protean = 2, /obj/item/organ/heart/protean = 2)
-	crate_name = "protean organs"
-	access = ACCESS_ROBOTICS
-	access_view = ACCESS_ROBOTICS
-	crate_type = /obj/structure/closet/crate/secure/science/robo
