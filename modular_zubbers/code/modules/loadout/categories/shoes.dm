@@ -35,3 +35,9 @@
 /datum/loadout_item/shoes/diesel_f
 	name = "Female Diesel Boots"
 	item_path = /obj/item/clothing/shoes/jackboots/diesel_f
+
+// FRONTIER CLOTHING
+
+/datum/loadout_item/shoes/frontier_boots
+	name = "Frontier boots"
+	item_path = /obj/item/clothing/shoes/jackboots/frontier_colonist_dearmored
