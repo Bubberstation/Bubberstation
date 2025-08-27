@@ -27,3 +27,17 @@
 /datum/loadout_item/inhand/wheelchair
 	name = "folded wheelchair"
 	item_path = /obj/item/wheelchair
+
+// FRONTIER CLOTHING
+
+/datum/loadout_item/inhand/frontier_backpack
+	name = "Frontier backpack"
+	item_path = /obj/item/storage/backpack/industrial/frontier_colonist
+
+/datum/loadout_item/inhand/frontier_satchel
+	name = "Frontier satchel"
+	item_path = /obj/item/storage/backpack/industrial/frontier_colonist/satchel
+
+/datum/loadout_item/inhand/frontier_messenger
+	name = "Frontier messenger bag"
+	item_path = /obj/item/storage/backpack/industrial/frontier_colonist/messenger
