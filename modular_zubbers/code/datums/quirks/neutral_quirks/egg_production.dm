@@ -58,9 +58,10 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 
 /datum/action/cooldown/spell/egg_production/Remove(mob/removed_from)
 	UnregisterSignal(removed_from, COMSIG_LIVING_LIFE)
+	owner.remove_movespeed_modifier(/datum/movespeed_modifier/egg_holder)
 	return ..()
 
-/// Egg creation segment
+/// *** Start of egg creation segment
 /datum/action/cooldown/spell/egg_production/proc/on_life(seconds_per_tick, times_fired) //adds a proc on_life under the condition we can even produce
 	if(can_produce == TRUE)
 		create_egg()
@@ -79,23 +80,64 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 	if(!length(cached_reagents))
 		return FALSE //there were no reagents, abort the proc
 
+	if(eggs_stored >= maximum_eggs)
+		to_chat(owner, span_warning("Your body can't support anymore eggs! You'll have to make room for more."))
+		return FALSE //we are at the maximum storable eggs, abort the proc
+
 	for(var/datum/reagent/target_reagent as anything in cached_reagents)
 		if(!(target_reagent.name in GLOB.egg_production_reagents)) //checks to ensure the target reagent is even correct, this was a pain in the ass
 			continue
-		if(target_reagent.volume >= GLOB.egg_production_reagents[target_reagent.name][1] && ISINRANGE (eggs_stored, 0, maximum_eggs))
+		if(target_reagent.volume >= GLOB.egg_production_reagents[target_reagent.name][1])
 			to_chat(owner, span_notice("You feel a slight weight added to you."))
 			egg_update(1)
-			egg_holder.reagents.remove_reagent(target_reagent.type, GLOB.egg_production_reagents[target_reagent.name][1])
 			toggle_cooldown()
 			addtimer(CALLBACK(src, PROC_REF(toggle_cooldown)), GLOB.egg_production_reagents[target_reagent.name][2])
 			return TRUE //completed once, now kill the entire proc
 	return
+/// *** End of egg creation segment
+
 ///clamps the stored eggs value between 0 and the maximum, AND increments by the delta amount (which should be 1)
 /datum/action/cooldown/spell/egg_production/proc/egg_update(delta, mob/living/egg_holder)
 	eggs_stored = clamp((eggs_stored + delta), 0, maximum_eggs)
-	//this is meant to add an active readout of how many eggs are stored on mouse-over of the action (not sure if it works yet)
+	//this is meant to add an active readout of how many eggs are stored on mouse-over of the action
 	desc = "[initial(desc)]. You carry [eggs_stored] eggs."
-	///need to add a portion that adjusts movespeed here when overburdened
+	///handles removal of the status effect if stored eggs = 0
+	if(eggs_stored == 0)
+		egg_holder.remove_status_effect(/datum/status_effect/eggnant)
+		return
+	//we grab the % of eggs from the max
+	var/egg_percent = PERCENT(eggs_stored / maximum_eggs)
+	egg_holder.apply_status_effect(/datum/status_effect/eggnant, egg_percent) //** This is erroring out as null.apply status effect for some reason
+
+//setting the base movespeed modifier
+/datum/movespeed_modifier/egg_holder
+	multiplicative_slowdown = 0.5
+
+/// *** Start of eggnant status effect
+/datum/status_effect/eggnant
+	id = "quirk_eggproduction"
+	duration = STATUS_EFFECT_PERMANENT
+	status_type = STATUS_EFFECT_REPLACE
+	show_duration = FALSE
+	alert_type = null
+	var/magnitude
+
+/datum/status_effect/eggnant/on_creation(mob/living/egg_holder, magnitude = 1)
+	. = ..()
+	src.magnitude = magnitude
+
+/datum/status_effect/eggnant/on_apply()
+	var/datum/movespeed_modifier/egg_holder/modifier = new()
+	modifier.multiplicative_slowdown = 0.5 * magnitude
+	owner.add_movespeed_modifier(modifier, update = TRUE)
+
+/datum/status_effect/eggnant/be_replaced()
+	owner.remove_movespeed_modifier(/datum/movespeed_modifier/egg_holder)
+
+/datum/status_effect/eggnant/on_remove()
+	owner.remove_movespeed_modifier(/datum/movespeed_modifier/egg_holder, update = TRUE)
+
+/// *** End of eggnant status effect
 
 /datum/action/cooldown/spell/egg_production/cast(mob/living/cast_on)
 	.=..()
