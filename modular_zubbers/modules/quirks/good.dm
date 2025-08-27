@@ -43,7 +43,6 @@
 	desc = "Switch between defensive and offensive."
 	button_icon_state = "exercised"
 	button_icon = 'icons/hud/screen_alert.dmi'
-	spell_requirements = NONE
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_INCAPACITATED
 	///The amount of damage the attack stance adds to our unarmed attacks.
 	var/punch_damage = 5
