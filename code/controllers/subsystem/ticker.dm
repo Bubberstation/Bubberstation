@@ -196,12 +196,15 @@ SUBSYSTEM_DEF(ticker)
 			totalPlayers = LAZYLEN(GLOB.new_player_list)
 			totalPlayersReady = 0
 			total_admins_ready = 0
+			var/list/readied_players = list() //BUBBER EDIT ADDITION
 			for(var/mob/dead/new_player/player as anything in GLOB.new_player_list)
 				if(player.ready == PLAYER_READY_TO_PLAY)
+					readied_players[player.key] = player //BUBBER EDIT: job estimation, filling the readied list we use later
 					++totalPlayersReady
 					if(player.client?.holder)
 						++total_admins_ready
 
+			job_estimation_list = get_job_estimation(readied_players) //BUBBER EDIT ADDITION
 			if(start_immediately)
 				timeLeft = 0
 
