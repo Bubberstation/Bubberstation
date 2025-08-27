@@ -116,6 +116,9 @@ GLOBAL_LIST_INIT(backpacklist, list(
 	GSATCHEL,
 	GMESSENGER,
 	LSATCHEL,
+	FBACKPACK,
+	FSATCHEL,
+	FMESSENGER,
 ))
 
 	//Suit/Skirt
