@@ -154,3 +154,8 @@
 	name = "MicroStar SCI-MED suit"
 	item_path = /obj/item/clothing/under/rank/civilian/microstar_suit
 
+// FRONTIER CLOTHING
+
+/datum/loadout_item/uniform/miscellaneous/frontier_jumpsuit
+	name = "Frontier jumpsuit"
+	item_path = /obj/item/clothing/under/frontier_colonist_dearmored
