@@ -6,15 +6,20 @@
 /obj/item/bodypart/grasping/arm
 	name = "Grasping Arm"
 	desc = "A big ol' arm."
+	/// The changing stance action given by the quirk. Nullable, if we have no owner.
+	var/datum/action/innate/stance/change_stance
 	/// Did our owner have their hands blocked before we ran on_adding? Used for determining if we should unblock their hand slots on removal.
 	var/owner_blocked_hands_before_insert
 
 /obj/item/bodypart/grasping/arm/Destroy()
-	QDEL_NULL(change_stance) // handled in remove, but lets be safe
+	QDEL_NULL(change_stance) // handled in remove, but just to be safe
 	return ..()
 
 /obj/item/bodypart/grasping/arm/on_adding(mob/living/carbon/new_owner)
 	. = ..()
+
+	change_stance = new /datum/action/innate/stance(new_owner)
+	change_stance.Grant(new_owner)
 
 	owner_blocked_hands_before_insert = (new_owner.dna.species.no_equip_flags & ITEM_SLOT_HANDS)
 	new_owner.dna.species.no_equip_flags |= ITEM_SLOT_HANDS
