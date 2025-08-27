@@ -46,9 +46,11 @@
 	REMOVE_TRAIT(organ_owner, TRAIT_CHUNKYFINGERS_IGNORE_BATON, ORGAN_TRAIT)
 	REMOVE_TRAIT(organ_owner, TRAIT_NO_TWOHANDING, ORGAN_TRAIT)
 
+//Mantis
 /obj/item/bodypart/grasping/arm/left/mantis
 	bodytype = BODYTYPE_ORGANIC
-	icon = 'icons/mob/augmentation/advanced_augments.dmi'
+	icon = 'modular_zubbers/modules/bodyparts/icons/grasping_arms.dmi'
+	icon_state = 'mantisleft'
 	unarmed_damage_low = PUNCH_LOW
 	unarmed_damage_high = PUNCH_HIGH
 	unarmed_effectiveness = 20
@@ -59,7 +61,33 @@
 
 /obj/item/bodypart/grasping/arm/right/mantis
 	bodytype = BODYTYPE_ORGANIC
-	icon = 'icons/mob/augmentation/advanced_augments.dmi'
+	icon = 'modular_zubbers/modules/bodyparts/icons/grasping_arms.dmi'
+	icon_state = 'mantisright'
+	unarmed_damage_low = PUNCH_LOW
+	unarmed_damage_high = PUNCH_HIGH
+	unarmed_effectiveness = 20
+	brute_modifier = 1
+	burn_modifier = 1
+	max_damage = LIMB_MAX_HP_GRASPING
+	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_GRASPING
+
+//Crab
+/obj/item/bodypart/grasping/arm/left/crab
+	bodytype = BODYTYPE_ORGANIC
+	icon = 'modular_zubbers/modules/bodyparts/icons/grasping_arms.dmi'
+	icon_state = 'crableft'
+	unarmed_damage_low = PUNCH_LOW
+	unarmed_damage_high = PUNCH_HIGH
+	unarmed_effectiveness = 20
+	brute_modifier = 1
+	burn_modifier = 1
+	max_damage = LIMB_MAX_HP_GRASPING
+	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_GRASPING
+
+/obj/item/bodypart/grasping/arm/right/crab
+	bodytype = BODYTYPE_ORGANIC
+	icon = 'modular_zubbers/modules/bodyparts/icons/grasping_arms.dmi'
+	icon_state = 'crabright'
 	unarmed_damage_low = PUNCH_LOW
 	unarmed_damage_high = PUNCH_HIGH
 	unarmed_effectiveness = 20
