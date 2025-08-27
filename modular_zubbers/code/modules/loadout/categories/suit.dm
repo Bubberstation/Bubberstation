@@ -155,3 +155,13 @@
 /datum/loadout_item/suit/galfed_jacket
 	name = "Galactic Federation Jacket"
 	item_path = /obj/item/clothing/suit/jacket/galfed
+
+// FRONTIER CLOTHING
+
+/datum/loadout_item/uniform/miscellaneous/frontier_trenchcoat
+	name = "Frontier trenchcoat"
+	item_path = /obj/item/clothing/suit/jacket/frontier_colonist_dearmored
+
+/datum/loadout_item/uniform/miscellaneous/frontier_jacket
+	name = "Frontier jacket"
+	item_path = /obj/item/clothing/suit/jacket/frontier_colonist_dearmored/short
