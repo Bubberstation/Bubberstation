@@ -175,3 +175,9 @@
 /datum/loadout_item/head/soft/galfedcap
 	name = "Galactic Federation cap"
 	item_path = /obj/item/clothing/head/soft/galfedcap
+
+// FRONTIER CLOTHING
+
+/datum/loadout_item/head/soft/frontier_cap
+	name = "Frontier cap"
+	item_path = /obj/item/clothing/head/soft/frontier_colonist_dearmored
