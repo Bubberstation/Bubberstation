@@ -16,3 +16,9 @@
 	name = "Colonial gas mask"
 	item_path = /obj/item/clothing/mask/gas/nri_police
 	restricted_roles = list(ALL_JOBS_SEC, JOB_CUSTOMS_AGENT)
+
+// FRONTIER CLOTHING
+
+/datum/loadout_item/mask/gas/frontier_gasmask
+	name = "Frontier gas mask"
+	item_path = /obj/item/clothing/mask/gas/atmos/frontier_colonist_dearmored
