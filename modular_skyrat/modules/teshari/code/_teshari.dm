@@ -1,4 +1,4 @@
-#define TESHARI_TEMP_OFFSET -30 // K, added to comfort/damage limit etc
+#define TESHARI_TEMP_OFFSET -10 // K, added to comfort/damage limit etc
 #define TESHARI_HEATMOD 1.3
 #define TESHARI_COLDMOD 0.67 // Except cold.
 
@@ -59,7 +59,7 @@
 	)
 
 /obj/item/organ/tongue/teshari
-	liked_foodtypes = MEAT | GORE | RAW
+	liked_foodtypes = SEAFOOD | VEGETABLES | NUTS
 	disliked_foodtypes = GROSS | GRAIN
 
 /datum/species/teshari/prepare_human_for_preview(mob/living/carbon/human/tesh)
@@ -111,13 +111,12 @@
 		which has caused them to form tight-knit groups known as flocks. Teshari generally lack parental figures, and are often \
 		raised communally. When they reach adulthood, they feel an ingrained need to move away from their nesting flock and find or develop a new one. \
 		Teshari tend to be cloistered and quiet when entering a new social space, but are very vocal and impassioned when they fit in, often enjoying making and parroting noises.",
-		"Sirisai (or Penelope 3a) is a tropical world with temperatures ranging from 20 to 30 celsius on average. \
+		"Sirisai is a tropical world with temperatures ranging from 20 to 30 celsius on average. \
 		It has three notable mountain ranges, the only places on the planet where snow can be seen year-round. Temperatures can go as low as -15 Celsius. \
 		The planet itself is generally very biologically diverse, mostly undisturbed ecologically by the Teshari or their predecessors.",
-		"Teshari had a generally uneventful early history, until they were discovered by a species that resided \
-		on the planet Penelope 3. After years of oppression and being sold as a labor force, \
-		the Teshari made their demand: Comply, or explode. This species seemed to not have taken the threat seriously, \
-		and were made extinct by the destruction of their entire planet. Fossils have been uncovered on Penelope 3a, and while they have yet to be named, \
+		"Modern Teshari history began when they were discovered and uplifted by a species that resided on the planet Penelope 3, which Sirisai once orbited. \
+		After years of oppression and being sold as a labor force, the Teshari made their demand: Comply, or explode. This species seemed to not have taken the threat seriously, \
+		and were made extinct by the destruction of their entire planet. Fossils have been uncovered on Sirisai, and while they have yet to be named, \
 		A meeting of Teshari flocks have democratically named the species after the Teshari word for \"bastard\". \
 		Needless to say, this very quickly led to the normalization of relations and formal recognition by the then NRI.",
 	)
