@@ -1,9 +1,9 @@
 //GLOBAL LIST of valid reagents
 GLOBAL_LIST_INIT(egg_production_reagents, list(
-	/// Format: (Reagent name = list(amount of reagent required per egg, cooldown per egg added to buffer))
-	"cum" = list(20, 30 SECONDS),
-	"crocin" = list(20, 20 SECONDS),
-	"hexacrocin" = list(10, 30 SECONDS),
+	/// Format: (Reagent name = list(amount of reagent required per egg, cooldown per egg added to counter))
+	"cum" = list(15, 30 SECONDS),
+	"crocin" = list(20, 30 SECONDS),
+	"hexacrocin" = list(5, 20 SECONDS),
 ))
 
 /datum/quirk/egg_production
@@ -61,7 +61,7 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 	return ..()
 
 /// Egg creation segment
-/datum/action/cooldown/spell/egg_production/proc/on_life(seconds_per_tick, times_fired)
+/datum/action/cooldown/spell/egg_production/proc/on_life(seconds_per_tick, times_fired) //adds a proc on_life under the condition we can even produce
 	if(can_produce == TRUE)
 		create_egg()
 	return
@@ -74,8 +74,8 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 	if(can_produce == FALSE)
 		return FALSE //cooldown is active, abort the proc
 
-	var/mob/living/carbon/human/human_holder = owner
-	var/list/cached_reagents = human_holder.reagents?.reagent_list
+	var/mob/living/carbon/human/egg_holder = owner
+	var/list/cached_reagents = egg_holder.reagents?.reagent_list
 	if(!length(cached_reagents))
 		return FALSE //there were no reagents, abort the proc
 
@@ -85,31 +85,31 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 		if(target_reagent.volume >= GLOB.egg_production_reagents[target_reagent.name][1] && ISINRANGE (eggs_stored, 0, maximum_eggs))
 			to_chat(owner, span_notice("You feel a slight weight added to you."))
 			egg_update(1)
-			human_holder.reagents.remove_reagent(target_reagent.type, GLOB.egg_production_reagents[target_reagent.name][1])
+			egg_holder.reagents.remove_reagent(target_reagent.type, GLOB.egg_production_reagents[target_reagent.name][1])
 			toggle_cooldown()
 			addtimer(CALLBACK(src, PROC_REF(toggle_cooldown)), GLOB.egg_production_reagents[target_reagent.name][2])
 			return TRUE //completed once, now kill the entire proc
 	return
-
-/datum/action/cooldown/spell/egg_production/proc/egg_update(delta)
-	eggs_stored += delta
-	eggs_stored = clamp(eggs_stored, 0, maximum_eggs) // clamps the stored eggs value between 0 and the maximum
-
+///clamps the stored eggs value between 0 and the maximum, AND increments by the delta amount (which should be 1)
+/datum/action/cooldown/spell/egg_production/proc/egg_update(delta, mob/living/egg_holder)
+	eggs_stored = clamp((eggs_stored + delta), 0, maximum_eggs)
+	//this is meant to add an active readout of how many eggs are stored on mouse-over of the action (not sure if it works yet)
+	desc = "[initial(desc)]. You carry [eggs_stored] eggs."
 	///need to add a portion that adjusts movespeed here when overburdened
 
 /datum/action/cooldown/spell/egg_production/cast(mob/living/cast_on)
 	.=..()
-	if(eggs_stored <= 0) //this should work now
+	if(eggs_stored <= 0)
 		owner.balloon_alert(owner, "no eggs to lay!")
 		return FALSE
 
-	owner.visible_message(span_noticealien("[owner] starts to lay an egg..."), span_alertalien("You start laying an egg..."))
-	if(!do_after(owner, 5 SECONDS, cast_on, IGNORE_HELD_ITEM))
+	to_chat(owner, span_noticealien("You start laying an egg..."))
+	if(!do_after(owner, 10 SECONDS, cast_on, IGNORE_HELD_ITEM))
 		owner.balloon_alert(owner, "stopped attempting to lay an egg.")
 		return FALSE
 
-	egg_update(-1) //this should also work now
+	egg_update(-1) //decrements the stored eggs by 1
 	egg = new(owner)
 	owner.put_in_hands(egg)
-	owner.visible_message(span_alertalien("[owner] laid an egg!"), span_alertalien("You laid an egg!"))
+	owner.visible_message(span_noticealien("[owner] laid an egg!"), span_alertalien("You laid an egg!"))
 	return TRUE
