@@ -3696,6 +3696,10 @@
 "aVD" = (
 /turf/open/floor/plating,
 /area/station/engineering/supermatter/waste)
+"aVE" = (
+/obj/effect/landmark/generic_maintenance_landmark,
+/turf/open/floor/plating,
+/area/station/maintenance/dorm_room)
 "aVF" = (
 /obj/effect/mapping_helpers/broken_floor,
 /obj/structure/rack,
@@ -14941,6 +14945,10 @@
 /obj/machinery/airalarm/directional/south,
 /turf/open/floor/iron,
 /area/station/security/holding_cell)
+"eeE" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/dark,
+/area/station/medical/treatment_center)
 "eeG" = (
 /obj/structure/table,
 /obj/effect/spawner/random/trash/bacteria,
@@ -16617,6 +16625,10 @@
 /obj/structure/chair,
 /turf/open/floor/plating,
 /area/station/maintenance/space_hut)
+"eAK" = (
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/glass/reinforced/scrape_below,
+/area/station/commons/dorms)
 "eAS" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
@@ -32713,9 +32725,10 @@
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners{
 	dir = 8
 	},
-/obj/machinery/cryopod,
-/obj/machinery/modular_computer/preset/time_clock/directional/east,
 /obj/effect/turf_decal/bot,
+/obj/machinery/cryopod{
+	dir = 8
+	},
 /turf/open/floor/iron/checker,
 /area/station/commons/dorms)
 "iSf" = (
@@ -37730,11 +37743,13 @@
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners{
 	dir = 8
 	},
-/obj/structure/mirror/directional/east,
 /obj/machinery/camera/autoname/directional/east{
 	dir = 6
 	},
-/obj/structure/sink/directional/west,
+/obj/machinery/cryopod{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot,
 /turf/open/floor/iron/checker,
 /area/station/commons/dorms)
 "kjN" = (
@@ -41319,7 +41334,8 @@
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners{
 	dir = 8
 	},
-/obj/machinery/light/moonstation/directional/north,
+/obj/structure/sink/directional/south,
+/obj/structure/mirror/directional/north,
 /turf/open/floor/iron/checker,
 /area/station/commons/dorms)
 "lgu" = (
@@ -44050,6 +44066,17 @@
 	},
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/station/engineering/supermatter/emitter)
+"lPQ" = (
+/obj/effect/turf_decal/tile/dark_blue/opposingcorners{
+	dir = 8
+	},
+/obj/machinery/cryopod{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/light/moonstation/directional/east,
+/turf/open/floor/iron/checker,
+/area/station/commons/dorms)
 "lPS" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -53620,6 +53647,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/hangover/closet,
+/obj/machinery/modular_computer/preset/time_clock/directional/east,
 /turf/open/floor/iron/checker,
 /area/station/commons/dorms)
 "osO" = (
@@ -70055,9 +70083,7 @@
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners{
 	dir = 8
 	},
-/obj/machinery/cryopod,
 /obj/machinery/computer/cryopod/directional/north,
-/obj/effect/turf_decal/bot,
 /turf/open/floor/iron/checker,
 /area/station/commons/dorms)
 "sQS" = (
@@ -262076,7 +262102,7 @@ kZQ
 qNH
 qer
 rNq
-ssf
+eeE
 ygX
 qNp
 xWI
@@ -266947,7 +266973,7 @@ lGN
 dgM
 mtF
 afB
-afB
+eAK
 afB
 mLG
 oIQ
@@ -267972,7 +267998,7 @@ sPL
 bji
 lNE
 iRZ
-bux
+lPQ
 kjL
 lXx
 cZk
@@ -268228,9 +268254,9 @@ lNE
 aSY
 lNE
 lNE
-bKR
-bKR
-bKR
+pHI
+pHI
+pHI
 oEj
 pHI
 bpI
@@ -273614,7 +273640,7 @@ sSp
 vHF
 xWr
 eJZ
-mIo
+aVE
 fES
 vHF
 wYP
