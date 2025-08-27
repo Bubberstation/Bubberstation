@@ -1,26 +1,9 @@
-// Jumpsuit
-
-/obj/item/clothing/under/frontier_colonist_dearmored
-	name = "frontier jumpsuit"
-	desc = "A heavy grey jumpsuit with padding around the joints removed. Two massive pockets included. \
-		No matter what you do to adjust it, its always just slightly too large."
-	icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing.dmi'
-	icon_state = "jumpsuit"
-	worn_icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn.dmi'
-	worn_icon_digi = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn_digi.dmi'
-	worn_icon_teshari = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn_teshari.dmi'
-	worn_icon_state = "jumpsuit"
-
-/obj/item/clothing/under/frontier_colonist_dearmored/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/manufacturer_examine, COMPANY_KAHRAMAN)
-
 // Boots
 
 /obj/item/clothing/shoes/jackboots/frontier_colonist_dearmored
 	name = "frontier boots"
-	desc = "A well built pair of tall boots usually seen on the feet of explorers, first wave colonists, \
-		and LARPers across the galaxy."
+	desc = "A poorly built pair of replica tall boots usually seen on the feet of explorers, first wave colonists, \
+		Should've gotten the original from the botanical printer."
 	icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing.dmi'
 	icon_state = "boots"
 	worn_icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn.dmi'
@@ -38,8 +21,7 @@
 /obj/item/clothing/suit/jacket/frontier_colonist_dearmored
 	name = "frontier trenchcoat"
 	desc = "A knee length coat with a water-resistant exterior and relatively comfortable interior. \
-		In between? Just enough protective material to stop the odd sharp thing getting through, \
-		though don't expect miracles."
+		This one is clearly a replica as the material are not as protective as the original."
 	icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing.dmi'
 	icon_state = "jacket"
 	worn_icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn.dmi'
@@ -58,28 +40,9 @@
 /obj/item/clothing/suit/jacket/frontier_colonist_dearmored/short
 	name = "frontier jacket"
 	desc = "A short coat with a water-resistant exterior and relatively comfortable interior. \
-		In between? Just enough protective material to stop the odd sharp thing getting through, \
-		though don't expect miracles."
+		In between? This one is clearly a replica as the material are not as protective as the original."
 	icon_state = "jacket_short"
 	worn_icon_state = "jacket_short"
-
-// Various softcaps
-
-/obj/item/clothing/head/soft/frontier_colonist_dearmored
-	name = "frontier cap"
-	desc = "It's a robust baseball hat in a rugged green color."
-	icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing.dmi'
-	icon_state = "cap"
-	soft_type = "cap"
-	soft_suffix = null
-	worn_icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn.dmi'
-	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
-	worn_icon_teshari = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn_teshari.dmi'
-	worn_icon_state = "cap"
-
-/obj/item/clothing/head/soft/frontier_colonist_dearmored/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/manufacturer_examine, COMPANY_KAHRAMAN)
 
 // Gloves
 
@@ -106,9 +69,9 @@
 
 // Special mask
 
-/obj/item/clothing/mask/gas/atmos/frontier_colonist_dearmored
+/obj/item/clothing/mask/gas/frontier_colonist_dearmored
 	name = "frontier gas mask"
-	desc = "An improved gas mask commonly seen in places where the atmosphere is less than breathable, \
+	desc = "An standard gas mask commonly seen in places where the atmosphere is less than breathable, \
 		but otherwise more or less habitable. Its certified to protect against most biological hazards \
 		to boot."
 	icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing.dmi'
