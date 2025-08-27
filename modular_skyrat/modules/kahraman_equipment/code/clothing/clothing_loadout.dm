@@ -69,7 +69,7 @@
 
 // Special mask
 
-/obj/item/clothing/mask/gas/frontier_colonist_dearmored
+/obj/item/clothing/mask/gas/frontier_colonist
 	name = "frontier gas mask"
 	desc = "An standard gas mask commonly seen in places where the atmosphere is less than breathable, \
 		but otherwise more or less habitable. Its certified to protect against most biological hazards \
@@ -83,6 +83,6 @@
 	worn_icon_state = "gas_frontier"
 	flags_inv = HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
 
-/obj/item/clothing/mask/gas/atmos/frontier_colonist_dearmored/Initialize(mapload)
+/obj/item/clothing/mask/gas/frontier_colonist/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_KAHRAMAN)
