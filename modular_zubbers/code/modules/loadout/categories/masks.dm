@@ -21,4 +21,4 @@
 
 /datum/loadout_item/mask/gas/frontier_gasmask
 	name = "Frontier gas mask"
-	item_path = /obj/item/clothing/mask/gas/frontier_colonist_dearmored
+	item_path = /obj/item/clothing/mask/gas/frontier_colonist
