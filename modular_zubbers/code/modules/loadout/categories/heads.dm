@@ -180,4 +180,4 @@
 
 /datum/loadout_item/head/soft/frontier_cap
 	name = "Frontier cap"
-	item_path = /obj/item/clothing/head/soft/frontier_colonist_dearmored
+	item_path = /obj/item/clothing/head/soft/frontier_colonist
