@@ -158,10 +158,10 @@
 
 // FRONTIER CLOTHING
 
-/datum/loadout_item/uniform/miscellaneous/frontier_trenchcoat
+/datum/loadout_item/suit/frontier_trenchcoat
 	name = "Frontier trenchcoat"
 	item_path = /obj/item/clothing/suit/jacket/frontier_colonist_dearmored
 
-/datum/loadout_item/uniform/miscellaneous/frontier_jacket
+/datum/loadout_item/suit/frontier_jacket
 	name = "Frontier jacket"
 	item_path = /obj/item/clothing/suit/jacket/frontier_colonist_dearmored/short
