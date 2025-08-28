@@ -52,7 +52,15 @@
 	var/biotype_bonus_damage = 20
 	///Amount of melee armor defense stance adds
 	var/melee_armor = 10
+	/// The actual offensive stance sprite. Nullable, if inactive.
+	var/obj/structure/stance/attack
+
+/datum/action/innate/stance/Destroy()
+	qdel(attack) // we already listen for COMSIG_QDELETING on our stance, so it already sets it to null via the signal
+	return ..()
 
 /datum/action/innate/stance/Trigger(mob/clicker, trigger_flags)
-	. = ..()
+	if(!..())
+		return FALSE
 
+	if (trigger_flags

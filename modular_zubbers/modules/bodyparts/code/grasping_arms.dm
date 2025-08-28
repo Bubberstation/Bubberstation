@@ -28,7 +28,7 @@
 	var/obj/item/clothing/gloves = new_owner.get_item_by_slot(ITEM_SLOT_HANDS)
 	if (gloves && !HAS_TRAIT(gloves, TRAIT_NODROP))
 		gloves.forceMove(get_turf(new_owner))
-	add
+
 
 /// Adds mob traits to our owner.
 /obj/item/bodypart/grasping/arm/proc/add_traits(mob/living/carbon/organ_owner = owner)
@@ -39,12 +39,12 @@
 	. = ..()
 
 	if (!owner_blocked_hands_before_insert)
-		organ_owner.dna.species.no_equip_flags &= ~ITEM_SLOT_HANDS
+		old_owner.dna.species.no_equip_flags &= ~ITEM_SLOT_HANDS
 	owner_blocked_hands_before_insert = FALSE
-	organ_owner.dna.species.modsuit_slot_exceptions &= ~ITEM_SLOT_HANDS
+	old_owner.dna.species.modsuit_slot_exceptions &= ~ITEM_SLOT_HANDS
 
-	REMOVE_TRAIT(organ_owner, TRAIT_CHUNKYFINGERS_IGNORE_BATON, ORGAN_TRAIT)
-	REMOVE_TRAIT(organ_owner, TRAIT_NO_TWOHANDING, ORGAN_TRAIT)
+	REMOVE_TRAIT(old_owner, TRAIT_CHUNKYFINGERS_IGNORE_BATON, ORGAN_TRAIT)
+	REMOVE_TRAIT(old_owner, TRAIT_NO_TWOHANDING, ORGAN_TRAIT)
 
 //Mantis
 /obj/item/bodypart/grasping/arm/left/mantis
