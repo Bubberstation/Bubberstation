@@ -58,7 +58,7 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 
 /datum/action/cooldown/spell/egg_production/Remove(mob/removed_from)
 	UnregisterSignal(removed_from, COMSIG_LIVING_LIFE)
-	owner.remove_movespeed_modifier(/datum/movespeed_modifier/egg_holder)
+	owner.remove_movespeed_modifier(/datum/movespeed_modifier/eggnant)
 	return ..()
 
 /// *** Start of egg creation segment
@@ -89,28 +89,27 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 			continue
 		if(target_reagent.volume >= GLOB.egg_production_reagents[target_reagent.name][1])
 			to_chat(owner, span_notice("You feel a slight weight added to you."))
-			egg_update(1)
+			egg_update(1, egg_holder)
 			toggle_cooldown()
 			addtimer(CALLBACK(src, PROC_REF(toggle_cooldown)), GLOB.egg_production_reagents[target_reagent.name][2])
 			return TRUE //completed once, now kill the entire proc
 	return
-/// *** End of egg creation segment
+// *** End of egg creation segment
 
-///clamps the stored eggs value between 0 and the maximum, AND increments by the delta amount (which should be 1)
 /datum/action/cooldown/spell/egg_production/proc/egg_update(delta, mob/living/egg_holder)
-	eggs_stored = clamp((eggs_stored + delta), 0, maximum_eggs)
+	eggs_stored = clamp((eggs_stored + delta), 0, maximum_eggs) //clamps the stored eggs value between 0 and the maximum, AND increments by the delta amount (which should be 1)
 	//this is meant to add an active readout of how many eggs are stored on mouse-over of the action
 	desc = "[initial(desc)]. You carry [eggs_stored] eggs."
-	///handles removal of the status effect if stored eggs = 0
+	//handles removal of the status effect if stored eggs = 0
 	if(eggs_stored == 0)
 		egg_holder.remove_status_effect(/datum/status_effect/eggnant)
 		return
 	//we grab the % of eggs from the max
-	var/egg_percent = PERCENT(eggs_stored / maximum_eggs)
+	var/egg_percent = clamp(round(eggs_stored / maximum_eggs, 0.2), 0, 1)
 	egg_holder.apply_status_effect(/datum/status_effect/eggnant, egg_percent) //** This is erroring out as null.apply status effect for some reason
 
 //setting the base movespeed modifier
-/datum/movespeed_modifier/egg_holder
+/datum/movespeed_modifier/eggnant
 	multiplicative_slowdown = 0.5
 
 /// *** Start of eggnant status effect
@@ -120,24 +119,27 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 	status_type = STATUS_EFFECT_REPLACE
 	show_duration = FALSE
 	alert_type = null
-	var/magnitude
+	var/magnitude = 1
 
-/datum/status_effect/eggnant/on_creation(mob/living/egg_holder, magnitude = 1)
+/datum/status_effect/eggnant/on_creation(mob/living/eggnant, egg_percent)
 	. = ..()
-	src.magnitude = magnitude
+	src.magnitude = egg_percent
 
 /datum/status_effect/eggnant/on_apply()
-	var/datum/movespeed_modifier/egg_holder/modifier = new()
+	var/datum/movespeed_modifier/eggnant/modifier = new()
 	modifier.multiplicative_slowdown = 0.5 * magnitude
 	owner.add_movespeed_modifier(modifier, update = TRUE)
+	return ..()
 
 /datum/status_effect/eggnant/be_replaced()
-	owner.remove_movespeed_modifier(/datum/movespeed_modifier/egg_holder)
+	owner.remove_movespeed_modifier(/datum/movespeed_modifier/eggnant)
+	return ..()
 
 /datum/status_effect/eggnant/on_remove()
-	owner.remove_movespeed_modifier(/datum/movespeed_modifier/egg_holder, update = TRUE)
+	owner.remove_movespeed_modifier(/datum/movespeed_modifier/eggnant, update = TRUE)
+	return ..()
 
-/// *** End of eggnant status effect
+// *** End of eggnant status effect
 
 /datum/action/cooldown/spell/egg_production/cast(mob/living/cast_on)
 	.=..()
