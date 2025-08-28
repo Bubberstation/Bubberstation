@@ -16,5 +16,5 @@
 /mob/dead/get_status_tab_items()
 	.=..()
 	//Adds the Job Estimation panel to the end of the Statpanel.
-	if(CONFIG_GET(flag/show_job_estimation))
+	if(CONFIG_GET(flag/show_job_estimation) && SSticker.current_state == GAME_STATE_PREGAME)
 		. += SSticker.job_estimation_list
