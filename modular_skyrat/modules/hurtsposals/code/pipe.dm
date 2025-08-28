@@ -1,8 +1,12 @@
 // Make disposal pipes hurt you if you ride them.
 
+/obj/structure/disposalpipe
+	// Set this to true if you want a disposal pipe to deal no damage.
+	var/padded_corners = FALSE
+
 /obj/structure/disposalpipe/transfer_to_dir(obj/structure/disposalholder/holder, nextdir)
 
-	if(!holder || !holder.hasmob || holder.dir == next_dir || !prob(80)) //Disposals optimization.
+	if(padded_corners || !holder || !holder.hasmob || holder.dir == nextdir || !prob(80)) //Disposals optimization.
 		return ..()
 
 	. = ..() //We don't put this at the start of the the proc in case the direction of the holder changes.
@@ -12,4 +16,4 @@
 			continue
 		if(HAS_TRAIT(found_victim, TRAIT_TRASHMAN))
 			continue
-		living_within.adjustBruteLoss(4)
+		found_victim.adjustBruteLoss(4)
