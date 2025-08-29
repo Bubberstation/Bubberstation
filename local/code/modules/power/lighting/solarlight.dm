@@ -2,7 +2,7 @@
 /obj/machinery/solarlight
 	name = "solarlight"
 	desc = "A solar-charged piece of machinery for lighting roadways. Generates electricity when in contact with even the most distant sunlight."
-	icon = 'local/icons/obj/lighting.dmi'
+	icon = 'modular_zubbers/icons/effigy/obj/lighting.dmi'
 	icon_state = "solarlamp"
 	density = TRUE
 	use_power = NO_POWER_USE

@@ -3,9 +3,9 @@
 /obj/item/claymore/cutlass/luna
 	name = "Luna"
 	desc = "Forged by a madwoman, in recognition of a time, a place - she thought almost real. Various etchings of moons are inscribed onto the surface, different phases marking different parts of the blade."
-	icon = 'local/icons/obj/weapons/sword.dmi'
-	lefthand_file = 'local/icons/mob/inhands/weapons/swords_lefthand.dmi'
-	righthand_file = 'local/icons/mob/inhands/weapons/swords_righthand.dmi'
+	icon = 'modular_zubbers/icons/effigy/obj/weapons/sword.dmi'
+	lefthand_file = 'modular_zubbers/icons/effigy/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/effigy/mob/inhands/weapons/swords_righthand.dmi'
 	icon_state = "luna"
 	inhand_icon_state = "luna"
 	slot_flags = null // Let's not.
@@ -104,7 +104,7 @@
 /obj/item/luna_fragment
 	name = "coder's bane"
 	desc = "report this on github! unless you got this from a christmas present!"
-	icon = 'local/icons/obj/jungle_items.dmi'
+	icon = 'modular_zubbers/icons/effigy/obj/jungle_items.dmi'
 	/// What does this fragment do?
 	var/effect_desc = "Does literally nothing."
 	/// Has this fragment done it's introductory hallucination?

@@ -3,7 +3,7 @@
 	desc = "A rod, stuck into the ground, affixed with a piece of wood and paper to crute a crude sign. It doesn't read anything."
 	obj_flags = UNIQUE_RENAME
 	max_integrity = 20
-	icon = 'local/icons/obj/standing_sign.dmi'
+	icon = 'modular_zubbers/icons/effigy/obj/standing_sign.dmi'
 	icon_state = "generic"
 	density = TRUE
 	anchored = TRUE

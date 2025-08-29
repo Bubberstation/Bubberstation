@@ -2,7 +2,7 @@
 	gender = PLURAL
 	name = "rough stone"
 	desc = "Stone. Perhaps also rock; if you ask nicely."
-	icon = 'local/icons/turf/floors/rough_stone.dmi'
+	icon = 'modular_zubbers/icons/effigy/turf/floors/rough_stone.dmi'
 	icon_state = "roughstone0"
 	baseturfs = /turf/open/misc/rough_stone
 	planetary_atmos = TRUE

@@ -3,7 +3,7 @@
 /obj/item/salvaging_hammer
 	name = "hammer (1cm)"
 	desc = "A hammer that can be used to pry off less-usable parts of scrap chunks."
-	icon = 'local/icons/obj/salvage.dmi'
+	icon = 'modular_zubbers/icons/effigy/obj/salvage.dmi'
 	icon_state = "hammer1"
 	/// How deep do we dig into any one scrap chunk?
 	var/dig_amount = 1
@@ -85,7 +85,7 @@
 /obj/item/salvaging_brush
 	name = "brush"
 	desc = "A brush that is used to more delicately uncover more usable parts from scrap chunks."
-	icon = 'local/icons/obj/salvage.dmi'
+	icon = 'modular_zubbers/icons/effigy/obj/salvage.dmi'
 	icon_state = "brush"
 	var/dig_speed = 3 SECONDS
 
@@ -99,13 +99,13 @@
 /obj/item/salvaging_tape_measure
 	name = "measuring tape"
 	desc = "Used to measure scrap chunks' damage. Who's shorter - the chunk of scrap you're working on, or Dick Gum, from the posters?"
-	icon = 'local/icons/obj/salvage.dmi'
+	icon = 'modular_zubbers/icons/effigy/obj/salvage.dmi'
 	icon_state = "tape"
 
 /obj/item/salvage_handheld_scanner
 	name = "handheld scanner"
 	desc = "A handheld scanner for strange rocks. It tags the limits of the rock."
-	icon = 'local/icons/obj/salvage.dmi'
+	icon = 'modular_zubbers/icons/effigy/obj/salvage.dmi'
 	icon_state = "scanner"
 	var/scanning_speed = 3 SECONDS
 	var/scan_advanced = FALSE
@@ -119,7 +119,7 @@
 /obj/item/storage/belt/utility/salvage
 	name = "salvage toolbelt"
 	desc = "Holds salvaging equipment, so you can yell; \"It's scrappin' time!\" and scrap all over the place."
-	icon = 'local/icons/obj/salvage.dmi'
+	icon = 'modular_zubbers/icons/effigy/obj/salvage.dmi'
 	icon_state = "salvage_belt"
 	content_overlays = FALSE
 	custom_premium_price = PAYCHECK_CREW * 2

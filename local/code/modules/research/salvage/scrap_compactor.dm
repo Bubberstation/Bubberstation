@@ -3,7 +3,7 @@
 /obj/machinery/scrap_compactor
 	name = "scrap compactor"
 	desc = "Compacts scrap into items more useful to research; at roughly equivalent rate to their market value."
-	icon = 'local/icons/obj/machines/scrap_compactor.dmi'
+	icon = 'modular_zubbers/icons/effigy/obj/machines/scrap_compactor.dmi'
 	icon_state = "compactor"
 	anchored = TRUE
 	density = TRUE

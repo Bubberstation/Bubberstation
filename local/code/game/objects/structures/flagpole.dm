@@ -1,7 +1,7 @@
 /obj/structure/flagpole
 	name = "flagpole"
 	desc = "Don't stick your tongue on it."
-	icon = 'local/icons/obj/structures/flagpole.dmi'
+	icon = 'modular_zubbers/icons/effigy/obj/structures/flagpole.dmi'
 	icon_state = "flagpole"
 	density = TRUE
 	anchored = TRUE

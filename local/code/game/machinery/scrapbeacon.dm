@@ -5,7 +5,7 @@
 /obj/machinery/scrap_beacon
 	name = "scrap beacon"
 	desc = "Electromagnetically pulls scrap and debris towards itself. Manually activated via a button inside the landing zone - dodging is half the fun!"
-	icon = 'local/icons/obj/machines/scrap_beacon.dmi'
+	icon = 'modular_zubbers/icons/effigy/obj/machines/scrap_beacon.dmi'
 	icon_state = "beacon"
 	anchored = TRUE
 	density = TRUE

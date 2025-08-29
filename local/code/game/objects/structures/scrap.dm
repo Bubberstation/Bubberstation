@@ -1,7 +1,7 @@
 /obj/structure/scrap
 	name = "scrap pile"
 	desc = "A pile of debris, thrown in a loose pile."
-	icon = 'local/icons/obj/scrap.dmi'
+	icon = 'modular_zubbers/icons/effigy/obj/scrap.dmi'
 	icon_state = "scrap"
 	anchored = TRUE
 	var/list/ways = list("pokes around in", "searches", "scours", "digs through", "rummages through", "goes through","picks through")

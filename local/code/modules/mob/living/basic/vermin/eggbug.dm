@@ -2,7 +2,7 @@
 /mob/living/basic/eggbug
 	name = "eggbug"
 	desc = "A long-forgotten creature that defies all logic of \"shading\" and \"adhering to properties of light.\" Is it a bug; or is it an egg?"
-	icon = 'local/icons/mob/simple/animal.dmi'
+	icon = 'modular_zubbers/icons/effigy/mob/simple/animal.dmi'
 	icon_state = "eggbug"
 	icon_living = "eggbug"
 	icon_dead = "eggbug_dead"

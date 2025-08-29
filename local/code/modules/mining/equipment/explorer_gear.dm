@@ -6,7 +6,7 @@
 		)
 	bodyshape_icon_files = list(
 		BODYSHAPE_HUMANOID_T = 'icons/mob/clothing/suits/utility.dmi',
-		BODYSHAPE_DIGITIGRADE_T = 'local/icons/mob/clothing/suits/utility_digi.dmi',
+		BODYSHAPE_DIGITIGRADE_T = 'modular_zubbers/icons/effigy/mob/clothing/suits/utility_digi.dmi',
 	)
 
 /obj/item/clothing/mask/gas/explorer
@@ -20,7 +20,7 @@
 		)
 	bodyshape_icon_files = list(
 		BODYSHAPE_HUMANOID_T = 'icons/mob/clothing/suits/armor.dmi',
-		BODYSHAPE_DIGITIGRADE_T = 'local/icons/mob/clothing/suits/armor_digi.dmi',
+		BODYSHAPE_DIGITIGRADE_T = 'modular_zubbers/icons/effigy/mob/clothing/suits/armor_digi.dmi',
 	)
 
 /obj/item/clothing/suit/hooded/cloak/drake
@@ -31,5 +31,5 @@
 		)
 	bodyshape_icon_files = list(
 		BODYSHAPE_HUMANOID_T = 'icons/mob/clothing/suits/armor.dmi',
-		BODYSHAPE_DIGITIGRADE_T = 'local/icons/mob/clothing/suits/armor_digi.dmi',
+		BODYSHAPE_DIGITIGRADE_T = 'modular_zubbers/icons/effigy/mob/clothing/suits/armor_digi.dmi',
 	)
