@@ -1,6 +1,5 @@
 /datum/species/mush
 	inherent_traits = list(
-		TRAIT_FIXED_MUTANT_COLORS, // This should fix a minor bug
 		TRAIT_MUTANT_COLORS,
 		TRAIT_NOBREATH,
 		TRAIT_NOFLASH,
