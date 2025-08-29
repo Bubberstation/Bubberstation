@@ -96,6 +96,7 @@
 	sharpness = SHARP_EDGED
 	wound_bonus = 5
 	exposed_wound_bonus = 30
+	var/bonus_damage = 10
 
 /datum/embedding/forged_dagger
 	embed_chance = 50
@@ -124,9 +125,10 @@
 	if(living_target.stat == DEAD)
 		return
 
-	sneak_attack(living_target, user)
+	if(check_for_sneak_attack(living_target, user) = TRUE)
+		critical_hit(carbon_target)
 
-/obj/item/forging/reagent_weapon/dagger/proc/sneak_attack(mob/living/carbon/carbon_target, mob/user)
+/obj/item/forging/reagent_weapon/dagger/proc/check_for_sneak_attack(mob/living/carbon/carbon_target, mob/user)
 	// Check chaplain_nullrod.dm for original comments, I'm only leaving new ones in
 	var/successful_sneak_attack = FALSE
 
@@ -161,12 +163,14 @@
 	if(!successful_sneak_attack)
 		if(sneak_attack_fail_message)
 			user.balloon_alert(carbon_target, "sneak attack avoided!")
-		return
+		return FALSE
+	return TRUE
 
+/obj/item/forging/reagent_weapon/dagger/proc/critical_hit(mob/living/carbon/carbon_target, mob/user)
 	var/obj/item/bodypart/affecting = carbon_target.get_bodypart(user.get_random_valid_zone(user.zone_selected))
 	var/armor_block = carbon_target.run_armor_check(affecting, MELEE, armour_penetration = armour_penetration)
 
-	carbon_target.apply_damage(10, BRUTE, def_zone = affecting, blocked = armor_block, wound_bonus = exposed_wound_bonus, sharpness = SHARP_EDGED)
+	carbon_target.apply_damage(bonus_damage, BRUTE, def_zone = affecting, blocked = armor_block, wound_bonus = exposed_wound_bonus, sharpness = SHARP_EDGED)
 	carbon_target.balloon_alert(user, "sneak attack!")
 	playsound(carbon_target, 'sound/items/weapons/guillotine.ogg', 50, TRUE)
 
