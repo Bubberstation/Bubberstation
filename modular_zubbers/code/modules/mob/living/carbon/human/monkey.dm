@@ -8,7 +8,7 @@
 		bonus_tame_chance = 5, \
 		unique = FALSE, \
 	)
-	RegisterSignal(COMSIG_MOB_TRY_TAME, PROC_REF(on_tame_signal))
+	RegisterSignal(src, COMSIG_MOB_TRY_TAME, PROC_REF(on_tame_signal))
 
 // happy monke
 /mob/living/carbon/human/species/monkey/proc/on_tame_signal(atom/source, obj/item/food, mob/living/attacker)
