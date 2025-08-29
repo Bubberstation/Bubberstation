@@ -40,7 +40,7 @@
 			var/datum/species/species_type = race
 			affected_mob.set_species(species_type, icon_update = TRUE, pref_load = FALSE)
 			to_chat(affected_mob, span_warning("You've become \a [LOWER_TEXT(initial(species_type.name))]!"))
-			if (race == /datum/species/hemophage) //bypasses a potential exception
+			if (HAS_TRAIT(affected_mob, TRAIT_VIRUSIMMUNE)) //bypasses a potential exception
 				return
 			unregister_disease_signals()
 			LAZYREMOVE(affected_mob.diseases, src)
@@ -65,12 +65,12 @@
 	infectable_biotypes = MOB_ORGANIC|MOB_UNDEAD
 
 /datum/disease/transformation_race/synthetic
-	name = "Synthetic Transformation"
+	name = "Synthetic Conversion Nanites"
 	cure_text = "An injection of copper."
 	cures = list(/datum/reagent/copper)
 	cure_chance = 2.5
 	agent = "C3P0 Nanomachines"
-	desc = "This disease, actually acute nanomachine infection, converts the victim into a synth."
+	desc = "A acute nanomachine infection that converts the victim into a synthetic lifeform"
 	severity = DISEASE_SEVERITY_BIOHAZARD
 	visibility_flags = NONE
 	stage1 = list()
@@ -86,12 +86,12 @@
 	infectable_biotypes = MOB_ORGANIC|MOB_UNDEAD|MOB_ROBOTIC
 
 /datum/disease/transformation_race/android
-	name = "Android Transformation"
+	name = "Android Conversion Nanites"
 	cure_text = "An injection of copper."
 	cures = list(/datum/reagent/copper)
 	cure_chance = 2.5
 	agent = "BB-8 Nanomachines"
-	desc = "This disease, actually acute nanomachine infection, converts the victim into an android."
+	desc = "A acute nanomachine infection that converts the victim into an android"
 	severity = DISEASE_SEVERITY_BIOHAZARD
 	visibility_flags = NONE
 	stage1 = list()
