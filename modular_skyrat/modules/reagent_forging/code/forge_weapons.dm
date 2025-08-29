@@ -125,8 +125,8 @@
 	if(living_target.stat == DEAD)
 		return
 
-	if(check_for_sneak_attack(living_target, user) = TRUE)
-		critical_hit(carbon_target)
+	if(check_for_sneak_attack(living_target, user) == TRUE)
+		critical_hit(living_target)
 
 /obj/item/forging/reagent_weapon/dagger/proc/check_for_sneak_attack(mob/living/carbon/carbon_target, mob/user)
 	// Check chaplain_nullrod.dm for original comments, I'm only leaving new ones in
@@ -259,9 +259,11 @@
 		for(var/obj/item/shield/I in H.held_items)
 			if(I.breakable_by_damage)
 				user.balloon_alert(user, "devastating blow!")
+				playsound(src, 'sound/effects/bang.ogg', 30)
 				I.take_damage(15, BRUTE, 0, FALSE, get_dir(user, H))
 			else
 				user.balloon_alert(user, "crippling blow!")
+				playsound(src, 'sound/effects/tableheadsmash.ogg', 30)
 				H.apply_damage(15, STAMINA)
 
 /obj/item/forging/reagent_weapon/hammer
