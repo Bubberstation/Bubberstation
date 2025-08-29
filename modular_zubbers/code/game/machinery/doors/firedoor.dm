@@ -2,6 +2,7 @@
 	name = "emergency shutter"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas. This one has a glass panel. It has a mechanism to open it with just your hands."
 	icon = 'modular_zubbers/icons/obj/doors/doorfireglass.dmi'
+	var/water_sensor = FALSE
 
 /obj/machinery/door/firedoor/click_alt(mob/user)
 	try_manual_override(user)
@@ -36,6 +37,14 @@
 /obj/machinery/door/firedoor/closed
 	alarm_type = FIRELOCK_ALARM_TYPE_GENERIC
 
+/obj/machinery/door/firedoor/proc/check_liquids(turf/checked_turf)
+	var/obj/effect/abstract/liquid_turf/liquids = checked_turf.liquids
+	if(isnull(liquids))
+		return
+
+	if(liquids.height > 1)
+		return FIRELOCK_ALARM_TYPE_COLD
+
 /obj/machinery/door/firedoor/solid
 	name = "solid emergency shutter"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas. It has a mechanism to open it with just your hands."
@@ -60,3 +69,16 @@
 
 /obj/effect/spawner/structure/window/reinforced/no_firelock
 	spawn_list = list(/obj/structure/grille, /obj/structure/window/reinforced/fulltile)
+
+/obj/machinery/door/firedoor/water_sensor
+	name = "environmental shutter"
+	water_sensor = TRUE
+
+/obj/machinery/door/firedoor/water_sensor/heavy
+	name = "heavy environmental shutter"
+	desc = /obj/machinery/door/firedoor/heavy::desc
+	icon = /obj/machinery/door/firedoor/heavy::icon
+	glass = /obj/machinery/door/firedoor/heavy::glass
+	explosion_block = /obj/machinery/door/firedoor/heavy::explosion_block
+	assemblytype = /obj/machinery/door/firedoor/heavy::assemblytype // This should probably be changed for this and parent; but it's not a big enough issue atm.
+	max_integrity = /obj/machinery/door/firedoor/heavy::max_integrity

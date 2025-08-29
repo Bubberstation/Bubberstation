@@ -174,6 +174,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 /obj/machinery/cryopod/quiet
 	quiet = TRUE
 
+/obj/machinery/cryopod/no_latejoin
+
 /obj/machinery/cryopod/Initialize(mapload)
 	..()
 	if(!quiet)

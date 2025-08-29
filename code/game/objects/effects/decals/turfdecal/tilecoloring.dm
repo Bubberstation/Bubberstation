@@ -174,7 +174,7 @@ TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/holiday/rainbow)
 
 TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/holiday/random)
 
-#undef TILE_DECAL_SUBTYPE_HELPER
+// #undef TILE_DECAL_SUBTYPE_HELPER // BUBBER EDIT REMOVAL
 
 /// Trimlines
 /obj/effect/turf_decal/trimline
@@ -347,5 +347,5 @@ TRIMLINE_SUBTYPE_HELPER(/obj/effect/turf_decal/trimline/tram)
 
 TRIMLINE_SUBTYPE_HELPER(/obj/effect/turf_decal/trimline/dark)
 
-#undef TRIMLINE_SUBTYPE_HELPER
+// #undef TRIMLINE_SUBTYPE_HELPER // BUBBER EDIT REMOVAL
 #undef DECAL_ALPHA
