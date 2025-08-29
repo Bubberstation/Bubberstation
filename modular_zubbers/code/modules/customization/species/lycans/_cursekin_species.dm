@@ -5,7 +5,6 @@
 		TRAIT_LYCAN,
 		TRAIT_MUTANT_COLORS, // More customization options.
 	)
-	mutant_bodyparts = list()
 	mutantbrain = /obj/item/organ/brain/lycan
 	var/lycanthropy_species = /datum/species/lycan
 
