@@ -89,3 +89,15 @@
 	cost = CARGO_CRATE_VALUE * 5.5
 	contains = list(/obj/item/gun/energy/e_gun/advtaser = 3)
 	access = ACCESS_SECURITY
+
+/datum/supply_pack/security/laser
+	cost = CARGO_CRATE_VALUE * 7
+
+/datum/supply_pack/security/armory/energy
+	desc = "Contains three Energy Guns, capable of firing both nonlethal and lethal \
+		blasts of light."
+	cost = CARGO_CRATE_VALUE * 7
+	contains = list(/obj/item/gun/energy/e_gun = 3)
+
+/datum/supply_pack/security/armory/laser_carbine
+	cost = CARGO_CRATE_VALUE * 7
