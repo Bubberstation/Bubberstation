@@ -108,3 +108,9 @@
 	icon_state = "centipede" // End of by @Sweettoothart
 	icon = 'modular_zubbers/icons/customization/tails.dmi'
 	color_src = USE_MATRIXED_COLORS
+
+/datum/sprite_accessory/tails/mammal/wagging/tailmaw/striped
+	name = "Tailmaw (Striped)"
+	icon_state = "tailmawwag_striped"
+	icon = 'modular_zubbers/icons/customization/tails.dmi'
+	color_src = USE_MATRIXED_COLORS
