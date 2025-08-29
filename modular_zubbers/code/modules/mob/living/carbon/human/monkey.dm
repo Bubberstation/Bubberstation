@@ -13,4 +13,6 @@
 // happy monke
 /mob/living/carbon/human/species/monkey/proc/on_tame_signal(atom/source, obj/item/food, mob/living/attacker)
 	SIGNAL_HANDLER
-	ai_controller?.set_blackboard_key(BB_MONKEY_AGGRESSIVE, FALSE)
+	// ai_controller?.set_blackboard_key(BB_MONKEY_AGGRESSIVE, FALSE)
+	if(ai_controller)
+		ai_controller.blackboard[BB_MONKEY_ENEMIES] -= attacker
