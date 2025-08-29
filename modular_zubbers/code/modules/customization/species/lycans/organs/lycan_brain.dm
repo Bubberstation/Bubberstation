@@ -44,12 +44,16 @@
 	set name = "Enter/Leave Lycan Form"
 	set desc = "Succumb to the rage and turn into a lycan."
 	set category = "Lycan"
-	if(user && !HAS_TRAIT(user, TRAIT_BEAST_FORM))
+	if(!user)
+		return
+	if(!HAS_TRAIT(user, TRAIT_BEAST_FORM))
 		enter_beast_form()
-	else if(user && HAS_TRAIT(user, TRAIT_BEAST_FORM))
+	else if(HAS_TRAIT(user, TRAIT_BEAST_FORM))
 		leave_beast_form()
 
 /obj/item/organ/brain/lycan/on_death(seconds_per_tick, times_fired)
 	. = ..()
-	if(owner && HAS_TRAIT(owner, TRAIT_BEAST_FORM))
+	if(!owner)
+		return
+	if(HAS_TRAIT(owner, TRAIT_BEAST_FORM))
 		leave_beast_form()
