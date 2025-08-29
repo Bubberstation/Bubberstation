@@ -109,8 +109,20 @@
 	icon = 'modular_zubbers/icons/customization/tails.dmi'
 	color_src = USE_MATRIXED_COLORS
 
+/datum/sprite_accessory/tails/mammal/wagging/tailmaw/head
+	name = "Tailmaw (Coloured Head)"
+	icon_state = "tailmawwag_head"
+	icon = 'modular_zubbers/icons/customization/tails.dmi'
+	color_src = USE_MATRIXED_COLORS
+
 /datum/sprite_accessory/tails/mammal/wagging/tailmaw/striped
 	name = "Tailmaw (Striped)"
 	icon_state = "tailmawwag_striped"
+	icon = 'modular_zubbers/icons/customization/tails.dmi'
+	color_src = USE_MATRIXED_COLORS
+
+/datum/sprite_accessory/tails/mammal/wagging/tailmaw/stripedhead
+	name = "Tailmaw (Striped, Coloured Head)"
+	icon_state = "tailmawwag_stripedhead"
 	icon = 'modular_zubbers/icons/customization/tails.dmi'
 	color_src = USE_MATRIXED_COLORS
