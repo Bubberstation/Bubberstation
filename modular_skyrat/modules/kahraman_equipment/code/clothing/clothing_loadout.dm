@@ -34,7 +34,6 @@
 
 /obj/item/clothing/suit/jacket/frontier_colonist_dearmored/Initialize(mapload)
 	. = ..()
-	allowed += GLOB.colonist_suit_allowed
 	AddElement(/datum/element/manufacturer_examine, COMPANY_KAHRAMAN)
 
 /obj/item/clothing/suit/jacket/frontier_colonist_dearmored/short
