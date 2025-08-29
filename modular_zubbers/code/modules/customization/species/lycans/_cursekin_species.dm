@@ -61,23 +61,8 @@
 
 /datum/species/human/cursekin/on_species_gain(mob/living/carbon/human/gainer, datum/species/old_species, pref_load, regenerate_icons = TRUE)
 	. = ..()
-	RegisterSignal(gainer, COMSIG_CARBON_GAIN_ORGAN, PROC_REF(organ_reject))
+	gainer.AddElement(/datum/element/inorganic_rejection)
 
-/datum/species/human/cursekin/proc/organ_reject(mob/living/source, obj/item/organ/inserted)
-	SIGNAL_HANDLER
-	if(isnull(source))
-		return
-	var/obj/item/organ/insert_organ = inserted
-	if(insert_organ.organ_flags & (ORGAN_ORGANIC | ORGAN_UNREMOVABLE))
-		return
-	addtimer(CALLBACK(src, PROC_REF(reject_now), source, inserted), 1 SECONDS)
-
-/datum/species/human/cursekin/proc/reject_now(mob/living/source, obj/item/organ/organ)
-	organ.Remove(source)
-	organ.forceMove(get_turf(source))
-	to_chat(source, span_danger("Your body rejected [organ]!"))
-	organ.balloon_alert_to_viewers("rejected!", vision_distance = 1)
-
-/datum/species/human/cursekin/on_species_loss(mob/living/carbon/human/gainer, datum/species/new_species, pref_load)
+/datum/species/human/cursekin/on_species_loss(mob/living/carbon/human/loser, datum/species/new_species, pref_load)
 	. = ..()
-	UnregisterSignal(gainer, COMSIG_CARBON_GAIN_ORGAN)
+	loser.RemoveElement(/datum/element/inorganic_rejection)
