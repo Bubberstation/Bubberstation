@@ -101,7 +101,7 @@
 
 /datum/species/teshari/get_species_lore()
 	return list(
-		"Teshari are a raptor-like species that hail from a tropical world, Sirisai. They generally are between 3'5 and 4'0 tall, \
+		"Teshari are a bird-like species that hail from a tropical world, Sirisai. They generally are between 3'5 and 4'0 tall, \
 		light avian bodies with large plumes of feathers, and vestigial wings. They tend to have muzzles, \
 		but some have slowly evolved beaks as Sirisai has left its ice age. Teshari are very colorful, and their plumage \
 		relates to their pack. They have very large ears for hearing. Teshari tend to live to 60-70 before dying of natural causes, though \
