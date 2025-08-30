@@ -1,9 +1,9 @@
 //GLOBAL LIST of valid reagents
 GLOBAL_LIST_INIT(egg_production_reagents, list(
-	/// Format: (Reagent name = list(amount of reagent required per egg, cooldown per egg added to counter))
-	"cum" = list(15, 30 SECONDS),
+	/// Format: (Reagent name = list(minimum amount of reagent required to start production, cooldown per egg added to counter))
+	"cum" = list(20, 10 SECONDS),
 	"crocin" = list(20, 30 SECONDS),
-	"hexacrocin" = list(5, 20 SECONDS),
+	"hexacrocin" = list(5, 30 SECONDS),
 ))
 
 /datum/quirk/egg_production
@@ -44,12 +44,19 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 
 	// The the object we will produce.
 	var/obj/item/food/egg/egg
-	//this tracks how many eggs are stored
+	// This tracks how many eggs are stored
 	var/eggs_stored = 0
-	//whether we can produce another egg yet or not
+	// Whether we can produce another egg yet or not
 	var/can_produce = TRUE
-	//max amount of eggs able to be stored
+	// Max amount of eggs able to be stored
 	var/maximum_eggs = 100
+	// List of possible to_chat messages egg creation is able to trigger
+	var/list/possible_egg_thoughts = list(
+		"You feel a slight weight added to you.",
+		"You feel a warm sensation inside you.",
+		"You feel slightly heavier than you were a moment ago.",
+		"You feel oddly full."
+	)
 
 /datum/action/cooldown/spell/egg_production/Grant(mob/granted_to)
 	RegisterSignal(granted_to, COMSIG_LIVING_LIFE, PROC_REF(on_life))
@@ -81,14 +88,14 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 		return FALSE //there were no reagents, abort the proc
 
 	if(eggs_stored >= maximum_eggs)
-		to_chat(owner, span_warning("Your body can't support anymore eggs! You'll have to make room for more."))
 		return FALSE //we are at the maximum storable eggs, abort the proc
 
 	for(var/datum/reagent/target_reagent as anything in cached_reagents)
 		if(!(target_reagent.name in GLOB.egg_production_reagents)) //checks to ensure the target reagent is even correct, this was a pain in the ass
 			continue
 		if(target_reagent.volume >= GLOB.egg_production_reagents[target_reagent.name][1])
-			to_chat(owner, span_notice("You feel a slight weight added to you."))
+			var/egg_thought = pick(possible_egg_thoughts)
+			to_chat(owner, span_notice("[egg_thought]"))
 			egg_update(1, egg_holder)
 			toggle_cooldown()
 			addtimer(CALLBACK(src, PROC_REF(toggle_cooldown)), GLOB.egg_production_reagents[target_reagent.name][2])
@@ -102,44 +109,37 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 	desc = "[initial(desc)]. You carry [eggs_stored] eggs."
 	//handles removal of the status effect if stored eggs = 0
 	if(eggs_stored == 0)
-		egg_holder.remove_status_effect(/datum/status_effect/eggnant)
+		egg_holder.remove_movespeed_modifier(/datum/movespeed_modifier/eggnant, update = TRUE)
 		return
-	//we grab the % of eggs from the max
-	var/egg_percent = clamp(round(eggs_stored / maximum_eggs, 0.2), 0, 1)
-	egg_holder.apply_status_effect(/datum/status_effect/eggnant, egg_percent) //** This is erroring out as null.apply status effect for some reason
+// *** Start of movespeed modifier
+	var/slow_mult = FLOOR((eggs_stored) / (maximum_eggs), 0.05)
+	var/datum/movespeed_modifier/eggnant/modifier = new()
+	modifier.multiplicative_slowdown = CEILING((6 * slow_mult), 0.01)
+	if(owner.has_movespeed_modifier(/datum/movespeed_modifier/eggnant))
+		owner.remove_movespeed_modifier(/datum/movespeed_modifier/eggnant)
+	owner.add_movespeed_modifier(modifier, update = TRUE)
+
+	var/is_delta_negative = FALSE
+	if(delta < 0)
+		is_delta_negative = TRUE
+	//This can alternatively be done in combination with the movespeed modifier, setting slow_mult = fixed value after each statement,
+	//and removing the prior rounding code in FLOOR() and CEILING().
+	switch(slow_mult)
+		if(0 to 0.2)
+			to_chat(owner, span_purple("You're beginning to feel [is_delta_negative ? "rather heavy..." : "less weighed down, but still full..."]"))
+		if(0.2 to 0.4)
+			to_chat(owner, span_purple("You feel [is_delta_negative ? "really swollen with all these eggs..." : "less swollen, but still really heavy..."]"))
+		if(0.4 to 0.6)
+			to_chat(owner, span_hierophant("[is_delta_negative ? "You're overly gravid! You feel like you should really lay these eggs soon..." : "You're a bit less taut, but still feel very swollen!"]"))
+		if(0.6 to 0.8)
+			to_chat(owner, span_hierophant("You feel [is_delta_negative ? "very close to full at this point, anymore and you'll run out of room!" : "a little relieved, but still extremely taut!"]"))
+		if(0.8 to 1)
+			to_chat(owner, span_bolddanger("[is_delta_negative ? "Your body can't handle anymore eggs! You need to lay some to make room, now!" : "You feel like you still have very little room for anymore eggs..."]"))
 
 //setting the base movespeed modifier
 /datum/movespeed_modifier/eggnant
-	multiplicative_slowdown = 0.5
-
-/// *** Start of eggnant status effect
-/datum/status_effect/eggnant
-	id = "quirk_eggproduction"
-	duration = STATUS_EFFECT_PERMANENT
-	status_type = STATUS_EFFECT_REPLACE
-	show_duration = FALSE
-	alert_type = null
-	var/magnitude = 1
-
-/datum/status_effect/eggnant/on_creation(mob/living/eggnant, egg_percent)
-	. = ..()
-	src.magnitude = egg_percent
-
-/datum/status_effect/eggnant/on_apply()
-	var/datum/movespeed_modifier/eggnant/modifier = new()
-	modifier.multiplicative_slowdown = 0.5 * magnitude
-	owner.add_movespeed_modifier(modifier, update = TRUE)
-	return ..()
-
-/datum/status_effect/eggnant/be_replaced()
-	owner.remove_movespeed_modifier(/datum/movespeed_modifier/eggnant)
-	return ..()
-
-/datum/status_effect/eggnant/on_remove()
-	owner.remove_movespeed_modifier(/datum/movespeed_modifier/eggnant, update = TRUE)
-	return ..()
-
-// *** End of eggnant status effect
+	multiplicative_slowdown = 2
+// *** End of movespeed modifier
 
 /datum/action/cooldown/spell/egg_production/cast(mob/living/cast_on)
 	.=..()
