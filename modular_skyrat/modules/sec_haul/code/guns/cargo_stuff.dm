@@ -26,5 +26,3 @@
 	special = FALSE
 
 //This makes the Security ammo crate use the cool advanced ammo boxes instead of the old ones
-
-
