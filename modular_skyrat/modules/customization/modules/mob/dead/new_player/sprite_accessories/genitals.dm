@@ -65,7 +65,7 @@
 	center = TRUE
 	special_x_dimension = TRUE
 	//default_color = DEFAULT_SKIN_OR_PRIMARY //This is the price we're paying for sheaths
-	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER)
+	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_UNDER_CLOTHES)
 	var/can_have_sheath = TRUE
 
 /datum/sprite_accessory/genital/penis/get_special_icon(mob/living/carbon/human/target_mob)
@@ -181,7 +181,7 @@
 	key = ORGAN_SLOT_VAGINA
 	always_color_customizable = TRUE
 	default_color = "#FFCCCC"
-	relevent_layers = list(BODY_FRONT_LAYER)
+	relevent_layers = list(BODY_FRONT_UNDER_CLOTHES)
 	var/alt_aroused = TRUE
 
 /datum/sprite_accessory/genital/vagina/none
@@ -264,7 +264,7 @@
 	key = ORGAN_SLOT_BREASTS
 	always_color_customizable = TRUE
 	default_color = DEFAULT_SKIN_OR_PRIMARY
-	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER)
+	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_UNDER_CLOTHES)
 	has_skintone_shading = TRUE
 	genital_location = CHEST
 
