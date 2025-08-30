@@ -237,3 +237,15 @@
 	name = "Protogen Crotch Plate"
 	icon_state = "protogen_c"
 	affected_bodyparts = CHEST
+
+/datum/body_marking/bubber/cryptid  /// Sprite by Maggotbait of Splurt
+	name = "Cryptid Ribs"
+	icon_state = "cryptid"
+	default_color = DEFAULT_SECONDARY
+	affected_bodyparts = CHEST
+
+/datum/body_marking/bubber/cryptidfluff /// Sprite by Maggotbait of Splurt
+	name = "Cryptid Fur"
+	icon_state = "cryptid_marking"
+	default_color = DEFAULT_SECONDARY
+	affected_bodyparts = CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT
