@@ -52,6 +52,7 @@
 
 	/// Set to TRUE if the species was emagged before
 	var/emag_effect = FALSE
+	language_prefs_whitelist = list(/datum/language/monkey)
 
 /datum/species/synthetic/allows_food_preferences()
 	return FALSE
