@@ -391,6 +391,12 @@
 				back = /obj/item/storage/backpack/satchel/leather //Leather Satchel
 			if(GMESSENGER)
 				back = /obj/item/storage/backpack/messenger //Grey messenger bag
+			if(FBACKPACK)
+				back = /obj/item/storage/backpack/industrial/frontier_colonist //Frontier backpack
+			if(FSATCHEL)
+				back = /obj/item/storage/backpack/industrial/frontier_colonist/satchel //Frontier Satchel
+			if(FMESSENGER)
+				back = /obj/item/storage/backpack/industrial/frontier_colonist/messenger //Frontier messenger bag
 			if(DSATCHEL)
 				back = satchel //Department satchel
 			if(DMESSENGER)

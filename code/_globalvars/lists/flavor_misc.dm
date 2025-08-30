@@ -106,6 +106,9 @@ GLOBAL_LIST_INIT(security_depts_prefs, sort_list(list(
 #define GSATCHEL "Grey Satchel"
 #define GMESSENGER "Grey Messenger Bag"
 #define LSATCHEL "Leather Satchel"
+#define FBACKPACK "Frontier Backpack"
+#define FSATCHEL "Frontier Satchel"
+#define FMESSENGER "Frontier Messenger Bag"
 GLOBAL_LIST_INIT(backpacklist, list(
 	DBACKPACK,
 	DDUFFELBAG,
@@ -116,6 +119,9 @@ GLOBAL_LIST_INIT(backpacklist, list(
 	GSATCHEL,
 	GMESSENGER,
 	LSATCHEL,
+	FBACKPACK,
+	FSATCHEL,
+	FMESSENGER,
 ))
 
 	//Suit/Skirt

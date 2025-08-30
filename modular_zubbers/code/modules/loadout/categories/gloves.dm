@@ -31,3 +31,9 @@
 	name = "Armadyne combat gloves"
 	item_path = /obj/item/clothing/gloves/combat/peacekeeper/armadyne
 	restricted_roles = list(ALL_JOBS_SEC)
+
+// FRONTIER CLOTHING
+
+/datum/loadout_item/gloves/frontier_gloves
+	name = "Frontier gloves"
+	item_path = /obj/item/clothing/gloves/frontier_colonist_dearmored
