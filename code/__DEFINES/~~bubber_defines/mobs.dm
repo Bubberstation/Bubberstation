@@ -27,6 +27,7 @@
 #define BODYPART_ICON_SYNTHMAMMAL 'modular_skyrat/modules/bodyparts/icons/synthmammal_parts_greyscale.dmi'
 #define BODYPART_ICON_IPC 'modular_skyrat/modules/bodyparts/icons/ipc_parts.dmi'
 #define BODYPART_ICON_SYNTHLIZARD 'modular_skyrat/modules/bodyparts/icons/synthliz_parts_greyscale.dmi'
+#define BODYPART_ICON_LYCAN 'modular_zubbers/icons/mob/species/lycan/lycan_bodyparts.dmi'
 
 #define BUTT_SPRITE_PODPERSON "podperson"
 #define BUTT_SPRITE_VOX "vox"
