@@ -124,21 +124,21 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 		is_delta_negative = TRUE
 	//This can alternatively be done in combination with the movespeed modifier, setting slow_mult = fixed value after each statement,
 	//and removing the prior rounding code in FLOOR() and CEILING().
-	switch(slow_mult)
-		if(0 to 0.2)
-			to_chat(owner, span_purple("You're beginning to feel [is_delta_negative ? "rather heavy..." : "less weighed down, but still full..."]"))
-		if(0.2 to 0.4)
-			to_chat(owner, span_purple("You feel [is_delta_negative ? "really swollen with all these eggs..." : "less swollen, but still really heavy..."]"))
-		if(0.4 to 0.6)
-			to_chat(owner, span_hierophant("[is_delta_negative ? "You're overly gravid! You feel like you should really lay these eggs soon..." : "You're a bit less taut, but still feel very swollen!"]"))
-		if(0.6 to 0.8)
-			to_chat(owner, span_hierophant("You feel [is_delta_negative ? "very close to full at this point, anymore and you'll run out of room!" : "a little relieved, but still extremely taut!"]"))
-		if(0.8 to 1)
-			to_chat(owner, span_bolddanger("[is_delta_negative ? "Your body can't handle anymore eggs! You need to lay some to make room, now!" : "You feel like you still have very little room for anymore eggs..."]"))
+	switch(slow_mult) //this causes the value to persist for 5 eggs each threshold, due to the 0.05 FLOOR interval.
+		if(0.2)
+			to_chat(owner, span_purple("You're beginning to feel [is_delta_negative ? "less weighed down, but still full..." : "rather heavy..."]"))
+		if(0.4)
+			to_chat(owner, span_purple("You feel [is_delta_negative ? "less swollen, but still really heavy..." : "really swollen with all these eggs..."]"))
+		if(0.6)
+			to_chat(owner, span_crossooc("[is_delta_negative ? "You're a bit less taut, but still feel very swollen!" : "You're overly gravid! You feel like you should really lay these eggs soon..."]"))
+		if(0.8)
+			to_chat(owner, span_crossooc("You feel [is_delta_negative ? "a little relieved, but still extremely taut!" : "very close to full at this point, any more and you'll run out of room!"]"))
+		if(1)
+			to_chat(owner, span_alertwarning("[is_delta_negative ? "You feel like you still have very little room for anymore eggs..." : "Your body can't handle anymore eggs! You need to lay some to make room, now!"]"))
 
 //setting the base movespeed modifier
 /datum/movespeed_modifier/eggnant
-	multiplicative_slowdown = 2
+	multiplicative_slowdown = 6
 // *** End of movespeed modifier
 
 /datum/action/cooldown/spell/egg_production/cast(mob/living/cast_on)
