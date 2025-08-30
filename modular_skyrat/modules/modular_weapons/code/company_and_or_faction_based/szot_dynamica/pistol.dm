@@ -74,7 +74,7 @@
 	fire_delay = 0.6 SECONDS
 	spread = 2.5
 	actions_types = list(/datum/action/item_action/activate_plasma_overclock)
-	var/current_projspeed_mod
+	var/current_projspeed_mod = 1.5 // default so the first shot always is at full, duh
 	var/overclocking = FALSE
 	var/self_destruct_timer
 
@@ -111,7 +111,6 @@
 	. = ..()
 	if(overclocking && chambered)
 		chambered.projectile_type = /obj/projectile/beam/laser/plasma_glob/supercharged
-	update_projspeed(user)
 
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman/proc/update_projspeed(mob/user)
 	var/shots_in_mag = src.get_ammo()
@@ -158,19 +157,14 @@
 		addtimer(CALLBACK(src, PROC_REF(kaboom)), 10 SECONDS)
 		shakeit()
 		add_shared_particles(/particles/smoke/steam)
-		for(var/obj/item/ammo_casing/energy/laser/plasma_glob/old in magazine.stored_ammo)
-			old.projectile_type = /obj/projectile/beam/laser/plasma_glob/supercharged
-			old.loaded_projectile = /obj/projectile/beam/laser/plasma_glob/supercharged
-			chamber_round
 
 /obj/item/ammo_casing/energy/laser/plasma_glob/ready_proj(atom/target, mob/living/user, quiet, zone_override, atom/fired_from)
 	var/obj/item/gun/ballistic/automatic/pistol/plasma_marksman/gun = fired_from
-	if(!istype(gun) && gun.overclocking)
-		return ..()
-
-	loaded_projectile.name = "overcharged plasma globule"
-	loaded_projectile.icon_state = "plasma_glob_super"
-	loaded_projectile.weak_against_armour = FALSE
+	if(istype(gun) && gun.overclocking)
+		loaded_projectile.name = "overcharged plasma globule"
+		loaded_projectile.icon_state = "plasma_glob_super"
+		loaded_projectile.weak_against_armour = FALSE
+	gun.update_projspeed(user)
 	. = ..()
 
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman/proc/shakeit()
@@ -205,8 +199,15 @@
 	if(isnull(affecting))
 		return
 	if(wielder.is_holding(src))
-		wielder.apply_damage(5, BURN, affecting)
+		wielder.apply_damage(2.5, BURN, affecting)
 		to_chat(wielder, span_warning("[src] burns your hand, it's too hot!"))
+
+/obj/item/gun/ballistic/automatic/pistol/plasma_marksman/emp_act(severity)
+	. = ..()
+	if(!(. & EMP_PROTECT_CONTENTS))
+		if(prob(15 * severity))
+			overclock()
+
 
 // A revolver, but it can hold shotgun shells
 // Woe, buckshot be upon ye
