@@ -70,6 +70,52 @@
 	<i>HORNET'S NEST: Fire an overwhelming amount of projectiles in a single shot.</i>"
 	can_be_printed = FALSE
 
+/obj/item/ammo_casing/shotgun/buckshot
+	name = "buckshot shell"
+	desc = "A 12 gauge buckshot shell."
+	icon_state = "gshell"
+	projectile_type = /obj/projectile/bullet/pellet/shotgun_buckshot
+
+/obj/projectile/bullet/pellet/shotgun_buckshot
+	name = "buckshot pellet"
+	damage = 6
+
+/obj/item/ammo_casing/shotgun/rubbershot
+	name = "rubber shot"
+	desc = "A shotgun casing filled with densely-packed rubber balls, used to incapacitate crowds from a distance."
+	icon_state = "rshell"
+	projectile_type = /obj/projectile/bullet/pellet/shotgun_rubbershot
+	harmful = FALSE
+
+/obj/projectile/bullet/pellet/shotgun_rubbershot
+	damage = 2
+	stamina = 10
+
+/obj/item/ammo_casing/shotgun/flechette
+	name = "flechette shell"
+	desc = "A 12 gauge flechette shell that specializes in ripping armored targets apart. These are exceptionally strong against armored targets."
+	icon_state = "fshell"
+	projectile_type = /obj/projectile/bullet/pellet/shotgun_buckshot/flechette
+	custom_materials = AMMO_MATS_SHOTGUN_FLECH
+	advanced_print_req = TRUE
+
+/obj/projectile/bullet/pellet/shotgun_buckshot/flechette
+	name = "flechette"
+	icon_state = "flechette"
+	damage = 2
+	wound_bonus = 5
+	exposed_wound_bonus = 5
+	armour_penetration = 30
+	damage_falloff_tile = -0.2
+	wound_falloff_tile = -0.5
+	speed = 1.2
+	sharpness = SHARP_POINTY
+	embed_type = /datum/embedding/bullet/flechette
+
+/obj/projectile/bullet/pellet/shotgun_buckshot/flechette/Initialize(mapload)
+	. = ..()
+	SpinAnimation()
+
 /obj/item/ammo_casing/shotgun/beehive
 	name = "hornet shell"
 	desc = "A less-lethal 12 gauge shell that fires four pellets capable of bouncing off nearly any surface \
