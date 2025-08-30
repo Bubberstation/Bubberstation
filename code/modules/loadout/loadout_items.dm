@@ -79,8 +79,15 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	var/erp_item = FALSE
 	// BUBBER EDIT END
 
-/datum/loadout_item/New(category)
+/datum/loadout_item/New(category,desired_name,obj/item/desired_item_path) //BUBBERSTATION ADDITION, ADDITIONAL ARGS
+
 	src.category = category
+	//BUBBERSTATION ADDITION START, ADDITIONAL ARGS
+	if(desired_name)
+		src.name = desired_name
+	if(desired_item_path)
+		src.item_path = desired_item_path
+	//BUBBERSTATION ADDITION END, ADDITIONAL ARGS
 
 	if(can_be_greyscale == DONT_GREYSCALE)
 		can_be_greyscale = FALSE
