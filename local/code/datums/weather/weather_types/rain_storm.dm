@@ -1,6 +1,6 @@
 /datum/weather/rain_storm
 	turf_weather_chance = 0.0001
-	turf_thunder_chance = THUNDER_CHANCE_VERY_RARE
+	turf_thunder_chance = NONE
 	protected_areas = list(
 		/area/taeloth/underground, \
 		/area/taeloth/nearstation/bridge_roof/patio/under, \
