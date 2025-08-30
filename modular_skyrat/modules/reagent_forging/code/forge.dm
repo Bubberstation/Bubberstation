@@ -605,6 +605,10 @@
 		attacking_weapon.name = "[weapon_reagent.name] [attacking_weapon.name]"
 
 	attacking_weapon.color = mix_color_from_reagents(attacking_weapon.reagents.reagent_list)
+	if(attacking_weapon.armour_penetration < 10)
+		attacking_weapon.armour_penetration = 0
+	else
+		attacking_weapon.armour_penetration -= 10
 	balloon_alert_to_viewers("imbued [attacking_weapon]")
 	user.mind.adjust_experience(/datum/skill/smithing, 60)
 	playsound(src, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
