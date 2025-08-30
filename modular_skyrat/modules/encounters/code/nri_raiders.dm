@@ -200,7 +200,7 @@ GLOBAL_VAR(first_officer)
 
 /obj/effect/mob_spawn/ghost_role/human/nri_raider/special(mob/living/carbon/human/spawned_human)
 	. = ..()
-	spawned_human.grant_language(/datum/language/panslavic, source = LANGUAGE_SPAWNER)
+	spawned_human.grant_language(/datum/language/spinwarder, source = LANGUAGE_SPAWNER)
 	apply_codename(spawned_human)
 
 /obj/effect/mob_spawn/ghost_role/human/nri_raider/post_transfer_prefs(mob/living/carbon/human/spawned_human)
@@ -233,7 +233,7 @@ GLOBAL_VAR(first_officer)
 	spawned_human.mind.add_antag_datum(/datum/antagonist/cop)
 	spawned_human.grant_language(/datum/language/uncommon, source = LANGUAGE_SPAWNER)
 	spawned_human.grant_language(/datum/language/yangyu, source = LANGUAGE_SPAWNER)
-	spawned_human.grant_language(/datum/language/panslavic, source = LANGUAGE_SPAWNER)
+	spawned_human.grant_language(/datum/language/spinwarder, source = LANGUAGE_SPAWNER)
 
 	// if this is the first officer, keep a reference to them
 	if(!GLOB.first_officer)
@@ -576,13 +576,13 @@ GLOBAL_VAR(first_officer)
 	var/mob/living/owner_mob = mob_override || owner.current
 	var/datum/language_holder/holder = owner_mob.get_language_holder()
 	holder.grant_language(/datum/language/uncommon, TRUE, TRUE, LANGUAGE_PIRATE)
-	holder.grant_language(/datum/language/panslavic, TRUE, TRUE, LANGUAGE_PIRATE)
+	holder.grant_language(/datum/language/spinwarder, TRUE, TRUE, LANGUAGE_PIRATE)
 	holder.grant_language(/datum/language/yangyu, TRUE, TRUE, LANGUAGE_PIRATE)
 
 /datum/antagonist/cop/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/owner_mob = mob_override || owner.current
 	owner_mob.remove_language(/datum/language/uncommon, TRUE, TRUE, LANGUAGE_PIRATE)
-	owner_mob.remove_language(/datum/language/panslavic, TRUE, TRUE, LANGUAGE_PIRATE)
+	owner_mob.remove_language(/datum/language/spinwarder, TRUE, TRUE, LANGUAGE_PIRATE)
 	owner_mob.remove_language(/datum/language/yangyu, TRUE, TRUE, LANGUAGE_PIRATE)
 	return ..()
 
