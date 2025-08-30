@@ -24,7 +24,7 @@ SUBSYSTEM_DEF(decay)
 	)
 
 	/// This is used to determine what maps we should not spawn on.
-	var/list/station_filter = list("Catwalk Station", "Runtime Station", "MultiZ Debug", "Gateway Test")
+	var/list/station_filter = list("Catwalk Station", "Runtime Station", "MultiZ Debug", "Gateway Test", "RimPoint", "Sigma Octantis")
 	var/list/possible_turfs = list()
 	var/list/possible_areas = list()
 	var/severity_modifier = 1

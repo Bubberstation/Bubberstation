@@ -129,3 +129,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/nri_engineer, 
 	icon_state = "nri_radar"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/nri_radar, 32)
+
+/obj/structure/billboard/wawastation
+	name = "Wawastation convienence store billboard"
+	desc = "A billboard labelling the Wawastation convienence store known as 'Waweh'. It's been lost to time, and this is the only known surviving store of its type."
+	icon = 'modular_zubbers/icons/obj/fluff/billboard.dmi'
+	icon_state = "billboard_wawastation"
