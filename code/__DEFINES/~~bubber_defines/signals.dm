@@ -39,3 +39,5 @@
 /// From /mob/living/carbon/human/verb/toggle_genitals()
 #define COMSIG_HUMAN_TOGGLE_GENITALS "human_toggle_genitals"
 
+/// /datum/component/tameable/try_tame(atom/source, obj/item/food, mob/living/attacker) in 
+#define COMSIG_MOB_TRY_TAME "mob_try_tame"
