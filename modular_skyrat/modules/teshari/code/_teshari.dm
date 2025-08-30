@@ -106,7 +106,7 @@
 		but some have slowly evolved beak-like snouts as Sirisai has left its ice age. Teshari are very colorful, and they have large ears for hearing. \
 		Teshari tend to live to 60-70 before dying of natural causes, though medical care can extend this significantly. \
 		Teshari are omnivores that love fish, and dislike grain. They prefer nuts and vegetation.",
-		"Teshari have a genetic need for socialization, and will feel physically ill if not social at all for an extended period. \
+		"Teshari have a genetic need for socialization and will feel physically ill if not social at all for an extended period, \
 		which has caused them to form social groups called flocks. Teshari generally lack parental figures, and are often \
 		raised communally. When they reach adulthood, they feel a strong drive to move away from their nesting flock and find or develop a new one. \
 		Teshari tend to be cloistered and quiet when entering a new social space, but are very vocal and impassioned when they fit in, often enjoying making and parroting noises.",
