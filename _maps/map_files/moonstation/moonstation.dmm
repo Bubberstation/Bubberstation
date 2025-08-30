@@ -175,13 +175,13 @@
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/turret_protected/ai_upload)
 "acF" = (
-/obj/machinery/shower/directional/west,
 /obj/structure/drain,
 /obj/effect/turf_decal/siding/white{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral/opposingcorners,
 /obj/structure/curtain,
+/obj/machinery/shower/directional/north,
 /turf/open/floor/iron/showroomfloor,
 /area/station/commons/toilet/restrooms)
 "acM" = (
@@ -287,11 +287,6 @@
 /area/moonstation/surface)
 "aea" = (
 /obj/machinery/light/floor,
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall23";
-	location = "hall22";
-	name = "Pathing Navigation Beacon"
-	},
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/central/aft)
@@ -1301,13 +1296,9 @@
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/central/fore)
 "arL" = (
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall9";
-	location = "hall8";
-	name = "Pathing Navigation Beacon"
-	},
-/turf/open/floor/glass/reinforced/scrape_below,
-/area/station/hallway/secondary/exit)
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/station/commons/dorms)
 "arM" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/red/anticorner/contrasted,
@@ -1758,9 +1749,6 @@
 /turf/open/floor/iron/dark,
 /area/station/terminal/lobby)
 "awv" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
@@ -2818,18 +2806,6 @@
 /obj/structure/bookcase/random/religion,
 /turf/open/floor/iron/grimy,
 /area/station/service/library)
-"aKs" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall15";
-	location = "hall14";
-	name = "Pathing Navigation Beacon"
-	},
-/turf/open/floor/catwalk_floor/iron,
-/area/station/hallway/primary/aft)
 "aKN" = (
 /obj/structure/rack,
 /obj/effect/spawner/costume/butler,
@@ -4090,9 +4066,7 @@
 /obj/effect/turf_decal/tile/holiday/rainbow{
 	dir = 4
 	},
-/turf/open/floor/iron/dark/corner{
-	dir = 1
-	},
+/turf/open/floor/iron/checker,
 /area/station/hallway/primary/starboard)
 "baU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
@@ -8370,13 +8344,11 @@
 /turf/closed/wall/mineral/titanium/survival/pod,
 /area/station/cargo/miningfoundry/event_protected)
 "cmW" = (
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall28";
-	location = "hall27";
-	name = "Pathing Navigation Beacon"
+/obj/effect/turf_decal/tile/blue/half/contrasted{
+	dir = 8
 	},
 /turf/open/floor/iron/checker,
-/area/station/hallway/secondary/recreation)
+/area/station/hallway/primary/starboard)
 "cmX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/mapping_helpers/broken_floor,
@@ -10841,11 +10813,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall19";
-	location = "hall18";
-	name = "Pathing Navigation Beacon"
-	},
 /obj/structure/disposalpipe/junction{
 	dir = 1
 	},
@@ -11610,7 +11577,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
-/turf/open/floor/iron,
+/turf/open/floor/iron/checker,
 /area/station/hallway/primary/starboard)
 "dho" = (
 /obj/effect/spawner/random/trash/graffiti,
@@ -11625,15 +11592,15 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/light/floor,
 /obj/structure/cable,
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall22";
-	location = "hall21";
-	name = "Pathing Navigation Beacon"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
 /obj/effect/landmark/event_spawn,
+/obj/machinery/navbeacon{
+	codes_txt = "patrol;next_patrol=hallkitchen";
+	location = "halllib2";
+	name = "Pathing Navigation Beacon"
+	},
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/central/aft)
 "dhW" = (
@@ -13792,11 +13759,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall21";
-	location = "hall20";
-	name = "Pathing Navigation Beacon"
-	},
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/central/aft)
 "dMh" = (
@@ -13853,12 +13815,7 @@
 /obj/effect/turf_decal/tile/holiday/rainbow/half/contrasted{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
-/turf/open/floor/iron/dark/corner{
-	dir = 1
-	},
+/turf/open/floor/iron/checker,
 /area/station/hallway/primary/starboard)
 "dNl" = (
 /obj/effect/turf_decal/tile/brown/half/contrasted{
@@ -15155,13 +15112,11 @@
 /turf/open/floor/iron,
 /area/station/common/wrestling/arena)
 "egv" = (
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall26";
-	location = "hall25";
-	name = "Pathing Navigation Beacon"
-	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/turf_decal/tile/blue/half/contrasted,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/checker,
-/area/station/hallway/primary/central/fore)
+/area/station/hallway/primary/starboard)
 "egw" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -15561,11 +15516,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/junction/yjunction{
 	dir = 1
-	},
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall18";
-	location = "hall17";
-	name = "Pathing Navigation Beacon"
 	},
 /turf/open/floor/catwalk_floor/iron,
 /area/station/hallway/primary/aft)
@@ -18818,12 +18768,6 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/port)
-"fcM" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
-/turf/open/floor/iron/large,
-/area/station/hallway/primary/starboard)
 "fcS" = (
 /obj/machinery/light/moonstation/directional/south,
 /obj/structure/closet/crate/wooden{
@@ -18927,13 +18871,11 @@
 /turf/open/floor/plating,
 /area/station/security/prison)
 "feg" = (
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall5";
-	location = "hall4";
-	name = "Pathing Navigation Beacon"
+/obj/effect/turf_decal/tile/red/half/contrasted{
+	dir = 1
 	},
-/turf/open/floor/iron/dark,
-/area/station/hallway/primary/central/aft)
+/turf/open/floor/iron/checker,
+/area/station/hallway/primary/starboard)
 "fej" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
@@ -21009,15 +20951,10 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/central/fore)
 "fFl" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall29";
-	location = "hall28";
-	name = "Pathing Navigation Beacon"
-	},
-/turf/open/floor/iron/dark,
-/area/station/hallway/primary/central/aft)
+/obj/machinery/door/airlock/maintenance,
+/obj/effect/mapping_helpers/airlock/abandoned,
+/turf/open/floor/plating,
+/area/station/maintenance/department/crew_quarters/dorms)
 "fFp" = (
 /obj/effect/landmark/event_spawn,
 /obj/effect/landmark/start/hangover,
@@ -21389,6 +21326,11 @@
 /area/station/science/ordnance/burnchamber)
 "fJN" = (
 /obj/machinery/light/floor,
+/obj/machinery/navbeacon{
+	codes_txt = "patrol;next_patrol=hallmed";
+	location = "hallsec";
+	name = "Pathing Navigation Beacon"
+	},
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/central/fore)
 "fJS" = (
@@ -21576,8 +21518,8 @@
 /obj/machinery/light/floor,
 /obj/effect/landmark/event_spawn,
 /obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall17";
-	location = "hall16";
+	codes_txt = "patrol;next_patrol=halleng";
+	location = "hallatmos";
 	name = "Pathing Navigation Beacon"
 	},
 /turf/open/floor/iron/checker,
@@ -21726,12 +21668,12 @@
 /turf/open/floor/iron,
 /area/station/terminal/interlink)
 "fNJ" = (
-/obj/machinery/door/airlock/public,
 /obj/effect/turf_decal/tile/holiday/rainbow/half/contrasted{
 	dir = 1
 	},
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/autoname,
+/obj/machinery/door/airlock/public/glass,
 /turf/open/floor/iron/dark/corner{
 	dir = 1
 	},
@@ -25057,11 +24999,6 @@
 /area/station/engineering/storage_shared)
 "gMu" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall4";
-	location = "hall3";
-	name = "Pathing Navigation Beacon"
-	},
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/central/fore)
 "gMx" = (
@@ -26036,11 +25973,6 @@
 "gZH" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
-	},
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall13";
-	location = "hall12";
-	name = "Pathing Navigation Beacon"
 	},
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/central/aft)
@@ -31859,9 +31791,7 @@
 /area/station/hallway/primary/central/fore)
 "iDz" = (
 /obj/structure/cable/multilayer/multiz,
-/turf/open/openspace{
-	can_atmos_pass = 0
-	},
+/turf/open/floor/plating,
 /area/station/maintenance/department/medical/psychology)
 "iDB" = (
 /obj/machinery/light/moonstation/directional/south,
@@ -32356,11 +32286,6 @@
 /turf/open/floor/iron/white,
 /area/station/science/ordnance/storage)
 "iJI" = (
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall27";
-	location = "hall26";
-	name = "Pathing Navigation Beacon"
-	},
 /obj/machinery/light/floor,
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/iron/checker,
@@ -35408,7 +35333,16 @@
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/central/aft)
 "jyc" = (
-/turf/open/floor/iron,
+/obj/machinery/navbeacon{
+	codes_txt = "patrol;next_patrol=hallatmos";
+	location = "halllaw";
+	name = "Pathing Navigation Beacon"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/machinery/light/floor,
+/turf/open/floor/iron/checker,
 /area/station/hallway/primary/starboard)
 "jye" = (
 /obj/effect/turf_decal/tile/holiday/rainbow/half/contrasted{
@@ -39330,11 +39264,6 @@
 /area/station/security/prison/workout)
 "kBe" = (
 /obj/machinery/light/floor,
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall12";
-	location = "hall11";
-	name = "Pathing Navigation Beacon"
-	},
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/central/aft)
 "kBl" = (
@@ -40434,11 +40363,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/segment{
 	dir = 4
-	},
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall25";
-	location = "hall24";
-	name = "Pathing Navigation Beacon"
 	},
 /turf/open/floor/iron,
 /area/station/command/cc_dock)
@@ -42060,7 +41984,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/tile/holiday/rainbow,
-/turf/open/floor/iron/dark/corner,
+/turf/open/floor/iron/checker,
 /area/station/hallway/primary/starboard)
 "llR" = (
 /obj/machinery/duct,
@@ -42354,11 +42278,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall20";
-	location = "hall19";
-	name = "Pathing Navigation Beacon"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -47357,14 +47276,14 @@
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/medical)
 "mGs" = (
-/obj/machinery/shower/directional/east,
 /obj/structure/drain,
 /obj/effect/turf_decal/siding/white{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral/opposingcorners,
-/obj/structure/curtain,
 /obj/effect/spawner/random/trash/soap,
+/obj/structure/curtain,
+/obj/machinery/shower/directional/north,
 /turf/open/floor/iron/showroomfloor,
 /area/station/commons/toilet/restrooms)
 "mGB" = (
@@ -51914,15 +51833,8 @@
 	},
 /area/station/ai_monitored/turret_protected/ai)
 "nSJ" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
-/obj/effect/turf_decal/tile/holiday/rainbow/half/contrasted{
-	dir = 1
-	},
-/turf/open/floor/iron/dark/corner{
-	dir = 1
-	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/turf/open/floor/iron/checker,
 /area/station/hallway/primary/starboard)
 "nSX" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -53928,7 +53840,6 @@
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/supply)
 "osE" = (
-/obj/structure/closet/wardrobe/black,
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners{
 	dir = 8
 	},
@@ -53937,6 +53848,7 @@
 	},
 /obj/effect/landmark/start/hangover/closet,
 /obj/machinery/modular_computer/preset/time_clock/directional/east,
+/obj/structure/closet/lasertag/red,
 /turf/open/floor/iron/checker,
 /area/station/commons/dorms)
 "osO" = (
@@ -55005,7 +54917,6 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical/chemistry)
 "oIQ" = (
-/obj/structure/closet/wardrobe/grey,
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners{
 	dir = 8
 	},
@@ -55013,6 +54924,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/hangover/closet,
+/obj/structure/closet/lasertag/blue,
 /turf/open/floor/iron/checker,
 /area/station/commons/dorms)
 "oIS" = (
@@ -55853,8 +55765,8 @@
 	},
 /obj/effect/mapping_helpers/mail_sorting/service/janitor_closet,
 /obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall16";
-	location = "hall15";
+	codes_txt = "patrol;next_patrol=halllib";
+	location = "halleng";
 	name = "Pathing Navigation Beacon"
 	},
 /turf/open/floor/catwalk_floor/iron,
@@ -58669,11 +58581,6 @@
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "pGl" = (
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall7";
-	location = "hall6";
-	name = "Pathing Navigation Beacon"
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/glass/reinforced/scrape_below,
@@ -58752,9 +58659,7 @@
 /obj/machinery/atmospherics/pipe/multiz/scrubbers/visible/layer2,
 /obj/machinery/atmospherics/pipe/multiz/supply/visible/layer4,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/openspace{
-	can_atmos_pass = 0
-	},
+/turf/open/floor/plating,
 /area/station/maintenance/department/medical/psychology)
 "pHB" = (
 /obj/effect/turf_decal/tile/brown/anticorner/contrasted{
@@ -61161,9 +61066,6 @@
 	},
 /area/station/hallway/primary/aft)
 "qmi" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 4
-	},
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/trimline/yellow/warning{
 	dir = 1
@@ -62314,7 +62216,7 @@
 /mob/living/simple_animal/bot/secbot/beepsky/jr{
 	name = "Officer Eepy";
 	bot_cover_flags = 6;
-	bot_mode_flags = 25;
+	bot_mode_flags = 1;
 	desc = "You woke them up, and now they're pissed.";
 	baton_type = /obj/item/melee/baton/security/cattleprod
 	},
@@ -64809,11 +64711,6 @@
 "rlH" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
-	},
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall3";
-	location = "hall2";
-	name = "Pathing Navigation Beacon"
 	},
 /turf/open/floor/iron/large,
 /area/station/security/brig/entrance)
@@ -67713,11 +67610,6 @@
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "sdj" = (
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall1";
-	location = "hall29";
-	name = "Pathing Navigation Beacon"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
@@ -69272,7 +69164,8 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/turf/open/floor/iron,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/checker,
 /area/station/hallway/primary/starboard)
 "szC" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -75441,11 +75334,6 @@
 /obj/effect/turf_decal/plaque{
 	icon_state = "L8"
 	},
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall2";
-	location = "hall1";
-	name = "Pathing Navigation Beacon"
-	},
 /obj/effect/landmark/observer_start,
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/iron,
@@ -76280,10 +76168,10 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/crew_quarters/dorms)
 "usI" = (
-/obj/machinery/door/airlock/public,
 /obj/effect/turf_decal/tile/holiday/rainbow/half/contrasted,
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/autoname,
+/obj/machinery/door/airlock/public/glass,
 /turf/open/floor/iron/dark/corner,
 /area/station/commons/dorms)
 "utg" = (
@@ -76441,17 +76329,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
-"uvu" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall14";
-	location = "hall13";
-	name = "Pathing Navigation Beacon"
-	},
-/turf/open/floor/iron/checker,
-/area/station/hallway/primary/aft)
 "uvG" = (
 /obj/machinery/vending/cigarette,
 /obj/effect/turf_decal/tile/neutral/opposingcorners,
@@ -78302,7 +78179,7 @@
 /obj/effect/turf_decal/trimline/yellow/warning{
 	dir = 1
 	},
-/turf/open/floor/iron/large,
+/turf/open/floor/iron,
 /area/station/hallway/secondary/exit)
 "uWh" = (
 /obj/effect/turf_decal/trimline/yellow/warning{
@@ -79595,6 +79472,7 @@
 /obj/effect/turf_decal/siding/dark_blue{
 	dir = 9
 	},
+/obj/machinery/light/moonstation/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos/hallway)
 "voJ" = (
@@ -81051,14 +80929,14 @@
 /turf/open/floor/plating,
 /area/station/maintenance/fore)
 "vKd" = (
-/obj/effect/turf_decal/tile/holiday/rainbow/fourcorners,
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall8";
-	location = "hall7";
-	name = "Pathing Navigation Beacon"
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/turf/open/floor/iron/checker,
-/area/station/hallway/secondary/exit/departure_lounge)
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/iron/large,
+/area/station/hallway/secondary/exit)
 "vKg" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/effect/mapping_helpers/airlock/welded,
@@ -83683,10 +83561,7 @@
 /area/station/commons/storage)
 "wwd" = (
 /obj/effect/turf_decal/tile/holiday/rainbow/half/contrasted,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
-/turf/open/floor/iron/dark/corner,
+/turf/open/floor/iron/checker,
 /area/station/hallway/primary/starboard)
 "wwe" = (
 /obj/effect/landmark/start/chief_engineer,
@@ -83808,15 +83683,15 @@
 /area/station/maintenance/department/medical/chemistry)
 "wyj" = (
 /obj/machinery/light/floor,
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall24";
-	location = "hall23";
-	name = "Pathing Navigation Beacon"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
 /obj/effect/landmark/event_spawn,
+/obj/machinery/navbeacon{
+	codes_txt = "patrol;next_patrol=hallsec";
+	location = "hallkitchen";
+	name = "Pathing Navigation Beacon"
+	},
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/central/fore)
 "wyq" = (
@@ -85716,6 +85591,11 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/light/floor,
 /obj/effect/landmark/event_spawn,
+/obj/machinery/navbeacon{
+	codes_txt = "patrol;next_patrol=halllib2";
+	location = "halllib";
+	name = "Pathing Navigation Beacon"
+	},
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/central/aft)
 "wYk" = (
@@ -87406,7 +87286,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
-/turf/open/floor/iron/dark/corner,
+/turf/open/floor/iron/checker,
 /area/station/hallway/primary/starboard)
 "xxx" = (
 /obj/effect/turf_decal/siding/dark{
@@ -88703,8 +88583,7 @@
 /turf/open/floor/plating,
 /area/station/terminal/maintenance/aft)
 "xOk" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
-/turf/open/floor/iron/large,
+/turf/open/floor/iron/checker,
 /area/station/hallway/primary/starboard)
 "xOr" = (
 /obj/structure/rack,
@@ -88772,12 +88651,12 @@
 /area/station/security/execution/education)
 "xPc" = (
 /obj/machinery/light/floor,
+/obj/effect/landmark/event_spawn,
 /obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall11";
-	location = "hall10";
+	codes_txt = "patrol;next_patrol=halllaw";
+	location = "hallmed";
 	name = "Pathing Navigation Beacon"
 	},
-/obj/effect/landmark/event_spawn,
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/central/aft)
 "xPg" = (
@@ -243517,7 +243396,7 @@ wbP
 mSc
 xTY
 iGx
-cmW
+iGx
 eUk
 ihI
 jph
@@ -247351,7 +247230,7 @@ jGe
 wYz
 pUZ
 dZr
-egv
+aaF
 swx
 vjo
 xMp
@@ -247886,7 +247765,7 @@ dYl
 lUY
 orl
 orl
-fFl
+orl
 orl
 orl
 xyt
@@ -252027,7 +251906,7 @@ wEF
 uEi
 dtY
 qgB
-uvu
+tKS
 tiE
 eIE
 iKx
@@ -253569,7 +253448,7 @@ gsk
 kyE
 oWG
 kpi
-aKs
+fOn
 fOn
 fOn
 fOn
@@ -256110,7 +255989,7 @@ kCY
 mtz
 mfS
 mfS
-feg
+mfS
 mfS
 mfS
 qZj
@@ -264590,9 +264469,9 @@ bSs
 tRz
 bSs
 qbc
-lxZ
-gzH
-ksU
+feg
+nSJ
+egv
 tSQ
 lzw
 lzw
@@ -264847,10 +264726,10 @@ qRu
 cCV
 bSs
 knX
-lxZ
-gzH
+feg
+xOk
 szo
-xaX
+cmW
 jeH
 pap
 jlO
@@ -265105,9 +264984,9 @@ tsR
 qRI
 wIu
 baL
-gzH
-dhb
 jyc
+dhb
+xOk
 oaE
 npx
 nYr
@@ -265132,13 +265011,13 @@ cCf
 cCf
 qmi
 sre
-sre
-soU
+vKd
 soU
 soU
 soU
 soU
 lDA
+xwM
 uWe
 jGV
 pvF
@@ -265361,7 +265240,7 @@ xbR
 jkc
 bSs
 tOP
-nSJ
+dNh
 xOk
 llG
 xxo
@@ -265619,7 +265498,7 @@ aSD
 bSs
 mMm
 dNh
-fcM
+xOk
 wwd
 wsp
 bKR
@@ -265864,7 +265743,7 @@ uot
 uot
 uot
 nXy
-nXy
+fFl
 nXy
 syG
 vfG
@@ -265876,7 +265755,7 @@ bSs
 bSs
 bKR
 fNJ
-pHI
+arL
 usI
 bKR
 bKR
@@ -266121,7 +266000,7 @@ nXy
 lKI
 gFn
 lIk
-tTZ
+wbB
 nXy
 aSD
 eFI
@@ -268468,7 +268347,7 @@ wjs
 xjf
 glO
 dRA
-arL
+soU
 lPM
 rOb
 cCA
@@ -276692,7 +276571,7 @@ cRH
 faJ
 arS
 hiS
-vKd
+sVl
 sVl
 vQH
 vQH
