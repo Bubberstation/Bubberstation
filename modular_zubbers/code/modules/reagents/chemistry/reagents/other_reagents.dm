@@ -37,7 +37,7 @@
 	description = "An akula toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/akula
-	taste_description = "fishy"
+	taste_description = "fish"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	mutationtexts = list(
 		"You feel itchy." = MUT_MSG_IMMEDIATE,
@@ -85,7 +85,7 @@
 	description = "A dwarf toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/dwarf
-	taste_description = "earthy"
+	taste_description = "ale and earth"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	mutationtexts = list(
 		"You feel a desire for some ale." = MUT_MSG_IMMEDIATE,
@@ -284,7 +284,7 @@
 	description = "A skrell toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/skrell
-	taste_description = "squid"
+	taste_description = "salted squid"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	mutationtexts = list(
 		"Your skin feels rubbery" = MUT_MSG_IMMEDIATE,
