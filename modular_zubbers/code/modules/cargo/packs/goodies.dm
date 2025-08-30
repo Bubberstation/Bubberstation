@@ -1,21 +1,3 @@
-/datum/supply_pack/goody/sol_pistol_single
-	name = "Sol 'Wespe' Pistol Single Pack"
-	desc = "The standard issue service pistol of the Terran Government's various military branches. Comes with an attached light and a spare magazine."
-	contains = list(/obj/item/gun/ballistic/automatic/pistol/sol = 1,
-	/obj/item/ammo_box/magazine/c35sol_pistol/starts_empty = 1,
-	)
-	cost = PAYCHECK_COMMAND * 10 //Half the cost of a Detective Revolver
-	access_view = ACCESS_WEAPONS
-
-/datum/supply_pack/goody/sol_revolver_single
-	name = "Sol 'Eland' Revolver Single Pack"
-	desc = "A stubby revolver chiefly found in the hands of Private Security forces due to its cheap price and decent stopping power. Comes with an ammo box."
-	contains = list(/obj/item/gun/ballistic/revolver/sol = 1,
-	/obj/item/ammo_box/c35sol = 1,
-	)
-	cost = PAYCHECK_COMMAND * 10 //Half the cost of a Detective Revolver
-	access_view = ACCESS_WEAPONS
-
 /datum/supply_pack/goody/disablersmg_single
 	name = "Disabler SMG Single-Pack"
 	desc = "Contains one disabler SMG, an automatic variant of the original workhorse."
@@ -37,22 +19,6 @@
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/e_gun/mini)
 
-/datum/supply_pack/goody/shotgun_revolver
-	name = "Bóbr 12 GA Revolver Single-Pack"
-	desc = "Contains 1 civilian-modified Bóbr revolver, chambered in 12 gauge. For when you really want the power of a shotgun in the palm of your hand. Comes with a box of beanbag shells."
-	contains = list(/obj/item/gun/ballistic/revolver/shotgun_revolver/civvie = 1,
-	/obj/item/ammo_box/advanced/s12gauge/bean = 1)
-	access_view = ACCESS_WEAPONS
-	cost = PAYCHECK_COMMAND * 20
-
-/datum/supply_pack/goody/plasma_projector
-	name = "Słońce Plasma Projector Single-Pack"
-	desc = "Contains one Słońce Plasma Projector. Spews an inaccurate stream of searing plasma out the magnetic barrel so long as it has power."
-	contains = list(/obj/item/gun/ballistic/automatic/pistol/plasma_thrower = 1,
-	/obj/item/ammo_box/magazine/recharge/plasma_battery = 1)
-	access_view = ACCESS_WEAPONS
-	cost = PAYCHECK_COMMAND * 6
-
 /datum/supply_pack/goody/plasma_marksman
 	name = "Gwiazda Plasma Sharpshooters Single-pack"
 	desc = "Contains a Gwiazda Plasma Sharpshooter and one plasma battery free of additional charge."
@@ -67,14 +33,6 @@
 	contains = list(/obj/item/ammo_box/magazine/recharge/plasma_battery = 1)
 	access_view = ACCESS_WEAPONS
 	cost = PAYCHECK_COMMAND * 1
-
-/datum/supply_pack/goody/sakhno_derringer_single
-	name = "Sakhno 'Yinbi' Derringer Single Pack"
-	desc = "A compact self-defense pistol, chambered in .310 strilka. Comes with a box of modern reproduction cartridges."
-	contains = list(/obj/item/gun/ballistic/derringer = 1,
-	/obj/item/ammo_box/c310_cargo_box = 1)
-	access_view = ACCESS_WEAPONS
-	cost = PAYCHECK_COMMAND * 4.5 //It's a close-range cannon, very poor ranged performance. Slightly pricer than imported Sol pistols
 
 /datum/supply_pack/goody/mars_single
 	special = FALSE
@@ -138,6 +96,20 @@
 	cost = PAYCHECK_CREW * 12
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/rope)
 
+/datum/supply_pack/goody/pepperball_gun
+	name = "Pepperball Gun Single-Pack"
+	desc = "Contains one pepperball gun, a non-lethal weapon that fires pepper-filled projectiles."
+	cost = PAYCHECK_CREW * 9
+	access = ACCESS_SECURITY
+	contains = list(/obj/item/storage/toolbox/guncase/skyrat/pistol/pepperball)
+
+/datum/supply_pack/goody/taser
+	name = "Taser Single-Pack"
+	desc = "Contains one hybrid taser, a non-lethal weapon that fires electric projectiles and features a secondary disabler."
+	cost = PAYCHECK_CREW * 12
+	access = ACCESS_SECURITY
+	contains = list(/obj/item/gun/energy/e_gun/advtaser)
+
 /datum/supply_pack/goody/standard_mod_core
 	name = "MOD standard core"
 	desc = "The basic core module for all MODsuits. Provides essential functionality and compatibility."
@@ -174,3 +146,4 @@
 	desc = "A larger capacity storage module for MODsuits, allowing for more efficient carrying of items."
 	cost = PAYCHECK_COMMAND
 	contains = list(/obj/item/mod/module/storage/large_capacity)
+

@@ -11,7 +11,7 @@
 		/obj/structure/flora/bush/grassy/style_random = 1,
 		/obj/structure/flora/bush/leavy/style_random = 1,
 		/obj/structure/flora/bush/sparsegrass/style_random = 3,
-		/obj/structure/flora/bush/stalky/style_random = 5,
+		/obj/structure/flora/bush/stalky/style_random = 5
 	)
 
 	weighted_mob_spawn_list = list(
@@ -25,15 +25,13 @@
 		/obj/structure/ore_vent/random/moonstation = 1
 	)
 
+	flora_spawn_chance = 4
 	feature_spawn_chance = 0.1
-	mob_spawn_chance = 1
+	mob_spawn_chance = 0.5
 	initial_closed_chance = 30
 	smoothing_iterations = 50
 	birth_limit = 4
 	death_limit = 3
-
-
-
 
 //Underground
 /datum/map_generator/cave_generator/moonstation/cave
@@ -48,7 +46,6 @@
 
 
 	weighted_mob_spawn_list = list(
-		SPAWN_MEGAFAUNA = 2,
 		/mob/living/basic/mining/basilisk = 20,
 		/mob/living/basic/mining/bileworm = 30,
 		/obj/effect/spawner/random/lavaland_mob/goliath = 10,
@@ -67,21 +64,54 @@
 		/obj/structure/flora/ash/tall_shroom = 5,
 	)
 
-	///Note that this spawn list is also in the lavaland and icemoon generator
 	weighted_feature_spawn_list = list(
-		/obj/structure/geyser/hollowwater = 10,
-		/obj/structure/geyser/plasma_oxide = 10,
-		/obj/structure/geyser/protozine = 10,
-		/obj/structure/geyser/wittel = 10,
-		/obj/structure/ore_vent/random/moonstation/cave = 10
+		/obj/structure/ore_vein/diamond = 1,
+		/obj/structure/ore_vein/gold = 4,
+		/obj/structure/ore_vein/iron = 40,
+		/obj/structure/ore_vein/plasma = 15,
+		/obj/structure/ore_vein/silver = 6,
+		/obj/structure/ore_vein/stone = 80,
+		/obj/structure/ore_vent/random/moonstation/cave = 100
 	)
 
-	feature_spawn_chance = 0.2
-	mob_spawn_chance = 4
-	initial_closed_chance = 45
+	flora_spawn_chance = 2
+	feature_spawn_chance = 0.8
+	mob_spawn_chance = 1.5
+	initial_closed_chance = 40
 	smoothing_iterations = 50
 	birth_limit = 4
 	death_limit = 3
 
 
+/* Here lies dead code that I wish to get working again. Because of how changeturf works, this cannot work without causing runtimes. Maybe in the future this can be re-added.  ~ Burger
+/obj/effect/mapping_helpers/turf_spreader
+	name = "turf spreader"
+	desc = "Spread the love!"
 
+	var/turf/desired_spread_type
+
+	var/spread_prob_base = 80
+	var/spread_prob_loss = 10
+
+/obj/effect/mapping_helpers/turf_spreader/Initialize(mapload)
+
+	. = ..()
+
+	var/turf/our_turf = get_turf(src)
+
+	if(!our_turf) //huh
+		return
+
+	if(our_turf.turf_flags & NO_LAVA_GEN)
+		return .
+
+	var/area/our_area = our_turf.loc
+
+	if(desired_spread_type && our_turf.type != desired_spread_type)
+		our_turf.ChangeTurf(desired_spread_type)
+
+	our_turf.Spread(spread_prob_base,spread_prob_loss,our_area.type)
+
+/obj/effect/mapping_helpers/turf_spreader/moonstation_water
+	desired_spread_type = /turf/open/water/moonstation
+*/

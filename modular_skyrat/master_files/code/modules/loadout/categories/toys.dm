@@ -28,10 +28,6 @@
 	name = "Bubblegum Plushie"
 	item_path = /obj/item/toy/plush/bubbleplush
 
-/datum/loadout_item/toys/goat
-	name = "Strange Goat Plushie"
-	item_path = /obj/item/toy/plush/goatplushie
-
 /datum/loadout_item/toys/sechound
 	name = "Sechound Plushie"
 	item_path = /obj/item/toy/plush/skyrat/sechound

@@ -8,6 +8,7 @@
 	vend_reply = "Thank you for using the CommDrobe!"
 	auto_build_products = TRUE
 	payment_department = ACCOUNT_CMD
+	allow_custom = TRUE
 
 	refill_canister = /obj/item/vending_refill/wardrobe/comm_wardrobe
 	payment_department = ACCOUNT_CMD

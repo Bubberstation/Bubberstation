@@ -74,6 +74,10 @@
 		if(tgui_alert(usr, "You are a member of security and/or command, make sure that you ahelp before punching out! If you decide to punch back in later, you will need to go to the Head of Personnel or Head of Security. Do you wish to continue?", "[src]", list("No", "Yes")) != "Yes")
 			return FALSE
 
+	if(istype(authenticated_card.trim, /datum/id_trim/job/prisoner))
+		tgui_alert(usr, "You cannot clock out of prison. Nice try, inmate.")
+		return TRUE
+
 	log_econ("[authenticated_card.registered_name] clocked out from role [authenticated_card.get_trim_assignment()]")
 	var/datum/component/off_duty_timer/timer_component = authenticated_card.AddComponent(/datum/component/off_duty_timer, TIMECLOCK_COOLDOWN)
 	if(important)

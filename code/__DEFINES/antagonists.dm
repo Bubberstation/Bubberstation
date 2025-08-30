@@ -334,9 +334,11 @@ GLOBAL_LIST_INIT(human_invader_antagonists, list(
 #define DESTROY_AI_PROB(denominator) (100 / denominator)
 /// If the destroy AI objective doesn't roll, chance that we'll get a maroon instead. If this prob fails, they will get a generic assassinate objective instead.
 #define MAROON_PROB 30
+/// Probability that any job related objective is picked
+#define JOB_PROB 40
 
 /// How many telecrystals a normal traitor starts with
-#define TELECRYSTALS_DEFAULT 25 // BUBBER EDIT - GIMMICK TRAITOR
+#define TELECRYSTALS_DEFAULT 20
 /// How many telecrystals mapper/admin only "precharged" uplink implant
 #define TELECRYSTALS_PRELOADED_IMPLANT 10
 /// The normal cost of an uplink implant; used for calcuating how many
@@ -404,6 +406,8 @@ GLOBAL_LIST_INIT(human_invader_antagonists, list(
 #define ANTAG_FAKE (1 << 0)
 /// Antag is not added to the global list of antags
 #define ANTAG_SKIP_GLOBAL_LIST (1 << 1)
+/// Antag's panel action button and the UI therein is viewable by observers
+#define ANTAG_OBSERVER_VISIBLE_PANEL (1 << 2)
 
 #define HUNTER_PACK_COPS "Spacepol Fugitive Hunters"
 #define HUNTER_PACK_RUSSIAN "Russian Fugitive Hunters"

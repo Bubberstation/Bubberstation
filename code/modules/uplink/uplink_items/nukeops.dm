@@ -308,8 +308,7 @@
 /datum/uplink_item/weapon_kits/high_cost/carbine
 	name = "M-90gl Carbine Case (Hard)"
 	desc = "A fully-loaded, specialized three-round burst carbine that fires .223 ammunition from a 30 round magazine.\
-		Comes with a 40mm underbarrel grenade launcher. Use secondary-fire to fire the grenade launcher. Also comes with two spare magazines \
-		and a box of 40mm rubber slugs."
+		Comes with a 40mm underbarrel grenade launcher. Use secondary-fire to fire the grenade launcher. Also comes with two spare magazines."
 	item = /obj/item/storage/toolbox/guncase/m90gl
 
 /datum/uplink_item/ammo_nuclear/basic/carbine
@@ -498,18 +497,7 @@
 	item = /obj/item/storage/backpack/duffelbag/syndie/x4
 	cost = 10 // 50% discount!
 
-/datum/uplink_item/explosives/military_grade/emp
-	name = "Syndicate EMP Bomb"
-	desc = "A variation of the syndicate bomb designed to produce a large EMP effect."
-	item = /obj/item/sbeacondrop/emp
-	cost = 6
-
-/datum/uplink_item/explosives/syndicate_bomb/emp/New()
-	..()
-	if(HAS_TRAIT(SSstation, STATION_TRAIT_CYBERNETIC_REVOLUTION))
-		cost *= 2
-
-/datum/uplink_item/explosives/syndicate_bomb
+/datum/uplink_item/explosives/military_grade/syndicate_bomb
 	name = "Syndicate Bomb"
 	desc = "The Syndicate bomb is a fearsome device capable of massive destruction. It has an adjustable timer, \
 		with a minimum of %MIN_BOMB_TIMER seconds, and can be bolted to the floor with a wrench to prevent \
@@ -520,9 +508,20 @@
 	item = /obj/item/sbeacondrop/bomb
 	cost = 8
 
-/datum/uplink_item/explosives/syndicate_bomb/New()
+/datum/uplink_item/explosives/military_grade/syndicate_bomb/New()
 	. = ..()
 	desc = replacetext(desc, "%MIN_BOMB_TIMER", SYNDIEBOMB_MIN_TIMER_SECONDS)
+
+/datum/uplink_item/explosives/military_grade/syndicate_bomb/emp
+	name = "Syndicate EMP Bomb"
+	desc = "A variation of the syndicate bomb designed to produce a large EMP effect."
+	item = /obj/item/sbeacondrop/emp
+	cost = 6
+
+/datum/uplink_item/explosives/military_grade/syndicate_bomb/emp/New()
+	. = ..()
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_CYBERNETIC_REVOLUTION))
+		cost *= 2
 
 // Support (Borgs and Reinforcements)
 

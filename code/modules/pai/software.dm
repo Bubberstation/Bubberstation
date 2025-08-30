@@ -36,6 +36,11 @@
 	if(action == "check dna")
 		check_dna()
 		return TRUE
+	// BUBBER EDIT: pAI self Wipe
+	if(action == "wipe files")
+		pai_cryo()
+		return TRUE
+	// BUBBER EDIT END: pAI self Wipe
 	// Software related ui actions
 	if(available_software[action] && !installed_software.Find(action))
 		balloon_alert(ui.user, "software unavailable!")
