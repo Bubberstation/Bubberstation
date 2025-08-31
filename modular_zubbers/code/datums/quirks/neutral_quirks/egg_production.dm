@@ -1,12 +1,3 @@
-//GLOBAL LIST of valid reagents
-GLOBAL_LIST_INIT(egg_production_reagents, list(
-	/// Format: (Reagent name = list(minimum amount of reagent required to start production, cooldown per egg added to counter))
-	"cum" = list(20, 10 SECONDS),
-	"crocin" = list(20, 30 SECONDS),
-	"hexacrocin" = list(5, 30 SECONDS),
-	"Teshari Mutation Toxin" = list(4, 60 SECONDS)
-))
-
 /datum/quirk/egg_production
 	name = "Oviparity"
 	desc = "Whether it be genetics or some other factor, you are capable of producing eggs."
@@ -58,6 +49,14 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 		"You feel slightly heavier than you were a moment ago.",
 		"You feel oddly full."
 	)
+	// Static list of valid reagents
+	var/list/egg_production_reagents = list(
+		/// Format: (Reagent name = list(minimum amount of reagent required to start production, cooldown per egg added to counter))
+		"cum" = list(20, 10 SECONDS),
+		"crocin" = list(20, 30 SECONDS),
+		"hexacrocin" = list(5, 30 SECONDS),
+		"Teshari Mutation Toxin" = list(4, 60 SECONDS)
+	)
 
 /datum/action/cooldown/spell/egg_production/Grant(mob/granted_to)
 	RegisterSignal(granted_to, COMSIG_LIVING_LIFE, PROC_REF(on_life))
@@ -92,21 +91,21 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 		return FALSE //we are at the maximum storable eggs, abort the proc
 
 	for(var/datum/reagent/target_reagent as anything in cached_reagents)
-		if(!(target_reagent.name in GLOB.egg_production_reagents)) // checks to ensure the target reagent is even correct, this was a pain in the ass
+		if(!(target_reagent.name in egg_production_reagents)) // checks to ensure the target reagent is even correct, this was a pain in the ass
 			continue
-		if(target_reagent.volume >= GLOB.egg_production_reagents[target_reagent.name][1])
+		if(target_reagent.volume >= egg_production_reagents[target_reagent.name][1])
 			var/egg_thought = pick(possible_egg_thoughts)
 			to_chat(owner, span_notice("[egg_thought]"))
 			egg_update(1, egg_holder)
 			toggle_cooldown()
-			addtimer(CALLBACK(src, PROC_REF(toggle_cooldown)), GLOB.egg_production_reagents[target_reagent.name][2])
+			addtimer(CALLBACK(src, PROC_REF(toggle_cooldown)), egg_production_reagents[target_reagent.name][2])
 			return TRUE //completed once, now kill the entire proc
 	return
 // *** End of egg creation segment
 
 /datum/action/cooldown/spell/egg_production/proc/egg_update(delta, mob/living/egg_holder)
 	eggs_stored = clamp((eggs_stored + delta), 0, maximum_eggs) // clamps the stored eggs value between 0 and the maximum, AND increments by the delta amount (which should be 1)
-	desc = "[initial(desc)]. You carry [eggs_stored] eggs." // this is meant to add an active readout of how many eggs are stored on mouse-over of the action
+	desc = "[initial(desc)]. You carry [eggs_stored] egg\s." // this is meant to add an active readout of how many eggs are stored on mouse-over of the action
 
 // *** Start of movespeed modifier
 	if(eggs_stored == 0)// handles removal of the modifier if stored eggs is 0
