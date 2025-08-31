@@ -54,7 +54,7 @@
 		/// Format: (Reagent name = list(minimum amount of reagent required to start production, cooldown per egg added to counter))
 		"cum" = list(20, 10 SECONDS),
 		"crocin" = list(20, 30 SECONDS),
-		"hexacrocin" = list(5, 30 SECONDS),
+		"hexacrocin" = list(4, 30 SECONDS),
 		"Teshari Mutation Toxin" = list(4, 60 SECONDS)
 	)
 
