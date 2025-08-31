@@ -107,11 +107,12 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 	eggs_stored = clamp((eggs_stored + delta), 0, maximum_eggs) //clamps the stored eggs value between 0 and the maximum, AND increments by the delta amount (which should be 1)
 	//this is meant to add an active readout of how many eggs are stored on mouse-over of the action
 	desc = "[initial(desc)]. You carry [eggs_stored] eggs."
-	//handles removal of the status effect if stored eggs = 0
-	if(eggs_stored == 0)
-		egg_holder.remove_movespeed_modifier(/datum/movespeed_modifier/eggnant, update = TRUE)
-		return
+
 // *** Start of movespeed modifier
+	if(eggs_stored == 0)// handles removal of the modifier if stored eggs is 0
+		owner.remove_movespeed_modifier(/datum/movespeed_modifier/eggnant, update = TRUE) //** problem here
+		return
+
 	var/slow_mult = FLOOR((eggs_stored) / (maximum_eggs), 0.01)
 	var/datum/movespeed_modifier/eggnant/modifier = new()
 	modifier.multiplicative_slowdown = CEILING((5 * slow_mult), 0.01)
@@ -136,7 +137,8 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 		if(100)
 			to_chat(owner, span_alertwarning("Your body can't handle anymore eggs! You need to lay some to make room, now!"))
 		if(99)
-			to_chat(owner, span_warning("[is_delta_negative ? "You feel like you still have very little room for anymore eggs..."]"))
+			if(is_delta_negative)
+				to_chat(owner, span_warning("You feel like you still have very little room for anymore eggs..."))
 
 //setting the base movespeed modifier
 /datum/movespeed_modifier/eggnant
