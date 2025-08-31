@@ -14,6 +14,6 @@
 	. = ..()
 	var/mob/living/carbon/human/human_owner = organ_owner
 
-	if(ishuman(organ_owner))
+	if(human_owner.physiology)
 		human_owner.physiology.brute_mod /= 0.5
 		human_owner.physiology.burn_mod /= 0.8
