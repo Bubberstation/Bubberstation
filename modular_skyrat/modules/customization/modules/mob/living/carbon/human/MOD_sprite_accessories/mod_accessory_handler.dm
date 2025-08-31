@@ -7,22 +7,22 @@
 		return
 
 	update_external_organs_modsuit_status(is_sealed && active)
-	wearer.update_body_parts(TRUE)
+	wearer?.update_body_parts(TRUE)
 
 /obj/item/mod/control/control_activation(is_on)
 	. = ..()
 	update_external_organs_modsuit_status(is_on)
-	wearer.update_body_parts(TRUE)
+	wearer?.update_body_parts(TRUE)
 
 /obj/item/mod/control/deploy(mob/user, obj/item/part, instant = FALSE)
 	. = ..()
 	update_external_organs_modsuit_status(active)
-	wearer.update_body_parts(TRUE)
+	wearer?.update_body_parts(TRUE)
 
 /obj/item/mod/control/retract(mob/user, obj/item/part, instant = FALSE)
 	. = ..()
 	update_external_organs_modsuit_status(FALSE)
-	wearer.update_body_parts(TRUE)
+	wearer?.update_body_parts(TRUE)
 
 /// Simple helper proc to force an update of the external organs appearance
 /// if necessary.
