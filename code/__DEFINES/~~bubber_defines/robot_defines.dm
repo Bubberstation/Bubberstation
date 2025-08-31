@@ -180,6 +180,11 @@
 #define CYBORG_ICON_SERVICE_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerService.dmi'
 #define CYBORG_ICON_SYNDI_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerSyndi.dmi'
 
+//MERMAID BORG ICON DEFINES
+#define CYBORG_ICON_MED_MERMAID 'modular_zubbers/code/modules/silicons/borgs/sprites/merborg/mermaidbot_med.dmi'
+#define CYBORG_ICON_SCI_MERMAID 'modular_zubbers/code/modules/silicons/borgs/sprites/merborg/mermaidbot_sci.dmi'
+#define CYBORG_ICON_ENG_MERMAID 'modular_zubbers/code/modules/silicons/borgs/sprites/merborg/mermaidbot_eng.dmi'
+
 /************************************************************
 				CYBORG HAT OFFSETS GO BELOW
 *************************************************************/
