@@ -21,7 +21,7 @@
 	actions_types = list(/datum/action/item_action/toggle_light)
 	action_slots = ALL
 	light_system = OVERLAY_LIGHT_DIRECTIONAL
-	light_color = COLOR_LIGHT_ORANGE
+	light_color = "#dbdbff" // BUBBER EDIT CHANGE - Original: COLOR_LIGHT_ORANGE
 	light_range = 4
 	light_power = 1
 	light_on = FALSE
