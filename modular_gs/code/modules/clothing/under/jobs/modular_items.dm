@@ -182,8 +182,7 @@
 
 //General function to get the alternate variants for butt sprites, used for digitigrade characters
 /obj/item/proc/get_butt_alt()
-	// return "[(mutantrace_variation == STYLE_DIGITIGRADE) ? "_l" : ""]" // noooo idea how this codebase deals with digitigrades
-	return ""
+	return "[(supports_variations_flags == CLOTHING_DIGITIGRADE_VARIATION) ? "_l" : ""]"
 
 //General function to get the appropriate size for the breasts
 /obj/item/proc/get_modular_breasts(obj/item/organ/genital/G)
@@ -232,6 +231,7 @@
 	name = "cargo grey jumpsuit (Modular)"
 	desc = "Grey only in name"
 	color = "#BB9042"
+	armor_type = /datum/armor/clothing_under/cargo_miner
 
 /obj/item/clothing/under/color/grey/engi
 	name = "engineering grey jumpsuit (Modular)"
