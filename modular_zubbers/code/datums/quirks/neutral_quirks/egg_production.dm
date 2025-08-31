@@ -78,7 +78,7 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 /datum/action/cooldown/spell/egg_production/proc/toggle_cooldown()
 	can_produce = !can_produce
 
-//checks if we can produce an egg, whether there are any reagents, validates that we have the correct reagents, and creates an egg as long as we have the required value and eggs_stored is not at the maximum
+//checks if we can produce an egg, whether there are any reagents, validates that we have the correct reagents, and creates an egg as long as we are above the required value and eggs_stored is not at the maximum
 /datum/action/cooldown/spell/egg_production/proc/create_egg(datum/reagent/reagent)
 	if(can_produce == FALSE)
 		return FALSE //cooldown is active, abort the proc
@@ -92,7 +92,7 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 		return FALSE //we are at the maximum storable eggs, abort the proc
 
 	for(var/datum/reagent/target_reagent as anything in cached_reagents)
-		if(!(target_reagent.name in GLOB.egg_production_reagents)) //checks to ensure the target reagent is even correct, this was a pain in the ass
+		if(!(target_reagent.name in GLOB.egg_production_reagents)) // checks to ensure the target reagent is even correct, this was a pain in the ass
 			continue
 		if(target_reagent.volume >= GLOB.egg_production_reagents[target_reagent.name][1])
 			var/egg_thought = pick(possible_egg_thoughts)
@@ -105,13 +105,12 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 // *** End of egg creation segment
 
 /datum/action/cooldown/spell/egg_production/proc/egg_update(delta, mob/living/egg_holder)
-	eggs_stored = clamp((eggs_stored + delta), 0, maximum_eggs) //clamps the stored eggs value between 0 and the maximum, AND increments by the delta amount (which should be 1)
-	//this is meant to add an active readout of how many eggs are stored on mouse-over of the action
-	desc = "[initial(desc)]. You carry [eggs_stored] eggs."
+	eggs_stored = clamp((eggs_stored + delta), 0, maximum_eggs) // clamps the stored eggs value between 0 and the maximum, AND increments by the delta amount (which should be 1)
+	desc = "[initial(desc)]. You carry [eggs_stored] eggs." // this is meant to add an active readout of how many eggs are stored on mouse-over of the action
 
 // *** Start of movespeed modifier
 	if(eggs_stored == 0)// handles removal of the modifier if stored eggs is 0
-		owner.remove_movespeed_modifier(/datum/movespeed_modifier/eggnant, update = TRUE) //** problem here
+		owner.remove_movespeed_modifier(/datum/movespeed_modifier/eggnant, update = TRUE)
 		return
 
 	var/slow_mult = FLOOR((eggs_stored) / (maximum_eggs), 0.01)
@@ -124,8 +123,7 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 	var/is_delta_negative = FALSE
 	if(delta < 0)
 		is_delta_negative = TRUE
-	//This can alternatively be done in combination with the movespeed modifier, setting slow_mult = fixed value after each statement,
-	//and removing the prior rounding code in FLOOR() and CEILING().
+
 	switch(eggs_stored) //Tracks each threshold a to_chat should be triggered, a separate 99 value is there to ensure an alt text is displayed for going back down from max.
 		if(20)
 			to_chat(owner, span_purple("You're beginning to feel [is_delta_negative ? "less weighed down, but still full..." : "rather heavy..."]"))
