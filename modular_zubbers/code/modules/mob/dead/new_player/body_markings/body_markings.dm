@@ -237,3 +237,8 @@
 	name = "Protogen Crotch Plate"
 	icon_state = "protogen_c"
 	affected_bodyparts = CHEST
+
+/datum/body_marking/bubber/skintone
+	name = "Human Skintone"
+	icon_state = "skintone"
+	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
