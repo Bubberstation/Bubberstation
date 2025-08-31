@@ -46,3 +46,6 @@ fi
 # BUBBER EDIT ADDITION BEGIN - Call our deploy too
 source modular_zubbers/tools/deploy_bubber.sh
 # BUBBER EDIT ADDITION END - Call our deploy too
+
+#GS13 EDIT DEPLOY!
+source modular_gs/tools/ci/deploy_gs.sh

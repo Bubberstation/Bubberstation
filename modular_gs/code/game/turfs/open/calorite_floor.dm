@@ -1,9 +1,10 @@
 /turf/open/floor/mineral/calorite
 	name = "Calorite floor"
 	icon = 'modular_gs/icons/turf/floors.dmi'
+	damaged_dmi = 'modular_gs/icons/turf/floors.dmi'
 	icon_state = "calorite"
 	floor_tile = /obj/item/stack/tile/mineral/calorite
-	icons = list("calorite","calorite_dam")
+	icons = "calorite"
 	var/last_event = 0
 	var/active = null
 	///How much fatness is added to the user upon crossing?
@@ -21,7 +22,8 @@
 	name = "Steel floor"
 	icon_state = "calorite_hide"
 	floor_tile = /obj/item/stack/tile/mineral/calorite/hide
-	icons = list("calorite_hide","calorite_dam")
+	icons = "calorite_hide"
+	damaged_dmi = null
 
 // calorite floor, powerful version - GS13
 
@@ -29,7 +31,8 @@
 	name = "Infused calorite floor"
 	icon_state = "calorite_strong"
 	floor_tile = /obj/item/stack/tile/mineral/calorite/strong
-	icons = list("calorite_strong","calorite_dam")
+	damaged_dmi = null
+	icons = "calorite_strong"
 	fat_to_add = 100
 
 // calorite dance floor, groovy! - GS13
@@ -38,4 +41,5 @@
 	name = "Calorite dance floor"
 	icon_state = "calorite_dance"
 	floor_tile = /obj/item/stack/tile/mineral/calorite/dance
-	icons = list("calorite_dance","calorite_dam")
+	icons = "calorite_dance"
+	damaged_dmi = null

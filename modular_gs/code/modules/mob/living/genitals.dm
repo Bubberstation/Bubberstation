@@ -58,6 +58,8 @@
 	feature_key = ORGAN_SLOT_BUTT
 	layers = EXTERNAL_ADJACENT | EXTERNAL_FRONT
 
+/datum/bodypart_overlay/mutant/genital/butt/get_global_feature_list()
+	return SSaccessories.sprite_accessories[ORGAN_SLOT_BUTT]
 
 //The Tummy.
 /obj/item/organ/genital/belly
