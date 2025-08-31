@@ -47,11 +47,11 @@
 	STATION CHUNKS
 */
 
-/// 'nearstation' sections mimic how hallways work on a traditional ss13 map; so blob is allowed to both move through it and place here freely. not sure why you would; but still
-/// likewise cult can also build/rune here. again - probably not smart as a cultie; but you can. There are some exceptions to areas we want to name but don't want either on; too.
+/// 'nearstation' sections mimic how hallways work on a traditional ss13 map;
+/// cult can also build/rune here. again - probably not smart as a cultie; but you can. There are some exceptions to areas we want to name but don't want either on; too.
 /// For those; see /area/taeloth/nearstation/no_valids_to_hunt
 /area/taeloth/nearstation
-	area_flags = VALID_TERRITORY | BLOBS_ALLOWED | UNIQUE_AREA | FLORA_ALLOWED | CULT_PERMITTED
+	area_flags = VALID_TERRITORY | UNIQUE_AREA | FLORA_ALLOWED | CULT_PERMITTED
 
 /// AI
 /area/taeloth/nearstation/ai_sat_trail
