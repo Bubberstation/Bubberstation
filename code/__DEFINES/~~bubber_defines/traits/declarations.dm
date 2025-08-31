@@ -4,6 +4,7 @@
 #define TRAIT_CAN_BE_PICKED_UP "can_be_picked_up"
 #define TRAIT_CHANGELING_ZOMBIE "changelingzombie"
 #define TRAIT_RESEARCH_CYBORG "research_cyborg"
+#define TRAIT_BILINGUAL "Bilingual"
 
 /// Cyborgs with unique sprites
 /// 32x32 quadruped skins with resting, sitting, and belly up sprites
