@@ -4,6 +4,7 @@ GLOBAL_LIST_INIT(egg_production_reagents, list(
 	"cum" = list(20, 10 SECONDS),
 	"crocin" = list(20, 30 SECONDS),
 	"hexacrocin" = list(5, 30 SECONDS),
+	"Teshari Mutation Toxin" = list(4, 60 SECONDS)
 ))
 
 /datum/quirk/egg_production
