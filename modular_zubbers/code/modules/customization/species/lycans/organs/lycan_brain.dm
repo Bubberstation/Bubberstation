@@ -10,9 +10,10 @@
 		return
 	removed_quirks = list()
 	for(var/datum/quirk/current_quirks in owner.quirks)
-		if(istype(current_quirks, /datum/quirk/micro))
-			removed_quirks += current_quirks.type
-			owner.remove_quirk(current_quirks.type)
+		var/datum/quirk/micro/bad_quirk = locate() in current_quirks
+		for(bad_quirk)
+			removed_quirks += bad_quirk.type
+			owner.remove_quirk(bad_quirk.type)
 	owner.visible_message(span_warning("[owner] grows massive, their body quickly getting covered in fur!"))
 	owner.set_species(current_wolf.lycanthropy_species, TRUE, TRUE, FALSE)
 	ADD_TRAIT(owner, TRAIT_BEAST_FORM, SPECIES_TRAIT)
