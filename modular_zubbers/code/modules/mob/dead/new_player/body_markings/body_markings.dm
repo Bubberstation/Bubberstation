@@ -238,6 +238,11 @@
 	icon_state = "protogen_c"
 	affected_bodyparts = CHEST
 
+/datum/body_marking/bubber/skintone
+	name = "Human Skintone"
+	icon_state = "skintone"
+	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
+
 /datum/body_marking/bubber/cryptid  /// Sprite by Maggotbait of Splurt
 	name = "Cryptid Ribs"
 	icon_state = "cryptid"
