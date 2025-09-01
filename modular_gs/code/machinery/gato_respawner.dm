@@ -1,4 +1,5 @@
-#define TIME_UNTIL_RESPAWN 0.5 MINUTES
+#define TIME_UNTIL_RESPAWN 30 MINUTES
+#define MACHINE_RECHARGE_TIME 15 MINUTES
 
 /*
 SO! This is a copy and paste. Normally this is something I wouldn't do, nor would I advise others to do, but this is meant to be a shitty band-aid solution.
@@ -82,7 +83,7 @@ Please do not let this be a permanent solution, it is not designed as such.
 	name = "GATO Reformation Apparatus"
 	desc = "Beats being dead, but don't get used to using this too often. This machine ain't cheap to run."
 	confirmation_text = "Do you wish to use this to respawn? Multiple uses of this machine will lead to increasing credit costs. If you are not able to pay, you will be put into debt."
-	cooldown_time = 1 MINUTES
+	cooldown_time = MACHINE_RECHARGE_TIME
 	text_to_show = null
 
 	var/list/ckey_respawn_usage = list()
@@ -141,3 +142,4 @@ Please do not let this be a permanent solution, it is not designed as such.
 
 
 #undef TIME_UNTIL_RESPAWN
+#undef MACHINE_RECHARGE_TIME
