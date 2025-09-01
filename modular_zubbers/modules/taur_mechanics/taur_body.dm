@@ -47,9 +47,6 @@
 	/// When considering how much to offset our rider, we multiply size scaling against this.
 	var/riding_offset_scaling_mult = 0.8
 
-	/// Are we ignoring taur cropping settings, and forcing all our clothes to render normally?
-	var/ignoring_cropping_setting = FALSE
-
 /obj/item/organ/taur_body/horselike
 	can_use_saddle = TRUE
 
