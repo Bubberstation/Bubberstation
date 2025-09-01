@@ -3,46 +3,46 @@
 	if(!istype(H))
 		return
 
-/*
-	var/obj/item/organ/genital/butt/butt = H.getorganslot(ORGAN_SLOT_BUTT)
-	var/obj/item/organ/genital/external/belly/belly = H.getorganslot(ORGAN_SLOT_BELLY)
-	var/obj/item/organ/genital/breasts/breasts = H.getorganslot(ORGAN_SLOT_BREASTS)
-	var/obj/item/organ/genital/taur_belly/tbelly = H.getorganslot(ORGAN_SLOT_TAUR_BELLY)
+// /*
+	var/obj/item/organ/genital/butt/butt = H.get_organ_slot(ORGAN_SLOT_BUTT)
+	var/obj/item/organ/genital/belly/belly = H.get_organ_slot(ORGAN_SLOT_BELLY)
+	var/obj/item/organ/genital/breasts/breasts = H.get_organ_slot(ORGAN_SLOT_BREASTS)
+	// var/obj/item/organ/genital/taur_belly/tbelly = H.get_organ_slot(ORGAN_SLOT_TAUR_BELLY)
 
 	if(butt)
-		if(butt.max_size > 0)
-			if((butt.size + size_change) <= butt.max_size)
-				butt.modify_size(size_change)
+		if(butt.max_genital_size > 0)
+			if((butt.genital_size + size_change) <= butt.max_genital_size)
+				butt.set_size(size_change)
 		else
-			butt.modify_size(size_change)
+			butt.set_size(size_change)
 	if(belly)
-		if(belly.max_size > 0)
-			if((belly.size + size_change) <= belly.max_size)
-				belly.modify_size(size_change)
+		if(belly.max_genital_size > 0)
+			if((belly.genital_size + size_change) <= belly.max_genital_size)
+				belly.set_size(size_change)
 		else
-			belly.modify_size(size_change)
-	if(tbelly)
-		if(tbelly.max_size > 0)
-			if((tbelly.size + size_change) <= tbelly.max_size)
-				tbelly.modify_size(size_change)
-		else
-			tbelly.modify_size(size_change)
+			belly.set_size(size_change)
+	// if(tbelly)
+	// 	if(tbelly.max_genital_size > 0)
+	// 		if((tbelly.size + size_change) <= tbelly.max_genital_size)
+	// 			tbelly.set_size(size_change)
+	// 	else
+	// 		tbelly.set_size(size_change)
 	if(breasts)
-		if(breasts.max_size > 0)
-			if((breasts.cached_size + size_change) <= breasts.max_size)
-				breasts.modify_size(size_change)
+		if(breasts.max_genital_size > 0)
+			if((breasts.genital_size + size_change) <= breasts.max_genital_size)
+				breasts.set_size(size_change)
 		else
-			breasts.modify_size(size_change)
+			breasts.set_size(size_change)
 
-	H.genital_override = TRUE
+	// H.genital_override = TRUE
 	H.update_body()
-	H.update_inv_w_uniform()
-	H.update_inv_wear_suit()
+	H.update_worn_undersuit()
+	H.update_worn_oversuit()
 
-Do this later.
-*/
+// Do this later.
+// */
 
-/mob/living/carbon/human/proc/handle_fatness_trait(trait, trait_lose, trait_gain, fatness_lose, fatness_gain, chat_lose, chat_gain)
+/mob/living/carbon/human/proc/handle_fatness_trait(trait, trait_lose, trait_gain, fatness_lose, fatness_gain, chat_lose, chat_gain, weight_stage)
 	var/mob/living/carbon/human/H = src
 	if(H.fatness < fatness_lose)
 		if (chat_lose)
@@ -51,7 +51,7 @@ Do this later.
 			REMOVE_TRAIT(H, trait, OBESITY)
 		if (trait_lose)
 			ADD_TRAIT(H, trait_lose, OBESITY)
-		update_body_size(H, -1)
+		update_body_size(H, weight_stage - 1)
 	else if(H.fatness >= fatness_gain)
 		if (chat_gain)
 			to_chat(H, chat_gain)
@@ -59,7 +59,7 @@ Do this later.
 			REMOVE_TRAIT(H, trait, OBESITY)
 		if (trait_gain)
 			ADD_TRAIT(H, trait_gain, OBESITY)
-		update_body_size(H, 1)
+		update_body_size(H, weight_stage)
 
 /mob/living/carbon/human/proc/handle_helplessness()
 	return TRUE
@@ -317,6 +317,7 @@ Do this later.
 	return fatness_delay
 
 /mob/living/carbon/human/proc/handle_fatness()
+	// handle_modular_items()
 	var/mob/living/carbon/human/H = src
 	// update movement speed
 	var/fatness_delay = 0
@@ -348,7 +349,8 @@ Do this later.
 			FATNESS_LEVEL_BLOB,
 			INFINITY,
 			"<span class='notice'>You feel like you've regained some mobility!</span>",
-			null)
+			null,
+			10)
 		return
 	if(HAS_TRAIT(H, TRAIT_IMMOBILE))
 		handle_fatness_trait(
@@ -358,7 +360,8 @@ Do this later.
 			FATNESS_LEVEL_IMMOBILE,
 			FATNESS_LEVEL_BLOB,
 			"<span class='notice'>You feel less restrained by your fat!</span>",
-			"<span class='danger'>You feel like you've become a mountain of fat!</span>")
+			"<span class='danger'>You feel like you've become a mountain of fat!</span>",
+			9)
 		return
 	if(HAS_TRAIT(H, TRAIT_BARELYMOBILE))
 		handle_fatness_trait(
@@ -368,7 +371,8 @@ Do this later.
 			FATNESS_LEVEL_BARELYMOBILE,
 			FATNESS_LEVEL_IMMOBILE,
 			"<span class='notice'>You feel less restrained by your fat!</span>",
-			"<span class='danger'>You feel your belly smush against the floor!</span>")
+			"<span class='danger'>You feel your belly smush against the floor!</span>",
+			8)
 		return
 	if(HAS_TRAIT(H, TRAIT_EXTREMELYOBESE))
 		handle_fatness_trait(
@@ -378,7 +382,8 @@ Do this later.
 			FATNESS_LEVEL_EXTREMELY_OBESE,
 			FATNESS_LEVEL_BARELYMOBILE,
 			"<span class='notice'>You feel less restrained by your fat!</span>",
-			"<span class='danger'>You feel like you can barely move!</span>")
+			"<span class='danger'>You feel like you can barely move!</span>",
+			7)
 		return
 	if(HAS_TRAIT(H, TRAIT_MORBIDLYOBESE))
 		handle_fatness_trait(
@@ -388,7 +393,8 @@ Do this later.
 			FATNESS_LEVEL_MORBIDLY_OBESE,
 			FATNESS_LEVEL_EXTREMELY_OBESE,
 			"<span class='notice'>You feel a bit less fat!</span>",
-			"<span class='danger'>You feel your belly rest heavily on your lap!</span>")
+			"<span class='danger'>You feel your belly rest heavily on your lap!</span>",
+			6)
 		return
 	if(HAS_TRAIT(H, TRAIT_OBESE))
 		handle_fatness_trait(
@@ -398,7 +404,8 @@ Do this later.
 			FATNESS_LEVEL_OBESE,
 			FATNESS_LEVEL_MORBIDLY_OBESE,
 			"<span class='notice'>You feel like you've lost weight!</span>",
-			"<span class='danger'>Your thighs begin to rub against each other.</span>")
+			"<span class='danger'>Your thighs begin to rub against each other.</span>",
+			5)
 		return
 	if(HAS_TRAIT(H, TRAIT_VERYFAT))
 		handle_fatness_trait(
@@ -408,7 +415,8 @@ Do this later.
 			FATNESS_LEVEL_VERYFAT,
 			FATNESS_LEVEL_OBESE,
 			"<span class='notice'>You feel like you've lost weight!</span>",
-			"<span class='danger'>You feel like you're starting to get really heavy.</span>")
+			"<span class='danger'>You feel like you're starting to get really heavy.</span>",
+			4)
 		return
 	if(HAS_TRAIT(H, TRAIT_FATTER))
 		handle_fatness_trait(
@@ -418,7 +426,8 @@ Do this later.
 			FATNESS_LEVEL_FATTER,
 			FATNESS_LEVEL_VERYFAT,
 			"<span class='notice'>You feel like you've lost weight!</span>",
-			"<span class='danger'>Your clothes creak quietly!</span>")
+			"<span class='danger'>Your clothes creak quietly!</span>",
+			3)
 		return
 	if(HAS_TRAIT(H, TRAIT_FAT))
 		handle_fatness_trait(
@@ -428,7 +437,8 @@ Do this later.
 			FATNESS_LEVEL_FAT,
 			FATNESS_LEVEL_FATTER,
 			"<span class='notice'>You feel fit again!</span>",
-			"<span class='danger'>You feel even plumper!</span>")
+			"<span class='danger'>You feel even plumper!</span>",
+			2)
 	else
 		handle_fatness_trait(
 			null,
@@ -437,4 +447,5 @@ Do this later.
 			0,
 			FATNESS_LEVEL_FAT,
 			null,
-			"<span class='danger'>You suddenly feel blubbery!</span>")
+			"<span class='danger'>You suddenly feel blubbery!</span>",
+			1)
