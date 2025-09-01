@@ -187,6 +187,3 @@
 
 	LAZYSET(preferences.languages[name_to_language[language_name]], LANGUAGE_KNOWLEDGE, partial_amount)
 	return TRUE
-
-#undef MAX_LANGUAGES_NORMAL
-#undef MAX_LANGUAGES_LINGUIST
