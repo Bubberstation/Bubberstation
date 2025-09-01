@@ -109,31 +109,6 @@
 	icon = 'modular_zubbers/icons/customization/tails.dmi'
 	color_src = USE_MATRIXED_COLORS
 
-/datum/sprite_accessory/tails/mammal/wagging/large_cat_plain // Sprites by Smol42
-	name = "Large cat (Plain)"
-	icon_state = "largecatplain"
-	icon = 'modular_zubbers/icons/customization/tails.dmi'
-
-/datum/sprite_accessory/tails/mammal/wagging/large_cat_tip
-	name = "Large cat (Painted Tip)"
-	icon_state = "largecattip"
-	icon = 'modular_zubbers/icons/customization/tails.dmi'
-
-/datum/sprite_accessory/tails/mammal/wagging/large_cat_striped
-	name = "Large cat (Striped)"
-	icon_state = "largecatstriped"
-	icon = 'modular_zubbers/icons/customization/tails.dmi'
-
-/datum/sprite_accessory/tails/mammal/wagging/large_cat_circle
-	name = "Large cat (Circles)"
-	icon_state = "largecatcircle"
-	icon = 'modular_zubbers/icons/customization/tails.dmi'
-
-/datum/sprite_accessory/tails/mammal/wagging/large_cat_covered
-	name = "Large cat (Covered Top)"
-	icon_state = "largecatcovered"
-	icon = 'modular_zubbers/icons/customization/tails.dmi'
-
 /datum/sprite_accessory/tails/mammal/wagging/tailmaw/head
 	name = "Tailmaw (Coloured Head)"
 	icon_state = "tailmawwag_head"
