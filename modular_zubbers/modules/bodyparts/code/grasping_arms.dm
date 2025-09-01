@@ -2,7 +2,7 @@
 #define PUNCH_HIGH 10
 #define LIMB_MAX_HP_GRASPING 75
 #define LIMB_BODY_DAMAGE_COEFFICIENT_GRASPING 0.5
-
+/// I need to completely refactor all of this. None of it works because realistically making a new /item/bodypart doesn't work. I'd have to go the way of taurs and make it an overlay.
 /obj/item/bodypart/grasping/arm
 	name = "Grasping Arm"
 	desc = "A big ol' arm."
@@ -29,11 +29,8 @@
 	if (gloves && !HAS_TRAIT(gloves, TRAIT_NODROP))
 		gloves.forceMove(get_turf(new_owner))
 
-
-/// Adds mob traits to our owner.
-/obj/item/bodypart/grasping/arm/proc/add_traits(mob/living/carbon/organ_owner = owner)
-	ADD_TRAIT(organ_owner, TRAIT_CHUNKYFINGERS_IGNORE_BATON, ORGAN_TRAIT)
-	ADD_TRAIT(organ_owner, TRAIT_NO_TWOHANDING, ORGAN_TRAIT)
+	ADD_TRAIT(new_owner, TRAIT_CHUNKYFINGERS_IGNORE_BATON, ORGAN_TRAIT)
+	ADD_TRAIT(new_owner, TRAIT_NO_TWOHANDING, ORGAN_TRAIT)
 
 /obj/item/bodypart/grasping/arm/on_removal(mob/living/carbon/old_owner)
 	. = ..()
@@ -50,7 +47,7 @@
 /obj/item/bodypart/grasping/arm/left/mantis
 	bodytype = BODYTYPE_ORGANIC
 	icon = 'modular_zubbers/modules/bodyparts/icons/grasping_arms.dmi'
-	icon_state = 'mantisleft'
+	var/limb_id = SPECIES_MANTIS
 	unarmed_damage_low = PUNCH_LOW
 	unarmed_damage_high = PUNCH_HIGH
 	unarmed_effectiveness = 20
@@ -62,7 +59,7 @@
 /obj/item/bodypart/grasping/arm/right/mantis
 	bodytype = BODYTYPE_ORGANIC
 	icon = 'modular_zubbers/modules/bodyparts/icons/grasping_arms.dmi'
-	icon_state = 'mantisright'
+	var/limb_id = SPECIES_MANTIS
 	unarmed_damage_low = PUNCH_LOW
 	unarmed_damage_high = PUNCH_HIGH
 	unarmed_effectiveness = 20
@@ -75,7 +72,7 @@
 /obj/item/bodypart/grasping/arm/left/crab
 	bodytype = BODYTYPE_ORGANIC
 	icon = 'modular_zubbers/modules/bodyparts/icons/grasping_arms.dmi'
-	icon_state = 'crableft'
+	var/limb_id = SPECIES_MANTIS
 	unarmed_damage_low = PUNCH_LOW
 	unarmed_damage_high = PUNCH_HIGH
 	unarmed_effectiveness = 20
@@ -87,7 +84,7 @@
 /obj/item/bodypart/grasping/arm/right/crab
 	bodytype = BODYTYPE_ORGANIC
 	icon = 'modular_zubbers/modules/bodyparts/icons/grasping_arms.dmi'
-	icon_state = 'crabright'
+	var/limb_id = SPECIES_MANTIS
 	unarmed_damage_low = PUNCH_LOW
 	unarmed_damage_high = PUNCH_HIGH
 	unarmed_effectiveness = 20

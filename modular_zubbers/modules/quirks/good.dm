@@ -10,10 +10,10 @@
 
 /datum/quirk_constant_data/grasping_arms
 	associated_typepath = /datum/quirk/grasping_arms
-	customization_options = list(/datum/preference/choiced/arms)
+	customization_options = list(/datum/preference/choiced/grasping_arms)
 
 /datum/quirk/grasping_arms/add_unique(client/client_source)
-	var/obj/item/bodypart/limb_type = GLOB.grasping_arms_choice[client_source?.prefs?.read_preference(/datum/preference/choiced/prosthetic)]
+	var/obj/item/bodypart/limb_type = GLOB.grasping_arms_choice[client_source?.prefs?.read_preference(/datum/preference/choiced/grasping_arms)]
 	if(isnull(limb_type))  //Client gone or they chose a random option
 		limb_type = GLOB.grasping_arms_choice[pick(GLOB.grasping_arms_choice)]
 	limb_zone = limb_type.body_zone
@@ -52,15 +52,21 @@
 	var/biotype_bonus_damage = 20
 	///Amount of melee armor defense stance adds
 	var/melee_armor = 10
-	/// The actual offensive stance sprite. Nullable, if inactive.
-	var/obj/structure/stance/attack
 
-/datum/action/innate/stance/Destroy()
-	qdel(attack) // we already listen for COMSIG_QDELETING on our stance, so it already sets it to null via the signal
-	return ..()
+// /datum/action/innate/stance/Destroy()
+//	qdel(attack) // we already listen for COMSIG_QDELETING on our stance, so it already sets it to null via the signal
+//	return ..()
 
 /datum/action/innate/stance/Trigger(mob/clicker, trigger_flags)
 	if(!..())
 		return FALSE
 
-	if (trigger_flags
+	var/active_status = active
+	if(active_status)
+		Deactivate()
+	else
+		Activate()
+
+	if(active != active_status)
+		build_all_button_icons(UPDATE_BUTTON_STATUS)
+	return TRUE
