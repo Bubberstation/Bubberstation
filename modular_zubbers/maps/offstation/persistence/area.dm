@@ -231,3 +231,20 @@
 /datum/weather/rad_storm/New()
 	. = ..()
 	protected_areas += /area/ruin/space/has_grav/bubbers/persistance
+
+//roof areas
+/area/ruin/space/has_grav/bubbers/persistance/roof
+	name= "Persistence Roof"
+	outdoors = TRUE
+	sound_environment = SOUND_AREA_ICEMOON
+	ignore_weather_sfx = FALSE
+
+/area/ruin/space/has_grav/bubbers/persistance/shieldgen
+	name= "Persistence Shield Generator"
+	outdoors = TRUE
+	sound_environment = SOUND_AREA_ICEMOON
+	ignore_weather_sfx = FALSE
+
+/area/ruin/space/has_grav/bubbers/persistance/controltower
+	name= "Persistence Shuttle Controller"
+	sound_environment = SOUND_AREA_SMALL_ENCLOSED

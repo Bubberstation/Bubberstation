@@ -263,12 +263,15 @@ Security HUDs! Basic mode shows only the job.
 
 //HOOKS
 
-/mob/living/carbon/human/proc/sec_hud_set_ID()
+/mob/living/carbon/human/proc/update_ID_card()
+	SIGNAL_HANDLER
+
 	var/sechud_icon_state = wear_id?.get_sechud_job_icon_state()
 	if(!sechud_icon_state || HAS_TRAIT(src, TRAIT_UNKNOWN))
 		sechud_icon_state = "hudno_id"
 	set_hud_image_state(ID_HUD, sechud_icon_state)
 	sec_hud_set_security_status()
+	update_visible_name()
 	//SKYRAT EDIT START
 	var/image/permit_holder = hud_list[PERMIT_HUD]
 	permit_holder.pixel_y = get_cached_height() - world.icon_size

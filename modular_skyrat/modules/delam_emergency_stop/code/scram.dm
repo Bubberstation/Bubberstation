@@ -94,7 +94,7 @@
 /obj/machinery/atmospherics/components/unary/delam_scram/proc/panic_time(source, trigger_reason)
 	SIGNAL_HANDLER
 
-	if(!prereq_check())
+	if(!prereq_check(source, trigger_reason))
 		return
 
 	send_warning(source, trigger_reason)
@@ -105,7 +105,7 @@
 		return FALSE
 
 	if(admin_disabled)
-		investigate_log("Delam SCRAM tried to activate but an admin disabled it", INVESTIGATE_ATMOS)
+		investigate_log("Delam SCRAM tried to activate but an admin disabled it", INVESTIGATE_ENGINE)
 		playsound(
 			source = src,
 			soundin = 'sound/machines/compiler/compiler-failure.ogg',
@@ -120,9 +120,12 @@
 		audible_message(span_danger("[src] makes a series of sad beeps. Someone has corrupted its software!"))
 		return FALSE
 
-	if(world.time - SSticker.round_start_time > 30 MINUTES && trigger_reason == SCRAM_TRIGGER_PUSHED)
+	if(trigger_reason == SCRAM_DIVINE_INTERVENTION)
+		return TRUE
+
+	if(world.time - SSticker.round_start_time > SCRAM_TIME_RESTRICTION)
 		audible_message(span_danger("[src] makes a series of sad beeps. The internal gas buffer is past its 30 minute expiry... what a feat of engineering!"))
-		investigate_log("Delam SCRAM signal was received but failed precondition check. (Round time or trigger reason)", INVESTIGATE_ATMOS)
+		investigate_log("Delam SCRAM signal was received but failed precondition check. (Round time or trigger reason)", INVESTIGATE_ENGINE)
 		radio.talk_into(src, "Supermatter delam suppression system fault! Unable to trigger, internal gas mix integrity check failed.", emergency_channel, list(SPAN_COMMAND))
 		return FALSE
 
@@ -130,7 +133,7 @@
 
 /// Tells the station (they probably already know) and starts the procedure
 /obj/machinery/atmospherics/components/unary/delam_scram/proc/send_warning(source, trigger_reason)
-	investigate_log("Delam SCRAM was activated by [trigger_reason]", INVESTIGATE_ATMOS)
+	investigate_log("Delam SCRAM was activated by [trigger_reason]", INVESTIGATE_ENGINE)
 	notify_ghosts(
 		"[src] has been activated!",
 		source = src,
@@ -316,7 +319,7 @@
 
 	// Let the admins know someone's fucked up
 	message_admins("[ADMIN_LOOKUPFLW(user)] just uncovered [src].")
-	investigate_log("[key_name(user)] uncovered [src].", INVESTIGATE_ATMOS)
+	investigate_log("[key_name(user)] uncovered [src].", INVESTIGATE_ENGINE)
 
 	confirm_action(user)
 
@@ -342,13 +345,8 @@
 	button_stage = BUTTON_PUSHED
 	visible_message(span_danger("[user] smashes [src] with their hand!"))
 	message_admins("[ADMIN_LOOKUPFLW(user)] pushed [src]!")
-	investigate_log("[key_name(user)] pushed [src]!", INVESTIGATE_ATMOS)
-	flick_overlay_view("[base_icon_state]-overlay-active", 20 SECONDS)
-
-	// No going back now!
-	SEND_GLOBAL_SIGNAL(COMSIG_MAIN_SM_DELAMINATING, SCRAM_TRIGGER_PUSHED)
-
-	if(world.time - SSticker.round_start_time > 30 MINUTES)
+	investigate_log("[key_name(user)] pushed [src]!", INVESTIGATE_ENGINE)
+	if(world.time - SSticker.round_start_time > SCRAM_TIME_RESTRICTION)
 		playsound(
 			source = src.loc,
 			soundin = 'sound/machines/compiler/compiler-failure.ogg',
@@ -358,6 +356,12 @@
 			falloff_distance = 7,
 		)
 		audible_message(span_danger("[src] makes a series of sad beeps. Looks like it's all on you to save the day!"))
+		burn_out()
+		return
+
+	// No going back now!
+	flick_overlay_view("[base_icon_state]-overlay-active", 20 SECONDS)
+	SEND_GLOBAL_SIGNAL(COMSIG_MAIN_SM_DELAMINATING, SCRAM_TRIGGER_PUSHED)
 
 	// Temporarily let anyone escape the engine room before it becomes spicy
 	for(var/obj/machinery/door/airlock/escape_route in range(7, src))

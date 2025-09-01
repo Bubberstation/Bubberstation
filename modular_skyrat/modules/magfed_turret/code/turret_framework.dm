@@ -794,7 +794,7 @@
 	our_projectile.stamina *= turret_damage_multiplier
 
 	our_projectile.wound_bonus += turret_wound_bonus
-	our_projectile.bare_wound_bonus += turret_wound_bonus
+	our_projectile.exposed_wound_bonus += turret_wound_bonus
 	casing.fire_casing(target, src, null, null, null, BODY_ZONE_CHEST, 0, src)
 	play_fire_sound(casing)
 
@@ -813,7 +813,7 @@
 		fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/pistol_light.ogg'
 	else if(istype(soundmaker, /obj/item/ammo_casing/c585trappiste))
 		fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/pistol_heavy.ogg'
-	else if(istype(soundmaker, /obj/item/ammo_casing/c40sol))
+	else if(istype(soundmaker, /obj/item/ammo_casing/c46x30mm))
 		fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/rifle_heavy.ogg'
 	else if(istype(soundmaker, /obj/item/ammo_casing/strilka310))
 		fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/battle_rifle.ogg'

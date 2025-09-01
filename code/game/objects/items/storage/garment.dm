@@ -163,7 +163,7 @@
 	new /obj/item/clothing/suit/toggle/labcoat/research_director(src)
 	new	/obj/item/clothing/head/playbunnyears/rd(src)
 	new /obj/item/clothing/under/rank/rnd/research_director/bunnysuit(src)
-	new /obj/item/clothing/suit/jacket/research_director/tailcoat(src)
+	new /obj/item/clothing/suit/toggle/labcoat/research_director/tailcoat(src)
 	new /obj/item/clothing/neck/tie/bunnytie/rd(src)
 
 
@@ -187,7 +187,7 @@
 	new /obj/item/clothing/neck/mantle/cmomantle(src)
 	new /obj/item/clothing/head/playbunnyears/cmo(src)
 	new /obj/item/clothing/under/rank/medical/cmo_bunnysuit(src)
-	new /obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/cmo(src)
+	new /obj/item/clothing/suit/toggle/labcoat/cmo/doctor_tailcoat(src)
 	new /obj/item/clothing/neck/tie/bunnytie/cmo(src)
 
 /obj/item/storage/bag/garment/engineering_chief/PopulateContents()

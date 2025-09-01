@@ -58,7 +58,6 @@
 		/mob/living/simple_animal/hostile/ooze,
 		/mob/living/simple_animal/hostile/ooze/gelatinous,
 		/mob/living/simple_animal/hostile/ooze/grapes,
-		/mob/living/simple_animal/soulscythe,
 
 		// MODULAR SKYRAT ENTRIES
 		// PLEASE REFACTOR THESE AS YOU CAN
@@ -113,7 +112,6 @@
 		/mob/living/simple_animal/hostile/looter/ranged,
 		/mob/living/simple_animal/hostile/looter/ranged/space,
 		/mob/living/simple_animal/hostile/looter/ranged/space/laser,
-		/mob/living/simple_animal/hostile/mannequin,
 		/mob/living/simple_animal/hostile/megafauna/bubblegum/no_gps,
 		/mob/living/simple_animal/hostile/megafauna/gladiator,
 		/mob/living/simple_animal/hostile/megafauna/hierophant/astrum,

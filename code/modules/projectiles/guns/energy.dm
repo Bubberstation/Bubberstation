@@ -146,7 +146,6 @@
 		ammo_type[i] = shot
 	shot = ammo_type[select]
 	fire_sound = shot.fire_sound
-	fire_sound_volume = shot.fire_sound_volume //SKYRAT EDIT ADDITION
 	fire_delay = shot.delay
 
 /obj/item/gun/energy/Destroy()
@@ -180,9 +179,12 @@
 		update_appearance()
 
 /obj/item/gun/energy/attack_self(mob/living/user as mob)
+	. = ..()
+	if(.)
+		return
+
 	if(ammo_type.len > 1 && can_select)
 		select_fire(user)
-	return ..()
 
 /obj/item/gun/energy/can_shoot()
 	var/obj/item/ammo_casing/energy/shot = ammo_type[select]
@@ -228,7 +230,6 @@
 		select = 1
 	var/obj/item/ammo_casing/energy/shot = ammo_type[select]
 	fire_sound = shot.fire_sound
-	fire_sound_volume = shot.fire_sound_volume //SKYRAT EDIT ADDITION
 	fire_delay = shot.delay
 	if (shot.select_name && user)
 		balloon_alert(user, "set to [shot.select_name]")

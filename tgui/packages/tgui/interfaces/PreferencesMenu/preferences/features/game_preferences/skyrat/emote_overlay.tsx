@@ -1,5 +1,5 @@
 // THIS IS A SKYRAT UI FILE
-import { CheckboxInput, FeatureToggle } from '../../base';
+import { CheckboxInput, type FeatureToggle } from '../../base';
 
 export const do_emote_overlay: FeatureToggle = {
   name: 'Show/Hide my emote effect overlays',

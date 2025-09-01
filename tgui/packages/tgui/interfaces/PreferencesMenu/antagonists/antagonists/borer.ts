@@ -1,4 +1,4 @@
-import { Antagonist, Category } from '../base';
+import { type Antagonist, Category } from '../base';
 
 export const BORER_MECHANICAL_DESCRIPTION = `
 A small slithering monster infecting people's brains.

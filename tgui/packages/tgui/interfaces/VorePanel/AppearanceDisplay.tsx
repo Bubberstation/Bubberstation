@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Color } from 'tgui-core/color';
 import { Box, Icon, Image } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 /**
  * Waits until two XMLHttpRequests have loaded at iconSrc before calling cb().
@@ -11,12 +11,12 @@ import { BooleanLike } from 'tgui-core/react';
 function getTwice(iconSrc: string, cb: () => void) {
   const xhr = new XMLHttpRequest();
   // Block effect until we load
-  xhr.open('GET', iconSrc + '?preload');
+  xhr.open('GET', `${iconSrc}?preload`);
   xhr.send();
   xhr.onload = () => {
     const xhr = new XMLHttpRequest();
     // Block effect until we load
-    xhr.open('GET', iconSrc + '?preload2');
+    xhr.open('GET', `${iconSrc}?preload2`);
     xhr.send();
     xhr.onload = cb;
   };
@@ -54,14 +54,14 @@ export const renderImage = (
   context.drawImage(image, 0, 0, canvas.width, canvas.height);
 
   if (recolorable) {
-    let color_rgb = Color.fromHex(color);
-    let imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+    const color_rgb = Color.fromHex(color);
+    const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
     const pixelsPerProcess = 4 * canvas.width * 8;
 
     let frames = 0;
     let i = 0;
     const recolor = () => {
-      let start = i;
+      const start = i;
       while (i - start < pixelsPerProcess) {
         imageData.data[i + 0] *= color_rgb.r / 255;
         imageData.data[i + 1] *= color_rgb.g / 255;
@@ -87,7 +87,7 @@ export const renderImage = (
   }
 };
 
-let loadedImages = {};
+const loadedImages = {};
 
 export const BellyFullscreenIcon = (props: {
   icon: string;
@@ -113,10 +113,10 @@ export const BellyFullscreenIcon = (props: {
       return;
     }
 
-    let src = `${iconRef}?state=${icon_state}`;
+    const src = `${iconRef}?state=${icon_state}`;
 
     if (loadedImages[src]) {
-      let image = loadedImages[src];
+      const image = loadedImages[src];
       renderImage(image, canvas, context, color, recolorable);
       return;
     }

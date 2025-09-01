@@ -140,12 +140,20 @@
 	soft_type = "ds"
 
 //Maid Outfit
-/obj/item/clothing/head/costume/maidheadband/syndicate
+/obj/item/clothing/head/costume/maid_headband/syndicate
 	name = "tactical maid headband"
 	desc = "Tacticute."
-	icon_state = "syndimaid_headband"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/head/costume.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head/costume.dmi'
+	icon_state = "syndimaid_headband"
+	inhand_icon_state = null
+	post_init_icon_state = null
+	greyscale_colors = null
+	greyscale_config = null
+	greyscale_config_worn = null
+	greyscale_config_inhand_left = null
+	greyscale_config_inhand_right = null
+	flags_1 = parent_type::flags_1 & ~IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/gloves/combat/maid
 	name = "combat maid sleeves"

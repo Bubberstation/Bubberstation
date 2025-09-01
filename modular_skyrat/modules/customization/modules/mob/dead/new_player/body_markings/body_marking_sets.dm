@@ -144,8 +144,8 @@
 	body_marking_list = list("Scolipede", "Scolipede Spikes")
 
 /datum/body_marking_set/guilmon
-	name = "Guilmon"
-	body_marking_list = list("Guilmon", "Guilmon Mark")
+	name = "Toraxen"
+	body_marking_list = list("Toraxen", "Toraxen Mark")
 
 /datum/body_marking_set/xeno
 	name = "Xeno"

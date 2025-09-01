@@ -7,7 +7,7 @@
 	message = "chirps happily!"
 	vary = TRUE
 	sound = 'modular_skyrat/modules/emotes/sound/emotes/dwoop.ogg'
-	allowed_species = list(/datum/species/synthetic)
+	allowed_species = list(/datum/species/synthetic, /datum/species/protean)
 	cooldown = 2 SECONDS
 
 /datum/emote/silicon/yes

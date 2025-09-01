@@ -479,7 +479,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/canvas_state = preferences.read_preference(/datum/preference/choiced/background_state)
 
 	// Being a taur, or over 1.1 scales it up
-	if (body.dna.mutant_bodyparts["taur"] && body.dna.mutant_bodyparts["taur"]["name"] != "None")
+	if (body.dna.mutant_bodyparts[FEATURE_TAUR] && body.dna.mutant_bodyparts[FEATURE_TAUR][MUTANT_INDEX_NAME] != "None")
 		canvas_size = 1
 	else if (!isnull(body.dna.features["body_size"]) && body.dna.features["body_size"] > 1.1)
 		canvas_size = 1

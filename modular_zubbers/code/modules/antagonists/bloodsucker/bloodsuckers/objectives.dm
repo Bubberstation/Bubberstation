@@ -358,7 +358,7 @@
 /datum/objective/bloodsucker/ghoulhim/update_explanation_text()
 	. = ..()
 	if(target?.current)
-		explanation_text = "Ensure [target.name], the [!target_department_type ? target.assigned_role.title : target.special_role], is Ghoulifyd via the Persuasion Rack."
+		explanation_text = "Ensure [target.name], the [!target_department_type ? target.assigned_role.title : english_list(target.get_special_roles())], is Ghoulifyd via the Persuasion Rack."
 	else
 		explanation_text = "Free Objective"
 

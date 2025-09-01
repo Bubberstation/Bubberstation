@@ -644,23 +644,20 @@
 	return mutable_appearance('modular_skyrat/master_files/icons/donator/obj/custom.dmi', "darksheath-darksabre")
 
 // Donation reward for inferno707
-/obj/item/storage/belt/sabre/darksabre
+/obj/item/storage/belt/sheath/sabre/darksabre
 	name = "ornate sheathe"
 	desc = "An ornate and rather sinister looking sabre sheathe."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/custom.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/custom_w.dmi'
 	icon_state = "sheath"
 	worn_icon_state = "sheath"
+	stored_blade = /obj/item/toy/darksabre
 
-/obj/item/storage/belt/sabre/darksabre/Initialize(mapload)
+/obj/item/storage/belt/sheath/sabre/darksabre/Initialize(mapload)
 	. = ..()
 	atom_storage.set_holdable(list(
 		/obj/item/toy/darksabre
 		))
-
-/obj/item/storage/belt/sabre/darksabre/PopulateContents()
-	new /obj/item/toy/darksabre(src)
-	update_icon()
 
 // Donation reward for inferno707
 /obj/item/clothing/suit/armor/vest/darkcarapace
@@ -882,14 +879,9 @@
 	icon_state = "plasmaman_jax"
 
 // Donation reward for Raxraus
-/obj/item/clothing/shoes/combat/rax
+/obj/item/clothing/shoes/jackboots/peacekeeper/armadyne/rax
 	name = "tactical boots"
 	desc = "Tactical and sleek. This model seems to resemble Armadyne's."
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/shoes.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/feet.dmi'
-	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/feet_digi.dmi'
-	icon_state = "armadyne_boots"
-	worn_icon_state = "armadyne_boots"
 
 // Donation reward for Raxraus
 /obj/item/clothing/suit/armor/vest/warden/rax

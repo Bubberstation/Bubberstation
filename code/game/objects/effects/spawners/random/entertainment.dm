@@ -151,6 +151,7 @@
 		/obj/item/storage/fancy/cigarettes/cigpack_robustgold = 1,
 		/obj/item/storage/fancy/cigarettes/cigpack_midori = 1,
 		/obj/item/storage/fancy/cigarettes/cigpack_candy = 1,
+		/obj/item/storage/fancy/cigarettes/cigpack_greytide = 1,
 	)
 
 /obj/effect/spawner/random/entertainment/cigarette
@@ -165,6 +166,7 @@
 		/obj/item/cigarette/robust = 2,
 		/obj/item/cigarette/carp = 1,
 		/obj/item/cigarette/robustgold = 1,
+		/obj/item/cigarette/greytide = 3,
 	)
 
 /obj/effect/spawner/random/entertainment/cigar
@@ -275,7 +277,6 @@
 		/obj/item/toy/plush/carpplushie = 3,
 		/obj/item/toy/plush/lizard_plushie/green = 3,
 		/obj/item/toy/plush/lizard_plushie/space/green = 3,
-		/obj/item/toy/plush/goatplushie = 3,
 		/obj/item/toy/plush/rouny = 3,
 		/obj/item/toy/plush/abductor = 3,
 		/obj/item/toy/plush/abductor/agent = 3,
@@ -293,6 +294,6 @@
 	loot = list(
 		/obj/item/grenade/chem_grenade/glitter/pink,
 		/obj/item/grenade/chem_grenade/glitter/blue,
-		/obj/item/grenade/chem_grenade/glitter/white,
+		/obj/item/grenade/chem_grenade/glitter,
 		/obj/item/grenade/chem_grenade/colorful
 	)

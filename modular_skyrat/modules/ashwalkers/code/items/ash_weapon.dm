@@ -9,7 +9,7 @@
 
 	force = 15
 	wound_bonus = 15
-	bare_wound_bonus = 10
+	exposed_wound_bonus = 10
 
 	greyscale_colors = null
 	greyscale_config = null

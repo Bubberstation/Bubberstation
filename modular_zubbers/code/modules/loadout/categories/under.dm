@@ -148,3 +148,9 @@
 /datum/loadout_item/uniform/miscellaneous/nurse
 	name = "Nurse's suit"
 	item_path = /obj/item/clothing/under/rank/medical/doctor/nurse
+
+
+/datum/loadout_item/uniform/miscellaneous/microstar_suit
+	name = "MicroStar SCI-MED suit"
+	item_path = /obj/item/clothing/under/rank/civilian/microstar_suit
+

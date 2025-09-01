@@ -1,17 +1,6 @@
-/obj/item/borg/upgrade/rped
-	icon = 'modular_skyrat/modules/aesthetics/storage/storage.dmi'
-	icon_state = "borgrped"
-
-/obj/item/storage/part_replacer
-	icon = 'modular_skyrat/modules/aesthetics/storage/storage.dmi'
-
+// This override should be removed once upstream sorts out the new sprite being so big it goes off the UI
 /obj/item/storage/part_replacer/bluespace
 	icon = 'icons/obj/storage/storage.dmi'
-
-/obj/item/storage/part_replacer/cyborg
-	icon = 'modular_skyrat/modules/aesthetics/storage/storage.dmi'
-
-
 
 /*
 // Boxes

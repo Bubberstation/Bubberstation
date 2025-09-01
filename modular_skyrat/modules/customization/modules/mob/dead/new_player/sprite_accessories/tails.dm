@@ -1,10 +1,8 @@
 /datum/sprite_accessory/tails
 	key = "tail"
-	generic = "Tail"
 	organ_type = /obj/item/organ/tail
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/tails.dmi'
 	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER)
-	genetic = TRUE
 	/// Can we use this tail for the fluffy tail turf emote?
 	var/fluffy = FALSE
 
@@ -191,7 +189,7 @@
 	icon_state = "fox3"
 
 /datum/sprite_accessory/tails/mammal/wagging/guilmon
-	name = "Guilmon"
+	name = "Toraxen"
 	icon_state = "guilmon"
 
 /datum/sprite_accessory/tails/mammal/wagging/hawk
@@ -271,6 +269,10 @@
 /datum/sprite_accessory/tails/mammal/wagging/otie
 	name = "Otusian"
 	icon_state = "otie"
+
+/datum/sprite_accessory/tails/mammal/wagging/otter
+	name = "Otter"
+	icon_state = "otter"
 
 /datum/sprite_accessory/tails/mammal/wagging/plug
 	name = "Plug"

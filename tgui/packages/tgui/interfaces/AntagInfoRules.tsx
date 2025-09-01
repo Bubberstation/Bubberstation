@@ -2,7 +2,7 @@
 import { Stack } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
-import { Objective } from './common/Objectives';
+import type { Objective } from './common/Objectives';
 
 type Info = {
   antag_name: string;

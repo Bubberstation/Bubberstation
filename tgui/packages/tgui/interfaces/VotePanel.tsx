@@ -9,7 +9,7 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -54,6 +54,7 @@ type UserData = {
 enum VoteSystem {
   VOTE_SINGLE = 1,
   VOTE_MULTI = 2,
+  VOTE_RANKED = 3, // BUBBER EDIT ADDITION - Ranked Choice Voting
 }
 
 type Data = {
@@ -280,7 +281,7 @@ const ChoicesPanel = (props) => {
                     )}
                   {currentVote.displayStatistics ||
                   user.isLowerAdmin /* SKYRAT EDIT*/
-                    ? choice.votes + ' Votes'
+                    ? `${choice.votes} Votes`
                     : null}
                 </LabeledList.Item>
                 <LabeledList.Divider />
@@ -315,7 +316,8 @@ const ChoicesPanel = (props) => {
                   }
                 >
                   {user.multiSelection &&
-                  user.multiSelection[user.ckey.concat(choice.name)] === 1 ? (
+                  // BUBBER EDIT CHANGE - Original: [user.ckey.concat(choice.name)]
+                  user.multiSelection[`${user.ckey}_${choice.name}`] === 1 ? (
                     <Icon align="right" mr={2} color="blue" name="vote-yea" />
                   ) : null}
                   {
@@ -329,6 +331,131 @@ const ChoicesPanel = (props) => {
             ))}
           </LabeledList>
         ) : null}
+        {/* BUBBER EDIT ADDITION - Ranked Choice Voting */}
+        {currentVote && currentVote.countMethod === VoteSystem.VOTE_RANKED ? (
+          <NoticeBox success>
+            Click options to rank them in order of preference. Click again to
+            remove.
+          </NoticeBox>
+        ) : null}
+        {currentVote &&
+        currentVote.choices.length !== 0 &&
+        currentVote.countMethod === VoteSystem.VOTE_RANKED ? (
+          <LabeledList>
+            {currentVote.choices
+              .map((choice) => {
+                // Get all current ranks for this user
+                const userRanks: Record<string, number> = {};
+                let maxRank = 0;
+                currentVote.choices.forEach((c) => {
+                  const rankKey = `${user.ckey}_${c.name}`;
+                  const rank = user.multiSelection?.[rankKey] || 0;
+                  if (rank > 0) {
+                    userRanks[c.name] = rank;
+                    maxRank = Math.max(maxRank, rank);
+                  }
+                });
+
+                // Get this choice's current rank
+                const rankKey = `${user.ckey}_${choice.name}`;
+                const currentRank = user.multiSelection?.[rankKey] || 0;
+
+                return {
+                  choice,
+                  currentRank,
+                  userRanks,
+                  maxRank,
+                };
+              })
+              // Sort by rank (unranked at bottom)
+              .sort((a, b) => {
+                if (a.currentRank === 0 && b.currentRank === 0) {
+                  // If both unranked, sort alphabetically
+                  return a.choice.name.localeCompare(b.choice.name);
+                }
+                if (a.currentRank === 0) return 1; // a is unranked, move to bottom
+                if (b.currentRank === 0) return -1; // b is unranked, move to bottom
+                return a.currentRank - b.currentRank; // sort by rank
+              })
+              .map(({ choice, currentRank, userRanks, maxRank }) => {
+                // Function to get button text
+                const getButtonText = () => {
+                  if (currentRank === 0) {
+                    return 'Vote';
+                  }
+                  return `Choice #${currentRank}`;
+                };
+
+                // Function to handle vote click
+                const handleVoteClick = () => {
+                  if (currentRank > 0) {
+                    // Remove this rank and shift others up
+                    const newRanks: Record<string, number> = {};
+                    Object.entries(userRanks).forEach(
+                      ([name, rank]: [string, number]) => {
+                        if (name === choice.name) {
+                          return; // Skip this one as we're removing it
+                        }
+                        if (rank > currentRank) {
+                          newRanks[name] = rank - 1; // Shift up
+                        } else {
+                          newRanks[name] = rank; // Keep same
+                        }
+                      },
+                    );
+                    // Send all rank updates
+                    Object.entries(newRanks).forEach(
+                      ([name, newRank]: [string, number]) => {
+                        act('voteRanked', {
+                          voteOption: name,
+                          voteRank: newRank,
+                        });
+                      },
+                    );
+                    // Remove this rank
+                    act('voteRanked', {
+                      voteOption: choice.name,
+                      voteRank: 0,
+                    });
+                  } else {
+                    // Add as next rank
+                    act('voteRanked', {
+                      voteOption: choice.name,
+                      voteRank: maxRank + 1,
+                    });
+                  }
+                };
+
+                return (
+                  <Box key={choice.name}>
+                    <LabeledList.Item
+                      label={choice.name.replace(/^\w/, (c) => c.toUpperCase())}
+                      textAlign="right"
+                      buttons={
+                        <Button
+                          tooltip={
+                            user.isGhost &&
+                            'Ghost voting was disabled by an admin.'
+                          }
+                          selected={currentRank > 0}
+                          disabled={user.isGhost}
+                          onClick={handleVoteClick}
+                        >
+                          {getButtonText()}
+                        </Button>
+                      }
+                    >
+                      {currentVote.displayStatistics || user.isLowerAdmin
+                        ? `${choice.votes} Votes`
+                        : null}
+                    </LabeledList.Item>
+                    <LabeledList.Divider />
+                  </Box>
+                );
+              })}
+          </LabeledList>
+        ) : null}
+        {/* BUBBER EDIT ADDITION END */}
         {currentVote ? null : <NoticeBox>No vote active!</NoticeBox>}
       </Section>
     </Stack.Item>

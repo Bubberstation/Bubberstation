@@ -5,7 +5,7 @@
 	name = "\improper Ex-Ghoul"
 	roundend_category = "ghouls"
 	antagpanel_category = "Bloodsucker"
-	job_rank = ROLE_VASSAL
+	pref_flag = ROLE_VASSAL
 	antag_hud_name = "ghoul_grey"
 	show_in_roundend = FALSE
 	show_in_antagpanel = FALSE

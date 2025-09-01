@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { useDispatch } from 'tgui/backend';
 import { Icon, KeyListener } from 'tgui-core/components';
-import { globalEvents, KeyEvent } from 'tgui-core/events';
+import { globalEvents, type KeyEvent } from 'tgui-core/events';
 import { KEY_CTRL } from 'tgui-core/keycodes';
 import { clamp } from 'tgui-core/math';
 import {
@@ -255,7 +255,7 @@ class FishingMinigame extends Component<
         const distanceFromBottom =
           this.area_height -
           (currentFishState.position + currentFishState.height);
-        let possibleMoves: number[] = [];
+        const possibleMoves: number[] = [];
         if (Math.abs(distanceFromBottom) > 100) {
           possibleMoves.push(randomInteger(100, 200));
         }

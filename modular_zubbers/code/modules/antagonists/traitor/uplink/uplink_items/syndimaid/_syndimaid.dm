@@ -12,6 +12,6 @@
 /obj/item/storage/box/syndimaid/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/under/syndicate/skyrat/maid/armored(src)
-	new /obj/item/clothing/head/costume/maidheadband/syndicate/armored(src)
+	new /obj/item/clothing/head/costume/maid_headband/syndicate/armored(src)
 	new /obj/item/clothing/gloves/combat/maid/armored(src)
 	new /obj/item/clothing/shoes/jackboots/heel/tactical(src)

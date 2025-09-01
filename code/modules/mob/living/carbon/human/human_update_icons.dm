@@ -140,7 +140,7 @@ There are several things that need to be remembered:
 
 		// SKYRAT EDIT ADDITION START - Taur-friendly suits!
 		if(bodyshape & BODYSHAPE_TAUR)
-			if(istype(uniform) && uniform.gets_cropped_on_taurs)
+			if(istype(uniform) && (!HAS_TRAIT(src, TRAIT_TAUR_IGNORING_CROPPING) && uniform.gets_cropped_on_taurs))
 				mutant_styles |= get_taur_mode()
 		// SKYRAT EDIT END
 
@@ -597,7 +597,7 @@ There are several things that need to be remembered:
 
 		if(bodyshape & BODYSHAPE_TAUR)
 			var/obj/item/clothing/suit/worn_suit = wear_suit
-			if(istype(worn_suit) && worn_suit.gets_cropped_on_taurs)
+			if(istype(worn_suit) && (!HAS_TRAIT(src, TRAIT_TAUR_IGNORING_CROPPING) && worn_suit.gets_cropped_on_taurs))
 				mutant_styles |= get_taur_mode()
 		// SKYRAT EDIT END
 
@@ -1242,8 +1242,28 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 		return
 
 	my_head.update_limb(is_creating = update_limb_data)
+	//BUBBER EDIT START - We need to account for different heights when using this proc
+	var/my_head_icon = my_head.get_limb_icon(dropped = FALSE, update_on = src)
 
-	add_overlay(my_head.get_limb_icon(dropped = FALSE, update_on = src))
+	if(mob_height != HUMAN_HEIGHT_MEDIUM)
+		var/string_form_index = num2text(HEAD_LAYER)
+		var/offset_type = GLOB.layers_to_offset[string_form_index]
+		if(isnull(offset_type))
+			if(islist(my_head_icon))
+				for(var/image/applied_appearance in my_head_icon)
+					apply_height_filters(applied_appearance)
+			else if(isimage(my_head_icon))
+				apply_height_filters(my_head_icon)
+		else
+			if(islist(my_head_icon))
+				for(var/image/applied_appearance in my_head_icon)
+					apply_height_offsets(applied_appearance, offset_type)
+			else if(isimage(my_head_icon))
+				apply_height_offsets(my_head_icon, offset_type)
+
+	add_overlay(my_head_icon)
+	//add_overlay(my_head.get_limb_icon(dropped = FALSE, update_on = src))
+	//BUBBER EDIT END
 	update_worn_head()
 	update_worn_mask()
 

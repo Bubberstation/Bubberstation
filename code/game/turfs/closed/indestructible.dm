@@ -21,7 +21,13 @@
 /turf/closed/indestructible/attackby(obj/item/attacking_item, mob/user, list/modifiers)
 	if(istype(attacking_item, /obj/item/poster) && Adjacent(user))
 		return place_poster(attacking_item, user)
-
+	//BUBBER EDIT START - Its almost certain that people are going to want to make use of lewd portals on the interlink so they can be placed on reinforced walls
+	if(istype(attacking_item, /obj/item/wallframe/lewd_portal) && Adjacent(user))
+		var/obj/item/wallframe/lewd_portal = attacking_item
+		if(lewd_portal.try_build(src, user))
+			lewd_portal.attach(src, user)
+			return TRUE
+	//BUBBER EDIT END
 	return ..()
 
 /turf/closed/indestructible/oldshuttle
@@ -157,7 +163,7 @@ SKYRAT EDIT REMOVAL END */
 	icon_state = "plastinum_wall-0"
 	base_icon_state = "plastinum_wall"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_DIAGONAL_CORNERS
-	smoothing_groups = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_PLASTINUM_WALLS + SMOOTH_GROUP_CLOSED_TURFS
+	smoothing_groups = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_PLASTINUM_WALLS
 	canSmoothWith = SMOOTH_GROUP_PLASTINUM_WALLS
 
 /turf/closed/indestructible/riveted/plastinum/nodiagonal
@@ -217,8 +223,8 @@ SKYRAT EDIT REMOVAL END */
 
 /turf/closed/indestructible/fakeglass/Initialize(mapload)
 	. = ..()
-	underlays += mutable_appearance('icons/obj/structures.dmi', "grille", layer - 0.01) //add a grille underlay
-	underlays += mutable_appearance('icons/turf/floors.dmi', "plating", layer - 0.02) //add the plating underlay, below the grille
+	underlays += mutable_appearance('icons/obj/structures.dmi', "grille", layer - 0.01, src) //add a grille underlay
+	underlays += mutable_appearance('icons/turf/floors.dmi', "plating", layer - 0.02, src) //add the plating underlay, below the grille
 
 /turf/closed/indestructible/opsglass
 	name = "window"
@@ -232,9 +238,8 @@ SKYRAT EDIT REMOVAL END */
 
 /turf/closed/indestructible/opsglass/Initialize(mapload)
 	. = ..()
-	icon_state = null
-	underlays += mutable_appearance('icons/obj/structures.dmi', "grille", layer - 0.01)
-	underlays += mutable_appearance('icons/turf/floors.dmi', "plating", layer - 0.02)
+	underlays += mutable_appearance('icons/obj/structures.dmi', "grille", layer - 0.01, src)
+	underlays += mutable_appearance('icons/turf/floors.dmi', "plating", layer - 0.02, src)
 
 /turf/closed/indestructible/fakedoor
 	name = "airlock"
@@ -371,7 +376,7 @@ SKYRAT EDIT REMOVAL END */
 
 /turf/closed/indestructible/resin/membrane/Initialize(mapload)
 	. = ..()
-	underlays += mutable_appearance('icons/turf/floors.dmi', "engine") // add the reinforced floor underneath
+	underlays += mutable_appearance('icons/turf/floors.dmi', "engine", layer - 0.01, src) // add the reinforced floor underneath
 
 /turf/closed/indestructible/grille
 	name = "grille"
@@ -381,7 +386,7 @@ SKYRAT EDIT REMOVAL END */
 
 /turf/closed/indestructible/grille/Initialize(mapload)
 	. = ..()
-	underlays += mutable_appearance('icons/turf/floors.dmi', "plating")
+	underlays += mutable_appearance('icons/turf/floors.dmi', "plating", layer - 0.01, src)
 
 /turf/closed/indestructible/meat
 	name = "dense meat wall"

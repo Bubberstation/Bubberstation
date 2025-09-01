@@ -5,6 +5,7 @@
 	icon_state = "secbot"
 	light_color = "#f56275"
 	light_power = 0.8
+	gender = MALE
 	density = FALSE
 	anchored = FALSE
 	health = 25
@@ -326,7 +327,7 @@
 /mob/living/simple_animal/bot/secbot/hitby(atom/movable/hitting_atom, skipcatch = FALSE, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum)
 	if(isitem(hitting_atom))
 		var/obj/item/item_hitby = hitting_atom
-		var/mob/thrown_by = throwingdatum.get_thrower()
+		var/mob/thrown_by = throwingdatum?.get_thrower()
 		if(item_hitby.throwforce < src.health && thrown_by && ishuman(thrown_by))
 			var/mob/living/carbon/human/human_throwee = thrown_by
 			retaliate(human_throwee)
@@ -492,6 +493,14 @@
 
 		if((nearby_carbons.name == oldtarget_name) && (world.time < last_found + 100))
 			continue
+
+		//BUBBERSTATION CHANGE START: BEEPSKY IS A DINOSAUR NOW. CAN'T SEE YOU IF YOU DON'T MOVE.
+		if(nearby_carbons.client) //We have a client. We're a player that uses move_delay.
+			if(nearby_carbons.client.move_delay + 4 SECONDS <= world.time)
+				continue
+		else if(nearby_carbons.next_move + 4 SECONDS <= world.time) //No client. We're a mob that uses next_move.
+			continue
+		//BUBBERSTATION CHANGE END: BEEPSKY IS A DINOSAUR NOW. CAN'T SEE YOU IF YOU DON'T MOVE.
 
 		threatlevel = nearby_carbons.assess_threat(judgement_criteria)
 

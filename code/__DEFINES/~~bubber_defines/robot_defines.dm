@@ -165,6 +165,21 @@
 #define CYBORG_ICON_SERV_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_service.dmi'
 #define CYBORG_ICON_SYNDI_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_syndi.dmi'
 
+// MYOMER DOGBORG ICON DEFINES - Spritework done by Toriate, commissioned by The Sharkenning
+
+#define CYBORG_ICON_BASE_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerBase.dmi'
+#define CYBORG_ICON_CARGO_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerCargo.dmi'
+#define CYBORG_ICON_ENGI_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerEngi.dmi'
+#define CYBORG_ICON_JANI_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerJani.dmi'
+#define CYBORG_ICON_MED_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerMedical.dmi'
+#define CYBORG_ICON_MINING_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerMining.dmi'
+#define CYBORG_ICON_NINJA_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerNinja.dmi'
+#define CYBORG_ICON_SCI_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerSci.dmi'
+#define CYBORG_ICON_SEC_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerSec.dmi'
+#define CYBORG_ICON_PK_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerPeaceKeeper.dmi'
+#define CYBORG_ICON_SERVICE_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerService.dmi'
+#define CYBORG_ICON_SYNDI_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerSyndi.dmi'
+
 /************************************************************
 				CYBORG HAT OFFSETS GO BELOW
 *************************************************************/
@@ -213,3 +228,6 @@
 #define CORRUPT_HAT_OFFSET \
 	SKIN_HAT_OFFSET = list("north" = list(16, -4), "south" = list(16, -15), "east" = list(35, -7), "west" = list(-3, -7)), \
 	SKIN_HAT_REST_OFFSET = list("north" = list(16, -6), "south" = list(16, -17), "east" = list(35, -14), "west" = list(-3, -14))
+#define MYOMER_HAT_OFFSET \
+	SKIN_HAT_OFFSET = list("north" = list(16, 1), "south" = list(16, 1), "east" = list(26, 1), "west" = list(6, 1)), \
+	SKIN_HAT_REST_OFFSET = list("north" = list(16, -11), "south" = list(16, -11), "east" = list(26, -11), "west" = list(6, -11))

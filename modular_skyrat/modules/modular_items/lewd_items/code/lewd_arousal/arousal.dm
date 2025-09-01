@@ -18,6 +18,7 @@
 					target_genital.aroused = arousal_status
 					target_genital.update_sprite_suffix()
 			target.update_body()
+			SEND_SIGNAL(src, COMSIG_HUMAN_ADJUST_AROUSAL)
 
 	arousal = clamp(arousal + arous, AROUSAL_MINIMUM, AROUSAL_LIMIT)
 

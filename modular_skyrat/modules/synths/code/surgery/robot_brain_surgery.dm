@@ -11,7 +11,7 @@
 
 	target_mobtypes = list(/mob/living/carbon/human)
 	possible_locs = list(BODY_ZONE_CHEST) // The brains are in the chest
-	requires_bodypart_type = BODYTYPE_ROBOTIC | BODYTYPE_NANO
+	requires_bodypart_type = BODYTYPE_ROBOTIC | BODYTYPE_NANO //Bubber Edit - BODYTYPE_NANO
 	desc = "A surgical procedure that restores the default behavior logic and personality matrix of an IPC posibrain."
 
 /datum/surgery/robot_brain_surgery/can_start(mob/user, mob/living/carbon/target, obj/item/tool)

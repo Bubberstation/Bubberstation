@@ -62,17 +62,17 @@
 			main_color = "#22BBFF"
 		if(6)
 			main_color = "#2266FF"
-	features["mcolor"] = main_color
-	features["mcolor2"] = main_color
-	features["mcolor3"] = main_color
+	features[FEATURE_MUTANT_COLOR] = main_color
+	features[FEATURE_MUTANT_COLOR_TWO] = main_color
+	features[FEATURE_MUTANT_COLOR_THREE] = main_color
 	return features
 
 /datum/species/skrell/prepare_human_for_preview(mob/living/carbon/human/skrell)
 	var/skrell_color = "#22BBFF"
-	skrell.dna.features["mcolor"] = skrell_color
-	skrell.dna.features["mcolor2"] = skrell_color
-	skrell.dna.features["mcolor3"] = skrell_color
-	skrell.dna.mutant_bodyparts["skrell_hair"] = list(MUTANT_INDEX_NAME = "Female", MUTANT_INDEX_COLOR_LIST = list(skrell_color, skrell_color, skrell_color))
+	skrell.dna.features[FEATURE_MUTANT_COLOR] = skrell_color
+	skrell.dna.features[FEATURE_MUTANT_COLOR_TWO] = skrell_color
+	skrell.dna.features[FEATURE_MUTANT_COLOR_THREE] = skrell_color
+	skrell.dna.mutant_bodyparts[FEATURE_SKRELL_HAIR] = list(MUTANT_INDEX_NAME = "Female (Long)", MUTANT_INDEX_COLOR_LIST = list(skrell_color, skrell_color, skrell_color))
 	regenerate_organs(skrell, src, visual_only = TRUE)
 	skrell.update_body(TRUE)
 

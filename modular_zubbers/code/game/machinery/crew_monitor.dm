@@ -1,4 +1,3 @@
-#define SENSORS_UPDATE_PERIOD 15 SECONDS //Why is this not a global define, why do I have to define it again
 #define ALARM_PERIOD 45 SECONDS
 
 /obj/machinery/computer/crew
@@ -51,5 +50,4 @@
 
 	return canalarm
 
-#undef SENSORS_UPDATE_PERIOD
 #undef ALARM_PERIOD

@@ -112,7 +112,8 @@
 			if(location?.freeze_turf())
 				consumed = MOLES_GAS_VISIBLE
 		if(WATER_VAPOR_DEPOSITION_POINT to WATER_VAPOR_CONDENSATION_POINT)
-			location.water_vapor_gas_act()
+			if(!isgroundlessturf(location) && !isnoslipturf(location))
+				location.water_vapor_gas_act()
 			consumed = MOLES_GAS_VISIBLE
 
 	if(consumed)
@@ -554,8 +555,8 @@
 		ASSERT_GAS(/datum/gas/nitrogen, air)
 		ASSERT_GAS(/datum/gas/oxygen, air)
 		var/amount_decomposed = 0.4 * bz_formed * nitrous_oxide_decomposed_factor
-		cached_gases[/datum/gas/nitrogen] += amount_decomposed
-		cached_gases[/datum/gas/oxygen] += 0.5 * amount_decomposed
+		cached_gases[/datum/gas/nitrogen][MOLES] += amount_decomposed
+		cached_gases[/datum/gas/oxygen][MOLES] += 0.5 * amount_decomposed
 
 	ASSERT_GAS(/datum/gas/bz, air)
 	cached_gases[/datum/gas/bz][MOLES] += bz_formed * (1-nitrous_oxide_decomposed_factor)
