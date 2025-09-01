@@ -21,13 +21,13 @@ GLOBAL_LIST_EMPTY(taur_clothing_icons)
  * do your checks before calling this proc.
  * * icon_to_process (/icon) - The icon we want to run through the process of masking off the bottom part of.
  * * icon_state - The icon_state of the icon we're being given, to obtain a proper icon object.
+ * * cropping_state - The mask we're using to generate the icon.
  *
  * Add a `taur_type` here if you ever want to add different cropping options, for whatever reason.
  */
-/proc/generate_taur_clothing(index, icon/icon_to_process, icon_state)
+/proc/generate_taur_clothing(index, icon/icon_to_process, icon_state, cropping_state)
 	var/icon/taur_clothing_icon = icon("icon" = icon_to_process, "icon_state" = icon_state)
-	var/taur_icon_state = "taur" // Leaving this here in case we ever want to have different ones
-	var/icon/taur_cropping_mask = icon("icon" = 'modular_skyrat/master_files/icons/mob/clothing/taur_masking_helpers.dmi', "icon_state" = taur_icon_state)
+	var/icon/taur_cropping_mask = icon("icon" = 'modular_skyrat/master_files/icons/mob/clothing/taur_masking_helpers.dmi', "icon_state" = cropping_state)
 	taur_clothing_icon.Blend(taur_cropping_mask, ICON_MULTIPLY)
 	taur_clothing_icon = fcopy_rsc(taur_clothing_icon)
 	GLOB.taur_clothing_icons[index] = taur_clothing_icon
@@ -49,14 +49,15 @@ GLOBAL_LIST_EMPTY(taur_clothing_icons)
  * * female_type - The `female_flags` of the clothing item used to generate the icon that
  * we're operating on, if appropriate, to allow the caching of female-fitted uniforms.
  * * greyscale_colors - The colors of the icon if it was a greyscale one, to make this GAGS-compatible.
+ * * cropping_state - The cropping mask to use to generate the icon.
  *
  * Returns a taur-compatible mutable_appearance!
  */
-/proc/wear_taur_version(icon_state, icon/icon_to_process, layer, female_type, greyscale_colors)
+/proc/wear_taur_version(icon_state, icon/icon_to_process, layer, female_type, greyscale_colors, cropping_state)
 	RETURN_TYPE(/mutable_appearance)
 
-	var/index = "[icon_state]-[greyscale_colors]-[female_type]"
+	var/index = "[icon_state]-[greyscale_colors]-[female_type]-[cropping_state]"
 	var/icon/taur_clothing_icon = GLOB.taur_clothing_icons[index]
 	if(!taur_clothing_icon) 	//Create standing/laying icons if they don't exist
-		generate_taur_clothing(index, icon_to_process, icon_state)
+		generate_taur_clothing(index, icon_to_process, icon_state, cropping_state)
 	return mutable_appearance(GLOB.taur_clothing_icons[index], layer = -layer)
