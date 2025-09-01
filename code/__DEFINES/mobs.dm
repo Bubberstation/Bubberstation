@@ -730,66 +730,74 @@ GLOBAL_LIST_INIT(human_heights_to_offsets, list(
 /// Total number of layers for mob overlays
 /// KEEP THIS UP-TO-DATE OR SHIT WILL BREAK
 /// Also consider updating layers_to_offset
-#define TOTAL_LAYERS 44 // SKYRAT EDIT CHANGE - ORIGINAL: 38
+#define TOTAL_LAYERS 51 // SKYRAT EDIT CHANGE - ORIGINAL: 38 // GS13 EDIT original: 44
 /// Mutations layer - Tk headglows, cold resistance glow, etc
-#define MUTATIONS_LAYER 43 // SKYRAT EDIT CHANGE - ORIGINAL: 37
+#define MUTATIONS_LAYER 50 // SKYRAT EDIT CHANGE - ORIGINAL: 37 // GS13 EDIT original: 43
+#define BREASTS_BEHIND_LAYER	49		//GS13 Edit - Modular Clothes Layer
 /// Mutantrace features (tail when looking south) that must appear behind the body parts
-#define BODY_BEHIND_LAYER 42 // SKYRAT EDIT CHANGE - ORIGINAL: 36
+#define BODY_BEHIND_LAYER 48 // SKYRAT EDIT CHANGE - ORIGINAL: 36 // GS13 EDIT original: 42
 /// Layer for bodyparts that should appear behind every other bodypart - Mostly, legs when facing WEST or EAST
-#define BODYPARTS_LOW_LAYER 41 // SKYRAT EDIT CHANGE - ORIGINAL: 35
+#define BODYPARTS_LOW_LAYER 47 // SKYRAT EDIT CHANGE - ORIGINAL: 35 // GS13 EDIT original: 41
 /// Layer for most bodyparts, appears above BODYPARTS_LOW_LAYER and below BODYPARTS_HIGH_LAYER
-#define BODYPARTS_LAYER 40 // SKYRAT EDIT CHANGE - ORIGINAL: 34
+#define BODYPARTS_LAYER 46 // SKYRAT EDIT CHANGE - ORIGINAL: 34 // GS13 EDIT original: 40
 /// Mutantrace features (snout, body markings) that must appear above the body parts
-#define BODY_ADJ_LAYER 39 // SKYRAT EDIT CHANGE - ORIGINAL: 33
+#define BODY_ADJ_LAYER 45 // SKYRAT EDIT CHANGE - ORIGINAL: 33 // GS13 EDIT original: 39
 /// Underwear, undershirts, socks
-#define BODY_LAYER 38 // SKYRAT EDIT CHANGE - ORIGINAL: 32
+#define BODY_LAYER 44 // SKYRAT EDIT CHANGE - ORIGINAL: 32 // GS13 EDIT original: 38
 /// Eyes and eyelids
-#define EYES_LAYER 37 // SKYRAT EDIT CHANGE - ORIGINAL: 31
+#define EYES_LAYER 43 // SKYRAT EDIT CHANGE - ORIGINAL: 31 // GS13 EDIT original: 37
 /// Mutations that should appear above body, body_adj and bodyparts layer (e.g. laser eyes)
-#define FRONT_MUTATIONS_LAYER 36 // SKYRAT EDIT CHANGE - ORIGINAL: 30
+#define FRONT_MUTATIONS_LAYER 42 // SKYRAT EDIT CHANGE - ORIGINAL: 30 // GS13 EDIT original: 36
 /// Damage indicators (cuts and burns)
-#define DAMAGE_LAYER 35 // SKYRAT EDIT CHANGE - ORIGINAL: 29
+#define DAMAGE_LAYER 41 // SKYRAT EDIT CHANGE - ORIGINAL: 29 // GS13 EDIT original: 35
 // SKYRAT EDIT ADDITION START
 /// This layer is used for things that shouldn't be over clothes, but should be over mutations
-#define BODY_FRONT_UNDER_CLOTHES 34
+#define BODY_FRONT_UNDER_CLOTHES 40 // GS13 EDIT original: 34
 // SKYRAT EDIT ADDITION END
 /// Jumpsuit clothing layer
-#define UNIFORM_LAYER 33 // SKYRAT EDIT CHANGE - ORIGINAL: 27
+#define UNIFORM_LAYER 39 // SKYRAT EDIT CHANGE - ORIGINAL: 27  // GS13 EDIT original: 33
 // SKYRAT EDIT ADDITION BEGIN - cursed layers under clothing
-#define ANUS_LAYER 32
-#define VAGINA_LAYER 31
-#define PENIS_LAYER 30
-#define NIPPLES_LAYER 29
-#define BANDAGE_LAYER 28
+#define ANUS_LAYER 38 // original: 32
+#define VAGINA_LAYER 37 // original: 31
+#define PENIS_LAYER 36 // original: 30
+#define NIPPLES_LAYER 35 // original: 29
+#define BANDAGE_LAYER 34 // original: 28
 //SKYRAT EDIT ADDITION END
 /// ID card layer
-#define ID_LAYER 27
+#define ID_LAYER 33 // GS13 EDIT original: 27
 /// ID card layer (might be deprecated)
-#define ID_CARD_LAYER 26
+#define ID_CARD_LAYER 32 // GS13 EDIT original: 26
 /// Layer for bodyparts that should appear above every other bodypart - Currently only used for hands
-#define BODYPARTS_HIGH_LAYER 25
+#define BODYPARTS_HIGH_LAYER 31 // GS13 EDIT original: 25
 /// Gloves layer
-#define GLOVES_LAYER 24
+#define GLOVES_LAYER 30 // GS13 EDIT original: 24
 /// Shoes layer
-#define SHOES_LAYER 23
+#define SHOES_LAYER 29 // GS13 EDIT original: 23
 /// Layer for masks that are worn below ears and eyes (like Balaclavas) (layers below hair, use flagsinv=HIDEHAIR as needed)
-#define LOW_FACEMASK_LAYER 22
+#define LOW_FACEMASK_LAYER 28 // GS13 EDIT original: 22
 /// Ears layer (Spessmen have ears? Wow)
-#define EARS_LAYER 21
+#define EARS_LAYER 27 // GS13 EDIT original: 21
 /// Layer for neck apperal that should appear below the suit slot (like neckties)
-#define LOW_NECK_LAYER 20
+#define LOW_NECK_LAYER 26 // GS13 EDIT original: 20
+#define MODULAR_BELLY_LAYER		25		//GS13 Edit - Modular Clothes Layer
+#define MODULAR_BREASTS_LAYER	24		//GS13 Edit - Modular Clothes Layer
+#define MODULAR_BUTT_LAYER		23		//GS13 Edit - Modular Clothes Layer
 /// Suit layer (armor, coats, etc.)
-#define SUIT_LAYER 19
+#define SUIT_LAYER 22	// GS13, original: 19
 /// Glasses layer
-#define GLASSES_LAYER 18
+#define GLASSES_LAYER 21	// GS13, original: 18
 /// Belt layer
-#define BELT_LAYER 17 //Possible make this an overlay of something required to wear a belt?
+#define BELT_LAYER 20	// GS13, original: 17 //Possible make this an overlay of something required to wear a belt?
 /// Suit storage layer (tucking a gun or baton underneath your armor)
-#define SUIT_STORE_LAYER 16
+#define SUIT_STORE_LAYER 19	// GS13, original: 16
 /// Neck layer (for wearing capes and bedsheets)
-#define NECK_LAYER 15
+#define NECK_LAYER 18	// GS13, original: 15
 /// Back layer (for backpacks and equipment on your back)
-#define BACK_LAYER 14
+#define BACK_LAYER 17	// GS13, original: 14
+
+#define BELLY_FRONT_LAYER		16		//GS13 Edit - Modular Clothes Layer
+#define BREASTS_FRONT_LAYER		15		//GS13 Edit - Modular Clothes Layer
+#define BUTT_BEHIND_LAYER		14		//GS13 Edit - Modular Clothes Layer
 /// Hair layer (mess with the fro and you got to go!)
 #define HAIR_LAYER 13 //TODO: make part of head layer?
 /// Facemask layer (gas masks, breath masks, etc.)
