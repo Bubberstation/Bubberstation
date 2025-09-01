@@ -275,7 +275,7 @@
 		else
 			ADD_TRAIT(owner, TRAIT_TAUR_IGNORING_CROPPING, TRAIT_SOURCE_TAURCROP)
 
-		var/setting_string = (HAS_TRAIT(owner, TRAIT_TAUR_IGNORING_CROPPING) ? "now ignoring cropping setting" : "no longer ignoring cropping setting")
+		var/setting_string = (HAS_TRAIT(owner, TRAIT_TAUR_IGNORING_CROPPING) ? "now ignoring cropping" : "no longer ignoring cropping")
 		balloon_alert(owner, setting_string)
 
 		owner.update_clothing(ITEM_SLOT_OCLOTHING|ITEM_SLOT_ICLOTHING) // the only items with taur cropping
