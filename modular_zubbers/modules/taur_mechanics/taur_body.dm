@@ -47,6 +47,9 @@
 	/// When considering how much to offset our rider, we multiply size scaling against this.
 	var/riding_offset_scaling_mult = 0.8
 
+	/// Are we ignoring taur cropping settings, and forcing all our clothes to render normally?
+	var/ignoring_cropping_setting = FALSE
+
 /obj/item/organ/taur_body/horselike
 	can_use_saddle = TRUE
 
@@ -170,7 +173,7 @@
 	var/datum/bodypart_overlay/mutant/taur_body/overlay = bodypart_overlay
 	if(overlay.can_lay_down)
 		add_verb(receiver, /obj/item/organ/taur_body/proc/toggle_laying)
-
+	add_verb(receiver, /obj/item/organ/taur_body/proc/toggle_cropping)
 
 /obj/item/organ/taur_body/on_mob_remove(mob/living/carbon/organ_owner, special, movement_flags)
 	var/obj/item/bodypart/leg/left/left_leg = organ_owner.get_bodypart(BODY_ZONE_L_LEG)
@@ -194,6 +197,7 @@
 
 	// We don't call `synchronize_bodytypes()` here, because it's already going to get called in the parent because `external_bodyshapes` has a value.
 	remove_verb(organ_owner, /obj/item/organ/taur_body/proc/toggle_laying)
+	remove_verb(organ_owner, /obj/item/organ/taur_body/proc/toggle_cropping)
 	return ..()
 
 /obj/item/organ/taur_body/proc/get_riding_offset(oversized = FALSE)
@@ -254,3 +258,28 @@
 			playsound(owner, "bodyfall", 50, TRUE)
 
 #undef LAYDOWN_COOLDOWN
+
+/obj/item/organ/taur_body/proc/toggle_cropping()
+	set category = "Taur"
+	set name = "Override Taur Cropping Settings"
+
+	var/mob/living/carbon/human/owner = src
+	if(!istype(owner))
+		return
+
+	var/obj/item/organ/taur_body/organ = owner.get_organ_by_type(/obj/item/organ/taur_body)
+	if(isnull(organ))
+		stack_trace("Taur cropping override down triggered without Taur organ")
+		return
+
+	if (!isnull(owner))
+		if (HAS_TRAIT(owner, TRAIT_TAUR_IGNORING_CROPPING))
+			REMOVE_TRAIT(owner, TRAIT_TAUR_IGNORING_CROPPING, TRAIT_SOURCE_TAURCROP)
+		else
+			ADD_TRAIT(owner, TRAIT_TAUR_IGNORING_CROPPING, TRAIT_SOURCE_TAURCROP)
+
+		var/setting_string = (HAS_TRAIT(owner, TRAIT_TAUR_IGNORING_CROPPING) ? "now ignoring cropping setting" : "no longer ignoring cropping setting")
+		balloon_alert(owner, setting_string)
+
+		owner.update_clothing(ITEM_SLOT_OCLOTHING)
+		owner.update_clothing(ITEM_SLOT_ICLOTHING) // the only items with taur cropping
