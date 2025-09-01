@@ -54,3 +54,9 @@
 	name = "Synthetic Moth"
 	icon = 'modular_zubbers/icons/customization/snouts.dmi'
 	icon_state = "synthmoth"
+
+/datum/sprite_accessory/snouts/mammal/cryptid /// Sprite by Maggotbait of Splurt
+	name = "Cryptid skull"
+	icon = 'modular_zubbers/icons/customization/snouts.dmi'
+	icon_state = "cryptid"
+	organ_type = /obj/item/organ/snout/top_adj
