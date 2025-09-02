@@ -162,4 +162,4 @@
 
 /datum/loadout_item/suit/frontier_colonist_short
 	name = "Frontier jacket"
-	item_path = /obj/item/clothing/suit/jacket/frontier_colonist/short/loadout/short
+	item_path = /obj/item/clothing/suit/jacket/frontier_colonist/short/loadout
