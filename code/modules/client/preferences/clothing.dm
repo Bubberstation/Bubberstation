@@ -31,6 +31,9 @@
 		DSATCHEL,
 		DDUFFELBAG,
 		DMESSENGER,
+		FBACKPACK,
+		FSATCHEL,
+		FMESSENGER,
 	)
 
 /datum/preference/choiced/backpack/create_default_value()
