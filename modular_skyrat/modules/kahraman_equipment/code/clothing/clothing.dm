@@ -216,73 +216,20 @@
 //// Loadout variant
 // suit
 /obj/item/clothing/suit/jacket/frontier_colonist/loadout
-	name = "frontier trenchcoat"
-	desc = "A knee length coat with a water-resistant exterior and relatively comfortable interior. \
-		In between? Just enough protective material to stop the odd sharp thing getting through, \
-		though don't expect miracles."
-	icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing.dmi'
-	icon_state = "jacket"
-	worn_icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn.dmi'
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
-	worn_icon_teshari = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn_teshari.dmi'
-	worn_icon_state = "jacket"
-	slot_flags = ITEM_SLOT_OCLOTHING
-	armor_type = /datum/armor/none
-	resistance_flags = NONE
-	allowed = null
 
 /obj/item/clothing/suit/jacket/frontier_colonist/loadout/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_KAHRAMAN)
 
 /obj/item/clothing/suit/jacket/frontier_colonist/loadout/short
-	name = "frontier jacket"
-	desc = "A short coat with a water-resistant exterior and relatively comfortable interior. \
-		In between? Just enough protective material to stop the odd sharp thing getting through, \
-		though don't expect miracles."
-	icon_state = "jacket_short"
-	worn_icon_state = "jacket_short"
 
 // Gloves
 /obj/item/clothing/gloves/frontier_colonist/loadout
-	name = "frontier gloves"
-	desc = "A standard pair of black gloves that'll keep your precious fingers protected from the outside world. \
-		They go a bit higher up the arm than most gloves should, and you aren't quite sure why."
-	icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing.dmi'
-	icon_state = "gloves"
-	worn_icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn.dmi'
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
-	worn_icon_teshari = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn_teshari.dmi'
-	worn_icon_state = "gloves"
-	greyscale_colors = "#3a373e"
 	siemens_coefficient = 0.50
-	cold_protection = HANDS
-	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
-	heat_protection = HANDS
-	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
-	resistance_flags = NONE
-	clothing_traits = list(TRAIT_QUICK_CARRY)
-
-/obj/item/clothing/gloves/frontier_colonist/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/manufacturer_examine, COMPANY_KAHRAMAN)
 
 // boots
 /obj/item/clothing/shoes/jackboots/frontier_colonist/loadout
-	name = "heavy frontier boots"
-	desc = "A standard pair of tall boots usually seen on the feet of explorers, first wave colonists, \
-		and LARPers across the galaxy."
-	icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing.dmi'
-	icon_state = "boots"
-	worn_icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn.dmi'
-	worn_icon_digi = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn_digi.dmi'
-	worn_icon_teshari = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn_teshari.dmi'
-	worn_icon_state = "boots"
-	resistance_flags = NONE
-
-/obj/item/clothing/shoes/jackboots/frontier_colonist/loadout/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/manufacturer_examine, COMPANY_KAHRAMAN)
+	armor_type = /datum/armor/shoes_jackboots
 
 // mask
 /obj/item/clothing/mask/gas/frontier_colonist
