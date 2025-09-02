@@ -1,5 +1,5 @@
 /datum/species/vox_primalis
-	name = "Vox Primalis"
+	name = "Vox"
 	id = SPECIES_VOX_PRIMALIS
 	eyes_icon = 'modular_skyrat/modules/better_vox/icons/bodyparts/vox_eyes.dmi'
 	can_augment = FALSE
