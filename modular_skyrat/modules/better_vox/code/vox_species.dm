@@ -86,7 +86,7 @@
 		"The height of a Primalis varies heavily, ranging from as small as 3 feet, to as large as 10 feet for living haulers of heavy equipment. So long as the Cortical Stack remains intact, \
 		death is only an inconvenience. The stack can be transferred to a new body within minutes to hours, and operational in almost no time at all. If a stack is damaged, \
 		the Vox experiences ego death, its “true death”. Even if the stack can be repaired at this stage, the personality cannot. Primalis are created with a purpose, \
-		the Cortical Stack imbued with the needed skills. Primalis must still practice their craft and hone their skills, though they are always prodigal compared to humans. \
+		the Cortical Stack imbued with the needed skills. Primalis must still practice their craft and hone their skills, though they tend to be prodigal compared to humans. \
 		Vox live a rigid life, with little room for advancement in a society where everything has its place under the Armalis, a caste made for combat.",
 		"Armalis are entirely dependent on the psychic network of the Apex to function, and are much like an AI with its cyborgs. \
 		As a result, Armalis can never stray far from their ship as all higher brain function effectively ceases. They have not been given the gift of free will. \
