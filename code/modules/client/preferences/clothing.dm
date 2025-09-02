@@ -48,6 +48,12 @@
 			return /obj/item/storage/backpack/duffelbag
 		if (GMESSENGER)
 			return /obj/item/storage/backpack/messenger
+		if (FBACKPACK)
+			return /obj/item/storage/backpack/industrial/frontier_colonist
+		if (FSATCHEL)
+			return /obj/item/storage/backpack/industrial/frontier_colonist/satchel
+		if (FMESSENGER)
+			return /obj/item/storage/backpack/industrial/frontier_colonist/messenger
 
 		// In a perfect world, these would be your department's backpack.
 		// However, this doesn't factor in assistants, or no high slot, and would
