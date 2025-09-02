@@ -6,6 +6,14 @@
 #define CYCLES_MSG_IMMEDIATE 6
 #define CYCLES_MSG_EXTENDED 16
 
+/datum/reagent/transformative_virus/
+	var/transformation_disease = /datum/disease/transformation_race
+
+/datum/reagent/transformative_virus/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message = TRUE, touch_protection = 0)
+	. = ..()
+	if((methods & (PATCH|INGEST|INJECT|INHALE)) || ((methods & (VAPOR|TOUCH)) && prob(min(reac_volume,100)*(1 - touch_protection))))
+		exposed_mob.ForceContractDisease(new transformation_disease(), FALSE, TRUE)
+
 /datum/reagent/mutationtoxin/on_mob_life(mob/living/carbon/human/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
 	if(SPT_PROB(15, seconds_per_tick))
@@ -52,11 +60,7 @@
 	color = "#535E66"  //RGB: 94, 255, 59
 	taste_description = "circuitry and steel"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
-
-/datum/reagent/transformative_virus/android/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message = TRUE, touch_protection = 0)
-	. = ..()
-	if((methods & (PATCH|INGEST|INJECT|INHALE)) || ((methods & (VAPOR|TOUCH)) && prob(min(reac_volume,100)*(1 - touch_protection))))
-		exposed_mob.ForceContractDisease(new /datum/disease/transformation_race/android(), FALSE, TRUE)
+	transformation_disease = /datum/disease/transformation_race/android
 
 /datum/reagent/mutationtoxin/anthromorph
 	name = "Anthromorph Mutation Toxin"
@@ -168,11 +172,7 @@
 	color = BLOOD_COLOR_RED
 	taste_description = "blood"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
-
-/datum/reagent/transformative_virus/hemophage/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message = TRUE, touch_protection = 0)
-	. = ..()
-	if((methods & (PATCH|INGEST|INJECT|INHALE)) || ((methods & (VAPOR|TOUCH)) && prob(min(reac_volume,100)*(1 - touch_protection))))
-		exposed_mob.ForceContractDisease(new /datum/disease/transformation_race/hemophage(), FALSE, TRUE)
+	transformation_disease =/datum/disease/transformation_race/hemophage
 
 /datum/reagent/mutationtoxin/insect
 	name = "Insect Mutation Toxin"
@@ -299,11 +299,7 @@
 	color = "#535E66"  //RGB: 94, 255, 59
 	taste_description = "metal"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
-
-/datum/reagent/transformative_virus/synthetic/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message = TRUE, touch_protection = 0)
-	. = ..()
-	if((methods & (PATCH|INGEST|INJECT|INHALE)) || ((methods & (VAPOR|TOUCH)) && prob(min(reac_volume,100)*(1 - touch_protection))))
-		exposed_mob.ForceContractDisease(new /datum/disease/transformation_race/synthetic(), FALSE, TRUE)
+	transformation_disease = /datum/disease/transformation_race/synthetic
 
 /datum/reagent/mutationtoxin/tajaran
 	name = "Tajaran Mutation Toxin"
