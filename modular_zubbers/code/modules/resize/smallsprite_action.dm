@@ -15,15 +15,14 @@
 	if(!owner)
 		return
 
-	if(!small)
+	small = !small
+	if(small)
 		var/image/I = image(icon = owner.icon, icon_state = owner.icon_state, loc = owner, layer = owner.layer, pixel_x = owner.pixel_x, pixel_y = owner.pixel_y)
 		I.override = TRUE
 		I.overlays += owner.overlays
-		I.transform = owner.transform
 		owner.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic, "smallsprite_sizecode", I)
 		//small_icon = I
 	else
 		owner.remove_alt_appearance("smallsprite_sizecode")
 
-	small = !small
 	return TRUE
