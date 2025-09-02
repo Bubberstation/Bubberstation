@@ -1,9 +1,22 @@
 
+/mob/living/carbon/human/species/monkey
+	var/static/list/monkey_food = list(
+		/obj/item/food/bread/banana,
+		/obj/item/food/breadslice/banana,
+		/obj/item/food/cnds/banana_honk,
+		/obj/item/food/grown/banana,
+		/obj/item/food/popsicle/topsicle/banana,
+		/obj/item/food/salad/fruit,
+		/obj/item/food/salad/jungle,
+		/obj/item/food/sundae,
+		/obj/item/food/grown/pineapple,
+	)
+
 /mob/living/carbon/human/species/monkey/Initialize(mapload, cubespawned, mob/spawner)
 	. = ..()
 	AddComponent( \
 		/datum/component/tameable, \
-		food_types = list(/obj/item/food/grown/banana, /obj/item/food/grown/pineapple), \
+		food_types = monkey_food, \
 		tame_chance = 5, \
 		bonus_tame_chance = 5, \
 		unique = FALSE, \
