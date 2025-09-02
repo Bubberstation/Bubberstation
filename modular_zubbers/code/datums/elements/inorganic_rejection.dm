@@ -16,6 +16,8 @@
 	if(isnull(source))
 		return
 	var/obj/item/organ/insert_organ = inserted
+	if(istype(insert_organ, /obj/item/organ/heart/gland)) /// So we don't reject abductor organs.
+		return
 	if(!(insert_organ.organ_flags & ORGAN_ROBOTIC))
 		return
 	addtimer(CALLBACK(src, PROC_REF(reject_now), source, inserted), 1 SECONDS)
