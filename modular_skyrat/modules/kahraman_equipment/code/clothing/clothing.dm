@@ -216,12 +216,18 @@
 //// Loadout variant
 // suit
 /obj/item/clothing/suit/jacket/frontier_colonist/loadout
+	armor_type = /datum/armor/none
 
 /obj/item/clothing/suit/jacket/frontier_colonist/loadout/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/manufacturer_examine, COMPANY_KAHRAMAN)
+	allowed = list()
 
-/obj/item/clothing/suit/jacket/frontier_colonist/loadout/short
+/obj/item/clothing/suit/jacket/frontier_colonist/short/loadout
+	armor_type = /datum/armor/none
+
+/obj/item/clothing/suit/jacket/frontier_colonist/short/loadout/Initialize(mapload)
+	. = ..()
+	allowed = list()
 
 // Gloves
 /obj/item/clothing/gloves/frontier_colonist/loadout
@@ -229,6 +235,7 @@
 
 // boots
 /obj/item/clothing/shoes/jackboots/frontier_colonist/loadout
+	name = "frontier jackboots"
 	armor_type = /datum/armor/shoes_jackboots
 
 // mask
