@@ -240,19 +240,7 @@
 
 // mask
 /obj/item/clothing/mask/gas/frontier_colonist
-	name = "frontier gas mask"
-	desc = "An standard gas mask commonly seen in places where the atmosphere is less than breathable, \
-		but otherwise more or less habitable. Its certified to protect against most biological hazards \
-		to boot."
-	icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing.dmi'
-	icon_state = "mask"
-	worn_icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn.dmi'
-	worn_icon_muzzled = 'modular_skyrat/master_files/icons/mob/clothing/mask_muzzled.dmi'
-	worn_icon_digi = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn_digi.dmi'
-	worn_icon_teshari = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn_teshari.dmi'
-	worn_icon_state = "gas_frontier"
-	flags_inv = HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
+	armor_type = /datum/armor/mask_gas
+	resistance_flags = NONE
+	max_filters = 1
 
-/obj/item/clothing/mask/gas/frontier_colonist/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/manufacturer_examine, COMPANY_KAHRAMAN)
