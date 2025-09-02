@@ -239,7 +239,7 @@
 	armor_type = /datum/armor/shoes_jackboots
 
 // mask
-/obj/item/clothing/mask/gas/frontier_colonist
+/obj/item/clothing/mask/gas/atmos/frontier_colonist/loadout
 	armor_type = /datum/armor/mask_gas
 	resistance_flags = NONE
 	max_filters = 1
