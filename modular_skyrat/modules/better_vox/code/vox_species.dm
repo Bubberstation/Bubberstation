@@ -83,7 +83,7 @@
 		The average Primalis is a reptilian avian with stiff, semi-rigid keratin quills atop their head, a long and prehensile tail, and a beak containing rows of angled teeth. \
 		They tend to have two tongues, one on the roof of the mouth and the other on the lower jaw, allowing them to speak the complex Vox language with ease. \
 		The Primalis do not generally need to live frugal, though they have been predisposed to doing so.",
-		"The height of a Primalis varies heavily, ranging from as small as 3 feet, to as large as ten feet for living haulers of heavy equipment. So long as the Cortical Stack remains intact, \
+		"The height of a Primalis varies heavily, ranging from as small as 3 feet, to as large as 10 feet for living haulers of heavy equipment. So long as the Cortical Stack remains intact, \
 		death is only an inconvenience. The stack can be transferred to a new body within minutes to hours, and operating in almost no time at all. If a stack is damaged, \
 		the Vox experiences ego death, its “true death”. Even if the stack can be repaired at this stage, the personality cannot. Primalis are created with a purpose, \
 		the Cortical Stack imbued with the needed skills. Primalis must still practice their craft and hone their skills, though they are always prodigal compared to humans. \
