@@ -13,6 +13,7 @@
 	mob_trait = TRAIT_OVERSIZED
 	icon = FA_ICON_EXPAND_ARROWS_ALT
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_CHANGES_APPEARANCE
+	var/datum/action/sizecode_smallsprite/small_sprite
 
 /datum/quirk/oversized/add(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
@@ -28,6 +29,11 @@
 	// just dummy call our current limbs to have less duplication (by having more duplication ahueheu)
 	for(var/obj/item/bodypart/bodypart as anything in human_holder.bodyparts)
 		on_gain_limb(src, bodypart, special = FALSE)
+
+	// Smaller sprite ability
+	if(!small_sprite)
+		small_sprite = new /datum/action/sizecode_smallsprite
+	small_sprite.Grant(human_holder)
 
 	human_holder.blood_volume_normal = BLOOD_VOLUME_OVERSIZED
 	human_holder.physiology.hunger_mod *= OVERSIZED_HUNGER_MOD //50% hungrier
@@ -79,6 +85,11 @@
 	human_holder.blood_volume_normal = BLOOD_VOLUME_NORMAL
 	human_holder.physiology.hunger_mod /= OVERSIZED_HUNGER_MOD
 	human_holder.remove_movespeed_modifier(/datum/movespeed_modifier/oversized)
+
+	// Smaller sprite ability
+	if(small_sprite)
+		small_sprite.Remove(human_holder)
+		qdel(small_sprite)
 
 /datum/quirk/oversized/proc/on_gain_limb(datum/source, obj/item/bodypart/gained, special)
 	SIGNAL_HANDLER
