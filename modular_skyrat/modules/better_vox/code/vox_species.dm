@@ -70,7 +70,7 @@
 	return list(
 		"By the account of those unaware, the vox seem to be a nomadic race of avianoid creatures that operate in and around human space at the behest of “crazed, dreaming gods.“ \
 		The true vox are the wholly reclusive Vox Auralis, vastly powerful psychics and bio-engineers. They are a distant race at the best of times. \
-		The Primalis are the laboring underclass that the Auralis use to sustain the Arkships, following a convoluted trail throughout the Milky Way."
+		These vox, the Primalis, are the laboring underclass that the Auralis use to sustain the Arkships, following a convoluted trail throughout the Milky Way."
 	)
 
 /datum/species/vox_primalis/get_species_lore()
