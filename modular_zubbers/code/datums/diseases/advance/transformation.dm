@@ -40,12 +40,7 @@
 			var/datum/species/species_type = race
 			affected_mob.set_species(species_type, icon_update = TRUE, pref_load = FALSE)
 			to_chat(affected_mob, span_warning("You've become \a [LOWER_TEXT(initial(species_type.name))]!"))
-			if(race == /datum/species/hemophage) //bypasses a potential exception with hemophages due to the TRAIT_VIRUSIMMUNE
-				return
-			unregister_disease_signals()
-			LAZYREMOVE(affected_mob.diseases, src)
-			affected_mob.med_hud_set_status()
-			affected_mob = null
+			cure()
 
 /datum/disease/transformation_race/hemophage
 	name = "Hemophagic Viral Infection"
