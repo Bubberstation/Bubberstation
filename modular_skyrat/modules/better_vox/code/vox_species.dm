@@ -77,6 +77,7 @@
 	return list(
 		"The Vox are a theocratic nation led by the Vox Auralis. All of the engineered species beneath them are more than predisposed to follow the Auralis, they must utterly obey them. \
 		The Vox are perhaps one of the oldest races in the galaxy, drifting through the stars in their massive Ark Ships, often scattered about the vast cosmos. \
+		The Auralis have even been known to contract and exploit Vox Primalis with galactic entities for a continuous supply of resources. \
 		Yet, the Auralis are almost entirely unknown to the galaxy at large, as the distinction of “Vox” falls almost solely upon the Vox Primalis.",
 		"The Vox Primalis are not only the physical form, but rather a biomechanical entity known as a “Cortical Stack”. A body without a stack is little more than a husk. \
 		The task of coordinating available stacks on an Arkship is given to the Apex, a powerful biocomputer woven into the vessel's systems. \
@@ -91,8 +92,7 @@
 		"Armalis are entirely dependent on the psychic network of the Apex to function, and are much like an AI with its cyborgs. \
 		As a result, Armalis can never stray far from their ship as all higher brain function effectively ceases. They have not been given the gift of free will. \
 		The Arkships do not want for much, but they still have use for commerce. Vox bioengineering is second to none, making it a prime bartering chip for research, \
-		and Arkships are often willing to trade in fragments of knowledge for resource aid and engineering assistance. The Auralis have even been known to contract Vox Primalis \
-		with galactic entities for a continuous supply of resources, though it is often seen as exploitation near wage slavery."
+		and Arkships are often willing to trade in fragments of knowledge for resource aid and engineering assistance.",
 	)
 
 /datum/species/vox_primalis/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons = TRUE)
