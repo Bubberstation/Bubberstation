@@ -25,22 +25,22 @@
 
 	switch(stage)
 		if(1)
-			if (length(stage1) && SPT_PROB(stage_prob, seconds_per_tick))
+			if(length(stage1) && SPT_PROB(stage_prob, seconds_per_tick))
 				to_chat(affected_mob, pick(stage1))
 		if(2)
-			if (length(stage2) && SPT_PROB(stage_prob, seconds_per_tick))
+			if(length(stage2) && SPT_PROB(stage_prob, seconds_per_tick))
 				to_chat(affected_mob, pick(stage2))
 		if(3)
-			if (length(stage3) && SPT_PROB(stage_prob * 2, seconds_per_tick))
+			if(length(stage3) && SPT_PROB(stage_prob * 2, seconds_per_tick))
 				to_chat(affected_mob, pick(stage3))
 		if(4)
-			if (length(stage4) && SPT_PROB(stage_prob * 2, seconds_per_tick))
+			if(length(stage4) && SPT_PROB(stage_prob * 2, seconds_per_tick))
 				to_chat(affected_mob, pick(stage4))
 		if(5)
 			var/datum/species/species_type = race
 			affected_mob.set_species(species_type, icon_update = TRUE, pref_load = FALSE)
 			to_chat(affected_mob, span_warning("You've become \a [LOWER_TEXT(initial(species_type.name))]!"))
-			if (race == /datum/species/hemophage) //bypasses a potential exception with hemophages due to the TRAIT_VIRUSIMMUNE
+			if(race == /datum/species/hemophage) //bypasses a potential exception with hemophages due to the TRAIT_VIRUSIMMUNE
 				return
 			unregister_disease_signals()
 			LAZYREMOVE(affected_mob.diseases, src)
