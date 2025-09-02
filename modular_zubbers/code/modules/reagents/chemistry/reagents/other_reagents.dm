@@ -66,7 +66,7 @@
 	taste_description = "wet dog"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	mutationtexts = list(
-		"You feel pin pricks on your skin." = MUT_MSG_IMMEDIATE,
+		"You feel pinpricks on your skin." = MUT_MSG_IMMEDIATE,
 		"You notice a dusting of hair covering your body." = MUT_MSG_IMMEDIATE,
 		"You are getting furrier." = MUT_MSG_EXTENDED,
 		"Your nose is wet." = MUT_MSG_EXTENDED,
@@ -313,7 +313,7 @@
 	taste_description = "toxoplasmosis"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	mutationtexts = list(
-		"You feel pin pricks on your skin." = MUT_MSG_IMMEDIATE,
+		"You feel pinpricks on your skin." = MUT_MSG_IMMEDIATE,
 		"You notice a dusting of hair covering your body." = MUT_MSG_IMMEDIATE,
 		"You are getting furrier." = MUT_MSG_EXTENDED,
 		"Your nose is wet." = MUT_MSG_EXTENDED,
@@ -327,7 +327,7 @@
 	taste_description = "fried chicken"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	mutationtexts = list(
-		"You feel pin pricks on your skin." = MUT_MSG_IMMEDIATE,
+		"You feel pinpricks on your skin." = MUT_MSG_IMMEDIATE,
 		"Your skin feels oily." = MUT_MSG_IMMEDIATE,
 		"You begin growing feathers." = MUT_MSG_EXTENDED,
 		"You feel very excitable." = MUT_MSG_EXTENDED,
@@ -369,7 +369,7 @@
 	taste_description = "orange chicken"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	mutationtexts = list(
-		"You feel pin pricks on your skin." = MUT_MSG_IMMEDIATE,
+		"You feel pinpricks on your skin." = MUT_MSG_IMMEDIATE,
 		"You notice a dusting of hair covering your body." = MUT_MSG_IMMEDIATE,
 		"You are getting furrier." = MUT_MSG_EXTENDED,
 		"Your nose is wet." = MUT_MSG_EXTENDED,
