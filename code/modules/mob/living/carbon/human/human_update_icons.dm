@@ -140,7 +140,7 @@ There are several things that need to be remembered:
 
 		// SKYRAT EDIT ADDITION START - Taur-friendly suits!
 		if(bodyshape & BODYSHAPE_TAUR)
-			if(istype(uniform) && uniform.gets_cropped_on_taurs)
+			if(istype(uniform) && (!HAS_TRAIT(src, TRAIT_TAUR_IGNORING_CROPPING) && uniform.gets_cropped_on_taurs))
 				mutant_styles |= get_taur_mode()
 		// SKYRAT EDIT END
 
@@ -597,7 +597,7 @@ There are several things that need to be remembered:
 
 		if(bodyshape & BODYSHAPE_TAUR)
 			var/obj/item/clothing/suit/worn_suit = wear_suit
-			if(istype(worn_suit) && worn_suit.gets_cropped_on_taurs)
+			if(istype(worn_suit) && (!HAS_TRAIT(src, TRAIT_TAUR_IGNORING_CROPPING) && worn_suit.gets_cropped_on_taurs))
 				mutant_styles |= get_taur_mode()
 		// SKYRAT EDIT END
 
