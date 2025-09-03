@@ -103,7 +103,10 @@
 	name = "incomplete katana blade"
 	icon_state = "hot_katanablade"
 	spawn_item = /obj/item/forging/complete/katana
-
+/obj/item/forging/incomplete/rapier
+	name = "incomplete rapier blade"
+	icon_state = "hot_rapierblade"
+	spawn_item = /obj/item/forging/complete/rapier
 /obj/item/forging/incomplete/dagger
 	name = "incomplete dagger blade"
 	icon_state = "hot_daggerblade"
@@ -195,7 +198,11 @@
 	desc = "A katana blade, ready to get some wood for completion."
 	icon_state = "katanablade"
 	spawning_item = /obj/item/forging/reagent_weapon/katana
-
+/obj/item/forging/complete/rapier
+	name = "rapier blade"
+	desc = "A katana blade, ready to get some wood for completion."
+	icon_state = "rapierblade"
+	spawning_item = /obj/item/forging/reagent_weapon/rapier
 /obj/item/forging/complete/dagger
 	name = "dagger blade"
 	desc = "A dagger blade, ready to get some wood for completion."

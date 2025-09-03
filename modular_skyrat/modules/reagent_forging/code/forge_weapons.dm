@@ -74,7 +74,7 @@
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	embed_type = /datum/embedding/forged_dagger
 	throwforce = 10
-	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
+	slot_flags =  ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FIRE_PROOF
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
@@ -94,6 +94,30 @@
 /obj/item/forging/reagent_weapon/dagger/attack(mob/living/M, mob/living/user, params)
 	. = ..()
 	user.changeNext_move(CLICK_CD_RANGE)
+
+/obj/item/forging/reagent_weapon/rapier
+	name = "reagent rapier"
+	desc = "A lightweight rapier with an light and quick swing"
+	force = 10
+	armour_penetration = 20
+	block_chance = 20
+	icon_state = "rapier"
+	inhand_icon_state = "sabre"
+	icon_angle = 45
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	worn_icon_state = "sword_back"
+	inside_belt_icon_state = "rapier_belt"
+	block_sound = 'sound/items/weapons/parry.ogg'
+	hitsound = 'sound/items/weapons/rapierhit.ogg'
+	throwforce = 10
+	slot_flags = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_BULKY
+	resistance_flags = FIRE_PROOF
+	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
+	attack_verb_simple = list("attack", "pierces", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
+	sharpness = SHARP_POINTY
+
 
 /obj/item/forging/reagent_weapon/staff //doesn't do damage. Useful for healing reagents.
 	name = "reagent staff"
