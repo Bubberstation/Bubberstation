@@ -14,7 +14,7 @@
 	slot_flags = ITEM_SLOT_BACK
 	attack_verb_continuous = list("bashes", "smacks", "whacks")
 	attack_verb_simple = list("bash", "smack", "whack")
-	menu_description = "A staff strongly attuned to nature. Doesnt hit as hard, but deals burn damage, also has a chance to transfer your reagents to the target. Wearable in the back."
+	menu_description = "A staff strongly attuned to nature. Doesnt hit as hard, but deals burn damage, also has a chance to transfer your reagents to the target,also functions as a cultivator tool. Wearable in the back."
 
 // Pride hammer reagent transfer effect.
 
@@ -30,15 +30,3 @@
 	)
 
 #undef CHEMICAL_TRANSFER_CHANCE
-
-// makes the staff function as a cultivator
-
-/obj/item/nullrod/sylvanstaff/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
-    if(istype(/obj/machinery/hydroponics, target))
-       if(weedlevel > 0)
-            user.visible_message(span_notice("[user] uproots the weeds."), span_notice("You remove the weeds from [src]."))
-            set_weedlevel(0)
-            return
-        else
-            to_chat(user, span_warning("This plot is completely devoid of weeds! It doesn't need uprooting."))
-            return
