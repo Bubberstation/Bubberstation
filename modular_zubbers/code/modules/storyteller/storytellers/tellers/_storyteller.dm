@@ -43,7 +43,7 @@
 	/// The antag divisor, the higher it is the lower the antag cap gets. Basically means "for every antag_divisor crew, spawn 1 antag".
 	var/antag_divisor = 8
 	/// The ratio of sec/max antags. After the cap is determined with [antag_divisor], the antag cap is capped to sec_count/sec_antag_ratio.
-	var/sec_antag_ratio = 1.1
+	var/sec_antag_ratio = 1.15
 
 	/// Two tellers of the same intensity group can't run in 2 consecutive rounds
 	var/storyteller_type = STORYTELLER_TYPE_ALWAYS_AVAILABLE
