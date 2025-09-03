@@ -518,6 +518,16 @@
 	hitsound = 'sound/items/weapons/blade1.ogg'
 	menu_description = "A hammer dealing a little less damage due to its user's pride. Has a low chance of transferring some of the user's reagents to the target. Capable of tapping knees to measure brain health. Can be worn on the back."
 
+/obj/item/nullrod/pride_hammer/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/kneejerk)
+	AddElement(
+		/datum/element/chemical_transfer,\
+		span_notice("Your pride reflects on %VICTIM."),\
+		span_userdanger("You feel insecure, taking on %ATTACKER's burden."),\
+		CHEMICAL_TRANSFER_CHANCE\
+	)
+
 #undef CHEMICAL_TRANSFER_CHANCE
 
 // Holy Whip - Does more damage to vampires.
