@@ -596,7 +596,7 @@
 						exposed_human.skin_tone = "mixed3"
 			//take current alien color and darken it slightly
 			else if(HAS_TRAIT(exposed_human, TRAIT_MUTANT_COLORS) && !HAS_TRAIT(exposed_human, TRAIT_FIXED_MUTANT_COLORS))
-				var/list/existing_color = rgb2num(exposed_human.dna.features["mcolor"])
+				var/list/existing_color = rgb2num(exposed_human.dna.features[FEATURE_MUTANT_COLOR])
 				var/list/darkened_color = list()
 				// Reduces each part of the color by 16
 				for(var/channel in existing_color)
@@ -606,7 +606,7 @@
 				var/list/new_hsv = rgb2hsv(new_color)
 				// Can't get too dark now
 				if(new_hsv[3] >= 50)
-					exposed_human.dna.features["mcolor"] = new_color
+					exposed_human.dna.features[FEATURE_MUTANT_COLOR] = new_color
 			exposed_human.update_body(is_creating = TRUE)
 
 		if((methods & INGEST) && show_message)
@@ -630,7 +630,7 @@
 		if(HAS_TRAIT(affected_human, TRAIT_USES_SKINTONES))
 			affected_human.skin_tone = "orange"
 		else if(HAS_TRAIT(affected_human, TRAIT_MUTANT_COLORS) && !HAS_TRAIT(affected_human, TRAIT_FIXED_MUTANT_COLORS)) //Aliens with custom colors simply get turned orange
-			affected_human.dna.features["mcolor"] = "#ff8800"
+			affected_human.dna.features[FEATURE_MUTANT_COLOR] = "#ff8800"
 		affected_human.update_body(is_creating = TRUE)
 		if(SPT_PROB(3.5, seconds_per_tick))
 			if(affected_human.w_uniform)
@@ -2179,17 +2179,22 @@
 		for (var/obj/item/to_color in exposed_mob.get_equipped_items(include_flags))
 			to_color.add_atom_colour(color_filter, WASHABLE_COLOUR_PRIORITY)
 
+	// BUBBER EDIT REMOVAL BEGIN - COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
+	/*
 	if (ishuman(exposed_mob))
 		var/mob/living/carbon/human/exposed_human = exposed_mob
 		exposed_human.set_facial_haircolor(picked_color, update = FALSE)
 		exposed_human.set_haircolor(picked_color)
+	*/
+	// BUBBER EDIT REMOVAL END - COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
 
 	if (!can_color_mobs)
 		return
 
-	exposed_mob.add_atom_colour(color_filter, WASHABLE_COLOUR_PRIORITY) // BUBBERSTATION CHANGE: REVERTS COLORFUL REAGENT BACK TO THE WAY IT USED TO BE
+	exposed_mob.add_atom_colour(color_filter, WASHABLE_COLOUR_PRIORITY) // BUBBER EDIT ADDITION: COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
 
-	/* BUBBERSTATION CHANGE: REVERTS COLORFUL REAGENT BACK TO THE WAY IT USED TO BE
+	// BUBBER EDIT REMOVAL BEGIN - COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
+	/*
 	if (!iscarbon(exposed_mob))
 		exposed_mob.add_atom_colour(color_filter, WASHABLE_COLOUR_PRIORITY)
 		return
@@ -2201,6 +2206,7 @@
 	for (var/obj/item/bodypart/part as anything in exposed_carbon.bodyparts)
 		part.add_atom_colour(color_filter, WASHABLE_COLOUR_PRIORITY)
 	*/
+	// BUBBER EDIT REMOVAL END - COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
 
 /datum/reagent/colorful_reagent/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
@@ -2215,8 +2221,12 @@
 
 	var/mob/living/carbon/carbon_mob = affected_mob
 	var/color_priority = WASHABLE_COLOUR_PRIORITY
+	// BUBBER EDIT REMOVAL BEGIN - COLORFUL REAGENT IS ALWAYS TEMPORARY
+	/*
 	if (current_cycle >= 30) // Seeps deep into your tissues
 		color_priority = FIXED_COLOUR_PRIORITY
+	*/
+	// BUBBER EDIT REMOVAL END - COLORFUL REAGENT IS ALWAYS TEMPORARY
 
 	for (var/obj/item/organ/organ as anything in carbon_mob.organs)
 		organ.add_atom_colour(color_transition_filter(pick(random_color_list), SATURATION_OVERRIDE), color_priority)

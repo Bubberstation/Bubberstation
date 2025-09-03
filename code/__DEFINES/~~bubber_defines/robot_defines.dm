@@ -235,3 +235,6 @@
 	SKIN_HAT_REST_OFFSET = list("north" = list(16, -6), "south" = list(16, -17), "east" = list(35, -14), "west" = list(-3, -14))
 #define WAGECAGE_HAT_OFFSET \
 	SKIN_HAT_OFFSET = list("north" = list(10, 20), "south" = list(-5, 15), "east" = list(13, 15), "west" = list(-13, 15))
+#define MYOMER_HAT_OFFSET \
+	SKIN_HAT_OFFSET = list("north" = list(16, 1), "south" = list(16, 1), "east" = list(26, 1), "west" = list(6, 1)), \
+	SKIN_HAT_REST_OFFSET = list("north" = list(16, -11), "south" = list(16, -11), "east" = list(26, -11), "west" = list(6, -11))
