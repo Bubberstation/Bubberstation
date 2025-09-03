@@ -336,3 +336,19 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	icon_state = "diesel_f"
+
+/obj/item/clothing/shoes/jackboots/toeless // Ported from SPLURT
+	name = "toe-less jackboots"
+	desc = "Modified pair of jackboots, particularly friendly to those species whose toes hold claws."
+	icon = 'modular_zubbers/icons/obj/clothing/shoes.dmi'
+	icon_state = "jackboots-toeless"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+
+/obj/item/clothing/shoes/workboots/toeless // Ported from SPLURT
+	name = "toe-less workboots"
+	desc = "A pair of toe-less work boots designed for use in industrial settings. Modified for species whose toes have claws."
+	icon = 'modular_zubbers/icons/obj/clothing/shoes.dmi'
+	icon_state = "workboots-toeless"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
