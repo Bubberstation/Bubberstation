@@ -13,3 +13,17 @@
 			color_override = "purple",
 		)
 
+		// If they reach this stage, also reroll their targets, just in case they're attempting to double-sac to avoid the announcement.
+		to_chat(user, span_hypnophrase("Your heart beats with your new targets, the end draws near. A final chase will assure your ascension."))
+		user.balloon_alert(user, "Targets Rerolled!")
+
+		for(var/mob/living/carbon/human/target as anything in heretic_datum.sac_targets)
+			heretic_datum.remove_sacrifice_target(target)
+
+		var/datum/heretic_knowledge/hunt_and_sacrifice/target_finder = heretic_datum.get_knowledge(/datum/heretic_knowledge/hunt_and_sacrifice)
+		if(!target_finder)
+			CRASH("Heretic datum didn't have a hunt_and_sacrifice knowledge learned, what?")
+
+		if(!target_finder.obtain_targets(user, heretic_datum = heretic_datum))
+			user.balloon_alert(user, "reroll failed, no targets found!")
+			return FALSE
