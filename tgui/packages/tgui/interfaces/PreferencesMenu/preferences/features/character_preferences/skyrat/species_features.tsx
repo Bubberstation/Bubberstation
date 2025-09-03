@@ -36,43 +36,46 @@ export const feature_mcolor3: Feature<string> = {
 export const flavor_text: Feature<string> = {
   name: 'Flavor Text',
   description:
-    "Appears when your character is examined (but only if they're identifiable - try a gas mask).",
+    'Appears when examined, provides a visual description with personality, allowing other characters to form their first impression of you. Check the wiki guides for help.',
   component: FeatureTextInput,
 };
 
 export const silicon_flavor_text: Feature<string> = {
   name: 'Silicon Flavor Text',
-  description: "Only appears if you're playing as a borg/AI.",
+  description: "Flavor text, but shows up when you're playing as a borg or AI.",
   component: FeatureTextInput,
 };
 
 export const ooc_notes: Feature<string> = {
   name: 'OOC Notes',
+  description:
+    'Covers your sexual preferences, information about you OOC, any additional art references, and other misc. details. Here, you introduce yourself, rather than your character.',
   component: FeatureTextInput,
 };
 
 export const custom_species: Feature<string> = {
   name: 'Custom Species Name',
   description:
-    'Appears on examine. If left blank, you will use your default species name (E.g. Human, Lizardperson).',
+    'The name of your custom species. If left blank, you will use your selected species name (E.g. Human, Lizardperson).',
   component: FeatureShortTextInput,
 };
 
 export const custom_species_lore: Feature<string> = {
   name: 'Custom Species Lore',
-  description: "Won't show up if there's no custom species.",
+  description:
+    "The lore for your custom species, if you aren't using the server's lore. Leave blank to use the lore for your selected species.",
   component: FeatureTextInput,
 };
 
 export const custom_taste: Feature<string> = {
   name: 'Character Taste',
-  description: 'How does your character taste if someone licks them.',
+  description: 'What does your character taste like when licked?',
   component: FeatureShortTextInput,
 };
 
 export const custom_smell: Feature<string> = {
   name: 'Character Smell',
-  description: 'How does your character smell if someone sniffs them.',
+  description: 'What does your character smell like when sniffed?',
   component: FeatureShortTextInput,
 };
 
