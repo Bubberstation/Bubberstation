@@ -37,9 +37,7 @@ type UserData = {
   cash: number;
   job: string;
   department: string;
-  /** BUBBER EDIT START **/
-  species: string;
-  /** BUBBER EDIT END **/
+  species: string; // BUBBER EDIT
 };
 
 type Category = {
@@ -62,13 +60,14 @@ type VendingData = {
   extended_inventory: boolean;
   access: boolean;
   categories: Record<string, Category>;
-  refits_available: string[];
+  refits_available: string[]; // BUBBER EDIT
 };
 
 export const Vending = () => {
   const { data } = useBackend<VendingData>();
 
   const {
+    all_products_free,
     onstation,
     ad,
     product_records = [],
@@ -115,7 +114,7 @@ export const Vending = () => {
     <Window width={431} height={635}>
       <Window.Content>
         <Stack fill vertical>
-          {!!onstation && (
+          {!!onstation && !all_products_free && (
             <Stack.Item>
               <UserDetails />
             </Stack.Item>
@@ -278,23 +277,25 @@ const Product = (props: ProductProps) => {
     asset: ['vending32x32', product.path],
     disabled: disabled,
     tooltipPosition: 'bottom',
-    buttons: (
-      // BUBBER EDIT START - REFITS AVAILABLE
-      <>
-        {colorable && (
-          <ProductColorSelect
-            disabled={disabled}
-            product={product}
-            fluid={fluid}
-          />
-        )}
+    buttons: colorable && (
+            // BUBBER EDIT START - REFITS AVAILABLE
+            <>
+        // BUBBER EDIT START - REFITS AVAILABLE
+        <>
+          {colorable && (
+            <ProductColorSelect
+              disabled={disabled}
+              product={product}
+              fluid={fluid} />
+          )}
 
-        {user?.species &&
-          productStock?.refits_available?.includes(
-            user.species.toLowerCase(),
-          ) && <ProductRefitsAvailable fluid={fluid} />}
-      </>
-      // BUBBER EDIT END - REFITS AVAILABLE
+          {user?.species &&
+            productStock?.refits_available?.includes(
+              user.species.toLowerCase()
+            ) && <ProductRefitsAvailable fluid={fluid} />}
+        </>
+        // BUBBER EDIT END - REFITS AVAILABLE
+        <ProductColorSelect disabled={disabled} product={product} fluid={fluid} /></>
     ),
     product: product,
     colorable: colorable,
@@ -427,11 +428,11 @@ const ProductPrice = (props: ProductPriceProps) => {
   const { data } = useBackend<VendingData>();
   const { displayed_currency_name } = data;
   const { discount, free, product, redPrice } = props;
-  let standardPrice = product.price + '';
+  let standardPrice = `${product.price}`;
   if (free) {
     standardPrice = 'FREE';
   } else if (discount) {
-    standardPrice = redPrice + '';
+    standardPrice = `${redPrice}`;
   }
   return (
     <Stack.Item fontSize={0.85} color={'gold'}>
