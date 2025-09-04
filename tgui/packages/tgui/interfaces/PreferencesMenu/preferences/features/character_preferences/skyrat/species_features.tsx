@@ -103,22 +103,6 @@ export const medical_record: Feature<string> = {
   component: FeatureTextInput,
 };
 
-export const exploitable_info: Feature<string> = {
-  name: 'Records - Exploitable',
-  description:
-    'Can be IC or OOC. Viewable by certain antagonists/OPFOR users, as well as ghosts. Generally contains \
-  things like weaknesses, strengths, important background, trigger words, etc. It ALSO may contain things like \
-  antagonist preferences, e.g. if you want to be antagonized, by whom, with what, etc.',
-  component: FeatureTextInput,
-};
-
-export const background_info: Feature<string> = {
-  name: 'Records - Background',
-  description:
-    'Only viewable by yourself and ghosts. You can have whatever you want in here - it may be valuable as a way to orient yourself to what your character is.',
-  component: FeatureTextInput,
-};
-
 export const pda_ringer: Feature<string> = {
   name: 'PDA Ringer Message',
   description:
