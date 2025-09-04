@@ -27,6 +27,3 @@
 	icon = 'modular_skyrat/master_files/icons/misc/language.dmi'
 	default_priority = 90
 	secret = TRUE
-	mutual_understanding = list(
-		/datum/language/draconic = 40
-	)
