@@ -87,7 +87,7 @@
 	maximum_value_length = MAX_FLAVOR_LEN
 
 /datum/preference/text/general/create_default_value()
-	return "PERSONAL INFORMATION \n\ Name: \n\ Species: \n\ Birthdate: \n\ Homeworld: \n\ Contact Info: Home, next of kin, phone number \n\ Preferred Language: \n\ Spoken Languages: \n\ Physical Description: Height, weight, visible age \n\ "
+	return "PERSONAL INFORMATION \n\ Name: \n\ Species: \n\ Physical Description: Height, weight, visible age \n\ Birthdate: \n\ Homeworld: \n\ Preferred Language: \n\ Spoken Languages: \n\ Contact Info: Home, next of kin, phone number"
 
 /datum/preference/text/general/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE

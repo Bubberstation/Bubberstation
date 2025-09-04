@@ -80,7 +80,7 @@ export const custom_smell: Feature<string> = {
 };
 
 export const general_record: Feature<string> = {
-  name: 'Records - Preface',
+  name: 'Records - General',
   description:
     'The first part of any record that describes you. \
     For a quick description, your languages and origin, and birthday.',
