@@ -46,7 +46,6 @@
 		TRAIT_NOBREATH,
 		TRAIT_ROCK_EATER,
 		TRAIT_STABLEHEART, // TODO: handle orchestrator code
-		TRAIT_NOHUNGER, // They will have metal stored in the stomach. Fuck nutrition code.
 		TRAIT_LIMBATTACHMENT,
 
 		// Synthetic lifeforms
