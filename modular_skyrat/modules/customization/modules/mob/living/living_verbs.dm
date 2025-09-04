@@ -1,8 +1,8 @@
 GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_indicator())
 
-#define NARRATE_RANGE_MAX "Max Range"
 #define NARRATE_RANGE_SAME_TILE "Same Tile"
 #define NARRATE_RANGE_ONE_TILE "1-Tile Range"
+#define NARRATE_RANGE_MAX "Max Range"
 #define NARRATE_RANGE_CUSTOM "Custom Range"
 
 /proc/generate_temporary_flavor_text_indicator()
@@ -79,7 +79,7 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 		return
 
 	src.log_message(narrated_message, LOG_EMOTE)
-	narrated_message = span_cyan(src.apply_message_emphasis("[src]: [narrated_message]"))
+	narrated_message = visible_message(src, span_cyan("<([src])> [narrated_message]"))
 
 	// Target is a range
 	if(isnum(target))
