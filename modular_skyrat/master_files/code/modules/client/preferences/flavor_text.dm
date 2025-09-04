@@ -87,17 +87,7 @@
 	maximum_value_length = MAX_FLAVOR_LEN
 
 /datum/preference/text/general/create_default_value()
-	return "PERSONAL INFORMATION \n\
-	Name: \n\
-	Species: \n\
-	Birthdate: \n\
-	Homeworld: \n\
-	Contact Info: Home, next of kin, phone number, et cetera\n\
-	Preferred Language: \n\
-	Spoken Languages: \n\
-	Physical Description: Height, weight, visible age, et cetera\n\
-	\n\
-	"
+	return "PERSONAL INFORMATION \n\ Name: \n\ Species: \n\ Birthdate: \n\ Homeworld: \n\ Contact Info: Home, next of kin, phone number \n\ Preferred Language: \n\ Spoken Languages: \n\ Physical Description: Height, weight, visible age \n\ "
 
 /datum/preference/text/general/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE
@@ -109,16 +99,7 @@
 	maximum_value_length = MAX_FLAVOR_LEN
 
 /datum/preference/text/medical/create_default_value()
-	return "PHYSICAL EVALUATIONS \n\
-	\n\
-	PSYCHOLOGICAL EVALUATIONS \n\
-	\n\
-	MEDICATION HISTORY \n\
-	\n\
-	SURGICAL HISTORY \n\
-	\n\
-	DOCTOR NOTES:
-	"
+	return "PHYSICAL EVALUATIONS \n\ \n\ PSYCHOLOGICAL EVALUATIONS \n\ \n\ MEDICATION HISTORY \n\ \n\ SURGICAL HISTORY \n\ \n\ DOCTOR NOTES:"
 
 /datum/preference/text/medical/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE
@@ -130,17 +111,7 @@
 	maximum_value_length = MAX_FLAVOR_LEN
 
 /datum/preference/text/security/create_default_value()
-	return "EDUCATION \n\
-	\n\
-	EMPLOYMENT HISTORY \n\
-	Employed since: \n\
-	CRIMINAL HISTORY \n\
-	\n\
-	Loyalty Rating: \n\
-	Pressure Points: \n\
-	\n\
-	CASEWORKER NOTES: \n\
-	"
+	return "EDUCATION \n\ \n\ EMPLOYMENT HISTORY \n\ Employed since: \n\ CRIMINAL HISTORY \n\ \n\ Loyalty Rating: \n\ Pressure Points: \n\ \n\ CASEWORKER NOTES:"
 
 /datum/preference/text/security/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE
