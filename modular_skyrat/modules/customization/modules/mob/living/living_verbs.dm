@@ -34,27 +34,38 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 		. += GLOB.temporary_flavor_text_indicator
 
 /mob/living/verb/narrate()
-	set category = "IC"
 	set name = "Narrate"
+	set category = "IC"
 	set desc = "Allows you to send a narration message to a target or area"
+	usr.emote("narrate")
+
+/datum/emote/narrate
+	name = "IC Narrate"
+	key = "narrate"
+	message = null
+
+/datum/keybinding/emote/narrate/link_to_emote(datum/emote/narrate)
+	hotkey_keys = list("ShiftN")
+
+/datum/emote/narrate/run_emote(mob/living/user, params, type_override = null, intentional = TRUE)
 	if(GLOB.say_disabled)	// This is here to try to identify lag problems
-		to_chat(src, span_danger("Speech is currently admin-disabled."))
+		to_chat(user, span_danger("Speech is currently admin-disabled."))
 		return
 
-	if(stat != CONSCIOUS)
-		to_chat(src, span_warning("You can't narrate right now..."))
+	if(user.stat != CONSCIOUS)
+		to_chat(user, span_warning("You can't narrate right now..."))
 		return
 
-	if(src.client.prefs?.muted & MUTE_IC)
-		to_chat(src, span_danger("You are muted from sending IC messages."))
+	if(user.client.prefs?.muted & MUTE_IC)
+		to_chat(user, span_danger("You are muted from sending IC messages."))
 		return
 
-	var/narrated_message = tgui_input_text(src, "Input the message you would like to send as narration", "Narrate", null, MAX_MESSAGE_LEN, TRUE)
-	if(!narrated_message)
+	var/message = tgui_input_text(user, "Input the message you would like to send as narration", "Narrate", null, MAX_MESSAGE_LEN, TRUE)
+	if(!message)
 		return
 
 	// Account for AI projecting on a holopad
-	var/atom/movable/user_mob_or_hologram = GLOB.hologram_impersonators[src] || src
+	var/atom/movable/user_mob_or_hologram = GLOB.hologram_impersonators[user] || user
 
 	var/list/viewers = get_hearers_in_view(world.view, user_mob_or_hologram)
 	viewers -= GLOB.dead_mob_list
@@ -64,7 +75,7 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 			viewers.Remove(mob)
 
 	var/list/targets = list(NARRATE_RANGE_SAME_TILE, NARRATE_RANGE_ONE_TILE, NARRATE_RANGE_MAX, NARRATE_RANGE_CUSTOM) + viewers
-	var/target = tgui_input_list(src, "Pick a target", "Target Selection", targets)
+	var/target = tgui_input_list(user, "Pick a target", "Target Selection", targets)
 
 	switch(target)
 		if(NARRATE_RANGE_SAME_TILE)
@@ -74,12 +85,12 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 		if(NARRATE_RANGE_MAX)
 			target = 7
 		if(NARRATE_RANGE_CUSTOM)
-			target = tgui_input_number(src, "What distance will you narrate", "Custom Range", max_value = world.view)
+			target = tgui_input_number(user, "What distance will you narrate", "Custom Range", max_value = world.view)
 	if(isnull(target))
 		return
 
-	src.log_message(narrated_message, LOG_EMOTE)
-	narrated_message = visible_message(span_cyan("<([src] narrates)> [narrated_message]"))
+	user.log_message(message, LOG_EMOTE)
+	user.visible_message(span_cyan("<([user] narrates)> [message]"))
 
 	// Target is a range
 	if(isnum(target))
@@ -90,17 +101,17 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 				viewers |= holo.Impersonation
 
 		for(var/mob/receiver in viewers)
-			receiver.show_message(narrated_message, MSG_VISUAL)
+			receiver.show_message(message, MSG_VISUAL)
 	// Target is an individual
 	else
 		var/mob/target_mob = astype(target, /obj/effect/overlay/holo_pad_hologram)?.Impersonation || target
 		if(!istype(target_mob))
 			return // Target was neither a hologram with an impersonation attached, or a mob
 		if(get_dist(user_mob_or_hologram.loc, target_mob.loc) > world.view)
-			to_chat(src, span_warning("Your narration was unable to be sent to your target: Too far away."))
+			to_chat(user, span_warning("Your narration was unable to be sent to your target: Too far away."))
 			return
-		src.show_message(narrated_message, MSG_VISUAL)
-		target_mob.show_message(narrated_message, MSG_VISUAL)
+		user.show_message(message, MSG_VISUAL)
+		target_mob.show_message(message, MSG_VISUAL)
 
 #undef NARRATE_RANGE_MAX
 #undef NARRATE_RANGE_SAME_TILE

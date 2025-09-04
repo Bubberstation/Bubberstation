@@ -1,5 +1,5 @@
 /datum/keybinding/movement/army_crawl
-	hotkey_keys = list("K")
+	hotkey_keys = list("CtrlU")
 	name = "prone"
 	full_name = "army crawl"
 	description = "lay yourself as close to the ground as possible after a short delay"
