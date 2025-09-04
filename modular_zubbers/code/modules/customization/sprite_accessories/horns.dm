@@ -111,3 +111,7 @@
 /datum/sprite_accessory/horns/bubber/brimstone //End of sprites by thgvr
 	name = "Brimstone"
 	icon_state = "brimstone"
+
+/datum/sprite_accessory/horns/bubber/big/cryptid /// Sprite by Maggotbait of Splurt
+	name = "Cryptid Antlers"
+	icon_state = "cryptid"

@@ -173,7 +173,7 @@ SUBSYSTEM_DEF(ticker)
 			for(var/channel_tag in CONFIG_GET(str_list/channel_announce_new_game))
 				// BUBBER EDIT CHANGE BEGIN - Replace with more rich message
 				// send2chat(new /datum/tgs_message_content("New round starting on [SSmapping.current_map.map_name]!"), channel_tag)
-				send2chat(new /datum/tgs_message_content("<@&[CONFIG_GET(string/game_alert_role_id)]> Round **[GLOB.round_id]** starting on [SSmapping.current_map.map_name], [CONFIG_GET(string/servername)]! \nIf you wish to be pinged for game related stuff, go to <#[CONFIG_GET(string/role_assign_channel_id)]> and assign yourself the roles."), channel_tag)
+				send2chat(new /datum/tgs_message_content("Round **[GLOB.round_id]** starting on [SSmapping.current_map.map_name], [CONFIG_GET(string/servername)]! \nIf you wish to be pinged for game related stuff, go to <#[CONFIG_GET(string/role_assign_channel_id)]> and assign yourself the roles."), channel_tag)
 				// BUBBER EDIT CHANGE END - Replace with more rich message
 			current_state = GAME_STATE_PREGAME
 		// BUBBERSTATION EDIT START
@@ -196,12 +196,15 @@ SUBSYSTEM_DEF(ticker)
 			totalPlayers = LAZYLEN(GLOB.new_player_list)
 			totalPlayersReady = 0
 			total_admins_ready = 0
+			var/list/readied_players = list() //BUBBER EDIT ADDITION
 			for(var/mob/dead/new_player/player as anything in GLOB.new_player_list)
 				if(player.ready == PLAYER_READY_TO_PLAY)
+					readied_players[player.key] = player //BUBBER EDIT: job estimation, filling the readied list we use later
 					++totalPlayersReady
 					if(player.client?.holder)
 						++total_admins_ready
 
+			job_estimation_list = get_job_estimation(readied_players) //BUBBER EDIT ADDITION
 			if(start_immediately)
 				timeLeft = 0
 
