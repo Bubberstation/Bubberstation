@@ -86,6 +86,19 @@
 	savefile_key = "general_record"
 	maximum_value_length = MAX_FLAVOR_LEN
 
+/datum/preference/text/general/create_default_value()
+	return "PERSONAL INFORMATION \n\
+	Name: \n\
+	Species: \n\
+	Birthdate: \n\
+	Homeworld: \n\
+	Contact Info: Home, next of kin, phone number, et cetera\n\
+	Preferred Language: \n\
+	Spoken Languages: \n\
+	Physical Description: Height, weight, visible age, et cetera\n\
+	\n\
+	"
+
 /datum/preference/text/general/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE
 
@@ -94,6 +107,18 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "medical_record"
 	maximum_value_length = MAX_FLAVOR_LEN
+
+/datum/preference/text/medical/create_default_value()
+	return "PHYSICAL EVALUATIONS \n\
+	\n\
+	PSYCHOLOGICAL EVALUATIONS \n\
+	\n\
+	MEDICATION HISTORY \n\
+	\n\
+	SURGICAL HISTORY \n\
+	\n\
+	DOCTOR NOTES:
+	"
 
 /datum/preference/text/medical/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE
@@ -104,26 +129,18 @@
 	savefile_key = "security_record"
 	maximum_value_length = MAX_FLAVOR_LEN
 
+/datum/preference/text/security/create_default_value()
+	return "EDUCATION \n\
+	\n\
+	EMPLOYMENT HISTORY \n\
+	Employed since: \n\
+	CRIMINAL HISTORY \n\
+	\n\
+	Loyalty Rating: \n\
+	Pressure Points: \n\
+	\n\
+	CASEWORKER NOTES: \n\
+	"
+
 /datum/preference/text/security/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	return FALSE
-
-/datum/preference/text/exploitable
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
-	savefile_identifier = PREFERENCE_CHARACTER
-	savefile_key = "exploitable_info"
-	maximum_value_length = MAX_FLAVOR_LEN
-
-/datum/preference/text/exploitable/create_default_value()
-	return EXPLOITABLE_DEFAULT_TEXT
-
-/datum/preference/text/exploitable/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	return FALSE
-
-/datum/preference/text/background
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
-	savefile_identifier = PREFERENCE_CHARACTER
-	savefile_key = "background_info"
-	maximum_value_length = MAX_FLAVOR_LEN
-
-/datum/preference/text/background/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE

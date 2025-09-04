@@ -80,18 +80,18 @@ export const custom_smell: Feature<string> = {
 };
 
 export const general_record: Feature<string> = {
-  name: 'Records - General',
+  name: 'Records - Preface',
   description:
-    'Viewable with any records access. \
-    For general viewing-things like employment, qualifications, etc.',
+    'The first part of any record that describes you. \
+    For a quick description, your languages and origin, and birthday.',
   component: FeatureTextInput,
 };
 
 export const security_record: Feature<string> = {
-  name: 'Records - Security',
+  name: 'Records - Personnel',
   description:
-    'Viewable with security access. \
-  For criminal records, arrest history, things like that.',
+    'Viewable with security access, or by Command. \
+  For employment and criminal history, loyalties and exploitables information, and more.',
   component: FeatureTextInput,
 };
 
