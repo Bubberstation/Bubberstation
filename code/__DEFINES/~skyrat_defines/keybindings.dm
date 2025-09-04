@@ -4,7 +4,6 @@
 #define COMSIG_KB_LIVING_ITEM_PIXEL_SHIFT_UP "keybinding_living_item_pixelshift_up"
 #define COMSIG_KB_LIVING_PIXEL_TILT_DOWN "keybinding_living_pixeltilt_down"
 #define COMSIG_KB_LIVING_PIXEL_TILT_UP "keybinding_living_pixeltilt_up"
-#define COSMIG_KB_LIVING_NARRATE "keybinding_living_narrate"
 #define COMSIG_KB_CLIENT_LOOC_DOWN "keybinding_client_looc_down"
 #define COMSIG_KB_CLIENT_WHISPER_DOWN "keybinding_client_whisper_down"
 #define COMSIG_KB_LIVING_COMBAT_INDICATOR "keybinding_living_combat_indicator"
