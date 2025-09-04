@@ -15,8 +15,8 @@
 	var/list/species_whitelist
 	//Blacklist of species for this job.
 	var/list/species_blacklist
-	/// Which languages does the job require, associative to UNDERSTOOD_LANGUAGE or (UNDERSTOOD_LANGUAGE | SPOKEN_LANGUAGE)
-	var/list/required_languages = list(/datum/language/common = (UNDERSTOOD_LANGUAGE | SPOKEN_LANGUAGE))
+	/// Which languages does the job require, associative to ((LANGUAGE_FLAGS -> UNDERSTOOD_LANGUAGE, or UNDERSTOOD_LANGUAGE | SPOKEN_LANGUAGE), (LANGUAGE_KNOWLEDGE -> percent between 0-100))
+	var/list/required_languages = list(/datum/language/common = list(LANGUAGE_FLAGS = (UNDERSTOOD_LANGUAGE | SPOKEN_LANGUAGE), LANGUAGE_KNOWLEDGE = 90))
 
 /datum/job/proc/has_banned_quirk(datum/preferences/pref)
 	if(!pref) //No preferences? We'll let you pass, this time (just a precautionary check,you dont wanna mess up gamemode setting logic)
@@ -248,9 +248,15 @@
 		return TRUE
 
 	for(var/datum/language/lang as anything in required_languages)
+		var/list/req_list = required_languages[lang]
+		var/req_flags = req_list[LANGUAGE_FLAGS]
+		var/req_knowledge_level = req_list[LANGUAGE_KNOWLEDGE]
 		//Doesnt have language, or the required "level" is too low (understood, while needing spoken)
-		if((!pref.languages[lang] || pref.languages[lang] < required_languages[lang]))
+		if((!pref.languages[lang] || pref.languages[lang][LANGUAGE_FLAGS] < req_flags))
 			return FALSE
+		if(pref.languages[lang][LANGUAGE_KNOWLEDGE] < req_knowledge_level)
+			return FALSE
+
 	return TRUE
 
 // Nanotrasen Fleet

@@ -1,7 +1,7 @@
 #define MAX_MUTANT_ROWS 4
 
 /datum/preferences
-	/// Associative list, keyed by language typepath, pointing to UNDERSTOOD_LANGUAGE, or UNDERSTOOD_LANGUAGE | SPOKEN_LANGUAGE, for whether we understand or speak the language
+	/// Associative list of lists, keyed by language typepath, pointing to ((LANGUAGE_FLAGS -> UNDERSTOOD_LANGUAGE, or UNDERSTOOD_LANGUAGE | SPOKEN_LANGUAGE), (LANGUAGE_KNOWLEDGE -> percent between 0-100))
 	var/list/languages = list()
 	/// List of chosen augmentations. It's an associative list with key name of the slot, pointing to a typepath of an augment define
 	var/augments = list()
