@@ -79,7 +79,7 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 		return
 
 	src.log_message(narrated_message, LOG_EMOTE)
-	narrated_message = visible_message(src, span_cyan("<([src])> [narrated_message]"))
+	narrated_message = visible_message(src, span_cyan("<([src] narrates)> [narrated_message]"))
 
 	// Target is a range
 	if(isnum(target))
