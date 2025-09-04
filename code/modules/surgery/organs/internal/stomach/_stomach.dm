@@ -348,7 +348,8 @@
 		var/pukeprob = 2.5 + (0.025 * disgust)
 		if(disgust >= DISGUST_LEVEL_GROSS)
 			if(SPT_PROB(5, seconds_per_tick))
-				disgusted.adjust_stutter(2 SECONDS)
+				if(!disgusted.has_status_effect(/datum/status_effect/spacer/gravity_sickness)) // BUBBER EDIT CHANGE - no more constant spacer stutter anshallah
+					disgusted.adjust_stutter(2 SECONDS)
 				disgusted.adjust_confusion(2 SECONDS)
 			if(SPT_PROB(5, seconds_per_tick) && !disgusted.stat)
 				to_chat(disgusted, span_warning("You feel kind of iffy..."))

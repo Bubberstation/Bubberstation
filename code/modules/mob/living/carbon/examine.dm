@@ -684,10 +684,12 @@
 
 	var/age_text
 	switch(age)
-		if(-INFINITY to 17) // SKYRAT EDIT ADD START -- AGE EXAMINE
+		if(-INFINITY to 17) // BUBBER EDIT ADD START -- AGE EXAMINE
 			age_text = "too young to be here"
 		if(18 to 25)
-			age_text = "a young adult" // SKYRAT EDIT END
+			age_text = "a young adult"
+		if(26 to 35)
+			age_text = "an adult" // BUBBER EDIT END
 		if(36 to 55)
 			age_text = "middle-aged"
 		if(56 to 75)

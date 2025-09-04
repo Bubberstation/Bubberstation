@@ -1,9 +1,8 @@
 /datum/language/moffic
 	name = "Mothic"
-	desc = "Spoken colloquially by the Mothfolk of Va Lumla, the early iteration of Mothic emerged when Fueljacks relied on their receptors for simple, one-worded pheromones to communicate, and navigate the often fatal maintenance tunnels sprawled throughout the fleet. \
+	desc = "The first iteration of Mothic emerged when Fueljacks relied on their receptors for simple, one-worded pheromones to communicate and navigate. \
 		The moths developed gesticulation through antennas and wings to convey deeper intent, with mandibles providing emotional context through clicks and trills. \
-		After First Contact, human speakers managed to achieve a similar effect from clicking their tongue to roof, and steer the tone with the width of their mouth while using their hands in place of antennas. \
-		It is informally spoken, deploying many slangs and shorthands from Common. Has phonetic resemblance to Italian."
+		Linguists have achieved a similar effect from clicking their tongue to roof, and steer the tone with the width of their mouth while using hands in place of antennas."
 	space_chance = 40
 	// Syllables derived from Italian.
 	syllables = list(

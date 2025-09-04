@@ -376,3 +376,13 @@
 	. = ..()
 	if(going_hard)
 		. += "goat_dart"
+
+/obj/item/toy/plush/sunny_plush
+	name = "weighty moostoat plushie"
+	desc = "A soft, weighted plushie of a moostoat. Very comfortable to hug and have lying on you. It smells of fresh milk."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "sunny_plush"
+	squeak_override = list(
+		'modular_skyrat/modules/emotes/sound/voice/moo.ogg' = 1,
+		'sound/mobs/non-humanoids/stoat/stoat_sounds.ogg' = 1,
+	)

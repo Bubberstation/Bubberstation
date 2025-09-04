@@ -8,6 +8,3 @@
 
 /obj/projectile/bullet/incendiary/a7mm
 	damage = 20
-
-/obj/projectile/bullet/a7mm/bouncy
-	damage = 25
