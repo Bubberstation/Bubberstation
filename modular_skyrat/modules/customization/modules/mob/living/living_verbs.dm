@@ -98,7 +98,7 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 				viewers |= holo.Impersonation
 
 		for(var/mob/receiver in viewers)
-			receiver.show_message(span_cyan("[message] \n\ <(Narration: [user])>"), MSG_VISUAL)
+			receiver.show_message(span_cyan("[message] \n\ (Narration: [user])"), MSG_VISUAL)
 	// Handle target = an individual
 	else
 		var/mob/target_mob = astype(target, /obj/effect/overlay/holo_pad_hologram)?.Impersonation || target
@@ -107,7 +107,7 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 		if(get_dist(user_mob_or_hologram.loc, target_mob.loc) > world.view)
 			to_chat(user, span_warning("Your narration was unable to be sent to your target: Too far away."))
 			return
-		target_mob.show_messageshow_message(span_cyan("[message] \n\ <(Narration: [user])>"), MSG_VISUAL)
+		target_mob.show_messageshow_message(span_cyan("[message] \n\ (Narration: [user])"), MSG_VISUAL)
 
 #undef NARRATE_RANGE_MAX
 #undef NARRATE_RANGE_SAME_TILE
