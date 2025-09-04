@@ -35,7 +35,7 @@
 	///assoc list of weakrefs to targets and how much blood we've taken from them.
 	var/list/targets_and_blood = list()
 	/// What level of protection you need to prevent feeding
-	var/penetration = INJECT_CHECK_PENETRATE_THICK
+	var/penetration = NONE
 	///Did we start feeding with aggressive grab or not, or grabbed by someone else?
 	var/aggressive_feed = TRUE
 
@@ -331,7 +331,7 @@
 		return FALSE
 	if(!target_user.can_inject(owner, BODY_ZONE_HEAD, penetration))
 		if(give_warnings)
-			owner.balloon_alert(owner, "suit too thick!")
+			owner.balloon_alert(owner, "headgear too thick!")
 		return FALSE
 	if((bloodsuckerdatum_power.my_clan && bloodsuckerdatum_power.my_clan.blood_drink_type == BLOODSUCKER_DRINK_SNOBBY) && !target_user.mind && !bloodsuckerdatum_power.frenzied)
 		if(give_warnings)
