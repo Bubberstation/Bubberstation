@@ -44,9 +44,6 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 	key = "narrate"
 	message = null
 
-/datum/keybinding/emote/narrate/link_to_emote(datum/emote/narrate)
-	hotkey_keys = list("ShiftN")
-
 /datum/emote/narrate/run_emote(mob/living/user, params, type_override = null, intentional = TRUE)
 	if(GLOB.say_disabled)	// This is here to try to identify lag problems
 		to_chat(user, span_danger("Speech is currently admin-disabled."))
@@ -90,19 +87,19 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 		return
 
 	user.log_message(message, LOG_EMOTE)
-	user.visible_message(span_cyan("<([user] narrates)> [message]"))
+	user.show_message(span_cyan("<([user] narrates)> [message]"))
 
-	// Target is a range
+	// Handle target = range
 	if(isnum(target))
 		// Regenerate viewer list, people may have moved out of range since
-		viewers = get_hearers_in_view(target, user_mob_or_hologram) - GLOB.dead_mob_list
+		viewers = get_hearers_in_view(target, user_mob_or_hologram) - GLOB.dead_mob_list - user
 		for(var/obj/effect/overlay/holo_pad_hologram/holo in viewers)
 			if(holo.Impersonation?.client)
 				viewers |= holo.Impersonation
 
 		for(var/mob/receiver in viewers)
-			receiver.show_message(message, MSG_VISUAL)
-	// Target is an individual
+			receiver.show_message(span_cyan("<([user] narrates)> [message]"), MSG_VISUAL)
+	// Handle target = an individual
 	else
 		var/mob/target_mob = astype(target, /obj/effect/overlay/holo_pad_hologram)?.Impersonation || target
 		if(!istype(target_mob))
@@ -110,8 +107,7 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 		if(get_dist(user_mob_or_hologram.loc, target_mob.loc) > world.view)
 			to_chat(user, span_warning("Your narration was unable to be sent to your target: Too far away."))
 			return
-		user.show_message(message, MSG_VISUAL)
-		target_mob.show_message(message, MSG_VISUAL)
+		target_mob.show_message(span_cyan("<([user] narrates)> [message]"), MSG_VISUAL)
 
 #undef NARRATE_RANGE_MAX
 #undef NARRATE_RANGE_SAME_TILE
