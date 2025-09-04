@@ -68,3 +68,8 @@
 #define GMESSENGER "Grey Messenger Bag"
 /// Backpack type: Leather satchel
 #define LSATCHEL "Leather Satchel"
+// BUBBER EDIT BEGIN
+#define FBACKPACK "Frontier Backpack"
+#define FSATCHEL "Frontier Satchel"
+#define FMESSENGER "Frontier Messenger Bag"
+// BUBBER EDIT END
