@@ -15,7 +15,7 @@
 
 		// If they reach this stage, also reroll their targets, just in case they're attempting to double-sac to avoid the announcement.
 		to_chat(user, span_hypnophrase("Your heart beats with your new targets, the end draws near. A final chase will assure your ascension."))
-		user.balloon_alert(user, "Targets Rerolled!")
+		user.balloon_alert(user, "targets rerolled!")
 
 		for(var/mob/living/carbon/human/target as anything in heretic_datum.sac_targets)
 			heretic_datum.remove_sacrifice_target(target)
