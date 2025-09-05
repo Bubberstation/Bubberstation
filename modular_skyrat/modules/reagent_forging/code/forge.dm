@@ -78,6 +78,7 @@
 		"Sword" = /obj/item/forging/incomplete/sword,
 		"Katana" = /obj/item/forging/incomplete/katana,
 		"Dagger" = /obj/item/forging/incomplete/dagger,
+		"Rapier" = /obj/item/forging/incomplete/rapier,
 		"Staff" = /obj/item/forging/incomplete/staff,
 		"Spear" = /obj/item/forging/incomplete/spear,
 		"Axe" = /obj/item/forging/incomplete/axe,
