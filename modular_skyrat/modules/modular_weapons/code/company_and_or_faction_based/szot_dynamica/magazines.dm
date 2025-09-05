@@ -58,7 +58,6 @@
 	ammo_type = /obj/item/ammo_casing/shotgun
 	caliber = CALIBER_SHOTGUN
 	max_ammo = 4
-	multiload = FALSE
 
 // AMR magazine
 

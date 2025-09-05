@@ -35,9 +35,9 @@ GLOBAL_LIST_INIT(purchasable_nifsofts, list(
 /datum/computer_file/program/nifsoft_downloader/ui_data(mob/user)
 	var/list/data = list()
 
-	paying_account = computer.computer_id_slot?.registered_account || null
+	paying_account = computer.stored_id?.registered_account || null
 	data["paying_account"] = paying_account
-	data["current_balance"] = computer.computer_id_slot?.registered_account?.account_balance
+	data["current_balance"] = computer.stored_id?.registered_account?.account_balance
 
 	var/rewards_points = 0
 

@@ -30,8 +30,8 @@
 
 	computer.crew_manifest_update = TRUE
 	register_signals()
-	if(computer.computer_id_slot)
-		authenticate(id_card = computer.computer_id_slot)
+	if(computer.stored_id)
+		authenticate(id_card = computer.stored_id)
 
 	return TRUE
 
@@ -46,7 +46,7 @@
 
 /datum/computer_file/program/crew_self_serve/proc/id_changed(source, obj/item/card/id/id_card, mob/user)
 	SIGNAL_HANDLER
-	authenticate(id_card = computer.computer_id_slot)
+	authenticate(id_card = computer.stored_id)
 
 /**
  * Authenticates the program based on the specific ID card.
@@ -277,16 +277,16 @@
 
 				computer.update_static_data_for_all_viewers()
 				playsound(computer, 'sound/machines/ping.ogg', 50, FALSE)
-				computer.RemoveID(human_user, silent = TRUE)
-				authenticate(id_card = computer.computer_id_slot)
+				computer.remove_id(human_user, silent = TRUE)
+				authenticate(id_card = computer.stored_id)
 
 			return TRUE
 
 		if("PRG_eject_id")
 			var/mob/living/carbon/human/human_user = usr
 			if(human_user)
-				computer.RemoveID(human_user, silent = TRUE)
-				authenticate(id_card = computer.computer_id_slot)
+				computer.remove_id(human_user, silent = TRUE)
+				authenticate(id_card = computer.stored_id)
 
 			return TRUE
 

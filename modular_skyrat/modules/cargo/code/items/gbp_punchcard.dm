@@ -26,7 +26,7 @@
 	var/is_valid_item = istype(attacking_item, /obj/item/gbp_puncher)
 	if(!is_valid_item && istype(attacking_item, /obj/item/modular_computer/pda))
 		var/obj/item/modular_computer/pda/pda = attacking_item
-		is_valid_item = check_access(pda.computer_id_slot)
+		is_valid_item = check_access(pda.stored_id)
 		if (!is_valid_item)
 			balloon_alert(user, "no access!")
 

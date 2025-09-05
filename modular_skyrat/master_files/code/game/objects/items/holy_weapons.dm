@@ -50,7 +50,7 @@
 	body_parts_covered = HEAD
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEEARS
 	flags_cover = HEADCOVERSEYES
-	armor_type = /datum/armor/helmet_chaplain
+	armor_type = /datum/armor/chaplainsuit_armor
 
 /obj/item/storage/box/holy/narsian
 	name = "ancient kit"

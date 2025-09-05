@@ -42,7 +42,7 @@
 	var/obj/item/card/id/access_card
 	if(istype(crew_id, /obj/item/modular_computer/pda))
 		var/obj/item/modular_computer/pda/crew_pda = crew_id
-		access_card = crew_pda.computer_id_slot
+		access_card = crew_pda.stored_id
 	else
 		access_card = crew_id
 

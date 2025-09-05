@@ -79,20 +79,20 @@ Various overrides necessary to get the persocom working, namely ui status, power
 	var/obj/item = synth.wear_id
 	if(item)
 		if(istype(item, /obj/item/card/id))
-			computer_id_slot = item
+			stored_id = item
 		else if(istype(item, /obj/item/modular_computer))
 			var/obj/item/modular_computer/pda = item
-			computer_id_slot = pda.computer_id_slot
+			stored_id = pda.stored_id
 		else if(istype(item, /obj/item/storage/wallet))
 			var/obj/item/storage/wallet/wallet = item
-			computer_id_slot = wallet.front_id
+			stored_id = wallet.front_id
 		else
-			computer_id_slot = null
+			stored_id = null
 	else
-		computer_id_slot = null
+		stored_id = null
 
-/obj/item/modular_computer/pda/synth/RemoveID(mob/user, silent = TRUE)
-	return
+/* /obj/item/modular_computer/pda/synth/RemoveID(mob/user, silent = TRUE)
+	return */ // Fix this if we need it.
 
 /obj/item/modular_computer/pda/synth/get_ntnet_status()
 	. = ..()

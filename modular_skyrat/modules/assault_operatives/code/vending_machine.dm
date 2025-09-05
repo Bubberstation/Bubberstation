@@ -53,11 +53,11 @@
 						products.Add(gun.spawn_magazine_type)
 
 	//Add our items to the list of products
-	build_inventory(products, product_records, FALSE)
+	deprecated_build_inventory(products, product_records, FALSE)
 
 	filled = TRUE
 
-/obj/machinery/vending/assaultops_ammo/build_inventory(list/productlist, list/recordlist, start_empty = FALSE, premium = FALSE)
+/obj/machinery/vending/assaultops_ammo/proc/deprecated_build_inventory(list/productlist, list/recordlist, start_empty = FALSE, premium = FALSE)
 	default_price = 0
 	extra_price = 0
 	for(var/typepath in productlist)
