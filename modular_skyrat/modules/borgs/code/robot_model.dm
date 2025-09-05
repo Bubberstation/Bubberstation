@@ -10,13 +10,17 @@
 
 /obj/item/robot_model/proc/update_tallborg()
 	var/mob/living/silicon/robot/cyborg = robot || loc
-	if (!istype(robot))
+	if(!istype(robot))
 		return
-	if (model_features && (TRAIT_R_TALL in model_features))
+	if(model_features && (TRAIT_R_TALL in model_features))
 		cyborg.maptext_height = 48 //Runechat blabla
 		switch(cyborg_base_icon)
 			if("mekamine")
 				cyborg.AddComponent(/datum/component/robot_smoke)
+		return
+	if(model_features && (TRAIT_R_BIG in model_features))
+		cyborg.maptext_height = 64
+		return
 	else
 		cyborg.maptext_height = initial(cyborg.maptext_height)
 		if(cyborg.GetComponent(/datum/component/robot_smoke))
