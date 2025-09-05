@@ -9,9 +9,9 @@
 /datum/reagent/transformative_virus/
 	var/transformation_disease = /datum/disease/transformation_race
 
-/datum/reagent/transformative_virus/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message = TRUE, touch_protection = 0)
+/datum/reagent/transformative_virus/expose_mob(mob/living/exposed_mob, methods = TOUCH, reac_volume, show_message = TRUE, touch_protection = 0)
 	. = ..()
-	if((methods & (PATCH|INGEST|INJECT|INHALE)) || ((methods & (VAPOR|TOUCH)) && prob(min(reac_volume,100)*(1 - touch_protection))))
+	if((methods & (PATCH | INGEST | INJECT | INHALE)) || ((methods & (VAPOR | TOUCH)) && prob(min(reac_volume,100) * (1 - touch_protection))))
 		exposed_mob.ForceContractDisease(new transformation_disease(), FALSE, TRUE)
 
 /datum/reagent/mutationtoxin/on_mob_life(mob/living/carbon/human/affected_mob, seconds_per_tick, times_fired)
