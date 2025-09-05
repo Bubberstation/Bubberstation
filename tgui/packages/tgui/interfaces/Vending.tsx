@@ -279,7 +279,7 @@ const Product = (props: ProductProps) => {
     disabled: disabled,
     tooltipPosition: 'bottom',
     buttons: colorable && (
-            /* // BUBBER EDIT START - REFITS AVAILABLE */
+            /*  BUBBER EDIT START - REFITS AVAILABLE */
             <>
         // BUBBER EDIT START - REFITS AVAILABLE
         <>
@@ -295,7 +295,7 @@ const Product = (props: ProductProps) => {
               user.species.toLowerCase()
             ) && <ProductRefitsAvailable fluid={fluid} />}
         </>
-       {/*  // BUBBER EDIT END - REFITS AVAILABLE */}
+       {/*   BUBBER EDIT END - REFITS AVAILABLE */}
         <ProductColorSelect disabled={disabled} product={product} fluid={fluid} /></>
     ),
     product: product,
@@ -373,7 +373,7 @@ const ProductList = (props: any) => {
   );
 };
 
-// BUBBER ADDITION START - REFITS AVAILABLE
+/* BUBBER ADDITION START - REFITS AVAILABLE */
 interface ProductRefitsAvailableProps {
   fluid?: boolean;
 }
@@ -388,7 +388,7 @@ const ProductRefitsAvailable = ({ fluid }: ProductRefitsAvailableProps) => {
     />
   );
 };
-// BUBBER ADDITION END- SPECIES CLOTHING IS VALID
+/* BUBBER ADDITION END- SPECIES CLOTHING IS VALID */
 
 /**
  * In the case of customizable items, ie: shoes,
