@@ -16,7 +16,7 @@
 
 /datum/reagent/mutationtoxin/on_mob_life(mob/living/carbon/human/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
-	if(SPT_PROB(15, seconds_per_tick))
+	if(SPT_PROB(12, seconds_per_tick))
 		var/list/pick_ur_fav = list()
 		var/filter = NONE
 		if(current_cycle <= CYCLES_MSG_IMMEDIATE)
