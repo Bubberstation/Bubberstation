@@ -407,8 +407,6 @@
 				to_chat(usr, "<b>Medical Record:</b> [target_record.past_medical_records]")
 			if(href_list["genrecords"])
 				to_chat(usr, "<b>General Record:</b> [target_record.past_general_records]")
-		if(target_locked_record && href_list["bgrecords"])
-			to_chat(usr, "<b>Background information:</b> [target_locked_record.background_information]")
 	if(isobserver(usr) || usr.mind.can_see_exploitables || usr.mind.has_exploitables_override)
 		if(target_locked_record && href_list["exprecords"])
 			to_chat(usr, "<b>Exploitable information:</b> [target_locked_record.exploitable_information]")
