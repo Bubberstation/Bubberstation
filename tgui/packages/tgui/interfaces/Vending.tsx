@@ -17,7 +17,7 @@ import { getLayoutState, LAYOUT, LayoutToggle } from './common/LayoutToggle';
 type StockItem = {
   amount: number;
   free: boolean;
-  refits_available: string[]; /* BUBBER EDIT */
+  refits_available: string[] /* BUBBER EDIT */;
 };
 
 type ProductRecord = {
@@ -38,7 +38,7 @@ type UserData = {
   cash: number;
   job: string;
   department: string;
-  species: string; /* BUBBER EDIT */
+  species: string /* BUBBER EDIT */;
 };
 
 type Category = {
@@ -61,7 +61,7 @@ type VendingData = {
   extended_inventory: boolean;
   access: boolean;
   categories: Record<string, Category>;
-  refits_available: string[]; /* BUBBER EDIT */
+  refits_available: string[] /* BUBBER EDIT */;
 };
 
 export const Vending = () => {
@@ -279,24 +279,28 @@ const Product = (props: ProductProps) => {
     disabled: disabled,
     tooltipPosition: 'bottom',
     buttons: colorable && (
-            /*  BUBBER EDIT START - REFITS AVAILABLE */
-            <>
-        // BUBBER EDIT START - REFITS AVAILABLE
-        <>
-          {colorable && (
-            <ProductColorSelect
-              disabled={disabled}
-              product={product}
-              fluid={fluid} />
-          )}
+      /*  BUBBER EDIT START - REFITS AVAILABLE */
+      <>
+        {colorable && (
+          <ProductColorSelect
+            disabled={disabled}
+            product={product}
+            fluid={fluid}
+          />
+        )}
 
-          {user?.species &&
-            productStock?.refits_available?.includes(
-              user.species.toLowerCase()
-            ) && <ProductRefitsAvailable fluid={fluid} />}
-        </>
-       {/*   BUBBER EDIT END - REFITS AVAILABLE */}
-        <ProductColorSelect disabled={disabled} product={product} fluid={fluid} /></>
+        {user?.species &&
+          productStock?.refits_available?.includes(
+            user.species.toLowerCase(),
+          ) && <ProductRefitsAvailable fluid={fluid} />}
+
+        {/*   BUBBER EDIT END - REFITS AVAILABLE */}
+        <ProductColorSelect
+          disabled={disabled}
+          product={product}
+          fluid={fluid}
+        />
+      </>
     ),
     product: product,
     colorable: colorable,
