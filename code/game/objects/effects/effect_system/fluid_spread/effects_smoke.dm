@@ -123,6 +123,7 @@
 		return FALSE
 
 	smoker.smoke_delay = TRUE
+	SEND_SIGNAL(smoker, COMSIG_CARBON_EXPOSED_TO_SMOKE, seconds_per_tick)
 	addtimer(VARSET_CALLBACK(smoker, smoke_delay, FALSE), 1 SECONDS)
 	return TRUE
 

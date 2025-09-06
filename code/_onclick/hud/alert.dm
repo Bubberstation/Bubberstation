@@ -197,6 +197,16 @@
 	desc = "You're not getting enough water. Drench yourself in some water (e.g. showers) or get some water vapor before you pass out!"
 	icon_state = ALERT_NOT_ENOUGH_WATER
 
+/atom/movable/screen/alert/bronchodilated
+	name = "Bronchodilated"
+	desc = "You feel like your lungs are larger than usual! You're taking deeper breaths!"
+	icon_state = "bronchodilated"
+
+/atom/movable/screen/alert/bronchoconstricted
+	name = "Bronchocontracted"
+	desc = "You feel like your lungs are smaller than usual! You might need a higher pressure environment/internals to breathe!"
+	icon_state = "bronchoconstricted"
+
 //End gas alerts
 
 /atom/movable/screen/alert/gross
