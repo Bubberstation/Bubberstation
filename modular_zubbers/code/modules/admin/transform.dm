@@ -106,7 +106,7 @@ GLOBAL_LIST_INIT(pp_transformables, list(
 // selected_mob: Mob to change
 // newType: Path of new type e.g: /mob/living/carbon/alien/humanoid/drone
 // newTypeName (optional): Name of the new type (used in logging): e.g: "Drone"
-/datum/admins/proc/transformMob(mob/selected_mob, mob/adminMob, newType, newTypeName)
+/datum/admins/proc/transform_mob(mob/selected_mob, mob/admin_mob, new_type, new_type_name)
 	if(!check_rights(R_SPAWN))
 		return
 
@@ -120,7 +120,7 @@ GLOBAL_LIST_INIT(pp_transformables, list(
 	log_admin("[key_name(usr)] transformed [key_name(selected_mob)] into a [newTypeName].")
 	message_admins(span_adminnotice("[key_name_admin(usr)] transformed [key_name_admin(selected_mob)] into a [newTypeName]."))
 
-	var/mob/newMob = selected_mob.change_mob_type(newType, delete_old_mob = TRUE)
+	var/mob/new_mob = selected_mob.change_mob_type(new_type, delete_old_mob = TRUE)
 
 	if (selected_mob == adminMob)
 		adminMob = newMob

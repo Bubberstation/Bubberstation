@@ -8,7 +8,7 @@
 	var/list/options = list("Clear"="Clear")
 	for(var/quirk_variable in subtypesof(/datum/quirk))
 		var/datum/quirk/applicable_quirk = quirk_variable
-		var/qname = initial(applicable_quirk.name)
+		var/quirk_name = initial(applicable_quirk.name)
 		options[selected_mob.has_quirk(applicable_quirk) ? "[qname] (Remove)" : "[qname] (Add)"] = applicable_quirk
 
 	var/result = tgui_input_list(usr, "Choose quirk to add/remove", "Mob Quirks", options)
@@ -34,8 +34,8 @@
 		to_chat(usr, "This can only be used on /mob/living/carbon.")
 		return
 
-	var/list/artpaths = subtypesof(/datum/martial_art)
-	var/list/artnames = list()
+	var/list/art_paths = subtypesof(/datum/martial_art)
+	var/list/art_names = list()
 	for(var/martial_art_skill in artpaths)
 		var/datum/martial_art/martial_skill = martial_art_skill
 		artnames[initial(martial_skill.name)] = martial_skill
@@ -47,7 +47,7 @@
 		to_chat(usr, "Mob doesn't exist anymore")
 		return
 	if(result)
-		var/chosenart = artnames[result]
+		var/chosen_art = art_names[result]
 		var/datum/martial_art/martial_skill = new chosenart
 		martial_skill.teach(selected_mob)
 		log_admin("[key_name(usr)] has taught [martial_skill] to [key_name(selected_mob)].")

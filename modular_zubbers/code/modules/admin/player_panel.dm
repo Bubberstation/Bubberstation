@@ -23,27 +23,27 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 ))
 
 /datum/player_panel
-	var/mob/targetMob
-	var/client/targetClient
+	var/mob/target_mob
+	var/client/target_client
 
 /datum/player_panel/New(mob/target)
 	. = ..()
-	targetMob = target
+	target_mob = target
 
 /datum/player_panel/Destroy(force, ...)
-	targetMob = null
-	targetClient = null
+	target_mob = null
+	target_client = null
 
 	SStgui.close_uis(src)
 	return ..()
 
 /datum/player_panel/ui_interact(mob/user, datum/tgui/ui)
-	if(!targetMob)
+	if(!target_mob)
 		return
 
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, "PlayerPanel", "[targetMob.real_name] Player Panel")
+		ui = new(user, src, "PlayerPanel", "[target_mob.real_name] Player Panel")
 		ui.open()
 
 /datum/player_panel/ui_state(mob/user)
@@ -51,12 +51,12 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 
 /datum/player_panel/ui_data(mob/user)
 	. = list()
-	.["mob_name"] = targetMob.real_name
-	.["mob_type"] = targetMob.type
+	.["mob_name"] = target_mob.real_name
+	.["mob_type"] = target_mob.type
 	.["admin_mob_type"] = user.client?.mob.type
 	.["godmode"] = HAS_TRAIT(user, TRAIT_GODMODE)
 
-	var/mob/living/L = targetMob
+	var/mob/living/living_mob = target_mob
 	if (istype(L))
 		.["is_frozen"] = L.admin_frozen
 		.["is_slept"] = L.admin_sleeping
@@ -111,8 +111,8 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 /datum/player_panel/ui_act(action, params, datum/tgui/ui)
 	. = ..()
 
-	var/mob/adminMob = ui.user
-	var/client/adminClient = adminMob.client
+	var/mob/admin_mob = ui.user
+	var/client/admin_client = admin_mob.client
 
 	if(. || !check_rights_for(adminClient, R_ADMIN))
 		message_admins(span_adminhelp("WARNING: NON-ADMIN [ADMIN_LOOKUPFLW(adminMob)] ATTEMPTED TO ACCESS ADMIN PANEL. NOTIFY Casper3044."))
@@ -127,7 +127,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 
 			// Remove '@' from the start of the ckey.
 			var/ckey = copytext(targetMob.ckey, 2)
-			var/mob/latestMob = get_mob_by_ckey(ckey)
+			var/mob/latest_mob = get_mob_by_ckey(ckey)
 
 			if(!latestMob)
 				to_chat(adminClient, span_warning("That ckey is not controlling a mob."))
@@ -463,7 +463,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		/// Explodes the selected player with assigned power and blasts (for the funny of course!)
 		if ("explode")
 			var/power = text2num(params["power"])
-			var/empMode = text2num(params["emp_mode"])
+			var/emp_mode = text2num(params["emp_mode"])
 
 
 			var/turf/target_turf = get_turf(adminMob)
@@ -477,7 +477,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 
 		/// Narrates typed texxt to the selected client's chatboxx
 		if ("narrate")
-			var/list/stylesRaw = params["classes"]
+			var/list/raw_styles = params["classes"]
 
 			var/styles = ""
 			for(var/style in stylesRaw)
@@ -488,8 +488,8 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 				log_admin("GlobalNarrate: [key_name(adminClient)] : [params["message"]]")
 				message_admins(span_adminnotice("[key_name_admin(adminClient)] Sent a global narrate"))
 			else
-				for(var/mob/Mob_individual in view(params["range"], adminMob))
-					to_chat(Mob_individual, "<span style='[styles]'>[params["message"]]</span>")
+				for(var/mob/individual_mob in view(params["range"], adminMob))
+					to_chat(individual_mob, "<span style='[styles]'>[params["message"]]</span>")
 
 				log_admin("LocalNarrate: [key_name(adminClient)] at [AREACOORD(adminMob)]: [params["message"]]")
 				message_admins(span_adminnotice("<b> LocalNarrate: [key_name_admin(adminClient)] at [ADMIN_VERBOSEJMP(adminMob)]:</b> [params["message"]]<BR>"))
@@ -521,7 +521,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 
 		/// Plays a selected sound to target client
 		if ("play_sound_to")
-			var/soundFile = input("", "Select a sound file",) as null|sound
+			var/sound_file = input("", "Select a sound file",) as null|sound
 
 			if(soundFile && targetMob)
 				SSadmin_verbs.dynamic_invoke_verb(adminClient, /datum/admin_verb/play_direct_mob_sound, soundFile, targetMob)
