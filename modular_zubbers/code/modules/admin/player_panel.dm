@@ -57,10 +57,10 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 	.["godmode"] = HAS_TRAIT(user, TRAIT_GODMODE)
 
 	var/mob/living/living_mob = target_mob
-	if (istype(L))
-		.["is_frozen"] = L.admin_frozen
-		.["is_slept"] = L.admin_sleeping
-		.["mob_scale"] = L.current_size
+	if (istype(living_mob))
+		.["is_frozen"] = living_mob.admin_frozen
+		.["is_slept"] = living_mob.admin_sleeping
+		.["mob_scale"] = living_mob.current_size
 
 	if(targetMob.client)
 		targetClient = targetMob.client
