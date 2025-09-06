@@ -81,6 +81,14 @@ export const LanguagesPage = (props) => {
   const isAtLimit = currentCount >= maxAllowed;
   const remaining = Math.max(maxAllowed - currentCount, 0);
 
+  const sortAvailableLanguages = [...data.unselected_languages].sort((a, b) => {
+    // GalCom first
+    if (a.name === 'Galactic Common') return -1;
+    if (b.name === 'Galactic Common') return 1;
+    // Then sort by description length descending
+    return b.description.length - a.description.length;
+  });
+
   return (
     <Box
       style={{
@@ -135,22 +143,14 @@ export const LanguagesPage = (props) => {
           }}
         >
           <Stack vertical>
-            {[...data.unselected_languages]
-              .sort((a, b) => {
-                // GalCom first
-                if (a.name === 'Galactic Common') return -1;
-                if (b.name === 'Galactic Common') return 1;
-                // Then sort by name length ascending
-                return b.description.length - a.description.length;
-              })
-              .map((val) => (
-                <UnknownLanguage
-                  key={val.icon}
-                  language={val}
-                  isAtLimit={isAtLimit}
-                  remaining={remaining}
-                />
-              ))}
+            {sortAvailableLanguages.map((val) => (
+              <UnknownLanguage
+                key={val.icon}
+                language={val}
+                isAtLimit={isAtLimit}
+                remaining={remaining}
+              />
+            ))}
           </Stack>
         </Box>
 
