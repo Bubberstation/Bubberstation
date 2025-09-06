@@ -16,7 +16,3 @@
 	)
 	crate_name = "Commandrobe Resupply Crate"
 
-//Goodies..
-
-/datum/supply_pack/goody/double_barrel
-	cost = PAYCHECK_COMMAND * 14 //This is outclassed by peacekeeper combat shotgun
