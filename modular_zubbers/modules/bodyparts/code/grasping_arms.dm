@@ -46,8 +46,8 @@
 //Mantis
 /obj/item/bodypart/grasping/arm/left/mantis
 	bodytype = BODYTYPE_ORGANIC
+	icon_static = 'modular_zubbers/modules/bodyparts/icons/grasping_arms.dmi'
 	icon = 'modular_zubbers/modules/bodyparts/icons/grasping_arms.dmi'
-	var/limb_id = SPECIES_MANTIS
 	unarmed_damage_low = PUNCH_LOW
 	unarmed_damage_high = PUNCH_HIGH
 	unarmed_effectiveness = 20
@@ -58,8 +58,8 @@
 
 /obj/item/bodypart/grasping/arm/right/mantis
 	bodytype = BODYTYPE_ORGANIC
+	icon_static = 'modular_zubbers/modules/bodyparts/icons/grasping_arms.dmi'
 	icon = 'modular_zubbers/modules/bodyparts/icons/grasping_arms.dmi'
-	var/limb_id = SPECIES_MANTIS
 	unarmed_damage_low = PUNCH_LOW
 	unarmed_damage_high = PUNCH_HIGH
 	unarmed_effectiveness = 20
@@ -71,8 +71,8 @@
 //Crab
 /obj/item/bodypart/grasping/arm/left/crab
 	bodytype = BODYTYPE_ORGANIC
+	icon_static = 'modular_zubbers/modules/bodyparts/icons/grasping_arms.dmi'
 	icon = 'modular_zubbers/modules/bodyparts/icons/grasping_arms.dmi'
-	var/limb_id = SPECIES_MANTIS
 	unarmed_damage_low = PUNCH_LOW
 	unarmed_damage_high = PUNCH_HIGH
 	unarmed_effectiveness = 20
@@ -83,8 +83,8 @@
 
 /obj/item/bodypart/grasping/arm/right/crab
 	bodytype = BODYTYPE_ORGANIC
+	icon_static = 'modular_zubbers/modules/bodyparts/icons/grasping_arms.dmi'
 	icon = 'modular_zubbers/modules/bodyparts/icons/grasping_arms.dmi'
-	var/limb_id = SPECIES_MANTIS
 	unarmed_damage_low = PUNCH_LOW
 	unarmed_damage_high = PUNCH_HIGH
 	unarmed_effectiveness = 20
