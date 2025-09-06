@@ -9,7 +9,7 @@
 	for(var/quirk_variable in subtypesof(/datum/quirk))
 		var/datum/quirk/applicable_quirk = quirk_variable
 		var/quirk_name = initial(applicable_quirk.name)
-		options[selected_mob.has_quirk(applicable_quirk) ? "[qname] (Remove)" : "[qname] (Add)"] = applicable_quirk
+		options[selected_mob.has_quirk(applicable_quirk) ? "[quirk_name] (Remove)" : "[quirk_name] (Add)"] = applicable_quirk
 
 	var/result = tgui_input_list(usr, "Choose quirk to add/remove", "Mob Quirks", options)
 
@@ -36,10 +36,10 @@
 
 	var/list/art_paths = subtypesof(/datum/martial_art)
 	var/list/art_names = list()
-	for(var/martial_art_skill in artpaths)
+	for(var/martial_art_skill in art_paths)
 		var/datum/martial_art/martial_skill = martial_art_skill
-		artnames[initial(martial_skill.name)] = martial_skill
-	var/result = tgui_input_list(usr, "Choose the martial art to teach", "JUDO CHOP", artnames)
+		art_names[initial(martial_skill.name)] = martial_skill
+	var/result = tgui_input_list(usr, "Choose the martial art to teach", "JUDO CHOP", art_names)
 	if(isnull(result))
 		return
 
