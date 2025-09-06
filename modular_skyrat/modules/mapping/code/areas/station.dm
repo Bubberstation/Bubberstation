@@ -223,7 +223,7 @@
 	icon_state = "vacant_room"
 
 /area/station/commons/kiosk
-	name = "Kiosk"
+	name = "Convienence Store"
 	icon_state = "commons"
 
 /area/station/common/wrestling/beverage
