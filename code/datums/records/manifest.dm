@@ -143,7 +143,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 		locked_dna = record_dna,
 		mind_ref = person.mind,
 		// BUBBER EDIT ADDITION BEGIN - Records
-		exploitable_information = person_client?.prefs.read_preference(/datum/preference/text/exploitable) || "",
+		exploitable_information = person_client?.prefs.read_preference(/datum/preference/text/security) || "",
 		// BUBBER EDIT END
 	)
 
