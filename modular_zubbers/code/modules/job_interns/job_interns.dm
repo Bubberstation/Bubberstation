@@ -78,7 +78,7 @@
 			return FALSE
 		playtime = play_records[title] ? text2num(play_records[title]) : 0
 		required_time = get_intern_time_threshold()
-	else if(CONFIG_GET(flag/use_intern_master_job_unlock_threshold) && length(department_head))
+	else if(CONFIG_GET(flag/use_intern_master_job_unlock_threshold) && length(department_head) && SSjob.get_job(department_head[1]))
 		// Use first department head job as our master job to compare to
 		var/datum/job/master_job = SSjob.get_job(department_head[1])
 		playtime = player_client?.calc_exp_type(master_job.get_exp_req_type())
