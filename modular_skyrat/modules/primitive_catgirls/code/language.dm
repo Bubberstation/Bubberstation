@@ -6,7 +6,7 @@
 	key = "H"
 	flags = TONGUELESS_SPEECH
 	space_chance = 70
-	syllables = list (
+	syllables = list(
 		"al", "an", "ar", "að", "eg", "en", "er", "ha", "he", "il", "in", "ir", "ið", "ki", "le", "na", "nd", "ng", "nn", "og", "ra", "ri",
 		"se", "st", "ta", "ur", "ði", "va", "ve", "sem", "sta", "til", "tur", "var", "ver", "við", "ður", "það", "þei", "með", "ega", "ann",
 		"tur", "egr", "eda", "eva", "ada", "the", "tre", "tai", "thor", "thur", "ohd", "din", "gim", "per", "ger", "héð", "bur", "kóp", "vog",
