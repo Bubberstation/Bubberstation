@@ -48,7 +48,7 @@
 		return
 	if(result)
 		var/chosen_art = art_names[result]
-		var/datum/martial_art/martial_skill = new chosenart
+		var/datum/martial_art/martial_skill = new chosen_art
 		martial_skill.teach(selected_mob)
 		log_admin("[key_name(usr)] has taught [martial_skill] to [key_name(selected_mob)].")
 		message_admins(span_notice("[key_name_admin(usr)] has taught [martial_skill] to [key_name_admin(selected_mob)]."))
