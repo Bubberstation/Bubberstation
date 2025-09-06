@@ -98,7 +98,7 @@ ADMIN_VERB(find_nullspaced_objects, R_DEBUG, "Find Nullspaced Objects", "Popup a
 	var/title = "<h1>List of all objects with a loc of null:</h1><br>"
 	user << browse(HTML_SKELETON_TITLE(title, "[jointext(strings, "<br>")]"), "window=maintenace_report")
 
-ADMIN_VERB(toggle_tgui_fallback, R_DEBUG, "Toggle Old UI Globally", "ONLY use this in the case of TGUI being broken. This will toggle it for everyone.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(toggle_tgui_fallback, R_DEBUG, "Toggle Admin TGUI", "ONLY use this in the case of TGUI being broken. This will toggle it for everyone.", ADMIN_CATEGORY_DEBUG)
 	if(isnull(GLOB.tgui_fallback_enabled))
 		GLOB.tgui_fallback_enabled = FALSE
 
