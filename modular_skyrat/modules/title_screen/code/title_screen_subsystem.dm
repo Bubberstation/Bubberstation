@@ -38,16 +38,24 @@ SUBSYSTEM_DEF(title)
 
 	var/list/provisional_title_screens = flist("[global.config.directory]/title_screens/images/")
 	var/list/local_title_screens = list()
+	var/list/current_map_file = splittext(SSmapping.current_map.map_file, ".")
 
 	for(var/screen in provisional_title_screens)
 		var/list/formatted_list = splittext(screen, "+")
-		if((LAZYLEN(formatted_list) == 1 && (formatted_list[1] != "exclude" && formatted_list[1] != "blank.png" && formatted_list[1] != "startup_splash")))
+		if((LOWER_TEXT(formatted_list[1]) == LOWER_TEXT(current_map_file[1])))
 			local_title_screens += screen
+			continue
 
 		if(LAZYLEN(formatted_list) > 1 && LOWER_TEXT(formatted_list[1]) == "startup_splash")
 			var/file_path = "[global.config.directory]/title_screens/images/[screen]"
 			ASSERT(fexists(file_path))
 			startup_splash = new(fcopy_rsc(file_path))
+
+	if(local_title_screens.len == 0)
+		for(var/screen in provisional_title_screens)
+			var/list/formatted_list = splittext(screen, "+")
+			if((LAZYLEN(formatted_list) == 1 && (formatted_list[1] != "exclude" && formatted_list[1] != "blank.png" && formatted_list[1] != "startup_splash")))
+				local_title_screens += screen
 
 	// Progress stuff
 	check_progress_reference_time()

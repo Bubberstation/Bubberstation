@@ -1031,8 +1031,7 @@
 	// SKYRAT EDIT END
 	return TRUE
 
-/obj/item/bodypart/proc/update_draw_color()
-	draw_color = null
+/* /obj/item/bodypart/proc/update_draw_color() // Bubber Edit - Removal | Overridden in modular_zubbers/code/modules/surgery/bodyparts/_bodyparts.dm
 	if(LAZYLEN(color_overrides))
 		var/priority
 		for (var/override_priority in color_overrides)
@@ -1041,7 +1040,7 @@
 				draw_color = color_overrides[override_priority]
 		return
 	if(should_draw_greyscale)
-		draw_color = species_color || (skin_tone ? skintone2hex(skin_tone) : null)
+		draw_color = species_color || (skin_tone ? skintone2hex(skin_tone) : null) */
 
 /obj/item/bodypart/proc/add_color_override(new_color, color_priority)
 	LAZYSET(color_overrides, "[color_priority]", new_color)
