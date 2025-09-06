@@ -97,3 +97,20 @@ ADMIN_VERB(find_nullspaced_objects, R_DEBUG, "Find Nullspaced Objects", "Popup a
 
 	var/title = "<h1>List of all objects with a loc of null:</h1><br>"
 	user << browse(HTML_SKELETON_TITLE(title, "[jointext(strings, "<br>")]"), "window=maintenace_report")
+
+ADMIN_VERB(toggle_tgui_fallback, R_DEBUG, "Toggle Old UI Globally", "ONLY use this in the case of TGUI being broken. This will toggle it for everyone.", ADMIN_CATEGORY_DEBUG)
+	if(isnull(GLOB.tgui_fallback_enabled))
+		GLOB.tgui_fallback_enabled = FALSE
+
+	GLOB.tgui_fallback_enabled = !GLOB.tgui_fallback_enabled
+
+	if(GLOB.tgui_fallback_enabled)
+		log_admin("[key_name(usr)] enabled old UI globally.")
+		message_admins("Old UI has been ENABLED globally.")
+		for(var/client/connected_clients in GLOB.clients)
+			winset(connected_clients, "output_selector.legacy_output_selector", "left=output_legacy")
+	else
+		log_admin("[key_name(usr)] disabled old UI globally.")
+		message_admins("Old UI has been DISABLED globally.")
+		for(var/client/connected_clients in GLOB.clients)
+			winset(connected_clients, "output_selector.output", "left=output")

@@ -9,7 +9,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mo
 		return
 
 	// BUBBER EDIT ADDITION START
-	if (user.prefs.read_preference(/datum/preference/toggle/use_tgui_player_panel))
+	if(user.prefs.read_preference(/datum/preference/toggle/use_tgui_player_panel) && !GLOB.tgui_fallback_enabled)
 		if(isnull(player.mob_panel))
 			player.create_player_panel()
 		player.mob_panel.ui_interact(user.mob)
