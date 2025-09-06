@@ -8,6 +8,14 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mo
 		to_chat(user, span_warning("You seem to be selecting a mob that doesn't exist anymore."), confidential = TRUE)
 		return
 
+	// BUBBER EDIT ADDITION START
+	if(user.prefs.read_preference(/datum/preference/toggle/use_tgui_player_panel) && !GLOB.tgui_fallback_enabled)
+		if(isnull(player.mob_panel))
+			player.create_player_panel()
+		player.mob_panel.ui_interact(user.mob)
+		return
+	// BUBBER EDIT ADDITION END
+
 	var/body = "<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>Options for [player.key]</title></head>"
 	body += "<body>Options panel for <b>[player]</b>"
 	if(player.client)
