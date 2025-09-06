@@ -1,6 +1,6 @@
-/obj/item/gun/ballistic/automatic/pistol/sec_glock //This is what you give to the Head of Security.
+/obj/item/gun/ballistic/automatic/pistol/sec_glock
 	name = "\improper 'Murphy' Service Pistol"
-	desc = "This 9 mm monster was developed during the very first body-modding craze by Nanotrasen, built with every what-if in mind, this timeless brick is near-incapable of failure. It comes with a revolutionary quick-reload system."
+	desc = "This 9mm monster was developed during the very first body-modding craze by Nanotrasen, built with every what-if in mind, this timeless brick is near-incapable of failure. It comes with a revolutionary quick-reload system."
 	icon = 'modular_zubbers/icons/obj/guns/sec_pistol.dmi'
 	icon_state = "black"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -13,6 +13,9 @@
 	projectile_damage_multiplier = 1
 	actions_types = list(/datum/action/item_action/toggle_mageject)
 	var/magejecting = FALSE //Whether we are launching the mags or not
+
+/obj/item/gun/ballistic/automatic/pistol/sec_glock/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_NANOTRASEN)
 
 /datum/action/item_action/toggle_mageject
 	button_icon = 'icons/obj/weapons/guns/ammo.dmi'
