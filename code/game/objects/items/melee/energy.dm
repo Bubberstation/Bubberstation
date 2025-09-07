@@ -507,7 +507,7 @@
 		balloon_alert(user, "no charge!")
 		return COMPONENT_BLOCK_TRANSFORM
 
-/obj/item/melee/energy/sword/surplus/proc/do_jiggle(mob/user)
+/obj/item/melee/energy/sword/surplus/do_jiggle(mob/user) // BUBBER EDIT - MAKES THIS AN OVERRIDE BECAUSE SKYRAT HAS IT DEFINED ON /ATOM - THIS SHOULDNT CAUSE ISSUES BUT IF YOU COME LOOKING LATER THIS IS WHAT IS GOING ON
 	if(!COOLDOWN_FINISHED(src, jiggle_cooldown))
 		return TRUE
 
