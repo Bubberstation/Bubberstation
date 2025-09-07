@@ -41,7 +41,7 @@
 		/obj/item/banhammer = 8,
 		/obj/item/computer_disk/maintenance = 1,
 	)
-	rpg_title = "Diviner"
+	rpg_title = "Code Whisperer"
 	job_flags = STATION_JOB_FLAGS
 
 /obj/effect/landmark/start/telecomms_specialist

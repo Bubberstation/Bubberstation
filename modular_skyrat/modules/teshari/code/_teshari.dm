@@ -1,4 +1,4 @@
-#define TESHARI_TEMP_OFFSET -30 // K, added to comfort/damage limit etc
+#define TESHARI_TEMP_OFFSET -10 // K, added to comfort/damage limit etc
 #define TESHARI_HEATMOD 1.3
 #define TESHARI_COLDMOD 0.67 // Except cold.
 
@@ -59,16 +59,16 @@
 	)
 
 /obj/item/organ/tongue/teshari
-	liked_foodtypes = MEAT | GORE | RAW
+	liked_foodtypes = SEAFOOD | VEGETABLES | NUTS
 	disliked_foodtypes = GROSS | GRAIN
 
 /datum/species/teshari/prepare_human_for_preview(mob/living/carbon/human/tesh)
 	var/base_color = "#c0965f"
 	var/ear_color = "#e4c49b"
 
-	tesh.dna.features["mcolor"] = base_color
-	tesh.dna.mutant_bodyparts["ears"] = list(MUTANT_INDEX_NAME = "Teshari Feathers Upright", MUTANT_INDEX_COLOR_LIST = list(ear_color, ear_color, ear_color))
-	tesh.dna.mutant_bodyparts["tail"] = list(MUTANT_INDEX_NAME = "Teshari (Default)", MUTANT_INDEX_COLOR_LIST = list(base_color, base_color, ear_color))
+	tesh.dna.features[FEATURE_MUTANT_COLOR] = base_color
+	tesh.dna.mutant_bodyparts[FEATURE_EARS] = list(MUTANT_INDEX_NAME = "Teshari Feathers Upright", MUTANT_INDEX_COLOR_LIST = list(ear_color, ear_color, ear_color))
+	tesh.dna.mutant_bodyparts[FEATURE_TAIL_GENERIC] = list(MUTANT_INDEX_NAME = "Teshari (Default)", MUTANT_INDEX_COLOR_LIST = list(base_color, base_color, ear_color))
 	regenerate_organs(tesh, src, visual_only = TRUE)
 	tesh.update_body(TRUE)
 
@@ -91,3 +91,31 @@
 	))
 
 	return perk_descriptions
+
+/datum/species/teshari/get_species_description()
+	return list(
+		"A species of birdperson hailing from the tropical planet Sirisai, their introduction \
+		came in the form of the complete and utter destruction of their oppressors, now lost to the wind.",
+		"They are extremely agile, owing to their low mass, but their hollow bones make them more vulnerable to being hurt."
+	)
+
+/datum/species/teshari/get_species_lore()
+	return list(
+		"Teshari are a bird-like species that hail from a tropical world, Sirisai. They generally are between 3'5 and 4'0 tall, \
+		light avian bodies with large plumes of feathers, and vestigial wings. They tend to have muzzles, \
+		but some have slowly evolved beak-like snouts as Sirisai has left its ice age. Teshari are very colorful, and they have large ears for hearing. \
+		Teshari tend to live to 60-70 before dying of natural causes, though medical care can extend this significantly. \
+		Teshari are omnivores that love fish, and dislike grain. They prefer nuts and vegetation.",
+		"Teshari have a genetic need for socialization and will feel physically ill if not social at all for an extended period, \
+		which has caused them to form social groups called flocks. Teshari generally lack parental figures, and are often \
+		raised communally. When they reach adulthood, they feel a strong drive to move away from their nesting flock and find or develop a new one. \
+		Teshari tend to be cloistered and quiet when entering a new social space, but are very vocal and impassioned when they fit in, often enjoying making and parroting noises.",
+		"Sirisai is a tropical world with temperatures ranging from 20 to 30 celsius on average. \
+		It has three notable mountain ranges, the only places on the planet where snow can still be seen year-round. Temperatures can go as low as -15 Celsius. \
+		The planet itself is generally very biologically diverse, ecologically pure compared to many inhabited planets.",
+		"Modern Teshari history began when they were discovered and uplifted by a species that resided on the planet Sirisai once orbited. \
+		After years of oppression and being sold as a labor force, the Teshari made their demand: Comply, or explode. This species seemed to not have taken the threat seriously, \
+		and were made extinct by the destruction of their entire planet. Fossils have been uncovered on Sirisai, and while they have yet to be named, \
+		A meeting of Teshari flocks have democratically named the species after the Teshari word for \"bastard\". \
+		Needless to say, this very quickly led to the normalization of relations and formal recognition by the then NRI.",
+	)

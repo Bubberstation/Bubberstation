@@ -10,8 +10,8 @@
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/galfed, 32)
 
 /obj/structure/sign/flag/tizira
-	name = "flag of the Tizirian Empire"
-	desc = "The flag of the Tizirian Empire. The large red sun in the middle is a traditional Tizirian symbol representing their main deity, Aola."
+	name = "flag of the Tiziran Empire"
+	desc = "The flag of the Tiziran Empire. The large red sun in the middle is a traditional Tiziran symbol representing their main deity, Aola."
 	icon = 'modular_zubbers/icons/obj/flags.dmi'
 	icon_state = "flag_tizira"
 
@@ -27,8 +27,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/galfed, 32)
 	sign_path = /obj/structure/sign/flag/galfed
 
 /obj/item/sign/flag/tizira
-	name = "folded flag of the Tizirian Empire"
-	desc = "The folded flag of the Tizirian Empire."
+	name = "folded flag of the Tiziran Empire"
+	desc = "The folded flag of the Tiziran Empire."
 	icon = 'modular_zubbers/icons/obj/flags.dmi'
 	icon_state = "folded_tizira"
 

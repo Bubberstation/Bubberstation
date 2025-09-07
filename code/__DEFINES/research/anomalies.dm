@@ -10,9 +10,9 @@
 #define MAX_CORES_ECTOPLASMIC 8
 
 ///Defines for the different types of explosion a flux anomaly can have
-#define FLUX_NO_EXPLOSION 0
-#define FLUX_EXPLOSIVE 1
-#define FLUX_LOW_EXPLOSIVE 2
+#define FLUX_NO_EMP 0
+#define FLUX_EMP 1
+#define FLUX_LIGHT_EMP 2
 
 /// Chance of anomalies moving every process tick
 #define ANOMALY_MOVECHANCE 45
@@ -46,6 +46,7 @@ GLOBAL_LIST_INIT(bioscrambler_organs_blacklist, typecacheof(list (
 	/obj/item/organ/empowered_borer_egg, // SKYRAT EDIT ADDITION
 	/obj/item/organ/eyes/robotic, // SKYRAT EDIT ADDITION
 	/obj/item/organ/eyes/night_vision/cyber, // SKYRAT EDIT ADDITION
+	/obj/item/organ/taur_body // BUBBER EDIT ADDITION
 )))
 
 /// List of body parts we can apply to people

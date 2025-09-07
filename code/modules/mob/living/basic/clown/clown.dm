@@ -29,7 +29,7 @@
 	faction = list(FACTION_CLOWN)
 	ai_controller = /datum/ai_controller/basic_controller/clown
 	///list of stuff we drop on death
-	var/list/loot = list(/obj/effect/mob_spawn/corpse/human/clown)
+	var/list/loot = list(/obj/effect/gibspawner/human) // BUBBER EDIT CHANGE - Original: /obj/effect/mob_spawn/corpse/human/clown
 	///blackboard emote list
 	var/list/emotes = list(
 		BB_EMOTE_SAY = list("HONK", "Honk!", "Welcome to clown planet!"),
@@ -622,7 +622,7 @@
 	///If we are currently activating our ability.
 	var/activating = FALSE
 
-/datum/action/cooldown/exquisite_bunch/Trigger(trigger_flags, atom/target)
+/datum/action/cooldown/exquisite_bunch/Trigger(mob/clicker, trigger_flags, atom/target)
 	if(activating)
 		return
 	var/bunch_turf = get_step(owner.loc, owner.dir)

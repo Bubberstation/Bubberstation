@@ -86,6 +86,11 @@ STATION_GOAL_BUDGET 2
 ## Roundstart command report and greendshift announcements are unaffected.
 ROUNDSTART_BLUE_ALERT 1
 
+## If TRUE / 1, station is raised to blue alert at roundstart.
+## If FALSE / 0, station remains at green alert.
+## Roundstart command report and greendshift announcements are unaffected.
+ROUNDSTART_BLUE_ALERT 1
+
 ## GAME MODES ###
 
 ## Uncomment to not send a roundstart intercept report. Gamemodes may override this.
@@ -409,7 +414,6 @@ ROUNDSTART_RACES slimeperson
 ROUNDSTART_RACES podweak
 ROUNDSTART_RACES dwarf
 ROUNDSTART_RACES vox
-ROUNDSTART_RACES vox_primalis
 ROUNDSTART_RACES aquatic
 ROUNDSTART_RACES insect
 ROUNDSTART_RACES synth
@@ -420,6 +424,7 @@ ROUNDSTART_RACES shadekin
 ROUNDSTART_RACES lesser_abductor
 ROUNDSTART_RACES zombie
 ROUNDSTART_RACES protean
+ROUNDSTART_RACES cursekin
 
 ##-------------------------------------------------------------------------------------------
 

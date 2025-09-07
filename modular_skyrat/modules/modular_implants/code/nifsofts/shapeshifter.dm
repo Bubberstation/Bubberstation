@@ -27,6 +27,7 @@
 		alterer,
 		alterer,
 		list(
+			"Body Colours" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "slime_rainbow"),
 			"DNA" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "dna"),
 			"Hair" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "scissors"),
 			"Markings" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "rainbow_spraycan"),
@@ -36,6 +37,8 @@
 	if(!selected_alteration)
 		return
 	switch(selected_alteration)
+		if("Body Colours")
+			alter_colours(alterer)
 		if("DNA")
 			alter_dna(alterer)
 		if("Hair")
