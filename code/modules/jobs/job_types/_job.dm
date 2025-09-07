@@ -221,7 +221,7 @@
 	if(equipping.paycheck_department)
 		var/datum/bank_account/bank_account = new(real_name, equipping, dna.species.payday_modifier)
 		//BUBBERSTATION CHANGE START: EXTRA DOSH FOR ROUND STARTERS
-		// bank_account.payday(STARTING_PAYCHECKS, TRUE)
+		// bank_account.payday(STARTING_PAYCHECKS, free = TRUE)
 		bank_account.payday(STARTING_PAYCHECKS * (!player_client?.mob?.mind?.late_joiner ? 3 : 1 ), TRUE) //Triple the dosh for shift starters.
 		//BUBBERSTATION CHANGE END
 		account_id = bank_account.account_id
