@@ -14,45 +14,23 @@ import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { getLayoutState, LAYOUT, LayoutToggle } from './common/LayoutToggle';
 
-type VendingData = {
-  all_products_free: boolean;
-  onstation: boolean;
-  department: string;
-  jobDiscount: number;
-  displayed_currency_icon: string;
-  displayed_currency_name: string;
-  product_records: ProductRecord[];
-  coin_records: CoinRecord[];
-  hidden_records: HiddenRecord[];
-  user: UserData;
-  stock: Record<string, StockItem>[];
-  extended_inventory: boolean;
-  access: boolean;
-  vending_machine_input: CustomInput[];
-  categories: Record<string, Category>;
-};
-
-type Category = {
-  icon: string;
+type StockItem = {
+  amount: number;
+  free: boolean;
+  refits_available: string[] /* BUBBER EDIT */;
 };
 
 type ProductRecord = {
   path: string;
   name: string;
   price: number;
-  max_amount: number;
   ref: string;
   category: string;
+  colorable: boolean;
+  premium: boolean;
+  image?: string;
   icon?: string;
   icon_state?: string;
-};
-
-type CoinRecord = ProductRecord & {
-  premium: boolean;
-};
-
-type HiddenRecord = ProductRecord & {
-  premium: boolean;
 };
 
 type UserData = {
@@ -60,33 +38,37 @@ type UserData = {
   cash: number;
   job: string;
   department: string;
-  /** BUBBER EDIT START **/
-  species: string;
-  /** BUBBER EDIT END **/
+  species: string /* BUBBER EDIT */;
 };
 
-type StockItem = {
-  name: string;
-  path: string;
-  amount: number;
-  colorable: boolean;
-  /** BUBBER EDIT START **/
-  refits_available: string[];
-  /** BUBBER EDIT END **/
+type Category = {
+  icon: string;
 };
 
-type CustomInput = {
-  path: string;
-  name: string;
-  price: number;
-  img: string;
+type VendingData = {
+  all_products_free: boolean;
+  ad: string;
+  department: string;
+  jobDiscount: number;
+  displayed_currency_icon: string;
+  displayed_currency_name: string;
+  product_records: ProductRecord[];
+  coin_records: ProductRecord[];
+  hidden_records: ProductRecord[];
+  user: UserData;
+  stock: Record<string, StockItem>[];
+  extended_inventory: boolean;
+  access: boolean;
+  categories: Record<string, Category>;
+  refits_available: string[] /* BUBBER EDIT */;
 };
 
-export const Vending = (props) => {
+export const Vending = () => {
   const { data } = useBackend<VendingData>();
 
   const {
-    onstation,
+    all_products_free,
+    ad,
     product_records = [],
     coin_records = [],
     hidden_records = [],
@@ -100,19 +82,12 @@ export const Vending = (props) => {
   const [stockSearch, setStockSearch] = useState('');
   const stockSearchFn = createSearch(
     stockSearch,
-    (item: ProductRecord | CustomInput) => item.name,
+    (item: ProductRecord) => item.name,
   );
 
-  let inventory: (ProductRecord | CustomInput)[];
-  let custom = false;
-  if (data.vending_machine_input) {
-    inventory = data.vending_machine_input;
-    custom = true;
-  } else {
-    inventory = [...product_records, ...coin_records];
-    if (data.extended_inventory) {
-      inventory = [...inventory, ...hidden_records];
-    }
+  let inventory: ProductRecord[] = [...product_records, ...coin_records];
+  if (data.extended_inventory) {
+    inventory = [...inventory, ...hidden_records];
   }
 
   // Just in case we still have undefined values in the list
@@ -138,14 +113,18 @@ export const Vending = (props) => {
     <Window width={431} height={635}>
       <Window.Content>
         <Stack fill vertical>
-          {!!onstation && (
+          {!all_products_free && (
             <Stack.Item>
               <UserDetails />
             </Stack.Item>
           )}
+          {ad && (
+            <Stack.Item>
+              <AdSection AdDisplay={ad} />
+            </Stack.Item>
+          )}
           <Stack.Item grow>
             <ProductDisplay
-              custom={custom}
               inventory={inventory}
               stockSearch={stockSearch}
               setStockSearch={setStockSearch}
@@ -170,7 +149,7 @@ export const Vending = (props) => {
 };
 
 /** Displays user details if an ID is present and the user is on the station */
-export const UserDetails = (props) => {
+export const UserDetails = () => {
   const { data } = useBackend<VendingData>();
   const { user } = data;
 
@@ -190,17 +169,27 @@ export const UserDetails = (props) => {
   );
 };
 
+const AdSection = (props: { AdDisplay: string }) => {
+  const { AdDisplay } = props;
+
+  return (
+    <NoticeBox m={0} color={'yellow'}>
+      <Stack align="center">
+        <Stack.Item>{AdDisplay}</Stack.Item>
+      </Stack>
+    </NoticeBox>
+  );
+};
+
 /** Displays  products in a section, with user balance at top */
 const ProductDisplay = (props: {
-  custom: boolean;
-  inventory: (ProductRecord | CustomInput)[];
+  inventory: ProductRecord[];
   stockSearch: string;
   setStockSearch: (search: string) => void;
   selectedCategory: string | null;
 }) => {
   const { data } = useBackend<VendingData>();
-  const { custom, inventory, stockSearch, setStockSearch, selectedCategory } =
-    props;
+  const { inventory, stockSearch, setStockSearch, selectedCategory } = props;
   const {
     stock,
     all_products_free,
@@ -248,7 +237,6 @@ const ProductDisplay = (props: {
           <Product
             key={product.path}
             fluid={toggleLayout === LAYOUT.List}
-            custom={custom}
             product={product}
             productStock={stock[product.path]}
           />
@@ -257,25 +245,29 @@ const ProductDisplay = (props: {
   );
 };
 
+type ProductProps = {
+  product: ProductRecord;
+  productStock: StockItem;
+  fluid: boolean;
+};
+
 /**
  * An individual listing for an item.
  */
-const Product = (props) => {
+const Product = (props: ProductProps) => {
   const { act, data } = useBackend<VendingData>();
-  const { custom, product, productStock, fluid } = props;
-  const { access, department, jobDiscount, all_products_free, user } = data;
+  const { product, productStock, fluid } = props;
+  const { department, jobDiscount, all_products_free, user } = data;
 
-  const colorable = !!productStock?.colorable;
-  const free = all_products_free || product.price === 0;
+  const colorable = !!product.colorable;
+  const free = all_products_free || productStock.free || product.price === 0;
   const discount = !product.premium && department === user?.department;
-  const remaining = custom ? product.amount : productStock.amount;
+  const remaining = productStock.amount;
   const redPrice = Math.round(product.price * jobDiscount);
   const disabled =
     remaining === 0 ||
     (!all_products_free && !user) ||
-    (!all_products_free &&
-      !access &&
-      (discount ? redPrice : product.price) > user?.cash);
+    (!free && (discount ? redPrice : product.price) > user?.cash);
 
   const baseProps = {
     base64: product.image,
@@ -284,8 +276,8 @@ const Product = (props) => {
     asset: ['vending32x32', product.path],
     disabled: disabled,
     tooltipPosition: 'bottom',
-    buttons: (
-      // BUBBER EDIT START - REFITS AVAILABLE
+    buttons: colorable && (
+      /*  BUBBER EDIT START - REFITS AVAILABLE */
       <>
         {colorable && (
           <ProductColorSelect
@@ -299,26 +291,27 @@ const Product = (props) => {
           productStock?.refits_available?.includes(
             user.species.toLowerCase(),
           ) && <ProductRefitsAvailable fluid={fluid} />}
+
+        {/*   BUBBER EDIT END - REFITS AVAILABLE */}
+        <ProductColorSelect
+          disabled={disabled}
+          product={product}
+          fluid={fluid}
+        />
       </>
-      // BUBBER EDIT END - REFITS AVAILABLE
     ),
     product: product,
     colorable: colorable,
     remaining: remaining,
     onClick: () => {
-      custom
-        ? act('dispense', {
-            item: product.path,
-          })
-        : act('vend', {
-            ref: product.ref,
-            discountless: !!product.premium,
-          });
+      act('vend', {
+        ref: product.ref,
+        discountless: !!product.premium,
+      });
     },
   };
 
   const priceProps = {
-    custom: custom,
     discount: discount,
     free: free,
     product: product,
@@ -332,7 +325,7 @@ const Product = (props) => {
   );
 };
 
-const ProductGrid = (props) => {
+const ProductGrid = (props: any) => {
   const { product, remaining, ...baseProps } = props;
   const { ...priceProps } = props;
 
@@ -354,7 +347,7 @@ const ProductGrid = (props) => {
   );
 };
 
-const ProductList = (props) => {
+const ProductList = (props: any) => {
   const { colorable, product, remaining, ...baseProps } = props;
   const { ...priceProps } = props;
 
@@ -382,7 +375,7 @@ const ProductList = (props) => {
   );
 };
 
-// BUBBER ADDITION START - REFITS AVAILABLE
+/* BUBBER ADDITION START - REFITS AVAILABLE */
 interface ProductRefitsAvailableProps {
   fluid?: boolean;
 }
@@ -397,13 +390,20 @@ const ProductRefitsAvailable = ({ fluid }: ProductRefitsAvailableProps) => {
     />
   );
 };
-// BUBBER ADDITION END- SPECIES CLOTHING IS VALID
+/* BUBBER ADDITION END- SPECIES CLOTHING IS VALID */
 
 /**
  * In the case of customizable items, ie: shoes,
  * this displays a color wheel button that opens another window.
  */
-const ProductColorSelect = (props) => {
+
+type ProductColorSelectProps = {
+  disabled: boolean;
+  product: ProductRecord;
+  fluid: boolean;
+};
+
+const ProductColorSelect = (props: ProductColorSelectProps) => {
   const { act } = useBackend<VendingData>();
   const { disabled, product, fluid } = props;
 
@@ -413,37 +413,34 @@ const ProductColorSelect = (props) => {
       icon={'palette'}
       color={'transparent'}
       tooltip={'Change color'}
-      style={disabled && { pointerEvents: 'none', opacity: 0.5 }}
+      style={disabled ? { pointerEvents: 'none', opacity: 0.5 } : {}}
       onClick={() => act('select_colors', { ref: product.ref })}
     />
   );
 };
 
+type ProductPriceProps = {
+  discount: boolean;
+  free: boolean;
+  product: ProductRecord;
+  redPrice: number;
+};
+
 /** The main button to purchase an item. */
-const ProductPrice = (props) => {
-  const { act, data } = useBackend<VendingData>();
-  const { access, displayed_currency_name } = data;
-  const { custom, discount, free, product, redPrice } = props;
-  const customPrice = access ? 'Free' : product.price;
-  let standardPrice = product.price;
+const ProductPrice = (props: ProductPriceProps) => {
+  const { data } = useBackend<VendingData>();
+  const { displayed_currency_name } = data;
+  const { discount, free, product, redPrice } = props;
+  let standardPrice = `${product.price}`;
   if (free) {
-    standardPrice = 'Free';
+    standardPrice = 'FREE';
   } else if (discount) {
-    standardPrice = redPrice;
+    standardPrice = `${redPrice}`;
   }
   return (
     <Stack.Item fontSize={0.85} color={'gold'}>
-      {custom ? (
-        <>
-          {customPrice}
-          {!access && displayed_currency_name}
-        </>
-      ) : (
-        <>
-          {standardPrice}
-          {!free && displayed_currency_name}
-        </>
-      )}
+      {standardPrice}
+      {!free && displayed_currency_name}
     </Stack.Item>
   );
 };
