@@ -5,7 +5,6 @@
 
 /area/awaymission/black_mesa
 	name = "Black Mesa Inside"
-	area_flags = TRAIT_NO_TELEPORT
 
 /area/awaymission/black_mesa/entrance
 	name = "Black Mesa Entrance"
