@@ -1,6 +1,11 @@
 /datum/species/mush
 	language_prefs_whitelist = (/datum/language/mushroom)
-
+	inherent_traits = list(
+		TRAIT_MUTANT_COLORS,
+		TRAIT_NOBREATH,
+		TRAIT_NOFLASH,
+		TRAIT_NO_UNDERWEAR,
+	)
 /datum/species/mush/get_default_mutant_bodyparts()
 	return list(
 		"caps" = list("Round", FALSE), // we don't want cap-less mushpeople

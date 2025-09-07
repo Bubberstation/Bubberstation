@@ -155,11 +155,11 @@
 	/// The click cooldown on secondary attacks. Lower numbers mean faster attacks. Will use attack_speed if undefined.
 	var/secondary_attack_speed
 	///In deciseconds, how long an item takes to equip; counts only for normal clothing slots, not pockets etc.
-	var/equip_delay_self = 0
+	var/equip_delay_self = 0 SECONDS
 	///In deciseconds, how long an item takes to put on another person
-	var/equip_delay_other = 20
+	var/equip_delay_other = 2 SECONDS
 	///In deciseconds, how long an item takes to remove from another person
-	var/strip_delay = 40
+	var/strip_delay = 4 SECONDS
 	///How long it takes to resist out of the item (cuffs and such)
 	var/breakouttime = 0
 
@@ -283,8 +283,6 @@
 			hitsound = 'sound/items/tools/welder.ogg'
 		if(damtype == BRUTE)
 			hitsound = SFX_SWING_HIT
-
-	add_weapon_description()
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NEW_ITEM, src)
 
@@ -457,7 +455,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(!isturf(loc) || usr.stat != CONSCIOUS || HAS_TRAIT(usr, TRAIT_HANDS_BLOCKED))
+	if(!isturf(loc) || usr.stat != CONSCIOUS || HAS_TRAIT(usr, TRAIT_HANDS_BLOCKED) || anchored)
 		return
 
 	if(isliving(usr))
@@ -498,6 +496,13 @@
 
 /obj/item/examine_descriptor(mob/user)
 	return "item"
+
+/obj/item/examine(mob/user)
+	// lazily initialize the weapon description element if it hasn't been already
+	if(!(item_flags & WEAPON_DESCRIPTION_INITIALIZED))
+		add_weapon_description()
+		item_flags |= WEAPON_DESCRIPTION_INITIALIZED
+	return ..()
 
 /obj/item/examine_more(mob/user)
 	. = ..()
@@ -1262,7 +1267,7 @@
 
 	var/skill_modifier = 1
 
-	if(tool_behaviour == TOOL_MINING && ishuman(user))
+	if(tool_behaviour == TOOL_MINING)
 		if(user.mind)
 			skill_modifier = user.mind.get_skill_modifier(/datum/skill/mining, SKILL_SPEED_MODIFIER)
 

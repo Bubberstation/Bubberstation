@@ -333,7 +333,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod/tarkon, 32)
 	visible_message(span_boldannounce("The nest rumbles violently as the entrance begins to crack and break apart!"))
 	playsound(loc,'sound/effects/tendril_destroyed.ogg', 200, FALSE, 50, TRUE, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(rustle)), 5 SECONDS)
-	do_jiggle()
+	do_jiggle_sr()
 
 /obj/structure/spawner/tarkon_xenos/common
 	name = "infested nest"
