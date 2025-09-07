@@ -149,7 +149,7 @@
 
 /datum/outfit/gordon_freeman
 	name = "Gordon Freeman"
-	uniform = /obj/item/clothing/under/rank/rnd/scientist/nova/hlscience
+	uniform = /obj/item/clothing/under/rank/rnd/scientist/skyrat/hlscience
 	head = /obj/item/clothing/head/helmet/space/hev_suit
 	ears = /obj/item/radio/headset/headset_cent/commander
 	belt = /obj/item/storage/belt/utility/full
