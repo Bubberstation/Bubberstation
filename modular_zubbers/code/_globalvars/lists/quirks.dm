@@ -9,6 +9,6 @@ GLOBAL_LIST_INIT(permanent_limp_choice, list(
 ))
 
 GLOBAL_LIST_INIT(grasping_arms_choice, list(
-	"Mantis Arms" = list(/obj/item/bodypart/grasping/arm/left/mantis, /obj/item/bodypart/grasping/arm/right/mantis),
-	"Crab Arms" = list(/obj/item/bodypart/grasping/arm/left/crab, /obj/item/bodypart/grasping/arm/right/crab)
+	"Mantis Arms" = list(/obj/item/bodypart/arm/grasping/left/mantis, /obj/item/bodypart/arm/grasping/right/mantis),
+	//"Crab Arms" = list(/obj/item/bodypart/arm/grasping/left/crab, /obj/item/bodypart/arm/grasping/right/crab)
 ))
