@@ -210,6 +210,9 @@
 	name = "grey jumpsuit (Modular)"												//(Modular) to tell players it is modular
 	modular_icon_location = 'modular_gs/icons/mob/modclothes/modular_grey.dmi'	//Location of the sprites, to make it modular
 	desc = "A tasteful grey jumpsuit that reminds you of the good old days."
+	// worn_icon = 
+	supports_variations_flags = CLOTHING_DIGITIGRADE_MASK
+	// worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/color_digi.dmi'
 
 //Overload of the alt belly sprites function, for adjusteable clothing
 /obj/item/clothing/under/get_belly_alt()
