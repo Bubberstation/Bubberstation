@@ -1,9 +1,9 @@
 /obj/machinery/computer/operating/ui_data(mob/user)
 	var/list/data = ..()
 	data["traumas"] = list()
-	var/mob/living/carbon/patient = table.patient
 	if(isnull(patient) | isnull(table))
 		return data
+	var/mob/living/carbon/patient = table.patient
 
 	if(LAZYLEN(patient.get_traumas()))
 		for(var/active_trauma in patient.get_traumas())
