@@ -95,26 +95,25 @@
 /datum/species/teshari/get_species_description()
 	return list(
 		"A species of birdperson hailing from the tropical planet Sirisai, their introduction \
-		came in the form of the complete and utter destruction of their oppressors on Penelope 3.",
+		came in the form of the complete and utter destruction of their oppressors, now lost to the wind.",
 		"They are extremely agile, owing to their low mass, but their hollow bones make them more vulnerable to being hurt."
 	)
 
 /datum/species/teshari/get_species_lore()
 	return list(
-		"Teshari are a bird-like species that hail from a tropical world, Sirisai (or Penelope 3a by NRI naming standards) \
-		They generally are between 3'5 and 4'0 tall, bearing raptor-like bodies with large plumes of feathers, and vestigial wings. \
-		They often have beaks, but some have developed muzzles as Teshari have spread across the galactic sea. \
-		Teshari are very colorful, and their plumage generally relates to where they were born, as well as genetics. They have very large ears for hearing. \
+		"Teshari are a bird-like species that hail from a tropical world, Sirisai. They generally are between 3'5 and 4'0 tall, \
+		light avian bodies with large plumes of feathers, and vestigial wings. They tend to have muzzles, \
+		but some have slowly evolved beak-like snouts as Sirisai has left its ice age. Teshari are very colorful, and they have large ears for hearing. \
 		Teshari tend to live to 60-70 before dying of natural causes, though medical care can extend this significantly. \
-		Teshari are omnivores with a preference for fish, and a blatant dislike for grain. They prefer nuts and vegetation.",
-		"Teshari have a genetic need for socialization, and will get sick if not social at all for an extended period. \
-		which has caused them to form tight-knit groups known as flocks. Teshari generally lack parental figures, and are often \
-		raised communally. When they reach adulthood, they feel an ingrained need to move away from their nesting flock and find or develop a new one. \
+		Teshari are omnivores that love fish, and dislike grain. They prefer nuts and vegetation.",
+		"Teshari have a genetic need for socialization and will feel physically ill if not social at all for an extended period, \
+		which has caused them to form social groups called flocks. Teshari generally lack parental figures, and are often \
+		raised communally. When they reach adulthood, they feel a strong drive to move away from their nesting flock and find or develop a new one. \
 		Teshari tend to be cloistered and quiet when entering a new social space, but are very vocal and impassioned when they fit in, often enjoying making and parroting noises.",
 		"Sirisai is a tropical world with temperatures ranging from 20 to 30 celsius on average. \
-		It has three notable mountain ranges, the only places on the planet where snow can be seen year-round. Temperatures can go as low as -15 Celsius. \
-		The planet itself is generally very biologically diverse, mostly undisturbed ecologically by the Teshari or their predecessors.",
-		"Modern Teshari history began when they were discovered and uplifted by a species that resided on the planet Penelope 3, which Sirisai once orbited. \
+		It has three notable mountain ranges, the only places on the planet where snow can still be seen year-round. Temperatures can go as low as -15 Celsius. \
+		The planet itself is generally very biologically diverse, ecologically pure compared to many inhabited planets.",
+		"Modern Teshari history began when they were discovered and uplifted by a species that resided on the planet Sirisai once orbited. \
 		After years of oppression and being sold as a labor force, the Teshari made their demand: Comply, or explode. This species seemed to not have taken the threat seriously, \
 		and were made extinct by the destruction of their entire planet. Fossils have been uncovered on Sirisai, and while they have yet to be named, \
 		A meeting of Teshari flocks have democratically named the species after the Teshari word for \"bastard\". \

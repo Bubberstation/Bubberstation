@@ -352,11 +352,7 @@ function SpeciesPageInner(props: SpeciesPageInnerProps) {
                       }
                     >
                       {/* SKYRAT EDIT CHANGE START - Adds maxHeight, scrollable*/}
-                      <Section
-                        title="Description"
-                        maxHeight="14vh"
-                        overflowY="auto"
-                      >
+                      <Section maxHeight="14vh" overflowY="auto">
                         {/* SKYRAT EDIT CHANGE END */}
                         {currentSpecies.desc.map((text, index) => (
                           <Box key={index} maxWidth="100%">

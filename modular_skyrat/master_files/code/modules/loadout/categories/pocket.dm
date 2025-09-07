@@ -190,6 +190,10 @@
 	name = "Liberty Cap Seeds"
 	item_path = /obj/item/seeds/liberty
 
+/datum/loadout_item/pocket_items/hand_labeler
+	name = "Hand Labeler"
+	item_path = /obj/item/hand_labeler
+
 /*
 *	DONATOR
 */
