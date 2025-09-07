@@ -2,7 +2,7 @@
 	var/list/data = ..()
 	data["traumas"] = list()
 	var/mob/living/carbon/patient = table.patient
-	if(isnull(patient))
+	if(isnull(patient) | isnull(table))
 		return data
 
 	if(LAZYLEN(patient.get_traumas()))
