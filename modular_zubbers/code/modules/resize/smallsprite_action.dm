@@ -1,5 +1,6 @@
 //S.P.L.U.R.T-tg/modular_zzplurt/code/modules/resize/smallsprite_action.dm
 //Technically the same as /datum/action/small_sprite but for our macro players (I'm one of them)
+#define SPRITE_SIZE 32
 
 /datum/action/sizecode_smallsprite
 	name = "Toggle Giant Sprite"
@@ -9,6 +10,7 @@
 	background_icon_state = "bg_alien"
 	var/small = FALSE
 	var/image/small_icon
+	var/scale
 
 /datum/action/sizecode_smallsprite/Trigger(trigger_flags)
 	. = ..()
@@ -20,7 +22,11 @@
 	small = !small
 	var/mob/living/carbon/human/human_holder = owner
 	if(small)
-		small_icon = image(icon = owner.icon, icon_state = owner.icon_state, loc = owner, layer = owner.layer, pixel_x = 0, pixel_y = 0)
+		var/body_size = human_holder.dna.features["body_size"]
+		scale = 1 / body_size
+		var/center_offset = round((SPRITE_SIZE * (scale - 1)) / body_size)
+
+		small_icon = image(icon = owner.icon, icon_state = owner.icon_state, loc = owner, layer = owner.layer, pixel_x = 0, pixel_y = center_offset)
 		src.update_small_icon()
 		small_icon.override = TRUE
 		owner.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic, "smallsprite_sizecode", small_icon)
@@ -35,3 +41,6 @@
 		small_icon.icon = owner.icon
 		small_icon.icon_state = owner.icon_state
 		small_icon.overlays = owner.overlays
+		small_icon.transform = matrix(owner.transform) * matrix(scale, scale, MATRIX_SCALE)
+
+#undef SPRITE_SIZE
