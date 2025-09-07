@@ -46,6 +46,7 @@ GLOBAL_LIST_INIT(bioscrambler_organs_blacklist, typecacheof(list (
 	/obj/item/organ/empowered_borer_egg, // SKYRAT EDIT ADDITION
 	/obj/item/organ/eyes/robotic, // SKYRAT EDIT ADDITION
 	/obj/item/organ/eyes/night_vision/cyber, // SKYRAT EDIT ADDITION
+	/obj/item/organ/taur_body // BUBBER EDIT ADDITION
 )))
 
 /// List of body parts we can apply to people
