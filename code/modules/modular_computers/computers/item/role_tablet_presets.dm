@@ -394,6 +394,7 @@
 	starting_programs = list(
 		/datum/computer_file/program/emojipedia,
 		/datum/computer_file/program/newscaster,
+		/datum/computer_file/program/portrait_printer,
 	)
 
 /* // SKYRAT EDIT REMOVAL BEGIN - Mutes the Curator's ringer on spawn
