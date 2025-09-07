@@ -83,24 +83,22 @@
 
 	butcher_results = list(/obj/item/reagent_containers/cup/tube/cazador_venom = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/chicken = 1)
-	
+
 	var/static/list/edibles = list(
 		/obj/item/food/egg
 	)
-	
+
 	gold_core_spawnable = HOSTILE_SPAWN
 
 /mob/living/basic/mining/moonsnake/Initialize(mapload)
 
 	. = ..()
-	
+
 	add_traits(list(TRAIT_NODROWN, TRAIT_SWIMMER, TRAIT_RESISTHEAT, TRAIT_RADIMMUNE, TRAIT_VENTCRAWLER_ALWAYS), INNATE_TRAIT)
 
 	AddElement(/datum/element/basic_eating, heal_amt = 2, food_types = edibles)
 	AddElement(/datum/element/venomous, /datum/reagent/toxin/cazador, 1, injection_flags = INJECT_CHECK_PENETRATE_THICK)
 	AddElement(/datum/element/ai_retaliate)
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_SNAKE, CELL_VIRUS_TABLE_GENERIC_MOB, 1, 5)
-	
-	ai_controller.set_blackboard_key(BB_BASIC_FOODS, typecacheof(edibles))	
-	
-	
+
+	ai_controller.set_blackboard_key(BB_BASIC_FOODS, typecacheof(edibles))
