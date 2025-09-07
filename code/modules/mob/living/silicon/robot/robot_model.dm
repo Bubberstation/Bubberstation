@@ -315,6 +315,7 @@
 			model_features += details[SKIN_FEATURES]
 		if (!isnull(details[SKIN_HAT_REST_OFFSET]))
 			rest_hat_offset = details[SKIN_HAT_REST_OFFSET]
+		SSblackbox.record_feedback("tally", "cyborg_skins", 1, borg_skin)
 		//SKYRAT EDIT END
 	for(var/i in old_model.added_modules)
 		added_modules += i
