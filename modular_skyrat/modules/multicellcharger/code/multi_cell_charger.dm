@@ -147,7 +147,7 @@
 /obj/machinery/cell_charger_multi/attack_ai(mob/user)
 	return
 
-/obj/machinery/cell_charger_multi/attack_hand(mob/user, list/modifiers)
+/obj/machinery/cell_charger_multi/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(.)
 		return
@@ -162,7 +162,7 @@
 
 	user.visible_message(span_notice("[user] removes [charging] from [src]."), span_notice("You remove [charging] from [src]."))
 
-/obj/machinery/cell_charger_multi/proc/removecell(mob/user)
+/obj/machinery/cell_charger_multi/proc/removecell(mob/living/user)
 	if(!charging_batteries.len)
 		return FALSE
 	var/obj/item/stock_parts/power_store/cell/charging
@@ -175,6 +175,8 @@
 	else
 		charging = charging_batteries[1]
 	if(!charging)
+		return FALSE
+	if(!user.can_perform_action(src, NEED_HANDS)) // Prevents crew from grabbing a battery from a distance after interacting with the machine and running off before picking a battery from a distance.
 		return FALSE
 	charging.forceMove(drop_location())
 	charging.update_appearance()
