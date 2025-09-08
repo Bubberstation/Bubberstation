@@ -78,17 +78,18 @@
 		return
 	var/total_offset = y_offset_stored
 	var/mob/living/carbon/carbon_holder = owner
-	if(carbon_holder.lying_angle != 0)
+	if(carbon_holder.get_lying_angle() != 0)
 		total_offset -= PIXEL_Y_OFFSET_LYING
 	small_icon.pixel_y = total_offset
 
 /datum/action/sizecode_smallsprite/proc/update_pixel_x()
 	var/mob/living/carbon/carbon_holder = owner
-	if(carbon_holder.lying_angle != 0)
-		if(carbon_holder.lying_angle == LYING_ANGLE_WEST)
+	var/mob_lying_angle = carbon_holder.get_lying_angle()
+	if(mob_lying_angle != 0)
+		if(mob_lying_angle == LYING_ANGLE_WEST)
 			small_icon.pixel_x = LYING_WEST_PIXEL_X
 			return
-		if(carbon_holder.lying_angle == LYING_ANGLE_EAST)
+		if(mob_lying_angle == LYING_ANGLE_EAST)
 			small_icon.pixel_x = LYING_EAST_PIXEL_X
 			return
 	small_icon.pixel_x = 0
