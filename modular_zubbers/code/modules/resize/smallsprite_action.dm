@@ -25,7 +25,9 @@
 	if(small)
 		if(!small_icon)
 			update_scale()
-			small_icon = image(icon = owner.icon, icon_state = owner.icon_state, loc = owner, layer = owner.layer, pixel_x = 0, pixel_y = y_offset_stored)
+			var/icon/scaled_icon = icon(owner.icon, owner.icon_state)
+			scaled_icon.Scale(scaled_icon.Width() * scale, scaled_icon.Height() * scale)
+			small_icon = image(icon = scaled_icon, icon_state = owner.icon_state, loc = owner, layer = owner.layer, pixel_x = 0, pixel_y = y_offset_stored)
 			small_icon.override = TRUE
 
 		update_small_icon()
@@ -107,6 +109,14 @@
 		update_transform()
 		update_pixel_y()
 		update_pixel_x()
+
+/datum/action/sizecode_smallsprite/Remove(mob/remove_from)
+	. = ..()
+	var/mob/living/carbon/carbon_holder = remove_from
+	UnregisterSignal(carbon_holder, COMSIG_CARBON_APPLY_OVERLAY)
+	UnregisterSignal(carbon_holder, COMSIG_LIVING_POST_UPDATE_TRANSFORM)
+	carbon_holder.remove_alt_appearance("smallsprite_sizecode")
+	small_icon = null
 
 #undef SPRITE_SIZE
 #undef LYING_WEST_PIXEL_X
