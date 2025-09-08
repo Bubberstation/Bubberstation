@@ -705,6 +705,10 @@
 			continue
 		if(!(player.mind.assigned_role.job_flags & JOB_CREW_MEMBER))
 			continue
+		// BUBBER EDIT ADDITION BEGIN - only target RR-true people
+		if(!player.client.prefs.read_preference(/datum/preference/toggle/be_round_removed))
+			continue
+		// BUBBER EDIT ADDITION END
 		possible_targets += player
 
 	if(length(possible_targets))
