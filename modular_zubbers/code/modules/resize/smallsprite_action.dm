@@ -22,7 +22,7 @@
 	var/mob/living/carbon/carbon_holder = owner
 	if(small)
 		if(!small_icon)
-			update_body_size()
+			update_body_size(FALSE)
 			small_icon = image(icon = owner.icon, icon_state = owner.icon_state, loc = owner, layer = owner.layer, pixel_x = 0, pixel_y = y_offset_stored)
 			small_icon.override = TRUE
 
@@ -49,10 +49,11 @@
 			return TRUE
 	return FALSE
 
-/datum/action/sizecode_smallsprite/proc/update_transform()
+/datum/action/sizecode_smallsprite/proc/update_transform(var/update_size = TRUE)
 	if(!small_icon)
 		return
-	update_body_size()
+	if(update_size)
+		update_body_size()
 	small_icon.transform = matrix(owner.transform) * matrix(scale, scale, MATRIX_SCALE)
 
 /* Updating body size related values
