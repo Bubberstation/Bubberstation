@@ -56,7 +56,7 @@
 	return FALSE
 
 // Updates transform value. Only useful when body size values changed, so it updates them by default
-/datum/action/sizecode_smallsprite/proc/update_transform(var/update_appearance = TRUE)
+/datum/action/sizecode_smallsprite/proc/update_transform(update_appearance = TRUE)
 	if(!small_icon)
 		return
 	if(update_appearance)
