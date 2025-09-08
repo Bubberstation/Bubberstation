@@ -1,5 +1,7 @@
 //S.P.L.U.R.T-tg/modular_zzplurt/code/modules/resize/smallsprite_action.dm
 #define SPRITE_SIZE 32
+#define LYING_WEST_PIXEL_X 8
+#define LYING_EAST_PIXEL_X -8
 
 /datum/action/sizecode_smallsprite
 	name = "Toggle Giant Sprite"
@@ -57,6 +59,7 @@
 	if(update_size)
 		update_body_size()
 	small_icon.transform = matrix(owner.transform) * matrix(scale, scale, MATRIX_SCALE)
+	update_pixel_x()
 
 /* Updating body size dependent values
 	Argument will force updating pixel offsets by default
@@ -79,6 +82,18 @@
 		total_offset -= PIXEL_Y_OFFSET_LYING
 	small_icon.pixel_y = total_offset
 
+/datum/action/sizecode_smallsprite/proc/update_pixel_x()
+	var/mob/living/carbon/carbon_holder = owner
+	if(carbon_holder.lying_angle != 0)
+		if(carbon_holder.lying_angle == LYING_ANGLE_WEST)
+			small_icon.pixel_x = LYING_WEST_PIXEL_X
+			return
+		if(carbon_holder.lying_angle == LYING_ANGLE_EAST)
+			small_icon.pixel_x = LYING_EAST_PIXEL_X
+			return
+	small_icon.pixel_x = 0
+
+
 /datum/action/sizecode_smallsprite/proc/validate_owner()
 	if(!owner || !iscarbon(owner))
 		CRASH("sizecode_smallsprite: Invalid carbon holder! \
@@ -86,3 +101,5 @@
 			Expected: /mob/living/carbon")
 
 #undef SPRITE_SIZE
+#undef LYING_WEST_PIXEL_X
+#undef LYING_EAST_PIXEL_X
