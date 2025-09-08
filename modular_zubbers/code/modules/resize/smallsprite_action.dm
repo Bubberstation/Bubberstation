@@ -46,7 +46,6 @@
 		small_icon.icon_state = owner.icon_state
 		small_icon.overlays = owner.overlays
 
-
 /*  Returns true if owner has alt appearance with subtype /everyone.
 	Useful when potted plants used */
 /datum/action/sizecode_smallsprite/proc/has_everyone_appearance()
