@@ -118,11 +118,9 @@
 		owner.remove_movespeed_modifier(/datum/movespeed_modifier/eggnant)
 	owner.add_movespeed_modifier(modifier, update = TRUE)
 
-	var/is_delta_negative = FALSE
-	if(delta < 0)
-		is_delta_negative = TRUE
+	var/is_delta_negative = delta < 0
 
-	switch(eggs_stored) //Tracks each threshold a to_chat should be triggered, a separate 99 value is there to ensure an alt text is displayed for going back down from max.
+	switch(eggs_stored) //Tracks each threshold a to_chat should be triggered, a separate 98 value is there to ensure an alt text is displayed for going back down from max.
 		if(20)
 			to_chat(owner, span_purple("You're beginning to feel [is_delta_negative ? "less weighed down, but still full..." : "rather heavy..."]"))
 		if(40)
@@ -130,15 +128,16 @@
 		if(60)
 			to_chat(owner, span_crossooc("[is_delta_negative ? "You're a bit less taut, but still feel very swollen!" : "You're overly gravid! You feel like you should really lay these eggs soon..."]"))
 		if(80)
-			to_chat(owner, span_crossooc("You feel [is_delta_negative ? "a little relieved, but still extremely taut!" : "very close to full at this point, any more and you'll run out of room!"]"))
+			to_chat(owner, span_crossooc("You feel [is_delta_negative ? "a little relieved, but still extremely taut!" : "very close to full at this point, any more eggs and you'll run out of room!"]"))
 		if(100)
 			to_chat(owner, span_alertwarning("Your body can't handle anymore eggs! You need to lay some to make room, now!"))
-		if(99)
+		if(98)
 			if(is_delta_negative)
 				to_chat(owner, span_warning("You feel like you still have very little room for anymore eggs..."))
 
 //setting the base movespeed modifier
 /datum/movespeed_modifier/eggnant
+	variable = TRUE
 	multiplicative_slowdown = 5
 
 /datum/action/cooldown/spell/egg_production/cast(mob/living/cast_on)
