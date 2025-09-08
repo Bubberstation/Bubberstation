@@ -38,7 +38,6 @@
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	gold_core_spawnable = HOSTILE_SPAWN
-	butcher_results = list(/obj/item/stack/sheet/bluespace_crystal = 1)
 
 	// Environmental resistances
 	minimum_survivable_temperature = 0
