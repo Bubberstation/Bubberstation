@@ -11,6 +11,7 @@
 	var/small = FALSE
 	var/image/small_icon
 	var/scale
+	var/y_offset_stored
 
 /datum/action/sizecode_smallsprite/Trigger(trigger_flags)
 	. = ..()
@@ -23,9 +24,7 @@
 	if(small)
 		if(!small_icon)
 			update_body_size()
-			var/body_size = carbon_holder.dna.features["body_size"]
-			var/center_offset = round((SPRITE_SIZE * (scale - 1)) / body_size)
-			small_icon = image(icon = owner.icon, icon_state = owner.icon_state, loc = owner, layer = owner.layer, pixel_x = 0, pixel_y = center_offset)
+			small_icon = image(icon = owner.icon, icon_state = owner.icon_state, loc = owner, layer = owner.layer, pixel_x = 0, pixel_y = y_offset_stored)
 			small_icon.override = TRUE
 
 		update_small_icon()
@@ -62,6 +61,9 @@
 	var/mob/living/carbon/carbon_holder = owner
 	var/body_size = carbon_holder.dna.features["body_size"]
 	scale = 1 / body_size
+	var/y_offset_current = round((SPRITE_SIZE * (scale - 1)) / body_size)
+	if(y_offset_stored != y_offset_current || !y_offset_stored)
+		y_offset_stored = y_offset_current
 
 /datum/action/sizecode_smallsprite/proc/validate_owner()
 	if(!owner || !iscarbon(owner))
