@@ -25,9 +25,7 @@
 	if(small)
 		if(!small_icon)
 			update_scale()
-			var/icon/scaled_icon = icon(owner.icon, owner.icon_state)
-			scaled_icon.Scale(scaled_icon.Width() * scale, scaled_icon.Height() * scale)
-			small_icon = image(icon = scaled_icon, icon_state = owner.icon_state, loc = owner, layer = owner.layer, pixel_x = 0, pixel_y = y_offset_stored)
+			small_icon = image(icon = owner.icon, icon_state = owner.icon_state, loc = owner, layer = owner.layer, pixel_x = 0, pixel_y = y_offset_stored)
 			small_icon.override = TRUE
 
 		update_small_icon()
