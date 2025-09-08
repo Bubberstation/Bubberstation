@@ -38,7 +38,6 @@
 	// AI and behavior
 	ai_controller = /datum/ai_controller/basic_controller/bullsquid
 	gold_core_spawnable = HOSTILE_SPAWN
-	faction = list("bullsquid") // Each bullsquid is its own faction to make them fight each other
 
 	alert_sounds = list(
 		'modular_skyrat/modules/black_mesa/sound/mobs/bullsquid/detect1.ogg',
