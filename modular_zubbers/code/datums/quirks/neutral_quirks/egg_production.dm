@@ -70,16 +70,16 @@
 
 /// *** Start of egg creation segment
 /datum/action/cooldown/spell/egg_production/proc/on_life(seconds_per_tick, times_fired) //adds a proc on_life under the condition we can even produce
+	SIGNAL_HANDLER
 	if(can_produce == TRUE)
 		create_egg()
-	return
 
 /datum/action/cooldown/spell/egg_production/proc/toggle_cooldown()
 	can_produce = !can_produce
 
-//checks if we can produce an egg, whether there are any reagents, validates that we have the correct reagents, and creates an egg as long as we are above the required value and eggs_stored is not at the maximum
+/// checks if we can produce an egg, whether there are any reagents, validates that we have the correct reagents, and creates an egg as long as we are above the required value and eggs_stored is not at the maximum
 /datum/action/cooldown/spell/egg_production/proc/create_egg(datum/reagent/reagent)
-	if(can_produce == FALSE)
+	if(!can_produce)
 		return FALSE //cooldown is active, abort the proc
 
 	var/mob/living/carbon/human/egg_holder = owner
@@ -107,7 +107,6 @@
 	eggs_stored = clamp((eggs_stored + delta), 0, maximum_eggs) // clamps the stored eggs value between 0 and the maximum, AND increments by the delta amount (which should be 1)
 	desc = "[initial(desc)]. You carry [eggs_stored] egg\s." // this is meant to add an active readout of how many eggs are stored on mouse-over of the action
 
-// *** Start of movespeed modifier
 	if(eggs_stored == 0)// handles removal of the modifier if stored eggs is 0
 		owner.remove_movespeed_modifier(/datum/movespeed_modifier/eggnant, update = TRUE)
 		return
@@ -141,7 +140,6 @@
 //setting the base movespeed modifier
 /datum/movespeed_modifier/eggnant
 	multiplicative_slowdown = 5
-// *** End of movespeed modifier
 
 /datum/action/cooldown/spell/egg_production/cast(mob/living/cast_on)
 	.=..()

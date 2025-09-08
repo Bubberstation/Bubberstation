@@ -1,7 +1,7 @@
 /datum/quirk/item_quirk/bald
 	name = "Smooth-Headed"
 	desc = "You have no hair and are quite insecure about it! Keep your wig on, or at least your head covered up."
-	icon = FA_ICON_BOWLING_BALL // Bubberstation Edit - Original Icon = FA_ICON_EGG
+	icon = FA_ICON_EGG
 	value = 0
 	mob_trait = TRAIT_BALD
 	quirk_flags = QUIRK_HUMAN_ONLY | QUIRK_CHANGES_APPEARANCE
