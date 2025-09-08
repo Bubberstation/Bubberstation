@@ -23,6 +23,7 @@
 		/datum/reagent/medicine/sansufentanyl,
 		/datum/reagent/medicine/salglu_solution,
 		/datum/reagent/medicine/albuterol,
+		/datum/reagent/medicine/coagulant //Bubber edit: adds coagulant
 		)
 	var/allergy_string
 
