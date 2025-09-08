@@ -20,8 +20,8 @@
 	alert_type = null
 	/// The level of drunkness we are currently at.
 	var/drunk_value = 0
-	/// If TRUE, drunk_value will be capped at 51, preventing serious damage 
-	var/iron_liver = FALSE 
+	/// If TRUE, drunk_value will be capped at 51, preventing serious damage
+	var/iron_liver = FALSE
 
 /datum/status_effect/inebriated/on_creation(mob/living/new_owner, drunk_value = 0)
 	. = ..()
@@ -247,7 +247,6 @@
 		owner.adjustToxLoss(2)
 
 /datum/status_effect/inebriated/drunk/proc/attempt_to_blackout()
-	/* SKYRAT EDIT REMOVAL - Blackout drunk begone
 	var/mob/living/carbon/drunkard = owner
 	if(drunkard.has_trauma_type(/datum/brain_trauma/severe/split_personality/blackout))// prevent ping spamming
 		if(prob(10))
@@ -257,7 +256,6 @@
 	if(drunkard.gain_trauma(/datum/brain_trauma/severe/split_personality/blackout, TRAUMA_LIMIT_ABSOLUTE))
 		drunk_value -= 70 //So that the drunk personality can spice things up without being killed by liver failure
 		return
-	*/ // SKYRAT EDIT REMOVAL END
 	if(SSshuttle.emergency.mode == SHUTTLE_DOCKED && is_station_level(owner.z))// Don't put us in a deep sleep if the shuttle's here. QoL, mainly.
 		to_chat(owner, span_warning("You're so tired... but you can't miss that shuttle..."))
 	else
