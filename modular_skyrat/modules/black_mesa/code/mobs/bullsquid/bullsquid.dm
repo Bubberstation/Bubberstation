@@ -50,8 +50,6 @@
 	AddComponent(/datum/component/ai_listen_to_weather)
 	// Add ranged attack component with proper targeting
 	AddComponent(/datum/component/ranged_attacks, projectile_type = /obj/projectile/bullsquid, projectile_sound = 'modular_skyrat/modules/black_mesa/sound/mobs/bullsquid/goo_attack3.ogg', cooldown_time = 3 SECONDS)
-	// Make each bullsquid unique to fight each other
-	faction = list("[REF(src)]")
 
 /obj/item/ammo_casing/bullsquid
 	name = "nasty ball of ooze"
