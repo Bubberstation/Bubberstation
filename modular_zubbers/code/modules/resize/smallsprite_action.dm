@@ -29,9 +29,11 @@
 		update_small_icon()
 		owner.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic, "smallsprite_sizecode", small_icon)
 		RegisterSignal(carbon_holder, COMSIG_CARBON_APPLY_OVERLAY, PROC_REF(update_small_icon))
+		RegisterSignal(carbon_holder, COMSIG_LIVING_POST_UPDATE_TRANSFORM, PROC_REF(update_transform))
 	else
 		owner.remove_alt_appearance("smallsprite_sizecode")
 		UnregisterSignal(carbon_holder, COMSIG_CARBON_APPLY_OVERLAY)
+		UnregisterSignal(carbon_holder, COMSIG_LIVING_POST_UPDATE_TRANSFORM)
 	return TRUE
 
 /datum/action/sizecode_smallsprite/proc/update_small_icon()
@@ -56,16 +58,26 @@
 		update_body_size()
 	small_icon.transform = matrix(owner.transform) * matrix(scale, scale, MATRIX_SCALE)
 
-/* Updating body size related values
-	We dont assume that owner's body size cant change over time
+/* Updating body size dependent values
+	Argument will force updating pixel offsets by default
 	We assume that we checked for not null and carbon before calling it */
-/datum/action/sizecode_smallsprite/proc/update_body_size()
+/datum/action/sizecode_smallsprite/proc/update_body_size(var/update_pixel = TRUE)
 	var/mob/living/carbon/carbon_holder = owner
 	var/body_size = carbon_holder.dna.features["body_size"]
 	scale = 1 / body_size
 	var/y_offset_current = round((SPRITE_SIZE * (scale - 1)) / body_size)
-	if(y_offset_stored != y_offset_current || !y_offset_stored)
+	if((y_offset_stored != y_offset_current || !y_offset_stored) || update_pixel)
 		y_offset_stored = y_offset_current
+		update_pixel_y()
+
+/datum/action/sizecode_smallsprite/proc/update_pixel_y()
+	if(!small_icon)
+		return
+	var/total_offset = y_offset_stored
+	var/mob/living/carbon/carbon_holder = owner
+	if(carbon_holder.lying_angle != 0)
+		total_offset -= PIXEL_Y_OFFSET_LYING
+	small_icon.pixel_y = total_offset
 
 /datum/action/sizecode_smallsprite/proc/validate_owner()
 	if(!owner || !iscarbon(owner))
