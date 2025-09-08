@@ -1,5 +1,4 @@
 //S.P.L.U.R.T-tg/modular_zzplurt/code/modules/resize/smallsprite_action.dm
-//Technically the same as /datum/action/small_sprite but for our macro players (I'm one of them)
 #define SPRITE_SIZE 32
 
 /datum/action/sizecode_smallsprite
