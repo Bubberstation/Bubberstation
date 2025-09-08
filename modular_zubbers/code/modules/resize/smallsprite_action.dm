@@ -50,6 +50,8 @@
 	return FALSE
 
 /datum/action/sizecode_smallsprite/proc/update_transform()
+	if(!small_icon)
+		return
 	update_body_size()
 	small_icon.transform = matrix(owner.transform) * matrix(scale, scale, MATRIX_SCALE)
 

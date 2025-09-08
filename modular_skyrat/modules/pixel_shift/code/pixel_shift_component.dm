@@ -111,7 +111,7 @@
 		owner.transform = turn(owner.transform, -how_tilted)
 		// Bubber edit: Update transform of smallsprite_action
 		for(var/datum/action/sizecode_smallsprite/A in owner.actions)
-			A.update_transform()
+			A.update_transform(FALSE)
 	qdel(src)
 
 /// In-turf pixel movement which can allow things to pass through if the threshold is met.
@@ -173,7 +173,7 @@
 						is_shifted = TRUE
 			// Bubber edit: Update transform of smallsprite_action
 			for(var/datum/action/sizecode_smallsprite/A in owner.actions)
-				A.update_transform()
+				A.update_transform(FALSE)
 
 	// Yes, I know this sets it to true for everything if more than one is matched.
 	// Movement doesn't check diagonals, and instead just checks EAST or WEST, depending on where you are for those.
