@@ -63,7 +63,7 @@
 
 /// Execute the jump after the telegraph
 /datum/ai_planning_subtree/headcrab_hunt/proc/execute_jump(mob/living/basic/blackmesa/xen/headcrab/jumper, atom/target, distance, speed)
-	if(QDELETED(jumper) || QDELETED(target))
+	if(QDELETED(jumper) || QDELETED(target) || jumper.stat == DEAD)
 		return
 
 	// Make it spin during the jump! The faster the jump, the faster the spin
