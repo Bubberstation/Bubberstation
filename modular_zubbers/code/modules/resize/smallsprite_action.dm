@@ -22,7 +22,7 @@
 	var/mob/living/carbon/carbon_holder = owner
 	if(small)
 		if(!small_icon)
-			update_body_size(FALSE)
+			update_body_size()
 			small_icon = image(icon = owner.icon, icon_state = owner.icon_state, loc = owner, layer = owner.layer, pixel_x = 0, pixel_y = y_offset_stored)
 			small_icon.override = TRUE
 
