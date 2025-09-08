@@ -25,7 +25,7 @@
 /obj/structure/closet/secure_closet/personal/cabinet/freighterboss/PopulateContents()
 	. = ..()
 
-	new /obj/item/gun/ballistic/automatic/sol_rifle/marksman(src)
+	new /obj/item/gun/ballistic/automatic/wt550(src)
 	new /obj/item/storage/pouch/ammo(src)
 	new /obj/item/clothing/suit/armor/bulletproof(src)
 	new /obj/item/storage/belt/utility/syndicate(src)
@@ -33,6 +33,6 @@
 	new /obj/item/clothing/gloves/combat(src)
 	new /obj/item/storage/backpack/duffelbag/syndie(src)
 	new /obj/item/radio(src)
-	new /obj/item/ammo_box/magazine/c40sol_rifle(src)
-	new /obj/item/ammo_box/magazine/c40sol_rifle(src)
-	new /obj/item/ammo_box/magazine/c40sol_rifle(src)
+	new /obj/item/ammo_box/magazine/wt550m9(src)
+	new /obj/item/ammo_box/magazine/wt550m9(src)
+	new /obj/item/ammo_box/magazine/wt550m9(src)
