@@ -24,14 +24,16 @@
 	var/mob/living/carbon/carbon_holder = owner
 	if(small)
 		if(!small_icon)
-			update_body_size()
+			update_scale()
 			small_icon = image(icon = owner.icon, icon_state = owner.icon_state, loc = owner, layer = owner.layer, pixel_x = 0, pixel_y = y_offset_stored)
 			small_icon.override = TRUE
 
 		update_small_icon()
+		update_scale()
+		update_transform()
 		owner.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic, "smallsprite_sizecode", small_icon)
 		RegisterSignal(carbon_holder, COMSIG_CARBON_APPLY_OVERLAY, PROC_REF(update_small_icon))
-		RegisterSignal(carbon_holder, COMSIG_LIVING_POST_UPDATE_TRANSFORM, PROC_REF(update_transform))
+		RegisterSignal(carbon_holder, COMSIG_LIVING_POST_UPDATE_TRANSFORM, PROC_REF(update_appearance))
 	else
 		owner.remove_alt_appearance("smallsprite_sizecode")
 		UnregisterSignal(carbon_holder, COMSIG_CARBON_APPLY_OVERLAY)
@@ -43,7 +45,7 @@
 		small_icon.icon = owner.icon
 		small_icon.icon_state = owner.icon_state
 		small_icon.overlays = owner.overlays
-		update_transform()
+
 
 /*  Returns true if owner has alt appearance with subtype /everyone.
 	Useful when potted plants used */
@@ -53,25 +55,24 @@
 			return TRUE
 	return FALSE
 
-/datum/action/sizecode_smallsprite/proc/update_transform(var/update_size = TRUE)
+// Updates transform value. Only useful when body size values changed, so it updates them by default
+/datum/action/sizecode_smallsprite/proc/update_transform(var/update_appearance = TRUE)
 	if(!small_icon)
 		return
-	if(update_size)
-		update_body_size()
+	if(update_appearance)
+		update_scale()
 	small_icon.transform = matrix(owner.transform) * matrix(scale, scale, MATRIX_SCALE)
-	update_pixel_x()
 
-/* Updating body size dependent values
-	Argument will force updating pixel offsets by default
+/*  Updating body size dependent values
+	scale and y_offset_stored
 	We assume that we checked for not null and carbon before calling it */
-/datum/action/sizecode_smallsprite/proc/update_body_size(var/update_pixel = TRUE)
+/datum/action/sizecode_smallsprite/proc/update_scale()
 	var/mob/living/carbon/carbon_holder = owner
 	var/body_size = carbon_holder.dna.features["body_size"]
 	scale = 1 / body_size
 	var/y_offset_current = round((SPRITE_SIZE * (scale - 1)) / body_size)
-	if((y_offset_stored != y_offset_current || !y_offset_stored) || update_pixel)
+	if(y_offset_stored != y_offset_current || !y_offset_stored)
 		y_offset_stored = y_offset_current
-		update_pixel_y()
 
 /datum/action/sizecode_smallsprite/proc/update_pixel_y()
 	if(!small_icon)
@@ -94,12 +95,18 @@
 			return
 	small_icon.pixel_x = 0
 
-
 /datum/action/sizecode_smallsprite/proc/validate_owner()
 	if(!owner || !iscarbon(owner))
 		CRASH("sizecode_smallsprite: Invalid carbon holder! \
 			Got: [owner] ([owner?.type]) \
 			Expected: /mob/living/carbon")
+
+/datum/action/sizecode_smallsprite/proc/update_appearance()
+	SIGNAL_HANDLER
+	if(small_icon)
+		update_transform()
+		update_pixel_y()
+		update_pixel_x()
 
 #undef SPRITE_SIZE
 #undef LYING_WEST_PIXEL_X
