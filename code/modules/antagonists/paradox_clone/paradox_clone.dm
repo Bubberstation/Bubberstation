@@ -61,6 +61,16 @@
 	// This may result in some minutely imperfect memories, but it'll do
 	original_mind.quick_copy_all_memories(owner)
 
+	// BUBBER EDIT ADDITION BEGIN
+	var/list/recent_speech = original_mind.current.copy_recent_speech(10)
+	antag_memory += "Some of [original_mind.current]'s speech patterns..."
+	to_chat(owner.current, span_boldnotice("Some of [original_mind.current]'s speech patterns..."))
+	for (var/speech as anything in recent_speech)
+		antag_memory += " \"[speech]\""
+		to_chat(owner.current, span_notice(" \"[speech]\""))
+	to_chat(owner.current, span_notice("Some of your counterpart's speech patterns have been added to your memories."))
+	// BUBBER EDIT ADDITION END
+
 /datum/antagonist/paradox_clone/roundend_report_header()
 	return span_header("A paradox clone appeared on the station!<br>")
 

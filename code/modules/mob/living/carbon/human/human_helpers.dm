@@ -298,6 +298,13 @@
 	clone.age = age
 	clone.voice = voice
 	clone.pitch = pitch
+	// BUBBER EDIT ADDITION BEGIN - bloopers
+	clone.set_blooper(blooper)
+	clone.blooper_pitch = blooper_pitch
+	clone.blooper_pitch_range = blooper_pitch_range
+	clone.blooper_volume = blooper_volume
+	clone.blooper_speed = blooper_speed
+	// BUBBER EDIT ADDITION END
 	dna.copy_dna(clone.dna, COPY_DNA_SE|COPY_DNA_SPECIES|COPY_DNA_MUTATIONS)
 
 	clone.dress_up_as_job(SSjob.get_job(job))
