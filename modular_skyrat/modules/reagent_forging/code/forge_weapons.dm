@@ -30,7 +30,7 @@
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = FIRE_PROOF
-	attack_verb_continuous = list("attacks", "pokes", "jabs", "tears", "lacerates", "gores","stabs")
+	attack_verb_continuous = list("attacks", "pokes", "jabs", "tears", "lacerates", "gores", "stabs")
 	attack_verb_simple = list("attack", "poke", "jab", "tear", "lacerate", "gore", "stabs")
 	sharpness = SHARP_EDGED
 	max_integrity = 150
