@@ -74,7 +74,7 @@
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	embed_type = /datum/embedding/forged_dagger
 	throwforce = 10
-	slot_flags =  ITEM_SLOT_BACK
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FIRE_PROOF
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
