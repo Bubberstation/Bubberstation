@@ -29,7 +29,7 @@
 	faction = list(FACTION_CLOWN)
 	ai_controller = /datum/ai_controller/basic_controller/clown
 	///list of stuff we drop on death
-	var/list/loot = list(/obj/effect/mob_spawn/corpse/human/clown)
+	var/list/loot = list(/obj/effect/gibspawner/human) // BUBBER EDIT CHANGE - Original: /obj/effect/mob_spawn/corpse/human/clown
 	///blackboard emote list
 	var/list/emotes = list(
 		BB_EMOTE_SAY = list("HONK", "Honk!", "Welcome to clown planet!"),
