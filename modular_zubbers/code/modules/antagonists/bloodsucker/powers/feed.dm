@@ -388,7 +388,7 @@
 	if(!target.mind && !can_drink_from_mindless(target_user))
 		if(give_warnings)
 			owner.balloon_alert(owner, "cant drink from mindless!")
-		return FALSEg
+		return FALSE
 	if(target_user.has_reagent(/datum/reagent/consumable/garlic, 5))
 		if(give_warnings)
 			owner.balloon_alert(owner, "too much garlic!")

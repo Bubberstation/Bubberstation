@@ -1,6 +1,8 @@
 /datum/component/organ_corruption/stomach
 	corruptable_organ_type = /obj/item/organ/stomach
 	corrupted_icon_state = "stomach"
+	/// Traits that should be added to the stomach when it's corrupted by a hemophage tumor.
+	var/list/stomach_traits = list(TRAIT_STOMACH_BLOOD_VOMIT)
 
 
 /datum/component/organ_corruption/stomach/corrupt_organ(obj/item/organ/corruption_target)

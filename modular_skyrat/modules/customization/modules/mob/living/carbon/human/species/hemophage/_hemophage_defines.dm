@@ -16,5 +16,3 @@
 #define HEMOPHAGE_VOMIT_PURGE_RATIO 0.95
 /// How much disgust we're at after eating/drinking something the tumor doesn't like.
 #define TUMOR_DISLIKED_FOOD_DISGUST DISGUST_LEVEL_GROSS + 15
-/// Traits that should be added to the stomach when it's corrupted by a hemophage tumor.
-var/list/stomach_traits = TRAIT_STOMACH_BLOOD_VOMIT
