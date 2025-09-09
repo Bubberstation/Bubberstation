@@ -67,6 +67,7 @@ export const ExaminePanel = () => {
     setPage(newPage);
   };
 
+  //This does not fix the problem, however, it does make it work right now. I am so sorry.
   const [previewKey, setPreviewKey] = useState(0);
   if (previewKey === 0 && assigned_map) {
     setTimeout(() => {
