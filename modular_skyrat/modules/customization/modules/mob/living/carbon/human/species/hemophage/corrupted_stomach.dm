@@ -10,6 +10,7 @@
 		return
 
 	RegisterSignal(corruption_target, COMSIG_STOMACH_AFTER_EAT, PROC_REF(on_stomach_after_eat))
+	corruption_target.add_traits(stomach_traits, SPECIES_TRAIT) // Adds the stomach_traits defined in _hemophage_defines.dm, makes us vomit blood
 
 
 /datum/component/organ_corruption/stomach/UnregisterFromParent()
