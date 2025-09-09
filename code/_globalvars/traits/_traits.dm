@@ -860,7 +860,7 @@ GLOBAL_LIST_INIT(traits_by_type, list(
 		"TRAIT_R_UNIQUETIP" = TRAIT_R_UNIQUETIP,
 		"TRAIT_R_WIDE" = TRAIT_R_WIDE,
 		"TRAIT_R_TALL" = TRAIT_R_TALL,
-		"TRAIT_R_BIG" = TRAIT_R_BIG,
+		"TRAIT_R_BIG" = TRAIT_R_BIG, //BUBBER addition - for big 64x64 borgs (only Dragon at the time of addition)
 		"TRAIT_R_SMALL" = TRAIT_R_SMALL,
 		"TRAIT_R_UNIQUEPANEL" = TRAIT_R_UNIQUEPANEL,
 		"TRAIT_R_SQUADRUPED" = TRAIT_R_SQUADRUPED, //BUBBER addition - for small quadruped 32x32 cyborgs
