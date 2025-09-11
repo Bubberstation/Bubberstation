@@ -161,7 +161,7 @@
 		var/list/obj/item/bodypart/grasped_limbs = list()
 
 		for(var/obj/item/bodypart/body_part as anything in bodyparts)
-			if(body_part.get_modified_bleed_rate())
+			if(body_part.cached_bleed_rate)
 				bleeding_limbs += body_part.plaintext_zone
 			if(body_part.grasped_by)
 				grasped_limbs += body_part.plaintext_zone
@@ -684,10 +684,12 @@
 
 	var/age_text
 	switch(age)
-		if(-INFINITY to 17) // SKYRAT EDIT ADD START -- AGE EXAMINE
+		if(-INFINITY to 17) // BUBBER EDIT ADD START -- AGE EXAMINE
 			age_text = "too young to be here"
 		if(18 to 25)
-			age_text = "a young adult" // SKYRAT EDIT END
+			age_text = "a young adult"
+		if(26 to 35)
+			age_text = "an adult" // BUBBER EDIT END
 		if(36 to 55)
 			age_text = "middle-aged"
 		if(56 to 75)
