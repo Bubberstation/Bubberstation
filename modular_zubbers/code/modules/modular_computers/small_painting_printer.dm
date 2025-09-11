@@ -18,10 +18,8 @@
 /datum/computer_file/program/portrait_printer/mini
 	filename = "portraitprinter_mini"
 	filedesc = "Marlowe Treeby's Art Sharer"
-	//downloader_category = PROGRAM_CATEGORY_EQUIPMENT
 	program_open_overlay = "dummy"
 	extended_desc = "Uses bluespace technology to print off a painting."
-	//download_access = list(ACCESS_LIBRARY)
 	can_run_on_flags = PROGRAM_PDA
 	program_flags = PROGRAM_REQUIRES_NTNET
 
