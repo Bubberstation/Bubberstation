@@ -24,7 +24,7 @@
 	program_flags = PROGRAM_REQUIRES_NTNET
 
 /datum/computer_file/program/portrait_printer/mini/print_painting(selected_painting)
-	..()
+	. = ..()
 	var/datum/painting/chosen_portrait = locate(selected_painting) in SSpersistent_paintings.paintings
 	var/obj/item/wallframe/painting/frame
 	if(is_valid_frame(chosen_portrait) == TRUE)
