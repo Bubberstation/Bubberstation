@@ -17,7 +17,7 @@
 
 /obj/item/modular_computer/mini_painting_printer/Initialize(mapload)
 	. = ..()
-	var/datum/computer_file/program/portrait_printer/mini/printer_prog = find_file_by_name("miniportraitprinter")
+	var/datum/computer_file/program/portrait_printer/mini/printer_prog = find_file_by_name("portraitprinter_mini")
 	active_program = printer_prog
 
 /datum/computer_file/program/portrait_printer/mini
