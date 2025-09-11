@@ -14,7 +14,7 @@
 	slot_flags = ITEM_SLOT_BACK
 	attack_verb_continuous = list("bashes", "smacks", "whacks")
 	attack_verb_simple = list("bash", "smack", "whack")
-	menu_description = "A staff strongly attuned to nature. Doesnt hit as hard, but deals burn damage, also has a chance to transfer your reagents to the target,also functions as a cultivator tool. Wearable in the back."
+	menu_description = "A staff strongly attuned to nature. Doesnt hit as hard, but deals burn damage, also has a chance to transfer your reagents to the target. Wearable in the back."
 
 // Pride hammer reagent transfer effect.
 
