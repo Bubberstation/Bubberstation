@@ -1,3 +1,5 @@
+// Bubber edit, adds gardening recipes
+
 /datum/crafting_recipe/ppflowers
 	name = "Purple and pink flower patch"
 	result = /obj/structure/flora/bush/flowers_pp/style_random
@@ -132,15 +134,3 @@
 	time = 5 SECONDS
 	category = CAT_GARDENING
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF
-
-
-
-
-
-
-
-
-
-
-
-
