@@ -7,8 +7,13 @@
 	starting_programs = list(
 		/datum/computer_file/program/portrait_printer/mini
 	)
+	internal_cell = /obj/item/stock_parts/power_store/cell/crap
 	stored_paper = 10
 	max_paper = 10
+	max_capacity = 1
+	max_idle_programs = 1
+	base_active_power_usage = 0.1 WATTS
+	base_idle_power_usage = 0.1 WATTS
 
 /obj/item/modular_computer/mini_painting_printer/Initialize(mapload)
 	. = ..()
@@ -18,10 +23,12 @@
 /datum/computer_file/program/portrait_printer/mini
 	filename = "portraitprinter_mini"
 	filedesc = "Marlowe Treeby's Art Sharer"
+	size = 1
 	program_open_overlay = "dummy"
 	extended_desc = "Uses bluespace technology to print off a painting."
 	can_run_on_flags = PROGRAM_PDA
 	program_flags = PROGRAM_REQUIRES_NTNET
+	power_cell_use = 0 WATTS
 
 /datum/computer_file/program/portrait_printer/mini/print_painting(selected_painting)
 	. = ..()
