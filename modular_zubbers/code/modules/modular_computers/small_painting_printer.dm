@@ -43,37 +43,6 @@
 	if(computer.stored_paper < 10)
 		QDEL_NULL(computer)
 
-/*
-/datum/computer_file/program/portrait_printer/mini/proc/is_valid_frame(datum/painting/painting)
-	var/obj/structure/sign/painting/temp_frame = new()
-
-	var/obj/item/canvas/temp_canvas = null
-	for(var/canvas_type in temp_frame.accepted_canvas_types)
-		temp_canvas = new canvas_type
-		if(temp_canvas.width == painting.width && temp_canvas.height == painting.height)
-			QDEL_NULL(temp_canvas)
-			QDEL_NULL(temp_frame)
-			return TRUE
-		QDEL_NULL(temp_canvas)
-
-	QDEL_NULL(temp_frame)
-	return FALSE
-
-/datum/computer_file/program/portrait_printer/mini/proc/is_valid_frame_large(datum/painting/painting)
-	var/obj/structure/sign/painting/large/temp_frame = new()
-
-	var/obj/item/canvas/temp_canvas = null
-	for(var/canvas_type in temp_frame.accepted_canvas_types)
-		temp_canvas = new canvas_type
-		if(temp_canvas.width == painting.width && temp_canvas.height == painting.height)
-			QDEL_NULL(temp_canvas)
-			QDEL_NULL(temp_frame)
-			return TRUE
-		QDEL_NULL(temp_canvas)
-
-	QDEL_NULL(temp_frame)
-	return FALSE
-*/
 /datum/computer_file/program/portrait_printer/mini/proc/is_valid_frame(datum/painting/painting)
 	var/obj/structure/sign/painting/temp_frame = new()
 
