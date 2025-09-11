@@ -12,9 +12,6 @@
 
 /obj/item/modular_computer/mini_painting_printer/Initialize(mapload)
 	. = ..()
-	setup_starting_software()
-
-/obj/item/modular_computer/mini_painting_printer/proc/setup_starting_software()
 	var/datum/computer_file/program/portrait_printer/mini/printer_prog = find_file_by_name("miniportraitprinter")
 	active_program = printer_prog
 
