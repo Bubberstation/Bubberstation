@@ -89,6 +89,8 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	gets_cropped_on_taurs = FALSE
 
+//These next four items are by RealWinterFrost of NovaStation.
+
 /obj/item/clothing/under/rank/blueshield/consult
 	name = "blueshield's consulting suit"
 	desc = "A not so tactical uniform, held up to a greater standard of care by the company, tailored to be fancy with its golden trims matching that of the Nanotrasen Consultant. A symbol of unity, cohesion, and an annoyingly massive amount of paperwork."
@@ -145,6 +147,7 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	gets_cropped_on_taurs = FALSE
 
+//By RealWinterFrost of NovaStation.
 /obj/item/clothing/under/rank/nanotrasen_consultant/naval
 	name = "nanotrasen consultant's naval uniform"
 	desc = "An upper level uniform granted to consultants and representatives alike, representing CentCom's grand naval fleet."
@@ -152,7 +155,7 @@
 	can_adjust = FALSE
 
 /*
-*	Bridge Officer
+*	Bridge Officer -- Sprites from RealWinterFrost of NovaStation
 */
 
 /obj/item/clothing/under/rank/bridge_officer
