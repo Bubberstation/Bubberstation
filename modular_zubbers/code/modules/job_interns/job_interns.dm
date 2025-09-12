@@ -96,7 +96,7 @@
 		else
 			stack_trace("[src] client [player_client] checking for playtime resulted in null")
 		return FALSE
-	if(!required_time)
+	if(!required_time && SSjob.get_job(department_head[1])) //Jobs lacking a department head shouldn't runtime
 		stack_trace("[src] job failed to set intern time threshold")
 		return FALSE
 	if(playtime >= required_time)
