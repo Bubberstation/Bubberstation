@@ -47,7 +47,7 @@ export const CATEGORY_ICONS_CRAFTING = {
   Containers: 'briefcase',
   Tools: 'screwdriver-wrench',
   Entertainment: 'masks-theater',
-  Gardening: 'wheat-awn',
+  Gardening: 'wheat-awn', // BUBBER EDIT ADDITION - Gardening Category
   'Blood Cult': 'users',
 } as const;
 
