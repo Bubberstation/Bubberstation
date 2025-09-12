@@ -17,17 +17,18 @@
 	weighted_mob_spawn_list = list(
 		/mob/living/basic/mining/cazador = 10,
 		/mob/living/basic/mining/scorpion = 40,
-		/obj/effect/decal/cleanable/ants/fire = 50
+		/obj/effect/decal/cleanable/ants/fire = 50,
+		/mob/living/basic/mining/moonsnake = 20
 	)
 
 	weighted_feature_spawn_list = list(
 		/obj/structure/geyser/random = 4,
-		/obj/structure/ore_vent/random/moonstation = 1
+		/obj/structure/antfarm/natural = 1
 	)
 
 	flora_spawn_chance = 4
 	feature_spawn_chance = 0.1
-	mob_spawn_chance = 0.5
+	mob_spawn_chance = 0.3
 	initial_closed_chance = 30
 	smoothing_iterations = 50
 	birth_limit = 4
@@ -47,17 +48,16 @@
 
 	weighted_mob_spawn_list = list(
 		/mob/living/basic/mining/basilisk = 20,
-		/mob/living/basic/mining/bileworm = 30,
 		/obj/effect/spawner/random/lavaland_mob/goliath = 10,
-		/obj/effect/spawner/random/lavaland_mob/legion = 20,
 		/mob/living/basic/mining/watcher = 30,
-		/mob/living/basic/mining/goldgrub = 10,
 		/mob/living/basic/mining/brimdemon = 10,
-		/obj/structure/spawner/mining/goliath = 5
+		/obj/structure/spawner/mining/goliath = 3,
+		/mob/living/basic/mining/moonsnake = 20
 	)
 
 	weighted_flora_spawn_list = list(
-		/obj/structure/flora/rock/style_random = 5,
+		/obj/structure/flora/rock/style_random = 20,
+		/obj/structure/flora/rock/pile/style_random = 20,
 		/obj/structure/flora/ash/cap_shroom = 10,
 		/obj/structure/flora/ash/leaf_shroom = 5,
 		/obj/structure/flora/ash/stem_shroom = 5,
@@ -65,17 +65,11 @@
 	)
 
 	weighted_feature_spawn_list = list(
-		/obj/structure/ore_vein/diamond = 1,
-		/obj/structure/ore_vein/gold = 4,
-		/obj/structure/ore_vein/iron = 40,
-		/obj/structure/ore_vein/plasma = 15,
-		/obj/structure/ore_vein/silver = 6,
-		/obj/structure/ore_vein/stone = 80,
 		/obj/structure/ore_vent/random/moonstation/cave = 100
 	)
 
 	flora_spawn_chance = 2
-	feature_spawn_chance = 0.8
+	feature_spawn_chance = 0.4
 	mob_spawn_chance = 1.5
 	initial_closed_chance = 40
 	smoothing_iterations = 50
