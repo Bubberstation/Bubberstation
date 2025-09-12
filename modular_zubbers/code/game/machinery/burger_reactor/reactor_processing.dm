@@ -1,86 +1,72 @@
 /obj/machinery/power/rbmk2/process()
 
-	var/turf/T = loc
-	if(!isturf(T))
-		update_appearance(UPDATE_ICON)
-		return //wat
+	if(!stored_rod || !active)
+		return
 
-	if(!stored_rod)
-		update_appearance(UPDATE_ICON)
+	if(!T)
 		return
 
 	var/datum/gas_mixture/rod_mix = stored_rod.air_contents
-	if(!rod_mix || !rod_mix.gases)
-		update_appearance(UPDATE_ICON)
-		return
-
 	var/rod_mix_pressure = rod_mix.return_pressure()
 	var/rod_mix_heat_capacity = rod_mix.heat_capacity()
 
-	if(!active) //We're turned off.
-		meltdown = FALSE //Sometimes, this thing can be set to inactive due to running out of gas and other memes, thus this is fine to exist and is totally not a bandaid solution to potential future fuckery.
-		update_appearance(UPDATE_ICON)
-		return
-
+	//Amount of tritium to consume.
 	var/amount_to_consume = (gas_consumption_base + (rod_mix.temperature/1000)*gas_consumption_heat) * clamp(1 - (rod_mix_pressure - stored_rod.pressure_limit*0.5)/stored_rod.pressure_limit*0.5,0.25,1)
-	if(!amount_to_consume)
-		update_appearance(UPDATE_ICON)
-		return
-	amount_to_consume *= (overclocked ? 1.25 : 1)*(0.75 + power_efficiency*0.25)*(obj_flags & EMAGGED ? 10 : 1)
+	if(overclocked)
+		amount_to_consume *= 1.25
+	if(obj_flags & EMAGGED)
+		amount_to_consume *= 10
 
 	//Remove gas from the rod to be processed.
 	rod_mix.assert_gas(/datum/gas/tritium)
 	var/datum/gas_mixture/consumed_mix = rod_mix.remove_specific(/datum/gas/tritium,amount_to_consume)
 
-	if(!consumed_mix)
-		toggle_active(null,FALSE)
-		update_appearance(UPDATE_ICON)
+	if(!consumed_mix || !consumed_mix.gases || !consumed_mix.gases[/datum/gas/tritium])
+		if(meltdown) //If we're melting down, and we run out of tritium, trigger a voidout.
+			trigger_voidout()
+		else
+			toggle_active(null,FALSE)
 		return
 
-	//Do power generation here.
-	if(consumed_mix.gases && consumed_mix.gases[/datum/gas/tritium])
-		consumed_mix.assert_gas(/datum/gas/tritium)
-		last_tritium_consumption = consumed_mix.gases[/datum/gas/tritium][MOLES]
-		last_power_generation = last_tritium_consumption * power_efficiency * base_power_generation * (overclocked ? 0.9 : 1) //Overclocked consumes more, but generates less.
-		//This is where the fun begins.
-		// https://www.desmos.com/calculator/ffcsaaftzz
-		last_power_generation *= (1 + max(0,(rod_mix.temperature - T0C)/1500)**1.4)*(0.75 + (amount_to_consume/gas_consumption_base)*0.25)
+	//Consume the tritium. Power (and heat) is generated based on how much is consumed.
+	consumed_mix.assert_gas(/datum/gas/tritium)
+	last_tritium_consumption = consumed_mix.gases[/datum/gas/tritium][MOLES]
+	last_power_generation = last_tritium_consumption * power_efficiency * base_power_generation * (overclocked ? 0.9 : 1) //Overclocked consumes more, but generates less.
 
-		var/range_cap = CEILING(GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE * 0.5, 1)
-		if(meltdown)
-			last_radiation_pulse = min( last_power_generation*0.002, range_cap) //Double the rads, double the fun.
-		else
-			last_radiation_pulse = min( last_power_generation*0.001, range_cap)
+	//This is where the fun begins.
+	// https://www.desmos.com/calculator/ffcsaaftzz
+	last_power_generation *= (1 + max(0,(rod_mix.temperature - T0C)/1500)**1.4)*(0.75 + (amount_to_consume/gas_consumption_base)*0.25)
 
-		var/insulation_threshold_math = (range_cap - last_radiation_pulse) / range_cap
-
-		//The LOWER the insulation_threshold, the stronger the radiation can penetrate.
-		//Values closer to the maximum range penetrate the most.
-		//Don't bother making radiation if it isn't significiant enough.
-		if(insulation_threshold_math <= RAD_LIGHT_INSULATION)
-			if(meltdown)
-				insulation_threshold_math = max(insulation_threshold_math - 0.25, RAD_FULL_INSULATION) //Go as low as possible. Nothing is safe from the RBMK.
-			else
-				insulation_threshold_math = max(insulation_threshold_math, RAD_EXTREME_INSULATION) //Don't go under RAD_EXTREME_INSULATION
-			radiation_pulse(src,last_radiation_pulse, threshold = insulation_threshold_math)
-
-		if(power && powernet && last_power_generation)
-			src.add_avail(min(last_power_generation,max_power_generation*10))
-		consumed_mix.remove_specific(/datum/gas/tritium, last_tritium_consumption*0.50) //50% of used tritium gets deleted. The rest gets thrown into the air.
-		var/our_heat_capacity = consumed_mix.heat_capacity()
-		if(our_heat_capacity > 0)
-			var/temperature_mod = last_power_generation >= max_power_generation ? 4 : 1
-			consumed_mix.assert_gas(/datum/gas/goblin)
-			consumed_mix.gases[/datum/gas/goblin][MOLES] += last_tritium_consumption*goblin_multiplier
-			consumed_mix.temperature += (temperature_mod-rand())*8 + (16000/our_heat_capacity)*(overclocked ? 2 : 1)*power_efficiency*temperature_mod*0.5*(1/(vent_pressure/200))
-			consumed_mix.temperature = clamp(consumed_mix.temperature,5,0xFFFFFF)
-
-		if(rod_mix_pressure >= stored_rod.pressure_limit*(1 + rand()*0.25)) //Pressure friction penalty.
-			rod_mix.temperature += (min(rod_mix_pressure/stored_rod.pressure_limit,4) - 1) * (3/rod_mix_heat_capacity)
-			rod_mix.temperature = clamp(rod_mix.temperature,5,0xFFFFFF)
-
+	var/range_cap = CEILING(GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE * 0.5, 1)
+	if(meltdown)
+		last_radiation_pulse = min( last_power_generation*0.002, range_cap) //Double the rads, double the fun.
 	else
-		toggle_active(null,FALSE)
+		last_radiation_pulse = min( last_power_generation*0.001, range_cap)
+
+
+	//The LOWER the insulation_threshold, the stronger the radiation can penetrate.
+	//Values closer to the maximum range penetrate the most.
+	var/insulation_threshold_math = (range_cap - last_radiation_pulse) / range_cap
+	if(insulation_threshold_math <= RAD_LIGHT_INSULATION) //Don't bother making radiation if it isn't significant enough.
+		if(meltdown)
+			insulation_threshold_math = max(insulation_threshold_math - 0.25, RAD_FULL_INSULATION) //Go as low as possible. Nothing is safe from the RBMK.
+		else
+			insulation_threshold_math = max(insulation_threshold_math, RAD_EXTREME_INSULATION) //Don't go under RAD_EXTREME_INSULATION
+		radiation_pulse(src,last_radiation_pulse, threshold = insulation_threshold_math)
+
+	consumed_mix.remove_specific(/datum/gas/tritium, last_tritium_consumption*0.50) //50% of used tritium gets deleted. The rest gets thrown into the air.
+	var/our_heat_capacity = consumed_mix.heat_capacity()
+	if(our_heat_capacity > 0)
+		var/temperature_mod = last_power_generation >= max_power_generation ? 4 : 1
+		consumed_mix.assert_gas(/datum/gas/goblin)
+		consumed_mix.gases[/datum/gas/goblin][MOLES] += last_tritium_consumption*goblin_multiplier
+		consumed_mix.temperature += (temperature_mod-rand())*8 + (16000/our_heat_capacity)*(overclocked ? 2 : 1)*power_efficiency*temperature_mod*0.5*(1/(vent_pressure/200))
+		consumed_mix.temperature = clamp(consumed_mix.temperature,5,0xFFFFFF)
+
+	if(rod_mix_pressure >= stored_rod.pressure_limit*(1 + rand()*0.25)) //Pressure friction penalty.
+		rod_mix.temperature += (min(rod_mix_pressure/stored_rod.pressure_limit,4) - 1) * (3/rod_mix_heat_capacity)
+		rod_mix.temperature = clamp(rod_mix.temperature,5,0xFFFFFF)
+
 
 	//The gases that we consumed go into the buffer, to be released in the air.
 	buffer_gases.merge(consumed_mix)
@@ -108,13 +94,18 @@
 			meltdown = TRUE
 		var/chosen_sound = pick('modular_zubbers/sound/machines/rbmk2/failure01.ogg','modular_zubbers/sound/machines/rbmk2/failure02.ogg','modular_zubbers/sound/machines/rbmk2/failure03.ogg','modular_zubbers/sound/machines/rbmk2/failure04.ogg')
 		playsound(src, chosen_sound, 50, TRUE, extrarange = -3)
-		take_damage(2,armour_penetration=100) //Lasts 5 minutes. Probably less due to other factors.
+		var/damage_to_deal = clamp( last_power_generation / max_power_generation, 1, 10)
+		take_damage(damage_to_deal,armour_penetration=100)
 		src.Shake(duration=0.5 SECONDS)
-	else if(meltdown && rod_mix.temperature <= stored_rod.temperature_limit*0.75 && last_power_generation <= max_power_generation*0.5) //Hard to get out of a meltdown.
+	else if(meltdown && rod_mix.temperature <= stored_rod.temperature_limit*0.75 && last_power_generation <= max_power_generation*0.75) //Hard to get out of a meltdown. Needs that 25% buffer.
 		meltdown = FALSE
 
+	if(power && powernet && last_power_generation)
+		if(last_power_generation >= max_power_generation*5)
+			last_power_generation *= rand()*0.25 // (Mostly) stops crazy power generation from happening.
+		src.add_avail(last_power_generation)
 
-	update_appearance(UPDATE_ICON)
+	update_appearance(UPDATE_OVERLAYS)
 
 	return TRUE
 

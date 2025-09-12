@@ -41,6 +41,9 @@
 
 	COOLDOWN_DECLARE(search_cooldown)
 
+	pixel_x = -16
+	pixel_y = -16
+
 /obj/effect/voidout/Initialize(mapload)
 	. = ..()
 	if(!kill_target)
