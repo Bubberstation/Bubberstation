@@ -3,6 +3,8 @@
 	if(!stored_rod || !active)
 		return
 
+	var/turf/T = get_turf(src)
+
 	if(!T)
 		return
 
