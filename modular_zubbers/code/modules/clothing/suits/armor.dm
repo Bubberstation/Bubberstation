@@ -106,31 +106,17 @@
 	. = ..()
 	allowed += GLOB.security_vest_allowed
 
-/obj/item/clothing/head/helmet/elder_atmosian
-	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT | STACKABLE_HELMET_EXEMPT
-	heat_protection = HEAD
-	cold_protection = HEAD
-	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
-	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
-	resistance_flags = FIRE_PROOF
-
-/datum/armor/helmet_elder_atmosian
-	melee = 40
-	bullet = 30
-	laser = 40
-	energy = 40
-	bomb = 100
-	bio = 20
-	fire = 100
-	acid = 50
-	wound = 25
-
 /obj/item/clothing/suit/armor/elder_atmosian
+	desc = "The pinnacle of atmospherics equipment, an expensive modified atmospherics firesuit plated in one of the most luxurious and durable metals known to man. Providing full atmos coverage without the heavy materials of the firesuit to slow the user down, it also offers far greater protection to most sources of damage."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/armor_digi.dmi'
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF
-	flags_inv = HIDEJUMPSUIT | HIDESHOES | HIDEGLOVES
+	flags_inv = HIDEJUMPSUIT | HIDESHOES | HIDEGLOVES | HIDETAIL
+
 /obj/item/clothing/suit/armor/elder_atmosian/Initialize(mapload)
 	. = ..()
 	allowed += list(
@@ -143,7 +129,8 @@
 	laser = 40
 	energy = 40
 	bomb = 100
-	bio = 20
+	bio = 50
 	fire = 100
 	acid = 50
 	wound = 25
+// sprited by @toriate on discord
