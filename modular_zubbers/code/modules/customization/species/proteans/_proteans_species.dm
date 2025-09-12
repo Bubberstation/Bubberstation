@@ -18,7 +18,7 @@
 	mutantheart = /obj/item/organ/heart/protean
 	mutantstomach = /obj/item/organ/stomach/protean
 	mutantlungs = null
-	mutantliver = null
+	mutantliver = /obj/item/organ/liver/protean
 	mutantappendix = null
 	mutanteyes = /obj/item/organ/eyes/robotic/protean
 	mutantears = /obj/item/organ/ears/cybernetic/protean
@@ -44,7 +44,6 @@
 
 		// Needed to exist without dying and robot specific stuff.
 		TRAIT_NOBREATH,
-		TRAIT_LIVERLESS_METABOLISM,
 		TRAIT_ROCK_EATER,
 		TRAIT_STABLEHEART, // TODO: handle orchestrator code
 		TRAIT_NOHUNGER, // They will have metal stored in the stomach. Fuck nutrition code.
@@ -57,6 +56,7 @@
 		TRAIT_SYNTHETIC, // Not used in any code, but just in case
 		TRAIT_TOXIMMUNE,
 		TRAIT_NEVER_WOUNDED, // Does not wound.
+		TRAIT_VIRUSIMMUNE, // So they can't roll for fake virus, they can't get sick anyways
 
 		// Extra cool stuff
 		TRAIT_RADIMMUNE,
@@ -71,13 +71,15 @@
 	)
 
 	inherent_biotypes = MOB_ROBOTIC | MOB_HUMANOID
-	reagent_flags = null
+	reagent_flags = PROCESS_PROTEAN
 
 	/// Reference to the
 	var/obj/item/mod/control/pre_equipped/protean/species_modsuit
 
 	/// Reference to the species owner
 	var/mob/living/carbon/human/owner
+	var/list/organ_slots = list(ORGAN_SLOT_BRAIN, ORGAN_SLOT_HEART, ORGAN_SLOT_STOMACH, ORGAN_SLOT_EYES)
+	language_prefs_whitelist = list(/datum/language/monkey)
 
 /mob/living/carbon/human/species/protean
 	race = /datum/species/protean
@@ -92,6 +94,7 @@
 	owner = gainer
 	equip_modsuit(gainer)
 	RegisterSignal(src, COMSIG_OUTFIT_EQUIP, PROC_REF(outfit_handling))
+	RegisterSignal(owner, COMSIG_CARBON_GAIN_ORGAN, PROC_REF(organ_reject))
 	var/obj/item/mod/core/protean/core = species_modsuit.core
 	core?.linked_species = src
 	var/static/protean_verbs = list(
@@ -103,8 +106,29 @@
 	)
 	add_verb(gainer, protean_verbs)
 
+/datum/species/protean/proc/organ_reject(mob/living/source, obj/item/organ/inserted)
+	SIGNAL_HANDLER
+
+	if(isnull(source))
+		return
+	var/obj/item/organ/insert_organ = inserted
+	if(!(insert_organ.slot in organ_slots))
+		return
+	if(insert_organ.organ_flags & (ORGAN_ROBOTIC | ORGAN_NANOMACHINE | ORGAN_UNREMOVABLE))
+		return
+	addtimer(CALLBACK(src, PROC_REF(reject_now), source, inserted), 1 SECONDS)
+
+/datum/species/protean/proc/reject_now(mob/living/source, obj/item/organ/organ)
+
+	organ.Remove(source)
+	organ.forceMove(get_turf(source))
+	to_chat(source, span_danger("Your mass rejected [organ]!"))
+	organ.balloon_alert_to_viewers("rejected!", vision_distance = 1)
+
 /datum/species/protean/on_species_loss(mob/living/carbon/human/gainer, datum/species/new_species, pref_load)
 	. = ..()
+	if(gainer)
+		UnregisterSignal(owner, COMSIG_CARBON_GAIN_ORGAN)
 	if(species_modsuit.stored_modsuit)
 		species_modsuit.unassimilate_modsuit(owner, TRUE)
 	gainer.dropItemToGround(species_modsuit, TRUE)

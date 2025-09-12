@@ -50,7 +50,7 @@
 
 /datum/loadout_item/shoes/rax_armadyne_boots
 	name = "Tactical Boots"
-	item_path = /obj/item/clothing/shoes/combat/rax
+	item_path = /obj/item/clothing/shoes/jackboots/peacekeeper/armadyne/rax
 	//ckeywhitelist = list("raxraus")
 
 /datum/loadout_item/suit/rax_peacekeeper_jacket
@@ -250,7 +250,7 @@
 
 /datum/loadout_item/pocket_items/darksabresheath
 	name = "Dark Sabre Sheath"
-	item_path = /obj/item/storage/belt/sabre/darksabre
+	item_path = /obj/item/storage/belt/sheath/sabre/darksabre
 	//ckeywhitelist = list("inferno707")
 
 /datum/loadout_item/pocket_items/darkarmor
@@ -753,12 +753,6 @@
 	name = "Cat-Ear Headphones"
 	item_path = /obj/item/instrument/piano_synth/headphones/catear_headphone
 	//ckeywhitelist = list("dtfe")
-
-/datum/loadout_item/neck/trenchcoat
-	name = "Graceful Trenchcoat"
-	item_path = /obj/item/clothing/neck/trenchcoat
-	ckeywhitelist = list("Smol42", "Awers855")
-	can_be_reskinned = TRUE
 
 /datum/loadout_item/uniform/old_qm_jumpskirt
 	name = "Old Quartermaster's Jumpskirt"

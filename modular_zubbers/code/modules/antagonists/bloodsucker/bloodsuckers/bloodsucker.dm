@@ -3,10 +3,9 @@
 	show_in_antagpanel = TRUE
 	roundend_category = "bloodsuckers"
 	antagpanel_category = "Bloodsucker"
-	job_rank = ROLE_BLOODSUCKER
+	pref_flag = ROLE_BLOODSUCKER
 	antag_hud_name = "bloodsucker"
 	show_name_in_check_antagonists = TRUE
-	can_coexist_with_others = FALSE
 	hijack_speed = 0.5
 	hud_icon = 'modular_zubbers/icons/mob/huds/bloodsucker.dmi'
 	ui_name = "AntagInfoBloodsucker"

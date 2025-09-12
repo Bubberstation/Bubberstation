@@ -9,7 +9,6 @@
 /datum/preference/choiced/digitigrade_legs/create_default_value()
 	return NORMAL_LEGS
 
-
 /datum/preference/choiced/digitigrade_legs/init_possible_values()
 	return list(NORMAL_LEGS, DIGITIGRADE_LEGS)
 
@@ -25,21 +24,18 @@
  * * preferences - The relevant character preferences.
  */
 /datum/preference/choiced/digitigrade_legs/proc/is_usable(datum/preferences/preferences)
-	var/species_type = preferences.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
-
-	return (savefile_key in species.get_features()) \
-		&& species.digitigrade_customization == DIGITIGRADE_OPTIONAL
+	var/datum/species/species_type = preferences.read_preference(/datum/preference/choiced/species)
+	return initial(species_type.digitigrade_customization) == DIGITIGRADE_OPTIONAL
 
 /datum/preference/choiced/digitigrade_legs/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	if(!preferences || !is_usable(preferences))
 		return FALSE
 
-	var/old_value = target.dna.features["legs"]
+	var/old_value = target.dna.features[FEATURE_LEGS]
 	if(value == old_value)
 		return FALSE
 
-	target.dna.features["legs"] = value
+	target.dna.features[FEATURE_LEGS] = value
 
 	if(value == DIGITIGRADE_LEGS)
 		target.dna.species.try_make_digitigrade(target)

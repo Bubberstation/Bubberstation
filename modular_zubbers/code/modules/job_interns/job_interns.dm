@@ -78,7 +78,7 @@
 			return FALSE
 		playtime = play_records[title] ? text2num(play_records[title]) : 0
 		required_time = get_intern_time_threshold()
-	else if(CONFIG_GET(flag/use_intern_master_job_unlock_threshold) && length(department_head))
+	else if(CONFIG_GET(flag/use_intern_master_job_unlock_threshold) && length(department_head) && SSjob.get_job(department_head[1]))
 		// Use first department head job as our master job to compare to
 		var/datum/job/master_job = SSjob.get_job(department_head[1])
 		playtime = player_client?.calc_exp_type(master_job.get_exp_req_type())
@@ -96,7 +96,7 @@
 		else
 			stack_trace("[src] client [player_client] checking for playtime resulted in null")
 		return FALSE
-	if(!required_time)
+	if(!required_time && SSjob.get_job(department_head[1])) //Jobs lacking a department head shouldn't runtime
 		stack_trace("[src] job failed to set intern time threshold")
 		return FALSE
 	if(playtime >= required_time)
@@ -137,4 +137,7 @@
 	internship_use_self_exp_type = TRUE
 
 /datum/job/prisoner
+	can_be_intern = FALSE
+
+/datum/job/assistant
 	can_be_intern = FALSE

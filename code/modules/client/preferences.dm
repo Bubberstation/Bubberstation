@@ -105,8 +105,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		middleware += new middleware_type(src)
 
 	if(IS_CLIENT_OR_MOCK(parent))
-		load_and_save = !is_guest_key(parent.key)
-		load_path(parent.ckey)
+		if(is_guest_key(parent.key))
+			if(parent.is_localhost())
+				path = DEV_PREFS_PATH // guest + locallost = dev instance, load dev preferences if possible
+			else
+				load_and_save = FALSE // guest + not localhost = guest on live, don't save anything
+		else
+			load_path(parent.ckey) // not guest = load their actual savefile
 		if(load_and_save && !fexists(path))
 			try_savefile_type_migration()
 
@@ -479,7 +484,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/canvas_state = preferences.read_preference(/datum/preference/choiced/background_state)
 
 	// Being a taur, or over 1.1 scales it up
-	if (body.dna.mutant_bodyparts["taur"] && body.dna.mutant_bodyparts["taur"]["name"] != "None")
+	if (body.dna.mutant_bodyparts[FEATURE_TAUR] && body.dna.mutant_bodyparts[FEATURE_TAUR][MUTANT_INDEX_NAME] != "None")
 		canvas_size = 1
 	else if (!isnull(body.dna.features["body_size"]) && body.dna.features["body_size"] > 1.1)
 		canvas_size = 1

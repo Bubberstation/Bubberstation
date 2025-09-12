@@ -121,8 +121,8 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 
 	var/original_message = message
 	message = get_message_mods(message, message_mods)
-	saymode = SSradio.saymodes[message_mods[RADIO_KEY]]
-	if (!forced && !saymode)
+	saymode = SSradio.get_available_say_mode(src, message_mods[RADIO_KEY])
+	if(!forced && (isnull(saymode) || saymode.allows_custom_say_emotes))
 		message = check_for_custom_say_emote(message, message_mods)
 
 	if(!message)
@@ -157,7 +157,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 			if(!message_mods[WHISPER_MODE])
 				return
 		if(DEAD)
-			say_dead(original_message)
+			say_dead(original_message, message_mods[MANNEQUIN_CONTROLLED])
 			return
 
 	if(HAS_TRAIT(src, TRAIT_SOFTSPOKEN) && !HAS_TRAIT(src, TRAIT_SIGN_LANG)) // softspoken trait only applies to spoken languages
@@ -176,15 +176,10 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 
 	var/succumbed = FALSE
 
-	// If there's a custom say emote it gets logged differently.
-	if(message_mods[MODE_CUSTOM_SAY_EMOTE])
-		log_message(message_mods[MODE_CUSTOM_SAY_EMOTE], LOG_RADIO_EMOTE)
-
 	// If it's not erasing the input portion, then something is being said and this isn't a pure custom say emote.
 	if(!message_mods[MODE_CUSTOM_SAY_ERASE_INPUT])
 		if(message_mods[WHISPER_MODE] == MODE_WHISPER)
 			message_range = 1
-			log_talk(message, LOG_WHISPER, forced_by = forced, custom_say_emote = message_mods[MODE_CUSTOM_SAY_EMOTE])
 			if(stat == HARD_CRIT)
 				var/health_diff = round(-HEALTH_THRESHOLD_DEAD + health)
 				// If we cut our message short, abruptly end it with a-..
@@ -194,8 +189,8 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 				last_words = message
 				message_mods[WHISPER_MODE] = MODE_WHISPER_CRIT
 				succumbed = TRUE
-		else
-			log_talk(message, LOG_SAY, forced_by = forced, custom_say_emote = message_mods[MODE_CUSTOM_SAY_EMOTE])
+
+	log_sayverb_talk(message, message_mods, forced_by = forced)
 
 #ifdef UNIT_TESTS
 	// Saves a ref() to our arglist specifically.
@@ -241,7 +236,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 		message = autopunct_bare(message)
 	// SKYRAT EDIT ADDITION END
 	//This is before anything that sends say a radio message, and after all important message type modifications, so you can scumb in alien chat or something
-	if(saymode && !saymode.handle_message(src, message, language))
+	if(saymode && (saymode.handle_message(src, message, spans, language, message_mods) & SAYMODE_MESSAGE_HANDLED))
 		return
 
 	var/radio_return = radio(message, message_mods, spans, language)//roughly 27% of living/say()'s total cost
@@ -269,12 +264,12 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	send_speech(message, message_range, src, bubble_type, spans, language, message_mods, forced = forced, tts_message = tts_message, tts_filter = tts_filter)//roughly 58% of living/say()'s total cost
 	if(succumbed)
 		succumb(TRUE)
-		to_chat(src, compose_message(src, language, message, , spans, message_mods))
+		to_chat(src, compose_message(src, language, message, null, null, null, spans, message_mods))
 
 	return TRUE
 
 
-/mob/living/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods = list(), message_range=0)
+/mob/living/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range=0)
 	if((SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_HEAR, args) & COMSIG_MOVABLE_CANCEL_HEARING) || !GET_CLIENT(src))
 		return FALSE
 
@@ -342,7 +337,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	SEND_SIGNAL(src, COMSIG_MOVABLE_HEAR, args)
 
 	if(speaker_is_signing) //Checks if speaker is using sign language
-		deaf_message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mods, TRUE)
+		deaf_message = compose_message(speaker, message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, spans, message_mods, TRUE)
 
 		if(speaker != src)
 			if(!radio_freq) //I'm about 90% sure there's a way to make this less cluttered
@@ -381,7 +376,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 			create_chat_message(speaker, message_language, raw_message, spans)
 
 	// Recompose message for AI hrefs, language incomprehension.
-	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mods)
+	message = compose_message(speaker, message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, spans, message_mods)
 	var/show_message_success = show_message(message, MSG_AUDIBLE, deaf_message, deaf_type, avoid_highlight)
 	return understood && show_message_success
 
@@ -427,7 +422,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 			stack_trace("somehow theres a null returned from get_hearers_in_view() in send_speech!")
 			continue
 
-		if(listening_movable.Hear(null, src, message_language, message_raw, null, spans, message_mods, message_range))
+		if(listening_movable.Hear(null, src, message_language, message_raw, null, null, null, spans, message_mods, message_range))
 			listened += listening_movable
 
 	//speech bubble

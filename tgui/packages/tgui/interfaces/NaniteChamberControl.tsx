@@ -11,7 +11,7 @@ import {
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-import { NaniteProgram } from './Nanites/types';
+import type { NaniteProgram } from './Nanites/types';
 
 export const NaniteChamberControl = (props, context) => {
   return (
@@ -61,7 +61,7 @@ export const NaniteChamberControlContent = () => {
 
   return (
     <Section
-      title={'Chamber: ' + occupant_name}
+      title={`Chamber: ${occupant_name}`}
       buttons={
         <Button
           icon={locked ? 'lock' : 'lock-open'}

@@ -22,6 +22,12 @@
 	/// Are we taking damage?
 	var/life_support_failed = FALSE
 
+/datum/quirk/equipping/entombed/add(client/client_source)
+	if(modsuit) return
+	modsuit = quirk_holder.get_item_by_slot(ITEM_SLOT_BACK)
+	if(!istype(modsuit))
+		modsuit = null
+
 /datum/quirk/equipping/entombed/process(seconds_per_tick)
 	var/mob/living/carbon/human/human_holder = quirk_holder
 	if(human_holder.stat == DEAD)
@@ -33,6 +39,7 @@
 			// we've got no modsuit or life support and we're not on stasis. take damage ow
 			human_holder.adjustToxLoss(ENTOMBED_TICK_DAMAGE * seconds_per_tick, updating_health = TRUE, forced = TRUE)
 			human_holder.set_jitter_if_lower(10 SECONDS)
+			return
 
 	if (!modsuit.active)
 		if (!life_support_timer)
@@ -90,6 +97,7 @@
 		modsuit_skin = "civilian"
 
 	modsuit.skin = LOWER_TEXT(modsuit_skin)
+	add_unique_skin()
 
 	var/modsuit_name = client_source?.prefs.read_preference(/datum/preference/text/entombed_mod_name)
 	if (modsuit_name)
@@ -116,12 +124,30 @@
 		if (old_bag.atom_storage)
 			old_bag.atom_storage.dump_content_at(modsuit, modsuit.get_dumping_location(), human_holder)
 
+/datum/quirk/equipping/entombed/proc/add_unique_skin() // Let's all agree: this is snowflakey. But I just want entombed players not to complain, sue me.
+	var/skin_override
+	var/mob_override
+	var/list/parts = modsuit.get_parts()
+	if (modsuit.skin == "lustwish")
+		skin_override = 'modular_zubbers/icons/obj/clothing/modsuit/mod_lustwish.dmi'
+		mob_override = 'modular_zubbers/icons/mob/clothing/modsuit/mod_lustwish.dmi'
+
+	if(isnull(skin_override) || isnull(mob_override))
+		return
+
+	for(var/obj/item/part as anything in parts + modsuit)
+		part.icon = skin_override
+		part.worn_icon = mob_override
+		modsuit.wearer?.update_clothing(part.slot_flags)
+
 /datum/quirk/equipping/entombed/post_add()
 	. = ..()
 	// quickly deploy it on roundstart. we can't do this in add_unique because that gets called in the preview screen, which overwrites people's loadout stuff in suit/shoes/gloves slot. very unfun for them
 	modsuit.quick_activation()
 
 /datum/quirk/equipping/entombed/remove()
+	if(!cleanup)
+		return
 	var/mob/living/carbon/human/human_holder = quirk_holder
 	if (deploy_locked && HAS_TRAIT_FROM(human_holder, TRAIT_NODISMEMBER, QUIRK_TRAIT))
 		REMOVE_TRAIT(human_holder, TRAIT_NODISMEMBER, QUIRK_TRAIT)
@@ -170,6 +196,7 @@
 		"Mining",
 		"Prototype",
 		"Security",
+		"Lustwish"
 	)
 
 /datum/preference/choiced/entombed_skin/create_default_value()

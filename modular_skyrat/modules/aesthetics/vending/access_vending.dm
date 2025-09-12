@@ -36,7 +36,7 @@
 	if(issilicon(user))
 		return // Silicons get to view all items regardless
 
-	.["product_records"] = list() // Vending machine code is bad; I hate it
+	.["product_records"] = list()
 	if(!iscarbon(user))
 		return
 
@@ -49,14 +49,24 @@
 	for (var/datum/data/vending_product/record in product_records)
 		if(!allow_purchase(user_id, record.product_path))
 			continue
-		var/list/data = list(
+		var/list/static_record = list(
 			path = replacetext(replacetext("[record.product_path]", "/obj/item/", ""), "/", "-"),
 			name = record.name,
-			price = record.price || default_price,
+			price = record.price,
 			max_amount = record.max_amount,
-			ref = REF(record)
+			ref = REF(record),
 		)
-		.["product_records"] += list(data)
+
+		var/atom/printed = record.product_path
+		// If it's not GAGS and has no innate colors we have to care about, we use DMIcon
+		if(ispath(printed, /atom) \
+			&& (!initial(printed.greyscale_config) || !initial(printed.greyscale_colors)) \
+			&& !initial(printed.color) \
+		)
+			static_record["icon"] = initial(printed.icon)
+			static_record["icon_state"] = initial(printed.icon_state)
+
+		.["product_records"] += list(static_record)
 
 /// Check if the list of given access is allowed to purchase the given product
 /obj/machinery/vending/access/proc/allow_purchase(obj/item/card/id/user_id, product_path)

@@ -297,27 +297,38 @@
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /mob/living/silicon/robot/proc/ninjadrain_charge(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
-	//SKYRAT EDIT: ADDITION START
+	//BUBBER ADDITION BEGIN - Role selection
 	var/list/modelselected = list()
 	modelselected["Assault"] = "/obj/item/robot_model/ninja"
 	modelselected["Medical"] = "/obj/item/robot_model/ninja/ninja_medical"
 	modelselected["Saboteur"] = "/obj/item/robot_model/ninja_saboteur"
-	//SKYRAT EDIT: ADDITION END
+	//BUBBER ADDITION END - Role selection
 	if(!do_after(ninja, 6 SECONDS, target = src, hidden = TRUE))
 		return
 	spark_system.start()
 	playsound(loc, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	//BUBBER ADDITION BEGIN - No ai shells
+	if(shell)
+		ResetModel()
+		return TRUE
+	//BUBBER ADDITION END
 	to_chat(src, span_danger("UPLOAD COMPLETE. NEW CYBORG MODEL DETECTED.  INSTALLING..."))
 	faction = list(ROLE_NINJA)
 	bubble_icon = "syndibot"
 	UnlinkSelf()
+	//BUBBER ADDITION BEGIN - Harder to unsubvert ninja borgs
+	scrambledcodes = TRUE
+	SetEmagged(TRUE)
+	//BUBBER ADDITION END
 	ionpulse = TRUE
 	laws = new /datum/ai_laws/ninja_override()
-	//SKYRAT EDIT CHANGE BEGIN - Role Selection
+	//BUBBER ADDITION BEGIN - Role Selection
 	//model.transform_to(pick(/obj/item/robot_model/syndicate, /obj/item/robot_model/syndicate_medical, /obj/item/robot_model/saboteur)) - SKYRAT EDIT - ORIGINAL
-	var/choice = input(src,"What role do you wish to become?","Select Role") in sort_list(modelselected)
+	var/choice = tgui_input_list(src, "What role do you wish to become?","Select Role", modelselected)
+	if(!choice)
+		choice = pick(modelselected)
 	model.transform_to(modelselected[choice])
-	//SKYRAT EDIT CHANGE END
+	//BUBBER ADDITION END
 
 
 	var/datum/antagonist/ninja/ninja_antag = ninja.mind.has_antag_datum(/datum/antagonist/ninja)

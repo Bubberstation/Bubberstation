@@ -9,12 +9,12 @@
 	telegraph_overlay = "sandstorm_light"
 
 	weather_message = "<span class='userdanger'><i>Smoldering particles of sand billow down around you! Get inside!</i></span>"
-	weather_duration_lower = 2 MINUTES
-	weather_duration_upper = 4 MINUTES
+	weather_duration_lower = 1 MINUTES
+	weather_duration_upper = 3 MINUTES
 	weather_overlay = "sandstorm"
 
 	end_message = "<span class='boldannounce'>The shrieking wind whips away the last of the sand and falls to its usual murmur. It should be safe to go outside now.</span>"
-	end_duration = 60 SECONDS
+	end_duration = 30 SECONDS
 	end_overlay = "sandstorm_light"
 
 	area_type = /area
@@ -22,7 +22,7 @@
 
 	immunity_type = TRAIT_ASHSTORM_IMMUNE
 
-	probability = 40
+	probability = 20
 
 	weather_flags = (WEATHER_MOBS | WEATHER_BAROMETER)
 	var/list/weak_sounds = list()

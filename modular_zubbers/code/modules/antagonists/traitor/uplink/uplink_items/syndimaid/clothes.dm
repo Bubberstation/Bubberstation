@@ -45,7 +45,7 @@
 	wearer_species.update_no_equip_flags(human_wearer, new_flags)
 	wear_locked = lock ? WEAKREF(human_wearer) : null
 
-/obj/item/clothing/head/costume/maidheadband/syndicate/armored
+/obj/item/clothing/head/costume/maid_headband/syndicate/armored
 	armor_type = /datum/armor/clothing_under/syndimaid
 	body_parts_covered = HEAD
 	resistance_flags = parent_type::resistance_flags | FIRE_PROOF

@@ -18,6 +18,7 @@
 #define AUGMENT_SLOT_STOMACH		"Stomach"
 #define AUGMENT_SLOT_EYES			"Eyes"
 #define AUGMENT_SLOT_TONGUE			"Tongue"
+#define AUGMENT_SLOT_EARS			"Ears"
 //Implants - we add an "implant" suffix because the defines need to be unique
 #define AUGMENT_CATEGORY_IMPLANTS				"Implants"
 #define AUGMENT_SLOT_BRAIN_IMPLANT			"Brain implant"

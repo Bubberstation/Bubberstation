@@ -28,9 +28,9 @@
 	/// Is the parent book unable to be carved? TRUE prevents carving. By default this is unset
 	var/cannot_carve
 
-/obj/item/book/try_carve(obj/item/carving_item, mob/living/user, params)
+/obj/item/book/carving_act(mob/living/user, obj/item/tool)
 	if(cannot_carve)
 		balloon_alert(user, "unable to be carved!")
-		return FALSE
+		return ITEM_INTERACT_BLOCKING
 
 	return ..()

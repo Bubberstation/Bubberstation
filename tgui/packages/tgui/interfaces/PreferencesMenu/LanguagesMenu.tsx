@@ -2,7 +2,7 @@
 import { Box, Button, Section, Stack } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
-import { PreferencesMenuData } from './types';
+import type { PreferencesMenuData } from './types';
 
 export const KnownLanguage = (props) => {
   const { act } = useBackend<PreferencesMenuData>();
@@ -23,7 +23,7 @@ export const KnownLanguage = (props) => {
             act('remove_language', { language_name: props.language.name })
           }
         >
-          Forget <Box className={'languages16x16 ' + props.language.icon} />
+          Forget <Box className={`languages16x16 ${props.language.icon}`} />
         </Button>
       </Section>
     </Stack.Item>
@@ -43,7 +43,7 @@ export const UnknownLanguage = (props) => {
             act('give_language', { language_name: props.language.name })
           }
         >
-          Learn <Box className={'languages16x16 ' + props.language.icon} />
+          Learn <Box className={`languages16x16 ${props.language.icon}`} />
         </Button>
       </Section>
     </Stack.Item>

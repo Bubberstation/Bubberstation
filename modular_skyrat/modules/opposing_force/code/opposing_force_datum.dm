@@ -814,7 +814,7 @@
 	send_system_message("Weak against armor: [initial(processed_item.weak_against_armour) ? "Yes" : "No"]")
 	send_system_message("Damage type: [initial(processed_item.damtype)]")
 	send_system_message("Wound bonus: [initial(processed_item.wound_bonus)]")
-	send_system_message("Bare wound bonus: [initial(processed_item.bare_wound_bonus)]")
+	send_system_message("Bare wound bonus: [initial(processed_item.exposed_wound_bonus)]")
 	send_system_message("Force: [initial(processed_item.force)]")
 
 /datum/opposing_force/proc/unlock_equipment(mob/user)

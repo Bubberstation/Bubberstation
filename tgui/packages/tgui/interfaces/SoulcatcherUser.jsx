@@ -47,7 +47,7 @@ export const SoulcatcherUser = (props) => {
               tooltip="Toggle if the carrier say and carrier emote verbs will send to this soulcatcher."
               onClick={() => act('toggle_target', {})}
             />
-            {!user_data.scan_needed && user_data.able_to_rename ? (
+            {!user_data.scan_needed && user_data.able_to_rename && (
               <>
                 <Button
                   color="green"
@@ -62,10 +62,8 @@ export const SoulcatcherUser = (props) => {
                   onClick={() => act('reset_name', {})}
                 />
               </>
-            ) : (
-              <> </>
             )}
-            {communicate_as_parent ? (
+            {communicate_as_parent && (
               <Button
                 color={user_data.communicating_externally ? 'green' : 'red'}
                 icon={
@@ -74,8 +72,6 @@ export const SoulcatcherUser = (props) => {
                 tooltip="Toggle sending messages as part of the soulcatcher."
                 onClick={() => act('toggle_external_communication', {})}
               />
-            ) : (
-              <> </>
             )}
           </Box>
           <Divider />
@@ -105,7 +101,7 @@ export const SoulcatcherUser = (props) => {
               <LabeledList.Item label="Ability to emote">
                 {user_data.able_to_emote ? 'Enabled' : 'Disabled'}
               </LabeledList.Item>
-              {communicate_as_parent ? (
+              {communicate_as_parent && (
                 <>
                   <LabeledList.Item label="Ability to speak as container">
                     {user_data.able_to_speak_as_container
@@ -118,8 +114,6 @@ export const SoulcatcherUser = (props) => {
                       : 'Disabled'}
                   </LabeledList.Item>
                 </>
-              ) : (
-                <> </>
               )}
               <LabeledList.Item label="Ability to change name">
                 {user_data.able_to_rename && !user_data.scan_needed
@@ -132,7 +126,7 @@ export const SoulcatcherUser = (props) => {
             </LabeledList>
           </Collapsible>
 
-          {souls && user_data.internal_sight ? (
+          {souls && user_data.internal_sight && (
             <>
               <br />
               <Box textAlign="center" fontSize="15px" opacity={0.8}>
@@ -163,8 +157,6 @@ export const SoulcatcherUser = (props) => {
                 ))}
               </Flex>
             </>
-          ) : (
-            <> </>
           )}
         </Section>
       </Window.Content>

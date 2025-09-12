@@ -138,7 +138,7 @@
 /obj/item/clothing/head/helmet/knight/greyscale
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 
-/obj/item/clothing/head/mob_holder
+/obj/item/mob_holder
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/head/hooded/cult_hoodie/void

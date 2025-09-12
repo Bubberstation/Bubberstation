@@ -1,4 +1,4 @@
-import { filter } from 'common/collections';
+import { filter } from 'es-toolkit/compat';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
@@ -13,10 +13,10 @@ import {
 import { createSearch } from 'tgui-core/string';
 
 import {
-  PreferencesMenuData,
-  Quirk,
+  type PreferencesMenuData,
+  type Quirk,
   RandomSetting,
-  ServerData,
+  type ServerData,
 } from '../types';
 import { useRandomToggleState } from '../useRandomToggleState';
 import { useServerPrefs } from '../useServerPrefs';
@@ -50,7 +50,6 @@ type QuirkListProps = {
 };
 
 type QuirkProps = {
-  // eslint-disable-next-line react/no-unused-prop-types
   onClick: (quirkName: string, quirk: Quirk) => void;
   randomBodyEnabled: boolean;
   selected: boolean;
@@ -87,7 +86,6 @@ function QuirkList(props: QuirkProps & QuirkListProps) {
 type QuirkDisplayProps = {
   quirk: Quirk & { failTooltip?: string };
   // bugged
-  // eslint-disable-next-line react/no-unused-prop-types
   quirkKey: string;
 } & QuirkProps;
 
@@ -327,24 +325,23 @@ export function QuirksPage(props) {
   });
 
   // SKYRAT EDIT START - Better Quirk Count Code
-  let balance = -data.quirks_balance;
-  let positiveQuirks = data.positive_quirk_count;
+  const balance = -data.quirks_balance;
+  const positiveQuirks = data.positive_quirk_count;
   // SKYRAT EDIT END
 
+  /* // BUBBER EDIT START - We handle this on the backend
   for (const selectedQuirkName of selectedQuirks) {
     const selectedQuirk = quirkInfo[selectedQuirkName];
     if (!selectedQuirk) {
       continue;
     }
-    /* // BUBBER EDIT START - We handle this on the backend
     if (selectedQuirk.value > 0) {
       positiveQuirks += 1;
     }
 
-
     balance += selectedQuirk.value;
-    */ // BUBBER EDIT END
   }
+  */ // BUBBER EDIT END
 
   function getReasonToNotAdd(quirkName: string) {
     const quirk = quirkInfo[quirkName];
@@ -374,22 +371,6 @@ export function QuirksPage(props) {
           return `This is incompatible with ${incompatibleQuirk}!`;
         }
       }
-      // BUBBER EDIT ADDITION START - Species quirks
-      const currentSpeciesID = data.character_preferences.misc.species;
-      // keys are the species_ids, values are the species names
-      const speciesWhitelistKeys = Object.keys(quirk.species_whitelist);
-      if (
-        speciesWhitelistKeys?.length &&
-        !speciesWhitelistKeys.includes(currentSpeciesID)
-      ) {
-        const speciesWhitelistNames = Object.values(quirk.species_whitelist);
-        if (speciesWhitelistNames.length === 1) {
-          return `This quirk can only be taken by the ${speciesWhitelistNames[0]} species.`;
-        }
-        const speciesList = speciesWhitelistNames.join(', ');
-        return `This quirk can only be taken by the following species: ${speciesList}.`;
-      }
-      // BUBBER EDIT ADDITION END
     }
     if (data.species_disallowed_quirks.includes(quirk.name)) {
       return 'This quirk is incompatible with your selected species.';

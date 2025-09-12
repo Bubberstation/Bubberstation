@@ -157,7 +157,7 @@
 
 /datum/loadout_item/head/tactical_maid_headband //Donor item for skyefree
 	name = "Tactical Maid Headband"
-	item_path = /obj/item/clothing/head/costume/maidheadband/tactical_maid
+	item_path = /obj/item/clothing/head/costume/maid_headband/syndicate
 	donator_only = TRUE
 
 /datum/loadout_item/head/mime_bunny_ears
@@ -175,3 +175,7 @@
 /datum/loadout_item/head/soft/galfedcap
 	name = "Galactic Federation cap"
 	item_path = /obj/item/clothing/head/soft/galfedcap
+
+/datum/loadout_item/head/soft/frontier_colonist
+	name = "Frontier cap"
+	item_path = /obj/item/clothing/head/soft/frontier_colonist

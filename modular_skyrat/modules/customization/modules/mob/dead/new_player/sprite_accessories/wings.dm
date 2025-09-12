@@ -7,13 +7,11 @@
 */
 /datum/sprite_accessory/wings
 	icon = 'icons/mob/human/species/wings.dmi'
-	generic = "Wings"
 	key = "wings"
 	color_src = USE_ONE_COLOR
 	recommended_species = list(SPECIES_HUMAN, SPECIES_SYNTH, SPECIES_FELINE, SPECIES_LIZARD, SPECIES_MAMMAL)
 	organ_type = /obj/item/organ/wings
 	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER, BODY_ADJ_LAYER)
-	genetic = TRUE
 
 /datum/sprite_accessory/wings/is_hidden(mob/living/carbon/human/wearer)
 	if(!wearer.w_uniform && !wearer.wear_suit)
@@ -85,6 +83,7 @@
 	key = "wings_functional"
 
 /datum/sprite_accessory/wings/robotic
+	recommended_species = list(SPECIES_PROTEAN, SPECIES_SYNTH)
 	locked = FALSE
 
 /datum/sprite_accessory/wings/skeleton
@@ -159,7 +158,6 @@
 /datum/sprite_accessory/wings/mammal/dragon/synth
 	name = "Dragon (Synthetic)"
 	icon_state = "dragonsynth"
-	genetic = FALSE
 
 /datum/sprite_accessory/wings/mammal/dragon/mechanical
 	name = "Dragon (Mechanical)"
@@ -295,7 +293,7 @@
 	icon_state = "low_jewel_top"
 
 /datum/sprite_accessory/wings/low_wings/renamon
-	name = "Renamon"
+	name = "Cyvian"
 	icon_state = "renamon"
 	color_src = USE_MATRIXED_COLORS
 // Ryva was here :3

@@ -187,6 +187,7 @@
 			unbuckle_mob(buckled_carbons)
 		else
 			user_unbuckle_mob(buckled_carbons, user)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /**
  * Attempts to buckle target into the ghoulrack
@@ -331,8 +332,8 @@
 		return
 	// Convert to Ghoul!
 	bloodsuckerdatum.AdjustBloodVolume(-TORTURE_CONVERSION_COST)
+	remove_loyalties(target)
 	if(bloodsuckerdatum.make_ghoul(target))
-		remove_loyalties(target)
 		SEND_SIGNAL(bloodsuckerdatum, COMSIG_BLOODSUCKER_MADE_GHOUL, user, target)
 
 /obj/structure/bloodsucker/ghoulrack/proc/do_torture(mob/living/user, mob/living/carbon/target, mult = 1)
@@ -378,7 +379,7 @@
 	target.apply_damages(brute = torture_dmg_brute, burn = torture_dmg_burn, def_zone = selected_bodypart.body_zone)
 	return TRUE
 
-/// Offer them the oppertunity to join now.
+/// Offer them the opportunity to join now.
 /obj/structure/bloodsucker/ghoulrack/proc/do_disloyalty(mob/living/user, mob/living/target)
 	if(disloyalty_offered)
 		return FALSE
@@ -399,8 +400,13 @@
 	switch(alert_response)
 		if("Accept")
 			disloyalty_confirm = TRUE
+			target.visible_message(
+				span_notice("[target] gives in to [user]'s offer of servitude!"),
+				span_userdanger("You give in to [user]'s offer of servitude!"))
 		else
-			target.balloon_alert_to_viewers("stares defiantly", "refused ghouling!")
+			target.visible_message(
+				span_danger("[target] stares defiantly at [user], refusing to give in!"),
+				span_danger("You stare defiantly at [user], refusing to give in!"))
 	disloyalty_offered = FALSE
 	return TRUE
 

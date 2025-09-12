@@ -8,9 +8,11 @@
 		terminal.connect_to_network()
 
 /obj/machinery/power/apc/proc/make_terminal(terminal_cable_layer = cable_layer)
+	//attempt to locate a terminal if mappers/map export placed it here
+	terminal = locate(/obj/machinery/power/terminal) in loc
 	// create a terminal object at the same position as original turf loc
-	// wires will attach to this
-	terminal = new /obj/machinery/power/terminal(loc)
+	if(QDELETED(terminal))
+		terminal = new /obj/machinery/power/terminal(loc)
 	terminal.cable_layer = terminal_cable_layer
 	terminal.setDir(dir)
 	terminal.master = src
@@ -150,5 +152,5 @@
 			for(var/obj/machinery/light/night_light in area_turf)
 				if(night_light.nightshift_allowed)
 					night_light.nightshift_enabled = nightshift_lights
-					night_light.update(FALSE)
+					night_light.update(trigger = FALSE, play_sound = FALSE) // BUBBER EDIT CHANGE - LIGHTING - Original: update(FALSE)
 				CHECK_TICK

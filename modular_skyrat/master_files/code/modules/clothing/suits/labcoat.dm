@@ -32,10 +32,16 @@
 	icon_state = "labcoat_regular"
 	gets_cropped_on_taurs = FALSE
 
-/obj/item/clothing/suit/toggle/labcoat/skyrat/pharmacist
+/obj/item/clothing/suit/toggle/labcoat/chemist/skyrat/pharmacist
 	name = "pharmacist's labcoat"
 	desc = "A standard labcoat for chemistry which protects the wearer from acid spills."
 	icon_state = "labcoat_pharm"
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/labcoat.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/labcoat.dmi'
+	post_init_icon_state = null
+	greyscale_config = null
+	greyscale_config_worn = null
+	greyscale_colors = null
 	gets_cropped_on_taurs = FALSE
 
 /obj/item/clothing/suit/toggle/labcoat/skyrat/highvis

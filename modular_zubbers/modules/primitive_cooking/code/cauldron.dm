@@ -237,6 +237,9 @@
 	handle_dumping(user, tool)
 
 /obj/machinery/cauldron/attack_hand_secondary(mob/user, list/modifiers)
+	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
 	if(user.can_perform_action(src))
 		if(!length(ingredients))
 			balloon_alert(user, "it's empty!")

@@ -84,3 +84,19 @@
 /datum/map_template/ghost_cafe_rooms/oasisalt
 	name = "Oasis (Night)"
 	mappath = "modular_skyrat/modules/hotel_rooms/oasisalt.dmm"
+
+/datum/map_template/ghost_cafe_rooms/pool
+	name = "Public Pool"
+	mappath = "modular_skyrat/modules/hotel_rooms/pool.dmm"
+
+/datum/map_template/ghost_cafe_rooms/engineering
+	name = "Mini Engineering"
+	mappath = "modular_skyrat/modules/hotel_rooms/engineering.dmm"
+
+/datum/map_template/ghost_cafe_rooms/syndieoffice
+	name = "Syndicate Office"
+	mappath = "modular_skyrat/modules/hotel_rooms/syndieoffice.dmm"
+
+/datum/map_template/ghost_cafe_rooms/synopcenter
+	name = "Syndicate Ops Centre"
+	mappath = "modular_skyrat/modules/hotel_rooms/synopcenter.dmm"

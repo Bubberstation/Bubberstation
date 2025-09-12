@@ -1,2 +1,2 @@
-/datum/mutation/human/thermal
+/datum/mutation/thermal
 	locked = TRUE

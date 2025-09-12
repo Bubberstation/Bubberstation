@@ -24,6 +24,11 @@
 	name = "\improper Public Xenoarchaeology"
 	icon_state = "exp_lab"
 
+/area/station/maintenance/department/engine/shuttle_construction_bay
+	name = "\improper Shuttle Construction Bay"
+	icon_state = "maint_eva"
+	allow_shuttle_docking = TRUE
+
 /area/station/maintenance/department/public_mining
 	name = "\improper Public Mining Maintenance"
 	icon_state = "centralmaint"
@@ -40,6 +45,10 @@
 /area/station/medical/morgue/office
 	name = "\improper Coroner's Office"
 	icon_state = "ass_line" //You try finding a matching area icon, fucko.
+
+/area/station/commons/public_dock
+	name = "\improper Public Shuttle Dock"
+	icon_state = "podbay"
 
 /area/station/terminal
 	name = "\improper Arrivals Terminal"
@@ -71,14 +80,9 @@
 	icon_state = "maintaft"
 
 /area/station/terminal/tramline
-	name = "Tramline"
+	name = "\improper Tramline"
 	icon_state = "shuttle"
 	requires_power = FALSE //Imagine if your funny gimmick had no power and people had to walk lmao
-
-
-
-
-
 
 /area/station/engineering/storage/eva
 	name = "\improper Engineering EVA Storage"
@@ -94,9 +98,10 @@
 	ambience_index = AMBIENCE_ICEMOON
 	sound_environment = SOUND_AREA_ICEMOON
 	ambient_buzz = 'sound/ambience/lavaland/magma.ogg'
+	allow_shuttle_docking = TRUE
 
 /area/moonstation/surface
-	name = "Lunar Surface"
+	name = "\improper Lunar Surface"
 	icon_state = "explored"
 	outdoors = TRUE
 	always_unpowered = TRUE
@@ -132,7 +137,7 @@
 	map_generator = /datum/map_generator/cave_generator/moonstation
 
 /area/moonstation/underground
-	name = "Lunar Caves"
+	name = "\improper Lunar Caves"
 	outdoors = TRUE
 	always_unpowered = TRUE
 	requires_power = TRUE
@@ -156,16 +161,61 @@
 /area/station/cargo/miningfoundry/event_protected
 	area_flags = UNIQUE_AREA | EVENT_PROTECTED
 
-//Missing Lavaland Generators
-/area/lavaland/underground/unexplored
-	icon_state = "unexplored"
-	area_flags = VALID_TERRITORY | UNIQUE_AREA | CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED
-	map_generator = /datum/map_generator/cave_generator/lavaland
-
-/area/lavaland/underground/unexplored/danger
-	icon_state = "danger"
-	area_flags = VALID_TERRITORY | UNIQUE_AREA | CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED | MEGAFAUNA_SPAWN_ALLOWED
-
 /area/station/maintenance/department/medical/psychology
-	name = "Psychology Maintenance"
+	name = "\improper Psychology Maintenance"
 	icon_state = "unknown"
+
+/area/station/maintenance/department/engine/lower
+	name = "\improper Lower Engineering Maintenance"
+
+
+//Loopstation Areas
+/area/loopstation
+	name = "Loop Station"
+	icon = 'icons/area/areas_station.dmi'
+	icon_state = "station"
+	default_gravity = ZERO_GRAVITY
+	ambience_index = AMBIENCE_AWAY
+	sound_environment = SOUND_ENVIRONMENT_ROOM
+	area_flags = UNIQUE_AREA | EVENT_PROTECTED
+
+
+/area/loopstation/gateway
+	name = "Loop Station Gateway"
+	icon_state = "gateway"
+
+/area/loopstation/hallway
+	name = "Loop Station Central Hallway"
+	icon_state = "hall"
+
+/area/loopstation/engineering
+	name = "Loop Station Engineering"
+	icon_state = "engie"
+	airlock_wires = /datum/wires/airlock/engineering
+	ambience_index = AMBIENCE_ENGI
+
+/area/loopstation/engineering/telecomms
+	name = "Loop Station Telecommunications"
+	icon_state = "tcomsatcham"
+
+/area/loopstation/engineering/power
+	name = "Loop Station Power Room"
+	icon_state = "engine_smes"
+
+/area/loopstation/engineering/gravity
+	name = "Loop Station Gravity Room"
+	icon_state = "grav_gen"
+
+/area/loopstation/radshelter
+	name = "Loop Station Radiation Shelter"
+	icon_state = "radstorm_shelter"
+
+/area/loopstation/solars
+	icon_state = "panels"
+	requires_power = FALSE
+	area_flags = UNIQUE_AREA | NO_GRAVITY | EVENT_PROTECTED
+	flags_1 = NONE
+	ambience_index = AMBIENCE_ENGI
+	airlock_wires = /datum/wires/airlock/engineering
+	sound_environment = SOUND_AREA_SPACE
+	default_gravity = ZERO_GRAVITY

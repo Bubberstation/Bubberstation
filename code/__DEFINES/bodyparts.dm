@@ -6,9 +6,9 @@
 /// The max damage a limb can take before it stops taking damage.
 /// Used by the max_damage var.
 #define LIMB_MAX_HP_PROSTHESIS 20 //Used by surplus prosthesis limbs.
-#define LIMB_MAX_HP_DEFAULT 60 //Used by most all limbs by default. // SKYRAT EDIT CHANGE - ORIGINAL : #define LIMB_MAX_HP_DEFAULT 50
+#define LIMB_MAX_HP_DEFAULT 50 //Used by most all limbs by default.
 #define LIMB_MAX_HP_ADVANCED 75 //Used by advanced robotic limbs.
-#define LIMB_MAX_HP_CORE 250 //Only use this for heads and torsos. // SKYRAT EDIT CHANGE - ORIGINAL : #define LIMB_MAX_HP_CORE 200
+#define LIMB_MAX_HP_CORE 200 //Only use this for heads and torsos.
 
 /// Xenomorph Limbs
 #define LIMB_MAX_HP_ALIEN_LARVA 50 //Used by the weird larva chest and head. Did you know they have those?
@@ -50,8 +50,11 @@
 #define LIMB_COLOR_AYYLMAO 5
 /// Hulk effect color priority
 #define LIMB_COLOR_HULK 10
+/// Fish infusion color priority
+#define LIMB_COLOR_FISH_INFUSION 15
 /// Carp infusion color priority
 #define LIMB_COLOR_CARP_INFUSION 20
+/// Untextured fish suicide color priority
 #define LIMB_COLOR_CS_SOURCE_SUICIDE 30
 /// Base priority for atom colors, gets atom priorities added to it
 #define LIMB_COLOR_ATOM_COLOR 40
@@ -61,6 +64,7 @@
 #define LIMB_COLOR_SYNTH 100 // BUBBER EDIT - High priority
 
 // Overlay priorities
-#define BODYPART_OVERLAY_CARP_INFUSION 1
-#define BODYPART_OVERLAY_CSS_SUICIDE 2
-#define BODYPART_OVERLAY_VOIDWALKER_CURSE 3
+#define BODYPART_OVERLAY_FISH_INFUSION 1
+#define BODYPART_OVERLAY_CARP_INFUSION 2
+#define BODYPART_OVERLAY_CSS_SUICIDE 3
+#define BODYPART_OVERLAY_VOIDWALKER_CURSE 4

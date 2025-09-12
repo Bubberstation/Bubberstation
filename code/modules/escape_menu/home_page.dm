@@ -1,61 +1,62 @@
 /datum/escape_menu/proc/show_home_page()
 	page_holder.give_protected_screen_object(give_escape_menu_title())
 	page_holder.give_screen_object(
-		new /atom/movable/screen/escape_menu/home_button(
+		new /atom/movable/screen/escape_menu/text/clickable(
 			null,
 			/* hud_owner = */ null,
-			src,
-			"Resume",
-			/* offset = */ 1,
-			CALLBACK(src, PROC_REF(home_resume)),
+			/* escape_menu = */ src,
+			/* button_text = */ "Resume",
+			/* offset = */ list(-136, 30),
+			/* font_size = */ 24,
+			/* on_click_callback = */ CALLBACK(src, PROC_REF(home_resume)),
 		)
 	)
 
 	page_holder.give_screen_object(
-		new /atom/movable/screen/escape_menu/home_button(
+		new /atom/movable/screen/escape_menu/text/clickable(
 			null,
 			/* hud_owner = */ null,
-			src,
-			"Character",
-			/* offset = */ 2,
-			CALLBACK(src, PROC_REF(home_open_character_settings)),
+			/* escape_menu = */ src,
+			/* button_text = */ "Character",
+			/* offset = */ list(-171, 28),
+			/* font_size = */ 24,
+			/* on_click_callback = */ CALLBACK(src, PROC_REF(home_open_character_settings)),
 		)
 	)
 
 	page_holder.give_screen_object(
-		new /atom/movable/screen/escape_menu/home_button(
+		new /atom/movable/screen/escape_menu/text/clickable(
 			null,
 			/* hud_owner = */ null,
-			src,
-			"Settings",
-			/* offset = */ 3,
-			CALLBACK(src, PROC_REF(home_open_game_settings)),
+			/* escape_menu = */ src,
+			/* button_text = */ "Settings",
+			/* offset = */ list(-206, 30),
+			/* font_size = */ 24,
+			/* on_click_callback = */ CALLBACK(src, PROC_REF(home_open_game_settings)),
 		)
 	)
 
 	page_holder.give_screen_object(
-		new /atom/movable/screen/escape_menu/home_button/admin_help(
+		new /atom/movable/screen/escape_menu/text/clickable/admin_help(
 			null,
 			/* hud_owner = */ null,
-			src,
-			"Admin Help",
-			/* offset = */ 4,
+			/* escape_menu = */ src,
+			/* button_text = */ "Admin Help",
+			/* offset = */ list(-241, 30),
 		)
 	)
-	//SKYRAT EDIT REMOVAL BEGIN
-	/*
+
 	page_holder.give_screen_object(
-		new /atom/movable/screen/escape_menu/home_button/leave_body(
+		new /atom/movable/screen/escape_menu/text/clickable/leave_body(
 			null,
 			/* hud_owner = */ null,
-			src,
-			"Leave Body",
-			/* offset = */ 5,
-			CALLBACK(src, PROC_REF(open_leave_body)),
+			/* escape_menu = */ src,
+			/* button_text = */ "Leave Body",
+			/* offset = */ list(-276, 30),
+			/* font_size = */ 24,
+			/* on_click_callback = */ CALLBACK(src, PROC_REF(open_leave_body)),
 		)
 	)
-	*/
-	// SKYRAT EDIT REMOVAL END
 
 	//Bottom right buttons, from right to left, starting with the button to open the list.
 	page_holder.give_screen_object(new /atom/movable/screen/escape_menu/lobby_button/small(
@@ -63,7 +64,7 @@
 		/* hud_owner = */ null,
 		"Resources",
 		"Open/Close list of resources",
-		/* pixel_offset = */ list(260, -190),
+		/* button_screen_loc */ "BOTTOM:30,RIGHT:-20",
 		CALLBACK(src, PROC_REF(toggle_resources)),
 		/* button_overlay = */ "resources",
 	))
@@ -96,7 +97,7 @@
 			/* hud_owner = */ null,
 			"Report Bug",
 			"Report a bug/issue",
-			/* pixel_offset = */ list(260, -190),
+			/* button_screen_loc */ "BOTTOM:30,RIGHT:-20",
 			CALLBACK(client, TYPE_VERB_REF(/client, reportissue)),
 			/* button_overlay = */ "bug",
 			/* end_point */ offset_order[1],
@@ -107,7 +108,7 @@
 			/* hud_owner = */ null,
 			"Github",
 			"Open the repository for the game",
-			/* pixel_offset = */ list(260, -190),
+			/* button_screen_loc */ "BOTTOM:30,RIGHT:-20",
 			CALLBACK(client, TYPE_VERB_REF(/client, github)),
 			/* button_overlay = */ "github",
 			/* end_point */ offset_order[1],
@@ -121,7 +122,7 @@
 			/* hud_owner = */ null,
 			"Forums",
 			"Visit the server's forums",
-			/* pixel_offset = */ list(260, -190),
+			/* button_screen_loc */ "BOTTOM:30,RIGHT:-20",
 			CALLBACK(client, TYPE_VERB_REF(/client, forum)),
 			/* button_overlay = */ "forums",
 			/* end_point */ offset_order[1],
@@ -135,7 +136,7 @@
 			/* hud_owner = */ null,
 			"Rules",
 			"View the server rules",
-			/* pixel_offset = */ list(260, -190),
+			/* button_screen_loc */ "BOTTOM:30,RIGHT:-20",
 			CALLBACK(client, TYPE_VERB_REF(/client, rules)),
 			/* button_overlay = */ "rules",
 			/* end_point */ offset_order[1],
@@ -149,7 +150,7 @@
 			/* hud_owner = */ null,
 			"Wiki",
 			"See the wiki for the game",
-			/* pixel_offset = */ list(260, -190),
+			/* button_screen_loc */ "BOTTOM:30,RIGHT:-20",
 			CALLBACK(client, TYPE_VERB_REF(/client, wiki)),
 			/* button_overlay = */ "wiki",
 			/* end_point */ offset_order[1],
@@ -161,7 +162,7 @@
 		/* hud_owner = */ null,
 		"Change Log",
 		"See all changes to the server",
-		/* pixel_offset = */ list(260, -190),
+		/* button_screen_loc */ "BOTTOM:30,RIGHT:-20",
 		CALLBACK(client, TYPE_VERB_REF(/client, changelog)),
 		/* button_overlay = */ "changelog",
 		/* end_point */ offset_order[1],

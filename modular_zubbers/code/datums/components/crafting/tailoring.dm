@@ -60,11 +60,20 @@
 	..()
 	blacklist += subtypesof(/obj/item/clothing/mask/gas)
 
-/datum/crafting_recipe/berserker_reskin
-	name = "Marked One Grafting"
-	result = /obj/item/clothing/suit/hooded/berserker/gladiator
-	reqs = list(/obj/item/clothing/suit/hooded/berserker = 1,
-				/obj/item/stack/ore/glass/basalt = 5,
-				/obj/item/stack/ore/titanium =5)
-	time = 5 SECONDS
-	category = CAT_CLOTHING
+/datum/crafting_recipe/hudsunciv
+	name = "Civilian HUDsunglasses"
+	result = /obj/item/clothing/glasses/hud/civilian/sunglasses
+	time = 2 SECONDS
+	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	reqs = list(/obj/item/clothing/glasses/hud/civilian = 1,
+				/obj/item/clothing/glasses/sunglasses = 1,
+				/obj/item/stack/cable_coil = 5)
+	category = CAT_EQUIPMENT
+
+/datum/crafting_recipe/hudsuncivremoval
+	name = "Civilian HUD removal"
+	result = /obj/item/clothing/glasses/sunglasses
+	time = 2 SECONDS
+	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	reqs = list(/obj/item/clothing/glasses/hud/civilian/sunglasses = 1)
+	category = CAT_EQUIPMENT

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Tooltip } from 'tgui-core/components';
 import {
   Box,
   Button,
@@ -8,6 +7,7 @@ import {
   Section,
   Stack,
   Table,
+  Tooltip,
 } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
@@ -15,7 +15,7 @@ import { Window } from '../layouts';
 
 export type Storyteller_Data = {
   storyteller_name: string;
-  storyteller_halt: Boolean;
+  storyteller_halt: boolean;
   antag_count: number;
   antag_cap: number;
 
@@ -38,10 +38,10 @@ export type Storyteller_Event = {
   desc: string;
   tags: string[];
   occurences: number;
-  occurences_shared: Boolean;
+  occurences_shared: boolean;
   min_pop: number;
   start: number;
-  can_run: Boolean;
+  can_run: boolean;
   weight: number;
   weight_raw: number;
   track: string;
@@ -107,7 +107,7 @@ export const ZubbersStorytellerRoundData = (props) => {
         <LabeledList.Item label="Storyteller status">
           <Button
             color={storyteller_halt ? 'red' : 'green'}
-            tooltip={(storyteller_halt ? 'Unhalt' : 'Halt') + ' storyteller'}
+            tooltip={`${storyteller_halt ? 'Unhalt' : 'Halt'} storyteller`}
             onClick={() => act('halt_storyteller')}
             textAlign="center"
           >
@@ -115,8 +115,8 @@ export const ZubbersStorytellerRoundData = (props) => {
           </Button>
         </LabeledList.Item>
         <LabeledList.Item label="Active Players">
-          {pop_data['active']} {'('}Head: {pop_data['head']}, Sec:{' '}
-          {pop_data['sec']}, Eng: {pop_data['eng']}, Med: {pop_data['med']}
+          {pop_data.active} {'('}Head: {pop_data.head}, Sec: {pop_data.sec},
+          Eng: {pop_data.eng}, Med: {pop_data.med}
           {')'}
         </LabeledList.Item>
         <LabeledList.Item
@@ -131,7 +131,7 @@ export const ZubbersStorytellerRoundData = (props) => {
               bad: [antag_cap, Infinity],
             }}
           >
-            {antag_count + ' / ' + antag_cap}
+            {`${antag_count}/${antag_cap}`}
           </ProgressBar>
         </LabeledList.Item>
       </LabeledList>
@@ -190,14 +190,14 @@ export const ZubbersStorytellerTrackData = (props) => {
                     average: [max_points, Infinity],
                   }}
                 >
-                  {current_points + ' / ' + max_points}
+                  {`${current_points} / ${max_points}`}
                   {' (' +
                     Math.floor((current_points * 100) / max_points) +
                     '%) '}
                 </ProgressBar>
               </Table.Cell>
               <Table.Cell textAlign="center">
-                {storyteller_halt ? 'N/A' : '~' + track_data['next'] + 'min'}
+                {storyteller_halt ? 'N/A' : `~${track_data.next}min`}
               </Table.Cell>
               <Table.Cell>{forced ? forced.name : ''}</Table.Cell>
               <Table.Cell>
@@ -230,19 +230,19 @@ export const ZubbersStorytellerScheduledData = (props) => {
           <Table.Cell>Actions</Table.Cell>
         </Table.Row>
         {Object.entries(scheduled_data).map(([event_name, event_data]) => {
-          const timeNum = Number(event_data['time'])?.toFixed(1);
+          const timeNum = Number(event_data.time)?.toFixed(1);
           return (
             <Table.Row key={event_name}>
               <Table.Cell>{event_name}</Table.Cell>
-              <Table.Cell>{event_data['track']}</Table.Cell>
-              <Table.Cell>{timeNum ? timeNum + ' s' : 'Roundstart'}</Table.Cell>
+              <Table.Cell>{event_data.track}</Table.Cell>
+              <Table.Cell>{timeNum ? `${timeNum} s` : 'Roundstart'}</Table.Cell>
               <Table.Cell>
                 <Button
                   color="red"
                   onClick={() =>
                     act('event_action', {
                       action: 'cancel',
-                      type: event_data['event_type'],
+                      type: event_data.event_type,
                     })
                   }
                 >
@@ -252,7 +252,7 @@ export const ZubbersStorytellerScheduledData = (props) => {
                   onClick={() =>
                     act('event_action', {
                       action: 'refund',
-                      type: event_data['event_type'],
+                      type: event_data.event_type,
                     })
                   }
                 >
@@ -262,7 +262,7 @@ export const ZubbersStorytellerScheduledData = (props) => {
                   onClick={() =>
                     act('event_action', {
                       action: 'reschedule',
-                      type: event_data['event_type'],
+                      type: event_data.event_type,
                     })
                   }
                 >
@@ -273,7 +273,7 @@ export const ZubbersStorytellerScheduledData = (props) => {
                   onClick={() =>
                     act('event_action', {
                       action: 'fire',
-                      type: event_data['event_type'],
+                      type: event_data.event_type,
                     })
                   }
                 >
@@ -413,7 +413,7 @@ export const ZubbersStorytellerEvent = (props: Event_Props) => {
       </Table.Cell>
       <Table.Cell>
         {Object.values(event.tags).map((tag) => {
-          return tag + ' ';
+          return `${tag} `;
         })}
       </Table.Cell>
       <Table.Cell textAlign="center">
@@ -428,7 +428,7 @@ export const ZubbersStorytellerEvent = (props: Event_Props) => {
       <Table.Cell textAlign="center">{event.can_run ? 'Yes' : 'No'}</Table.Cell>
       <Table.Cell textAlign="center">
         {event.weight}
-        {' (' + event.weight_raw + ')'}
+        {` (${event.weight_raw})`}
       </Table.Cell>
       <Table.Cell>
         <Button

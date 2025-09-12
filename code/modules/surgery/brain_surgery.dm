@@ -12,7 +12,7 @@
 
 /datum/surgery/brain_surgery/mechanic
 	name = "Wetware OS Diagnostics"
-	requires_bodypart_type = BODYTYPE_ROBOTIC | BODYTYPE_NANO
+	requires_bodypart_type = BODYTYPE_ROBOTIC | BODYTYPE_NANO // Bubber Edit - BODYTYPE_NANO
 	possible_locs = list(BODY_ZONE_HEAD)
 	steps = list(
 		/datum/surgery_step/mechanic_open,

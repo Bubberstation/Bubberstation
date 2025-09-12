@@ -9,7 +9,7 @@ import { BelliesList } from './BellyUI';
 import { Preferences } from './GeneralPrefs';
 import { Inside } from './Inside';
 import { Savefile, SlotLookupTable } from './SavefileManagement';
-import * as types from './types';
+import type * as types from './types';
 
 export const VorePanel = (props) => {
   return (

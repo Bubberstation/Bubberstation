@@ -66,7 +66,7 @@ export const NifPanel = (props) => {
                         title={
                           <>
                             {<Icon name={nifsoft.ui_icon} />}
-                            {nifsoft.name + '  '}
+                            {`${nifsoft.name}  `}
                           </>
                         }
                         buttons={
@@ -125,7 +125,7 @@ export const NifPanel = (props) => {
                         <BlockQuote preserveWhitespace>
                           {nifsoft.desc}
                         </BlockQuote>
-                        {nifsoft.able_to_keep ? (
+                        {nifsoft.able_to_keep && (
                           <box>
                             <br />
                             <Button
@@ -145,8 +145,6 @@ export const NifPanel = (props) => {
                               }
                             />
                           </box>
-                        ) : (
-                          <> </>
                         )}
                         <box>
                           <br />
@@ -200,6 +198,7 @@ const NifSettings = (props) => {
     minimum_blood_level,
     blood_level,
     stored_points,
+    nif_examine_text,
   } = data;
   return (
     <LabeledList>
@@ -213,9 +212,8 @@ const NifSettings = (props) => {
       </LabeledList.Item>
       <LabeledList.Item label="NIF Flavor Text">
         <Input
-          onChange={(e, value) =>
-            act('change_examine_text', { new_text: value })
-          }
+          onBlur={(value) => act('change_examine_text', { new_text: value })}
+          value={nif_examine_text}
           width="100%"
         />
       </LabeledList.Item>

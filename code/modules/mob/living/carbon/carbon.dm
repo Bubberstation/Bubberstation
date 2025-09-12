@@ -247,7 +247,6 @@
 				W.layer = initial(W.layer)
 				SET_PLANE_EXPLICIT(W, initial(W.plane), src)
 		changeNext_move(0)
-	update_equipment_speed_mods() // In case cuffs ever change speed
 
 /mob/living/carbon/proc/clear_cuffs(obj/item/I, cuff_break)
 	if(!I.loc || buckled)
@@ -898,7 +897,7 @@
 	if (current_brain.suicided || (current_brain.brainmob && HAS_TRAIT(current_brain.brainmob, TRAIT_SUICIDED)))
 		return DEFIB_FAIL_NO_INTELLIGENCE
 
-	if(key && key[1] == "@") // Adminghosts
+	if(IS_FAKE_KEY(key))
 		return DEFIB_NOGRAB_AGHOST
 
 	return DEFIB_POSSIBLE
@@ -922,7 +921,7 @@
 /// Creates body parts for this carbon completely from scratch.
 /// Optionally takes a map of body zones to what type to instantiate instead of them.
 /mob/living/carbon/proc/create_bodyparts(list/overrides)
-	var/list/bodyparts_paths = bodyparts.Copy()
+	var/list/bodyparts_paths = overrides?.Copy() || bodyparts.Copy()
 	bodyparts = list()
 	for(var/obj/item/bodypart/bodypart_path as anything in bodyparts_paths)
 		var/real_body_part_path = overrides?[initial(bodypart_path.body_zone)] || bodypart_path
@@ -969,7 +968,6 @@
 
 	synchronize_bodytypes()
 	synchronize_bodyshapes()
-
 ///Proc to hook behavior on bodypart removals.  Do not directly call. You're looking for [/obj/item/bodypart/proc/drop_limb()].
 /mob/living/carbon/proc/remove_bodypart(obj/item/bodypart/old_bodypart, special)
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -1153,17 +1151,22 @@
 			// /obj/item/wash() already updates our clothing slot
 			. = worn.wash(clean_types) || .
 
+	// BUBBER EDIT ADDITION BEGIN - COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
+	if(clean_types & CLEAN_TYPE_LIGHT_DECAL)
+		remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
+	// BUBBER EDIT ADDITION END - COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
+
 /// if any of our bodyparts are bleeding
 /mob/living/carbon/proc/is_bleeding()
 	for(var/obj/item/bodypart/part as anything in bodyparts)
-		if(part.get_modified_bleed_rate())
+		if(part.cached_bleed_rate)
 			return TRUE
 
 /// get our total bleedrate
 /mob/living/carbon/proc/get_total_bleed_rate()
 	var/total_bleed_rate = 0
 	for(var/obj/item/bodypart/part as anything in bodyparts)
-		total_bleed_rate += part.get_modified_bleed_rate()
+		total_bleed_rate += part.cached_bleed_rate
 
 	return total_bleed_rate
 
@@ -1297,6 +1300,13 @@
 		return
 	AddComponent(/datum/component/rot, 6 MINUTES, 10 MINUTES, 1)
 
+/mob/living/carbon/get_photo_description(obj/item/camera/camera)
+	if(HAS_TRAIT(src, TRAIT_INVISIBLE_TO_CAMERA))
+		if(camera.see_ghosts)
+			return /mob/dead/observer::photo_description
+		return null
+	return ..()
+
 /**
  * This proc is used to determine whether or not the mob can handle touching an acid affected object.
  */
@@ -1336,6 +1346,11 @@
 	SHOULD_CALL_PARENT(TRUE)
 
 	if(isnull(dna))
+		return
+
+	if(istext(new_blood_type))
+		new_blood_type = get_blood_type(new_blood_type)
+	if(!istype(new_blood_type))
 		return
 
 	if(get_bloodtype() == new_blood_type) // already has this blood type, we don't need to do anything.

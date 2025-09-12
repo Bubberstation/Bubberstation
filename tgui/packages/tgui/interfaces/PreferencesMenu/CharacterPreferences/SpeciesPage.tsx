@@ -16,10 +16,10 @@ import { LoadingScreen } from '../../common/LoadingScreen';
 import {
   createSetPreference,
   Food,
-  Perk,
-  PreferencesMenuData,
-  ServerData,
-  Species,
+  type Perk,
+  type PreferencesMenuData,
+  type ServerData,
+  type Species,
 } from '../types';
 import { useServerPrefs } from '../useServerPrefs';
 
@@ -261,7 +261,7 @@ function SpeciesPageInner(props: SpeciesPageInnerProps) {
   const { act, data } = useBackend<PreferencesMenuData>();
   const setSpecies = createSetPreference(act, 'species');
 
-  let species: [string, Species][] = Object.entries(props.species).map(
+  const species: [string, Species][] = Object.entries(props.species).map(
     ([species, data]) => {
       return [species, data];
     },
@@ -272,6 +272,22 @@ function SpeciesPageInner(props: SpeciesPageInnerProps) {
   const swapWith = species[0];
   species[0] = species[humanIndex];
   species[humanIndex] = swapWith;
+
+  /* BUBBER EDIT START - SPECIES LIST SORTING */
+  species.sort(([keyA, speciesA], [keyB, speciesB]) => {
+    // Human first
+    if (keyA === 'human') return -1;
+    if (keyB === 'human') return 1;
+
+    // Species with sort_bottom = true go to the bottom
+    if (speciesA.sort_bottom !== speciesB.sort_bottom) {
+      return speciesA.sort_bottom ? 1 : -1;
+    }
+
+    // Otherwise sort by lore length descending
+    return speciesB.lore.length - speciesA.lore.length;
+  });
+  /* BUBBER EDIT END - SPECIES LIST SORTING */
 
   const currentSpecies = species.filter(([speciesKey]) => {
     return speciesKey === data.character_preferences.misc.species;
@@ -291,7 +307,7 @@ function SpeciesPageInner(props: SpeciesPageInnerProps) {
             <Box height="calc(100vh - 170px)" overflowY="auto" pr={3}>
               {species.map(([speciesKey, species]) => {
                 // BUBBER EDIT START - Species selction
-                let speciesPage = (
+                const speciesPage = (
                   <Button
                     key={speciesKey}
                     onClick={() => {
@@ -336,11 +352,7 @@ function SpeciesPageInner(props: SpeciesPageInnerProps) {
                       }
                     >
                       {/* SKYRAT EDIT CHANGE START - Adds maxHeight, scrollable*/}
-                      <Section
-                        title="Description"
-                        maxHeight="14vh"
-                        overflowY="auto"
-                      >
+                      <Section maxHeight="14vh" overflowY="auto">
                         {/* SKYRAT EDIT CHANGE END */}
                         {currentSpecies.desc.map((text, index) => (
                           <Box key={index} maxWidth="100%">
@@ -377,7 +389,17 @@ function SpeciesPageInner(props: SpeciesPageInnerProps) {
                     maxHeight="45vh"
                     mr={-1} /* SKYRAT EDIT END */
                   >
-                    {currentSpecies.desc}
+                    {currentSpecies.lore.map((text, index) => (
+                      <Box key={index} maxWidth="100%">
+                        {text}
+                        {index !== currentSpecies.lore.length - 1 && (
+                          <>
+                            <br />
+                            <br />
+                          </>
+                        )}
+                      </Box>
+                    ))}
                   </BlockQuote>
                 </Section>
               </Box>

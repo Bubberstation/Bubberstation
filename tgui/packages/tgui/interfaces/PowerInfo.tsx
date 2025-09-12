@@ -9,7 +9,7 @@ import {
 } from 'tgui-core/components';
 
 import { resolveAsset } from '../assets';
-import { PowerInfo } from './AntagInfoBloodsucker';
+import type { PowerInfo } from './AntagInfoBloodsucker';
 
 type PowerDetailsProps = {
   powers: PowerInfo[];

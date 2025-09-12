@@ -52,6 +52,7 @@
 
 	/// Set to TRUE if the species was emagged before
 	var/emag_effect = FALSE
+	language_prefs_whitelist = list(/datum/language/monkey)
 
 /datum/species/synthetic/allows_food_preferences()
 	return FALSE
@@ -256,6 +257,13 @@
 		SPECIES_PERK_ICON = "music",
 		SPECIES_PERK_NAME = "Tone Synthesizer",
 		SPECIES_PERK_DESC = "[plural_form] can sing musical tones using an internal synthesizer.",
+	))
+
+	perk_descriptions += list(list(
+		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+		SPECIES_PERK_ICON = "band-aid",
+		SPECIES_PERK_NAME = "Structural Damage",
+		SPECIES_PERK_DESC = "[plural_form] are weak to blunt objects.",
 	))
 
 	return perk_descriptions

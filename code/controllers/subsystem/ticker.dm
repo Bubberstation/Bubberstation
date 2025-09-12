@@ -35,7 +35,8 @@ SUBSYSTEM_DEF(ticker)
 	var/start_at
 
 	var/gametime_offset = 432000 //Deciseconds to add to world.time for station time.
-	var/station_time_rate_multiplier = 12 //factor of station time progressal vs real time.
+	var/station_time_rate_multiplier = 2 //factor of station time progressal vs real time. // BUBBER EDIT CHANGE - SERVER TIME OFFSET - ORIGINAL: 12
+	var/server_time_offset // Offset between server time and station time // BUBBER EDIT ADDITION - SERVER TIME OFFSET
 
 	/// Num of players, used for pregame stats on statpanel
 	var/totalPlayers = 0
@@ -145,13 +146,20 @@ SUBSYSTEM_DEF(ticker)
 
 		GLOB.syndicate_code_response_regex = codeword_match
 
-	start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
+	start_at = world.time + (CONFIG_GET(number/lobby_countdown) * (1 SECONDS))
+	round_start_time = start_at // May be changed later, but prevents the time from jumping back when the round actually starts
+	server_time_offset = (CONFIG_GET(number/shift_time_clock_offset) * (1 MINUTES)) // BUBBER EDIT ADD: SERVER TIME OFFSET
 	if(CONFIG_GET(flag/randomize_shift_time))
-		gametime_offset = rand(0, 23) HOURS
+		gametime_offset = rand(0, 23) * (1 HOURS)
 	else if(CONFIG_GET(flag/shift_time_realtime))
-		gametime_offset = world.timeofday
+		gametime_offset = world.timeofday + GLOB.timezoneOffset + server_time_offset // BUBBER EDIT CHANGE - SERVER TIME OFFSET - ORIGINAL: gametime_offset = world.timeofday + GLOB.timezoneOffset
+		// station_time_rate_multiplier = 1 // BUBBER EDIT REMOVAL
 	else
-		gametime_offset = (CONFIG_GET(number/shift_time_start_hour) HOURS)
+		gametime_offset = (CONFIG_GET(number/shift_time_start_hour) * (1 HOURS))
+	// BUBBER EDIT ADD BEGIN - SERVER TIME OFFSET
+	message_admins("Station time set to [station_time_timestamp(format = "hh:mm")]. Night shift transitions are [SSnightshift.can_fire ? span_vote_notice("enabled") : span_comradio("disabled")].")
+	log_dynamic("Station time set to [station_time_timestamp(format = "hh:mm")]. Server time: [time2text(world.timeofday, "hh:mm", world.timezone)]. Server time offset: [server_time_offset / (1 MINUTES)] min. Night shift transitions are [SSnightshift.can_fire ? "enabled" : "disabled"].")
+	// BUBBER EDIT ADD END - SERVER TIME OFFSET
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/ticker/fire()
@@ -165,7 +173,7 @@ SUBSYSTEM_DEF(ticker)
 			for(var/channel_tag in CONFIG_GET(str_list/channel_announce_new_game))
 				// BUBBER EDIT CHANGE BEGIN - Replace with more rich message
 				// send2chat(new /datum/tgs_message_content("New round starting on [SSmapping.current_map.map_name]!"), channel_tag)
-				send2chat(new /datum/tgs_message_content("<@&[CONFIG_GET(string/game_alert_role_id)]> Round **[GLOB.round_id]** starting on [SSmapping.current_map.map_name], [CONFIG_GET(string/servername)]! \nIf you wish to be pinged for game related stuff, go to <#[CONFIG_GET(string/role_assign_channel_id)]> and assign yourself the roles."), channel_tag)
+				send2chat(new /datum/tgs_message_content("Round **[GLOB.round_id]** starting on [SSmapping.current_map.map_name], [CONFIG_GET(string/servername)]! \nIf you wish to be pinged for game related stuff, go to <#[CONFIG_GET(string/role_assign_channel_id)]> and assign yourself the roles."), channel_tag)
 				// BUBBER EDIT CHANGE END - Replace with more rich message
 			current_state = GAME_STATE_PREGAME
 		// BUBBERSTATION EDIT START
@@ -188,12 +196,15 @@ SUBSYSTEM_DEF(ticker)
 			totalPlayers = LAZYLEN(GLOB.new_player_list)
 			totalPlayersReady = 0
 			total_admins_ready = 0
+			var/list/readied_players = list() //BUBBER EDIT ADDITION
 			for(var/mob/dead/new_player/player as anything in GLOB.new_player_list)
 				if(player.ready == PLAYER_READY_TO_PLAY)
+					readied_players[player.key] = player //BUBBER EDIT: job estimation, filling the readied list we use later
 					++totalPlayersReady
 					if(player.client?.holder)
 						++total_admins_ready
 
+			job_estimation_list = get_job_estimation(readied_players) //BUBBER EDIT ADDITION
 			if(start_immediately)
 				timeLeft = 0
 
@@ -241,7 +252,7 @@ SUBSYSTEM_DEF(ticker)
 		return TRUE
 	if(GLOB.station_was_nuked)
 		return TRUE
-	if(GLOB.revolutionary_win)
+	if(GLOB.revolution_handler?.result == REVOLUTION_VICTORY)
 		return TRUE
 	return FALSE
 
@@ -252,7 +263,7 @@ SUBSYSTEM_DEF(ticker)
 	CHECK_TICK
 	//Configure mode and assign player to antagonists
 	var/can_continue = FALSE
-//	can_continue = SSdynamic.pre_setup() //Choose antagonists // BUBBER EDIT - STORYTELLER (note: maybe disable)
+//	can_continue = SSdynamic.select_roundstart_antagonists() //Choose antagonists // BUBBER EDIT - STORYTELLER (note: maybe disable)
 	//BUBBER EDIT BEGIN - STORYTELLER
 	SSgamemode.init_storyteller()
 	can_continue = SSgamemode.pre_setup()
@@ -325,7 +336,43 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/PostSetup()
 	set waitfor = FALSE
-	SSdynamic.post_setup()
+
+	// Spawn traitors and stuff
+	for(var/datum/dynamic_ruleset/roundstart/ruleset in SSdynamic.queued_rulesets)
+		ruleset.execute()
+		SSdynamic.queued_rulesets -= ruleset
+		SSdynamic.executed_rulesets += ruleset
+	// Queue roundstart intercept report
+	/* BUBBER EDIT REMOVAL BEGIN - Storyteller
+	if(!CONFIG_GET(flag/no_intercept_report))
+		GLOB.communications_controller.queue_roundstart_report()
+	*/// BUBBER EDIT REMOVAL END - Storyteller
+	// Queue admin logout report
+	var/roundstart_logout_timer = CONFIG_GET(number/roundstart_logout_report_time_average)
+	var/roundstart_report_variance = CONFIG_GET(number/roundstart_logout_report_time_variance)
+	var/randomized_callback_timer = rand((roundstart_logout_timer - roundstart_report_variance), (roundstart_logout_timer + roundstart_report_variance))
+	addtimer(CALLBACK(src, PROC_REF(display_roundstart_logout_report)), randomized_callback_timer)
+	GLOB.logout_timer_set = randomized_callback_timer
+	// Queue suicide slot handling
+	if(CONFIG_GET(flag/reopen_roundstart_suicide_roles))
+		var/delay = (CONFIG_GET(number/reopen_roundstart_suicide_roles_delay) * 1 SECONDS) || 4 MINUTES
+		addtimer(CALLBACK(src, PROC_REF(reopen_roundstart_suicide_roles)), delay)
+	// Handle database
+	if(SSdbcore.Connect())
+		var/list/to_set = list()
+		var/arguments = list()
+		if(GLOB.revdata.originmastercommit)
+			to_set += "commit_hash = :commit_hash"
+			arguments["commit_hash"] = GLOB.revdata.originmastercommit
+		if(to_set.len)
+			arguments["round_id"] = GLOB.round_id
+			var/datum/db_query/query_round_game_mode = SSdbcore.NewQuery(
+				"UPDATE [format_table_name("round")] SET [to_set.Join(", ")] WHERE id = :round_id",
+				arguments
+			)
+			query_round_game_mode.Execute()
+			qdel(query_round_game_mode)
+
 	SSgamemode.post_setup() // BUBBER EDIT - Storyteller
 	GLOB.start_state = new /datum/station_state()
 	GLOB.start_state.count()
@@ -355,10 +402,99 @@ SUBSYSTEM_DEF(ticker)
 
 		if(!iter_human.hardcore_survival_score)
 			continue
-		if(iter_human.mind?.special_role)
+		if(iter_human.is_antag())
 			to_chat(iter_human, span_notice("You will gain [round(iter_human.hardcore_survival_score) * 2] hardcore random points if you greentext this round!"))
 		else
 			to_chat(iter_human, span_notice("You will gain [round(iter_human.hardcore_survival_score)] hardcore random points if you survive this round!"))
+
+/datum/controller/subsystem/ticker/proc/display_roundstart_logout_report()
+	var/list/msg = list("[span_boldnotice("Roundstart logout report")]\n\n")
+
+	for(var/i in GLOB.mob_living_list)
+		var/mob/living/L = i
+		var/mob/living/carbon/C = L
+		if (istype(C) && !C.last_mind)
+			continue  // never had a client
+
+		if(L.ckey && !GLOB.directory[L.ckey])
+			msg += "<b>[L.name]</b> ([L.key]), the [L.job] (<font color='#ffcc00'><b>Disconnected</b></font>)\n"
+
+
+		if(L.ckey && L.client)
+			var/failed = FALSE
+			if(L.client.inactivity >= GLOB.logout_timer_set) //Connected, but inactive (alt+tabbed or something)
+				msg += "<b>[L.name]</b> ([L.key]), the [L.job] (<font color='#ffcc00'><b>Connected, Inactive</b></font>)\n"
+				failed = TRUE //AFK client
+			if(!failed && L.stat)
+				if(HAS_TRAIT(L, TRAIT_SUICIDED)) //Suicider
+					msg += "<b>[L.name]</b> ([L.key]), the [L.job] ([span_bolddanger("Suicide")])\n"
+					failed = TRUE //Disconnected client
+				if(!failed && (L.stat == UNCONSCIOUS || L.stat == HARD_CRIT))
+					msg += "<b>[L.name]</b> ([L.key]), the [L.job] (Dying)\n"
+					failed = TRUE //Unconscious
+				if(!failed && L.stat == DEAD)
+					msg += "<b>[L.name]</b> ([L.key]), the [L.job] (Dead)\n"
+					failed = TRUE //Dead
+
+			continue //Happy connected client
+		for(var/mob/dead/observer/D in GLOB.dead_mob_list)
+			if(D.mind && D.mind.current == L)
+				if(L.stat == DEAD)
+					if(HAS_TRAIT(L, TRAIT_SUICIDED)) //Suicider
+						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] ([span_bolddanger("Suicide")])\n"
+						continue //Disconnected client
+					else
+						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (Dead)\n"
+						continue //Dead mob, ghost abandoned
+				else
+					if(D.can_reenter_corpse)
+						continue //Adminghost, or cult/wizard ghost
+					else
+						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] ([span_bolddanger("Ghosted")])\n"
+						continue //Ghosted while alive
+
+	msg += "[span_boldnotice("Roundstart logout reported at: [DisplayTimeText(GLOB.logout_timer_set)]")]\n"
+
+	var/concatenated_message = msg.Join()
+	log_admin(concatenated_message)
+	to_chat(GLOB.admins, concatenated_message)
+
+/datum/controller/subsystem/ticker/proc/reopen_roundstart_suicide_roles()
+	var/include_command = CONFIG_GET(flag/reopen_roundstart_suicide_roles_command_positions)
+	var/list/reopened_jobs = list()
+
+	for(var/mob/living/quitter in GLOB.suicided_mob_list)
+		var/datum/job/job = SSjob.get_job(quitter.job)
+		if(!job || !(job.job_flags & JOB_REOPEN_ON_ROUNDSTART_LOSS))
+			continue
+		if(!include_command && job.departments_bitflags & DEPARTMENT_BITFLAG_COMMAND)
+			continue
+		job.current_positions = max(job.current_positions - 1, 0)
+		reopened_jobs += quitter.job
+
+	if(CONFIG_GET(flag/reopen_roundstart_suicide_roles_command_report))
+		if(reopened_jobs.len)
+			var/reopened_job_report_positions
+			for(var/dead_dudes_job in reopened_jobs)
+				reopened_job_report_positions = "[reopened_job_report_positions ? "[reopened_job_report_positions]\n":""][dead_dudes_job]"
+
+			var/suicide_command_report = {"
+				<font size = 3><b>[command_name()] Human Resources Board</b><br>
+				Notice of Personnel Change</font><hr>
+				To personnel management staff aboard [station_name()]:<br><br>
+				Our medical staff have detected a series of anomalies in the vital sensors
+				of some of the staff aboard your station.<br><br>
+				Further investigation into the situation on our end resulted in us discovering
+				a series of rather... unforturnate decisions that were made on the part of said staff.<br><br>
+				As such, we have taken the liberty to automatically reopen employment opportunities for the positions of the crew members
+				who have decided not to partake in our research. We will be forwarding their cases to our employment review board
+				to determine their eligibility for continued service with the company (and of course the
+				continued storage of cloning records within the central medical backup server.)<br><br>
+				<i>The following positions have been reopened on our behalf:<br><br>
+				[reopened_job_report_positions]</i>
+			"}
+
+			print_command_report(suicide_command_report, "Central Command Personnel Update")
 
 //These callbacks will fire after roundstart key transfer
 /datum/controller/subsystem/ticker/proc/OnRoundstart(datum/callback/cb)
@@ -502,8 +638,8 @@ SUBSYSTEM_DEF(ticker)
 			qdel(player)
 			ADD_TRAIT(living, TRAIT_NO_TRANSFORM, SS_TICKER_TRAIT)
 			if(living.client)
-				var/atom/movable/screen/splash/fade_out = new(null, living.client, TRUE)
-				fade_out.Fade(TRUE)
+				var/atom/movable/screen/splash/fade_out = new(null, null, living.client, TRUE)
+				fade_out.fade(TRUE)
 				living.client.init_verbs()
 			livings += living
 	if(livings.len)
@@ -598,6 +734,7 @@ SUBSYSTEM_DEF(ticker)
 	var/news_message
 	var/news_source = "Nanotrasen News Network"
 	var/decoded_station_name = html_decode(CONFIG_GET(string/cross_comms_name)) //decode station_name to avoid minor_announce double encode // SKYRAT EDIT: CROSS COMMS CONFIG
+	var/decoded_emergency_reason = html_decode(emergency_reason)
 
 	switch(news_report)
 		// The nuke was detonated on the syndicate recon outpost
@@ -613,7 +750,7 @@ SUBSYSTEM_DEF(ticker)
 			// Had an emergency reason supplied to pass along
 			if(emergency_reason)
 				news_message = "[decoded_station_name] has been evacuated after transmitting \
-					the following distress beacon:\n\n[html_decode(emergency_reason)]"
+					the following distress beacon:\n\n[decoded_emergency_reason]"
 			else
 				news_message = "The crew of [decoded_station_name] has been \
 					evacuated amid unconfirmed reports of enemy activity."
@@ -682,7 +819,8 @@ SUBSYSTEM_DEF(ticker)
 		// The emergency escape shuttle was hijacked
 		if(SHUTTLE_HIJACK)
 			news_message = "During routine evacuation procedures, the emergency shuttle of [decoded_station_name] \
-				had its navigation protocols corrupted and went off course, but was recovered shortly after."
+				had its navigation protocols corrupted and went off course, but was recovered shortly after. \
+				The following distress beacon was sent prior to evacuation:\n\n[Gibberish(decoded_emergency_reason, FALSE, 8)]"
 		// A supermatter cascade triggered
 		if(SUPERMATTER_CASCADE)
 			news_message = "Officials are advising nearby colonies about a newly declared exclusion zone in \

@@ -122,7 +122,7 @@
 
 /datum/loadout_item/suit/labcoat_pharmacist
 	name = "Pharmacist's Labcoat"
-	item_path = /obj/item/clothing/suit/toggle/labcoat/skyrat/pharmacist
+	item_path = /obj/item/clothing/suit/toggle/labcoat/chemist/skyrat/pharmacist
 
 /*
 *	PONCHOS
@@ -640,7 +640,7 @@
 
 /datum/loadout_item/suit/labcoat/doctor_tailcoat
 	name = "Brig Physician's tailcoat"
-	item_path = /obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/sec
+	item_path = /obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic/doctor_tailcoat
 	restricted_roles = list(JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/suit/supply_jacket
