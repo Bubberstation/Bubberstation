@@ -8,9 +8,14 @@
 	required_reagents  = list(/datum/reagent/consumable/ethanol/salt_and_swell = 3, /datum/reagent/toxin/carpotoxin = 2, /datum/reagent/ammonia = 2, /datum/reagent/mutationtoxin = 1)
 	required_temp = 300
 
-/datum/chemical_reaction/mutationtoxin/android
-	results = list(/datum/reagent/mutationtoxin/android = 1)
-	required_reagents  = list(/datum/reagent/consumable/ethanol/oil_drum = 3, /datum/reagent/medicine/nanite_slurry = 2, /datum/reagent/consumable/ethanol/synthanol/robottears = 2, /datum/reagent/mutationtoxin = 1)
+/datum/chemical_reaction/transformative_virus/android
+	results = list(/datum/reagent/transformative_virus/android = 1)
+	required_reagents  = list(/datum/reagent/consumable/ethanol/oil_drum = 3, /datum/reagent/medicine/nanite_slurry = 2, /datum/reagent/medicine/liquid_solder = 2, /datum/reagent/medicine/system_cleaner = 2, /datum/reagent/consumable/ethanol/synthanol/robottears = 2, /datum/reagent/mutationtoxin = 1)
+	required_temp = 320
+
+/datum/chemical_reaction/mutationtoxin/anthromorph
+	results = list(/datum/reagent/mutationtoxin/anthromorph = 1)
+	required_reagents  = list(/datum/reagent/consumable/coco = 3, /datum/reagent/consumable/garlic = 2, /datum/reagent/consumable/capsaicin = 2, /datum/reagent/mutationtoxin = 1)
 	required_temp = 320
 
 /datum/chemical_reaction/mutationtoxin/ash
@@ -21,6 +26,11 @@
 /datum/chemical_reaction/mutationtoxin/dwarf
 	results = list(/datum/reagent/mutationtoxin/dwarf = 1)
 	required_reagents  = list(/datum/reagent/consumable/ethanol/manly_dorf = 3, /datum/reagent/consumable/ethanol/bacchus_blessing = 2, /datum/reagent/consumable/ethanol/golden_grog = 2, /datum/reagent/mutationtoxin = 1)
+	required_temp = 320
+
+/datum/chemical_reaction/mutationtoxin/ethereal
+	results = list(/datum/reagent/mutationtoxin/ethereal = 1)
+	required_reagents  = list(/datum/reagent/consumable/ethanol/telepole = 3, /datum/reagent/teslium = 1, /datum/reagent/consumable/liquidelectricity = 2, /datum/reagent/mutationtoxin = 1)
 	required_temp = 320
 
 /datum/chemical_reaction/mutationtoxin/felinid
@@ -48,9 +58,14 @@
 	required_reagents  = list(/datum/reagent/consumable/ethanol/laval_spit = 3, /datum/reagent/drug/space_drugs = 2, /datum/reagent/smart_foaming_agent = 2, /datum/reagent/mutationtoxin = 1)
 	required_temp = 320
 
-/datum/chemical_reaction/mutationtoxin/hemophage
-	results = list(/datum/reagent/mutationtoxin/hemophage = 1)
+/datum/chemical_reaction/transformative_virus/hemophage
+	results = list(/datum/reagent/transformative_virus/hemophage = 1)
 	required_reagents  = list(/datum/reagent/consumable/ethanol/velvet_kiss = 3, /datum/reagent/blood = 2, /datum/reagent/consumable/ethanol/wine = 2, /datum/reagent/mutationtoxin = 1)
+	required_temp = 320
+
+/datum/chemical_reaction/mutationtoxin/insect
+	results = list(/datum/reagent/mutationtoxin/insect = 1)
+	required_reagents  = list(/datum/reagent/consumable/ethanol/bug_zapper = 3, /datum/reagent/consumable/honey = 3, /datum/reagent/medicine/mine_salve = 3, /datum/reagent/mutationtoxin = 1)
 	required_temp = 320
 
 /datum/chemical_reaction/mutationtoxin/jelly
@@ -83,6 +98,11 @@
 	required_reagents  = list(/datum/reagent/cellulose = 20, /datum/reagent/consumable/ethanol/mush_crush = 3, /datum/reagent/plantnutriment/robustharvestnutriment = 3, /datum/reagent/mutationtoxin = 1)
 	required_temp = 320
 
+/datum/chemical_reaction/mutationtoxin/shadekin
+	results = list(/datum/reagent/mutationtoxin/shadekin = 1)
+	required_reagents  = list(/datum/reagent/consumable/bananashake = 3, /datum/reagent/medicine/mannitol = 2, /datum/reagent/drug/happiness = 2, /datum/reagent/mutationtoxin = 1)
+	required_temp = 320
+
 /datum/chemical_reaction/mutationtoxin/skeleton
 	results = list(/datum/reagent/mutationtoxin/skeleton = 1)
 	required_reagents  = list(/datum/reagent/consumable/ethanol/hollow_bone = 3, /datum/reagent/liquid_dark_matter = 5, /datum/reagent/medicine/strange_reagent = 5, /datum/reagent/consumable/milk = 30, /datum/reagent/bone_dust = 2, /datum/reagent/water/hollowwater = 5, /datum/reagent/mutationtoxin = 1)
@@ -103,6 +123,11 @@
 	required_reagents  = list(/datum/reagent/consumable/cucumberlemonade = 3, /datum/reagent/toxin/slimejelly = 2, /datum/reagent/lube = 2, /datum/reagent/mutationtoxin = 1)
 	required_temp = 320
 
+/datum/chemical_reaction/transformative_virus/synthetic
+	results = list(/datum/reagent/transformative_virus/synthetic = 1)
+	required_reagents  = list(/datum/reagent/consumable/ethanol/oil_drum = 3, /datum/reagent/medicine/nanite_slurry = 2, /datum/reagent/consumable/liquidelectricity = 2, /datum/reagent/mutationtoxin = 1)
+	required_temp = 320
+
 /datum/chemical_reaction/mutationtoxin/tajaran
 	results = list(/datum/reagent/mutationtoxin/tajaran = 1)
 	required_reagents  = list(/datum/reagent/consumable/ethanol/frisky_kitty = 3, /datum/reagent/consumable/frostoil = 2, /datum/reagent/consumable/ice = 2, /datum/reagent/mutationtoxin = 1)
@@ -121,6 +146,11 @@
 /datum/chemical_reaction/mutationtoxin/vox_primalis
 	results = list(/datum/reagent/mutationtoxin/vox_primalis = 1)
 	required_reagents  = list(/datum/reagent/consumable/hot_ice_coffee = 3, /datum/reagent/medicine/nanite_slurry = 2, /datum/reagent/nitrogen = 2, /datum/reagent/mutationtoxin = 1)
+	required_temp = 320
+
+/datum/chemical_reaction/mutationtoxin/vulpkanin
+	results = list(/datum/reagent/mutationtoxin/vulpkanin = 1)
+	required_reagents  = list(/datum/reagent/consumable/coco = 3, /datum/reagent/consumable/garlic = 2, /datum/reagent/consumable/condensedcapsaicin = 2, /datum/reagent/mutationtoxin = 1)
 	required_temp = 320
 
 /datum/chemical_reaction/mutationtoxin/xenohybrid

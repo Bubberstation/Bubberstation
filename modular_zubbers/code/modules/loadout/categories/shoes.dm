@@ -39,3 +39,11 @@
 /datum/loadout_item/shoes/frontier_colonist
 	name = "Frontier Boots"
 	item_path = /obj/item/clothing/shoes/jackboots/frontier_colonist/loadout
+
+/datum/loadout_item/shoes/jackboots/toeless
+	name = "Toeless Jackboots"
+	item_path = /obj/item/clothing/shoes/jackboots/toeless
+
+/datum/loadout_item/shoes/workboots/toeless
+	name = "Toeless Workboots"
+	item_path = /obj/item/clothing/shoes/workboots/toeless
