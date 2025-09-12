@@ -11,7 +11,7 @@
 /obj/item/crowbar/power/syndicate	//Because we have a clearly different color JOL than upstream, this needs to be specifically different now
 	inhand_icon_state = "jaws_syndie"
 
-/obj/item/crowbar/large/heavy
+/obj/item/crowbar/large/twenty_force
 	icon = 'icons/obj/tools.dmi'
 
 /obj/item/crowbar/large/old
@@ -23,10 +23,10 @@
 /obj/item/wrench/caravan
 	icon = 'icons/obj/tools.dmi'
 
-/obj/item/screwdriver/power
-	icon = 'modular_skyrat/modules/aesthetics/tools/tools.dmi'
+/obj/item/wrench/bolter
+	icon = 'icons/obj/tools.dmi'
 
-/obj/item/construction/plumbing //This icon override NEEDS to be here for the subtypes
+/obj/item/screwdriver/power
 	icon = 'modular_skyrat/modules/aesthetics/tools/tools.dmi'
 
 /obj/item/construction/rcd/arcd
