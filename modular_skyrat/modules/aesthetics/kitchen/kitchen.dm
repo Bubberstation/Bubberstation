@@ -4,9 +4,6 @@
 /obj/structure/kitchenspike
 	icon = 'modular_skyrat/modules/aesthetics/kitchen/kitchen.dmi'
 
-/obj/machinery/processor
-	icon = 'modular_skyrat/modules/aesthetics/kitchen/kitchen.dmi'
-
 /obj/machinery/grill
 	icon = 'modular_skyrat/modules/aesthetics/kitchen/kitchen.dmi'
 
