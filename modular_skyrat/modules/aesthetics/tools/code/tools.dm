@@ -11,12 +11,6 @@
 /obj/item/crowbar/power/syndicate	//Because we have a clearly different color JOL than upstream, this needs to be specifically different now
 	inhand_icon_state = "jaws_syndie"
 
-/obj/item/crowbar/large/twenty_force
-	icon = 'icons/obj/tools.dmi'
-
-/obj/item/crowbar/large/old
-	icon = 'icons/obj/tools.dmi'
-
 /obj/item/wrench
 	icon = 'modular_skyrat/modules/aesthetics/tools/tools.dmi'
 
