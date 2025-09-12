@@ -119,6 +119,7 @@
 	var/obj/item/mod/core/protean/protean_core = core
 	var/obj/item/organ/brain/protean/brain = protean_core?.linked_species.owner.get_organ_slot(ORGAN_SLOT_BRAIN)
 	var/obj/item/organ/stomach/protean/refactory = protean_core.linked_species.owner.get_organ_slot(ORGAN_SLOT_STOMACH)
+	var/mob/living/carbon/human/protean_in_suit = protean_core.linked_species.owner
 
 	if(brain?.dead && open && istype(tool, /obj/item/organ/stomach/protean) && do_after(user, 10 SECONDS) && !refactory)
 		var/obj/item/organ/stomach = tool
@@ -162,6 +163,23 @@
 		assimilate_modsuit(user, tool)
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return ITEM_INTERACT_SUCCESS
+
+	///Memory Wipe Via Pen
+
+	if(brain?.dead && istype(tool, /obj/item/pen))
+		to_chat(user, span_notice("You begin to reset the protean's random access memory using a pen."))
+		user.balloon_alert_to_viewers("resetting memory")
+		user.visible_message(span_boldwarning("[user] is reaching a pen into [protean_in_suit]!"))
+		playsound(src, 'sound/machines/synth/synth_no.ogg', 100)
+		if(!do_after(user, 10 SECONDS))
+			return
+		protean_in_suit.say("Alert - Random Access Memory Reset. Current memories lost. Any interactions that were ongoing have been forgotten.", forced = TRUE)
+		protean_in_suit.log_message("has had their memory reset.", LOG_ATTACK)
+		to_chat(protean_in_suit, span_boldwarning("Your memories have been reset. You cannot remember who reset you or any of the events leading up to your reset."))
+		playsound(src, 'sound/machines/synth/synth_yes.ogg', 100)
+		playsound(src, 'sound/machines/click.ogg', 100)
+		protean_in_suit.SetSleeping(5 SECONDS)
+
 
 /obj/item/mod/control/pre_equipped/protean/ui_status(mob/user, datum/ui_state/state)
 	var/obj/item/mod/core/protean/source = core
@@ -296,7 +314,7 @@
 		. += span_notice("<b>Control Shift Click</b> to open Protean strip menu.")
 		if(brain.dead)
 			if(!open)
-				. += isnull(refactory) ? span_warning("This Protean requires critical repairs! <b>Screwdriver them open</b>") : span_notice("<b>Repairing systems...</b>")
+				. += isnull(refactory) ? span_warning("This Protean requires critical repairs! <b>Screwdriver them open.</b>... There does seem to be a tiny reset hole on the top of the Protean, it seems a <b>Pen</b> might fit in there.. ") : span_notice("<b>Repairing systems...</b>") //Small line for how to memory reset a protean here too.
 			else
 				. += isnull(refactory) ? span_warning("<b>Insert a new refactory</b>") : span_notice("<b>Refactory Installed! Repairing systems...</b>")
 		if(protean_in_suit.key && !protean_in_suit.client)  // We have to put these here because you're examining an object, and not a carbon, and players otherwise can't tell if anyone is home.
@@ -363,3 +381,4 @@
 			ui_status_user_is_abled(user, owner),
 		),
 	)
+

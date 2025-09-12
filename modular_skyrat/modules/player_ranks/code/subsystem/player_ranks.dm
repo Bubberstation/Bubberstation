@@ -118,7 +118,7 @@ SUBSYSTEM_DEF(player_ranks)
  * * prefs - The preferences datum to check the donator_status eligibility.
  */
 /datum/controller/subsystem/player_ranks/proc/update_prefs_donator_status(datum/preferences/prefs)
-	if(!prefs)
+	if(!prefs || !prefs.parent)
 		return
 
 	prefs.unlock_content = !!prefs.parent.IsByondMember()
