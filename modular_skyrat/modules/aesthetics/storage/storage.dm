@@ -1,7 +1,3 @@
-// This override should be removed once upstream sorts out the new sprite being so big it goes off the UI
-/obj/item/storage/part_replacer/bluespace
-	icon = 'icons/obj/storage/storage.dmi'
-
 /*
 // Boxes
 */
