@@ -1,5 +1,3 @@
-// Bubber edit, adds gardening recipes
-
 /datum/crafting_recipe/ppflowers
 	name = "Purple and pink flower patch"
 	result = /obj/structure/flora/bush/flowers_pp/style_random
