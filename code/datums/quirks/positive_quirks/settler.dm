@@ -34,7 +34,7 @@
 	//BUBBER EDIT REMOVAL END
 	//SKYRAT EDIT END
 	human_quirkholder.add_movespeed_modifier(/datum/movespeed_modifier/settler)
-	human_quirkholder.physiology.hunger_mod *= 0.75 //good for you, shortass, you don't get hungry nearly as often
+	human_quirkholder.physiology.hunger_mod *= 0.75 // BUBBER EDIT - ADDITION
 	human_quirkholder.add_traits(settler_traits, QUIRK_TRAIT)
 
 //BUBBER EDIT START
