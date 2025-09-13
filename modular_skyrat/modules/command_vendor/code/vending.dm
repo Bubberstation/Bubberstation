@@ -226,9 +226,9 @@
 		/obj/item/clothing/under/rank/captain/skyrat/imperial/generic/grey = 5,
 		/obj/item/clothing/under/rank/captain/skyrat/imperial/generic/pants = 5,
 		/obj/item/clothing/under/rank/captain/skyrat/imperial/generic/red = 5,
-		/obj/item/clothing/under/rank/bridge_officer = 5,
-		/obj/item/clothing/under/rank/bridge_officer/skirt = 5,
-		/obj/item/clothing/under/rank/bridge_officer/turtle = 5,
-		/obj/item/clothing/under/rank/bridge_officer/turtle/skirt = 5,
+		/obj/item/clothing/under/rank/bridge_assistant = 5,
+		/obj/item/clothing/under/rank/bridge_assistant/skirt = 5,
+		/obj/item/clothing/under/rank/bridge_assistant/turtle = 5,
+		/obj/item/clothing/under/rank/bridge_assistant/turtle/skirt = 5,
 	)
 

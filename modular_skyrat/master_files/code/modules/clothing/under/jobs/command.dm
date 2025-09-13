@@ -158,9 +158,9 @@
 *	Bridge Officer -- Sprites from RealWinterFrost of NovaStation
 */
 
-/obj/item/clothing/under/rank/bridge_officer
-	name = "bridge officer's jumpsuit"
-	desc = "It's a blue jumpsuit with silver markings denoting the rank of \"Bridge Officer\". For those big enough to be on the bridge, but not big enough to touch the buttons."
+/obj/item/clothing/under/rank/bridge_assistant
+	name = "bridge assistant's jumpsuit"
+	desc = "It's a blue jumpsuit with silver markings denoting the rank of \"Bridge Assistant\". For those big enough to be on the bridge, but not big enough to touch the buttons."
 	icon_state = "bo_uniform"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/command.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/command.dmi'
@@ -168,19 +168,19 @@
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
 
-/obj/item/clothing/under/rank/bridge_officer/skirt
-	name = "bridge officer's jumpskirt"
-	desc = "It's a blue jumpskirt with silver markings denoting the rank of \"Bridge Officer\". For those big enough to be on the bridge, but not big enough to touch the buttons."
+/obj/item/clothing/under/rank/bridge_assistant/skirt
+	name = "bridge assistant's jumpskirt"
+	desc = "It's a blue jumpskirt with silver markings denoting the rank of \"Bridge Assistant\". For those big enough to be on the bridge, but not big enough to touch the buttons."
 	icon_state = "bo_skirt"
 
-/obj/item/clothing/under/rank/bridge_officer/turtle
-	name = "bridge officer's turtleneck"
-	desc = "It's a blue turtleneck with silver markings denoting the rank of \"Bridge Officer\". For those big enough to be on the bridge, but not big enough to touch the buttons."
+/obj/item/clothing/under/rank/bridge_assistant/turtle
+	name = "bridge assistant's turtleneck"
+	desc = "It's a blue turtleneck with silver markings denoting the rank of \"Bridge Assistant\". For those big enough to be on the bridge, but not big enough to touch the buttons."
 	icon_state = "bo_turtleneck"
 
-/obj/item/clothing/under/rank/bridge_officer/turtle/skirt
-	name = "bridge officer's skirtleneck"
-	desc = "It's a blue skirtleneck with silver markings denoting the rank of \"Bridge Officer\". For those big enough to be on the bridge, but not big enough to touch the buttons."
+/obj/item/clothing/under/rank/bridge_assistant/turtle/skirt
+	name = "bridge assistant's skirtleneck"
+	desc = "It's a blue skirtleneck with silver markings denoting the rank of \"Bridge Assistant\". For those big enough to be on the bridge, but not big enough to touch the buttons."
 	icon_state = "bo_skirtleneck"
 
 /*
