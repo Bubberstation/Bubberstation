@@ -67,7 +67,7 @@
 /datum/quirk/equipping/lungs/nitrogen
 	name = "Nitrogen Breather"
 	desc = "You breathe nitrogen, even if you might not normally breathe it. Oxygen is poisonous."
-	icon = FA_ICON_LUNGS_VIRUS
+	icon = FA_ICON_BIOHAZARD
 	medical_record_text = "Patient can only breathe nitrogen."
 	gain_text = "<span class='danger'>You suddenly have a hard time breathing anything but nitrogen."
 	lose_text = "<span class='notice'>You suddenly feel like you aren't bound to nitrogen anymore."

@@ -12,6 +12,8 @@
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	payday_modifier = 1.0
 	examine_limb_id = SPECIES_HUMAN
+	language_prefs_whitelist = list(/datum/language/monkey)
+	sort_bottom = TRUE //BUBBER EDIT ADDITION: We want to sort this to the bottom because it's a custom species template.
 
 /datum/species/humanoid/get_default_mutant_bodyparts()
 	return list(
