@@ -4,7 +4,7 @@
 	gain_text = span_notice("Internal sensors report limb disengagement protocols are ready and waiting.")
 	lose_text = span_notice("ERROR: LIMB DISENGAGEMENT PROTOCOLS OFFLINE.")
 	medical_record_text = "Patient bears quick-attach and release limb joint cybernetics."
-	value = 0
+	value = 1
 	mob_trait = TRAIT_ROBOTIC_LIMBATTACHMENT
 	icon = FA_ICON_HANDSHAKE_SIMPLE_SLASH
 	quirk_flags = QUIRK_HUMAN_ONLY
@@ -25,7 +25,7 @@
 	desc = "Disengage one of your robotic limbs from your cybernetic mounts. Requires you to not be restrained or otherwise under duress. Will not function on wounded limbs - tend to them first."
 	button_icon_state = "autotomy"
 
-	cooldown_time = 30 SECONDS
+	cooldown_time = 20 SECONDS
 	spell_requirements = NONE
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_INCAPACITATED
 
@@ -66,7 +66,7 @@
 	playsound(cast_on, 'sound/items/tools/rped.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	cast_on.visible_message(span_notice("[cast_on] shuffles [cast_on.p_their()] [limb_to_detach.name] forward, actuators hissing and whirring as [cast_on.p_they()] disengage[cast_on.p_s()] the limb from its mount..."))
 
-	if(do_after(cast_on, 5 SECONDS))
+	if(do_after(cast_on, 10 SECONDS))
 		cast_on.visible_message(span_notice("With a gentle twist, [cast_on] finally prises [cast_on.p_their()] [limb_to_detach.name] free from its socket."))
 		limb_to_detach.drop_limb()
 		cast_on.put_in_hands(limb_to_detach)
