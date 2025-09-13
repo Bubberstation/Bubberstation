@@ -89,6 +89,39 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	gets_cropped_on_taurs = FALSE
 
+//These next four items are by RealWinterFrost of NovaStation.
+
+/obj/item/clothing/under/rank/blueshield/consult
+	name = "blueshield's consulting suit"
+	desc = "A not so tactical uniform, held up to a greater standard of care by the company, tailored to be fancy with its golden trims matching that of the Nanotrasen Consultant. A symbol of unity, cohesion, and an annoyingly massive amount of paperwork."
+	icon_state = "bs_consult"
+
+/obj/item/clothing/under/rank/blueshield/consult/skirt
+	name = "blueshield's consulting skirt"
+	icon_state = "bs_consult_skirt"
+	body_parts_covered = CHEST|GROIN|ARMS
+	dying_key = DYE_REGISTRY_JUMPSKIRT
+	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	gets_cropped_on_taurs = FALSE
+
+/obj/item/clothing/under/rank/blueshield/russian
+	name = "blueshield's sweatsuit"
+	desc = "An older styled jumpsuit meant for military application by soldiers, still plenty useful nowadays, dyed and seamed to newer NT standards."
+	icon_state = "bs_rus"
+	can_adjust = FALSE
+
+/obj/item/clothing/under/rank/blueshield/formal
+	name = "blueshield's formal uniform"
+	desc = "A budget efficient uniform, making yourself stand out from others yet not drawing too much attention."
+	icon_state = "bs_formal"
+
+/obj/item/clothing/under/rank/blueshield/naval
+	name = "blueshield's naval uniform"
+	desc = "An upper level uniform granted to shields alike, representing CentCom's grand naval fleet."
+	icon_state = "bs_grandnaval"
+	can_adjust = FALSE
+
 /*
 *	NT CONSULTANT
 */
@@ -113,6 +146,42 @@
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	gets_cropped_on_taurs = FALSE
+
+//By RealWinterFrost of NovaStation.
+/obj/item/clothing/under/rank/nanotrasen_consultant/naval
+	name = "nanotrasen consultant's naval uniform"
+	desc = "An upper level uniform granted to consultants and representatives alike, representing CentCom's grand naval fleet."
+	icon_state = "nt_grandnaval"
+	can_adjust = FALSE
+
+/*
+*	Bridge Officer -- Sprites from RealWinterFrost of NovaStation
+*/
+
+/obj/item/clothing/under/rank/bridge_assistant
+	name = "bridge assistant's jumpsuit"
+	desc = "It's a blue jumpsuit with silver markings denoting the rank of \"Bridge Assistant\". For those big enough to be on the bridge, but not big enough to touch the buttons."
+	icon_state = "bo_uniform"
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/command.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/command.dmi'
+	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/command_digi.dmi'
+	sensor_mode = SENSOR_COORDS
+	random_sensor = FALSE
+
+/obj/item/clothing/under/rank/bridge_assistant/skirt
+	name = "bridge assistant's jumpskirt"
+	desc = "It's a blue jumpskirt with silver markings denoting the rank of \"Bridge Assistant\". For those big enough to be on the bridge, but not big enough to touch the buttons."
+	icon_state = "bo_skirt"
+
+/obj/item/clothing/under/rank/bridge_assistant/turtle
+	name = "bridge assistant's turtleneck"
+	desc = "It's a blue turtleneck with silver markings denoting the rank of \"Bridge Assistant\". For those big enough to be on the bridge, but not big enough to touch the buttons."
+	icon_state = "bo_turtleneck"
+
+/obj/item/clothing/under/rank/bridge_assistant/turtle/skirt
+	name = "bridge assistant's skirtleneck"
+	desc = "It's a blue skirtleneck with silver markings denoting the rank of \"Bridge Assistant\". For those big enough to be on the bridge, but not big enough to touch the buttons."
+	icon_state = "bo_skirtleneck"
 
 /*
 *	UNASSIGNED (Any head of staff)
