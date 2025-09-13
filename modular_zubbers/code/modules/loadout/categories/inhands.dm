@@ -27,3 +27,7 @@
 /datum/loadout_item/inhand/wheelchair
 	name = "folded wheelchair"
 	item_path = /obj/item/wheelchair
+
+/datum/loadout_item/inhand/paintingprinter
+	name = "instant painting printer"
+	item_path = /obj/item/modular_computer/mini_painting_printer
