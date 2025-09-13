@@ -30,7 +30,7 @@
 			if(body_choice && !body_choice.is_digi_compatible)
 				ignore_digi = TRUE
 
-	if(!ignore_digi && ((digitigrade_customization == DIGITIGRADE_OPTIONAL && human_who_gained_species.dna.features["legs"] == DIGITIGRADE_LEGS) || digitigrade_customization == DIGITIGRADE_FORCED))
+	if(!ignore_digi && ((digitigrade_customization == DIGITIGRADE_OPTIONAL && human_who_gained_species.dna.features[FEATURE_LEGS] == DIGITIGRADE_LEGS) || digitigrade_customization == DIGITIGRADE_FORCED))
 		var/obj/item/bodypart/leg/right/r_leg = bodypart_overrides[BODY_ZONE_R_LEG]
 		if(r_leg)
 			bodypart_overrides[BODY_ZONE_R_LEG] = initial(r_leg.digitigrade_type)
