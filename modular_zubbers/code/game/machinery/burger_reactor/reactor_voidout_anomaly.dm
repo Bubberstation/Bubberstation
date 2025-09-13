@@ -44,6 +44,8 @@
 	pixel_x = -16
 	pixel_y = -16
 
+	layer = ABOVE_ALL_MOB_LAYER
+
 /obj/effect/voidout/Initialize(mapload)
 	. = ..()
 	if(!kill_target)
@@ -51,6 +53,19 @@
 		if(found_target)
 			set_target(found_target)
 	playsound(src, 'modular_zubbers/sound/machines/rbmk2/voidout.ogg', 50, FALSE, extrarange = 16, pressure_affected = FALSE, use_reverb = FALSE)
+	addtimer(CALLBACK(src, PROC_REF(begin_hunt)), rand(10,20) SECONDS)
+
+/obj/effect/voidout/proc/begin_hunt()
+
+	var/area/our_area = get_area(src)
+	var/area/their_area = kill_target ? get_area(kill_target) : null
+
+	if(our_area && our_area.apc)
+		our_area.apc.overload_lighting()
+
+	if(their_area && their_area.apc && our_area != their_area)
+		their_area.apc.overload_lighting()
+
 	START_PROCESSING(SSsinguloprocess, src)
 
 /obj/effect/voidout/Destroy()
@@ -59,10 +74,6 @@
 	. = ..()
 
 /obj/effect/voidout/process(seconds_per_tick)
-
-	if(current_power < 10) //Give it some time before chasing. This is measured in seconds (not deciseconds!)
-		current_power += seconds_per_tick
-		return
 
 	if(!kill_target)
 		if(COOLDOWN_FINISHED(src, search_cooldown))
@@ -78,16 +89,28 @@
 	var/turf/our_turf = get_turf(src)
 	var/turf/their_turf = get_turf(kill_target)
 
-	if(our_turf.z != their_turf.z)
+	if(!their_turf || our_turf.z != their_turf.z)
 		set_target(null)
 		return
 
-	if(our_turf == their_turf)
-		kill_target.blood_volume = 0
+	if(our_turf && our_turf == their_turf)
+		var/obj/item/organ/heart/target_heart = kill_target.get_organ_slot(ORGAN_SLOT_HEART)
+		kill_target.add_splatter_floor(their_turf)
+		if(target_heart)
+			kill_target.investigate_log("had their heart exploded by a voidout.", INVESTIGATE_DEATHS)
+			qdel(target_heart)
+		else if(kill_target.blood_volume > 0)
+			kill_target.investigate_log("had their blood drained by a voidout.", INVESTIGATE_DEATHS)
+			kill_target.blood_volume = 0
+
+		playsound(our_turf, 'modular_zubbers/sound/machines/rbmk2/voidout_end.ogg', 50, FALSE, extrarange = 16, pressure_affected = FALSE, use_reverb = FALSE)
 		qdel(src) //Satisfied
+
 		return
 
-	step_towards(src,their_turf)
+	if(their_turf)
+		step_towards(src,their_turf)
+
 
 /obj/effect/voidout/proc/set_target(mob/living/desired_target)
 
@@ -106,7 +129,7 @@
 			continue
 		if(potential_target.stat == DEAD)
 			continue
-		if(potential_target.blood_volume <= 0)
+		if(!potential_target.get_organ_slot(ORGAN_SLOT_HEART))
 			continue
 		var/found_distance = get_dist(src,best_target)
 		if(best_target && found_distance > best_distance) //If we have a best target and our distance is greater than the existing one, ignore it.
