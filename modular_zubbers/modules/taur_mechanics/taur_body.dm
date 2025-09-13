@@ -1,4 +1,4 @@
-#define LAYDOWN_COOLDOWN 2 SECONDS
+#define LAYDOWN_COOLDOWN 1 SECONDS
 
 /obj/item/organ/taur_body
 	name = "taur body"
