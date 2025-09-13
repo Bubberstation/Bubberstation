@@ -7,13 +7,11 @@
 */
 /datum/sprite_accessory/wings
 	icon = 'icons/mob/human/species/wings.dmi'
-	generic = "Wings"
 	key = "wings"
 	color_src = USE_ONE_COLOR
 	recommended_species = list(SPECIES_HUMAN, SPECIES_SYNTH, SPECIES_FELINE, SPECIES_LIZARD, SPECIES_MAMMAL)
 	organ_type = /obj/item/organ/wings
 	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER, BODY_ADJ_LAYER)
-	genetic = TRUE
 
 /datum/sprite_accessory/wings/is_hidden(mob/living/carbon/human/wearer)
 	if(!wearer.w_uniform && !wearer.wear_suit)
@@ -160,7 +158,6 @@
 /datum/sprite_accessory/wings/mammal/dragon/synth
 	name = "Dragon (Synthetic)"
 	icon_state = "dragonsynth"
-	genetic = FALSE
 
 /datum/sprite_accessory/wings/mammal/dragon/mechanical
 	name = "Dragon (Mechanical)"
@@ -206,6 +203,10 @@
 	icon_state = "harpybat"
 	color_src = USE_MATRIXED_COLORS
 
+/datum/sprite_accessory/wings/mammal/harpy/bat/fluffless
+	name = "Harpy (Bat - Fluffless)"
+	icon_state = "harpybat_fluffless"
+
 /datum/sprite_accessory/wings/mammal/top/harpy/alt
 	name = "Harpy (Top - Alt)"
 	icon_state = "harpyalt_top"
@@ -218,6 +219,10 @@
 	name = "Harpy (Top - Bat)"
 	icon_state = "harpybat_top"
 	color_src = USE_MATRIXED_COLORS
+
+/datum/sprite_accessory/wings/mammal/top/harpy/bat/fluffless
+	name = "Harpy (Top - Bat - Fluffless)"
+	icon_state = "harpybat_fluffless_top"
 
 /datum/sprite_accessory/wings/mammal/pterodactyl
 	name = "Pterodactyl"
