@@ -25,6 +25,8 @@
 #define TAG_SPACE "space"
 /// When the event requires the station to be on planetary.
 #define TAG_PLANETARY "planetary"
+/// When the event is NPCs.
+#define TAG_PVE "pve"
 
 
 #define EVENT_TRACK_MUNDANE "Mundane"

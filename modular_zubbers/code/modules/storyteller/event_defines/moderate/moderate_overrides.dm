@@ -2,7 +2,7 @@
 	tags = list(TAG_DESTRUCTIVE, TAG_COMMUNAL, TAG_CHAOTIC)
 
 /datum/round_event_control/carp_migration
-	tags = list(TAG_COMMUNAL)
+	tags = list(TAG_COMMUNAL, TAG_PVE,)
 
 /datum/round_event_control/communications_blackout
 	tags = list(TAG_COMMUNAL, TAG_SPOOKY)
@@ -37,13 +37,13 @@
 	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_CHAOTIC)
 
 /datum/round_event_control/portal_storm_syndicate
-	tags = list(TAG_COMBAT, TAG_CHAOTIC)
+	tags = list(TAG_PVE)
 
 /datum/round_event_control/portal_storm_narsie
-	tags = list(TAG_COMBAT, TAG_CHAOTIC)
+	tags = list(TAG_PVE)
 
 /datum/round_event_control/mold
-	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_CHAOTIC)
+	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_CHAOTIC, TAG_PVE)
 	weight = 0
 	max_occurrences = 0
 
