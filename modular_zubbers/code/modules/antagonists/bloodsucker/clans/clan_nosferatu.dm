@@ -35,11 +35,6 @@
 
 /datum/bloodsucker_clan/nosferatu/proc/can_ventcrawl(mob/living/carbon/human/owner_mob, atom/vent, provide_feedback)
 	SIGNAL_HANDLER
-	var/obj/back_slot = owner_mob.get_item_by_slot(ITEM_SLOT_BACK)
-	if(back_slot && !istype(back_slot, /obj/item/storage/backpack/satchel/flat))
-		if(provide_feedback)
-			to_chat(owner_mob, span_warning("You cannot ventcrawl with [back_slot] on your back!"))
-		return FALSE
 	for(var/item in owner_mob.held_items)
 		if(isnull(item))
 			continue
