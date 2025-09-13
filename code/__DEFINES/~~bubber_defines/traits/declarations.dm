@@ -48,3 +48,6 @@
 
 // For using tertiary mutant colors
 #define TRAIT_MUTANT_COLORS_3 "mutcolors3"
+
+/// The trait that determines if someone has the robotic limb reattachment quirk.
+#define TRAIT_ROBOTIC_LIMBATTACHMENT "trait_robotic_limbattachment"
