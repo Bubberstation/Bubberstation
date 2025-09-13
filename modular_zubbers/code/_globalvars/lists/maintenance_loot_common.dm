@@ -980,5 +980,11 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/reagent_containers/heroinbrick = 1,
 		/obj/item/reagent_containers/hashbrick = 1
 	) = 50,
+	//GS13 EDIT MAINT - LOOT
+	list(
+		/obj/item/trash/fatoray_scrap1 = 1,
+		/obj/item/trash/fatoray_scrap2 = 1,
+	) = 500,
+	//GS13 EDIT END
 	/obj/item/rack_parts = 75
 ))
