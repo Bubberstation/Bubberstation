@@ -530,6 +530,7 @@
 ///Sets a new value for the myseed variable, which is the seed of the plant that's growing inside the tray.
 /obj/machinery/hydroponics/proc/set_seed(obj/item/seeds/new_seed, delete_old_seed = TRUE)
 	var/obj/item/seeds/old_seed = myseed
+	myseed = new_seed
 	for(var/datum/plant_gene/trait/gene in old_seed?.genes)
 		gene.on_unplanted_from_tray(src, old_seed)
 	if(old_seed && delete_old_seed)
