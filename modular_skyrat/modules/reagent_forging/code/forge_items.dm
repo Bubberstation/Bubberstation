@@ -200,11 +200,13 @@
 	desc = "A katana blade, ready to get some wood for completion."
 	icon_state = "katanablade"
 	spawning_item = /obj/item/forging/reagent_weapon/katana
+
 /obj/item/forging/complete/rapier
 	name = "rapier blade"
 	desc = "A rapier blade, ready to get some wood for completion."
 	icon_state = "rapierblade"
 	spawning_item = /obj/item/forging/reagent_weapon/rapier
+
 /obj/item/forging/complete/dagger
 	name = "dagger blade"
 	desc = "A dagger blade, ready to get some wood for completion."
