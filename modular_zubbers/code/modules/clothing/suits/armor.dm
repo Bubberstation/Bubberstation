@@ -133,4 +133,3 @@
 	fire = 100
 	acid = 50
 	wound = 25
-// sprited by @toriate on discord
