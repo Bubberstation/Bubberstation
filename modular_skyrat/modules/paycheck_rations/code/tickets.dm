@@ -26,7 +26,7 @@
 	var/list/radial_meat_options = list(
 		"Standard Meats" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "meats"),
 		"Seafood Meats" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "meats_fish"),
-		"Tizirian Meats" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "meats_lizard"),
+		"Tiziran Meats" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "meats_lizard"),
 		"Ethereal Meats" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "meats_ethereal"),
 		"Blood Bag" = image(icon = 'icons/obj/medical/bloodpack.dmi', icon_state = "bloodpack"),
 		"Glucose Medipens" = image(icon = 'modular_skyrat/modules/food_replicator/icons/medicine.dmi', icon_state = "glupen"),
@@ -45,7 +45,7 @@
 			items_we_deliver += /obj/item/storage/box/spaceman_ration/meats
 		if("Seafood Meats")
 			items_we_deliver += /obj/item/storage/box/spaceman_ration/meats/fish
-		if("Tizirian Meats")
+		if("Tiziran Meats")
 			items_we_deliver += /obj/item/storage/box/spaceman_ration/meats/lizard
 		if("Ethereal Meats")
 			items_we_deliver += /obj/item/storage/box/spaceman_ration/meats/ethereal
@@ -60,7 +60,7 @@
 		"Standard Produce" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "plants"),
 		"Alternative Produce" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "plants_alt"),
 		"Mothic Produce" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "plants_moth"),
-		"Tizirian Produce" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "plants_lizard"),
+		"Tiziran Produce" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "plants_lizard"),
 		"Ethereal Produce" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "plants_ethereal"),
 	)
 
@@ -81,7 +81,7 @@
 			items_we_deliver += /obj/item/storage/box/spaceman_ration/plants/alternate
 		if("Mothic Produce")
 			items_we_deliver += /obj/item/storage/box/spaceman_ration/plants/mothic
-		if("Tizirian Produce")
+		if("Tiziran Produce")
 			items_we_deliver += /obj/item/storage/box/spaceman_ration/plants/lizard
 		if("Ethereal Produce")
 			items_we_deliver += /obj/item/storage/box/spaceman_ration/plants/ethereal

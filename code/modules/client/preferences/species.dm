@@ -61,5 +61,6 @@
 		data[species_id]["enabled_features"] = species.get_features()
 		data[species_id]["perks"] = species.get_species_perks()
 		data[species_id]["diet"] =  species.get_species_diet()
+		data[species_id]["sort_bottom"] = species.sort_bottom //BUBBER EDIT ADDITION: Do we sort the species to the bottom?
 
 	return data

@@ -152,5 +152,5 @@
 			for(var/obj/machinery/light/night_light in area_turf)
 				if(night_light.nightshift_allowed)
 					night_light.nightshift_enabled = nightshift_lights
-					night_light.update(FALSE)
+					night_light.update(trigger = FALSE, play_sound = FALSE) // BUBBER EDIT CHANGE - LIGHTING - Original: update(FALSE)
 				CHECK_TICK
