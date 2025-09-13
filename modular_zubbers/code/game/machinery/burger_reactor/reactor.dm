@@ -55,9 +55,11 @@
 	//Upgradable stats.
 	var/power_efficiency = 1 //A multiplier of base_power_generation. Also has an effect on heat generation. Improved via capacitors.
 	var/vent_pressure = 200 //Pressure, in kPa, that the buffer releases the gas to. Improved via servos.
-	var/max_power_generation = 350000 //Maximum allowed power generation (joules) per cycle before the rods go apeshit. Improved via matter bins. The absolute max is 20 times this.
+	var/max_power_generation = 350000 //Maximum allowed power generation (joules) per cycle before the rods go apeshit. Improved via matter bins. Going over 5 times this will reduce power generation.
 
 	var/list/obj/machinery/rbmk2_sniffer/linked_sniffers = list()
+
+	var/obj/machinery/power/supermatter_crystal/linked_supermatter
 
 /datum/armor/rbmk2
 	melee = 50
@@ -79,12 +81,50 @@
 
 	SSair.start_processing_machine(src)
 
+	supermatter_link()
+
+/obj/machinery/power/rbmk2/preloaded/Initialize(mapload)
+	. = ..()
+	stored_rod = new /obj/item/tank/rbmk2_rod/preloaded(src)
+	START_PROCESSING(SSmachines, src)
+	update_appearance(UPDATE_ICON)
+
+/obj/machinery/power/rbmk2/proc/supermatter_link()
+
+	if(linked_supermatter)
+		supermatter_unlink()
+
+	for(var/obj/machinery/power/supermatter_crystal/found_supermatter in orange(1,loc))
+		if(found_supermatter.moveable)
+			continue
+		linked_supermatter = found_supermatter
+		RegisterSignal(linked_supermatter, COMSIG_QDELETING, PROC_REF(on_supermatter_delete))
+		return TRUE
+
+	return FALSE
+
+/obj/machinery/power/rbmk2/proc/on_supermatter_delete(atom/source)
+
+	SIGNAL_HANDLER
+
+	supermatter_unlink()
+
+
+/obj/machinery/power/rbmk2/proc/supermatter_unlink()
+	if(!linked_supermatter)
+		return FALSE
+	linked_supermatter = null
+	UnregisterSignal(linked_supermatter, COMSIG_QDELETING)
+	return TRUE
+
 /obj/machinery/power/rbmk2/return_analyzable_air()
 	. = list()
 	if(stored_rod) . += stored_rod.air_contents
 	. += buffer_gases
 
 /obj/machinery/power/rbmk2/Destroy()
+
+	supermatter_unlink()
 
 	for(var/obj/machinery/rbmk2_sniffer/sniffer as anything in linked_sniffers)
 		sniffer.unlink_reactor(src)
@@ -127,12 +167,6 @@
 			if(stored_rod) //Just in case.
 				remove_rod()
 	. = ..()
-
-/obj/machinery/power/rbmk2/preloaded/Initialize(mapload)
-	. = ..()
-	stored_rod = new /obj/item/tank/rbmk2_rod/preloaded(src)
-	START_PROCESSING(SSmachines, src)
-	update_appearance(UPDATE_ICON)
 
 /obj/machinery/power/rbmk2/attackby(obj/item/attacking_item, mob/living/user, params)
 	if(!user.combat_mode)
@@ -463,18 +497,24 @@
 
 	. += span_notice("A digital display on the side side says <b>MAX SAFE POWER: [display_power(safeties_max_power_generation)], WARRANTY VOID IF EXCEEDED</b>.")
 
-	. += "It is linked to [length(linked_sniffers)] sniffer(s)."
 
-	. += "It is[!active?"n't":""] running."
+	if(active)
+		. += span_notice("It's running.")
+		if(HAS_TRAIT(user, TRAIT_CLUMSY))
+			. += span_clown("I better go catch it!")
+	else
+		. += span_warning("It isn't running.")
 
-	if(!power || !powernet)
+	if(linked_supermatter)
+		. += span_notice("It is currently linked to an adjacent supermatter crystal, feeding power directly into it at high efficiency.")
+	else if(!power || !powernet)
 		. += span_warning("It is not connected to a power cable.")
 
 	if(!venting)
 		. += span_warning("The vents are closed.")
 
 	if(!stored_rod)
-		. += span_warning("It it is missing a RB-MK2 reactor rod.")
+		. += span_warning("It it is missing an RB-MK2 reactor rod.")
 	else if(jammed)
 		. += span_danger("The reactor rod is jammed! <b>Pry</b> the rod back in to unjam in!")
 	else if(meltdown)
@@ -482,15 +522,18 @@
 	else
 		. += span_notice("There is an RB-MK2 reactor rod installed. <b>Wrench</b> it down to activate, or remove it with ALT+CLICK.")
 
-	if(active)
-		. += span_notice("It is currently consuming [last_tritium_consumption] moles of tritium per cycle, producing [display_power(last_power_generation)].")
-
 
 /obj/machinery/power/rbmk2/examine_more(mob/user)
 	. = ..()
-	. += "It is running at <b>[power_efficiency*100]%</b> power efficiency."
-	. += "It can output in environments up to <b>[vent_pressure]kPa</b>."
-	. += "It can handle an estimated power load of <b>[display_power(max_power_generation)]</b> before going critical."
+	. += span_notice("It is running at <b>[power_efficiency*100]%</b> power efficiency.")
+	. += span_notice("It can output in environments up to <b>[vent_pressure]kPa</b>.")
+	. += span_notice("It can handle an estimated power load of <b>[display_power(max_power_generation)]</b> before going critical.")
+	if(!linked_supermatter)
+		. += span_notice("Is is not currently linked to an adjacent supermatter crystal.")
+		. += span_notice("Building an RB-MK2 reactor directly adjacent to a normal-sized supermatter crystal will link them together and supply energy to the supermatter crystal.")
+		. += span_notice("Doing this requires at least 30 moles of Hyper-Noblium present in the reactor rod, along with the normal tritium as fuel.")
+
+
 
 /obj/machinery/power/rbmk2/proc/transfer_rod_temperature(datum/gas_mixture/gas_source,allow_cooling_limiter=TRUE,multiplier=1)
 

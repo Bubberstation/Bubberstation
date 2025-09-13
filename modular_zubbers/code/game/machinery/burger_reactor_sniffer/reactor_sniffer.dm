@@ -55,8 +55,6 @@
 	stored_radio.set_listening(FALSE)
 	stored_radio.recalculateChannels()
 
-	find_and_hang_on_wall()
-
 	if(mapload)
 		for(var/obj/machinery/power/rbmk2/reactor in range(10,src))
 			link_reactor(null,reactor)
@@ -126,5 +124,3 @@
 	playsound(src, 'sound/effects/alert.ogg', 50, TRUE)
 
 	return TRUE
-
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/rbmk2_sniffer, 24)

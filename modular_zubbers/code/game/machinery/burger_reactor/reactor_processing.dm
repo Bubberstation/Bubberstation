@@ -1,5 +1,8 @@
 /obj/machinery/power/rbmk2/process()
 
+	if(stored_rod && (venting || (!active && !jammed)))
+		update_appearance(UPDATE_OVERLAYS)
+
 	if(!stored_rod || !active)
 		return
 
@@ -45,7 +48,6 @@
 	else
 		last_radiation_pulse = min( last_power_generation*0.001, range_cap)
 
-
 	//The LOWER the insulation_threshold, the stronger the radiation can penetrate.
 	//Values closer to the maximum range penetrate the most.
 	var/insulation_threshold_math = (range_cap - last_radiation_pulse) / range_cap
@@ -60,9 +62,19 @@
 	var/our_heat_capacity = consumed_mix.heat_capacity()
 	if(our_heat_capacity > 0)
 		var/temperature_mod = last_power_generation >= max_power_generation ? 4 : 1
+
+		//In order to directly power the supermatter, at least 30 moles of hyper-nobellium is required (does not get consumed).
+		if(linked_supermatter)
+			rod_mix.assert_gas(/datum/gas/hypernoblium)
+			if(rod_mix.gases[/datum/gas/hypernoblium][MOLES] >= 30)
+				linked_supermatter.external_power_immediate += last_power_generation*0.0075
+				temperature_mod *= 0.1
+				last_power_generation = 0
+				goblin_multiplier *= 10
+
 		consumed_mix.assert_gas(/datum/gas/goblin)
 		consumed_mix.gases[/datum/gas/goblin][MOLES] += last_tritium_consumption*goblin_multiplier
-		consumed_mix.temperature += (temperature_mod-rand())*8 + (16000/our_heat_capacity)*(overclocked ? 2 : 1)*power_efficiency*temperature_mod*0.5*(1/(vent_pressure/200))
+		consumed_mix.temperature += max(0,temperature_mod-rand())*8 + (16000/our_heat_capacity)*(overclocked ? 2 : 1)*power_efficiency*temperature_mod*0.5*(1/(vent_pressure/200))
 		consumed_mix.temperature = clamp(consumed_mix.temperature,5,0xFFFFFF)
 
 	if(rod_mix_pressure >= stored_rod.pressure_limit*(1 + rand()*0.25)) //Pressure friction penalty.
@@ -102,12 +114,10 @@
 	else if(meltdown && rod_mix.temperature <= stored_rod.temperature_limit*0.75 && last_power_generation <= max_power_generation*0.75) //Hard to get out of a meltdown. Needs that 25% buffer.
 		meltdown = FALSE
 
-	if(power && powernet && last_power_generation)
+	if(!linked_supermatter && power && powernet && last_power_generation > 0)
 		if(last_power_generation >= max_power_generation*5)
 			last_power_generation *= rand()*0.25 // (Mostly) stops crazy power generation from happening.
 		src.add_avail(last_power_generation)
-
-	update_appearance(UPDATE_OVERLAYS)
 
 	return TRUE
 
