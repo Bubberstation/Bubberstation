@@ -13,6 +13,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	var/max_punches = 6
 	var/punches = 0
+	req_access = list(ACCESS_COMMAND) // Without this, assistants can punch the card that comes from the machine after they've turned in their roundstart card by using their own PDA.
 	COOLDOWN_DECLARE(gbp_punch_cooldown)
 
 /obj/item/gbp_punchcard/starting
