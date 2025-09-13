@@ -73,12 +73,12 @@
 // Borg Dom Aura :)
 /obj/item/borg/upgrade/dominatrixmodule/action(mob/living/silicon/robot/borg, mob/living/user)
 	if(borg.hasToys)
-    	to_chat(usr, span_warning("This unit already has a 'recreational' module installed!"))
-    	return FALSE
-    . = ..()
+		to_chat(usr, span_warning("This unit already has a 'recreational' module installed!"))
+		return FALSE
+	. = ..()
 	if(.)
-    	borg.hasToys = TRUE
-    	borg.add_quirk(/datum/quirk/dominant_aura)
+		borg.hasToys = TRUE
+		borg.add_quirk(/datum/quirk/dominant_aura)
 
 /obj/item/borg/upgrade/dominatrixmodule/deactivate(mob/living/silicon/robot/borg, mob/living/user)
 	. = ..()
@@ -143,12 +143,12 @@
 // WellTrained Obedience Behaviour
 /obj/item/borg/upgrade/obediencemodule/action(mob/living/silicon/robot/borg, mob/living/user)
 	if(borg.hasToys)
-    	to_chat(usr, span_warning("This unit already has a 'recreational' module installed!"))
-    	return FALSE
+		to_chat(usr, span_warning("This unit already has a 'recreational' module installed!"))
+		return FALSE
 	. = ..()
 	if(.)
-    	borg.hasToys = TRUE
-    	borg.add_quirk(/datum/quirk/well_trained)
+		borg.hasToys = TRUE
+		borg.add_quirk(/datum/quirk/well_trained)
 
 /obj/item/borg/upgrade/obediencemodule/deactivate(mob/living/silicon/robot/borg, mob/living/user)
 	. = ..()
