@@ -41,8 +41,6 @@
 /datum/round_event/wizard_dice/kill()
 	UnregisterSignal(created_dice, COMSIG_QDELETING) //Remove this signal first.
 	. = ..()
-	if(did_announce)
-		priority_announce("Traces of twenty-sided magic have been reduced to acceptable levels.", "Magusologist Expert Warning")
 	//Garbage day!
 	if(created_dice && !QDELETED(created_dice))
 		qdel(created_dice)
