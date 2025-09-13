@@ -77,3 +77,22 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	reqs = list(/obj/item/clothing/glasses/hud/civilian/sunglasses = 1)
 	category = CAT_EQUIPMENT
+
+// Metal H2 Rework by Xiska
+
+/datum/crafting_recipe/atmos_armor_crafting
+	name = "Elder Atmosian Armor"
+	result = /obj/item/clothing/suit/armor/elder_atmosian
+	time = 40 SECONDS
+	reqs = list(/obj/item/stack/sheet/mineral/metal_hydrogen = 5,
+	/obj/item/clothing/suit/utility/fire/atmos = 1)
+	category = CAT_CLOTHING
+
+
+/datum/crafting_recipe/atmos_helmet_crafting
+	name = "Elder Atmosian Helmet"
+	result = /obj/item/clothing/head/helmet/elder_atmosian
+	time = 40 SECONDS
+	reqs = list(/obj/item/stack/sheet/mineral/metal_hydrogen = 3,
+	/obj/item/clothing/head/utility/hardhat/welding/atmos = 1)
+	category = CAT_CLOTHING
