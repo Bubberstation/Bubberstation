@@ -103,10 +103,12 @@
 	name = "incomplete katana blade"
 	icon_state = "hot_katanablade"
 	spawn_item = /obj/item/forging/complete/katana
+
 /obj/item/forging/incomplete/rapier
 	name = "incomplete rapier blade"
 	icon_state = "hot_rapierblade"
 	spawn_item = /obj/item/forging/complete/rapier
+
 /obj/item/forging/incomplete/dagger
 	name = "incomplete dagger blade"
 	icon_state = "hot_daggerblade"
