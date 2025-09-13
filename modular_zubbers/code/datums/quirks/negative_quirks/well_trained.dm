@@ -7,7 +7,7 @@
 	value = -1
 	gain_text = "<span class='notice'>You feel like being someone's pet</span>"
 	lose_text = "<span class='notice'>You no longer feel like being a pet...</span>"
-	quirk_flags = QUIRK_HUMAN_ONLY | QUIRK_HIDE_FROM_SCAN | QUIRK_PROCESSES
+	quirk_flags = QUIRK_HIDE_FROM_SCAN | QUIRK_PROCESSES
 	erp_quirk = TRUE
 	var/mob/living/carbon/human/last_dom
 
