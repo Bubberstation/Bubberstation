@@ -53,11 +53,11 @@
 			return TRUE
 	return FALSE
 
-// Updates transform value. Only useful when body size values changed, so it updates them by default
-/datum/action/oversized_visibility/proc/update_transform(update_appearance = TRUE)
+// Updates transform value. Useful when body size values changed, so it updates them by default
+/datum/action/oversized_visibility/proc/update_transform(update_scale = TRUE)
 	if(!small_icon)
 		return
-	if(update_appearance)
+	if(update_scale)
 		update_scale()
 	small_icon.transform = matrix(owner.transform) * matrix(scale, scale, MATRIX_SCALE)
 
@@ -113,6 +113,50 @@
 	UnregisterSignal(carbon_holder, COMSIG_LIVING_POST_UPDATE_TRANSFORM)
 	carbon_holder.remove_alt_appearance("smallsprite_sizecode")
 	small_icon = null
+
+/* All the emote code taken from
+code\modules\mob\emote.dm */
+/datum/emote/jump/jump_animation(mob/user)
+	. = ..()
+	for(var/datum/action/sizecode_smallsprite/A in user.actions)
+		if(!A.small)
+			return
+		var/original_transform = A.small_icon.transform
+		animate(A.small_icon, transform = A.small_icon.transform.Translate(0, 4), time = 0.1 SECONDS, flags = ANIMATION_PARALLEL)
+		animate(transform = original_transform, time = 0.1 SECONDS)
+
+/datum/emote/flip/run_emote(mob/user, params , type_override, intentional)
+	. = ..()
+	for(var/datum/action/sizecode_smallsprite/A in user.actions)
+		if(!A.small)
+			return
+		A.small_icon.do_spin_animation(FLIP_EMOTE_DURATION, 1)
+
+// code\__HELPERS\visual_effects.dm
+/image/proc/SpinAnimation(speed = 1 SECONDS, loops = -1, clockwise = TRUE, segments = 3, parallel = TRUE)
+	if(!segments)
+		return
+	var/segment = 360/segments
+	if(!clockwise)
+		segment = -segment
+	//SEND_SIGNAL(src, COMSIG_ATOM_SPIN_ANIMATION, speed, loops, segments, segment)
+	do_spin_animation(speed, loops, segments, segment, parallel)
+
+// code\__HELPERS\visual_effects.dm
+/image/proc/do_spin_animation(speed = 1 SECONDS, loops = -1, segments = 3, angle = 120, parallel = TRUE)
+    var/list/matrices = list()
+    for(var/i in 1 to segments-1)
+        var/matrix/segment_matrix = matrix(src.transform)
+        segment_matrix.Turn(angle*i)
+        matrices += segment_matrix
+    var/matrix/last = matrix(src.transform)
+    matrices += last
+
+    speed /= segments
+
+    animate(src, transform = matrices[1], time = speed, loop = loops, flags = parallel ? ANIMATION_PARALLEL : 0)
+    for(var/i in 2 to segments)
+        animate(transform = matrices[i], time = speed)
 
 #undef SPRITE_SIZE
 #undef LYING_WEST_PIXEL_X
