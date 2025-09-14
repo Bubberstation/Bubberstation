@@ -1,4 +1,5 @@
-/datum/quirk/settler
+//BUBBER EDIT (item quirk)
+/datum/quirk/item_quirk/settler
 	name = "Settler"
 	//BUBBER EDIT (Changes text a bit)
 	desc = "You are from a lineage of the earliest space settlers!  You are much better at outdoorsmanship and \
@@ -23,7 +24,8 @@
 		TRAIT_STURDY_FRAME,
 	)
 
-/datum/quirk/settler/add(client/client_source)
+//BUBBER EDIT (item quick)
+/datum/quirk/item_quirk/settler/add(client/client_source)
 	var/mob/living/carbon/human/human_quirkholder = quirk_holder
 	//SKYRAT EDIT BEGIN - This is so Teshari don't get the height decrease.
 	//BUBBER EDIT REMOVAL START - Lol, not any more.
@@ -32,9 +34,16 @@
 	//BUBBER EDIT REMOVAL END
 	//SKYRAT EDIT END
 	human_quirkholder.add_movespeed_modifier(/datum/movespeed_modifier/settler)
+	human_quirkholder.physiology.hunger_mod *= 0.75 // BUBBER EDIT - ADDITION
 	human_quirkholder.add_traits(settler_traits, QUIRK_TRAIT)
 
-/datum/quirk/settler/remove()
+//BUBBER EDIT START
+/datum/quirk/item_quirk/settler/add_unique(client/client_source)
+	give_item_to_holder(/obj/item/storage/box/papersack/wheat, list(LOCATION_BACKPACK, LOCATION_HANDS))
+	give_item_to_holder(/obj/item/storage/toolbox/fishing/small, list(LOCATION_BACKPACK, LOCATION_HANDS))
+//BUBBER EDIT END
+
+/datum/quirk/item_quirk/settler/remove()
 	if(QDELING(quirk_holder))
 		return
 	var/mob/living/carbon/human/human_quirkholder = quirk_holder
@@ -42,4 +51,6 @@
 	//human_quirkholder.set_mob_height(HUMAN_HEIGHT_MEDIUM)
 	//BUBBER EDIT REMOVAL END
 	human_quirkholder.remove_movespeed_modifier(/datum/movespeed_modifier/settler)
+	//BUBBER EDIT
+	human_quirkholder.physiology.hunger_mod /= 0.75
 	human_quirkholder.remove_traits(settler_traits, QUIRK_TRAIT)
