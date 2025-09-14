@@ -14,7 +14,7 @@
 	name = "engine choice beacon"
 	desc = "A clusterfuck of wiring and components that somehow allows you to select the desired engine you want for the shift. Selection is permanent and cannot be reversed. Cannot be moved. Can be destroyed with a mulitool, with a considerable delay."
 
-	icon = 'modular_zubbers/icons/obj/stuctures/engine_choice.dmi'
+	icon = 'modular_zubbers/icons/obj/structures/engine_choice.dmi'
 	icon_state = "choice"
 
 	anchored = TRUE
