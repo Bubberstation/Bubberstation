@@ -2,8 +2,8 @@
 	name = "umbrella"
 	icon = 'modular_zubbers/code/modules/rimpoint_newfeatures/icons/umbrella.dmi'
 	icon_state = "umbrella"
-	lefthand_file = 'modular_zubbers/code/modules/rimpoint_newfeatures/icons/umbrella_inhand_L.dmi'
-	righthand_file = 'modular_zubbers/code/modules/rimpoint_newfeatures/icons/umbrella_inhand_R.dmi'
+	lefthand_file = 'modular_zubbers/code/modules/rimpoint_newfeatures/icons/umbrella_inhand_l.dmi'
+	righthand_file = 'modular_zubbers/code/modules/rimpoint_newfeatures/icons/umbrella_inhand_r.dmi'
 	inhand_icon_state = "umbrella"
 	w_class = WEIGHT_CLASS_BULKY
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.75, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.25)
