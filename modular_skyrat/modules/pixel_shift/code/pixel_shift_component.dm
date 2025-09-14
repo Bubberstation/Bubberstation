@@ -170,8 +170,8 @@
 						owner.transform = turn(owner.transform, -1)
 						how_tilted--
 						is_shifted = TRUE
-			for(var/datum/action/sizecode_smallsprite/A in owner.actions)
-				A.update_transform(FALSE)
+			for(var/datum/action/sizecode_smallsprite/resize_action in owner.actions)
+				resize_action.update_transform(FALSE)
 
 	// Yes, I know this sets it to true for everything if more than one is matched.
 	// Movement doesn't check diagonals, and instead just checks EAST or WEST, depending on where you are for those.
