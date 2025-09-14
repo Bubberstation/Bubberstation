@@ -90,7 +90,7 @@ export const general_record: Feature<string> = {
 export const security_record: Feature<string> = {
   name: 'Records - Personnel',
   description:
-    'Viewable with security access, or by Command. \
+    'Viewable with by privileged few-- Security, antags with information, Command and the NTC. \
   For employment and criminal history, loyalties and exploitables information, and more.',
   component: FeatureTextInput,
 };
