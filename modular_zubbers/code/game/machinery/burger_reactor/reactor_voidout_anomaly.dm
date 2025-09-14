@@ -102,8 +102,6 @@
 		else if(kill_target.blood_volume > 0)
 			kill_target.investigate_log("had their blood drained by a voidout.", INVESTIGATE_DEATHS)
 			kill_target.blood_volume = 0
-		if(kill_target.client)
-			kill_target.client.give_award(/datum/award/achievement/misc/voidout, kill_target)
 		playsound(our_turf, 'modular_zubbers/sound/machines/rbmk2/voidout_end.ogg', 50, FALSE, extrarange = 16, pressure_affected = FALSE, use_reverb = FALSE)
 		qdel(src) //Satisfied
 
@@ -139,9 +137,3 @@
 		best_distance = found_distance
 
 	return best_target
-
-/datum/award/achievement/misc/voidout
-	name = "Voidout Participation Award"
-	desc = "Won the prize for participating in an RB-MK2 voidout."
-	database_id = MEDAL_VOIDOUT
-	icon_state = "gottem"
