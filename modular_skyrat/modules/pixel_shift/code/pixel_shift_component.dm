@@ -109,8 +109,8 @@
 		var/mob/living/owner = parent
 		owner.remove_offsets(type)
 		owner.transform = turn(owner.transform, -how_tilted)
-		for(var/datum/action/sizecode_smallsprite/A in owner.actions)
-			A.update_transform(FALSE)
+		for(var/datum/action/sizecode_smallsprite/resize_action in owner.actions)
+			resize_action.update_transform(FALSE)
 	qdel(src)
 
 /// In-turf pixel movement which can allow things to pass through if the threshold is met.
