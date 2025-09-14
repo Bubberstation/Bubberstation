@@ -21,7 +21,7 @@
 
 /datum/supply_pack/goody/wt550_single
 	name = "WT-551 Autorifle Single-Pack"
-	desc = "An NT-security grade autorifle, it comes with excellent heating and poses no health-related risks for the user. Comes as a single-pack with one WT-551 locked and loaded"
+	desc = "An NT-security grade autorifle, it comes with excellent heating and poses no health-related risks for the user. Comes as a single-pack with one WT-551 locked and loaded.
 	cost = PAYCHECK_COMMAND * 8 //Nvm these are stronger than lasers in most scenarios so let's get them a bit of an edge. Plus gun price variety looks better
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/ballistic/automatic/wt550/security)
@@ -34,7 +34,7 @@
 
 /datum/supply_pack/goody/nt_shotgun
 	name = "Nanotrasen Woodstock Shotgun"
-	desc = "A classic Shotgun used by hunters, police and frontiersmen alike, now at an affordable price."
+	desc = "A classic shotgun used by hunters, police and frontiersmen alike, now at an affordable price."
 	cost = PAYCHECK_COMMAND * 12 //Worse renoster, let's make it a tad cheaper
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/ballistic/shotgun/riot, /obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/hunter)

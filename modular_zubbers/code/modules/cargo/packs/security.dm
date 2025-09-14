@@ -94,7 +94,7 @@
 	cost = CARGO_CRATE_VALUE * 7
 
 /datum/supply_pack/security/armory/energy
-	desc = "Contains three Energy Guns, capable of firing both nonlethal and lethal \
+	desc = "Contains three energy guns, capable of firing both nonlethal and lethal \
 		blasts of light."
 	cost = CARGO_CRATE_VALUE * 7
 	contains = list(/obj/item/gun/energy/e_gun = 3)
