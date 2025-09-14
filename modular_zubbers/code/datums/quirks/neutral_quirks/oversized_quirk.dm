@@ -13,7 +13,7 @@
 	mob_trait = TRAIT_OVERSIZED
 	icon = FA_ICON_EXPAND_ARROWS_ALT
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_CHANGES_APPEARANCE
-	var/datum/action/sizecode_smallsprite/small_sprite
+	var/datum/action/oversized_visibility/small_sprite
 
 /datum/quirk/oversized/add(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
@@ -32,7 +32,7 @@
 
 	// Smaller sprite ability
 	if(!small_sprite)
-		small_sprite = new /datum/action/sizecode_smallsprite
+		small_sprite = new /datum/action/oversized_visibility
 	small_sprite.Grant(human_holder)
 
 	human_holder.blood_volume_normal = BLOOD_VOLUME_OVERSIZED

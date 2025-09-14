@@ -2,7 +2,7 @@
 #define LYING_WEST_PIXEL_X 8
 #define LYING_EAST_PIXEL_X -8
 
-/datum/action/sizecode_smallsprite
+/datum/action/oversized_visibility
 	name = "Toggle Oversized Sprite"
 	desc = "Others will always see you as oversized."
 	button_icon = 'icons/mob/actions/actions_xeno.dmi'
@@ -13,7 +13,7 @@
 	var/scale
 	var/y_offset_stored
 
-/datum/action/sizecode_smallsprite/Trigger(trigger_flags)
+/datum/action/oversized_visibility/Trigger(trigger_flags)
 	. = ..()
 	validate_owner()
 	if(has_everyone_appearance())
@@ -39,7 +39,7 @@
 		UnregisterSignal(carbon_holder, COMSIG_LIVING_POST_UPDATE_TRANSFORM)
 	return TRUE
 
-/datum/action/sizecode_smallsprite/proc/update_small_icon()
+/datum/action/oversized_visibility/proc/update_small_icon()
 	if(small_icon)
 		small_icon.icon = owner.icon
 		small_icon.icon_state = owner.icon_state
@@ -47,14 +47,14 @@
 
 /*  Returns true if owner has alt appearance with subtype /everyone.
 	Useful when potted plants used */
-/datum/action/sizecode_smallsprite/proc/has_everyone_appearance()
+/datum/action/oversized_visibility/proc/has_everyone_appearance()
 	for(var/apperance as anything in owner.alternate_appearances)
 		if(istype(owner.alternate_appearances[apperance], /datum/atom_hud/alternate_appearance/basic/everyone))
 			return TRUE
 	return FALSE
 
 // Updates transform value. Only useful when body size values changed, so it updates them by default
-/datum/action/sizecode_smallsprite/proc/update_transform(update_appearance = TRUE)
+/datum/action/oversized_visibility/proc/update_transform(update_appearance = TRUE)
 	if(!small_icon)
 		return
 	if(update_appearance)
@@ -64,7 +64,7 @@
 /*  Updating body size dependent values
 	scale and y_offset_stored
 	We assume that we checked for not null and carbon before calling it */
-/datum/action/sizecode_smallsprite/proc/update_scale()
+/datum/action/oversized_visibility/proc/update_scale()
 	var/mob/living/carbon/carbon_holder = owner
 	var/body_size = carbon_holder.dna.features["body_size"]
 	scale = 1 / body_size
@@ -72,7 +72,7 @@
 	if(y_offset_stored != y_offset_current || !y_offset_stored)
 		y_offset_stored = y_offset_current
 
-/datum/action/sizecode_smallsprite/proc/update_pixel_y()
+/datum/action/oversized_visibility/proc/update_pixel_y()
 	if(!small_icon)
 		return
 	var/total_offset = y_offset_stored
@@ -81,7 +81,7 @@
 		total_offset -= PIXEL_Y_OFFSET_LYING
 	small_icon.pixel_y = total_offset
 
-/datum/action/sizecode_smallsprite/proc/update_pixel_x()
+/datum/action/oversized_visibility/proc/update_pixel_x()
 	var/mob/living/carbon/carbon_holder = owner
 	var/mob_lying_angle = carbon_holder.get_lying_angle()
 	if(mob_lying_angle != 0)
@@ -93,20 +93,20 @@
 			return
 	small_icon.pixel_x = 0
 
-/datum/action/sizecode_smallsprite/proc/validate_owner()
+/datum/action/oversized_visibility/proc/validate_owner()
 	if(!owner || !iscarbon(owner))
-		CRASH("sizecode_smallsprite: Invalid carbon holder! \
+		CRASH("oversized_visibility: Invalid carbon holder! \
 			Got: [owner] ([owner?.type]) \
 			Expected: /mob/living/carbon")
 
-/datum/action/sizecode_smallsprite/proc/update_appearance()
+/datum/action/oversized_visibility/proc/update_appearance()
 	SIGNAL_HANDLER
 	if(small_icon)
 		update_transform()
 		update_pixel_y()
 		update_pixel_x()
 
-/datum/action/sizecode_smallsprite/Remove(mob/remove_from)
+/datum/action/oversized_visibility/Remove(mob/remove_from)
 	. = ..()
 	var/mob/living/carbon/carbon_holder = remove_from
 	UnregisterSignal(carbon_holder, COMSIG_CARBON_APPLY_OVERLAY)

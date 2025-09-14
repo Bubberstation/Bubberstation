@@ -109,7 +109,7 @@
 		var/mob/living/owner = parent
 		owner.remove_offsets(type)
 		owner.transform = turn(owner.transform, -how_tilted)
-		for(var/datum/action/sizecode_smallsprite/resize_action in owner.actions)
+		for(var/datum/action/oversized_visibility/resize_action in owner.actions)
 			resize_action.update_transform(FALSE)
 	qdel(src)
 
@@ -170,7 +170,7 @@
 						owner.transform = turn(owner.transform, -1)
 						how_tilted--
 						is_shifted = TRUE
-			for(var/datum/action/sizecode_smallsprite/resize_action in owner.actions)
+			for(var/datum/action/oversized_visibility/resize_action in owner.actions)
 				resize_action.update_transform(FALSE)
 
 	// Yes, I know this sets it to true for everything if more than one is matched.
