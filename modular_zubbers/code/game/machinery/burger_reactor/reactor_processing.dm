@@ -163,7 +163,7 @@
 		if(criticality_to_add > 0)
 			criticality_to_add = FLOOR(criticality_to_add,0.01)
 			if(criticality >= 100) //It keeps going.
-				if(prob(criticality/500)) //The chance to explode. Yes, it's supposed to be this low.
+				if(prob(criticality/200)) //The chance to explode.
 					deconstruct(FALSE)
 				else
 					criticality += rand(criticality_to_add*4,criticality_to_add*10)

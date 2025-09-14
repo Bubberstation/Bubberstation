@@ -15,14 +15,13 @@
 			lowest_integrity_percent = integrity_percent
 			if(lowest_integrity_percent <= 0.8)
 				has_meltdown = TRUE
-		if(!reactor.meltdown)
-			continue
-		has_meltdown = TRUE
-		if(reactor.criticality <= highest_criticality)
-			continue
-		highest_criticality = reactor.criticality
+		if(reactor.meltdown)
+			has_meltdown = TRUE
+			if(reactor.criticality <= highest_criticality)
+				continue
+			highest_criticality = reactor.criticality
 
-	var/alert_emergency_channel = highest_criticality >= 70 || lowest_integrity_percent <= 0.2
+	var/alert_emergency_channel = highest_criticality >= 80 || lowest_integrity_percent <= 0.1
 
 	if(alert_emergency_channel)
 		alerted_emergency_channel = TRUE
@@ -36,11 +35,12 @@
 			)
 		else
 			alert_radio(
-				"Stray ionization process halted. Returning to safe operating parameters.",
+				"Stray ionization no longer detected. Returning to safe operating parameters.",
 				bypass_cooldown=TRUE,
 				alert_emergency_channel=alerted_emergency_channel
 			)
 			alerted_emergency_channel = FALSE
+		update_appearance(UPDATE_ICON)
 	else if( highest_criticality >= 100 || abs(highest_criticality - last_criticality) >= 3 )
 		last_criticality = highest_criticality
 		if(highest_criticality >= 100)
@@ -59,10 +59,10 @@
 		last_integrity = lowest_integrity_percent
 		if(abs(highest_criticality - last_criticality) >= 0.05 || lowest_integrity_percent <= 0.3)
 			alert_radio(
-				"[lowest_integrity_percent <= 0.3 ? "DANGER!" : "Warning!"] integrity at [round(lowest_integrity_percent*100,0.1)]%! Perform repairs immediately!",
+				"[lowest_integrity_percent <= 0.3 ? "DANGER!" : "Warning!"] integrity at [round(lowest_integrity_percent*100,0.1)]%! Repairs required!",
 				alert_emergency_channel=alert_emergency_channel,
 				criticality=FALSE,
 				bypass_cooldown=lowest_integrity_percent <= 0.3
 			)
 
-	update_appearance(UPDATE_ICON)
+

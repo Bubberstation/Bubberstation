@@ -1,6 +1,6 @@
 /obj/machinery/rbmk2_sniffer
 	name = "\improper RB-MK2 \"Boombox\" reactor sniffer"
-	desc = "A modified air alarm designed to detect stray ionization particles, AKA a meltdown. Can be linked to nearby RB-MK2 machines by interacting with the wires."
+	desc = "A modified air alarm designed to detect stray ionization particles, also known as a meltdown. Can be linked to nearby RB-MK2 machines by interacting with the wires."
 	icon = 'modular_zubbers/icons/obj/equipment/burger_reactor.dmi'
 	icon_state = "reactor_sniffer"
 	base_icon_state = "reactor_sniffer"
