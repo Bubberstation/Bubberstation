@@ -262,6 +262,14 @@
 /obj/effect/turf_decal/caution/red,
 /turf/open/floor/iron,
 /area/virtual_domain)
+"ch" = (
+/obj/structure/table/wood,
+/obj/machinery/light/directional/south,
+/obj/item/papercutter{
+	pixel_x = -4
+	},
+/turf/open/floor/wood,
+/area/virtual_domain)
 "cj" = (
 /obj/item/radio/intercom/directional/east,
 /obj/effect/turf_decal/tile/neutral{
@@ -883,15 +891,6 @@
 	icon_state = "L13"
 	},
 /obj/effect/spawner/random/trash,
-/turf/open/floor/iron,
-/area/virtual_domain)
-"hv" = (
-/obj/structure/bed/medical/emergency,
-/obj/effect/turf_decal/bot{
-	dir = 1
-	},
-/obj/machinery/vending/wallmed/directional/west,
-/obj/effect/mob_spawn/corpse/human/assistant,
 /turf/open/floor/iron,
 /area/virtual_domain)
 "hw" = (
@@ -1935,19 +1934,6 @@
 	},
 /turf/open/floor/iron,
 /area/virtual_domain)
-"qj" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/glasses/night{
-	pixel_x = 5;
-	pixel_y = 7
-	},
-/obj/item/clothing/glasses/night,
-/obj/item/clothing/glasses/night{
-	pixel_x = -5;
-	pixel_y = -3
-	},
-/turf/template_noop,
-/area/virtual_domain/safehouse)
 "qk" = (
 /obj/structure/chair/comfy/beige,
 /turf/open/floor/carpet,
@@ -3703,6 +3689,19 @@
 	},
 /turf/open/floor/iron,
 /area/virtual_domain)
+"Fa" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/glasses/night{
+	pixel_x = 5;
+	pixel_y = 7
+	},
+/obj/item/clothing/glasses/night,
+/obj/item/clothing/glasses/night{
+	pixel_x = -5;
+	pixel_y = -3
+	},
+/turf/template_noop,
+/area/virtual_domain/safehouse)
 "Fc" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/tile/neutral{
@@ -4522,15 +4521,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/virtual_domain)
-"Mk" = (
-/obj/structure/table/wood,
-/obj/machinery/light/directional/south,
-/obj/item/papercutter{
-	pixel_x = -4
-	},
-/obj/item/paper/fluff/ids_for_dummies,
-/turf/open/floor/wood,
-/area/virtual_domain)
 "Ml" = (
 /obj/effect/decal/cleanable/crayon/x,
 /turf/closed/wall/rust,
@@ -4982,6 +4972,15 @@
 	pixel_x = -13;
 	pixel_y = -8
 	},
+/turf/open/floor/iron,
+/area/virtual_domain)
+"Pr" = (
+/obj/structure/bed/medical/emergency,
+/obj/effect/turf_decal/bot{
+	dir = 1
+	},
+/obj/machinery/wall_healer/free/directional/west,
+/obj/effect/mob_spawn/corpse/human/assistant,
 /turf/open/floor/iron,
 /area/virtual_domain)
 "Py" = (
@@ -6727,7 +6726,7 @@ uS
 uS
 ML
 DP
-Mk
+ch
 uS
 ND
 AP
@@ -7277,7 +7276,7 @@ oD
 pB
 hX
 zQ
-qj
+Fa
 hX
 hX
 hX
@@ -7697,7 +7696,7 @@ Nh
 zg
 Fj
 NO
-hv
+Pr
 uA
 yN
 Ff
