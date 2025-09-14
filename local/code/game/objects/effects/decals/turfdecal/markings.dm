@@ -118,48 +118,6 @@
 	icon = 'modular_zubbers/icons/effigy/turf/decals.dmi'
 	icon_state = "box_corners_blue"
 
-
-/obj/effect/turf_decal/siding/wood
-	icon = 'modular_zubbers/icons/effigy/turf/decals.dmi'
-	color = "#DBD3C9"
-
-/obj/effect/turf_decal/siding/thinplating
-	color = "#4b494d"
-
-/obj/effect/turf_decal/siding/thinplating/dark
-	color = "#262328"
-
-/obj/effect/turf_decal/siding/thinplating/light
-	color = "#d9d9d9"
-
-/obj/effect/turf_decal/siding/thinplating_new
-	color = "#4b494d"
-
-/obj/effect/turf_decal/siding/thinplating_new/dark
-	color = "#262328"
-
-/obj/effect/turf_decal/siding/thinplating_new/light
-	color = "#d9d9d9"
-
-/obj/effect/turf_decal/siding/wideplating
-	color = "#4b494d"
-
-/obj/effect/turf_decal/siding/wideplating/dark
-	color = "#262328"
-
-/obj/effect/turf_decal/siding/wideplating/light
-	color = "#d9d9d9"
-
-/obj/effect/turf_decal/siding/wideplating_new
-	color = "#4b494d"
-
-/obj/effect/turf_decal/siding/wideplating_new/dark
-	color = "#262328"
-
-/obj/effect/turf_decal/siding/wideplating_new/light
-	color = "#d9d9d9"
-
-
 /// DS-3 ///
 /obj/effect/turf_decal/deep_space_three
 	icon = 'modular_zubbers/icons/effigy/turf/decals.dmi'
