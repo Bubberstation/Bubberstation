@@ -60,7 +60,9 @@
 	if(zombified_human)
 		zombified_human.forceMove(get_turf(src))
 		zombified_human = null
-	return ..()
+		qdel(src) // To ensure the non-player body gets deleted instead of there being two.
+	else
+		return ..()
 
 /mob/living/basic/blackmesa/xen/headcrab_zombie/Destroy()
 	if(zombified_human)

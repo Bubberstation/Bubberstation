@@ -28,7 +28,7 @@
 
 /datum/ai_planning_subtree/headcrab_hunt/SelectBehaviors(datum/ai_controller/controller, delta_time)
 	. = ..()
-	var/atom/target = controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
+	var/mob/living/target = controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
 	if(!target)
 		return
 
@@ -40,6 +40,13 @@
 		return
 
 	var/distance = get_dist(living_pawn, target)
+
+	// Step back to avoid attacking from standing on the corpse.
+	if(target.stat >= HARD_CRIT && distance == 0)
+		var/turf/away = get_step_away(living_pawn, target)
+		if(away)
+			living_pawn.Move(away)
+		distance = get_dist(living_pawn, target)
 
 	// Always jump at target if in range
 	if(distance <= max_jump_range)
