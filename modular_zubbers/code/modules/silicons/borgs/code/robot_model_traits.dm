@@ -41,7 +41,7 @@
 	var/mob/living/silicon/robot/cyborg = robot || loc
 	if (!istype(robot))
 		return
-	if(model_features && ((TRAIT_R_SQUADRUPED in model_features) || (TRAIT_R_WIDE in model_features) || (TRAIT_R_TALL in model_features) || (TRAIT_R_BIG in model_features) || (TRAIT_R_CANREST in model_features)))
+	if (model_features && ((TRAIT_R_SQUADRUPED in model_features) || (TRAIT_R_WIDE in model_features) || (TRAIT_R_TALL in model_features) || (TRAIT_R_CANREST in model_features) || (TRAIT_R_CANREST in model_features)))
 		add_verb(cyborg, /mob/living/silicon/robot/proc/robot_lay_down)
 	else
 		remove_verb(cyborg, /mob/living/silicon/robot/proc/robot_lay_down)

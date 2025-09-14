@@ -180,6 +180,16 @@
 #define CYBORG_ICON_SERVICE_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerService.dmi'
 #define CYBORG_ICON_SYNDI_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerSyndi.dmi'
 
+// LUPUS BORG ICON DEFINES - Spritework done by artist asked to be anonymous
+
+#define CYBORG_ICON_LUPUS_ENGI 'modular_zubbers/code/modules/silicons/borgs/sprites/lupus/lupus_eng.dmi'
+#define CYBORG_ICON_LUPUS_PEACE 'modular_zubbers/code/modules/silicons/borgs/sprites/lupus/lupus_peace.dmi'
+#define CYBORG_ICON_LUPUS_MINING 'modular_zubbers/code/modules/silicons/borgs/sprites/lupus/lupus_mine.dmi'
+#define CYBORG_ICON_LUPUS_MED 'modular_zubbers/code/modules/silicons/borgs/sprites/lupus/lupus_med.dmi'
+#define CYBORG_ICON_LUPUS_SEC 'modular_zubbers/code/modules/silicons/borgs/sprites/lupus/lupus_sec.dmi'
+#define CYBORG_ICON_LUPUS_SERV 'modular_zubbers/code/modules/silicons/borgs/sprites/lupus/lupus_serv.dmi'
+#define CYBORG_ICON_LUPUS_JANI 'modular_zubbers/code/modules/silicons/borgs/sprites/lupus/lupus_jani.dmi'
+
 //WAGECAGE CARGOBORG DEFINES - Sprites by Boviro
 
 #define CYBORG_ICON_CARGO_WAGECAGE 'modular_zubbers/code/modules/silicons/borgs/sprites/wagecage.dmi'
