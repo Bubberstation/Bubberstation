@@ -170,7 +170,6 @@
 						owner.transform = turn(owner.transform, -1)
 						how_tilted--
 						is_shifted = TRUE
-			// Bubber edit: Update transform of smallsprite_action
 			for(var/datum/action/sizecode_smallsprite/A in owner.actions)
 				A.update_transform(FALSE)
 
