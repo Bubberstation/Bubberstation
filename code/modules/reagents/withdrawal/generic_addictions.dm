@@ -1,7 +1,7 @@
 ///Opioids
 /datum/addiction/opioids
 	name = "opioid"
-	withdrawal_stage_messages = list("I feel aches in my bodies..", "I need some pain relief...", "It aches all over...I need some opioids!")
+	withdrawal_stage_messages = list("I feel aching in my body..", "I need some pain relief...", "It aches all over...I need some opioids!")
 
 /datum/addiction/opioids/withdrawal_stage_1_process(mob/living/carbon/affected_carbon, seconds_per_tick)
 	. = ..()
