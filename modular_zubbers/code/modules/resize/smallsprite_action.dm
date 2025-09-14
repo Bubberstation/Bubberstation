@@ -3,8 +3,8 @@
 #define LYING_EAST_PIXEL_X -8
 
 /datum/action/sizecode_smallsprite
-	name = "Toggle Giant Sprite"
-	desc = "Others will always see you as giant"
+	name = "Toggle Oversized Sprite"
+	desc = "Others will always see you as oversized."
 	button_icon = 'icons/mob/actions/actions_xeno.dmi'
 	button_icon_state = "alien_sneak"
 	background_icon_state = "bg_alien"
