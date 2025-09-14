@@ -1,4 +1,3 @@
-//S.P.L.U.R.T-tg/modular_zzplurt/code/modules/resize/smallsprite_action.dm
 #define SPRITE_SIZE 32
 #define LYING_WEST_PIXEL_X 8
 #define LYING_EAST_PIXEL_X -8
