@@ -98,3 +98,7 @@
 /datum/loadout_item/toys/mothroach_plush
 	name = "Mothroach Plush"
 	item_path = /obj/item/toy/plush/mothroach_plush
+
+/datum/loadout_item/toys/amber_shadekin_plush
+	name = "Squishy Shadekin Plush"
+	item_path = /obj/item/toy/plush/amber_shadekin_plush
