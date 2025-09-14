@@ -327,6 +327,7 @@ const GeneralActions = () => {
         <Flex>
           <Button
             width="100%"
+            height="100%"
             icon="user-tie"
             disabled={!mob_type.includes('/mob/living/carbon/human')}
             onClick={() => act('select_equipment')}
@@ -342,17 +343,47 @@ const GeneralActions = () => {
           >
             Drop All Items
           </Button.Confirm>
+          <Button
+            width="100%"
+            textAlign="center"
+            disabled={!client_ckey}
+            onClick={() => act('traitor_panel')}
+          >
+            Traitor Panel
+          </Button>
+          <Button
+            width="100%"
+            height="100%"
+            textAlign="center"
+            disabled={
+              !client_ckey || !mob_type.includes('/mob/living/carbon/human')
+            }
+            onClick={() => act('apply_client_quirks')}
+          >
+            Apply Client Quirks
+          </Button>
         </Flex>
         <Flex>
           <Button.Confirm
             icon="snowflake"
             width="100%"
+            height="100%"
             color="orange"
             disabled={!mob_type.includes('/mob/living/carbon/human')}
             onClick={() => act('cryo')}
           >
             Send To Cryo
           </Button.Confirm>
+          <Button
+            width="100%"
+            height="100%"
+            icon="clipboard-list"
+            color="orange"
+            textAlign="center"
+            onClick={() => act('logs')}
+          >
+            Logs
+          </Button>
           <Button.Confirm
             width="100%"
             height="100%"
@@ -676,17 +707,6 @@ const PunishmentActions = () => {
           onClick={() => act('notes')}
         >
           Notes
-        </Button>
-        <Button
-          width="50%"
-          height="100%"
-          py=".5rem"
-          icon="clipboard-list"
-          color="orange"
-          textAlign="center"
-          onClick={() => act('logs')}
-        >
-          Logs
         </Button>
       </Flex>
       <Section title="Contain">
@@ -1104,16 +1124,6 @@ const OtherActions = () => {
           mb=".5rem"
           textAlign="center"
           disabled={!client_ckey}
-          onClick={() => act('traitor_panel')}
-        >
-          Traitor Panel
-        </Button>
-        <Button
-          width="100%"
-          p=".5rem"
-          mb=".5rem"
-          textAlign="center"
-          disabled={!client_ckey}
           onClick={() => act('commend')}
         >
           Commend Behavior
@@ -1127,18 +1137,6 @@ const OtherActions = () => {
           onClick={() => act('play_sound_to')}
         >
           Play Sound To
-        </Button>
-        <Button
-          width="100%"
-          p=".5rem"
-          mb=".5rem"
-          textAlign="center"
-          disabled={
-            !client_ckey || !mob_type.includes('/mob/living/carbon/human')
-          }
-          onClick={() => act('apply_client_quirks')}
-        >
-          Apply Client Quirks
         </Button>
       </Section>
     </Section>
