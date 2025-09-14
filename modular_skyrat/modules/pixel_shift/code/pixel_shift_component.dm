@@ -109,7 +109,6 @@
 		var/mob/living/owner = parent
 		owner.remove_offsets(type)
 		owner.transform = turn(owner.transform, -how_tilted)
-		// Bubber edit: Update transform of smallsprite_action
 		for(var/datum/action/sizecode_smallsprite/A in owner.actions)
 			A.update_transform(FALSE)
 	qdel(src)
