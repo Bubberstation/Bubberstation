@@ -3,11 +3,11 @@
 
 /obj/machinery/power/supermatter_crystal/Initialize(mapload)
 
+	. = ..()
+
 	if(is_main_engine && isturf(src.loc))
 		new/obj/structure/engine_choice(src.loc)
 		return INITIALIZE_HINT_QDEL
-
-	. = ..()
 
 /obj/structure/engine_choice
 
