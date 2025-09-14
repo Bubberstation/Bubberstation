@@ -866,6 +866,7 @@ GLOBAL_LIST_INIT(traits_by_type, list(
 		"TRAIT_R_LIGHT_WEIGHT" = TRAIT_R_LIGHT_WEIGHT, //BUBBER addition for small light weighted cyborgs
 		"TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS" = TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS, //BUBBER addition for borgs with unique resting emissives
 		"TRAIT_R_EXPANDER_BLOCKED" = TRAIT_R_EXPANDER_BLOCKED, //BUBBER addition for borgs that cannot use the expander
+		"TRAIT_R_CANREST" = TRAIT_R_CANREST, //BUBBER addition for borgs that can rest but arent tall/wide/quad
 		"TRAIT_REAGENT" = TRAIT_REAGENT,
 		"TRAIT_REVIVES_BY_HEALING" = TRAIT_REVIVES_BY_HEALING,
 		"TRAIT_RIGGER" = TRAIT_RIGGER,
