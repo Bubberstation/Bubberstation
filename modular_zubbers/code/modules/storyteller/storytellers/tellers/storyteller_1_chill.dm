@@ -1,6 +1,6 @@
 /datum/storyteller/chill
 	name = "Chill (Low Chaos)"
-	desc = "Do you find antags too stressful? Dislike the 'game' part of the video game? Boy do we have something for you! \
+	desc = "The Chill will be light on PVP events compared to other storytellers, especially so on ones involving combat, destruction, or chaos \
 	Calm with a touch of PvE to prevent Nothing-Ever-Happens induced insanity."
 	welcome_text = "Vote Result: Initiate Crew Transfer."
 
