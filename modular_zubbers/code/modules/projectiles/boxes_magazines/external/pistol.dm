@@ -1,6 +1,6 @@
 /obj/item/ammo_box/magazine/security
 	name = "pistol magazine (9mm Murphy)"
-	desc = "A 9mm handgun magazine, suitable for the Service Pistol."
+	desc = "A 9mm handgun magazine, suitable for the Nanotrasen Service Pistol. It comes with a more robust spring than the average magazine and weight to boot."
 	icon = 'modular_skyrat/modules/aesthetics/guns/icons/magazine.dmi'
 	icon_state = "9x19p"
 	base_icon_state = "9x19p"
@@ -15,7 +15,7 @@
 
 /obj/item/ammo_box/magazine/security/rocket
 	name = "pistol magazine (9mm Murphy Rocket Eject)"
-	desc = "A 9mm handgun magazine, suitable for the Service Pistol."
+	desc = parent_type::desc + "With a small charge inside that sparks on ejection, this one has less room for ammo and a lethal velocity to it's ejections."
 	ammo_type = /obj/item/ammo_casing/security
 	max_ammo = 8
 	base_icon_state = "9x19pI"
