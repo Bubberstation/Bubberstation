@@ -15,15 +15,6 @@
 	ammo_type = /obj/item/ammo_casing/strilka310
 	max_ammo = 10
 
-// Rubber
-
-/obj/item/ammo_box/c310_cargo_box/rubber
-	name = "ammo box (.310 Strilka rubber)"
-	desc = "A box of .310 Strilka rubber rifle rounds, holds ten cartridges."
-
-	icon_state = "310_box_rubber"
-
-	ammo_type = /obj/item/ammo_casing/strilka310/rubber
 
 // AP
 

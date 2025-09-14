@@ -218,7 +218,7 @@
 		if(!to_stock) //Nothing for us in the silo
 			continue
 
-		storage_datum.energy += charger.materials.use_materials(list(GET_MATERIAL_REF(storage_datum.mat_type) = to_stock), action = "resupplied", name = "units", user_data = ID_DATA(robot))
+		storage_datum.energy += charger.materials.use_materials(list(GET_MATERIAL_REF(storage_datum.mat_type) = to_stock), action = "restocked", name = "units", user_data = ID_DATA(robot))
 		charger.balloon_alert(robot, "+ [to_stock]u [initial(storage_datum.mat_type.name)]")
 		playsound(charger, 'sound/items/weapons/gun/general/mag_bullet_insert.ogg', 50, vary = FALSE)
 		return
@@ -282,7 +282,7 @@
 			reskin_icons[skin] = image(icon = details[SKIN_ICON] || 'icons/mob/silicon/robots.dmi', icon_state = details[SKIN_ICON_STATE])
 			//SKYRAT EDIT ADDITION BEGIN - ALTBORGS
 			if (!isnull(details[SKIN_FEATURES]))
-				if (TRAIT_R_WIDE in details[SKIN_FEATURES])
+				if((TRAIT_R_WIDE in details[SKIN_FEATURES]) || (TRAIT_R_BIG in details[SKIN_FEATURES]))
 					var/image/reskin = reskin_icons[skin]
 					reskin.pixel_x -= 16
 			//SKYRAT EDIT END
@@ -291,7 +291,7 @@
 			return FALSE
 		var/list/details = borg_skins[borg_skin]
 		//SKYRAT EDIT START
-		if(cyborg.hasExpanded && (((TRAIT_R_WIDE in details[SKIN_FEATURES]) && (TRAIT_R_WIDE in model_features)) || ((TRAIT_R_TALL in details[SKIN_FEATURES]) && (TRAIT_R_TALL in model_features))))
+		if(cyborg.hasExpanded && (((TRAIT_R_WIDE in details[SKIN_FEATURES]) && (TRAIT_R_WIDE in model_features)) || ((TRAIT_R_TALL in details[SKIN_FEATURES]) && (TRAIT_R_TALL in model_features)) || ((TRAIT_R_BIG in details[SKIN_FEATURES]) && (TRAIT_R_BIG in model_features))))
 			to_chat(cyborg, span_warning("You can't make yourself into a larger frame when you've already used an expander!"))
 			return FALSE
 		//SKYRAT EDIT END
@@ -315,6 +315,7 @@
 			model_features += details[SKIN_FEATURES]
 		if (!isnull(details[SKIN_HAT_REST_OFFSET]))
 			rest_hat_offset = details[SKIN_HAT_REST_OFFSET]
+		SSblackbox.record_feedback("tally", "cyborg_skins", 1, borg_skin)
 		//SKYRAT EDIT END
 	for(var/i in old_model.added_modules)
 		added_modules += i

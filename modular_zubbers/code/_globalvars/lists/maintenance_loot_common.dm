@@ -193,10 +193,6 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/stack/sheet/plastitaniumglass/fifty = 1,
 		/obj/item/stack/sheet/rglass = 50,
 		/obj/item/stack/sheet/rglass/fifty = 1,
-		/obj/item/stack/sheet/sandblock = 75,
-		/obj/item/stack/sheet/sandblock/fifty = 15,
-		/obj/item/stack/sheet/sandblock/five = 50,
-		/obj/item/stack/sheet/sandblock/twenty = 25,
 		/obj/item/stack/sheet/titaniumglass = 25,
 		/obj/item/stack/sheet/titaniumglass/fifty = 1,
 		/obj/item/stack/sheet/xenochitin = 15

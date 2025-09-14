@@ -53,7 +53,7 @@
 	cost = PAYCHECK_CREW * 1.5
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/ammo_box/magazine/m38/match/bouncy)
-
+	
 /datum/supply_pack/goody/mars_single
 	name = "Colt Detective Special Single-Pack"
 	desc = "The HoS took your gun and your badge? No problem! Just pay the absurd taxation fee and you too can be reunited with the lethal power of a .38!"
@@ -104,6 +104,20 @@
 	cost = PAYCHECK_COMMAND * 6
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/laser)
+
+/datum/supply_pack/goody/carbine_single
+	name = "Laser Carbine Single_Pack"
+	desc = "Contains one laser carbines, capable of rapidly firing weak lasers."
+	cost = PAYCHECK_COMMAND * 8
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/gun/energy/laser/carbine)
+
+/datum/supply_pack/goody/smg_single
+	name = "Disabler SMG Single_Pack"
+	desc = "Contains one disabler SMGs, capable of rapidly firing weak disabler beams."
+	cost = PAYCHECK_COMMAND * 6
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/gun/energy/disabler/smg)
 
 /datum/supply_pack/goody/hell_single
 	name = "Hellgun Kit Single-Pack"

@@ -4,6 +4,7 @@
 #define TRAIT_CAN_BE_PICKED_UP "can_be_picked_up"
 #define TRAIT_CHANGELING_ZOMBIE "changelingzombie"
 #define TRAIT_RESEARCH_CYBORG "research_cyborg"
+#define TRAIT_BILINGUAL "Bilingual"
 
 /// Cyborgs with unique sprites
 /// 32x32 quadruped skins with resting, sitting, and belly up sprites
@@ -41,3 +42,9 @@
 
 // makes it so this mob loses nutrition twice as fast
 #define TRAIT_FAST_METABOLISM "fast_metabolism"
+
+// For using secondary mutant colors
+#define TRAIT_MUTANT_COLORS_2 "mutcolors2"
+
+// For using tertiary mutant colors
+#define TRAIT_MUTANT_COLORS_3 "mutcolors3"

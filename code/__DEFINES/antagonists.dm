@@ -338,7 +338,7 @@ GLOBAL_LIST_INIT(human_invader_antagonists, list(
 #define JOB_PROB 40
 
 /// How many telecrystals a normal traitor starts with
-#define TELECRYSTALS_DEFAULT 25 // BUBBER EDIT - GIMMICK TRAITOR
+#define TELECRYSTALS_DEFAULT 20
 /// How many telecrystals mapper/admin only "precharged" uplink implant
 #define TELECRYSTALS_PRELOADED_IMPLANT 10
 /// The normal cost of an uplink implant; used for calcuating how many
@@ -456,3 +456,9 @@ GLOBAL_LIST_INIT(human_invader_antagonists, list(
 #define BATTLE_ROYALE_CAMERA_NET "battle_royale_camera_net"
 
 #define MALF_MAX_PP 400
+
+//Uplink spawn loc
+#define UPLINK_PDA "PDA"
+#define UPLINK_RADIO "Radio"
+#define UPLINK_PEN "Pen" //like a real spy!
+#define UPLINK_IMPLANT "Implant"
