@@ -89,13 +89,19 @@
 	START_PROCESSING(SSmachines, src)
 	update_appearance(UPDATE_ICON)
 
+/obj/machinery/power/rbmk2/supermatter/Initialize(mapload)
+	. = ..()
+	stored_rod = new /obj/item/tank/rbmk2_rod/supermatter(src)
+	START_PROCESSING(SSmachines, src)
+	update_appearance(UPDATE_ICON)
+
 /obj/machinery/power/rbmk2/proc/supermatter_link()
 
 	if(linked_supermatter)
 		supermatter_unlink()
 
 	for(var/obj/machinery/power/supermatter_crystal/found_supermatter in orange(1,loc))
-		if(found_supermatter.moveable)
+		if(found_supermatter.moveable || !found_supermatter.anchored)
 			continue
 		linked_supermatter = found_supermatter
 		RegisterSignal(linked_supermatter, COMSIG_QDELETING, PROC_REF(on_supermatter_delete))

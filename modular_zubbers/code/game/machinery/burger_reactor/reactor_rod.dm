@@ -30,6 +30,12 @@
 	air_contents.gases[/datum/gas/tritium][MOLES] = 80
 	air_contents.gases[/datum/gas/nitrogen][MOLES] = 10
 
+/obj/item/tank/rbmk2_rod/supermatter/populate_gas()
+	air_contents.assert_gas(/datum/gas/tritium)
+	air_contents.assert_gas(/datum/gas/hypernoblium)
+	air_contents.gases[/datum/gas/tritium][MOLES] = 60
+	air_contents.gases[/datum/gas/hypernoblium][MOLES] = 30
+
 /obj/item/tank/rbmk2_rod/atom_destruction(damage_flag)
 
 	if(!loc || !istype(loc,/obj/machinery/power/rbmk2))

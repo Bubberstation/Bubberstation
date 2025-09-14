@@ -63,7 +63,7 @@
 	if(our_heat_capacity > 0)
 		var/temperature_mod = last_power_generation >= max_power_generation ? 4 : 1
 
-		//In order to directly power the supermatter, at least 30 moles of hyper-nobellium is required (does not get consumed).
+		//In order to directly power the supermatter, at least 30 moles of hyper-noblium is required (does not get consumed).
 		if(linked_supermatter)
 			rod_mix.assert_gas(/datum/gas/hypernoblium)
 			if(rod_mix.gases[/datum/gas/hypernoblium][MOLES] >= 30)

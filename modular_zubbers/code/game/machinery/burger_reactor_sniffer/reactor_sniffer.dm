@@ -74,7 +74,7 @@
 /obj/machinery/rbmk2_sniffer/proc/link_reactor(mob/user,obj/machinery/power/rbmk2/desired_reactor)
 
 	if(linked_reactors[desired_reactor])
-		balloon_alert(user, "already linked!")
+		if(user) balloon_alert(user, "already linked!")
 		return FALSE
 
 	linked_reactors[desired_reactor] = TRUE
