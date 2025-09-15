@@ -29,4 +29,3 @@
 	#ifdef ALL_TEMPLATES
 		#include "templates.dm"
 	#endif
-#endif
