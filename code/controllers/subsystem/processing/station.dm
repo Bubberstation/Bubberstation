@@ -72,6 +72,9 @@ PROCESSING_SUBSYSTEM_DEF(station)
 
 ///Rolls for the amount of traits and adds them to the traits list
 /datum/controller/subsystem/processing/station/proc/SetupTraits()
+	#ifdef EVENTMODE
+	return
+	#endif
 	if (CONFIG_GET(flag/forbid_station_traits))
 		return
 

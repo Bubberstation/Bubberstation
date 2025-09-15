@@ -217,6 +217,7 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	fishing_bounciness_mult = 0.6
 	fishing_gravity_mult = 1.4
 
+/*
 /datum/material/uranium/on_applied(atom/source, mat_amount, multiplier)
 	. = ..()
 
@@ -234,6 +235,7 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 		return
 
 	source.RemoveElement(/datum/element/radioactive, chance = URANIUM_IRRADIATION_CHANCE * multiplier)
+*/
 
 /datum/material/uranium/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
 	victim.reagents.add_reagent(/datum/reagent/uranium, rand(4, 6))

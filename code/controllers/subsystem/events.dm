@@ -100,6 +100,9 @@ SUBSYSTEM_DEF(events)
  */
 /datum/controller/subsystem/events/proc/spawnEvent(datum/round_event_control/excluded_event)
 	set waitfor = FALSE //for the admin prompt
+	#ifdef EVENTMODE
+	return
+	#endif
 	if(!CONFIG_GET(flag/allow_random_events))
 		return
 
@@ -168,6 +171,9 @@ GLOBAL_LIST(holidays)
  * Returns a holiday datum, or null if it's not that holiday.
  */
 /proc/check_holidays(holiday_to_find)
+	#ifdef EVENTMODE
+	return
+	#endif
 	if(!CONFIG_GET(flag/allow_holidays))
 		return // Holiday stuff was not enabled in the config!
 

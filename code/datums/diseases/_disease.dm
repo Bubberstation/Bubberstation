@@ -51,6 +51,11 @@
 	var/copy_type = null //if this is null, copies will use the type of the instance being copied
 	var/bypasses_disease_recovery = FALSE // Does it skip self recovery process, such as event diseases // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
 
+#ifdef EVENTMODE
+/datum/disease/New()
+	QDEL_IN(src, 30)
+#endif
+
 /datum/disease/Destroy()
 	. = ..()
 	if(affected_mob)

@@ -94,6 +94,10 @@ SUBSYSTEM_DEF(economy)
 #define ECON_PRICE_UPDATE_STEP "econ_prc_stp"
 
 /datum/controller/subsystem/economy/fire(resumed = 0)
+	#ifdef EVENTMODE
+	can_fire = FALSE
+	return TRUE
+	#endif
 	var/seconds_per_tick = wait / (5 MINUTES)
 	if(!resumed)
 		temporary_total = 0

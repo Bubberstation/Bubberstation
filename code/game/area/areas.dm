@@ -98,6 +98,8 @@
 	var/min_ambience_cooldown = 4 SECONDS
 	///Used to decide what the maximum time between ambience is
 	var/max_ambience_cooldown = 10 SECONDS
+	///Used to determine if we should allow dynamic lighting in this area
+	var/eventarea = FALSE
 
 	flags_1 = CAN_BE_DIRTY_1
 
@@ -182,6 +184,10 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	icon_state = ""
 	if(!ambientsounds)
 		ambientsounds = GLOB.ambience_assoc[ambience_index]
+	#ifdef EVENTMODE
+	requires_power = FALSE
+	has_gravity = STANDARD_GRAVITY
+	#endif
 
 	if(requires_power)
 		luminosity = 0
@@ -467,6 +473,9 @@ GLOBAL_LIST_EMPTY(teleportlocs)
  * Space is not powered ever, so this returns false
  */
 /area/space/powered(chan) //Nope.avi
+	#ifdef EVENTMODE
+	return TRUE //SIKE.gif
+	#endif
 	return FALSE
 
 /**
