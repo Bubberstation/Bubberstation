@@ -8,6 +8,6 @@
 	icon = 'modular_zubbers/icons/mob/simple/pets.dmi'
 	density = FALSE
 	pass_flags = PASSMOB
-	ai_controller = /datum/ai_controller/basic_controller/stoat
+	ai_controller = /datum/ai_controller/basic_controller/stoat/kit
 	mob_size = MOB_SIZE_SMALL
 	can_breed = FALSE
