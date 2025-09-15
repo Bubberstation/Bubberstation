@@ -35,14 +35,7 @@
 	var/datum/action/innate/turn_to_human
 	var/transformed_time = 0
 
-	var/playstyle_string = span_infoplain(
-		"<b><font size=3 color='red'>We have entered our true form!\
-		</font> We are unbelievably powerful, and regenerate life at a steady rate. \
-		However, most of our abilities are useless in this form, and we must utilise the abilities that we have gained as a result \
-		of our transformation. Currently, we are incapable of returning to a human. \
-		After several minutes, we will once again be able to revert into a human. \
-		Taking too much damage will cause us to reach equilibrium and our cells will combust into a shower of gore, watch out!</b>"
-	)
+	var/playstyle_string = span_infoplain("<b><font size=3 color='red'>We have entered our true form!</font> We are unbelievably powerful, and regenerate life at a steady rate. However, most of our abilities are useless in this form, and we must utilise the abilities that we have gained as a result of our transformation. Currently, we are incapable of returning to a human. After several minutes, we will once again be able to revert into a human. Taking too much damage will cause us to reach equilibrium and our cells will combust into a shower of gore, watch out!</b>")
 	var/mob/living/carbon/human/stored_changeling = null
 	var/devouring = FALSE
 
