@@ -58,7 +58,7 @@
 	var/changeling_name = \
 		(user.gender == FEMALE) ? "Ms. " : \
 		(user.gender == MALE)   ? "Mr. " : \
-		(user.gender == NEUTER || PLURAL) ? "Mx. " :
+		(user.gender == NEUTER || PLURAL) ? "Mx. " : \
 	changeling_name += pick(GLOB.greek_letters)
 
 	new_mob.real_name = changeling_name
