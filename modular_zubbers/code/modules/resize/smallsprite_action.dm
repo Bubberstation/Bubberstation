@@ -30,11 +30,11 @@
 		update_small_icon()
 		update_scale()
 		update_transform()
-		owner.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic, "smallsprite_sizecode", small_icon)
+		owner.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic, "oversized_visibility", small_icon)
 		RegisterSignal(carbon_holder, COMSIG_CARBON_APPLY_OVERLAY, PROC_REF(update_small_icon))
 		RegisterSignal(carbon_holder, COMSIG_LIVING_POST_UPDATE_TRANSFORM, PROC_REF(update_appearance))
 	else
-		owner.remove_alt_appearance("smallsprite_sizecode")
+		owner.remove_alt_appearance("oversized_visibility")
 		UnregisterSignal(carbon_holder, COMSIG_CARBON_APPLY_OVERLAY)
 		UnregisterSignal(carbon_holder, COMSIG_LIVING_POST_UPDATE_TRANSFORM)
 	return TRUE
@@ -111,7 +111,7 @@
 	var/mob/living/carbon/carbon_holder = remove_from
 	UnregisterSignal(carbon_holder, COMSIG_CARBON_APPLY_OVERLAY)
 	UnregisterSignal(carbon_holder, COMSIG_LIVING_POST_UPDATE_TRANSFORM)
-	carbon_holder.remove_alt_appearance("smallsprite_sizecode")
+	carbon_holder.remove_alt_appearance("oversized_visibility")
 	small_icon = null
 
 /* All the emote code taken from
