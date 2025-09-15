@@ -10,43 +10,43 @@
 	dna_cost = 4 //Tier 4
 	req_dna = 15
 	req_absorbs = 1
-	req_human = 1
+	req_human = TRUE
 	req_stat = UNCONSCIOUS
 
 /datum/action/changeling/horror_form/sting_action(mob/living/carbon/human/user)
 	..()
 	if(!user || HAS_TRAIT(user, TRAIT_NO_TRANSFORM))
-		return 0
+		return FALSE
 	user.visible_message(span_warning("[user] writhes and contorts, their body expanding to inhuman proportions!"), \
 						span_danger("We begin our transformation to our true form!"))
 	if(!do_after(user, 3 SECONDS, target = user, timed_action_flags = IGNORE_HELD_ITEM))
 		user.visible_message(span_warning("[user]'s transformation abruptly reverts itself!"), \
 							span_warning("Our transformation has been interrupted!"))
-		return 0
+		return FALSE
 	user.visible_message(span_warning("[user] grows into an abomination and lets out an awful scream!"), \
 						span_userdanger("We cast off our petty shell and enter our true form!"))
 	if(user.handcuffed)
-		var/obj/O = user.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
-		if(istype(O))
-			qdel(O)
+		var/obj/handcuffs = user.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
+		if(istype(handcuffs))
+			qdel(handcuffs)
 	if(user.legcuffed)
-		var/obj/O = user.get_item_by_slot(ITEM_SLOT_LEGCUFFED)
-		if(istype(O))
-			qdel(O)
+		var/obj/legcuffs = user.get_item_by_slot(ITEM_SLOT_LEGCUFFED)
+		if(istype(legcuffs))
+			qdel(legcuffs)
 	if(user.wear_suit && user.wear_suit.breakouttime)
-		var/obj/item/clothing/suit/S = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-		if(istype(S))
-			qdel(S)
+		var/obj/item/clothing/suit/straightjacket = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+		if(istype(straightjacket))
+			qdel(straightjacket)
 	if(istype(user.loc, /obj/structure/closet))
-		var/obj/structure/closet/C = user.loc
-		if(istype(C))
-			if(C && user.loc == C)
-				C.visible_message(span_warning("[C]'s door breaks and opens!"))
-				new /obj/effect/decal/cleanable/greenglow(C.drop_location())
-				C.welded = FALSE
-				C.locked = FALSE
-				C.broken = TRUE
-				C.open()
+		var/obj/structure/closet/closet = user.loc
+		if(istype(closet))
+			if(closet && user.loc == closet)
+				closet.visible_message(span_warning("[closet]'s door breaks and opens!"))
+				new /obj/effect/decal/cleanable/greenglow(closet.drop_location())
+				closet.welded = FALSE
+				closet.locked = FALSE
+				closet.broken = TRUE
+				closet.open()
 
 	var/mob/living/simple_animal/hostile/true_changeling/new_mob = new(get_turf(user))
 
@@ -69,4 +69,4 @@
 	user.mind.transfer_to(new_mob)
 	user.spawn_gibs()
 	//feedback_add_details("changeling_powers","HF")
-	return 1
+	return TRUE
