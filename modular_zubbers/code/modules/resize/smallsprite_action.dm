@@ -143,19 +143,19 @@ code\modules\mob\emote.dm */
 
 // code\__HELPERS\visual_effects.dm
 /image/proc/do_spin_animation(speed = 1 SECONDS, loops = -1, segments = 3, angle = 120, parallel = TRUE)
-    var/list/matrices = list()
-    for(var/i in 1 to segments-1)
-        var/matrix/segment_matrix = matrix(src.transform)
-        segment_matrix.Turn(angle*i)
-        matrices += segment_matrix
-    var/matrix/last = matrix(src.transform)
-    matrices += last
+	var/list/matrices = list()
+	for(var/i in 1 to segments-1)
+		var/matrix/segment_matrix = matrix(src.transform)
+		segment_matrix.Turn(angle*i)
+		matrices += segment_matrix
+	var/matrix/last = matrix(src.transform)
+	matrices += last
 
-    speed /= segments
+	speed /= segments
 
-    animate(src, transform = matrices[1], time = speed, loop = loops, flags = parallel ? ANIMATION_PARALLEL : 0)
-    for(var/i in 2 to segments)
-        animate(transform = matrices[i], time = speed)
+	animate(src, transform = matrices[1], time = speed, loop = loops, flags = parallel ? ANIMATION_PARALLEL : 0)
+	for(var/i in 2 to segments)
+		animate(transform = matrices[i], time = speed)
 
 #undef SPRITE_SIZE
 #undef LYING_WEST_PIXEL_X
