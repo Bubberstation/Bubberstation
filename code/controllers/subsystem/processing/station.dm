@@ -73,72 +73,73 @@ PROCESSING_SUBSYSTEM_DEF(station)
 ///Rolls for the amount of traits and adds them to the traits list
 /datum/controller/subsystem/processing/station/proc/SetupTraits()
 	#ifdef EVENTMODE
-	return
-	#endif
-	if (CONFIG_GET(flag/forbid_station_traits))
 		return
+	#else
+		if (CONFIG_GET(flag/forbid_station_traits))
+			return
 
-	if (fexists(FUTURE_STATION_TRAITS_FILE))
-		var/forced_traits_contents = file2text(FUTURE_STATION_TRAITS_FILE)
-		fdel(FUTURE_STATION_TRAITS_FILE)
+		if (fexists(FUTURE_STATION_TRAITS_FILE))
+			var/forced_traits_contents = file2text(FUTURE_STATION_TRAITS_FILE)
+			fdel(FUTURE_STATION_TRAITS_FILE)
 
-		var/list/forced_traits_text_paths = json_decode(forced_traits_contents)
-		forced_traits_text_paths = SANITIZE_LIST(forced_traits_text_paths)
+			var/list/forced_traits_text_paths = json_decode(forced_traits_contents)
+			forced_traits_text_paths = SANITIZE_LIST(forced_traits_text_paths)
 
-		for (var/trait_text_path in forced_traits_text_paths)
-			var/station_trait_path = text2path(trait_text_path)
-			if (!ispath(station_trait_path, /datum/station_trait) || station_trait_path == /datum/station_trait)
-				var/message = "Invalid station trait path [station_trait_path] was requested in the future station traits!"
-				log_game(message)
-				message_admins(message)
-				continue
-
-			setup_trait(station_trait_path)
-
-		return
-
-	for(var/datum/station_trait/trait_typepath as anything in subtypesof(/datum/station_trait))
-
-		// If forced, (probably debugging), just set it up now, keep it out of the pool.
-		if(initial(trait_typepath.force))
-			setup_trait(trait_typepath)
-			continue
-
-		if(initial(trait_typepath.abstract_type) == trait_typepath)
-			continue //Dont add abstract ones to it
-
-		if(!(initial(trait_typepath.trait_flags) & STATION_TRAIT_PLANETARY) && SSmapping.is_planetary()) // we're on a planet but we can't do planet ;_;
-			continue
-
-		if(!(initial(trait_typepath.trait_flags) & STATION_TRAIT_SPACE_BOUND) && !SSmapping.is_planetary()) //we're in space but we can't do space ;_;
-			continue
-
-		if(!(initial(trait_typepath.trait_flags) & STATION_TRAIT_REQUIRES_AI) && !CONFIG_GET(flag/allow_ai)) //can't have AI traits without AI
-			continue
-
-		if(ispath(trait_typepath, /datum/station_trait/random_event_weight_modifier)) //Don't add event modifiers for events that can't occur on our map.
-			var/datum/station_trait/random_event_weight_modifier/random_trait_typepath = trait_typepath
-			var/datum/round_event_control/event_to_check = initial(random_trait_typepath.event_control_path)
-			if(event_to_check)
-				event_to_check = new event_to_check()
-				if(!event_to_check.valid_for_map())
+			for (var/trait_text_path in forced_traits_text_paths)
+				var/station_trait_path = text2path(trait_text_path)
+				if (!ispath(station_trait_path, /datum/station_trait) || station_trait_path == /datum/station_trait)
+					var/message = "Invalid station trait path [station_trait_path] was requested in the future station traits!"
+					log_game(message)
+					message_admins(message)
 					continue
 
-		selectable_traits_by_types[initial(trait_typepath.trait_type)][trait_typepath] = initial(trait_typepath.weight)
+				setup_trait(station_trait_path)
 
-	var/positive_trait_budget = text2num(pick_weight(CONFIG_GET(keyed_list/positive_station_traits)))
-	var/neutral_trait_budget = text2num(pick_weight(CONFIG_GET(keyed_list/neutral_station_traits)))
-	var/negative_trait_budget = text2num(pick_weight(CONFIG_GET(keyed_list/negative_station_traits)))
+			return
 
-#ifdef MAP_TEST
-	positive_trait_budget = 0
-	neutral_trait_budget = 0
-	negative_trait_budget = 0
-#endif
+		for(var/datum/station_trait/trait_typepath as anything in subtypesof(/datum/station_trait))
 
-	pick_traits(STATION_TRAIT_POSITIVE, positive_trait_budget)
-	pick_traits(STATION_TRAIT_NEUTRAL, neutral_trait_budget)
-	pick_traits(STATION_TRAIT_NEGATIVE, negative_trait_budget)
+			// If forced, (probably debugging), just set it up now, keep it out of the pool.
+			if(initial(trait_typepath.force))
+				setup_trait(trait_typepath)
+				continue
+
+			if(initial(trait_typepath.abstract_type) == trait_typepath)
+				continue //Dont add abstract ones to it
+
+			if(!(initial(trait_typepath.trait_flags) & STATION_TRAIT_PLANETARY) && SSmapping.is_planetary()) // we're on a planet but we can't do planet ;_;
+				continue
+
+			if(!(initial(trait_typepath.trait_flags) & STATION_TRAIT_SPACE_BOUND) && !SSmapping.is_planetary()) //we're in space but we can't do space ;_;
+				continue
+
+			if(!(initial(trait_typepath.trait_flags) & STATION_TRAIT_REQUIRES_AI) && !CONFIG_GET(flag/allow_ai)) //can't have AI traits without AI
+				continue
+
+			if(ispath(trait_typepath, /datum/station_trait/random_event_weight_modifier)) //Don't add event modifiers for events that can't occur on our map.
+				var/datum/station_trait/random_event_weight_modifier/random_trait_typepath = trait_typepath
+				var/datum/round_event_control/event_to_check = initial(random_trait_typepath.event_control_path)
+				if(event_to_check)
+					event_to_check = new event_to_check()
+					if(!event_to_check.valid_for_map())
+						continue
+
+			selectable_traits_by_types[initial(trait_typepath.trait_type)][trait_typepath] = initial(trait_typepath.weight)
+
+		var/positive_trait_budget = text2num(pick_weight(CONFIG_GET(keyed_list/positive_station_traits)))
+		var/neutral_trait_budget = text2num(pick_weight(CONFIG_GET(keyed_list/neutral_station_traits)))
+		var/negative_trait_budget = text2num(pick_weight(CONFIG_GET(keyed_list/negative_station_traits)))
+
+		#ifdef MAP_TEST
+			positive_trait_budget = 0
+			neutral_trait_budget = 0
+			negative_trait_budget = 0
+		#endif
+
+		pick_traits(STATION_TRAIT_POSITIVE, positive_trait_budget)
+		pick_traits(STATION_TRAIT_NEUTRAL, neutral_trait_budget)
+		pick_traits(STATION_TRAIT_NEGATIVE, negative_trait_budget)
+	#endif
 
 /**
  * Picks traits of a specific category (e.g. bad or good), initializes them, adds them to the list of traits,

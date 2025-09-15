@@ -24,40 +24,41 @@
 
 /datum/component/rot/Initialize(delay, scaling, severity)
 	#ifdef EVENTMODE
-	return INITIALIZE_HINT_QDEL;
-	#endif
-	if(!isatom(parent))
-		return COMPONENT_INCOMPATIBLE
-	if(isliving(parent))
-		var/mob/living/living_parent = parent
-		//I think this can break in cases where someone becomes a robot post death, but I uh, I don't know how to account for that
-		if(!(living_parent.mob_biotypes & (MOB_ORGANIC|MOB_UNDEAD)))
+		return INITIALIZE_HINT_QDEL
+	#else
+		if(!isatom(parent))
 			return COMPONENT_INCOMPATIBLE
+		if(isliving(parent))
+			var/mob/living/living_parent = parent
+			// I think this can break in cases where someone becomes a robot post death, but I uh, I don't know how to account for that
+			if(!(living_parent.mob_biotypes & (MOB_ORGANIC|MOB_UNDEAD)))
+				return COMPONENT_INCOMPATIBLE
 
-	start_delay = delay
-	scaling_delay = scaling
-	strength = severity
+		start_delay = delay
+		scaling_delay = scaling
+		strength = severity
 
-	RegisterSignals(parent, list(COMSIG_ATOM_HULK_ATTACK, COMSIG_ATOM_ATTACK_ANIMAL, COMSIG_ATOM_ATTACK_HAND), PROC_REF(rot_react_touch))
-	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(rot_hit_react))
-	if(ismovable(parent))
-		AddComponent(/datum/component/connect_loc_behalf, parent, loc_connections)
-		RegisterSignal(parent, COMSIG_MOVABLE_BUMP, PROC_REF(rot_react))
-	if(isliving(parent))
-		RegisterSignal(parent, COMSIG_LIVING_REVIVE, PROC_REF(react_to_revive)) //mobs stop this when they come to life
-		RegisterSignal(parent, COMSIG_LIVING_GET_PULLED, PROC_REF(rot_react_touch))
-	if(iscarbon(parent))
-		var/mob/living/carbon/carbon_parent = parent
-		RegisterSignal(carbon_parent.reagents, COMSIG_REAGENTS_HOLDER_UPDATED, PROC_REF(check_reagent))
-		RegisterSignals(parent, list(SIGNAL_ADDTRAIT(TRAIT_HUSK), SIGNAL_REMOVETRAIT(TRAIT_HUSK)), PROC_REF(check_husk_trait))
-		check_reagent(carbon_parent.reagents, null)
-		check_husk_trait(null)
-	if(ishuman(parent))
-		var/mob/living/carbon/human/human_parent = parent
-		RegisterSignal(parent, COMSIG_HUMAN_CORETEMP_CHANGE, PROC_REF(check_for_temperature))
-		check_for_temperature(null, 0, human_parent.coretemperature)
+		RegisterSignals(parent, list(COMSIG_ATOM_HULK_ATTACK, COMSIG_ATOM_ATTACK_ANIMAL, COMSIG_ATOM_ATTACK_HAND), PROC_REF(rot_react_touch))
+		RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(rot_hit_react))
+		if(ismovable(parent))
+			AddComponent(/datum/component/connect_loc_behalf, parent, loc_connections)
+			RegisterSignal(parent, COMSIG_MOVABLE_BUMP, PROC_REF(rot_react))
+		if(isliving(parent))
+			RegisterSignal(parent, COMSIG_LIVING_REVIVE, PROC_REF(react_to_revive)) //mobs stop this when they come to life
+			RegisterSignal(parent, COMSIG_LIVING_GET_PULLED, PROC_REF(rot_react_touch))
+		if(iscarbon(parent))
+			var/mob/living/carbon/carbon_parent = parent
+			RegisterSignal(carbon_parent.reagents, COMSIG_REAGENTS_HOLDER_UPDATED, PROC_REF(check_reagent))
+			RegisterSignals(parent, list(SIGNAL_ADDTRAIT(TRAIT_HUSK), SIGNAL_REMOVETRAIT(TRAIT_HUSK)), PROC_REF(check_husk_trait))
+			check_reagent(carbon_parent.reagents, null)
+			check_husk_trait(null)
+		if(ishuman(parent))
+			var/mob/living/carbon/human/human_parent = parent
+			RegisterSignal(parent, COMSIG_HUMAN_CORETEMP_CHANGE, PROC_REF(check_for_temperature))
+			check_for_temperature(null, 0, human_parent.coretemperature)
 
-	start_up(NONE) //If nothing's blocking it, start
+		start_up(NONE) // If nothing's blocking it, start
+	#endif
 
 /datum/component/rot/UnregisterFromParent()
 	. = ..()

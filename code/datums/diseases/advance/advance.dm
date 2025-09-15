@@ -124,10 +124,12 @@
 
 /datum/disease/advance/New()
 	#ifdef EVENTMODE
-	QDEL_IN(src, 30)
-	return
+		QDEL_IN(src, 30)
+		return
+	#else
+		Refresh()
 	#endif
-	Refresh()
+
 
 /datum/disease/advance/Destroy()
 	if(processing)

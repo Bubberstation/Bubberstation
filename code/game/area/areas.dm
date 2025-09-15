@@ -475,9 +475,9 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /area/space/powered(chan) //Nope.avi
 	#ifdef EVENTMODE
 	return TRUE //SIKE.gif
+	#else
+		return FALSE
 	#endif
-	return FALSE
-
 /**
  * Called when the area power status changes
  *

@@ -27,36 +27,38 @@
 			if (other != src && other.type == type && !QDELETED(other) && replace_decal(other))
 				handle_merge_decal(other)
 				return INITIALIZE_HINT_QDEL
+
 	#ifdef EVENTMODE
-	///AUTO CLEAN
-	var/turf/ET = src.loc
-	if(mapload || ET.eventturf == TRUE)
-		return .
-	QDEL_IN(src, 30)
-	return . //skip disease handling
+		/// AUTO CLEAN
+		var/turf/ET = src.loc
+		if(mapload || ET.eventturf == TRUE)
+			return .
+		QDEL_IN(src, 30)
+		return . // skip disease handling
+	#else
+		if (is_mopped)
+			ADD_TRAIT(src, TRAIT_MOPABLE, INNATE_TRAIT)
+
+		if (LAZYLEN(diseases))
+			add_diseases(diseases)
+
+		AddElement(/datum/element/beauty, beauty)
+
+		var/turf/our_turf = get_turf(src)
+		if (our_turf && is_station_level(our_turf.z))
+			SSblackbox.record_feedback("tally", "station_mess_created", 1, name)
 	#endif
-
-	if (is_mopped)
-		ADD_TRAIT(src, TRAIT_MOPABLE, INNATE_TRAIT)
-
-	if (LAZYLEN(diseases))
-		add_diseases(diseases)
-
-	AddElement(/datum/element/beauty, beauty)
-
-	var/turf/our_turf = get_turf(src)
-	if (our_turf && is_station_level(our_turf.z))
-		SSblackbox.record_feedback("tally", "station_mess_created", 1, name)
 
 /obj/effect/decal/cleanable/Destroy()
 	#ifdef EVENTMODE
-	///NO TALLYS REEE
-	return ..()
+		/// NO TALLYS REEE
+		return ..()
+	#else
+		var/turf/our_turf = get_turf(src)
+		if (our_turf && is_station_level(our_turf.z))
+			SSblackbox.record_feedback("tally", "station_mess_destroyed", 1, name)
+		return ..()
 	#endif
-	var/turf/our_turf = get_turf(src)
-	if (our_turf && is_station_level(our_turf.z))
-		SSblackbox.record_feedback("tally", "station_mess_destroyed", 1, name)
-	return ..()
 
 /obj/effect/decal/cleanable/proc/add_diseases(list/datum/disease/diseases)
 	var/list/datum/disease/diseases_to_add = list()
