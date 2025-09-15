@@ -48,6 +48,9 @@
  * Reproduce.
  */
 /datum/ai_behavior/make_babies
+	#ifdef EVENTMODE
+	return //no thanks
+	#endif
 	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_REQUIRE_REACH
 
 /datum/ai_behavior/make_babies/setup(datum/ai_controller/controller, target_key, child_types_key)

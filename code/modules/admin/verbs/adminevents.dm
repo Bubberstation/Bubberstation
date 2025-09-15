@@ -198,3 +198,41 @@ ADMIN_VERB(delay_command_report, R_FUN, "Delay Command Report", "Prevents the ro
 		input = "<span class='[text_span]'>" + input + "</span>"
 
 	return input
+
+/client/proc/storm_start()
+	set name = "Start the Storm"
+	set category = "Admin.Fun"
+	set popup_menu = FALSE
+	if(!check_rights(R_FUN))
+		return
+
+	if(GLOB.storm_controller)
+		to_chat(usr, "There is already a storm!", confidential = TRUE)
+		return
+	GLOB.storm_controller = new /datum/storm_controller
+
+/client/proc/storm_halt()
+	set name = "Halt the Storm Permanently"
+	set category = "Admin.Fun"
+	set popup_menu = FALSE
+	if(!check_rights(R_FUN))
+		return
+
+	var/datum/storm_controller/controller = GLOB.storm_controller
+	if(!controller)
+		to_chat(usr, "Start a storm first!", confidential = TRUE)
+		return
+	controller.stop_storm()
+
+/client/proc/storm_stop()
+	set name = "Stop the Storm Entirely"
+	set category = "Admin.Fun"
+	set popup_menu = FALSE
+	if(!check_rights(R_FUN))
+		return
+
+	var/datum/storm_controller/controller = GLOB.storm_controller
+	if(!controller)
+		to_chat(usr, "Start a storm first!", confidential = TRUE)
+		return
+	controller.end_storm()

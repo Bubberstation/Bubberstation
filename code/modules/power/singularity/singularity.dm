@@ -49,6 +49,7 @@
 	var/time_since_act = 0
 	/// What the game tells ghosts when you make one
 	var/ghost_notification_message = "IT'S LOOSE"
+	var/team
 
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINE | PASSSTRUCTURE | PASSDOORS
 	flags_1 = SUPERMATTER_IGNORES_1
@@ -74,7 +75,7 @@
 	check_energy()
 
 	for (var/obj/machinery/power/singularity_beacon/singu_beacon as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/power/singularity_beacon))
-		if (singu_beacon.active)
+		if (singu_beacon.active && singu_beacon.team == team)
 			new_component.target = singu_beacon
 			break
 
@@ -165,6 +166,7 @@
 		return
 	time_since_act = 0
 	if(current_size >= STAGE_TWO)
+		radiation_pulse(src, min(5000, (energy*4.5)+1000), RAD_DISTANCE_COEFFICIENT*0.5)
 		if(prob(event_chance))
 			event()
 	dissipate(seconds_per_tick)
@@ -412,9 +414,23 @@
 /obj/singularity/proc/can_move(turf/considered_turf)
 	if(!considered_turf)
 		return FALSE
-	if (HAS_TRAIT(considered_turf, TRAIT_CONTAINMENT_FIELD))
+	if(locate(/obj/machinery/shieldwall) in considered_turf)
 		return FALSE
-	return TRUE
+	else if(locate(/obj/machinery/field/containment) in considered_turf)
+		var/obj/machinery/field/containment/containment_field = locate(/obj/machinery/field/containment) in considered_turf
+		if(containment_field?.team != team)
+			return FALSE
+		if(containment_field?.team != team)
+			return FALSE
+	else if(locate(/obj/machinery/field/generator) in considered_turf)
+		var/obj/machinery/field/generator/field_generator = locate(/obj/machinery/field/generator) in considered_turf
+		if(field_generator?.active || field_generator?.team != team)
+			return FALSE
+	else if(locate(/obj/machinery/power/shieldwallgen) in considered_turf)
+		var/obj/machinery/power/shieldwallgen/shield_gen = locate(/obj/machinery/power/shieldwallgen) in considered_turf
+		if(shield_gen?.active)
+			return FALSE
+return TRUE
 
 /obj/singularity/proc/event()
 	var/numb = rand(1,4)
@@ -496,6 +512,12 @@
 /obj/singularity/deadchat_controlled/Initialize(mapload, starting_energy)
 	. = ..()
 	deadchat_plays(mode = DEMOCRACY_MODE)
+
+/obj/singularity/red
+	team = "red"
+
+/obj/singularity/green
+	team = "green"
 
 /// Special singularity spawned by being sucked into a black hole during emagged orion trail.
 /obj/singularity/orion

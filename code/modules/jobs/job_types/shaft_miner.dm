@@ -4,8 +4,8 @@
 		Meet strange creatures. Kill them for their gold."
 	department_head = list(JOB_QUARTERMASTER)
 	faction = FACTION_STATION
-	total_positions = 3
-	spawn_positions = 3
+	total_positions = 0
+	spawn_positions = 0
 	supervisors = SUPERVISOR_QM
 	exp_granted_type = EXP_TYPE_CREW
 	config_tag = "SHAFT_MINER"

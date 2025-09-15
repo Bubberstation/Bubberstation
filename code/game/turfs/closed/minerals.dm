@@ -752,6 +752,9 @@
 	icon = MAP_SWITCH('icons/turf/walls/red_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "red_wall"
 
+/turf/closed/mineral/asteroid/event
+	baseturfs = /turf/open/floor/plating/ironsand
+
 /turf/closed/mineral/random/stationside/asteroid
 	name = "iron rock"
 	icon = MAP_SWITCH('icons/turf/walls/red_wall.dmi', 'icons/turf/mining.dmi')

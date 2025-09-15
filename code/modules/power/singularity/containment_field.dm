@@ -115,6 +115,7 @@
 // Used for overriding certain procs
 
 /obj/machinery/field
+	var/team
 	///Used to add a delay between shocks. In some cases this used to crash servers by spawning hundreds of sparks every second.
 	var/has_shocked = FALSE
 
@@ -166,3 +167,9 @@
 	playsound(src, 'sound/effects/gravhit.ogg', 50, TRUE)
 	considered_atom.throw_at(target, 200, 4)
 	addtimer(CALLBACK(src, PROC_REF(clear_shock)), 0.5 SECONDS)
+
+/obj/machinery/field/containment/red
+	team = "red"
+
+/obj/machinery/field/containment/green
+	team = "green"

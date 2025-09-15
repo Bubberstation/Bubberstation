@@ -164,6 +164,9 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		Entered(content, null)
 
 	var/area/our_area = loc
+	if(loc)
+		if(our_area.eventarea == TRUE)
+			eventturf = TRUE
 	if(!our_area.area_has_base_lighting && space_lit) //Only provide your own lighting if the area doesn't for you
 		add_overlay(GLOB.starlight_overlays[GET_TURF_PLANE_OFFSET(src) + 1])
 

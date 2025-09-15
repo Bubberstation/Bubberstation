@@ -484,6 +484,14 @@
 	component.attach_hat(beret)
 	squaddie.update_clothing(helmet.slot_flags)
 
+
+/datum/outfit/centcom/death_commando/disarmed
+	backpack_contents = list()
+	l_pocket = null
+	r_pocket = null
+	l_hand = null
+	belt = null
+
 /datum/outfit/centcom/ert/marine
 	name = "Marine Commander"
 

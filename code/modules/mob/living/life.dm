@@ -42,6 +42,7 @@
 		return
 
 	if(!HAS_TRAIT(src, TRAIT_STASIS))
+		#ifndef EVENTMODE
 		if(stat != DEAD)
 			//Mutations and radiation
 			handle_mutations(seconds_per_tick, times_fired)
@@ -52,6 +53,7 @@
 
 		if (QDELETED(src)) // Diseases can qdel the mob via transformations
 			return
+		#endif
 
 		// Handle temperature/pressure differences between body and environment
 		var/datum/gas_mixture/environment = loc.return_air()

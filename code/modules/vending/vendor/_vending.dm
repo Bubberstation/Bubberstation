@@ -234,6 +234,10 @@
 			if(circuit)
 				circuit.all_products_free = all_products_free //sync up the circuit so the pricing schema is carried over if it's reconstructed.
 
+	#ifdef EVENTMODE
+	onstation = FALSE//FREE REAL ESTATE
+	#endif
+
 	else if(circuit)
 		all_products_free = circuit.all_products_free //if it was constructed outside mapload, sync the vendor up with the circuit's var so you can't bypass price requirements by moving / reconstructing it off station.
 	if(!all_products_free)

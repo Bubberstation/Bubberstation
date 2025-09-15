@@ -10,12 +10,22 @@
 	custom_materials = list(/datum/material/plastic=SMALL_MATERIAL_AMOUNT*2)
 
 /obj/item/trash/Initialize(mapload)
+	#ifdef EVENTMODE
+	///AUTO CLEAN
+	if(mapload)
+		return .
+	QDEL_IN(src, 30)
+	return ..()
+	#endif
 	var/turf/T = get_turf(src)
 	if(T && is_station_level(T.z))
 		SSblackbox.record_feedback("tally", "station_mess_created", 1, name)
 	return ..()
 
 /obj/item/trash/Destroy()
+	#ifdef EVENTMODE
+	return ..()
+	#endif
 	var/turf/T = get_turf(src)
 	if(T && is_station_level(T.z))
 		SSblackbox.record_feedback("tally", "station_mess_destroyed", 1, name)

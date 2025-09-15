@@ -535,58 +535,57 @@
 	// START WOUND HANDLING
 	*/
 
-	// what kind of wounds we're gonna roll for, take the greater between brute and burn, then if it's brute, we subdivide based on sharpness
-	var/wounding_type = (brute > burn ? WOUND_BLUNT : WOUND_BURN)
-	var/wounding_dmg = max(brute, burn)
+	#ifdef EVENTMODE
+	if(GLOB.global_roster.enable_random_wounds)
+		// what kind of wounds we're gonna roll for, take the greater between brute and burn, then if it's brute, we subdivide based on sharpness
+		var/wounding_type = (brute > burn ? WOUND_BLUNT : WOUND_BURN)
+		var/wounding_dmg = max(brute, burn)
 
-	if(wounding_type == WOUND_BLUNT && sharpness)
-		if(sharpness & SHARP_EDGED)
-			wounding_type = WOUND_SLASH
-		else if (sharpness & SHARP_POINTY)
-			wounding_type = WOUND_PIERCE
-
-	if(owner) // i tried to modularize the below, but the modifications to wounding_dmg and wounding_type cant be extracted to a proc
 		var/mangled_state = get_mangled_state()
+		var/bio_state = owner.get_biological_state()
 		var/easy_dismember = HAS_TRAIT(owner, TRAIT_EASYDISMEMBER) // if we have easydismember, we don't reduce damage when redirecting damage to different types (slashing weapons on mangled/skinless limbs attack at 100% instead of 50%)
 
-		var/bio_status = get_bio_state_status()
+		if(wounding_type == WOUND_BLUNT && sharpness)
+			if(sharpness & SHARP_EDGED)
+				wounding_type = WOUND_SLASH
+			else if (sharpness & SHARP_POINTY)
+				wounding_type = WOUND_PIERCE
 
-		var/has_exterior = ((bio_status & ANATOMY_EXTERIOR))
-		var/has_interior = ((bio_status & ANATOMY_INTERIOR))
+		//Handling for bone only/flesh only(none right now)/flesh and bone targets
+		switch(bio_state)
+			// if we're bone only, all cutting attacks go straight to the bone
+			if(BIO_JUST_BONE)
+				if(wounding_type == WOUND_SLASH)
+					wounding_type = WOUND_BLUNT
+					wounding_dmg *= (easy_dismember ? 1 : 0.6)
+				else if(wounding_type == WOUND_PIERCE)
+					wounding_type = WOUND_BLUNT
+					wounding_dmg *= (easy_dismember ? 1 : 0.75)
+				if((mangled_state & BODYPART_MANGLED_BONE) && try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))
+					return
+			// note that there's no handling for BIO_JUST_FLESH since we don't have any that are that right now (slimepeople maybe someday)
+			// standard humanoids
+			if(BIO_FLESH_BONE)
+				// if we've already mangled the skin (critical slash or piercing wound), then the bone is exposed, and we can damage it with sharp weapons at a reduced rate
+				// So a big sharp weapon is still all you need to destroy a limb
+				if(mangled_state == BODYPART_MANGLED_FLESH && sharpness)
+					playsound(src, "sound/effects/wounds/crackandbleed.ogg", 100)
+					if(wounding_type == WOUND_SLASH && !easy_dismember)
+						wounding_dmg *= 0.6 // edged weapons pass along 60% of their wounding damage to the bone since the power is spread out over a larger area
+					if(wounding_type == WOUND_PIERCE && !easy_dismember)
+						wounding_dmg *= 0.75 // piercing weapons pass along 75% of their wounding damage to the bone since it's more concentrated
+					wounding_type = WOUND_BLUNT
+				else if(mangled_state == BODYPART_MANGLED_BOTH && try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))
+					return
 
-		var/exterior_ready_to_dismember = (!has_exterior || ((mangled_state & BODYPART_MANGLED_EXTERIOR)))
-
-		// if we're bone only, all cutting attacks go straight to the bone
-		if(!has_exterior && has_interior)
-			if(wounding_type == WOUND_SLASH)
-				wounding_type = WOUND_BLUNT
-				wounding_dmg *= (easy_dismember ? 1 : 0.6)
-			else if(wounding_type == WOUND_PIERCE)
-				wounding_type = WOUND_BLUNT
-				wounding_dmg *= (easy_dismember ? 1 : 0.75)
-		else
-			// if we've already mangled the skin (critical slash or piercing wound), then the bone is exposed, and we can damage it with sharp weapons at a reduced rate
-			// So a big sharp weapon is still all you need to destroy a limb
-			if(has_interior && exterior_ready_to_dismember && !(mangled_state & BODYPART_MANGLED_INTERIOR) && sharpness)
-				if(wounding_type == WOUND_SLASH && !easy_dismember)
-					wounding_dmg *= 0.6 // edged weapons pass along 60% of their wounding damage to the bone since the power is spread out over a larger area
-				if(wounding_type == WOUND_PIERCE && !easy_dismember)
-					wounding_dmg *= 0.75 // piercing weapons pass along 75% of their wounding damage to the bone since it's more concentrated
-				wounding_type = WOUND_BLUNT
-		if ((dismemberable_by_wound() || dismemberable_by_total_damage()) && try_dismember(wounding_type, wounding_dmg, wound_bonus, exposed_wound_bonus))
-			return
 		// now we have our wounding_type and are ready to carry on with wounds and dealing the actual damage
-		if(wounding_dmg >= WOUND_MINIMUM_DAMAGE && wound_bonus != CANT_WOUND)
-			// BUBBER EDIT ADDITION BEGIN - MEDICAL
-			if(istype(current_gauze, /obj/item/stack/medical/gauze))
-				var/obj/item/stack/medical/gauze/our_gauze = current_gauze
-				our_gauze.get_hit()
-			// BUBBER EDIT ADDITION END - MEDICAL
-			check_wounding(wounding_type, wounding_dmg, wound_bonus, exposed_wound_bonus, attack_direction, damage_source = damage_source, wound_clothing = wound_clothing)
+		if(owner && wounding_dmg >= WOUND_MINIMUM_DAMAGE && wound_bonus != CANT_WOUND)
+			check_wounding(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)
 
-	for(var/datum/wound/iter_wound as anything in wounds)
-		iter_wound.receive_damage(wounding_type, wounding_dmg, wound_bonus, damage_source)
+		for(var/datum/wound/iter_wound as anything in wounds)
+			iter_wound.receive_damage(wounding_type, wounding_dmg, wound_bonus)
 
+	#endif
 	/*
 	// END WOUND HANDLING
 	*/

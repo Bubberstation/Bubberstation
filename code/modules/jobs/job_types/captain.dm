@@ -6,8 +6,8 @@
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY
 	department_head = list("CentCom")
 	faction = FACTION_STATION
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 0
+	spawn_positions = 0
 	supervisors = "Nanotrasen officials and Space Law"
 	req_admin_notify = 1
 	minimal_player_age = 14

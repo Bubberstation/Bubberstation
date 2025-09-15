@@ -4,8 +4,8 @@
 		scan everyone in sight"
 	department_head = list(JOB_CHIEF_MEDICAL_OFFICER)
 	faction = FACTION_STATION
-	total_positions = 6
-	spawn_positions = 4
+	total_positions = 0
+	spawn_positions = 0
 	supervisors = SUPERVISOR_CMO
 	exp_granted_type = EXP_TYPE_CREW
 	config_tag = "MEDICAL_DOCTOR"

@@ -53,6 +53,9 @@
 	var/flora_flags = NONE
 
 /obj/structure/flora/attackby(obj/item/used_item, mob/living/user, list/modifiers, list/attack_modifiers)
+	#ifdef EVENTMODE
+	return
+	#endif
 	if(user.combat_mode)
 		return ..()
 	if(flags_1 & HOLOGRAM_1)
