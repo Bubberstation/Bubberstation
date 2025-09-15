@@ -1,5 +1,6 @@
 /datum/job/corrections_officer
 	title = JOB_CORRECTIONS_OFFICER
+	rpg_title = "Beefeater"
 	description = "Guard the permabrig, stand around looking imposing, get fired for abusing the prisoners"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list("The Warden and Head of Security")
