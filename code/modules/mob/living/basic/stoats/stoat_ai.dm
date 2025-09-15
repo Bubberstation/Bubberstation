@@ -14,4 +14,5 @@
 		/datum/ai_planning_subtree/steal_items,
 		/datum/ai_planning_subtree/basic_melee_attack_subtree,
 		/datum/ai_planning_subtree/find_food,
+		/datum/ai_planning_subtree/make_babies, // BUBBER EDIT ADDITION
 	)
