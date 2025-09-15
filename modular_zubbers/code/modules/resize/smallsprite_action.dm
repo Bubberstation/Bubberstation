@@ -118,19 +118,19 @@
 code\modules\mob\emote.dm */
 /datum/emote/jump/jump_animation(mob/user)
 	. = ..()
-	for(var/datum/action/sizecode_smallsprite/A in user.actions)
-		if(!A.small)
+	for(var/datum/action/oversized_visibility/resize_action in user.actions)
+		if(!resize_action.small)
 			return
-		var/original_transform = A.small_icon.transform
-		animate(A.small_icon, transform = A.small_icon.transform.Translate(0, 4), time = 0.1 SECONDS, flags = ANIMATION_PARALLEL)
+		var/original_transform = resize_action.small_icon.transform
+		animate(resize_action.small_icon, transform = resize_action.small_icon.transform.Translate(0, 4), time = 0.1 SECONDS, flags = ANIMATION_PARALLEL)
 		animate(transform = original_transform, time = 0.1 SECONDS)
 
 /datum/emote/flip/run_emote(mob/user, params , type_override, intentional)
 	. = ..()
-	for(var/datum/action/sizecode_smallsprite/A in user.actions)
-		if(!A.small)
+	for(var/datum/action/oversized_visibility/resize_action in user.actions)
+		if(!resize_action.small)
 			return
-		A.small_icon.do_spin_animation(FLIP_EMOTE_DURATION, 1)
+		resize_action.small_icon.do_spin_animation(FLIP_EMOTE_DURATION, 1)
 
 // code\__HELPERS\visual_effects.dm
 /image/proc/SpinAnimation(speed = 1 SECONDS, loops = -1, clockwise = TRUE, segments = 3, parallel = TRUE)
@@ -139,7 +139,6 @@ code\modules\mob\emote.dm */
 	var/segment = 360/segments
 	if(!clockwise)
 		segment = -segment
-	//SEND_SIGNAL(src, COMSIG_ATOM_SPIN_ANIMATION, speed, loops, segments, segment)
 	do_spin_animation(speed, loops, segments, segment, parallel)
 
 // code\__HELPERS\visual_effects.dm
