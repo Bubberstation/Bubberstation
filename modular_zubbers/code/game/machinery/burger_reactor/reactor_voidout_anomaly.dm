@@ -8,7 +8,7 @@
 	for(var/obj/machinery/power/rbmk2/found_engine in range(8,src))
 		found_engine.on_voidout()
 
-	var/obj/effect/voidout/voidout_effect = locate() in range(8,src)
+	var/obj/voidout/voidout_effect = locate() in range(8,src)
 	if(!voidout_effect)
 		voidout_effect = new(origin_turf)
 
@@ -28,7 +28,7 @@
 
 	return TRUE
 
-/obj/effect/voidout
+/obj/voidout
 	name = "???"
 	desc = "We've been burying them wrong."
 
@@ -44,9 +44,20 @@
 	pixel_x = -16
 	pixel_y = -16
 
+	plane = MASSIVE_OBJ_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 
-/obj/effect/voidout/Initialize(mapload)
+	anchored = FALSE
+	density = FALSE
+	move_resist = INFINITY
+
+	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINE | PASSSTRUCTURE | PASSDOORS
+	flags_1 = SUPERMATTER_IGNORES_1
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF | SHUTTLE_CRUSH_PROOF
+	obj_flags = CAN_BE_HIT | DANGEROUS_POSSESSION
+
+
+/obj/voidout/Initialize(mapload)
 	. = ..()
 	if(!kill_target)
 		var/mob/living/found_target = find_target()
@@ -55,25 +66,15 @@
 	playsound(src, 'modular_zubbers/sound/machines/rbmk2/voidout.ogg', 50, FALSE, extrarange = 16, pressure_affected = FALSE, use_reverb = FALSE)
 	addtimer(CALLBACK(src, PROC_REF(begin_hunt)), rand(10,20) SECONDS)
 
-/obj/effect/voidout/proc/begin_hunt()
-
-	var/area/our_area = get_area(src)
-	var/area/their_area = kill_target ? get_area(kill_target) : null
-
-	if(our_area && our_area.apc)
-		our_area.apc.overload_lighting()
-
-	if(their_area && their_area.apc && our_area != their_area)
-		their_area.apc.overload_lighting()
-
+/obj/voidout/proc/begin_hunt()
 	START_PROCESSING(SSsinguloprocess, src)
 
-/obj/effect/voidout/Destroy()
+/obj/voidout/Destroy()
 	STOP_PROCESSING(SSsinguloprocess, src)
 	set_target(null)
 	. = ..()
 
-/obj/effect/voidout/process(seconds_per_tick)
+/obj/voidout/process(seconds_per_tick)
 
 	if(!kill_target)
 		if(COOLDOWN_FINISHED(src, search_cooldown))
@@ -107,18 +108,21 @@
 
 		return
 
-	if(their_turf)
-		step_towards(src,their_turf)
+	if(their_turf && step_towards(src,their_turf))
+		var/turf/new_turf = get_turf(src)
+		if(our_turf.loc != new_turf.loc && new_turf.loc.apc)
+			new_turf.loc.apc.overload_lighting()
 
-
-/obj/effect/voidout/proc/set_target(mob/living/desired_target)
+/obj/voidout/proc/set_target(mob/living/desired_target)
 
 	if(desired_target)
 		desired_target.ominous_nosebleed()
+		to_chat(desired_target, span_hear("You hear a voice in your head... [span_big("\'Run.\'")]"))
+		desired_target.playsound_local(get_turf(desired_target), 'modular_zubbers/sound/machines/rbmk2/voidout_run.ogg', 50, FALSE)
 
 	kill_target = desired_target
 
-/obj/effect/voidout/proc/find_target()
+/obj/voidout/proc/find_target()
 
 	var/mob/living/carbon/human/best_target
 	var/best_distance

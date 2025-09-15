@@ -42,25 +42,34 @@
 	. = ..()
 	QDEL_NULL(radio)
 
+/obj/structure/engine_choice/attack_hand(mob/living/user, list/modifiers)
+
+	. = ..()
+
+	if(.)
+		return
+
+	display_options(user)
+
 
 /obj/structure/engine_choice/multitool_act(mob/living/user, obj/item/multitool/tool)
 
 	if(!can_use(user))
-		return FALSE
+		return TRUE
 
 	playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
 
 	radio.talk_into(
 		src,
-		"[user] is now currently removing [src]. If this is not intentional, please contact security.",
+		"[user] is currently removing [src]. If this is not intentional, please contact security.",
 		RADIO_CHANNEL_ENGINEERING
 	)
 
 	if(!do_after(user, 15 SECONDS, target=src))
-		return FALSE
+		return TRUE
 
 	if(!can_use(user))
-		return FALSE
+		return TRUE
 
 	var/turf/center_turf = get_turf(src)
 
@@ -83,7 +92,7 @@
 
 	radio.talk_into(
 		src,
-		"[user] is now currently selecting the engine type to use for the shift.",
+		"[user] is currently selecting the engine type to use for the shift.",
 		RADIO_CHANNEL_ENGINEERING
 	)
 
@@ -100,7 +109,7 @@
 
 	radio.talk_into(
 		src,
-		"[user] has selected option \"[choice]\" to be used for the shift! Stay clear of the deployment zone!",
+		"[user] has selected option \"[choice]\" to be used for the shift! Stay clear of the deployment zone! ETA: [deployment_time/10] seconds!",
 		RADIO_CHANNEL_ENGINEERING
 	)
 
@@ -135,7 +144,6 @@
 		var/obj/machinery/power/rbmk2/preloaded/spawned_rbmk = new(side_turf)
 		spawned_sniffer.link_reactor(null,spawned_rbmk)
 
-	new /obj/item/paper/crumpled/rbmk2(center_turf)
 	new /obj/item/paper/guides/jobs/engi/rbmk2(center_turf)
 
 	return TRUE

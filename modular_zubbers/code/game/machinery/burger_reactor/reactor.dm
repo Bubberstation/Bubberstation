@@ -14,6 +14,7 @@
 	uses_integrity = TRUE
 
 	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_REQUIRES_ANCHORED | INTERACT_ATOM_UI_INTERACT
+	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_REQUIRES_SIGHT | INTERACT_MACHINE_REQUIRES_LITERACY | INTERACT_MACHINE_REQUIRES_STANDING
 
 	resistance_flags = FIRE_PROOF
 
@@ -377,9 +378,9 @@
 	. = ..()
 
 	//Requires x4 capacitors
-	var/power_efficiency_mul = 0.5
+	var/power_efficiency_mul = 0.75
 	for(var/datum/stock_part/capacitor/new_capacitor in component_parts)
-		power_efficiency_mul += (new_capacitor.tier * 0.125)
+		power_efficiency_mul += (new_capacitor.tier * 0.0625)
 	power_efficiency = initial(power_efficiency) * power_efficiency_mul
 
 	//Requires x2 matter bins
