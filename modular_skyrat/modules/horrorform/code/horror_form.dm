@@ -55,10 +55,13 @@
 
 	//Currently this is a thing as changeling ID's are not longer a thing
 	//Feel free to re-add them whomever wants to -Azarak
-	var/changeling_name = \
-		(user.gender == FEMALE) ? "Ms. " : \
-		(user.gender == MALE)   ? "Mr. " : \
-		(user.gender == NEUTER || PLURAL) ? "Mx. " : \
+	var/changeling_name = ""
+	if(user.gender == FEMALE)
+		changeling_name = "Ms. "
+	else if(user.gender == MALE)
+		changeling_name = "Mr. "
+	else if(user.gender == NEUTER || user.gender == PLURAL)
+		changeling_name = "Mx. "
 	changeling_name += pick(GLOB.greek_letters)
 
 	new_mob.real_name = changeling_name
