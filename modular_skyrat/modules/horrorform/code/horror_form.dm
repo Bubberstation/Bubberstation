@@ -73,6 +73,4 @@
 	user.mind.transfer_to(new_mob)
 	user.spawn_gibs()
 
-	qdel(src)
-
 	return TRUE
