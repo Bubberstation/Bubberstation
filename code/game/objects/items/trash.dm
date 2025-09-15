@@ -13,9 +13,9 @@
 	#ifdef EVENTMODE
 		/// AUTO CLEAN
 		if(mapload)
-			return .
-		QDEL_IN(src, 30)
-		return ..()
+			return .  // skip if loading from map
+		else
+			return QDEL_IN(src, 30)  // immediately delete and return
 	#else
 		var/turf/T = get_turf(src)
 		if(T && is_station_level(T.z))

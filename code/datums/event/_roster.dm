@@ -156,8 +156,7 @@ GLOBAL_DATUM_INIT(global_roster, /datum/roster, new)
 		num_teams = number_of_teams
 		num_per = round(num_contestants / number_of_teams)
 	else
-		CRASH("no team size or num teams defined!")
-		return
+		return CRASH("no team size or num teams defined!")
 
 	remainder = num_contestants % num_teams
 	shuffle_inplace(active_contestants)
