@@ -97,7 +97,7 @@
 			scream_hearer.playsound_local(src, 'modular_skyrat/modules/horrorform/sound/horror_scream_reverb.ogg', vol, 1, frequency)
 
 	for(var/mob/scream_hearer in range(35, src))
-		if(scream_hearer && scream_hearer.stat == DEAD && (scream_hearer.client.prefs.chat_toggles & CHAT_GHOSTSIGHT) && !(scream_hearer in viewers(get_turf(src), null)))
+		if(scream_hearer && scream_hearer.client && scream_hearer.stat == DEAD && (scream_hearer.client.prefs.chat_toggles & CHAT_GHOSTSIGHT) && !(scream_hearer in viewers(get_turf(src), null)))
 			scream_hearer.show_message(message)
 
 	audible_message(message)
