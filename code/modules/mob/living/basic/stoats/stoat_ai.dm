@@ -4,6 +4,10 @@
 		BB_PET_TARGETING_STRATEGY = /datum/targeting_strategy/basic/not_friends,
 		BB_GUILTY_CONSCIOUS_CHANCE = 5,
 		BB_STEAL_CHANCE = 2,
+		// BUBBER EDIT ADDITION START
+		BB_BABIES_PARTNER_TYPES = list(/mob/living/basic/stoat),
+		BB_BABIES_CHILD_TYPES = list(/mob/living/basic/stoat/kit),
+		// BUBBER EDIT ADDITION END
 	)
 	ai_movement = /datum/ai_movement/basic_avoidance
 	idle_behavior = /datum/idle_behavior/idle_random_walk
