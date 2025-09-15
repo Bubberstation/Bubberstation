@@ -142,5 +142,5 @@
 
 
 /datum/loadout_item/inhand/collapsible_umbrella
-	name = "red and white collared outfit"
+	name = "Umbrella"
 	item_path = /obj/item/umbrella/collapsible
