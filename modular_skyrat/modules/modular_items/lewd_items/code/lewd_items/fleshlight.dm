@@ -99,7 +99,7 @@
 
 /obj/item/toy/plush/fleshlight/screws/examine(mob/user)
 	. = ..()
-		. += span_notice("Alt-click to cover her up.")
+	. += span_notice("Alt-click to cover her up.")
 
 /obj/item/toy/plush/fleshlight/screws/click_alt(mob/user)
 	user.visible_message(span_notice("[user] turns [src], hiding the hole underneath."), span_notice("You turn [src], covering her up with her little skirt."))
