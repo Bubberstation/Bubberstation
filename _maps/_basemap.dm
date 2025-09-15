@@ -2,7 +2,7 @@
 
 #include "map_files\generic\CentCom.dmm"
 
-#ifndef LOWMEMORYMODE
+#define LOWMEMORYMODE
 	#ifdef ALL_MAPS
 		#include "map_files\debug\multiz.dmm"
 		#include "map_files\debug\runtimestation.dmm"
