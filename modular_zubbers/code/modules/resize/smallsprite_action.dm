@@ -12,6 +12,7 @@
 	var/image/small_icon
 	var/scale
 	var/y_offset_stored
+	var/prev_lying_angle = 0
 
 /datum/action/oversized_visibility/Trigger(trigger_flags)
 	. = ..()
@@ -101,10 +102,32 @@
 
 /datum/action/oversized_visibility/proc/update_appearance()
 	SIGNAL_HANDLER
-	if(small_icon)
-		update_transform()
-		update_pixel_y()
-		update_pixel_x()
+	if(!small_icon)
+		return
+	var/mob/living/carbon/carbon_holder = owner
+	var/current_lying_angle = carbon_holder.get_lying_angle()
+	// Calling only when standing up/laying down. Not after any angle change.
+	if((current_lying_angle && prev_lying_angle == 0) || (!current_lying_angle && prev_lying_angle != 0))
+		lying_down_animation(carbon_holder, current_lying_angle)
+	if(current_lying_angle != prev_lying_angle)
+		prev_lying_angle = current_lying_angle
+
+	update_transform()
+	update_pixel_y()
+	update_pixel_x()
+
+/*  Changes lying angle with animation
+	Code taken from
+	code\modules\mob\living\living_update_icons.dm */
+/datum/action/oversized_visibility/proc/lying_down_animation(mob/living/carbon/carbon_holder, current_lying_angle)
+	var/test = round(1 / scale)
+	var/matrix/ntransform = matrix(small_icon.transform)
+	if(current_lying_angle && prev_lying_angle == 0)
+		ntransform.Translate(0, -test)
+	if(!current_lying_angle && prev_lying_angle != 0)
+		ntransform.Translate(test * (prev_lying_angle == 270 ? -1 : 1), 0)
+	ntransform.TurnTo(prev_lying_angle, current_lying_angle)
+	animate(small_icon, transform = ntransform, time = UPDATE_TRANSFORM_ANIMATION_TIME, easing = (EASE_IN|EASE_OUT))
 
 /datum/action/oversized_visibility/Remove(mob/remove_from)
 	. = ..()
