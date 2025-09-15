@@ -116,7 +116,7 @@
 
 /obj/structure/mob_spawner/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
-	do_jiggle()
+	do_jiggle_sr()
 	if(!retaliated)
 		visible_message(span_danger("[src] grubbles angrily!"))
 		var/chosen_mob_type = pick(monster_types)
