@@ -225,6 +225,10 @@
 	last_slogan = world.time + rand(0, slogan_delay)
 	power_change()
 
+	#ifdef EVENTMODE
+	onstation = FALSE//FREE REAL ESTATE
+	#endif
+
 	if(mapload) //check if it was initially created off station during mapload.
 		if(!is_station_level(z))
 			if(!onstation_override)
@@ -233,10 +237,6 @@
 					all_products_free = TRUE
 			if(circuit)
 				circuit.all_products_free = all_products_free //sync up the circuit so the pricing schema is carried over if it's reconstructed.
-
-	#ifdef EVENTMODE
-	onstation = FALSE//FREE REAL ESTATE
-	#endif
 
 	else if(circuit)
 		all_products_free = circuit.all_products_free //if it was constructed outside mapload, sync the vendor up with the circuit's var so you can't bypass price requirements by moving / reconstructing it off station.

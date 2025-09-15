@@ -95,23 +95,23 @@ GLOBAL_DATUM(storm_controller, /datum/storm_controller)
 		to_chat(L, "<span class='userdanger'>You're badly burned by the storm!</span>")
 
 GLOBAL_LIST_INIT(externalareasstorm, list(
-	/area/tdome/arena/one,
-	/area/tdome/arena/two,
-	/area/tdome/arena/three,
-	/area/tdome/arena/four,
-	/area/tdome/arena/five,
-	/area/tdome/arena/six,))
+	/area/centcom/tdome/arena/one,
+	/area/centcom/tdome/arena/two,
+	/area/centcom/tdome/arena/three,
+	/area/centcom/tdome/arena/four,
+	/area/centcom/tdome/arena/five,
+	/area/centcom/tdome/arena/six,))
 
 GLOBAL_LIST_INIT(middleareastorm, list(
-	/area/tdome/arena/seven,
-	/area/tdome/arena/eight,
-	/area/tdome/arena/nine,
-	/area/tdome/arena/ten,
-	/area/tdome/arena/eleven,
-	/area/tdome/arena/twelve,))
+	/area/centcom/tdome/arena/seven,
+	/area/centcom/tdome/arena/eight,
+	/area/centcom/tdome/arena/nine,
+	/area/centcom/tdome/arena/ten,
+	/area/centcom/tdome/arena/eleven,
+	/area/centcom/tdome/arena/twelve,))
 
 GLOBAL_LIST_INIT(innerareastorm, list(
-	/area/tdome/arena/thirteen,
-	/area/tdome/arena/fourteen,
-	/area/tdome/arena/fifteen,
-	/area/tdome/arena/sixteen,))
+	/area/centcom/tdome/arena/thirteen,
+	/area/centcom/tdome/arena/fourteen,
+	/area/centcom/tdome/arena/fifteen,
+	/area/centcom/tdome/arena/sixteen,))

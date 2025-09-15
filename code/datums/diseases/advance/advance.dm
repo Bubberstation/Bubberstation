@@ -126,6 +126,7 @@
 	#ifdef EVENTMODE
 	QDEL_IN(src, 30)
 	return
+	#endif
 	Refresh()
 
 /datum/disease/advance/Destroy()

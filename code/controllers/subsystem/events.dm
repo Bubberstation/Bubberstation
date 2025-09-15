@@ -99,35 +99,36 @@ SUBSYSTEM_DEF(events)
  * * excluded_event - The event path we will be foregoing, if present.
  */
 /datum/controller/subsystem/events/proc/spawnEvent(datum/round_event_control/excluded_event)
-	set waitfor = FALSE //for the admin prompt
+	set waitfor = FALSE // for the admin prompt
 	#ifdef EVENTMODE
-	return
-	#endif
-	if(!CONFIG_GET(flag/allow_random_events))
 		return
+	#else
+		if(!CONFIG_GET(flag/allow_random_events))
+			return
 
-	var/players_amt = get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = TRUE)
-	// Only alive, non-AFK human players count towards this.
+		var/players_amt = get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = TRUE)
+		// Only alive, non-AFK human players count towards this.
 
-	var/list/event_roster = list()
+		var/list/event_roster = list()
 
-	for(var/datum/round_event_control/event_to_check in control)
-		if(excluded_event && event_to_check.typepath == excluded_event.typepath) //If an event has been rerolled we won't just roll the same one again.
-			continue
-		if(!event_to_check.can_spawn_event(players_amt))
-			continue
-		if(event_to_check.weight < 0) //for round-start events etc.
-			var/res = TriggerEvent(event_to_check)
-			if(res == EVENT_INTERRUPTED)
-				continue //like it never happened
-			if(res == EVENT_CANT_RUN)
-				return
-		else
-			event_roster[event_to_check] = event_to_check.weight
+		for(var/datum/round_event_control/event_to_check in control)
+			if(excluded_event && event_to_check.typepath == excluded_event.typepath) //If an event has been rerolled we won't just roll the same one again.
+				continue
+			if(!event_to_check.can_spawn_event(players_amt))
+				continue
+			if(event_to_check.weight < 0) //for round-start events etc.
+				var/res = TriggerEvent(event_to_check)
+				if(res == EVENT_INTERRUPTED)
+					continue //like it never happened
+				if(res == EVENT_CANT_RUN)
+					return
+			else
+				event_roster[event_to_check] = event_to_check.weight
 
-	var/datum/round_event_control/event_to_run = pick_weight(event_roster)
-	if(event_to_run)
-		TriggerEvent(event_to_run)
+		var/datum/round_event_control/event_to_run = pick_weight(event_roster)
+		if(event_to_run)
+			TriggerEvent(event_to_run)
+	#endif
 
 ///Does the last pre-flight checks for the passed event, and runs it if the event is ready.
 /datum/controller/subsystem/events/proc/TriggerEvent(datum/round_event_control/event_to_trigger)
@@ -172,15 +173,16 @@ GLOBAL_LIST(holidays)
  */
 /proc/check_holidays(holiday_to_find)
 	#ifdef EVENTMODE
-	return
+		return
+	#else
+		if(!CONFIG_GET(flag/allow_holidays))
+			return
+
+		if(!GLOB.holidays && !fill_holidays())
+			return
+
+		return GLOB.holidays?[holiday_to_find]
 	#endif
-	if(!CONFIG_GET(flag/allow_holidays))
-		return // Holiday stuff was not enabled in the config!
-
-	if(isnull(GLOB.holidays) && !fill_holidays())
-		return // Failed to generate holidays, for some reason
-
-	return GLOB.holidays[holiday_to_find]
 
 /**
  * Fills the holidays list if applicable, or leaves it an empty list.

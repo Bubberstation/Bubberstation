@@ -1,44 +1,39 @@
 /// Allows us to roll for and apply a wound without actually dealing damage. Used for aggregate wounding power with pellet clouds
 /obj/item/bodypart/proc/painless_wound_roll(wounding_type, wounding_dmg, wound_bonus, exposed_wound_bonus, sharpness=NONE, wound_clothing)
-	#ifdef EVENTMODE
-	if(!GLOB.global_roster.enable_random_wounds)
-		return
-	#endif
 	SHOULD_CALL_PARENT(TRUE)
-
-	if(!owner || wounding_dmg <= WOUND_MINIMUM_DAMAGE || wound_bonus == CANT_WOUND || HAS_TRAIT(owner, TRAIT_GODMODE))
-		return
-
-	var/mangled_state = get_mangled_state()
-	var/easy_dismember = HAS_TRAIT(owner, TRAIT_EASYDISMEMBER) // if we have easydismember, we don't reduce damage when redirecting damage to different types (slashing weapons on mangled/skinless limbs attack at 100% instead of 50%)
-
-	var/bio_status = get_bio_state_status()
-
-	var/has_exterior = ((bio_status & ANATOMY_EXTERIOR))
-	var/has_interior = ((bio_status & ANATOMY_INTERIOR))
-
-	var/exterior_ready_to_dismember = (!has_exterior || ((mangled_state & BODYPART_MANGLED_EXTERIOR)))
-
-	// if we're bone only, all cutting attacks go straight to the bone
-	if(!has_exterior && has_interior)
-		if(wounding_type == WOUND_SLASH)
-			wounding_type = WOUND_BLUNT
-			wounding_dmg *= (easy_dismember ? 1 : 0.6)
-		else if(wounding_type == WOUND_PIERCE)
-			wounding_type = WOUND_BLUNT
-			wounding_dmg *= (easy_dismember ? 1 : 0.75)
-	else
-		// if we've already mangled the skin (critical slash or piercing wound), then the bone is exposed, and we can damage it with sharp weapons at a reduced rate
-		// So a big sharp weapon is still all you need to destroy a limb
-		if(has_interior && exterior_ready_to_dismember && !(mangled_state & BODYPART_MANGLED_INTERIOR) && sharpness)
-			if(wounding_type == WOUND_SLASH && !easy_dismember)
-				wounding_dmg *= 0.6 // edged weapons pass along 60% of their wounding damage to the bone since the power is spread out over a larger area
-			if(wounding_type == WOUND_PIERCE && !easy_dismember)
-				wounding_dmg *= 0.75 // piercing weapons pass along 75% of their wounding damage to the bone since it's more concentrated
-			wounding_type = WOUND_BLUNT
-		if ((dismemberable_by_wound() || dismemberable_by_total_damage()) && try_dismember(wounding_type, wounding_dmg, wound_bonus, exposed_wound_bonus))
+	#ifdef EVENTMODE
+		if(!GLOB.global_roster.enable_random_wounds)
 			return
-	return check_wounding(wounding_type, wounding_dmg, wound_bonus, exposed_wound_bonus, wound_clothing)
+	#else
+		if(!owner || wounding_dmg <= WOUND_MINIMUM_DAMAGE || wound_bonus == CANT_WOUND || HAS_TRAIT(owner, TRAIT_GODMODE))
+			return
+
+		var/mangled_state = get_mangled_state()
+		var/easy_dismember = HAS_TRAIT(owner, TRAIT_EASYDISMEMBER)
+
+		var/bio_status = get_bio_state_status()
+		var/has_exterior = ((bio_status & ANATOMY_EXTERIOR))
+		var/has_interior = ((bio_status & ANATOMY_INTERIOR))
+		var/exterior_ready_to_dismember = (!has_exterior || ((mangled_state & BODYPART_MANGLED_EXTERIOR)))
+
+		if(!has_exterior && has_interior)
+			if(wounding_type == WOUND_SLASH)
+				wounding_type = WOUND_BLUNT
+				wounding_dmg *= (easy_dismember ? 1 : 0.6)
+			else if(wounding_type == WOUND_PIERCE)
+				wounding_type = WOUND_BLUNT
+				wounding_dmg *= (easy_dismember ? 1 : 0.75)
+		else
+			if(has_interior && exterior_ready_to_dismember && !(mangled_state & BODYPART_MANGLED_INTERIOR) && sharpness)
+				if(wounding_type == WOUND_SLASH && !easy_dismember)
+					wounding_dmg *= 0.6
+				if(wounding_type == WOUND_PIERCE && !easy_dismember)
+					wounding_dmg *= 0.75
+				wounding_type = WOUND_BLUNT
+			if ((dismemberable_by_wound() || dismemberable_by_total_damage()) && try_dismember(wounding_type, wounding_dmg, wound_bonus, exposed_wound_bonus))
+				return
+		return check_wounding(wounding_type, wounding_dmg, wound_bonus, exposed_wound_bonus, wound_clothing)
+	#endif
 
 /**
  * check_wounding() is where we handle rolling for, selecting, and applying a wound if we meet the criteria

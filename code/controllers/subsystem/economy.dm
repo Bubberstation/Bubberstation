@@ -95,40 +95,41 @@ SUBSYSTEM_DEF(economy)
 
 /datum/controller/subsystem/economy/fire(resumed = 0)
 	#ifdef EVENTMODE
-	can_fire = FALSE
-	return TRUE
+		can_fire = FALSE
+		return TRUE
+	#else
+		var/seconds_per_tick = wait / (5 MINUTES)
+		if(!resumed)
+			temporary_total = 0
+			processing_part = ECON_DEPARTMENT_STEP
+			cached_processing = department_accounts.Copy()
+
+		if(processing_part == ECON_DEPARTMENT_STEP)
+			if(!departmental_payouts())
+				return
+
+			processing_part = ECON_ACCOUNT_STEP
+			cached_processing = bank_accounts_by_id.Copy()
+			station_total = 0
+			station_target_buffer += STATION_TARGET_BUFFER
+
+		if(processing_part == ECON_ACCOUNT_STEP)
+			if(!issue_paydays())
+				return
+
+			processing_part = ECON_PRICE_UPDATE_STEP
+			station_target = max(round(temporary_total / max(bank_accounts_by_id.len * 2, 1)) + station_target_buffer, 1)
+
+		if(processing_part == ECON_PRICE_UPDATE_STEP)
+			if(!HAS_TRAIT(SSeconomy, TRAIT_MARKET_CRASHING) && !price_update())
+				return
+
+		if(times_fired % ticks_per_mail == 0)
+			var/effective_mailcount = round(living_player_count() / (inflation_value - 0.5)) //More mail at low inflation, and vice versa.
+			mail_waiting += clamp(effective_mailcount, 1, ticks_per_mail * MAX_MAIL_PER_MINUTE * seconds_per_tick)
+
+		SSstock_market.news_string = ""
 	#endif
-	var/seconds_per_tick = wait / (5 MINUTES)
-	if(!resumed)
-		temporary_total = 0
-		processing_part = ECON_DEPARTMENT_STEP
-		cached_processing = department_accounts.Copy()
-
-	if(processing_part == ECON_DEPARTMENT_STEP)
-		if(!departmental_payouts())
-			return
-
-		processing_part = ECON_ACCOUNT_STEP
-		cached_processing = bank_accounts_by_id.Copy()
-		station_total = 0
-		station_target_buffer += STATION_TARGET_BUFFER
-
-	if(processing_part == ECON_ACCOUNT_STEP)
-		if(!issue_paydays())
-			return
-
-		processing_part = ECON_PRICE_UPDATE_STEP
-		station_target = max(round(temporary_total / max(bank_accounts_by_id.len * 2, 1)) + station_target_buffer, 1)
-
-	if(processing_part == ECON_PRICE_UPDATE_STEP)
-		if(!HAS_TRAIT(SSeconomy, TRAIT_MARKET_CRASHING) && !price_update())
-			return
-
-	if(times_fired % ticks_per_mail == 0)
-		var/effective_mailcount = round(living_player_count() / (inflation_value - 0.5)) //More mail at low inflation, and vis versa.
-		mail_waiting += clamp(effective_mailcount, 1, ticks_per_mail * MAX_MAIL_PER_MINUTE * seconds_per_tick)
-
-	SSstock_market.news_string = ""
 
 /**
  * Handy proc for obtaining a department's bank account, given the department ID, AKA the define assigned for what department they're under.
