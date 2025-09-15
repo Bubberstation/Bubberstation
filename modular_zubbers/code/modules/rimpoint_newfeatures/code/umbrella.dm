@@ -1,9 +1,9 @@
 /obj/item/umbrella
 	name = "umbrella"
-	icon = 'modular_zubbers/code/modules/rimpoint_newfeatures/icons/umbrella.dmi'
+	icon = 'modular_zubbers/icons/obj/equipment/umbrella.dmi'
 	icon_state = "umbrella"
-	lefthand_file = 'modular_zubbers/code/modules/rimpoint_newfeatures/icons/umbrella_inhand_l.dmi'
-	righthand_file = 'modular_zubbers/code/modules/rimpoint_newfeatures/icons/umbrella_inhand_r.dmi'
+	lefthand_file = 'modular_zubbers/icons/obj/equipment/umbrella_inhand_l.dmi'
+	righthand_file = 'modular_zubbers/icons/obj/equipment/umbrella_inhand_r.dmi'
 	inhand_icon_state = "umbrella"
 	w_class = WEIGHT_CLASS_BULKY
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.75, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.25)
@@ -63,7 +63,7 @@
 
 /obj/item/umbrella/collapsible
 	name = "collapsible umbrella"
-	icon = 'modular_zubbers/code/modules/rimpoint_newfeatures/icons/umbrella.dmi'
+	icon = 'modular_zubbers/icons/obj/equipment/umbrella.dmi'
 	icon_state = "umbrella_retract_off"
 	slot_flags = ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_SMALL
