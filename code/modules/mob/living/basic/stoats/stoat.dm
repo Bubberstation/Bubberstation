@@ -63,7 +63,7 @@
 /mob/living/basic/stoat/proc/add_breeding_component()
 	var/static/list/partner_paths = typecacheof(list(/mob/living/basic/stoat))
 	var/static/list/baby_paths = list(
-		/mob/living/basic/stoat/kit = 100 // Placeholder until we get proper baby stoats
+		/mob/living/basic/stoat/kit = 100
 	)
 	AddComponent(\
 	/datum/component/breed,\
