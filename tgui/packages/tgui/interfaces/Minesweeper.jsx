@@ -33,7 +33,7 @@ export const MinesweeperContent = (props, context) => {
   } = data;
   return (
     <Section
-      title={'Minesweeper' + (emagged ? ' EXTREME EDITION' : '')}
+      title={`Minesweeper ${emagged ? ' EXTREME EDITION' : ''}`}
       color={emagged ? 'bad' : 'primary'}
       textAlign="center"
     >
@@ -53,9 +53,9 @@ export const MinesweeperContent = (props, context) => {
       <Box>
         {game_status !== 3 ? (
           board_data.map((xdata, xind) => (
-            <Box inline key={'outer' + xind}>
+            <Box inline key={`outer${xind}`}>
               {xdata.map((imagec, yind) => (
-                <Box key={xind + ',' + yind}>
+                <Box key={`${xind},${yind}`}>
                   {imagec ? (
                     <Box
                       lineHeight={0}

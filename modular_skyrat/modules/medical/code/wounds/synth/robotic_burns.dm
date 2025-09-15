@@ -147,12 +147,12 @@
 	if (victim)
 		QDEL_NULL(mob_glow)
 		UnregisterSignal(victim, COMSIG_MOB_AFTER_APPLY_DAMAGE)
-		UnregisterSignal(victim, COMSIG_ATOM_AFTER_EXPOSE_REAGENTS)
+		UnregisterSignal(victim, COMSIG_ATOM_EXPOSE_REAGENTS)
 	if (new_victim)
 		mob_glow = new_victim.mob_light(light_range, light_power, light_color)
 		mob_glow.set_light_on(TRUE)
 		RegisterSignal(new_victim, COMSIG_MOB_AFTER_APPLY_DAMAGE, PROC_REF(victim_attacked))
-		RegisterSignal(new_victim, COMSIG_ATOM_AFTER_EXPOSE_REAGENTS, PROC_REF(victim_exposed_to_reagents))
+		RegisterSignal(new_victim, COMSIG_ATOM_EXPOSE_REAGENTS, PROC_REF(victim_exposed_to_reagents))
 
 	return ..()
 
@@ -213,7 +213,7 @@
  * Equalizes temp to the reagent temp, but also causes thermal shock. Basically, does damage based on the temp differential.
  * Clothes reduce the effects massively. Hercuri reduces the thermal shock and gets a special temp buff.
  */
-/datum/wound/burn/robotic/overheat/proc/victim_exposed_to_reagents(datum/signal_source, list/reagents, datum/reagents/source, methods, volume_modifier, show_message)
+/datum/wound/burn/robotic/overheat/proc/victim_exposed_to_reagents(datum/signal_source, list/reagents, datum/reagents/source, methods, show_message)
 	SIGNAL_HANDLER
 
 	var/reagent_coeff = base_reagent_temp_coefficient
@@ -236,7 +236,7 @@
 		return
 
 	if (istype(source.my_atom, /obj/machinery/shower))
-		expose_temperature(source.chem_temp, (15 * volume_modifier * reagent_coeff), TRUE)
+		expose_temperature(source.chem_temp, (15 * reagent_coeff), TRUE)
 		return
 
 	var/total_reagent_amount = 0
@@ -251,7 +251,7 @@
 
 	var/local_chem_temp = max(source.chem_temp - chem_temp_increment, 0)
 
-	expose_temperature(local_chem_temp, (reagent_coeff * volume_modifier * total_reagent_amount), TRUE, heat_shock_damage_mult = thermal_shock_mult)
+	expose_temperature(local_chem_temp, (reagent_coeff * total_reagent_amount), TRUE, heat_shock_damage_mult = thermal_shock_mult)
 
 /// Adjusts chassis_temperature by the delta between temperature and itself, multiplied by coeff.
 /// If heat_shock is TRUE, limb will receive brute damage based on the delta.

@@ -47,6 +47,11 @@
 /datum/augment_item/implant/eyes
 	slot = AUGMENT_SLOT_EYES_IMPLANT
 
+/datum/augment_item/implant/eyes/civhud
+	name = "Civilian HUD Implant"
+	cost = 4
+	path = /obj/item/organ/cyberimp/eyes/hud/civilian
+
 //MOUTH IMPLANTS
 /datum/augment_item/implant/mouth
 	slot = AUGMENT_SLOT_MOUTH_IMPLANT

@@ -7,13 +7,15 @@
 	var/mob/living/silicon/robot/cyborg = robot || loc
 	if (!istype(robot))
 		return
-	if (model_features && ((TRAIT_R_SQUADRUPED in model_features) || (TRAIT_R_WIDE in model_features)))
-		if (model_features && (TRAIT_R_WIDE in model_features))
-			cyborg.set_base_pixel_x(-16)
+	if(model_features && ((TRAIT_R_SQUADRUPED in model_features) || (TRAIT_R_WIDE in model_features) || (TRAIT_R_BIG in model_features)))
+		if(model_features && ((TRAIT_R_WIDE in model_features) || (TRAIT_R_BIG in model_features)))
+			cyborg.base_pixel_w = -16 //for runechat
+			cyborg.pixel_w = -16 //sprite offset
 		add_verb(cyborg, /mob/living/silicon/robot/proc/rest_style)
 	else
-		if (model_features && !(TRAIT_R_WIDE in model_features))
-			cyborg.set_base_pixel_x(0)
+		if(model_features && (!(TRAIT_R_WIDE in model_features) || !(TRAIT_R_BIG in model_features)))
+			cyborg.base_pixel_w = 0
+			cyborg.pixel_w = 0
 		remove_verb(cyborg, /mob/living/silicon/robot/proc/rest_style)
 
 // Cyborg foot step traits
@@ -29,7 +31,7 @@
 		else
 			cyborg.RemoveElement(/datum/element/footstep, FOOTSTEP_ROBOT_SMALL, 6, -6, sound_vary = TRUE)
 
-		if (TRAIT_R_TALL in model_features)
+		if ((TRAIT_R_TALL in model_features) || (TRAIT_R_BIG in model_features))
 			cyborg.AddElement(/datum/element/footstep, FOOTSTEP_MOB_SHOE, 2, -6, sound_vary = TRUE)
 		else
 			cyborg.RemoveElement(/datum/element/footstep, FOOTSTEP_MOB_SHOE, 2, -6, sound_vary = TRUE)
@@ -39,7 +41,7 @@
 	var/mob/living/silicon/robot/cyborg = robot || loc
 	if (!istype(robot))
 		return
-	if (model_features && ((TRAIT_R_SQUADRUPED in model_features) || (TRAIT_R_WIDE in model_features) || (TRAIT_R_TALL in model_features)))
+	if(model_features && ((TRAIT_R_SQUADRUPED in model_features) || (TRAIT_R_WIDE in model_features) || (TRAIT_R_TALL in model_features) || (TRAIT_R_BIG in model_features)))
 		add_verb(cyborg, /mob/living/silicon/robot/proc/robot_lay_down)
 	else
 		remove_verb(cyborg, /mob/living/silicon/robot/proc/robot_lay_down)

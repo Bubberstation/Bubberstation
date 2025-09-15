@@ -15,6 +15,10 @@
 	duration = STATUS_EFFECT_PERMANENT
 	alert_type = null
 
+//
+// VAGINA
+//
+
 /datum/status_effect/body_fluid_regen/vagina
 	id = "vagina fluid regen"
 
@@ -28,10 +32,14 @@
 		return FALSE
 
 	if(affected_human.arousal > AROUSAL_LOW)
-		var/regen = (affected_human.arousal / AROUSAL_MULTIPLIER) * (vagina.internal_fluid_maximum / VAGINA_MULTIPLIER) * BASE_MULTIPLIER
-		vagina.adjust_internal_fluid(regen)
+		var/regen = (affected_human.arousal / AROUSAL_MULTIPLIER) * (vagina.reagents.maximum_volume / VAGINA_MULTIPLIER) * BASE_MULTIPLIER
+		vagina.reagents.add_reagent(vagina.internal_fluid_datum, regen)
 	else
-		vagina.adjust_internal_fluid(VAGINA_FLUID_REMOVAL_AMOUNT)
+		vagina.reagents.remove_reagent(vagina.internal_fluid_datum, VAGINA_FLUID_REMOVAL_AMOUNT)
+
+//
+// BALLS
+//
 
 /datum/status_effect/body_fluid_regen/testes
 	id = "testes fluid regen"
@@ -42,11 +50,13 @@
 		return FALSE
 
 	var/obj/item/organ/genital/testicles/testes = owner.get_organ_slot(ORGAN_SLOT_TESTICLES)
-	if(!testes || (affected_human.arousal < AROUSAL_LOW))
-		return FALSE
 
-	var/regen = (affected_human.arousal / AROUSAL_MULTIPLIER) * (testes.internal_fluid_maximum / TESTES_MULTIPLIER) * BASE_MULTIPLIER
-	testes.internal_fluid_count += regen
+	var/regen = (50 / AROUSAL_MULTIPLIER) * (testes.reagents.maximum_volume / TESTES_MULTIPLIER) * BASE_MULTIPLIER // this is really quite stupid, the bare number is replacing the arousal value previously there
+	testes.reagents.add_reagent(testes.internal_fluid_datum, regen)
+
+//
+// BREASTS
+//
 
 /datum/status_effect/body_fluid_regen/breasts
 	id = " breast milk regen"
@@ -60,10 +70,15 @@
 	if(!breasts || !breasts.lactates)
 		return FALSE
 
-	var/regen = ((owner.nutrition / (NUTRITION_LEVEL_WELL_FED / NUTRITION_MULTIPLIER)) / NUTRITION_MULTIPLIER) * (breasts.internal_fluid_maximum / BREASTS_MULTIPLIER) * BASE_MULTIPLIER
-	if(!breasts.internal_fluid_full())
+	var/regen = ((owner.nutrition / (NUTRITION_LEVEL_WELL_FED / NUTRITION_MULTIPLIER)) / NUTRITION_MULTIPLIER) * (breasts.reagents.maximum_volume / BREASTS_MULTIPLIER) * BASE_MULTIPLIER
+	if(breasts.reagents.total_volume < breasts.reagents.maximum_volume)
+		var/free_space = breasts.reagents.maximum_volume
+		var/occp_space = breasts.reagents.total_volume
+		free_space -= occp_space // how much free space remaining?
+		if(regen > free_space)
+			regen = free_space // so we aren't draining nutrition for milk that isn't actually being generated
 		owner.adjust_nutrition(-regen / NUTRITION_COST_MULTIPLIER)
-		breasts.adjust_internal_fluid(regen)
+		breasts.reagents.add_reagent(breasts.internal_fluid_datum, regen)
 
 #undef AROUSAL_MULTIPLIER
 #undef TESTES_MULTIPLIER

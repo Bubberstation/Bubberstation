@@ -91,7 +91,7 @@
 			eye_color_left = as_human.eye_color_left
 		if (!eye_color_right)
 			eye_color_right = as_human.eye_color_right
-	refresh(receiver, call_update = !special)
+	refresh(receiver, call_update = TRUE)
 	RegisterSignal(receiver, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_bullet_act))
 	RegisterSignal(receiver, COMSIG_COMPONENT_CLEAN_FACE_ACT, PROC_REF(on_face_wash))
 	if (scarring)
@@ -271,8 +271,8 @@
 
 	var/eye_icon = parent.dna?.species.eyes_icon || 'icons/mob/human/human_face.dmi' // SKYRAT EDIT ADDITION
 
-	var/mutable_appearance/eye_left = mutable_appearance(eye_icon, "[eye_icon_state]_l", -eyes_layer, parent) // SKYRAT EDIT CHANGE - Customization - ORIGINAL: var/mutable_appearance/eye_left = mutable_appearance('icons/mob/human/human_face.dmi', "[eye_icon_state]_l", -BODY_LAYER, parent)
-	var/mutable_appearance/eye_right = mutable_appearance(eye_icon, "[eye_icon_state]_r", -eyes_layer, parent) // SKYRAT EDIT CHANGE - Customization - ORIGINAL: var/mutable_appearance/eye_right = mutable_appearance('icons/mob/human/human_face.dmi', "[eye_icon_state]_r", -BODY_LAYER, parent)
+	var/mutable_appearance/eye_left = mutable_appearance(eye_icon, "[eye_icon_state]_l", -eyes_layer, parent) // SKYRAT EDIT CHANGE - Customization - ORIGINAL: var/mutable_appearance/eye_left = mutable_appearance('icons/mob/human/human_face.dmi', "[eye_icon_state]_l", -EYES_LAYER, parent)
+	var/mutable_appearance/eye_right = mutable_appearance(eye_icon, "[eye_icon_state]_r", -eyes_layer, parent) // SKYRAT EDIT CHANGE - Customization - ORIGINAL: var/mutable_appearance/eye_right = mutable_appearance('icons/mob/human/human_face.dmi', "[eye_icon_state]_r", -EYES_LAYER, parent)
 
 	// BEGIN BUBBER ADDITION:
 	if(HAS_TRAIT(owner, TRAIT_QUAD_EYES)) // (*) (*) v (*) (*)
@@ -290,10 +290,9 @@
 
 	var/list/overlays = list(eye_left, eye_right)
 
-	var/obscured = parent.check_obscured_slots()
-	if(overlay_ignore_lighting && !(obscured & ITEM_SLOT_EYES))
-		overlays += emissive_appearance(eye_left.icon, eye_left.icon_state, parent, -BODY_LAYER, alpha = eye_left.alpha)
-		overlays += emissive_appearance(eye_right.icon, eye_right.icon_state, parent, -BODY_LAYER, alpha = eye_right.alpha)
+	if(overlay_ignore_lighting && !(parent.obscured_slots & HIDEEYES))
+		overlays += emissive_appearance(eye_left.icon, eye_left.icon_state, parent, -EYES_LAYER, alpha = eye_left.alpha)
+		overlays += emissive_appearance(eye_right.icon, eye_right.icon_state, parent, -EYES_LAYER, alpha = eye_right.alpha)
 
 	var/obj/item/bodypart/head/my_head = parent.get_bodypart(BODY_ZONE_HEAD)
 
@@ -308,12 +307,12 @@
 			overlays += eyelids
 
 	if (scarring & RIGHT_EYE_SCAR)
-		var/mutable_appearance/right_scar = mutable_appearance('icons/mob/human/human_face.dmi', "eye_scar_right", -BODY_LAYER, parent)
+		var/mutable_appearance/right_scar = mutable_appearance('icons/mob/human/human_face.dmi', "eye_scar_right", -EYES_LAYER, parent)
 		right_scar.color = my_head.draw_color
 		overlays += right_scar
 
 	if (scarring & LEFT_EYE_SCAR)
-		var/mutable_appearance/left_scar = mutable_appearance('icons/mob/human/human_face.dmi', "eye_scar_left", -BODY_LAYER, parent)
+		var/mutable_appearance/left_scar = mutable_appearance('icons/mob/human/human_face.dmi', "eye_scar_left", -EYES_LAYER, parent)
 		left_scar.color = my_head.draw_color
 		overlays += left_scar
 
@@ -448,7 +447,6 @@
 #define RAND_BLINKING_DELAY 1 SECONDS
 #define BLINK_DURATION 0.15 SECONDS
 #define BLINK_LOOPS 5
-#define ASYNC_BLINKING_BRAIN_DAMAGE 60
 
 /// Modifies eye overlays to also act as eyelids, both for blinking and for when you're knocked out cold
 /obj/item/organ/eyes/proc/setup_eyelids(mutable_appearance/eye_left, mutable_appearance/eye_right, mob/living/carbon/human/parent)
@@ -477,8 +475,8 @@
 	parent.vis_contents += eyelid_left
 	parent.vis_contents += eyelid_right
 	animate_eyelids(parent)
-	var/mutable_appearance/left_eyelid_overlay = mutable_appearance(layer = -BODY_LAYER, offset_spokesman = parent)
-	var/mutable_appearance/right_eyelid_overlay = mutable_appearance(layer = -BODY_LAYER, offset_spokesman = parent)
+	var/mutable_appearance/left_eyelid_overlay = mutable_appearance(layer = -EYES_LAYER, offset_spokesman = parent)
+	var/mutable_appearance/right_eyelid_overlay = mutable_appearance(layer = -EYES_LAYER, offset_spokesman = parent)
 	left_eyelid_overlay.render_source = "*[REF(parent)]_eyelid_left"
 	right_eyelid_overlay.render_source = "*[REF(parent)]_eyelid_right"
 	return list(left_eyelid_overlay, right_eyelid_overlay)
@@ -486,7 +484,8 @@
 /// Animates one eyelid at a time, thanks BYOND and thanks animation chains
 /obj/item/organ/eyes/proc/animate_eyelid(obj/effect/abstract/eyelid_effect/eyelid, mob/living/carbon/human/parent, sync_blinking = TRUE, list/anim_times = null)
 	. = list()
-
+	if(isnull(eyelid)) // Can't blink if we don't have an eyelid
+		return
 	var/prevent_loops = HAS_TRAIT(parent, TRAIT_PREVENT_BLINK_LOOPS)
 	animate(eyelid, alpha = 0, time = 0, loop = (prevent_loops ? 0 : -1))
 
@@ -494,7 +493,6 @@
 	if (anim_times)
 		if (sync_blinking)
 			wait_time = anim_times[1]
-			anim_times.Cut(1, 2)
 		else
 			wait_time = rand(max(BASE_BLINKING_DELAY - RAND_BLINKING_DELAY, anim_times[1] - RAND_BLINKING_DELAY), anim_times[1])
 
@@ -505,17 +503,15 @@
 	for (var/i in 1 to cycles)
 		if (anim_times)
 			if (sync_blinking)
-				wait_time = anim_times[1]
-				anim_times.Cut(1, 2)
+				wait_time = anim_times[i + 1]
 			else
-				wait_time = rand(max(BASE_BLINKING_DELAY - RAND_BLINKING_DELAY, anim_times[1] - RAND_BLINKING_DELAY), anim_times[1])
+				wait_time = rand(max(BASE_BLINKING_DELAY - RAND_BLINKING_DELAY, anim_times[i + 1] - RAND_BLINKING_DELAY), anim_times[i + 1])
 		else
 			wait_time = rand(BASE_BLINKING_DELAY - RAND_BLINKING_DELAY, BASE_BLINKING_DELAY + RAND_BLINKING_DELAY)
 		. += wait_time
 		if (anim_times && !sync_blinking)
 			// Make sure that we're somewhat in sync with the other eye
-			animate(time = anim_times[1] - wait_time)
-			anim_times.Cut(1, 2)
+			animate(time = anim_times[i + 1] - wait_time)
 		animate(alpha = 255, time = 0)
 		animate(time = BLINK_DURATION)
 		if (i != cycles)
@@ -523,17 +519,18 @@
 			animate(time = wait_time)
 
 /obj/item/organ/eyes/proc/blink(duration = BLINK_DURATION, restart_animation = TRUE)
-	var/left_delayed = rand(50)
+	var/left_delayed = prob(50)
 	// Storing blink delay so mistimed blinks of lizards don't get cut short
-	var/blink_delay = synchronized_blinking ? rand(0, RAND_BLINKING_DELAY) : 0
+	var/sync_blinking = synchronized_blinking && (owner.get_organ_loss(ORGAN_SLOT_BRAIN) < BRAIN_DAMAGE_ASYNC_BLINKING)
+	var/blink_delay = sync_blinking ? 0 : rand(0, RAND_BLINKING_DELAY)
 	animate(eyelid_left, alpha = 0, time = 0)
-	if (!synchronized_blinking && left_delayed)
+	if (!sync_blinking && left_delayed)
 		animate(time = blink_delay)
 	animate(alpha = 255, time = 0)
 	animate(time = duration)
 	animate(alpha = 0, time = 0)
 	animate(eyelid_right, alpha = 0, time = 0)
-	if (!synchronized_blinking && !left_delayed)
+	if (!sync_blinking && !left_delayed)
 		animate(time = blink_delay)
 	animate(alpha = 255, time = 0)
 	animate(time = duration)
@@ -556,7 +553,7 @@
 /obj/effect/abstract/eyelid_effect
 	name = "eyelid"
 	icon = 'icons/mob/human/human_face.dmi'
-	layer = -BODY_LAYER
+	layer = -EYES_LAYER
 	vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_PLANE | VIS_INHERIT_ID
 
 /obj/effect/abstract/eyelid_effect/Initialize(mapload, new_state)
@@ -567,7 +564,6 @@
 #undef RAND_BLINKING_DELAY
 #undef BLINK_DURATION
 #undef BLINK_LOOPS
-#undef ASYNC_BLINKING_BRAIN_DAMAGE
 
 /// by default, returns the eyes' penlight_message var as a notice span. May do other things when overridden, such as eldritch insanity, or eye damage, or whatnot. Whatever you want, really.
 /obj/item/organ/eyes/proc/penlight_examine(mob/living/viewer)
@@ -746,10 +742,10 @@
 /obj/item/organ/eyes/robotic/flashlight
 	name = "flashlight eyes"
 	desc = "It's two flashlights rigged together with some wire. Why would you put these in someone's head?"
-	eye_color_left ="#fee5a3"
-	eye_color_right ="#fee5a3"
-	icon = 'icons/obj/lighting.dmi'
 	icon_state = "flashlight_eyes"
+	eye_color_left = "#fee5a3"
+	eye_color_right = "#fee5a3"
+	iris_overlay = null
 	flash_protect = FLASH_PROTECTION_WELDER
 	tint = INFINITY
 	var/obj/item/flashlight/eyelight/eye

@@ -11,12 +11,12 @@ import type { BooleanLike } from 'tgui-core/react';
 function getTwice(iconSrc: string, cb: () => void) {
   const xhr = new XMLHttpRequest();
   // Block effect until we load
-  xhr.open('GET', iconSrc + '?preload');
+  xhr.open('GET', `${iconSrc}?preload`);
   xhr.send();
   xhr.onload = () => {
     const xhr = new XMLHttpRequest();
     // Block effect until we load
-    xhr.open('GET', iconSrc + '?preload2');
+    xhr.open('GET', `${iconSrc}?preload2`);
     xhr.send();
     xhr.onload = cb;
   };

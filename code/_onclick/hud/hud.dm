@@ -260,6 +260,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	zone_select = null
 	pull_icon = null
 	rest_icon = null
+	sleep_icon = null
 	floor_change = null
 	hand_slots.Cut()
 

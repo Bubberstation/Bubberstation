@@ -60,11 +60,39 @@
 	..()
 	blacklist += subtypesof(/obj/item/clothing/mask/gas)
 
-/datum/crafting_recipe/berserker_reskin
-	name = "Marked One Grafting"
-	result = /obj/item/clothing/suit/hooded/berserker/gladiator
-	reqs = list(/obj/item/clothing/suit/hooded/berserker = 1,
-				/obj/item/stack/ore/glass/basalt = 5,
-				/obj/item/stack/ore/titanium =5)
-	time = 5 SECONDS
+/datum/crafting_recipe/hudsunciv
+	name = "Civilian HUDsunglasses"
+	result = /obj/item/clothing/glasses/hud/civilian/sunglasses
+	time = 2 SECONDS
+	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	reqs = list(/obj/item/clothing/glasses/hud/civilian = 1,
+				/obj/item/clothing/glasses/sunglasses = 1,
+				/obj/item/stack/cable_coil = 5)
+	category = CAT_EQUIPMENT
+
+/datum/crafting_recipe/hudsuncivremoval
+	name = "Civilian HUD removal"
+	result = /obj/item/clothing/glasses/sunglasses
+	time = 2 SECONDS
+	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	reqs = list(/obj/item/clothing/glasses/hud/civilian/sunglasses = 1)
+	category = CAT_EQUIPMENT
+
+// Metal H2 Rework by Xiska
+
+/datum/crafting_recipe/atmos_armor_crafting
+	name = "Elder Atmosian Armor"
+	result = /obj/item/clothing/suit/armor/elder_atmosian
+	time = 40 SECONDS
+	reqs = list(/obj/item/stack/sheet/mineral/metal_hydrogen = 5,
+	/obj/item/clothing/suit/utility/fire/atmos = 1)
+	category = CAT_CLOTHING
+
+
+/datum/crafting_recipe/atmos_helmet_crafting
+	name = "Elder Atmosian Helmet"
+	result = /obj/item/clothing/head/helmet/elder_atmosian
+	time = 40 SECONDS
+	reqs = list(/obj/item/stack/sheet/mineral/metal_hydrogen = 3,
+	/obj/item/clothing/head/utility/hardhat/welding/atmos = 1)
 	category = CAT_CLOTHING

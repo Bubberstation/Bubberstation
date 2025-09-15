@@ -17,16 +17,6 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/syndielab)
-"ah" = (
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/machinery/airalarm/directional/north,
-/obj/item/implanter/radio,
-/obj/item/implantcase{
-	pixel_x = -5;
-	pixel_y = 8
-	},
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/syndielab)
 "aP" = (
 /obj/item/reagent_containers/condiment/milk,
 /obj/item/reagent_containers/cup/soda_cans/beer{
@@ -111,13 +101,6 @@
 /obj/structure/cable/layer1,
 /turf/open/floor/iron/dark/textured,
 /area/ruin/syndielab)
-"cP" = (
-/obj/effect/mapping_helpers/bombable_wall,
-/turf/closed/wall/r_wall/syndicate/nodiagonal{
-	desc = "An ominous looking wall. It has extra insulation to keep the heat in.";
-	name = "plastitanium wall"
-	},
-/area/ruin/syndielab)
 "dD" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/condiment/bbqsauce{
@@ -199,6 +182,13 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndielab)
+"jL" = (
+/obj/machinery/light/warm/directional/north,
+/obj/effect/decal/cleanable/blood/splatter/oil,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/dark/hidden,
+/obj/structure/cable/layer1,
+/turf/open/floor/iron/dark/textured,
+/area/ruin/syndielab)
 "lW" = (
 /obj/structure/filingcabinet,
 /obj/item/paper/fluff/ruins/hauntedtradingpost/receipt/alternate,
@@ -265,6 +255,16 @@
 /obj/structure/cable/layer1,
 /turf/open/floor/iron/dark/textured,
 /area/ruin/syndielab)
+"pK" = (
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/machinery/airalarm/directional/north,
+/obj/item/implanter/radio,
+/obj/item/implantcase{
+	pixel_x = -5;
+	pixel_y = 8
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/syndielab)
 "qy" = (
 /obj/item/clothing/suit/hooded/explorer/syndicate{
 	pixel_x = 8;
@@ -320,13 +320,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/syndielab)
-"tb" = (
-/obj/machinery/light/warm/directional/north,
-/obj/effect/decal/cleanable/blood/splatter/oil,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/dark/hidden,
-/obj/structure/cable/layer1,
-/turf/open/floor/iron/dark/textured,
 /area/ruin/syndielab)
 "tC" = (
 /obj/structure/cable/layer1,
@@ -438,18 +431,6 @@
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /turf/open/floor/iron/dark/textured,
 /area/ruin/syndielab)
-"yD" = (
-/obj/structure/table/wood,
-/obj/item/ammo_casing/shotgun/flechette/donk{
-	pixel_y = 6
-	},
-/obj/item/ammo_casing/shotgun/flechette/donk{
-	pixel_x = 8;
-	pixel_y = 6
-	},
-/obj/item/gun/ballistic/shotgun/musket,
-/turf/open/floor/carpet/red,
-/area/ruin/syndielab)
 "yW" = (
 /turf/open/floor/carpet/red,
 /area/ruin/syndielab)
@@ -469,8 +450,9 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndielab)
-"AR" = (
-/turf/closed/wall/r_wall/syndicate/nodiagonal{
+"AT" = (
+/obj/effect/mapping_helpers/bombable_wall,
+/turf/closed/wall/r_wall/plastitanium/syndicate/nodiagonal{
 	desc = "An ominous looking wall. It has extra insulation to keep the heat in.";
 	name = "plastitanium wall"
 	},
@@ -611,6 +593,12 @@
 /obj/item/storage/toolbox/syndicate,
 /turf/open/floor/iron/dark/textured,
 /area/ruin/syndielab)
+"Ig" = (
+/turf/closed/wall/r_wall/plastitanium/syndicate/nodiagonal{
+	desc = "An ominous looking wall. It has extra insulation to keep the heat in.";
+	name = "plastitanium wall"
+	},
+/area/ruin/syndielab)
 "IQ" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/dark/hidden,
 /mob/living/basic/bot/dedbot,
@@ -684,8 +672,7 @@
 	},
 /obj/structure/flora/bush,
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/oxygen_output{
-	dir = 1;
-	chamber_id = "syndielab_biodome"
+	dir = 1
 	},
 /turf/open/floor/grass{
 	initial_gas_mix = "o2=1000;n2=1100;TEMP=280"
@@ -819,6 +806,18 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndielab)
+"Wo" = (
+/obj/structure/table/wood,
+/obj/item/ammo_casing/shotgun/flechette/donk{
+	pixel_y = 6
+	},
+/obj/item/ammo_casing/shotgun/flechette/donk{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/gun/ballistic/shotgun/musket,
+/turf/open/floor/carpet/red,
+/area/ruin/syndielab)
 "WO" = (
 /obj/item/trash/boritos/red{
 	pixel_y = -9;
@@ -919,10 +918,10 @@ MW
 MW
 MW
 Xt
-AR
-AR
+Ig
+Ig
 vO
-AR
+Ig
 Xt
 Xt
 Xt
@@ -937,13 +936,13 @@ MW
 Xt
 Xt
 Xt
-AR
+Ig
 cg
 xg
-AR
-AR
-cP
-AR
+Ig
+Ig
+AT
+Ig
 Xt
 Xt
 Xt
@@ -951,65 +950,65 @@ MW
 "}
 (4,1,1) = {"
 MW
-AR
-AR
-AR
-AR
-AR
-AR
+Ig
+Ig
+Ig
+Ig
+Ig
+Ig
 UF
-AR
+Ig
 na
 mi
-AR
-AR
-AR
+Ig
+Ig
+Ig
 Xt
 Xt
 "}
 (5,1,1) = {"
 Xt
-AR
+Ig
 aa
 Wn
 bC
 EY
 el
 el
-AR
+Ig
 iQ
 iy
 vE
 Xe
-AR
-AR
+Ig
+Ig
 Xt
 "}
 (6,1,1) = {"
 Xt
-AR
+Ig
 Ts
 sj
 FJ
-AR
+Ig
 qy
 el
-AR
+Ig
 AD
 ry
 ey
 VO
 Tl
-AR
+Ig
 Xt
 "}
 (7,1,1) = {"
 Xt
-AR
+Ig
 bn
 Vf
 xa
-AR
+Ig
 Ze
 Gi
 cu
@@ -1018,31 +1017,31 @@ ey
 wl
 sa
 Hq
-AR
+Ig
 Xt
 "}
 (8,1,1) = {"
 Xt
-AR
-AR
-AR
+Ig
+Ig
+Ig
 EY
-AR
+Ig
 qC
 qC
-AR
-tb
+Ig
+jL
 HS
 ey
 sp
 UM
-AR
+Ig
 Xt
 "}
 (9,1,1) = {"
 Xt
-AR
-ah
+Ig
+pK
 KV
 el
 nT
@@ -1053,13 +1052,13 @@ el
 Sq
 cM
 Hs
-AR
-AR
+Ig
+Ig
 Xt
 "}
 (10,1,1) = {"
 Xt
-AR
+Ig
 JF
 sj
 el
@@ -1071,31 +1070,31 @@ el
 oY
 Fz
 Zx
-AR
+Ig
 Xt
 Xt
 "}
 (11,1,1) = {"
 Xt
-AR
+Ig
 Jc
 ey
 FJ
-AR
+Ig
 qC
 qC
-AR
+Ig
 GV
-AR
+Ig
 qC
 qC
-AR
+Ig
 Xt
 MW
 "}
 (12,1,1) = {"
 Xt
-AR
+Ig
 HH
 GL
 hl
@@ -1107,68 +1106,68 @@ Te
 hu
 TB
 lW
-AR
+Ig
 Xt
 MW
 "}
 (13,1,1) = {"
 Xt
-AR
+Ig
 QO
 hn
 el
 Xm
 rO
 aP
-AR
+Ig
 Lt
 AX
 yW
 YH
-AR
+Ig
 Xt
 MW
 "}
 (14,1,1) = {"
 Xt
-AR
-AR
-AR
+Ig
+Ig
+Ig
 EY
 qC
 qC
 qC
-AR
+Ig
 ZW
 uT
 yW
 Vu
-AR
+Ig
 Xt
 MW
 "}
 (15,1,1) = {"
 Xt
 Xt
-AR
+Ig
 gE
 el
 wj
 dD
 Co
-AR
+Ig
 cd
-yD
+Wo
 yW
 Dd
-AR
+Ig
 Xt
 MW
 "}
 (16,1,1) = {"
 MW
 Xt
-AR
+Ig
 sV
 NM
 tC
@@ -1179,25 +1178,25 @@ WO
 vr
 CS
 wJ
-AR
+Ig
 Xt
 MW
 "}
 (17,1,1) = {"
 MW
 Xt
-AR
-AR
-AR
+Ig
+Ig
+Ig
 nD
 wh
 De
-AR
-AR
-AR
-AR
-AR
-AR
+Ig
+Ig
+Ig
+Ig
+Ig
+Ig
 MW
 MW
 "}
@@ -1206,11 +1205,11 @@ MW
 MW
 Xt
 Xt
-AR
-AR
-AR
-AR
-AR
+Ig
+Ig
+Ig
+Ig
+Ig
 Xt
 Xt
 Xt

@@ -192,6 +192,7 @@
 		set_wearer(user)
 	else if(wearer)
 		unset_wearer()
+	return ..()
 
 /obj/item/mod/control/dropped(mob/user)
 	. = ..()
@@ -393,7 +394,7 @@
 	return cell
 
 /obj/item/mod/control/GetAccess()
-	if(ai_controller)
+	if(ai_controller && req_access)
 		return req_access.Copy()
 	else
 		return ..()
@@ -585,7 +586,7 @@
 			if(user && !silent) // Bubber Edit: Silent arg
 				balloon_alert(user, "incompatible with [old_module]!")
 				playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
-			return //Bubber Edit: Return False
+			return FALSE //Bubber Edit: Return False
 	var/complexity_with_module = complexity
 	complexity_with_module += new_module.complexity
 	if(complexity_with_module > complexity_max)

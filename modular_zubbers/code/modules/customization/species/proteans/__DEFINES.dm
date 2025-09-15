@@ -36,8 +36,6 @@
 	bodypart_species = SPECIES_PROTEAN; \
 	bodytype = BODYTYPE_NANO; \
 	dmg_overlay_type = "robotic"; \
-	brute_modifier = 0.8; \
-	burn_modifier = 1.2; \
 	light_brute_msg = LIGHT_NANO_BRUTE; \
 	medium_brute_msg = MEDIUM_NANO_BRUTE; \
 	heavy_brute_msg = HEAVY_NANO_BRUTE; \
@@ -99,8 +97,6 @@ PROTEAN_BODYPART_DEFINE(/obj/item/bodypart/arm/right/mutant/protean, 40)
 	bodypart_species = SPECIES_PROTEAN
 	bodytype = BODYTYPE_NANO
 	dmg_overlay_type = "robotic"
-	brute_modifier = 0.8
-	burn_modifier = 1.2
 	light_brute_msg = LIGHT_NANO_BRUTE
 	medium_brute_msg = MEDIUM_NANO_BRUTE
 	heavy_brute_msg = HEAVY_NANO_BRUTE
@@ -116,8 +112,6 @@ PROTEAN_BODYPART_DEFINE(/obj/item/bodypart/arm/right/mutant/protean, 40)
 	bodypart_species = SPECIES_PROTEAN
 	bodytype = BODYTYPE_NANO
 	dmg_overlay_type = "robotic"
-	brute_modifier = 0.8
-	burn_modifier = 1.2
 	light_brute_msg = LIGHT_NANO_BRUTE
 	medium_brute_msg = MEDIUM_NANO_BRUTE
 	heavy_brute_msg = HEAVY_NANO_BRUTE

@@ -24,6 +24,10 @@
 	//This is a reagent user and needs more then the 10u from edible component
 	reagent_vol = 1000
 
+	cell_line = CELL_LINE_ORGAN_STOMACH
+	cells_minimum = 1
+	cells_maximum = 2
+
 	///The rate that disgust decays
 	var/disgust_metabolism = 1
 
@@ -344,7 +348,8 @@
 		var/pukeprob = 2.5 + (0.025 * disgust)
 		if(disgust >= DISGUST_LEVEL_GROSS)
 			if(SPT_PROB(5, seconds_per_tick))
-				disgusted.adjust_stutter(2 SECONDS)
+				if(!disgusted.has_status_effect(/datum/status_effect/spacer/gravity_sickness)) // BUBBER EDIT CHANGE - no more constant spacer stutter anshallah
+					disgusted.adjust_stutter(2 SECONDS)
 				disgusted.adjust_confusion(2 SECONDS)
 			if(SPT_PROB(5, seconds_per_tick) && !disgusted.stat)
 				to_chat(disgusted, span_warning("You feel kind of iffy..."))
@@ -565,5 +570,14 @@
 	icon_state = "stomach-ghost"
 	movement_type = PHASING
 	organ_flags = parent_type::organ_flags | ORGAN_GHOST
+
+/obj/item/organ/stomach/evolved
+	name = "evolved stomach"
+	desc = "It can draw nutrients from your food even harder!"
+	icon_state = "stomach-evolved"
+
+	maxHealth = 1.2 * STANDARD_ORGAN_THRESHOLD
+	disgust_metabolism = 2.5
+	metabolism_efficiency = 0.08
 
 #undef STOMACH_METABOLISM_CONSTANT

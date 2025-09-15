@@ -3,7 +3,7 @@
 	name = "liquid ERP"
 	description = "ERP in its liquified form. Complain to a coder."
 	chemical_flags = REAGENT_NO_RANDOM_RECIPE
-	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC
+	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC | REAGENT_PROTEAN
 
 	/// What preference you need enabled for effects on life
 	var/life_pref_datum = /datum/preference/toggle/erp

@@ -281,7 +281,7 @@ const ChoicesPanel = (props) => {
                     )}
                   {currentVote.displayStatistics ||
                   user.isLowerAdmin /* SKYRAT EDIT*/
-                    ? choice.votes + ' Votes'
+                    ? `${choice.votes} Votes`
                     : null}
                 </LabeledList.Item>
                 <LabeledList.Divider />

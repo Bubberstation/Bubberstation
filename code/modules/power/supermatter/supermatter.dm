@@ -348,7 +348,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		set_delam(SM_DELAM_PRIO_NONE, SM_DELAM_STRATEGY_PURGE) // This one cant clear any forced delams.
 	delamination_strategy.delam_progress(src)
 	// BUBBER EDIT ADDITION BEGIN - DELAM_SCRAM
-	if(damage > SUPERMATTER_SUPPRESSION_THRESHOLD && is_main_engine && !suppression_fired)
+	if(damage > SUPERMATTER_SUPPRESSION_THRESHOLD && is_main_engine && !suppression_fired && world.time - SSticker.round_start_time < SCRAM_TIME_RESTRICTION)
 		investigate_log("Integrity at time of suppression signal was [100 - damage]", INVESTIGATE_ENGINE)
 		SEND_GLOBAL_SIGNAL(COMSIG_MAIN_SM_DELAMINATING, SCRAM_AUTO_FIRE)
 		suppression_fired = TRUE
@@ -391,6 +391,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	update_appearance()
 	delamination_strategy.lights(src)
 	delamination_strategy.filters(src)
+	absorption_ratio = clamp(absorption_ratio - 0.05, 0.15, 1)
 	return TRUE
 
 // SupermatterMonitor UI for ghosts only. Inherited attack_ghost will call this.

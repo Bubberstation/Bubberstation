@@ -45,7 +45,10 @@ ADMIN_VERB(map_export, R_DEBUG, "Map Export", "Select a part of the map by coord
 
 /**
  * A procedure for saving non-standard properties of an object.
- * For example, saving ore into a silo, and further spavn by coordinates of metal stacks objects
+ * Examples:
+ * Saving material stacks (ie. ore in a silo)
+ * Saving variables that can be shown as mapping helpers (ie. welded airlock mapping helper)
+ * Saving objects inside of another object (ie. paper inside a noticeboard)
  */
 /obj/proc/on_object_saved()
 	return null
@@ -174,7 +177,7 @@ GLOBAL_LIST_INIT(save_file_chars, list(
 	if(istext(value))
 		//Prevent symbols from being because otherwise you can name something
 		// [";},/obj/item/gun/energy/laser/instakill{name="da epic gun] and spawn yourself an instakill gun.
-		return "\"[hashtag_newlines_and_tabs("[value]", list("{"="", "}"="", "\""="", ";"="", ","=""))]\""
+		return "\"[hashtag_newlines_and_tabs("[value]", list("{"="", "}"="", "\""="", ","=""))]\""
 	if(isnum(value) || ispath(value))
 		return "[value]"
 	if(islist(value))

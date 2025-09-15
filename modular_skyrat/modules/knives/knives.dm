@@ -10,9 +10,9 @@
 	lefthand_file = 'modular_skyrat/modules/knives/icons/bowie_lefthand.dmi'
 	righthand_file = 'modular_skyrat/modules/knives/icons/bowie_righthand.dmi'
 	worn_icon_state = "knife"
-	force = 20 // Zoowee Momma!
+	force = 17 // why was this 20 what the fuck man
 	w_class = WEIGHT_CLASS_NORMAL
-	throwforce = 15
+	throwforce = 20
 	wound_bonus = 10 //scalpel tier
 	exposed_wound_bonus = 20 // Very-bigly
 

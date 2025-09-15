@@ -62,8 +62,8 @@
 	if(isliving(crossing_movable))
 		var/mob/living/crossing_mob = crossing_movable
 		if(crossing_mob.mob_size > MOB_SIZE_SMALL && !(crossing_mob.movement_type & MOVETYPES_NOT_TOUCHING_GROUND))
-			if(HAS_TRAIT(crossing_mob, TRAIT_PACIFISM) || (crossing_mob.move_intent == MOVE_INTENT_WALK)) // BUBBER EDIT
-				crossing_mob.visible_message(span_notice("[crossing_mob] carefully steps over [parent_as_living]."), span_notice("You carefully step over [parent_as_living] to avoid hurting it."))
+			if(HAS_TRAIT(crossing_mob, TRAIT_PACIFISM) || (crossing_mob.move_intent == MOVE_INTENT_WALK) || HAS_TRAIT(crossing_mob, TRAIT_LIGHT_STEP)) // BUBBER EDIT
+				crossing_mob.visible_message(span_notice("[crossing_mob] carefully steps over [parent_as_living]."), span_notice("You carefully step over [parent_as_living] to avoid hurting [parent_as_living.p_them()].")) //BUBBER EDIT - Added pronouns
 				return
 			if(should_squash)
 				crossing_mob.visible_message(span_notice("[crossing_mob] squashed [parent_as_living]."), span_notice("You squashed [parent_as_living]."))

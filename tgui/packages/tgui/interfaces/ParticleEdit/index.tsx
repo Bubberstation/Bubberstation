@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-undef */
 import {
   createContext,
   type Dispatch,
@@ -68,7 +67,7 @@ export const ParticleEdit = (props) => {
   return (
     <ParticleContext.Provider value={{ desc, setDesc }}>
       <Window
-        title={data.target_name + "'s particles"}
+        title={`${data.target_name}'s particles`}
         width={940}
         height={890}
       >

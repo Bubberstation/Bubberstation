@@ -28,10 +28,6 @@
 	name = "Bubblegum Plushie"
 	item_path = /obj/item/toy/plush/bubbleplush
 
-/datum/loadout_item/toys/goat
-	name = "Strange Goat Plushie"
-	item_path = /obj/item/toy/plush/goatplushie
-
 /datum/loadout_item/toys/sechound
 	name = "Sechound Plushie"
 	item_path = /obj/item/toy/plush/skyrat/sechound
@@ -223,6 +219,10 @@
 /datum/loadout_item/toys/plush_janiborg
 	name = "Friendly Janiborg Plush"
 	item_path = /obj/item/toy/plush/skyrat/plush_janiborg
+
+/datum/loadout_item/toys/tian_plush
+	name = "Bureaucratic Goat Plush"
+	item_path = /obj/item/toy/plush/tian_plush
 
 /*
 *	CARDS

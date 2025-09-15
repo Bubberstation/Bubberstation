@@ -217,3 +217,40 @@
 	name = "Angled Eyes"
 	default_color = "#FFFFFF"
 	affected_bodyparts = HEAD
+
+/datum/body_marking/bubber/protogenlegs // Sprites by CandleJaxx on NovaSector
+	name = "Protogen Leg - Digitigrade"
+	icon_state = "protogen"
+	affected_bodyparts = LEG_RIGHT | LEG_LEFT
+
+/datum/body_marking/bubber/protogenarms
+	name = "Protogen Arm"
+	icon_state = "protogen"
+	affected_bodyparts = ARM_RIGHT | ARM_LEFT
+
+/datum/body_marking/bubber/protogenchest
+	name = "Protogen Chest"
+	icon_state = "protogen"
+	affected_bodyparts = CHEST
+
+/datum/body_marking/bubber/protogencrotch // Sprite by xPokee
+	name = "Protogen Crotch Plate"
+	icon_state = "protogen_c"
+	affected_bodyparts = CHEST
+
+/datum/body_marking/bubber/skintone
+	name = "Human Skintone"
+	icon_state = "skintone"
+	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
+
+/datum/body_marking/bubber/cryptid  /// Sprite by Maggotbait of Splurt
+	name = "Cryptid Ribs"
+	icon_state = "cryptid"
+	default_color = DEFAULT_SECONDARY
+	affected_bodyparts = CHEST
+
+/datum/body_marking/bubber/cryptidfluff /// Sprite by Maggotbait of Splurt
+	name = "Cryptid Fur"
+	icon_state = "cryptid_marking"
+	default_color = DEFAULT_SECONDARY
+	affected_bodyparts = CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT

@@ -1,5 +1,4 @@
 import { map } from 'es-toolkit/compat';
-import React from 'react';
 import {
   Button,
   Flex,

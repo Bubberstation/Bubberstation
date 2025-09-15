@@ -87,6 +87,10 @@
 	item_path = /obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic/blue
 	restricted_roles = list(JOB_SECURITY_MEDIC)
 
+// Silver Jacket Mk2 but for all of Command
+/datum/loadout_item/suit/lt3_armor/New()
+	restricted_roles += list(JOB_HEAD_OF_SECURITY, JOB_BLUESHIELD, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_ENGINEER, JOB_CAPTAIN, JOB_QUARTERMASTER, JOB_CHIEF_MEDICAL_OFFICER)
+	return ..()
 
 // Fancy crop-top jackets
 
@@ -151,3 +155,11 @@
 /datum/loadout_item/suit/galfed_jacket
 	name = "Galactic Federation Jacket"
 	item_path = /obj/item/clothing/suit/jacket/galfed
+
+/datum/loadout_item/suit/frontier_colonist
+	name = "Frontier trenchcoat"
+	item_path = /obj/item/clothing/suit/jacket/frontier_colonist/loadout
+
+/datum/loadout_item/suit/frontier_colonist_short
+	name = "Frontier jacket"
+	item_path = /obj/item/clothing/suit/jacket/frontier_colonist/short/loadout

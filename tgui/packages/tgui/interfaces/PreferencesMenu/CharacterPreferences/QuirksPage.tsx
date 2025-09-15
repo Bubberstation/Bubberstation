@@ -50,7 +50,6 @@ type QuirkListProps = {
 };
 
 type QuirkProps = {
-  // eslint-disable-next-line react/no-unused-prop-types
   onClick: (quirkName: string, quirk: Quirk) => void;
   randomBodyEnabled: boolean;
   selected: boolean;
@@ -87,7 +86,6 @@ function QuirkList(props: QuirkProps & QuirkListProps) {
 type QuirkDisplayProps = {
   quirk: Quirk & { failTooltip?: string };
   // bugged
-  // eslint-disable-next-line react/no-unused-prop-types
   quirkKey: string;
 } & QuirkProps;
 
@@ -331,19 +329,19 @@ export function QuirksPage(props) {
   const positiveQuirks = data.positive_quirk_count;
   // SKYRAT EDIT END
 
+  /* // BUBBER EDIT START - We handle this on the backend
   for (const selectedQuirkName of selectedQuirks) {
     const selectedQuirk = quirkInfo[selectedQuirkName];
     if (!selectedQuirk) {
       continue;
     }
-    /* // BUBBER EDIT START - We handle this on the backend
     if (selectedQuirk.value > 0) {
       positiveQuirks += 1;
     }
 
     balance += selectedQuirk.value;
-    */ // BUBBER EDIT END
   }
+  */ // BUBBER EDIT END
 
   function getReasonToNotAdd(quirkName: string) {
     const quirk = quirkInfo[quirkName];

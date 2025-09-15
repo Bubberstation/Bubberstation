@@ -20,10 +20,6 @@
 	. = ..()
 	build_type |= COLONY_FABRICATOR
 
-/datum/design/airlock_painter/decal/tile/New()
-	. = ..()
-	build_type |= COLONY_FABRICATOR
-
 /datum/design/holosignengi/New()
 	. = ..()
 	build_type |= COLONY_FABRICATOR

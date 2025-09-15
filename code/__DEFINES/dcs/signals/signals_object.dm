@@ -29,8 +29,8 @@
 #define COMSIG_MACHINERY_SET_OCCUPANT "machinery_set_occupant"
 ///from /obj/machinery/destructive_scanner/proc/open(aggressive): Runs when the destructive scanner scans a group of objects. (list/scanned_atoms)
 #define COMSIG_MACHINERY_DESTRUCTIVE_SCAN "machinery_destructive_scan"
-///from /obj/machinery/computer/arcade/prizevend(mob/user, prizes = 1)
-#define COMSIG_ARCADE_PRIZEVEND "arcade_prizevend"
+///from /obj/machinery/computer/arcade/victory_tickets(tickets, sound = TRUE)
+#define COMSIG_ARCADE_VICTORY "arcade_victory"
 ///from /datum/controller/subsystem/air/proc/start_processing_machine: ()
 #define COMSIG_MACHINERY_START_PROCESSING_AIR "start_processing_air"
 ///from /datum/controller/subsystem/air/proc/stop_processing_machine: ()
@@ -46,6 +46,12 @@
 	#define COMPONENT_CANT_USE_MACHINE_INTERACT (1<<0)
 	/// Can't use tools on the machine
 	#define COMPONENT_CANT_USE_MACHINE_TOOLS (1<<1)
+
+#define COMSIG_ORE_SILO_PERMISSION_CHECKED "ore_silo_permission_checked"
+	/// The ore silo is not allowed to be used
+	#define COMPONENT_ORE_SILO_DENY (1<<0)
+	/// The ore silo is allowed to be used
+	#define COMPONENT_ORE_SILO_ALLOW (1<<1)
 
 ///from obj/machinery/iv_drip/IV_attach(target, usr) : (attachee)
 #define COMSIG_IV_ATTACH "iv_attach"
@@ -353,6 +359,12 @@
 	#define COMPONENT_CANCEL_SAWING_OFF (1<<0)
 #define COMSIG_GUN_SAWN_OFF "gun_sawn_off"
 
+///called in /obj/item/firing_pin/proc/gun_insert(mob/living/user, obj/item/gun/new_gun): (obj/item/firing_pin/pin, mob/living/user)
+#define COMSIG_GUN_PIN_INSERTED "gun_pin_inserted"
+
+///called in /obj/item/firing_pin/proc/gun_remove(mob/living/user): (obj/item/firing_pin/pin, mob/living/user)
+#define COMSIG_GUN_PIN_REMOVED "gun_pin_removed"
+
 // Jetpack things
 // Please kill me
 
@@ -508,9 +520,6 @@
 
 /// from /obj/item/detective_scanner/scan(): (mob/user, list/extra_data)
 #define COMSIG_DETECTIVE_SCANNED "det_scanned"
-
-/// from /obj/machinery/mineral/ore_redemption/pickup_item when it successfully picks something up
-#define COMSIG_ORM_COLLECTED_ORE "orm_collected_ore"
 
 /// from /obj/plunger_act when an object is being plungered
 #define COMSIG_PLUNGER_ACT "plunger_act"

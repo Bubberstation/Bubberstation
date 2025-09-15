@@ -41,7 +41,7 @@
 	use_power = NO_POWER_USE
 	unwrenchable = FALSE
 	self_sustaining_overlay_icon_state = "gaia"
-	self_sustaining = 1
+	self_sustaining = TRUE
 	maxnutri = 50
 	maxwater = 500
 
@@ -50,6 +50,10 @@
 		return NONE
 	set_self_sustaining(!self_sustaining)
 	return CLICK_ACTION_SUCCESS
+
+/obj/machinery/hydroponics/soil/soilbin/gaia/set_self_sustaining(new_value)
+	.=..()
+	update_use_power(NO_POWER_USE)
 
 /datum/crafting_recipe/soilbin/gaia
 	name = "Primitive gaian soilbin"

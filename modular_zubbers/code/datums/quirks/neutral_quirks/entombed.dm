@@ -97,6 +97,7 @@
 		modsuit_skin = "civilian"
 
 	modsuit.skin = LOWER_TEXT(modsuit_skin)
+	add_unique_skin()
 
 	var/modsuit_name = client_source?.prefs.read_preference(/datum/preference/text/entombed_mod_name)
 	if (modsuit_name)
@@ -122,6 +123,22 @@
 		var/obj/item/old_bag = locate() in force_dropped_items
 		if (old_bag.atom_storage)
 			old_bag.atom_storage.dump_content_at(modsuit, modsuit.get_dumping_location(), human_holder)
+
+/datum/quirk/equipping/entombed/proc/add_unique_skin() // Let's all agree: this is snowflakey. But I just want entombed players not to complain, sue me.
+	var/skin_override
+	var/mob_override
+	var/list/parts = modsuit.get_parts()
+	if (modsuit.skin == "lustwish")
+		skin_override = 'modular_zubbers/icons/obj/clothing/modsuit/mod_lustwish.dmi'
+		mob_override = 'modular_zubbers/icons/mob/clothing/modsuit/mod_lustwish.dmi'
+
+	if(isnull(skin_override) || isnull(mob_override))
+		return
+
+	for(var/obj/item/part as anything in parts + modsuit)
+		part.icon = skin_override
+		part.worn_icon = mob_override
+		modsuit.wearer?.update_clothing(part.slot_flags)
 
 /datum/quirk/equipping/entombed/post_add()
 	. = ..()
@@ -179,6 +196,7 @@
 		"Mining",
 		"Prototype",
 		"Security",
+		"Lustwish"
 	)
 
 /datum/preference/choiced/entombed_skin/create_default_value()

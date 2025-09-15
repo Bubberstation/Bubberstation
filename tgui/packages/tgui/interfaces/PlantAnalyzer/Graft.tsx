@@ -16,9 +16,14 @@ export function PlantAnalyzerGraft(props) {
   const { data } = useBackend<PlantAnalyzerData>();
   const { graft_data } = data;
 
+  if (!graft_data) {
+    // This shouldn't be rendered if graft_data is null
+    return null;
+  }
+
   return (
     <Section
-      title={'Graft: ' + capitalizeFirst(graft_data.name)}
+      title={`Graft: ${capitalizeFirst(graft_data.name)}`}
       buttons={
         !!graft_data.graft_gene && (
           <TraitTooltip path={graft_data.graft_gene} trait_db={data.trait_db} />

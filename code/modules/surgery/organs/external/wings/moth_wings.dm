@@ -7,7 +7,7 @@
 
 	preference = "feature_moth_wings"
 
-	//dna_block = DNA_MOTH_WINGS_BLOCK // SKYRAT EDIT REMOVAL
+	//dna_block = /datum/dna_block/feature/moth_wing // BUBBER EDIT REMOVAL
 
 	bodypart_overlay = /datum/bodypart_overlay/mutant/wings/moth
 	restyle_flags = EXTERNAL_RESTYLE_FLESH
@@ -54,11 +54,7 @@
 		return FALSE
 	if(owner.has_gravity())
 		return FALSE
-	if(ishuman(owner))
-		var/mob/living/carbon/human/human_owner = owner
-		if(human_owner.wear_suit?.flags_inv & HIDEMUTWINGS)
-			return FALSE //Can't fly with hidden wings
-	if(burnt)
+	if((owner.obscured_slots & HIDEMUTWINGS) || burnt)
 		return FALSE
 	var/datum/gas_mixture/current = owner.loc.return_air()
 	if(current && (current.return_pressure() >= ONE_ATMOSPHERE*0.85))
@@ -101,7 +97,7 @@
 
 ///Moth wing bodypart overlay, including burn functionality!
 /datum/bodypart_overlay/mutant/wings/moth
-	feature_key = "wings" // SKYRAT EDIT - Customization - ORIGINAL: feature_key = "moth_wings"
+	feature_key = FEATURE_WINGS // BUBBER EDIT CHANGE - Customization - ORIGINAL: feature_key = FEATURE_MOTH_WINGS
 	layers = EXTERNAL_BEHIND | EXTERNAL_FRONT
 	///Accessory datum of the burn sprite
 	var/datum/sprite_accessory/burn_datum = /datum/sprite_accessory/moth_wings/burnt_off
@@ -119,12 +115,7 @@
 	if(!.)
 		return
 	// BUBBER EDIT ADDITION END - Customization
-	var/mob/living/carbon/human/human = bodypart_owner.owner
-	if(!istype(human))
-		return TRUE
-	if(human.wear_suit?.flags_inv & HIDEMUTWINGS)
-		return FALSE
-	return TRUE
+	return !(bodypart_owner.owner?.obscured_slots & HIDEMUTWINGS)
 
 /datum/bodypart_overlay/mutant/wings/moth/get_base_icon_state()
 	return burnt ? burn_datum.icon_state : sprite_datum.icon_state
