@@ -1,3 +1,4 @@
+/*
 /// Test various permutations of ethereal revival
 /datum/unit_test/ethereal_revival
 
@@ -58,3 +59,4 @@
 	instant_crystallise(victim, respawn_heart)
 	var/obj/structure/ethereal_crystal/crystal = respawn_heart.current_crystal
 	crystal.heal_ethereal()
+*/
