@@ -55,12 +55,12 @@
 
 	//Currently this is a thing as changeling ID's are not longer a thing
 	//Feel free to re-add them whomever wants to -Azarak
-	var/changeling_name = ""
+	var/changeling_name
 	if(user.gender == FEMALE)
 		changeling_name = "Ms. "
 	else if(user.gender == MALE)
 		changeling_name = "Mr. "
-	else if(user.gender == NEUTER || user.gender == PLURAL)
+	else
 		changeling_name = "Mx. "
 	changeling_name += pick(GLOB.greek_letters)
 
