@@ -97,7 +97,7 @@
 
 /obj/item/forging/reagent_weapon/rapier
 	name = "reagent rapier"
-	desc = "A lightweight rapier with an light and quick swing"
+	desc = "A lightweight rapier with a light and quick swing."
 	force = 12
 	armour_penetration = 25
 	block_chance = 30
