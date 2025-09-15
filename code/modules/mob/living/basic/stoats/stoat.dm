@@ -19,6 +19,7 @@
 	response_help_simple = "pet"
 	verb_say = "chips"
 	verb_ask = "chips curiously"
+	can_be_held = TRUE // BUBBER EDIT ADDITION
 	verb_exclaim = "chips loudly"
 	verb_yell = "chips loudly"
 	faction = list(FACTION_NEUTRAL)
@@ -32,6 +33,7 @@
 		/datum/pet_command/follow,
 		/datum/pet_command/fetch,
 	)
+	var/can_breed = TRUE // BUBBER EDIT ADDITION
 
 /mob/living/basic/stoat/Initialize(mapload)
 	. = ..()
@@ -45,7 +47,10 @@
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, typecacheof(eatable_food))
 	AddElement(/datum/element/wears_collar)
 	AddComponent(/datum/component/obeys_commands, pet_commands)
-
+	// BUBBER EDIT ADDITION START
+	if(can_breed)
+		add_breeding_component()
+	// BUBBER EDIT ADDITION END
 	var/static/list/display_emote = list(
 		BB_EMOTE_SAY = list("Chirp chirp chirp!"),
 		BB_EMOTE_SEE = list("sweeps its tail!", "jumps around!", "licks its fur!"),
@@ -53,3 +58,16 @@
 		BB_EMOTE_SOUND = list('sound/mobs/non-humanoids/stoat/stoat_sounds.ogg'),
 	)
 	ai_controller.set_blackboard_key(BB_BASIC_MOB_SPEAK_LINES, display_emote)
+
+// BUBBER EDIT ADDITION START
+/mob/living/basic/stoat/proc/add_breeding_component()
+	var/static/list/partner_paths = typecacheof(list(/mob/living/basic/stoat))
+	var/static/list/baby_paths = list(
+		/mob/living/basic/stoat = 100 // Placeholder until we get proper baby stoats
+	)
+	AddComponent(\
+	/datum/component/breed,\
+	can_breed_with = typecacheof(list(/mob/living/basic/stoat)),\
+	baby_paths = baby_paths,\
+	)
+// BUBBER EDIT ADDITION END
