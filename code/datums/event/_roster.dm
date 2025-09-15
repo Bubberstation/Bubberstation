@@ -251,7 +251,7 @@ GLOBAL_DATUM_INIT(global_roster, /datum/roster, new)
 	if(!user)
 		return
 
-	var/ckey_to_add = stripped_input(user, "Please enter the ckey of the contestant you wish to add.") as text|null
+	var/ckey_to_add = stripped_input(user, "Please enter the ckey of the contestant you wish to add.")
 	ckey_to_add = ckey(ckey_to_add)
 
 	if(!ckey_to_add)

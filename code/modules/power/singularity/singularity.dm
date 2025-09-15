@@ -430,7 +430,7 @@
 		var/obj/machinery/power/shieldwallgen/shield_gen = locate(/obj/machinery/power/shieldwallgen) in considered_turf
 		if(shield_gen?.active)
 			return FALSE
-return TRUE
+	return TRUE
 
 /obj/singularity/proc/event()
 	var/numb = rand(1,4)
