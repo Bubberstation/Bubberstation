@@ -125,7 +125,7 @@
 	var/hasToys = FALSE
 
 /obj/item/borg/upgrade/obediencemodule
-	name = "borg obedience module"
+	name = "Cyborg Obedience Module"
 	desc = "A module that greatly upgrades the ability of borgs to display affection."
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
 	icon_state = "module_lust"
