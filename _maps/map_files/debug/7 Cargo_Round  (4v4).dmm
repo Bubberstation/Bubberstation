@@ -10,7 +10,7 @@
 /turf/open/floor/plating,
 /area/centcom/tdome/arena)
 "dM" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /turf/open/floor/plating,
 /area/centcom/tdome/arena)
 "dW" = (
@@ -152,13 +152,6 @@
 /obj/structure/rack,
 /turf/open/floor/plating,
 /area/centcom/tdome/arena)
-"rk" = (
-/obj/structure/shuttle/engine/router{
-	dir = 1
-	},
-/obj/structure/shuttle/engine/router,
-/turf/closed/indestructible/opshuttle,
-/area/centcom/tdome/arena)
 "ru" = (
 /turf/closed/indestructible/opshuttle{
 	dir = 1
@@ -215,18 +208,11 @@
 /turf/open/indestructible,
 /area/centcom/tdome/arena)
 "yu" = (
-/obj/item/clothing/head/hardhat/red/upgraded,
-/obj/item/clothing/head/hardhat/red/upgraded{
-	pixel_x = -3
-	},
-/obj/item/clothing/head/hardhat/red/upgraded{
-	pixel_x = 3
-	},
 /obj/structure/rack,
 /turf/open/indestructible,
 /area/centcom/tdome/arena)
 "yz" = (
-/obj/structure/shuttle/engine/propulsion/left{
+/obj/machinery/power/shuttle_engine/propulsion/left{
 	dir = 8
 	},
 /turf/open/space/basic,
@@ -267,7 +253,7 @@
 /turf/open/floor/plating,
 /area/centcom/tdome/arena)
 "Aa" = (
-/mob/living/simple_animal/parrot/poly,
+/mob/living/basic/parrot/poly,
 /turf/open/floor/plating,
 /area/centcom/tdome/arena)
 "AA" = (
@@ -292,15 +278,6 @@
 	},
 /obj/effect/decal/cleanable/ash,
 /turf/open/floor/plating,
-/area/centcom/tdome/arena)
-"Cd" = (
-/obj/structure/shuttle/engine/router,
-/obj/structure/shuttle/engine/router{
-	dir = 1
-	},
-/turf/closed/indestructible/opshuttle{
-	dir = 1
-	},
 /area/centcom/tdome/arena)
 "Ch" = (
 /obj/effect/turf_decal/arrows{
@@ -382,11 +359,11 @@
 	},
 /area/centcom/tdome/arena)
 "GR" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /turf/open/indestructible/white,
 /area/centcom/tdome/arena)
 "GX" = (
-/obj/structure/shuttle/engine/propulsion/burst{
+/obj/machinery/power/shuttle_engine/propulsion/burst{
 	dir = 8
 	},
 /turf/open/space/basic,
@@ -471,21 +448,8 @@
 /obj/machinery/arena_spawn/red,
 /turf/open/indestructible,
 /area/centcom/tdome/arena)
-"Nq" = (
-/obj/structure/shuttle/engine/router,
-/obj/structure/shuttle/engine/router{
-	dir = 1
-	},
-/obj/structure/shuttle/engine/router,
-/obj/structure/shuttle/engine/router{
-	dir = 1
-	},
-/turf/closed/indestructible/opshuttle{
-	dir = 1
-	},
-/area/centcom/tdome/arena)
 "Qe" = (
-/obj/structure/shuttle/engine/propulsion/burst{
+/obj/machinery/power/shuttle_engine/propulsion/burst{
 	dir = 4
 	},
 /turf/open/space/basic,
@@ -515,7 +479,7 @@
 /turf/open/floor/plating,
 /area/centcom/tdome/arena)
 "Se" = (
-/obj/structure/shuttle/engine/propulsion/right{
+/obj/machinery/power/shuttle_engine/propulsion/right{
 	dir = 4
 	},
 /turf/open/space/basic,
@@ -538,7 +502,7 @@
 /turf/open/floor/plating,
 /area/centcom/tdome/arena)
 "SR" = (
-/obj/structure/shuttle/engine/propulsion/left{
+/obj/machinery/power/shuttle_engine/propulsion/left{
 	dir = 4
 	},
 /turf/open/space/basic,
@@ -611,7 +575,7 @@
 /turf/open/floor/plating,
 /area/centcom/tdome/arena)
 "YR" = (
-/obj/structure/shuttle/engine/propulsion/right{
+/obj/machinery/power/shuttle_engine/propulsion/right{
 	dir = 8
 	},
 /turf/open/space/basic,
@@ -2434,8 +2398,8 @@ Dg
 ru
 ru
 ru
-Cd
-Nq
+ru
+ru
 ru
 ru
 ru
@@ -2904,8 +2868,8 @@ ru
 kf
 kf
 kf
-rk
-rk
+kf
+kf
 kf
 kf
 kf
