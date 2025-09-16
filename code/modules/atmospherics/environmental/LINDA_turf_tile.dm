@@ -12,6 +12,7 @@
 	var/list/atmos_adjacent_turfs
 	///bitfield of dirs in which we are superconducitng
 	var/atmos_supeconductivity = NONE
+	var/eventturf = FALSE
 
 	///used to determine whether we should archive
 	var/archived_cycle = 0
