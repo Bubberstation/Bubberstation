@@ -101,10 +101,8 @@
 /turf/open/floor/iron/dark,
 /area/centcom/tdome/arena)
 "aI" = (
-/obj/structure/window/reinforced/survival_pod{
-	max_integrity = 9999
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/south,
 /turf/open/floor/iron/smooth_edge{
 	dir = 8
 	},
@@ -184,12 +182,9 @@
 /turf/open/floor/pod,
 /area/centcom/tdome/arena)
 "bA" = (
-/obj/machinery/door/window/survival_pod{
-	dir = 8;
-	max_integrity = 9999
-	},
 /obj/structure/holosign/barrier/ctf/red,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/window/survival_pod/left/directional/west,
 /turf/open/floor/iron/smooth_edge{
 	dir = 1
 	},
@@ -199,7 +194,6 @@
 	dir = 6
 	},
 /obj/effect/turf_decal/weather/sand,
-/obj/machinery/door/window/right/directional/south,
 /turf/open/floor/stone,
 /area/centcom/tdome/arena)
 "bF" = (
@@ -461,13 +455,13 @@
 /area/centcom/tdome/arena)
 "dq" = (
 /obj/structure/table/greyscale,
-/obj/structure/window/reinforced/spawner,
 /obj/structure/window/reinforced/spawner/directional/north,
 /mob/living/basic/mouse{
 	faction = list("cult");
 	pixel_y = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/window/reinforced/spawner/directional/south,
 /turf/open/floor/iron/freezer,
 /area/centcom/tdome/arena)
 "dx" = (
@@ -763,7 +757,8 @@
 /turf/open/floor/iron,
 /area/centcom/tdome/arena)
 "gj" = (
-/turf/open/floor/plating,
+/obj/structure/lattice/catwalk/mining,
+/turf/open/lava,
 /area/centcom/tdome/arena)
 "gk" = (
 /mob/living/basic/mouse{
@@ -1067,7 +1062,7 @@
 /obj/effect/turf_decal/siding/thinplating/dark/end{
 	dir = 8
 	},
-/obj/machinery/door/window/right/directional/west,
+/obj/machinery/door/airlock/public/glass,
 /turf/open/floor/stone,
 /area/centcom/tdome/arena)
 "iv" = (
@@ -1624,12 +1619,9 @@
 /turf/closed/wall/mineral/titanium/survival/nodiagonal,
 /area/centcom/tdome/arena)
 "mc" = (
-/obj/machinery/door/window/survival_pod{
-	dir = 8;
-	max_integrity = 9999
-	},
 /obj/structure/trap/ctf/blue,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/window/survival_pod/left/directional/west,
 /turf/open/floor/iron/smooth_edge,
 /area/centcom/tdome/arena)
 "me" = (
@@ -1887,7 +1879,7 @@
 /area/centcom/tdome/arena)
 "nF" = (
 /obj/structure/holosign/barrier/ctf/red,
-/obj/machinery/door/window/survival_pod,
+/obj/machinery/door/window/survival_pod/left/directional/south,
 /turf/open/floor/pod,
 /area/centcom/tdome/arena)
 "nG" = (
@@ -2501,11 +2493,8 @@
 /turf/open/floor/stone,
 /area/centcom/tdome/arena)
 "rB" = (
-/obj/structure/window/reinforced/survival_pod{
-	dir = 1;
-	max_integrity = 9999
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/north,
 /turf/open/floor/iron/smooth,
 /area/centcom/tdome/arena)
 "rC" = (
@@ -3354,14 +3343,9 @@
 	},
 /area/centcom/tdome/arena)
 "xg" = (
-/obj/structure/window/reinforced/survival_pod{
-	dir = 8;
-	max_integrity = 99999
-	},
-/obj/structure/window/reinforced/survival_pod{
-	max_integrity = 9999
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/west,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/south,
 /turf/open/floor/iron/smooth_large,
 /area/centcom/tdome/arena)
 "xi" = (
@@ -3451,7 +3435,7 @@
 	dir = 10
 	},
 /obj/effect/turf_decal/weather/sand,
-/obj/machinery/door/window/right/directional/south,
+/obj/machinery/door/airlock/multi_tile/public/glass,
 /turf/open/floor/stone,
 /area/centcom/tdome/arena)
 "xO" = (
@@ -3676,15 +3660,9 @@
 /turf/open/floor/iron/cafeteria,
 /area/centcom/tdome/arena)
 "zA" = (
-/obj/structure/window/reinforced/survival_pod{
-	dir = 8;
-	max_integrity = 99999
-	},
-/obj/structure/window/reinforced/survival_pod{
-	dir = 1;
-	max_integrity = 9999
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/west,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/north,
 /turf/open/floor/iron/smooth_large,
 /area/centcom/tdome/arena)
 "zE" = (
@@ -3829,17 +3807,15 @@
 /area/centcom/tdome/arena)
 "AF" = (
 /obj/structure/trap/ctf/blue,
-/obj/machinery/door/window/survival_pod{
-	dir = 8
-	},
+/obj/machinery/door/window/survival_pod/left/directional/west,
 /turf/open/floor/pod,
 /area/centcom/tdome/arena)
 "AI" = (
 /obj/structure/table/greyscale,
-/obj/structure/window/reinforced/spawner,
 /obj/structure/window/reinforced/spawner/directional/north,
 /obj/item/storage/fancy/candle_box,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/window/reinforced/spawner/directional/south,
 /turf/open/floor/cult,
 /area/centcom/tdome/arena)
 "AO" = (
@@ -3858,9 +3834,7 @@
 /area/centcom/tdome/arena)
 "AV" = (
 /obj/structure/holosign/barrier/ctf/green,
-/obj/machinery/door/window/survival_pod{
-	dir = 1
-	},
+/obj/machinery/door/window/survival_pod/left/directional/north,
 /turf/open/floor/pod,
 /area/centcom/tdome/arena)
 "AW" = (
@@ -4592,12 +4566,9 @@
 /turf/open/floor/plating,
 /area/centcom/tdome/arena)
 "Gh" = (
-/obj/machinery/door/window/survival_pod{
-	dir = 8;
-	max_integrity = 9999
-	},
 /obj/structure/holosign/barrier/ctf/green,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/window/survival_pod/left/directional/west,
 /turf/open/floor/iron/smooth_large,
 /area/centcom/tdome/arena)
 "Gs" = (
@@ -6756,7 +6727,7 @@
 /obj/structure/mirror/directional/north,
 /obj/item/melee/energy/sword/saber/red{
 	force = 5;
-	throwforce = 3;
+	throwforce = 3
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet/green,
