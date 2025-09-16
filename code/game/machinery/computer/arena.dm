@@ -459,9 +459,9 @@
 /obj/machinery/computer/arena/ui_interact(mob/user)
 	. = ..()
 	var/list/dat = list()
-	dat += "<a href='?src=[REF(src)];see_roster=1'>See Roster</a>"
+	dat += "<a href='byond://?src=[REF(src)];see_roster=1'>See Roster</a>"
 	if(ui_mode != ARENA_UI_MAIN)
-		dat += "<a href='?src=[REF(src)];change_page=main'><b>\<\<Back to Main</b></a>"
+		dat += "<a href='byond://?src=[REF(src)];change_page=main'><b>\<\<Back to Main</b></a>"
 
 
 
@@ -469,26 +469,26 @@
 		if(ARENA_UI_MAIN)
 			dat += "<b>Main menu</b>"
 			dat += "-----------------------------------------"
-			dat += "<a href='?src=[REF(src)];add_empty=contestant'>Add Empty Contestant</a>"
-			dat += "<a href='?src=[REF(src)];add_empty=team'>Add Empty Team</a>"
-			dat += "Random Wounds are currently: <a href='?src=[REF(src)];toggle_wounds=1'><b>[GLOB.global_roster.enable_random_wounds ? "<span class='green'>ENABLED" : "<span class='red'>DISABLED"]</span></b></a>"
+			dat += "<a href='byond://?src=[REF(src)];add_empty=contestant'>Add Empty Contestant</a>"
+			dat += "<a href='byond://?src=[REF(src)];add_empty=team'>Add Empty Team</a>"
+			dat += "Random Wounds are currently: <a href='byond://?src=[REF(src)];toggle_wounds=1'><b>[GLOB.global_roster.enable_random_wounds ? "<span class='green'>ENABLED" : "<span class='red'>DISABLED"]</span></b></a>"
 			dat += "-----------------------------------------"
-			dat += "<a href='?src=[REF(src)];change_page=match'>Go to Match</a>"
-			dat += "<a href='?src=[REF(src)];change_page=team'>Go to Teams</a>"
-			dat += "<a href='?src=[REF(src)];change_page=contestant'>Go to Contestant List</a>"
+			dat += "<a href='byond://?src=[REF(src)];change_page=match'>Go to Match</a>"
+			dat += "<a href='byond://?src=[REF(src)];change_page=team'>Go to Teams</a>"
+			dat += "<a href='byond://?src=[REF(src)];change_page=contestant'>Go to Contestant List</a>"
 
 			dat += "<br>-----------------------------------------"
-			dat += "\t<a href='?src=[REF(src)];set_freeze_all=on'>FREEZE EVERYONE</a> <a href='?src=[REF(src)];set_freeze_all=off'>UNFREEZE EVERYONE</a>"
-			dat += "\t<a href='?src=[REF(src)];set_godmode_all=on'>GODMODE EVERYONE</a> <a href='?src=[REF(src)];set_godmode_all=off'>UNGODMODE EVERYONE</a>"
+			dat += "\t<a href='byond://?src=[REF(src)];set_freeze_all=on'>FREEZE EVERYONE</a> <a href='byond://?src=[REF(src)];set_freeze_all=off'>UNFREEZE EVERYONE</a>"
+			dat += "\t<a href='byond://?src=[REF(src)];set_godmode_all=on'>GODMODE EVERYONE</a> <a href='byond://?src=[REF(src)];set_godmode_all=off'>UNGODMODE EVERYONE</a>"
 
 		if(ARENA_UI_MATCH)
 			dat += "<b>Match menu</b>"
 			dat += "-----------------------------------------"
-			dat += "<a href='?src=[REF(src)];change_page=arena'>Manage Arena</a>"
-			//dat += "<a href='?src=[REF(src)];setup_match=1'>Setup Next Match</a>"
+			dat += "<a href='byond://?src=[REF(src)];change_page=arena'>Manage Arena</a>"
+			//dat += "<a href='byond://?src=[REF(src)];setup_match=1'>Setup Next Match</a>"
 			dat += "-----------------------------------------"
-			dat += "<a href='?src=[REF(src)];change_page=team'>Go to Teams</a>"
-			dat += "<a href='?src=[REF(src)];setup_match=1'>Setup Next Match</a>"
+			dat += "<a href='byond://?src=[REF(src)];change_page=team'>Go to Teams</a>"
+			dat += "<a href='byond://?src=[REF(src)];setup_match=1'>Setup Next Match</a>"
 
 			var/datum/event_team/team1 = GLOB.global_roster.team1
 			var/datum/event_team/team2 = GLOB.global_roster.team2
@@ -496,49 +496,49 @@
 			dat += ""
 
 			if(team1)
-				dat += "\tTeam 1 ([team1.rostered_id]): <a href='?src=[REF(src)];remove_team_slot=1'>Remove [team1]</a> <a href='?src=[REF(src)];spawn_team=[REF(team1)]'>Spawn Team (RED)</a>"
-				dat += "\t\t<a href='?src=[REF(src)];set_freeze=[REF(team1)]'><b>[team1.frozen ? "Unfreeze" : "Freeze"]</span></b></a> <a href='?src=[REF(src)];set_godmode=[REF(team1)]'><b>[team1.godmode ? "Disable Godmode" : "Enable Godmode"]</span></b></a>"
+				dat += "\tTeam 1 ([team1.rostered_id]): <a href='byond://?src=[REF(src)];remove_team_slot=1'>Remove [team1]</a> <a href='byond://?src=[REF(src)];spawn_team=[REF(team1)]'>Spawn Team (RED)</a>"
+				dat += "\t\t<a href='byond://?src=[REF(src)];set_freeze=[REF(team1)]'><b>[team1.frozen ? "Unfreeze" : "Freeze"]</span></b></a> <a href='byond://?src=[REF(src)];set_godmode=[REF(team1)]'><b>[team1.godmode ? "Disable Godmode" : "Enable Godmode"]</span></b></a>"
 				var/i = 0
 				for(var/datum/contestant/iter_member in team1.members)
 					i++
 					var/mob/the_guy = iter_member.get_mob()
-					dat += "\t\tMember #[i]: [iter_member] ([the_guy]) <a href='?src=[REF(src)];unteam_member=[REF(iter_member)];unteam_team_target=[REF(team1)]'>Remove Member</a>"
+					dat += "\t\tMember #[i]: [iter_member] ([the_guy]) <a href='byond://?src=[REF(src)];unteam_member=[REF(iter_member)];unteam_team_target=[REF(team1)]'>Remove Member</a>"
 				dat += "<br>--------<br>"
 			else
-				dat += "<a href='?src=[REF(src)];select_team_slot=1'>Select Team 1</a>"
+				dat += "<a href='byond://?src=[REF(src)];select_team_slot=1'>Select Team 1</a>"
 
 			if(team2)
-				dat += "\tTeam 2 ([team2.rostered_id]): <a href='?src=[REF(src)];remove_team_slot=2'>Remove [team2] <a href='?src=[REF(src)];spawn_team=[REF(team2)]'>Spawn Team (GREEN)</a>"
-				dat += "\t\t<a href='?src=[REF(src)];set_freeze=[REF(team2)]'><b>[team2.frozen ? "Unfreeze" : "Freeze"]</span></b></a> <a href='?src=[REF(src)];set_godmode=[REF(team2)]'><b>[team2.godmode ? "Disable Godmode" : "Enable Godmode"]</span></b></a>"
+				dat += "\tTeam 2 ([team2.rostered_id]): <a href='byond://?src=[REF(src)];remove_team_slot=2'>Remove [team2] <a href='byond://?src=[REF(src)];spawn_team=[REF(team2)]'>Spawn Team (GREEN)</a>"
+				dat += "\t\t<a href='byond://?src=[REF(src)];set_freeze=[REF(team2)]'><b>[team2.frozen ? "Unfreeze" : "Freeze"]</span></b></a> <a href='byond://?src=[REF(src)];set_godmode=[REF(team2)]'><b>[team2.godmode ? "Disable Godmode" : "Enable Godmode"]</span></b></a>"
 				var/i = 0
 				for(var/datum/contestant/iter_member in team2.members)
 					i++
 					var/mob/the_guy = iter_member.get_mob()
-					dat += "\t\tMember #[i]: [iter_member] ([the_guy]) <a href='?src=[REF(src)];unteam_member=[REF(iter_member)];unteam_team_target=[REF(team2)]'>Remove Member</a>"
+					dat += "\t\tMember #[i]: [iter_member] ([the_guy]) <a href='byond://?src=[REF(src)];unteam_member=[REF(iter_member)];unteam_team_target=[REF(team2)]'>Remove Member</a>"
 				dat += "<br>--------<br>"
 			else
-				dat += "<a href='?src=[REF(src)];select_team_slot=2'>Select Team 2</a>"
+				dat += "<a href='byond://?src=[REF(src)];select_team_slot=2'>Select Team 2</a>"
 
 			if(GLOB.global_roster.three_team_round)
 				if(team3)
-					dat += "\tTeam 3 ([team3.rostered_id]): <a href='?src=[REF(src)];remove_team_slot=3'>Remove [team3] <a href='?src=[REF(src)];spawn_team=[REF(team3)]'>Spawn Team (BLUE)</a>"
-					dat += "\t\t<a href='?src=[REF(src)];set_freeze=[REF(team3)]'><b>[team3.frozen ? "Unfreeze" : "Freeze"]</span></b></a> <a href='?src=[REF(src)];set_godmode=[REF(team3)]'><b>[team3.godmode ? "Disable Godmode" : "Enable Godmode"]</span></b></a>"
+					dat += "\tTeam 3 ([team3.rostered_id]): <a href='byond://?src=[REF(src)];remove_team_slot=3'>Remove [team3] <a href='byond://?src=[REF(src)];spawn_team=[REF(team3)]'>Spawn Team (BLUE)</a>"
+					dat += "\t\t<a href='byond://?src=[REF(src)];set_freeze=[REF(team3)]'><b>[team3.frozen ? "Unfreeze" : "Freeze"]</span></b></a> <a href='byond://?src=[REF(src)];set_godmode=[REF(team3)]'><b>[team3.godmode ? "Disable Godmode" : "Enable Godmode"]</span></b></a>"
 					var/i = 0
 					for(var/datum/contestant/iter_member in team3.members)
 						i++
 						var/mob/the_guy = iter_member.get_mob()
-						dat += "\t\tMember #[i]: [iter_member] ([the_guy]) <a href='?src=[REF(src)];unteam_member=[REF(iter_member)];unteam_team_target=[REF(team3)]'>Remove Member</a>"
+						dat += "\t\tMember #[i]: [iter_member] ([the_guy]) <a href='byond://?src=[REF(src)];unteam_member=[REF(iter_member)];unteam_team_target=[REF(team3)]'>Remove Member</a>"
 					dat += "<br>--------<br>"
 				else
-					dat += "<a href='?src=[REF(src)];select_team_slot=3'>Select Team 3</a>"
+					dat += "<a href='byond://?src=[REF(src)];select_team_slot=3'>Select Team 3</a>"
 
 			if(istype(team1) || istype(team2) || istype(team3))
-				//dat += "<a href='?src=[REF(src)];set_freeze_all=on'><b>Freeze All</b></a><a href='?src=[REF(src)];set_freeze_all=off'><b>Unfreeze All</b></a>"
-				//dat += "<a href='?src=[REF(src)];set_godmode_all=on'><b>Godmode All</b></a><a href='?src=[REF(src)];set_godmode_all=off'><b>Ungodmode All</b></a>"
-				dat += "<a href='?src=[REF(src)];spawn_team=1'><b>Spawn Teams</b></a> <a href='?src=[REF(src)];despawn_all=1'><b>Unspawn Everyone</b></a>"
+				//dat += "<a href='byond://?src=[REF(src)];set_freeze_all=on'><b>Freeze All</b></a><a href='byond://?src=[REF(src)];set_freeze_all=off'><b>Unfreeze All</b></a>"
+				//dat += "<a href='byond://?src=[REF(src)];set_godmode_all=on'><b>Godmode All</b></a><a href='byond://?src=[REF(src)];set_godmode_all=off'><b>Ungodmode All</b></a>"
+				dat += "<a href='byond://?src=[REF(src)];spawn_team=1'><b>Spawn Teams</b></a> <a href='byond://?src=[REF(src)];despawn_all=1'><b>Unspawn Everyone</b></a>"
 
 			if(istype(team1) && istype(team2))
-				dat += "<br><a href='?src=[REF(src)];start_match=1'><b>Start Match</b></a> <a href='?src=[REF(src)];resolve_match=1'><b>Resolve Match</b></a>"
+				dat += "<br><a href='byond://?src=[REF(src)];start_match=1'><b>Start Match</b></a> <a href='byond://?src=[REF(src)];resolve_match=1'><b>Resolve Match</b></a>"
 
 			var/list/waiting_teams = list()
 			var/list/finished_teams = list()
@@ -556,39 +556,39 @@
 			if(length(waiting_teams))
 				dat += "<br><b>Waiting Teams: ([LAZYLEN(waiting_teams)])</b>"
 				for(var/datum/event_team/iter_team in waiting_teams)
-					dat += "\tTeam [iter_team.rostered_id]: <a href='?src=[REF(src)];change_page=team;[iter_team]'>[iter_team]</a>"
+					dat += "\tTeam [iter_team.rostered_id]: <a href='byond://?src=[REF(src)];change_page=team;[iter_team]'>[iter_team]</a>"
 
 			if(length(finished_teams))
 				dat += "<br><b>Proven Teams: ([LAZYLEN(finished_teams)])</b>"
 				for(var/datum/event_team/iter_team in finished_teams)
-					dat += "\tTeam [iter_team.rostered_id]: <a href='?src=[REF(src)];change_page=team;[iter_team]'>[iter_team]</a>"
+					dat += "\tTeam [iter_team.rostered_id]: <a href='byond://?src=[REF(src)];change_page=team;[iter_team]'>[iter_team]</a>"
 
 			if(length(marked_teams))
 				dat += "<br><b>Marked Teams: ([LAZYLEN(marked_teams)])</b>"
 				for(var/datum/event_team/iter_team in marked_teams)
-					dat += "\tTeam [iter_team.rostered_id]: <a href='?src=[REF(src)];change_page=team;[iter_team]'>[iter_team]</a> <a href='?src=[REF(src)];confirm_elim_team=[REF(iter_team)]'>Confirm Elimination</a> <a href='?src=[REF(src)];unmark_team=[REF(iter_team)]'>Unmark</a>"
+					dat += "\tTeam [iter_team.rostered_id]: <a href='byond://?src=[REF(src)];change_page=team;[iter_team]'>[iter_team]</a> <a href='byond://?src=[REF(src)];confirm_elim_team=[REF(iter_team)]'>Confirm Elimination</a> <a href='byond://?src=[REF(src)];unmark_team=[REF(iter_team)]'>Unmark</a>"
 
 		if(ARENA_UI_TEAMS)
 			dat += "<b>Team menu</b>"
 			dat += "-----------------------------------------"
 			if(LAZYLEN(GLOB.global_roster.active_teams))
-				dat += "<a href='?src=[REF(src)];clear_teams=1'>Clear existing teams</a><br>"
+				dat += "<a href='byond://?src=[REF(src)];clear_teams=1'>Clear existing teams</a><br>"
 
 			for(var/datum/event_team/iter_team in GLOB.global_roster.active_teams)
 				dat += "\tTeam [iter_team.rostered_id]:"
-				dat += "\t\t<a href='?src=[REF(src)];query_add_member=[REF(iter_team)]'>Add Member!</a>"
+				dat += "\t\t<a href='byond://?src=[REF(src)];query_add_member=[REF(iter_team)]'>Add Member!</a>"
 				var/i = 0
 				for(var/datum/contestant/iter_contestant in iter_team.members)
 					i++
 					var/mob/the_guy = iter_contestant.get_mob()
-					dat += "\t\tMember #[i]: [iter_contestant] ([the_guy]) <a href='?src=[REF(src)];unteam_member=[REF(iter_contestant)];unteam_team_target=[REF(iter_team)]'>Remove Member</a>"
+					dat += "\t\tMember #[i]: [iter_contestant] ([the_guy]) <a href='byond://?src=[REF(src)];unteam_member=[REF(iter_contestant)];unteam_team_target=[REF(iter_team)]'>Remove Member</a>"
 
 		if(ARENA_UI_INDIV)
 			dat += "<b>Contestant menu</b>"
 			dat += "-----------------------------------------"
-			dat += "<a href='?src=[REF(src)];load_roster=1'>Load Roster</a>"
-			dat += "<a href='?src=[REF(src)];add_specific_contestant=1'>Add Contestant</a>"
-			dat += "<a href='?src=[REF(src)];reset_roster=1'><b>Reset Roster</b></a>"
+			dat += "<a href='byond://?src=[REF(src)];load_roster=1'>Load Roster</a>"
+			dat += "<a href='byond://?src=[REF(src)];add_specific_contestant=1'>Add Contestant</a>"
+			dat += "<a href='byond://?src=[REF(src)];reset_roster=1'><b>Reset Roster</b></a>"
 
 			var/list/flagged_contestants = list()
 			var/list/still_in = null
@@ -602,40 +602,40 @@
 					continue
 
 				var/mob/the_guy = iter_contestant.get_mob()
-				dat += "\t[iter_contestant.ckey] ([the_guy]) [the_guy?.client ? "" : "(NO CLIENT) "] competed in [iter_contestant.rounds_participated] rounds <a href='?src=[REF(src)];eliminate_contestant=[REF(iter_contestant)]'>Eliminate</a> <a href='?src=[REF(src)];delete_contestant=[REF(iter_contestant)]'>Delete</a>"
+				dat += "\t[iter_contestant.ckey] ([the_guy]) [the_guy?.client ? "" : "(NO CLIENT) "] competed in [iter_contestant.rounds_participated] rounds <a href='byond://?src=[REF(src)];eliminate_contestant=[REF(iter_contestant)]'>Eliminate</a> <a href='byond://?src=[REF(src)];delete_contestant=[REF(iter_contestant)]'>Delete</a>"
 
 			if(length(flagged_contestants))
 				dat += "<br><b>Contestants Flagged for Elimination: ([LAZYLEN(flagged_contestants)])"
 				for(var/datum/contestant/flagged_contestant in flagged_contestants)
 					var/mob/the_guy = flagged_contestant.get_mob()
-					dat += "\t[flagged_contestant.ckey] ([the_guy]) [the_guy?.client ? "" : "(NO CLIENT) "]<a href='?src=[REF(src)];eliminate_contestant=[REF(flagged_contestant)]'>Confirm Elimination</a> <a href='?src=[REF(src)];unmark_contestant=[REF(flagged_contestant)]'>Unmark</a>"
+					dat += "\t[flagged_contestant.ckey] ([the_guy]) [the_guy?.client ? "" : "(NO CLIENT) "]<a href='byond://?src=[REF(src)];eliminate_contestant=[REF(flagged_contestant)]'>Confirm Elimination</a> <a href='byond://?src=[REF(src)];unmark_contestant=[REF(flagged_contestant)]'>Unmark</a>"
 
 			if(LAZYLEN(GLOB.global_roster.losers))
 				dat += "<br><b><span class='danger'>Eliminated Contestants</span></b>: ([LAZYLEN(GLOB.global_roster.losers)])"
 				for(var/datum/contestant/iter_loser in GLOB.global_roster.losers)
 					var/mob/the_guy = iter_loser.get_mob()
-					dat += "\t[iter_loser.ckey] ([the_guy]) (Eliminated) [the_guy?.client ? "" : "(NO CLIENT) "]<a href='?src=[REF(src)];delete_contestant=[REF(iter_loser)]'>Delete</a>"
+					dat += "\t[iter_loser.ckey] ([the_guy]) (Eliminated) [the_guy?.client ? "" : "(NO CLIENT) "]<a href='byond://?src=[REF(src)];delete_contestant=[REF(iter_loser)]'>Delete</a>"
 
 			if(LAZYLEN(GLOB.global_roster.ckeys_at_large))
 				dat += "<br><b><span class='danger'>Ckeys at Large</span></b>: ([LAZYLEN(GLOB.global_roster.ckeys_at_large)])"
 				for(var/iter_ckey in GLOB.global_roster.ckeys_at_large)
-					dat += "\t[iter_ckey] <a href='?src=[REF(src)];remove_ckey_at_large=[iter_ckey]'>Delete</a>"
+					dat += "\t[iter_ckey] <a href='byond://?src=[REF(src)];remove_ckey_at_large=[iter_ckey]'>Delete</a>"
 
 		if(ARENA_UI_ARENA)
 			dat += "<b>Arena menu</b>"
-			dat += "<a href='?src=[REF(src)];change_page=match'>\<Back to Match</a>"
+			dat += "<a href='byond://?src=[REF(src)];change_page=match'>\<Back to Match</a>"
 			dat += "-----------------------------------------"
 			dat += "Current arena: [current_arena_template]"
 			dat += "<h2>Arena List:</h2>"
 			for(var/A in arena_templates)
-				dat += "<a href='?src=[REF(src)];change_arena=[url_encode(A)]'>[A]</a><br>"
+				dat += "<a href='byond://?src=[REF(src)];change_arena=[url_encode(A)]'>[A]</a><br>"
 			dat += "<hr>"
-			dat += "<a href='?src=[REF(src)];upload=1'>Upload new arena</a><br>"
+			dat += "<a href='byond://?src=[REF(src)];upload=1'>Upload new arena</a><br>"
 			dat += "<hr>"
 			//Special actions
-			dat += "<a href='?src=[REF(src)];refind_spawns=1'>Refind Spawns.</a><br>"
-			dat += "<a href='?src=[REF(src)];special=reset'>Reset Arena.</a><br>"
-			dat += "<a href='?src=[REF(src)];special=randomarena'>Load random arena.</a><br>"
+			dat += "<a href='byond://?src=[REF(src)];refind_spawns=1'>Refind Spawns.</a><br>"
+			dat += "<a href='byond://?src=[REF(src)];special=reset'>Reset Arena.</a><br>"
+			dat += "<a href='byond://?src=[REF(src)];special=randomarena'>Load random arena.</a><br>"
 
 	var/datum/browser/popup = new(user, "arena controller", "Arena Controller", 500, 600)
 	popup.set_content(dat.Join("<br>"))
