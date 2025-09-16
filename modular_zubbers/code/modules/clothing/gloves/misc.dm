@@ -19,6 +19,7 @@
 	name = "cat gloves"
 	icon = 'icons/map_icons/clothing/_clothing.dmi'
 	icon_state = "/obj/item/clothing/gloves/cat"
+	post_init_icon_state = "catglove"
 	flags_1 = IS_PLAYER_COLORABLE_1
 	greyscale_colors =  "#ffffff#FFC0CB"
 	greyscale_config_worn = /datum/greyscale_config/catgloves/worn
