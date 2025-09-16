@@ -11,12 +11,6 @@
 	},
 /turf/open/floor/carpet/red,
 /area/centcom/tdome/arena)
-"bp" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/centcom/tdome/arena)
 "cb" = (
 /turf/open/floor/cult,
 /area/centcom/tdome/arena)
@@ -75,11 +69,9 @@
 /area/centcom/tdome/arena)
 "gV" = (
 /obj/structure/table/wood,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/item/megaphone,
 /obj/item/paper/courtcase,
+/obj/structure/window/reinforced/spawner/directional/east,
 /turf/open/floor/carpet/red,
 /area/centcom/tdome/arena)
 "hg" = (
@@ -152,6 +144,7 @@
 /obj/item/toy/plush/plasmamanplushie{
 	pixel_y = -7
 	},
+/obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/floor/wood,
 /area/centcom/tdome/arena)
 "kX" = (
@@ -188,10 +181,6 @@
 /area/centcom/tdome/arena)
 "ol" = (
 /obj/structure/table/wood,
-/obj/structure/window/reinforced{
-	dir = 1;
-	pixel_y = 3
-	},
 /obj/item/paper_bin{
 	pixel_x = -5;
 	pixel_y = 3
@@ -200,6 +189,9 @@
 	pixel_x = 5;
 	pixel_y = -3
 	},
+/obj/structure/window/reinforced/spawner/directional/north{
+	pixel_y = 3
+	},
 /turf/open/floor/carpet/blue,
 /area/centcom/tdome/arena)
 "ov" = (
@@ -207,9 +199,8 @@
 	dir = 8
 	},
 /obj/item/toy/plush/beeplushie,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
+/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/floor/wood,
 /area/centcom/tdome/arena)
 "po" = (
@@ -281,7 +272,8 @@
 	dir = 8
 	},
 /obj/item/toy/plush/lizard_plushie/space,
-/obj/structure/window/reinforced,
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/floor/wood,
 /area/centcom/tdome/arena)
 "tU" = (
@@ -294,11 +286,9 @@
 /area/centcom/tdome/arena)
 "uy" = (
 /obj/structure/table/wood,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/item/flashlight/lamp/green,
 /obj/item/paper/courtcase,
+/obj/structure/window/reinforced/spawner/directional/east,
 /turf/open/floor/carpet/red,
 /area/centcom/tdome/arena)
 "uL" = (
@@ -315,11 +305,9 @@
 /area/centcom/tdome/arena)
 "vJ" = (
 /obj/structure/table/wood,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/item/folder/red,
 /obj/item/paper/courtcase,
+/obj/structure/window/reinforced/spawner/directional/east,
 /turf/open/floor/carpet/red,
 /area/centcom/tdome/arena)
 "vP" = (
@@ -350,19 +338,12 @@
 	dir = 8
 	},
 /obj/item/toy/plush/ratplush,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
+/obj/structure/window/reinforced/spawner/directional/north,
 /turf/open/floor/wood,
 /area/centcom/tdome/arena)
 "zg" = (
-/obj/machinery/door/window{
-	base_state = "rightsecure";
-	dir = 2;
-	icon_state = "rightsecure";
-	name = "Jury"
-	},
 /obj/item/paper/courtcase,
+/obj/structure/window/reinforced/spawner/directional/south,
 /turf/open/floor/wood,
 /area/centcom/tdome/arena)
 "zn" = (
@@ -401,9 +382,6 @@
 /area/centcom/tdome/arena)
 "CG" = (
 /obj/structure/table/wood,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/item/folder/blue{
 	pixel_y = 6
 	},
@@ -411,15 +389,14 @@
 	pixel_x = -3
 	},
 /obj/item/paper/courtcase,
+/obj/structure/window/reinforced/spawner/directional/east,
 /turf/open/floor/carpet/blue,
 /area/centcom/tdome/arena)
 "CX" = (
 /obj/structure/table/wood,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/item/megaphone,
 /obj/item/paper/courtcase,
+/obj/structure/window/reinforced/spawner/directional/east,
 /turf/open/floor/carpet/blue,
 /area/centcom/tdome/arena)
 "Du" = (
@@ -451,11 +428,6 @@
 "HA" = (
 /obj/effect/decal/cleanable/blood/gibs/torso,
 /turf/open/floor/cult,
-/area/centcom/tdome/arena)
-"HI" = (
-/obj/machinery/door/airlock/centcom,
-/obj/machinery/door/airlock/centcom,
-/turf/open/floor/carpet,
 /area/centcom/tdome/arena)
 "Jq" = (
 /obj/structure/chair/wood{
@@ -494,15 +466,12 @@
 /area/centcom/tdome/arena)
 "Nn" = (
 /obj/structure/table/wood,
-/obj/structure/window/reinforced{
-	dir = 1;
-	pixel_y = 3
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/item/flashlight/lamp/green,
 /obj/item/paper/courtcase,
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/window/reinforced/spawner/directional/north{
+	pixel_y = 3
+	},
 /turf/open/floor/carpet/blue,
 /area/centcom/tdome/arena)
 "Ns" = (
@@ -515,7 +484,7 @@
 	dir = 8
 	},
 /obj/item/toy/plush/narplush,
-/obj/structure/window/reinforced,
+/obj/structure/window/reinforced/spawner/directional/south,
 /turf/open/floor/wood,
 /area/centcom/tdome/arena)
 "NV" = (
@@ -529,18 +498,14 @@
 /turf/open/floor/carpet/purple,
 /area/centcom/tdome/arena)
 "Pa" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
 /obj/item/paper/courtcase,
+/obj/structure/window/reinforced/spawner/directional/north,
 /turf/open/floor/wood,
 /area/centcom/tdome/arena)
 "QL" = (
 /obj/structure/table/wood,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/item/paper/courtcase,
+/obj/structure/window/reinforced/spawner/directional/east,
 /turf/open/floor/carpet/red,
 /area/centcom/tdome/arena)
 "QP" = (
@@ -590,10 +555,8 @@
 /area/centcom/tdome/arena)
 "TH" = (
 /obj/structure/table/wood,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/item/paper/courtcase,
+/obj/structure/window/reinforced/spawner/directional/east,
 /turf/open/floor/carpet/blue,
 /area/centcom/tdome/arena)
 "Uc" = (
@@ -603,6 +566,7 @@
 /obj/item/toy/plush/nukeplushie{
 	pixel_y = 5
 	},
+/obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/floor/wood,
 /area/centcom/tdome/arena)
 "Ve" = (
@@ -2283,7 +2247,7 @@ df
 df
 df
 df
-HI
+QR
 QR
 df
 df
@@ -3067,10 +3031,10 @@ Du
 Te
 Ry
 Ve
-bp
-bp
-bp
-bp
+Ve
+Ve
+Ve
+Ve
 Ve
 Ve
 kX
