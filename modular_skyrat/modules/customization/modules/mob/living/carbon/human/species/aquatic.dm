@@ -1,3 +1,5 @@
+// BUBBER EDIT ADDITION: Gives the species the Akula wetness mechanic and a species description
+
 /// How long the aquatic will stay wet for, AKA how long until they get a mood debuff
 #define DRY_UP_TIME 10 MINUTES
 /// How many wetstacks an aquatic will get upon creation
