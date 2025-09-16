@@ -9,6 +9,11 @@
 /datum/species/aquatic
 
 	inherent_traits = list(
+		TRAIT_ADVANCEDTOOLUSER,
+		TRAIT_CAN_STRIP,
+		TRAIT_LITERATE,
+		TRAIT_WATER_BREATHING,
+		TRAIT_MUTANT_COLORS,
 		TRAIT_SLICK_SKIN,
 	)
 
