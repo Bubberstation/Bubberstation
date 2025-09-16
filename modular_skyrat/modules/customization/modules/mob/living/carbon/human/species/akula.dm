@@ -1,5 +1,5 @@
 /// How long the akula will stay wet for, AKA how long until they get a mood debuff
-#define DRY_UP_TIME 15 MINUTES
+#define DRY_UP_TIME 10 MINUTES
 /// How many wetstacks an Akula will get upon creation
 #define WETSTACK_INITIAL 5
 /// How many wetstacks an Akula needs to activate the TRAIT_SLIPPERY trait
