@@ -44,7 +44,7 @@
 		return
 
 	if(flagged_on_death)
-		RegisterSignal(our_boy, COMSIG_LIVING_DEATH, PROC_REF(our_boy, on_flagged_death))
+		RegisterSignal(our_boy, COMSIG_LIVING_DEATH, PROC_REF(on_flagged_death))
 	else
 		UnregisterSignal(our_boy, COMSIG_LIVING_DEATH)
 

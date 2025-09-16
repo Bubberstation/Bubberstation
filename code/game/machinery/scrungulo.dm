@@ -30,7 +30,7 @@
 /obj/effect/accelerated_particle/New(loc)
 	..()
 
-	addtimer(CALLBACK(src, PROC_REF(src, move)), 1)
+	addtimer(CALLBACK(src, PROC_REF(move)), 1)
 
 
 /obj/effect/accelerated_particle/Bump(atom/A)
@@ -790,7 +790,7 @@ GLOBAL_LIST_EMPTY(feud_buttons)
 		add_overlay("wrong[strike_counter]")
 		if(strike_counter == 3)
 			strike_counter = 0
-	addtimer(CALLBACK(src, PROC_REF(src, reset)), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(reset)), 1 SECONDS)
 	COOLDOWN_START(source, button_cd, 1.5 SECONDS)
 
 /obj/structure/feudsign/proc/reset()

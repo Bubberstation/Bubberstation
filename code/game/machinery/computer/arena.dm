@@ -81,7 +81,7 @@
 	var/list/default_arenas = flist(arena_dir)
 	for(var/arena_file in default_arenas)
 		var/simple_name = replacetext(replacetext(arena_file,arena_dir,""),".dmm","")
-		INVOKE_ASYNC(src, PROC_REF(src, add_new_arena_template), null, arena_dir + arena_file, simple_name)
+		INVOKE_ASYNC(src, PROC_REF(add_new_arena_template), null, arena_dir + arena_file, simple_name)
 
 /obj/machinery/computer/arena/proc/get_landmark_turf(landmark_tag)
 	for(var/obj/effect/landmark/arena/L in GLOB.landmarks_list)
@@ -259,9 +259,9 @@
 		if(D.id != arena_id)
 			continue
 		if(closed)
-			INVOKE_ASYNC(D, PROC_REF(D, close))
+			INVOKE_ASYNC(D, PROC_REF(close))
 		else
-			INVOKE_ASYNC(D, PROC_REF(D, open))
+			INVOKE_ASYNC(D, PROC_REF(open))
 
 /obj/machinery/computer/arena/Topic(href, href_list)
 	if(..())
