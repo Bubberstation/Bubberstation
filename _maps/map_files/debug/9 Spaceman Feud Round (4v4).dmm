@@ -160,7 +160,7 @@
 	},
 /obj/effect/turf_decal/siding/thinplating,
 /obj/structure/railing/corner,
-/obj/structure/window/reinforced,
+/obj/structure/window/reinforced/spawner/directional/south,
 /turf/open/floor/iron/dark,
 /area/centcom/tdome/arena)
 "fS" = (
@@ -225,7 +225,7 @@
 	},
 /obj/effect/turf_decal/siding/thinplating,
 /obj/structure/railing,
-/obj/structure/window/reinforced,
+/obj/structure/window/reinforced/spawner/directional/south,
 /turf/open/floor/iron/dark,
 /area/centcom/tdome/arena)
 "hk" = (
@@ -307,8 +307,12 @@
 /turf/open/floor/iron/dark,
 /area/centcom/tdome/arena)
 "kB" = (
-/obj/machinery/vending/boozeomat/cafe,
-/turf/closed/indestructible/hotelwall,
+/obj/structure/table/abductor,
+/obj/machinery/vending/boozeomat/cafe{
+	pixel_x = 0;
+	pixel_y = -32
+	},
+/turf/open/floor/iron/dark,
 /area/centcom/tdome/arena)
 "kC" = (
 /obj/effect/turf_decal/siding/thinplating,
@@ -319,7 +323,7 @@
 	dir = 10
 	},
 /obj/structure/railing,
-/obj/structure/window/reinforced,
+/obj/structure/window/reinforced/spawner/directional/south,
 /turf/open/floor/iron/dark/side{
 	dir = 10
 	},
@@ -809,7 +813,7 @@
 /obj/structure/railing/corner{
 	dir = 8
 	},
-/obj/structure/window/reinforced,
+/obj/structure/window/reinforced/spawner/directional/south,
 /turf/open/floor/iron/dark,
 /area/centcom/tdome/arena)
 "Ef" = (
@@ -902,7 +906,7 @@
 /obj/effect/turf_decal/trimline/red/filled/line,
 /obj/effect/turf_decal/trimline/blue/line,
 /obj/structure/railing,
-/obj/structure/window/reinforced,
+/obj/structure/window/reinforced/spawner/directional/south,
 /turf/open/floor/iron/dark/side,
 /area/centcom/tdome/arena)
 "Hi" = (
@@ -1106,7 +1110,7 @@
 /obj/structure/railing/corner{
 	dir = 8
 	},
-/obj/structure/window/reinforced,
+/obj/structure/window/reinforced/spawner/directional/south,
 /turf/open/floor/iron/dark,
 /area/centcom/tdome/arena)
 "NX" = (
@@ -1177,7 +1181,7 @@
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/siding/thinplating,
 /obj/structure/railing/corner,
-/obj/structure/window/reinforced,
+/obj/structure/window/reinforced/spawner/directional/south,
 /turf/open/floor/iron/dark,
 /area/centcom/tdome/arena)
 "PF" = (
@@ -1213,7 +1217,7 @@
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/siding/thinplating,
 /obj/structure/railing,
-/obj/structure/window/reinforced,
+/obj/structure/window/reinforced/spawner/directional/south,
 /turf/open/floor/iron/dark,
 /area/centcom/tdome/arena)
 "Qh" = (
@@ -1316,10 +1320,8 @@
 /obj/structure/railing{
 	dir = 6
 	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced,
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/structure/window/reinforced/spawner/directional/east,
 /turf/open/floor/iron/dark,
 /area/centcom/tdome/arena)
 "SK" = (
@@ -1413,7 +1415,7 @@
 	dir = 8
 	},
 /obj/structure/railing,
-/obj/structure/window/reinforced,
+/obj/structure/window/reinforced/spawner/directional/south,
 /turf/open/floor/iron/dark/side,
 /area/centcom/tdome/arena)
 "Uu" = (
@@ -1466,7 +1468,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/effect/turf_decal/trimline/red/line,
 /obj/structure/railing,
-/obj/structure/window/reinforced,
+/obj/structure/window/reinforced/spawner/directional/south,
 /turf/open/floor/iron/dark/side,
 /area/centcom/tdome/arena)
 "Xh" = (
@@ -1493,7 +1495,7 @@
 	dir = 6
 	},
 /obj/structure/railing,
-/obj/structure/window/reinforced,
+/obj/structure/window/reinforced/spawner/directional/south,
 /turf/open/floor/iron/dark/side{
 	dir = 6
 	},
@@ -1532,10 +1534,8 @@
 /obj/structure/railing{
 	dir = 10
 	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced,
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/floor/iron/dark,
 /area/centcom/tdome/arena)
 
@@ -3699,8 +3699,8 @@ UU
 QT
 UU
 Sd
-qV
 kB
+SO
 UK
 UK
 UK
