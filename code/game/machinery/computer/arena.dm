@@ -420,7 +420,6 @@
 				find_spawns()
 			if("No, include all found spawns.")
 				find_spawns(TRUE)
-			else
 
 	if(href_list["change_arena"])
 		load_arena(href_list["change_arena"],user)
