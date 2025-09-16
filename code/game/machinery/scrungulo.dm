@@ -26,12 +26,10 @@
 	movement_range = 20
 	energy = 50
 
-
 /obj/effect/accelerated_particle/New(loc)
 	..()
 
 	addtimer(CALLBACK(src, PROC_REF(move)), 1)
-
 
 /obj/effect/accelerated_particle/Bump(atom/A)
 	if(A)
@@ -43,7 +41,7 @@
 			S.energy += energy
 		else if(istype(A, /obj/structure/blob))
 			var/obj/structure/blob/B = A
-			B.take_damage(energy*0.6)
+			B.take_damage(energy * 0.6)
 			movement_range = 0
 
 /obj/effect/accelerated_particle/ex_act(severity, target)
@@ -241,24 +239,24 @@
 	setDir(F.dir)
 	connected_parts.Cut()
 
-	T = get_step(T,rdir)
+	T = get_step(T, rdir)
 	if(!check_part(T, /obj/structure/particle_accelerator/fuel_chamber))
 		return FALSE
-	T = get_step(T,odir)
+	T = get_step(T, odir)
 	if(!check_part(T, /obj/structure/particle_accelerator/end_cap))
 		return FALSE
-	T = get_step(T,dir)
-	T = get_step(T,dir)
+	T = get_step(T, dir)
+	T = get_step(T, dir)
 	if(!check_part(T, /obj/structure/particle_accelerator/power_box))
 		return FALSE
-	T = get_step(T,dir)
+	T = get_step(T, dir)
 	if(!check_part(T, /obj/structure/particle_accelerator/particle_emitter/center))
 		return FALSE
-	T = get_step(T,ldir)
+	T = get_step(T, ldir)
 	if(!check_part(T, /obj/structure/particle_accelerator/particle_emitter/left))
 		return FALSE
-	T = get_step(T,rdir)
-	T = get_step(T,rdir)
+	T = get_step(T, rdir)
+	T = get_step(T, rdir)
 	if(!check_part(T, /obj/structure/particle_accelerator/particle_emitter/right))
 		return FALSE
 
@@ -427,7 +425,6 @@
 
 	update_icon()
 
-
 /*Composed of 7 parts :
 	3 Particle Emitters
 	1 Power Box
@@ -546,7 +543,6 @@
 	if(master && master.active)
 		master.toggle_power()
 
-
 /obj/structure/particle_accelerator/update_icon_state()
 	. = ..()
 	switch(construction_state)
@@ -573,7 +569,6 @@
 ///////////
 // PARTS //
 ///////////
-
 
 /obj/structure/particle_accelerator/end_cap
 	name = "Alpha Particle Generation Array"
