@@ -237,6 +237,7 @@
 		update_suit_sensors()
 		if(!QDELETED(src))
 			update_worn_undersuit()
+			update_body()
 		if(invdrop)
 			if(r_store && !can_equip(r_store, ITEM_SLOT_RPOCKET, TRUE, ignore_equipped = TRUE))
 				dropItemToGround(r_store, TRUE) //Again, makes sense for pockets to drop.
