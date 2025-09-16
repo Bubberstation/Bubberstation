@@ -82,7 +82,7 @@
 	)
 
 /datum/design/borg_obedience
-	name = "Cyborg obedience module"
+	name = "Cyborg Obedience Module"
 	id = "obediencemodule"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/obediencemodule

@@ -120,7 +120,6 @@
 	model_flags = BORG_MODEL_MINER
 	items_to_add = list(/obj/item/pinpointer/vent)
 
-
 /// "Good Borg" Obedience Training
 /mob/living/silicon/robot
 	var/hasToys = FALSE
@@ -138,7 +137,6 @@
 						/obj/item/tickle_feather,
 						/obj/item/clothing/erp_leash,
 						)
-
 
 // WellTrained Obedience Behaviour
 /obj/item/borg/upgrade/obediencemodule/action(mob/living/silicon/robot/borg, mob/living/user)

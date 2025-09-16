@@ -114,7 +114,6 @@
 
 		. = TRUE
 
-
 	if(.)
 		TIMER_COOLDOWN_START(quirk_holder, DOMINANT_COOLDOWN_SNAP, 10 SECONDS) // 1/10th of a second knockdown with a 10 seconds cooldown on a neutral quirk.
 
