@@ -1,4 +1,6 @@
-#define EVENTMODE ///Special compiler flag that turns on the event mode
+/// Special compiler flag that turns on the event mode
+#define EVENTMODE
+
 /*
 List of things this does
 1) all tiles have planetary atmos of a breathable human mix
