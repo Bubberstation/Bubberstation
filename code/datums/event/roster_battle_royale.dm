@@ -53,8 +53,8 @@
 		if(iter_contestant.spawn_this_contestant(iter_spawn))
 			iter_contestant.set_flag_on_death(TRUE)
 			var/mob/the_guy = iter_contestant.get_mob()
-			RegisterSignal(the_guy, COMSIG_MOB_STATCHANGE, .proc/check_br_elimination_stat)
-			RegisterSignal(the_guy, list(COMSIG_LIVING_DEATH, COMSIG_QDELETING), .proc/check_br_elimination_dead)
+			RegisterSignal(the_guy, COMSIG_MOB_STATCHANGE, PROC_REF(the_guy, check_br_elimination_stat))
+			RegisterSignal(the_guy, list(COMSIG_LIVING_DEATH, COMSIG_QDELETING), PROC_REF(the_guy, check_br_elimination_dead))
 			successes++
 
 	message_admins("[key_name_admin(user)] has spawned [successes] out of [LAZYLEN(active_contestants)] contestants successfully!")
