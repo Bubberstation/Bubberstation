@@ -35,9 +35,7 @@
 
 /obj/effect/accelerated_particle/Bump(atom/A)
 	if(A)
-		if(isliving(A))
-			toxmob(A)
-		else if(istype(A, /obj/machinery/the_singularitygen))
+		if(istype(A, /obj/machinery/the_singularitygen))
 			var/obj/machinery/the_singularitygen/S = A
 			S.energy += energy
 		else if(istype(A, /obj/singularity))
@@ -48,20 +46,11 @@
 			B.take_damage(energy*0.6)
 			movement_range = 0
 
-/obj/effect/accelerated_particle/Cross(atom/A)
-	. = ..()
-	if(isliving(A))
-		toxmob(A)
-
-
 /obj/effect/accelerated_particle/ex_act(severity, target)
 	qdel(src)
 
 /obj/effect/accelerated_particle/singularity_pull()
 	return
-
-/obj/effect/accelerated_particle/proc/toxmob(mob/living/M)
-	M.rad_act(energy*6)
 
 /obj/effect/accelerated_particle/proc/move()
 	if(!step(src,dir))
@@ -208,7 +197,6 @@
 
 		message_admins("PA Control Computer increased to [strength] by [ADMIN_LOOKUPFLW(usr)] in [ADMIN_VERBOSEJMP(src)]")
 		log_game("PA Control Computer increased to [strength] by [key_name(usr)] in [AREACOORD(src)]")
-		investigate_log("increased to <font color='red'>[strength]</font> by [key_name(usr)] at [AREACOORD(src)]", INVESTIGATE_SINGULO)
 
 /obj/machinery/particle_accelerator/control_box/proc/remove_strength(s)
 	if(assembled && (strength > 0))
@@ -217,7 +205,6 @@
 
 		message_admins("PA Control Computer decreased to [strength] by [ADMIN_LOOKUPFLW(usr)] in [ADMIN_VERBOSEJMP(src)]")
 		log_game("PA Control Computer decreased to [strength] by [key_name(usr)] in [AREACOORD(src)]")
-		investigate_log("decreased to <font color='green'>[strength]</font> by [key_name(usr)] at [AREACOORD(src)]", INVESTIGATE_SINGULO)
 
 /obj/machinery/particle_accelerator/control_box/power_change()
 	. = ..()
@@ -231,7 +218,6 @@
 	if(active)
 		//a part is missing!
 		if(connected_parts.len < 6)
-			investigate_log("lost a connected part; It <font color='red'>powered down</font>.", INVESTIGATE_SINGULO)
 			toggle_power()
 			update_icon()
 			return
@@ -290,7 +276,6 @@
 
 /obj/machinery/particle_accelerator/control_box/proc/toggle_power()
 	active = !active
-	investigate_log("turned [active?"<font color='green'>ON</font>":"<font color='red'>OFF</font>"] by [usr ? key_name(usr) : "outside forces"] at [AREACOORD(src)]", INVESTIGATE_SINGULO)
 	message_admins("PA Control Computer turned [active ?"ON":"OFF"] by [usr ? ADMIN_LOOKUPFLW(usr) : "outside forces"] in [ADMIN_VERBOSEJMP(src)]")
 	log_game("PA Control Computer turned [active ?"ON":"OFF"] by [usr ? "[key_name(usr)]" : "outside forces"] at [AREACOORD(src)]")
 	if(active)
@@ -463,13 +448,17 @@
 	anchored = FALSE
 	density = TRUE
 	max_integrity = 500
-	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 80)
 
 	var/obj/machinery/particle_accelerator/control_box/master = null
 	var/construction_state = PA_CONSTRUCTION_UNSECURED
 	var/reference = null
 	var/powered = 0
 	var/strength = null
+
+/obj/structure/particle_accelerator/Initialize(mapload)
+	. = ..()
+
+	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 80)
 
 /obj/structure/particle_accelerator/examine(mob/user)
 	. = ..()
@@ -491,8 +480,7 @@
 	return ..()
 
 /obj/structure/particle_accelerator/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS )
+	AddComponent(/datum/component/simple_rotation)
 
 
 /obj/structure/particle_accelerator/set_anchored(anchorvalue)
@@ -556,17 +544,10 @@
 
 	return ..()
 
-
-/obj/structure/particle_accelerator/deconstruct(disassembled = TRUE)
-	if(!(flags_1 & NODECONSTRUCT_1))
-		new /obj/item/stack/sheet/iron (loc, 5)
-	qdel(src)
-
 /obj/structure/particle_accelerator/Move()
 	. = ..()
 	if(master && master.active)
 		master.toggle_power()
-		investigate_log("was moved whilst active; it <font color='red'>powered down</font>.", INVESTIGATE_SINGULO)
 
 
 /obj/structure/particle_accelerator/update_icon_state()
@@ -647,7 +628,7 @@
 		if(WIRE_LIMIT)
 			C.visible_message("<span class='notice'>[icon2html(C, viewers(holder))]<b>[C]</b> makes a large whirring noise.</span>")
 
-/datum/wires/particle_accelerator/control_box/on_cut(wire, mend)
+/datum/wires/particle_accelerator/control_box/on_cut(wire, mend, source = source)
 	var/obj/machinery/particle_accelerator/control_box/C = holder
 	switch(wire)
 		if(WIRE_POWER)

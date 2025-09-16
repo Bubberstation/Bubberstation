@@ -11,7 +11,6 @@
 	var/flagged_on_death = FALSE
 	var/frozen = FALSE
 	var/godmode = FALSE
-	var/datum/atom_hud/antag/our_team_hud
 
 /datum/contestant/New(new_ckey)
 	ckey = new_ckey
@@ -97,8 +96,7 @@
 	var/mob/living/carbon/human/M = new/mob/living/carbon/human(get_turf(spawnpoint))
 
 	if(oldbody?.client && istype(oldbody.client.prefs))
-		oldbody.client.prefs.CopyTo(M)
-
+		oldbody?.client?.prefs?.apply_prefs_to(M, TRUE)
 	if(!(M.dna?.species in list(/datum/species/human, /datum/species/moth, /datum/species/lizard, /datum/species/human/felinid)))
 		M.set_species(/datum/species/human)
 
@@ -136,28 +134,6 @@
 
 	if(!our_boy.mind)
 		our_boy.mind_initialize()
-
-	update_antag_hud()
-
-/datum/contestant/proc/update_antag_hud()
-	var/datum/roster/the_roster = GLOB.global_roster
-	var/team_slot = the_roster.get_team_slot(current_team)
-	var/mob/living/our_boy = get_mob()
-	if(!istype(our_boy))
-		return
-
-	if(!team_slot)
-		our_team_hud?.remove_from_hud(our_boy)
-		return
-
-	var/datum/atom_hud/antag/new_team_hud = the_roster.get_team_antag_hud(current_team)
-	if(our_team_hud && our_team_hud != new_team_hud)
-		our_team_hud.leave_hud(our_boy)
-	our_team_hud = new_team_hud
-	if(!our_team_hud)
-		return
-	our_team_hud.join_hud(our_boy)
-	set_antag_hud(our_boy,"arena",the_roster.team_hud_index[team_slot])
 
 /datum/contestant/proc/despawn()
 	LAZYREMOVE(GLOB.global_roster.live_contestants, src)

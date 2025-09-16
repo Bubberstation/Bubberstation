@@ -1,5 +1,9 @@
 /obj/effect/spawner/lootdrop/lootcrate
 	name = "lootcrate spawner"
+
+/obj/effect/spawner/lootdrop/lootcrate/can_spawn(atom/loot)
+	. = ..()
+
 	loot = list(
 			/obj/structure/closet/crate/loot/basic = 15,
 			/obj/structure/closet/crate/loot/rare = 5,
@@ -7,6 +11,10 @@
 		)
 /obj/effect/spawner/lootdrop/lootcrate/rare
 	name = "rare lootcrate spawner"
+
+/obj/effect/spawner/lootdrop/lootcrate/rare/can_spawn(atom/loot)
+	. = ..()
+
 	loot = list(
 			/obj/structure/closet/crate/loot/rare = 5,
 			/obj/structure/closet/crate/loot/legendary = 2,

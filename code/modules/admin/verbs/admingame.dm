@@ -392,20 +392,6 @@ ADMIN_VERB(combo_hud, R_ADMIN, "Toggle Combo HUD", "Toggles the Admin Combo HUD.
 	mob.lighting_cutoff = mob.default_lighting_cutoff()
 	mob.update_sight()
 
-#ifdef EVENTMODE
-/client/verb/toggle_team_huds() //shameless copy from admin verbs
-	set name = "Toggle Team/Antag HUD"
-	set desc = "Toggles whether you see Arena Team and Antagonist HUDs"
-	set category = "Preferences"
-
-	var/adding_hud = !has_antag_hud()
-
-	for(var/datum/atom_hud/antag/H in GLOB.huds)
-		adding_hud ? H.add_hud_to(usr) : H.remove_hud_from(usr)
-
-	to_chat(usr, "Team HUDs [adding_hud ? "enabled" : "disabled"].")
-#endif
-
 ADMIN_VERB(show_traitor_panel, R_ADMIN, "Show Traitor Panel", "Edit mobs's memory and role", ADMIN_CATEGORY_GAME, mob/target_mob)
 	var/datum/mind/target_mind = target_mob.mind
 	if(!target_mind)

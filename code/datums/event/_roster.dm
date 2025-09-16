@@ -68,12 +68,6 @@ GLOBAL_DATUM_INIT(global_roster, /datum/roster, new)
 	/// Team hud index in GLOB.huds indexed by team id
 	var/static/list/team_hud_index = list()
 
-/datum/roster/New()
-	RegisterSignal(SSdcs, COMSIG_GLOB_PLAYER_ENTER, .proc/check_new_player)
-	// add a signal for new playters joining or observing or whatever and make it call check_connection with their client
-	generate_antag_huds()
-	return
-
 /// Hooked to players observing, checks to see if we've expecting their ckey so we can turn them into a contestant
 /datum/roster/proc/check_new_player(datum/source, mob/dead/new_player/joining_player)
 	SIGNAL_HANDLER
@@ -416,7 +410,8 @@ GLOBAL_DATUM_INIT(global_roster, /datum/roster, new)
 	var/clientless_deleted = 0
 	//maybe dump the info in an easily undoable way in case someone fucks up
 	for(var/datum/contestant/iter_contestant in active_contestants) // all or active?
-		if(!iter_contestant.get_mob().mind)
+		var/mob/mob_ref = iter_contestant.get_mob()
+		if(!istype(mob_ref) || !mob_ref.mind)
 			clientless_deleted++
 			delete_contestant(user, iter_contestant)
 			// remove ckeys from contestant_ckeys?
@@ -507,7 +502,7 @@ GLOBAL_DATUM_INIT(global_roster, /datum/roster, new)
 	)
 
 	message_admins("[key_name(user)] is setting up next match...")
-	var/list/prefreturn = presentpreflikepicker(user,"Setup Next Match", "Setup Next Match", Button1="Ok", width = 600, StealFocus = 1,Timeout = 0, settings=settings)
+	var/list/prefreturn = present_pref_like_picker(user, "Setup Next Match", "Setup Next Match", steal_focus = TRUE, timeout = 0, settings = settings, width = 600)
 
 
 	if (isnull(prefreturn))
@@ -638,28 +633,6 @@ GLOBAL_DATUM_INIT(global_roster, /datum/roster, new)
 	message_admins("[key_name_admin(user)] has dusted and despawned everyone ([deletes] contestants)!")
 	log_game("[key_name_admin(user)] has dusted and despawned everyone ([deletes] contestants)!")
 
-/datum/roster/proc/generate_antag_huds()
-	for(var/team in teams)
-		testing("Generating antag hud for team [team]")
-		var/datum/atom_hud/antag/teamhud = team_huds[team]
-		if(!teamhud) //These will be shared between arenas because this stuff is expensive and cross arena fighting is not a thing anyway
-			teamhud = new
-			teamhud.icon_color = team_colors[team]
-			GLOB.huds += teamhud
-			team_huds[team] = teamhud
-			team_hud_index[team] = length(GLOB.huds)
-
-/datum/roster/proc/get_team_antag_hud(datum/event_team/check_team)
-	if(!check_team)
-		return
-
-	if(check_team == team1)
-		return team_huds[ARENA_RED_TEAM]
-	else if(check_team == team2)
-		return team_huds[ARENA_GREEN_TEAM]
-	else if(check_team == team3)
-		return team_huds[ARENA_BLUE_TEAM]
-
 /datum/roster/proc/get_team_slot(datum/event_team/check_team)
 	if(!check_team)
 		return
@@ -670,34 +643,6 @@ GLOBAL_DATUM_INIT(global_roster, /datum/roster, new)
 		return ARENA_GREEN_TEAM
 	else if(check_team == team3)
 		return ARENA_BLUE_TEAM
-
-/datum/roster/proc/add_contestant_to_antag_hud(datum/event_team/check_team)
-	if(!check_team)
-		return
-
-	if(check_team == team1)
-		return team_huds[ARENA_RED_TEAM]
-	else if(check_team == team2)
-		return team_huds[ARENA_GREEN_TEAM]
-	else if(check_team == team3)
-		return team_huds[ARENA_BLUE_TEAM]
-
-/*
-/obj/machinery/computer/arena/proc/spawn_member(obj/machinery/arena_spawn/spawnpoint,ckey,team)
-	var/mob/oldbody = get_mob_by_key(ckey)
-	if(!isobserver(oldbody))
-		return
-	var/mob/living/carbon/human/M = new/mob/living/carbon/human(get_turf(spawnpoint))
-	oldbody.client.prefs.copy_to(M)
-	M.set_species(/datum/species/human) // Could use setting per team
-	M.equipOutfit(outfits[team] ? outfits[team] : default_outfit)
-	M.faction += team //In case anyone wants to add team based stuff to arena special effects
-	M.key = ckey
-
-	var/datum/atom_hud/antag/team_hud = team_huds[team]
-	team_hud.join_hud(M)
-	set_antag_hud(M,"arena",team_hud_index[team])
-	*/
 
 /// For forcing everyone to freeze, including future spawning contestants. Or for unfreezing them all
 /datum/roster/proc/set_frozen_all(mob/user, str_toggle)

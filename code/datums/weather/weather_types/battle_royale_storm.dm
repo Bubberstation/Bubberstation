@@ -76,7 +76,7 @@ GLOBAL_DATUM(storm_controller, /datum/storm_controller)
 
 	telegraph_duration = 1 SECONDS
 	weather_overlay = "royale"
-	perpetual = TRUE
+	weather_flags = WEATHER_ENDLESS
 
 	telegraph_message = null
 	weather_message = null

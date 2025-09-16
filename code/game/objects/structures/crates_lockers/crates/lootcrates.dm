@@ -125,7 +125,6 @@
 ///Apply the box pod skin
 /datum/round_event/stray_cargo/fortnite/make_pod()
 	var/obj/structure/closet/supplypod/S = new
-	S.setStyle(STYLE_BOX)
 	return S
 
 /datum/round_event_control/stray_cargo/fortnite/rare

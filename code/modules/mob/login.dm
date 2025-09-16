@@ -127,12 +127,6 @@
 	SEND_SIGNAL(client, COMSIG_CLIENT_MOB_LOGIN, src)
 	client.init_verbs()
 
-	#ifdef EVENTMODE
-	if(!isnewplayer(src)) //skip newplayers so no lobby huds or runtimes when they get deleted, might be too hot here?
-		for(var/datum/atom_hud/antag/H in GLOB.huds)
-			H.add_hud_to(src) //enable antag/team huds by default
-	#endif
-
 	AddElement(/datum/element/weather_listener, /datum/weather/ash_storm, ZTRAIT_ASHSTORM, GLOB.ash_storm_sounds)
 	AddElement(/datum/element/weather_listener, /datum/weather/rain_storm, ZTRAIT_RAINSTORM, GLOB.rain_storm_sounds)
 	AddElement(/datum/element/weather_listener, /datum/weather/sand_storm, ZTRAIT_SANDSTORM, GLOB.sand_storm_sounds)

@@ -42,15 +42,16 @@
 	outfit = /datum/outfit/job/cook
 
 /obj/effect/mob_spawn/human/appendicitis_patient/create()
-	var/mob/living/mob = ..()
-	var/datum/disease/appendicitis/disease = new
+	var/mob/living/carbon/human/mob = ..()
+	if(!mob)
+		return null
+
 	mob.adjustToxLoss(5)
 	mob.adjustOrganLoss(ORGAN_SLOT_APPENDIX, 15)
-	disease.stage = 3
-	mob.ForceContractDisease(disease, make_copy=FALSE, del_on_fail=TRUE)
-	var/obj/item/organ/appendix/appendix = mob.getorgan(/obj/item/organ/appendix)
+
+	var/obj/item/organ/appendix/appendix = mob.get_organ_by_type(/obj/item/organ/appendix)
 	if(appendix)
-		appendix.inflamed = TRUE
+		appendix.inflamation_stage = 3
 	return mob
 
 /obj/effect/mob_spawn/human/hugged_patient
@@ -67,9 +68,9 @@
 	outfit = /datum/outfit/job/miner/equipped/hardsuit
 
 /obj/effect/mob_spawn/human/decayed_patient/create()
-	var/mob/living/mob = ..()
-	for(var/obj/item/organ/organ as anything in mob.internal_organs)
-		organ.applyOrganDamage(INFINITY)
+	var/mob/living/carbon/mob = ..()
+	for(var/obj/item/organ/organ as anything in mob.organs)
+		organ.apply_organ_damage(INFINITY)
 	return mob
 
 /obj/effect/mob_spawn/human/bone_hurting_juice_patient
@@ -77,12 +78,12 @@
 	outfit = /datum/outfit/wizardcorpse
 
 /obj/effect/mob_spawn/human/bone_hurting_juice_patient/create()
-	var/mob/living/mob = ..()
+	var/mob/living/carbon/mob = ..()
 
 	mob.reagents.add_reagent(/datum/reagent/toxin/bonehurtingjuice, 40)
 
 	for(var/obj/item/bodypart/bodypart as anything in mob.bodyparts)
-		var/datum/wound/blunt/critical/wound = new()
+		var/datum/wound/blunt/bone/critical/wound = new /datum/wound/blunt/bone/critical()
 		wound.apply_wound(bodypart)
 
 	return mob

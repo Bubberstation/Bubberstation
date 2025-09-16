@@ -186,7 +186,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		ambientsounds = GLOB.ambience_assoc[ambience_index]
 	#ifdef EVENTMODE
 	requires_power = FALSE
-	has_gravity = STANDARD_GRAVITY
+	default_gravity = STANDARD_GRAVITY
 	#endif
 
 	if(requires_power)

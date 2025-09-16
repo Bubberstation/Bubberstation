@@ -61,13 +61,15 @@
 /turf/open/Initialize(mapload)
 	if(!blocks_air)
 		air = create_gas_mixture()
-		#ifdef EVENTMODE
-	planetary_atmos = TRUE
-	if(planetary_atmos)
-		if(!SSair.planetary[initial_gas_mix])
-			var/datum/gas_mixture/immutable/planetary/mix = new
-			mix.parse_string_immutable(initial_gas_mix)
-			SSair.planetary[initial_gas_mix] = mix
+	#ifdef EVENTMODE
+		planetary_atmos = TRUE
+	#else
+		if(planetary_atmos)
+			if(!SSair.planetary[initial_gas_mix])
+				var/datum/gas_mixture/immutable/planetary/mix = new
+				mix.parse_string_immutable(initial_gas_mix)
+				SSair.planetary[initial_gas_mix] = mix
+	#endif
 
 /turf/open/Destroy()
 	if(active_hotspot)
@@ -269,9 +271,6 @@
 
 	var/planet_atmos = planetary_atmos
 
-	if (planet_atmos)
-		adjacent_turfs_length++
-
 	var/datum/gas_mixture/our_air = air
 
 	var/list/share_end
@@ -357,7 +356,7 @@
 		///We are below minimums to compare to neighbours, just reset our own turf so we dont have trace amounts of toxins or whatever left lying around
 		else
 			///Default nice breathable atmosphere and temp
-			our_air.copy_from_turf(src)
+			our_air.copy_from(src)
 			our_air.archive()
 		#endif
 

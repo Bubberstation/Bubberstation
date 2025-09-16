@@ -166,7 +166,7 @@
 		return
 	time_since_act = 0
 	if(current_size >= STAGE_TWO)
-		radiation_pulse(src, min(5000, (energy*4.5)+1000), RAD_DISTANCE_COEFFICIENT*0.5)
+		radiation_pulse(src, min(5000, (energy * 4.5) + 1000), DEFAULT_RADIATION_CHANCE * 0.5)
 		if(prob(event_chance))
 			event()
 	dissipate(seconds_per_tick)

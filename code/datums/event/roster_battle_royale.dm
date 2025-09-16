@@ -54,7 +54,7 @@
 			iter_contestant.set_flag_on_death(TRUE)
 			var/mob/the_guy = iter_contestant.get_mob()
 			RegisterSignal(the_guy, COMSIG_MOB_STATCHANGE, .proc/check_br_elimination_stat)
-			RegisterSignal(the_guy, list(COMSIG_LIVING_DEATH, COMSIG_PARENT_QDELETING), .proc/check_br_elimination_dead)
+			RegisterSignal(the_guy, list(COMSIG_LIVING_DEATH, COMSIG_QDELETING), .proc/check_br_elimination_dead)
 			successes++
 
 	message_admins("[key_name_admin(user)] has spawned [successes] out of [LAZYLEN(active_contestants)] contestants successfully!")
@@ -84,7 +84,7 @@
 
 	for(var/datum/contestant/iter_contestant in all_contestants)
 		var/mob/living/the_guy = iter_contestant.get_mob()
-		UnregisterSignal(the_guy, list(COMSIG_MOB_STATCHANGE, COMSIG_LIVING_DEATH, COMSIG_PARENT_QDELETING))
+		UnregisterSignal(the_guy, list(COMSIG_MOB_STATCHANGE, COMSIG_LIVING_DEATH, COMSIG_QDELETING))
 		if(istype(the_guy,))
 			the_guy.dust()
 		iter_contestant.despawn()
@@ -123,7 +123,7 @@
 	loser_contestant.despawn()
 	message_admins("[key_name_admin(loser)] has been eliminated! Place: [remaining_contestants].")
 	log_game("[key_name_admin(loser)] has been eliminated! Place: [remaining_contestants].")
-	UnregisterSignal(loser, list(COMSIG_MOB_STATCHANGE, COMSIG_LIVING_DEATH, COMSIG_PARENT_QDELETING))
+	UnregisterSignal(loser, list(COMSIG_MOB_STATCHANGE, COMSIG_LIVING_DEATH, COMSIG_QDELETING))
 	loser.dust(drop_items=TRUE)
 
 	if(remaining_contestants % 5 == 0)
