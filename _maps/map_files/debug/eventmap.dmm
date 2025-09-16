@@ -52,7 +52,7 @@
 /obj/item/food/meat/slab/xeno,
 /obj/item/food/meat/slab/xeno,
 /obj/item/food/meat/slab/xeno,
-/obj/item/reagent_containers/food/condiment/enzyme{
+/obj/item/reagent_containers/condiment/enzyme{
 	pixel_y = 5
 	},
 /turf/open/floor/iron/dark,
@@ -156,8 +156,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/centcom{
-	name = "CentCom Events Infirmary";
-	req_access_txt = "101"
+	name = "CentCom Events Infirmary"
 	},
 /turf/open/floor/iron/dark/smooth_half{
 	dir = 1
@@ -241,8 +240,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/centcom{
-	name = "CentCom Events Broadcast Closet";
-	req_access_txt = "101"
+	name = "CentCom Events Broadcast Closet"
 	},
 /turf/open/floor/iron/dark/smooth_half{
 	dir = 1
@@ -269,7 +267,7 @@
 /turf/open/floor/iron,
 /area/space)
 "dH" = (
-/obj/machinery/modular_computer/console/preset/id/centcom,
+/obj/machinery/modular_computer/preset/id/centcom,
 /turf/open/floor/carpet/executive,
 /area/space)
 "dJ" = (
@@ -334,8 +332,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/centcom{
-	name = "CentCom Events Timeout";
-	req_access_txt = "101"
+	name = "CentCom Events Timeout"
 	},
 /turf/open/floor/iron/dark/smooth_half{
 	dir = 1
@@ -343,8 +340,7 @@
 /area/space)
 "dY" = (
 /obj/machinery/door/airlock/centcom{
-	name = "CentCom Events Office";
-	req_access_txt = "101"
+	name = "CentCom Events Office"
 	},
 /turf/open/floor/iron/dark/textured_half{
 	dir = 4
@@ -514,8 +510,7 @@
 /area/space)
 "gS" = (
 /obj/machinery/door/airlock/centcom{
-	name = "CentCom Events Timeout";
-	req_access_txt = "101"
+	name = "CentCom Events Timeout"
 	},
 /turf/closed/indestructible/riveted,
 /area/space)
@@ -559,8 +554,7 @@
 /area/space)
 "hn" = (
 /obj/machinery/door/airlock/centcom{
-	name = "CentCom Events S Service Hall";
-	req_access_txt = "101"
+	name = "CentCom Events S Service Hall"
 	},
 /turf/open/floor/iron/dark/textured_half{
 	dir = 1
@@ -584,7 +578,7 @@
 /turf/open/floor/iron/dark/textured_large,
 /area/space)
 "hx" = (
-/obj/structure/bed/roller,
+/obj/structure/bed/medical,
 /obj/machinery/iv_drip,
 /obj/effect/turf_decal/tile/green{
 	dir = 4
@@ -693,8 +687,7 @@
 /area/space)
 "jG" = (
 /obj/machinery/door/airlock/centcom{
-	name = "CentCom Events Infirmary Office";
-	req_access_txt = "101"
+	name = "CentCom Events Infirmary Office"
 	},
 /turf/open/floor/iron/dark/textured_half{
 	dir = 4
@@ -738,7 +731,7 @@
 /obj/item/food/meat/slab/bear,
 /obj/item/food/meat/slab/bear,
 /obj/item/food/meat/slab/bear,
-/obj/item/reagent_containers/food/condiment/enzyme{
+/obj/item/reagent_containers/condiment/enzyme{
 	pixel_y = 5
 	},
 /turf/open/floor/iron/dark,
@@ -768,8 +761,7 @@
 /area/space)
 "jT" = (
 /obj/machinery/door/airlock/centcom{
-	name = "CentCom Events Kitchen";
-	req_access_txt = "101"
+	name = "CentCom Events Kitchen"
 	},
 /turf/open/floor/iron/dark/textured_half{
 	dir = 1
@@ -899,8 +891,7 @@
 /area/space)
 "mO" = (
 /obj/machinery/door/airlock/centcom{
-	name = "CentCom Events Security";
-	req_access_txt = "101"
+	name = "CentCom Events Security"
 	},
 /turf/open/floor/iron/dark/textured_half,
 /area/space)
@@ -1034,11 +1025,11 @@
 /turf/open/floor/wood,
 /area/space)
 "oW" = (
-/obj/structure/flora/ausbushes/lavendergrass,
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/flora/ausbushes/brflowers,
-/obj/structure/flora/ausbushes/genericbush,
+/obj/structure/flora/bush/lavendergrass/style_random,
+/obj/structure/flora/bush/sparsegrass/style_random,
+/obj/structure/flora/bush/fullgrass/style_random,
+/obj/structure/flora/bush/flowers_br/style_random,
+/obj/structure/flora/bush/generic/style_random,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 1
@@ -1226,7 +1217,7 @@
 	},
 /area/space)
 "qZ" = (
-/obj/structure/table/wood/bar,
+/obj/structure/table/wood,
 /obj/machinery/chem_dispenser/drinks{
 	dir = 8
 	},
@@ -1344,11 +1335,11 @@
 /turf/open/floor/iron,
 /area/space)
 "tV" = (
-/obj/structure/flora/ausbushes/lavendergrass,
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/flora/ausbushes/brflowers,
-/obj/structure/flora/ausbushes/genericbush,
+/obj/structure/flora/bush/lavendergrass/style_random,
+/obj/structure/flora/bush/sparsegrass/style_random,
+/obj/structure/flora/bush/fullgrass/style_random,
+/obj/structure/flora/bush/flowers_br/style_random,
+/obj/structure/flora/bush/generic/style_random,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -1520,8 +1511,7 @@
 /area/space)
 "vY" = (
 /obj/machinery/door/airlock/centcom{
-	name = "CentCom Events Security";
-	req_access_txt = "101"
+	name = "CentCom Events Security"
 	},
 /turf/open/floor/iron/dark/textured_half{
 	dir = 4
@@ -1569,8 +1559,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/centcom{
-	name = "CentCom Events S Service Hall";
-	req_access_txt = "101"
+	name = "CentCom Events S Service Hall"
 	},
 /turf/open/floor/iron/dark/textured,
 /area/space)
@@ -1764,8 +1753,7 @@
 /area/space)
 "yW" = (
 /obj/machinery/door/airlock/centcom{
-	name = "CentCom Events Infirmary Closet";
-	req_access_txt = "101"
+	name = "CentCom Events Infirmary Closet"
 	},
 /turf/open/floor/iron/dark/textured_half{
 	dir = 1
@@ -1811,11 +1799,11 @@
 /turf/open/space/basic,
 /area/space)
 "zO" = (
-/obj/structure/flora/ausbushes/lavendergrass,
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/flora/ausbushes/brflowers,
-/obj/structure/flora/ausbushes/genericbush,
+/obj/structure/flora/bush/lavendergrass/style_random,
+/obj/structure/flora/bush/sparsegrass/style_random,
+/obj/structure/flora/bush/fullgrass/style_random,
+/obj/structure/flora/bush/flowers_br/style_random,
+/obj/structure/flora/bush/generic/style_random,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -1899,11 +1887,11 @@
 	dir = 8
 	},
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/condiment/saltshaker{
+/obj/item/reagent_containers/condiment/saltshaker{
 	pixel_x = -8;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/condiment/peppermill{
+/obj/item/reagent_containers/condiment/peppermill{
 	pixel_x = -8
 	},
 /turf/open/floor/iron/dark/smooth_half{
@@ -1937,7 +1925,7 @@
 /turf/open/floor/iron,
 /area/space)
 "Cq" = (
-/obj/structure/table/wood/bar,
+/obj/structure/table/wood,
 /turf/open/floor/iron/dark/textured_large,
 /area/space)
 "Cs" = (
@@ -1950,11 +1938,11 @@
 /turf/open/floor/iron,
 /area/space)
 "Cw" = (
-/obj/structure/flora/ausbushes/lavendergrass,
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/flora/ausbushes/brflowers,
-/obj/structure/flora/ausbushes/genericbush,
+/obj/structure/flora/bush/lavendergrass/style_random,
+/obj/structure/flora/bush/sparsegrass/style_random,
+/obj/structure/flora/bush/fullgrass/style_random,
+/obj/structure/flora/bush/flowers_br/style_random,
+/obj/structure/flora/bush/generic/style_random,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -2092,8 +2080,8 @@
 "ED" = (
 /obj/structure/table/wood,
 /obj/item/book/manual/wiki/barman_recipes,
-/obj/item/reagent_containers/food/drinks/shaker,
-/obj/item/reagent_containers/glass/rag,
+/obj/item/reagent_containers/cup/glass/shaker,
+/obj/item/rag,
 /obj/machinery/newscaster/directional/south,
 /turf/open/floor/iron/dark/textured_large,
 /area/space)
@@ -2179,8 +2167,7 @@
 /area/space)
 "Fz" = (
 /obj/machinery/door/airlock/centcom{
-	name = "CentCom Events Office Storage";
-	req_access_txt = "101"
+	name = "CentCom Events Office Storage"
 	},
 /turf/open/floor/iron/dark/textured_half,
 /area/space)
@@ -2316,11 +2303,11 @@
 /turf/open/floor/wood,
 /area/space)
 "GS" = (
-/obj/structure/flora/ausbushes/lavendergrass,
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/flora/ausbushes/brflowers,
-/obj/structure/flora/ausbushes/genericbush,
+/obj/structure/flora/bush/lavendergrass/style_random,
+/obj/structure/flora/bush/sparsegrass/style_random,
+/obj/structure/flora/bush/fullgrass/style_random,
+/obj/structure/flora/bush/flowers_br/style_random,
+/obj/structure/flora/bush/generic/style_random,
 /turf/open/floor/grass,
 /area/space)
 "GU" = (
@@ -2354,11 +2341,11 @@
 /turf/open/floor/wood,
 /area/space)
 "Hf" = (
-/obj/structure/flora/ausbushes/lavendergrass,
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/flora/ausbushes/brflowers,
-/obj/structure/flora/ausbushes/genericbush,
+/obj/structure/flora/bush/lavendergrass/style_random,
+/obj/structure/flora/bush/sparsegrass/style_random,
+/obj/structure/flora/bush/fullgrass/style_random,
+/obj/structure/flora/bush/flowers_br/style_random,
+/obj/structure/flora/bush/generic/style_random,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -2405,7 +2392,7 @@
 /obj/item/food/meat/rawcutlet,
 /obj/item/food/meat/rawcutlet,
 /obj/item/food/meat/rawcutlet,
-/obj/item/reagent_containers/food/condiment/enzyme{
+/obj/item/reagent_containers/condiment/enzyme{
 	pixel_y = 5
 	},
 /turf/open/floor/iron/dark,
@@ -2520,8 +2507,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/centcom{
-	name = "CentCom Events Security";
-	req_access_txt = "101"
+	name = "CentCom Events Security"
 	},
 /turf/open/floor/iron/dark/textured,
 /area/space)
@@ -2607,7 +2593,7 @@
 	pixel_x = -16;
 	pixel_y = 7
 	},
-/obj/item/kitchen/knife{
+/obj/item/knife{
 	pixel_x = -5;
 	pixel_y = 5
 	},
@@ -2693,11 +2679,11 @@
 	pixel_x = 11
 	},
 /obj/item/kitchen/rollingpin,
-/obj/item/reagent_containers/food/condiment/saltshaker{
+/obj/item/reagent_containers/condiment/saltshaker{
 	pixel_x = -8;
 	pixel_y = 13
 	},
-/obj/item/reagent_containers/food/condiment/peppermill{
+/obj/item/reagent_containers/condiment/peppermill{
 	pixel_x = -8;
 	pixel_y = 8
 	},
@@ -2763,15 +2749,14 @@
 /area/space)
 "Mf" = (
 /obj/machinery/door/airlock/centcom{
-	name = "CentCom Events S Service Hall";
-	req_access_txt = "101"
+	name = "CentCom Events S Service Hall"
 	},
 /turf/open/floor/iron/dark/textured_half{
 	dir = 4
 	},
 /area/space)
 "Mj" = (
-/obj/structure/table/wood/bar,
+/obj/structure/table/wood,
 /obj/machinery/chem_dispenser/drinks/beer{
 	dir = 8
 	},
@@ -3000,7 +2985,7 @@
 	},
 /area/space)
 "Pv" = (
-/obj/structure/table/wood/bar,
+/obj/structure/table/wood,
 /turf/open/floor/iron/dark/textured_half{
 	dir = 1
 	},
@@ -3011,8 +2996,7 @@
 /area/space)
 "PN" = (
 /obj/machinery/door/airlock/centcom{
-	name = "CentCom Events N Service Hall";
-	req_access_txt = "101"
+	name = "CentCom Events N Service Hall"
 	},
 /turf/open/floor/iron/dark/textured_half{
 	dir = 4
@@ -3088,8 +3072,7 @@
 /area/space)
 "Ra" = (
 /obj/machinery/door/airlock/centcom{
-	name = "CentCom Events Security";
-	req_access_txt = "101"
+	name = "CentCom Events Security"
 	},
 /turf/open/floor/iron/dark/textured_half{
 	dir = 1
@@ -3188,7 +3171,7 @@
 	pixel_x = -16;
 	pixel_y = 7
 	},
-/obj/item/kitchen/knife{
+/obj/item/knife{
 	pixel_x = -5;
 	pixel_y = 2
 	},
@@ -3303,8 +3286,7 @@
 /area/space)
 "VH" = (
 /obj/machinery/door/airlock/centcom{
-	name = "CentCom Events N Service Hall";
-	req_access_txt = "101"
+	name = "CentCom Events N Service Hall"
 	},
 /turf/open/floor/iron/dark/textured_half{
 	dir = 1
@@ -3352,8 +3334,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/centcom{
-	name = "CentCom Events Timeout";
-	req_access_txt = "101"
+	name = "CentCom Events Timeout"
 	},
 /turf/open/floor/iron/dark/textured,
 /area/space)
@@ -3391,8 +3372,7 @@
 /area/space)
 "WM" = (
 /obj/machinery/door/airlock/centcom{
-	name = "CentCom Events Control Office";
-	req_access_txt = "101"
+	name = "CentCom Events Control Office"
 	},
 /turf/open/floor/iron/dark/textured_half{
 	dir = 1
@@ -3410,8 +3390,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/centcom{
-	name = "CentCom Events Broadcast Room";
-	req_access_txt = "101"
+	name = "CentCom Events Broadcast Room"
 	},
 /turf/open/floor/iron/dark/smooth_half{
 	dir = 1
@@ -3425,8 +3404,7 @@
 /area/space)
 "Xb" = (
 /obj/machinery/door/airlock/centcom{
-	name = "CentCom Events Office";
-	req_access_txt = "101"
+	name = "CentCom Events Office"
 	},
 /turf/open/floor/iron/dark/textured_half{
 	dir = 1
@@ -3484,12 +3462,12 @@
 /turf/open/floor/iron,
 /area/space)
 "XV" = (
-/obj/structure/flora/ausbushes/lavendergrass,
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/structure/flora/ausbushes/grassybush,
-/obj/structure/flora/ausbushes/palebush,
-/turf/open/floor/plating/asteroid,
+/obj/structure/flora/bush/lavendergrass/style_random,
+/obj/structure/flora/bush/sparsegrass/style_random,
+/obj/structure/flora/bush/flowers_yw/style_random,
+/obj/structure/flora/bush/grassy/style_random,
+/obj/structure/flora/bush/pale/style_random,
+/turf/open/misc/asteroid,
 /area/space)
 "Ya" = (
 /obj/effect/turf_decal/box/corners{
@@ -3557,8 +3535,7 @@
 /area/space)
 "Zs" = (
 /obj/machinery/door/airlock/centcom{
-	name = "CentCom Events S Corridor";
-	req_access_txt = "101"
+	name = "CentCom Events S Corridor"
 	},
 /turf/open/floor/iron/textured_half,
 /area/space)

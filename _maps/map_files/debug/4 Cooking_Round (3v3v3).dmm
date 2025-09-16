@@ -13,7 +13,7 @@
 /area/centcom/tdome/arena)
 "ag" = (
 /obj/machinery/vending/wallmed/directional/north{
-	products = list(/obj/item/reagent_containers/syringe = 3, /obj/item/reagent_containers/pill/patch/libital = 2, /obj/item/reagent_containers/pill/patch/aiuri = 2, /obj/item/reagent_containers/pill/multiver = 2, /obj/item/reagent_containers/medigel/sterilizine = 1);
+	products = list(/obj/item/reagent_containers/syringe = 3, /obj/item/reagent_containers/applicator/patch/libital = 2, /obj/item/reagent_containers/applicator/patch/aiuri = 2, /obj/item/reagent_containers/applicator/pill/multiver = 2, /obj/item/reagent_containers/medigel/sterilizine = 1);
 	use_power = 0
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -916,7 +916,6 @@
 "hB" = (
 /obj/structure/alien/weeds,
 /obj/item/melee/sabre{
-	bare_wound_bonus = 0;
 	force = 5;
 	throwforce = 3;
 	wound_bonus = 0
@@ -2619,7 +2618,7 @@
 	anchored = 1;
 	desc = "Yell at coderbus.";
 	dir = 1;
-	icon = 'icons/obj/bike.dmi';
+	icon = 'icons/obj/toys/bike.dmi';
 	icon_state = "speedbike_red";
 	name = "Speedbike"
 	},
@@ -4136,7 +4135,7 @@
 /obj/structure/statue/silver/medborg{
 	anchored = 1;
 	desc = "Push it to the limit, walk along the razor's edge.";
-	icon = 'icons/obj/car.dmi';
+	icon = 'icons/obj/toys/car.dmi';
 	icon_state = "speedwagon";
 	name = "BM Speedwagon"
 	},
@@ -4897,10 +4896,10 @@
 /area/centcom/tdome/arena)
 "ID" = (
 /obj/structure/table/wood,
-/datum/storage/backpack/saddle{
+/obj/item/storage/backpack/saddlepack{
 	pixel_y = 5
 	},
-/datum/storage/backpack/saddle,
+/obj/item/storage/backpack/saddlepack,
 /turf/open/floor/vault/sandstone,
 /area/centcom/tdome/arena)
 "IG" = (
@@ -5953,7 +5952,7 @@
 /area/centcom/tdome/arena)
 "Pq" = (
 /obj/structure/rack{
-	icon = 'icons/obj/stationobjs.dmi';
+	icon = 'icons/obj/fluff/general.dmi';
 	icon_state = "minibar";
 	name = "skeletal minibar";
 	pixel_y = -5
@@ -6756,11 +6755,8 @@
 /obj/item/chair/stool,
 /obj/structure/mirror/directional/north,
 /obj/item/melee/energy/sword/saber/red{
-	bare_wound_bonus = 0;
 	force = 5;
-	force_on = 5;
 	throwforce = 3;
-	throwforce_on = 3
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet/green,
