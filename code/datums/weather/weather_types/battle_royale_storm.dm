@@ -41,7 +41,7 @@ GLOBAL_DATUM(storm_controller, /datum/storm_controller)
 	if(repeat)
 		if(!current_area_pick.len) //there was none left, don't try and take from an empty list
 			return
-		timerid = addtimer(CALLBACK(src, PROC_REF(src, consume_area), popleft(current_area_pick)), area_consume_timer)
+		timerid = addtimer(CALLBACK(src, PROC_REF(consume_area), popleft(current_area_pick)), area_consume_timer)
 		if(!current_area_pick.len) //we took the last one
 			progression--
 			switch(progression)
