@@ -31,6 +31,7 @@
 				/obj/item/clothing/gloves/elofy = 5,
 				/obj/item/clothing/glasses/gold_aviators = 5,
 				/obj/item/clothing/gloves/skyy = 5,
+				/obj/item/clothing/gloves/cat = 5,
 			),
 		),
 

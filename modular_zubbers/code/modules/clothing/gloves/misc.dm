@@ -12,6 +12,8 @@
 	icon_state = "latex_black"
 	worn_icon_state = "latex_black"
 
+//Cat Gloves seemingly by Taomayo of MonkeStation
+
 /obj/item/clothing/gloves/cat
 	desc = "hewwo everynyaan!!"
 	name = "cat gloves"
