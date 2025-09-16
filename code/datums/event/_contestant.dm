@@ -53,9 +53,6 @@
 		return
 
 	frozen = new_mode
-	if(user)
-		message_admins("[key_name_admin(user)] has [new_mode ? 'FROZEN' : 'UNFROZEN'] [src]!")
-		log_game("[key_name_admin(user)] has [new_mode ? 'FROZEN' : 'UNFROZEN'] [src]!")
 
 	var/mob/living/our_boy = get_mob()
 	if(!istype(our_boy))
@@ -71,10 +68,6 @@
 		return
 
 	godmode = new_mode
-
-	if(user)
-		message_admins("[key_name_admin(user)] has [new_mode ? 'GODMODED' : 'UNGODMODED'] [src]!")
-		log_game("[key_name_admin(user)] has [new_mode ? 'GODMODED' : 'UNGODMODED'] [src]!")
 
 	var/mob/living/our_boy = get_mob()
 	if(!istype(our_boy))

@@ -86,7 +86,7 @@ GLOBAL_DATUM(storm_controller, /datum/storm_controller)
 
 	immunity_type = "NOTHING KID"
 
-/datum/weather/royale_storm/weather_act(mob/living/L)
+/datum/weather/royale_storm/weather_act_mob(mob/living/L)
 	L.adjustFireLoss(15)
 	if(L.stat == DEAD)
 		to_chat(L, "<span class='userdanger'>You're torn apart from the violent forces in the storm!</span>")

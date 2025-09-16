@@ -3,11 +3,8 @@
 /obj/item/patient_spawner
 	name = "patient spawner"
 	desc = "Use this in hand to request the airdrop of some very sick patients!"
-	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
-	icon = 'icons/obj/device.dmi'
-	icon_state = "gangtool-white"
-	inhand_icon_state = "electronic"
+	icon = 'icons/obj/antags/syndicate_tools.dmi'
+	icon_state = "suspiciousphone"
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/patient_spawner/attack_self(mob/user)
@@ -65,7 +62,7 @@
 
 /obj/effect/mob_spawn/human/decayed_patient
 	name = "Decayed Patient"
-	outfit = /datum/outfit/job/miner/equipped/hardsuit
+	outfit = /datum/outfit/job/miner/equipped/mod
 
 /obj/effect/mob_spawn/human/decayed_patient/create()
 	var/mob/living/carbon/mob = ..()

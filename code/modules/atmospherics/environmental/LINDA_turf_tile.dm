@@ -269,8 +269,6 @@
 	var/datum/excited_group/our_excited_group = excited_group
 	var/our_share_coeff = 1/(LAZYLEN(adjacent_turfs) + 1)
 
-	var/planet_atmos = planetary_atmos
-
 	var/datum/gas_mixture/our_air = air
 
 	var/list/share_end

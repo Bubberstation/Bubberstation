@@ -458,6 +458,7 @@
 /obj/structure/particle_accelerator/Initialize(mapload)
 	. = ..()
 
+	AddComponent(/datum/component/simple_rotation)
 	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 80)
 
 /obj/structure/particle_accelerator/examine(mob/user)
@@ -478,10 +479,6 @@
 		master.assembled = 0
 		master = null
 	return ..()
-
-/obj/structure/particle_accelerator/ComponentInitialize()
-	AddComponent(/datum/component/simple_rotation)
-
 
 /obj/structure/particle_accelerator/set_anchored(anchorvalue)
 	. = ..()
@@ -652,7 +649,7 @@
 /obj/machinery/the_singularitygen
 	name = "Gravitational Singularity Generator"
 	desc = "An odd device which produces a Gravitational Singularity when set up."
-	icon = 'icons/obj/singularity.dmi'
+	icon = 'icons/obj/machines/engine/singularity.dmi'
 	icon_state = "TheSingGen"
 	anchored = FALSE
 	density = TRUE
@@ -705,7 +702,7 @@
 /obj/structure/terminal
 	name = "Instruction Terminal"
 	desc = "<span class='terminal'>SINGULARITY GENERATOR INSTRUCTIONS</span>"
-	icon = 'icons/obj/singularity.dmi'
+	icon = 'icons/obj/machines/engine/singularity.dmi'
 	icon_state = "terminal"
 	anchored = TRUE
 	layer = FLY_LAYER
@@ -737,7 +734,7 @@ GLOBAL_LIST_EMPTY(feud_buttons)
 /obj/structure/feudbutton
 	name = "big red button"
 	desc = "A big, plastic red button."
-	icon = 'icons/obj/assemblies.dmi'
+	icon = 'icons/obj/devices/assemblies.dmi'
 	icon_state = "bigred"
 	pixel_y = 4
 	anchored = TRUE
@@ -758,13 +755,13 @@ GLOBAL_LIST_EMPTY(feud_buttons)
 	if(!sign.button_ready)
 		return
 	sign.button_ready = FALSE
-	playsound(src, 'sound/machines/buzz-sigh.ogg', 100, FALSE)
+	playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 100, FALSE)
 	balloon_alert_to_viewers("ping!")
 
 /obj/structure/feudsign
 	name = "feud board"
 	desc = "Holds the secrets of the universe."
-	icon = 'icons/obj/status_display.dmi'
+	icon = 'icons/obj/machines/status_display.dmi'
 	icon_state = "frame"
 	anchored = TRUE
 	var/button_ready = TRUE
@@ -789,7 +786,7 @@ GLOBAL_LIST_EMPTY(feud_buttons)
 		add_overlay("right")
 	if(input == "wrong")
 		strike_counter += 1
-		playsound(src, 'sound/machines/scanbuzz.ogg', 100, FALSE)
+		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 100, FALSE)
 		add_overlay("wrong[strike_counter]")
 		if(strike_counter == 3)
 			strike_counter = 0
@@ -803,7 +800,7 @@ GLOBAL_LIST_EMPTY(feud_buttons)
 /obj/item/feudcontrol
 	name = "feud control button"
 	icon_state = "timer-igniter0"
-	icon = 'icons/obj/assemblies.dmi'
+	icon = 'icons/obj/devices/assemblies.dmi'
 	w_class = WEIGHT_CLASS_TINY
 	var/obj/structure/feudsign/sign
 	COOLDOWN_DECLARE(button_cd)

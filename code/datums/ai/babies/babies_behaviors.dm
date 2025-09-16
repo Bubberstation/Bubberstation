@@ -48,9 +48,6 @@
  * Reproduce.
  */
 /datum/ai_behavior/make_babies
-	#ifdef EVENTMODE
-	return //no thanks
-	#endif
 	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_REQUIRE_REACH
 
 /datum/ai_behavior/make_babies/setup(datum/ai_controller/controller, target_key, child_types_key)
@@ -61,11 +58,15 @@
 	set_movement_target(controller, target)
 
 /datum/ai_behavior/make_babies/perform(seconds_per_tick, datum/ai_controller/controller, target_key, child_types_key)
-	var/mob/target = controller.blackboard[target_key]
-	if(QDELETED(target) || target.stat != CONSCIOUS)
-		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
-	controller.ai_interact(target = target, combat_mode = FALSE)
-	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
+	#ifdef EVENTMODE
+	return //no thanks
+	#else
+		var/mob/target = controller.blackboard[target_key]
+		if(QDELETED(target) || target.stat != CONSCIOUS)
+			return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
+		controller.ai_interact(target = target, combat_mode = FALSE)
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
+	#endif
 
 /datum/ai_behavior/make_babies/finish_action(datum/ai_controller/controller, succeeded, target_key)
 	. = ..()

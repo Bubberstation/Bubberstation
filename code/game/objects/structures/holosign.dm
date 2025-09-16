@@ -321,7 +321,7 @@
 /obj/structure/holosign/barrier/ctf
 	name = "Spawn protection"
 	desc = "Stay outta the enemy spawn!"
-	icon = 'icons/obj/hand_of_god_structures.dmi'
+	icon = 'icons/obj/service/hand_of_god_structures.dmi'
 	icon_state = "trap"
 	max_integrity = 99999
 	damage_deflection = 100
