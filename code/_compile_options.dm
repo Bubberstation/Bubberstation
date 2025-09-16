@@ -149,7 +149,7 @@ List of things this does
 #endif // 1 to use the default behaviour;
 								// 2 for preloading absolutely everything;
 
-#ifdef LOWMEMORYMODE
+#ifdef EVENTMODE
 #define FORCE_MAP "eventmap"
 #define FORCE_MAP_DIRECTORY "_maps"
 #endif
