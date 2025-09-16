@@ -150,7 +150,7 @@ List of things this does
 								// 2 for preloading absolutely everything;
 
 #ifdef LOWMEMORYMODE
-#define FORCE_MAP "summer_ball.json"
+#define FORCE_MAP "eventmap.json"
 #define FORCE_MAP_DIRECTORY "_maps"
 #endif
 
