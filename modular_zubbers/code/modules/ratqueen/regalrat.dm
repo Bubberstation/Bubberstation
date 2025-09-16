@@ -135,7 +135,6 @@
 	icon_state_living = "buffking"
 	icon_state_dead = "buffking_dead"
 
-
 /// Rat queen (thicc rat)
 
 /datum/rat_fashion/rat_queen
