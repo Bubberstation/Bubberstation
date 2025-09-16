@@ -23,8 +23,6 @@
 	 * approximation of MOLES_O2STANDARD and MOLES_N2STANDARD pending byond allowing constant expressions to be embedded in constant strings
 	 * If someone will place 0 of some gas there, SHIT WILL BREAK. Do not do that.
 	**/
-	var/eventturf = FALSE
-	//crying sunglasses
 	var/initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 
 /turf/open
@@ -61,15 +59,12 @@
 /turf/open/Initialize(mapload)
 	if(!blocks_air)
 		air = create_gas_mixture()
-	#ifdef EVENTMODE
-		planetary_atmos = TRUE
-	#else
 		if(planetary_atmos)
 			if(!SSair.planetary[initial_gas_mix])
 				var/datum/gas_mixture/immutable/planetary/mix = new
 				mix.parse_string_immutable(initial_gas_mix)
 				SSair.planetary[initial_gas_mix] = mix
-	#endif
+	return ..()
 
 /turf/open/Destroy()
 	if(active_hotspot)
@@ -350,13 +345,6 @@
 			our_air.temperature_share(planetary_mix, OPEN_HEAT_TRANSFER_COEFFICIENT, planetary_mix.temperature_archived, planetary_mix.heat_capacity() * 5)
 			planetary_mix.garbage_collect()
 			PLANET_SHARE_CHECK
-		#ifdef EVENTMODE
-		///We are below minimums to compare to neighbours, just reset our own turf so we dont have trace amounts of toxins or whatever left lying around
-		else
-			///Default nice breathable atmosphere and temp
-			our_air.copy_from(src)
-			our_air.archive()
-		#endif
 
 	for(var/turf/open/enemy_tile as anything in share_end)
 		var/datum/gas_mixture/enemy_mix = enemy_tile.air
