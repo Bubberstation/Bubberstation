@@ -131,3 +131,9 @@
 
 /datum/bodypart_overlay/mutant/genital/belly/get_global_feature_list()
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_BELLY]
+
+// The Tig Bitties. Just the alt icon because other code bases also have them
+/datum/sprite_accessory/genital/breasts/alt_GS13/pair
+	name = "Pair (Alt GS13)"
+	icon = 'modular_gs/icons/obj/genitals/breasts_onmob.dmi'
+	icon_state = "pair"
