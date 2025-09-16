@@ -34,4 +34,8 @@
 
 /datum/loadout_item/gloves/frontier_colonist
 	name = "Frontier Gloves"
-	item_path =/obj/item/clothing/gloves/frontier_colonist/loadout
+	item_path = /obj/item/clothing/gloves/frontier_colonist/loadout
+
+/datum/loadout_item/gloves/cat
+	name = "Cat Gloves"
+	item_path = /obj/item/clothing/gloves/cat
