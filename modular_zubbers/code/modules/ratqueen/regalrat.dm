@@ -127,7 +127,7 @@
 	icon_state_living = "classic"
 	icon_state_dead = "classic_dead"
 
-/// Rat KING (swole, from SS14)
+/// Rat KING (ported from PR #10294 of space-wizards/space-station-14)
 
 /datum/rat_fashion/swole
 	name = "swoleking"
