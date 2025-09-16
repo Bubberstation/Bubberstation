@@ -3,8 +3,8 @@
 	description = "Smith wares, Sell them."
 	department_head = list(JOB_QUARTERMASTER)
 	faction = FACTION_STATION
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 0
+	spawn_positions = 0
 	supervisors = SUPERVISOR_QM
 	config_tag = "BLACKSMITH"
 	exp_granted_type = EXP_TYPE_CREW
