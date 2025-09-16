@@ -308,8 +308,7 @@
 /area/centcom/tdome/arena)
 "kB" = (
 /obj/structure/table/abductor,
-/obj/machinery/vending/boozeomat/cafe{
-	pixel_x = 0;
+/obj/machinery/smartfridge/drinks{
 	pixel_y = -32
 	},
 /turf/open/floor/iron/dark,
@@ -589,8 +588,12 @@
 /turf/open/floor/iron/dark,
 /area/centcom/tdome/arena)
 "tu" = (
-/obj/machinery/smartfridge/drinks,
-/turf/closed/indestructible/hotelwall,
+/obj/structure/table/abductor,
+/obj/machinery/vending/boozeomat/cafe{
+	pixel_x = 0;
+	pixel_y = -32
+	},
+/turf/open/floor/iron/dark,
 /area/centcom/tdome/arena)
 "tP" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
@@ -3567,8 +3570,8 @@ UU
 qV
 UU
 Sd
-qV
-tu
+kB
+SO
 UK
 UK
 UK
@@ -3699,7 +3702,7 @@ UU
 QT
 UU
 Sd
-kB
+tu
 SO
 UK
 UK
@@ -3831,8 +3834,8 @@ UU
 qV
 UU
 Sd
-qV
-tu
+kB
+SO
 UK
 UK
 UK
