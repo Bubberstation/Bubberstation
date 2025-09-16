@@ -1350,9 +1350,8 @@ TREK
 	icon_file = 'modular_skyrat/modules/GAGS/icons/catgloves.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/gloves/catgloves.json'
 
-/datum/greyscale_config/catgloves_worn
+/datum/greyscale_config/catgloves/worn
 	name = "Catgloves Worn"
-	icon_file = 'modular_skyrat/modules/GAGS/icons/catgloves_worn.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/gloves/catgloves_worn.json'
 
 // MISC SHOES

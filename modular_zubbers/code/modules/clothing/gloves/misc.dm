@@ -19,7 +19,9 @@
 	name = "cat gloves"
 	icon = 'icons/map_icons/clothing/_clothing.dmi'
 	icon_state = "/obj/item/clothing/gloves/cat"
+	post_init_icon_state = "catglove"
+	worn_icon = 'modular_skyrat/modules/GAGS/icons/catgloves_worn.dmi'
 	flags_1 = IS_PLAYER_COLORABLE_1
 	greyscale_colors =  "#ffffff#FFC0CB"
-	greyscale_config_worn = /datum/greyscale_config/catgloves_worn
+	greyscale_config_worn = /datum/greyscale_config/catgloves/worn
 	greyscale_config = /datum/greyscale_config/catgloves
