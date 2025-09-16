@@ -1307,7 +1307,7 @@ TREK
 /datum/greyscale_config/sandals/worn/oldvox
 	icon_file = 'modular_skyrat/modules/GAGS/icons/shoes/shoes_oldvox.dmi'
 
-// WRAPS
+// WRAPS AND GLOVES
 
 /datum/greyscale_config/clothwraps
 	name = "Cloth Wraps"
@@ -1344,6 +1344,16 @@ TREK
 	name = "Cloth Arm Wraps (Worn)"
 	icon_file = 'modular_skyrat/master_files/icons/donator/mob/clothing/hands.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/arm_wraps/arm_wraps_worn.json'
+
+/datum/greyscale_config/catgloves
+	name = "Catgloves"
+	icon_file = 'modular_skyrat/modules/GAGS/icons/catgloves.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/gloves/catgloves.json'
+
+/datum/greyscale_config/catgloves_worn
+	name = "Catgloves Worn"
+	icon_file = 'modular_skyrat/modules/GAGS/icons/catgloves_worn.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/gloves/catgloves_worn.json'
 
 // MISC SHOES
 

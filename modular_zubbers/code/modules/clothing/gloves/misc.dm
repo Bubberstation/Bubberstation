@@ -11,3 +11,13 @@
 	desc = "A sterile pair of gloves for preparing food without the risk of contamination! The old fashion american style."
 	icon_state = "latex_black"
 	worn_icon_state = "latex_black"
+
+/obj/item/clothing/gloves/cat
+	desc = "hewwo everynyaan!!"
+	name = "cat gloves"
+	icon = 'icons/map_icons/clothing/_clothing.dmi'
+	icon_state = "/obj/item/clothing/gloves/cat"
+	flags_1 = IS_PLAYER_COLORABLE_1
+	greyscale_colors =  "#ffffff#FFC0CB"
+	greyscale_config_worn = /datum/greyscale_config/catgloves_worn
+	greyscale_config = /datum/greyscale_config/catgloves
