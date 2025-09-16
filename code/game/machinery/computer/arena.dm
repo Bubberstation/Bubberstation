@@ -255,7 +255,7 @@
 
 
 /obj/machinery/computer/arena/proc/set_doors(closed = FALSE)
-	for(var/obj/machinery/door/poddoor/D as anything in SSmachines.get_machines_by_type(/obj/machinery/door/poddoor)) //I really dislike pathing of these
+	for(var/obj/machinery/door/poddoor/D in SSmachines.get_machines_by_type(/obj/machinery/door/poddoor)) //I really dislike pathing of these
 		if(D.id != arena_id)
 			continue
 		if(closed)
