@@ -1,7 +1,7 @@
 // BUBBER EDIT ADDITION: Gives the species the Akula wetness mechanic and a species description
 
 /// How long the aquatic will stay wet for, AKA how long until they get a mood debuff
-#define DRY_UP_TIME 10 MINUTES
+#define DRY_UP_TIME 15 MINUTES
 /// How many wetstacks an aquatic will get upon creation
 #define WETSTACK_INITIAL 5
 /// How many wetstacks an aquatic needs to activate the TRAIT_SLIPPERY trait
