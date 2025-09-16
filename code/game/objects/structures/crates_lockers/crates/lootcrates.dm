@@ -54,13 +54,13 @@
 /obj/structure/closet/crate/loot/Initialize()
 	//Check for an armour spawn
 	if(prob(50))
-		loot_content = loot_content + pickweight(loot_table_armor)
+		loot_content = loot_content + pick_weight(loot_table_armor)
 	//chance for a melee item
 	if(prob(50))
-		loot_content = loot_content + pickweight(loot_table_melee)
+		loot_content = loot_content + pick_weight(loot_table_melee)
 	//Check for a heal spawn
 	if(prob(70))
-		loot_content = loot_content +  pickweight(loot_table_heal)
+		loot_content = loot_content +  pick_weight(loot_table_heal)
 	..()
 
 /obj/structure/closet/crate/loot/PopulateContents()
@@ -75,7 +75,7 @@
 
 /obj/structure/closet/crate/loot/basic/Initialize()
 	var/list/loot_table = loot_table_basic + loot_table_rare + loot_table_legendary
-	LAZYADD(loot_content,pickweight(loot_table))
+	LAZYADD(loot_content,pick_weight(loot_table))
 	..()
 
 /obj/structure/closet/crate/loot/basic/PopulateContents()
@@ -90,7 +90,7 @@
 
 /obj/structure/closet/crate/loot/rare/Initialize()
 	var/list/loot_table = loot_table_rare + loot_table_legendary
-	LAZYADD(loot_content,pickweight(loot_table))
+	LAZYADD(loot_content,pick_weight(loot_table))
 	..()
 
 /obj/structure/closet/crate/loot/rare/PopulateContents()
@@ -105,7 +105,7 @@
 
 /obj/structure/closet/crate/loot/legendary/Initialize()
 	var/list/loot_table =  loot_table_legendary
-	LAZYADD(loot_content,pickweight(loot_table))
+	LAZYADD(loot_content,pick_weight(loot_table))
 	..()
 
 /obj/structure/closet/crate/loot/legendary/PopulateContents()
