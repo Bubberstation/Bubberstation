@@ -47,7 +47,8 @@
 	var/gas_consumption_base = 0.000005 //How much gas gets consumed, in moles, per cycle.
 	var/gas_consumption_heat = 0.0018 //How much gas gets consumed, in moles, per cycle, per 1000 kelvin.
 
-	var/base_power_generation = 7800000 //How many joules of power to add per mole of tritium processed.
+	var/base_power_generation = 370 //How many joules of power to add per micromole of tritium processed.
+	//There are 1000000 micromoles in a mole.
 
 	var/goblin_multiplier = 8 //How many mols of goblin gas produced per mol of tritium. Increases with matter bins.
 
@@ -433,6 +434,8 @@
 	// Required to calculate remaining fuel in the rod_trit_moles progressbar
 	data["raw_consuming"] = last_tritium_consumption*0.5
 
+	data["temperature_limit"] = stored_rod?.temperature_limit || 0
+
 	// Button data
 	data["venting"] = venting
 	data["vent_dir"] = vent_reverse_direction
@@ -542,7 +545,7 @@
 
 
 
-/obj/machinery/power/rbmk2/proc/transfer_rod_temperature(datum/gas_mixture/gas_source,allow_cooling_limiter=TRUE,multiplier=1)
+/obj/machinery/power/rbmk2/proc/transfer_rod_temperature(datum/gas_mixture/gas_source,allow_cooling_limiter=TRUE,multiplier=1,efficiency=0.85)
 
 	var/datum/gas_mixture/rod_mix = stored_rod.air_contents
 
@@ -567,7 +570,7 @@
 	if(allow_cooling_limiter && temperature_change > 0) //Cooling!
 		temperature_change *= clamp(1 - cooling_limiter*0.01,0,1) //Clamped in case of adminbus fuckery.
 
-	rod_mix.temperature -= temperature_change*0.85
+	rod_mix.temperature -= temperature_change*efficiency
 	gas_source.temperature += temperature_change
 
 	return TRUE

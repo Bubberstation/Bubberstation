@@ -13,10 +13,9 @@
 
 	var/datum/gas_mixture/rod_mix = stored_rod.air_contents
 	var/rod_mix_pressure = rod_mix.return_pressure()
-	var/rod_mix_heat_capacity = rod_mix.heat_capacity()
 
 	//Amount of tritium to consume.
-	var/amount_to_consume = (gas_consumption_base + (rod_mix.temperature/1000)*gas_consumption_heat) * clamp(1 - (rod_mix_pressure - stored_rod.pressure_limit*0.5)/stored_rod.pressure_limit*0.5,0.25,1) * 0.25
+	var/amount_to_consume = (gas_consumption_base + (rod_mix.temperature/1000)*gas_consumption_heat)
 	if(overclocked)
 		amount_to_consume *= 1.25
 	if(obj_flags & EMAGGED)
@@ -25,6 +24,7 @@
 	//Remove gas from the rod to be processed.
 	rod_mix.assert_gas(/datum/gas/tritium)
 	var/datum/gas_mixture/consumed_mix = rod_mix.remove_specific(/datum/gas/tritium,amount_to_consume)
+	consumed_mix.assert_gas(/datum/gas/tritium)
 
 	if(!consumed_mix || !consumed_mix.gases || !consumed_mix.gases[/datum/gas/tritium])
 		if(meltdown) //If we're melting down, and we run out of tritium, trigger a voidout.
@@ -34,53 +34,40 @@
 		return
 
 	//Consume the tritium. Power (and heat) is generated based on how much is consumed.
-	consumed_mix.assert_gas(/datum/gas/tritium)
+
 	last_tritium_consumption = consumed_mix.gases[/datum/gas/tritium][MOLES]
-	last_power_generation = last_tritium_consumption * power_efficiency * base_power_generation * (overclocked ? 0.9 : 1) * 8 //Overclocked consumes more, but generates less.
 
-	//This is where the fun begins.
-	// https://www.desmos.com/calculator/ffcsaaftzz
-	last_power_generation *= (1 + max(0,(rod_mix.temperature - T0C)/1000)**1.4)*(0.75 + (amount_to_consume/gas_consumption_base)*0.25)
+	if(last_tritium_consumption > 0)
 
-	var/range_cap = CEILING(GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE * 0.5, 1)
-	if(meltdown)
-		last_radiation_pulse = min( last_power_generation*0.002, range_cap) //Double the rads, double the fun.
-	else
+		last_power_generation = (base_power_generation * 1000000) * (last_tritium_consumption/(gas_consumption_base + gas_consumption_heat*T0C))
+
+		var/range_cap = CEILING(GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE * 0.5, 1)
 		last_radiation_pulse = min( last_power_generation*0.001, range_cap)
 
-	//The LOWER the insulation_threshold, the stronger the radiation can penetrate.
-	//Values closer to the maximum range penetrate the most.
-	var/insulation_threshold_math = (range_cap - last_radiation_pulse) / range_cap
-	if(insulation_threshold_math <= RAD_LIGHT_INSULATION) //Don't bother making radiation if it isn't significant enough.
-		if(meltdown)
-			insulation_threshold_math = max(insulation_threshold_math - 0.25, RAD_FULL_INSULATION) //Go as low as possible. Nothing is safe from the RBMK.
-		else
-			insulation_threshold_math = max(insulation_threshold_math, RAD_EXTREME_INSULATION) //Don't go under RAD_EXTREME_INSULATION
-		radiation_pulse(src,last_radiation_pulse, threshold = insulation_threshold_math)
+		//The LOWER the insulation_threshold, the stronger the radiation can penetrate.
+		//Values closer to the maximum range penetrate the most.
+		var/insulation_threshold_math = (range_cap - last_radiation_pulse) / range_cap
+		if(insulation_threshold_math <= RAD_LIGHT_INSULATION) //Don't bother making radiation if it isn't significant enough.
+			if(meltdown)
+				insulation_threshold_math = max(insulation_threshold_math - 0.25, RAD_FULL_INSULATION) //Go as low as possible. Nothing is safe from the RBMK.
+			else
+				insulation_threshold_math = max(insulation_threshold_math, RAD_EXTREME_INSULATION) //Don't go under RAD_EXTREME_INSULATION
+			radiation_pulse(src,last_radiation_pulse, threshold = insulation_threshold_math)
 
-	consumed_mix.remove_specific(/datum/gas/tritium, last_tritium_consumption*0.50) //50% of used tritium gets deleted. The rest gets thrown into the air.
-	var/our_heat_capacity = consumed_mix.heat_capacity()
-	if(our_heat_capacity > 0)
-		var/temperature_mod = last_power_generation >= max_power_generation ? 1 + (last_power_generation/max_power_generation) : 1
-
-		//In order to directly power the supermatter, at least 30 moles of hyper-noblium is required (does not get consumed).
-		if(linked_supermatter)
-			rod_mix.assert_gas(/datum/gas/hypernoblium)
-			if(rod_mix.gases[/datum/gas/hypernoblium][MOLES] >= 30)
-				linked_supermatter.external_power_immediate += last_power_generation*0.0075
-				temperature_mod *= 0.1
-				last_power_generation = 0
-				goblin_multiplier *= 10
-
-		consumed_mix.assert_gas(/datum/gas/goblin)
-		consumed_mix.gases[/datum/gas/goblin][MOLES] += last_tritium_consumption*goblin_multiplier
-		consumed_mix.temperature += max(0,temperature_mod-rand())*8 + (2000/our_heat_capacity)*(overclocked ? 2 : 1)*power_efficiency*temperature_mod*0.5*(1/(vent_pressure/200))
-		consumed_mix.temperature = clamp(consumed_mix.temperature,5,0xFFFFFF)
-
-	if(rod_mix_pressure >= stored_rod.pressure_limit*(1 + rand()*0.25)) //Pressure friction penalty.
-		rod_mix.temperature += (min(rod_mix_pressure/stored_rod.pressure_limit,4) - 1) * (3/rod_mix_heat_capacity)
-		rod_mix.temperature = clamp(rod_mix.temperature,5,0xFFFFFF)
-
+		consumed_mix.remove_specific(/datum/gas/tritium, last_tritium_consumption*0.50) //50% of used tritium gets deleted. The rest gets thrown into the air.
+		var/our_heat_capacity = consumed_mix.heat_capacity()
+		if(our_heat_capacity > 0)
+			//In order to directly power the supermatter, at least 30 moles of hyper-noblium is required (does not get consumed).
+			if(linked_supermatter)
+				rod_mix.assert_gas(/datum/gas/hypernoblium)
+				if(rod_mix.gases[/datum/gas/hypernoblium][MOLES] >= 30)
+					linked_supermatter.external_power_immediate += last_power_generation*0.0075
+					last_power_generation = 0
+					goblin_multiplier *= 10
+			consumed_mix.assert_gas(/datum/gas/goblin)
+			consumed_mix.gases[/datum/gas/goblin][MOLES] += last_tritium_consumption*goblin_multiplier
+			consumed_mix.temperature += (0.4*last_power_generation*(overclocked ? 1.25 : 1)*0.01) / our_heat_capacity
+			consumed_mix.temperature = clamp(consumed_mix.temperature,5,0xFFFFFF)
 
 	//The gases that we consumed go into the buffer, to be released in the air.
 	buffer_gases.merge(consumed_mix)
@@ -135,10 +122,6 @@
 	if(stored_rod && meltdown)
 		var/meltdown_multiplier = last_power_generation/max_power_generation //It just gets worse.
 		var/datum/gas_mixture/rod_mix = stored_rod.air_contents
-		var/rod_mix_heat_capacity = rod_mix.heat_capacity()
-		if(rod_mix_heat_capacity > 0)
-			rod_mix.temperature += (8000/rod_mix_heat_capacity)*(overclocked ? 2 : 1) //It's... it's not shutting down!
-			rod_mix.temperature = clamp(rod_mix.temperature,5,0xFFFFFF)
 		var/ionize_air_amount = min( (0.5 + rod_mix.temperature/2000) * meltdown_multiplier, 5) //For every 2000 kelvin. Capped at 5 tiles.
 		var/ionize_air_range = CEILING(ionize_air_amount,1)
 		var/total_ion_amount = 0
@@ -181,16 +164,16 @@
 				turf_air.pump_gas_to(buffer_gases,vent_pressure*0.5) //Pump turf gases to buffer. Reduced rate because jammed.
 			else
 				buffer_gases.pump_gas_to(turf_air,vent_pressure*0.5) //Pump buffer gases to turf. Reduced rate because jammed.
-			if(stored_rod) transfer_rod_temperature(turf_air,allow_cooling_limiter=TRUE,multiplier=1.5)
+			if(stored_rod) transfer_rod_temperature(turf_air,allow_cooling_limiter=TRUE)
 		else if(active) //100% inside.
 			if(vent_reverse_direction)
 				turf_air.pump_gas_to(buffer_gases,vent_pressure) //Pump turf gases to buffer.
 			else
 				buffer_gases.pump_gas_to(turf_air,vent_pressure) //Pump buffer gases to turf.
-			if(stored_rod) transfer_rod_temperature(turf_air,allow_cooling_limiter=TRUE,multiplier=1)
+			if(stored_rod) transfer_rod_temperature(turf_air,allow_cooling_limiter=TRUE)
 		else //0% inside
 			if(vent_reverse_direction)
-				turf_air.pump_gas_to(buffer_gases,vent_pressure*2) //Pump turf gases to buffer. Increases rate because inactive.
+				turf_air.pump_gas_to(buffer_gases,vent_pressure*2) //Pump turf gases to buffer. Increased rate because exposed.
 			else
-				buffer_gases.pump_gas_to(turf_air,vent_pressure*2) //Pump buffer gases to turf. Increases rate because inactive.
-			if(stored_rod) transfer_rod_temperature(turf_air,allow_cooling_limiter=FALSE,multiplier=2)
+				buffer_gases.pump_gas_to(turf_air,vent_pressure*2) //Pump buffer gases to turf. Increased rate because exposed.
+			if(stored_rod) transfer_rod_temperature(turf_air,allow_cooling_limiter=FALSE,efficiency=1)
