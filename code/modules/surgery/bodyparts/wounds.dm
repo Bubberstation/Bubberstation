@@ -1,8 +1,8 @@
 /// Allows us to roll for and apply a wound without actually dealing damage. Used for aggregate wounding power with pellet clouds
 /obj/item/bodypart/proc/painless_wound_roll(wounding_type, wounding_dmg, wound_bonus, exposed_wound_bonus, sharpness=NONE, wound_clothing)
 	#ifdef EVENTMODE
-		if(!GLOB.global_roster.enable_random_wounds)
-			return
+	if(!GLOB.global_roster.enable_random_wounds)
+		return
 	#else
 		SHOULD_CALL_PARENT(TRUE)
 		if(!owner || wounding_dmg <= WOUND_MINIMUM_DAMAGE || wound_bonus == CANT_WOUND || HAS_TRAIT(owner, TRAIT_GODMODE))

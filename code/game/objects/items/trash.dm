@@ -11,9 +11,9 @@
 
 /obj/item/trash/Initialize(mapload)
 	#ifdef EVENTMODE
-		if(mapload)
-			return ..()
-		return QDEL_IN(src, 30)
+	if(mapload)
+		return ..()
+	QDEL_IN(src, 30)
 	#else
 		if((get_turf(src)?.z) && is_station_level(get_turf(src).z))
 			SSblackbox.record_feedback("tally", "station_mess_created", 1, name)
