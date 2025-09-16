@@ -156,7 +156,7 @@
 
 /obj/item/toy/plush/cescrewsplush/examine(mob/user)
 	. = ..()
-		. += span_notice("Alt-click to take a look under her skirt.")
+	. += span_notice("Alt-click to take a look under her skirt.")
 
 /obj/item/toy/plush/cescrewsplush/click_alt(mob/user)
 	user.visible_message(span_notice("[user] turns [src], revealing the hole underneath."), span_notice("You turn [src], revealing a tight, lubed hole."))
