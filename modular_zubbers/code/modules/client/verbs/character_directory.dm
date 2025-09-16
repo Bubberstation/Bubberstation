@@ -194,7 +194,6 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 		var/hypno = "Ask"
 		var/noncon = "Ask"
 		var/character_ad = ""
-		var/exploitable = ""
 		var/ref = REF(mob)
 		//Just in case something we get is not a mob
 		if(!mob)
@@ -248,7 +247,6 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 			"vore" = vore,
 			"hypno" = hypno,
 			"noncon" = noncon,
-			"exploitable" = exploitable,
 			"character_ad" = character_ad,
 			"flavor_text" = flavor_text,
 			"nsfw_flavor_text" = nsfw_flavor_text,
