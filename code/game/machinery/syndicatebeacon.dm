@@ -214,7 +214,7 @@
 /obj/machinery/power/singularity_beacon/team
 	needs_power = FALSE
 
-/obj/machinery/power/singularity_beacon/team/Initialize()
+/obj/machinery/power/singularity_beacon/team/Initialize(mapload)
 	. = ..()
 	Activate()
 

@@ -127,7 +127,7 @@
 	var/strength = 0
 	var/powered = FALSE
 
-/obj/machinery/particle_accelerator/control_box/Initialize()
+/obj/machinery/particle_accelerator/control_box/Initialize(mapload)
 	. = ..()
 	wires = new /datum/wires/particle_accelerator/control_box(src)
 	connected_parts = list()
@@ -742,7 +742,7 @@ GLOBAL_LIST_EMPTY(feud_buttons)
 	light_color = LIGHT_COLOR_FLARE
 	var/obj/structure/feudsign/sign
 
-/obj/structure/feudbutton/Initialize()
+/obj/structure/feudbutton/Initialize(mapload)
 	. = ..()
 	GLOB.feud_buttons |= src
 
@@ -767,7 +767,7 @@ GLOBAL_LIST_EMPTY(feud_buttons)
 	var/button_ready = TRUE
 	var/strike_counter = 0
 
-/obj/structure/feudsign/Initialize()
+/obj/structure/feudsign/Initialize(mapload)
 	. = ..()
 	var/obj/item/feudcontrol/button = new /obj/item/feudcontrol(get_turf(src))
 	button.sign = src

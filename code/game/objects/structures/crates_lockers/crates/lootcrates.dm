@@ -51,7 +51,8 @@
 	var/list/loot_content
 
 
-/obj/structure/closet/crate/loot/Initialize()
+/obj/structure/closet/crate/loot/Initialize(mapload)
+	. = ..()
 	//Check for an armour spawn
 	if(prob(50))
 		loot_content = loot_content + pick_weight(loot_table_armor)
@@ -73,7 +74,8 @@
 	desc = "A basic loot crate."
 	name = "basic loot crate"
 
-/obj/structure/closet/crate/loot/basic/Initialize()
+/obj/structure/closet/crate/loot/basic/Initialize(mapload)
+	. = ..()
 	var/list/loot_table = loot_table_basic + loot_table_rare + loot_table_legendary
 	LAZYADD(loot_content,pick_weight(loot_table))
 	..()
@@ -88,7 +90,8 @@
 	desc = "A rare loot crate."
 	name = "rare loot crate"
 
-/obj/structure/closet/crate/loot/rare/Initialize()
+/obj/structure/closet/crate/loot/rare/Initialize(mapload)
+	. = ..()
 	var/list/loot_table = loot_table_rare + loot_table_legendary
 	LAZYADD(loot_content,pick_weight(loot_table))
 	..()
@@ -103,7 +106,8 @@
 	desc = "A legendary loot crate."
 	name = "legendary loot crate"
 
-/obj/structure/closet/crate/loot/legendary/Initialize()
+/obj/structure/closet/crate/loot/legendary/Initialize(mapload)
+	. = ..()
 	var/list/loot_table =  loot_table_legendary
 	LAZYADD(loot_content,pick_weight(loot_table))
 	..()

@@ -188,7 +188,7 @@
 	var/id // var edit or set id in map editor
 	var/event_maptext = ""
 
-/obj/effect/portal/permanent/Initialize()
+/obj/effect/portal/permanent/Initialize(mapload)
 	. = ..()
 	maptext = MAPTEXT(event_maptext)
 
