@@ -259,9 +259,9 @@
 		if(D.id != arena_id)
 			continue
 		if(closed)
-			INVOKE_ASYNC(D, PROC_REF(close))
+			INVOKE_ASYNC(D, obj/machinery/door/PROC_REF(close))
 		else
-			INVOKE_ASYNC(D, PROC_REF(open))
+			INVOKE_ASYNC(D, obj/machinery/door/PROC_REF(open))
 
 /obj/machinery/computer/arena/Topic(href, href_list)
 	if(..())
