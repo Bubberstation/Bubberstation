@@ -187,7 +187,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	#ifdef EVENTMODE
 	static_lighting = FALSE
 	base_lighting_alpha = 255
-	base_lighting_color = "#FFFFCC"
+	base_lighting_color = "#FFFFFF"
 	requires_power = FALSE
 	default_gravity = STANDARD_GRAVITY
 	#endif
