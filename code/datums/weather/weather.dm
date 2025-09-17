@@ -438,6 +438,7 @@
 		if(HAS_TRAIT(hit_thing, TRAIT_UNDERFLOOR))
 			continue
 		hit_thing.take_damage(20, BURN, ENERGY, FALSE)
+	// BUBBER EDIT - change sound effect to distinct sounds.
 	playsound(weather_turf, 'modular_zubbers/code/modules/rimpoint_newfeatures/sound/effects/lightning.ogg', 100, extrarange = 10, falloff_distance = 10)
 	weather_turf.visible_message(span_danger("A thunderbolt strikes [weather_turf]!"))
 	explosion(weather_turf, light_impact_range = 1, flame_range = 1, silent = TRUE, adminlog = FALSE)
