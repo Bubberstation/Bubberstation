@@ -51,11 +51,11 @@
 
 	var/turf/turf = get_turf(user_holding)
 	if(!turf)
-		return FALSE
+		return
 	var/datum/weather/weather = SSweather.get_weather(turf.z, get_area(turf))
 	if(!weather || !(turf.loc in weather.impacted_areas) )
 		looping_sound.stop() // If there is no weather, why even have a sound?
-		return FALSE
+		return
 	if(weather.recursive_weather_protection_check(user_holding)) // If the player is protected by the weather, play the umbrella sounds.
 		looping_sound.start()
 	else
@@ -91,7 +91,7 @@
 
 	collapsed = active
 	if(!user)
-		return FALSE
+		return COMPONENT_BLOCK_TRANSFORM // Just in case.
 	if(collapsed)
 		icon_state = "umbrella_retract_on"
 		give_trait(user, immunity_type)
@@ -116,11 +116,11 @@
 
 
 /obj/item/umbrella/proc/give_trait(mob/living/user,immunity_type)
-	if(!HAS_TRAIT(user, immunity_type))
-		ADD_TRAIT(user, immunity_type, REF(src))
+	ADD_TRAIT(user, immunity_type, REF(src))
+
+
 /obj/item/umbrella/proc/revoke_trait(mob/living/user,immunity_type)
-	if(HAS_TRAIT(user, immunity_type))
-		REMOVE_TRAIT(user, immunity_type, REF(src))
+	REMOVE_TRAIT(user, immunity_type, REF(src))
 
 
 
