@@ -30,7 +30,8 @@
 
 /mob/living/carbon/human/doUnEquip(obj/item/item_dropping, force, newloc, no_move, invdrop = TRUE, silent = FALSE)
 	. = ..()
-	update_body()
+	if(ispath(item_dropping.type, /obj/item/clothing))
+		update_body()
 
 //General condition for activating modular sprites for an item.
 //When equipped to that item's appropriate slot, if the item has modular icons then initialize it as a modular item
