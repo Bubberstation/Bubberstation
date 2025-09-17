@@ -747,8 +747,13 @@ GLOBAL_LIST_EMPTY(feud_buttons)
 
 /obj/structure/feudbutton/attack_hand(mob/living/user)
 	. = ..()
+
+	if(!sign)
+		to_chat(user, span_warning("The button isn't connected to a sign!"))
+		return
 	if(!sign.button_ready)
 		return
+
 	sign.button_ready = FALSE
 	playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 100, FALSE)
 	balloon_alert_to_viewers("ping!")
@@ -764,14 +769,12 @@ GLOBAL_LIST_EMPTY(feud_buttons)
 
 /obj/structure/feudsign/Initialize(mapload)
 	. = ..()
-	var/obj/item/feudcontrol/button = new /obj/item/feudcontrol(get_turf(src))
-	button.sign = src
-	return INITIALIZE_HINT_LATELOAD
 
-/obj/structure/feudsign/LateInitialize()
-	. = ..()
-	for(var/obj/structure/feudbutton/button in GLOB.feud_buttons)
-		button.sign = src
+	var/obj/item/feudcontrol/control_button = new /obj/item/feudcontrol(get_turf(src))
+	control_button.sign = src
+
+	for(var/obj/structure/feudbutton/feud_button in GLOB.feud_buttons)
+		feud_button.sign = src
 
 /obj/structure/feudsign/proc/get_input(input, obj/item/feudcontrol/source)
 	if(!COOLDOWN_FINISHED(source, button_cd))
