@@ -667,6 +667,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT | STACKABLE_HELMET_EXEMPT | SNUG_FIT | HEADINTERNALS
+	material_flags = NONE
 	heat_protection = HEAD
 	cold_protection = HEAD
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT

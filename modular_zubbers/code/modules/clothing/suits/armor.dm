@@ -112,6 +112,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/armor_digi.dmi'
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+	material_flags = NONE
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
