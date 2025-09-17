@@ -36,11 +36,13 @@
 	var/meltdown = FALSE //Is the reactor currently suffering from a meltdown?
 	var/criticality = 0 //Once this reaches 100, you're going to see some serious shit.
 	var/was_warned = FALSE
+	var/meltdown_start_time = 0 //When the meltdown started. If the reactor has been in meltdown for a while, then more tritium will be consumed.
 
 	var/obj/item/tank/rbmk2_rod/stored_rod //Currently stored rbmk2 rod.
 	var/datum/gas_mixture/buffer_gases //Gas that has yet to be leaked out due to not venting fast enough.
 
 	var/last_power_generation = 0 //Display purposes. Do not edit.
+	var/last_power_generation_bonus = 0 //Display purposes. Do not edit.
 	var/last_tritium_consumption = 0 //Display purposes. Do not edit.
 	var/last_radiation_pulse = 0 //Display purposes. Do not edit.
 
@@ -200,14 +202,15 @@
 /obj/machinery/power/rbmk2/proc/force_unjam(obj/item/attacking_item,mob/living/user,damage_to_deal=50)
 	if(!jammed)
 		return FALSE
-	if(atom_integrity <= damage_to_deal)
-		balloon_alert(user, "too damaged!")
-		return FALSE
 	if(attacking_item.use_tool(src, user, 4 SECONDS, volume = 50) && jam(user,FALSE))
 		take_damage(damage_to_deal,armour_penetration=100)
-		src.Shake(duration=0.5 SECONDS)
-		balloon_alert(user, "unjammed!")
-		return TRUE
+		if( atom_integrity > 0)
+			src.Shake(duration=0.5 SECONDS)
+			balloon_alert(user, "unjammed!")
+			if(meltdown) //You turned it off, but at what cost?
+				radiation_pulse(src,max_range=6,threshold = RAD_EXTREME_INSULATION, chance = 100)
+			toggle_active(user,FALSE,disable_jam=TRUE)
+			return TRUE
 	return FALSE
 
 //Remove the rod.
@@ -293,9 +296,11 @@
 
 	playsound(src, 'sound/effects/pressureplate.ogg', 50, TRUE, extrarange = -3)
 
+	update_appearance(UPDATE_ICON)
+
 	return TRUE
 
-/obj/machinery/power/rbmk2/proc/toggle_active(mob/living/user,desired_state=!active)
+/obj/machinery/power/rbmk2/proc/toggle_active(mob/living/user,desired_state=!active,disable_jam=FALSE)
 
 	if(active == desired_state)
 		return
@@ -309,7 +314,7 @@
 	if(jammed)
 		return FALSE
 
-	if(meltdown) //You thought.
+	if(!disable_jam && meltdown) //You thought.
 		if(!jammed) //JAM IT.
 			jam(user,TRUE)
 		return FALSE
@@ -426,8 +431,10 @@
 	data["max_power_generation"] = max_power_generation
 	// We use this to display our power using this
 	data["last_power_output"] = display_power(last_power_generation)
+	data["last_power_output_bonus"] = display_power(last_power_generation_bonus)
 	// but we use this raw to calculate the progress bar
 	data["raw_last_power_output"] = last_power_generation
+	data["raw_last_power_output_bonus"] = last_power_generation_bonus
 
 	// Changed because 1/10,000th is not a micromole and si makes more sense during meltdowns. Div 2 (x0.5) because only procs every two seconds not every second
 	data["consuming"] = siunit(last_tritium_consumption*0.5, "mole", maxdecimals=3)

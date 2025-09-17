@@ -23,7 +23,9 @@ type ReactorInfo = {
   max_power_generation: number;
   safeties_max_power_generation: number;
   raw_last_power_output: number;
+  raw_last_power_output_bonus: number;
   last_power_output: string;
+  last_power_output_bonus: string;
   consuming: string;
   consuming_unit: string;
   raw_consuming: number;
@@ -32,6 +34,7 @@ type ReactorInfo = {
   rod_pressure_limit: number;
   rod_mix_temperature: number;
   rod_trit_moles: number;
+  temperature_limit: number;
 
   // Misc
   jammed: BooleanLike;
@@ -83,7 +86,7 @@ export const RBMK2 = (props) => {
             </LabeledList.Item>
             <LabeledList.Item
               label="Power Generation"
-              tooltip="Power generation is influenced by rod temperature and quality of parts."
+              tooltip="Power generation is influenced by rod temperature and quality of parts. It is possible to generate bonus power when going over the safety limit, but that is not recommended."
             >
               <ProgressBar
                 value={data.raw_last_power_output}
@@ -108,7 +111,7 @@ export const RBMK2 = (props) => {
                   ],
                 }}
               >
-                {data.last_power_output}
+                {data.last_power_output}{data.raw_last_power_output_bonus > 0 ? ' +{data.raw_last_power_output}' ''}
               </ProgressBar>
             </LabeledList.Item>
             <LabeledList.Item
@@ -177,7 +180,7 @@ export const RBMK2 = (props) => {
                   cyan: [
                    0,
                    data.temperature_limit*0.3
-                  ]
+                  ],
                 }}
               >
                 {data.rod_mix_temperature} Kelvin

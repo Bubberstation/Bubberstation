@@ -20,6 +20,11 @@
 		amount_to_consume *= 1.25
 	if(obj_flags & EMAGGED)
 		amount_to_consume *= 10
+	if(meltdown && meltdown_start_time > 0)
+		//Tritium consumption will increase by 100% every 45 seconds after 120 seconds of meltdown time.
+		var/meltdown_penalty_math = ((world.time - meltdown_start_time) - (120 SECONDS)) / (45 SECONDS)
+		if(meltdown_penalty_math > 1)
+			amount_to_consume *= meltdown_penalty_math
 
 	//Remove gas from the rod to be processed.
 	rod_mix.assert_gas(/datum/gas/tritium)
@@ -64,9 +69,11 @@
 					linked_supermatter.external_power_immediate += last_power_generation*0.0075
 					last_power_generation = 0
 					goblin_multiplier *= 10
+			if(meltdown)
+				goblin_multiplier *= 10
 			consumed_mix.assert_gas(/datum/gas/goblin)
 			consumed_mix.gases[/datum/gas/goblin][MOLES] += last_tritium_consumption*goblin_multiplier
-			consumed_mix.temperature += (0.4*last_power_generation*(overclocked ? 1.25 : 1)*0.01) / our_heat_capacity
+			consumed_mix.temperature += (0.6*(last_power_generation_bonus*2 + last_power_generation)*(overclocked ? 1.25 : 1)*0.01) / our_heat_capacity
 			consumed_mix.temperature = clamp(consumed_mix.temperature,5,0xFFFFFF)
 
 	//The gases that we consumed go into the buffer, to be released in the air.
@@ -93,6 +100,7 @@
 			log_game("[src] triggered a meltdown at [AREACOORD(T)]")
 			investigate_log("triggered a meltdown at [AREACOORD(T)]", INVESTIGATE_ENGINE)
 			meltdown = TRUE
+			meltdown_start_time = world.time
 			update_appearance(UPDATE_ICON)
 		var/chosen_sound = pick('modular_zubbers/sound/machines/rbmk2/failure01.ogg','modular_zubbers/sound/machines/rbmk2/failure02.ogg','modular_zubbers/sound/machines/rbmk2/failure03.ogg','modular_zubbers/sound/machines/rbmk2/failure04.ogg')
 		playsound(src, chosen_sound, 50, TRUE, extrarange = -3)
@@ -101,12 +109,18 @@
 		src.Shake(duration=0.5 SECONDS)
 	else if(meltdown && rod_mix.temperature <= stored_rod.temperature_limit*0.75 && last_power_generation <= max_power_generation*0.75) //Hard to get out of a meltdown. Needs that 25% buffer.
 		meltdown = FALSE
+		meltdown_start_time = 0
 		update_appearance(UPDATE_ICON)
 
 	if(!linked_supermatter && power && powernet && last_power_generation > 0)
 		if(last_power_generation >= max_power_generation*5)
 			last_power_generation *= rand()*0.25 // (Mostly) stops crazy power generation from happening.
-		src.add_avail(last_power_generation)
+			last_power_generation_bonus = 0
+		else if(last_power_generation >= max_power_generation)
+			last_power_generation_bonus = (last_power_generation/max_power_generation - 1) * last_power_generation
+
+
+		src.add_avail(last_power_generation + last_power_generation_bonus)
 
 	return TRUE
 
