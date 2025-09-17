@@ -44,14 +44,12 @@
 
 /datum/disease/transformation_race/Destroy()
 	if(affected_mob)
-		affected_mob.diseases -= src
+		if(affected_mob.diseases)
+			affected_mob.diseases -= src
+		UnregisterSignal(affected_mob)
 		affected_mob = null
 
-	if(SSdisease?.processing)
-		SSdisease.processing -= src
-	GLOB.active_diseases -= src
-
-	UnregisterSignal(affected_mob, COMSIG_PARENT_QDELETING)
+	SSdisease.active_diseases -= src
 	return ..()
 
 /datum/disease/transformation_race/hemophage
