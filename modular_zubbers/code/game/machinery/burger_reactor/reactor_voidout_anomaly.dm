@@ -67,10 +67,10 @@
 	addtimer(CALLBACK(src, PROC_REF(begin_hunt)), rand(10,20) SECONDS)
 
 /obj/voidout/proc/begin_hunt()
-	START_PROCESSING(SSsinguloprocess, src)
+	START_PROCESSING(SSfastprocess, src)
 
 /obj/voidout/Destroy()
-	STOP_PROCESSING(SSsinguloprocess, src)
+	STOP_PROCESSING(SSfastprocess, src)
 	set_target(null)
 	. = ..()
 
@@ -95,6 +95,10 @@
 		return
 
 	if(our_turf && our_turf == their_turf)
+		kill_target.visible_message(
+			span_danger("Something terrible violently phases right into [kill_target]!"),
+			span_userdanger("Something terrible violently phases right into you, stealing something precious!"),
+		)
 		var/obj/item/organ/heart/target_heart = kill_target.get_organ_slot(ORGAN_SLOT_HEART)
 		kill_target.add_splatter_floor(their_turf)
 		if(target_heart)
@@ -110,8 +114,12 @@
 
 	if(their_turf && step_towards(src,their_turf))
 		var/turf/new_turf = get_turf(src)
-		if(our_turf.loc != new_turf.loc && new_turf.loc.apc)
-			new_turf.loc.apc.overload_lighting()
+		var/our_distance = get_dist(their_turf,new_turf)
+		if(our_distance  <= 12 && !((x+y) % 4))
+			kill_target.playsound_local(new_turf, 'modular_zubbers/sound/machines/rbmk2/voidout_step.ogg', 50, FALSE)
+		if(our_turf.loc != new_turf.loc)
+			var/area/our_area = new_turf.loc
+			our_area.apc?.overload_lighting()
 
 /obj/voidout/proc/set_target(mob/living/desired_target)
 

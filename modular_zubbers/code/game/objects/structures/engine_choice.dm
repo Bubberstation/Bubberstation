@@ -5,7 +5,7 @@
 
 	. = ..()
 
-	if(is_main_engine && isturf(src.loc))
+	if(mapload && is_main_engine && isturf(src.loc))
 		new/obj/structure/engine_choice(src.loc)
 		return INITIALIZE_HINT_QDEL
 

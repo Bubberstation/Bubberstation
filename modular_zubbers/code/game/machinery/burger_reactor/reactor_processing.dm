@@ -3,23 +3,21 @@
 	if(stored_rod && (venting || (!active && !jammed)))
 		update_appearance(UPDATE_OVERLAYS)
 
-	if(!stored_rod || !active)
-		return
-
-	var/turf/T = get_turf(src)
-
-	if(!T)
+	if(!stored_rod || !(active || meltdown))
 		return
 
 	var/datum/gas_mixture/rod_mix = stored_rod.air_contents
 	var/rod_mix_pressure = rod_mix.return_pressure()
 
 	//Amount of tritium to consume.
-	var/amount_to_consume = (gas_consumption_base + (rod_mix.temperature/1000)*gas_consumption_heat)
-	if(overclocked)
-		amount_to_consume *= 1.25
-	if(obj_flags & EMAGGED)
-		amount_to_consume *= 10
+	var/amount_to_consume = (gas_consumption_base + (min(rod_mix.temperature,T0C+4000)/1000)*gas_consumption_heat)
+	if(active)
+		if(overclocked)
+			amount_to_consume *= 1.25
+		if(obj_flags & EMAGGED)
+			amount_to_consume *= 4
+	else
+		amount_to_consume *= 0.1
 	if(meltdown && meltdown_start_time > 0)
 		//Tritium consumption will increase by 100% every 45 seconds after 120 seconds of meltdown time.
 		var/meltdown_penalty_math = ((world.time - meltdown_start_time) - (120 SECONDS)) / (45 SECONDS)
@@ -29,18 +27,16 @@
 	//Remove gas from the rod to be processed.
 	rod_mix.assert_gas(/datum/gas/tritium)
 	var/datum/gas_mixture/consumed_mix = rod_mix.remove_specific(/datum/gas/tritium,amount_to_consume)
-	consumed_mix.assert_gas(/datum/gas/tritium)
-
+	if(consumed_mix)
+		consumed_mix.assert_gas(/datum/gas/tritium)
 	if(!consumed_mix || !consumed_mix.gases || !consumed_mix.gases[/datum/gas/tritium])
 		if(meltdown) //If we're melting down, and we run out of tritium, trigger a voidout.
 			trigger_voidout()
 		else
 			toggle_active(null,FALSE)
 		return
-
-	//Consume the tritium. Power (and heat) is generated based on how much is consumed.
-
 	last_tritium_consumption = consumed_mix.gases[/datum/gas/tritium][MOLES]
+
 
 	if(last_tritium_consumption > 0)
 
@@ -73,7 +69,7 @@
 				goblin_multiplier *= 10
 			consumed_mix.assert_gas(/datum/gas/goblin)
 			consumed_mix.gases[/datum/gas/goblin][MOLES] += last_tritium_consumption*goblin_multiplier
-			consumed_mix.temperature += (0.6*(last_power_generation_bonus*2 + last_power_generation)*(overclocked ? 1.25 : 1)*0.01) / our_heat_capacity
+			consumed_mix.temperature += (0.6*(last_power_generation_bonus*2 + last_power_generation)*(overclocked ? 1.5 : 1)*0.01) / our_heat_capacity
 			consumed_mix.temperature = clamp(consumed_mix.temperature,5,0xFFFFFF)
 
 	//The gases that we consumed go into the buffer, to be released in the air.
@@ -97,8 +93,8 @@
 
 	if(active && rod_mix.temperature > stored_rod.temperature_limit || last_power_generation > max_power_generation*(1.1 + rand()) )
 		if(!meltdown)
-			log_game("[src] triggered a meltdown at [AREACOORD(T)]")
-			investigate_log("triggered a meltdown at [AREACOORD(T)]", INVESTIGATE_ENGINE)
+			log_game("[src] triggered a meltdown at [AREACOORD(src)]")
+			investigate_log("triggered a meltdown at [AREACOORD(src)]", INVESTIGATE_ENGINE)
 			meltdown = TRUE
 			meltdown_start_time = world.time
 			update_appearance(UPDATE_ICON)
@@ -116,7 +112,7 @@
 		if(last_power_generation >= max_power_generation*5)
 			last_power_generation *= rand()*0.25 // (Mostly) stops crazy power generation from happening.
 			last_power_generation_bonus = 0
-		else if(last_power_generation >= max_power_generation)
+		else if(last_power_generation >= safeties_max_power_generation)
 			last_power_generation_bonus = (last_power_generation/max_power_generation - 1) * last_power_generation
 
 
@@ -127,48 +123,46 @@
 
 /obj/machinery/power/rbmk2/process_atmos() //Only turf air related stuff is handled here.
 
-	var/turf/T = loc
-	if(!isturf(T))
-		return //wat
+	if(!src.loc) //nullspace
+		return
 
-	var/datum/gas_mixture/turf_air = T.return_air()
-
+	var/datum/gas_mixture/turf_air = src.loc.return_air()
 	if(stored_rod && meltdown)
-		var/meltdown_multiplier = last_power_generation/max_power_generation //It just gets worse.
-		var/datum/gas_mixture/rod_mix = stored_rod.air_contents
-		var/ionize_air_amount = min( (0.5 + rod_mix.temperature/2000) * meltdown_multiplier, 5) //For every 2000 kelvin. Capped at 5 tiles.
-		var/ionize_air_range = CEILING(ionize_air_amount,1)
-		var/total_ion_amount = 0
-		for(var/turf/ion_turf as anything in RANGE_TURFS(ionize_air_range,T))
-			if(!prob(80)) //Atmos optimization.
-				continue
-			var/datum/gas_mixture/ion_turf_mix = ion_turf.return_air()
-			if(!ion_turf_mix || !ion_turf_mix.gases || !ion_turf_mix.gases[/datum/gas/oxygen] || !ion_turf_mix.gases[/datum/gas/oxygen][MOLES])
-				continue
-			ion_turf_mix.assert_gas(/datum/gas/oxygen)
-			var/gas_to_convert = max(0,min(ionize_air_amount,ion_turf_mix.gases[/datum/gas/oxygen][MOLES] - rand(20,30)))
-			if(gas_to_convert <= 0)
-				continue
-			var/datum/gas_mixture/oxygen_removed_mix = ion_turf_mix.remove_specific(/datum/gas/oxygen, ionize_air_amount)
-			if(oxygen_removed_mix && oxygen_removed_mix.gases[/datum/gas/oxygen] && oxygen_removed_mix.gases[/datum/gas/oxygen][MOLES] > 0)
-				var/ion_amount = oxygen_removed_mix.gases[/datum/gas/oxygen][MOLES] * 0.25
-				ion_turf_mix.assert_gas(/datum/gas/tritium)
-				ion_turf_mix.gases[/datum/gas/tritium][MOLES] += ion_amount
-				total_ion_amount += ion_amount
+		var/turf/T = get_turf(src)
+		if(T && !prob(80)) //Atmos optimization
+			var/meltdown_multiplier = last_power_generation/max_power_generation //It just gets worse.
+			var/datum/gas_mixture/rod_mix = stored_rod.air_contents
+			var/ionize_air_amount = min( (0.5 + rod_mix.temperature/2000) * meltdown_multiplier, 5) //For every 2000 kelvin. Capped at 5 tiles.
+			var/ionize_air_range = CEILING(ionize_air_amount,1)
+			var/total_ion_amount = 0
+			for(var/turf/ion_turf as anything in RANGE_TURFS(ionize_air_range,T))
+				var/datum/gas_mixture/ion_turf_mix = ion_turf.return_air()
+				if(!ion_turf_mix || !ion_turf_mix.gases || !ion_turf_mix.gases[/datum/gas/oxygen] || !ion_turf_mix.gases[/datum/gas/oxygen][MOLES])
+					continue
+				ion_turf_mix.assert_gas(/datum/gas/oxygen)
+				var/gas_to_convert = max(0,min(ionize_air_amount,ion_turf_mix.gases[/datum/gas/oxygen][MOLES] - rand(20,30)))
+				if(gas_to_convert <= 0)
+					continue
+				var/datum/gas_mixture/oxygen_removed_mix = ion_turf_mix.remove_specific(/datum/gas/oxygen, ionize_air_amount)
+				if(oxygen_removed_mix && oxygen_removed_mix.gases[/datum/gas/oxygen] && oxygen_removed_mix.gases[/datum/gas/oxygen][MOLES] > 0)
+					var/ion_amount = oxygen_removed_mix.gases[/datum/gas/oxygen][MOLES] * 0.25
+					ion_turf_mix.assert_gas(/datum/gas/tritium)
+					ion_turf_mix.gases[/datum/gas/tritium][MOLES] += ion_amount
+					total_ion_amount += ion_amount
 
-		var/ionization_amount_ratio = total_ion_amount/ionize_air_amount
-		var/criticality_to_add = min(ionization_amount_ratio,3) * rand()
-		if(criticality_to_add > 0)
-			criticality_to_add = FLOOR(criticality_to_add,0.01)
-			if(criticality >= 100) //It keeps going.
-				if(prob(criticality/200)) //The chance to explode.
-					deconstruct(FALSE)
+			var/ionization_amount_ratio = total_ion_amount/ionize_air_amount
+			var/criticality_to_add = min(ionization_amount_ratio,3) * rand()
+			if(criticality_to_add > 0)
+				criticality_to_add = FLOOR(criticality_to_add,0.01)
+				if(criticality >= 100) //It keeps going.
+					if(prob(criticality/200)) //The chance to explode.
+						deconstruct(FALSE)
+					else
+						criticality += rand(criticality_to_add*4,criticality_to_add*10)
 				else
-					criticality += rand(criticality_to_add*4,criticality_to_add*10)
-			else
-				criticality += criticality_to_add
+					criticality += criticality_to_add
 
-		playsound(src, 'modular_zubbers/sound/machines/rbmk2/ionization.ogg', 50, TRUE, extrarange = ionize_air_range)
+			playsound(src, 'modular_zubbers/sound/machines/rbmk2/ionization.ogg', 50, TRUE, extrarange = ionize_air_range)
 	else
 		criticality = max(0,criticality-1)
 

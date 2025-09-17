@@ -47,7 +47,7 @@
 	var/last_radiation_pulse = 0 //Display purposes. Do not edit.
 
 	var/gas_consumption_base = 0.000005 //How much gas gets consumed, in moles, per cycle.
-	var/gas_consumption_heat = 0.0018 //How much gas gets consumed, in moles, per cycle, per 1000 kelvin.
+	var/gas_consumption_heat = 0.0009 //How much gas gets consumed, in moles, per cycle, per 1000 kelvin.
 
 	var/base_power_generation = 370 //How many joules of power to add per micromole of tritium processed.
 	//There are 1000000 micromoles in a mole.
@@ -146,6 +146,7 @@
 		investigate_log("deleted at [AREACOORD(T)]", INVESTIGATE_ENGINE)
 
 	QDEL_NULL(stored_rod)
+	QDEL_NULL(buffer_gases)
 
 	qdel(wires)
 	set_wires(null)
