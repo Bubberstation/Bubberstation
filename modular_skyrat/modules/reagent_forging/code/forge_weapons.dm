@@ -197,8 +197,6 @@
 	attack_verb_simple = list("attack", "pierces", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 	sharpness = SHARP_POINTY
 
-
-
 /obj/item/forging/reagent_weapon/staff //doesn't do damage. Useful for healing reagents.
 	name = "reagent staff"
 	desc = "A staff most notably capable of being imbued with reagents, especially useful alongside its otherwise harmless nature."

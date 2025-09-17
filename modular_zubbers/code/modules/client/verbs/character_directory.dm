@@ -194,7 +194,6 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 		var/hypno = "Ask"
 		var/noncon = "Ask"
 		var/character_ad = ""
-		var/exploitable = ""
 		var/ref = REF(mob)
 		//Just in case something we get is not a mob
 		if(!mob)
@@ -236,13 +235,6 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 		noncon = READ_PREFS(mob, choiced/erp_status_nc)
 		character_ad = READ_PREFS(mob, text/character_ad)
 		ooc_notes = READ_PREFS(mob, text/ooc_notes)
-		//If the user is an antagonist or Observer, we want them to be able to see exploitables in the Directory.
-		if(user.mind?.has_antag_datum(/datum/antagonist) || isobserver(user))
-			if(exploitable == EXPLOITABLE_DEFAULT_TEXT)
-				exploitable = "Unset"
-			else exploitable = READ_PREFS(mob, text/exploitable)
-		else exploitable = "Obscured"
-		//And finally, we want to get the mob's name, taking into account disguised names.
 		name = mob.real_name ? mob.name : mob.real_name
 
 		directory_mobs.Add(list(list(
@@ -255,7 +247,6 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 			"vore" = vore,
 			"hypno" = hypno,
 			"noncon" = noncon,
-			"exploitable" = exploitable,
 			"character_ad" = character_ad,
 			"flavor_text" = flavor_text,
 			"nsfw_flavor_text" = nsfw_flavor_text,
