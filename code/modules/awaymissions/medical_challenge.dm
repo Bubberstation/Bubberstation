@@ -16,7 +16,7 @@
 		/obj/effect/mob_spawn/human/appendicitis_patient,
 		/obj/effect/mob_spawn/human/hugged_patient,
 		/obj/effect/mob_spawn/human/bone_hurting_juice_patient,
-		/obj/effect/mob_spawn/human/decayed_patient
+		/obj/effect/mob_spawn/corpse/human/decayed_patient
 	)
 
 	var/turf/floor = get_turf(src)
@@ -60,9 +60,10 @@
 	new /obj/item/organ/body_egg/alien_embryo(mob)
 	return mob
 
-/obj/effect/mob_spawn/human/decayed_patient
+/obj/effect/mob_spawn/corpse/human/decayed_patient
 	name = "Decayed Patient"
 	outfit = /datum/outfit/job/miner/equipped/mod
+	husk = TRUE
 
 /obj/effect/mob_spawn/human/decayed_patient/create()
 	var/mob/living/carbon/mob = ..()
