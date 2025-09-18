@@ -66,7 +66,7 @@
 	restricted_roles = list(JOB_NT_REP)
 
 /datum/loadout_item/head/security_garrison
-	name = "Security Garrison Gap"
+	name = "Security Garrison Cap"
 	item_path = /obj/item/clothing/head/security_garrison
 	restricted_roles = list(ALL_JOBS_SEC)
 	can_be_reskinned = TRUE
