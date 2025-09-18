@@ -230,6 +230,7 @@
 /area/centcom/tdome/arena)
 "bL" = (
 /obj/structure/window/reinforced/fulltile/indestructible,
+/turf/open/lava/fake,
 /area/centcom/tdome/arena)
 "bP" = (
 /turf/closed/wall/r_wall,
@@ -828,9 +829,7 @@
 "gY" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/fluff/paper/stack,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating,
 /area/centcom/tdome/arena)
 "ha" = (
 /obj/effect/decal/remains/human,
@@ -1867,13 +1866,6 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/fakebasalt,
 /area/centcom/tdome/arena)
-"nE" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/l3closet,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
-/area/centcom/tdome/arena)
 "nF" = (
 /obj/structure/holosign/barrier/ctf/red,
 /obj/machinery/door/window/survival_pod/left/directional/south,
@@ -2839,15 +2831,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/white,
 /area/centcom/tdome/arena)
-"tU" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/chair{
-	dir = 1
-	},
-/turf/open/floor/plating{
-	icon_state = "platingdmg1"
-	},
-/area/centcom/tdome/arena)
 "tW" = (
 /obj/structure/holosign/barrier/ctf/green,
 /obj/effect/turf_decal/trimline/green/filled/corner{
@@ -2998,9 +2981,7 @@
 /obj/structure/fluff/paper/stack{
 	dir = 10
 	},
-/turf/open/floor/plating{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/plating,
 /area/centcom/tdome/arena)
 "vo" = (
 /obj/structure/fluff/bus/passable/seat{
@@ -5272,9 +5253,7 @@
 /obj/structure/fluff/paper/stack{
 	dir = 1
 	},
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
+/turf/open/floor/plating,
 /area/centcom/tdome/arena)
 "LC" = (
 /obj/structure/railing/corner{
@@ -5726,12 +5705,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/smooth,
 /area/centcom/tdome/arena)
-"NX" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
-/area/centcom/tdome/arena)
 "Oa" = (
 /obj/structure/table/wood/fancy,
 /obj/machinery/button/door/directional{
@@ -5891,13 +5864,6 @@
 	},
 /turf/open/misc/sandy_dirt,
 /area/centcom/tdome/arena)
-"Ph" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/chair,
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
-/area/centcom/tdome/arena)
 "Pk" = (
 /turf/closed/indestructible/syndicate,
 /area/centcom/tdome/arena)
@@ -5930,12 +5896,6 @@
 "Pv" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/cult,
-/area/centcom/tdome/arena)
-"Pw" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
 /area/centcom/tdome/arena)
 "Pz" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -6665,9 +6625,7 @@
 	dir = 4;
 	icon_state = "pile"
 	},
-/turf/open/floor/plating{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/plating,
 /area/centcom/tdome/arena)
 "UJ" = (
 /obj/item/ammo_casing/c9mm{
@@ -7501,7 +7459,7 @@ Pv
 Md
 Pv
 UP
-tU
+SK
 rS
 WB
 Ux
@@ -7765,7 +7723,7 @@ Pv
 Pf
 ad
 PQ
-Ph
+WW
 vn
 WB
 YX
@@ -7831,7 +7789,7 @@ Pv
 ho
 Ea
 PQ
-NX
+UB
 UB
 mC
 YX
@@ -7962,7 +7920,7 @@ Ws
 WB
 BN
 Ly
-Pw
+UB
 dH
 UB
 mC
@@ -8030,7 +7988,7 @@ ie
 cb
 UB
 UB
-NX
+UB
 mC
 YX
 oB
@@ -8157,7 +8115,7 @@ Ur
 "}
 (12,1,1) = {"
 QK
-nE
+QK
 gY
 ZH
 NS
