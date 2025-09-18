@@ -103,7 +103,7 @@
 //todo: make sure this actually gets any leftovers from things inside other things that got deleted
 /obj/machinery/computer/arena/proc/clear_arena()
 	for(var/turf/T in get_arena_turfs())
-		T.empty(turf_type = /turf/open/indestructible)
+		T.empty(/turf/open/indestructible, /turf/open/indestructible)
 	var/list/clear_turfs = get_arena_turfs()
 	for(var/obj/iter_object in clear_turfs)
 		//if(!istype()) // whatever we want to allow?
