@@ -10,7 +10,7 @@
 	var/rod_mix_pressure = rod_mix.return_pressure()
 
 	//Amount of tritium to consume.
-	var/amount_to_consume = (gas_consumption_base + (min(rod_mix.temperature,T0C+4000)/1000)*gas_consumption_heat)
+	var/amount_to_consume = (gas_consumption_base + (min(rod_mix.temperature,T0C+4000)/1000)*gas_consumption_heat) * clamp(2 - rod_mix_pressure/8000,0.1,1)
 	if(active)
 		if(overclocked)
 			amount_to_consume *= 1.25
@@ -41,6 +41,7 @@
 	if(last_tritium_consumption > 0)
 
 		last_power_generation = (base_power_generation * 1000000) * (last_tritium_consumption/(gas_consumption_base + gas_consumption_heat*T0C))
+		last_power_generation = clamp(last_power_generation,0,max_power_generation*10)
 
 		var/range_cap = CEILING(GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE * 0.5, 1)
 		last_radiation_pulse = min( last_power_generation*0.001, range_cap)
@@ -56,19 +57,19 @@
 			radiation_pulse(src,last_radiation_pulse, threshold = insulation_threshold_math)
 
 		consumed_mix.remove_specific(/datum/gas/tritium, last_tritium_consumption*0.50) //50% of used tritium gets deleted. The rest gets thrown into the air.
+		//In order to directly power the supermatter, at least 30 moles of hyper-noblium is required (does not get consumed).
+		if(linked_supermatter)
+			rod_mix.assert_gas(/datum/gas/hypernoblium)
+			if(rod_mix.gases[/datum/gas/hypernoblium][MOLES] >= 30)
+				linked_supermatter.external_power_immediate += last_power_generation*0.0075
+				last_power_generation = 0
+				goblin_multiplier *= 10
+		if(meltdown)
+			goblin_multiplier *= 10
+		consumed_mix.assert_gas(/datum/gas/goblin)
+		consumed_mix.gases[/datum/gas/goblin][MOLES] += last_tritium_consumption*goblin_multiplier
 		var/our_heat_capacity = consumed_mix.heat_capacity()
 		if(our_heat_capacity > 0)
-			//In order to directly power the supermatter, at least 30 moles of hyper-noblium is required (does not get consumed).
-			if(linked_supermatter)
-				rod_mix.assert_gas(/datum/gas/hypernoblium)
-				if(rod_mix.gases[/datum/gas/hypernoblium][MOLES] >= 30)
-					linked_supermatter.external_power_immediate += last_power_generation*0.0075
-					last_power_generation = 0
-					goblin_multiplier *= 10
-			if(meltdown)
-				goblin_multiplier *= 10
-			consumed_mix.assert_gas(/datum/gas/goblin)
-			consumed_mix.gases[/datum/gas/goblin][MOLES] += last_tritium_consumption*goblin_multiplier
 			consumed_mix.temperature += (0.6*(last_power_generation_bonus*2 + last_power_generation)*(overclocked ? 1.5 : 1)*0.01) / our_heat_capacity
 			consumed_mix.temperature = clamp(consumed_mix.temperature,5,0xFFFFFF)
 
@@ -113,7 +114,7 @@
 			last_power_generation *= rand()*0.25 // (Mostly) stops crazy power generation from happening.
 			last_power_generation_bonus = 0
 		else if(last_power_generation >= safeties_max_power_generation)
-			last_power_generation_bonus = (last_power_generation/max_power_generation - 1) * last_power_generation
+			last_power_generation_bonus = (last_power_generation/safeties_max_power_generation - 1) * last_power_generation
 
 
 		src.add_avail(last_power_generation + last_power_generation_bonus)

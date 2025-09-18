@@ -59,7 +59,7 @@
 	//Upgradable stats.
 	var/power_efficiency = 1 //A multiplier of base_power_generation. Also has an effect on heat generation. Improved via capacitors.
 	var/vent_pressure = 200 //Pressure, in kPa, that the buffer releases the gas to. Improved via servos.
-	var/max_power_generation = 350000 //Maximum allowed power generation (joules) per cycle before the rods go apeshit. Improved via matter bins. Going over 5 times this will reduce power generation.
+	var/max_power_generation = 350000 //Maximum allowed power generation (joules) per cycle before the rods go apeshit. Improved via matter bins. Going over 5 times this will reduce power generation. Can't go over 10 times this.
 
 	var/list/obj/machinery/rbmk2_sniffer/linked_sniffers = list()
 

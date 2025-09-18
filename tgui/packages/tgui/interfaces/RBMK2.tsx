@@ -111,7 +111,7 @@ export const RBMK2 = (props) => {
                   ],
                 }}
               >
-                {data.raw_last_power_output_bonus > 0 ? `${data.raw_last_power_output} + ${data.last_power_output_bonus}` : data.last_power_output}
+                {data.raw_last_power_output_bonus > 0 ? `${data.last_power_output} + ${data.last_power_output_bonus}` : data.last_power_output}
               </ProgressBar>
             </LabeledList.Item>
             <LabeledList.Item
