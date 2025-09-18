@@ -13,9 +13,9 @@
 
 	// Add additional spawners to this list to get more patients.
 	var/spawners = list(
-		/obj/effect/mob_spawn/human/appendicitis_patient,
-		/obj/effect/mob_spawn/human/hugged_patient,
-		/obj/effect/mob_spawn/human/bone_hurting_juice_patient,
+		/obj/effect/mob_spawn/corpse/human/appendicitis_patient,
+		/obj/effect/mob_spawn/corpse/human/hugged_patient,
+		/obj/effect/mob_spawn/corpse/human/bone_hurting_juice_patient,
 		/obj/effect/mob_spawn/corpse/human/decayed_patient
 	)
 
@@ -25,7 +25,10 @@
 	for(var/spawner_type in spawners)
 		var/obj/effect/mob_spawn/mob_spawn = new spawner_type(floor)
 		if(mob_spawn)
-			mobs += mob_spawn.create()
+			var/mob/living/spawned = mob_spawn.create()
+			if(spawned)
+				mobs += spawned
+			qdel(mob_spawn)
 
 	for(var/mob/living/spawned_mob in mobs)
 		var/obj/structure/closet/supplypod/centcompod/pod = new()
@@ -34,11 +37,11 @@
 
 	qdel(src)
 
-/obj/effect/mob_spawn/human/appendicitis_patient
+/obj/effect/mob_spawn/corpse/human/appendicitis_patient
 	name = "Appendicitis Patient"
 	outfit = /datum/outfit/job/cook
 
-/obj/effect/mob_spawn/human/appendicitis_patient/create()
+/obj/effect/mob_spawn/corpse/human/appendicitis_patient/create()
 	var/mob/living/carbon/human/mob = ..()
 	if(!mob)
 		return null
@@ -51,11 +54,11 @@
 		appendix.inflamation_stage = 3
 	return mob
 
-/obj/effect/mob_spawn/human/hugged_patient
+/obj/effect/mob_spawn/corpse/human/hugged_patient
 	name = "Infested Patient"
 	outfit = /datum/outfit/centcom/death_commando/disarmed
 
-/obj/effect/mob_spawn/human/hugged_patient/create()
+/obj/effect/mob_spawn/corpse/human/hugged_patient/create()
 	var/mob/living/mob = ..()
 	new /obj/item/organ/body_egg/alien_embryo(mob)
 	return mob
@@ -63,19 +66,18 @@
 /obj/effect/mob_spawn/corpse/human/decayed_patient
 	name = "Decayed Patient"
 	outfit = /datum/outfit/job/miner/equipped/mod
-	husk = TRUE
 
-/obj/effect/mob_spawn/human/decayed_patient/create()
+/obj/effect/mob_spawn/corpse/human/decayed_patient/create()
 	var/mob/living/carbon/mob = ..()
 	for(var/obj/item/organ/organ as anything in mob.organs)
 		organ.apply_organ_damage(INFINITY)
 	return mob
 
-/obj/effect/mob_spawn/human/bone_hurting_juice_patient
+/obj/effect/mob_spawn/corpse/human/bone_hurting_juice_patient
 	name = "Bone Hurting Juice Patient"
 	outfit = /datum/outfit/wizardcorpse
 
-/obj/effect/mob_spawn/human/bone_hurting_juice_patient/create()
+/obj/effect/mob_spawn/corpse/human/bone_hurting_juice_patient/create()
 	var/mob/living/carbon/mob = ..()
 
 	mob.reagents.add_reagent(/datum/reagent/toxin/bonehurtingjuice, 40)
