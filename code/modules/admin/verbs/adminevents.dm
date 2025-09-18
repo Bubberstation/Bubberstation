@@ -199,40 +199,37 @@ ADMIN_VERB(delay_command_report, R_FUN, "Delay Command Report", "Prevents the ro
 
 	return input
 
-/client/proc/storm_start()
-	set name = "Start the Storm"
-	set category = "Admin.Fun"
-	set popup_menu = FALSE
-	if(!check_rights(R_FUN))
+ADMIN_VERB(cmd_admin_storm_start, R_FUN, "Start the Storm", "Begins a station-wide storm event.", ADMIN_CATEGORY_FUN)
+	if(GLOB.storm_controller)
+		to_chat(user, "There is already a storm!", confidential = TRUE)
 		return
 
-	if(GLOB.storm_controller)
-		to_chat(usr, "There is already a storm!", confidential = TRUE)
-		return
 	GLOB.storm_controller = new /datum/storm_controller
 
-/client/proc/storm_halt()
-	set name = "Halt the Storm Permanently"
-	set category = "Admin.Fun"
-	set popup_menu = FALSE
-	if(!check_rights(R_FUN))
-		return
+	log_admin("StormStart: [key_name(user)] started a storm")
+	message_admins(span_adminnotice("[key_name_admin(user)] started a storm"))
+	BLACKBOX_LOG_ADMIN_VERB("Start the Storm")
 
+ADMIN_VERB(cmd_admin_storm_halt, R_FUN, "Halt the Storm Permanently", "Stops the storm event for good.", ADMIN_CATEGORY_FUN)
 	var/datum/storm_controller/controller = GLOB.storm_controller
 	if(!controller)
-		to_chat(usr, "Start a storm first!", confidential = TRUE)
+		to_chat(user, "Start a storm first!", confidential = TRUE)
 		return
+
 	controller.stop_storm()
 
-/client/proc/storm_stop()
-	set name = "Stop the Storm Entirely"
-	set category = "Admin.Fun"
-	set popup_menu = FALSE
-	if(!check_rights(R_FUN))
-		return
+	log_admin("StormHalt: [key_name(user)] halted the storm permanently")
+	message_admins(span_adminnotice("[key_name_admin(user)] halted the storm permanently"))
+	BLACKBOX_LOG_ADMIN_VERB("Halt the Storm Permanently")
 
+ADMIN_VERB(cmd_admin_storm_stop, R_FUN, "Stop the Storm Entirely", "Ends the current storm event.", ADMIN_CATEGORY_FUN)
 	var/datum/storm_controller/controller = GLOB.storm_controller
 	if(!controller)
-		to_chat(usr, "Start a storm first!", confidential = TRUE)
+		to_chat(user, "Start a storm first!", confidential = TRUE)
 		return
+
 	controller.end_storm()
+
+	log_admin("StormStop: [key_name(user)] stopped the storm entirely")
+	message_admins(span_adminnotice("[key_name_admin(user)] stopped the storm entirely"))
+	BLACKBOX_LOG_ADMIN_VERB("Stop the Storm Entirely")
