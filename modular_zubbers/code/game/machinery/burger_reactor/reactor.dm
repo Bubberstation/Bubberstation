@@ -209,7 +209,7 @@
 			src.Shake(duration=0.5 SECONDS)
 			balloon_alert(user, "unjammed!")
 			if(meltdown) //You turned it off, but at what cost?
-				radiation_pulse(src,max_range=6,threshold = RAD_EXTREME_INSULATION, chance = 100)
+				radiation_pulse(src,max_range=6,threshold = RAD_FULL_INSULATION, chance = 100)
 			toggle_active(user,FALSE,disable_jam=TRUE)
 			return TRUE
 	return FALSE
@@ -553,32 +553,32 @@
 
 
 
-/obj/machinery/power/rbmk2/proc/transfer_rod_temperature(datum/gas_mixture/gas_source,allow_cooling_limiter=TRUE,multiplier=1,efficiency=0.85)
+/obj/machinery/power/rbmk2/proc/transfer_rod_temperature(datum/gas_mixture/gas_source,allow_cooling_limiter=TRUE)
 
 	var/datum/gas_mixture/rod_mix = stored_rod.air_contents
 
 	var/rod_mix_heat_capacity = rod_mix.heat_capacity()
-	if(rod_mix_heat_capacity <= 0)
+	if(rod_mix_heat_capacity <= 0) //Nothing there.
 		return FALSE
 
 	var/gas_source_heat_capacity = gas_source.heat_capacity()
-	if(gas_source_heat_capacity <= 0)
+	if(gas_source_heat_capacity <= 0) //Nothing there.
 		return FALSE
 
 	var/rod_mix_temperature = rod_mix.temperature
 	var/gas_source_temperature = gas_source.temperature
 
 	var/delta_temperature = rod_mix_temperature - gas_source_temperature
-	if(delta_temperature == 0)
+	if(delta_temperature == 0) //No Change.
 		return FALSE
 
-	var/energy_transfer = delta_temperature*rod_mix_heat_capacity*gas_source_heat_capacity/(rod_mix_heat_capacity+gas_source_heat_capacity)
+	var/energy_transfer = (delta_temperature*rod_mix_heat_capacity*gas_source_heat_capacity) / (rod_mix_heat_capacity+gas_source_heat_capacity)
 
-	var/temperature_change = (energy_transfer/rod_mix_heat_capacity)*multiplier
+	var/temperature_change = (energy_transfer/rod_mix_heat_capacity)
 	if(allow_cooling_limiter && temperature_change > 0) //Cooling!
 		temperature_change *= clamp(1 - cooling_limiter*0.01,0,1) //Clamped in case of adminbus fuckery.
 
-	rod_mix.temperature -= temperature_change*efficiency
+	rod_mix.temperature -= temperature_change*0.85
 	gas_source.temperature += temperature_change
 
 	return TRUE

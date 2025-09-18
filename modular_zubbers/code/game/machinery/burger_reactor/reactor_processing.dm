@@ -18,6 +18,7 @@
 			amount_to_consume *= 4
 	else
 		amount_to_consume *= 0.1
+
 	if(meltdown && meltdown_start_time > 0)
 		//Tritium consumption will increase by 100% every 45 seconds after 120 seconds of meltdown time.
 		var/meltdown_penalty_math = ((world.time - meltdown_start_time) - (120 SECONDS)) / (45 SECONDS)
@@ -38,7 +39,7 @@
 	last_tritium_consumption = consumed_mix.gases[/datum/gas/tritium][MOLES]
 
 
-	if(last_tritium_consumption > 0)
+	if(consumed_mix && last_tritium_consumption > 0)
 
 		last_power_generation = (base_power_generation * 1000000) * (last_tritium_consumption/(gas_consumption_base + gas_consumption_heat*T0C))
 		last_power_generation = clamp(last_power_generation,0,max_power_generation*10)
@@ -63,14 +64,11 @@
 			if(rod_mix.gases[/datum/gas/hypernoblium][MOLES] >= 30)
 				linked_supermatter.external_power_immediate += last_power_generation*0.0075
 				last_power_generation = 0
-				goblin_multiplier *= 10
-		if(meltdown)
-			goblin_multiplier *= 10
 		consumed_mix.assert_gas(/datum/gas/goblin)
 		consumed_mix.gases[/datum/gas/goblin][MOLES] += last_tritium_consumption*goblin_multiplier
 		var/our_heat_capacity = consumed_mix.heat_capacity()
 		if(our_heat_capacity > 0)
-			consumed_mix.temperature += (0.6*(last_power_generation_bonus*2 + last_power_generation)*(overclocked ? 1.5 : 1)*0.01) / our_heat_capacity
+			consumed_mix.temperature += ((0.6*(last_power_generation_bonus*2 + last_power_generation)*(overclocked ? 1.5 : 1)*0.01) / our_heat_capacity) * clamp(1 - consumed_mix.temperature/20000,0,1)
 			consumed_mix.temperature = clamp(consumed_mix.temperature,5,0xFFFFFF)
 
 	//The gases that we consumed go into the buffer, to be released in the air.
@@ -92,7 +90,7 @@
 			take_damage(3,armour_penetration=100)
 			src.Shake(duration=0.5 SECONDS)
 
-	if(active && rod_mix.temperature > stored_rod.temperature_limit || last_power_generation > max_power_generation*(1.1 + rand()) )
+	if(active && rod_mix.temperature > stored_rod.temperature_limit || last_power_generation > max_power_generation )
 		if(!meltdown)
 			log_game("[src] triggered a meltdown at [AREACOORD(src)]")
 			investigate_log("triggered a meltdown at [AREACOORD(src)]", INVESTIGATE_ENGINE)
@@ -100,9 +98,8 @@
 			meltdown_start_time = world.time
 			update_appearance(UPDATE_ICON)
 		var/chosen_sound = pick('modular_zubbers/sound/machines/rbmk2/failure01.ogg','modular_zubbers/sound/machines/rbmk2/failure02.ogg','modular_zubbers/sound/machines/rbmk2/failure03.ogg','modular_zubbers/sound/machines/rbmk2/failure04.ogg')
-		playsound(src, chosen_sound, 50, TRUE, extrarange = -3)
-		var/damage_to_deal = clamp( last_power_generation / max_power_generation, 1, 10)
-		take_damage(damage_to_deal,armour_penetration=100)
+		playsound(src, chosen_sound, 50, TRUE)
+		take_damage(clamp( last_power_generation / max_power_generation, 1, 10),armour_penetration=100)
 		src.Shake(duration=0.5 SECONDS)
 	else if(meltdown && rod_mix.temperature <= stored_rod.temperature_limit*0.75 && last_power_generation <= max_power_generation*0.75) //Hard to get out of a meltdown. Needs that 25% buffer.
 		meltdown = FALSE
@@ -185,4 +182,4 @@
 				turf_air.pump_gas_to(buffer_gases,vent_pressure*2) //Pump turf gases to buffer. Increased rate because exposed.
 			else
 				buffer_gases.pump_gas_to(turf_air,vent_pressure*2) //Pump buffer gases to turf. Increased rate because exposed.
-			if(stored_rod) transfer_rod_temperature(turf_air,allow_cooling_limiter=FALSE,efficiency=1)
+			if(stored_rod) transfer_rod_temperature(turf_air,allow_cooling_limiter=FALSE)
