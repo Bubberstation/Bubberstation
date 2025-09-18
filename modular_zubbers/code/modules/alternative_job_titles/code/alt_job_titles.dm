@@ -27,3 +27,8 @@
 		"Weaponsmith",
 		"Armorsmith",
 	)
+
+/datum/job/paramedic/New()
+	alt_titles |= list(
+		"Body Retrieval Specialist",
+	)
