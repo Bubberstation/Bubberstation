@@ -2,7 +2,7 @@
 /obj/item/organ/stomach/proc/handle_weight_gain(mob/living/carbon/human/fatty)
 	fatty.handle_fatness()
 	fatty.handle_helplessness()
-	// Do this later fatty.handle_modular_items()
+	fatty.handle_modular_items()
 
 	/* Do this later.
 	switch(fatty.fullness)

@@ -28,6 +28,11 @@
 	var/mod_butt_rec					//^^^ for butt
 	var/mod_belly_rec					//^^^ for belly
 
+/mob/living/carbon/human/doUnEquip(obj/item/item_dropping, force, newloc, no_move, invdrop = TRUE, silent = FALSE)
+	. = ..()
+	if(ispath(item_dropping.type, /obj/item/clothing))
+		update_body()
+
 //General condition for activating modular sprites for an item.
 //When equipped to that item's appropriate slot, if the item has modular icons then initialize it as a modular item
 /obj/item/equipped(mob/user, slot)
@@ -113,6 +118,9 @@
 			add_modular_overlay(U, mod_breasts_rec, MODULAR_BREASTS_LAYER, color)
 			add_modular_overlay(U, "[mod_breasts_rec]_NORTH", BREASTS_BEHIND_LAYER, color)
 			add_modular_overlay(U, "[mod_breasts_rec]_SOUTH", BREASTS_FRONT_LAYER, color)
+	U.update_body()
+	U.update_worn_undersuit()
+	U.update_worn_oversuit()
 
 //Remove the previously built modular sprite overlays and empty the list of tracked overlays
 /obj/item/proc/delete_modular_overlays(mob/user)
