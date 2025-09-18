@@ -32,3 +32,4 @@
 	alt_titles |= list(
 		"Body Retrieval Specialist",
 	)
+	. = ..()
