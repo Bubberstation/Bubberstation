@@ -29,3 +29,7 @@
 /datum/loadout_item/inhand/wheelchair
 	name = "Folded Wheelchair"
 	item_path = /obj/item/wheelchair
+
+/datum/loadout_item/inhand/sex_sign
+	name = "sex holosign projector"
+	item_path = /obj/item/holosign_creator/sex
