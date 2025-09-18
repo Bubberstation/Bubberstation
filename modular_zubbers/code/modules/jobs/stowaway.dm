@@ -4,8 +4,8 @@
 	faction = FACTION_NONE
 	supervisors = "yourself"
 	minimal_player_age = 7
-	total_positions = 20
-	spawn_positions = 20
+	total_positions = 0
+	spawn_positions = 0
 	exp_requirements = 2400
 	exp_required_type = EXP_TYPE_CREW
 	exp_granted_type = EXP_TYPE_SPECIAL
@@ -14,7 +14,7 @@
 	liver_traits = list(TRAIT_MAINTENANCE_METABOLISM)
 
 
-	job_flags = JOB_NEW_PLAYER_JOINABLE|JOB_REOPEN_ON_ROUNDSTART_LOSS|JOB_ASSIGN_QUIRKS|JOB_CANNOT_OPEN_SLOTS
+	job_flags = JOB_ASSIGN_QUIRKS|STATION_TRAIT_JOB_FLAGS
 
 /datum/job/assistant/stowaway/has_banned_species(datum/preferences/pref)
 	//return false cause no species should be banned from this role
@@ -41,6 +41,14 @@
 	spawned.forceMove(T)
 	spawned.put_in_hands(new /obj/item/storage/toolbox/mechanical)
 	spawned.equip_to_slot(new /obj/item/card/cardboard, ITEM_SLOT_ID)
+
+// Station Job Trait
+/datum/station_trait/job/stowaway
+	name = "Stowaway"
+	button_desc = "Be a stowaway aboard a hazardous research station that is infamous for many reasons."
+	weight = 3
+	position_amount = 3
+	job_to_add = /datum/job/assistant/stowaway
 
 // Fixes for station traits...
 /datum/station_trait/wallets/on_job_after_spawn(datum/source, datum/job/job, mob/living/living_mob, mob/M, joined_late)
