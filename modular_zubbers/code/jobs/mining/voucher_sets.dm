@@ -6,6 +6,7 @@
 	set_items = list(
 		/obj/item/storage/backpack/duffelbag/mining_bunny,
 		/obj/item/knife/shiv/carrot,
+		/obj/item/storage/lunchbox/bunny/carrot,
 		)
 
 
