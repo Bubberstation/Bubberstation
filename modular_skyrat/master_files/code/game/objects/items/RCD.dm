@@ -33,6 +33,7 @@
 /obj/item/construction/plumbing/mining
 	name = "mining plumbing constructor"
 	desc = "A type of plumbing constructor designed to harvest from geysers and collect their fluids."
+	icon = 'modular_skyrat/modules/aesthetics/tools/tools.dmi'
 	icon_state = "plumberer_mining"
 	var/static/list/mining_design_types = list(
 		//category 1 Synthesizers i.e devices which creates , reacts & destroys chemicals

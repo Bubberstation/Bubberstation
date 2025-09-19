@@ -163,3 +163,13 @@
 /datum/loadout_item/suit/frontier_colonist_short
 	name = "Frontier jacket"
 	item_path = /obj/item/clothing/suit/jacket/frontier_colonist/short/loadout
+
+//Doppler hoodies.
+
+/datum/loadout_item/suit/hoodie/big_hoodie
+	name = "Big Hoodie"
+	item_path = /obj/item/clothing/suit/hooded/big_hoodie
+
+/datum/loadout_item/suit/hoodie/twee_hoodie
+	name = "Disconcertingly Twee Hoodie"
+	item_path = /obj/item/clothing/suit/hooded/twee_hoodie
