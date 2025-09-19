@@ -1,4 +1,4 @@
-/datum/voucher_set/bunny
+/datum/voucher_set/mining/bunny
 	name = "Bunny Kit"
 	description = "Designed for Miners on the planet of Carota, this kit includes all you need to imitate them! Weapons sold seperately."
 	icon = 'icons/mob/simple/rabbit.dmi'
