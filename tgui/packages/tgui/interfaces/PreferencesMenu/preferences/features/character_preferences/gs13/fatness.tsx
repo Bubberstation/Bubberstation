@@ -1,4 +1,4 @@
-import { Feature, FeatureNumberInput } from '../../base';
+import { type Feature, FeatureNumberInput } from '../../base';
 
 export const starting_fatness: Feature<number> = {
   name: 'Starting Fatness',
@@ -13,7 +13,7 @@ export const weight_gain_rate: Feature<number> = {
 };
 
 export const weight_loss_rate: Feature<number> = {
-  name: 'Weight Gain Rate',
+  name: 'Weight Loss Rate',
   description: 'How quickly do you lose fat?',
   component: FeatureNumberInput,
 };
