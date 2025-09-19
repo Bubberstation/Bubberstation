@@ -1,4 +1,4 @@
-#define LAYDOWN_COOLDOWN 2 SECONDS
+#define LAYDOWN_COOLDOWN 1 SECONDS
 
 /obj/item/organ/taur_body
 	name = "taur body"
@@ -11,6 +11,9 @@
 	mutantpart_key = "taur"
 	mutantpart_info = list(MUTANT_INDEX_NAME = "None", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF"))
 	bodypart_overlay = /datum/bodypart_overlay/mutant/taur_body
+
+	/// The icon state used to crop clothing not made for us. See 'modular_skyrat\master_files\icons\mob\clothing\taur_masking_helpers.dmi' for more
+	var/clothing_cropping_state = DEFAULT_TAUR_CLIPPING_MASK
 
 	/// If not null, the left leg limb we add to our mob will have this name.
 	var/left_leg_name = "front legs"
@@ -68,9 +71,6 @@
 /obj/item/organ/taur_body/serpentine
 	left_leg_name = "upper serpentine body"
 	right_leg_name = "lower serpentine body"
-
-/obj/item/organ/taur_body/serpentine/synth
-	organ_flags = ORGAN_ROBOTIC
 
 /obj/item/organ/taur_body/spider
 	left_leg_name = "left legs"

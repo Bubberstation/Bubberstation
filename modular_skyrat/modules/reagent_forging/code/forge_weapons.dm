@@ -199,8 +199,6 @@
 	. = ..()
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
-
-
 /obj/item/forging/reagent_weapon/staff //doesn't do damage. Useful for healing reagents.
 	name = "reagent staff"
 	desc = "A staff most notably capable of being imbued with reagents, especially useful alongside its otherwise harmless nature."

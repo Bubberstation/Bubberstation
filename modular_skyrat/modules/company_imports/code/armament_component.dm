@@ -39,7 +39,7 @@
 	var/datum/bank_account/buyer = SSeconomy.get_dep_account(ACCOUNT_CAR)
 
 	if(console_state == IRN_CONSOLE)
-		id_card = parent_prog.computer.computer_id_slot?.GetID()
+		id_card = parent_prog.computer.stored_id?.GetID()
 	else
 		if(istype(the_person))
 			id_card = the_person.get_idcard(TRUE)
@@ -159,7 +159,7 @@
 		var/obj/item/card/id/id_card
 
 		if(console_state == IRN_CONSOLE)
-			id_card = parent_prog.computer.computer_id_slot?.GetID()
+			id_card = parent_prog.computer.stored_id?.GetID()
 		else
 			id_card = the_person.get_idcard(TRUE)
 
@@ -223,7 +223,7 @@
 
 	else if(possible_downloader)
 		var/datum/computer_file/program/budgetorders/parent_file = parent_prog
-		if((parent_file.requestonly && !self_paid) || !(possible_downloader.computer_id_slot?.GetID()))
+		if((parent_file.requestonly && !self_paid) || !(possible_downloader.stored_id?.GetID()))
 			reason = tgui_input_text(user, "Reason", name)
 			if(isnull(reason))
 				return
@@ -288,7 +288,7 @@
 				return
 
 			if(console_state == IRN_CONSOLE)
-				id_card = parent_prog.computer.computer_id_slot?.GetID()
+				id_card = parent_prog.computer.stored_id?.GetID()
 			else
 				id_card = the_person.get_idcard(TRUE)
 
