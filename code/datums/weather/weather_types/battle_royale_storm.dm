@@ -21,43 +21,56 @@ GLOBAL_DATUM(storm_controller, /datum/storm_controller)
 
 /datum/storm_controller/New()
 	. = ..()
-	//see bottom of file for these
 	outer_areas = GLOB.externalareasstorm.Copy()
 	middle_areas = GLOB.middleareastorm.Copy()
 	inner_areas = GLOB.innerareastorm.Copy()
-	//inner
+
 	current_area_pick = outer_areas
+
 	message_admins("Storm started.")
-	send_to_playing_players("<span class='userdanger'>The storm has been created! It will consume the station from the outside in, so plan around it!</span>")
-	consume_area(/area/space, repeat = FALSE)
-	consume_area(/area/space/nearstation, repeat = TRUE) //start the storm
+	send_to_playing_players(span_userdanger("The storm has been created! It will consume the arena from the outside in, so plan around it!"))
+
+	// start storm in first outer area
+	if(current_area_pick.len)
+		consume_area(popleft(current_area_pick), repeat = TRUE)
+
 
 /datum/storm_controller/proc/consume_area(area/area_path, repeat = TRUE)
+	var/area/found_area = locate(area_path) in world
+	if(!found_area)
+		stack_trace("Storm tried to consume [area_path], but it doesn't exist on this map.")
+		if(repeat && current_area_pick.len)
+			consume_area(popleft(current_area_pick), repeat = TRUE)
+		return
+
 	var/datum/weather/royale_storm/storm = new(SSmapping.levels_by_trait(ZTRAIT_STATION))
 	storms += storm
+
 	storm.area_type = area_path
-	//message_admins("Storm consuming [initial(area_path.name)].")
+	storm.impacted_areas = list(found_area)
+
 	storm.telegraph()
+
 	if(repeat)
-		if(!current_area_pick.len) //there was none left, don't try and take from an empty list
+		if(!current_area_pick.len) // there was none left, don't try and take from an empty list
 			return
 		timerid = addtimer(CALLBACK(src, PROC_REF(consume_area), popleft(current_area_pick)), area_consume_timer)
-		if(!current_area_pick.len) //we took the last one
+		if(!current_area_pick.len) // we took the last one
 			progression--
 			switch(progression)
 				if(2)
-					send_to_playing_players("<span class='userdanger'>The storm has consumed the entire outer station!</span>")
-					area_consume_timer += area_consume_addition //get a little slower
+					send_to_playing_players(span_userdanger("The storm has consumed the entire outer station!"))
+					area_consume_timer += area_consume_addition // get a little slower
 					current_area_pick = middle_areas
 				if(1)
-					send_to_playing_players("<span class='userdanger'>The storm has consumed the majority of the station!</span>")
+					send_to_playing_players(span_userdanger("The storm has consumed the majority of the station!"))
 					current_area_pick = inner_areas
 				if(0)
-					send_to_playing_players("<span class='userdanger'>The storm has consumed the ENTIRE station!</span>")
+					send_to_playing_players(span_userdanger("The storm has consumed the ENTIRE station!"))
 
 ///stops the storm.
 /datum/storm_controller/proc/stop_storm()
-	send_to_playing_players("<span class='userdanger'>The storm has been halted by centcom!</span>")
+	send_to_playing_players(span_userdanger("The storm has been halted by CentCom!"))
 	if(timerid)
 		deltimer(timerid)
 
@@ -86,13 +99,24 @@ GLOBAL_DATUM(storm_controller, /datum/storm_controller)
 
 	immunity_type = "NOTHING KID"
 
-/datum/weather/royale_storm/weather_act_mob(mob/living/L)
-	L.adjustFireLoss(15)
-	if(L.stat == DEAD)
-		to_chat(L, "<span class='userdanger'>You're torn apart from the violent forces in the storm!</span>")
-		L.gib(TRUE)
+/datum/weather/royale_storm/weather_act_mob(mob/living/living)
+
+	if(!ishuman(living) || HAS_TRAIT(living, TRAIT_GODMODE))
+		return
+
+	var/mob/living/carbon/human/human = living
+	if(area_type && !istype(get_area(human), area_type))
+		return
+
+	human.apply_damage(15, BURN)
+
+	if(human.stat == HARD_CRIT)
+		to_chat(human, span_userdanger("You're torn apart from the violent forces in the storm!"))
+		human.gib(NONE)
 	else
-		to_chat(L, "<span class='userdanger'>You're badly burned by the storm!</span>")
+		to_chat(human, span_userdanger("You're badly burned by the storm!"))
+
+	return ..()
 
 GLOBAL_LIST_INIT(externalareasstorm, list(
 	/area/centcom/tdome/arena/one,
