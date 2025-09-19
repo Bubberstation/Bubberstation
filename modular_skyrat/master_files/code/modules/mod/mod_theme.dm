@@ -187,13 +187,13 @@
 	)
 
 /datum/armor/mod_theme_security
-	melee = 30
-	bullet = 20
-	laser = 20
-	energy = 30
-	bomb = 20
+	melee = 35
+	bullet = 15
+	laser = 30
+	energy = 40
+	bomb = 25
 	bio = 100
-	fire = 75
+	fire = 100
 	acid = 75
 	wound = 20
 
@@ -268,14 +268,14 @@
 	)
 
 /datum/armor/mod_theme_safeguard
-	melee = 40
-	bullet = 30
+	melee = 45
+	bullet = 25
 	laser = 30
 	energy = 40
-	bomb = 30
+	bomb = 40
 	bio = 100
 	fire = 100
-	acid = 95
+	acid = 100
 	wound = 25
 
 /datum/mod_theme/magnate // Captain
@@ -283,14 +283,14 @@
 
 /datum/armor/mod_theme_magnate
 	melee = 40
-	bullet = 40
-	laser = 40
-	energy = 40
+	bullet = 50
+	laser = 50
+	energy = 60
 	bomb = 50
 	bio = 100
 	fire = 100
 	acid = 100
-	wound = 20
+	wound = 15
 
 /datum/mod_theme/cosmohonk // Clown
 	armor_type = /datum/armor/mod_theme_cosmohonk
@@ -322,15 +322,15 @@
 	armor_type = /datum/armor/mod_theme_responsory
 
 /datum/armor/mod_theme_responsory
-	melee = 40
-	bullet = 30
-	laser = 30
-	energy = 40
+	melee = 50
+	bullet = 40
+	laser = 50
+	energy = 50
 	bomb = 50
 	bio = 100
 	fire = 100
 	acid = 90
-	wound = 15
+	wound = 10
 
 /datum/mod_theme/corporate // Centcom Commander
 	armor_type = /datum/armor/mod_theme_corporate
