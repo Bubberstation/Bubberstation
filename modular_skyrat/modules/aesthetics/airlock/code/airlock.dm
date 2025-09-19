@@ -86,7 +86,7 @@
 	else
 		. += get_airlock_overlay("fill_[frame_state + fill_state_suffix]", icon, src, em_block = TRUE)
 
-	if(lights && hasPower() && has_environment_lights)
+	if(feedback && hasPower() && has_environment_lights)
 		. += get_airlock_overlay("lights_[light_state]", overlays_file, src, em_block = FALSE)
 		. += emissive_appearance(overlays_file, "lights_[light_state]", src, alpha = src.alpha)
 
