@@ -177,7 +177,7 @@
 /obj/item/forging/reagent_weapon/rapier
 	name = "reagent rapier"
 	desc = "A lightweight rapier with a light and quick swing, even while being so thin, you feel like you can stop all harm with this"
-	force = 10
+	force = 12
 	armour_penetration = 25
 	icon_state = "rapier"
 	inhand_icon_state = "sabre"
