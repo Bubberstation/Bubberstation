@@ -99,23 +99,15 @@ GLOBAL_DATUM(storm_controller, /datum/storm_controller)
 
 	immunity_type = "NOTHING KID"
 
-/datum/weather/royale_storm/weather_act_mob(mob/living/living)
+	weather_flags = (WEATHER_MOBS | WEATHER_ENDLESS | WEATHER_INDOORS)
 
-	if(!ishuman(living) || HAS_TRAIT(living, TRAIT_GODMODE))
-		return
-
-	var/mob/living/carbon/human/human = living
-	if(area_type && !istype(get_area(human), area_type))
-		return
-
-	human.apply_damage(15, BURN)
-
-	if(human.stat == HARD_CRIT)
-		to_chat(human, span_userdanger("You're torn apart from the violent forces in the storm!"))
-		human.gib(NONE)
+/datum/weather/royale_storm/weather_act_mob(mob/living/victim)
+	if(victim.stat < HARD_CRIT)
+		victim.adjustFireLoss(15, required_bodytype = BODYTYPE_ORGANIC)
+		to_chat(victim, span_userdanger("You're badly burned by the storm!"))
 	else
-		to_chat(human, span_userdanger("You're badly burned by the storm!"))
-
+		victim.gib(NONE)
+		to_chat(victim, span_userdanger("You're torn apart from the violent forces in the storm!"))
 	return ..()
 
 GLOBAL_LIST_INIT(externalareasstorm, list(
