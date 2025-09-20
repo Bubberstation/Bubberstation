@@ -156,6 +156,10 @@
 	// This will only do something if there are active grants, so it's safe to call always
 	apply_active_reta_grants_to_card(src)
 
+	// Apply any active RETA grants to this new ID card
+	// This will only do something if there are active grants, so it's safe to call always
+	apply_active_reta_grants_to_card(src)
+
 	register_item_context()
 	register_context()
 
