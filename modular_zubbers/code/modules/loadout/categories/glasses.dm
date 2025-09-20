@@ -1,3 +1,5 @@
+//Title Capitalization for names please!!!
+
 /datum/loadout_item/glasses/surgerygoggles
 	name = "Recovery Goggles"
 	item_path = /obj/item/clothing/glasses/surgerygoggles

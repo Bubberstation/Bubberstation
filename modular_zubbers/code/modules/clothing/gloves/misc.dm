@@ -11,3 +11,18 @@
 	desc = "A sterile pair of gloves for preparing food without the risk of contamination! The old fashion american style."
 	icon_state = "latex_black"
 	worn_icon_state = "latex_black"
+
+//Cat Gloves seemingly by Taomayo of MonkeStation
+
+/obj/item/clothing/gloves/cat
+	desc = "hewwo everynyaan!!"
+	name = "cat gloves"
+	icon = 'icons/map_icons/clothing/_clothing.dmi'
+	icon_state = "/obj/item/clothing/gloves/cat"
+	post_init_icon_state = "catgloves"
+	flags_1 = IS_PLAYER_COLORABLE_1
+	greyscale_colors =  "#ffffff#FFC0CB"
+	greyscale_config_worn = /datum/greyscale_config/catgloves/worn
+	greyscale_config = /datum/greyscale_config/catgloves
+	greyscale_config_inhand_left = null
+	greyscale_config_inhand_right = null

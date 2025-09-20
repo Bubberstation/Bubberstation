@@ -1,3 +1,5 @@
+//Title Capitalization for names please!!!
+
 /datum/loadout_item/neck/heart_choker
 	name = "Heart Collar"
 	item_path = /obj/item/clothing/neck/lace_collar
@@ -16,29 +18,29 @@
 	item_path = /obj/item/clothing/neck/binary
 
 /datum/loadout_item/neck/security_cape
-	name = "security cape"
+	name = "Security Cape"
 	item_path = /obj/item/clothing/neck/security_cape
 	restricted_roles = list(ALL_JOBS_SEC)
 	can_be_reskinned = TRUE
 
 /datum/loadout_item/neck/security_cape/armplate
-	name = "security gauntlet"
+	name = "Security Gauntlet"
 	item_path = /obj/item/clothing/neck/security_cape/armplate
 	restricted_roles = list(ALL_JOBS_SEC)
 	can_be_reskinned = TRUE
 
 /datum/loadout_item/neck/pauldron
-	name = "lieutenant commander's pauldron"
+	name = "Lieutenant Commander's Pauldron"
 	item_path = /obj/item/clothing/neck/pauldron
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/neck/pauldron/captain
-	name = "commander's pauldron"
+	name = "Commander's Pauldron"
 	item_path = /obj/item/clothing/neck/pauldron/captain
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/neck/pauldron/commander
-	name = "captain's pauldron"
+	name = "Captain's Pauldron"
 	item_path = /obj/item/clothing/neck/pauldron/commander
 	restricted_roles = list(ALL_JOBS_SEC)
 
@@ -72,7 +74,7 @@
 	restricted_roles = list(JOB_DETECTIVE)
 
 /datum/loadout_item/neck/warrior_cape_worn
-	name = "tattered cloak"
+	name = "Tattered Cloak"
 	item_path = /obj/item/clothing/neck/warrior_cape/loadout
 
 /datum/loadout_item/neck/scarf/shadekin

@@ -1,3 +1,5 @@
+//Title Capitalization for names please!!!
+
 /*
 *	BOOZE
 */
@@ -131,5 +133,5 @@
 /// Lustwish stuff
 
 /datum/loadout_item/pocket_items/lustwish_theme
-	name = "Lustwish MOD theme"
+	name = "Lustwish MOD Plating"
 	item_path = /obj/item/mod/construction/plating/lustwish
