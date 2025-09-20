@@ -1,20 +1,40 @@
-/mob/living/simple_animal/hostile/blackmesa
+/mob/living/basic/blackmesa
+	/// List of sounds to play when spotting enemies
 	var/list/alert_sounds
+	/// Time between alert sounds
 	var/alert_cooldown = 3 SECONDS
+	/// World time when we can make an alert sound again
 	var/alert_cooldown_time
 
-/mob/living/simple_animal/hostile/blackmesa/xen
-	faction = list(FACTION_XEN)
-	atmos_requirements = null
-	minbodytemp = 0
-	maxbodytemp = 1500
-
-/mob/living/simple_animal/hostile/blackmesa/Aggro()
+/mob/living/basic/blackmesa/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/ai_retaliate)
 	if(alert_sounds)
-		if(!(world.time <= alert_cooldown_time))
-			playsound(src, pick(alert_sounds), 70)
-			alert_cooldown_time = world.time + alert_cooldown
+		RegisterSignal(src, COMSIG_AI_BLACKBOARD_KEY_SET(BB_BASIC_MOB_CURRENT_TARGET), PROC_REF(handle_alert))
 
+/// Play a sound when spotting an enemy
+/mob/living/basic/blackmesa/proc/handle_alert(datum/source, key, value)
+	SIGNAL_HANDLER
+	if(world.time <= alert_cooldown_time)
+		return
+	if(prob(75)) // Don't always make noise
+		playsound(src, pick(alert_sounds), 70)
+		alert_cooldown_time = world.time + alert_cooldown
+
+/mob/living/basic/blackmesa/xen
+	faction = list(FACTION_XEN)
+	minimum_survivable_temperature = 0
+	maximum_survivable_temperature = 1500
+	unsuitable_cold_damage = 15
+	unsuitable_heat_damage = 15
+	habitable_atmos = null  // Can survive in any atmos
+
+	/// Can we be shielded by pylons?
+	var/can_be_shielded = TRUE
+	/// If we have support pylons, this is true.
+	var/shielded = FALSE
+	/// How many shields we have protecting us
+	var/shield_count = 0
 
 #define MOB_PLACER_RANGE 16 // One more tile than the biggest viewrange we have.
 
@@ -22,7 +42,7 @@
 	name = "mob placer"
 	icon = 'modular_skyrat/modules/black_mesa/icons/mapping_helpers.dmi'
 	icon_state = "mobspawner"
-	var/list/possible_mobs = list(/mob/living/simple_animal/hostile/blackmesa/xen/headcrab)
+	var/list/possible_mobs = list(/mob/living/basic/blackmesa/xen/headcrab)
 
 /obj/effect/random_mob_placer/Initialize(mapload)
 	. = ..()
@@ -47,49 +67,49 @@
 /obj/effect/random_mob_placer/xen
 	icon_state = "spawn_xen"
 	possible_mobs = list(
-		/mob/living/simple_animal/hostile/blackmesa/xen/headcrab,
-		/mob/living/simple_animal/hostile/blackmesa/xen/houndeye,
-		/mob/living/simple_animal/hostile/blackmesa/xen/bullsquid,
+		/mob/living/basic/blackmesa/xen/headcrab,
+		/mob/living/basic/blackmesa/xen/houndeye,
+		/mob/living/basic/blackmesa/xen/bullsquid,
 	)
 
 /obj/effect/random_mob_placer/xen/zombie
 	icon_state = "spawn_zombie"
 	possible_mobs = list(
-		/mob/living/simple_animal/hostile/blackmesa/xen/headcrab_zombie/scientist,
-		/mob/living/simple_animal/hostile/blackmesa/xen/headcrab_zombie/guard,
-		/mob/living/simple_animal/hostile/blackmesa/xen/headcrab_zombie/hecu,
+		/mob/living/basic/blackmesa/xen/headcrab_zombie/scientist,
+		/mob/living/basic/blackmesa/xen/headcrab_zombie/guard,
+		/mob/living/basic/blackmesa/xen/headcrab_zombie/hecu,
 	)
 
 /obj/effect/random_mob_placer/blackops
 	icon_state = "spawn_blackops"
 	possible_mobs = list(
-		/mob/living/simple_animal/hostile/blackmesa/blackops,
-		/mob/living/simple_animal/hostile/blackmesa/blackops/ranged,
+		/mob/living/basic/blackmesa/human/blackops,
+		/mob/living/basic/blackmesa/human/blackops/ranged,
 	)
 
 /obj/effect/random_mob_placer/hev_zombie
 	icon_state = "spawn_hev"
-	possible_mobs = list(/mob/living/simple_animal/hostile/blackmesa/xen/headcrab_zombie/hev)
+	possible_mobs = list(/mob/living/basic/blackmesa/xen/headcrab_zombie/hev)
 
 /obj/effect/random_mob_placer/scientist_zombie
 	icon_state = "spawn_zombiescientist"
-	possible_mobs = list(/mob/living/simple_animal/hostile/blackmesa/xen/headcrab_zombie/scientist)
+	possible_mobs = list(/mob/living/basic/blackmesa/xen/headcrab_zombie/scientist)
 
-/obj/effect/random_mob_placer/scientist_zombie
+/obj/effect/random_mob_placer/guard_zombie
 	icon_state = "spawn_zombiesec"
-	possible_mobs = list(/mob/living/simple_animal/hostile/blackmesa/xen/headcrab_zombie/guard)
+	possible_mobs = list(/mob/living/basic/blackmesa/xen/headcrab_zombie/guard)
 
 /obj/effect/random_mob_placer/security_guard
 	icon_state = "spawn_guard"
-	possible_mobs = list(/mob/living/simple_animal/hostile/blackmesa/sec, /mob/living/simple_animal/hostile/blackmesa/sec/ranged)
+	possible_mobs = list(/mob/living/basic/blackmesa/human/sec, /mob/living/basic/blackmesa/human/sec/ranged,)
 
 /obj/effect/random_mob_placer/vortigaunt_hostile
 	icon_state = "spawn_vortigaunt_slave"
-	possible_mobs = list(/mob/living/simple_animal/hostile/blackmesa/xen/vortigaunt/slave)
+	possible_mobs = list(/mob/living/basic/blackmesa/xen/vortigaunt/slave)
 
 /obj/effect/random_mob_placer/vortigaunt
 	icon_state = "spawn_vortigaunt"
-	possible_mobs = list(/mob/living/simple_animal/hostile/blackmesa/xen/vortigaunt)
+	possible_mobs = list(/mob/living/basic/blackmesa/xen/vortigaunt)
 
 /obj/effect/mob_spawn/corpse/human/hecu_zombie
 	name = "HECU"
