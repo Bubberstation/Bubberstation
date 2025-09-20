@@ -142,9 +142,12 @@
 	playsound(amputee, 'sound/items/tools/rped.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	amputee.visible_message(span_notice("[amputee] shuffles [amputee.p_their()] [targeted_limb.name] forward, actuators hissing and whirring as [amputee.p_they()] disengage[amputee.p_s()] the limb from its mount..."))
 
-	if(!do_after(amputee, 10 SECONDS, amputee))
+	if(!do_after(amputee, 10 SECONDS))
 		amputee.balloon_alert(amputee, "interrupted!")
 		return
+	if(amputee.handcuffed)
+		return
+
 	playsound(amputee, 'sound/machines/buzz/buzz-sigh.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	amputee.visible_message(span_notice("With a gentle twist, [amputee] finally prises [amputee.p_their()] [targeted_limb.name] free from its socket."))
 	targeted_limb.drop_limb()
