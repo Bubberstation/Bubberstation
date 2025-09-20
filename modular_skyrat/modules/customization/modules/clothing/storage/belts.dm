@@ -20,6 +20,7 @@
 			/obj/item/storage/belt/storage_pouch,
 			/obj/item/forging/reagent_weapon/sword,
 			/obj/item/melee/sabre,
+			/obj/item/forging/reagent_weapon/rapier,
 			/obj/item/claymore,
 			/obj/item/melee/cleric_mace,
 			/obj/item/knife,
