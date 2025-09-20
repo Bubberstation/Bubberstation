@@ -2,10 +2,11 @@
 
 #include "map_files\generic\CentCom.dmm"
 
-#ifndef LOWMEMORYMODE
+#define LOWMEMORYMODE
 	#ifdef ALL_MAPS
 		#include "map_files\debug\multiz.dmm"
 		#include "map_files\debug\runtimestation.dmm"
+		#include "map_files\debug\eventmap.dmm"
 		#include "map_files\Deltastation\DeltaStation2.dmm"
 		#include "map_files\IceBoxStation\IceBoxStation.dmm"
 		#include "map_files\MetaStation\MetaStation.dmm"
@@ -29,4 +30,3 @@
 	#ifdef ALL_TEMPLATES
 		#include "templates.dm"
 	#endif
-#endif

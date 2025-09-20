@@ -51,6 +51,7 @@ no power level overlay is currently in the overlays list.
 	var/list/obj/machinery/field/generator/connected_gens = list()
 	///Check for asynk cleanups for this and the connected gens
 	var/clean_up = FALSE
+	var/containment_type = /obj/machinery/field/containment
 	/// we warm up and cool down instantly
 	var/instantenous = FALSE
 
@@ -339,7 +340,7 @@ no power level overlay is currently in the overlays list.
 		var/field_dir = get_dir(current_turf, get_step(found_generator.loc, NSEW))
 		current_turf = get_step(current_turf, NSEW)
 		if(!locate(/obj/machinery/field/containment) in current_turf)
-			var/obj/machinery/field/containment/created_field = new(current_turf)
+			var/obj/machinery/field/containment/created_field = new containment_type(current_turf)
 			created_field.set_master(src,found_generator)
 			created_field.setDir(field_dir)
 			fields += created_field
@@ -443,6 +444,14 @@ no power level overlay is currently in the overlays list.
 
 /obj/machinery/field/generator/starts_on/magic/process()
 	return PROCESS_KILL // this is the only place calc_power is called, and doing it here avoids one unnecessary proc call
+
+/obj/machinery/field/generator/anchored/red
+	team = "red"
+	containment_type = /obj/machinery/field/containment/red
+
+/obj/machinery/field/generator/anchored/green
+	team = "green"
+	containment_type = /obj/machinery/field/containment/green
 
 #undef FG_UNSECURED
 #undef FG_SECURED

@@ -226,6 +226,10 @@
 	last_slogan = world.time + rand(0, slogan_delay)
 	power_change()
 
+	#ifdef EVENTMODE
+	onstation = FALSE//FREE REAL ESTATE
+	#endif
+
 	if(mapload) //check if it was initially created off station during mapload.
 		if(!is_station_level(z))
 			if(!onstation_override)

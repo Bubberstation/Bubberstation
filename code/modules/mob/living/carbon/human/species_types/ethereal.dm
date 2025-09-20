@@ -64,9 +64,6 @@
 	ethereal_light = new_ethereal.mob_light(light_type = /obj/effect/dummy/lighting_obj/moblight/species)
 	refresh_light_color(new_ethereal)
 
-	var/obj/item/organ/heart/ethereal/ethereal_heart = new_ethereal.get_organ_slot(ORGAN_SLOT_HEART)
-	ethereal_heart.ethereal_color = default_color
-
 	for(var/obj/item/bodypart/limb as anything in new_ethereal.bodyparts)
 		if(limb.limb_id == SPECIES_ETHEREAL)
 			limb.update_limb(is_creating = TRUE)

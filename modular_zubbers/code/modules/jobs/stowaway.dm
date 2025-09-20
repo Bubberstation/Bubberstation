@@ -4,8 +4,8 @@
 	faction = FACTION_NONE
 	supervisors = "yourself"
 	minimal_player_age = 7
-	total_positions = 20
-	spawn_positions = 20
+	total_positions = 0
+	spawn_positions = 0
 	exp_requirements = 2400
 	exp_required_type = EXP_TYPE_CREW
 	exp_granted_type = EXP_TYPE_SPECIAL
