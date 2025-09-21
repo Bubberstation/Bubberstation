@@ -55,13 +55,13 @@
 	required_reagents = list(/datum/reagent/consumable/ethanol/demonsblood = 2, /datum/reagent/consumable/ethanol/triple_sec = 1, /datum/reagent/consumable/ethanol/martini = 1, /datum/reagent/consumable/ethanol/changelingsting = 1)
 	mix_message = "The liquid starts swirling, before forming a pink cloud that dissipates in the air."
 
-/datum/chemical_reaction/drink/strawberry_daiquiri
-	results = list(/datum/reagent/consumable/ethanol/strawberry_daiquiri = 7)
-	required_reagents = list(/datum/reagent/consumable/ethanol/rum = 2, /datum/reagent/consumable/limejuice = 1, /datum/reagent/consumable/sugar = 1, /datum/reagent/consumable/berryjuice = 2, /datum/reagent/consumable/ice = 1)
+/datum/chemical_reaction/drink/daiquiri/strawberry
+	results = list(/datum/reagent/consumable/ethanol/daiquiri/strawberry = 10)
+	required_reagents = list(/datum/reagent/consumable/ethanol/daiquiri = 5, /datum/reagent/consumable/berryjuice = 5)
 
 /datum/chemical_reaction/drink/miami_vice
 	results = list(/datum/reagent/consumable/ethanol/miami_vice = 2)
-	required_reagents = list(/datum/reagent/consumable/ethanol/pina_colada = 1, /datum/reagent/consumable/ethanol/strawberry_daiquiri = 1)
+	required_reagents = list(/datum/reagent/consumable/ethanol/pina_colada = 1, /datum/reagent/consumable/ethanol/daiquiri/strawberry = 1)
 
 /datum/chemical_reaction/drink/malibu_sunset
 	results = list(/datum/reagent/consumable/ethanol/malibu_sunset = 5)

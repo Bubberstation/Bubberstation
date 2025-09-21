@@ -12,10 +12,6 @@
 
 	var/teleport_delay = 10 MINUTES
 	var/teleport_delay_pickup = 5 MINUTES
-
-	rigged = DICE_BASICALLY_RIGGED
-	rigged_value = 1
-
 	var/uses_left = 20 //The dice will still get consumed if someone gets wizard. Set to a value already less than 0 and it will be infinite.
 
 /obj/item/dice/d20/teleporting_die_of_fate/no_teleport
