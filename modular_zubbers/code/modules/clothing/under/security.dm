@@ -26,7 +26,7 @@
 /obj/item/clothing/under/rank/security/metrocop //Sprite done by HL13 Station
 	name = "civil protection uniform"
 	desc = "Standard issue armor for Civil Protection forces."
-	icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	icon_state = "civilprotection"
 	inhand_icon_state =  null
