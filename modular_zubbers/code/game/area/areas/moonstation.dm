@@ -33,6 +33,10 @@
 	name = "\improper Public Mining Maintenance"
 	icon_state = "centralmaint"
 
+/area/station/maintenance/department/medical/chemistry
+	name = "\improper Chemistry Maintenance"
+	icon_state = "centralmaint"
+
 /area/station/engineering/supermatter/emitter
 	name = "\improper Supermatter Emitter Room"
 	icon_state = "engine_control"
