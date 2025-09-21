@@ -77,6 +77,43 @@
 				to_chat(sub, span_purple("You throw yourself on the floor like a pathetic beast and crawl towards <b>[quirk_holder]</b> like a good, submissive [good_x]."))
 
 		. = TRUE
+
+//Gotta check for borg module
+	for(var/mob/living/silicon/robot/borg_sub in hearers(world.view / 2, quirk_holder))
+		if(!borg_sub.has_quirk(/datum/quirk/well_trained) || (borg_sub == quirk_holder))
+			continue
+		if(borg_sub.stat == DEAD)
+			continue
+		var/good_x = "pet"
+		switch(borg_sub.gender)
+			if(MALE)
+				good_x = "boy"
+			if(FEMALE)
+				good_x = "girl"
+
+		switch(emote_args.key)
+			if("snap")
+				borg_sub.dir = get_dir(borg_sub, quirk_holder)
+				borg_sub.emote("me", 1, "faces towards <b>[quirk_holder]</b> at attention!", TRUE)
+				to_chat(borg_sub, span_purple("<b>[quirk_holder]</b>'s snap shoots down your spine and puts you at attention"))
+
+			if("snap2")
+				borg_sub.dir = get_dir(borg_sub, quirk_holder)
+				borg_sub.robot_lay_down()
+				borg_sub.Stun(0.3 SECONDS)
+				borg_sub.emote("me",1,"hunches down in response to <b>[quirk_holder]'s</b> snapping.", TRUE)
+				to_chat(borg_sub, span_purple("You hunch down and freeze in place in response to <b>[quirk_holder]</b> snapping their fingers"))
+
+			if("snap3")
+				step(borg_sub, get_dir(borg_sub, quirk_holder))
+				borg_sub.robot_lay_down()
+				borg_sub.Stun(0.3 SECONDS)
+				borg_sub.emote("me",1,"crawls closer to <b>[quirk_holder]</b> and lays down, following their command.",TRUE)
+				borg_sub.do_jitter_animation(0.1 SECONDS)
+				to_chat(borg_sub, span_purple("You crawl towards <b>[quirk_holder]</b> and lay down like a good, submissive [good_x]."))
+
+		. = TRUE
+
 	if(.)
 		TIMER_COOLDOWN_START(quirk_holder, DOMINANT_COOLDOWN_SNAP, 10 SECONDS) // 1/10th of a second knockdown with a 10 seconds cooldown on a neutral quirk.
 

@@ -1,3 +1,5 @@
+//Title Capitalization for names please!!!
+
 /datum/loadout_item/uniform/security/hecu
 	name = "Urban Camouflage BDU"
 	item_path = /obj/item/clothing/under/rank/security/officer/hecu
@@ -5,12 +7,12 @@
 	restricted_roles = list(ALL_JOBS_SEC, JOB_BLUESHIELD)
 
 /datum/loadout_item/uniform/command/stripper //Sprites by SierraGenevese
-	name = "Command Stripper Uniform"
+	name = "Command Bikini"
 	item_path = /obj/item/clothing/under/rank/civilian/head_of_personnel/stripper
 	restricted_roles = list(JOB_CAPTAIN, JOB_HEAD_OF_PERSONNEL, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_ENGINEER, JOB_CHIEF_MEDICAL_OFFICER, JOB_QUARTERMASTER, JOB_NT_REP)
 
 /datum/loadout_item/uniform/nanotrasen_consultant/stripper //Sprites by SierraGenevese
-	name = "consultant stripper uniform"
+	name = "Consultant Bikini"
 	item_path = /obj/item/clothing/under/rank/nanotrasen_consultant/stripper
 	restricted_roles = list(JOB_NT_REP)
 
@@ -20,7 +22,7 @@
 	restricted_roles = list(JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/uniform/security/officer/redsec
-	name = "Security uniform (Redsec)"
+	name = "Security Red Uniform"
 	item_path = /obj/item/clothing/under/rank/security/officer/redsec
 	restricted_roles = list(ALL_JOBS_SEC)
 
@@ -30,47 +32,47 @@
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/uniform/security/utility/redsec
-	name = "Security utility uniform (Redsec)"
+	name = "Security Red Utility Uniform"
 	item_path = /obj/item/clothing/under/rank/security/skyrat/utility/redsec
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/uniform/security/officer/formal
-	name = "Security Officer's formal uniform"
+	name = "Security Officer's Formal Uniform"
 	item_path = /obj/item/clothing/under/rank/security/officer/formal
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/uniform/security/peacekeeper/security_medic
-	name = "Security medic turtleneck"
+	name = "Security Medic Turtleneck"
 	item_path =/obj/item/clothing/under/rank/security/peacekeeper/security_medic
 	restricted_roles = list(JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/uniform/security/peacekeeper/security_medic/skirt
-	name = "Security medic skirtleneck"
+	name = "Security Medic Skirtleneck"
 	item_path =/obj/item/clothing/under/rank/security/peacekeeper/security_medic/skirt
 	restricted_roles = list(JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/uniform/security/peacekeeper/security_medic/alternate
-	name = "Security medic jumpsuit"
+	name = "Security Medic Jumpsuit"
 	item_path = /obj/item/clothing/under/rank/security/peacekeeper/security_medic/alternate
 	restricted_roles = list(JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/uniform/security/corrections_officer
-	name = "Correction's Officer jumpsuit"
+	name = "Correction's Officer Jumpsuit"
 	item_path = /obj/item/clothing/under/rank/security/corrections_officer
 	restricted_roles = list(JOB_CORRECTIONS_OFFICER, JOB_WARDEN)
 
 /datum/loadout_item/uniform/security/corrections_officer
-	name = "Correction's Officer jumpskirt"
+	name = "Correction's Officer Jumpskirt"
 	item_path = /obj/item/clothing/under/rank/security/corrections_officer/skirt
 	restricted_roles = list(JOB_CORRECTIONS_OFFICER, JOB_WARDEN)
 
 /datum/loadout_item/uniform/security/corrections_officer
-	name = "Correction's Officer sweater"
+	name = "Correction's Officer Sweater"
 	item_path = /obj/item/clothing/under/rank/security/corrections_officer/sweater
 	restricted_roles = list(JOB_CORRECTIONS_OFFICER, JOB_WARDEN)
 
 /datum/loadout_item/uniform/security/corrections_officer
-	name = "Correction's Officer skirt with sweater"
+	name = "Correction's Officer Sweater Skirt"
 	item_path = /obj/item/clothing/under/rank/security/corrections_officer/sweater/skirt
 	restricted_roles = list(JOB_CORRECTIONS_OFFICER, JOB_WARDEN)
 
@@ -106,15 +108,15 @@
 	item_path = /obj/item/clothing/under/syndicate/skyrat/overalls/unarmoured/skirt
 
 /datum/loadout_item/uniform/miscellaneous/loincloth
-	name = "leather loincloth"
+	name = "Leather Loincloth"
 	item_path = /obj/item/clothing/under/costume/loincloth/sensor
 
 /datum/loadout_item/uniform/miscellaneous/loincloth/cloth
-	name = "loincloth"
+	name = "Loincloth"
 	item_path = /obj/item/clothing/under/costume/loincloth/cloth/sensor
 
 /datum/loadout_item/uniform/miscellaneous/miniskirt
-	name = "recolourable miniskirt"
+	name = "Recolourable Miniskirt"
 	item_path = /obj/item/clothing/under/dress/miniskirt
 
 /datum/loadout_item/uniform/miscellaneous/pirate_outfit
@@ -146,14 +148,17 @@
 	item_path = /obj/item/clothing/under/costume/playbunny/custom_playbunny
 
 /datum/loadout_item/uniform/miscellaneous/nurse
-	name = "Nurse's suit"
+	name = "Nurse's Suit"
 	item_path = /obj/item/clothing/under/rank/medical/doctor/nurse
-
 
 /datum/loadout_item/uniform/miscellaneous/microstar_suit
 	name = "MicroStar SCI-MED suit"
 	item_path = /obj/item/clothing/under/rank/civilian/microstar_suit
 
 /datum/loadout_item/uniform/miscellaneous/frontier_colonist
-	name = "Frontier jumpsuit"
+	name = "Frontier Jumpsuit"
 	item_path = /obj/item/clothing/under/frontier_colonist
+
+/datum/loadout_item/uniform/miscellaneous/red_and_white_collared_outfit
+	name = "Red and White Collared Suit"
+	item_path = /obj/item/clothing/under/red_and_white_collared_outfit

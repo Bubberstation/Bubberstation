@@ -127,6 +127,14 @@
 	icon_state_living = "classic"
 	icon_state_dead = "classic_dead"
 
+/// Rat KING (ported from PR #10294 of space-wizards/space-station-14)
+
+/datum/rat_fashion/swole
+	name = "swoleking"
+	allow_random = FALSE
+	icon_state_living = "buffking"
+	icon_state_dead = "buffking_dead"
+
 /// Rat queen (thicc rat)
 
 /datum/rat_fashion/rat_queen
