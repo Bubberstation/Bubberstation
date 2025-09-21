@@ -293,7 +293,7 @@
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL_ADVANCED
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE //GS13 un-nerf things original = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/mechanicalpinches
 	name = "Mechanical Pinches"
@@ -305,7 +305,7 @@
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL_ADVANCED
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE //GS13 un-nerf things original = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/searingtool
 	name = "Searing Tool"
@@ -317,7 +317,7 @@
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL_ADVANCED
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE //GS13 un-nerf things original = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/medical_spray_bottle
 	name = "Medical Spray Bottle"
@@ -329,7 +329,7 @@
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MEDICAL
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE //GS13 un-nerf things original = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/chem_pack
 	name = "Intravenous Medicine Bag"

@@ -2,7 +2,7 @@
 	name = "Voracious"
 	desc = "Nothing gets between you and your food. You eat faster and can binge on junk food! Being fat suits you just fine."
 	icon = FA_ICON_DRUMSTICK_BITE
-	value = 4
+	value = 2 // GS13 EDIT make being a fatass cheaper - Original: 4
 	mob_trait = TRAIT_VORACIOUS
 	gain_text = span_notice("You feel HONGRY.")
 	lose_text = span_danger("You no longer feel HONGRY.")
