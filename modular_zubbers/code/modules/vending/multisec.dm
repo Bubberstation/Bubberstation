@@ -127,7 +127,6 @@
 					/obj/item/clothing/suit/jacket/officer/blue = 6,
 					/obj/item/clothing/head/beret/sec/navyofficer = 6,
 					/obj/item/clothing/suit/jacket/officer/tan = 6,
-					/obj/item/clothing/head/helmet/metrocophelmet = 6,
 					/obj/item/clothing/accessory/badge/holo = 10, //I know there's a box of them but, why not have more, eh?
 					/obj/item/clothing/accessory/badge/holo/cord = 10,
 					/obj/item/clothing/head/helmet/blueshirt = 3,
@@ -144,6 +143,9 @@
 					/obj/item/clothing/head/cowboy/skyrat/cattleman/sec = 3,
 					/obj/item/clothing/head/cowboy/skyrat/cattleman/wide/sec = 3,
 					/obj/item/clothing/head/fedora/det_hat/cybergoggles = 3,
+					/obj/item/clothing/head/helmet/metrocophelmet = 6,
+					/obj/item/clothing/suit/armor/vest/alt/sec/metrocop = 6,
+					/obj/item/clothing/under/rank/security/metrocop = 6,
 					/obj/item/clothing/glasses/hud/eyepatch/sec = 3, //No flash protection on the eyepatches, so they're worse than the sunnies.
 					/obj/item/clothing/glasses/hud/eyepatch/sec/blindfold = 3, //Ditto
 					/obj/item/clothing/glasses/hud/ar/aviator/security = 3, //Printable, but you have to choose between HUD and flash protection.
