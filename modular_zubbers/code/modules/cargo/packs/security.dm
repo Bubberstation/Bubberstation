@@ -111,6 +111,7 @@
 	contains = list(/obj/item/clothing/head/helmet/metrocophelmet = 6,
 					/obj/item/clothing/suit/armor/vest/alt/sec/metrocop = 6,
 					/obj/item/clothing/under/rank/security/metrocop = 6,
+					/obj/item/clothing/gloves/color/black/security/metrocop = 6,
 					/obj/item/trash/can = 3,
 				)
 	crate_name = "benefactor supply crate"

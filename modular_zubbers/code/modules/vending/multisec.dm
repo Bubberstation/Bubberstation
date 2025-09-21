@@ -145,6 +145,7 @@
 					/obj/item/clothing/head/fedora/det_hat/cybergoggles = 3,
 					/obj/item/clothing/head/helmet/metrocophelmet = 6,
 					/obj/item/clothing/suit/armor/vest/alt/sec/metrocop = 6,
+					/obj/item/clothing/gloves/color/black/security/metrocop = 6,
 					/obj/item/clothing/under/rank/security/metrocop = 6,
 					/obj/item/clothing/glasses/hud/eyepatch/sec = 3, //No flash protection on the eyepatches, so they're worse than the sunnies.
 					/obj/item/clothing/glasses/hud/eyepatch/sec/blindfold = 3, //Ditto

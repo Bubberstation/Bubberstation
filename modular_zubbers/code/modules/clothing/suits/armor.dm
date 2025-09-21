@@ -127,6 +127,7 @@
 		"MetroCop Coat" = list(
 			RESKIN_ICON_STATE = "cp_trenchcoat",
 			RESKIN_WORN_ICON_STATE = "cp_trenchcoat"
+		),
 		"Medic" = list(
 			RESKIN_ICON_STATE = "medicalofficer",
 			RESKIN_WORN_ICON_STATE = "medicalofficer"
