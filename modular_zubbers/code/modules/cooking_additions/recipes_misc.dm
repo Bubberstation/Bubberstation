@@ -62,6 +62,7 @@
 	name = "chap mix"
 	desc = "A mass of seasoned meat, ready to be processed."
 	icon_state = "raw_meatloaf"
+	foodtypes = MEAT|VEGETABLES|RAW
 
 /datum/food_processor_process/chap
 	input = /obj/item/food/meat/chapmix
@@ -106,6 +107,7 @@
 	name = "snail mix"
 	desc = "A mass of seasoned meat, ready to be processed... DO NOT CONFUSE WITH TRAIL MIX!"
 	icon_state = "raw_meatloaf"
+	foodtypes = MEAT|VEGETABLES|RAW|BUGS
 
 /datum/food_processor_process/desertsnails
 	input = /obj/item/food/meat/snailmix
