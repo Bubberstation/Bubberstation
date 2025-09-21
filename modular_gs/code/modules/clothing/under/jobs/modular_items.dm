@@ -40,6 +40,12 @@
 		add_modular_item(user)
 	..()
 
+/obj/item/clothing/equipped(mob/user, slot)
+	. = ..()
+	if (iscarbon(user))
+		var/mob/living/carbon/humie = user
+		humie.update_body()
+
 //General condition for deactivating modular sprites for an item.
 //When dropped. And/or moved to another slot, works together with equipped checking the approporiate slot
 /obj/item/dropped(mob/user)
@@ -119,8 +125,6 @@
 			add_modular_overlay(U, "[mod_breasts_rec]_NORTH", BREASTS_BEHIND_LAYER, color)
 			add_modular_overlay(U, "[mod_breasts_rec]_SOUTH", BREASTS_FRONT_LAYER, color)
 	U.update_body()
-	U.update_worn_undersuit()
-	U.update_worn_oversuit()
 
 //Remove the previously built modular sprite overlays and empty the list of tracked overlays
 /obj/item/proc/delete_modular_overlays(mob/user)

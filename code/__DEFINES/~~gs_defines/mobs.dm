@@ -21,6 +21,10 @@
 #define FATNESS_LEVEL_FAT 170
 #define FATNESS_LEVEL_NONE 0
 
+// Maximum genital sizes
+#define MAX_BUTT_SIZE 10
+#define MAX_BELLY_SIZE 9
+
 //Math stuff for fatness movement speed
 #define FATNESS_DIVISOR 860
 #define FATNESS_MAX_MOVE_PENALTY 4
