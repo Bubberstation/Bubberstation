@@ -42,3 +42,12 @@
 
 // makes it so this mob loses nutrition twice as fast
 #define TRAIT_FAST_METABOLISM "fast_metabolism"
+
+// Makes it do this mob resists negative effects of being irradiated
+#define TRAIT_RAD_RESISTANCE "radiation_resistance"
+
+// For using secondary mutant colors
+#define TRAIT_MUTANT_COLORS_2 "mutcolors2"
+
+// For using tertiary mutant colors
+#define TRAIT_MUTANT_COLORS_3 "mutcolors3"

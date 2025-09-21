@@ -63,3 +63,9 @@
 		"Head Assistant",
 		"Bridge Tour Coordinator",
 	)
+
+/datum/job/paramedic/New()
+	alt_titles |= list(
+		"Body Retrieval Specialist",
+	)
+	. = ..()

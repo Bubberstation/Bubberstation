@@ -1,4 +1,4 @@
-/datum/language/chitinclick
+/datum/language/buzzwords
 	name = "Chitinclick"
 	desc = "A popular non-Human language that finds extensive use by various types of anthropomorphic invertebrates. It consists of complex flutters, chittering, antenna movements, and sparse guttural syllables."
 	key = "C"
