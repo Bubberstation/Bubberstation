@@ -106,7 +106,7 @@
 	name = "Civil Protection Uniforms"
 	desc = "Extra supplies we got from some weird old guy in a blue suit. Contains six uniforms, \
 		vests, and helmets."
-	cost = CARGO_CRATE_VALUE * 0.2
+	cost = 1116
 	contraband = TRUE
 	contains = list(/obj/item/clothing/head/helmet/metrocophelmet = 6,
 					/obj/item/clothing/suit/armor/vest/alt/sec/metrocop = 6,
