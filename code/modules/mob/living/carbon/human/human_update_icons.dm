@@ -832,7 +832,7 @@ There are several things that need to be remembered:
 
 /// Modifies a sprite slightly to conform to female body shapes
 /proc/wear_female_version(icon_state, icon, type, greyscale_colors, mutant_styles) // BUBBER EDIT CHANGE - Digi female gender shaping
-	var/index = "[icon_state]-[greyscale_colors][(mutant_styles & STYLE_DIGI) ? "-d" : ""]" // BUBBER EDIT CHANGE - Digi female gender shaping
+	var/index = "[icon]-[icon_state]-[greyscale_colors][(mutant_styles & STYLE_DIGI) ? "-d" : ""]" // BUBBER EDIT CHANGE - Digi female gender shaping // GS13 EDIT CHANGE - added icon file to the index, so that icons for taur bodies don't get mixed with regular sprites
 	var/static/list/female_clothing_icons = list()
 	var/icon/female_clothing_icon = female_clothing_icons[index]
 	if(!female_clothing_icon) //Create standing/laying icons if they don't exist
