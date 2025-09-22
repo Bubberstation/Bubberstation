@@ -42,6 +42,9 @@
 			else if(emergency)
 				light_state = AIRLOCK_LIGHT_EMERGENCY
 				pre_light_color = AIRLOCK_EMERGENCY_LIGHT_COLOR
+			else if(has_active_reta_access())
+				light_state = AIRLOCK_LIGHT_RETA
+				pre_light_color = AIRLOCK_RETA_LIGHT_COLOR
 			else if(fire_active)
 				light_state = AIRLOCK_LIGHT_FIRE
 				pre_light_color = AIRLOCK_FIRE_LIGHT_COLOR
@@ -66,6 +69,9 @@
 			else if(emergency)
 				light_state = AIRLOCK_LIGHT_EMERGENCY
 				pre_light_color = AIRLOCK_EMERGENCY_LIGHT_COLOR
+			else if(has_active_reta_access())
+				light_state = AIRLOCK_LIGHT_RETA
+				pre_light_color = AIRLOCK_RETA_LIGHT_COLOR
 			else if(fire_active)
 				light_state = AIRLOCK_LIGHT_FIRE
 				pre_light_color = AIRLOCK_FIRE_LIGHT_COLOR
