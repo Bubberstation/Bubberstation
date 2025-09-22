@@ -8,8 +8,6 @@
 	mob_trait = TRAIT_ROBOTIC_LIMBATTACHMENT
 	icon = FA_ICON_HANDSHAKE_SIMPLE_SLASH
 	quirk_flags = QUIRK_HUMAN_ONLY
-	/// The action we add with this quirk in add(), used for easy deletion later
-	var/datum/action/cooldown/spell/added_action
 
 /datum/quirk/robot_limb_detach/add(client/client_source)
 	quirk_holder.AddElement(/datum/element/robot_self_amputation)
