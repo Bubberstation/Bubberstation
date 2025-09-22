@@ -739,7 +739,7 @@
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_SERVICE
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
+	departmental_flags =  DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SERVICE // GS13 EDIT un-nerf things Original:	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/ore_redemption
 	name = "Ore Redemption Machine Board"

@@ -89,6 +89,9 @@
 				/obj/item/clothing/under/dress/eveninggown = 3,
 				/obj/item/clothing/under/misc/pj/blue = 3,
 				/obj/item/clothing/under/misc/pj/red = 3,
+				// GS13 EDIT START ADD CLOTHING
+				/obj/item/clothing/under/color/grey = 5,
+				// GS13 EDIT END SDD CLOTHING
 			),
 		),
 
