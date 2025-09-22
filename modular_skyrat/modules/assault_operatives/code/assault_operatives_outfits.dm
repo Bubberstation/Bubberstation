@@ -10,6 +10,7 @@
 	mask = /obj/item/clothing/mask/gas/sechailer/syndicate
 
 	l_pocket = /obj/item/switchblade
+	r_pocket = /obj/item/armament_points_card/assaultops
 
 	id = /obj/item/card/id/advanced/chameleon
 	id_trim = /datum/id_trim/chameleon/operative
