@@ -114,7 +114,7 @@
 	output = /obj/item/food/canned/desert_snails
 	food_multiplier = 2 //Giving a 2x multiplier as bug meat is slightly rarer to come across once you've killed all the snails.
 
-datum/crafting_recipe/food/mac_balls_fresh
+/datum/crafting_recipe/food/mac_balls_fresh
 	name = "Macheronirölen (Mac balls) Fresh"
 	reqs = list(
 		/obj/item/food/spaghetti/mac_n_cheese = 1,
