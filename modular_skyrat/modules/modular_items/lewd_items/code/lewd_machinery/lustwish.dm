@@ -44,6 +44,7 @@
 				/obj/item/spanking_pad = 4,
 				/obj/item/tickle_feather = 8,
 				/obj/item/borg/upgrade/dominatrixmodule = 5,
+				/obj/item/borg/upgrade/obediencemodule = 5,
 				/obj/item/reagent_containers/venom_milker = 5,
 			),
 		),
