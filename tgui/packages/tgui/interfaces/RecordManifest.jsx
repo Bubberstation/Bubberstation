@@ -41,14 +41,6 @@ export const RecordManifest = (props) => {
                         })
                       }
                     />
-                    <Button
-                      content="Show background"
-                      onClick={() =>
-                        act('show_background', {
-                          background_id: crewMember.name,
-                        })
-                      }
-                    />
                   </Table.Cell>
                   <Table.Cell
                     className={classes([
