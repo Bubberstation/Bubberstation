@@ -1,7 +1,7 @@
 /obj/machinery/power/rbmk2
 	name = "\improper RB-MK2 reactor"
-	desc = "Radioscopical Bluespace Mark 2 reactor, or RB MK2 for short, is a new state-of-the-art power generation technology that uses bluespace magic \
-	to directly convert tritium particles into energy with minimal heat generation."
+	desc = "Radioscopical Bluespace Mark 2 reactor, or RB-MK2 for short, is a new state-of-the-art power generation technology that uses \"bluespace magic\" \
+	to directly convert small amounts of tritium particles into large amounts of energy with minimal heat generation."
 	icon = 'modular_zubbers/icons/obj/equipment/burger_reactor.dmi'
 	icon_state = "platform"
 	base_icon_state = "platform"
@@ -43,23 +43,23 @@
 
 	var/last_power_generation = 0 //Display purposes. Do not edit.
 	var/last_power_generation_bonus = 0 //Display purposes. Do not edit.
-	var/last_tritium_consumption = 0 //Display purposes. Do not edit.
+	var/last_tritium_consumption = 0 //Display purposes. Do not edit. This is measured in micromoles.
 	var/last_radiation_pulse = 0 //Display purposes. Do not edit.
 
-	var/gas_consumption_base = 0.000005 //How much gas gets consumed, in moles, per cycle.
-	var/gas_consumption_heat = 0.0009 //How much gas gets consumed, in moles, per cycle, per 1000 kelvin.
+	var/gas_consumption_base = 2400 //How much gas gets consumed, in micromoles, per cycle.
+	var/gas_consumption_heat = 9600 //How much gas gets consumed, in moles, per cycle, per 1000 kelvin (of the reactor rod temperature).
 
-	var/base_power_generation = 370 //How many joules of power to add per micromole of tritium processed.
+	var/base_power_generation = 30 //How many joules of power to add per micromole of tritium processed.
 	//There are 1000000 micromoles in a mole.
 
-	var/goblin_multiplier = 8 //How many mols of goblin gas produced per mol of tritium. Increases with matter bins.
+	var/goblin_multiplier = 3 //How many mols of goblin gas produced per mol of tritium. Increases with matter bins.
 
 	var/safeties_max_power_generation = 230000
 
 	//Upgradable stats.
 	var/power_efficiency = 1 //A multiplier of base_power_generation. Also has an effect on heat generation. Improved via capacitors.
 	var/vent_pressure = 200 //Pressure, in kPa, that the buffer releases the gas to. Improved via servos.
-	var/max_power_generation = 350000 //Maximum allowed power generation (joules) per cycle before the rods go apeshit. Improved via matter bins. Going over 5 times this will reduce power generation. Can't go over 10 times this.
+	var/max_power_generation = 350000 //Maximum allowed power generation (joules) per cycle before the rods go apeshit. Improved via matter bins. Going over 5 times this will reduce power generation. Hard limit is over 10 times this.
 
 	var/list/obj/machinery/rbmk2_sniffer/linked_sniffers = list()
 
@@ -423,7 +423,8 @@
 	// Used as a comparison point for the progress bar
 	data["rod_pressure_limit"] = stored_rod?.pressure_limit || 0
 	// Look for specifically tritium, don't need to show moderators.
-	data["rod_trit_moles"] = stored_rod?.air_contents.gases[/datum/gas/tritium][MOLES] || 0
+	var/trit_left = stored_rod?.air_contents.gases[/datum/gas/tritium][MOLES] || 0
+	data["rod_trit_moles"] = trit_left
 	// rod temperature
 	data["rod_mix_temperature"] = stored_rod?.air_contents.temperature || 0
 
@@ -437,10 +438,13 @@
 	data["raw_last_power_output"] = last_power_generation
 	data["raw_last_power_output_bonus"] = last_power_generation_bonus
 
-	// Changed because 1/10,000th is not a micromole and si makes more sense during meltdowns. Div 2 (x0.5) because only procs every two seconds not every second
-	data["consuming"] = siunit(last_tritium_consumption*0.5, "mole", maxdecimals=3)
-	// Required to calculate remaining fuel in the rod_trit_moles progressbar
-	data["raw_consuming"] = last_tritium_consumption*0.5
+	data["last_tritium_consumption"] = last_tritium_consumption*0.5
+
+	var/fuel_time = trit_left / (max(last_tritium_consumption*0.5,gas_consumption_base)/1000000)
+
+	data["fuel_time_left"] = fuel_time //in seconds.
+	data["fuel_time_left_text"] = DisplayTimeText(10*fuel_time,round_seconds_to=1)
+
 
 	data["temperature_limit"] = stored_rod?.temperature_limit || 0
 
@@ -455,6 +459,9 @@
 	// Status displays
 	data["jammed"] = jammed
 	data["meltdown"] = meltdown
+
+	data["magic_number"] = 15 + max(stored_rod ? stored_rod.air_contents.temperature / stored_rod.temperature_limit : 0,last_power_generation / max_power_generation) * (9000-15) * (active ? 0.75 + rand() * 0.5 : 1)
+
 	return data
 
 /obj/machinery/power/rbmk2/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -553,7 +560,7 @@
 
 
 
-/obj/machinery/power/rbmk2/proc/transfer_rod_temperature(datum/gas_mixture/gas_source,allow_cooling_limiter=TRUE)
+/obj/machinery/power/rbmk2/proc/transfer_rod_temperature(datum/gas_mixture/gas_source,multiplier=1,allow_cooling_limiter=TRUE)
 
 	var/datum/gas_mixture/rod_mix = stored_rod.air_contents
 
@@ -572,7 +579,7 @@
 	if(delta_temperature == 0) //No Change.
 		return FALSE
 
-	var/energy_transfer = (delta_temperature*rod_mix_heat_capacity*gas_source_heat_capacity) / (rod_mix_heat_capacity+gas_source_heat_capacity)
+	var/energy_transfer = ((delta_temperature*rod_mix_heat_capacity*gas_source_heat_capacity) / (rod_mix_heat_capacity+gas_source_heat_capacity))*multiplier
 
 	var/temperature_change = (energy_transfer/rod_mix_heat_capacity)
 	if(allow_cooling_limiter && temperature_change > 0) //Cooling!

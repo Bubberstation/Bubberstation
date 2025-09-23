@@ -26,15 +26,16 @@ type ReactorInfo = {
   raw_last_power_output_bonus: number;
   last_power_output: string;
   last_power_output_bonus: string;
-  consuming: string;
-  consuming_unit: string;
-  raw_consuming: number;
+  last_tritium_consumption: number;
+  fuel_time_left: number;
+  fuel_time_left_text: string;
   rod: BooleanLike;
   rod_mix_pressure: number;
   rod_pressure_limit: number;
   rod_mix_temperature: number;
   rod_trit_moles: number;
   temperature_limit: number;
+  magic_number: number;
 
   // Misc
   jammed: BooleanLike;
@@ -149,37 +150,75 @@ export const RBMK2 = (props) => {
               </ProgressBar>
             </LabeledList.Item>
             <LabeledList.Item
+              label="Core Temperature"
+              tooltip="The general estimate of the core temperature, based on core reactivity. Generally speaking, you should never let this get over 9000 Kelvin."
+            >
+              <ProgressBar
+                value={data.magic_number}
+                minValue={0}
+                maxValue={9000}
+                ranges={{
+                  maroon: [
+                    9000,
+                    Infinity
+                  ],
+                  red: [
+                    8000,
+                    9000
+                  ],
+                  orange: [
+                    7500,
+                    8000
+                  ],
+                  yellow: [
+                    7000,
+                    7500
+                  ],
+                  good: [
+                    4000,
+                    7000
+                  ],
+                  cyan: [
+                   0,
+                   4000
+                  ],
+                }}
+              >
+                ~{data.magic_number} Kelvin
+              </ProgressBar>
+            </LabeledList.Item>
+            <LabeledList.Item
               label="Rod Temperature"
               tooltip="As the temperature of the mix increases, fuel consumption rises, leading to greater power generation."
             >
               <ProgressBar
                 value={data.rod_mix_temperature}
                 minValue={0}
-                maxValue={data.temperature_limit}
+                maxValue={data.temperature_limit*0.5}
                 ranges={{
                   maroon: [
-                    data.temperature_limit,
+                    data.temperature_limit*0.5,
                     Infinity
                   ],
                   red: [
-                    data.temperature_limit*0.9,
-                    data.temperature_limit
+                    data.temperature_limit*0.5*0.9,
+                    data.temperature_limit*0.5
                   ],
                   orange: [
-                    data.temperature_limit*0.7,
-                    data.temperature_limit*0.9
+                    data.temperature_limit*0.5*0.7,
+                    data.temperature_limit*0.5*0.9
                   ],
                   yellow: [
-                    data.temperature_limit*0.5,
-                    data.temperature_limit*0.7
+                    data.temperature_limit*0.5*0.5,
+                    data.temperature_limit*0.5*0.7
                   ],
                   good: [
-                    data.temperature_limit*0.3,
-                    data.temperature_limit*0.5
+                    data.temperature_limit*0.5*0.3,
+                    data.temperature_limit*0.5*0.5
                   ],
                   cyan: [
                    0,
-                   data.temperature_limit*0.3
+                   data.temperature_limit*0.5*0.3
                   ],
                 }}
               >
@@ -191,21 +230,22 @@ export const RBMK2 = (props) => {
               tooltip="Amount of tritium remaining in the current rod."
             >
               <ProgressBar // Changes color based on rate of consumption while giving you a total reading.
-                value={data.rod_trit_moles}
+                value={data.fuel_time_left}
                 minValue={0}
-                maxValue={9}
+                maxValue={60*60*3} //3 hours.
                 ranges={{
-                  bad: [-Infinity, data.raw_consuming * 300],
-                  orange: [data.raw_consuming * 300, data.raw_consuming * 600],
-                  yellow: [data.raw_consuming * 600, data.raw_consuming * 900],
-                  good: [data.raw_consuming * 900, Infinity],
+                  maroon: [-Infinity, 60*5], //5 minutes
+				  red: [60*5, 60*15], //15 minutes
+                  orange: [60*15, 60*60], //1 hour
+                  yellow: [60*60, 60*60*2], //2 hours
+                  good: [60*60*2, Infinity],
                 }}
               >
-                {data.rod_trit_moles} Moles
+                {data.rod_trit_moles} Moles ({data.fuel_time_left_text})
               </ProgressBar>
             </LabeledList.Item>
             <LabeledList.Item label="Tritium Usage">
-              {data.consuming}/s
+              {data.last_tritium_consumption}μmol/s
             </LabeledList.Item>
             <LabeledList.Item
               label="Criticality"
