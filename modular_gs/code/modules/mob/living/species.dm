@@ -3,24 +3,15 @@
 	if(!istype(H))
 		return
 
-// /*
 	var/obj/item/organ/genital/butt/butt = H.get_organ_slot(ORGAN_SLOT_BUTT)
 	var/obj/item/organ/genital/belly/belly = H.get_organ_slot(ORGAN_SLOT_BELLY)
 	var/obj/item/organ/genital/breasts/breasts = H.get_organ_slot(ORGAN_SLOT_BREASTS)
 	// var/obj/item/organ/genital/taur_belly/tbelly = H.get_organ_slot(ORGAN_SLOT_TAUR_BELLY)
 
 	if(butt)
-		if(butt.max_genital_size > 0)
-			if((butt.genital_size + size_change) <= butt.max_genital_size)
-				butt.set_size(size_change + butt.set_genital_size)
-		else
-			butt.set_size(size_change + butt.set_genital_size)
+		butt.update_size_from_weight(size_change)
 	if(belly)
-		if(belly.max_genital_size > 0)
-			if((belly.genital_size + size_change) <= belly.max_genital_size)
-				belly.set_size(size_change + belly.set_genital_size)
-		else
-			belly.set_size(size_change + belly.set_genital_size)
+		belly.update_size_from_weight(size_change)
 	// if(tbelly)
 	// 	if(tbelly.max_genital_size > 0)
 	// 		if((tbelly.size + size_change) <= tbelly.max_genital_size)
@@ -28,19 +19,19 @@
 	// 	else
 	// 		tbelly.set_size(size_change)
 	if(breasts)
-		if(breasts.max_genital_size > 0)
-			if((breasts.genital_size + size_change) <= breasts.max_genital_size)
-				breasts.set_size(size_change + breasts.set_genital_size)
-		else
-			breasts.set_size(size_change + breasts.set_genital_size)
+		breasts.update_size_from_weight(size_change)
 
 	// H.genital_override = TRUE
 	H.update_body()
 	H.update_worn_undersuit()
 	H.update_worn_oversuit()
 
-// Do this later.
-// */
+/obj/item/organ/genital/proc/update_size_from_weight(size_change)
+	if (max_genital_size > 0 && (set_genital_size + size_change) >= max_genital_size)
+		set_size(max_genital_size)
+	else
+		set_size(size_change + set_genital_size)
+
 
 /mob/living/carbon/human/proc/handle_fatness_trait(trait, trait_lose, trait_gain, fatness_lose, fatness_gain, chat_lose, chat_gain, weight_stage)
 	var/mob/living/carbon/human/H = src
