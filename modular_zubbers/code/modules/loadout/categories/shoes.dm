@@ -1,3 +1,5 @@
+//Title Capitalization for names please!!!
+
 /datum/loadout_item/shoes/bubber/clown/pink/squeak //Unlike the rest, these make noise. Job locked.
 	name = "Pink Clown Heels"
 	item_path = /obj/item/clothing/shoes/clown_shoes/bubber/clussy
@@ -35,3 +37,15 @@
 /datum/loadout_item/shoes/diesel_f
 	name = "Female Diesel Boots"
 	item_path = /obj/item/clothing/shoes/jackboots/diesel_f
+
+/datum/loadout_item/shoes/frontier_colonist
+	name = "Frontier Boots"
+	item_path = /obj/item/clothing/shoes/jackboots/frontier_colonist/loadout
+
+/datum/loadout_item/shoes/jackboots/toeless
+	name = "Toeless Jackboots"
+	item_path = /obj/item/clothing/shoes/jackboots/toeless
+
+/datum/loadout_item/shoes/workboots/toeless
+	name = "Toeless Workboots"
+	item_path = /obj/item/clothing/shoes/workboots/toeless
