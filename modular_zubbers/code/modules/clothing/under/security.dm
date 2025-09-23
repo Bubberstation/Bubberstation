@@ -30,6 +30,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	icon_state = "civilprotection"
 	inhand_icon_state =  null
+	can_adjust = FALSE
 	uses_advanced_reskins = TRUE
 	unique_reskin = list(
 		"MetroCop" = list(
@@ -41,7 +42,7 @@
 			RESKIN_WORN_ICON_STATE = "divisionallead"
 		),
 		"White Overwatch" = list(
-			RESKIN_ICON_STATE = "overwatch",
+			RESKIN_ICON_STATE = "overwatch_white",
 			RESKIN_WORN_ICON_STATE = "overwatch_white"
 		),
 		"Overwatch" = list(

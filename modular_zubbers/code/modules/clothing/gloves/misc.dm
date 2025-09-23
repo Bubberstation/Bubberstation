@@ -42,7 +42,7 @@
 			RESKIN_WORN_ICON_STATE = "civilprotection"
 		),
 		"Overwatch" = list(
-			RESKIN_ICON_STATE = "civilprotection",
+			RESKIN_ICON_STATE = "overwatch",
 			RESKIN_WORN_ICON_STATE = "overwatch"
 		),
 	)
