@@ -21,9 +21,8 @@
 	icon_state = "sofachair"
 	color = "#ffffff"
 	item_chair = ""
-	var/mutable_appearance/armrest
 
-/obj/structure/chair/sofachair/proc/GetArmrest()
+/obj/structure/chair/sofachair/GetArmrest()
 	return mutable_appearance('modular_gs/icons/obj/chairs.dmi', "sofachair_armrest")
 
 /obj/structure/chair/sofachair/Destroy()
@@ -34,7 +33,7 @@
 	. = ..()
 	update_armrest()
 
-/obj/structure/chair/sofachair/proc/update_armrest()
+/obj/structure/chair/sofachair/update_armrest()
 	if(has_buckled_mobs())
 		add_overlay(armrest)
 	else
@@ -50,11 +49,13 @@
 	armrest.layer = ABOVE_MOB_LAYER
 	return ..()
 
+/* uhoh - we are going to have to port over items from hyper.
 /obj/structure/rack/shelf
 	name = "shelving"
 	desc = "Some nice metal shelves."
 	icon = 'hyperstation/icons/obj/objects.dmi'
 	icon_state = "shelf"
+*/
 
 /obj/structure/chair/beanbag
 	name = "beanbag chair"
