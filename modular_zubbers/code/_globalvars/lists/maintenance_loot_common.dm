@@ -193,10 +193,6 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/stack/sheet/plastitaniumglass/fifty = 1,
 		/obj/item/stack/sheet/rglass = 50,
 		/obj/item/stack/sheet/rglass/fifty = 1,
-		/obj/item/stack/sheet/sandblock = 75,
-		/obj/item/stack/sheet/sandblock/fifty = 15,
-		/obj/item/stack/sheet/sandblock/five = 50,
-		/obj/item/stack/sheet/sandblock/twenty = 25,
 		/obj/item/stack/sheet/titaniumglass = 25,
 		/obj/item/stack/sheet/titaniumglass/fifty = 1,
 		/obj/item/stack/sheet/xenochitin = 15
@@ -984,5 +980,11 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/reagent_containers/heroinbrick = 1,
 		/obj/item/reagent_containers/hashbrick = 1
 	) = 50,
+	//GS13 EDIT MAINT - LOOT
+	list(
+		/obj/item/trash/fatoray_scrap1 = 1,
+		/obj/item/trash/fatoray_scrap2 = 1,
+	) = 500,
+	//GS13 EDIT END
 	/obj/item/rack_parts = 75
 ))

@@ -24,6 +24,4 @@ GLOBAL_LIST_EMPTY(augment_items)
 GLOBAL_LIST_EMPTY(augment_categories_to_slots)
 GLOBAL_LIST_EMPTY(augment_slot_to_items)
 
-GLOBAL_LIST_EMPTY(dna_body_marking_blocks)
-
 GLOBAL_LIST_EMPTY(species_clothing_fallback_cache)

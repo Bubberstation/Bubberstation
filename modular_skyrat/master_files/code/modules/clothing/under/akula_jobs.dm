@@ -62,10 +62,10 @@
 
 /// If the wearer has a compatible tail for the `tail_overlay` variable, render it
 /obj/item/clothing/under/akula_wetsuit/proc/add_tail_overlay(mob/living/carbon/human/user)
-	if(!user.dna.species.mutant_bodyparts["tail"])
+	if(!user.dna.species.mutant_bodyparts[FEATURE_TAIL_GENERIC])
 		return
 
-	var/tail = user.dna.species.mutant_bodyparts["tail"][MUTANT_INDEX_NAME]
+	var/tail = user.dna.species.mutant_bodyparts[FEATURE_TAIL_GENERIC][MUTANT_INDEX_NAME]
 	switch(tail)
 		if("Akula")
 			tail_overlay = mutable_appearance(TAIL_OVERLAY_DMI, "overlay_akula", -(TAIL_OVERLAY_LAYER))

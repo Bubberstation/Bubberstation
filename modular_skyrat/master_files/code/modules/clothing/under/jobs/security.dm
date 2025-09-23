@@ -1,5 +1,6 @@
 /obj/item/clothing/under/rank/security
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/security_digi.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/security/skyrat
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'

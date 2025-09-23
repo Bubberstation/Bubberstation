@@ -106,3 +106,11 @@
 /datum/loadout_item/toys/lazy_synth
 	name = "Lazy Synth Plush"
 	item_path = /obj/item/toy/plush/lazy_synth
+
+/datum/loadout_item/toys/sunny_plush
+	name = "Weighty Moostoat Plushie"
+	item_path = /obj/item/toy/plush/sunny_plush
+
+/datum/loadout_item/toys/amber_shadekin_plush
+	name = "Squishy Shadekin Plush"
+	item_path = /obj/item/toy/plush/amber_shadekin_plush

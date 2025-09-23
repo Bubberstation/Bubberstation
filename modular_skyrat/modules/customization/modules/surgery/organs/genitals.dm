@@ -3,6 +3,10 @@
 	organ_flags = ORGAN_ORGANIC | ORGAN_UNREMOVABLE | ORGAN_EXTERNAL
 	///Size value of the genital, needs to be translated to proper lengths/diameters/cups
 	var/genital_size = 1
+	// GS13 EDIT
+	// maximum allowed size of the genital
+	var/max_genital_size = 0
+	// GS13 END EDIT
 	///Sprite name of the genital, it's what shows up on character creation
 	var/genital_name = "Human"
 	///Type of the genital. For penises tapered/horse/human etc. for breasts quadruple/sixtuple etc...

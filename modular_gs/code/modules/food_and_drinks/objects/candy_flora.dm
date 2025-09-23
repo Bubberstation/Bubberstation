@@ -7,31 +7,24 @@
 	icon_state = ""
 
 /obj/effect/turf_decal/candy/redwhite
-	icon = 'modular_gs/icons/turf/decals_candy.dmi'
 	icon_state = "candy_decal1"
 
 /obj/effect/turf_decal/candy/redwhite2
-	icon = 'modular_gs/icons/turf/decals_candy.dmi'
 	icon_state = "candy_decal2"
 
 /obj/effect/turf_decal/candy/redwhite3
-	icon = 'modular_gs/icons/turf/decals_candy.dmi'
 	icon_state = "candy_decal3"
 
 /obj/effect/turf_decal/candy/greenwhite1
-	icon = 'modular_gs/icons/turf/decals_candy.dmi'
 	icon_state = "candy_decal_g1"
 
 /obj/effect/turf_decal/candy/greenwhite2
-	icon = 'modular_gs/icons/turf/decals_candy.dmi'
 	icon_state = "candy_decal_g2"
 
 /obj/effect/turf_decal/candy/bluewhite1
-	icon = 'modular_gs/icons/turf/decals_candy.dmi'
 	icon_state = "candy_decal_b1"
 
 /obj/effect/turf_decal/candy/purplewhite1
-	icon = 'modular_gs/icons/turf/decals_candy.dmi'
 	icon_state = "candy_decal_p1"
 
 

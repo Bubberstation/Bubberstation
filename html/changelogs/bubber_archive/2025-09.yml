@@ -1,0 +1,221 @@
+2025-09-01:
+  BurgerBB:
+  - balance: Beepsky can no longer see you if you haven't moved or interacted with
+      something for 4 seconds or more.
+  YakiAttaki:
+  - rscadd: 'Added three tailmaw variants: Coloured Head, Striped, and a combo of
+      the two.'
+  nikothedude:
+  - rscadd: New taur verb that lets you disable/enable taur clothing cropping
+  - bugfix: Carbons 26-35 are now described as "an adult"
+2025-09-02:
+  EliteRiceFarmer:
+  - rscadd: frontier caps.
+  - rscadd: frontier jacket.
+  - rscadd: frontier gas mask.
+  - rscadd: frontier jackboots.
+  - rscadd: frontier jumpsuit.
+  - rscadd: frontier bags.
+  - rscadd: frontier gloves.
+  - code_imp: added new define for frontier bags in character creation menu.
+  - code_imp: added icon define for frontier bags.
+  - code_imp: 'added frontier bags to spawn roundstart from character creation.
+
+      :cl:'
+2025-09-03:
+  Arturlang:
+  - balance: Bloodsucker Feed no longer bypasses thick clothing
+  - rscadd: monkeys are tame-able and feeding them the food they want makes them not
+      aggressive
+  Boviro:
+  - rscadd: Wage Cage
+  ReturnToZender:
+  - rscdel: More space in descriptions underneath a species on the species page
+  - rscdel: Mushroomspeak and Monkey are limited to their respective species.
+  - qol: Merges Interslavic and Spinwarder into one language
+  - qol: Merges Chitinclick and Buzzwords into one bug language
+  ReturnToZender (code), Hoygn (lore):
+  - rscadd: New Vox lore has been made, cleaning up the old and bringing it in-line
+      with our other species descriptions.
+  YakiAttaki:
+  - bugfix: fixed the Tailmaw (Striped, Coloured Head) tail; you can now put the head
+      and stripes as different colours
+  ibexgoetia:
+  - rscadd: Ported the toe-less jackboots and workboots from SPLURT. They are available
+      from the loadout menu, and in the case of the jackboots, from the LustWish vendors
+      as well.
+  nikothedude:
+  - bugfix: Neck wearing shouldnt runtime if the item is damaged
+  - bugfix: You can no longer scrunch taurs with saddlebags as a ghost
+  - bugfix: Being ahealed should no longer glitch out saddlebags
+  - balance: Spacer no longer causes disgust stuttering
+2025-09-05:
+  Bombermansam:
+  - rscadd: More mutation toxins
+  - rscadd: Transformation Text for each toxin
+  - bugfix: Transformative viruses carry over prefs now
+  xPokee:
+  - rscadd: added a new species, werewolves (and werehumans)
+  - image: added icons for the werewolves from Monkestation
+2025-09-07:
+  LT3:
+  - code_imp: Removed some Skyrat lighting delay code
+  Lazhannya:
+  - bugfix: Fixed Golden NTRep Coats missing Texture on Digitigrade mobs
+2025-09-08:
+  Astrum Lernaean:
+  - rscadd: 'Added a new Quirk: Oviparity (Egg Production). Gives the ability to lay
+      eggs (similar to the abductor organ), and allows for reagents such as cum, crocin,
+      hexacrocin, and teshari mutation toxin to induce egg production.'
+2025-09-09:
+  Bobbanz1:
+  - bugfix: Fixes an oversight made by a previous coder who created the punch card
+      PDA system.
+  SpaceCatSS13:
+  - bugfix: Multi-Cell chargers can't be withdrawn from range anymore.
+2025-09-11:
+  Bangle:
+  - image: added/modified/removed some icons or image
+  xPokee:
+  - image: The nitrogen breather quirk now has the biohazard icon.
+2025-09-12:
+  KazooBard:
+  - rscadd: Murphy's lore and descriptions adjusted
+  ReturnToZender:
+  - bugfix: Gaia soilbins no longer shut themselves off when in an area without power
+  - rscadd: New Narrate verb in the IC tab to bind. Allows you to narrate things going
+      on from a third person perspective! I recommend Shift+N, personally.
+  - rscadd: Hearthkin have had their lore simplified and updated. Check it out!
+  Sonarchyy:
+  - rscadd: Added new Nature themed Nullrod as an option
+  - image: Fixes Wand of Door sprites to render correctly when held
+  - rscadd: Added new Gardening Tab in the Crafting Menu
+  - rscadd: New recipes for various existing Flowers/Bushes
+  ibexgoetia:
+  - rscadd: Added a set of tall ears, ported from SPLURT.
+  - image: Added compatibility for taller (32x64) ears.
+  nikothedude:
+  - rscadd: Nagas now show extra clothing when using incompatible clothes
+  trazodont:
+  - bugfix: move plant dna manipulator to botany machine board category, also updates
+      name in r&d node
+2025-09-13:
+  KazooBard:
+  - rscadd: (Forged) Axes now excel at breaking shields, spears are better for throwing,
+      daggers are better against vulnerable targets and broadswords can block.
+  - balance: Imbuing a forged weapon takes away 10 of its AP
+  - balance: Forged weapon damage was lowered across the board, pavise especially
+  LT3:
+  - rscdel: Radiation storm temporarily disabled due to it making the SAD unusable
+  SpaceCatSS13:
+  - rscadd: Bat Harpy wings now have a fluffless variant.
+2025-09-14:
+  BurgerBB:
+  - balance: Wizardly Die of Fate has only 20 rolls and 10 minutes before it disappears.
+      Rolling a 1 is significantly more likely, while the rest of the numbers (including
+      the nat 20) are less likely.
+  KateAnbolho:
+  - balance: Upped the paddy's speed to sit between the mk1 and mk2
+  - balance: Nerfed the exosuit disabler to 4 projectiles instead of 5
+  OrionTheFox:
+  - image: removed a lot of no longer needed or already-unused icon overrides from
+      the Skyrat era
+  - bugfix: fixed some jittering in AI status display icons
+  ReturnToZender:
+  - rscdel: The NTBR is no longer available to the Blueshield.
+  - rscadd: The Blueshield now spawns in roundstart with their special revolver, with
+      their e-gun being in their locker.
+  ReturnToZender (code):
+  - rscadd: All records now have enhanced defaults when making a new character
+  - rscadd: Security records have been expanded into personnel records, containing
+      more information on your character
+  - rscdel: Exploitables and Background records have been merged into the definition
+      of Security records, which are now Personnel Records.
+  XiskaVZ:
+  - rscadd: Added Elder Atmos crafting recipes
+  - rscdel: Removed metal H2 Armor stack craft
+  - image: Resprited Metal H2 Armor, digitigrade and plantigrade
+  - spellcheck: Fixed a typo with the Metal H2 Axe
+  - code_imp: Changed metal H2 armor stack crafting
+  - balance: 'Metal H2 Fireaxe force_wielded from 15 > 20
+
+      Metal H2 Fireaxe wound_bonus from -15 > -10'
+  - balance: 'Elder Atmosian Armor Set Buffs
+
+      Stat buffs across the board, including several flag changes to better fit the
+      armor.'
+  john-pawson:
+  - bugfix: fixed wide borgs text offset
+  - bugfix: fixed "Dragon" borg text offset
+  nikothedude:
+  - qol: 'Taur laying recovery: 2 secs -> 1 sec'
+  sunnyaries:
+  - balance: re-clutters settler
+  theselfish:
+  - rscadd: Bridge Assistant has learned of job wear. Be-wear.
+  - rscadd: Oh and the Shield/NTR got some stuff I guess...
+2025-09-15:
+  BurgerBB:
+  - map: Redesigned Moon Station morgue, chemistry, public mining, and dorms. Removed
+      Moon Station RBMK sat.
+  KazooBard:
+  - rscadd: WT and Murphy availible in singlepack, as well as having singlepack magazines
+      up for purchase
+  - balance: A lot of gun prices were adjusted to make sense in comparison to other
+      weapons
+  OrionTheFox:
+  - qol: Modular jobs are now sorted within their departments in the Orbit menu!
+  ReturnToZender:
+  - rscadd: The languages menu has gotten a new coat of paint!
+  XiskaVZ:
+  - bugfix: fixed metal hydrogen armor having no stats due to a material conflict
+2025-09-16:
+  Arturlang:
+  - balance: Nosferatu can ventcral with a non-smuggling satchel now, no limitations
+      on their back slot
+  BurgerBB:
+  - balance: Nerfs disposals damage so that it has a 20% chance to apply instead of
+      an 80% chance to apply. You no longer take disposals damage if you're in hard
+      crit or dead. You take 1 less disposals damage when it applies, now, a total
+      of 4 per turn
+  - bugfix: Improves disposals code so it actually deals damage to you on direction
+      changes.
+  Lazhannya:
+  - rscadd: Added squishy shadekin plush.
+  SapphoQueer:
+  - balance: Makes the ash accretion module unable to be removed from mining modsuits.
+  Tamamitsune:
+  - rscadd: Obedience cyborg module added, a sister module to the dominatrix module
+      that applies the well trained quirk
+  - rscadd: Obedience module available in the lustwish and exofab with the other utility
+      borg modules
+  - code_imp: Updated the dominant aura quirk to work on well trained silicons
+  theselfish:
+  - rscadd: We couldn't keep the rat king outta the Gym...
+  xXPawnStarrXx:
+  - code_imp: adds cursed functionality to a specific CE plush.
+2025-09-18:
+  Alecksohs:
+  - rscadd: Added umbrellas for Rimpoint at Autolathes and Service Protolathes which
+      block rain reagants.
+  ArrisFairburne:
+  - rscadd: The sex holobarrier is now loadout-available
+  BasilTamaya:
+  - qol: Racks now have a precise placement (left click) vs center placement (right
+      click) mechanic, making shelfs and racks fancier.
+  ElisavetPinko:
+  - bugfix: Fixed couple names related to the PSC.
+  - rscadd: Teshari can now interact with the "Police" pirates by joining.
+  Floofies:
+  - rscadd: Added new Isotropic Stability quirk.
+  Redrover1760:
+  - balance: Shocked airlocks and grilles now stun you instead of just a knockdown
+      and mild stamina damage.
+  - bugfix: Fixed repeatedly shocking yourself to crit on airlocks and grilles due
+      to not being stunned by airlocks/grilles. Should be less directly deadly now
+      if you don't react to stop yourself.
+  theselfish:
+  - rscadd: Finally, cats can have four sets of ears with a brand new hoodie. (Also
+      comes in earless variety)
+  - bugfix: Entertainer related Pets no longer speak what they see. Or something.
+      I dunno. $4 a pound.

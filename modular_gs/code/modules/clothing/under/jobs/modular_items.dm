@@ -28,6 +28,11 @@
 	var/mod_butt_rec					//^^^ for butt
 	var/mod_belly_rec					//^^^ for belly
 
+/mob/living/carbon/human/doUnEquip(obj/item/item_dropping, force, newloc, no_move, invdrop = TRUE, silent = FALSE)
+	. = ..()
+	if(ispath(item_dropping.type, /obj/item/clothing))
+		update_body()
+
 //General condition for activating modular sprites for an item.
 //When equipped to that item's appropriate slot, if the item has modular icons then initialize it as a modular item
 /obj/item/equipped(mob/user, slot)
@@ -74,8 +79,8 @@
 	//Get the sprite name of the sprites needed and compare it to the ones recorded
 	//If they are different, record the sprites and build_modular to TRUE to signal that new sprites are needed
 	var/obj/item/organ/genital/O
-	for(O in U.internal_organs)
-		if(istype(O, /obj/item/organ/genital/external/belly))
+	for(O in U.organs)
+		if(istype(O, /obj/item/organ/genital/belly))
 			genitals_list += list(O)
 			var/belly = get_modular_belly(O)
 			if(belly != mod_belly_rec)
@@ -103,7 +108,7 @@
 	//Go through the list of genitals previously found and for each add the modular sprite overlays to the user
 	var/obj/item/organ/genital/G
 	for(G in genitals_list)
-		if(istype(G, /obj/item/organ/genital/external/belly))
+		if(istype(G, /obj/item/organ/genital/belly))
 			add_modular_overlay(U, mod_belly_rec, MODULAR_BELLY_LAYER, color)
 			add_modular_overlay(U, "[mod_belly_rec]_SOUTH", BELLY_FRONT_LAYER, color)
 		if(istype(G, /obj/item/organ/genital/butt))
@@ -113,6 +118,9 @@
 			add_modular_overlay(U, mod_breasts_rec, MODULAR_BREASTS_LAYER, color)
 			add_modular_overlay(U, "[mod_breasts_rec]_NORTH", BREASTS_BEHIND_LAYER, color)
 			add_modular_overlay(U, "[mod_breasts_rec]_SOUTH", BREASTS_FRONT_LAYER, color)
+	U.update_body()
+	U.update_worn_undersuit()
+	U.update_worn_oversuit()
 
 //Remove the previously built modular sprite overlays and empty the list of tracked overlays
 /obj/item/proc/delete_modular_overlays(mob/user)
@@ -135,7 +143,8 @@
 // No. Damn. Clue. SS13, I don't question it further.
 //
 /obj/item/proc/add_modular_overlay(mob/living/carbon/U, modular_icon, modular_layer, sprite_color)
-	var/mutable_appearance/mod_overlay = mutable_appearance(modular_icon_location, modular_icon, -(modular_layer), color = sprite_color)
+	var/mutable_appearance/mod_overlay = mutable_appearance(modular_icon_location, modular_icon, -(modular_layer))
+	mod_overlay.color = sprite_color
 	mod_overlays += mod_overlay
 	U.overlays_standing[modular_layer] =  mod_overlay
 	U.apply_overlay(modular_layer)
@@ -146,16 +155,17 @@
 
 //General function to get the appropriate shape and size for the belly, accounting for fullness
 /obj/item/proc/get_belly_size(obj/item/organ/genital/G)
-	var/size = G.size
-	if(G.size > 9)
+	var/size = G.genital_size
+	if(G.genital_size > 9)
 		size = 9
 	var/shape
 	if(G.owner.fullness <= FULLNESS_LEVEL_BLOATED)
-		switch(G.shape)
-			if("Soft Belly")
-				shape = "soft"
-			if("Round Belly")
-				shape = "round"
+		shape = "soft" // hardcoded and dumb as bricks, but I'm waiting for bellies to actually feature it
+		// switch(G.shape)
+		// 	if("Soft Belly")
+		// 		shape = "soft"
+		// 	if("Round Belly")
+		// 		shape = "round"
 	else
 		shape = "stuffed"
 		var/stuffed_modifier
@@ -176,26 +186,26 @@
 
 //General function to get the appropriate shape and size for the butt
 /obj/item/proc/get_modular_butt(obj/item/organ/genital/G)
-	return "butt_[(G.size <= 10 ) ? "[G.size]" : "10"][get_butt_alt()]"
+	return "butt_[(G.genital_size <= 10 ) ? "[G.genital_size]" : "10"][get_butt_alt()]"
 
 //General function to get the alternate variants for butt sprites, used for digitigrade characters
 /obj/item/proc/get_butt_alt()
-	return "[(mutantrace_variation == STYLE_DIGITIGRADE) ? "_l" : ""]"
+	return "[(supports_variations_flags == CLOTHING_DIGITIGRADE_VARIATION) ? "_l" : ""]"
 
 //General function to get the appropriate size for the breasts
 /obj/item/proc/get_modular_breasts(obj/item/organ/genital/G)
 	var/size
-	if(G.size <= "o")
-		size = G.size
+	if(G.genital_size <= 15)
+		size = G.genital_size
 	else
-		switch(G.size)
-			if("huge")
+		switch(G.genital_size)
+			if(16)
 				size = "huge"
-			if("massive")
+			if(17)
 				size = "massive"
-			if("giga")
+			if(18)
 				size = "giga"
-			if("impossible")
+			if(19)
 				size = "impossible"
 	return "breasts_[size][get_breasts_alt()]"
 
@@ -208,6 +218,9 @@
 	name = "grey jumpsuit (Modular)"												//(Modular) to tell players it is modular
 	modular_icon_location = 'modular_gs/icons/mob/modclothes/modular_grey.dmi'	//Location of the sprites, to make it modular
 	desc = "A tasteful grey jumpsuit that reminds you of the good old days."
+	// worn_icon = 
+	supports_variations_flags = CLOTHING_DIGITIGRADE_MASK
+	// worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/color_digi.dmi'
 
 //Overload of the alt belly sprites function, for adjusteable clothing
 /obj/item/clothing/under/get_belly_alt()
@@ -218,40 +231,39 @@
 	name = "service grey jumpsuit (Modular)"
 	desc = "Grey only in name"
 	color = "#6AD427"
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0, WOUND = 5)
 
 /obj/item/clothing/under/color/grey/medical
 	name = "medical grey jumpsuit (Modular)"
 	desc = "Grey only in name"
 	color = "#5A96BB"
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 10, RAD = 0, FIRE = 0, ACID = 0, WOUND = 5)
+	armor_type = /datum/armor/clothing_under/rank_medical
 
 /obj/item/clothing/under/color/grey/cargo
 	name = "cargo grey jumpsuit (Modular)"
 	desc = "Grey only in name"
 	color = "#BB9042"
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 0, WOUND = 10)
+	armor_type = /datum/armor/clothing_under/cargo_miner
 
 /obj/item/clothing/under/color/grey/engi
 	name = "engineering grey jumpsuit (Modular)"
 	desc = "Grey only in name"
 	color = "#FF8800"
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 10, FIRE = 60, ACID = 20, WOUND = 5)
+	armor_type = /datum/armor/clothing_under/rank_engineering
 
 /obj/item/clothing/under/color/grey/science
 	name = "science grey jumpsuit (Modular)"
 	desc = "Grey only in name"
 	color = "#9900FF"
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 10, BIO = 0, RAD = 0, FIRE = 0, ACID = 0, WOUND = 5)
+	armor_type = /datum/armor/clothing_under/science
 
 /obj/item/clothing/under/color/grey/security
 	name = "security grey jumpsuit (Modular)"
 	desc = "Grey only in name"
 	color = "#F4080C"
-	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 30, ACID = 30, WOUND = 10)
+	armor_type = /datum/armor/clothing_under/rank_security
 
 /obj/item/clothing/under/color/grey/command
 	name = "command grey jumpsuit (Modular)"
 	desc = "Grey only in name"
 	color = "#004B8F"
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0, WOUND = 15)
+	armor_type = /datum/armor/clothing_under/rank_captain

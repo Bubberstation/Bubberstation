@@ -2,6 +2,7 @@
 	name = "bluespace belt"
 	desc = "A belt made using bluespace technology. The power of space and time, used to hide the fact you are fat."
 	icon = 'modular_gs/icons/obj/clothing/bluespace_belt.dmi'
+	worn_icon = 'modular_gs/icons/mob/clothing/bsbelts.dmi'
 	icon_state = "bluespace_belt"
 	inhand_icon_state = "bluespace_belt"
 	slot_flags = ITEM_SLOT_BELT
