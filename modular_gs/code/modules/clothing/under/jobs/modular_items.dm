@@ -164,12 +164,11 @@
 		size = 9
 	var/shape
 	if(G.owner.fullness <= FULLNESS_LEVEL_BLOATED)
-		shape = "soft" // hardcoded and dumb as bricks, but I'm waiting for bellies to actually feature it
-		// switch(G.shape)
-		// 	if("Soft Belly")
-		// 		shape = "soft"
-		// 	if("Round Belly")
-		// 		shape = "round"
+		switch(G.genital_type)
+			if("belly")
+				shape = "soft"
+			if("round")
+				shape = "round"
 	else
 		shape = "stuffed"
 		var/stuffed_modifier
