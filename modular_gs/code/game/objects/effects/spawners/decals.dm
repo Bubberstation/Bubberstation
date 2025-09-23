@@ -5,6 +5,7 @@
 	var/last_event = 0
 	var/active = null
 
+/*
 /obj/effect/decal/cleanable/greenglow/radioactive/Crossed(atom/movable/O)
 	. = ..()
 	if(ismob(O))
@@ -20,6 +21,7 @@
 			last_event = world.time
 			active = 0
 			return
+*/
 
 //gato colored signs - from NT blue to GT pink
 /obj/structure/sign/warning/gato
