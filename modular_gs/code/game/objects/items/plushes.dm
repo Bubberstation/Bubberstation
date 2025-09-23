@@ -14,7 +14,6 @@
 	name = "Annoying Catgirl plush"
 	desc = "An adorable stuffed toy that resembles a very enthusiastic catgirl. Its smug aura mocks you."
 	icon_state = "fi"
-	attack_verb = list("pranked","nyuh'd","science'd","hugged")
 
 /obj/item/toy/plush/gs13/tertia
 	name = "Blue Glorper plush"
