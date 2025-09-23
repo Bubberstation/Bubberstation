@@ -68,7 +68,7 @@ export const RBMK2 = (props) => {
               <NoticeBox
                 danger
                 textAlign="center"
-                backgroundColor={data.meltdown ? 'bad' : 'good'}
+                backgroundColor={data.meltdown ? 'danger' : 'good'}
               >
                 {data.meltdown ? 'MELTDOWN' : 'STABLE'}
               </NoticeBox>
@@ -80,7 +80,7 @@ export const RBMK2 = (props) => {
               <NoticeBox
                 danger
                 textAlign="center"
-                backgroundColor={data.jammed ? 'bad' : 'good'}
+                backgroundColor={data.jammed ? 'danger' : 'good'}
               >
                 {data.jammed ? 'JAMMED' : 'SAFE'}
               </NoticeBox>
@@ -94,17 +94,17 @@ export const RBMK2 = (props) => {
                 minValue={0}
                 maxValue={data.safeties_max_power_generation}
                 ranges={{
-                  bad: [
+                  danger: [
                     data.max_power_generation,
                     Infinity
                     ],
-                  orange: [
-                    data.safeties_max_power_generation,
+                  bad: [
+                    data.safeties_max_power_generation*0.9,
                     data.max_power_generation
                   ],
-                  yellow: [
+                  average: [
                     data.safeties_max_power_generation*0.75,
-                    data.safeties_max_power_generation
+                    data.safeties_max_power_generation*0.9
                   ],
                   good: [
                     0,
@@ -124,7 +124,7 @@ export const RBMK2 = (props) => {
                 minValue={0}
                 maxValue={data.rod_pressure_limit}
                 ranges={{
-                  maroon: [
+                  danger: [
                     data.rod_pressure_limit,
                     Infinity,
                   ],
@@ -132,17 +132,13 @@ export const RBMK2 = (props) => {
                     data.rod_pressure_limit * 0.9,
                     data.rod_pressure_limit
                   ],
-                  orange: [
+                  average: [
                     data.rod_pressure_limit * 0.6,
                     data.rod_pressure_limit * 0.9
                   ],
-                  yellow: [
-                    data.rod_pressure_limit * 0.3,
-                    data.rod_pressure_limit * 0.6
-                  ],
                   good: [
                     0,
-                    data.rod_pressure_limit * 0.3
+                    data.rod_pressure_limit * 0.6
                   ],
                 }}
               >
@@ -158,33 +154,29 @@ export const RBMK2 = (props) => {
                 minValue={0}
                 maxValue={9000}
                 ranges={{
-                  maroon: [
+                  danger: [
                     9000,
                     Infinity
                   ],
-                  red: [
+                  bad: [
                     8000,
                     9000
                   ],
-                  orange: [
+                  average: [
                     7500,
                     8000
                   ],
-                  yellow: [
-                    7000,
-                    7500
-                  ],
                   good: [
-                    4000,
-                    7000
+                    2500,
+                    7500
                   ],
                   cyan: [
                    0,
-                   4000
+                   2500
                   ],
                 }}
               >
-                ~{data.magic_number} Kelvin
+                {data.magic_number} Kelvin
               </ProgressBar>
             </LabeledList.Item>
             <LabeledList.Item
@@ -194,31 +186,23 @@ export const RBMK2 = (props) => {
               <ProgressBar
                 value={data.rod_mix_temperature}
                 minValue={0}
-                maxValue={data.temperature_limit*0.5}
+                maxValue={data.temperature_limit}
                 ranges={{
-                  maroon: [
-                    data.temperature_limit*0.5,
+                  danger: [
+                    data.temperature_limit*0.9,
                     Infinity
                   ],
-                  red: [
-                    data.temperature_limit*0.5*0.9,
-                    data.temperature_limit*0.5
+                  bad: [
+                    data.temperature_limit*0.75,
+                    data.temperature_limit*0.9
                   ],
-                  orange: [
-                    data.temperature_limit*0.5*0.7,
-                    data.temperature_limit*0.5*0.9
-                  ],
-                  yellow: [
-                    data.temperature_limit*0.5*0.5,
-                    data.temperature_limit*0.5*0.7
+                  average: [
+                    data.temperature_limit*0.5,
+                    data.temperature_limit*0.75
                   ],
                   good: [
-                    data.temperature_limit*0.5*0.3,
-                    data.temperature_limit*0.5*0.5
-                  ],
-                  cyan: [
-                   0,
-                   data.temperature_limit*0.5*0.3
+                    0,
+                    data.temperature_limit*0.5
                   ],
                 }}
               >
@@ -234,11 +218,10 @@ export const RBMK2 = (props) => {
                 minValue={0}
                 maxValue={60*60*3} //3 hours.
                 ranges={{
-                  maroon: [-Infinity, 60*5], //5 minutes
-				  red: [60*5, 60*15], //15 minutes
-                  orange: [60*15, 60*60], //1 hour
-                  yellow: [60*60, 60*60*2], //2 hours
-                  good: [60*60*2, Infinity],
+                  danger: [-Infinity, 60*5], //5 minutes
+				  bad: [60*5, 60*30], //30 minutes
+                  average: [60*30, 60*60], //1 hour
+                  good: [60*60, Infinity],
                 }}
               >
                 {data.rod_trit_moles} Moles ({data.fuel_time_left_text})
@@ -256,11 +239,10 @@ export const RBMK2 = (props) => {
                 minValue={0}
                 maxValue={100}
                 ranges={{
-                  maroon: [100, Infinity],
-                  bad: [75, 100],
-                  orange: [50, 75],
-                  yellow: [25, 50],
-                  good: [-Infinity, 25],
+                  danger: [100, Infinity],
+                  bad: [50, 100],
+                  average: [5, 50],
+                  good: [-Infinity, 5],
                 }}
               >
                 {data.criticality}%
@@ -276,10 +258,9 @@ export const RBMK2 = (props) => {
                 maxValue={100}
                 ranges={{
                   good: [90, Infinity],
-                  yellow: [75, 90],
-                  orange: [50, 75],
+                  average: [50, 90],
                   bad: [25, 50],
-                  maroon: [-Infinity, 25],
+                  danger: [-Infinity, 25],
                 }}
               >
                 {data.health_percent}%
@@ -295,7 +276,7 @@ export const RBMK2 = (props) => {
               width="100%"
               icon="fa-power-off"
               confirmContent="Are you sure?"
-              color={data.active ? 'yellow' : 'good'}
+              color={data.active ? 'average' : 'good'}
               onClick={() => act('activate')}
             >
               {data.active ? 'Deactivate' : 'Activate'}
@@ -353,7 +334,7 @@ export const RBMK2 = (props) => {
                     tooltip="Adjust the vents to draw air from the surrounding environment into the internal chamber of the RBMK2."
                     icon="fa-clock-rotate-left"
                     disabled={data.venting}
-                    color={data.vent_dir ? 'yellow' : 'blue'}
+                    color={data.vent_dir ? 'caution' : 'blue'}
                     onClick={() => act('ventpull')}
                   />
                   <Button
@@ -400,7 +381,7 @@ export const RBMK2 = (props) => {
                   <Button.Confirm
                     tooltip="DANGER: Toggle overclock on/off. When combined with disabled safeties, this can be very volatile! Make sure you know what you're doing!"
                     icon="exclamation-triangle"
-                    color={data.overclocked ? 'yellow' : 'good'}
+                    color={data.overclocked ? 'average' : 'good'}
                     onClick={() => act('overclocktoggle')}
                   >
                     TOGGLE

@@ -47,9 +47,9 @@
 	var/last_radiation_pulse = 0 //Display purposes. Do not edit.
 
 	var/gas_consumption_base = 2400 //How much gas gets consumed, in micromoles, per cycle.
-	var/gas_consumption_heat = 9600 //How much gas gets consumed, in moles, per cycle, per 1000 kelvin (of the reactor rod temperature).
+	var/gas_consumption_heat = 4800 //How much gas gets consumed, in moles, per cycle, per 1000 kelvin (of the reactor rod temperature).
 
-	var/base_power_generation = 30 //How many joules of power to add per micromole of tritium processed.
+	var/base_power_generation = 24 //How many joules of power to add per micromole of tritium processed.
 	//There are 1000000 micromoles in a mole.
 
 	var/goblin_multiplier = 3 //How many mols of goblin gas produced per mol of tritium. Increases with matter bins.
@@ -460,7 +460,7 @@
 	data["jammed"] = jammed
 	data["meltdown"] = meltdown
 
-	data["magic_number"] = 15 + max(stored_rod ? stored_rod.air_contents.temperature / stored_rod.temperature_limit : 0,last_power_generation / max_power_generation) * (9000-15) * (active ? 0.75 + rand() * 0.5 : 1)
+	data["magic_number"] = (meltdown ? criticality*100 : 0) + 15 + max(stored_rod ? stored_rod.air_contents.temperature / stored_rod.temperature_limit : 0,last_power_generation / max_power_generation) * (9000-15)
 
 	return data
 

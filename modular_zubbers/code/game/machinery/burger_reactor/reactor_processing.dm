@@ -7,10 +7,9 @@
 		return
 
 	var/datum/gas_mixture/rod_mix = stored_rod.air_contents
-	var/rod_mix_pressure = rod_mix.return_pressure()
 
 	//Amount of tritium to consume, in micromoles
-	var/amount_to_consume = (gas_consumption_base) + (rod_mix.temperature/1000)*(gas_consumption_heat) * clamp(rod_mix_pressure/3000,1,3)
+	var/amount_to_consume = (gas_consumption_base) + (rod_mix.temperature/1000)*(gas_consumption_heat)
 	if(active)
 		if(overclocked)
 			amount_to_consume *= 1.25
@@ -71,9 +70,13 @@
 		//Create the goblin gas and increase the temperature.
 		consumed_mix.assert_gas(/datum/gas/goblin)
 		consumed_mix.gases[/datum/gas/goblin][MOLES] += last_tritium_consumption_as_moles*goblin_multiplier
-		consumed_mix.temperature += (last_power_generation / 1000) //1 extra celcius per KW generated.
-		//We don't properly use heat capacity calculations here because the only two gases in the consumed mix are goblin and tritium.
-		consumed_mix.temperature = clamp(consumed_mix.temperature,5,0xFFFFFF)
+		var/our_heat_capacity = consumed_mix.heat_capacity()
+		if(our_heat_capacity > 0)
+			var/temperature_mod = clamp(1.25 - consumed_mix.temperature/1500,0.25,1)
+			var/temperature_to_add = (last_power_generation/our_heat_capacity)*(1 + overclocked)*(0.75 + power_efficiency*0.25)*0.6*temperature_mod
+			last_power_generation *= temperature_mod
+			consumed_mix.temperature += temperature_to_add
+			consumed_mix.temperature = clamp(consumed_mix.temperature,5,0xFFFFFF)
 
 		//The gases that we consumed go into the buffer. This is released in the air later in the atmos proc.
 		buffer_gases.merge(consumed_mix)

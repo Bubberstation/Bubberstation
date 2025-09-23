@@ -12,8 +12,12 @@
 	armor_type = /datum/armor/reactor_rod
 	volume = 50
 
-	var/pressure_limit = 9000
+	actions_types = null
+	action_slots = null
+
+	var/pressure_limit = 12000
 	var/temperature_limit = T0C + 1800
+	pressure_resistance = 12000
 
 /datum/armor/reactor_rod
 	melee = 25
