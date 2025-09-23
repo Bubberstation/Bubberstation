@@ -2,36 +2,36 @@
 
 /obj/item/paper/fluff/ruins/feeder_den/hidden
 	name = "hastily scribbled note"
-	info = "It took so long for me to make this hideout, but it might all be in vain. In the short breaks when I'm not observed, I'm trying to fix this radio I managed to sneak by... but judging by how I can barely squeeze my ass past this stupid hole less and less each day, I might not fix it in time..."
+	default_raw_text = "It took so long for me to make this hideout, but it might all be in vain. In the short breaks when I'm not observed, I'm trying to fix this radio I managed to sneak by... but judging by how I can barely squeeze my ass past this stupid hole less and less each day, I might not fix it in time..."
 
 /obj/item/paper/fluff/ruins/feeder_den/report1
 	name = "Captive report No 1"
-	info = "We've managed to obtain two captives - one woman, and one lizard. They seem promising so far... already quite chunky and eager to scarf down whatever we give them. It might be even easier to turn them into proper beds once we're past the chemical treatment."
+	default_raw_text = "We've managed to obtain two captives - one woman, and one lizard. They seem promising so far... already quite chunky and eager to scarf down whatever we give them. It might be even easier to turn them into proper beds once we're past the chemical treatment."
 
 /obj/item/paper/fluff/ruins/feeder_den/report2
 	name = "Captive report No 2"
-	info = "The woman seems to be showing great progress, we'll be moving her into the larger cell soon. The lizard guy is still a bit reluctant about eating himself into immobility... but no matter, we'll just double his portions. Perhaps a painfully overstuffed stomach will change his mind."
+	default_raw_text = "The woman seems to be showing great progress, we'll be moving her into the larger cell soon. The lizard guy is still a bit reluctant about eating himself into immobility... but no matter, we'll just double his portions. Perhaps a painfully overstuffed stomach will change his mind."
 
 /obj/item/paper/fluff/ruins/feeder_den/report3
 	name = "Captive report No 3"
-	info = "We've captured another one! A curious space explorer, snooping around near our entrance. Fierce bastard, even managed to cut my arm open! A short treatment of a room full of lipoifier smoke ensured that they won't be able to fit back into their hardsuit."
+	default_raw_text = "We've captured another one! A curious space explorer, snooping around near our entrance. Fierce bastard, even managed to cut my arm open! A short treatment of a room full of lipoifier smoke ensured that they won't be able to fit back into their hardsuit."
 
 /obj/item/paper/fluff/ruins/feeder_den/report4
 	name = "Captive report No 4"
-	info = "(the page seems to be full of food stains, making the writing unreadable.)"
+	default_raw_text = "(the page seems to be full of food stains, making the writing unreadable.)"
 
 /obj/item/paper/fluff/ruins/feeder_den/augment_note
 	name = "READ ME!"
-	info = "Don't use this auto-surgeon on yourself, dumbass!"
+	default_raw_text = "Don't use this auto-surgeon on yourself, dumbass!"
 
 /obj/item/paper/fluff/ruins/feeder_den/tool_warning
 	name = "READ ME BEFORE USING!"
-	info = "For those interested in grabbing more victims, make sure to read this first<br><br>\n\n\
+	default_raw_text = "For those interested in grabbing more victims, make sure to read this first<br><br>\n\n\
 	OOC: Your goal here is to capture people to fatten up. Avoid intentionally killing and causing chaos on the station if you can at all help it. <br>\
 	Before capturing someone, be sure to check their preferences and make sure that they are not already occupied. A discord message or LOOC never hurts if you aren't sure. OOC communication is very important. <br>\
 	You have the power to send people back to the station, make sure that you talk with them before sending them back. Especially if they are someone that wasn't on the station in the first place, like a Den Victim. \
 	<br>\
-	It is heavily advised that you find a target before you teleport onto the station as some crew members are not good canidates.<br>\
+	It is heavily advised that you find a target before you teleport onto the station as some crew members are not good canistarting_contentes.<br>\
 	With the camera console you have access to the entire camera network of the station, use this to your advantage to formulate a plan. \
 	<br><br>\
 	Right before heading onto the station, make sure that you grab a science tool and sync it with the feeder console. \
@@ -48,41 +48,41 @@
 
 /obj/item/paper/fluff/ruins/calorite_facility/note1
 	name = "Research Department - Report #1"
-	info = "The facility appears to be ready for usage. We've already imported a couple willing subjects, currently waiting in their designated areas. The testing shall begin according to the schedule."
+	default_raw_text = "The facility appears to be ready for usage. We've already imported a couple willing subjects, currently waiting in their designated areas. The testing shall begin according to the schedule."
 
 /obj/item/paper/fluff/ruins/calorite_facility/note4
 	name = "Research Department - Report #4"
-	info = "I'm aware of the fact that we're pioneers in this field of science, but this facility seems a little... oddly designed? In the next designs or iterations, instruct the architects to provide larger, more secluded labs. Why do we even need those three conveyor belts?"
+	default_raw_text = "I'm aware of the fact that we're pioneers in this field of science, but this facility seems a little... oddly designed? In the next designs or iterations, instruct the architects to provide larger, more secluded labs. Why do we even need those three conveyor belts?"
 
 /obj/item/paper/fluff/ruins/calorite_facility/note18
 	name = "Research Department - Report #18"
-	info = "The research is going excellently, though the miners have reported strange figures seemingly observing them within the mining shafts. I've suggested that it's just fauna, but they insist that it's unlike anything they've ever seen before... and yet they can never describe those things. Just to keep morale high, please send more security supplies."
+	default_raw_text = "The research is going excellently, though the miners have reported strange figures seemingly observing them within the mining shafts. I've suggested that it's just fauna, but they insist that it's unlike anything they've ever seen before... and yet they can never describe those things. Just to keep morale high, please send more security supplies."
 
 /obj/item/paper/fluff/ruins/calorite_facility/note37
 	name = "Research Department - Report #37"
-	info = "I'm not sure who I'm writing this paper for. The connection with HQ has been severed days ago and since then, half of our personnel has gone missing. I swear someone's sabotaging this fucking place too... Until someone fixes the telecomms relay, I'll probably hide myself in the medbay. Seems like the safest place."
+	default_raw_text = "I'm not sure who I'm writing this paper for. The connection with HQ has been severed days ago and since then, half of our personnel has gone missing. I swear someone's sabotaging this fucking place too... Until someone fixes the telecomms relay, I'll probably hide myself in the medbay. Seems like the safest place."
 
 /obj/item/paper/fluff/ruins/calorite_facility/security_note
 	name = "Scribbled note"
-	info = "Funny work so far, but admittedly pretty easy.  I'm only supposed to not touch the orange junk and rally up some lardasses and-- let's be real, how much harm can someone like that do?"
+	default_raw_text = "Funny work so far, but admittedly pretty easy.  I'm only supposed to not touch the orange junk and rally up some lardasses and-- let's be real, how much harm can someone like that do?"
 
 /obj/item/paper/fluff/ruins/calorite_facility/engineer_note
 	name = "Oil-stained note"
-	info = "Please tell those fucking deadbrained amoebas at HQ that a full facility needs a PROPER engine, not a bunch of fucking PACMANs. Even a damned SM shard would suffice..."
+	default_raw_text = "Please tell those fucking deadbrained amoebas at HQ that a full facility needs a PROPER engine, not a bunch of fucking PACMANs. Even a damned SM shard would suffice..."
 
 /obj/item/paper/fluff/ruins/calorite_facility/charred
 	name = "Charred note"
-	info = "They've g-- -all, -- s--en. Cloak-d fig----, ---...(the rest of the note seems unreadable)"
+	default_raw_text = "They've g-- -all, -- s--en. Cloak-d fig----, ---...(the rest of the note seems unreadable)"
 
-//GS13 Datapads and Books
+//GS13 starting_contentapads and Books
 /obj/item/book/manual/blubbery_bartender
 	name = "The Blubbery Bartender"
 	icon = 'modular_gs/icons/obj/library.dmi'
 	icon_state ="bookblubberybartender"
-	author = "Anonymous" // Whoever wrote the paper or book, can be changed by pen or PC. It is not automatically assigned.
-	title = "The Blubbery Bartender"
+	starting_author = "Anonymous" // Whoever wrote the paper or book, can be changed by pen or PC. It is not automatically assigned.
+	starting_title = "The Blubbery Bartender"
 	//book contents below
-	dat = {"<html>
+	starting_content = {"<html>
 				<head>
 				<style>
 				h1 {font-size: 18px; margin: 15px 0px 5px;}
@@ -117,10 +117,10 @@
 	name = "The Strange Chems of GATO's Sector"
 	icon = 'modular_gs/icons/obj/library.dmi'
 	icon_state ="bookblubberybartender"
-	author = "Unknown"
-	title = "The Strange Chems of GATO's Sector"
+	starting_author = "Unknown"
+	starting_title = "The Strange Chems of GATO's Sector"
 	//book contents below
-	dat = {"<html>
+	starting_content = {"<html>
 				<head>
 				<style>
 				h1 {font-size: 18px; margin: 15px 0px 5px;}
@@ -151,23 +151,23 @@
 
 
 //fastfood
-/obj/item/paper/fluff/ruins/fastfood/general_info
+/obj/item/paper/fluff/ruins/fastfood/general_default_raw_text
 	name = "Welcome to GATO!"
 	icon = 'modular_gs/icons/obj/library.dmi'
 	icon_state = "book1"
-	info = "We are glad to have you be a part of our galaxy-wide GATO franchise locations! As a restaurant worker / manager, you are a part of the GATO Corp and for security purposes, you may be treated as a part of the General Station 13's crew. Make sure to keep your restaurant clean and well-stocked. Good luck!"
+	default_raw_text = "We are glad to have you be a part of our galaxy-wide GATO franchise locations! As a restaurant worker / manager, you are a part of the GATO Corp and for security purposes, you may be treated as a part of the General Station 13's crew. Make sure to keep your restaurant clean and well-stocked. Good luck!"
 
 
-//space law - we still keep the old updated version, but might as well use this one too
+//space law - we still keep the old upstarting_contented version, but might as well use this one too
 
 /obj/item/book/manual/gato_spacelaw
 	name = "GATO Space Law"
 	icon = 'modular_gs/icons/obj/library.dmi'
 	desc = "A set of GATO-Station guidelines for keeping law and order on their space stations."
 	icon_state = "bookSpaceLaw"
-	author = "GATO PMC"
-	title = "Space Law"
-	dat = {"<html>
+	starting_author = "GATO PMC"
+	starting_title = "Space Law"
+	starting_content = {"<html>
 				<head>
 				<style>
 				h1 {font-size: 18px; margin: 15px 0px 5px;}
@@ -185,7 +185,7 @@
 				<p><br></p>
 				<p style="text-align: justify;"><span style="color:#990000;font-size:12pt;">&nbsp; &nbsp;&nbsp;</span><span style="color:#990000;font-size:12pt;">OOC: (Remember use everything in this document to try and create or enhance possible roleplay scenarios and how characters can be roleplayed in relation to respect, or lack thereof, of laws. If you believe it is instead taking away from a scenario, talk it out in OOC/LOOC. If you find an issue with these, you are encouraged to start or participate in discussion over them.)</span></p>
 				<p><br></p>
-				<p style="text-align: justify;"><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span><span style="font-size:12pt;">This document contains information pertaining to workplace laws, their application and standard procedures on GATO Corp owned space stations. Employees are expected to follow these laws and respect the Chain of Command. Security and Command also hold the additional responsibility of making sure they are being followed.</span></p>
+				<p style="text-align: justify;"><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span><span style="font-size:12pt;">This document contains default_raw_textrmation pertaining to workplace laws, their application and standard procedures on GATO Corp owned space stations. Employees are expected to follow these laws and respect the Chain of Command. Security and Command also hold the additional responsibility of making sure they are being followed.</span></p>
 				<p><br></p>
 				<p><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span><strong><span style="font-size:16pt;">Chain of Command</span></strong></p>
 				<ul>
@@ -193,16 +193,16 @@
 						<p style="text-align: justify;"><span style="font-size:12pt;">The Captain holds responsibility for a station&apos;s operations during a shift, while the responsibility for the individual departments and their members is given to the other members of Command, also referred to as Heads. These are the Head of Security for Security, Head of Personnel for Service, Chief Medical Officer for Medical, Chief Engineer for Engineering, the Quartermaster for Cargo and the Research Director for Science.</span></p>
 					</li>
 					<li style="list-style-type:disc;font-size:12pt;">
-						<p style="text-align: justify;"><span style="font-size:12pt;">Command members besides the Captain do not hold authority over other Heads or crew from departments outside their own. The same goes for any Security member over departments that are not Security.</span></p>
+						<p style="text-align: justify;"><span style="font-size:12pt;">Command members besides the Captain do not hold starting_authority over other Heads or crew from departments outside their own. The same goes for any Security member over departments that are not Security.</span></p>
 					</li>
 					<li style="list-style-type:disc;font-size:12pt;">
-						<p style="text-align: justify;"><span style="font-size:12pt;">Departments hold authority over their own activities, no department has to comply with the request of other departments that do not fall under the scope of one&apos;s duties, that are considered potentially harmful to others and to their discretion.</span></p>
+						<p style="text-align: justify;"><span style="font-size:12pt;">Departments hold starting_authority over their own activities, no department has to comply with the request of other departments that do not fall under the scope of one&apos;s duties, that are considered potentially harmful to others and to their discretion.</span></p>
 					</li>
 					<li style="list-style-type:disc;font-size:12pt;">
-						<p style="text-align: justify;"><span style="font-size:12pt;">Should no Captain be on duty during a shift but someone is required to fill in the position, an Acting Captain can be assigned from between the present members of Command. This position gives them the same authority as a Captain, but the position is relinquished as soon as someone is assigned to the position proper. Democratic vote can be used, if need be, to decide who should hold the position and to revoke it should the majority of Command deem one unfit for the role.</span></p>
+						<p style="text-align: justify;"><span style="font-size:12pt;">Should no Captain be on duty during a shift but someone is required to fill in the position, an Acting Captain can be assigned from between the present members of Command. This position gives them the same starting_authority as a Captain, but the position is relinquished as soon as someone is assigned to the position proper. Democratic vote can be used, if need be, to decide who should hold the position and to revoke it should the majority of Command deem one unfit for the role.</span></p>
 					</li>
 					<li style="list-style-type:disc;font-size:12pt;">
-						<p style="text-align: justify;"><span style="font-size:12pt;">CenterCom Commanders, while not part of the standard crew present on station, hold authority over the Captain. All station personnel must follow their orders.</span></p>
+						<p style="text-align: justify;"><span style="font-size:12pt;">CenterCom Commanders, while not part of the standard crew present on station, hold starting_authority over the Captain. All station personnel must follow their orders.</span></p>
 					</li>
 				</ul>
 				<p><br></p>
@@ -235,7 +235,7 @@
 						<p style="text-align: justify;"><span style="font-size:12pt;">AI/Cyborgs have no need to bolt down any secure areas.</span></p>
 					</li>
 					<li style="list-style-type:disc;font-size:12pt;">
-						<p style="text-align: justify;"><span style="font-size:12pt;">Security must respect the privacy of crew members and no unauthorized searches are allowed.</span><br><br><span style="font-size:12pt;"><br><br></span><strong><span style="color:#1155cc;font-size:13.999999999999998pt;">Code Blue</span></strong></p>
+						<p style="text-align: justify;"><span style="font-size:12pt;">Security must respect the privacy of crew members and no unstarting_authorized searches are allowed.</span><br><br><span style="font-size:12pt;"><br><br></span><strong><span style="color:#1155cc;font-size:13.999999999999998pt;">Code Blue</span></strong></p>
 					</li>
 					<li style="list-style-type:disc;font-size:12pt;">
 						<p style="text-align: justify;"><span style="font-size:12pt;">Confirmed Threat Elevated alert level.</span></p>
@@ -247,7 +247,7 @@
 						<p style="text-align: justify;"><span style="font-size:12pt;">When a Centcom threat summary is received and printed at communication consoles), the blue alert level is applied.</span></p>
 					</li>
 					<li style="list-style-type:disc;font-size:12pt;">
-						<p style="text-align: justify;"><span style="font-size:12pt;">Suit sensors are mandatory, but coordinate positions are not required.</span></p>
+						<p style="text-align: justify;"><span style="font-size:12pt;">Suit sensors are manstarting_contentory, but coordinate positions are not required.</span></p>
 					</li>
 					<li style="list-style-type:disc;font-size:12pt;">
 						<p style="text-align: justify;"><span style="font-size:12pt;">Security may have weapons visible.</span></p>
@@ -327,7 +327,7 @@
 						<p style="text-align: justify;"><span style="font-size:12pt;">AI units may be brought to Central Command on portable card devices (InteliCards) if structural failure is likely or AI units wish to leave. Mechs and Cyborg units are to be hauled to the escape shuttle for Central Command to inspect.</span></p>
 					</li>
 					<li style="list-style-type:disc;font-size:12pt;">
-						<p style="text-align: justify;"><span style="font-size:12pt;">Authorizing early shuttle launches is not allowed unless there is an immediate threat to shuttle integrity.</span><span style="font-size:12pt;"><br><br></span></p>
+						<p style="text-align: justify;"><span style="font-size:12pt;">starting_authorizing early shuttle launches is not allowed unless there is an immediate threat to shuttle integrity.</span><span style="font-size:12pt;"><br><br></span></p>
 					</li>
 				</ul>
 				<p style="text-align: justify;"><strong><span style="font-size:13.999999999999998pt;">Fire and Other Environmental Hazards</span></strong></p>
@@ -355,7 +355,7 @@
 						<p style="text-align: justify;"><span style="font-size:12pt;">All infected crew are to be isolated in Virology or Medbay.</span></p>
 					</li>
 					<li style="list-style-type:disc;font-size:12pt;">
-						<p style="text-align: justify;"><span style="font-size:12pt;">Sterile masks/Internals and gloves are mandatory for medical personnel and recommended for crew.</span></p>
+						<p style="text-align: justify;"><span style="font-size:12pt;">Sterile masks/Internals and gloves are manstarting_contentory for medical personnel and recommended for crew.</span></p>
 					</li>
 					<li style="list-style-type:disc;font-size:12pt;">
 						<p style="text-align: justify;"><span style="font-size:12pt;">Quarantine must be maintained until the outbreak is contained and resolved.</span></p>
@@ -380,7 +380,7 @@
 				<p><br></p>
 				<ul>
 					<li style="list-style-type:disc;font-size:12pt;">
-						<p style="text-align: justify;"><span style="font-size:12pt;">Arrest and actions are only to be taken if they are in active transgression of any laws, other actions require authorization from relevant authority (Captain or Heads). Suspicion without probable cause, as in there is no legitimate reason to take any action, is not, usually, reason enough to search or detain crew members.</span></p>
+						<p style="text-align: justify;"><span style="font-size:12pt;">Arrest and actions are only to be taken if they are in active transgression of any laws, other actions require starting_authorization from relevant starting_authority (Captain or Heads). Suspicion without probable cause, as in there is no legitimate reason to take any action, is not, usually, reason enough to search or detain crew members.</span></p>
 					</li>
 					<li style="list-style-type:disc;font-size:12pt;">
 						<p style="text-align: justify;"><span style="font-size:12pt;">An officer should apply a sentence to arrested people proportionate to the severity of the crime, the intent behind them, their number and it should be influenced by any applicable modifiers. Sentences reported here are suggestions, not hard rules.</span></p>
@@ -392,7 +392,7 @@
 				<p><br></p>
 				<p style="text-align: justify;"><strong><span style="font-size:13.999999999999998pt;">Minor Crimes</span></strong></p>
 				<p style="text-align: justify;"><strong><span style="font-size:12pt;">101</span></strong><strong><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span></strong><span style="font-size:12pt;">Resisting Arrest, to not cooperate with an officer who attempts a proper arrest.</span></p>
-				<p style="text-align: justify;"><strong><span style="font-size:12pt;">102</span></strong><strong><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span></strong><span style="font-size:12pt;">Minor Contraband, to be in unauthorized possession of not dangerous contraband</span><span style="font-size:12pt;">&nbsp;</span><span style="font-size:12pt;">(drugs, chemicals, ect...).</span></p>
+				<p style="text-align: justify;"><strong><span style="font-size:12pt;">102</span></strong><strong><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span></strong><span style="font-size:12pt;">Minor Contraband, to be in unstarting_authorized possession of not dangerous contraband</span><span style="font-size:12pt;">&nbsp;</span><span style="font-size:12pt;">(drugs, chemicals, ect...).</span></p>
 				<p style="text-align: justify;"><strong><span style="font-size:12pt;">103</span></strong><strong><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span></strong><span style="font-size:12pt;">Indecent Exposure, to be intentionally and publicly unclothed.</span></p>
 				<p style="text-align: justify;"><strong><span style="font-size:12pt;">104</span></strong><strong><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span></strong><span style="font-size:12pt;">Trespass, to be in in non-dangerous areas that one does not have access to without&nbsp;</span><span style="font-size:12pt;">permission.</span></p>
 				<p style="text-align: justify;"><strong><span style="font-size:12pt;">105</span></strong><strong><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span></strong><span style="font-size:12pt;">Petty Theft, to take insignificant items belonging to another crew member or other&nbsp;</span><span style="font-size:12pt;">departments.</span></p>
@@ -403,8 +403,8 @@
 				<p style="text-align: justify;"><span style="font-size:12pt;">For Minor Crimes, consider verbal reprimands. If certain items, areas or actions were involved, also consider a ban from said item, area or action. Discuss bans with Heads.</span></p>
 				<p><br></p>
 				<p style="text-align: justify;"><span style="font-size:16pt;"><br></span><strong><span style="font-size:13.999999999999998pt;">Medium Crimes</span></strong></p>
-				<p style="text-align: justify;"><strong><span style="font-size:12pt;">201</span></strong><strong><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span></strong><span style="font-size:12pt;">Obstruction of Authority, to willfully interfere with Security ongoing activities or to go&nbsp;</span><span style="font-size:12pt;">against a superior&apos;s authority without proper cause, that would cause damage to the crew or&nbsp;</span><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span><span style="font-size:12pt;">station.</span></p>
-				<p style="text-align: justify;"><strong><span style="font-size:12pt;">202</span></strong><strong><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span></strong><span style="font-size:12pt;">Contraband, to distribute contraband without authorization (drugs, dangerous chemicals,&nbsp;</span><span style="font-size:12pt;">&nbsp;</span><span style="font-size:12pt;">items that would need an Head&apos;s or Command&apos;s approval. The Head of a different&nbsp;</span><span style="font-size:12pt;">department can&apos;t approve in place of a relevant Head.).</span></p>
+				<p style="text-align: justify;"><strong><span style="font-size:12pt;">201</span></strong><strong><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span></strong><span style="font-size:12pt;">Obstruction of starting_authority, to willfully interfere with Security ongoing activities or to go&nbsp;</span><span style="font-size:12pt;">against a superior&apos;s starting_authority without proper cause, that would cause damage to the crew or&nbsp;</span><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span><span style="font-size:12pt;">station.</span></p>
+				<p style="text-align: justify;"><strong><span style="font-size:12pt;">202</span></strong><strong><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span></strong><span style="font-size:12pt;">Contraband, to distribute contraband without starting_authorization (drugs, dangerous chemicals,&nbsp;</span><span style="font-size:12pt;">&nbsp;</span><span style="font-size:12pt;">items that would need an Head&apos;s or Command&apos;s approval. The Head of a different&nbsp;</span><span style="font-size:12pt;">department can&apos;t approve in place of a relevant Head.).</span></p>
 				<p style="text-align: justify;"><strong><span style="font-size:12pt;">203</span></strong><strong><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span></strong><span style="font-size:12pt;">Creating Workplace Hazards, to endanger the crew or station through negligent but not&nbsp;</span><span style="font-size:12pt;">malicious behavior.</span></p>
 				<p style="text-align: justify;"><strong><span style="font-size:12pt;">204</span></strong><strong><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span></strong><span style="font-size:12pt;">Major Trespass, to be in a restricted area that one does not have access to without</span><span style="font-size:12pt;">&nbsp;</span><span style="font-size:12pt;">permission.</span></p>
 				<p style="text-align: justify;"><strong><span style="font-size:12pt;">205</span></strong><strong><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span></strong><span style="font-size:12pt;">Theft, to take significant items from a department or crew member without permission</span><span style="font-size:12pt;">&nbsp;</span><span style="font-size:12pt;">(includes using items from evidence).</span></p>
@@ -417,14 +417,14 @@
 				<p><br></p>
 				<p style="text-align: justify;"><span style="font-size:16pt;"><br></span><strong><span style="font-size:13.999999999999998pt;">Major Crimes</span></strong></p>
 				<p style="text-align: justify;"><strong><span style="font-size:12pt;">301</span></strong><strong><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span></strong><span style="font-size:12pt;">Dereliction of Duty, to willfully abandon obligations critical to the station.</span></p>
-				<p style="text-align: justify;"><strong><span style="font-size:12pt;">302</span></strong><strong><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span></strong><span style="font-size:12pt;">Weapons Possession &amp; Major Contraband, to possess or distribute harmful weaponry or&nbsp;</span><span style="font-size:12pt;">items that can cause damage to crew members or the station without authorization.</span></p>
+				<p style="text-align: justify;"><strong><span style="font-size:12pt;">302</span></strong><strong><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span></strong><span style="font-size:12pt;">Weapons Possession &amp; Major Contraband, to possess or distribute harmful weaponry or&nbsp;</span><span style="font-size:12pt;">items that can cause damage to crew members or the station without starting_authorization.</span></p>
 				<p style="text-align: justify;"><strong><span style="font-size:12pt;">303</span></strong><strong><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span></strong><span style="font-size:12pt;">Kidnapping &amp; Spiking, to illegally abduct or hold a crew member without their will. &nbsp;</span><span style="font-size:12pt;">To have other crew non-willfully members consume chemicals or substances.</span></p>
 				<p style="text-align: justify;"><strong><span style="font-size:12pt;">304</span></strong><strong><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span></strong><span style="font-size:12pt;">Strong-arm, to threaten crew members into performing any activity under the threat of&nbsp;</span><span style="font-size:12pt;">serious harm or through usage of harmful items.</span></p>
 				<p style="text-align: justify;"><strong><span style="font-size:12pt;">305</span></strong><strong><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span></strong><span style="font-size:12pt;">Major Theft, to take dangerous or restricted items or weapons from a department or crew&nbsp;</span><span style="font-size:12pt;">member without permission.</span></p>
 				<p style="text-align: justify;"><strong><span style="font-size:12pt;">306</span></strong><strong><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span></strong><span style="font-size:12pt;">Major Assault, to use physical force against someone without the intent to kill that results in&nbsp;</span><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span><span style="font-size:12pt;">life-threatening situations. To use physical force through deadly weapons.</span></p>
 				<p style="text-align: justify;"><strong><span style="font-size:12pt;">307</span></strong><strong><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span></strong><span style="font-size:12pt;">Sexual Assault, to perform unwanted and forced sexual advances (rape and other non-con IC&nbsp;</span><span style="font-size:12pt;">things)</span></p>
 				<p style="text-align: justify;"><strong><span style="font-size:12pt;">308</span></strong><strong><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span></strong><span style="font-size:12pt;">Major Sabotage, to willfully disrupt station activities by causing damage to it or a crew&nbsp;</span><span style="font-size:12pt;">member, or by manipulating critical equipment.</span></p>
-				<p style="text-align: justify;"><strong><span style="font-size:12pt;">309</span></strong><strong><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span></strong><span style="font-size:12pt;">Conspiracy, to aid an enemy of the corporation, to incite riots against authority without&nbsp;</span><span style="font-size:12pt;">cause, to use false or someone else&apos;s identity.</span></p>
+				<p style="text-align: justify;"><strong><span style="font-size:12pt;">309</span></strong><strong><span style="font-size:12pt;">&nbsp; &nbsp;&nbsp;</span></strong><span style="font-size:12pt;">Conspiracy, to aid an enemy of the corporation, to incite riots against starting_authority without&nbsp;</span><span style="font-size:12pt;">cause, to use false or someone else&apos;s identity.</span></p>
 				<p><br></p>
 				<p style="text-align: justify;"><span style="font-size:12pt;">For Major Crimes, consider harsher times in brig, labor or for community service. Additionally consider demotions or return of their ID- Though try and not leave them with nothing to do if that is the case. Only in very, very severe cases, consider leaving them jobless (or a return to CC?)</span></p>
 				<p><br></p>
@@ -446,7 +446,7 @@
 				<p style="text-align: justify;"><br></p>
 				<p style="text-align: justify;"><strong><span style="font-size:12pt;">- Self Defense,</span></strong><span style="font-size:12pt;">&nbsp;defined as &quot;The protection of oneself, the protection of thy colleagues, and the</span></p>
 				<p style="text-align: justify;"><span style="font-size:12pt;">protection of thine workplace&quot;. Vigilantism does not fall under this.&nbsp;</span><span style="font-size:12pt;">Immediate release.</span><span style="font-size:12pt;"><br><br></span></p>
-				<p style="text-align: justify;"><strong><span style="font-size:12pt;">- Cooperation &amp; Surrender,&nbsp;</span></strong><span style="font-size:12pt;">to help re-establishing a secure environment through&nbsp;</span><span style="font-size:12pt;">information or actions. To surrender oneself to authority and admitting to being guilty.&nbsp;</span><span style="font-size:12pt;">Less severe sentence.</span></p>
+				<p style="text-align: justify;"><strong><span style="font-size:12pt;">- Cooperation &amp; Surrender,&nbsp;</span></strong><span style="font-size:12pt;">to help re-establishing a secure environment through&nbsp;</span><span style="font-size:12pt;">default_raw_textrmation or actions. To surrender oneself to starting_authority and admitting to being guilty.&nbsp;</span><span style="font-size:12pt;">Less severe sentence.</span></p>
 				<p style="text-align: justify;"><br></p>
 				<p style="text-align: justify;"><strong><span style="font-size:12pt;">- Immediate Threat,</span></strong><span style="font-size:12pt;">&nbsp;for something to threaten the life of a prisoner.&nbsp;</span><span style="font-size:12pt;">Relocate or release.</span></p>
 				<p style="text-align: justify;"><span style="font-size:12pt;"><br></span><strong><span style="font-size:12pt;">- Medical Reasons,</span></strong><span style="font-size:12pt;">&nbsp;prisoners have the right to receive medical attention.&nbsp;</span><span style="font-size:12pt;">Timers still run during medical personnel activities or relocation to medbay.</span></p>
@@ -485,10 +485,10 @@
 	name = "Welcome to GATO Industrial Concern!"
 	icon = 'modular_gs/icons/obj/library.dmi'
 	icon_state = "bookwelcometogato"
-	desc = "A book stamped with GATO's feline logo. It serves the purpose of introducing employees to their current accommodations"
-	author = "A. Tenebrae"
-	title = "Welcome to Gato Industrial Concern!"
-	dat = {"<html>
+	desc = "A book stamped with GATO's feline logo. It serves the purpose of introducing employees to their current accommostarting_contentions"
+	starting_author = "A. Tenebrae"
+	starting_title = "Welcome to Gato Industrial Concern!"
+	starting_content = {"<html>
 				<head>
 				<style>
 				h1 {font-size: 18px; margin: 15px 0px 5px;}
@@ -555,13 +555,13 @@
 /obj/item/book/manual/science_SOP
 	name = "GATO Research and Development Standard Operating Procedure"
 	icon_state = "bookSOPsci"
-	author = "John GATO, PhD"
-	title = "GATO Research and Development Standard Operating Procedure"
-	dat={"<html>
+	starting_author = "John GATO, PhD"
+	starting_title = "GATO Research and Development Standard Operating Procedure"
+	starting_content={"<html>
 		<body style= "background-color: mediumpurple">
 		<h1 style= "text-align:center; color: indigo; font-family:courier"><b>Science SOP</b></h1>
 		<p style= "text-align:center;font-family:Lucida Console;font-size: 90%">
-		Science, otherwise known as R&D, or simply Sci, is home to the greatest minds of GATO and some of the most skilled button pushers known to man. The science department ensures the station stays up to date on the most bleeding edge technology, providing the crew with advanced robotics and equipment, all while conducting research and experiments for the glory of GATO!</p>
+		Science, otherwise known as R&D, or simply Sci, is home to the greatest minds of GATO and some of the most skilled button pushers known to man. The science department ensures the station stays up to starting_contente on the most bleeding edge technology, providing the crew with advanced robotics and equipment, all while conducting research and experiments for the glory of GATO!</p>
 		<hr style= "color: black">
 		<p style= "text-align:left; color: indigo;font-family:courier"><b>Scientist</b><p>
 		<p style= "text-align:left;font-family:Lucida Console;font-size: 90%">
@@ -595,9 +595,9 @@
 /obj/item/book/manual/service_SOP
 	name = "GATO Luxury Services Standard Operating Procedure"
 	icon_state = "bookSOPservice"
-	author = "John GATO"
-	title = "GATO Luxury Services Standard Operating Procedure"
-	dat={"<html>
+	starting_author = "John GATO"
+	starting_title = "GATO Luxury Services Standard Operating Procedure"
+	starting_content={"<html>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel|Fauna+One">
 		<body style= "background-color: darkolivegreen">
 		<h1 style= "text-align:center; color: goldenrod; font-family:cinzel">Service SOP</h1>
@@ -614,13 +614,13 @@
 		<p style= "text-align:left;color:darkred;font-family:cinzel;font-size: 110%"><b>Bartender</b><p>
 		<p style= "text-align:left;font-family:Fauna One;font-size: 90%">1. You are responsible for serving drinks at the bar.<p>
 		<p style= "text-align:left;font-family:Fauna One;font-size: 90%">2. You reserve the right to refuse service to anyone, for any reason, and to remove them from the bar area by force.<p>
-		<p style= "text-align:left;font-family:Fauna One;font-size: 90%">3. You may use any means at your disposal, as a bartender, to remove unauthorized crew from the bar area, provided they have been ordered to leave.<p>
+		<p style= "text-align:left;font-family:Fauna One;font-size: 90%">3. You may use any means at your disposal, as a bartender, to remove unstarting_authorized crew from the bar area, provided they have been ordered to leave.<p>
 		<p style= "text-align:left;font-family:Fauna One;font-size: 90%">4. You are responsible for your shotgun.<p>
 		<p style= "text-align:left;font-family:Fauna One;font-size: 90%">5. In the absence of a chef, you are permitted the usage of their facilities to produce meals should you wish, with respect to the <b>cook SOP, as well as ensuring the tidiness of their workspace.</b><p><hr style="color: goldenrod">
 		<p style= "text-align:left;color:Ivory;font-family:cinzel;font-size: 110%"><b>Cook</b><p>
 		<p style= "text-align:left;font-family:Fauna One;font-size: 90%">1. You are responsible for supplying the crew with meals. Lots and lots of meals.<p>
 		<p style= "text-align:left;font-family:Fauna One;font-size: 90%">2. You reserve the right to refuse service to anyone, for any reason, and to remove them from the dining area by force.<p>
-		<p style= "text-align:left;font-family:Fauna One;font-size: 90%">3. You may use any means at your disposal, as a chef, to remove unauthorized crew from your kitchen, provided they have been ordered to leave and that they are not rendered severely injured.<p>
+		<p style= "text-align:left;font-family:Fauna One;font-size: 90%">3. You may use any means at your disposal, as a chef, to remove unstarting_authorized crew from your kitchen, provided they have been ordered to leave and that they are not rendered severely injured.<p>
 		<p style= "text-align:left;font-family:Fauna One;font-size: 90%">4. In the absence of a botanist, you are permitted the usage of their facilities to acquire additional ingredients, with respect to the botanist SOP, as well as ensuring the tidiness and availability of seeds within their workspace.<p><hr style="color: goldenrod">
 		<p style= "text-align:left;color:Lightgreen;font-family:cinzel;font-size: 110%"><b>Botanist</b><p>
 		<p style= "text-align:left;font-family:Fauna One;font-size: 90%">1. You are responsible for providing produce and special materials such as cloth, wood, and leather, to other departments and individual crew members upon reasonable request.<p>
@@ -643,7 +643,7 @@
 		<p style= "text-align:left;font-family:Fauna One;font-size: 90%">2. You are required to handle funerals for station crew who are unable to be revived.<p>
 		<p style= "text-align:left;font-family:Fauna One;font-size: 90%">3. You may conduct sermons and rituals within your chapel, and optionally remodel it to be more in-line with your particular flavor of faith.<p>
 		<p style= "text-align:left;font-family:Fauna One;font-size: 90%;margin:0px 50px">a. Any rituals involving crew must not result in death or permanent harm. For example, ritual combat may be permitted, but both participants must be rendered aid once the combat has ended.<p>
-		<p style= "text-align:left;font-family:Fauna One;font-size: 90%">4. You may act within your authority as chaplain to aid in the expulsion and destruction of supernatural forces present on station.<p>
+		<p style= "text-align:left;font-family:Fauna One;font-size: 90%">4. You may act within your starting_authority as chaplain to aid in the expulsion and destruction of supernatural forces present on station.<p>
 		<p style= "text-align:left;font-family:Fauna One;font-size: 90%">5. You may induct, recruit, or convert crew to your faith of their own free will.<p><hr style="color: goldenrod">
 		<p style= "text-align:left;color:fuchsia;font-family:cinzel;font-size: 110%"><b>Clown</b><p>
 		<p style= "text-align:left;font-family:Fauna One;font-size: 90%">1. You are responsible for entertaining the crew.<p>
@@ -658,7 +658,7 @@
 		<p style= "text-align:left;color:Navy;font-family:cinzel;font-size: 110%"><b>Head of Personnel</b><p>
 		<p style= "text-align:left;font-family:Fauna One;font-size: 90%">1. You are responsible for managing all aspects of the service department, including all of the roles listed above.<p>
 		<p style= "text-align:left;font-family:Fauna One;font-size: 90%">2. You are responsible for assigning or reassigning crew to other departments.<p>
-		<p style= "text-align:left;font-family:Fauna One;font-size: 90%">3. You are responsible for the abuse and misuse of expanded access authorized on your behalf.<p>
+		<p style= "text-align:left;font-family:Fauna One;font-size: 90%">3. You are responsible for the abuse and misuse of expanded access starting_authorized on your behalf.<p>
 		<p style= "text-align:left;font-family:Fauna One;font-size: 90%">4. You are not required to fulfill the SOP for unfulfilled roles in your department, but you should still be familiar with them.<p>
 		<p style= "text-align:left;font-family:Fauna One;font-size: 90%">5. You are required to act as an impartial judge whenever a court case arises.<p>
 		<p style= "text-align:left;font-family:Fauna One;font-size: 90%">6. You are expected to teach new and existing service personnel as needed or requested.<p>
@@ -668,9 +668,9 @@
 /obj/item/book/manual/supply_SOP
 	name = "GATO Delivery Service Operating Procedure"
 	icon_state = "bookSOPsupply"
-	author = "John GATO"
-	title = "GATO Delivery Service Standard Operating Procedure"
-	dat={"<html>
+	starting_author = "John GATO"
+	starting_title = "GATO Delivery Service Standard Operating Procedure"
+	starting_content={"<html>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Saira+Stencil+One|Dhurjati">
 		<body style= "background-color: saddlebrown">
 		<h1 style= "text-align:center; color: gold; font-family:Saira Stencil One">Cargo SOP</h1>
@@ -699,9 +699,9 @@
 /obj/item/book/manual/engi_SOP
 	name = "GATO Corps of Engineers OSHA Handbook"
 	icon_state = "bookSOPengi"
-	author = "John GATO"
-	title = "GATO Corps of Engineers OSHA Handbook"
-	dat={"<html>
+	starting_author = "John GATO"
+	starting_title = "GATO Corps of Engineers OSHA Handbook"
+	starting_content={"<html>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bruno+Ace+SC|Quantico">
 		<body style= "background-color: rgb(230,194,14)">
 		<h1 style= "text-align:center; color: orangered; font-family:Bruno Ace SC;font-size: 400%"><b>Engineering SOP</b></h1>
@@ -738,9 +738,9 @@
 /obj/item/book/manual/med_SOP
 	name = "GATO Medical Practioner's Handbook"
 	icon_state = "bookSOPmed"
-	author = "Dr. John GATO"
-	title = "GATO Medical Practioner's Handbook"
-	dat={"<html>
+	starting_author = "Dr. John GATO"
+	starting_title = "GATO Medical Practioner's Handbook"
+	starting_content={"<html>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Flex|Darker+Grotesque">
 		<body style= "background-color: cadetblue">
 		<h1 style= "text-align:center; color: firebrick; font-family:Darker Grotesque;font-size: 555%"><b>Medical SOP</b></h1>
@@ -785,9 +785,9 @@
 /obj/item/book/manual/sec_SOP
 	name = "GATO Security Force Code of Conduct"
 	icon_state = "bookSOPsec"
-	author = "Magistrate John GATO"
-	title = "GATO Security Force Code of Conduct"
-	dat={"<html>
+	starting_author = "Magistrate John GATO"
+	starting_title = "GATO Security Force Code of Conduct"
+	starting_content={"<html>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Michroma|Genos">
 		<body style= "background-color: dimgray">
 		<h1 style= "text-align:center; color: firebrick; font-family:Michroma;font-size: 444%"><b>Security SOP</b></h1>
@@ -826,7 +826,7 @@
 		<p style= "text-align:left;font-family:Genos;font-size: 120%;">3. You are responsible for the abuse or misuse of the contents of the armory, and ensuring that they are secured and accounted for.<p>
 		<p style= "text-align:left;font-family:Genos;font-size: 120%;">4. You are responsible for ensuring the reasonable and humane treatment of prisoners, as well as ensuring the timely release of those temporarily imprisoned.<p>
 		<p style= "text-align:left;font-family:Genos;font-size: 120%;">5. You are responsible for conducting thorough searches of every prisoners belongings, including pockets, PDA slots, coat pockets, suit storage, etc.<p>
-		<p style= "text-align:left;font-family:Genos;font-size: 120%;">6. Suspects of capital crimes are entitled to a trial upon request, provided a lawyer and the HOP or another head of staff are available.<p><hr style= "color: grey">
+		<p style= "text-align:left;font-family:Genos;font-size: 120%;">6. Suspects of capital crimes are enstarting_titled to a trial upon request, provided a lawyer and the HOP or another head of staff are available.<p><hr style= "color: grey">
 		<p style= "text-align:left; color: Burlywood;font-family:Michroma; font-size: 130%"><b> Detective</b><p>
 		<p style= "text-align:left;font-family:Genos;font-size: 120%;">1. You are responsible for aiding security by examining crime scenes, collecting evidence, questioning witnesses, and identifying suspects.<p>
 		<p style= "text-align:left;font-family:Genos;font-size: 120%;margin: 0px 50px">a. You are responsible for ensuring that evidence is not tampered with, disturbed, or otherwise rendered inadmissible through your own negligence.<p>
@@ -848,12 +848,12 @@
 		<p style= "text-align:center;font-family:Genos;font-size: 120%;margin: 0px 50px">5. Weapons worn by security are to be hidden except when in the case of an emergency.<p>
 		<p style= "text-align:center;font-family:Genos;font-size: 120%;margin: 0px 50px">6. Crew members may freely walk in the hallways.<p>
 		<p style= "text-align:center;font-family:Genos;font-size: 120%;margin: 0px 50px">7. AI/Cyborgs have no need to bolt down any secure areas.<p>
-		<p style= "text-align:center;font-family:Genos;font-size: 120%;margin: 0px 50px">8. Security must respect the privacy of crew members and no unauthorized searches are allowed.<p><hr style="color: gray">
+		<p style= "text-align:center;font-family:Genos;font-size: 120%;margin: 0px 50px">8. Security must respect the privacy of crew members and no unstarting_authorized searches are allowed.<p><hr style="color: gray">
 		<p style= "text-align:Center; color: darkblue;font-family:Michroma; font-size: 175%"><b>Code Blue</b><p>
 		<p style= "text-align:center;font-family:Genos;font-size: 120%;margin: 0px 50px">1. Confirmed Threat Elevated alert level.<p>
 		<p style= "text-align:center;font-family:Genos;font-size: 120%;margin: 0px 50px">2. There are reports or other proof available to indicate that there is a threat to the station.<p>
 		<p style= "text-align:center;font-family:Genos;font-size: 120%;margin: 0px 50px">3. When a Centcom threat summary is received and printed at communication consoles), the blue alert level is applied.<p>
-		<p style= "text-align:center;font-family:Genos;font-size: 120%;margin: 0px 50px">4. Suit sensors are mandatory, but coordinate positions are not required.<p>
+		<p style= "text-align:center;font-family:Genos;font-size: 120%;margin: 0px 50px">4. Suit sensors are manstarting_contentory, but coordinate positions are not required.<p>
 		<p style= "text-align:center;font-family:Genos;font-size: 120%;margin: 0px 50px">5. Security may have weapons visible.<p>
 		<p style= "text-align:center;font-family:Genos;font-size: 120%;margin: 0px 50px">6. Crew members may be searched by security with probable cause.<p>
 		<p style= "text-align:center;font-family:Genos;font-size: 120%;margin: 0px 50px">7. AI/Cyborgs may bolt down high secure areas.<p>
@@ -883,9 +883,9 @@
 /obj/item/book/manual/command_SOP
 	name = "The GATO Command Officer's Handbook"
 	icon_state = "bookSOPcommand"
-	author = "Fleet Admiral John \"Officer\" GATO"
-	title = "The GATO Command Officer's Handbook"
-	dat={"<html>
+	starting_author = "Fleet Admiral John \"Officer\" GATO"
+	starting_title = "The GATO Command Officer's Handbook"
+	starting_content={"<html>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bodoni+Moda+SC|Castoro+Titling|Nanum+Myeongjo">
 		<body style= "background-color: rgb(0, 0, 51)">
 		<p style= "text-align:center; color: goldenrod; font-family:Bodoni Moda SC;font-size: 600%;border-style: inset">Command SOP</p>
@@ -898,7 +898,7 @@
 		<p style= "text-align:left;color: gainsboro;font-family:Nanum Myeongjo;font-size: 125%;margin: 0px 50px">b. You are also able to demote heads of staff at your discretion.<p>
 		<p style= "text-align:left;color: gainsboro;font-family:Nanum Myeongjo;font-size: 125%">4. You are responsible for securing the Nuclear Authentication Disk.<p>
 		<p style= "text-align:left;color: gainsboro;font-family:Nanum Myeongjo;font-size: 125%">5. You are responsible and accountable for the actions of your heads of staff.<p>
-		<p style= "text-align:left;color: gainsboro;font-family:Nanum Myeongjo;font-size: 125%">6. You are expected to adhere to the chain of command, and only exercise your authority outside of it where absolutely necessary.<p>
+		<p style= "text-align:left;color: gainsboro;font-family:Nanum Myeongjo;font-size: 125%">6. You are expected to adhere to the chain of command, and only exercise your starting_authority outside of it where absolutely necessary.<p>
 		<p style= "text-align:left;color: gainsboro;font-family:Nanum Myeongjo;font-size: 125%">7. You are expected to be broadly knowledgeable on all aspects of the station and its operation. As the leader of the station and its crew, you will largely be looked to for guidance and support, especially in emergency situations.<p>
 		<p style= "text-align:left;color: gainsboro;font-family:Nanum Myeongjo;font-size: 125%">8. You are expected to maintain the decorum of your rank.<p><hr style= "color: darkred">
 		<p style= "text-align:left; color: steelblue;font-family:Castoro Titling; font-size: 150%">Head of Staff<p>
@@ -917,9 +917,9 @@
 /obj/item/book/manual/prisoner_SOP
 	name = "Important Notice"
 	icon_state = "prisonerSOPsheet"
-	author = "Anonymous"
-	title = "Important Notice"
-	dat={"<html>
+	starting_author = "Anonymous"
+	starting_title = "Important Notice"
+	starting_content={"<html>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Permanent+Marker|Lacquer">
 		<body style= "background-color: ivory">
 		<p style= "text-align:center; color: orangered; font-family:Lacquer;font-size: 600%;">Prisoner SOP</p>
@@ -927,7 +927,7 @@
 		<p style= "text-align:left;font-family:Permanent Marker;font-size: 100%">1. You have been permanently imprisoned for crimes against GATO, the station, and/or her crew.<p>
 		<p style= "text-align:center;font-family:Permanent Marker;font-size: 100%;margin: 0px 50px">a. If playing as a prisoner off the bat, it is encouraged to have a security note detailing what crime you were sentenced for.<p>
 		<p style= "text-align:left;font-family:Permanent Marker;font-size: 100%">2. Your punishment for this crime will vary depending upon the severity, but can range from permanent imprisonment to exile or even death.<p>
-		<p style= "text-align:left;font-family:Permanent Marker;font-size: 100%">3. You are permitted to make requests for accommodations, visitations, and even legal counsel permitting that a lawyer is available to represent you.<p>
+		<p style= "text-align:left;font-family:Permanent Marker;font-size: 100%">3. You are permitted to make requests for accommostarting_contentions, visitations, and even legal counsel permitting that a lawyer is available to represent you.<p>
 		<p style= "text-align:center;font-family:Permanent Marker;font-size: 100%;margin 0px 50px">a. The Warden is not obligated to fulfil these requests.<p>
 		<p style= "text-align:left;font-family:Permanent Marker;font-size: 100%">4. You are encouraged to maintain good behavior and earn your freedom through reform, serving your sentence, and backbreaking labor in the mines.<p>
 		<p style= "text-align:left;font-family:Permanent Marker;font-size: 100%">5. Prisoners making escape attempts will be handled by officers in accordance to the threat they pose based on the severity of their initial crimes and violent actions toward officers in their escape attempt. As an example:<p>
@@ -938,9 +938,9 @@
 /obj/item/book/manual/greytide_SOP
 	name = "My SOP"
 	icon_state = "greySOPsheet"
-	author = "Mr. GreyTide"
-	title = "My SOP"
-	dat={"<html>
+	starting_author = "Mr. GreyTide"
+	starting_title = "My SOP"
+	starting_content={"<html>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pangolin|Coming+Soon">
 		<body style= "background-color: ivory">
 		<p style= "text-align:center; color: slategrey; font-family:Coming Soon;font-size: 600%;">Assistant SOP</p>
@@ -956,61 +956,61 @@
 
 /obj/item/paper/fluff/chocoslime_research
 	name = "Stained Research Papers"
-	info = "<b>AUDIO LOG OF CHOCOLATE SLIME REPORT NO.3</b>. Despite possessing no obvious combat capabilities, the chocolate slime can feed itself to its victim, possibly rupturing its st-- mmhfph- grhm... ...(AUDIO LOG END)."
+	default_raw_text = "<b>AUDIO LOG OF CHOCOLATE SLIME REPORT NO.3</b>. Despite possessing no obvious combat capabilities, the chocolate slime can feed itself to its victim, possibly rupturing its st-- mmhfph- grhm... ...(AUDIO LOG END)."
 
 
 //gs13 - solar defence crate
 
 /obj/item/paper/guides/jobs/engi/solar_defence
-	name = "Info on Satellite Defence"
-	info = "<h1>Welcome</h1><p>With this crate, you will be able to protect the station's solar arrays from constant barrages of space sand. The set-up is simple. Drag around all the satellites in front of solar panel arrays, preferably in direction open to space (the best spot is near the solar tracker and outside of the grilles), as that is where the space sand will come from. It's advised to set down just 1 satellite for each solar array. Once you set the satellite down, you can activate it by flicking on the switch. The crate also provides you with an OPTIONAL computer board to keep track of your defence satellites. Voila!</p>"
+	name = "default_raw_text on Satellite Defence"
+	default_raw_text = "<h1>Welcome</h1><p>With this crate, you will be able to protect the station's solar arrays from constant barrages of space sand. The set-up is simple. Drag around all the satellites in front of solar panel arrays, preferably in direction open to space (the best spot is near the solar tracker and outside of the grilles), as that is where the space sand will come from. It's advised to set down just 1 satellite for each solar array. Once you set the satellite down, you can activate it by flicking on the switch. The crate also provides you with an OPTIONAL computer board to keep track of your defence satellites. Voila!</p>"
 
 //GS13's gateway map
 
 /obj/item/paper/fluff/ruins/gateway_fats/caloriteslime1
 	name = "Day 5 - Calorite Slime Specimen"
-	info = "We finally got the calorite slime specimen to react - it began to self-produce lipoifier wherever it went, along with making subtle traces of lipoifium every now and then. Any contact without protection results in almost immediate immobilization. Jay Cobb has been smacking it with a cattle prod for a good 5 hours now. I hope it doesn't escape."
+	default_raw_text = "We finally got the calorite slime specimen to react - it began to self-produce lipoifier wherever it went, along with making subtle traces of lipoifium every now and then. Any contact without protection results in almost immediate immobilization. Jay Cobb has been smacking it with a cattle prod for a good 5 hours now. I hope it doesn't escape."
 
 /obj/item/paper/fluff/ruins/gateway_fats/caloriteslime2
 	name = "Day 6 - Calorite Slime Specimen"
-	info = "It escaped."
+	default_raw_text = "It escaped."
 
 /obj/item/paper/fluff/ruins/gateway_fats/candyland_shack
 	name = "Dear Diary"
-	info = "So far living here has been working out quite well. I don't need to worry about food at all! The only problem: I really should've made a bigger doorway..."
+	default_raw_text = "So far living here has been working out quite well. I don't need to worry about food at all! The only problem: I really should've made a bigger doorway..."
 
 /obj/item/paper/fluff/ruins/gateway_fats/facility_doodle
 	name = "a doodle"
-	info = "(it's a crude drawing of a man in a suit, being hit by a car. There are stink lines coming off him, for some reason.)"
+	default_raw_text = "(it's a crude drawing of a man in a suit, being hit by a car. There are stink lines coming off him, for some reason.)"
 
 /obj/item/paper/fluff/ruins/gateway_fats/facility_report1
 	name = "Personal note"
-	info = "I really don't know which executive or RD comes up with this shit. Sure, I can get building chambers for testing properties of various creatures or items on people, as illegal and immoral it might be... But building a SMALL HAZARD COURSE? Really? I wouldn't be surprised if this room's camera tapes are saved every week..."
+	default_raw_text = "I really don't know which executive or RD comes up with this shit. Sure, I can get building chambers for testing properties of various creatures or items on people, as illegal and immoral it might be... But building a SMALL HAZARD COURSE? Really? I wouldn't be surprised if this room's camera tapes are saved every week..."
 
 /obj/item/paper/fluff/ruins/gateway_fats/facility_report2
 	name = "Security Notice"
-	info = "We've spotted a few life signatures poking around this region near the facility. The scans don't match any of the local flora or fauna... Be on the lookout for potential threats."
+	default_raw_text = "We've spotted a few life signatures poking around this region near the facility. The scans don't match any of the local flora or fauna... Be on the lookout for potential threats."
 
 /obj/item/paper/fluff/ruins/gateway_fats/facility_report3
 	name = "Security Notice 2"
-	info = "We've captured an agent - turtleneck sweater, black and red gear, stechkin tucked away in his boot. Seems like a typical syndie. Before we could really squeeze out any information though, he bit through one of his teeth and succumbed to poison. Need to poke HOS about more thorough search scans in the future."
+	default_raw_text = "We've captured an agent - turtleneck sweater, black and red gear, stechkin tucked away in his boot. Seems like a typical syndie. Before we could really squeeze out any default_raw_textrmation though, he bit through one of his teeth and succumbed to poison. Need to poke HOS about more thorough search scans in the future."
 
 /obj/item/paper/fluff/ruins/gateway_fats/facility_report4
 	name = "My Will"
-	info = "I don't think I'm gonna squeeze out of this rubble anytime soon. In case I don't make it: Please leave all that I have to-- (the rest of the page is covered in droplets of dried blood)"
+	default_raw_text = "I don't think I'm gonna squeeze out of this rubble anytime soon. In case I don't make it: Please leave all that I have to-- (the rest of the page is covered in droplets of dried blood)"
 
 /obj/item/paper/fluff/ruins/gateway_fats/facility_report5
 	name = "AUTOMATIC REPORT - CODE RED EMERGENCY"
-	info = "MULTIPLE EXPLOSIONS DETECTED. STRUCTURAL INTEGRITY OF THE FACILITY HAS BEEN COMPROMISED - EMERGENCY PROTOCOLS ENGAGED. CONTACTING HQ... ... ... ... ... CONTACT FAILED. CHECK SYSTEM WIRING."
+	default_raw_text = "MULTIPLE EXPLOSIONS DETECTED. STRUCTURAL INTEGRITY OF THE FACILITY HAS BEEN COMPROMISED - EMERGENCY PROTOCOLS ENGAGED. CONTACTING HQ... ... ... ... ... CONTACT FAILED. CHECK SYSTEM WIRING."
 
 /obj/item/paper/fluff/ruins/gateway_fats/facility_report6
 	name = "STOP STEALING MY FUCKING LUNCH"
-	info = "Tell that cunt Jerry from requisitions that if he ever steals my lunch again, I'm gonna lock him in a room with 10 of those creepy floating orange hands."
+	default_raw_text = "Tell that cunt Jerry from requisitions that if he ever steals my lunch again, I'm gonna lock him in a room with 10 of those creepy floating orange hands."
 
 /obj/item/paper/fluff/ruins/gateway_fats/facility_report7
 	name = "Report #383 C28 - Prolonged Exposure to Calorite and Calorite-Derived Products"
-	info = "(the entire paper is covered in some sort of grease, smudging all the ink and making it unreadable...)"
+	default_raw_text = "(the entire paper is covered in some sort of grease, smudging all the ink and making it unreadable...)"
 
 /obj/item/paper/fluff/ruins/gateway_fats/facility_report8
 	name = "Report #192 A38 - Lipoifium"
-	info = "Subject 2 - Male, Anthropomorphic Fox, blue fur. Name: Sam S. At the beginning of the testing, subject was recorded to have weight of 160lbs. After a day of exposure, their weight went into quadruple digits. Testing had to be concluded due to insufficient build of the test chamber. More detailed report found in the system."
+	default_raw_text = "Subject 2 - Male, Anthropomorphic Fox, blue fur. Name: Sam S. At the beginning of the testing, subject was recorded to have weight of 160lbs. After a day of exposure, their weight went into quadruple digits. Testing had to be concluded due to insufficient build of the test chamber. More detailed report found in the system."
