@@ -196,6 +196,7 @@
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "pierces", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 	sharpness = SHARP_POINTY
+
 /obj/item/forging/reagent_weapon/rapier/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
