@@ -66,98 +66,85 @@
 
 
 //recoloring of propaganda posters - from NT blue to GT pink
+/obj/structure/sign/poster/gato
+	icon = 'modular_gs/icons/obj/contraband.dmi'
+
 /obj/structure/sign/poster/gato/safety
 	name = "Here For Your Safety"
 	desc = "A poster glorifying the station's security force."
 	icon_state = "poster1_legit"
-	icon = 'modular_gs/icons/obj/contraband.dmi'
 
 /obj/structure/sign/poster/gato/lovegato
 	name = "GATO Poster"
 	desc = "A poster with the GATO's friendly feline mascot."
 	icon_state = "poster2_legit"
-	icon = 'modular_gs/icons/obj/contraband.dmi'
 
 /obj/structure/sign/poster/gato/cleanhands
 	name = "Cleanliness"
 	desc = "A poster warning of the dangers of poor hygiene."
 	icon_state = "poster3_legit"
-	icon = 'modular_gs/icons/obj/contraband.dmi'
 
 /obj/structure/sign/poster/gato/helpothers
 	name = "Help Others"
 	desc = "A poster encouraging you to help fellow crewmembers."
 	icon_state = "poster4_legit"
-	icon = 'modular_gs/icons/obj/contraband.dmi'
 
 /obj/structure/sign/poster/gato/buildstuff
 	name = "Build"
 	desc = "A poster glorifying the engineering team."
 	icon_state = "poster5_legit"
-	icon = 'modular_gs/icons/obj/contraband.dmi'
 
 /obj/structure/sign/poster/gato/blessthisspess
 	name = "Bless This Spess"
 	desc = "A poster blessing this area."
 	icon_state = "poster6_legit"
-	icon = 'modular_gs/icons/obj/contraband.dmi'
 
 /obj/structure/sign/poster/gato/science
 	name = "Science"
 	desc = "A poster depicting an atom."
 	icon_state = "poster7_legit"
-	icon = 'modular_gs/icons/obj/contraband.dmi'
 
 /obj/structure/sign/poster/gato/arf
 	name = "Ian"
 	desc = "Arf arf. Yap."
 	icon_state = "poster8_legit"
-	icon = 'modular_gs/icons/obj/contraband.dmi'
 
 /obj/structure/sign/poster/gato/obey
 	name = "Obey"
 	desc = "A poster instructing the viewer to obey authority."
 	icon_state = "poster9_legit"
-	icon = 'modular_gs/icons/obj/contraband.dmi'
 
 /obj/structure/sign/poster/gato/walk
 	name = "Walk"
 	desc = "A poster instructing the viewer to walk instead of running."
 	icon_state = "poster10_legit"
-	icon = 'modular_gs/icons/obj/contraband.dmi'
 
 /obj/structure/sign/poster/gato/statelaws
 	name = "State Laws"
 	desc = "A poster instructing cyborgs to state their laws."
 	icon_state = "poster11_legit"
-	icon = 'modular_gs/icons/obj/contraband.dmi'
 
 /obj/structure/sign/poster/gato/loveian
 	name = "Love Ian"
 	desc = "Ian is love, Ian is life."
 	icon_state = "poster12_legit"
-	icon = 'modular_gs/icons/obj/contraband.dmi'
 
 /obj/structure/sign/poster/gato/futurework
 	name = "Work For A Future"
 	desc = " A poster encouraging you to work for your future."
 	icon_state = "poster17_legit"
-	icon = 'modular_gs/icons/obj/contraband.dmi'
 
 /obj/structure/sign/poster/gato/safety
 	name = "Safety: Internals"
 	desc = "A poster instructing the viewer to wear internals in the rare environments where there is no oxygen or the air has been rendered toxic."
 	icon_state = "poster19_legit"
-	icon = 'modular_gs/icons/obj/contraband.dmi'
 
 /obj/structure/sign/poster/gato/safety2
 	name = "Safety: Eye Protection"
 	desc = "A poster instructing the viewer to wear eye protection when dealing with chemicals, smoke, or bright lights."
 	icon_state = "poster20_legit"
-	icon = 'modular_gs/icons/obj/contraband.dmi'
 
 /obj/structure/sign/poster/gato/reportcrimes
 	name = "Report Crimes"
 	desc = "A poster encouraging the swift reporting of crime or seditious behavior to station security."
 	icon_state = "poster22_legit"
-	icon = 'modular_gs/icons/obj/contraband.dmi'
