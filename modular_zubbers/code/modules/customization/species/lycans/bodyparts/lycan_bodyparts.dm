@@ -2,7 +2,7 @@
 	icon_greyscale = BODYPART_ICON_LYCAN
 	limb_id = SPECIES_LYCAN
 	is_dimorphic = TRUE
-	head_flags = HEAD_ALL_FEATURES
+	head_flags = HEAD_DEFAULT_FEATURES
 	teeth_count = 42 // Wolves have 42 teeth :)
 
 /obj/item/bodypart/chest/mutant/lycan

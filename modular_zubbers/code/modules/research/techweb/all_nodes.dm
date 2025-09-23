@@ -92,6 +92,7 @@
 	design_ids += list(
 		"blanksynth",
 		"dominatrixmodule",
+		"obediencemodule",
 		"borg_upgrade_expand",
 		"borg_upgrade_shrink",
 	)

@@ -262,7 +262,8 @@
 	set_holdable(list(
 		/obj/item/mail,
 		/obj/item/delivery/small,
-		/obj/item/paper
+		/obj/item/paper,
+		/obj/item/bounty_cube,
 	))
 
 ///Garment bag
