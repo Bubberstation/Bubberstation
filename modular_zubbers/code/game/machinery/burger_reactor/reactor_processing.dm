@@ -6,6 +6,7 @@
 	if(!stored_rod || !(active || meltdown))
 		last_power_generation = 0
 		last_tritium_consumption = 0
+		last_power_generation_bonus = 0
 		return
 
 	var/datum/gas_mixture/rod_mix = stored_rod.air_contents
@@ -113,7 +114,7 @@
 		update_appearance(UPDATE_ICON)
 
 
-	if(auto_vent && COOLDOWN_FINISHED(src,auto_vent_cooldown))
+	if(auto_vent_upgrade && auto_vent && COOLDOWN_FINISHED(src,auto_vent_cooldown))
 		if(rod_mix.temperature >= stored_rod.temperature_limit*0.5 || last_power_generation >= safeties_max_power_generation*0.75)
 			toggle_vents(null,TRUE)
 		else
@@ -121,13 +122,14 @@
 		COOLDOWN_START(src,auto_vent_cooldown,4 SECONDS)
 
 	if(!linked_supermatter && last_power_generation > 0)
-		if(last_power_generation >= max_power_generation)
-			last_power_generation_bonus = 0
-		else if(last_power_generation >= safeties_max_power_generation*0.75)
+		if(last_power_generation < max_power_generation && last_power_generation >= safeties_max_power_generation*0.75)
 			last_power_generation_bonus = (last_power_generation/safeties_max_power_generation - 0.75) * last_power_generation
-
+		else
+			last_power_generation_bonus = 0
 		if(power && powernet)
 			src.add_avail(min(max_power_generation*10,last_power_generation) + last_power_generation_bonus)
+	else
+		last_power_generation_bonus = 0
 
 	return TRUE
 

@@ -32,7 +32,14 @@
 	var/cooling_limiter_max = 100 //Maximum possible cooling limiter amount. 100 means auto.
 	var/jammed = FALSE //Is the reactor ejection system jammed?
 	var/tampered = FALSE //Was the anti-tamper light activated?
-	var/auto_vent = TRUE
+
+
+	//Upgrades
+	var/auto_vent_upgrade = FALSE
+	var/safeties_upgrade = FALSE
+	var/overclocked_upgrade = FALSE
+
+	var/auto_vent = FALSE
 
 	var/meltdown = FALSE //Is the reactor currently suffering from a meltdown?
 	var/criticality = 0 //Once this reaches 100, you're going to see some serious shit.
@@ -47,10 +54,10 @@
 	var/last_tritium_consumption = 0 //Display purposes. Do not edit. This is measured in micromoles.
 	var/last_radiation_pulse = 0 //Display purposes. Do not edit.
 
-	var/gas_consumption_base = 2400 //How much gas gets consumed, in micromoles, per cycle.
+	var/gas_consumption_base = 2000 //How much gas gets consumed, in micromoles, per cycle.
 	var/gas_consumption_heat = 3600 //How much gas gets consumed, in moles, per cycle, per 1000 kelvin (of the reactor rod temperature).
 
-	var/base_power_generation = 36 //How many joules of power to add per micromole of tritium processed.
+	var/base_power_generation = 34 //How many joules of power to add per micromole of tritium processed.
 	//There are 1000000 micromoles in a mole.
 
 	var/goblin_multiplier = 4 //How many mols of goblin gas produced per mol of tritium. Increases with matter bins.
@@ -62,7 +69,7 @@
 	var/vent_pressure = 200 //Pressure, in kPa, that the buffer releases the gas to. Improved via servos.
 	var/max_power_generation = 350000 //Maximum allowed power generation (joules) per cycle before the rods go apeshit. Improved via matter bins. Hard limit is over 10 times this.
 
-	var/heat_waste_multiplier = 0.05
+	var/heat_waste_multiplier = 0.04
 
 	var/list/obj/machinery/rbmk2_sniffer/linked_sniffers = list()
 
@@ -403,7 +410,9 @@
 		goblin_multiplier += (new_matter_bin.tier-1)*0.5
 	max_power_generation = initial(max_power_generation) * (max_power_generation_mul**(1 + (max_power_generation_mul-1)*0.1))
 	max_power_generation = FLOOR(max_power_generation,10000)
-	safeties_max_power_generation = max(initial(safeties_max_power_generation),round(max_power_generation*0.75,125000))
+
+
+	safeties_max_power_generation = max(initial(safeties_max_power_generation),round(max_power_generation*(safeties_upgrade ? 0.9: 0.75),25000))
 
 	//Requires x4 servos
 	var/vent_pressure_multiplier = 0
@@ -456,10 +465,12 @@
 	// Button data
 	data["venting"] = venting
 	data["auto_vent"] = auto_vent
+	data["auto_vent_upgrade"] = auto_vent_upgrade
 	data["vent_dir"] = vent_reverse_direction
 	data["active"] = active
 	data["safety"] = safety
 	data["overclocked"] = overclocked
+	data["overclocked_upgrade"] = overclocked_upgrade
 	data["rod"] = stored_rod
 
 	// Status displays
@@ -475,13 +486,12 @@
 	if(.)
 		return
 	var/mob/user = ui.user
-	var/turf/machine_turf = get_turf(src) // Move up here, we only need this line once.
-
-	// all of procs here have logging
+	var/turf/machine_turf = get_turf(src)
 	switch(action)
 		if("autovent")
-			auto_vent = !auto_vent
-			balloon_alert(user, "auto venting is [auto_vent ? "on" : "off"]")
+			if(auto_vent_upgrade)
+				auto_vent = !auto_vent
+				balloon_alert(user, "auto venting is [auto_vent ? "on" : "off"]")
 			. = TRUE
 		if("activate")
 			toggle_active(user)
@@ -499,31 +509,26 @@
 			toggle_reverse_vents(user, TRUE)
 			. = TRUE
 		if("safetytoggle")
-
 			safety = !safety
-
 			balloon_alert(user, "safeties are [safety ? "on" : "off"]")
-			. = TRUE
 			if(isliving(user))
 				user.log_message("turned the safety [safety ? "on" : "off"] of [src]", LOG_GAME)
 				investigate_log("had the safety turned [safety ? "on" : "off"] by [key_name(user)] at [AREACOORD(src)].", INVESTIGATE_ENGINE)
 			else
 				log_game("[src] had the safety turned [safety ? "on" : "off"] at [AREACOORD(machine_turf)]")
 				investigate_log("had the safety turned [safety ? "on" : "off"] at [AREACOORD(machine_turf)]", INVESTIGATE_ENGINE)
-			return
-		if("overclocktoggle")
-
-			overclocked = !overclocked
-
-			balloon_alert(user, "overclocking is [overclocked ? "on" : "off"]")
 			. = TRUE
-			if(isliving(user))
-				user.log_message("turned the overclock [overclocked ? "on" : "off"] of [src]", LOG_GAME)
-				investigate_log("had the overclock turned [overclocked ? "on" : "off"] by [key_name(user)] at [AREACOORD(src)].", INVESTIGATE_ENGINE)
-			else
-				log_game("[src] had the overclock turned [overclocked ? "on" : "off"] at [AREACOORD(machine_turf)]")
-				investigate_log("had the overclock turned [overclocked ? "on" : "off"] at [AREACOORD(machine_turf)]", INVESTIGATE_ENGINE)
-			return
+		if("overclocktoggle")
+			if(overclocked_upgrade)
+				overclocked = !overclocked
+				balloon_alert(user, "overclocking is [overclocked ? "on" : "off"]")
+				if(isliving(user))
+					user.log_message("turned the overclock [overclocked ? "on" : "off"] of [src]", LOG_GAME)
+					investigate_log("had the overclock turned [overclocked ? "on" : "off"] by [key_name(user)] at [AREACOORD(src)].", INVESTIGATE_ENGINE)
+				else
+					log_game("[src] had the overclock turned [overclocked ? "on" : "off"] at [AREACOORD(machine_turf)]")
+					investigate_log("had the overclock turned [overclocked ? "on" : "off"] at [AREACOORD(machine_turf)]", INVESTIGATE_ENGINE)
+			. = TRUE
 
 
 /obj/machinery/power/rbmk2/examine(mob/user)

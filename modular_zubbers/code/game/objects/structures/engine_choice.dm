@@ -148,6 +148,8 @@
 
 	new /obj/item/stack/cable_coil/thirty(center_turf)
 
+	new /obj/item/paper/crumpled/rbmk2(center_turf)
+
 	return TRUE
 
 /obj/structure/engine_choice/proc/deploy_supermatter(turf/center_turf)
