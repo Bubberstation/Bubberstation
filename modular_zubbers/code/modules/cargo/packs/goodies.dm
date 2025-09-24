@@ -57,7 +57,7 @@
 	access_view = ACCESS_WEAPONS
 	cost = PAYCHECK_COMMAND * 4
 
-/datum/supply_pack/goody/plasma_marksman
+/datum/supply_pack/goody/plasma_marksman_ammo
 	name = "Plasma Battery Single-pack"
 	desc = "Contains a single plasma battery."
 	contains = list(/obj/item/ammo_box/magazine/recharge/plasma_battery = 1)
