@@ -51,7 +51,7 @@
 				break
 		equipped_items[item] = success
 
-	for (var/item as anything in equipped_items)
+	for (var/item in equipped_items)
 		on_equip_item(item, equipped_items[item])
 
 /datum/quirk/equipping/proc/force_equip_item(mob/living/carbon/target, obj/item/item, slot, check_nodrop = TRUE, check_item = TRUE)

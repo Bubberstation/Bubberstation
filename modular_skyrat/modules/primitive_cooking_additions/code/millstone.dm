@@ -155,7 +155,7 @@
 
 	user.mind.adjust_experience(/datum/skill/primitive, 5)
 
-	for(var/target_item as anything in contents)
+	for(var/target_item in contents)
 		seedify(target_item, t_max = 1)
 
 	return
