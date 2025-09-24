@@ -77,7 +77,7 @@
 //BUBBER EDIT ADDITION BEGIN: READING SPACE LAW HAS A CHANCE TO TEACH YOU LEGALESE
 /obj/item/book/manual/wiki/security_space_law/attack_self(mob/user)
 	if(user.can_read(src) && prob(30))
-		to_chat(user, span_notice("As you inhale the book's contents, you feel more sophisticated. after reading Space Law just once, you are an expert in pretending you know Latin. You can now speak Legalese."))
+		to_chat(user, span_notice("As you inhale the book's contents, you feel more sophisticated. After reading Space Law just once, you feel like you are an expert in pretending you know Latin. You can now speak Legalese."))
 		user.grant_language(/datum/language/legalese, SPOKEN_LANGUAGE) //can speak but not understand
 	else return
 //BUBBER EDIT ADDITION END
