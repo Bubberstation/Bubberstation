@@ -15,9 +15,9 @@
 	actions_types = null
 	action_slots = null
 
-	var/pressure_limit = 12000
+	var/pressure_limit = 24000
 	var/temperature_limit = T0C + 1800
-	pressure_resistance = 12000
+	pressure_resistance = 24000
 
 /datum/armor/reactor_rod
 	melee = 25
@@ -31,13 +31,13 @@
 /obj/item/tank/rbmk2_rod/preloaded/populate_gas()
 	air_contents.assert_gas(/datum/gas/tritium)
 	air_contents.assert_gas(/datum/gas/nitrogen)
-	air_contents.gases[/datum/gas/tritium][MOLES] = 80
+	air_contents.gases[/datum/gas/tritium][MOLES] = 40
 	air_contents.gases[/datum/gas/nitrogen][MOLES] = 10
 
 /obj/item/tank/rbmk2_rod/supermatter/populate_gas()
 	air_contents.assert_gas(/datum/gas/tritium)
 	air_contents.assert_gas(/datum/gas/hypernoblium)
-	air_contents.gases[/datum/gas/tritium][MOLES] = 60
+	air_contents.gases[/datum/gas/tritium][MOLES] = 20
 	air_contents.gases[/datum/gas/hypernoblium][MOLES] = 30
 
 /obj/item/tank/rbmk2_rod/atom_destruction(damage_flag)

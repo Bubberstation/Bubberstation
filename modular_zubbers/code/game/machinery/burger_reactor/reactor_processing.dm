@@ -4,15 +4,17 @@
 		update_appearance(UPDATE_OVERLAYS)
 
 	if(!stored_rod || !(active || meltdown))
+		last_power_generation = 0
+		last_tritium_consumption = 0
 		return
 
 	var/datum/gas_mixture/rod_mix = stored_rod.air_contents
 
 	//Amount of tritium to consume, in micromoles
-	var/amount_to_consume = (gas_consumption_base) + (rod_mix.temperature/1000)*(gas_consumption_heat)
+	var/amount_to_consume = (gas_consumption_base + (rod_mix.temperature/1000)*(gas_consumption_heat))
 	if(active)
 		if(overclocked)
-			amount_to_consume *= 1.25
+			amount_to_consume *= 1.5
 		if(obj_flags & EMAGGED)
 			amount_to_consume *= 4
 	else
@@ -42,10 +44,11 @@
 	if(consumed_mix && last_tritium_consumption > 0)
 
 		last_power_generation = (base_power_generation * last_tritium_consumption) * power_efficiency
-		last_power_generation = clamp(last_power_generation,0,max_power_generation*10)
+		if(last_power_generation > max_power_generation*10)
+			last_power_generation = max_power_generation*10
 
 		var/range_cap = CEILING(GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE * 0.5, 1)
-		last_radiation_pulse = min( last_power_generation*0.001, range_cap)
+		last_radiation_pulse = min(last_power_generation/max_power_generation, range_cap)
 
 		//The LOWER the insulation_threshold, the stronger the radiation can penetrate.
 		//Values closer to the maximum range penetrate the most.
@@ -72,9 +75,8 @@
 		consumed_mix.gases[/datum/gas/goblin][MOLES] += last_tritium_consumption_as_moles*goblin_multiplier
 		var/our_heat_capacity = consumed_mix.heat_capacity()
 		if(our_heat_capacity > 0)
-			var/temperature_mod = clamp(1.25 - consumed_mix.temperature/1500,0.25,1)
-			var/temperature_to_add = (last_power_generation/our_heat_capacity)*(1 + overclocked)*(0.75 + power_efficiency*0.25)*0.6*temperature_mod
-			last_power_generation *= temperature_mod
+			var/temperature_mod = clamp(1.5 - consumed_mix.temperature/500,0.05,1)
+			var/temperature_to_add = ((last_power_generation*heat_waste_multiplier)*(1 + overclocked)*(0.75 + power_efficiency*0.25)*temperature_mod) / our_heat_capacity
 			consumed_mix.temperature += temperature_to_add
 			consumed_mix.temperature = clamp(consumed_mix.temperature,5,0xFFFFFF)
 
@@ -94,7 +96,7 @@
 			take_damage(3,armour_penetration=100)
 			src.Shake(duration=0.5 SECONDS)
 
-	if(active && rod_mix.temperature > stored_rod.temperature_limit || last_power_generation > max_power_generation )
+	if(active && last_power_generation > max_power_generation )
 		if(!meltdown)
 			log_game("[src] triggered a meltdown at [AREACOORD(src)]")
 			investigate_log("triggered a meltdown at [AREACOORD(src)]", INVESTIGATE_ENGINE)
@@ -105,19 +107,27 @@
 		playsound(src, chosen_sound, 50, TRUE)
 		take_damage(clamp( last_power_generation / max_power_generation, 1, 10),armour_penetration=100)
 		src.Shake(duration=0.5 SECONDS)
-	else if(meltdown && rod_mix.temperature <= stored_rod.temperature_limit*0.75 && last_power_generation <= max_power_generation*0.75) //Hard to get out of a meltdown. Needs that 25% buffer.
+	else if(meltdown && last_power_generation <= max_power_generation*0.75) //Hard to get out of a meltdown. Needs that 25% buffer.
 		meltdown = FALSE
 		meltdown_start_time = 0
 		update_appearance(UPDATE_ICON)
 
-	if(!linked_supermatter && power && powernet && last_power_generation > 0)
-		if(last_power_generation >= max_power_generation*5)
-			last_power_generation *= rand()*0.25 // (Mostly) stops crazy power generation from happening.
-			last_power_generation_bonus = 0
-		else if(last_power_generation >= safeties_max_power_generation)
-			last_power_generation_bonus = (last_power_generation/safeties_max_power_generation - 1) * last_power_generation
 
-		src.add_avail(last_power_generation + last_power_generation_bonus)
+	if(auto_vent && COOLDOWN_FINISHED(src,auto_vent_cooldown))
+		if(rod_mix.temperature >= stored_rod.temperature_limit*0.5 || last_power_generation >= safeties_max_power_generation*0.75)
+			toggle_vents(null,TRUE)
+		else
+			toggle_vents(null,FALSE)
+		COOLDOWN_START(src,auto_vent_cooldown,4 SECONDS)
+
+	if(!linked_supermatter && last_power_generation > 0)
+		if(last_power_generation >= max_power_generation)
+			last_power_generation_bonus = 0
+		else if(last_power_generation >= safeties_max_power_generation*0.75)
+			last_power_generation_bonus = (last_power_generation/safeties_max_power_generation - 0.75) * last_power_generation
+
+		if(power && powernet)
+			src.add_avail(min(max_power_generation*10,last_power_generation) + last_power_generation_bonus)
 
 	return TRUE
 
@@ -167,29 +177,31 @@
 	else
 		criticality = max(0,criticality-1)
 
-	if(venting)
-		if(jammed) //50% inside
+
+	if(jammed) //50% inside
+		if(venting)
 			if(vent_reverse_direction)
 				turf_air.pump_gas_to(buffer_gases,vent_pressure*0.5) //Pump turf gases to buffer. Reduced rate because jammed.
 			else
 				buffer_gases.pump_gas_to(turf_air,vent_pressure*0.5) //Pump buffer gases to turf. Reduced rate because jammed.
-			if(stored_rod)
-				transfer_rod_temperature(buffer_gases,multiplier=0.5)
-				transfer_rod_temperature(turf_air,multiplier=0.5,allow_cooling_limiter=TRUE)
-		else if(active) //100% inside.
+		if(stored_rod)
+			transfer_rod_temperature(buffer_gases,multiplier=0.5)
+			transfer_rod_temperature(turf_air,multiplier=0.5,allow_cooling_limiter=TRUE)
+	else if(active) //100% inside.
+		if(venting)
 			if(vent_reverse_direction)
 				turf_air.pump_gas_to(buffer_gases,vent_pressure) //Pump turf gases to buffer.
 			else
 				buffer_gases.pump_gas_to(turf_air,vent_pressure) //Pump buffer gases to turf.
-			if(stored_rod)
-				transfer_rod_temperature(buffer_gases)
-				transfer_rod_temperature(turf_air,multiplier=0.5,allow_cooling_limiter=TRUE)
-		else //0% inside
+		if(stored_rod)
+			transfer_rod_temperature(buffer_gases)
+			transfer_rod_temperature(turf_air,multiplier=0.5,allow_cooling_limiter=TRUE)
+	else //0% inside
+		if(venting)
 			if(vent_reverse_direction)
 				turf_air.pump_gas_to(buffer_gases,vent_pressure*2) //Pump turf gases to buffer. Increased rate because exposed.
 			else
 				buffer_gases.pump_gas_to(turf_air,vent_pressure*2) //Pump buffer gases to turf. Increased rate because exposed.
-			if(stored_rod)
-				//No buffer gas interaction here.
-				transfer_rod_temperature(turf_air,allow_cooling_limiter=FALSE)
-
+		if(stored_rod)
+			//No buffer gas interaction here.
+			transfer_rod_temperature(turf_air,allow_cooling_limiter=FALSE)

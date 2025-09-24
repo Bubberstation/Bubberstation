@@ -107,8 +107,12 @@ export const RBMK2 = (props) => {
                     data.safeties_max_power_generation*0.9
                   ],
                   good: [
-                    0,
+                    data.safeties_max_power_generation*0.5,
                     data.safeties_max_power_generation*0.75
+                  ],
+                  cyan: [
+                    -Infinity,
+                    data.safeties_max_power_generation*0.5               
                   ],
                 }}
               >
@@ -124,11 +128,11 @@ export const RBMK2 = (props) => {
                 minValue={0}
                 maxValue={data.rod_pressure_limit}
                 ranges={{
-                  danger: [
+                  bad: [
                     data.rod_pressure_limit,
                     Infinity,
                   ],
-                  bad: [
+                  orange: [
                     data.rod_pressure_limit * 0.9,
                     data.rod_pressure_limit
                   ],
@@ -137,7 +141,7 @@ export const RBMK2 = (props) => {
                     data.rod_pressure_limit * 0.9
                   ],
                   good: [
-                    0,
+                    -Infinity,
                     data.rod_pressure_limit * 0.6
                   ],
                 }}
@@ -154,11 +158,11 @@ export const RBMK2 = (props) => {
                 minValue={0}
                 maxValue={9000}
                 ranges={{
-                  danger: [
+                  bad: [
                     9000,
                     Infinity
                   ],
-                  bad: [
+                  orange: [
                     8000,
                     9000
                   ],
@@ -171,7 +175,7 @@ export const RBMK2 = (props) => {
                     7500
                   ],
                   cyan: [
-                   0,
+                   -Infinity,
                    2500
                   ],
                 }}
@@ -188,11 +192,11 @@ export const RBMK2 = (props) => {
                 minValue={0}
                 maxValue={data.temperature_limit}
                 ranges={{
-                  danger: [
+                  bad: [
                     data.temperature_limit*0.9,
                     Infinity
                   ],
-                  bad: [
+                  orange: [
                     data.temperature_limit*0.75,
                     data.temperature_limit*0.9
                   ],
@@ -201,7 +205,7 @@ export const RBMK2 = (props) => {
                     data.temperature_limit*0.75
                   ],
                   good: [
-                    0,
+                    -Infinity,
                     data.temperature_limit*0.5
                   ],
                 }}
@@ -218,8 +222,8 @@ export const RBMK2 = (props) => {
                 minValue={0}
                 maxValue={60*60*3} //3 hours.
                 ranges={{
-                  danger: [-Infinity, 60*5], //5 minutes
-				  bad: [60*5, 60*30], //30 minutes
+                  bad: [-Infinity, 60*5], //5 minutes
+                  orange: [60*5, 60*30], //30 minutes
                   average: [60*30, 60*60], //1 hour
                   good: [60*60, Infinity],
                 }}
@@ -239,8 +243,8 @@ export const RBMK2 = (props) => {
                 minValue={0}
                 maxValue={100}
                 ranges={{
-                  danger: [100, Infinity],
-                  bad: [50, 100],
+                  bad: [100, Infinity],
+                  orange: [50, 100],
                   average: [5, 50],
                   good: [-Infinity, 5],
                 }}
@@ -259,8 +263,8 @@ export const RBMK2 = (props) => {
                 ranges={{
                   good: [90, Infinity],
                   average: [50, 90],
-                  bad: [25, 50],
-                  danger: [-Infinity, 25],
+                  orange: [25, 50],
+                  bad: [-Infinity, 25],
                 }}
               >
                 {data.health_percent}%
@@ -287,13 +291,13 @@ export const RBMK2 = (props) => {
                 textAlign="center"
                 width="100%"
                 icon="fa-eject"
-                color="bad"
+                color="orange"
                 onClick={() => act('eject')}
               >
                 Eject Fuel Rod
               </Button.Confirm>
             ) : (
-              <NoticeBox danger textAlign="center">
+              <NoticeBox bad textAlign="center">
                 No control rod to eject
               </NoticeBox>
             )}
@@ -308,14 +312,14 @@ export const RBMK2 = (props) => {
               label="Vent Power"
               buttons={
                 <>
-                  <Box inline mx={2} color={data.venting ? 'good' : 'bad'}>
+                  <Box inline mx={2} color={data.venting ? 'good' : 'orange'}>
                     {data.venting ? 'ONLINE' : 'OFFLINE'}
                   </Box>
                   <Button.Confirm
                     tooltip="Toggle the vents On/Off."
                     textAlign="center"
                     icon="fa-fan"
-                    color={data.venting ? 'bad' : 'good'}
+                    color={data.venting ? 'orange' : 'good'}
                     onClick={() => act('venttoggle')}
                   >
                     TOGGLE
@@ -327,7 +331,7 @@ export const RBMK2 = (props) => {
               label="Vent Direction"
               buttons={
                 <>
-                  <Box inline mx={5.68} color={data.vent_dir ? 'bad' : 'good'}>
+                  <Box inline mx={5.68} color={data.vent_dir ? 'orange' : 'good'}>
                     {data.vent_dir ? 'PULLING' : 'PUSHING'}
                   </Box>
                   <Button
@@ -344,6 +348,12 @@ export const RBMK2 = (props) => {
                     color={data.vent_dir ? 'blue' : 'good'}
                     onClick={() => act('ventpush')}
                   />
+                  <Button
+                    tooltip="Set the vents to automatically open when too hot, and close when too cold. Requires auto-vent upgrade disk."
+                    icon="fa-balance-scale"
+                    color={data.auto_vent ? 'good' : 'blue'}
+                    onClick={() => act('autovent')}
+                  />
                 </>
               }
             />
@@ -357,13 +367,13 @@ export const RBMK2 = (props) => {
               label="Safeties"
               buttons={
                 <>
-                  <Box inline mx={2} color={data.safety ? 'good' : 'bad'}>
+                  <Box inline mx={2} color={data.safety ? 'good' : 'orange'}>
                     {data.safety ? 'ONLINE' : 'OFFLINE'}
                   </Box>
                   <Button.Confirm
                     tooltip="DANGER: Toggle safeties on/off. Only do this if you KNOW what you're doing!"
                     icon="fa-helmet-safety"
-                    color={data.safety ? 'bad' : 'good'}
+                    color={data.safety ? 'orange' : 'good'}
                     onClick={() => act('safetytoggle')}
                   >
                     TOGGLE
@@ -375,7 +385,7 @@ export const RBMK2 = (props) => {
               label="Overclock"
               buttons={
                 <>
-                  <Box inline mx={2} color={data.overclocked ? 'good' : 'bad'}>
+                  <Box inline mx={2} color={data.overclocked ? 'good' : 'orange'}>
                     {data.overclocked ? 'ONLINE' : 'OFFLINE'}
                   </Box>
                   <Button.Confirm

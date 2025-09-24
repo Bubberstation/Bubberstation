@@ -28,10 +28,11 @@
 	var/venting = TRUE //Is this machine venting the gases?
 	var/vent_reverse_direction = FALSE //Is this machine venting in the reverse direction (sucking)?
 	var/safety = TRUE //Is the safety active?
-	var/cooling_limiter = 50 //Current cooling limiter amount.
-	var/cooling_limiter_max = 90 //Maximum possible cooling limiter amount.
+	var/cooling_limiter = 100 //Current cooling limiter amount.
+	var/cooling_limiter_max = 100 //Maximum possible cooling limiter amount. 100 means auto.
 	var/jammed = FALSE //Is the reactor ejection system jammed?
 	var/tampered = FALSE //Was the anti-tamper light activated?
+	var/auto_vent = TRUE
 
 	var/meltdown = FALSE //Is the reactor currently suffering from a meltdown?
 	var/criticality = 0 //Once this reaches 100, you're going to see some serious shit.
@@ -47,23 +48,27 @@
 	var/last_radiation_pulse = 0 //Display purposes. Do not edit.
 
 	var/gas_consumption_base = 2400 //How much gas gets consumed, in micromoles, per cycle.
-	var/gas_consumption_heat = 4800 //How much gas gets consumed, in moles, per cycle, per 1000 kelvin (of the reactor rod temperature).
+	var/gas_consumption_heat = 3600 //How much gas gets consumed, in moles, per cycle, per 1000 kelvin (of the reactor rod temperature).
 
-	var/base_power_generation = 24 //How many joules of power to add per micromole of tritium processed.
+	var/base_power_generation = 36 //How many joules of power to add per micromole of tritium processed.
 	//There are 1000000 micromoles in a mole.
 
-	var/goblin_multiplier = 3 //How many mols of goblin gas produced per mol of tritium. Increases with matter bins.
+	var/goblin_multiplier = 4 //How many mols of goblin gas produced per mol of tritium. Increases with matter bins.
 
 	var/safeties_max_power_generation = 230000
 
 	//Upgradable stats.
 	var/power_efficiency = 1 //A multiplier of base_power_generation. Also has an effect on heat generation. Improved via capacitors.
 	var/vent_pressure = 200 //Pressure, in kPa, that the buffer releases the gas to. Improved via servos.
-	var/max_power_generation = 350000 //Maximum allowed power generation (joules) per cycle before the rods go apeshit. Improved via matter bins. Going over 5 times this will reduce power generation. Hard limit is over 10 times this.
+	var/max_power_generation = 350000 //Maximum allowed power generation (joules) per cycle before the rods go apeshit. Improved via matter bins. Hard limit is over 10 times this.
+
+	var/heat_waste_multiplier = 0.05
 
 	var/list/obj/machinery/rbmk2_sniffer/linked_sniffers = list()
 
 	var/obj/machinery/power/supermatter_crystal/linked_supermatter
+
+	COOLDOWN_DECLARE(auto_vent_cooldown)
 
 /datum/armor/rbmk2
 	melee = 50
@@ -450,6 +455,7 @@
 
 	// Button data
 	data["venting"] = venting
+	data["auto_vent"] = auto_vent
 	data["vent_dir"] = vent_reverse_direction
 	data["active"] = active
 	data["safety"] = safety
@@ -460,7 +466,7 @@
 	data["jammed"] = jammed
 	data["meltdown"] = meltdown
 
-	data["magic_number"] = (meltdown ? criticality*100 : 0) + 15 + max(stored_rod ? stored_rod.air_contents.temperature / stored_rod.temperature_limit : 0,last_power_generation / max_power_generation) * (9000-15)
+	data["magic_number"] = (meltdown ? criticality*100 : 0) + 15 + (last_power_generation / max_power_generation) * (9000-15)
 
 	return data
 
@@ -473,6 +479,10 @@
 
 	// all of procs here have logging
 	switch(action)
+		if("autovent")
+			auto_vent = !auto_vent
+			balloon_alert(user, "auto venting is [auto_vent ? "on" : "off"]")
+			. = TRUE
 		if("activate")
 			toggle_active(user)
 			. = TRUE
@@ -583,9 +593,13 @@
 
 	var/temperature_change = (energy_transfer/rod_mix_heat_capacity)
 	if(allow_cooling_limiter && temperature_change > 0) //Cooling!
-		temperature_change *= clamp(1 - cooling_limiter*0.01,0,1) //Clamped in case of adminbus fuckery.
+		if(cooling_limiter == cooling_limiter_max) //Auto
+			var/temperature_mod = clamp( ( (rod_mix.temperature-200) / stored_rod.temperature_limit) * 2 ,0,1)
+			temperature_change *= temperature_mod
+		else
+			temperature_change *= clamp(1 - cooling_limiter*0.01,0,1) //Clamped in case of adminbus fuckery.
 
-	rod_mix.temperature -= temperature_change*0.85
+	rod_mix.temperature -= temperature_change
 	gas_source.temperature += temperature_change
 
 	return TRUE
