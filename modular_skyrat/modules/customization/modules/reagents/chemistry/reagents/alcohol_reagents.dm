@@ -204,7 +204,7 @@
 	name = "glass of sin's delight"
 	desc = "You can smell the seven sins rolling off the top of the glass."
 
-/datum/reagent/consumable/ethanol/strawberry_daiquiri
+/datum/reagent/consumable/ethanol/daiquiri/strawberry
 	name = "Strawberry Daiquiri"
 	description = "Pink looking alcoholic drink."
 	boozepwr = 20
@@ -212,8 +212,8 @@
 	quality = DRINK_NICE
 	taste_description = "sweet strawberry, lime and the ocean breeze"
 
-/datum/glass_style/drinking_glass/strawberry_daiquiri
-	required_drink_type = /datum/reagent/consumable/ethanol/strawberry_daiquiri
+/datum/glass_style/drinking_glass/daiquiri/strawberry
+	required_drink_type = /datum/reagent/consumable/ethanol/daiquiri/strawberry
 	icon = 'modular_skyrat/master_files/icons/obj/drinks.dmi'
 	icon_state = "strawberry_daiquiri"
 	name = "glass of strawberry daiquiri"
