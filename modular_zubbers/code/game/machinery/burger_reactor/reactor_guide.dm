@@ -12,4 +12,4 @@
 	Step 4: Make the coolers hotter by 10.<br>
 	Step 5: Monitor for bad shit happening. If power generation is acceptable, you're done and don't have to read the rest of this.<br>
 	Step 6: If bad shit happens, lower temperature by 20.<br>
-	Step 7: Repeat steps 3 to 6 until satisfied with power output.}"
+	Step 7: Repeat steps 3 to 6 until satisfied with power output."}
