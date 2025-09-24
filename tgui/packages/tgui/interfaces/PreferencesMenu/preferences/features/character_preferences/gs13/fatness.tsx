@@ -2,6 +2,8 @@ import {
   type Feature,
   FeatureNumberInput,
   type FeatureNumeric,
+  CheckboxInput,
+  type FeatureToggle,
 } from '../../base';
 
 export const starting_fatness: Feature<number> = {
@@ -27,4 +29,17 @@ export const max_weight: Feature<number> = {
   description:
     'What is the maximum weight we want our character to be at? 0 means there will be no weight cap.',
   component: FeatureNumberInput,
+};
+
+
+export const weight_gain_persistent: FeatureToggle = {
+  name: 'Persistent weight',
+  description: 'Endround/cryo weight becomes your new start weight.',
+  component: CheckboxInput,
+};
+
+export const weight_gain_permanent: FeatureToggle = {
+  name: 'Permanent weight',
+  description: 'Persists between round, hard to remove.',
+  component: CheckboxInput,
 };
