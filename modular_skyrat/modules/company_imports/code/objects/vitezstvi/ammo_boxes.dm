@@ -7,7 +7,7 @@
 /obj/item/ammo_box/strilka310
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/ammo_box/a357
+/obj/item/ammo_box/speedloader/c357
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/ammo_box/c38
