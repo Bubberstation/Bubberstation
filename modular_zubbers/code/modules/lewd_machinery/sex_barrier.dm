@@ -4,6 +4,7 @@
 	max_signs = 4
 	creation_time = 10
 	holosign_type = /obj/structure/holosign/sexsign
+	w_class = WEIGHT_CLASS_TINY
 	//The janitor sign is also purple so no need to make custom sprites here.
 
 /obj/structure/holosign/sexsign
