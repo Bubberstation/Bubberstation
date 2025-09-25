@@ -147,6 +147,7 @@
 					/obj/item/clothing/suit/armor/vest/alt/sec/metrocop = 6,
 					/obj/item/clothing/gloves/color/black/security/metrocop = 6,
 					/obj/item/clothing/under/rank/security/metrocop = 6,
+					/obj/item/clothing/shoes/jackboots/combine = 6,
 					/obj/item/clothing/glasses/hud/eyepatch/sec = 3, //No flash protection on the eyepatches, so they're worse than the sunnies.
 					/obj/item/clothing/glasses/hud/eyepatch/sec/blindfold = 3, //Ditto
 					/obj/item/clothing/glasses/hud/ar/aviator/security = 3, //Printable, but you have to choose between HUD and flash protection.
