@@ -14,12 +14,16 @@
 	icon = 'modular_gs/icons/obj/fatoray.dmi'
 	icon_state = "fatoray_scrap2"
 	desc = "Small parts that seemingly once belonged to some sort of a raygun."
-/*
+
 // GS13 fatty liquid beakers defs, for admin stuff and mapping junk
 
-/obj/item/reagent_containers/glass/beaker/lipoifier
+/obj/item/reagent_containers/cup/beaker/lipoifier
 	list_reagents = list(/datum/reagent/consumable/lipoifier = 50)
 
+/obj/item/reagent_containers/cup/beaker/galbanic
+	list_reagents = list(/datum/reagent/fermi_fat = 50)
+
+/*
 /obj/item/reagent_containers/glass/beaker/cornoil
 	list_reagents = list(/datum/reagent/consumable/cornoil = 50)
 
@@ -37,9 +41,6 @@
 
 /obj/item/reagent_containers/glass/beaker/flatulose
 	list_reagents = list(/datum/reagent/consumable/flatulose = 50)
-
-/obj/item/reagent_containers/glass/beaker/galbanic
-	list_reagents = list(/datum/reagent/fermi_fat = 50)
 
 /obj/item/reagent_containers/glass/beaker/macarenic
 	list_reagents = list(/datum/reagent/fermi_slim = 50)

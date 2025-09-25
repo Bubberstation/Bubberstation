@@ -181,14 +181,10 @@
 		if(max_weight)	//Check for max weight prefs
 			fatness = min(fatness, (max_weight - 1))	//Apply max weight prefs
 
-/mob/living/carbon/proc/adjust_perma(adjustment_amount, type_of_fattening = FATTENING_TYPE_ITEM)
-	/// we will fix this later
-	/*
-	return TRUE
-
-	if(!client)
+/mob/living/carbon/proc/adjust_perma(adjustment_amount, type_of_fattening = FATTENING_TYPE_ITEM, ignore_rate = FALSE)
+	if(isnull(client))
 		return FALSE
-	if(!client.prefs.weight_gain_permanent)
+	if(!client.prefs.read_preference(/datum/preference/toggle/weight_gain_permanent))
 		return FALSE
 
 	if(!adjustment_amount || !type_of_fattening)
@@ -200,16 +196,15 @@
 	var/amount_to_change = adjustment_amount
 
 	if(adjustment_amount > 0)
-		amount_to_change = amount_to_change * weight_gain_rate
+		amount_to_change = amount_to_change * (weight_gain_rate * !ignore_rate)
 	else
-		amount_to_change = amount_to_change * weight_loss_rate
+		amount_to_change = amount_to_change * (weight_loss_rate * !ignore_rate)
 
 	fatness_perma += amount_to_change
 	fatness_perma = max(fatness_perma, MINIMUM_FATNESS_LEVEL)
 
 	if(max_weight)
 		fatness_perma = min(fatness_perma, (max_weight - 1))
-	*/
 
 /mob/living/carbon/human/handle_breathing(times_fired)
 	. = ..()
@@ -279,12 +274,13 @@
 	adjust_fatness(fat_to_add, FATTENING_TYPE_WEAPON)
 	return fat_to_add
 
-/* Fix this later.
 /mob/living/carbon/proc/applyPermaFatnessDamage(amount)
-	if(!client?.prefs?.read_preference(/datum/preference/toggle/weight_gain_permanent)) // If we cant apply permafat, apply regular fat
+	if (isnull(client))
+		return
+	
+	if (!client.prefs.read_preference(/datum/preference/toggle/weight_gain_permanent)) // If we cant apply permafat, apply regular fat
 		return applyFatnessDamage(amount)
 
 	var/fat_to_add = ((amount * CONFIG_GET(number/damage_multiplier)) * PERMA_FAT_DAMAGE_TO_FATNESS)
 	adjust_perma(fat_to_add, FATTENING_TYPE_WEAPON)
 	return fat_to_add
-*/
