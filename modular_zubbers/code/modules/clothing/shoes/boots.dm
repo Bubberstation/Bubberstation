@@ -357,6 +357,6 @@
 	name = "union jackboots"
 	desc = "Crushing cans and crushing skulls."
 	clothing_traits = list(TRAIT_SILENT_FOOTSTEPS)
-/obj/item/clothing/shoes/jackboots/sec/Initialize(mapload)
+/obj/item/clothing/shoes/jackboots/combine/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, list('modular_zubbers/sound/effects/combine/gear1.ogg'=1,'modular_zubbers/sound/effects/combine/gear2.ogg'=1, 'modular_zubbers/sound/effects/combine/gear3.ogg'=1, 'modular_zubbers/sound/effects/combine/gear4.ogg'=1,'modular_zubbers/sound/effects/combine/gear5.ogg'=1, 'modular_zubbers/sound/effects/combine/gear6.ogg'=1,), 100)
