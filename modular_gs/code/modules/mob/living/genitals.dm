@@ -43,9 +43,16 @@
 	if(uses_skintones)
 		. += "_s"
 
+/obj/item/organ/genital/butt/set_size(size)
+	genital_size = max(size, set_genital_size)
+	genital_size = min(genital_size, MAX_BUTT_SIZE)
+	update_sprite_suffix()
+
+
 /obj/item/organ/genital/butt/build_from_dna(datum/dna/DNA, associated_key)
 	uses_skin_color = DNA.features["butt_uses_skincolor"]
 	set_size(DNA.features["butt_size"])
+	set_genital_size = DNA.features["butt_size"]
 
 	return ..()
 
@@ -84,16 +91,21 @@
 
 /obj/item/organ/genital/belly/set_size(size)
 	var/old_size = genital_size
-	. = ..()
 	if(size > old_size)
 		to_chat(owner, span_warning("Your guts [pick("swell up to", "gurgle into", "expand into", "plump up into", "grow eagerly into", "fatten up into", "distend into")] a larger midsection."))
 	else if (size < old_size)
 		to_chat(owner, span_warning("Your guts [pick("shrink down to", "decrease into", "wobble down into", "diminish into", "deflate into", "contracts into")] a smaller midsection."))
+	
+	
+	genital_size = max(size, set_genital_size)
+	genital_size = min(genital_size, MAX_BELLY_SIZE)
+	update_sprite_suffix()
 
 
 /obj/item/organ/genital/belly/build_from_dna(datum/dna/DNA, associated_key)
 	uses_skin_color = DNA.features["belly_uses_skincolor"]
 	set_size(DNA.features["belly_size"])
+	set_genital_size = DNA.features["belly_size"]
 
 	return ..()
 
