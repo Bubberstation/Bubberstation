@@ -4,7 +4,7 @@
 	ckeywhitelist = list("drawntothicc", "Drawntothicc", "DrawnToThicc", "DRAWNTOTHICC")
 
 /datum/loadout_item/toys/metis_plush
-	name = "Metis Plush"
+	name = "Nerdy Gote Plush"
 	item_path = /obj/item/toy/plush/gs13/metis
 	// ckeywhitelist = list("paraillegal", "Paraillegal") - made freely available at the owner's request
 
