@@ -19,6 +19,7 @@
 	savefile_key = "weight_gain_rate"
 	minimum = MIN_PREFS_WEIGHT_GAIN_AND_LOSS_RATE
 	maximum = MAX_PREFS_WEIGHT_GAIN_AND_LOSS_RATE
+	step = 0.01
 
 /datum/preference/numeric/weight_gain_rate/create_default_value()
 	return DEFAULT_PREFS_WEIGHT_GAIN_AND_LOSS_RATE
@@ -33,6 +34,7 @@
 	savefile_key = "weight_loss_rate"
 	minimum = MIN_PREFS_WEIGHT_GAIN_AND_LOSS_RATE
 	maximum = MAX_PREFS_WEIGHT_GAIN_AND_LOSS_RATE
+	step = 0.01
 
 /datum/preference/numeric/weight_loss_rate/create_default_value()
 	return DEFAULT_PREFS_WEIGHT_GAIN_AND_LOSS_RATE
