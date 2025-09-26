@@ -118,5 +118,4 @@
 
 /datum/sprite_accessory/horns/bubber/antennae/wisteria
 	name = "Sharp Insectoid Crest"
-	icon_state = "sharp_crest
-	color_src = USE_ONE_COLOR
+	icon_state ="sharp_crest
