@@ -105,7 +105,7 @@
 		if(3)
 			withdrawal_stage_3_process(affected_carbon, seconds_per_tick)
 
-	LAZYADDASSOC(affected_carbon.mind.active_addictions, type, 1 * seconds_per_tick) //Next cycle!
+	LAZYADDASSOC(affected_carbon.mind.active_addictions, type, current_addiction_cycle + (1 / seconds_per_tick)) //Next cycle! // GS13 EDIT - fix for the stage not advancing properly
 
 /// Called when addiction enters stage 1
 /datum/addiction/proc/withdrawal_enters_stage_1(mob/living/carbon/affected_carbon)

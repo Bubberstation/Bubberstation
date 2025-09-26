@@ -6,11 +6,11 @@
 	on_store_message = "has teleported back to Central Command."
 	on_store_name = "Teleporter Oversight"
 
-/obj/machinery/cryopod/tele/open_machine()
+/obj/machinery/cryopod/tele/open_machine(drop = TRUE, density_to_set = FALSE)
 	..()
 	icon_state = "telepod-open"
 
-/obj/machinery/cryopod/tele/close_machine(mob/user)
+/obj/machinery/cryopod/tele/close_machine(atom/movable/target, density_to_set = TRUE)
 	..()
 	icon_state = "telepod"
 

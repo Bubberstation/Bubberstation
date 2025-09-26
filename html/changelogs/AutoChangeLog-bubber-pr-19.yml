@@ -1,0 +1,10 @@
+author: "Swan"
+delete-after: True
+changes:
+  - bugfix: "fixed genitals sometimes showing despite clothes being put on"
+  - bugfix: "fixed some suits on taurs being offset to the side"
+  - bugfix: "fixed genitals ignoring their set size with weight updates"
+  - bugfix: "fixed bellies and butts going over the maximum size allowed by the sprites we have"
+  - bugfix: "there were bugs related to the way genital_sizes updated with weight, which should be fixed now"
+  - rscadd: "re-enabled support for round belly shapes for the modular suits"
+  - code_imp: "added a `update_size_from_weight` proc to `/obj/item/organ/genital` for easy update of genital size based on weight, that's uniform between all genitals"

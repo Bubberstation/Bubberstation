@@ -6,7 +6,6 @@
 	resistance_flags = FLAMMABLE
 	max_integrity = 200
 	integrity_failure = 50
-	armor = list("melee" = 10, "bullet" = 30, "laser" = 30, "energy" = 100, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 70)
 	canSmoothWith = list(/obj/structure/table/plaswood,
 		/obj/structure/table/plaswood/plaswoodpoker)
 

@@ -40,6 +40,12 @@
 		add_modular_item(user)
 	..()
 
+/obj/item/clothing/equipped(mob/user, slot)
+	. = ..()
+	if (iscarbon(user))
+		var/mob/living/carbon/humie = user
+		humie.update_body()
+
 //General condition for deactivating modular sprites for an item.
 //When dropped. And/or moved to another slot, works together with equipped checking the approporiate slot
 /obj/item/dropped(mob/user)
@@ -119,8 +125,6 @@
 			add_modular_overlay(U, "[mod_breasts_rec]_NORTH", BREASTS_BEHIND_LAYER, color)
 			add_modular_overlay(U, "[mod_breasts_rec]_SOUTH", BREASTS_FRONT_LAYER, color)
 	U.update_body()
-	U.update_worn_undersuit()
-	U.update_worn_oversuit()
 
 //Remove the previously built modular sprite overlays and empty the list of tracked overlays
 /obj/item/proc/delete_modular_overlays(mob/user)
@@ -160,12 +164,11 @@
 		size = 9
 	var/shape
 	if(G.owner.fullness <= FULLNESS_LEVEL_BLOATED)
-		shape = "soft" // hardcoded and dumb as bricks, but I'm waiting for bellies to actually feature it
-		// switch(G.shape)
-		// 	if("Soft Belly")
-		// 		shape = "soft"
-		// 	if("Round Belly")
-		// 		shape = "round"
+		switch(G.genital_type)
+			if("belly")
+				shape = "soft"
+			if("round")
+				shape = "round"
 	else
 		shape = "stuffed"
 		var/stuffed_modifier
@@ -218,7 +221,6 @@
 	name = "grey jumpsuit (Modular)"												//(Modular) to tell players it is modular
 	modular_icon_location = 'modular_gs/icons/mob/modclothes/modular_grey.dmi'	//Location of the sprites, to make it modular
 	desc = "A tasteful grey jumpsuit that reminds you of the good old days."
-	// worn_icon = 
 	supports_variations_flags = CLOTHING_DIGITIGRADE_MASK
 	// worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/color_digi.dmi'
 
@@ -231,39 +233,46 @@
 	name = "service grey jumpsuit (Modular)"
 	desc = "Grey only in name"
 	color = "#6AD427"
+	// greyscale_colors = "#6AD427" // leaving it here because maybe in the future we will use it. Unlikely.
 
 /obj/item/clothing/under/color/grey/medical
 	name = "medical grey jumpsuit (Modular)"
 	desc = "Grey only in name"
 	color = "#5A96BB"
+	// greyscale_colors = "#5A96BB"
 	armor_type = /datum/armor/clothing_under/rank_medical
 
 /obj/item/clothing/under/color/grey/cargo
 	name = "cargo grey jumpsuit (Modular)"
 	desc = "Grey only in name"
 	color = "#BB9042"
+	// greyscale_colors = "#BB9042"
 	armor_type = /datum/armor/clothing_under/cargo_miner
 
 /obj/item/clothing/under/color/grey/engi
 	name = "engineering grey jumpsuit (Modular)"
 	desc = "Grey only in name"
 	color = "#FF8800"
+	// greyscale_colors = "#FF8800"
 	armor_type = /datum/armor/clothing_under/rank_engineering
 
 /obj/item/clothing/under/color/grey/science
 	name = "science grey jumpsuit (Modular)"
 	desc = "Grey only in name"
 	color = "#9900FF"
+	// greyscale_colors = "#9900FF"
 	armor_type = /datum/armor/clothing_under/science
 
 /obj/item/clothing/under/color/grey/security
 	name = "security grey jumpsuit (Modular)"
 	desc = "Grey only in name"
 	color = "#F4080C"
+	// greyscale_colors = "#F4080C"
 	armor_type = /datum/armor/clothing_under/rank_security
 
 /obj/item/clothing/under/color/grey/command
 	name = "command grey jumpsuit (Modular)"
 	desc = "Grey only in name"
 	color = "#004B8F"
+	// greyscale_colors = "#004B8F"
 	armor_type = /datum/armor/clothing_under/rank_captain
