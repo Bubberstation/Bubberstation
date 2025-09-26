@@ -19,3 +19,34 @@
 	warcry = "FOR THE INTEREST OF GATO!!"
 	lefthand_file = 'modular_gs/icons/mob/inhands/equipment/banners_lefthand.dmi'
 	righthand_file = 'modular_gs/icons/mob/inhands/equipment/banners_righthand.dmi'
+
+/obj/item/soap/gato
+	desc = "A heavy duty bar of GATO brand soap. Smells like raspberries"
+	grind_results = list(/datum/reagent/consumable/berryjuice = 10, /datum/reagent/lye = 10)
+	icon = 'modular_gs/icons/obj/items_and_weapons.dmi'
+	icon_state = "soapgt"
+	inhand_icon_state = "soapgt"
+	worn_icon_state = "soapgt"
+	cleanspeed = 2.8 SECONDS
+	uses = 300
+
+/obj/item/toy/cards/deck/gato
+	desc = "A deck of GATO-branded space-grade playing cards."
+	icon = 'modular_gs/icons/obj/toy.dmi'
+
+/obj/item/bedsheet/gato
+	icon = 'modular_gs/icons/obj/bedsheets.dmi'
+	icon_state = "sheetgato"
+	worn_icon_state = "sheetpurple"
+
+/obj/item/bedsheet/gato/double
+	icon = 'modular_gs/icons/obj/bedsheets.dmi'
+	icon_state = "double_sheetgato"
+	worn_icon_state = "sheetpurple"
+	bedsheet_type = BEDSHEET_DOUBLE
+
+/obj/structure/sign/gato
+	name = "GATO Logo"
+	desc = "A sign with the GATO Logo on it. Glory to GATO!"
+	icon = 'modular_gs/icons/obj/gatofication.dmi'
+	icon_state = "gato"
