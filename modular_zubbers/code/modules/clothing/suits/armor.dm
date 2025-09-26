@@ -114,7 +114,7 @@
 //MetroCop armor, by HL13 station.
 /obj/item/clothing/suit/armor/vest/alt/sec/metrocop
 	name = "metrocop armor"
-	desc = "Pick up that can."
+	desc = "Pick up that can. Uses advanced GigaSlop brand Matrixes to allow alternative varients!"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "civilprotection"
