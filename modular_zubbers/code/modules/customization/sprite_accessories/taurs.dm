@@ -15,6 +15,8 @@
 	icon_state = "kitsune"
 	icon = 'modular_zubbers/icons/customization/taur.dmi'
 	taur_mode = STYLE_TAUR_PAW
+	can_lay_down = TRUE
+	laydown_offset = -3
 
 /datum/sprite_accessory/taur/kitsune/alt
 	name = "Kitsune (alt)"
