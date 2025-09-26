@@ -254,3 +254,8 @@
 	icon_state = "cryptid_marking"
 	default_color = DEFAULT_SECONDARY
 	affected_bodyparts = CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT
+
+/datum/body_marking/bubber/chitinarmor
+	name = "Chitin Forearm Armor"
+	icon_state = "chitinarmor"
+	affected_bodyparts = ARM_RIGHT | ARM_LEFT
