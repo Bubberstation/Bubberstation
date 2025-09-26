@@ -1,7 +1,7 @@
 /obj/item/gun/ballistic/automatic/wt550/p90
 	name = "\improper FN P90"
 	desc = "The FN P90 is a fast fire rate personal defense weapon, the bullets it shoots are small but what it lacks in damage it more than makes up for in penetration and fire rate."
-	icon = 'modular_zubbers/modules/away_missions/heretic/p90.dmi'
+	icon = 'modular_zubbers/icons/obj/guns/p90.dmi'
 	icon_state = "p90"
 	w_class = WEIGHT_CLASS_NORMAL
 	inhand_icon_state = "m90"
