@@ -27,9 +27,3 @@
 	icon = 'modular_zubbers/icons/obj/tram/heretic_tram.dmi'
 	icon_screen = HERETIC_LINE_1
 	specific_transport_id = HERETIC_LINE_1
-
-#define HERETIC_LINE_1 "heretic_1"
-
-#define HERETIC_PORT 1
-#define HERETIC_CENTRAL 2
-#define HERETIC_STARBOARD 3
