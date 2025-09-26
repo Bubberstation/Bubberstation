@@ -44,10 +44,10 @@
 
 	var/allow_custom_shuttles = TRUE
 	var/shuttles = list(
-		"cargo" = "cargo_skyrat",
+		"cargo" = "cargo_box",
 		"ferry" = "ferry_fancy",
 		"whiteship" = "whiteship_meta",
-		"emergency" = "emergency_skyrat", //SKYRAT EDIT CHANGE
+		"emergency" = "emergency_meta",
 	)
 
 	/// Dictionary of job sub-typepath to template changes dictionary
