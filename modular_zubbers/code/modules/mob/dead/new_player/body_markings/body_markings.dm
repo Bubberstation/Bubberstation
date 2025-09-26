@@ -258,4 +258,4 @@
 /datum/body_marking/bubber/chitinarmor
 	name = "Chitin Forearm Armor"
 	icon_state = "chitinarmor"
-	affected_bodyparts = ARM_RIGHT | ARM_LEFT
+	affected_bodyparts = HAND_RIGHT | HAND_LEFT
