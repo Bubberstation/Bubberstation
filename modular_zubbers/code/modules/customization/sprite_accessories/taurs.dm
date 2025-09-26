@@ -9,3 +9,13 @@
 	icon_state = "shadekinbig"
 	icon = 'modular_zubbers/icons/customization/taur.dmi'
 	taur_mode = STYLE_TAUR_PAW
+
+/datum/sprite_accessory/taur/kitsune
+	name = "Kitsune"
+	icon_state = "kitsune"
+	icon = 'modular_zubbers/icons/customization/taur.dmi'
+	taur_mode = STYLE_TAUR_PAW
+
+/datum/sprite_accessory/taur/kitsune/alt
+	name = "Kitsune (alt)"
+	icon_state = "kitsunealt"
