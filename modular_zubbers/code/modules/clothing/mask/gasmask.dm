@@ -64,19 +64,19 @@
 
 	if(HAS_TRAIT(human_user, TRAIT_SIGN_LANG))
 		user_tongue.temp_say_mod = "signs"
-		human_user.special_voice = previous_special_name
+		human_user.override_voice = previous_special_name
 		previous_special_name = null
 		return
 
-	if(human_user.special_voice != modulated_name)
-		previous_special_name = human_user.special_voice
+	if(human_user.override_voice != modulated_name)
+		previous_special_name = human_user.override_voice
 
 	if(human_user.wear_mask == src && modulate_voice)
-		human_user.special_voice = modulated_name
+		human_user.override_voice = modulated_name
 		user_tongue.temp_say_mod = "states"
 		return
 
-	human_user.special_voice = previous_special_name
+	human_user.override_voice = previous_special_name
 	user_tongue.temp_say_mod = initial(user_tongue.temp_say_mod)
 	previous_special_name = null
 

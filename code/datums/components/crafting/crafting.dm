@@ -244,7 +244,7 @@
 
 			var/found_behaviors = contents[CONTENTS_TOOL_BEHAVIOUR]
 			for(var/behavior in recipe.tool_behaviors)
-				recipe_time += found_behaviors[behavior]
+				recipe_time += dynamic_recipe_time * found_behaviors[behavior]
 		// BUBBER EDIT ADDITION BEGIN - Construction skill
 		var/mob/crafting_mob = crafter
 		var/skill_modifier = 1

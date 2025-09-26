@@ -143,6 +143,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_R_WIDE "wide_borg"
 /// 32x64 skins
 #define TRAIT_R_TALL "tall_borg"
+// 64x64 skins (Only affects dragons currently)
+#define TRAIT_R_BIG "big_borg"
 /// Any model small enough to reject the shrinker upgrade.
 #define TRAIT_R_SMALL "small_chassis"
 /// Any model that has a custom front panel

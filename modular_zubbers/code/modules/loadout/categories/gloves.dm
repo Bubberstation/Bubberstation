@@ -1,3 +1,5 @@
+//Title Capitalization for names please!!!
+
 /datum/loadout_item/gloves/bubber/clown //I would job lock these but, they're just gloves.
 	name = "Pink Clown Gloves"
 	item_path = /obj/item/clothing/gloves/bubber/clussy
@@ -22,16 +24,20 @@
 	donator_only = TRUE
 
 /datum/loadout_item/gloves/color/black/security
-	name = "Security gloves"
+	name = "Security Gloves"
 	item_path = /obj/item/clothing/gloves/color/black/security
 	restricted_roles = list(ALL_JOBS_SEC)
 	can_be_reskinned = TRUE
 
 /datum/loadout_item/gloves/combat/peacekeeper/armadyne
-	name = "Armadyne combat gloves"
+	name = "Armadyne Combat Gloves"
 	item_path = /obj/item/clothing/gloves/combat/peacekeeper/armadyne
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/gloves/frontier_colonist
 	name = "Frontier Gloves"
-	item_path =/obj/item/clothing/gloves/frontier_colonist/loadout
+	item_path = /obj/item/clothing/gloves/frontier_colonist/loadout
+
+/datum/loadout_item/gloves/cat
+	name = "Cat Gloves"
+	item_path = /obj/item/clothing/gloves/cat
