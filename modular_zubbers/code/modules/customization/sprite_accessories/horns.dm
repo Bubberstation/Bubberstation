@@ -118,4 +118,4 @@
 
 /datum/sprite_accessory/horns/bubber/antennae/wisteria
 	name = "Sharp Insectoid Crest"
-	icon_state ="sharp_crest
+	icon_state = "sharp_crest"
