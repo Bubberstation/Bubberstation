@@ -9,6 +9,7 @@
  */
 /datum/species
 	/// Adding a language type to this in the form of /datum/language will allow the language to be displayed in preferences for that species, even if it is a secret language.
+	/// Currently used for ashtongue in ashwalkers.
 	var/list/language_prefs_whitelist
 	///Clothing offsets. If a species has a different body than other species, you can offset clothing so they look less weird.
 	var/list/offset_features = list(
