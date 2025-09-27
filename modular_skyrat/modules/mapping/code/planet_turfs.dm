@@ -126,6 +126,9 @@
 /turf/closed/mineral/asteroid/has_air
 	initial_gas_mix = OPENTURF_LOW_PRESSURE	//one that WONT screw with atmos if its mapped somewhere
 
+/turf/closed/mineral/asteroid/has_more_air //if you want a rock when broken to have normal atmos
+	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+
 /*
 *	HAZARD
 */
