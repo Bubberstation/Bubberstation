@@ -203,6 +203,10 @@
 	icon_state = "harpybat"
 	color_src = USE_MATRIXED_COLORS
 
+/datum/sprite_accessory/wings/mammal/harpy/bat/fluffless
+	name = "Harpy (Bat - Fluffless)"
+	icon_state = "harpybat_fluffless"
+
 /datum/sprite_accessory/wings/mammal/top/harpy/alt
 	name = "Harpy (Top - Alt)"
 	icon_state = "harpyalt_top"
@@ -215,6 +219,10 @@
 	name = "Harpy (Top - Bat)"
 	icon_state = "harpybat_top"
 	color_src = USE_MATRIXED_COLORS
+
+/datum/sprite_accessory/wings/mammal/top/harpy/bat/fluffless
+	name = "Harpy (Top - Bat - Fluffless)"
+	icon_state = "harpybat_fluffless_top"
 
 /datum/sprite_accessory/wings/mammal/pterodactyl
 	name = "Pterodactyl"

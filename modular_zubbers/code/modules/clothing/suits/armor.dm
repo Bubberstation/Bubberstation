@@ -105,3 +105,33 @@
 /obj/item/clothing/suit/armor/vest/maid/Initialize(mapload)
 	. = ..()
 	allowed += GLOB.security_vest_allowed
+
+/obj/item/clothing/suit/armor/elder_atmosian
+	desc = "The pinnacle of atmospherics equipment, an expensive modified atmospherics firesuit plated in one of the most luxurious and durable metals known to man. Providing full atmos coverage without the heavy materials of the firesuit to slow the user down, it also offers far greater protection to most sources of damage."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/armor_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+	material_flags = NONE
+	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+	resistance_flags = FIRE_PROOF
+	flags_inv = HIDEJUMPSUIT | HIDESHOES | HIDEGLOVES | HIDETAIL
+
+/obj/item/clothing/suit/armor/elder_atmosian/Initialize(mapload)
+	. = ..()
+	allowed += list(
+		/obj/item/fireaxe/metal_h2_axe,
+	)
+
+/datum/armor/armor_elder_atmosian
+	melee = 40
+	bullet = 30
+	laser = 40
+	energy = 40
+	bomb = 100
+	bio = 50
+	fire = 100
+	acid = 50
+	wound = 25
