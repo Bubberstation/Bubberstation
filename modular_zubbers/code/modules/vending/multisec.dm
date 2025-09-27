@@ -37,7 +37,7 @@
 					/obj/item/clothing/head/beret/sec/peacekeeper/white = 6,
 					/obj/item/clothing/head/helmet/sec/terra = 6,
 					/obj/item/clothing/head/hats/warden/police/patrol = 6,
-					/obj/item/clothing/head/costume/ushanka/sec = 10,
+					/obj/item/clothing/head/costume/ushanka/sec/blue = 10,
 					/obj/item/clothing/gloves/color/black/security = 10,
 					/obj/item/clothing/head/helmet/sec/futuristic = 6,
 					/obj/item/clothing/suit/armor/vest/collared_vest = 6, //added by Bangle
@@ -62,6 +62,7 @@
 					/obj/item/clothing/head/beret/sec/peacekeeper/armadyne = 6,
 					/obj/item/clothing/head/soft/sec = 6,
 					/obj/item/clothing/head/security_beanie = 6,
+					/obj/item/clothing/head/costume/ushanka/sec = 10,
 					/obj/item/clothing/head/playbunnyears/security = 6,
 					/obj/item/clothing/under/rank/security/security_bunnysuit = 6,
 					/obj/item/clothing/suit/armor/security_tailcoat = 6,
