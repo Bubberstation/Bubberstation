@@ -105,7 +105,7 @@
 /datum/supply_pack/security/combine
 	name = "Civil Protection Uniforms"
 	desc = "Extra supplies we got from some weird old guy in a blue suit. Contains six uniforms, \
-		vests, and helmets."
+		vests, boots, gloves and helmets."
 	cost = 1116
 	contraband = TRUE
 	contains = list(/obj/item/clothing/head/helmet/metrocophelmet = 6,

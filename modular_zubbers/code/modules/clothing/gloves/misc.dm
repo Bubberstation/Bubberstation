@@ -31,7 +31,7 @@
 //Metrocop Gloves by ... Dun dun dun, HL13 station.
 /obj/item/clothing/gloves/color/black/security/metrocop
 	name = "metrocop gloves"
-	desc = "Now you can pick up that can!"
+	desc = "Now you can pick up that can! Uses advanced GigaSlop brand Matrixes to allow alternative varients!"
 	icon = 'modular_zubbers/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/hands.dmi'
 	icon_state = "civilprotection"
