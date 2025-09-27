@@ -100,7 +100,7 @@
 
 /obj/item/wargame_projector/item_ctrl_click(mob/user)
 	if(tgui_alert(user,"Clear all currently active holograms?", "Hologram Removal", list("Yes", "No")) == "Yes")
-		for(var/hologram as anything in projections)
+		for(var/hologram in projections)
 			qdel(hologram)
 
 /// Can we place a hologram at the target location?

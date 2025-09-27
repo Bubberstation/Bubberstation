@@ -787,7 +787,7 @@ SUBSYSTEM_DEF(gamemode)
 
 	log_dynamic("[players.len] players ready! Processing storyteller vote results.")
 
-	for(var/vote as anything in vote_datum.choices_by_ckey)
+	for(var/vote in vote_datum.choices_by_ckey)
 		if(!vote_datum.choices_by_ckey[vote])
 			continue
 		var/vote_string = "[vote]"

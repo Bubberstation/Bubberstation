@@ -66,7 +66,7 @@ GLOBAL_LIST_EMPTY(ckey_to_sooc_name)
 
 	var/list/listeners = list()
 
-	for(var/iterated_player as anything in GLOB.player_list)
+	for(var/iterated_player in GLOB.player_list)
 		var/mob/iterated_mob = iterated_player
 		//Admins with muted OOC do not get to listen to SOOC, but normal players do, as it could be admins talking important stuff to them
 		if(iterated_mob.client?.holder && !iterated_mob.client?.holder?.deadmined && iterated_mob.client?.prefs?.chat_toggles & CHAT_OOC)
@@ -77,7 +77,7 @@ GLOBAL_LIST_EMPTY(ckey_to_sooc_name)
 				if(job_lookup[mob_mind.assigned_role?.title])
 					listeners[iterated_mob.client] = SOOC_LISTEN_PLAYER
 
-	for(var/iterated_listener as anything in listeners)
+	for(var/iterated_listener in listeners)
 		var/client/iterated_client = iterated_listener
 		var/mode = listeners[iterated_listener]
 		var/color = (!anon && CONFIG_GET(flag/allow_admin_ooccolor) && iterated_client?.prefs?.read_preference(/datum/preference/color/ooc_color)) ? iterated_client?.prefs?.read_preference(/datum/preference/color/ooc_color) : GLOB.SOOC_COLOR
@@ -97,7 +97,7 @@ GLOBAL_LIST_EMPTY(ckey_to_sooc_name)
 		GLOB.sooc_allowed = !GLOB.sooc_allowed
 	var/list/listeners = list()
 	var/static/list/job_lookup = list(JOB_SECURITY_OFFICER = TRUE, JOB_WARDEN = TRUE, JOB_DETECTIVE = TRUE, JOB_HEAD_OF_SECURITY = TRUE, JOB_CAPTAIN = TRUE, JOB_BLUESHIELD = TRUE)
-	for(var/iterated_player as anything in GLOB.player_list)
+	for(var/iterated_player in GLOB.player_list)
 		var/mob/iterated_mob = iterated_player
 		if(!iterated_mob.client?.holder?.deadmined)
 			listeners[iterated_mob.client] = TRUE
@@ -106,7 +106,7 @@ GLOBAL_LIST_EMPTY(ckey_to_sooc_name)
 				var/datum/mind/mob_mind = iterated_mob.mind
 				if(job_lookup[mob_mind.assigned_role])
 					listeners[iterated_mob.client] = TRUE
-	for(var/iterated_listener as anything in listeners)
+	for(var/iterated_listener in listeners)
 		var/client/iterated_client = iterated_listener
 		to_chat(iterated_client, span_oocplain("<b>The SOOC channel has been globally [GLOB.sooc_allowed ? "enabled" : "disabled"].</b>"))
 

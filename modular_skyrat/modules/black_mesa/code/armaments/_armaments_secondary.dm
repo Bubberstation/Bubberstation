@@ -28,10 +28,10 @@
 /obj/item/storage/box/ammo_box/revolver
 
 /obj/item/storage/box/ammo_box/revolver/PopulateContents()
-	new /obj/item/ammo_box/c38(src)
-	new /obj/item/ammo_box/c38(src)
-	new /obj/item/ammo_box/c38(src)
-	new /obj/item/ammo_box/c38(src)
-	new /obj/item/ammo_box/c38/dumdum(src)
-	new /obj/item/ammo_box/c38/dumdum(src)
-	new /obj/item/ammo_box/c38/match(src)
+	new /obj/item/ammo_box/speedloader/c38(src)
+	new /obj/item/ammo_box/speedloader/c38(src)
+	new /obj/item/ammo_box/speedloader/c38(src)
+	new /obj/item/ammo_box/speedloader/c38(src)
+	new /obj/item/ammo_box/speedloader/c38/dumdum(src)
+	new /obj/item/ammo_box/speedloader/c38/dumdum(src)
+	new /obj/item/ammo_box/speedloader/c38/match(src)

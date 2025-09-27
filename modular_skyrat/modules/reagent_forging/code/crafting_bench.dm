@@ -304,7 +304,7 @@
 
 	var/materials_to_transfer = list()
 	var/list/temporary_materials_list = use_or_delete_recipe_requirements(things_to_use, recipe_to_follow)
-	for(var/material as anything in temporary_materials_list)
+	for(var/material in temporary_materials_list)
 		materials_to_transfer[material] += temporary_materials_list[material]
 
 	var/obj/newly_created_thing
@@ -344,7 +344,7 @@
 	for(var/obj/requirement_item as anything in things_to_use)
 		if(isstack(requirement_item))
 			var/stack_type
-			for(var/recipe_thing_to_reference as anything in recipe_to_follow.recipe_requirements)
+			for(var/recipe_thing_to_reference in recipe_to_follow.recipe_requirements)
 				if(!istype(requirement_item, recipe_thing_to_reference))
 					continue
 				stack_type = recipe_thing_to_reference
@@ -364,7 +364,7 @@
 				qdel(requirement_item)
 				continue
 
-			for(var/custom_material as anything in requirement_item.custom_materials)
+			for(var/custom_material in requirement_item.custom_materials)
 				materials_to_transfer += custom_material
 			qdel(requirement_item)
 

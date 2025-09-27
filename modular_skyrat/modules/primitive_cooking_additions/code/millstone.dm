@@ -69,7 +69,7 @@
 	if(!length(contents))
 		return
 
-	for(var/obj/target_item as anything in contents)
+	for(var/obj/target_item in contents)
 		target_item.forceMove(get_turf(src))
 
 /obj/structure/millstone/attack_hand_secondary(mob/user, list/modifiers)
@@ -155,7 +155,7 @@
 
 	user.mind.adjust_experience(/datum/skill/primitive, 5)
 
-	for(var/target_item as anything in contents)
+	for(var/target_item in contents)
 		seedify(target_item, t_max = 1)
 
 	return

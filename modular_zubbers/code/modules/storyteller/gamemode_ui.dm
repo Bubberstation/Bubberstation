@@ -66,7 +66,7 @@
 	var/list/static_data = list()
 	// Events are static because we don't need to update them as often, only on storyteller ticks
 	static_data["events"] = list()
-	for(var/event_category as anything in event_pools)
+	for(var/event_category in event_pools)
 		var/list/event_list = event_pools[event_category]
 		static_data["events"][event_category] = list("name" = event_category, "events" = list())
 		for(var/datum/round_event_control/event as anything in event_list)

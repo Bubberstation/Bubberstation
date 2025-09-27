@@ -46,13 +46,13 @@
 	cost = PAYCHECK_CREW * 2
 
 /datum/armament_entry/company_import/vitezstvi/speedloader/detective_lethal
-	item_type = /obj/item/ammo_box/c38
+	item_type = /obj/item/ammo_box/speedloader/c38
 
 /datum/armament_entry/company_import/vitezstvi/speedloader/detective_dumdum
-	item_type = /obj/item/ammo_box/c38/dumdum
+	item_type = /obj/item/ammo_box/speedloader/c38/dumdum
 
 /datum/armament_entry/company_import/vitezstvi/speedloader/detective_bouncy
-	item_type = /obj/item/ammo_box/c38/match
+	item_type = /obj/item/ammo_box/speedloader/c38/match
 
 // Shotgun boxes
 
