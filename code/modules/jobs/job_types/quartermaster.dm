@@ -6,8 +6,8 @@
 	department_head = list(JOB_CAPTAIN)
 	head_announce = list(RADIO_CHANNEL_SUPPLY)
 	faction = FACTION_STATION
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 0
+	spawn_positions = 0
 	minimal_player_age = 7
 	supervisors = SUPERVISOR_CAPTAIN
 	exp_required_type_department = EXP_TYPE_SUPPLY

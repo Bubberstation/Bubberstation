@@ -4,8 +4,8 @@
 		Update medical records accordingly, apply formaldehyde."
 	department_head = list(JOB_CHIEF_MEDICAL_OFFICER)
 	faction = FACTION_STATION
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 0
+	spawn_positions = 0
 	supervisors = "the Head of Personnel and the Chief Medical Officer"
 	exp_granted_type = EXP_TYPE_CREW
 	config_tag = "CORONER"

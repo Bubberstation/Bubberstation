@@ -3,8 +3,8 @@
 	description = "Ensure the air is breathable on the station, fill oxygen tanks, fight fires, purify the air."
 	department_head = list(JOB_CHIEF_ENGINEER)
 	faction = FACTION_STATION
-	total_positions = 3
-	spawn_positions = 2
+	total_positions = 0
+	spawn_positions = 0
 	supervisors = SUPERVISOR_CE
 	exp_requirements = 60
 	exp_required_type = EXP_TYPE_CREW

@@ -42,6 +42,16 @@
 			to_chat(affected_mob, span_warning("You've become \a [LOWER_TEXT(initial(species_type.name))]!"))
 			cure()
 
+/datum/disease/transformation_race/Destroy()
+	if(affected_mob)
+		if(affected_mob.diseases)
+			affected_mob.diseases -= src
+		UnregisterSignal(affected_mob)
+		affected_mob = null
+
+	SSdisease.active_diseases -= src
+	return ..()
+
 /datum/disease/transformation_race/hemophage
 	name = "Hemophagic Viral Infection"
 	cure_text = "Garlic"

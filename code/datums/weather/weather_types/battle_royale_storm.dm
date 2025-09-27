@@ -1,0 +1,133 @@
+
+GLOBAL_DATUM(storm_controller, /datum/storm_controller)
+
+/datum/storm_controller
+	var/area_consume_timer = 30 SECONDS
+	var/area_consume_addition = 10 SECONDS
+	///which list to pick from
+	var/list/current_area_pick
+	///outer areas, does not include space
+	var/list/outer_areas = list()
+	///middle areas
+	var/list/middle_areas = list()
+	///inner areas
+	var/list/inner_areas = list()
+	///how many lists it has left
+	var/progression = 3
+	///timer id to the next area consumption
+	var/timerid
+	///active weathers
+	var/list/storms = list()
+
+/datum/storm_controller/New()
+	. = ..()
+	outer_areas = GLOB.externalareasstorm.Copy()
+	middle_areas = GLOB.middleareastorm.Copy()
+	inner_areas = GLOB.innerareastorm.Copy()
+
+	current_area_pick = outer_areas
+
+	message_admins("Storm started.")
+	send_to_playing_players(span_userdanger("The storm has been created! It will consume the arena from the outside in, so plan around it!"))
+
+	// start storm in first outer area
+	if(current_area_pick.len)
+		consume_area(popleft(current_area_pick), repeat = TRUE)
+
+
+/datum/storm_controller/proc/consume_area(area/area_path, repeat = TRUE)
+	var/area/found_area = locate(area_path) in world
+	if(!found_area)
+		stack_trace("Storm tried to consume [area_path], but it doesn't exist on this map.")
+		if(repeat && current_area_pick.len)
+			consume_area(popleft(current_area_pick), repeat = TRUE)
+		return
+
+	var/datum/weather/royale_storm/storm = new(SSmapping.levels_by_trait(ZTRAIT_STATION))
+	storms += storm
+
+	storm.area_type = area_path
+	storm.impacted_areas = list(found_area)
+
+	storm.telegraph()
+
+	if(repeat)
+		if(!current_area_pick.len) // there was none left, don't try and take from an empty list
+			return
+		timerid = addtimer(CALLBACK(src, PROC_REF(consume_area), popleft(current_area_pick)), area_consume_timer)
+		if(!current_area_pick.len) // we took the last one
+			progression--
+			switch(progression)
+				if(2)
+					send_to_playing_players(span_userdanger("The storm has consumed the entire outer station!"))
+					area_consume_timer += area_consume_addition // get a little slower
+					current_area_pick = middle_areas
+				if(1)
+					send_to_playing_players(span_userdanger("The storm has consumed the majority of the station!"))
+					current_area_pick = inner_areas
+				if(0)
+					send_to_playing_players(span_userdanger("The storm has consumed the ENTIRE station!"))
+
+///stops the storm.
+/datum/storm_controller/proc/stop_storm()
+	send_to_playing_players(span_userdanger("The storm has been halted by CentCom!"))
+	if(timerid)
+		deltimer(timerid)
+
+///ends the storm.
+/datum/storm_controller/proc/end_storm()
+	for(var/datum/weather/storm as anything in storms)
+		storm.wind_down()
+	storms = null
+	qdel(src)
+
+/// these nuts?
+/datum/weather/royale_storm
+	name = "royale storm"
+	desc = "A sick creation of the most ADHD ridden centcom scientists, used to force stationgoers to fight with the threat of being shredded by an artificial storm for entertainment."
+
+
+	telegraph_duration = 1 SECONDS
+	weather_overlay = "royale"
+	weather_flags = WEATHER_ENDLESS
+
+	telegraph_message = null
+	weather_message = null
+	end_message = null
+
+	target_trait = ZTRAIT_STATION
+
+	immunity_type = "NOTHING KID"
+
+	weather_flags = (WEATHER_MOBS | WEATHER_ENDLESS | WEATHER_INDOORS)
+
+/datum/weather/royale_storm/weather_act_mob(mob/living/victim)
+	if(victim.stat < HARD_CRIT)
+		victim.adjustFireLoss(15, required_bodytype = BODYTYPE_ORGANIC)
+		to_chat(victim, span_userdanger("You're badly burned by the storm!"))
+	else
+		victim.gib(NONE)
+		to_chat(victim, span_userdanger("You're torn apart from the violent forces in the storm!"))
+	return ..()
+
+GLOBAL_LIST_INIT(externalareasstorm, list(
+	/area/centcom/tdome/arena/one,
+	/area/centcom/tdome/arena/two,
+	/area/centcom/tdome/arena/three,
+	/area/centcom/tdome/arena/four,
+	/area/centcom/tdome/arena/five,
+	/area/centcom/tdome/arena/six,))
+
+GLOBAL_LIST_INIT(middleareastorm, list(
+	/area/centcom/tdome/arena/seven,
+	/area/centcom/tdome/arena/eight,
+	/area/centcom/tdome/arena/nine,
+	/area/centcom/tdome/arena/ten,
+	/area/centcom/tdome/arena/eleven,
+	/area/centcom/tdome/arena/twelve,))
+
+GLOBAL_LIST_INIT(innerareastorm, list(
+	/area/centcom/tdome/arena/thirteen,
+	/area/centcom/tdome/arena/fourteen,
+	/area/centcom/tdome/arena/fifteen,
+	/area/centcom/tdome/arena/sixteen,))

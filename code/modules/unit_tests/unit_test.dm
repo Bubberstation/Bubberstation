@@ -307,8 +307,6 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 	returnable_list += typesof(/obj/effect/baseturf_helper)
 	//No tauma to pass in
 	returnable_list += typesof(/mob/eye/imaginary_friend)
-	//No heart to give
-	returnable_list += typesof(/obj/structure/ethereal_crystal)
 	//No linked console
 	returnable_list += typesof(/mob/eye/camera/remote/base_construction)
 	//See above

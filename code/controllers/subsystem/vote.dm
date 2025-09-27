@@ -127,6 +127,11 @@ SUBSYSTEM_DEF(vote)
  * One selection per person, and the selection with the most votes wins.
  */
 /datum/controller/subsystem/vote/proc/submit_single_vote(mob/voter, their_vote)
+	#ifdef EVENTMODE
+	if(usr.stat != DEAD)
+		to_chat(usr, span_warning("Only ghosts and the dead may vote in event polls!"))
+		return FALSE
+	#endif
 	if(!current_vote)
 		return
 	if(!voter?.ckey)

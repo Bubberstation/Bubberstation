@@ -94,6 +94,13 @@
 	// SKYRAT EDIT END
 
 /area/centcom/central_command_areas/supplypod/loading/Initialize(mapload)
+	#ifdef EVENTMODE
+	// A messy hack to fix special event map pod bays
+	if(loading_id && text2num(loading_id) < 5) // ERT centcom bay is safe (for now)
+		for(var/turf/T in src)
+			if(T.z == 1) // hardcoded magic number for centcom turfs since ZTRAIT_CENTCOM is unreliable for this case
+				contents -= T
+	#endif
 	. = ..()
 	if(!loading_id)
 		CRASH("[type] created without a loading_id")
@@ -125,11 +132,47 @@
 /area/centcom/tdome
 	name = "Thunderdome"
 	icon_state = "thunder"
+	eventarea = TRUE
+
+
+/*For the battle royale zone area map*/
 
 /area/centcom/tdome/arena
 	name = "Thunderdome Arena"
 	icon_state = "thunder"
 	area_flags = parent_type::area_flags | UNLIMITED_FISHING //for possible testing purposes
+
+/area/centcom/tdome/arena/one
+
+/area/centcom/tdome/arena/two
+
+/area/centcom/tdome/arena/three
+
+/area/centcom/tdome/arena/four
+
+/area/centcom/tdome/arena/five
+
+/area/centcom/tdome/arena/six
+
+/area/centcom/tdome/arena/seven
+
+/area/centcom/tdome/arena/eight
+
+/area/centcom/tdome/arena/nine
+
+/area/centcom/tdome/arena/ten
+
+/area/centcom/tdome/arena/eleven
+
+/area/centcom/tdome/arena/twelve
+
+/area/centcom/tdome/arena/thirteen
+
+/area/centcom/tdome/arena/fourteen
+
+/area/centcom/tdome/arena/fifteen
+
+/area/centcom/tdome/arena/sixteen
 
 /area/centcom/tdome/tdome1
 	name = "Thunderdome (Team 1)"

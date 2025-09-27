@@ -3,8 +3,8 @@
 	description = "Keep yourself occupied in permabrig."
 	department_head = list("The Security Team")
 	faction = FACTION_STATION
-	total_positions = 12		// SKYRAT EDIT: Original value (0)
-	spawn_positions = 2
+	total_positions = 0		// SKYRAT EDIT: Original value (0)
+	spawn_positions = 0
 	supervisors = "the security team"
 	exp_granted_type = EXP_TYPE_CREW
 	bounty_types = CIV_JOB_PRISONER
