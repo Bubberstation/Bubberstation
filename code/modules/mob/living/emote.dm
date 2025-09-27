@@ -824,3 +824,15 @@
 
 /datum/emote/living/carbon/whistle/get_sound(mob/living/user)
 	return 'sound/mobs/humanoids/human/whistle/whistle1.ogg'
+
+/datum/emote/living/gulp
+	key = "gulp"
+	key_third_person = "gulps"
+	message = "gulps nervously."
+	message_mime = "gulps silently!"
+	vary = TRUE
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+
+/datum/emote/living/gulp/get_sound(mob/living/user)
+	return pick('sound/mobs/humanoids/human/gulp/gulp1.ogg',
+				'sound/mobs/humanoids/human/gulp/gulp2.ogg')

@@ -234,6 +234,7 @@ Bubber removal end */
 	key = "wink"
 	key_third_person = "winks"
 	message = "winks."
+	sound = 'sound/mobs/humanoids/human/wink/wink.ogg'
 
 /datum/emote/living/carbon/hiss
 	key = "hiss"
