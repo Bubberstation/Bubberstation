@@ -74,6 +74,8 @@
 				/obj/item/clothing/suit/crop_jacket/sleeveless/long = 5,
 				/obj/item/clothing/suit/hooded/big_hoodie = 5,
 				/obj/item/clothing/suit/hooded/twee_hoodie = 5,
+				/obj/item/clothing/suit/toggle/jacket/zubber/bomber = 5,
+				/obj/item/clothing/suit/toggle/jacket/zubber/bomber/science/coroner = 5,
 				/obj/item/clothing/under/dress/skirt/skyrat/black_skirt = 5,
 				/obj/item/clothing/suit/misc/suit_harness = 5,
 				/obj/item/clothing/under/dress/miniskirt = 5,

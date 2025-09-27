@@ -36,6 +36,11 @@
 	desc = "A mining outfit kit themed around bunnies, they do live in burrows after all..."
 	cost_per_order = 500
 
+/datum/orderable_item/mining/bombercoat
+	purchase_path = /obj/item/clothing/suit/toggle/jacket/zubber/bomber/mining
+	desc = "A mining bomber jacket. Probably not great for Lavaland, but this, a hot chocolate and some snow? Comfymaxxing has never been so cheap!"
+	cost_per_order = 100
+
 /obj/item/survivalcapsule/medical
 	name = "medical trauma pod"
 	desc = "A bluespace capsule that deploys a fairly effective medical treatment pod!"
