@@ -6,6 +6,7 @@
 	var/protected_roles = list(
 		JOB_CAPTAIN,
 		JOB_BLUESHIELD,
+		JOB_BRIDGE_ASSISTANT,
 
 		// Heads of staff
 		JOB_HEAD_OF_PERSONNEL,

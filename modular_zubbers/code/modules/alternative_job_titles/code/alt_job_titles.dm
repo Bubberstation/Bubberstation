@@ -28,6 +28,42 @@
 		"Armorsmith",
 	)
 
+/datum/job/bridge_assistant
+	alt_titles = list(
+		"Bridge Secretary",
+		"Bridge Coffee Maker",
+		"Command Deck Assistant",
+		"Bridge Aide",
+		"Bridge Attendant",
+		"Captain's Assistant",
+		"Coffee Officer",
+		"Bridge Support",
+		"Bridge Liaison",
+		"Command Entertainment Officer",
+		"Bridge Concierge",
+		"Bridge Steward",
+		"Bridge Custodian",
+		"Junior Officer of the Deck",
+		"Bridge Butler",
+		"Bridge Caretaker",
+		"Assistant to the Captain",
+		"Coffee Brewer",
+		"Supervisor of Coffee",
+		"Command Aide",
+		"Lackey",
+		"Bridge Maid",
+		"Command Cadet",
+		"Assistant to the Regional Manager",
+		"Assistant Manager Supervisor Junior",
+		"Bridge Underling",
+		"Bridge Taskrunner",
+		"Clipboard Jockey",
+		"Paperwork Specialist",
+		"Manager Representative",
+		"Head Assistant",
+		"Bridge Tour Coordinator",
+	)
+
 /datum/job/paramedic/New()
 	alt_titles |= list(
 		"Body Retrieval Specialist",
