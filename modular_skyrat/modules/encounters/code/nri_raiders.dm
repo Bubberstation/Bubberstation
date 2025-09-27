@@ -48,7 +48,7 @@ GLOBAL_VAR(first_officer)
 	threat_content = "Greetings %STATION, this is the %SHIPNAME dispatch outpost. \
 	Due to recent Imperial regulatory violations, such as %RESULT and many other smaller issues, your station has been fined %PAYOFF credits. \
 	Inadequate imperial police activity is currently present in your sector, thus the failure to comply might instead result in a police patrol dispatch \
-	for second attempt negotiations, sector police presence reinforcement and close-up inspections. Novaya Rossiyskaya Imperiya collegial secretary out."
+	for second attempt negotiations, sector police presence reinforcement and close-up inspections. Pan Slavic Commonwealth's collegial secretary out."
 	arrival_announcement = "Regulation-identified vessel approaching. Vessel ID tag is %NUMBER1-%NUMBER2-%NUMBER3. \
 	Vessel Model: Potato Beetle, Flight ETA: three minutes minimal. Vessel is authorised by the international regulations to perform its duties. \
 	We're clear for close orbit. Friendly reminder not to measure the distance between the vessel and the destination location, nor install any tracking devices anywhere on board of the vessel or in its close vicinity, \
@@ -187,9 +187,9 @@ GLOBAL_VAR(first_officer)
 	faction = list(FACTION_RAIDER)
 	you_are_text = "You are a Pan-Slavic Commonwealth task force."
 	flavour_text = "The station has refused to pay the fine for breaking Imperial regulations, you are here to recover the debt. Do so by demanding the funds. Force approach is usually recommended, but isn't the only method."
-	important_text = "Allowed races are humans, Akulas, IPCs. Follow your field officer's orders. Important mention - while you are listed as the pirates gamewise, you really aren't lore-and-everything-else-wise. Roleplay accordingly."
+	important_text = "Allowed races are Humans, Akula, Teshari and Synths. Follow your field officer's orders. Important mention - while you are listed as the pirates gamewise, you really aren't lore-and-everything-else-wise. Roleplay accordingly."
 	outfit = /datum/outfit/pirate/nri
-	restricted_species = list(/datum/species/human, /datum/species/akula, /datum/species/synthetic)
+	restricted_species = list(/datum/species/human, /datum/species/akula, /datum/species/synthetic, /datum/species/teshari)
 	random_appearance = FALSE
 	show_flavor = TRUE
 
@@ -200,7 +200,7 @@ GLOBAL_VAR(first_officer)
 
 /obj/effect/mob_spawn/ghost_role/human/nri_raider/special(mob/living/carbon/human/spawned_human)
 	. = ..()
-	spawned_human.grant_language(/datum/language/panslavic, source = LANGUAGE_SPAWNER)
+	spawned_human.grant_language(/datum/language/spinwarder, source = LANGUAGE_SPAWNER)
 	apply_codename(spawned_human)
 
 /obj/effect/mob_spawn/ghost_role/human/nri_raider/post_transfer_prefs(mob/living/carbon/human/spawned_human)
@@ -221,7 +221,7 @@ GLOBAL_VAR(first_officer)
 	mob_name = "Pan-Slavic Commonwealth police patrol's field officer"
 	outfit = /datum/outfit/pirate/nri/officer
 	flavour_text = "The station has refused to pay the fine for breaking Imperial regulations, as a consequence you are here to perform a prolonged inspection."
-	important_text = "Allowed races are humans, Akulas, IPCs. Roleplay accordingly. There is an important document in your pocket I'd advise you to read and keep safe."
+	important_text = "Allowed races are Humans, Akula, Teshari and Synths. Roleplay accordingly. There is an important document in your pocket I'd advise you to read and keep safe."
 
 /obj/effect/mob_spawn/ghost_role/human/nri_raider/officer/apply_codename(mob/living/carbon/human/spawned_human)
 	var/callsign = pick(GLOB.callsigns_nri)
@@ -233,7 +233,7 @@ GLOBAL_VAR(first_officer)
 	spawned_human.mind.add_antag_datum(/datum/antagonist/cop)
 	spawned_human.grant_language(/datum/language/uncommon, source = LANGUAGE_SPAWNER)
 	spawned_human.grant_language(/datum/language/yangyu, source = LANGUAGE_SPAWNER)
-	spawned_human.grant_language(/datum/language/panslavic, source = LANGUAGE_SPAWNER)
+	spawned_human.grant_language(/datum/language/spinwarder, source = LANGUAGE_SPAWNER)
 
 	// if this is the first officer, keep a reference to them
 	if(!GLOB.first_officer)
@@ -576,13 +576,13 @@ GLOBAL_VAR(first_officer)
 	var/mob/living/owner_mob = mob_override || owner.current
 	var/datum/language_holder/holder = owner_mob.get_language_holder()
 	holder.grant_language(/datum/language/uncommon, TRUE, TRUE, LANGUAGE_PIRATE)
-	holder.grant_language(/datum/language/panslavic, TRUE, TRUE, LANGUAGE_PIRATE)
+	holder.grant_language(/datum/language/spinwarder, TRUE, TRUE, LANGUAGE_PIRATE)
 	holder.grant_language(/datum/language/yangyu, TRUE, TRUE, LANGUAGE_PIRATE)
 
 /datum/antagonist/cop/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/owner_mob = mob_override || owner.current
 	owner_mob.remove_language(/datum/language/uncommon, TRUE, TRUE, LANGUAGE_PIRATE)
-	owner_mob.remove_language(/datum/language/panslavic, TRUE, TRUE, LANGUAGE_PIRATE)
+	owner_mob.remove_language(/datum/language/spinwarder, TRUE, TRUE, LANGUAGE_PIRATE)
 	owner_mob.remove_language(/datum/language/yangyu, TRUE, TRUE, LANGUAGE_PIRATE)
 	return ..()
 

@@ -185,7 +185,8 @@
 
 /datum/design/m9mm_sec
 	name = "Magazine (9x25mm Murphy) (Lethal)"
-	desc = "Designed to slide in and out of a 9mm 'Murphy' service pistol. It's heavier bullets make this magazine quite heavy, watch where you throw it!"
+	desc = "Designed to slide in and out of a 9mm 'Murphy' service pistol. Stronger springs mean faster reloads - and a promotion for the officer behind \
+		the window-shattering magazine toss which inspired the RND team into further improving the launch speed."
 	id = "m9mm_sec"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(

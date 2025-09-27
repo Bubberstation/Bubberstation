@@ -384,7 +384,7 @@
 	pixel_x = 4;
 	pixel_y = -1
 	},
-/obj/machinery/vending/wallmed/directional/east,
+/obj/machinery/wall_healer/free/directional/east,
 /obj/item/radio/intercom/directional/south,
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 6
@@ -558,22 +558,6 @@
 /turf/open/floor/iron/edge{
 	dir = 8
 	},
-/area/shuttle/escape)
-"hB" = (
-/obj/structure/table/wood/shuttle_bar{
-	boot_dir = 4
-	},
-/obj/item/rag{
-	pixel_x = -3;
-	pixel_y = 1
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/turf/open/floor/wood/large,
 /area/shuttle/escape)
 "hG" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -948,7 +932,7 @@
 /obj/structure/chair/sofa/bench/right{
 	dir = 8
 	},
-/obj/machinery/vending/wallmed/directional/east,
+/obj/machinery/wall_healer/free/directional/east,
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/iron,
 /area/shuttle/escape)
@@ -1201,6 +1185,22 @@
 /obj/effect/turf_decal/delivery/white,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/textured_large,
+/area/shuttle/escape)
+"rl" = (
+/obj/structure/table/wood/shuttle_bar{
+	boot_dir = 4
+	},
+/obj/item/rag{
+	pixel_x = -3;
+	pixel_y = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood/large,
 /area/shuttle/escape)
 "rC" = (
 /obj/effect/turf_decal/loading_area/white{
@@ -2054,7 +2054,7 @@
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer{
 	dir = 4
 	},
-/obj/machinery/vending/wallmed/directional/south,
+/obj/machinery/wall_healer/free/directional/south,
 /turf/open/floor/iron/dark/small,
 /area/shuttle/escape)
 "Cu" = (
@@ -2101,6 +2101,14 @@
 /area/shuttle/escape)
 "Dr" = (
 /turf/open/floor/carpet/green,
+/area/shuttle/escape)
+"Dt" = (
+/obj/structure/extinguisher_cabinet/directional/north,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/oil{
+	icon_state = "floor5"
+	},
+/turf/open/floor/iron,
 /area/shuttle/escape)
 "Dx" = (
 /obj/machinery/light/small/directional/south,
@@ -3196,14 +3204,6 @@
 /obj/effect/turf_decal/tile/neutral/half,
 /turf/open/floor/iron/edge,
 /area/shuttle/escape)
-"Ra" = (
-/obj/structure/extinguisher_cabinet/directional/north,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood/oil{
-	icon_state = "floor5"
-	},
-/turf/open/floor/iron,
-/area/shuttle/escape)
 "Rz" = (
 /obj/machinery/door/airlock/shuttle,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
@@ -3952,7 +3952,7 @@ qt
 qt
 QQ
 jt
-Ra
+Dt
 vb
 Td
 zP
@@ -3966,7 +3966,7 @@ kd
 jt
 nb
 BD
-hB
+rl
 XP
 Jj
 aD
