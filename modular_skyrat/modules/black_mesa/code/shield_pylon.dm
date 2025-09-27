@@ -1,23 +1,28 @@
-/mob/living/simple_animal/hostile/blackmesa/xen
-	/// Can we be shielded by pylons?
-	var/can_be_shielded = TRUE
-	/// If we have support pylons, this is true.
-	var/shielded = FALSE
-	/// How many shields we have protecting us
-	var/shield_count = 0
-
-/mob/living/simple_animal/hostile/blackmesa/xen/update_overlays()
+/mob/living/basic/blackmesa/xen/update_overlays()
 	. = ..()
 	if(shielded)
 		. += mutable_appearance('icons/effects/effects.dmi', "shield-yellow", MOB_SHIELD_LAYER)
 
-/mob/living/simple_animal/hostile/blackmesa/xen/proc/lose_shield()
+/mob/living/basic/blackmesa/xen/proc/lose_shield()
 	shield_count--
 	if(shield_count <= 0)
 		shielded = FALSE
 		update_appearance()
 
-/mob/living/simple_animal/hostile/blackmesa/xen/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, exposed_wound_bonus = 0, sharpness = NONE, attack_direction = null, attacking_item)
+/mob/living/basic/blackmesa/xen/apply_damage(
+		damage = 0,
+		damagetype = BRUTE,
+		def_zone = null,
+		blocked = 0,
+		forced = FALSE,
+		spread_damage = FALSE,
+		wound_bonus = 0,
+		exposed_wound_bonus = 0,
+		sharpness = NONE,
+		attack_direction = null,
+		attacking_item,
+		wound_clothing = TRUE,
+	)
 	if(shielded)
 		balloon_alert_to_viewers("ineffective!")
 		return FALSE
@@ -38,7 +43,7 @@
 
 /obj/structure/xen_pylon/Initialize(mapload)
 	. = ..()
-	for(var/mob/living/simple_animal/hostile/blackmesa/xen/iterating_mob in range(shield_range, src))
+	for(var/mob/living/basic/blackmesa/xen/iterating_mob in range(shield_range, src))
 		if(!iterating_mob.can_be_shielded)
 			continue
 		register_mob(iterating_mob)
@@ -49,12 +54,12 @@
 	SIGNAL_HANDLER
 	if(!isxenmob(entered_atom))
 		return
-	var/mob/living/simple_animal/hostile/blackmesa/xen/entered_xen_mob = entered_atom
+	var/mob/living/basic/blackmesa/xen/entered_xen_mob = entered_atom
 	if(!entered_xen_mob.can_be_shielded)
 		return
 	register_mob(entered_xen_mob)
 
-/obj/structure/xen_pylon/proc/register_mob(mob/living/simple_animal/hostile/blackmesa/xen/mob_to_register)
+/obj/structure/xen_pylon/proc/register_mob(mob/living/basic/blackmesa/xen/mob_to_register)
 	if(mob_to_register in shielded_mobs)
 		return
 	if(!istype(mob_to_register))
@@ -77,14 +82,14 @@
 
 /obj/structure/xen_pylon/proc/beam_died(datum/beam/beam_to_kill)
 	SIGNAL_HANDLER
-	for(var/mob/living/simple_animal/hostile/blackmesa/xen/iterating_mob as anything in shielded_mobs)
+	for(var/mob/living/basic/blackmesa/xen/iterating_mob as anything in shielded_mobs)
 		if(shielded_mobs[iterating_mob] == beam_to_kill)
 			iterating_mob.lose_shield()
 			shielded_mobs[iterating_mob] = null
 			shielded_mobs -= iterating_mob
 
 /obj/structure/xen_pylon/Destroy()
-	for(var/mob/living/simple_animal/hostile/blackmesa/xen/iterating_mob as anything in shielded_mobs)
+	for(var/mob/living/basic/blackmesa/xen/iterating_mob as anything in shielded_mobs)
 		iterating_mob.lose_shield()
 		var/datum/beam/beam = shielded_mobs[iterating_mob]
 		QDEL_NULL(beam)
