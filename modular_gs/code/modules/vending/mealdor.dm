@@ -6,6 +6,7 @@
 	product_slogans = "Are you hungry? Eat some of my food!;Be sure to eat one of our tasty treats!;Was that your stomach? Go ahead, get some food!"
 	vend_reply = "Enjoy your meal."
 	free = TRUE
+	allow_custom = TRUE
 	products = list(
 
 	            /obj/item/food/pizza/margherita = 15,
