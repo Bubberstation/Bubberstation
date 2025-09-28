@@ -3,7 +3,7 @@
 /obj/item/clothing/head/helmet/metrocophelmet
 	name = "civil protection helmet"
 	flags_inv = HIDEHAIR | HIDEFACE | HIDESNOUT | HIDEFACIALHAIR
-	desc = "Standard issue helmet for Civil Protection. Uses advanced GigaSlop brand Matrixes to allow alternative varients!"
+	desc = "Standard issue helmet for Civil Protection. Uses advanced GigaSlop brand Matrixes to allow alternative variants!"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
 	icon_state = "metrocopHelm"

@@ -25,7 +25,7 @@
 
 /obj/item/clothing/under/rank/security/metrocop //Sprite done by HL13 Station
 	name = "civil protection uniform"
-	desc = "Standard issue uniforms for Civil Protection forces. Uses advanced GigaSlop brand Matrixes to allow alternative varients!"
+	desc = "Standard issue uniforms for Civil Protection forces. Uses advanced GigaSlop brand Matrixes to allow alternative variants!"
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	icon_state = "civilprotection"

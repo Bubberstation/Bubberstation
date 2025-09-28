@@ -366,6 +366,6 @@
 		'modular_zubbers/sound/effects/combine/gear3.ogg'=1,
 		'modular_zubbers/sound/effects/combine/gear4.ogg'=1,
 		'modular_zubbers/sound/effects/combine/gear5.ogg'=1,
-		'modular_zubbers/sound/effects/combine/gear6.ogg'=1,)
-		, 100)
+		'modular_zubbers/sound/effects/combine/gear6.ogg'=1,),
+		 100),
 
