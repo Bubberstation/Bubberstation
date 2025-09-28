@@ -37,7 +37,7 @@
 		"stamp-law" = 'icons/stamp_icons/large_stamp-law.png',
 		"stamp-chap" = 'icons/stamp_icons/large_stamp-chap.png',
 		"stamp-mime" = 'icons/stamp_icons/large_stamp-mime.png',
-		"stamp-centcom" = 'icons/stamp_icons/large_stamp-centcom.png',
+		"stamp-centcom" = 'modular_gs/icons/stamp_icons/large_stamp-centcom.png', //GS13 - NT to GATO
 		"stamp-syndicate" = 'icons/stamp_icons/large_stamp-syndicate.png'
 
 	)

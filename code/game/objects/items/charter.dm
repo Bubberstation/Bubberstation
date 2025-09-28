@@ -1,6 +1,6 @@
 /obj/item/station_charter
 	name = "station charter"
-	icon = 'icons/obj/scrolls.dmi'
+	icon = 'modular_gs/icons/obj/scrolls.dmi' //GS13 - NT to GATO
 	icon_state = "charter"
 	desc = "An official document entrusting the governance of the station \
 		and surrounding space to the Captain."

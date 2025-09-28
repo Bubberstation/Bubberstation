@@ -3,6 +3,8 @@
 #define LABEL_INFLAMMABLE "inflammable"
 #define LABEL_NT "nt"
 #define LABEL_NT_MINI "nt_mini"
+#define LABEL_GT "gt" //GS13 - GATO flavoring
+#define LABEL_GT_MINI "gt_mini" //GS13 - GATO flavoring
 #define LABEL_SUSPICIOUS "sus"
 #define LABEL_SUSPICIOUS_BLACK "sus_black"
 #define LABEL_SUSPICIOUS_MINI "sus_mini"
@@ -162,8 +164,9 @@
 
 /obj/item/reagent_containers/cup/jerrycan/milk
 	name = "milk jug"
-	label_type = LABEL_NT_MINI
-	cap_type = CAP_BLUE
+	icon = 'modular_gs/icons/obj/medical.dmi'
+	label_type = LABEL_GT //GS13 - NT to GATO
+	cap_type = CAP_BLACK //GS13 - NT to GATO
 	desc = "A jug of most wholesome milk."
 	list_reagents = list(/datum/reagent/consumable/milk = 200)
 
@@ -173,6 +176,8 @@
 #undef LABEL_INFLAMMABLE
 #undef LABEL_NT
 #undef LABEL_NT_MINI
+#undef LABEL_GT
+#undef LABEL_GT_MINI
 #undef LABEL_SUSPICIOUS
 #undef LABEL_SUSPICIOUS_BLACK
 #undef LABEL_SUSPICIOUS_MINI
