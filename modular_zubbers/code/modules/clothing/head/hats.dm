@@ -24,7 +24,7 @@
 	icon_state = "unberet"
 	dog_fashion = null
 
-//Ported from Alterist of TGMC.
+//Ported from Kuro020 of TGMC.
 /obj/item/clothing/head/bandana/snake
 	name = "soldier's bandana"
 	desc = "<i>Her</i> bandana, salvaged from Lake Nicaragua and lovingly repaired."
