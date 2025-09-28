@@ -16,7 +16,7 @@
 // 	name = "Halsey's Commander Overcoat"
 // 	desc = "A Ginormous red overcoat that looks fit for a commander. Has a tag on it that reads: 'Property of Halsey Harmonten. Please return if lost!'"
 
-/obj/item/crowbar/hammer/glaug
+/obj/item/crowbar/brass/glaug
 	name = "Milwaukee Pocket Crowbar"
 	desc = "Much more expensive. Still serves the same function."
 

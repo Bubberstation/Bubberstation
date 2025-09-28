@@ -36,7 +36,7 @@
 
 /datum/loadout_item/inhand/milwaukee_crowbar
 	name = "Milwaukee Pocket Crowbar"
-	item_path = /obj/item/crowbar/hammer/glaug
+	item_path = /obj/item/crowbar/brass/glaug
 	ckeywhitelist = list("happytpr")
 
 // /datum/loadout_item/inhand/fatfang

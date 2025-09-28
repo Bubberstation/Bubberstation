@@ -50,3 +50,22 @@
 	desc = "A sign with the GATO Logo on it. Glory to GATO!"
 	icon = 'modular_gs/icons/obj/gatofication.dmi'
 	icon_state = "gato"
+
+//gato decal, should be moved elsewhere tbh
+/obj/effect/decal/big_gato //96x96 px sprite
+	name = "GATO"
+	desc = "Your employer! Probably."
+	icon = 'modular_gs/icons/turf/96x96.dmi'
+	icon_state = "gato"
+	layer = ABOVE_OPEN_TURF_LAYER
+	pixel_x = -32
+	pixel_y = -32
+
+/obj/effect/decal/medium_gato //64x64 px sprite
+	name = "GATO"
+	desc = "Your employer! Probably."
+	icon = 'modular_gs/icons/turf/64x64.dmi'
+	icon_state = "gato"
+	layer = ABOVE_OPEN_TURF_LAYER
+	pixel_y = -16
+	pixel_x = -16
