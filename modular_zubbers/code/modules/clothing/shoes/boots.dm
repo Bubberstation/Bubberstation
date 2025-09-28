@@ -369,6 +369,6 @@
 		'modular_zubbers/sound/effects/combine/gear5.ogg'= 1,
 		'modular_zubbers/sound/effects/combine/gear6.ogg'= 1,
 		)
-	AddComponent(/datum/component/squeak, combine_sounds)
+	AddComponent(/datum/component/squeak, combine_sounds, 75)
 
 
