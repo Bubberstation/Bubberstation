@@ -30,7 +30,8 @@
 	icon_state = "repdrill"
 	armor_type = /datum/armor/head_nanotrasen_consultant
 
-/obj/item/clothing/head/beret/medical/coroner				//Donator request by Gavla
+//Donator request by Gavla
+/obj/item/clothing/head/beret/medical/coroner
 	name = "coroner beret"
 	desc = "For harvesting organs in style!"
 	icon_state = "/obj/item/clothing/head/beret/medical/coroner"
