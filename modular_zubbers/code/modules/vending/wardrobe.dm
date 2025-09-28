@@ -79,6 +79,13 @@
 		/obj/item/clothing/under/syndicate/syndibunny/fake = 3,
 		/obj/item/clothing/suit/jacket/tailcoat/syndicate/fake = 3,
 		/obj/item/clothing/neck/warrior_cape/loadout = 3,
+		/obj/item/clothing/head/bandana/snake = 3, //Solid, Vic and ... Venom I guess?
+		/obj/item/clothing/under/rank/civilian/bubber/boss = 3, //Okay maybe there is room for more than one Boss and Snake
+		/obj/item/clothing/gloves/bubber/boss = 3,
+		/obj/item/clothing/shoes/jackboots/boss = 3,
+		/obj/item/clothing/under/rank/civilian/bubber/snake = 3,
+		/obj/item/clothing/gloves/bubber/snake = 3,
+		/obj/item/clothing/shoes/jackboots/snake = 3,
 	)
 
 /obj/machinery/vending/wardrobe/medi_wardrobe
@@ -281,6 +288,9 @@
 		/obj/item/clothing/neck/tie/bunnytie/syndicate = 3,
 		/obj/item/clothing/under/syndicate/syndibunny = 3,
 		/obj/item/clothing/suit/jacket/tailcoat/syndicate = 3,
+		/obj/item/clothing/under/syndicate/boss = 1,
+		/obj/item/clothing/gloves/combat/boss = 1,
+		/obj/item/clothing/shoes/combat/boss = 1,
 	)
 
 /obj/machinery/vending/magivend

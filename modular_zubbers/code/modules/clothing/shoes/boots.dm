@@ -372,3 +372,26 @@
 	AddComponent(/datum/component/squeak, combine_sounds, 75)
 
 
+//MGS stuff sprited by Crumpaloo for onlyplateau, please credit when porting, which you obviously have permission to do.
+/obj/item/clothing/shoes/combat/boss
+	name = "patriot's boots"
+	desc = "There is nothing left inside me now. Nothing at all. No hatred, not even regret."
+	icon_state = "boss"
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	clothing_traits = list(TRAIT_SILENT_FOOTSTEPS) //Stealth suit.
+
+/obj/item/clothing/shoes/jackboots/boss
+	name = "mecury woman's boots"
+	desc = "There is nothing left inside me now. Nothing at all. No hatred, not even regret."
+	icon_state = "boss"
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+
+/obj/item/clothing/shoes/jackboots/snake
+	name = "stealth boots"
+	desc = "We will leave our motherlands behind us."
+	icon_state = "snake"
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	clothing_traits = list(TRAIT_SILENT_FOOTSTEPS)
