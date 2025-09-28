@@ -47,6 +47,7 @@ type CharacterControlsProps = {
   handleRotate: (backwards: boolean) => void; // BUBBER EDIT CHANGE - Original: handleRotate: () => void;
   handleOpenSpecies: () => void;
   handleFood: () => void; // BUBBER EDIT ADDITION
+  handleCopyCharacter: () => void; //BUBBER EDIT ADDITION
   gender: Gender;
   setGender: (gender: Gender) => void;
   showGender: boolean;
@@ -118,6 +119,16 @@ function CharacterControls(props: CharacterControlsProps) {
           tooltip="Delete Character"
           tooltipPosition="top"
           disabled={!props.canDeleteCharacter}
+        />
+      </Stack.Item>
+
+      <Stack.Item>
+        <Button
+          onClick ={props.handleCopyCharacter}
+          fontSize="22px"
+          icon="drumstick-bite"
+          tooltip="Duplicate Current Character"
+          tooltipPosition="top"
         />
       </Stack.Item>
     </Stack>
@@ -603,6 +614,9 @@ export function MainPage(props: MainPageProps) {
                 // BUBBER EDIT ADDITION BEGIN
                 handleFood={() => {
                   act('open_food');
+                }}
+                handleCopyCharacter={() => {
+                  act('duplicate_current_slot');
                 }}
                 // BUBBER EDIT ADDITION END
                 setGender={createSetPreference(act, 'gender')}
