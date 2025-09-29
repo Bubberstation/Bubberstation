@@ -197,3 +197,113 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_GENERAL
 	)
+
+//Borg PKAs
+
+/datum/design/kinetic_accelerator/railgun/cyborg
+	name = "proto-kinetic railgun"
+	desc = "Before the nice streamlined and modern day Proto-Kinetic Accelerator was created, multiple designs were drafted by the Mining Research and Development \
+	team. Many were failures, including this one, which came out too bulky and too ineffective. Well recently the MR&D Team got drunk and said 'fuck it we ball' and \
+	went back to the bulky design, overclocked it, and made it functional, turning it into what is essentially a literal man portable particle accelerator. \
+	The design results in a massive hard to control blast of kinetic energy, with the power to punch right through creatures and cause massive damage. The \
+	only problem with the design is that it is so bulky you need to carry it with two hands, and the technology has been outfitted with a special firing pin \
+	that denies use near or on the station, due to its destructive nature."
+	id = "pka_railgun_cyborg"
+	build_type = MECHFAB
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5,
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT,
+	)
+	build_path = /obj/item/borg/upgrade/kinetic_accelerator/railgun/cyborg
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_MINING
+	)
+
+/datum/design/kinetic_accelerator/repeater/cyborg
+	name = "proto-kinetic repeater"
+	desc = "During the pizza party celebrating the release of the new crusher designs, the Mining Research and Development team members were only allowed one slice. \
+	One member exclaimed 'I wish we could have more than one slice' and another replied 'I wish we could shoot the accelerator more than once' and thus, the repeater \
+	on the spot. The repeater trades a bit of power for the ability to fire three shots before becoming empty, while retaining the ability to fully recharge in one \
+	go. The extra technology packed inside to make this possible unfortunately reduces mod space meaning you cant carry as many mods compared to a regular accelerator."
+	id = "pka_repeater_cyborg"
+	build_type = MECHFAB
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5,
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT,
+	)
+	build_path = /obj/item/borg/upgrade/kinetic_accelerator/repeater/cyborg
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_MINING
+	)
+
+/datum/design/kinetic_accelerator/shotgun/cyborg
+	name = "proto-kinetic shotgun"
+	desc = "During the crusher design pizza party, one member of the Mining Research and Development team brought out a real riot shotgun, and killed three \
+	other research members with one blast. The R&D Director immedietly thought of a genuis idea, creating the proto-kinetic shotgun moments later, which he \
+	immediately used to execute the research member who brought the real shotgun. The proto-kinetic shotgun trades off some mod capacity and cooldown in favor \
+	of firing three shots at once with reduce range and power. The total damage of all three shots is higher than a regular PKA but the individual shots are weaker. \
+	Looks like you need both hands to use it effectively."
+	id = "pka_shotgun_cyborg"
+	build_type = MECHFAB
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5,
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT,
+	)
+	build_path = /obj/item/borg/upgrade/kinetic_accelerator/shotgun/cyborg
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_MINING
+	)
+
+/datum/design/kinetic_accelerator/glock/cyborg
+	name = "proto-kinetic pistol"
+	desc = "During the pizza party for the Mining Research and Development team, one special snowflake researcher wanted a mini murphy instead of a regular \
+	pizza slice, so reluctantly the Director bought him his mini murphy, which the dumbass immedietly dropped ontop of a PKA. Suddenly the idea to create \
+	a 'build your own PKA' design was created. The proto-kinetic pistol is arguably worse than the base PKA, sporting lower damage and range. But this lack \
+	of base efficiency allows room for nearly double the mods, making it truely 'your own PKA'."
+	id = "pka_pistol_cyborg"
+	build_type = MECHFAB
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5,
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT,
+	)
+	build_path = /obj/item/borg/upgrade/kinetic_accelerator/glock/cyborg
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_MINING
+	)
+
+/datum/design/kinetic_accelerator/shockwave/cyborg
+	name = "proto-kinetic shockwave"
+	desc = "Quite frankly, we have no idea how the Mining Research and Development team came up with this one, all we know is that alot of \
+	beer was involved. This proto-kinetic design will slam the ground, creating a shockwave around the user, with the same power as the base PKA.\
+	The only downside is the lowered mod capacity, the lack of range it offers, and the higher cooldown, but its pretty good for clearing rocks."
+	id = "pka_shockwave_cyborg"
+	build_type = MECHFAB
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5,
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT,
+	)
+	build_path = /obj/item/borg/upgrade/kinetic_accelerator/shockwave/cyborg
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_MINING
+	)
+
+/datum/design/kinetic_accelerator/m79/cyborg
+	name = "proto-kinetic grenade launcher"
+	desc = "Made in a drunk frenzy during the creation of the kinetic railgun, the kinetic grenade launcher fires the same bombs used by \
+	the mining modsuit. Due to the technology needed to pack the bombs into this weapon, there is no space for modification."
+	id = "pka_m79_cyborg"
+	build_type = MECHFAB
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5,
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT,
+	)
+	build_path = /obj/item/borg/upgrade/kinetic_accelerator/m79/cyborg
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_MINING
+	)
