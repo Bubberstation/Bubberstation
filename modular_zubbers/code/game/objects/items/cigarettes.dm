@@ -22,5 +22,3 @@
 /obj/item/cigbutt/cigar/gold
 	icon_state = "cigargoldbutt"
 
-/obj/item/cigarette/candy
-	icon = 'icons/obj/cigarettes.dmi'
