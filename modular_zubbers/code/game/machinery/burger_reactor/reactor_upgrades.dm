@@ -5,10 +5,10 @@
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "datadisk2"
 
-/obj/item/rbmk_upgrade/proc/apply_upgrade(/obj/machinery/power/rbmk2/machine)
+/obj/item/rbmk_upgrade/proc/apply_upgrade(obj/machinery/power/rbmk2/machine)
 	return TRUE
 
-/obj/item/rbmk_upgrade/proc/can_upgrade(/obj/machinery/power/rbmk2/machine)
+/obj/item/rbmk_upgrade/proc/can_upgrade(obj/machinery/power/rbmk2/machine)
 	return TRUE
 
 //machine handles it.
@@ -32,11 +32,11 @@
 	name = "\improper RB-MK2 software upgrade disk - auto vent"
 	desc = "A disk that allows you to install an upgrade into the RB-MK that automatically controls vent usage to maximize power gain at all temperature setups."
 
-/obj/item/rbmk_upgrade/auto_vent/apply_upgrade(/obj/machinery/power/rbmk2/machine)
+/obj/item/rbmk_upgrade/auto_vent/apply_upgrade(obj/machinery/power/rbmk2/machine)
 	machine.auto_vent_upgrade = TRUE
 	return TRUE
 
-/obj/item/rbmk_upgrade/auto_vent/can_upgrade(/obj/machinery/power/rbmk2/machine)
+/obj/item/rbmk_upgrade/auto_vent/can_upgrade(obj/machinery/power/rbmk2/machine)
 	return !machine.auto_vent_upgrade
 
 //Safeties
@@ -44,12 +44,12 @@
 	name = "\improper RB-MK2 software upgrade disk - safeties optimization"
 	desc = "A disk that allows you to install an upgrade into the RB-MK that effectively decreases the safeties threshold from 75% to 95%, preventing premature ejectulation."
 
-/obj/item/rbmk_upgrade/safeties/apply_upgrade(/obj/machinery/power/rbmk2/machine)
+/obj/item/rbmk_upgrade/safeties/apply_upgrade(obj/machinery/power/rbmk2/machine)
 	machine.safeties_upgrade = TRUE
 	machine.RefreshParts()
 	return TRUE
 
-/obj/item/rbmk_upgrade/safeties/can_upgrade(/obj/machinery/power/rbmk2/machine)
+/obj/item/rbmk_upgrade/safeties/can_upgrade(obj/machinery/power/rbmk2/machine)
 	return !machine.safeties_upgrade
 
 //Overclock
@@ -57,11 +57,11 @@
 	name = "\improper RB-MK2 software upgrade disk - overclock"
 	desc = "A disk that allows you to install an upgrade into the RB-MK that enables overlocking of the reactor."
 
-/obj/item/rbmk_upgrade/overclock/apply_upgrade(/obj/machinery/power/rbmk2/machine)
+/obj/item/rbmk_upgrade/overclock/apply_upgrade(obj/machinery/power/rbmk2/machine)
 	machine.overclocked_upgrade = TRUE
 	return TRUE
 
-/obj/item/rbmk_upgrade/overclock/can_upgrade(/obj/machinery/power/rbmk2/machine)
+/obj/item/rbmk_upgrade/overclock/can_upgrade(obj/machinery/power/rbmk2/machine)
 	return !machine.overclocked_upgrade
 
 
