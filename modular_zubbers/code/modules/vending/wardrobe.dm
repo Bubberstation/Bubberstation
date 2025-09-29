@@ -59,6 +59,8 @@
 				/obj/item/clothing/head/playbunnyears/mime = 3,
 				/obj/item/clothing/under/rank/civilian/mime_bunnysuit = 3,
 				/obj/item/clothing/suit/jacket/tailcoat/mime = 3,
+				/obj/item/clothing/shoes/horseshoe = 3,
+				/obj/item/clothing/under/costume/hlciv = 6,
 			),
 		),
 	)
@@ -76,6 +78,7 @@
 		/obj/item/clothing/neck/tie/bunnytie/syndicate = 3, //Armored but it's only Fire and Acid, not a balance concern
 		/obj/item/clothing/under/syndicate/syndibunny/fake = 3,
 		/obj/item/clothing/suit/jacket/tailcoat/syndicate/fake = 3,
+		/obj/item/clothing/neck/warrior_cape/loadout = 3,
 	)
 
 /obj/machinery/vending/wardrobe/medi_wardrobe
@@ -294,6 +297,7 @@
 		/obj/item/clothing/suit/jacket/tailcoat/engineer = 3,
 		/obj/item/clothing/neck/tie/bunnytie/engineer = 3,
 		/obj/item/clothing/shoes/workboots/heeled = 3,
+		/obj/item/clothing/shoes/workboots/toeless = 3,
 	)
 
 /obj/machinery/vending/wardrobe/atmos_wardrobe
