@@ -129,26 +129,32 @@
 			return install(pkamods, usr, FALSE)
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/railgun/cyborg
+	desc = "Portable particle accelerator. Only Usable on lavaland"
 	holds_charge = TRUE
 	unique_frequency = TRUE
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/repeater/cyborg
+	desc = "A PKA with a three shot magazine"
 	holds_charge = TRUE
 	unique_frequency = TRUE
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/shotgun/cyborg
+	desc = "A PKA that fires three shots with a longer cooldown."
 	holds_charge = TRUE
 	unique_frequency = TRUE
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/glock/cyborg
+	desc = "A Snub Nosed PKA with more mode capacity but less damage and range."
 	holds_charge = TRUE
 	unique_frequency = TRUE
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/shockwave/cyborg
+	desc = "Creates a shockwave around the user, with the same power as the base PKA."
 	holds_charge = TRUE
 	unique_frequency = TRUE
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/m79/cyborg
+	desc = "Fires the same bombs used by the mining modsuit. Only usable on lavaland"
 	holds_charge = TRUE
 	unique_frequency = TRUE
 
@@ -166,8 +172,7 @@
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/miner)
 	model_flags = BORG_MODEL_MINER
-	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/railgun/cyborg
-)
+	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/railgun/cyborg)
 	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator/)
 
 /obj/item/borg/upgrade/kinetic_accelerator/repeater/cyborg
@@ -180,8 +185,7 @@
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/miner)
 	model_flags = BORG_MODEL_MINER
-	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/repeater/cyborg
-)
+	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/repeater/cyborg)
 	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator/)
 
 /obj/item/borg/upgrade/kinetic_accelerator/shotgun/cyborg
@@ -195,8 +199,7 @@
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/miner)
 	model_flags = BORG_MODEL_MINER
-	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/shotgun/cyborg
-)
+	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/shotgun/cyborg)
 	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator/)
 
 /obj/item/borg/upgrade/kinetic_accelerator/glock/cyborg
@@ -209,8 +212,7 @@
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/miner)
 	model_flags = BORG_MODEL_MINER
-	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/glock/cyborg
-)
+	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/glock/cyborg)
 	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator/)
 
 /obj/item/borg/upgrade/kinetic_accelerator/shockwave/cyborg
@@ -222,8 +224,7 @@
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/miner)
 	model_flags = BORG_MODEL_MINER
-	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/shockwave/cyborg
-)
+	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/shockwave/cyborg)
 	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator/)
 
 /obj/item/borg/upgrade/kinetic_accelerator/m79/cyborg
@@ -234,8 +235,7 @@
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/miner)
 	model_flags = BORG_MODEL_MINER
-	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/m79/cyborg
-)
+	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/m79/cyborg)
 	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator/)
 
 /// "Good Borg" Obedience Training

@@ -212,8 +212,10 @@
 	build_type = MECHFAB
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
-		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2,
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT,
+		/datum/material/uranium = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/bluespace = SHEET_MATERIAL_AMOUNT,
 	)
 	build_path = /obj/item/borg/upgrade/kinetic_accelerator/railgun/cyborg
 	category = list(
@@ -229,9 +231,9 @@
 	id = "pka_repeater_cyborg"
 	build_type = MECHFAB
 	materials = list(
-		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
-		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5,
-		/datum/material/plastic = SHEET_MATERIAL_AMOUNT,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 6,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 2,
 	)
 	build_path = /obj/item/borg/upgrade/kinetic_accelerator/repeater/cyborg
 	category = list(
@@ -248,9 +250,10 @@
 	id = "pka_shotgun_cyborg"
 	build_type = MECHFAB
 	materials = list(
-		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
-		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5,
-		/datum/material/plastic = SHEET_MATERIAL_AMOUNT,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 6,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 1,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 2,
 	)
 	build_path = /obj/item/borg/upgrade/kinetic_accelerator/shotgun/cyborg
 	category = list(
@@ -267,8 +270,9 @@
 	build_type = MECHFAB
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
-		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2,
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT,
+		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 2,
 	)
 	build_path = /obj/item/borg/upgrade/kinetic_accelerator/glock/cyborg
 	category = list(
@@ -284,8 +288,10 @@
 	build_type = MECHFAB
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
-		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2,
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT,
+		/datum/material/bluespace = SHEET_MATERIAL_AMOUNT,
+		/datum/material/diamond = SHEET_MATERIAL_AMOUNT * 2,
 	)
 	build_path = /obj/item/borg/upgrade/kinetic_accelerator/shockwave/cyborg
 	category = list(
@@ -300,8 +306,10 @@
 	build_type = MECHFAB
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
-		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2,
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT,
+		/datum/material/uranium = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/bluespace = SHEET_MATERIAL_AMOUNT,
 	)
 	build_path = /obj/item/borg/upgrade/kinetic_accelerator/m79/cyborg
 	category = list(
