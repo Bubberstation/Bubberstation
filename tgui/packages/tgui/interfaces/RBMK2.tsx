@@ -352,7 +352,7 @@ export const RBMK2 = (props) => {
                   <Button
                     tooltip="Set the vents to automatically open when too hot, and close when too cold. Requires auto-vent upgrade disk."
                     icon="fa-balance-scale"
-					disabled={data.auto_vent_upgrade}
+					disabled={!data.auto_vent_upgrade}
                     color={data.auto_vent ? 'good' : 'blue'}
                     onClick={() => act('autovent')}
                   />
@@ -391,7 +391,7 @@ export const RBMK2 = (props) => {
                     {data.overclocked ? 'ONLINE' : 'OFFLINE'}
                   </Box>
                   <Button.Confirm
-                    tooltip="DANGER: Toggle overclock on/off. When combined with disabled safeties, this can be very volatile! Make sure you know what you're doing!"
+                    tooltip="Increases power output at the cost of more tritium consumed and less heater generated. Requires overlock upgrade disk."
                     icon="exclamation-triangle"
                     color={data.overclocked ? 'average' : 'good'}
 					disabled={!data.overclocked_upgrade}

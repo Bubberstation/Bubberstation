@@ -12,7 +12,8 @@
 /obj/structure/engine_choice
 
 	name = "engine choice beacon"
-	desc = "A clusterfuck of wiring and components that somehow allows you to select the desired engine you want for the shift. Selection is permanent and cannot be reversed. Cannot be moved. Can be destroyed with a mulitool, with a considerable delay."
+	desc = "A clusterfuck of wiring and components that somehow allows you to select the desired engine you want for the shift. \
+	Selection is permanent and cannot be reversed after deployment. Can be destroyed with a mulitool, with a considerable delay."
 
 	icon = 'modular_zubbers/icons/obj/structures/engine_choice.dmi'
 	icon_state = "choice"
@@ -24,12 +25,12 @@
 	obj_flags = CAN_BE_HIT
 	pass_flags = LETPASSTHROW
 
-	var/used = FALSE //Safety to prevent race conditions, such as when multiple people select it at once.
-
 	var/obj/item/radio/radio
 	var/radio_key = /obj/item/encryptionkey/headset_eng
 	var/channel_to_use = RADIO_CHANNEL_ENGINEERING
 	var/deployment_time = 8 SECONDS
+
+	var/deployment_timer_id
 
 /obj/structure/engine_choice/Initialize(mapload)
 	. = ..()
@@ -42,19 +43,24 @@
 	. = ..()
 	QDEL_NULL(radio)
 
+//Helper interaction for if we can interact with this (called before and after menu selection).
+/obj/structure/engine_choice/proc/can_use(mob/user)
+	if(QDELETED(src) || QDESTROYING(src))
+		return FALSE
+	return user.can_perform_action(src, FORBID_TELEKINESIS_REACH)
+
 /obj/structure/engine_choice/attack_hand(mob/living/user, list/modifiers)
-
 	. = ..()
-
 	if(.)
 		return
-
 	display_options(user)
-
 
 /obj/structure/engine_choice/multitool_act(mob/living/user, obj/item/multitool/tool)
 
 	if(!can_use(user))
+		return TRUE
+
+	if(deployment_timer_id)
 		return TRUE
 
 	playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
@@ -69,6 +75,9 @@
 		return TRUE
 
 	if(!can_use(user))
+		return TRUE
+
+	if(deployment_timer_id)
 		return TRUE
 
 	var/turf/center_turf = get_turf(src)
@@ -88,6 +97,17 @@
 	if(!can_use(user))
 		return FALSE
 
+	if(deployment_timer_id) //Timer already exists to deploy.
+		playsound(src, 'sound/machines/terminal_alert_short.ogg', 50, FALSE)
+		radio.talk_into(
+			src,
+			"Deployment operation canceled by [user].",
+			RADIO_CHANNEL_ENGINEERING
+		)
+		deltimer(deployment_timer_id)
+		deployment_timer_id = null
+		return FALSE
+
 	playsound(src, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)
 
 	radio.talk_into(
@@ -98,8 +118,10 @@
 
 	var/choice = tgui_input_list(user, "Which engine would you like to order?", "Select an engine!", list(CHOICE_SUPERMATTER,CHOICE_RBMK))
 
-	if(!choice || !can_use(user))
+	if(!choice || !can_use(user) || deployment_timer_id)
 		return FALSE
+
+	//Deployment time!
 
 	var/turf/center_turf = get_turf(src)
 
@@ -117,13 +139,7 @@
 
 	new /obj/effect/temp_visual/telegraphing/big(center_turf, deployment_time)
 
-	addtimer(CALLBACK(src, PROC_REF(do_deploy), center_turf, choice), deployment_time)
-
-
-/obj/structure/engine_choice/proc/can_use(mob/user)
-	if(used)
-		return FALSE
-	return user.can_perform_action(src, FORBID_TELEKINESIS_REACH)
+	deployment_timer_id = addtimer(CALLBACK(src, PROC_REF(do_deploy), center_turf, choice), deployment_time,  TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE |  TIMER_DELETE_ME)
 
 /obj/structure/engine_choice/proc/do_deploy(turf/center_turf,choice)
 
@@ -137,21 +153,19 @@
 		if(CHOICE_RBMK)
 			deploy_rbmk(center_turf)
 
+//RB-MK2
 /obj/structure/engine_choice/proc/deploy_rbmk(turf/center_turf)
-	var/obj/machinery/rbmk2_sniffer/spawned_sniffer = new(center_turf)
 
+	var/obj/machinery/rbmk2_sniffer/spawned_sniffer = new(center_turf)
 	for(var/turf/side_turf in orange(1,center_turf))
 		var/obj/machinery/power/rbmk2/preloaded/spawned_rbmk = new(side_turf)
 		spawned_sniffer.link_reactor(null,spawned_rbmk)
 
 	new /obj/item/paper/guides/jobs/engi/rbmk2(center_turf)
-
 	new /obj/item/stack/cable_coil/thirty(center_turf)
-
 	new /obj/item/paper/crumpled/rbmk2(center_turf)
 
-	return TRUE
-
+//Supermatter
 /obj/structure/engine_choice/proc/deploy_supermatter(turf/center_turf)
 	new /obj/machinery/power/supermatter_crystal/engine(center_turf)
 

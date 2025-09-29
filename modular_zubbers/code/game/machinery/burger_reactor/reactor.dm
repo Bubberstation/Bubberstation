@@ -54,10 +54,10 @@
 	var/last_tritium_consumption = 0 //Display purposes. Do not edit. This is measured in micromoles.
 	var/last_radiation_pulse = 0 //Display purposes. Do not edit.
 
-	var/gas_consumption_base = 2000 //How much gas gets consumed, in micromoles, per cycle.
-	var/gas_consumption_heat = 3600 //How much gas gets consumed, in moles, per cycle, per 1000 kelvin (of the reactor rod temperature).
+	var/gas_consumption_base = 2400 //How much gas gets consumed, in micromoles, per cycle.
+	var/gas_consumption_heat = 4000 //How much gas gets consumed, in moles, per cycle, per 1000 kelvin (of the reactor rod temperature).
 
-	var/base_power_generation = 34 //How many joules of power to add per micromole of tritium processed.
+	var/base_power_generation = 40 //How many joules of power to add per micromole of tritium processed.
 	//There are 1000000 micromoles in a mole.
 
 	var/goblin_multiplier = 4 //How many mols of goblin gas produced per mol of tritium. Increases with matter bins.

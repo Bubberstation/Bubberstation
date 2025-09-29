@@ -75,7 +75,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
-/datum/techweb_node/shuttle_engineering
+/datum/techweb_node/rbmk_upgrades
 	id = "rbmk_disk_upgrade_node"
 	display_name = "RB-MK2 Upgrade Disks"
 	description = "An assortment of (possibly illegal) software upgrades that improve(?) the RB-MK2 reactor in some way."

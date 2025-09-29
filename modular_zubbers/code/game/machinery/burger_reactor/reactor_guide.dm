@@ -6,10 +6,13 @@
 	name = "crumpled RB-MK2 notes"
 	default_raw_text = {"
 	<h2>RB-MK Quick Start Guide</h2>
-	Step 1: Do regular supermatter setup (without the supermatter).<br>
-	Step 2: Set the coolers to the lowest temperature possible and give it a bit for air to be cycled.<br>
-	Step 3: Turn on RB-MK2 engines.<br>
-	Step 4: Make the coolers hotter by 10.<br>
-	Step 5: Monitor for bad shit happening. If power generation is acceptable, you're done and don't have to read the rest of this.<br>
-	Step 6: If bad shit happens, lower temperature by 20.<br>
-	Step 7: Repeat steps 3 to 6 until satisfied with power output."}
+	<sub>It is recommended to have one person monitor the RB-MK reactor while the other adjusts coolant.</sub>
+	Step 1: Do regular supermatter setup (without the supermatter, or with one if you're insane).<br>
+	Step 2: Set the coolers to the lowest temperature possible. Wait for the cold air to cycle.<br>
+	Step 3: Turn on RB-MK2 engine(s).<br>
+	Step 4: Make the coolers hotter by 10-30 kelvin every 20 seconds until acceptable power output.<br>
+	Step 5: Monitor for bad shit happening. If power generation is acceptable, and temperature is within safe range, you're done and don't have to read the rest of this.<br>
+	Step 6: If bad shit happens, lower temperature by 20 and wait a bit until the system cools again.<br>
+	Step 7: Repeat steps 3 to 6 until satisfied with power output.<br>
+	<br>
+	<i>Alternatively, ignore all the above and just set the coolers to like 200k and work from there.</i>"}
