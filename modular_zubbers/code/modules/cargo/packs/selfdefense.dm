@@ -162,10 +162,6 @@
 	name = "C40 Sol Fragmentation Ammo Box"
 	contains = list(/obj/item/ammo_box/c40sol/fragmentation)
 
-/datum/supply_pack/imports/selfdef/ammo_boxes/c310_rubber
-	name = "C310 Rubbershot Ammo Box"
-	contains = list(/obj/item/ammo_box/c310_cargo_box/rubber)
-
 /datum/supply_pack/imports/selfdef/ammo_boxes/c585trappiste_incap
 	name = "C585 Trappiste Incapacitator Ammo Box"
 	contains = list(/obj/item/ammo_box/c585trappiste/incapacitator)
@@ -199,10 +195,6 @@
 /datum/supply_pack/imports/selfdef/shotbox/hunter
 	name = "Shotgun Hunting Slug Box"
 	contains = list(/obj/item/ammo_box/advanced/s12gauge/hunter)
-
-/datum/supply_pack/imports/selfdef/shotbox/bees
-	name = "Shotgun Hornet's Nest Shell Box"
-	contains = list(/obj/item/ammo_box/advanced/s12gauge/beehive)
 
 /datum/supply_pack/imports/selfdef/shotbox/honk
 	name = "Honkshot Shell Box"
