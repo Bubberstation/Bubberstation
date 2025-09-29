@@ -34,22 +34,29 @@
 	desc = "A deck of GATO-branded space-grade playing cards."
 	icon = 'modular_gs/icons/obj/toy.dmi'
 
-/obj/item/bedsheet/gato
-	icon = 'modular_gs/icons/obj/bedsheets.dmi'
-	icon_state = "sheetgato"
-	worn_icon_state = "sheetpurple"
-
-/obj/item/bedsheet/gato/double
-	icon = 'modular_gs/icons/obj/bedsheets.dmi'
-	icon_state = "double_sheetgato"
-	worn_icon_state = "sheetpurple"
-	bedsheet_type = BEDSHEET_DOUBLE
-
 /obj/structure/sign/gato
 	name = "GATO Logo"
 	desc = "A sign with the GATO Logo on it. Glory to GATO!"
 	icon = 'modular_gs/icons/obj/gatofication.dmi'
 	icon_state = "gato"
+
+/obj/structure/sign/gatofull_1
+	name = "GATO"
+	desc = "GATO - expand your horizons!"
+	icon = 'modular_gs/icons/obj/signs.dmi'
+	icon_state = "gato_sign_1"
+
+/obj/structure/sign/gatofull_2
+	name = "GATO"
+	desc = "GATO - expand your horizons!"
+	icon = 'modular_gs/icons/obj/signs.dmi'
+	icon_state = "gato_sign_2"
+
+/obj/structure/sign/gatofull_3
+	name = "GATO"
+	desc = "GATO - expand your horizons!"
+	icon = 'modular_gs/icons/obj/signs.dmi'
+	icon_state = "gato_sign_3"
 
 /obj/effect/decal/big_gato //96x96 px sprite
 	name = "GATO"
@@ -117,3 +124,22 @@
 	desc = "The official corporate flag of GATO. Mostly flown as a ceremonial piece, or to mark land on a new frontier."
 	icon = 'modular_gs/icons/obj/gatofication.dmi'
 	icon_state = "flag_gt"
+
+
+//gs13 - bedsheets
+/obj/item/bedsheet/gato //GS13
+	name = "GATO Bedsheet"
+	desc = "Extra padding, for extra comfiness."
+	icon_state = "sheetgato"
+	dream_messages = list("GATO", "capitalism", "meow",)
+	icon = 'modular_gs/icons/obj/bedsheets.dmi'
+	worn_icon_state = "sheetpurple"
+
+/obj/item/bedsheet/double_gato //GS13
+	name = "Double GATO Bedsheet"
+	desc = "Extra padding, for extra comfiness. Mega sized, for mega cuddles."
+	icon_state = "doublesheet_gato"
+	dream_messages = list("GATO", "capitalism", "meow",)
+	icon = 'modular_gs/icons/obj/bedsheets.dmi'
+	bedsheet_type = BEDSHEET_DOUBLE
+	worn_icon_state = "sheetpurple"
