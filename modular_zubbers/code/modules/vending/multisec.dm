@@ -37,7 +37,7 @@
 					/obj/item/clothing/head/beret/sec/peacekeeper/white = 6,
 					/obj/item/clothing/head/helmet/sec/terra = 6,
 					/obj/item/clothing/head/hats/warden/police/patrol = 6,
-					/obj/item/clothing/head/costume/ushanka/sec = 10,
+					/obj/item/clothing/head/costume/ushanka/sec/blue = 10,
 					/obj/item/clothing/gloves/color/black/security = 10,
 					/obj/item/clothing/head/helmet/sec/futuristic = 6,
 					/obj/item/clothing/suit/armor/vest/collared_vest = 6, //added by Bangle
@@ -62,6 +62,7 @@
 					/obj/item/clothing/head/beret/sec/peacekeeper/armadyne = 6,
 					/obj/item/clothing/head/soft/sec = 6,
 					/obj/item/clothing/head/security_beanie = 6,
+					/obj/item/clothing/head/costume/ushanka/sec = 10,
 					/obj/item/clothing/head/playbunnyears/security = 6,
 					/obj/item/clothing/under/rank/security/security_bunnysuit = 6,
 					/obj/item/clothing/suit/armor/security_tailcoat = 6,
@@ -127,7 +128,6 @@
 					/obj/item/clothing/suit/jacket/officer/blue = 6,
 					/obj/item/clothing/head/beret/sec/navyofficer = 6,
 					/obj/item/clothing/suit/jacket/officer/tan = 6,
-					/obj/item/clothing/head/helmet/metrocophelmet = 6,
 					/obj/item/clothing/accessory/badge/holo = 10, //I know there's a box of them but, why not have more, eh?
 					/obj/item/clothing/accessory/badge/holo/cord = 10,
 					/obj/item/clothing/head/helmet/blueshirt = 3,
@@ -144,6 +144,11 @@
 					/obj/item/clothing/head/cowboy/skyrat/cattleman/sec = 3,
 					/obj/item/clothing/head/cowboy/skyrat/cattleman/wide/sec = 3,
 					/obj/item/clothing/head/fedora/det_hat/cybergoggles = 3,
+					/obj/item/clothing/head/helmet/metrocophelmet = 6,
+					/obj/item/clothing/suit/armor/vest/alt/sec/metrocop = 6,
+					/obj/item/clothing/gloves/color/black/security/metrocop = 6,
+					/obj/item/clothing/under/rank/security/metrocop = 6,
+					/obj/item/clothing/shoes/jackboots/combine = 6,
 					/obj/item/clothing/glasses/hud/eyepatch/sec = 3, //No flash protection on the eyepatches, so they're worse than the sunnies.
 					/obj/item/clothing/glasses/hud/eyepatch/sec/blindfold = 3, //Ditto
 					/obj/item/clothing/glasses/hud/ar/aviator/security = 3, //Printable, but you have to choose between HUD and flash protection.

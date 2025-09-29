@@ -641,3 +641,16 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
+
+// BUBBER EDIT: Adds Umbrellas
+/datum/design/umbrella
+	name = "Collapsable Umbrella"
+	id = "collapsable_umbrella"
+	build_type = PROTOLATHE | AUTOLATHE
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.75, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.25)
+	build_path = /obj/item/umbrella/collapsible
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE,
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
