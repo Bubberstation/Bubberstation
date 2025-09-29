@@ -1,5 +1,5 @@
-/mob/living/carbon/can_buckle()
-	if(HAS_TRAIT(src, TRAIT_NO_BUCKLE))
+/mob/living/carbon/buckle_mob(mob/living/M, force, check_loc, buckle_mob_flags)
+	if(HAS_TRAIT(M, TRAIT_NO_BUCKLE))
 		return FALSE
 
 	return ..()
@@ -18,7 +18,8 @@
 		return FALSE
 	
 	if(HAS_TRAIT(H, TRAIT_NO_BELT) && slot == ITEM_SLOT_BELT)
-		if(istype(I, /obj/item/bluespace_belt/primitive) && H?.client?.prefs.helplessness_belts*2 > H.fatness)
+		var/belt_BFI = H.client.prefs.read_preference(/datum/preference/numeric/helplessness/belts)
+		if(istype(I, /obj/item/bluespace_belt/primitive) && belt_BFI * 2 > H.fatness)
 			return ..()
 
 		if(istype(I, /obj/item/bluespace_belt) && !istype(I, /obj/item/bluespace_belt/primitive))
