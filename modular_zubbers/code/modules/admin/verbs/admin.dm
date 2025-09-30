@@ -4,7 +4,7 @@ ADMIN_VERB(ping_deadmins, R_ADMIN, "Ping De-adminned Admins", "Send a notificati
 		return
 
 	var/list/admins_notified = list()
-	for(var/ckey as anything in GLOB.deadmins)
+	for(var/ckey in GLOB.deadmins)
 		var/client/deadmin_client = GLOB.directory[ckey]
 		if(!deadmin_client)
 			continue
