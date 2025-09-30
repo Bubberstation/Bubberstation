@@ -558,6 +558,14 @@
 	name = "Blastwave Uniform"
 	item_path = /obj/item/clothing/under/blastwave
 
+/datum/loadout_item/uniform/miscellaneous/royalkilt
+	name = "Royal Kilt"
+	item_path = /obj/item/clothing/under/costume/skyrat/kilt/royal
+
+/datum/loadout_item/uniform/miscellaneous/irishtact
+	name = "Irish Tactical Uniform"
+	item_path = /obj/item/clothing/under/costume/skyrat/tac/irish
+
 //HALLOWEEN
 /datum/loadout_item/uniform/miscellaneous/pj_blood
 	name = "Blood-red Pajamas"
