@@ -78,7 +78,7 @@ ADMIN_VERB(find_nullspaced_objects, R_DEBUG, "Find Nullspaced Objects", "Popup a
 
 	var/list/nullspace_tagged_objects = list()
 	var/list/strings = list()
-	for(var/object_type as anything in no_duplicates)
+	for(var/object_type in no_duplicates)
 		var/list/sub_list = no_duplicates[object_type]
 		var/atom/object = sub_list["object"]
 		var/refcount = sub_list["refcount"]
