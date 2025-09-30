@@ -22,3 +22,5 @@
 /obj/item/cigbutt/cigar/gold
 	icon_state = "cigargoldbutt"
 
+/obj/item/storage/fancy/cigarettes/cigars/havana
+	icon = 'modular_zubbers/icons/obj/cigarettes.dmi'
