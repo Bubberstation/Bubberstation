@@ -542,7 +542,7 @@ SUBSYSTEM_DEF(ticker)
 
 	var/captainless = TRUE
 
-	var/highest_rank = INFINITY //BUBBER EDIT: If there's no Command, give the biscuit to a random person
+	var/highest_rank = length(SSjob.chain_of_command) + 1
 	var/list/spare_id_candidates = list()
 	var/mob/dead/new_player/picked_spare_id_candidate
 
