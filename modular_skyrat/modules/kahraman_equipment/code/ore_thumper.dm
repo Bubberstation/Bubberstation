@@ -200,7 +200,7 @@
 	var/nearby_ore = 0
 	var/is_there_a_thumper_too = FALSE
 	for(var/turf/nearby_turf in orange(ore_spawn_range, src))
-		for(var/ore as anything in nearby_turf.contents)
+		for(var/ore in nearby_turf.contents)
 			if(istype(ore, /obj/item/stack/ore))
 				nearby_ore += 1
 				continue
