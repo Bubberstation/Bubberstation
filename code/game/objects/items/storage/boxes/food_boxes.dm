@@ -52,7 +52,7 @@
 /obj/item/storage/box/papersack
 	name = "paper sack"
 	desc = "A sack neatly crafted out of paper."
-	icon = 'icons/obj/storage/paperbag.dmi'
+	icon = 'modular_gs/icons/obj/paperbag.dmi' //GS13 - NT to GATO
 	icon_state = "paperbag_None"
 	inhand_icon_state = null
 	illustration = null
@@ -68,6 +68,7 @@
 	papersack_designs = sort_list(list(
 		"None" = image(icon = src.icon, icon_state = "paperbag_None"),
 		"NanotrasenStandard" = image(icon = src.icon, icon_state = "paperbag_NanotrasenStandard"),
+		"GatoStandard" = image(icon = src.icon, icon_state = "paperbag_GatoStandard"), //GS13 - GATOfication
 		"SyndiSnacks" = image(icon = src.icon, icon_state = "paperbag_SyndiSnacks"),
 		"Heart" = image(icon = src.icon, icon_state = "paperbag_Heart"),
 		"SmileyFace" = image(icon = src.icon, icon_state = "paperbag_SmileyFace")
@@ -89,6 +90,9 @@
 			desc = "A sack neatly crafted out of paper."
 		if("NanotrasenStandard")
 			desc = "A standard Nanotrasen paper lunch sack for loyal employees on the go."
+		if("GatoStandard")
+			desc = "A standard GATO paper lunch sack for loyal employees on the go." //GS13 - GATOfication
+
 		if("SyndiSnacks")
 			desc = "The design on this paper sack is a remnant of the notorious 'SyndieSnacks' program."
 		if("Heart")

@@ -27,4 +27,4 @@
 	icon = 'modular_skyrat/modules/aesthetics/tools/tools.dmi'
 
 /obj/item/inducer
-	icon = 'modular_skyrat/modules/aesthetics/tools/tools.dmi'
+	icon = 'modular_gs/icons/obj/tools.dmi' //GS13 - changing NT branding to GATO
