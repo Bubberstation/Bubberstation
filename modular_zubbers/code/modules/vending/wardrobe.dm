@@ -60,6 +60,7 @@
 				/obj/item/clothing/under/rank/civilian/mime_bunnysuit = 3,
 				/obj/item/clothing/suit/jacket/tailcoat/mime = 3,
 				/obj/item/clothing/shoes/horseshoe = 3,
+				/obj/item/clothing/under/costume/hlciv = 6,
 			),
 		),
 	)
