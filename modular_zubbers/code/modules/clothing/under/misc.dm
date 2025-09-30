@@ -619,3 +619,10 @@
 	icon_state = "whiteandred_kiryulmfao"
 	worn_icon_state = "whiteandred_kiryulmfao"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/under/costume/hlciv
+	name = "blue citizen uniform"
+	desc = "Sometimes, I dream about cheese."
+	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	icon_state = "citizenblue"
