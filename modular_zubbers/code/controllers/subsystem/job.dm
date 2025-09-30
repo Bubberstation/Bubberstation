@@ -47,9 +47,9 @@
 			JOB_DETECTIVE = 54,
 			JOB_SECURITY_MEDIC = 55,
 			JOB_ASSISTANT = 56, //It's extremely bleak if we get to this point.
-			JOB_SHAFT_MINER = 57, //Breaks the ordering but Cap can't leave the Z-Level with the disk, a miner's entire job involves leaving the Z-Level
+			JOB_MIME = 57, //I hate the French but Miners really should be deadlast.
 			JOB_PRISONER = 58, //Early Parole
-			JOB_MIME = 59, //I hate the French so they get to go last.
+			JOB_SHAFT_MINER = 59, //Breaks the ordering but Cap can't leave the Z-Level with the disk, a miner's entire job involves leaving the Z-Level
 			JOB_HUMAN_AI = 60, //This is a 1 in a million shot so...
 			JOB_CARGO_GORILLA = 61,
 		)
