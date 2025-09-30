@@ -18,6 +18,7 @@
 /obj/item/holocigarette/cigar
 	name = "Bright Cosmos cigar"
 	desc = "A fancy cigar created using holodeck technology. They look like they have a \"Bright Cosmos\" branding on their wrap."
+	worn_icon = 'modular_zubbers/icons/mob/clothing/mask/mask.dmi'
 	icon_state = "holocigaroff"
 	icon_on = "holocigaron"
 	icon_off = "holocigaroff"
