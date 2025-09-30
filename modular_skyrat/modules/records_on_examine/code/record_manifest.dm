@@ -34,7 +34,7 @@
 			)
 			continue
 
-		for(var/department_type as anything in job.departments_list)
+		for(var/department_type in job.departments_list)
 			var/datum/job_department/department = departments_by_type[department_type]
 
 			if(!department)
