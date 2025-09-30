@@ -107,7 +107,7 @@ SUBSYSTEM_DEF(player_ranks)
  * `donator_status` and `max_save_slots` once donators are loaded.
  */
 /datum/controller/subsystem/player_ranks/proc/update_all_prefs_donator_status()
-	for(var/ckey as anything in GLOB.preferences_datums)
+	for(var/ckey in GLOB.preferences_datums)
 		update_prefs_donator_status(GLOB.preferences_datums[ckey])
 
 
