@@ -542,7 +542,7 @@ SUBSYSTEM_DEF(ticker)
 
 	var/captainless = TRUE
 
-	var/highest_rank = length(SSjob.chain_of_command) + 1
+	var/highest_rank = INFINITY //BUBBER EDIT: If there's no Command, give the biscuit to a random person
 	var/list/spare_id_candidates = list()
 	var/mob/dead/new_player/picked_spare_id_candidate
 
@@ -560,10 +560,10 @@ SUBSYSTEM_DEF(ticker)
 		// Check assigned_role's priority and curate the candidate list appropriately.
 		var/player_assigned_role = new_player_human.mind.assigned_role.title
 		var/spare_id_priority = SSjob.chain_of_command[player_assigned_role]
-		//BUBBER EDIT: GIVE SOMEONE THE SPARE
+        //BUBBER EDIT: GIVE SOMEONE THE SPARE
 		if(!spare_id_priority)
-			spare_id_priority = INFINITY
-		//BUBBER EDIT
+			spare_id_priority = highest_rank
+        //BUBBER EDIT
 		if(spare_id_priority)
 			if(spare_id_priority < highest_rank)
 				spare_id_candidates.Cut()
