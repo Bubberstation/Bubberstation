@@ -58,7 +58,7 @@
 	var/list/options = list()
 	var/list/picks_to_instances = list()
 	var/list/rat_styles = subtypesof(/datum/rat_fashion)
-	for (var/style_path as anything in rat_styles)
+	for (var/style_path in rat_styles)
 		var/datum/rat_fashion/style = new style_path()
 		var/datum/radial_menu_choice/choice = style.get_radial_select()
 		options += list("[choice.name]" = choice)

@@ -364,7 +364,6 @@
 	name = "Syndicate"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
-		/obj/item/borg/sight/thermal,
 		/obj/item/extinguisher,
 		/obj/item/weldingtool/electric,
 		/obj/item/borg/cyborg_omnitool/engineering,
@@ -505,7 +504,6 @@
 	name = "Spider Clan Saboteur"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
-		/obj/item/borg/sight/thermal,
 		/obj/item/katana/ninja_blade,
 		/obj/item/construction/rcd/borg/syndicate,
 		/obj/item/pipe_dispenser,
