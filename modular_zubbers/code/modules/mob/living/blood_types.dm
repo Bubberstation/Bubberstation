@@ -20,7 +20,7 @@
 	recolor_blood_type = /datum/blood_type/copper/alt_color
 
 /datum/blood_type/copper/alt_color
-	root_abstract_type = /datum/blood_type/copper
+	abstract_type = /datum/blood_type/copper
 
 /datum/blood_type/copper/alt_color/type_key()
 	return /datum/blood_type/copper
@@ -38,7 +38,7 @@
 	recolor_blood_type = /datum/blood_type/nanite_slurry/alt_color
 
 /datum/blood_type/nanite_slurry/alt_color
-	root_abstract_type = /datum/blood_type/nanite_slurry
+	abstract_type = /datum/blood_type/nanite_slurry
 
 /datum/blood_type/nanite_slurry/alt_color/type_key()
 	return /datum/blood_type/nanite_slurry
@@ -51,7 +51,7 @@
 	recolor_blood_type = /datum/blood_type/namehere/alt_color
 
 /datum/blood_type/namehere/alt_color
-	root_abstract_type = /datum/blood_type/namehere/alt_color
+	abstract_type = /datum/blood_type/namehere/alt_color
 
 /datum/blood_type/namehere/alt_color/New(override, datum/blood_type/orig)
 	make_alt_color(override, orig)
@@ -65,7 +65,7 @@
 	recolor_blood_type = /datum/blood_type/human/a_minus/alt_color
 
 /datum/blood_type/human/a_minus/alt_color
-	/* root_abstract_type = /datum/blood_type/human/a_minus/alt_color */
+	/* abstract_type = /datum/blood_type/human/a_minus/alt_color */
 
 /datum/blood_type/human/a_minus/alt_color/New(override, datum/blood_type/orig)
 	make_alt_color(override, orig)
@@ -78,7 +78,7 @@
 	recolor_blood_type = /datum/blood_type/human/a_plus/alt_color
 
 /datum/blood_type/human/a_plus/alt_color
-	/* root_abstract_type = /datum/blood_type/human/a_plus/alt_color */
+	/* abstract_type = /datum/blood_type/human/a_plus/alt_color */
 
 /datum/blood_type/human/a_plus/alt_color/New(override, datum/blood_type/orig)
 	make_alt_color(override, orig)
@@ -91,7 +91,7 @@
 	recolor_blood_type = /datum/blood_type/human/b_plus/alt_color
 
 /datum/blood_type/human/b_plus/alt_color
-	/* root_abstract_type = /datum/blood_type/human/b_plus/alt_color */
+	/* abstract_type = /datum/blood_type/human/b_plus/alt_color */
 
 /datum/blood_type/human/b_plus/alt_color/New(override, datum/blood_type/orig)
 	make_alt_color(override, orig)
@@ -104,7 +104,7 @@
 	recolor_blood_type = /datum/blood_type/human/b_minus/alt_color
 
 /datum/blood_type/human/b_minus/alt_color
-	/* root_abstract_type = /datum/blood_type/human/b_minus/alt_color */
+	/* abstract_type = /datum/blood_type/human/b_minus/alt_color */
 
 /datum/blood_type/human/b_minus/alt_color/New(override, datum/blood_type/orig)
 	make_alt_color(override, orig)
@@ -117,7 +117,7 @@
 	recolor_blood_type = /datum/blood_type/human/ab_minus/alt_color
 
 /datum/blood_type/human/ab_minus/alt_color
-	/* root_abstract_type = /datum/blood_type/human/ab_minus/alt_color */
+	/* abstract_type = /datum/blood_type/human/ab_minus/alt_color */
 
 /datum/blood_type/human/ab_minus/alt_color/New(override, datum/blood_type/orig)
 	make_alt_color(override, orig)
@@ -130,7 +130,7 @@
 	recolor_blood_type = /datum/blood_type/human/ab_plus/alt_color
 
 /datum/blood_type/human/ab_plus/alt_color
-	/* root_abstract_type = /datum/blood_type/human/ab_plus/alt_color */
+	/* abstract_type = /datum/blood_type/human/ab_plus/alt_color */
 
 /datum/blood_type/human/ab_plus/alt_color/New(override, datum/blood_type/orig)
 	make_alt_color(override, orig)
@@ -143,7 +143,7 @@
 	recolor_blood_type = /datum/blood_type/human/o_minus/alt_color
 
 /datum/blood_type/human/o_minus/alt_color
-	/* root_abstract_type = /datum/blood_type/human/o_minus/alt_color */
+	/* abstract_type = /datum/blood_type/human/o_minus/alt_color */
 
 /datum/blood_type/human/o_minus/alt_color/New(override, datum/blood_type/orig)
 	make_alt_color(override, orig)
@@ -156,7 +156,7 @@
 	recolor_blood_type = /datum/blood_type/human/o_plus/alt_color
 
 /datum/blood_type/human/o_plus/alt_color
-	/* root_abstract_type = /datum/blood_type/human/o_plus/alt_color */
+	/* abstract_type = /datum/blood_type/human/o_plus/alt_color */
 
 /datum/blood_type/human/o_plus/alt_color/New(override, datum/blood_type/orig)
 	make_alt_color(override, orig)
@@ -169,7 +169,7 @@
 	recolor_blood_type = /datum/blood_type/animal/alt_color
 
 /datum/blood_type/animal/alt_color
-	root_abstract_type = /datum/blood_type/animal/alt_color
+	abstract_type = /datum/blood_type/animal/alt_color
 
 /datum/blood_type/animal/alt_color/New(override, datum/blood_type/orig)
 	make_alt_color(override, orig)
@@ -182,7 +182,7 @@
 	recolor_blood_type = /datum/blood_type/lizard/alt_color
 
 /datum/blood_type/lizard/alt_color
-	root_abstract_type = /datum/blood_type/lizard/alt_color
+	abstract_type = /datum/blood_type/lizard/alt_color
 
 /datum/blood_type/lizard/alt_color/New(override, datum/blood_type/orig)
 	make_alt_color(override, orig)
@@ -195,7 +195,7 @@
 	recolor_blood_type = /datum/blood_type/ethereal/alt_color
 
 /datum/blood_type/ethereal/alt_color
-	root_abstract_type = /datum/blood_type/ethereal/alt_color
+	abstract_type = /datum/blood_type/ethereal/alt_color
 
 /datum/blood_type/ethereal/alt_color/New(override, datum/blood_type/orig)
 	make_alt_color(override, orig)
@@ -208,7 +208,7 @@
 	recolor_blood_type = /datum/blood_type/oil/alt_color
 
 /datum/blood_type/oil/alt_color
-	root_abstract_type = /datum/blood_type/oil/alt_color
+	abstract_type = /datum/blood_type/oil/alt_color
 
 /datum/blood_type/oil/alt_color/New(override, datum/blood_type/orig)
 	make_alt_color(override, orig)
@@ -221,7 +221,7 @@
 	recolor_blood_type = /datum/blood_type/vampire/alt_color
 
 /datum/blood_type/vampire/alt_color
-	root_abstract_type = /datum/blood_type/vampire/alt_color
+	abstract_type = /datum/blood_type/vampire/alt_color
 
 /datum/blood_type/vampire/alt_color/New(override, datum/blood_type/orig)
 	make_alt_color(override, orig)
@@ -234,7 +234,7 @@
 	recolor_blood_type = /datum/blood_type/universal/alt_color
 
 /datum/blood_type/universal/alt_color
-	root_abstract_type = /datum/blood_type/universal/alt_color
+	abstract_type = /datum/blood_type/universal/alt_color
 
 /datum/blood_type/universal/alt_color/New(override, datum/blood_type/orig)
 	make_alt_color(override, orig)
@@ -247,7 +247,7 @@
 	recolor_blood_type = /datum/blood_type/meat/alt_color
 
 /datum/blood_type/meat/alt_color
-	root_abstract_type = /datum/blood_type/meat/alt_color
+	abstract_type = /datum/blood_type/meat/alt_color
 
 /datum/blood_type/meat/alt_color/New(override, datum/blood_type/orig)
 	make_alt_color(override, orig)
@@ -260,7 +260,7 @@
 	recolor_blood_type = /datum/blood_type/slime/alt_color
 
 /datum/blood_type/slime/alt_color
-	root_abstract_type = /datum/blood_type/slime/alt_color
+	abstract_type = /datum/blood_type/slime/alt_color
 
 /datum/blood_type/slime/alt_color/New(override, datum/blood_type/orig)
 	make_alt_color(override, orig)
@@ -273,7 +273,7 @@
 	recolor_blood_type = /datum/blood_type/water/alt_color
 
 /datum/blood_type/water/alt_color
-	root_abstract_type = /datum/blood_type/water/alt_color
+	abstract_type = /datum/blood_type/water/alt_color
 
 /datum/blood_type/water/alt_color/New(override, datum/blood_type/orig)
 	make_alt_color(override, orig)
@@ -286,7 +286,7 @@
 	recolor_blood_type = /datum/blood_type/snail/alt_color
 
 /datum/blood_type/snail/alt_color
-	root_abstract_type = /datum/blood_type/snail/alt_color
+	abstract_type = /datum/blood_type/snail/alt_color
 
 /datum/blood_type/snail/alt_color/New(override, datum/blood_type/orig)
 	make_alt_color(override, orig)
