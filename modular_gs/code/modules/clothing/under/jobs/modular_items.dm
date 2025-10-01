@@ -115,15 +115,15 @@
 	var/obj/item/organ/genital/G
 	for(G in genitals_list)
 		if(istype(G, /obj/item/organ/genital/belly))
-			add_modular_overlay(U, mod_belly_rec, MODULAR_BELLY_LAYER, color)
-			add_modular_overlay(U, "[mod_belly_rec]_SOUTH", BELLY_FRONT_LAYER, color)
+			add_modular_overlay(U, mod_belly_rec, MODULAR_BELLY_LAYER, greyscale_colors)
+			add_modular_overlay(U, "[mod_belly_rec]_SOUTH", BELLY_FRONT_LAYER, greyscale_colors)
 		if(istype(G, /obj/item/organ/genital/butt))
-			add_modular_overlay(U, mod_butt_rec, MODULAR_BUTT_LAYER, color)
-			add_modular_overlay(U, "[mod_butt_rec]_NORTH", BUTT_BEHIND_LAYER, color)
+			add_modular_overlay(U, mod_butt_rec, MODULAR_BUTT_LAYER, greyscale_colors)
+			add_modular_overlay(U, "[mod_butt_rec]_NORTH", BUTT_BEHIND_LAYER, greyscale_colors)
 		if(istype(G, /obj/item/organ/genital/breasts))
-			add_modular_overlay(U, mod_breasts_rec, MODULAR_BREASTS_LAYER, color)
-			add_modular_overlay(U, "[mod_breasts_rec]_NORTH", BREASTS_BEHIND_LAYER, color)
-			add_modular_overlay(U, "[mod_breasts_rec]_SOUTH", BREASTS_FRONT_LAYER, color)
+			add_modular_overlay(U, mod_breasts_rec, MODULAR_BREASTS_LAYER, greyscale_colors)
+			add_modular_overlay(U, "[mod_breasts_rec]_NORTH", BREASTS_BEHIND_LAYER, greyscale_colors)
+			add_modular_overlay(U, "[mod_breasts_rec]_SOUTH", BREASTS_FRONT_LAYER, greyscale_colors)
 	U.update_body()
 
 //Remove the previously built modular sprite overlays and empty the list of tracked overlays
@@ -232,47 +232,47 @@
 /obj/item/clothing/under/color/grey/service
 	name = "service grey jumpsuit (Modular)"
 	desc = "Grey only in name"
-	color = "#6AD427"
-	// greyscale_colors = "#6AD427" // leaving it here because maybe in the future we will use it. Unlikely.
+	// color = "#6AD427"
+	greyscale_colors = "#6AD427"
 
 /obj/item/clothing/under/color/grey/medical
 	name = "medical grey jumpsuit (Modular)"
 	desc = "Grey only in name"
-	color = "#5A96BB"
-	// greyscale_colors = "#5A96BB"
+	// color = "#5A96BB"
+	greyscale_colors = "#5A96BB"
 	armor_type = /datum/armor/clothing_under/rank_medical
 
 /obj/item/clothing/under/color/grey/cargo
 	name = "cargo grey jumpsuit (Modular)"
 	desc = "Grey only in name"
-	color = "#BB9042"
-	// greyscale_colors = "#BB9042"
+	// color = "#BB9042"
+	greyscale_colors = "#BB9042"
 	armor_type = /datum/armor/clothing_under/cargo_miner
 
 /obj/item/clothing/under/color/grey/engi
 	name = "engineering grey jumpsuit (Modular)"
 	desc = "Grey only in name"
-	color = "#FF8800"
-	// greyscale_colors = "#FF8800"
+	// color = "#FF8800"
+	greyscale_colors = "#FF8800"
 	armor_type = /datum/armor/clothing_under/rank_engineering
 
 /obj/item/clothing/under/color/grey/science
 	name = "science grey jumpsuit (Modular)"
 	desc = "Grey only in name"
-	color = "#9900FF"
-	// greyscale_colors = "#9900FF"
+	// color = "#9900FF"
+	greyscale_colors = "#9900FF"
 	armor_type = /datum/armor/clothing_under/science
 
 /obj/item/clothing/under/color/grey/security
 	name = "security grey jumpsuit (Modular)"
 	desc = "Grey only in name"
-	color = "#F4080C"
-	// greyscale_colors = "#F4080C"
+	// color = "#F4080C"
+	greyscale_colors = "#F4080C"
 	armor_type = /datum/armor/clothing_under/rank_security
 
 /obj/item/clothing/under/color/grey/command
 	name = "command grey jumpsuit (Modular)"
 	desc = "Grey only in name"
-	color = "#004B8F"
-	// greyscale_colors = "#004B8F"
+	// color = "#004B8F"
+	greyscale_colors = "#004B8F"
 	armor_type = /datum/armor/clothing_under/rank_captain
