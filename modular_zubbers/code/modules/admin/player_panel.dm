@@ -381,22 +381,31 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 
 		/// Bans target
 		if ("ban")
-			var/player_key = target_mob.key
-			var/player_ip = target_mob.client.address
-			var/player_cid = target_mob.client.computer_id
-			admin_client.holder.ban_panel(player_key, player_ip, player_cid)
+			var/target_ckey = get_target_ckey()
+			var/player_ip = target_mob.client?.address
+			var/player_cid = target_mob.client?.computer_id
+			if(!target_ckey)
+				to_chat(admin_client, span_warning("No ckey found for this mob."))
+				return
+			admin_client.holder.ban_panel(target_ckey, player_ip, player_cid)
 
 		/// Stickbans target
 		if ("sticky_ban")
 			var/list/ban_settings = list()
-			if(target_mob.client)
-				ban_settings["ckey"] = target_mob.ckey
+			var/target_ckey = get_target_ckey()
+			if(!target_ckey)
+				to_chat(admin_client, span_warning("No ckey found for this mob."))
+				return
+			ban_settings["ckey"] = target_ckey
 			admin_client.holder.stickyban("add", ban_settings)
 
 		/// Opens selected target's Notes
 		if ("notes")
-			if (target_mob.client)
-				browse_messages(target_ckey = ckey(target_mob.ckey))
+			var/target_ckey = get_target_ckey()
+			if(!target_ckey)
+				to_chat(admin_client, span_warning("No ckey found for this mob."))
+				return
+			browse_messages(target_ckey = target_ckey)
 
 		/// Opens selected target's logs
 		if ("logs")
