@@ -1,12 +1,45 @@
+//Metro Cop stuff by HL13
+
 /obj/item/clothing/head/helmet/metrocophelmet
-	name = "Civil Protection Helmet"
+	name = "civil protection helmet"
 	flags_inv = HIDEHAIR | HIDEFACE | HIDESNOUT | HIDEFACIALHAIR
-	desc = "Standard issue helmet for Civil Protection."
-	icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
+	desc = "Standard issue helmet for Civil Protection. Uses advanced GigaSlop brand Matrixes to allow alternative variants!"
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
 	icon_state = "metrocopHelm"
 	inhand_icon_state = null
 	armor_type = /datum/armor/head_helmet
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Metrocop" = list(
+			RESKIN_ICON_STATE = "metrocopHelm",
+			RESKIN_WORN_ICON_STATE = "metrocopHelm"
+		),
+		"Medical Cop" = list(
+			RESKIN_ICON_STATE = "medicalofficer",
+			RESKIN_WORN_ICON_STATE = "medicalofficer"
+		),
+		"Green" = list(
+			RESKIN_ICON_STATE = "overseer",
+			RESKIN_WORN_ICON_STATE = "overseer"
+		),
+		"Puppet" = list(
+			RESKIN_ICON_STATE = "dv_mask",
+			RESKIN_WORN_ICON_STATE = "dv_mask"
+		),
+		"White Overwatch" = list(
+			RESKIN_ICON_STATE = "overwatch_white",
+			RESKIN_WORN_ICON_STATE = "overwatch_white"
+		),
+		"Overwatch" = list(
+			RESKIN_ICON_STATE = "overwatch",
+			RESKIN_WORN_ICON_STATE = "overwatch"
+		),
+		"Red Overwatch" = list(
+			RESKIN_ICON_STATE = "overwatch_red",
+			RESKIN_WORN_ICON_STATE = "overwatch_red"
+		),
+	)
 
 /obj/item/clothing/head/helmet/abductor/fake
 	name = "Kabrus Utility Helmet"
