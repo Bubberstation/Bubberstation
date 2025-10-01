@@ -2,6 +2,12 @@
 	if(!M || !ismob(M))
 		return
 
+	// BUBBER EDIT START: TGUI Individual Logging Panel
+	if(usr?.client?.prefs?.read_preference(/datum/preference/toggle/use_tgui_player_panel) && !GLOB.tgui_fallback_enabled)
+		show_individual_logging_panel_tgui(M, source)
+		return
+	// BUBBER EDIT END
+
 	var/ntype = text2num(type)
 
 	//Add client links
