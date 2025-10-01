@@ -72,12 +72,20 @@
 
 // Borg Dom Aura :)
 /obj/item/borg/upgrade/dominatrixmodule/action(mob/living/silicon/robot/borg, mob/living/user)
+	if(borg.hasToys)
+		to_chat(usr, span_warning("This unit already has a 'recreational' module installed!"))
+		return FALSE
 	. = ..()
-	borg.add_quirk(/datum/quirk/dominant_aura)
+	if(.)
+		borg.hasToys = TRUE
+		borg.add_quirk(/datum/quirk/dominant_aura)
 
 /obj/item/borg/upgrade/dominatrixmodule/deactivate(mob/living/silicon/robot/borg, mob/living/user)
 	. = ..()
-	borg.remove_quirk(/datum/quirk/dominant_aura)
+	if(.)
+		if(borg.hasToys)
+			borg.hasToys = FALSE
+		borg.remove_quirk(/datum/quirk/dominant_aura)
 
 // Engineering RLD
 /obj/item/borg/upgrade/rld
@@ -111,3 +119,39 @@
 	model_type = list(/obj/item/robot_model/miner)
 	model_flags = BORG_MODEL_MINER
 	items_to_add = list(/obj/item/pinpointer/vent)
+
+/// "Good Borg" Obedience Training
+/mob/living/silicon/robot
+	var/hasToys = FALSE
+
+/obj/item/borg/upgrade/obediencemodule
+	name = "Cyborg Obedience Module"
+	desc = "A module that greatly upgrades the ability of borgs to display affection."
+	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
+	icon_state = "module_lust"
+	custom_price = 0
+
+	items_to_add = list(/obj/item/kinky_shocker,
+						/obj/item/clothing/mask/leatherwhip,
+						/obj/item/spanking_pad,
+						/obj/item/tickle_feather,
+						/obj/item/clothing/erp_leash,
+						)
+
+// WellTrained Obedience Behaviour
+/obj/item/borg/upgrade/obediencemodule/action(mob/living/silicon/robot/borg, mob/living/user)
+	if(borg.hasToys)
+		to_chat(usr, span_warning("This unit already has a 'recreational' module installed!"))
+		return FALSE
+	. = ..()
+	if(.)
+		borg.hasToys = TRUE
+		borg.add_quirk(/datum/quirk/well_trained)
+
+/obj/item/borg/upgrade/obediencemodule/deactivate(mob/living/silicon/robot/borg, mob/living/user)
+	. = ..()
+	if(.)
+		if(borg.hasToys)
+			borg.hasToys = FALSE
+
+		borg.remove_quirk(/datum/quirk/well_trained)
