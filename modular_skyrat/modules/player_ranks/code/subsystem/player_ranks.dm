@@ -107,7 +107,7 @@ SUBSYSTEM_DEF(player_ranks)
  * `donator_status` and `max_save_slots` once donators are loaded.
  */
 /datum/controller/subsystem/player_ranks/proc/update_all_prefs_donator_status()
-	for(var/ckey as anything in GLOB.preferences_datums)
+	for(var/ckey in GLOB.preferences_datums)
 		update_prefs_donator_status(GLOB.preferences_datums[ckey])
 
 
@@ -118,7 +118,7 @@ SUBSYSTEM_DEF(player_ranks)
  * * prefs - The preferences datum to check the donator_status eligibility.
  */
 /datum/controller/subsystem/player_ranks/proc/update_prefs_donator_status(datum/preferences/prefs)
-	if(!prefs)
+	if(!prefs || !prefs.parent)
 		return
 
 	prefs.unlock_content = !!prefs.parent.IsByondMember()

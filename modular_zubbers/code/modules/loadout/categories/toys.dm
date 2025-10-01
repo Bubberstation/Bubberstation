@@ -1,3 +1,5 @@
+//Title Capitalization for names please!!!
+
 /datum/loadout_item/toys/moffplush_lovers
 	name = "Lovers Moth Plushie"
 	item_path = /obj/item/toy/plush/moth/lovers
@@ -110,3 +112,7 @@
 /datum/loadout_item/toys/sunny_plush
 	name = "Weighty Moostoat Plushie"
 	item_path = /obj/item/toy/plush/sunny_plush
+
+/datum/loadout_item/toys/amber_shadekin_plush
+	name = "Squishy Shadekin Plush"
+	item_path = /obj/item/toy/plush/amber_shadekin_plush

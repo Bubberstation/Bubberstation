@@ -336,3 +336,39 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	icon_state = "diesel_f"
+
+/obj/item/clothing/shoes/jackboots/toeless // Ported from SPLURT
+	name = "toe-less jackboots"
+	desc = "Modified pair of jackboots, particularly friendly to those species whose toes hold claws."
+	icon = 'modular_zubbers/icons/obj/clothing/shoes.dmi'
+	icon_state = "jackboots-toeless"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+
+/obj/item/clothing/shoes/workboots/toeless // Ported from SPLURT
+	name = "toe-less workboots"
+	desc = "A pair of toe-less work boots designed for use in industrial settings. Modified for species whose toes have claws."
+	icon = 'modular_zubbers/icons/obj/clothing/shoes.dmi'
+	icon_state = "workboots-toeless"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+
+
+/obj/item/clothing/shoes/jackboots/combine
+	name = "union jackboots"
+	desc = "Crushing cans and crushing skulls."
+	clothing_traits = list(TRAIT_SILENT_FOOTSTEPS)
+
+/obj/item/clothing/shoes/jackboots/combine/Initialize(mapload)
+	. = ..()
+	var/list/combine_sounds = list(
+		'modular_zubbers/sound/effects/combine/gear1.ogg'= 1,
+		'modular_zubbers/sound/effects/combine/gear2.ogg'= 1,
+		'modular_zubbers/sound/effects/combine/gear3.ogg'= 1,
+		'modular_zubbers/sound/effects/combine/gear4.ogg'= 1,
+		'modular_zubbers/sound/effects/combine/gear5.ogg'= 1,
+		'modular_zubbers/sound/effects/combine/gear6.ogg'= 1,
+		)
+	AddComponent(/datum/component/squeak, combine_sounds, 75)
+
+

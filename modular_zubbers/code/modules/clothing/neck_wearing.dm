@@ -53,7 +53,7 @@ Use CTRL + SHIFT + LEFT CLICK to turn them on and off.
 		slowdown = 0
 		set_armor(/datum/armor/none)
 		user.visible_message(span_notice("[user] adjusts [user.p_their()] [src] for non-functional use."), span_notice("You adjust your [src] for non-functional use."))
-	else
+	else if(!isnull(functional_suit_values))
 		slot_flags = functional_suit_values[PREV_SLOT_FLAGS]
 		cold_protection = functional_suit_values[PREV_COLD_PROTECTION]
 		heat_protection = functional_suit_values[PREV_HEAT_PROTECTION]

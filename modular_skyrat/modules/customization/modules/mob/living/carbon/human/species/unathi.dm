@@ -1,5 +1,5 @@
 /datum/species/unathi
-	name = "Unathi"
+	name = "Lizardperson (Generic)"
 	id = SPECIES_UNATHI
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,
@@ -13,6 +13,7 @@
 	payday_modifier = 1.0
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	examine_limb_id = SPECIES_LIZARD
+	sort_bottom = TRUE //BUBBER EDIT ADDITION: We want to sort this to the bottom because it's a custom species template. It can't have its own lore.
 
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/lizard,
