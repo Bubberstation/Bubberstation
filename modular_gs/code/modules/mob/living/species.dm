@@ -53,215 +53,223 @@
 		update_body_size(H, weight_stage + 1)
 
 /mob/living/carbon/human/proc/handle_helplessness()
-	return TRUE
-	/*
-	Later
+	// return TRUE
+
 	var/mob/living/carbon/human/fatty = src
-	var/datum/preferences/preferences = fatty?.client?.prefs
-	if(!istype(preferences) || HAS_TRAIT(fatty, TRAIT_NO_HELPLESSNESS))
+	if (isnull(fatty.client))
 		return FALSE
 
-	if(preferences.helplessness_no_movement)
+	if (isnull(fatty.client.prefs))
+		return FALSE
+
+	var/datum/preferences/preferences = fatty.client.prefs
+	if(HAS_TRAIT(fatty, TRAIT_NO_HELPLESSNESS))
+		return FALSE
+
+	var/immobility_BFI = preferences.read_preference(/datum/preference/numeric/helplessness/no_movement)
+	if(immobility_BFI > 0)
 		if(!HAS_TRAIT_FROM(fatty, TRAIT_NO_MOVE, HELPLESSNESS_TRAIT))
-			if(fatty.fatness >= preferences.helplessness_no_movement)
-				to_chat(fatty, "<span class='warning'>You have become too fat to move anymore.</span>")
+			if(fatty.fatness >= immobility_BFI)
+				to_chat(fatty, span_warning("You have become too fat to move anymore."))
 				ADD_TRAIT(fatty, TRAIT_NO_MOVE, HELPLESSNESS_TRAIT)
 
-		else if(fatty.fatness < preferences.helplessness_no_movement)
-			to_chat(fatty, "<span class='notice'>You have become thin enough to regain some of your mobility.</span>")
+		else if(fatty.fatness < immobility_BFI)
+			to_chat(fatty, span_notice("You have become thin enough to regain some of your mobility."))
 			REMOVE_TRAIT(fatty, TRAIT_NO_MOVE, HELPLESSNESS_TRAIT)
 
 	else
 		if(HAS_TRAIT_FROM(fatty, TRAIT_NO_MOVE, HELPLESSNESS_TRAIT))
 			REMOVE_TRAIT(fatty, TRAIT_NO_MOVE, HELPLESSNESS_TRAIT)
 
-
-	if(preferences.helplessness_clumsy)
+	var/clumsy_BFI = preferences.read_preference(/datum/preference/numeric/helplessness/clumsy)
+	if(clumsy_BFI)
 		if(!HAS_TRAIT_FROM(fatty, TRAIT_CLUMSY, HELPLESSNESS_TRAIT))
-			if(fatty.fatness >= preferences.helplessness_clumsy)
-				to_chat(fatty, "<span class='warning'>Your newfound weight has made it hard to manipulate objects.</span>")
+			if(fatty.fatness >= clumsy_BFI)
+				to_chat(fatty, span_warning("Your newfound weight has made it hard to manipulate objects."))
 				ADD_TRAIT(fatty, TRAIT_CLUMSY, HELPLESSNESS_TRAIT)
 
-		else if(fatty.fatness < preferences.helplessness_clumsy)
-			to_chat(fatty, "<span class='notice'>You feel like you have lost enough weight to recover your dexterity.</span>")
+		else if(fatty.fatness < clumsy_BFI)
+			to_chat(fatty, span_notice("You feel like you have lost enough weight to recover your dexterity."))
 			REMOVE_TRAIT(fatty, TRAIT_CLUMSY, HELPLESSNESS_TRAIT)
 
 	else
 		if(HAS_TRAIT_FROM(fatty, TRAIT_CLUMSY, HELPLESSNESS_TRAIT))
 			REMOVE_TRAIT(fatty, TRAIT_CLUMSY, HELPLESSNESS_TRAIT)
 
-
-	if(preferences.helplessness_nearsighted)
-		if(!HAS_TRAIT_FROM(fatty, TRAIT_NEARSIGHT, HELPLESSNESS_TRAIT))
-			if(fatty.fatness >= preferences.helplessness_nearsighted)
-				to_chat(fatty, "<span class='warning'>Your fat makes it difficult to see the world around you. </span>")
+	var/nearsighted_BFI = preferences.read_preference(/datum/preference/numeric/helplessness/nearsighted)
+	if(nearsighted_BFI)
+		if(!fatty.is_nearsighted_from(HELPLESSNESS_TRAIT))
+			if(fatty.fatness >= nearsighted_BFI)
+				to_chat(fatty, span_warning("Your fat makes it difficult to see the world around you. "))
 				fatty.become_nearsighted(HELPLESSNESS_TRAIT)
 
-		else if(fatty.fatness < preferences.helplessness_nearsighted)
-			to_chat(fatty, "<span class='notice'>You are thin enough to see your enviornment again. </span>")
+		else if(fatty.fatness < nearsighted_BFI)
+			to_chat(fatty, span_notice("You are thin enough to see your enviornment again. "))
 			fatty.cure_nearsighted(HELPLESSNESS_TRAIT)
 
 	else
-		if(HAS_TRAIT_FROM(fatty, TRAIT_NEARSIGHT, HELPLESSNESS_TRAIT))
+		if(fatty.is_nearsighted_from(HELPLESSNESS_TRAIT))
 			fatty.cure_nearsighted(HELPLESSNESS_TRAIT)
 
-
-	if(preferences.helplessness_hidden_face)
+	var/hidden_face_BFI = preferences.read_preference(/datum/preference/numeric/helplessness/hidden_face)
+	if(hidden_face_BFI)
 		if(!HAS_TRAIT_FROM(fatty, TRAIT_DISFIGURED, HELPLESSNESS_TRAIT))
-			if(fatty.fatness >= preferences.helplessness_hidden_face)
-				to_chat(fatty, "<span class='warning'>You have gotten fat enough that your face is now unrecognizable. </span>")
+			if(fatty.fatness >= hidden_face_BFI)
+				to_chat(fatty, span_warning("You have gotten fat enough that your face is now unrecognizable. "))
 				ADD_TRAIT(fatty, TRAIT_DISFIGURED, HELPLESSNESS_TRAIT)
 
-		else if(fatty.fatness < preferences.helplessness_hidden_face)
-			to_chat(fatty, "<span class='notice'>You have lost enough weight to allow people to now recognize your face.</span>")
+		else if(fatty.fatness < hidden_face_BFI)
+			to_chat(fatty, span_notice("You have lost enough weight to allow people to now recognize your face."))
 			REMOVE_TRAIT(fatty, TRAIT_DISFIGURED, HELPLESSNESS_TRAIT)
 
 	else
 		if(HAS_TRAIT_FROM(fatty, TRAIT_DISFIGURED, HELPLESSNESS_TRAIT))
 			REMOVE_TRAIT(fatty, TRAIT_DISFIGURED, HELPLESSNESS_TRAIT)
 
-
-	if(preferences.helplessness_mute)
+	var/mute_BFI = preferences.read_preference(/datum/preference/numeric/helplessness/mute)
+	if(mute_BFI)
 		if(!HAS_TRAIT_FROM(fatty, TRAIT_MUTE, HELPLESSNESS_TRAIT))
-			if(fatty.fatness >= preferences.helplessness_mute)
-				to_chat(fatty, "<span class='warning'>Your fat makes it impossible for you to speak.</span>")
+			if(fatty.fatness >= mute_BFI)
+				to_chat(fatty, span_warning("Your fat makes it impossible for you to speak."))
 				ADD_TRAIT(fatty, TRAIT_MUTE, HELPLESSNESS_TRAIT)
 
-		else if(fatty.fatness < preferences.helplessness_mute)
-			to_chat(fatty, "<span class='notice'>You are thin enough now to be able to speak again. </span>")
+		else if(fatty.fatness < mute_BFI)
+			to_chat(fatty, span_notice("You are thin enough now to be able to speak again. "))
 			REMOVE_TRAIT(fatty, TRAIT_MUTE, HELPLESSNESS_TRAIT)
 
 	else
 		if(HAS_TRAIT_FROM(fatty, TRAIT_MUTE, HELPLESSNESS_TRAIT))
 			REMOVE_TRAIT(fatty, TRAIT_MUTE, HELPLESSNESS_TRAIT)
 
-
-	if(preferences.helplessness_immobile_arms)
+	var/immobile_arms_BFI = preferences.read_preference(/datum/preference/numeric/helplessness/immobile_arms)
+	if(immobile_arms_BFI)
 		if(!HAS_TRAIT_FROM(fatty, TRAIT_PARALYSIS_L_ARM, HELPLESSNESS_TRAIT))
-			if(fatty.fatness >= preferences.helplessness_immobile_arms)
-				to_chat(fatty, "<span class='warning'>Your arms are now engulfed in fat, making it impossible to move your arms. </span>")
+			if(fatty.fatness >= immobile_arms_BFI)
+				to_chat(fatty, span_warning("Your arms are now engulfed in fat, making it impossible to move your arms. "))
 				ADD_TRAIT(fatty, TRAIT_PARALYSIS_L_ARM, HELPLESSNESS_TRAIT)
 				ADD_TRAIT(fatty, TRAIT_PARALYSIS_R_ARM, HELPLESSNESS_TRAIT)
-				fatty.update_disabled_bodyparts()
+				fatty.update_body_parts()
 
-		else if(fatty.fatness < preferences.helplessness_immobile_arms)
-			to_chat(fatty, "<span class='notice'>You are able to move your arms again. </span>")
+		else if(fatty.fatness < immobile_arms_BFI)
+			to_chat(fatty, span_notice("You are able to move your arms again. "))
 			REMOVE_TRAIT(fatty, TRAIT_PARALYSIS_L_ARM, HELPLESSNESS_TRAIT)
 			REMOVE_TRAIT(fatty, TRAIT_PARALYSIS_R_ARM, HELPLESSNESS_TRAIT)
-			fatty.update_disabled_bodyparts()
+			fatty.update_body_parts()
 
 	else
 		if(HAS_TRAIT_FROM(fatty, TRAIT_PARALYSIS_L_ARM, HELPLESSNESS_TRAIT))
 			REMOVE_TRAIT(fatty, TRAIT_PARALYSIS_L_ARM, HELPLESSNESS_TRAIT)
 			REMOVE_TRAIT(fatty, TRAIT_PARALYSIS_R_ARM, HELPLESSNESS_TRAIT)
-			fatty.update_disabled_bodyparts()
+			fatty.update_body_parts()
 
-	if(preferences.helplessness_clothing_jumpsuit)
+	var/jumpsuit_bursting_BFI = preferences.read_preference(/datum/preference/numeric/helplessness/clothing_jumpsuit)
+	if(jumpsuit_bursting_BFI)
 		if(!HAS_TRAIT_FROM(fatty, TRAIT_NO_JUMPSUIT, HELPLESSNESS_TRAIT))
-			if(fatty.fatness >= preferences.helplessness_clothing_jumpsuit)
+			if(fatty.fatness >= jumpsuit_bursting_BFI)
 				ADD_TRAIT(fatty, TRAIT_NO_JUMPSUIT, HELPLESSNESS_TRAIT)
 
 				var/obj/item/clothing/under/jumpsuit = fatty.w_uniform
 				if(istype(jumpsuit) && jumpsuit.modular_icon_location == null)
-					to_chat(fatty, "<span class='warning'>[jumpsuit] can no longer contain your weight!</span>")
+					to_chat(fatty, span_warning("[jumpsuit] can no longer contain your weight!"))
 					fatty.dropItemToGround(jumpsuit)
 
-		else if(fatty.fatness < preferences.helplessness_clothing_jumpsuit)
-			to_chat(fatty, "<span class='notice'>You feel thin enough to put on jumpsuits now. </span>")
+		else if(fatty.fatness < jumpsuit_bursting_BFI)
+			to_chat(fatty, span_notice("You feel thin enough to put on jumpsuits now."))
 			REMOVE_TRAIT(fatty, TRAIT_NO_JUMPSUIT, HELPLESSNESS_TRAIT)
 
 	else
 		if(HAS_TRAIT_FROM(fatty, TRAIT_NO_JUMPSUIT, HELPLESSNESS_TRAIT))
 			REMOVE_TRAIT(fatty, TRAIT_NO_JUMPSUIT, HELPLESSNESS_TRAIT)
 
-
-	if(preferences.helplessness_clothing_misc)
+	var/clothing_bursting_BFI = preferences.read_preference(/datum/preference/numeric/helplessness/clothing_misc)
+	if(clothing_bursting_BFI)
 		if(!HAS_TRAIT_FROM(fatty, TRAIT_NO_MISC, HELPLESSNESS_TRAIT))
-			if(fatty.fatness >= preferences.helplessness_clothing_misc)
+			if(fatty.fatness >= clothing_bursting_BFI)
 				ADD_TRAIT(fatty, TRAIT_NO_MISC, HELPLESSNESS_TRAIT)
 
 				var/obj/item/clothing/suit/worn_suit = fatty.wear_suit
 				if(istype(worn_suit) && !istype(worn_suit, /obj/item/clothing/suit/mod))
-					to_chat(fatty, "<span class='warning'>[worn_suit] can no longer contain your weight!</span>")
+					to_chat(fatty, span_warning("[worn_suit] can no longer contain your weight!"))
 					fatty.dropItemToGround(worn_suit)
 
 				var/obj/item/clothing/gloves/worn_gloves = fatty.gloves
 				if(istype(worn_gloves)&& !istype(worn_gloves, /obj/item/clothing/gloves/mod))
-					to_chat(fatty, "<span class='warning'>[worn_gloves] can no longer contain your weight!</span>")
+					to_chat(fatty, span_warning("[worn_gloves] can no longer contain your weight!"))
 					fatty.dropItemToGround(worn_gloves)
 
 				var/obj/item/clothing/shoes/worn_shoes = fatty.shoes
 				if(istype(worn_shoes) && !istype(worn_shoes, /obj/item/clothing/shoes/mod))
-					to_chat(fatty, "<span class='warning'>[worn_shoes] can no longer contain your weight!</span>")
+					to_chat(fatty, span_warning("[worn_shoes] can no longer contain your weight!"))
 					fatty.dropItemToGround(worn_shoes)
 
-		else if(fatty.fatness < preferences.helplessness_clothing_misc)
-			to_chat(fatty, "<span class='notice'>You feel thin enough to put on suits, shoes, and gloves now. </span>")
+		else if(fatty.fatness < clothing_bursting_BFI)
+			to_chat(fatty, span_notice("You feel thin enough to put on suits, shoes, and gloves now."))
 			REMOVE_TRAIT(fatty, TRAIT_NO_MISC, HELPLESSNESS_TRAIT)
 
 	else
 		if(HAS_TRAIT_FROM(fatty, TRAIT_NO_MISC, HELPLESSNESS_TRAIT))
 			REMOVE_TRAIT(fatty, TRAIT_NO_MISC, HELPLESSNESS_TRAIT)
 
-
-	if(preferences.helplessness_belts)
+	var/belt_BFI = preferences.read_preference(/datum/preference/numeric/helplessness/belts)
+	if(belt_BFI)
 		if(!HAS_TRAIT_FROM(fatty, TRAIT_NO_BELT, HELPLESSNESS_TRAIT))
-			if(fatty.fatness >= preferences.helplessness_belts)
+			if(fatty.fatness >= belt_BFI)
 				ADD_TRAIT(fatty, TRAIT_NO_BELT, HELPLESSNESS_TRAIT)
 
-				// if(istype(fatty.belt, /obj/item/bluespace_belt))
 				var/obj/item/bluespace_belt/primitive/PBS_belt = fatty.belt
-				if(istype(PBS_belt) && fatty.fatness > preferences.helplessness_belts)
-					// to_chat(fatty, "<span class='warning'>[PBS_belt] can no longer contain your weight!</span>")
-					fatty.visible_message("<span class='warning'>[PBS_belt] fails as it's unable to contain [fatty]'s bulk!</span>", "<span class='warning'>[PBS_belt] fails as it's unable to contain your bulk!</span>")
+				if(istype(PBS_belt) && fatty.fatness > belt_BFI)
+					fatty.visible_message(span_warning("[PBS_belt] fails as it's unable to contain [fatty]'s bulk!"),
+					span_warning("[PBS_belt] fails as it's unable to contain your bulk!"))
 					fatty.dropItemToGround(PBS_belt)
 
 				var/obj/item/storage/belt/belt = fatty.belt
 				if(istype(belt))
-					// to_chat(fatty, "<span class='warning'>[belt] can no longer contain your weight!</span>")
-					fatty.visible_message("<span class='warning'>With a loud ripping sound, [fatty]'s [belt] snaps open!</span>", "<span class='warning'>With a loud ripping sound, your [belt] snaps open!</span>")
+					fatty.visible_message(
+						span_warning("With a loud ripping sound, [fatty]'s [belt] snaps open!"),
+						span_warning("With a loud ripping sound, your [belt] snaps open!"))
 					fatty.dropItemToGround(belt)
 
-		else if(fatty.fatness < preferences.helplessness_belts)
-			to_chat(fatty, "<span class='notice'>You feel thin enough to put on belts now. </span>")
+		else if(fatty.fatness < belt_BFI)
+			to_chat(fatty, span_notice("You feel thin enough to put on belts now."))
 			REMOVE_TRAIT(fatty, TRAIT_NO_BELT, HELPLESSNESS_TRAIT)
 
 	else
 		if(HAS_TRAIT_FROM(fatty, TRAIT_NO_BELT, HELPLESSNESS_TRAIT))
 			REMOVE_TRAIT(fatty, TRAIT_NO_BELT, HELPLESSNESS_TRAIT)
 
-	if(preferences.helplessness_clothing_back)
+	var/back_BFI = preferences.read_preference(/datum/preference/numeric/helplessness/clothing_back)
+	if(back_BFI)
 		if(!HAS_TRAIT_FROM(fatty, TRAIT_NO_BACKPACK, HELPLESSNESS_TRAIT))
-			if(fatty.fatness >= preferences.helplessness_clothing_back)
+			if(fatty.fatness >= back_BFI)
 				ADD_TRAIT(fatty, TRAIT_NO_BACKPACK, HELPLESSNESS_TRAIT)
 				var/obj/item/back_item = fatty.back
 				if(istype(back_item) && !istype(back_item, /obj/item/mod))
-					to_chat(fatty, "<span class='warning'>Your weight makes it impossible for you to carry [back_item].</span>")
+					to_chat(fatty, span_warning("Your weight makes it impossible for you to carry [back_item]."))
 					fatty.dropItemToGround(back_item)
 
-		else if(fatty.fatness < preferences.helplessness_clothing_back)
-			to_chat(fatty, "<span class='notice'>You feel thin enough to hold items on your back now. </span>")
+		else if(fatty.fatness < back_BFI)
+			to_chat(fatty, span_notice("You feel thin enough to hold items on your back now."))
 			REMOVE_TRAIT(fatty, TRAIT_NO_BACKPACK, HELPLESSNESS_TRAIT)
 
 	else
 		if(HAS_TRAIT_FROM(fatty, TRAIT_NO_BACKPACK, HELPLESSNESS_TRAIT))
 			REMOVE_TRAIT(fatty, TRAIT_NO_BACKPACK, HELPLESSNESS_TRAIT)
 
-
-	if(preferences.helplessness_no_buckle)
+	var/no_buckle_BFI = preferences.read_preference(/datum/preference/numeric/helplessness/no_buckle)
+	if(no_buckle_BFI)
 		if(!HAS_TRAIT_FROM(fatty, TRAIT_NO_BUCKLE, HELPLESSNESS_TRAIT))
-			if(fatty.fatness >= preferences.helplessness_no_buckle)
-				to_chat(fatty, "<span class='warning'>You feel like you've gotten too big to fit on anything.</span>")
+			if(fatty.fatness >= no_buckle_BFI)
+				to_chat(fatty, span_warning("You feel like you've gotten too big to fit on anything."))
 				ADD_TRAIT(fatty, TRAIT_NO_BUCKLE, HELPLESSNESS_TRAIT)
 
-		else if(fatty.fatness < preferences.helplessness_no_buckle)
-			to_chat(fatty, "<span class='notice'>You feel thin enough to sit on things again. </span>")
+		else if(fatty.fatness < no_buckle_BFI)
+			to_chat(fatty, span_warning("You feel thin enough to sit on things again."))
 			REMOVE_TRAIT(fatty, TRAIT_NO_BUCKLE, HELPLESSNESS_TRAIT)
 
 	else
 		if(HAS_TRAIT_FROM(fatty, TRAIT_NO_BUCKLE, HELPLESSNESS_TRAIT))
 			REMOVE_TRAIT(fatty, TRAIT_NO_BUCKLE, HELPLESSNESS_TRAIT)
-*/
+
 
 /datum/movespeed_modifier/fatness
 	id = "fat"
@@ -339,7 +347,7 @@
 			null,
 			FATNESS_LEVEL_BLOB,
 			INFINITY,
-			"<span class='notice'>You feel like you've regained some mobility!</span>",
+			span_notice("You feel like you've regained some mobility!"),
 			null,
 			9)
 		return
@@ -350,8 +358,8 @@
 			TRAIT_BLOB,
 			FATNESS_LEVEL_IMMOBILE,
 			FATNESS_LEVEL_BLOB,
-			"<span class='notice'>You feel less restrained by your fat!</span>",
-			"<span class='danger'>You feel like you've become a mountain of fat!</span>",
+			span_notice("You feel less restrained by your fat!"),
+			span_danger("You feel like you've become a mountain of fat!"),
 			8)
 		return
 	if(HAS_TRAIT(H, TRAIT_BARELYMOBILE))
@@ -361,8 +369,8 @@
 			TRAIT_IMMOBILE,
 			FATNESS_LEVEL_BARELYMOBILE,
 			FATNESS_LEVEL_IMMOBILE,
-			"<span class='notice'>You feel less restrained by your fat!</span>",
-			"<span class='danger'>You feel your belly smush against the floor!</span>",
+			span_notice("You feel less restrained by your fat!"),
+			span_danger("You feel your belly smush against the floor!"),
 			7)
 		return
 	if(HAS_TRAIT(H, TRAIT_EXTREMELYOBESE))
@@ -372,8 +380,8 @@
 			TRAIT_BARELYMOBILE,
 			FATNESS_LEVEL_EXTREMELY_OBESE,
 			FATNESS_LEVEL_BARELYMOBILE,
-			"<span class='notice'>You feel less restrained by your fat!</span>",
-			"<span class='danger'>You feel like you can barely move!</span>",
+			span_notice("You feel less restrained by your fat!"),
+			span_danger("You feel like you can barely move!"),
 			6)
 		return
 	if(HAS_TRAIT(H, TRAIT_MORBIDLYOBESE))
@@ -383,8 +391,8 @@
 			TRAIT_EXTREMELYOBESE,
 			FATNESS_LEVEL_MORBIDLY_OBESE,
 			FATNESS_LEVEL_EXTREMELY_OBESE,
-			"<span class='notice'>You feel a bit less fat!</span>",
-			"<span class='danger'>You feel your belly rest heavily on your lap!</span>",
+			span_notice("You feel a bit less fat!"),
+			span_danger("You feel your belly rest heavily on your lap!"),
 			5)
 		return
 	if(HAS_TRAIT(H, TRAIT_OBESE))
@@ -394,8 +402,8 @@
 			TRAIT_MORBIDLYOBESE,
 			FATNESS_LEVEL_OBESE,
 			FATNESS_LEVEL_MORBIDLY_OBESE,
-			"<span class='notice'>You feel like you've lost weight!</span>",
-			"<span class='danger'>Your thighs begin to rub against each other.</span>",
+			span_notice("You feel like you've lost weight!"),
+			span_danger("Your thighs begin to rub against each other."),
 			4)
 		return
 	if(HAS_TRAIT(H, TRAIT_VERYFAT))
@@ -405,8 +413,8 @@
 			TRAIT_OBESE,
 			FATNESS_LEVEL_VERYFAT,
 			FATNESS_LEVEL_OBESE,
-			"<span class='notice'>You feel like you've lost weight!</span>",
-			"<span class='danger'>You feel like you're starting to get really heavy.</span>",
+			span_notice("You feel like you've lost weight!"),
+			span_danger("You feel like you're starting to get really heavy."),
 			3)
 		return
 	if(HAS_TRAIT(H, TRAIT_FATTER))
@@ -416,8 +424,8 @@
 			TRAIT_VERYFAT,
 			FATNESS_LEVEL_FATTER,
 			FATNESS_LEVEL_VERYFAT,
-			"<span class='notice'>You feel like you've lost weight!</span>",
-			"<span class='danger'>Your clothes creak quietly!</span>",
+			span_notice("You feel like you've lost weight!"),
+			span_danger("Your clothes creak quietly!"),
 			2)
 		return
 	if(HAS_TRAIT(H, TRAIT_FAT))
@@ -427,8 +435,8 @@
 			TRAIT_FATTER,
 			FATNESS_LEVEL_FAT,
 			FATNESS_LEVEL_FATTER,
-			"<span class='notice'>You feel fit again!</span>",
-			"<span class='danger'>You feel even plumper!</span>",
+			span_notice("You feel fit again!"),
+			span_danger("You feel even plumper!"),
 			1)
 	else
 		handle_fatness_trait(
@@ -438,5 +446,5 @@
 			0,
 			FATNESS_LEVEL_FAT,
 			null,
-			"<span class='danger'>You suddenly feel blubbery!</span>",
+			span_danger("You suddenly feel blubbery!"),
 			0)
