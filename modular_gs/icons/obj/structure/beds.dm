@@ -1,4 +1,6 @@
 
+//this file should probably be removed, most of these sprites either already exist in rebase or the sprites are outdated (and GATO sheets are already in gato.dm)
+
 /obj/structure/bed/double //GS13
 	name = "double bed"
 	desc = "This is used to lie in, sleep in or strap on. Now extra-sized, for extra snuggling experience!"

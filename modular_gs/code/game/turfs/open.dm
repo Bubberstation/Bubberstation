@@ -51,11 +51,17 @@
 
 /turf/open/floor/carpet/gato //GS13
 	icon = 'modular_gs/icons/turf/carpet_gato.dmi'
+	icon_state = "executive_carpet-255"
+	base_icon_state = "executive_carpet"
 	floor_tile = /obj/item/stack/tile/carpet/gato
-	canSmoothWith = list(/turf/open/floor/carpet/gato)
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_GATO
+	canSmoothWith = SMOOTH_GROUP_CARPET_GATO
 
 /obj/item/stack/tile/carpet/gato //GS13
 	icon = 'modular_gs/icons/obj/tiles.dmi'
 	name = "gato-themed carpet"
 	icon_state = "tile-carpet-gato"
 	turf_type = /turf/open/floor/carpet/gato
+	merge_type = /obj/item/stack/tile/carpet/gato
+	tile_reskin_types = null
+
