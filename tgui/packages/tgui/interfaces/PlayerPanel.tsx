@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Box,
   Button,
@@ -1003,7 +1003,7 @@ const PunishmentActions = () => {
               discord_id !== 'Not found' &&
               discord_id !== 'Database error' &&
               discord_id !== 'No ckey found' ? (
-                <Box color="good">{'<@' + discord_id + '>'}</Box>
+                <Box color="good">{`<@${discord_id}>`}</Box>
               ) : discord_id === 'Not found' ? (
                 <Box color="bad">No Discord ID found</Box>
               ) : discord_id === 'Database error' ? (
@@ -1060,7 +1060,7 @@ const FunActions = () => {
 
   const narrateStyles = {
     color: colours[narrateColour],
-    'font-size': narrateSize + 'rem',
+    'font-size': `${narrateSize}rem`,
     'font-weight': narrateBold ? 'bold' : '',
     'font-family': narrateFont,
     'font-style': narrateItalic ? 'italic' : '',
@@ -1114,7 +1114,7 @@ const FunActions = () => {
               unit="Range"
               value={expPower}
               stepPixelSize={15}
-              onDrag={(e, value) => setExpPower(value)}
+              onChange={(e, value) => setExpPower(value)}
               ranges={{
                 green: [0, 8],
                 orange: [8, 15],
@@ -1199,7 +1199,7 @@ const FunActions = () => {
                     // align="center"
                     step={1}
                     stepPixelSize={25}
-                    onDrag={(value) => setNarrateSize(value)}
+                    onChange={(value) => setNarrateSize(value)}
                   />
                 </LabeledList.Item>
                 {!narrateGlobal && (
@@ -1213,7 +1213,7 @@ const FunActions = () => {
                       step={1}
                       // align="center"
                       stepPixelSize={25}
-                      onDrag={(value) => setNarrateRange(value)}
+                      onChange={(value) => setNarrateRange(value)}
                     />
                   </LabeledList.Item>
                 )}
