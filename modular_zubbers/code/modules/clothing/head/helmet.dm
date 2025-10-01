@@ -1,12 +1,45 @@
+//Metro Cop stuff by HL13
+
 /obj/item/clothing/head/helmet/metrocophelmet
-	name = "Civil Protection Helmet"
+	name = "civil protection helmet"
 	flags_inv = HIDEHAIR | HIDEFACE | HIDESNOUT | HIDEFACIALHAIR
-	desc = "Standard issue helmet for Civil Protection."
-	icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
+	desc = "Standard issue helmet for Civil Protection. Uses advanced GigaSlop brand Matrixes to allow alternative variants!"
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
 	icon_state = "metrocopHelm"
 	inhand_icon_state = null
 	armor_type = /datum/armor/head_helmet
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Metrocop" = list(
+			RESKIN_ICON_STATE = "metrocopHelm",
+			RESKIN_WORN_ICON_STATE = "metrocopHelm"
+		),
+		"Medical Cop" = list(
+			RESKIN_ICON_STATE = "medicalofficer",
+			RESKIN_WORN_ICON_STATE = "medicalofficer"
+		),
+		"Green" = list(
+			RESKIN_ICON_STATE = "overseer",
+			RESKIN_WORN_ICON_STATE = "overseer"
+		),
+		"Puppet" = list(
+			RESKIN_ICON_STATE = "dv_mask",
+			RESKIN_WORN_ICON_STATE = "dv_mask"
+		),
+		"White Overwatch" = list(
+			RESKIN_ICON_STATE = "overwatch_white",
+			RESKIN_WORN_ICON_STATE = "overwatch_white"
+		),
+		"Overwatch" = list(
+			RESKIN_ICON_STATE = "overwatch",
+			RESKIN_WORN_ICON_STATE = "overwatch"
+		),
+		"Red Overwatch" = list(
+			RESKIN_ICON_STATE = "overwatch_red",
+			RESKIN_WORN_ICON_STATE = "overwatch_red"
+		),
+	)
 
 /obj/item/clothing/head/helmet/abductor/fake
 	name = "Kabrus Utility Helmet"
@@ -660,3 +693,28 @@
 	)
 
 // END HATS ADDED BY APRIL
+
+/obj/item/clothing/head/helmet/elder_atmosian
+	desc = "The pinnacle of atmospherics equipment, an expensive modified atmospherics fire helmet plated in one of the most luxurous and durable metals known to man. Providing full atmos coverage without the heavy materials to slow the user down, it also offers far greater protection to most sources of damage, even offering great protection against gases, and other nasty things that try to get into your face."
+	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
+	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT | STACKABLE_HELMET_EXEMPT | SNUG_FIT | HEADINTERNALS
+	material_flags = NONE
+	heat_protection = HEAD
+	cold_protection = HEAD
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
+	resistance_flags = FIRE_PROOF
+	flags_inv = HIDEFACE | HIDEFACIALHAIR | HIDEHAIR | HIDEMASK | HIDEEYES | HIDEEARS
+
+/datum/armor/helmet_elder_atmosian
+	melee = 40
+	bullet = 30
+	laser = 40
+	energy = 40
+	bomb = 100
+	bio = 50
+	fire = 100
+	acid = 50
+	wound = 25

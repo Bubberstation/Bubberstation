@@ -271,7 +271,7 @@
 	var/immediately_stun = should_stun && !(flags & SHOCK_DELAY_STUN)
 	if (immediately_stun)
 		if (paralyze)
-			StaminaKnockdown(stun_duration / 4) // SKYRAT EDIT CHANGE - ORIGINAL: Paralyze(40)
+			Paralyze(stun_duration)
 		else
 			Knockdown(stun_duration)
 	//Jitter and other fluff.
@@ -285,7 +285,7 @@
 ///Called slightly after electrocute act to apply a secondary stun.
 /mob/living/carbon/proc/secondary_shock(paralyze, stun_duration)
 	if (paralyze)
-		StaminaKnockdown(stun_duration / 6) // SKYRAT EDIT CHANGE - ORIGINAL: Paralyze(60)
+		Paralyze(stun_duration)
 	else
 		Knockdown(stun_duration)
 

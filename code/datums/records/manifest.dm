@@ -45,7 +45,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 				"trim" = trim,
 				)
 			continue
-		for(var/department_type as anything in job.departments_list)
+		for(var/department_type in job.departments_list)
 			//Jobs under multiple departments should only be displayed if this is their first department or the command department
 			if(job.departments_list[1] != department_type && !(job.departments_bitflags & DEPARTMENT_BITFLAG_COMMAND))
 				continue
@@ -143,8 +143,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 		locked_dna = record_dna,
 		mind_ref = person.mind,
 		// BUBBER EDIT ADDITION BEGIN - Records
-		exploitable_information = person_client?.prefs.read_preference(/datum/preference/text/exploitable) || "",
-		background_information = person_client?.prefs.read_preference(/datum/preference/text/background) || "",
+		exploitable_information = person_client?.prefs.read_preference(/datum/preference/text/security) || "",
 		// BUBBER EDIT END
 	)
 
@@ -239,4 +238,3 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 		"manifest" = get_manifest(),
 		"positions" = positions
 	)
-

@@ -93,7 +93,7 @@
 		var/list/players = GLOB.player_list
 		if (range)
 			players = list()
-			for (var/mob/listening_mob as anything in hearers(range, user))
+			for (var/mob/listening_mob in hearers(range, user))
 				if (listening_mob.client)
 					players += listening_mob
 		for(var/mob/player_mob as anything in players)
