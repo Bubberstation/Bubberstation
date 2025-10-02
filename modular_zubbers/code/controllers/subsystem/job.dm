@@ -8,7 +8,31 @@
 			JOB_QUARTERMASTER = 6,
 			JOB_NT_REP = 7,
 			JOB_HEAD_OF_SECURITY = 8,
-			JOB_BLUESHIELD = 9
+			JOB_BLUESHIELD = 9,
+			JOB_BRIDGE_ASSISTANT = 10,
+			JOB_VETERAN_ADVISOR = 11,
+			// Security, as they're the most "responsible" due to their inability to roll antag and general need to get into places to do things like secure the disk or call the emergency shuttle.
+			JOB_WARDEN = 12,
+			JOB_SECURITY_OFFICER = 13,
+			JOB_DETECTIVE = 15,
+			JOB_SECURITY_MEDIC = 16,
+			JOB_CORRECTIONS_OFFICER = 17,
+			// Departmental Guards, as they're already trusted with head-level access to their departments, with a priority matching the head of staff they work for.
+			JOB_BOUNCER = 18,
+			JOB_SCIENCE_GUARD = 19,
+			JOB_ORDERLY = 20,
+			JOB_ENGINEERING_GUARD = 21,
+			JOB_CUSTOMS_AGENT = 22,
+			// Medical, as a member of the emergency services aboard the station, may need to get into departments to pick up bodies.
+			JOB_MEDICAL_DOCTOR = 23,
+			JOB_PARAMEDIC = 24,
+			JOB_CHEMIST = 25,
+			JOB_CORONER = 26,
+			JOB_PSYCHOLOGIST = 27,
+			// Engineering, as a member of the emergency services aboard the station, may need to get into departments to repair hull breaches.
+			JOB_STATION_ENGINEER = 28,
+			JOB_ATMOSPHERIC_TECHNICIAN = 29,
+			JOB_TELECOMMS_SPECIALIST = 30,
 		)
 
 /datum/controller/subsystem/job/proc/get_pda_type_by_job(job_name)
