@@ -58,7 +58,7 @@
 		WARNING("quirk 'unique_blood_color' automatically removed from [quirked.name]")
 		return
 ///Making the new blood type
-	new_blood = get_blood_type("[quirked.dna.blood_type]_[override]") //for example, A-_#69af19
+	new_blood = get_blood_type("[quirked.dna.blood_type] ([override])") //for example, A-_#69af19
 ///check if blood type already exists before making it new
 	if(isnull(new_blood))
 		var/recolor_type = quirked.dna.blood_type.recolor_blood_type
