@@ -160,3 +160,12 @@
 	name = "Kitsune (Ann)"
 	icon_state = "kitsuann"
 	icon = 'modular_zubbers/icons/customization/tails.dmi'
+
+/datum/sprite_accessory/tails/mammal/wagging/vulpkanin/fox/chemlight
+	name = "Chemlight"
+	icon_state = "chemlight"
+	icon = 'modular_zubbers/icons/customization/tails.dmi'
+
+/datum/sprite_accessory/tails/mammal/wagging/vulpkanin/fox/chemlight/alt
+	name = "Striped tail"
+	icon_state = "chemlight_alt"
