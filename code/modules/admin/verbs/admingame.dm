@@ -8,6 +8,14 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mo
 		to_chat(user, span_warning("You seem to be selecting a mob that doesn't exist anymore."), confidential = TRUE)
 		return
 
+	// BUBBER EDIT ADDITION START
+	if(user.prefs.read_preference(/datum/preference/toggle/use_tgui_player_panel) && !GLOB.tgui_fallback_enabled)
+		if(isnull(player.mob_panel))
+			player.create_player_panel()
+		player.mob_panel.ui_interact(user.mob)
+		return
+	// BUBBER EDIT ADDITION END
+
 	var/body = "<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>Options for [player.key]</title></head>"
 	body += "<body>Options panel for <b>[player]</b>"
 	if(player.client)
@@ -436,3 +444,10 @@ ADMIN_VERB(lag_switch_panel, R_ADMIN, "Show Lag Switches", "Display the controls
 	dat += "Disable character creator: <a href='byond://?_src_=holder;[HrefToken()];change_lag_switch=[DISABLE_CREATOR]'><b>[SSlag_switch.measures[DISABLE_CREATOR] ? "On" : "Off"]</b></a> - <span style='font-size:80%'>trait applies to all</span><br />" // SKYRAT EDIT ADDITION
 	dat += "</body></html>"
 	user << browse(dat.Join(), "window=lag_switch_panel;size=420x480")
+
+ADMIN_VERB(spawn_panel, R_SPAWN, "Spawn Panel", "Spawn Panel (TGUI).", ADMIN_CATEGORY_GAME)
+	var/datum/spawnpanel/panel = get_spawnpanel_for_admin(user.mob)
+	if(panel)
+		panel.ui_interact(user.mob)
+	BLACKBOX_LOG_ADMIN_VERB("Spawn Panel")
+
