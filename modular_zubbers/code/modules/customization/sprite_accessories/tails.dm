@@ -150,3 +150,22 @@
 	name = "Large cat (Covered Top)"
 	icon_state = "largecatcovered"
 	icon = 'modular_zubbers/icons/customization/tails.dmi'
+
+/datum/sprite_accessory/tails/mammal/wagging/vulpkanin/fox/foxann
+	name = "Fox (Alt 3)"
+	icon_state = "foxann"
+	icon = 'modular_zubbers/icons/customization/tails.dmi'
+
+/datum/sprite_accessory/tails/mammal/wagging/kitsune/kitsuneann
+	name = "Kitsune (Ann)"
+	icon_state = "kitsuann"
+	icon = 'modular_zubbers/icons/customization/tails.dmi'
+
+/datum/sprite_accessory/tails/mammal/wagging/vulpkanin/fox/chemlight
+	name = "Chemlight"
+	icon_state = "chemlight"
+	icon = 'modular_zubbers/icons/customization/tails.dmi'
+
+/datum/sprite_accessory/tails/mammal/wagging/vulpkanin/fox/chemlight/alt
+	name = "Striped tail"
+	icon_state = "chemlight_alt"
