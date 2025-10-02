@@ -78,6 +78,7 @@
 		/obj/item/clothing/neck/tie/bunnytie/syndicate = 3, //Armored but it's only Fire and Acid, not a balance concern
 		/obj/item/clothing/under/syndicate/syndibunny/fake = 3,
 		/obj/item/clothing/suit/jacket/tailcoat/syndicate/fake = 3,
+		/obj/item/clothing/suit/toggle/jacket/zubber/bomber/syndicate/fake = 3,
 		/obj/item/clothing/neck/warrior_cape/loadout = 3,
 	)
 
@@ -100,6 +101,7 @@
 	/obj/item/clothing/head/playbunnyears/psychologist = 3,
 	/obj/item/clothing/under/rank/civilian/psychologist_bunnysuit = 3,
 	/obj/item/clothing/suit/jacket/tailcoat/psychologist = 3,
+	/obj/item/clothing/suit/toggle/jacket/zubber/bomber/science/med = 3,
 	)
 
 /obj/machinery/vending/wardrobe/chem_wardrobe
@@ -108,6 +110,7 @@
 		/obj/item/clothing/under/rank/medical/chemist/bunnysuit = 2,
 		/obj/item/clothing/suit/toggle/labcoat/chemist/doctor_tailcoat = 2,
 		/obj/item/clothing/neck/tie/bunnytie/chemist = 2,
+		/obj/item/clothing/suit/toggle/jacket/zubber/bomber/science/chem = 2,
 )
 
 /obj/machinery/vending/wardrobe/viro_wardrobe
@@ -124,6 +127,7 @@
 		/obj/item/clothing/under/rank/medical/coroner_bunnysuit = 2,
 		/obj/item/clothing/suit/toggle/labcoat/coroner/doctor_tailcoat = 2,
 		/obj/item/clothing/neck/tie/bunnytie/coroner = 2,
+		/obj/item/clothing/suit/toggle/jacket/zubber/bomber/science/coroner = 2,
 	)
 
 
@@ -134,6 +138,7 @@
 		/obj/item/clothing/suit/toggle/labcoat/science/doctor_tailcoat = 3,
 		/obj/item/clothing/neck/tie/bunnytie/scientist = 3,
 		/obj/item/storage/bag/xeno = 3,
+		/obj/item/clothing/suit/toggle/jacket/zubber/bomber/science = 3,
 	)
 
 /obj/machinery/vending/wardrobe/robo_wardrobe
@@ -143,6 +148,7 @@
 	/obj/item/clothing/under/rank/rnd/scientist/roboticist_bunnysuit = 2,
 	/obj/item/clothing/suit/toggle/labcoat/roboticist/doctor_tailcoat = 2,
 	/obj/item/clothing/neck/tie/bunnytie/roboticist = 2,
+	/obj/item/clothing/suit/toggle/jacket/zubber/bomber/science/robotics = 2,
 	)
 
 /obj/machinery/vending/wardrobe/gene_wardrobe
@@ -170,6 +176,8 @@
 		/obj/item/clothing/head/caligram_cap_tan = 3,
 		/obj/item/clothing/under/jumpsuit/caligram_fatigues_tan = 3,
 		/obj/item/clothing/suit/jacket/caligram_parka_tan = 3,
+		/obj/item/clothing/suit/toggle/jacket/zubber/bomber/cargo = 3,
+		/obj/item/clothing/suit/toggle/jacket/zubber/bomber/cargo/smith = 3,
 		/obj/item/clothing/head/playbunnyears/cargo = 3,
 		/obj/item/clothing/under/rank/cargo/cargo_bunnysuit = 3,
 		/obj/item/clothing/suit/jacket/tailcoat/cargo = 3,
@@ -281,6 +289,7 @@
 		/obj/item/clothing/neck/tie/bunnytie/syndicate = 3,
 		/obj/item/clothing/under/syndicate/syndibunny = 3,
 		/obj/item/clothing/suit/jacket/tailcoat/syndicate = 3,
+		/obj/item/clothing/suit/toggle/jacket/zubber/bomber/syndicate = 3,
 	)
 
 /obj/machinery/vending/magivend
@@ -298,6 +307,7 @@
 		/obj/item/clothing/neck/tie/bunnytie/engineer = 3,
 		/obj/item/clothing/shoes/workboots/heeled = 3,
 		/obj/item/clothing/shoes/workboots/toeless = 3,
+		/obj/item/clothing/suit/toggle/jacket/zubber/bomber/engi = 3,
 	)
 
 /obj/machinery/vending/wardrobe/atmos_wardrobe
@@ -307,4 +317,5 @@
 		/obj/item/clothing/suit/utility/fire/atmos_tech_tailcoat = 3,
 		/obj/item/clothing/neck/tie/bunnytie/atmos_tech = 3,
 		/obj/item/clothing/shoes/workboots/heeled = 3,
+		/obj/item/clothing/suit/utility/fire/atmosbomber = 3,
 	)
