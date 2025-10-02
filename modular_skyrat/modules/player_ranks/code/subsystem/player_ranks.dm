@@ -29,6 +29,7 @@ SUBSYSTEM_DEF(player_ranks)
 
 	load_donators()
 	load_mentors()
+	vetted_controller = new()
 	return SS_INIT_SUCCESS
 
 
