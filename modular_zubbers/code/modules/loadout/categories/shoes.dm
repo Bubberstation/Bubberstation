@@ -1,3 +1,5 @@
+//Title Capitalization for names please!!!
+
 /datum/loadout_item/shoes/bubber/clown/pink/squeak //Unlike the rest, these make noise. Job locked.
 	name = "Pink Clown Heels"
 	item_path = /obj/item/clothing/shoes/clown_shoes/bubber/clussy

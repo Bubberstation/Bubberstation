@@ -154,6 +154,18 @@
 	gender = FEMALE
 	squeak_override = list('sound/misc/soggy.ogg'=1)
 
+/obj/item/toy/plush/cescrewsplush/examine(mob/user)
+	. = ..()
+	. += span_notice("Alt-click to take a look under her skirt.")
+
+/obj/item/toy/plush/cescrewsplush/click_alt(mob/user)
+	user.visible_message(span_notice("[user] turns [src], revealing the hole underneath."), span_notice("You turn [src], revealing a tight, lubed hole."))
+	playsound(user, 'sound/effects/blob/blobattack.ogg', 50, TRUE)
+	var/obj/item/toy/plush/fleshlight/screws/toy = new(null)
+	qdel(src)
+	user.put_in_hands(toy)
+	return TRUE
+
 /obj/item/toy/plush/internshiba
 	name = "Intern Shiba Plush" //Plush for Kazumi Hasegawa/sprited by Amorbis
 	desc = "An adorable shiba inu plushie of a well-known intern mutt."
@@ -386,3 +398,15 @@
 		'modular_skyrat/modules/emotes/sound/voice/moo.ogg' = 1,
 		'sound/mobs/non-humanoids/stoat/stoat_sounds.ogg' = 1,
 	)
+
+//Plushie for and by Lazhannya
+//Original Design by Cepha
+/obj/item/toy/plush/amber_shadekin_plush
+	name = "Squishy Shadekin Plush"
+	desc = "A plushie featuring the likeness of a certain self declared mad genius shadekin. It smells faintly of cinnamon."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "amberalert"
+	attack_verb_continuous = list("mars at", "bites", "chomps", "paws at", "fwoomps", "marmars")
+	attack_verb_simple = list("mar", "bite", "chomp", "paw", "fwoomp", "marmar")
+	gender = FEMALE
+	squeak_override = list('modular_zubbers/sound/emotes/sound_voice_mar.ogg' = 1)

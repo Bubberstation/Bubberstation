@@ -217,7 +217,7 @@
 	damaged_sm.name = "partially delaminated supermatter crystal"
 	damaged_sm.desc = "This crystal has seen better days, the glow seems off and the shards look brittle. Central says it's still \"relatively safe.\" They'd never lie to us, right?"
 	damaged_sm.explosion_power += 5 // if you fuck up again, yeesh
-	for(var/current_gas_mix as anything in damaged_sm.current_gas_behavior)
+	for(var/current_gas_mix in damaged_sm.current_gas_behavior)
 		var/datum/sm_gas/gas_mix = damaged_sm.current_gas_behavior[current_gas_mix]
 		if(istype(gas_mix, /datum/sm_gas/freon))
 			gas_mix.heat_resistance += 0.4
