@@ -224,7 +224,9 @@
 
 	playsound(src, 'sound/machines/microwave/microwave-end.ogg', 100, FALSE)
 	say("Procedure complete! Enjoy your life being a new you!")
-
+	if(is_species(patient.dna.species, /datum/species/ethereal))
+		var/datum/species/ethereal/ethereal = patient.dna.species
+		ethereal.refresh_light_color(patient)
 	open_machine()
 	SSquirks.OverrideQuirks(patient, patient.client)
 
