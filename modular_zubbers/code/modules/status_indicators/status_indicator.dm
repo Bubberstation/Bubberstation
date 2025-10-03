@@ -18,7 +18,8 @@
 	if(!indicator_fakeouts() && \
 	attached_mob.IsKnockdown() || \
 	HAS_TRAIT(attached_mob, TRAIT_FLOORED) && \
-	!HAS_TRAIT_FROM(attached_mob, TRAIT_FLOORED, BUCKLED_TRAIT)
+	!HAS_TRAIT_FROM(attached_mob, TRAIT_FLOORED, BUCKLED_TRAIT) && \
+	!HAS_TRAIT(attached_mob, TRAIT_PRONE) // voluntary flooring
 	)
 		return TRUE
 

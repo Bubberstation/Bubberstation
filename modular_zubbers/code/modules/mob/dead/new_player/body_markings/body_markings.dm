@@ -254,3 +254,28 @@
 	icon_state = "cryptid_marking"
 	default_color = DEFAULT_SECONDARY
 	affected_bodyparts = CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT
+
+/datum/body_marking/bubber/chitinarmor
+	name = "Chitin Forearm Armor"
+	icon_state = "chitinarmor"
+	affected_bodyparts = HAND_RIGHT | HAND_LEFT
+
+/datum/body_marking/bubber/shoulderpads
+	name = "Chitin Shoulderpad"
+	icon_state = "shoulderpad"
+	affected_bodyparts = ARM_RIGHT | ARM_LEFT
+
+/datum/body_marking/bubber/chemlight
+	name = "Chemlight"
+	icon_state = "chemlight"
+	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
+
+/datum/body_marking/bubber/chembright
+	name = "Chembright"
+	icon_state = "chem_light"
+	affected_bodyparts = ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
+
+/datum/body_marking/bubber/bellytrim
+	name = "Belly trim"
+	icon_state = "chembelly_trim"
+	affected_bodyparts = CHEST
