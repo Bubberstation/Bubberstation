@@ -51,7 +51,7 @@
 		if (DEFIB_FAIL_NO_BRAIN)
 			fail_reason = "[carbon_target]'s head looks like its missing something important."
 
-	if(carbon_target.health <= HEALTH_THRESHOLD_CRIT)
+	if(carbon_target.get_organic_health() <= HEALTH_THRESHOLD_CRIT)
 		fail_reason = "[carbon_target]'s body seems just a little too damaged for this to work..."
 
 	if(fail_reason)
