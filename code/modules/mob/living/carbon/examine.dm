@@ -130,11 +130,19 @@
 
 	if(nutrition < NUTRITION_LEVEL_STARVING - 50)
 		. += span_warning("[t_He] [t_is] severely malnourished.")
+
+	/* GS13 EDIT fat examine
 	else if(nutrition >= NUTRITION_LEVEL_FAT)
 		if(user.nutrition < NUTRITION_LEVEL_STARVING - 50)
 			. += span_hypnophrase("[t_He] [t_is] plump and delicious looking - Like a fat little piggy. A tasty piggy.")
 		else
 			. += "<b>[t_He] [t_is] quite chubby.</b>"
+	*/
+
+	. += get_fullness_text()
+	. += get_weight_text()
+	// GS13 END EDIT
+	
 	switch(disgust)
 		if(DISGUST_LEVEL_GROSS to DISGUST_LEVEL_VERYGROSS)
 			. += "[t_He] look[p_s()] a bit grossed out."
