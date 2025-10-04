@@ -143,7 +143,7 @@ export function CharacterPreferenceWindow(props) {
               onClick={() => {act('duplicate_current_slot');}}
               fontSize="13px"
               icon="copy"
-              tooltip="Duplicate Current Character"
+              tooltip="Duplicate Current Character (Experimental)" //Delete this comment about being experimental before merge
               tooltipPosition="top"
             />
           </Stack.Item>
