@@ -44,8 +44,6 @@
 			. += span_notice("[src] is designed for tram usage. Deconstructed with a screwdriver!")
 
 /obj/structure/girder/attackby(obj/item/W, mob/user, list/modifiers, list/attack_modifiers)
-	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/construction, SKILL_SPEED_MODIFIER) //SKYRAT EDIT
-
 	add_fingerprint(user)
 
 	if(istype(W, /obj/item/gun/energy/plasmacutter))

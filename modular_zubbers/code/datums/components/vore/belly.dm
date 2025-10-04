@@ -339,8 +339,6 @@
 			if(istype(AM, /obj/item/clothing/under))
 				var/obj/item/clothing/under/sensor_clothing = AM
 				sensor_clothing.sensor_mode = SENSOR_OFF
-				if(ishuman(arrived))
-					var/mob/living/carbon/human/H = arrived
 
 /// Handles prey leaving a belly
 /obj/vore_belly/Exited(atom/movable/gone, direction)
