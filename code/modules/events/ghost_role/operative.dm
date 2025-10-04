@@ -3,7 +3,6 @@
 	typepath = /datum/round_event/ghost_role/operative
 	weight = 0 //its weight is relative to how much stationary and neglected the nuke disk is. See nuclearbomb.dm. Shouldn't be dynamic hijackable.
 	max_occurrences = 1
-	min_players = 30
 	category = EVENT_CATEGORY_INVASION
 	description = "A single nuclear operative assaults the station."
 
