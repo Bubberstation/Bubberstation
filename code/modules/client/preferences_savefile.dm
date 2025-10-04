@@ -361,20 +361,20 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	return needs_update != -3 // BUBBER EDIT
 
-/datum/preferences/proc/save_character(update, override_slot) // Skyrat edit - Choose when to update (This is stupid)
+/datum/preferences/proc/save_character(update, override_slot) // Skyrat edit - Choose when to update (This is stupid) //Bubber Edit - duplication support
 	SHOULD_NOT_SLEEP(TRUE)
 	if(!path)
 		return FALSE
 	var/tree_key = "character[default_slot]"
 	if(!(tree_key in savefile.get_entry()))
 		savefile.set_entry(tree_key, list())
-	var/save_data
+	var/save_data //BUBBER EDIT START - Original var/save_data = savefile.get_entry(tree_key)
 	if(!isnull(override_slot))
 		var/override_tree_key = "character[override_slot]"
 		savefile.set_entry(override_tree_key, list())
 		save_data = savefile.get_entry(override_tree_key)
 	else
-		save_data = savefile.get_entry(tree_key)
+		save_data = savefile.get_entry(tree_key) //BUBBER EDIT END
 
 	for (var/datum/preference/preference as anything in get_preferences_in_priority_order())
 		if (preference.savefile_identifier != PREFERENCE_CHARACTER)
@@ -386,10 +386,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		recently_updated_keys -= preference.type
 
 		if (preference.type in value_cache)
-			if(!isnull(override_slot))
+			if(!isnull(override_slot)) //BUBBER EDIT ADDITION START - Original: write_preference(preference, preference.serialize(value_cache[preference.type]))
 				write_preference_special(preference, preference.serialize(value_cache[preference.type]), override_slot)
 			else
-				write_preference(preference, preference.serialize(value_cache[preference.type]))
+				write_preference(preference, preference.serialize(value_cache[preference.type])) //BUBBER EDIT ADDITION END
 
 	save_data["version"] = SAVEFILE_VERSION_MAX //load_character will sanitize any bad data, so assume up-to-date.
 

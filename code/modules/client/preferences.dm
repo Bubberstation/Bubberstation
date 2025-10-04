@@ -250,7 +250,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if ("remove_current_slot")
 			remove_current_slot()
 			return TRUE
-		if ("duplicate_current_slot")
+		if ("duplicate_current_slot") //BUBBER ADDITION START - Character duplication
 			save_character()
 			if(sanitize_languages())
 				save_character()
@@ -269,7 +269,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				tainted_character_profiles = TRUE
 			else
 				tgui_alert(ui.user, "Cancelled Duplication", "Duplicate Character")
-			return TRUE
+			return TRUE //BUBBER ADDITION END - Character duplication
 		if ("rotate")
 			/* SKYRAT EDIT - Bi-directional prefs menu rotation - ORIGINAL:
 			character_preview_view.dir = turn(character_preview_view.dir, -90)
