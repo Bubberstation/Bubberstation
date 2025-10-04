@@ -341,8 +341,6 @@
 				sensor_clothing.sensor_mode = SENSOR_OFF
 				if(ishuman(arrived))
 					var/mob/living/carbon/human/H = arrived
-					if(H.w_uniform == sensor_clothing)
-						H.update_suit_sensors()
 
 /// Handles prey leaving a belly
 /obj/vore_belly/Exited(atom/movable/gone, direction)

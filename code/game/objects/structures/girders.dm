@@ -113,7 +113,7 @@
 					return
 				rod.use(amount)
 				var/obj/structure/falsewall/iron/FW = new (loc)
-					user.mind.adjust_experience(/datum/skill/construction, 5) //SKYRAT EDIT
+				user.mind.adjust_experience(/datum/skill/construction, 5) //SKYRAT EDIT
 				transfer_fingerprints_to(FW)
 				qdel(src)
 			return
@@ -132,7 +132,7 @@
 			rod.use(amount)
 			var/turf/T = get_turf(src)
 			T.place_on_top(/turf/closed/wall/mineral/iron)
-					user.mind.adjust_experience(/datum/skill/construction, 5) //SKYRAT EDIT
+			user.mind.adjust_experience(/datum/skill/construction, 5) //SKYRAT EDIT
 			transfer_fingerprints_to(T)
 			qdel(src)
 		return
@@ -194,7 +194,7 @@
 				return
 			stack.use(amount)
 			var/obj/structure/tram/tram_wall = new(loc)
-				user.mind.adjust_experience(/datum/skill/construction, 5) //SKYRAT EDIT
+			user.mind.adjust_experience(/datum/skill/construction, 5) //SKYRAT EDIT
 			transfer_fingerprints_to(tram_wall)
 			qdel(src)
 		return
@@ -281,7 +281,7 @@
 					return
 				var/obj/structure/tram/tram_wall
 				tram_wall = new tram_wall_type(loc)
-					user.mind.adjust_experience(/datum/skill/construction, 5) //SKYRAT EDIT
+				user.mind.adjust_experience(/datum/skill/construction, 5) //SKYRAT EDIT
 				stack.use(amount)
 				transfer_fingerprints_to(tram_wall)
 				qdel(src)
@@ -297,7 +297,7 @@
 					return
 				stack.use(amount)
 				var/obj/structure/falsewall/falsewall
-					user.mind.adjust_experience(/datum/skill/construction, 5) //SKYRAT EDIT
+				user.mind.adjust_experience(/datum/skill/construction, 5) //SKYRAT EDIT
 				if(falsewall_type)
 					falsewall = new falsewall_type (loc)
 				else
@@ -320,7 +320,7 @@
 					return
 				stack.use(amount)
 				var/turf/T = get_turf(src)
-					user.mind.adjust_experience(/datum/skill/construction, 5) //SKYRAT EDIT
+				user.mind.adjust_experience(/datum/skill/construction, 5) //SKYRAT EDIT
 				if(stack.walltype)
 					T.place_on_top(stack.walltype)
 				else

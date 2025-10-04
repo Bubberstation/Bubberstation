@@ -8,7 +8,7 @@
 
 	volume = 20
 
-	reagent_flags = OPENCONTAINER
+	initial_reagent_flags = OPENCONTAINER
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/reagent_containers/venom_milker/Initialize(mapload)
