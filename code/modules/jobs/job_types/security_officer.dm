@@ -64,7 +64,7 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	//SKYRAT EDIT REMOVAL
 	/*
 	if(ishuman(spawning))
-		setup_department(spawning, player_client)
+		setup_department(spawning, player_client, move_to = TRUE)
 	*/
 	//SKYRAT EDIT END
 
@@ -82,7 +82,7 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 
 
 /// Returns the department this mob was assigned to, if any.
-/datum/job/security_officer/proc/setup_department(mob/living/carbon/human/spawning, client/player_client)
+/datum/job/security_officer/proc/setup_department(mob/living/carbon/human/spawning, client/player_client, move_to = FALSE)
 	var/department = player_client?.prefs?.read_preference(/datum/preference/choiced/security_department)
 	if (!isnull(department))
 		department = get_my_department(spawning, department)
@@ -140,15 +140,15 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 
 	var/spawn_point = pick(LAZYACCESS(GLOB.department_security_spawns, department))
 
-	if(!CONFIG_GET(flag/sec_start_brig) && (destination || spawn_point))
+	if(!CONFIG_GET(flag/sec_start_brig) && move_to && (destination || spawn_point))
 		if(spawn_point)
-			spawning.Move(get_turf(spawn_point))
+			spawning.forceMove(get_turf(spawn_point))
 		else
 			var/list/possible_turfs = get_area_turfs(destination)
 			while (length(possible_turfs))
 				var/random_index = rand(1, length(possible_turfs))
 				var/turf/target = possible_turfs[random_index]
-				if (spawning.Move(target))
+				if (spawning.forceMove(target))
 					break
 				possible_turfs.Cut(random_index, random_index + 1)
 
