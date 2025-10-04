@@ -15,7 +15,6 @@
 	SSpoints_of_interest.make_point_of_interest(src)
 	update_fov()
 	gravity_setup()
-	ADD_TRAIT(src, TRAIT_UNIQUE_IMMERSE, INNATE_TRAIT)
 
 /mob/living/prepare_huds()
 	..()
@@ -1076,6 +1075,10 @@
 /mob/living/proc/can_be_revived()
 	if(health <= HEALTH_THRESHOLD_DEAD)
 		return FALSE
+		// BUBBER EDIT BEGIN - DNR FAILS REVIVE CHECK
+	if(HAS_TRAIT(src, TRAIT_DNR))
+		return FALSE
+		// BUBBER EDIT END
 	return TRUE
 
 /mob/living/proc/update_damage_overlays()

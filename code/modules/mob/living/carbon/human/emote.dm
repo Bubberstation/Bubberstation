@@ -175,6 +175,7 @@
 	key = "blink"
 	key_third_person = "blinks"
 	message = "blinks."
+	sound = 'sound/mobs/humanoids/human/blink/blink.ogg'
 
 /datum/emote/living/carbon/human/blink/can_run_emote(mob/living/carbon/human/user, status_check, intentional, params)
 	if (!ishuman(user) || HAS_TRAIT(user, TRAIT_PREVENT_BLINKING) || HAS_TRAIT(user, TRAIT_NO_EYELIDS))

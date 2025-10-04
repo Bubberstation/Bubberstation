@@ -13,6 +13,9 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 	if(!host.dna)
 		return FALSE
 
+	if(HAS_TRAIT(host, TRAIT_DNR))
+		return FALSE
+
 	var/datum/species/host_species = host.dna.species
 
 	if(host_species.no_equip_flags & ITEM_SLOT_OCLOTHING)
