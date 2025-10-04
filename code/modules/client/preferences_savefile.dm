@@ -367,10 +367,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		return FALSE
 	var/tree_key = "character[default_slot]"
 	if(!(tree_key in savefile.get_entry()))
-		savefile.set_entry(tree_key, list()) //Danger if this triggers during the copy tests
+		savefile.set_entry(tree_key, list())
 	var/save_data
 	if(!isnull(override_slot))
-		save_data = savefile.get_entry("character[override_slot]")
+		var/override_tree_key = "character[override_slot]"
+		savefile.set_entry(override_tree_key, list())
+		save_data = savefile.get_entry(override_tree_key)
 	else
 		save_data = savefile.get_entry(tree_key)
 

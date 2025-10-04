@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { NoticeBox, Stack } from 'tgui-core/components';
+import { NoticeBox, Stack, Button } from 'tgui-core/components';
 import { exhaustiveCheck } from 'tgui-core/exhaustive';
 
 import { SideDropdown } from '../../../bubber_components/SideDropdown'; // BUBBER EDIT ADDITION
@@ -136,6 +136,15 @@ export function CharacterPreferenceWindow(props) {
                 });
               }}
               profiles={data.character_profiles}
+            />
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              onClick={() => {act('duplicate_current_slot');}}
+              fontSize="13px"
+              icon="copy"
+              tooltip="Duplicate Current Character"
+              tooltipPosition="top"
             />
           </Stack.Item>
           {!data.content_unlocked && (
