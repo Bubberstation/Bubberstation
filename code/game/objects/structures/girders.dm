@@ -93,6 +93,7 @@
 	return ..()
 
 /obj/structure/girder/proc/make_wall(obj/item/stack/stack, mob/user)
+	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/construction, SKILL_SPEED_MODIFIER) //SKYRAT EDIT
 	var/speed_modifier = 1
 	if(HAS_TRAIT(user, TRAIT_QUICK_BUILD))
 		speed_modifier = 0.7
