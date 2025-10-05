@@ -300,5 +300,3 @@ const ALTTITLES = {
 // Combine the Base icons and ALt titles
 export const JOB2ICON = { ...BASEICONS, ...ALTTITLES } as const;
 // SKYRAT EDIT END
-
-
