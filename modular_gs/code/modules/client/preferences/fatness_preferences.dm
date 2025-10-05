@@ -9,8 +9,7 @@
 	return FATNESS_LEVEL_NONE
 
 /datum/preference/numeric/starting_fatness/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	// target.fatness_real += value
-	target.adjust_fatness(value, FATTENING_TYPE_ALMIGHTY, TRUE)
+	target.fatness_real += value
 
 
 /datum/preference/numeric/weight_gain_rate
@@ -85,5 +84,4 @@
 	return FATNESS_LEVEL_NONE
 
 /datum/preference/numeric/perma_fat_value/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	// target.fatness_perma += value
-	target.adjust_perma(value, ignore_rate = TRUE)
+	target.fatness_perma += value
