@@ -4,9 +4,9 @@
 /obj/item/gun/energy/fatoray
 	name = "Fatoray"
 	desc = "An energy gun that fattens up anyone it hits."
-	icon = 'modular_gs/icons/obj/fatoray.dmi'
-	lefthand_file = 'modular_gs/icons/obj/guns_lefthand.dmi'
-	righthand_file = 'modular_gs/icons/obj/guns_righthand.dmi'
+	icon = 'modular_gs/icons/obj/weapons/fatoray.dmi'
+	lefthand_file = 'modular_gs/icons/mob/inhands/guns_lefthand.dmi'
+	righthand_file = 'modular_gs/icons/mob/inhands/guns_righthand.dmi'
 	icon_state = "fatoray"
 	pin = /obj/item/firing_pin
 	fire_sound = 'sound/items/weapons/plasma_cutter.ogg'
@@ -20,7 +20,7 @@
 ///The base projectile used by the fatoray
 /obj/projectile/beam/fattening
 	name = "fat energy"
-	icon = 'modular_gs/icons/obj/fatoray.dmi'
+	icon = 'modular_gs/icons/obj/weapons/fatoray.dmi'
 	icon_state = "ray"
 	ricochets_max = 50
 	ricochet_chance = 80
@@ -39,7 +39,7 @@
 /obj/item/gun/energy/fatoray/cannon
 	name = "Fatoray Cannon"
 	desc = "An energy gun that fattens up anyone it hits. This version functions as a glass cannon of some sorts. It cannot be recharged."
-	icon = 'modular_gs/icons/obj/fatoray.dmi'
+	icon = 'modular_gs/icons/obj/weapons/fatoray.dmi'
 	icon_state = "fatoray_cannon"
 	recoil = 3
 	can_charge = 1
@@ -58,7 +58,7 @@
 
 /obj/projectile/beam/fattening/cannon
 	name = "fat energy"
-	icon = 'modular_gs/icons/obj/fatoray.dmi'
+	icon = 'modular_gs/icons/obj/weapons/fatoray.dmi'
 	icon_state = "cannon_ray"
 	///How much fat is added to the target mob?
 	fat_added = 1200
@@ -73,7 +73,7 @@
 /obj/item/gun/energy/fatoray/weak
 	name = "Basic Fatoray"
 	desc = "An energy gun that fattens up anyone it hits. This version is considerably weaker than its original counterpart, the technology behind it seemingly still not  perfected."
-	icon = 'modular_gs/icons/obj/fatoray.dmi'
+	icon = 'modular_gs/icons/obj/weapons/fatoray.dmi'
 	icon_state = "fatoray_weak"
 	pin = /obj/item/firing_pin
 	ammo_type = list(/obj/item/ammo_casing/energy/fattening/weak)
@@ -86,7 +86,7 @@
 ///The base projectile used by the fatoray
 /obj/projectile/beam/fattening/weak
 	name = "fat energy"
-	icon = 'modular_gs/icons/obj/fatoray.dmi'
+	icon = 'modular_gs/icons/obj/weapons/fatoray.dmi'
 	icon_state = "ray"
 	///How much fat is added to the target mob?
 	fat_added = 100
@@ -97,7 +97,7 @@
 /obj/item/gun/energy/fatoray/cannon_weak
 	name = "Basic Fatoray Cannon"
 	desc = "An energy gun that fattens up anyone it hits. This version functions as a glass cannon of some sorts. It cannot be recharged."
-	icon = 'modular_gs/icons/obj/fatoray.dmi'
+	icon = 'modular_gs/icons/obj/weapons/fatoray.dmi'
 	icon_state = "fatoray_cannon_weak"
 	can_charge = 0
 	recoil = 3
@@ -115,7 +115,7 @@
 
 /obj/projectile/beam/fattening/cannon_weak
 	name = "fat energy"
-	icon = 'modular_gs/icons/obj/fatoray.dmi'
+	icon = 'modular_gs/icons/obj/weapons/fatoray.dmi'
 	icon_state = "cannon_ray"
 	///How much fat is added to the target mob?
 	fat_added = 600
