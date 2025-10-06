@@ -106,6 +106,9 @@
 		)
 		deltimer(deployment_timer_id)
 		deployment_timer_id = null
+		message_admins("[user] has canceled the  engine type to be used for the shift [ADMIN_VERBOSEJMP(center_turf)]")
+		log_game("[user] has canceled the  engine type to be used for the shift [AREACOORD(center_turf)]")
+		user.investigate_log("canceled the  engine type to be used for the shift [AREACOORD(center_turf)]", INVESTIGATE_ENGINE)
 		return FALSE
 
 	playsound(src, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)

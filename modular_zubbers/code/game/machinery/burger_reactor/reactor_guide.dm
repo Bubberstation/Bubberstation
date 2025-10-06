@@ -15,4 +15,4 @@
 	Step 6: If bad shit happens, lower temperature by 20 and wait a bit until the system cools again.<br>
 	Step 7: Repeat steps 3 to 6 until satisfied with power output.<br>
 	<br>
-	<i>Alternatively, ignore all the above and just set the coolers to like 200k and work from there.</i>"}
+	<i>Alternatively, ignore all the above and just set the coolers to like 150k and increase temperature until stable.</i>"}

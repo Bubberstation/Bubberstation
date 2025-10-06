@@ -366,24 +366,6 @@ export const RBMK2 = (props) => {
           </Section>
           <LabeledList>
             <LabeledList.Item
-              label="Safeties"
-              buttons={
-                <>
-                  <Box inline mx={2} color={data.safety ? 'good' : 'orange'}>
-                    {data.safety ? 'ONLINE' : 'OFFLINE'}
-                  </Box>
-                  <Button.Confirm
-                    tooltip="DANGER: Toggle safeties on/off. Only do this if you KNOW what you're doing!"
-                    icon="fa-helmet-safety"
-                    color={data.safety ? 'orange' : 'good'}
-                    onClick={() => act('safetytoggle')}
-                  >
-                    TOGGLE
-                  </Button.Confirm>
-                </>
-              }
-            />
-            <LabeledList.Item
               label="Overclock"
               buttons={
                 <>

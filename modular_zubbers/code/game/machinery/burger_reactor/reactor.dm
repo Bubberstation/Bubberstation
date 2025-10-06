@@ -477,7 +477,7 @@
 	data["jammed"] = jammed
 	data["meltdown"] = meltdown
 
-	data["magic_number"] = (meltdown ? criticality*100 : 0) + 15 + (last_power_generation / max_power_generation) * (9000-15)
+	data["magic_number"] = (meltdown ? criticality*100 : 0) + 15 + (last_power_generation / max_power_generation) * (9000-15) //This is entirely arbitrary
 
 	return data
 
@@ -508,26 +508,12 @@
 		if("ventpull")
 			toggle_reverse_vents(user, TRUE)
 			. = TRUE
-		if("safetytoggle")
-			safety = !safety
-			balloon_alert(user, "safeties are [safety ? "on" : "off"]")
-			if(isliving(user))
-				user.log_message("turned the safety [safety ? "on" : "off"] of [src]", LOG_GAME)
-				investigate_log("had the safety turned [safety ? "on" : "off"] by [key_name(user)] at [AREACOORD(src)].", INVESTIGATE_ENGINE)
-			else
-				log_game("[src] had the safety turned [safety ? "on" : "off"] at [AREACOORD(machine_turf)]")
-				investigate_log("had the safety turned [safety ? "on" : "off"] at [AREACOORD(machine_turf)]", INVESTIGATE_ENGINE)
-			. = TRUE
 		if("overclocktoggle")
 			if(overclocked_upgrade)
 				overclocked = !overclocked
 				balloon_alert(user, "overclocking is [overclocked ? "on" : "off"]")
-				if(isliving(user))
-					user.log_message("turned the overclock [overclocked ? "on" : "off"] of [src]", LOG_GAME)
-					investigate_log("had the overclock turned [overclocked ? "on" : "off"] by [key_name(user)] at [AREACOORD(src)].", INVESTIGATE_ENGINE)
-				else
-					log_game("[src] had the overclock turned [overclocked ? "on" : "off"] at [AREACOORD(machine_turf)]")
-					investigate_log("had the overclock turned [overclocked ? "on" : "off"] at [AREACOORD(machine_turf)]", INVESTIGATE_ENGINE)
+				investigate_log("had the overclock turned [overclocked ? "on" : "off"] by [key_name(user)] at [AREACOORD(src)].", INVESTIGATE_ENGINE)
+				user.log_message("turned the overclock [overclocked ? "on" : "off"] of [src]", LOG_GAME)
 			. = TRUE
 
 
@@ -558,9 +544,9 @@
 	else if(jammed)
 		. += span_danger("The reactor rod is jammed! <b>Pry</b> the rod back in to unjam in!")
 	else if(meltdown)
-		. += span_danger("The reactor rod is leaping erractically!")
+		. += span_danger("The reactor rod is leaping erractically! Lower power output!")
 	else
-		. += span_notice("There is an RB-MK2 reactor rod installed. <b>Wrench</b> it down to activate, or remove it with ALT+CLICK.")
+		. += span_notice("There is an RB-MK2 reactor rod installed. <b>Bolt</b> it down to activate, or remove it with ALT+CLICK.")
 
 
 /obj/machinery/power/rbmk2/examine_more(mob/user)
