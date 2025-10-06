@@ -2,25 +2,25 @@
 //I don't know why these need both mam_ears and human variants, because some other ear datums just work fine without that??
 //It didn't want to show up otherwise so I'll keep it as that
 
-// /datum/sprite_accessory/ears/dragon //ported from Virgo
-// 	name = "Dragon"
-// 	icon = 'modular_gs/icons/mob/markings/mam_ears.dmi'
-// 	icon_state = "dragon"
+/datum/sprite_accessory/ears/dragon //ported from Virgo
+	name = "Dragon"
+	icon = 'modular_gs/icons/mob/markings/mam_ears.dmi'
+	icon_state = "dragon"
 
-// /datum/sprite_accessory/ears/human/dragon //ported from Virgo
-// 	name = "Dragon"
-// 	icon = 'modular_gs/icons/mob/markings/mam_ears.dmi'
-// 	icon_state = "dragon"
+/datum/sprite_accessory/ears/human/dragon //ported from Virgo
+	name = "Dragon"
+	icon = 'modular_gs/icons/mob/markings/mam_ears.dmi'
+	icon_state = "dragon"
 
-// /datum/sprite_accessory/ears/avali
-// 	name = "Avali"
-// 	icon_state = "avali"
-// 	icon = 'modular_gs/icons/mob/markings/mam_ears.dmi'
+/datum/sprite_accessory/ears/avali
+	name = "Avali"
+	icon_state = "avali"
+	icon = 'modular_gs/icons/mob/markings/mam_ears.dmi'
 
-// /datum/sprite_accessory/ears/human/avali
-// 	name = "Avali"
-// 	icon_state = "avali"
-// 	icon = 'modular_gs/icons/mob/markings/mam_ears.dmi'
+/datum/sprite_accessory/ears/human/avali
+	name = "Avali"
+	icon_state = "avali"
+	icon = 'modular_gs/icons/mob/markings/mam_ears.dmi'
 
 /datum/sprite_accessory/ears/human/fennec_tall
 	name = "Fennec (Tall)"
