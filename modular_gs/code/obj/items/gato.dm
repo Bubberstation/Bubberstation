@@ -79,19 +79,19 @@
 /obj/structure/shipping_container/gato
 	name = "\improper GATO shipping container"
 	desc = "A standard-measure shipping container for bulk transport of goods. This one is from GATO - it could carry anything, ranging from simple food supplies to nutri-tech gear."
-	icon = 'modular_gs/icons/obj/containers.dmi'
+	icon = 'modular_gs/icons/obj/structure/containers.dmi'
 	icon_state = "gtfid"
 
 /obj/structure/shipping_container/gato2
 	name = "\improper GATO shipping container"
 	desc = "A standard-measure shipping container for bulk transport of goods. This one is from GATO - it could carry anything, ranging from simple food supplies to nutri-tech gear."
-	icon = 'modular_gs/icons/obj/containers.dmi'
+	icon = 'modular_gs/icons/obj/structure/containers.dmi'
 	icon_state = "gato"
 
 /obj/structure/shipping_container/gato_defaced
 	name = "\improper Defaced GATO shipping container"
 	desc = "A standard-measure shipping container for bulk transport of goods. This one is from GATO - it could carry anything, ranging from simple food supplies to nutri-tech gear."
-	icon = 'modular_gs/icons/obj/containers.dmi'
+	icon = 'modular_gs/icons/obj/structure/containers.dmi'
 	icon_state = "gtfid_defaced"
 
 /obj/structure/closet/body_bag/environmental/gato
@@ -143,3 +143,15 @@
 	icon = 'modular_gs/icons/obj/bedsheets.dmi'
 	bedsheet_type = BEDSHEET_DOUBLE
 	worn_icon_state = "sheetpurple"
+
+/obj/structure/billboard/gato
+	name = "\improper GATO billboard"
+	icon = 'modular_gs/icons/obj/structure/billboard.dmi'
+	desc = "A billboard advertising GATO: A Better Tomorrow, Today."
+	icon_state = "billboard_gato"
+
+/obj/structure/billboard/nanotrasen/defaced
+	name = "defaced GATO billboard"
+	icon = 'modular_gs/icons/obj/structure/billboard.dmi'
+	desc = "A billboard advertising GATO. Someone's sprayed a message onto it: Fuck Corpo Pigs."
+	icon_state = "billboard_fuck_corps_gt"

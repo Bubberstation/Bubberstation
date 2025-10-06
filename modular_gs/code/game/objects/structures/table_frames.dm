@@ -2,7 +2,7 @@
 /obj/structure/table_frame/plaswood
 	name = "Plaswood table frame"
 	desc = "Four wooden legs with four framing wooden rods for a wooden table. You could easily pass through this."
-	icon = 'modular_gs/icons/obj/structures.dmi'
+	icon = 'modular_gs/icons/obj/structure/structures.dmi'
 	icon_state = "plaswood_frame"
 	framestack = /obj/item/stack/sheet/mineral/plaswood
 	framestackamount = 2
@@ -34,7 +34,7 @@
 /obj/structure/table_frame/gmushroom
 	name = "mushroom table frame"
 	desc = "Four wooden legs with four framing wooden rods for a wooden table. You could easily pass through this."
-	icon = 'modular_gs/icons/obj/structures.dmi'
+	icon = 'modular_gs/icons/obj/structure/structures.dmi'
 	icon_state = "gmushroom_frame"
 	framestack = /obj/item/stack/sheet/mineral/gmushroom
 	framestackamount = 2
@@ -66,7 +66,7 @@
 /obj/structure/table_frame/shadoww
 	name = "shadow wood frame"
 	desc = "Four wooden legs with four framing wooden rods for a wooden table. You could easily pass through this."
-	icon = 'modular_gs/icons/obj/structures.dmi'
+	icon = 'modular_gs/icons/obj/structure/structures.dmi'
 	icon_state = "shadoww_frame"
 	framestack = /obj/item/stack/sheet/mineral/shadoww
 	framestackamount = 2

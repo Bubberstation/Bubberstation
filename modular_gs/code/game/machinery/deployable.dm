@@ -9,7 +9,7 @@
 /obj/structure/barricade/shadoww //GS13 wood barricades
 	name = "Shadow barricade"
 	desc = "This space is blocked off by a shadow wood barricade."
-	icon = 'modular_gs/icons/obj/structures.dmi'
+	icon = 'modular_gs/icons/obj/structure/structures.dmi'
 	icon_state = "shadowwbarricade"
 	max_integrity = 50
 	bar_material = WOOD
@@ -39,7 +39,7 @@
 /obj/structure/barricade/plaswood
 	name = "Plaswood barricade"
 	desc = "This space is blocked off by a plaswood barricade."
-	icon = 'modular_gs/icons/obj/structures.dmi'
+	icon = 'modular_gs/icons/obj/structure/structures.dmi'
 	icon_state = "plaswoodwbarricade"
 	max_integrity = 180
 	bar_material = WOOD
@@ -69,7 +69,7 @@
 /obj/structure/barricade/gmushroom
 	name = "Mushroom barricade"
 	desc = "This space is blocked off by a mushroom barricade."
-	icon = 'modular_gs/icons/obj/structures.dmi'
+	icon = 'modular_gs/icons/obj/structure/structures.dmi'
 	icon_state = "gmushroombarricade"
 	max_integrity = 50
 	bar_material = WOOD

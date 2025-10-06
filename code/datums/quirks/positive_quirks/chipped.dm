@@ -66,13 +66,13 @@
 
 /datum/status_effect/itchy_skillchip_quirk
 	id = "itchy skillchip"
-	tick_interval_lowerbound = 5 SECONDS
-	tick_interval_upperbound = 10 MINUTES
+	tick_interval_lowerbound = 15 SECONDS //GS13 tweak - nerfed the chip itch
+	tick_interval_upperbound = 30 MINUTES //GS13 tweak - nerfed the chip itch
 	alert_type = null
 	///lower damage we apply to our itchy owner
-	var/minimum_damage = 1
+	var/minimum_damage = 1 //GS13 tweak - nerfed the chip itch
 	///upper damage we apply to our itchy owner
-	var/maximum_damage = 5
+	var/maximum_damage = 3 //GS13 tweak - nerfed the chip itch
 
 /datum/status_effect/itchy_skillchip_quirk/tick(seconds_between_ticks)
 	var/mob/living/carbon/carbon_owner = owner

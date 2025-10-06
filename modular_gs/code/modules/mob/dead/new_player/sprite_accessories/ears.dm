@@ -2,7 +2,7 @@
 //I don't know why these need both mam_ears and human variants, because some other ear datums just work fine without that??
 //It didn't want to show up otherwise so I'll keep it as that
 
-/datum/sprite_accessory/ears/mam_ears/dragon //ported from Virgo
+/datum/sprite_accessory/ears/dragon //ported from Virgo
 	name = "Dragon"
 	icon = 'modular_gs/icons/mob/markings/mam_ears.dmi'
 	icon_state = "dragon"
@@ -12,49 +12,37 @@
 	icon = 'modular_gs/icons/mob/markings/mam_ears.dmi'
 	icon_state = "dragon"
 
-/datum/sprite_accessory/ears/mam_ears/avali
+/datum/sprite_accessory/ears/avali
 	name = "Avali"
 	icon_state = "avali"
 	icon = 'modular_gs/icons/mob/markings/mam_ears.dmi'
-	color_src = MATRIXED
-	matrixed_sections = MATRIX_RED_GREEN
 
 /datum/sprite_accessory/ears/human/avali
 	name = "Avali"
 	icon_state = "avali"
 	icon = 'modular_gs/icons/mob/markings/mam_ears.dmi'
-	color_src = MATRIXED
-	matrixed_sections = MATRIX_RED_GREEN
 
 /datum/sprite_accessory/ears/human/fennec_tall
 	name = "Fennec (Tall)"
 	icon = 'modular_gs/icons/mob/32x64_mam_ears.dmi'
 	icon_state = "fennectall"
-	color_src = MATRIXED
-	matrixed_sections = MATRIX_RED_GREEN
 
-/datum/sprite_accessory/ears/mam_ears/fennec_tall
+/datum/sprite_accessory/ears/fennec_tall
 	name = "Fennec (Tall)"
 	icon = 'modular_gs/icons/mob/32x64_mam_ears.dmi'
 	icon_state = "fennectall"
-	color_src = MATRIXED
-	matrixed_sections = MATRIX_RED_GREEN
 
-/datum/sprite_accessory/ears/mam_ears/undergoat
-	name = "Goat"
-	icon_state = "goat"
-	icon = 'modular_gs/icons/mob/markings/mam_ears.dmi'
-	color_src = MATRIXED
-	matrixed_sections = MATRIX_RED_GREEN
+// /datum/sprite_accessory/ears/undergoat
+// 	name = "Goat"
+// 	icon_state = "goat"
+// 	icon = 'modular_gs/icons/mob/markings/mam_ears.dmi'
 
-/datum/sprite_accessory/ears/human/undergoat
-	name = "Avali"
-	icon_state = "avali"
-	icon = 'modular_gs/icons/mob/markings/mam_ears.dmi'
-	color_src = MATRIXED
-	matrixed_sections = MATRIX_RED_GREEN
+// /datum/sprite_accessory/ears/human/undergoat
+// 	name = "Avali"
+// 	icon_state = "avali"
+// 	icon = 'modular_gs/icons/mob/markings/mam_ears.dmi'
 
-/datum/sprite_accessory/ears/mam_ears/elf
+/datum/sprite_accessory/ears/elf
 	name = "Elf"
 	icon = 'modular_gs/icons/mob/markings/mam_ears.dmi'
 	icon_state = "elf"
@@ -64,7 +52,7 @@
 	icon = 'modular_gs/icons/mob/markings/mam_ears.dmi'
 	icon_state = "elf"
 
-/datum/sprite_accessory/ears/mam_ears/kip
+/datum/sprite_accessory/ears/kip
 	name = "Kip"
 	icon = 'modular_gs/icons/mob/markings/mam_ears.dmi'
 	icon_state = "kip"
