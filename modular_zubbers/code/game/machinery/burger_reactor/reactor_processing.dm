@@ -23,7 +23,7 @@
 
 	if(meltdown && meltdown_start_time > 0)
 		//Tritium consumption will increase by 100% every 45 seconds after 120 seconds of meltdown time.
-		var/meltdown_penalty_math = ((world.time - meltdown_start_time) - (120 SECONDS)) / (45 SECONDS)
+		var/meltdown_penalty_math = ((world.time - meltdown_start_time) - (60 SECONDS)) / (40 SECONDS)
 		if(meltdown_penalty_math > 1)
 			amount_to_consume *= meltdown_penalty_math
 
@@ -188,7 +188,8 @@
 				buffer_gases.pump_gas_to(turf_air,vent_pressure*0.5) //Pump buffer gases to turf. Reduced rate because jammed.
 		if(stored_rod)
 			transfer_rod_temperature(buffer_gases,multiplier=0.5)
-			transfer_rod_temperature(turf_air,multiplier=0.5,allow_cooling_limiter=TRUE)
+			if(venting) transfer_rod_temperature(turf_air,multiplier=0.5,allow_cooling_limiter=TRUE)
+
 	else if(active) //100% inside.
 		if(venting)
 			if(vent_reverse_direction)
@@ -197,7 +198,8 @@
 				buffer_gases.pump_gas_to(turf_air,vent_pressure) //Pump buffer gases to turf.
 		if(stored_rod)
 			transfer_rod_temperature(buffer_gases)
-			transfer_rod_temperature(turf_air,multiplier=0.5,allow_cooling_limiter=TRUE)
+			if(venting) transfer_rod_temperature(turf_air,multiplier=0.5,allow_cooling_limiter=TRUE)
+
 	else //0% inside
 		if(venting)
 			if(vent_reverse_direction)

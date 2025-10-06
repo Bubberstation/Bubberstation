@@ -21,7 +21,7 @@
 				continue
 			highest_criticality = reactor.criticality
 
-	var/alert_emergency_channel = highest_criticality >= 80 || lowest_integrity_percent <= 0.1
+	var/alert_emergency_channel = highest_criticality >= 90 || lowest_integrity_percent <= 0.1
 
 	if(alert_emergency_channel)
 		alerted_emergency_channel = TRUE
