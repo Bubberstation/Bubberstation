@@ -23,7 +23,7 @@
 			var/already_exists = FALSE
 			for(var/existing_category in product_categories)
 				if(existing_category["name"] == category["name"])
-					existing_category["products"] += category["products"]
+					existing_category["products"] |= category["products"]
 					already_exists = TRUE
 					break
 
