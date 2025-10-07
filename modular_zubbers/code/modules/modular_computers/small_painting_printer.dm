@@ -34,10 +34,10 @@
 	. = ..()
 	var/datum/painting/chosen_portrait = locate(selected_painting) in SSpersistent_paintings.paintings
 	var/obj/item/wallframe/painting/frame
-	if(is_valid_frame(chosen_portrait) == TRUE)
+	if(is_valid_frame(chosen_portrait))
 		frame = new /obj/item/wallframe/painting
 	else
-		if(is_valid_frame_large(chosen_portrait) == TRUE)
+		if(is_valid_frame_large(chosen_portrait))
 			frame = new /obj/item/wallframe/painting/large
 		else
 			stack_trace("[usr] tried to print a database painting with invalid dimensions using [src]!")
