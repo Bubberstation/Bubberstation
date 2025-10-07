@@ -42,7 +42,7 @@
 		else
 			stack_trace("[usr] tried to print a database painting with invalid dimensions using [src]!")
 
-	if(frame != null)
+	if(isnull(frame))
 		frame.forceMove(computer.drop_location())
 
 	if(computer.stored_paper < 10)
