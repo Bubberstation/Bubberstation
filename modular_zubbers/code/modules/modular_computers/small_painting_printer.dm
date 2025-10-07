@@ -42,7 +42,7 @@
 		else
 			stack_trace("[usr] tried to print a database painting with invalid dimensions using [src]!")
 
-	if(isnull(frame))
+	if(!isnull(frame))
 		frame.forceMove(computer.drop_location())
 
 	if(computer.stored_paper < 10)
@@ -50,23 +50,16 @@
 
 /datum/computer_file/program/portrait_printer/mini/proc/is_valid_frame(datum/painting/painting)
 	var/obj/structure/sign/painting/temp_frame = new()
-
-	if(test_canvas_against_list(painting, temp_frame.accepted_canvas_types))
-		QDEL_NULL(temp_frame)
-		return TRUE
-	else
-		QDEL_NULL(temp_frame)
-		return FALSE
+	var/returner = test_canvas_against_list(painting, temp_frame.accepted_canvas_types)
+	QDEL_NULL(temp_frame)
+	return returner
 
 /datum/computer_file/program/portrait_printer/mini/proc/is_valid_frame_large(datum/painting/painting)
 	var/obj/structure/sign/painting/large/temp_frame = new()
+	var/returner = test_canvas_against_list(painting, temp_frame.accepted_canvas_types)
+	QDEL_NULL(temp_frame)
+	return returner
 
-	if(test_canvas_against_list(painting, temp_frame.accepted_canvas_types))
-		QDEL_NULL(temp_frame)
-		return TRUE
-	else
-		QDEL_NULL(temp_frame)
-		return FALSE
 /datum/computer_file/program/portrait_printer/mini/proc/test_canvas_against_list(datum/painting/painting, list/accepted_canvas_types)
 	var/obj/item/canvas/temp_canvas = null
 	for(var/canvas_type in accepted_canvas_types)
