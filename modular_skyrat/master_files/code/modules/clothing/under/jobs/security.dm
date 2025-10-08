@@ -22,12 +22,24 @@
 	icon_state = "util_sec"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "util_sec",
+			RESKIN_WORN_ICON_STATE = "util_sec"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "util_sec_old",
+			RESKIN_WORN_ICON_STATE = "util_sec_old"
+		),
+	)
 
 /obj/item/clothing/under/rank/security/skyrat/utility/redsec
 	desc = "A utility uniform worn by trained Security officers."
 	icon_state = "util_sec_old"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
+	uses_advanced_reskins = FALSE
 
 /obj/item/clothing/under/rank/security/skyrat/utility/redsec/syndicate
 	armor_type = /datum/armor/clothing_under/redsec_syndicate
@@ -43,6 +55,17 @@
 	unique_reskin = null
 	alt_covers_chest = FALSE
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "security_skirt",
+			RESKIN_WORN_ICON_STATE = "security_skirt"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "security_skirt_red",
+			RESKIN_WORN_ICON_STATE = "security_skirt_red"
+		),
+	)
 
 /obj/item/clothing/under/rank/security/peacekeeper/skirt_redsec
 	name = "security battle dress"
@@ -86,6 +109,10 @@
 			RESKIN_ICON_STATE = "workpants_white",
 			RESKIN_WORN_ICON_STATE = "workpants_white"
 		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "workpants_red",
+			RESKIN_WORN_ICON_STATE = "workpants_red"
+		),
 	)
 
 /obj/item/clothing/under/rank/security/peacekeeper/trousers/shorts
@@ -110,6 +137,14 @@
 			RESKIN_ICON_STATE = "workshorts_white_short",
 			RESKIN_WORN_ICON_STATE = "workshorts_white_short"
 		),
+		"Red Variant, Short" = list(
+			RESKIN_ICON_STATE = "workshorts_red",
+			RESKIN_WORN_ICON_STATE = "workshorts_red"
+		),
+		"Red Variant, Short Short" = list(
+			RESKIN_ICON_STATE = "workshorts_red_short",
+			RESKIN_WORN_ICON_STATE = "workshorts_red_short"
+		),
 	)
 
 /obj/item/clothing/under/rank/security/peacekeeper/jumpsuit
@@ -119,6 +154,17 @@
 	can_adjust = TRUE
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "jumpsuit_blue",
+			RESKIN_WORN_ICON_STATE = "jumpsuit_blue"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "jumpsuit_red",
+			RESKIN_WORN_ICON_STATE = "jumpsuit_red"
+		),
+	)
 
 /obj/item/clothing/under/rank/security/officer/skirt
 	name = "security jumpskirt"
@@ -141,11 +187,11 @@
 		"Blue Variant" = list(
 			RESKIN_ICON_STATE = "shortskirt_blue",
 			RESKIN_WORN_ICON_STATE = "shortskirt_blue"
-	    ),
+		),
 		"Black Variant" = list(
 			RESKIN_ICON_STATE = "shortskirt_black",
 			RESKIN_WORN_ICON_STATE = "shortskirt_black"
-	    ),
+		),
 	)
 
 /obj/item/clothing/under/rank/security/peacekeeper/miniskirt
@@ -156,6 +202,22 @@
 	gets_cropped_on_taurs = FALSE
 	can_adjust = TRUE
 	body_parts_covered = GROIN | LEGS
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "miniskirt",
+			RESKIN_WORN_ICON_STATE = "miniskirt"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "miniskirt_red",
+			RESKIN_WORN_ICON_STATE = "miniskirt_red"
+		),
+		"Black Variant" = list(
+			RESKIN_ICON_STATE = "miniskirt_black",
+			RESKIN_WORN_ICON_STATE = "miniskirt_black"
+		),
+	)
+
 
 /*
 *	HEAD OF SECURITY
