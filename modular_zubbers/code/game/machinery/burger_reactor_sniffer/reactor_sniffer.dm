@@ -113,11 +113,11 @@
 		if(criticality)
 			if(!COOLDOWN_FINISHED(src, radio_cooldown_criticality))
 				return FALSE
-			COOLDOWN_START(src, radio_cooldown_criticality, (criticality >= 100 ? 10 SECONDS : 5 SECONDS))
+			COOLDOWN_START(src, radio_cooldown_criticality, (criticality >= 100 ? 15 SECONDS : 10 SECONDS))
 		else
 			if(!COOLDOWN_FINISHED(src, radio_cooldown_integrity))
 				return FALSE
-			COOLDOWN_START(src, radio_cooldown_integrity, 5 SECONDS)
+			COOLDOWN_START(src, radio_cooldown_integrity, 10 SECONDS)
 
 	stored_radio.talk_into(src, alert_text, alert_emergency_channel ? emergency_channel : warning_channel)
 

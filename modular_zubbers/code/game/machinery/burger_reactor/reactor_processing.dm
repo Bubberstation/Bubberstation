@@ -48,7 +48,7 @@
 		if(last_power_generation > max_power_generation*10)
 			last_power_generation = max_power_generation*10
 
-		var/range_cap = CEILING(GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE * 0.5, 1)
+		var/range_cap = GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE
 		last_radiation_pulse = min(last_power_generation/max_power_generation, range_cap)
 
 		//The LOWER the insulation_threshold, the stronger the radiation can penetrate.

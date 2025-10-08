@@ -213,17 +213,24 @@
 	update_appearance(UPDATE_ICON)
 
 /obj/machinery/power/rbmk2/proc/force_unjam(obj/item/attacking_item,mob/living/user,damage_to_deal=50)
+
 	if(!jammed)
 		return FALSE
+
 	if(attacking_item.use_tool(src, user, 4 SECONDS, volume = 50) && jam(user,FALSE))
+		if(prob(100-atom_integrity))
+			take_damage(damage_to_deal*0.5,armour_penetration=100)
+			balloon_alert(user, "unjam failed!")
+			return TRUE
 		take_damage(damage_to_deal,armour_penetration=100)
-		if( atom_integrity > 0)
+		if(atom_integrity > 0)
 			src.Shake(duration=0.5 SECONDS)
 			balloon_alert(user, "unjammed!")
 			if(meltdown) //You turned it off, but at what cost?
 				radiation_pulse(src,max_range=6,threshold = RAD_FULL_INSULATION, chance = 100)
 			toggle_active(user,FALSE,disable_jam=TRUE)
 			return TRUE
+
 	return FALSE
 
 //Remove the rod.
@@ -486,7 +493,6 @@
 	if(.)
 		return
 	var/mob/user = ui.user
-	var/turf/machine_turf = get_turf(src)
 	switch(action)
 		if("autovent")
 			if(auto_vent_upgrade)
@@ -510,9 +516,10 @@
 			. = TRUE
 		if("overclocktoggle")
 			if(overclocked_upgrade)
+				var/turf/machine_turf = get_turf(src)
 				overclocked = !overclocked
 				balloon_alert(user, "overclocking is [overclocked ? "on" : "off"]")
-				investigate_log("had the overclock turned [overclocked ? "on" : "off"] by [key_name(user)] at [AREACOORD(src)].", INVESTIGATE_ENGINE)
+				investigate_log("had the overclock turned [overclocked ? "on" : "off"] by [key_name(user)] at [AREACOORD(machine_turf)].", INVESTIGATE_ENGINE)
 				user.log_message("turned the overclock [overclocked ? "on" : "off"] of [src]", LOG_GAME)
 			. = TRUE
 

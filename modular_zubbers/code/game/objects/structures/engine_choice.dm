@@ -97,6 +97,8 @@
 	if(!can_use(user))
 		return FALSE
 
+	var/turf/center_turf = get_turf(src)
+
 	if(deployment_timer_id) //Timer already exists to deploy.
 		playsound(src, 'sound/machines/terminal_alert_short.ogg', 50, FALSE)
 		radio.talk_into(
@@ -106,7 +108,7 @@
 		)
 		deltimer(deployment_timer_id)
 		deployment_timer_id = null
-		message_admins("[user] has canceled the  engine type to be used for the shift [ADMIN_VERBOSEJMP(center_turf)]")
+		message_admins("[user] has canceled the engine type to be used for the shift [ADMIN_VERBOSEJMP(center_turf)]")
 		log_game("[user] has canceled the  engine type to be used for the shift [AREACOORD(center_turf)]")
 		user.investigate_log("canceled the  engine type to be used for the shift [AREACOORD(center_turf)]", INVESTIGATE_ENGINE)
 		return FALSE
@@ -125,8 +127,6 @@
 		return FALSE
 
 	//Deployment time!
-
-	var/turf/center_turf = get_turf(src)
 
 	message_admins("[user] has selected engine type \"[choice]\" to be used for the shift [ADMIN_VERBOSEJMP(center_turf)]")
 	log_game("[user] has selected engine type \"[choice]\" to be used for the shift [AREACOORD(center_turf)]")

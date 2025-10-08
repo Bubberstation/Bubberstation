@@ -26,7 +26,7 @@
 	if(alert_emergency_channel)
 		alerted_emergency_channel = TRUE
 
-	if(last_meltdown != has_meltdown)
+	if(last_meltdown != has_meltdown) //Start of a meltdown.
 		last_meltdown = has_meltdown
 		if(last_meltdown)
 			alert_radio(
@@ -62,7 +62,7 @@
 				"[lowest_integrity_percent <= 0.3 ? "DANGER!" : "Warning!"] integrity at [round(lowest_integrity_percent*100,0.1)]%! Repairs required!",
 				alert_emergency_channel=alert_emergency_channel,
 				criticality=FALSE,
-				bypass_cooldown=lowest_integrity_percent <= 0.3
+				bypass_cooldown=lowest_integrity_percent <= 0.1
 			)
 
 
