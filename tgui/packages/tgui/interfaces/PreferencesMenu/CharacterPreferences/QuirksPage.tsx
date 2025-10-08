@@ -325,8 +325,10 @@ function QuirkPage() {
     }
   });
 
-  const balance = -data.default_quirk_balance;
-  const positiveQuirks = 0;
+  // BUBBER EDIT START - Better Quirk Count Code
+  const balance = -data.quirks_balance;
+  const positiveQuirks = data.positive_quirk_count;
+  // BUBBER EDIT END - Better Quirk Count Code
 
   /* // BUBBER EDIT START - We handle this on the backend
   for (const selectedQuirkName of selectedQuirks) {
