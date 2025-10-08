@@ -678,8 +678,14 @@
 		"Red Variant" = list(
 			RESKIN_ICON = 'icons/obj/clothing/gloves.dmi',
 			RESKIN_ICON_STATE = "sec",
-			RESKIN_WORN_ICON_STATE = "sec"
+			RESKIN_WORN_ICON_STATE = "sec",
 			RESKIN_WORN_ICON = 'icons/mob/clothing/hands.dmi',
+		),
+		"Peacekeeper Variant" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi',
+			RESKIN_ICON_STATE = "peacekeeper_gloves",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi',
+			RESKIN_WORN_ICON_STATE = "peacekeeper",
 		),
 	)
 
@@ -865,6 +871,12 @@
 			RESKIN_ICON_STATE = "warden_syndie",
 			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi',
 			RESKIN_WORN_ICON_STATE = "warden_syndie"
+		),
+		"Basic Warden Armor" = list(
+			RESKIN_ICON = 'icons/obj/clothing/suits/armor.dmi',
+			RESKIN_ICON_STATE = "warden_alt",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/suits/armor.dmi',
+			RESKIN_WORN_ICON_STATE = "warden_alt"
 		),
 	)
 
