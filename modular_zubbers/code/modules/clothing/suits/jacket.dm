@@ -1030,6 +1030,10 @@
 	icon_state = "bombersec"
 	armor_type = /datum/armor/suit_armor
 
+/obj/item/clothing/suit/toggle/jacket/zubber/bomber/sec/Initialize(mapload)
+	. = ..()
+	allowed += GLOB.security_vest_allowed
+
 /obj/item/clothing/suit/toggle/jacket/zubber/bomber/syndicate
 	name = "suspicious bomber jacket"
 	desc = "If the Bomber Harris book isn't a giveaway, someone's taking 'bomber' to heart."
