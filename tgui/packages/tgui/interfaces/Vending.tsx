@@ -276,8 +276,9 @@ const Product = (props: ProductProps) => {
     asset: ['vending32x32', product.path],
     disabled: disabled,
     tooltipPosition: 'bottom',
-    buttons: colorable && (
-      /*  BUBBER EDIT START - REFITS AVAILABLE */
+    buttons: (
+      /* BUBBER EDIT CHANGE BEGIN - REFITS AVAILABLE */
+      // ORIGINAL: colorable && (<ProductColorSelect disabled={disabled} product={product} fluid={fluid} />),
       <>
         {colorable && (
           <ProductColorSelect
@@ -291,15 +292,9 @@ const Product = (props: ProductProps) => {
           productStock?.refits_available?.includes(
             user.species.toLowerCase(),
           ) && <ProductRefitsAvailable fluid={fluid} />}
-
-        {/*   BUBBER EDIT END - REFITS AVAILABLE */}
-        <ProductColorSelect
-          disabled={disabled}
-          product={product}
-          fluid={fluid}
-        />
       </>
     ),
+    /* BUBBER EDIT CHANGE END - REFITS AVAILABLE */
     product: product,
     colorable: colorable,
     remaining: remaining,
