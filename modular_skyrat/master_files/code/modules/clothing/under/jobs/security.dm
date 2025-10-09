@@ -39,7 +39,7 @@
 	icon_state = "util_sec_old"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
-	uses_advanced_reskins = FALSE
+	unique_reskin = null
 
 /obj/item/clothing/under/rank/security/skyrat/utility/redsec/syndicate
 	armor_type = /datum/armor/clothing_under/redsec_syndicate
@@ -51,7 +51,6 @@
 	worn_icon_state = "security_skirt"
 	icon_state = "security_skirt"
 	can_adjust = TRUE
-	uses_advanced_reskins = FALSE
 	unique_reskin = null
 	alt_covers_chest = FALSE
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
@@ -73,7 +72,6 @@
 	worn_icon_state = "security_skirt_redsec"
 	icon_state = "security_skirt_redsec"
 	can_adjust = TRUE
-	uses_advanced_reskins = FALSE
 	unique_reskin = null
 	alt_covers_chest = FALSE
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
@@ -84,7 +82,6 @@
 	worn_icon_state = "security_skirt_hos"
 	icon_state = "security_skirt_hos"
 	can_adjust = TRUE
-	uses_advanced_reskins = FALSE
 	unique_reskin = null
 	alt_covers_chest = FALSE
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
