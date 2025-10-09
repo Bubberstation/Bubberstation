@@ -248,6 +248,7 @@
 		"Armadyne Variant" = list(
 			RESKIN_ICON_STATE = "armadyne_belt",
 			RESKIN_WORN_ICON_STATE = "armadyne_belt"
+			),
 	)
 
 /obj/item/storage/belt/security/webbing
@@ -317,7 +318,7 @@
 			RESKIN_ICON_STATE = "security_hud",
 			RESKIN_WORN_ICON_STATE = "security_hud"
 		),
-		"Red Variant" = = list(
+		"Red Variant" = list(
 			RESKIN_ICON = 'icons/obj/clothing/glasses.dmi',
 			RESKIN_ICON_STATE = "securityhud",
 			RESKIN_WORN_ICON = 'icons/mob/clothing/eyes.dmi',
@@ -337,7 +338,7 @@
 			RESKIN_ICON_STATE = "security_hud_blue",
 			RESKIN_WORN_ICON_STATE = "security_hud_blue"
 		),
-		"Red Variant" = = list(
+		"Red Variant" = list(
 			RESKIN_ICON = 'icons/obj/clothing/glasses.dmi',
 			RESKIN_ICON_STATE = "sunhudsec",
 			RESKIN_WORN_ICON = 'icons/mob/clothing/eyes.dmi',
