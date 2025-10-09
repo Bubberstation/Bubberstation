@@ -260,6 +260,7 @@
 		/obj/item/clothing/under/rank/civilian/hydroponics/bunnysuit = 2,
 		/obj/item/clothing/suit/jacket/tailcoat/botanist = 2,
 		/obj/item/clothing/neck/tie/bunnytie/botanist = 2,
+		/obj/item/clothing/suit/toggle/jacket/zubber/bomber/hydro = 2,
 	)
 
 /obj/machinery/vending/wardrobe/law_wardrobe
