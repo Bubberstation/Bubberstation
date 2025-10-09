@@ -73,7 +73,7 @@
 			RESKIN_ICON_STATE = "security_envirohelm",
 			RESKIN_WORN_ICON_STATE = "security_envirohelm",
 			RESKIN_ICON = 'icons/obj/clothing/head/plasmaman_hats.dmi',
-			RESKIN_WORN_ICON = icons/mob/clothing/head/plasmaman_head.dmi',
+			RESKIN_WORN_ICON = 'icons/mob/clothing/head/plasmaman_head.dmi',
 		),
 	)
 
@@ -89,7 +89,7 @@
 			RESKIN_ICON_STATE = "warden_envirohelm",
 			RESKIN_WORN_ICON_STATE = "warden_envirohelm",
 			RESKIN_ICON = 'icons/obj/clothing/head/plasmaman_hats.dmi',
-			RESKIN_WORN_ICON = icons/mob/clothing/head/plasmaman_head.dmi',
+			RESKIN_WORN_ICON = 'icons/mob/clothing/head/plasmaman_head.dmi',
 		),
 	)
 
@@ -105,7 +105,7 @@
 			RESKIN_ICON_STATE = "hos_envirohelm",
 			RESKIN_WORN_ICON_STATE = "hos_envirohelm",
 			RESKIN_ICON = 'icons/obj/clothing/head/plasmaman_hats.dmi',
-			RESKIN_WORN_ICON = icons/mob/clothing/head/plasmaman_head.dmi',
+			RESKIN_WORN_ICON = 'icons/mob/clothing/head/plasmaman_head.dmi',
 		),
 	)
 
