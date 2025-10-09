@@ -798,7 +798,7 @@
 		"Armadyne Variant" = list(
 			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi',
 			RESKIN_ICON_STATE = "armadyne_armor",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suits.dmi',
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi',
 		),
 	)
 
@@ -1135,7 +1135,7 @@
 			RESKIN_ICON = 'icons/obj/clothing/shoes.dmi',
 			RESKIN_ICON_STATE = "jackboots_sec",
 			RESKIN_WORN_ICON_STATE = "jackboots_sec",
-			RESKIN_WORN_ICON = 'icon/mob/clothing/feet.dmi'
+			RESKIN_WORN_ICON = 'icons/mob/clothing/feet.dmi'
 		),
 		"Armadyne Variant" = list(
 			RESKIN_ICON_STATE = "armadyne_boots",
