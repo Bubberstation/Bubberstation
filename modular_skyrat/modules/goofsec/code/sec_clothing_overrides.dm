@@ -252,8 +252,7 @@
 	)
 
 /obj/item/storage/belt/security/webbing
-	uses_advanced_reskins = FALSE
-	unique_reskin = TRUE
+	uses_advanced_reskins = TRUE
 	unique_reskin = list(
 		"Red Variant" = list(
 			RESKIN_ICON_STATE = "securitywebbing",
@@ -379,6 +378,7 @@
 	unique_reskin = null
 
 /obj/item/clothing/glasses/hud/security/sunglasses/gars
+	uses_advanced_reskins = TRUE
 	unique_reskin = list(
 		"Red Gars" = list(
 			RESKIN_ICON_STATE = "gar_sec",
@@ -391,6 +391,24 @@
 			RESKIN_WORN_ICON_STATE = "gar_sec"
 		),
 	)
+
+/obj/item/clothing/glasses/hud/security/sunglasses/gars/giga
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Red Gars" = list(
+			RESKIN_ICON_STATE = "gigagar_sec",
+			RESKIN_WORN_ICON_STATE = "gigagar_sec"
+		),
+		"Blue Gars" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/glasses.dmi',
+			RESKIN_ICON_STATE = "gigagar_sec",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi',
+			RESKIN_WORN_ICON_STATE = "gigagar_sec"
+		),
+	)
+
+/obj/item/clothing/glasses/hud/security/sunglasses/gars/giga/roselia
+	unique_reskin = null
 
 /*
 * HEAD
@@ -419,6 +437,19 @@
 		),
 	)
 
+/obj/item/clothing/head/helmet/sec/click_alt(mob/user)
+	flipped_visor = !flipped_visor
+	balloon_alert(user, "visor flipped")
+	// base_icon_state is modified for seclight attachment component
+	base_icon_state = "[initial(base_icon_state)][flipped_visor ? "-novisor" : ""]"
+	icon_state = base_icon_state
+	if (flipped_visor)
+		flags_cover &= ~HEADCOVERSEYES | PEPPERPROOF
+	else
+		flags_cover |= HEADCOVERSEYES | PEPPERPROOF
+	update_appearance()
+	return CLICK_ACTION_SUCCESS
+
 
 /obj/item/clothing/head/helmet/sec/futuristic
 	icon_state = "security_helmet_future"
@@ -440,6 +471,19 @@
 		),
 	)
 
+
+/obj/item/clothing/head/helmet/sec/futuristic/click_alt(mob/user)
+	flipped_visor = !flipped_visor
+	balloon_alert(user, "visor flipped")
+	// base_icon_state is modified for seclight attachment component
+	base_icon_state = "[initial(base_icon_state)][flipped_visor ? "-novisor" : ""]"
+	icon_state = base_icon_state
+	if (flipped_visor)
+		flags_cover &= ~HEADCOVERSEYES | PEPPERPROOF
+	else
+		flags_cover |= HEADCOVERSEYES | PEPPERPROOF
+	update_appearance()
+	return CLICK_ACTION_SUCCESS
 
 //Beret replacement
 /obj/item/clothing/head/security_garrison
@@ -561,7 +605,6 @@
 	)
 
 /obj/item/clothing/head/hats/hos/cap/syndicate
-	uses_advanced_reskins = FALSE
 	unique_reskin = null
 
 /*
@@ -825,9 +868,9 @@
 			RESKIN_WORN_ICON_STATE = "trenchcloak"
 		),
 		"White" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi',
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi',
 			RESKIN_ICON_STATE = "peacekeeper_trench_hos_white",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi',
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi',
 			RESKIN_WORN_ICON_STATE = "peacekeeper_trench_hos_white"
 		),
 	)
@@ -1024,6 +1067,13 @@
 		),
 	)
 
+/obj/item/clothing/under/rank/security/warden/skirt
+	unique_reskin = null
+
+/obj/item/clothing/under/rank/security/warden/formal
+	unique_reskin = null
+
+
 //HoS
 /obj/item/clothing/under/rank/security/head_of_security
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
@@ -1048,6 +1098,9 @@
 			RESKIN_WORN_ICON_STATE = "rhos"
 		),
 	)
+
+/obj/item/clothing/under/rank/security/head_of_security/skirt
+	unique_reskin = null
 
 /obj/item/clothing/under/rank/security/head_of_security/parade
 	icon_state = "hos_parade_male_blue"
@@ -1094,6 +1147,7 @@
 
 /obj/item/clothing/under/rank/security/head_of_security/alt/skirt
 	icon_state = "hosalt_skirt_blue"
+	uses_advanced_reskins = TRUE
 	unique_reskin = list(
 		"Blue Varient" = list(
 			RESKIN_ICON_STATE = "hosalt_skirt_blue",
@@ -1105,6 +1159,20 @@
 		),
 	)
 
+/obj/item/clothing/under/rank/security/head_of_security/peacekeeper
+	unique_reskin = null
+
+/obj/item/clothing/under/rank/security/head_of_security/skyrat/imperial
+	unique_reskin = null
+
+/obj/item/clothing/under/rank/security/head_of_security/bunnysuit
+	unique_reskin = null
+
+/obj/item/clothing/under/rank/security/head_of_security/alt/roselia
+	unique_reskin = null
+
+/obj/item/clothing/under/rank/security/head_of_security/grey
+	unique_reskin = null
 
 /*
 * FEET
@@ -1161,6 +1229,7 @@
 	worn_icon = 'icons/mob/clothing/eyes.dmi'
 	icon_state = "securityhud"
 	glass_colour_type = /datum/client_colour/glass_colour/red
+	unique_reskin = null
 
 /obj/item/clothing/glasses/hud/security/sunglasses/redsec
 	icon = 'icons/obj/clothing/glasses.dmi'
@@ -1174,11 +1243,13 @@
 	worn_icon = 'icons/mob/clothing/eyes.dmi'
 	icon_state = "hudpatch"
 	base_icon_state = "hudpatch"
+	unique_reskin = null
 
 /obj/item/clothing/glasses/hud/security/night/redsec
 	icon = 'icons/obj/clothing/glasses.dmi'
 	worn_icon = 'icons/mob/clothing/eyes.dmi'
 	icon_state = "securityhudnight"
+	unique_reskin = null
 
 /*
 *	NECK
@@ -1188,6 +1259,7 @@
 	icon = 'icons/obj/clothing/cloaks.dmi'
 	worn_icon = 'icons/mob/clothing/neck.dmi'
 	icon_state = "hoscloak"
+	unique_reskin = null
 
 /*
 *	BACK
@@ -1203,6 +1275,7 @@
 	icon = 'icons/obj/storage/backpack.dmi'
 	worn_icon = 'icons/mob/clothing/back/backpack.dmi'
 	icon_state = "satchel-security"
+	unique_reskin = null
 
 /obj/item/storage/backpack/duffelbag/sec/redsec
 	icon = 'icons/obj/storage/backpack.dmi'
