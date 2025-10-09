@@ -64,10 +64,6 @@
 		if (arousal > AROUSAL_NONE && ((src.dna.features["low_arousal"]) != ""))
 			examine_list += span_purple(src.dna.features["low_arousal"])
 			return
-		else
-			//the line below was used for debug
-			//examine_list += "They don't seem aroused"
-
 /mob/living/carbon/human/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
