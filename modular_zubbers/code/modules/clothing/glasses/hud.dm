@@ -4,7 +4,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/head/glasses.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/eyes.dmi'
 	icon_state = "civhud"
-	clothing_traits = list(TRAIT_BASIC_SECURITY_HUD) //thanks honkbots for having that
+	clothing_traits = list(TRAIT_SECURITY_HUD_ID_ONLY) //thanks honkbots for having that
 
 
 /obj/item/clothing/glasses/hud/civilian/sunglasses
