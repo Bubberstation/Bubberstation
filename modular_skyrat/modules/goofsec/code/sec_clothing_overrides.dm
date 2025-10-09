@@ -370,6 +370,8 @@
 			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi',
 			RESKIN_WORN_ICON_STATE = "hudpatch"
 		),
+	)
+
 
 /obj/item/clothing/glasses/hud/security/night
 	icon = 'icons/obj/clothing/glasses.dmi'
@@ -412,8 +414,8 @@
 		"Red Variant" = list(
 			RESKIN_ICON = 'icons/obj/clothing/head/helmet.dmi',
 			RESKIN_ICON_STATE = "helmet",
-			RESKIN_WORN_ICON_STATE = "helmet"
-			RESKIN_WORN_ICON = 'icons/mob/clothing/head/helmet.dmi',
+			RESKIN_WORN_ICON_STATE = "helmet",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/head/helmet.dmi'
 		),
 	)
 
@@ -575,10 +577,11 @@
 			RESKIN_ICON_STATE = "hoscloak_blue",
 			RESKIN_WORN_ICON_STATE = "hoscloak_blue"
 		),
-		"Red Cap" = list(
+		"Red Cape" = list(
 			RESKIN_ICON_STATE = "hoscloak",
 			RESKIN_WORN_ICON_STATE = "hoscloak"
 		),
+	)
 
 //Not technically an override but oh well
 /obj/item/clothing/neck/security_cape
@@ -1051,7 +1054,7 @@
 	uses_advanced_reskins = TRUE
 	unique_reskin = list(
 		"Blue Varient" = list(
-			RESKIN_ICON_STATE = "hos_parade_male_blue"
+			RESKIN_ICON_STATE = "hos_parade_male_blue",
 			RESKIN_WORN_ICON_STATE = "hos_parade_male_blue"
 		),
 		"Red Varient" = list(
@@ -1065,7 +1068,7 @@
 	uses_advanced_reskins = TRUE
 	unique_reskin = list(
 		"Blue Varient" = list(
-			RESKIN_ICON_STATE = "hos_parade_fem_blue"
+			RESKIN_ICON_STATE = "hos_parade_fem_blue",
 			RESKIN_WORN_ICON_STATE = "hos_parade_fem_blue"
 		),
 		"Red Varient" = list(
@@ -1080,7 +1083,7 @@
 	uses_advanced_reskins = TRUE
 	unique_reskin = list(
 		"Blue Varient" = list(
-			RESKIN_ICON_STATE = "hosalt_blue"
+			RESKIN_ICON_STATE = "hosalt_blue",
 			RESKIN_WORN_ICON_STATE = "hosalt_blue"
 		),
 		"Red Varient" = list(
@@ -1093,7 +1096,7 @@
 	icon_state = "hosalt_skirt_blue"
 	unique_reskin = list(
 		"Blue Varient" = list(
-			RESKIN_ICON_STATE = "hosalt_skirt_blue"
+			RESKIN_ICON_STATE = "hosalt_skirt_blue",
 			RESKIN_WORN_ICON_STATE = "hosalt_skirt_blue"
 		),
 		"Red Varient" = list(
@@ -1131,6 +1134,8 @@
 		"Red Variant" = list(
 			RESKIN_ICON = 'icons/obj/clothing/shoes.dmi',
 			RESKIN_ICON_STATE = "jackboots_sec",
+			RESKIN_WORN_ICON_STATE = "jackboots_sec",
+			RESKIN_WORN_ICON = 'icon/mob/clothing/feet.dmi'
 		),
 		"Armadyne Variant" = list(
 			RESKIN_ICON_STATE = "armadyne_boots",
