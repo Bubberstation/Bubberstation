@@ -55,17 +55,18 @@
 	var/mob/living/examinee = source
 
 	if(examinee.client.prefs.read_preference(/datum/preference/toggle/erp) && user.client.prefs.read_preference(/datum/preference/toggle/erp))
-		if (arousal > AROUSAL_HIGH)
-			examine_list += span_userlove("They seem extremely aroused!")
+		if (arousal > AROUSAL_HIGH && ((src.dna.features["high_arousal"]) != ""))
+			examine_list += span_userlove(src.dna.features["high_arousal"])
 			return
-		if (arousal > AROUSAL_LOW)
-			examine_list += span_userlove("They seem pretty aroused")
+		if (arousal > AROUSAL_LOW && ((src.dna.features["medium_arousal"]) != ""))
+			examine_list += span_userlove(src.dna.features["medium_arousal"])
 			return
-		if (arousal > AROUSAL_NONE)
-			examine_list += span_userlove("They seem slightly aroused")
+		if (arousal > AROUSAL_NONE && ((src.dna.features["low_arousal"]) != ""))
+			examine_list += span_purple(src.dna.features["low_arousal"])
 			return
 		else
-			examine_list += "They don't seem aroused"
+			//the line below was used for debug
+			//examine_list += "They don't seem aroused"
 
 /mob/living/carbon/human/Initialize(mapload)
 	. = ..()
