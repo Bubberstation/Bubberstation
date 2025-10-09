@@ -49,3 +49,25 @@
 
 	return TRUE
 
+/mob/living/carbon/human/proc/on_examine(atom/source, mob/user, list/examine_list)
+	SIGNAL_HANDLER
+
+	var/mob/living/examinee = source
+
+	if(examinee.client.prefs.read_preference(/datum/preference/toggle/erp) && user.client.prefs.read_preference(/datum/preference/toggle/erp))
+		if (arousal > AROUSAL_HIGH)
+			examine_list += span_userlove("They seem extremely aroused!")
+			return
+		if (arousal > AROUSAL_LOW)
+			examine_list += span_userlove("They seem pretty aroused")
+			return
+		if (arousal > AROUSAL_NONE)
+			examine_list += span_userlove("They seem slightly aroused")
+			return
+		else
+			examine_list += "They don't seem aroused"
+
+/mob/living/carbon/human/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
+
