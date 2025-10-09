@@ -556,6 +556,10 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		if ("traitor_panel")
 			SSadmin_verbs.dynamic_invoke_verb(admin_client, /datum/admin_verb/show_traitor_panel, target_mob)
 
+		/// Opens the Job Exemption Panel for the selected player/client
+		if ("job_exemption_panel")
+			show_job_exempt_menu(admin_mob, target_mob.ckey)
+
 		/// Opens the selected player/client's skills panel
 		if ("skill_panel")
 			SSadmin_verbs.dynamic_invoke_verb(admin_client, /datum/admin_verb/show_skill_panel, target_mob)
