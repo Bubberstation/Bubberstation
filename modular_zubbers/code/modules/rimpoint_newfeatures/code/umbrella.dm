@@ -12,7 +12,7 @@
 	custom_materials = list(/datum/material/iron= SMALL_MATERIAL_AMOUNT * 0.5)
 	attack_verb_continuous = list("bludgeons", "whacks", "disciplines", "pummels")
 	attack_verb_simple = list("bludgeon", "whack", "discipline", "pummel")
-	hitsound = 'sound/weapons/genhit1.ogg'
+	hitsound = 'sound/items/weapons/genhit3.ogg'
 
 	//open umbrella offsets for the inhands
 	var/open_x_offset = 2
