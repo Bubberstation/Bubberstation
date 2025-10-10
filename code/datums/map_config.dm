@@ -44,10 +44,10 @@
 
 	var/allow_custom_shuttles = TRUE
 	var/shuttles = list(
-		"cargo" = "cargo_skyrat",
+		"cargo" = "cargo_box",
 		"ferry" = "ferry_fancy",
 		"whiteship" = "whiteship_meta",
-		"emergency" = "emergency_skyrat", //SKYRAT EDIT CHANGE
+		"emergency" = "emergency_meta",
 	)
 
 	/// Dictionary of job sub-typepath to template changes dictionary
@@ -168,11 +168,6 @@
 	else if ("shuttles" in json)
 		log_world("map_config shuttles is not a list!")
 		return
-
-	//BUBBERSTATION CHANGE: FIXES DUMB SKYRAT OVERRIDE. HOLY SHIT. THIS WASN'T EVEN MARKED AS MODULAR.
-	if(!json["emergency_override"])
-		shuttles["emergency"] = "emergency_skyrat"
-	//BUBBERSTATION CHANGE END
 
 	traits = json["traits"]
 	// "traits": [{"Linkage": "Cross"}, {"Space Ruins": true}]
