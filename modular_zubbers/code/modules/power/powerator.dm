@@ -181,7 +181,7 @@
 		if(!attached_cable.avail())
 			return
 		current_power = min(max_power, attached_cable.avail())
-	attached_cable.add_load(current_power)
+	attached_cable.add_delayedload(current_power)
 
 	var/money_ratio = round(current_power * divide_ratio) * powerator_penalty_multiplier_list[powerator_faction]
 	var/datum/bank_account/synced_bank_account = SSeconomy.get_dep_account(credits_account)
