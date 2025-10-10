@@ -22,7 +22,7 @@
 		if(istype(wearer.wear_suit, /obj/item/clothing/suit/mod))
 			return FALSE
 		// Hide accessory if flagged to do so
-		else if(wearer.wear_suit.flags_inv & HIDETAIL)
+		else if(wearer.covered_slots & HIDETAIL)
 			return TRUE
 
 /datum/sprite_accessory/tails/none

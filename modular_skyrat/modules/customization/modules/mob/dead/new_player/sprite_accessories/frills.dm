@@ -5,7 +5,7 @@
 	organ_type = /obj/item/organ/frills
 
 /datum/sprite_accessory/frills/is_hidden(mob/living/carbon/human/human)
-	if((human.head?.flags_inv & HIDEEARS) || (key in human.try_hide_mutant_parts))
+	if((human.covered_slots & HIDEEARS) || (key in human.try_hide_mutant_parts))
 		return TRUE
 
 	return FALSE
