@@ -178,7 +178,7 @@
 		return
 
 	if(!attached_cable.avail(current_power))
-		if(!attached_cable.newavail())
+		if(!attached_cable.avail())
 			return
 		current_power = min(max_power, attached_cable.newavail())
 	attached_cable.add_delayedload(current_power)
