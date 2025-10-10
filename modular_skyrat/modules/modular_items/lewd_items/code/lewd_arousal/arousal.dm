@@ -49,3 +49,22 @@
 
 	return TRUE
 
+/mob/living/carbon/human/proc/on_examine(atom/source, mob/user, list/examine_list)
+	SIGNAL_HANDLER
+
+	var/mob/living/examinee = source
+
+	if(examinee.client.prefs.read_preference(/datum/preference/toggle/erp) && user.client.prefs.read_preference(/datum/preference/toggle/erp))
+		if (arousal > AROUSAL_HIGH && ((src.dna.features["high_arousal"]) != ""))
+			examine_list += span_userlove(src.dna.features["high_arousal"])
+			return
+		if (arousal > AROUSAL_LOW && ((src.dna.features["medium_arousal"]) != ""))
+			examine_list += span_userlove(src.dna.features["medium_arousal"])
+			return
+		if (arousal > AROUSAL_NONE && ((src.dna.features["low_arousal"]) != ""))
+			examine_list += span_purple(src.dna.features["low_arousal"])
+			return
+/mob/living/carbon/human/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
+
