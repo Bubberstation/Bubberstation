@@ -18,6 +18,7 @@
 //New titles for Blacksmith
 /datum/job/blacksmith
 	alt_titles = list(
+		"Blacksmith",
 		"Ithastrist",
 		"Metalurgist",
 		"Metal Worker",
@@ -30,6 +31,7 @@
 
 /datum/job/bridge_assistant
 	alt_titles = list(
+		"Bridge Assistant",
 		"Bridge Secretary",
 		"Bridge Coffee Maker",
 		"Command Deck Assistant",
@@ -62,6 +64,8 @@
 		"Manager Representative",
 		"Head Assistant",
 		"Bridge Tour Coordinator",
+		"Ambassador",
+		"Diplomat",
 	)
 
 /datum/job/paramedic/New()
