@@ -511,6 +511,7 @@
 /datum/loadout_item/head/imperial_white
 	name = "White Naval Officer Cap"
 	item_path = /obj/item/clothing/head/hats/imperial/white
+
 /datum/loadout_item/head/jester
 	name = "Jester hat"
 	item_path = /obj/item/clothing/head/costume/jester
@@ -520,16 +521,12 @@
 	item_path = /obj/item/clothing/head/costume/jesteralt
 
 /datum/loadout_item/head/azulea_oldblood
-	name = "Oldblood's Royal cap"
+	name = "Oldblood's Royal Cap"
 	item_path = /obj/item/clothing/head/hats/caphat/azulean/old_blood
-	restricted_roles = list(JOB_CAPTAIN, JOB_NT_REP)
-	restricted_species = list(SPECIES_AKULA)
 
 /datum/loadout_item/head/azulea_upstart
-	name = "Upstart's Noble cap"
+	name = "Upstart's Noble Cap"
 	item_path = /obj/item/clothing/head/hats/caphat/azulean/upstart
-	restricted_roles = list(JOB_CAPTAIN, JOB_NT_REP)
-	restricted_species = list(SPECIES_AKULA)
 
 /*
 *	JOB BERETS

@@ -85,6 +85,7 @@
 					/obj/item/clothing/suit/armor/vest/peacekeeper/armadyne = 6,
 					/obj/item/clothing/suit/armor/vest/peacekeeper/armadyne/armor = 6,
 					/obj/item/clothing/suit/armor/vest/caligram_parka_vest_tan = 6,
+					/obj/item/clothing/suit/toggle/jacket/zubber/bomber/sec = 6,
 				),
 			),
 		list(
