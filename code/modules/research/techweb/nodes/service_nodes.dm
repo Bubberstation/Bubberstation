@@ -37,7 +37,6 @@
 		"ticket_machine",
 		"radio_entertainment",
 		"photocopier",
-		"umbrella", //BUBBER EDIT ADDITION
 	)
 
 /datum/techweb_node/sanitation
