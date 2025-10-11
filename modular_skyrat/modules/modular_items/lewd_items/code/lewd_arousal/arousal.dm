@@ -52,7 +52,7 @@
 
 /mob/living/carbon/human/examine(mob/user)
 	. = ..()
-	if(src.client.prefs.read_preference(/datum/preference/toggle/erp) && user.client.prefs.read_preference(/datum/preference/toggle/erp))
+	if(src.client?.prefs.read_preference(/datum/preference/toggle/erp) && user.client.prefs.read_preference(/datum/preference/toggle/erp))
 		if (arousal > AROUSAL_HIGH && src.dna.features["high_arousal"])
 			. += span_userlove(src.dna.features["high_arousal"])
 			return
