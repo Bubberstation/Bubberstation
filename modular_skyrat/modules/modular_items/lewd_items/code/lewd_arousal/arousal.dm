@@ -64,5 +64,3 @@
 		if (arousal > AROUSAL_NONE && ((src.dna.features["low_arousal"]) != ""))
 			examine_list += span_purple(src.dna.features["low_arousal"])
 			return
-		else
-			examine_list += "They don't seem to be aroused."
