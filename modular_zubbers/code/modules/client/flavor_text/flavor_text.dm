@@ -32,7 +32,6 @@
 
 /datum/preference/text/low_arousal/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	target.dna.features["low_arousal"] = value
-	return FALSE
 
 /datum/preference/text/medium_arousal
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
@@ -42,7 +41,6 @@
 
 /datum/preference/text/medium_arousal/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	target.dna.features["medium_arousal"] = value
-	return FALSE
 
 /datum/preference/text/high_arousal
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
@@ -52,7 +50,6 @@
 
 /datum/preference/text/high_arousal/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	target.dna.features["high_arousal"] = value
-	return FALSE
 
 //This is just a silicon variant of the NSFW flavor text.
 /datum/preference/text/flavor_text_nsfw/silicon
