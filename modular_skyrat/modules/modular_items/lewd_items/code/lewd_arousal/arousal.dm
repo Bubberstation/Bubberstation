@@ -55,12 +55,12 @@
 	var/list/examine_list = . //As someone new to Byond I do not understand why this works, but it does.
 
 	if(src.client.prefs.read_preference(/datum/preference/toggle/erp) && user.client.prefs.read_preference(/datum/preference/toggle/erp))
-		if (arousal > AROUSAL_HIGH && ((src.dna.features["high_arousal"]) != ""))
+		if (arousal > AROUSAL_HIGH && src.dna.features["high_arousal"])
 			examine_list += span_userlove(src.dna.features["high_arousal"])
 			return
-		if (arousal > AROUSAL_LOW && ((src.dna.features["medium_arousal"]) != ""))
+		if (arousal > AROUSAL_LOW && src.dna.features["medium_arousal"])
 			examine_list += span_userlove(src.dna.features["medium_arousal"])
 			return
-		if (arousal > AROUSAL_NONE && ((src.dna.features["low_arousal"]) != ""))
+		if (arousal > AROUSAL_NONE && src.dna.features["low_arousal"])
 			examine_list += span_purple(src.dna.features["low_arousal"])
 			return
