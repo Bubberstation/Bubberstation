@@ -195,6 +195,15 @@
 			to_chat(human, span_notice("You no longer feel vigorous."))
 		human.metabolism_efficiency = 1
 
+	//Gs13 EDIT START
+	if(nutrition > NUTRITION_LEVEL_FULL)
+		// fatConversionRate is functionally useless. It seems under normal curcumstances, each tick only processes, at most, 1 nutrition anyway. reducing the value has no effect.
+		var/fatConversionRate = 100 //GS13 what percentage of the excess nutrition should go to fat (total nutrition to transfer can't be under 1)
+		var/nutritionThatBecomesFat = max((nutrition - NUTRITION_LEVEL_FULL)*(fatConversionRate / 100),1)
+		human.adjust_nutrition(-nutritionThatBecomesFat)
+		human.adjust_fatness(nutritionThatBecomesFat, FATTENING_TYPE_FOOD)
+	//GS13 EDIT END
+
 	//GS13 EDIT Handle Weight gain
 	handle_weight_gain(human)
 
