@@ -1,7 +1,8 @@
 /obj/item/umbrella
 	name = "umbrella"
-	icon = 'modular_zubbers/icons/obj/equipment/umbrella.dmi'
-	icon_state = "umbrella"
+	icon = 'icons/map_icons/items/_item.dmi'
+	icon_state = "/obj/item/umbrella"
+	post_init_icon_state = "umbrella"
 	lefthand_file = 'modular_zubbers/icons/obj/equipment/umbrella_inhand_l.dmi'
 	righthand_file = 'modular_zubbers/icons/obj/equipment/umbrella_inhand_r.dmi'
 	inhand_icon_state = "umbrella_closed"
