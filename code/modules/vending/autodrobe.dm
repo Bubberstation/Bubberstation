@@ -333,6 +333,13 @@ GLOBAL_LIST_INIT(autodrobe_contraband_items, list(
 	/obj/item/clothing/under/syndicate/skyrat/enclave = 3,
 	/obj/item/clothing/under/syndicate/skyrat/enclave/officer = 3,
 	/obj/item/clothing/under/syndicate/syndibunny/fake = 3,
+	/obj/item/clothing/head/bandana/snake = 3, //Solid, Vic and ... Venom I guess?
+	/obj/item/clothing/under/rank/civilian/bubber/boss = 3, //Okay maybe there is room for more than one Boss and Snake
+	/obj/item/clothing/gloves/bubber/boss = 3,
+	/obj/item/clothing/shoes/jackboots/boss = 3,
+	/obj/item/clothing/under/rank/civilian/bubber/snake = 3,
+	/obj/item/clothing/gloves/bubber/snake = 3,
+	/obj/item/clothing/shoes/jackboots/snake = 3,
 	// BUBBER EDIT ADDITION END - Extra stuff
 ))
 

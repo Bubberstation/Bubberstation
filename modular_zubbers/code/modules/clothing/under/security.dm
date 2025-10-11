@@ -54,3 +54,13 @@
 			RESKIN_WORN_ICON_STATE = "overwatch_red"
 		),
 	)
+
+
+//MGS stuff sprited by Crumpaloo for onlyplateau, please credit when porting, which you obviously have permission to do.
+/obj/item/clothing/under/rank/security/snake
+	name = "stealth suit"
+	desc = "We may all be headed straight to hell. But what better place for us than this?"
+	icon = 'modular_zubbers/icons/obj/clothing/under/syndicate.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/syndicate.dmi'
+	icon_state = "snake"
+	uses_advanced_reskins = FALSE
