@@ -78,3 +78,15 @@
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_UTILITY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/design/umbrella
+	name = "Umbrella"
+	id = "umbrella"
+	build_type = PROTOLATHE | AUTOLATHE
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.75, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.25)
+	build_path = /obj/item/umbrella
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE,
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SERVICE

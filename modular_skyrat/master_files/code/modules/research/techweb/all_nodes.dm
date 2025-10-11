@@ -90,6 +90,7 @@
 	design_ids += list(
 		"gbp_machine",
 		"plastic_hair_tie",
+		"umbrella",
 	)
 	return ..()
 
