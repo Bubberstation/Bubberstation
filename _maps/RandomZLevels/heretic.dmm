@@ -651,6 +651,28 @@
 /obj/effect/turf_decal/vg_decals/no,
 /turf/open/floor/engine,
 /area/awaymission/caves/heretic_laboratory)
+"eW" = (
+/obj/machinery/vending/wardrobe/syndie_wardrobe,
+/turf/open/floor/iron/small,
+/area/awaymission/caves/heretic_laboratory)
+"eY" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "j";
+	pixel_x = -14;
+	pixel_y = 2
+	},
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "u";
+	pixel_x = -4;
+	pixel_y = 1
+	},
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "m";
+	pixel_x = 10;
+	pixel_y = 1
+	},
+/turf/open/floor/engine,
+/area/awaymission/caves/heretic_laboratory)
 "fb" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -1298,6 +1320,10 @@
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/iron/small,
 /area/awaymission/caves/heretic_laboratory_clean)
+"iH" = (
+/obj/structure/closet/secure_closet,
+/turf/open/floor/iron/small,
+/area/awaymission/caves/heretic_laboratory)
 "iI" = (
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /obj/structure/closet/cabinet,
@@ -2247,6 +2273,14 @@
 /obj/machinery/pdapainter,
 /turf/open/floor/carpet/royalblack,
 /area/awaymission/beach/heretic)
+"oF" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "p";
+	pixel_x = -8;
+	pixel_y = 1
+	},
+/turf/open/floor/engine,
+/area/awaymission/caves/heretic_laboratory)
 "oI" = (
 /obj/effect/mapping_helpers/airlock/access/all/service,
 /obj/machinery/door/airlock/glass{
@@ -3047,7 +3081,7 @@
 /turf/open/floor/wood,
 /area/awaymission/beach/heretic)
 "tR" = (
-/obj/effect/spawner/message_in_a_bottle,
+/obj/effect/spawner/message_in_a_bottle/low_prob,
 /turf/open/water/beach,
 /area/awaymission/beach/heretic)
 "tS" = (
@@ -4992,8 +5026,6 @@
 "GD" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/armory/laser_gun,
-/obj/item/gun/energy/modular_laser_rifle/carbine,
-/obj/item/gun/energy/modular_laser_rifle/carbine,
 /turf/open/floor/pod/dark,
 /area/awaymission/beach/heretic)
 "GH" = (
@@ -5218,7 +5250,6 @@
 /area/awaymission/caves/heretic_laboratory)
 "HX" = (
 /obj/structure/closet/cabinet,
-/obj/item/card/id/away/deep_storage,
 /turf/open/floor/wood,
 /area/awaymission/caves/heretic_laboratory)
 "Ia" = (
@@ -7046,6 +7077,13 @@
 /obj/machinery/light/directional/east,
 /turf/open/floor/plating,
 /area/awaymission/caves/heretic_laboratory)
+"TQ" = (
+/obj/machinery/conveyor/auto/hardened{
+	dir = 4
+	},
+/obj/machinery/door/puzzle/keycard/highsec_access,
+/turf/open/floor/plating,
+/area/awaymission/caves/heretic_laboratory_clean)
 "TT" = (
 /obj/structure/fluff/bus/dense{
 	icon_state = "hoodtop"
@@ -12743,7 +12781,7 @@ xl
 xl
 xl
 xl
-MV
+TQ
 xl
 xl
 xl
@@ -36939,7 +36977,7 @@ bq
 bq
 bq
 bq
-bq
+ZD
 KB
 nG
 vn
@@ -37191,7 +37229,7 @@ bZ
 bZ
 bZ
 KB
-ZD
+eW
 bq
 bq
 bq
@@ -37460,19 +37498,19 @@ fB
 bq
 KB
 Df
-fB
+iH
 bq
 KB
 Df
-fB
+iH
 bq
 KB
 Df
-fB
+iH
 bq
 KB
 Df
-fB
+iH
 bq
 KB
 bZ
@@ -42104,7 +42142,7 @@ bZ
 bZ
 KB
 wz
-cL
+eY
 aw
 KB
 bZ
@@ -42361,7 +42399,7 @@ bZ
 bZ
 KB
 wz
-cL
+oF
 aw
 KB
 bZ
