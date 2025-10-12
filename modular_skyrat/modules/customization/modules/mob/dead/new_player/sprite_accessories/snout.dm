@@ -7,7 +7,7 @@
 	relevent_layers = list(BODY_ADJ_LAYER, BODY_FRONT_LAYER)
 
 /datum/sprite_accessory/snouts/is_hidden(mob/living/carbon/human/human)
-	if((human.wear_mask?.flags_inv & HIDESNOUT) || (human.head?.flags_inv & HIDESNOUT))
+	if(human.covered_slots & HIDESNOUT)
 		return TRUE
 
 	return FALSE
