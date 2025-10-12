@@ -1,3 +1,5 @@
+//Sprites by Constellado, MapleStation
+
 /obj/item/umbrella
 	name = "umbrella"
 	icon = 'modular_zubbers/icons/obj/equipment/umbrella.dmi'
