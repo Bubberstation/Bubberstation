@@ -12,21 +12,53 @@
 *	OTHER
 */
 
-/datum/loadout_item/pocket_items/royalzippo //donator item for UltimariFox, available for all
-	name = "Royal Zippo"
-	item_path = /obj/item/lighter/royal
-
 /datum/loadout_item/pocket_items/pocketwatch //The Hypnowatch, but uncracked, with the ability to tell time. Best of both worlds!
 	name = "Pocket Watch"
 	item_path = /obj/item/clothing/accessory/pocketwatch
+
+/datum/loadout_item/pocket_items/hypno_watch
+	name = "Pocket Watch"
+	item_path = /obj/item/clothing/accessory/hypno_watch
+	ckeywhitelist = list("slippyjoe")
 
 /datum/loadout_item/pocket_items/table_clock
 	name = "Table Clock"
 	item_path = /obj/item/table_clock
 
-/datum/loadout_item/pocket_items/cigarettesleary
-	name = "Mindbreaker Cigs"
-	item_path = /obj/item/storage/fancy/cigarettes/cigpack_mindbreaker
+/datum/loadout_item/pocket_items/drawingtablet
+	name = "Drawing Tablet"
+	item_path = /obj/item/canvas/drawingtablet
+	//ckeywhitelist = list("thedragmeme")
+
+/datum/loadout_item/pocket_items/fuzzy_huglicense
+	name = "License To Hug"
+	item_path = /obj/item/card/fuzzy_license
+	//ckeywhitelist = list("fuzlet")
+
+/datum/loadout_item/pocket_items/korpstech_poster
+	name = "Korpstech Poster"
+	item_path = /obj/item/poster/korpstech
+	//ckeywhitelist = list("1ceres")
+
+/datum/loadout_item/pocket_items/tacticalbrush
+	name = "Tactical Brush"
+	item_path = /obj/item/hairbrush/tactical
+	//ckeywhitelist = list("weredoggo")
+
+/datum/loadout_item/pocket_items/marsoc_coin
+	name = "MARSOC Challenge Coin"
+	item_path = /obj/item/coin/donator/marsoc
+	//ckeywhitelist = list("sweetsoulbrother")
+
+/datum/loadout_item/pocket_items/transponder
+	name = "Broken Helian Transponder"
+	item_path = /obj/item/donator/transponder
+//	ckeywhitelist = list("glacii")
+
+/datum/loadout_item/pocket_items/toaster_implant
+	name = "Toaster Implant"
+	item_path = /obj/item/implanter/toaster
+//	ckeywhitelist = list("jasohavents")
 
 /*
 *	FLAGS
@@ -135,3 +167,30 @@
 /datum/loadout_item/pocket_items/lustwish_theme
 	name = "Lustwish MOD Plating"
 	item_path = /obj/item/mod/construction/plating/lustwish
+
+/*
+*	CIGS
+*/
+/datum/loadout_item/pocket_items/brightcosmos
+	name = "Bright Cosmos cigar"
+	item_path = /obj/item/holocigarette/cigar
+	ckeywhitelist = list("lyricalpaws")
+
+/datum/loadout_item/pocket_items/cigarettesleary
+	name = "Mindbreaker Cigs"
+	item_path = /obj/item/storage/fancy/cigarettes/cigpack_mindbreaker
+
+/datum/loadout_item/pocket_items/royalzippo //donator item for UltimariFox, available for all
+	name = "Royal Zippo"
+	item_path = /obj/item/lighter/royal
+
+/datum/loadout_item/pocket_items/khicigs
+	name = "Kitsuhana Singularity Cigarettes"
+	item_path = /obj/item/storage/fancy/cigarettes/khi
+	//ckeywhitelist = list("ultimarifox")
+
+/datum/loadout_item/pocket_items/masvedishcigar
+	name = "Holocigar"
+	item_path = /obj/item/holocigarette/masvedishcigar
+	// Asked it to be public, and as such has no whitelist.
+

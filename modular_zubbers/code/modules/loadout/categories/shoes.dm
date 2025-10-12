@@ -1,5 +1,42 @@
 //Title Capitalization for names please!!!
 
+/datum/loadout_item/shoes/rax_armadyne_boots
+	name = "Tactical Boots"
+	item_path = /obj/item/clothing/shoes/jackboots/peacekeeper/armadyne/rax
+	restricted_roles = list(JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_MEDIC, JOB_CORRECTIONS_OFFICER)
+	//ckeywhitelist = list("raxraus")
+
+/datum/loadout_item/shoes/britches_shoes
+	name = "Britches' shoes"
+	item_path = /obj/item/clothing/shoes/clown_shoes/britches
+	//ckeywhitelist = list("bloodrite")
+
+/datum/loadout_item/shoes/metra_boots
+	name = "Polished Jackboots"
+	item_path = /obj/item/clothing/shoes/jackboots/netra
+	//ckeywhitelist = list("netrakyram")
+
+/datum/loadout_item/shoes/mikulegging //Having a Bikini be shoes instead of an under is foul, never do this again.
+	name = "Starlight Singer Bikini"
+	item_path = /obj/item/clothing/shoes/sneakers/mikuleggings
+	//ckeywhitelist = list("grandvegeta")
+
+/datum/loadout_item/shoes/dragheels
+	name = "Fancy Heels (dragmeme)"
+	item_path = /obj/item/clothing/shoes/fancy_heels/drag
+	//ckeywhitelist = list("thedragmeme")
+
+/datum/loadout_item/shoes/noble_boots
+	name = "Noble Boots"
+	item_path = /obj/item/clothing/shoes/jackboots/noble
+	//ckeywhitelist = list("grasshand")
+
+/datum/loadout_item/shoes/elofy
+	name = "Solar Admiral Boots"
+	item_path = /obj/item/clothing/shoes/jackboots/elofy
+	can_be_reskinned = TRUE
+//	ckeywhitelist = list("october23")
+
 /datum/loadout_item/shoes/bubber/clown/pink/squeak //Unlike the rest, these make noise. Job locked.
 	name = "Pink Clown Heels"
 	item_path = /obj/item/clothing/shoes/clown_shoes/bubber/clussy

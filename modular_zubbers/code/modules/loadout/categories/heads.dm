@@ -1,5 +1,79 @@
 //Title Capitalization for names please!!!
 
+/datum/loadout_item/head/goldengoggles
+	name = "Steampunk Goggles"
+	item_path = /obj/item/clothing/glasses/welding/steampunk_goggles
+	//ckeywhitelist = list("goldenalpharex")
+
+/datum/loadout_item/head/emissionhelm
+	name = "Emission's Helmet"
+	item_path = /obj/item/clothing/head/helmet/space/plasmaman/candlejax
+	//ckeywhitelist = list("candlejax")
+
+/datum/loadout_item/head/anahelm
+	name = "Azulean's Enviro-Helmet"
+	item_path = /obj/item/clothing/head/helmet/space/plasmaman/candlejax2
+//	ckeywhitelist = list("candlejax")
+
+/datum/loadout_item/head/avipilot
+	name = "Smuggler's Flying Cap"
+	item_path = /obj/item/clothing/head/avipilot
+	//ckeywhitelist = list("slippyjoe")
+
+/datum/loadout_item/head/caligram_cap_tan
+	name = "Blacktide Tan Softcap"
+	item_path = /obj/item/clothing/head/caligram_cap_tan
+	can_be_reskinned = TRUE
+//	ckeywhitelist = list("farsightednightlight", "raxraus", "1ceres", "marcoalbaredaa", "itzshift_yt", "drifter7371", "AvianAviator", "Katty Kat", "Investigator77", "Dalao Azure", "Socialistion", "ChillyLobster", "Sylvara", "AmZee", "Tf4", "rb303", "Kay_Nite", "whataboutism", "taac", "Halkyon", "Lupo_di_rosa", "Merek2", "lowpowermia", "RyeanBread", "Jesterz7", "Saund_Minah", "Ruediger4")
+
+/datum/loadout_item/head/recruiter_cap
+	name = "Recruiter's Cap"
+	item_path = /obj/item/clothing/head/recruiter_cap
+	//ckeywhitelist = list("m97screwsyourparents")
+
+/datum/loadout_item/head/elofy
+	name = "Solar Admiral Hat"
+	item_path = /obj/item/clothing/head/hats/hos/elofy
+	//ckeywhitelist = list("october23")
+	restricted_roles = list(JOB_HEAD_OF_SECURITY)
+	can_be_reskinned = TRUE
+
+/datum/loadout_item/head/somerandomowl
+	name = "Starry Witch Hat"
+	item_path = /obj/item/clothing/head/costume/strigihat
+	//ckeywhitelist = list("somerandomowl")
+
+/datum/loadout_item/head/razurathhat
+	name = "Golden Nanotrasen Officer Cap"
+	item_path = /obj/item/clothing/head/razurathhat
+	//ckeywhitelist = list("razurath")
+
+/datum/loadout_item/head/anubite_headpiece
+	name = "Anubite Headpiece"
+	item_path = /obj/item/clothing/head/anubite
+	//ckeywhitelist = list("vexcint")
+
+/datum/loadout_item/head/catear_headphone
+	name = "Cat-Ear Headphones"
+	item_path = /obj/item/instrument/piano_synth/headphones/catear_headphone
+	//ckeywhitelist = list("dtfe")
+
+/datum/loadout_item/head/mikuhair
+	name = "Starlight Singer Wig"
+	item_path = /obj/item/clothing/head/mikuhair
+	//ckeywhitelist = list("grandvegeta")
+
+/datum/loadout_item/head/hubertcc
+	name = "CC Ensign's cap"
+	item_path = /obj/item/clothing/head/nanotrasen_consultant/hubert
+	//ckeywhitelist = list("hackertdog")
+	restricted_roles = list(JOB_NT_REP)
+
+/datum/loadout_item/head/frostyushanka
+	name = "Blue Ushanka"
+	item_path = /obj/item/clothing/head/costume/ushanka/frosty
+	//ckeywhitelist = list("cherno00")
+
 /datum/loadout_item/head/pinwheel_hat //sprites by Keila.
 	name = "Pinwheel Hat"
 	item_path = /obj/item/clothing/head/helmet/toggleable/pinwheel

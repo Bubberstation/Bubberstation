@@ -80,3 +80,45 @@
 /datum/loadout_item/neck/scarf/shadekin
 	name = "Shadekin Fur Scarf"
 	item_path = /obj/item/clothing/neck/scarf/shadekin
+
+/datum/loadout_item/neck/grunnyyycloak
+	name = "Black and Red cloak"
+	item_path = /obj/item/clothing/neck/cloak/grunnyyy
+	//ckeywhitelist = list("grunnyyy")
+
+/datum/loadout_item/neck/kiaracloak
+	name = "Kiara's cloak"
+	item_path = /obj/item/clothing/neck/cloak/inferno
+	//ckeywhitelist = list("inferno707")
+
+/datum/loadout_item/neck/kiaracollar
+	name = "Kiara's collar"
+	item_path = /obj/item/clothing/neck/inferno_collar
+	//ckeywhitelist = list("inferno707")
+
+/datum/loadout_item/neck/zuliecloak
+	name = "Project: Zul-E"
+	item_path = /obj/item/clothing/suit/hooded/cloak/zuliecloak
+	//ckeywhitelist = list("asky")
+
+/datum/loadout_item/neck/silvercross
+	name = "Silver Cross"
+	item_path = /obj/item/clothing/neck/cross
+	//ckeywhitelist = list("m97screwsyourparents")
+
+/datum/loadout_item/neck/fluffycloak
+	name = "Fluffy Cloak"
+	item_path = /obj/item/clothing/neck/cloak/fluffycloak
+	//ckeywhitelist = list("realwinterfrost")
+
+/datum/loadout_item/neck/fishpendant
+	name = "Fish Pendant"
+	item_path = /obj/item/clothing/neck/fishpendant
+	//ckeywhitelist = list("cimika")
+
+/datum/loadout_item/neck/flowercollar
+	name = "Flower Collar"
+	item_path = /obj/item/clothing/neck/flower_collar
+	//ckeywhitelist = list("thedragmeme")
+
+

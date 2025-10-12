@@ -1,5 +1,157 @@
 //Title Capitalization for names please!!!
 
+
+/datum/loadout_item/suit/furcoat
+	name = "Leather coat with fur"
+	item_path = /obj/item/clothing/suit/furcoat
+	//ckeywhitelist = list("thedragmeme")
+
+/datum/loadout_item/suit/ryddid
+	name = "The Ryddid"
+	item_path = /obj/item/clothing/suit/jacket/ryddid
+	//ckeywhitelist = list("grunnyyy")
+
+/datum/loadout_item/suit/rax_peacekeeper_jacket
+	name = "Peacekeeper Jacket"
+	item_path = /obj/item/clothing/suit/armor/vest/warden/rax
+	//ckeywhitelist = list("raxraus")
+	restricted_roles = list(JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC,)
+
+/datum/loadout_item/suit/jacket/cherno
+	name = "Blue-Silvered Coat"
+	item_path = /obj/item/clothing/suit/jacket/cherno
+	//ckeywhitelist = list("cherno00")
+
+/datum/loadout_item/suit/caligram_parka_tan
+	name = "Blacktide Tan Coat"
+	item_path = /obj/item/clothing/suit/jacket/caligram_parka_tan
+	can_be_reskinned = TRUE
+//	ckeywhitelist = list("farsightednightlight", "raxraus", "1ceres", "marcoalbaredaa", "itzshift_yt", "drifter7371", "AvianAviator", "Katty Kat", "Investigator77", "Dalao Azure", "Socialistion", "ChillyLobster", "Sylvara", "AmZee", "Tf4", "rb303", "Kay_Nite", "whataboutism", "taac", "Halkyon", "Lupo_di_rosa", "Merek2", "lowpowermia", "RyeanBread", "Jesterz7", "Saund_Minah", "Ruediger4")
+
+/datum/loadout_item/suit/caligram_parka_vest_tan
+	name = "Blacktide Armored Coat"
+	item_path = /obj/item/clothing/suit/armor/vest/caligram_parka_vest_tan
+//	ckeywhitelist = list("farsightednightlight", "raxraus", "1ceres", "marcoalbaredaa", "itzshift_yt", "drifter7371", "AvianAviator", "Katty Kat", "Investigator77", "Dalao Azure", "Socialistion", "ChillyLobster", "Sylvara", "AmZee", "Tf4", "rb303", "Kay_Nite", "whataboutism", "taac", "Halkyon", "Lupo_di_rosa", "Merek2", "lowpowermia", "RyeanBread", "Jesterz7", "Saund_Minah", "Ruediger4")
+	restricted_roles = list(JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC,)
+	can_be_reskinned = TRUE
+
+/datum/loadout_item/suit/brasspriest
+	name = "Brasspriest Coat"
+	item_path = /obj/item/clothing/suit/jacket/brasspriest
+//	ckeywhitelist = list("ChillyLobster")
+
+/datum/loadout_item/suit/hydrogenrobes
+	name = "Metallic-Hydrogen robes"
+	item_path = /obj/item/clothing/suit/jacket/hydrogenrobes
+//	ckeywhitelist = list("ChillyLobster")
+
+/datum/loadout_item/suit/darkarmor
+	name = "Dark Armor"
+	item_path = /obj/item/clothing/suit/armor/vest/darkcarapace
+	//ckeywhitelist = list("inferno707")
+
+/datum/loadout_item/suit/scraparmour
+	name = "Scrap Armor"
+	item_path = /obj/item/clothing/suit/scraparmour
+	//ckeywhitelist = list("hackertdog")
+
+/datum/loadout_item/suit/mikujacket
+	name = "starlight singer jacket"
+	item_path = /obj/item/clothing/suit/mikujacket
+	//ckeywhitelist = list("grandvegeta")
+
+/datum/loadout_item/suit/delta_coat
+	name = "Grey Winter Hoodie"
+	item_path = /obj/item/clothing/suit/jacket/delta
+	//ckeywhitelist = list("deltatri")
+
+/datum/loadout_item/suit/hubertcc
+	name = "CC Ensign's armoured vest"
+	item_path = /obj/item/clothing/suit/armor/vest/nanotrasen_consultant/hubert
+	//ckeywhitelist = list("hackertdog")
+	restricted_roles = list(JOB_NT_REP)
+
+/datum/loadout_item/suit/occult_coat
+	name = "Occult Collector's Coat"
+	item_path = /obj/item/clothing/suit/hooded/occult
+	//ckeywhitelist = list("gamerguy14948")
+
+/datum/loadout_item/suit/gorlex_harness
+	name = "Engine Technician Harness"
+	item_path = /obj/item/clothing/suit/jacket/gorlex_harness
+	//ckeywhitelist = list("1ceres")
+
+/datum/loadout_item/suit/tenrai_coat
+	name = "Tenrai Coat"
+	item_path = /obj/item/clothing/suit/toggle/labcoat/skyrat/tenrai
+	//ckeywhitelist = list("cimika")
+
+/datum/loadout_item/suit/rainbowcoat
+	name = "Rainbow Coat"
+	item_path = /obj/item/clothing/suit/toggle/rainbowcoat
+	//ckeywhitelist = list("dudewithatude")
+
+/datum/loadout_item/suit/recruiter_jacket
+	name = "Recruiter's Jacket"
+	item_path = /obj/item/clothing/suit/toggle/recruiter_jacket
+	//ckeywhitelist = list("m97screwsyourparents")
+
+/datum/loadout_item/suit/techpriest
+	name = "Techpriest Robes"
+	item_path = /obj/item/clothing/suit/hooded/techpriest
+	//ckeywhitelist = list("imthinkingarbys")
+
+/datum/loadout_item/suit/elofy
+	name = "Solar Admiral Coat"
+	item_path = /obj/item/clothing/suit/armor/hos/elofy
+//	ckeywhitelist = list("october23")
+	restricted_roles = list(JOB_HEAD_OF_SECURITY)
+	can_be_reskinned = TRUE
+
+/datum/loadout_item/suit/shortcoat
+	name = "Short Purple Coat"
+	item_path = /obj/item/clothing/suit/short_coat
+	//ckeywhitelist = list("thedragmeme")
+
+/datum/loadout_item/suit/blackraincoat
+	name = "Black Open-Faced Raincoat"
+	item_path = /obj/item/clothing/suit/hooded/sigmarcoat
+	//ckeywhitelist = list("sigmaralkahest")
+
+/datum/loadout_item/suit/razurathcoat
+	name = "Golden Nanotrasen Officer Coat"
+	item_path = /obj/item/clothing/suit/razurathcoat
+	//ckeywhitelist = list("razurath")
+
+/datum/loadout_item/suit/digicoat_glitched
+	name = "Glitched Digicoat"
+	item_path = /obj/item/clothing/suit/toggle/digicoat/glitched
+	//ckeywhitelist = list("razurath")
+
+/datum/loadout_item/suit/lt3_armor
+	name = "Silver Jacket Mk II"
+	item_path = /obj/item/clothing/suit/armor/skyy
+	restricted_roles = list(JOB_HEAD_OF_PERSONNEL, JOB_NT_REP)
+
+/datum/loadout_item/suit/lt3_jacket
+	name = "Silver Jacket"
+	item_path = /obj/item/clothing/suit/jacket/skyy
+
+/datum/loadout_item/suit/colorblockhoodie
+	name = "Color-Block Hoodie"
+	item_path = /obj/item/clothing/suit/hooded/colorblockhoodie
+//	ckeywhitelist = list("lolpopomg101")
+
+/datum/loadout_item/suit/nobility_dresscoat
+	name = "Nobility Dresscoat"
+	item_path = /obj/item/clothing/suit/toggle/labcoat/vic_dresscoat_donator
+//	ckeywhitelist = list("nikotheguydude")
+
+/datum/loadout_item/suit/blutigen_kimono
+	name = "Blutigen Kimono"
+	item_path = /obj/item/clothing/suit/blutigen_kimono
+	//ckeywhitelist = list("random516")
+
 /datum/loadout_item/suit/leather_apron
 	name = "Leather Apron"
 	item_path = /obj/item/clothing/suit/leatherapron
