@@ -1,6 +1,6 @@
 /*
-*	Overwrites all the security icons with our own bluesec versions; this means little to no mapping/spawning conflicts!
-*	(Also includes 'old' versions at the bottom of the file, for the purpose of crates/vendors/admin shenanigans. Can't remove them ENTIRELY after all!)
+*	Security clothing reskins and such.
+	Redsec items at the bottom tbd.
 */
 
 /*
