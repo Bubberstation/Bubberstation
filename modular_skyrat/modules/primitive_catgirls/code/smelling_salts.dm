@@ -25,10 +25,7 @@
 
 /// If the right conditions are present (basically could this person be defibrilated), revives the target
 /obj/item/smelling_salts/proc/try_revive(mob/living/carbon/carbon_target, mob/user)
-	carbon_target.notify_revival("You are being brought back to life!")
 	carbon_target.grab_ghost()
-
-	user.balloon_alert_to_viewers("trying to revive [carbon_target]")
 
 	if(!do_after(user, 3 SECONDS, carbon_target))
 		user.balloon_alert(user, "stopped reviving [carbon_target]")
@@ -37,6 +34,9 @@
 	if(carbon_target.stat != DEAD)
 		to_chat(user, span_warning("Wait, [carbon_target] isn't actually <b>dead</b>!"))
 		return
+	carbon_target.notify_revival("You are being brought back to life!")
+
+	user.balloon_alert_to_viewers("trying to revive [carbon_target]")
 
 	var/defib_result = carbon_target.can_defib()
 	var/fail_reason
@@ -51,14 +51,14 @@
 		if (DEFIB_FAIL_NO_BRAIN)
 			fail_reason = "[carbon_target]'s head looks like its missing something important."
 
-	if(carbon_target.health <= HEALTH_THRESHOLD_FULLCRIT)
+	if(carbon_target.get_organic_health() <= HEALTH_THRESHOLD_CRIT)
 		fail_reason = "[carbon_target]'s body seems just a little too damaged for this to work..."
 
 	if(fail_reason)
 		to_chat(user, span_boldwarning("[fail_reason]"))
 		return
 
-	carbon_target.adjustOxyLoss(amount = 60, updating_health = TRUE)
+	carbon_target.adjustOxyLoss(amount = HEALTH_THRESHOLD_CRIT, updating_health = TRUE, forced = TRUE)
 	playsound(src, 'modular_skyrat/modules/emotes/sound/emotes/female/female_sniff.ogg', 50, FALSE)
 
 	if(defib_result == DEFIB_POSSIBLE)

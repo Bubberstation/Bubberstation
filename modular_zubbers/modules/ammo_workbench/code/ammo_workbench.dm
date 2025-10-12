@@ -247,7 +247,7 @@
 
 			var/sheets_to_remove = round(min(desired,50,stored_amount))
 
-			mat_container.retrieve_sheets(sheets_to_remove, mat, loc)
+			mat_container.retrieve_stack(sheets_to_remove, mat, loc)
 			. = TRUE
 
 		if("ReadDisk")

@@ -59,7 +59,3 @@
 /datum/loadout_item/belts/lantern
 	name = "Lantern"
 	item_path = /obj/item/flashlight/lantern
-
-/datum/loadout_item/belts/candle_box
-	name = "Candle Box"
-	item_path = /obj/item/storage/fancy/candle_box
