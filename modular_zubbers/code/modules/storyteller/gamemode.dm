@@ -130,6 +130,9 @@ SUBSYSTEM_DEF(gamemode)
 	var/sec_crew = 0
 	var/med_crew = 0
 
+	//Security Based Antag Cap
+	var/sec_antag_cap = 0
+
 	/// Whether we looked up pop info in this process tick
 	var/pop_data_cached = FALSE
 
@@ -243,6 +246,7 @@ SUBSYSTEM_DEF(gamemode)
 		return 0
 	if(!storyteller.antag_divisor)
 		return 0
+
 	var/alert_cap_multiplier = 0 //Anything above red means 0, like Delta and world ending events.
 	if(!SSsecurity_level)
 		alert_cap_multiplier = 1.25 //Something is wrong
@@ -254,8 +258,8 @@ SUBSYSTEM_DEF(gamemode)
 				alert_cap_multiplier = 1.25
 			if(SEC_LEVEL_RED)
 				alert_cap_multiplier = 1
-	var/crew_cap = get_correct_popcount() / storyteller.antag_divisor
-	var/sec_cap = sec_crew * alert_cap_multiplier
+	var/crew_cap = (get_correct_popcount() / storyteller.antag_divisor) + sec_antag_cap
+	var/sec_cap = sec_antag_cap * alert_cap_multiplier
 	return FLOOR( max( min(crew_cap,sec_cap), ANTAG_CAP_FLAT ), 1)
 
 /// Whether events can inject more antagonists into the round
@@ -429,6 +433,7 @@ SUBSYSTEM_DEF(gamemode)
 	eng_crew = 0
 	med_crew = 0
 	sec_crew = 0
+	sec_antag_cap = 0
 
 	for(var/mob/player_mob as anything in GLOB.alive_player_list)
 
@@ -465,6 +470,7 @@ SUBSYSTEM_DEF(gamemode)
 			med_crew++
 		if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_SECURITY)
 			sec_crew++
+			sec_antag_cap += player_role.sec_antag_cap
 
 	pop_data_cached = TRUE
 
@@ -800,7 +806,7 @@ SUBSYSTEM_DEF(gamemode)
 
 	log_dynamic("[players.len] players ready! Processing storyteller vote results.")
 
-	for(var/vote as anything in vote_datum.choices_by_ckey)
+	for(var/vote in vote_datum.choices_by_ckey)
 		if(!vote_datum.choices_by_ckey[vote])
 			continue
 		var/vote_string = "[vote]"

@@ -822,7 +822,7 @@
 			material_list[GET_MATERIAL_REF(search_stack.material_type)] = SHEET_MATERIAL_AMOUNT
 
 		else
-			for(var/material as anything in search_stack.custom_materials)
+			for(var/material in search_stack.custom_materials)
 				material_list[material] = SHEET_MATERIAL_AMOUNT
 
 		if(!search_stack.use(1))

@@ -92,6 +92,24 @@ export const flavor_text_nsfw: Feature<string> = {
   component: FeatureTextInput,
 };
 
+export const low_arousal_text: Feature<string> = {
+  name: 'Arousal Flavor - Low',
+  description: 'How your character can be perceived to be slightly aroused',
+  component: FeatureShortTextInput,
+};
+
+export const medium_arousal_text: Feature<string> = {
+  name: 'Arousal Flavor - Medium',
+  description: 'How your character can be perceived to be somewhat aroused',
+  component: FeatureShortTextInput,
+};
+
+export const high_arousal_text: Feature<string> = {
+  name: 'Arousal Flavor - Strong',
+  description: 'How your character can be perceived to be highly aroused',
+  component: FeatureShortTextInput,
+};
+
 export const silicon_flavor_text_nsfw: Feature<string> = {
   name: 'Silicon NSFW Flavor Text',
   description:

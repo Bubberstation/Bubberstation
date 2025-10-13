@@ -38,3 +38,8 @@
 	icon_state = "jackalope"
 
 //End of stuff ported from SPLURT
+
+/datum/sprite_accessory/ears/chemlight
+	name = "Tall Tipped Ears"
+	icon = 'modular_zubbers/icons/customization/ears32x64.dmi'
+	icon_state = "chemlight"

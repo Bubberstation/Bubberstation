@@ -115,3 +115,7 @@
 /datum/sprite_accessory/horns/bubber/big/cryptid /// Sprite by Maggotbait of Splurt
 	name = "Cryptid Antlers"
 	icon_state = "cryptid"
+
+/datum/sprite_accessory/horns/bubber/antennae/insectoidcrest
+	name = "Sharp Insectoid Crest"
+	icon_state = "sharp_crest"

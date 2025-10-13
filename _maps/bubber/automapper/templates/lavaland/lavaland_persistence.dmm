@@ -1141,11 +1141,6 @@
 	},
 /turf/open/floor/iron/colony/bolts,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
-"cn" = (
-/obj/machinery/bluespace_vendor/directional/north,
-/obj/structure/cable,
-/turf/open/floor/catwalk_floor/iron_dark,
-/area/ruin/space/has_grav/bubbers/persistance/engineering)
 "co" = (
 /obj/structure/cable,
 /obj/structure/sign/departments/telecomms/alt/directional/east,
@@ -9542,8 +9537,8 @@
 /obj/item/storage/belt/holster/nukie,
 /obj/item/storage/belt/holster/nukie,
 /obj/item/storage/belt/holster/nukie,
-/obj/item/ammo_box/a357,
-/obj/item/ammo_box/a357,
+/obj/item/ammo_box/speedloader/c357,
+/obj/item/ammo_box/speedloader/c357,
 /obj/item/ammo_box/magazine/m12g,
 /obj/item/ammo_box/magazine/m12g,
 /obj/item/ammo_box/magazine/smgm45,
@@ -10584,12 +10579,12 @@
 	},
 /obj/machinery/duct,
 /obj/machinery/vending/engivend{
-	skyrat_products = list(/obj/item/clothing/glasses/meson/engine = 5, /obj/item/construction/rcd/loaded = 0, /obj/item/storage/pouch/material = 2, /obj/item/storage/bag/construction = 2);
 	onstation = 0;
 	onstation_override = 1;
 	all_products_free = 1;
 	pixel_y = 32;
-	density = 0
+	density = 0;
+	zubbers_products = list(/obj/item/clothing/glasses/meson/engine = 5, /obj/item/construction/rcd/loaded = 0, /obj/item/storage/pouch/material = 2, /obj/item/storage/bag/construction = 2)
 	},
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/utilities)
@@ -14857,7 +14852,6 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/sec/brigentrance)
 "DI" = (
-/obj/machinery/bluespace_vendor/directional/west,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "DJ" = (
@@ -26182,7 +26176,7 @@ fE
 ue
 yE
 Vm
-cn
+gV
 gV
 gV
 Gg

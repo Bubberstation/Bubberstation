@@ -840,3 +840,207 @@
 	var/list/hoodie_colors = (SSgreyscale.ParseColorString(greyscale_colors))
 	var/list/new_hoodie_colors = hoodie_colors.Copy(1,2)
 	hood.set_greyscale(new_hoodie_colors)
+
+//Bombers by Christasmurf, Synth of Paradice & Soljurn respectively.
+
+//Base so we don't need to keep putting icon/worn over and over
+/obj/item/clothing/suit/toggle/jacket/zubber
+	name = "please stop spawning me"
+	desc = "one down, cmon now"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	icon_state = "bomber"
+
+
+/obj/item/clothing/suit/toggle/jacket/zubber/bomber
+	name = "three piece bomber jacket"
+	desc = "People love these things. Seriously. Three seperate versions? Come on now."
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+
+
+//Engineering
+
+/obj/item/clothing/suit/utility/fire/atmosbomber
+	name = "atmos technician bomber jacket"
+	desc = "You might be shocked that this fur lined jacket is fireproof! I am too!"
+	icon_state = "bomberatmos"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	w_class = WEIGHT_CLASS_NORMAL
+	body_parts_covered = CHEST|GROIN|ARMS
+	slowdown = 0
+	armor_type = /datum/armor/atmos_tech_tailcoat
+
+/obj/item/clothing/suit/utility/fire/atmosbomber/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/toggle_clothes, "bomberatmos_t")
+
+
+/obj/item/clothing/suit/toggle/jacket/zubber/bomber/engi
+	name = "engineering bomber jacket"
+	desc = "You can still carry your gear on this! Shocking, I know."
+	icon_state = "bomberengi"
+	allowed = list(
+		/obj/item/fireaxe/metal_h2_axe,
+		/obj/item/flashlight,
+		/obj/item/radio,
+		/obj/item/storage/bag/construction,
+		/obj/item/tank/internals/emergency_oxygen,
+		/obj/item/tank/internals/plasmaman,
+		/obj/item/t_scanner,
+		/obj/item/gun/ballistic/rifle/boltaction/pipegun/prime,
+	)
+
+//Cargo
+
+/obj/item/clothing/suit/toggle/jacket/zubber/bomber/cargo
+	name = "cargo bomber jacket"
+	desc = "Keep your rifle close, Cargonia isn't lost yet."
+	icon_state = "bombercargo"
+	allowed = list(
+		/obj/item/tank/internals/emergency_oxygen,
+		/obj/item/tank/internals/plasmaman,
+		/obj/item/boxcutter,
+		/obj/item/dest_tagger,
+		/obj/item/stamp,
+		/obj/item/storage/bag/mail,
+		/obj/item/universal_scanner,
+	)
+
+/obj/item/clothing/suit/toggle/jacket/zubber/bomber/cargo/smith
+	name = "blacksmith bomber jacket"
+	desc = "1940s fashion mixed with 1140s typhoid."
+	icon_state = "bombersmith"
+	allowed = list(
+		/obj/item/tank/internals/emergency_oxygen,
+		/obj/item/forging/hammer,
+		/obj/item/forging/tongs,
+		/obj/item/forging/billow,
+	)
+
+/obj/item/clothing/suit/toggle/jacket/zubber/bomber/mining
+	name = "mining bomber jacket"
+	desc = "For a second, you swore this had a hood. Must be your brain playing tricks. You can glue plates onto it, too!"
+	icon_state = "bombermining"
+	cold_protection = CHEST|GROIN|ARMS
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+	heat_protection = CHEST|GROIN|ARMS
+	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
+	armor_type = /datum/armor/hooded_explorer
+	allowed = list(
+		/obj/item/flashlight,
+		/obj/item/gun/energy/recharge/kinetic_accelerator,
+		/obj/item/mining_scanner,
+		/obj/item/pickaxe,
+		/obj/item/resonator,
+		/obj/item/storage/bag/ore,
+		/obj/item/t_scanner/adv_mining_scanner,
+		/obj/item/tank/internals,
+		)
+	resistance_flags = FIRE_PROOF
+	clothing_traits = list(TRAIT_SNOWSTORM_IMMUNE)
+
+/obj/item/clothing/suit/toggle/jacket/zubber/bomber/mining/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/armor_plate)
+
+//Science
+
+/obj/item/clothing/suit/toggle/jacket/zubber/bomber/science
+	name = "science bomber jacket"
+	desc = "Trade in your, and these are not my words, 'pussy repellent labcoat' for something with some more style!"
+	icon_state = "bombersci"
+	allowed = list(
+		/obj/item/analyzer,
+		/obj/item/biopsy_tool,
+		/obj/item/dnainjector,
+		/obj/item/flashlight/pen,
+		/obj/item/healthanalyzer,
+		/obj/item/paper,
+		/obj/item/reagent_containers/dropper,
+		/obj/item/reagent_containers/cup/beaker,
+		/obj/item/reagent_containers/cup/bottle,
+		/obj/item/reagent_containers/cup/tube,
+		/obj/item/reagent_containers/hypospray,
+		/obj/item/reagent_containers/applicator,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/gun/syringe,
+		/obj/item/sensor_device,
+		/obj/item/soap,
+		/obj/item/stack/medical,
+		/obj/item/storage/pill_bottle,
+		/obj/item/tank/internals/emergency_oxygen,
+		/obj/item/tank/internals/plasmaman,
+		)
+	armor_type = /datum/armor/toggle_labcoat
+
+/obj/item/clothing/suit/toggle/jacket/zubber/bomber/science/robotics
+	name = "roboticist bomber jacket"
+	desc = "Those terrifying dog creatures treating your lab like a kennel might show you some respect if you wear the skin of their originators."
+	icon_state = "bomberrobo"
+
+
+//Medical
+/obj/item/clothing/suit/toggle/jacket/zubber/bomber/science/med
+	name = "medical bomber jacket"
+	desc = "Let's be honest here, we threw out sterility the second we hired anything with fur."
+	icon_state = "bombermed"
+
+/obj/item/clothing/suit/toggle/jacket/zubber/bomber/science/chem
+	name = "chemistry bomber jacket"
+	desc = "<b>STOP AURA FARMING AND GET US SYNTHFLESH!</b>"
+	icon_state = "bomberchem"
+
+/obj/item/clothing/suit/toggle/jacket/zubber/bomber/science/coroner
+	name = "black bomber jacket"
+	desc = "A pitch black, tar bomber jacket. If all your friends weren't dead, they'd think you're the coolest person around."
+	icon_state = "bombercoroner"
+
+//Misc
+/obj/item/clothing/suit/toggle/jacket/zubber/bomber/hydro
+	name = "botanical bomber blazer"
+	desc = "Not actually a blazer! But, to quote the designer 'Alliteration, an art.'"
+	icon_state = "bomberhydro"
+	allowed = list(
+		/obj/item/cultivator,
+		/obj/item/geneshears,
+		/obj/item/graft,
+		/obj/item/hatchet,
+		/obj/item/plant_analyzer,
+		/obj/item/reagent_containers/cup/beaker,
+		/obj/item/reagent_containers/cup/bottle,
+		/obj/item/reagent_containers/spray/pestspray,
+		/obj/item/reagent_containers/spray/plantbgone,
+		/obj/item/secateurs,
+		/obj/item/seeds,
+		/obj/item/storage/bag/plants,
+	)
+
+/obj/item/clothing/suit/toggle/jacket/zubber/bomber/sec
+	name = "security bomber jacket"
+	desc = "Our clothing company keeps out of any 'blue/red' related debates after <b>THE INCIDENT</b>, sorry."
+	icon_state = "bombersec"
+	armor_type = /datum/armor/suit_armor
+
+/obj/item/clothing/suit/toggle/jacket/zubber/bomber/syndicate
+	name = "suspicious bomber jacket"
+	desc = "If the Bomber Harris book isn't a giveaway, someone's taking 'bomber' to heart."
+	icon_state = "bombersyndie"
+	armor_type = /datum/armor/wintercoat_syndicate
+
+
+/obj/item/clothing/suit/toggle/jacket/zubber/bomber/syndicate/Initialize(mapload)
+	. = ..()
+	allowed += list(
+		/obj/item/ammo_box,
+		/obj/item/ammo_casing,
+		/obj/item/gun/ballistic,
+		/obj/item/gun/energy,
+		/obj/item/restraints/handcuffs,
+		/obj/item/knife/combat,
+		/obj/item/melee/baton,
+	)
+
+/obj/item/clothing/suit/toggle/jacket/zubber/bomber/syndicate/fake
+	armor_type = /datum/armor/hooded_wintercoat

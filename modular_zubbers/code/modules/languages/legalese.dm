@@ -10,3 +10,6 @@
 		"post", "priori", "pro", "propter", "provisio", "publica", "qua", "quam", "quantum", "quasi", "quid", "quo", "rata", "ratio", "rea", "redendo", "reducto", "rem", "res", "respondeat",
 		"reus", "se", "singula", "singulis", "sine", "situs", "sociis", "specialibus", "stare", "stirpes", "sub", "sunt", "superior", "supersedeas", "supra", "tem", "testis", "tempore", "ubi",
 		"ultra", "unius", "us", "valeat", "verba", "vice", "warranto")
+
+	icon_state = "legalese"
+	icon = 'modular_zubbers/icons/misc/language.dmi'
