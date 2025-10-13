@@ -1,34 +1,7 @@
 /*
-*	Overwrites all the security icons with our own bluesec versions; this means little to no mapping/spawning conflicts!
-*	(Also includes 'old' versions at the bottom of the file, for the purpose of crates/vendors/admin shenanigans. Can't remove them ENTIRELY after all!)
+*	Security clothing reskins and such.
+	Redsec items at the bottom tbd.
 */
-
-/*
-*	PLASMAMEN
-*	This goes first due to simultaneously being easy to do, and complex to organize
-*/
-
-/obj/item/clothing/under/plasmaman/security
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/plasmaman.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/plasmaman.dmi'
-	icon_state = "security_envirosuit_new"
-
-/obj/item/clothing/under/plasmaman/security/warden
-	icon_state = "warden_envirosuit_new"
-
-/obj/item/clothing/under/plasmaman/security/head_of_security
-	icon_state = "hos_envirosuit_new"
-
-/obj/item/clothing/head/helmet/space/plasmaman/security
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/head/plasmaman_hats.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head/plasmaman_head.dmi'
-	icon_state = "security_envirohelm_new"
-
-/obj/item/clothing/head/helmet/space/plasmaman/security/warden
-	icon_state = "warden_envirohelm_new"
-
-/obj/item/clothing/head/helmet/space/plasmaman/security/head_of_security
-	icon_state = "hos_envirohelm_new"
 
 /*
 * ACCESSORIES
@@ -66,6 +39,14 @@
 			RESKIN_WORN_ICON_STATE = "backpack_security_white",
 			RESKIN_INHAND_STATE = "backpack_security_white"
 		),
+		"Red Variant" = list(
+			RESKIN_ICON = 'icons/obj/storage/backpack.dmi',
+			RESKIN_ICON_STATE = "backpack-security",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/back/backpack.dmi',
+			RESKIN_INHAND_L = 'icons/mob/inhands/equipment/backpack_lefthand.dmi',
+			RESKIN_INHAND_R = 'icons/mob/inhands/equipment/backpack_righthand.dmi',
+			RESKIN_INHAND_STATE = "securitypack"
+		),
 	)
 
 /obj/item/storage/backpack/satchel/sec
@@ -87,6 +68,14 @@
 			RESKIN_WORN_ICON_STATE = "satchel_security_white",
 			RESKIN_INHAND_STATE = "satchel_security_white"
 		),
+		"Red Variant" = list(
+			RESKIN_ICON = 'icons/obj/storage/backpack.dmi',
+			RESKIN_ICON_STATE = "satchel-security",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/back/backpack.dmi',
+			RESKIN_INHAND_L = 'icons/mob/inhands/equipment/backpack_lefthand.dmi',
+			RESKIN_INHAND_R = 'icons/mob/inhands/equipment/backpack_righthand.dmi',
+			RESKIN_INHAND_STATE = "satchel-sec"
+		),
 	)
 
 /obj/item/storage/backpack/duffelbag/sec
@@ -107,6 +96,14 @@
 			RESKIN_ICON_STATE = "duffel_security_white",
 			RESKIN_WORN_ICON_STATE = "duffel_security_white",
 			RESKIN_INHAND_STATE = "duffel_security_white"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON = 'icons/obj/storage/backpack.dmi',
+			RESKIN_ICON_STATE = "duffel-security",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/back/backpack.dmi',
+			RESKIN_INHAND_L = 'icons/mob/inhands/equipment/backpack_lefthand.dmi',
+			RESKIN_INHAND_R = 'icons/mob/inhands/equipment/backpack_righthand.dmi',
+			RESKIN_INHAND_STATE = "duffel-sec"
 		),
 	)
 
@@ -136,17 +133,43 @@
 			RESKIN_ICON_STATE = "belt_slim",
 			RESKIN_WORN_ICON_STATE = "belt_slim"
 		),
+		"Red Variant" = list(
+				RESKIN_ICON = 'icons/obj/clothing/belts.dmi',
+				RESKIN_ICON_STATE = "security",
+				RESKIN_WORN_ICON = 'icons/mob/clothing/belt.dmi',
+				RESKIN_WORN_ICON_STATE = "security",
+			),
+		"Armadyne Variant" = list(
+			RESKIN_ICON_STATE = "armadyne_belt",
+			RESKIN_WORN_ICON_STATE = "armadyne_belt"
+			),
 	)
 
 /obj/item/storage/belt/security/webbing
-	uses_advanced_reskins = FALSE
-	unique_reskin = NONE
-	current_skin = "securitywebbing" //Prevents reskinning
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "securitywebbing",
+			RESKIN_WORN_ICON_STATE = "securitywebbing"
+		),
+		"Black Variant" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi',
+			RESKIN_ICON_STATE = "armadyne_webbing",
+			RESKIN_WORN_ICON_STATE = "armadyne_webbing",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi',
+			RESKIN_ICON_STATE = "peacekeeper_webbing",
+			RESKIN_WORN_ICON_STATE = "peacekeeper_webbing",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
+		),
+	)
 
 /obj/item/storage/belt/security/webbing/peacekeeper //did I mention this codebase is fucking awful
 	current_skin = "peacekeeper_webbing"
 
-/obj/item/storage/belt/security/webbing/peacekeeper/armadyne
+/obj/item/storage/belt/security/webbing/peacekeeper/armadyne //You two only exist because I don't want to purge you, because it'd break some stuff. Thin fucking ice.
 	current_skin = "armadyne_webbing"
 
 ///Enables you to quickdraw weapons from security holsters
@@ -182,6 +205,18 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi'
 	icon_state = "security_hud"
 	glass_colour_type = /datum/client_colour/glass_colour/lightblue
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "security_hud",
+			RESKIN_WORN_ICON_STATE = "security_hud"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON = 'icons/obj/clothing/glasses.dmi',
+			RESKIN_ICON_STATE = "securityhud",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/eyes.dmi',
+		),
+	)
 
 /obj/item/clothing/glasses/hud/security/sunglasses
 	icon_state = "security_hud_black"
@@ -196,31 +231,107 @@
 			RESKIN_ICON_STATE = "security_hud_blue",
 			RESKIN_WORN_ICON_STATE = "security_hud_blue"
 		),
+		"Red Variant" = list(
+			RESKIN_ICON = 'icons/obj/clothing/glasses.dmi',
+			RESKIN_ICON_STATE = "sunhudsec",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/eyes.dmi',
+		),
+		"Blue Goggles Variant" = list(
+			RESKIN_ICON_STATE = "peacekeeperglasses",
+			RESKIN_WORN_ICON_STATE = "peacekeeperglasses"
+		),
+		"Red Goggles Variant" = list(
+			RESKIN_ICON_STATE = "armadyne_glasses",
+			RESKIN_WORN_ICON_STATE = "armadyne_glasses"
+		),
 	)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch
 	icon_state = "security_eyepatch"
 	base_icon_state = "security_eyepatch"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Red Eyepatch" = list(
+			RESKIN_ICON = 'icons/obj/clothing/glasses.dmi',
+			RESKIN_ICON_STATE = "hudpatch",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/eyes.dmi',
+			RESKIN_WORN_ICON_STATE = "hudpatch"
+		),
+		"Blue Eyepatch" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/glasses.dmi',
+			RESKIN_ICON_STATE = "hudpatch",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi',
+			RESKIN_WORN_ICON_STATE = "hudpatch"
+		),
+	)
+
 
 /obj/item/clothing/glasses/hud/security/night
 	icon = 'icons/obj/clothing/glasses.dmi'
 	worn_icon = 'icons/mob/clothing/eyes.dmi'
+	unique_reskin = null
+
+/obj/item/clothing/glasses/hud/security/sunglasses/gars
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Red Gars" = list(
+			RESKIN_ICON_STATE = "gar_sec",
+			RESKIN_WORN_ICON_STATE = "gar_sec"
+		),
+		"Blue Gars" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/glasses.dmi',
+			RESKIN_ICON_STATE = "gar_sec",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi',
+			RESKIN_WORN_ICON_STATE = "gar_sec"
+		),
+	)
+
+/obj/item/clothing/glasses/hud/security/sunglasses/gars/giga
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Red Gars" = list(
+			RESKIN_ICON_STATE = "gigagar_sec",
+			RESKIN_WORN_ICON_STATE = "gigagar_sec"
+		),
+		"Blue Gars" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/glasses.dmi',
+			RESKIN_ICON_STATE = "gigagar_sec",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi',
+			RESKIN_WORN_ICON_STATE = "gigagar_sec"
+		),
+	)
+
+/obj/item/clothing/glasses/hud/security/sunglasses/gars/giga/roselia
+	unique_reskin = null
 
 /*
 * HEAD
 */
 
-//Overrides the bulletproof helm with a fucking altyn helmet because yes
-/obj/item/clothing/head/helmet/alt
-	desc = "An armored helmet based on the NRI Altyn Helmet Design. These helmet provide excellent facial protection, if not, the best against ballistic."
+//Standard helmet
+/obj/item/clothing/head/helmet/sec
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head/helmet.dmi'
-	icon_state = "helmetalt_blue"
-	base_icon_state = "helmetalt_blue"
+	icon_state = "security_helmet"
+	base_icon_state = "security_helmet"
+	clothing_flags = SNUG_FIT | STACKABLE_HELMET_EXEMPT
+	dog_fashion = null
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
-	var/flipped_visor = FALSE
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"White Variant" = list(
+			RESKIN_ICON_STATE = "security_helmet",
+			RESKIN_WORN_ICON_STATE = "security_helmet"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON = 'icons/obj/clothing/head/helmet.dmi',
+			RESKIN_ICON_STATE = "helmet",
+			RESKIN_WORN_ICON_STATE = "helmet",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/head/helmet.dmi'
+		),
+	)
 
-/obj/item/clothing/head/helmet/alt/click_alt(mob/user)
+/obj/item/clothing/head/helmet/sec/click_alt(mob/user)
 	flipped_visor = !flipped_visor
 	balloon_alert(user, "visor flipped")
 	// base_icon_state is modified for seclight attachment component
@@ -233,25 +344,40 @@
 	update_appearance()
 	return CLICK_ACTION_SUCCESS
 
-//Standard helmet
-/obj/item/clothing/head/helmet/sec
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/head/helmet.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head/helmet.dmi'
-	icon_state = "security_helmet"
-	base_icon_state = "security_helmet"
-	clothing_flags = SNUG_FIT | STACKABLE_HELMET_EXEMPT
-	dog_fashion = null
-	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
-
 
 /obj/item/clothing/head/helmet/sec/futuristic
 	icon_state = "security_helmet_future"
 	base_icon_state = "security_helmet_future"
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"White Variant" = list(
+			RESKIN_ICON_STATE = "security_helmet_future",
+			RESKIN_WORN_ICON_STATE = "security_helmet_future"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "security_helmet_future_blue",
+			RESKIN_WORN_ICON_STATE = "security_helmet_future_blue"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "security_helmet_future_red",
+			RESKIN_WORN_ICON_STATE = "security_helmet_future_red"
+		),
+	)
 
-/obj/item/clothing/head/helmet/sec/futuristic/blue
-	icon_state = "security_helmet_future_blue"
-	base_icon_state = "security_helmet_future_blue"
+
+/obj/item/clothing/head/helmet/sec/futuristic/click_alt(mob/user)
+	flipped_visor = !flipped_visor
+	balloon_alert(user, "visor flipped")
+	// base_icon_state is modified for seclight attachment component
+	base_icon_state = "[initial(base_icon_state)][flipped_visor ? "-novisor" : ""]"
+	icon_state = base_icon_state
+	if (flipped_visor)
+		flags_cover &= ~HEADCOVERSEYES | PEPPERPROOF
+	else
+		flags_cover |= HEADCOVERSEYES | PEPPERPROOF
+	update_appearance()
+	return CLICK_ACTION_SUCCESS
 
 //Beret replacement
 /obj/item/clothing/head/security_garrison
@@ -327,6 +453,10 @@
 			RESKIN_ICON_STATE = "policewardencap",
 			RESKIN_WORN_ICON_STATE = "policewardencap"
 		),
+		"Red Cap" = list(
+			RESKIN_ICON_STATE = "wardenhat",
+			RESKIN_WORN_ICON_STATE = "wardenhat"
+		),
 	)
 
 /obj/item/clothing/head/hats/warden/red
@@ -337,35 +467,39 @@
 
 
 /obj/item/clothing/head/hats/hos/cap
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
-	icon_state = "hoscap_blue"
 	uses_advanced_reskins = TRUE
 	unique_reskin = list(
+		"Red Cap" = list(
+			RESKIN_ICON_STATE = "hoscap",
+			RESKIN_WORN_ICON_STATE = "hoscap"
+		),
 		"Blue Cap" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi',
 			RESKIN_ICON_STATE = "hoscap_blue",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi',
 			RESKIN_WORN_ICON_STATE = "hoscap_blue"
 		),
 		"Sol Cap" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi',
 			RESKIN_ICON_STATE = "policechiefcap",
 			RESKIN_WORN_ICON_STATE = "policechiefcap"
 		),
 		"Sheriff Hat" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi',
 			RESKIN_ICON_STATE = "cowboyhat_black",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi',
 			RESKIN_WORN_ICON_STATE = "cowboyhat_black"
 		),
 		"Wide Sheriff Hat" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi',
 			RESKIN_ICON_STATE = "cowboy_black",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi',
 			RESKIN_WORN_ICON_STATE = "cowboy_black"
-		)
+		),
 	)
 
-//Need to quickly redefine this so the icon doesnt break
 /obj/item/clothing/head/hats/hos/cap/syndicate
-	icon = 'icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'icons/mob/clothing/head/hats.dmi'
-	icon_state = "hoscap"
-	current_skin = "hoscap" //Prevents reskinning
+	unique_reskin = null
 
 /*
 * NECK
@@ -374,6 +508,17 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/neck.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "hoscloak_blue"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Blue Cape" = list(
+			RESKIN_ICON_STATE = "hoscloak_blue",
+			RESKIN_WORN_ICON_STATE = "hoscloak_blue"
+		),
+		"Red Cape" = list(
+			RESKIN_ICON_STATE = "hoscloak",
+			RESKIN_WORN_ICON_STATE = "hoscloak"
+		),
+	)
 
 //Not technically an override but oh well
 /obj/item/clothing/neck/security_cape
@@ -397,6 +542,10 @@
 			RESKIN_ICON_STATE = "cape_white",
 			RESKIN_WORN_ICON_STATE = "cape_white"
 		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "cape_red",
+			RESKIN_WORN_ICON_STATE = "cape_red"
+		),
 	)
 	///Decides the shoulder it lays on, false = RIGHT, TRUE = LEFT
 	var/swapped = FALSE
@@ -418,6 +567,10 @@
 		"Capeless Variant" = list(
 			RESKIN_ICON_STATE = "armplate",
 			RESKIN_WORN_ICON_STATE = "armplate"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "armplate_red",
+			RESKIN_WORN_ICON_STATE = "armplate_red"
 		),
 	)
 
@@ -458,6 +611,22 @@
 		"White Variant" = list(
 			RESKIN_ICON_STATE = "gloves_white",
 			RESKIN_WORN_ICON_STATE = "gloves_white"
+		),
+		"Armadyne Variant" = list(
+			RESKIN_ICON_STATE = "armadyne_gloves",
+			RESKIN_WORN_ICON_STATE = "armadyne_gloves"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON = 'icons/obj/clothing/gloves.dmi',
+			RESKIN_ICON_STATE = "sec",
+			RESKIN_WORN_ICON_STATE = "sec",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/hands.dmi',
+		),
+		"Peacekeeper Variant" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi',
+			RESKIN_ICON_STATE = "peacekeeper_gloves",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi',
+			RESKIN_WORN_ICON_STATE = "peacekeeper",
 		),
 	)
 
@@ -558,6 +727,16 @@
 			RESKIN_ICON_STATE = "vest_white",
 			RESKIN_WORN_ICON_STATE = "vest_white"
 		),
+		"Red Variant" = list(
+			RESKIN_ICON = 'icons/obj/clothing/suits/armor.dmi',
+			RESKIN_ICON_STATE = "armor_sec",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/suits/armor.dmi',
+		),
+		"Armadyne Variant" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi',
+			RESKIN_ICON_STATE = "armadyne_armor",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi',
+		),
 	)
 
 /obj/item/clothing/suit/armor/hos
@@ -582,6 +761,12 @@
 			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi',
 			RESKIN_WORN_ICON_STATE = "trenchcloak"
 		),
+		"White" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi',
+			RESKIN_ICON_STATE = "peacekeeper_trench_hos_white",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi',
+			RESKIN_WORN_ICON_STATE = "peacekeeper_trench_hos_white"
+		),
 	)
 
 /obj/item/clothing/suit/armor/hos/trenchcoat/winter
@@ -604,9 +789,37 @@
 
 //Warden's Vest
 /obj/item/clothing/suit/armor/vest/warden
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi'
-	icon_state = "vest_warden"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Red" = list(
+			RESKIN_ICON_STATE = "warden_jacket",
+			RESKIN_WORN_ICON_STATE = "warden_jacket"
+		),
+		"Blue" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi',
+			RESKIN_ICON_STATE = "vest_warden",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi',
+			RESKIN_WORN_ICON_STATE = "vest_warden"
+		),
+		"Black" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi',
+			RESKIN_ICON_STATE = "peacekeeper_trench_warden",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi',
+			RESKIN_WORN_ICON_STATE = "peacekeeper_trench_warden"
+		),
+		"Edgy" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi',
+			RESKIN_ICON_STATE = "warden_syndie",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi',
+			RESKIN_WORN_ICON_STATE = "warden_syndie"
+		),
+		"Basic Warden Armor" = list(
+			RESKIN_ICON = 'icons/obj/clothing/suits/armor.dmi',
+			RESKIN_ICON_STATE = "warden_alt",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/suits/armor.dmi',
+			RESKIN_WORN_ICON_STATE = "warden_alt"
+		),
+	)
 
 /obj/item/clothing/suit/armor/vest/warden/alt //un-overrides this since its sprite is TG
 	icon = 'icons/obj/clothing/suits/armor.dmi'
@@ -666,6 +879,34 @@
 			RESKIN_ICON_STATE = "policecadetalt",
 			RESKIN_WORN_ICON_STATE = "policecadetalt"
 		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "rsecurity",
+			RESKIN_WORN_ICON_STATE = "rsecurity"
+		),
+		"Armadyne Variant" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/under/centcom.dmi',
+			RESKIN_ICON_STATE = "armadyne_shirt",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/under/centcom.dmi',
+			RESKIN_WORN_ICON_STATE = "armadyne_shirt"
+		),
+		"Armadyne Tac Variant" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/under/centcom.dmi',
+			RESKIN_ICON_STATE = "armadyne_tac",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/under/centcom.dmi',
+			RESKIN_WORN_ICON_STATE = "armadyne_tac"
+		),
+		"Lopland Variant" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/under/centcom.dmi',
+			RESKIN_ICON_STATE = "lopland_shirt",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/under/centcom.dmi',
+			RESKIN_WORN_ICON_STATE = "lopland_shirt"
+		),
+		"Lopland Tac Variant" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/under/centcom.dmi',
+			RESKIN_ICON_STATE = "lopland_tac",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/under/centcom.dmi',
+			RESKIN_WORN_ICON_STATE = "lopland_tac"
+		),
 	)
 
 /obj/item/clothing/under/rank/security/officer/formal
@@ -710,11 +951,22 @@
 			RESKIN_ICON_STATE = "peacekeeper_warden",
 			RESKIN_WORN_ICON_STATE = "peacekeeper_warden"
 		),
-		"Sol Varient" = list(
+		"Sol Variant" = list(
 			RESKIN_ICON_STATE = "policewardenalt",
 			RESKIN_WORN_ICON_STATE = "policewardenalt"
 		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "rwarden",
+			RESKIN_WORN_ICON_STATE = "rwarden"
+		),
 	)
+
+/obj/item/clothing/under/rank/security/warden/skirt
+	unique_reskin = null
+
+/obj/item/clothing/under/rank/security/warden/formal
+	unique_reskin = null
+
 
 //HoS
 /obj/item/clothing/under/rank/security/head_of_security
@@ -727,33 +979,94 @@
 			RESKIN_ICON_STATE = "hos_black",
 			RESKIN_WORN_ICON_STATE = "hos_black"
 		),
-		"Blue Varient" = list(
+		"Blue Variant" = list(
 			RESKIN_ICON_STATE = "peacekeeper_hos",
 			RESKIN_WORN_ICON_STATE = "peacekeeper_hos"
 		),
-		"Sol Varient" = list(
+		"Sol Variant" = list(
 			RESKIN_ICON_STATE = "policechiefalt",
 			RESKIN_WORN_ICON_STATE = "policechiefalt"
 		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "rhos",
+			RESKIN_WORN_ICON_STATE = "rhos"
+		),
 	)
+
+/obj/item/clothing/under/rank/security/head_of_security/skirt
+	unique_reskin = null
 
 /obj/item/clothing/under/rank/security/head_of_security/parade
 	icon_state = "hos_parade_male_blue"
-	unique_reskin = null
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "hos_parade_male_blue",
+			RESKIN_WORN_ICON_STATE = "hos_parade_male_blue"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "hos_parade_male",
+			RESKIN_WORN_ICON_STATE = "hos_parade_male"
+		),
+	)
 
 /obj/item/clothing/under/rank/security/head_of_security/parade/female
 	icon_state = "hos_parade_fem_blue"
-	unique_reskin = null
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "hos_parade_fem_blue",
+			RESKIN_WORN_ICON_STATE = "hos_parade_fem_blue"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "hos_parade_fem",
+			RESKIN_WORN_ICON_STATE = "hos_parade_fem"
+		),
+	)
 
 
 /obj/item/clothing/under/rank/security/head_of_security/alt
 	icon_state = "hosalt_blue"
-	unique_reskin = null
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "hosalt_blue",
+			RESKIN_WORN_ICON_STATE = "hosalt_blue"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "hosalt",
+			RESKIN_WORN_ICON_STATE = "hosalt"
+		),
+	)
 
 /obj/item/clothing/under/rank/security/head_of_security/alt/skirt
 	icon_state = "hosalt_skirt_blue"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "hosalt_skirt_blue",
+			RESKIN_WORN_ICON_STATE = "hosalt_skirt_blue"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "hosalt_skirt",
+			RESKIN_WORN_ICON_STATE = "hosalt_skirt"
+		),
+	)
+
+/obj/item/clothing/under/rank/security/head_of_security/peacekeeper
 	unique_reskin = null
 
+/obj/item/clothing/under/rank/security/head_of_security/skyrat/imperial
+	unique_reskin = null
+
+/obj/item/clothing/under/rank/security/head_of_security/bunnysuit
+	unique_reskin = null
+
+/obj/item/clothing/under/rank/security/head_of_security/alt/roselia
+	unique_reskin = null
+
+/obj/item/clothing/under/rank/security/head_of_security/grey
+	unique_reskin = null
 
 /*
 * FEET
@@ -780,44 +1093,22 @@
 			RESKIN_ICON_STATE = "security_boots_fullwhite",
 			RESKIN_WORN_ICON_STATE = "security_boots_fullwhite"
 		),
+		"Red Variant" = list(
+			RESKIN_ICON = 'icons/obj/clothing/shoes.dmi',
+			RESKIN_ICON_STATE = "jackboots_sec",
+			RESKIN_WORN_ICON_STATE = "jackboots_sec",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/feet.dmi'
+		),
+		"Armadyne Variant" = list(
+			RESKIN_ICON_STATE = "armadyne_boots",
+			RESKIN_WORN_ICON_STATE = "armadyne_boots"
+		),
 	)
 
 /obj/item/clothing/shoes/jackboots/sec/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, list('modular_skyrat/master_files/sound/effects/footstep1.ogg'=1,'modular_skyrat/master_files/sound/effects/footstep2.ogg'=1, 'modular_skyrat/master_files/sound/effects/footstep3.ogg'=1), 100)
 
-//
-// This code overrides security's jumpskirt preference, as we're not going to be giving them jumpskirts
-//
-
-/datum/outfit/job/hos/pre_equip(mob/living/carbon/human/affected_mob)
-	if(affected_mob.jumpsuit_style == PREF_SKIRT)
-		to_chat(affected_mob, span_alertwarning("Lopland Head of Security uniforms don't include a skirt variant! You've been equipped with a jumpsuit instead."))
-		affected_mob.jumpsuit_style = PREF_SUIT
-	. = ..()
-
-/datum/outfit/job/warden/pre_equip(mob/living/carbon/human/affected_mob)
-	if(affected_mob.jumpsuit_style == PREF_SKIRT)
-		to_chat(affected_mob, span_alertwarning("Lopland Warden uniforms don't include a skirt variant! You've been equipped with a jumpsuit instead."))
-		affected_mob.jumpsuit_style = PREF_SUIT
-	. = ..()
-
-//PDA Greyscale Overrides
-/obj/item/modular_computer/pda/security
-	icon_state = "/obj/item/modular_computer/pda/security"
-	greyscale_colors = "#2B356D#1E1E1E"
-
-/obj/item/modular_computer/pda/detective
-	icon_state = "/obj/item/modular_computer/pda/detective"
-	greyscale_colors = "#90714F#1E1E1E"
-
-/obj/item/modular_computer/pda/warden
-	icon_state = "/obj/item/modular_computer/pda/warden"
-	greyscale_colors = "#2F416E#1E1E1E#ACACAC"
-
-/obj/item/modular_computer/pda/heads/hos
-	icon_state = "/obj/item/modular_computer/pda/heads/hos"
-	greyscale_colors = "#2B356D#1E1E1E"
 
 /*
 *	A bunch of re-overrides so that admins can keep using some redsec stuff; not all of them have this though!
@@ -832,6 +1123,7 @@
 	worn_icon = 'icons/mob/clothing/eyes.dmi'
 	icon_state = "securityhud"
 	glass_colour_type = /datum/client_colour/glass_colour/red
+	unique_reskin = null
 
 /obj/item/clothing/glasses/hud/security/sunglasses/redsec
 	icon = 'icons/obj/clothing/glasses.dmi'
@@ -845,11 +1137,13 @@
 	worn_icon = 'icons/mob/clothing/eyes.dmi'
 	icon_state = "hudpatch"
 	base_icon_state = "hudpatch"
+	unique_reskin = null
 
 /obj/item/clothing/glasses/hud/security/night/redsec
 	icon = 'icons/obj/clothing/glasses.dmi'
 	worn_icon = 'icons/mob/clothing/eyes.dmi'
 	icon_state = "securityhudnight"
+	unique_reskin = null
 
 /*
 *	NECK
@@ -859,6 +1153,7 @@
 	icon = 'icons/obj/clothing/cloaks.dmi'
 	worn_icon = 'icons/mob/clothing/neck.dmi'
 	icon_state = "hoscloak"
+	unique_reskin = null
 
 /*
 *	BACK
@@ -874,6 +1169,7 @@
 	icon = 'icons/obj/storage/backpack.dmi'
 	worn_icon = 'icons/mob/clothing/back/backpack.dmi'
 	icon_state = "satchel-security"
+	unique_reskin = null
 
 /obj/item/storage/backpack/duffelbag/sec/redsec
 	icon = 'icons/obj/storage/backpack.dmi'
