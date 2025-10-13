@@ -49,3 +49,16 @@
 
 	return TRUE
 
+
+/mob/living/carbon/human/examine(mob/user)
+	. = ..()
+	if(src.client?.prefs.read_preference(/datum/preference/toggle/erp) && user.client.prefs.read_preference(/datum/preference/toggle/erp))
+		if (arousal > AROUSAL_HIGH && src.dna.features["high_arousal"])
+			. += span_userlove(src.dna.features["high_arousal"])
+			return
+		if (arousal > AROUSAL_LOW && src.dna.features["medium_arousal"])
+			. += span_userlove(src.dna.features["medium_arousal"])
+			return
+		if (arousal > AROUSAL_NONE && src.dna.features["low_arousal"])
+			. += span_purple(src.dna.features["low_arousal"])
+			return
