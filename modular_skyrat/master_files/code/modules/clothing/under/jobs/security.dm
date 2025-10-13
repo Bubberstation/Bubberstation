@@ -51,7 +51,6 @@
 	worn_icon_state = "security_skirt"
 	icon_state = "security_skirt"
 	can_adjust = TRUE
-	unique_reskin = null
 	alt_covers_chest = FALSE
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	uses_advanced_reskins = TRUE
