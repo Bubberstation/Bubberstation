@@ -951,11 +951,11 @@
 			RESKIN_ICON_STATE = "peacekeeper_warden",
 			RESKIN_WORN_ICON_STATE = "peacekeeper_warden"
 		),
-		"Sol Varient" = list(
+		"Sol Variant" = list(
 			RESKIN_ICON_STATE = "policewardenalt",
 			RESKIN_WORN_ICON_STATE = "policewardenalt"
 		),
-		"Red Varient" = list(
+		"Red Variant" = list(
 			RESKIN_ICON_STATE = "rwarden",
 			RESKIN_WORN_ICON_STATE = "rwarden"
 		),
@@ -979,15 +979,15 @@
 			RESKIN_ICON_STATE = "hos_black",
 			RESKIN_WORN_ICON_STATE = "hos_black"
 		),
-		"Blue Varient" = list(
+		"Blue Variant" = list(
 			RESKIN_ICON_STATE = "peacekeeper_hos",
 			RESKIN_WORN_ICON_STATE = "peacekeeper_hos"
 		),
-		"Sol Varient" = list(
+		"Sol Variant" = list(
 			RESKIN_ICON_STATE = "policechiefalt",
 			RESKIN_WORN_ICON_STATE = "policechiefalt"
 		),
-		"Red Varient" = list(
+		"Red Variant" = list(
 			RESKIN_ICON_STATE = "rhos",
 			RESKIN_WORN_ICON_STATE = "rhos"
 		),
@@ -1000,11 +1000,11 @@
 	icon_state = "hos_parade_male_blue"
 	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Blue Varient" = list(
+		"Blue Variant" = list(
 			RESKIN_ICON_STATE = "hos_parade_male_blue",
 			RESKIN_WORN_ICON_STATE = "hos_parade_male_blue"
 		),
-		"Red Varient" = list(
+		"Red Variant" = list(
 			RESKIN_ICON_STATE = "hos_parade_male",
 			RESKIN_WORN_ICON_STATE = "hos_parade_male"
 		),
@@ -1014,11 +1014,11 @@
 	icon_state = "hos_parade_fem_blue"
 	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Blue Varient" = list(
+		"Blue Variant" = list(
 			RESKIN_ICON_STATE = "hos_parade_fem_blue",
 			RESKIN_WORN_ICON_STATE = "hos_parade_fem_blue"
 		),
-		"Red Varient" = list(
+		"Red Variant" = list(
 			RESKIN_ICON_STATE = "hos_parade_fem",
 			RESKIN_WORN_ICON_STATE = "hos_parade_fem"
 		),
@@ -1029,11 +1029,11 @@
 	icon_state = "hosalt_blue"
 	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Blue Varient" = list(
+		"Blue Variant" = list(
 			RESKIN_ICON_STATE = "hosalt_blue",
 			RESKIN_WORN_ICON_STATE = "hosalt_blue"
 		),
-		"Red Varient" = list(
+		"Red Variant" = list(
 			RESKIN_ICON_STATE = "hosalt",
 			RESKIN_WORN_ICON_STATE = "hosalt"
 		),
@@ -1043,11 +1043,11 @@
 	icon_state = "hosalt_skirt_blue"
 	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Blue Varient" = list(
+		"Blue Variant" = list(
 			RESKIN_ICON_STATE = "hosalt_skirt_blue",
 			RESKIN_WORN_ICON_STATE = "hosalt_skirt_blue"
 		),
-		"Red Varient" = list(
+		"Red Variant" = list(
 			RESKIN_ICON_STATE = "hosalt_skirt",
 			RESKIN_WORN_ICON_STATE = "hosalt_skirt"
 		),
