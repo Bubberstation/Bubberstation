@@ -161,6 +161,10 @@
 					/obj/item/clothing/mask/gas/german = 3, //As far as I can tell, this is nowhere else in the game.
 					/obj/item/clothing/head/soft/veteran = 1,
 					/obj/item/clothing/head/helmet/toggleable/justice = 1, //More than one of these in the Vendor and they'll get annoying fast. Hence why Justice2 isn't here.
+					/obj/item/clothing/head/helmet/stormtrooper = 3,
+					/obj/item/clothing/suit/armor/stormtrooper = 3,
+					/obj/item/clothing/gloves/combat/peacekeeper/stormtrooper= 3,
+					/obj/item/clothing/shoes/combat/stormtrooper = 3,
 	)
 
 	payment_department = ACCOUNT_SEC

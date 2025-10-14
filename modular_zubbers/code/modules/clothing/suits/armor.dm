@@ -149,3 +149,48 @@
 			RESKIN_WORN_ICON_STATE = "overwatch_red"
 		),
 	)
+
+//Most of the Stormtroope reskins are from Civ13. The base, unknown. Thanks for keeping track of credits, Skyrat!!
+
+/obj/item/clothing/suit/armor/stormtrooper
+	name = "phase three security suit"
+	desc = "A shiny white armoured suit, looks like it'd be good for deflecting blaster fire. Developed for naval security forces before being decommissioned for 'pissing off the Mouse', whatever that means."
+	icon_state = "stormtrooper_suit"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	supports_variations_flags = NONE
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Phase Three" = list(
+			RESKIN_ICON_STATE = "stormtrooper_suit",
+			RESKIN_WORN_ICON_STATE = "stormtrooper_suit"
+		),
+		"Phase Two" = list(
+			RESKIN_ICON_STATE = "replicant_armor",
+			RESKIN_WORN_ICON_STATE = "replicant_armor"
+		),
+		"Security Red" = list(
+			RESKIN_ICON_STATE = "repmp_phase2armor",
+			RESKIN_WORN_ICON_STATE = "repmp_phase2armor"
+		),
+		"Rat Blue" = list(
+			RESKIN_ICON_STATE = "rep_501st",
+			RESKIN_WORN_ICON_STATE = "rep_501st"
+		),
+		"Engineering Orange" = list(
+			RESKIN_ICON_STATE = "rep_212th",
+			RESKIN_WORN_ICON_STATE = "rep_212th"
+		),
+		"Commando" = list(
+			RESKIN_ICON_STATE = "repcommando",
+			RESKIN_WORN_ICON_STATE = "repcommando"
+		),
+		"Battle Surgeon" = list(
+			RESKIN_ICON_STATE = "stormsurgeon_armor",
+			RESKIN_WORN_ICON_STATE = "stormsurgeon_armor"
+		),
+		"Slim" = list(
+			RESKIN_ICON_STATE = "stormradio_armor",
+			RESKIN_WORN_ICON_STATE = "stormradio_armor"
+		),
+	)

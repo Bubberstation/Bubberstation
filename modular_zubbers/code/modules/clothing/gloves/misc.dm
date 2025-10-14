@@ -46,3 +46,24 @@
 			RESKIN_WORN_ICON_STATE = "overwatch"
 		),
 	)
+
+
+//Most of the Stormtroope reskins are from Civ13. The base, unknown. Thanks for keeping track of credits, Skyrat!!
+/obj/item/clothing/gloves/combat/peacekeeper/stormtrooper
+	name = "phase three gloves"
+	desc = "White gloves with some limited reflective armor. Developed for naval security forces before being decommissioned for 'pissing off the Mouse', whatever that means."
+	icon = 'modular_zubbers/icons/obj/clothing/gloves.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/hands.dmi'
+	icon_state = "stormtrooper_gloves"
+	worn_icon_state = "stormtrooper_gloves"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Phase Three" = list(
+			RESKIN_ICON_STATE = "stormtrooper_gloves",
+			RESKIN_WORN_ICON_STATE = "stormtrooper_gloves"
+		),
+		"Phase Two" = list(
+			RESKIN_ICON_STATE = "replicant_gloves",
+			RESKIN_WORN_ICON_STATE = "replicant_gloves"
+		),
+	)
