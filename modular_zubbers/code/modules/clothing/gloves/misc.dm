@@ -52,7 +52,7 @@
 /obj/item/clothing/gloves/combat/peacekeeper/stormtrooper
 	name = "phase three gloves"
 	desc = "White gloves with some limited reflective armor. Developed for naval security forces before being decommissioned for 'pissing off the Mouse', whatever that means."
-	icon = 'modular_zubbers/icons/obj/clothing/gloves.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/gloves/gloves.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/hands.dmi'
 	icon_state = "stormtrooper_gloves"
 	worn_icon_state = "stormtrooper_gloves"
