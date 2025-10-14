@@ -977,6 +977,30 @@
 
 /obj/item/clothing/under/rank/security/officer/skirt
 	alt_covers_chest = FALSE
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
+	uses_advanced_reskins = TRUE
+	alt_covers_chest = TRUE
+	unique_reskin = list(
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "secskirt",
+			RESKIN_WORN_ICON_STATE = "secskirt"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "jumpskirt_blue",
+			RESKIN_WORN_ICON_STATE = "jumpskirt_blue"
+		),
+		"Black Variant" = list(
+			RESKIN_ICON_STATE = "jumpskirt_black",
+			RESKIN_WORN_ICON_STATE = "jumpskirt_black"
+		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/under/security.dmi',
+			RESKIN_ICON_STATE = "secskirt",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/under/security.dmi',
+			RESKIN_WORN_ICON_STATE = "secskirt"
+		),
+	)
 
 /obj/item/clothing/under/rank/security/officer/skirt/blue
 	name = "security jumpskirt"
