@@ -164,7 +164,7 @@
 					/obj/item/clothing/head/helmet/stormtrooper = 3,
 					/obj/item/clothing/suit/armor/stormtrooper = 3,
 					/obj/item/clothing/gloves/combat/peacekeeper/stormtrooper= 3,
-					/obj/item/clothing/shoes/combat/stormtrooper = 3,
+					/obj/item/clothing/shoes/jackboots/stormtrooper = 3,
 	)
 
 	payment_department = ACCOUNT_SEC
