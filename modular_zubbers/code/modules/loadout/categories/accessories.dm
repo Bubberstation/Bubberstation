@@ -130,3 +130,4 @@
 /datum/loadout_item/accessory/medal/pt_pin
 	name = "Neckpin - Port Tarkon"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal/neckpin/porttarkon
+
