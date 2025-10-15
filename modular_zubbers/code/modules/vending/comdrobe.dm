@@ -294,6 +294,8 @@
 		/obj/item/clothing/under/rank/bridge_assistant/turtle = 5,
 		/obj/item/clothing/under/rank/bridge_assistant/turtle/skirt = 5,
 		/obj/item/clothing/under/rank/civilian/head_of_personnel/stripper = 5, //Multiple for heads. Urgh.
+		/obj/item/clothing/accessory/bubber/acc_medal/neckpin = 5,
+		/obj/item/clothing/accessory/bubber/acc_medal/neckpin/centcom = 5,
 	)
 
 
