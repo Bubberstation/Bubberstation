@@ -23,9 +23,9 @@
 	icon_open = "syndboxopen"
 
 /obj/item/storage/lockbox/medal/bubber/synd/PopulateContents()
-	new /obj/item/clothing/accessory/medal/nova/syndicate(src)
-	new /obj/item/clothing/accessory/medal/nova/syndicate/espionage(src)
-	new /obj/item/clothing/accessory/medal/nova/syndicate/interrogation(src)
-	new /obj/item/clothing/accessory/medal/nova/syndicate/intelligence(src)
-	new /obj/item/clothing/accessory/medal/nova/syndicate/diligence(src)
-	new /obj/item/clothing/accessory/medal/nova/syndicate/communications(src)
+	new /obj/item/clothing/accessory/medal/bubber/syndicate(src)
+	new /obj/item/clothing/accessory/medal/bubber/syndicate/espionage(src)
+	new /obj/item/clothing/accessory/medal/bubber/syndicate/interrogation(src)
+	new /obj/item/clothing/accessory/medal/bubber/syndicate/intelligence(src)
+	new /obj/item/clothing/accessory/medal/bubber/syndicate/diligence(src)
+	new /obj/item/clothing/accessory/medal/bubber/syndicate/communications(src)
