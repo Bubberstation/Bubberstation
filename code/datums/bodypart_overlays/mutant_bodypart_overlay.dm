@@ -33,10 +33,11 @@
 		stack_trace("adding a [parent.type] to a [receiver.type] when it shouldn't be!")
 
 	if(imprint_on_next_insertion) //We only want this set *once*
-		var/feature_name = receiver.dna.features[feature_key]
+		var/feature_name = receiver.dna.features[feature_key] || receiver.dna.species.mutant_organs[parent.type]
 		if (isnull(feature_name))
 		/* SKYRAT EDIT - Customization - ORIGINAL:
-			feature_name = receiver.dna.species.mutant_organs[parent.type]
+			stack_trace("[type] has no default feature name for organ [parent.type]!")
+			feature_name = get_consistent_feature_entry(get_global_feature_list()) //fallback to something
 		set_appearance_from_name(feature_name)
 		*/ // SKYRAT EDIT START
 			if(!set_appearance_from_dna(receiver.dna))
