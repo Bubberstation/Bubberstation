@@ -25,6 +25,31 @@
 /datum/storyteller_balance/proc/make_snapshot(datum/storyteller_inputs/inputs)
 	var/datum/storyteller_balance_snapshot/snap = new
 
+	var/raw_station_strength = get_station_strength(inputs, inputs.vault)
+	var/station_strength_mod = get_strength_multiplayer(inputs, inputs.vault)
+	snap.station_strength = clamp(raw_station_strength * station_strength_mod / 100, 0, 1)
+	snap.station_strength_raw = clamp(raw_station_strength * station_strength_mod, 0, 100)
+
+
+	var/antag_strength_raw = get_antagonist_strength(inputs, inputs.vault)
+	snap.antag_strength_raw = antag_strength_raw
+	snap.antag_effectiveness = antag_strength_raw / 10
+
+
+	var/total_players = inputs.vault[STORY_VAULT_CREW_ALIVE_COUNT] || 0
+	snap.total_player_weight = total_players * player_weight * snap.station_strength_raw / 100
+
+	var/antag_count = inputs.antag_count
+	snap.total_antag_weight = antag_count * antag_weight * snap.antag_effectiveness
+
+
+	snap.ratio = antag_strength_raw / max(snap.station_strength_raw, 1)
+
+
+	snap.antag_activity_index = (inputs.vault[STORY_VAULT_ANTAGONIST_ACTIVITY] || 0) / 3
+	snap.antag_weak = snap.antag_effectiveness < weak_antag_threshold
+	snap.antag_inactive = snap.antag_activity_index < inactive_activity_threshold
+
 
 
 
@@ -32,9 +57,143 @@
 
 
 
+// Returns normalized raw station strength from 0 to 100
 /datum/storyteller_balance/proc/get_station_strength(datum/storyteller_inputs/inputs, list/vault)
+	PRIVATE_PROC(TRUE)
+
+	var/crew_readiness = vault[STORY_VAULT_CREW_READINESS] // Readiness of the crew
+	var/crew_weight = inputs.crew_weight // Weight of the crew
+	var/station_integrity = inputs.get_station_integrity() // Station integrity (0-100)
+	var/security_count = vault[STORY_VAULT_SECURITY_COUNT]
+	var/security_strength = vault[STORY_VAULT_SECURITY_STRENGTH]
+
+	// Magic vars
+	var/weight_crew_readiness = 0.3
+	var/weight_station_integrity = 0.3
+	var/crew_weight_scaled = 0.3
+	var/weight_security = 0.2
+	var/security_contribution = (security_count * security_strength) / 100
+
+	// Calculate total station strength
+	var/station_strength = \
+		(crew_weight * crew_weight_scaled) + \
+		(crew_readiness * weight_crew_readiness) + \
+		(station_integrity * weight_station_integrity) + \
+		(security_contribution * weight_security)
+	return clamp(station_strength, 0, 100)
 
 
+/datum/storyteller_balance/proc/get_strength_multiplayer(datum/storyteller_inputs/inputs, list/vault)
+	PRIVATE_PROC(TRUE)
+
+	var/final_modificator = 1
+	// First: research bonus
+	if(vault[STORY_VAULT_RESEARCH_PROGRESS])
+		if(vault[STORY_VAULT_RESEARCH_PROGRESS] <= STORY_VAULT_LOW_RESEARCH && owner.round_progression > STORY_ROUND_PROGRESSION_EARLY)
+			final_modificator -= 0.2
+		else if(vault[STORY_VAULT_RESEARCH_PROGRESS] <= STORY_VAULT_MODERATE_RESEARCH)
+			final_modificator += 0.1
+		else if(vault[STORY_VAULT_RESEARCH_PROGRESS] <= STORY_VAULT_HIGH_RESEARCH)
+			final_modificator += 0.15
+		else if(vault[STORY_VAULT_RESEARCH_PROGRESS] <= STORY_VAULT_ADVANCED_RESEARCH)
+			final_modificator += 0.2
+
+	if(vault[STORY_VAULT_RESOURCE_MINERALS] && vault[STORY_VAULT_RESOURCE_MINERALS] < 250)
+		final_modificator -= 0.2 // we at low resourcess
+
+	if(vault[STORY_VAULT_RESOURCE_OTHER] && vault[STORY_VAULT_RESOURCE_OTHER] < 10000)
+		final_modificator -= 0.4
+	else if(vault[STORY_VAULT_RESOURCE_OTHER] && vault[STORY_VAULT_RESOURCE_OTHER] <= 40000)
+		final_modificator += 0.2
+	else if(vault[STORY_VAULT_RESOURCE_OTHER] && vault[STORY_VAULT_RESOURCE_OTHER] <= 70000)
+		final_modificator += 0.4
+	else if(vault[STORY_VAULT_RESOURCE_OTHER] && vault[STORY_VAULT_RESOURCE_OTHER] <= 100000)
+		final_modificator += 0.9
+
+	if(vault[STORY_VAULT_STATION_ALLIES])
+		final_modificator += 0.6
+
+
+// Returns raw antagonist strength (0-100) based on vault metrics
+// Aggregates activity, kills, objectives, etc., with penalties for deaths/inactivity
+// Scaled to 0-100 for direct comparison with station_strength
+/datum/storyteller_balance/proc/get_antagonist_strength(datum/storyteller_inputs/inputs, list/vault)
+	PRIVATE_PROC(TRUE)
+
+	if(inputs.antag_count <= 0)
+		return 0
+
+	// Pull metrics from vault (0-3 unless noted)
+	var/activity_level = vault[STORY_VAULT_ANTAGONIST_ACTIVITY] || 0
+	var/kills = vault[STORY_VAULT_ANTAG_KILLS] || 0
+	var/objectives = vault[STORY_VAULT_ANTAG_OBJECTIVES_COMPLETED] || 0
+	var/disruption = vault[STORY_VAULT_ANTAG_DISRUPTION] || 0
+	var/influence = vault[STORY_VAULT_ANTAG_INFLUENCE] || 0
+	var/dead_ratio = vault[STORY_VAULT_ANTAG_DEAD_RATIO] || 0
+	var/presence = vault[STORY_VAULT_ANTAGONIST_PRESENCE] || 0
+	var/inactive_ratio = vault[STORY_VAULT_ANTAG_INACTIVE_RATIO] || 0
+	var/intensity = vault[STORY_VAULT_ANTAG_INTENSITY] || 0
+	var/teamwork = vault[STORY_VAULT_ANTAG_TEAMWORK] || 0
+	var/stealth = vault[STORY_VAULT_ANTAG_STEALTH] || 0
+	var/escalation = vault[STORY_VAULT_THREAT_ESCALATION] || 0
+
+	// Yes, it's actually magic vars
+	var/weight_activity = 0.15
+	var/weight_kills = 0.10
+	var/weight_objectives = 0.15
+	var/weight_disruption = 0.10
+	var/weight_influence = 0.10
+	var/weight_intensity = 0.10
+	var/weight_teamwork = 0.05
+	var/weight_escalation = 0.10
+	var/weight_stealth = 0.05
+
+	// Normalize to 0-1 (divide by 3 for 0-3 scales; inactive already 0-1)
+	var/norm_activity = activity_level / 3
+	var/norm_kills = kills / 3
+	var/norm_objectives = objectives / 3
+	var/norm_disruption = disruption / 3
+	var/norm_influence = influence / 3
+	var/norm_intensity = intensity / 3
+	var/norm_teamwork = teamwork / 3
+	var/norm_escalation = escalation / 3
+	var/norm_stealth = stealth / 3
+	var/norm_presence = presence / 3
+	var/norm_dead = 1 - (dead_ratio / 3)  // Inverted: high deaths = low survival
+	var/norm_inactive = 1 - inactive_ratio
+
+	// Core strength: weighted sum of key metrics (0-1)
+	var/core_strength = norm_activity * weight_activity + \
+		norm_kills * weight_kills + \
+		norm_objectives * weight_objectives + \
+		norm_disruption * weight_disruption + \
+		norm_influence * weight_influence + \
+		norm_intensity * weight_intensity + \
+		norm_teamwork * weight_teamwork + \
+		norm_escalation * weight_escalation + \
+		norm_stealth * weight_stealth
+
+	// Modifiers (additive, clamped to 0-1)
+	var/presence_mod = norm_presence * 0.2
+	var/survival_mod = norm_dead * 0.3
+	var/activity_mod = norm_inactive * 0.5
+
+	var/overall_strength_norm = clamp(core_strength + presence_mod + survival_mod + activity_mod - 0.5, 0, 1)  // -0.5 centers base at ~0.5
+
+	// Relative scale: antag_count vs. player_count (ideal 5-20% antags; scale 0.5-2.0)
+	var/relative_scale = clamp(inputs.antag_count / max(inputs.player_count * 0.1, 1), 0.5, 2.0)
+
+	// Final raw strength: normalize * scale * 100
+	var/final_strength = clamp(overall_strength_norm * relative_scale * 100, 0, 100)
+
+	return final_strength
+
+
+
+/datum/storyteller_balance/proc/get_resource_strength(list/vault)
+	var/minerals = vault[STORY_VAULT_RESOURCE_MINERALS] || 0
+	var/other = vault[STORY_VAULT_RESOURCE_OTHER] || 0
+	return clamp((minerals / 1000 + other / 100000), 0, 1)
 
 
 // Snapshot datum
@@ -44,11 +203,15 @@
 	var/ratio = 1.0
 	/// Antag effectiveness (0-1; based on health, wounds, activity, influence, etc.)
 	var/antag_effectiveness = 1.0
+	/// Raw antag strength (0-100) for comparison
+	var/antag_strength_raw = 0
 	/// Station strength proxy (0-1; crew resilience, resources)
 	var/station_strength = 1.0
-	/// Overall tension (0-100; derived from ratio for mood/planner use)
+	/// Raw station strength (0-100) for comparison
+	var/station_strength_raw = 0
+	/// Overall tension
 	var/overall_tension = 50
-	/// Resource strength (0-1)
+	/// Resource strength
 	var/resource_strength = 0
 	/// Crew health index (0-1, 1 is worst)
 	var/crew_health_index = 0

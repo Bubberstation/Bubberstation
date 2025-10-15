@@ -16,15 +16,15 @@
 	var/total_influence = 0
 	var/alive_antags = 0
 	var/inactive_count = 0
-	var/teamwork_score = 0  // New: For team-based antags
-	var/stealth_score = 0  // New: High objectives/low disruption
+	var/teamwork_score = 0
+	var/stealth_score = 0
 
-	// New: Threat detection maps
-	var/list/threat_scores = list()  // type -> score
-	var/major_threat = "none"  // Default
-	var/threat_escalation = 0  // Rate of change (burst / total time)
 
-	for(var/datum/mind/antag_mind as anything in GLOB.antagonists)
+	var/list/threat_scores = list()
+	var/major_threat = "none"
+	var/threat_escalation = 0
+
+	for(var/datum/mind/antag_mind in GLOB.antagonists)
 		if(!antag_mind.current || antag_mind.current.stat == DEAD)
 			continue
 		var/mob/living/L = antag_mind.current
@@ -34,17 +34,19 @@
 
 		total_damage += tracker.damage_dealt
 		total_activity += tracker.activity_time
-		total_effective_activity += tracker.effective_activity_time  // New
-		total_burst_activity += tracker.burst_activity  // New
+		total_effective_activity += tracker.effective_activity_time
+		total_burst_activity += tracker.burst_activity
 		total_kills += tracker.kills
 		total_objectives += tracker.objectives_completed
 		total_disruption += tracker.disruption_score
 		total_influence += tracker.influence_score
-		alive_antags++
+		alive_antags += 1
 
 		// Inactivity heuristic: Improved with burst check
 		var/act_index = clamp(tracker.effective_activity_time / max(1, world.time / STORY_ACTIVITY_TIME_SCALE), 0, 1)
-		if(act_index < STORY_INACTIVITY_ACT_INDEX_THRESHOLD && tracker.kills <= 0 && tracker.objectives_completed <= 0 && tracker.burst_activity == 0)
+		if(act_index < STORY_INACTIVITY_ACT_INDEX_THRESHOLD && tracker.kills <= 0 && \
+			tracker.objectives_completed <= 0 && tracker.burst_activity == 0)
+
 			inactive_count++
 
 		// New: Per-antag contributions to new metrics
@@ -84,6 +86,7 @@
 		inputs.vault[STORY_VAULT_ANTAG_OBJECTIVES_COMPLETED] = clamp(total_objectives / min(alive_antags, STORY_OBJECTIVES_CAP), 0, 3)
 		inputs.vault[STORY_VAULT_ANTAG_DISRUPTION] = clamp(total_disruption / max(1, alive_antags), 0, 3)
 		inputs.vault[STORY_VAULT_ANTAG_INFLUENCE] = clamp(total_influence / max(1, alive_antags), 0, 3)
+
 		var/dead_count = inputs.antag_count - alive_antags
 		inputs.vault[STORY_VAULT_ANTAG_DEAD_RATIO] = clamp((dead_count / max(1, inputs.antag_count)) * 3, 0, 3)
 		inputs.vault[STORY_VAULT_ANTAGONIST_PRESENCE] = clamp(alive_antags >= 4 ? 3 : (alive_antags >= 2 ? 2 : 1), 0, 3)

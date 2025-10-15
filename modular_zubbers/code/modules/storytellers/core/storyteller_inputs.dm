@@ -26,3 +26,7 @@
 	/// Stores dynamic metrics not fitting standard vars, e.g., department-specific values or event-specific data.
 	/// check _storyteller.dm defines for examples
 	var/list/vault = list()
+
+
+/datum/storyteller_inputs/proc/get_station_integrity()
+	return min(PERCENT(GLOB.start_state.score(station_state)), 100)

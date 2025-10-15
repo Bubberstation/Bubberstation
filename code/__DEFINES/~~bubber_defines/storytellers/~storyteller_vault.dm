@@ -120,6 +120,8 @@
 	These track security personnel, equipment, and alert levels to influence law enforcement and response events.
 */
 
+#define STORY_VAULT_SECURITY_COUNT "security_count"
+
 // Tracks security strength (number of active security officers, their gear, arrests made).
 #define STORY_VAULT_SECURITY_STRENGTH "security_strength"
 	#define STORY_VAULT_NO_SECURITY 0      // No active security
@@ -153,6 +155,10 @@
 	#define STORY_VAULT_PREPARED 2       // Good stockpiles
 	#define STORY_VAULT_HIGHLY_READY 3   // Overprepared (armory full, etc.)
 
+
+#define STORY_VAULT_STATION_ALLIES "station_allies"
+#define STORY_VAULT_NUKE_ACTIVATED "NUKE_INCOMING"
+#define STORY_VAULT_DEATHSQUAD "doomguys_here"
 /*
 	Antagonist metrics
 	These track antagonist behavior, progress, and impact to escalate or mitigate threats.

@@ -70,18 +70,19 @@
 			try_plan_goal(goal, replan_delay)
 			message_admins("[span_warning("Storyteller goal failed to fire: ")] [goal.name || goal.id] — rescheduling.")
 
-/*
+
 	var/pending_count = 0
 	for(var/offset_str in timeline)
 		if(timeline[offset_str][ENTRY_STATUS] == STORY_GOAL_PENDING)
 			pending_count++
+/*
 	var/expected_pop = round(ctl.population_factor * inputs.vault[STORY_VAULT_CREW_ALIVE_COUNT]) // TODO: averge crew
 	var/pop_delta = abs(inputs.vault[STORY_VAULT_CREW_ALIVE_COUNT] - expected_pop) / max(1, expected_pop)
 	var/pop_changed = (pop_delta > 0.20)
 */
-// if(!length(timeline) || pending_count < 3 || current_time - last_recalc_time > recalc_interval)
-	recalculate_plan(ctl, inputs, bal)
-// last_recalc_time = current_time
+	if(!length(timeline) || pending_count < 3 || current_time - last_recalc_time > recalc_interval)
+		recalculate_plan(ctl, inputs, bal)
+		last_recalc_time = current_time
 	return fired_goals
 
 

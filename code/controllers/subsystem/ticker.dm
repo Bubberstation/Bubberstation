@@ -260,9 +260,7 @@ SUBSYSTEM_DEF(ticker)
 	//Configure mode and assign player to antagonists
 	var/can_continue = FALSE
 //	can_continue = SSdynamic.select_roundstart_antagonists() //Choose antagonists // BUBBER EDIT - STORYTELLER (note: maybe disable)
-	//BUBBER EDIT BEGIN - STORYTELLER
-	SSstorytellers.setup_game()
-	//BUBBER EDIT END - STORYTELLER
+	can_continue = SSstorytellers.setup_game()
 
 	CHECK_TICK
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_PRE_JOBS_ASSIGNED, src)

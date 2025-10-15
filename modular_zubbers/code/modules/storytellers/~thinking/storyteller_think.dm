@@ -111,7 +111,7 @@
 	var/maxs = max(score_good, score_bad, score_neutral, score_random)
 	if(maxs == score_random && score_random > 0.15) // threshold to avoid spurious randoms
 		return STORY_GOAL_RANDOM
-	else if(maxs == score_good)
+	else if(maxs == score_good && !HAS_TRAIT(ctl, STORYTELLER_TRAIT_NO_GOOD_EVENTS))
 		return STORY_GOAL_GOOD
 	else if(maxs == score_bad)
 		return STORY_GOAL_BAD

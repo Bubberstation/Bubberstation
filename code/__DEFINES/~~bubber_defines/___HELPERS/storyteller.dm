@@ -47,3 +47,20 @@
 		edge_turfs += center_turf
 
 	return edge_turfs
+
+
+/proc/get_inventory(atom/holder, recursive = TRUE)
+	RETURN_TYPE(/list)
+
+	. = list()
+	if(!holder || istype(holder) || !length(holder.contents))
+		return .
+
+	for(var/atom/atom in holder.contents)
+		. += atom
+		if(length(atom.contents) && recursive)
+			. += get_inventory(atom)
+
+	return .
+
+

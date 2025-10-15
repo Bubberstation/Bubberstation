@@ -71,11 +71,17 @@
 // prioritizes events or subgoals involving specific crew members.
 // For example, engineers might have higher weight in infrastructure-related goals.
 
-#define STORY_DEFAULT_JOB_WEIGHT_MODIFIER 1.0  // Default multiplier for job-based weight adjustments
-// Higher for tech-focused roles
-#define STORY_ENGINEER_JOB_WEIGHT_MODIFIER (STORY_DEFAULT_JOB_WEIGHT_MODIFIER * 1.5)
-// Higher for conflict roles
-#define STORY_SECURITY_JOB_WEIGHT_MODIFIER (STORY_DEFAULT_JOB_WEIGHT_MODIFIER * 2.0)
+#define STORY_DEFAULT_JOB_WEIGHT 10.0  // Default multiplier for job-based weight adjustments
+
+#define STORY_ENGINEER_JOB_WEIGHT (STORY_DEFAULT_JOB_WEIGHT * 1.5)
+
+#define STORY_SECURITY_JOB_WEIGHT (STORY_DEFAULT_JOB_WEIGHT * 2.5)
+
+#define STORY_MEDICAL_JOB_WEIGHT (STORY_DEFAULT_JOB_WEIGHT * 1.5)
+
+#define STORY_HEAD_JOB_WEIGHT (STORY_DEFAULT_JOB_WEIGHT * 3)
+
+#define STORY_UNIMPORTANT_JOB_WEIGHT (STORY_DEFAULT_JOB_WEIGHT * 0.5)
 
 #define STORY_GOAL_BASE_WEIGHT 1.0
 
@@ -117,6 +123,15 @@ DEFINE_BITFIELD(story_analyzer_flags, list(
 ))
 
 
+// Storytellers traits
+
+#define STORYTELLER_TRAIT_NO_MERCY "NO_MERCY"
+#define STORYTELLER_TRAIT_CAN_HELP "CAN_HELP"
+#define STORYTELLER_TRAIT_FORCE_TENSION "FORCE_TENSION"
+#define STORYTELLER_TRAIT_SPEAKER "LOVE_SPEAK"
+#define STORYTELLER_TRAIT_BALANCING_TENSTION "BALANCER"
+#define STORYTELLER_TRAIT_NO_GOOD_EVENTS "NO_GOOD_EVENTS"
+
 // Bitfield categories for story goals
 
 // Goals selected in a random order
@@ -142,6 +157,25 @@ DEFINE_BITFIELD(story_goal_category, list(
 	"GOAL_UNCATEGORIZED" = STORY_GOAL_UNCATEGORIZED,
 ))
 
+
+
+
+// Bitfield categories for jobs flags
+
+
+#define STORY_JOB_IMPORTANT (1 << 0)
+#define STORY_JOB_COMBAT (1 << 1)
+#define STORY_JOB_ANTAG_MAGNET (1 << 2)
+#define STORY_JOB_HEAVYWEIGHT (1 << 3)
+#define STORY_JOB_SECURITY (1 << 4)
+
+DEFINE_BITFIELD(story_job_flags, list(
+	"JOB_IMPORTANT" = STORY_JOB_IMPORTANT,
+	"JOB_COMBAT" = STORY_JOB_COMBAT,
+	"JOB_ANTAG_MAGNET" = STORY_JOB_ANTAG_MAGNET,
+	"JOB_HEAVYWEIGHT" = STORY_JOB_HEAVYWEIGHT,
+	"JOB_SECURITY" = STORY_JOB_SECURITY,
+))
 
 // Bitfield for universal tags describing areas of influence
 // These tags characterize the scope or impact of a goal, such as escalation/deescalation or effects on specific station elements.

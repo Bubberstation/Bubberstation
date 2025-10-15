@@ -132,7 +132,7 @@ SUBSYSTEM_DEF(storytellers)
 		// Placeholder lists: welcome and round speech (assume list of strings)
 		parsed["storyteller_welcome_speech"] = islist(entry["welcome_speech"]) ? entry["welcome_speech"] : list()
 		parsed["storyteller_round_speech"] = islist(entry["round_speech"]) ? entry["round_speech"] : list()
-
+		parsed["personality_traits"] = islist(entry["personality_traits"]) ? entry["personality_traits"] : list()
 		storyteller_data[id] = parsed
 
 	if(hard_debug)
@@ -176,7 +176,10 @@ SUBSYSTEM_DEF(storytellers)
 	var/mood = data["mood_path"]
 	if(ispath(mood, /datum/storyteller_mood))
 		new_st.mood = new mood
-
+	var/list/traits = data["personality_traits"]
+	if(length(traits))
+		for(var/trait in traits)
+			ADD_TRAIT(new_st, trait, "storyteller_mind")
 
 	// new_st.storyteller_welcome_speech = data["storyteller_welcome_speech"]
 	// new_st.storyteller_round_speech = data["storyteller_round_speech"]
@@ -205,7 +208,6 @@ SUBSYSTEM_DEF(storytellers)
 			continue
 		evt.__process_for_storyteller(world.tick_lag)
 
-
 /datum/controller/subsystem/storytellers/proc/setup_game()
 
 #ifdef TESTING // Stortyteller setup disabled during testing, it's handle by unit test
@@ -219,6 +221,7 @@ SUBSYSTEM_DEF(storytellers)
 		end_vote()
 
 	initialize_storyteller()
+	return TRUE
 
 /datum/controller/subsystem/storytellers/proc/disable_dynamic()
 	if(!storyteller_replace_dynamic)
