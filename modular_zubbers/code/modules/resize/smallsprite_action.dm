@@ -49,7 +49,7 @@
 /*  Returns true if owner has alt appearance with subtype /everyone.
 	Useful when potted plants used */
 /datum/action/oversized_visibility/proc/has_everyone_appearance()
-	for(var/apperance as anything in owner.alternate_appearances)
+	for(var/apperance in owner.alternate_appearances)
 		if(istype(owner.alternate_appearances[apperance], /datum/atom_hud/alternate_appearance/basic/everyone))
 			return TRUE
 	return FALSE
