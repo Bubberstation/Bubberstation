@@ -1590,27 +1590,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/get_types_to_preload()
 	return get_organs(FALSE)
 
-/*
-/datum/species/proc/get_mut_organs(include_brain = TRUE)
-	var/list/mut_organs = list()
-	mut_organs += mutant_organs
-	if (include_brain)
-		mut_organs += mutantbrain
-	mut_organs += mutantheart
-	mut_organs += mutantlungs
-	mut_organs += mutanteyes
-	mut_organs += mutantears
-	mut_organs += mutanttongue
-	mut_organs += mutantliver
-	mut_organs += mutantstomach
-	mut_organs += mutantappendix
-	list_clear_nulls(mut_organs)
-	return mut_organs
-
-
-/datum/species/proc/get_types_to_preload()
-	return get_mut_organs(FALSE)
-*/ // BUBBER EDIT - OR END
 
 /**
  * Owner login
