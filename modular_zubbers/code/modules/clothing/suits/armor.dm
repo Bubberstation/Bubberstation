@@ -1,28 +1,3 @@
-/obj/item/clothing/suit/armor/metrocop //Sprite done by Gat1Day#2892
-	name = "Civil Protection Suit"
-	desc = "Standard issue armor for Civil Protection."
-	body_parts_covered = CHEST|ARMS|GROIN|LEGS
-	cold_protection = CHEST|ARMS|GROIN|LEGS
-	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
-	heat_protection = CHEST|ARMS|GROIN|LEGS
-	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
-	icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
-	icon_state = "hardsuit-metrocop"
-	inhand_icon_state =  null
-	blood_overlay_type = "hardsuit-metrocop"
-	armor_type = /datum/armor/suit_armor
-
-/obj/item/clothing/suit/armor/metrocopriot //Sprite done by Gat1Day#2892
-	name = "Riot Civil Protection Suit"
-	desc = "A Suit of armor to help Civil Protection deal with unruly citizens."
-	icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
-	icon_state = "hardsuit-metrocop-RL"
-	inhand_icon_state =  null
-	blood_overlay_type = "hardsuit-metrocop-RL"
-	armor_type = /datum/armor/armor_riot
-
 /obj/item/clothing/suit/armor/vest/collared_vest//Sprite done by offwrldr/Bangle - same person. Recently edited sprite.
 	name = "GLP-C 'Úlfur' Vest"
 	desc = "A set of General Light Protective armor, with complimentary pauldrons and an additional armored collar, similar to a gorget. This pattern of armored vest is typically afforded to diplomats and members of the press in hostile environments, though has seen use among private security forces. The armored collar is designed to protect the neck and throat from shrapnel. All things considered, it's quite comfortable, though many unfortunate wearers are often mistaken for combatants given the militarized aesthetic."
@@ -135,3 +110,42 @@
 	fire = 100
 	acid = 50
 	wound = 25
+
+//MetroCop armor, by HL13 station.
+/obj/item/clothing/suit/armor/vest/alt/sec/metrocop
+	name = "metrocop armor"
+	desc = "Pick up that can. Uses advanced GigaSlop brand Matrixes to allow alternative variants!"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	icon_state = "civilprotection"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Metro Cop" = list(
+			RESKIN_ICON_STATE = "civilprotection",
+			RESKIN_WORN_ICON_STATE = "civilprotection"
+		),
+		"MetroCop Coat" = list(
+			RESKIN_ICON_STATE = "cp_trenchcoat",
+			RESKIN_WORN_ICON_STATE = "cp_trenchcoat"
+		),
+		"Medic" = list(
+			RESKIN_ICON_STATE = "medicalofficer",
+			RESKIN_WORN_ICON_STATE = "medicalofficer"
+		),
+		"Red Trim" = list(
+			RESKIN_ICON_STATE = "dv_vest",
+			RESKIN_WORN_ICON_STATE = "dv_vest"
+		),
+		"White Overwatch" = list(
+			RESKIN_ICON_STATE = "overwatch_white",
+			RESKIN_WORN_ICON_STATE = "overwatch_white"
+		),
+		"Overwatch" = list(
+			RESKIN_ICON_STATE = "overwatch",
+			RESKIN_WORN_ICON_STATE = "overwatch"
+		),
+		"Red Overwatch" = list(
+			RESKIN_ICON_STATE = "overwatch_red",
+			RESKIN_WORN_ICON_STATE = "overwatch_red"
+		),
+	)
