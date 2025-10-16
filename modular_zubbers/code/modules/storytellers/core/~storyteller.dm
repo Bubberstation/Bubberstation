@@ -46,6 +46,8 @@
 	var/recent_damage_threshold = STORY_RECENT_DAMAGE_THRESHOLD
 	/// Target tension level; storyteller aims to keep overall_tension around this
 	var/target_tension = STORY_TARGET_TENSION
+	/// Current level of overral tension
+	var/current_tension = 0
 	/// Current grace period after major event when we avoid rapid-fire scheduling
 	var/grace_period = STORY_GRACE_PERIOD
 	/// Time since last major event; used to enforce grace periods
@@ -150,6 +152,7 @@
 											? inputs.vault[STORY_VAULT_CREW_ALIVE_COUNT] : 0
 	while(length(population_history) > 10)
 		population_history.Cut(1, 2)
+	current_tension = snap.overall_tension
 	update_population_factor()
 	// 6) Schedule next cycle
 	schedule_next_think()

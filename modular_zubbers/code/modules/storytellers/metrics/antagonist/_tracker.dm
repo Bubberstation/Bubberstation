@@ -38,26 +38,25 @@
 	COOLDOWN_DECLARE(update_objectives_cooldown) // Declares a cooldown for updating objectives
 
 /datum/component/antag_metric_tracker/Initialize(mob/living/tracked_mob)
-	if(!tracked_mob)
-		return COMPONENT_INCOMPATIBLE // If no mob is provided, the component is incompatible
-
+	if(!tracked_mob || !tracked_mob.mind)
+		return COMPONENT_INCOMPATIBLE
 	if(tracked_mob.mind?.antag_datums?.len == 0)
-		is_antagonist = FALSE // If the mob has no antagonist data, mark as non-antagonist
+		is_antagonist = FALSE
 
-	parent = tracked_mob // Set the parent to the tracked mob
-	last_update = world.time // Initialize the last update time
-	RegisterWithParent() // Register signals with the parent mob
+	parent = tracked_mob
+	last_update = world.time
+	RegisterWithParent()
 	START_PROCESSING(SSdcs, src) // Start processing the component
 	tracking = TRUE // Set tracking to active
 
 /datum/component/antag_metric_tracker/RegisterWithParent()
-	if(!tracked_mob)
+	if(!tracked_mob || !tracked_mob?.mind)
 		Destroy() // Destroy the component if the mob is invalid
 
-	RegisterSignal(tracked_mob, COMSIG_LIVING_ATTACK_ATOM, PROC_REF(on_damage_dealt), TRUE) // Register signal for damage dealt
-	RegisterSignal(tracked_mob, COMSIG_LIVING_DEATH, PROC_REF(on_death)) // Register signal for mob death
-	RegisterSignal(tracked_mob, COMSIG_QDELETING, PROC_REF(on_qdel)) // Register signal for mob deletion
-	RegisterSignal(tracked_mob.mind, COMSIG_MIND_TRANSFERRED, PROC_REF(on_mind_transferred)) // Register signal for mind transfer
+	RegisterSignal(tracked_mob, COMSIG_LIVING_ATTACK_ATOM, PROC_REF(on_damage_dealt), TRUE)
+	RegisterSignal(tracked_mob, COMSIG_LIVING_DEATH, PROC_REF(on_death))
+	RegisterSignal(tracked_mob, COMSIG_QDELETING, PROC_REF(on_qdel))
+	RegisterSignal(tracked_mob.mind, COMSIG_MIND_TRANSFERRED, PROC_REF(on_mind_transferred))
 
 
 /datum/component/antag_metric_tracker/UnregisterFromParent()

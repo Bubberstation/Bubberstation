@@ -62,6 +62,7 @@ type StorytellerData = {
   effective_threat_level?: number;
   round_progression?: number; // 0..1
   target_tension?: number; // 0..100
+  current_tension?: number;
   recent_events?: StorytellerEventLog[];
   player_count?: number;
   antag_count?: number;
@@ -199,6 +200,11 @@ export const Storyteller = (props) => {
               <LabeledList>
                 <LabeledList.Item label="Mood">
                   {mood ? `${mood.name} (pace ×${mood.pace})` : '—'}
+                </LabeledList.Item>
+                <LabeledList.Item label="Tension">
+                  {data.current_tension != null
+                    ? `${data.current_tension}`
+                    : '—'}
                 </LabeledList.Item>
                 <LabeledList.Item label="Target tension">
                   {data.target_tension != null ? `${data.target_tension}` : '—'}

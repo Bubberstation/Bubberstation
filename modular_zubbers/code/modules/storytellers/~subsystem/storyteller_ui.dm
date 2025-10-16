@@ -95,6 +95,7 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 	data["player_antag_balance"] = ctl.player_antag_balance
 	data["difficulty_multiplier"] = ctl.difficulty_multiplier
 	data["event_difficulty_modifier"] = ctl.difficulty_multiplier
+	data["current_tension"] = ctl.current_tension
 	data["can_force_event"] = TRUE
 	data["current_world_time"] = world.time
 	var/list/events = list()
@@ -104,7 +105,7 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 			continue
 		var/list/event_data = details[1]
 		events += list(list(
-			"time" = text2num(splittext(event_data["fired_at"], " ")[1]) * 1 MINUTES,  // Parse back to ticks approx
+			"time" = text2num(splittext(event_data["fired_at"], " ")[1]) / MINUTES,  // Parse back to ticks approx
 			"desc" = event_data["desc"],
 			"status" = event_data["status"],
 			"id" = event_data["id"],

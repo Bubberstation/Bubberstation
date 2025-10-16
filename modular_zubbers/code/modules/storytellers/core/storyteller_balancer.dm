@@ -16,6 +16,8 @@
 	var/inactive_activity_threshold = STORY_BALANCER_INACTIVE_ACTIVITY_THRESHOLD
 	/// Station strength multiplier (e.g., high crew health/resources = higher value)
 	var/station_strength_multiplier = STORY_STATION_STRENGTH_MULTIPLIER
+	/// A tansion bonus comming from completed bad/escalation goals
+	var/tension_bonus
 
 /datum/storyteller_balance/New(_owner)
 	owner = _owner
@@ -42,16 +44,27 @@
 	var/antag_count = inputs.antag_count
 	snap.total_antag_weight = antag_count * antag_weight * snap.antag_effectiveness
 
-
+	// Ratio between station and antagonist strength
 	snap.ratio = antag_strength_raw / max(snap.station_strength_raw, 1)
-
-
 	snap.antag_activity_index = (inputs.vault[STORY_VAULT_ANTAGONIST_ACTIVITY] || 0) / 3
 	snap.antag_weak = snap.antag_effectiveness < weak_antag_threshold
 	snap.antag_inactive = snap.antag_activity_index < inactive_activity_threshold
 
-
-
+	var/base_tension = (tension_bonus * (1 - owner.adaptation_factor)) * owner.get_effective_threat()
+	var/antag_contrib = (snap.antag_effectiveness + snap.antag_activity_index) * 25
+	var/station_penalty = (1 - snap.station_strength) * 20
+	var/extra_tenstion = 0
+	if(snap.antag_coordinated)
+		extra_tenstion += 5
+	if(snap.antag_stealthy)
+		extra_tenstion += 5
+	if(snap.station_vulnerable)
+		extra_tenstion += 10
+	if(snap.ratio > 1.2)
+		extra_tenstion += 10
+	if(inputs.vault[STORY_VAULT_CREW_ALIVE_COUNT] && inputs.vault[STORY_VAULT_CREW_ALIVE_COUNT] < 15) // Lowpop mod
+		extra_tenstion += 30
+	snap.overall_tension = clamp(base_tension + antag_contrib + station_penalty + extra_tenstion, 0, 100)
 
 	return snap
 
