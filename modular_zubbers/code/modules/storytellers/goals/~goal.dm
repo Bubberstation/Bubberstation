@@ -31,11 +31,11 @@
 /// Is goal available for selection under the given context?
 /datum/storyteller_goal/proc/is_available(list/vault, datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
 	. = TRUE
-	if(requierd_threat_level < storyteller.get_effective_threat())
+	if(storyteller.get_effective_threat() < requierd_threat_level)
 		. = FALSE
-	if(requierd_population < vault[STORY_VAULT_CREW_ALIVE_COUNT])
+	if(vault[STORY_VAULT_CREW_ALIVE_COUNT] < requierd_population)
 		. = FALSE
-	if(required_round_progress < storyteller.round_progression)
+	if(storyteller.round_progression < required_round_progress)
 		. = FALSE
 	return .
 
