@@ -561,25 +561,9 @@
 		to_chat(usr, span_warning("You can't toggle arousal right now..."))
 		return
 
-	var/list/genital_list = list()
-	for(var/obj/item/organ/genital/genital in organs)
-		if(!genital.aroused == AROUSAL_CANT)
-			genital_list += genital
-	if(!genital_list.len) //There is nothing to expose
-		return
-	//Full list of exposable genitals created
-	var/obj/item/organ/genital/picked_organ
-	picked_organ = input(src, "Choose which genitalia to change arousal", "Expose/Hide genitals") as null|anything in genital_list
-	if(picked_organ && (picked_organ in organs))
-		var/list/gen_arous_trans = list(
-			"Not aroused" = AROUSAL_NONE,
-			"Partly aroused" = AROUSAL_PARTIAL,
-			"Very aroused" = AROUSAL_FULL,
-		)
-		var/picked_arousal = input(src, "Choose arousal", "Toggle Arousal") as null|anything in gen_arous_trans
-		if(picked_arousal && picked_organ && (picked_organ in organs))
-			picked_organ.aroused = gen_arous_trans[picked_arousal]
-			picked_organ.update_sprite_suffix()
-			update_body()
-			SEND_SIGNAL(src, COMSIG_HUMAN_TOGGLE_AROUSAL)
+	var/arousal_target = input(src, "[AROUSAL_NONE]= No arousal, <[AROUSAL_LOW] Low/partial Arousal, [AROUSAL_LOW] - [AROUSAL_HIGH] Medium/full Arousal, >[AROUSAL_HIGH] Strong/full Arousal", "Set Arousal Amount", AROUSAL_NONE) as num
+	if (arousal_target != null)
+		arousal_target = clamp(arousal_target, AROUSAL_MINIMUM, AROUSAL_LIMIT)
+		keep_arousal_on_goal = TRUE
+		arousal_goal = arousal_target
 	return

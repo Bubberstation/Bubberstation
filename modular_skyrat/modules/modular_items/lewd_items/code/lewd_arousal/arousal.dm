@@ -50,6 +50,15 @@
 	return TRUE
 
 
+
+/mob/living/carbon/human/Life(seconds_per_tick, times_fired)
+	. = ..()
+	if (keep_arousal_on_goal && (arousal + 5 < arousal_goal))
+		adjust_arousal(5)
+	else if (keep_arousal_on_goal && (arousal < arousal_goal))
+		adjust_arousal(1)
+
+
 /mob/living/carbon/human/examine(mob/user)
 	. = ..()
 	if(src.client?.prefs.read_preference(/datum/preference/toggle/erp) && user.client.prefs.read_preference(/datum/preference/toggle/erp))
