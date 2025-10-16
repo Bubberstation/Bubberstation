@@ -105,7 +105,7 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 			continue
 		var/list/event_data = details[1]
 		events += list(list(
-			"time" = text2num(splittext(event_data["fired_at"], " ")[1]) / MINUTES,  // Parse back to ticks approx
+			"time" = text2num(splittext(event_data["fired_at"], " ")[1]) / 60,  // Parse back to ticks approx
 			"desc" = event_data["desc"],
 			"status" = event_data["status"],
 			"id" = event_data["id"],

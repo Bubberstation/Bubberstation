@@ -107,8 +107,10 @@
 	if(!goal)
 		return
 
+	var/tension_effect = 0
 	if(goal.tags & STORY_TAG_ESCALATION)
 		adaptation_factor = min(1.0, adaptation_factor + 0.3)
+		tension_effect += 5
 	else if(goal.tags & STORY_TAG_DEESCALATION)
 		adaptation_factor = max(0, adaptation_factor - 0.1)
 	if(goal.category == STORY_GOAL_BAD)
@@ -116,6 +118,9 @@
 		var/loss_percentage = 100 / recent_damage_threshold
 		var/threat_loss = threat_points * (loss_percentage / 100)
 		threat_points = min(threat_points, threat_points - threat_loss)
+		tension_effect += 10
+
+	balancer.tension_bonus = min(balancer.tension_bonus + tension_effect, STORY_MAX_TENSION_BONUS)
 	record_event(goal, STORY_GOAL_FAILED)
 
 /datum/storyteller/proc/think(force = FALSE)
@@ -153,6 +158,7 @@
 	while(length(population_history) > 10)
 		population_history.Cut(1, 2)
 	current_tension = snap.overall_tension
+	balancer.tension_bonus = max(balancer.tension_bonus - STORY_TENSION_BONUS_DECAY_RATE * difficulty_multiplier, 0)
 	update_population_factor()
 	// 6) Schedule next cycle
 	schedule_next_think()
