@@ -225,6 +225,7 @@
 				/obj/item/clothing/under/costume/skyrat/bathrobe = 5,
 				/obj/item/riding_saddle/leather = 5,
 				/obj/item/storage/backpack/saddlebags = 5,
+				/obj/item/umbrella = 20,
 			)
 		)
 	)

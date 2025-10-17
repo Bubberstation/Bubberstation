@@ -1339,9 +1339,9 @@
 		/obj/item/gun/ballistic/automatic/pistol,
 		/obj/item/ammo_box/magazine, // Just magazine, because the sec-belt can hold these aswell
 		/obj/item/gun/ballistic/revolver,
-		/obj/item/ammo_box/c38, // Revolver speedloaders.
+		/obj/item/ammo_box/speedloader/c38, // Revolver speedloaders.
 		/obj/item/ammo_box/speedloader/c357,
-		/obj/item/ammo_box/strilka310,
+		/obj/item/ammo_box/speedloader/strilka310,
 		/obj/item/gun/energy/e_gun/mini,
 		/obj/item/gun/energy/disabler,
 		/obj/item/gun/ballistic/revolver,
@@ -1370,9 +1370,9 @@
 		/obj/item/gun/ballistic/automatic/pistol,
 		/obj/item/ammo_box/magazine, // Just magazine, because the sec-belt can hold these aswell
 		/obj/item/gun/ballistic/revolver,
-		/obj/item/ammo_box/c38, // Revolver speedloaders.
+		/obj/item/ammo_box/speedloader/c38, // Revolver speedloaders.
 		/obj/item/ammo_box/speedloader/c357,
-		/obj/item/ammo_box/strilka310,
+		/obj/item/ammo_box/speedloader/strilka310,
 		/obj/item/gun/energy/e_gun/mini,
 		/obj/item/gun/energy/disabler,
 		/obj/item/gun/ballistic/revolver,
