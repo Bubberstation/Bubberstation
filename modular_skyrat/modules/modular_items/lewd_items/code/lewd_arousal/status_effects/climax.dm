@@ -18,6 +18,7 @@
 
 	owner.reagents.add_reagent(/datum/reagent/drug/aphrodisiac/dopamine, 0.5)
 	owner.adjustStaminaLoss(STAMINA_REMOVAL_AMOUNT_EXTERNAL)
+	affected_mob.keep_arousal_on_goal = FALSE
 	affected_mob.adjust_arousal(AROUSAL_REMOVAL_AMOUNT)
 	affected_mob.adjust_pleasure(AROUSAL_REMOVAL_AMOUNT)
 
@@ -37,6 +38,7 @@
 
 	owner.reagents.add_reagent(/datum/reagent/drug/aphrodisiac/dopamine, 0.3)
 	owner.adjustStaminaLoss(STAMINA_REMOVAL_AMOUNT_SELF)
+	affected_mob.keep_arousal_on_goal = FALSE //apparently deprecated effect, still adding this line just to be safe
 	affected_mob.adjust_arousal(AROUSAL_REMOVAL_AMOUNT)
 	affected_mob.adjust_pleasure(AROUSAL_REMOVAL_AMOUNT)
 

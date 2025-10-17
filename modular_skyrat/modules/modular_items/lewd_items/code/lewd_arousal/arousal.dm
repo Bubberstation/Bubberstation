@@ -4,9 +4,9 @@
 		return FALSE
 
 	var/arousal_flag = AROUSAL_NONE
-	if(arousal >= AROUSAL_MEDIUM)
+	if(arousal >= AROUSAL_LOW)
 		arousal_flag = AROUSAL_FULL
-	else if(arousal >= AROUSAL_LOW)
+	else if(arousal >= AROUSAL_NONE)
 		arousal_flag = AROUSAL_PARTIAL
 
 	if(arousal_status != arousal_flag) // Set organ arousal status
@@ -48,6 +48,15 @@
 			apply_status_effect(/datum/status_effect/body_fluid_regen/breasts)
 
 	return TRUE
+
+
+
+/mob/living/carbon/human/Life(seconds_per_tick, times_fired)
+	. = ..()
+	if (keep_arousal_on_goal && (arousal + 5 < arousal_goal))
+		adjust_arousal(5)
+	else if (keep_arousal_on_goal && (arousal < arousal_goal))
+		adjust_arousal(1)
 
 
 /mob/living/carbon/human/examine(mob/user)
