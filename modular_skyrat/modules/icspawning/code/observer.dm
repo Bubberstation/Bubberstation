@@ -9,14 +9,17 @@
 
 	/// Whether to spawn in with sparks or in a pod
 	var/teleport_option
+	/// What style of pod to use, if the option was chosen
+	var/pod_style
+	/// Assoc list of pod UI names to style datums, static so it's only built once
+	var/static/list/pod_styles
 	/// Whether to spawn in as your current character or a random one
 	var/character_option
 	/// Which outfit to use
 	var/outfit_option
 	/// Initial list of outfits
 	var/list/outfits = list(
-		"Bluespace Tech" = /datum/outfit/debug/bst,
-		"Bluespace Tech (MODsuit)" = /datum/outfit/admin/bst,
+		"Bluespace Tech" = /datum/outfit/admin/bst,
 		"Naked" = /datum/outfit,
 		"Show All" = "Show All",
 	)
@@ -28,6 +31,17 @@
 	teleport_option = tgui_alert(user, "How would you like to be spawned in?", "IC Quick Spawn", list("Bluespace", "Pod", "Cancel"))
 	if(!teleport_option || teleport_option == "Cancel")
 		return
+
+	if(teleport_option == "Pod")
+		if(!pod_styles)
+			pod_styles = list()
+			for(var/datum/pod_style/style as anything in typesof(/datum/pod_style))
+				pod_styles[style::ui_name] = style
+
+		pod_style = tgui_input_list(user, "Which style of pod?", "IC Quick Spawn", pod_styles)
+		pod_style = pod_styles[pod_style]
+		if(!pod_style)
+			return
 
 	character_option = tgui_alert(user, "Which character to spawn as?", "IC Quick Spawn", list("Selected Character", "Random Character", "Cancel"))
 	if(!character_option || character_option == "Cancel")
@@ -90,11 +104,7 @@
 			sparks.attach(get_turf(new_player))
 			sparks.start()
 		if("Pod")
-			var/obj/structure/closet/supplypod/empty_pod = new
-			empty_pod.style = /datum/pod_style/advanced
-			empty_pod.bluespace = TRUE
-			empty_pod.explosionSize = list(0,0,0,0)
-			empty_pod.desc = "A sleek, and slightly worn bluespace pod - its probably seen many deliveries..."
+			var/obj/structure/closet/supplypod/podspawn/empty_pod = new(null, pod_style)
 			new_player.forceMove(empty_pod)
 			new /obj/effect/pod_landingzone(current_turf, empty_pod)
 
