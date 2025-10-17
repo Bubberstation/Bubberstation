@@ -19,7 +19,6 @@
 /datum/job/assistant
 	alt_titles = list(
 		"Assistant",
-		"Ambassador",
 		"Artist",
 		"Actor",
 		"Businessman",
@@ -29,7 +28,6 @@
 		"Contractor",
 		"Civilian",
 		"Duke",
-		"Diplomat",
 		"Entertainer",
 		"Freelancer",
 		"Fitness Instructor",
