@@ -1,6 +1,6 @@
 /obj/machinery/rbmk2_sniffer
 	name = "\improper RB-MK2 \"Boombox\" reactor sniffer"
-	desc = "A modified air alarm designed to detect stray ionization particles, AKA a meltdown. Can be linked to nearby RB-MK2 machines by interacting with the wires."
+	desc = "A modified air alarm designed to detect stray ionization particles, also known as a meltdown. Can be linked to nearby RB-MK2 machines by interacting with the wires."
 	icon = 'modular_zubbers/icons/obj/equipment/burger_reactor.dmi'
 	icon_state = "reactor_sniffer"
 	base_icon_state = "reactor_sniffer"
@@ -55,8 +55,6 @@
 	stored_radio.set_listening(FALSE)
 	stored_radio.recalculateChannels()
 
-	find_and_hang_on_wall()
-
 	if(mapload)
 		for(var/obj/machinery/power/rbmk2/reactor in range(10,src))
 			link_reactor(null,reactor)
@@ -76,7 +74,7 @@
 /obj/machinery/rbmk2_sniffer/proc/link_reactor(mob/user,obj/machinery/power/rbmk2/desired_reactor)
 
 	if(linked_reactors[desired_reactor])
-		balloon_alert(user, "already linked!")
+		if(user) balloon_alert(user, "already linked!")
 		return FALSE
 
 	linked_reactors[desired_reactor] = TRUE
@@ -115,16 +113,14 @@
 		if(criticality)
 			if(!COOLDOWN_FINISHED(src, radio_cooldown_criticality))
 				return FALSE
-			COOLDOWN_START(src, radio_cooldown_criticality, (criticality >= 100 ? 10 SECONDS : 5 SECONDS))
+			COOLDOWN_START(src, radio_cooldown_criticality, (criticality >= 100 ? 15 SECONDS : 10 SECONDS))
 		else
 			if(!COOLDOWN_FINISHED(src, radio_cooldown_integrity))
 				return FALSE
-			COOLDOWN_START(src, radio_cooldown_integrity, 5 SECONDS)
+			COOLDOWN_START(src, radio_cooldown_integrity, 10 SECONDS)
 
 	stored_radio.talk_into(src, alert_text, alert_emergency_channel ? emergency_channel : warning_channel)
 
 	playsound(src, 'sound/effects/alert.ogg', 50, TRUE)
 
 	return TRUE
-
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/rbmk2_sniffer, 24)
