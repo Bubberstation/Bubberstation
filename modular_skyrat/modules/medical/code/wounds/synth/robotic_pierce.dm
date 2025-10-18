@@ -8,7 +8,7 @@
 /datum/wound_pregen_data/electrical_damage/pierce
 	abstract = TRUE
 	wound_series = WOUND_SERIES_WIRE_PIERCE_ELECTRICAL_DAMAGE
-	required_wounding_types = list(WOUND_PIERCE)
+	required_wounding_type = WOUND_PIERCE
 
 /datum/wound/burn/electrical_damage/pierce/get_limb_examine_description()
 	return span_warning("The metal on this limb is pierced open.")

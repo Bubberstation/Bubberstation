@@ -138,10 +138,11 @@
 	var/cool_temp = cooling_temperature
 
 	var/obj/effect/hotspot/hotspot = (locate(/obj/effect/hotspot) in exposed_turf)
-	if(hotspot && !isspaceturf(exposed_turf))
+	if(hotspot && !isspaceturf(exposed_turf)) // the water evaporates in an endothermic reaction
 		if(exposed_turf.air)
 			var/datum/gas_mixture/air = exposed_turf.air
-			air.temperature = max(min(air.temperature-(cool_temp*1000), air.temperature/cool_temp),TCMB)
+			air.temperature = min(max(min(air.temperature-(cool_temp*1000), air.temperature/cool_temp), T0C), air.temperature) // the outer min temperature check is for weird phenomena like freon combustion
+			exposed_turf.temperature = clamp(min(exposed_turf.temperature-(cool_temp*1000), exposed_turf.temperature/cool_temp), T20C, exposed_turf.temperature) // turfs normally don't go below T20C so I'll just clamp it to that in case of weird phenomena.
 			air.react(src)
 			qdel(hotspot)
 
@@ -596,7 +597,7 @@
 						exposed_human.skin_tone = "mixed3"
 			//take current alien color and darken it slightly
 			else if(HAS_TRAIT(exposed_human, TRAIT_MUTANT_COLORS) && !HAS_TRAIT(exposed_human, TRAIT_FIXED_MUTANT_COLORS))
-				var/list/existing_color = rgb2num(exposed_human.dna.features["mcolor"])
+				var/list/existing_color = rgb2num(exposed_human.dna.features[FEATURE_MUTANT_COLOR])
 				var/list/darkened_color = list()
 				// Reduces each part of the color by 16
 				for(var/channel in existing_color)
@@ -606,7 +607,7 @@
 				var/list/new_hsv = rgb2hsv(new_color)
 				// Can't get too dark now
 				if(new_hsv[3] >= 50)
-					exposed_human.dna.features["mcolor"] = new_color
+					exposed_human.dna.features[FEATURE_MUTANT_COLOR] = new_color
 			exposed_human.update_body(is_creating = TRUE)
 
 		if((methods & INGEST) && show_message)
@@ -630,7 +631,7 @@
 		if(HAS_TRAIT(affected_human, TRAIT_USES_SKINTONES))
 			affected_human.skin_tone = "orange"
 		else if(HAS_TRAIT(affected_human, TRAIT_MUTANT_COLORS) && !HAS_TRAIT(affected_human, TRAIT_FIXED_MUTANT_COLORS)) //Aliens with custom colors simply get turned orange
-			affected_human.dna.features["mcolor"] = "#ff8800"
+			affected_human.dna.features[FEATURE_MUTANT_COLOR] = "#ff8800"
 		affected_human.update_body(is_creating = TRUE)
 		if(SPT_PROB(3.5, seconds_per_tick))
 			if(affected_human.w_uniform)
@@ -1575,21 +1576,21 @@
 /datum/reagent/nitrous_oxide/on_mob_metabolize(mob/living/affected_mob)
 	. = ..()
 	if(!HAS_TRAIT(affected_mob, TRAIT_COAGULATING)) //IF the mob does not have a coagulant in them, we add the blood mess trait to make the bleed quicker
-		ADD_TRAIT(affected_mob, TRAIT_BLOODY_MESS, type)
+		ADD_TRAIT(affected_mob, TRAIT_BLOOD_FOUNTAIN, type)
 
 /datum/reagent/nitrous_oxide/on_mob_end_metabolize(mob/living/affected_mob)
 	. = ..()
-	REMOVE_TRAIT(affected_mob, TRAIT_BLOODY_MESS, type)
+	REMOVE_TRAIT(affected_mob, TRAIT_BLOOD_FOUNTAIN, type)
 
 /datum/reagent/nitrous_oxide/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
 	affected_mob.adjust_drowsiness(4 SECONDS * REM * seconds_per_tick)
 
-	if(!HAS_TRAIT(affected_mob, TRAIT_BLOODY_MESS) && !HAS_TRAIT(affected_mob, TRAIT_COAGULATING)) //So long as they do not have a coagulant, if they did not have the bloody mess trait, they do now
-		ADD_TRAIT(affected_mob, TRAIT_BLOODY_MESS, type)
+	if(!HAS_TRAIT(affected_mob, TRAIT_BLOOD_FOUNTAIN) && !HAS_TRAIT(affected_mob, TRAIT_COAGULATING)) //So long as they do not have a coagulant, if they did not have the bloody mess trait, they do now
+		ADD_TRAIT(affected_mob, TRAIT_BLOOD_FOUNTAIN, type)
 
 	else if(HAS_TRAIT(affected_mob, TRAIT_COAGULATING)) //if we find they now have a coagulant, we remove the trait
-		REMOVE_TRAIT(affected_mob, TRAIT_BLOODY_MESS, type)
+		REMOVE_TRAIT(affected_mob, TRAIT_BLOOD_FOUNTAIN, type)
 
 	if(SPT_PROB(10, seconds_per_tick))
 		affected_mob.losebreath += 2
@@ -2179,17 +2180,22 @@
 		for (var/obj/item/to_color in exposed_mob.get_equipped_items(include_flags))
 			to_color.add_atom_colour(color_filter, WASHABLE_COLOUR_PRIORITY)
 
+	// BUBBER EDIT REMOVAL BEGIN - COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
+	/*
 	if (ishuman(exposed_mob))
 		var/mob/living/carbon/human/exposed_human = exposed_mob
 		exposed_human.set_facial_haircolor(picked_color, update = FALSE)
 		exposed_human.set_haircolor(picked_color)
+	*/
+	// BUBBER EDIT REMOVAL END - COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
 
 	if (!can_color_mobs)
 		return
 
-	exposed_mob.add_atom_colour(color_filter, WASHABLE_COLOUR_PRIORITY) // BUBBERSTATION CHANGE: REVERTS COLORFUL REAGENT BACK TO THE WAY IT USED TO BE
+	exposed_mob.add_atom_colour(color_filter, WASHABLE_COLOUR_PRIORITY) // BUBBER EDIT ADDITION: COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
 
-	/* BUBBERSTATION CHANGE: REVERTS COLORFUL REAGENT BACK TO THE WAY IT USED TO BE
+	// BUBBER EDIT REMOVAL BEGIN - COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
+	/*
 	if (!iscarbon(exposed_mob))
 		exposed_mob.add_atom_colour(color_filter, WASHABLE_COLOUR_PRIORITY)
 		return
@@ -2201,6 +2207,7 @@
 	for (var/obj/item/bodypart/part as anything in exposed_carbon.bodyparts)
 		part.add_atom_colour(color_filter, WASHABLE_COLOUR_PRIORITY)
 	*/
+	// BUBBER EDIT REMOVAL END - COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
 
 /datum/reagent/colorful_reagent/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
@@ -2215,8 +2222,12 @@
 
 	var/mob/living/carbon/carbon_mob = affected_mob
 	var/color_priority = WASHABLE_COLOUR_PRIORITY
+	// BUBBER EDIT REMOVAL BEGIN - COLORFUL REAGENT IS ALWAYS TEMPORARY
+	/*
 	if (current_cycle >= 30) // Seeps deep into your tissues
 		color_priority = FIXED_COLOUR_PRIORITY
+	*/
+	// BUBBER EDIT REMOVAL END - COLORFUL REAGENT IS ALWAYS TEMPORARY
 
 	for (var/obj/item/organ/organ as anything in carbon_mob.organs)
 		organ.add_atom_colour(color_transition_filter(pick(random_color_list), SATURATION_OVERRIDE), color_priority)
@@ -2558,7 +2569,7 @@
 /datum/reagent/glitter
 	name = "Glitter"
 	description = "The herpes of arts and crafts."
-	data = list("colors"=list(COLOR_WHITE = 100))
+	data = list("colors" = list(COLOR_WHITE = 100))
 	color = COLOR_WHITE //pure white
 	taste_description = "plastic"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -2571,6 +2582,7 @@
 
 /datum/reagent/glitter/expose_turf(turf/exposed_turf, reac_volume)
 	. = ..()
+
 	if(!istype(exposed_turf))
 		return
 	exposed_turf.spawn_glitter(data["colors"])
@@ -2579,7 +2591,7 @@
 	. = ..()
 
 	if(src.data["colors"])
-		color = pick(src.data["colors"])
+		color = pick_weight(src.data["colors"])
 	else
 		color = COLOR_WHITE
 
@@ -2592,32 +2604,25 @@
 		data["colors"] = blend_weighted_lists(mix_data["colors"], data["colors"], prop_current)
 
 	if(data["colors"])
-		color = pick(data["colors"])
+		color = pick_weight(data["colors"])
 	else
 		color = COLOR_WHITE
 
 /datum/reagent/glitter/random
-	name = "Unrandomised Randomised Glitter"
-	description = "You shouldn't be seeing this, please make an issue report describing how you found it."
-
-	var/list/possible_colors = list(
-		list(COLOR_WHITE = 100),
-		list("#ff8080" = 100),
-		list("#4040ff" = 100),
-		list("#ff5555" = 34, "#55ff55" = 33, "#5555ff" = 33),
+	name = "Glitter (Random)"
+	// The weighted list of random color choices that can be chosen upon spawning
+	var/static/list/possible_colors = list(
+		COLOR_WHITE = 25,
+		"#ff8080" = 25,
+		"#4040ff" = 25,
+		"#ff5555" = 8,
+		"#55ff55" = 9,
+		"#5555ff" = 8,
 	)
 
 /datum/reagent/glitter/random/on_new(data)
-	. = ..()
-
-	var/list/color_list = pick(possible_colors)
-
-	var/datum/reagents/our_holder = src.holder
-	var/our_volume = src.volume
-	var/list/our_data = list("colors" = color_list)
-
-	our_holder.remove_reagent(/datum/reagent/glitter/random, our_volume)
-	our_holder.add_reagent(/datum/reagent/glitter, our_volume, data = our_data)
+	src.data["colors"] = possible_colors
+	return ..()
 
 /datum/reagent/confetti
 	name = "Confetti"

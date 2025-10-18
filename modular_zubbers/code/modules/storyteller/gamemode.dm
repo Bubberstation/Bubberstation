@@ -124,10 +124,14 @@ SUBSYSTEM_DEF(gamemode)
 	/// Ready players for roundstart events.
 	var/ready_players = 0
 	var/active_players = 0
+	var/active_crew = 0
 	var/head_crew = 0
 	var/eng_crew = 0
 	var/sec_crew = 0
 	var/med_crew = 0
+
+	//Security Based Antag Cap
+	var/sec_antag_cap = 0
 
 	/// Whether we looked up pop info in this process tick
 	var/pop_data_cached = FALSE
@@ -193,20 +197,26 @@ SUBSYSTEM_DEF(gamemode)
 		//Don't run any events if the shuttle is in transit in a non-admin no-recall state.
 		return
 
-	///Handle scheduled events
-	for(var/datum/scheduled_event/sch_event in scheduled_events)
-		if(world.time >= sch_event.start_time)
-			sch_event.try_fire()
-		else if(!sch_event.alerted_admins && world.time >= sch_event.start_time - 1 MINUTES)
-			///Alert admins 1 minute before running and allow them to cancel or refund the event, once again.
-			sch_event.alerted_admins = TRUE
-			message_admins("Scheduled Event: [sch_event.event] will run in [(sch_event.start_time - world.time) / 10] seconds. (<a href='byond://?src=[REF(sch_event)];action=cancel'>CANCEL</a>) (<a href='byond://?src=[REF(sch_event)];action=refund'>REFUND</a>)")
+	if(next_storyteller_process <= world.time && storyteller)
 
-	if(!storyteller_halted && next_storyteller_process <= world.time && storyteller)
+		next_storyteller_process = world.time + STORYTELLER_WAIT_TIME
+
 		// We update crew information here to adjust population scalling and event thresholds for the storyteller.
 		update_crew_infos()
-		next_storyteller_process = world.time + STORYTELLER_WAIT_TIME
-		storyteller.process(STORYTELLER_WAIT_TIME * 0.1)
+
+		//Process storyteller
+		if(!storyteller_halted)
+			storyteller.process(STORYTELLER_WAIT_TIME * 0.1)
+
+		///Handle scheduled events
+		for(var/datum/scheduled_event/sch_event in scheduled_events)
+			if(world.time >= sch_event.start_time)
+				sch_event.try_fire()
+			else if(!sch_event.alerted_admins && world.time >= sch_event.start_time - 1 MINUTES)
+				///Alert admins 1 minute before running and allow them to cancel or refund the event, once again.
+				sch_event.alerted_admins = TRUE
+				message_admins("Scheduled Event: [sch_event.event] will run in [(sch_event.start_time - world.time) / 10] seconds. (<a href='byond://?src=[REF(sch_event)];action=cancel'>CANCEL</a>) (<a href='byond://?src=[REF(sch_event)];action=refund'>REFUND</a>)")
+
 	// Reset the cache value to false
 	pop_data_cached = FALSE
 
@@ -236,7 +246,7 @@ SUBSYSTEM_DEF(gamemode)
 		return 0
 	if(!storyteller.antag_divisor)
 		return 0
-	return round(max(min(get_correct_popcount() / storyteller.antag_divisor + sec_crew ,sec_crew * 1.5),ANTAG_CAP_FLAT))
+	return round(max(min(get_correct_popcount() / storyteller.antag_divisor + sec_antag_cap ,sec_antag_cap * 1.5),ANTAG_CAP_FLAT))
 
 /// Whether events can inject more antagonists into the round
 /datum/controller/subsystem/gamemode/proc/can_inject_antags()
@@ -400,32 +410,54 @@ SUBSYSTEM_DEF(gamemode)
 	scheduled_events += scheduled
 
 /datum/controller/subsystem/gamemode/proc/update_crew_infos()
+
 	// Very similar logic to `get_active_player_count()`
+
+	active_crew = 0
 	active_players = 0
 	head_crew = 0
 	eng_crew = 0
 	med_crew = 0
 	sec_crew = 0
-	for(var/mob/player_mob as anything in GLOB.player_list)
-		if(!player_mob.client)
+	sec_antag_cap = 0
+
+	for(var/mob/player_mob as anything in GLOB.alive_player_list)
+
+		if(!player_mob || !player_mob.mind || !player_mob.client)
 			continue
-		if(player_mob.stat) //If they're alive
+
+		if(player_mob.client.is_afk()) //If afk. Don't include.
 			continue
-		if(player_mob.client.is_afk()) //If afk
-			continue
-		if(!ishuman(player_mob))
-			continue
+
 		active_players++
-		if(player_mob.mind?.assigned_role)
-			var/datum/job/player_role = player_mob.mind.assigned_role
-			if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_COMMAND)
-				head_crew++
-			if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_ENGINEERING)
-				eng_crew++
-			if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_MEDICAL)
-				med_crew++
-			if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_SECURITY)
-				sec_crew++
+
+		if(!player_mob.mind.assigned_role)
+			continue
+
+		var/datum/job/player_role = player_mob.mind.assigned_role
+
+		//Check if they're actually a crew job (and not something like an off-station ghost role).
+		if(!(player_role.job_flags & JOB_CREW_MEMBER))
+			continue
+
+		//Check if they're actually on station and not """engaged""" in """roleplay""".like a good crew member.
+		//This basically checks if they're on a station z-level and they're not in dorms.
+		if(engaged_role_play_check(player_mob, station = TRUE, dorms = TRUE))
+			continue
+
+		active_crew++
+
+		//Now check each crewmember's job flags.
+		if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_COMMAND)
+			head_crew++
+		if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_ENGINEERING)
+			eng_crew++
+		if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_MEDICAL)
+			med_crew++
+		if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_SECURITY)
+			sec_crew++
+			sec_antag_cap += player_role.sec_antag_cap
+
 	pop_data_cached = TRUE
 
 /datum/controller/subsystem/gamemode/proc/TriggerEvent(datum/round_event_control/event)
@@ -519,7 +551,7 @@ SUBSYSTEM_DEF(gamemode)
 /datum/controller/subsystem/gamemode/proc/post_setup(report) //Gamemodes can override the intercept report. Passing TRUE as the argument will force a report.
 	if(!report)
 		report = !CONFIG_GET(flag/no_intercept_report)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/display_roundstart_logout_report), ROUNDSTART_LOGOUT_REPORT_TIME)
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/display_roundstart_logout_report), 15 MINUTES)
 
 	if(SSdbcore.Connect())
 		var/list/to_set = list()
@@ -577,7 +609,7 @@ SUBSYSTEM_DEF(gamemode)
 
 		if(L.ckey && L.client)
 			var/failed = FALSE
-			if(L.client.inactivity >= (ROUNDSTART_LOGOUT_REPORT_TIME / 2)) //Connected, but inactive (alt+tabbed or something)
+			if(L.client.inactivity >= (15 MINUTES)) //Connected, but inactive (alt+tabbed or something)
 				msg += "<b>[L.name]</b> ([L.key]), the [L.job] (<font color='#ffcc00'><b>Connected, Inactive</b></font>)\n"
 				failed = TRUE //AFK client
 			if(!failed && L.stat)
@@ -760,7 +792,7 @@ SUBSYSTEM_DEF(gamemode)
 
 	log_dynamic("[players.len] players ready! Processing storyteller vote results.")
 
-	for(var/vote as anything in vote_datum.choices_by_ckey)
+	for(var/vote in vote_datum.choices_by_ckey)
 		if(!vote_datum.choices_by_ckey[vote])
 			continue
 		var/vote_string = "[vote]"

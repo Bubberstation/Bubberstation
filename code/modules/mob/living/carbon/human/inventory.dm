@@ -148,7 +148,7 @@
 			if(wear_id)
 				return
 			wear_id = equipping
-			sec_hud_set_ID()
+			update_ID_card()
 			update_worn_id()
 		if(ITEM_SLOT_EARS)
 			if(ears)
@@ -192,7 +192,6 @@
 			if(w_uniform)
 				return
 			w_uniform = equipping
-			update_suit_sensors()
 			update_worn_undersuit()
 		if(ITEM_SLOT_LPOCKET)
 			l_store = equipping
@@ -222,7 +221,6 @@
 	. = ..() //See mob.dm for an explanation on this and some rage about people copypasting instead of calling ..() like they should.
 	if(!. || !item_dropping)
 		return
-	var/not_handled = FALSE //if we actually unequipped an item, this is because we dont want to run this proc twice, once for carbons and once for humans
 	if(item_dropping == wear_suit)
 		if(s_store && invdrop)
 			dropItemToGround(s_store, TRUE) //It makes no sense for your suit storage to stay on you if you drop your suit.
@@ -235,7 +233,6 @@
 			update_worn_oversuit()
 	else if(item_dropping == w_uniform)
 		w_uniform = null
-		update_suit_sensors()
 		if(!QDELETED(src))
 			update_worn_undersuit()
 		if(invdrop)
@@ -278,7 +275,7 @@
 			update_worn_belt()
 	else if(item_dropping == wear_id)
 		wear_id = null
-		sec_hud_set_ID()
+		update_ID_card()
 		if(!QDELETED(src))
 			update_worn_id()
 	else if(item_dropping == r_store)
@@ -293,15 +290,12 @@
 		s_store = null
 		if(!QDELETED(src))
 			update_suit_storage()
-	else
-		not_handled = TRUE
 
-	if(not_handled)
-		return
-
-	update_equipment_speed_mods()
-	update_obscured_slots(item_dropping.flags_inv)
-	hud_used?.update_locked_slots()
+/mob/living/carbon/human/item_coverage_changed(added_slots, removed_slots)
+	. = ..()
+	if((added_slots|removed_slots) & HIDEFACE)
+		sec_hud_set_security_status()
+		update_visible_name()
 
 /mob/living/carbon/human/toggle_internals(obj/item/tank, is_external = FALSE)
 	// Just close the tank if it's the one the mob already has open.

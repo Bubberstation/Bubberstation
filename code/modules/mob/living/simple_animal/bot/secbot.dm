@@ -20,7 +20,7 @@
 	radio_channel = RADIO_CHANNEL_SECURITY //Security channel
 	bot_type = SEC_BOT
 	bot_mode_flags = ~BOT_MODE_CAN_BE_SAPIENT
-	data_hud_type = DATA_HUD_SECURITY_ADVANCED
+	data_hud_type = TRAIT_SECURITY_HUD
 	hackables = "target identification systems"
 	path_image_color = COLOR_RED
 	possessed_message = "You are a securitron! Guard the station to the best of your ability!"
@@ -93,7 +93,7 @@
 	desc = "It's Sergeant-At-Armsky! He's a disgruntled assistant to the warden that would probably shoot you if he had hands."
 	health = 45
 	bot_mode_flags = ~(BOT_MODE_CAN_BE_SAPIENT|BOT_MODE_AUTOPATROL)
-	security_mode_flags = SECBOT_DECLARE_ARRESTS | SECBOT_CHECK_IDS | SECBOT_CHECK_RECORDS
+	security_mode_flags = SECBOT_DECLARE_ARRESTS | SECBOT_CHECK_IDS | SECBOT_CHECK_RECORDS | SECBOT_CHECK_WEAPONS
 
 /mob/living/simple_animal/bot/secbot/beepsky/jr
 	name = "Officer Pipsqueak"
@@ -349,7 +349,6 @@
 		return FALSE
 	if(!current_target.handcuffed)
 		current_target.set_handcuffed(new cuff_type(current_target))
-		current_target.update_handcuffed()
 		playsound(src, SFX_LAW, 50, FALSE)
 		back_to_idle()
 
@@ -493,6 +492,14 @@
 
 		if((nearby_carbons.name == oldtarget_name) && (world.time < last_found + 100))
 			continue
+
+		//BUBBERSTATION CHANGE START: BEEPSKY IS A DINOSAUR NOW. CAN'T SEE YOU IF YOU DON'T MOVE.
+		if(nearby_carbons.client) //We have a client. We're a player that uses move_delay.
+			if(nearby_carbons.client.move_delay + 4 SECONDS <= world.time)
+				continue
+		else if(nearby_carbons.next_move + 4 SECONDS <= world.time) //No client. We're a mob that uses next_move.
+			continue
+		//BUBBERSTATION CHANGE END: BEEPSKY IS A DINOSAUR NOW. CAN'T SEE YOU IF YOU DON'T MOVE.
 
 		threatlevel = nearby_carbons.assess_threat(judgement_criteria)
 

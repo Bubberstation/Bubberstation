@@ -48,7 +48,7 @@
 /datum/scheduled_event/proc/try_fire()
 	/// Remove our fake occurence pre-emptively for the checks.
 	remove_occurence()
-	var/players_amt = get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = FALSE)
+	var/players_amt = SSgamemode.active_crew //Makes events based on active crew instead of active players.
 	///If we can't spawn the scheduled event, refund it.
 	if(!ignores_checks && !event.can_spawn_event(players_amt)) //FALSE argument to ignore popchecks, to prevent scheduled events from failing from people dying/cryoing etc.
 		message_admins("Scheduled Event: [event] was unable to run and has been refunded.")

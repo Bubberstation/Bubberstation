@@ -197,6 +197,7 @@
 	icon_state = "bunnysuit_doctor"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -215,6 +216,7 @@
 	icon_state = "bunnysuit_chem"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -224,6 +226,7 @@
 	icon_state = "bunnysuit_viro"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -242,6 +245,7 @@
 	icon_state = "bunnysuit_cmo"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -606,3 +610,19 @@
 	desc = "A salmon colored long-sleeved dress shirt with a white nametag, bearing the name of the employee. Along with some snazzy dark grey slacks held up by a belt with a gold buckle, a formal attire for a classy joint."
 	icon_state = "allamerican_manager"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+
+/obj/item/clothing/under/red_and_white_collared_outfit
+	desc = "An outfit that screams 'I've never killed anyone!', which is probably true."
+	name = "red and white collared outfit"
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/uniforms.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/uniform.dmi'
+	icon_state = "whiteandred_kiryulmfao"
+	worn_icon_state = "whiteandred_kiryulmfao"
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/under/costume/hlciv
+	name = "blue citizen uniform"
+	desc = "Sometimes, I dream about cheese."
+	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	icon_state = "citizenblue"

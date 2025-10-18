@@ -662,16 +662,16 @@ Basically, we fill the time between now and 2s from now with hands based off the
 		)
 
 		traumalist -= abstracttraumas
-		for (var/type as anything in forbiddentraumas)
+		for (var/type in forbiddentraumas)
 			traumalist -= typesof(type)
-		for (var/type as anything in forbiddensubtypes)
+		for (var/type in forbiddensubtypes)
 			traumalist -= subtypesof(type)
 
 	traumalist = shuffle(traumalist)
 	var/obj/item/organ/brain/brain = affected_mob.get_organ_slot(ORGAN_SLOT_BRAIN)
 	for(var/trauma in traumalist)
-		if(brain.brain_gain_trauma(trauma, TRAUMA_RESILIENCE_MAGIC))
-			temp_trauma = trauma
+		temp_trauma = brain.brain_gain_trauma(trauma, TRAUMA_RESILIENCE_MAGIC)
+		if(temp_trauma)
 			return
 
 /datum/reagent/inverse/neurine/on_mob_delete(mob/living/carbon/affected_mob)
@@ -680,7 +680,8 @@ Basically, we fill the time between now and 2s from now with hands based off the
 		return
 	if(istype(temp_trauma, /datum/brain_trauma/special/imaginary_friend))//Good friends stay by you, no matter what
 		return
-	affected_mob.cure_trauma_type(temp_trauma, resilience = TRAUMA_RESILIENCE_MAGIC)
+	qdel(temp_trauma)
+	temp_trauma = null
 
 /datum/reagent/inverse/corazargh
 	name = "Corazargh" //It's what you yell! Though, if you've a better name feel free. Also an homage to an older chem
@@ -1261,14 +1262,22 @@ Basically, we fill the time between now and 2s from now with hands based off the
 		for (var/obj/item/to_color in exposed_mob.get_equipped_items(include_flags))
 			to_color.add_atom_colour(color_filter, WASHABLE_COLOUR_PRIORITY)
 
+	// BUBBER EDIT REMOVAL BEGIN - COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
+	/*
 	if (ishuman(exposed_mob))
 		var/mob/living/carbon/human/exposed_human = exposed_mob
 		exposed_human.set_facial_haircolor(picked_color, update = FALSE)
 		exposed_human.set_haircolor(picked_color)
+	*/
+	// BUBBER EDIT REMOVAL END - COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
 
 	if (!can_color_mobs)
 		return
 
+	exposed_mob.add_atom_colour(color_filter, WASHABLE_COLOUR_PRIORITY) // BUBBER EDIT ADDITION: COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
+
+	// BUBBER EDIT REMOVAL BEGIN - COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
+	/*
 	if (!iscarbon(exposed_mob))
 		exposed_mob.add_atom_colour(color_filter, WASHABLE_COLOUR_PRIORITY)
 		return
@@ -1280,6 +1289,8 @@ Basically, we fill the time between now and 2s from now with hands based off the
 
 	for (var/obj/item/bodypart/part as anything in exposed_carbon.bodyparts)
 		part.add_atom_colour(color_filter, WASHABLE_COLOUR_PRIORITY)
+	*/
+	// BUBBER EDIT REMOVAL END - COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
 
 /datum/reagent/inverse/colorful_reagent/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
@@ -1294,8 +1305,12 @@ Basically, we fill the time between now and 2s from now with hands based off the
 
 	var/mob/living/carbon/carbon_mob = affected_mob
 	var/color_priority = WASHABLE_COLOUR_PRIORITY
+	// BUBBER EDIT REMOVAL BEGIN - COLORFUL REAGENT IS ALWAYS TEMPORARY
+	/*
 	if (current_cycle >= 30)
 		color_priority = FIXED_COLOUR_PRIORITY
+	*/
+	// BUBBER EDIT REMOVAL END - COLORFUL REAGENT IS ALWAYS TEMPORARY
 
 	for (var/obj/item/organ/organ as anything in carbon_mob.organs)
 		organ.add_atom_colour(color_transition_filter(pick(random_color_list), SATURATION_OVERRIDE), color_priority)

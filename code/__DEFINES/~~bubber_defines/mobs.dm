@@ -2,9 +2,7 @@
 
 #define PULL_OVERSIZED_SLOWDOWN 2
 
-#define HUMAN_HEALTH_MODIFIER 1.35
-
-#define HUMAN_MAXHEALTH MAX_LIVING_HEALTH * HUMAN_HEALTH_MODIFIER
+#define HUMAN_MAXHEALTH MAX_LIVING_HEALTH
 
 #define UNDERWEAR_HIDE_SOCKS (1<<0)
 #define UNDERWEAR_HIDE_SHIRT (1<<1)
@@ -29,6 +27,7 @@
 #define BODYPART_ICON_SYNTHMAMMAL 'modular_skyrat/modules/bodyparts/icons/synthmammal_parts_greyscale.dmi'
 #define BODYPART_ICON_IPC 'modular_skyrat/modules/bodyparts/icons/ipc_parts.dmi'
 #define BODYPART_ICON_SYNTHLIZARD 'modular_skyrat/modules/bodyparts/icons/synthliz_parts_greyscale.dmi'
+#define BODYPART_ICON_LYCAN 'modular_zubbers/icons/mob/species/lycan/lycan_bodyparts.dmi'
 
 #define BUTT_SPRITE_PODPERSON "podperson"
 #define BUTT_SPRITE_VOX "vox"
@@ -36,3 +35,9 @@
 
 #define BLOOD_TYPE_COPPER "CU"
 #define BLOOD_TYPE_NANITE_SLURRY "NS"
+
+#define AI_HOLOGRAM_MOTHROACH "Mothroach"
+#define	AI_HOLOGRAM_STOAT "Stoat"
+#define	AI_HOLOGRAM_BEE "Bee"
+#define	AI_HOLOGRAM_REDPANDA "Red Panda"
+#define	AI_HOLOGRAM_FENNEC "Fennec"

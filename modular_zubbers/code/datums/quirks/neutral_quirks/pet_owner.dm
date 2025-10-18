@@ -95,6 +95,7 @@ GLOBAL_LIST_INIT(possible_player_pet, list(
 	"Sloth" = /mob/living/basic/sloth,
 	"Snake" = /mob/living/basic/snake,
 	"Spider" = /mob/living/basic/spider/maintenance,
+	"Stoat" = /mob/living/basic/stoat,
 	"Tegu" = /mob/living/basic/lizard/tegu,
 	"Tiger" = /mob/living/basic/pet/cat/tiger,
 )) //some of these are too big to be put back into the pet carrier once taken out, so I put a warning on the carrier.

@@ -95,7 +95,7 @@
 	if(blood_shield)
 		var/shield = blood_shield?.resolve()
 		owner.visible_message(
-			span_warning("[owner]\'s [blood_shield] looses it's form and dissapears into [src]'\s hands "),
+			span_warning("[owner]\'s [blood_shield] loses its form and disappears into [owner.p_their()] hands "),
 			span_warning("We unform our Blood shield!"),
 			span_hear("You hear liquids sloshing around."),
 		)
@@ -192,7 +192,7 @@
 	// autotarget if we aim at a turf
 	if(isturf(target))
 		var/list/targets = list()
-		for(var/mob/living/possible_target as anything in orange(1, target))
+		for(var/mob/living/possible_target in orange(1, target))
 			if(!ismob(possible_target))
 				continue
 			var/datum/antagonist/ghoul/ghoul = IS_GHOUL(possible_target)

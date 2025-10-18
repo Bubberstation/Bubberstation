@@ -1,8 +1,6 @@
 /datum/sprite_accessory/moth_antennae
-	generic = "Moth Antennae"
 	key = "moth_antennae"
 	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER)
-	genetic = TRUE
 	organ_type = /obj/item/organ/antennae
 
 /datum/sprite_accessory/moth_antennae/is_hidden(mob/living/carbon/human/wearer)
@@ -18,7 +16,7 @@
 		return FALSE
 
 	// Hide accessory if flagged to do so
-	if((wearer.head?.flags_inv & HIDEHAIR || wearer.wear_mask?.flags_inv & HIDEHAIR) \
+	if(((wearer.covered_slots & HIDEHAIR) || (wearer.covered_slots & HIDEANTENNAE)) \
 		// This line basically checks if we FORCE accessory-ears to show, for items with earholes like Balaclavas and Luchador masks
 		&& ((wearer.head && !(wearer.head.flags_inv & SHOWSPRITEEARS)) || (wearer.wear_mask && !(wearer.wear_mask?.flags_inv & SHOWSPRITEEARS))))
 		return TRUE

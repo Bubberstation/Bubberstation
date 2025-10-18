@@ -78,6 +78,7 @@
 		"Sword" = /obj/item/forging/incomplete/sword,
 		"Katana" = /obj/item/forging/incomplete/katana,
 		"Dagger" = /obj/item/forging/incomplete/dagger,
+		"Rapier" = /obj/item/forging/incomplete/rapier,
 		"Staff" = /obj/item/forging/incomplete/staff,
 		"Spear" = /obj/item/forging/incomplete/spear,
 		"Axe" = /obj/item/forging/incomplete/axe,
@@ -605,6 +606,10 @@
 		attacking_weapon.name = "[weapon_reagent.name] [attacking_weapon.name]"
 
 	attacking_weapon.color = mix_color_from_reagents(attacking_weapon.reagents.reagent_list)
+	if(attacking_weapon.armour_penetration < 10)
+		attacking_weapon.armour_penetration = 0
+	else
+		attacking_weapon.armour_penetration -= 10
 	balloon_alert_to_viewers("imbued [attacking_weapon]")
 	user.mind.adjust_experience(/datum/skill/smithing, 60)
 	playsound(src, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
@@ -817,7 +822,7 @@
 			material_list[GET_MATERIAL_REF(search_stack.material_type)] = SHEET_MATERIAL_AMOUNT
 
 		else
-			for(var/material as anything in search_stack.custom_materials)
+			for(var/material in search_stack.custom_materials)
 				material_list[material] = SHEET_MATERIAL_AMOUNT
 
 		if(!search_stack.use(1))

@@ -1,19 +1,13 @@
 /datum/sprite_accessory/spines
 	key = "spines"
-	generic = "Spines"
 	default_color = DEFAULT_SECONDARY
 	recommended_species = list(SPECIES_LIZARD, SPECIES_UNATHI, SPECIES_LIZARD_ASH, SPECIES_LIZARD_SILVER)
 	relevent_layers = list(BODY_BEHIND_LAYER, BODY_ADJ_LAYER)
-	genetic = TRUE
 	organ_type = /obj/item/organ/spines
 
 /datum/sprite_accessory/spines/is_hidden(mob/living/carbon/human/wearer)
-	if(wearer.w_uniform)
-		if(wearer.w_uniform.flags_inv & HIDESPINE)
-			return TRUE
-	if(wearer.wear_suit)
-		if(wearer.wear_suit.flags_inv & HIDESPINE)
-			return TRUE
+	if(wearer.covered_slots & HIDESPINE)
+		return TRUE
 	if(key in wearer.try_hide_mutant_parts)
 		return TRUE
 
@@ -46,7 +40,7 @@
 		if(istype(wearer.wear_suit, /obj/item/clothing/suit/mod))
 			return FALSE
 		// Hide accessory if flagged to do so
-		else if(wearer.wear_suit.flags_inv & HIDETAIL)
+		else if(wearer.covered_slots & HIDETAIL)
 			return TRUE
 
 	return FALSE

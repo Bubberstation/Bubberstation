@@ -4,4 +4,6 @@
 #define TECHWEB_NODE_NERD "nerd"
 #define TECHWEB_NODE_NERD_ADV "nerd_adv"
 
+#define TECHWEB_NODE_MECHLAUNCHPAD "mechpad"
+
 #define TECHWEB_NODE_BORG_RESEARCH "borg_research"

@@ -138,6 +138,8 @@
 		//BUBBER EDIT END: Silicon flavor text
 		if(JOB_UNAVAILABLE_AUGMENT)
 			return "[jobtitle] is restricted due to your selected body augments."
+		if(JOB_UNAVAILABLE_NOHANDS)
+			return "[jobtitle] requires at least one hand."
 		//SKYRAT EDIT END
 		if(JOB_UNAVAILABLE_ANTAG_INCOMPAT)
 			return "[jobtitle] is not compatible with some antagonist role assigned to you."
@@ -269,8 +271,12 @@
 	if(CONFIG_GET(flag/allow_latejoin_antagonists) && !EMERGENCY_PAST_POINT_OF_NO_RETURN && humanc) //Borgs aren't allowed to be antags. Will need to be tweaked if we get true latejoin ais.
 		SSdynamic.on_latejoin(humanc)
 
-	if((job.job_flags & JOB_ASSIGN_QUIRKS) && humanc && CONFIG_GET(flag/roundstart_traits))
-		SSquirks.AssignQuirks(humanc, humanc.client)
+	if(humanc)
+		if(job.job_flags & JOB_ASSIGN_QUIRKS)
+			if(CONFIG_GET(flag/roundstart_traits))
+				SSquirks.AssignQuirks(humanc, humanc.client)
+		else // clear any personalities the prefs added since our job clearly does not want them
+			humanc.clear_personalities()
 
 	if(humanc) // Quirks may change manifest datapoints, so inject only after assigning quirks
 		GLOB.manifest.inject(humanc, null, humanc.client) // SKYRAT EDIT - Added humanc.client - ALTERNATIVE_JOB_TITLES

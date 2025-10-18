@@ -64,7 +64,7 @@
 	var/strict_coverage_zones = NONE
 
 /datum/hair_mask/standard_hat_middle
-	icon_state = "hide_above_45deg_medium"
+	icon_state = "hide_above_45deg"
 	strict_coverage_zones = HAIR_APPENDAGE_TOP
 
 /datum/hair_mask/standard_hat_low
@@ -1910,7 +1910,7 @@ GLOBAL_LIST_EMPTY(blended_hair_icons_cache)
 ///Used for fish-infused tails, which come in different flavors.
 /datum/sprite_accessory/tails/fish
 	icon = 'icons/mob/human/fish_features.dmi'
-	color_src = TRUE
+	color_src = USE_ONE_COLOR
 
 /datum/sprite_accessory/tails/fish/simple
 	name = "Simple"

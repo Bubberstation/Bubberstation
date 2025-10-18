@@ -56,6 +56,7 @@
 		TRAIT_SYNTHETIC, // Not used in any code, but just in case
 		TRAIT_TOXIMMUNE,
 		TRAIT_NEVER_WOUNDED, // Does not wound.
+		TRAIT_VIRUSIMMUNE, // So they can't roll for fake virus, they can't get sick anyways
 
 		// Extra cool stuff
 		TRAIT_RADIMMUNE,
@@ -78,6 +79,7 @@
 	/// Reference to the species owner
 	var/mob/living/carbon/human/owner
 	var/list/organ_slots = list(ORGAN_SLOT_BRAIN, ORGAN_SLOT_HEART, ORGAN_SLOT_STOMACH, ORGAN_SLOT_EYES)
+	language_prefs_whitelist = list(/datum/language/monkey)
 
 /mob/living/carbon/human/species/protean
 	race = /datum/species/protean
