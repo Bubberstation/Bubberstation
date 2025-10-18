@@ -2,15 +2,15 @@
 /datum/storyteller_metric/resource_check
 	name = "Resource Check"
 
-/datum/storyteller_metric/resource_check/perform(datum/storyteller_analyzer/anl, datum/storyteller/ctl, datum/storyteller_inputs/inputs, scan_flags)
-	var/total_minerals = 0
-
 	// List of machinery types to process
-	var/list/machinery_types = list(
+	var/static/list/machinery_types = list(
 		/obj/machinery/ore_silo,
 		/obj/machinery/rnd/production,
 		/obj/machinery/autolathe
 	)
+
+/datum/storyteller_metric/resource_check/perform(datum/storyteller_analyzer/anl, datum/storyteller/ctl, datum/storyteller_inputs/inputs, scan_flags)
+	var/total_minerals = 0
 
 	// Iterate over all machinery types
 	for(var/machinery_type in machinery_types)

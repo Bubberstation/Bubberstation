@@ -64,3 +64,38 @@
 	return .
 
 
+/proc/is_safe_area(area/to_check)
+	var/list/vents = to_check.air_vents
+	var/total_vents = length(vents)
+	var/unsafe_vents = 0
+
+	var/static/list/safe_gases = list(
+		/datum/gas/oxygen = list(16, 100),
+		/datum/gas/nitrogen,
+		/datum/gas/carbon_dioxide = list(0, 10)
+	)
+
+	for(var/obj/machinery/atmospherics/components/unary/vent_pump/vent in vents)
+		var/turf/open/T = get_turf(vent)
+		var/datum/gas_mixture/floor_gas_mixture = T.air
+		if(!floor_gas_mixture)
+			unsafe_vents += 1
+			continue
+
+		var/list/floor_gases = floor_gas_mixture.gases
+		if(!check_gases(floor_gases, safe_gases))
+			unsafe_vents += 1
+			continue
+
+		if((floor_gas_mixture.temperature <= 270) || (floor_gas_mixture.temperature >= 360))
+			unsafe_vents += 1
+			continue
+
+		var/pressure = floor_gas_mixture.return_pressure()
+		if((pressure <= 20) || (pressure >= 550))
+			unsafe_vents += 1
+			continue
+
+	if(unsafe_vents >= round(total_vents * 0.5))
+		return FALSE
+	return TRUE

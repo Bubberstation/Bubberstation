@@ -321,7 +321,7 @@
 		_apply_tag_with_context(context, mood, STORY_TAG_AFFECTS_RESOURCES | STORY_TAG_AFFECTS_ECONOMY, 60 * category_bias)
 	if(inputs.vault[STORY_VAULT_POWER_STATUS] >= STORY_VAULT_LOW_POWER)
 		_apply_tag_with_context(context, mood, STORY_TAG_AFFECTS_INFRASTRUCTURE | STORY_TAG_AFFECTS_TECHNOLOGY, 70 * category_bias)
-	if(inputs.vault[STORY_VAULT_ENV_HAZARDS] >= STORY_VAULT_MINOR_HAZARDS)
+	if(inputs.vault[STORY_VAULT_INFRA_DAMAGE] >= STORY_VAULT_MINOR_DAMAGE)
 		_apply_tag_with_context(context, mood, STORY_TAG_AFFECTS_ENVIRONMENT | STORY_TAG_AFFECTS_CREW_HEALTH, 65 * category_bias)
 	if(research_progress >= STORY_VAULT_HIGH_RESEARCH)
 		_apply_tag_with_context(context, mood, STORY_TAG_AFFECTS_RESEARCH | (context[CONTEXT_CATEGORY] & STORY_GOAL_BAD ? STORY_TAG_ESCALATION : STORY_TAG_DEESCALATION), 55 * category_bias)

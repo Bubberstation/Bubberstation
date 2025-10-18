@@ -50,4 +50,7 @@
 
 /datum/storyteller_inputs/proc/set_entry(name, value)
 	if(vault)
-		vault[name] = value
+		if(value)
+			vault[name] = value
+		else
+			vault += name

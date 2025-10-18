@@ -259,6 +259,9 @@
 	These track infrastructure, power, hazards, and research to influence emergency and recovery events.
 */
 
+#define STORY_VAULT_STATION_INTEGRITY "station_integrity"
+
+
 // Tracks infrastructure damage (power, hull breaches, etc.).
 #define STORY_VAULT_INFRA_DAMAGE "infra_damage"
 	#define STORY_VAULT_NO_DAMAGE 0
@@ -273,12 +276,18 @@
 	#define STORY_VAULT_BLACKOUT 2
 	#define STORY_VAULT_CRITICAL_POWER_FAILURE 3
 
-// Tracks environmental hazards (toxins, fires, rads).
-#define STORY_VAULT_ENV_HAZARDS "env_hazards"
-	#define STORY_VAULT_NO_HAZARDS 0
-	#define STORY_VAULT_MINOR_HAZARDS 1
-	#define STORY_VAULT_MAJOR_HAZARDS 2
-	#define STORY_VAULT_CRITICAL_HAZARDS 3
+
+// Divisors for damage_level (for 0-3 scaling)
+#define STORY_POWER_SMES_DISCHARGE_DIVISOR // For (100 - smes_percent) / this → tune for sensitivity
+
+// Vault keys for storing results (unique strings to avoid conflicts)
+#define STORY_VAULT_POWER_GRID_STRENGTH "power_grid_strength"  // Raw 0-100 for balancer
+
+#define STORY_VAULT_POWER_GRID_DAMAGE "power_grid_damage"
+	#define STORY_VAULT_POWER_GRID_NOMINAL 0
+	#define STORY_VAULT_POWER_GIRD_FAILURES 1
+	#define STORY_VAULT_POWER_GIRD_DAMAGED 2
+	#define STORY_VAULT_POWER_GIRD_BANNED 3
 
 // Tracks overall research progress, influencing science-related goals.
 #define STORY_VAULT_RESEARCH_PROGRESS "research_progress"
