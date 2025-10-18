@@ -41,7 +41,7 @@
 	var/total_players = inputs.vault[STORY_VAULT_CREW_ALIVE_COUNT] || 0
 	snap.total_player_weight = total_players * player_weight * snap.station_strength_raw / 100
 
-	var/antag_count = inputs.antag_count
+	var/antag_count = inputs.atnag_count()
 	snap.total_antag_weight = antag_count * antag_weight * snap.antag_effectiveness
 
 	// Ratio between station and antagonist strength
@@ -75,7 +75,7 @@
 	PRIVATE_PROC(TRUE)
 
 	var/crew_readiness = vault[STORY_VAULT_CREW_READINESS] // Readiness of the crew
-	var/crew_weight = inputs.crew_weight // Weight of the crew
+	var/crew_weight = inputs.crew_weight()
 	var/station_integrity = inputs.get_station_integrity() // Station integrity (0-100)
 	var/security_count = vault[STORY_VAULT_SECURITY_COUNT]
 	var/security_strength = vault[STORY_VAULT_SECURITY_STRENGTH]
@@ -133,7 +133,7 @@
 /datum/storyteller_balance/proc/get_antagonist_strength(datum/storyteller_inputs/inputs, list/vault)
 	PRIVATE_PROC(TRUE)
 
-	if(inputs.antag_count <= 0)
+	if(inputs.atnag_count() <= 0)
 		return 0
 
 	// Pull metrics from vault (0-3 unless noted)
@@ -194,7 +194,7 @@
 	var/overall_strength_norm = clamp(core_strength + presence_mod + survival_mod + activity_mod - 0.5, 0, 1)  // -0.5 centers base at ~0.5
 
 	// Relative scale: antag_count vs. player_count (ideal 5-20% antags; scale 0.5-2.0)
-	var/relative_scale = clamp(inputs.antag_count / max(inputs.player_count * 0.1, 1), 0.5, 2.0)
+	var/relative_scale = clamp(inputs.atnag_count() / max(inputs.player_count() * 0.1, 1), 0.5, 2.0)
 
 	// Final raw strength: normalize * scale * 100
 	var/final_strength = clamp(overall_strength_norm * relative_scale * 100, 0, 100)

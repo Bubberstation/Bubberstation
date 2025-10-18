@@ -141,6 +141,8 @@
 	These track morale and readiness of the crew to handle crises or daily operations.
 */
 
+#define STORY_VAULT_CREW_WEIGHT "crew_weight"
+
 // Tracks crew morale (happiness, stress from events/deaths).
 #define STORY_VAULT_CREW_MORALE "crew_morale"
 	#define STORY_VAULT_HIGH_MORALE 0     // Happy/productive
@@ -163,6 +165,8 @@
 	Antagonist metrics
 	These track antagonist behavior, progress, and impact to escalate or mitigate threats.
 */
+
+#define STORY_VAULT_ANTAG_WEIGHT "antag_weight"
 
 // Tracks the level of antagonist-driven disruption, influencing escalation or mitigation events.
 #define STORY_VAULT_ANTAGONIST_ACTIVITY "antagonist_activity"

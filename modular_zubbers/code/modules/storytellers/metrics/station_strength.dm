@@ -49,7 +49,7 @@
 
 	if(total_crew_count > 0)
 		inputs.vault[STORY_VAULT_CREW_READINESS] = clamp((total_gear_points / total_crew_count) * 0.3, 0, 3)
-		inputs.crew_weight = (total_crew_weight / total_crew_count)
+		inputs.set_entry(STORY_VAULT_CREW_WEIGHT, total_crew_weight / total_crew_count)
 	if(total_security > 0)
 		inputs.vault[STORY_VAULT_SECURITY_STRENGTH] = clamp((total_gear_points / total_security) * 1.3, 0, 3)
 		inputs.vault[STORY_VAULT_SECURITY_COUNT] = total_security

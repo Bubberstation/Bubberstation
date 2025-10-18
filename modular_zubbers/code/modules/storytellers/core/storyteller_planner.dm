@@ -183,7 +183,7 @@
 		if(attempts > 3)
 			break
 		var/datum/storyteller_goal/fallback = build_goal(ctl, inputs, bal, 0, STORY_GOAL_RANDOM)
-		if(fallback && try_plan_goal(fallback, start_offset + (event_interval * pending_count)))  // После новых
+		if(fallback && try_plan_goal(fallback, start_offset + (event_interval * pending_count)))
 			pending_count++
 		attempts++
 	last_recalc_time = world.time

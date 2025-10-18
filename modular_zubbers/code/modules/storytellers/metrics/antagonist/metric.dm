@@ -2,7 +2,7 @@
 	name = "Antagonist Activity Aggregation"
 
 /datum/storyteller_metric/antagonist_activity/can_perform_now(datum/storyteller_analyzer/anl, datum/storyteller/ctl, datum/storyteller_inputs/inputs, scan_flags)
-	return inputs.antag_count > 0
+	return inputs.atnag_count() > 0
 
 /datum/storyteller_metric/antagonist_activity/perform(datum/storyteller_analyzer/anl, datum/storyteller/ctl, datum/storyteller_inputs/inputs, scan_flags)
 	..()
@@ -71,7 +71,7 @@
 		var/avg_activity = total_effective_activity / max(1, world.time / STORY_ACTIVITY_TIME_SCALE)
 		var/burst_factor = clamp(total_burst_activity / max(1, alive_antags), 0, 1) * 2  // Double weight for bursts
 		var/activity_score = (avg_damage / STORY_DAMAGE_SCALE) + (avg_activity * STORY_ACTIVITY_TIME_SCALE) + (total_kills * 1.5) + (total_objectives * 2.5) + total_disruption / STORY_DISRUPTION_SCALE + total_influence / STORY_INFLUENCE_SCALE + burst_factor
-		var/activity_level = clamp(activity_score / max(inputs.player_count * STORY_ACTIVITY_CREW_SCALE, 1), 0, 3)
+		var/activity_level = clamp(activity_score / max(inputs.player_count() * STORY_ACTIVITY_CREW_SCALE, 1), 0, 3)
 
 		var/highest_threat_score = 0
 		for(var/threat_type in threat_scores)
@@ -82,13 +82,13 @@
 		threat_escalation = clamp(total_burst_activity / max(1, total_activity), 0, 3)
 
 		inputs.vault[STORY_VAULT_ANTAGONIST_ACTIVITY] = activity_level
-		inputs.vault[STORY_VAULT_ANTAG_KILLS] = clamp(total_kills / max(inputs.player_count * 0.05, 1), 0, 3)
+		inputs.vault[STORY_VAULT_ANTAG_KILLS] = clamp(total_kills / max(inputs.player_count() * 0.05, 1), 0, 3)
 		inputs.vault[STORY_VAULT_ANTAG_OBJECTIVES_COMPLETED] = clamp(total_objectives / min(alive_antags, STORY_OBJECTIVES_CAP), 0, 3)
 		inputs.vault[STORY_VAULT_ANTAG_DISRUPTION] = clamp(total_disruption / max(1, alive_antags), 0, 3)
 		inputs.vault[STORY_VAULT_ANTAG_INFLUENCE] = clamp(total_influence / max(1, alive_antags), 0, 3)
 
-		var/dead_count = inputs.antag_count - alive_antags
-		inputs.vault[STORY_VAULT_ANTAG_DEAD_RATIO] = clamp((dead_count / max(1, inputs.antag_count)) * 3, 0, 3)
+		var/dead_count = inputs.atnag_count() - alive_antags
+		inputs.vault[STORY_VAULT_ANTAG_DEAD_RATIO] = clamp((dead_count / max(1, inputs.atnag_count())) * 3, 0, 3)
 		inputs.vault[STORY_VAULT_ANTAGONIST_PRESENCE] = clamp(alive_antags >= 4 ? 3 : (alive_antags >= 2 ? 2 : 1), 0, 3)
 		inputs.vault[STORY_VAULT_ANTAG_INACTIVE_RATIO] = (inactive_count / alive_antags)
 		inputs.vault[STORY_VAULT_ANTAG_INTENSITY] = clamp(activity_score / alive_antags, 0, 3)

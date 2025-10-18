@@ -106,6 +106,15 @@
 	score_bad += rand(0,10)/100.0
 	score_neutral += rand(0,10)/100.0
 	score_random += rand(0,10)/100.0
+	//applying storyteller traits
+
+	if(HAS_TRAIT(ctl, STORYTELLER_TRAIT_FORCE_TENSION))
+		if(ctl.current_tension < ctl.target_tension)
+			score_bad += rand(0, 20)/100
+
+	if(HAS_TRAIT(ctl, STORYTELLER_TRAIT_BALANCING_TENSTION))
+		if(ctl.current_tension <= ctl.target_tension + 10 || ctl.current_tension >= ctl.target_tension + 10)
+			score_neutral += rand(0, 20)/100
 
 	// choose highest score
 	var/maxs = max(score_good, score_bad, score_neutral, score_random)
@@ -191,6 +200,9 @@
 		weighted[G] = final_weight
 
 	var/datum/storyteller_goal/selected = pick_weight(weighted)
+	if(!selected)
+		return null
+
 	// Use pick_weight helper for selection
 	return new selected.type
 

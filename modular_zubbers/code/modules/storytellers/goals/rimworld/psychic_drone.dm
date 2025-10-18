@@ -13,7 +13,7 @@
 
 /datum/storyteller_goal/execute_psychic_drone/get_weight(list/vault, datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
 	// TODO: crew sanity
-	return storyteller.threat_points * 0.05 + (inputs.antag_crew_ratio * 10.0)
+	return STORY_GOAL_BASE_WEIGHT * (storyteller.get_effective_threat() * 0.3)
 
 /datum/storyteller_goal/execute_psychic_drone/get_priority(list/vault, datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
 	return 3

@@ -138,7 +138,7 @@
 		tension_effect += 10
 
 	balancer.tension_bonus = min(balancer.tension_bonus + tension_effect, STORY_MAX_TENSION_BONUS)
-	record_event(goal, STORY_GOAL_FAILED)
+	record_event(goal, STORY_GOAL_COMPLETED)
 
 /datum/storyteller/proc/think(force = FALSE)
 	if(!initialized)
@@ -170,7 +170,10 @@
 
 	// 5) Passive threat/adaptation drift each think
 	threat_points = min(max_threat_scale, threat_points + threat_growth_rate * mood.get_threat_multiplier())
-	adaptation_factor = max(0, adaptation_factor - adaptation_decay_rate)
+
+	if(!HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ADAPTATION_DECAY))
+		adaptation_factor = max(0, adaptation_factor - adaptation_decay_rate)
+
 	round_progression = clamp((world.time - round_start_time) / STORY_ROUND_PROGRESSION_TRESHOLD, 0, 1)
 
 	population_history[num2text(world.time)] = inputs.vault[STORY_VAULT_CREW_ALIVE_COUNT] \
@@ -292,10 +295,10 @@
 
 
 /datum/storyteller/proc/get_active_player_count()
-	return inputs.player_count
+	return inputs.player_count()
 
 /datum/storyteller/proc/get_active_antagonist_count()
-	return inputs.antag_count
+	return inputs.atnag_count()
 
 /datum/storyteller/proc/run_metrics(flags)
 	INVOKE_ASYNC(analyzer, TYPE_PROC_REF(/datum/storyteller_analyzer, scan_station), flags)
