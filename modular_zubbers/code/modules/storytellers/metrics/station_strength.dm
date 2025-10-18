@@ -2,9 +2,6 @@
 
 	name = "Overral Station strength"
 
-/datum/storyteller_metric/crew_strength/can_perform_now(datum/storyteller_analyzer/anl, datum/storyteller/ctl, datum/storyteller_inputs/inputs, scan_flags)
-	return inputs.player_count > 0
-
 /datum/storyteller_metric/crew_strength/perform(datum/storyteller_analyzer/anl, datum/storyteller/ctl, datum/storyteller_inputs/inputs, scan_flags)
 	var/total_crew_count = 0
 	var/total_security = 0

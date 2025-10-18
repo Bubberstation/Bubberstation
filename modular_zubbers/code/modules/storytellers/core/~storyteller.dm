@@ -102,16 +102,16 @@
 	run_metrics(RESCAN_STATION_INTEGRITY | RESCAN_STATION_VALUE)
 
 
-/datum/storyteller/proc/on_metrics_finished(datum/storyteller_inputs/inputs, timout, metrics_count)
+/datum/storyteller/proc/on_metrics_finished(datum/storyteller_analyzer/anl, datum/storyteller_inputs/inputs, timout, metrics_count)
 	SIGNAL_HANDLER
-	src.inputs = inputs
+	src.inputs = analyzer.get_inputs()
 	if(initialized)
 		return
 
 	var/datum/storyteller_balance_snapshot/bal = balancer.make_snapshot(inputs)
 	planner.build_timeline(src, inputs, bal)
 	initialized = TRUE
-	schedule_next_think()
+	think()
 
 
 /datum/storyteller/proc/schedule_next_think()

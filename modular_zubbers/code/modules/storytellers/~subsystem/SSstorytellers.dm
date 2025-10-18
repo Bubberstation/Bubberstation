@@ -67,22 +67,26 @@ SUBSYSTEM_DEF(storytellers)
 /// Initializes the active storyteller from selected_id (JSON profile), applying parsed data for adaptive behavior.
 /// Delegates creation to create_storyteller_from_data() for modularity; kicks off round analysis/planning.
 /// Ensures chain starts with 3+ events, biased by profile (e.g., low tension for chill).
-/datum/controller/subsystem/storytellers/proc/initialize_storyteller()
+/datum/controller/subsystem/storytellers/proc/load_storyteller()
 	if(active)
 		message_admins(span_notice("Storyteller already initialized, deleting."))
 		qdel(active)
 
 	if(!selected_id || !storyteller_data[selected_id])
-		log_storyteller("Failed to Initialize storyteller: invalid ID [selected_id]")
+		log_storyteller("Failed to load storyteller: invalid ID [selected_id]")
 		var/id = pick(storyteller_data)
-		message_admins(span_bolditalic("Failed to Initialize storyteller! Selected random storyteller"))
+		message_admins(span_bolditalic("Failed to load storyteller! Selected random storyteller"))
 		active = create_storyteller_from_data(id)
 		active.difficulty_multiplier = 1.0
-		active.initialize()
 		return
 
 	active = create_storyteller_from_data(selected_id)
 	active.difficulty_multiplier = clamp(selected_difficulty, 0.3, 5.0)
+
+
+/datum/controller/subsystem/storytellers/proc/initialize_storyteller()
+	if(!active)
+		load_storyteller()
 	active.initialize()
 
 
@@ -223,8 +227,16 @@ SUBSYSTEM_DEF(storytellers)
 	if(vote_active)
 		end_vote()
 
-	initialize_storyteller()
+
 	return TRUE
+
+/datum/controller/subsystem/storytellers/proc/post_setup()
+
+#ifdef UNIT_TESTS // Stortyteller setup disabled during testing, it's handle by unit test
+	return
+#endif
+
+	initialize_storyteller()
 
 /datum/controller/subsystem/storytellers/proc/disable_dynamic()
 	if(!storyteller_replace_dynamic)

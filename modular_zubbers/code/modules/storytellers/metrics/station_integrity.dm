@@ -2,7 +2,6 @@
 	name = "Infrastructure Damage Aggregation"
 
 /datum/storyteller_metric/infra_damage/perform(datum/storyteller_analyzer/anl, datum/storyteller/ctl, datum/storyteller_inputs/inputs, scan_flags)
-	..()
 	var/damaged_apcs = 0
 	var/breaches = 0
 

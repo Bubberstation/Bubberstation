@@ -32,10 +32,6 @@
 	name = "Crew health metric"
 
 
-/datum/storyteller_metric/crew_metrics/can_perform_now(datum/storyteller_analyzer/anl, datum/storyteller/ctl, datum/storyteller_inputs/inputs, scan_flags)
-	return inputs.player_count + inputs.antag_count > 0
-
-
 /datum/storyteller_metric/crew_metrics/perform(datum/storyteller_analyzer/anl, datum/storyteller/ctl, datum/storyteller_inputs/inputs, scan_flags)
 	var/crew_health_level = STORY_VAULT_HEALTH_HEALTHY
 	var/antag_health_level = STORY_VAULT_HEALTH_HEALTHY
