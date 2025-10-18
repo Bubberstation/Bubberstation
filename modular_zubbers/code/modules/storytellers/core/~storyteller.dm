@@ -86,8 +86,8 @@
 
 /datum/storyteller/proc/initialize_round()
 	round_start_time = world.time
-	INVOKE_ASYNC(analyzer, TYPE_PROC_REF(/datum/storyteller_analyzer, scan_station), RESCAN_STATION_INTEGRITY, RESCAN_STATION_VALUE)
-	addtimer(CALLBACK(src, PROC_REF(post_initialize)), 2 MINUTES)
+	run_metrics(RESCAN_STATION_INTEGRITY | RESCAN_STATION_VALUE)
+	addtimer(CALLBACK(src, PROC_REF(post_initialize)), 1 SECONDS)
 
 /datum/storyteller/proc/post_initialize()
 	inputs = analyzer.get_inputs()
@@ -275,3 +275,6 @@
 
 /datum/storyteller/proc/get_active_antagonist_count()
 	return inputs.antag_count
+
+/datum/storyteller/proc/run_metrics(flags)
+	INVOKE_ASYNC(analyzer, TYPE_PROC_REF(/datum/storyteller_analyzer, scan_station), flags)
