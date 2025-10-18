@@ -52,7 +52,7 @@
 	var/total_antag_wounds = 0
 	var/total_infected_crew = 0
 
-	for(var/mob/living/M in GLOB.alive_player_list)
+	for(var/mob/living/M in get_alive_crew(FALSE))
 		var/is_antag = M.mind?.has_antag_datum() || FALSE
 		var/tot_damage = M.get_total_damage()
 		var/tot_wounds = 0

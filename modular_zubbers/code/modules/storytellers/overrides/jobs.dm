@@ -41,7 +41,7 @@
 	story_tags = STORY_JOB_ANTAG_MAGNET|STORY_JOB_IMPORTANT|STORY_JOB_HEAVYWEIGHT
 	story_weight = STORY_HEAD_JOB_WEIGHT * 2
 
-/datum/job/captain/head_of_security
+/datum/job/head_of_security
 	story_tags = STORY_JOB_ANTAG_MAGNET|STORY_JOB_IMPORTANT|STORY_JOB_HEAVYWEIGHT
 	story_weight = STORY_HEAD_JOB_WEIGHT * 2
 
