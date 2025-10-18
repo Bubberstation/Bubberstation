@@ -78,12 +78,12 @@ SUBSYSTEM_DEF(storytellers)
 		message_admins(span_bolditalic("Failed to Initialize storyteller! Selected random storyteller"))
 		active = create_storyteller_from_data(id)
 		active.difficulty_multiplier = 1.0
-		active.initialize_round()
+		active.initialize()
 		return
 
 	active = create_storyteller_from_data(selected_id)
 	active.difficulty_multiplier = clamp(selected_difficulty, 0.3, 5.0)
-	active.initialize_round()
+	active.initialize()
 
 
 /datum/controller/subsystem/storytellers/proc/load_storyteller_data()

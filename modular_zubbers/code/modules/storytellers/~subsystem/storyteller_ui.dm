@@ -172,8 +172,7 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 				ctl.schedule_next_think()
 			return TRUE
 		if("reanalyse")
-			ctl.analyzer.scan_station()
-			ctl.inputs = ctl.analyzer.get_inputs()
+			ctl.run_metrics()
 			return TRUE
 		if("replan")
 			ctl.planner.recalculate_plan(ctl, ctl.inputs, ctl.balancer.make_snapshot(ctl.inputs), TRUE)

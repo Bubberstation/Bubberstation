@@ -84,7 +84,7 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 			qdel(active)
 		active = new /datum/storyteller
 		active.difficulty_multiplier = 1.0
-		active.initialize_round()
+		active.initialize()
 		return
 
 	if(active)
@@ -92,7 +92,7 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 
 	active = create_storyteller_from_data(selected_id)
 	active.difficulty_multiplier = clamp(avg_diff, 0.3, 5.0)
-	active.initialize_round()
+	active.initialize()
 
 /datum/storyteller_vote_ui/proc/find_candidate_name(id_str)
 	for (var/list/cand in candidates)

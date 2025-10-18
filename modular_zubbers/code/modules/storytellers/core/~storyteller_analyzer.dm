@@ -66,6 +66,7 @@
 /datum/storyteller_analyzer/proc/scan_station(scan_flags)
 	set waitfor = FALSE
 	analyzing = TRUE
+	SEND_SIGNAL(src, COMSIG_STORYTELLER_RUN_METRICS)
 
 	if(scan_flags & RESCAN_STATION_VALUE)
 		compute_station_value()
@@ -91,6 +92,7 @@
 		INVOKE_ASYNC(src, PROC_REF(__run_metric_safe), check, inputs, scan_flags)
 
 	// Wait for async metrics to finish or timeout
+	var/time_out = FALSE
 	if(metrics_count <= 0)
 		analyzing = FALSE
 	var/timeout_at = world.time + (cache_duration * 2)
@@ -99,11 +101,12 @@
 		sleep(world.tick_lag)
 	if(analyzing)
 		// Timed out; stop now
+		time_out = TRUE
 		analyzing = FALSE
 		log_storyteller_analyzer("Analyzer scan timed out; continuing with partial inputs")
 
 	actual_inputs = inputs
-	log_storyteller_analyzer("Analyzer scan finished. players=[inputs.player_count] antags=[inputs.antag_count] metrics=[metrics_count]")
+	SEND_SIGNAL(src, COMSIG_STORYTELLER_FINISHED_ALYZING, inputs, time_out, metrics_count)
 
 
 /datum/storyteller_analyzer/proc/__run_metric_safe(datum/storyteller_metric/check, datum/storyteller_inputs/inputs, scan_flags)

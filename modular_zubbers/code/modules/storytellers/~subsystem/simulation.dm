@@ -85,4 +85,4 @@ ADMIN_VERB(storyteller_simulation, R_ADMIN, "Storyteller - Simulation", "Simulat
 	to_chat(usr, "[number_made] crewmembers have been created.")
 
 
-#undef STORY_TRAIT_IM_SIMULATION "simulation_mob"
+#undef STORY_TRAIT_IM_SIMULATION

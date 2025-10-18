@@ -83,19 +83,36 @@
 	mind = new /datum/storyteller_think
 	inputs = new /datum/storyteller_inputs
 
+/datum/storyteller/Destroy(force)
+	qdel(mood)
+	qdel(planner)
+	qdel(analyzer)
+	qdel(balancer)
+	qdel(mind)
+	qdel(inputs)
 
-/datum/storyteller/proc/initialize_round()
+	UnregisterSignal(analyzer, COMSIG_STORYTELLER_FINISHED_ALYZING)
+	..()
+
+
+
+/datum/storyteller/proc/initialize()
 	round_start_time = world.time
+	RegisterSignal(analyzer, COMSIG_STORYTELLER_FINISHED_ALYZING, PROC_REF(on_metrics_finished))
 	run_metrics(RESCAN_STATION_INTEGRITY | RESCAN_STATION_VALUE)
-	addtimer(CALLBACK(src, PROC_REF(post_initialize)), 1 SECONDS)
 
-/datum/storyteller/proc/post_initialize()
-	inputs = analyzer.get_inputs()
+
+/datum/storyteller/proc/on_metrics_finished(datum/storyteller_inputs/inputs, timout, metrics_count)
+	SIGNAL_HANDLER
+	src.inputs = inputs
+	if(initialized)
+		return
+
 	var/datum/storyteller_balance_snapshot/bal = balancer.make_snapshot(inputs)
-
 	planner.build_timeline(src, inputs, bal)
 	initialized = TRUE
 	schedule_next_think()
+
 
 /datum/storyteller/proc/schedule_next_think()
 	// Apply mood-based pacing (pace is clamped by storyteller bounds)
@@ -130,6 +147,9 @@
 	if(world.time < next_think_time && !force)
 		return
 
+	if(SEND_SIGNAL(src, COMSIG_STORYTELLER_PRE_THINK) & COMPONENT_THINK_BLOCKED && !force)
+		return
+
 	// 1) Analyze: sample station metrics, compute crew/antag weights, update vault
 	inputs = analyzer.get_inputs()
 
@@ -162,6 +182,7 @@
 	update_population_factor()
 	// 6) Schedule next cycle
 	schedule_next_think()
+	SEND_SIGNAL(src, COMSIG_STORYTELLER_POST_THINK)
 
 /// Helper to record a goal event: store timestamp for spacing and id for repetition penalty
 /datum/storyteller/proc/record_event(datum/storyteller_goal/G, status)
