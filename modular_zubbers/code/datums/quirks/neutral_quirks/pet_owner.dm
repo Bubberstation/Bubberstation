@@ -23,7 +23,7 @@
 		pet_type = GLOB.possible_player_pet[desired_pet]
 
 	if(pet_type == NONE) // Pet not set, we're picking one for them.
-		pet_type = pick(flatten_list(GLOB.possible_player_pet))
+		pet_type = pick(assoc_to_values(GLOB.possible_player_pet))
 
 	var/obj/item/pet_carrier/carrier = new /obj/item/pet_carrier(get_turf(quirk_holder))
 	var/mob/living/basic/pet/pet = new pet_type(carrier)

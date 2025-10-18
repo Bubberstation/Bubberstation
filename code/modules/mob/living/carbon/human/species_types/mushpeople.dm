@@ -59,8 +59,6 @@
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_EXTERNAL_POD_HAIR
 
-	preference = "feature_mushperson_cap"
-
 	//dna_block = /datum/dna_block/feature/mush_cap // BUBBER EDIT REMOVAL - Customization  - We have our own system to handle DNA.
 	restyle_flags = EXTERNAL_RESTYLE_PLANT
 

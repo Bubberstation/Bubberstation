@@ -7,8 +7,6 @@
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_EXTERNAL_SPINES
 
-	preference = "feature_lizard_spines"
-
 	//dna_block = /datum/dna_block/feature/spine // BUBBER EDIT REMOVAL - Customization - We have our own system to handle DNA.
 	restyle_flags = EXTERNAL_RESTYLE_FLESH
 

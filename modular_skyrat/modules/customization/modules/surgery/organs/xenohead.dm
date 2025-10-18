@@ -9,7 +9,6 @@
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_EXTERNAL_XENOHEAD
 
-	preference = "feature_xenohead"
 	organ_flags = ORGAN_UNREMOVABLE
 
 	bodypart_overlay = /datum/bodypart_overlay/mutant/xenohead

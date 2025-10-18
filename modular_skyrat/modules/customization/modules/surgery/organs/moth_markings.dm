@@ -10,8 +10,6 @@
 	slot = ORGAN_SLOT_EXTERNAL_MOTH_MARKINGS
 	organ_flags = ORGAN_UNREMOVABLE
 
-	preference = "feature_moth_markings"
-
 	bodypart_overlay = /datum/bodypart_overlay/mutant/moth_markings
 
 /datum/bodypart_overlay/mutant/moth_markings
