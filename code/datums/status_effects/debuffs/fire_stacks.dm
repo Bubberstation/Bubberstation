@@ -379,6 +379,8 @@ BUBBER EDIT RESET THIS TG BACK TO MASTER ONCE YOU GET FISH INFUSION*/
 	var/datum/component/slippery/slipperiness
 
 /datum/status_effect/fire_handler/wet_stacks/on_apply()
+	if(HAS_TRAIT(owner, TRAIT_SHADED))
+		return FALSE
 	. = ..()
 	RegisterSignals(owner, list(SIGNAL_ADDTRAIT(TRAIT_WET_FOR_LONGER), SIGNAL_REMOVETRAIT(TRAIT_WET_FOR_LONGER)), PROC_REF(update_wet_stack_modifier))
 	update_wet_stack_modifier()
