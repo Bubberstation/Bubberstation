@@ -9,6 +9,7 @@ SUBSYSTEM_DEF(storytellers)
 	priority = FIRE_PRIORITY_STORYTELLERS
 
 	var/hard_debug = FALSE
+	var/simulation = FALSE
 
 	var/selected_id
 	// Difficulty selected on vote
@@ -21,6 +22,8 @@ SUBSYSTEM_DEF(storytellers)
 	var/datum/storyteller/active
 
 	VAR_PRIVATE/list/active_events = list()
+
+	VAR_PRIVATE/list/simulated_atoms = list()
 
 	var/list/storyteller_vote_uis = list()
 
@@ -210,8 +213,8 @@ SUBSYSTEM_DEF(storytellers)
 
 /datum/controller/subsystem/storytellers/proc/setup_game()
 
-#ifdef TESTING // Stortyteller setup disabled during testing, it's handle by unit test
-	return
+#ifdef UNIT_TESTS // Stortyteller setup disabled during testing, it's handle by unit test
+	return TRUE
 #endif
 
 	disable_dynamic()

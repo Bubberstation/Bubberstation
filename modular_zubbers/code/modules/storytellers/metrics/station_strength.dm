@@ -13,8 +13,8 @@
 	var/total_gear_points = 0
 
 
-	for(var/mob/living/carbon/human/crew in GLOB.alive_player_list)
-		if(!is_station_level(crew.z) || crew.is_antag())
+	for(var/mob/living/carbon/human/crew in get_alive_crew())
+		if(crew.is_antag())
 			continue
 		var/datum/job/job = crew.mind.assigned_role
 		if(!job)

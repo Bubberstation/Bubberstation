@@ -29,6 +29,11 @@
 // Attach tracker when an antagonist is gained
 /datum/antagonist/on_gain()
 	. = ..()
+
+#ifdef UNIT_TESTS
+	return
+#endif
+
 	if(antag_flags & ANTAG_FAKE)
 		return
 

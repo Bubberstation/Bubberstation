@@ -13,3 +13,21 @@
 	if(anl)
 		anl.try_stop_analyzing(src)
 
+
+/datum/storyteller_metric/proc/get_alive_crew(only_humans = TRUE, only_station = TRUE, only_with_mind = TRUE, no_afk = TRUE)
+	var/list/to_check = SSstorytellers.simulation ? GLOB.alive_mob_list : GLOB.alive_player_list
+	if(!length(to_check))
+		return list()
+
+	var/list/result
+	for(var/mob/living/L as anything in to_check)
+		if(!ishuman(L))
+			continue
+		if(only_station && !is_station_level(L.z))
+			continue
+		if(only_with_mind && !L.mind)
+			continue
+		if(L.client && L?.client.is_afk())
+			continue
+		LAZYADD(result, L)
+	return result
