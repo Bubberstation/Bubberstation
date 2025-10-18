@@ -393,7 +393,7 @@
 	custom_materials = AMMO_MATS_HOMING // meme ammo. meme print cost
 
 // overrides for .38 Special, used in the .38 revolvers, including the det's
-/obj/item/ammo_box/c38
+/obj/item/ammo_box/speedloader/c38
 	caliber = CALIBER_38
 
 /obj/item/ammo_casing/c38/trac
