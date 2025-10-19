@@ -7,6 +7,10 @@
 	var/mask_state = "lava-lightmask"
 	var/fish_source_type = /datum/fish_source/lavaland
 	icon_state = "lava"
+	light_range = 2
+	light_power = 0.75
+	light_color = LIGHT_COLOR_LAVA
+	light_on = FALSE
 
 /turf/open/floor/plating/vox
 	name = "nitrogen-filled plating"
