@@ -49,9 +49,12 @@
 
 	return TRUE
 
+/mob/living/carbon/human/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_LIVING_LIFE, PROC_REF(on_life_tick))
 
-
-/mob/living/carbon/human/Life(seconds_per_tick, times_fired)
+/mob/living/carbon/human/on_life_tick()
+	SIGNAL_HANDLER
 	. = ..()
 	if (keep_arousal_on_goal && (arousal + 5 < arousal_goal))
 		adjust_arousal(5)
