@@ -54,3 +54,6 @@
 
 /// Trait that says you're shaded by something (ie partially in the dark)
 #define TRAIT_SHADED "shaded"
+
+/// Give this to species that don't breath, this is particular to the hemophage rework
+#define TRAIT_OXYIMMUNE "oxyimmune" // Immune to oxygen damage, ideally give this to all non-breathing species or bad stuff will happen

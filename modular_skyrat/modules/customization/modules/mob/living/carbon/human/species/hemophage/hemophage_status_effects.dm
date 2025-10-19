@@ -6,6 +6,14 @@
 #define BLOOD_REGEN_TOXIN_AMOUNT 1.5
 /// How much cellular damage their body regenerates per second while using blood regeneration.
 #define BLOOD_REGEN_CELLULAR_AMOUNT 1.50
+/// How much blood to regen while master of the house is active - net positive of 0.02
+#define BLOOD_REGEN_MASTER_OF_THE_HOUSE 0.02
+/// The threshold at which you have too much damage to use hemokinetic regen.
+#define DAMAGE_LIMIT_HEMOKINETIC_REGEN 50
+/// The amount in units of blood that gets consumed per point of damage healed (by hemokinetic regen and master of the house)
+#define HEMOKINETIC_REGEN_BLOOD_CONSUMPTION 0.25
+/// How much damage per second is healed by hemokinetic regen
+#define HEMOKINETIC_REGEN_HEALING 1.8
 
 /datum/status_effect/blood_thirst_satiated
 	id = "blood_thirst_satiated"
@@ -44,105 +52,10 @@
 	tumor_heart.bloodloss_rate /= bloodloss_speed_multiplier
 
 
-/datum/status_effect/blood_regen_active
-	id = "blood_regen_active"
-	status_type = STATUS_EFFECT_UNIQUE
-	processing_speed = STATUS_EFFECT_NORMAL_PROCESS
-	alert_type = /atom/movable/screen/alert/status_effect/blood_regen_active
-	/// Current multiplier for how much blood they spend healing themselves for every point of damage healed.
-	var/blood_to_health_multiplier = 1
-	var/cost_blood = 1
-
-
-/datum/status_effect/blood_regen_active/on_apply()
-	// This status effect should not exist on its own, or on a non-human.
-	if(!owner || !ishuman(owner))
-		return FALSE
-
-	to_chat(owner, span_notice("You feel the tumor inside you pulse faster as the absence of light eases its work, allowing it to knit your flesh and reconstruct your body."))
-
-	return TRUE
-
-
-// This code also had to be copied over from /datum/action/item_action to ensure that we could display the heart in the alert.
-/datum/status_effect/blood_regen_active/on_creation(mob/living/new_owner, ...)
-	. = ..()
-	if(!.)
-		return
-
-	if(!linked_alert)
-		return
-
-	var/obj/item/organ/heart/hemophage/tumor_heart = owner.get_organ_by_type(/obj/item/organ/heart/hemophage)
-	if(tumor_heart)
-		var/old_layer = tumor_heart.layer
-		var/old_plane = tumor_heart.plane
-		// reset the x & y offset so that item is aligned center
-		tumor_heart.pixel_x = 0
-		tumor_heart.pixel_y = 0
-		tumor_heart.layer = FLOAT_LAYER // They need to be displayed on the proper layer and plane to show up on the button. We elevate them temporarily just to steal their appearance, and then revert it.
-		tumor_heart.plane = FLOAT_PLANE
-		linked_alert.cut_overlays()
-		linked_alert.add_overlay(tumor_heart)
-		tumor_heart.layer = old_layer
-		tumor_heart.plane = old_plane
-
-	return .
-
-
-/datum/status_effect/blood_regen_active/on_remove()
-	// This status effect should not exist on its own.
-	if(!owner)
-		return
-
-	to_chat(owner, span_notice("You feel the pulse of the tumor in your chest returning back to normal."))
-
-
-/datum/status_effect/blood_regen_active/tick(seconds_between_ticks)
-	var/mob/living/carbon/human/regenerator = owner
-
-	var/max_blood_for_regen = regenerator.blood_volume - MINIMUM_VOLUME_FOR_REGEN
-	var/blood_used = NONE
-
-	var/brutes_to_heal = NONE
-	var/brute_damage = regenerator.getBruteLoss()
-
-	// We have to check for the damaged bodyparts like this as well, to account for robotic bodyparts, as we don't want to heal those. Stupid, I know, but that's the best proc we got to check that currently.
-	if(brute_damage && length(regenerator.get_damaged_bodyparts(brute = TRUE, burn = FALSE, required_bodytype = BODYTYPE_ORGANIC)))
-		brutes_to_heal = min(max_blood_for_regen, min(BLOOD_REGEN_BRUTE_AMOUNT, brute_damage) * seconds_between_ticks)
-		blood_used += brutes_to_heal * blood_to_health_multiplier
-		max_blood_for_regen -= brutes_to_heal * blood_to_health_multiplier
-
-	var/burns_to_heal = NONE
-	var/burn_damage = regenerator.getFireLoss()
-
-	if(burn_damage && max_blood_for_regen > NONE && length(regenerator.get_damaged_bodyparts(brute = FALSE, burn = TRUE, required_bodytype = BODYTYPE_ORGANIC)))
-		burns_to_heal = min(max_blood_for_regen, min(BLOOD_REGEN_BURN_AMOUNT, burn_damage) * seconds_between_ticks)
-		blood_used += burns_to_heal * blood_to_health_multiplier
-		max_blood_for_regen -= burns_to_heal * blood_to_health_multiplier
-
-	if(brutes_to_heal || burns_to_heal)
-		regenerator.heal_overall_damage(brutes_to_heal, burns_to_heal, NONE, BODYTYPE_ORGANIC)
-
-	var/toxin_damage = regenerator.getToxLoss()
-
-	if(toxin_damage && max_blood_for_regen > NONE)
-		var/toxins_to_heal = min(max_blood_for_regen, min(BLOOD_REGEN_TOXIN_AMOUNT, toxin_damage) * seconds_between_ticks)
-		blood_used += toxins_to_heal * blood_to_health_multiplier
-		max_blood_for_regen -= toxins_to_heal * blood_to_health_multiplier
-		regenerator.adjustToxLoss(-toxins_to_heal)
-
-	if(!blood_used)
-		regenerator.remove_status_effect(/datum/status_effect/blood_regen_active)
-		return
-
-	regenerator.blood_volume = max(regenerator.blood_volume - blood_used * cost_blood, MINIMUM_VOLUME_FOR_REGEN)
-
-
 /datum/movespeed_modifier/hemophage_dormant_state
 	id = "hemophage_dormant_state"
-	multiplicative_slowdown = 3 // Yeah, they'll be quite significantly slower when in their dormant state.
-	blacklisted_movetypes = FLOATING
+	multiplicative_slowdown = 2 // Yeah, they'll be quite significantly slower when in their dormant state.
+	blacklisted_movetypes = FLOATING|FLYING
 
 
 /atom/movable/screen/alert/status_effect/blood_thirst_satiated
@@ -152,14 +65,159 @@
 	icon_state = "bleed10"
 
 
-/atom/movable/screen/alert/status_effect/blood_regen_active
-	name = "Enhanced Regeneration"
-	desc = "Being in a sufficiently dark location allows your tumor to allocate more energy to enhancing your body's natural regeneration, at the cost of blood volume proportional to the damage healed."
-	icon = 'icons/hud/screen_alert.dmi'
-	icon_state = "template"
+/// Heals 1.8 brute + burn per second as long as damage value is DAMAGE_LIMIT_HEMOKINETIC_REGEN or below, consuming 0.2 units of blood per point of damage healed.
+/datum/status_effect/hemokinetic_regen
+	id = "hemokinetic_regen"
+	alert_type = /atom/movable/screen/alert/status_effect/hemokinetic_regen
+	processing_speed = STATUS_EFFECT_NORMAL_PROCESS
+/datum/status_effect/hemokinetic_regen/on_apply()
+
+	var/mob/living/carbon/carbon_owner = owner
+	if(!istype(carbon_owner))
+		return
+	if((owner.getBruteLoss() + carbon_owner.getFireLoss()) >= DAMAGE_LIMIT_HEMOKINETIC_REGEN)
+		to_chat(carbon_owner, span_warning("Your body is too damaged to be healed with hemokinesis!"))
+		return
+
+	carbon_owner.balloon_alert(carbon_owner, "hemokinetic regen activated!")
+	return ..()
+
+/datum/status_effect/hemokinetic_regen/tick(seconds_between_ticks)
+	var/mob/living/carbon/C = owner
+	if(!istype(C))
+		return
+
+	// Let quirks (Sol Weakness) observe this tick
+	SEND_SIGNAL(C, COMSIG_MOB_HEMO_BLOOD_REGEN_TICK, seconds_between_ticks, src)
+
+	// ...then do your existing healing math...
+	var/amount_healed = 0
+	amount_healed += C.adjustBruteLoss(-HEMOKINETIC_REGEN_HEALING * seconds_between_ticks, updating_health = FALSE, required_bodytype = BODYTYPE_ORGANIC)
+	amount_healed += C.adjustFireLoss(-HEMOKINETIC_REGEN_HEALING * seconds_between_ticks, updating_health = FALSE, required_bodytype = BODYTYPE_ORGANIC)
+	if(amount_healed)
+		C.blood_volume -= (HEMOKINETIC_REGEN_BLOOD_CONSUMPTION * amount_healed)
+		C.updatehealth()
+
+/atom/movable/screen/alert/status_effect/hemokinetic_regen
+	name = "Hemokinetic Regen"
+	desc = "Our wounds are healing at the expense of blood."
+	icon = 'modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage/icons/screen_alert.dmi'
+	icon_state = "hemokinetic_regen"
+
+
+/// Stamina is reduced to 50% and movespeed gains heavy slowdown, but you will regen blood at 0.02u per second. Temporarily re-enables having to breathe.
+/datum/status_effect/master_of_the_house
+	id = "master_of_the_house"
+	alert_type = /atom/movable/screen/alert/status_effect/master_of_the_house
+	processing_speed = STATUS_EFFECT_NORMAL_PROCESS
+
+
+/datum/status_effect/master_of_the_house/on_apply()
+	. = ..()
+	var/mob/living/carbon/carbon_owner = owner
+	if(!istype(carbon_owner))
+		return
+
+	carbon_owner.adjustStaminaLoss(carbon_owner.getStaminaLoss() * 0.5, forced = TRUE)
+	carbon_owner.max_stamina *= 0.5 // stamina is halved while this is active.
+	REMOVE_TRAIT(carbon_owner, TRAIT_NOBREATH, SPECIES_TRAIT)
+	REMOVE_TRAIT(carbon_owner, TRAIT_OXYIMMUNE, SPECIES_TRAIT)
+	carbon_owner.add_movespeed_modifier(/datum/movespeed_modifier/master_of_the_house)
+
+
+/datum/status_effect/master_of_the_house/on_remove()
+	var/mob/living/carbon/carbon_owner = owner
+	if(!istype(carbon_owner))
+		return
+
+	carbon_owner.adjustStaminaLoss(carbon_owner.getStaminaLoss() / 0.5, forced = TRUE)
+	carbon_owner.max_stamina /= 0.5
+	carbon_owner.remove_movespeed_modifier(/datum/movespeed_modifier/master_of_the_house)
+	if(carbon_owner.oxyloss) // if they have oxyloss, don't just heal it instantly
+		carbon_owner.apply_status_effect(/datum/status_effect/slave_to_the_tumor)
+	else
+		ADD_TRAIT(carbon_owner, TRAIT_NOBREATH, SPECIES_TRAIT)
+		ADD_TRAIT(carbon_owner, TRAIT_OXYIMMUNE, SPECIES_TRAIT)
+
+
+/datum/status_effect/master_of_the_house/tick(seconds_between_ticks)
+	var/mob/living/carbon/carbon_owner = owner
+	if(!istype(carbon_owner))
+		return
+
+	// Can't regen blood to over the roundstart blood volume
+	if(carbon_owner.blood_volume >= BLOOD_VOLUME_ROUNDSTART_HEMOPHAGE)
+		return
+
+	carbon_owner.blood_volume += BLOOD_REGEN_MASTER_OF_THE_HOUSE
+
+
+/datum/movespeed_modifier/master_of_the_house
+	blacklisted_movetypes = (FLYING|FLOATING)
+	multiplicative_slowdown = 0.75
+
+/atom/movable/screen/alert/status_effect/master_of_the_house
+	name = "Master of the House"
+	desc = "You are taking back control of your lungs. Breathing once more requires air, but your enriched blood soothes and satiates the hunger within. \
+		You are more sluggish than usual as you maintain this state."
+	icon = 'modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage/icons/screen_alert.dmi'
+	icon_state = "master_of_the_house"
+
+
+/datum/status_effect/slave_to_the_tumor
+	id = "slave_to_the_tumor"
+	alert_type = /atom/movable/screen/alert/status_effect/slave_to_the_tumor
+	duration = 40 SECONDS
+	processing_speed = STATUS_EFFECT_NORMAL_PROCESS
+	/// Snapshot of the mob's oxyloss at the time of getting the status, so we know how much to heal
+	var/oxyloss_to_heal
+
+
+/datum/status_effect/slave_to_the_tumor/on_apply()
+	. = ..()
+	if(!iscarbon(owner))
+		return
+
+	var/mob/living/carbon/carbon_owner = owner
+	oxyloss_to_heal = carbon_owner.getOxyLoss()
+	to_chat(carbon_owner, "You feel a sense of relief as you embrace the tumor once more...")
+
+
+/datum/status_effect/slave_to_the_tumor/on_remove()
+	if(!iscarbon(owner))
+		return
+
+	var/mob/living/carbon/carbon_owner = owner
+	ADD_TRAIT(carbon_owner, TRAIT_NOBREATH, SPECIES_TRAIT)
+	ADD_TRAIT(carbon_owner, TRAIT_OXYIMMUNE, SPECIES_TRAIT)
+
+
+// With the tumor back in control, any accrued oxyloss is healed over the course of this status at the cost of blood (0.25u per point of oxyloss healed).
+/datum/status_effect/slave_to_the_tumor/tick(seconds_between_ticks)
+	var/mob/living/carbon/C = owner
+	if(!istype(C))
+		return
+
+	// Let quirks observe this tick
+	SEND_SIGNAL(C, COMSIG_MOB_HEMO_BLOOD_REGEN_TICK, seconds_between_ticks, src)
+
+	// ...existing oxy heal + blood spend...
+	var/amount_healed = C.adjustOxyLoss(round(-oxyloss_to_heal/(initial(duration) / 10) * seconds_between_ticks, 0.01), forced = TRUE)
+	if(amount_healed)
+		C.blood_volume -= (HEMOKINETIC_REGEN_BLOOD_CONSUMPTION * amount_healed)
+
+
+/atom/movable/screen/alert/status_effect/slave_to_the_tumor
+	name = "Slave to the Tumor"
+	desc = "You've given control of your lungs back to the tumor...it is going to take some time to repair the damage."
+	icon = 'modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage/icons/screen_alert.dmi'
+	icon_state = "slave_to_the_tumor"
 
 
 #undef BLOOD_REGEN_BRUTE_AMOUNT
 #undef BLOOD_REGEN_BURN_AMOUNT
-#undef BLOOD_REGEN_TOXIN_AMOUNT
 #undef BLOOD_REGEN_CELLULAR_AMOUNT
+#undef BLOOD_REGEN_MASTER_OF_THE_HOUSE
+#undef DAMAGE_LIMIT_HEMOKINETIC_REGEN
+#undef HEMOKINETIC_REGEN_BLOOD_CONSUMPTION
+#undef HEMOKINETIC_REGEN_HEALING
