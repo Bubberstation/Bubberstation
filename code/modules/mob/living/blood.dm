@@ -96,6 +96,12 @@
 			if(SPT_PROB(7.5, seconds_per_tick))
 				Unconscious(rand(1 SECONDS, 2 SECONDS))
 				to_chat(src, span_userdanger("You black out for a moment!"))
+
+				// BUBBERSTATION EDIT ADDITION START
+				if(ishemophage(src))
+					src.visible_message(span_warning("[src] convulses before crumpling to the floor, black veins beginning to throb outwardly along their body."), ignored_mobs = src)
+				// BUBBERSTATION EDIT ADDITION END
+
 		// Instantly die upon this threshold
 		if(-INFINITY to BLOOD_VOLUME_SURVIVE)
 			if(!HAS_TRAIT(src, TRAIT_NODEATH))
