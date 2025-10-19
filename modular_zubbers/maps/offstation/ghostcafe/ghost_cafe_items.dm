@@ -18,3 +18,5 @@
 	name = "Human Observation Console"
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "camera"
+	icon_keyboard = null
+	icon_screen = null
