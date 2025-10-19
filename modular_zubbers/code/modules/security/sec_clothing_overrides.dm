@@ -181,7 +181,7 @@
 		show_contents(user)
 		return
 
-	if(!user.CanReach(resolve_parent))
+	if(!resolve_parent.IsReachableBy(user))
 		resolve_parent.balloon_alert(user, "can't reach!")
 		return FALSE
 
