@@ -73,6 +73,7 @@
 	id = /obj/item/card/id/advanced/chameleon/ghost_cafe
 	back = /obj/item/storage/backpack/chameleon
 	backpack_contents = list(/obj/item/storage/box/syndie_kit/chameleon/ghostcafe = 1)
+	skillchips = list(/obj/item/skillchip/job/roboticist, /obj/item/skillchip/job/engineer)
 
 /datum/action/toggle_dead_chat_mob
 	button_icon = 'icons/mob/simple/mob.dmi'
@@ -102,7 +103,7 @@
 	atom_storage.max_slots = 14 // Holds all the starting stuff, plus a bit of change.
 	atom_storage.max_total_storage = 50 // To actually acommodate the stuff being added.
 
-/obj/item/storage/box/syndie_kit/chameleon/ghostcafe/PopulateContents() // Doesn't contain a PDA, for isolation reasons.
+/obj/item/storage/box/syndie_kit/chameleon/ghostcafe/PopulateContents() // Doesn't contain a PDA or radio, for isolation reasons.
 	new /obj/item/clothing/under/chameleon(src)
 	new /obj/item/clothing/suit/chameleon(src)
 	new /obj/item/clothing/gloves/chameleon(src)
@@ -114,6 +115,7 @@
 	new /obj/item/storage/belt/chameleon(src)
 	new /obj/item/card/id/advanced/chameleon(src)
 	new /obj/item/stamp/chameleon(src)
+	new /obj/item/gun/energy/laser/chameleon(src) //Does no damage.
 	new /obj/item/hhmirror/syndie(src)
 
 /obj/item/card/id/advanced/chameleon/ghost_cafe

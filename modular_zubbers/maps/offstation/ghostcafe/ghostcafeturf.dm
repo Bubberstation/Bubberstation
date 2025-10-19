@@ -1,13 +1,12 @@
-/turf/open/lava/fake
+/turf/open/fakelava
 	name = "lava"
 	desc = "Go on. Step in it. Maybe you'll be like some sort of Lava based Jesus."
 	planetary_atmos = TRUE
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
-	lava_damage = 0
-	lava_firestacks = 0
-	temperature_damage = 0
-	immunity_trait = TRAIT_GHOSTROLE
-	immunity_resistance_flags = LAVA_PROOF
+	var/mask_icon = 'icons/turf/floors.dmi'
+	var/mask_state = "lava-lightmask"
+	var/fish_source_type = /datum/fish_source/lavaland
+	icon_state = "lava"
 
 /turf/open/floor/plating/vox
 	name = "nitrogen-filled plating"

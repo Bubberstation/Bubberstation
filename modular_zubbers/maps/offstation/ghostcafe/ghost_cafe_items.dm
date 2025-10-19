@@ -13,3 +13,8 @@
 	add_overlay("rdcomp")
 	add_overlay("rd_key")
 
+
+/obj/machinery/computer/camera_advanced/cafe
+	name = "Human Observation Console"
+	icon = 'icons/obj/antags/abductor.dmi'
+	icon_state = "camera"
