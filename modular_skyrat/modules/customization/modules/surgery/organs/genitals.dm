@@ -562,7 +562,7 @@
 		return
 
 	var/arousal_target = tgui_input_number(src, "[AROUSAL_NONE]= No arousal, <[AROUSAL_LOW] Low/partial Arousal, [AROUSAL_LOW] - [AROUSAL_HIGH] Medium/full Arousal, >[AROUSAL_HIGH] Strong/full Arousal", "Set Arousal Amount", AROUSAL_NONE, AROUSAL_LIMIT, AROUSAL_MINIMUM)
-	if (arousal_target != null)
+	if (arousal_target != isnull)
 		keep_arousal_on_goal = TRUE
 		arousal_goal = arousal_target
 	return
