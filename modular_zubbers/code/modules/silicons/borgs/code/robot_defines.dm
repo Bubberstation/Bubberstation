@@ -9,7 +9,7 @@
 
 /mob/living/silicon/robot/model/centcom
 	icon = CYBORG_ICON_CENTCOM
-	icon_state = "centcomm"
+	icon_state = "centcom"
 	faction = list(ROLE_DEATHSQUAD)
 	req_access = list(ACCESS_CENT_GENERAL)
 	lawupdate = FALSE
