@@ -22,7 +22,7 @@
 	return get_entry(STORY_VAULT_CREW_ALIVE_COUNT) ? get_entry(STORY_VAULT_CREW_ALIVE_COUNT) : 0
 
 
-/datum/storyteller_inputs/proc/atnag_count()
+/datum/storyteller_inputs/proc/antag_count()
 	return get_entry(STORY_VAULT_ANTAG_ALIVE_COUNT) ? get_entry(STORY_VAULT_ANTAG_ALIVE_COUNT) : 0
 
 
@@ -36,7 +36,7 @@
 	return get_entry(STORY_VAULT_ANTAG_WEIGHT) ? get_entry(STORY_VAULT_ANTAG_WEIGHT) : 0
 
 /datum/storyteller_inputs/proc/antag_weight_normalized()
-	return antag_weight() / atnag_count()
+	return antag_weight() / antag_count()
 
 /datum/storyteller_inputs/proc/antag_crew_ratio()
 	var/crew_weight = crew_weight() ? crew_weight() : 1

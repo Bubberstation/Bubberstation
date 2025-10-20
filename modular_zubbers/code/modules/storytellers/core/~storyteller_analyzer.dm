@@ -1,8 +1,3 @@
-#define MOB_PLAYER "player"
-#define MOB_ANTAGONIST "antagonist"
-#define TOTAL_PLAYERS "total_players"
-#define TOTAL_ANTAGS "total_antags"
-
 // Analyzer
 // and weights for crew and antagonists. These metrics influence event planning,
 // global goal selection, and balancing in the storyteller.
@@ -10,15 +5,15 @@
 // Crew/antag weights help balance player vs. threat dynamics.
 /datum/storyteller_analyzer
 	// Our storyteller instance
-	var/datum/storyteller/owner
+	VAR_PRIVATE/datum/storyteller/owner
 	/// Multiplier for the station value (can be adjusted by mood or other factors)
 	var/multiplier = 1.0
 
-	var/list/check_list = list ()
+	VAR_PRIVATE/list/check_list = list()
 
 	var/analyzing = FALSE
 
-	var/cache_duration = 1 MINUTES
+	VAR_PRIVATE/cache_duration = 1 MINUTES
 
 	COOLDOWN_DECLARE(inputs_cahche_duration)
 
@@ -30,14 +25,7 @@
 
 	VAR_PRIVATE/datum/station_state/cached_state
 
-	/// Role multipliers overrides (higher for key roles like security/heads)
-	var/list/role_multipliers = list(
-		JOB_SECURITY_OFFICER = 1.3,
-		JOB_HEAD_OF_SECURITY = 1.5,
-		JOB_CAPTAIN = 1.6,
-		JOB_HEAD_OF_PERSONNEL = 1.3,
-	)
-
+	VAR_PRIVATE/list/current_stack = list()
 
 /datum/storyteller_analyzer/New(datum/storyteller/_owner)
 	..()
@@ -49,25 +37,39 @@
 			continue
 		check_list += new type
 
+
 	cached_state = new
 	actual_state = new
+	SSstorytellers.register_analyzer(src)
+
+/datum/storyteller_analyzer/Destroy(force)
+	SSstorytellers.unregister_analyzer(src)
+	. = ..()
+
+
+/datum/storyteller_analyzer/process(seconds_per_tick)
+	if(COOLDOWN_FINISHED(src, inputs_cahche_duration))
+		INVOKE_ASYNC(src, PROC_REF(scan_station))
 
 
 /datum/storyteller_analyzer/proc/get_inputs(scan_flags)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	RETURN_TYPE(/datum/storyteller_inputs)
-
-	if(COOLDOWN_FINISHED(src, inputs_cahche_duration))
-		INVOKE_ASYNC(src, PROC_REF(scan_station), scan_flags)
-
 	return actual_inputs
 
 
 /datum/storyteller_analyzer/proc/scan_station(scan_flags)
 	set waitfor = FALSE
+
+	if(analyzing)
+		return
+
+
+	current_stack = list()
 	analyzing = TRUE
 	SEND_SIGNAL(src, COMSIG_STORYTELLER_RUN_METRICS)
 
+	var/start_time = world.time
 	if(scan_flags & RESCAN_STATION_VALUE)
 		compute_station_value()
 	if(scan_flags & RESCAN_STATION_INTEGRITY)
@@ -82,6 +84,7 @@
 	for(var/datum/storyteller_metric/check in check_list)
 		if(!check.can_perform_now(src, owner, inputs, scan_flags))
 			continue
+		current_stack += check
 		metrics_count++
 		// Protect metric execution
 		INVOKE_ASYNC(src, PROC_REF(__run_metric_safe), check, inputs, scan_flags)
@@ -101,8 +104,11 @@
 		log_storyteller_analyzer("Analyzer scan timed out; continuing with partial inputs")
 
 	actual_inputs = inputs
+	var/end_time = world.time - start_time
+	current_stack = list()
 	SEND_SIGNAL(src, COMSIG_STORYTELLER_FINISHED_ALYZING, inputs, time_out, metrics_count)
-
+	if(SSstorytellers.hard_debug)
+		message_admins("[owner.name] finished to alalyze station in [end_time SECONDS]")
 
 /datum/storyteller_analyzer/proc/__run_metric_safe(datum/storyteller_metric/check, datum/storyteller_inputs/inputs, scan_flags)
 	INVOKE_ASYNC(check, TYPE_PROC_REF(/datum/storyteller_metric, perform), src, owner, inputs, scan_flags)
@@ -121,11 +127,11 @@
 	if(!(current in check_list))
 		return FALSE
 
-	if(current == check_list[check_list.len])
+	var/datum/storyteller_metric/last_metric = current_stack[current_stack.len]
+	if(current == last_metric)
 		return TRUE
 
 	return FALSE
-
 
 /datum/storyteller_analyzer/proc/get_station_integrity(force = FALSE)
 	set waitfor = FALSE
@@ -185,8 +191,3 @@
 
 /datum/storyteller_analyzer/proc/calculate_crew_satisfaction()
 	return 50
-
-#undef MOB_PLAYER
-#undef MOB_ANTAGONIST
-#undef TOTAL_PLAYERS
-#undef TOTAL_ANTAGS

@@ -5,12 +5,10 @@
 SUBSYSTEM_DEF(storytellers)
 	name = "AI Storytellers"
 	runlevels = RUNLEVEL_GAME
-	wait = 1 SECONDS
-	priority = FIRE_PRIORITY_STORYTELLERS
 
+	wait = 10
 	var/hard_debug = FALSE
 	var/simulation = FALSE
-
 	var/selected_id
 	// Difficulty selected on vote
 	var/selected_difficulty
@@ -24,6 +22,8 @@ SUBSYSTEM_DEF(storytellers)
 	VAR_PRIVATE/list/active_events = list()
 
 	VAR_PRIVATE/list/simulated_atoms = list()
+
+	VAR_PRIVATE/list/processed_metrics = list()
 
 	var/list/storyteller_vote_uis = list()
 
@@ -47,10 +47,8 @@ SUBSYSTEM_DEF(storytellers)
 
 
 /datum/controller/subsystem/storytellers/Initialize()
-	. = ..()
 	// Load storyteller data from JSON
 	load_storyteller_data()
-
 	goals_by_id = list()
 	goal_roots = list()
 	goals_by_category = list()
@@ -214,6 +212,11 @@ SUBSYSTEM_DEF(storytellers)
 			active_events -= evt
 			continue
 		evt.__process_for_storyteller(world.tick_lag)
+	for(var/datum/storyteller_analyzer/A in processed_metrics)
+		if(!A || QDELETED(A))
+			processed_metrics -= A
+			continue
+		A.process(world.tick_lag)
 
 /datum/controller/subsystem/storytellers/proc/setup_game()
 
@@ -404,6 +407,18 @@ SUBSYSTEM_DEF(storytellers)
 	if(!E || QDELETED(E))
 		return
 	active_events -= E
+
+/datum/controller/subsystem/storytellers/proc/register_analyzer(datum/storyteller_analyzer/A)
+	if(!A || QDELETED(A))
+		return
+	processed_metrics += A
+
+/datum/controller/subsystem/storytellers/proc/unregister_analyzer(datum/storyteller_analyzer/A)
+	if(!A || QDELETED(A))
+		return
+	processed_metrics -= A
+
+
 
 /datum/config_entry/flag/storyteller_replace_dynamic
 	default = TRUE

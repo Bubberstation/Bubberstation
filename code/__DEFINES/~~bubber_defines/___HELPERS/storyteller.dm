@@ -96,6 +96,6 @@
 			unsafe_vents += 1
 			continue
 
-	if(unsafe_vents >= round(total_vents * 0.5))
-		return FALSE
+	if(!(total_vents == 1 && unsafe_vents == 0))
+		return !(unsafe_vents > round(total_vents * 0.5))
 	return TRUE

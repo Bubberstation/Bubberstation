@@ -2,7 +2,7 @@
 	name = "Antagonist Activity Aggregation"
 
 /datum/storyteller_metric/antagonist_activity/can_perform_now(datum/storyteller_analyzer/anl, datum/storyteller/ctl, datum/storyteller_inputs/inputs, scan_flags)
-	return inputs.atnag_count() > 0
+	return inputs.antag_count() > 0
 
 /datum/storyteller_metric/antagonist_activity/perform(datum/storyteller_analyzer/anl, datum/storyteller/ctl, datum/storyteller_inputs/inputs, scan_flags)
 	..()
@@ -87,8 +87,8 @@
 		inputs.vault[STORY_VAULT_ANTAG_DISRUPTION] = clamp(total_disruption / max(1, alive_antags), 0, 3)
 		inputs.vault[STORY_VAULT_ANTAG_INFLUENCE] = clamp(total_influence / max(1, alive_antags), 0, 3)
 
-		var/dead_count = inputs.atnag_count() - alive_antags
-		inputs.vault[STORY_VAULT_ANTAG_DEAD_RATIO] = clamp((dead_count / max(1, inputs.atnag_count())) * 3, 0, 3)
+		var/dead_count = inputs.antag_count() - alive_antags
+		inputs.vault[STORY_VAULT_ANTAG_DEAD_RATIO] = clamp((dead_count / max(1, inputs.antag_count())) * 3, 0, 3)
 		inputs.vault[STORY_VAULT_ANTAGONIST_PRESENCE] = clamp(alive_antags >= 4 ? 3 : (alive_antags >= 2 ? 2 : 1), 0, 3)
 		inputs.vault[STORY_VAULT_ANTAG_INACTIVE_RATIO] = (inactive_count / alive_antags)
 		inputs.vault[STORY_VAULT_ANTAG_INTENSITY] = clamp(activity_score / alive_antags, 0, 3)

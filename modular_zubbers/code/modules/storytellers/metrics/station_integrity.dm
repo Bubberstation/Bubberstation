@@ -8,7 +8,10 @@
 		/area/station/engineering/supermatter,
 		/area/station/science/ordnance,
 		/area/station/service/kitchen/coldroom,
-		/area/station/tcommsat
+		/area/station/science/ordnance/bomb,
+		/area/station/medical/coldroom,
+		/area/station/tcommsat,
+		/area/station/solars,
 	)
 
 
@@ -19,42 +22,50 @@
 	if(!length(to_analyze))
 		return
 
-	var/total_firespots = 0
-	var/unsafe_areas = 0
-	var/checked_areas = 0
-	var/total_area_size = 0
-	var/weighted_safe_score = 0
+	var/total_firespots_weight = 0  // Weighted fires (by area size with fire)
+	var/unsafe_areas = 0             // Count unsafe (for damage_level)
+	var/total_unsafe_area_size = 0   // Total size of unsafe areas
+	var/checked_areas = 0            // Total valid areas
+	var/total_area_size = 0          // Total size of valid areas
+	var/weighted_safe_score = 0      // Sum size of safe areas
 
 
 	for(var/area/station/station_area in to_analyze)
 		if(station_area in ignored_areas)
 			continue
-		if(station_area.outdoors || !length(station_area.air_vents))
+		if(station_area.outdoors || station_area.area_flags & NO_GRAVITY)
 			continue
 
 		var/area_size = station_area.areasize
 		total_area_size += area_size
 		checked_areas += 1
 
-		if(length(station_area.firealarms))
-			total_firespots += 1
+		if(station_area.fire)
+			total_firespots_weight += area_size / total_area_size
 
-		if(!is_safe_area(station_area))
+		if(!is_safe_area(station_area) || !length(station_area.air_vents))
 			unsafe_areas += 1
+			total_unsafe_area_size += area_size
 		else
 			weighted_safe_score += area_size
 
 
+	// Base integrity as % safe size * 100
 	var/safe_percentage = total_area_size > 0 ? (weighted_safe_score / total_area_size) : 0
 	var/base_integrity = safe_percentage * 100
-	var/penalty_unsafe = unsafe_areas * STORY_INTEGRITY_PENALTY_UNSAFE
-	var/penalty_fires = total_firespots * STORY_INTEGRITY_PENALTY_FIRES
+
+	// Penalties based on unsafe % size and weighted fires (no count-based, size-focused)
+	var/unsafe_percentage = total_area_size > 0 ? (total_unsafe_area_size / total_area_size) * 100 : 0
+	var/penalty_unsafe = unsafe_percentage * (STORY_INTEGRITY_PENALTY_UNSAFE / 100)  // Scale penalty by % unsafe
+	var/penalty_fires = total_firespots_weight * STORY_INTEGRITY_PENALTY_FIRES  // Weighted by fire areas size
 	var/raw_integrity = clamp(base_integrity - penalty_unsafe - penalty_fires, 0, 100)
-	var/damage_level = clamp((unsafe_areas / max(checked_areas * 0.1, 1)) + (total_firespots / max(checked_areas * 0.05, 1)), 0, 3)
+
+	// Damage level based on % unsafe size + weighted fires (relative, not count)
+	var/damage_level = clamp((unsafe_percentage / 100 * STORY_VAULT_CRITICAL_DAMAGE) + (total_firespots_weight * 1.5), 0, 3)  // *1.5 tune for fires sensitivity
 
 
-	inputs.set_entry(STORY_VAULT_INFRA_DAMAGE, round(damage_level))
-	inputs.set_entry(STORY_VAULT_STATION_INTEGRITY, round(raw_integrity))
+	inputs.vault[STORY_VAULT_INFRA_DAMAGE] = round(damage_level)
+	inputs.vault[STORY_VAULT_STATION_INTEGRITY] = round(raw_integrity)
 	..()
 
 

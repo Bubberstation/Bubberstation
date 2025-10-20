@@ -150,25 +150,23 @@
 	if(SEND_SIGNAL(src, COMSIG_STORYTELLER_PRE_THINK) & COMPONENT_THINK_BLOCKED && !force)
 		return
 
-	// 1) Analyze: sample station metrics, compute crew/antag weights, update vault
-	inputs = analyzer.get_inputs()
 
-	// 2) Balance snapshot: derive tension, station strength, antag efficacy/inactivity
+	// 1) Balance snapshot: derive tension, station strength, antag efficacy/inactivity
 	var/datum/storyteller_balance_snapshot/snap = balancer.make_snapshot(inputs)
 	player_antag_balance = round(snap.overall_tension)
 
-	// 3) Mood: adapt mood based on current tension vs target and recent adaptation
+	// 2) Mood: adapt mood based on current tension vs target and recent adaptation
 	if(world.time - last_mood_update_time > mood_update_interval)
 		update_mood_based_on_balance(snap)
 		last_mood_update_time = world.time
 
 
-	// 4) plan anf fire goals
+	// 3) plan anf fire goals
 	var/list/fired = planner.update_plan(src, inputs, snap)
 	for(var/datum/storyteller_goal/completed_goal in fired)
 		post_goal(completed_goal)
 
-	// 5) Passive threat/adaptation drift each think
+	// 4) Passive threat/adaptation drift each think
 	threat_points = min(max_threat_scale, threat_points + threat_growth_rate * mood.get_threat_multiplier())
 
 	if(!HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ADAPTATION_DECAY))
@@ -183,7 +181,7 @@
 	current_tension = snap.overall_tension
 	balancer.tension_bonus = max(balancer.tension_bonus - STORY_TENSION_BONUS_DECAY_RATE * difficulty_multiplier, 0)
 	update_population_factor()
-	// 6) Schedule next cycle
+	// 5) Schedule next cycle
 	schedule_next_think()
 	SEND_SIGNAL(src, COMSIG_STORYTELLER_POST_THINK)
 
@@ -298,7 +296,7 @@
 	return inputs.player_count()
 
 /datum/storyteller/proc/get_active_antagonist_count()
-	return inputs.atnag_count()
+	return inputs.antag_count()
 
 /datum/storyteller/proc/run_metrics(flags)
 	INVOKE_ASYNC(analyzer, TYPE_PROC_REF(/datum/storyteller_analyzer, scan_station), flags)

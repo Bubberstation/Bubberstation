@@ -16,7 +16,7 @@
 	var/inactive_activity_threshold = STORY_BALANCER_INACTIVE_ACTIVITY_THRESHOLD
 	/// Station strength multiplier (e.g., high crew health/resources = higher value)
 	var/station_strength_multiplier = STORY_STATION_STRENGTH_MULTIPLIER
-	/// A tansion bonus comming from completed bad/escalation goals
+	/// A tension bonus coming from completed bad/escalation goals (from planner history)
 	var/tension_bonus
 
 /datum/storyteller_balance/New(_owner)
@@ -27,48 +27,60 @@
 /datum/storyteller_balance/proc/make_snapshot(datum/storyteller_inputs/inputs)
 	var/datum/storyteller_balance_snapshot/snap = new
 
+	// Station strength calculations (raw 0-100, normalized 0-1)
 	var/raw_station_strength = get_station_strength(inputs, inputs.vault)
 	var/station_strength_mod = get_strength_multiplayer(inputs, inputs.vault)
 	snap.station_strength = clamp(raw_station_strength * station_strength_mod / 100, 0, 1)
 	snap.station_strength_raw = clamp(raw_station_strength * station_strength_mod, 0, 100)
 
-
+	// Antag strength calculations (raw 0-100, effectiveness 0-1)
 	var/antag_strength_raw = get_antagonist_strength(inputs, inputs.vault)
 	snap.antag_strength_raw = antag_strength_raw
-	snap.antag_effectiveness = antag_strength_raw / 10
+	snap.antag_effectiveness = antag_strength_raw / 100  // Normalized for contrib
 
-
+	// Weights (scaled by strength/effectiveness)
 	var/total_players = inputs.vault[STORY_VAULT_CREW_ALIVE_COUNT] || 0
 	snap.total_player_weight = total_players * player_weight * snap.station_strength_raw / 100
 
-	var/antag_count = inputs.atnag_count()
+	var/antag_count = inputs.antag_count()
 	snap.total_antag_weight = antag_count * antag_weight * snap.antag_effectiveness
 
-	// Ratio between station and antagonist strength
+	// Ratio between station and antagonist strength (>1 = antag advantage)
 	snap.ratio = antag_strength_raw / max(snap.station_strength_raw, 1)
+
+	// Activity and flags
 	snap.antag_activity_index = (inputs.vault[STORY_VAULT_ANTAGONIST_ACTIVITY] || 0) / 3
 	snap.antag_weak = snap.antag_effectiveness < weak_antag_threshold
 	snap.antag_inactive = snap.antag_activity_index < inactive_activity_threshold
 
-	var/base_tension = (tension_bonus * (1 - owner.adaptation_factor)) * owner.get_effective_threat()
+	snap.resource_strength = get_resource_strength(inputs.vault)
+	snap.crew_health_index = get_crew_health_index(inputs.vault)  // Assume helper
+	snap.antag_coordinated = (inputs.vault[STORY_VAULT_ANTAG_TEAMWORK] || 0) > 1.5
+	snap.antag_stealthy = (inputs.vault[STORY_VAULT_ANTAG_STEALTH] || 0) > 1.5
+	snap.station_vulnerable = snap.station_strength < 0.5 || snap.crew_health_index > 0.7
+	snap.ratio = max(snap.ratio, 1) // Evode division by zero
+
+	var/base_tension = (tension_bonus * (1 - owner.adaptation_factor)) * owner.get_effective_threat() * clamp(1 / snap.ratio, 0.5, 2.0)
+
+	// Contribs: antag activity/effect + integrity tension (vulnerable station → +tension)
 	var/antag_contrib = (snap.antag_effectiveness + snap.antag_activity_index) * 25
-	var/station_penalty = (1 - snap.station_strength) * 20
-	var/extra_tenstion = 0
+	var/integrity_tension = get_station_integrity_tension(inputs)  // Integrated: station_penalty + power/infra
+
+	// Extra: flags + lowpop mod (light, no loops)
+	var/extra_tension = 0
 	if(snap.antag_coordinated)
-		extra_tenstion += 5
+		extra_tension += 5
 	if(snap.antag_stealthy)
-		extra_tenstion += 5
+		extra_tension += 5
 	if(snap.station_vulnerable)
-		extra_tenstion += 10
+		extra_tension += 10
 	if(snap.ratio > 1.2)
-		extra_tenstion += 10
-	if(inputs.vault[STORY_VAULT_CREW_ALIVE_COUNT] && inputs.vault[STORY_VAULT_CREW_ALIVE_COUNT] < 15) // Lowpop mod
-		extra_tenstion += 30
-	snap.overall_tension = clamp(base_tension + antag_contrib + station_penalty + extra_tenstion, 0, 100)
+		extra_tension += 10
+	if(inputs.vault[STORY_VAULT_CREW_ALIVE_COUNT] && inputs.vault[STORY_VAULT_CREW_ALIVE_COUNT] < 15)
+		extra_tension += 10 // Lowpop bias to more events
+	snap.overall_tension = clamp(base_tension + antag_contrib + integrity_tension + extra_tension, 0, 100)
 
 	return snap
-
-
 
 // Returns normalized raw station strength from 0 to 100
 /datum/storyteller_balance/proc/get_station_strength(datum/storyteller_inputs/inputs, list/vault)
@@ -76,23 +88,19 @@
 
 	var/crew_readiness = vault[STORY_VAULT_CREW_READINESS] // Readiness of the crew
 	var/crew_weight = inputs.crew_weight()
-	var/station_integrity = inputs.get_station_integrity() // Station integrity (0-100)
 	var/security_count = vault[STORY_VAULT_SECURITY_COUNT]
 	var/security_strength = vault[STORY_VAULT_SECURITY_STRENGTH]
 
-	// Magic vars
 	var/weight_crew_readiness = 0.3
-	var/weight_station_integrity = 0.3
-	var/crew_weight_scaled = 0.3
+	var/weight_crew_weight = 0.3
 	var/weight_security = 0.2
 	var/security_contribution = (security_count * security_strength) / 100
 
-	// Calculate total station strength
+	// Calculate total station strength (light sum)
 	var/station_strength = \
-		(crew_weight * crew_weight_scaled) + \
+		(crew_weight * weight_crew_weight) + \
 		(crew_readiness * weight_crew_readiness) + \
-		(station_integrity * weight_station_integrity) + \
-		(security_contribution * weight_security)
+		(security_contribution * weight_security) * 10.0 // For proper scaling
 	return clamp(station_strength, 0, 100)
 
 
@@ -126,6 +134,7 @@
 	if(vault[STORY_VAULT_STATION_ALLIES])
 		final_modificator += 0.6
 
+	return final_modificator
 
 // Returns raw antagonist strength (0-100) based on vault metrics
 // Aggregates activity, kills, objectives, etc., with penalties for deaths/inactivity
@@ -133,7 +142,7 @@
 /datum/storyteller_balance/proc/get_antagonist_strength(datum/storyteller_inputs/inputs, list/vault)
 	PRIVATE_PROC(TRUE)
 
-	if(inputs.atnag_count() <= 0)
+	if(inputs.antag_count() <= 0)
 		return 0
 
 	// Pull metrics from vault (0-3 unless noted)
@@ -150,7 +159,6 @@
 	var/stealth = vault[STORY_VAULT_ANTAG_STEALTH] || 0
 	var/escalation = vault[STORY_VAULT_THREAT_ESCALATION] || 0
 
-	// Yes, it's actually magic vars
 	var/weight_activity = 0.15
 	var/weight_kills = 0.10
 	var/weight_objectives = 0.15
@@ -194,7 +202,7 @@
 	var/overall_strength_norm = clamp(core_strength + presence_mod + survival_mod + activity_mod - 0.5, 0, 1)  // -0.5 centers base at ~0.5
 
 	// Relative scale: antag_count vs. player_count (ideal 5-20% antags; scale 0.5-2.0)
-	var/relative_scale = clamp(inputs.atnag_count() / max(inputs.player_count() * 0.1, 1), 0.5, 2.0)
+	var/relative_scale = clamp(inputs.antag_count() / max(inputs.player_count() * 0.1, 1), 0.5, 2.0)
 
 	// Final raw strength: normalize * scale * 100
 	var/final_strength = clamp(overall_strength_norm * relative_scale * 100, 0, 100)
@@ -203,11 +211,75 @@
 
 
 
+#define STORY_INTEGRITY_TENSION_WEIGHT_HULL 0.4    // Weight for hull_integrity in tension
+#define STORY_INTEGRITY_TENSION_WEIGHT_INFRA 0.3   // Weight for infra_damage
+#define STORY_INTEGRITY_TENSION_WEIGHT_POWER 0.3   // Weight for power_grid_strength
+#define STORY_INTEGRITY_TENSION_MAX 50             // Max tension contribution (+ for damage)
+#define STORY_INTEGRITY_TENSION_MIN -20            // Min tension (bonus for perfect state)
+
+
+// Returns tension contribution from station integrity (-20 to +50)
+// Based on hull, infra_damage, power; high damage → +tension (vulnerable station → escalate threats in planner)
+/datum/storyteller_balance/proc/get_station_integrity_tension(datum/storyteller_inputs/inputs)
+	PRIVATE_PROC(TRUE)
+
+	var/tension = 0
+
+	// Pull raw values from vault (0-100 for integrity/power, 0-3 for damage)
+	var/hull_integrity = inputs.get_station_integrity() || 100
+	var/infra_damage = inputs.vault[STORY_VAULT_INFRA_DAMAGE] || STORY_VAULT_NO_DAMAGE
+	var/power_strength = inputs.vault[STORY_VAULT_POWER_GRID_STRENGTH] || 100
+	var/power_damage = inputs.vault[STORY_VAULT_POWER_GRID_DAMAGE] || STORY_VAULT_POWER_GRID_NOMINAL
+
+
+	var/norm_hull = 1 - (hull_integrity / 100)
+	var/norm_infra = infra_damage / STORY_VAULT_CRITICAL_DAMAGE
+	var/norm_power = 1 - (power_strength / 100)
+
+
+	var/base_tension = (norm_hull * STORY_INTEGRITY_TENSION_WEIGHT_HULL * STORY_INTEGRITY_TENSION_MAX) + \
+		(norm_infra * STORY_INTEGRITY_TENSION_WEIGHT_INFRA * STORY_INTEGRITY_TENSION_MAX) + \
+		(norm_power * STORY_INTEGRITY_TENSION_WEIGHT_POWER * STORY_INTEGRITY_TENSION_MAX)
+
+
+	if(infra_damage <= STORY_VAULT_NO_DAMAGE)
+		tension += -5  // Bonus: perfect infra → lower tension → positive goals possible
+	else if(infra_damage <= STORY_VAULT_MINOR_DAMAGE)
+		tension += 5
+	else if(infra_damage <= STORY_VAULT_MAJOR_DAMAGE)
+		tension += 25
+	else if(infra_damage <= STORY_VAULT_CRITICAL_DAMAGE)
+		tension += 40
+
+	if(power_damage <= STORY_VAULT_POWER_GRID_NOMINAL)
+		tension += -5  // Bonus: full power → lower tension
+	else if(power_damage <= STORY_VAULT_POWER_GRID_FAILURES)
+		tension += 3
+	else if(power_damage <= STORY_VAULT_POWER_GRID_DAMAGED)
+		tension += 5
+	else if(power_damage <= STORY_VAULT_POWER_GRID_CRITICAL)
+		tension += 15
+
+	tension += base_tension
+	tension = clamp(tension, STORY_INTEGRITY_TENSION_MIN, STORY_INTEGRITY_TENSION_MAX)
+
+	return tension
+
+#undef STORY_INTEGRITY_TENSION_WEIGHT_HULL
+#undef STORY_INTEGRITY_TENSION_WEIGHT_INFRA
+#undef STORY_INTEGRITY_TENSION_WEIGHT_POWER
+#undef STORY_INTEGRITY_TENSION_MAX
+#undef STORY_INTEGRITY_TENSION_MIN
+
+
 /datum/storyteller_balance/proc/get_resource_strength(list/vault)
 	var/minerals = vault[STORY_VAULT_RESOURCE_MINERALS] || 0
 	var/other = vault[STORY_VAULT_RESOURCE_OTHER] || 0
 	return clamp((minerals / 1000 + other / 100000), 0, 1)
 
+/datum/storyteller_balance/proc/get_crew_health_index(list/vault)
+	var/avg_health = vault[STORY_VAULT_CREW_HEALTH] || 100
+	return clamp(1 - (avg_health / 100), 0, 1)  // 1 = bad health (vulnerable)
 
 // Snapshot datum
 /datum/storyteller_balance_snapshot
