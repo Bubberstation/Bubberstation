@@ -19,3 +19,7 @@
 		/obj/item/melee/energy/sword,
 		/obj/item/shield/energy,
 	)
+
+//added so persistence interdyne mod isn't stupid fast
+/datum/mod_theme/interdyne/persistence
+	slowdown_deployed = 0

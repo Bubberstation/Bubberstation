@@ -25,6 +25,11 @@
 	storage_type = /obj/item/tank/internals/emergency_oxygen/double
 	mask_type = /obj/item/clothing/mask/gas/syndicate
 
+/obj/machinery/suit_storage_unit/industrial/syndicatemed
+	mod_type = /obj/item/mod/control/pre_equipped/interdyne/persistence
+	storage_type = /obj/item/tank/internals/emergency_oxygen/double
+	mask_type = /obj/item/clothing/mask/gas/syndicate
+
 //Modsuit loadouts
 
 //morale officer suit
@@ -71,3 +76,5 @@
 	inbuilt_modules = list()
 	slot_flags = ITEM_SLOT_BACK
 
+/obj/item/mod/control/pre_equipped/interdyne/persistence
+	theme = /datum/mod_theme/interdyne/persistence
