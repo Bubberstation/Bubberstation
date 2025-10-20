@@ -38,9 +38,11 @@ SUBSYSTEM_DEF(storytellers)
 	/// Loaded storyteller data from JSON: id -> assoc list(name, desc, mood_type, base_think_delay, etc.)
 	var/list/storyteller_data = list()
 
-	// Config vars (read from config/storyteller.txt or similar; assume /datum/controller/configuration loads them)
+	/// Config-value: should storyteller overrides dynamic
 	var/storyteller_replace_dynamic = TRUE
+	/// Config-value: should storyteller helps to antagonist
 	var/storyteller_helps_antags = FALSE
+	/// Config-value: should storyteller speak with station
 	var/storyteller_allows_speech = TRUE
 
 
@@ -58,7 +60,7 @@ SUBSYSTEM_DEF(storytellers)
 	storyteller_helps_antags = config.Get(/datum/config_entry/flag/storyteller_helps_antags) || FALSE
 	storyteller_allows_speech = config.Get(/datum/config_entry/flag/storyteller_allows_speech) || TRUE
 
-	RegisterSignal(src, COMSIG_GLOB_MOB_LOGGED_IN, PROC_REF(on_login))
+	RegisterSignal(src, COMSIG_GLOB_CLIENT_CONNECT, PROC_REF(on_login))
 	return SS_INIT_SUCCESS
 
 /// Initializes the active storyteller from selected_id (JSON profile), applying parsed data for adaptive behavior.
@@ -253,10 +255,10 @@ SUBSYSTEM_DEF(storytellers)
 	message_admins(span_bolditalic("ICES and random events were disabled by Storyteller"))
 
 
-/datum/controller/subsystem/storytellers/proc/on_login(mob/new_client)
+/datum/controller/subsystem/storytellers/proc/on_login(client/new_client)
 	SIGNAL_HANDLER
 	if(vote_active)
-		var/datum/storyteller_vote_ui/ui = new(new_client.client, current_vote_duration)
+		var/datum/storyteller_vote_ui/ui = new(new_client, current_vote_duration)
 		INVOKE_ASYNC(ui, TYPE_PROC_REF(/datum/storyteller_vote_ui, ui_interact), new_client)
 
 /datum/controller/subsystem/storytellers/proc/register_atom_for_storyteller(atom/A)

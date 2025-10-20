@@ -150,7 +150,7 @@
 		return STORY_GOAL_BAD
 	else if(roll < prob_good + prob_bad + prob_neutral)
 		return STORY_GOAL_NEUTRAL
-	else if(roll < prob_random * ctl.mood.get_variance_multiplier())
+	else if(roll < prob_random)
 		return STORY_GOAL_RANDOM
 	else
 		return STORY_GOAL_RANDOM

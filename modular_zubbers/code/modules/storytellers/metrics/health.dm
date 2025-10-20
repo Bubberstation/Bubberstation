@@ -1,36 +1,38 @@
-// Threshold defines for health damage levels
-#define HEALTH_LOW_THRESHOLD 70
-#define HEALTH_DAMAGED_THRESHOLD 40
-#define HEALTH_NORMAL_THRESHOLD 10
+// Threshold defines for health damage levels (avg damage per alive)
+#define HEALTH_LOW_THRESHOLD 70      // High damage → low health level
+#define HEALTH_DAMAGED_THRESHOLD 40  // Medium damage
+#define HEALTH_NORMAL_THRESHOLD 10   // Low damage
 
-// Threshold defines for wounding levels
-#define WOUNDING_CRITICAL_THRESHOLD 3
+// Threshold defines for wounding levels (avg wounds per alive)
+#define WOUNDING_CRITICAL_THRESHOLD 3  // Many wounds
 #define WOUNDING_MANY_THRESHOLD 2
 #define WOUNDING_SOME_THRESHOLD 1
 
-// Threshold defines for diseases ratio
-#define DISEASES_OUTBREAK_THRESHOLD 0.5
+// Threshold defines for diseases ratio (infected / alive crew)
+#define DISEASES_OUTBREAK_THRESHOLD 0.5   // High infection
 #define DISEASES_MAJOR_THRESHOLD 0.25
 #define DISEASES_MINOR_THRESHOLD 0.05
 
-// Threshold defines for crew dead count
-#define CREW_DEAD_MANY_THRESHOLD 15
+// Threshold defines for crew dead count (absolute dead)
+#define CREW_DEAD_MANY_THRESHOLD 15  // Many dead
 #define CREW_DEAD_SOME_THRESHOLD 5
-#define CREW_DEAD_FEW_THRESHOLD 0  // Greater than 0
+#define CREW_DEAD_FEW_THRESHOLD 0    // Greater than 0
 
-// Threshold defines for antag dead count
-#define ANTAG_DEAD_MANY_THRESHOLD 7
+// Threshold defines for antag dead count (absolute dead)
+#define ANTAG_DEAD_MANY_THRESHOLD 7   // Many dead antags
 #define ANTAG_DEAD_SOME_THRESHOLD 3
-#define ANTAG_DEAD_FEW_THRESHOLD 0  // Greater than 0
+#define ANTAG_DEAD_FEW_THRESHOLD 0    // Greater than 0
 
-// Threshold defines for dead ratios
-#define DEAD_RATIO_EXTREME_THRESHOLD 0.6
+// Threshold defines for dead ratios (dead / total)
+#define DEAD_RATIO_EXTREME_THRESHOLD 0.6  // Extreme losses
 #define DEAD_RATIO_HIGH_THRESHOLD 0.3
 #define DEAD_RATIO_MODERATE_THRESHOLD 0.1
 
+
+// Metric for crew/antag health: analyzes damage, wounds, diseases, deaths (levels 0-3 + raw avgs)
+// Outputs to vault: health/wounding/diseases/dead levels + counts/avgs for balancer tension/goal selection
 /datum/storyteller_metric/crew_metrics
 	name = "Crew health metric"
-
 
 /datum/storyteller_metric/crew_metrics/perform(datum/storyteller_analyzer/anl, datum/storyteller/ctl, datum/storyteller_inputs/inputs, scan_flags)
 	var/crew_health_level = STORY_VAULT_HEALTH_HEALTHY
@@ -43,7 +45,6 @@
 	var/antag_dead_count_level = STORY_VAULT_NO_DEAD
 	var/antag_dead_ratio_level = STORY_VAULT_LOW_DEAD_RATIO
 
-	// Counters for alive
 	var/alive_crew_count = 0
 	var/alive_antag_count = 0
 	var/total_crew_damage = 0
@@ -52,9 +53,9 @@
 	var/total_antag_wounds = 0
 	var/total_infected_crew = 0
 
-	for(var/mob/living/M in get_alive_crew(FALSE))
+	for(var/mob/living/M in get_alive_crew(FALSE))  // Assume helper: alive station crew/antags
 		var/is_antag = M.mind?.has_antag_datum() || FALSE
-		var/tot_damage = M.get_total_damage()
+		var/tot_damage = M.get_total_damage()  // Brute/burn/tox/oxy sum
 		var/tot_wounds = 0
 		if(iscarbon(M))
 			var/mob/living/carbon/C = M
@@ -71,89 +72,73 @@
 			total_crew_damage += tot_damage
 			total_crew_wounds += tot_wounds
 
-	// Counters for dead
 	var/dead_crew_count = 0
 	var/dead_antag_count = 0
-	for(var/mob/living/M in GLOB.dead_player_list)
+	for(var/mob/living/M in get_dead_crew(FALSE))
 		var/is_antag = M.mind?.has_antag_datum() || FALSE
 		if(is_antag)
 			dead_antag_count++
 		else
 			dead_crew_count++
 
-	// Calculate totals
-	var/total_crew = alive_crew_count + dead_crew_count
-	var/total_antag = alive_antag_count + dead_antag_count
 
-	// Calculate health levels
-	if(alive_crew_count > 0)
-		var/avg_crew_damage = total_crew_damage / alive_crew_count
-		if(avg_crew_damage >= HEALTH_LOW_THRESHOLD)
-			crew_health_level = STORY_VAULT_HEALTH_LOW
-		else if(avg_crew_damage >= HEALTH_DAMAGED_THRESHOLD)
-			crew_health_level = STORY_VAULT_HEALTH_DAMAGED
-		else if(avg_crew_damage >= HEALTH_NORMAL_THRESHOLD)
-			crew_health_level = STORY_VAULT_HEALTH_NORMAL
-		else
-			crew_health_level = STORY_VAULT_HEALTH_HEALTHY
+	var/total_crew = max(alive_crew_count + dead_crew_count, 1)  // Avoid div0
+	var/total_antag = max(alive_antag_count + dead_antag_count, 1)
+	var/avg_crew_health_raw = alive_crew_count > 0 ? clamp(100 - (total_crew_damage / alive_crew_count), 0, 100) : 100  // Inverted damage to health %
+	var/avg_antag_health_raw = alive_antag_count > 0 ? clamp(100 - (total_antag_damage / alive_antag_count), 0, 100) : 100
+	var/avg_crew_wounds = alive_crew_count > 0 ? (total_crew_wounds / alive_crew_count) : 0
+	var/avg_antag_wounds = alive_antag_count > 0 ? (total_antag_wounds / alive_antag_count) : 0
+
+
+	if(avg_crew_health_raw <= HEALTH_LOW_THRESHOLD)
+		crew_health_level = STORY_VAULT_HEALTH_LOW
+	else if(avg_crew_health_raw <= HEALTH_DAMAGED_THRESHOLD)
+		crew_health_level = STORY_VAULT_HEALTH_DAMAGED
+	else if(avg_crew_health_raw <= HEALTH_NORMAL_THRESHOLD)
+		crew_health_level = STORY_VAULT_HEALTH_NORMAL
 	else
-		crew_health_level = STORY_VAULT_HEALTH_HEALTHY  // Default if no alive crew
+		crew_health_level = STORY_VAULT_HEALTH_HEALTHY
 
-	if(alive_antag_count > 0)
-		var/avg_antag_damage = total_antag_damage / alive_antag_count
-		if(avg_antag_damage >= HEALTH_LOW_THRESHOLD)
-			antag_health_level = STORY_VAULT_HEALTH_LOW
-		else if(avg_antag_damage >= HEALTH_DAMAGED_THRESHOLD)
-			antag_health_level = STORY_VAULT_HEALTH_DAMAGED
-		else if(avg_antag_damage >= HEALTH_NORMAL_THRESHOLD)
-			antag_health_level = STORY_VAULT_HEALTH_NORMAL
-		else
-			antag_health_level = STORY_VAULT_HEALTH_HEALTHY
+	if(avg_antag_health_raw <= HEALTH_LOW_THRESHOLD)
+		antag_health_level = STORY_VAULT_HEALTH_LOW
+	else if(avg_antag_health_raw <= HEALTH_DAMAGED_THRESHOLD)
+		antag_health_level = STORY_VAULT_HEALTH_DAMAGED
+	else if(avg_antag_health_raw <= HEALTH_NORMAL_THRESHOLD)
+		antag_health_level = STORY_VAULT_HEALTH_NORMAL
 	else
 		antag_health_level = STORY_VAULT_HEALTH_HEALTHY
 
-	// Calculate wounding levels
-	if(alive_crew_count > 0)
-		var/avg_crew_wounds = total_crew_wounds / alive_crew_count
-		if(avg_crew_wounds >= WOUNDING_CRITICAL_THRESHOLD)
-			crew_wounding_level = STORY_VAULT_CRITICAL_WOUNDED
-		else if(avg_crew_wounds >= WOUNDING_MANY_THRESHOLD)
-			crew_wounding_level = STORY_VAULT_MANY_WOUNDED
-		else if(avg_crew_wounds >= WOUNDING_SOME_THRESHOLD)
-			crew_wounding_level = STORY_VAULT_SOME_WOUNDED
-		else
-			crew_wounding_level = STORY_VAULT_NO_WOUNDS
+	// Wounding levels (avg wounds)
+	if(avg_crew_wounds >= WOUNDING_CRITICAL_THRESHOLD)
+		crew_wounding_level = STORY_VAULT_CRITICAL_WOUNDED
+	else if(avg_crew_wounds >= WOUNDING_MANY_THRESHOLD)
+		crew_wounding_level = STORY_VAULT_MANY_WOUNDED
+	else if(avg_crew_wounds >= WOUNDING_SOME_THRESHOLD)
+		crew_wounding_level = STORY_VAULT_SOME_WOUNDED
 	else
 		crew_wounding_level = STORY_VAULT_NO_WOUNDS
 
-	if(alive_antag_count > 0)
-		var/avg_antag_wounds = total_antag_wounds / alive_antag_count
-		if(avg_antag_wounds >= WOUNDING_CRITICAL_THRESHOLD)
-			antag_wounding_level = STORY_VAULT_CRITICAL_WOUNDED
-		else if(avg_antag_wounds >= WOUNDING_MANY_THRESHOLD)
-			antag_wounding_level = STORY_VAULT_MANY_WOUNDED
-		else if(avg_antag_wounds >= WOUNDING_SOME_THRESHOLD)
-			antag_wounding_level = STORY_VAULT_SOME_WOUNDED
-		else
-			antag_wounding_level = STORY_VAULT_NO_WOUNDS
+	if(avg_antag_wounds >= WOUNDING_CRITICAL_THRESHOLD)
+		antag_wounding_level = STORY_VAULT_CRITICAL_WOUNDED
+	else if(avg_antag_wounds >= WOUNDING_MANY_THRESHOLD)
+		antag_wounding_level = STORY_VAULT_MANY_WOUNDED
+	else if(avg_antag_wounds >= WOUNDING_SOME_THRESHOLD)
+		antag_wounding_level = STORY_VAULT_SOME_WOUNDED
 	else
 		antag_wounding_level = STORY_VAULT_NO_WOUNDS
 
-	// Calculate diseases level (crew only)
-	if(alive_crew_count > 0)
-		var/infected_ratio = total_infected_crew / alive_crew_count
-		if(infected_ratio >= DISEASES_OUTBREAK_THRESHOLD)
-			crew_diseases_level = STORY_VAULT_OUTBREAK
-		else if(infected_ratio >= DISEASES_MAJOR_THRESHOLD)
-			crew_diseases_level = STORY_VAULT_MAJOR_DISEASES
-		else if(infected_ratio >= DISEASES_MINOR_THRESHOLD)
-			crew_diseases_level = STORY_VAULT_MINOR_DISEASES
-		else
-			crew_diseases_level = STORY_VAULT_NO_DISEASES
+	// Diseases level (crew only, ratio)
+	var/infected_ratio = alive_crew_count > 0 ? (total_infected_crew / alive_crew_count) : 0
+	if(infected_ratio >= DISEASES_OUTBREAK_THRESHOLD)
+		crew_diseases_level = STORY_VAULT_OUTBREAK
+	else if(infected_ratio >= DISEASES_MAJOR_THRESHOLD)
+		crew_diseases_level = STORY_VAULT_MAJOR_DISEASES
+	else if(infected_ratio >= DISEASES_MINOR_THRESHOLD)
+		crew_diseases_level = STORY_VAULT_MINOR_DISEASES
 	else
 		crew_diseases_level = STORY_VAULT_NO_DISEASES
 
-	// Calculate dead count levels
+	// Dead count levels (absolute)
 	if(dead_crew_count > CREW_DEAD_MANY_THRESHOLD)
 		crew_dead_count_level = STORY_VAULT_MANY_DEAD
 	else if(dead_crew_count > CREW_DEAD_SOME_THRESHOLD)
@@ -172,8 +157,8 @@
 	else
 		antag_dead_count_level = STORY_VAULT_NO_DEAD
 
-	// Calculate dead ratio levels
-	var/crew_dead_ratio = (total_crew > 0) ? (dead_crew_count / total_crew) : 0
+	// Dead ratio levels (dead / total)
+	var/crew_dead_ratio = (dead_crew_count / total_crew)
 	if(crew_dead_ratio > DEAD_RATIO_EXTREME_THRESHOLD)
 		crew_dead_ratio_level = STORY_VAULT_EXTREME_DEAD_RATIO
 	else if(crew_dead_ratio > DEAD_RATIO_HIGH_THRESHOLD)
@@ -183,7 +168,7 @@
 	else
 		crew_dead_ratio_level = STORY_VAULT_LOW_DEAD_RATIO
 
-	var/antag_dead_ratio = (total_antag > 0) ? (dead_antag_count / total_antag) : 0
+	var/antag_dead_ratio = (dead_antag_count / total_antag)
 	if(antag_dead_ratio > DEAD_RATIO_EXTREME_THRESHOLD)
 		antag_dead_ratio_level = STORY_VAULT_EXTREME_DEAD_RATIO
 	else if(antag_dead_ratio > DEAD_RATIO_HIGH_THRESHOLD)
@@ -193,25 +178,29 @@
 	else
 		antag_dead_ratio_level = STORY_VAULT_LOW_DEAD_RATIO
 
-	// Store in vault
-	inputs.vault[STORY_VAULT_CREW_HEALTH] = crew_health_level
-	inputs.vault[STORY_VAULT_ANTAG_HEALTH] = antag_health_level
-	inputs.vault[STORY_VAULT_CREW_WOUNDING] = crew_wounding_level
-	inputs.vault[STORY_VAULT_ANTAG_WOUNDING] = antag_wounding_level
-	inputs.vault[STORY_VAULT_CREW_DISEASES] = crew_diseases_level
-	inputs.vault[STORY_VAULT_CREW_ALIVE_LEVEL] = crew_dead_count_level
-	inputs.vault[STORY_VAULT_CREW_DEAD_RATIO] = crew_dead_ratio_level
-	inputs.vault[STORY_VAULT_ANTAG_ALIVE_LEVEL] = antag_dead_count_level
-	inputs.vault[STORY_VAULT_ANTAG_DEAD_RATIO] = antag_dead_ratio_level
+	inputs.set_entry(STORY_VAULT_CREW_HEALTH, crew_health_level)
+	inputs.set_entry(STORY_VAULT_ANTAG_HEALTH, antag_health_level)
+	inputs.set_entry(STORY_VAULT_CREW_WOUNDING, crew_wounding_level)
+	inputs.set_entry(STORY_VAULT_ANTAG_WOUNDING, antag_wounding_level)
+	inputs.set_entry(STORY_VAULT_CREW_DISEASES, crew_diseases_level)
+	inputs.set_entry(STORY_VAULT_CREW_ALIVE_LEVEL, crew_dead_count_level)
+	inputs.set_entry(STORY_VAULT_CREW_DEAD_RATIO, crew_dead_ratio_level)
+	inputs.set_entry(STORY_VAULT_ANTAG_ALIVE_LEVEL, antag_dead_count_level)
+	inputs.set_entry(STORY_VAULT_ANTAG_DEAD_RATIO, antag_dead_ratio_level)
+
+	inputs.set_entry(STORY_VAULT_AVG_CREW_HEALTH, avg_crew_health_raw)
+	inputs.set_entry(STORY_VAULT_AVG_ANTAG_HEALTH, avg_antag_health_raw)
+	inputs.set_entry(STORY_VAULT_AVG_CREW_WOUNDS, avg_crew_wounds)
+	inputs.set_entry(STORY_VAULT_AVG_ANTAG_WOUNDS, avg_antag_wounds)
 
 
-	inputs.vault[STORY_VAULT_CREW_ALIVE_COUNT] = alive_crew_count
-	inputs.vault[STORY_VAULT_ANTAG_ALIVE_COUNT] = alive_antag_count
-	inputs.vault[STORY_VAULT_CREW_DEAD_COUNT] = dead_crew_count
-	inputs.vault[STORY_VAULT_ANTAG_DEAD_COUNT] = dead_antag_count
+	// Counts (alive/dead)
+	inputs.set_entry(STORY_VAULT_CREW_ALIVE_COUNT, alive_crew_count)
+	inputs.set_entry(STORY_VAULT_ANTAG_ALIVE_COUNT, alive_antag_count)
+	inputs.set_entry(STORY_VAULT_CREW_DEAD_COUNT, dead_crew_count)
+	inputs.set_entry(STORY_VAULT_ANTAG_DEAD_COUNT, dead_antag_count)
 
 	..()
-
 #undef HEALTH_LOW_THRESHOLD
 #undef HEALTH_DAMAGED_THRESHOLD
 #undef HEALTH_NORMAL_THRESHOLD

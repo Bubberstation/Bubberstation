@@ -90,9 +90,6 @@
 	COOLDOWN_DECLARE(mood_update_cooldown)
 
 
-
-
-
 /datum/storyteller/New()
 	..()
 	mood = new /datum/storyteller_mood
@@ -127,6 +124,7 @@
 	if(initialized)
 		return
 
+	last_event_time = world.time
 	var/datum/storyteller_balance_snapshot/bal = balancer.make_snapshot(inputs)
 	planner.build_timeline(src, inputs, bal)
 	initialized = TRUE
@@ -277,10 +275,9 @@
 /// Biger crews can handle more frequent events
 /datum/storyteller/proc/get_event_interval()
 	var/base = max_event_interval
-	var/pop_mod = clamp(1.0 - 1.0 - population_factor, 0.3, 1.0)
+	var/pop_mod = clamp(1.0 - population_factor, 0.3, 1.0)
 	var/interval = base / max(get_effective_pace(), 0.05) * pop_mod
-	return clamp(interval, min_event_interval, max_event_interval)
-
+	return round(clamp(interval, min_event_interval, max_event_interval))
 
 /// Event interval without population adjustment; for baseline pacing in global goal selection.
 /datum/storyteller/proc/get_event_interval_no_population_factor()
@@ -301,7 +298,7 @@
 
 
 /datum/storyteller/proc/get_next_possible_event_time()
-	return world.time - get_time_since_last_event() + get_event_interval()
+	return (world.time - last_event_time) + get_event_interval()
 
 /// Adjust current mood variables based on balance snapshot (smooth, non-destructive)
 /datum/storyteller/proc/update_mood_based_on_balance(datum/storyteller_balance_snapshot/snap)

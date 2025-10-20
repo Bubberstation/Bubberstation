@@ -19,6 +19,11 @@
 	// Most crew members are in excellent health.
 	#define STORY_VAULT_HEALTH_HEALTHY 0
 
+
+#define STORY_VAULT_AVG_CREW_WOUNDS "avg_crew_wounds"
+
+#define STORY_VAULT_AVG_ANTAG_WOUNDS "avg_atnag_wounds"
+
 // Tracks the extent of physical wounds among antagonists.
 #define STORY_VAULT_ANTAG_WOUNDING "antag_wounding"
 // Tracks the extent of physical wounds among the crew.
@@ -47,6 +52,11 @@
 	Death and alive metrics
 	These track counts and ratios of dead/alive crew and antagonists to gauge station mortality and survival rates.
 */
+
+#define STORY_VAULT_AVG_CREW_HEALTH "avg_crew_health"
+
+#define STORY_VAULT_AVG_ANTAG_HEALTH "avg_atnag_health"
+
 
 // Tracks the number of dead antagonists.
 #define STORY_VAULT_ANTAG_DEAD_COUNT "antag_dead_count"
@@ -260,8 +270,6 @@
 */
 
 #define STORY_VAULT_STATION_INTEGRITY "station_integrity"
-
-
 // Tracks infrastructure damage (power, hull breaches, etc.).
 #define STORY_VAULT_INFRA_DAMAGE "infra_damage"
 	#define STORY_VAULT_NO_DAMAGE 0
@@ -279,7 +287,6 @@
 
 // Divisors for damage_level (for 0-3 scaling)
 #define STORY_POWER_SMES_DISCHARGE_DIVISOR "power_grid_smes"// For (100 - smes_percent) / this → tune for sensitivity
-
 // Vault keys for storing results (unique strings to avoid conflicts)
 #define STORY_VAULT_POWER_GRID_STRENGTH "power_grid_strength"  // Raw 0-100 for balancer
 

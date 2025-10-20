@@ -108,16 +108,9 @@
 		return FALSE
 
 	var/event_interval = ctl.get_event_interval()
-	var/last_offset = 0
-	if(length(timeline))
-		var/max_key = 0
-		for(var/key_str in timeline)
-			var/k = text2num(key_str)
-			if(k > max_key)
-				max_key = k
-		last_offset = max_key
+	var/last_offset = get_closest_offest()
 
-	var/fire_offset = last_offset + event_interval * ctl.mood.get_event_frequency_multiplier()
+	var/fire_offset = last_offset + event_interval
 	if(try_plan_goal(new_goal, fire_offset))
 		log_storyteller_planner("Storyteller added next goal to chain: [new_goal.name || new_goal.id] at offset [fire_offset].")
 		return TRUE
@@ -175,20 +168,15 @@
 	if(effective_threat > ctl.max_threat_scale * 0.7 || ctl.adaptation_factor > 0.5)
 		needs_rebuild = TRUE
 
-	if(!needs_rebuild && !force)
+	if(!(needs_rebuild && length(timeline) < 3) && !force)
 		return timeline
 
+	if(force)
+		clear_timeline()
+		pending_count = 0
 
-	var/target_add = max(1, 3 - pending_count)
-	var/start_offset = 0
-	if(length(timeline) > 0)
-		var/max_key = -1
-		for(var/key_str in timeline)
-			var/k = text2num(key_str)
-			if(k > max_key)
-				max_key = k
-		if(max_key >= 0)
-			start_offset = max_key + event_interval
+	var/target_add = max(1, STORY_INITIAL_GOALS_COUNT - pending_count)
+	var/start_offset = get_closest_offest()
 
 	var/category = select_goal_category(ctl, bal)
 	var/derived_tags = derive_universal_tags(category, ctl, inputs, bal)
@@ -203,9 +191,9 @@
 		if(!new_goal)
 			continue
 
-		var/fire_offset = start_offset + (event_interval * (i - 1)) * ctl.mood.get_event_frequency_multiplier()
+		var/fire_offset = start_offset + event_interval * (i - 1)
 		if(ctl.can_trigger_event_at(world.time + fire_offset))
-			if(try_plan_goal(new_goal, fire_offset))
+			if(try_plan_goal(new_goal, fire_offset, TRUE))
 				pending_count++
 			else
 				qdel(new_goal)
@@ -233,7 +221,7 @@
 // Ensures buffer for branching sub-threats, fallback to random for continuity.
 /datum/storyteller_planner/proc/build_timeline(datum/storyteller/ctl, datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/bal, derived_tags)
 	timeline = list()
-	var/event_interval = ctl.get_event_interval()
+
 
 	var/category = select_goal_category(ctl, bal)
 	var/tags = derived_tags || derive_universal_tags(category, ctl, inputs, bal)
@@ -252,14 +240,16 @@
 		message_admins("Storyteller [ctl.name] built initial timeline with category: [bitfield_to_list(category)], tags: [string_tags]")
 
 	var/pending_count = 0
-	var/target_count = STORY_BASE_SUBGOALS_COUNT  // Initial 1
-	var/start_offset = event_interval
-	for(var/i = 1 to target_count)
+	var/target_count = STORY_INITIAL_GOALS_COUNT
+	var/start_offset = ctl.get_next_possible_event_time()
+	var/multiply = 0
+	for(var/i = 0 to target_count)
 		var/datum/storyteller_goal/new_goal = build_goal(ctl, inputs, bal, tags, category)
 		if(!new_goal)
 			continue
 
-		var/fire_offset = start_offset + (event_interval * (i - 1)) * ctl.mood.get_event_frequency_multiplier()
+		multiply += 1
+		var/fire_offset = start_offset + (ctl.get_event_interval() * multiply)
 		if(new_goal.tags & STORY_TAG_ESCALATION)
 			fire_offset *= 0.8  // Accelerate 20% for high-threat branches
 		else if(new_goal.tags & STORY_TAG_DEESCALATION)
@@ -271,7 +261,7 @@
 				qdel(new_goal)
 				continue
 
-		if(try_plan_goal(new_goal, fire_offset))
+		if(try_plan_goal(new_goal, fire_offset, TRUE))
 			pending_count++
 		else
 			qdel(new_goal)
@@ -284,7 +274,7 @@
 
 		var/fallback_category = STORY_GOAL_RANDOM
 		var/datum/storyteller_goal/fallback = build_goal(ctl, inputs, bal, 0, fallback_category)
-		if(fallback && try_plan_goal(fallback, event_interval * pending_count))
+		if(fallback && try_plan_goal(fallback, ctl.get_event_interval() * pending_count))
 			pending_count++
 		attempts++
 
@@ -298,7 +288,7 @@
 
 
 
-/datum/storyteller_planner/proc/try_plan_goal(datum/storyteller_goal/goal, time)
+/datum/storyteller_planner/proc/try_plan_goal(datum/storyteller_goal/goal, time, fixed_time = FALSE)
 	if(!goal)
 		return FALSE
 	if(!timeline)
@@ -309,9 +299,13 @@
 	var/max_attempts = 60
 
 	while(attempts < max_attempts)
-		var/target_time = world.time + base_delay
-		var/target_str = time_key(target_time)
+		var/target_time = 0
+		if(fixed_time)
+			target_time = fixed_time
+		else
+			target_time = world.time + base_delay
 
+		var/target_str = time_key(target_time)
 		if(!timeline[target_str])
 			timeline[target_str] = list(
 				ENTRY_GOAL = goal,
@@ -333,11 +327,17 @@
 
 /datum/storyteller_planner/proc/time_key(num)
 	PRIVATE_PROC(TRUE)
-	return num2text(num)
+	if(!isnum(num))
+		return num
+	return _num2text(num)
 
 /datum/storyteller_planner/proc/get_entry_at(time)
-	RETURN_TYPE(/list)
-	return timeline[time_key(time)]
+	var/key = ""
+	if(isnum(time))
+		key = time_key(time)
+	else
+		key = time
+	return timeline[key]
 
 /datum/storyteller_planner/proc/set_entry_at(time, entry)
 	if(!entry || !islist(entry)) return
@@ -381,7 +381,7 @@
 	return TRUE
 
 /datum/storyteller_planner/proc/cancel_goal(offset)
-	var/offset_str = "[offset]"
+	var/offset_str = time_key(offset)
 	if(!timeline[offset_str])
 		return FALSE
 	var/datum/storyteller_goal/goal = timeline[offset_str][ENTRY_GOAL]
@@ -402,6 +402,23 @@
 
 /datum/storyteller_planner/proc/next_offest()
 	return owner.get_event_interval() * (length(timeline) + 1)
+
+
+/datum/storyteller_planner/proc/get_closest_offest()
+	var/last_offset = 0
+	if(length(timeline))
+		var/max_key = 0
+		for(var/key_str in timeline)
+			var/k = text2num(key_str)
+			if(k > max_key)
+				max_key = k
+		last_offset = max_key
+	return last_offset
+
+
+/datum/storyteller_planner/proc/clear_timeline()
+	for(var/offset in get_upcoming_goals(length(timeline)))
+		cancel_goal(offset)
 
 /datum/storyteller_planner/proc/build_goal(datum/storyteller/ctl, datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/bal, tag_filter = 0, category = STORY_GOAL_NEUTRAL)
 	var/effective_threat = ctl.get_effective_threat() // was incorrectly get_effective_pace()

@@ -1,5 +1,5 @@
-#define STORY_INTEGRITY_PENALTY_UNSAFE 10
-#define STORY_INTEGRITY_PENALTY_FIRES 5
+#define STORY_INTEGRITY_PENALTY_UNSAFE 50
+#define STORY_INTEGRITY_PENALTY_FIRES 10
 
 /datum/storyteller_metric/station_integrity
 	name = "Station integrity"
@@ -76,26 +76,24 @@
 
 
 // Thresholds for low power states (percentages)
+#define STORY_POWER_LOW_SMES_THRESHOLD 20  // Below this % SMES charge → penalty
+#define STORY_POWER_APC_FAILURE_RATIO 0.1  // Ratio for damage_level: failures / (checked * this)
 
-#define STORY_POWER_LOW_SMES_THRESHOLD 20
-#define STORY_POWER_APC_FAILURE_RATIO 0.1
-
-// Penalties for calculations (subtracted from raw_strength)
-
-#define STORY_POWER_PENALTY_LOW_SMES 20
-#define STORY_POWER_PENALTY_PER_OFF_APC 5
+// Penalties for calculations (subtracted from raw_strength; scaled by size in code)
+#define STORY_POWER_PENALTY_LOW_SMES 20    // Fixed penalty if SMES < threshold
+#define STORY_POWER_PENALTY_PER_OFF_APC 5  // Per non-operating APC (scaled by area size)
 
 
 
 
+// Metric for station power grid: analyzes APCs and SMES for charge, operational status, etc. Weighted by area size.
+// Outputs to vault: raw power strength 0-100 (size-based) and power damage 0-3
 /datum/storyteller_metric/power_grid_check
 	name = "Station power grid"
-
 
 /datum/storyteller_metric/power_grid_check/perform(datum/storyteller_analyzer/anl, datum/storyteller/ctl, datum/storyteller_inputs/inputs, scan_flags)
 	var/list/apc_to_check = list()
 	var/list/smes_to_check = list()
-
 
 	for(var/obj/machinery/power/power_machine as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/power))
 		if(!is_station_level(power_machine.z))
@@ -108,20 +106,19 @@
 	if(!length(apc_to_check) && !length(smes_to_check))
 		inputs.vault[STORY_VAULT_POWER_GRID_STRENGTH] = 0
 		inputs.vault[STORY_VAULT_POWER_GRID_DAMAGE] = 3
-		return
+		return ..()
 
 
-	var/total_apc_charge = 0
-	var/operating_apc = 0
-	var/total_apc_size = 0
-	var/total_smes_charge = 0
-	var/total_smes_capacity = 0
-	var/checked_apc = length(apc_to_check)
+	var/total_apc_charge = 0          // Weighted charge sum
+	var/operating_apc_weight = 0      // Weighted operating (by area size)
+	var/total_apc_size = 0            // Total valid APC areas size
+	var/total_off_apc_size = 0        // Total size of off/failing APC areas (for penalties/damage)
+	var/total_smes_charge = 0         // Sum SMES charge
+	var/total_smes_capacity = 0       // Sum SMES capacity
 
 
 	for(var/obj/machinery/power/apc/APC in apc_to_check)
-		if(!APC.area)
-			continue
+		if(!APC.area) continue
 		var/area_size = APC.area.areasize
 		total_apc_size += area_size
 
@@ -129,36 +126,46 @@
 		var/charge_percent = APC.cell ? APC.cell.percent() : 0
 		total_apc_charge += charge_percent * area_size
 
-
+		// Operating weighted (if operating, add size; else add to off_size)
 		if(APC.operating && !APC.failure_timer)
-			operating_apc += 1
+			operating_apc_weight += area_size
+		else
+			total_off_apc_size += area_size
+
 
 	for(var/obj/machinery/power/smes/SMES in smes_to_check)
 		total_smes_charge += SMES.charge
+
 		var/total_capacity = 0
 		for(var/obj/item/stock_parts/power_store/power_cell in SMES.component_parts)
-			total_capacity += power_cell.max_charge()
+			total_capacity += power_cell.maxcharge
 		total_smes_capacity += total_capacity
 
 
 	var/avg_apc_charge = total_apc_size > 0 ? (total_apc_charge / total_apc_size) : 0
-	var/apc_operating_percent = checked_apc > 0 ? (operating_apc / checked_apc) * 100 : 0
+	var/apc_operating_percent = total_apc_size > 0 ? (operating_apc_weight / total_apc_size) * 100 : 0
 	var/apc_strength = (avg_apc_charge * 0.6) + (apc_operating_percent * 0.4)
+
 
 	var/smes_percent = total_smes_capacity > 0 ? (total_smes_charge / total_smes_capacity) * 100 : 0
 
 	var/raw_strength = (apc_strength * 0.7) + (smes_percent * 0.3)
-	var/penalty_low_smes = smes_percent < 20 ? 20 : 0
-	var/penalty_off_apc = (checked_apc - operating_apc) * STORY_POWER_PENALTY_PER_OFF_APC
+
+
+	var/penalty_low_smes = smes_percent < STORY_POWER_LOW_SMES_THRESHOLD ? STORY_POWER_PENALTY_LOW_SMES : 0
+	var/off_percentage = total_apc_size > 0 ? (total_off_apc_size / total_apc_size) * 100 : 0
+	var/penalty_off_apc = off_percentage * (STORY_POWER_PENALTY_PER_OFF_APC / 100)  // Scale by % off size
 	raw_strength = clamp(raw_strength - penalty_low_smes - penalty_off_apc, 0, 100)
 
-	var/damage_level = clamp(((checked_apc - operating_apc) / max(checked_apc * 0.1, 1)) + ((100 - smes_percent) / 50), 0, 3)
+
+	var/damage_level = clamp((off_percentage / 100 * STORY_VAULT_CRITICAL_DAMAGE) \
+		+ ((100 - smes_percent) / STORY_POWER_SMES_DISCHARGE_DIVISOR), 0, 3)
+
 
 	inputs.vault[STORY_VAULT_POWER_GRID_STRENGTH] = round(raw_strength)
 	inputs.vault[STORY_VAULT_POWER_GRID_DAMAGE] = round(damage_level)
+
 	..()
-
-
 
 #undef STORY_POWER_LOW_SMES_THRESHOLD
 #undef STORY_POWER_APC_FAILURE_RATIO

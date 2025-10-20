@@ -21,13 +21,29 @@
 
 	var/list/result
 	for(var/mob/living/L as anything in to_check)
-		if(!ishuman(L))
+		if(only_humans && !(ishuman(L)))
 			continue
 		if(only_station && !is_station_level(L.z))
 			continue
 		if(only_with_mind && !L.mind)
 			continue
 		if(L.client && L?.client.is_afk())
+			continue
+		LAZYADD(result, L)
+	return result
+
+/datum/storyteller_metric/proc/get_dead_crew(only_humans = TRUE, only_station = TRUE, only_with_mind = TRUE)
+	var/list/to_check = SSstorytellers.simulation ? GLOB.dead_mob_list : GLOB.dead_mob_list
+	if(!length(to_check))
+		return list()
+
+	var/list/result
+	for(var/mob/living/L as anything in to_check)
+		if(only_humans && !(ishuman(L)))
+			continue
+		if(only_station && !is_station_level(L.z))
+			continue
+		if(only_with_mind && !L.mind)
 			continue
 		LAZYADD(result, L)
 	return result

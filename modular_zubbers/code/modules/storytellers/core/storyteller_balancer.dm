@@ -4,7 +4,7 @@
 // Snapshot captures current state for planner use.
 
 /datum/storyteller_balance
-	var/datum/storyteller/owner
+	VAR_PRIVATE/datum/storyteller/owner
 
 	/// Base weight per player (scales with crew health/resilience)
 	var/player_weight = STORY_BALANCER_PLAYER_WEIGHT
@@ -73,7 +73,7 @@
 	if(snap.antag_stealthy)
 		extra_tension += 5
 	if(snap.station_vulnerable)
-		extra_tension += 10
+		extra_tension += 5
 	if(snap.ratio > 1.2)
 		extra_tension += 10
 	if(inputs.vault[STORY_VAULT_CREW_ALIVE_COUNT] && inputs.vault[STORY_VAULT_CREW_ALIVE_COUNT] < 15)
@@ -247,9 +247,9 @@
 	else if(infra_damage <= STORY_VAULT_MINOR_DAMAGE)
 		tension += 5
 	else if(infra_damage <= STORY_VAULT_MAJOR_DAMAGE)
-		tension += 25
+		tension += 15
 	else if(infra_damage <= STORY_VAULT_CRITICAL_DAMAGE)
-		tension += 40
+		tension += 30
 
 	if(power_damage <= STORY_VAULT_POWER_GRID_NOMINAL)
 		tension += -5  // Bonus: full power → lower tension
@@ -271,15 +271,42 @@
 #undef STORY_INTEGRITY_TENSION_MAX
 #undef STORY_INTEGRITY_TENSION_MIN
 
-
 /datum/storyteller_balance/proc/get_resource_strength(list/vault)
 	var/minerals = vault[STORY_VAULT_RESOURCE_MINERALS] || 0
 	var/other = vault[STORY_VAULT_RESOURCE_OTHER] || 0
 	return clamp((minerals / 1000 + other / 100000), 0, 1)
 
+
+#define WOUNDING_CRITICAL_THRESHOLD 3
+
 /datum/storyteller_balance/proc/get_crew_health_index(list/vault)
-	var/avg_health = vault[STORY_VAULT_CREW_HEALTH] || 100
-	return clamp(1 - (avg_health / 100), 0, 1)  // 1 = bad health (vulnerable)
+	PRIVATE_PROC(TRUE)
+
+	var/avg_health_raw = vault[STORY_VAULT_AVG_CREW_HEALTH] || 100
+	var/avg_wounds = vault[STORY_VAULT_AVG_CREW_WOUNDS] || 0
+	var/diseases_level = vault[STORY_VAULT_CREW_DISEASES] || STORY_VAULT_NO_DISEASES
+	var/dead_ratio_level = vault[STORY_VAULT_CREW_DEAD_RATIO] || STORY_VAULT_LOW_DEAD_RATIO
+
+	var/weight_health = 0.4
+	var/weight_wounds = 0.3
+	var/weight_diseases = 0.2
+	var/weight_dead = 0.1
+
+	var/norm_health = 1 - (avg_health_raw / 100)  // Inverted: low health → high
+	var/norm_wounds = clamp(avg_wounds / WOUNDING_CRITICAL_THRESHOLD, 0, 1)  // Relative to max wounds threshold
+	var/norm_diseases = diseases_level / STORY_VAULT_OUTBREAK  // Assume max level=3 (OUTBREAK)
+	var/norm_dead = dead_ratio_level / STORY_VAULT_EXTREME_DEAD_RATIO  // Max level=3
+
+
+	var/health_index = (norm_health * weight_health) + \
+		(norm_wounds * weight_wounds) + \
+		(norm_diseases * weight_diseases) + \
+		(norm_dead * weight_dead)
+
+	return clamp(health_index, 0, 1)
+
+
+#undef WOUNDING_CRITICAL_THRESHOLD
 
 // Snapshot datum
 /datum/storyteller_balance_snapshot
