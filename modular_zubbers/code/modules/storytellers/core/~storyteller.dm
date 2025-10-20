@@ -84,10 +84,14 @@
 	var/repetition_penalty = STORY_REPETITION_PENALTY
 	/// Interval for mood adjustment (reuse planner recalc cadence)
 	var/mood_update_interval = STORY_RECALC_INTERVAL
-
-	var/last_mood_update_time = 0
-
+	/// Is this storyteller initialized
 	var/initialized = FALSE
+
+	COOLDOWN_DECLARE(mood_update_cooldown)
+
+
+
+
 
 /datum/storyteller/New()
 	..()
@@ -173,9 +177,9 @@
 	player_antag_balance = round(snap.overall_tension)
 
 	// 2) Mood: adapt mood based on current tension vs target and recent adaptation
-	if(world.time - last_mood_update_time > mood_update_interval)
+	if(COOLDOWN_FINISHED(src, mood_update_cooldown))
 		update_mood_based_on_balance(snap)
-		last_mood_update_time = world.time
+		COOLDOWN_START(src, mood_update_cooldown, mood_update_interval)
 
 
 	// 3) plan anf fire goals
