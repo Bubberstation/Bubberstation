@@ -1,146 +1,136 @@
+//Sprites by Constellado, MapleStation
+
 /obj/item/umbrella
 	name = "umbrella"
 	icon = 'modular_zubbers/icons/obj/equipment/umbrella.dmi'
 	icon_state = "umbrella"
+	post_init_icon_state = "umbrella"
 	lefthand_file = 'modular_zubbers/icons/obj/equipment/umbrella_inhand_l.dmi'
 	righthand_file = 'modular_zubbers/icons/obj/equipment/umbrella_inhand_r.dmi'
-	inhand_icon_state = "umbrella"
+	inhand_icon_state = "umbrella_closed"
 	w_class = WEIGHT_CLASS_BULKY
-	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.75, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.25)
-	custom_premium_price = PAYCHECK_COMMAND * 2
-
-	// Sound effect from the rain hitting it.
-	var/datum/looping_sound/umbrella/rain_on_plastic/looping_sound
-
-	// Seems easier to do this.
-	var/mob/user_holding
-
-	// For some overhang.
-	inhand_x_dimension = 64
-	inhand_y_dimension = 64
-
-	// The umbrella provides some protection against weather effects. Perhaps you may want to change this. I don't judge.
-	var/immunity_type = TRAIT_RAINSTORM_IMMUNE
-
-
-/obj/item/umbrella/equipped(mob/user, slot, initial = FALSE)
-	. = ..()
-	if(!looping_sound)
-		looping_sound = new(src, FALSE)
-	if(!user_holding)
-		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
-	user_holding = user
-	proccess_rainsounds()
-
-/obj/item/umbrella/dropped(mob/user, silent)
-	. = ..()
-	revoke_trait(user, immunity_type)
-	QDEL_NULL(looping_sound)
-	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
-	user_holding = null
-
-/obj/item/umbrella/proc/on_move(atom/old_loc, dir, forced, list/old_locs)
-	SIGNAL_HANDLER
-
-	proccess_rainsounds(old_loc)
-
-/obj/item/umbrella/proc/proccess_rainsounds()
-	if(!SSweather)
-		return
-
-
-	var/turf/turf = get_turf(user_holding)
-	if(!turf)
-		return
-	var/datum/weather/weather = SSweather.get_weather(turf.z, get_area(turf))
-	if(!weather || !(turf.loc in weather.impacted_areas) )
-		looping_sound.stop() // If there is no weather, why even have a sound?
-		return
-	if(weather.recursive_weather_protection_check(user_holding)) // If the player is protected by the weather, play the umbrella sounds.
-		looping_sound.start()
-	else
-		looping_sound.stop()
-
-/obj/item/umbrella/collapsible
-	name = "collapsible umbrella"
-	icon = 'modular_zubbers/icons/obj/equipment/umbrella.dmi'
-	icon_state = "umbrella_retract_off"
-	slot_flags = ITEM_SLOT_POCKETS
+	force = 5
+	throwforce = 5
 	w_class = WEIGHT_CLASS_SMALL
-	inhand_icon_state = "sheathed_umbrella"
+	custom_materials = list(/datum/material/iron= SMALL_MATERIAL_AMOUNT * 0.5)
+	attack_verb_continuous = list("bludgeons", "whacks", "disciplines", "pummels")
+	attack_verb_simple = list("bludgeon", "whack", "discipline", "pummel")
+	hitsound = 'sound/items/weapons/genhit3.ogg'
 
-	/// Whether the umbrella is currently collapsed or open.
-	var/collapsed = FALSE
-	/// sound when toggled open/closed
-	var/toggle_sound = 'modular_zubbers/code/modules/rimpoint_newfeatures/sound/effects/umbrella_open.ogg'
-	var/close_sound = 'modular_zubbers/code/modules/rimpoint_newfeatures/sound/effects/umbrella_close.ogg'
+	//open umbrella offsets for the inhands
+	var/open_x_offset = 2
+	var/open_y_offset = 2
 
-/obj/item/umbrella/collapsible/Initialize(mapload)
+	//Whether it's open or not
+	var/open = FALSE
+
+	/// The sound effect played when our umbrella is opened
+	var/on_sound = 'sound/items/weapons/batonextend.ogg'
+	/// The inhand icon state used when our umbrella is opened.
+	var/on_inhand_icon_state = "umbrella_on"
+
+	//greyscale stuff
+	greyscale_config = /datum/greyscale_config/umbrella
+	greyscale_config_inhand_left = /datum/greyscale_config/umbrella_inhand_left
+	greyscale_config_inhand_right = /datum/greyscale_config/umbrella_inhand_right
+	greyscale_colors = "#dddddd"
+	/// If the item should be assigned a random color
+	var/random_color = TRUE
+	/// List of possible random colors
+	var/static/list/umbrella_colors = list(
+		COLOR_BLUE,
+		COLOR_RED,
+		COLOR_PINK,
+		COLOR_BROWN,
+		COLOR_GREEN,
+		COLOR_CYAN,
+		COLOR_YELLOW,
+		COLOR_WHITE
+	)
+	flags_1 = IS_PLAYER_COLORABLE_1
+
+/obj/item/umbrella/Initialize(mapload)
 	. = ..()
+	if(random_color)
+		set_greyscale(colors = list(pick(umbrella_colors)))
 	AddComponent( \
 		/datum/component/transforming, \
+		force_on = 7, \
+		hitsound_on = "sound/weapons/genhit1.ogg", \
 		w_class_on = WEIGHT_CLASS_BULKY, \
-		attack_verb_continuous_on = list("whaps", "thwacks", "whacks", "beats"), \
-		attack_verb_simple_on = list("whap", "thwack", "whack", "beat"), \
+		clumsy_check = FALSE, \
+		attack_verb_continuous_on = list("swooshes", "whacks", "fwumps"), \
+		attack_verb_simple_on = list("swoosh", "whack", "fwump"), \
 	)
 	RegisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM, PROC_REF(on_transform))
 
+/obj/item/umbrella/worn_overlays(mutable_appearance/standing, isinhands)
+	. = ..()
+	if(!isinhands)
+		return
+	var/mob/holder = loc
+	if(open)
+		if(ISODD(holder.get_held_index_of_item(src))) //left hand or right hand?
+			. += mutable_appearance(lefthand_file, inhand_icon_state + "_BACK", BELOW_MOB_LAYER)
+		else
+			. += mutable_appearance(righthand_file, inhand_icon_state + "_BACK", BELOW_MOB_LAYER)
 
-/obj/item/umbrella/collapsible/proc/on_transform(obj/item/source, mob/user, active)
+
+/obj/item/umbrella/proc/on_transform(obj/item/source, mob/user, active)
 	SIGNAL_HANDLER
-
-	collapsed = active
-	if(!user)
-		return COMPONENT_BLOCK_TRANSFORM // Just in case.
-	if(collapsed)
-		icon_state = "umbrella_retract_on"
-		give_trait(user, immunity_type)
-		inhand_icon_state = "umbrella"
-		slot_flags = NONE
-		if(toggle_sound)
-			playsound(user, toggle_sound, 100)
-		to_chat(user, "You open the umbrella.")
+	inhand_icon_state = active ? on_inhand_icon_state : inhand_icon_state
+	open = active
+	if(user)
+		balloon_alert(user, active ? "opened" : "closed")
+	if(active)
+		ADD_TRAIT(user, TRAIT_SHADED, REF(src))
 	else
-		icon_state = "umbrella_retract_off"
-		inhand_icon_state = "sheathed_umbrella"
-		slot_flags = ITEM_SLOT_POCKETS
-		revoke_trait(user, immunity_type)
-		if(toggle_sound)
-			playsound(user, close_sound, 100)
-		to_chat(user, "You close the umbrella.")
-
-	balloon_alert(user, active ? "extended" : "collapsed")
-	proccess_rainsounds()
+		REMOVE_TRAIT(user, TRAIT_SHADED, REF(src))
+	playsound(src, on_sound, 50, TRUE)
 	return COMPONENT_NO_DEFAULT_MESSAGE
 
+/obj/item/umbrella/pickup(mob/user)
+	. = ..()
+	RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_dir_change))
+	if(open)
+		ADD_TRAIT(user, TRAIT_SHADED, REF(src))
+
+/obj/item/umbrella/dropped(mob/user, silent)
+	. = ..()
+	REMOVE_TRAIT(user, TRAIT_SHADED, REF(src))
+	UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE)
+
+/obj/item/umbrella/proc/on_dir_change(mob/living/carbon/owner, olddir, newdir)
+	SIGNAL_HANDLER
+	owner.update_held_items()
+
+/obj/item/umbrella/get_worn_offsets(isinhands)
+	. = ..()
+	var/mob/holder = loc
+	if(open)
+		.[2] += open_y_offset
+		switch(loc.dir)
+			if(NORTH)
+				.[1] += ISODD(holder.get_held_index_of_item(src)) ? -open_x_offset : open_x_offset
+			if(SOUTH)
+				.[1] += ISODD(holder.get_held_index_of_item(src)) ? open_x_offset : -open_x_offset
+			if(EAST)
+				.[1] -= open_x_offset
+			if(WEST)
+				.[1] += open_x_offset
 
 
-/obj/item/umbrella/proc/give_trait(mob/living/user,immunity_type)
-	ADD_TRAIT(user, immunity_type, REF(src))
 
+//other umbrellas
 
-/obj/item/umbrella/proc/revoke_trait(mob/living/user,immunity_type)
-	REMOVE_TRAIT(user, immunity_type, REF(src))
+/obj/item/umbrella/parasol
+	name = "parasol"
+	desc = "A black laced parsol, how intricate."
+	icon_state = "parasol"
+	inhand_icon_state = "parasol_closed"
+	on_inhand_icon_state = "parasol_on"
+	random_color = FALSE
+	greyscale_config = null
+	greyscale_config_inhand_left = null
+	greyscale_config_inhand_right = null
 
-
-
-/datum/looping_sound/umbrella/rain_on_plastic
-	mid_sounds = list(
-		'modular_zubbers/code/modules/rimpoint_newfeatures/sound/effects/rain_on_plastic2.ogg' = 1,
-		'modular_zubbers/code/modules/rimpoint_newfeatures/sound/effects/rain_on_plastic3.ogg' = 1,
-		'modular_zubbers/code/modules/rimpoint_newfeatures/sound/effects/rain_on_plastic4.ogg' = 1,
-		'modular_zubbers/code/modules/rimpoint_newfeatures/sound/effects/rain_on_plastic5.ogg' = 1,
-		'modular_zubbers/code/modules/rimpoint_newfeatures/sound/effects/rain_on_plastic6.ogg' = 1,
-		'modular_zubbers/code/modules/rimpoint_newfeatures/sound/effects/rain_on_plastic7.ogg' = 1,
-		)
-	mid_length = 2.5 SECONDS
-	falloff_distance = 1
-	falloff_exponent = 10
-	volume = 25
-	use_reverb = TRUE
-	in_order = TRUE
-
-
-/datum/loadout_item/inhand/collapsible_umbrella
-	name = "Umbrella"
-	item_path = /obj/item/umbrella/collapsible
