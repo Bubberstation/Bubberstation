@@ -73,6 +73,7 @@
 	var/tension_diff_norm = clamp(abs(tension - target) / 100.0, 0, 1)
 	var/mood_aggr = ctl.mood.get_threat_multiplier() // 0..2
 	var/mood_vol = ctl.mood.get_variance_multiplier() // 0..2
+	var/pace = ctl.get_effective_pace()
 	var/adapt = clamp(ctl.adaptation_factor, 0, 1)
 	var/threat_rel = clamp(ctl.threat_points / max(1, ctl.max_threat_scale), 0, 1)
 	var/pop = clamp(ctl.population_factor, 0.1, 1.0)
@@ -86,46 +87,73 @@
 	// GOOD (recovery) becomes more likely when tension is high (we want deescalation) and/or adaptation active
 	score_good += tension_norm * THINK_TENSION_WEIGHT * 0.8
 	score_good += adapt * THINK_ADAPTATION_WEIGHT * 0.6
-	score_good += mood_aggr < 0.8 ? 0.2 : 0.0 // calm bias slightly towards good
+	score_good += mood_aggr < (0.8 * pace) ? 0.4 : 0.0 // calm bias slightly towards good
+	score_good += pace * THINK_MOOD_WEIGHT * 0.8
+	score_good = min(score_good, 2.0)
 
 	// BAD (escalation) more likely when tension is low (need to push), when mood_aggression high or threat_rel high
 	score_bad += (1.0 - tension_norm) * THINK_TENSION_WEIGHT * 0.9
 	score_bad += mood_aggr * THINK_MOOD_WEIGHT * 0.8
 	score_bad += threat_rel * 0.6
+	score_bad = min(score_bad, 2.0)
 
 	// NEUTRAL more likely when tension close to target and population large
 	score_neutral += (1.0 - tension_diff_norm) * 0.8 * pop
 	score_neutral += 0.2 * (1.0 - mood_aggr) // calm -> RP filler
+	score_neutral = min(score_neutral, 2.0)
 
 	// RANDOM becomes more attractive when volatility high
 	score_random += (mood_vol - 1.0) * THINK_VOLATILITY_WEIGHT
-	if(score_random < 0) score_random = 0
+	if(score_random < 0)
+		score_random = 0
 
-	// small random jitter to avoid strict ties
+	// Small random jitter to avoid strict ties and add variability
 	score_good += rand(0,10)/100.0
 	score_bad += rand(0,10)/100.0
 	score_neutral += rand(0,10)/100.0
 	score_random += rand(0,10)/100.0
-	//applying storyteller traits
+
+	// Applying storyteller traits with jitter
+	if(HAS_TRAIT(ctl, STORYTELLER_TRAIT_KIND))
+		score_good += rand(2, 20)/100.0  // Bias to good, but not deterministic
 
 	if(HAS_TRAIT(ctl, STORYTELLER_TRAIT_FORCE_TENSION))
 		if(ctl.current_tension < ctl.target_tension)
-			score_bad += rand(0, 20)/100
+			score_bad += rand(2, 20)/100.0  // Bias to bad for escalation
 
 	if(HAS_TRAIT(ctl, STORYTELLER_TRAIT_BALANCING_TENSTION))
-		if(ctl.current_tension <= ctl.target_tension + 10 || ctl.current_tension >= ctl.target_tension + 10)
-			score_neutral += rand(0, 20)/100
+		if(abs(ctl.current_tension - ctl.target_tension) > 10)
+			score_neutral += rand(2, 20)/100.0  // Bias to neutral for balance
 
-	// choose highest score
-	var/maxs = max(score_good, score_bad, score_neutral, score_random)
-	if(maxs == score_random && score_random > 0.15) // threshold to avoid spurious randoms
-		return STORY_GOAL_RANDOM
-	else if(maxs == score_good && !HAS_TRAIT(ctl, STORYTELLER_TRAIT_NO_GOOD_EVENTS))
+	if(!HAS_TRAIT(ctl, STORYTELLER_TRAIT_NO_MERCY) && ctl.population_factor <= 0.5)
+		if(tension_diff_norm > 0.5)  // Mercy in high diff
+			score_good += rand(2, 20)/100.0  // Chance for good even in diff
+		else
+			score_neutral += rand(2, 20)/100.0
+
+	// Weighted pick instead of max: allows chance for lower scores (e.g., good even if bad high)
+	// Normalize scores to probs (softmax-like, but simple sum)
+	var/total_score = score_good + score_bad + score_neutral + score_random
+	if(total_score <= 0)
+		return STORY_GOAL_NEUTRAL  // Fallback
+
+	var/prob_good = score_good / total_score
+	var/prob_bad = score_bad / total_score
+	var/prob_neutral = score_neutral / total_score
+	var/prob_random = score_random / total_score
+
+	// Roll (rand for chance)
+	var/roll = rand()
+	if(roll < prob_good && !HAS_TRAIT(ctl, STORYTELLER_TRAIT_NO_GOOD_EVENTS))
 		return STORY_GOAL_GOOD
-	else if(maxs == score_bad)
+	else if(roll < prob_good + prob_bad)
 		return STORY_GOAL_BAD
-	else
+	else if(roll < prob_good + prob_bad + prob_neutral)
 		return STORY_GOAL_NEUTRAL
+	else if(roll < prob_random * ctl.mood.get_variance_multiplier())
+		return STORY_GOAL_RANDOM
+	else
+		return STORY_GOAL_RANDOM
 
 
 // Basic select_weighted_goal with integration to goal procs

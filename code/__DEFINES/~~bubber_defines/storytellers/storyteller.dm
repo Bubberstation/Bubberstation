@@ -33,15 +33,6 @@
 
 
 
-// Storyteller Memory Defines
-// These are keys for storing data in the storyteller's memory system.
-// Used for caching event candidates, progress tracking, or temporary states.
-
-// Key for potential event candidates during planning
-#define STORY_MEMORY_EVENT_CANDIDATE "memory_event_candidate"
-
-
-
 // Weights for Entities in Balancing
 // These weights are used in the balancer subsystem to compute relative importance
 // of entities (e.g., players vs. antagonists) when updating plans or adjusting difficulty.
@@ -100,11 +91,11 @@
 // Basic threat level for standard goals
 #define STORY_GOAL_THREAT_BASIC 1.0
 
-#define STORY_GOAL_THREAT_ELEVATED 4.0
+#define STORY_GOAL_THREAT_ELEVATED 3.0
 
-#define STORY_GOAL_THREAT_HIGH 8.0
+#define STORY_GOAL_THREAT_HIGH 6.0
 
-#define STORY_GOAL_THREAT_EXTREME 10.0
+#define STORY_GOAL_THREAT_EXTREME 9.0
 
 #define STORY_ROUND_PROGRESSION_START 0
 
@@ -267,7 +258,6 @@ DEFINE_BITFIELD(story_universal_tags, list(
 #define STORY_MAX_THREAT_SCALE 100.0 // Maximum 10 000 points for events
 #define STORY_REPETITION_PENALTY 0.5
 #define STORY_DIFFICULTY_MULTIPLIER 1.0
-#define STORY_POPULATION_FACTOR 1.0
 
 // Planner constants
 #define STORY_RECALC_INTERVAL (10 MINUTES)
@@ -294,7 +284,7 @@ DEFINE_BITFIELD(story_universal_tags, list(
 #define STORY_DISRUPTION_SCALE 10
 #define STORY_INFLUENCE_SCALE 5
 #define STORY_KILLS_CAP 3
-#define STORY_OBJECTIVES_CAP 3
+#define STORY_OBJECTIVES_CAP 4
 
 // Round progression tuning (target: ~3 hours average round, 60-80 players)
 #define STORY_ROUND_PROGRESSION_TRESHOLD (2 HOURS)
@@ -306,9 +296,6 @@ DEFINE_BITFIELD(story_universal_tags, list(
 #define STORY_GRACE_MIN (2 MINUTES)
 #define STORY_GRACE_MAX STORY_GRACE_PERIOD_DEFAULT
 #define STORY_GRACE_PERIOD_DEFAULT (5 MINUTES)
-#define STORY_PLAYER_BASELINE 70
-#define STORY_POPULATION_MIN 0.8
-#define STORY_POPULATION_MAX 1.8
 
 
 

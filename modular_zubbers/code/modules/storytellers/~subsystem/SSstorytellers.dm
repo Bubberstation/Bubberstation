@@ -35,7 +35,6 @@ SUBSYSTEM_DEF(storytellers)
 	var/list/goals_by_id = list()
 	/// Root goals without a valid parent
 	var/list/goal_roots = list()
-
 	/// Loaded storyteller data from JSON: id -> assoc list(name, desc, mood_type, base_think_delay, etc.)
 	var/list/storyteller_data = list()
 
