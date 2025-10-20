@@ -17425,9 +17425,11 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/hallway/secondary/command)
 "fbx" = (
-/obj/item/kirbyplants/random,
-/obj/structure/extinguisher_cabinet/directional/north,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /obj/effect/turf_decal/tile/blue/diagonal_centre,
+/obj/structure/extinguisher_cabinet/directional/south,
 /turf/open/floor/iron/white/diagonal,
 /area/station/medical/medbay/central)
 "fbD" = (
@@ -21854,8 +21856,8 @@
 	dir = 4
 	},
 /obj/structure/table,
-/obj/machinery/status_display/evac/directional/west,
 /obj/machinery/microwave/engineering/cell_included,
+/obj/machinery/computer/security/telescreen/entertainment/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/medical/break_room)
 "gtq" = (
@@ -22962,7 +22964,6 @@
 	pixel_x = -3;
 	pixel_y = -3
 	},
-/obj/machinery/computer/security/telescreen/entertainment/directional/west,
 /obj/machinery/door/window/right/directional/east{
 	name = "Medkit Storage";
 	req_access = list("medical")
@@ -22979,6 +22980,7 @@
 	dir = 8
 	},
 /obj/machinery/light/cold/directional/west,
+/obj/structure/fireaxecabinet/jawsofrecovery/directional/west,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/medical/storage)
 "gJs" = (
@@ -85908,6 +85910,7 @@
 	},
 /obj/structure/reagent_dispensers/water_cooler,
 /obj/effect/turf_decal/bot,
+/obj/machinery/status_display/evac/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/medical/break_room)
 "xTw" = (
@@ -106564,7 +106567,7 @@ jFJ
 aub
 cvH
 grR
-mUM
+fbx
 rcl
 pxe
 pxe
@@ -107847,7 +107850,7 @@ wVN
 fRm
 xTv
 hIh
-fbx
+mTx
 wfV
 hUI
 rcl

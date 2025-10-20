@@ -21322,9 +21322,9 @@
 /area/station/maintenance/department/electrical)
 "gVg" = (
 /obj/effect/turf_decal/bot,
-/obj/item/radio/intercom/directional/north,
 /obj/machinery/suit_storage_unit/medical,
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
+/obj/structure/fireaxecabinet/jawsofrecovery/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/medical/paramedic)
 "gVi" = (
@@ -43938,6 +43938,7 @@
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
 	},
+/obj/item/radio/intercom/directional/north,
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/paramedic)
 "oiu" = (
@@ -47604,6 +47605,10 @@
 	pixel_y = 6
 	},
 /obj/structure/cable,
+/obj/machinery/door/window/right/directional/north{
+	req_access = list("medical");
+	name = "Reception"
+	},
 /turf/open/floor/iron/dark,
 /area/station/medical/paramedic)
 "pqB" = (
@@ -51291,7 +51296,6 @@
 /obj/machinery/holopad,
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/machinery/wall_healer/directional/north,
 /turf/open/floor/iron,
 /area/station/security/brig)
 "qEs" = (
@@ -70705,6 +70709,10 @@
 	},
 /obj/structure/desk_bell{
 	pixel_x = -7
+	},
+/obj/machinery/door/window/left/directional/north{
+	req_access = list("medical");
+	name = "Reception"
 	},
 /turf/open/floor/iron/dark,
 /area/station/medical/paramedic)
