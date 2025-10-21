@@ -60,7 +60,7 @@
 	snap.station_vulnerable = snap.station_strength < 0.5 || snap.crew_health_index > 0.7
 	snap.ratio = max(snap.ratio, 1) // Evode division by zero
 
-	var/base_tension = (tension_bonus * (1 - owner.adaptation_factor)) * owner.get_effective_threat() * clamp(1 / snap.ratio, 0.5, 2.0)
+	var/base_tension = tension_bonus * (1 - owner.adaptation_factor)
 
 	// Contribs: antag activity/effect + integrity tension (vulnerable station → +tension)
 	var/antag_contrib = (snap.antag_effectiveness + snap.antag_activity_index) * 25

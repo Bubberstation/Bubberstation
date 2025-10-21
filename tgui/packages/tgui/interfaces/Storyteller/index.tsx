@@ -15,9 +15,6 @@ import type { BooleanLike } from 'tgui-core/react';
 import { useBackend, useLocalState } from '../../backend';
 import { Window } from '../../layouts';
 
-// Data contract expected from backend
-// Refactored for chain: upcoming_goals list, removed global/sub/progress/weight
-
 type StorytellerGoal = {
   id: string;
   name?: string;
@@ -29,11 +26,11 @@ type StorytellerMood = {
   id: string;
   name: string;
   pace: number; // multiplier (e.g. 0.5 fast, 2.0 slow)
-  threat?: number; // optional UI hint
+  threat?: number;
 };
 
 type StorytellerEventLog = {
-  time: number; // ticks
+  time: number;
   desc: string;
   status?: string;
   id?: string;
@@ -71,7 +68,7 @@ type StorytellerData = {
   available_moods?: StorytellerMood[];
   available_goals?: StorytellerGoal[];
   can_force_event?: BooleanLike;
-  current_world_time?: number; // For relative times
+  current_world_time?: number;
 };
 
 const formatTime = (ticks?: number, current_time?: number) => {
@@ -82,11 +79,21 @@ const formatTime = (ticks?: number, current_time?: number) => {
   return `${sign}${Math.abs(ticks)}t (${sign}${seconds}s)`;
 };
 
-const ProgressRow = ({ label, value }: { label: string; value?: number }) => {
+const ProgressRow = ({
+  label,
+  value,
+  color,
+}: {
+  label: string;
+  value?: number;
+  color?: 'good' | 'average' | 'bad';
+}) => {
   const pct = Math.max(0, Math.min(1, value ?? 0));
   return (
     <LabeledList.Item label={label}>
-      <ProgressBar value={pct}>{Math.round(pct * 100)}%</ProgressBar>
+      <ProgressBar value={pct} color={color}>
+        {Math.round(pct * 100)}%
+      </ProgressBar>
     </LabeledList.Item>
   );
 };
@@ -114,7 +121,7 @@ export const Storyteller = (props) => {
   } = data;
 
   const [tab, setTab] = useLocalState<
-    'overview' | 'goals' | 'settings' | 'advanced'
+    'overview' | 'goals' | 'settings' | 'advanced' | 'logs'
   >('tab', 'overview');
   const [selectedMood, setSelectedMood] = useLocalState(
     'selectedMood',
@@ -186,60 +193,102 @@ export const Storyteller = (props) => {
           >
             Advanced
           </Tabs.Tab>
+          <Tabs.Tab
+            selected={tab === 'logs'}
+            icon="file-alt"
+            onClick={() => setTab('logs')}
+          >
+            Logs
+          </Tabs.Tab>
         </Tabs>
-
         <Divider />
-
         {tab === 'overview' && (
           <>
-            {desc ? <NoticeBox>{desc}</NoticeBox> : null}
-            <Button icon="plus" onClick={() => act('toggle_debug')}>
-              Toggle Storyteller debug mode
-            </Button>
+            {desc && <NoticeBox info>{desc}</NoticeBox>}
+            <Button
+              icon="bug"
+              tooltip="Toggle debug mode"
+              onClick={() => act('toggle_debug')}
+            />
             <Section title="Status">
               <LabeledList>
-                <LabeledList.Item label="Mood">
-                  {mood ? `${mood.name} (pace ×${mood.pace})` : '—'}
-                </LabeledList.Item>
-                <LabeledList.Item label="Tension">
-                  {data.current_tension != null
-                    ? `${data.current_tension}`
-                    : '—'}
-                </LabeledList.Item>
-                <LabeledList.Item label="Target tension">
-                  {data.target_tension != null ? `${data.target_tension}` : '—'}
-                </LabeledList.Item>
-                <LabeledList.Item label="Threat Level">
-                  {data.threat_level != null ? `${data.threat_level}/100` : '—'}
-                </LabeledList.Item>
-                <LabeledList.Item label="Effective Threat">
-                  {data.effective_threat_level != null
-                    ? `${data.effective_threat_level}/100`
-                    : '—'}
+                <LabeledList.Item
+                  label="Mood"
+                  buttons={
+                    <Button
+                      icon="edit"
+                      tooltip="Change mood"
+                      onClick={() => setTab('settings')}
+                    />
+                  }
+                >
+                  {mood ? `${mood.name} (×${mood.pace})` : '—'}
                 </LabeledList.Item>
                 <ProgressRow
+                  label="Tension"
+                  value={(data.current_tension ?? 0) / 100}
+                  color={
+                    data.current_tension || 0 > (data.target_tension ?? 50)
+                      ? 'bad'
+                      : 'good'
+                  }
+                />
+                <ProgressRow
+                  label="Target Tension"
+                  value={(data.target_tension ?? 0) / 100}
+                />
+                <ProgressRow
+                  label="Threat Level"
+                  value={(data.threat_level ?? 0) / 100}
+                  color={
+                    data.threat_level || 0 > 70
+                      ? 'bad'
+                      : data.threat_level || 0 > 30
+                        ? 'average'
+                        : 'good'
+                  }
+                />
+                <ProgressRow
+                  label="Effective Threat"
+                  value={(data.effective_threat_level ?? 0) / 100}
+                  color={
+                    data.effective_threat_level || 0 > 70
+                      ? 'bad'
+                      : data.effective_threat_level || 0 > 30
+                        ? 'average'
+                        : 'good'
+                  }
+                />
+                <ProgressRow
                   label="Round Progression"
-                  value={data.round_progression ?? 1 / 1}
+                  value={data.round_progression ?? 0}
                 />
                 <LabeledList.Item label="Players / Antags">
                   {player_count ?? '—'} / {antag_count ?? '—'}
                 </LabeledList.Item>
                 <ProgressRow
-                  label="Player / Antag Balance"
+                  label="Balance"
                   value={(player_antag_balance ?? 50) / 100}
+                  color={
+                    (player_antag_balance || 0) / 100 < 0.4
+                      ? 'bad'
+                      : (player_antag_balance || 0) / 100 < 0.6
+                        ? 'average'
+                        : 'good'
+                  }
                 />
-                <LabeledList.Item label="Event Difficulty">
+                <LabeledList.Item label="Difficulty">
                   ×{event_difficulty_modifier ?? 1}
                 </LabeledList.Item>
-                <LabeledList.Item label="Next Think In">
-                  {next_think_time != null &&
-                  next_think_time <= (current_world_time ?? 0)
-                    ? 'thinking'
-                    : formatTime(next_think_time, current_world_time)}
+                <LabeledList.Item label="Next Think">
+                  {(next_think_time || 0) <= (current_world_time ?? 0) ? (
+                    <Box color="good">Thinking</Box>
+                  ) : (
+                    formatTime(next_think_time, current_world_time)
+                  )}
                 </LabeledList.Item>
               </LabeledList>
             </Section>
-
             <Section title="Upcoming Chain">
               {upcoming_goals.length ? (
                 <Table>
@@ -248,38 +297,68 @@ export const Storyteller = (props) => {
                     <Table.Cell>Goal</Table.Cell>
                     <Table.Cell>Status</Table.Cell>
                     <Table.Cell>Progress</Table.Cell>
-                    <Table.Cell>Current Weight</Table.Cell>
+                    <Table.Cell>Weight</Table.Cell>
+                    <Table.Cell>Actions</Table.Cell>
                   </Table.Row>
                   {upcoming_goals.map((g, i) => (
-                    <Table.Row key={i}>
-                      <Table.Cell>
+                    <Table.Row
+                      key={i}
+                      className={g.status === 'firing' ? 'color-good' : ''}
+                    >
+                      <Table.Cell
+                        color={
+                          g.fire_time <= (current_world_time ?? 0)
+                            ? 'blue'
+                            : null
+                        }
+                      >
                         {g.fire_time <= (current_world_time ?? 0)
-                          ? 'firing'
+                          ? 'Firing'
                           : formatTime(g.fire_time, current_world_time)}
                       </Table.Cell>
                       <Table.Cell>{g.name || g.id}</Table.Cell>
-                      <Table.Cell>{g.status}</Table.Cell>
+                      <Table.Cell
+                        color={
+                          g.status === 'active'
+                            ? 'good'
+                            : g.status === 'failed'
+                              ? 'bad'
+                              : 'average'
+                        }
+                      >
+                        {g.status}
+                      </Table.Cell>
                       <Table.Cell>
-                        {Math.round((g.progress ?? 0) * 100)}%
+                        <ProgressBar
+                          value={g.progress ?? 0}
+                          color={
+                            g.progress || 1 > 0.7
+                              ? 'good'
+                              : g.progress || 1 > 0.3
+                                ? 'average'
+                                : 'bad'
+                          }
+                        >
+                          {Math.round((g.progress ?? 0) * 100)}%
+                        </ProgressBar>
                       </Table.Cell>
                       <Table.Cell>{g.weight ?? '—'}</Table.Cell>
                       <Table.Cell>
                         <Button
                           icon="play"
+                          tooltip="Fire"
                           onClick={() =>
                             act('trigger_goal', { offset: g.fire_time })
                           }
-                        >
-                          Fire
-                        </Button>
+                        />
                         <Button
-                          icon="bolt"
+                          icon="trash"
+                          tooltip="Remove"
+                          color="bad"
                           onClick={() =>
                             act('remove_goal', { offset: g.fire_time })
                           }
-                        >
-                          Remove
-                        </Button>
+                        />
                       </Table.Cell>
                     </Table.Row>
                   ))}
@@ -287,126 +366,150 @@ export const Storyteller = (props) => {
               ) : (
                 <Box opacity={0.6}>No chain planned.</Box>
               )}
-
               <Stack mt={1} wrap>
                 <Stack.Item>
-                  <Button icon="play" onClick={() => act('force_think')}>
-                    Think Now
-                  </Button>
+                  <Button
+                    icon="brain"
+                    tooltip="Force Think"
+                    onClick={() => act('force_think')}
+                  />
                 </Stack.Item>
                 <Stack.Item>
                   <Button
                     icon="bolt"
+                    tooltip="Random Event"
                     disabled={!can_force_event}
                     onClick={() => act('trigger_event')}
-                  >
-                    Trigger Random
-                  </Button>
+                  />
                 </Stack.Item>
                 <Stack.Item>
                   <Button.Confirm
-                    color="red"
                     icon="trash"
+                    tooltip="Reschedule"
+                    color="red"
                     onClick={() => act('reschedule_chain')}
-                  >
-                    Reschedule Chain
-                  </Button.Confirm>
+                  />
                 </Stack.Item>
                 <Stack.Item>
-                  <Button icon="fire" onClick={() => act('force_fire_next')}>
-                    Fire Next
-                  </Button>
+                  <Button
+                    icon="fire"
+                    tooltip="Fire Next"
+                    onClick={() => act('force_fire_next')}
+                  />
+                </Stack.Item>
+                <Stack.Item>
+                  <Button
+                    icon="plus"
+                    tooltip="Add Goal"
+                    onClick={() => act('add_goal')}
+                  />
                 </Stack.Item>
               </Stack>
-              <Stack.Item>
-                <Button icon="plus" onClick={() => act('add_goal')}>
-                  Schedule New Goal
-                </Button>
-              </Stack.Item>
             </Section>
-
             <Section title="Recent Events">
               {recent_events.length ? (
-                <LabeledList>
+                <Table>
+                  <Table.Row header>
+                    <Table.Cell>Time</Table.Cell>
+                    <Table.Cell>Desc</Table.Cell>
+                    <Table.Cell>Status</Table.Cell>
+                    <Table.Cell>ID</Table.Cell>
+                  </Table.Row>
                   {recent_events.map((ev, i) => (
-                    <LabeledList.Item key={i} label={formatTime(ev.time)}>
-                      {ev.desc} ({ev.status || '—'} - ID: {ev.id || '—'})
-                    </LabeledList.Item>
+                    <Table.Row key={i}>
+                      <Table.Cell>{formatTime(ev.time)}</Table.Cell>
+                      <Table.Cell>{ev.desc}</Table.Cell>
+                      <Table.Cell
+                        color={
+                          ev.status === 'success'
+                            ? 'good'
+                            : ev.status === 'failed'
+                              ? 'bad'
+                              : 'average'
+                        }
+                      >
+                        {ev.status || '—'}
+                      </Table.Cell>
+                      <Table.Cell>{ev.id || '—'}</Table.Cell>
+                    </Table.Row>
                   ))}
-                </LabeledList>
+                </Table>
               ) : (
-                <Box opacity={0.6}>No events recorded.</Box>
+                <Box opacity={0.6}>No events.</Box>
               )}
             </Section>
           </>
         )}
-
         {tab === 'goals' && (
           <>
-            <Section title="Insert to Chain">
+            <Section title="Insert Goal">
               <Stack>
                 <Stack.Item grow>
                   <Dropdown
                     selected={selectedGoal}
-                    onSelected={(v) => setSelectedGoal(String(v))}
-                    options={available_goals.map((g) => g.name || g.id)}
-                    placeholder="Select a goal..."
+                    onSelected={setSelectedGoal}
+                    options={available_goals.map((g) => ({
+                      value: g.id,
+                      displayText: g.name || g.id,
+                    }))}
+                    placeholder="Select goal..."
                     width="100%"
                   />
                 </Stack.Item>
                 <Stack.Item>
                   <Button
                     icon="check"
+                    tooltip="Insert"
                     disabled={!selectedGoal}
-                    onClick={() => {
-                      const goal = available_goals.find(
-                        (g) => (g.name || g.id) === selectedGoal,
-                      );
-                      if (goal) {
-                        act('insert_goal_to_chain', { id: goal.id });
-                      }
-                    }}
-                  >
-                    Insert
-                  </Button>
+                    onClick={() =>
+                      act('insert_goal_to_chain', { id: selectedGoal })
+                    }
+                  />
                 </Stack.Item>
                 <Stack.Item>
-                  <Button icon="random" onClick={() => act('reschedule_chain')}>
-                    Reschedule
-                  </Button>
+                  <Button
+                    icon="sync"
+                    tooltip="Reschedule"
+                    onClick={() => act('reschedule_chain')}
+                  />
                 </Stack.Item>
               </Stack>
             </Section>
-
             <Section title="Available Goals">
               {available_goals.length ? (
-                <LabeledList>
+                <Table>
+                  <Table.Row header>
+                    <Table.Cell>Name</Table.Cell>
+                    <Table.Cell>Weight</Table.Cell>
+                    <Table.Cell>Progress</Table.Cell>
+                  </Table.Row>
                   {available_goals.slice(0, 20).map((g) => (
-                    <LabeledList.Item key={g.id} label={g.name || g.id}>
-                      —
-                    </LabeledList.Item>
+                    <Table.Row key={g.id}>
+                      <Table.Cell>{g.name || g.id}</Table.Cell>
+                      <Table.Cell>{g.weight ?? '—'}</Table.Cell>
+                      <Table.Cell>
+                        {g.progress ? `${Math.round(g.progress * 100)}%` : '—'}
+                      </Table.Cell>
+                    </Table.Row>
                   ))}
-                </LabeledList>
+                </Table>
               ) : (
-                <Box opacity={0.6}>No goals available.</Box>
+                <Box opacity={0.6}>None available.</Box>
               )}
             </Section>
-
-            <Section title="Chain Controls">
-              <Stack mt={1} wrap>
+            <Section title="Controls">
+              <Stack wrap>
                 <Stack.Item>
                   <Button
                     icon="step-forward"
+                    tooltip="Advance"
                     onClick={() => act('next_subgoal')}
-                  >
-                    Advance Chain
-                  </Button>
+                  />
                 </Stack.Item>
               </Stack>
             </Section>
           </>
         )}
-
         {tab === 'settings' && (
           <>
             <Section title="Mood & Pace">
@@ -416,35 +519,32 @@ export const Storyteller = (props) => {
                     <Stack.Item grow>
                       <Dropdown
                         selected={selectedMood}
-                        onSelected={(v) => setSelectedMood(String(v))}
+                        onSelected={setSelectedMood}
                         options={available_moods.map((m) => ({
                           value: m.id,
                           displayText: m.name,
                         }))}
-                        placeholder="Select a mood..."
+                        placeholder="Select mood..."
                         width="100%"
                       />
                     </Stack.Item>
                     <Stack.Item>
                       <Button
                         icon="check"
+                        tooltip="Set"
                         disabled={!selectedMood}
                         onClick={() => act('set_mood', { id: selectedMood })}
-                      >
-                        Set Mood
-                      </Button>
+                      />
                     </Stack.Item>
                   </Stack>
                 </LabeledList.Item>
-                <LabeledList.Item label="Pace Multiplier">
+                <LabeledList.Item label="Pace">
                   <Stack>
                     <Stack.Item grow>
                       <Dropdown
                         selected={pace}
-                        onSelected={(v) => setPace(String(v))}
-                        options={[0.5, 0.75, 1, 1.25, 1.5, 2].map((v) =>
-                          String(v),
-                        )}
+                        onSelected={setPace}
+                        options={[0.5, 0.75, 1, 1.25, 1.5, 2].map(String)}
                         placeholder="Select pace..."
                         width="100%"
                       />
@@ -452,61 +552,61 @@ export const Storyteller = (props) => {
                     <Stack.Item>
                       <Button
                         icon="check"
+                        tooltip="Apply"
                         onClick={() =>
                           act('set_pace', { pace: Number(pace) || 1 })
                         }
-                      >
-                        Apply Pace
-                      </Button>
+                      />
                     </Stack.Item>
                   </Stack>
                 </LabeledList.Item>
               </LabeledList>
             </Section>
-
             <Section title="Planning">
               <Stack wrap>
                 <Stack.Item>
-                  <Button icon="refresh" onClick={() => act('reanalyse')}>
-                    Reanalyse Station
-                  </Button>
+                  <Button
+                    icon="search"
+                    tooltip="Reanalyse"
+                    onClick={() => act('reanalyse')}
+                  />
                 </Stack.Item>
                 <Stack.Item>
-                  <Button icon="calendar" onClick={() => act('replan')}>
-                    Replan Chain
-                  </Button>
+                  <Button
+                    icon="calendar"
+                    tooltip="Replan"
+                    onClick={() => act('replan')}
+                  />
                 </Stack.Item>
               </Stack>
             </Section>
           </>
         )}
-
         {tab === 'advanced' && (
           <>
             <Section title="Difficulty & Tension">
               <LabeledList>
-                <LabeledList.Item label="Difficulty Multiplier">
+                <LabeledList.Item label="Difficulty">
                   <Stack>
                     <Stack.Item grow>
                       <Dropdown
                         selected={difficulty}
-                        onSelected={(v) => setDifficulty(String(v))}
-                        options={[0.75, 1, 1.25, 1.5, 2].map((v) => String(v))}
-                        placeholder="Select difficulty..."
+                        onSelected={setDifficulty}
+                        options={[0.75, 1, 1.25, 1.5, 2].map(String)}
+                        placeholder="Select..."
                         width="100%"
                       />
                     </Stack.Item>
                     <Stack.Item>
                       <Button
                         icon="check"
+                        tooltip="Apply"
                         onClick={() =>
                           act('set_difficulty', {
                             value: Number(difficulty) || 1,
                           })
                         }
-                      >
-                        Apply
-                      </Button>
+                      />
                     </Stack.Item>
                   </Stack>
                 </LabeledList.Item>
@@ -515,67 +615,60 @@ export const Storyteller = (props) => {
                     <Stack.Item grow>
                       <Dropdown
                         selected={targetTension}
-                        onSelected={(v) => setTargetTension(String(v))}
-                        options={[30, 40, 50, 60, 70].map((v) => String(v))}
-                        placeholder="Select target tension..."
+                        onSelected={setTargetTension}
+                        options={[30, 40, 50, 60, 70].map(String)}
+                        placeholder="Select..."
                         width="100%"
                       />
                     </Stack.Item>
                     <Stack.Item>
                       <Button
                         icon="check"
+                        tooltip="Apply"
                         onClick={() =>
                           act('set_target_tension', {
                             value: Number(targetTension) || 50,
                           })
                         }
-                      >
-                        Apply
-                      </Button>
+                      />
                     </Stack.Item>
                   </Stack>
                 </LabeledList.Item>
               </LabeledList>
             </Section>
-
             <Section title="Pacing & Intervals">
               <LabeledList>
-                <LabeledList.Item label="Think Delay (ticks)">
+                <LabeledList.Item label="Think Delay">
                   <Stack>
                     <Stack.Item grow>
                       <Dropdown
                         selected={thinkDelay}
-                        onSelected={(v) => setThinkDelay(String(v))}
-                        options={[300, 600, 900, 1200, 1800, 2400].map((v) =>
-                          String(v),
-                        )}
-                        placeholder="Select think delay..."
+                        onSelected={setThinkDelay}
+                        options={[300, 600, 900, 1200, 1800, 2400].map(String)}
+                        placeholder="Select..."
                         width="100%"
                       />
                     </Stack.Item>
                     <Stack.Item>
                       <Button
                         icon="check"
+                        tooltip="Apply"
                         onClick={() =>
                           act('set_think_delay', {
                             value: Number(thinkDelay) || 600,
                           })
                         }
-                      >
-                        Apply
-                      </Button>
+                      />
                     </Stack.Item>
                   </Stack>
                 </LabeledList.Item>
-                <LabeledList.Item label="Event Interval (ticks)">
+                <LabeledList.Item label="Event Interval">
                   <Stack>
                     <Stack.Item grow>
                       <Dropdown
                         selected={minInterval}
-                        onSelected={(v) => setMinInterval(String(v))}
-                        options={[200, 300, 400, 500, 600].map((v) =>
-                          String(v),
-                        )}
+                        onSelected={setMinInterval}
+                        options={[200, 300, 400, 500, 600].map(String)}
                         placeholder="Min"
                         width="100%"
                       />
@@ -583,10 +676,8 @@ export const Storyteller = (props) => {
                     <Stack.Item grow>
                       <Dropdown
                         selected={maxInterval}
-                        onSelected={(v) => setMaxInterval(String(v))}
-                        options={[3000, 6000, 9000, 12000].map((v) =>
-                          String(v),
-                        )}
+                        onSelected={setMaxInterval}
+                        options={[3000, 6000, 9000, 12000].map(String)}
                         placeholder="Max"
                         width="100%"
                       />
@@ -594,42 +685,38 @@ export const Storyteller = (props) => {
                     <Stack.Item>
                       <Button
                         icon="check"
+                        tooltip="Apply"
                         onClick={() =>
                           act('set_event_intervals', {
                             min: Number(minInterval) || 300,
                             max: Number(maxInterval) || 9000,
                           })
                         }
-                      >
-                        Apply
-                      </Button>
+                      />
                     </Stack.Item>
                   </Stack>
                 </LabeledList.Item>
-                <LabeledList.Item label="Grace Period (ticks)">
+                <LabeledList.Item label="Grace Period">
                   <Stack>
                     <Stack.Item grow>
                       <Dropdown
                         selected={grace}
-                        onSelected={(v) => setGrace(String(v))}
-                        options={[600, 1200, 1800, 2400, 3000].map((v) =>
-                          String(v),
-                        )}
-                        placeholder="Select grace period..."
+                        onSelected={setGrace}
+                        options={[600, 1200, 1800, 2400, 3000].map(String)}
+                        placeholder="Select..."
                         width="100%"
                       />
                     </Stack.Item>
                     <Stack.Item>
                       <Button
                         icon="check"
+                        tooltip="Apply"
                         onClick={() =>
                           act('set_grace_period', {
                             value: Number(grace) || 3000,
                           })
                         }
-                      >
-                        Apply
-                      </Button>
+                      />
                     </Stack.Item>
                   </Stack>
                 </LabeledList.Item>
@@ -638,29 +725,73 @@ export const Storyteller = (props) => {
                     <Stack.Item grow>
                       <Dropdown
                         selected={repetitionPenalty}
-                        onSelected={(v) => setRepetitionPenalty(String(v))}
-                        options={[0.25, 0.5, 0.75, 1.0].map((v) => String(v))}
-                        placeholder="Select penalty..."
+                        onSelected={setRepetitionPenalty}
+                        options={[0.25, 0.5, 0.75, 1.0].map(String)}
+                        placeholder="Select..."
                         width="100%"
                       />
                     </Stack.Item>
                     <Stack.Item>
                       <Button
                         icon="check"
+                        tooltip="Apply"
                         onClick={() =>
                           act('set_repetition_penalty', {
                             value: Number(repetitionPenalty) || 0.5,
                           })
                         }
-                      >
-                        Apply
-                      </Button>
+                      />
                     </Stack.Item>
                   </Stack>
                 </LabeledList.Item>
               </LabeledList>
             </Section>
           </>
+        )}
+        {tab === 'logs' && (
+          <Section title="Action Logs">
+            {recent_events.length ? (
+              <Table>
+                <Table.Row header>
+                  <Table.Cell>Time</Table.Cell>
+                  <Table.Cell>Desc</Table.Cell>
+                  <Table.Cell>Status</Table.Cell>
+                  <Table.Cell>ID</Table.Cell>
+                </Table.Row>
+                {recent_events.map((ev, i) => (
+                  <Table.Row
+                    key={i}
+                    className={
+                      ev.status === 'success'
+                        ? 'color-good'
+                        : ev.status === 'failed'
+                          ? 'color-bad'
+                          : ''
+                    }
+                  >
+                    <Table.Cell>
+                      {formatTime(ev.time, current_world_time)}
+                    </Table.Cell>
+                    <Table.Cell>{ev.desc}</Table.Cell>
+                    <Table.Cell
+                      color={
+                        ev.status === 'success'
+                          ? 'good'
+                          : ev.status === 'failed'
+                            ? 'bad'
+                            : 'average'
+                      }
+                    >
+                      {ev.status || '—'}
+                    </Table.Cell>
+                    <Table.Cell>{ev.id || '—'}</Table.Cell>
+                  </Table.Row>
+                ))}
+              </Table>
+            ) : (
+              <Box opacity={0.6}>No logs.</Box>
+            )}
+          </Section>
         )}
       </Window.Content>
     </Window>

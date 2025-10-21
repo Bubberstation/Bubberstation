@@ -35,15 +35,8 @@
 // No global/sub distinction — all goals uniform in chain; inspired by RimWorld's cycle firing with adaptive rescheduling.
 /datum/storyteller_planner/proc/update_plan(datum/storyteller/ctl, datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/bal)
 	SHOULD_NOT_OVERRIDE(TRUE)
-
-	// First, clean up completed/failed goals from timeline
-	for(var/offset_str in timeline)
-		var/list/entry = timeline[offset_str]
-		if(entry[ENTRY_STATUS] in list(STORY_GOAL_COMPLETED, STORY_GOAL_FAILED))
-			var/datum/storyteller_goal/clean_goal = entry[ENTRY_GOAL]
-			timeline -= offset_str
-			if(clean_goal)
-				qdel(clean_goal)
+	if(!timeline)
+		build_timeline(ctl, inputs, bal)
 
 	var/list/fired_goals = list()
 	var/current_time = world.time
@@ -71,6 +64,7 @@
 			fired_goals += goal
 			entry[ENTRY_STATUS] = STORY_GOAL_COMPLETED
 			message_admins("[span_notice("Storyteller fired goal: ")] [goal.name || goal.id].")
+			ctl.post_goal(goal)
 		else
 			entry[ENTRY_STATUS] = STORY_GOAL_PENDING
 			timeline -= offset_str
@@ -78,6 +72,15 @@
 			try_plan_goal(goal, replan_delay)
 			message_admins("[span_warning("Storyteller goal failed to fire: ")] [goal.name || goal.id] — rescheduling.")
 
+
+	// First, clean up completed/failed goals from timeline
+	for(var/offset_str in timeline)
+		var/list/entry = timeline[offset_str]
+		if(entry[ENTRY_STATUS] in list(STORY_GOAL_COMPLETED, STORY_GOAL_FAILED))
+			var/datum/storyteller_goal/clean_goal = entry[ENTRY_GOAL]
+			timeline -= offset_str
+			if(clean_goal)
+				qdel(clean_goal)
 
 	var/pending_count = 0
 	for(var/offset_str in timeline)
@@ -130,11 +133,11 @@
 /datum/storyteller_planner/proc/recalculate_plan(datum/storyteller/ctl, datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/bal, force = FALSE)
 	var/list/validation_result = validate_and_collect_entries(ctl, inputs, force)
 	if(validation_result["pending_count"] == -1)
+		adjust_timeline_based_on_mood(ctl)
 		return timeline
 
 	var/initial_pending = validation_result["pending_count"]
 	rebuild_timeline_from_valid(ctl, validation_result["valid_entries"])
-	adjust_timeline_based_on_mood(ctl)
 	add_missing_goals(ctl, inputs, bal, validation_result["pending_count"], force)
 
 	var/final_pending = 0
@@ -168,13 +171,9 @@
 			pending_count++
 
 	for(var/delete_offset in to_delete)
-		timeline -= delete_offset
+		cancel_goal(delete_offset)
 
 	var/needs_rebuild = (invalid_goals > 0)
-	var/effective_threat = ctl.get_effective_threat()
-	if(effective_threat > ctl.max_threat_scale * 0.7 || ctl.adaptation_factor > 0.5)
-		needs_rebuild = TRUE
-
 	if(!(needs_rebuild && length(timeline) < 3) && !force)
 		return list("pending_count" = -1, "valid_entries" = null, "invalid_goals" = 0)
 
@@ -235,6 +234,7 @@
 		reschedule_goal(offset_num, new_offset_num)
 
 
+
 // Add missing goals to reach target count
 /datum/storyteller_planner/proc/add_missing_goals(datum/storyteller/ctl, datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/bal, pending_count, force)
 	var/target_add = max(1, STORY_INITIAL_GOALS_COUNT - pending_count)
@@ -286,7 +286,6 @@
 // Ensures buffer for branching sub-threats, fallback to random for continuity.
 /datum/storyteller_planner/proc/build_timeline(datum/storyteller/ctl, datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/bal, derived_tags)
 	timeline = list()
-
 
 	var/category = select_goal_category(ctl, bal)
 	var/tags = derived_tags || derive_universal_tags(category, ctl, inputs, bal)
@@ -348,7 +347,7 @@
 				pending_count++
 		attempts++
 
-	timeline = sortTim(timeline, /proc/cmp_text_asc)
+	timeline = sortTim(timeline, GLOBAL_PROC_REF(cmp_text_asc))
 	log_storyteller_planner("Storyteller built initial timeline: [pending_count] events chained, threat=[effective_threat].")
 
 
@@ -516,15 +515,7 @@
 	return tags
 
 /datum/storyteller_planner/proc/select_goal_category(datum/storyteller/ctl, datum/storyteller_balance_snapshot/bal)
-	var/category = ctl.mind.determine_category(ctl, bal)
-
-	if(SSstorytellers.hard_debug)
-		var/string_tags = ""
-		for(var/tag_str in get_valid_bitflags("story_goal_category"))
-			if(category & get_valid_bitflags("story_goal_category")[tag_str])
-				string_tags += tag_str + ", "
-		message_admins("Storyteller [ctl.name] determinete goal category: [string_tags]")
-	return category
+	return ctl.mind.determine_category(ctl, bal)
 
 
 /datum/storyteller_planner/proc/get_next_goal_delay(datum/storyteller_goal/goal, datum/storyteller_inputs/inputs, datum/storyteller/ctl)

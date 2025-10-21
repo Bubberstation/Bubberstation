@@ -13,7 +13,7 @@
 #define THINK_MOOD_WEIGHT 1.0
 #define THINK_ADAPTATION_WEIGHT 1.0
 
-#define THINK_THREAT_WEIGHT 0.2
+#define THINK_THREAT_WEIGHT 0.1
 #define STORY_PRIORITY_BOOST_SCALE 0.4
 #define STORY_MAX_FREQ_MULT 0.5
 #define STORY_MAX_THREAT_BONUS 0.4
@@ -260,7 +260,7 @@
 
 		var/tag_match_bonus = 0
 		if(desired_tags && G.tags)
-			var/matches = G.tags & desired_tags  // Bitfield intersection (assuming tags are bitflags)
+			var/matches = G.tags & desired_tags
 			var/num_matches = popcount_tags(matches)
 			tag_match_bonus = num_matches * STORY_TAG_MATCH_BONUS
 

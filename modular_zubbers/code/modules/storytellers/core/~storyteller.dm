@@ -181,9 +181,7 @@
 
 
 	// 3) plan anf fire goals
-	var/list/fired = planner.update_plan(src, inputs, snap)
-	for(var/datum/storyteller_goal/completed_goal in fired)
-		post_goal(completed_goal)
+	planner.update_plan(src, inputs, snap)
 
 	// 4) Passive threat/adaptation drift each think
 	threat_points = min(max_threat_scale, threat_points + threat_growth_rate * mood.get_threat_multiplier())
