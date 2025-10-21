@@ -718,3 +718,51 @@
 	fire = 100
 	acid = 50
 	wound = 25
+
+//Most of the reskins are from Civ13. The base, unknown.
+/obj/item/clothing/head/helmet/stormtrooper
+	name = "phase three security helmet"
+	desc = "A shiny white helmet with some very narrow holes for the users eyes. Developed for naval security forces before being decommissioned for 'pissing off the Mouse', whatever that means."
+	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
+	icon_state = "stormtrooper_helmet"
+	supports_variations_flags = NONE
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Phase Three" = list(
+			RESKIN_ICON_STATE = "stormtrooper_helmet",
+			RESKIN_WORN_ICON_STATE = "stormtrooper_helmet"
+		),
+		"Phase Two" = list(
+			RESKIN_ICON_STATE = "replicant_helmet2",
+			RESKIN_WORN_ICON_STATE = "replicant_helmet2"
+		),
+		"Nanotrasen" = list(
+			RESKIN_ICON_STATE = "replicant2_501st",
+			RESKIN_WORN_ICON_STATE = "replicant2_501st"
+		),
+		"Sapper" = list(
+			RESKIN_ICON_STATE = "replicant2_212th",
+			RESKIN_WORN_ICON_STATE = "replicant2_212th"
+		),
+		"Icebox" = list(
+			RESKIN_ICON_STATE = "replicant_blizzard",
+			RESKIN_WORN_ICON_STATE = "replicant_blizzard"
+		),
+		"Telecomms" = list(
+			RESKIN_ICON_STATE = "replicant_radiotech",
+			RESKIN_WORN_ICON_STATE = "replicant_radiotech"
+		),
+		"Delta" = list(
+			RESKIN_ICON_STATE = "replicant_commando",
+			RESKIN_WORN_ICON_STATE = "replicant_commando"
+		),
+		"Snow Patrol" = list(
+			RESKIN_ICON_STATE = "replicant_atrt",
+			RESKIN_WORN_ICON_STATE = "replicant_atrt"
+		),
+		"Medic" = list(
+			RESKIN_ICON_STATE = "stormsurgeon_helmet",
+			RESKIN_WORN_ICON_STATE = "stormsurgeon_helmet"
+		),
+	)

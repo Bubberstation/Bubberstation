@@ -371,4 +371,25 @@
 		)
 	AddComponent(/datum/component/squeak, combine_sounds, 75)
 
+//Most of the Stormtroope reskins are from Civ13. The base, unknown. Thanks for keeping track of credits, Skyrat!!
+
+/obj/item/clothing/shoes/jackboots/stormtrooper
+	name = "phase three boots"
+	desc = "A pair of white boots. Developed for naval security forces before being decommissioned for 'pissing off the Mouse', whatever that means."
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	icon_state = "stormtrooper_boots"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Phase Three" = list(
+			RESKIN_ICON_STATE = "stormtrooper_boots",
+			RESKIN_WORN_ICON_STATE = "stormtrooper_boots"
+		),
+		"Phase Two" = list(
+			RESKIN_ICON_STATE = "replicant_boots",
+			RESKIN_WORN_ICON_STATE = "replicant_boots"
+		),
+	)
+
+
 
