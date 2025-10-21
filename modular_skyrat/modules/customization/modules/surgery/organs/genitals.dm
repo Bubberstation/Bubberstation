@@ -565,4 +565,5 @@
 	if (!isnull(arousal_target))
 		keep_arousal_on_goal = TRUE
 		arousal_goal = arousal_target
+		SEND_SIGNAL(src, COMSIG_HUMAN_TOGGLE_AROUSAL)
 	return
