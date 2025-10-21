@@ -41,11 +41,32 @@
 
 /// Compute selection weight
 /datum/storyteller_goal/proc/get_weight(list/vault, datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
-	return STORY_GOAL_BASE_WEIGHT
-
+	var/base_weight = STORY_GOAL_BASE_WEIGHT
+	if(category & STORY_GOAL_GLOBAL)
+		base_weight = STORY_GOAL_MAJOR_WEIGHT
+	else if(category & STORY_GOAL_BAD)
+		base_weight = STORY_GOAL_BIG_WEIGHT
+	if(HAS_TRAIT(storyteller, STORYTELLER_TRAIT_FORCE_TENSION) && category & STORY_GOAL_BAD)
+		base_weight += STORY_GOAL_BIG_WEIGHT
+	if(HAS_TRAIT(storyteller, STORYTELLER_TRAIT_KIND) && category & STORY_GOAL_GOOD)
+		base_weight += STORY_GOAL_BIG_WEIGHT
+	if(HAS_TRAIT(storyteller, STORYTELLER_TRAIT_NO_GOOD_EVENTS) && category & STORY_GOAL_GOOD)
+		base_weight = 0
+	return base_weight
 
 /datum/storyteller_goal/proc/get_priority(list/vault, datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
-	return STORY_GOAL_BASE_PRIORITY
+	var/base_weight = STORY_GOAL_BASE_WEIGHT
+	if(category & STORY_GOAL_GLOBAL)
+		base_weight = STORY_GOAL_MAJOR_WEIGHT
+	else if(category & STORY_GOAL_BAD)
+		base_weight = STORY_GOAL_BIG_WEIGHT
+	if(HAS_TRAIT(storyteller, STORYTELLER_TRAIT_FORCE_TENSION) && category & STORY_GOAL_BAD)
+		base_weight += STORY_GOAL_BIG_WEIGHT
+	if(HAS_TRAIT(storyteller, STORYTELLER_TRAIT_KIND) && category & STORY_GOAL_GOOD)
+		base_weight += STORY_GOAL_BIG_WEIGHT
+	if(HAS_TRAIT(storyteller, STORYTELLER_TRAIT_NO_GOOD_EVENTS) && category & STORY_GOAL_GOOD)
+		base_weight = 0
+	return base_weight
 
 
 /datum/storyteller_goal/proc/get_progress(list/vault, datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
@@ -107,6 +128,10 @@
 
 /datum/storyteller_goal/execute_random_event/get_weight(list/vault, datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
 	return rand(STORY_GOAL_BASE_WEIGHT, STORY_GOAL_BASE_WEIGHT * 2) * storyteller.mood.volatility
+
+/datum/storyteller_goal/execute_random_event/get_priority(list/vault, datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
+	var/base = ..()
+	return base * (1 - storyteller.adaptation_factor)
 
 
 /datum/storyteller_goal/execute_random_event/complete(list/vault, datum/storyteller_inputs/inputs, datum/storyteller/storyteller, threat_points, station_value)

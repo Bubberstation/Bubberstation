@@ -14,18 +14,6 @@
 	required_round_progress = STORY_ROUND_PROGRESSION_EARLY
 	requierd_threat_level = STORY_GOAL_THREAT_BASIC
 
-/datum/storyteller_goal/execute_event/fire_spread/is_available(list/vault, datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
-	. = ..()
-	if(!.)
-		return FALSE
-	return vault[STORY_VAULT_INFRA_DAMAGE] >= STORY_VAULT_MINOR_DAMAGE
-
-
-/datum/storyteller_goal/execute_event/fire_spread/get_weight(list/vault, datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
-	return STORY_GOAL_BASE_PRIORITY * 2 + (vault[STORY_VAULT_CREW_ALIVE_COUNT] * 0.1) + vault[STORY_VAULT_INFRA_DAMAGE]
-
-
-
 /datum/round_event/fire_spread
 	allow_random = FALSE
 	var/waves_count = 1

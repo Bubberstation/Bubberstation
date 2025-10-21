@@ -272,7 +272,7 @@
 	return mood.get_event_frequency_multiplier() * (1.0 - adaptation_factor)
 
 /// Base event interval, scaled by pace and divided by population for denser threats in larger crews.
-/// Biger crews can handle more frequent events
+/// Bigger crews can handle more frequent events
 /datum/storyteller/proc/get_event_interval()
 	var/base = max_event_interval
 	var/pop_mod = clamp(1.0 - population_factor, 0.3, 1.0)

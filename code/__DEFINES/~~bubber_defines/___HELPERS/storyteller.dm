@@ -99,3 +99,43 @@
 	if(!(total_vents == 1 && unsafe_vents == 0))
 		return !(unsafe_vents > round(total_vents * 0.5))
 	return TRUE
+
+/proc/pick_weight_f(list/list_to_pick)
+	if(length(list_to_pick) == 0)
+		return null
+
+	var/total = 0.0
+	for(var/item in list_to_pick)
+		var/weight = list_to_pick[item]
+		if(!isnum(weight) || weight < 0)
+			list_to_pick[item] = 0
+			continue
+		total += weight
+
+	if(total <= 0)
+		return null
+
+
+	var/list/cumulative = list()
+	var/cum_sum = 0.0
+	for(var/item in list_to_pick)
+		var/weight = list_to_pick[item]
+		if(weight <= 0)
+			continue
+		cum_sum += weight
+		cumulative += list(list("item" = item, "cum" = cum_sum))
+
+	if(length(cumulative) == 0)
+		return null
+
+
+	#define PRECISION 1000000
+	var/rand_float = rand(1, PRECISION) / PRECISION
+	#undef PRECISION
+
+	var/target = rand_float * total
+	for(var/entry in cumulative)
+		if(entry["cum"] >= target)
+			return entry["item"]
+
+	return cumulative[cumulative.len]["item"]

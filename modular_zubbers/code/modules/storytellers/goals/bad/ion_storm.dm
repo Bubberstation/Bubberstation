@@ -8,7 +8,8 @@
 	event_path = /datum/round_event/ion_storm
 
 /datum/storyteller_goal/execute_event/ion_storm/get_weight(list/vault, datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
-	return STORY_GOAL_BASE_WEIGHT * 0.5 // We are rare
+	var/base = ..()
+	return base * 0.5 // We are rare
 
 
 /datum/round_event/ion_storm

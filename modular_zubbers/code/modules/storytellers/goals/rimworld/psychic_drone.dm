@@ -11,13 +11,6 @@
 	required_round_progress = STORY_ROUND_PROGRESSION_EARLY
 	requierd_threat_level = STORY_GOAL_THREAT_ELEVATED
 
-/datum/storyteller_goal/execute_psychic_drone/get_weight(list/vault, datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
-	// TODO: crew sanity
-	return STORY_GOAL_BASE_WEIGHT * (storyteller.get_effective_threat() * 0.3)
-
-/datum/storyteller_goal/execute_psychic_drone/get_priority(list/vault, datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
-	return 3
-
 /datum/round_event/psychic_drone
 	// Default, but randomize per wave or target
 	var/target_sex = MALE

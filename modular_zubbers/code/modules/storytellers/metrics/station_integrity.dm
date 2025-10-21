@@ -159,7 +159,7 @@
 
 
 	var/damage_level = clamp((off_percentage / 100 * STORY_VAULT_CRITICAL_DAMAGE) \
-		+ ((100 - smes_percent) / STORY_POWER_SMES_DISCHARGE_DIVISOR), 0, 3)
+		+ ((100 - smes_percent) / 100), 0, 3)
 
 
 	inputs.vault[STORY_VAULT_POWER_GRID_STRENGTH] = round(raw_strength)

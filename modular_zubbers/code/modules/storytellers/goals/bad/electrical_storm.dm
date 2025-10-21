@@ -7,8 +7,6 @@
 	path_ids = list()
 	event_path = /datum/round_event/electrical_storm
 
-/datum/storyteller_goal/execute_event/electrical_storm/get_weight(list/vault, datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
-	return STORY_GOAL_BASE_WEIGHT + (storyteller.threat_points * 0.01)
 
 /datum/round_event/electrical_storm
 	allow_random = FALSE

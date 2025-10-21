@@ -11,12 +11,6 @@
 	required_round_progress = STORY_ROUND_PROGRESSION_EARLY
 	requierd_threat_level = STORY_GOAL_THREAT_BASIC
 
-/datum/storyteller_goal/execute_event/brain_trauma/get_weight(list/vault, datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
-	return STORY_GOAL_BASE_WEIGHT + storyteller.threat_points * 0.05
-
-/datum/storyteller_goal/execute_event/brain_trauma/get_priority(list/vault, datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
-	return STORY_GOAL_BASE_PRIORITY + storyteller.threat_points * 0.1
-
 /datum/round_event/brain_trauma
 	allow_random = FALSE
 	var/maximum_targets = 1
