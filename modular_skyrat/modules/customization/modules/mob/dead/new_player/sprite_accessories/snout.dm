@@ -16,7 +16,6 @@
 	mutantpart_key = "snout"
 	mutantpart_info = list(MUTANT_INDEX_NAME = "None", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF"))
 	external_bodyshapes = NONE // We don't actually want this to have  by default, since some of them don't apply that.
-	preference = "feature_snout"
 
 /datum/bodypart_overlay/mutant/snout
 	color_source = ORGAN_COLOR_OVERRIDE
