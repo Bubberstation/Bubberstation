@@ -7,7 +7,7 @@
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	dying_key = DYE_REGISTRY_JUMPSKIRT
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
-	has_sensor = 1
+	has_sensor = HAS_SENSORS
 
 /obj/item/clothing/under/misc/maid/tactical/Initialize(mapload)
 	. = ..()
@@ -47,7 +47,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/under/syndicate.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/syndicate.dmi'
 	icon_state = "boss"
-	has_sensor = 1
+	has_sensor = HAS_SENSORS
 
 /obj/item/clothing/under/rank/civilian/bubber/boss
 	name = "mercury woman's sneaking suit"
