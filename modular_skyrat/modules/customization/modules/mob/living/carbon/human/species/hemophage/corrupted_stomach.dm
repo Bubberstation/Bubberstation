@@ -19,7 +19,7 @@
 	. = ..()
 
 	UnregisterSignal(parent, COMSIG_STOMACH_AFTER_EAT)
-
+	parent.remove_traits(stomach_traits, SPECIES_TRAIT)
 
 /datum/component/organ_corruption/stomach/proc/on_stomach_after_eat(obj/item/organ/stomach/tummy, atom/edible)
 	SIGNAL_HANDLER

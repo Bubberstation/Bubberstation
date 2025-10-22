@@ -4,7 +4,7 @@
 
 	// Override to make hemos vomit blood when they vomit.
 	var/obj/item/organ/stomach/stomach = get_organ_slot(ORGAN_SLOT_STOMACH)
-	if(HAS_TRAIT(stomach, TRAIT_STOMACH_BLOOD_VOMIT))
+	if(!(vomit_flags & MOB_VOMIT_BLOOD) && HAS_TRAIT(stomach, TRAIT_STOMACH_BLOOD_VOMIT))
 		vomit_flags |= MOB_VOMIT_BLOOD
 
 	. = ..()
