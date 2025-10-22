@@ -49,17 +49,15 @@
 
 	return TRUE
 
-/mob/living/carbon/human/Initialize(mapload)
-	. = ..()
-	RegisterSignal(src, COMSIG_LIVING_LIFE, PROC_REF(on_life_tick))
 
-/mob/living/carbon/human/proc/on_life_tick()
+/mob/living/carbon/human/proc/change_arousal_on_life()
 	SIGNAL_HANDLER
-	if (keep_arousal_on_goal && (arousal + 5 < arousal_goal))
+	if (arousal + 5 < arousal_goal)
 		adjust_arousal(5)
-	else if (keep_arousal_on_goal && (arousal < arousal_goal))
+	else if (arousal < arousal_goal)
 		adjust_arousal(1)
-
+	if (arousal_goal == AROUSAL_MINIMUM)
+		UnregisterSignal(src, COMSIG_LIVING_LIFE, PROC_REF(change_arousal_on_life))
 
 /mob/living/carbon/human/examine(mob/user)
 	. = ..()

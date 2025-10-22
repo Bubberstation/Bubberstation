@@ -561,9 +561,10 @@
 		to_chat(usr, span_warning("You can't toggle arousal right now..."))
 		return
 
-	var/arousal_target = tgui_input_number(src, "[AROUSAL_NONE]= No arousal, <[AROUSAL_LOW] Low/partial Arousal, [AROUSAL_LOW] - [AROUSAL_HIGH] Medium/full Arousal, >[AROUSAL_HIGH] Strong/full Arousal", "Set Arousal Amount", AROUSAL_NONE, AROUSAL_LIMIT, AROUSAL_MINIMUM, arousal)
+	var/arousal_target = tgui_input_number(src, "[AROUSAL_NONE]= No arousal, <[AROUSAL_LOW] Low/partial Arousal, [AROUSAL_LOW] - [AROUSAL_HIGH] Medium/full Arousal, >[AROUSAL_HIGH] Strong/full Arousal", "Set Arousal Amount", arousal, AROUSAL_LIMIT, AROUSAL_MINIMUM, 0)
 	if (!isnull(arousal_target))
-		keep_arousal_on_goal = TRUE
+		UnregisterSignal(src, COMSIG_LIVING_LIFE, PROC_REF(change_arousal_on_life))
+		RegisterSignal(src, COMSIG_LIVING_LIFE, PROC_REF(change_arousal_on_life))
 		arousal_goal = arousal_target
 		SEND_SIGNAL(src, COMSIG_HUMAN_TOGGLE_AROUSAL)
 	return

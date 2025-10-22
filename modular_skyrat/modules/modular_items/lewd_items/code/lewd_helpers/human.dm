@@ -3,7 +3,6 @@
 	var/pleasure = 0
 	var/pain = 0
 	var/arousal_goal = 0
-	var/keep_arousal_on_goal = FALSE
 
 	var/pain_limit = 0
 	var/arousal_status = AROUSAL_NONE
