@@ -264,7 +264,7 @@
 	name = "Military Ribbon (Worn)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
 
-// Solfed Accessories
+// GalFed Accessories
 /datum/greyscale_config/galfedribbons
 	name = "GalFed Ribbons"
 	icon_file = 'modular_zubbers/icons/obj/clothing/accessories.dmi'
