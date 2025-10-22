@@ -13,7 +13,7 @@
 #define THINK_MOOD_WEIGHT 1.0
 #define THINK_ADAPTATION_WEIGHT 1.0
 
-#define THINK_THREAT_WEIGHT 0.1
+#define THINK_THREAT_WEIGHT 0.05
 #define STORY_PRIORITY_BOOST_SCALE 0.4
 #define STORY_MAX_FREQ_MULT 0.5
 #define STORY_MAX_THREAT_BONUS 0.4
@@ -77,105 +77,114 @@
 // Called in planner before filtering goals, to bias directionality (STORY_GOAL_GOOD/GOAL_BAD/GOAL_NEUTRAL).
 // Inspired by RimWorld: Balances like Cassandra (tension-targeted), with Randy's volatility for flips/neutrals.
 /datum/storyteller_think/proc/determine_category(datum/storyteller/ctl, datum/storyteller_balance_snapshot/bal)
-	var/tension = bal.overall_tension
-	var/target = ctl.target_tension
+    var/tension = bal.overall_tension
+    var/target = ctl.target_tension
 
-	var/tension_norm = clamp((tension / 100.0), 0, 1)
-	var/tension_diff_norm = clamp(abs(tension - target) / 100.0, 0, 1)
-	var/mood_aggr = ctl.mood.get_threat_multiplier()
-	var/mood_vol = ctl.mood.get_variance_multiplier()
-	var/pace = ctl.get_effective_pace()
-	var/adapt = clamp(ctl.adaptation_factor, 0, 1)
-	var/threat_rel = clamp(ctl.threat_points / max(1, ctl.max_threat_scale), 0, 1)
-	var/pop = clamp(ctl.population_factor, 0.1, 1.0)
+    var/tension_norm = clamp((tension / 100.0), 0, 1)
+    var/tension_diff_norm = clamp(abs(tension - target) / 100.0, 0, 1)
+    var/mood_aggr = ctl.mood.get_threat_multiplier()
+    var/mood_vol = ctl.mood.get_variance_multiplier()
+    var/pace = ctl.get_effective_pace()
+    var/adapt = clamp(ctl.adaptation_factor, 0, 1)
+    var/threat_rel = clamp(ctl.threat_points / max(1, ctl.max_threat_scale), 0, 1)
+    var/pop = clamp(ctl.population_factor, 0.1, 1.0)
 
-	// Scores for each category (higher -> more likely)
-	var/score_good = 0
-	var/score_bad = 0
-	var/score_neutral = 0
-	var/score_random = 0
-
-	// GOOD (recovery) becomes more likely when tension is high (we want deescalation) and/or adaptation active
-	score_good += tension_norm * THINK_TENSION_WEIGHT * 0.8
-	score_good += adapt * THINK_ADAPTATION_WEIGHT * 0.6
-	score_good += mood_aggr < (0.8 * pace) ? 0.4 : 0.0
-	score_good = min(score_good, 2.0)
-
-	// BAD (escalation) more likely when tension is low (need to push), when mood_aggression high or threat_rel high
-	score_bad += (1.0 - tension_norm) * THINK_TENSION_WEIGHT * 0.9
-	score_bad += mood_aggr * THINK_MOOD_WEIGHT * 0.8
-	score_bad += threat_rel * THINK_THREAT_WEIGHT * 0.6
-	score_bad += pace * THINK_MOOD_WEIGHT * 0.8
-	score_bad = min(score_bad, 2.0)
-
-	// NEUTRAL more likely when tension close to target and population large
-	score_neutral += (1.0 - tension_diff_norm) * 0.8 * pop
-	score_neutral += 0.2 * (1.0 - mood_aggr) // calm -> RP filler
-	score_neutral = min(score_neutral, 2.0)
-
-	// RANDOM becomes more attractive when volatility high
-	score_random += (mood_vol - 1.0) * THINK_VOLATILITY_WEIGHT
-	if(score_random < 0)
-		score_random = 0
+    // Scores for each category (higher -> more likely)
+    var/score_good = 0
+    var/score_bad = 0
+    var/score_neutral = 0
+    var/score_random = 0
 
 
-	// Apply traits before jitter/normalization
-	if(HAS_TRAIT(ctl, STORYTELLER_TRAIT_NO_GOOD_EVENTS))
-		score_good = 0  // Fully disable good
-	if(HAS_TRAIT(ctl, STORYTELLER_TRAIT_KIND))
-		score_good += add_jitter(0, 0.02, 0.2)
-	if(HAS_TRAIT(ctl, STORYTELLER_TRAIT_FORCE_TENSION))
-		if(ctl.current_tension < ctl.target_tension)
-			score_bad += add_jitter(0, 0.02, 0.2)
-	if(HAS_TRAIT(ctl, STORYTELLER_TRAIT_BALANCING_TENSTION))
-		if(abs(ctl.current_tension - ctl.target_tension) > 10)
-			score_neutral += add_jitter(0, 0.02, 0.2)
-	if(!HAS_TRAIT(ctl, STORYTELLER_TRAIT_NO_MERCY) && ctl.population_factor <= 0.5)
-		if(tension_diff_norm > 0.5)
-			score_good += add_jitter(0, 0.02, 0.2)
-		else
-			score_neutral += add_jitter(0, 0.02, 0.2)
+    var/good_base_bias = 0.12
+    var/bad_tension_mult = 0.3
+    var/good_tension_mult = 0.8
+    var/good_adapt_mult = 0.8
 
-	score_good = add_jitter(score_good, 0, 0.1)
-	score_bad = add_jitter(score_bad, 0, 0.1)
-	score_neutral = add_jitter(score_neutral, 0, 0.1)
-	score_random = add_jitter(score_random, 0, 0.1)
 
-	// Normalize scores to probs (recalculate total after traits)
-	var/total_score = score_good + score_bad + score_neutral + score_random
-	if(total_score <= 0)
-		return STORY_GOAL_NEUTRAL  // Fallback
+    score_good += tension_norm * THINK_TENSION_WEIGHT * good_tension_mult
+    score_good += adapt * THINK_ADAPTATION_WEIGHT * good_adapt_mult
+    score_good += mood_aggr < (0.8 * pace) ? 0.4 : 0.0
+    score_good += good_base_bias
+    score_good = min(score_good, 2.0)
 
-	var/prob_good = score_good / total_score
-	var/prob_bad = score_bad / total_score
-	var/prob_neutral = score_neutral / total_score
-	var/prob_random = score_random / total_score
+    score_bad += (1.0 - tension_norm) * THINK_TENSION_WEIGHT * bad_tension_mult
+    score_bad += mood_aggr * THINK_MOOD_WEIGHT * 0.4
+    score_bad += threat_rel * THINK_THREAT_WEIGHT * 0.4
+    score_bad += pace * THINK_MOOD_WEIGHT * 0.25
+    score_bad = min(score_bad, 2.0)
 
-	// Roll (rand for chance) with full cumulative
-	var/roll = rand()
-	var/cum_prob = 0
-	cum_prob += prob_good
-	if(roll < cum_prob && !HAS_TRAIT(ctl, STORYTELLER_TRAIT_NO_GOOD_EVENTS))  // Redundant check, but ok since score_good=0 if trait
-		if(SSstorytellers.hard_debug)
-			message_admins("Storyteller [ctl.name] selected category: GOOD (roll=[roll], probs: G=[prob_good], B=[prob_bad], N=[prob_neutral], R=[prob_random])")
-		return STORY_GOAL_GOOD
-	cum_prob += prob_bad
-	if(roll < cum_prob)
-		if(SSstorytellers.hard_debug)
-			message_admins("Storyteller [ctl.name] selected category: BAD (roll=[roll], probs: G=[prob_good], B=[prob_bad], N=[prob_neutral], R=[prob_random])")
-		return STORY_GOAL_BAD
-	cum_prob += prob_neutral
-	if(roll < cum_prob)
-		if(SSstorytellers.hard_debug)
-			message_admins("Storyteller [ctl.name] selected category: NEUTRAL (roll=[roll], probs: G=[prob_good], B=[prob_bad], N=[prob_neutral], R=[prob_random])")
-		return STORY_GOAL_NEUTRAL
-	cum_prob += prob_random
-	if(roll < cum_prob)
-		if(SSstorytellers.hard_debug)
-			message_admins("Storyteller [ctl.name] selected category: RANDOM (roll=[roll], probs: G=[prob_good], B=[prob_bad], N=[prob_neutral], R=[prob_random])")
-		return STORY_GOAL_RANDOM
+    score_neutral += (1.0 - tension_diff_norm) * 0.8 * pop
+    score_neutral += 0.2 * (1.0 - mood_aggr)
+    score_neutral = min(score_neutral, 2.0)
 
-	return STORY_GOAL_NEUTRAL
+    score_random += (mood_vol - 1.0) * THINK_VOLATILITY_WEIGHT
+    if(score_random < 0)
+        score_random = 0
+
+    if(tension_diff_norm > 0.45)
+        score_good += 0.15
+
+    if(HAS_TRAIT(ctl, STORYTELLER_TRAIT_NO_GOOD_EVENTS))
+        score_good = 0
+    if(HAS_TRAIT(ctl, STORYTELLER_TRAIT_KIND))
+        score_good += add_jitter(0, 0.02, 0.2)
+    if(HAS_TRAIT(ctl, STORYTELLER_TRAIT_FORCE_TENSION))
+        if(ctl.current_tension < ctl.target_tension)
+            score_bad += add_jitter(0, 0.02, 0.2)
+    if(HAS_TRAIT(ctl, STORYTELLER_TRAIT_BALANCING_TENSTION))
+        if(abs(ctl.current_tension - ctl.target_tension) > 10)
+            score_neutral += add_jitter(0, 0.02, 0.2)
+    if(!HAS_TRAIT(ctl, STORYTELLER_TRAIT_NO_MERCY) && ctl.population_factor <= 0.5)
+        if(tension_diff_norm > 0.5)
+            score_good += add_jitter(0, 0.02, 0.2)
+        else
+            score_neutral += add_jitter(0, 0.02, 0.2)
+
+    score_good = max(score_good + add_jitter(0, 0, 0.1), 0.06)
+    score_bad  = max(score_bad  + add_jitter(0, 0, 0.1), 0.02)
+    score_neutral = max(score_neutral + add_jitter(0, 0, 0.1), 0.02)
+    score_random  = max(score_random  + add_jitter(0, 0, 0.1), 0.0)
+
+    // Normalize scores to probs
+    var/total_score = score_good + score_bad + score_neutral + score_random
+    if(total_score <= 0)
+        return STORY_GOAL_NEUTRAL  // fallback
+
+    var/prob_good = score_good / total_score
+    var/prob_bad = score_bad / total_score
+    var/prob_neutral = score_neutral / total_score
+    var/prob_random = score_random / total_score
+
+    // Roll (rand returns 0..1) with cumulative check
+    var/roll = rand()
+    var/cum_prob = 0
+
+    cum_prob += prob_good
+    if(roll < cum_prob && !HAS_TRAIT(ctl, STORYTELLER_TRAIT_NO_GOOD_EVENTS))
+        if(SSstorytellers.hard_debug)
+            message_admins("Storyteller [ctl.name] selected category: GOOD (roll=[roll], probs: G=[prob_good], B=[prob_bad], N=[prob_neutral], R=[prob_random])")
+        return STORY_GOAL_GOOD
+
+    cum_prob += prob_bad
+    if(roll < cum_prob)
+        if(SSstorytellers.hard_debug)
+            message_admins("Storyteller [ctl.name] selected category: BAD (roll=[roll], probs: G=[prob_good], B=[prob_bad], N=[prob_neutral], R=[prob_random])")
+        return STORY_GOAL_BAD
+
+    cum_prob += prob_neutral
+    if(roll < cum_prob)
+        if(SSstorytellers.hard_debug)
+            message_admins("Storyteller [ctl.name] selected category: NEUTRAL (roll=[roll], probs: G=[prob_good], B=[prob_bad], N=[prob_neutral], R=[prob_random])")
+        return STORY_GOAL_NEUTRAL
+
+    cum_prob += prob_random
+    if(roll < cum_prob)
+        if(SSstorytellers.hard_debug)
+            message_admins("Storyteller [ctl.name] selected category: RANDOM (roll=[roll], probs: G=[prob_good], B=[prob_bad], N=[prob_neutral], R=[prob_random])")
+        return STORY_GOAL_RANDOM
+
+    return STORY_GOAL_NEUTRAL
 
 
 // Helper to add jitter to weight: uniform rand in range for variability, scaled by volatility
@@ -209,7 +218,6 @@
 		count += (temp & 1)
 		temp >>= 1
 	return count
-
 
 
 // Basic select_weighted_goal with integration to goal procs

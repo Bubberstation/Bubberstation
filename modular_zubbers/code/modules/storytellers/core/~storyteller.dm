@@ -78,6 +78,10 @@
 	var/population_factor = 0
 	/// History of population counts for caunting population factor
 	VAR_PRIVATE/list/population_history = list()
+	/// History of raw crew counts (numeric) — used for spike detection
+	VAR_PRIVATE/list/population_count_history = list()
+	/// History of tension values — used for spike detection
+	VAR_PRIVATE/list/tension_history = list()
 	/// Max threat scale; caps threat_points to prevent over-escalation
 	var/max_threat_scale = STORY_MAX_THREAT_SCALE
 	/// Repetition penalty; reduces weight of recently used events/goals for variety
@@ -192,6 +196,13 @@
 	current_tension = snap.overall_tension
 	balancer.tension_bonus = max(balancer.tension_bonus - STORY_TENSION_BONUS_DECAY_RATE * difficulty_multiplier, 0)
 	update_population_factor()
+
+
+	var/latest_key = num2text(world.time)
+	tension_history[latest_key] = current_tension
+	if(length(tension_history) > STORY_POPULATION_HISTORY_MAX)
+		tension_history.Cut(1, 2)
+
 	// 5) Schedule next cycle
 	schedule_next_think()
 	SEND_SIGNAL(src, COMSIG_STORYTELLER_POST_THINK)
@@ -239,13 +250,19 @@
 
 	population_factor = clamp((population_factor * STORY_POPULATION_SMOOTH_WEIGHT) + (desired * (1.0 - STORY_POPULATION_SMOOTH_WEIGHT)), 0.1, 1.0)
 
-
-	population_history[num2text(world.time)] = num2text(population_factor)
+	// store numeric population_factor (cleaned up from mixed string/number storage)
+	population_history[num2text(world.time)] = population_factor
 	if(length(population_history) > STORY_POPULATION_HISTORY_MAX)
 		population_history.Cut(1, 2)
 
+	// store numeric raw crew count for spike detection
+	population_count_history[num2text(world.time)] = current
+	if(length(population_count_history) > STORY_POPULATION_HISTORY_MAX)
+		population_count_history.Cut(1, 2)
+
 	population_factor = clamp((population_factor * avg) + (desired * (1.0 - avg)), 0.1, 1.0)
 	population_history[num2text(world.time)] = population_factor
+
 
 /datum/storyteller/proc/get_closest_subgoals()
 	return planner.get_upcoming_goals(10)
@@ -327,6 +344,43 @@
 
 /datum/storyteller/proc/run_metrics(flags)
 	INVOKE_ASYNC(analyzer, TYPE_PROC_REF(/datum/storyteller_analyzer, scan_station), flags)
+
+// Returns TRUE if the latest crew count differs from recent average by 'threshold_percent' or more.
+/datum/storyteller/proc/has_population_spike(threshold_percent = 20)
+	var/current = inputs.vault[STORY_VAULT_CREW_ALIVE_COUNT] || 0
+	var/total = 0
+	var/count = 0
+	var/latest_key = num2text(world.time)
+	// compute average excluding latest sample (if present) to avoid self-comparison
+	for(var/key in population_count_history)
+		if(key == latest_key)
+			continue
+		total += text2num(population_count_history[key])
+		count++
+	var/avg = (count > 0 ? total / count : 0)
+	if(count < 3 || avg <= 0)
+		// not enough history to make a decision
+		return FALSE
+	var/delta = abs(current - avg)
+	return (delta / max(1, avg)) >= (threshold_percent / 100)
+
+
+// Returns TRUE if the latest tension differs from recent average by 'threshold_percent' or more.
+/datum/storyteller/proc/has_tension_spike(threshold_percent = 20)
+	var/current = current_tension
+	var/total = 0
+	var/count = 0
+	var/latest_key = num2text(world.time)
+	for(var/key in tension_history)
+		if(key == latest_key)
+			continue
+		total += text2num(tension_history[key])
+		count++
+	var/avg = (count > 0 ? total / count : 0)
+	if(count < 3 || avg <= 0)
+		return FALSE
+	var/delta = abs(current - avg)
+	return (delta / max(1, avg)) >= (threshold_percent / 100)
 
 
 #undef STORY_POPULATION_THRESHOLD_LOW

@@ -41,7 +41,7 @@
 	var/list/fired_goals = list()
 	var/current_time = world.time
 
-	for(var/offset_str in get_upcoming_goals(10))
+	for(var/offset_str in get_upcoming_goals())
 		var/offset = text2num(offset_str)
 		var/list/entry = get_entry_at(offset)
 		var/datum/storyteller_goal/goal = entry[ENTRY_GOAL]
@@ -173,7 +173,7 @@
 	for(var/delete_offset in to_delete)
 		cancel_goal(delete_offset)
 
-	var/needs_rebuild = (invalid_goals > 0)
+	var/needs_rebuild = (invalid_goals > 0 || ctl.has_population_spike(15) || ctl.has_tension_spike(15))
 	if(!(needs_rebuild && length(timeline) < 3) && !force)
 		return list("pending_count" = -1, "valid_entries" = null, "invalid_goals" = 0)
 
@@ -416,7 +416,7 @@
 
 // Get upcoming events: Returns list of string offsets (keys) for next N events (default 5).
 // Used for preview/debugging in admin tools or logs.
-/datum/storyteller_planner/proc/get_upcoming_goals(limit = 5)
+/datum/storyteller_planner/proc/get_upcoming_goals(limit = length(timeline))
 	var/list/upcoming = list()
 	var/count = 0
 	for(var/offset_str in sortTim(timeline.Copy(), GLOBAL_PROC_REF(cmp_text_asc)))
