@@ -47,6 +47,11 @@
 			RESKIN_INHAND_R = 'icons/mob/inhands/equipment/backpack_righthand.dmi',
 			RESKIN_INHAND_STATE = "securitypack"
 		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/back/backpack.dmi',
+			RESKIN_ICON_STATE = "backpack-security",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi',
+		),
 	)
 
 /obj/item/storage/backpack/satchel/sec
@@ -76,6 +81,11 @@
 			RESKIN_INHAND_R = 'icons/mob/inhands/equipment/backpack_righthand.dmi',
 			RESKIN_INHAND_STATE = "satchel-sec"
 		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/back/backpack.dmi',
+			RESKIN_ICON_STATE = "satchel-security",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi',
+		),
 	)
 
 /obj/item/storage/backpack/duffelbag/sec
@@ -104,6 +114,11 @@
 			RESKIN_INHAND_L = 'icons/mob/inhands/equipment/backpack_lefthand.dmi',
 			RESKIN_INHAND_R = 'icons/mob/inhands/equipment/backpack_righthand.dmi',
 			RESKIN_INHAND_STATE = "duffel-sec"
+		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/back/backpack.dmi',
+			RESKIN_ICON_STATE = "duffel-security",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi',
 		),
 	)
 
@@ -143,6 +158,12 @@
 			RESKIN_ICON_STATE = "armadyne_belt",
 			RESKIN_WORN_ICON_STATE = "armadyne_belt"
 			),
+		"Pink Variant" = list(
+				RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/belt.dmi',
+				RESKIN_ICON_STATE = "security",
+				RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/belt.dmi',
+				RESKIN_WORN_ICON_STATE = "security",
+			),
 	)
 
 /obj/item/storage/belt/security/webbing
@@ -181,7 +202,7 @@
 		show_contents(user)
 		return
 
-	if(!user.CanReach(resolve_parent))
+	if(!resolve_parent.IsReachableBy(user))
 		resolve_parent.balloon_alert(user, "can't reach!")
 		return FALSE
 
@@ -236,6 +257,11 @@
 			RESKIN_ICON_STATE = "sunhudsec",
 			RESKIN_WORN_ICON = 'icons/mob/clothing/eyes.dmi',
 		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/glasses.dmi',
+			RESKIN_ICON_STATE = "sunhudsec",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/eyes.dmi',
+		),
 		"Blue Goggles Variant" = list(
 			RESKIN_ICON_STATE = "peacekeeperglasses",
 			RESKIN_WORN_ICON_STATE = "peacekeeperglasses"
@@ -243,6 +269,12 @@
 		"Red Goggles Variant" = list(
 			RESKIN_ICON_STATE = "armadyne_glasses",
 			RESKIN_WORN_ICON_STATE = "armadyne_glasses"
+		),
+		"Pink Goggles Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/glasses.dmi',
+			RESKIN_ICON_STATE = "secgogpink",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/eyes.dmi',
+			RESKIN_WORN_ICON_STATE = "secgogpink",
 		),
 	)
 
@@ -262,6 +294,12 @@
 			RESKIN_ICON_STATE = "hudpatch",
 			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi',
 			RESKIN_WORN_ICON_STATE = "hudpatch"
+		),
+		"Pink Eyepatch" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/glasses.dmi',
+			RESKIN_ICON_STATE = "hudpatch",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/eyes.dmi',
+			RESKIN_WORN_ICON_STATE = "hudpatch",
 		),
 	)
 
@@ -628,6 +666,12 @@
 			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi',
 			RESKIN_WORN_ICON_STATE = "peacekeeper",
 		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/gloves.dmi',
+			RESKIN_ICON_STATE = "sec_gloves",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/hands.dmi',
+			RESKIN_WORN_ICON_STATE = "sec_gloves",
+		),
 	)
 
 /obj/item/clothing/gloves/color/black/security/blu // Wait why these a subtype of black?!? Who did this
@@ -638,7 +682,6 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "tackle_blue"
-
 	uses_advanced_reskins = TRUE
 	unique_reskin = list(
 		"Black Variant" = list(
@@ -730,11 +773,19 @@
 		"Red Variant" = list(
 			RESKIN_ICON = 'icons/obj/clothing/suits/armor.dmi',
 			RESKIN_ICON_STATE = "armor_sec",
+			RESKIN_WORN_ICON_STATE = "armor_sec",
 			RESKIN_WORN_ICON = 'icons/mob/clothing/suits/armor.dmi',
+		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi',
+			RESKIN_ICON_STATE = "armor_sec",
+			RESKIN_WORN_ICON_STATE = "armor_sec",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi',
 		),
 		"Armadyne Variant" = list(
 			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi',
 			RESKIN_ICON_STATE = "armadyne_armor",
+			RESKIN_WORN_ICON_STATE = "armadyne_armor",
 			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi',
 		),
 	)
@@ -791,27 +842,33 @@
 /obj/item/clothing/suit/armor/vest/warden
 	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"Red" = list(
+		"Red Variant" = list(
 			RESKIN_ICON_STATE = "warden_jacket",
 			RESKIN_WORN_ICON_STATE = "warden_jacket"
 		),
-		"Blue" = list(
+		"Blue Variant" = list(
 			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi',
 			RESKIN_ICON_STATE = "vest_warden",
 			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi',
 			RESKIN_WORN_ICON_STATE = "vest_warden"
 		),
-		"Black" = list(
+		"Black Variant" = list(
 			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi',
 			RESKIN_ICON_STATE = "peacekeeper_trench_warden",
 			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi',
 			RESKIN_WORN_ICON_STATE = "peacekeeper_trench_warden"
 		),
-		"Edgy" = list(
+		"Edgy Variant" = list(
 			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi',
 			RESKIN_ICON_STATE = "warden_syndie",
 			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi',
 			RESKIN_WORN_ICON_STATE = "warden_syndie"
+		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi',
+			RESKIN_ICON_STATE = "warden_jacket",
+			RESKIN_WORN_ICON_STATE = "warden_jacket",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi',
 		),
 		"Basic Warden Armor" = list(
 			RESKIN_ICON = 'icons/obj/clothing/suits/armor.dmi',
@@ -883,6 +940,12 @@
 			RESKIN_ICON_STATE = "rsecurity",
 			RESKIN_WORN_ICON_STATE = "rsecurity"
 		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/under/security.dmi',
+			RESKIN_ICON_STATE = "rsecurity",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/under/security.dmi',
+			RESKIN_WORN_ICON_STATE = "rsecurity"
+		),
 		"Armadyne Variant" = list(
 			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/under/centcom.dmi',
 			RESKIN_ICON_STATE = "armadyne_shirt",
@@ -914,6 +977,30 @@
 
 /obj/item/clothing/under/rank/security/officer/skirt
 	alt_covers_chest = FALSE
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
+	uses_advanced_reskins = TRUE
+	alt_covers_chest = TRUE
+	unique_reskin = list(
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "secskirt",
+			RESKIN_WORN_ICON_STATE = "secskirt"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "jumpskirt_blue",
+			RESKIN_WORN_ICON_STATE = "jumpskirt_blue"
+		),
+		"Black Variant" = list(
+			RESKIN_ICON_STATE = "jumpskirt_black",
+			RESKIN_WORN_ICON_STATE = "jumpskirt_black"
+		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/under/security.dmi',
+			RESKIN_ICON_STATE = "secskirt",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/under/security.dmi',
+			RESKIN_WORN_ICON_STATE = "secskirt"
+		),
+	)
 
 /obj/item/clothing/under/rank/security/officer/skirt/blue
 	name = "security jumpskirt"
@@ -933,6 +1020,12 @@
 		"Black Variant" = list(
 			RESKIN_ICON_STATE = "jumpskirt_black",
 			RESKIN_WORN_ICON_STATE = "jumpskirt_black"
+		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/under/security.dmi',
+			RESKIN_ICON_STATE = "secskirt",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/under/security.dmi',
+			RESKIN_WORN_ICON_STATE = "secskirt"
 		),
 	)
 
@@ -959,10 +1052,28 @@
 			RESKIN_ICON_STATE = "rwarden",
 			RESKIN_WORN_ICON_STATE = "rwarden"
 		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/under/security.dmi',
+			RESKIN_ICON_STATE = "rwarden",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/under/security.dmi',
+			RESKIN_WORN_ICON_STATE = "rwarden"
+		),
 	)
 
 /obj/item/clothing/under/rank/security/warden/skirt
-	unique_reskin = null
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "rwarden_skirt",
+			RESKIN_WORN_ICON_STATE = "rwarden_skirt"
+		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/under/security.dmi',
+			RESKIN_ICON_STATE = "rwarden_skirt",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/under/security.dmi',
+			RESKIN_WORN_ICON_STATE = "rwarden_skirt"
+		),
+	)
 
 /obj/item/clothing/under/rank/security/warden/formal
 	unique_reskin = null
@@ -991,10 +1102,28 @@
 			RESKIN_ICON_STATE = "rhos",
 			RESKIN_WORN_ICON_STATE = "rhos"
 		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/under/security.dmi',
+			RESKIN_ICON_STATE = "rhos",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/under/security.dmi',
+			RESKIN_WORN_ICON_STATE = "rhos"
+		),
 	)
 
 /obj/item/clothing/under/rank/security/head_of_security/skirt
-	unique_reskin = null
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "rhos_skirt",
+			RESKIN_WORN_ICON_STATE = "rhos_skirt"
+		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/under/security.dmi',
+			RESKIN_ICON_STATE = "rhos_skirt",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/under/security.dmi',
+			RESKIN_WORN_ICON_STATE = "rhos_skirt"
+		),
+	)
 
 /obj/item/clothing/under/rank/security/head_of_security/parade
 	icon_state = "hos_parade_male_blue"
@@ -1098,6 +1227,12 @@
 			RESKIN_ICON_STATE = "jackboots_sec",
 			RESKIN_WORN_ICON_STATE = "jackboots_sec",
 			RESKIN_WORN_ICON = 'icons/mob/clothing/feet.dmi'
+		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi',
+			RESKIN_ICON_STATE = "jackboots_sec",
+			RESKIN_WORN_ICON_STATE = "jackboots_sec",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 		),
 		"Armadyne Variant" = list(
 			RESKIN_ICON_STATE = "armadyne_boots",
