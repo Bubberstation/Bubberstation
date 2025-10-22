@@ -263,6 +263,8 @@
 
 	blood_eatable = apply_drink_modifiers(feed_target, blood_eatable)
 
+	SEND_SIGNAL(owner, COMSIG_MOB_FEED_DRINK, feed_target, blood_eatable, already_drunk)
+
 	if(IS_BLOODSUCKER(owner))
 		bloodsuckerdatum_power.handle_feeding(feed_target, blood_eatable, already_drunk)
 		owner_blood_volume = bloodsuckerdatum_power.GetBloodVolume()
