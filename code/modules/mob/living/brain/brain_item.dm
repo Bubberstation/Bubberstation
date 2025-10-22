@@ -272,12 +272,12 @@
 				trauma_desc = conditional_tooltip("Deep-rooted ", "Repair via Lobotomy.", add_tooltips)
 			if(TRAUMA_RESILIENCE_WOUND)
 				trauma_desc = conditional_tooltip("Fracture-derived ", "Repair via treatment of wounds afflicting the head.", add_tooltips)
-			// BUBBER EDIT CHANGE BEGIN - Blessed Lobotomy
 			if(TRAUMA_RESILIENCE_MAGIC)
+				// BUBBER EDIT CHANGE BEGIN - Blessed lobotomy
 				trauma_desc = conditional_tooltip("Soul-bound ", "Repair via Blessed Lobotomy.", add_tooltips)
+				// BUBBER EDIT CHANGE END - Blessed lobotomy
 			if(TRAUMA_RESILIENCE_ABSOLUTE)
 				trauma_desc = conditional_tooltip("Permanent ", "Irreparable under normal circumstances.", add_tooltips)
-			// BUBBER EDIT CHANGE FINISH
 		trauma_desc += capitalize(trauma.scan_desc)
 		LAZYADD(trauma_text, trauma_desc)
 	if(LAZYLEN(trauma_text))
@@ -340,6 +340,8 @@
 	return ..()
 
 /obj/item/organ/brain/on_life(seconds_per_tick, times_fired)
+	if(HAS_TRAIT(src, TRAIT_BRAIN_DAMAGE_NODEATH))
+		return
 	if(damage >= BRAIN_DAMAGE_DEATH) //rip
 		to_chat(owner, span_userdanger("The last spark of life in your brain fizzles out..."))
 		owner.investigate_log("has been killed by brain damage.", INVESTIGATE_DEATHS)
@@ -543,6 +545,9 @@
 			. += BT
 
 /obj/item/organ/brain/proc/can_gain_trauma(datum/brain_trauma/trauma, resilience, natural_gain = FALSE)
+	if(HAS_TRAIT(src, TRAIT_BRAIN_TRAUMA_IMMUNITY))
+		return FALSE
+
 	if(!ispath(trauma))
 		trauma = trauma.type
 	if(!initial(trauma.can_gain))
