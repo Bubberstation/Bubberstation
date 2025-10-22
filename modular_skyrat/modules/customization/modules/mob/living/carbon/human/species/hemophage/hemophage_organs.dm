@@ -27,7 +27,7 @@
 	. = ..()
 	UnregisterSignal(owner, COMSIG_MOB_FEED_DRINK)
 
-/obj/item/organ/liver/hemophage/proc/on_blood_drunk(mob/living/blood_drunk, feed_target, blood_eatable, already_drunk)
+/obj/item/organ/liver/hemophage/proc/on_blood_drunk(mob/living/carbon/blood_drunk, feed_target, blood_eatable, already_drunk)
 	SIGNAL_HANDLER
 	blood_drunk.apply_status_effect(/datum/status_effect/blood_thirst_satiated)
 	blood_drunk.disgust *= 0.3 //also clears a little bit of disgust too
