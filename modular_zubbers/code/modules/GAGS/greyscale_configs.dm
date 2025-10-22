@@ -264,3 +264,12 @@
 	name = "Military Ribbon (Worn)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
 
+// Solfed Accessories
+/datum/greyscale_config/galfedribbons
+	name = "GalFed Ribbons"
+	icon_file = 'modular_zubbers/icons/obj/clothing/accessories.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/accessories/medals/sfranks.json'
+
+/datum/greyscale_config/galfedribbons/worn
+	name = "GalFed Ribbons (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'

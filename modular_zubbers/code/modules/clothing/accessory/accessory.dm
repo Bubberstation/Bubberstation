@@ -347,22 +347,22 @@ Potential future ideas:
 	icon_state = "/obj/item/clothing/accessory/bubber/acc_medal/neckpin/centcom"
 	post_init_icon_state = "ccpin"
 
-/obj/item/clothing/accessory/bubber/acc_medal/neckpin/solfed
-	name = "\improper Solfed neckpin"
+/obj/item/clothing/accessory/bubber/acc_medal/neckpin/galfed
+	name = "\improper GalFed neckpin"
 	desc = "A pin specially dedicated to show loyalty to your federation!"
-	icon_state = "/obj/item/clothing/accessory/bubber/acc_medal/neckpin/solfed"
+	icon_state = "/obj/item/clothing/accessory/bubber/acc_medal/neckpin/galfed"
 	post_init_icon_state = "sfpin"
 
-/obj/item/clothing/accessory/bubber/acc_medal/neckpin/solfed911
-	name = "\improper Solfed 911 neckpin"
+/obj/item/clothing/accessory/bubber/acc_medal/neckpin/galfed911
+	name = "\improper GalFed 911 neckpin"
 	desc = "A pin specially dedicated to show loyalty to your federation!"
-	icon_state = "/obj/item/clothing/accessory/bubber/acc_medal/neckpin/solfed911"
+	icon_state = "/obj/item/clothing/accessory/bubber/acc_medal/neckpin/galfed911"
 	post_init_icon_state = "911pin"
 
-/obj/item/clothing/accessory/bubber/acc_medal/neckpin/solfed811
-	name = "\improper Solfed 811 neckpin"
+/obj/item/clothing/accessory/bubber/acc_medal/neckpin/galfed811
+	name = "\improper GalFed 811 neckpin"
 	desc = "A pin specially dedicated to show loyalty to your federation!"
-	icon_state = "/obj/item/clothing/accessory/bubber/acc_medal/neckpin/solfed811"
+	icon_state = "/obj/item/clothing/accessory/bubber/acc_medal/neckpin/galfed811"
 	post_init_icon_state = "811pin"
 
 /obj/item/clothing/accessory/bubber/acc_medal/neckpin/syndicate
@@ -447,3 +447,67 @@ Potential future ideas:
 	icon_state = "/obj/item/clothing/accessory/bubber/ribbon/ribbon_twotone"
 	post_init_icon_state = "ribbon7"
 
+/// GalFed Accessories
+/obj/item/clothing/accessory/bubber/galfedribbon
+	name = "\improper GalFed rank ribbon"
+	desc = "An average military ribbon."
+	icon = 'icons/map_icons/clothing/accessory.dmi'
+	icon_state = "/obj/item/clothing/accessory/bubber/galfedribbon"
+	post_init_icon_state = "star_arr_ribbon_1"
+	greyscale_colors = "#FFD700"
+	greyscale_config = /datum/greyscale_config/galfedribbons
+	greyscale_config_worn = /datum/greyscale_config/galfedribbons/worn
+	minimize_when_attached = TRUE
+
+/obj/item/clothing/accessory/bubber/galfedribbon/rank2
+	icon_state = "/obj/item/clothing/accessory/bubber/galfedribbon/rank2"
+	post_init_icon_state = "star_arr_ribbon_2"
+
+/obj/item/clothing/accessory/bubber/galfedribbon/rank3
+	icon_state = "/obj/item/clothing/accessory/bubber/galfedribbon/rank3"
+	post_init_icon_state = "star_sw_ribbon_1"
+
+/obj/item/clothing/accessory/bubber/galfedribbon/rank4
+	icon_state = "/obj/item/clothing/accessory/bubber/galfedribbon/rank4"
+	post_init_icon_state = "star_sw_ribbon_2"
+
+/obj/item/clothing/accessory/bubber/galfedribbon/rank5
+	icon_state = "/obj/item/clothing/accessory/bubber/galfedribbon/rank5"
+	post_init_icon_state = "star_ribbon_1"
+
+/obj/item/clothing/accessory/bubber/galfedribbon/rank6
+	icon_state = "/obj/item/clothing/accessory/bubber/galfedribbon/rank6"
+	post_init_icon_state = "star_ribbon_2"
+
+/obj/item/clothing/accessory/bubber/galfedribbon/rank7
+	icon_state = "/obj/item/clothing/accessory/bubber/galfedribbon/rank7"
+	post_init_icon_state = "star_ribbon_3"
+
+/obj/item/clothing/accessory/bubber/galfedribbon/rank8
+	icon_state = "/obj/item/clothing/accessory/bubber/galfedribbon/rank8"
+	post_init_icon_state = "arr_ribbon_1"
+
+/obj/item/clothing/accessory/bubber/galfedribbon/rank9
+	icon_state = "/obj/item/clothing/accessory/bubber/galfedribbon/rank8"
+	post_init_icon_state = "arr_ribbon_2"
+
+/obj/item/clothing/accessory/bubber/galfedribbon/rank10
+	icon_state = "/obj/item/clothing/accessory/bubber/galfedribbon/rank9"
+	post_init_icon_state = "arr_ribbon_3"
+
+/obj/item/clothing/accessory/bubber/galfedribbon/rank11
+	icon_state = "/obj/item/clothing/accessory/bubber/galfedribbon/rank10"
+	post_init_icon_state = "sw_ribbon_1"
+
+/obj/item/clothing/accessory/bubber/galfedribbon/rank12
+	icon_state = "/obj/item/clothing/accessory/bubber/galfedribbon/rank11"
+	post_init_icon_state = "sw_ribbon_2"
+
+/obj/item/clothing/accessory/bubber/galfedribbon/rank13
+	icon_state = "/obj/item/clothing/accessory/bubber/galfedribbon/rank12"
+	post_init_icon_state = "sw_ribbon_3"
+
+/obj/item/clothing/accessory/nova/acc_medal/neckpin/galfed/official
+	name = "\improper GalFed Official neckpin"
+	desc = "A special golden neckpin to show true loyalty to the Federation."
+	greyscale_colors = "#ffff66#0099ff"
