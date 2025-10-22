@@ -76,7 +76,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		Are you sure you want to call EMTs?",
 	EMERGENCY_RESPONSE_POLICE = "You SHOULD call Marshals for:\n\
 		Security ignoring Command, Security violating civil rights, Security engaging in Mutiny, \
-		General Violation of Galactic Federation Citizen Rights by Command/Security, etc.\n\
+		General Violation of Terran Government Citizen Rights by Command/Security, etc.\n\
 		You SHOULD NOT call Marshals for:\n\
 		Corporate affairs, manhunts, settling arguments, etc.\n\
 		Are you sure you want to call Marshals?",
@@ -93,7 +93,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	var/team_size
 	var/cops_to_send
 	var/announcement_message = "sussus amogus"
-	var/announcer = "Galactic Federation Marshal Department"
+	var/announcer = "Terran Government Marshal Department"
 	var/poll_question = "fuck you leatherman"
 	var/cell_phone_number = "911"
 	var/list_to_use = "911_responders"
@@ -101,34 +101,34 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		if(EMERGENCY_RESPONSE_POLICE)
 			team_size = 8
 			cops_to_send = /datum/antagonist/ert/request_911/police
-			announcement_message = "Crewmembers of [station_name()]. this is the Galactic Federation. We've received a request for immediate marshal support, and we are \
+			announcement_message = "Crewmembers of [station_name()]. this is the Terran Government. We've received a request for immediate marshal support, and we are \
 				sending our best marshals to support your station.\n\n\
 				If the first responders request that they need SWAT support to do their job, or to report a faulty 911 call, we will send them in at additional cost to your station to the \
 				tune of $20,000.\n\n\
 				The transcript of the call is as follows:\n\
 				[GLOB.call_911_msg]"
-			announcer = "Galactic Federation Marshal Department"
+			announcer = "Terran Government Marshal Department"
 			poll_question = "The station has called for the Marshals. Will you respond?"
 		if(EMERGENCY_RESPONSE_ATMOS)
 			team_size = tgui_input_number(usr, "How many techs would you like dispatched?", "How badly did you screw up?", 3, 3, 1)
 			cops_to_send = /datum/antagonist/ert/request_911/atmos
-			announcement_message = "Crewmembers of [station_name()]. this is the Galactic Federation's 811 dispatch. We've received a report of stationwide structural damage, atmospherics loss, fire, or otherwise, and we are \
+			announcement_message = "Crewmembers of [station_name()]. this is the Terran Government's 811 dispatch. We've received a report of stationwide structural damage, atmospherics loss, fire, or otherwise, and we are \
 				sending an Advanced Atmospherics team to support your station.\n\n\
 				The transcript of the call is as follows:\n\
 				[GLOB.call_911_msg]"
-			announcer = "Galactic Federation 811 Dispatch - Advanced Atmospherics"
+			announcer = "Terran Government 811 Dispatch - Advanced Atmospherics"
 			poll_question = "The station has called for an advanced engineering support team. Will you respond?"
 			cell_phone_number = "911"	//This needs to stay so they can communicate with SWAT
 		if(EMERGENCY_RESPONSE_EMT)
 			team_size = 8
 			cops_to_send = /datum/antagonist/ert/request_911/emt
-			announcement_message = "Crewmembers of [station_name()]. this is the Galactic Federation. We've received a request for immediate medical support, and we are \
+			announcement_message = "Crewmembers of [station_name()]. this is the Terran Government. We've received a request for immediate medical support, and we are \
 				sending our best emergency medical technicians to support your station.\n\n\
 				If the first responders request that they need SWAT support to do their job, or to report a faulty 911 call, we will send them in at additional cost to your station to the \
 				tune of $20,000.\n\n\
 				The transcript of the call is as follows:\n\
 				[GLOB.call_911_msg]"
-			announcer = "Galactic Federation EMTs"
+			announcer = "Terran Government EMTs"
 			poll_question = "The station has called for medical support. Will you respond?"
 		if(EMERGENCY_RESPONSE_EMAG)
 			team_size = 8
@@ -143,7 +143,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 			cell_phone_number = "Dogginos"
 			list_to_use = "dogginos"
 	priority_announce(announcement_message, announcer, 'sound/effects/families_police.ogg', has_important_message=TRUE, color_override = "yellow")
-	var/list/candidates = SSpolling.poll_ghost_candidates(poll_question, check_jobban = "deathsquad", alert_pic = /obj/item/card/id/advanced/terragov, role_name_text = "Galactic Federation response team")
+	var/list/candidates = SSpolling.poll_ghost_candidates(poll_question, check_jobban = "deathsquad", alert_pic = /obj/item/card/id/advanced/terragov, role_name_text = "Terran Government response team")
 
 	if(candidates.len)
 		//Pick the (un)lucky players
@@ -221,7 +221,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	return TRUE
 
 /obj/machinery/computer/communications/proc/calling_911(mob/user, called_group_pretty = "EMTs", called_group = EMERGENCY_RESPONSE_EMT)
-	message_admins("[ADMIN_LOOKUPFLW(user)] is considering calling the Galactic Federation [called_group_pretty].")
+	message_admins("[ADMIN_LOOKUPFLW(user)] is considering calling the Terran Government [called_group_pretty].")
 	var/call_911_msg_are_you_sure = "Are you sure you want to call 911? Faulty 911 calls results in a $20,000 fine and a 5 year superjail \
 		sentence."
 	if(tgui_alert(user, call_911_msg_are_you_sure, "Call 911", list("No", "Yes")) != "Yes")
@@ -237,9 +237,9 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	GLOB.cops_arrived = TRUE
 	GLOB.call_911_msg = reason_to_call_911
 	GLOB.caller_of_911 = user.name
-	log_game("[key_name(user)] has called the Galactic Federation [called_group_pretty] for the following reason:\n[GLOB.call_911_msg]")
-	message_admins("[ADMIN_LOOKUPFLW(user)] has called the Galactic Federation [called_group_pretty] for the following reason:\n[GLOB.call_911_msg]")
-	deadchat_broadcast(" has called the Galactic Federation [called_group_pretty] for the following reason:\n[GLOB.call_911_msg]", span_name("[user.real_name]"), user, message_type = DEADCHAT_ANNOUNCEMENT)
+	log_game("[key_name(user)] has called the Terran Government [called_group_pretty] for the following reason:\n[GLOB.call_911_msg]")
+	message_admins("[ADMIN_LOOKUPFLW(user)] has called the Terran Government [called_group_pretty] for the following reason:\n[GLOB.call_911_msg]")
+	deadchat_broadcast(" has called the Terran Government [called_group_pretty] for the following reason:\n[GLOB.call_911_msg]", span_name("[user.real_name]"), user, message_type = DEADCHAT_ANNOUNCEMENT)
 
 	call_911(called_group)
 	to_chat(user, span_notice("Authorization confirmed. 911 call dispatched to the Terran Government [called_group_pretty]."))
@@ -248,7 +248,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 /datum/antagonist/ert/request_911
 	name = "911 Responder"
 	antag_hud_name = "hud_spacecop"
-	suicide_cry = "FOR THE FED!!"
+	suicide_cry = "FOR THE Terran Government!!"
 	var/department = "Some stupid shit"
 
 /datum/antagonist/ert/request_911/apply_innate_effects(mob/living/mob_override)
@@ -272,14 +272,14 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 
 /datum/antagonist/ert/request_911/greet()
 	var/missiondesc =  ""
-	missiondesc += "<B><font size=5 color=red>You are NOT a Nanotrasen Employee. You work for the Galactic Federation as a [role].</font></B>"
-	missiondesc += "<BR>You are responding to emergency calls from the station for immediate GalFed [department] assistance!\n"
+	missiondesc += "<B><font size=5 color=red>You are NOT a Nanotrasen Employee. You work for the Terran Government as a [role].</font></B>"
+	missiondesc += "<BR>You are responding to emergency calls from the station for immediate TerraGov [department] assistance!\n"
 	missiondesc += "<BR>Use the Cell Phone in your backpack to confer with fellow first responders!\n"
 	missiondesc += "<BR><B>911 Transcript is as follows</B>:"
 	missiondesc += "<BR> [GLOB.call_911_msg]"
 	missiondesc += "<BR><B>Your Mission</B>:"
 	missiondesc += "<BR> <B>1.</B> Contact [GLOB.caller_of_911] and assist them in resolving the matter."
-	missiondesc += "<BR> <B>2.</B> Protect, ensure, and uphold the rights of Galactic Federation citizens on board [station_name()]."
+	missiondesc += "<BR> <B>2.</B> Protect, ensure, and uphold the rights of Terran Government citizens on board [station_name()]."
 	missiondesc += "<BR> <B>3.</B> If you believe yourself to be in danger, unable to do the job assigned to you due to a dangerous situation, \
 		or that the 911 call was made in error, you can use the S.W.A.T. Backup Caller in your backpack to vote on calling a S.W.A.T. team to assist in the situation."
 	missiondesc += "<BR> <B>4.</B> When you have finished with your work on the station, use the Beamout Tool in your backpack to beam out yourself \
@@ -310,8 +310,8 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		human_to_equip.update_ID_card()
 
 /obj/item/modular_computer/pda/request_911
-	name = "GalFed PDA"
-	desc = "A small experimental microcomputer, up to GalFed 911 Responder standards."
+	name = "Terragov PDA"
+	desc = "A small experimental microcomputer, up to Terragov 911 Responder standards."
 	icon_state = "/obj/item/modular_computer/pda/request_911"
 	greyscale_config = /datum/greyscale_config/tablet/captain
 	greyscale_colors = "#EAEAEA#66CCFF#FFCC00#5F5F5F"
@@ -322,7 +322,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	)
 
 /obj/item/modular_computer/pda/request_911/police
-	name = "GalFed Marshal PDA"
+	name = "Terragov Marshal PDA"
 	icon_state = "/obj/item/modular_computer/pda/request_911/police"
 	greyscale_colors = "#EAEAEA#66CCFF#FFD900#CC5075"
 	inserted_item = /obj/item/pen/red/security
@@ -331,7 +331,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	)
 
 /obj/item/modular_computer/pda/request_911/atmos
-	name = "GalFed Atmospherics PDA"
+	name = "Terragov Atmospherics PDA"
 	icon_state = "/obj/item/modular_computer/pda/request_911/atmos"
 	greyscale_colors = "#EAEAEA#66CCFF#FFD900#7DDEFF"
 	starting_programs = list(
@@ -341,7 +341,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	)
 
 /obj/item/modular_computer/pda/request_911/emt
-	name = "GalFed Medical PDA"
+	name = "Terragov Medical PDA"
 	icon_state = "/obj/item/modular_computer/pda/request_911/emt"
 	greyscale_colors = "#EAEAEA#66CCFF#FFD900#7284D4"
 	starting_programs = list(
@@ -424,14 +424,14 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	id_trim = /datum/id_trim/terragov/atmos
 
 /obj/item/radio/headset/headset_terragov/atmos
-	name = "\improper GalFed adv. atmos headset"
-	desc = "A headset used by Galactic Federation response teams."
+	name = "\improper TerraGov adv. atmos headset"
+	desc = "A headset used by the Terran Government response teams."
 	icon_state = "med_headset"
 	keyslot = /obj/item/encryptionkey/headset_terragov/atmos
 	radiosound = 'modular_skyrat/modules/radiosound/sound/radio/security.ogg'
 
 /obj/item/encryptionkey/headset_terragov/atmos
-	name = "\improper GalFed adv. atmos encryption key"
+	name = "\improper TerraGov adv. atmos encryption key"
 	icon_state = "/obj/item/encryptionkey/headset_terragov/atmos"
 	post_init_icon_state = "cypherkey_medical"
 	special_channels = RADIO_SPECIAL_CENTCOM
@@ -487,7 +487,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 
 /datum/antagonist/ert/request_911/condom_destroyer/greet()
 	var/missiondesc =  ""
-	missiondesc += "<B><font size=5 color=red>You are NOT a Nanotrasen Employee. You work for the Galactic Federation as a [role].</font></B>"
+	missiondesc += "<B><font size=5 color=red>You are NOT a Nanotrasen Employee. You work for the Terran Government as a [role].</font></B>"
 	missiondesc += "<BR>You are here to backup the 911 first responders, as they have reported for your assistance..\n"
 	missiondesc += "<BR><B>Your Mission</B>:"
 	missiondesc += "<BR> <B>1.</B> Contact the first responders using the Cell Phone in your backpack to figure out the situation."
@@ -528,15 +528,15 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	id_trim = /datum/id_trim/terragov
 
 /datum/antagonist/ert/request_911/treason_destroyer
-	name = "Galactic Federation Peacekeeper"
+	name = "Terran Government Peacekeeper"
 	role = "Private"
 	department = "Military"
 	outfit = /datum/outfit/request_911/treason_destroyer
 
 /datum/antagonist/ert/request_911/treason_destroyer/greet()
 	var/missiondesc =  ""
-	missiondesc += "<B><font size=5 color=red>You are NOT a Nanotrasen Employee. You work for the Galactic Federation as a [role].</font></B>"
-	missiondesc += "<BR>You are here to assume control of [station_name()] due to the occupants engaging in <B>TREASON</B> as reported by our SWAT team.\n"
+	missiondesc += "<B><font size=5 color=red>You are NOT a Nanotrasen Employee. You work for the Terran Government as a [role].</font></B>"
+	missiondesc += "<BR>You are here to assume control of [station_name()] due to the occupants engaging in Treason as reported by our SWAT team.\n"
 	missiondesc += "<BR><B>Your Mission</B>:"
 	missiondesc += "<BR> <B>1.</B> Contact the SWAT Team and the First Responders via your cell phone to get the situation from them."
 	missiondesc += "<BR> <B>2.</B> Arrest all suspects involved in the treason attempt."
@@ -564,7 +564,6 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	r_pocket = /obj/item/flashlight/seclite
 	id = /obj/item/card/id/advanced/terragov
 	r_hand = /obj/item/gun/ballistic/automatic/sol_rifle
-	accessory = /obj/item/clothing/accessory/bubber/galfedribbon/rank10
 	backpack_contents = list(
 		/obj/item/storage/box/handcuffs = 1,
 		/obj/item/sacrificial_face_shield = 1,
@@ -575,8 +574,8 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	id_trim = /datum/id_trim/terragov
 
 /obj/item/terragov_reporter
-	name = "GalFed reporter"
-	desc = "Use this in-hand to vote to call GalFed backup. If half your team votes for it, SWAT will be dispatched."
+	name = "TerraGov reporter"
+	desc = "Use this in-hand to vote to call TerraGov backup. If half your team votes for it, SWAT will be dispatched."
 	icon = 'modular_skyrat/modules/goofsec/icons/reporter.dmi'
 	icon_state = "reporter_off"
 	w_class = WEIGHT_CLASS_SMALL
@@ -683,12 +682,12 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 
 /obj/item/terragov_reporter/swat_caller
 	name = "S.W.A.T. backup caller"
-	desc = "Use this in-hand to vote to call GalFed S.W.A.T. backup. If half your team votes for it, SWAT will be dispatched."
+	desc = "Use this in-hand to vote to call TerraGov S.W.A.T. backup. If half your team votes for it, SWAT will be dispatched."
 	type_to_check = /datum/antagonist/ert/request_911
 	type_of_callers = "911_responders"
-	announcement_source = "Galactic Federation S.W.A.T."
+	announcement_source = "Terran Government S.W.A.T."
 	fine_station = TRUE
-	ghost_poll_msg = "The GalFed 911 services have requested a S.W.A.T. backup. Do you wish to become a S.W.A.T. member?"
+	ghost_poll_msg = "The Sol-Fed 911 services have requested a S.W.A.T. backup. Do you wish to become a S.W.A.T. member?"
 	amount_to_summon = 6
 	type_to_summon = /datum/antagonist/ert/request_911/condom_destroyer
 	summoned_type = "swat"
@@ -707,27 +706,27 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 
 /obj/item/terragov_reporter/treason_reporter
 	name = "treason reporter"
-	desc = "Use this in-hand to vote that the station is engaging in <b>TREASON</b>. If half your team votes for it, the Military will handle the situation."
+	desc = "Use this in-hand to vote that the station is engaging in Treason. If half your team votes for it, the Military will handle the situation."
 	type_to_check = /datum/antagonist/ert/request_911/condom_destroyer
 	type_of_callers = "swat"
-	announcement_source = "Galactic Federation National Guard"
+	announcement_source = "Terran Government National Guard"
 	fine_station = FALSE
-	ghost_poll_msg = "The station has decided to engage in treason. Do you wish to join the Galactic Federation Military?"
+	ghost_poll_msg = "The station has decided to engage in treason. Do you wish to join the Terran Government Military?"
 	amount_to_summon = 12
 	type_to_summon = /datum/antagonist/ert/request_911/treason_destroyer
 	summoned_type = "national_guard"
 	announcement_message = "Crewmembers of the station. You have refused to comply with first responders and SWAT officers, and have assaulted them, \
-		and they are unable to carry out the wills of the Galactic Federation, despite residing within Galactic Federation borders.\n\
+		and they are unable to carry out the wills of the Terran Government, despite residing within Terran Government borders.\n\
 		As such, we are charging those responsible with Treason. The penalty of which is death, or no less than twenty-five years in Superjail.\n\
 		Treason is a serious crime. Our military forces are en route to your station. They will be assuming direct control of the station, and \
 		will be evacuating civilians from the scene.\n\
-		Non-offending citizens, prepare for evacuation. Comply with all orders given to you by Galactic Federation military personnel.\n\
+		Non-offending citizens, prepare for evacuation. Comply with all orders given to you by Terran Government military personnel.\n\
 		To all those who are engaging in treason, lay down your weapons and surrender. Refusal to comply may be met with lethal force."
 
 /obj/item/terragov_reporter/treason_reporter/questions(mob/user)
 	var/list/list_of_questions = list(
-		"Treason is the crime of attacking a state authority to which one owes allegiance. The station is located within Galactic Federation space, \
-			and owes allegiance to the Galactic Federation despite being owned by Nanotrasen. Did the station engage in this today?",
+		"Treason is the crime of attacking a state authority to which one owes allegiance. The station is located within Terran Government space, \
+			and owes allegiance to the Terran Government despite being owned by Nanotrasen. Did the station engage in this today?",
 		"Did station crewmembers assault you or the SWAT team at the direction of Security and/or Command?",
 		"Did station crewmembers actively prevent you and the SWAT team from accomplishing your objectives at the direction of Security and/or Command?",
 		"Were you and your fellow SWAT members unable to handle the issue on your own?",
