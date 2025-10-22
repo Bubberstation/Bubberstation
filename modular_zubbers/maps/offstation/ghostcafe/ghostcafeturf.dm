@@ -11,6 +11,7 @@
 	light_power = 0.75
 	light_color = LIGHT_COLOR_LAVA
 	light_on = FALSE
+	var/give_turf_traits = list(TRAIT_TURF_IGNORE_SLOWDOWN, TRAIT_LAVA_STOPPED, TRAIT_IMMERSE_STOPPED)
 
 /turf/open/floor/plating/vox
 	name = "nitrogen-filled plating"
