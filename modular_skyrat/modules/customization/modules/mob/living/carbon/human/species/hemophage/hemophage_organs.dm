@@ -21,11 +21,11 @@
 
 /obj/item/organ/liver/hemophage/Insert(mob/living/carbon/receiver, special, movement_flags)
 	. = ..()
-	RegisterSignal(owner, COMSIG_MOB_FEED_DRINK, PROC_REF(on_blood_drunk))
+	RegisterSignal(receiver, COMSIG_MOB_FEED_DRINK, PROC_REF(on_blood_drunk))
 
 /obj/item/organ/liver/hemophage/Remove(mob/living/carbon/organ_owner, special, movement_flags)
 	. = ..()
-	UnregisterSignal(owner, COMSIG_MOB_FEED_DRINK)
+	UnregisterSignal(organ_owner, COMSIG_MOB_FEED_DRINK)
 
 /obj/item/organ/liver/hemophage/proc/on_blood_drunk(mob/living/carbon/blood_drunk, feed_target, blood_eatable, already_drunk)
 	SIGNAL_HANDLER
