@@ -18,7 +18,8 @@
 
 	owner.reagents.add_reagent(/datum/reagent/drug/aphrodisiac/dopamine, 0.5)
 	owner.adjustStaminaLoss(STAMINA_REMOVAL_AMOUNT_EXTERNAL)
-	affected_mob.UnregisterSignal(affected_mob, COMSIG_LIVING_LIFE)
+	var/datum/component/to_del = affected_mob.GetComponent(/datum/component/change_arousal_on_life)
+	qdel(to_del)
 	affected_mob.adjust_arousal(AROUSAL_REMOVAL_AMOUNT)
 	affected_mob.adjust_pleasure(AROUSAL_REMOVAL_AMOUNT)
 
@@ -38,7 +39,8 @@
 
 	owner.reagents.add_reagent(/datum/reagent/drug/aphrodisiac/dopamine, 0.3)
 	owner.adjustStaminaLoss(STAMINA_REMOVAL_AMOUNT_SELF)
-	UnregisterSignal(affected_mob, COMSIG_LIVING_LIFE, TYPE_PROC_REF(/mob/living/carbon/human, change_arousal_on_life)) //apparently deprecated effect, still adding this line just to be safe
+	var/datum/component/to_del = affected_mob.GetComponent(/datum/component/change_arousal_on_life)
+	qdel(to_del) //apparently deprecated effect, still adding this line just to be safe
 	affected_mob.adjust_arousal(AROUSAL_REMOVAL_AMOUNT)
 	affected_mob.adjust_pleasure(AROUSAL_REMOVAL_AMOUNT)
 

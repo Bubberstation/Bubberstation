@@ -50,14 +50,30 @@
 	return TRUE
 
 
-/mob/living/carbon/human/proc/change_arousal_on_life()
+/datum/component/change_arousal_on_life
+	//declare that the component even exists in the first place
+
+
+/datum/component/change_arousal_on_life/Initialize(...)
+	. = ..()
+	if (!ishuman(parent))
+		return COMPONENT_INCOMPATIBLE
+	RegisterSignal(parent, COMSIG_LIVING_LIFE, PROC_REF(on_life))
+
+/datum/component/change_arousal_on_life/proc/on_life()
+	//the actual meat that makes your meat rise
 	SIGNAL_HANDLER
-	if (arousal + 5 < arousal_goal)
-		adjust_arousal(5)
-	else if (arousal < arousal_goal)
-		adjust_arousal(1)
-	if (arousal_goal == AROUSAL_MINIMUM)
-		UnregisterSignal(src, COMSIG_LIVING_LIFE, PROC_REF(change_arousal_on_life))
+	var/mob/living/carbon/human/humanoid = parent
+	if (!humanoid)
+		return
+	if (humanoid.arousal + 5 < humanoid.arousal_goal)
+		humanoid.adjust_arousal(5)
+	else if (humanoid.arousal < humanoid.arousal_goal)
+		humanoid.adjust_arousal(1)
+	if (humanoid.arousal_goal == AROUSAL_MINIMUM)
+		to_chat(parent, span_warning("DEBUG: Removing Component."))
+		qdel(src)
+
 
 /mob/living/carbon/human/examine(mob/user)
 	. = ..()
