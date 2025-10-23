@@ -57,3 +57,6 @@
 
 /// Trait that says you're shaded by something (ie partially in the dark)
 #define TRAIT_SHADED "shaded"
+
+// For Bloodsuckers/Hemophages that vomit blood
+#define TRAIT_STOMACH_BLOOD_VOMIT "stomach_blood_vomit"

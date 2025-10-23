@@ -19,6 +19,19 @@
 
 	AddComponent(/datum/component/organ_corruption/liver, time_to_corrupt = ORGAN_CORRUPTION_INSTANT)
 
+/obj/item/organ/liver/hemophage/Insert(mob/living/carbon/receiver, special, movement_flags)
+	. = ..()
+	RegisterSignal(receiver, COMSIG_MOB_FEED_DRINK, PROC_REF(on_blood_drunk))
+
+/obj/item/organ/liver/hemophage/Remove(mob/living/carbon/organ_owner, special, movement_flags)
+	. = ..()
+	UnregisterSignal(organ_owner, COMSIG_MOB_FEED_DRINK)
+
+/obj/item/organ/liver/hemophage/proc/on_blood_drunk(mob/living/carbon/blood_drunk, feed_target, blood_eatable, already_drunk)
+	SIGNAL_HANDLER
+	blood_drunk.apply_status_effect(/datum/status_effect/blood_thirst_satiated)
+	blood_drunk.disgust *= 0.3 //also clears a little bit of disgust too
+
 /obj/item/organ/liver/hemophage/handle_chemical(mob/living/carbon/affected_mob, datum/reagent/chem, seconds_per_tick, times_fired)
 	. = ..()
 
