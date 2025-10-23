@@ -20,15 +20,17 @@
 			/obj/item/storage/belt/storage_pouch,
 			/obj/item/forging/reagent_weapon/sword,
 			/obj/item/melee/sabre,
+			/obj/item/forging/reagent_weapon/rapier,
 			/obj/item/claymore,
 			/obj/item/melee/cleric_mace,
 			/obj/item/knife,
 			/obj/item/melee/baton,
 			/obj/item/nullrod,	//holds any subset of nullrod in the sheath-storage - - -
+			/obj/item/melee/energy/sword/nullrod,
 		),
 		canthold = list(	// - - - except the second list's items (no fedora in the sheath)
 			/obj/item/nullrod/armblade,
-			/obj/item/nullrod/carp,
+			/obj/item/toy/plush/carpplushie/nullrod,
 			/obj/item/nullrod/chainsaw,
 			/obj/item/nullrod/bostaff,
 			/obj/item/nullrod/hammer,

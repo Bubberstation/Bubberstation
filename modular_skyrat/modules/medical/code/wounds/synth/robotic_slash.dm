@@ -105,7 +105,7 @@
 /datum/wound_pregen_data/electrical_damage
 	abstract = TRUE
 	required_limb_biostate = (BIO_WIRED)
-	required_wounding_types = list(WOUND_SLASH)
+	required_wounding_type = WOUND_SLASH
 	wound_series = WOUND_SERIES_WIRE_SLASH_ELECTRICAL_DAMAGE
 
 /datum/wound_pregen_data/electrical_damage/generate_scar_priorities()

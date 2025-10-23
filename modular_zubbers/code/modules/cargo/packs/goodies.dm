@@ -8,7 +8,7 @@
 /datum/supply_pack/goody/lasercarbine_single
 	name = "Laser Carbine Single-Pack"
 	desc = "Contains one laser carbine, an automatic variant of the laser gun. For when you need a fast-firing lethal-only solution."
-	cost = PAYCHECK_COMMAND * 12
+	cost = PAYCHECK_COMMAND * 7
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/laser/carbine)
 
@@ -18,6 +18,36 @@
 	cost = PAYCHECK_COMMAND * 5
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/e_gun/mini)
+
+/datum/supply_pack/goody/wt550_single
+	name = "WT-551 Autorifle Single-Pack"
+	desc = "An NT-security grade autorifle, it comes with excellent heating and poses no health-related risks for the user. Comes as a single-pack with one WT-551 locked and loaded."
+	cost = PAYCHECK_COMMAND * 8 //Nvm these are stronger than lasers in most scenarios so let's get them a bit of an edge. Plus gun price variety looks better
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/gun/ballistic/automatic/wt550/security)
+
+/datum/supply_pack/goody/wt550_ammo
+	name = "WT-550/WT-551 Autorifle Magazine Single-Pack"
+	desc = "A single-pack magazine with lethal regular rounds for the WT-551."
+	cost = PAYCHECK_CREW * 5 //Scale it like all guns
+	contains = list(/obj/item/ammo_box/magazine/wt550m9 = 1)
+
+/datum/supply_pack/goody/nt_shotgun
+	name = "Nanotrasen Woodstock Shotgun"
+	desc = "A classic shotgun used by hunters, police and frontiersmen alike, now at an affordable price."
+	cost = PAYCHECK_COMMAND * 12 //Worse renoster, let's make it a tad cheaper
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/gun/ballistic/shotgun/riot, /obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/hunter)
+
+/datum/supply_pack/goody/renoster_shotgun
+	name = "Renoster Shotgun Single-Pack"
+	desc = "A common modern shotgun used by Terran Government Police."
+	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol, /obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/rubber)
+	access_view = ACCESS_WEAPONS
+	cost = PAYCHECK_COMMAND * 14 //I'd say it's at odds with the combat shotgun, sustain vs burst and such, but since ss13 favours burst I'll make it a tad cheaper.
+
+/datum/supply_pack/goody/double_barrel
+	cost = PAYCHECK_COMMAND * 10 //1400 is too much considering the combat shotgun is 1500 for 1
 
 /datum/supply_pack/goody/mars_single
 	special = FALSE
@@ -38,12 +68,15 @@
 	special = FALSE
 
 /datum/supply_pack/goody/energy_single
+	cost = PAYCHECK_COMMAND * 7
 	special = FALSE
 
 /datum/supply_pack/goody/laser_single
+	cost = PAYCHECK_COMMAND * 7
 	special = FALSE
 
 /datum/supply_pack/goody/hell_single
+	cost = PAYCHECK_CREW * 5
 	special = FALSE
 
 /datum/supply_pack/goody/thermal_single

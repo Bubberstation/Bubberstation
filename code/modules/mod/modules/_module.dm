@@ -3,6 +3,7 @@
 	name = "MOD module"
 	icon = 'icons/obj/clothing/modsuit/mod_modules.dmi'
 	icon_state = "module"
+	abstract_type = /obj/item/mod/module
 	/// If it can be removed
 	var/removable = TRUE
 	/// If it's passive, togglable, usable or active
@@ -178,6 +179,7 @@
 			balloon_alert(mod.wearer, "[src] activated, [used_button]-click to use") // As of now, only wearers can "use" mods
 	active = TRUE
 	SEND_SIGNAL(src, COMSIG_MODULE_ACTIVATED)
+	SEND_SIGNAL(mod, COMSIG_MOD_MODULE_ACTIVATED, src)
 	on_activation(activator)
 	update_clothing_slots()
 	return TRUE
@@ -197,6 +199,7 @@
 			UnregisterSignal(mod.wearer, used_signal)
 			used_signal = null
 	SEND_SIGNAL(src, COMSIG_MODULE_DEACTIVATED, mod.wearer)
+	SEND_SIGNAL(mod, COMSIG_MOD_MODULE_DEACTIVATED, src)
 	on_deactivation(activator, display_message = TRUE, deleting = FALSE)
 	update_clothing_slots()
 	return TRUE
