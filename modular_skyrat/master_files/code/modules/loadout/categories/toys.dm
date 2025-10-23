@@ -6,7 +6,6 @@
 
 /datum/loadout_item/toys
 	abstract_type = /datum/loadout_item/toys
-	can_be_named = TRUE
 
 /datum/loadout_item/toys/shark
 	name = "Shark Plushie"

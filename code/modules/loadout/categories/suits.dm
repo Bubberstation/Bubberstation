@@ -7,8 +7,8 @@
 /datum/loadout_item/suit
 	abstract_type = /datum/loadout_item/suit
 
-/datum/loadout_item/suit/insert_path_into_outfit(datum/outfit/outfit, mob/living/carbon/human/equipper, visuals_only = FALSE)
-	if(outfit.suit)
+/datum/loadout_item/suit/insert_path_into_outfit(datum/outfit/outfit, mob/living/carbon/human/equipper, visuals_only = FALSE, loadout_placement_preference) // BUBBER EDIT CHANGE - Add loadout_placement_preference
+	if(outfit.suit && loadout_placement_preference != LOADOUT_OVERRIDE_JOB) // BUBBER EDIT CHANGE - Original: if(outfit.suit)
 		LAZYADD(outfit.backpack_contents, outfit.suit)
 	if(outfit.suit_store)
 		if(outfit.suit_store::w_class <= WEIGHT_CLASS_NORMAL)
@@ -27,6 +27,7 @@
 
 	outfit.suit = item_path
 
+/* BUBBER EDIT REMOVAL BEGIN - We have a more customizable version of this
 /datum/loadout_item/suit/overall
 	name = "Overall"
 	item_path = /obj/item/clothing/suit/apron/overalls
@@ -40,3 +41,4 @@
 		/datum/job/paramedic = "#28324b",
 		/datum/job/prisoner = "#ff8b00",
 	)
+*/// BUBBER EDIT REMOVAL END
