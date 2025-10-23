@@ -5,6 +5,7 @@
 *************************************************************/
 
 //CENTCOM BORG ICON DEFINES
+#define CYBORG_ICON_CENTCOM 'modular_zubbers/code/modules/silicons/borgs/sprites/robot_cc.dmi'
 #define CYBORG_ICON_CENTCOM_WIDE_BUBBER 'modular_zubbers/code/modules/silicons/borgs/sprites/widerobot_cc.dmi'
 #define CYBORG_ICON_CENTCOM_LARGE_BUBBER 'modular_zubbers/code/modules/silicons/borgs/sprites/largerobot_cc.dmi'
 
