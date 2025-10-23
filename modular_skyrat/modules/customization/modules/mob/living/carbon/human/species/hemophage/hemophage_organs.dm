@@ -107,6 +107,15 @@
 
 	AddComponent(/datum/component/organ_corruption/tongue, time_to_corrupt = ORGAN_CORRUPTION_INSTANT)
 
+/obj/item/organ/lungs/hemophage
+	name = "lungs"
+	desc = GENERIC_CORRUPTED_ORGAN_DESC
+	organ_flags = ORGAN_EDIBLE | ORGAN_TUMOR_CORRUPTED
+
+/obj/item/organ/lungs/hemophage/Initialize(mapload)
+	. = ..()
+
+	AddComponent(/datum/component/organ_corruption/lungs, time_to_corrupt = ORGAN_CORRUPTION_INSTANT)
 
 #undef GENERIC_CORRUPTED_ORGAN_DESC
 #undef BLOOD_METABOLIZATION_RATE

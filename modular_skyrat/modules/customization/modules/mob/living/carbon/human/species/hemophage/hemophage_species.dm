@@ -10,6 +10,7 @@
 		TRAIT_CAN_STRIP,
 		TRAIT_NOHUNGER,
 		TRAIT_NOBREATH,
+		TRAIT_OXYIMMUNE,
 		TRAIT_VIRUSIMMUNE,
 		TRAIT_LITERATE,
 		TRAIT_DRINKS_BLOOD,
@@ -20,7 +21,7 @@
 	mutantliver = /obj/item/organ/liver/hemophage
 	mutantstomach = /obj/item/organ/stomach/hemophage
 	mutanttongue = /obj/item/organ/tongue/hemophage
-	mutantlungs = null
+	mutantlungs = /obj/item/organ/lungs/hemophage
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	examine_limb_id = SPECIES_HUMAN
 	skinned_type = /obj/item/stack/sheet/animalhide/human
