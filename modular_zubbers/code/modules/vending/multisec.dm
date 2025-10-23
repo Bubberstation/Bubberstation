@@ -161,6 +161,10 @@
 					/obj/item/clothing/mask/gas/german = 3, //As far as I can tell, this is nowhere else in the game.
 					/obj/item/clothing/head/soft/veteran = 1,
 					/obj/item/clothing/head/helmet/toggleable/justice = 1, //More than one of these in the Vendor and they'll get annoying fast. Hence why Justice2 isn't here.
+					/obj/item/clothing/head/bandana/snake/sec = 1, //There's only room for one Boss, and one Snake.
+					/obj/item/clothing/under/rank/security/snake = 1,
+					/obj/item/clothing/gloves/color/black/security/snake = 1,
+					/obj/item/clothing/shoes/jackboots/snake = 1,
 	)
 
 	payment_department = ACCOUNT_SEC
