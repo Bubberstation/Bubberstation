@@ -46,3 +46,18 @@
 			RESKIN_WORN_ICON_STATE = "overwatch"
 		),
 	)
+
+
+//MGS stuff sprited by Crumpaloo for onlyplateau, please credit when porting, which you obviously have permission to do.
+/obj/item/clothing/gloves/color/black/security/snake
+	name = "stealth gloves"
+	desc = "We will forsake our countries."
+	uses_advanced_reskins = FALSE
+	icon = 'modular_zubbers/icons/obj/clothing/gloves/gloves.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/gloves/gloves.dmi'
+	icon_state = "snake"
+
+/obj/item/clothing/gloves/bubber/snake
+	name = "big boss' gloves"
+	desc = "We will forsake our countries."
+	icon_state = "snake"
