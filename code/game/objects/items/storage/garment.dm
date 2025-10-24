@@ -39,6 +39,10 @@
 	name = "quartermasters's garment bag"
 	desc = "A bag for storing extra clothes and shoes. This one belongs to the quartermaster."
 
+/obj/item/storage/bag/garment/paramedic
+	name = "EMT's garment bag"
+	desc = "A bag for storing extra clothes and shoes. This one belongs to the emergency medical team."
+
 /obj/item/storage/bag/garment/captain/PopulateContents()
 	new /obj/item/clothing/under/rank/captain(src)
 	new /obj/item/clothing/under/rank/captain/skirt(src)
@@ -248,3 +252,10 @@
 	new /obj/item/clothing/suit/jacket/tailcoat/quartermaster(src)
 	new /obj/item/clothing/neck/tie/bunnytie/cargo(src)
 
+
+/obj/item/storage/bag/garment/paramedic/PopulateContents()
+	new /obj/item/clothing/under/rank/medical/paramedic(src)
+	new /obj/item/clothing/under/rank/medical/paramedic/skirt(src)
+	new /obj/item/clothing/gloves/latex/nitrile(src)
+	new /obj/item/clothing/shoes/workboots/black(src)
+	new /obj/item/clothing/glasses/hud/health(src)

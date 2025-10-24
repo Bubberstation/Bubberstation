@@ -7,6 +7,7 @@
 	mutanttongue = /obj/item/organ/tongue/cat
 	/* SKYRAT EDIT REMOVAL - CUSTOMIZATION
 	mutantears = /obj/item/organ/ears/cat
+	mutanteyes = /obj/item/organ/eyes/felinid
 	mutant_organs = list(
 		/obj/item/organ/tail/cat = "Cat",
 	)

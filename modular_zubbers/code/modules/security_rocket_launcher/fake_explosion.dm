@@ -33,9 +33,8 @@
 		//Do the knockdown
 		victim_as_living.Knockdown(2 SECONDS)
 		//Do the ear damage
-		var/obj/item/organ/ears/ears = victim_as_living.get_organ_slot(ORGAN_SLOT_EARS)
-		if(ears && !HAS_TRAIT_FROM_ONLY(victim_as_living, TRAIT_DEAF, EAR_DAMAGE))
-			ears.adjustEarDamage(15, 60)
+		if(!HAS_TRAIT_FROM_ONLY(victim_as_living, TRAIT_DEAF, EAR_DAMAGE))
+			victim_as_living.sound_damage(15, 120 SECONDS)
 
 		continue
 

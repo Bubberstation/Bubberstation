@@ -27,7 +27,7 @@
 	name = "Security Gloves"
 	item_path = /obj/item/clothing/gloves/color/black/security
 	restricted_roles = list(ALL_JOBS_SEC)
-	can_be_reskinned = TRUE
+	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_ALLOW_RESKIN
 
 /datum/loadout_item/gloves/combat/peacekeeper/armadyne
 	name = "Armadyne Combat Gloves"
