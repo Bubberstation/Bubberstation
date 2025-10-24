@@ -6,7 +6,7 @@
 	icon_state = "collar_black"
 	kink_collar = TRUE
 	// The person training the collar-wearer
-	var/owner
+	var/mob/living/carbon/owner
 	// the person wearing the collar
 	var/mob/living/carbon/pet
 	// if the person wearing the collar has the well-trained quirk
@@ -51,10 +51,9 @@
 	if(!(iscarbon(pet) && pet.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy)))
 		return
 	has_well_trained = pet.has_quirk(/datum/quirk/well_trained)
-	if(has_well_trained) // removes well-trained as youre owned by one person
-		pet.remove_quirk(/datum/quirk/well_trained)
-	var/mob/living/carbon/target = owner
-	if(owner && !(pet.name == target.name))
+	if(owner && !(pet.name == owner.name))
+		if(has_well_trained) // removes well-trained as youre owned by one person
+			pet.remove_quirk(/datum/quirk/well_trained)
 		RegisterSignal(pet, COMSIG_MOB_EXAMINING, PROC_REF(on_owner_examine))
 		RegisterSignal(owner, COMSIG_MOB_EMOTE, PROC_REF(on_owner_snap))
 
@@ -79,7 +78,9 @@
 		return
 	if(target.stat == DEAD)
 		return
-	examine_list += span_purple("You can't look at <b>[target]</b> for long before flustering away")
+	if(!(owner.name == target.name))
+		return
+	examine_list += span_purple("You can't look at <b>[owner]</b> for long before flustering away")
 
 	if(TIMER_COOLDOWN_FINISHED(target, DOMINANT_COOLDOWN_EXAMINE))
 		to_chat(target, span_purple("<b>[source]</b> tries to look at you but immediately looks away with a red face..."))
@@ -96,11 +97,10 @@
 /obj/item/clothing/neck/sub_collar/proc/handle_owner_snap(atom/source, datum/emote/emote_args)
 
 	. = FALSE
-	var mob/living/target = owner
 	var/list/emote_list = list("snap", "snap2", "snap3")
 	if(locate(emote_args.key) in emote_list)
 		return
-	if(!TIMER_COOLDOWN_FINISHED(target, DOMINANT_COOLDOWN_SNAP))
+	if(!TIMER_COOLDOWN_FINISHED(owner, DOMINANT_COOLDOWN_SNAP))
 		return
 	if(pet in hearers(world.view / 2, owner))
 		if(pet.stat == DEAD)
@@ -134,4 +134,4 @@
 		. = TRUE
 
 	if(.)
-		TIMER_COOLDOWN_START(target, DOMINANT_COOLDOWN_SNAP, 10 SECONDS)
+		TIMER_COOLDOWN_START(owner, DOMINANT_COOLDOWN_SNAP, 10 SECONDS)

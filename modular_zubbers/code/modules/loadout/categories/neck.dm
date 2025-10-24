@@ -80,3 +80,7 @@
 /datum/loadout_item/neck/scarf/shadekin
 	name = "Shadekin Fur Scarf"
 	item_path = /obj/item/clothing/neck/scarf/shadekin
+
+/datum/loadout_item/neck/sub_collar
+	name = "Training Collar"
+	item_path = /obj/item/clothing/neck/sub_collar
