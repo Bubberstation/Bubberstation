@@ -4,9 +4,9 @@
 		return FALSE
 
 	var/arousal_flag = AROUSAL_NONE
-	if(arousal >= AROUSAL_MEDIUM)
+	if(arousal >= AROUSAL_LOW)
 		arousal_flag = AROUSAL_FULL
-	else if(arousal >= AROUSAL_LOW)
+	else if(arousal >= AROUSAL_NONE)
 		arousal_flag = AROUSAL_PARTIAL
 
 	if(arousal_status != arousal_flag) // Set organ arousal status
