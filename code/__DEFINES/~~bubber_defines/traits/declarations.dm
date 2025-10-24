@@ -15,6 +15,9 @@
 //For the hemophage quirk that allows hemophages to eat/drink normal food/drink.
 #define TRAIT_MASQUERADE_FOOD "masquerade_food"
 
+/// Preference toggleable trait that gives a mob four eyes
+#define TRAIT_QUAD_EYES "quad_eyes"
+
 //basic security hud
 #define TRAIT_BASIC_SECURITY_HUD "basic_security_hud"
 
@@ -54,3 +57,6 @@
 
 /// Trait that says you're shaded by something (ie partially in the dark)
 #define TRAIT_SHADED "shaded"
+
+// For Bloodsuckers/Hemophages that vomit blood
+#define TRAIT_STOMACH_BLOOD_VOMIT "stomach_blood_vomit"
