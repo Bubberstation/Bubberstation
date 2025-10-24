@@ -38,7 +38,7 @@
 
 /obj/item/ammo_box/magazine/recharge/plasma_battery
 	name = "plasma power pack"
-	desc = "A rechargeable, detachable battery that serves as a power source for plasma projectors."
+	desc = "A detachable battery that serves as a power source for plasma projectors."
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/ammo.dmi'
 	base_icon_state = "plasma_battery"
 	icon_state = "plasma_battery"
