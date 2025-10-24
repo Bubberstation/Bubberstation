@@ -160,9 +160,9 @@
 	organ_owner.remove_status_effect(/datum/status_effect/temporary_blindness)
 
 	if (scarring)
-		owner.cure_nearsighted(TRAIT_RIGHT_EYE_SCAR)
-		owner.cure_nearsighted(TRAIT_LEFT_EYE_SCAR)
-		owner.cure_blind(EYE_SCARRING_TRAIT)
+		organ_owner.cure_nearsighted(TRAIT_RIGHT_EYE_SCAR) // BUBBER EDIT CHANGE - temp fix, revert once upstream merges https://github.com/tgstation/tgstation/pull/93599
+		organ_owner.cure_nearsighted(TRAIT_LEFT_EYE_SCAR) // BUBBER EDIT CHANGE - temp fix, revert once upstream merges https://github.com/tgstation/tgstation/pull/93599
+		organ_owner.cure_blind(EYE_SCARRING_TRAIT) // BUBBER EDIT CHANGE - temp fix, revert once upstream merges https://github.com/tgstation/tgstation/pull/93599
 
 	organ_owner.update_tint()
 	organ_owner.update_sight()
