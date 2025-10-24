@@ -107,6 +107,15 @@
 	},
 /turf/closed/wall,
 /area/station/hallway/secondary/entry)
+"hM" = (
+/obj/machinery/light/blacklight/directional/south{
+	brightness = 9;
+	nightshift_brightness = 9;
+	bulb_power = 0.4;
+	light_angle = 180
+	},
+/turf/open/floor/plating,
+/area/station/maintenance/central/greater)
 "ma" = (
 /obj/structure/fluff/tram_rail/electric,
 /obj/structure/transport/linear/tram,
@@ -319,15 +328,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/station/maintenance/central/greater)
-"CO" = (
-/obj/machinery/light/blacklight/directional/south{
-	brightness = 9;
-	nightshift_brightness = 9;
-	bulb_power = 0.4;
-	light_angle = 180
-	},
-/turf/template_noop,
 /area/station/maintenance/central/greater)
 "Dy" = (
 /obj/structure/transport/linear/tram/corner/northeast,
@@ -960,8 +960,8 @@ Pm
 VV
 Ol
 tK
-RJ
-CO
+hM
+Ok
 "}
 (22,1,1) = {"
 Ok
@@ -991,7 +991,7 @@ VV
 Ol
 tK
 RJ
-Cj
+Ok
 "}
 (24,1,1) = {"
 Ok
