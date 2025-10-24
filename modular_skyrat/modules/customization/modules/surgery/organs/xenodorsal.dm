@@ -10,8 +10,6 @@
 	slot = ORGAN_SLOT_EXTERNAL_XENODORSAL
 	organ_flags = ORGAN_EXTERNAL
 
-	preference = "feature_xenodorsal"
-
 	bodypart_overlay = /datum/bodypart_overlay/mutant/xenodorsal
 
 /datum/bodypart_overlay/mutant/xenodorsal
