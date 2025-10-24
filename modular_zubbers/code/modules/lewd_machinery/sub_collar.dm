@@ -30,6 +30,7 @@
 		owner = tgui_input_list(user, "Pick an owner", "Owner Selection", in_view)
 		if(!owner)
 			return FALSE
+		user.log_message("[user] set the [src]'s owner as [owner]", LOG_ATTACK)
 	else if(tgui_alert(user, "[owner] is your current owner, would you like to replace [owner]?", "Owner Replacement", list("Yes", "No")) == "Yes")
 		owner = null
 	return FALSE
@@ -56,6 +57,7 @@
 			pet.remove_quirk(/datum/quirk/well_trained)
 		RegisterSignal(pet, COMSIG_MOB_EXAMINING, PROC_REF(on_owner_examine))
 		RegisterSignal(owner, COMSIG_MOB_EMOTE, PROC_REF(on_owner_snap))
+		user.log_message("[src] was equipped by [user].", LOG_ATTACK)
 
 // on removing the collar, removes the effects of it
 /obj/item/clothing/neck/sub_collar/dropped(mob/user)
