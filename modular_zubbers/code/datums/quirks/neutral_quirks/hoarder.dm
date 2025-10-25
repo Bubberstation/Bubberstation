@@ -150,7 +150,7 @@
 		if (!I)
 			to_chat(H, span_yellow("DEBUG: skipped null image"))
 			continue
-		I.alpha = 255
+		I.alpha = 100
 		I.color = "#ffaa00"
 		I.plane = RENDER_PLANE_GAME
 		H.client.images += I
@@ -182,7 +182,7 @@
 	var/icon_state = "target_tile"
 	var/image/I = image(icon_path, new_tile, icon_state, HIGH_TURF_LAYER)
 	if (I)
-		I.alpha = 255
+		I.alpha = 100
 		I.color = "#ffaa00"
 		I.plane = RENDER_PLANE_GAME
 		H.client.images += I
