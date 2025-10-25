@@ -29,6 +29,7 @@
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "greentext"
 	resistance_flags = FIRE_PROOF | ACID_PROOF | INDESTRUCTIBLE
+	hoard_value = 500
 	///The current holder of the greentext.
 	var/mob/living/holder
 	///Every person who has touched the greentext, having their colors changed by it.

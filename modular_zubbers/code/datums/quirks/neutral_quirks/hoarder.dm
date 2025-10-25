@@ -1,5 +1,10 @@
 #define MAX_HOARD_SIZE 9
 
+#define HOARD_BAD 200
+#define HOARD_OKAY 400
+#define HOARD_GOOD 800
+#define HOARD_FULL 1000
+
 /datum/quirk/hoarder
 	name = "Hoarder"
 	desc = "You have a habit of gathering trinkets and putting them all together in a big pile"
@@ -12,6 +17,8 @@
 	var/list/hoard_turfs = list()
 	var/list/hoard_images = list()
 	var/hoard_visible = TRUE
+	var/hoard_process_interval = 30 SECONDS
+	var/hoard_grace_period = 10 MINUTE
 
 /datum/quirk/hoarder/add(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
@@ -21,6 +28,7 @@
 	var/datum/action/cooldown/spell/toggle_hoard/toggle_hoard = new /datum/action/cooldown/spell/toggle_hoard()
 	toggle_hoard.Grant(human_holder)
 	toggle_hoard.hoard_quirk = src
+	addtimer(CALLBACK(src, PROC_REF(first_hoard_check)), hoard_grace_period)
 
 /datum/quirk/hoarder/remove()
 	if(QDELETED(quirk_holder))
@@ -41,6 +49,43 @@
 	return ..()
 
 
+// === Hoard Calculation Below ===
+/datum/quirk/hoarder/proc/first_hoard_check()
+	update_hoard_mood()
+	addtimer(CALLBACK(src, PROC_REF(update_hoard_mood)), hoard_process_interval, TIMER_LOOP)
+
+/datum/quirk/hoarder/proc/update_hoard_mood()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(!H)
+		return
+	var/value = get_total_hoard_value()
+	if (value == 0)
+		H.add_mood_event("hoard_value", /datum/mood_event/hoard_none)
+		return
+	if (value < HOARD_BAD)
+		H.add_mood_event("hoard_value", /datum/mood_event/hoard_sparse)
+		return
+	if (value < HOARD_OKAY)
+		H.add_mood_event("hoard_value", /datum/mood_event/hoard_meager)
+		return
+	if (value < HOARD_GOOD)
+		H.add_mood_event("hoard_value", /datum/mood_event/hoard_acceptable)
+		return
+	if (value < HOARD_FULL)
+		H.add_mood_event("hoard_value", /datum/mood_event/hoard_plentiful)
+		return
+	H.add_mood_event("hoard_value", /datum/mood_event/hoard_overflowing)
+	return
+
+/datum/quirk/hoarder/proc/get_total_hoard_value()
+	if (!hoard_turfs)
+		return 0
+	var/final_value = 0
+	for (var/turf/T in hoard_turfs)
+		var/list/obj/item/hoard_items = T.contents
+		for(var/obj/item/trinket in hoard_items)
+			final_value += trinket.hoard_value
+	return final_value
 
 
 // === Hoard Expansion code below ===
@@ -144,18 +189,15 @@
 
 	var/icon_path = 'icons/effects/effects.dmi'
 	var/icon_state = "target_tile"
-	to_chat(H, span_yellow("DEBUG: Showing [length(hoard_quirk.hoard_turfs)] hoard tiles"))
 	for(var/turf/T in hoard_quirk.hoard_turfs)
 		var/image/I = image(icon_path, T, icon_state, HIGH_TURF_LAYER)
 		if (!I)
-			to_chat(H, span_yellow("DEBUG: skipped null image"))
 			continue
 		I.alpha = 100
 		I.color = "#ffaa00"
 		I.plane = RENDER_PLANE_GAME
 		H.client.images += I
 		hoard_quirk.hoard_images += I
-	to_chat(H, span_yellow("DEBUG: Now has [length(hoard_quirk.hoard_images)] hoard images"))
 
 
 /datum/action/cooldown/spell/toggle_hoard/proc/_hide_hoard_overlay(mob/living/carbon/human/H)
@@ -187,7 +229,6 @@
 		I.plane = RENDER_PLANE_GAME
 		H.client.images += I
 		hoard_quirk.hoard_images += I
-	to_chat(H, span_yellow("DEBUG: Now has [length(hoard_quirk.hoard_images)] hoard images"))
 
 
 /datum/action/cooldown/spell/toggle_hoard/proc/remove_turf(mob/living/carbon/human/H, turf/removed_tile)
@@ -206,3 +247,7 @@
 
 
 #undef MAX_HOARD_SIZE
+#undef HOARD_BAD
+#undef HOARD_OKAY
+#undef HOARD_GOOD
+#undef HOARD_FULL
