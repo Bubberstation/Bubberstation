@@ -28,14 +28,16 @@
 	var/required_round_progress = STORY_ROUND_PROGRESSION_START
 
 
+	var/base_weight = STORY_GOAL_BASE_WEIGHT
+
+	var/base_priority = STORY_GOAL_BASE_PRIORITY
+
 /// Is goal available for selection under the given context?
 /datum/storyteller_goal/proc/is_available(list/vault, datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
 	. = TRUE
 	if(storyteller.get_effective_threat() < requierd_threat_level)
 		. = FALSE
-	if(vault[STORY_VAULT_CREW_ALIVE_COUNT] < required_population
-
-)
+	if(vault[STORY_VAULT_CREW_ALIVE_COUNT] < required_population)
 		. = FALSE
 	if(storyteller.round_progression < required_round_progress)
 		. = FALSE
@@ -57,18 +59,7 @@
 	return base_weight
 
 /datum/storyteller_goal/proc/get_priority(list/vault, datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
-	var/base_weight = STORY_GOAL_BASE_WEIGHT
-	if(category & STORY_GOAL_GLOBAL)
-		base_weight = STORY_GOAL_MAJOR_WEIGHT
-	else if(category & STORY_GOAL_BAD)
-		base_weight = STORY_GOAL_BIG_WEIGHT
-	if(HAS_TRAIT(storyteller, STORYTELLER_TRAIT_FORCE_TENSION) && category & STORY_GOAL_BAD)
-		base_weight += STORY_GOAL_BIG_WEIGHT
-	if(HAS_TRAIT(storyteller, STORYTELLER_TRAIT_KIND) && category & STORY_GOAL_GOOD)
-		base_weight += STORY_GOAL_BIG_WEIGHT
-	if(HAS_TRAIT(storyteller, STORYTELLER_TRAIT_NO_GOOD_EVENTS) && category & STORY_GOAL_GOOD)
-		base_weight = 0
-	return base_weight
+	return base_priority
 
 
 /datum/storyteller_goal/proc/get_progress(list/vault, datum/storyteller_inputs/inputs, datum/storyteller/storyteller)

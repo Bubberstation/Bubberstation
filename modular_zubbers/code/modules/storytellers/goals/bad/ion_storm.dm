@@ -81,7 +81,6 @@
 	priority_announce(announce_msg, "Ion storm alert", ANNOUNCEMENT_TYPE_PRIORITY)
 
 /datum/round_event/ion_storm/__storyteller_tick(seconds_per_tick)
-	. = ..()
 	if(waves <= 0)
 		return __end_for_storyteller()
 
@@ -92,6 +91,7 @@
 	COOLDOWN_START(src, ion_storm_wave, wave_delay)
 
 /datum/round_event/ion_storm/__end_for_storyteller()
+	. = ..()
 	priority_announce("The ion storm has passed [station_name()], systems are returning to normal.", "The ion storm has passed", ANNOUNCEMENT_TYPE_PRIORITY)
 	SSsecurity_level.set_level(SEC_LEVEL_GREEN, FALSE)
 

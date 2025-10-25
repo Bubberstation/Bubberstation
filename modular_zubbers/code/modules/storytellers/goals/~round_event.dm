@@ -65,14 +65,17 @@
 
 
 /datum/round_event/proc/__end_for_storyteller()
+	___deregister()
 	end()
 
 
 
 /datum/round_event/proc/__kill_for_storyteller()
-	SSstorytellers.unregister_active_event(src)
+	___deregister()
 	kill()
 
+/datum/round_event/proc/___deregister()
+	SSstorytellers.unregister_active_event(src)
 
 /datum/round_event/proc/__storyteller_tick(seconds_per_tick)
 	tick()

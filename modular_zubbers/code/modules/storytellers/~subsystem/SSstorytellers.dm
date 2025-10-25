@@ -406,7 +406,7 @@ SUBSYSTEM_DEF(storytellers)
 	active_events += E
 
 /datum/controller/subsystem/storytellers/proc/unregister_active_event(datum/round_event/E)
-	if(!E || QDELETED(E))
+	if(!E || QDELETED(E) || !(E in active_events))
 		return
 	active_events -= E
 
