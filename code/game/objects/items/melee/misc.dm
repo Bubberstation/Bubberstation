@@ -2,6 +2,7 @@
 /obj/item/melee
 	abstract_type = /obj/item/melee
 	item_flags = NEEDS_PERMIT
+	hoard_value = 30
 
 /obj/item/melee/synthetic_arm_blade
 	name = "synthetic arm blade"

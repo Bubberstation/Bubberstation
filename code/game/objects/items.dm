@@ -255,6 +255,11 @@
 	/// Do we apply a click cooldown when resisting this object if it is restraining them?
 	var/resist_cooldown = CLICK_CD_BREAKOUT
 
+	//BUBBER EDIT START
+	///How much this item is worth when part of a Hoard
+	var/hoard_value = 10
+	//BUBBER EDIT END
+
 /obj/item/Initialize(mapload)
 	if(attack_verb_continuous)
 		attack_verb_continuous = string_list(attack_verb_continuous)

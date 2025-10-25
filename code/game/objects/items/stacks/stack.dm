@@ -16,6 +16,7 @@
 	max_integrity = 100
 	item_flags = SKIP_FANTASY_ON_SPAWN
 	abstract_type = /obj/item/stack
+	hoard_value = 0
 	/// A list to all recipies this stack item can create.
 	var/list/datum/stack_recipe/recipes
 	/// What's the name of just 1 of this stack. You have a stack of leather, but one piece of leather
