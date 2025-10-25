@@ -53,8 +53,9 @@
 	These track counts and ratios of dead/alive crew and antagonists to gauge station mortality and survival rates.
 */
 
+// Avarge health of crew
 #define STORY_VAULT_AVG_CREW_HEALTH "avg_crew_health"
-
+// A varge health of atntagonists
 #define STORY_VAULT_AVG_ANTAG_HEALTH "avg_atnag_health"
 
 
@@ -88,13 +89,13 @@
 #define STORY_VAULT_ANTAG_DEAD_RATIO "antag_dead_ratio"
 // Tracks the ratio of dead to total crew.
 #define STORY_VAULT_CREW_DEAD_RATIO "crew_dead_ratio"
-	// Very low death ratio (<10%).
+	// Very low death ratio
 	#define STORY_VAULT_LOW_DEAD_RATIO 0
-	// Moderate death ratio (10-30%).
+	// Moderate death ratio
 	#define STORY_VAULT_MODERATE_DEAD_RATIO 1
-	// High death ratio (30-60%).
+	// High death ratio
 	#define STORY_VAULT_HIGH_DEAD_RATIO 2
-	// Extreme death ratio (>60%).
+	// Extreme death ratio
 	#define STORY_VAULT_EXTREME_DEAD_RATIO 3
 
 /*

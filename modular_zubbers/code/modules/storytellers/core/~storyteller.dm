@@ -15,9 +15,11 @@
 /datum/storyteller
 	var/name = "Base Storyteller"
 	var/desc = "A generic storyteller managing station events and goals."
-	var/ooc_desc = "A fallback storyteller/"
+	var/ooc_desc = "A fallback storyteller"
 	var/ooc_difficulty = "Default"
-
+	var/portait_path = ""
+	var/logo_path = ""
+	var/id = ""
 
 	var/base_cost_multiplier = 1.0
 	/// Current mood profile, affecting event pacing and tone
@@ -111,14 +113,14 @@
 	qdel(mind)
 	qdel(inputs)
 
-	UnregisterSignal(analyzer, COMSIG_STORYTELLER_FINISHED_ALYZING)
+	UnregisterSignal(analyzer, COMSIG_STORYTELLER_FINISHED_ANALYZING)
 	..()
 
 
 
 /datum/storyteller/proc/initialize()
 	round_start_time = world.time
-	RegisterSignal(analyzer, COMSIG_STORYTELLER_FINISHED_ALYZING, PROC_REF(on_metrics_finished))
+	RegisterSignal(analyzer, COMSIG_STORYTELLER_FINISHED_ANALYZING, PROC_REF(on_metrics_finished))
 	run_metrics(RESCAN_STATION_INTEGRITY | RESCAN_STATION_VALUE)
 
 
@@ -382,6 +384,9 @@
 	var/delta = abs(current - avg)
 	return (delta / max(1, avg)) >= (threshold_percent / 100)
 
+
+// Communication and antags
+// TODO round start report
 
 #undef STORY_POPULATION_THRESHOLD_LOW
 #undef STORY_POPULATION_THRESHOLD_MEDIUM

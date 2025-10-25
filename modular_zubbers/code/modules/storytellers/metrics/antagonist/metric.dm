@@ -8,8 +8,8 @@
 	..()
 	var/total_damage = 0
 	var/total_activity = 0
-	var/total_effective_activity = 0  // New: Only counts time with actions
-	var/total_burst_activity = 0  // New: Peak bursts in last 5 min
+	var/total_effective_activity = 0
+	var/total_burst_activity = 0
 	var/total_kills = 0
 	var/total_objectives = 0
 	var/total_disruption = 0
@@ -24,11 +24,18 @@
 	var/major_threat = "none"
 	var/threat_escalation = 0
 
-	for(var/datum/mind/antag_mind in GLOB.antagonists)
+
+	var/list/to_check = GLOB.antagonists.Copy()
+	var/list/minds_to_check = list()
+
+	for(var/datum/antagonist/antag in to_check)
+		if(!(antag.owner in minds_to_check))
+			minds_to_check += antag.owner
+
+	for(var/datum/mind/antag_mind in minds_to_check)
 		if(!antag_mind.current || antag_mind.current.stat == DEAD)
 			continue
-		var/mob/living/L = antag_mind.current
-		var/datum/component/antag_metric_tracker/tracker = L.GetComponent(/datum/component/antag_metric_tracker)
+		var/datum/component/antag_metric_tracker/tracker = antag_mind.GetComponent(/datum/component/antag_metric_tracker)
 		if(!tracker)
 			continue
 

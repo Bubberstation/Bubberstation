@@ -7,7 +7,7 @@
 	path_ids = list("mass_hysteria", "psychic_breakdown")
 	event_path = /datum/round_event/psychic_drone
 
-	requierd_population = 10
+	required_population = 5
 	required_round_progress = STORY_ROUND_PROGRESSION_EARLY
 	requierd_threat_level = STORY_GOAL_THREAT_ELEVATED
 

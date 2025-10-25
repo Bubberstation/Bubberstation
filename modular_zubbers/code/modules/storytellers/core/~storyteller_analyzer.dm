@@ -106,7 +106,7 @@
 	actual_inputs = inputs
 	var/end_time = world.time - start_time
 	current_stack = list()
-	SEND_SIGNAL(src, COMSIG_STORYTELLER_FINISHED_ALYZING, inputs, time_out, metrics_count)
+	SEND_SIGNAL(src, COMSIG_STORYTELLER_FINISHED_ANALYZING, inputs, time_out, metrics_count)
 	if(SSstorytellers.hard_debug)
 		message_admins("[owner.name] finished to alalyze station in [end_time SECONDS]")
 

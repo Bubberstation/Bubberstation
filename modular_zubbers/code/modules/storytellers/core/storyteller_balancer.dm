@@ -54,17 +54,17 @@
 	snap.antag_inactive = snap.antag_activity_index < inactive_activity_threshold
 
 	snap.resource_strength = get_resource_strength(inputs.vault)
-	snap.crew_health_index = get_crew_health_index(inputs.vault)  // Assume helper
 	snap.antag_coordinated = (inputs.vault[STORY_VAULT_ANTAG_TEAMWORK] || 0) > 1.5
 	snap.antag_stealthy = (inputs.vault[STORY_VAULT_ANTAG_STEALTH] || 0) > 1.5
-	snap.station_vulnerable = snap.station_strength < 0.5 || snap.crew_health_index > 0.7
+	snap.station_vulnerable = snap.station_strength < 0.5
 	snap.ratio = max(snap.ratio, 1) // Evode division by zero
 
 	var/base_tension = tension_bonus * (1 - owner.adaptation_factor)
 
-	// Contribs: antag activity/effect + integrity tension (vulnerable station → +tension)
+	// Contribs: antag activity/effect + integrity tension + health tension
 	var/antag_contrib = (snap.antag_effectiveness + snap.antag_activity_index) * 25
-	var/integrity_tension = get_station_integrity_tension(inputs)  // Integrated: station_penalty + power/infra
+	var/integrity_tension = get_station_integrity_tension(inputs)
+	var/health_tension = get_crew_health_tension(inputs)
 
 	// Extra: flags + lowpop mod (light, no loops)
 	var/extra_tension = 0
@@ -77,8 +77,8 @@
 	if(snap.ratio > 1.2)
 		extra_tension += 10
 	if(inputs.vault[STORY_VAULT_CREW_ALIVE_COUNT] && inputs.vault[STORY_VAULT_CREW_ALIVE_COUNT] < 15)
-		extra_tension += 10 // Lowpop bias to more events
-	snap.overall_tension = clamp(base_tension + antag_contrib + integrity_tension + extra_tension, 0, 100)
+		extra_tension += 15 // Lowpop bias to more events
+	snap.overall_tension = clamp(base_tension + antag_contrib + integrity_tension + extra_tension + health_tension, 0, 100)
 
 	return snap
 
@@ -279,32 +279,31 @@
 
 #define WOUNDING_CRITICAL_THRESHOLD 3
 
-/datum/storyteller_balance/proc/get_crew_health_index(list/vault)
+/datum/storyteller_balance/proc/get_crew_health_tension(datum/storyteller_inputs/inputs)
 	PRIVATE_PROC(TRUE)
-
-	var/avg_health_raw = vault[STORY_VAULT_AVG_CREW_HEALTH] || 100
-	var/avg_wounds = vault[STORY_VAULT_AVG_CREW_WOUNDS] || 0
-	var/diseases_level = vault[STORY_VAULT_CREW_DISEASES] || STORY_VAULT_NO_DISEASES
-	var/dead_ratio_level = vault[STORY_VAULT_CREW_DEAD_RATIO] || STORY_VAULT_LOW_DEAD_RATIO
-
+	var/avg_health_raw = inputs.get_entry(STORY_VAULT_AVG_CREW_HEALTH) || 100
+	var/avg_wounds = inputs.get_entry(STORY_VAULT_AVG_CREW_WOUNDS) || 0
+	var/diseases_level = inputs.get_entry(STORY_VAULT_CREW_DISEASES) || STORY_VAULT_NO_DISEASES
+	var/dead_ratio_level = inputs.get_entry(STORY_VAULT_CREW_DEAD_RATIO) || STORY_VAULT_LOW_DEAD_RATIO
 	var/weight_health = 0.4
 	var/weight_wounds = 0.3
 	var/weight_diseases = 0.2
 	var/weight_dead = 0.1
 
-	var/norm_health = 1 - (avg_health_raw / 100)  // Inverted: low health → high
-	var/norm_wounds = clamp(avg_wounds / WOUNDING_CRITICAL_THRESHOLD, 0, 1)  // Relative to max wounds threshold
-	var/norm_diseases = diseases_level / STORY_VAULT_OUTBREAK  // Assume max level=3 (OUTBREAK)
-	var/norm_dead = dead_ratio_level / STORY_VAULT_EXTREME_DEAD_RATIO  // Max level=3
 
+	var/norm_health = clamp(1 - (avg_health_raw / 100), 0, 1)
+	var/norm_wounds = clamp(avg_wounds / WOUNDING_CRITICAL_THRESHOLD, 0, 1)
+	var/norm_diseases = clamp(diseases_level / STORY_VAULT_OUTBREAK, 0, 1)
+	var/norm_dead = clamp(dead_ratio_level / STORY_VAULT_EXTREME_DEAD_RATIO, 0, 1)
 
-	var/health_index = (norm_health * weight_health) + \
+	var/base_tension = (norm_health * weight_health) + \
 		(norm_wounds * weight_wounds) + \
 		(norm_diseases * weight_diseases) + \
-		(norm_dead * weight_dead)
+		(norm_dead * weight_dead) * 10
 
-	return clamp(health_index, 0, 1)
-
+	var/bonus = -5 + (norm_dead * 25)
+	base_tension += bonus
+	return clamp(base_tension, 0, 35)
 
 #undef WOUNDING_CRITICAL_THRESHOLD
 

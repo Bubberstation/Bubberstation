@@ -38,10 +38,10 @@
 
 
 	var/list/edge_turfs = list()
-	for(var/turf/T in range(spawn_radius, center_turf))
-		if(T.x == 1 || T.x == world.maxx || T.y == 1 || T.y == world.maxy)
-			if(istype(T, /turf/open) && !T.density)
-				edge_turfs += T
+	for(var/turf/TURF in range(spawn_radius, center_turf))
+		if(TURF.x == 1 || TURF.x == world.maxx || TURF.y == 1 || TURF.y == world.maxy)
+			if(istype(TURF, /turf/open) && !TURF.density)
+				edge_turfs += TURF
 
 	if(!length(edge_turfs))
 		edge_turfs += center_turf

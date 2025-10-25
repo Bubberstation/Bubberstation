@@ -2,13 +2,13 @@
 	var/initial_weight = STORY_DEFAULT_ANTAG_WEIGHT
 
 
-// Base atnag effective from 0 to 2, where 1 is average
+// Base antag effectiveness from 0 to 2, where 1 is average
 /datum/antagonist/proc/get_effectivity()
 	if(antag_flags & ANTAG_FAKE)
 		return 0
 
 	// Base effectiveness derived from tracker aggregation, normalized to 0..1
-	var/datum/component/antag_metric_tracker/T = GetComponent(/datum/component/antag_metric_tracker)
+	var/datum/component/antag_metric_tracker/T = owner.GetComponent(/datum/component/antag_metric_tracker)
 	if(!T)
 		return 0.5
 	var/score = 0
@@ -26,7 +26,7 @@
 		return 0
 	return can_elimination_hijack == ELIMINATION_PREVENT ? STORY_DEFAULT_WEIGHT : initial_weight
 
-// Attach tracker when an antagonist is gained
+// Attach tracker when an antagonist datum is gained
 /datum/antagonist/on_gain()
 	. = ..()
 
@@ -36,14 +36,11 @@
 
 	if(antag_flags & ANTAG_FAKE)
 		return
-
 	var/mob/living/tracked = owner?.current
 	if(!tracked)
 		return
-	if(!tracked.mind)
-		return
 
-	AddComponent(/datum/component/antag_metric_tracker, tracked)
+	AddComponent(/datum/component/antag_metric_tracker, owner)
 
 
 /datum/antagonist/abductor
@@ -57,7 +54,7 @@
 	var/total_abductees = max(1, team.abductees.len)
 	if(total_abductees == 0)
 		return 0.5
-	return round(0.5 + ((2/ total_abductees) * 0.5), 2)
+	return round(0.5 + ((2 / total_abductees) * 0.5), 2)
 
 
 /datum/antagonist/blob
@@ -91,7 +88,7 @@
 	var/total_brothers = max(1, team.brothers_left)
 	if(total_brothers == 1)
 		return 0.5
-	return clamp(0.5 + ((2/ total_brothers) * 0.5), 0.1, 2)
+	return clamp(0.5 + ((2 / total_brothers) * 0.5), 0.1, 2)
 
 
 
@@ -144,9 +141,10 @@
 	var/datum/component/antag_metric_tracker/M = GetComponent(/datum/component/antag_metric_tracker)
 	var/mob/living/silicon/ai/ai = owner.current
 	var/hacked_apcs = ai.hacked_apcs.len
+	var/hacked_borgs = length(ai.connected_robots)
 	if(!hacked_apcs || hacked_apcs <= 0)
 		return 0.5
-	return clamp(hacked_apcs * 0.1 / M.activity_time * 0.01 + 0.5, 0, 2)
+	return clamp(hacked_apcs * 0.1 * hacked_borgs * 0.3 / M.activity_time * 0.01 + 0.5, 0, 2)
 
 /datum/antagonist/malf_ai/get_weight()
 	return clamp(STORY_MAJOR_ANTAG_WEIGHT * get_effectivity(), 0, STORY_DEFAULT_ANTAG_WEIGHT * 5)
@@ -185,7 +183,7 @@
 	var/datum/component/antag_metric_tracker/M = GetComponent(/datum/component/antag_metric_tracker)
 	var/datum/team/nuclear/nuke_team = get_team()
 	var/obj/item/nuclear_challenge/challenge = nuke_team.war_button_ref.resolve()
-	var/war_declared = challenge ? challenge.declaring_war : FALSE
+	var/war_declared = !!challenge?.declaring_war
 
 	return clamp(base + (M.activity_time * 0.01) * (M.kills * 0.2) + (war_declared ? 0.5 : 0), 0, 2)
 

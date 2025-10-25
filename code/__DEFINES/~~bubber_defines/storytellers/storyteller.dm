@@ -195,7 +195,7 @@ DEFINE_BITFIELD(story_job_flags, list(
 #define STORY_TAG_AFFECTS_ECONOMY (1 << 8)
 // Affects Security: Goals related to security systems, arrests, or law enforcement dynamics.
 #define STORY_TAG_AFFECTS_SECURITY (1 << 9)
-//
+// Affects whole station on include wide-station impact
 #define STORY_TAG_AFFECTS_WHOLE_STATION (1 << 10)
 // Affects Research: Goals impacting science/tech progress, like experiments or tech unlocks/destruction.
 #define STORY_TAG_AFFECTS_RESEARCH (1 << 11)
@@ -238,6 +238,7 @@ DEFINE_BITFIELD(story_universal_tags, list(
 	"ENTITIES" = STORY_TAG_ENTITIES,
 ))
 
+// Goals statuses in planning tree for external use
 #define STORY_GOAL_PENDING "goal_pending"
 #define STORY_GOAL_FIRING "goal_firing"
 #define STORY_GOAL_COMPLETED "goal_completed"
@@ -261,7 +262,7 @@ DEFINE_BITFIELD(story_universal_tags, list(
 
 // Planner constants
 #define STORY_RECALC_INTERVAL (10 MINUTES)
-#define STORY_INITIAL_GOALS_COUNT 2
+#define STORY_INITIAL_GOALS_COUNT 1
 #define STORY_PICK_THREAT_BONUS_SCALE 0.01
 #define STORY_BALANCE_BONUS 1.5
 #define STORY_PACE_MIN 0.1

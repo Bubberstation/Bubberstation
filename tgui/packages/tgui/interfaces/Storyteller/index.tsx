@@ -1,10 +1,11 @@
+import '../../styles/interfaces/StorytellerVote.scss';
+
 import {
   Box,
   Button,
   Divider,
   Dropdown,
   LabeledList,
-  NoticeBox,
   ProgressBar,
   Section,
   Stack,
@@ -12,6 +13,7 @@ import {
   Tabs,
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
+import { resolveAsset } from '../../assets';
 import { useBackend, useLocalState } from '../../backend';
 import { Window } from '../../layouts';
 
@@ -20,6 +22,11 @@ type StorytellerGoal = {
   name?: string;
   weight?: number;
   progress?: number; // 0..1 for individual goal
+};
+
+type StorytellerCandidates = {
+  name: string;
+  id: string;
 };
 
 type StorytellerMood = {
@@ -47,14 +54,19 @@ type StorytellerUpcomingGoal = {
 };
 
 type StorytellerData = {
+  id: string;
   name: string;
   desc?: string;
+  ooc_desc?: string;
+  ooc_difficulty?: string;
   mood?: StorytellerMood;
   upcoming_goals?: StorytellerUpcomingGoal[]; // Chain preview
   next_think_time?: number;
   base_think_delay?: number;
   min_event_interval?: number;
   max_event_interval?: number;
+  threat_growth_rate: number;
+  grace_period: number;
   threat_level?: number; // 0..100
   effective_threat_level?: number;
   round_progression?: number; // 0..1
@@ -67,9 +79,50 @@ type StorytellerData = {
   event_difficulty_modifier?: number;
   available_moods?: StorytellerMood[];
   available_goals?: StorytellerGoal[];
+  candidates?: StorytellerCandidates[];
   can_force_event?: BooleanLike;
   current_world_time?: number;
 };
+
+type scrollConfigProp = {
+  value: any;
+  setValue: (value: string) => void;
+  onSet: any;
+  max: number;
+  min: number;
+  step: number;
+  delim?: number;
+};
+
+const InputScrollApply = (props: scrollConfigProp) => {
+  const { value, setValue, onSet, min, max, step, delim = 1 } = props;
+
+  return (
+    <Stack>
+      <Stack.Item grow>
+        {''}
+        <input
+          type="range"
+          min={min}
+          max={max}
+          step={step}
+          defaultValue={value / delim}
+          onChange={(e) =>
+            setValue(String(Number(e.currentTarget.value) * delim))
+          }
+          style={{ width: '100%' }}
+          width="100%"
+        />
+      </Stack.Item>
+      <Stack.Item>{value / delim}</Stack.Item>
+      <Stack.Item>
+        <Button icon="check" tooltip="Apply" onClick={onSet} />
+      </Stack.Item>
+    </Stack>
+  );
+};
+
+export default InputScrollApply;
 
 const formatTime = (ticks?: number, current_time?: number) => {
   if (!ticks && ticks !== 0) return '—';
@@ -104,16 +157,23 @@ export const Storyteller = (props) => {
     name,
     desc,
     mood,
+    id,
+    ooc_desc,
+    ooc_difficulty,
     upcoming_goals = [],
     next_think_time,
     base_think_delay,
     min_event_interval,
     max_event_interval,
+    threat_growth_rate,
+    grace_period,
+    target_tension,
     recent_events = [],
     player_count,
     antag_count,
     player_antag_balance,
     event_difficulty_modifier,
+    candidates = [],
     available_moods = [],
     available_goals = [],
     can_force_event,
@@ -129,7 +189,10 @@ export const Storyteller = (props) => {
   );
   const [pace, setPace] = useLocalState('pace', String(mood?.pace ?? 1.0));
   const [selectedGoal, setSelectedGoal] = useLocalState('selectedGoal', '');
-
+  const [selectedCandidate, setSelectedCandidate] = useLocalState(
+    'selectedCandidate',
+    '',
+  );
   // Advanced parameter local states
   const [difficulty, setDifficulty] = useLocalState(
     'difficulty',
@@ -137,7 +200,11 @@ export const Storyteller = (props) => {
   );
   const [targetTension, setTargetTension] = useLocalState(
     'targetTension',
-    '50',
+    String(target_tension ?? 1.0),
+  );
+  const [threatGrowhRate, setThreatGrowhRate] = useLocalState(
+    'threatGrowhRate',
+    String(threat_growth_rate ?? 1.0),
   );
   const [thinkDelay, setThinkDelay] = useLocalState(
     'thinkDelay',
@@ -154,7 +221,7 @@ export const Storyteller = (props) => {
   const [grace, setGrace] = useLocalState('grace', '3000');
   const [repetitionPenalty, setRepetitionPenalty] = useLocalState(
     'repetitionPenalty',
-    '0.5',
+    String(grace_period ?? 1),
   );
 
   return (
@@ -162,8 +229,41 @@ export const Storyteller = (props) => {
       title={`Storyteller — ${name || 'Unknown'}`}
       width={720}
       height={720}
+      theme="stortellerVote"
     >
-      <Window.Content scrollable>
+      <Window.Content
+        scrollable
+        style={{
+          backgroundImage: id
+            ? `url(${resolveAsset(`${id}_portrait.png`)})`
+            : undefined,
+          backgroundSize: '480px 480px',
+          backgroundPositionX: '50%',
+          backgroundPositionY: '100%',
+        }}
+      >
+        <Stack>
+          <Stack.Item grow>
+            <Dropdown
+              selected={selectedCandidate}
+              onSelected={setSelectedCandidate}
+              options={candidates.map((c) => ({
+                value: c.id,
+                displayText: c.name,
+              }))}
+              placeholder="Select storyteller"
+              width="100%"
+            />
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="check"
+              tooltip="Insert"
+              disabled={!selectedCandidate}
+              onClick={() => act('set_storyteller', { id: selectedCandidate })}
+            />
+          </Stack.Item>
+        </Stack>
         <Tabs>
           <Tabs.Tab
             selected={tab === 'overview'}
@@ -204,12 +304,20 @@ export const Storyteller = (props) => {
         <Divider />
         {tab === 'overview' && (
           <>
-            {desc && <NoticeBox info>{desc}</NoticeBox>}
-            <Button
-              icon="bug"
-              tooltip="Toggle debug mode"
-              onClick={() => act('toggle_debug')}
-            />
+            <Section title="Overview">
+              <h1>{name}</h1>
+              <LabeledList>
+                <LabeledList.Item label="desc">{desc}</LabeledList.Item>
+              </LabeledList>
+              <LabeledList>
+                <LabeledList.Item label="ooc desc">{ooc_desc}</LabeledList.Item>
+              </LabeledList>
+              <LabeledList>
+                <LabeledList.Item label="ooc difficulty">
+                  {ooc_difficulty}
+                </LabeledList.Item>
+              </LabeledList>
+            </Section>
             <Section title="Status">
               <LabeledList>
                 <LabeledList.Item
@@ -288,6 +396,43 @@ export const Storyteller = (props) => {
                   )}
                 </LabeledList.Item>
               </LabeledList>
+            </Section>
+          </>
+        )}
+        {tab === 'goals' && (
+          <>
+            <Section title="Insert Goal">
+              <Stack>
+                <Stack.Item grow>
+                  <Dropdown
+                    selected={selectedGoal}
+                    onSelected={setSelectedGoal}
+                    options={available_goals.map((g) => ({
+                      value: g.id,
+                      displayText: g.name || g.id,
+                    }))}
+                    placeholder="Select goal..."
+                    width="100%"
+                  />
+                </Stack.Item>
+                <Stack.Item>
+                  <Button
+                    icon="check"
+                    tooltip="Insert"
+                    disabled={!selectedGoal}
+                    onClick={() =>
+                      act('insert_goal_to_chain', { id: selectedGoal })
+                    }
+                  />
+                </Stack.Item>
+                <Stack.Item>
+                  <Button
+                    icon="sync"
+                    tooltip="Reschedule"
+                    onClick={() => act('reschedule_chain')}
+                  />
+                </Stack.Item>
+              </Stack>
             </Section>
             <Section title="Upcoming Chain">
               {upcoming_goals.length ? (
@@ -368,21 +513,6 @@ export const Storyteller = (props) => {
               )}
               <Stack mt={1} wrap>
                 <Stack.Item>
-                  <Button
-                    icon="brain"
-                    tooltip="Force Think"
-                    onClick={() => act('force_think')}
-                  />
-                </Stack.Item>
-                <Stack.Item>
-                  <Button
-                    icon="bolt"
-                    tooltip="Random Event"
-                    disabled={!can_force_event}
-                    onClick={() => act('trigger_event')}
-                  />
-                </Stack.Item>
-                <Stack.Item>
                   <Button.Confirm
                     icon="trash"
                     tooltip="Reschedule"
@@ -404,106 +534,26 @@ export const Storyteller = (props) => {
                     onClick={() => act('add_goal')}
                   />
                 </Stack.Item>
-              </Stack>
-            </Section>
-            <Section title="Recent Events">
-              {recent_events.length ? (
-                <Table>
-                  <Table.Row header>
-                    <Table.Cell>Time</Table.Cell>
-                    <Table.Cell>Desc</Table.Cell>
-                    <Table.Cell>Status</Table.Cell>
-                    <Table.Cell>ID</Table.Cell>
-                  </Table.Row>
-                  {recent_events.map((ev, i) => (
-                    <Table.Row key={i}>
-                      <Table.Cell>{formatTime(ev.time)}</Table.Cell>
-                      <Table.Cell>{ev.desc}</Table.Cell>
-                      <Table.Cell
-                        color={
-                          ev.status === 'success'
-                            ? 'good'
-                            : ev.status === 'failed'
-                              ? 'bad'
-                              : 'average'
-                        }
-                      >
-                        {ev.status || '—'}
-                      </Table.Cell>
-                      <Table.Cell>{ev.id || '—'}</Table.Cell>
-                    </Table.Row>
-                  ))}
-                </Table>
-              ) : (
-                <Box opacity={0.6}>No events.</Box>
-              )}
-            </Section>
-          </>
-        )}
-        {tab === 'goals' && (
-          <>
-            <Section title="Insert Goal">
-              <Stack>
-                <Stack.Item grow>
-                  <Dropdown
-                    selected={selectedGoal}
-                    onSelected={setSelectedGoal}
-                    options={available_goals.map((g) => ({
-                      value: g.id,
-                      displayText: g.name || g.id,
-                    }))}
-                    placeholder="Select goal..."
-                    width="100%"
+                <Stack.Item>
+                  <Button
+                    icon="brain"
+                    tooltip="Force Think"
+                    onClick={() => act('force_think')}
                   />
                 </Stack.Item>
                 <Stack.Item>
                   <Button
-                    icon="check"
-                    tooltip="Insert"
-                    disabled={!selectedGoal}
-                    onClick={() =>
-                      act('insert_goal_to_chain', { id: selectedGoal })
-                    }
+                    icon="bolt"
+                    tooltip="Random Event"
+                    disabled={!can_force_event}
+                    onClick={() => act('trigger_event')}
                   />
                 </Stack.Item>
                 <Stack.Item>
                   <Button
-                    icon="sync"
-                    tooltip="Reschedule"
-                    onClick={() => act('reschedule_chain')}
-                  />
-                </Stack.Item>
-              </Stack>
-            </Section>
-            <Section title="Available Goals">
-              {available_goals.length ? (
-                <Table>
-                  <Table.Row header>
-                    <Table.Cell>Name</Table.Cell>
-                    <Table.Cell>Weight</Table.Cell>
-                    <Table.Cell>Progress</Table.Cell>
-                  </Table.Row>
-                  {available_goals.slice(0, 20).map((g) => (
-                    <Table.Row key={g.id}>
-                      <Table.Cell>{g.name || g.id}</Table.Cell>
-                      <Table.Cell>{g.weight ?? '—'}</Table.Cell>
-                      <Table.Cell>
-                        {g.progress ? `${Math.round(g.progress * 100)}%` : '—'}
-                      </Table.Cell>
-                    </Table.Row>
-                  ))}
-                </Table>
-              ) : (
-                <Box opacity={0.6}>None available.</Box>
-              )}
-            </Section>
-            <Section title="Controls">
-              <Stack wrap>
-                <Stack.Item>
-                  <Button
-                    icon="step-forward"
-                    tooltip="Advance"
-                    onClick={() => act('next_subgoal')}
+                    icon="bug"
+                    tooltip="Toggle debug mode"
+                    onClick={() => act('toggle_debug')}
                   />
                 </Stack.Item>
               </Stack>
@@ -587,109 +637,118 @@ export const Storyteller = (props) => {
             <Section title="Difficulty & Tension">
               <LabeledList>
                 <LabeledList.Item label="Difficulty">
-                  <Stack>
-                    <Stack.Item grow>
-                      <Dropdown
-                        selected={difficulty}
-                        onSelected={setDifficulty}
-                        options={[0.75, 1, 1.25, 1.5, 2].map(String)}
-                        placeholder="Select..."
-                        width="100%"
-                      />
-                    </Stack.Item>
-                    <Stack.Item>
-                      <Button
-                        icon="check"
-                        tooltip="Apply"
-                        onClick={() =>
-                          act('set_difficulty', {
-                            value: Number(difficulty) || 1,
-                          })
-                        }
-                      />
-                    </Stack.Item>
-                  </Stack>
+                  <InputScrollApply
+                    value={difficulty}
+                    setValue={setDifficulty}
+                    max={5}
+                    min={0.3}
+                    step={0.1}
+                    onSet={act('set_difficulty', {
+                      value: Number(difficulty) || 1,
+                    })}
+                  />
                 </LabeledList.Item>
                 <LabeledList.Item label="Target Tension">
-                  <Stack>
-                    <Stack.Item grow>
-                      <Dropdown
-                        selected={targetTension}
-                        onSelected={setTargetTension}
-                        options={[30, 40, 50, 60, 70].map(String)}
-                        placeholder="Select..."
-                        width="100%"
-                      />
-                    </Stack.Item>
-                    <Stack.Item>
-                      <Button
-                        icon="check"
-                        tooltip="Apply"
-                        onClick={() =>
-                          act('set_target_tension', {
-                            value: Number(targetTension) || 50,
-                          })
-                        }
-                      />
-                    </Stack.Item>
-                  </Stack>
+                  <InputScrollApply
+                    value={targetTension}
+                    setValue={setTargetTension}
+                    max={100}
+                    min={1}
+                    step={1}
+                    onSet={act('set_target_tension', {
+                      value: Number(targetTension) || 1,
+                    })}
+                  />
+                </LabeledList.Item>
+                <LabeledList.Item label="Threat growth rate">
+                  <InputScrollApply
+                    value={threatGrowhRate}
+                    setValue={setThreatGrowhRate}
+                    max={5}
+                    min={0.1}
+                    step={0.1}
+                    onSet={act('set_threat_grown_rate', {
+                      value: Number(targetTension) || 1,
+                    })}
+                  />
                 </LabeledList.Item>
               </LabeledList>
             </Section>
             <Section title="Pacing & Intervals">
               <LabeledList>
-                <LabeledList.Item label="Think Delay">
-                  <Stack>
-                    <Stack.Item grow>
-                      <Dropdown
-                        selected={thinkDelay}
-                        onSelected={setThinkDelay}
-                        options={[300, 600, 900, 1200, 1800, 2400].map(String)}
-                        placeholder="Select..."
-                        width="100%"
-                      />
-                    </Stack.Item>
-                    <Stack.Item>
-                      <Button
-                        icon="check"
-                        tooltip="Apply"
-                        onClick={() =>
-                          act('set_think_delay', {
-                            value: Number(thinkDelay) || 600,
-                          })
-                        }
-                      />
-                    </Stack.Item>
-                  </Stack>
+                <LabeledList.Item label="Think Delay" tooltip="seconds">
+                  <InputScrollApply
+                    value={thinkDelay}
+                    setValue={setThinkDelay}
+                    max={240}
+                    min={1}
+                    step={1}
+                    delim={10}
+                    onSet={act('set_think_delay', {
+                      value: Number(thinkDelay) || 1,
+                    })}
+                  />
                 </LabeledList.Item>
-                <LabeledList.Item label="Event Interval">
+                <LabeledList.Item label="Event Interval - min">
                   <Stack>
                     <Stack.Item grow>
-                      <Dropdown
-                        selected={minInterval}
-                        onSelected={setMinInterval}
-                        options={[200, 300, 400, 500, 600].map(String)}
-                        placeholder="Min"
+                      {''}
+                      <input
+                        type="range"
+                        min={1}
+                        max={60}
+                        step={1}
+                        defaultValue={Number(minInterval) / 1000}
+                        onChange={(e) =>
+                          setMinInterval(
+                            String(Number(e.currentTarget.value) * 1000),
+                          )
+                        }
+                        style={{ width: '100%' }}
                         width="100%"
                       />
                     </Stack.Item>
-                    <Stack.Item grow>
-                      <Dropdown
-                        selected={maxInterval}
-                        onSelected={setMaxInterval}
-                        options={[3000, 6000, 9000, 12000].map(String)}
-                        placeholder="Max"
-                        width="100%"
-                      />
-                    </Stack.Item>
+                    <Stack.Item>{Number(minInterval) / 1000}</Stack.Item>
                     <Stack.Item>
                       <Button
                         icon="check"
                         tooltip="Apply"
                         onClick={() =>
                           act('set_event_intervals', {
-                            min: Number(minInterval) || 300,
-                            max: Number(maxInterval) || 9000,
+                            value: Number(minInterval) || 1,
+                          })
+                        }
+                      />
+                    </Stack.Item>
+                  </Stack>
+                </LabeledList.Item>
+                <LabeledList.Item label="Event Interval - max">
+                  <Stack>
+                    <Stack.Item grow>
+                      {''}
+                      <input
+                        type="range"
+                        min={1}
+                        max={60}
+                        step={1}
+                        defaultValue={Number(maxInterval) / 1000}
+                        onChange={(e) =>
+                          setMaxInterval(
+                            String(Number(e.currentTarget.value) * 1000),
+                          )
+                        }
+                        style={{ width: '100%' }}
+                        width="100%"
+                      />
+                    </Stack.Item>
+                    <Stack.Item>{Number(maxInterval) / 1000}</Stack.Item>
+                    <Stack.Item>
+                      <Button
+                        icon="check"
+                        tooltip="Apply"
+                        onClick={() =>
+                          act('set_event_intervals', {
+                            value: Number(maxInterval) || 1,
                           })
                         }
                       />
@@ -697,28 +756,17 @@ export const Storyteller = (props) => {
                   </Stack>
                 </LabeledList.Item>
                 <LabeledList.Item label="Grace Period">
-                  <Stack>
-                    <Stack.Item grow>
-                      <Dropdown
-                        selected={grace}
-                        onSelected={setGrace}
-                        options={[600, 1200, 1800, 2400, 3000].map(String)}
-                        placeholder="Select..."
-                        width="100%"
-                      />
-                    </Stack.Item>
-                    <Stack.Item>
-                      <Button
-                        icon="check"
-                        tooltip="Apply"
-                        onClick={() =>
-                          act('set_grace_period', {
-                            value: Number(grace) || 3000,
-                          })
-                        }
-                      />
-                    </Stack.Item>
-                  </Stack>
+                  <InputScrollApply
+                    value={grace}
+                    setValue={setGrace}
+                    max={1200}
+                    min={120}
+                    step={10}
+                    delim={10}
+                    onSet={act('set_grace_period', {
+                      value: Number(grace) || 1,
+                    })}
+                  />
                 </LabeledList.Item>
                 <LabeledList.Item label="Repetition Penalty">
                   <Stack>

@@ -7,7 +7,7 @@
 	tags = STORY_TAG_ESCALATION
 	event_path = /datum/round_event/zzzzzt
 
-	requierd_population = 1
+	required_population = 2
 
 /datum/round_event/zzzzzt
 	var/maximum_charge = 50 KILO JOULES
@@ -26,22 +26,22 @@
 	var/attempts = 0
 	var/mob/living/carbon/human/bad_luck
 	var/obj/structure/cable/closest
-	for(var/mob/living/carbon/human/H in shuffle(GLOB.alive_mob_list))
+	for(var/mob/living/carbon/human/unluck in shuffle(GLOB.alive_mob_list))
 		if(attempts > 10)
 			return
-		if(!H.client)
+		if(!unluck.client)
 			continue
-		if(H.stat == DEAD)
+		if(unluck.stat == DEAD)
 			continue
-		if(!(H.mind.assigned_role.job_flags & JOB_CREW_MEMBER))
+		if(!(unluck.mind.assigned_role.job_flags & JOB_CREW_MEMBER))
 			continue
-		if(!engaged_role_play_check(H, station = TRUE, dorms = TRUE))
+		if(!engaged_role_play_check(unluck, station = TRUE, dorms = TRUE))
 			continue
-		closest = pick_closest_cable(H)
+		closest = pick_closest_cable(unluck)
 		if(!closest)
 			attempts++
 			continue
-		bad_luck = H
+		bad_luck = unluck
 	if(!bad_luck)
 		return // This time - no bad luck for you
 
@@ -63,8 +63,7 @@
 
 /datum/round_event/zzzzzt/proc/pick_closest_cable(mob/living/carbon/human/bad_luck)
 	for(var/turf/check_turf in RANGE_TURFS(2, bad_luck))
-		var/obj/structure/cable/C = locate(/obj/structure/cable) in check_turf
-
-		if(!istype(C) || C == null)
+		var/obj/structure/cable/cab = locate(/obj/structure/cable) in check_turf
+		if(!istype(cab) || cab == null)
 			continue
-		return C
+		return cab

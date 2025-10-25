@@ -15,9 +15,9 @@
 	..()
 
 	var/datum/techweb/station_tech
-	for(var/datum/techweb/T in SSresearch.techwebs)
-		if(istype(T, /datum/techweb/science))
-			station_tech = T
+	for(var/datum/techweb/web in SSresearch.techwebs)
+		if(istype(web, /datum/techweb/science))
+			station_tech = web
 			break
 
 	if(!station_tech)

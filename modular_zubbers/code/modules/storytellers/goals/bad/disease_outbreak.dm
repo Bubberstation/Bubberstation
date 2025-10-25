@@ -32,7 +32,7 @@
 	category = STORY_GOAL_BAD
 	tags = STORY_TAG_ESCALATION | STORY_TAG_AFFECTS_CREW_HEALTH | STORY_TAG_WIDE_IMPACT
 
-	requierd_population = 10
+	required_population = 10
 	required_round_progress = STORY_ROUND_PROGRESSION_MID
 	requierd_threat_level = STORY_GOAL_THREAT_ELEVATED
 
@@ -63,14 +63,14 @@
 
 	for(var/i = 1 to num_diseases)
 		var/datum/round_event_control/disease_outbreak/advanced/control = new /datum/round_event_control/disease_outbreak/advanced()
-		var/datum/round_event/disease_outbreak/advanced/E = new /datum/round_event/disease_outbreak/advanced()
-		E.requested_severity = severity
-		E.requested_transmissibility = transmissibility
-		E.max_symptoms = round(lerp(ADV_MIN_SYMPTOMS, ADV_MAX_SYMPTOMS + 1, normalized_threat))
+		var/datum/round_event/disease_outbreak/advanced/evt = new /datum/round_event/disease_outbreak/advanced()
+		evt.requested_severity = severity
+		evt.requested_transmissibility = transmissibility
+		evt.max_symptoms = round(lerp(ADV_MIN_SYMPTOMS, ADV_MAX_SYMPTOMS + 1, normalized_threat))
 
 		control.generate_candidates()
 		var/list/afflicted = control.disease_candidates.Copy(1, initial_carriers + 1)
-		var/datum/disease/advance/random/new_disease = new /datum/disease/advance/random(E.max_symptoms, severity)
+		var/datum/disease/advance/random/new_disease = new /datum/disease/advance/random(evt.max_symptoms, severity)
 		for(var/mob/living/carbon/human/victim in afflicted)
 			victim.ForceContractDisease(new_disease, FALSE)
 			notify_ghosts(
@@ -79,9 +79,9 @@
 			)
 
 
-		E.__setup_for_storyteller(threat_points)
-		E.announce_when = ADV_ANNOUNCE_DELAY * (1 + normalized_threat * 0.5)
-		E.start()
+		evt.__setup_for_storyteller(threat_points)
+		evt.announce_when = ADV_ANNOUNCE_DELAY * (1 + normalized_threat * 0.5)
+		evt.start()
 
 	priority_announce("Detected anomalous viral signatures. Containment protocols advised.", "Biohazard Alert", ANNOUNCER_OUTBREAK7)
 

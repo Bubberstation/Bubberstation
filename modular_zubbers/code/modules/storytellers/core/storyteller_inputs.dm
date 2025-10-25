@@ -1,4 +1,3 @@
-
 // Inputs datum to hold sampled data from the station
 // This structure packages analysis results from the analyzer for use in planner (global goal and subgoals branching)
 // and balancer (player vs. antagonist weights). It supports decision-making for event planning, goal progress,
@@ -15,7 +14,7 @@
 
 
 /datum/storyteller_inputs/proc/get_station_integrity()
-	return min(PERCENT(GLOB.start_state.score(station_state)), 100)
+	return station_state ? min(PERCENT(GLOB.start_state.score(station_state)), 100) : 100
 
 
 /datum/storyteller_inputs/proc/player_count()

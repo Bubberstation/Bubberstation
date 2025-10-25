@@ -1,13 +1,18 @@
+import '../../styles/interfaces/StorytellerVote.scss';
+
 import {
   Box,
+  Button,
   Divider,
   LabeledList,
   NoticeBox,
   ProgressBar,
   Section,
   Stack,
+  Tooltip,
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
+import { resolveAsset } from '../../assets';
 import { useBackend, useLocalState } from '../../backend';
 import { Window } from '../../layouts';
 
@@ -19,7 +24,10 @@ type Candidate = {
   id: string;
   name: string;
   desc?: string;
-  portrait?: string;
+  ooc_desc?: string;
+  ooc_diff?: string;
+  portrait_path?: string;
+  logo_path?: string;
 };
 
 type TopTally = {
@@ -68,10 +76,9 @@ export const StorytellerVote = (props) => {
     act('set_difficulty', { value: v });
   };
 
-  let current =
+  const current =
     storytellers.find((c) => c.id === selected) ||
     (is_open ? storytellers[0] : null);
-  if (!current) current = storytellers[0];
 
   if (!is_open && top_tallies.length === 0) {
     return (
@@ -86,19 +93,30 @@ export const StorytellerVote = (props) => {
   return (
     <Window
       title={is_open ? 'Vote for Storyteller' : 'Storyteller Vote Results'}
-      width={760}
-      height={560}
+      width={800}
+      height={620}
+      theme="stortellerVote"
     >
-      <Window.Content>
+      <Window.Content
+        style={{
+          backgroundImage: current
+            ? `url(${resolveAsset(`${current.id}_portrait.png`)})`
+            : undefined,
+          backgroundSize: '480px 480px',
+          backgroundPositionX: '100%',
+          backgroundPositionY: '100%',
+          position: 'absolute',
+        }}
+      >
         <Stack fill>
           <Stack.Item style={{ flex: '0 0 240px', boxSizing: 'border-box' }}>
             <Section
               title="Candidates"
               scrollable={true}
               style={{
-                width: '240px',
                 maxWidth: '240px',
-                maxHeight: '560px',
+                height: '100%',
+                width: '100%',
                 boxSizing: 'border-box',
                 overflowX: 'hidden',
                 overflowY: 'auto',
@@ -106,68 +124,61 @@ export const StorytellerVote = (props) => {
             >
               <Box>
                 {storytellers.length ? (
-                  storytellers.map((c) => (
-                    <Box
-                      key={c.id}
-                      p={1}
-                      mb={1}
-                      style={{
-                        cursor: is_open ? 'pointer' : 'default',
-                        borderRadius: 4,
-                        opacity: is_open ? 1 : 0.6,
-                        maxWidth: '100%',
-                      }}
-                      backgroundColor={
-                        c.id === selected ? 'rgba(255,255,255,0.08)' : undefined
-                      }
-                      onClick={() => select(c.id)}
-                    >
-                      {c.portrait ? (
-                        <Box
-                          width={96}
-                          height={96}
+                  <Stack fill vertical>
+                    {storytellers.map((c) => (
+                      <Tooltip content={c.name} key={c.id}>
+                        <Button
+                          p={1}
+                          mb={1}
+                          width="96px"
+                          height="96px"
                           style={{
-                            backgroundImage: `url(${c.portrait})`,
-                            backgroundSize: 'cover',
+                            cursor: is_open ? 'pointer' : 'default',
                             borderRadius: 4,
+                            opacity: is_open ? 1 : 0.6,
+                            maxWidth: '96px',
+                            maxHeight: '96px',
+                            backgroundImage: c.logo_path
+                              ? `url(${resolveAsset(`${c.id}_logo.png`)})`
+                              : undefined,
+                            backgroundColor:
+                              c.id === selected
+                                ? 'rgba(255,255,255,0.255)'
+                                : 'rgba(255,255,255,0.00)',
                           }}
-                          align="center"
-                          mr={1}
+                          onClick={() => select(c.id)}
                         />
-                      ) : (
-                        <Box
-                          width={48}
-                          height={48}
-                          backgroundColor="#222"
-                          mr={1}
-                        />
-                      )}
-                    </Box>
-                  ))
+                      </Tooltip>
+                    ))}
+                  </Stack>
                 ) : (
-                  <NoticeBox>
-                    Define /datum/storyteller subtypes in code to enable voting.
-                    Check server logs for details.
-                  </NoticeBox>
+                  <NoticeBox>No storytellers provided.</NoticeBox>
                 )}
               </Box>
             </Section>
           </Stack.Item>
-          <Stack.Item grow>
-            <Section title="Your Vote">
+          <Stack.Item grow maxWidth="60%">
+            <Section title="Your Vote" scrollable>
               {current ? (
                 <>
+                  <h1>{current.name}</h1>
                   <LabeledList>
-                    <LabeledList.Item label="Name">
-                      {current.name}
-                    </LabeledList.Item>
                     <LabeledList.Item label="Description">
                       {current.desc || '—'}
+                    </LabeledList.Item>
+                    <LabeledList.Item label="OOC Description">
+                      {current.ooc_desc || '-'}
+                    </LabeledList.Item>
+                    <LabeledList.Item label="Difficulty">
+                      {current.ooc_diff || '-'}
                     </LabeledList.Item>
                   </LabeledList>
                   <Divider />
                   <LabeledList>
-                    <LabeledList.Item label="Difficulty">
+                    <LabeledList.Item
+                      label="Difficulty Multiplier"
+                      tooltip="How much storyteller threat points will be multiplied."
+                    >
                       <Stack align="center">
                         <Stack.Item grow>
                           <input

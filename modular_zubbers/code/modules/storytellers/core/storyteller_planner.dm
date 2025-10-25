@@ -32,7 +32,7 @@
 // Main update_plan: Central control for goal execution and timeline advancement in event chain.
 // Called every think tick; scans upcoming for fire-ready goals, executes (complete()), updates status,
 // reschedules fails, cleans timeline. Returns list of fired goals for think() processing (adaptation/tags).
-// No global/sub distinction — all goals uniform in chain; inspired by RimWorld's cycle firing with adaptive rescheduling.
+// inspired by RimWorld's cycle firing with adaptive rescheduling.
 /datum/storyteller_planner/proc/update_plan(datum/storyteller/ctl, datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/bal)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!timeline)
@@ -87,7 +87,7 @@
 		if(timeline[offset_str][ENTRY_STATUS] == STORY_GOAL_PENDING)
 			pending_count++
 
-	if(pending_count < 3 && COOLDOWN_FINISHED(src, goal_planing_cooldown))
+	if(pending_count <= 0 && COOLDOWN_FINISHED(src, goal_planing_cooldown))
 		if(add_next_goal(ctl, inputs, bal))
 			COOLDOWN_START(src, goal_planing_cooldown, planning_cooldown)
 
@@ -117,7 +117,7 @@
 	var/last_time = get_last_reference_time(ctl)
 	var/fire_offset = last_time + next_delay
 	if(try_plan_goal(new_goal, fire_offset, TRUE))
-		log_storyteller_planner("Storyteller added next goal to chain: [new_goal.name || new_goal.id] at offset [fire_offset] (relative delay: [next_delay]).")
+		log_storyteller_planner("[ctl.name] added next goal to chain: [new_goal.name || new_goal.id] at offset [fire_offset] (relative delay: [next_delay]).")
 		return TRUE
 	else
 		qdel(new_goal)
@@ -266,7 +266,7 @@
 
 	// Fallback if still low (add random)
 	var/attempts = 0
-	while(pending_count < 3)
+	while(pending_count < 0)
 		if(attempts > 3)
 			break
 		var/datum/storyteller_goal/fallback = build_goal(ctl, inputs, bal, 0, STORY_GOAL_RANDOM)
@@ -282,74 +282,16 @@
 
 // Build initial timeline on round start: Generates chain of events as adaptive threat sequence.
 // Analyzes station (bal/inputs) for category/tags, biases by threat/adaptation for escalation start.
-// No current_goal dependency; schedules with dynamic offsets based on mood/pace.
+// schedules with dynamic offsets based on mood/pace.
 // Ensures buffer for branching sub-threats, fallback to random for continuity.
 /datum/storyteller_planner/proc/build_timeline(datum/storyteller/ctl, datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/bal, derived_tags)
 	timeline = list()
 
-	var/category = select_goal_category(ctl, bal)
-	var/tags = derived_tags || derive_universal_tags(category, ctl, inputs, bal)
-
-	var/effective_threat = ctl.get_effective_threat()
-	if(effective_threat > ctl.max_threat_scale * 0.7 && !(derived_tags & STORY_TAG_ESCALATION))
-		tags |= STORY_TAG_ESCALATION
-	else if(ctl.adaptation_factor > 0.5 && !(derived_tags & STORY_TAG_DEESCALATION))
-		tags |= STORY_TAG_DEESCALATION
-
-	if(SSstorytellers.hard_debug)
-		var/string_tags = ""
-		for(var/tag_str in get_valid_bitflags("story_universal_tags"))
-			if(tags & get_valid_bitflags("story_universal_tags")[tag_str])
-				string_tags += "[tag_str], "
-		message_admins("Storyteller [ctl.name] built initial timeline with category: [bitfield_to_list(category)], tags: [string_tags]")
-
 	var/pending_count = 0
 	var/target_count = STORY_INITIAL_GOALS_COUNT
-	var/start_delay = ctl.get_event_interval()
-	var/multiply = 0
-	var/last_time = get_last_reference_time(ctl)
-	for(var/i = 0 to target_count)
-		var/datum/storyteller_goal/new_goal = build_goal(ctl, inputs, bal, tags, category)
-		if(!new_goal)
-			continue
-
-		multiply += 1
-		var/fire_delay = start_delay * multiply * (1 + (ctl.mood.volatility * 0.1))
-		if(new_goal.tags & STORY_TAG_ESCALATION)
-			fire_delay *= 0.8  // Accelerate 20% for high-threat branches
-		else if(new_goal.tags & STORY_TAG_DEESCALATION)
-			fire_delay *= 1.2  // Slow for adaptation phases
-
-		var/fire_offset = last_time + fire_delay
-		if(!ctl.can_trigger_event_at(fire_offset))
-			fire_offset += ctl.grace_period
-			if(!ctl.can_trigger_event_at(fire_offset))
-				qdel(new_goal)
-				continue
-
-		if(try_plan_goal(new_goal, fire_offset, TRUE))
-			pending_count++
-		else
-			qdel(new_goal)
-
-
-	var/attempts = 0
-	while(pending_count < target_count)
-		if(attempts > 3)
-			break
-
-		var/fallback_category = STORY_GOAL_RANDOM
-		var/datum/storyteller_goal/fallback = build_goal(ctl, inputs, bal, 0, fallback_category)
-		if(fallback)
-			var/fire_delay = ctl.get_event_interval() * pending_count
-			var/fire_offset = last_time + fire_delay
-			if(try_plan_goal(fallback, fire_offset))
-				pending_count++
-		attempts++
-
-	timeline = sortTim(timeline, GLOBAL_PROC_REF(cmp_text_asc))
-	log_storyteller_planner("Storyteller built initial timeline: [pending_count] events chained, threat=[effective_threat].")
-
+	for(var/i = 1 to target_count)
+		add_next_goal(ctl, inputs, bal)
+		pending_count += 1
 
 	COOLDOWN_START(src, goal_planing_cooldown, planning_cooldown)
 	COOLDOWN_START(src, recalculate_cooldown, recalc_interval)

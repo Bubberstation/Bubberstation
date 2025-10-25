@@ -48,7 +48,27 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 					"weight" = G.get_weight(ctl.inputs.vault, ctl.inputs, ctl),
 				))
 	data["available_goals"] = goals
+
+	var/list/candidates = list()
+	for(var/id in SSstorytellers.storyteller_data)
+		var/list/storyteller_data = SSstorytellers.storyteller_data[id]
+		if(!storyteller_data)
+			continue
+		candidates += list(list(
+			"name" = storyteller_data["name"],
+			"id" = storyteller_data["id"],
+		))
+	data["candidates"] = candidates
 	return data
+
+
+/datum/storyteller_admin_ui/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/simple/storyteller_portraits_icons),
+	)
+
+
+
 
 /datum/storyteller_admin_ui/ui_data(mob/user)
 	var/list/data = list()
@@ -57,8 +77,11 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 		data["name"] = "No storyteller"
 		return data
 
+	data["id"] = ctl.id
 	data["name"] = ctl.name
 	data["desc"] = ctl.desc
+	data["ooc_desc"] = ctl.ooc_desc
+	data["ooc_difficulty"] = ctl.ooc_difficulty
 	if(ctl.mood)
 		data["mood"] = list(
 			"id" = "[ctl.mood.type]",
@@ -125,6 +148,8 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 	data["available_goals"] = list()
 	for(var/id in SSstorytellers.goals_by_id)
 		var/datum/storyteller_goal/G = SSstorytellers.goals_by_id[id]
+		if(!G)
+			continue
 		data["available_goals"] += list(list(
 			"id" = G.id,
 			"name" = G.name || G.id,
@@ -159,6 +184,13 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 		if("reschedule_chain")
 			ctl.planner.recalculate_plan(ctl, ctl.inputs, ctl.balancer.make_snapshot(ctl.inputs), TRUE)
 			return TRUE
+		if("set_storyteller")
+			var/storyteller_id = params["id"]
+			if(!storyteller_id)
+				return TRUE
+			if(SSstorytellers.set_storyteller(storyteller_id))
+				ctl = SSstorytellers.active
+				message_admins("[key_name_admin(usr)] is changed storyteller to [ctl.name].")
 		if("set_mood")
 			var/mood_id = params["id"]
 			if(mood_id)

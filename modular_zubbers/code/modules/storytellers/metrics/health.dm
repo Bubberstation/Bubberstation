@@ -53,14 +53,14 @@
 	var/total_antag_wounds = 0
 	var/total_infected_crew = 0
 
-	for(var/mob/living/M in get_alive_crew(FALSE))  // Assume helper: alive station crew/antags
-		var/is_antag = M.mind?.has_antag_datum() || FALSE
-		var/tot_damage = M.get_total_damage()  // Brute/burn/tox/oxy sum
+	for(var/mob/living/living in get_alive_crew(FALSE))  // Assume helper: alive station crew/antags
+		var/is_antag = living.mind?.has_antag_datum() || FALSE
+		var/tot_damage =living.get_total_damage()  // Brute/burn/tox/oxy sum
 		var/tot_wounds = 0
-		if(iscarbon(M))
-			var/mob/living/carbon/C = M
-			tot_wounds = length(C.all_wounds)
-			if(!is_antag && length(C.diseases))
+		if(iscarbon(living))
+			var/mob/living/carbon/carbon = living
+			tot_wounds = length(carbon.all_wounds)
+			if(!is_antag && length(carbon.diseases))
 				total_infected_crew++
 
 		if(is_antag)
@@ -74,8 +74,8 @@
 
 	var/dead_crew_count = 0
 	var/dead_antag_count = 0
-	for(var/mob/living/M in get_dead_crew(FALSE))
-		var/is_antag = M.mind?.has_antag_datum() || FALSE
+	for(var/mob/living/living in get_dead_crew(FALSE))
+		var/is_antag = living.mind?.has_antag_datum() || FALSE
 		if(is_antag)
 			dead_antag_count++
 		else

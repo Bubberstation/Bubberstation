@@ -8,7 +8,7 @@
 	tags = STORY_TAG_ESCALATION | STORY_TAG_WIDE_IMPACT | STORY_TAG_ENTITIES
 	event_path = /datum/round_event/brand_intelligence
 
-	requierd_population = 10
+	required_population = 5
 	required_round_progress = STORY_ROUND_PROGRESSION_MID
 	requierd_threat_level = STORY_GOAL_THREAT_ELEVATED
 

@@ -1,4 +1,4 @@
-#define STORY_INTEGRITY_PENALTY_UNSAFE 50
+#define STORY_INTEGRITY_PENALTY_UNSAFE 20 //%
 #define STORY_INTEGRITY_PENALTY_FIRES 10
 
 /datum/storyteller_metric/station_integrity
@@ -76,11 +76,11 @@
 
 
 // Thresholds for low power states (percentages)
-#define STORY_POWER_LOW_SMES_THRESHOLD 20  // Below this % SMES charge → penalty
+#define STORY_POWER_LOW_SMES_THRESHOLD 10  // Below this % SMES charge → penalty
 #define STORY_POWER_APC_FAILURE_RATIO 0.1  // Ratio for damage_level: failures / (checked * this)
 
 // Penalties for calculations (subtracted from raw_strength; scaled by size in code)
-#define STORY_POWER_PENALTY_LOW_SMES 20    // Fixed penalty if SMES < threshold
+#define STORY_POWER_PENALTY_LOW_SMES 10    // Fixed penalty if SMES < threshold
 #define STORY_POWER_PENALTY_PER_OFF_APC 5  // Per non-operating APC (scaled by area size)
 
 

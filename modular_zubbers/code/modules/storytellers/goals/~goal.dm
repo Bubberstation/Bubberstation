@@ -23,7 +23,7 @@
 	// Minimum threat level required to select this goal
 	var/requierd_threat_level = STORY_GOAL_NO_THREAT
 	// Minimum population of alive and non-afk crew required to select this goal
-	var/requierd_population = 0
+	var/required_population = 0
 	// Minimum round progress (from 0..1) required to select this goal
 	var/required_round_progress = STORY_ROUND_PROGRESSION_START
 
@@ -33,7 +33,9 @@
 	. = TRUE
 	if(storyteller.get_effective_threat() < requierd_threat_level)
 		. = FALSE
-	if(vault[STORY_VAULT_CREW_ALIVE_COUNT] < requierd_population)
+	if(vault[STORY_VAULT_CREW_ALIVE_COUNT] < required_population
+
+)
 		. = FALSE
 	if(storyteller.round_progression < required_round_progress)
 		. = FALSE

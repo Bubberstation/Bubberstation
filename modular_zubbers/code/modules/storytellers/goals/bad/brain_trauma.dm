@@ -7,7 +7,7 @@
 	path_ids = list()
 	event_path = /datum/round_event/brain_trauma
 
-	requierd_population = 5
+	required_population = 5
 	required_round_progress = STORY_ROUND_PROGRESSION_EARLY
 	requierd_threat_level = STORY_GOAL_THREAT_BASIC
 

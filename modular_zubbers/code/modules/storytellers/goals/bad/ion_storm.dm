@@ -111,17 +111,17 @@
 	var/list/station_doors = list()
 
 
-	for(var/mob/living/M in GLOB.alive_mob_list)
-		if(!is_station_level(M.z))
+	for(var/mob/living/living in GLOB.alive_mob_list)
+		if(!is_station_level(living.z))
 			continue
-		if(istype(M, /mob/living/silicon/ai))
-			station_ais += M
-		else if(istype(M, /mob/living/simple_animal/bot))
-			station_bots += M
-		else if(istype(M, /mob/living/silicon))
-			station_synthetics += M
-		else if(istype(M, /mob/living/carbon/human))
-			station_humans += M
+		if(istype(living, /mob/living/silicon/ai))
+			station_ais += living
+		else if(istype(living, /mob/living/simple_animal/bot))
+			station_bots += living
+		else if(istype(living, /mob/living/silicon))
+			station_synthetics += living
+		else if(istype(living, /mob/living/carbon/human))
+			station_humans += living
 
 	for(var/obj/machinery/machine in SSmachines.get_all_machines())
 		if(!is_station_level(machine.z))
