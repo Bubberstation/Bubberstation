@@ -18,7 +18,7 @@
 	var/list/hoard_images = list()
 	var/hoard_visible = TRUE
 	var/hoard_process_interval = 30 SECONDS
-	var/hoard_grace_period = 10 MINUTE
+	var/hoard_grace_period = 10 MINUTES
 
 /datum/quirk/hoarder/add(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
