@@ -165,7 +165,7 @@
 
 	var/obj/item/mod/module/storage/storage = locate() in species_modsuit.modules // Give a storage if we don't have one.
 	if(!storage)
-		storage = new()
+		storage = new /obj/item/mod/module/storage/large_capacity()
 		species_modsuit.install(storage, owner, TRUE)
 
 	if(outfit.backpack_contents)
