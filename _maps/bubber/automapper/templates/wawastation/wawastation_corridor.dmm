@@ -71,13 +71,6 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/central/greater)
-"eV" = (
-/obj/structure/fluff/tram_rail/electric,
-/obj/structure/transport/linear/tram,
-/obj/structure/thermoplastic,
-/obj/structure/chair/sofa/bench/tram/left,
-/turf/open/floor/tram/guideway,
-/area/station/maintenance/central/greater)
 "fb" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -107,11 +100,6 @@
 /obj/structure/thermoplastic/light,
 /turf/open/floor/tram/guideway,
 /area/station/maintenance/central/greater)
-"fy" = (
-/obj/structure/transport/linear/tram,
-/obj/structure/tram/alt/titanium,
-/turf/open/floor/tram/guideway,
-/area/station/maintenance/central/greater)
 "hB" = (
 /obj/machinery/transport/destination_sign/indicator/directional,
 /obj/machinery/button/transport/tram/directional{
@@ -119,6 +107,15 @@
 	},
 /turf/closed/wall,
 /area/station/hallway/secondary/entry)
+"hM" = (
+/obj/machinery/light/blacklight/directional/south{
+	brightness = 9;
+	nightshift_brightness = 9;
+	bulb_power = 0.4;
+	light_angle = 180
+	},
+/turf/open/floor/plating,
+/area/station/maintenance/central/greater)
 "ma" = (
 /obj/structure/fluff/tram_rail/electric,
 /obj/structure/transport/linear/tram,
@@ -193,8 +190,7 @@
 "qj" = (
 /obj/structure/fluff/tram_rail,
 /obj/structure/transport/linear/tram,
-/obj/structure/thermoplastic,
-/obj/structure/chair/sofa/bench/tram/right,
+/obj/structure/thermoplastic/light,
 /turf/open/floor/tram/guideway,
 /area/station/maintenance/central/greater)
 "qD" = (
@@ -332,15 +328,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/station/maintenance/central/greater)
-"CO" = (
-/obj/machinery/light/blacklight/directional/south{
-	brightness = 9;
-	nightshift_brightness = 9;
-	bulb_power = 0.4;
-	light_angle = 180
-	},
-/turf/template_noop,
 /area/station/maintenance/central/greater)
 "Dy" = (
 /obj/structure/transport/linear/tram/corner/northeast,
@@ -526,8 +513,9 @@
 /area/station/maintenance/central/greater)
 "Qk" = (
 /obj/structure/transport/linear/tram,
-/obj/structure/thermoplastic/light,
+/obj/structure/thermoplastic,
 /obj/structure/fluff/tram_rail/electric,
+/obj/structure/chair/sofa/bench/tram,
 /turf/open/floor/tram/guideway,
 /area/station/maintenance/central/greater)
 "QP" = (
@@ -610,8 +598,9 @@
 "XW" = (
 /obj/structure/fluff/tram_rail/electric,
 /obj/structure/transport/linear/tram,
-/obj/structure/thermoplastic/light,
+/obj/structure/thermoplastic,
 /obj/machinery/computer/tram_controls/split/directional/north,
+/obj/structure/chair/sofa/bench/tram/left,
 /turf/open/floor/tram/guideway,
 /area/station/maintenance/central/greater)
 "Yk" = (
@@ -711,8 +700,8 @@ OY
 nH
 AW
 GR
-fy
-ma
+fk
+fw
 BL
 ZR
 fk
@@ -726,8 +715,8 @@ Vb
 Ok
 AW
 GR
-fy
-eV
+ts
+fw
 BL
 ZR
 ts
@@ -742,7 +731,7 @@ Ok
 AW
 rY
 yX
-fw
+ma
 Yt
 br
 pr
@@ -786,7 +775,7 @@ Ok
 Ok
 AW
 GR
-fy
+fk
 qj
 BL
 ZR
@@ -801,8 +790,8 @@ Ok
 Ok
 AW
 GR
-fy
-eV
+ts
+fw
 BL
 ZR
 ts
@@ -971,8 +960,8 @@ Pm
 VV
 Ol
 tK
-RJ
-CO
+hM
+Ok
 "}
 (22,1,1) = {"
 Ok
@@ -1002,7 +991,7 @@ VV
 Ol
 tK
 RJ
-Cj
+Ok
 "}
 (24,1,1) = {"
 Ok
