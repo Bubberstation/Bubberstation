@@ -82,49 +82,84 @@
 *	CARPET PACKS
 */
 
-/datum/supply_pack/goody/carpet
-	name = "Classic Carpet Single-Pack"
-	desc = "Plasteel floor tiles getting on your nerves? This 50 units stack of extra soft carpet will tie any room together."
-	cost = PAYCHECK_CREW * 3
-	contains = list(/obj/item/stack/tile/carpet/fifty)
+/datum/supply_pack/goody/classiccarpet
+	name = "CARPET: Classic Red and Black Goodie Pack"
+	desc = "Decorate in style, contains 50 tiles of Classic Red and Black carpeting."
+	cost = PAYCHECK_CREW * 4
+	contains = list(
+		/obj/item/stack/tile/carpet/fifty,
+		/obj/item/stack/tile/carpet/black/fifty,
+	)
 
-/datum/supply_pack/goody/carpet/black
-	name = "Black Carpet Single-Pack"
-	contains = list(/obj/item/stack/tile/carpet/black/fifty)
+/datum/supply_pack/goody/royalcarpet
+	name = "CARPET: Royal Black and Blue Goodie Pack"
+	desc = "Decorate in style, contains 50 tiles of Royal Black and Royal Blue carpeting."
+	cost = PAYCHECK_CREW * 4
+	contains = list(
+		/obj/item/stack/tile/carpet/royalblack/fifty,
+		/obj/item/stack/tile/carpet/royalblue/fifty,
+	)
 
-/datum/supply_pack/goody/carpet/premium
-	name = "Royal Black Carpet Single-Pack"
-	desc = "Exotic carpets for all your decorating needs. This 50 unit stack of extra soft carpet will tie any room together."
-	cost = PAYCHECK_CREW * 3.5
-	contains = list(/obj/item/stack/tile/carpet/royalblack/fifty)
+/datum/supply_pack/goody/rgbcarpet
+	name = "CARPET: Red, Green, and Blue Goodie Pack"
+	desc = "Decorate in style, contains 50 tiles of red, green, and blue carpet."
+	cost = PAYCHECK_CREW * 6
+	contains = list(
+		/obj/item/stack/tile/carpet/red/fifty,
+		/obj/item/stack/tile/carpet/green/fifty,
+		/obj/item/stack/tile/carpet/blue/fifty,
+	)
 
-/datum/supply_pack/goody/carpet/premium/royalblue
-	name = "Royal Blue Carpet Single-Pack"
-	contains = list(/obj/item/stack/tile/carpet/royalblue/fifty)
+/datum/supply_pack/goody/copcarpet
+	name = "CARPET: Cyan, Orange, and Purple Goodie Pack"
+	desc = "Decorate in style, contains 50 tiles of Cyan, Orange, and Purple carpet."
+	cost = PAYCHECK_CREW * 6
+	contains = list(
+		/obj/item/stack/tile/carpet/cyan/fifty,
+		/obj/item/stack/tile/carpet/orange/fifty,
+		/obj/item/stack/tile/carpet/purple/fifty,
+	)
 
-/datum/supply_pack/goody/carpet/premium/red
-	name = "Red Carpet Single-Pack"
-	contains = list(/obj/item/stack/tile/carpet/red/fifty)
+/datum/supply_pack/goody/rgbneoncarpet
+	name = "NEON CARPET: Red, Green, Blue Goodie Pack"
+	desc = "Decorate in style, contains 60 tiles of carpeting in three styles. Red, Green, and Blue."
+	cost = PAYCHECK_CREW * 6
+	contains = list(
+		/obj/item/stack/tile/carpet/neon/simple/red/sixty,
+		/obj/item/stack/tile/carpet/neon/simple/green/sixty,
+		/obj/item/stack/tile/carpet/neon/simple/blue/sixty,
+	)
 
-/datum/supply_pack/goody/carpet/premium/purple
-	name = "Purple Carpet Single-Pack"
-	contains = list(/obj/item/stack/tile/carpet/purple/fifty)
+/datum/supply_pack/goody/bwneoncarpet
+	name = "NEON CARPET: Black and White Goodie Pack"
+	desc = "Decorate in style, contains 60 tiles of carpeting in two styles. White and Black."
+	cost = PAYCHECK_CREW * 4
+	contains = list(
+		/obj/item/stack/tile/carpet/neon/simple/white/sixty,
+		/obj/item/stack/tile/carpet/neon/simple/black/sixty,
+	)
 
-/datum/supply_pack/goody/carpet/premium/orange
-	name = "Orange Carpet Single-Pack"
-	contains = list(/obj/item/stack/tile/carpet/orange/fifty)
+/datum/supply_pack/goody/coppcarpet
+	name = "NEON CARPET: Cyan, Orange, Purple, and Pink Goodie Pack"
+	desc = "Decorate in style, contains 60 tiles of carpeting in four styles. Cyan, Orange, Purple, and Pink."
+	cost = PAYCHECK_CREW * 8
+	contains = list(
+		/obj/item/stack/tile/carpet/neon/simple/cyan/sixty,
+		/obj/item/stack/tile/carpet/neon/simple/orange/sixty,
+		/obj/item/stack/tile/carpet/neon/simple/purple/sixty,
+		/obj/item/stack/tile/carpet/neon/simple/pink/sixty,
+	)
 
-/datum/supply_pack/goody/carpet/premium/green
-	name = "Green Carpet Single-Pack"
-	contains = list(/obj/item/stack/tile/carpet/green/fifty)
-
-/datum/supply_pack/goody/carpet/premium/cyan
-	name = "Cyan Carpet Single-Pack"
-	contains = list(/obj/item/stack/tile/carpet/cyan/fifty)
-
-/datum/supply_pack/goody/carpet/premium/blue
-	name = "Blue Carpet Single-Pack"
-	contains = list(/obj/item/stack/tile/carpet/blue/fifty)
+/datum/supply_pack/goody/tylvcarpet
+	name = "NEON CARPET: Lime, Yellow, Teal, and Violet Goodie Pack"
+	desc = "Decorate in style, contains 60 tiles of carpeting in four styles. Yellow, Lime, Violet, and Teal."
+	cost = PAYCHECK_CREW * 8
+	contains = list(
+		/obj/item/stack/tile/carpet/neon/simple/yellow/sixty,
+		/obj/item/stack/tile/carpet/neon/simple/lime/sixty,
+		/obj/item/stack/tile/carpet/neon/simple/violet/sixty,
+		/obj/item/stack/tile/carpet/neon/simple/teal/sixty,
+	)
 
 /*
 * NIF STUFF
