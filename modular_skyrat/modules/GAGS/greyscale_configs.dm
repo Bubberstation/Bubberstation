@@ -1578,22 +1578,6 @@ TREK
 	icon_file = 'modular_skyrat/modules/hyposprays/icons/vials.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/items/hypovial.json'
 
-/datum/greyscale_config/umbrella
-	name = "Umbrella"
-	icon_file = 'modular_zubbers/icons/obj/equipment/umbrella.dmi'
-	json_config = 'modular_skyrat/modules/GAGS/json_configs/items/_umbrella.json'
-
-/datum/greyscale_config/umbrella_inhand_left
-	name = "Held Umbrella, Left, Closed"
-	icon_file = 'modular_zubbers/icons/obj/equipment/umbrella_inhand_l.dmi'
-	json_config = 'modular_skyrat/modules/GAGS/json_configs/items/_umbrella_inhand.json'
-
-/datum/greyscale_config/umbrella_inhand_right
-	name = "Held Umbrella, Right, Closed"
-	icon_file = 'modular_zubbers/icons/obj/equipment/umbrella_inhand_r.dmi'
-	json_config = 'modular_skyrat/modules/GAGS/json_configs/items/_umbrella_inhand.json'
-
-
 // Evil primitive catgirl clothing
 
 /datum/greyscale_config/primitive_catgirl_wraps
@@ -1662,3 +1646,4 @@ TREK
 /datum/greyscale_config/turret/toolbox
 	name = "Donksoft Turret"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/turret/turret_toolbox.json'
+
