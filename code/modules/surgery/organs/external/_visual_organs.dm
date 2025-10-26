@@ -64,6 +64,12 @@ Unlike normal organs, we're actually inside a persons limbs at all times
 
 	if(target.dna.features[feature_key] != SPRITE_ACCESSORY_NONE)
 		return TRUE
+
+	// BUBBER EDIT ADDITION BEGIN - Customization
+	if(target.dna.mutant_bodyparts[feature_key] && target.dna.mutant_bodyparts[feature_key][MUTANT_INDEX_NAME] != SPRITE_ACCESSORY_NONE)
+		return TRUE
+	// BUBBER EDIT ADDITION END
+
 	return FALSE
 
 ///Update our features after something changed our appearance
