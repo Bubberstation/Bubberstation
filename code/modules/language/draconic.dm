@@ -24,6 +24,9 @@
 	default_name_syllable_min = 3
 	default_name_syllable_max = 5
 	random_name_spacer = "-"
+	mutual_understanding = list(
+		/datum/language/ashtongue = 30,
+	)
 
 /datum/language/draconic/get_random_name(
 	gender = NEUTER,

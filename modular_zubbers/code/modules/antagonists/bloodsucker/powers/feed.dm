@@ -100,7 +100,7 @@
 		to_chat(user, span_notice("You slowly release [feed_target]."))
 		if(feed_target.client && feed_target.stat == DEAD)
 			user.add_mood_event("drankkilled", /datum/mood_event/drankkilled)
-			bloodsuckerdatum_power.AddHumanityLost(5)
+			bloodsuckerdatum_power?.AddHumanityLost(5)
 
 	target_ref = null
 	warning_target_bloodvol = initial(warning_target_bloodvol)
@@ -117,11 +117,11 @@
 		return FALSE
 	if(istype(feed_target, /mob/living/basic/mouse))
 		to_chat(owner, span_notice("You recoil at the taste of a lesser lifeform."))
-		if(bloodsuckerdatum_power.my_clan && bloodsuckerdatum_power.my_clan.blood_drink_type != BLOODSUCKER_DRINK_INHUMANELY)
+		if(snobby_drinking_check())
 			var/mob/living/user = owner
 			user.add_mood_event("drankblood", /datum/mood_event/drankblood_bad)
-			bloodsuckerdatum_power.AddHumanityLost(1)
-		bloodsuckerdatum_power.AdjustBloodVolume(25)
+			bloodsuckerdatum_power?.AddHumanityLost(1)
+		bloodsuckerdatum_power?.AdjustBloodVolume(25)
 		feed_target.death()
 		StartCooldown()
 		return FALSE
@@ -171,7 +171,7 @@
 		if(IS_BLOODSUCKER(watchers) || IS_GHOUL(watchers) || HAS_TRAIT(watchers.mind, TRAIT_BLOODSUCKER_HUNTER))
 			continue
 		owner.balloon_alert(owner, "feed noticed!")
-		bloodsuckerdatum_power.give_masquerade_infraction()
+		bloodsuckerdatum_power?.give_masquerade_infraction()
 		break
 
 /datum/action/cooldown/bloodsucker/feed/process(seconds_per_tick)
@@ -209,11 +209,11 @@
 	var/feed_strength_mult = 0.3
 	if(aggressive_feed)
 		feed_strength_mult = 1
-	if(bloodsuckerdatum_power.frenzied)
+	if(bloodsuckerdatum_power?.frenzied)
 		feed_strength_mult *= 2
 
 	var/already_drunk = targets_and_blood[target_ref] || 0
-	var/blood_eaten = bloodsuckerdatum_power.handle_feeding(feed_target, feed_strength_mult, level_current, already_drunk)
+	var/blood_eaten = drink_blood(feed_target, feed_strength_mult, level_current, already_drunk)
 	blood_taken += blood_eaten
 	targets_and_blood[target_ref] += blood_eaten
 	modify_blood_drunk(blood_eaten * 0.5)
@@ -221,7 +221,7 @@
 	if(feed_strength_mult > 5 && feed_target.stat < DEAD)
 		user.add_mood_event("drankblood", /datum/mood_event/drankblood)
 	// Drank mindless as Ventrue? - BAD
-	if((bloodsuckerdatum_power.my_clan && bloodsuckerdatum_power.my_clan.blood_drink_type == BLOODSUCKER_DRINK_SNOBBY) && !feed_target.mind)
+	if(snobby_drinking_check() && !feed_target.mind)
 		user.add_mood_event("drankblood", /datum/mood_event/drankblood_bad)
 	if(feed_target.stat >= DEAD)
 		user.add_mood_event("drankblood", /datum/mood_event/drankblood_dead)
@@ -239,8 +239,11 @@
 			return
 		warning_target_bloodvol = feed_target.blood_volume
 
-	if(bloodsuckerdatum_power.GetBloodVolume() >= bloodsuckerdatum_power.max_blood_volume && !notified_overfeeding)
-		user.balloon_alert(owner, "full on blood! Anything more we drink now will be burnt on quicker healing")
+	if(max_blood_reached())
+		var/message = "full on blood!"
+		if(IS_BLOODSUCKER(owner))
+			message += " Anything more we drink now will be burnt on quicker healing"
+		user.balloon_alert(owner, message)
 		notified_overfeeding = TRUE
 	if(feed_target.blood_volume <= 0)
 		user.balloon_alert(owner, "no blood left!")
@@ -251,11 +254,62 @@
 	if(aggressive_feed)
 		feed_target.playsound_local(get_turf(src), 'sound/effects/singlebeat.ogg', 40, TRUE)
 
+/datum/action/cooldown/bloodsucker/feed/proc/drink_blood(mob/living/feed_target, feed_strength_mult, level_current, already_drunk)
+	// overridden in bloodsucker power.dm
+	var/feed_amount = 15 + (level_current * 2)
+	var/max_drink = feed_amount * feed_strength_mult
+	var/blood_eatable = min(max_drink, feed_target.blood_volume)
+	var/owner_blood_volume = 0
+
+	blood_eatable = apply_drink_modifiers(feed_target, blood_eatable)
+
+	SEND_SIGNAL(owner, COMSIG_MOB_FEED_DRINK, feed_target, blood_eatable, already_drunk)
+
+	if(IS_BLOODSUCKER(owner))
+		bloodsuckerdatum_power.handle_feeding(feed_target, blood_eatable, already_drunk)
+		owner_blood_volume = bloodsuckerdatum_power.GetBloodVolume()
+
+	else if(isliving(owner) && !HAS_TRAIT(owner, TRAIT_NOBLOOD))
+		var/mob/living/living_owner = owner
+		living_owner.blood_volume += blood_eatable
+		owner_blood_volume = living_owner.blood_volume
+
+	if(feed_target.reagents && feed_target.reagents.total_volume)
+		feed_target.reagents.trans_to(owner, INGEST, 1) // Run transfer of 1 unit of reagent from them to me.
+	feed_target.blood_volume = max(0, feed_target.blood_volume - blood_eatable)
+
+	if(owner_blood_volume > 0)
+		owner.bodytemperature = ((owner_blood_volume * owner.bodytemperature) + (blood_eatable * feed_target.bodytemperature)) / (owner_blood_volume + blood_eatable)
+	return blood_eatable
+
+/datum/action/cooldown/bloodsucker/feed/proc/apply_drink_modifiers(mob/living/feed_target, blood_eatable)
+	if(feed_target.stat == DEAD) // Penalty for Dead Blood
+		blood_eatable /= 3
+	if(!ishuman(feed_target)) // Penalty for Non-Human Blood
+		blood_eatable /= 2
+	else if(!feed_target?.mind) // Penalty for Mindless Blood
+		blood_taken /= 2
+	return blood_eatable
+
 /datum/action/cooldown/bloodsucker/feed/proc/check_aggro_feed(mob/living/feed_target)
 	var/mob/living/carbon/carbon = owner
 	if(owner.pulling != feed_target && owner.pulledby != feed_target \
 	|| (feed_target.pulledby != owner && iscarbon(carbon) && carbon.handcuffed))
 		return FALSE
+	return TRUE
+
+/datum/action/cooldown/bloodsucker/feed/proc/max_blood_reached()
+	if(bloodsuckerdatum_power && bloodsuckerdatum_power.GetBloodVolume() >= bloodsuckerdatum_power.max_blood_volume && !notified_overfeeding)
+		return TRUE
+	if(HAS_TRAIT(owner, TRAIT_NOBLOOD))
+		return FALSE
+	if(astype(owner, /mob/living).blood_volume >= BLOOD_VOLUME_MAXIMUM)
+		return TRUE
+	return FALSE
+
+/datum/action/cooldown/bloodsucker/proc/snobby_drinking_check()
+	if(bloodsuckerdatum_power?.my_clan && bloodsuckerdatum_power.my_clan.blood_drink_type != BLOODSUCKER_DRINK_INHUMANELY)
+		return TRUE
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/feed/proc/find_target()
@@ -264,7 +318,7 @@
 		return TRUE
 	if(safe_set_target(owner.pulledby))
 		return TRUE
-	if(bloodsuckerdatum_power.frenzied)
+	if(bloodsuckerdatum_power?.frenzied)
 		owner.balloon_alert(owner, "beast active! must grab someone to feed!")
 		return FALSE
 	var/mob/living/carbon/carbon = owner
@@ -315,7 +369,7 @@
 
 /datum/action/cooldown/bloodsucker/feed/proc/can_feed_from(mob/living/target, give_warnings = FALSE)
 	if(istype(target, /mob/living/basic/mouse))
-		if(bloodsuckerdatum_power.my_clan && bloodsuckerdatum_power.my_clan.blood_drink_type == BLOODSUCKER_DRINK_SNOBBY)
+		if(snobby_drinking_check())
 			if(give_warnings)
 				owner.balloon_alert(owner, "too disgusting!")
 			return FALSE
@@ -333,7 +387,7 @@
 		if(give_warnings)
 			owner.balloon_alert(owner, "headgear too thick!")
 		return FALSE
-	if((bloodsuckerdatum_power.my_clan && bloodsuckerdatum_power.my_clan.blood_drink_type == BLOODSUCKER_DRINK_SNOBBY) && !target_user.mind && !bloodsuckerdatum_power.frenzied)
+	if(!target.mind && !can_drink_from_mindless(target_user))
 		if(give_warnings)
 			owner.balloon_alert(owner, "cant drink from mindless!")
 		return FALSE
@@ -343,13 +397,20 @@
 		return FALSE
 	return TRUE
 
+/datum/action/cooldown/bloodsucker/feed/proc/can_drink_from_mindless(mob/living/target)
+	if(!bloodsuckerdatum_power?.my_clan)
+		return TRUE
+	if(snobby_drinking_check() && !bloodsuckerdatum_power.frenzied)
+		return FALSE
+	return TRUE
+
 /datum/action/cooldown/bloodsucker/feed/proc/get_sleep_time()
 	return (5 + bloodsuckerdatum_power?.GetRank() || 1) SECONDS
 
 /datum/action/cooldown/bloodsucker/feed/proc/get_feed_start_time()
 	var/bloodsucker_level_divider = 1.25 * (bloodsuckerdatum_power?.GetRank() || 1)
 	var/feed_time = FEED_DEFAULT_TIMER / bloodsucker_level_divider
-	if(bloodsuckerdatum_power.frenzied)
+	if(bloodsuckerdatum_power?.frenzied)
 		feed_time *= 0.5
 	var/mob/living/carbon/carbon = owner
 	if(iscarbon(carbon) && carbon.handcuffed)

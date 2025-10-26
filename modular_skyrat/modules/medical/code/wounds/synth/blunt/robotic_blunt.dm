@@ -97,7 +97,7 @@
 	abstract = TRUE
 	required_limb_biostate = BIO_METAL
 	wound_series = WOUND_SERIES_METAL_BLUNT_BASIC
-	required_wounding_types = list(WOUND_BLUNT)
+	required_wounding_type = WOUND_BLUNT
 
 /datum/wound_pregen_data/blunt_metal/generate_scar_priorities()
 	return list("[BIO_METAL]")

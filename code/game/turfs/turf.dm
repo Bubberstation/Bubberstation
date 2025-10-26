@@ -91,7 +91,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	var/force_no_gravity = FALSE
 
 	///This turf's resistance to getting rusted
-	var/rust_resistance = RUST_RESISTANCE_ORGANIC
+	var/rust_resistance = RUST_RESISTANCE_BASIC
 
 	/// How pathing algorithm will check if this turf is passable by itself (not including content checks). By default it's just density check.
 	/// WARNING: Currently to use a density shortcircuiting this does not support dense turfs with special allow through function
@@ -562,13 +562,14 @@ GLOBAL_LIST_EMPTY(station_turfs)
 /turf/proc/break_tile()
 	return
 
-/turf/proc/is_shielded()
-	return
+/// Checks if this turf is protected from an explosion by something
+/// Return TRUE to stop the explosion from affecting this turf
+/turf/proc/is_explosion_shielded(severity)
+	return FALSE
 
 /turf/contents_explosion(severity, target)
-	for(var/thing in contents)
-		var/atom/movable/movable_thing = thing
-		if(QDELETED(movable_thing))
+	for(var/atom/movable/movable_thing as anything in src)
+		if(QDELETED(movable_thing) || !can_propagate_explosion(movable_thing, severity))
 			continue
 		switch(severity)
 			if(EXPLODE_DEVASTATE)
@@ -577,6 +578,11 @@ GLOBAL_LIST_EMPTY(station_turfs)
 				SSexplosions.med_mov_atom += movable_thing
 			if(EXPLODE_LIGHT)
 				SSexplosions.low_mov_atom += movable_thing
+
+/// Called when propagating an explosion through contents,.
+/// Return FALSE to prevent the passed object from being exploded.
+/turf/proc/can_propagate_explosion(atom/movable/some_thing, severity)
+	return TRUE
 
 /turf/narsie_act(force, ignore_mobs, probability = 20)
 	. = (prob(probability) || force)
