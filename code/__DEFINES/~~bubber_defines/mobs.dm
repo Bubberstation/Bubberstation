@@ -29,6 +29,9 @@
 #define BODYPART_ICON_SYNTHLIZARD 'modular_skyrat/modules/bodyparts/icons/synthliz_parts_greyscale.dmi'
 #define BODYPART_ICON_LYCAN 'modular_zubbers/icons/mob/species/lycan/lycan_bodyparts.dmi'
 
+#define BODYTYPE_KINETIC (1<<14)
+#define BODYPART_ID_KINETIC "kinetic"
+
 #define BUTT_SPRITE_PODPERSON "podperson"
 #define BUTT_SPRITE_VOX "vox"
 #define BUTT_SPRITE_VULP "vulp"
