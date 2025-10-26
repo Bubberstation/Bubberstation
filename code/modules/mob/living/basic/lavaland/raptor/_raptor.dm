@@ -18,6 +18,9 @@ GLOBAL_LIST_EMPTY(raptor_population)
 
 #define HAPPINESS_BOOST_DAMPENER 0.3
 
+/// Innate raptor offsets
+#define RAPTOR_INNATE_SOURCE "raptor_innate"
+
 /mob/living/basic/raptor
 	name = "raptor"
 	desc = "A trusty, powerful steed. Taming it might prove difficult..."
@@ -151,17 +154,13 @@ GLOBAL_LIST_EMPTY(raptor_population)
 
 	switch (direction)
 		if (NORTH)
-			pixel_x = -8
-			pixel_y = -5
+			add_offsets(RAPTOR_INNATE_SOURCE, w_add = -8, animate = FALSE)
 		if (SOUTH)
-			pixel_x = 0
-			pixel_y = 0
+			add_offsets(RAPTOR_INNATE_SOURCE, w_add = 0, animate = FALSE)
 		if (EAST, SOUTHEAST, NORTHEAST)
-			pixel_x = -20
-			pixel_y = 0
+			add_offsets(RAPTOR_INNATE_SOURCE, w_add = -20, animate = FALSE)
 		if (WEST, SOUTHWEST, NORTHWEST)
-			pixel_x = -5
-			pixel_y = 0
+			add_offsets(RAPTOR_INNATE_SOURCE, w_add = -5, animate = FALSE)
 
 /mob/living/basic/raptor/early_melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	. = ..()
@@ -272,7 +271,7 @@ GLOBAL_LIST_EMPTY(raptor_population)
 
 /mob/living/basic/raptor/green/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/proficient_miner)
+	AddComponent(/datum/component/proficient_miner)
 
 /mob/living/basic/raptor/white
 	name = "white raptor"
@@ -300,8 +299,7 @@ GLOBAL_LIST_EMPTY(raptor_population)
 	icon_dead = "raptor_black_dead"
 	maxHealth = 400
 	health = 400
-	speed = 1
-	ridable_component = /datum/component/riding/creature/raptor/fast
+	speed = 1.5
 	melee_damage_lower = 20
 	melee_damage_upper = 25
 	raptor_color = RAPTOR_BLACK
@@ -313,8 +311,7 @@ GLOBAL_LIST_EMPTY(raptor_population)
 	icon_state = "raptor_yellow"
 	icon_living = "raptor_yellow"
 	icon_dead = "raptor_yellow_dead"
-	ridable_component = /datum/component/riding/creature/raptor/fast
-	speed = 1
+	speed = 1.5
 	raptor_color = RAPTOR_YELLOW
 	dex_description = "This breed possesses greasy fast speed, DEMON speed, making light work of long pilgrimages. It's said that a thunderclap could be heard when this breed reaches its maximum speed."
 	child_path = /mob/living/basic/raptor/baby_raptor/yellow
@@ -344,3 +341,4 @@ GLOBAL_LIST_EMPTY(raptor_population)
 	return NONE
 
 #undef HAPPINESS_BOOST_DAMPENER
+#undef RAPTOR_INNATE_SOURCE

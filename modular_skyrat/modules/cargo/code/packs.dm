@@ -756,7 +756,7 @@
 		/obj/item/storage/toolbox/ammobox/strilka310/surplus = 1,
 		/obj/item/gun_maintenance_supplies = 1,
 		/obj/item/storage/toolbox/guncase/soviet/sakhno = 2,
-		/obj/item/ammo_box/strilka310 = 1,
+		/obj/item/ammo_box/speedloader/strilka310 = 1,
 		/obj/item/clothing/suit/armor/vest/cin_surplus_vest = 1,
 		/obj/item/clothing/head/helmet/cin_surplus_helmet/random_color = 1,
 		/obj/item/storage/backpack/industrial/cin_surplus/random_color = 1,

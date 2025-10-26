@@ -19,7 +19,7 @@
 
 	var/need_to_check = FALSE
 	if(length(whitelisted_deparments))
-		for(var/department as anything in whitelisted_deparments)
+		for(var/department in whitelisted_deparments)
 			if(is_path_in_list(department, job_datum.departments_list))
 				need_to_check = TRUE
 

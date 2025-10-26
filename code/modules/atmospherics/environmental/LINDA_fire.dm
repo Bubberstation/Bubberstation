@@ -26,6 +26,9 @@
 		SSliquids.processing_fire[src] = TRUE
 	//SKYRAT EDIT END
 
+	if(exposed_temperature < TCMB)
+		exposed_temperature = TCMB
+		CRASH("[src].hotspot_expose() called with exposed_temperature < [TCMB]")
 	//If the air doesn't exist we just return false
 	var/list/air_gases = air?.gases
 	if(!air_gases)
