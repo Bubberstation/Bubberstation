@@ -224,11 +224,13 @@
 		/obj/item/stack/sheet/iron/fifty = 2, // ~400 or x 2 Crate Cost from Iron Sheet Crate
 		/obj/item/stack/sheet/glass/fifty, // ~400 or x 2 Crate Cost from Glass Sheet Crate
 		/obj/item/stack/sheet/cloth/ten = 5, // Curtains, Bedseets, Towels
-		/obj/item/stack/sheet/plasmaglass = 20, // No Export Value
 		/obj/item/stack/sheet/rglass = 20, // ~60 Credits
 		/obj/item/survivalcapsule/fan=2 , // ~200 from Imports
+		/obj/item/construction/rtd, // RLD is 500, maybe this should be similar?
+		/obj/item/storage/box/lights/mixed, // 200
+		/obj/item/toy/crayon/spraycan = 3,
 	)
-	cost = CARGO_CRATE_VALUE * 8
+	cost = CARGO_CRATE_VALUE * 11.25 // ~2250
 	crate_name = "construction kit crate"
 
 /datum/supply_pack/engineering/material_pouches
@@ -597,7 +599,7 @@
 /datum/supply_pack/service/buildabar
 	name = "Build a Bar Crate"
 	desc = "Looking to set up your own little safe haven? Get a jump-start on it with this handy kit. Contains circuitboards for bar equipment, some parts, and some basic bartending supplies."
-	cost = CARGO_CRATE_VALUE * 6
+	cost = CARGO_CRATE_VALUE * 5
 	contains = list(
 		/obj/item/storage/box/drinkingglasses = 3,
 		/obj/item/stack/sheet/iron = 25,
