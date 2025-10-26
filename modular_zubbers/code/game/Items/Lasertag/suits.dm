@@ -10,29 +10,30 @@
 	allowed = list (/obj/item/gun/energy/laser/bluetag)
 	resistance_flags = NONE
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	var/last_slot
 
-/obj/item/clothing/suit/bluetag/Initialize(mapload)
+/obj/item/clothing/suit/bluetag/equipped(mob/equipper, slot)
 	. = ..()
-	RegisterSignal(src, COMSIG_ITEM_EQUIPPED, PROC_REF(when_equipped))
-	RegisterSignal(src, COMSIG_ITEM_DROPPED, PROC_REF(when_dropped))
-
-/obj/item/clothing/suit/bluetag/proc/when_equipped(mob/equipper, slot)
-	SIGNAL_HANDLER
-	to_chat(equipper, span_yellow("DEBUG: Adding Component."))
 	if (slot != ITEM_SLOT_OCLOTHING)
 		return
+	last_slot = slot
 	var/mob/living/carbon/human/wearer = equipper
-	wearer.AddComponent(/datum/component/lasertag)
 	var/datum/component/lasertag/comp = wearer.GetComponent(/datum/component/lasertag)
+	if (!comp)
+		wearer.AddComponent(/datum/component/lasertag)
+		comp = wearer.GetComponent(/datum/component/lasertag)
 	comp.team_color = "blue"
 	comp.lasertag_granters += src
 
-/obj/item/clothing/suit/bluetag/proc/when_dropped(mob/living/user)
+
+/obj/item/clothing/suit/bluetag/dropped(mob/living/user)
 	. = ..()
+	if(last_slot != ITEM_SLOT_OCLOTHING)
+		return
+	last_slot = null
 	var/mob/living/carbon/human/wearer = user
 	var/datum/component/lasertag/comp = wearer.GetComponent(/datum/component/lasertag)
 	if (comp.should_delete(src))
-		to_chat(wearer, span_yellow("DEBUG: Removed Component."))
 		qdel(comp)
 
 /obj/item/clothing/suit/redtag
@@ -47,28 +48,29 @@
 	allowed = list (/obj/item/gun/energy/laser/redtag)
 	resistance_flags = NONE
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	var/last_slot
 
-/obj/item/clothing/suit/redtag/Initialize(mapload)
+
+/obj/item/clothing/suit/redtag/equipped(mob/equipper, slot)
 	. = ..()
-	RegisterSignal(src, COMSIG_ITEM_EQUIPPED, PROC_REF(when_equipped))
-	RegisterSignal(src, COMSIG_ITEM_DROPPED, PROC_REF(when_dropped))
-
-/obj/item/clothing/suit/redtag/proc/when_equipped(mob/equipper, slot)
-	SIGNAL_HANDLER
-	to_chat(equipper, span_yellow("DEBUG: Adding Component."))
 	if (slot != ITEM_SLOT_OCLOTHING)
 		return
+	last_slot = slot
 	var/mob/living/carbon/human/wearer = equipper
-	wearer.AddComponent(/datum/component/lasertag)
 	var/datum/component/lasertag/comp = wearer.GetComponent(/datum/component/lasertag)
+	if (!comp)
+		wearer.AddComponent(/datum/component/lasertag)
+		comp = wearer.GetComponent(/datum/component/lasertag)
 	comp.team_color = "red"
 	comp.lasertag_granters += src
 
 
-/obj/item/clothing/suit/redtag/proc/when_dropped(mob/living/user)
+/obj/item/clothing/suit/redtag/dropped(mob/living/user)
 	. = ..()
+	if(last_slot != ITEM_SLOT_OCLOTHING)
+		return
+	last_slot = null
 	var/mob/living/carbon/human/wearer = user
 	var/datum/component/lasertag/comp = wearer.GetComponent(/datum/component/lasertag)
 	if (comp.should_delete(src))
-		to_chat(wearer, span_yellow("DEBUG: Removed Component."))
 		qdel(comp)
