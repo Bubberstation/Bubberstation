@@ -8,7 +8,7 @@
 /datum/quirk/hoarder
 	name = "Hoarder"
 	desc = "You have a habit of gathering trinkets and putting them all together in a big pile"
-	icon = FA_ICON_TRASH
+	icon = FA_ICON_ARCHIVE
 	value = 0
 	gain_text = span_notice("You feel like amassing a hoard.")
 	lose_text = span_warning("You've lost interest in your hoard.")
