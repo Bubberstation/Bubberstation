@@ -41,7 +41,7 @@
 /datum/voucher_set/mining_suit/seva
 	name = "SEVA Suit"
 	description = "A fire-proof suit for exploring hot environments. It can't be reinforced with goliath plates, but is ash storm proof."
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	icon_state = "seva"
 	set_items = list(
 		/obj/item/clothing/suit/hooded/seva,
