@@ -3,6 +3,7 @@
 	desc = "A simple, yet elegantly designed, prosthetic. Intended to give some functionality back to the user and retain the appearance of an organic arm, but its use is limited to simple actions, as it lacks fine motor control."
 	icon_static = 'modular_zubbers/icons/mob/human/kinetic.dmi'
 	icon = 'modular_zubbers/icons/mob/human/kinetic.dmi'
+	icon_state = "kinetic_l_arm"
 	limb_id = BODYPART_ID_KINETIC
 	bodytype = BODYTYPE_KINETIC
 	should_draw_greyscale = FALSE
@@ -29,6 +30,7 @@
 	desc = "A simple, yet elegantly designed, prosthetic. Intended to give some functionality back to the user and retain the appearance of an organic arm, but its use is limited to simple actions, as it lacks fine motor control."
 	icon_static = 'modular_zubbers/icons/mob/human/kinetic.dmi'
 	icon = 'modular_zubbers/icons/mob/human/kinetic.dmi'
+	icon_state = "kinetic_r_arm"
 	limb_id = BODYPART_ID_KINETIC
 	bodytype = BODYTYPE_KINETIC
 	should_draw_greyscale = FALSE
@@ -55,6 +57,7 @@
 	desc = "A simple, yet elegantly designed, prosthetic. Rather than a normal foot on the end, this prosthetic is fitted with a simple blade style foot, allowing the user to walk as normal."
 	icon_static = 'modular_zubbers/icons/mob/human/kinetic.dmi'
 	icon = 'modular_zubbers/icons/mob/human/kinetic.dmi'
+	icon_state = "kinetic_r_leg"
 	limb_id = BODYPART_ID_KINETIC
 	bodytype = BODYTYPE_KINETIC
 	should_draw_greyscale = FALSE
@@ -80,6 +83,7 @@
 	desc = "A simple, yet elegantly designed, prosthetic. Rather than a normal foot on the end, this prosthetic is fitted with a simple blade style foot, allowing the user to walk as normal."
 	icon_static = 'modular_zubbers/icons/mob/human/kinetic.dmi'
 	icon = 'modular_zubbers/icons/mob/human/kinetic.dmi'
+	icon_state = "kinetic_l_leg"
 	limb_id = BODYPART_ID_KINETIC
 	bodytype = BODYTYPE_KINETIC
 	should_draw_greyscale = FALSE
