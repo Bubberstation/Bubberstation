@@ -14,7 +14,6 @@
 	unarmed_effectiveness = 0
 	max_damage = LIMB_MAX_HP_PROSTHESIS //TODO: set its own HP value
 	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_KINETIC //TODO: same here need to make something up here thats balanced
-	//TODO: okay, might scrap using big hands and come up with something like, 'lack of fine motor controls'. it's a trait that's literally just gonna be used by this so
 	bodypart_traits = list(TRAIT_CHUNKYFINGERS, TRAIT_ANALGESIA)
 	disabling_threshold_percentage = 1
 	bodypart_flags = BODYPART_UNHUSKABLE
@@ -41,7 +40,6 @@
 	unarmed_effectiveness = 0
 	max_damage = LIMB_MAX_HP_PROSTHESIS //TODO: set its own HP value
 	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_KINETIC //TODO: same here need to make something up here thats balanced
-	//TODO: okay, might scrap using big hands and come up with something like, 'lack of fine motor controls'. it's a trait that's literally just gonna be used by this so
 	bodypart_traits = list(TRAIT_CHUNKYFINGERS, TRAIT_ANALGESIA)
 	disabling_threshold_percentage = 1
 	bodypart_flags = BODYPART_UNHUSKABLE
@@ -67,7 +65,6 @@
 	unarmed_effectiveness = 0
 	max_damage = LIMB_MAX_HP_PROSTHESIS //TODO: set its own HP value
 	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_KINETIC //TODO: same here need to make something up here thats balanced
-	//TODO: okay, might scrap using big hands and come up with something like, 'lack of fine motor controls'. it's a trait that's literally just gonna be used by this so
 	bodypart_traits = list(TRAIT_ANALGESIA)
 	disabling_threshold_percentage = 1
 	bodypart_flags = BODYPART_UNHUSKABLE
@@ -78,8 +75,8 @@
 	ADD_TRAIT(src, TRAIT_EASY_ATTACH, INNATE_TRAIT)
 	ADD_TRAIT(src, TRAIT_EASYDISMEMBER, INNATE_TRAIT)
 
-	/obj/item/bodypart/leg/right/kinetic
-	name = "left kinetic prosthetic leg"
+/obj/item/bodypart/leg/right/kinetic
+	name = "right kinetic prosthetic leg"
 	desc = "A simple, yet elegantly designed, prosthetic. Rather than a normal foot on the end, this prosthetic is fitted with a simple blade style foot, allowing the user to walk as normal."
 	icon_static = 'modular_zubbers/icons/mob/human/kinetic.dmi' //TODO: sprites for these simple prosthetics
 	icon = 'modular_zubbers/icons/mob/human/kinetic.dmi'
