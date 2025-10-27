@@ -8,6 +8,7 @@
 	temperature_damage = 0
 	immunity_trait = TRAIT_GHOSTROLE
 	immunity_resistance_flags = LAVA_PROOF
+	var/give_turf_traits = list(TRAIT_TURF_IGNORE_SLOWDOWN, TRAIT_LAVA_STOPPED, TRAIT_IMMERSE_STOPPED)
 
 /turf/open/floor/plating/vox
 	name = "nitrogen-filled plating"
