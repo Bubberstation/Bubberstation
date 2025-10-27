@@ -245,9 +245,9 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 				return TRUE
 			var/datum/storyteller_goal/G = SSstorytellers.goals_by_id[id]
 			if(istype(G))
-				// Schedule at end of chain with default offset
+				var/new_goal = new G.type
 				var/fire_offset = ctl.planner.next_offest()
-				ctl.planner.try_plan_goal(G, fire_offset)
+				ctl.planner.try_plan_goal(new_goal, fire_offset)
 			return TRUE
 		if("trigger_goal")
 			var/fire_offset = params["offset"]

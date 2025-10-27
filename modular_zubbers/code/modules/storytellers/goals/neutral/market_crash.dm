@@ -4,6 +4,7 @@
 	desc = "Triggers the Market Crash event, causing a temporary increase in vending machine prices."
 	children = list()
 	category = STORY_GOAL_NEUTRAL
+	tags = STORY_TAG_AFFECTS_ECONOMY | STORY_TAG_AFFECTS_POLITICS
 	event_path = null
 
 

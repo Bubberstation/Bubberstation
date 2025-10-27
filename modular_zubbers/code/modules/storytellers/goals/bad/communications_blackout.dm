@@ -1,4 +1,5 @@
 /datum/storyteller_goal/execute_event/commblackout
+	id = "comm_blackout"
 	name = "Execute communication blackout"
 	desc = "Heavily EMPs all telecommunication machines, blocking all communication for a while. \
 			On hight-threat levels can damage ears of tcoms users."

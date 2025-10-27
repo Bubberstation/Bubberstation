@@ -46,6 +46,9 @@
 		wave_delay = 30 SECONDS
 		hot_spots = 8
 
+	end_when = wave_delay * waves_count
+
+
 /datum/round_event/fire_spread/__announce_for_storyteller()
 	priority_announce()
 

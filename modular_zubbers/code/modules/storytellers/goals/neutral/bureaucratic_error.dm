@@ -1,4 +1,5 @@
 /datum/storyteller_goal/execute_event/bureaucratic_error
+	id = "bureaucratic_error"
 	name = "Execute Bureaucratic Error"
 	desc = "Randomly opens and closes job slots, along with changing the overflow role."
 	category = STORY_GOAL_NEUTRAL

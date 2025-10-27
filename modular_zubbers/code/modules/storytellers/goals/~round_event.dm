@@ -1,3 +1,6 @@
+/datum/round_event_control
+
+
 /datum/round_event_control/storyteller_control
 	name = "storyteller contoled event"
 

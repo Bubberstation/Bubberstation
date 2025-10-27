@@ -1,4 +1,5 @@
 /datum/storyteller_goal/execute_event/earthquake
+	id = "earthquake"
 	name = "Chasmic Earthquake"
 	desc = "Causes an earthquake, demolishing anything caught in the fault."
 	category = STORY_GOAL_BAD

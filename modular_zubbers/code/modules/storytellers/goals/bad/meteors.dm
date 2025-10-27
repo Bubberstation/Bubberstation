@@ -23,6 +23,7 @@ GLOBAL_LIST_INIT(meteors_cost, list(
 
 
 /datum/storyteller_goal/spawn_meteors
+	id = "storyteller_meteors"
 	name = "Spawn meteors"
 	desc = "Spawn meteors heavy based on storyteller threat level."
 	category = STORY_GOAL_BAD | STORY_GOAL_GLOBAL
@@ -93,6 +94,7 @@ GLOBAL_LIST_INIT(meteors_cost, list(
 		weighted_meteor_types = GLOB.meteors_catastrophic.Copy()
 		wave_cooldown = 30 SECONDS
 		wave_budget *= 2
+	end_when = wave_cooldown * wave_count
 
 /datum/round_event/storyteller_meteors/__announce_for_storyteller()
 	var/msg = ""
