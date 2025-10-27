@@ -1,10 +1,10 @@
 /obj/item/clothing/suit/hooded/seva
 	name = "SEVA suit"
 	desc = "A fire-proof suit for exploring hot environments. Its design doesn't allow for upgrading with goliath plates."
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi'
-	worn_icon_muzzled = 'modular_skyrat/master_files/icons/mob/clothing/suit_digi.dmi'
-	worn_icon_teshari = 'modular_skyrat/master_files/icons/mob/clothing/species/teshari/suit.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	worn_icon_muzzled = 'modular_zubbers/icons/mob/clothing/suits/armor_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
 	icon_state = "seva"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	flags_inv = HIDEJUMPSUIT|HIDETAIL
@@ -32,10 +32,10 @@
 /obj/item/clothing/head/hooded/seva
 	name = "SEVA hood"
 	desc = "A fire-proof hood for exploring hot environments. Its design doesn't allow for upgrading with goliath plates."
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
-	worn_icon_muzzled = 'modular_skyrat/master_files/icons/mob/clothing/head_muzzled.dmi'
-	worn_icon_teshari = 'modular_skyrat/master_files/icons/mob/clothing/species/teshari/head.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
+	worn_icon_muzzled = 'modular_zubbers/icons/mob/clothing/head/helmet_muzzled.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
 	icon_state = "seva"
 	body_parts_covered = HEAD
 	flags_inv = HIDEHAIR|HIDEFACE|HIDEEARS|HIDESNOUT
@@ -55,9 +55,10 @@
 /obj/item/clothing/mask/gas/seva
 	name = "SEVA mask"
 	desc = "A head-covering mask that can be connected to an external air supply. Intended for use with the SEVA Suit."
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/masks.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/mask.dmi'
-	worn_icon_teshari = 'modular_skyrat/master_files/icons/mob/clothing/species/teshari/mask.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/mask/mask.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/mask/mask.dmi'
+	worn_icon_muzzled = 'modular_zubbers/icons/mob/clothing/mask/mask_muzzled.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/mask/mask_teshari.dmi'
 	icon_state = "seva"
 	resistance_flags = FIRE_PROOF
 	flags_inv = HIDEFACIALHAIR|HIDEFACE|HIDEEYES|HIDEEARS|HIDEHAIR|HIDESNOUT
