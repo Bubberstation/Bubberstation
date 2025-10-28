@@ -868,9 +868,16 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	w_class = WEIGHT_CLASS_NORMAL
-	body_parts_covered = CHEST|GROIN|ARMS
+	body_parts_covered = CHEST|ARMS
 	slowdown = 0
 	armor_type = /datum/armor/atmos_tech_tailcoat
+	flags_inv = null
+	clothing_flags = null
+	min_cold_protection_temperature = null
+	max_heat_protection_temperature = null
+	strip_delay = 30
+	equip_delay_other = 30
+
 
 /obj/item/clothing/suit/utility/fire/atmosbomber/Initialize(mapload)
 	. = ..()
@@ -1022,6 +1029,10 @@
 	desc = "Our clothing company keeps out of any 'blue/red' related debates after <b>THE INCIDENT</b>, sorry."
 	icon_state = "bombersec"
 	armor_type = /datum/armor/suit_armor
+
+/obj/item/clothing/suit/toggle/jacket/zubber/bomber/sec/Initialize(mapload)
+	. = ..()
+	allowed += GLOB.security_vest_allowed
 
 /obj/item/clothing/suit/toggle/jacket/zubber/bomber/syndicate
 	name = "suspicious bomber jacket"

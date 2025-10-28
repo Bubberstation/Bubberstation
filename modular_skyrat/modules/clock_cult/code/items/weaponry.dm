@@ -287,7 +287,7 @@
 	stamina = 45
 
 
-/obj/item/ammo_box/strilka310/lionhunter/clock
+/obj/item/ammo_box/speedloader/strilka310/lionhunter/clock
 	name = "stripper clip (.310 brass)"
 	desc = "A stripper clip that's just as brass as the rounds it holds."
 	icon = 'modular_skyrat/modules/clock_cult/icons/weapons/ammo.dmi'
@@ -302,7 +302,7 @@
 
 /obj/item/storage/pouch/ammo/clock/PopulateContents()
 	var/static/items_inside = list(
-		/obj/item/ammo_box/strilka310/lionhunter/clock = 3
+		/obj/item/ammo_box/speedloader/strilka310/lionhunter/clock = 3
 	)
 
 	generate_items_inside(items_inside, src)

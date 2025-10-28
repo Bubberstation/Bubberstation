@@ -206,8 +206,8 @@
 	item_path = /obj/item/clothing/shoes/discoshoes
 
 /datum/loadout_item/shoes/kim
-	name = "Aerostatic Shoes"
-	item_path = /obj/item/clothing/shoes/kim
+	name = "Aerostatic Boots"
+	item_path = /obj/item/clothing/shoes/jackboots/kim
 
 /datum/loadout_item/shoes/dominaheels
 	name = "Dominant Heels"
