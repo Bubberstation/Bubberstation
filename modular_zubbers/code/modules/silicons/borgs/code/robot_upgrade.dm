@@ -173,7 +173,7 @@
 	model_type = list(/obj/item/robot_model/miner)
 	model_flags = BORG_MODEL_MINER
 	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/railgun/cyborg)
-	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator/)
+	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator)
 
 /obj/item/borg/upgrade/kinetic_accelerator/repeater/cyborg
 	name = "proto-kinetic repeater"
@@ -186,7 +186,7 @@
 	model_type = list(/obj/item/robot_model/miner)
 	model_flags = BORG_MODEL_MINER
 	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/repeater/cyborg)
-	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator/)
+	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator)
 
 /obj/item/borg/upgrade/kinetic_accelerator/shotgun/cyborg
 	name = "proto-kinetic shotgun"
@@ -200,7 +200,7 @@
 	model_type = list(/obj/item/robot_model/miner)
 	model_flags = BORG_MODEL_MINER
 	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/shotgun/cyborg)
-	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator/)
+	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator)
 
 /obj/item/borg/upgrade/kinetic_accelerator/glock/cyborg
 	name = "proto-kinetic pistol"
@@ -213,7 +213,7 @@
 	model_type = list(/obj/item/robot_model/miner)
 	model_flags = BORG_MODEL_MINER
 	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/glock/cyborg)
-	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator/)
+	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator)
 
 /obj/item/borg/upgrade/kinetic_accelerator/shockwave/cyborg
 	name = "proto-kinetic shockwave"
@@ -225,7 +225,7 @@
 	model_type = list(/obj/item/robot_model/miner)
 	model_flags = BORG_MODEL_MINER
 	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/shockwave/cyborg)
-	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator/)
+	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator)
 
 /obj/item/borg/upgrade/kinetic_accelerator/m79/cyborg
 	name = "proto-kinetic grenade launcher"
@@ -236,7 +236,7 @@
 	model_type = list(/obj/item/robot_model/miner)
 	model_flags = BORG_MODEL_MINER
 	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/m79/cyborg)
-	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator/)
+	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator)
 
 /// "Good Borg" Obedience Training
 /mob/living/silicon/robot
