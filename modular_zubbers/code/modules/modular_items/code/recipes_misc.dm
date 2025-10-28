@@ -51,3 +51,39 @@
 				/obj/item/stack/sheet/cloth = 2)
 	time = 80
 	category = CAT_MISC
+
+/datum/crafting_recipe/stunsword
+	name = "\improper NT-20 'Excalibur' Stunsword"
+	result = /obj/item/melee/baton/security/stunsword
+	reqs = list(
+		/obj/item/claymore = 1,
+		/obj/item/melee/baton/security = 1
+	)
+	blacklist = list(
+		/obj/item/claymore/cutlass,
+		/obj/item/claymore/cutlass/old,
+		/obj/item/claymore/carrot,
+		/obj/item/claymore/shortsword,
+		/obj/item/claymore/highlander,
+		/obj/item/claymore/weak,
+		/obj/item/claymore/weak/ceremonial,
+		/obj/item/claymore/highlander/robot,
+		/obj/item/claymore/bone
+	)
+	tool_behaviors = list(TOOL_WELDER)
+	time = 10 SECONDS
+	category = CAT_WEAPON_MELEE
+
+/datum/crafting_recipe/stunswordalt2
+	name = "\improper NT-20 'Excalibur' Stunsword"
+	result = /obj/item/melee/baton/security/stunsword
+	reqs = list(
+		/obj/item/melee/sabre = 1,
+		/obj/item/melee/baton/telescopic/contractor_baton = 1,
+	)
+	blacklist = list(
+		/obj/item/melee/sabre/cargo
+	)
+	tool_behaviors = list(TOOL_WELDER)
+	time = 10 SECONDS
+	category = CAT_WEAPON_MELEE
