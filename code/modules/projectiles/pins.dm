@@ -355,12 +355,13 @@
 	desc = "A recreational firing pin, used in laser tag units to ensure users have their vests on."
 	fail_message = "suit check failed!"
 	var/obj/item/clothing/suit/suit_requirement = null
-	var/tagcolor = ""
+	var/tagcolor = "neutral"
 
 /obj/item/firing_pin/tag/pin_auth(mob/living/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/M = user
-		if(istype(M.wear_suit, suit_requirement))
+		var/datum/component/lasertag/comp = M.GetComponent(/datum/component/lasertag)
+		if(comp?.team_color == tagcolor)
 			return TRUE
 	to_chat(user, span_warning("You need to be wearing [tagcolor] laser tag armor!"))
 	return FALSE

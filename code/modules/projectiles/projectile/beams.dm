@@ -361,49 +361,6 @@
 	var/turf/turf_to_explode = get_turf(target)
 	explosion(turf_to_explode, 0, 1, 2)
 
-
-/obj/projectile/beam/lasertag
-	name = "laser tag beam"
-	icon_state = "omnilaser"
-	hitsound = null
-	damage = 0
-	damage_type = STAMINA
-	var/suit_types = list(/obj/item/clothing/suit/redtag, /obj/item/clothing/suit/bluetag)
-	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
-	light_color = LIGHT_COLOR_BLUE
-
-/obj/projectile/beam/lasertag/on_hit(atom/target, blocked = 0, pierce_hit)
-	. = ..()
-	if(ishuman(target))
-		var/mob/living/carbon/human/M = target
-		if(istype(M.wear_suit))
-			if(M.wear_suit.type in suit_types)
-				M.adjustStaminaLoss(34)
-
-/obj/projectile/beam/lasertag/redtag
-	icon_state = "laser"
-	suit_types = list(/obj/item/clothing/suit/bluetag)
-	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
-	light_color = COLOR_SOFT_RED
-	tracer_type = /obj/effect/projectile/tracer/laser
-	muzzle_type = /obj/effect/projectile/muzzle/laser
-	impact_type = /obj/effect/projectile/impact/laser
-
-/obj/projectile/beam/lasertag/redtag/hitscan
-	icon_state = null
-	hitscan = TRUE
-
-/obj/projectile/beam/lasertag/bluetag
-	icon_state = "bluelaser"
-	suit_types = list(/obj/item/clothing/suit/redtag)
-	tracer_type = /obj/effect/projectile/tracer/laser/blue
-	muzzle_type = /obj/effect/projectile/muzzle/laser/blue
-	impact_type = /obj/effect/projectile/impact/laser/blue
-
-/obj/projectile/beam/lasertag/bluetag/hitscan
-	icon_state = null
-	hitscan = TRUE
-
 /obj/projectile/magic/shrink/alien
 	antimagic_flags = NONE
 	shrink_time = 9 SECONDS
