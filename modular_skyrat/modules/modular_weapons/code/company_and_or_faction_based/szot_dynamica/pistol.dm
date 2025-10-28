@@ -180,7 +180,6 @@
 	explosion(src, light_impact_range = 1, flame_range = 3, explosion_cause = src)
 	last_surprise.add_liquid(/datum/reagent/toxin/plasma, 3, no_react = FALSE, chem_temp = 300)
 	new /obj/effect/hotspot(last_surprise)
-	// playsound(src, 'sound/items/weapons/beam_sniper.ogg', 100, 0, 20, 1, ignore_walls = TRUE, falloff_distance = 5)
 	UnregisterSignal(src, COMSIG_MOVABLE_POST_THROW)
 	remove_shared_particles(/particles/bonfire)
 	qdel(src)
@@ -189,7 +188,7 @@
 	playsound(src, 'modular_zubbers/sound/weapons/plasma_explosion.ogg', 100, FALSE, 20, , , , TRUE)
 	for(var/mob/living/carbon/M in orange(20, src))
 		if(!HAS_TRAIT(M, TRAIT_DEAF))
-			to_chat(M, span_warning("You feel something is very wrong..."))
+			to_chat(M, span_warning("You hear a distant pulse of energy, as if a miniature reactor blasting out a shockwave from afar..."))
 
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman/process(seconds_per_tick)
 	var/mob/living/carbon/wielder = ismob(loc) ? loc : null
