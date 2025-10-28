@@ -66,6 +66,7 @@
 		/obj/item/claymore/shortsword,
 		/obj/item/claymore/highlander,
 		/obj/item/claymore/weak,
+		/obj/item/claymore/weak/weaker,
 		/obj/item/claymore/weak/ceremonial,
 		/obj/item/claymore/highlander/robot,
 		/obj/item/claymore/bone
