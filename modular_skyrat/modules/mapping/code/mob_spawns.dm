@@ -324,6 +324,9 @@
 	uniform = /obj/item/clothing/under/rank/captain/skyrat/utility/syndicate
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/syndicate
 	back = /obj/item/storage/backpack/satchel
+	backpack_contents = list(
+		/obj/item/storage/lockbox/medal/bubber/synd = 1,
+		)
 	belt = /obj/item/storage/belt/sheath/sabre
 	head = /obj/item/clothing/head/hats/hos/cap/syndicate
 	id = /obj/item/card/id/advanced/gold/generic

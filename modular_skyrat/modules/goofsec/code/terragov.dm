@@ -375,6 +375,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	r_pocket = /obj/item/flashlight/seclite
 	l_pocket = /obj/item/gun/ballistic/revolver/sol
 	id = /obj/item/card/id/advanced/terragov
+	accessory = /obj/item/clothing/accessory/bubber/acc_medal/neckpin/galfed911
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
 		/obj/item/ammo_box/c35sol = 1,
@@ -410,6 +411,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	id = /obj/item/card/id/advanced/terragov
 	r_pocket = /obj/item/modular_computer/pda/request_911/atmos
 	l_pocket = /obj/item/holosign_creator/atmos
+	accessory = /obj/item/clothing/accessory/bubber/acc_medal/neckpin/galfed811
 	backpack_contents = list(/obj/item/storage/box/rcd_ammo = 1,
 		/obj/item/storage/box/smart_metal_foam = 1,
 		/obj/item/multitool = 1,
@@ -463,6 +465,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	r_pocket = /obj/item/flashlight/seclite
 	l_pocket = /obj/item/storage/medkit/civil_defense
 	r_hand = /obj/item/storage/backpack/duffelbag/deforest_surgical/stocked
+	accessory = /obj/item/clothing/accessory/bubber/acc_medal/neckpin/galfed
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
 		/obj/item/emergency_bed = 1,
@@ -513,6 +516,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	l_pocket = /obj/item/restraints/handcuffs
 	id = /obj/item/card/id/advanced/terragov
 	l_hand = /obj/item/gun/ballistic/automatic/sol_rifle
+	accessory = /obj/item/clothing/accessory/bubber/galfedribbon/rank4
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
 		/obj/item/melee/baton/telescopic = 1,
