@@ -7,5 +7,3 @@
 	label_class = "command"
 	ui_color = "#86ff82"
 
-/datum/job_department/security
-	ui_color = "#528ccf"
