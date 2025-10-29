@@ -33,6 +33,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 /obj/item/hilbertshotel/Destroy()
 	ejectRooms()
 	return ..()
+
 /obj/item/hilbertshotel/attack(mob/living/M, mob/living/user)
 	if(M.mind)
 		to_chat(user, span_notice("You invite [M] to the hotel."))
@@ -74,6 +75,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	if(target.incapacitated)
 		to_chat(target, span_warning("You aren't able to activate \the [src] anymore!"))
 
+	// Has the user thrown it away or otherwise disposed of it such that it's no longer in their hands or in some storage connected to them?
 	if(get_atom_on_turf(src, /mob) != user)
 		if(user == target)
 			to_chat(user, span_warning("\The [src] is no longer in your possession!"))
@@ -280,11 +282,6 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	turf_flags = NOJAUNT
 	explosive_resistance = INFINITY
 	var/obj/item/hilbertshotel/parentSphere
-	// BUBBER EDIT ADDITION START - Condos
-	var/leave_message = "Hilbert's Hotel would like to remind you that while we will do everything we can to protect the belongings \
-		you leave behind, we make no guarantees of their safety while you're gone, especially that of the health of any living creatures. \
-		With that in mind, are you ready to leave?"
-	// BUBBER EDIT ADDITION END
 
 /turf/open/space/bluespace/Initialize(mapload)
 	. = ..()
@@ -304,6 +301,11 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	icon_state = "hoteldoor"
 	explosive_resistance = INFINITY
 	var/obj/item/hilbertshotel/parentSphere
+	// BUBBER EDIT ADDITION START - Condos
+	var/leave_message = "Hilbert's Hotel would like to remind you that while we will do everything we can to protect the belongings \
+		you leave behind, we make no guarantees of their safety while you're gone, especially that of the health of any living creatures. \
+		With that in mind, are you ready to leave?"
+	// BUBBER EDIT ADDITION END
 
 /turf/closed/indestructible/hoteldoor/Initialize(mapload)
 	. = ..()
@@ -386,7 +388,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	desc = "Stop looking through the bluespace peephole."
 	button_icon_state = "cancel_peephole"
 
-/datum/action/peephole_cancel/Trigger(trigger_flags)
+/datum/action/peephole_cancel/Trigger(mob/clicker, trigger_flags)
 	. = ..()
 	to_chat(owner, span_warning("You move away from the peephole."))
 	owner.reset_perspective()
@@ -403,9 +405,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	default_gravity = STANDARD_GRAVITY
 	area_flags = NOTELEPORT | HIDDEN_AREA
 	static_lighting = TRUE
-	/* 	SKYRAT EDIT REMOVAL - GHOST HOTEL UPDATE
-	ambientsounds = list('sound/ambience/servicebell.ogg')
-	SKYRAT EDIT END */
+	// ambientsounds = list('sound/ambience/ruin/servicebell.ogg') // BUBBER EDIT REMOVAL
 	var/roomnumber = 0
 	var/obj/item/hilbertshotel/parentSphere
 	var/datum/turf_reservation/reservation
@@ -494,7 +494,6 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	requires_power = FALSE
 	area_flags = HIDDEN_AREA | NOTELEPORT | UNIQUE_AREA
 	default_gravity = STANDARD_GRAVITY
-
 
 /obj/item/abstracthotelstorage
 	anchored = TRUE
@@ -668,7 +667,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 		<i>Sent to: natalya_petroyenko@kosmokomm.net</i><br> \
 		Hello sis! Figured I should update you on what's going on with the career change.<br> \
 		First day on the new job. It's a pretty boring position, but hey- it's not like I was finding anything in New Vladimir. I'm just glad to have something to pay the bills.<br> \
-		Suppose I should say what's involved: I'm essentially playing housekeeper for some scientist and his cohort of student assistants. Far above my pay grade to understand what they do, but they seem excited enough. Talking about \"pockets\", for whatever reason. Maybe they're designing the next innovation in clothes?<br> \
+		Suppose I should say what's involved: I'm essentially playing housekeeper for some scientist and his cohort of student assistants. Far above my pay grade to understand what they do, but they seem excited enough. Talking about \"pockets\", for whatever reason. Maybe they're designing the next inBUBBERtion in clothes?<br> \
 		Anyway, that's pretty much it. I'm living on their station for pretty much the duration, so I'm not sure if I'll be able to make it to Mama's birthday. Sorry about that- I'll do my best to make it up to her (and you) when I get some leave.<br> \
 		Hope to see you soon,<br> \
 		Little Brother Roman",
