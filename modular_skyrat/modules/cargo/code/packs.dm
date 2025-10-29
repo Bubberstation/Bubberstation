@@ -216,7 +216,7 @@
 
 /datum/supply_pack/engineering/constructionkit
 	name = "Construction Kit Crate"
-	desc = "For all those DIY projects without all the running around. Contains a tool set, welding helmet, and varied materials."
+	desc = "For all those DIY projects without all the running around. Contains a toolset, welding helmet, and varied materials."
 	contains = list(
 		/obj/item/storage/belt/utility/full, // Yes, this is a filled toolbelt.
 		/obj/item/clothing/head/utility/welding,
@@ -225,7 +225,7 @@
 		/obj/item/stack/sheet/glass/fifty, // ~400 or x 2 Crate Cost from Glass Sheet Crate
 		/obj/item/stack/sheet/cloth/ten = 5, // Curtains, Bedseets, Towels
 		/obj/item/stack/sheet/rglass = 20, // ~60 Credits
-		/obj/item/survivalcapsule/fan=2 , // ~200 from Imports
+		/obj/item/survivalcapsule/fan = 2, // ~200 from Imports
 		/obj/item/construction/rtd, // RLD is 500, maybe this should be similar?
 		/obj/item/storage/box/lights/mixed, // 200
 		/obj/item/toy/crayon/spraycan = 3,
