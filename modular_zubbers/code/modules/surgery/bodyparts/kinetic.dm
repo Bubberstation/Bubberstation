@@ -20,7 +20,7 @@
 
 /obj/item/bodypart/arm/left/kinetic/Initialize(mapload)
 	. = ..()
-	add_traits(list(TRAIT_EASY_ATTACH, TRAIT_EASYDISMEMBER),src)
+	add_traits(list(TRAIT_EASY_ATTACH, TRAIT_EASYDISMEMBER), REF(src))
 
 /obj/item/bodypart/arm/right/kinetic
 	name = "right kinetic prosthetic arm"
@@ -44,7 +44,7 @@
 
 /obj/item/bodypart/arm/right/kinetic/Initialize(mapload)
 	. = ..()
-	add_traits(list(TRAIT_EASY_ATTACH, TRAIT_EASYDISMEMBER),src)
+	add_traits(list(TRAIT_EASY_ATTACH, TRAIT_EASYDISMEMBER), REF(src))
 
 /obj/item/bodypart/leg/left/kinetic
 	name = "left kinetic prosthetic leg"
@@ -67,7 +67,7 @@
 
 /obj/item/bodypart/leg/left/kinetic/Initialize(mapload)
 	. = ..()
-	add_traits(list(TRAIT_EASY_ATTACH, TRAIT_EASYDISMEMBER),src)
+	add_traits(list(TRAIT_EASY_ATTACH, TRAIT_EASYDISMEMBER), REF(src))
 
 /obj/item/bodypart/leg/right/kinetic
 	name = "right kinetic prosthetic leg"
@@ -90,4 +90,4 @@
 
 /obj/item/bodypart/leg/right/kinetic/Initialize(mapload)
 	. = ..()
-	add_traits(list(TRAIT_EASY_ATTACH, TRAIT_EASYDISMEMBER),src)
+	add_traits(list(TRAIT_EASY_ATTACH, TRAIT_EASYDISMEMBER), REF(src))
