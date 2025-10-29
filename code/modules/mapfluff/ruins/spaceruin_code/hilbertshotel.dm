@@ -8,39 +8,6 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	icon_state = "hilbertshotel"
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	//SKYRAT EDIT ADDITION - GHOST HOTEL UPDATE + EXTRA STUFF
-	var/static/list/hotel_maps = list("Generic", "Apartment", "Beach Condo", "Station Side", "Library", "Cultist's Cavern", "Winter Woods", "Evacuated Station", "Prison", "Corporate Office", "Recovery Wing", "Grotto", "Grotto (Night)", "Fox Bar", "The Nightclub", "EVA", "Oasis", "Oasis (Night)", "Public Pool", "Mini Engineering", "Syndicate Office", "Syndicate Ops Centre")
-	//standart - hilber's hotel room
-	//apartment - see /datum/map_template/ghost_cafe_rooms
-	//beach condo - Beach themed apartment
-	//stationside - a station-themed hotel room
-	var/datum/map_template/ghost_cafe_rooms/apartment/ghost_cafe_rooms_apartment
-	var/datum/map_template/ghost_cafe_rooms/beach_condo/ghost_cafe_rooms_beach_condo
-	var/datum/map_template/ghost_cafe_rooms/stationside/ghost_cafe_rooms_stationside
-	var/datum/map_template/ghost_cafe_rooms/library/ghost_cafe_rooms_library
-	//Skyrat EDIT END
-
-	//BUBBER EDIT ADDITION BEGIN - Infinite Dorm Maps Add
-	var/datum/map_template/ghost_cafe_rooms/cultcave/ghost_cafe_rooms_cultcave
-	var/datum/map_template/ghost_cafe_rooms/winterwoods/ghost_cafe_rooms_winterwoods
-	var/datum/map_template/ghost_cafe_rooms/evacuationstation/ghost_cafe_rooms_evacuationstation
-	var/datum/map_template/ghost_cafe_rooms/prisoninfdorm/ghost_cafe_rooms_prisoninfdorm
-	var/datum/map_template/ghost_cafe_rooms/corporateoffice/ghost_cafe_rooms_corporateoffice
-	var/datum/map_template/ghost_cafe_rooms/recwing/ghost_cafe_rooms_recwing
-	var/datum/map_template/ghost_cafe_rooms/grotto/ghost_cafe_rooms_grotto
-	var/datum/map_template/ghost_cafe_rooms/grotto2/ghost_cafe_rooms_grotto2
-	var/datum/map_template/ghost_cafe_rooms/foxbar/ghost_cafe_rooms_foxbar
-	var/datum/map_template/ghost_cafe_rooms/nightclub/ghost_cafe_rooms_nightclub
-	var/datum/map_template/ghost_cafe_rooms/eva/ghost_cafe_rooms_eva
-	var/datum/map_template/ghost_cafe_rooms/oasis/ghost_cafe_rooms_oasis
-	var/datum/map_template/ghost_cafe_rooms/oasisalt/ghost_cafe_rooms_oasisalt
-
-	var/datum/map_template/ghost_cafe_rooms/pool/ghost_cafe_rooms_pool
-	var/datum/map_template/ghost_cafe_rooms/engineering/ghost_cafe_rooms_engineering
-	var/datum/map_template/ghost_cafe_rooms/syndieoffice/ghost_cafe_rooms_syndieoffice
-	var/datum/map_template/ghost_cafe_rooms/synopcenter/ghost_cafe_rooms_synopcenter
-	//BUBBER EDIT END
-
 	var/datum/map_template/hilbertshotel/hotelRoomTemp
 	var/datum/map_template/hilbertshotel/empty/hotelRoomTempEmpty
 	var/datum/map_template/hilbertshotel/lore/hotelRoomTempLore
@@ -59,33 +26,6 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	hotelRoomTemp = new()
 	hotelRoomTempEmpty = new()
 	hotelRoomTempLore = new()
-	//SKYRAT EDIT ADDITION - GHOST HOTEL UPDATE
-	ghost_cafe_rooms_apartment = new()
-	ghost_cafe_rooms_beach_condo = new()
-	ghost_cafe_rooms_stationside = new()
-	ghost_cafe_rooms_library = new()
-	//SKYRAT EDIT END
-	//BUBBER EDIT ADDITION BEGIN - Infinite Dorm Maps Add
-	ghost_cafe_rooms_cultcave = new()
-	ghost_cafe_rooms_winterwoods = new()
-	ghost_cafe_rooms_evacuationstation = new()
-	ghost_cafe_rooms_prisoninfdorm = new()
-	ghost_cafe_rooms_corporateoffice = new()
-	ghost_cafe_rooms_recwing = new()
-	ghost_cafe_rooms_grotto = new()
-	ghost_cafe_rooms_grotto2 = new()
-	ghost_cafe_rooms_foxbar = new()
-	ghost_cafe_rooms_nightclub = new()
-	ghost_cafe_rooms_eva = new()
-	ghost_cafe_rooms_oasis = new()
-	ghost_cafe_rooms_oasisalt = new()
-
-	ghost_cafe_rooms_pool = new()
-	ghost_cafe_rooms_engineering = new()
-	ghost_cafe_rooms_syndieoffice = new()
-	ghost_cafe_rooms_synopcenter = new()
-	//BUBBER EDIT END
-
 	var/area/currentArea = get_area(src)
 	if(currentArea.type == /area/ruin/space/has_grav/powered/hilbertresearchfacility/secretroom)
 		ruinSpawned = TRUE
@@ -93,7 +33,6 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 /obj/item/hilbertshotel/Destroy()
 	ejectRooms()
 	return ..()
-
 /obj/item/hilbertshotel/attack(mob/living/M, mob/living/user)
 	if(M.mind)
 		to_chat(user, span_notice("You invite [M] to the hotel."))
