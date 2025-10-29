@@ -64,6 +64,13 @@
 		var/datum/action/toggle_dead_chat_mob/D = new(new_spawn)
 		D.Grant(new_spawn)
 
+/mob/living/proc/on_using_radio(atom/movable/talking_movable)
+	SIGNAL_HANDLER
+
+	var/area/target_area = get_area(talking_movable)
+	if(target_area.type in GLOB.ghost_cafe_areas)
+		return COMPONENT_CANNOT_USE_RADIO
+
 /datum/outfit/ghostcafe
 	name = "Cafe Visitor"
 	uniform = /obj/item/clothing/under/chameleon
