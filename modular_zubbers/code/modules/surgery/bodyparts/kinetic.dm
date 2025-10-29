@@ -8,8 +8,6 @@
 	bodytype = BODYTYPE_KINETIC
 	should_draw_greyscale = FALSE
 	attack_verb_simple = list("bashed", "slashed")
-	burn_modifier = 1
-	brute_modifier = 1
 	unarmed_damage_low = 1
 	unarmed_damage_high = 5
 	unarmed_effectiveness = 0
@@ -18,12 +16,11 @@
 	bodypart_traits = list(TRAIT_CHUNKYFINGERS, TRAIT_ANALGESIA)
 	disabling_threshold_percentage = 1
 	bodypart_flags = BODYPART_UNHUSKABLE
-	biological_state = (BIO_INORGANIC)
+	biological_state = BIO_INORGANIC
 
 /obj/item/bodypart/arm/left/kinetic/Initialize(mapload)
 	. = ..()
-	ADD_TRAIT(src, TRAIT_EASY_ATTACH, INNATE_TRAIT)
-	ADD_TRAIT(src, TRAIT_EASYDISMEMBER, INNATE_TRAIT)
+	add_traits(list(TRAIT_EASY_ATTACH, TRAIT_EASYDISMEMBER),src)
 
 /obj/item/bodypart/arm/right/kinetic
 	name = "right kinetic prosthetic arm"
@@ -35,8 +32,6 @@
 	bodytype = BODYTYPE_KINETIC
 	should_draw_greyscale = FALSE
 	attack_verb_simple = list("bashed", "slashed")
-	burn_modifier = 1
-	brute_modifier = 1
 	unarmed_damage_low = 1
 	unarmed_damage_high = 5
 	unarmed_effectiveness = 0
@@ -45,12 +40,11 @@
 	bodypart_traits = list(TRAIT_CHUNKYFINGERS, TRAIT_ANALGESIA)
 	disabling_threshold_percentage = 1
 	bodypart_flags = BODYPART_UNHUSKABLE
-	biological_state = (BIO_INORGANIC)
+	biological_state = BIO_INORGANIC
 
 /obj/item/bodypart/arm/right/kinetic/Initialize(mapload)
 	. = ..()
-	ADD_TRAIT(src, TRAIT_EASY_ATTACH, INNATE_TRAIT)
-	ADD_TRAIT(src, TRAIT_EASYDISMEMBER, INNATE_TRAIT)
+	add_traits(list(TRAIT_EASY_ATTACH, TRAIT_EASYDISMEMBER),src)
 
 /obj/item/bodypart/leg/left/kinetic
 	name = "left kinetic prosthetic leg"
@@ -61,8 +55,6 @@
 	limb_id = BODYPART_ID_KINETIC
 	bodytype = BODYTYPE_KINETIC
 	should_draw_greyscale = FALSE
-	burn_modifier = 1
-	brute_modifier = 1
 	unarmed_damage_low = 1
 	unarmed_damage_high = 5
 	unarmed_effectiveness = 0
@@ -71,12 +63,11 @@
 	bodypart_traits = list(TRAIT_ANALGESIA)
 	disabling_threshold_percentage = 1
 	bodypart_flags = BODYPART_UNHUSKABLE
-	biological_state = (BIO_INORGANIC)
+	biological_state = BIO_INORGANIC
 
 /obj/item/bodypart/leg/left/kinetic/Initialize(mapload)
 	. = ..()
-	ADD_TRAIT(src, TRAIT_EASY_ATTACH, INNATE_TRAIT)
-	ADD_TRAIT(src, TRAIT_EASYDISMEMBER, INNATE_TRAIT)
+	add_traits(list(TRAIT_EASY_ATTACH, TRAIT_EASYDISMEMBER),src)
 
 /obj/item/bodypart/leg/right/kinetic
 	name = "right kinetic prosthetic leg"
@@ -87,8 +78,6 @@
 	limb_id = BODYPART_ID_KINETIC
 	bodytype = BODYTYPE_KINETIC
 	should_draw_greyscale = FALSE
-	burn_modifier = 1
-	brute_modifier = 1
 	unarmed_damage_low = 1
 	unarmed_damage_high = 5
 	unarmed_effectiveness = 0
@@ -97,9 +86,8 @@
 	bodypart_traits = list(TRAIT_ANALGESIA)
 	disabling_threshold_percentage = 1
 	bodypart_flags = BODYPART_UNHUSKABLE
-	biological_state = (BIO_INORGANIC)
+	biological_state = BIO_INORGANIC
 
 /obj/item/bodypart/leg/right/kinetic/Initialize(mapload)
 	. = ..()
-	ADD_TRAIT(src, TRAIT_EASY_ATTACH, INNATE_TRAIT)
-	ADD_TRAIT(src, TRAIT_EASYDISMEMBER, INNATE_TRAIT)
+	add_traits(list(TRAIT_EASY_ATTACH, TRAIT_EASYDISMEMBER),src)
