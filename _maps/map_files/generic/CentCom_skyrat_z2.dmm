@@ -3,6 +3,8 @@
 /turf/open/space/basic,
 /area/space)
 "aam" = (
+/obj/effect/spawner/random/weapon,
+/turf/open/space/basic,
 /turf/open/indestructible/necropolis,
 /area/centcom/holding/cafe)
 "aaP" = (
@@ -169,8 +171,9 @@
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe)
 "afx" = (
-/obj/machinery/light/directional/east,
-/turf/open/floor/plating/vox,
+/obj/effect/spawner/random/contraband/permabrig_weapon,
+/turf/open/space/basic,
+/turf/open/indestructible/necropolis,
 /area/centcom/holding/cafe)
 "afy" = (
 /obj/effect/turf_decal/tile/purple/half/contrasted{
@@ -315,7 +318,9 @@
 /area/centcom/holding/cafe/park)
 "agV" = (
 /obj/effect/oneway,
-/turf/open/floor/plating/vox,
+/turf/open/indestructible/hoteltile{
+	icon_state = "darkfull"
+	},
 /area/centcom/holding/cafe)
 "ahk" = (
 /obj/structure/closet/abductor,
@@ -1941,9 +1946,9 @@
 /turf/open/misc/dirt/planet,
 /area/centcom/holding/cafe/park)
 "azB" = (
-/obj/structure/cable,
-/turf/open/floor/plating/vox,
-/turf/closed/indestructible/grille,
+/obj/effect/spawner/random/engineering/toolbox,
+/turf/open/space/basic,
+/turf/open/indestructible/necropolis,
 /area/centcom/holding/cafe)
 "azC" = (
 /obj/structure/sign/chalkboard_menu,
@@ -2295,10 +2300,6 @@
 /turf/open/indestructible/hoteltile{
 	icon_state = "darkfull"
 	},
-/area/centcom/holding/cafe)
-"aCS" = (
-/obj/machinery/light/directional/west,
-/turf/open/floor/plating/vox,
 /area/centcom/holding/cafe)
 "aCU" = (
 /turf/open/misc/grass/planet{
@@ -3170,8 +3171,12 @@
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe)
 "aOc" = (
-/obj/machinery/light/directional/south,
-/turf/open/floor/plating/vox,
+/obj/effect/turf_decal/arrows/blue{
+	dir = 1
+	},
+/turf/open/indestructible/hoteltile{
+	icon_state = "darkfull"
+	},
 /area/centcom/holding/cafe)
 "aOi" = (
 /obj/machinery/seed_extractor,
@@ -3247,10 +3252,10 @@
 /turf/open/misc/dirt/planet,
 /area/centcom/holding/cafe/park)
 "aOG" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/plating/vox,
-/turf/closed/indestructible/grille,
+/obj/effect/spawner/structure/electrified_grille,
+/turf/open/indestructible/hoteltile{
+	icon_state = "darkfull"
+	},
 /area/centcom/holding/cafe)
 "aOI" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -3433,7 +3438,10 @@
 /turf/closed/indestructible/alien,
 /area/centcom/holding/cafe/park)
 "aQM" = (
-/turf/open/floor/plating/vox,
+/obj/effect/turf_decal/arrows/red,
+/turf/open/indestructible/hoteltile{
+	icon_state = "darkfull"
+	},
 /area/centcom/holding/cafe)
 "aQQ" = (
 /obj/structure/fireplace{
@@ -4183,7 +4191,9 @@
 	desc = "One way in. No way out."
 	},
 /obj/effect/oneway,
-/turf/open/indestructible/hotelwood,
+/turf/open/indestructible/hoteltile{
+	icon_state = "darkfull"
+	},
 /area/centcom/holding/cafe)
 "aYX" = (
 /obj/machinery/duct,
@@ -5482,8 +5492,8 @@
 /turf/open/floor/wood/parquet,
 /area/centcom/interlink)
 "ctK" = (
-/obj/effect/gibspawner/human,
-/obj/item/spear/military,
+/obj/effect/light_emitter/thunderdome,
+/turf/open/space/basic,
 /turf/open/indestructible/necropolis,
 /area/centcom/holding/cafe)
 "ctV" = (
@@ -9744,7 +9754,9 @@
 /obj/effect/oneway{
 	dir = 1
 	},
-/turf/open/floor/plating/vox,
+/turf/open/indestructible/hoteltile{
+	icon_state = "darkfull"
+	},
 /area/centcom/holding/cafe)
 "iFq" = (
 /obj/effect/turf_decal/bot,
@@ -13939,7 +13951,7 @@
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "onE" = (
-/obj/item/storage/toolbox/mechanical,
+/turf/open/space/basic,
 /turf/open/indestructible/necropolis,
 /area/centcom/holding/cafe)
 "onU" = (
@@ -17538,8 +17550,10 @@
 	},
 /area/centcom/holding/cafe/park)
 "sGj" = (
-/obj/effect/gibspawner/robot,
-/turf/open/indestructible/necropolis,
+/obj/effect/light_emitter/thunderdome,
+/turf/open/indestructible/hoteltile{
+	icon_state = "darkfull"
+	},
 /area/centcom/holding/cafe)
 "sGw" = (
 /obj/structure/stone_tile/surrounding_tile/cracked{
@@ -62499,14 +62513,14 @@ ayI
 ayI
 ayI
 aqf
-aQM
-aQM
-aCS
-aQM
-aQM
-aCS
-aQM
-aQM
+sGj
+aGL
+aGL
+aGL
+aGL
+aGL
+aGL
+sGj
 xNq
 ajj
 ajj
@@ -62756,14 +62770,14 @@ ayI
 ayI
 jsJ
 aqf
-aQM
-kpr
-azB
-azB
-azB
-azB
-azB
-aQM
+aGL
+aOG
+aOG
+aOG
+aOG
+aOG
+aOG
+aGL
 aqf
 aaa
 aaa
@@ -63015,12 +63029,12 @@ aPf
 aqf
 aQM
 agV
-aam
+onE
+onE
 onE
 aam
-sGj
-azB
-aOc
+aOG
+aGL
 aqf
 aaa
 aaa
@@ -63270,14 +63284,14 @@ aPf
 aPf
 aPf
 aqf
-aQM
+aGL
+aOG
+onE
 azB
-aam
-aam
-aam
-aam
-azB
-aQM
+onE
+onE
+aOG
+aGL
 aqf
 aaa
 aaa
@@ -63527,14 +63541,14 @@ ayI
 ayI
 ayI
 aYQ
-aQM
-azB
-aam
+aGL
+aOG
+onE
 ctK
-aam
-aam
-azB
-aQM
+onE
+onE
+aOG
+aGL
 aqf
 aaa
 aaa
@@ -63784,14 +63798,14 @@ ayI
 ayI
 ayI
 aqf
-aQM
-azB
+aGL
+aOG
+onE
+onE
 aam
-aam
-aam
-aam
-azB
-aQM
+onE
+aOG
+aGL
 aqf
 aaa
 aaa
@@ -64041,12 +64055,12 @@ aPf
 ayI
 ayI
 aqf
-aQM
-azB
-aam
-aam
-aam
-aam
+aGL
+aOG
+onE
+afx
+onE
+onE
 iEe
 aOc
 aqf
@@ -64298,14 +64312,14 @@ aPf
 aPf
 aPf
 aqf
-aQM
+aGL
 aOG
-azB
-azB
-azB
-azB
-kpr
-aQM
+aOG
+aOG
+aOG
+aOG
+aOG
+aGL
 aqf
 aaa
 aaa
@@ -64555,14 +64569,14 @@ aPf
 aPf
 ajj
 aqf
-aQM
-aQM
-afx
-aQM
-aQM
-afx
-aQM
-aQM
+sGj
+aGL
+aGL
+aGL
+aGL
+aGL
+aGL
+sGj
 aqf
 aaa
 aaa
