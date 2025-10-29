@@ -3,7 +3,7 @@
 	name = "Condo Door"
 	icon = 'icons/obj/doors/airlocks/centcom/centcom.dmi'
 	icon_state = "fake_door"
-	var/leave_message = "Are you ready to leave the Condo? If all occupants vacate; it'll be reset and anything you leave behind'll be lost!"
+	leave_message = "Are you ready to leave the Condo? If all occupants vacate; it'll be reset and anything you leave behind'll be lost!"
 	/// What kind of turf should be visually represented under this door?
 	var/turf/floor_to_copy = /turf/open/floor/plating
 
