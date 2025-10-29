@@ -3,24 +3,7 @@
 /turf/open/space/basic,
 /area/space)
 "aam" = (
-/obj/structure/closet{
-	name = "coat closet"
-	},
-/obj/item/clothing/suit/hooded/wintercoat,
-/obj/item/clothing/suit/hooded/wintercoat,
-/obj/item/clothing/suit/hooded/wintercoat,
-/obj/item/clothing/suit/hooded/wintercoat/skyrat,
-/obj/item/clothing/suit/hooded/wintercoat/skyrat,
-/obj/item/clothing/suit/hooded/wintercoat/skyrat,
-/obj/item/clothing/suit/hooded/wintercoat/captain,
-/obj/item/clothing/suit/hooded/wintercoat/captain,
-/obj/item/clothing/suit/hooded/wintercoat/cargo,
-/obj/item/clothing/suit/hooded/wintercoat/cargo,
-/obj/item/clothing/suit/hooded/wintercoat/centcom,
-/obj/item/clothing/suit/hooded/wintercoat/centcom,
-/obj/item/clothing/suit/hooded/wintercoat/security,
-/obj/item/clothing/suit/hooded/wintercoat/security,
-/turf/open/indestructible/hotelwood,
+/turf/open/indestructible/necropolis,
 /area/centcom/holding/cafe)
 "aaP" = (
 /obj/machinery/light/directional/west,
@@ -188,7 +171,7 @@
 "afx" = (
 /obj/machinery/light/directional/east,
 /turf/open/floor/plating/vox,
-/area/centcom/holding/cafe/vox)
+/area/centcom/holding/cafe)
 "afy" = (
 /obj/effect/turf_decal/tile/purple/half/contrasted{
 	dir = 1
@@ -331,10 +314,8 @@
 /turf/open/misc/grass/planet,
 /area/centcom/holding/cafe/park)
 "agV" = (
-/obj/structure/closet/wardrobe/grey,
-/obj/item/clothing/under/dress/tango,
-/obj/item/clothing/under/dress/eveninggown,
-/turf/open/indestructible/hotelwood,
+/obj/effect/oneway,
+/turf/open/floor/plating/vox,
 /area/centcom/holding/cafe)
 "ahk" = (
 /obj/structure/closet/abductor,
@@ -1015,6 +996,15 @@
 	icon_state = "floor"
 	},
 /area/centcom/holding/cafe)
+"aoZ" = (
+/obj/effect/turf_decal/stripes{
+	dir = 1
+	},
+/obj/effect/turf_decal/arrows/blue,
+/turf/open/indestructible/hoteltile{
+	icon_state = "darkfull"
+	},
+/area/centcom/holding/cafe)
 "apc" = (
 /obj/structure/rack,
 /obj/item/flashlight/lantern,
@@ -1275,8 +1265,9 @@
 /turf/open/floor/plating,
 /area/centcom/interlink)
 "asw" = (
+/obj/machinery/vending/liberationstation,
 /turf/closed/indestructible/wood,
-/area/centcom/holding/cafe/vox)
+/area/centcom/holding/cafe)
 "asz" = (
 /obj/machinery/light/directional/north,
 /obj/machinery/abductor/console,
@@ -1536,9 +1527,15 @@
 /turf/open/misc/grass/planet,
 /area/centcom/holding/cafe/park)
 "avu" = (
-/obj/vehicle/ridden/janicart/upgraded,
-/obj/item/key/janitor,
-/turf/open/indestructible/hotelwood,
+/obj/machinery/computer{
+	icon_screen = "comm";
+	dir = 1;
+	name = "condo teleportation console";
+	desc = "Due to various fly related incident, management has disabled direct control of this console."
+	},
+/turf/open/indestructible/hoteltile{
+	icon_state = "darkfull"
+	},
 /area/centcom/holding/cafe)
 "avS" = (
 /obj/effect/turf_decal/tile/blue{
@@ -1944,8 +1941,10 @@
 /turf/open/misc/dirt/planet,
 /area/centcom/holding/cafe/park)
 "azB" = (
+/obj/structure/cable,
 /turf/open/floor/plating/vox,
-/area/centcom/holding/cafe/vox)
+/turf/closed/indestructible/grille,
+/area/centcom/holding/cafe)
 "azC" = (
 /obj/structure/sign/chalkboard_menu,
 /turf/closed/indestructible/steel,
@@ -2291,13 +2290,16 @@
 /turf/open/misc/grass/planet,
 /area/centcom/holding/cafe/park)
 "aCR" = (
-/obj/item/hilbertshotel/ghostdojo,
-/turf/open/indestructible/hotelwood,
+/obj/machinery/cafe_condo_teleporter,
+/obj/effect/turf_decal/delivery/red,
+/turf/open/indestructible/hoteltile{
+	icon_state = "darkfull"
+	},
 /area/centcom/holding/cafe)
 "aCS" = (
 /obj/machinery/light/directional/west,
 /turf/open/floor/plating/vox,
-/area/centcom/holding/cafe/vox)
+/area/centcom/holding/cafe)
 "aCU" = (
 /turf/open/misc/grass/planet{
 	smoothing_flags = 0
@@ -3170,7 +3172,7 @@
 "aOc" = (
 /obj/machinery/light/directional/south,
 /turf/open/floor/plating/vox,
-/area/centcom/holding/cafe/vox)
+/area/centcom/holding/cafe)
 "aOi" = (
 /obj/machinery/seed_extractor,
 /turf/open/indestructible/hoteltile{
@@ -3234,9 +3236,10 @@
 /area/centcom/holding/cafe)
 "aOw" = (
 /obj/machinery/computer/slot_machine,
-/obj/item/coin/silver,
-/obj/item/coin/silver,
-/obj/item/coin,
+/obj/item/holochip/thousand{
+	credits = 100000;
+	desc = "All expense paid gambling chip! You. You're the one paying. This comes out of your pension."
+	},
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe)
 "aOz" = (
@@ -3244,34 +3247,11 @@
 /turf/open/misc/dirt/planet,
 /area/centcom/holding/cafe/park)
 "aOG" = (
-/obj/structure/closet,
-/obj/item/stack/sheet/mineral/wood/fifty,
-/obj/item/stack/tile/wood{
-	amount = 24
-	},
-/obj/item/stack/tile/carpet/black/fifty,
-/obj/item/stack/tile/carpet/blue/fifty,
-/obj/item/stack/tile/carpet/cyan/fifty,
-/obj/item/stack/tile/carpet/fifty,
-/obj/item/stack/tile/carpet/green/fifty,
-/obj/item/stack/tile/carpet/orange/fifty,
-/obj/item/stack/tile/carpet/purple/fifty,
-/obj/item/stack/tile/carpet/red/fifty,
-/obj/item/stack/tile/carpet/royalblack/fifty,
-/obj/item/stack/tile/carpet/royalblue/fifty,
-/obj/item/storage/belt/utility/chief/full{
-	name = "Construction Toolbelt"
-	},
-/obj/item/storage/belt/utility/chief/full{
-	name = "Construction Toolbelt"
-	},
-/obj/item/storage/belt/utility/chief/full{
-	name = "Construction Toolbelt"
-	},
-/obj/item/clothing/glasses/welding,
-/obj/item/clothing/glasses/welding,
+/obj/structure/cable,
+/obj/structure/cable,
 /turf/open/floor/plating/vox,
-/area/centcom/holding/cafe/vox)
+/turf/closed/indestructible/grille,
+/area/centcom/holding/cafe)
 "aOI" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -3453,9 +3433,8 @@
 /turf/closed/indestructible/alien,
 /area/centcom/holding/cafe/park)
 "aQM" = (
-/obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/floor/plating/vox,
-/area/centcom/holding/cafe/vox)
+/area/centcom/holding/cafe)
 "aQQ" = (
 /obj/structure/fireplace{
 	dir = 4
@@ -4114,8 +4093,9 @@
 /turf/open/floor/iron/freezer,
 /area/centcom/holding/cafe)
 "aXV" = (
-/obj/structure/table,
-/turf/open/indestructible/hotelwood,
+/obj/effect/turf_decal/tile/blue/half/contrasted,
+/obj/machinery/self_actualization_device,
+/turf/open/floor/iron/white,
 /area/centcom/holding/cafe)
 "aXW" = (
 /obj/structure/flora/bush/generic,
@@ -4197,13 +4177,14 @@
 	},
 /area/centcom/holding/cafe)
 "aYQ" = (
-/obj/machinery/door/airlock{
-	id_tag = "CCD2";
-	name = "Vox Box Construction"
-	},
 /obj/structure/fans/tiny/invisible,
+/obj/machinery/door/airlock/cult/friendly{
+	name = "thunderdome airlock";
+	desc = "One way in. No way out."
+	},
+/obj/effect/oneway,
 /turf/open/indestructible/hotelwood,
-/area/centcom/holding/cafe/vox)
+/area/centcom/holding/cafe)
 "aYX" = (
 /obj/machinery/duct,
 /obj/machinery/dryer{
@@ -4318,7 +4299,9 @@
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/centcom/holding/cafe/park)
 "bbB" = (
-/obj/machinery/skill_station,
+/obj/effect/turf_decal/stripes{
+	dir = 4
+	},
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe)
 "bbW" = (
@@ -5498,6 +5481,11 @@
 	},
 /turf/open/floor/wood/parquet,
 /area/centcom/interlink)
+"ctK" = (
+/obj/effect/gibspawner/human,
+/obj/item/spear/military,
+/turf/open/indestructible/necropolis,
+/area/centcom/holding/cafe)
 "ctV" = (
 /obj/effect/turf_decal/siding/wood/corner,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -8823,6 +8811,14 @@
 /obj/effect/landmark/latejoin,
 /turf/open/floor/mineral/titanium,
 /area/centcom/interlink)
+"huE" = (
+/obj/effect/turf_decal/stripes{
+	dir = 1
+	},
+/turf/open/indestructible/hoteltile{
+	icon_state = "darkfull"
+	},
+/area/centcom/holding/cafe)
 "hvy" = (
 /obj/machinery/door/poddoor/shuttledock/interlink,
 /turf/open/floor/plating,
@@ -9744,6 +9740,12 @@
 /obj/structure/fireplace,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
+"iEe" = (
+/obj/effect/oneway{
+	dir = 1
+	},
+/turf/open/floor/plating/vox,
+/area/centcom/holding/cafe)
 "iFq" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/table,
@@ -10123,6 +10125,15 @@
 	pixel_y = 2
 	},
 /turf/open/floor/bamboo,
+/area/centcom/holding/cafe)
+"jgD" = (
+/obj/effect/turf_decal/stripes{
+	dir = 1
+	},
+/obj/effect/turf_decal/arrows/red,
+/turf/open/indestructible/hoteltile{
+	icon_state = "darkfull"
+	},
 /area/centcom/holding/cafe)
 "jgG" = (
 /obj/effect/turf_decal/delivery,
@@ -13927,6 +13938,10 @@
 	},
 /turf/open/floor/iron,
 /area/centcom/interlink)
+"onE" = (
+/obj/item/storage/toolbox/mechanical,
+/turf/open/indestructible/necropolis,
+/area/centcom/holding/cafe)
 "onU" = (
 /obj/structure/weightmachine,
 /obj/effect/turf_decal/siding/wood{
@@ -15969,6 +15984,19 @@
 /obj/effect/light_emitter/interlink,
 /turf/open/floor/iron/pool/cobble,
 /area/centcom/holding/cafe/park)
+"qOI" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/vehicle/ridden/janicart/upgraded,
+/obj/item/key/janitor,
+/turf/open/indestructible/hoteltile{
+	icon_state = "white"
+	},
+/area/centcom/holding/cafe/park)
 "qPk" = (
 /obj/structure/window/spawner/directional/south,
 /turf/open/floor/carpet/black,
@@ -17509,6 +17537,10 @@
 	icon_state = "white"
 	},
 /area/centcom/holding/cafe/park)
+"sGj" = (
+/obj/effect/gibspawner/robot,
+/turf/open/indestructible/necropolis,
+/area/centcom/holding/cafe)
 "sGw" = (
 /obj/structure/stone_tile/surrounding_tile/cracked{
 	dir = 1
@@ -20626,6 +20658,13 @@
 	icon_state = "darkfull"
 	},
 /area/centcom/holding/cafe)
+"xkv" = (
+/obj/machinery/cafe_condo_teleporter,
+/obj/effect/turf_decal/delivery/blue,
+/turf/open/indestructible/hoteltile{
+	icon_state = "darkfull"
+	},
+/area/centcom/holding/cafe)
 "xkG" = (
 /obj/machinery/door/airlock/captain{
 	name = "Captain's Private Office"
@@ -21051,6 +21090,10 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning,
 /turf/open/floor/iron/white,
 /area/centcom/interlink)
+"xNq" = (
+/obj/machinery/vending/security,
+/turf/closed/indestructible/wood,
+/area/centcom/holding/cafe)
 "xOm" = (
 /obj/structure/chair/sofa/bench/corner{
 	dir = 1
@@ -62198,16 +62241,16 @@ ayI
 jsJ
 ayI
 ayI
-asw
-asw
-asw
-asw
-asw
-asw
-asw
-asw
-asw
-asw
+aqf
+aqf
+aqf
+aqf
+aqf
+aqf
+aqf
+aqf
+aqf
+aqf
 ajj
 ajj
 ajj
@@ -62455,16 +62498,16 @@ ayI
 ayI
 ayI
 ayI
-asw
-azB
-azB
+aqf
+aQM
+aQM
 aCS
-azB
-azB
+aQM
+aQM
 aCS
-azB
-azB
-asw
+aQM
+aQM
+xNq
 ajj
 ajj
 ajj
@@ -62712,16 +62755,16 @@ ayI
 ayI
 ayI
 jsJ
-asw
+aqf
+aQM
+kpr
 azB
 azB
 azB
 azB
 azB
-azB
-azB
-azB
-asw
+aQM
+aqf
 aaa
 aaa
 aaa
@@ -62969,16 +63012,16 @@ aAr
 aPf
 aPf
 aPf
-asw
-azB
-azB
-azB
-azB
-azB
-azB
+aqf
+aQM
+agV
+aam
+onE
+aam
+sGj
 azB
 aOc
-asw
+aqf
 aaa
 aaa
 aaa
@@ -63226,16 +63269,16 @@ aPf
 aPf
 aPf
 aPf
-asw
+aqf
+aQM
 azB
+aam
+aam
+aam
+aam
 azB
-azB
-azB
-azB
-azB
-azB
-azB
-asw
+aQM
+aqf
 aaa
 aaa
 aaa
@@ -63484,15 +63527,15 @@ ayI
 ayI
 ayI
 aYQ
+aQM
 azB
+aam
+ctK
+aam
+aam
 azB
-azB
-azB
-azB
-azB
-azB
-azB
-asw
+aQM
+aqf
 aaa
 aaa
 aaa
@@ -63700,7 +63743,7 @@ lwv
 oaM
 wUS
 gMy
-aki
+qOI
 lwv
 aBi
 ayA
@@ -63740,16 +63783,16 @@ ayI
 ayI
 ayI
 ayI
-asw
-aOG
+aqf
+aQM
 azB
+aam
+aam
+aam
+aam
 azB
-azB
-azB
-azB
-azB
-azB
-asw
+aQM
+aqf
 aaa
 aaa
 aaa
@@ -63997,16 +64040,16 @@ ayI
 aPf
 ayI
 ayI
-asw
-aOG
+aqf
+aQM
 azB
-azB
-azB
-azB
-azB
-azB
+aam
+aam
+aam
+aam
+iEe
 aOc
-asw
+aqf
 aaa
 aaa
 aaa
@@ -64254,16 +64297,16 @@ aFP
 aPf
 aPf
 aPf
-asw
+aqf
 aQM
+aOG
+azB
+azB
+azB
+azB
+kpr
 aQM
-azB
-azB
-azB
-azB
-azB
-azB
-asw
+aqf
 aaa
 aaa
 aaa
@@ -64511,16 +64554,16 @@ aFP
 aPf
 aPf
 ajj
-asw
+aqf
 aQM
 aQM
 afx
-azB
-azB
+aQM
+aQM
 afx
-azB
-azB
-asw
+aQM
+aQM
+aqf
 aaa
 aaa
 aaa
@@ -64768,16 +64811,16 @@ aFP
 aPf
 aPf
 ajj
+aqf
 asw
-asw
-asw
-asw
-asw
-asw
-asw
-asw
-asw
-asw
+aqf
+aqf
+aqf
+aqf
+aqf
+aqf
+aqf
+aqf
 aaa
 aaa
 aaa
@@ -68593,9 +68636,9 @@ apx
 apx
 aoR
 aqf
-aXV
-aXV
-aam
+xqI
+aUo
+aUo
 aUo
 aUo
 aUo
@@ -68852,9 +68895,9 @@ aqf
 aqf
 aqf
 aqf
-agV
 aUo
 aUo
+bbB
 bbB
 aqf
 aqf
@@ -69111,8 +69154,8 @@ aAX
 ajx
 aUo
 aUo
-aUo
-xqI
+jgD
+xkv
 aqf
 vTT
 vTT
@@ -69368,7 +69411,7 @@ aqf
 aqf
 aHM
 aUo
-aUo
+huE
 avu
 aqf
 vTT
@@ -69625,7 +69668,7 @@ aAX
 ajx
 aUo
 aUo
-aUo
+aoZ
 aCR
 aqf
 vTT
@@ -71180,7 +71223,7 @@ dOM
 dOM
 pdt
 dOM
-aTl
+aXV
 aAv
 amx
 amx
