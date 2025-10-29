@@ -47,3 +47,9 @@
 	name = "sink"
 	icon = 'modular_skyrat/master_files/icons/obj/medieval/structures.dmi'
 	icon_state = "sink"
+
+/turf/open/space/mirage
+	blocks_air = TRUE
+	light_power = 0
+	space_lit = TRUE
+
