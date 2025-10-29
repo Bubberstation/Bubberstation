@@ -67,13 +67,20 @@
 		D.Grant(new_spawn)
 
 /datum/outfit/ghostcafe
-	name = "ID, jumpsuit and shoes"
-	uniform = /obj/item/clothing/under/color/random
-	shoes = /obj/item/clothing/shoes/sneakers/black
+	name = "Cafe Visitor"
+	uniform = /obj/item/clothing/under/chameleon
+	shoes = /obj/item/clothing/shoes/chameleon
 	id = /obj/item/card/id/advanced/chameleon/ghost_cafe
 	back = /obj/item/storage/backpack/chameleon
 	backpack_contents = list(/obj/item/storage/box/syndie_kit/chameleon/ghostcafe = 1)
 	skillchips = list(/obj/item/skillchip/job/roboticist, /obj/item/skillchip/job/engineer)
+
+/datum/outfit/ghostcafe/pre_equip(mob/living/carbon/human/visitor, visuals_only = FALSE)
+	..()
+	if (isplasmaman(visitor))
+		backpack_contents += list(/obj/item/tank/internals/plasmaman/belt/full = 2)
+	if(isvox(visitor) || isvoxprimalis(visitor))
+		backpack_contents += list(/obj/item/tank/internals/nitrogen/belt/full = 2)
 
 /datum/action/toggle_dead_chat_mob
 	button_icon = 'icons/mob/simple/mob.dmi'
