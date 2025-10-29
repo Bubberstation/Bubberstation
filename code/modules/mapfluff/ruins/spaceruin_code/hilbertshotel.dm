@@ -135,9 +135,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	if(target.incapacitated)
 		to_chat(target, span_warning("You aren't able to activate \the [src] anymore!"))
 
-	// Has the user thrown it away or otherwise disposed of it such that it's no longer in their hands or in some storage connected to them?
-	// if(get_atom_on_turf(src, /mob) != user) SKYRAT EDIT ORIGINAL
-	if(!Adjacent(user)) // SKYRAT EDIT -- Ghost Cafe Static Hilbertspawner
+	if(get_atom_on_turf(src, /mob) != user)
 		if(user == target)
 			to_chat(user, span_warning("\The [src] is no longer in your possession!"))
 		else
@@ -155,11 +153,6 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 		else if(!user.dropItemToGround(src))
 			to_chat(user, span_warning("You can't seem to drop \the [src]! It must be stuck to your hand somehow! Prepare for unforeseen consequences..."))
 
-	//SKYRAT EDIT ADDITION - GHOST HOTEL UPDATE
-	var/chosen_room = "Nothing"
-	if(istype(src, /obj/item/hilbertshotel/ghostdojo)) //to don't add another one var
-		chosen_room = tgui_input_list(user, "Choose desired room:", "Time to choose", hotel_maps)
-	//SKYRAT EDIT END
 	if(!storageTurf) //Blame subsystems for not allowing this to be in Initialize
 		if(!GLOB.hhStorageTurf)
 			var/datum/map_template/hilbertshotelstorage/storageTemp = new()
@@ -173,7 +166,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 		return
 	if(tryStoredRoom(chosenRoomNumber, target))
 		return
-	sendToNewRoom(chosenRoomNumber, target, chosen_room) //SKYRAT EDIT ADDITION - GHOST HOTEL UPDATE. Was sendToNewRoom(chosenRoomNumber, target)
+	sendToNewRoom(chosenRoomNumber, target)
 
 /obj/item/hilbertshotel/proc/tryActiveRoom(roomNumber, mob/user)
 	if(activeRooms["[roomNumber]"])
@@ -219,78 +212,13 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 		return TRUE
 	return FALSE
 
-/obj/item/hilbertshotel/proc/sendToNewRoom(roomNumber, mob/user, chosen_room) //SKYRAT EDIT ADDITION - GHOST HOTEL UPDATE. Was sendToNewRoom(roomNumber, mob/user)
+/obj/item/hilbertshotel/proc/sendToNewRoom(roomNumber, mob/user)
 	var/datum/turf_reservation/roomReservation = SSmapping.request_turf_block_reservation(hotelRoomTemp.width, hotelRoomTemp.height, 1)
 	var/turf/bottom_left = roomReservation.bottom_left_turfs[1]
 	var/datum/map_template/load_from = hotelRoomTemp
 
 	if(ruinSpawned && roomNumber == GLOB.hhMysteryRoomNumber)
 		load_from = hotelRoomTempLore
-	//SKYRAT EDIT ADDITION START - GHOST HOTEL UPDATE
-	else if(chosen_room == "Apartment")
-		load_from = ghost_cafe_rooms_apartment
-
-	else if(chosen_room == "Beach Condo")
-		load_from = ghost_cafe_rooms_beach_condo
-
-	else if(chosen_room == "Station Side")
-		load_from = ghost_cafe_rooms_stationside
-	else if(chosen_room == "Library")
-		load_from = ghost_cafe_rooms_library
-	//SKYRAT EDIT ADDITION END
-	//BUBBER EDIT ADDITION BEGIN - Infinite Dorm Maps Add
-	else if(chosen_room == "Cultist's Cavern")
-		load_from = ghost_cafe_rooms_cultcave
-
-	else if(chosen_room == "Winter Woods")
-		load_from = ghost_cafe_rooms_winterwoods
-
-	else if(chosen_room == "Evacuated Station")
-		load_from = ghost_cafe_rooms_evacuationstation
-
-	else if(chosen_room == "Prison")
-		load_from = ghost_cafe_rooms_prisoninfdorm
-
-	else if(chosen_room == "Corporate Office")
-		load_from = ghost_cafe_rooms_corporateoffice
-
-	else if(chosen_room == "Recovery Wing")
-		load_from = ghost_cafe_rooms_recwing
-
-	else if(chosen_room == "Grotto")
-		load_from = ghost_cafe_rooms_grotto
-
-	else if(chosen_room == "Grotto (Night)")
-		load_from = ghost_cafe_rooms_grotto2
-
-	else if(chosen_room == "Fox Bar")
-		load_from = ghost_cafe_rooms_foxbar
-
-	else if(chosen_room == "The Nightclub")
-		load_from = ghost_cafe_rooms_nightclub
-
-	else if(chosen_room == "EVA")
-		load_from = ghost_cafe_rooms_eva
-
-	else if(chosen_room == "Oasis")
-		load_from = ghost_cafe_rooms_oasis
-
-	else if(chosen_room == "Oasis (Night)")
-		load_from = ghost_cafe_rooms_oasisalt
-
-	else if(chosen_room == "Public Pool")
-		load_from = ghost_cafe_rooms_pool
-
-	else if(chosen_room == "Mini Engineering")
-		load_from = ghost_cafe_rooms_engineering
-
-	else if(chosen_room == "Syndicate Office")
-		load_from = ghost_cafe_rooms_syndieoffice
-
-	else if(chosen_room == "Syndicate Ops Centre")
-		load_from = ghost_cafe_rooms_synopcenter
-	//BUBBER EDIT END
-
 
 	load_from.load(bottom_left)
 	activeRooms["[roomNumber]"] = roomReservation
@@ -413,6 +341,11 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	turf_flags = NOJAUNT
 	explosive_resistance = INFINITY
 	var/obj/item/hilbertshotel/parentSphere
+	// BUBBER EDIT ADDITION START - Condos
+	var/leave_message = "Hilbert's Hotel would like to remind you that while we will do everything we can to protect the belongings \
+		you leave behind, we make no guarantees of their safety while you're gone, especially that of the health of any living creatures. \
+		With that in mind, are you ready to leave?"
+	// BUBBER EDIT ADDITION END
 
 /turf/open/space/bluespace/Initialize(mapload)
 	. = ..()
@@ -450,7 +383,12 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	if(!parentSphere)
 		to_chat(user, span_warning("The door seems to be malfunctioning and refuses to operate!"))
 		return
+	/// BUBBER EDIT CHANGE START - Condos
+	/* Original:
 	if(tgui_alert(user, "Hilbert's Hotel would like to remind you that while we will do everything we can to protect the belongings you leave behind, we make no guarantees of their safety while you're gone, especially that of the health of any living creatures. With that in mind, are you ready to leave?", "Exit", list("Leave", "Stay")) == "Leave")
+	*/
+	if(tgui_alert(user, leave_message, "Exit", list("Leave", "Stay")) == "Leave") // BUBBER EDIT CHANGE - Moved blurb to leave_message variable
+	/// BUBBER EDIT CHANGE END
 		if(HAS_TRAIT(user, TRAIT_IMMOBILIZED) || (get_dist(get_turf(src), get_turf(user)) > 1)) //no teleporting around if they're dead or moved away during the prompt.
 			return
 		user.forceMove(get_turf(parentSphere))

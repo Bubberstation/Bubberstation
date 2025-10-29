@@ -1,5 +1,3 @@
-// Skyrat CC area defines
-
 /*
 * Ghost Cafe
 */
@@ -7,6 +5,7 @@
 /area/centcom/holding
 	name = "Holding Facility"
 	mood_bonus = 25
+	area_flags = parent_type::area_flags | UNLIMITED_FISHING
 	mood_message = "I am taking a well deserved rest!"
 
 /area/centcom/holding/cafe
@@ -21,10 +20,13 @@
 /area/centcom/holding/cafe/park
 	name = "Ghost Cafe Outdoors"
 
+//Interlink
+
 /area/centcom/interlink
 	name = "The Interlink"
 
 /area/centcom/interlink/dorm_rooms
 	name = "Interlink Dorm Rooms"
-	mood_bonus = 25
-	mood_message = "I am taking a well deserved rest!"
+	mood_bonus = /area/centcom/holding::mood_bonus
+	mood_message = /area/centcom/holding::mood_message
+
