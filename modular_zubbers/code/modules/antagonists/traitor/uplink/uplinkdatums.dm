@@ -5,7 +5,6 @@
 	This kit contains one armor-lined rabbit costume, white combat gloves and one single carrot shiv. (Carrot shiv may be eaten in transit.)"
 	item = /obj/item/storage/box/syndibunny
 	cost = 8
-	purchasable_from = UPLINK_NUKE_OPS
 
 /datum/uplink_item/badass/henchmen_traitor_outfits
 	name = "Henchmen Bundle"
