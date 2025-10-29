@@ -9,16 +9,20 @@
 
 	/// Whether to spawn in with sparks or in a pod
 	var/teleport_option
+	/// Teleportation options
+	var/list/teleport_options = list("Bluespace", "Pod", "Cancel")
 	/// What style of pod to use, if the option was chosen
 	var/pod_style
 	/// Assoc list of pod UI names to style datums, static so it's only built once
 	var/static/list/pod_styles
 	/// Whether to spawn in as your current character or a random one
 	var/character_option
+	/// Character options
+	var/list/character_options = list("Selected Character", "Random Character", "Cancel")
 	/// Which outfit to use
 	var/outfit_option
 	/// Initial list of outfits
-	var/list/outfits = list(
+	var/list/outfit_options = list(
 		"Bluespace Tech" = /datum/outfit/admin/bst,
 		"Naked" = /datum/outfit,
 		"Show All" = "Show All",
@@ -27,12 +31,14 @@
 	var/give_return
 	/// Whether to spawn with quirks and/or loadout
 	var/give_quirks_loadout
+	/// Quirk/loadout options
+	var/list/quirk_loadout_options = list("Quirks & Loadout", "Quirks Only", "Loadout Only", "Neither")
 
-	teleport_option = tgui_alert(user, "How would you like to be spawned in?", "IC Quick Spawn", list("Bluespace", "Pod", "Cancel"))
-	if(!teleport_option || teleport_option == "Cancel")
+	teleport_option = tgui_alert(user, "How would you like to be spawned in?", "IC Quick Spawn", teleport_options)
+	if(!teleport_option || teleport_option == teleport_options[3])
 		return
 
-	if(teleport_option == "Pod")
+	if(teleport_option == teleport_options[2])
 		if(!pod_styles)
 			pod_styles = list()
 			for(var/datum/pod_style/style as anything in typesof(/datum/pod_style))
@@ -43,15 +49,15 @@
 		if(!pod_style)
 			return
 
-	character_option = tgui_alert(user, "Which character to spawn as?", "IC Quick Spawn", list("Selected Character", "Random Character", "Cancel"))
-	if(!character_option || character_option == "Cancel")
+	character_option = tgui_alert(user, "Which character to spawn as?", "IC Quick Spawn", character_options)
+	if(!character_option || character_option == character_options[3])
 		return
 
-	outfit_option = tgui_input_list(user, "Which outfit to use?", "IC Quick Spawn", outfits)
-	if(outfit_option == "Show All")
+	outfit_option = tgui_input_list(user, "Which outfit to use?", "IC Quick Spawn", outfit_options)
+	if(outfit_option == outfit_options[3])
 		outfit_option = user.client.robust_dress_shop_skyrat()
 	else
-		outfit_option = outfits[outfit_option]
+		outfit_option = outfit_options[outfit_option]
 	if(!outfit_option)
 		return
 
@@ -61,29 +67,28 @@
 		if(!give_return)
 			return
 
-	if(character_option == "Selected Character")
-		give_quirks_loadout = tgui_input_list(user, "Include quirks/loadout?", "IC Quick Spawn", list("Quirks & Loadout", "Quirks Only", "Loadout Only", "Neither"))
+	if(character_option == character_options[1])
+		give_quirks_loadout = tgui_input_list(user, "Include quirks/loadout?", "IC Quick Spawn", quirk_loadout_options)
 		if(!give_quirks_loadout)
 			return
 
 	var/turf/current_turf = get_turf(target)
 	var/mob/living/carbon/human/new_player = new(current_turf)
-	if(character_option == "Selected Character")
+	if(character_option == character_options[1])
 		new_player.name = target.name
 		new_player.real_name = target.real_name
 		target.client?.prefs.safe_transfer_prefs_to(new_player)
 		new_player.dna.update_dna_identity()
 
-	switch(give_quirks_loadout)
-		if("Quirks & Loadout")
-			SSquirks.AssignQuirks(new_player, target.client)
-			new_player.equip_outfit_and_loadout(outfit_option, target.client?.prefs)
-		if("Quirks Only")
-			SSquirks.AssignQuirks(new_player, target.client)
-		if("Loadout Only")
-			new_player.equip_outfit_and_loadout(outfit_option, target.client?.prefs)
-		if("Neither", null) // null case matches if they chose random character
-			new_player.equipOutfit(outfit_option)
+	if(give_quirks_loadout == quirk_loadout_options[1])
+		SSquirks.AssignQuirks(new_player, target.client)
+		new_player.equip_outfit_and_loadout(outfit_option, target.client?.prefs)
+	else if(give_quirks_loadout == quirk_loadout_options[2])
+		SSquirks.AssignQuirks(new_player, target.client)
+	else if(give_quirks_loadout == quirk_loadout_options[3])
+		new_player.equip_outfit_and_loadout(outfit_option, target.client?.prefs)
+	else if(give_quirks_loadout == quirk_loadout_options[4] || !give_quirks_loadout) // null case matches if they chose random character
+		new_player.equipOutfit(outfit_option)
 
 	if(target.mind)
 		target.mind.transfer_to(new_player, TRUE)
@@ -95,18 +100,17 @@
 		var/datum/action/cooldown/spell/return_back/return_spell = new
 		return_spell.Grant(new_player)
 
-	switch(teleport_option)
-		if("Bluespace")
-			new_player.forceMove(current_turf)
-			playsound(new_player, 'sound/effects/magic/Disable_Tech.ogg', 100, FALSE)
-			var/datum/effect_system/spark_spread/quantum/sparks = new
-			sparks.set_up(10, 1, new_player)
-			sparks.attach(get_turf(new_player))
-			sparks.start()
-		if("Pod")
-			var/obj/structure/closet/supplypod/podspawn/empty_pod = new(null, pod_style)
-			new_player.forceMove(empty_pod)
-			new /obj/effect/pod_landingzone(current_turf, empty_pod)
+	if(teleport_option == teleport_options[1])
+		new_player.forceMove(current_turf)
+		playsound(new_player, 'sound/effects/magic/Disable_Tech.ogg', 100, FALSE)
+		var/datum/effect_system/spark_spread/quantum/sparks = new
+		sparks.set_up(10, 1, new_player)
+		sparks.attach(get_turf(new_player))
+		sparks.start()
+	else if(teleport_option == teleport_options[2])
+		var/obj/structure/closet/supplypod/podspawn/empty_pod = new(null, pod_style)
+		new_player.forceMove(empty_pod)
+		new /obj/effect/pod_landingzone(current_turf, empty_pod)
 
 /client/proc/robust_dress_shop_skyrat()
 	var/list/baseoutfits = list("Custom","As Job...", "As Plasmaman...")
