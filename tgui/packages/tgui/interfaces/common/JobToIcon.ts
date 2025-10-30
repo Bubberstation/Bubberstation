@@ -11,6 +11,7 @@ const BASEICONS = {
   'Bit Avatar': 'code',
   Bitrunner: 'gamepad',
   Botanist: 'seedling',
+  Blacksmith: 'hammer', // BUBBER EDIT
   'Bridge Assistant': 'building-shield',
   Captain: 'crown',
   'Cargo Gorilla': 'paw',
@@ -47,6 +48,7 @@ const BASEICONS = {
   'Research Director': 'user-graduate',
   Roboticist: 'battery-half',
   Scientist: 'flask',
+  Stowaway: 'person-running', // BUBBER EDIT
   'Security Officer (Cargo)': 'shield-halved',
   'Security Officer (Engineering)': 'shield-halved',
   'Security Officer (Medical)': 'shield-halved',
@@ -55,7 +57,7 @@ const BASEICONS = {
   'Shaft Miner': 'digging',
   'Station Engineer': 'gears',
   'Syndicate Operative': 'dragon',
-  'Veteran Security Advisor': 'ribbon',
+  'Veteran Security Advisor': 'wheelchair', // BUBBER EDIT
   'Pun Pun': 'paw',
   Warden: 'handcuffs',
   // SKYRAT EDIT START - Skyrat-exclusive jobs have icons too

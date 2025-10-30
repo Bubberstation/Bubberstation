@@ -1,15 +1,3 @@
-// BUBBERSTATION EDIT, List for flavouring the heretic's roundend screen
-	var/static/list/heretic_path_lore = list(
-		PATH_RUST = "path_rust",
-		PATH_FLESH = "path_flesh",
-		PATH_ASH = "path_ash",
-		PATH_VOID = "path_void",
-		PATH_BLADE = "path_blade",
-		PATH_COSMIC = "path_cosmic",
-		PATH_LOCK = "path_lock",
-		PATH_MOON = "path_moon",
-	)
-
 /datum/antagonist/heretic/roundend_report()
 	var/list/parts = list()
 	var/cultiewin = TRUE //BUBBERSTATION EDIT
