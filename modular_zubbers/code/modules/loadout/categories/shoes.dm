@@ -154,19 +154,6 @@
 	group = "Cowboy Boots"
 	abstract_type = /datum/loadout_item/shoes/cowboy
 
-
-/datum/loadout_item/shoes/cowboy/brown_cowboy_boots
-	name = "Brown Cowboy Boots"
-	item_path = /obj/item/clothing/shoes/cowboy
-
-/datum/loadout_item/shoes/cowboy/black_cowboy_boots
-	name = "Black Cowboy Boots"
-	item_path = /obj/item/clothing/shoes/cowboy/black
-
-/datum/loadout_item/shoes/cowboy/white_cowboy_boots
-	name = "White Cowboy Boots"
-	item_path = /obj/item/clothing/shoes/cowboy/white
-
 /datum/loadout_item/shoes/cowboy/cowboyboots
 	name = "Cowboy Boots (Brown)"
 	item_path = /obj/item/clothing/shoes/cowboyboots
@@ -305,6 +292,18 @@
 /datum/loadout_item/shoes/fun/horseshoes
 	name = "Horseshoes"
 	item_path = /obj/item/clothing/shoes/horseshoe
+
+/datum/loadout_item/shoes/fun/romans
+	name = "Roman Sandals"
+	item_path = /obj/item/clothing/shoes/roman
+
+/datum/loadout_item/shoes/fun/saints
+	name = "Saints Sneakers"
+	item_path = /obj/item/clothing/shoes/saints
+
+/datum/loadout_item/shoes/fun/jackfrost
+	name = "Frosty Boots"
+	item_path = /obj/item/clothing/shoes/jackbros
 
 /*
 *	SEASONAL
