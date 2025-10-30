@@ -36,6 +36,11 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/iron/vaporwave,
 /area/misc/condo)
+"br" = (
+/obj/structure/falsewall,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/misc/condo)
 "bV" = (
 /obj/effect/turf_decal/siding/wideplating{
 	dir = 1
@@ -51,7 +56,7 @@
 /turf/open/floor/iron/white,
 /area/misc/condo)
 "ca" = (
-/obj/structure/table/reinforced,
+/obj/structure/platform/iron,
 /turf/open/floor/iron/dark,
 /area/misc/condo)
 "cm" = (
@@ -71,6 +76,11 @@
 	},
 /obj/structure/sign/poster/contraband/power/directional/north,
 /turf/open/floor/iron/dark,
+/area/misc/condo)
+"dQ" = (
+/obj/structure/falsewall,
+/obj/effect/mapping_helpers/broken_floor,
+/turf/open/floor/plating,
 /area/misc/condo)
 "dT" = (
 /obj/item/trash/popcorn/caramel,
@@ -362,6 +372,12 @@
 /obj/structure/sign/poster/contraband/ambrosia_vulgaris/directional/south,
 /turf/open/floor/iron/dark,
 /area/misc/condo)
+"oH" = (
+/obj/machinery/vending/boozeomat/cafe{
+	shut_up = 1
+	},
+/turf/open/floor/iron/vaporwave,
+/area/misc/condo)
 "oT" = (
 /obj/structure/urinal/directional/west,
 /obj/effect/turf_decal/tile/green/half/contrasted{
@@ -395,7 +411,7 @@
 /area/misc/condo)
 "pn" = (
 /obj/structure/table/reinforced,
-/obj/machinery/chem_dispenser/drinks/beer,
+/obj/machinery/chem_dispenser/drinks/beer/fullupgrade,
 /turf/open/floor/iron/vaporwave,
 /area/misc/condo)
 "pF" = (
@@ -580,6 +596,9 @@
 /turf/open/floor/iron/dark,
 /area/misc/condo)
 "ur" = (
+/obj/effect/turf_decal/skyrat_decals/misc/handicapped{
+	dir = 6
+	},
 /turf/open/floor/iron/dark/textured_large,
 /area/misc/condo)
 "uQ" = (
@@ -703,7 +722,7 @@
 /turf/open/floor/iron/dark,
 /area/misc/condo)
 "xE" = (
-/obj/structure/table/reinforced,
+/obj/structure/platform/iron,
 /obj/structure/sign/poster/greenscreen/directional/north,
 /turf/open/floor/carpet/black,
 /area/misc/condo)
@@ -737,6 +756,15 @@
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/mapping_helpers/broken_floor,
 /turf/open/floor/plating,
+/area/misc/condo)
+"yI" = (
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 1
+	},
+/obj/machinery/vending/dinnerware{
+	shut_up = 1
+	},
+/turf/open/floor/iron/dark/side,
 /area/misc/condo)
 "yK" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1139,8 +1167,10 @@
 /area/misc/condo)
 "KN" = (
 /obj/structure/table/reinforced,
-/obj/machinery/chem_dispenser/drinks,
 /obj/structure/sign/poster/contraband/andromeda_bitters/directional/north,
+/obj/machinery/chem_dispenser/drinks/fullupgrade{
+	density = 0
+	},
 /turf/open/floor/iron/vaporwave,
 /area/misc/condo)
 "KQ" = (
@@ -1161,6 +1191,7 @@
 	pixel_y = 9;
 	pixel_x = 8
 	},
+/obj/effect/turf_decal/skyrat_decals/misc/handicapped,
 /turf/open/floor/iron/dark/textured_large,
 /area/misc/condo)
 "LQ" = (
@@ -1171,7 +1202,7 @@
 /turf/open/floor/iron/large,
 /area/misc/condo)
 "Mq" = (
-/obj/structure/table/reinforced,
+/obj/structure/platform/iron,
 /obj/structure/sign/poster/greenscreen/directional/north,
 /obj/effect/light_emitter/fake_outdoors,
 /turf/open/floor/carpet/black,
@@ -1184,6 +1215,7 @@
 /area/misc/condo)
 "MN" = (
 /obj/machinery/computer/security/telescreen/entertainment/directional/north,
+/obj/machinery/vending/wardrobe/chef_wardrobe/ghost_cafe,
 /turf/open/floor/iron/large,
 /area/misc/condo)
 "Ni" = (
@@ -1238,6 +1270,13 @@
 "OV" = (
 /obj/structure/rack/shelf,
 /turf/open/floor/iron/large,
+/area/misc/condo)
+"OY" = (
+/obj/machinery/light/dim/directional/north,
+/obj/machinery/vending/wardrobe/bar_wardrobe/ghost_cafe{
+	shut_up = 1
+	},
+/turf/open/floor/iron/vaporwave,
 /area/misc/condo)
 "Pn" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark{
@@ -1503,7 +1542,7 @@
 /turf/open/floor/iron/large,
 /area/misc/condo)
 "XJ" = (
-/obj/structure/table/reinforced,
+/obj/structure/platform/iron,
 /turf/open/floor/carpet/black,
 /area/misc/condo)
 "Ys" = (
@@ -1922,7 +1961,7 @@ Jd
 mW
 ba
 NR
-jE
+OY
 ep
 RE
 fn
@@ -1940,7 +1979,7 @@ XJ
 SR
 SR
 SR
-SM
+yI
 mW
 Cn
 mW
@@ -1954,7 +1993,7 @@ Jd
 mW
 ba
 NR
-gY
+oH
 vj
 gY
 Ys
@@ -2627,9 +2666,9 @@ SD
 SD
 NR
 ys
-NR
+dQ
 Ww
-NR
+br
 Ww
 NR
 id

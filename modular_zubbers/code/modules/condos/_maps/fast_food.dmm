@@ -94,7 +94,12 @@
 /obj/structure/table/reinforced,
 /obj/item/kitchen/rollingpin,
 /obj/item/reagent_containers/cup/bowl,
+/obj/item/book/granter/crafting_recipe/cooking_sweets_101,
 /turf/open/floor/iron/cafeteria,
+/area/misc/condo)
+"fl" = (
+/obj/structure/falsewall,
+/turf/open/floor/plating,
 /area/misc/condo)
 "fr" = (
 /obj/machinery/oven/range,
@@ -436,6 +441,15 @@
 	},
 /turf/open/floor/plating,
 /area/misc/condo)
+"uU" = (
+/obj/structure/statue/bananium/clown{
+	icon = 'icons/mob/rideables/vehicles.dmi';
+	icon_state = "clowncar";
+	name = "locked clown car";
+	desc = "Peering in through the windows you can see they're having a grand, graphically sexual time in there. Best leave them alone. They're armed."
+	},
+/turf/open/floor/asphalt,
+/area/misc/condo)
 "uZ" = (
 /obj/structure/toilet{
 	dir = 1
@@ -450,6 +464,10 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
 	},
+/turf/open/floor/iron/cafeteria,
+/area/misc/condo)
+"wa" = (
+/obj/machinery/vending/wardrobe/chef_wardrobe/ghost_cafe,
 /turf/open/floor/iron/cafeteria,
 /area/misc/condo)
 "wp" = (
@@ -877,6 +895,12 @@
 	},
 /turf/open/floor/iron/kitchen,
 /area/misc/condo)
+"Sf" = (
+/obj/machinery/vending/dinnerware{
+	shut_up = 1
+	},
+/turf/open/floor/iron/cafeteria,
+/area/misc/condo)
 "So" = (
 /obj/structure/chair/plastic{
 	dir = 8
@@ -1051,7 +1075,7 @@ qR
 Qf
 jK
 mY
-mY
+Sf
 CK
 mY
 uj
@@ -1129,7 +1153,7 @@ mY
 mY
 BL
 er
-mY
+wa
 mY
 mY
 Qf
@@ -1252,7 +1276,7 @@ Qf
 "}
 (8,1,1) = {"
 fa
-Nk
+uU
 pM
 Nk
 Nk
@@ -1499,7 +1523,7 @@ VL
 Qf
 kB
 Qf
-Qf
+fl
 Qf
 "}
 (15,1,1) = {"
@@ -1571,7 +1595,7 @@ tO
 Qf
 mX
 Qf
-Qf
+fl
 Qf
 "}
 (17,1,1) = {"
