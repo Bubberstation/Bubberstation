@@ -85,7 +85,7 @@
 /datum/supply_pack/goody/classiccarpet
 	name = "CARPET: Classic Red and Black Goodie Pack"
 	desc = "Decorate in style, contains 50 tiles of Classic Red and Black carpeting."
-	cost = PAYCHECK_CREW * 4
+	cost = PAYCHECK_CREW * 6
 	contains = list(
 		/obj/item/stack/tile/carpet/fifty,
 		/obj/item/stack/tile/carpet/black/fifty,
@@ -94,7 +94,7 @@
 /datum/supply_pack/goody/royalcarpet
 	name = "CARPET: Royal Black and Blue Goodie Pack"
 	desc = "Decorate in style, contains 50 tiles of Royal Black and Royal Blue carpeting."
-	cost = PAYCHECK_CREW * 4
+	cost = PAYCHECK_CREW * 6
 	contains = list(
 		/obj/item/stack/tile/carpet/royalblack/fifty,
 		/obj/item/stack/tile/carpet/royalblue/fifty,
@@ -103,7 +103,7 @@
 /datum/supply_pack/goody/rgbcarpet
 	name = "CARPET: Red, Green, and Blue Goodie Pack"
 	desc = "Decorate in style, contains 50 tiles of red, green, and blue carpet."
-	cost = PAYCHECK_CREW * 6
+	cost = PAYCHECK_CREW * 8.5
 	contains = list(
 		/obj/item/stack/tile/carpet/red/fifty,
 		/obj/item/stack/tile/carpet/green/fifty,
@@ -113,7 +113,7 @@
 /datum/supply_pack/goody/copcarpet
 	name = "CARPET: Cyan, Orange, and Purple Goodie Pack"
 	desc = "Decorate in style, contains 50 tiles of Cyan, Orange, and Purple carpet."
-	cost = PAYCHECK_CREW * 6
+	cost = PAYCHECK_CREW * 8.5
 	contains = list(
 		/obj/item/stack/tile/carpet/cyan/fifty,
 		/obj/item/stack/tile/carpet/orange/fifty,
@@ -121,9 +121,9 @@
 	)
 
 /datum/supply_pack/goody/rgbneoncarpet
-	name = "NEON CARPET: Red, Green, Blue Goodie Pack"
+	name = "NEON CARPET: Red, Green, and Blue Goodie Pack"
 	desc = "Decorate in style, contains 60 tiles of carpeting in three styles. Red, Green, and Blue."
-	cost = PAYCHECK_CREW * 6
+	cost = PAYCHECK_CREW * 8.5
 	contains = list(
 		/obj/item/stack/tile/carpet/neon/simple/red/sixty,
 		/obj/item/stack/tile/carpet/neon/simple/green/sixty,
@@ -133,31 +133,38 @@
 /datum/supply_pack/goody/bwneoncarpet
 	name = "NEON CARPET: Black and White Goodie Pack"
 	desc = "Decorate in style, contains 60 tiles of carpeting in two styles. White and Black."
-	cost = PAYCHECK_CREW * 4
+	cost = PAYCHECK_CREW * 6
 	contains = list(
 		/obj/item/stack/tile/carpet/neon/simple/white/sixty,
 		/obj/item/stack/tile/carpet/neon/simple/black/sixty,
 	)
 
-/datum/supply_pack/goody/coppcarpet
-	name = "NEON CARPET: Cyan, Orange, Purple, and Pink Goodie Pack"
-	desc = "Decorate in style, contains 60 tiles of carpeting in four styles. Cyan, Orange, Purple, and Pink."
-	cost = PAYCHECK_CREW * 8
+/datum/supply_pack/goody/pvneoncarpet
+	name = "NEON CARPET: Pink and Violet Goodie Pack"
+	desc = "Decorate in style, contains 60 tiles of carpeting in two styles. Pink and Violet"
+	cost = PAYCHECK_CREW * 6
+	contains = list(
+		/obj/item/stack/tile/carpet/neon/simple/pink/sixty,
+		/obj/item/stack/tile/carpet/neon/simple/violet/sixty,
+	)
+
+/datum/supply_pack/goody/copneoncarpet
+	name = "NEON CARPET: Cyan, Orange, and Purple Goodie Pack"
+	desc = "Decorate in style, contains 60 tiles of carpeting in three styles. Cyan, Orange, and Purple."
+	cost = PAYCHECK_CREW * 8.5
 	contains = list(
 		/obj/item/stack/tile/carpet/neon/simple/cyan/sixty,
 		/obj/item/stack/tile/carpet/neon/simple/orange/sixty,
 		/obj/item/stack/tile/carpet/neon/simple/purple/sixty,
-		/obj/item/stack/tile/carpet/neon/simple/pink/sixty,
 	)
 
-/datum/supply_pack/goody/tylvcarpet
-	name = "NEON CARPET: Lime, Yellow, Teal, and Violet Goodie Pack"
-	desc = "Decorate in style, contains 60 tiles of carpeting in four styles. Yellow, Lime, Violet, and Teal."
-	cost = PAYCHECK_CREW * 8
+/datum/supply_pack/goody/yltneoncarpet
+	name = "NEON CARPET: Yellow, Lime, and Teal Goodie Pack"
+	desc = "Decorate in style, contains 60 tiles of carpeting in three styles. Yellow, Lime, and Teal."
+	cost = PAYCHECK_CREW * 8.5
 	contains = list(
 		/obj/item/stack/tile/carpet/neon/simple/yellow/sixty,
 		/obj/item/stack/tile/carpet/neon/simple/lime/sixty,
-		/obj/item/stack/tile/carpet/neon/simple/violet/sixty,
 		/obj/item/stack/tile/carpet/neon/simple/teal/sixty,
 	)
 
