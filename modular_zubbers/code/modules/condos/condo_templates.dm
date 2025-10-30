@@ -281,7 +281,7 @@ Due to some fuckery with how these templates work; the bottom left turf of your 
 	landing_zone_y_offset = 9
 
 /datum/map_template/condo/winterwoods
-	name = "Condo - Snowy Wildernexx"
-	mappath = "modular_zubbers/code/modules/condos/_maps/synopcenter.dmm"
+	name = "Condo - Snowy Wilderness"
+	mappath = "modular_zubbers/code/modules/condos/_maps/winterwoods.dmm"
 	landing_zone_x_offset = 3
 	landing_zone_y_offset = 6
