@@ -117,7 +117,7 @@ Due to some fuckery with how these templates work; the bottom left turf of your 
 	landing_zone_y_offset = 2
 
 /datum/map_template/condo/xeno_resin
-	name = "Condo - XenoResin"
+	name = "Condo - Xenomorph Hive"
 	mappath = "modular_zubbers/code/modules/condos/_maps/xeno_resin.dmm"
 	landing_zone_x_offset = 2
 	landing_zone_y_offset = 1
@@ -175,3 +175,113 @@ Due to some fuckery with how these templates work; the bottom left turf of your 
 	mappath = "modular_zubbers/code/modules/condos/_maps/deepspace_pod.dmm"
 	landing_zone_x_offset = 1
 	landing_zone_y_offset = 2
+
+// Bubber Maps start here
+
+/datum/map_template/condo/corpo
+	name = "Condo - Corporate Office (Nanotrasen)"
+	mappath = "modular_zubbers/code/modules/condos/_maps/corporateoffice.dmm"
+	landing_zone_x_offset = 3
+	landing_zone_y_offset = 9
+
+/datum/map_template/condo/corposyndi
+	name = "Condo - Corporate Office (Syndicate)"
+	mappath = "modular_zubbers/code/modules/condos/_maps/syndieoffice.dmm"
+	landing_zone_x_offset = 3
+	landing_zone_y_offset = 9
+
+/datum/map_template/condo/cultcave
+	name = "Condo - Cult Cave"
+	mappath = "modular_zubbers/code/modules/condos/_maps/cultcave.dmm"
+	landing_zone_x_offset = 3
+	landing_zone_y_offset = 13
+
+/datum/map_template/condo/engineering
+	name = "Condo - Engineering Department"
+	mappath = "modular_zubbers/code/modules/condos/_maps/engineering.dmm"
+	landing_zone_x_offset = 3
+	landing_zone_y_offset = 10
+
+/datum/map_template/condo/eva
+	name = "Condo - Space Walk"
+	mappath = "modular_zubbers/code/modules/condos/_maps/eva.dmm"
+	landing_zone_x_offset = 2
+	landing_zone_y_offset = 9
+
+/datum/map_template/condo/foxbar
+	name = "Condo - Foxy Boxes"
+	mappath = "modular_zubbers/code/modules/condos/_maps/foxbar.dmm"
+	landing_zone_x_offset = 2
+	landing_zone_y_offset = 8
+
+/datum/map_template/condo/grotto
+	name = "Condo - Grotto (Day)"
+	mappath = "modular_zubbers/code/modules/condos/_maps/grotto.dmm"
+	landing_zone_x_offset = 2
+	landing_zone_y_offset = 9
+
+/datum/map_template/condo/grottoalt
+	name = "Condo - Grotto (Night)"
+	mappath = "modular_zubbers/code/modules/condos/_maps/grottoalt.dmm"
+	landing_zone_x_offset = 2
+	landing_zone_y_offset = 9
+
+/datum/map_template/condo/nightclub //You gotta come to my cosuin's club, it's called Stepford
+	name = "Condo - Cousin's Club"
+	mappath = "modular_zubbers/code/modules/condos/_maps/nightclub.dmm"
+	landing_zone_x_offset = 2
+	landing_zone_y_offset = 9
+
+/datum/map_template/condo/oasis
+	name = "Condo - Oasis (Day)"
+	mappath = "modular_zubbers/code/modules/condos/_maps/oasis.dmm"
+	landing_zone_x_offset = 2
+	landing_zone_y_offset = 8
+
+/datum/map_template/condo/oasisalt
+	name = "Condo - Oasis (Night)"
+	mappath = "modular_zubbers/code/modules/condos/_maps/oasisalt.dmm"
+	landing_zone_x_offset = 2
+	landing_zone_y_offset = 8
+
+/datum/map_template/condo/poole
+	name = "Condo - Hotel Pool"
+	mappath = "modular_zubbers/code/modules/condos/_maps/pool.dmm"
+	landing_zone_x_offset = 2
+	landing_zone_y_offset = 9
+
+/datum/map_template/condo/bubberlibrary
+	name = "Condo - Private Library"
+	mappath = "modular_zubbers/code/modules/condos/_maps/library.dmm"
+	landing_zone_x_offset = 2
+	landing_zone_y_offset = 9
+
+/datum/map_template/condo/prison
+	name = "Condo - Brixton Prison"
+	mappath = "modular_zubbers/code/modules/condos/_maps/prisoninfdorm.dmm"
+	landing_zone_x_offset = 2
+	landing_zone_y_offset = 2
+
+/datum/map_template/condo/hospital
+	name = "Condo - Hospital Ward"
+	mappath = "modular_zubbers/code/modules/condos/_maps/recovery.dmm"
+	landing_zone_x_offset = 2
+	landing_zone_y_offset = 8
+
+/datum/map_template/condo/stationside
+	name = "Condo - Station Slice"
+	mappath = "modular_zubbers/code/modules/condos/_maps/stationside.dmm"
+	landing_zone_x_offset = 3
+	landing_zone_y_offset = 3
+
+/datum/map_template/condo/synopcenter
+	name = "Condo - Syndicate Operations Hub"
+	mappath = "modular_zubbers/code/modules/condos/_maps/synopcenter.dmm"
+	landing_zone_x_offset = 2
+	landing_zone_y_offset = 9
+
+/datum/map_template/condo/winterwoods
+	name = "Condo - Snowy Wildernexx"
+	mappath = "modular_zubbers/code/modules/condos/_maps/synopcenter.dmm"
+	landing_zone_x_offset = 3
+	landing_zone_y_offset = 6
