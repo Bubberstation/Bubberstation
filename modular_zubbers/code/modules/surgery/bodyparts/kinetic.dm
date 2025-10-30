@@ -60,14 +60,14 @@
 	unarmed_effectiveness = 0
 	max_damage = LIMB_MAX_HP_PROSTHESIS
 	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_KINETIC
-	bodypart_traits = list(TRAIT_ANALGESIA)
+	bodypart_traits = list(TRAIT_ANALGESIA, TRAIT_EASYDISMEMBER)
 	disabling_threshold_percentage = 1
 	bodypart_flags = BODYPART_UNHUSKABLE
 	biological_state = BIO_INORGANIC
 
 /obj/item/bodypart/leg/left/kinetic/Initialize(mapload)
 	. = ..()
-	add_traits(list(TRAIT_EASY_ATTACH, TRAIT_EASYDISMEMBER), INNATE_TRAIT)
+	ADD_TRAIT(src, TRAIT_EASY_ATTACH, INNATE_TRAIT)
 
 /obj/item/bodypart/leg/right/kinetic
 	name = "right kinetic prosthetic leg"
