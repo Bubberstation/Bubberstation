@@ -1,3 +1,7 @@
+/obj/item/organ/ears
+	mutantpart_key = "ears"
+	mutantpart_info = list(MUTANT_INDEX_NAME = "Cat", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF"))
+
 /obj/item/organ/ears/mutant
 	name = "fluffy ears"
 	desc = "Wait, there's two pairs of these?"

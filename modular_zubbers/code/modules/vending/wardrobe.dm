@@ -253,6 +253,7 @@
 		/obj/item/clothing/neck/tie/bunnytie/botanist = 2,
 		/obj/item/clothing/suit/jacket/tailcoat/botanist = 2,
 		/obj/item/clothing/under/rank/civilian/hydroponics/bunnysuit = 2,
+		/obj/item/clothing/suit/toggle/jacket/zubber/bomber/hydro = 2,
 	)
 	zubbers_contraband = list(
 		/obj/item/clothing/under/misc/skyrat/gear_harness/adam = 2,
@@ -291,6 +292,9 @@
 		/obj/item/clothing/head/playbunnyears/syndicate = 3,
 		/obj/item/clothing/neck/tie/bunnytie/syndicate = 3,
 		/obj/item/clothing/suit/jacket/tailcoat/syndicate = 3,
+		/obj/item/clothing/under/syndicate/boss = 1,
+		/obj/item/clothing/gloves/combat/boss = 1,
+		/obj/item/clothing/shoes/combat/boss = 1,
 		/obj/item/clothing/suit/toggle/jacket/zubber/bomber/syndicate = 3,
 		/obj/item/clothing/under/syndicate/syndibunny = 3,
 	)

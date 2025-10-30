@@ -643,6 +643,7 @@
 		/obj/item/storage/pill_bottle,
 		/obj/item/storage/bag/chemistry,
 		/obj/item/storage/bag/bio,
+		/obj/item/crowbar/power/paramedic,
 	)
 	variants = list(
 		"medical" = list(
