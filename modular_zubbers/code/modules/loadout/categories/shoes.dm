@@ -216,10 +216,6 @@
 	group = "Formal Shoes"
 	abstract_type = /datum/loadout_item/shoes/formal
 
-/datum/loadout_item/shoes/formal/laceup
-	name = "Laceup Shoes"
-	item_path = /obj/item/clothing/shoes/laceup
-
 /datum/loadout_item/shoes/formal/laceups/recolorable
 	name = "Laceup Shoes (Recolorable)"
 	item_path = /obj/item/clothing/shoes/colorable_laceups
