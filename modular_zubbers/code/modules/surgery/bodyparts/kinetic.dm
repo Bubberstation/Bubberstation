@@ -13,7 +13,7 @@
 	unarmed_effectiveness = 0
 	max_damage = LIMB_MAX_HP_PROSTHESIS
 	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_KINETIC
-	bodypart_traits = list(TRAIT_CHUNKYFINGERS, TRAIT_ANALGESIA, TRAIT_EASYDISMEMBER)
+	bodypart_traits = list(TRAIT_CHUNKYFINGERS, TRAIT_EASYDISMEMBER)
 	disabling_threshold_percentage = 1
 	bodypart_flags = BODYPART_UNHUSKABLE
 	biological_state = BIO_INORGANIC
@@ -37,7 +37,7 @@
 	unarmed_effectiveness = 0
 	max_damage = LIMB_MAX_HP_PROSTHESIS
 	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_KINETIC
-	bodypart_traits = list(TRAIT_CHUNKYFINGERS, TRAIT_ANALGESIA, TRAIT_EASYDISMEMBER)
+	bodypart_traits = list(TRAIT_CHUNKYFINGERS, TRAIT_EASYDISMEMBER)
 	disabling_threshold_percentage = 1
 	bodypart_flags = BODYPART_UNHUSKABLE
 	biological_state = BIO_INORGANIC
@@ -60,7 +60,7 @@
 	unarmed_effectiveness = 0
 	max_damage = LIMB_MAX_HP_PROSTHESIS
 	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_KINETIC
-	bodypart_traits = list(TRAIT_ANALGESIA, TRAIT_EASYDISMEMBER)
+	bodypart_traits = list(TRAIT_EASYDISMEMBER)
 	disabling_threshold_percentage = 1
 	bodypart_flags = BODYPART_UNHUSKABLE
 	biological_state = BIO_INORGANIC
@@ -83,7 +83,7 @@
 	unarmed_effectiveness = 0
 	max_damage = LIMB_MAX_HP_PROSTHESIS
 	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_KINETIC
-	bodypart_traits = list(TRAIT_ANALGESIA, TRAIT_EASYDISMEMBER)
+	bodypart_traits = list(TRAIT_EASYDISMEMBER)
 	disabling_threshold_percentage = 1
 	bodypart_flags = BODYPART_UNHUSKABLE
 	biological_state = BIO_INORGANIC
