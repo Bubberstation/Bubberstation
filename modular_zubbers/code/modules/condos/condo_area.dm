@@ -17,7 +17,7 @@
 	if(ismob(gone))
 		var/condo_still_rockin = FALSE
 		var/list/living_mobs = get_all_contents_type(/mob/living) //Got to catch anyone hiding in anything
-		for(var/mob/living/living_mob in living_mobs) //Check to see if theres any living mobs with a mind left.
+		for(var/mob/living/living_mob as anything in living_mobs) //Check to see if theres any living mobs with a mind left.
 			if(living_mob.mind)
 				condo_still_rockin = TRUE
 				break
@@ -27,7 +27,7 @@
 		else
 			burn_the_sheets()
 
-/// Still somebody in the condo; just leave peacibly.
+/// Still somebody in the condo; just leave peacefully
 /area/misc/condo/proc/dont_come_knockin(atom/movable/gone)
 	log_game("[gone] has left condo [condo_number]")
 
