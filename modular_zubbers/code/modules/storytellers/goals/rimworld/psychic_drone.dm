@@ -1,13 +1,12 @@
-/datum/storyteller_goal/execute_psychic_drone
+/datum/round_event_control/execute_psychic_drone
 	id = "psychic_drone"
 	name = "Execute the Psychic Drone"
-	desc = "Deploy a psychic drone to broadcast disruptive psionic noise across the station."
-	category = STORY_GOAL_BAD
+	description = "Deploy a psychic drone to broadcast disruptive psionic noise across the station."
+	story_category = STORY_GOAL_BAD
 	tags = STORY_TAG_ESCALATION | STORY_TAG_AFFECTS_CREW_MIND
-	path_ids = list("mass_hysteria", "psychic_breakdown")
-	event_path = /datum/round_event/psychic_drone
+	typepath = /datum/round_event/psychic_drone
 
-	required_population = 5
+	min_players = 5
 	required_round_progress = STORY_ROUND_PROGRESSION_EARLY
 	requierd_threat_level = STORY_GOAL_THREAT_ELEVATED
 

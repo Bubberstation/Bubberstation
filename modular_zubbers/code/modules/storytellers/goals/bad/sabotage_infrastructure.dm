@@ -1,13 +1,12 @@
-/datum/storyteller_goal/sabotage_infrastructure
+/datum/round_event_control/sabotage_infrastructure
 	id = "sabotage_infrastructure"
 	name = "Sabotage Infrastructure"
-	desc = "Sabotage the station machinery."
-	category = STORY_GOAL_BAD
+	description = "Sabotage the station machinery."
+	story_category = STORY_GOAL_BAD
 	tags = STORY_TAG_ESCALATION | STORY_TAG_WIDE_IMPACT | STORY_TAG_TARGETS_SYSTEMS
-	path_ids = list("power_outage", "fire_outbreak")
-	event_path = /datum/round_event/sabotage_machinery
+	typepath =  /datum/round_event/sabotage_machinery
 
-	required_population = 4
+	min_players = 4
 	required_round_progress = STORY_ROUND_PROGRESSION_EARLY
 
 

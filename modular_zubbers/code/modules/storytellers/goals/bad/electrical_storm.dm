@@ -1,11 +1,10 @@
-/datum/storyteller_goal/execute_event/electrical_storm
+/datum/round_event_control/electrical_storm
 	id = "electrical_storm"
 	name = "Electrical Storm"
-	desc = "Execite electrical storms to disable station lighting and machinery."
-	category = STORY_GOAL_BAD
+	description = "Execite electrical storms to disable station lighting and machinery."
+	story_category = STORY_GOAL_BAD
 	tags = STORY_TAG_WIDE_IMPACT | STORY_TAG_TARGETS_SYSTEMS
-	path_ids = list()
-	event_path = /datum/round_event/electrical_storm
+	typepath = /datum/round_event/electrical_storm
 
 
 /datum/round_event/electrical_storm

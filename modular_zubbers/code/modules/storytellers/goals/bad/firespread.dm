@@ -1,16 +1,15 @@
 #define BB_ABILITY_RING_OF_FIRE "BB_ability_ring_of_fire"
 
-/datum/storyteller_goal/execute_event/fire_spread
+/datum/round_event_control/fire_spread
 	id = "fire_spread"
 	name = "Fire Spread"
-	desc = "A fire has broken out and is spreading rapidly through the station.\
+	description = "A fire has broken out and is spreading rapidly through the station.\
 			This event can cause significant damage to station infrastructure and pose a threat to crew safety if not contained quickly."
-	children = list()
-	category = STORY_GOAL_BAD
+	story_category = STORY_GOAL_BAD
 	tags = STORY_TAG_ESCALATION | STORY_TAG_WIDE_IMPACT | STORY_TAG_AFFECTS_ENVIRONMENT | STORY_TAG_ENTITIES
-	event_path = /datum/round_event/fire_spread
+	typepath = /datum/round_event/fire_spread
 
-	required_population = 10
+	min_players = 10
 	required_round_progress = STORY_ROUND_PROGRESSION_EARLY
 	requierd_threat_level = STORY_GOAL_THREAT_BASIC
 

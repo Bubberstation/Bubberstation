@@ -1,23 +1,24 @@
 
-/datum/storyteller_goal/perform_raid
+/datum/round_event_control/perform_raid
 	id = "raid"
 	name = "Perform Raid"
-	desc = "Sends a coordinated raid from a hostile faction on the station"
-	category = STORY_GOAL_BAD | STORY_GOAL_GLOBAL
+	description = "Sends a coordinated raid from a hostile faction on the station"
+	story_category = STORY_GOAL_BAD | STORY_GOAL_GLOBAL
 	tags = STORY_TAG_ESCALATION | STORY_TAG_ENTITIES | STORY_TAG_AFFECTS_CREW_HEALTH | STORY_TAG_AFFECTS_INFRASTRUCTURE
 
-	required_population = 15
+	min_players = 15
 	requierd_threat_level = STORY_GOAL_THREAT_ELEVATED
 	required_round_progress = STORY_ROUND_PROGRESSION_EARLY
-	base_weight = STORY_GOAL_BASE_WEIGHT * 1.2
+	story_weight = STORY_GOAL_BASE_WEIGHT * 1.2
 
-	event_path = /datum/round_event/storyteller_raid
+	typepath = /datum/round_event/storyteller_raid
 
-/datum/storyteller_goal/perform_raid/is_available(list/vault, datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
+
+/datum/round_event_control/perform_raid/is_avaible(datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
 	. = ..()
 	if(!.)
 		return FALSE
-	if(vault[STORY_VAULT_SECURITY_COUNT < 1] && !(storyteller.get_effective_threat() > STORY_GOAL_THREAT_HIGH))
+	if(inputs.vault[STORY_VAULT_SECURITY_COUNT < 1] && !(storyteller.get_effective_threat() > STORY_GOAL_THREAT_HIGH))
 		. = FALSE
 	return .
 

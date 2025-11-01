@@ -1,13 +1,12 @@
-/datum/storyteller_goal/execute_event/brand_intelligence
+/datum/round_event_control/brand_intelligence
 	id = "brand_intelligence"
 	name = "Brand Intelligence"
-	desc = "Cause vending machines to gain aggressive intelligence and spread chaos."
-	children = list()
-	category = STORY_GOAL_BAD
+	description = "Cause vending machines to gain aggressive intelligence and spread chaos."
+	story_category = STORY_GOAL_BAD
 	tags = STORY_TAG_ESCALATION | STORY_TAG_WIDE_IMPACT | STORY_TAG_ENTITIES | STORY_TAG_AFFECTS_WHOLE_STATION
-	event_path = /datum/round_event/storyteller_brand_intelligence
+	typepath = /datum/round_event/storyteller_brand_intelligence
 
-	required_population = 5
+	min_players = 5
 	requierd_threat_level = STORY_GOAL_THREAT_ELEVATED
 
 /datum/round_event/storyteller_brand_intelligence

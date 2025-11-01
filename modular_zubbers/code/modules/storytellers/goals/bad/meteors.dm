@@ -22,18 +22,18 @@ GLOBAL_LIST_INIT(meteors_cost, list(
 ))
 
 
-/datum/storyteller_goal/spawn_meteors
+/datum/round_event_control/meteor_wave
 	id = "storyteller_meteors"
 	name = "Spawn meteors"
-	desc = "Spawn meteors heavy based on storyteller threat level."
-	category = STORY_GOAL_BAD | STORY_GOAL_GLOBAL
+	description = "Spawn meteors heavy based on storyteller threat level."
+	story_category = STORY_GOAL_BAD | STORY_GOAL_GLOBAL
 	tags = STORY_TAG_ESCALATION | STORY_TAG_AFFECTS_WHOLE_STATION | STORY_TAG_TARGETS_SYSTEMS
-	event_path = /datum/round_event/storyteller_meteors
+	typepath = /datum/round_event/storyteller_meteors
 
-	required_population = 15
+	min_players = 15
 	required_round_progress = STORY_ROUND_PROGRESSION_MID
 
-/datum/storyteller_goal/spawn_meteors/is_available(list/vault, datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
+/datum/round_event_control/meteor_wave/is_avaible(datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
 	. = ..()
 	if(SSmapping.is_planetary())
 		. = FALSE

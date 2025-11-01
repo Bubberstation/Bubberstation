@@ -39,13 +39,13 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 	// Available goals from the subsystem registry, filtered by availability
 	var/list/goals = list()
 	if(ctl)
-		for(var/id_key in SSstorytellers.goals_by_id)
-			var/datum/storyteller_goal/G = SSstorytellers.goals_by_id[id_key]
-			if(G.is_available(ctl.inputs.vault, ctl.inputs, ctl))
+		for(var/id_key in SSstorytellers.events_by_id)
+			var/datum/round_event_control/evt = SSstorytellers.events_by_id[id_key]
+			if(evt.is_avaible(ctl.inputs, ctl))
 				goals += list(list(
-					"id" = G.id,
-					"name" = G.name || G.id,
-					"weight" = G.get_weight(ctl.inputs.vault, ctl.inputs, ctl),
+					"id" = evt.id,
+					"name" = evt.name || evt.id,
+					"weight" = evt.get_story_weight(ctl.inputs, ctl),
 				))
 	data["available_goals"] = goals
 
@@ -89,23 +89,23 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 			"pace" = ctl.mood.pace,
 			"threat" = ctl.mood.get_threat_multiplier(),
 		)
-	var/list/upcoming = ctl.planner.get_upcoming_goals(10)
+	var/list/upcoming = ctl.planner.get_upcoming_events(10)
 	data["upcoming_goals"] = list()
 	for(var/offset in upcoming)
 		var/list/entry = ctl.planner.get_entry_at(offset)
-		if(!entry || !entry["goal"])
+		if(!entry || !entry["event"])
 			continue
-		var/datum/storyteller_goal/goal = entry["goal"]
-		if(!goal)
+		var/datum/round_event_control/evt = entry["event"]
+		if(!evt)
 			continue
 		data["upcoming_goals"] += list(list(
-			"id" = goal.id,
-			"name" = goal.name || goal.id,
+			"id" = evt.id,
+			"name" = evt.name || evt.id,
 			"fire_time" = entry["fire_time"],
 			"category" = entry["category"],
 			"status" = entry["status"],
-			"weight" = goal.get_weight(ctl.inputs.vault, ctl.inputs, ctl),
-			"progress" = goal.get_progress(ctl.inputs.vault, ctl.inputs, ctl),
+			"weight" = evt.get_story_weight(ctl.inputs, ctl),
+			"progress" = 1, // round_event_control doesn't have get_progress, return 1 as default
 		))
 	data["effective_threat_level"] = ctl.get_effective_threat()
 	data["target_tension"] = ctl.target_tension
@@ -146,13 +146,13 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 			"name" = initial(M.name),
 		))
 	data["available_goals"] = list()
-	for(var/id in SSstorytellers.goals_by_id)
-		var/datum/storyteller_goal/G = SSstorytellers.goals_by_id[id]
-		if(!G)
+	for(var/id in SSstorytellers.events_by_id)
+		var/datum/round_event_control/evt = SSstorytellers.events_by_id[id]
+		if(!evt)
 			continue
 		data["available_goals"] += list(list(
-			"id" = G.id,
-			"name" = G.name || G.id,
+			"id" = evt.id,
+			"name" = evt.name || evt.id,
 		))
 	return data
 
@@ -179,7 +179,7 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 			if(entry)
 				var/fire_time = entry["fire_time"]
 				var/new_fire_time = entry["fire_time"] = world.time + 1 SECONDS
-				ctl.planner.reschedule_goal(fire_time, new_fire_time)
+				ctl.planner.reschedule_event(fire_time, new_fire_time)
 			return TRUE
 		if("reschedule_chain")
 			ctl.planner.recalculate_plan(ctl, ctl.inputs, ctl.balancer.make_snapshot(ctl.inputs), TRUE)
@@ -243,23 +243,23 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 			var/id = params["id"]
 			if(!id)
 				return TRUE
-			var/datum/storyteller_goal/G = SSstorytellers.goals_by_id[id]
-			if(istype(G))
-				var/new_goal = new G.type
+			var/datum/round_event_control/evt = SSstorytellers.events_by_id[id]
+			if(istype(evt))
+				var/datum/round_event_control/new_event_control = new evt.type
 				var/fire_offset = ctl.planner.next_offest()
-				ctl.planner.try_plan_goal(new_goal, fire_offset)
+				ctl.planner.try_plan_event(new_event_control, fire_offset)
 			return TRUE
 		if("trigger_goal")
 			var/fire_offset = params["offset"]
 			if(!fire_offset)
 				return TRUE
-			ctl.planner.reschedule_goal(fire_offset, world.time + 1 SECONDS)
+			ctl.planner.reschedule_event(fire_offset, world.time + 1 SECONDS)
 			return TRUE
 		if("remove_goal")
 			var/fire_offset = params["offset"]
 			if(!fire_offset)
 				return TRUE
-			ctl.planner.cancel_goal(fire_offset)
+			ctl.planner.cancel_event(fire_offset)
 			return TRUE
 		if("toggle_debug")
 			SSstorytellers.hard_debug = !SSstorytellers.hard_debug

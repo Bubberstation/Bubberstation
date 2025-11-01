@@ -30,11 +30,11 @@ SUBSYSTEM_DEF(storytellers)
 	// The current station value
 	var/station_value = 0
 
-	var/list/goals_by_category = list()
+	var/list/events_by_category = list()
 	/// Goal registry built from subtypes
-	var/list/goals_by_id = list()
+	var/list/events_by_id = list()
 	/// Root goals without a valid parent
-	var/list/goal_roots = list()
+	var/list/events_roots = list()
 	/// Loaded storyteller data from JSON: id -> assoc list(name, desc, mood_type, base_think_delay, etc.)
 	var/list/storyteller_data = list()
 
@@ -50,9 +50,9 @@ SUBSYSTEM_DEF(storytellers)
 /datum/controller/subsystem/storytellers/Initialize()
 	// Load storyteller data from JSON
 	load_storyteller_data()
-	goals_by_id = list()
-	goal_roots = list()
-	goals_by_category = list()
+	events_by_id = list()
+	events_roots = list()
+	events_by_category = list()
 	collect_available_goals()
 
 	// Load config values (assuming global config loader; adjust if needed)
@@ -278,62 +278,57 @@ SUBSYSTEM_DEF(storytellers)
 
 
 /datum/controller/subsystem/storytellers/proc/collect_available_goals()
-	goals_by_id = list()
-	goals_by_category = list()
-	goal_roots = list()
+	events_by_id = list()
+	events_by_category = list()
+	events_roots = list()
 
 	// Initialize categories as empty lists with bitflags as keys
-	goals_by_category["GOAL_RANDOM"] = list()
-	goals_by_category["GOAL_GOOD"] = list()
-	goals_by_category["GOAL_BAD"] = list()
-	goals_by_category["GOAL_NEUTRAL"] = list()
-	goals_by_category["GOAL_UNCATEGORIZED"] = list()
+	events_by_category["GOAL_RANDOM"] = list()
+	events_by_category["GOAL_GOOD"] = list()
+	events_by_category["GOAL_BAD"] = list()
+	events_by_category["GOAL_NEUTRAL"] = list()
+	events_by_category["GOAL_UNCATEGORIZED"] = list()
 
 
-	for(var/goal_type in subtypesof(/datum/storyteller_goal))
-		if(goal_type == /datum/storyteller_goal)  // Skip base type
+	for(var/event_control_type in subtypesof(/datum/round_event_control))
+		if(event_control_type == /datum/round_event_control)  // Skip base type
 			continue
-		var/datum/storyteller_goal/goal = new goal_type()
+		var/datum/round_event_control/event_control = new event_control_type()
 
-		if(!goal.id)
-			log_storyteller("Storyteller goal [goal_type] has no ID and was skipped.")
-			qdel(goal)
+		if(!event_control.id)
+			log_storyteller("Storyteller event control [event_control_type] has no ID and was skipped.")
+			qdel(event_control)
 			continue
-		if(goals_by_id[goal.id])  // Prevent duplicates
-			log_storyteller("Duplicate goal ID [goal.id] for [goal_type], skipping.")
-			qdel(goal)
+		if(events_by_id[event_control.id])  // Prevent duplicates
+			log_storyteller("Duplicate event control ID [event_control.id] for [event_control_type], skipping.")
+			qdel(event_control)
 			continue
-		goals_by_id[goal.id] = goal
+		events_by_id[event_control.id] = event_control
 
-		if(!goal.category)  // Fixed: tags -> category for consistency
-			log_storyteller("Storyteller goal [goal_type] has no category, assigning uncategorized.")
-			goal.category = STORY_GOAL_UNCATEGORIZED
+		if(!event_control.story_category)  // Use story_category instead of category
+			log_storyteller("Storyteller event control [event_control_type] has no story_category, assigning uncategorized.")
+			event_control.story_category = STORY_GOAL_UNCATEGORIZED
 
 		// Assign to all matching categories (bitflags allow multiple)
-		if(goal.category & STORY_GOAL_RANDOM)
-			goals_by_category["GOAL_RANDOM"] += goal
-		if(goal.category & STORY_GOAL_GOOD)
-			goals_by_category["GOAL_GOOD"] += goal
-		if(goal.category & STORY_GOAL_BAD)
-			goals_by_category["GOAL_BAD"] += goal
-		if(goal.category & STORY_GOAL_NEUTRAL)
-			goals_by_category["GOAL_NEUTRAL"] += goal
-		if(goal.category & STORY_GOAL_UNCATEGORIZED)
-			goals_by_category["GOAL_UNCATEGORIZED"] += goal
+		if(event_control.story_category & STORY_GOAL_RANDOM)
+			events_by_category["GOAL_RANDOM"] += event_control
+		if(event_control.story_category & STORY_GOAL_GOOD)
+			events_by_category["GOAL_GOOD"] += event_control
+		if(event_control.story_category & STORY_GOAL_BAD)
+			events_by_category["GOAL_BAD"] += event_control
+		if(event_control.story_category & STORY_GOAL_NEUTRAL)
+			events_by_category["GOAL_NEUTRAL"] += event_control
+		if(event_control.story_category & STORY_GOAL_UNCATEGORIZED)
+			events_by_category["GOAL_UNCATEGORIZED"] += event_control
 
-	// Link children after all instantiated
-	for(var/id in goals_by_id)
-		var/datum/storyteller_goal/goal = goals_by_id[id]
-		goal.link_children(goals_by_id)
-
-	// Collect roots: no parent or invalid parent
-	for(var/id in goals_by_id)
-		var/datum/storyteller_goal/goal = goals_by_id[id]
-		if(!goal.parent_id || !goals_by_id[goal.parent_id])
-			goal_roots += goal
+	// Collect roots: no parent or invalid parent (round_event_control doesn't use parent_id, so skip this)
+	for(var/id in events_by_id)
+		var/datum/round_event_control/event_control = events_by_id[id]
+		// round_event_control doesn't have parent_id, so all are roots
+		events_roots += event_control
 
 	if(hard_debug)
-		log_storyteller("Collected [length(goals_by_id)] goals, [length(goal_roots)] roots.")
+		log_storyteller("Collected [length(events_by_id)] goals, [length(events_roots)] roots.")
 
 
 
@@ -356,31 +351,30 @@ SUBSYSTEM_DEF(storytellers)
 	else
 		category_str = "GOAL_UNCATEGORIZED"  // Default to uncategorized if none specified
 
-	goals_to_check = _list_copy(goals_by_category[category_str])
+	goals_to_check = _list_copy(events_by_category[category_str])
 	if(!goals_to_check)
 		return list()
 
-	for(var/datum/storyteller_goal/goal in goals_to_check)
-		if(subtype && !istype(goal, subtype))
+	for(var/datum/round_event_control/event_control in goals_to_check)
+		if(subtype && !istype(event_control, subtype))
 			continue
 		if(required_tags)
-			if(!goal.tags)
+			if(!event_control.tags)
 				continue
 			if(all_tags_required)
-				if((goal.tags & required_tags) != required_tags)
+				if((event_control.tags & required_tags) != required_tags)
 					continue
 			else
-				if(!(goal.tags & required_tags))
+				if(!(event_control.tags & required_tags))
 					continue
 
-		if(!include_children && goal.parent_id && goals_by_id[goal.parent_id])
-			continue
+		// round_event_control doesn't have parent_id, so skip parent check
 
 		// Additional filter for global flag if set in category
-		if(category & STORY_GOAL_GLOBAL && !(goal.category & STORY_GOAL_GLOBAL))
+		if(category & STORY_GOAL_GLOBAL && !(event_control.story_category & STORY_GOAL_GLOBAL))
 			continue
 
-		result += goal
+		result += event_control
 
 	if(hard_debug)
 		log_storyteller("Filtered [length(result)] goals for category=[category], tags=[required_tags].")
@@ -393,7 +387,7 @@ SUBSYSTEM_DEF(storytellers)
 	return filter_goals(category, required_tags, subtype, all_tags_required, FALSE)
 
 /// Convenience method to get goals by category and subtype
-/datum/controller/subsystem/storytellers/proc/get_goals_by_category_and_subtype(category, subtype)
+/datum/controller/subsystem/storytellers/proc/get_events_by_category_and_subtype(category, subtype)
 	return filter_goals(category, null, subtype, FALSE, TRUE)
 
 /// Convenience method to get goals by tags

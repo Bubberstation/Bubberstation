@@ -233,17 +233,17 @@
 		return null
 
 	var/list/weighted = list()
-	for(var/datum/storyteller_goal/G in candidates)
-		if(!G.is_available(inputs.vault, inputs, ctl) && !SSstorytellers.hard_debug)
+	for(var/datum/round_event_control/evt in candidates)
+		if(!evt.is_avaible(inputs, ctl) && !SSstorytellers.hard_debug)
 			continue
 
-		var/base_weight = G.get_weight(inputs.vault, inputs, ctl)
-		var/priority_boost = G.get_priority(inputs.vault, inputs, ctl) * STORY_PRIORITY_BOOST_SCALE
+		var/base_weight = evt.get_story_weight(inputs, ctl)
+		var/priority_boost = evt.get_story_priority(inputs, ctl) * STORY_PRIORITY_BOOST_SCALE
 		var/diff_adjust = ctl.difficulty_multiplier * population_scale
 
 		// Enhanced repetition penalty: Recency (time-based decay) + frequency (count in history)
 		var/rep_penalty = 0
-		var/list/rep_info = get_repeat_info(G.id, ctl.recent_events)
+		var/list/rep_info = get_repeat_info(evt.id, ctl.recent_events)
 		var/repeat_count = rep_info["count"]
 		var/last_fire_time = rep_info["last_time"]
 
@@ -263,27 +263,27 @@
 
 		var/balance_bonus = 0
 		var/tension_diff_norm = abs(bal.overall_tension - ctl.target_tension) / 100.0
-		if(bal.overall_tension > ctl.target_tension && (G.tags & STORY_TAG_DEESCALATION))
+		if(bal.overall_tension > ctl.target_tension && (evt.tags & STORY_TAG_DEESCALATION))
 			balance_bonus += STORY_BALANCE_BONUS * tension_diff_norm
-		else if(bal.overall_tension < ctl.target_tension && (G.tags & STORY_TAG_ESCALATION))
+		else if(bal.overall_tension < ctl.target_tension && (evt.tags & STORY_TAG_ESCALATION))
 			balance_bonus += STORY_BALANCE_BONUS * tension_diff_norm  // Scaled
 
 		var/tag_match_bonus = 0
-		if(desired_tags && G.tags)
-			var/matches = G.tags & desired_tags
+		if(desired_tags && evt.tags)
+			var/matches = evt.tags & desired_tags
 			var/num_matches = popcount_tags(matches)
 			tag_match_bonus = STORY_TAG_MATCH_BONUS * num_matches
 
 		var/final_weight = max(0.1, (base_weight + priority_boost + threat_bonus + balance_bonus + tag_match_bonus - rep_penalty) * diff_adjust * adapt_reduce)
 		final_weight = add_weight_jitter(final_weight, ctl.mood.volatility)
-		weighted[G] = final_weight
+		weighted[evt] = final_weight
 
-	var/datum/storyteller_goal/selected = pick_weight_f(weighted)
+	var/datum/round_event_control/selected = pick_weight_f(weighted)
 	if(!selected)
 		return null
 
 	if(SSstorytellers.hard_debug)
-		message_admins("Storyteller [ctl.name] selected goal: [selected.id || selected.name] (final_weight=[weighted[selected]])")
+		message_admins("Storyteller [ctl.name] selected event: [selected.id || selected.name] (final_weight=[weighted[selected]])")
 
 	return new selected.type
 

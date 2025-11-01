@@ -13,13 +13,13 @@
 #define STORY_POPULATION_HISTORY_MAX 20
 
 /datum/storyteller
-	var/name = "Base Storyteller"
+	var/name = "John Dynamic"
 	var/desc = "A generic storyteller managing station events and goals."
-	var/ooc_desc = "A fallback storyteller"
-	var/ooc_difficulty = "Default"
+	var/ooc_desc = "Tell to coder if you saw this storyteller in action."
+	var/ooc_difficulty = "Dynamic"
 	var/portait_path = ""
 	var/logo_path = ""
-	var/id = ""
+	var/id = "john_dynamic"
 
 	var/base_cost_multiplier = 1.0
 	/// Current mood profile, affecting event pacing and tone
@@ -144,17 +144,17 @@
 	next_think_time = world.time + delay
 
 
-/datum/storyteller/proc/post_goal(datum/storyteller_goal/goal)
-	if(!goal)
+/datum/storyteller/proc/post_event(datum/round_event_control/evt)
+	if(!evt)
 		return
 
 	var/tension_effect = 0
-	if(goal.tags & STORY_TAG_ESCALATION)
+	if(evt.tags & STORY_TAG_ESCALATION)
 		adaptation_factor = min(1.0, adaptation_factor + 0.3)
 		tension_effect += 5
-	else if(goal.tags & STORY_TAG_DEESCALATION)
+	else if(evt.tags & STORY_TAG_DEESCALATION)
 		adaptation_factor = max(0, adaptation_factor - 0.1)
-	if(goal.category == STORY_GOAL_BAD)
+	if(evt.story_category == STORY_GOAL_BAD)
 		// Calculate the percentage loss of threat_points based on recent_damage_threshold
 		var/loss_percentage = 100 / recent_damage_threshold
 		var/threat_loss = threat_points * (loss_percentage / 100)
@@ -162,7 +162,7 @@
 		tension_effect += 10
 
 	balancer.tension_bonus = min(balancer.tension_bonus + tension_effect, STORY_MAX_TENSION_BONUS)
-	record_event(goal, STORY_GOAL_COMPLETED)
+	record_event(evt, STORY_GOAL_COMPLETED)
 
 
 /datum/storyteller/proc/think(force = FALSE)
@@ -211,19 +211,19 @@
 
 
 /// Helper to record a goal event: store timestamp for spacing and id for repetition penalty
-/datum/storyteller/proc/record_event(datum/storyteller_goal/G, status)
-	if(!G)
+/datum/storyteller/proc/record_event(datum/round_event_control/evt, status)
+	if(!evt)
 		return
 	var/current_time = world.time
-	var/id = G.id + "_" + num2text(current_time)
+	var/id = evt.id + "_" + num2text(current_time)
 	recent_events[id] = list(list(
-		"id" = G.id,
-		"desc" = G.desc,
+		"id" = evt.id,
+		"desc" = evt.description,
 		"status" = status,
 		"fired_ts" = current_time, // raw world.time
 		"fired_at" = num2text((current_time / 1 MINUTES)) + " min", // UI only
 	))
-	recent_event_ids |= G.id
+	recent_event_ids |= evt.id
 	while(length(recent_event_ids) > recent_event_ids_max)
 		recent_event_ids.Cut(1, 2)
 	last_event_time = current_time
@@ -267,7 +267,7 @@
 
 
 /datum/storyteller/proc/get_closest_subgoals()
-	return planner.get_upcoming_goals(10)
+	return planner.get_upcoming_events(10)
 
 /// Event trigger guard for ad-hoc random events outside goals
 /datum/storyteller/proc/can_trigger_event_now()

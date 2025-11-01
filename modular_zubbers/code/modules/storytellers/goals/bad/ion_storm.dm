@@ -1,13 +1,12 @@
-/datum/storyteller_goal/execute_event/ion_storm
+/datum/round_event_control/ion_storm
 	id = "negative_ion_storm"
 	name = "Ion Storm"
-	desc = "Triggers an ion storm, disable and damage electronics and synthetics."
-	children = list()
-	category = STORY_GOAL_BAD
+	description = "Triggers an ion storm, disable and damage electronics and synthetics."
+	story_category = STORY_GOAL_BAD
 	tags = STORY_TAG_AFFECTS_WHOLE_STATION | STORY_TAG_TARGETS_SYSTEMS
-	event_path = /datum/round_event/ion_storm
+	typepath = /datum/round_event/ion_storm
 
-/datum/storyteller_goal/execute_event/ion_storm/get_weight(list/vault, datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
+/datum/round_event_control/ion_storm/get_story_weight(datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
 	var/base = ..()
 	return base * 0.5 // We are rare
 

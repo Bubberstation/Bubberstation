@@ -1,13 +1,12 @@
-/datum/storyteller_goal/execute_event/zzzzzt
+/datum/round_event_control/zzzzzt
 	id = "zzzzzt"
 	name = "ZZZZZT"
-	desc = "A massive power surge."
-	children = list()
-	category = STORY_GOAL_BAD
+	description = "A massive power surge."
+	story_category = STORY_GOAL_BAD
 	tags = STORY_TAG_ESCALATION
-	event_path = /datum/round_event/zzzzzt
+	typepath = /datum/round_event/zzzzzt
 
-	required_population = 2
+	min_players = 2
 
 /datum/round_event/zzzzzt
 	var/maximum_charge = 50 KILO JOULES

@@ -17,3 +17,8 @@
 
 // From /datum/controller/subsystem/storytellers/proc/end_vote()
 #define COMSIG_STORYTELLER_VOTE_END "comsig_stryteller_vote_end"
+
+/// Called by (/datum/round_event_control/run_event_as_storyteller).
+#define COMSIG_GLOB_STORYTELLER_RUN_EVENT "!storyteller_event"
+	/// Do not allow this random event to continue.
+	#define CANCEL_STORYTELLER_EVENT (1<<0)

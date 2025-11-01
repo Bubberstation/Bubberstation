@@ -1,13 +1,12 @@
-/datum/storyteller_goal/execute_event/brain_trauma
+/datum/round_event_control/brain_trauma
 	id = "brain_trauma"
 	name = "Induce Brain Trauma"
-	desc = "Cause a crew members to suffer a sudden brain trauma."
-	category = STORY_GOAL_BAD
+	description = "Cause a crew members to suffer a sudden brain trauma."
+	story_category = STORY_GOAL_BAD
 	tags = STORY_TAG_AFFECTS_CREW_HEALTH | STORY_TAG_ESCALATION | STORY_TAG_TARGETS_INDIVIDUALS
-	path_ids = list()
-	event_path = /datum/round_event/brain_trauma
+	typepath = /datum/round_event/brain_trauma
 
-	required_population = 5
+	min_players = 5
 	required_round_progress = STORY_ROUND_PROGRESSION_EARLY
 	requierd_threat_level = STORY_GOAL_THREAT_BASIC
 

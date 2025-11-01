@@ -1,21 +1,18 @@
-/datum/storyteller_goal/execute_event/market_crash
+/datum/round_event_control/market_crash
 	id = "market_crash"
-	name = "Execute Market Crash Event"
-	desc = "Triggers the Market Crash event, causing a temporary increase in vending machine prices."
-	children = list()
-	category = STORY_GOAL_NEUTRAL
+	story_category = STORY_GOAL_NEUTRAL
 	tags = STORY_TAG_AFFECTS_ECONOMY | STORY_TAG_AFFECTS_POLITICS
-	event_path = null
+	typepath = /datum/round_event/market_crash
 
 
 
-/datum/storyteller_goal/execute_event/market_crash/complete(list/vault, datum/storyteller_inputs/inputs, datum/storyteller/storyteller, threat_points, station_value)
+/datum/round_event_control/market_crash/run_event_as_storyteller(datum/storyteller_inputs/inputs, datum/storyteller/storyteller, threat_points)
 	var/datum/storyteller_mood/mood = storyteller.mood
 	var/good_for_station = FALSE
 	// More likely to happen in faster paced rounds
 	if(mood.pace > 1.1)
 		good_for_station = TRUE
-	var/datum/round_event/market_crash/evt = new /datum/round_event/market_crash(TRUE, new /datum/round_event_control/storyteller_control)
+	var/datum/round_event/market_crash/evt = new /datum/round_event/market_crash(TRUE, src)
 	evt.__setup_for_storyteller(threat_points, good_for_station)
 
 

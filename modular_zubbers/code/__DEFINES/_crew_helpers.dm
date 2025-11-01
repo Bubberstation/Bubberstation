@@ -12,8 +12,9 @@
 			continue
 		if(ignore_erp && !(engaged_role_play_check(living)))
 			continue
-		if(ignore_afk && living?.client.is_afk())
-			continue
+		if(ignore_afk && living?.client)
+			if(living.client.is_afk())
+				continue
 		if(only_crew && !living.mind?.assigned_role)
 			continue
 		LAZYADD(to_return, living)

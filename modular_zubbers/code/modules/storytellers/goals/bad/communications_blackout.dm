@@ -1,12 +1,12 @@
-/datum/storyteller_goal/execute_event/commblackout
+/datum/round_event_control/communications_blackout
 	id = "comm_blackout"
 	name = "Execute communication blackout"
-	desc = "Heavily EMPs all telecommunication machines, blocking all communication for a while. \
+	description = "Heavily EMPs all telecommunication machines, blocking all communication for a while. \
 			On hight-threat levels can damage ears of tcoms users."
-	category = STORY_GOAL_BAD
+	story_category = STORY_GOAL_BAD
 	tags = STORY_TAG_AFFECTS_CREW_MIND | STORY_TAG_AFFECTS_WHOLE_STATION
 
-	event_path = /datum/round_event/communications_blackout/storyteller
+	typepath = /datum/round_event/communications_blackout/storyteller
 
 
 /datum/round_event/communications_blackout/storyteller
