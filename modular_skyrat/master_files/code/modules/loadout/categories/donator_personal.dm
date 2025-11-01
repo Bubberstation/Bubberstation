@@ -48,11 +48,6 @@
 	item_path = /obj/item/clothing/gloves/ring/hypno/bippys
 	ckeywhitelist = list("bippys")
 
-/datum/loadout_item/shoes/rax_armadyne_boots
-	name = "Tactical Boots"
-	item_path = /obj/item/clothing/shoes/jackboots/peacekeeper/armadyne/rax
-	//ckeywhitelist = list("raxraus")
-
 /datum/loadout_item/suit/rax_peacekeeper_jacket
 	name = "Peacekeeper jacket"
 	item_path = /obj/item/clothing/suit/armor/vest/warden/rax
@@ -105,11 +100,6 @@
 	name = "Smuggler's Flying Cap"
 	item_path = /obj/item/clothing/head/avipilot
 	//ckeywhitelist = list("slippyjoe")
-
-/datum/loadout_item/shoes/britches_shoes
-	name = "Britches' shoes"
-	item_path = /obj/item/clothing/shoes/clown_shoes/britches
-	//ckeywhitelist = list("bloodrite")
 
 /datum/loadout_item/uniform/britches_dress
 	name = "Britches' dress"
@@ -218,11 +208,6 @@
 	item_path = /obj/item/clothing/gloves/netra
 	//ckeywhitelist = list("netrakyram")
 
-/datum/loadout_item/shoes/metra_boots
-	name = "Polished Jackboots"
-	item_path = /obj/item/clothing/shoes/jackboots/netra
-	//ckeywhitelist = list("netrakyram")
-
 /datum/loadout_item/neck/kiaracloak
 	name = "Kiara's cloak"
 	item_path = /obj/item/clothing/neck/cloak/inferno
@@ -306,11 +291,6 @@
 /datum/loadout_item/gloves/mikugloves
 	name = "starlight singer gloves"
 	item_path = /obj/item/clothing/gloves/mikugloves
-	//ckeywhitelist = list("grandvegeta")
-
-/datum/loadout_item/shoes/mikulegging
-	name = "starlight singer bikini"
-	item_path = /obj/item/clothing/shoes/sneakers/mikuleggings
 	//ckeywhitelist = list("grandvegeta")
 
 /datum/loadout_item/suit/delta_coat
@@ -560,11 +540,6 @@
 	item_path = /obj/item/storage/fancy/cigarettes/khi
 	//ckeywhitelist = list("ultimarifox")
 
-/datum/loadout_item/shoes/dragheels
-	name = "Fancy Heels (dragmeme)"
-	item_path = /obj/item/clothing/shoes/fancy_heels/drag
-	//ckeywhitelist = list("thedragmeme")
-
 /datum/loadout_item/uniform/bimpcap
 	name = "Formal Matte Black Captain Uniform"
 	item_path = /obj/item/clothing/under/bimpcap
@@ -603,12 +578,6 @@
 /datum/loadout_item/gloves/elofy
 	name = "Solar Admiral Gloves"
 	item_path = /obj/item/clothing/gloves/elofy
-	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_ALLOW_RESKIN
-//	ckeywhitelist = list("october23")
-
-/datum/loadout_item/shoes/elofy
-	name = "Solar Admiral Boots"
-	item_path = /obj/item/clothing/shoes/jackboots/elofy
 	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_ALLOW_RESKIN
 //	ckeywhitelist = list("october23")
 
@@ -728,11 +697,6 @@
 	name = "Noble Gambeson"
 	item_path = /obj/item/clothing/under/rank/civilian/chaplain/divine_archer/noble
 //	ckeywhitelist = list("grasshand")
-
-/datum/loadout_item/shoes/noble_boots
-	name = "Noble Boots"
-	item_path = /obj/item/clothing/shoes/jackboots/noble
-	//ckeywhitelist = list("grasshand")
 
 /datum/loadout_item/suit/nobility_dresscoat
 	name = "Nobility Dresscoat"

@@ -56,6 +56,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/gloves/gloves.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/gloves/gloves.dmi'
 	icon_state = "snake"
+	unique_reskin = null
 
 /obj/item/clothing/gloves/bubber/snake
 	name = "big boss' gloves"
