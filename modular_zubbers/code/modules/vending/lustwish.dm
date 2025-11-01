@@ -34,4 +34,5 @@
 		/obj/item/clothing/gloves/mikugloves = 3,
 		/obj/item/clothing/shoes/sneakers/mikuleggings = 3,
 		/obj/item/skillchip/mkiiultra = 2,
+		/obj/item/clothing/neck/sub_collar = 4
 	)
