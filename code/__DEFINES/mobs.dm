@@ -167,6 +167,10 @@
 #define BODYSHAPE_HIDE_SHOES (1<<12)
 ///The limb causes glasses and hats to be drawn on layers 5 and 4 respectively. Currently used for snouts with the (Top) suffix, which are drawn on layer 6 and would normally cover facewear
 #define BODYSHAPE_ALT_FACEWEAR_LAYER (1<<13)
+// BUBBER EDIT ADDITION: START - Adding the kinetic bodytype
+///The limb is a kinetic prosthetic.
+#define BODYTYPE_KINETIC (1<<14)
+// BUBBER EDIT ADDITION: END
 
 // SKYRAT EDIT END
 
@@ -225,7 +229,7 @@
 #define BODYPART_ID_PSYKER "psyker"
 #define BODYPART_ID_MEAT "meat"
 #define BODYPART_ID_PEG "peg"
-
+#define BODYPART_ID_KINETIC "kinetic" // BUBBER EDIT ADDITION: kinetic bodypart id
 
 //See: datum/species/var/digitigrade_customization
 ///The species does not have digitigrade legs in generation.
