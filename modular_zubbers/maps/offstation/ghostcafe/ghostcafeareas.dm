@@ -1,0 +1,32 @@
+/*
+* Ghost Cafe
+*/
+
+/area/centcom/holding
+	name = "Holding Facility"
+	mood_bonus = 25
+	area_flags = parent_type::area_flags | UNLIMITED_FISHING
+	mood_message = "I am taking a well deserved rest!"
+
+/area/centcom/holding/cafe
+	name = "Ghost Cafe"
+
+/area/centcom/holding/cafe/vox
+	name = "Cafe Vox Box"
+
+/area/centcom/holding/cafe/dorms
+	name = "Ghost Cafe Dorms"
+
+/area/centcom/holding/cafe/park
+	name = "Ghost Cafe Outdoors"
+
+//Interlink
+
+/area/centcom/interlink
+	name = "The Interlink"
+
+/area/centcom/interlink/dorm_rooms
+	name = "Interlink Dorm Rooms"
+	mood_bonus = /area/centcom/holding::mood_bonus
+	mood_message = /area/centcom/holding::mood_message
+
