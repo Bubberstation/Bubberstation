@@ -95,7 +95,6 @@
 
 	action_to_add = /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash
 	cost = 2
-	drafting_tier = 5
 
 /datum/heretic_knowledge/spell/fire_blast
 	name = "Volcano Blast"
