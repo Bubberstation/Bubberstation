@@ -28,6 +28,10 @@
 	name = "Mindbreaker Cigs"
 	item_path = /obj/item/storage/fancy/cigarettes/cigpack_mindbreaker
 
+/datum/loadout_item/pocket_items/paintingprinter
+	name = "instant painting printer"
+	item_path = /obj/item/modular_computer/mini_painting_printer
+
 /*
 *	FLAGS
 */
