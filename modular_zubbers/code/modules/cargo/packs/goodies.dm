@@ -49,6 +49,21 @@
 /datum/supply_pack/goody/double_barrel
 	cost = PAYCHECK_COMMAND * 10 //1400 is too much considering the combat shotgun is 1500 for 1
 
+/datum/supply_pack/goody/plasma_marksman
+	name = "Gwiazda Plasma Sharpshooters Single-pack"
+	desc = "Contains a Gwiazda Plasma Sharpshooter and one plasma battery free of additional charge."
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/plasma_marksman = 1,
+	/obj/item/ammo_box/magazine/recharge/plasma_battery = 1)
+	access_view = ACCESS_WEAPONS
+	cost = PAYCHECK_COMMAND * 4
+
+/datum/supply_pack/goody/plasma_marksman_ammo
+	name = "Plasma Battery Single-pack"
+	desc = "Contains a single plasma battery."
+	contains = list(/obj/item/ammo_box/magazine/recharge/plasma_battery = 1)
+	access_view = ACCESS_WEAPONS
+	cost = PAYCHECK_COMMAND * 1
+
 /datum/supply_pack/goody/mars_single
 	special = FALSE
 
