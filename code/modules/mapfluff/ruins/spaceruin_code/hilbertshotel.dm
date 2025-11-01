@@ -667,7 +667,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 		<i>Sent to: natalya_petroyenko@kosmokomm.net</i><br> \
 		Hello sis! Figured I should update you on what's going on with the career change.<br> \
 		First day on the new job. It's a pretty boring position, but hey- it's not like I was finding anything in New Vladimir. I'm just glad to have something to pay the bills.<br> \
-		Suppose I should say what's involved: I'm essentially playing housekeeper for some scientist and his cohort of student assistants. Far above my pay grade to understand what they do, but they seem excited enough. Talking about \"pockets\", for whatever reason. Maybe they're designing the next inBUBBERtion in clothes?<br> \
+		Suppose I should say what's involved: I'm essentially playing housekeeper for some scientist and his cohort of student assistants. Far above my pay grade to understand what they do, but they seem excited enough. Talking about \"pockets\", for whatever reason. Maybe they're designing the next innovation in clothes?<br> \
 		Anyway, that's pretty much it. I'm living on their station for pretty much the duration, so I'm not sure if I'll be able to make it to Mama's birthday. Sorry about that- I'll do my best to make it up to her (and you) when I get some leave.<br> \
 		Hope to see you soon,<br> \
 		Little Brother Roman",
