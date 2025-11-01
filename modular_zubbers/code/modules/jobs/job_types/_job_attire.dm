@@ -1,4 +1,3 @@
-// For now its just Akulas
 /datum/job/assistant
 	akula_outfit = /datum/outfit/akula/assistant
 
@@ -34,6 +33,7 @@
 
 /datum/job/clown
 	akula_outfit = /datum/outfit/akula
+	vox_outfit = /datum/outfit/vox/clown
 
 /datum/job/cook
 	akula_outfit = /datum/outfit/akula
@@ -64,6 +64,7 @@
 
 /datum/job/mime
 	akula_outfit = /datum/outfit/akula
+	vox_outfit = /datum/outfit/vox/mime
 
 /datum/job/paramedic
 	akula_outfit = /datum/outfit/akula/doctor
