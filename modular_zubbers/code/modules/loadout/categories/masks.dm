@@ -96,7 +96,7 @@
 */
 
 /datum/loadout_item/mask/gas
-	name = "Gas Masks"
+	group = "Gas Masks"
 	abstract_type = /datum/loadout_item/mask/gas
 
 /datum/loadout_item/mask/gas/tider
@@ -161,7 +161,7 @@
 */
 
 /datum/loadout_item/mask/masquerade
-	name = "Masquerade Masks"
+	group = "Masquerade Masks"
 	abstract_type = /datum/loadout_item/mask/masquerade
 
 /datum/loadout_item/mask/masquerade/masqmask
@@ -194,7 +194,7 @@
 */
 
 /datum/loadout_item/mask/utility
-	name = "Utility Masks"
+	group = "Utility Masks"
 	abstract_type = /datum/loadout_item/mask/utility
 
 /datum/loadout_item/mask/utility/surgical
@@ -223,7 +223,7 @@
 */
 
 /datum/loadout_item/mask/costume
-	name = "Costumes and Silly Masks"
+	group = "Costumes and Silly Masks"
 	abstract_type = /datum/loadout_item/mask/costume
 
 /datum/loadout_item/mask/costume/fake_mustache
