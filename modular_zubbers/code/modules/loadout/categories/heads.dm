@@ -30,7 +30,7 @@
 	name = "Police Patrol Cap"
 	item_path = /obj/item/clothing/head/hats/warden/police/patrol
 	restricted_roles = list(ALL_JOBS_SEC)
-	can_be_reskinned = TRUE
+	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_ALLOW_RESKIN
 
 /datum/loadout_item/head/helmet/sec/futuristic
 	name = "Futuristic Security Helmet"
@@ -69,31 +69,31 @@
 	name = "Security Garrison Cap"
 	item_path = /obj/item/clothing/head/security_garrison
 	restricted_roles = list(ALL_JOBS_SEC)
-	can_be_reskinned = TRUE
+	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_ALLOW_RESKIN
 
 /datum/loadout_item/head/security_cap
 	name = "Security Cap"
 	item_path = /obj/item/clothing/head/security_cap
 	restricted_roles = list(ALL_JOBS_SEC)
-	can_be_reskinned = TRUE
+	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_ALLOW_RESKIN
 
 /datum/loadout_item/head/security_cap/soft
 	name = "Security Soft Cap"
 	item_path = /obj/item/clothing/head/soft/sec
 	restricted_roles = list(ALL_JOBS_SEC)
-	can_be_reskinned = FALSE
+	loadout_flags = parent_type::loadout_flags & ~LOADOUT_FLAG_ALLOW_RESKIN
 
 /datum/loadout_item/head/security_cap/veteran
 	name = "Veteran's Soft Security Cap"
 	item_path = /obj/item/clothing/head/soft/veteran
 	restricted_roles = list(ALL_JOBS_SEC)
-	can_be_reskinned = FALSE
+	loadout_flags = parent_type::loadout_flags & ~LOADOUT_FLAG_ALLOW_RESKIN
 
 /datum/loadout_item/head/security_cap/colonial
 	name = "Imperial Police Cap"
 	item_path = /obj/item/clothing/head/hats/colonial/nri_police
 	restricted_roles = list(ALL_JOBS_SEC, JOB_CUSTOMS_AGENT)
-	can_be_reskinned = FALSE
+	loadout_flags = parent_type::loadout_flags & ~LOADOUT_FLAG_ALLOW_RESKIN
 
 /datum/loadout_item/head/security_beanie
 	name = "Security Beanie"
@@ -119,7 +119,7 @@
 	name = "Warden's Police Cap"
 	item_path = /obj/item/clothing/head/hats/warden/police/patrol
 	restricted_roles = list(ALL_JOBS_SEC)
-	can_be_reskinned = TRUE
+	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_ALLOW_RESKIN
 
 /datum/loadout_item/head/helmet/sec/redsec
 	name = "Security Red Helmet"
@@ -135,7 +135,7 @@
 	name = "Security Kepi"
 	item_path = /obj/item/clothing/head/security_kepi
 	restricted_roles = list(ALL_JOBS_SEC)
-	can_be_reskinned = TRUE
+	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_ALLOW_RESKIN
 
 /datum/loadout_item/head/beret/sec/peacekeeper/armadyne
 	name = "Armadyne Corporate Beret"

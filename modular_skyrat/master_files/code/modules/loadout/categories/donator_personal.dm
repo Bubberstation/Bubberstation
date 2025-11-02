@@ -48,11 +48,6 @@
 	item_path = /obj/item/clothing/gloves/ring/hypno/bippys
 	ckeywhitelist = list("bippys")
 
-/datum/loadout_item/shoes/rax_armadyne_boots
-	name = "Tactical Boots"
-	item_path = /obj/item/clothing/shoes/jackboots/peacekeeper/armadyne/rax
-	//ckeywhitelist = list("raxraus")
-
 /datum/loadout_item/suit/rax_peacekeeper_jacket
 	name = "Peacekeeper jacket"
 	item_path = /obj/item/clothing/suit/armor/vest/warden/rax
@@ -106,11 +101,6 @@
 	item_path = /obj/item/clothing/head/avipilot
 	//ckeywhitelist = list("slippyjoe")
 
-/datum/loadout_item/shoes/britches_shoes
-	name = "Britches' shoes"
-	item_path = /obj/item/clothing/shoes/clown_shoes/britches
-	//ckeywhitelist = list("bloodrite")
-
 /datum/loadout_item/uniform/britches_dress
 	name = "Britches' dress"
 	item_path = /obj/item/clothing/under/rank/civilian/clown/britches
@@ -139,19 +129,19 @@
 /datum/loadout_item/head/caligram_cap_tan
 	name = "Blacktide Tan Softcap"
 	item_path = /obj/item/clothing/head/caligram_cap_tan
-	can_be_reskinned = TRUE
+	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_ALLOW_RESKIN
 //	ckeywhitelist = list("farsightednightlight", "raxraus", "1ceres", "marcoalbaredaa", "itzshift_yt", "drifter7371", "AvianAviator", "Katty Kat", "Investigator77", "Dalao Azure", "Socialistion", "ChillyLobster", "Sylvara", "AmZee", "Tf4", "rb303", "Kay_Nite", "whataboutism", "taac", "Halkyon", "Lupo_di_rosa", "Merek2", "lowpowermia", "RyeanBread", "Jesterz7", "Saund_Minah", "Ruediger4")
 
 /datum/loadout_item/uniform/caligram_fatigues_tan
 	name = "Blacktide Tan Fatigues"
 	item_path = /obj/item/clothing/under/jumpsuit/caligram_fatigues_tan
-	can_be_reskinned = TRUE
+	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_ALLOW_RESKIN
 //	ckeywhitelist = list("farsightednightlight", "raxraus", "1ceres", "marcoalbaredaa", "itzshift_yt", "drifter7371", "AvianAviator", "Katty Kat", "Investigator77", "Dalao Azure", "Socialistion", "ChillyLobster", "Sylvara", "AmZee", "Tf4", "rb303", "Kay_Nite", "whataboutism", "taac", "Halkyon", "Lupo_di_rosa", "Merek2", "lowpowermia", "RyeanBread", "Jesterz7", "Saund_Minah", "Ruediger4")
 
 /datum/loadout_item/suit/caligram_parka_tan
 	name = "Blacktide Tan Coat"
 	item_path = /obj/item/clothing/suit/jacket/caligram_parka_tan
-	can_be_reskinned = TRUE
+	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_ALLOW_RESKIN
 //	ckeywhitelist = list("farsightednightlight", "raxraus", "1ceres", "marcoalbaredaa", "itzshift_yt", "drifter7371", "AvianAviator", "Katty Kat", "Investigator77", "Dalao Azure", "Socialistion", "ChillyLobster", "Sylvara", "AmZee", "Tf4", "rb303", "Kay_Nite", "whataboutism", "taac", "Halkyon", "Lupo_di_rosa", "Merek2", "lowpowermia", "RyeanBread", "Jesterz7", "Saund_Minah", "Ruediger4")
 
 /datum/loadout_item/suit/caligram_parka_vest_tan
@@ -159,7 +149,7 @@
 	item_path = /obj/item/clothing/suit/armor/vest/caligram_parka_vest_tan
 //	ckeywhitelist = list("farsightednightlight", "raxraus", "1ceres", "marcoalbaredaa", "itzshift_yt", "drifter7371", "AvianAviator", "Katty Kat", "Investigator77", "Dalao Azure", "Socialistion", "ChillyLobster", "Sylvara", "AmZee", "Tf4", "rb303", "Kay_Nite", "whataboutism", "taac", "Halkyon", "Lupo_di_rosa", "Merek2", "lowpowermia", "RyeanBread", "Jesterz7", "Saund_Minah", "Ruediger4")
 	restricted_roles = list(JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_CORRECTIONS_OFFICER)
-	can_be_reskinned = TRUE
+	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_ALLOW_RESKIN
 
 /datum/loadout_item/suit/brasspriest
 	name = "Brasspriest Coat"
@@ -216,11 +206,6 @@
 /datum/loadout_item/gloves/netra_gloves
 	name = "Black and Silver Gloves"
 	item_path = /obj/item/clothing/gloves/netra
-	//ckeywhitelist = list("netrakyram")
-
-/datum/loadout_item/shoes/metra_boots
-	name = "Polished Jackboots"
-	item_path = /obj/item/clothing/shoes/jackboots/netra
 	//ckeywhitelist = list("netrakyram")
 
 /datum/loadout_item/neck/kiaracloak
@@ -306,11 +291,6 @@
 /datum/loadout_item/gloves/mikugloves
 	name = "starlight singer gloves"
 	item_path = /obj/item/clothing/gloves/mikugloves
-	//ckeywhitelist = list("grandvegeta")
-
-/datum/loadout_item/shoes/mikulegging
-	name = "starlight singer bikini"
-	item_path = /obj/item/clothing/shoes/sneakers/mikuleggings
 	//ckeywhitelist = list("grandvegeta")
 
 /datum/loadout_item/suit/delta_coat
@@ -560,11 +540,6 @@
 	item_path = /obj/item/storage/fancy/cigarettes/khi
 	//ckeywhitelist = list("ultimarifox")
 
-/datum/loadout_item/shoes/dragheels
-	name = "Fancy Heels (dragmeme)"
-	item_path = /obj/item/clothing/shoes/fancy_heels/drag
-	//ckeywhitelist = list("thedragmeme")
-
 /datum/loadout_item/uniform/bimpcap
 	name = "Formal Matte Black Captain Uniform"
 	item_path = /obj/item/clothing/under/bimpcap
@@ -591,25 +566,19 @@
 	item_path = /obj/item/clothing/suit/armor/hos/elofy
 //	ckeywhitelist = list("october23")
 	restricted_roles = list(JOB_HEAD_OF_SECURITY)
-	can_be_reskinned = TRUE
+	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_ALLOW_RESKIN
 
 /datum/loadout_item/head/elofy
 	name = "Solar Admiral Hat"
 	item_path = /obj/item/clothing/head/hats/hos/elofy
 	ckeywhitelist = list("october23")
 	restricted_roles = list(JOB_HEAD_OF_SECURITY)
-	can_be_reskinned = TRUE
+	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_ALLOW_RESKIN
 
 /datum/loadout_item/gloves/elofy
 	name = "Solar Admiral Gloves"
 	item_path = /obj/item/clothing/gloves/elofy
-	can_be_reskinned = TRUE
-//	ckeywhitelist = list("october23")
-
-/datum/loadout_item/shoes/elofy
-	name = "Solar Admiral Boots"
-	item_path = /obj/item/clothing/shoes/jackboots/elofy
-	can_be_reskinned = TRUE
+	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_ALLOW_RESKIN
 //	ckeywhitelist = list("october23")
 
 /datum/loadout_item/pocket_items/transponder
@@ -728,11 +697,6 @@
 	name = "Noble Gambeson"
 	item_path = /obj/item/clothing/under/rank/civilian/chaplain/divine_archer/noble
 //	ckeywhitelist = list("grasshand")
-
-/datum/loadout_item/shoes/noble_boots
-	name = "Noble Boots"
-	item_path = /obj/item/clothing/shoes/jackboots/noble
-	//ckeywhitelist = list("grasshand")
 
 /datum/loadout_item/suit/nobility_dresscoat
 	name = "Nobility Dresscoat"

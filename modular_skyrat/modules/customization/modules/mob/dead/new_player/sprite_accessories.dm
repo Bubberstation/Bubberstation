@@ -43,6 +43,9 @@
 	/// If this sprite accessory will be inaccessable if ERP config is disabled
 	var/erp_accessory = FALSE
 
+/datum/sprite_accessory/blank
+	factual = FALSE
+
 /datum/sprite_accessory/New()
 	if(!default_color)
 		switch(color_src)
@@ -113,6 +116,7 @@
 /datum/sprite_accessory/moth_markings/none
 	name = SPRITE_ACCESSORY_NONE
 	icon_state = "none"
+	factual = FALSE
 
 /datum/sprite_accessory/pod_hair
 	icon = 'modular_skyrat/master_files/icons/mob/species/podperson_hair.dmi'
@@ -155,6 +159,7 @@
 /datum/sprite_accessory/lizard_markings/none
 	name = SPRITE_ACCESSORY_NONE
 	icon_state = "none"
+	factual = FALSE
 
 
 /// Legs are a special case, they aren't actually sprite_accessories but are updated with them.
