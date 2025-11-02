@@ -56,7 +56,7 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 			continue
 		candidates += list(list(
 			"name" = storyteller_data["name"],
-			"id" = storyteller_data["id"],
+			"id" = id,
 		))
 	data["candidates"] = candidates
 	return data
@@ -125,6 +125,8 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 	data["current_world_time"] = world.time
 	var/list/events = list()
 	for(var/id in ctl.recent_events)
+		if(!id || !ctl.recent_events[id])
+			continue
 		var/list/details = ctl.recent_events[id]
 		if(!details || !length(details))
 			continue

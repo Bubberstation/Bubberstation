@@ -106,8 +106,8 @@
 	var/end_time = world.time - start_time
 	current_stack = list()
 	SEND_SIGNAL(src, COMSIG_STORYTELLER_FINISHED_ANALYZING, inputs, time_out, metrics_count)
-	if(SSstorytellers.hard_debug)
-		message_admins("[owner.name] finished to alalyze station in [end_time SECONDS]")
+	if(end_time > 5 SECONDS)
+		message_admins("WARNING: [owner.name] finished to analyze the station in [end_time / 10] seconds, which is longer than expected.")
 
 /datum/storyteller_analyzer/proc/__run_metric_safe(datum/storyteller_metric/check, datum/storyteller_inputs/inputs, scan_flags)
 	INVOKE_ASYNC(check, TYPE_PROC_REF(/datum/storyteller_metric, perform), src, owner, inputs, scan_flags)

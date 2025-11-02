@@ -239,6 +239,11 @@ SUBSYSTEM_DEF(storytellers)
 		AN.process(world.tick_lag)
 
 /datum/controller/subsystem/storytellers/proc/setup_game()
+
+#ifdef UNIT_TESTS //Storyteller thinking disabled during testing, it's handle by unit test
+	return
+#endif
+
 	disable_dynamic()
 	disable_ICES()
 
@@ -248,6 +253,11 @@ SUBSYSTEM_DEF(storytellers)
 	return TRUE
 
 /datum/controller/subsystem/storytellers/proc/post_setup()
+
+#ifdef UNIT_TESTS //Storyteller thinking disabled during testing, it's handle by unit test
+	return
+#endif
+
 	initialize_storyteller()
 
 /datum/controller/subsystem/storytellers/proc/disable_dynamic()

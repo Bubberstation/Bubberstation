@@ -59,7 +59,6 @@
 		if(evt.run_event_as_storyteller(inputs, ctl, round(threat_points_for_event)))
 			fired_events += evt
 			entry[ENTRY_STATUS] = STORY_GOAL_COMPLETED
-			message_admins("[span_notice("Storyteller fired event: ")] [evt.name || evt.id]. with threat points: [threat_points_for_event]")
 			ctl.post_event(evt)
 		else
 			entry[ENTRY_STATUS] = STORY_GOAL_PENDING
