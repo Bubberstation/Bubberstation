@@ -7,13 +7,12 @@
 	basic_mob_flags = DEL_ON_DEATH
 	speed = 1.4
 	melee_damage_lower = 20
-	melee_damage_upper = 35
+	melee_damage_upper = 25
 	attack_verb_continuous = "punches"
 	attack_verb_simple = "punch"
 	attack_sound = 'sound/items/weapons/punch1.ogg'
 	melee_attack_cooldown = 0.8 SECONDS
 	combat_mode = TRUE
-	damage_coeff = list(BRUTE = 0.7, BURN = 0.7, TOX = 0, STAMINA = 0, OXY = 0)
 
 
 	unsuitable_atmos_damage = 0
@@ -238,7 +237,7 @@
 	corpse = /obj/effect/mob_spawn/corpse/human/syndy_raider_base/elite
 	maxHealth = 300
 	health = 300
-	melee_damage_lower = 35
+	melee_damage_lower = 20
 	melee_damage_upper = 35
 	armour_penetration = 50
 
