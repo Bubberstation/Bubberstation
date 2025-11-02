@@ -539,7 +539,7 @@
 			SSstation.announcer.get_rand_report_sound(),
 			color_override = "green",
 		)
-	else
+	else if(prob(90))
 		priority_announce(
 			"[SSsecurity_level.current_security_level.elevating_to_announcement]\n\n\
 				A summary has been copied and printed to all communications consoles.",
@@ -566,6 +566,7 @@
 	if(HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ANTAGS))
 		return TRUE
 	return FALSE
+
 
 /// Generates a roundstart advisory report based on storyteller's target tension and difficulty
 /// Uses target_tension (what storyteller aims for) and difficulty_multiplier instead of current tension
@@ -838,10 +839,18 @@
 	return spawned
 
 
+/datum/controller/subsystem/dynamic/proc/get_midround_rulesets_storyteller(population, spawn_type)
+	// Use existing midround ruleset retrieval logic
+	return get_midround_rulesets(population, spawn_type)
+
 // Spawns initial antagonists (formerly roundstart) after a delay of ~10 minutes using midround rulesets to simulate roundstart spawning post-round start
 /// Called after ~10 minutes when population reaches threshold
 /// Uses dynamic's midround rulesets with configs, but treats them as initial antags
 /// Sets a forced delay via cooldown adjustment
+/datum/controller/subsystem/dynamic/proc/pick_tier_storyteller(population)
+	// Use existing tier picking logic
+	return pick_tier(population)
+
 /datum/storyteller/proc/spawn_initial_antagonists()
 	if(!SSdynamic)
 		return
@@ -860,7 +869,7 @@
 
 	// Use dynamic's tier selection logic if no tier is set
 	if(!SSdynamic.current_tier)
-		SSdynamic.pick_tier(pop)
+		SSdynamic.pick_tier_storyteller(pop)
 
 	// Calculate desired initial ruleset count using dynamic's roundstart settings as base, but apply to midround
 	var/list/base_settings = SSdynamic.current_tier.ruleset_type_settings[ROUNDSTART]
@@ -894,8 +903,8 @@
 
 	// Pick rulesets using dynamic's midround weighted selection (mix light and heavy for variety)
 	var/list/queued = list()
-	var/light_weighted = SSdynamic.get_midround_rulesets(pop, LIGHT_MIDROUND)
-	var/heavy_weighted = SSdynamic.get_midround_rulesets(pop, HEAVY_MIDROUND)
+	var/light_weighted = SSdynamic.get_midround_rulesets_storyteller(pop, LIGHT_MIDROUND)
+	var/heavy_weighted = SSdynamic.get_midround_rulesets_storyteller(pop, HEAVY_MIDROUND)
 	var/total_weighted = light_weighted + heavy_weighted
 
 	for(var/i = 1 to desired_count)
@@ -942,6 +951,9 @@
 	COOLDOWN_START(SSdynamic, latejoin_ruleset_start, SSdynamic.current_tier.ruleset_type_settings[LATEJOIN][TIME_THRESHOLD])
 
 
+/datum/controller/subsystem/dynamic/proc/get_latejoin_rulesets_storyteller(population)
+	// Use existing latejoin ruleset retrieval logic
+	return get_latejoin_rulesets(population)
 
 
 // Spawns midround or latejoin antagonists post-roundstart using dynamic's midround/latejoin logic
@@ -956,7 +968,7 @@
 	if(HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ANTAGS))
 		return 0
 
-	var/pop = get_active_player_count(afk_check = TRUE)
+	var/pop = inputs.player_count()
 	if(pop < population_threshold_low)
 		return 0
 
@@ -975,9 +987,9 @@
 		chance = SSdynamic.get_midround_chance(spawn_type)
 
 	// Apply admin forcing if set
-	if((spawn_type == LIGHT_MIDROUND && SSdynamic.admin_forcing_next_light) ||
-	   (spawn_type == HEAVY_MIDROUND && SSdynamic.admin_forcing_next_heavy) ||
-	   (spawn_type == LATEJOIN && SSdynamic.admin_forcing_next_latejoin))
+	if((spawn_type == LIGHT_MIDROUND && SSdynamic.admin_forcing_next_light) || \
+	   (spawn_type == HEAVY_MIDROUND && SSdynamic.admin_forcing_next_heavy) || \
+	   (spawn_type == LATEJOIN && SSdynamic.admin_forcing_next_latejoin)) \
 		chance = 100
 
 	if(!prob(chance))
@@ -987,9 +999,9 @@
 	// Get weighted rulesets using dynamic's methods
 	var/list/rulesets_weighted = list()
 	if(spawn_type == LATEJOIN)
-		rulesets_weighted = SSdynamic.get_latejoin_rulesets(pop)
+		rulesets_weighted = SSdynamic.get_latejoin_rulesets_storyteller(pop)
 	else
-		rulesets_weighted = SSdynamic.get_midround_rulesets(pop, spawn_type)
+		rulesets_weighted = SSdynamic.get_midround_rulesets_storyteller(pop, spawn_type)
 
 	if(!length(rulesets_weighted))
 		log_storyteller("[src.name] no post-roundstart [spawn_type] rulesets available")
@@ -1015,7 +1027,7 @@
 	picked_ruleset.blacklisted_roles = blacklisted
 
 	// Prepare candidates
-	var/list/candidates = (spawn_type == LATEJOIN && candidate) ? list(candidate) : picked_ruleset.collect_candidates()
+	var/list/candidates = (spawn_type == LATEJOIN && candidate) ? list(candidate) : picked_ruleset.selected_minds
 
 	// Prepare and execute (can sleep)
 	if(!picked_ruleset.prepare_execution(pop, candidates))
@@ -1038,13 +1050,13 @@
 	if(spawn_type == LATEJOIN)
 		SSdynamic.failed_latejoins = 0
 		SSdynamic.admin_forcing_next_latejoin = FALSE
-		COOLDOWN_START(SSdynamic, SSdynamic.latejoin_cooldown, SSdynamic.get_ruleset_cooldown(LATEJOIN))
+		COOLDOWN_START(SSdynamic, latejoin_cooldown, SSdynamic.get_ruleset_cooldown(LATEJOIN))
 	else
 		if(spawn_type == LIGHT_MIDROUND)
 			SSdynamic.admin_forcing_next_light = FALSE
 		else if(spawn_type == HEAVY_MIDROUND)
 			SSdynamic.admin_forcing_next_heavy = FALSE
-		COOLDOWN_START(SSdynamic, SSdynamic.midround_cooldown, SSdynamic.get_ruleset_cooldown(spawn_type))
+		COOLDOWN_START(SSdynamic, midround_cooldown, SSdynamic.get_ruleset_cooldown(spawn_type))
 
 	log_storyteller("[src.name] spawned [spawned] post-roundstart [spawn_type] antagonist(s) using dynamic config")
 
