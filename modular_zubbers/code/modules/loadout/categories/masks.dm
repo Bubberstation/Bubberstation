@@ -99,7 +99,7 @@
 	name = "Gas Masks"
 	abstract_type = /datum/loadout_item/mask/gas
 
-/datum/loadout_item/mask/gas/mask
+/datum/loadout_item/mask/gas/tider
 	name = "Gas Mask"
 	item_path = /obj/item/clothing/mask/gas
 
@@ -128,7 +128,7 @@
 	item_path = /obj/item/clothing/mask/gas/nri_police
 	restricted_roles = list(ALL_JOBS_SEC, JOB_CUSTOMS_AGENT)
 
-/datum/loadout_item/mask/frontier_colonist
+/datum/loadout_item/mask/gas/frontier_colonist
 	name = "Frontier Gas Mask"
 	item_path = /obj/item/clothing/mask/gas/atmos/frontier_colonist/loadout
 
@@ -164,7 +164,7 @@
 	name = "Masquerade Masks"
 	abstract_type = /datum/loadout_item/mask/masquerade
 
-/datum/loadout_item/mask/masquerade/mask
+/datum/loadout_item/mask/masquerade/masqmask
 	name = "Masquerade Mask"
 	item_path = /obj/item/clothing/mask/masquerade
 
