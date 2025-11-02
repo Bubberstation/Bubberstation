@@ -52,16 +52,9 @@
 	name = "Nanotrasen Flag"
 	reqs = list(
 		/obj/item/stack/sheet/cloth = 5,
+		/obj/item/toy/crayon/blue = 1,
 	)
 	result = /obj/item/sign/flag/nanotrasen
-	category = CAT_FURNITURE
-
-/datum/crafting_recipe/syndflag
-	name = "Syndicate Flag"
-	reqs = list(
-		/obj/item/stack/sheet/cloth = 5,
-	)
-	result = /obj/item/sign/flag/syndicate
 	category = CAT_FURNITURE
 
 /datum/crafting_recipe/galflag

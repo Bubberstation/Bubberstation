@@ -60,10 +60,6 @@
 	name = "Galactic Federation Flag"
 	item_path = /obj/item/sign/flag/galfed
 
-/datum/loadout_item/pocket_items/flag_syndicate //I'd restrict this but I like the idea of Sec/Command having it as a trophy. Should probably be contraband tho.
-	name = "Syndicate Flag"
-	item_path = /obj/item/sign/flag/syndicate
-
 /*
 *	NIF LENSES
 */
