@@ -206,7 +206,7 @@
 	item_path = /obj/item/cigarette/pipe
 
 /datum/loadout_item/mask/utility/pipe/corn
-	name = "Corn Cob Pipe"
+	name = "Pipe (Corn Cob)"
 	item_path = /obj/item/cigarette/pipe/cobpipe
 
 /datum/loadout_item/mask/utility/lollipop
