@@ -15,7 +15,7 @@
 
 	VAR_PRIVATE/cache_duration = 1 MINUTES
 
-	COOLDOWN_DECLARE(inputs_cahche_duration)
+	COOLDOWN_DECLARE(inputs_cache_duration)
 
 	COOLDOWN_DECLARE(station_integrity_duration)
 
@@ -48,7 +48,7 @@
 
 
 /datum/storyteller_analyzer/process(seconds_per_tick)
-	if(COOLDOWN_FINISHED(src, inputs_cahche_duration))
+	if(COOLDOWN_FINISHED(src, inputs_cache_duration))
 		INVOKE_ASYNC(src, PROC_REF(scan_station))
 
 
@@ -75,7 +75,7 @@
 	if(scan_flags & RESCAN_STATION_INTEGRITY)
 		get_station_integrity(TRUE)
 
-	COOLDOWN_START(src, inputs_cahche_duration, cache_duration)
+	COOLDOWN_START(src, inputs_cache_duration, cache_duration)
 	var/datum/storyteller_inputs/inputs = new
 	inputs.station_state = get_station_integrity()
 	inputs.station_value = SSstorytellers.station_value
@@ -95,7 +95,6 @@
 		analyzing = FALSE
 	var/timeout_at = world.time + (cache_duration * 2)
 	while(analyzing && world.time < timeout_at)
-		stoplag()
 		sleep(world.tick_lag)
 	if(analyzing)
 		// Timed out; stop now

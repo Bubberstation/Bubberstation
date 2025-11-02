@@ -5,14 +5,13 @@
 #define STORY_MOOD_AGGR_SHIFT_FACTOR 0.3
 
 /datum/storyteller_planner
-	// Our owner
 	var/datum/storyteller/owner
 	/// Timeline plan: Assoc list of "[world.time + offset]" -> list(event_instance, category, status="pending|firing|completed")
 	VAR_PRIVATE/list/timeline = list()
 	/// Recalc frequency
 	var/recalc_interval = STORY_RECALC_INTERVAL
 
-	var/planning_cooldown = 3 MINUTES
+	var/planning_cooldown = 30 SECONDS
 
 	COOLDOWN_DECLARE(event_planning_cooldown)
 
@@ -25,10 +24,10 @@
 
 
 
-// Main update_plan: Central control for event execution and timeline advancement in event chain.
-// Called every think tick; scans upcoming for fire-ready events, executes (run_event_as_storyteller()), updates status,
-// reschedules fails, cleans timeline. Returns list of fired events for think() processing (adaptation/tags).
-// inspired by RimWorld's cycle firing with adaptive rescheduling.
+/// Main update_plan: Central control for event execution and timeline advancement in event chain.
+/// Called every think tick; scans upcoming for fire-ready events, executes (run_event_as_storyteller()), updates status,
+/// reschedules fails, cleans timeline. Returns list of fired events for think() processing (adaptation/tags).
+/// Inspired by RimWorld's cycle firing with adaptive rescheduling.
 /datum/storyteller_planner/proc/update_plan(datum/storyteller/ctl, datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/bal)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!timeline)
@@ -51,15 +50,16 @@
 
 		if(!evt.can_fire_now(inputs, ctl))
 			timeline -= offset_str
-			try_plan_event(evt, get_next_event_delay(evt, inputs, ctl))  // Use helper for relative delay calculation
+			try_plan_event(evt, get_next_event_delay(evt, inputs, ctl))
 			continue
 
 		entry[ENTRY_STATUS] = STORY_GOAL_FIRING
-		// We literally multiply by difficulty_multiplier, it's mean 5x difficulty = 5x points
-		if(evt.run_event_as_storyteller(inputs, ctl, round(ctl.threat_points * ctl.difficulty_multiplier * 100)))
+		/// Calculate threat points: scale by difficulty, population_factor, and threat_points
+		var/threat_points_for_event = ctl.threat_points * ctl.difficulty_multiplier * clamp(ctl.population_factor, 0.3, 1.0) * 100
+		if(evt.run_event_as_storyteller(inputs, ctl, round(threat_points_for_event)))
 			fired_events += evt
 			entry[ENTRY_STATUS] = STORY_GOAL_COMPLETED
-			message_admins("[span_notice("Storyteller fired event: ")] [evt.name || evt.id].")
+			message_admins("[span_notice("Storyteller fired event: ")] [evt.name || evt.id]. with threat points: [threat_points_for_event]")
 			ctl.post_event(evt)
 		else
 			entry[ENTRY_STATUS] = STORY_GOAL_PENDING
@@ -73,17 +73,26 @@
 	for(var/offset_str in timeline)
 		var/list/entry = timeline[offset_str]
 		if(entry[ENTRY_STATUS] in list(STORY_GOAL_COMPLETED, STORY_GOAL_FAILED))
-			var/datum/round_event_control/clean_event_control = entry[ENTRY_EVENT]
 			timeline -= offset_str
-			if(clean_event_control)
-				qdel(clean_event_control)
 
 	var/pending_count = 0
 	for(var/offset_str in timeline)
 		if(timeline[offset_str][ENTRY_STATUS] == STORY_GOAL_PENDING)
 			pending_count++
 
-	if(pending_count <= 0 && COOLDOWN_FINISHED(src, event_planning_cooldown))
+	// Ensure we always have at least STORY_INITIAL_GOALS_COUNT pending events
+	// This prevents situations where storyteller doesn't plan any events
+	if(pending_count < STORY_INITIAL_GOALS_COUNT)
+		var/added = 0
+		while(pending_count < STORY_INITIAL_GOALS_COUNT && added < 5)  // Limit attempts to prevent infinite loops
+			if(add_next_event(ctl, inputs, bal))
+				pending_count++
+				added++
+			else
+				break  // Failed to add event, exit loop
+		if(added > 0)
+			COOLDOWN_START(src, event_planning_cooldown, planning_cooldown)
+	else if(pending_count <= 0 && COOLDOWN_FINISHED(src, event_planning_cooldown))
 		if(add_next_event(ctl, inputs, bal))
 			COOLDOWN_START(src, event_planning_cooldown, planning_cooldown)
 
@@ -105,27 +114,26 @@
 	else if(ctl.adaptation_factor > 0.5 && !(derived_tags & STORY_TAG_DEESCALATION))
 		derived_tags |= STORY_TAG_DEESCALATION
 
-		var/datum/round_event_control/new_event_control = build_event(ctl, inputs, bal, derived_tags, category)
-		if(!new_event_control)
-			return FALSE
+	var/datum/round_event_control/new_event_control = build_event(ctl, inputs, bal, derived_tags, category)
+	if(!new_event_control)
+		return FALSE
 
-		var/next_delay = get_next_event_delay(new_event_control, inputs, ctl)
-		var/last_time = get_last_reference_time(ctl)
-		var/fire_offset = last_time + next_delay
-		if(try_plan_event(new_event_control, fire_offset, TRUE))
-			log_storyteller_planner("[ctl.name] added next event to chain: [new_event_control.name || new_event_control.id] at offset [fire_offset] (relative delay: [next_delay]).")
-			return TRUE
-		else
-			qdel(new_event_control)
-			return FALSE
+	var/next_delay = get_next_event_delay(new_event_control, inputs, ctl)
+	var/last_time = get_last_reference_time(ctl)
+	var/fire_offset = last_time + next_delay
+	if(try_plan_event(new_event_control, fire_offset, TRUE))
+		log_storyteller_planner("[ctl.name] added next event to chain: [new_event_control.name || new_event_control.id] at offset [fire_offset] (relative delay: [next_delay]).")
+		return TRUE
+	return FALSE
 
 
 
-// Recalculate the entire plan: Rebuild timeline from current state.
-// Clears invalid/unavailable events, ensures at least 3 pending events for continuous pacing.
-// Dynamically generates chain of events (no global/sub distinction), throttled by recalc_interval.
-// Triggers on major shifts (threat/adaptation) or emptiness; analyzes station for fresh tags.
-// Ensures storyteller's event chain branches adaptively toward threat escalation.
+
+/// Recalculate the entire plan: Rebuild timeline from current state.
+/// Clears invalid/unavailable events, ensures at least 3 pending events for continuous pacing.
+/// Dynamically generates chain of events (no global/sub distinction), throttled by recalc_interval.
+/// Triggers on major shifts (threat/adaptation) or emptiness; analyzes station for fresh tags.
+/// Ensures storyteller's event chain branches adaptively toward threat escalation.
 /datum/storyteller_planner/proc/recalculate_plan(datum/storyteller/ctl, datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/bal, force = FALSE)
 	var/list/validation_result = validate_and_collect_entries(ctl, inputs, force)
 	if(validation_result["pending_count"] == -1)
@@ -160,7 +168,6 @@
 		if(!event_control.is_avaible(inputs, ctl) && !SSstorytellers.hard_debug)
 			invalid_events++
 			to_delete += offset_str
-			qdel(event_control)
 			continue
 		valid_entries += list(entry)
 		if(entry[ENTRY_STATUS] == STORY_GOAL_PENDING)
@@ -188,16 +195,23 @@
 		return
 
 	var/list/new_timeline = list()
-	var/event_interval = ctl.get_event_interval()
-	var/accum_delay = event_interval
+	var/base_interval = ctl.get_event_interval()
 	var/last_time = get_last_reference_time(ctl)
+	var/current_offset = 0
+
 	for(var/i = 1 to length(valid_entries))
 		var/list/entry = valid_entries[i]
-		var/new_offset_num = last_time + accum_delay
+		// Calculate delay: base interval + volatility variance
+		// Low population increases intervals more significantly
+		var/volatility_mult = 1 + (ctl.mood.volatility * 0.1)
+		var/pop_interval_mult = 1.5 - (ctl.population_factor - 0.3) * (1.5 - 1.0) / (1.0 - 0.3)
+		pop_interval_mult = clamp(pop_interval_mult, 1.0, 1.5)
+
+		current_offset += base_interval * volatility_mult * pop_interval_mult
+		var/new_offset_num = last_time + current_offset
 		var/new_offset_str = num2text(new_offset_num)
 		entry[ENTRY_FIRE_TIME] = new_offset_num
 		new_timeline[new_offset_str] = entry
-		accum_delay += event_interval * (1 + (ctl.mood.volatility * 0.1))  // Improved: Add slight volatility variance to intervals
 	timeline = new_timeline
 
 
@@ -252,25 +266,31 @@
 		if(!new_event_control)
 			continue
 
-		var/fire_delay = start_delay + (event_interval * (i - 1)) * (1 + (ctl.mood.volatility * 0.05))  // Improved: Add volatility to spread out intervals
+		// Calculate fire delay: base interval with volatility and population scaling
+		var/volatility_mult = 1 + (ctl.mood.volatility * 0.05)
+		var/pop_interval_mult = 1.5 - (ctl.population_factor - 0.3) * (1.5 - 1.0) / (1.0 - 0.3)
+		pop_interval_mult = clamp(pop_interval_mult, 1.0, 1.5)
+		var/fire_delay = start_delay + (event_interval * (i - 1)) * volatility_mult * pop_interval_mult
 		var/fire_offset = last_time + fire_delay
 		if(ctl.can_trigger_event_at(fire_offset))
 			if(try_plan_event(new_event_control, fire_offset, TRUE))
 				pending_count++
-			else
-				qdel(new_event_control)
 
 	// Fallback if still low (add random)
 	var/attempts = 0
-	while(pending_count < 0)
-		if(attempts > 3)
-			break
+	while(pending_count < STORY_INITIAL_GOALS_COUNT && attempts < 5)
 		var/datum/round_event_control/fallback = build_event(ctl, inputs, bal, 0, STORY_GOAL_RANDOM)
 		if(fallback)
-			var/fire_delay = event_interval * pending_count
+			var/fire_delay = event_interval * (pending_count + 1)
 			var/fire_offset = last_time + fire_delay
 			if(try_plan_event(fallback, fire_offset))
 				pending_count++
+			else
+				attempts++
+				continue
+		else
+			attempts++
+			continue
 		attempts++
 
 
@@ -327,7 +347,6 @@
 		base_delay += 1 MINUTES
 		attempts++
 	stack_trace("Storyteller planner: Failed to find free timeline slot after [max_attempts] attempts for event [event_control.id || event_control.name].")
-	qdel(event_control)
 	return FALSE
 
 
@@ -387,13 +406,14 @@
 	timeline -= old_str
 	return TRUE
 
+
+/// Cancels an event from the timeline by removing it from the schedule
+/// round_event_control is a singleton and should never be deleted
 /datum/storyteller_planner/proc/cancel_event(offset)
 	var/offset_str = time_key(offset)
 	if(!timeline[offset_str])
 		return FALSE
-	var/datum/round_event_control/event_control = timeline[offset_str][ENTRY_EVENT]
-	if(event_control)
-		qdel(event_control)
+	// Only remove from timeline, do NOT delete round_event_control (it's a singleton!)
 	timeline -= offset_str
 	return TRUE
 
@@ -458,9 +478,11 @@
 
 /datum/storyteller_planner/proc/get_next_event_delay(datum/round_event_control/event_control, datum/storyteller_inputs/inputs, datum/storyteller/ctl)
 	var/base_interval = ctl.get_event_interval()
-	// progress_factor removed - round_event_control doesn't have get_progress
-	var/progress_factor = 1.0
-	return max(ctl.grace_period, round(base_interval * progress_factor))
+	// Scale grace period by population_factor: low pop = longer minimum delay
+	var/pop_grace_mult = 1.5 - (ctl.population_factor - 0.3) * (1.5 - 1.0) / (1.0 - 0.3)
+	pop_grace_mult = clamp(pop_grace_mult, 1.0, 1.5)
+	var/min_delay = ctl.grace_period * pop_grace_mult
+	return max(min_delay, round(base_interval))
 
 
 /datum/storyteller_planner/proc/get_last_reference_time(datum/storyteller/ctl)

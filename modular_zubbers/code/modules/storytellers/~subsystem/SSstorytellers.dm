@@ -184,7 +184,7 @@ SUBSYSTEM_DEF(storytellers)
 	new_st.repetition_penalty = data["repetition_penalty"]
 	new_st.ooc_desc = data["ooc_desc"]
 	new_st.ooc_difficulty = data["ooc_difficulty"]
-	new_st.portait_path = data["portait_path"]
+	new_st.portrait_path = data["portait_path"]
 	new_st.logo_path = data["logo_path"]
 
 	var/mood = data["mood_path"]

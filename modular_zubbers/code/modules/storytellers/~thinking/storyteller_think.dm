@@ -106,16 +106,25 @@
 	score_good += adapt * THINK_ADAPTATION_WEIGHT * good_adapt_mult
 	score_good += mood_aggr < (0.85 * pace) ? 0.7 : 0.0
 	score_good += good_base_bias
+	// Boost good events at low population (mercy mode)
+	if(pop < 0.5)
+		score_good += 0.2
 	score_good = min(score_good, 2.0)
 
 	score_bad += (1.0 - tension_norm) * THINK_TENSION_WEIGHT * bad_tension_mult
 	score_bad += mood_aggr * THINK_MOOD_WEIGHT * 0.4
 	score_bad += threat_rel * THINK_THREAT_WEIGHT * 0.4
 	score_bad += pace * THINK_MOOD_WEIGHT * 0.1
+	// Scale bad events by population: low pop = fewer bad events
+	score_bad *= clamp(pop, 0.5, 1.0)
 	score_bad = min(score_bad, 2.0)
 
+	// Neutral events are more common at low population (less intense gameplay)
 	score_neutral += (1.0 - tension_diff_norm) * 0.8 * pop
 	score_neutral += 0.2 * (1.0 - mood_aggr)
+	// Boost neutral score for low population
+	if(pop < 0.5)
+		score_neutral += 0.3
 	score_neutral = min(score_neutral, 2.0)
 
 	score_random += (mood_vol - 1.0) * THINK_VOLATILITY_WEIGHT
@@ -239,6 +248,7 @@
 
 		var/base_weight = evt.get_story_weight(inputs, ctl)
 		var/priority_boost = evt.get_story_priority(inputs, ctl) * STORY_PRIORITY_BOOST_SCALE
+		// Adjust weight by difficulty and population: low pop = lower weight for intense events
 		var/diff_adjust = ctl.difficulty_multiplier * population_scale
 
 		// Enhanced repetition penalty: Recency (time-based decay) + frequency (count in history)
@@ -258,7 +268,9 @@
 		rep_penalty /= max(0.5, ctl.population_factor)
 
 
-		var/threat_bonus = clamp(ctl.threat_points * ctl.mood.get_threat_multiplier() * STORY_PICK_THREAT_BONUS_SCALE, 0, STORY_MAX_THREAT_BONUS)  // Added clamp
+		// Threat bonus scales with population_factor: low pop = smaller threat bonus
+		var/threat_mult = clamp(ctl.population_factor, 0.3, 1.0)
+		var/threat_bonus = clamp(ctl.threat_points * ctl.mood.get_threat_multiplier() * STORY_PICK_THREAT_BONUS_SCALE * threat_mult, 0, STORY_MAX_THREAT_BONUS)
 		var/adapt_reduce = 1.0 - ctl.adaptation_factor
 
 		var/balance_bonus = 0
@@ -274,7 +286,13 @@
 			var/num_matches = popcount_tags(matches)
 			tag_match_bonus = STORY_TAG_MATCH_BONUS * num_matches
 
-		var/final_weight = max(0.1, (base_weight + priority_boost + threat_bonus + balance_bonus + tag_match_bonus - rep_penalty) * diff_adjust * adapt_reduce)
+		// Final weight calculation: base weight + bonuses - penalties, scaled by difficulty and population
+		// Low population reduces overall weight for intense events (bad/escalation tags)
+		var/intensity_penalty = 1.0
+		if((evt.tags & STORY_TAG_ESCALATION) && ctl.population_factor < 0.5)
+			intensity_penalty = 0.7  // Reduce weight of escalation events at low pop
+
+		var/final_weight = max(0.1, (base_weight + priority_boost + threat_bonus + balance_bonus + tag_match_bonus - rep_penalty) * diff_adjust * adapt_reduce * intensity_penalty)
 		final_weight = add_weight_jitter(final_weight, ctl.mood.volatility)
 		weighted[evt] = final_weight
 
@@ -285,7 +303,7 @@
 	if(SSstorytellers.hard_debug)
 		message_admins("Storyteller [ctl.name] selected event: [selected.id || selected.name] (final_weight=[weighted[selected]])")
 
-	return new selected.type
+	return selected
 
 /datum/think_stage
 	var/description = "Base think stage"

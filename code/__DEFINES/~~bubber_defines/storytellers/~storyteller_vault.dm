@@ -19,10 +19,9 @@
 	// Most crew members are in excellent health.
 	#define STORY_VAULT_HEALTH_HEALTHY 0
 
-
-#define STORY_VAULT_AVG_CREW_WOUNDS "avg_crew_wounds"
-
-#define STORY_VAULT_AVG_ANTAG_WOUNDS "avg_atnag_wounds"
+// Average wound count metrics (raw numeric values)
+#define STORY_VAULT_AVG_CREW_WOUNDS "avg_crew_wounds"      // Average wounds per crew member
+#define STORY_VAULT_AVG_ANTAG_WOUNDS "avg_atnag_wounds"    // Average wounds per antagonist
 
 // Tracks the extent of physical wounds among antagonists.
 #define STORY_VAULT_ANTAG_WOUNDING "antag_wounding"
@@ -53,10 +52,9 @@
 	These track counts and ratios of dead/alive crew and antagonists to gauge station mortality and survival rates.
 */
 
-// Avarge health of crew
-#define STORY_VAULT_AVG_CREW_HEALTH "avg_crew_health"
-// A varge health of atntagonists
-#define STORY_VAULT_AVG_ANTAG_HEALTH "avg_atnag_health"
+// Average health metrics (0-100, higher = healthier)
+#define STORY_VAULT_AVG_CREW_HEALTH "avg_crew_health"   // Average health of crew (0-100)
+#define STORY_VAULT_AVG_ANTAG_HEALTH "avg_atnag_health" // Average health of antagonists (0-100)
 
 
 // Tracks the number of dead antagonists.
@@ -131,6 +129,7 @@
 	These track security personnel, equipment, and alert levels to influence law enforcement and response events.
 */
 
+// Number of active security personnel on station
 #define STORY_VAULT_SECURITY_COUNT "security_count"
 
 // Tracks security strength (number of active security officers, their gear, arrests made).
@@ -152,6 +151,7 @@
 	These track morale and readiness of the crew to handle crises or daily operations.
 */
 
+// Total crew weight (sum of all crew member weights)
 #define STORY_VAULT_CREW_WEIGHT "crew_weight"
 
 // Tracks crew morale (happiness, stress from events/deaths).
@@ -168,15 +168,16 @@
 	#define STORY_VAULT_PREPARED 2       // Good stockpiles
 	#define STORY_VAULT_HIGHLY_READY 3   // Overprepared (armory full, etc.)
 
-
-#define STORY_VAULT_STATION_ALLIES "station_allies"
-#define STORY_VAULT_NUKE_ACTIVATED "NUKE_INCOMING"
-#define STORY_VAULT_DEATHSQUAD "doomguys_here"
+// Special state flags (boolean-like metrics)
+#define STORY_VAULT_STATION_ALLIES "station_allies"    // Station has allied NPCs/ships
+#define STORY_VAULT_NUKE_ACTIVATED "NUKE_INCOMING"    // Nuclear device activated
+#define STORY_VAULT_DEATHSQUAD "doomguys_here"        // Deathsquad on station
 /*
 	Antagonist metrics
 	These track antagonist behavior, progress, and impact to escalate or mitigate threats.
 */
 
+// Total antagonist weight (sum of all antag weights)
 #define STORY_VAULT_ANTAG_WEIGHT "antag_weight"
 
 // Tracks the level of antagonist-driven disruption, influencing escalation or mitigation events.
@@ -270,6 +271,7 @@
 	These track infrastructure, power, hazards, and research to influence emergency and recovery events.
 */
 
+// Overall station structural integrity (0-100, higher = better)
 #define STORY_VAULT_STATION_INTEGRITY "station_integrity"
 // Tracks infrastructure damage (power, hull breaches, etc.).
 #define STORY_VAULT_INFRA_DAMAGE "infra_damage"
@@ -286,12 +288,10 @@
 	#define STORY_VAULT_CRITICAL_POWER_FAILURE 3
 
 
-// Divisors for damage_level (for 0-3 scaling)
-#define STORY_POWER_SMES_DISCHARGE_DIVISOR "power_grid_smes"// For (100 - smes_percent) / this → tune for sensitivity
-// Vault keys for storing results (unique strings to avoid conflicts)
-#define STORY_VAULT_POWER_GRID_STRENGTH "power_grid_strength"  // Raw 0-100 for balancer
-
-#define STORY_VAULT_POWER_GRID_DAMAGE "power_grid_damage"
+// Power grid metrics
+#define STORY_POWER_SMES_DISCHARGE_DIVISOR "power_grid_smes"  // SMES discharge divisor for damage calculation
+#define STORY_VAULT_POWER_GRID_STRENGTH "power_grid_strength" // Overall power grid strength (0-100)
+#define STORY_VAULT_POWER_GRID_DAMAGE "power_grid_damage"     // Power grid damage level (0-3)
 	#define STORY_VAULT_POWER_GRID_NOMINAL 0
 	#define STORY_VAULT_POWER_GRID_FAILURES 1
 	#define STORY_VAULT_POWER_GRID_DAMAGED 2

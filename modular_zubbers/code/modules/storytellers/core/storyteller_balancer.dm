@@ -1,7 +1,7 @@
-// Balance subsystem for storyteller
-// Analyzes antagonist quantity, effectiveness (e.g., health, activity from metrics), and ratio to station strength (e.g., crew resilience, resources).
-// Inspired by RimWorld's threat adaptation: balances player/antag weights to prevent one-sided dominance, influencing goal selection (e.g., boost weak antags).
-// Snapshot captures current state for planner use.
+/// Balance subsystem for storyteller
+/// Analyzes antagonist quantity, effectiveness (e.g., health, activity from metrics), and ratio to station strength (e.g., crew resilience, resources).
+/// Inspired by RimWorld's threat adaptation: balances player/antag weights to prevent one-sided dominance, influencing goal selection (e.g., boost weak antags).
+/// Snapshot captures current state for planner use.
 
 /datum/storyteller_balance
 	VAR_PRIVATE/datum/storyteller/owner
@@ -23,7 +23,7 @@
 	owner = _owner
 	..()
 
-// Create a snapshot of current balance state based on storyteller inputs and vault
+/// Create a snapshot of current balance state based on storyteller inputs and vault
 /datum/storyteller_balance/proc/make_snapshot(datum/storyteller_inputs/inputs)
 	var/datum/storyteller_balance_snapshot/snap = new
 
@@ -38,14 +38,24 @@
 	snap.antag_strength_raw = antag_strength_raw
 	snap.antag_effectiveness = antag_strength_raw / 100  // Normalized for contrib
 
-	// Weights (scaled by strength/effectiveness)
+	// Improved weight calculation - uses actual crew weight from metrics, not just player count
 	var/total_players = inputs.vault[STORY_VAULT_CREW_ALIVE_COUNT] || 0
-	snap.total_player_weight = total_players * player_weight * snap.station_strength_raw / 100
+	var/avg_crew_weight = inputs.crew_weight() || player_weight  // Get average crew weight from metrics
+	var/crew_readiness = inputs.vault[STORY_VAULT_CREW_READINESS] || 0  // 0-3 scale
+
+	// Normalize readiness (0-3) to multiplier (0.7-1.3)
+	var/readiness_mult = clamp(0.7 + (crew_readiness / 3.0) * 0.6, 0.7, 1.3)
+
+	// Calculate total player weight: (avg weight per player * number of players) * strength modifier * readiness
+	// This better reflects actual crew capability
+	var/effective_crew_weight = total_players * avg_crew_weight * readiness_mult
+	snap.total_player_weight = effective_crew_weight * snap.station_strength_raw / 100
 
 	var/antag_count = inputs.antag_count()
 	snap.total_antag_weight = antag_count * antag_weight * snap.antag_effectiveness
 
 	// Ratio between station and antagonist strength (>1 = antag advantage)
+	// Prevent division by zero while preserving the actual ratio value
 	snap.ratio = antag_strength_raw / max(snap.station_strength_raw, 1)
 
 	// Activity and flags
@@ -57,50 +67,99 @@
 	snap.antag_coordinated = (inputs.vault[STORY_VAULT_ANTAG_TEAMWORK] || 0) > 1.5
 	snap.antag_stealthy = (inputs.vault[STORY_VAULT_ANTAG_STEALTH] || 0) > 1.5
 	snap.station_vulnerable = snap.station_strength < 0.5
-	snap.ratio = max(snap.ratio, 1) // Evode division by zero
 
-	var/base_tension = tension_bonus * (1 - owner.adaptation_factor)
+	// Base tension from planner history (normalized to 0-1, then scaled)
+	var/normalized_tension_bonus = clamp(tension_bonus / STORY_MAX_TENSION_BONUS, 0, 1)
+	var/base_tension = normalized_tension_bonus * 30 * (1 - owner.adaptation_factor)  // Max 30 points from history
 
-	// Contribs: antag activity/effect + integrity tension + health tension
-	var/antag_contrib = (snap.antag_effectiveness + snap.antag_activity_index) * 25
+	// Core tension contributions (all normalized 0-1, then scaled appropriately)
+	// Antagonist contribution: effectiveness + activity (both 0-1, max 40 points)
+	var/antag_contrib_normalized = (snap.antag_effectiveness * 0.6 + snap.antag_activity_index * 0.4)
+	var/antag_contrib = antag_contrib_normalized * 40
+
+	// Integrity tension (already returns 0-50 range, normalized)
 	var/integrity_tension = get_station_integrity_tension(inputs)
+
+	// Health tension (already returns 0-35 range, normalized)
 	var/health_tension = get_crew_health_tension(inputs)
 
-	// Extra: flags + lowpop mod (light, no loops)
+	// Extra tension from qualitative factors (using normalized flags and ratios)
 	var/extra_tension = 0
-	if(snap.antag_coordinated)
-		extra_tension += 5
-	if(snap.antag_stealthy)
-		extra_tension += 5
-	if(snap.station_vulnerable)
-		extra_tension += 5
-	if(snap.ratio > 1.2)
-		extra_tension += 10
-	if(inputs.vault[STORY_VAULT_CREW_ALIVE_COUNT] && inputs.vault[STORY_VAULT_CREW_ALIVE_COUNT] < 15)
-		extra_tension += 15 // Lowpop bias to more events
+
+	// Antag coordination: use normalized teamwork value instead of boolean
+	var/teamwork_norm = clamp((inputs.vault[STORY_VAULT_ANTAG_TEAMWORK] || 0) / 3.0, 0, 1)
+	extra_tension += teamwork_norm * 8  // Max 8 points for coordination
+
+	// Antag stealth: use normalized stealth value instead of boolean
+	var/stealth_norm = clamp((inputs.vault[STORY_VAULT_ANTAG_STEALTH] || 0) / 3.0, 0, 1)
+	extra_tension += stealth_norm * 6  // Max 6 points for stealth
+
+	// Station vulnerability: use normalized strength instead of boolean
+	var/vulnerability_norm = clamp(1 - snap.station_strength, 0, 1)
+	extra_tension += vulnerability_norm * 8  // Max 8 points for vulnerability
+
+	// Antag advantage ratio: normalized scale (1.0 = balanced, >1.0 = antag advantage)
+	var/ratio_normalized = clamp((snap.ratio - 1.0) / 2.0, 0, 1)  // Scale: 1.0->0, 3.0->1.0
+	extra_tension += ratio_normalized * 10  // Max 10 points for antag advantage
+
+	// Population factor: use normalized population (lowpop = higher tension)
+	var/crew_count = inputs.vault[STORY_VAULT_CREW_ALIVE_COUNT] || 0
+	var/normalized_crew_count = clamp(crew_count / 60.0, 0, 1)  // Normalize to max 60 players
+	var/lowpop_factor = 1 - normalized_crew_count  // Inverse: fewer players = higher factor
+	extra_tension += lowpop_factor * 12  // Max 12 points for low population
+
 	snap.overall_tension = clamp(base_tension + antag_contrib + integrity_tension + extra_tension + health_tension, 0, 100)
 
 	return snap
 
-// Returns normalized raw station strength from 0 to 100
+/// Returns normalized raw station strength from 0 to 100
+/// Improved calculation that better reflects actual station capability
 /datum/storyteller_balance/proc/get_station_strength(datum/storyteller_inputs/inputs, list/vault)
 	PRIVATE_PROC(TRUE)
 
-	var/crew_readiness = vault[STORY_VAULT_CREW_READINESS] // Readiness of the crew
-	var/crew_weight = inputs.crew_weight()
-	var/security_count = vault[STORY_VAULT_SECURITY_COUNT]
-	var/security_strength = vault[STORY_VAULT_SECURITY_STRENGTH]
+	var/crew_readiness = vault[STORY_VAULT_CREW_READINESS] || 0  // Readiness of the crew (0-3)
+	var/avg_crew_weight = inputs.crew_weight() || STORY_BALANCER_PLAYER_WEIGHT  // Average weight per crew member
+	var/security_count = vault[STORY_VAULT_SECURITY_COUNT] || 0
+	var/security_strength = vault[STORY_VAULT_SECURITY_STRENGTH] || 0
+	var/total_crew_count = inputs.vault[STORY_VAULT_CREW_ALIVE_COUNT] || 1
 
-	var/weight_crew_readiness = 0.3
-	var/weight_crew_weight = 0.3
-	var/weight_security = 0.2
-	var/security_contribution = (security_count * security_strength) / 100
+	// Weights adjusted for better balance
+	var/weight_crew_capability = 0.4  // Combined weight and readiness (primary factor)
+	var/weight_security = 0.35  // Security is important but not everything
+	var/weight_crew_health = 0.15  // Crew health affects effectiveness
+	var/weight_infrastructure = 0.10  // Station integrity matters
 
-	// Calculate total station strength (light sum)
+	// Crew capability: combines average weight with readiness
+	// Normalize readiness (0-3) to 0-100 scale
+	var/readiness_normalized = (crew_readiness / 3.0) * 100
+	// Crew weight is already in a normalized scale, convert to 0-100 range
+	// Assuming crew_weight ranges from ~5 to ~40 (typical values)
+	var/weight_normalized = clamp(avg_crew_weight * 2.5, 0, 100)  // Scale to 0-100
+	// Combined crew capability (weighted average)
+	var/crew_capability = (weight_normalized * 0.6 + readiness_normalized * 0.4)
+
+	// Security contribution: combines count and strength
+	var/max_security_count = max(total_crew_count * 0.2, 20)  // ~20% of crew or 20, whichever is higher
+	var/norm_security_count = min(security_count / max_security_count, 1.0) * 100
+	var/norm_security_strength = (security_strength / 3.0) * 100
+	// Security is effective when both count and quality are good
+	var/security_contribution = (norm_security_count * 0.6 + norm_security_strength * 0.4)
+
+	// Crew health contribution (from vault metrics)
+	var/crew_health = inputs.vault[STORY_VAULT_AVG_CREW_HEALTH] || 100  // 0-100
+	var/health_contribution = crew_health  // Already in 0-100 range
+
+	// Infrastructure integrity contribution
+	var/integrity = inputs.get_station_integrity() || 100  // 0-100
+	var/infra_contribution = integrity  // Already in 0-100 range
+
+	// Calculate total station strength (weighted sum)
 	var/station_strength = \
-		(crew_weight * weight_crew_weight) + \
-		(crew_readiness * weight_crew_readiness) + \
-		(security_contribution * weight_security) * 10.0 // For proper scaling
+		(crew_capability * weight_crew_capability) + \
+		(security_contribution * weight_security) + \
+		(health_contribution * weight_crew_health) + \
+		(infra_contribution * weight_infrastructure)
+
 	return clamp(station_strength, 0, 100)
 
 
@@ -120,7 +179,7 @@
 			final_modificator += 0.2
 
 	if(vault[STORY_VAULT_RESOURCE_MINERALS] && vault[STORY_VAULT_RESOURCE_MINERALS] < 250)
-		final_modificator -= 0.2 // we at low resourcess
+		final_modificator -= 0.2
 
 	if(vault[STORY_VAULT_RESOURCE_OTHER] && vault[STORY_VAULT_RESOURCE_OTHER] < 10000)
 		final_modificator -= 0.4
@@ -136,9 +195,9 @@
 
 	return final_modificator
 
-// Returns raw antagonist strength (0-100) based on vault metrics
-// Aggregates activity, kills, objectives, etc., with penalties for deaths/inactivity
-// Scaled to 0-100 for direct comparison with station_strength
+/// Returns raw antagonist strength (0-100) based on vault metrics
+/// Aggregates activity, kills, objectives, etc., with penalties for deaths/inactivity
+/// Scaled to 0-100 for direct comparison with station_strength
 /datum/storyteller_balance/proc/get_antagonist_strength(datum/storyteller_inputs/inputs, list/vault)
 	PRIVATE_PROC(TRUE)
 
@@ -194,12 +253,19 @@
 		norm_escalation * weight_escalation + \
 		norm_stealth * weight_stealth
 
-	// Modifiers (additive, clamped to 0-1)
-	var/presence_mod = norm_presence * 0.2
-	var/survival_mod = norm_dead * 0.3
-	var/activity_mod = norm_inactive * 0.5
+	// Modifiers (additive multipliers, properly scaled)
+	var/presence_mod = norm_presence * 0.15  // Reduced weight for balance
+	var/survival_mod = norm_dead * 0.20      // Reduced weight for balance
+	var/activity_mod = norm_inactive * 0.25  // Reduced weight for balance
 
-	var/overall_strength_norm = clamp(core_strength + presence_mod + survival_mod + activity_mod - 0.5, 0, 1)  // -0.5 centers base at ~0.5
+	// Combine core strength with modifiers (weighted sum, no arbitrary centering)
+	var/overall_strength_norm = clamp(
+		core_strength * 0.6 + \
+		(core_strength * presence_mod) * 0.1 + \
+		(core_strength * survival_mod) * 0.15 + \
+		(core_strength * activity_mod) * 0.15,
+		0, 1
+	)
 
 	// Relative scale: antag_count vs. player_count (ideal 5-20% antags; scale 0.5-2.0)
 	var/relative_scale = clamp(inputs.antag_count() / max(inputs.player_count() * 0.1, 1), 0.5, 2.0)
@@ -218,8 +284,8 @@
 #define STORY_INTEGRITY_TENSION_MIN -20            // Min tension (bonus for perfect state)
 
 
-// Returns tension contribution from station integrity (-20 to +50)
-// Based on hull, infra_damage, power; high damage → +tension (vulnerable station → escalate threats in planner)
+/// Returns tension contribution from station integrity (-20 to +50)
+/// Based on hull, infra_damage, power; high damage → +tension (vulnerable station → escalate threats in planner)
 /datum/storyteller_balance/proc/get_station_integrity_tension(datum/storyteller_inputs/inputs)
 	PRIVATE_PROC(TRUE)
 
@@ -296,12 +362,17 @@
 	var/norm_diseases = clamp(diseases_level / STORY_VAULT_OUTBREAK, 0, 1)
 	var/norm_dead = clamp(dead_ratio_level / STORY_VAULT_EXTREME_DEAD_RATIO, 0, 1)
 
-	var/base_tension = (norm_health * weight_health) + \
+	// Calculate base tension contribution (0-1 normalized, then scaled to 0-35)
+	var/base_tension_normalized = (norm_health * weight_health) + \
 		(norm_wounds * weight_wounds) + \
 		(norm_diseases * weight_diseases) + \
-		(norm_dead * weight_dead) * 10
+		(norm_dead * weight_dead)
 
-	var/bonus = -5 + (norm_dead * 25)
+	// Scale normalized tension to 0-35 range
+	var/base_tension = base_tension_normalized * 35
+
+	// Dead ratio bonus: more impactful when many crew are dead
+	var/bonus = norm_dead * 15
 	base_tension += bonus
 	return clamp(base_tension, 0, 35)
 

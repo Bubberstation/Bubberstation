@@ -90,21 +90,23 @@
 	var/avg_antag_wounds = alive_antag_count > 0 ? (total_antag_wounds / alive_antag_count) : 0
 
 
-	if(avg_crew_health_raw <= HEALTH_LOW_THRESHOLD)
-		crew_health_level = STORY_VAULT_HEALTH_LOW
+	// Health thresholds: check from lowest (worst) to highest (best)
+	// HEALTH_NORMAL_THRESHOLD=10, HEALTH_DAMAGED_THRESHOLD=40, HEALTH_LOW_THRESHOLD=70
+	if(avg_crew_health_raw <= HEALTH_NORMAL_THRESHOLD)
+		crew_health_level = STORY_VAULT_HEALTH_NORMAL
 	else if(avg_crew_health_raw <= HEALTH_DAMAGED_THRESHOLD)
 		crew_health_level = STORY_VAULT_HEALTH_DAMAGED
-	else if(avg_crew_health_raw <= HEALTH_NORMAL_THRESHOLD)
-		crew_health_level = STORY_VAULT_HEALTH_NORMAL
+	else if(avg_crew_health_raw <= HEALTH_LOW_THRESHOLD)
+		crew_health_level = STORY_VAULT_HEALTH_LOW
 	else
 		crew_health_level = STORY_VAULT_HEALTH_HEALTHY
 
-	if(avg_antag_health_raw <= HEALTH_LOW_THRESHOLD)
-		antag_health_level = STORY_VAULT_HEALTH_LOW
+	if(avg_antag_health_raw <= HEALTH_NORMAL_THRESHOLD)
+		antag_health_level = STORY_VAULT_HEALTH_NORMAL
 	else if(avg_antag_health_raw <= HEALTH_DAMAGED_THRESHOLD)
 		antag_health_level = STORY_VAULT_HEALTH_DAMAGED
-	else if(avg_antag_health_raw <= HEALTH_NORMAL_THRESHOLD)
-		antag_health_level = STORY_VAULT_HEALTH_NORMAL
+	else if(avg_antag_health_raw <= HEALTH_LOW_THRESHOLD)
+		antag_health_level = STORY_VAULT_HEALTH_LOW
 	else
 		antag_health_level = STORY_VAULT_HEALTH_HEALTHY
 
