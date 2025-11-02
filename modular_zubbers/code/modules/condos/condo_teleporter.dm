@@ -56,7 +56,7 @@
 
 /// Sanitycheck to prevent exploitation
 /obj/machinery/cafe_condo_teleporter/proc/check_target_eligibility(mob/to_be_checked)
-	if(Adjacent(to_be_checked))
+	if(!Adjacent(to_be_checked))
 		to_chat(to_be_checked, span_warning("You too far away from \the [src] to enter it!"))
 		return FALSE
 	if(to_be_checked.incapacitated)
