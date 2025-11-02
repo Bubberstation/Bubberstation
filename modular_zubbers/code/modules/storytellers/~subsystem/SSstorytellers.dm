@@ -45,7 +45,11 @@ SUBSYSTEM_DEF(storytellers)
 	/// Config-value: should storyteller speak with station
 	var/storyteller_allows_speech = TRUE
 
-
+	dependencies = list(
+		/datum/controller/subsystem/events,
+		/datum/controller/subsystem/processing/station,
+		/datum/controller/subsystem/dynamic,
+	)
 
 /datum/controller/subsystem/storytellers/Initialize()
 	// Load storyteller data from JSON
@@ -300,23 +304,17 @@ SUBSYSTEM_DEF(storytellers)
 	events_by_category["GOAL_UNCATEGORIZED"] = list()
 
 
-	for(var/event_control_type in subtypesof(/datum/round_event_control))
-		if(event_control_type == /datum/round_event_control)  // Skip base type
-			continue
-		var/datum/round_event_control/event_control = new event_control_type()
-
+	for(var/datum/round_event_control/event_control in SSevents.control)
 		if(!event_control.id)
-			log_storyteller("Storyteller event control [event_control_type] has no ID and was skipped.")
-			qdel(event_control)
+			log_storyteller("Storyteller event control [event_control.name] has no ID and was skipped.")
 			continue
 		if(events_by_id[event_control.id])  // Prevent duplicates
-			log_storyteller("Duplicate event control ID [event_control.id] for [event_control_type], skipping.")
-			qdel(event_control)
+			log_storyteller("Duplicate event control ID [event_control.id] for [event_control.name], skipping.")
 			continue
 		events_by_id[event_control.id] = event_control
 
 		if(!event_control.story_category)  // Use story_category instead of category
-			log_storyteller("Storyteller event control [event_control_type] has no story_category, assigning uncategorized.")
+			log_storyteller("Storyteller event control [event_control.id] has no story_category, assigning uncategorized.")
 			event_control.story_category = STORY_GOAL_UNCATEGORIZED
 
 		// Assign to all matching categories (bitflags allow multiple)
