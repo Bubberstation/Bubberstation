@@ -30,7 +30,7 @@
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_TOOLS,
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SECURITY
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/cyberimp_flash
 	name = "Photon Projector Implant"
@@ -47,13 +47,13 @@
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT,
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/cyberimp_botany
 	name = "Botany Arm Implant"
 	desc = "Everything a botanist needs in an arm implant, designed to be installed on a subject's arm."
 	id = "ci-botany"
-	build_type = MECHFAB | PROTOLATHE
+	build_type = MECHFAB
 	materials = list (
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
@@ -65,7 +65,6 @@
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_TOOLS,
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/cyberimp_nv
 	name = "Night Vision Eyes"
@@ -84,7 +83,6 @@
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_UTILITY,
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/cyberimp_antisleep
 	name = "CNS Jumpstarter Implant"
@@ -102,7 +100,6 @@
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT,
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/cyberimp_scanner
 	name = "Internal Medical Analyzer"
@@ -120,7 +117,6 @@
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_HEALTH,
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/cyberimp_janitor
 	name = "Janitor Arm Implant"
@@ -137,7 +133,6 @@
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_TOOLS,
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/cyberimp_lighter
 	name = "Lighter Arm Implant"
@@ -154,7 +149,6 @@
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_MISC,
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/cyberimp_thermals
 	name = "Thermal Eyes"
@@ -168,4 +162,3 @@
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT,
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL

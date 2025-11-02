@@ -449,7 +449,7 @@
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_HEALTH
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+	//departmental_flags = DEPARTMENT_BITFLAG_MEDICAL//Removing to only allow robotics to fit these
 
 /datum/design/cyberimp_surgical
 	name = "Surgical Arm Implant"
