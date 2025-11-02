@@ -143,3 +143,133 @@
 /datum/greyscale_config/sleeveless_crop_jacket/worn
 	name = "Tailored Jacket (Sleeveless, Worn)"
 	icon_file = 'modular_zubbers/icons/obj/clothing/suits/crop_jacket_worn.dmi'
+
+//ITEMS
+/datum/greyscale_config/umbrella
+	name = "Umbrella"
+	icon_file = 'modular_zubbers/icons/obj/equipment/umbrella.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/items/_umbrella.json'
+
+/datum/greyscale_config/umbrella_inhand_left
+	name = "Held Umbrella, Left, Closed"
+	icon_file = 'modular_zubbers/icons/obj/equipment/umbrella_inhand_l.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/items/_umbrella_inhand.json'
+
+/datum/greyscale_config/umbrella_inhand_right
+	name = "Held Umbrella, Right, Closed"
+	icon_file = 'modular_zubbers/icons/obj/equipment/umbrella_inhand_r.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/items/_umbrella_inhand.json'
+
+/*
+*
+* Greyscaled Medals
+*
+*/
+
+/datum/greyscale_config/medals
+	name = "Debug Medal Config"
+	//This sets the Obj icon. Worn configs still seperately change this to /mob/clothing/accessories.dmi
+	icon_file = 'modular_zubbers/icons/obj/clothing/accessories.dmi'
+	//This needs a json_config to work. Touch hacky, however, I *really* want this /medals for the subtyping.
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/accessories/medals/bar_medal.json'
+
+//Medals
+/datum/greyscale_config/medals/syndicate
+	name = "Syndicate Medal"
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/accessories/medals/syndicate.json'
+
+/datum/greyscale_config/medals/syndicate/worn
+	name = "Syndicate Medal (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
+
+/datum/greyscale_config/medals/shield
+	name = "Shield Medal"
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/accessories/medals/shield_medal.json'
+
+/datum/greyscale_config/medals/shield/worn
+	name = "Shield Medal (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
+
+/datum/greyscale_config/medals/bar
+	name = "Bar Medal"
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/accessories/medals/bar_medal.json'
+
+/datum/greyscale_config/medals/bar/worn
+	name = "Bar Medal (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
+
+/datum/greyscale_config/medals/circle
+	name = "Circle Medal"
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/accessories/medals/circle_medal.json'
+
+/datum/greyscale_config/medals/circle/worn
+	name = "Circle Medal (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
+
+/datum/greyscale_config/medals/heart
+	name = "Heart Medal"
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/accessories/medals/heart_medal.json'
+
+/datum/greyscale_config/medals/heart/worn
+	name = "Heart Medal (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
+
+/datum/greyscale_config/medals/crown
+	name = "Crown Medal"
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/accessories/medals/crown_medal.json'
+
+/datum/greyscale_config/medals/crown/worn
+	name = "Crown Medal (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
+
+/datum/greyscale_config/medals/glow
+	name = "Glow Medal"
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/accessories/medals/glow_medal.json'
+
+/datum/greyscale_config/medals/glow/worn
+	name = "Glow Medal (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
+
+//Pins
+/datum/greyscale_config/medals/neckpins
+	name = "Neckpin Medal"
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/accessories/medals/neckpins.json'
+
+/datum/greyscale_config/medals/neckpins/worn
+	name = "Neckpin Medal (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
+
+/datum/greyscale_config/medals/rank_pins
+	name = "Rank Pins"
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/accessories/medals/rankpins.json'
+
+/datum/greyscale_config/medals/rank_pins/worn
+	name = "Rank Pins (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
+
+//Ribbons
+/datum/greyscale_config/medals/color_ribbon
+	name = "Color Ribbon"
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/accessories/medals/color_ribbon.json'
+
+/datum/greyscale_config/medals/color_ribbon/worn
+	name = "Color Ribbon (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
+
+/datum/greyscale_config/medals/military_ribbon
+	name = "Military Ribbon"
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/accessories/medals/militaryribbon.json'
+
+/datum/greyscale_config/medals/military_ribbon/worn
+	name = "Military Ribbon (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
+
+// GalFed Accessories
+/datum/greyscale_config/galfedribbons
+	name = "GalFed Ribbons"
+	icon_file = 'modular_zubbers/icons/obj/clothing/accessories.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/accessories/medals/sfranks.json'
+
+/datum/greyscale_config/galfedribbons/worn
+	name = "GalFed Ribbons (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'

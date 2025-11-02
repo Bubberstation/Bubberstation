@@ -292,6 +292,9 @@
 		/obj/item/clothing/head/playbunnyears/syndicate = 3,
 		/obj/item/clothing/neck/tie/bunnytie/syndicate = 3,
 		/obj/item/clothing/suit/jacket/tailcoat/syndicate = 3,
+		/obj/item/clothing/under/syndicate/boss = 1,
+		/obj/item/clothing/gloves/combat/boss = 1,
+		/obj/item/clothing/shoes/combat/boss = 1,
 		/obj/item/clothing/suit/toggle/jacket/zubber/bomber/syndicate = 3,
 		/obj/item/clothing/under/syndicate/syndibunny = 3,
 	)
