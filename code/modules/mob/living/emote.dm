@@ -844,31 +844,3 @@
 /datum/emote/living/gulp/get_sound(mob/living/user)
 	return pick('sound/mobs/humanoids/human/gulp/gulp1.ogg',
 				'sound/mobs/humanoids/human/gulp/gulp2.ogg')
-
-/datum/emote/living/neigh
-	key = "neigh"
-	key_third_person = "neighs"
-	message = "neighs."
-	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
-
-/datum/emote/living/neigh/get_sound(mob/living/user)
-	return 'sound/mobs/non-humanoids/pony/whinny03.ogg'
-
-/datum/emote/living/neigh2
-	key = "neigh2"
-	key_third_person = "neighs2"
-	message = "lets out a long winded whinny!"
-	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
-
-/datum/emote/living/neigh2/get_sound(mob/living/user)
-	return pick('sound/mobs/non-humanoids/pony/whinny01.ogg',
-				'sound/mobs/non-humanoids/pony/whinny02.ogg')
-
-/datum/emote/living/snort
-	key = "snort"
-	key_third_person = "snorts"
-	message = "snorts."
-	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
-
-/datum/emote/living/snort/get_sound(mob/living/user)
-	return 'sound/mobs/non-humanoids/pony/snort.ogg'
