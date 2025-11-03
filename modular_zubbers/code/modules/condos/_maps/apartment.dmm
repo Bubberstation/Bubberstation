@@ -11,8 +11,13 @@
 /turf/closed/indestructible/steel,
 /area/misc/condo)
 "aS" = (
-/obj/structure/foamedmetal,
-/turf/open/floor/iron/kitchen,
+/obj/machinery/greenscreen_camera{
+	dir = 4;
+	is_operational = 0;
+	name = "camera";
+	desc = "A cam-corder. You dread to imagine what's on the tape labelled 'Ren'."
+	},
+/turf/open/floor/plating,
 /area/misc/condo)
 "bw" = (
 /obj/machinery/light_switch/directional/north,
@@ -262,6 +267,9 @@
 	},
 /turf/open/floor/wood/parquet,
 /area/misc/condo)
+"xQ" = (
+/turf/open/floor/plating,
+/area/misc/condo)
 "xT" = (
 /turf/closed/wall,
 /area/misc/condo)
@@ -296,6 +304,10 @@
 	dir = 4
 	},
 /turf/open/floor/carpet,
+/area/misc/condo)
+"Ch" = (
+/obj/effect/spawner/surgery_tray/full,
+/turf/open/floor/plating,
 /area/misc/condo)
 "Dc" = (
 /obj/item/kirbyplants/random,
@@ -351,7 +363,7 @@
 	},
 /area/misc/condo)
 "Ib" = (
-/obj/item/toy/plush/skyrat/breakdancing_bird,
+/obj/item/toy/plush/skyrat/chunko/inessa,
 /turf/open/floor/carpet,
 /area/misc/condo)
 "Ix" = (
@@ -389,6 +401,10 @@
 /obj/item/storage/cans/sixbeer,
 /turf/open/floor/wood/tile,
 /area/misc/condo)
+"LW" = (
+/obj/item/screwdriver/power,
+/turf/open/floor/plating,
+/area/misc/condo)
 "Mj" = (
 /turf/open/floor/carpet/donk,
 /area/misc/condo)
@@ -420,6 +436,14 @@
 /obj/structure/table,
 /obj/structure/towel_bin,
 /turf/open/floor/iron/freezer,
+/area/misc/condo)
+"Ok" = (
+/obj/item/clothing/suit/jacket/miljacket,
+/obj/item/clothing/mask/bandana/skull/black{
+	pixel_y = 7;
+	pixel_x = 2
+	},
+/turf/open/floor/plating,
 /area/misc/condo)
 "Py" = (
 /obj/structure/table/reinforced,
@@ -497,6 +521,10 @@
 /obj/machinery/light/small/directional/east,
 /turf/open/floor/iron/freezer,
 /area/misc/condo)
+"TY" = (
+/obj/structure/falsewall,
+/turf/open/floor/plating,
+/area/misc/condo)
 "Ul" = (
 /obj/structure/curtain,
 /turf/open/floor/iron/freezer,
@@ -532,6 +560,12 @@
 /area/misc/condo)
 "WI" = (
 /turf/open/floor/iron/kitchen,
+/area/misc/condo)
+"WJ" = (
+/obj/effect/gibspawner/human,
+/obj/structure/table/optable,
+/obj/machinery/light/red/dim/directional/south,
+/turf/open/floor/plating,
 /area/misc/condo)
 "WN" = (
 /obj/structure/sign/painting/library,
@@ -756,7 +790,7 @@ wu
 RP
 RP
 WN
-aS
+LW
 aS
 xT
 Wt
@@ -772,9 +806,9 @@ RP
 bz
 Ib
 RP
-xT
-aS
-aS
+TY
+xQ
+WJ
 xT
 fa
 HO
@@ -790,8 +824,8 @@ zA
 RM
 kW
 xT
-aS
-aS
+Ok
+Ch
 xT
 RF
 ho
