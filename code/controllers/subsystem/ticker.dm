@@ -181,7 +181,7 @@ SUBSYSTEM_DEF(ticker)
 				// BUBBER EDIT CHANGE END - Replace with more rich message
 			current_state = GAME_STATE_PREGAME
 			// BUBBERSTATION EDIT START
-			SSstorytellers.start_vote() //Storyteller vote start
+			SSstorytellers.start_vote(2 MINUTES) //Storyteller vote start
 			// BUBBERSTATION EDIT END
 			SStitle.change_title_screen() //SKYRAT EDIT ADDITION - Title screen
 			addtimer(CALLBACK(SStitle, TYPE_PROC_REF(/datum/controller/subsystem/title, change_title_screen)), 1 SECONDS) //SKYRAT EDIT ADDITION - Title screen

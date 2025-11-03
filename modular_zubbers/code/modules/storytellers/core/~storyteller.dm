@@ -1,15 +1,15 @@
 // Default population thresholds (can be overridden per storyteller instance)
-#define STORY_POPULATION_THRESHOLD_LOW_DEFAULT 10       // Very low pop → mercy mode (positive goals)
-#define STORY_POPULATION_THRESHOLD_MEDIUM_DEFAULT 21    // Medium → standard
-#define STORY_POPULATION_THRESHOLD_HIGH_DEFAULT 32      // High → challenge
-#define STORY_POPULATION_THRESHOLD_FULL_DEFAULT 51     // Full → max escalation
+#define STORY_POPULATION_THRESHOLD_LOW_DEFAULT 10	   // Very low pop → mercy mode (positive goals)
+#define STORY_POPULATION_THRESHOLD_MEDIUM_DEFAULT 21	// Medium → standard
+#define STORY_POPULATION_THRESHOLD_HIGH_DEFAULT 32	  // High → challenge
+#define STORY_POPULATION_THRESHOLD_FULL_DEFAULT 51	 // Full → max escalation
 
-#define STORY_POPULATION_FACTOR_LOW_DEFAULT 0.3         // Low pop: easier, more positive branches
+#define STORY_POPULATION_FACTOR_LOW_DEFAULT 0.3		 // Low pop: easier, more positive branches
 #define STORY_POPULATION_FACTOR_MEDIUM_DEFAULT 0.5
 #define STORY_POPULATION_FACTOR_HIGH_DEFAULT 0.8
 #define STORY_POPULATION_FACTOR_FULL_DEFAULT 1.0
 
-#define STORY_POPULATION_SMOOTH_WEIGHT_DEFAULT 0.8      // Slow changes for stability
+#define STORY_POPULATION_SMOOTH_WEIGHT_DEFAULT 0.8	  // Slow changes for stability
 
 #define STORY_POPULATION_HISTORY_MAX 20
 
@@ -366,14 +366,14 @@
 /// Base event interval, scaled by pace and population factor.
 /// Low population = longer intervals (fewer events), high population = shorter intervals (more frequent events)
 /datum/storyteller/proc/get_event_interval()
-    var/base = max_event_interval
-    // Linear interpolation: low pop (0.3) -> 1.44x interval, high pop (1.0) -> 0.5x interval
-    var/pop_mod = 1.5 - (population_factor - 0.3) * (1.5 - 0.7) / (1.0 - 0.3)
-    pop_mod = clamp(pop_mod, 0.7, 1.5)
-    var/pace_mult = max(get_effective_pace(), 0.05)
-    var/interval = (base / pace_mult) * pop_mod
-    // Allow interval to drop to a minimum of 0.5
-    return round(clamp(interval, 0.5, max_event_interval))
+	var/base = max_event_interval
+	// Linear interpolation: low pop (0.3) -> 1.44x interval, high pop (1.0) -> 0.5x interval
+	var/pop_mod = 1.5 - (population_factor - 0.3) * (1.5 - 0.7) / (1.0 - 0.3)
+	pop_mod = clamp(pop_mod, 0.7, 1.5)
+	var/pace_mult = max(get_effective_pace(), 0.05)
+	var/interval = (base / pace_mult) * pop_mod
+	// Allow interval to drop to a minimum of 0.5
+	return round(clamp(interval, 0.5, max_event_interval))
 
 
 /// Event interval without population adjustment; for baseline pacing in global goal selection.
@@ -487,7 +487,7 @@
 	if(!advisory_report)
 		// Fallback if generation fails
 		if(SSstorytellers?.storyteller_replace_dynamic)
-			log_storyteller("[src.name] failed to generate roundstart report, using fallback")
+			log_storyteller("[name] failed to generate roundstart report, using fallback")
 		else
 			GLOB.communications_controller.queue_roundstart_report()
 			return
@@ -557,7 +557,7 @@
 		)
 #endif
 
-	log_storyteller("[src.name] sent full roundstart report with advisory level based on target_tension=[target_tension], difficulty=[difficulty_multiplier]")
+	log_storyteller("[name] sent full roundstart report with advisory level based on target_tension=[target_tension], difficulty=[difficulty_multiplier]")
 
 /// Determines if this should be treated as a greenshift (no threats)
 /datum/storyteller/proc/determine_greenshift_status()

@@ -81,6 +81,7 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 		var/datum/action/storyteller_vote/vote_action = new()
 		vote_action.Grant(new_client.mob)
 		new_client.persistent_client.player_actions += vote_action
+		vote_action.Trigger(new_client.mob)
 
 /datum/controller/subsystem/storytellers/proc/start_vote(duration = 60 SECONDS)
 	// Clears existing UIs to prevent duplicates or stale data
