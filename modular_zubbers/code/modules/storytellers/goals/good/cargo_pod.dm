@@ -46,7 +46,6 @@
 	var/infra_damage = inputs.get_entry(STORY_VAULT_INFRA_DAMAGE) || STORY_VAULT_NO_DAMAGE
 	var/power_status = inputs.get_entry(STORY_VAULT_POWER_STATUS) || STORY_VAULT_FULL_POWER
 	var/antag_activity = inputs.get_entry(STORY_VAULT_ANTAGONIST_ACTIVITY) || STORY_VAULT_NO_ACTIVITY
-	var/security_strength = inputs.get_entry(STORY_VAULT_SECURITY_STRENGTH) || STORY_VAULT_MODERATE_SECURITY
 	var/low_resources = inputs.get_entry(STORY_VAULT_LOW_RESOURCE) || FALSE
 	var/crew_morale = inputs.get_entry(STORY_VAULT_CREW_MORALE) || STORY_VAULT_MODERATE_MORALE
 	var/research_progress = inputs.get_entry(STORY_VAULT_RESEARCH_PROGRESS) || STORY_VAULT_LOW_RESEARCH
