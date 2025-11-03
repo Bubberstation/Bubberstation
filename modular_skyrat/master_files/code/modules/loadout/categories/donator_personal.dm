@@ -213,11 +213,6 @@
 	item_path = /obj/item/toy/darksabre
 	//ckeywhitelist = list("inferno707")
 
-/datum/loadout_item/pocket_items/darksabresheath
-	name = "Dark Sabre Sheath"
-	item_path = /obj/item/storage/belt/sheath/sabre/darksabre
-	//ckeywhitelist = list("inferno707")
-
 /datum/loadout_item/pocket_items/darkarmor
 	name = "Dark Armor"
 	item_path = /obj/item/clothing/suit/armor/vest/darkcarapace
@@ -309,11 +304,6 @@
 /datum/loadout_item/uniform/occult_outfit
 	name = "Occult Collector's Outfit"
 	item_path = /obj/item/clothing/under/occult
-	//ckeywhitelist = list("gamerguy14948")
-
-/datum/loadout_item/belts/trinket_belt
-	name = "Trinket Belt"
-	item_path = /obj/item/storage/belt/fannypack/occult
 	//ckeywhitelist = list("gamerguy14948")
 
 /datum/loadout_item/toys/voodooplush
@@ -589,11 +579,6 @@
 	name = "Lop Bunny Plushie"
 	item_path = /obj/item/toy/plush/skyrat/plushie_syntax1112
 	//ckeywhitelist = list("syntax1112")
-
-/datum/loadout_item/ears/kinkphone_sharkenning
-	name = "Suspiciously Glossy Headphones"
-	item_path = /obj/item/clothing/ears/kinky_headphones/sharkenning
-	ckeywhitelist = list("thesharkenning")
 
 /datum/loadout_item/head/somerandomowl
 	name = "Starry Witch Hat"
