@@ -1,4 +1,4 @@
-// Remove MEDICAL access to specific cybernetics/organs by reassigning departmental_flags.
+// Remove MEDICAL access to specific cybernetics/organs by reassigning departmental_flags. Bubber balance change, @irondragoon
 
 // Cybernetic implants (eyes/brain/chest/arm/mouth utility + combat)
 /datum/design/cyberimp_breather
