@@ -314,9 +314,9 @@ DEFINE_BITFIELD(story_universal_tags, list(
 #define STORY_GOOD_MINIMAL 9000
 
 #define STORY_USEFULNESS_LEVEL(TP) ( \
-    (TP) <= STORY_GOOD_EXTREME ? 5 : \
-    (TP) <= STORY_GOOD_HIGH ? 4 : \
-    (TP) <= STORY_GOOD_MODERATE ? 3 : \
-    (TP) <= STORY_GOOD_LOW ? 2 : \
-    1 \
+	(TP) <= STORY_GOOD_EXTREME ? 5 : \
+	(TP) <= STORY_GOOD_HIGH ? 4 : \
+	(TP) <= STORY_GOOD_MODERATE ? 3 : \
+	(TP) <= STORY_GOOD_LOW ? 2 : \
+	1 \
 )
