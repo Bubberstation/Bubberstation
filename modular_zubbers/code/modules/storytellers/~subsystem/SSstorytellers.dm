@@ -312,7 +312,7 @@ SUBSYSTEM_DEF(storytellers)
 			continue // No wizard events
 		if(!event_control.id)
 			log_storyteller("Storyteller event control [event_control.name] has no ID using typeinstead.")
-			event_control.id = event_control.type
+			event_control.id = event_control.name
 		if(events_by_id[event_control.id])  // Prevent duplicates
 			log_storyteller("Duplicate event control ID [event_control.id] for [event_control.name], skipping.")
 			continue
