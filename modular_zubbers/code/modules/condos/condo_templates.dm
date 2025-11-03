@@ -293,7 +293,7 @@ Due to some fuckery with how these templates work; the bottom left turf of your 
 	landing_zone_x_offset = 8
 	landing_zone_y_offset = 2
 
-/datum/map_template/condo/fast_food
+/datum/map_template/condo/kinodertoten
 	name = "Condo - Movie Theater"
 	mappath = "modular_zubbers/code/modules/condos/_maps/cinema.dmm"
 	landing_zone_x_offset = 10
