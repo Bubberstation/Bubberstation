@@ -12,6 +12,7 @@
 /datum/sprite_accessory/screen/none
 	name = SPRITE_ACCESSORY_NONE
 	icon_state = null
+	factual = FALSE
 
 /datum/sprite_accessory/screen/blank
 	name = "Blank"
@@ -168,6 +169,7 @@
 	name = SPRITE_ACCESSORY_NONE
 	icon_state = "None"
 	recommended_species = null
+	factual = FALSE
 
 /datum/sprite_accessory/antenna/antennae
 	name = "Angled Antennae"
