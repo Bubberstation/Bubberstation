@@ -88,7 +88,3 @@
 				if(damage_level >= 3 && prob(explosive_sabotage_chance) || istype(target, /obj/machinery/power/smes))
 					target.ex_act(EXPLODE_LIGHT)
 					log_game("Storyteller: Sabotage explosion at [target.loc] (threat: [damage_level])")
-
-	log_game("Storyteller: Sabotage event completed. Level: [damage_level], Targets hit: [num_targets_per_type * length(candidate_types)]")
-
-

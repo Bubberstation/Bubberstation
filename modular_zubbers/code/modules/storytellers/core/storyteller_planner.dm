@@ -65,7 +65,7 @@
 			timeline -= offset_str
 			var/replan_delay = get_next_event_delay(evt, inputs, ctl)
 			try_plan_event(evt, replan_delay)
-			message_admins("[span_warning("Storyteller event failed to fire: ")] [evt.name || evt.id] — rescheduling.")
+			message_admins("[span_warning("[ctl.name] failed to fire: ")] [evt.name || evt.id] — rescheduling.")
 
 
 	// First, clean up completed/failed events from timeline

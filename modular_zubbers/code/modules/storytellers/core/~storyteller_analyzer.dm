@@ -95,6 +95,7 @@
 		analyzing = FALSE
 	var/timeout_at = world.time + (cache_duration * 2)
 	while(analyzing && world.time < timeout_at)
+		CHECK_TICK
 		sleep(world.tick_lag)
 	if(analyzing)
 		// Timed out; stop now

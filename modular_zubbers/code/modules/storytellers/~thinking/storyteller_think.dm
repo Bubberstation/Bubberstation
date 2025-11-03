@@ -318,11 +318,13 @@
 		context[CONTEXT_TAGS] |= tag
 
 
-/datum/think_stage/proc/execute(datum/storyteller/ctl, \
-	datum/storyteller_inputs/inputs, \
-	datum/storyteller_balance_snapshot/bal, \
-	datum/storyteller_mood/mood, \
-	list/context)
+/datum/think_stage/proc/execute( \
+	datum/storyteller/ctl,
+	datum/storyteller_inputs/inputs,
+	datum/storyteller_balance_snapshot/bal,
+	datum/storyteller_mood/mood,
+	list/context
+)
 	return
 
 /datum/think_stage/apply_category_bias

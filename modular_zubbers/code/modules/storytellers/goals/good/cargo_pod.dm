@@ -335,7 +335,7 @@
 		var/obj/structure/closet/supplypod/podspawn/pod = podspawn(specifications)
 		for(var/obj/item/paper/note in pod.contents)
 			if(istype(note))
-				note.add_raw_text("CentCom Supply Drop: Tailored for needs. Contains multiple resources for enhanced support. Use wisely.")
+				note.add_raw_text("CentCom Supply Drop: Tailored for current needs. Contains multiple resources for enhanced support. Use it wisely.")
 				break
 
 

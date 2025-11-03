@@ -225,7 +225,7 @@
 	// If no nearby area, find the nearest global high-value area
 	if(!selected_area)
 		var/area/closest_area
-		var/min_dist = INFINITY
+		var/min_dist = world.maxx
 		for(var/area/A in GLOB.areas)
 			for(var/value_area in valuable_areas)
 				if(istype(A, value_area))

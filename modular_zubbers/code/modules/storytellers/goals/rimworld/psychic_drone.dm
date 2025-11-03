@@ -205,7 +205,7 @@
 	timeout = 30 SECONDS
 
 /datum/movespeed_modifier/psychic_boost
-	multiplicative_slowdown = -2
+	multiplicative_slowdown = -0.5
 
 /obj/effect/temp_visual/psychic_scream
 	name = "psychic scream"
