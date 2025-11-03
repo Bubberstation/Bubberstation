@@ -34,3 +34,7 @@
 	clawfootstep = FOOTSTEP_CARPET_BAREFOOT
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
+
+/turf/open/water/hot_spring/cafe
+	planetary_atmos = TRUE
+	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
