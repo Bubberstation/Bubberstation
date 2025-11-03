@@ -17,12 +17,40 @@
 	// Is this event being run by the storyteller system?
 	var/storyteller = FALSE
 
+	VAR_PRIVATE/datum/storyteller_inputs/___storyteller_inputs = null
+
+	VAR_PRIVATE/datum/storyteller/___storyteller = null
+
+	VAR_PRIVATE/___additional_arguments = list()
+
 // Overrading control of the event to the storyteller system
 /datum/round_event/proc/__setup_for_storyteller(threat_points, ...)
 	SHOULD_CALL_PARENT(TRUE)
 	storyteller = TRUE
 	SSevents.running -= src
 	SSstorytellers.register_active_event(src)
+	___additional_arguments = args[1]
+	___storyteller_inputs = args[2]
+	___storyteller = args[3]
+
+/datum/round_event/proc/get_executer()
+	PROTECTED_PROC(TRUE)
+	RETURN_TYPE(/datum/storyteller)
+
+	return ___storyteller
+
+/datum/round_event/proc/get_inputs()
+	PROTECTED_PROC(TRUE)
+	RETURN_TYPE(/datum/storyteller_inputs)
+
+	return ___storyteller_inputs
+
+/datum/round_event/proc/get_additional_arguments()
+	PROTECTED_PROC(TRUE)
+	RETURN_TYPE(/list)
+
+	return ___additional_arguments
+
 
 /datum/round_event/proc/__announce_for_storyteller()
 	announce()
@@ -30,7 +58,6 @@
 
 /datum/round_event/proc/__start_for_storyteller()
 	start()
-
 
 
 /datum/round_event/proc/__process_for_storyteller(seconds_per_tick)

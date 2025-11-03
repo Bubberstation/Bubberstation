@@ -15,7 +15,7 @@
 	end_when = 120
 	allow_random = FALSE
 
-	var/damage_chance = 0
+	var/damage_for_ears = FALSE
 	COOLDOWN_DECLARE(tcom_pulse_cooldown)
 
 /datum/round_event/communications_blackout/storyteller/__setup_for_storyteller(threat_points, ...)
@@ -24,14 +24,16 @@
 	if(threat_points < STORY_THREAT_LOW)
 		end_when = 60
 	else if(threat_points < STORY_THREAT_MODERATE)
+		damage_for_ears = prob(10)
 		end_when = 120
 	else if(threat_points < STORY_THREAT_HIGH)
+		damage_for_ears = prob(50)
 		end_when = 180
 	else if(threat_points < STORY_THREAT_EXTREME)
-		damage_chance = 30
+		damage_for_ears = prob(70)
 		end_when = 240
 	else
-		damage_chance = 50
+		damage_for_ears = TRUE
 		end_when = 300
 
 
@@ -54,7 +56,7 @@
 		to_chat(A, span_notice("Remember, you can transmit over holopads by right clicking on them, and can speak through them with \".[/datum/saymode/holopad::key]\"."))
 
 	priority_announce(alert, "Anomaly Alert", sound = ANNOUNCER_COMMSBLACKOUT)
-	if(damage_chance <= 0)
+	if(!damage_for_ears)
 		return
 
 	for(var/mob/living/carbon/human/crew in get_earbzzz_candidates())
@@ -103,7 +105,8 @@
 			if(!(controller.machine_stat & EMPED))
 				controller.set_machine_stat(controller.machine_stat | EMPED)
 
-
+	if(!damage_for_ears)
+		return
 	for(var/mob/living/carbon/human/crew in get_earbzzz_candidates())
 		var/obj/item/organ/ears/ears = crew.get_organ_slot(ORGAN_SLOT_EARS)
 		if(!ears)

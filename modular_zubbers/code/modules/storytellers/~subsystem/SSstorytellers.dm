@@ -67,6 +67,7 @@ SUBSYSTEM_DEF(storytellers)
 	RegisterSignal(SSdcs, COMSIG_GLOB_CLIENT_CONNECT, PROC_REF(on_login))
 	return SS_INIT_SUCCESS
 
+
 /// Initializes the active storyteller from selected_id (JSON profile), applying parsed data for adaptive behavior.
 /// Delegates creation to create_storyteller_from_data() for modularity; kicks off round analysis/planning.
 /// Ensures chain starts with 3+ events, biased by profile (e.g., low tension for chill).
@@ -305,9 +306,13 @@ SUBSYSTEM_DEF(storytellers)
 
 
 	for(var/datum/round_event_control/event_control in SSevents.control)
+		if(event_control.tags & STORY_GOAL_NEVER)
+			continue // Skip never goals
+		if(istype(event_control, /datum/round_event_control/wizard))
+			continue // No wizard events
 		if(!event_control.id)
-			log_storyteller("Storyteller event control [event_control.name] has no ID and was skipped.")
-			continue
+			log_storyteller("Storyteller event control [event_control.name] has no ID using typeinstead.")
+			event_control.id = event_control.type
 		if(events_by_id[event_control.id])  // Prevent duplicates
 			log_storyteller("Duplicate event control ID [event_control.id] for [event_control.name], skipping.")
 			continue
@@ -315,7 +320,7 @@ SUBSYSTEM_DEF(storytellers)
 
 		if(!event_control.story_category)  // Use story_category instead of category
 			log_storyteller("Storyteller event control [event_control.id] has no story_category, assigning uncategorized.")
-			event_control.story_category = STORY_GOAL_UNCATEGORIZED
+			event_control.story_category = STORY_GOAL_RANDOM | STORY_GOAL_UNCATEGORIZED
 
 		// Assign to all matching categories (bitflags allow multiple)
 		if(event_control.story_category & STORY_GOAL_RANDOM)
@@ -326,8 +331,7 @@ SUBSYSTEM_DEF(storytellers)
 			events_by_category["GOAL_BAD"] += event_control
 		if(event_control.story_category & STORY_GOAL_NEUTRAL)
 			events_by_category["GOAL_NEUTRAL"] += event_control
-		if(event_control.story_category & STORY_GOAL_UNCATEGORIZED)
-			events_by_category["GOAL_UNCATEGORIZED"] += event_control
+
 
 	// Collect roots: no parent or invalid parent (round_event_control doesn't use parent_id, so skip this)
 	for(var/id in events_by_id)
@@ -355,9 +359,9 @@ SUBSYSTEM_DEF(storytellers)
 		else if(category & STORY_GOAL_NEUTRAL)
 			category_str = "GOAL_NEUTRAL"
 		else
-			category_str = "GOAL_UNCATEGORIZED"
+			category_str = "GOAL_RANDOM"
 	else
-		category_str = "GOAL_UNCATEGORIZED"  // Default to uncategorized if none specified
+		category_str = "GOAL_RANDOM"  // Default to uncategorized if none specified
 
 	goals_to_check = _list_copy(events_by_category[category_str])
 	if(!goals_to_check)
@@ -383,10 +387,6 @@ SUBSYSTEM_DEF(storytellers)
 			continue
 
 		result += event_control
-
-	if(hard_debug)
-		log_storyteller("Filtered [length(result)] goals for category=[category], tags=[required_tags].")
-
 	return result
 
 

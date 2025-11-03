@@ -139,7 +139,8 @@ DEFINE_BITFIELD(story_analyzer_flags, list(
 #define STORY_GOAL_NEUTRAL (1 << 4)
 // Goals without a specific category
 #define STORY_GOAL_UNCATEGORIZED (1 << 5)
-
+// Goal that's wound't be selected
+#define STORY_GOAL_NEVER (1 << 6)
 
 DEFINE_BITFIELD(story_goal_category, list(
 	"GOAL_RANDOM" = STORY_GOAL_RANDOM,
@@ -148,6 +149,7 @@ DEFINE_BITFIELD(story_goal_category, list(
 	"GOAL_GLOBAL" = STORY_GOAL_GLOBAL,
 	"GOAL_NEUTRAL" = STORY_GOAL_NEUTRAL,
 	"GOAL_UNCATEGORIZED" = STORY_GOAL_UNCATEGORIZED,
+	"GOAL_NEVER" = STORY_GOAL_NEVER,
 ))
 
 
@@ -298,3 +300,23 @@ DEFINE_BITFIELD(story_universal_tags, list(
 #define STORY_THREAT_HIGH 2000                     // High threat threshold
 #define STORY_THREAT_EXTREME 5000                  // Extreme threat threshold
 #define STORY_THREAT_APOCALYPTIC 10000             // Apocalyptic threat threshold
+
+#define STORY_INVERTED_THREAT_POINTS(TP) (max(STORY_THREAT_APOCALYPTIC - (TP), 0))
+
+
+// Converts threat points to good points for good event scaling
+#define STORY_GOOD_POINTS(TP) (STORY_INVERTED_THREAT_POINTS(TP))
+
+#define STORY_GOOD_EXTREME 0                   // Extreme good threshold (low threat)
+#define STORY_GOOD_HIGH 2000                   // High good threshold
+#define STORY_GOOD_MODERATE 5000               // Moderate good threshold
+#define STORY_GOOD_LOW 7000                    // Low good threshold
+#define STORY_GOOD_MINIMAL 9000
+
+#define STORY_USEFULNESS_LEVEL(TP) ( \
+    (TP) <= STORY_GOOD_EXTREME ? 5 : \
+    (TP) <= STORY_GOOD_HIGH ? 4 : \
+    (TP) <= STORY_GOOD_MODERATE ? 3 : \
+    (TP) <= STORY_GOOD_LOW ? 2 : \
+    1 \
+)
