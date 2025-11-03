@@ -18,6 +18,7 @@
 	you_are_text = "You are a Cafe Robot!"
 	flavour_text = "Who could have thought? This awesome local cafe accepts cyborgs too!"
 	mob_type = /mob/living/silicon/robot/model/roleplay
+	random_appearance = FALSE
 
 /obj/effect/mob_spawn/ghost_role/robot/ghostcafe/special(mob/living/silicon/robot/new_spawn)
 	. = ..()
@@ -30,6 +31,7 @@
 		//new_spawn.AddElement(/datum/element/ghost_role_eligibility, free_ghosting = TRUE) SKYRAT PORT -- Needs to be completely rewritten
 		new_spawn.AddElement(/datum/element/dusts_on_catatonia)
 		new_spawn.AddElement(/datum/element/dusts_on_leaving_area, list(A.type) + GLOB.ghost_cafe_areas)
+		new_spawn.RegisterSignal(new_spawn, COMSIG_MOVABLE_USING_RADIO, TYPE_PROC_REF(/mob/living, on_using_radio))
 		ADD_TRAIT(new_spawn, TRAIT_SIXTHSENSE, TRAIT_GHOSTROLE)
 		ADD_TRAIT(new_spawn, TRAIT_FREE_GHOST, TRAIT_GHOSTROLE)
 		to_chat(new_spawn,span_warning("<b>Ghosting is free!</b>"))
@@ -58,6 +60,7 @@
 		var/area/A = get_area(src)
 		new_spawn.AddElement(/datum/element/dusts_on_catatonia)
 		new_spawn.AddElement(/datum/element/dusts_on_leaving_area, list(A.type) + GLOB.ghost_cafe_areas)
+		new_spawn.RegisterSignal(new_spawn, COMSIG_MOVABLE_USING_RADIO, TYPE_PROC_REF(/mob/living, on_using_radio))
 		ADD_TRAIT(new_spawn, TRAIT_SIXTHSENSE, TRAIT_GHOSTROLE)
 		ADD_TRAIT(new_spawn, TRAIT_FREE_GHOST, TRAIT_GHOSTROLE)
 		to_chat(new_spawn,span_warning("<b>Ghosting is free!</b>"))
