@@ -872,7 +872,7 @@
 		SSdynamic.pick_tier_storyteller(pop)
 
 	// Calculate desired initial ruleset count using dynamic's roundstart settings as base, but apply to midround
-	var/list/base_settings = SSdynamic.current_tier.ruleset_type_settings[ROUNDSTART]
+	var/list/base_settings = SSdynamic.current_tier.ruleset_type_settings[LIGHT_MIDROUND]
 	var/low_end = base_settings?[LOW_END] || 0
 	var/high_end = base_settings?[HIGH_END] || 0
 	var/half_threshold = base_settings?[HALF_RANGE_POP_THRESHOLD] || 0
@@ -904,7 +904,7 @@
 	// Pick rulesets using dynamic's midround weighted selection (mix light and heavy for variety)
 	var/list/queued = list()
 	var/light_weighted = SSdynamic.get_midround_rulesets_storyteller(pop, LIGHT_MIDROUND)
-	var/heavy_weighted = SSdynamic.get_midround_rulesets_storyteller(pop, HEAVY_MIDROUND)
+	var/heavy_weighted = SSdynamic.get_midround_rulesets_storyteller(pop, LIGHT_MIDROUND)
 	var/total_weighted = light_weighted + heavy_weighted
 
 	for(var/i = 1 to desired_count)
