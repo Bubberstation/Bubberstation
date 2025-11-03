@@ -240,7 +240,7 @@
 	update_population_factor()
 
 	// 5) Check antagonist balance and spawn if needed
-	if(COOLDOWN_FINISHED(src, antag_balance_check_cooldown))
+	if(COOLDOWN_FINISHED(src, antag_balance_check_cooldown) && SSstorytellers?.storyteller_replace_dynamic)
 		check_and_spawn_antagonists(snap)
 		COOLDOWN_START(src, antag_balance_check_cooldown, antag_balance_check_interval)
 
@@ -854,7 +854,7 @@
 	return pick_tier(population)
 
 /datum/storyteller/proc/spawn_initial_antagonists()
-	if(!SSdynamic)
+	if(!SSdynamic || !SSstorytellers?.storyteller_replace_dynamic)
 		return
 
 	if(HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ANTAGS))
@@ -964,7 +964,7 @@
 /// spawn_type: LIGHT_MIDROUND, HEAVY_MIDROUND, or LATEJOIN
 /// candidate: Optional specific mob for latejoin
 /datum/storyteller/proc/spawn_post_roundstart_antagonists(spawn_type, mob/candidate = null)
-	if(!SSdynamic || !SSdynamic.antag_events_enabled)
+	if(!SSdynamic || !SSstorytellers?.storyteller_replace_dynamic)
 		return 0
 
 	if(HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ANTAGS))

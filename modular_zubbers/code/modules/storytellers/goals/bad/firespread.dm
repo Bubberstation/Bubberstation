@@ -132,8 +132,8 @@
 	idle_behavior = /datum/idle_behavior/idle_random_walk/less_walking
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/escape_captivity/pacifist,
-		/datum/ai_planning_subtree/simple_find_target,
 		/datum/ai_planning_subtree/use_mob_ability/ring_of_fire,
+		/datum/ai_planning_subtree/simple_find_target,
 		/datum/ai_planning_subtree/flee_target,
 	)
 

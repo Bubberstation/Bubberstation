@@ -72,6 +72,7 @@
 	if(alert_observers)
 		round_event.announce_deadchat(FALSE, "by [storyteller.name]")
 	message_admins("[span_notice("[storyteller.name] fired event: ")] [name || id]. with threat points: [threat_points]")
+	deadchat_broadcast("[span_notice("[storyteller.name] fired event: ")] [name || id]. with threat points: [threat_points])")
 	SSblackbox.record_feedback("tally", "event_ran", 1, "[round_event]")
 	return TRUE
 
