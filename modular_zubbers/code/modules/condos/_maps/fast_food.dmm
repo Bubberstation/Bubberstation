@@ -95,6 +95,9 @@
 /obj/item/kitchen/rollingpin,
 /obj/item/reagent_containers/cup/bowl,
 /obj/item/book/granter/crafting_recipe/cooking_sweets_101,
+/obj/item/coffee_cartridge/bootleg,
+/obj/item/coffee_cartridge/bootleg,
+/obj/item/coffee_cartridge/bootleg,
 /turf/open/floor/iron/cafeteria,
 /area/misc/condo)
 "fl" = (
@@ -356,6 +359,7 @@
 "rF" = (
 /obj/structure/sink/kitchen/directional/south,
 /obj/effect/mapping_helpers/broken_floor,
+/obj/item/lead_pipe,
 /turf/open/floor/plating,
 /area/misc/condo)
 "rH" = (
@@ -405,6 +409,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
 	},
+/obj/item/reagent_containers/cup/coffeepot/bluespace,
 /turf/open/floor/iron/cafeteria,
 /area/misc/condo)
 "tD" = (
@@ -581,6 +586,9 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/box/beakers/bluespace,
 /obj/machinery/light/directional/west,
+/obj/item/coffee_cartridge/decaf,
+/obj/item/coffee_cartridge/decaf,
+/obj/item/coffee_cartridge/decaf,
 /turf/open/floor/iron/cafeteria,
 /area/misc/condo)
 "Dj" = (
@@ -678,6 +686,10 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
+/area/misc/condo)
+"HR" = (
+/obj/structure/kitchenspike,
+/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/misc/condo)
 "Ik" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -889,6 +901,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/kitchen,
 /area/misc/condo)
+"RP" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/siding/dark/inner_corner,
+/obj/structure/displaycase/forsale/kitchen{
+	desc = "That's the name of a horse I used to own, Ma'am."
+	},
+/turf/open/floor/iron/cafeteria,
+/area/misc/condo)
 "RR" = (
 /obj/effect/turf_decal/siding/dark/inner_corner{
 	dir = 8
@@ -944,8 +964,8 @@
 /turf/open/floor/iron/cafeteria,
 /area/misc/condo)
 "Uk" = (
-/obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/dark,
+/obj/machinery/door/window,
 /turf/open/floor/iron/cafeteria,
 /area/misc/condo)
 "Vl" = (
@@ -959,6 +979,7 @@
 /obj/effect/turf_decal/siding/dark/corner{
 	dir = 4
 	},
+/obj/machinery/coffeemaker/impressa,
 /turf/open/floor/iron/cafeteria,
 /area/misc/condo)
 "VF" = (
@@ -1162,8 +1183,8 @@ ZP
 TF
 sO
 JU
-TF
-TF
+HR
+HR
 Qf
 "}
 (5,1,1) = {"
@@ -1300,7 +1321,7 @@ mY
 mY
 mY
 Lz
-ca
+RP
 qF
 Rp
 IE
