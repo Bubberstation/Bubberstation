@@ -161,6 +161,7 @@
 
 /area/centcom/holding/cafe/ruin/xenonest
 	name = "Ghost Cafe Xenomorph Nest"
+	icon_state = "os_delta_hall"
 	ambience_index = AMBIENCE_SPOOKY
 
 /area/centcom/holding/cafe/beach
