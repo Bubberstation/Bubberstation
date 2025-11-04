@@ -39,9 +39,8 @@
 	var/next_think_time = 0
 	/// Base think frequency; scaled by mood pace (in ticks)
 	var/base_think_delay = STORY_THINK_BASE_DELAY
-	/// Event pacing limits
-	var/min_event_interval = STORY_MIN_EVENT_INTERVAL
-	var/max_event_interval = STORY_MAX_EVENT_INTERVAL
+	// Event pacing limits
+	var/average_event_interval = 15 MINUTES
 	/// Recent events timeline (timestamps) for admin UI and spacing
 	var/list/recent_events = list()
 	/// Recent event ids for repetition penalty logic in planner selection
@@ -350,10 +349,8 @@
 	// Linear interpolation: low pop (0.3) -> 1.5x grace, high pop (1.0) -> 1.0x grace
 	var/pop_grace_mult = 1.5 - (population_factor - 0.3) * (1.5 - 1.0) / (1.0 - 0.3)
 	pop_grace_mult = clamp(pop_grace_mult, 1.0, 1.5)
-	var/effective_grace = grace_period * pop_grace_mult
+	var/effective_grace = get_effective_pace()
 	return time - get_time_since_last_event() > effective_grace
-
-
 
 
 /// Effective event pace: mood frequency multiplier * (1 - adaptation). Lower = slower events,
@@ -361,20 +358,21 @@
 /datum/storyteller/proc/get_effective_pace()
 	return mood.get_event_frequency_multiplier() * (1.0 - adaptation_factor)
 
-
+/datum/storyteller/proc/get_scaled_grace()
+	var/pop_grace_mult = lerp(1.5, 0.5, (population_factor - 0.3) / (1.0 - 0.3))
+	pop_grace_mult = clamp(pop_grace_mult, 0.0, 1.5)
+	return grace_period * pop_grace_mult
 
 /// Base event interval, scaled by pace and population factor.
 /// Low population = longer intervals (fewer events), high population = shorter intervals (more frequent events)
 /datum/storyteller/proc/get_event_interval()
-	var/base = max_event_interval
-	var/pop_mod = 1.5 - (population_factor - 0.3) * (1.5 - 0.3) / (1.0 - 0.3)
-	pop_mod = clamp(pop_mod, 0.3, 1.5)
-	var/pace_mod = (mood ? mood.pace : 1.0) * (1.0 - adaptation_factor * 0.5)
-	return round(base * pop_mod * pace_mod)
+	var/base = average_event_interval * get_effective_pace()
+	var/pop_mod = 1.4 - population_factor
+	return round(base * pop_mod)
 
 /// Event interval without population adjustment; for baseline pacing in global goal selection.
 /datum/storyteller/proc/get_event_interval_no_population_factor()
-	return min_event_interval + (max_event_interval - min_event_interval) / get_effective_pace()
+	return average_event_interval * get_effective_pace()
 
 /// Time since last event; tracks history for grace periods and intervals in event planning.
 /datum/storyteller/proc/get_time_since_last_event()

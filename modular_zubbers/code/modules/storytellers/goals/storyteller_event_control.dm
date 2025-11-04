@@ -190,7 +190,8 @@
 	. = ..()
 	delayed = TRUE
 	addtimer(CALLBACK(src, PROC_REF(after_delay), inputs, storyteller), admin_cancel_delay + 1 SECONDS)
-	candidates = poll_candidates_for_antag(inputs, storyteller)
+	candidates = list()
+	candidates = poll_candidates_for_antag(inputs, storyteller, candidates)
 
 
 /datum/round_event_control/antagonist/proc/after_delay(datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
@@ -218,10 +219,11 @@
 		message_admins("Admin canceled [antag_name] spawn by [SSstorytellers?.active.name || "storyteller"].")
 		return TRUE
 
-/datum/round_event_control/antagonist/proc/poll_candidates_for_antag(datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
+/datum/round_event_control/antagonist/proc/poll_candidates_for_antag(datum/storyteller_inputs/inputs, datum/storyteller/storyteller, list/current_candidates)
 	var/list/all_candidates = get_potential_candidates(inputs, storyteller)
 	var/list/selected = list()
 
+	// Ghost signup
 	if(announce_to_ghosts && ghost_candidates)
 		var/ghost_votes = SSpolling.poll_ghost_candidates(
 			question = "[storyteller.name] summons a [antag_name]! Volunteer?",
@@ -230,44 +232,61 @@
 			role_name_text = antag_name,
 			amount_to_pick = max_candidates,
 			poll_time = admin_cancel_delay,
-			alert_pic = signup_atom_appearance,
+			alert_pic = signup_atom_appearance
 		)
-		if(!islist(ghost_votes) && ghost_votes)
-			if(ghost_votes in all_candidates)
-				selected += ghost_votes
-		else
-			for(var/mob/ghost in ghost_votes)
-				if(ghost in all_candidates)
-					selected += ghost
 
+		if(ghost_votes)
+			if(islist(ghost_votes))
+				for(var/mob/ghost in ghost_votes)
+					if(ghost in all_candidates && !(ghost in selected))
+						selected += ghost
+			else
+				if(ghost_votes in all_candidates && !(ghost_votes in selected))
+					selected += ghost_votes
+
+	// Living consent poll (only if we still need more and crew_candidates enabled)
 	if(crew_candidates && length(selected) < min_candidates)
 		var/list/crew_list = all_candidates.Copy() - selected
-		var/list/crew_votes = poll_living_for_antag(crew_list, inputs, storyteller)
-		if(length(crew_votes))
-			selected += crew_votes
+		UNTIL(poll_living_for_antag(crew_list, inputs, storyteller, selected))
 
+	// Fallback pickers (random greedy)
 	while(length(selected) < min_candidates && length(all_candidates))
 		var/mob/picked = pick_n_take(all_candidates)
-		if(can_be_candidate(picked, inputs, storyteller))
+		if(picked && can_be_candidate(picked, inputs, storyteller) && !(picked in selected))
 			selected += picked
+
 	if(length(selected) > max_candidates)
-		selected.Cut(1, length(selected) - max_candidates + 1)
+		selected.Cut(max_candidates + 1, length(selected) - max_candidates)
 	return selected
 
 // Living consent poll
-/datum/round_event_control/antagonist/proc/poll_living_for_antag(list/crew_list, datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
-	var/list/selected_crew = list()
+/datum/round_event_control/antagonist/proc/poll_living_for_antag(list/crew_list, datum/storyteller_inputs/inputs, datum/storyteller/storyteller, list/selected_crew)
 	for(var/mob/living/L in shuffle(crew_list))
 		if(!can_be_candidate(L, inputs, storyteller))
 			continue
 		ask_crew(L, selected_crew, storyteller)
-		sleep(1)
-	return selected_crew
+		CHECK_TICK
+	return TRUE
 
 /datum/round_event_control/antagonist/proc/ask_crew(mob/living/L, list/candidates, datum/storyteller/storyteller)
-	var/response = tgui_alert(L, "[storyteller.name] calls to your hidden depths. Become a [antag_name] and twist the tale?", "Fate's Whisper", list("Yes", "No"))
-	if(response == "Yes")
+	L.playsound_local(get_turf(L), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
+
+	var/response = tgui_alert(
+		L,
+		"[storyteller.name] calls to your hidden depths. Become a [antag_name] and twist the tale?",
+		"Fate's Whisper",
+		list("Yes", "No"),
+		timeout = (admin_cancel_delay * 0.5)
+	)
+
+	if(response == "Yes" && !(L in candidates))
 		candidates += L
+		to_chat(L, span_notice("You have accepted the call to become a [antag_name]. Keep it secret!"))
+
+	else if(L in candidates)
+		candidates.Remove(L)
+		to_chat(L, span_warning("You have declined the call to become a [antag_name]."))
+
 
 /datum/round_event_control/antagonist/proc/create_ruleset_body(datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
 	return new /mob/living/carbon/human
@@ -307,7 +326,11 @@
 	for(var/mob/candidate as anything in candidates)
 		if(!candidate || !can_be_candidate(candidate, inputs, storyteller))
 			continue
-		var/datum/mind/antag_mind = candidate.mind
+		var/datum/mind/antag_mind = candidate.mind || new /datum/mind(candidate.key)
+		if(!antag_mind.current)
+			antag_mind.current = candidate
+
+
 		antag_mind.active = TRUE
 		var/datum/antagonist/antag_datum = new antag_datum_type()
 		antag_mind.add_antag_datum(antag_datum)
@@ -324,6 +347,11 @@
 			deadchat_broadcast("[storyteller.name] birthed a [antag_name]: [candidate.real_name] ([candidate.key])")
 	if(post_spawn_callback)
 		call(src, post_spawn_callback)(inputs, storyteller, spawned_antags)
+	after_antagonist_spawn(inputs, storyteller, spawned_antags)
+
+/datum/round_event_control/antagonist/proc/after_antagonist_spawn(datum/storyteller_inputs/inputs, datum/storyteller/storyteller, list/spawned_antags)
+	return
+
 
 /datum/round_event_control/antagonist/from_ghosts
 	crew_candidates = FALSE

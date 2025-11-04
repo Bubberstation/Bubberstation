@@ -1,4 +1,3 @@
-// Example: Blob
 /datum/round_event_control/antagonist/from_ghosts/blob
 	id = "storyteller_blob"
 	name = "Spawn blob"

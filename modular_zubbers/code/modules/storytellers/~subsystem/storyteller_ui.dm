@@ -115,8 +115,7 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 	data["threat_level"] = ctl.threat_points
 	data["next_think_time"] = ctl.next_think_time
 	data["base_think_delay"] = ctl.base_think_delay
-	data["min_event_interval"] = ctl.min_event_interval
-	data["max_event_interval"] = ctl.max_event_interval
+	data["average_event_interval"] = ctl.average_event_interval
 	data["player_count"] = ctl.get_active_player_count()
 	data["antag_count"] = ctl.get_active_antagonist_count()
 	data["player_antag_balance"] = ctl.player_antag_balance
@@ -229,11 +228,8 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 			ctl.base_think_delay = value
 			ctl.schedule_next_think()
 			return TRUE
-		if("set_event_intervals")
-			var/minv = max(0, round(text2num(params["min"])) )
-			var/maxv = max(minv, round(text2num(params["max"])) )
-			ctl.min_event_interval = minv
-			ctl.max_event_interval = maxv
+		if("set_average_event_interval")
+			ctl.average_event_interval = round(text2num(params["average_event_interval"]))
 			return TRUE
 		if("set_grace_period")
 			var/value = max(0, round(text2num(params["value"])) )

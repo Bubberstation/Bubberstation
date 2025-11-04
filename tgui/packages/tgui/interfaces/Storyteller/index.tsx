@@ -60,10 +60,8 @@ const TOOLTIPS = {
     'Threat growth rate (0.1-5). Determines how quickly threat_level accumulates from unresolved sub-objectives — key to global objective pacing.',
   thinkDelay:
     'Think delay (seconds, 1-240). Frequent thinking — dynamic branch planning; rare — strategic, like RimWorld with long-term threats.',
-  eventIntervalMin:
+  averageEventInterval:
     'Minimum event interval (seconds, 1-60). Short — quick sub-objectives for high pace; long — pauses for players in global objective branches.',
-  eventIntervalMax:
-    'Maximum event interval (seconds, 1-60). The storyteller randomizes within range; affects unpredictability of antagonist and neutral branches.',
   gracePeriod:
     'Grace period (seconds, 120-1200). Time after an event when repeats are not planned — prevents spamming sub-objectives in the chain.',
   repetitionPenalty:
@@ -119,8 +117,7 @@ type StorytellerData = {
   upcoming_goals?: StorytellerUpcomingGoal[]; // Chain preview
   next_think_time?: number;
   base_think_delay?: number;
-  min_event_interval?: number;
-  max_event_interval?: number;
+  average_event_interval?: number;
   threat_growth_rate: number;
   grace_period: number;
   threat_level?: number; // 0..100
@@ -497,8 +494,7 @@ export const Storyteller = (props) => {
     upcoming_goals = [],
     next_think_time,
     base_think_delay,
-    min_event_interval,
-    max_event_interval,
+    average_event_interval,
     threat_growth_rate,
     grace_period,
     target_tension,
@@ -533,11 +529,8 @@ export const Storyteller = (props) => {
     String(threat_growth_rate ?? 1.0),
   );
   const [thinkDelay, setThinkDelay] = useState(String(base_think_delay ?? 0));
-  const [minInterval, setMinInterval] = useState(
-    String(min_event_interval ?? 0),
-  );
-  const [maxInterval, setMaxInterval] = useState(
-    String(max_event_interval ?? 0),
+  const [averageEventInterval, setAverageEventInterval] = useState(
+    String(average_event_interval ?? 0),
   );
   const [grace, setGrace] = useState(String(grace_period ?? 300));
   const [repetitionPenalty, setRepetitionPenalty] = useState(
@@ -550,12 +543,10 @@ export const Storyteller = (props) => {
     }
   };
 
-  const handleSetMinInterval = () => {
-    act('set_event_intervals', { min: Number(minInterval) || 1000 });
-  };
-
-  const handleSetMaxInterval = () => {
-    act('set_event_intervals', { max: Number(maxInterval) || 60000 });
+  const handleSetAverageEventInterval = () => {
+    act('set_average_event_interval', {
+      min: Number(averageEventInterval) || 1000,
+    });
   };
 
   const handleSetThreatGrowthRate = () => {
@@ -971,7 +962,7 @@ export const Storyteller = (props) => {
                 </LabeledList.Item>
                 <LabeledList.Item
                   label="Event Interval - min"
-                  tooltip={TOOLTIPS.eventIntervalMin}
+                  tooltip={TOOLTIPS.averageEventInterval}
                 >
                   <Stack>
                     <Stack.Item grow>
@@ -981,9 +972,9 @@ export const Storyteller = (props) => {
                         min={1}
                         max={60}
                         step={1}
-                        defaultValue={Number(minInterval) / 1000}
+                        defaultValue={Number(averageEventInterval) / 1000}
                         onChange={(e) =>
-                          setMinInterval(
+                          setAverageEventInterval(
                             String(Number(e.currentTarget.value) * 1000),
                           )
                         }
@@ -991,44 +982,14 @@ export const Storyteller = (props) => {
                         width="100%"
                       />
                     </Stack.Item>
-                    <Stack.Item>{Number(minInterval) / 1000}</Stack.Item>
+                    <Stack.Item>
+                      {Number(averageEventInterval) / 1000}
+                    </Stack.Item>
                     <Stack.Item>
                       <Button
                         icon="check"
                         tooltip="Apply"
-                        onClick={handleSetMinInterval}
-                      />
-                    </Stack.Item>
-                  </Stack>
-                </LabeledList.Item>
-                <LabeledList.Item
-                  label="Event Interval - max"
-                  tooltip={TOOLTIPS.eventIntervalMax}
-                >
-                  <Stack>
-                    <Stack.Item grow>
-                      {''}
-                      <input
-                        type="range"
-                        min={1}
-                        max={60}
-                        step={1}
-                        defaultValue={Number(maxInterval) / 1000}
-                        onChange={(e) =>
-                          setMaxInterval(
-                            String(Number(e.currentTarget.value) * 1000),
-                          )
-                        }
-                        style={{ width: '100%' }}
-                        width="100%"
-                      />
-                    </Stack.Item>
-                    <Stack.Item>{Number(maxInterval) / 1000}</Stack.Item>
-                    <Stack.Item>
-                      <Button
-                        icon="check"
-                        tooltip="Apply"
-                        onClick={handleSetMaxInterval}
+                        onClick={handleSetAverageEventInterval}
                       />
                     </Stack.Item>
                   </Stack>

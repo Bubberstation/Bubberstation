@@ -100,9 +100,9 @@
 
 // Round progression milestones (0.0 = start, 1.0 = end)
 #define STORY_ROUND_PROGRESSION_START 0    // Round start (0%)
-#define STORY_ROUND_PROGRESSION_EARLY 0.12 // Early phase (0-21%)
-#define STORY_ROUND_PROGRESSION_MID 0.34   // Mid phase (21-51%)
-#define STORY_ROUND_PROGRESSION_LATE 0.62  // Late phase (51-81%)
+#define STORY_ROUND_PROGRESSION_EARLY 0.12 // Early phase (0-12%)
+#define STORY_ROUND_PROGRESSION_MID 0.51   // Mid phase (12-51%)
+#define STORY_ROUND_PROGRESSION_LATE 0.73  // Late phase (52-62%)
 
 // Analyzer scan flags (bitflags for what to scan)
 #define RESCAN_STATION_INTEGRITY (1 << 0)  // Scan station integrity/hull
@@ -282,7 +282,7 @@ DEFINE_BITFIELD(story_universal_tags, list(
 
 // Planner constants
 #define STORY_RECALC_INTERVAL (10 MINUTES)          // Interval for plan recalculation
-#define STORY_INITIAL_GOALS_COUNT 3                 // Minimum pending goals in timeline
+#define STORY_INITIAL_GOALS_COUNT 2                	// Minimum pending goals in timeline
 #define STORY_PICK_THREAT_BONUS_SCALE 0.01          // Threat bonus scaling for goal selection
 #define STORY_BALANCE_BONUS 1.5                     // Balance adjustment bonus multiplier
 #define STORY_PACE_MIN 0.1                          // Minimum pace multiplier

@@ -93,9 +93,6 @@
 		inputs.vault[STORY_VAULT_SECURITY_STRENGTH] = clamp((total_gear_points / total_security) * 1.3, 0, 3)
 		inputs.vault[STORY_VAULT_SECURITY_COUNT] = total_security
 
-
-
-	// TODO: remove this
 	var/alert_level = SSsecurity_level.current_security_level || STORY_VAULT_GREEN_ALERT  // 0 green -> 3 delta
 	var/real_level
 	if(istype(alert_level, /datum/security_level/green))

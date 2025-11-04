@@ -1,3 +1,4 @@
+// Code from storyteller_planner.dm
 #define ENTRY_EVENT "event"
 #define ENTRY_FIRE_TIME "fire_time"
 #define ENTRY_CATEGORY "category"
@@ -137,46 +138,9 @@
 		adjust_timeline_based_on_mood(ctl)
 		return timeline
 
-
 	clear_timeline()
-	var/initial_pending = pending_count
-	pending_count = 0
+	build_timeline(ctl, inputs, bal)
 
-	var/last_time = get_last_reference_time(ctl)
-	var/base_interval = ctl.get_event_interval()
-
-	var/target_count = STORY_INITIAL_GOALS_COUNT
-	var/volatility_mult = 1 + (ctl.mood.volatility * 0.05)
-	var/pop_interval_mult = get_interval_multiplier(ctl)
-	var/current_offset = get_next_event_delay(null, inputs, ctl)
-	for(var/i = 1 to target_count)
-		var/datum/round_event_control/new_event_control = build_event(ctl, inputs, bal)
-		if(!new_event_control)
-			continue
-
-		var/fire_delay = current_offset + (base_interval * (i - 1)) * volatility_mult * pop_interval_mult
-		var/fire_offset = last_time + fire_delay
-		if(ctl.can_trigger_event_at(fire_offset) && try_plan_event(new_event_control, fire_offset, TRUE))
-			pending_count++
-
-		// Fallback to random if needed
-		if(pending_count < i && i > target_count - 2)  // Only fallback for last 2 slots
-			var/datum/round_event_control/fallback = build_event(ctl, inputs, bal, 0, STORY_GOAL_RANDOM)
-			if(fallback && try_plan_event(fallback, fire_offset))
-				pending_count++
-
-	var/final_pending = pending_count
-	log_storyteller_planner("Storyteller full recalculated plan: [final_pending] pending events (added [final_pending - initial_pending], invalids cleared: [invalid_events]).")
-	return timeline
-
-
-
-// Unified interval multiplier for population and volatility (used in rebuild and delays)
-/datum/storyteller_planner/proc/get_interval_multiplier(datum/storyteller/ctl)
-	var/volatility_mult = 1 + (ctl.mood.volatility * 0.05)
-	var/pop_interval_mult = 1.5 - (ctl.population_factor - 0.3) * (1.5 - 1.0) / (1.0 - 0.3)
-	pop_interval_mult = clamp(pop_interval_mult, 1.0, 1.5)
-	return volatility_mult * pop_interval_mult
 
 
 // Adjust existing timeline based on mood changes (pace/aggression)
@@ -185,7 +149,7 @@
 	var/pace_mult = ctl.mood.pace  // >1 faster (compress), <1 slower (expand)
 	var/aggr_shift = (ctl.mood.aggression - 1.0) * STORY_MOOD_AGGR_SHIFT_FACTOR
 	var/current_time = world.time
-	var/min_interval = ctl.min_event_interval * pace_mult  // Apply pace to min as well
+	var/min_interval = ctl.get_event_interval() * 0.5  // Prevent too tight scheduling
 
 	var/list/sorted_offsets = sortTim(timeline.Copy(), GLOBAL_PROC_REF(cmp_text_asc))
 	for(var/offset_str in sorted_offsets)
@@ -244,35 +208,38 @@
 
 
 /datum/storyteller_planner/proc/try_plan_event(datum/round_event_control/event_control, time, fixed_time = FALSE)
-    if(!event_control)
-        return FALSE
-    if(!timeline)
-        timeline = list()
+	if(!event_control)
+		return FALSE
+	if(!timeline)
+		timeline = list()
 
-    var/base_delay = time
-    var/attempts = 0
-    var/max_attempts = 60
+	var/base_delay = time
+	var/attempts = 0
+	var/max_attempts = 60
 
-    while(attempts < max_attempts)
-        var/target_time = fixed_time ? time : base_delay
-        var/target_str = time_key(target_time)
-        if(!timeline[target_str])
-            timeline[target_str] = list(
-                ENTRY_EVENT = event_control,
-                ENTRY_FIRE_TIME = target_time,
-                ENTRY_CATEGORY = event_control.story_category,
-                ENTRY_STATUS = STORY_GOAL_PENDING
-            )
-            if(SSstorytellers.hard_debug && attempts > 0)
-                message_admins("Storyteller planner: Resolved timeline collision after [attempts] attempts for event [event_control.id || event_control.name] at offset [base_delay].")
-            return TRUE
+	while(attempts < max_attempts)
+		var/target_time = fixed_time ? time : base_delay
+		if(event_control.story_category & STORY_GOAL_BAD && target_time < owner.last_event_time + owner.grace_period)
+			target_time = owner.last_event_time + owner.grace_period
+			base_delay = target_time
+		var/target_str = time_key(target_time)
+		if(!timeline[target_str])
+			timeline[target_str] = list(
+				ENTRY_EVENT = event_control,
+				ENTRY_FIRE_TIME = target_time,
+				ENTRY_CATEGORY = event_control.story_category,
+				ENTRY_STATUS = STORY_GOAL_PENDING
+			)
+			if(SSstorytellers.hard_debug && attempts > 0)
+				message_admins("Storyteller planner: Resolved timeline collision after [attempts] attempts for event [event_control.id || event_control.name] at offset [base_delay].")
+			return TRUE
 
 
-        base_delay += 10 SECONDS
-        attempts++
+		base_delay += 10 SECONDS
+		attempts++
 
-    stack_trace("Storyteller planner: Failed to find free timeline slot after [max_attempts] attempts for event [event_control.id || event_control.name].")
-    return FALSE
+	stack_trace("Storyteller planner: Failed to find free timeline slot after [max_attempts] attempts for event [event_control.id || event_control.name].")
+	return FALSE
 
 
 
@@ -321,25 +288,25 @@
 
 
 /datum/storyteller_planner/proc/reschedule_event(old_offset, new_offset)
-    var/old_str = time_key(old_offset)
-    if(!timeline[old_str])
-        return FALSE
+	var/old_str = time_key(old_offset)
+	if(!timeline[old_str])
+		return FALSE
 
-    var/new_num = new_offset
-    var/attempt = 0
-    var/max_attempts = 30
-    while(attempt < max_attempts)
-        var/new_str = time_key(new_num)
-        if(!timeline[new_str])
-            timeline[new_str] = timeline[old_str]
-            timeline[new_str][ENTRY_FIRE_TIME] = new_num
-            timeline[new_str][ENTRY_STATUS] = STORY_GOAL_PENDING
-            timeline -= old_str
-            return TRUE
-        new_num += rand(5, 20) SECONDS
-        attempt++
+	var/new_num = new_offset
+	var/attempt = 0
+	var/max_attempts = 30
+	while(attempt < max_attempts)
+		var/new_str = time_key(new_num)
+		if(!timeline[new_str])
+			timeline[new_str] = timeline[old_str]
+			timeline[new_str][ENTRY_FIRE_TIME] = new_num
+			timeline[new_str][ENTRY_STATUS] = STORY_GOAL_PENDING
+			timeline -= old_str
+			return TRUE
+		new_num += rand(5, 20) SECONDS
+		attempt++
 
-    return FALSE
+	return FALSE
 
 
 
@@ -413,36 +380,17 @@
 
 
 /datum/storyteller_planner/proc/get_next_event_delay(datum/round_event_control/event_control, datum/storyteller_inputs/inputs, datum/storyteller/ctl)
-	if(!event_control)
-		return ctl.get_event_interval()
+	var/delay = ctl.get_event_interval()
+	if(event_control)
+		if(event_control.story_category & STORY_GOAL_GOOD)
+			delay *= 0.5
+		else if(event_control.story_category & STORY_GOAL_BAD)
+			delay += ctl.get_scaled_grace()
+		else if(event_control.story_category & STORY_GOAL_NEUTRAL)
+			delay *= 0.75
+		else if(event_control.story_category & STORY_GOAL_RANDOM)
+			delay *= rand(0.8, 1.2)  // Randomize timing for random events
 
-	var/base_interval = ctl.get_event_interval()
-	var/min_delay_base = ctl.min_event_interval
-
-	var/pop_grace_mult = 1.5 - (ctl.population_factor - 0.3) * (1.5 - 1.0) / (1.0 - 0.3)
-	pop_grace_mult = clamp(pop_grace_mult, 1.0, 1.5)
-	var/scaled_grace = ctl.grace_period * pop_grace_mult
-	var/pace_mod = ctl.get_effective_pace()
-	var/min_delay = max(scaled_grace, min_delay_base * pace_mod)
-
-	var/delay
-	if(event_control.story_category & STORY_GOAL_GOOD)
-		delay = (min_delay_base / ctl.population_factor) + (scaled_grace / 2)
-		delay *= pace_mod
-	else if(event_control.story_category & STORY_GOAL_NEUTRAL)
-		delay = base_interval * (1 - (ctl.population_factor * 0.5)) - scaled_grace
-		delay = max(delay, min_delay)
-	else if(event_control.story_category & STORY_GOAL_BAD)
-		delay = scaled_grace * 1.5
-		delay = max(delay, ctl.get_event_interval_no_population_factor())
-		delay *= (1 + (ctl.adaptation_factor * 0.5))
-	if(event_control.story_category & STORY_GOAL_RANDOM)
-		var/random_range = base_interval * ctl.population_factor
-		delay = rand(min_delay_base, random_range)
-	else
-		delay = base_interval
-	delay = max(delay, min_delay)
-	delay = round(delay * pace_mod)
 	return delay
 
 

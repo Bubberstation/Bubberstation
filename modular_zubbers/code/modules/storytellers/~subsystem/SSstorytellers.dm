@@ -138,8 +138,7 @@ SUBSYSTEM_DEF(storytellers)
 
 
 		parsed["base_think_delay"] = isnum(entry["base_think_delay"]) ? max(0, entry["base_think_delay"] SECONDS) : STORY_THINK_BASE_DELAY
-		parsed["min_event_interval"] = isnum(entry["min_event_interval"]) ? max(0, entry["min_event_interval"] MINUTES) : STORY_MIN_EVENT_INTERVAL
-		parsed["max_event_interval"] = isnum(entry["max_event_interval"]) ? max(parsed["min_event_interval"], entry["max_event_interval"] MINUTES) : STORY_MAX_EVENT_INTERVAL
+		parsed["average_event_interval"] = isnum(entry["average_event_interval"]) ? max(0, entry["average_event_interval"] MINUTES) : 15 MINUTES
 		parsed["grace_period"] = isnum(entry["grace_period"]) ? max(0, entry["grace_period"] MINUTES) : STORY_GRACE_PERIOD
 		parsed["mood_update_interval"] = isnum(entry["mood_update_interval"]) ? max(0, entry["mood_update_interval"] MINUTES) : STORY_RECALC_INTERVAL
 
@@ -186,8 +185,7 @@ SUBSYSTEM_DEF(storytellers)
 
 	// Core pacing/threat vars
 	new_st.base_think_delay = data["base_think_delay"]
-	new_st.min_event_interval = data["min_event_interval"]
-	new_st.max_event_interval = data["max_event_interval"]
+	new_st.average_event_interval = data["average_event_interval"]
 	new_st.grace_period = data["grace_period"]
 	new_st.mood_update_interval = data["mood_update_interval"]
 	new_st.recent_damage_threshold = data["recent_damage_threshold"]

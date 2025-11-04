@@ -10,7 +10,7 @@
 			continue
 		if(!is_station_level(living.z))
 			continue
-		if(ignore_erp && !(engaged_role_play_check(living)))
+		if(ignore_erp && engaged_role_play_check(living))
 			continue
 		if(ignore_afk && living?.client)
 			if(living.client.is_afk())
