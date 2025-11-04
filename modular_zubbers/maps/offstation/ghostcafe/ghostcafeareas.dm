@@ -168,8 +168,10 @@
 	sound_environment = SOUND_ENVIRONMENT_CAVE
 
 /area/centcom/holding/cafe/ruin/ash_walkers
-	name = "Ghost Cafe Walker Nest"
+	name = "Ghost Cafe Ash Walker Nest"
 	icon_state = "os_beta_mining"
+	ambience_index = AMBIENCE_MINING
+	sound_environment = SOUND_AREA_LAVALAND
 	ambient_buzz = 'sound/ambience/lavaland/magma.ogg'
 
 /area/centcom/holding/cafe/ruin/icemoon
