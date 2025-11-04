@@ -24,6 +24,11 @@
 	icon_state = "graveyard"
 	icon = 'icons/area/areas_station.dmi'
 
+/area/centcom/holding/cafe/station/service
+	name = "\improper Ghost Cafe Service"
+	icon_state = "kitchen"
+	airlock_wires = /datum/wires/airlock/service
+
 /area/centcom/holding/cafe/station/service/kitchen
 	name = "\improper Ghost Cafe Kitchen"
 	icon_state = "kitchen"
@@ -121,10 +126,24 @@
 	airlock_wires = /datum/wires/airlock/command
 	sound_environment = SOUND_AREA_STANDARD_STATION
 
+/area/centcom/holding/cafe/station/command/meeting_room
+	name = "\improper Ghost Cafe Heads of Staff Meeting Room"
+	icon_state = "meeting"
+	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
+
 /area/centcom/holding/cafe/station/command/cap
 	name = "Ghost Cafe Captain's Office"
 	icon_state = "captain"
 	sound_environment = SOUND_AREA_WOODFLOOR
+
+/area/centcom/holding/cafe/station/command/cap/private
+	name = "Ghost Cafe Captain's Chamber"
+	icon_state = "captain_private"
+
+/area/centcom/holding/cafe/station/command/teleporter
+	name = "\improper Ghost Cafe Teleporter"
+	icon_state = "teleporter"
+	ambience_index = AMBIENCE_ENGI
 
 /area/centcom/holding/cafe/station/maint
 	name = "Ghost Cafe Maintenance"
