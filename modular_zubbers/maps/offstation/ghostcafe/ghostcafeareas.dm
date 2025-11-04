@@ -21,13 +21,63 @@
 	name = "Ghost Cafe Outdoors"
 
 /area/centcom/holding/cafe/station
+	icon_state = "graveyard"
 	icon = 'icons/area/areas_station.dmi'
 
-/area/centcom/holding/cafe/station/kitchen/coldroom
+/area/centcom/holding/cafe/station/service/kitchen
+	name = "\improper Ghost Cafe Kitchen"
+	icon_state = "kitchen"
+
+
+/area/centcom/holding/cafe/station/service/kitchen/coldroom
 	name = "\improper Ghost Cafe Kitchen Cold Room"
 	icon_state = "kitchen_cold"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 	ambience_index = AMBIENCE_SPOOKY
+
+/area/centcom/holding/cafe/station/commons/lounge
+	name = "\improper Ghost Cafe Bar Lounge"
+	icon_state = "lounge"
+	mood_bonus = 5
+	mood_message = "I love being in the bar!"
+	mood_trait = TRAIT_EXTROVERT
+	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
+
+/area/centcom/holding/cafe/station/service/hydroponics
+	name = "Ghost Cafe Hydroponics"
+	icon_state = "hydro"
+	airlock_wires = /datum/wires/airlock/service
+	sound_environment = SOUND_AREA_STANDARD_STATION
+
+/area/centcom/holding/cafe/station/commons/fitness
+	name = "\improper Ghost Cafe Leather Club"
+	icon_state = "fitness"
+
+/area/centcom/holding/cafe/station/commons/fitness/locker_room
+	name = "\improper Ghost Cafe Unisex Locker Room"
+	icon_state = "locker"
+
+/area/centcom/holding/cafe/station/commons/fitness/recreation/sauna
+	name = "\improper Ghost Cafe Sauna"
+	icon_state = "sauna"
+
+/area/centcom/holding/cafe/station/service/janitor
+	name = "Ghost Cafe Janitorial Room"
+	icon_state = "janitor"
+	sound_environment = SOUND_AREA_SMALL_ENCLOSED
+
+/area/centcom/holding/cafe/station/service/lawoffice
+	name = "\improper Ghost Cafe Law Office"
+	icon_state = "law"
+	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
+
+/area/centcom/holding/cafe/station/service/barber
+	name = "\improper Ghost Cafe Barber"
+	icon_state = "barber"
+
+/area/centcom/holding/cafe/station/commons/kiosk
+	name = "Ghost Cafe Kiosk"
+	icon_state = "commons"
 
 /area/centcom/holding/cafe/station/med
 	name = "Ghost Cafe Medical"
@@ -35,6 +85,11 @@
 	ambience_index = AMBIENCE_MEDICAL
 	airlock_wires = /datum/wires/airlock/medbay
 	sound_environment = SOUND_AREA_STANDARD_STATION
+
+/area/centcom/holding/cafe/station/science/robotics/augments
+	name = "\improper Ghost Cafe Robotics"
+	icon_state = "robotics"
+	sound_environment = SOUND_AREA_TUNNEL_ENCLOSED
 
 /area/centcom/holding/cafe/station/command
 	name = "Ghost Cafe Command"
@@ -67,7 +122,7 @@
 	airlock_wires = /datum/wires/airlock/security
 	sound_environment = SOUND_AREA_STANDARD_STATION
 
-/area/centcom/holding/cafe/station/library
+/area/centcom/holding/cafe/station/service/library
 	name = "\improper Ghost Cafe Library"
 	icon_state = "library"
 	mood_bonus = 5
@@ -75,7 +130,28 @@
 	mood_trait = TRAIT_INTROVERT
 	sound_environment = SOUND_AREA_LARGE_SOFTFLOOR
 
-/area/centcom/holding/cafe/icemoon
+/area/centcom/holding/cafe/station/engineering
+	name = "Ghost Cafe Engineering"
+	icon_state = "engie"
+	ambience_index = AMBIENCE_ENGI
+	airlock_wires = /datum/wires/airlock/engineering
+	sound_environment = SOUND_AREA_LARGE_ENCLOSED
+
+/area/centcom/holding/cafe/ruin
+	icon = 'icons/area/areas_ruins.dmi'
+
+/area/centcom/holding/cafe/ruin/caves
+	name = "Ghost Cafe Caves"
+	icon_state = "os_beta_mining"
+	ambience_index = AMBIENCE_SPOOKY
+	sound_environment = SOUND_ENVIRONMENT_CAVE
+
+/area/centcom/holding/cafe/ruin/ash_walkers
+	name = "Ghost Cafe Walker Nest"
+	icon_state = "os_beta_mining"
+	ambient_buzz = 'sound/ambience/lavaland/magma.ogg'
+
+/area/centcom/holding/cafe/ruin/icemoon
 	name = "Ghost Cafe Snow"
 	icon = 'icons/area/areas_station.dmi'
 	icon_state = "mining"
@@ -83,12 +159,7 @@
 	sound_environment = SOUND_AREA_ICEMOON
 	ambient_buzz = 'sound/ambience/lavaland/magma.ogg'
 
-
-/area/centcom/holding/cafe/ash_walkers
-	name = "Ghost Cafe Walker Nest"
-	ambient_buzz = 'sound/ambience/lavaland/magma.ogg'
-
-/area/centcom/holding/cafe/xenonest
+/area/centcom/holding/cafe/ruin/xenonest
 	name = "Ghost Cafe Xenomorph Nest"
 	ambience_index = AMBIENCE_SPOOKY
 
