@@ -82,6 +82,10 @@
 #define STORY_GOAL_BIG_WEIGHT 3.0   // Significant event weight
 #define STORY_GOAL_MAJOR_WEIGHT 5.0  // Major event weight
 
+#define STORY_WEIGHT_MINOR_ANTAGONIST (STORY_GOAL_BIG_WEIGHT * 1.2)
+#define STORY_WEIGHT_MAJOR_ANTAGONIST (STORY_GOAL_MAJOR_WEIGHT * 1.2)
+
+
 // Goal priority levels (affects scheduling order)
 #define STORY_GOAL_BASE_PRIORITY 1    // Normal priority
 #define STORY_GOAL_HIGH_PRIORITY 5    // High priority
@@ -96,9 +100,9 @@
 
 // Round progression milestones (0.0 = start, 1.0 = end)
 #define STORY_ROUND_PROGRESSION_START 0    // Round start (0%)
-#define STORY_ROUND_PROGRESSION_EARLY 0.21 // Early phase (0-21%)
-#define STORY_ROUND_PROGRESSION_MID 0.51   // Mid phase (21-51%)
-#define STORY_ROUND_PROGRESSION_LATE 0.81  // Late phase (51-81%)
+#define STORY_ROUND_PROGRESSION_EARLY 0.12 // Early phase (0-21%)
+#define STORY_ROUND_PROGRESSION_MID 0.34   // Mid phase (21-51%)
+#define STORY_ROUND_PROGRESSION_LATE 0.62  // Late phase (51-81%)
 
 // Analyzer scan flags (bitflags for what to scan)
 #define RESCAN_STATION_INTEGRITY (1 << 0)  // Scan station integrity/hull
@@ -141,6 +145,8 @@ DEFINE_BITFIELD(story_analyzer_flags, list(
 #define STORY_GOAL_UNCATEGORIZED (1 << 5)
 // Goal that's wound't be selected
 #define STORY_GOAL_NEVER (1 << 6)
+// Antagonist-related goals
+#define STORY_GOAL_ANTAGONIST (1 << 7)
 
 DEFINE_BITFIELD(story_goal_category, list(
 	"GOAL_RANDOM" = STORY_GOAL_RANDOM,
@@ -150,6 +156,7 @@ DEFINE_BITFIELD(story_goal_category, list(
 	"GOAL_NEUTRAL" = STORY_GOAL_NEUTRAL,
 	"GOAL_UNCATEGORIZED" = STORY_GOAL_UNCATEGORIZED,
 	"GOAL_NEVER" = STORY_GOAL_NEVER,
+	"GOAL_ANTAGONIST" = STORY_GOAL_ANTAGONIST,
 ))
 
 
@@ -216,6 +223,12 @@ DEFINE_BITFIELD(story_job_flags, list(
 #define STORY_TAG_WIDE_IMPACT (1 << 17)
 // Goals involving entities (mobs, creatures) rather than just objects or systems.
 #define STORY_TAG_ENTITIES (1 << 18)
+// This event relates to antagonists
+#define STORY_TAG_ANTAGONIST (1 << 19)
+// This event occurs mid-round
+#define STORY_TAG_MIDROUND (1 << 20)
+// this event occurs on round start
+#define STORY_TAG_ROUNDSTART (1 << 21)
 
 // Combined tag: targets infrastructure, technology, or environment systems
 #define STORY_TAG_TARGETS_SYSTEMS (STORY_TAG_AFFECTS_INFRASTRUCTURE | STORY_TAG_AFFECTS_TECHNOLOGY | STORY_TAG_AFFECTS_ENVIRONMENT)
@@ -240,6 +253,9 @@ DEFINE_BITFIELD(story_universal_tags, list(
 	"TARGETS_INDIVIDUALS" = STORY_TAG_TARGETS_INDIVIDUALS,
 	"WIDE_IMPACT" = STORY_TAG_WIDE_IMPACT,
 	"ENTITIES" = STORY_TAG_ENTITIES,
+	"ANTAGONIST" = STORY_TAG_ANTAGONIST,
+	"MIDROUND" = STORY_TAG_MIDROUND,
+	"ROUNDSTART" = STORY_TAG_ROUNDSTART,
 ))
 
 // Goals statuses in planning tree for external use
@@ -266,7 +282,7 @@ DEFINE_BITFIELD(story_universal_tags, list(
 
 // Planner constants
 #define STORY_RECALC_INTERVAL (10 MINUTES)          // Interval for plan recalculation
-#define STORY_INITIAL_GOALS_COUNT 1                 // Minimum pending goals in timeline
+#define STORY_INITIAL_GOALS_COUNT 3                 // Minimum pending goals in timeline
 #define STORY_PICK_THREAT_BONUS_SCALE 0.01          // Threat bonus scaling for goal selection
 #define STORY_BALANCE_BONUS 1.5                     // Balance adjustment bonus multiplier
 #define STORY_PACE_MIN 0.1                          // Minimum pace multiplier

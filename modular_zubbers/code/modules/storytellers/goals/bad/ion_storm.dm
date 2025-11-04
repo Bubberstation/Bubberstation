@@ -6,14 +6,9 @@
 	tags = STORY_TAG_AFFECTS_WHOLE_STATION | STORY_TAG_TARGETS_SYSTEMS
 	typepath = /datum/round_event/ion_storm
 
-/datum/round_event_control/ion_storm/get_story_weight(datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
-	var/base = ..()
-	return base * 0.5 // We are rare
-
+	story_weight = STORY_GOAL_BASE_WEIGHT * 0.5
 
 /datum/round_event/ion_storm
-	allow_random = FALSE
-
 	var/harm_door_chance = 30
 	var/harm_synthetics_chance = 20
 	var/harm_prosthesis_chance = 10
@@ -159,18 +154,18 @@
 		log_silicon("Ion storm changed laws of [key_name(ai_mob)] to [english_list(ai_mob.laws.get_law_list(TRUE, TRUE))]")
 		ai_mob.post_lawchange()
 
-	if(botEmagChance)
+	if(prob(botEmagChance))
 		for(var/mob/living/simple_animal/bot/bot in station_bots)
 			if(prob(botEmagChance))
 				bot.emag_act()
 
-	if(harm_door_chance)
+	if(prob(harm_door_chance))
 		for(var/obj/machinery/door/airlock/airlock in station_doors)
 			if(prob(harm_door_chance))
-				airlock.set_anchored(!airlock.anchored)
-				airlock.set_electrified(30 SECONDS)
+				airlock.set_bolt(!airlock.locked)
+				airlock.set_electrified(30)
 
-	if(emp_machinery_chance)
+	if(prob(emp_machinery_chance))
 		for(var/obj/machinery/power/apc/apc in station_apcs)
 			if(!(apc.z in station_z_values))
 				continue
@@ -179,12 +174,12 @@
 			if(prob(emp_machinery_chance))
 				smes.emp_act()
 				smes.adjust_charge(-(STANDARD_BATTERY_CHARGE * rand(1-10)))
-	if(harm_synthetics_chance)
+	if(prob(harm_synthetics_chance))
 		for(var/mob/living/silicon/synthetic in station_synthetics)
 			if(prob(harm_synthetics_chance))
 				synthetic.emp_act(rand(1, 2))
 
-	if(harm_prosthesis_chance)
+	if(prob(harm_prosthesis_chance))
 		for(var/mob/living/carbon/human/human in station_humans)
 			var/has_prosthesis = FALSE
 			for(var/obj/item/bodypart/limb in human.bodyparts)

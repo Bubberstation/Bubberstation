@@ -367,14 +367,10 @@
 /// Low population = longer intervals (fewer events), high population = shorter intervals (more frequent events)
 /datum/storyteller/proc/get_event_interval()
 	var/base = max_event_interval
-	// Linear interpolation: low pop (0.3) -> 1.44x interval, high pop (1.0) -> 0.5x interval
-	var/pop_mod = 1.5 - (population_factor - 0.3) * (1.5 - 0.7) / (1.0 - 0.3)
-	pop_mod = clamp(pop_mod, 0.7, 1.5)
-	var/pace_mult = max(get_effective_pace(), 0.05)
-	var/interval = (base / pace_mult) * pop_mod
-	// Allow interval to drop to a minimum of 0.5
-	return round(clamp(interval, 0.5, max_event_interval))
-
+	var/pop_mod = 1.5 - (population_factor - 0.3) * (1.5 - 0.3) / (1.0 - 0.3)
+	pop_mod = clamp(pop_mod, 0.3, 1.5)
+	var/pace_mod = (mood ? mood.pace : 1.0) * (1.0 - adaptation_factor * 0.5)
+	return round(base * pop_mod * pace_mod)
 
 /// Event interval without population adjustment; for baseline pacing in global goal selection.
 /datum/storyteller/proc/get_event_interval_no_population_factor()

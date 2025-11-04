@@ -24,6 +24,8 @@
 	// % chance for positive vs negative noise
 	var/positive_noise_chance = 50
 
+	start_when = 30
+
 /datum/round_event/psychic_drone/__setup_for_storyteller(threat_points)
 	. = ..()
 
@@ -50,7 +52,6 @@
 
 	// Dynamic scaling
 	num_waves = min(num_waves + round(threat_points / 500), 20)
-	start_when = 30
 
 /datum/round_event/psychic_drone/__start_for_storyteller()
 	var/turf/spawn_turf = get_safe_random_station_turf()

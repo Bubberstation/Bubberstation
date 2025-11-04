@@ -4,7 +4,7 @@
 	tags = STORY_TAG_AFFECTS_ECONOMY | STORY_TAG_AFFECTS_POLITICS
 	typepath = /datum/round_event/market_crash
 
-
+	story_weight = STORY_GOAL_BASE_WEIGHT * 1.2
 
 /datum/round_event_control/market_crash/run_event_as_storyteller(datum/storyteller_inputs/inputs, datum/storyteller/storyteller, threat_points)
 	var/datum/storyteller_mood/mood = storyteller.mood

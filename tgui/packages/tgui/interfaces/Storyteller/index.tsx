@@ -1,10 +1,12 @@
 import '../../styles/interfaces/StorytellerVote.scss';
 
+import { useState } from 'react';
 import {
   Box,
   Button,
   Divider,
   Dropdown,
+  Input,
   LabeledList,
   ProgressBar,
   Section,
@@ -14,13 +16,65 @@ import {
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 import { resolveAsset } from '../../assets';
-import { useBackend, useLocalState } from '../../backend';
+import { useBackend } from '../../backend';
 import { Window } from '../../layouts';
+
+// Tooltips for parameters in status and settings
+// These explain how parameters affect event planning,
+// global objectives, and branching sub-objectives, balancing threats, pacing, and antagonist activity for rounds.
+const TOOLTIPS = {
+  // Status (Overview)
+  mood: 'Current "mood" of the storyteller, determining the style of the global objective (e.g., "Slow Horror" for gradual threat buildup). Influences sub-objective and antagonist branch selection.',
+  tension:
+    'Current round tension (0-100%). High value (>target) signals peak events; low — a pause for player preparation to the next global objective branch.',
+  targetTension:
+    'Target tension (0-100%). The storyteller aims to maintain it by planning events and sub-objectives for balance — like in RimWorld, where the storyteller adapts threats to the colony\'s "mood."',
+  threatLevel:
+    'Threat level (0-100%). Reflects accumulated danger from antagonist branches and events; >70% — crisis, requiring urgent sub-objectives to resolve the global objective.',
+  effectiveThreat:
+    'Effective threat level (accounts for players and progress). Aids analysis: low — safe for new branches, high — focus on antagonists and escalation.',
+  roundProgression:
+    'Round progression (0-1). When it reaches 1, the storyteller completes the current global objective and plans a new one, analyzing the station for fresh sub-objectives.',
+  playersAntags:
+    'Number of players / antagonists. Used for balance: too few antagonists — adds branches; many — focuses on countermeasures in sub-objectives.',
+  balance:
+    'Antagonist balance (0-100%). <40% — "boring," storyteller intensifies antagonist branches; >60% — "chaos," adds neutral events for a breather.',
+  difficulty:
+    'Event difficulty modifier (×1). Increases weight of sub-objectives and threats in the global objective, adapting to server experience — like threat scale in RimWorld.',
+  nextThink:
+    'Time until the storyteller\'s next "think." Here, it analyzes the station, adjusts sub-objectives, and branches to advance toward the global objective.',
+
+  // Settings (Settings & Advanced)
+  moodSelect:
+    'Mood selection to change the global objective style. Each mood affects planning pace: "Fast Chaos" — frequent antagonist branches, "Slow Schemer" — hidden sub-objectives.',
+  pace: 'Event pace multiplier (0.5-2.0). 0.5 — slows sub-objective intervals for deep roleplay; 2.0 — accelerates for dynamic rounds, like in RimWorld with "manic miner."',
+  reanalyse:
+    'Reanalyze station: recalculates players, threats, and balance to adjust current sub-objectives and branches in the global objective.',
+  replan:
+    'Replan: resets the sub-objective chain, selects new branches based on mood and analysis — useful for mid-round pivot to a new global objective.',
+  difficultySlider:
+    'Global difficulty multiplier (0.3-5). Increases antagonist event weight and threats in sub-objectives; high — for hardcore servers, low — for newbies.',
+  targetTensionSlider:
+    'Target tension for auto-balance. The storyteller plans events to reach it: low — peaceful sub-objectives, high — antagonist branch escalation.',
+  threatGrowthRate:
+    'Threat growth rate (0.1-5). Determines how quickly threat_level accumulates from unresolved sub-objectives — key to global objective pacing.',
+  thinkDelay:
+    'Think delay (seconds, 1-240). Frequent thinking — dynamic branch planning; rare — strategic, like RimWorld with long-term threats.',
+  eventIntervalMin:
+    'Minimum event interval (seconds, 1-60). Short — quick sub-objectives for high pace; long — pauses for players in global objective branches.',
+  eventIntervalMax:
+    'Maximum event interval (seconds, 1-60). The storyteller randomizes within range; affects unpredictability of antagonist and neutral branches.',
+  gracePeriod:
+    'Grace period (seconds, 120-1200). Time after an event when repeats are not planned — prevents spamming sub-objectives in the chain.',
+  repetitionPenalty:
+    'Repetition penalty (0.25-1.0). Reduces weight of repeating events in sub-objectives; 1.0 — no penalty, for cyclic global objectives like "infection."',
+} as const;
 
 type StorytellerGoal = {
   id: string;
   name?: string;
   weight?: number;
+  is_antagonist?: BooleanLike;
   progress?: number; // 0..1 for individual goal
 };
 
@@ -46,11 +100,13 @@ type StorytellerEventLog = {
 type StorytellerUpcomingGoal = {
   id: string;
   name?: string;
+  desc?: string; // Added for description
   fire_time: number;
   category?: number;
   status: string;
   weight?: number;
   progress?: number;
+  is_antagonist?: BooleanLike;
 };
 
 type StorytellerData = {
@@ -122,32 +178,310 @@ const InputScrollApply = (props: scrollConfigProp) => {
   );
 };
 
-export default InputScrollApply;
-
 const formatTime = (ticks?: number, current_time?: number) => {
   if (!ticks && ticks !== 0) return '—';
   const relative = current_time ? ticks - current_time : ticks;
   const seconds = Math.floor(Math.abs(relative) / 10);
+  const minutes = Math.floor(seconds / 60);
+  const remainderSeconds = seconds % 60;
   const sign = relative < 0 ? '-' : '';
-  return `${sign}${Math.abs(ticks)}t (${sign}${seconds}s)`;
+  if (minutes === 0) {
+    return `${sign}${seconds}s`;
+  }
+  return `${sign}${minutes}m ${sign}${remainderSeconds.toString().padStart(2, '0')}s`;
 };
 
 const ProgressRow = ({
   label,
   value,
   color,
+  tooltip,
 }: {
   label: string;
   value?: number;
   color?: 'good' | 'average' | 'bad';
+  tooltip?: string;
 }) => {
   const pct = Math.max(0, Math.min(1, value ?? 0));
   return (
-    <LabeledList.Item label={label}>
+    <LabeledList.Item label={label} tooltip={tooltip}>
       <ProgressBar value={pct} color={color}>
         {Math.round(pct * 100)}%
       </ProgressBar>
     </LabeledList.Item>
+  );
+};
+
+const UpcomingGoalItem = ({
+  goal,
+  current_world_time,
+  act,
+}: {
+  goal: StorytellerUpcomingGoal;
+  current_world_time?: number;
+  act: any;
+}) => {
+  const [expanded, setExpanded] = useState(false);
+  const isAntag = goal.is_antagonist;
+
+  const fireTimeText =
+    goal.fire_time <= (current_world_time ?? 0)
+      ? 'Firing'
+      : formatTime(goal.fire_time, current_world_time);
+
+  const boxBgColor = isAntag
+    ? 'rgba(255, 60, 60, 0.2)'
+    : 'rgba(120,120,120,0.15)';
+  const headerBgColor = isAntag
+    ? 'rgba(255, 50, 50, 0.3)'
+    : 'rgba(180,180,180,0.1)';
+
+  return (
+    <Box
+      mb={1.5}
+      p={1}
+      style={{
+        borderRadius: '2px',
+        backgroundColor: boxBgColor,
+        boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
+      }}
+    >
+      <Stack align="center">
+        <Stack.Item grow>
+          <Button
+            icon={expanded ? 'chevron-down' : 'chevron-right'}
+            onClick={() => setExpanded(!expanded)}
+            backgroundColor={headerBgColor}
+            color="white"
+            textColor="white"
+            fluid
+            textAlign="left"
+            style={{
+              borderRadius: '2px',
+              fontWeight: 600,
+              textTransform: 'none',
+              justifyContent: 'flex-start',
+              padding: '0.4rem 0.7rem',
+            }}
+          >
+            {goal.name || goal.id}
+            {isAntag ? (
+              <Box inline ml={1} color="red" opacity={0.9}>
+                - antagonist
+              </Box>
+            ) : (
+              ''
+            )}
+          </Button>
+        </Stack.Item>
+
+        <Stack.Item>
+          <Box
+            px={1}
+            py={0.3}
+            style={{
+              backgroundColor:
+                goal.fire_time <= (current_world_time ?? 0)
+                  ? 'rgba(0, 120, 255, 0.3)'
+                  : 'rgba(255,255,255,0.1)',
+              borderRadius: '2px',
+              fontWeight: 500,
+            }}
+          >
+            {fireTimeText}
+          </Box>
+        </Stack.Item>
+
+        {!expanded && (
+          <>
+            <Stack.Item>
+              <Button
+                icon="play"
+                tooltip="Fire"
+                color="good"
+                onClick={() => act('trigger_goal', { offset: goal.fire_time })}
+              />
+            </Stack.Item>
+            <Stack.Item>
+              <Button
+                icon="trash"
+                tooltip="Remove"
+                color="bad"
+                onClick={() => act('remove_goal', { offset: goal.fire_time })}
+              />
+            </Stack.Item>
+          </>
+        )}
+      </Stack>
+
+      {expanded && (
+        <Box
+          mt={1}
+          px={1}
+          py={0.5}
+          style={{
+            backgroundColor: 'rgba(255,255,255,0.05)',
+            borderRadius: '2px',
+          }}
+        >
+          <LabeledList>
+            <LabeledList.Item label="Status">
+              <Box
+                color={
+                  goal.status === 'active'
+                    ? 'good'
+                    : goal.status === 'failed'
+                      ? 'bad'
+                      : 'average'
+                }
+                fontWeight={600}
+              >
+                {goal.status}
+              </Box>
+            </LabeledList.Item>
+
+            <LabeledList.Item label="Progress">
+              <ProgressBar
+                value={goal.progress ?? 0}
+                style={{ height: '7px', borderRadius: '2px' }}
+                color={
+                  (goal.progress || 0) > 0.7
+                    ? 'good'
+                    : (goal.progress || 0) > 0.3
+                      ? 'average'
+                      : 'bad'
+                }
+              >
+                {Math.round((goal.progress ?? 0) * 100)}%
+              </ProgressBar>
+            </LabeledList.Item>
+
+            <LabeledList.Item label="Weight">
+              <Box>{goal.weight ?? '—'}</Box>
+            </LabeledList.Item>
+
+            <LabeledList.Item label="Description">
+              <Box opacity={0.9}>
+                {goal.desc || 'No description available.'}
+              </Box>
+            </LabeledList.Item>
+          </LabeledList>
+
+          <Stack mt={1}>
+            <Stack.Item>
+              <Button
+                icon="play"
+                tooltip="Fire"
+                color="good"
+                onClick={() => act('trigger_goal', { offset: goal.fire_time })}
+              />
+            </Stack.Item>
+            <Stack.Item>
+              <Button
+                icon="trash"
+                tooltip="Remove"
+                color="bad"
+                onClick={() => act('remove_goal', { offset: goal.fire_time })}
+              />
+            </Stack.Item>
+          </Stack>
+        </Box>
+      )}
+    </Box>
+  );
+};
+
+const GoalSearchDropdown = ({
+  available_goals,
+  selectedGoal,
+  setSelectedGoal,
+  onInsert,
+}: {
+  available_goals: StorytellerGoal[];
+  selectedGoal: string;
+  setSelectedGoal: (id: string) => void;
+  onInsert: () => void;
+}) => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  // Force re-render on searchTerm change by key
+  const searchKey = searchTerm;
+
+  const filteredGoals = available_goals.filter((goal) => {
+    if (!goal) return false;
+    if (!searchTerm) return false;
+    const text = String(goal.name ?? goal.id ?? '').toLowerCase();
+    return text.includes(searchTerm.toLowerCase());
+  });
+
+  const handleGoalSelect = (goal: StorytellerGoal) => {
+    setSelectedGoal(String(goal.id));
+  };
+
+  return (
+    <Stack vertical>
+      <Stack.Item>
+        <Stack>
+          <Stack.Item grow>
+            <Input
+              placeholder="Search goals..."
+              value={searchTerm}
+              onChange={(str) => setSearchTerm(str)}
+              width="100%"
+            />
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="check"
+              tooltip="Insert Selected"
+              disabled={!selectedGoal}
+              onClick={onInsert}
+            />
+          </Stack.Item>
+        </Stack>
+      </Stack.Item>
+      <Stack.Item grow minHeight="120px">
+        <Section scrollable fill key={searchKey}>
+          {filteredGoals.length ? (
+            filteredGoals.map((g) => (
+              <Box
+                key={g.id}
+                mb={0.5}
+                backgroundColor={g.is_antagonist ? 'color-red' : 'color-gray'}
+                className={g.is_antagonist ? 'antag-goal' : ''}
+                onClick={() => handleGoalSelect(g)}
+                style={{
+                  cursor: 'pointer',
+                  opacity: selectedGoal === String(g.id) ? 1 : 0.7,
+                }}
+              >
+                <Box>
+                  {g.name ?? String(g.id)}
+                  {g.is_antagonist && (
+                    <Box inline ml={1}>
+                      (antagonist)
+                    </Box>
+                  )}
+                  {selectedGoal === String(g.id) && (
+                    <Box inline ml={1}>
+                      (selected)
+                    </Box>
+                  )}
+                </Box>
+              </Box>
+            ))
+          ) : searchTerm ? (
+            <Box opacity={0.6} color="white">
+              No goals found.
+            </Box>
+          ) : (
+            <Box opacity={0.6} color="white">
+              Start typing to search goals...
+            </Box>
+          )}
+        </Section>
+      </Stack.Item>
+    </Stack>
   );
 };
 
@@ -180,49 +514,53 @@ export const Storyteller = (props) => {
     current_world_time,
   } = data;
 
-  const [tab, setTab] = useLocalState<
+  // Replacement of useLocalState with useState
+  const [tab, setTab] = useState<
     'overview' | 'goals' | 'settings' | 'advanced' | 'logs'
-  >('tab', 'overview');
-  const [selectedMood, setSelectedMood] = useLocalState(
-    'selectedMood',
-    mood?.id || '',
-  );
-  const [pace, setPace] = useLocalState('pace', String(mood?.pace ?? 1.0));
-  const [selectedGoal, setSelectedGoal] = useLocalState('selectedGoal', '');
-  const [selectedCandidate, setSelectedCandidate] = useLocalState(
-    'selectedCandidate',
-    '',
-  );
+  >('overview');
+  const [selectedMood, setSelectedMood] = useState(mood?.id || '');
+  const [pace, setPace] = useState(String(mood?.pace ?? 1.0));
+  const [selectedGoal, setSelectedGoal] = useState('');
+  const [selectedCandidate, setSelectedCandidate] = useState('');
   // Advanced parameter local states
-  const [difficulty, setDifficulty] = useLocalState(
-    'difficulty',
+  const [difficulty, setDifficulty] = useState(
     String(event_difficulty_modifier ?? 1.0),
   );
-  const [targetTension, setTargetTension] = useLocalState(
-    'targetTension',
+  const [targetTension, setTargetTension] = useState(
     String(target_tension ?? 1.0),
   );
-  const [threatGrowhRate, setThreatGrowhRate] = useLocalState(
-    'threatGrowhRate',
+  const [threatGrowthRate, setThreatGrowthRate] = useState(
     String(threat_growth_rate ?? 1.0),
   );
-  const [thinkDelay, setThinkDelay] = useLocalState(
-    'thinkDelay',
-    String(base_think_delay ?? 0),
-  );
-  const [minInterval, setMinInterval] = useLocalState(
-    'minInterval',
+  const [thinkDelay, setThinkDelay] = useState(String(base_think_delay ?? 0));
+  const [minInterval, setMinInterval] = useState(
     String(min_event_interval ?? 0),
   );
-  const [maxInterval, setMaxInterval] = useLocalState(
-    'maxInterval',
+  const [maxInterval, setMaxInterval] = useState(
     String(max_event_interval ?? 0),
   );
-  const [grace, setGrace] = useLocalState('grace', '3000');
-  const [repetitionPenalty, setRepetitionPenalty] = useLocalState(
-    'repetitionPenalty',
+  const [grace, setGrace] = useState(String(grace_period ?? 300));
+  const [repetitionPenalty, setRepetitionPenalty] = useState(
     String(grace_period ?? 1),
   );
+
+  const handleInsertGoal = () => {
+    if (selectedGoal) {
+      act('insert_goal_to_chain', { id: selectedGoal });
+    }
+  };
+
+  const handleSetMinInterval = () => {
+    act('set_event_intervals', { min: Number(minInterval) || 1000 });
+  };
+
+  const handleSetMaxInterval = () => {
+    act('set_event_intervals', { max: Number(maxInterval) || 60000 });
+  };
+
+  const handleSetThreatGrowthRate = () => {
+    act('set_threat_growth_rate', { value: Number(threatGrowthRate) || 1 });
+  };
 
   return (
     <Window
@@ -307,13 +645,11 @@ export const Storyteller = (props) => {
             <Section title="Overview">
               <h1>{name}</h1>
               <LabeledList>
-                <LabeledList.Item label="desc">{desc}</LabeledList.Item>
-              </LabeledList>
-              <LabeledList>
-                <LabeledList.Item label="ooc desc">{ooc_desc}</LabeledList.Item>
-              </LabeledList>
-              <LabeledList>
-                <LabeledList.Item label="ooc difficulty">
+                <LabeledList.Item label="Description">{desc}</LabeledList.Item>
+                <LabeledList.Item label="OOC Description">
+                  {ooc_desc}
+                </LabeledList.Item>
+                <LabeledList.Item label="OOC Difficulty">
                   {ooc_difficulty}
                 </LabeledList.Item>
               </LabeledList>
@@ -325,7 +661,7 @@ export const Storyteller = (props) => {
                   buttons={
                     <Button
                       icon="edit"
-                      tooltip="Change mood"
+                      tooltip={TOOLTIPS.moodSelect}
                       onClick={() => setTab('settings')}
                     />
                   }
@@ -340,10 +676,12 @@ export const Storyteller = (props) => {
                       ? 'bad'
                       : 'good'
                   }
+                  tooltip={TOOLTIPS.tension}
                 />
                 <ProgressRow
                   label="Target Tension"
                   value={(data.target_tension ?? 0) / 100}
+                  tooltip={TOOLTIPS.targetTension}
                 />
                 <ProgressRow
                   label="Threat Level"
@@ -355,6 +693,7 @@ export const Storyteller = (props) => {
                         ? 'average'
                         : 'good'
                   }
+                  tooltip={TOOLTIPS.threatLevel}
                 />
                 <ProgressRow
                   label="Effective Threat"
@@ -366,12 +705,17 @@ export const Storyteller = (props) => {
                         ? 'average'
                         : 'good'
                   }
+                  tooltip={TOOLTIPS.effectiveThreat}
                 />
                 <ProgressRow
                   label="Round Progression"
                   value={data.round_progression ?? 0}
+                  tooltip={TOOLTIPS.roundProgression}
                 />
-                <LabeledList.Item label="Players / Antags">
+                <LabeledList.Item
+                  label="Players / Antags"
+                  tooltip={TOOLTIPS.playersAntags}
+                >
                   {player_count ?? '—'} / {antag_count ?? '—'}
                 </LabeledList.Item>
                 <ProgressRow
@@ -384,11 +728,18 @@ export const Storyteller = (props) => {
                         ? 'average'
                         : 'good'
                   }
+                  tooltip={TOOLTIPS.balance}
                 />
-                <LabeledList.Item label="Difficulty">
+                <LabeledList.Item
+                  label="Difficulty"
+                  tooltip={TOOLTIPS.difficulty}
+                >
                   ×{event_difficulty_modifier ?? 1}
                 </LabeledList.Item>
-                <LabeledList.Item label="Next Think">
+                <LabeledList.Item
+                  label="Next Think"
+                  tooltip={TOOLTIPS.nextThink}
+                >
                   {(next_think_time || 0) <= (current_world_time ?? 0) ? (
                     <Box color="good">Thinking</Box>
                   ) : (
@@ -401,113 +752,26 @@ export const Storyteller = (props) => {
         )}
         {tab === 'goals' && (
           <>
-            <Section title="Insert Goal">
-              <Stack>
-                <Stack.Item grow>
-                  <Dropdown
-                    selected={selectedGoal}
-                    onSelected={setSelectedGoal}
-                    options={available_goals.map((g) => ({
-                      value: g.id,
-                      displayText: g.name || g.id,
-                    }))}
-                    placeholder="Select goal..."
-                    width="100%"
-                  />
-                </Stack.Item>
-                <Stack.Item>
-                  <Button
-                    icon="check"
-                    tooltip="Insert"
-                    disabled={!selectedGoal}
-                    onClick={() =>
-                      act('insert_goal_to_chain', { id: selectedGoal })
-                    }
-                  />
-                </Stack.Item>
-                <Stack.Item>
-                  <Button
-                    icon="sync"
-                    tooltip="Reschedule"
-                    onClick={() => act('reschedule_chain')}
-                  />
-                </Stack.Item>
-              </Stack>
+            <Section title="Insert event">
+              <GoalSearchDropdown
+                available_goals={available_goals}
+                selectedGoal={selectedGoal}
+                setSelectedGoal={setSelectedGoal}
+                onInsert={handleInsertGoal}
+              />
             </Section>
             <Section title="Upcoming Chain">
               {upcoming_goals.length ? (
-                <Table>
-                  <Table.Row header>
-                    <Table.Cell>Fire In</Table.Cell>
-                    <Table.Cell>Goal</Table.Cell>
-                    <Table.Cell>Status</Table.Cell>
-                    <Table.Cell>Progress</Table.Cell>
-                    <Table.Cell>Weight</Table.Cell>
-                    <Table.Cell>Actions</Table.Cell>
-                  </Table.Row>
+                <Box>
                   {upcoming_goals.map((g, i) => (
-                    <Table.Row
+                    <UpcomingGoalItem
                       key={i}
-                      className={g.status === 'firing' ? 'color-good' : ''}
-                    >
-                      <Table.Cell
-                        color={
-                          g.fire_time <= (current_world_time ?? 0)
-                            ? 'blue'
-                            : null
-                        }
-                      >
-                        {g.fire_time <= (current_world_time ?? 0)
-                          ? 'Firing'
-                          : formatTime(g.fire_time, current_world_time)}
-                      </Table.Cell>
-                      <Table.Cell>{g.name || g.id}</Table.Cell>
-                      <Table.Cell
-                        color={
-                          g.status === 'active'
-                            ? 'good'
-                            : g.status === 'failed'
-                              ? 'bad'
-                              : 'average'
-                        }
-                      >
-                        {g.status}
-                      </Table.Cell>
-                      <Table.Cell>
-                        <ProgressBar
-                          value={g.progress ?? 0}
-                          color={
-                            g.progress || 1 > 0.7
-                              ? 'good'
-                              : g.progress || 1 > 0.3
-                                ? 'average'
-                                : 'bad'
-                          }
-                        >
-                          {Math.round((g.progress ?? 0) * 100)}%
-                        </ProgressBar>
-                      </Table.Cell>
-                      <Table.Cell>{g.weight ?? '—'}</Table.Cell>
-                      <Table.Cell>
-                        <Button
-                          icon="play"
-                          tooltip="Fire"
-                          onClick={() =>
-                            act('trigger_goal', { offset: g.fire_time })
-                          }
-                        />
-                        <Button
-                          icon="trash"
-                          tooltip="Remove"
-                          color="bad"
-                          onClick={() =>
-                            act('remove_goal', { offset: g.fire_time })
-                          }
-                        />
-                      </Table.Cell>
-                    </Table.Row>
+                      goal={g}
+                      current_world_time={current_world_time}
+                      act={act}
+                    />
                   ))}
-                </Table>
+                </Box>
               ) : (
                 <Box opacity={0.6}>No chain planned.</Box>
               )}
@@ -564,7 +828,7 @@ export const Storyteller = (props) => {
           <>
             <Section title="Mood & Pace">
               <LabeledList>
-                <LabeledList.Item label="Mood">
+                <LabeledList.Item label="Mood" tooltip={TOOLTIPS.moodSelect}>
                   <Stack>
                     <Stack.Item grow>
                       <Dropdown
@@ -588,7 +852,7 @@ export const Storyteller = (props) => {
                     </Stack.Item>
                   </Stack>
                 </LabeledList.Item>
-                <LabeledList.Item label="Pace">
+                <LabeledList.Item label="Pace" tooltip={TOOLTIPS.pace}>
                   <Stack>
                     <Stack.Item grow>
                       <Dropdown
@@ -617,14 +881,14 @@ export const Storyteller = (props) => {
                 <Stack.Item>
                   <Button
                     icon="search"
-                    tooltip="Reanalyse"
+                    tooltip={TOOLTIPS.reanalyse}
                     onClick={() => act('reanalyse')}
                   />
                 </Stack.Item>
                 <Stack.Item>
                   <Button
                     icon="calendar"
-                    tooltip="Replan"
+                    tooltip={TOOLTIPS.replan}
                     onClick={() => act('replan')}
                   />
                 </Stack.Item>
@@ -636,47 +900,61 @@ export const Storyteller = (props) => {
           <>
             <Section title="Difficulty & Tension">
               <LabeledList>
-                <LabeledList.Item label="Difficulty">
+                <LabeledList.Item
+                  label="Difficulty"
+                  tooltip={TOOLTIPS.difficultySlider}
+                >
                   <InputScrollApply
                     value={difficulty}
                     setValue={setDifficulty}
                     max={5}
                     min={0.3}
                     step={0.1}
-                    onSet={act('set_difficulty', {
-                      value: Number(difficulty) || 1,
-                    })}
+                    onSet={() =>
+                      act('set_difficulty', {
+                        value: Number(difficulty) || 1,
+                      })
+                    }
                   />
                 </LabeledList.Item>
-                <LabeledList.Item label="Target Tension">
+                <LabeledList.Item
+                  label="Target Tension"
+                  tooltip={TOOLTIPS.targetTensionSlider}
+                >
                   <InputScrollApply
                     value={targetTension}
                     setValue={setTargetTension}
                     max={100}
                     min={1}
                     step={1}
-                    onSet={act('set_target_tension', {
-                      value: Number(targetTension) || 1,
-                    })}
+                    onSet={() =>
+                      act('set_target_tension', {
+                        value: Number(targetTension) || 1,
+                      })
+                    }
                   />
                 </LabeledList.Item>
-                <LabeledList.Item label="Threat growth rate">
+                <LabeledList.Item
+                  label="Threat growth rate"
+                  tooltip={TOOLTIPS.threatGrowthRate}
+                >
                   <InputScrollApply
-                    value={threatGrowhRate}
-                    setValue={setThreatGrowhRate}
+                    value={threatGrowthRate}
+                    setValue={setThreatGrowthRate}
                     max={5}
                     min={0.1}
                     step={0.1}
-                    onSet={act('set_threat_grown_rate', {
-                      value: Number(targetTension) || 1,
-                    })}
+                    onSet={handleSetThreatGrowthRate}
                   />
                 </LabeledList.Item>
               </LabeledList>
             </Section>
             <Section title="Pacing & Intervals">
               <LabeledList>
-                <LabeledList.Item label="Think Delay" tooltip="seconds">
+                <LabeledList.Item
+                  label="Think Delay"
+                  tooltip={`${TOOLTIPS.thinkDelay} (in ticks / 10 = seconds)`}
+                >
                   <InputScrollApply
                     value={thinkDelay}
                     setValue={setThinkDelay}
@@ -684,12 +962,17 @@ export const Storyteller = (props) => {
                     min={1}
                     step={1}
                     delim={10}
-                    onSet={act('set_think_delay', {
-                      value: Number(thinkDelay) || 1,
-                    })}
+                    onSet={() =>
+                      act('set_think_delay', {
+                        value: Number(thinkDelay) || 1,
+                      })
+                    }
                   />
                 </LabeledList.Item>
-                <LabeledList.Item label="Event Interval - min">
+                <LabeledList.Item
+                  label="Event Interval - min"
+                  tooltip={TOOLTIPS.eventIntervalMin}
+                >
                   <Stack>
                     <Stack.Item grow>
                       {''}
@@ -713,16 +996,15 @@ export const Storyteller = (props) => {
                       <Button
                         icon="check"
                         tooltip="Apply"
-                        onClick={() =>
-                          act('set_event_intervals', {
-                            value: Number(minInterval) || 1,
-                          })
-                        }
+                        onClick={handleSetMinInterval}
                       />
                     </Stack.Item>
                   </Stack>
                 </LabeledList.Item>
-                <LabeledList.Item label="Event Interval - max">
+                <LabeledList.Item
+                  label="Event Interval - max"
+                  tooltip={TOOLTIPS.eventIntervalMax}
+                >
                   <Stack>
                     <Stack.Item grow>
                       {''}
@@ -746,16 +1028,15 @@ export const Storyteller = (props) => {
                       <Button
                         icon="check"
                         tooltip="Apply"
-                        onClick={() =>
-                          act('set_event_intervals', {
-                            value: Number(maxInterval) || 1,
-                          })
-                        }
+                        onClick={handleSetMaxInterval}
                       />
                     </Stack.Item>
                   </Stack>
                 </LabeledList.Item>
-                <LabeledList.Item label="Grace Period">
+                <LabeledList.Item
+                  label="Grace Period"
+                  tooltip={TOOLTIPS.gracePeriod}
+                >
                   <InputScrollApply
                     value={grace}
                     setValue={setGrace}
@@ -763,12 +1044,17 @@ export const Storyteller = (props) => {
                     min={120}
                     step={10}
                     delim={10}
-                    onSet={act('set_grace_period', {
-                      value: Number(grace) || 1,
-                    })}
+                    onSet={() =>
+                      act('set_grace_period', {
+                        value: Number(grace) || 1,
+                      })
+                    }
                   />
                 </LabeledList.Item>
-                <LabeledList.Item label="Repetition Penalty">
+                <LabeledList.Item
+                  label="Repetition Penalty"
+                  tooltip={TOOLTIPS.repetitionPenalty}
+                >
                   <Stack>
                     <Stack.Item grow>
                       <Dropdown

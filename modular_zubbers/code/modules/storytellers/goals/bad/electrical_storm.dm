@@ -15,6 +15,10 @@
 	var/bolt_doors_chance = 0
 	var/range = 20
 
+	start_when = 30
+	announce_when = 1
+
+
 /datum/round_event/electrical_storm/__setup_for_storyteller(threat_points, ...)
 	. = ..()
 	if(threat_points < STORY_THREAT_LOW)
@@ -46,7 +50,6 @@
 		bolt_doors_chance = 50
 		range = 50
 
-	start_when = 1 + (threat_points / 50)
 
 /datum/round_event/electrical_storm/__start_for_storyteller()
 	var/turf/center = get_safe_random_station_turf_equal_weight()

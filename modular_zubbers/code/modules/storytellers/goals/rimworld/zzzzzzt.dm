@@ -61,8 +61,14 @@
 
 
 /datum/round_event/zzzzzt/proc/pick_closest_cable(mob/living/carbon/human/bad_luck)
+	var/obj/structure/cable/closest_cable
+	var/closest_dist = INFINITY
 	for(var/turf/check_turf in RANGE_TURFS(2, bad_luck))
 		var/obj/structure/cable/cab = locate(/obj/structure/cable) in check_turf
-		if(!istype(cab) || cab == null)
+		if(!cab)
 			continue
-		return cab
+		var/dist = get_dist(bad_luck, cab)
+		if(dist < closest_dist)
+			closest_dist = dist
+			closest_cable = cab
+	return closest_cable

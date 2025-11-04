@@ -46,6 +46,7 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 					"id" = evt.id,
 					"name" = evt.name || evt.id,
 					"weight" = evt.get_story_weight(ctl.inputs, ctl),
+					"is_antagonist" = (evt.story_category & STORY_GOAL_ANTAGONIST),
 				))
 	data["available_goals"] = goals
 
@@ -106,6 +107,7 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 			"status" = entry["status"],
 			"weight" = evt.get_story_weight(ctl.inputs, ctl),
 			"progress" = 1, // round_event_control doesn't have get_progress, return 1 as default
+			"is_antagonist" = (evt.story_category & STORY_GOAL_ANTAGONIST),
 		))
 	data["effective_threat_level"] = ctl.get_effective_threat()
 	data["target_tension"] = ctl.target_tension

@@ -67,6 +67,15 @@ SUBSYSTEM_DEF(storytellers)
 	RegisterSignal(SSdcs, COMSIG_GLOB_CLIENT_CONNECT, PROC_REF(on_login))
 	return SS_INIT_SUCCESS
 
+/datum/controller/subsystem/storytellers/Destroy()
+	. = ..()
+	qdel(active)
+	QDEL_LIST(simulated_atoms)
+	QDEL_LIST(active_events)
+	QDEL_LIST(processed_metrics)
+	QDEL_LIST(storyteller_vote_uis)
+	QDEL_LIST(events_by_id)
+
 
 /// Initializes the active storyteller from selected_id (JSON profile), applying parsed data for adaptive behavior.
 /// Delegates creation to create_storyteller_from_data() for modularity; kicks off round analysis/planning.
@@ -303,34 +312,40 @@ SUBSYSTEM_DEF(storytellers)
 	events_by_category["GOAL_BAD"] = list()
 	events_by_category["GOAL_NEUTRAL"] = list()
 	events_by_category["GOAL_UNCATEGORIZED"] = list()
+	events_by_category["GOAL_ANTAGONIST"] = list()
 
+	for(var/control_type in typesof(/datum/round_event_control))
+		var/datum/round_event_control/event_control = new control_type()
 
-	for(var/datum/round_event_control/event_control in SSevents.control)
+		if(!event_control.valid_for_map())
+			continue // Skip invalid for map
 		if(event_control.tags & STORY_GOAL_NEVER)
 			continue // Skip never goals
 		if(istype(event_control, /datum/round_event_control/wizard))
-			continue // No wizard events
+			continue
 		if(!event_control.id)
-			log_storyteller("Storyteller event control [event_control.name] has no ID using typeinstead.")
+			stack_trace("Storyteller event control [event_control.name] has no ID using name instead.")
 			event_control.id = event_control.name
 		if(events_by_id[event_control.id])  // Prevent duplicates
-			log_storyteller("Duplicate event control ID [event_control.id] for [event_control.name], skipping.")
+			stack_trace("Duplicate event control ID [event_control.id] for [event_control.name], skipping.")
 			continue
 		events_by_id[event_control.id] = event_control
 
 		if(!event_control.story_category)  // Use story_category instead of category
-			log_storyteller("Storyteller event control [event_control.id] has no story_category, assigning uncategorized.")
-			event_control.story_category = STORY_GOAL_RANDOM | STORY_GOAL_UNCATEGORIZED
+			stack_trace("Storyteller event control [event_control.id] has no story_category, assigning random.")
+			event_control.story_category = STORY_GOAL_RANDOM
 
 		// Assign to all matching categories (bitflags allow multiple)
 		if(event_control.story_category & STORY_GOAL_RANDOM)
 			events_by_category["GOAL_RANDOM"] += event_control
-		if(event_control.story_category & STORY_GOAL_GOOD)
+		else if(event_control.story_category & STORY_GOAL_GOOD)
 			events_by_category["GOAL_GOOD"] += event_control
-		if(event_control.story_category & STORY_GOAL_BAD)
+		else if(event_control.story_category & STORY_GOAL_BAD)
 			events_by_category["GOAL_BAD"] += event_control
-		if(event_control.story_category & STORY_GOAL_NEUTRAL)
+		else if(event_control.story_category & STORY_GOAL_NEUTRAL)
 			events_by_category["GOAL_NEUTRAL"] += event_control
+		else if(event_control.story_category & STORY_GOAL_ANTAGONIST)
+			events_by_category["GOAL_ANTAGONIST"] += event_control
 
 
 	// Collect roots: no parent or invalid parent (round_event_control doesn't use parent_id, so skip this)
@@ -358,6 +373,8 @@ SUBSYSTEM_DEF(storytellers)
 			category_str = "GOAL_BAD"
 		else if(category & STORY_GOAL_NEUTRAL)
 			category_str = "GOAL_NEUTRAL"
+		else if(category & STORY_GOAL_ANTAGONIST)
+			category_str = "GOAL_ANTAGONIST"
 		else
 			category_str = "GOAL_RANDOM"
 	else
