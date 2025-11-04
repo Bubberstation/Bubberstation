@@ -257,6 +257,7 @@
 		var/repeat_count = rep_info["count"]
 		var/last_fire_time = rep_info["last_time"]
 
+
 		if(repeat_count > 0)
 			var/age = world.time - last_fire_time
 			var/recency_factor = clamp(1 - (age / STORY_REPETITION_DECAY_TIME), 0, 1)
@@ -292,7 +293,11 @@
 		if((evt.tags & STORY_TAG_ESCALATION) && ctl.population_factor < 0.5)
 			intensity_penalty = 0.7  // Reduce weight of escalation events at low pop
 
-		var/final_weight = max(0.1, (base_weight + priority_boost + threat_bonus + balance_bonus + tag_match_bonus - rep_penalty) * diff_adjust * adapt_reduce * intensity_penalty)
+		var/duplicate_debuf = 1.0
+		if(ctl.planner.is_event_in_timeline(evt))
+			duplicate_debuf *= 0.4
+
+		var/final_weight = max(0.1, ((base_weight + priority_boost + threat_bonus + balance_bonus + tag_match_bonus - rep_penalty) * diff_adjust * adapt_reduce * intensity_penalty) * duplicate_debuf)
 		final_weight = add_weight_jitter(final_weight, ctl.mood.volatility)
 		weighted[evt] = final_weight
 
@@ -445,10 +450,10 @@
 		else
 			context[CONTEXT_TAGS] |= STORY_TAG_DEESCALATION
 
-	if(bal.antag_effectiveness < ctl.balancer.weak_antag_threshold && bal.ratio < 0.8)
+	if(bal.antag_weak && bal.balance_ratio < 0.8)
 		_apply_tag_with_context(context, mood, STORY_TAG_AFFECTS_ANTAGONIST, 80 * context[CONTEXT_BIAS])
 
-	if(bal.station_strength < 0.5)
+	if(bal.get_station_resilience() < 0.5)
 		_apply_tag_with_context(context, mood, STORY_TAG_AFFECTS_RESOURCES | STORY_TAG_AFFECTS_INFRASTRUCTURE, 70 * context[CONTEXT_BIAS])
 
 /datum/think_stage/high_implications
@@ -468,7 +473,7 @@
 	if(morale_crisis)
 		context[CONTEXT_TAGS] |= STORY_TAG_AFFECTS_MORALE | ((context[CONTEXT_CATEGORY] & STORY_GOAL_BAD) ? STORY_TAG_ESCALATION : STORY_TAG_DEESCALATION)
 
-	if(bal.ratio < 0.8)
+	if(bal.balance_ratio < 0.8)
 		context[CONTEXT_TAGS] |= STORY_TAG_AFFECTS_ANTAGONIST | STORY_TAG_DEESCALATION
 
 	if(bal.overall_tension > ctl.target_tension)

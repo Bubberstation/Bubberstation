@@ -67,7 +67,7 @@
 		return FALSE
 
 	round_event.__setup_for_storyteller(threat_points, additional_arguments, inputs, storyteller)
-	round_event.current_players = storyteller.get_active_player_count()
+	round_event.current_players = inputs.player_count()
 	occurrences += 1
 	testing("[time2text(world.time, "hh:mm:ss", 0)] [round_event.type]")
 	triggering = TRUE
@@ -247,28 +247,32 @@
 	// Living consent poll (only if we still need more and crew_candidates enabled)
 	if(crew_candidates && length(selected) < min_candidates)
 		var/list/crew_list = all_candidates.Copy() - selected
-		UNTIL(poll_living_for_antag(crew_list, inputs, storyteller, selected))
+		poll_living_for_antag(crew_list, inputs, storyteller, selected)
+		sleep(admin_cancel_callback * 0.5)
 
+	var/list/final_candidates
 	// Fallback pickers (random greedy)
-	while(length(selected) < min_candidates && length(all_candidates))
-		var/mob/picked = pick_n_take(all_candidates)
+	while(length(selected) < min_candidates && length(selected))
+		var/mob/picked = pick_n_take(selected)
 		if(picked && can_be_candidate(picked, inputs, storyteller) && !(picked in selected))
-			selected += picked
+			final_candidates += picked
 
-	if(length(selected) > max_candidates)
-		selected.Cut(max_candidates + 1, length(selected) - max_candidates)
-	return selected
+	if(length(final_candidates) > max_candidates)
+		final_candidates.Cut(max_candidates + 1, length(final_candidates) - max_candidates)
+	return final_candidates
 
 // Living consent poll
 /datum/round_event_control/antagonist/proc/poll_living_for_antag(list/crew_list, datum/storyteller_inputs/inputs, datum/storyteller/storyteller, list/selected_crew)
+	set waitfor = FALSE
+
 	for(var/mob/living/L in shuffle(crew_list))
 		if(!can_be_candidate(L, inputs, storyteller))
 			continue
-		ask_crew(L, selected_crew, storyteller)
-		CHECK_TICK
+		INVOKE_ASYNC(src, PROC_REF(ask_crew), L, selected_crew, storyteller)
 	return TRUE
 
 /datum/round_event_control/antagonist/proc/ask_crew(mob/living/L, list/candidates, datum/storyteller/storyteller)
+	set waitfor = FALSE
 	L.playsound_local(get_turf(L), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
 
 	var/response = tgui_alert(
@@ -282,10 +286,10 @@
 	if(response == "Yes" && !(L in candidates))
 		candidates += L
 		to_chat(L, span_notice("You have accepted the call to become a [antag_name]. Keep it secret!"))
-
-	else if(L in candidates)
-		candidates.Remove(L)
-		to_chat(L, span_warning("You have declined the call to become a [antag_name]."))
+	else
+		if(L in candidates)
+			candidates.Remove(L)
+		to_chat(L, span_warning("You have declined the call to become a [antag_name]. Keep it secret!"))
 
 
 /datum/round_event_control/antagonist/proc/create_ruleset_body(datum/storyteller_inputs/inputs, datum/storyteller/storyteller)

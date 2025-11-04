@@ -102,6 +102,7 @@
 		COOLDOWN_START(src, recalculate_cooldown, recalc_interval)
 		recalculate_plan(ctl, inputs, bal, FALSE)
 
+	sort_events()
 	return fired_events
 
 
@@ -242,6 +243,24 @@
 	return FALSE
 
 
+/datum/storyteller_planner/proc/sort_events()
+	if(!timeline || !length(timeline))
+		return
+
+	var/list/sorted_keys = sortTim(timeline.Copy(), GLOBAL_PROC_REF(cmp_text_asc))
+	var/list/sorted_timeline = list()
+	for(var/offset_str in sorted_keys)
+		sorted_timeline[offset_str] = timeline[offset_str]
+
+	timeline = sorted_timeline
+
+
+/datum/storyteller_planner/proc/is_event_in_timeline(datum/round_event_control/event_control)
+	for(var/offset_str in timeline)
+		var/list/entry = timeline[offset_str]
+		if(entry[ENTRY_EVENT] == event_control)
+			return TRUE
+	return FALSE
 
 /datum/storyteller_planner/proc/time_key(num)
 	PRIVATE_PROC(TRUE)

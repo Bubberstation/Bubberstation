@@ -173,33 +173,102 @@
 
 	INVOKE_ASYNC(src, PROC_REF(think))
 
+/**
+ * Geters and setters
+ */
+
+
+/// Checks if an event can trigger at a future time, respecting grace period after last event.
+/// Aids scheduling during sub-goal analysis without disrupting global objective pacing.
+/datum/storyteller/proc/can_trigger_event_at(time)
+	// Scale grace period by population_factor: low pop = longer grace period
+	// Linear interpolation: low pop (0.3) -> 1.5x grace, high pop (1.0) -> 1.0x grace
+	var/pop_grace_mult = 1.5 - (population_factor - 0.3) * (1.5 - 1.0) / (1.0 - 0.3)
+	pop_grace_mult = clamp(pop_grace_mult, 1.0, 1.5)
+	var/effective_grace = get_effective_pace()
+	return time - get_time_since_last_event() > effective_grace
+
+
+/// Effective event pace: mood frequency multiplier * (1 - adaptation). Lower = slower events,
+/// building tension toward global goals during crew adaptation phases.
+/datum/storyteller/proc/get_effective_pace()
+	return mood.get_event_frequency_multiplier() * (1.0 - adaptation_factor)
+
+
+
+/datum/storyteller/proc/get_scaled_grace()
+	var/pop_grace_mult = lerp(1.5, 0.5, (population_factor - 0.3) / (1.0 - 0.3))
+	pop_grace_mult = clamp(pop_grace_mult, 0.0, 1.5)
+	return grace_period * pop_grace_mult
+
+
+
+/// Base event interval, scaled by pace and population factor.
+/// Low population = longer intervals (fewer events), high population = shorter intervals (more frequent events)
+/datum/storyteller/proc/get_event_interval()
+	var/base = average_event_interval * get_effective_pace()
+	var/pop_mod = 1.4 - population_factor
+	return round(base * pop_mod)
+
+
+
+/// Event interval without population adjustment; for baseline pacing in global goal selection.
+/datum/storyteller/proc/get_event_interval_no_population_factor()
+	return average_event_interval * get_effective_pace()
+
+
+
+/// Time since last event; tracks history for grace periods and intervals in event planning.
+/datum/storyteller/proc/get_time_since_last_event()
+	return world.time - last_event_time
+
+
+/datum/storyteller/proc/get_closest_subgoals()
+	return planner.get_upcoming_events(10)
+
+
+/// Event trigger guard for ad-hoc random events outside goals
+/datum/storyteller/proc/can_trigger_event_now()
+	// Scale grace period by population_factor: low pop = longer grace period
+	// Linear interpolation: low pop (0.3) -> 1.5x grace, high pop (1.0) -> 1.0x grace
+	var/pop_grace_mult = 1.5 - (population_factor - 0.3) * (1.5 - 1.0) / (1.0 - 0.3)
+	pop_grace_mult = clamp(pop_grace_mult, 1.0, 1.5)
+	var/effective_grace = grace_period * pop_grace_mult
+
+	if(get_time_since_last_event() < effective_grace + 2 MINUTES * (mood ? mood.get_threat_multiplier() : 1.0))
+		return FALSE
+	if(get_time_since_last_event() > round(effective_grace * (mood ? mood.get_threat_multiplier() : 1.0) / min(3, difficulty_multiplier)))
+		return TRUE
+	var/prob_modifier = (mood ? mood.get_threat_multiplier() : 1.0) * difficulty_multiplier * population_factor
+	return prob(50 * prob_modifier)
+
+
+/// Ad-hoc random event for testing or emergency pacing
+/datum/storyteller/proc/trigger_random_event(list/vault, datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
+	SSevents.spawnEvent()
+	recent_events += world.time
+	log_storyteller("Triggered random event via SSevents")
+
+
+/datum/storyteller/proc/get_effective_threat()
+	// Scale effective threat by population_factor: low pop = lower effective threat
+	return (threat_points/10) * mood.get_threat_multiplier() * difficulty_multiplier * clamp(population_factor, 0.3, 1.0)
+
+
+/datum/storyteller/proc/get_next_possible_event_time()
+	return (world.time - last_event_time) + get_event_interval()
+
+
+/**
+ * Main thinker loop
+ */
+
 
 /datum/storyteller/proc/schedule_next_think()
 	// Apply mood-based pacing (pace is clamped by storyteller bounds)
 	var/pace_multiplier = (mood ? mood.pace : 1.0)
 	var/delay = base_think_delay * clamp(pace_multiplier, STORY_PACE_MIN, STORY_PACE_MAX)
 	next_think_time = world.time + delay
-
-
-/datum/storyteller/proc/post_event(datum/round_event_control/evt)
-	if(!evt)
-		return
-
-	var/tension_effect = 0
-	if(evt.tags & STORY_TAG_ESCALATION)
-		adaptation_factor = min(1.0, adaptation_factor + 0.3)
-		tension_effect += 5
-	else if(evt.tags & STORY_TAG_DEESCALATION)
-		adaptation_factor = max(0, adaptation_factor - 0.1)
-	if(evt.story_category == STORY_GOAL_BAD)
-		// Calculate the percentage loss of threat_points based on recent_damage_threshold
-		var/loss_percentage = 100 / recent_damage_threshold
-		var/threat_loss = threat_points * (loss_percentage / 100)
-		threat_points = min(threat_points, threat_points - threat_loss)
-		tension_effect += 10
-
-	balancer.tension_bonus = min(balancer.tension_bonus + tension_effect, STORY_MAX_TENSION_BONUS)
-	record_event(evt, STORY_GOAL_COMPLETED)
 
 
 /datum/storyteller/proc/think(force = FALSE)
@@ -268,6 +337,29 @@
 	SEND_SIGNAL(src, COMSIG_STORYTELLER_POST_THINK)
 
 
+
+/datum/storyteller/proc/post_event(datum/round_event_control/evt)
+	if(!evt)
+		return
+
+	var/tension_effect = 0
+	if(evt.tags & STORY_TAG_ESCALATION)
+		adaptation_factor = min(1.0, adaptation_factor + 0.3)
+		tension_effect += 5
+	else if(evt.tags & STORY_TAG_DEESCALATION)
+		adaptation_factor = max(0, adaptation_factor - 0.1)
+	if(evt.story_category == STORY_GOAL_BAD)
+		// Calculate the percentage loss of threat_points based on recent_damage_threshold
+		var/loss_percentage = 100 / recent_damage_threshold
+		var/threat_loss = threat_points * (loss_percentage / 100)
+		threat_points = min(threat_points, threat_points - threat_loss)
+		tension_effect += 10
+
+	balancer.tension_bonus = min(balancer.tension_bonus + tension_effect, STORY_MAX_TENSION_BONUS)
+	record_event(evt, STORY_GOAL_COMPLETED)
+
+
+
 /// Helper to record a goal event: store timestamp for spacing and id for repetition penalty
 /datum/storyteller/proc/record_event(datum/round_event_control/evt, status)
 	if(!evt)
@@ -291,106 +383,38 @@
 /datum/storyteller/proc/update_population_factor()
 	var/current = inputs.vault[STORY_VAULT_CREW_ALIVE_COUNT] || 0
 
-	// Determine desired population factor based on current crew count
+	var/low_thresh = population_threshold_low * (mood ? mood.aggression : 1.0)
+	var/med_thresh = population_threshold_medium * (mood ? mood.aggression : 1.0)
+	var/high_thresh = population_threshold_high * (mood ? mood.aggression : 1.0)
+
+
 	var/desired = population_factor_medium
-	if(current <= population_threshold_low)
+	if(current <= low_thresh)
 		desired = population_factor_low
-	else if(current <= population_threshold_medium)
+	else if(current <= med_thresh)
 		desired = population_factor_medium
-	else if(current <= population_threshold_high)
+	else if(current <= high_thresh)
 		desired = population_factor_high
 	else
 		desired = population_factor_full
 
-	// Smooth transition to desired factor using exponential moving average
-	population_factor = clamp(
-		(population_factor * population_smooth_weight) + (desired * (1.0 - population_smooth_weight)),
-		0.1, 1.0
-	)
 
-	// Store current population_factor in history for tracking
+	var/effective_smooth = population_smooth_weight
+	if(has_population_spike(15))
+		effective_smooth = 0.5
+
+	var/new_factor = (population_factor * effective_smooth) + (desired * (1.0 - effective_smooth))
+	var/delta = new_factor - population_factor
+	new_factor = population_factor + clamp(delta, -0.2, 0.2)
+	population_factor = clamp(new_factor, 0.1, 1.0)
+
 	population_history[num2text(world.time)] = population_factor
 	if(length(population_history) > STORY_POPULATION_HISTORY_MAX)
 		population_history.Cut(1, 2)
-
-	// Store numeric raw crew count for spike detection
 	population_count_history[num2text(world.time)] = current
 	if(length(population_count_history) > STORY_POPULATION_HISTORY_MAX)
 		population_count_history.Cut(1, 2)
 
-
-
-/datum/storyteller/proc/get_closest_subgoals()
-	return planner.get_upcoming_events(10)
-
-
-
-/// Event trigger guard for ad-hoc random events outside goals
-/datum/storyteller/proc/can_trigger_event_now()
-	// Scale grace period by population_factor: low pop = longer grace period
-	// Linear interpolation: low pop (0.3) -> 1.5x grace, high pop (1.0) -> 1.0x grace
-	var/pop_grace_mult = 1.5 - (population_factor - 0.3) * (1.5 - 1.0) / (1.0 - 0.3)
-	pop_grace_mult = clamp(pop_grace_mult, 1.0, 1.5)
-	var/effective_grace = grace_period * pop_grace_mult
-
-	if(get_time_since_last_event() < effective_grace + 2 MINUTES * (mood ? mood.get_threat_multiplier() : 1.0))
-		return FALSE
-	if(get_time_since_last_event() > round(effective_grace * (mood ? mood.get_threat_multiplier() : 1.0) / min(3, difficulty_multiplier)))
-		return TRUE
-	var/prob_modifier = (mood ? mood.get_threat_multiplier() : 1.0) * difficulty_multiplier * population_factor
-	return prob(50 * prob_modifier)
-
-
-
-/// Checks if an event can trigger at a future time, respecting grace period after last event.
-/// Aids scheduling during sub-goal analysis without disrupting global objective pacing.
-/datum/storyteller/proc/can_trigger_event_at(time)
-	// Scale grace period by population_factor: low pop = longer grace period
-	// Linear interpolation: low pop (0.3) -> 1.5x grace, high pop (1.0) -> 1.0x grace
-	var/pop_grace_mult = 1.5 - (population_factor - 0.3) * (1.5 - 1.0) / (1.0 - 0.3)
-	pop_grace_mult = clamp(pop_grace_mult, 1.0, 1.5)
-	var/effective_grace = get_effective_pace()
-	return time - get_time_since_last_event() > effective_grace
-
-
-/// Effective event pace: mood frequency multiplier * (1 - adaptation). Lower = slower events,
-/// building tension toward global goals during crew adaptation phases.
-/datum/storyteller/proc/get_effective_pace()
-	return mood.get_event_frequency_multiplier() * (1.0 - adaptation_factor)
-
-/datum/storyteller/proc/get_scaled_grace()
-	var/pop_grace_mult = lerp(1.5, 0.5, (population_factor - 0.3) / (1.0 - 0.3))
-	pop_grace_mult = clamp(pop_grace_mult, 0.0, 1.5)
-	return grace_period * pop_grace_mult
-
-/// Base event interval, scaled by pace and population factor.
-/// Low population = longer intervals (fewer events), high population = shorter intervals (more frequent events)
-/datum/storyteller/proc/get_event_interval()
-	var/base = average_event_interval * get_effective_pace()
-	var/pop_mod = 1.4 - population_factor
-	return round(base * pop_mod)
-
-/// Event interval without population adjustment; for baseline pacing in global goal selection.
-/datum/storyteller/proc/get_event_interval_no_population_factor()
-	return average_event_interval * get_effective_pace()
-
-/// Time since last event; tracks history for grace periods and intervals in event planning.
-/datum/storyteller/proc/get_time_since_last_event()
-	return world.time - last_event_time
-
-/// Ad-hoc random event for testing or emergency pacing
-/datum/storyteller/proc/trigger_random_event(list/vault, datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
-	SSevents.spawnEvent()
-	recent_events += world.time
-	log_storyteller("Triggered random event via SSevents")
-
-/datum/storyteller/proc/get_effective_threat()
-	// Scale effective threat by population_factor: low pop = lower effective threat
-	return (threat_points/10) * mood.get_threat_multiplier() * difficulty_multiplier * clamp(population_factor, 0.3, 1.0)
-
-
-/datum/storyteller/proc/get_next_possible_event_time()
-	return (world.time - last_event_time) + get_event_interval()
 
 /// Adjust current mood variables based on balance snapshot (smooth, non-destructive)
 /datum/storyteller/proc/update_mood_based_on_balance(datum/storyteller_balance_snapshot/snap)
@@ -412,15 +436,14 @@
 		mood.pace = clamp((mood.pace * 0.9) + 0.1 * 1.0, 0.5, 1.5)
 		mood.volatility = clamp((mood.volatility * 0.9) + 0.1 * 1.0, 0.6, 1.4)
 
+/**
+ * Metrics and helpers
+ */
 
-/datum/storyteller/proc/get_active_player_count()
-	return inputs.player_count()
-
-/datum/storyteller/proc/get_active_antagonist_count()
-	return inputs.antag_count()
 
 /datum/storyteller/proc/run_metrics(flags)
 	INVOKE_ASYNC(analyzer, TYPE_PROC_REF(/datum/storyteller_analyzer, scan_station), flags)
+
 
 // Returns TRUE if the latest crew count differs from recent average by 'threshold_percent' or more.
 /datum/storyteller/proc/has_population_spike(threshold_percent = 20)
@@ -460,7 +483,10 @@
 	return (delta / max(1, avg)) >= (threshold_percent / 100)
 
 
-// Communication and antags
+/**
+ * Round start report generation
+ */
+
 
 /// Generates and sends round start report based on storyteller parameters
 /// Should be called after round initialization
@@ -654,444 +680,6 @@
 		return "Moderate"
 	else
 		return "Low"
-
-
-/// Checks antagonist balance and spawns midround antagonists in waves if needed
-/// Called approximately every ~30 minutes based on cooldown
-/// Uses threat level, balance ratio, and antag weight to determine if spawns are needed
-/datum/storyteller/proc/check_and_spawn_antagonists(datum/storyteller_balance_snapshot/snap)
-	if(!SSdynamic || !SSdynamic.antag_events_enabled)
-		return
-
-	if(HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ANTAGS))
-		return
-
-	var/balance_ratio = snap.ratio
-	var/antag_count = inputs.antag_count()
-	var/antag_weight = snap.total_antag_weight
-	var/player_weight = snap.total_player_weight
-
-	// Check if antags are too weak, inactive, or missing
-	var/needs_antags = FALSE
-	var/reason = ""
-
-	// No antags at all
-	if(antag_count <= 0)
-		needs_antags = TRUE
-		reason = "no antagonists"
-	// Antags are too weak (effectiveness below threshold)
-	else if(snap.antag_weak)
-		needs_antags = TRUE
-		reason = "antagonists too weak (effectiveness: [snap.antag_effectiveness])"
-	// Antags are inactive
-	else if(snap.antag_inactive)
-		needs_antags = TRUE
-		reason = "antagonists inactive (activity: [snap.antag_activity_index])"
-	// Balance ratio indicates antags are significantly weaker than station
-	else if(balance_ratio < 0.5)
-		needs_antags = TRUE
-		reason = "antagonists too weak relative to station (ratio: [balance_ratio])"
-	// Antag weight is too low relative to player weight
-	else if(player_weight > 0 && antag_weight / player_weight < 0.3)
-		needs_antags = TRUE
-		reason = "antagonist weight too low (antag: [antag_weight], players: [player_weight])"
-
-	// If antags are sufficient, don't spawn
-	if(!needs_antags)
-		log_storyteller("[src.name] skipped antagonist spawn wave - antags are sufficient (ratio: [balance_ratio], count: [antag_count], weight: [antag_weight])")
-		return
-
-	// Calculate spawn weight based on threat level, balance ratio, and antag weight
-	var/spawn_weight = calculate_antagonist_spawn_weight_wave(balance_ratio, snap, antag_weight, player_weight)
-
-	// Only attempt spawn if weight suggests we should
-	if(spawn_weight <= 0)
-		return
-
-	// Try to spawn midround antagonists (wave-based)
-	var/spawned = try_spawn_midround_antagonist_wave(spawn_weight, balance_ratio, snap)
-	if(spawned > 0)
-		log_storyteller("[src.name] spawned [spawned] midround antagonist(s) in wave - reason: [reason] (ratio: [balance_ratio], threat: [threat_points], weight: [spawn_weight])")
-
-
-
-/// Calculates spawn weight for wave-based antagonist spawning
-/// Takes into account threat level, balance ratio, antag weight, and station stagnation
-/datum/storyteller/proc/calculate_antagonist_spawn_weight_wave(balance_ratio, datum/storyteller_balance_snapshot/snap, antag_weight, player_weight)
-	var/spawn_weight = 0.0
-
-	// Base weight from balance ratio (how weak antags are relative to station)
-	var/balance_factor = 0.0
-	if(balance_ratio < 0.3)
-		balance_factor = 50  // Very weak antags
-	else if(balance_ratio < 0.5)
-		balance_factor = 40  // Weak antags
-	else if(balance_ratio < 0.8)
-		balance_factor = 30  // Moderate
-	else
-		balance_factor = 15  // Somewhat balanced
-
-	// Threat level factor (normalized threat points 0-1)
-	var/threat_factor = clamp(threat_points / max_threat_scale, 0, 1) * 25  // Max 25 points
-
-	// Antag weight factor (normalized antag weight relative to player weight)
-	var/weight_ratio = player_weight > 0 ? (antag_weight / player_weight) : 1.0
-	var/weight_factor = 0.0
-	if(weight_ratio < 0.2)
-		weight_factor = 30  // Very low antag weight
-	else if(weight_ratio < 0.4)
-		weight_factor = 20  // Low antag weight
-	else if(weight_ratio < 0.6)
-		weight_factor = 10  // Moderate
-	else
-		weight_factor = 5   // Adequate
-
-	// Stagnation factor (low tension indicates station stagnation)
-	var/stagnation_factor = 0.0
-	var/tension_normalized = clamp(current_tension / 100.0, 0, 1)
-	if(tension_normalized < 0.3)
-		stagnation_factor = 20  // Low tension = stagnation
-	else if(tension_normalized < 0.5)
-		stagnation_factor = 10  // Moderate stagnation
-	else
-		stagnation_factor = 0   // Active, no stagnation
-
-	// Combine factors
-	spawn_weight = balance_factor + threat_factor + weight_factor + stagnation_factor
-
-	// Adjust based on storyteller traits
-	if(HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ANTAGS))
-		spawn_weight = 0
-	else if(HAS_TRAIT(src, STORYTELLER_TRAIT_RARE_ANTAG_SPAWN))
-		spawn_weight *= 0.5
-	else if(HAS_TRAIT(src, STORYTELLER_TRAIT_FREQUENT_ANTAG_SPAWN))
-		spawn_weight *= 1.5
-	else if(HAS_TRAIT(src, STORYTELLER_TRAIT_IMMEDIATE_ANTAG_SPAWN))
-		if(balance_ratio < 0.3 || antag_weight == 0)
-			spawn_weight *= 2.0
-
-	// Boost if current antags are inactive or weak
-	if(snap.antag_inactive)
-		spawn_weight *= 1.5
-	if(snap.antag_weak)
-		spawn_weight *= 1.3
-
-	// Adjust by mood aggression
-	if(mood)
-		spawn_weight *= clamp(mood.aggression, 0.5, 1.5)
-
-	return clamp(spawn_weight, 0, 100)
-
-/// Attempts to spawn midround antagonists in waves based on calculated weight
-/// Returns number of spawned antagonists
-/datum/storyteller/proc/try_spawn_midround_antagonist_wave(spawn_weight, balance_ratio, datum/storyteller_balance_snapshot/snap)
-	if(!SSdynamic || !SSdynamic.antag_events_enabled)
-		return 0
-
-	// Calculate how many antags to spawn based on weight and balance
-	var/spawn_count = 0
-	if(spawn_weight >= 70)
-		spawn_count = 2  // High weight = spawn 2
-	else if(spawn_weight >= 40)
-		spawn_count = 1  // Medium weight = spawn 1
-	else
-		// Low weight, spawn with probability
-		if(prob(spawn_weight))
-			spawn_count = 1
-
-	if(spawn_count <= 0)
-		return 0
-
-	// Determine spawn types based on balance, threat, and current state
-	var/spawned = 0
-	for(var/i = 1 to spawn_count)
-		var/spawn_type = LIGHT_MIDROUND
-
-		// Determine spawn type based on multiple factors
-		var/current_antag_weight = snap.total_antag_weight
-		if(balance_ratio < 0.3 || current_antag_weight == 0)
-			// Very weak or no antags, prefer heavy midround for impact
-			spawn_type = prob(50) ? HEAVY_MIDROUND : LIGHT_MIDROUND
-		else if(balance_ratio < 0.5 || snap.antag_weak)
-			// Weak antags, mix of heavy and light
-			spawn_type = prob(35) ? HEAVY_MIDROUND : LIGHT_MIDROUND
-		else if(balance_ratio > 1.5)
-			// Strong antags, prefer light midround
-			spawn_type = LIGHT_MIDROUND
-		else
-			// Balanced, slight preference for light
-			spawn_type = prob(60) ? LIGHT_MIDROUND : HEAVY_MIDROUND
-
-		// Check if we have spawns available for this type
-		if(SSdynamic.rulesets_to_spawn[spawn_type] <= 0)
-			// Try the other type
-			spawn_type = (spawn_type == LIGHT_MIDROUND) ? HEAVY_MIDROUND : LIGHT_MIDROUND
-			if(SSdynamic.rulesets_to_spawn[spawn_type] <= 0)
-				continue  // Skip if neither type available
-
-		// Trigger spawn via dynamic
-		spawned += spawn_post_roundstart_antagonists(spawn_type)
-
-	return spawned
-
-
-/datum/controller/subsystem/dynamic/proc/get_midround_rulesets_storyteller(population, spawn_type)
-	// Use existing midround ruleset retrieval logic
-	return get_midround_rulesets(population, spawn_type)
-
-// Spawns initial antagonists (formerly roundstart) after a delay of ~10 minutes using midround rulesets to simulate roundstart spawning post-round start
-/// Called after ~10 minutes when population reaches threshold
-/// Uses dynamic's midround rulesets with configs, but treats them as initial antags
-/// Sets a forced delay via cooldown adjustment
-/datum/controller/subsystem/dynamic/proc/pick_tier_storyteller(population)
-	// Use existing tier picking logic
-	return pick_tier(population)
-
-/datum/storyteller/proc/spawn_initial_antagonists()
-	if(!SSdynamic || !SSstorytellers?.storyteller_replace_dynamic)
-		return
-
-	if(HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ANTAGS))
-		log_storyteller("[src.name] skipped initial antagonist spawn (NO_ANTAGS trait)")
-		return
-
-	var/pop = inputs.player_count()
-	if(pop < population_threshold_low)
-		log_storyteller("[src.name] skipped initial antagonist spawn - insufficient population (pop: [pop])")
-		return
-
-	// Get dynamic's config if not loaded
-	var/list/dyn_config = SSdynamic.get_config()
-
-	// Use dynamic's tier selection logic if no tier is set
-	if(!SSdynamic.current_tier)
-		SSdynamic.pick_tier_storyteller(pop)
-
-	// Calculate desired initial ruleset count using dynamic's roundstart settings as base, but apply to midround
-	var/list/base_settings = SSdynamic.current_tier.ruleset_type_settings[LIGHT_MIDROUND]
-	var/low_end = base_settings?[LOW_END] || 0
-	var/high_end = base_settings?[HIGH_END] || 0
-	var/half_threshold = base_settings?[HALF_RANGE_POP_THRESHOLD] || 0
-	var/full_threshold = base_settings?[FULL_RANGE_POP_THRESHOLD] || 0
-
-	// Adjust high_end based on population as per dynamic's logic
-	if(pop <= half_threshold)
-		high_end = max(low_end, ceil(high_end * 0.25))
-	else if(pop <= full_threshold)
-		high_end = max(low_end, ceil(high_end * 0.5))
-
-	var/desired_count = rand(low_end, high_end)
-
-	// Adjust midround spawn trackers to allow these "initial" spawns
-	SSdynamic.rulesets_to_spawn[LIGHT_MIDROUND] += desired_count / 2
-	SSdynamic.rulesets_to_spawn[HEAVY_MIDROUND] += desired_count / 2
-
-	// Force a ~10 minute delay for initial spawns by setting cooldowns
-	var/delay = 10 MINUTES
-	COOLDOWN_START(SSdynamic, light_ruleset_start, delay)
-	COOLDOWN_START(SSdynamic, heavy_ruleset_start, delay)
-
-	// Get candidates (living players post-round start)
-	var/list/antag_candidates = list()
-	for(var/mob/living/player in GLOB.player_list)
-		if(player.mind && !player.mind.antag_datums?.len) // Prefer non-antags
-			antag_candidates += player
-
-	// Pick rulesets using dynamic's midround weighted selection (mix light and heavy for variety)
-	var/list/queued = list()
-	var/light_weighted = SSdynamic.get_midround_rulesets_storyteller(pop, LIGHT_MIDROUND)
-	var/heavy_weighted = SSdynamic.get_midround_rulesets_storyteller(pop, LIGHT_MIDROUND)
-	var/total_weighted = light_weighted + heavy_weighted
-
-	for(var/i = 1 to desired_count)
-		var/datum/dynamic_ruleset/midround/picked = pick_weight(total_weighted)
-		if(picked)
-			queued += picked
-			total_weighted -= picked // Remove to avoid repeats if not repeatable
-
-	// Prepare and queue rulesets (respects dynamic's config for weights, min_pop, etc.)
-	var/prepared_count = 0
-	for(var/datum/dynamic_ruleset/midround/ruleset in queued)
-		// Use dynamic's config values for this ruleset
-		var/ruleset_config_tag = ruleset.config_tag
-		var/min_pop_req = dyn_config?[ruleset_config_tag]?["min_pop"] || ruleset.min_pop
-		if(pop < min_pop_req)
-			qdel(ruleset)
-			continue
-
-		// Adjust antag caps based on config
-		ruleset.min_antag_cap = dyn_config?[ruleset_config_tag]?["min_antag_cap"] || ruleset.min_antag_cap
-		ruleset.max_antag_cap = dyn_config?[ruleset_config_tag]?["max_antag_cap"] || ruleset.max_antag_cap
-
-		// Prepare execution (can sleep, respects blacklisted roles, etc.)
-		if(!ruleset.prepare_execution(pop, antag_candidates))
-			log_storyteller("[src.name] initial ruleset [ruleset.config_tag] preparation failed")
-			qdel(ruleset)
-			continue
-
-		// Queue for execution via dynamic's midround system
-		SSdynamic.queued_rulesets += ruleset
-		prepared_count++
-
-		// Log selections
-		for(var/datum/mind/selected as anything in ruleset.selected_minds)
-			log_storyteller("[src.name] initial: [key_name(selected)] selected for [ruleset.config_tag]")
-
-	// Update dynamic's spawn tracker (deduct from midround pools)
-	SSdynamic.rulesets_to_spawn[LIGHT_MIDROUND] = max(0, SSdynamic.rulesets_to_spawn[LIGHT_MIDROUND] - prepared_count / 2)
-	SSdynamic.rulesets_to_spawn[HEAVY_MIDROUND] = max(0, SSdynamic.rulesets_to_spawn[HEAVY_MIDROUND] - prepared_count / 2)
-
-	log_storyteller("[src.name] prepared [prepared_count] initial antagonists using dynamic config (tier: [SSdynamic.current_tier.tier], pop: [pop], delayed ~10 min)")
-
-	// Latejoin cooldown starts normally
-	COOLDOWN_START(SSdynamic, latejoin_ruleset_start, SSdynamic.current_tier.ruleset_type_settings[LATEJOIN][TIME_THRESHOLD])
-
-
-/datum/controller/subsystem/dynamic/proc/get_latejoin_rulesets_storyteller(population)
-	// Use existing latejoin ruleset retrieval logic
-	return get_latejoin_rulesets(population)
-
-
-// Spawns midround or latejoin antagonists post-roundstart using dynamic's midround/latejoin logic
-/// Called when balance requires more antags (e.g., in check_and_spawn_antagonists)
-/// Uses dynamic's configs for weights, chances, cooldowns, and ruleset selection
-/// spawn_type: LIGHT_MIDROUND, HEAVY_MIDROUND, or LATEJOIN
-/// candidate: Optional specific mob for latejoin
-/datum/storyteller/proc/spawn_post_roundstart_antagonists(spawn_type, mob/candidate = null)
-	if(!SSdynamic || !SSstorytellers?.storyteller_replace_dynamic)
-		return 0
-
-	if(HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ANTAGS))
-		return 0
-
-	var/pop = inputs.player_count()
-	if(pop < population_threshold_low)
-		return 0
-
-	// Check if spawns are available for this type
-	if(SSdynamic.rulesets_to_spawn[spawn_type] <= 0)
-		return 0
-
-	// Get dynamic config
-	var/list/dyn_config = SSdynamic.get_config()
-
-	// Calculate chance using dynamic's methods
-	var/chance = 0
-	if(spawn_type == LATEJOIN)
-		chance = SSdynamic.get_latejoin_chance()
-	else
-		chance = SSdynamic.get_midround_chance(spawn_type)
-
-	// Apply admin forcing if set
-	if((spawn_type == LIGHT_MIDROUND && SSdynamic.admin_forcing_next_light) || \
-	   (spawn_type == HEAVY_MIDROUND && SSdynamic.admin_forcing_next_heavy) || \
-	   (spawn_type == LATEJOIN && SSdynamic.admin_forcing_next_latejoin)) \
-		chance = 100
-
-	if(!prob(chance))
-		log_storyteller("[src.name] post-roundstart [spawn_type] chance failed ([chance]%)")
-		return 0
-
-	// Get weighted rulesets using dynamic's methods
-	var/list/rulesets_weighted = list()
-	if(spawn_type == LATEJOIN)
-		rulesets_weighted = SSdynamic.get_latejoin_rulesets_storyteller(pop)
-	else
-		rulesets_weighted = SSdynamic.get_midround_rulesets_storyteller(pop, spawn_type)
-
-	if(!length(rulesets_weighted))
-		log_storyteller("[src.name] no post-roundstart [spawn_type] rulesets available")
-		return 0
-
-	// Pick ruleset
-	var/datum/dynamic_ruleset/picked_ruleset = pick_weight(rulesets_weighted)
-	if(!picked_ruleset)
-		return 0
-
-	// Apply config overrides for the picked ruleset
-	var/ruleset_config_tag = picked_ruleset.config_tag
-	picked_ruleset.weight = dyn_config?[ruleset_config_tag]?["weight"] || picked_ruleset.weight
-	picked_ruleset.min_pop = dyn_config?[ruleset_config_tag]?["min_pop"] || picked_ruleset.min_pop
-	picked_ruleset.min_antag_cap = dyn_config?[ruleset_config_tag]?["min_antag_cap"] || picked_ruleset.min_antag_cap
-	picked_ruleset.max_antag_cap = dyn_config?[ruleset_config_tag]?["max_antag_cap"] || picked_ruleset.max_antag_cap
-	picked_ruleset.repeatable_weight_decrease = dyn_config?[ruleset_config_tag]?["repeatable_weight_decrease"] || picked_ruleset.repeatable_weight_decrease
-	picked_ruleset.repeatable = dyn_config?[ruleset_config_tag]?["repeatable"] || picked_ruleset.repeatable
-	picked_ruleset.minimum_required_age = dyn_config?[ruleset_config_tag]?["minimum_required_age"] || picked_ruleset.minimum_required_age
-
-	// Blacklisted roles from config
-	var/list/blacklisted = dyn_config?[ruleset_config_tag]?["blacklisted_roles"] || picked_ruleset.blacklisted_roles
-	picked_ruleset.blacklisted_roles = blacklisted
-
-	// Prepare candidates
-	var/list/candidates = (spawn_type == LATEJOIN && candidate) ? list(candidate) : picked_ruleset.selected_minds
-
-	// Prepare and execute (can sleep)
-	if(!picked_ruleset.prepare_execution(pop, candidates))
-		log_storyteller("[src.name] post-roundstart [spawn_type] [picked_ruleset.config_tag] preparation failed")
-		qdel(picked_ruleset)
-		if(spawn_type == LATEJOIN)
-			SSdynamic.failed_latejoins++
-		return 0
-
-	SSdynamic.executed_rulesets += picked_ruleset
-	picked_ruleset.execute()
-
-	// Logging
-	var/spawned = length(picked_ruleset.selected_minds)
-	for(var/datum/mind/selected as anything in picked_ruleset.selected_minds)
-		log_storyteller("[src.name] post-roundstart [spawn_type]: [key_name(selected)] selected for [picked_ruleset.config_tag]")
-
-	// Update trackers
-	SSdynamic.rulesets_to_spawn[spawn_type]--
-	if(spawn_type == LATEJOIN)
-		SSdynamic.failed_latejoins = 0
-		SSdynamic.admin_forcing_next_latejoin = FALSE
-		COOLDOWN_START(SSdynamic, latejoin_cooldown, SSdynamic.get_ruleset_cooldown(LATEJOIN))
-	else
-		if(spawn_type == LIGHT_MIDROUND)
-			SSdynamic.admin_forcing_next_light = FALSE
-		else if(spawn_type == HEAVY_MIDROUND)
-			SSdynamic.admin_forcing_next_heavy = FALSE
-		COOLDOWN_START(SSdynamic, midround_cooldown, SSdynamic.get_ruleset_cooldown(spawn_type))
-
-	log_storyteller("[src.name] spawned [spawned] post-roundstart [spawn_type] antagonist(s) using dynamic config")
-
-	return spawned
-
-
-/// Calculates desired roundstart antagonist count based on population and balance
-/datum/storyteller/proc/calculate_roundstart_antag_count(pop, balance_ratio)
-	var/count = 0
-
-	// Base count on population
-	if(pop >= population_threshold_full)
-		count = 3
-	else if(pop >= population_threshold_high)
-		count = 2
-	else if(pop >= population_threshold_medium)
-		count = 1
-	else
-		count = 0
-
-	// Adjust based on balance ratio (if antags are weak, spawn more)
-	var/adjustment_mult = 1.0
-	if(balance_ratio < 0.4)
-		adjustment_mult = 1.5  // Boost spawns if antags are very weak
-	else if(balance_ratio > 1.3)
-		adjustment_mult = 0.7  // Reduce spawns if antags are strong
-
-	// Apply storyteller personality traits
-	if(HAS_TRAIT(src, STORYTELLER_TRAIT_RARE_ANTAG_SPAWN))
-		adjustment_mult *= 0.5
-	else if(HAS_TRAIT(src, STORYTELLER_TRAIT_FREQUENT_ANTAG_SPAWN))
-		adjustment_mult *= 1.5
-
-	count = max(0, round(count * adjustment_mult))
-
-	// Clamp to reasonable limits
-	count = clamp(count, 0, 4)
-
-	return count
 
 
 #undef STORY_POPULATION_THRESHOLD_LOW_DEFAULT

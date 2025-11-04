@@ -24,7 +24,7 @@
 	COOLDOWN_DECLARE(update_objectives_cooldown)
 
 /datum/component/antag_metric_tracker/Initialize(datum/mind/_tracked_mind)
-	if(!istype(tracked_mind))
+	if(!istype(_tracked_mind))
 		return COMPONENT_INCOMPATIBLE
 	parent = _tracked_mind
 	tracked_mob = _tracked_mind.current

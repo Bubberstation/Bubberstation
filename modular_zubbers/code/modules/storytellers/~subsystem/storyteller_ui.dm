@@ -116,8 +116,8 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 	data["next_think_time"] = ctl.next_think_time
 	data["base_think_delay"] = ctl.base_think_delay
 	data["average_event_interval"] = ctl.average_event_interval
-	data["player_count"] = ctl.get_active_player_count()
-	data["antag_count"] = ctl.get_active_antagonist_count()
+	data["player_count"] = ctl.inputs.player_count()
+	data["antag_count"] = ctl.inputs.antag_count()
 	data["player_antag_balance"] = ctl.player_antag_balance
 	data["difficulty_multiplier"] = ctl.difficulty_multiplier
 	data["event_difficulty_modifier"] = ctl.difficulty_multiplier

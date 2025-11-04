@@ -14,7 +14,7 @@
 	id = "scrubber_overflow"
 	typepath = /datum/round_event/scrubber_overflow
 	story_category = STORY_GOAL_NEUTRAL
-	tags = STORY_TAG_WIDE_IMPACT | STORY_TAG_TARGETS_SYSTEMS
+	tags = STORY_TAG_WIDE_IMPACT | STORY_TAG_AFFECTS_ENVIRONMENT
 	min_players = 6
 	required_round_progress = STORY_ROUND_PROGRESSION_EARLY
 
@@ -30,7 +30,7 @@
 /datum/round_event_control/camera_failure
 	id = "camera_failure"
 	story_category = STORY_GOAL_NEUTRAL
-	tags = STORY_TAG_ESCALATION | STORY_TAG_TARGETS_SYSTEMS
+	tags = STORY_TAG_AFFECTS_INFRASTRUCTURE
 	typepath = /datum/round_event/camera_failure
 
 
@@ -40,7 +40,7 @@
 /datum/round_event_control/gravity_generator_blackout
 	id = "gravity_generator_error"
 	story_category = STORY_GOAL_NEUTRAL
-	tags = STORY_TAG_ESCALATION | STORY_TAG_TARGETS_SYSTEMS
+	tags = STORY_TAG_ESCALATION | STORY_TAG_AFFECTS_INFRASTRUCTURE | STORY_TAG_AFFECTS_ENVIRONMENT
 	typepath = /datum/round_event/gravity_generator_blackout
 	required_round_progress = STORY_ROUND_PROGRESSION_EARLY
 
@@ -48,7 +48,7 @@
 /datum/round_event_control/grid_check
 	id = "grid_check"
 	story_category = STORY_GOAL_NEUTRAL
-	tags = STORY_TAG_TARGETS_SYSTEMS | STORY_TAG_AFFECTS_WHOLE_STATION
+	tags = STORY_TAG_AFFECTS_INFRASTRUCTURE | STORY_TAG_AFFECTS_WHOLE_STATION
 	typepath = /datum/round_event/grid_check
 
 /datum/round_event_control/mass_hallucination
