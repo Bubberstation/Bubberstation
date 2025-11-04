@@ -28,6 +28,14 @@
 	name = "\improper Ghost Cafe Kitchen"
 	icon_state = "kitchen"
 
+/area/centcom/holding/cafe/station/commons/toilet/shower
+	name = "\improper Ghost Cafe Shower Room"
+	icon_state = "shower"
+
+/area/centcom/holding/cafe/station/commons/toilet //skibidi
+	name = "\improper Ghost Cafe Toilets"
+	icon_state = "toilet"
+	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/centcom/holding/cafe/station/service/kitchen/coldroom
 	name = "\improper Ghost Cafe Kitchen Cold Room"
@@ -79,12 +87,25 @@
 	name = "Ghost Cafe Kiosk"
 	icon_state = "commons"
 
-/area/centcom/holding/cafe/station/med
+/area/centcom/holding/cafe/station/medical
 	name = "Ghost Cafe Medical"
 	icon_state = "medbay"
 	ambience_index = AMBIENCE_MEDICAL
 	airlock_wires = /datum/wires/airlock/medbay
 	sound_environment = SOUND_AREA_STANDARD_STATION
+
+/area/centcom/holding/cafe/station/medical/psychology
+	name = "\improper Ghost Cafe Psychology Office"
+	icon_state = "psychology"
+	mood_bonus = 3
+	mood_message = "I feel at ease here."
+	ambientsounds = list(
+		'sound/ambience/aurora_caelus/aurora_caelus_short.ogg',
+		)
+
+/area/centcom/holding/cafe/station/medical/cryo
+	name = "Cryogenics"
+	icon_state = "cryo"
 
 /area/centcom/holding/cafe/station/science/robotics/augments
 	name = "\improper Ghost Cafe Robotics"
