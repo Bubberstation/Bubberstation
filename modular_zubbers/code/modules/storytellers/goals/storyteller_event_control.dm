@@ -8,8 +8,8 @@
 	// A universal tags that helps storyteller to predict event behevour
 	var/tags = NONE
 	// A storyteller weight override for event selection
-	var/story_weight = STORY_GOAL_BASE_WEIGHT * 0.1 // Low weight by default
-
+	var/story_weight = STORY_GOAL_BASE_WEIGHT  // Low weight by default
+	// A storyteller priority override for event selection
 	var/story_prioty = STORY_GOAL_BASE_PRIORITY
 	// Minimum threat level required to select this goal
 	var/requierd_threat_level = STORY_GOAL_NO_THREAT
@@ -17,6 +17,8 @@
 	var/required_round_progress = STORY_ROUND_PROGRESSION_START
 
 	VAR_FINAL/additional_arguments = list()
+	// Should this event be allowed to select by storyteller
+	var/enabled = TRUE
 
 
 /datum/round_event_control/proc/is_avaible(datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
@@ -120,6 +122,12 @@
 
 	var/delayed = FALSE
 
+
+/datum/round_event_control/antagonist/New()
+	. = ..()
+	if(max_candidates < min_candidates)
+		max_candidates = min_candidates
+
 // Availability with antag checks
 /datum/round_event_control/antagonist/is_avaible(datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
 	. = ..()
@@ -142,10 +150,9 @@
 				candidates_list += player
 
 	if(ghost_candidates)
-		var/list/ghosts = GLOB.current_observers_list
-		for(var/mob/dead/observer/ghost in ghosts)
-			if(can_be_candidate(ghost, inputs, storyteller))
-				candidates_list += ghost
+		for(var/mob/dead/observer/ghost_player in GLOB.player_list)
+			if(can_be_candidate(ghost_player, inputs, storyteller))
+				candidates_list += ghost_player
 	return candidates_list
 
 // Candidate eligibility
@@ -155,6 +162,8 @@
 	if(canceled)
 		return FALSE
 	if(is_banned_from(candidate, role_flag))
+		return FALSE
+	if(!(role_flag in candidate.client.prefs.be_special))
 		return FALSE
 
 	if(isliving(candidate))
@@ -166,14 +175,10 @@
 			return FALSE
 		if(length(preferred_roles) && !(job?.type in preferred_roles))
 			return FALSE
-		// Pref check for crew
-		if(!(role_flag in candidate.client.prefs.be_special))
-			return FALSE
-		return TRUE
 
 	else if(isobserver(candidate))
 		return TRUE
-	return FALSE
+	return TRUE
 
 // Story weight with impact
 /datum/round_event_control/antagonist/get_story_weight(datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
@@ -237,59 +242,46 @@
 
 		if(ghost_votes)
 			if(islist(ghost_votes))
-				for(var/mob/ghost in ghost_votes)
-					if(ghost in all_candidates && !(ghost in selected))
+				for(var/mob/ghost as anything in ghost_votes)
+					if(ghost in all_candidates)
 						selected += ghost
 			else
-				if(ghost_votes in all_candidates && !(ghost_votes in selected))
+				if(ghost_votes in all_candidates)
 					selected += ghost_votes
 
-	// Living consent poll (only if we still need more and crew_candidates enabled)
+
 	if(crew_candidates && length(selected) < min_candidates)
 		var/list/crew_list = all_candidates.Copy() - selected
-		poll_living_for_antag(crew_list, inputs, storyteller, selected)
-		sleep(admin_cancel_callback * 0.5)
+		var/question = "[storyteller.name] calls to your hidden depths. Become a [antag_name] and twist the tale?"
+		var/list/goal_list = list("Yes", "No")
+		var/list/crew_votes = SSstorytellers.ask_crew_for_goals(
+			question_text = question,
+			goal_list = goal_list,
+			poll_time = admin_cancel_delay * 0.5,
+			group = crew_list,
+			ignore_category = role_flag
+		)
+		var/yes_crew = crew_votes["Yes"]
+		if(islist(yes_crew))
+			if(length(yes_crew))
+				for(var/mob/living/L in yes_crew)
+					if(!(L in selected))
+						selected += L
+						to_chat(L, span_notice("You have accepted the call to become a [antag_name]. Keep it secret!"))
+		else
+			selected += yes_crew // The chosen one
 
-	var/list/final_candidates
-	// Fallback pickers (random greedy)
-	while(length(selected) < min_candidates && length(selected))
+	var/list/final_candidates = list()
+	while(length(final_candidates) < min_candidates && length(selected))
 		var/mob/picked = pick_n_take(selected)
-		if(picked && can_be_candidate(picked, inputs, storyteller) && !(picked in selected))
+		if(picked && can_be_candidate(picked, inputs, storyteller) && !(picked in final_candidates))
 			final_candidates += picked
 
 	if(length(final_candidates) > max_candidates)
 		final_candidates.Cut(max_candidates + 1, length(final_candidates) - max_candidates)
+	if(!islist(final_candidates))
+		return list(final_candidates)
 	return final_candidates
-
-// Living consent poll
-/datum/round_event_control/antagonist/proc/poll_living_for_antag(list/crew_list, datum/storyteller_inputs/inputs, datum/storyteller/storyteller, list/selected_crew)
-	set waitfor = FALSE
-
-	for(var/mob/living/L in shuffle(crew_list))
-		if(!can_be_candidate(L, inputs, storyteller))
-			continue
-		INVOKE_ASYNC(src, PROC_REF(ask_crew), L, selected_crew, storyteller)
-	return TRUE
-
-/datum/round_event_control/antagonist/proc/ask_crew(mob/living/L, list/candidates, datum/storyteller/storyteller)
-	set waitfor = FALSE
-	L.playsound_local(get_turf(L), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
-
-	var/response = tgui_alert(
-		L,
-		"[storyteller.name] calls to your hidden depths. Become a [antag_name] and twist the tale?",
-		"Fate's Whisper",
-		list("Yes", "No"),
-		timeout = (admin_cancel_delay * 0.5)
-	)
-
-	if(response == "Yes" && !(L in candidates))
-		candidates += L
-		to_chat(L, span_notice("You have accepted the call to become a [antag_name]. Keep it secret!"))
-	else
-		if(L in candidates)
-			candidates.Remove(L)
-		to_chat(L, span_warning("You have declined the call to become a [antag_name]. Keep it secret!"))
 
 
 /datum/round_event_control/antagonist/proc/create_ruleset_body(datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
@@ -333,11 +325,8 @@
 		var/datum/mind/antag_mind = candidate.mind || new /datum/mind(candidate.key)
 		if(!antag_mind.current)
 			antag_mind.current = candidate
-
-
 		antag_mind.active = TRUE
-		var/datum/antagonist/antag_datum = new antag_datum_type()
-		antag_mind.add_antag_datum(antag_datum)
+		antag_mind.add_antag_datum(antag_datum_type)
 		// Objectives
 		generate_objectives(antag_mind, inputs, storyteller)
 		if(isobserver(candidate))
@@ -361,12 +350,6 @@
 	crew_candidates = FALSE
 	ghost_candidates = TRUE
 	signup_atom_appearance = /obj/item/paper
-
-/datum/round_event_control/antagonist/from_ghosts/is_avaible(datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
-	. = ..()
-	if(!. || !(GLOB.ghost_role_flags & GHOSTROLE_MIDROUND_EVENT))
-		return FALSE
-	return TRUE
 
 /datum/round_event_control/antagonist/from_living
 	ghost_candidates = FALSE

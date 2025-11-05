@@ -72,7 +72,7 @@
 		log_storyteller("[src.name] skipped initial antagonist spawn - insufficient population (pop: [pop])")
 		return
 
-	var/list/possible_candidates = SSstorytellers.filter_goals(STORY_GOAL_ANTAGONIST, (STORY_TAG_ANTAGONIST | STORY_TAG_ROUNDSTART))
+	var/list/possible_candidates = SSstorytellers.filter_goals(STORY_GOAL_ANTAGONIST, STORY_TAG_ROUNDSTART)
 	var/datum/storyteller_balance_snapshot/bal = balancer.make_snapshot(inputs)
 	var/tags = mind.tokenize(STORY_GOAL_ANTAGONIST, src, inputs, bal, mood)
 	var/spawn_count = calculate_roundstart_antag_count(pop, bal.balance_ratio)
@@ -115,7 +115,7 @@
 	if(spawn_weight <= 0)
 		return
 
-	var/list/possible_candidates = SSstorytellers.filter_goals(STORY_GOAL_ANTAGONIST, (STORY_TAG_ANTAGONIST | STORY_TAG_MIDROUND))
+	var/list/possible_candidates = SSstorytellers.filter_goals(STORY_GOAL_ANTAGONIST, STORY_TAG_MIDROUND)
 	var/tags = mind.tokenize(STORY_GOAL_ANTAGONIST, src, inputs, snap, mood)
 	var/spawn_count = clamp(round(spawn_weight / 20), 1, 3)
 

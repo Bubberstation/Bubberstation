@@ -93,16 +93,16 @@
 
 // Goal threat levels (determines when events can trigger)
 #define STORY_GOAL_NO_THREAT 0.0       // No threat required
-#define STORY_GOAL_THREAT_BASIC 1.0    // Low threat level
-#define STORY_GOAL_THREAT_ELEVATED 3.0 // Medium threat level
-#define STORY_GOAL_THREAT_HIGH 6.0     // High threat level
-#define STORY_GOAL_THREAT_EXTREME 9.0  // Extreme threat level
+#define STORY_GOAL_THREAT_BASIC 0.9    // Low threat level
+#define STORY_GOAL_THREAT_ELEVATED 2.5 // Medium threat level
+#define STORY_GOAL_THREAT_HIGH 3.0     // High threat level
+#define STORY_GOAL_THREAT_EXTREME 5.0  // Extreme threat level
 
 // Round progression milestones (0.0 = start, 1.0 = end)
 #define STORY_ROUND_PROGRESSION_START 0    // Round start (0%)
 #define STORY_ROUND_PROGRESSION_EARLY 0.12 // Early phase (0-12%)
 #define STORY_ROUND_PROGRESSION_MID 0.51   // Mid phase (12-51%)
-#define STORY_ROUND_PROGRESSION_LATE 0.73  // Late phase (52-62%)
+#define STORY_ROUND_PROGRESSION_LATE 0.73  // Late phase (51-73%)
 
 // Analyzer scan flags (bitflags for what to scan)
 #define RESCAN_STATION_INTEGRITY (1 << 0)  // Scan station integrity/hull

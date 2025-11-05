@@ -1,6 +1,8 @@
 #define FIRE_PRIORITY_STORYTELLERS 101
-#define STORYTELLER_JSON_PATH "config/storytellers.json"  // Define for JSON path
+#define STORYTELLER_JSON_PATH "config/storyteller/storytellers.json"
 #define STORYTELLER_ICONS_PATH "config/storytellers_icons/"
+#define STORYTELLER_EVENT_CONFIG_PATH "config/storyteller/events"
+
 
 SUBSYSTEM_DEF(storytellers)
 	name = "AI Storytellers"
@@ -58,6 +60,7 @@ SUBSYSTEM_DEF(storytellers)
 	events_roots = list()
 	events_by_category = list()
 	collect_available_goals()
+	load_event_config()
 
 	// Load config values (assuming global config loader; adjust if needed)
 	storyteller_replace_dynamic = config.Get(/datum/config_entry/flag/storyteller_replace_dynamic) || TRUE
@@ -233,10 +236,6 @@ SUBSYSTEM_DEF(storytellers)
 	return TRUE
 
 /datum/controller/subsystem/storytellers/fire(resumed)
-
-#ifdef UNIT_TESTS //Storyteller thinking disabled during testing, it's handle by unit test
-	return
-#endif
 	if(active)
 		active.think()
 	for(var/datum/round_event/evt in active_events)
@@ -249,6 +248,9 @@ SUBSYSTEM_DEF(storytellers)
 			processed_metrics -= AN
 			continue
 		AN.process(world.tick_lag)
+	for(var/datum/storyteller_poll/running_poll as anything in currently_polling)
+		if(running_poll.time_left() <= 0)
+			polling_finished(running_poll)
 
 /datum/controller/subsystem/storytellers/proc/setup_game()
 
@@ -356,6 +358,45 @@ SUBSYSTEM_DEF(storytellers)
 		log_storyteller("Collected [length(events_by_id)] goals, [length(events_roots)] roots.")
 
 
+/datum/controller/subsystem/storytellers/proc/load_event_config()
+	var/list/json_files = list()
+	var/list/loaded = list()
+
+	for(var/file in flist(STORYTELLER_EVENT_CONFIG_PATH))
+		if(file == "." || file == "..")
+			continue
+		if(!findtext(file, ".json"))
+			continue
+		json_files += file
+
+	for(var/json_file in json_files)
+		var/json_text = rustg_file_read("[STORYTELLER_EVENT_CONFIG_PATH][json_file]")
+		var/list/current_loaded = json_decode(json_text)
+		if(!islist(current_loaded))
+			stack_trace("Invalid JSON in storyteller event config: [json_file]")
+			continue
+		loaded |= current_loaded
+
+	for(var/id in loaded)
+		var/datum/round_event_control/event = events_by_id[id]
+		if(!event)
+			stack_trace("Invalid event ID [id] in storyteller event config, skipping.")
+			continue
+		for(var/event_variable in loaded[id])
+			if(!(event_variable in event.vars))
+				stack_trace("Invalid event configuration variable [event_variable] in variable changes for [id].")
+				continue
+			if(event_variable == "id")
+				stack_trace("Cannot override event ID in configuration for [id], skipping.")
+				continue
+			if(event_variable == "story_category")
+				stack_trace("Cannot override event story_category in configuration for [id], skipping.")
+				continue
+			if(event_variable == "tags")
+				stack_trace("Cannot override event tags in configuration for [id], skipping.")
+				continue
+			event.vars[event_variable] = loaded[id][event_variable]
+
 
 /datum/controller/subsystem/storytellers/proc/filter_goals(category = null, required_tags = null, subtype = null, all_tags_required = FALSE, include_children = TRUE)
 	var/list/result = list()
@@ -383,6 +424,8 @@ SUBSYSTEM_DEF(storytellers)
 		return list()
 
 	for(var/datum/round_event_control/event_control in goals_to_check)
+		if(!event_control.enabled)
+			continue
 		if(subtype && !istype(event_control, subtype))
 			continue
 		if(required_tags)
@@ -540,3 +583,4 @@ ADMIN_VERB(storyteller_simulation, R_ADMIN, "Storyteller - Simulation", "Simulat
 #undef FIRE_PRIORITY_STORYTELLERS
 #undef STORYTELLER_JSON_PATH
 #undef STORYTELLER_ICONS_PATH
+#undef STORYTELLER_EVENT_CONFIG_PATH

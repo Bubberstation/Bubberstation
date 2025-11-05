@@ -38,12 +38,12 @@
 	tracking = TRUE
 
 /datum/component/antag_metric_tracker/RegisterWithParent()
-	RegisterSignal(tracked_mind, COMSIG_MIND_TRANSFERRED, PROC_REF(on_mind_transferred))
-	RegisterSignal(tracked_mind, COMSIG_QDELETING, PROC_REF(on_qdel))
+	RegisterSignal(tracked_mind, COMSIG_MIND_TRANSFERRED, PROC_REF(on_mind_transferred), TRUE)
+	RegisterSignal(tracked_mind, COMSIG_QDELETING, PROC_REF(on_qdel), TRUE)
 	if(tracked_mob)
 		RegisterSignal(tracked_mob, COMSIG_LIVING_ATTACK_ATOM, PROC_REF(on_damage_dealt), TRUE)
-		RegisterSignal(tracked_mob, COMSIG_LIVING_DEATH, PROC_REF(on_death))
-		RegisterSignal(tracked_mob, COMSIG_QDELETING, PROC_REF(on_mob_qdel))
+		RegisterSignal(tracked_mob, COMSIG_LIVING_DEATH, PROC_REF(on_death), TRUE)
+		RegisterSignal(tracked_mob, COMSIG_QDELETING, PROC_REF(on_mob_qdel), TRUE)
 
 /datum/component/antag_metric_tracker/UnregisterFromParent()
 	UnregisterSignal(tracked_mind, list(COMSIG_MIND_TRANSFERRED, COMSIG_QDELETING))

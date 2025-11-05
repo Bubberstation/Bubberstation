@@ -5,7 +5,6 @@
 	return inputs.antag_count() > 0
 
 /datum/storyteller_metric/antagonist_activity/perform(datum/storyteller_analyzer/anl, datum/storyteller/ctl, datum/storyteller_inputs/inputs, scan_flags)
-	..()
 	var/total_damage = 0
 	var/total_activity = 0
 	var/total_effective_activity = 0
@@ -103,4 +102,4 @@
 		inputs.vault[STORY_VAULT_ANTAG_STEALTH] = clamp(stealth_score / alive_antags, 0, 3)
 		inputs.vault[STORY_VAULT_MAJOR_THREAT] = major_threat
 		inputs.vault[STORY_VAULT_THREAT_ESCALATION] = threat_escalation
-	return
+	..()
