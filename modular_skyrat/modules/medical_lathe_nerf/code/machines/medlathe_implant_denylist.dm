@@ -35,6 +35,9 @@
 /datum/design/cyberimp_antistun
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
+/datum/design/cyberimp_antisleep
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
 /datum/design/cyberimp_herculean
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
@@ -56,24 +59,5 @@
 /datum/design/cyberimp_welding/moth
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
-// --- Tier 3 organs + ears
-/datum/design/cybernetic_liver/tier3
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design/cybernetic_heart/tier3
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design/cybernetic_lungs/tier3
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design/cybernetic_stomach/tier3
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design/cybernetic_ears_whisper
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design/cybernetic_ears_volume
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design/cybernetic_ears_xray
+/datum/design/cyberimp_nv
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
