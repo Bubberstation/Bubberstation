@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  bubberstation-tgs:
+    build: .
+    container_name: bubberstation-tgs
+    tty: true
+    environment:
+      - DEBIAN_FRONTEND=noninteractive
+    volumes:
+      - ./:/home/tgstation-server
+    ports:
+      - "5000:5000"
+      - "3000:3000"
+      - "1337:1337"
+    command: /bin/bash
+
+  mariadb-bubberstation:
+    image: mariadb:latest
+    container_name: mariadb-bubberstation
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "5001:3306"
+    volumes:
+      - ./bubber_sql_data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+

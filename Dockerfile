@@ -1,85 +1,81 @@
-# base = ubuntu + full apt update
-FROM ubuntu:xenial AS base
-RUN dpkg --add-architecture i386 \
-    && apt-get update \
-    && apt-get upgrade -y \
-    && apt-get dist-upgrade -y \
-    && apt-get install -y --no-install-recommends \
-        ca-certificates
+FROM debian:bookworm-slim
 
-# byond = base + byond installed globally
-FROM base AS byond
-WORKDIR /byond
+ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get install -y --no-install-recommends \
-        libcurl4 \
-        curl \
-        unzip \
-        make \
-        libstdc++6:i386
+ENV RUSTUP_INIT_SKIP_PATH_CHECK=yes
+WORKDIR /home/tgstation-server
+RUN dpkg --add-architecture i386
 
-COPY dependencies.sh .
+RUN apt-get update && apt-get install -y \
+    curl \
+    wget \
+    gnupg \
+    unzip \
+    software-properties-common \
+    apt-transport-https \
+    ca-certificates \
+    sudo \
+    python3 \
+    python3-pip \
+    libc6:i386 \
+    libcurl4-openssl-dev:i386 \
+    libstdc++6:i386 \
+    dpkg \
+    git \
+    build-essential \
+    zlib1g-dev:i386 \
+    gcc-multilib \
+    g++-multilib \
+    busybox \
+    coreutils
 
-RUN . ./dependencies.sh \
-    && curl -H "User-Agent: tgstation/1.0 CI Script" "http://www.byond.com/download/build/${BYOND_MAJOR}/${BYOND_MAJOR}.${BYOND_MINOR}_byond_linux.zip" -o byond.zip \
-    && unzip byond.zip \
-    && cd byond \
-    && sed -i 's|install:|&\n\tmkdir -p $(MAN_DIR)/man6|' Makefile \
-    && make install \
-    && chmod 644 /usr/local/byond/man/man6/* \
-    && apt-get purge -y --auto-remove curl unzip make \
-    && cd .. \
-    && rm -rf byond byond.zip
+RUN curl https://sh.rustup.rs -sSfo rustup-init.sh && \
+    chmod +x rustup-init.sh && \
+    ./rustup-init.sh -y && \
+    . "$HOME/.cargo/env" && \
+    rustup target add i686-unknown-linux-gnu && \
+    git clone https://github.com/tgstation/rust-g && cd ./rust-g  &&\
+    export PKG_CONFIG_ALLOW_CROSS=1 && \
+    RUSTFLAGS="-C target-cpu=native" && cargo build --release --target i686-unknown-linux-gnu
 
-# build = byond + tgstation compiled and deployed to /deploy
-FROM byond AS build
-WORKDIR /tgstation
+RUN cp ./rust-g/target/i686-unknown-linux-gnu/release/librust_g.so /home/tgstation-server/librust_g.so
 
-RUN apt-get install -y --no-install-recommends \
-        curl
+# Actually download TGS
+RUN sudo apt update \
+    && sudo apt install -y software-properties-common \
+    && sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv B6FD15EE7ED77676EAEAF910EEEDC8280A307527 \
+    && sudo add-apt-repository -y "deb https://tgstation.github.io/tgstation-ppa/debian unstable main" \
+    && sudo apt update
 
-COPY . .
+# Add Node.js official repo and install ## Deprecated, BUN is the future
+# Download and install nvm:
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash \
 
-RUN env TG_BOOTSTRAP_NODE_LINUX=1 tools/build/build.sh \
-    && tools/deploy.sh /deploy
+    # in lieu of restarting the shell
+    && \. "$HOME/.nvm/nvm.sh" && nvm install 22
 
-# rust = base + rustc and i686 target
-FROM base AS rust
-RUN apt-get install -y --no-install-recommends \
-        curl && \
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal \
-    && ~/.cargo/bin/rustup target add i686-unknown-linux-gnu
 
-# rust_g = base + rust_g compiled to /rust_g
-FROM rust AS rust_g
-WORKDIR /rust_g
+# Set pip config
+RUN python3 -m pip config set global.break-system-packages true
 
-RUN apt-get install -y --no-install-recommends \
-        pkg-config:i386 \
-        libssl-dev:i386 \
-        gcc-multilib \
-        git \
-    && git init \
-    && git remote add origin https://github.com/tgstation/rust-g
+# Install ripgrep via cargo
+#RUN apt install cargo -y && cargo install ripgrep --features pcre2
 
-COPY dependencies.sh .
+# Install dotnet SDK
+RUN wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+    dpkg -i ./packages-microsoft-prod.deb && \
+    apt-get update && \
+    apt-get install -y dotnet-sdk-8.0
 
-RUN . ./dependencies.sh \
-    && git fetch --depth 1 origin "${RUST_G_VERSION}" \
-    && git checkout FETCH_HEAD \
-    && env PKG_CONFIG_ALLOW_CROSS=1 ~/.cargo/bin/cargo build --release --target i686-unknown-linux-gnu
+# Permissions for dotnet
+RUN chmod -R 777 /usr/share/dotnet
 
-# final = byond + runtime deps + rust_g + build
-FROM byond
-WORKDIR /tgstation
+# Visudo equivalent
 
-RUN apt-get install -y --no-install-recommends \
-        libssl1.0.0:i386 \
-        zlib1g:i386
+RUN wget https://www.byond.com/download/build/516/516.1666_byond_linux.zip
 
-COPY --from=build /deploy ./
-COPY --from=rust_g /rust_g/target/i686-unknown-linux-gnu/release/librust_g.so ./librust_g.so
 
-VOLUME [ "/tgstation/config", "/tgstation/data" ]
-ENTRYPOINT [ "DreamDaemon", "tgstation.dmb", "-port", "1337", "-trusted", "-close", "-verbose" ]
-EXPOSE 1337
+RUN unzip *byond*.zip && ls && cd ./byond/ && make here && sudo make install
+
+RUN . ./byond/bin/byondsetup && \ ls -la /home/tgstation-server \
+    && ../tools/build/build.sh --ci all

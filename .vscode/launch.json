@@ -107,6 +107,14 @@
 			"name": "Launch OpenDream (requires extension, 64 bit rustg, and an SS14 account)",
 			"preLaunchTask": "OpenDream: compile ${command:CurrentDME}",
 			"json_path": "${workspaceFolder}/${command:CurrentJson}"
+		},
+		{
+			"name": "Docker Compose Build",
+			"type": "docker", // Use 'node', 'python', '.netCore', etc., depending on your service
+			"request": "launch",
+			"dmb": "${workspaceFolder}/${command:CurrentDMB}",
+			"preLaunchTask": "docker-compose-up", // Runs the task above
+			"postDebugTask": "docker-compose-down" // Optional: clean up containers after debugging
 		}
 	]
 }

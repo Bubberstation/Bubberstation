@@ -143,6 +143,37 @@
 			"label": "Build All (map testing)"
 		},
 		{
+			"label": "docker-compose-up",
+			"type": "shell",
+			"command": "docker compose up --build -d",
+			"isBackground": true,
+			"problemMatcher": {
+				"owner": "docker",
+				"fileLocation": "relative",
+				"pattern": {
+					"regexp": ".*",
+					"file": 1,
+					"location": 2,
+					"message": 3
+				},
+				"background": {
+					"activeOnStart": true,
+					"beginsPattern": "Creating.*",
+					"endsPattern": "done"
+				}
+			},
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"label": "docker-compose-down",
+			"type": "shell",
+			"command": "docker compose down",
+			"group": "build"
+		},
+		{
 			"type": "dreammaker",
 			"dme": "tgstation.dme",
 			"problemMatcher": ["$dreammaker"],
