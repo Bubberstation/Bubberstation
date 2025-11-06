@@ -8197,7 +8197,7 @@
 /obj/machinery/turretid{
 	name = "AI Chamber turret control";
 	pixel_y = 32;
-	control_area = "/area/station/ai_monitored/turret_protected/aisat_interior"
+	control_area = "/area/station/ai/satellite/interior"
 	},
 /obj/machinery/light/small/red/directional/west,
 /obj/effect/turf_decal/stripes/red/line,
@@ -21414,7 +21414,7 @@
 /area/station/cargo/miningdock)
 "fLe" = (
 /obj/machinery/turretid{
-	control_area = "/area/station/ai_monitored/turret_protected/ai_upload";
+	control_area = "/area/station/ai/upload/chamber";
 	name = "AI Upload Turret Control";
 	pixel_x = 28
 	},
@@ -40079,7 +40079,7 @@
 	name = "AI Chamber turret control";
 	pixel_x = -27;
 	pixel_y = 13;
-	control_area = "/area/station/ai_monitored/turret_protected/ai"
+	control_area = "/area/station/ai/satellite/chamber"
 	},
 /obj/machinery/button/door/directional/north{
 	id = "AI Chamber entrance shutters";
@@ -89583,7 +89583,7 @@
 /area/station/engineering/supermatter/room)
 "yaS" = (
 /obj/machinery/turretid{
-	control_area = "/area/station/ai_monitored/turret_protected/ai_upload";
+	control_area = "/area/station/ai/upload/chamber";
 	name = "AI Upload Turret Control";
 	pixel_x = -28
 	},
