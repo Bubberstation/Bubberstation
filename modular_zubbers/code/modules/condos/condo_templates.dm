@@ -286,6 +286,12 @@ Due to some fuckery with how these templates work; the bottom left turf of your 
 	landing_zone_x_offset = 3
 	landing_zone_y_offset = 6
 
+/datum/map_template/condo/evacstat
+	name = "Condo - Evacuating Station"
+	mappath = "evacuationstation.dmm"
+	landing_zone_x_offset = 15
+	landing_zone_y_offset = 8
+
 //PORTED FROM IRIS
 /datum/map_template/condo/fast_food
 	name = "Condo - Diner Restaurant"
