@@ -256,6 +256,9 @@
 
 
 /datum/storyteller_planner/proc/is_event_in_timeline(datum/round_event_control/event_control)
+	if(ispath(event_control))
+		event_control = locate(event_control) in SSstorytellers.events_by_id
+
 	for(var/offset_str in timeline)
 		var/list/entry = timeline[offset_str]
 		if(entry[ENTRY_EVENT] == event_control)

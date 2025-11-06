@@ -799,9 +799,9 @@ export const Storyteller = (props) => {
                 <Stack.Item>
                   <Button
                     icon="bolt"
-                    tooltip="Random Event"
-                    disabled={!can_force_event}
-                    onClick={() => act('trigger_event')}
+                    tooltip="Force check and spawn antagonist wave"
+                    color="red"
+                    onClick={() => act('force_check_atnagoinst')}
                   />
                 </Stack.Item>
                 <Stack.Item>
@@ -889,6 +889,29 @@ export const Storyteller = (props) => {
         )}
         {tab === 'advanced' && (
           <>
+            <Section title="Configuration">
+              <LabeledList>
+                <Stack>
+                  <Stack.Item>
+                    <Button
+                      icon="download"
+                      tooltip="Reload event configuration"
+                      onClick={() => act('reload_event_config')}
+                    />
+                    <Button
+                      icon="upload"
+                      tooltip="Reload storyteller data"
+                      onClick={() => act('reload_storyteller_config')}
+                    />
+                    <Button
+                      icon="cog"
+                      tooltip="Reload current storyteller from data"
+                      onClick={() => act('reload_current_storyteller')}
+                    />
+                  </Stack.Item>
+                </Stack>
+              </LabeledList>
+            </Section>
             <Section title="Difficulty & Tension">
               <LabeledList>
                 <LabeledList.Item

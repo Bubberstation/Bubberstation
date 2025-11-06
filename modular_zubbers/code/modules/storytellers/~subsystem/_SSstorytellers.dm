@@ -107,6 +107,8 @@ SUBSYSTEM_DEF(storytellers)
 
 
 /datum/controller/subsystem/storytellers/proc/load_storyteller_data()
+	storyteller_data = list()
+
 	if(!fexists(STORYTELLER_JSON_PATH))
 		log_storyteller("Storyteller JSON not found at [STORYTELLER_JSON_PATH], using defaults.")
 		return
@@ -167,10 +169,14 @@ SUBSYSTEM_DEF(storytellers)
 /// Creates a new /datum/storyteller instance from JSON data (or default if null), applying all parsed fields.
 /// Modular extraction: overrides vars (pacing, threat, adaptation), instantiates mood, sets speech lists.
 /// Returns tuned instance for planner chain-building; logs profile for debug, announces welcome speech.
-/datum/controller/subsystem/storytellers/proc/create_storyteller_from_data(id)
-	var/datum/storyteller/new_st = new /datum/storyteller(id)  // Base with ID for logging
+/datum/controller/subsystem/storytellers/proc/create_storyteller_from_data(id, make_new = TRUE)
+	var/datum/storyteller/new_st
+	if(!make_new && active)
+		new_st = active
+	else
+		new_st = new /datum/storyteller(id)  // Base with ID for logging
 
-	if(!id || !storyteller_data[id])
+	if((!id || !storyteller_data[id]) && make_new)
 		// Default fallback
 		new_st.name = "Default Storyteller"
 		new_st.desc = "A generic storyteller managing station events and goals."

@@ -68,6 +68,80 @@
 	min_candidates = 1
 	min_players = 15
 
+
+
+/datum/round_event_control/antagonist/from_ghosts/midround_loneop
+	id = "storyteller_midround_loneop"
+	name = "Midround Lone Operative"
+	description = "A lone operative is spawned to infiltrate the station capture nuclear disk and explode the nuke."
+	story_category = STORY_GOAL_ANTAGONIST
+	tags = STORY_TAG_ANTAGONIST | STORY_TAG_MIDROUND | STORY_TAG_ESCALATION | STORY_TAG_WIDE_IMPACT | STORY_TAG_AFFECTS_WHOLE_STATION
+
+	story_weight = STORY_WEIGHT_MAJOR_ANTAGONIST * 0.8
+	story_prioty = STORY_GOAL_HIGH_PRIORITY
+	requierd_threat_level = STORY_GOAL_THREAT_HIGH
+	required_round_progress = STORY_ROUND_PROGRESSION_MID
+
+	antag_datum_type = /datum/antagonist/nukeop/lone
+	antag_name = "Lone Operative"
+	role_flag = ROLE_TRAITOR
+	max_candidates = 1
+	min_candidates = 1
+
+	min_players = 20
+	signup_atom_appearance = /obj/item/disk/nuclear
+
+
+/datum/round_event_control/antagonist/from_ghosts/midround_loneop/create_ruleset_body(datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
+	return new /mob/living/carbon/human(find_space_spawn())
+
+/datum/round_event_control/antagonist/from_ghosts/midround_loneop/after_antagonist_spawn(datum/storyteller_inputs/inputs, datum/storyteller/storyteller, list/spawned_antags)
+	for(var/mob/living/carbon/human/loneop in spawned_antags)
+		var/datum/antagonist/nukeop/lone/loneop_antag = locate() in loneop.mind.antag_datums
+		if(!loneop_antag)
+			continue
+		var/security_count = inputs.get_entry(STORY_VAULT_SECURITY_COUNT) || 0
+		if(security_count >= 5)
+			var/datum/component/uplink/uplink = loneop_antag.owner.find_syndicate_uplink()
+			if(uplink)
+				uplink.uplink_handler.add_telecrystals(20 + security_count * 2)
+				to_chat(loneop_antag, span_notice("Due to the high security on the nuclear disk vault, you have been granted extra telecrystals to help you complete your mission."))
+
+/datum/round_event_control/antagonist/from_ghosts/midround_loneop/get_story_weight(datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
+	. = ..()
+	if(!.)
+		return 0
+	var/weight = .
+	var/obj/item/disk/nuclear/real_disk = get_disk()
+	if(real_disk && real_disk.is_secure())
+		weight *= 0.5
+	else
+		weight *= 2
+	return weight
+
+/datum/round_event_control/antagonist/from_ghosts/midround_loneop/is_avaible(datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	var/obj/item/disk/nuclear/real_disk = get_disk()
+	if(!real_disk)
+		return FALSE
+	if(real_disk.is_secure() && storyteller.get_effective_threat() < STORY_GOAL_THREAT_EXTREME)
+		return FALSE
+	return TRUE
+
+/datum/round_event_control/antagonist/from_ghosts/midround_loneop/proc/get_disk()
+	var/obj/item/disk/nuclear/real_disk
+	for(var/obj/item/disk/nuclear/disk in SSpoints_of_interest.real_nuclear_disks)
+		if(!disk.fake)
+			continue
+		if(!is_station_level(get_turf(disk)))
+			continue
+		real_disk = disk
+		break
+	return real_disk
+
 /datum/round_event_control/antagonist/from_living/midround_heretic
 	id = "storyteller_midround_heretic"
 	name = "Midround Heretic"
@@ -290,10 +364,10 @@
 
 /datum/round_event_control/antagonist/from_ghosts/nuke
 	id = "storyteller_nuclear"
-	name = "Roundstart Nuclear Operatives"
+	name = "Nuclear Operatives"
 	description = "A team of nuclear operatives is spawned to assault the station."
 	story_category = STORY_GOAL_ANTAGONIST
-	tags = STORY_TAG_ANTAGONIST | STORY_TAG_ROUNDSTART | STORY_TAG_ESCALATION | STORY_TAG_WIDE_IMPACT | STORY_TAG_ENTITIES
+	tags = STORY_TAG_ANTAGONIST | STORY_TAG_MIDROUND | STORY_TAG_ESCALATION | STORY_TAG_WIDE_IMPACT | STORY_TAG_ENTITIES
 	enabled = FALSE
 
 	story_weight = STORY_WEIGHT_MAJOR_ANTAGONIST + 3

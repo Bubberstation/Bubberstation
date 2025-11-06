@@ -265,4 +265,21 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 			SSstorytellers.hard_debug = !SSstorytellers.hard_debug
 			message_admins("Stortyteller debug mode: [SSstorytellers.hard_debug ? "ENABLED" : "DISABLED"]")
 			return TRUE
+		if("force_check_atnagoinst")
+			if(HAS_TRAIT(ctl, STORYTELLER_TRAIT_NO_ANTAGS))
+				var/ask = tgui_alert(usr, "[ctl.name] has the NO_ANTAGS trait! force them to spawn antags?", "Continue?", list("Confirm", "Cancel"))
+				if(ask != "Confirm")
+					return TRUE
+			message_admins("[key_name_admin(usr)] forced antagonist spawn check for [ctl.name].")
+			ctl.check_and_spawn_antagonists()
+			return TRUE
+		if("reload_event_config")
+			SSstorytellers.load_event_config()
+			message_admins("[key_name_admin(usr)] reloaded storyteller event configuration.")
+		if("reload_storyteller_config")
+			SSstorytellers.load_storyteller_data()
+			message_admins("[key_name_admin(usr)] reloaded storyteller configuration.")
+		if("reload_current_storyteller")
+			SSstorytellers.create_storyteller_from_data(ctl.id, FALSE)
+			message_admins("[key_name_admin(usr)] reloaded config of current storyteller ([ctl.name]).")
 	return FALSE

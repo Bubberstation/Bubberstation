@@ -6,11 +6,11 @@
 /// Checks antagonist balance and spawns midround antagonists in waves if needed
 /// Called approximately every ~30 minutes based on cooldown
 /// Uses threat level, balance ratio, and antag weight to determine if spawns are needed
-/datum/storyteller/proc/check_and_spawn_antagonists(datum/storyteller_balance_snapshot/snap)
-	if(!SSdynamic || !SSdynamic.antag_events_enabled)
+/datum/storyteller/proc/check_and_spawn_antagonists(datum/storyteller_balance_snapshot/snap, force = FALSE)
+	if(!SSstorytellers.storyteller_replace_dynamic && !force)
 		return
 
-	if(HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ANTAGS))
+	if(HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ANTAGS) && !force)
 		return
 
 	var/balance_ratio = snap.balance_ratio
@@ -22,37 +22,44 @@
 	var/needs_antags = FALSE
 	var/reason = ""
 
-	// No antags at all
-	if(antag_count <= 0)
-		needs_antags = TRUE
-		reason = "no antagonists"
-	// Antags are too weak (effectiveness below threshold)
-	else if(snap.antag_weak)
-		needs_antags = TRUE
-		reason = "antagonists too weak (effectiveness: [snap.get_antag_advantage()])"
-	// Antags are inactive
-	else if(snap.antag_inactive)
-		needs_antags = TRUE
-		reason = "antagonists inactive (activity: [snap.antag_activity_index])"
-	// Balance ratio indicates antags are significantly weaker than station
-	else if(balance_ratio < 0.5)
-		needs_antags = TRUE
-		reason = "antagonists too weak relative to station (ratio: [balance_ratio])"
-	// Antag weight is too low relative to player weight
-	else if(player_weight > 0 && antag_weight / player_weight < 0.3)
-		needs_antags = TRUE
-		reason = "antagonist weight too low (antag: [antag_weight], players: [player_weight])"
+	if(!force)
+		if(population_factor <= population_factor_low)
+			needs_antags = FALSE
+			reason = "insufficient population (factor: [population_factor])"
+		// No antags at all
+		else if(antag_count <= 0)
+			needs_antags = TRUE
+			reason = "no antagonists"
+		// Antags are too weak (effectiveness below threshold)
+		else if(snap.antag_weak)
+			needs_antags = TRUE
+			reason = "antagonists too weak (effectiveness: [snap.get_antag_advantage()])"
+		// Antags are inactive
+		else if(snap.antag_inactive)
+			needs_antags = TRUE
+			reason = "antagonists inactive (activity: [snap.antag_activity_index])"
+		// Balance ratio indicates antags are significantly weaker than station
+		else if(balance_ratio < 0.5)
+			needs_antags = TRUE
+			reason = "antagonists too weak relative to station (ratio: [balance_ratio])"
+		// Antag weight is too low relative to player weight
+		else if(player_weight > 0 && antag_weight / player_weight < 0.3)
+			needs_antags = TRUE
+			reason = "antagonist weight too low (antag: [antag_weight], players: [player_weight])"
 
-	// If antags are sufficient, don't spawn
-	if(!needs_antags)
-		log_storyteller("[src.name] skipped antagonist spawn wave - [reason]")
-		return
+		// If antags are sufficient, don't spawn
+		if(!needs_antags)
+			message_admins("[name] skipped antagonist spawn wave - [reason]")
+			return
+	else
+		needs_antags = TRUE
+		message_admins("[name] forced antagonist spawn wave!")
 
 	// Calculate spawn weight based on threat level, balance ratio, and antag weight
 	var/spawn_weight = calculate_antagonist_spawn_weight_wave(balance_ratio, snap, antag_weight, player_weight)
 
 	// Only attempt spawn if weight suggests we should
-	if(spawn_weight <= 0)
+	if(spawn_weight <= 0 && !force)
 		return
 
 	// Try to spawn midround antagonists (wave-based)
@@ -64,12 +71,12 @@
 		return
 
 	if(HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ANTAGS))
-		log_storyteller("[src.name] skipped initial antagonist spawn (NO_ANTAGS trait)")
+		message_admins("[name] skipped initial antagonist spawn (NO_ANTAGS trait)")
 		return
 
 	var/pop = inputs.player_count()
 	if(pop < population_threshold_low)
-		log_storyteller("[src.name] skipped initial antagonist spawn - insufficient population (pop: [pop])")
+		message_admins("[name] skipped initial antagonist spawn - insufficient population (pop: [pop])")
 		return
 
 	var/list/possible_candidates = SSstorytellers.filter_goals(STORY_GOAL_ANTAGONIST, STORY_TAG_ROUNDSTART)
@@ -79,17 +86,19 @@
 	for(var/i = 1 to spawn_count)
 		var/datum/round_event_control/antag_event = mind.select_weighted_goal(src, inputs, bal, possible_candidates, population_factor, tags)
 		if(!antag_event)
-			log_storyteller("[src.name] failed to select initial antagonist goal ([i]/[spawn_count])")
+			log_storyteller("[name] failed to select initial antagonist goal ([i]/[spawn_count])")
 			continue
 		var/spawn_offset = rand(45 SECONDS, 120 SECONDS)
 		if(HAS_TRAIT(src, STORYTELLER_TRAIT_FREQUENT_ANTAG_SPAWN))
 			spawn_offset *= 0.7
-		if(planner.try_plan_event(antag_event, world.time + (spawn_offset * i)))
-			log_storyteller("[src.name] scheduled initial antagonist goal [antag_event.name] ([i]/[spawn_count])")
+		if(!planner.try_plan_event(antag_event, world.time + (spawn_offset * i)))
+			message_admins("[name] failed to execute initial antagonist goal [antag_event.name] ([i]/[spawn_count])")
+	message_admins("[name] spawned [spawn_count] initial antagonists for population [pop]")
+
 
 
 /datum/storyteller/proc/try_spawn_midround_antagonist_wave(datum/storyteller_balance_snapshot/snap)
-	if(!SSdynamic || !SSdynamic.antag_events_enabled || HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ANTAGS))
+	if(!SSstorytellers.storyteller_replace_dynamic || HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ANTAGS))
 		return
 
 	var/balance_ratio = snap.balance_ratio
@@ -106,7 +115,7 @@
 		reason = "imbalance detected (ratio: [balance_ratio], antag_weight: [antag_weight])"
 
 	if(!needs_antags)
-		log_storyteller("[name] skipped antag spawn - balanced (ratio: [balance_ratio])")
+		message_admins("[name] skipped antag spawn - balanced (ratio: [balance_ratio])")
 		return
 
 
@@ -133,7 +142,7 @@
 			spawn_offset *= 1.5
 
 		if(planner.try_plan_event(antag_event, world.time + spawn_offset))
-			log_storyteller("[name] planned midround antag goal [antag_event.name] ([i]/[spawn_count]) - reason: [reason]")
+			message_admins("[name] planned midround antag goal [antag_event.name] ([i]/[spawn_count]) - reason: [reason]")
 
 
 

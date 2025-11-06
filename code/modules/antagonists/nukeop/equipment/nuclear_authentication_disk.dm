@@ -18,6 +18,8 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	/// Whether we're a real nuke disk or not.
 	var/fake = FALSE
+	VAR_PRIVATE/secure_time = 0 // BUBBER EDIT
+	VAR_PRIVATE/secure = FALSE // BUBBER EDIT
 
 /datum/armor/disk_nuclear
 	bomb = 30
@@ -37,36 +39,35 @@
 		AddComponent(/datum/component/keep_me_secure)
 
 /obj/item/disk/nuclear/proc/secured_process(last_move)
-	/* - Temporary disabled before swith to new storytellers
-	var/turf/new_turf = get_turf(src)
-	if(istype(loneop) && loneop.occurrences < loneop.max_occurrences && prob(loneop.weight))
-		loneop.weight = max(loneop.weight - 1, 0)
-		if(loneop.weight % 5 == 0 && SSticker.totalPlayers > 1)
-			message_admins("[src] is secured (currently in [ADMIN_VERBOSEJMP(new_turf)]). The weight of Lone Operative is now [loneop.weight].")
-		log_game("[src] being secured has reduced the weight of the Lone Operative event to [loneop.weight].")
-	*/
-
+	secure_time++
+	if(secure_time >= 10)
+		secure = TRUE
 
 /obj/item/disk/nuclear/proc/unsecured_process(last_move)
-/* - Temporary disabled before swith to new storytellers
+	if(secure)
+		secure_time = max(0, secure_time - 1)
+		if(secure_time == 0)
+			secure = FALSE
+
 	var/turf/new_turf = get_turf(src)
-	/// How comfy is our disk?
-	var/disk_comfort_level = 0
+	if((last_move < world.time - 250 SECONDS && !secure) || (isspaceturf(new_turf) && prob(20)) && loc == new_turf)
+		secure_time = 0
+		var/datum/storyteller/ctl = SSstorytellers?.active
+		if(!ctl)
+			return
+		ask_to_storyteller(ctl)
 
-	//Go through and check for items that make disk comfy
-	for(var/obj/comfort_item in loc)
-		if(istype(comfort_item, /obj/item/bedsheet) || istype(comfort_item, /obj/structure/bed))
-			disk_comfort_level++
+/obj/item/disk/nuclear/proc/ask_to_storyteller(datum/storyteller/ctl)
+	if(HAS_TRAIT(ctl, STORYTELLER_TRAIT_NO_ANTAGS))
+		return
+	var/datum/round_event_control/antagonist/from_ghosts/midround_loneop/loneop = locate() in SSstorytellers.events_by_id
+	if(ctl.planner.is_event_in_timeline(loneop))
+		return
+	ctl.planner.try_plan_event(loneop, world.time + rand(5 MINUTES, 10 MINUTES))
+	message_admins("The nuclear authentication disk has been left unsecured! And [ctl.name] deploy lone operative.")
 
-	if(last_move < world.time - 500 SECONDS && prob((world.time - 500 SECONDS - last_move)*0.0001))
-		if(istype(loneop) && loneop.occurrences < loneop.max_occurrences)
-			loneop.weight += 1
-			if(loneop.weight % 5 == 0 && SSticker.totalPlayers > 1)
-				if(disk_comfort_level >= 2)
-					visible_message(span_notice("[src] sleeps soundly. Sleep tight, disky."))
-				message_admins("[src] is unsecured in [ADMIN_VERBOSEJMP(new_turf)]. The weight of Lone Operative is now [loneop.weight].")
-			log_game("[src] was left unsecured in [loc_name(new_turf)]. Weight of the Lone Operative event increased to [loneop.weight].")
-*/
+/obj/item/disk/nuclear/proc/is_secure()
+	return secure
 
 /obj/item/disk/nuclear/examine(mob/user)
 	. = ..()
