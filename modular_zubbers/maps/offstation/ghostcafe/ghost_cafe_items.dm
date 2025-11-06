@@ -86,3 +86,7 @@
 	new /obj/item/pipe_dispenser(src)
 	new /obj/item/wrench/bolter(src)
 	new /obj/item/multitool/abductor(src)
+
+/obj/machinery/photocopier/gratis/infinite
+	starting_toner = /obj/item/toner/infinite
+	starting_paper = 30

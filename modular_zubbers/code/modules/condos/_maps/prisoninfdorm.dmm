@@ -14,7 +14,9 @@
 /area/misc/condo)
 "cP" = (
 /obj/structure/closet/generic,
-/turf/open/floor/iron,
+/turf/open/floor/iron/dark/side{
+	dir = 9
+	},
 /area/misc/condo)
 "di" = (
 /obj/structure/chair/stool/directional/south,
@@ -88,6 +90,12 @@
 	},
 /turf/open/floor/grass,
 /area/misc/condo)
+"mv" = (
+/obj/machinery/light/directional/north,
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
+/area/misc/condo)
 "mX" = (
 /obj/machinery/light/warm/dim/directional/east,
 /turf/open/floor/iron,
@@ -110,7 +118,9 @@
 	pixel_y = 2;
 	pixel_x = 5
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
 /area/misc/condo)
 "rZ" = (
 /obj/structure/chair/greyscale{
@@ -162,6 +172,11 @@
 	},
 /turf/open/floor/iron/checker,
 /area/misc/condo)
+"vg" = (
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
+/area/misc/condo)
 "vT" = (
 /obj/machinery/light/directional/south,
 /turf/open/floor/iron,
@@ -171,7 +186,9 @@
 /obj/item/toy/figure/secofficer{
 	pixel_y = 16
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
 /area/misc/condo)
 "xh" = (
 /obj/structure/chair/greyscale,
@@ -211,7 +228,9 @@
 /area/misc/condo)
 "zx" = (
 /obj/structure/table/reinforced,
-/turf/open/floor/iron,
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
 /area/misc/condo)
 "zU" = (
 /obj/structure/hoop{
@@ -255,7 +274,7 @@
 /obj/item/clothing/glasses/blindfold{
 	pixel_y = 7
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/dark/side,
 /area/misc/condo)
 "Cm" = (
 /obj/structure/window/reinforced{
@@ -268,9 +287,8 @@
 /turf/open/floor/iron,
 /area/misc/condo)
 "Cz" = (
-/turf/closed/indestructible/hoteldoor{
-	icon_state = "door_closed";
-	icon = 'icons/obj/doors/puzzledoor/default.dmi'
+/turf/closed/indestructible/hoteldoor/fakedoor{
+	dir = 4
 	},
 /area/misc/condo)
 "CD" = (
@@ -310,7 +328,7 @@
 /turf/open/floor/grass,
 /area/misc/condo)
 "Io" = (
-/obj/machinery/door/airlock/security/glass,
+/obj/machinery/door/airlock/security/old/glass,
 /turf/open/floor/iron,
 /area/misc/condo)
 "Iu" = (
@@ -434,6 +452,9 @@
 	},
 /turf/open/floor/iron,
 /area/misc/condo)
+"Tl" = (
+/turf/open/floor/iron/dark/side,
+/area/misc/condo)
 "TT" = (
 /obj/structure/closet,
 /obj/effect/spawner/random/entertainment/coin,
@@ -441,7 +462,7 @@
 /obj/item/gun/ballistic/automatic/l6_saw/toy,
 /obj/effect/spawner/random/entertainment/toy_figure,
 /obj/item/pen/sleepy,
-/turf/open/floor/iron,
+/turf/open/floor/iron/dark/side,
 /area/misc/condo)
 "Vt" = (
 /obj/machinery/deepfryer,
@@ -489,6 +510,11 @@
 	},
 /turf/open/floor/iron,
 /area/misc/condo)
+"Zk" = (
+/turf/open/floor/iron/dark/side{
+	dir = 10
+	},
+/area/misc/condo)
 
 (1,1,1) = {"
 LV
@@ -521,7 +547,7 @@ zo
 kP
 LV
 cP
-NN
+Zk
 LV
 "}
 (3,1,1) = {"
@@ -538,7 +564,7 @@ Hq
 mk
 yD
 rT
-NN
+Tl
 LV
 "}
 (4,1,1) = {"
@@ -555,7 +581,7 @@ CD
 QJ
 FV
 zx
-NN
+Tl
 LV
 "}
 (5,1,1) = {"
@@ -572,7 +598,7 @@ NN
 NN
 FV
 ws
-NN
+Tl
 LV
 "}
 (6,1,1) = {"
@@ -588,8 +614,8 @@ LF
 rZ
 vT
 Lw
-PR
-NN
+mv
+Tl
 LV
 "}
 (7,1,1) = {"
@@ -606,7 +632,7 @@ rZ
 NN
 Io
 NN
-NN
+Tl
 LV
 "}
 (8,1,1) = {"
@@ -623,7 +649,7 @@ NN
 NN
 nG
 NN
-NN
+Tl
 LV
 "}
 (9,1,1) = {"
@@ -639,8 +665,8 @@ Cm
 Nt
 YR
 LV
-NN
-NN
+vg
+Tl
 LV
 "}
 (10,1,1) = {"
@@ -656,7 +682,7 @@ El
 El
 El
 LV
-NN
+vg
 TT
 LV
 "}
@@ -673,7 +699,7 @@ El
 ik
 El
 LV
-PR
+mv
 Ck
 LV
 "}
