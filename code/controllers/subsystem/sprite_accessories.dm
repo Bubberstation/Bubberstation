@@ -86,6 +86,7 @@ SUBSYSTEM_DEF(accessories) // just 'accessories' for brevity
 	undershirt_m = undershirt_lists[MALE_SPRITE_LIST]
 	undershirt_f = undershirt_lists[FEMALE_SPRITE_LIST]
 
+	socks_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/socks)[DEFAULT_SPRITE_LIST]
 	// SKYRAT EDIT ADDITION START - Underwear/bra split
 	var/bra_lists = init_sprite_accessory_subtypes(/datum/sprite_accessory/bra)
 	bra_list = bra_lists[DEFAULT_SPRITE_LIST]
@@ -119,7 +120,7 @@ SUBSYSTEM_DEF(accessories) // just 'accessories' for brevity
 	feature_list[FEATURE_TAIL_MONKEY] = INIT_ACCESSORY(/datum/sprite_accessory/tails/monkey)
 	feature_list[FEATURE_TAIL_XENO] = INIT_ACCESSORY(/datum/sprite_accessory/tails/xeno)
 
-/// This proc just intializes all /datum/sprite_accessory/hair_gradient into an list indexed by gradient-style name
+/// This proc just initializes all /datum/sprite_accessory/hair_gradient into an list indexed by gradient-style name
 /datum/controller/subsystem/accessories/proc/init_hair_gradients()
 	hair_gradients_list = list()
 	facial_hair_gradients_list = list()

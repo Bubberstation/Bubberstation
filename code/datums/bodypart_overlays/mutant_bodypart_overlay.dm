@@ -122,7 +122,7 @@
 
 ///Return a dumb glob list for this specific feature (called from parse_sprite)
 /datum/bodypart_overlay/mutant/proc/get_global_feature_list()
-	var/list/feature_list = SSaccessories.feature_list[feature_key]
+	var/list/feature_list = SSaccessories.sprite_accessories[feature_key] // BUBBER EDIT CHANGE - Customization - Original: var/list/feature_list = SSaccessories.feature_list[feature_key]
 	if(isnull(feature_list))
 		stack_trace("External organ has no feature list, it will render invisible")
 		return list()

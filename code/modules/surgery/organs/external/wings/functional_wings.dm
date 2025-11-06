@@ -174,7 +174,7 @@
 	return ..()
 	*/
 	if(wings_open)
-		return SSaccessories.sprite_accessories[FEATURE_WINGS_OPEN]
+		return SSaccessories.sprite_accessories["wings_open"]
 	return SSaccessories.sprite_accessories[FEATURE_WINGS]
 	// SKYRAT EDIT ADDITION END
 ///Update our wingsprite to the open wings variant
