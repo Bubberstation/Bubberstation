@@ -229,7 +229,7 @@
 	key = "neigh"
 	key_third_person = "neighs"
 	message = "neighs."
-	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/neigh/get_sound(mob/living/user)
 	return 'sound/mobs/non-humanoids/pony/whinny03.ogg'
@@ -238,7 +238,7 @@
 	key = "neigh2"
 	key_third_person = "neighs2"
 	message = "lets out a long winded whinny!"
-	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/neigh2/get_sound(mob/living/user)
 	return pick('sound/mobs/non-humanoids/pony/whinny01.ogg',
@@ -248,7 +248,7 @@
 	key = "snort"
 	key_third_person = "snorts"
 	message = "snorts."
-	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/snort/get_sound(mob/living/user)
 	return 'sound/mobs/non-humanoids/pony/snort.ogg'
