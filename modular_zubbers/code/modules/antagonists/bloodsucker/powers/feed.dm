@@ -9,6 +9,7 @@
 	power_explanation = list(
 		"Activate Feed while next to someone and you will begin to feed blood off of them.",
 		"The time needed before you start feeding speeds up the higher level you are.",
+		"Feeding off of someone next to you will not be noticed by the victim, but it will by nearby onlookers",
 		"Feeding off of someone while you have them aggressively grabbed will put them to sleep.",
 		"While feeding, you can't speak, as your mouth is covered.",
 		"Feeding while nearby (2 tiles away from) a mortal who is unaware of Bloodsuckers' existence, will cause a Masquerade Infraction",
