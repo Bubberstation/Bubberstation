@@ -11,7 +11,7 @@
 | Website                 | https://wiki.bubberstation.org/index.php?title=Main_Page          |
 | Code                    | https://github.com/Bubberstation/Bubberstation                    |
 | Wiki                    | https://tgstation13.org/wiki/Main_Page                            |
-| Codedocs                | https://skyrat-ss13.github.io/Skyrat-tg/                          |
+| Codedocs                | https://bubberstation.github.io/Bubberstation                     |
 | Bubberstation Discord   | https://discord.gg/AvjrTqnqEx                                     |
 | Coderbus Discord        | https://discord.gg/Vh8TJp9                                        |
 
