@@ -102,7 +102,7 @@
 	)
 
 	if(length(signals_to_add))
-		RegisterSignals(gravity_gen, signals_to_add, PROC_REF(on_gravgen_tooled) TRUE)
+		RegisterSignals(gravity_gen, signals_to_add, PROC_REF(on_gravgen_tooled), TRUE)
 
 	// Initial effects
 	do_sparks(5, FALSE, gravity_gen)
