@@ -278,7 +278,7 @@
 
 /datum/bounty/item/assistant/watermelon
 	name = "Watermelons"
-	description = "The new office craze is melon water. Send Centcomm some watermelons so we can squeeze a few pitchers."
+	description = "The new office craze is melon water. Send Centcom some watermelons so we can squeeze a few pitchers."
 	reward = CARGO_CRATE_VALUE * 6
 	required_count = 6
 	wanted_types = list(/obj/item/food/grown/watermelon = TRUE)
