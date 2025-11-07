@@ -42,8 +42,6 @@
 			return new /obj/item/modular_computer/pda/detective
 		if(JOB_SECURITY_OFFICER)
 			return new /obj/item/modular_computer/pda/security
-		if(JOB_SECURITY_MEDIC)
-			return new /obj/item/modular_computer/pda/security
 		if(JOB_CORRECTIONS_OFFICER)
 			return new /obj/item/modular_computer/pda/security
 		if(JOB_STATION_ENGINEER) //ENGI
