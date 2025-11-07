@@ -3,7 +3,7 @@
 #define CONTEXT_CATEGORY "category"
 #define CONTEXT_BIAS "bias"
 
-#define STORY_REPETITION_DECAY_TIME (15 MINUTES)
+#define STORY_REPETITION_DECAY_TIME (20 MINUTES)
 #define STORY_TAG_MATCH_BONUS 0.45
 #define STORY_VOLATILITY_NEUTRAL_CHANCE 13
 #define STORY_TENSION_THRESHOLD 14
@@ -104,7 +104,7 @@
 
 	score_good += tension_norm * THINK_TENSION_WEIGHT * good_tension_mult
 	score_good += adapt * THINK_ADAPTATION_WEIGHT * good_adapt_mult
-	score_good += mood_aggr < (0.85 * pace) ? 0.7 : 0.0
+	score_good += mood_aggr < (0.70 * pace) ? 0.7 : 0.0
 	score_good += good_base_bias
 	// Boost good events at low population (mercy mode)
 	if(pop < 0.5)
@@ -152,7 +152,7 @@
 	if(tension_diff_norm <= 0.2)
 		score_neutral += add_jitter(0, 0.04, 0.2)
 
-	score_good = max(score_good + add_jitter(0, 0, 0.2), 0.06)
+	score_good = max(score_good + add_jitter(0, 0, 0.2), 0.02)
 	score_bad  = max(score_bad  + add_jitter(0, 0, 0.2), 0.02)
 	score_neutral = max(score_neutral + add_jitter(0, 0, 0.2), 0.02)
 	score_random  = max(score_random  + add_jitter(0, 0, 0.2), 0.0)

@@ -57,7 +57,7 @@
 
 	station_apcs = shuffle(station_apcs)
 	var/to_shutdown = list()
-	var/shutdown_cpount = max(1, round(length(station_apcs) * 0.2))
+	var/shutdown_cpount = max(1, round(length(station_apcs) * 0.3))
 	for(var/datum/weakref/ref in station_apcs)
 		if(shutdown_cpount <= 0)
 			break

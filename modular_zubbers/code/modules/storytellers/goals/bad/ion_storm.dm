@@ -14,7 +14,7 @@
 	var/harm_prosthesis_chance = 10
 	var/emp_machinery_chance = 10
 	var/waves = 1
-	var/wave_delay = 3 MINUTES
+	var/wave_delay = 2 MINUTES
 
 	COOLDOWN_DECLARE(ion_storm_wave)
 
@@ -57,14 +57,14 @@
 		removeDontImproveChance = 70
 		shuffleLawsChance = 60
 		waves = 3
-		wave_delay = 2 MINUTES
+		wave_delay = 1 MINUTES
 		harm_door_chance = 70
 		harm_synthetics_chance = 100
 		harm_prosthesis_chance = 80
 		emp_machinery_chance = 80
 		botEmagChance = 15
 
-	end_when = waves * wave_delay
+	end_when = waves * (wave_delay / 10)
 
 /datum/round_event/ion_storm/__start_for_storyteller()
 	COOLDOWN_START(src, ion_storm_wave, wave_delay)

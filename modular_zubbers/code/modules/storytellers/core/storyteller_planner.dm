@@ -57,8 +57,7 @@
 			continue
 
 		entry[ENTRY_STATUS] = STORY_GOAL_FIRING
-		/// Calculate threat points: scale by difficulty, population_factor, and threat_points
-		var/threat_points_for_event = ctl.threat_points * ctl.difficulty_multiplier * clamp(ctl.population_factor, 0.3, 1.0) * 100
+		var/threat_points_for_event = ctl.get_event_threat_points(evt.story_category)
 		if(evt.run_event_as_storyteller(inputs, ctl, round(threat_points_for_event)))
 			fired_events += evt
 			entry[ENTRY_STATUS] = STORY_GOAL_COMPLETED
@@ -82,19 +81,7 @@
 		if(timeline[offset_str][ENTRY_STATUS] == STORY_GOAL_PENDING)
 			pending_count++
 
-	// Ensure we always have at least STORY_INITIAL_GOALS_COUNT pending events
-	// This prevents situations where storyteller doesn't plan any events
-	if(pending_count < STORY_INITIAL_GOALS_COUNT)
-		var/added = 0
-		while(pending_count < STORY_INITIAL_GOALS_COUNT && added < 5)  // Limit attempts to prevent infinite loops
-			if(add_next_event(ctl, inputs, bal))
-				pending_count++
-				added++
-			else
-				break  // Failed to add event, exit loop
-		if(added > 0)
-			COOLDOWN_START(src, event_planning_cooldown, planning_cooldown)
-	else if(pending_count <= 0 && COOLDOWN_FINISHED(src, event_planning_cooldown))
+	if(pending_count <= STORY_INITIAL_GOALS_COUNT && COOLDOWN_FINISHED(src, event_planning_cooldown))
 		if(add_next_event(ctl, inputs, bal))
 			COOLDOWN_START(src, event_planning_cooldown, planning_cooldown)
 
@@ -203,7 +190,11 @@
 	var/last_time = get_last_reference_time(ctl)
 	var/fire_offset = last_time + next_delay
 	if(try_plan_event(new_event_control, fire_offset, TRUE))
-		log_storyteller_planner("[ctl.name] added next event to chain: [new_event_control.name || new_event_control.id] at offset [fire_offset] (relative delay: [next_delay]).")
+		var/format_time = time2text(fire_offset, "hh:mm", NO_TIMEZONE)
+		var/foramt_name = "[new_event_control.name || new_event_control.id] [new_event_control.story_category & STORY_GOAL_ANTAGONIST ? span_red("- Antagonist event") : ""]"
+
+		message_admins("[ctl.name] planned new event [foramt_name] at [format_time].")
+		new_event_control.on_planned(fire_offset)
 		return TRUE
 	return FALSE
 
@@ -220,8 +211,8 @@
 
 	while(attempts < max_attempts)
 		var/target_time = fixed_time ? time : base_delay
-		if(event_control.story_category & STORY_GOAL_BAD && target_time < owner.last_event_time + owner.grace_period)
-			target_time = owner.last_event_time + owner.grace_period
+		if(event_control.story_category & STORY_GOAL_BAD && target_time < owner.last_event_time + owner.get_scaled_grace())
+			target_time = owner.last_event_time + owner.get_scaled_grace()
 			base_delay = target_time
 		var/target_str = time_key(target_time)
 		if(!timeline[target_str])
@@ -357,16 +348,8 @@
 
 
 /datum/storyteller_planner/proc/get_closest_offest()
-	var/last_offset = 0
-	if(length(timeline))
-		var/max_key = 0
-		for(var/key_str in timeline)
-			var/k = text2num(key_str)
-			if(k > max_key)
-				max_key = k
-		last_offset = max_key
-	return last_offset
-
+	for(var/offset_str in sortTim(timeline.Copy(), GLOBAL_PROC_REF(cmp_text_asc)))
+		return text2num(offset_str)
 
 /datum/storyteller_planner/proc/clear_timeline()
 	for(var/offset in get_upcoming_events(length(timeline)))
@@ -405,11 +388,11 @@
 	var/delay = ctl.get_event_interval()
 	if(event_control)
 		if(event_control.story_category & STORY_GOAL_GOOD)
-			delay *= 0.5
+			delay *= 0.75
 		else if(event_control.story_category & STORY_GOAL_BAD)
 			delay += ctl.get_scaled_grace()
 		else if(event_control.story_category & STORY_GOAL_NEUTRAL)
-			delay *= 0.75
+			delay *= 0.9
 		else if(event_control.story_category & STORY_GOAL_RANDOM)
 			delay *= rand(0.8, 1.2)  // Randomize timing for random events
 

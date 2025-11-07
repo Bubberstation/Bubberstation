@@ -192,7 +192,7 @@
 /// Effective event pace: mood frequency multiplier * (1 - adaptation). Lower = slower events,
 /// building tension toward global goals during crew adaptation phases.
 /datum/storyteller/proc/get_effective_pace()
-	return mood.get_event_frequency_multiplier() * (1.0 - adaptation_factor)
+	return mood.get_event_frequency_multiplier() * (1.5 - adaptation_factor)
 
 
 
@@ -258,6 +258,15 @@
 /datum/storyteller/proc/get_next_possible_event_time()
 	return (world.time - last_event_time) + get_event_interval()
 
+/datum/storyteller/proc/get_event_threat_points(category)
+	var/base_threat = threat_points * mood.get_threat_multiplier() * difficulty_multiplier * clamp(population_factor, 0.3, 1.0)
+	if(category == STORY_GOAL_GOOD)
+		return round(base_threat * 0.5 * (1.5 - adaptation_factor))
+	else if(category == STORY_GOAL_NEUTRAL)
+		return round(base_threat * 0.8 * (1.5 - adaptation_factor))
+	else if(category == STORY_GOAL_BAD)
+		return round(base_threat * 1.2 * (1.5 - adaptation_factor))
+	return clamp(round(base_threat), 0, max_threat_scale * 100)
 
 /**
  * Main thinker loop
