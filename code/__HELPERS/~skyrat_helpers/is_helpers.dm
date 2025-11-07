@@ -36,4 +36,4 @@
 #define isavian(A) (isteshari(A) || isvox(A) || isvoxprimalis(A) || HAS_TRAIT(A, TRAIT_AVIAN))
 
 // Xen mobs
-#define isxenmob(A) (istype(A, /mob/living/simple_animal/hostile/blackmesa/xen))
+#define isxenmob(A) (istype(A, /mob/living/basic/blackmesa/xen))

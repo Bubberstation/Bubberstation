@@ -33,18 +33,15 @@
 		stack_trace("adding a [parent.type] to a [receiver.type] when it shouldn't be!")
 
 	if(imprint_on_next_insertion) //We only want this set *once*
-		var/feature_name = receiver.dna.features[feature_key]
-		if (isnull(feature_name))
-		/* SKYRAT EDIT - Customization - ORIGINAL:
-			feature_name = receiver.dna.species.mutant_organs[parent.type]
-		set_appearance_from_name(feature_name)
-		*/ // SKYRAT EDIT START
-			if(!set_appearance_from_dna(receiver.dna))
-				set_appearance_from_name(receiver.dna.species.mutant_organs[parent.type] || pick(get_global_feature_list()))
-		else
-			set_appearance_from_name(feature_name)
-		// SKYRAT EDIT END
+		// BUBBER EDIT CHANGE BEGIN - try mutant_bodyparts method before features
 		imprint_on_next_insertion = FALSE
+		if(set_appearance_from_dna(receiver.dna))
+			return
+		var/feature_name = receiver.dna.features[feature_key] || receiver.dna.species.mutant_organs[parent.type]
+		if (isnull(feature_name))
+			feature_name = get_consistent_feature_entry(get_global_feature_list()) //fallback to something
+		set_appearance_from_name(feature_name)
+		// BUBBER EDIT CHANGE END
 
 /datum/bodypart_overlay/mutant/get_overlay(layer, obj/item/bodypart/limb)
 	inherit_color(limb) // If draw_color is not set yet, go ahead and do that

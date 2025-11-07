@@ -15,9 +15,9 @@
 /datum/supply_pack/security/ammo
 	contains = list(/obj/item/ammo_box/advanced/s12gauge/bean = 3,
 					/obj/item/ammo_box/advanced/s12gauge/rubber = 3,
-					/obj/item/ammo_box/c38/trac,
-					/obj/item/ammo_box/c38/hotshot,
-					/obj/item/ammo_box/c38/iceblox,
+					/obj/item/ammo_box/speedloader/c38/trac,
+					/obj/item/ammo_box/speedloader/c38/hotshot,
+					/obj/item/ammo_box/speedloader/c38/iceblox,
 				)
 	special = FALSE
 //This makes the Security ammo crate use the cool advanced ammo boxes instead of the old ones
@@ -101,3 +101,19 @@
 
 /datum/supply_pack/security/armory/laser_carbine
 	cost = CARGO_CRATE_VALUE * 7
+
+/datum/supply_pack/security/combine
+	name = "Civil Protection Uniforms"
+	desc = "Extra supplies we got from some weird old guy in a blue suit. Contains six uniforms, \
+		vests, boots, gloves and helmets."
+	cost = 1116
+	contraband = TRUE
+	contains = list(/obj/item/clothing/head/helmet/metrocophelmet = 6,
+					/obj/item/clothing/suit/armor/vest/alt/sec/metrocop = 6,
+					/obj/item/clothing/under/rank/security/metrocop = 6,
+					/obj/item/clothing/gloves/color/black/security/metrocop = 6,
+					/obj/item/clothing/shoes/jackboots/combine = 6,
+					/obj/item/trash/can = 3,
+				)
+	crate_name = "benefactor supply crate"
+	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE

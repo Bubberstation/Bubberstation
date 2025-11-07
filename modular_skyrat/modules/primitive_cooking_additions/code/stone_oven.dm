@@ -47,7 +47,6 @@
 	if(!open)
 		oven_tray.vis_flags |= VIS_HIDE
 	vis_contents += oven_tray
-	oven_tray.flags_1 |= IS_ONTOP_1
 	oven_tray.vis_flags |= VIS_INHERIT_PLANE
 	oven_tray.pixel_y = OVEN_TRAY_Y_OFFSET
 
