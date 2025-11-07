@@ -72,9 +72,9 @@
 		round_event.current_players = inputs.player_count()
 		round_event.__setup_for_storyteller(threat_points, additional_arguments, inputs, storyteller)
 		SSblackbox.record_feedback("tally", "event_ran", 1, "[round_event]")
+		testing("[time2text(world.time, "hh:mm:ss", 0)] [round_event.type]")
 
 	occurrences += 1
-	testing("[time2text(world.time, "hh:mm:ss", 0)] [round_event.type]")
 	triggering = TRUE
 	storyteller_override = TRUE
 
