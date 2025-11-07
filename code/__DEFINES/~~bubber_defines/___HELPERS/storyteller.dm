@@ -140,3 +140,11 @@
 
 	return cumulative[cumulative.len]["item"]
 
+/proc/get_nearest_atoms(atom/center, type = /atom/movable, range = 7)
+	var/list/candidates = SSspatial_grid.orthogonal_range_search(center, SPATIAL_GRID_CONTENTS_TYPE_ATMOS, range) // Using ATMOS as example; adjust type if needed
+	var/list/nearby_atoms = list()
+	var/turf/center_turf = get_turf(center)
+	for(var/atom/A in candidates)
+		if(istype(A, type) && get_dist(center_turf, get_turf(A)) <= range)
+			nearby_atoms += A
+	return nearby_atoms

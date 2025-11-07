@@ -22,7 +22,6 @@
 
 /datum/round_event/zzzzzt/__start_for_storyteller()
 	var/attempts = 0
-	var/mob/living/carbon/human/bad_luck
 	var/obj/structure/cable/closest
 	for(var/mob/living/carbon/human/unluck in get_alive_station_crew(only_crew = FALSE))
 		if(attempts > 30)
@@ -33,38 +32,47 @@
 			continue
 		if(!(unluck.mind.assigned_role.job_flags & JOB_CREW_MEMBER))
 			continue
-		if(!engaged_role_play_check(unluck, station = TRUE, dorms = TRUE))
+		if(engaged_role_play_check(unluck, station = TRUE, dorms = TRUE))
 			continue
 		closest = pick_closest_cable(unluck)
-		if(!closest)
+		var/power_sources = 0
+		for(var/obj/machinery/power/smes/cell in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/power/smes))
+			if(cell.powernet == closest.powernet)
+				power_sources += 1
+		if(!closest || power_sources == 0)
 			attempts++
 			continue
-		bad_luck = unluck
-	if(!bad_luck)
+	if(!closest)
 		return // This time - no bad luck for you
 
-	var/power_sources = 0
+	INVOKE_ASYNC(src, PROC_REF(do_zzzt), closest)
+
+
+/datum/round_event/zzzzzt/proc/do_zzzt(obj/structure/cable/source)
+	set waitfor = FALSE
+	var/list/closest_turfs = RANGE_TURFS(2, source)
+	var/safe_delay = 3 SECONDS
+	while(safe_delay > 0)
+		do_sparks(1, TRUE, pick(closest_turfs))
+		safe_delay -= 1
+		stoplag()
+
 	for(var/obj/machinery/power/smes/cell in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/power/smes))
-		if(cell.powernet == closest.powernet)
+		if(cell.powernet == source.powernet)
 			cell.adjust_charge(-maximum_charge)
 			if(cell.charge <= 0)
 				explosion(cell, 0, 0, 3, 2)
-			power_sources += 1
 
-	if(power_sources == 0)
-		return // No power sources on this network - no bad luck for you
-	explosion(closest, 0, 0, 1, 3)
-	for(var/mob/living/living_mob in range(closest, 2))
+	for(var/mob/living/living_mob in range(source, 2))
 		if(living_mob.stat == DEAD)
-			continue
-		if(!engaged_role_play_check(living_mob, station = TRUE, dorms = TRUE))
 			continue
 		// Zap them!
 		living_mob.electrocute_act(rand(60-70), src, 1.0, SHOCK_NOGLOVES | SHOCK_TESLA)
-		closest.Beam(living_mob, "lightning1", emissive = FALSE)
-		if(living_mob == bad_luck)
-			living_mob.visible_message("[living_mob] is struck by a massive power surge from the cable!", "You are struck by a massive power surge from the cable!")
-	qdel(closest)
+		source.Beam(living_mob, "lightning1", emissive = FALSE)
+
+	sleep(5)
+	explosion(source, 0, 0, 2, 3)
+	qdel(source)
 
 
 /datum/round_event/zzzzzt/proc/pick_closest_cable(mob/living/carbon/human/bad_luck)

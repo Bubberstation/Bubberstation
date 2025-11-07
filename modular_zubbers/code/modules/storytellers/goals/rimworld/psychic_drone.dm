@@ -58,7 +58,7 @@
 	var/turf/spawn_turf = get_safe_random_station_turf()
 	var/obj/structure/closet/supplypod/pod = podspawn(list(
 		"target" = spawn_turf,
-		"path" = /obj/structure/closet/supplypod/phychic_drone,
+		"path" = /obj/structure/closet/supplypod/podspawn/no_return,
 		"style" = /datum/pod_style/deathsquad,
 		"spawn" = drone_path,
 	))
@@ -72,14 +72,6 @@
 	notify_ghosts("Psychic drone deployed at [get_area(spawn_turf)].", spawn_turf, "Phychic drone deployed")
 	priority_announce("A psychic drone has been deployed at [get_area(spawn_turf)], broadcasting disruptive psionic noise across the station! It's option set to [drone.target_sex].", "Anomalies detected")
 
-
-/obj/structure/closet/supplypod/phychic_drone
-	name = "cruise missile"
-	desc = "A big ass missile, likely launched from some far-off deep space missile silo."
-	style = /datum/pod_style/syndicate
-	explosionSize = list(0,0,2,2)
-	specialised = TRUE
-	effectMissile = TRUE
 
 /mob/living/basic/psychic_drone
 	name = "psychic drone"

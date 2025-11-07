@@ -89,7 +89,7 @@
 	priority_announce("Sensors detect a surge of psychic energy enveloping the station. \
 					Crew members may experience mental disturbances, including mood shifts, \
 					hallucinations, nausea, and potential brain damage. \
-					Effects intensify the closer one is to space and double if directly on them.")
+					Effects intensify the closer one is to space and double if directly on them.", "Psychic Wave")
 
 
 /datum/round_event/storyteller_psychic_wave/__start_for_storyteller()
@@ -117,7 +117,7 @@
 	priority_announce("The psychic wave subsides, and the crew's minds begin to clear.")
 
 /datum/round_event/storyteller_psychic_wave/proc/update_physic_wave_effects()
-	var/list/crew = get_alive_station_crew()
+	var/list/crew = get_alive_station_crew(ignore_erp = FALSE, only_crew = FALSE)
 	for(var/mob/living/carbon/human/human in crew)
 		if(mental_damage && !human.mind)
 			continue
@@ -143,7 +143,7 @@
 
 
 /datum/round_event/storyteller_psychic_wave/proc/apply_psychic_hallucination_wave()
-	var/list/crew = get_alive_station_crew()
+	var/list/crew = get_alive_station_crew(ignore_erp = FALSE, only_crew = FALSE)
 	for(var/mob/living/carbon/human/human in crew)
 		if(mental_damage && !human.mind)
 			continue
@@ -191,7 +191,7 @@
 
 
 /datum/round_event/storyteller_psychic_wave/proc/apply_psychic_brain_damage_wave()
-	var/list/crew = get_alive_station_crew()
+	var/list/crew = get_alive_station_crew(ignore_erp = FALSE, only_crew = FALSE)
 	for(var/mob/living/carbon/human/human in crew)
 		if(mental_damage && !human.mind)
 			continue

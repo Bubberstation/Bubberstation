@@ -37,14 +37,6 @@
 /datum/round_event/camera_failure
 	allow_random = FALSE
 
-/datum/round_event_control/gravity_generator_blackout
-	id = "gravity_generator_error"
-	story_category = STORY_GOAL_NEUTRAL
-	tags = STORY_TAG_ESCALATION | STORY_TAG_AFFECTS_INFRASTRUCTURE | STORY_TAG_AFFECTS_ENVIRONMENT
-	typepath = /datum/round_event/gravity_generator_blackout
-	required_round_progress = STORY_ROUND_PROGRESSION_EARLY
-
-
 /datum/round_event_control/mass_hallucination
 	id = "mass_hallucination"
 	story_category = STORY_GOAL_NEUTRAL

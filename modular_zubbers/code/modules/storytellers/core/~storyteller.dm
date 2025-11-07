@@ -207,7 +207,7 @@
 /// Low population = longer intervals (fewer events), high population = shorter intervals (more frequent events)
 /datum/storyteller/proc/get_event_interval()
 	var/base = average_event_interval * get_effective_pace()
-	var/pop_mod = 1.4 - population_factor
+	var/pop_mod = 1.5 - population_factor
 	return round(base * pop_mod)
 
 
