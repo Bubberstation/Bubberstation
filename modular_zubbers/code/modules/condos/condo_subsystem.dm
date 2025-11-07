@@ -12,7 +12,7 @@ SUBSYSTEM_DEF(condos)
 		/obj/item/gun/energy/laser/captain, \
 		/obj/item/gun/energy/e_gun/hos, \
 		/obj/item/hand_tele, \
-		/obj/item/tank/jetpack/oxygen/captain, \
+		/obj/item/tank/jetpack/captain, \
 		/obj/item/clothing/shoes/magboots/advance, \
 		/obj/item/blueprints, \
 		/obj/item/clothing/accessory/medal/gold/captain, \
