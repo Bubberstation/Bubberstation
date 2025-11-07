@@ -1796,6 +1796,7 @@
 /obj/item/storage/medkit/o2,
 /obj/item/storage/medkit/o2,
 /obj/machinery/light/cold/directional/east,
+/obj/effect/mapping_helpers/airlock/red_alert_access,
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "aEy" = (
@@ -5847,6 +5848,7 @@
 	req_access = list("medical")
 	},
 /obj/structure/window/reinforced/spawner/directional/south,
+/obj/effect/mapping_helpers/airlock/red_alert_access,
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "bYp" = (
@@ -6344,6 +6346,7 @@
 /obj/item/kirbyplants/random,
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
+/obj/machinery/airalarm/directional/west,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "cin" = (
@@ -13379,6 +13382,7 @@
 /obj/effect/turf_decal/trimline/red/line{
 	dir = 8
 	},
+/obj/machinery/wall_healer/directional/east,
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/aft)
 "eEW" = (
@@ -13981,6 +13985,7 @@
 	name = "Chief Medical Officer's Fax Machine"
 	},
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted,
+/obj/machinery/airalarm/directional/south,
 /turf/open/floor/iron/white/side{
 	dir = 1
 	},
@@ -15484,6 +15489,13 @@
 /obj/effect/spawner/random/structure/table_or_rack,
 /turf/open/floor/plating,
 /area/station/maintenance/port/central)
+"fnK" = (
+/obj/machinery/duct,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/wall_healer/directional/east,
+/turf/open/floor/iron/freezer,
+/area/station/commons/toilet)
 "fnN" = (
 /obj/structure/flora/rock/pile/style_random,
 /obj/structure/marker_beacon/burgundy,
@@ -18986,7 +18998,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
-/obj/machinery/firealarm/directional/west,
+/obj/machinery/wall_healer/directional/west,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/engineering/main)
 "gwt" = (
@@ -19918,6 +19930,7 @@
 	req_access = list("medical")
 	},
 /obj/structure/window/reinforced/spawner/directional/south,
+/obj/effect/mapping_helpers/airlock/red_alert_access,
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "gNx" = (
@@ -22980,11 +22993,14 @@
 /turf/open/floor/carpet/royalblack,
 /area/station/service/library)
 "hVo" = (
-/obj/machinery/vending/wardrobe/medi_wardrobe,
 /obj/machinery/camera/directional/north{
 	c_tag = "Medbay - Medbay Port Wing";
 	network = list("ss13","medbay")
 	},
+/obj/effect/turf_decal/tile/blue/half/contrasted{
+	dir = 1
+	},
+/obj/machinery/recharge_station,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "hVC" = (
@@ -24464,6 +24480,7 @@
 /obj/item/stack/sheet/iron/fifty,
 /obj/item/stack/sheet/iron/fifty,
 /obj/machinery/light/directional/east,
+/obj/machinery/wall_healer/directional/east,
 /turf/open/floor/iron,
 /area/station/construction/mining/aux_base)
 "ivx" = (
@@ -25371,7 +25388,6 @@
 /area/station/engineering/atmos/storage/gas)
 "iLN" = (
 /obj/machinery/modular_computer/preset/id,
-/obj/machinery/airalarm/directional/north,
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted{
 	dir = 1
 	},
@@ -25482,6 +25498,7 @@
 /obj/structure/window/reinforced/spawner/directional/north,
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/structure/cable,
+/obj/effect/mapping_helpers/apc/cell_10k,
 /turf/open/floor/catwalk_floor/titanium,
 /area/station/ai_monitored/turret_protected/ai)
 "iPI" = (
@@ -28263,6 +28280,7 @@
 	req_access = list("medical")
 	},
 /obj/structure/window/reinforced/spawner/directional/south,
+/obj/effect/mapping_helpers/airlock/red_alert_access,
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "jOp" = (
@@ -28353,10 +28371,10 @@
 "jQf" = (
 /obj/structure/bed,
 /obj/item/bedsheet,
-/obj/machinery/airalarm/directional/east,
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 4
 	},
+/obj/machinery/wall_healer/directional/east,
 /turf/open/floor/iron/white,
 /area/station/security/medical)
 "jQx" = (
@@ -29040,6 +29058,18 @@
 /obj/effect/spawner/random/structure/closet_empty/crate,
 /turf/open/floor/iron/smooth_large,
 /area/station/cargo/warehouse)
+"kcc" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/duct,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/tile/blue/half/contrasted{
+	dir = 8
+	},
+/obj/machinery/wall_healer/directional/west,
+/turf/open/floor/iron/white,
+/area/station/medical/medbay/central)
 "kcg" = (
 /turf/open/floor/plating/airless,
 /area/station/asteroid)
@@ -29115,6 +29145,7 @@
 	c_tag = "Medbay - Break Room";
 	network = list("ss13","medbay")
 	},
+/obj/item/radio/intercom/directional/west,
 /turf/open/floor/iron/white/smooth_large,
 /area/station/medical/break_room)
 "kdi" = (
@@ -29858,6 +29889,7 @@
 	},
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/effect/turf_decal/tile/dark_blue/fourcorners,
+/obj/effect/mapping_helpers/airlock/red_alert_access,
 /turf/open/floor/iron,
 /area/station/ai_monitored/command/storage/eva)
 "koU" = (
@@ -31138,10 +31170,8 @@
 /turf/open/floor/wood/large,
 /area/station/service/library/lounge)
 "kKA" = (
-/obj/machinery/modular_computer/preset/cargochat/medical{
-	dir = 1
-	},
 /obj/machinery/firealarm/directional/south,
+/obj/machinery/vending/wardrobe/medi_wardrobe,
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "kKJ" = (
@@ -31856,6 +31886,7 @@
 /obj/effect/turf_decal/trimline/green/end{
 	dir = 4
 	},
+/obj/machinery/wall_healer/directional/west,
 /turf/open/floor/wood/large,
 /area/station/hallway/secondary/service)
 "kUY" = (
@@ -33717,6 +33748,13 @@
 	},
 /turf/open/floor/iron/herringbone,
 /area/station/hallway/primary/central)
+"lAX" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/machinery/wall_healer/directional/east,
+/turf/open/floor/iron,
+/area/station/hallway/secondary/entry)
 "lBb" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -36106,10 +36144,10 @@
 	pixel_x = 3;
 	pixel_y = 2
 	},
-/obj/machinery/airalarm/directional/south,
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
 	},
+/obj/machinery/wall_healer/directional/south,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "mpe" = (
@@ -36261,6 +36299,15 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
+"mqW" = (
+/obj/machinery/duct,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/blue/anticorner/contrasted{
+	dir = 1
+	},
+/turf/open/floor/iron/white,
+/area/station/medical/medbay/central)
 "mqX" = (
 /obj/machinery/ai_slipper{
 	uses = 10
@@ -38004,6 +38051,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/firedoor,
 /obj/effect/landmark/navigate_destination/eva,
+/obj/effect/mapping_helpers/airlock/red_alert_access,
 /turf/open/floor/iron,
 /area/station/ai_monitored/command/storage/eva)
 "mYq" = (
@@ -38930,6 +38978,7 @@
 	name = "Secure Medical Storage";
 	req_access = list("medical")
 	},
+/obj/effect/mapping_helpers/airlock/red_alert_access,
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "non" = (
@@ -39682,6 +39731,7 @@
 /area/station/service/kitchen/diner)
 "nAH" = (
 /obj/machinery/light/directional/north,
+/obj/machinery/wall_healer/directional/north,
 /turf/open/floor/carpet/red,
 /area/station/hallway/secondary/exit/departure_lounge)
 "nAN" = (
@@ -40081,10 +40131,11 @@
 /turf/open/floor/iron/dark/textured,
 /area/station/security/interrogation)
 "nHH" = (
-/obj/machinery/recharge_station,
-/obj/effect/turf_decal/tile/blue/half/contrasted{
+/obj/effect/turf_decal/tile/blue/anticorner/contrasted{
 	dir = 4
 	},
+/obj/structure/table/glass,
+/obj/machinery/cell_charger,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "nHK" = (
@@ -40554,6 +40605,13 @@
 /obj/structure/table/wood,
 /turf/open/floor/plating,
 /area/station/maintenance/fore/greater)
+"nPa" = (
+/obj/effect/turf_decal/tile/purple/half/contrasted{
+	dir = 4
+	},
+/obj/machinery/wall_healer/directional/east,
+/turf/open/floor/iron,
+/area/station/hallway/primary/central/fore)
 "nPd" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/iron,
@@ -41145,6 +41203,14 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/port/greater)
+"nYJ" = (
+/obj/machinery/duct,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/machinery/wall_healer/free/directional/east,
+/turf/open/floor/iron/cafeteria,
+/area/station/security/prison)
 "nYK" = (
 /obj/machinery/light/small/directional/west,
 /obj/structure/dresser,
@@ -42151,6 +42217,7 @@
 /area/station/security/lockers)
 "opV" = (
 /obj/machinery/light/directional/east,
+/obj/machinery/wall_healer/directional/east,
 /turf/open/floor/iron,
 /area/station/commons/fitness)
 "opX" = (
@@ -43599,6 +43666,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/light/warm/directional/south,
+/obj/machinery/wall_healer/directional/south,
 /turf/open/floor/iron,
 /area/station/commons/dorms)
 "oOW" = (
@@ -43810,7 +43878,7 @@
 "oTZ" = (
 /obj/structure/sink/directional/north,
 /obj/structure/mirror/directional/south,
-/obj/item/radio/intercom/directional/west,
+/obj/machinery/wall_healer/directional/west,
 /turf/open/floor/iron/freezer,
 /area/station/commons/toilet/auxiliary)
 "oUh" = (
@@ -44885,7 +44953,7 @@
 	},
 /obj/item/clothing/neck/large_scarf,
 /obj/effect/landmark/start/medical_doctor,
-/obj/item/radio/intercom/directional/west,
+/obj/machinery/wall_healer/directional/west,
 /turf/open/floor/iron/white/smooth_large,
 /area/station/medical/break_room)
 "pma" = (
@@ -46408,6 +46476,7 @@
 	},
 /obj/item/gun/syringe,
 /obj/item/gun/syringe,
+/obj/structure/fireaxecabinet/jawsofrecovery/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "pPI" = (
@@ -46638,6 +46707,7 @@
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 4
 	},
+/obj/machinery/airalarm/directional/east,
 /turf/open/floor/iron/white,
 /area/station/security/medical)
 "pUc" = (
@@ -46974,7 +47044,7 @@
 /area/station/science/xenobiology)
 "qbz" = (
 /obj/structure/table/glass,
-/obj/machinery/cell_charger,
+/obj/effect/spawner/random/medical/medkit,
 /turf/open/floor/iron/white/smooth_large,
 /area/station/medical/treatment_center)
 "qbF" = (
@@ -54258,7 +54328,6 @@
 /area/station/hallway/primary/central/aft)
 "sxC" = (
 /obj/item/clothing/head/cone,
-/obj/structure/sign/warning/secure_area/directional/south,
 /obj/effect/turf_decal/tile/yellow,
 /turf/open/floor/iron,
 /area/station/engineering/lobby)
@@ -57821,6 +57890,7 @@
 /obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 4
 	},
+/obj/machinery/wall_healer/directional/east,
 /turf/open/misc/asteroid,
 /area/station/cargo/miningdock)
 "tIm" = (
@@ -61598,6 +61668,7 @@
 /obj/machinery/door/firedoor,
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/access/all/medical/general,
+/obj/effect/mapping_helpers/airlock/red_alert_access,
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "vdm" = (
@@ -61733,6 +61804,9 @@
 /area/station/biodome/aft)
 "vfF" = (
 /obj/item/radio/intercom/directional/south,
+/obj/machinery/modular_computer/preset/cargochat/medical{
+	dir = 1
+	},
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "vfK" = (
@@ -65093,6 +65167,7 @@
 /obj/machinery/camera/directional/north{
 	c_tag = "Engineering - Engine Access"
 	},
+/obj/machinery/firealarm/directional/north,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/engineering/main)
 "wms" = (
@@ -67780,6 +67855,7 @@
 "xfv" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible,
 /obj/machinery/light/cold/directional/west,
+/obj/machinery/wall_healer/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/medical/cryo)
 "xfB" = (
@@ -68609,6 +68685,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/dark_blue/fourcorners,
+/obj/effect/mapping_helpers/airlock/red_alert_access,
 /turf/open/floor/iron,
 /area/station/ai_monitored/command/storage/eva)
 "xvA" = (
@@ -68854,6 +68931,7 @@
 /obj/effect/turf_decal/tile/brown/half/contrasted{
 	dir = 1
 	},
+/obj/machinery/wall_healer/directional/north,
 /turf/open/floor/iron,
 /area/station/cargo/storage)
 "xzR" = (
@@ -70890,6 +70968,7 @@
 /obj/effect/turf_decal/trimline/purple/filled/warning{
 	dir = 4
 	},
+/obj/machinery/wall_healer/directional/south,
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
 "yin" = (
@@ -121438,7 +121517,7 @@ scm
 jjc
 lIL
 nEZ
-nEZ
+nYJ
 cBC
 tIm
 hnv
@@ -151178,7 +151257,7 @@ cFR
 cFR
 cFR
 wXS
-cFR
+lAX
 cFR
 cFR
 ikk
@@ -156601,7 +156680,7 @@ puC
 puC
 oRa
 rAg
-jJt
+eFt
 vfF
 yjg
 cEI
@@ -156858,7 +156937,7 @@ pPs
 dfH
 xXK
 jBW
-eFt
+jJt
 kKA
 yjg
 gTR
@@ -157368,7 +157447,7 @@ nUN
 nUN
 nUN
 fNI
-qnj
+mqW
 qnj
 qnj
 hUD
@@ -157378,7 +157457,7 @@ mld
 vWT
 soa
 qzL
-qzL
+kcc
 qzL
 kHQ
 cit
@@ -158883,7 +158962,7 @@ egk
 tTk
 dWa
 oup
-dWa
+fnK
 dWa
 dWa
 oMa
@@ -173518,7 +173597,7 @@ qpK
 vpl
 qjE
 qjE
-qjE
+nPa
 qjE
 cwW
 sro
