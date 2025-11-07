@@ -212,8 +212,6 @@
 /datum/bounty/item/assistant/fish/fluid/can_ship_fish(obj/item/fish/fishie)
 	return (fluid_type in GLOB.fish_compatible_fluid_types[fishie.required_fluid_type])
 
-Soap, Clown Box, Cheese Honkers, Extendo-Hand, Donk-Pockets, Dead Mice, Raw Corgi Meat, Geraniums, Poppies, Potted Plants
-
 // Bubber Bounties
 
 /datum/bounty/item/assistant/towels
