@@ -1,5 +1,4 @@
 // Migrated TG Bounties
-// Removed: Soap, Clown Box, Cheese Honkers, Extendo-Hand, Donk-Pockets, Dead Mice, Raw Corgi Meat
 
 /datum/bounty/item/assistant/strange_object
 	name = "Strange Object"
@@ -309,5 +308,3 @@ Soap, Clown Box, Cheese Honkers, Extendo-Hand, Donk-Pockets, Dead Mice, Raw Corg
 	description = "It'll be better if we don't elaborate on why this is needed. Send Central Command a trapdoor kit and be rewarded."
 	reward = CARGO_CRATE_VALUE * 8
 	wanted_types = list(/obj/item/trapdoor_kit = TRUE)
-
-// Tested: Watermelon, Toy Swords, Mousetraps, Wired Glass Tiles, Bolas, Towels, Dog Bed, Clipboards, Cargo Shelving, Crude Blueprints, motorized Wheelchair, Trapdoor Kit.
