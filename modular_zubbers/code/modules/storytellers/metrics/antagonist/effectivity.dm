@@ -182,9 +182,12 @@
 	var/base = 1
 	var/datum/component/antag_metric_tracker/M = GetComponent(/datum/component/antag_metric_tracker)
 	var/datum/team/nuclear/nuke_team = get_team()
-	var/obj/item/nuclear_challenge/challenge = nuke_team.war_button_ref.resolve()
-	var/war_declared = !!challenge?.declaring_war
 
+	var/war_declared = FALSE
+	if(!nuke_team)
+		var/obj/item/nuclear_challenge/challenge = nuke_team.war_button_ref.resolve()
+		if(challenge)
+			war_declared = !!challenge?.declaring_war
 	return clamp(base + (M.activity_time * 0.01) * (M.kills * 0.2) + (war_declared ? 0.5 : 0), 0, 2)
 
 /datum/antagonist/nukeop/get_weight()

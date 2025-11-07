@@ -56,6 +56,14 @@
 			try_plan_event(evt, last_time + replan_delay, TRUE)
 			continue
 
+		var/should_continue = TRUE
+		for(var/datum/round_event_control/fired in fired_events) // Prevent multiple antagonist events in one think cycle
+			if((fired.story_category & STORY_GOAL_ANTAGONIST) && (evt.story_category & STORY_GOAL_ANTAGONIST))
+				should_continue = FALSE
+				break
+		if(!should_continue)
+			continue
+
 		entry[ENTRY_STATUS] = STORY_GOAL_FIRING
 		var/threat_points_for_event = ctl.get_event_threat_points(evt.story_category)
 		if(evt.run_event_as_storyteller(inputs, ctl, round(threat_points_for_event)))

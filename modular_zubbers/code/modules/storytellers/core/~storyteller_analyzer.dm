@@ -70,15 +70,12 @@
 	SEND_SIGNAL(src, COMSIG_STORYTELLER_RUN_METRICS)
 
 	var/start_time = world.time
-	if(scan_flags & RESCAN_STATION_VALUE)
-		compute_station_value()
 	if(scan_flags & RESCAN_STATION_INTEGRITY)
 		get_station_integrity(TRUE)
 
 	COOLDOWN_START(src, inputs_cache_duration, cache_duration)
 	var/datum/storyteller_inputs/inputs = new
 	inputs.station_state = get_station_integrity()
-	inputs.station_value = SSstorytellers.station_value
 
 	var/metrics_count = 0
 	for(var/datum/storyteller_metric/check in check_list)
@@ -155,31 +152,6 @@
 		return cached_state
 	return actual_state
 
-
-// Very rough: sum of atoms approximate value; can be refined later
-// This is a full recalculation; use register_atom_for_storyteller for incremental updates
-/datum/storyteller_analyzer/proc/compute_station_value()
-	set waitfor = FALSE
-
-	var/raw_total = 0
-	for(var/area/A in GLOB.the_station_areas)
-		for(var/atom/AM in get_area_turfs(A))
-			raw_total += AM.story_value()
-			CHECK_TICK
-		CHECK_TICK
-
-
-	var/mult = multiplier * owner.mood.get_value_multiplier()
-	SSstorytellers.station_value = raw_total * mult
-
-
-/datum/storyteller_analyzer/proc/register_atom_for_storyteller(atom/A)
-	// Incremental addition for new atoms (e.g., spawned during round)
-	// Avoids full recompute every tick
-	var/value = A.story_value() * multiplier
-	if(value <= 0)
-		return
-	SSstorytellers.station_value += value
 
 /datum/storyteller_analyzer/proc/calculate_threat_level(antag_weight, crew_weight)
 	if(crew_weight == 0)

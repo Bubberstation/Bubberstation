@@ -32,12 +32,13 @@ GLOBAL_LIST_INIT(meteors_cost, list(
 
 	min_players = 15
 	required_round_progress = STORY_ROUND_PROGRESSION_MID
+	map_flags = EVENT_SPACE_ONLY
 
-/datum/round_event_control/meteor_wave/is_avaible(datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
+/datum/round_event_control/meteor_wave/on_planned(fire_time)
 	. = ..()
-	if(SSmapping.is_planetary())
-		. = FALSE
-	return .
+	priority_announce("It has been determined that a close proximity of [station_name()] to an asteroid field has been detected. \
+						The potential consequences of an impact collision must be considered.", "Orbital Observation Center")
+
 
 /datum/round_event/storyteller_meteors
 	allow_random = FALSE
@@ -94,7 +95,7 @@ GLOBAL_LIST_INIT(meteors_cost, list(
 		weighted_meteor_types = GLOB.meteors_catastrophic.Copy()
 		wave_cooldown = 30 SECONDS
 		wave_budget *= 2
-	end_when = wave_cooldown * wave_count
+	end_when = wave_cooldown * (wave_count / 10)
 
 /datum/round_event/storyteller_meteors/__announce_for_storyteller()
 	var/msg = ""

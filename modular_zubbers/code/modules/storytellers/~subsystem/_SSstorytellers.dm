@@ -29,9 +29,6 @@ SUBSYSTEM_DEF(storytellers)
 
 	var/list/storyteller_vote_uis = list()
 
-	// The current station value
-	var/station_value = 0
-
 	var/list/events_by_category = list()
 	/// Goal registry built from subtypes
 	var/list/events_by_id = list()
@@ -291,17 +288,6 @@ SUBSYSTEM_DEF(storytellers)
 /datum/controller/subsystem/storytellers/proc/disable_ICES()
 	SSevents.flags = SS_NO_FIRE
 	message_admins(span_bolditalic("ICES and random events were disabled by Storyteller"))
-
-/datum/controller/subsystem/storytellers/proc/register_atom_for_storyteller(atom/A)
-	if(!active)
-		return
-	if(isnull(A) || QDELETED(A))
-		return
-	var/value = A.story_value()
-	if(isnull(value) || value <= 0)
-		return
-	active.analyzer.register_atom_for_storyteller(A)
-
 
 /datum/controller/subsystem/storytellers/proc/active_goal_is_achieved(list/context)
 	return FALSE  // Stub: removed active_goal, as per chain refactor

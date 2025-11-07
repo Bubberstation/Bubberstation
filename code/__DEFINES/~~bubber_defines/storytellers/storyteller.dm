@@ -1,38 +1,3 @@
-// Story Values for Base Atoms
-// These define the baseline "story value" for different types of atoms in the game.
-// Story value represents how significant an atom is to the narrative, influencing
-// event planning, analysis, and balancing in the storyteller system.
-// Higher values indicate greater importance (e.g., humans are more valuable than basic atoms).
-
-// Basic atom (generic, low narrative impact)
-#define STORY_VALUE_BASE_ATOM 1
-// Turfs (floors, walls, etc., foundational but replaceable)
-#define STORY_VALUE_BASE_TURF 10
-// Items (tools, objects, moderate utility)
-#define STORY_VALUE_BASE_ITEM 10
-// Machines (complex systems like engines or fabricators)
-#define STORY_VALUE_BASE_MACHINE 100
-// Structures (simple builds, low impact)
-#define STORY_VALUE_BASE_STRUCTURE 1
-// Mobs (living entities, high narrative potential)
-#define STORY_VALUE_BASE_MOB 100
-// Carbon-based life (organic mobs, similar to mobs)
-#define STORY_VALUE_BASE_CARBON 100
-// Humans (key players, highest base value for crew)
-#define STORY_VALUE_BASE_HUMAN 150
-
-// Registration Macro for Storyteller
-// This macro registers an atom with the storyteller subsystem (SSstorytellers).
-// Used to track atoms for analysis, event targeting, and value computation.
-// Call this when spawning or initializing relevant atoms.
-
-#define REGISTER_ATOM_FOR_STORYTELLER(A) do { \
-	SSstorytellers.register_atom_for_storyteller(A); \
-} while(FALSE)  // Wrapped in do-while for safe multi-line usage
-
-
-
-
 // Weights for Entities in Balancing
 // These weights are used in the balancer subsystem to compute relative importance
 // of entities (e.g., players vs. antagonists) when updating plans or adjusting difficulty.
@@ -190,7 +155,6 @@ DEFINE_BITFIELD(story_job_flags, list(
 #define STORY_TAG_DEESCALATION (1 << 1)
 // Affects Crew Health: Goals impacting crew well-being, such as healing wounds, spreading diseases, or causing harm.
 #define STORY_TAG_AFFECTS_CREW_HEALTH (1 << 2)
-
 // Affects Crew Mind: Goals impacting mental state (hallucinations, confusion, etc.)
 #define STORY_TAG_AFFECTS_CREW_MIND (1 << 3)
 // Affects Antagonist: Goals influencing antagonists, like boosting/hindering their power or triggering antag-related events.

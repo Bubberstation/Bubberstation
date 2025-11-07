@@ -64,22 +64,23 @@
 
 /datum/round_event_control/proc/run_event_as_storyteller(datum/storyteller_inputs/inputs, datum/storyteller/storyteller, threat_points)
 	pre_storyteller_run(inputs, storyteller, threat_points)
-	var/datum/round_event/round_event = new typepath(TRUE, src)
-	if(SEND_SIGNAL(SSdcs, COMSIG_GLOB_STORYTELLER_RUN_EVENT, round_event) && CANCEL_STORYTELLER_EVENT)
-		return FALSE
 
-	round_event.__setup_for_storyteller(threat_points, additional_arguments, inputs, storyteller)
-	round_event.current_players = inputs.player_count()
+	if(typepath) // For antagonist and other events that spawn a round_event datum
+		var/datum/round_event/round_event = new typepath(TRUE, src)
+		if(SEND_SIGNAL(SSdcs, COMSIG_GLOB_STORYTELLER_RUN_EVENT, round_event) && CANCEL_STORYTELLER_EVENT)
+			return FALSE
+		round_event.current_players = inputs.player_count()
+		round_event.__setup_for_storyteller(threat_points, additional_arguments, inputs, storyteller)
+		SSblackbox.record_feedback("tally", "event_ran", 1, "[round_event]")
+
 	occurrences += 1
 	testing("[time2text(world.time, "hh:mm:ss", 0)] [round_event.type]")
 	triggering = TRUE
 	storyteller_override = TRUE
+
 	log_storyteller("[storyteller.name] run event [name]")
-	if(alert_observers)
-		round_event.announce_deadchat(FALSE, "by [storyteller.name]")
+	deadchat_broadcast("[storyteller.name] has just fired <b>[name]</b> with <b>[threat_points]</b> threat points", message_type=DEADCHAT_ANNOUNCEMENT)
 	message_admins("[span_notice("[storyteller.name] fired event: ")] [name || id]. with threat points: [threat_points]")
-	deadchat_broadcast("[span_notice("[storyteller.name] fired event: ")] [name || id]. with threat points: [threat_points])")
-	SSblackbox.record_feedback("tally", "event_ran", 1, "[round_event]")
 	return TRUE
 
 // Base for storyteller antagonist events
@@ -164,6 +165,8 @@
 	if(is_banned_from(candidate, role_flag))
 		return FALSE
 	if(!(role_flag in candidate.client.prefs.be_special))
+		return FALSE
+	if(candidate.is_antag())
 		return FALSE
 
 	if(isliving(candidate))
@@ -268,6 +271,7 @@
 					if(!(L in selected))
 						selected += L
 						to_chat(L, span_notice("You have accepted the call to become a [antag_name]. Keep it secret!"))
+						log_storyteller("[key_name(L)] accepted [storyteller.name]'s call to become [antag_name].")
 		else
 			selected += yes_crew // The chosen one
 
@@ -300,25 +304,27 @@
 
 // Run: spawn with checks
 /datum/round_event_control/antagonist/run_event_as_storyteller(datum/storyteller_inputs/inputs, datum/storyteller/storyteller, threat_points)
+	. = ..()
 	INVOKE_ASYNC(src, PROC_REF(run_antagonist_event), inputs, storyteller, threat_points)
 	return TRUE
 
 /datum/round_event_control/antagonist/proc/run_antagonist_event(datum/storyteller_inputs/inputs, datum/storyteller/storyteller, threat_points)
 	set waitfor = FALSE
 
-	pre_storyteller_run(inputs, storyteller, threat_points)
 	while(delayed)
 		CHECK_TICK
-		sleep(world.tick_lag)
-
-	if(canceled)
-		message_admins("[storyteller.name]'s [antag_name] event canceled by admin.")
-		return
-	triggering = TRUE
-	storyteller_override = TRUE
 
 	if(!candidate_selected || !length(candidates))
+		deadchat_broadcast("[storyteller.name]'s [antag_name] event failed to spawn: no candidates selected", message_type=DEADCHAT_ANNOUNCEMENT)
+		message_admins("[storyteller.name]'s [antag_name] event failed to spawn: no valid candidates.")
 		return
+
+	if(canceled)
+		deadchat_broadcast("[storyteller.name]'s [antag_name] event was canceled", message_type=DEADCHAT_ANNOUNCEMENT)
+		message_admins("[storyteller.name]'s [antag_name] event canceled by admin.")
+		return
+
+
 	for(var/mob/candidate as anything in candidates)
 		if(!candidate || !can_be_candidate(candidate, inputs, storyteller))
 			continue
@@ -326,21 +332,26 @@
 		if(!antag_mind.current)
 			antag_mind.current = candidate
 		antag_mind.active = TRUE
-		antag_mind.add_antag_datum(antag_datum_type)
 		// Objectives
-		generate_objectives(antag_mind, inputs, storyteller)
 		if(isobserver(candidate))
 			var/mob/living/new_mob = create_ruleset_body()
 			if(new_mob)
 				candidate = new_mob
 				antag_mind.transfer_to(candidate)
+		antag_mind.add_antag_datum(antag_datum_type)
+		if(length(antag_objectives))
+			generate_objectives(antag_mind, inputs, storyteller)
+
 		spawned_antags += antag_mind
 		log_game("[key_name(candidate)] became [antag_name] via [storyteller.name]")
-		if(announce_to_ghosts)
-			deadchat_broadcast("[storyteller.name] birthed a [antag_name]: [candidate.real_name] ([candidate.key])")
+
+
 	if(post_spawn_callback)
 		call(src, post_spawn_callback)(inputs, storyteller, spawned_antags)
 	after_antagonist_spawn(inputs, storyteller, spawned_antags)
+
+
+
 
 /datum/round_event_control/antagonist/proc/after_antagonist_spawn(datum/storyteller_inputs/inputs, datum/storyteller/storyteller, list/spawned_antags)
 	return
