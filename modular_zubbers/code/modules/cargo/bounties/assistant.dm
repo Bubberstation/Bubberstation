@@ -1,4 +1,6 @@
-/*
+// Migrated TG Bounties
+// Removed: Soap, Clown Box, Cheese Honkers, Extendo-Hand, Donk-Pockets, Dead Mice, Raw Corgi Meat
+
 /datum/bounty/item/assistant/strange_object
 	name = "Strange Object"
 	description = "Nanotrasen has taken an interest in strange objects. Find one in maintenance, and ship it off to CentCom right away."
@@ -26,13 +28,6 @@
 	description = "CentCom demands a stunprod to use against dissidents. Craft one, then ship it."
 	reward = CARGO_CRATE_VALUE * 2.6
 	wanted_types = list(/obj/item/melee/baton/security/cattleprod = TRUE)
-
-/datum/bounty/item/assistant/soap
-	name = "Soap"
-	description = "Soap has gone missing from CentCom's bathrooms and nobody knows who took it. Replace it and be the hero CentCom needs."
-	reward = CARGO_CRATE_VALUE * 4
-	required_count = 3
-	wanted_types = list(/obj/item/soap = TRUE)
 
 /datum/bounty/item/assistant/spear
 	name = "Spears"
@@ -79,31 +74,12 @@
 	reward = CARGO_CRATE_VALUE * 4
 	wanted_types = list(/obj/structure/statue = TRUE)
 
-/datum/bounty/item/assistant/clown_box
-	name = "Clown Box"
-	description = "The universe needs laughter. Stamp cardboard with a clown stamp and ship it out."
-	reward = CARGO_CRATE_VALUE * 3
-	wanted_types = list(/obj/item/storage/box/clown = TRUE)
-
-/datum/bounty/item/assistant/cheesiehonkers
-	name = "Cheesie Honkers"
-	description = "Apparently the company that makes Cheesie Honkers is going out of business soon. CentCom wants to stock up before it happens!"
-	reward = CARGO_CRATE_VALUE * 2.4
-	required_count = 3
-	wanted_types = list(/obj/item/food/cheesiehonkers = TRUE)
-
 /datum/bounty/item/assistant/baseball_bat
 	name = "Baseball Bat"
 	description = "Baseball fever is going on at CentCom! Be a dear and ship them some baseball bats, so that management can live out their childhood dream."
 	reward = CARGO_CRATE_VALUE * 4
 	required_count = 5
 	wanted_types = list(/obj/item/melee/baseball_bat = TRUE)
-
-/datum/bounty/item/assistant/extendohand
-	name = "Extendo-Hand"
-	description = "Commander Betsy is getting old, and can't bend over to get the telescreen remote anymore. Management has requested an extendo-hand to help her out."
-	reward = CARGO_CRATE_VALUE * 5
-	wanted_types = list(/obj/item/extendohand = TRUE)
 
 /datum/bounty/item/assistant/donut
 	name = "Donuts"
@@ -112,25 +88,11 @@
 	required_count = 6
 	wanted_types = list(/obj/item/food/donut = TRUE)
 
-/datum/bounty/item/assistant/donkpocket
-	name = "Donk-Pockets"
-	description = "Consumer safety recall: Warning. Donk-Pockets manufactured in the past year contain hazardous lizard biomatter. Return units to CentCom immediately."
-	reward = CARGO_CRATE_VALUE * 6
-	required_count = 10
-	wanted_types = list(/obj/item/food/donkpocket = TRUE)
-
 /datum/bounty/item/assistant/monkey_hide
 	name = "Monkey Hide"
 	description = "One of the scientists at CentCom is interested in testing products on monkey skin. Your mission is to acquire monkey's hide and ship it."
 	reward = CARGO_CRATE_VALUE * 3
 	wanted_types = list(/obj/item/stack/sheet/animalhide/monkey = TRUE)
-
-/datum/bounty/item/assistant/dead_mice
-	name = "Dead Mice"
-	description = "Station 14 ran out of freeze-dried mice. Ship some fresh ones so their janitor doesn't go on strike."
-	reward = CARGO_CRATE_VALUE * 10
-	required_count = 5
-	wanted_types = list(/obj/item/food/deadmouse = TRUE)
 
 /datum/bounty/item/assistant/comfy_chair
 	name = "Comfy Chairs"
@@ -138,32 +100,6 @@
 	reward = CARGO_CRATE_VALUE * 3
 	required_count = 5
 	wanted_types = list(/obj/structure/chair/comfy = TRUE)
-
-/datum/bounty/item/assistant/geranium
-	name = "Geraniums"
-	description = "Commander Zot has the hots for Commander Zena. Send a shipment of geraniums - her favorite flower - and he'll happily reward you."
-	reward = CARGO_CRATE_VALUE * 8
-	required_count = 3
-	wanted_types = list(/obj/item/food/grown/poppy/geranium = TRUE)
-	include_subtypes = FALSE
-
-/datum/bounty/item/assistant/poppy
-	name = "Poppies"
-	description = "Commander Zot really wants to sweep Security Officer Olivia off her feet. Send a shipment of Poppies - her favorite flower - and he'll happily reward you."
-	reward = CARGO_CRATE_VALUE * 2
-	required_count = 3
-	wanted_types = list(/obj/item/food/grown/poppy = TRUE)
-	include_subtypes = FALSE
-
-/datum/bounty/item/assistant/potted_plants
-	name = "Potted Plants"
-	description = "Central Command is looking to commission a new BirdBoat-class station. You've been ordered to supply the potted plants."
-	reward = CARGO_CRATE_VALUE * 4
-	required_count = 3
-	wanted_types = list(
-		/obj/item/kirbyplants = TRUE,
-		/obj/item/kirbyplants/synthetic = FALSE
-		)
 
 /datum/bounty/item/assistant/monkey_cubes
 	name = "Monkey Cubes"
@@ -175,15 +111,9 @@
 /datum/bounty/item/assistant/ied
 	name = "IED"
 	description = "Nanotrasen's maximum security prison at CentCom is undergoing personnel training. Ship a handful of IEDs to serve as a training tools."
-	reward = CARGO_CRATE_VALUE * 4
+	reward = CARGO_CRATE_VALUE * 6 // Boosted from default since they've been made harder to make.
 	required_count = 3
 	wanted_types = list(/obj/item/grenade/iedcasing = TRUE)
-
-/datum/bounty/item/assistant/corgimeat
-	name = "Raw Corgi Meat"
-	description = "The Syndicate recently stole all of CentCom's corgi meat. Ship out a replacement immediately."
-	reward = CARGO_CRATE_VALUE * 6
-	wanted_types = list(/obj/item/food/meat/slab/corgi = TRUE)
 
 /datum/bounty/item/assistant/toys
 	name = "Arcade Toys"
@@ -203,7 +133,7 @@
 	name = "Crayons"
 	description = "Dr. Jones's kid ate all of our crayons again. Please send us yours."
 	reward = CARGO_CRATE_VALUE * 4
-	required_count = 8
+	required_count = 7 // Edited down to 7. There's only 7 in a pack.
 	wanted_types = list(/obj/item/toy/crayon = TRUE)
 
 /datum/bounty/item/assistant/water_tank
@@ -282,4 +212,102 @@
 
 /datum/bounty/item/assistant/fish/fluid/can_ship_fish(obj/item/fish/fishie)
 	return (fluid_type in GLOB.fish_compatible_fluid_types[fishie.required_fluid_type])
-*/
+
+Soap, Clown Box, Cheese Honkers, Extendo-Hand, Donk-Pockets, Dead Mice, Raw Corgi Meat, Geraniums, Poppies, Potted Plants
+
+// Bubber Bounties
+
+/datum/bounty/item/assistant/towels
+	name = "Towels"
+	description = "Radioactive moths ate everything in the Central Command locker rooms. We need more towels immediately."
+	reward = CARGO_CRATE_VALUE * 6
+	required_count = 6
+	wanted_types = list(/obj/item/towel = TRUE)
+
+/datum/bounty/item/assistant/clipboards
+	name = "Clipboards"
+	description = "Things are getting a bit disorderly, send Centcom some clipboards to get things back on track."
+	reward = CARGO_CRATE_VALUE * 4
+	required_count = 4
+	wanted_types = list(/obj/item/clipboard = TRUE)
+
+/datum/bounty/item/assistant/mousetraps
+	name = "Mousetraps"
+	description = "A rodent rebellion is stirring in CentCom. Send us mousetraps to help stop their advance."
+	reward = CARGO_CRATE_VALUE * 3.75
+	required_count = 4
+	wanted_types = list(/obj/item/assembly/mousetrap = TRUE)
+
+/datum/bounty/item/assistant/dancefloor
+	name = "wired floor tiles"
+	description = "There's a distinct lack of flare to CentCom's recreational area. Wire up some dance flooring for us so we can make things pop. Make sure they're complete!"
+	reward = CARGO_CRATE_VALUE * 9
+	required_count = 9
+	wanted_types = list(/obj/item/stack/tile/light = TRUE)
+
+/datum/bounty/item/assistant/toysword
+	name = "Toy Swords"
+	description = "CentCom Security forces are looking for a safer way to train after their last... accident. Send them some toy swords to fiddle with."
+	reward = CARGO_CRATE_VALUE * 8
+	required_count = 3
+	wanted_types = list(/obj/item/toy/sword = TRUE)
+
+/datum/bounty/item/assistant/bolas
+	name = "Bolas"
+	description = "A humanized monkey escaped containment and covered itself in cooking oil. Please send some bola's so CentCom can capture them."
+	reward = CARGO_CRATE_VALUE * 5
+	required_count = 5
+	wanted_types = list(/obj/item/restraints/legcuffs/bola = TRUE)
+
+/datum/bounty/item/assistant/coffin
+	name = "Coffin"
+	description = "A beloved station pet was found dead. Please expedite the grieving process by shipping a coffin right away."
+	reward = CARGO_CRATE_VALUE * 3 //Coffins themselves export for 100 credits, but this is a bounty. Plus, you'd only get 50% when wrapping them with barcodes.
+	wanted_types = list(/obj/structure/closet/crate/coffin = TRUE)
+
+/datum/bounty/item/assistant/cargo_shelf
+	name = "Cargo Shelves"
+	description = "Centcom's packaging facility is getting a bit tight, send us some cargo shelving kits so we can make room."
+	reward = CARGO_CRATE_VALUE * 3
+	required_count = 4
+	wanted_types = list(/obj/item/rack_parts/cargo_shelf = TRUE)
+
+/datum/bounty/item/assistant/duffelbag
+	name = "Duffelbags"
+	description = "Centcom's assistant brigade needs duffelbags for a long haul. Ship some right away."
+	reward = CARGO_CRATE_VALUE * 5
+	required_count = 6
+	wanted_types = list(/obj/item/storage/backpack/duffelbag = TRUE)
+
+/datum/bounty/item/assistant/watermelon
+	name = "Watermelons"
+	description = "The new office craze is melon water. Send Centcomm some watermelons so we can squeeze a few pitchers."
+	reward = CARGO_CRATE_VALUE * 6
+	required_count = 6
+	wanted_types = list(/obj/item/food/grown/watermelon = TRUE)
+
+/datum/bounty/item/assistant/dogbed
+	name = "Dog Bed"
+	description = "After a series of unfortunate events, Central Command has found itself in need of a dog bed. Please ship one immediately."
+	reward = CARGO_CRATE_VALUE * 3
+	wanted_types = list(/obj/structure/bed/dogbed = TRUE)
+
+/datum/bounty/item/assistant/blueprints
+	name = "Crude Blueprints"
+	description = "Centcom is looking for creative individuals from the civilian sector. Ship us your crude blueprints."
+	reward = CARGO_CRATE_VALUE * 5.75
+	wanted_types = list(/obj/item/shuttle_blueprints/crude = TRUE)
+
+/datum/bounty/item/assistant/wheelchair
+	name = "Motorized Wheelchair"
+	description = "Older members of Command are having some issues getting around. Send us a motorized wheelchair so they have an easier time getting around."
+	reward = CARGO_CRATE_VALUE * 8
+	wanted_types = list(/obj/vehicle/ridden/wheelchair/motorized = TRUE)
+
+/datum/bounty/item/assistant/trapdoor
+	name = "Trapdoor Kit"
+	description = "It'll be better if we don't elaborate on why this is needed. Send Central Command a trapdoor kit and be rewarded."
+	reward = CARGO_CRATE_VALUE * 8
+	wanted_types = list(/obj/item/trapdoor_kit = TRUE)
+
+// Tested: Watermelon, Toy Swords, Mousetraps, Wired Glass Tiles, Bolas, Towels, Dog Bed, Clipboards, Cargo Shelving, Crude Blueprints, motorized Wheelchair, Trapdoor Kit.
