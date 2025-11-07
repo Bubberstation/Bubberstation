@@ -52,8 +52,8 @@
 	var/factions = list(FACTION_STATION, "neutral")
 	/// Mobs in this list will not be affected by this grenade.
 	var/list/blacklisted_mobs = list(
-		/mob/living/simple_animal/hostile/blackmesa/xen/headcrab_zombie/gordon_freeman,
-		/mob/living/simple_animal/hostile/blackmesa/xen/nihilanth,
+		/mob/living/basic/blackmesa/xen/gordon_freeman,
+		/mob/living/basic/blackmesa/xen/nihilanth,
 	)
 
 /obj/item/grenade/xen_crystal/detonate(mob/living/lanced_by)

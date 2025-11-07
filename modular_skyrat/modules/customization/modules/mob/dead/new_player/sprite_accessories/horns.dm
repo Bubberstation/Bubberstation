@@ -27,6 +27,7 @@
 /datum/sprite_accessory/horns/none
 	name = SPRITE_ACCESSORY_NONE
 	icon_state = "none"
+	factual = FALSE
 
 /datum/sprite_accessory/horns/angler
 	default_color = DEFAULT_SECONDARY

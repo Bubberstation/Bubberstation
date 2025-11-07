@@ -1,7 +1,7 @@
 /obj/machinery/vending/wardrobe/sec_wardrobe
 	name = "\improper MultiSec Outfitting Station"
 	desc = "A vending machine stocked with a multitude of security outfits, including standardized uniforms in multiple colors and general equipment. Now with more Multi!"
-	icon = 'modular_zubbers/icons/obj/machines/multisec.dmi'
+	icon = 'modular_zubbers/icons/obj/machines/vending.dmi'
 	icon_state = "multisec"
 	light_mask = null
 	products = list() // Overriding this to the default to prevent any issues when building the product menu
@@ -157,8 +157,6 @@
 					/obj/item/clothing/mask/gas/half_mask = 3,
 					/obj/item/clothing/head/hats/caphat/parade/fedcap/sec = 3,
 					/obj/item/clothing/suit/fedcoat/modern/sec = 3,
-					/obj/item/clothing/mask/gas/soviet = 3,
-					/obj/item/clothing/mask/gas/german = 3, //As far as I can tell, this is nowhere else in the game.
 					/obj/item/clothing/head/soft/veteran = 1,
 					/obj/item/clothing/head/helmet/toggleable/justice = 1, //More than one of these in the Vendor and they'll get annoying fast. Hence why Justice2 isn't here.
 					/obj/item/clothing/head/bandana/snake/sec = 1, //There's only room for one Boss, and one Snake.

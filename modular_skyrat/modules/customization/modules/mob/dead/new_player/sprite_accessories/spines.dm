@@ -21,6 +21,7 @@
 /datum/sprite_accessory/tail_spines/none
 	name = SPRITE_ACCESSORY_NONE
 	icon_state = "none"
+	factual = FALSE
 
 /datum/sprite_accessory/tail_spines/is_hidden(mob/living/carbon/human/wearer)
 	var/list/used_in_turf = list("tail")

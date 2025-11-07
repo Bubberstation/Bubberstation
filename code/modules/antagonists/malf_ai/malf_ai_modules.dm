@@ -158,13 +158,13 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module/malf))
 		Obtaining control of the weapon will be easier if Head of Staff office APCs are already under your control."
 	cost = 130
 	one_purchase = TRUE
-	minimum_apcs = 15 // So you cant speedrun delta
+	minimum_apcs = 10 // So you cant speedrun delta
 	power_type = /datum/action/innate/ai/nuke_station
 	unlock_text = span_notice("You slowly, carefully, establish a connection with the on-station self-destruct. You can now activate it at any time.")
 	///List of areas that grant discounts. "heads_quarters" will match any head of staff office.
 	var/list/discount_areas = list(
 		/area/station/command/heads_quarters,
-		/area/station/ai_monitored/command/nuke_storage
+		/area/station/command/vault
 	)
 	///List of hacked head of staff office areas. Includes the vault too. Provides a 20 PT discount per (Min 50 PT cost)
 	var/list/hacked_command_areas = list()
@@ -635,11 +635,13 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module/malf))
 			continue
 		found_intercom.audible_message(message = "[found_intercom] crackles for a split second.", hearing_distance = 3)
 		playsound(found_intercom, 'sound/items/airhorn/airhorn.ogg', 100, TRUE)
-		for(var/mob/living/carbon/honk_victim in ohearers(6, found_intercom))
+		for(var/mob/living/honk_victim in ohearers(6, found_intercom))
+			if(issilicon(honk_victim))
+				continue
 			var/turf/victim_turf = get_turf(honk_victim)
 			if(isspaceturf(victim_turf) && !victim_turf.Adjacent(found_intercom)) //Prevents getting honked in space
 				continue
-			if(honk_victim.soundbang_act(intensity = 1, stun_pwr = 20, damage_pwr = 30, deafen_pwr = 60)) //Ear protection will prevent these effects
+			if(honk_victim.soundbang_act(SOUNDBANG_NORMAL, stun_pwr = 20, damage_pwr = 30, deafen_pwr = 60)) //Ear protection will prevent these effects
 				honk_victim.set_jitter_if_lower(120 SECONDS)
 				to_chat(honk_victim, span_clown("HOOOOONK!"))
 

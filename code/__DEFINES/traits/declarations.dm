@@ -103,6 +103,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_HUSK "husk"
 ///Blacklisted from being revived via defibrillator
 #define TRAIT_DEFIB_BLACKLISTED "defib_blacklisted"
+/// This carbon doesn't need a brain to be revived, though some revival methods like defibbing will still check for a functional brain
+#define TRAIT_BRAINLESS_CARBON "brainless_carbon"
 #define TRAIT_BADDNA "baddna"
 #define TRAIT_CLUMSY "clumsy"
 /// Trait that means you are capable of holding items in some form
@@ -552,6 +554,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_CULT_HALO "cult_halo"
 /// Their eyes glow an unnatural red colour. Currently used to set special examine text on humans. Does not guarantee the mob's eyes are coloured red, nor that there is any visible glow on their character sprite.
 #define TRAIT_UNNATURAL_RED_GLOWY_EYES "unnatural_red_glowy_eyes"
+/// Their eyes glow in the dark (aka emissive appearance)
+#define TRAIT_LUMINESCENT_EYES "luminescent_eyes"
+/// Their eyes reflect light, making them shine faintly in dim, shadowy areas. Kinda like nocturnal animals.
+#define TRAIT_REFLECTIVE_EYES "reflective_eyes"
 /// Their eyes are bloodshot. Currently used to set special examine text on humans. Examine text is overridden by TRAIT_UNNATURAL_RED_GLOWY_EYES.
 #define TRAIT_BLOODSHOT_EYES "bloodshot_eyes"
 /// This mob should never close UI even if it doesn't have a client

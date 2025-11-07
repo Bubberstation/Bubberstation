@@ -286,7 +286,7 @@
 
 	if(!islist(ignored_mobs))
 		ignored_mobs = list(ignored_mobs)
-	var/list/hearers = get_hearers_in_view(vision_distance, src) //caches the hearers and then removes ignored mobs.
+	var/list/hearers = mob_only_listeners(get_hearers_in_view(vision_distance, src)) //caches the hearers and then removes ignored mobs.
 	hearers -= ignored_mobs
 
 	//SKYRAT EDIT ADDITION BEGIN - AI QoL
@@ -300,20 +300,19 @@
 			hearers |= holo.Impersonation
 	//SKYRAT EDIT ADDITION END - AI QoL
 
-	if(self_message)
-		hearers -= src
-
 	var/raw_msg = message
 	if(visible_message_flags & WITH_EMPHASIS_MESSAGE)
 		message = apply_message_emphasis(message)
 	if(visible_message_flags & EMOTE_MESSAGE)
 		message = span_emote("<b>[src]</b>[separation][message]") // SKYRAT EDIT - Better emotes
 
-	for(var/mob/M in hearers)
-		if(!M.client)
+	for(var/mob/hearing_mob as anything in hearers)
+		if(!hearing_mob?.client)
+			continue
+		if(self_message && hearing_mob == src)
 			continue
 		// SKYRAT EDIT ADDITION - Emote pref checks
-		if(pref_to_check && !M.client?.prefs.read_preference(pref_to_check))
+		if(pref_to_check && !hearing_mob.client?.prefs.read_preference(pref_to_check))
 			continue
 		// SKYRAT EDIT END
 
@@ -321,30 +320,29 @@
 		var/msg = message
 		var/msg_type = MSG_VISUAL
 
-		if(M.see_invisible < invisibility)//if src is invisible to M
+		if(hearing_mob.see_invisible < invisibility)//if src is invisible to M
 			msg = blind_message
 			msg_type = MSG_AUDIBLE
 		else if(T != loc && T != src) //if src is inside something and not a turf.
 			// BUBBER EDIT Start - Prey hear each other in bellies + pred always hears prey
 			if(istype(loc, /obj/vore_belly))
-				if(M.loc != loc && M != loc.loc)
+				if(hearing_mob.loc != loc && hearing_mob != loc.loc)
 					msg = blind_message
 					msg_type = MSG_AUDIBLE
 			// BUBBER EDIT End
-			else if(M != loc)  // Only give the blind message to hearers that aren't the location
+			else if(hearing_mob != loc)  // Only give the blind message to hearers that aren't the location
 				msg = blind_message
 				msg_type = MSG_AUDIBLE
-		else if(!HAS_TRAIT(M, TRAIT_HEAR_THROUGH_DARKNESS) && M.lighting_cutoff < LIGHTING_CUTOFF_HIGH && T.is_softly_lit() && !in_range(T,M)) //if it is too dark, unless we're right next to them.
+		else if(!HAS_TRAIT(hearing_mob, TRAIT_HEAR_THROUGH_DARKNESS) && hearing_mob.lighting_cutoff < LIGHTING_CUTOFF_HIGH && T.is_softly_lit() && !in_range(T,hearing_mob)) //if it is too dark, unless we're right next to them.
 			msg = blind_message
 			msg_type = MSG_AUDIBLE
 		if(!msg)
 			continue
 
-		if(visible_message_flags & EMOTE_MESSAGE && runechat_prefs_check(M, visible_message_flags) && !M.is_blind())
-			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = visible_message_flags)
+		if(visible_message_flags & EMOTE_MESSAGE && runechat_prefs_check(hearing_mob, visible_message_flags) && !hearing_mob.is_blind())
+			hearing_mob.create_chat_message(src, raw_message = raw_msg, runechat_flags = visible_message_flags)
 
-		M.show_message(msg, msg_type, blind_message, MSG_AUDIBLE)
-
+		hearing_mob.show_message(msg, msg_type, blind_message, MSG_AUDIBLE)
 
 ///Adds the functionality to self_message.
 /mob/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags = NONE, separation = " ", pref_to_check)  // SKYRAT EDIT ADDITION - Better emotes, pref checks
@@ -381,8 +379,7 @@
  * * audible_message_flags (optional) is the type of message being sent.
  */
 /atom/proc/audible_message(message, deaf_message, hearing_distance = DEFAULT_MESSAGE_RANGE, self_message, audible_message_flags = NONE, separation = " ", pref_to_check) // SKYRAT EDIT ADDITION - Better emotes, pref checks
-	var/list/hearers = get_hearers_in_view(hearing_distance, src)
-
+	var/list/hearers = mob_only_listeners(get_hearers_in_view(hearing_distance, src))
 	//SKYRAT EDIT ADDITION BEGIN - AI QoL
 	for(var/mob/eye/camera/ai/ai_eye in hearers)
 		if(ai_eye.ai?.client && !(ai_eye.ai.stat == DEAD))
@@ -393,22 +390,23 @@
 		if(holo.Impersonation?.client)
 			hearers |= holo.Impersonation
 	//SKYRAT EDIT ADDITION END - AI QoL
-
-	if(self_message)
-		hearers -= src
 	var/raw_msg = message
 	if(audible_message_flags & WITH_EMPHASIS_MESSAGE)
 		message = apply_message_emphasis(message)
 	if(audible_message_flags & EMOTE_MESSAGE)
 		message = span_emote("<b>[src]</b>[separation][message]") //SKYRAT EDIT CHANGE
-	for(var/mob/M in hearers)
-	// SKYRAT EDIT ADDITION - Emote pref checks
-		if(pref_to_check && !M.client?.prefs.read_preference(pref_to_check))
+	for(var/mob/hearing_mob as anything in hearers)
+		if(!hearing_mob?.client)
 			continue
-	// SKYRAT EDIT END
-		if(audible_message_flags & EMOTE_MESSAGE && runechat_prefs_check(M, audible_message_flags) && M.can_hear())
-			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = audible_message_flags)
-		M.show_message(message, MSG_AUDIBLE, deaf_message, MSG_VISUAL)
+		if(self_message && hearing_mob == src)
+			continue
+		// SKYRAT EDIT ADDITION - Emote pref checks
+		if(pref_to_check && !hearing_mob.client?.prefs.read_preference(pref_to_check))
+			continue
+		// SKYRAT EDIT END
+		if(audible_message_flags & EMOTE_MESSAGE && runechat_prefs_check(hearing_mob, audible_message_flags) && hearing_mob.can_hear())
+			hearing_mob.create_chat_message(src, raw_message = raw_msg, runechat_flags = audible_message_flags)
+		hearing_mob.show_message(message, MSG_AUDIBLE, deaf_message, MSG_VISUAL)
 
 /**
  * Show a message to all mobs in earshot of this one
@@ -441,6 +439,21 @@
 
 	if(self_runechat && (audible_message_flags & EMOTE_MESSAGE) && runechat_prefs_check(src, audible_message_flags))
 		create_chat_message(src, raw_message = raw_self_message, runechat_flags = audible_message_flags)
+
+/// Gets a linked mob, letting atoms act as proxies for actions that rely on hearing sensitivity.
+/// For example, AIs hearing around their holopads, and dullahans hearing around their heads.
+/// Normal say messages are handled by Hear(), this is for other visible/audible messages
+/atom/movable/proc/get_listening_mob()
+	return
+
+/obj/effect/overlay/holo_pad_hologram/get_listening_mob()
+	return Impersonation
+
+/obj/item/dullahan_relay/get_listening_mob()
+	return owner
+
+/mob/get_listening_mob()
+	return src
 
 ///Returns the client runechat visible messages preference according to the message type.
 /atom/proc/runechat_prefs_check(mob/target, visible_message_flags = NONE)
@@ -568,6 +581,8 @@
 	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(run_examinate), examinify))
 
 /mob/proc/run_examinate(atom/examinify, force_examinate_more = FALSE)
+	if(QDELETED(examinify)) // since this can run async we might have had the atom get qdeleted already
+		return
 
 	if(isturf(examinify) && !(sight & SEE_TURFS) && !(examinify in view(client ? client.view : world.view, src)))
 		// shift-click catcher may issue examinate() calls for out-of-sight turfs
@@ -1358,8 +1373,7 @@
 	if(!writing_instrument)
 		return FALSE
 
-	var/pen_info = writing_instrument.get_writing_implement_details()
-	if(!pen_info || (pen_info["interaction_mode"] != MODE_WRITING))
+	if(!IS_WRITING_UTENSIL(writing_instrument))
 		if(!silent_if_not_writing_tool)
 			to_chat(src, span_warning("You can't write with \the [writing_instrument]!"))
 		return FALSE
@@ -1440,6 +1454,7 @@
 	VV_DROPDOWN_OPTION(VV_HK_GIVE_DIRECT_CONTROL, "Give Direct Control")
 	VV_DROPDOWN_OPTION(VV_HK_OFFER_GHOSTS, "Offer Control to Ghosts")
 	VV_DROPDOWN_OPTION(VV_HK_VIEW_PLANES, "View/Edit Planes")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_ACCESS, "Give Access")
 
 /mob/vv_do_topic(list/href_list)
 	. = ..()
@@ -1513,6 +1528,12 @@
 		if(!check_rights(R_DEBUG))
 			return
 		usr.client.edit_plane_masters(src)
+
+	if(href_list[VV_HK_GIVE_ACCESS])
+		if(!check_rights(NONE))
+			return
+		AddComponent(/datum/component/simple_access, SSid_access.get_region_access_list(list(REGION_ALL_GLOBAL)))
+		to_chat(usr, span_notice("Access granted."))
 /**
  * extra var handling for the logging var
  */
