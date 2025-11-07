@@ -67,7 +67,7 @@
 		__storyteller_tick(seconds_per_tick)
 		processing = TRUE
 
-	if(activeFor == end_when)
+	if(activeFor == end_when && end_when >= start_when)
 		processing = FALSE
 		__end_for_storyteller()
 		processing = TRUE

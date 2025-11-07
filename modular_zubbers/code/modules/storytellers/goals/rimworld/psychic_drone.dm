@@ -32,7 +32,7 @@
 	if(threat_points < STORY_THREAT_LOW)
 		noise_strength = 1
 		num_waves = 3
-		positive_noise_chance = 70  // More positive early to build false security
+		positive_noise_chance = 60  // More positive early to build false security
 	else if(threat_points < STORY_THREAT_MODERATE)
 		noise_strength = 2
 		num_waves = 5
@@ -51,7 +51,8 @@
 		positive_noise_chance = 10
 
 	// Dynamic scaling
-	num_waves = min(num_waves + round(threat_points / 500), 20)
+	num_waves = min(round(num_waves + round(threat_points / 400)), 5)
+
 
 /datum/round_event/psychic_drone/__start_for_storyteller()
 	var/turf/spawn_turf = get_safe_random_station_turf()
@@ -61,7 +62,7 @@
 		"style" = /datum/pod_style/deathsquad,
 		"spawn" = drone_path,
 	))
-	var/mob/living/basic/psychic_drone/drone = locate(/mob/living/basic/psychic_drone, pod.contents)
+	var/mob/living/basic/psychic_drone/drone = locate() in pod.contents
 	drone.noise_strength = noise_strength
 	drone.positive_noise_chance = positive_noise_chance
 	drone.num_waves = num_waves
@@ -78,7 +79,6 @@
 	style = /datum/pod_style/syndicate
 	explosionSize = list(0,0,2,2)
 	specialised = TRUE
-	delays = list(POD_TRANSIT = 10.0 SECONDS, POD_FALLING = 10.0 SECONDS)
 	effectMissile = TRUE
 
 /mob/living/basic/psychic_drone
@@ -86,8 +86,6 @@
 	desc = "A hovering orb emitting faint psionic waves, influencing crew minds in unpredictable ways."
 	icon = 'icons/mob/simple/hivebot.dmi'
 	icon_state = "commdish"
-	icon_living = "commdish"
-	icon_dead = "commdish"
 	density = TRUE
 	health = 2000
 	maxHealth = 2000
@@ -177,7 +175,7 @@
 				target.add_mood_event("psychic_drone", /datum/mood_event/psychic_drone_negative/extreme)
 			target.adjustOxyLoss(rand(30-40), forced=TRUE)
 			target.adjust_hallucinations(30 SECONDS)
-			target.adjust_drunk_effect(30 SECONDS)
+			target.adjust_drunk_effect(30)
 	else
 		effect_msg = span_notice("A subtle psychic hum resonates, leaving you mildly disoriented but aware.")
 		target.adjust_disgust(10 * strength)
