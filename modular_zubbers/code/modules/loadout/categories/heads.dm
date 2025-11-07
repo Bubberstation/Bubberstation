@@ -145,12 +145,12 @@
 /datum/loadout_item/head/helmet/sec/peacekeeper/security_medic
 	name = "Security Medic Helmet"
 	item_path = /obj/item/clothing/head/helmet/sec/peacekeeper/security_medic
-	restricted_roles = list(JOB_SECURITY_MEDIC)
+	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/beret/sec/peacekeeper/security_medic
 	name = "Security Medic Beret"
 	item_path = /obj/item/clothing/head/beret/sec/peacekeeper/security_medic
-	restricted_roles = list(JOB_SECURITY_MEDIC)
+	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/lace_bow
 	name = "Hair Bow"

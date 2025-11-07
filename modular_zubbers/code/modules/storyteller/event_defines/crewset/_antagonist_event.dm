@@ -23,7 +23,6 @@
 		JOB_WARDEN,
 		JOB_CORRECTIONS_OFFICER,
 		JOB_PRISONER,
-		JOB_SECURITY_MEDIC,
 
 		// Department Guards-Additional
 		JOB_BOUNCER,

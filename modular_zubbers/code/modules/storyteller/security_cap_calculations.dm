@@ -13,8 +13,5 @@
 /datum/job/captain
 	sec_antag_cap = 1
 
-/datum/job/security_medic
-	sec_antag_cap = 1.25
-
 /datum/job/detective
 	sec_antag_cap = 1.25
