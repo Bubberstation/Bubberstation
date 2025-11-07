@@ -1,3 +1,5 @@
+// Bounties moved to modular zubbers folder so it isn't a commented out nightmare of individual removals.
+
 /*
 /datum/bounty/item/assistant/strange_object
 	name = "Strange Object"
