@@ -1,5 +1,5 @@
 import '../../styles/interfaces/StorytellerVote.scss';
-
+import { useState } from 'react';
 import {
   Box,
   Button,
@@ -13,12 +13,8 @@ import {
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 import { resolveAsset } from '../../assets';
-import { useBackend, useLocalState } from '../../backend';
+import { useBackend } from '../../backend';
 import { Window } from '../../layouts';
-
-// Backend contract
-// static: storytellers: [{ id, name, desc, portrait }], min_difficulty, max_difficulty
-// data: personal_selection, personal_difficulty, total_voters, voted_count, time_left, top_tallies: [{ name, count, avg_diff }], is_open
 
 type Candidate = {
   id: string;
@@ -36,38 +32,53 @@ type TopTally = {
   avg_diff: number;
 };
 
+type StorytellerVoteData = {
+  storytellers: Candidate[];
+  personal_selection?: string;
+  personal_difficulty: number;
+  total_voters: number;
+  voted_count: number;
+  time_left: number;
+  top_tallies: TopTally[];
+  is_open: BooleanLike;
+  can_vote: BooleanLike;
+};
+
+type StorytellerVoteConfig = {
+  min_difficulty?: number;
+  max_difficulty?: number;
+};
+
 export const StorytellerVote = (props) => {
-  const { data, act, config } = useBackend<Candidate[]>();
-  const storytellers: Candidate[] = (data && (data as any).storytellers) || [];
-  const min_difficulty: number =
-    (config && (config as any).min_difficulty) || 0.3;
-  const max_difficulty: number =
-    (config && (config as any).max_difficulty) || 5.0;
+  const { data, act, config } = useBackend<StorytellerVoteData>();
+  const { min_difficulty = 0.3, max_difficulty = 5.0 } =
+    config as StorytellerVoteConfig;
 
-  const personal_selection: string | undefined =
-    data && (data as any).personal_selection;
-  const personal_difficulty: number =
-    (data && (data as any).personal_difficulty) || 1.0;
-  const total_voters: number = (data && (data as any).total_voters) || 0;
-  const voted_count: number = (data && (data as any).voted_count) || 0;
-  const time_left: number = (data && (data as any).time_left) || 0;
-  const top_tallies: TopTally[] = (data && (data as any).top_tallies) || [];
-  const is_open: BooleanLike = !!(data && (data as any).is_open);
+  const {
+    storytellers = [],
+    personal_selection,
+    personal_difficulty = 1.0,
+    total_voters = 0,
+    voted_count = 0,
+    time_left = 0,
+    top_tallies = [],
+    is_open = false,
+    can_vote = false,
+  } = data;
 
-  const [selected, setSelected] = useLocalState(
-    'selected',
-    personal_selection || '',
-  );
-  const [diff, setDiff] = useLocalState('diff', String(personal_difficulty));
+  const [selected, setSelected] = useState(personal_selection || '');
+  const [diff, setDiff] = useState(String(personal_difficulty));
 
   const select = (id: string) => {
     if (!is_open) return;
     setSelected(id);
+
+    if (!can_vote) return;
     act('select_storyteller', { id });
   };
 
   const applyDifficulty = (value: string) => {
-    if (!is_open) return;
+    if (!is_open || !can_vote) return;
     setDiff(value);
     const v = Math.max(
       min_difficulty,
@@ -76,9 +87,7 @@ export const StorytellerVote = (props) => {
     act('set_difficulty', { value: v });
   };
 
-  const current =
-    storytellers.find((c) => c.id === selected) ||
-    (is_open ? storytellers[0] : null);
+  const current = storytellers.find((c) => c.id === selected) || null;
 
   if (!is_open && top_tallies.length === 0) {
     return (
@@ -108,6 +117,14 @@ export const StorytellerVote = (props) => {
           position: 'absolute',
         }}
       >
+        {!can_vote ? (
+          <NoticeBox>
+            You cannot participate in the vote, but you can still view the
+            candidates.
+          </NoticeBox>
+        ) : (
+          ' '
+        )}
         <Stack fill>
           <Stack.Item style={{ flex: '0 0 240px', boxSizing: 'border-box' }}>
             <Section
@@ -190,7 +207,7 @@ export const StorytellerVote = (props) => {
                             onChange={(e) =>
                               applyDifficulty(e.currentTarget.value)
                             }
-                            disabled={!is_open}
+                            disabled={!is_open || !can_vote}
                             style={{ width: '100%' }}
                           />
                         </Stack.Item>

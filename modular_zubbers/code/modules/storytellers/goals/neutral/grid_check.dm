@@ -18,23 +18,23 @@
 /datum/round_event/grid_check/storyteller/__setup_for_storyteller(threat_points, ...)
 	. = ..()
 	if(threat_points < STORY_THREAT_LOW)
-		shutdown_duration_min = 1 MINUTES
-		shutdown_duration_max = 3 MINUTES
+		shutdown_duration_min = 60
+		shutdown_duration_max = 180
 	else if(threat_points < STORY_THREAT_MODERATE)
-		shutdown_duration_min = 2 MINUTES
-		shutdown_duration_max = 4 MINUTES
+		shutdown_duration_min = 120
+		shutdown_duration_max = 240
 		lock_rebot_chance = 15
 	else if(threat_points < STORY_THREAT_HIGH)
-		shutdown_duration_min = 3 MINUTES
-		shutdown_duration_max = 4 MINUTES
+		shutdown_duration_min = 180
+		shutdown_duration_max = 240
 		lock_rebot_chance = 15
 	else if(threat_points < STORY_THREAT_EXTREME)
-		shutdown_duration_min = 3 MINUTES
-		shutdown_duration_max = 5 MINUTES
+		shutdown_duration_min = 180
+		shutdown_duration_max = 300
 		lock_rebot_chance = 25
 	else
-		shutdown_duration_min = 5 MINUTES
-		shutdown_duration_max = 7 MINUTES
+		shutdown_duration_min = 300
+		shutdown_duration_max = 420
 		lock_rebot_chance = 30
 
 	for(var/obj/machinery/power/apc/APC in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/power/apc))
@@ -53,11 +53,11 @@
 /datum/round_event/grid_check/storyteller/__storyteller_tick(seconds_per_tick)
 	if(!COOLDOWN_FINISHED(src, apc_shutdown_cooldown))
 		return
-	COOLDOWN_START(src, apc_shutdown_cooldown, 30 SECONDS)
+	COOLDOWN_START(src, apc_shutdown_cooldown, rand(15-30) SECONDS)
 
 	station_apcs = shuffle(station_apcs)
 	var/to_shutdown = list()
-	var/shutdown_cpount = max(1, round(length(station_apcs) * 0.3))
+	var/shutdown_cpount = max(1, round(length(station_apcs) * 0.2))
 	for(var/datum/weakref/ref in station_apcs)
 		if(shutdown_cpount <= 0)
 			break
@@ -69,13 +69,14 @@
 		station_apcs -= ref
 
 	for(var/obj/machinery/power/apc/APC in to_shutdown)
-		var/shutdown_duration = clamp(rand(shutdown_duration_min, shutdown_duration_max), shutdown_duration_min, shutdown_duration_max - (activeFor * 10))
-		APC.failure_timer = shutdown_duration
+		var/shutdown_duration = clamp(rand(shutdown_duration_min, shutdown_duration_max), shutdown_duration_min, shutdown_duration_max - activeFor)
+		APC.energy_fail(shutdown_duration)
+		if(prob(30))
+			APC.overload_lighting()
+
 		if(prob(lock_rebot_chance) && !HAS_TRAIT(src, TRAIT_NO_REBOOT_EVENT))
 			ADD_TRAIT(src, TRAIT_NO_REBOOT_EVENT, "grid_check_event")
 			locked_apcs += WEAKREF(APC)
-			APC.update()
-			APC.update_appearance()
 
 /datum/round_event/grid_check/storyteller/__end_for_storyteller()
 	for(var/datum/weakref/ref in locked_apcs)

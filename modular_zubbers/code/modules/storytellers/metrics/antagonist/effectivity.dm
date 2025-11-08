@@ -181,6 +181,8 @@
 /datum/antagonist/nukeop/get_effectivity()
 	var/base = 1
 	var/datum/component/antag_metric_tracker/M = GetComponent(/datum/component/antag_metric_tracker)
+	if(!M)
+		return base * 0.5
 	var/datum/team/nuclear/nuke_team = get_team()
 
 	var/war_declared = FALSE

@@ -27,6 +27,147 @@
 
 	var/auto_cargo = FALSE
 
+	var/list/base_cargo_by_level = list(
+		list( // LOW
+			/obj/item/stack/sheet/iron/fifty = 3,
+			/obj/item/stack/sheet/glass/fifty = 2,
+			/obj/item/stack/cable_coil/thirty = 2,
+			/obj/item/storage/medkit = 1,
+			/obj/item/reagent_containers/hypospray/medipen = 1
+		),
+		list( // MODERATE
+			/obj/item/stack/sheet/plasteel/twenty = 3,
+			/obj/item/stack/sheet/mineral/gold = 2,
+			/obj/item/weldingtool = 2,
+			/obj/item/storage/pill_bottle/happy = 1,
+			/obj/item/storage/box/masks = 1,
+			/obj/item/storage/toolbox/mechanical = 1
+		),
+		list( // HIGH
+			/obj/item/stack/sheet/mineral/diamond = 3,
+			/obj/item/stack/sheet/mineral/plasma = 2,
+			/obj/item/storage/belt/medical = 2,
+			/obj/item/defibrillator/compact = 1,
+			/obj/item/melee/baton = 1,
+			/obj/item/gun/energy/disabler = 1,
+			/obj/item/clothing/suit/armor/vest = 1
+		),
+		list( // VERY_HIGH
+			/obj/item/stack/sheet/mineral/titanium/fifty = 3,
+			/obj/item/stack/sheet/bluespace_crystal = 2,
+			/obj/item/mod/control/pre_equipped/medical = 2,
+			/obj/item/gun/ballistic/shotgun/hook = 1,
+			/obj/item/gun/energy/e_gun = 1,
+			/obj/item/clothing/head/helmet/swat = 1,
+			/obj/item/research_notes = 1
+		),
+		list( // EXTREME
+			/obj/item/stack/sheet/mineral/adamantine = 3,
+			/obj/item/stack/sheet/mineral/runite = 2,
+			/obj/item/mod/control/pre_equipped/advanced = 2,
+			/obj/item/gun/energy/lasercannon = 1,
+			/obj/item/gun/ballistic/shotgun/bulldog = 1,
+			/obj/item/storage/belt/security/full = 1,
+			/obj/item/beacon = 1
+		)
+	)
+
+	var/list/category_adds_by_level = list(
+		list( // LOW
+			CARGO_NEED_MEDICAL = list(/obj/item/storage/pill_bottle/epinephrine = 2),
+			CARGO_NEED_ENGINEERING = list(/obj/item/stack/sheet/plasteel = 2),
+			CARGO_NEED_POWER = list(/obj/item/stock_parts/power_store/cell = 3, /obj/item/stack/cable_coil = 2),
+			CARGO_NEED_SECURITY = list(/obj/item/clothing/suit/armor/vest = 1),
+			CARGO_NEED_RESOURCES = list(/obj/item/stack/sheet/iron/fifty = 3, /obj/item/stack/sheet/mineral/silver = 2),
+			CARGO_NEED_MORALE = list(/obj/item/storage/box/donkpockets = 2, /obj/item/reagent_containers/cup/glass/bottle/beer = 3),
+			CARGO_NEED_RESEARCH = list(/obj/item/disk/tech_disk = 1, /obj/item/stock_parts/scanning_module = 2)
+		),
+		list( // MODERATE
+			CARGO_NEED_MEDICAL = list(/obj/item/storage/medkit/regular = 3, /obj/item/reagent_containers/hypospray/medipen = 2),
+			CARGO_NEED_ENGINEERING = list(/obj/item/stack/sheet/plasteel/fifty = 2),
+			CARGO_NEED_POWER = list(/obj/item/stock_parts/power_store/cell/high = 3, /obj/item/circuitboard/machine/cell_charger_multi = 1),
+			CARGO_NEED_SECURITY = list(/obj/item/clothing/head/helmet = 2, /obj/item/flashlight/seclite = 1),
+			CARGO_NEED_RESOURCES = list(/obj/item/stack/sheet/mineral/silver = 2, /obj/item/stack/sheet/mineral/uranium = 1),
+			CARGO_NEED_MORALE = list(/obj/item/storage/box/ingredients = 2, /obj/item/toy/plush = 1),
+			CARGO_NEED_RESEARCH = list(/obj/item/stock_parts/servo = 2, /obj/item/research_notes = 1)
+		),
+		list( // HIGH
+			CARGO_NEED_MEDICAL = list(/obj/item/storage/medkit/advanced = 2, /obj/item/reagent_containers/hypospray/medipen/atropine = 1),
+			CARGO_NEED_ENGINEERING = list(/obj/item/storage/box/smart_metal_foam = 2, /obj/item/rcd_ammo = 1),
+			CARGO_NEED_POWER = list(/obj/item/stock_parts/power_store/cell/super = 3, /obj/item/solar_assembly = 2),
+			CARGO_NEED_SECURITY = list(/obj/item/clothing/suit/armor/riot = 1),
+			CARGO_NEED_RESOURCES = list(/obj/item/stack/sheet/mineral/titanium = 2),
+			CARGO_NEED_MORALE = list(/obj/machinery/vending/snack = 1, /obj/item/toy/plush/tiredtesh = 2),
+			CARGO_NEED_RESEARCH = list(/obj/item/stock_parts/scanning_module/adv = 2, /obj/item/disk/design_disk = 1)
+		),
+		list( // VERY_HIGH
+			CARGO_NEED_MEDICAL = list(/obj/item/storage/medkit/fire = 2, /obj/item/organ/lungs/cybernetic/tier2 = 1),
+			CARGO_NEED_ENGINEERING = list(/obj/item/construction/rcd/loaded = 1, /obj/item/stack/sheet/plasteel/fifty = 3),
+			CARGO_NEED_POWER = list(/obj/item/stock_parts/power_store/cell/hyper = 3, /obj/machinery/power/smes = 1),
+			CARGO_NEED_SECURITY = list(/obj/item/gun/ballistic/automatic/pistol = 1, /obj/item/clothing/suit/armor/swat = 1),
+			CARGO_NEED_RESOURCES = list(/obj/item/stack/sheet/mineral/adamantine = 2),
+			CARGO_NEED_MORALE = list(/obj/machinery/vending/boozeomat = 1, /obj/item/instrument/piano_synth = 1),
+			CARGO_NEED_RESEARCH = list(/obj/machinery/rnd/server = 1, /obj/item/stock_parts/servo/pico = 2)
+		),
+		list( // EXTREME
+			CARGO_NEED_MEDICAL = list(/obj/item/storage/medkit/tactical = 3, /obj/item/organ/heart/cybernetic/tier3 = 1),
+			CARGO_NEED_ENGINEERING = list(/obj/item/rcd_ammo/large = 2, /obj/item/stack/sheet/mineral/titanium/fifty = 3),
+			CARGO_NEED_POWER = list(/obj/item/stock_parts/power_store/cell/bluespace = 3, /obj/machinery/power/rtg/advanced = 1),
+			CARGO_NEED_SECURITY = list(/obj/item/gun/ballistic/rocketlauncher = 1, /obj/item/clothing/suit/armor/hos = 1),
+			CARGO_NEED_RESOURCES = list(/obj/item/stack/sheet/mineral/bananium = 2, /obj/item/stack/sheet/mineral/abductor = 1),
+			CARGO_NEED_MORALE = list(/obj/item/storage/box/donkpockets = 3, /obj/machinery/computer/arcade = 1),
+			CARGO_NEED_RESEARCH = list(/obj/item/disk/design_disk/long_range_pda = 2, /obj/item/stock_parts/scanning_module/phasic = 1)
+		)
+	)
+
+	var/list/category_boosts_by_level = list(
+		list( // LOW
+			CARGO_NEED_MEDICAL = list(/obj/item/storage/medkit, /obj/item/reagent_containers/hypospray/medipen),
+			CARGO_NEED_ENGINEERING = list(/obj/item/stack/sheet/iron/fifty, /obj/item/stack/sheet/glass/fifty),
+			CARGO_NEED_POWER = list(/obj/item/stock_parts/power_store/cell),
+			CARGO_NEED_SECURITY = list(/obj/item/clothing/suit/armor/vest),
+			CARGO_NEED_RESOURCES = list(/obj/item/stack/sheet/iron/fifty),
+			CARGO_NEED_MORALE = list(/obj/item/storage/box/donkpockets),
+			CARGO_NEED_RESEARCH = list(/obj/item/disk/tech_disk)
+		),
+		list( // MODERATE
+			CARGO_NEED_MEDICAL = list(/obj/item/storage/medkit/regular),
+			CARGO_NEED_ENGINEERING = list(/obj/item/weldingtool, /obj/item/storage/toolbox/mechanical),
+			CARGO_NEED_POWER = list(/obj/item/stock_parts/power_store/cell/high),
+			CARGO_NEED_SECURITY = list(/obj/item/clothing/head/helmet),
+			CARGO_NEED_RESOURCES = list(/obj/item/stack/sheet/mineral/gold),
+			CARGO_NEED_MORALE = list(/obj/item/storage/box/ingredients),
+			CARGO_NEED_RESEARCH = list(/obj/item/research_notes)
+		),
+		list( // HIGH
+			CARGO_NEED_MEDICAL = list(/obj/item/defibrillator/compact),
+			CARGO_NEED_ENGINEERING = list(/obj/item/storage/box/smart_metal_foam),
+			CARGO_NEED_POWER = list(/obj/item/stock_parts/power_store/cell/super),
+			CARGO_NEED_SECURITY = list(/obj/item/melee/baton, /obj/item/gun/energy/disabler),
+			CARGO_NEED_RESOURCES = list(/obj/item/stack/sheet/mineral/diamond),
+			CARGO_NEED_MORALE = list(/obj/item/toy/plush/tiredtesh),
+			CARGO_NEED_RESEARCH = list(/obj/item/stock_parts/scanning_module/adv)
+		),
+		list( // VERY_HIGH
+			CARGO_NEED_MEDICAL = list(/obj/item/mod/control/pre_equipped/medical),
+			CARGO_NEED_ENGINEERING = list(/obj/item/construction/rcd/loaded),
+			CARGO_NEED_POWER = list(/obj/item/stock_parts/power_store/cell/hyper),
+			CARGO_NEED_SECURITY = list(/obj/item/gun/energy/e_gun),
+			CARGO_NEED_RESOURCES = list(/obj/item/stack/sheet/mineral/titanium/fifty),
+			CARGO_NEED_MORALE = list(/obj/machinery/vending/boozeomat),
+			CARGO_NEED_RESEARCH = list(/obj/item/research_notes)
+		),
+		list( // EXTREME
+			CARGO_NEED_MEDICAL = list(/obj/item/storage/medkit/tactical),
+			CARGO_NEED_ENGINEERING = list(/obj/item/mod/control/pre_equipped/advanced),
+			CARGO_NEED_POWER = list(/obj/item/stock_parts/power_store/cell/bluespace),
+			CARGO_NEED_SECURITY = list(/obj/item/gun/energy/lasercannon),
+			CARGO_NEED_RESOURCES = list(/obj/item/stack/sheet/mineral/adamantine),
+			CARGO_NEED_MORALE = list(/obj/item/storage/box/donkpockets),
+			CARGO_NEED_RESEARCH = list(/obj/item/disk/design_disk/long_range_pda)
+		)
+	)
+
 /datum/round_event_control/cargo_pod/pre_storyteller_run(datum/storyteller_inputs/inputs, datum/storyteller/storyteller, threat_points)
 	. = ..()
 	if(!auto_cargo)
@@ -71,175 +212,19 @@
 	// Bias towards need_category items (higher weights), but include some general for variety
 	// Scale quantity/quality: Level 1-2: Basic, no weapons; 3+: Include weapons/security if relevant
 	// Adjust pod count or extras if high good_level (e.g., more pods for high threat)
-	var/list/possible_cargo = list()
+	var/list/possible_cargo = _list_copy(base_cargo_by_level[good_level])
 	var/base_weight_multiplier = 2  // Boost for need_category items
-	var/amount_of_pods = 1
-	switch(good_level)
-		if(CARGO_GOOD_LEVEL_LOW)  // Low: Basic essentials, focus on minimal aid
-			possible_cargo += list(
-				/obj/item/stack/sheet/iron/fifty = 3,          // Basic construction
-				/obj/item/stack/sheet/glass/fifty = 2,         // Repairs
-				/obj/item/stack/cable_coil/thirty = 2,         // Wiring
-				/obj/item/storage/medkit = 1,                  // Basic medkit
-				/obj/item/reagent_containers/hypospray/medipen = 1  // Quick heal
-			)
-			if(need_category == CARGO_NEED_MEDICAL)
-				possible_cargo[/obj/item/storage/medkit] *= base_weight_multiplier
-				possible_cargo[/obj/item/reagent_containers/hypospray/medipen] *= base_weight_multiplier
-				possible_cargo += list(/obj/item/storage/pill_bottle/epinephrine = 2)  // Stabilizers
-			else if(need_category == CARGO_NEED_ENGINEERING)
-				possible_cargo[/obj/item/stack/sheet/iron/fifty] *= base_weight_multiplier
-				possible_cargo[/obj/item/stack/sheet/glass/fifty] *= base_weight_multiplier
-				possible_cargo += list(/obj/item/stack/sheet/plasteel = 2)  // Basic reinforcements
-			else if(need_category == CARGO_NEED_POWER)
-				possible_cargo += list(/obj/item/stock_parts/power_store/cell = 3, /obj/item/stack/cable_coil = 2)  // Basic cells and cables
-				possible_cargo[/obj/item/stock_parts/power_store/cell] *= base_weight_multiplier
-			else if(need_category == CARGO_NEED_SECURITY)
-				possible_cargo += list(/obj/item/clothing/suit/armor/vest = 1)
-				possible_cargo[/obj/item/clothing/suit/armor/vest] *= base_weight_multiplier
-			else if(need_category == CARGO_NEED_RESOURCES)
-				possible_cargo += list(/obj/item/stack/sheet/iron/fifty = 3, /obj/item/stack/sheet/mineral/silver = 2)
-				possible_cargo[/obj/item/stack/sheet/iron/fifty] *= base_weight_multiplier
-			else if(need_category == CARGO_NEED_MORALE)
-				possible_cargo += list(/obj/item/storage/box/donkpockets = 2, /obj/item/reagent_containers/cup/glass/bottle/beer = 3)  // Food/drinks
-				possible_cargo[/obj/item/storage/box/donkpockets] *= base_weight_multiplier
-			else if(need_category == CARGO_NEED_RESEARCH)
-				possible_cargo += list(/obj/item/disk/tech_disk = 1, /obj/item/stock_parts/scanning_module = 2)
-				possible_cargo[/obj/item/disk/tech_disk] *= base_weight_multiplier
-			amount_of_pods = 1
 
-		if(CARGO_GOOD_LEVEL_MODERATE)  // Moderate: Improved basics, tools
-			possible_cargo += list(
-				/obj/item/stack/sheet/plasteel/twenty = 3,     // Stronger material
-				/obj/item/stack/sheet/mineral/gold = 2,        // Value resource
-				/obj/item/weldingtool = 2,                     // Repair tool
-				/obj/item/storage/pill_bottle/happy = 1,       // Mood pills
-				/obj/item/storage/box/masks = 1,               // Basic protection
-				/obj/item/storage/toolbox/mechanical = 1       // Toolbox
-			)
-			if(need_category == CARGO_NEED_MEDICAL)
-				possible_cargo += list(/obj/item/storage/medkit/regular = 3, /obj/item/reagent_containers/hypospray/medipen = 2)
-				possible_cargo[/obj/item/storage/medkit/frontier] *= base_weight_multiplier
-			else if(need_category == CARGO_NEED_ENGINEERING)
-				possible_cargo[/obj/item/weldingtool] *= base_weight_multiplier
-				possible_cargo[/obj/item/storage/toolbox/mechanical] *= base_weight_multiplier
-				possible_cargo += list(/obj/item/stack/sheet/plasteel/fifty = 2)
-			else if(need_category == CARGO_NEED_POWER)
-				possible_cargo += list(/obj/item/stock_parts/power_store/cell/high = 3, /obj/item/circuitboard/machine/cell_charger_multi = 1)  // Power cells and parts
-				possible_cargo[/obj/item/stock_parts/power_store/cell/high] *= base_weight_multiplier
-			else if(need_category == CARGO_NEED_SECURITY)
-				possible_cargo += list(/obj/item/clothing/head/helmet = 2, /obj/item/flashlight/seclite = 1)
-				possible_cargo[/obj/item/clothing/head/helmet] *= base_weight_multiplier
-			else if(need_category == CARGO_NEED_RESOURCES)
-				possible_cargo[/obj/item/stack/sheet/mineral/gold] *= base_weight_multiplier
-				possible_cargo += list(/obj/item/stack/sheet/mineral/silver = 2, /obj/item/stack/sheet/mineral/uranium = 1)
-			else if(need_category == CARGO_NEED_MORALE)
-				possible_cargo += list(/obj/item/storage/box/ingredients = 2, /obj/item/toy/plush = 1)  // Food and fun
-				possible_cargo[/obj/item/storage/box/ingredients] *= base_weight_multiplier
-			else if(need_category == CARGO_NEED_RESEARCH)
-				possible_cargo += list(/obj/item/stock_parts/servo = 2, /obj/item/research_notes = 1)
-				possible_cargo[/obj/item/stock_parts/scanning_module] *= base_weight_multiplier
-			amount_of_pods = rand(1, 2)
+	var/list/cat_adds = category_adds_by_level[good_level]
+	var/list/adds = cat_adds[need_category]
+	if(adds)
+		possible_cargo += adds
 
-		if(CARGO_GOOD_LEVEL_HIGH)  // High: Advanced resources + minor weapons (non-lethal/basic)
-			possible_cargo += list(
-				/obj/item/stack/sheet/mineral/diamond = 3,     // High-value
-				/obj/item/stack/sheet/mineral/plasma = 2,      // Energy
-				/obj/item/storage/belt/medical = 2,            // Med belt
-				/obj/item/defibrillator/compact = 1,           // Defib
-				/obj/item/melee/baton = 1,                     // Stun baton (minor weapon)
-				/obj/item/gun/energy/disabler = 1,             // Non-lethal gun
-				/obj/item/clothing/suit/armor/vest = 1         // Basic armor
-			)
-			if(need_category == CARGO_NEED_MEDICAL)
-				possible_cargo[/obj/item/defibrillator/compact] *= base_weight_multiplier
-				possible_cargo += list(/obj/item/storage/medkit/advanced = 2, /obj/item/reagent_containers/hypospray/medipen/atropine = 1)
-			else if(need_category == CARGO_NEED_ENGINEERING)
-				possible_cargo += list(/obj/item/storage/box/smart_metal_foam = 2, /obj/item/rcd_ammo = 1)
-				possible_cargo[/obj/item/storage/box/smart_metal_foam] *= base_weight_multiplier
-			else if(need_category == CARGO_NEED_POWER)
-				possible_cargo += list(/obj/item/stock_parts/power_store/cell/super = 3, /obj/item/solar_assembly = 2)
-				possible_cargo[/obj/item/stock_parts/power_store/cell/super] *= base_weight_multiplier
-			else if(need_category == CARGO_NEED_SECURITY)
-				possible_cargo[/obj/item/melee/baton] *= base_weight_multiplier
-				possible_cargo[/obj/item/gun/energy/disabler] *= base_weight_multiplier
-				possible_cargo += list(/obj/item/clothing/suit/armor/riot = 1)
-			else if(need_category == CARGO_NEED_RESOURCES)
-				possible_cargo[/obj/item/stack/sheet/mineral/diamond] *= base_weight_multiplier
-				possible_cargo += list(/obj/item/stack/sheet/mineral/titanium = 2)
-			else if(need_category == CARGO_NEED_MORALE)
-				possible_cargo += list(/obj/machinery/vending/snack = 1, /obj/item/toy/plush/tiredtesh = 2)  // Vending or toys
-				possible_cargo[/obj/item/toy/plush/tiredtesh] *= base_weight_multiplier
-			else if(need_category == CARGO_NEED_RESEARCH)
-				possible_cargo += list(/obj/item/stock_parts/scanning_module/adv = 2, /obj/item/disk/design_disk = 1)
-				possible_cargo[/obj/item/stock_parts/scanning_module/adv] *= base_weight_multiplier
-			amount_of_pods = 2
-
-		if(CARGO_GOOD_LEVEL_VERY_HIGH)  // Very high: High-value + better weapons (lethal controlled)
-			possible_cargo += list(
-				/obj/item/stack/sheet/mineral/titanium/fifty = 3,  // Elite material
-				/obj/item/stack/sheet/bluespace_crystal = 2,       // Teleport tech
-				/obj/item/mod/control/pre_equipped/medical = 2,	   // Med MOD
-				/obj/item/gun/ballistic/shotgun/hook = 1,          // Hookshot (utility weapon)
-				/obj/item/gun/energy/e_gun = 1,                    // Energy gun (lethal)
-				/obj/item/clothing/head/helmet/swat = 1,           // Better helmet
-				/obj/item/research_notes = 1                       // Research boost
-			)
-			if(need_category == CARGO_NEED_MEDICAL)
-				possible_cargo[/obj/item/mod/control/pre_equipped/medical] *= base_weight_multiplier
-				possible_cargo += list(/obj/item/storage/medkit/fire = 2, /obj/item/organ/lungs/cybernetic/tier2 = 1)
-			else if(need_category == CARGO_NEED_ENGINEERING)
-				possible_cargo += list(/obj/item/construction/rcd/loaded = 1, /obj/item/stack/sheet/plasteel/fifty = 3)
-				possible_cargo[/obj/item/construction/rcd/loaded] *= base_weight_multiplier
-			else if(need_category == CARGO_NEED_POWER)
-				possible_cargo += list(/obj/item/stock_parts/power_store/cell/hyper = 3, /obj/machinery/power/smes = 1)
-				possible_cargo[/obj/item/stock_parts/power_store/cell/hyper] *= base_weight_multiplier
-			else if(need_category == CARGO_NEED_SECURITY)
-				possible_cargo[/obj/item/gun/energy/e_gun] *= base_weight_multiplier
-				possible_cargo += list(/obj/item/gun/ballistic/automatic/pistol = 1, /obj/item/clothing/suit/armor/swat = 1)
-			else if(need_category == CARGO_NEED_RESOURCES)
-				possible_cargo[/obj/item/stack/sheet/mineral/titanium/fifty] *= base_weight_multiplier
-				possible_cargo += list(/obj/item/stack/sheet/mineral/adamantine = 2)
-			else if(need_category == CARGO_NEED_MORALE)
-				possible_cargo += list(/obj/machinery/vending/boozeomat = 1, /obj/item/instrument/piano_synth = 1)
-				possible_cargo[/obj/machinery/vending/boozeomat] *= base_weight_multiplier
-			else if(need_category == CARGO_NEED_RESEARCH)
-				possible_cargo[/obj/item/research_notes] *= base_weight_multiplier
-				possible_cargo += list(/obj/machinery/rnd/server = 1, /obj/item/stock_parts/servo/pico = 2)
-			amount_of_pods = rand(2, 3)
-
-		if(CARGO_GOOD_LEVEL_EXTREME)  // Extreme: Premium gear + advanced weapons
-			possible_cargo += list(
-				/obj/item/stack/sheet/mineral/adamantine = 3,// Mythical
-				/obj/item/stack/sheet/mineral/runite = 2,          // Rare
-				/obj/item/mod/control/pre_equipped/advanced = 2,   // Elite engi suit
-				/obj/item/gun/energy/lasercannon = 1,              // Powerful laser
-				/obj/item/gun/ballistic/shotgun/bulldog = 1,       // Advanced shotgun
-				/obj/item/storage/belt/security/full = 1,          // Full sec belt
-				/obj/item/beacon = 1							   // Emergency beacon
-			)
-			if(need_category == CARGO_NEED_MEDICAL)
-				possible_cargo += list(/obj/item/storage/medkit/tactical = 3, /obj/item/organ/heart/cybernetic/tier3 = 1)
-				possible_cargo[/obj/item/storage/medkit/tactical] *= base_weight_multiplier
-			else if(need_category == CARGO_NEED_ENGINEERING)
-				possible_cargo[/obj/item/mod/control/pre_equipped/advanced] *= base_weight_multiplier
-				possible_cargo += list(/obj/item/rcd_ammo/large = 2, /obj/item/stack/sheet/mineral/titanium/fifty = 3)
-			else if(need_category == CARGO_NEED_POWER)
-				possible_cargo += list(/obj/item/stock_parts/power_store/cell/bluespace = 3, /obj/machinery/power/rtg/advanced = 1)
-				possible_cargo[/obj/item/stock_parts/power_store/cell/bluespace] *= base_weight_multiplier
-			else if(need_category == CARGO_NEED_SECURITY)
-				possible_cargo[/obj/item/gun/energy/lasercannon] *= base_weight_multiplier
-				possible_cargo += list(/obj/item/gun/ballistic/rocketlauncher = 1, /obj/item/clothing/suit/armor/hos = 1)
-			else if(need_category == CARGO_NEED_RESOURCES)
-				possible_cargo += list(/obj/item/stack/sheet/mineral/bananium = 2, /obj/item/stack/sheet/mineral/abductor = 1)
-				possible_cargo[/obj/item/stack/sheet/mineral/adamantine] *= base_weight_multiplier
-			else if(need_category == CARGO_NEED_MORALE)
-				possible_cargo += list(/obj/item/storage/box/donkpockets = 3, /obj/machinery/computer/arcade = 1)  // Food and games
-				possible_cargo[/obj/item/storage/box/donkpockets] *= base_weight_multiplier
-			else if(need_category == CARGO_NEED_RESEARCH)
-				possible_cargo += list(/obj/item/disk/design_disk/long_range_pda = 2, /obj/item/stock_parts/scanning_module/phasic = 1)
-				possible_cargo[/obj/item/disk/design_disk/long_range_pda] *= base_weight_multiplier
-			amount_of_pods = 3
+	var/list/cat_boosts = category_boosts_by_level[good_level]
+	var/list/boosts = cat_boosts[need_category]
+	if(boosts)
+		for(var/path in boosts)
+			possible_cargo[path] *= base_weight_multiplier
 
 	// Global adjustments: If high antag influence or escalation, boost security items across levels (from 3+)
 	if(good_level >= CARGO_GOOD_LEVEL_HIGH && (inputs.get_entry(STORY_VAULT_ANTAG_INFLUENCE) >= STORY_VAULT_HIGH_INFLUENCE || inputs.get_entry(STORY_VAULT_THREAT_ESCALATION) >= STORY_VAULT_FAST_ESCALATION))
@@ -250,7 +235,10 @@
 	if(need_category == CARGO_NEED_GENERAL)
 		// Add a bit from each
 		possible_cargo += list(/obj/item/storage/box/lights/mixed = 1)
-	var/possible_areas = list()
+
+	var/amount_of_pods = (good_level == CARGO_GOOD_LEVEL_LOW ? 1 : good_level == CARGO_GOOD_LEVEL_EXTREME ? 3 : good_level == CARGO_GOOD_LEVEL_HIGH ? 2 : rand(good_level - 1, good_level))
+
+	var/list/possible_areas = list()
 	switch(need_category)
 		if(CARGO_NEED_MEDICAL)
 			if(inputs.get_entry(STORY_VAULT_CREW_DISEASES) >= STORY_VAULT_MAJOR_DISEASES || inputs.get_entry(STORY_VAULT_CREW_HEALTH) >= STORY_VAULT_HEALTH_DAMAGED)
@@ -312,6 +300,7 @@
 	if(!chosen_target_turf)
 		chosen_target_turf = get_safe_random_station_turf()
 
+	notify_ghosts("Cargo pod delivery!", chosen_target_turf, "Cargo pods")
 	for(var/i in 1 to amount_of_pods)
 		// Slight offset for multiple pods to avoid overlap
 		var/turf/pod_turf = i == 1 ? chosen_target_turf : locate(chosen_target_turf.x + rand(-2,2), chosen_target_turf.y + rand(-2,2), chosen_target_turf.z)

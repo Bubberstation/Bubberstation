@@ -73,6 +73,7 @@
 					Immediately evacuate to the nearest planetoid for the duration of the storm. \
 					Await further instructions for return."
 	priority_announce(announce_msg, "Ion storm alert", ANNOUNCEMENT_TYPE_PRIORITY)
+	change_space_color("#020272", fade_in = TRUE)
 
 /datum/round_event/ion_storm/__storyteller_tick(seconds_per_tick)
 	if(waves <= 0)
@@ -88,7 +89,7 @@
 	. = ..()
 	priority_announce("The ion storm has passed [station_name()], systems are returning to normal.", "The ion storm has passed", ANNOUNCEMENT_TYPE_PRIORITY)
 	SSsecurity_level.set_level(SEC_LEVEL_GREEN, FALSE)
-
+	change_space_color(fade_in = TRUE)
 
 /datum/round_event/ion_storm/proc/ion_storm_wave()
 	var/list/station_z_levels = SSmapping.levels_by_trait(ZTRAIT_STATION)
@@ -164,21 +165,27 @@
 			if(prob(harm_door_chance))
 				airlock.set_bolt(!airlock.locked)
 				airlock.set_electrified(30)
-
+				do_sparks(2, TRUE, airlock)
 	if(emp_machinery_chance)
 		for(var/obj/machinery/power/apc/apc in station_apcs)
 			if(prob(emp_machinery_chance))
 				apc.overload_lighting()
+				if(prob(50))
+					empulse(apc, 3, 7)
 		for(var/obj/machinery/power/smes/smes in station_smes)
 			if(prob(emp_machinery_chance))
 				smes.emp_act()
 				smes.adjust_charge(-(STANDARD_BATTERY_CHARGE * rand(1-10)))
 
 	if(harm_synthetics_chance)
-		for(var/mob/living/silicon/synthetic in station_synthetics)
+		for(var/mob/living/silicon/robot/borg in station_synthetics)
 			if(prob(harm_synthetics_chance))
-				synthetic.emp_act(rand(1, 2))
-
+				borg.emp_act(rand(1, 2))
+				if(prob(50))
+					empulse(borg, 0, 7)
+				to_chat(borg, span_danger("Your internal components are burning up due to ion wave!"))
+				if(borg.cell.use(rand(1-3) JOULES))
+					do_sparks(3, TRUE, borg)
 	if(harm_prosthesis_chance)
 		for(var/mob/living/carbon/human/human in station_humans)
 			var/has_prosthesis = FALSE
@@ -194,3 +201,6 @@
 			if(has_prosthesis && prob(harm_prosthesis_chance))
 				human.emp_act(2)
 
+			if(issynthetic(human))
+				human.adjustFireLoss(rand(15,40), forced = TRUE)
+				to_chat(human, span_danger("Your internal components are burning up due to ion wave!"))

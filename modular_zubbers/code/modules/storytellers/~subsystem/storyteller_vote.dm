@@ -154,6 +154,11 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 	log_storyteller("Storyteller vote ended: [selected_id_str] (votes=[max_votes], diff=[avg_diff]), total votes=[total_votes]")
 	SEND_SIGNAL(src, COMSIG_STORYTELLER_VOTE_END)
 
+	if(SSticker.current_state == GAME_STATE_PREGAME)
+		storyteller_vote_cache = list()
+		storyteller_vote_cache += selected_id
+		write_cache()
+
 	if(SSticker.current_state != GAME_STATE_PLAYING)
 		return
 
@@ -211,7 +216,17 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 	vote_duration = duration
 	vote_end_time = world.time + duration
 	candidates = list()
+	var/current_id
+	if(SSstorytellers.active)
+		current_id = SSstorytellers.active.id
+
+	if(SSstorytellers.last_selected_id && SSticker.current_state == GAME_STATE_PREGAME)
+		current_id = SSstorytellers.last_selected_id
+
 	for(var/id in SSstorytellers.storyteller_data)
+		if(current_id)
+			if(current_id == id) continue
+
 		var/list/data = SSstorytellers.storyteller_data[id]
 		candidates += list(list(
 			"id" = id,
@@ -233,7 +248,6 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 		get_asset_datum(/datum/asset/simple/storyteller_logo_icons),
 		get_asset_datum(/datum/asset/simple/storyteller_portraits_icons),
 	)
-
 
 
 /datum/storyteller_vote_ui/ui_state(mob/user)
@@ -284,6 +298,17 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 	data["time_left"] = max(0, (vote_end_time - world.time))
 	data["top_tallies"] = top_tallies
 	data["is_open"] = world.time < vote_end_time
+
+	var/can_vote = TRUE
+
+	if(!isAdminObserver(user))
+		if(isobserver(user))
+			can_vote = FALSE
+		var/area/my_area = get_area(user)
+		if(istype(my_area, /area/misc/hilbertshotel) || istype(my_area, /area/misc/hilbertshotelstorage))
+			can_vote = FALSE
+
+	data["can_vote"] = can_vote
 	return data
 
 /datum/storyteller_vote_ui/ui_interact(mob/user, datum/tgui/ui)
@@ -314,6 +339,3 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 			votes[ckey] = personal
 			return TRUE
 	return FALSE
-
-
-

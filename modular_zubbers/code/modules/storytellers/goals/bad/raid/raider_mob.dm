@@ -119,43 +119,27 @@
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_TARGET_MINIMUM_STAT = HARD_CRIT,
 		BB_REINFORCEMENTS_SAY = "Reinforcements incoming!",
+		BB_RAIDER_STRIKE_POINT = null,
 		BB_RAIDER_ATTACK_METHOD = list(
 			/datum/ai_behavior/basic_ranged_attack
 		),
-		BB_RAIDER_INTERESTING_ITEMS = list(),
+		BB_RAIDER_INTERESTING_ITEMS = list(
+			/obj/item/stack/spacecash,
+			/obj/item/stack/sheet,
+			/obj/item/gun),
 		BB_RAIDER_INTERESTING_TARGETS = list(),
-		BB_RAIDER_MY_ROLE = BB_RAIDER_ROLE_SHOOTER,
+		BB_RAIDER_MY_ROLE = BB_RAIDER_ROLE_MEMBER,
 		BB_RAIDER_VALUABLE_OBJECTS = list(
 			/obj/machinery/rnd/production/protolathe,
 			/obj/machinery/rnd/production/protolathe/department,
 		),
-		BB_RAIDER_HIGH_VALUE_AREAS = list(
-			/area/station/command/bridge,
-			/area/station/engineering/lobby,
-			/area/station/security/lockers,
-			/area/station/medical/medbay/central,
-			/area/station/science/lobby,
-		),
 		BB_RAIDER_TEAM = null,
+		BB_RAIDER_REACH_STRIKE_POINT = FALSE,
+		BB_RAIDER_DESTRUCTION_TARGET = null,
+		BB_RAIDER_LOOT_TARGET = null,
+		BB_RAIDER_SEARCH_COOLDOWN_END = 0,
+		BB_RAIDER_HOLD_COOLDOWN_END = 0,
 	)
-	planning_subtrees = list(
-		/datum/ai_planning_subtree/escape_captivity,
-		/datum/ai_planning_subtree/raider_group_formation,
-		/datum/ai_planning_subtree/return_to_leader,
-		/datum/ai_planning_subtree/raider_strike_point_selection,
-		/datum/ai_planning_subtree/raider_coordinated_movement,
-		/datum/ai_planning_subtree/raider_attacking_en_route,
-		/datum/ai_planning_subtree/raider_looting,
-		/datum/ai_planning_subtree/raider_sabotage,
-		/datum/ai_planning_subtree/protect_team,
-		/datum/ai_planning_subtree/raider_hold_position_at_strike,
-		/datum/ai_planning_subtree/simple_find_target,
-		/datum/ai_planning_subtree/attack_obstacle_in_path/trooper,
-		/datum/ai_planning_subtree/basic_ranged_attack_subtree,
-		/datum/ai_planning_subtree/travel_to_point/and_clear_target/reinforce,
-	)
-
-
 
 
 /datum/ai_controller/basic_controller/raider/melee
@@ -163,6 +147,7 @@
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_TARGET_MINIMUM_STAT = HARD_CRIT,
 		BB_REINFORCEMENTS_SAY = "Reinforcements incoming!",
+		BB_RAIDER_STRIKE_POINT = null,
 		BB_RAIDER_ATTACK_METHOD = list(
 			/datum/ai_behavior/basic_melee_attack
 		),
@@ -171,20 +156,19 @@
 			/obj/item/stack/sheet,
 			/obj/item/gun),
 		BB_RAIDER_INTERESTING_TARGETS = list(),
-		BB_RAIDER_MY_ROLE = BB_RAIDER_ROLE_LOOTER,
+		BB_RAIDER_MY_ROLE = BB_RAIDER_ROLE_MEMBER,
 		BB_RAIDER_VALUABLE_OBJECTS = list(
 			/obj/machinery/rnd/production/protolathe,
 			/obj/machinery/rnd/production/protolathe/department,
 		),
-		BB_RAIDER_HIGH_VALUE_AREAS = list(
-			/area/station/command/bridge,
-			/area/station/engineering/lobby,
-			/area/station/security/lockers,
-			/area/station/medical/medbay/central,
-			/area/station/science/lobby,
-		),
 		BB_RAIDER_TEAM = null,
+		BB_RAIDER_REACH_STRIKE_POINT = FALSE,
+		BB_RAIDER_DESTRUCTION_TARGET = null,
+		BB_RAIDER_LOOT_TARGET = null,
+		BB_RAIDER_SEARCH_COOLDOWN_END = 0,
+		BB_RAIDER_HOLD_COOLDOWN_END = 0,
 	)
+
 
 /mob/living/basic/trooper/robust/syndicate/c20r
 	ranged = TRUE
@@ -241,13 +225,30 @@
 	melee_damage_upper = 35
 	armour_penetration = 50
 
-	r_hand = /obj/item/dualsaber
+	r_hand = /obj/item/dualsaber_fake
 	shielding = TRUE
 	laser_block_chance = 100
 	projectile_deflect_chance = 50
-
+	light_on = TRUE
+	light_system = OVERLAY_LIGHT
+	light_color = LIGHT_COLOR_INTENSE_RED
+	light_range = 4
 
 /mob/living/basic/trooper/robust/syndicate/elite/melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	. = ..()
 	if(prob(30))
 		dance_rotate(src, CALLBACK(src, TYPE_PROC_REF(/mob, dance_flip)))
+
+/mob/living/basic/trooper/robust/syndicate/elite/Life(seconds_per_tick, times_fired)
+	. = ..()
+	set_light_color(pick(COLOR_SOFT_RED, LIGHT_COLOR_GREEN, LIGHT_COLOR_LIGHT_CYAN, LIGHT_COLOR_LAVENDER))
+
+/obj/item/dualsaber_fake
+	name = "double-bladed energy sword"
+	desc = "Handle with care."
+	icon = 'icons/obj/weapons/transforming_energy.dmi'
+	icon_state = "dualsaberrainbow1"
+	inhand_icon_state = "dualsaberrainbow1"
+	icon_angle = -45
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'

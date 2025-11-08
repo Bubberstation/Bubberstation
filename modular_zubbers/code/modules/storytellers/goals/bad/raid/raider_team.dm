@@ -20,6 +20,8 @@
 	var/turf/strike_point
 	// Shared current objective
 	var/current_objective
+	// List of visited area types to cycle through stations
+	var/list/visited_areas = list()
 
 /datum/raider_team/New()
 	..()

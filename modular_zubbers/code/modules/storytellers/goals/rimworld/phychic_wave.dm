@@ -83,7 +83,7 @@
 		message_extreme_brain = "The force has brutally shredded your neural tissue, risking total collapse."
 
 	start_when = rand(120, 180)
-	end_when = start_when + 20 * 60 + ((threat_points/100) * 20)
+	end_when = start_when + rand(5-10) * 60 + ((threat_points/100) * 10)
 
 /datum/round_event/storyteller_psychic_wave/__announce_for_storyteller()
 	priority_announce("Sensors detect a surge of psychic energy enveloping the station. \
@@ -97,7 +97,11 @@
 	COOLDOWN_START(src, psychic_wave_cooldown, psychic_wave_update_interval + psychic_wave_update_interval)
 	COOLDOWN_START(src, hallucination_wave_cooldown, hallucination_cooldown + psychic_wave_update_interval)
 	COOLDOWN_START(src, brain_damage_cooldown, brain_damage_cooldown_time + psychic_wave_update_interval)
+	change_space_color("#9932CC", fade_in = TRUE)
 
+/datum/round_event/storyteller_psychic_wave/__end_for_storyteller()
+	. = ..()
+	change_space_color(fade_in = TRUE, fade_out = TRUE)
 
 /datum/round_event/storyteller_psychic_wave/__storyteller_tick(seconds_per_tick)
 	if(!COOLDOWN_FINISHED(src, psychic_wave_cooldown))
@@ -115,6 +119,7 @@
 /datum/round_event/storyteller_psychic_wave/__end_for_storyteller()
 	. = ..()
 	priority_announce("The psychic wave subsides, and the crew's minds begin to clear.")
+	change_space_color(fade_in = TRUE)
 
 /datum/round_event/storyteller_psychic_wave/proc/update_physic_wave_effects()
 	var/list/crew = get_alive_station_crew(ignore_erp = FALSE, only_crew = FALSE)
@@ -213,10 +218,11 @@
 			var/obj/item/organ/brain/brain = human.get_organ_by_type(/obj/item/organ/brain)
 			if(brain)
 				brain.apply_organ_damage(rand(5, 10) * multiplier)
-			to_chat(human, span_warning(message_extreme_brain))
+			to_chat(human, span_danger(message_extreme_brain))
 			if(in_space)
 				human.set_eye_blur_if_lower(10 SECONDS * multiplier)
-				brain.gain_trauma_type()
+				if(prob(50))
+					brain.gain_trauma_type()
 
 
 /datum/mood_event/psychic_wave

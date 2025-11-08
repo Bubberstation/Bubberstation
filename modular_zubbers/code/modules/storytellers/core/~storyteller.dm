@@ -317,7 +317,7 @@
 	update_population_factor()
 
 	// 5) Check antagonist balance and spawn if needed
-	if(COOLDOWN_FINISHED(src, antag_balance_check_cooldown) && SSstorytellers?.storyteller_replace_dynamic)
+	if(COOLDOWN_FINISHED(src, antag_balance_check_cooldown) && SSstorytellers?.storyteller_replace_dynamic && roundstart_antags_selected)
 		check_and_spawn_antagonists(snap)
 		COOLDOWN_START(src, antag_balance_check_cooldown, antag_balance_check_interval)
 
@@ -329,11 +329,14 @@
 
 		// Check if we have enough people (at least medium population threshold)
 		if(pop >= population_threshold_low)
-			spawn_initial_antagonists()
-			roundstart_antags_selected = TRUE
-		else
+			if(spawn_initial_antagonists())
+				roundstart_antags_selected = TRUE
+				COOLDOWN_START(src, antag_balance_check_cooldown, antag_balance_check_interval)
+			else
 			// Not enough people yet, wait a bit more (check again in 2 minutes)
-			roundstart_antag_selection_time = world.time + (2 MINUTES)
+				roundstart_antag_selection_time = world.time + (2 MINUTES)
+		else
+			roundstart_antag_selection_time = world.time + (5 MINUTES)
 
 
 	var/latest_key = num2text(world.time)

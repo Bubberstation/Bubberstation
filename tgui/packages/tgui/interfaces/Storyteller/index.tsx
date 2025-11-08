@@ -24,44 +24,44 @@ import { Window } from '../../layouts';
 // global objectives, and branching sub-objectives, balancing threats, pacing, and antagonist activity for rounds.
 const TOOLTIPS = {
   // Status (Overview)
-  mood: 'Current "mood" of the storyteller, determining the style of the global objective (e.g., "Slow Horror" for gradual threat buildup). Influences sub-objective and antagonist branch selection.',
+  mood: 'The current mood of the storyteller. It acts as a modifier for event difficulty and directly influences the interval between events.',
   tension:
-    'Current round tension (0-100%). High value (>target) signals peak events; low — a pause for player preparation to the next global objective branch.',
+    'Current round tension (0-100%). Depending on the target tension the storyteller aims for, higher values may lead to more positive events.',
   targetTension:
-    'Target tension (0-100%). The storyteller aims to maintain it by planning events and sub-objectives for balance — like in RimWorld, where the storyteller adapts threats to the colony\'s "mood."',
+    'Target tension (0-100%). The storyteller strives to maintain it by planning events: low values decrease the overall difficulty modifier, high values increase it. Values closer to 100 lead to extreme event difficulty.',
   threatLevel:
-    'Threat level (0-100%). Reflects accumulated danger from antagonist branches and events; >70% — crisis, requiring urgent sub-objectives to resolve the global objective.',
+    'Threat level (0-100%). Indicates the current threat points available to the storyteller (from 1 to 10,000).',
   effectiveThreat:
-    'Effective threat level (accounts for players and progress). Aids analysis: low — safe for new branches, high — focus on antagonists and escalation.',
+    'Effective threat level (accounts for players and progress). Based on round time, antagonist activity, and overall tension.',
   roundProgression:
-    'Round progression (0-1). When it reaches 1, the storyteller completes the current global objective and plans a new one, analyzing the station for fresh sub-objectives.',
+    'Round progression (0-1). When it reaches 1, nearly all events become available. By default, the upper progression level is reached in two hours.',
   playersAntags:
-    'Number of players / antagonists. Used for balance: too few antagonists — adds branches; many — focuses on countermeasures in sub-objectives.',
+    'Number of players / antagonists. Current ratio of active players on the station (not in guest roles and not engaged in ERP) to active antagonists.',
   balance:
-    'Antagonist balance (0-100%). <40% — "boring," storyteller intensifies antagonist branches; >60% — "chaos," adds neutral events for a breather.',
+    'Antagonist balance (0-100%). Below 40% — "boring," storyteller intensifies antagonist branches; above 60% — "chaos," adds neutral events for a breather.',
   difficulty:
-    'Event difficulty modifier (×1). Increases weight of sub-objectives and threats in the global objective, adapting to server experience — like threat scale in RimWorld.',
+    'Event difficulty modifier (×1). Overall modifier that increases the threat points applied to an event.',
   nextThink:
-    'Time until the storyteller\'s next "think." Here, it analyzes the station, adjusts sub-objectives, and branches to advance toward the global objective.',
+    'Time until the storyteller\'s next "think." At this point, it analyzes the station.',
 
   // Settings (Settings & Advanced)
   moodSelect:
     'Mood selection to change the global objective style. Each mood affects planning pace: "Fast Chaos" — frequent antagonist branches, "Slow Schemer" — hidden sub-objectives.',
   pace: 'Event pace multiplier (0.5-2.0). 0.5 — slows sub-objective intervals for deep roleplay; 2.0 — accelerates for dynamic rounds, like in RimWorld with "manic miner."',
   reanalyse:
-    'Reanalyze station: recalculates players, threats, and balance to adjust current sub-objectives and branches in the global objective.',
+    'Reanalyze station: recalculates players, threats, and balance to adjust the plan.',
   replan:
-    'Replan: resets the sub-objective chain, selects new branches based on mood and analysis — useful for mid-round pivot to a new global objective.',
+    'Replan: launches the analyzer and rebuilds the event queue based on the obtained data.',
   difficultySlider:
-    'Global difficulty multiplier (0.3-5). Increases antagonist event weight and threats in sub-objectives; high — for hardcore servers, low — for newbies.',
+    'Global difficulty multiplier (0.3-5). Increases the threat points received by the storyteller, as well as the amount of threat points allocated to events.',
   targetTensionSlider:
-    'Target tension for auto-balance. The storyteller plans events to reach it: low — peaceful sub-objectives, high — antagonist branch escalation.',
+    'Target tension for auto-balance. The storyteller plans events to achieve it: low — peaceful sub-objectives, high — escalation of antagonist branches.',
   threatGrowthRate:
-    'Threat growth rate (0.1-5). Determines how quickly threat_level accumulates from unresolved sub-objectives — key to global objective pacing.',
+    'Threat growth rate (0.1-5). Amount of threat points received by the storyteller per thinking cycle.',
   thinkDelay:
-    'Think delay (seconds, 1-240). Frequent thinking — dynamic branch planning; rare — strategic, like RimWorld with long-term threats.',
+    'Think delay (seconds, 1-240). Frequent thinking — for dynamic branch planning; rare — for strategic approach, like in RimWorld with long-term threats.',
   averageEventInterval:
-    'Minimum event interval (seconds, 1-60). Short — quick sub-objectives for high pace; long — pauses for players in global objective branches.',
+    'Minimum event interval (seconds, 1-60). Short — for quick sub-objectives and high pace; long — for pauses to players in global objective branches.',
   gracePeriod:
     'Grace period (seconds, 120-1200). Time after an event when repeats are not planned — prevents spamming sub-objectives in the chain.',
   repetitionPenalty:

@@ -18,5 +18,9 @@
 #define BB_RAIDER_PATH_WAYPOINTS "BB_raider_path_waipoints"
 #define BB_RAIDER_FINAL_DESTINATION "BB_raider_final_deestination"
 #define BB_PATH_FINDER "BB_my_pathfinder"
+#define BB_RAIDER_DESTRUCTION_TARGET "BB_raider_destruction_target"
+#define BB_RAIDER_LOOT_TARGET "BB_raider_loot_target"
+#define BB_RAIDER_SEARCH_COOLDOWN_END "BB_riader_search_cooldown_end"
+#define BB_RAIDER_HOLD_COOLDOWN_END "BB_raider_hold_cooldown_end"
 
 #define TRAIT_NO_REBOOT_EVENT "stroyteller_trait_no_reboot_event"

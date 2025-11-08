@@ -2,7 +2,7 @@
 #define STORYTELLER_JSON_PATH "config/storyteller/storytellers.json"
 #define STORYTELLER_ICONS_PATH "config/storytellers_icons/"
 #define STORYTELLER_EVENT_CONFIG_PATH "config/storyteller/events"
-
+#define STORYTELLER_VOTE_CACHE "data/storyteller_vote_cache.json"
 
 SUBSYSTEM_DEF(storytellers)
 	name = "AI Storytellers"
@@ -16,6 +16,10 @@ SUBSYSTEM_DEF(storytellers)
 	var/selected_difficulty
 
 	var/current_vote_duration = 60 SECONDS
+
+	VAR_PRIVATE/list/storyteller_vote_cache
+
+	var/last_selected_id = ""
 
 	var/vote_active = FALSE
 	/// Active storyteller instance
@@ -58,6 +62,7 @@ SUBSYSTEM_DEF(storytellers)
 	events_by_category = list()
 	collect_available_goals()
 	load_event_config()
+	load_vote_cahce()
 
 	// Load config values (assuming global config loader; adjust if needed)
 	storyteller_replace_dynamic = config.Get(/datum/config_entry/flag/storyteller_replace_dynamic) || TRUE
@@ -390,6 +395,17 @@ SUBSYSTEM_DEF(storytellers)
 			event.vars[event_variable] = loaded[id][event_variable]
 
 
+/datum/controller/subsystem/storytellers/proc/load_vote_cahce()
+	if(rustg_file_exists(STORYTELLER_VOTE_CACHE))
+		storyteller_vote_cache = json_decode(file2text(STORYTELLER_VOTE_CACHE))
+		if(length(storyteller_vote_cache))
+			last_selected_id = storyteller_vote_cache[1]
+	else
+		storyteller_vote_cache = list()
+
+/datum/controller/subsystem/storytellers/proc/write_cache()
+	rustg_file_write(json_encode(storyteller_vote_cache), STORYTELLER_VOTE_CACHE)
+
 /datum/controller/subsystem/storytellers/proc/filter_goals(category = null, required_tags = null, subtype = null, all_tags_required = FALSE, include_children = TRUE)
 	var/list/result = list()
 
@@ -576,3 +592,4 @@ ADMIN_VERB(storyteller_simulation, R_ADMIN, "Storyteller - Simulation", "Simulat
 #undef STORYTELLER_JSON_PATH
 #undef STORYTELLER_ICONS_PATH
 #undef STORYTELLER_EVENT_CONFIG_PATH
+#undef STORYTELLER_VOTE_CACHE

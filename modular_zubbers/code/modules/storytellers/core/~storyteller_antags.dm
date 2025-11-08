@@ -12,6 +12,8 @@
 
 	if(HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ANTAGS) && !force)
 		return
+	if(!snap)
+		snap = balancer.make_snapshot(inputs)
 
 	var/balance_ratio = snap.balance_ratio
 	var/antag_count = inputs.antag_count()
@@ -72,12 +74,12 @@
 
 	if(HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ANTAGS))
 		message_admins("[name] skipped initial antagonist spawn (NO_ANTAGS trait)")
-		return
+		return FALSE
 
 	var/pop = inputs.player_count()
 	if(pop < population_threshold_low)
 		message_admins("[name] skipped initial antagonist spawn - insufficient population (pop: [pop])")
-		return
+		return FALSE
 
 	var/list/possible_candidates = SSstorytellers.filter_goals(STORY_GOAL_ANTAGONIST, STORY_TAG_ROUNDSTART)
 	var/datum/storyteller_balance_snapshot/bal = balancer.make_snapshot(inputs)
@@ -94,7 +96,7 @@
 		if(!planner.try_plan_event(antag_event, world.time + (spawn_offset * i)))
 			message_admins("[name] failed to execute initial antagonist goal [antag_event.name] ([i]/[spawn_count])")
 	message_admins("[name] spawned [spawn_count] initial antagonists for population [pop]")
-
+	return TRUE
 
 
 /datum/storyteller/proc/try_spawn_midround_antagonist_wave(datum/storyteller_balance_snapshot/snap)
