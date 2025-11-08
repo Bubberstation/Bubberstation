@@ -6,7 +6,7 @@
 	organ_type = /obj/item/organ/skrell_hair
 
 /datum/sprite_accessory/skrell_hair/is_hidden(mob/living/carbon/human/wearer)
-	if((wearer.head?.flags_inv & HIDEHAIR) || (wearer.wear_mask?.flags_inv & HIDEHAIR))
+	if(wearer.covered_slots & HIDEHAIR)
 		return TRUE
 
 	return FALSE
@@ -14,6 +14,7 @@
 /datum/sprite_accessory/skrell_hair/none
 	name = SPRITE_ACCESSORY_NONE
 	icon_state = "none"
+	factual = FALSE
 
 /datum/sprite_accessory/skrell_hair/long
 	name = "Female (Long)"

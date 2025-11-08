@@ -7,8 +7,6 @@ Unlike normal organs, we're actually inside a persons limbs at all times
 	///The overlay datum that actually draws stuff on the limb
 	var/datum/bodypart_overlay/mutant/bodypart_overlay
 
-	/// The savefile_key of the preference this relates to. Used for the preferences UI.
-	var/preference
 	///With what DNA block do we mutate in mutate_feature() ? For genetics
 	var/datum/dna_block/dna_block
 
@@ -66,6 +64,12 @@ Unlike normal organs, we're actually inside a persons limbs at all times
 
 	if(target.dna.features[feature_key] != SPRITE_ACCESSORY_NONE)
 		return TRUE
+
+	// BUBBER EDIT ADDITION BEGIN - Customization
+	if(target.dna.mutant_bodyparts[feature_key] && target.dna.mutant_bodyparts[feature_key][MUTANT_INDEX_NAME] != SPRITE_ACCESSORY_NONE)
+		return TRUE
+	// BUBBER EDIT ADDITION END
+
 	return FALSE
 
 ///Update our features after something changed our appearance
@@ -109,7 +113,6 @@ Unlike normal organs, we're actually inside a persons limbs at all times
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_EXTERNAL_HORNS
 
-	preference = "feature_lizard_horns"
 	//dna_block = /datum/dna_block/feature/horn // SKYRAT EDIT REMOVAL - Customization - We have our own system to handle DNA.
 	restyle_flags = EXTERNAL_RESTYLE_ENAMEL
 
@@ -137,7 +140,6 @@ Unlike normal organs, we're actually inside a persons limbs at all times
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_EXTERNAL_FRILLS
 
-	preference = "feature_lizard_frills"
 	//dna_block = /datum/dna_block/feature/frill // SKYRAT EDIT REMOVAL - Customization - We have our own system to handle DNA.
 	restyle_flags = EXTERNAL_RESTYLE_FLESH
 
@@ -164,7 +166,6 @@ Unlike normal organs, we're actually inside a persons limbs at all times
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_EXTERNAL_SNOUT
 
-	preference = "feature_lizard_snout"
 	external_bodyshapes = BODYSHAPE_SNOUTED
 
 	//dna_block = /datum/dna_block/feature/snout // SKYRAT EDIT REMOVAL - Customization - We have our own system to handle DNA.
@@ -193,7 +194,6 @@ Unlike normal organs, we're actually inside a persons limbs at all times
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_EXTERNAL_ANTENNAE
 
-	preference = "feature_moth_antennae"
 	//dna_block = /datum/dna_block/feature/moth_antenna // SKYRAT EDIT REMOVAL - Customization - We have our own system to handle DNA.
 	restyle_flags = EXTERNAL_RESTYLE_FLESH
 
@@ -282,7 +282,6 @@ Unlike normal organs, we're actually inside a persons limbs at all times
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_EXTERNAL_POD_HAIR
 
-	preference = "feature_pod_hair"
 	use_mob_sprite_as_obj_sprite = TRUE
 
 	//dna_block = /datum/dna_block/feature/pod_hair // BUBBER EDIT REMOVAL - We have our own system for handling DNA

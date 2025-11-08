@@ -1646,3 +1646,4 @@ TREK
 /datum/greyscale_config/turret/toolbox
 	name = "Donksoft Turret"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/turret/turret_toolbox.json'
+

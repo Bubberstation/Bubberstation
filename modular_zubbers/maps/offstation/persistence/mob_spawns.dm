@@ -191,7 +191,6 @@
 		/obj/item/borg/lollipop,
 		/obj/item/borg/apparatus/beaker,
 		/obj/item/restraints/handcuffs/cable/zipties,
-		/obj/item/borg/sight/meson,
 		/obj/item/borg_shapeshifter/dauntless
 		)
 
@@ -384,6 +383,7 @@
 		/obj/item/storage/box/survival = 1,
 		/obj/item/crowbar = 1,
 		/obj/item/choice_beacon/syndicateoffstation/morale = 1,
+		/obj/item/storage/lockbox/medal/bubber/synd = 1,
 		)
 	head = /obj/item/clothing/head/hats/hos/cap/syndicate
 	id = /obj/item/card/id/advanced/gold/generic

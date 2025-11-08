@@ -16,23 +16,6 @@
 	icon_state = (icon_state == base_icon_state) ? "[base_icon_state]_flipped" : base_icon_state
 	user.update_worn_glasses()
 
-
-/obj/item/clothing/glasses/hud/eyepatch/sec
-	name = "security eyepatch HUD"
-	desc = "Lost your eye beating an innocent clown? Thankfully your corporate overlords have made something to make up for this. May not do well against flashes."
-	clothing_traits = list(TRAIT_SECURITY_HUD)
-	glass_colour_type = /datum/client_colour/glass_colour/blue
-
-	unique_reskin = list(
-		"Eyepatch" = list(
-			RESKIN_ICON_STATE = "hudpatch",
-			RESKIN_WORN_ICON_STATE = "hudpatch"
-		),
-		"Fake Blindfold" = list(
-			RESKIN_ICON_STATE = "secfold",
-			RESKIN_WORN_ICON_STATE = "secfold"
-		)
-	)
 /obj/item/clothing/glasses/hud/eyepatch/med
 	name = "medical eyepatch HUD"
 	desc = "Do no harm, maybe harm has befell to you, or your poor eyeball, thankfully there's a way to continue your oath, thankfully it didn't mention sleepdarts or monkey men."
@@ -121,12 +104,6 @@
 	icon_state = "obsoletefold"
 	base_icon_state = "obsoletefold"
 	can_switch_eye = TRUE
-
-/obj/item/clothing/glasses/hud/eyepatch/sec/blindfold
-	name = "sec blindfold HUD"
-	desc = "a fake blindfold with a security HUD inside, helps you look like blind justice. This won't provide the same protection that you'd get from sunglasses."
-	icon_state =  "secfold"
-	base_icon_state =  "secfold"
 
 /obj/item/clothing/glasses/hud/eyepatch/med/blindfold
 	name = "medical blindfold HUD"
