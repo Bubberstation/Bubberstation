@@ -92,12 +92,12 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "combat"
 
-/obj/item/clothing/gloves/krav_maga/combatglovesplus
+/obj/item/clothing/gloves/kaza_ruk/combatglovesplus
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "combat"
 
-/obj/item/clothing/gloves/krav_maga/combatglovesplus/maa
+/obj/item/clothing/gloves/kaza_ruk/combatglovesplus/maa
 	name = "master at arms' combat gloves"
 	desc = "A set of combat gloves plus emblazoned with red knuckles, showing dedication to the trade while also hiding any blood left after use."
 	icon_state = "maagloves"
