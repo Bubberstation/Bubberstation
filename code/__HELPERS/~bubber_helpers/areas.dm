@@ -25,6 +25,7 @@ GLOBAL_LIST_INIT(ghost_cafe_areas, list(
 	/area/centcom/holding/cafe/station/science/robotics/augments,
 	/area/centcom/holding/cafe/station/command,
 	/area/centcom/holding/cafe/station/command/cap,
+	/area/centcom/holding/cafe/station/command/meeting_room,
 	/area/centcom/holding/cafe/station/command/cap/private,
 	/area/centcom/holding/cafe/station/command/teleporter,
 	/area/centcom/holding/cafe/station/maint,
