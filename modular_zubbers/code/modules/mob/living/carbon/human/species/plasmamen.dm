@@ -2,7 +2,7 @@
 #define BURN_DMG_MODIFIER 1.2
 
 /datum/species/plasmaman
-	heatmod = BRUTE_DMG_MODIFIER
+	heatmod = 1.2
 
 /obj/item/bodypart/head/plasmaman
 	brute_modifier = BRUTE_DMG_MODIFIER
