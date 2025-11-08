@@ -1025,10 +1025,15 @@
 /area/awaymission/caves/heretic_laboratory_clean)
 "he" = (
 /obj/structure/table,
-/obj/effect/blessing,
-/obj/item/mounted_machine_gun_folded{
-	anchored = 1
+/obj/item/gun/ballistic/automatic/l6_saw/unrestricted{
+	anchored = 1;
+	accepted_magazine_type = /obj/item/ammo_box/magazine/mmg_box;
+	name = "'The Shredder'";
+	projectile_damage_multiplier = 2.5;
+	desc = "A heavily modified of an already heavily modified weapon, this L6 saw's receiver has been upscaled to accept 12.7mm (.50) cartridges, who the fuck could control that recoil?";
+	recoil = 1
 	},
+/obj/effect/blessing,
 /turf/open/floor/iron/small,
 /area/awaymission/caves/heretic_laboratory_clean)
 "hf" = (
@@ -2587,10 +2592,10 @@
 /area/awaymission/beach/heretic)
 "qD" = (
 /obj/machinery/suit_storage_unit/open,
-/obj/effect/blessing,
 /obj/item/mod/control/pre_equipped/blueshield{
 	anchored = 1
 	},
+/obj/effect/blessing,
 /turf/open/floor/iron/small,
 /area/awaymission/caves/heretic_laboratory_clean)
 "qE" = (
@@ -3824,8 +3829,10 @@
 /area/awaymission/beach/heretic)
 "yd" = (
 /obj/structure/table,
+/obj/item/ammo_box/magazine/lahtimagazine{
+	anchored = 1
+	},
 /obj/effect/blessing,
-/obj/item/ammo_box/magazine/sniper_rounds,
 /turf/open/floor/iron/small,
 /area/awaymission/caves/heretic_laboratory_clean)
 "yg" = (
@@ -7738,8 +7745,11 @@
 /area/awaymission/caves/heretic_laboratory)
 "Ym" = (
 /obj/structure/table,
+/obj/item/gun/ballistic/automatic/lahti{
+	pixel_x = -20;
+	anchored = 1
+	},
 /obj/effect/blessing,
-/obj/item/gun/ballistic/rifle/sniper_rifle,
 /turf/open/floor/iron/small,
 /area/awaymission/caves/heretic_laboratory_clean)
 "Yn" = (
@@ -7775,8 +7785,10 @@
 "Yu" = (
 /obj/structure/table,
 /obj/machinery/light/directional/east,
+/obj/item/ammo_box/magazine/lahtimagazine{
+	anchored = 1
+	},
 /obj/effect/blessing,
-/obj/item/ammo_box/magazine/sniper_rounds,
 /turf/open/floor/iron/small,
 /area/awaymission/caves/heretic_laboratory_clean)
 "Yv" = (
