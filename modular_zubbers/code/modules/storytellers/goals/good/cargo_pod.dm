@@ -268,6 +268,8 @@
 	)
 
 /datum/round_event/storyteller_cargo_pod
+	STORYTELLER_EVENT
+
 	// Possible cargo to choose from
 	var/list/possible_cargo = list()
 	// Possible areas to spawn pods at

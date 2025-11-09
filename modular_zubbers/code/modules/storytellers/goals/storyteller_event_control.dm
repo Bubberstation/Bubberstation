@@ -65,12 +65,18 @@
 /datum/round_event_control/proc/run_event_as_storyteller(datum/storyteller_inputs/inputs, datum/storyteller/storyteller, threat_points)
 	pre_storyteller_run(inputs, storyteller, threat_points)
 
+	var/used_threath_points = FALSE
 	if(typepath) // For antagonist and other events that spawn a round_event datum
 		var/datum/round_event/round_event = new typepath(TRUE, src)
 		if(SEND_SIGNAL(SSdcs, COMSIG_GLOB_STORYTELLER_RUN_EVENT, round_event) && CANCEL_STORYTELLER_EVENT)
 			return FALSE
 		round_event.current_players = inputs.player_count()
-		round_event.__setup_for_storyteller(threat_points, additional_arguments, inputs, storyteller)
+		round_event.__register()
+		if(is_storyteller_event(round_event))
+			round_event.__setup_for_storyteller(threat_points, additional_arguments, inputs, storyteller)
+			used_threath_points = TRUE
+		else
+			round_event.setup()
 		SSblackbox.record_feedback("tally", "event_ran", 1, "[round_event]")
 		testing("[time2text(world.time, "hh:mm:ss", 0)] [round_event.type]")
 
@@ -79,8 +85,8 @@
 	storyteller_override = TRUE
 
 	log_storyteller("[storyteller.name] run event [name]")
-	deadchat_broadcast("[storyteller.name] has just fired <b>[name]</b> with <b>[threat_points]</b> threat points", message_type=DEADCHAT_ANNOUNCEMENT)
-	message_admins("[span_notice("[storyteller.name] fired event: ")] [name || id]. with threat points: [threat_points]")
+	deadchat_broadcast("[storyteller.name] has just fired <b>[name]</b> event [used_threath_points ? "with <b>[threat_points]</b> threat points" : "" ]", message_type=DEADCHAT_ANNOUNCEMENT)
+	message_admins("[span_notice("[storyteller.name] fired event:")] [name || id], with [threat_points] threat points")
 	return TRUE
 
 // Base for storyteller antagonist events
@@ -122,7 +128,7 @@
 	var/datum/callback/admin_cancel_callback
 
 	var/delayed = FALSE
-
+	var/can_load_character = FALSE
 
 /datum/round_event_control/antagonist/New()
 	. = ..()
@@ -166,8 +172,6 @@
 		return FALSE
 	if(!(role_flag in candidate.client.prefs.be_special))
 		return FALSE
-	if(candidate.is_antag())
-		return FALSE
 
 	if(isliving(candidate))
 		var/mob/living/L = candidate
@@ -197,22 +201,20 @@
 /datum/round_event_control/antagonist/pre_storyteller_run(datum/storyteller_inputs/inputs, datum/storyteller/storyteller, threat_points)
 	. = ..()
 	delayed = TRUE
-	addtimer(CALLBACK(src, PROC_REF(after_delay), inputs, storyteller), admin_cancel_delay + 1 SECONDS)
 	candidates = list()
 	candidates = poll_candidates_for_antag(inputs, storyteller, candidates)
-
+	after_delay(inputs, storyteller)
 
 /datum/round_event_control/antagonist/proc/after_delay(datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
-	delayed = FALSE
 	if(admin_cancel_callback)
 		admin_cancel_callback.Invoke(inputs, storyteller)
 		qdel(admin_cancel_callback)
 		admin_cancel_callback = null
 	if(length(candidates) < min_candidates)
-		canceled = TRUE
 		candidate_selected = FALSE
 	else
 		candidate_selected = TRUE
+	delayed = FALSE
 
 /datum/round_event_control/antagonist/proc/admin_cancel_event(datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
 	if(!candidate_selected)
@@ -260,9 +262,10 @@
 		var/list/crew_votes = SSstorytellers.ask_crew_for_goals(
 			question_text = question,
 			goal_list = goal_list,
-			poll_time = admin_cancel_delay * 0.5,
+			poll_time = admin_cancel_delay,
 			group = crew_list,
-			ignore_category = role_flag
+			ignore_category = role_flag,
+			alert_pic = signup_atom_appearance
 		)
 		var/yes_crew = crew_votes["Yes"]
 		if(islist(yes_crew))
@@ -270,7 +273,6 @@
 				for(var/mob/living/L in yes_crew)
 					if(!(L in selected))
 						selected += L
-						to_chat(L, span_notice("You have accepted the call to become a [antag_name]. Keep it secret!"))
 						log_storyteller("[key_name(L)] accepted [storyteller.name]'s call to become [antag_name].")
 		else
 			selected += yes_crew // The chosen one
@@ -305,15 +307,10 @@
 // Run: spawn with checks
 /datum/round_event_control/antagonist/run_event_as_storyteller(datum/storyteller_inputs/inputs, datum/storyteller/storyteller, threat_points)
 	. = ..()
-	INVOKE_ASYNC(src, PROC_REF(run_antagonist_event), inputs, storyteller, threat_points)
-	return TRUE
+	run_antagonist_event(inputs, storyteller, threat_points)
+	return
 
 /datum/round_event_control/antagonist/proc/run_antagonist_event(datum/storyteller_inputs/inputs, datum/storyteller/storyteller, threat_points)
-	set waitfor = FALSE
-
-	while(delayed)
-		CHECK_TICK
-
 	if(!candidate_selected || !length(candidates))
 		deadchat_broadcast("[storyteller.name]'s [antag_name] event failed to spawn: no candidates selected", message_type=DEADCHAT_ANNOUNCEMENT)
 		message_admins("[storyteller.name]'s [antag_name] event failed to spawn: no valid candidates.")
@@ -351,15 +348,19 @@
 	after_antagonist_spawn(inputs, storyteller, spawned_antags)
 
 
-
-
 /datum/round_event_control/antagonist/proc/after_antagonist_spawn(datum/storyteller_inputs/inputs, datum/storyteller/storyteller, list/spawned_antags)
+	if(can_load_character)
+		for(var/datum/mind/antag_mind in spawned_antags)
+			if(antag_mind.current)
+				var/datum/action/storyteller_loadprefs/ability = new()
+				ability.Grant(antag_mind.current)
 	return
 
 
 /datum/round_event_control/antagonist/from_ghosts
 	crew_candidates = FALSE
 	ghost_candidates = TRUE
+	can_load_character = TRUE
 	signup_atom_appearance = /obj/item/paper
 
 /datum/round_event_control/antagonist/from_living
@@ -376,7 +377,38 @@
 		return FALSE
 	if(candidate.mind.assigned_role.title in blacklisted_roles)
 		return FALSE
-	if(candidate.mind?.has_antag_datum(antag_datum_type))
+	if(candidate.is_antag())
 		return FALSE
-
 	return TRUE
+
+/datum/action/storyteller_loadprefs
+	name = "Load current character"
+	desc = "Loads your current preferences on current mob"
+	background_icon_state = "bg_agent"
+	button_icon_state = "ghost"
+	show_to_observers = FALSE
+
+	var/confirm_time = 30 SECONDS
+
+/datum/action/storyteller_loadprefs/Grant(mob/grant_to)
+	. = ..()
+	to_chat(grant_to, span_notice("Use the [name] action to load your current character preferences."))
+	addtimer(CALLBACK(src, PROC_REF(Remove), grant_to), confirm_time)
+
+/datum/action/storyteller_loadprefs/Trigger(mob/clicker, trigger_flags)
+	. = ..()
+	if(!clicker.client)
+		return
+	var/client/client = clicker.client
+	if(!ishuman(clicker))
+		return
+	var/ask = tgui_alert(clicker, "Are you sure you want to load your current character preferences?", "Load current character", list("Yes", "Nevermind"))
+	if(ask != "Yes")
+		return
+
+	client?.prefs?.apply_prefs_to(clicker)
+	SSquirks.OverrideQuirks(clicker, client)
+	var/msg = span_notice("[key_name(clicker)] has used the [name] ability to apply their character preferences to their current mob. [ADMIN_VERBOSEJMP(clicker)]")
+	message_admins(msg)
+	Remove(clicker)
+

@@ -2,7 +2,7 @@
 	id = "psychic_wave"
 	name = "Psychic Wave"
 	description = "Unleash a powerful psychic wave that disrupts the minds of the crew, causing hallucinations and mental distress."
-	story_category = STORY_GOAL_BAD
+	story_category = STORY_GOAL_BAD | STORY_GOAL_MAJOR
 	tags = STORY_TAG_AFFECTS_CREW_MIND | STORY_TAG_WIDE_IMPACT | STORY_TAG_AFFECTS_WHOLE_STATION
 	typepath = /datum/round_event/storyteller_psychic_wave
 
@@ -13,6 +13,8 @@
 
 
 /datum/round_event/storyteller_psychic_wave
+	STORYTELLER_EVENT
+
 	var/vomit_chance = 20
 
 	var/psychic_wave_update_interval = 15 SECONDS
@@ -41,6 +43,7 @@
 
 /datum/round_event/storyteller_psychic_wave/__setup_for_storyteller(threat_points, ...)
 	. = ..()
+	var/bonus_time = 0
 	if(threat_points < STORY_THREAT_MODERATE)
 		vomit_chance = 15
 		mood_debuff_duration = 5 MINUTES
@@ -61,6 +64,7 @@
 		message_high = "A persistent psychic presence invades your thoughts, warping your senses."
 		message_extreme = "The entity presses harder, twisting your perception and sowing confusion."
 		message_extreme_brain = "The intruding force has inflicted noticeable harm to your brain's structure."
+		bonus_time = 120
 	else if(threat_points < STORY_THREAT_EXTREME)
 		vomit_chance = 25
 		mood_debuff_duration = 12 MINUTES
@@ -81,9 +85,10 @@
 		message_high = "The psychic being tears into your consciousness, shattering illusions of safety."
 		message_extreme = "Your mind is rent asunder by the intruder's merciless onslaught."
 		message_extreme_brain = "The force has brutally shredded your neural tissue, risking total collapse."
+		bonus_time = 240
 
-	start_when = rand(120, 180)
-	end_when = start_when + rand(5-10) * 60 + ((threat_points/100) * 10)
+	start_when = rand(30, 60)
+	end_when = start_when + rand(450, 800) + bonus_time
 
 /datum/round_event/storyteller_psychic_wave/__announce_for_storyteller()
 	priority_announce("Sensors detect a surge of psychic energy enveloping the station. \
@@ -98,10 +103,6 @@
 	COOLDOWN_START(src, hallucination_wave_cooldown, hallucination_cooldown + psychic_wave_update_interval)
 	COOLDOWN_START(src, brain_damage_cooldown, brain_damage_cooldown_time + psychic_wave_update_interval)
 	change_space_color("#9932CC", fade_in = TRUE)
-
-/datum/round_event/storyteller_psychic_wave/__end_for_storyteller()
-	. = ..()
-	change_space_color(fade_in = TRUE, fade_out = TRUE)
 
 /datum/round_event/storyteller_psychic_wave/__storyteller_tick(seconds_per_tick)
 	if(!COOLDOWN_FINISHED(src, psychic_wave_cooldown))

@@ -9,6 +9,8 @@
 	requierd_threat_level = STORY_GOAL_THREAT_ELEVATED
 
 /datum/round_event/carp_migration
+	STORYTELLER_EVENT
+
 	allow_random = FALSE
 	var/carps_to_spawn = 0
 

@@ -1,209 +1,192 @@
 {
-	"storyteller_roundstart_traitor": {
-		"antag_name": "Roundstart Traitor",
+	"storyteller_traitor": {
+		"antag_name": "Traitor",
 		"role_flag": "Traitor",
 		"enabled": 1,
 		"story_weight": 3,
+		"min_players": 15,
+		"required_round_progress": 0,
+		"requierd_threat_level": 1,
+		"max_candidates": 1
+	},
+	"storyteller_bloodsucker": {
+		"antag_name": "Bloodsucker",
+		"role_flag": "Bloodsucker",
+		"enabled": 1,
+		"story_weight": 3,
+		"min_players": 15,
+		"required_round_progress": 0,
+		"requierd_threat_level": 1,
+		"max_candidates": 1
+	},
+	"storyteller_heretic": {
+		"antag_name": "Heretic",
+		"role_flag": "Heretic",
+		"enabled": 1,
+		"story_weight": 3,
+		"min_players": 15,
+		"required_round_progress": 0,
+		"requierd_threat_level": 2,
+		"max_candidates": 2
+	},
+	"storyteller_changeling": {
+		"antag_name": "Changeling",
+		"role_flag": "Changeling",
+		"enabled": 1,
+		"story_weight": 3,
+		"min_players": 15,
+		"required_round_progress": 0,
+		"requierd_threat_level": 2,
+		"max_candidates": 2
+	},
+	"storyteller_obsessed": {
+		"antag_name": "Obsessed",
+		"role_flag": "Obsessed",
+		"enabled": 1,
+		"story_weight": 2.5,
+		"min_players": 5,
+		"required_round_progress": 0.41,
+		"requierd_threat_level": 1,
+		"max_candidates": 1
+	},
+	"storyteller_nightmare": {
+		"antag_name": "Nightmare",
+		"role_flag": "Nightmare",
+		"enabled": 1,
+		"story_weight": 2.5,
 		"min_players": 10,
-		"required_round_progress": 0,
+		"required_round_progress": 0.41,
+		"requierd_threat_level": 2,
 		"max_candidates": 1
 	},
-	"storyteller_roundstart_malf_ai": {
-		"antag_name": "Roundstart Malfunctioning AI",
-		"role_flag": "Malf",
-		"enabled": 0,
-		"story_weight": 3.5,
-		"min_players": 30,
-		"required_round_progress": 0,
+	"storyteller_slaughter_demon": {
+		"antag_name": "Slaughter Demon",
+		"role_flag": "Slaughter Demon",
+		"enabled": 1,
+		"story_weight": 2.5,
+		"min_players": 15,
+		"required_round_progress": 0.41,
+		"requierd_threat_level": 2,
 		"max_candidates": 1
 	},
-	"storyteller_roundstart_blood_brother": {
-		"antag_name": "Roundstart Blood Brothers",
+	"storyteller_morph": {
+		"antag_name": "Morph",
+		"role_flag": "Morph",
+		"enabled": 1,
+		"story_weight": 2.5,
+		"min_players": 10,
+		"required_round_progress": 0.41,
+		"requierd_threat_level": 2,
+		"max_candidates": 1
+	},
+	"storyteller_blood_brother": {
+		"antag_name": "Blood Brothers",
 		"role_flag": "Blood Brother",
 		"enabled": 1,
 		"story_weight": 3,
 		"min_players": 10,
 		"required_round_progress": 0,
+		"requierd_threat_level": 1,
 		"max_candidates": 2
 	},
-	"storyteller_roundstart_changeling": {
-		"antag_name": "Roundstart Changeling",
-		"role_flag": "Changeling",
-		"enabled": 1,
-		"story_weight": 2.5,
-		"min_players": 15,
-		"required_round_progress": 0,
-		"max_candidates": 1
-	},
-	"storyteller_roundstart_heretic": {
-		"antag_name": "Roundstart Heretic",
-		"role_flag": "Heretic",
-		"enabled": 1,
-		"story_weight": 3,
-		"min_players": 20,
-		"required_round_progress": 0,
-		"max_candidates": 1
-	},
-	"storyteller_roundstart_wizard": {
-		"antag_name": "Roundstart Wizard",
-		"role_flag": "Wizard",
-		"enabled": 0,
-		"story_weight": 4,
-		"min_players": 25,
-		"required_round_progress": 0,
-		"max_candidates": 1
-	},
-	"storyteller_roundstart_blood_cult": {
-		"antag_name": "Roundstart Blood Cult",
-		"role_flag": "Cultist",
-		"enabled": 0,
-		"story_weight": 4,
-		"min_players": 30,
-		"required_round_progress": 0,
-		"max_candidates": 4
-	},
-	"storyteller_roundstart_revolution": {
-		"antag_name": "Roundstart Revolution",
-		"role_flag": "Head Revolutionary",
-		"enabled": 0,
-		"story_weight": 4,
-		"min_players": 30,
-		"required_round_progress": 0,
-		"max_candidates": 1
-	},
-	"storyteller_roundstart_spies": {
-		"antag_name": "Roundstart Spies",
+	"storyteller_spies": {
+		"antag_name": "Spies",
 		"role_flag": "Spy",
 		"enabled": 1,
 		"story_weight": 3,
 		"min_players": 10,
 		"required_round_progress": 0,
+		"requierd_threat_level": 2,
 		"max_candidates": 2
 	},
-	"storyteller_midround_traitor": {
-		"antag_name": "Midround Traitor",
-		"role_flag": "Traitor",
-		"enabled": 1,
-		"story_weight": 3.5,
-		"min_players": 15,
-		"required_round_progress": 0.41,
-		"max_candidates": 1
-	},
-	"storyteller_midround_heretic": {
-		"antag_name": "Midround Heretic",
-		"role_flag": "Heretic",
-		"enabled": 1,
-		"story_weight": 3.5,
-		"min_players": 15,
-		"required_round_progress": 0.41,
-		"max_candidates": 2
-	},
-	"storyteller_midround_changeling": {
-		"antag_name": "Midround Changeling",
-		"role_flag": "Changeling",
-		"enabled": 1,
-		"story_weight": 3.5,
-		"min_players": 15,
-		"required_round_progress": 0.41,
-		"max_candidates": 2
-	},
-	"storyteller_midround_revolution": {
-		"antag_name": "Midround Provocateur",
-		"role_flag": "Provocateur",
-		"enabled": 0,
-		"story_weight": 4,
-		"min_players": 30,
-		"required_round_progress": 0.41,
-		"max_candidates": 1
-	},
-	"storyteller_midround_malf_ai": {
-		"antag_name": "Midround Malfunctioning AI",
-		"role_flag": "Malf",
-		"enabled": 1,
-		"story_weight": 4,
-		"min_players": 30,
-		"required_round_progress": 0.41,
-		"max_candidates": 1
-	},
-	"storyteller_midround_obsessed": {
-		"antag_name": "Midround Obsessed",
-		"role_flag": "Obsessed",
-		"enabled": 1,
-		"story_weight": 3.5,
-		"min_players": 5,
-		"required_round_progress": 0.41,
-		"max_candidates": 1
-	},
-	"storyteller_midround_blob_infection": {
-		"antag_name": "Midround Blob Infection",
-		"role_flag": "Blob Infection",
-		"enabled": 1,
-		"story_weight": 4,
-		"min_players": 25,
-		"required_round_progress": 0.41,
-		"max_candidates": 1
-	},
-	"storyteller_midround_wizard": {
-		"antag_name": "Midround Wizard",
-		"role_flag": "Wizard",
+	"storyteller_loneop": {
+		"antag_name": "Lone Operative",
+		"role_flag": "Lone Operative",
 		"enabled": 1,
 		"story_weight": 4,
 		"min_players": 20,
 		"required_round_progress": 0.41,
+		"requierd_threat_level": 3,
 		"max_candidates": 1
 	},
-	"storyteller_midround_blob": {
-		"antag_name": "Midround Blob",
+	"storyteller_revolution": {
+		"antag_name": "Revolution",
+		"role_flag": "Provocateur",
+		"enabled": 0,
+		"story_weight": 5,
+		"min_players": 30,
+		"required_round_progress": 0,
+		"requierd_threat_level": 3,
+		"max_candidates": 1
+	},
+	"storyteller_malf_ai": {
+		"antag_name": "Malfunctioning AI",
+		"role_flag": "Malf",
+		"enabled": 1,
+		"story_weight": 5,
+		"min_players": 30,
+		"required_round_progress": 0,
+		"requierd_threat_level": 3,
+		"max_candidates": 1
+	},
+	"storyteller_blob_infection": {
+		"antag_name": "Blob Infection",
+		"role_flag": "Blob Infection",
+		"enabled": 1,
+		"story_weight": 5,
+		"min_players": 25,
+		"required_round_progress": 0.41,
+		"requierd_threat_level": 3,
+		"max_candidates": 1
+	},
+	"storyteller_wizard": {
+		"antag_name": "Wizard",
+		"role_flag": "Wizard",
+		"enabled": 1,
+		"story_weight": 5,
+		"min_players": 20,
+		"required_round_progress": 0,
+		"requierd_threat_level": 3,
+		"max_candidates": 1
+	},
+	"storyteller_blob": {
+		"antag_name": "Blob",
 		"role_flag": "Blob",
 		"enabled": 1,
-		"story_weight": 4.5,
+		"story_weight": 6,
 		"min_players": 25,
 		"required_round_progress": 0.6,
+		"requierd_threat_level": 4,
 		"max_candidates": 1
 	},
-	"storyteller_midround_xenos": {
-		"antag_name": "Midround Xenomorphs",
+	"storyteller_xenos": {
+		"antag_name": "Xenomorphs",
 		"role_flag": "Xenomorph",
 		"enabled": 1,
-		"story_weight": 4,
+		"story_weight": 5,
 		"min_players": 30,
 		"required_round_progress": 0.41,
+		"requierd_threat_level": 3,
 		"max_candidates": 3
 	},
 	"storyteller_nuclear": {
-		"antag_name": "Roundstart Nuclear Operatives",
+		"antag_name": "Nuclear Operatives",
 		"role_flag": "Nukeop",
 		"enabled": 0,
-		"story_weight": 5,
+		"story_weight": 7,
 		"min_players": 25,
 		"required_round_progress": 0,
+		"requierd_threat_level": 4,
 		"max_candidates": 5
 	},
-	"storyteller_midround_nightmare": {
-		"antag_name": "Midround Nightmare",
-		"role_flag": "Nightmare",
-		"enabled": 1,
-		"story_weight": 3.5,
-		"min_players": 10,
-		"required_round_progress": 0.41,
-		"max_candidates": 1
-	},
-	"storyteller_midround_slaughter_demon": {
-		"antag_name": "Midround Slaughter Demon",
-		"role_flag": "Slaughter Demon",
-		"enabled": 1,
-		"story_weight": 3.5,
-		"min_players": 15,
-		"required_round_progress": 0.41,
-		"max_candidates": 1
-	},
-	"storyteller_midround_morph": {
-		"antag_name": "Midround Morph",
-		"role_flag": "Morph",
-		"enabled": 1,
-		"story_weight": 3.5,
-		"min_players": 10,
-		"required_round_progress": 0.41,
-		"max_candidates": 1
+	"storyteller_blood_cult": {
+		"antag_name": "Blood Cult",
+		"role_flag": "Cultist",
+		"enabled": 0,
+		"story_weight": 6,
+		"min_players": 30,
+		"required_round_progress": 0,
+		"requierd_threat_level": 3,
+		"max_candidates": 4
 	}
 }

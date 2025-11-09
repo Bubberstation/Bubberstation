@@ -26,7 +26,7 @@ GLOBAL_LIST_INIT(meteors_cost, list(
 	id = "storyteller_meteors"
 	name = "Spawn meteors"
 	description = "Spawn meteors heavy based on storyteller threat level."
-	story_category = STORY_GOAL_BAD | STORY_GOAL_GLOBAL
+	story_category = STORY_GOAL_BAD | STORY_GOAL_MAJOR
 	tags = STORY_TAG_ESCALATION | STORY_TAG_AFFECTS_WHOLE_STATION | STORY_TAG_TARGETS_SYSTEMS
 	typepath = /datum/round_event/storyteller_meteors
 
@@ -41,7 +41,7 @@ GLOBAL_LIST_INIT(meteors_cost, list(
 
 
 /datum/round_event/storyteller_meteors
-	allow_random = FALSE
+	STORYTELLER_EVENT
 
 	var/list/weighted_meteor_types = list()
 

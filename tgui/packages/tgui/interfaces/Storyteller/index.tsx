@@ -1,5 +1,6 @@
 import '../../styles/interfaces/StorytellerVote.scss';
 
+import type { StringLike } from 'bun';
 import { useState } from 'react';
 import {
   Box,
@@ -71,9 +72,9 @@ const TOOLTIPS = {
 type StorytellerGoal = {
   id: string;
   name?: string;
+  desc?: StringLike;
   weight?: number;
   is_antagonist?: BooleanLike;
-  progress?: number; // 0..1 for individual goal
 };
 
 type StorytellerCandidates = {
@@ -89,16 +90,17 @@ type StorytellerMood = {
 };
 
 type StorytellerEventLog = {
-  time: number;
   desc: string;
   status?: string;
   id?: string;
+  fired_at?: string;
 };
 
 type StorytellerUpcomingGoal = {
   id: string;
   name?: string;
-  desc?: string; // Added for description
+  desc?: string;
+  storyteller_implementation?: BooleanLike;
   fire_time: number;
   category?: number;
   status: string;
@@ -220,7 +222,7 @@ const UpcomingGoalItem = ({
 }) => {
   const [expanded, setExpanded] = useState(false);
   const isAntag = goal.is_antagonist;
-
+  const isStoryteller = goal.storyteller_implementation;
   const fireTimeText =
     goal.fire_time <= (current_world_time ?? 0)
       ? 'Firing'
@@ -265,6 +267,13 @@ const UpcomingGoalItem = ({
             {isAntag ? (
               <Box inline ml={1} color="red" opacity={0.9}>
                 - antagonist
+              </Box>
+            ) : (
+              ''
+            )}
+            {isStoryteller && !isAntag ? (
+              <Box opacity={0.9} color="blue">
+                {'(Storyteller)'}
               </Box>
             ) : (
               ''
@@ -336,23 +345,6 @@ const UpcomingGoalItem = ({
                 {goal.status}
               </Box>
             </LabeledList.Item>
-
-            <LabeledList.Item label="Progress">
-              <ProgressBar
-                value={goal.progress ?? 0}
-                style={{ height: '7px', borderRadius: '2px' }}
-                color={
-                  (goal.progress || 0) > 0.7
-                    ? 'good'
-                    : (goal.progress || 0) > 0.3
-                      ? 'average'
-                      : 'bad'
-                }
-              >
-                {Math.round((goal.progress ?? 0) * 100)}%
-              </ProgressBar>
-            </LabeledList.Item>
-
             <LabeledList.Item label="Weight">
               <Box>{goal.weight ?? '—'}</Box>
             </LabeledList.Item>
@@ -401,12 +393,11 @@ const GoalSearchDropdown = ({
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Force re-render on searchTerm change by key
   const searchKey = searchTerm;
 
   const filteredGoals = available_goals.filter((goal) => {
     if (!goal) return false;
-    if (!searchTerm) return false;
+    if (!searchTerm) return true;
     const text = String(goal.name ?? goal.id ?? '').toLowerCase();
     return text.includes(searchTerm.toLowerCase());
   });
@@ -421,7 +412,7 @@ const GoalSearchDropdown = ({
         <Stack>
           <Stack.Item grow>
             <Input
-              placeholder="Search goals..."
+              placeholder="Search events..."
               value={searchTerm}
               onChange={(str) => setSearchTerm(str)}
               width="100%"
@@ -467,13 +458,9 @@ const GoalSearchDropdown = ({
                 </Box>
               </Box>
             ))
-          ) : searchTerm ? (
-            <Box opacity={0.6} color="white">
-              No goals found.
-            </Box>
           ) : (
             <Box opacity={0.6} color="white">
-              Start typing to search goals...
+              No events found.
             </Box>
           )}
         </Section>
@@ -1087,9 +1074,7 @@ export const Storyteller = (props) => {
                           : ''
                     }
                   >
-                    <Table.Cell>
-                      {formatTime(ev.time, current_world_time)}
-                    </Table.Cell>
+                    <Table.Cell>{ev.fired_at || ' '}</Table.Cell>
                     <Table.Cell>{ev.desc}</Table.Cell>
                     <Table.Cell
                       color={

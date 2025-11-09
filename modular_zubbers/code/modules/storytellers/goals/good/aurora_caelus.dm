@@ -15,10 +15,11 @@
 	return STORY_GOAL_BASE_WEIGHT + (inputs.get_entry(STORY_VAULT_CREW_ALIVE_COUNT) * 0.3)
 
 /datum/round_event/aurora_caelus
-	allow_random = FALSE
+	STORYTELLER_EVENT
+
 
 /datum/round_event/aurora_caelus/__setup_for_storyteller(threat_points, ...)
 	. = ..()
-	end_when = (2 MINUTES) * (1 + round(threat_points / 200))
+	end_when = (30) * (1 + round(threat_points / 200))
 
 

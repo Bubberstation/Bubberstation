@@ -11,6 +11,8 @@
 	requierd_threat_level = STORY_GOAL_THREAT_ELEVATED
 
 /datum/round_event/psychic_drone
+	STORYTELLER_EVENT
+
 	// Default, but randomize per wave or target
 	var/target_sex = MALE
 	// Assume custom drone mob (implement separately)

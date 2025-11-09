@@ -96,7 +96,7 @@
 	initial_weight = STORY_MEDIUM_ANTAG_WEIGHT
 
 /datum/antagonist/changeling/get_effectivity()
-	var/datum/component/antag_metric_tracker/T = GetComponent(/datum/component/antag_metric_tracker)
+	var/datum/component/antag_metric_tracker/T = owner.GetComponent(/datum/component/antag_metric_tracker)
 	var/base = 0.5
 	base = round((true_absorbs / absorbed_count) * purchased_powers ? \
 			clamp(base + (0.5 * (true_absorbs / absorbed_count)), 0, 1) : base, 2)
@@ -138,7 +138,7 @@
 /datum/antagonist/malf_ai/get_effectivity()
 	if(!isAI(owner?.current))
 		return 0
-	var/datum/component/antag_metric_tracker/M = GetComponent(/datum/component/antag_metric_tracker)
+	var/datum/component/antag_metric_tracker/M = owner.GetComponent(/datum/component/antag_metric_tracker)
 	var/mob/living/silicon/ai/ai = owner.current
 	var/hacked_apcs = ai.hacked_apcs.len
 	var/hacked_borgs = length(ai.connected_robots)
@@ -155,7 +155,7 @@
 
 /datum/antagonist/nightmare/get_effectivity()
 	var/base = ..()
-	var/datum/component/antag_metric_tracker/M = GetComponent(/datum/component/antag_metric_tracker)
+	var/datum/component/antag_metric_tracker/M = owner.GetComponent(/datum/component/antag_metric_tracker)
 	return clamp(base + (M.activity_time * 0.01) * (M.kills * 0.2), 0, 2)
 
 /datum/antagonist/nightmare/get_weight()
@@ -167,7 +167,7 @@
 
 /datum/antagonist/ninja/get_effectivity()
 	var/base = ..()
-	var/datum/component/antag_metric_tracker/M = GetComponent(/datum/component/antag_metric_tracker)
+	var/datum/component/antag_metric_tracker/M = owner.GetComponent(/datum/component/antag_metric_tracker)
 	return clamp(base + (M.activity_time * 0.01) * (M.objectives_completed * 0.2), 0, 2)
 
 /datum/antagonist/ninja/get_weight()
@@ -180,7 +180,7 @@
 // It's calculate for whole team
 /datum/antagonist/nukeop/get_effectivity()
 	var/base = 1
-	var/datum/component/antag_metric_tracker/M = GetComponent(/datum/component/antag_metric_tracker)
+	var/datum/component/antag_metric_tracker/M = owner.GetComponent(/datum/component/antag_metric_tracker)
 	if(!M)
 		return base * 0.5
 	var/datum/team/nuclear/nuke_team = get_team()
@@ -202,7 +202,7 @@
 
 /datum/antagonist/traitor/get_effectivity()
 	. = ..()
-	var/datum/component/antag_metric_tracker/M = GetComponent(/datum/component/antag_metric_tracker)
+	var/datum/component/antag_metric_tracker/M = owner.GetComponent(/datum/component/antag_metric_tracker)
 	if(M.activity_time < 20 MINUTES)
 		return 0.5
 	return clamp(0.5 + (M.objectives_completed * 0.3) + (M.kills * 0.2) + (M.activity_time / world.time) * 0.1, 0, 2)

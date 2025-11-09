@@ -2,13 +2,15 @@
 	id = "negative_ion_storm"
 	name = "Ion Storm"
 	description = "Triggers an ion storm, disable and damage electronics and synthetics."
-	story_category = STORY_GOAL_BAD
+	story_category = STORY_GOAL_BAD | STORY_GOAL_MAJOR
 	tags = STORY_TAG_AFFECTS_WHOLE_STATION | STORY_TAG_TARGETS_SYSTEMS
 	typepath = /datum/round_event/ion_storm
 
 	story_weight = STORY_GOAL_BASE_WEIGHT * 0.5
 
 /datum/round_event/ion_storm
+	STORYTELLER_EVENT
+
 	var/harm_door_chance = 30
 	var/harm_synthetics_chance = 20
 	var/harm_prosthesis_chance = 10

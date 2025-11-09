@@ -172,6 +172,18 @@
 #define STORY_VAULT_STATION_ALLIES "station_allies"    // Station has allied NPCs/ships
 #define STORY_VAULT_NUKE_ACTIVATED "NUKE_INCOMING"    // Nuclear device activated
 #define STORY_VAULT_DEATHSQUAD "doomguys_here"        // Deathsquad on station
+
+#define STORY_VAULT_STATION_COMMAND "station_command"
+	#define STORY_VAULT_NO_HEADS 0
+	#define STORY_VAULT_ONLY_HEAD 1 	 // One head on the station
+	#define STORY_VAULT_FEW_HEADS 2 	 // Two-four heads on the station
+	#define STORY_VAULT_FULL_COMMAND 3 	 // Full of almost full command
+
+// Current integrity of station SM
+#define STORY_VAULT_ENGINE_INTEGRITY "ingine_integrity"
+// Current integiry of station ATMOS rooms
+#define STORY_VAULT_ATMOS_INTEGRITY "atmos_integrity"
+
 /*
 	Antagonist metrics
 	These track antagonist behavior, progress, and impact to escalate or mitigate threats.

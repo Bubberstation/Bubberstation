@@ -10,6 +10,8 @@
 
 
 /datum/round_event/communications_blackout/storyteller
+	STORYTELLER_EVENT
+
 	announce_when = 10
 	start_when = 20
 	end_when = 120

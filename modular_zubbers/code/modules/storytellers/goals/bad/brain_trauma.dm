@@ -11,7 +11,8 @@
 	requierd_threat_level = STORY_GOAL_THREAT_BASIC
 
 /datum/round_event/brain_trauma
-	allow_random = FALSE
+	STORYTELLER_EVENT
+
 	var/maximum_targets = 1
 
 /datum/round_event/brain_trauma/__setup_for_storyteller(threat_points, ...)

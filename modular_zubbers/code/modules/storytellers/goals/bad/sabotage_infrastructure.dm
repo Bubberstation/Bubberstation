@@ -11,7 +11,8 @@
 
 
 /datum/round_event/sabotage_machinery
-	allow_random = FALSE
+	STORYTELLER_EVENT
+
 	var/list/candidate_types = list(
 		/obj/machinery/rnd,
 		/obj/machinery/recharger,

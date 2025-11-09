@@ -30,6 +30,8 @@
 	map_flags = EVENT_SPACE_ONLY
 
 /datum/round_event/storyteller_gravgen_malfunction
+	STORYTELLER_EVENT
+
 	var/fluctuation_cooldown = 30 SECONDS
 	var/force_strength_min = 3
 

@@ -6,7 +6,7 @@
 
 
 // Baseline weight for generic entities
-#define STORY_DEFAULT_WEIGHT 1
+#define STORY_DEFAULT_WEIGHT 10
 // Weight for living mobs (e.g., animals)
 #define STORY_LIVING_WEIGHT (STORY_DEFAULT_WEIGHT * 2)
 // Weight for carbon-based life (organic complexity)
@@ -14,13 +14,13 @@
 // Weight for humans (core crew members)
 #define STORY_HUMAN_WEIGHT (STORY_DEFAULT_WEIGHT * 10)
 // Weight for antagonists (high threat/disruption)
-#define STORY_DEFAULT_ANTAG_WEIGHT (STORY_DEFAULT_WEIGHT * 10)
+#define STORY_DEFAULT_ANTAG_WEIGHT (STORY_DEFAULT_WEIGHT * 2)
 
 // Minor antagonist weight (weak threats like space ninjas)
-#define STORY_MINOR_ANTAG_WEIGHT (STORY_DEFAULT_ANTAG_WEIGHT + 5)
+#define STORY_MINOR_ANTAG_WEIGHT (STORY_DEFAULT_ANTAG_WEIGHT)
 
 // Medium antagonist weight (moderate threats like traitors)
-#define STORY_MEDIUM_ANTAG_WEIGHT (STORY_MINOR_ANTAG_WEIGHT * 2)
+#define STORY_MEDIUM_ANTAG_WEIGHT (STORY_MINOR_ANTAG_WEIGHT * 1.4)
 
 // Major antagonist weight (severe threats like cults or blobs)
 #define STORY_MAJOR_ANTAG_WEIGHT (STORY_MEDIUM_ANTAG_WEIGHT * 2)
@@ -43,9 +43,9 @@
 #define STORY_UNIMPORTANT_JOB_WEIGHT (STORY_DEFAULT_JOB_WEIGHT * 0.5)
 
 // Goal weight modifiers (affects event selection probability)
-#define STORY_GOAL_BASE_WEIGHT 1.0  // Standard event weight
-#define STORY_GOAL_BIG_WEIGHT 3.0   // Significant event weight
-#define STORY_GOAL_MAJOR_WEIGHT 5.0  // Major event weight
+#define STORY_GOAL_BASE_WEIGHT 5.0  // Standard event weight
+#define STORY_GOAL_BIG_WEIGHT 8.0   // Significant event weight
+#define STORY_GOAL_MAJOR_WEIGHT 12.0  // Major event weight
 
 #define STORY_WEIGHT_MINOR_ANTAGONIST (STORY_GOAL_BIG_WEIGHT * 1.2)
 #define STORY_WEIGHT_MAJOR_ANTAGONIST (STORY_GOAL_MAJOR_WEIGHT * 1.2)
@@ -81,18 +81,68 @@ DEFINE_BITFIELD(story_analyzer_flags, list(
 
 // Storytellers traits
 
-#define STORYTELLER_TRAIT_NO_MERCY "NO_MERCY" // No bonus tension from events
-#define STORYTELLER_TRAIT_CAN_HELP "CAN_HELP" // Storyteller can help the crew
-#define STORYTELLER_TRAIT_FORCE_TENSION "FORCE_TENSION" // Force tension to be high
-#define STORYTELLER_TRAIT_SPEAKER "LOVE_SPEAK" // Storyteller will speak more often
-#define STORYTELLER_TRAIT_BALANCING_TENSTION "BALANCER" // Storyteller will balance tension more often
-#define STORYTELLER_TRAIT_NO_GOOD_EVENTS "NO_GOOD_EVENTS" // No good events
-#define STORYTELLER_TRAIT_KIND "KIND" // Good event will be more likely
-#define STORYTELLER_TRAIT_NO_ADAPTATION_DECAY "NO_ADAPTAION_DECAY" // No adaptation decay, IT'S VEY BAD FOR CREW
-#define STORYTELLER_TRAIT_RARE_ANTAG_SPAWN "RARE_ANTAG_SPAWN"  // Rare antagonist spawns
-#define STORYTELLER_TRAIT_FREQUENT_ANTAG_SPAWN "FREQUENT_ANTAG_SPAWN"  // Frequent antagonist spawns
-#define STORYTELLER_TRAIT_NO_ANTAGS "NO_ANTAGS"  // No antagonists at all
-#define STORYTELLER_TRAIT_IMMEDIATE_ANTAG_SPAWN "IMMEDIATE_ANTAG_SPAWN"  // Spawn immediately when current weight drops
+/* GENERAL TRAITS */
+
+// No bonus tension from events, faster events even in lowpop
+#define STORYTELLER_TRAIT_NO_MERCY "NO_MERCY"
+// Storyteller can send helping events
+#define STORYTELLER_TRAIT_CAN_HELP "CAN_HELP"
+// Force tension to target even if balance is bad
+#define STORYTELLER_TRAIT_FORCE_TENSION "FORCE_TENSION"
+// Storyteller will speak more often
+#define STORYTELLER_TRAIT_SPEAKER "LOVE_SPEAK"
+// Storyteller will try to keep balanced on target level
+#define STORYTELLER_TRAIT_BALANCING_TENSTION "BALANCER"
+// Storyteller don't selected any good event
+#define STORYTELLER_TRAIT_NO_GOOD_EVENTS "NO_GOOD_EVENTS"
+ // Good event will be more likely
+#define STORYTELLER_TRAIT_KIND "KIND"
+// No adaptation decay, IT'S VEY BAD FOR CREW
+#define STORYTELLER_TRAIT_NO_ADAPTATION_DECAY "NO_ADAPTAION_DECAY"
+
+/* ANTAG TRAITS */
+
+// Rare antagonist spawns
+#define STORYTELLER_TRAIT_RARE_ANTAG_SPAWN "RARE_ANTAG_SPAWN"
+// Frequent antagonist spawns
+#define STORYTELLER_TRAIT_FREQUENT_ANTAG_SPAWN "FREQUENT_ANTAG_SPAWN"
+// No antagonists at all
+#define STORYTELLER_TRAIT_NO_ANTAGS "NO_ANTAGS"
+// Spawn immediately when current weight drops
+#define STORYTELLER_TRAIT_IMMEDIATE_ANTAG_SPAWN "IMMEDIATE_ANTAG_SPAWN"
+// Storyteller can spawn minor antagonists
+#define STORYTELLER_TRAIT_MINOR_ANTAGONISTS "MINOR_ANTAGONISTS"
+// Storyteller can spawn major antagonists
+#define STORYTELLER_TRAIT_MAJOR_ANTAGONISTS "MAJOR_ANTAGONISTS"
+
+
+/* BALANCE TRAITS */
+
+// Storyteller ignore security power for for balancer
+#define STORYTELLER_TRAIT_IGNORE_SECURITY "IGNORE_SECUIRTY"
+// Storyteller ignore resource level for balancer
+#define STORYTELLER_TRAIT_IGNORE_RESOURCES "IGNORE_RESOURCES"
+// Storyteller ignore lack of heads in command
+#define STORYTELLER_TRAIT_IGNORE_HEADS "IGNORE_HEADS"
+// Storyteller ignore egngineering, that's mean SM, Power, hull breaches - everything realted to engineering
+#define STORYTELLER_TRAIT_IGNORE_ENGI "IGNORE_ENGI"
+// Storyteller ignore crew health at calculations
+#define STORYTELLER_TRAIT_IGNORE_CREW_HEALTH "IGNORE_CREW_HEALTH"
+
+
+/* EVENTS TRAITS */
+
+// Storyteller probably select events randomly
+#define STORYTELLER_TRAIT_HARDCORE_RANDOM "HARDCORE_RANDOM"
+// Storyteller try to keep GOOD events more
+#define STORYTELLER_TRAIT_MORE_GOOD_EVENTS "MORE_GOOD_EVENTS"
+// Storyteller try to keep BAD events more
+#define STORYTELLER_TRAIT_MORE_BAD_EVENTS "MORE_BAD_EVENTS"
+// Storyteller try to keep NEUTRAL events more
+#define STORYTELLER_TRAIT_MORE_NEUTRAL_EVENTS "MORE_NEUTRAL_EVENTS"
+// Storyteller don't select major events for planning
+#define STORYTELLER_TRAIT_NO_MAJOR_EVENTS "MORE_NEUTRAL_EVENTS"
+
 
 // Bitfield categories for story goals
 
@@ -112,6 +162,8 @@ DEFINE_BITFIELD(story_analyzer_flags, list(
 #define STORY_GOAL_NEVER (1 << 6)
 // Antagonist-related goals
 #define STORY_GOAL_ANTAGONIST (1 << 7)
+// Major event
+#define STORY_GOAL_MAJOR (1 << 8)
 
 DEFINE_BITFIELD(story_goal_category, list(
 	"GOAL_RANDOM" = STORY_GOAL_RANDOM,
@@ -122,6 +174,7 @@ DEFINE_BITFIELD(story_goal_category, list(
 	"GOAL_UNCATEGORIZED" = STORY_GOAL_UNCATEGORIZED,
 	"GOAL_NEVER" = STORY_GOAL_NEVER,
 	"GOAL_ANTAGONIST" = STORY_GOAL_ANTAGONIST,
+	"STORY_GOAL_MAJOR" = STORY_GOAL_MAJOR,
 ))
 
 
@@ -245,10 +298,10 @@ DEFINE_BITFIELD(story_universal_tags, list(
 #define STORY_DIFFICULTY_MULTIPLIER 1.0             // Base difficulty multiplier
 
 // Planner constants
-#define STORY_RECALC_INTERVAL (10 MINUTES)          // Interval for plan recalculation
-#define STORY_INITIAL_GOALS_COUNT 2                	// Minimum pending goals in timeline
-#define STORY_PICK_THREAT_BONUS_SCALE 0.01          // Threat bonus scaling for goal selection
-#define STORY_BALANCE_BONUS 1.5                     // Balance adjustment bonus multiplier
+#define STORY_RECALC_INTERVAL (5 MINUTES)           // Interval for plan recalculation
+#define STORY_INITIAL_GOALS_COUNT 3               	// Minimum pending goals in timeline
+#define STORY_PICK_THREAT_BONUS_SCALE 0.1           // Threat bonus scaling for goal selection
+#define STORY_BALANCE_BONUS 0.5                     // Balance adjustment bonus multiplier
 #define STORY_PACE_MIN 0.1                          // Minimum pace multiplier
 #define STORY_PACE_MAX 3.0                          // Maximum pace multiplier
 
@@ -300,3 +353,54 @@ DEFINE_BITFIELD(story_universal_tags, list(
 	(TP) <= STORY_GOOD_LOW ? 2 : \
 	1 \
 )
+
+
+#define ROLE_BLACKLIST_SECLIKE list( \
+		JOB_CYBORG, \
+		JOB_AI, \
+		JOB_SECURITY_OFFICER, \
+		JOB_WARDEN, \
+		JOB_DETECTIVE, \
+		JOB_HEAD_OF_SECURITY, \
+		JOB_CAPTAIN, \
+		JOB_CORRECTIONS_OFFICER, \
+		JOB_NT_REP, \
+		JOB_BLUESHIELD, \
+		JOB_ORDERLY, \
+		JOB_BOUNCER, \
+		JOB_CUSTOMS_AGENT, \
+		JOB_ENGINEERING_GUARD, \
+		JOB_SCIENCE_GUARD, \
+	)
+
+#define ROLE_BLACKLIST_HEAD list( \
+		JOB_CAPTAIN, \
+		JOB_HEAD_OF_SECURITY, \
+		JOB_RESEARCH_DIRECTOR, \
+		JOB_CHIEF_ENGINEER, \
+		JOB_CHIEF_MEDICAL_OFFICER, \
+		JOB_HEAD_OF_PERSONNEL, \
+	)
+
+#define ROLE_BLACKLIST_SECHEAD list( \
+		JOB_CAPTAIN, \
+		JOB_HEAD_OF_SECURITY, \
+		JOB_WARDEN, \
+		JOB_DETECTIVE, \
+		JOB_CHIEF_ENGINEER, \
+		JOB_CHIEF_MEDICAL_OFFICER, \
+		JOB_RESEARCH_DIRECTOR, \
+		JOB_HEAD_OF_PERSONNEL, \
+		JOB_CYBORG, \
+		JOB_AI, \
+		JOB_SECURITY_OFFICER, \
+		JOB_WARDEN, \
+		JOB_CORRECTIONS_OFFICER, \
+		JOB_NT_REP, \
+		JOB_BLUESHIELD, \
+		JOB_ORDERLY, \
+		JOB_BOUNCER, \
+		JOB_CUSTOMS_AGENT, \
+		JOB_ENGINEERING_GUARD, \
+		JOB_SCIENCE_GUARD, \
+	)

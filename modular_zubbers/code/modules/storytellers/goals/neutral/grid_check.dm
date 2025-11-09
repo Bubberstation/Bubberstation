@@ -6,6 +6,8 @@
 
 
 /datum/round_event/grid_check/storyteller
+	STORYTELLER_EVENT
+
 	var/shutdown_duration_min = 2 MINUTES
 	var/shutdown_duration_max = 5 MINUTES
 	var/lock_rebot_chance = 10

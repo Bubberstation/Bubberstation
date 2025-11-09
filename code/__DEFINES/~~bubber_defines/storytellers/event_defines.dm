@@ -1,3 +1,11 @@
+#define STORYTELLER_EVENT storyteller_implementation = TRUE
+/proc/is_storyteller_event(_evt)
+	if(istype(_evt, /datum/round_event))
+		var/datum/round_event/evt = _evt
+		return evt.storyteller_implementation
+	else
+		return FALSE
+
 #define BB_RAIDER_GROUP_LEADER "BB_raider_group_leader"
 #define BB_RAIDER_STRIKE_POINT "BB_raider_strike_point"
 #define BB_RAIDER_HIGH_VALUE_AREAS "BB_raider_hightvalue_areas"

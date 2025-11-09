@@ -1,4 +1,4 @@
-/proc/get_alive_station_crew(ignore_erp = TRUE, ignore_afk = TRUE, only_crew = TRUE, sort = TRUE)
+/proc/get_alive_station_crew(ignore_erp = TRUE, ignore_afk = TRUE, only_crew = FALSE, sort = TRUE)
 	var/to_check = GLOB.alive_player_list.Copy()
 
 	if(!length(to_check))

@@ -245,7 +245,7 @@ SUBSYSTEM_DEF(storytellers)
 
 /datum/controller/subsystem/storytellers/fire(resumed)
 	if(active)
-		active.think()
+		INVOKE_ASYNC(active, TYPE_PROC_REF(/datum/storyteller, think))
 	for(var/datum/round_event/evt in active_events)
 		if(!evt || QDELETED(evt))
 			active_events -= evt
@@ -404,6 +404,8 @@ SUBSYSTEM_DEF(storytellers)
 		storyteller_vote_cache = list()
 
 /datum/controller/subsystem/storytellers/proc/write_cache()
+	storyteller_vote_cache = list()
+	storyteller_vote_cache += active ? active.id : "n/a"
 	rustg_file_write(json_encode(storyteller_vote_cache), STORYTELLER_VOTE_CACHE)
 
 /datum/controller/subsystem/storytellers/proc/filter_goals(category = null, required_tags = null, subtype = null, all_tags_required = FALSE, include_children = TRUE)

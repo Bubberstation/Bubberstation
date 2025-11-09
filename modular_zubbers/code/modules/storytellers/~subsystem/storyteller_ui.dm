@@ -99,14 +99,20 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 		var/datum/round_event_control/evt = entry["event"]
 		if(!evt)
 			continue
+		var/storyteller_implementation = FALSE
+		if(evt?.typepath)
+			if(istype(evt?.typepath, /datum/round_event))
+				var/datum/round_event/to_check = evt?.typepath
+				storyteller_implementation = to_check::storyteller_implementation
 		data["upcoming_goals"] += list(list(
 			"id" = evt.id,
 			"name" = evt.name || evt.id,
+			"desc" = evt.description,
 			"fire_time" = entry["fire_time"],
 			"category" = entry["category"],
 			"status" = entry["status"],
 			"weight" = evt.get_story_weight(ctl.inputs, ctl),
-			"progress" = 1, // round_event_control doesn't have get_progress, return 1 as default
+			"storyteller_implementation" = storyteller_implementation,
 			"is_antagonist" = (evt.story_category & STORY_GOAL_ANTAGONIST),
 		))
 	data["effective_threat_level"] = ctl.get_effective_threat()
@@ -133,7 +139,7 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 			continue
 		var/list/event_data = details[1]
 		events += list(list(
-			"time" = text2num(splittext(event_data["fired_at"], " ")[1]) / 60,  // Parse back to ticks approx
+			"fired_at" = event_data["desc"],
 			"desc" = event_data["desc"],
 			"status" = event_data["status"],
 			"id" = event_data["id"],
@@ -171,6 +177,7 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 
 	switch(action)
 		if("force_think")
+			message_admins("[key_name_admin(usr)] forced [ctl.name] to think now")
 			ctl.next_think_time = world.time + 1 SECONDS
 			return TRUE
 		if("trigger_event")
@@ -185,6 +192,7 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 				ctl.planner.reschedule_event(fire_time, new_fire_time)
 			return TRUE
 		if("reschedule_chain")
+			message_admins("[key_name_admin(usr)] forced reschedule event chain for [ctl.name]")
 			ctl.planner.recalculate_plan(ctl, ctl.inputs, ctl.balancer.make_snapshot(ctl.inputs), TRUE)
 			return TRUE
 		if("set_storyteller")
@@ -246,24 +254,31 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 			var/datum/round_event_control/evt = SSstorytellers.events_by_id[id]
 			if(istype(evt))
 				var/datum/round_event_control/new_event_control = new evt.type
-				var/fire_offset = ctl.planner.next_offest()
-				ctl.planner.try_plan_event(new_event_control, fire_offset)
+				var/fire_offset = ctl.planner.get_next_event_delay(new_event_control, ctl)
+				ctl.planner.try_plan_event(new_event_control, fire_offset, silence = TRUE)
+				message_admins("[key_name_admin(usr)] is planned event [evt.name || evt.id] for [ctl.name]")
 			return TRUE
 		if("trigger_goal")
 			var/fire_offset = params["offset"]
 			if(!fire_offset)
 				return TRUE
+			var/datum/round_event_control/evt = ctl.planner.get_entry_at(fire_offset)["event"]
 			ctl.planner.reschedule_event(fire_offset, world.time + 1 SECONDS)
+			message_admins("[key_name_admin(usr)] triggered [ctl.name] event [evt.name || evt.id]")
 			return TRUE
 		if("remove_goal")
 			var/fire_offset = params["offset"]
 			if(!fire_offset)
 				return TRUE
+			if(!ctl.planner.get_entry_at(fire_offset)["event"])
+				return TRUE
+			var/datum/round_event_control/evt = ctl.planner.get_entry_at(fire_offset)["event"]
 			ctl.planner.cancel_event(fire_offset)
+			message_admins("[key_name_admin(usr)] canceled [ctl.name] event [evt.name || evt.id]")
 			return TRUE
 		if("toggle_debug")
 			SSstorytellers.hard_debug = !SSstorytellers.hard_debug
-			message_admins("Stortyteller debug mode: [SSstorytellers.hard_debug ? "ENABLED" : "DISABLED"]")
+			message_admins("[key_name_admin(usr)] toggle stortyteller debug mode: [SSstorytellers.hard_debug ? "ENABLED" : "DISABLED"]")
 			return TRUE
 		if("force_check_atnagoinst")
 			if(HAS_TRAIT(ctl, STORYTELLER_TRAIT_NO_ANTAGS))

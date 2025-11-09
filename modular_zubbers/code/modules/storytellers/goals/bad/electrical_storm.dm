@@ -8,7 +8,8 @@
 
 
 /datum/round_event/electrical_storm
-	allow_random = FALSE
+	STORYTELLER_EVENT
+
 	var/overload_apc_chance = 0
 	var/destroy_lights_chance = 0
 	var/disable_machinery_chance = 0

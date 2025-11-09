@@ -54,10 +54,18 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 		return
 	if(!SSstorytellers.vote_active)
 		Remove(owner)
+		return
 	var/datum/storyteller_vote_ui/ui = SSstorytellers.storyteller_vote_uis[clicker.client]
 	if (!ui)
 		ui = new(clicker.client, SSstorytellers.current_vote_duration)
 	ui.ui_interact(clicker)
+
+/datum/action/storyteller_vote/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
+	if(href_list["open_ui"])
+		Trigger(owner)
 
 /datum/action/storyteller_vote/proc/on_vote_ended()
 	SIGNAL_HANDLER
@@ -75,13 +83,16 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 
 	return ..()
 
+/datum/controller/subsystem/storytellers
+	var/vote_timer_id
+
 /datum/controller/subsystem/storytellers/proc/on_login(dcs, client/new_client)
 	SIGNAL_HANDLER
 	if(vote_active)
 		var/datum/action/storyteller_vote/vote_action = new()
 		vote_action.Grant(new_client.mob)
 		new_client.persistent_client.player_actions += vote_action
-		INVOKE_ASYNC(vote_action, TYPE_PROC_REF(/datum/action/storyteller_vote, Trigger), new_client.mob)
+		INVOKE_ASYNC(src, PROC_REF(send_vote_message), new_client, vote_action)
 
 /datum/controller/subsystem/storytellers/proc/start_vote(duration = 60 SECONDS)
 	// Clears existing UIs to prevent duplicates or stale data
@@ -92,11 +103,39 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 	for (var/client/cln in GLOB.clients)
 		var/datum/action/storyteller_vote/vote_action = new()
 		vote_action.Grant(cln.mob)
-		vote_action.Trigger(cln.mob)
 		cln.persistent_client.player_actions += vote_action
+		INVOKE_ASYNC(src, PROC_REF(send_vote_message), cln, vote_action)
 
-	addtimer(CALLBACK(src, PROC_REF(end_vote)), duration)
+	vote_timer_id = addtimer(CALLBACK(src, PROC_REF(end_vote)), duration, TIMER_STOPPABLE)
 	SEND_SIGNAL(src, COMSIG_STORYTELLER_VOTE_START)
+
+/datum/controller/subsystem/storytellers/proc/send_vote_message(client/cln, datum/action/storyteller_vote/vote_action)
+	window_flash(cln)
+
+	// ghost poll prompt sound handling (adapted for vote)
+	var/polling_sound_pref = cln.prefs.read_preference(/datum/preference/choiced/sound_ghost_poll_prompt)
+	var/polling_sound_volume = cln.prefs.read_preference(/datum/preference/numeric/sound_ghost_poll_prompt_volume)
+	if(polling_sound_pref != GHOST_POLL_PROMPT_DISABLED && polling_sound_volume)
+		var/polling_sound
+		if(polling_sound_pref == GHOST_POLL_PROMPT_1)
+			polling_sound = 'sound/misc/prompt1.ogg'
+		else
+			polling_sound = 'sound/misc/prompt2.ogg'
+		SEND_SOUND(cln.mob, sound(polling_sound, volume = polling_sound_volume))
+
+	var/custom_link_style_start = "<style>a:visited{color:Crimson !important}</style>"
+	var/custom_link_style_end = "style='color:DodgerBlue;font-weight:bold;-dm-text-outline: 1px black'"
+
+	var/act_vote = "[custom_link_style_start]<a href='byond://?src=[REF(vote_action)];open_ui=1'[custom_link_style_end]>\[Vote Now\]</a>"
+
+	var/surrounding_icon
+	// You can set a chat_text_border_icon if desired, e.g., image('icons/hud/actions.dmi', icon_state = "vote")
+	// var/chat_text_border_icon = image('icons/hud/actions.dmi', icon_state = "vote")
+	// if(chat_text_border_icon)
+	// 	var/image/surrounding_image = chat_text_border_icon
+	// 	surrounding_icon = icon2html(surrounding_image, cln.mob, extra_classes = "bigicon")
+	var/final_message = boxed_message("<span style='text-align:center;display:block'>[surrounding_icon] <span style='font-size:1.2em'>[span_ooc("Storyteller Vote Started! Vote for your preferred storyteller.")]</span> [surrounding_icon]\n[act_vote]</span>")
+	to_chat(cln.mob, final_message)
 
 
 /datum/controller/subsystem/storytellers/proc/end_vote()
@@ -104,6 +143,7 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 		return
 
 	vote_active = FALSE
+	deltimer(vote_timer_id)
 	var/list/tallies = list()
 	var/list/all_diffs = list()
 	var/total_votes = 0
@@ -154,7 +194,7 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 	log_storyteller("Storyteller vote ended: [selected_id_str] (votes=[max_votes], diff=[avg_diff]), total votes=[total_votes]")
 	SEND_SIGNAL(src, COMSIG_STORYTELLER_VOTE_END)
 
-	if(SSticker.current_state == GAME_STATE_PREGAME)
+	if(SSticker.current_state < GAME_STATE_PLAYING)
 		storyteller_vote_cache = list()
 		storyteller_vote_cache += selected_id
 		write_cache()

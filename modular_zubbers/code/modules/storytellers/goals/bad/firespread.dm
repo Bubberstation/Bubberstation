@@ -14,7 +14,8 @@
 	requierd_threat_level = STORY_GOAL_THREAT_BASIC
 
 /datum/round_event/fire_spread
-	allow_random = FALSE
+	STORYTELLER_EVENT
+
 	var/waves_count = 1
 	var/wave_delay = 1 MINUTES
 	var/hot_spots = 1

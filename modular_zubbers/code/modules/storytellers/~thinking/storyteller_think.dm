@@ -15,8 +15,9 @@
 
 #define THINK_THREAT_WEIGHT 0.05
 #define STORY_PRIORITY_BOOST_SCALE 0.4
-#define STORY_MAX_FREQ_MULT 0.5
+#define STORY_MAX_FREQ_MULT 1.2
 #define STORY_MAX_THREAT_BONUS 0.4
+#define STORY_MAX_REP_PENALTY 1.0
 
 /datum/storyteller_think
 	var/list/think_stages = list(
@@ -96,27 +97,36 @@
 	var/score_random = 0
 
 
-	var/good_base_bias = 0.12
-	var/bad_tension_mult = 0.3
+	var/good_base_bias = 0.1
+	var/bad_tension_mult = 0.35
 	var/good_tension_mult = 0.8
 	var/good_adapt_mult = 0.8
 
 
 	score_good += tension_norm * THINK_TENSION_WEIGHT * good_tension_mult
 	score_good += adapt * THINK_ADAPTATION_WEIGHT * good_adapt_mult
-	score_good += mood_aggr < (0.70 * pace) ? 0.7 : 0.0
+	score_good += mood_aggr < (0.4 * pace) ? 0.7 : 0.0
 	score_good += good_base_bias
+
 	// Boost good events at low population (mercy mode)
-	if(pop < 0.5)
+	if(pop < 0.31 && !!HAS_TRAIT(ctl, STORYTELLER_TRAIT_NO_MERCY))
 		score_good += 0.2
+
+	if(HAS_TRAIT(ctl, STORYTELLER_TRAIT_MORE_GOOD_EVENTS) || HAS_TRAIT(ctl, STORYTELLER_TRAIT_KIND))
+		score_good += add_jitter(0, 0.06, 0.3)
+
 	score_good = min(score_good, 2.0)
 
 	score_bad += (1.0 - tension_norm) * THINK_TENSION_WEIGHT * bad_tension_mult
-	score_bad += mood_aggr * THINK_MOOD_WEIGHT * 0.4
-	score_bad += threat_rel * THINK_THREAT_WEIGHT * 0.4
+	score_bad += mood_aggr * THINK_MOOD_WEIGHT * 0.44
+	score_bad += threat_rel * THINK_THREAT_WEIGHT * 0.53
 	score_bad += pace * THINK_MOOD_WEIGHT * 0.1
 	// Scale bad events by population: low pop = fewer bad events
 	score_bad *= clamp(pop, 0.5, 1.0)
+
+	if(HAS_TRAIT(ctl, STORYTELLER_TRAIT_MORE_BAD_EVENTS))
+		score_bad += add_jitter(0, 0.06, 0.3)
+
 	score_bad = min(score_bad, 2.0)
 
 	// Neutral events are more common at low population (less intense gameplay)
@@ -125,38 +135,43 @@
 	// Boost neutral score for low population
 	if(pop < 0.5)
 		score_neutral += 0.3
+
+	if(HAS_TRAIT(ctl, STORYTELLER_TRAIT_MORE_NEUTRAL_EVENTS))
+		score_neutral += add_jitter(0, 0.06, 0.3)
 	score_neutral = min(score_neutral, 2.0)
 
-	score_random += (mood_vol - 1.0) * THINK_VOLATILITY_WEIGHT
-	if(score_random < 0)
-		score_random = 0
+
+	if(!HAS_TRAIT(ctl, STORYTELLER_TRAIT_HARDCORE_RANDOM))
+		score_random += (mood_vol - 1.0) * THINK_VOLATILITY_WEIGHT
+		if(score_random < 0)
+			score_random = 0
+	else
+		score_neutral -= add_jitter(0, 0.06, 0.3)
+		score_bad -= add_jitter(0, 0.06, 0.3)
+		score_good -= add_jitter(0, 0.06, 0.3)
+		score_random += add_jitter(0, 0.2, 0.8)
 
 	if(tension_diff_norm > 0.45)
 		score_good += 0.15
 
 	if(HAS_TRAIT(ctl, STORYTELLER_TRAIT_NO_GOOD_EVENTS))
 		score_good = 0
-	if(HAS_TRAIT(ctl, STORYTELLER_TRAIT_KIND))
-		score_good += add_jitter(0, 0.02, 0.2)
 	if(HAS_TRAIT(ctl, STORYTELLER_TRAIT_FORCE_TENSION))
 		if(ctl.current_tension < ctl.target_tension)
 			score_bad += add_jitter(0, 0.02, 0.2)
 	if(HAS_TRAIT(ctl, STORYTELLER_TRAIT_BALANCING_TENSTION))
 		if(abs(ctl.current_tension - ctl.target_tension) > 10)
 			score_neutral += add_jitter(0, 0.02, 0.2)
-	if(!HAS_TRAIT(ctl, STORYTELLER_TRAIT_NO_MERCY) && ctl.population_factor <= 0.5)
+	if(!HAS_TRAIT(ctl, STORYTELLER_TRAIT_NO_MERCY) && ctl.population_factor <= 0.21)
 		if(tension_diff_norm > 0.5)
 			score_good += add_jitter(0, 0.02, 0.2)
 		else
 			score_neutral += add_jitter(0, 0.02, 0.2)
-	if(tension_diff_norm <= 0.2)
-		score_neutral += add_jitter(0, 0.04, 0.2)
 
 	score_good = max(score_good + add_jitter(0, 0, 0.2), 0.02)
 	score_bad  = max(score_bad  + add_jitter(0, 0, 0.2), 0.02)
 	score_neutral = max(score_neutral + add_jitter(0, 0, 0.2), 0.02)
-	score_random  = max(score_random  + add_jitter(0, 0, 0.2), 0.0)
-
+	score_random  = max(score_random  + add_jitter(0, 0, 0.2), 0.02)
 	// Normalize scores to probs
 	var/total_score = score_good + score_bad + score_neutral + score_random
 	if(total_score <= 0)
@@ -171,29 +186,37 @@
 	var/roll = rand()
 	var/cum_prob = 0
 
-	cum_prob += prob_good
-	if(roll < cum_prob && !HAS_TRAIT(ctl, STORYTELLER_TRAIT_NO_GOOD_EVENTS))
-		if(SSstorytellers.hard_debug)
-			message_admins("Storyteller [ctl.name] selected category: GOOD (roll=[roll], probs: G=[prob_good], B=[prob_bad], N=[prob_neutral], R=[prob_random])")
-		return STORY_GOAL_GOOD
+	var/list/cat_list = list(
+		list("name" = "GOOD", "prob" = prob_good, "goal" = STORY_GOAL_GOOD, "trait" = STORYTELLER_TRAIT_NO_GOOD_EVENTS),
+		list("name" = "BAD", "prob" = prob_bad, "goal" = STORY_GOAL_BAD, "trait" = null),
+		list("name" = "NEUTRAL", "prob" = prob_neutral, "goal" = STORY_GOAL_NEUTRAL, "trait" = null),
+		list("name" = "RANDOM", "prob" = prob_random, "goal" = "RANDOM", "trait" = null)
+	)
 
-	cum_prob += prob_bad
-	if(roll < cum_prob)
-		if(SSstorytellers.hard_debug)
-			message_admins("Storyteller [ctl.name] selected category: BAD (roll=[roll], probs: G=[prob_good], B=[prob_bad], N=[prob_neutral], R=[prob_random])")
-		return STORY_GOAL_BAD
+	// But in hardcore random mode, shuffle for chaos
+	if(HAS_TRAIT(ctl, STORYTELLER_TRAIT_HARDCORE_RANDOM))
+		cat_list = shuffle(cat_list)
+	else
+		// Simple bubble sort by prob descending (small list, efficiency not an issue)
+		for(var/i in 1 to cat_list.len - 1)
+			for(var/j in 1 to cat_list.len - i)
+				if(cat_list[j]["prob"] < cat_list[j+1]["prob"])
+					cat_list.Swap(j, j+1)
 
-	cum_prob += prob_neutral
-	if(roll < cum_prob)
-		if(SSstorytellers.hard_debug)
-			message_admins("Storyteller [ctl.name] selected category: NEUTRAL (roll=[roll], probs: G=[prob_good], B=[prob_bad], N=[prob_neutral], R=[prob_random])")
-		return STORY_GOAL_NEUTRAL
+	cum_prob = 0
+	for(var/list/cat in cat_list)
+		cum_prob += cat["prob"]
+		if(roll < cum_prob)
+			if(cat["trait"] && HAS_TRAIT(ctl, cat["trait"]))
+				continue // Skip this category if the trait condition is met, shifting probability to the next
 
-	cum_prob += prob_random
-	if(roll < cum_prob)
-		if(SSstorytellers.hard_debug)
-			message_admins("Storyteller [ctl.name] selected category: RANDOM (roll=[roll], probs: G=[prob_good], B=[prob_bad], N=[prob_neutral], R=[prob_random])")
-		return STORY_GOAL_RANDOM
+			if(SSstorytellers.hard_debug)
+				message_admins("Storyteller [ctl.name] selected category: [cat["name"]] (roll=[roll], probs: G=[prob_good], B=[prob_bad], N=[prob_neutral], R=[prob_random])")
+
+			if(cat["goal"] == "RANDOM")
+				return pick(STORY_GOAL_BAD, STORY_GOAL_GOOD, STORY_GOAL_NEUTRAL)
+
+			return cat["goal"]
 
 	return STORY_GOAL_NEUTRAL
 
@@ -232,7 +255,7 @@
 
 
 // Basic select_weighted_goal with integration to goal procs
-// Computes final weight using G.get_weight (which can access vault/inputs for custom logic),
+// Computes final weight using evt.get_story_weight (which can access vault/inputs for custom logic),
 // then applies storyteller vars (difficulty, adaptation, repetition) for adaptation.
 // Enhanced repetition: Gradient penalty based on recency (time since last similar) and frequency (count in history),
 // scaled by adaptation (stronger post-recovery) and population (tolerable in big crews).
@@ -245,18 +268,19 @@
 	for(var/datum/round_event_control/evt in candidates)
 		if(!evt.is_avaible(inputs, ctl) && !SSstorytellers.hard_debug)
 			continue
+		if(!(evt.story_category & STORY_GOAL_MAJOR) && HAS_TRAIT(ctl, STORYTELLER_TRAIT_NO_MAJOR_EVENTS))  // Fixed trait check
+			continue
 
 		var/base_weight = evt.get_story_weight(inputs, ctl)
 		var/priority_boost = evt.get_story_priority(inputs, ctl) * STORY_PRIORITY_BOOST_SCALE
 		// Adjust weight by difficulty and population: low pop = lower weight for intense events
 		var/diff_adjust = ctl.difficulty_multiplier * population_scale
 
-		// Enhanced repetition penalty: Recency (time-based decay) + frequency (count in history)
+		//Recency (time-based decay) + frequency (count in history)
 		var/rep_penalty = 0
 		var/list/rep_info = get_repeat_info(evt.id, ctl.recent_events)
 		var/repeat_count = rep_info["count"]
 		var/last_fire_time = rep_info["last_time"]
-
 
 		if(repeat_count > 0)
 			var/age = world.time - last_fire_time
@@ -264,10 +288,9 @@
 			var/freq_mult = clamp(1 + (repeat_count - 1) * 0.5, 1, STORY_MAX_FREQ_MULT)
 			rep_penalty = ctl.repetition_penalty * recency_factor * freq_mult
 
-
 		rep_penalty *= (1 + ctl.adaptation_factor * 0.5)
 		rep_penalty /= max(0.5, ctl.population_factor)
-
+		rep_penalty = min(rep_penalty, STORY_MAX_REP_PENALTY)  // cap to avoid over-punish
 
 		// Threat bonus scales with population_factor: low pop = smaller threat bonus
 		var/threat_mult = clamp(ctl.population_factor, 0.3, 1.0)
@@ -301,7 +324,18 @@
 		final_weight = add_weight_jitter(final_weight, ctl.mood.volatility)
 		weighted[evt] = final_weight
 
-	var/datum/round_event_control/selected = pick_weight_f(weighted)
+	// If hardcore random, shuffle candidates for chaos; else sort by weight descending for bias to high-prob
+	var/list/sorted_candidates = weighted.Copy()
+	if(HAS_TRAIT(ctl, STORYTELLER_TRAIT_HARDCORE_RANDOM))
+		sorted_candidates = shuffle(sorted_candidates)
+	else
+		// Sort by weight descending (simple bubble for small list)
+		for(var/i in 1 to sorted_candidates.len - 1)
+			for(var/j in 1 to sorted_candidates.len - i)
+				if(sorted_candidates[sorted_candidates[j]] < sorted_candidates[sorted_candidates[j+1]])
+					sorted_candidates.Swap(j, j+1)
+
+	var/datum/round_event_control/selected = pick_weight(sorted_candidates)  // Fixed pick_weight_f -> pick_weight; now uses sorted/shuffled
 	if(!selected)
 		return null
 
@@ -504,7 +538,7 @@
 		if(mood.volatility > 1.5 && prob(50))
 			context[CONTEXT_TAGS] |= STORY_TAG_CHAOTIC
 
-
+#undef STORY_MAX_REP_PENALTY
 #undef STORY_VOLATILITY_NEUTRAL_CHANCE
 #undef STORY_TENSION_THRESHOLD
 #undef CONTEXT_TAGS

@@ -9,6 +9,8 @@
 	min_players = 2
 
 /datum/round_event/zzzzzt
+	STORYTELLER_EVENT
+
 	var/maximum_charge = 50 KILO JOULES
 	start_when = 10
 
@@ -78,7 +80,7 @@
 /datum/round_event/zzzzzt/proc/pick_closest_cable(mob/living/carbon/human/bad_luck)
 	var/obj/structure/cable/closest_cable
 	var/closest_dist = INFINITY
-	for(var/turf/check_turf in RANGE_TURFS(2, bad_luck))
+	for(var/turf/check_turf in RANGE_TURFS(10, bad_luck))
 		var/obj/structure/cable/cab = locate() in check_turf.contents
 		if(!cab)
 			continue

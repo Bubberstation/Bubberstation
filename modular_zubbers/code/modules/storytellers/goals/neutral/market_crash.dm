@@ -6,17 +6,17 @@
 
 	story_weight = STORY_GOAL_BASE_WEIGHT * 1.2
 
-/datum/round_event_control/market_crash/run_event_as_storyteller(datum/storyteller_inputs/inputs, datum/storyteller/storyteller, threat_points)
-	var/datum/storyteller_mood/mood = storyteller.mood
+/datum/round_event_control/market_crash/pre_storyteller_run(datum/storyteller_inputs/inputs, datum/storyteller/storyteller, threat_points)
+	. = ..()
 	var/good_for_station = FALSE
 	// More likely to happen in faster paced rounds
-	if(mood.pace > 1.1)
+	if(storyteller.mood.pace > 1.1)
 		good_for_station = TRUE
-	var/datum/round_event/market_crash/evt = new /datum/round_event/market_crash(TRUE, src)
-	evt.__setup_for_storyteller(threat_points, good_for_station)
-
+	additional_arguments = good_for_station
 
 /datum/round_event/market_crash
+	STORYTELLER_EVENT
+
 	allow_random = FALSE
 	var/good_for_station = FALSE
 	var/target_inflation = 1
@@ -25,7 +25,7 @@
 
 /datum/round_event/market_crash/__setup_for_storyteller(threat_points, ...)
 	. = ..()
-	good_for_station = args[1]
+	good_for_station = get_additional_arguments()
 	end_when = round((threat_points/10))
 
 	if(good_for_station)

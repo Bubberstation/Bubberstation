@@ -10,7 +10,7 @@
 	requierd_threat_level = STORY_GOAL_THREAT_ELEVATED
 
 /datum/round_event/storyteller_brand_intelligence
-	allow_random = FALSE
+	STORYTELLER_EVENT
 
 	var/list/obj/machinery/vending/vending_machines = list()
 	var/list/obj/machinery/vending/infected_machines = list()

@@ -9,7 +9,7 @@
 #define STORY_POPULATION_FACTOR_HIGH_DEFAULT 0.8
 #define STORY_POPULATION_FACTOR_FULL_DEFAULT 1.0
 
-#define STORY_POPULATION_SMOOTH_WEIGHT_DEFAULT 0.8	  // Slow changes for stability
+#define STORY_POPULATION_SMOOTH_WEIGHT_DEFAULT 0.4
 
 #define STORY_POPULATION_HISTORY_MAX 20
 
@@ -169,8 +169,7 @@
 	initialized = TRUE
 
 	// Send round start report (generates custom report based on storyteller parameters)
-	addtimer(CALLBACK(src, PROC_REF(send_round_start_report)), rand(60 SECONDS, 180 SECONDS), TIMER_UNIQUE)
-
+	send_round_start_report()
 	INVOKE_ASYNC(src, PROC_REF(think))
 
 /**
@@ -258,8 +257,9 @@
 /datum/storyteller/proc/get_next_possible_event_time()
 	return (world.time - last_event_time) + get_event_interval()
 
+
 /datum/storyteller/proc/get_event_threat_points(category)
-	var/base_threat = (threat_points * mood.get_threat_multiplier() * difficulty_multiplier * clamp(population_factor, 0.3, 1.0)) * 100
+	var/base_threat = (threat_points * mood.get_threat_multiplier() * clamp(population_factor, 0.3, 1.0)) * 100
 	if(category == STORY_GOAL_GOOD)
 		return round(base_threat * 0.5 * (1.5 - adaptation_factor))
 	else if(category == STORY_GOAL_NEUTRAL)
@@ -281,6 +281,8 @@
 
 
 /datum/storyteller/proc/think(force = FALSE)
+	SHOULD_NOT_SLEEP(TRUE)
+
 	if(!initialized)
 		return
 
@@ -302,12 +304,20 @@
 
 
 	// 3) Plan and fire goals
-	planner.update_plan(src, inputs, snap)
+	var/list/events_to_fire = planner.update_plan(src, inputs, snap)
+	if(length(events_to_fire))
+		for(var/datum/round_event_control/evt in events_to_fire)
+			var/threat_points = get_event_threat_points()
+			INVOKE_ASYNC(evt, TYPE_PROC_REF(/datum/round_event_control, run_event_as_storyteller), inputs, src, threat_points)
+			record_event(evt, "Fired")
+			post_event(evt)
+
 
 	// 4) Passive threat/adaptation drift each think
 	// Threat growth scales with population_factor: low pop = slower threat accumulation
 	var/threat_mult = mood.get_threat_multiplier() * clamp(population_factor, 0.3, 1.0)
 	threat_points = min(max_threat_scale, threat_points + threat_growth_rate * threat_mult)
+
 
 	if(!HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ADAPTATION_DECAY))
 		adaptation_factor = max(0, adaptation_factor - adaptation_decay_rate)
@@ -315,6 +325,7 @@
 	current_tension = snap.overall_tension
 	balancer.tension_bonus = max(balancer.tension_bonus - STORY_TENSION_BONUS_DECAY_RATE * difficulty_multiplier, 0)
 	update_population_factor()
+
 
 	// 5) Check antagonist balance and spawn if needed
 	if(COOLDOWN_FINISHED(src, antag_balance_check_cooldown) && SSstorytellers?.storyteller_replace_dynamic && roundstart_antags_selected)
@@ -358,11 +369,17 @@
 	if(evt.tags & STORY_TAG_ESCALATION)
 		adaptation_factor = min(1.0, adaptation_factor + 0.3)
 		tension_effect += 5
+		if(evt.tags & STORY_GOAL_MAJOR)
+			adaptation_factor = min(1.0, adaptation_factor + 0.2)
 	else if(evt.tags & STORY_TAG_DEESCALATION)
 		adaptation_factor = max(0, adaptation_factor - 0.1)
-	if(evt.story_category == STORY_GOAL_BAD)
+
+	if(evt.story_category & STORY_GOAL_BAD)
 		// Calculate the percentage loss of threat_points based on recent_damage_threshold
 		var/loss_percentage = 100 / recent_damage_threshold
+		if(evt.story_category & STORY_GOAL_MAJOR && !HAS_TRAIT(src, STORYTELLER_TRAIT_NO_MERCY))
+			loss_percentage *= 2
+
 		var/threat_loss = threat_points * (loss_percentage / 100)
 		threat_points = min(threat_points, threat_points - threat_loss)
 		tension_effect += 10
@@ -383,7 +400,7 @@
 		"desc" = evt.description,
 		"status" = status,
 		"fired_ts" = current_time,
-		"fired_at" = num2text((current_time / 1 MINUTES)) + " min",
+		"fired_at" = time2text(world.time, "hh:mm", NO_TIMEZONE),
 	))
 	recent_event_ids |= evt.id
 	while(length(recent_event_ids) > recent_event_ids_max)
@@ -412,7 +429,7 @@
 
 
 	var/effective_smooth = population_smooth_weight
-	if(has_population_spike(15))
+	if(has_population_spike(20))
 		effective_smooth = 0.5
 
 	var/new_factor = (population_factor * effective_smooth) + (desired * (1.0 - effective_smooth))
