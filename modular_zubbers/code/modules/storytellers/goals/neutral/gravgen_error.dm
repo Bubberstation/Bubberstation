@@ -114,6 +114,8 @@
 
 
 /datum/round_event/storyteller_gravgen_malfunction/__storyteller_tick(seconds_per_tick)
+	if(!gravity_gen.on)
+		return
 	if(!COOLDOWN_FINISHED(src, gravity_fluctuation_cooldown))
 		return
 	COOLDOWN_START(src, gravity_fluctuation_cooldown,  fluctuation_cooldown)

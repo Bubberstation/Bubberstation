@@ -113,7 +113,6 @@
 		var/obj/item/organ/ears/ears = crew.get_organ_slot(ORGAN_SLOT_EARS)
 		if(!ears)
 			continue
-		ears.damage += rand(5-15)
-		ears.temporary_deafness += 10 SECONDS
+		ears.adjust_temporary_deafness(rand(5-15))
 		SEND_SOUND(crew, sound('sound/items/weapons/flash_ring.ogg',0,1,0,250))
 		to_chat(src, span_warning("Your [crew.ears.name], bursts with a terrible crack, tearing your ears apart."))

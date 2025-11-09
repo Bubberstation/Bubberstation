@@ -235,6 +235,8 @@
 	if(need_category == CARGO_NEED_GENERAL)
 		// Add a bit from each
 		possible_cargo += list(/obj/item/storage/box/lights/mixed = 1)
+	if(!length(possible_cargo))
+		possible_cargo = pick(base_cargo_by_level)
 
 	var/amount_of_pods = (good_level == CARGO_GOOD_LEVEL_LOW ? 1 : good_level == CARGO_GOOD_LEVEL_EXTREME ? 3 : good_level == CARGO_GOOD_LEVEL_HIGH ? 2 : rand(good_level - 1, good_level))
 

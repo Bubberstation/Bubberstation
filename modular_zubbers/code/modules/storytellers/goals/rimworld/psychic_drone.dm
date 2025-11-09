@@ -81,8 +81,8 @@
 	icon = 'icons/mob/simple/hivebot.dmi'
 	icon_state = "commdish"
 	density = TRUE
-	health = 2000
-	maxHealth = 2000
+	health = 1000
+	maxHealth = 1000
 	habitable_atmos = null
 	minimum_survivable_temperature = 0
 	maximum_survivable_temperature = FIRE_SUIT_MAX_TEMP_PROTECT

@@ -15,11 +15,11 @@
 	SHOULD_CALL_PARENT(TRUE)
 	if(storyteller_implementation)
 		if(islist(___additional_arguments))
-			___additional_arguments = args[1]
+			___additional_arguments = args[2]
 		else
-			___additional_arguments = list(args[1])
-		___storyteller_inputs = args[2]
-		___storyteller = args[3]
+			___additional_arguments = list(args[2])
+		___storyteller_inputs = args[3]
+		___storyteller = args[4]
 	else
 		setup()
 
