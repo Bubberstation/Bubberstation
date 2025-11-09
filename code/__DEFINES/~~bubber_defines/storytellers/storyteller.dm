@@ -141,7 +141,7 @@ DEFINE_BITFIELD(story_analyzer_flags, list(
 // Storyteller try to keep NEUTRAL events more
 #define STORYTELLER_TRAIT_MORE_NEUTRAL_EVENTS "MORE_NEUTRAL_EVENTS"
 // Storyteller don't select major events for planning
-#define STORYTELLER_TRAIT_NO_MAJOR_EVENTS "MORE_NEUTRAL_EVENTS"
+#define STORYTELLER_TRAIT_NO_MAJOR_EVENTS "NO_MAJOR_EVENTS"
 
 
 // Bitfield categories for story goals

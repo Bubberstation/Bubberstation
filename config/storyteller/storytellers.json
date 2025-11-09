@@ -3,7 +3,14 @@
 		"id": "mia_chill",
 		"name": "Mia'Chill",
 		"desc": "A young Teshari explorer wandering through the stars in search of new worlds. Her calm and talkative nature brings order and balance to the chaos around her.",
-		"personality_traits": ["CAN_HELP", "LOVE_SPEAK", "KIND", "NO_ANTAGS"],
+		"personality_traits": [
+			"CAN_HELP",
+			"LOVE_SPEAK",
+			"KIND",
+			"NO_ANTAGS",
+			"NO_MAJOR_EVENTS",
+			"MORE_NEUTRAL_EVENTS"
+		],
 		"ooc_desc": "Mia is a storyteller who nurtures the growth of the station. With her, major threats are rare — often replaced by uplifting and positive events. However, on higher difficulties, even she can turn the tides against the crew.",
 		"ooc_difficulty": "Easy",
 		"portait_path": "portraits/p_mia.png",
@@ -28,7 +35,12 @@
 		"id": "cas_classic",
 		"name": "Cas'Classic",
 		"desc": "Cas is a fox writer who adores well-balanced, adventurous tales — stories where great danger always leads to discovery and growth.",
-		"personality_traits": ["CAN_HELP", "BALANCER", "RARE_ANTAG_SPAWN"],
+		"personality_traits": [
+			"CAN_HELP",
+			"BALANCER",
+			"RARE_ANTAG_SPAWN",
+			"MINOR_ANTAGONISTS"
+		],
 		"ooc_desc": "Cas strives to create challenges that match the crew’s strength. Over time, threats grow more serious, but so do the rewards. The station’s population directly affects the scale of danger.",
 		"ooc_difficulty": "Medium",
 		"portait_path": "portraits/p_cas.png",
@@ -54,7 +66,12 @@
 		"name": "Randall's Gambit",
 		"desc": "Randall is a thrill-seeking gambler who leaves everything to chance. Forget about peace — he’ll send crates of beer right after a meteor strike if fate wills it.",
 		"ooc_desc": "Randall relies heavily on randomness, creating unpredictable chains of events. Though chaotic, the overall tension still rises steadily over time, keeping everyone guessing what comes next.",
-		"personality_traits": ["RARE_ANTAG_SPAWN", "FORCE_TENSION"],
+		"personality_traits": [
+			"FREQUENT_ANTAG_SPAWN",
+			"FORCE_TENSION",
+			"HARDCORE_RANDOM",
+			"NO_ADAPTAION_DECAY"
+		],
 		"ooc_difficulty": "Hard",
 		"portait_path": "portraits/p_random.png",
 		"logo_path": "logos/logo_random.png",
@@ -83,7 +100,8 @@
 			"NO_MERCY",
 			"NO_GOOD_EVENTS",
 			"IMMEDIATE_ANTAG_SPAWN",
-			"FREQUENT_ANTAG_SPAWN"
+			"FREQUENT_ANTAG_SPAWN",
+			"IGNORE_RESOURCES"
 		],
 		"ooc_desc": "Catastrophe unleashes the heaviest and deadliest threats without regard for the crew’s condition. Half the station may lie dying, the rest losing their minds — and he will not stop. Positive events are entirely disabled under his rule.",
 		"ooc_difficulty": "Extreme",
