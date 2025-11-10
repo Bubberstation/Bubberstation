@@ -161,7 +161,7 @@
 // Mining Borg PKA Upgrades
 
 /obj/item/borg/upgrade/kinetic_accelerator/railgun/cyborg
-	name = "proto-kinetic railgun"
+	name = /obj/item/gun/energy/recharge/kinetic_accelerator/railgun::name
 	desc = /obj/item/gun/energy/recharge/kinetic_accelerator/railgun::desc
 	icon_state = "module_miner"
 	require_model = TRUE
@@ -171,7 +171,7 @@
 	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator)
 
 /obj/item/borg/upgrade/kinetic_accelerator/repeater/cyborg
-	name = "proto-kinetic repeater"
+	name = /obj/item/gun/energy/recharge/kinetic_accelerator/repeater::name
 	desc = /obj/item/gun/energy/recharge/kinetic_accelerator/repeater::desc
 	icon_state = "module_miner"
 	require_model = TRUE
@@ -181,7 +181,7 @@
 	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator)
 
 /obj/item/borg/upgrade/kinetic_accelerator/shotgun/cyborg
-	name = "proto-kinetic shotgun"
+	name = /obj/item/gun/energy/recharge/kinetic_accelerator/shotgun::name
 	desc = /obj/item/gun/energy/recharge/kinetic_accelerator/shotgun::desc
 	icon_state = "module_miner"
 	require_model = TRUE
@@ -191,7 +191,7 @@
 	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator)
 
 /obj/item/borg/upgrade/kinetic_accelerator/glock/cyborg
-	name = "proto-kinetic pistol"
+	name = /obj/item/gun/energy/recharge/kinetic_accelerator/glock::name
 	desc = /obj/item/gun/energy/recharge/kinetic_accelerator/glock::desc
 	icon_state = "module_miner"
 	require_model = TRUE
@@ -201,7 +201,7 @@
 	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator)
 
 /obj/item/borg/upgrade/kinetic_accelerator/shockwave/cyborg
-	name = "proto-kinetic shockwave"
+	name = /obj/item/gun/energy/recharge/kinetic_accelerator/shockwave::name
 	desc = /obj/item/gun/energy/recharge/kinetic_accelerator/shockwave::desc
 	icon_state = "module_miner"
 	require_model = TRUE
@@ -211,7 +211,7 @@
 	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator)
 
 /obj/item/borg/upgrade/kinetic_accelerator/m79/cyborg
-	name = "proto-kinetic grenade launcher"
+	name = /obj/item/gun/energy/recharge/kinetic_accelerator/m79::name
 	desc = /obj/item/gun/energy/recharge/kinetic_accelerator/m79::desc
 	icon_state = "module_miner"
 	require_model = TRUE
