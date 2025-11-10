@@ -358,13 +358,11 @@
 		"Nanotrasen Diplomat",
 		"Nanotrasen Representative",
 		"Nanotrasen Liason",
-		"Nanotrasen Idol",
 		"Central Command Consultant",
 		"Central Command Advisor",
 		"Central Command Diplomat",
 		"Central Command Representative",
 		"Central Command Liason",
-		"Central Command Idol",
 		"Corporate Liason",
 		"Corporate Consultant",
 	)

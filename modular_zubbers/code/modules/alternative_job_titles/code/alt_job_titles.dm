@@ -77,3 +77,10 @@
 		"Body Retrieval Specialist",
 	)
 	. = ..()
+
+/datum/job/nanotrasen_consultant/New()
+	alt_titles |= list(
+				"Nanotrasen Idol",
+				"Central Command Idol",
+	)
+	. = ..()
