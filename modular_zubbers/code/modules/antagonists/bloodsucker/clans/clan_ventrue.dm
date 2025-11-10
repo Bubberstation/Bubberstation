@@ -119,7 +119,7 @@
 						powers_to_transfer += power.type
 					target.mind.remove_antag_datum(/datum/antagonist/ghoul/favorite)
 				else
-					target.remove_traits(flatten_list(traits_to_add), GHOUL_TRAIT)
+					target.remove_traits(assoc_to_values(traits_to_add), GHOUL_TRAIT)
 
 
 				var/datum/antagonist/bloodsucker/vamp = new()

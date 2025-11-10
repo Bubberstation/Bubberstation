@@ -4,7 +4,6 @@
 	mutantpart_key = "caps"
 	mutantpart_info = list(MUTANT_INDEX_NAME = "Round", MUTANT_INDEX_COLOR_LIST = list("#FF4B19"))
 	slot = ORGAN_SLOT_EXTERNAL_CAP
-	preference = "feature_caps"
 	organ_flags = ORGAN_EXTERNAL
 
 /obj/item/organ/mushroom_cap/Initialize(mapload)
@@ -26,9 +25,6 @@
 	if(isnull(draw_color))
 		randomize_cap_color()
 	return draw_color
-
-/datum/bodypart_overlay/mutant/mushroom_cap/get_global_feature_list()
-	return SSaccessories.sprite_accessories["caps"]
 
 /datum/bodypart_overlay/mutant/mushroom_cap/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner)
 	var/mob/living/carbon/human/human = bodypart_owner.owner

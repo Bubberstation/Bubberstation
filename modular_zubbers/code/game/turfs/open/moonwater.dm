@@ -16,7 +16,6 @@
 	initial_gas_mix = MOONSTATION_ATMOS
 	planetary_atmos = TRUE
 
-	immerse_overlay_color = "#366F7D"
 	fishing_datum = /datum/fish_source/lunar
 
 	//Copied from lava because why not.

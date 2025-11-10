@@ -64,7 +64,7 @@
 	messenger = /obj/item/storage/backpack/messenger
 
 	implants = list(/obj/item/implant/mindshield)
-	accessory = /obj/item/clothing/accessory/medal/gold/nanotrasen_consultant
+	accessory = /obj/item/clothing/accessory/bubber/acc_medal/neckpin/centcom
 
 	chameleon_extras = list(/obj/item/gun/energy/e_gun, /obj/item/stamp/centcom)
 

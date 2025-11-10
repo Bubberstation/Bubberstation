@@ -1,6 +1,8 @@
 /datum/component/organ_corruption/stomach
 	corruptable_organ_type = /obj/item/organ/stomach
 	corrupted_icon_state = "stomach"
+	/// Traits that should be added to the stomach when it's corrupted by a hemophage tumor.
+	var/list/stomach_traits = list(TRAIT_STOMACH_BLOOD_VOMIT)
 
 
 /datum/component/organ_corruption/stomach/corrupt_organ(obj/item/organ/corruption_target)
@@ -10,13 +12,14 @@
 		return
 
 	RegisterSignal(corruption_target, COMSIG_STOMACH_AFTER_EAT, PROC_REF(on_stomach_after_eat))
+	corruption_target.add_traits(stomach_traits, SPECIES_TRAIT) // Adds the stomach_traits defined in _hemophage_defines.dm, makes us vomit blood
 
 
 /datum/component/organ_corruption/stomach/UnregisterFromParent()
 	. = ..()
 
 	UnregisterSignal(parent, COMSIG_STOMACH_AFTER_EAT)
-
+	parent.remove_traits(stomach_traits, SPECIES_TRAIT)
 
 /datum/component/organ_corruption/stomach/proc/on_stomach_after_eat(obj/item/organ/stomach/tummy, atom/edible)
 	SIGNAL_HANDLER

@@ -4,16 +4,16 @@
 
 [![resentment](.github/images/badges/built-with-resentment.svg)](.github/images/comics/131-bug-free.png) [![technical debt](.github/images/badges/contains-technical-debt.svg)](.github/images/comics/106-tech-debt-modified.png) [![forinfinityandbyond](.github/images/badges/made-in-byond.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
-| Website                 | Link                                                                                                                                   |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| Git / GitHub cheatsheet | [https://www.notion.so/Git-GitHub-61bc81766b2e4c7d9a346db3078ce833](https://www.notion.so/Git-GitHub-61bc81766b2e4c7d9a346db3078ce833) |
-| Guide to Modularization | [./modular_skyrat/readme.md](./modular_skyrat/readme.md)                                                                               |
-| Website                 | [https://wiki.bubberstation.org/index.php?title=Main_Page](https://wiki.bubberstation.org/index.php?title=Main_Page)                   |
-| Code                    | [https://github.com/Bubberstation/Bubberstation](https://github.com/Bubberstation/Bubberstation)                                       |
-| Wiki                    | [https://tgstation13.org/wiki/Main_Page](https://tgstation13.org/wiki/Main_Page)                                                       |
-| Codedocs                | [https://skyrat-ss13.github.io/Skyrat-tg/](https://skyrat-ss13.github.io/Skyrat-tg/)                                                   |
-| Bubberstation Discord   | [https://discord.gg/AvjrTqnqEx](https://discord.gg/AvjrTqnqEx)                                                                         |
-| Coderbus Discord        | [https://discord.gg/Vh8TJp9](https://discord.gg/Vh8TJp9)                                                                               |
+| Website                 | Link                                                              |
+| ----------------------- | ----------------------------------------------------------------- |
+| Git / GitHub cheatsheet | https://www.notion.so/Git-GitHub-61bc81766b2e4c7d9a346db3078ce833 |
+| Guide to Modularization | [./modular_skyrat/readme.md](./modular_skyrat/readme.md)          |
+| Website                 | https://wiki.bubberstation.org/index.php?title=Main_Page          |
+| Code                    | https://github.com/Bubberstation/Bubberstation                    |
+| Wiki                    | https://tgstation13.org/wiki/Main_Page                            |
+| Codedocs                | https://bubberstation.github.io/Bubberstation                     |
+| Bubberstation Discord   | https://discord.gg/AvjrTqnqEx                                     |
+| Coderbus Discord        | https://discord.gg/Vh8TJp9                                        |
 
 This is Bubberstation's fork of TG. Originally forked from Skyrat.
 
@@ -47,6 +47,7 @@ As of our recent split from Skyrat, a lot of codedocs/modularization guides need
 _Credit: [Goonstation contribution guidelines](https://hackmd.io/@goonstation/docs/%2F%40goonstation%2Fcontribute#What-if-I-change-my-mind-about-my-contributions-being-published)_
 
 To forward any licensing concerns, please open an issue report or pull request. Alternatively, you can join our [Discord](https://discord.gg/AvjrTqnqEx) and contact the project leaders.
+
 ## Modularization and codedocs note
 
 ## Important note - TEST YOUR PULL REQUESTS
@@ -82,9 +83,9 @@ For overall design documentation see [HackMD](https://hackmd.io/@tgstation).
 
 ## LICENSE
 
-All code after [commit 333c566b88108de218d882840e61928a9b759d8f on 2014/31/12 at 4:38 PM PST](https://github.com/tgstation/tgstation/commit/333c566b88108de218d882840e61928a9b759d8f) is licensed under [GNU AGPL v3](https://www.gnu.org/licenses/agpl-3.0.html).
+All code after [commit 333c566b88108de218d882840e61928a9b759d8f on 2014/12/31 at 4:38 PM PST](https://github.com/tgstation/tgstation/commit/333c566b88108de218d882840e61928a9b759d8f) is licensed under [GNU AGPL v3](https://www.gnu.org/licenses/agpl-3.0.html).
 
-All code before [commit 333c566b88108de218d882840e61928a9b759d8f on 2014/31/12 at 4:38 PM PST](https://github.com/tgstation/tgstation/commit/333c566b88108de218d882840e61928a9b759d8f) is licensed under [GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.html).
+All code before [commit 333c566b88108de218d882840e61928a9b759d8f on 2014/12/31 at 4:38 PM PST](https://github.com/tgstation/tgstation/commit/333c566b88108de218d882840e61928a9b759d8f) is licensed under [GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.html).
 (Including tools unless their readme specifies otherwise.)
 
 See LICENSE and GPLv3.txt for more details.
