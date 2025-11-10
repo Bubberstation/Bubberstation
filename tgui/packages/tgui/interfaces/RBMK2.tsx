@@ -373,7 +373,7 @@ export const RBMK2 = (props) => {
                     {data.overclocked ? 'ONLINE' : 'OFFLINE'}
                   </Box>
                   <Button.Confirm
-                    tooltip="Increases power output at the cost of more tritium consumed and less heater generated. Requires overlock upgrade disk."
+                    tooltip="Increases power output at the cost of more tritium consumed and more heat generated. Requires overlock upgrade disk."
                     icon="exclamation-triangle"
                     color={data.overclocked ? 'average' : 'good'}
 					disabled={!data.overclocked_upgrade}
