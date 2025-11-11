@@ -1,7 +1,7 @@
 //FLAGS
 
 /datum/crafting_recipe/gaypride
-	name = "Pride Flag"
+	name = "LGBT Pride Flag"
 	reqs = list(
 		/obj/item/stack/sheet/cloth = 3,
 	)
