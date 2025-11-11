@@ -758,7 +758,7 @@
 		),
 	)
 
-/obj/item/clothing/gloves/krav_maga/sec
+/obj/item/clothing/gloves/kaza_ruk/sec
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "fightgloves_blue"
