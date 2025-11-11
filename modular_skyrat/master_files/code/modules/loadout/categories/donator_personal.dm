@@ -95,27 +95,6 @@
 	name = "Britches' dress"
 	item_path = /obj/item/clothing/under/rank/civilian/clown/britches
 	//ckeywhitelist = list("bloodrite")
-
-/datum/loadout_item/mask/britches_mask
-	name = "Britches' mask"
-	item_path = /obj/item/clothing/mask/gas/britches
-	//ckeywhitelist = list("bloodrite")
-
-/datum/loadout_item/mask/luchador_mask
-	name = "Mask of El Red Templar"
-	item_path = /obj/item/clothing/mask/luchador/enzo
-	//ckeywhitelist = list("enzoman")
-
-/datum/loadout_item/mask/nightlight_mask
-	name = "'Royez' Half-Face Rebreather"
-	item_path = /obj/item/clothing/mask/gas/nightlight
-//	ckeywhitelist = list("farsightednightlight", "raxraus", "1ceres", "marcoalbaredaa", "itzshift_yt", "drifter7371", "AvianAviator", "Katty Kat", "Investigator77", "Dalao Azure", "Socialistion", "ChillyLobster", "Sylvara", "AmZee", "Tf4", "rb303", "Kay_Nite", "whataboutism", "taac", "Halkyon", "Lupo_di_rosa", "Merek2", "lowpowermia", "RyeanBread", "Jesterz7", "Saund_Minah", "Ruediger4")
-
-/datum/loadout_item/mask/fir22
-	name = "'Kimball' Rebreather"
-	item_path = /obj/item/clothing/mask/gas/nightlight/fir22
-//	ckeywhitelist = list("farsightednightlight", "raxraus", "1ceres", "marcoalbaredaa", "itzshift_yt", "drifter7371", "AvianAviator", "Katty Kat", "Investigator77", "Dalao Azure", "Socialistion", "ChillyLobster", "Sylvara", "AmZee", "Tf4", "rb303", "Kay_Nite", "whataboutism", "taac", "Halkyon", "Lupo_di_rosa", "Merek2", "lowpowermia", "RyeanBread", "Jesterz7", "Saund_Minah", "Ruediger4")
-
 /datum/loadout_item/head/caligram_cap_tan
 	name = "Blacktide Tan Softcap"
 	item_path = /obj/item/clothing/head/caligram_cap_tan
@@ -155,11 +134,6 @@
 	name = "Fitted Wetsuit"
 	item_path = /obj/item/clothing/under/wetsuit_norm
 	ckeywhitelist = list("ChillyLobster")
-
-/datum/loadout_item/mask/wolf_mask
-	name = "Wolf mask"
-	item_path = /obj/item/clothing/mask/animal/wolf
-	//ckeywhitelist = list("theooz")
 
 /datum/loadout_item/head/drake_skull
 	name = "Skull of an ashdrake"
@@ -201,11 +175,6 @@
 /datum/loadout_item/pocket_items/kiaramedal
 	name = "Insignia of Steele"
 	item_path = /obj/item/clothing/accessory/medal/steele
-	//ckeywhitelist = list("inferno707")
-
-/datum/loadout_item/mask/hheart
-	name = "The Hollow Heart"
-	item_path = /obj/item/clothing/mask/hheart
 	//ckeywhitelist = list("inferno707")
 
 /datum/loadout_item/toys/darksabre
@@ -311,11 +280,6 @@
 	item_path = /obj/item/toy/plush/skyrat/voodoo
 	//ckeywhitelist = list("gamerguy14948")
 
-/datum/loadout_item/mask/octusvox
-	name = "Sinister Visor"
-	item_path = /obj/item/clothing/mask/breath/vox/octus
-	//ckeywhitelist = list("octus")
-
 /datum/loadout_item/glasses/roseglasses
 	name = "Rose-Colored Glasses"
 	item_path = /obj/item/clothing/glasses/rosecolored
@@ -350,11 +314,6 @@
 	name = "Fluffy Cloak"
 	item_path = /obj/item/clothing/neck/cloak/fluffycloak
 	//ckeywhitelist = list("realwinterfrost")
-
-/datum/loadout_item/mask/larpswat
-	name = "Foam Force SWAT Mask"
-	item_path = /obj/item/clothing/mask/gas/larpswat
-	//ckeywhitelist = list("erdinyobarboza")
 
 /datum/loadout_item/toys/zappplush
 	name = "Lil' Zapp Plushie"
