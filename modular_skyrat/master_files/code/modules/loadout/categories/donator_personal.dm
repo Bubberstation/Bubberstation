@@ -38,16 +38,6 @@
 	item_path = /obj/item/clothing/neck/cloak/grunnyyy
 	//ckeywhitelist = list("grunnyyy")
 
-/datum/loadout_item/gloves/hypnoring_coffee
-	name = "Hypnodemon's Ring"
-	item_path = /obj/item/clothing/gloves/ring/hypno/coffeepot
-	//ckeywhitelist = list("coffeepot")
-
-/datum/loadout_item/gloves/hypnoring_bippy
-	name = "Hypnodemon's Ring"
-	item_path = /obj/item/clothing/gloves/ring/hypno/bippys
-	ckeywhitelist = list("bippys")
-
 /datum/loadout_item/suit/rax_peacekeeper_jacket
 	name = "Peacekeeper jacket"
 	item_path = /obj/item/clothing/suit/armor/vest/warden/rax
@@ -176,11 +166,6 @@
 	item_path = /obj/item/clothing/head/drake_skull
 	//ckeywhitelist = list("random516")
 
-/datum/loadout_item/gloves/blutigen_wraps
-	name = "Blutigen Wraps"
-	item_path = /obj/item/clothing/gloves/fingerless/blutigen_wraps
-	//ckeywhitelist = list("random516")
-
 /datum/loadout_item/suit/blutigen_kimono
 	name = "Blutigen Kimono"
 	item_path = /obj/item/clothing/suit/blutigen_kimono
@@ -202,11 +187,6 @@
 	item_path = /obj/item/clothing/under/rank/blueshield/netra
 	//ckeywhitelist = list("netrakyram")
 	restricted_roles = list(JOB_CAPTAIN, JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY)
-
-/datum/loadout_item/gloves/netra_gloves
-	name = "Black and Silver Gloves"
-	item_path = /obj/item/clothing/gloves/netra
-	//ckeywhitelist = list("netrakyram")
 
 /datum/loadout_item/neck/kiaracloak
 	name = "Kiara's cloak"
@@ -231,11 +211,6 @@
 /datum/loadout_item/toys/darksabre
 	name = "Dark Sabre"
 	item_path = /obj/item/toy/darksabre
-	//ckeywhitelist = list("inferno707")
-
-/datum/loadout_item/pocket_items/darksabresheath
-	name = "Dark Sabre Sheath"
-	item_path = /obj/item/storage/belt/sheath/sabre/darksabre
 	//ckeywhitelist = list("inferno707")
 
 /datum/loadout_item/pocket_items/darkarmor
@@ -274,23 +249,18 @@
 	//ckeywhitelist = list("cypressb")
 
 /datum/loadout_item/uniform/mikubikini
-	name = "starlight singer bikini"
+	name = "Starlight Singer Bikini"
 	item_path = /obj/item/clothing/under/mikubikini
 	//ckeywhitelist = list("grandvegeta")
 
 /datum/loadout_item/suit/mikujacket
-	name = "starlight singer jacket"
+	name = "Starlight Singer Jacket"
 	item_path = /obj/item/clothing/suit/mikujacket
 	//ckeywhitelist = list("grandvegeta")
 
 /datum/loadout_item/head/mikuhair
-	name = "starlight singer hair"
+	name = "Starlight Singer Hair"
 	item_path = /obj/item/clothing/head/mikuhair
-	//ckeywhitelist = list("grandvegeta")
-
-/datum/loadout_item/gloves/mikugloves
-	name = "starlight singer gloves"
-	item_path = /obj/item/clothing/gloves/mikugloves
 	//ckeywhitelist = list("grandvegeta")
 
 /datum/loadout_item/suit/delta_coat
@@ -334,11 +304,6 @@
 /datum/loadout_item/uniform/occult_outfit
 	name = "Occult Collector's Outfit"
 	item_path = /obj/item/clothing/under/occult
-	//ckeywhitelist = list("gamerguy14948")
-
-/datum/loadout_item/belts/trinket_belt
-	name = "Trinket Belt"
-	item_path = /obj/item/storage/belt/fannypack/occult
 	//ckeywhitelist = list("gamerguy14948")
 
 /datum/loadout_item/toys/voodooplush
@@ -575,12 +540,6 @@
 	restricted_roles = list(JOB_HEAD_OF_SECURITY)
 	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_ALLOW_RESKIN
 
-/datum/loadout_item/gloves/elofy
-	name = "Solar Admiral Gloves"
-	item_path = /obj/item/clothing/gloves/elofy
-	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_ALLOW_RESKIN
-//	ckeywhitelist = list("october23")
-
 /datum/loadout_item/pocket_items/transponder
 	name = "Broken Helian Transponder"
 	item_path = /obj/item/donator/transponder
@@ -621,16 +580,6 @@
 	item_path = /obj/item/toy/plush/skyrat/plushie_syntax1112
 	//ckeywhitelist = list("syntax1112")
 
-/datum/loadout_item/gloves/hypnoring_sharkenning
-	name = "Suspiciously Glossy Ring"
-	item_path = /obj/item/clothing/gloves/ring/hypno/sharkenning
-	ckeywhitelist = list("thesharkenning", "tecktonic")
-
-/datum/loadout_item/ears/kinkphone_sharkenning
-	name = "Suspiciously Glossy Headphones"
-	item_path = /obj/item/clothing/ears/kinky_headphones/sharkenning
-	ckeywhitelist = list("thesharkenning")
-
 /datum/loadout_item/head/somerandomowl
 	name = "Starry Witch Hat"
 	item_path = /obj/item/clothing/head/costume/strigihat
@@ -668,10 +617,6 @@
 /datum/loadout_item/uniform/miscellaneous/lt3_jeans
 	name = "Silver Jeans"
 	item_path = /obj/item/clothing/under/pants/skyy
-
-/datum/loadout_item/gloves/lt3_gloves
-	name = "Charcoal Fingerless Gloves"
-	item_path = /obj/item/clothing/gloves/skyy
 
 /datum/loadout_item/toys/switchcomb
 	name = "Switchblade Comb"
