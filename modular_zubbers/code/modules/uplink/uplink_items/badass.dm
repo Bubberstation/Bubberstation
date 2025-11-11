@@ -3,6 +3,7 @@
 	desc = "For agents in the field requiring urgent emotional support."
 	item = /obj/item/toy/plush/nukeplushie
 	cost = 1
+	uplink_item_flags = NONE
 
 /datum/uplink_item/badass/medalbox
 	name = "Syndicate Medal Box"
