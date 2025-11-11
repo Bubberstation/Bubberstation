@@ -274,14 +274,3 @@
 	name = "Wolf mask"
 	item_path = /obj/item/clothing/mask/animal/wolf
 	//ckeywhitelist = list("theooz")
-
-/*
-*	DONATOR
-*/
-
-/datum/loadout_item/mask/donator
-	donator_only = TRUE
-
-
-
-
