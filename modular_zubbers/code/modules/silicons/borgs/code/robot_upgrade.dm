@@ -93,8 +93,8 @@
 	desc = "An upgrade to allow a cyborg to use a Rapid Lighting Device."
 	icon_state = "module_engineer"
 	require_model = TRUE
-	model_type = list(/obj/item/robot_model/engineering)
-	model_flags = BORG_MODEL_ENGINEERING
+	model_type = list(/obj/item/robot_model/engineering, /obj/item/robot_model/janitor)
+	model_flags = list(BORG_MODEL_ENGINEERING, BORG_MODEL_JANITOR)
 	items_to_add = list(/obj/item/construction/rld/cyborg)
 
 // Borg Advanced Xenoarchaeology Bag
@@ -255,3 +255,89 @@
 			borg.hasToys = FALSE
 
 		borg.remove_quirk(/datum/quirk/well_trained)
+
+/obj/item/borg/upgrade/detailer
+	name = "janitor detailing toolset"
+	desc = "Upgrades a janitor cyborgs tiling capabilities while adding the ability to modify floor decals."
+	icon_state = "module_janitor"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/janitor)
+	model_flags = BORG_MODEL_JANITOR
+
+	items_to_add = list(/obj/item/construction/rtd/borg,
+						/obj/item/airlock_painter/decal/cyborg,
+						)
+	items_to_remove = list(/obj/item/stack/tile/iron/base/cyborg)
+
+/obj/item/borg/upgrade/cyborg_cable_coil
+	name = "integrated cable coil"
+	desc = "Condensed spooling technology allows cabling technology in janitorial modules."
+	icon_state = "module_janitor"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/janitor)
+	model_flags = BORG_MODEL_JANITOR
+
+	items_to_add = list (/obj/item/stack/cable_coil)
+
+/*
+/obj/item/airlock_painter/decal/cyborg,
+/obj/item/stack/cable_coil,
+/obj/item/cautery/prt,
+
+
+/obj/item/borg/upgrade/processor
+	name = "medical and research cyborg surgical processor" // BUBBER EDIT Research borgs
+	desc = "An upgrade to the Medical and Research model, installing a processor \
+		capable of scanning surgery disks and carrying \
+		out procedures"
+	icon_state = "module_medical"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/medical, /obj/item/robot_model/syndicate_medical)
+	model_flags = list(BORG_MODEL_MEDICAL, BORG_MODEL_RESEARCH)
+
+	items_to_add = list(/obj/item/surgical_processor)
+
+----------------------------------
+
+/datum/design/borg_upgrade_surgical_processor_sci
+	name = "Research Surgical Processor"
+	id = "borg_upgrade_surgicalprocessor_sci"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/processor
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 2,
+	)
+	construction_time = 4 SECONDS
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_RESEARCH
+	)
+
+/datum/design/borg_upgrade_surgicalprocessor
+	name = "Surgical Processor"
+	id = "borg_upgrade_surgicalprocessor"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/processor
+	materials = list(
+		/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5,
+		/datum/material/glass =SHEET_MATERIAL_AMOUNT*2,
+		/datum/material/silver =SHEET_MATERIAL_AMOUNT*2,
+	)
+	construction_time = 4 SECONDS
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_MEDICAL
+	)
+
+// Engineering RLD
+/obj/item/borg/upgrade/rld
+	name = "Engineering Cyborg Rapid Lighting Device Upgrade"
+	desc = "An upgrade to allow a cyborg to use a Rapid Lighting Device."
+	icon_state = "module_engineer"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/engineering)
+	model_flags = BORG_MODEL_ENGINEERING
+	items_to_add = list(/obj/item/construction/rld/cyborg)
+model_flags = list(BORG_MODEL_MEDICAL, BORG_MODEL_RESEARCH)
+
+*/

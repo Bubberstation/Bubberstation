@@ -146,6 +146,47 @@
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_ENGINEERING
 	)
 
+//	JANITOR CYBORG UPGRADES
+
+/datum/design/borg_upgrade_detailer
+	name = "Detailing Tools"
+	id = "borg_upgrade_detailer"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/detailer
+	materials = list(
+		/datum/material/iron =SHEET_MATERIAL_AMOUNT*15.25,
+		/datum/material/glass =SHEET_MATERIAL_AMOUNT*1.5,
+	)
+	construction_time = 4 SECONDS
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_JANITOR
+	)
+
+/datum/design/rld_janitor
+	name = "Cyborg Rapid Lighting Device"
+	desc = "A device that allows rapid, range deployment of lights and glowsticks."
+	id = "rld_cyborg_janitor"
+	build_type = MECHFAB
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/glass =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT * 2.5)
+	build_path = /obj/item/borg/upgrade/rld
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_JANITOR
+	)
+
+/datum/design/cyborg_cable_coil
+	name = "Integrated Cable Coil"
+	desc = "Condensed spooling technology allows cabling technology in janitorial modules."
+	id = "cable_coil_cyborg"
+	build_type = MECHFAB
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
+	)
+	build_path = /obj/item/borg/upgrade/cyborg_cable_coil
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_JANITOR
+	)
+
 /datum/design/xenoarch/equipment/bag_adv_borg
 	name = "Cyborg Advanced Xenoarchaeology Bag"
 	desc = "An improved bag to pick up strange rocks for science"
