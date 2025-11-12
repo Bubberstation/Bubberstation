@@ -213,10 +213,11 @@
 	dye_color = crayon_color
 
 	drawtype = pick(all_drawables)
-
 	AddElement(/datum/element/venue_price, FOOD_PRICE_EXOTIC)
-	AddElement(/datum/element/tool_renaming)
-	if(can_change_colour)
+
+	if(!can_change_colour)
+		AddElement(/datum/element/tool_renaming)
+	else
 		AddComponent(/datum/component/palette, AVAILABLE_SPRAYCAN_SPACE, paint_color)
 
 	refill()
