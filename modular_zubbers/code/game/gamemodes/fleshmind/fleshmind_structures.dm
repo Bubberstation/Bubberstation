@@ -767,7 +767,6 @@
 	flick("[base_icon_state]-anim", src)
 	playsound(loc, 'modular_zubbers/sound/fleshmind/laser.ogg', 75, TRUE)
 	var/obj/projectile/new_projectile = new projectile_type
-	var/turf/our_turf = get_turf(src)
 	new_projectile.firer = src
 	new_projectile.fired_from = src
 	new_projectile.ignored_factions = faction_types
