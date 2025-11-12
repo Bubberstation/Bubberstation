@@ -336,7 +336,7 @@
 		. += "core-smirk"
 
 	if(end_game)
-		for(var/i in 1 to SUNBEAM_OVERLAYS)
+		for(var/i in 1 to 16)
 			var/mutable_appearance/beam_overlay = mutable_appearance('icons/obj/weapons/guns/projectiles_tracer.dmi', "tracer_beam")
 			beam_overlay.pixel_y = 32 * i
 			. += beam_overlay
@@ -768,7 +768,6 @@
 	playsound(loc, 'modular_zubbers/sound/fleshmind/laser.ogg', 75, TRUE)
 	var/obj/projectile/new_projectile = new projectile_type
 	var/turf/our_turf = get_turf(src)
-	new_projectile.preparePixelProjectile(triggered_mob, our_turf)
 	new_projectile.firer = src
 	new_projectile.fired_from = src
 	new_projectile.ignored_factions = faction_types

@@ -21,7 +21,6 @@
 	// Blacklisted areas that the wireweed can't spawn in.
 	var/list/blacklisted_areas = typecacheof(typesof(
 		/area/station/engineering/supermatter,
-		/area/station/ai_monitored,
 		/area/station/tcommsat,
 		/area/station/hallway,
 		/area/station/commons/dorms,

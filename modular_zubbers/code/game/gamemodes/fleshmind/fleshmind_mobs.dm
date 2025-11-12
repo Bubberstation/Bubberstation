@@ -110,7 +110,7 @@
 	if(key)
 		return
 	if(!suffering_malfunction && malfunction_chance && prob(malfunction_chance * delta_time) && stat != DEAD)
-		malfunction()
+		INVOKE_ASYNC(src, PROC_REF(malfunction))
 
 	if(escapes_closets)
 		closet_interaction()
@@ -1354,7 +1354,7 @@
 /mob/living/basic/fleshmind/mechiver/Life(delta_time, times_fired)
 	. = ..()
 	if(contained_mob && contained_mob.stat != DEAD && prob(25) && !suffering_malfunction)
-		torment_passenger()
+		INVOKE_ASYNC(src, PROC_REF(torment_passenger))
 
 /mob/living/basic/fleshmind/mechiver/proc/torment_passenger()
 	if(!contained_mob)
