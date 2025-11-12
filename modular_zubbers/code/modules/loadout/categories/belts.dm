@@ -59,3 +59,15 @@
 /datum/loadout_item/belts/lantern
 	name = "Lantern"
 	item_path = /obj/item/flashlight/lantern
+
+/datum/loadout_item/belts/darksabresheath
+	name = "Dark Sabre Sheath"
+	item_path = /obj/item/storage/belt/sheath/sabre/darksabre
+	//ckeywhitelist = list("inferno707")
+
+/datum/loadout_item/belts/trinket_belt
+	name = "Trinket Belt"
+	item_path = /obj/item/storage/belt/fannypack/occult
+	//ckeywhitelist = list("gamerguy14948")
+
+
