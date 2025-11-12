@@ -10,7 +10,7 @@
 	mag_display = FALSE
 	mag_display_ammo = FALSE
 	empty_indicator = TRUE
-	var/rof = 0.05 SECONDS
+	var/rof = 0.5 SECONDS
 
 
 /obj/item/gun/ballistic/automatic/wt550/p90/Initialize(mapload)
@@ -39,7 +39,7 @@
 	name ="5.7x28mm bullet"
 	speed = 1.8
 	range = 30
-	damage = 6
+	damage = 15
 	armour_penetration = 50
 
 /obj/item/gun/energy/shrink_ray/one_shot
