@@ -46,6 +46,10 @@
 /turf/open/floor/tram
 	icon = 'modular_zubbers/icons/turf/floors/tram.dmi'
 
+/turf/open/floor/tram/plate
+	icon = 'modular_zubbers/icons/turf/floors/tram.dmi'
+	
+
 /turf/open/indestructible/tram
 	icon = 'modular_zubbers/icons/turf/floors/tram.dmi'
 
