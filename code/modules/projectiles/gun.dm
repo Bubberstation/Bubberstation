@@ -94,7 +94,7 @@
 	. = ..()
 	if(ispath(pin))
 		pin = new pin
-		pin.gun_insert(new_gun = src)
+		pin.gun_insert(new_gun = src, starting = TRUE)
 
 	add_seclight_point()
 	give_gun_safeties() // SKYRAT EDIT ADDITION - GUN SAFETIES
@@ -646,7 +646,7 @@
 	if(pin)
 		qdel(pin)
 	var/obj/item/firing_pin/new_pin = new
-	new_pin.gun_insert(new_gun = src)
+	new_pin.gun_insert(new_gun = src, starting = TRUE)
 
 //Happens before the actual projectile creation
 /obj/item/gun/proc/before_firing(atom/target,mob/user)
