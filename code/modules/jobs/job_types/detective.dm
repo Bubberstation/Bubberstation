@@ -71,6 +71,7 @@
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	l_pocket = /obj/item/modular_computer/pda/detective // SKYRAT EDIT CHANGE - ORIGINAL: /obj/item/toy/crayon/white
 	r_pocket = /obj/item/lighter
+	pda_slot = ITEM_SLOT_LPOCKET // BUBBER EDIT ADDITION
 
 	chameleon_extras = list(
 		/obj/item/clothing/glasses/sunglasses,
