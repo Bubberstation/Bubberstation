@@ -767,6 +767,7 @@
 	flick("[base_icon_state]-anim", src)
 	playsound(loc, 'modular_zubbers/sound/fleshmind/laser.ogg', 75, TRUE)
 	var/obj/projectile/new_projectile = new projectile_type
+	new_projectile.aim_projectile(triggered_mob, src)
 	new_projectile.firer = src
 	new_projectile.fired_from = src
 	new_projectile.ignored_factions = faction_types

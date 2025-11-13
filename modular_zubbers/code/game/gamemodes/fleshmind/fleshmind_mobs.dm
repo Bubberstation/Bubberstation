@@ -383,9 +383,10 @@
 	return ..()
 
 /mob/living/basic/fleshmind/floater/proc/pre_detonate()
-	add_filter("detonating_glow", 2, list("type" = "outline", "color" = "#ff0000ff", "size" = 2))
-	balloon_alert_to_viewers("DETONATING", "DETONATING", world.view)
-	addtimer(CALLBACK(src, PROC_REF(detonate), 3 SECONDS))
+	if(!QDELETED(src))
+		add_filter("detonating_glow", 2, list("type" = "outline", "color" = "#ff0000ff", "size" = 2))
+		balloon_alert_to_viewers("DETONATING", "DETONATING", world.view)
+		addtimer(CALLBACK(src, PROC_REF(detonate), 3 SECONDS))
 
 /mob/living/basic/fleshmind/floater/proc/detonate()
 	if(exploded)
