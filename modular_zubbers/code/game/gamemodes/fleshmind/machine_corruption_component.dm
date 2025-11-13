@@ -275,3 +275,15 @@
 /datum/component/machine_corruption/proc/emp_act(datum/source, severity)
 	SIGNAL_HANDLER
 	qdel(src)
+
+#undef DAMAGE_RESPONSE_PROB
+#undef DAMAGE_SPARKS_PROB
+#undef RETALIATE_PROB
+#undef DEFAULT_WHIP_RANGE
+#undef COMPONENT_SETUP_TIME
+#undef CHANCE_TO_CREATE_MECHIVER
+#undef DAMAGE_RESPONSE_PHRASES
+#undef INTERACT_RESPONSE_PHRASES
+#undef PAIN_RESPONSE_EMOTES
+#undef PAIN_RESPONSE_SOUNDS
+#undef MACHINE_TO_SPAWNER_PATHS
