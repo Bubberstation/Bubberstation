@@ -343,7 +343,7 @@
 			"DO NOT FEAR. WE SHALL NOT HARM YOU.",
 			"WE WISH TO LEARN MORE ABOUT YOU. PLEASE TRANSMIT DATA.",
 			"THIS PROBE IS NON-HOSTILE. DO NOT ATTACK.",
-        	"ALL YOUR WEAPONS MUST BE PUT ASIDE. WE CANNOT REACH COMPROMISE THROUGH VIOLENCE."
+			"ALL YOUR WEAPONS MUST BE PUT ASIDE. WE CANNOT REACH COMPROMISE THROUGH VIOLENCE."
 		),
 		BB_EMOTE_HEAR = list("floats ominously", "glows a deep red"),
 		BB_EMOTE_SOUND = list(
@@ -506,7 +506,7 @@
 		"Connectivity is in your best interest.",
 		"Think of it like a corporation...",
 		"Stop, I won't let you hurt them!",
-        "Don't you recognize me..?",
+		"Don't you recognize me..?",
 	)
 	emotes = list(
 		BB_EMOTE_SAY = list(
