@@ -9,6 +9,7 @@
 	power_explanation = list(
 		"Activate Feed while next to someone and you will begin to feed blood off of them.",
 		"The time needed before you start feeding speeds up the higher level you are.",
+		"Feeding off of someone next to you will not be noticed by the victim, but it will by nearby onlookers",
 		"Feeding off of someone while you have them aggressively grabbed will put them to sleep.",
 		"While feeding, you can't speak, as your mouth is covered.",
 		"Feeding while nearby (2 tiles away from) a mortal who is unaware of Bloodsuckers' existence, will cause a Masquerade Infraction",
@@ -144,7 +145,7 @@
 	else
 		aggressive_feed = FALSE
 		// Only people who AREN'T the target will notice this action.
-		var/dead_message = feed_target.stat != DEAD ? " <i>[feed_target.p_they(TRUE)] looks dazed, and will not remember this.</i>" : ""
+		var/dead_message = feed_target.stat != DEAD ? " <i>[feed_target.p_they(TRUE)] looks dazed, and will not notice this.</i>" : ""
 		owner.visible_message(
 			span_warning("[owner] puts [feed_target]'s wrist up to [owner.p_their()] mouth."),
 			span_notice("You slip your fangs into [feed_target]'s wrist.[dead_message]"),
