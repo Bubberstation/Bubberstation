@@ -177,7 +177,7 @@
 	max_integrity = 150
 	disabled_sprite = FALSE
 
-/obj/structure/fleshmind/structure/wireweed_wall/Initialize()
+/obj/structure/fleshmind/structure/wireweed_wall/Initialize(mapload)
 	. = ..()
 	var/turf/my_turf = get_turf(src)
 	my_turf.immediate_calculate_adjacent_turfs()
@@ -591,7 +591,7 @@
 		"Carve the flesh from your bones. See your weakness. Feel that weakness flowing away.",
 		"You fear aging. We can save you. You fear death. We can save you. You fear disease. You fear not being recognized. We can save you.",
 		"Your mortal flesh knows unending pain. Abandon it; join in our digital paradise.",
-    )
+	)
 
 /obj/structure/fleshmind/structure/whisperer/activate_ability(mob/living/triggered_mob)
 	. = ..()

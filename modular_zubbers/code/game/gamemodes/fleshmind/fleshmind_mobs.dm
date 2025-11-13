@@ -306,7 +306,7 @@
 			)
 	)
 
-/mob/living/basic/fleshmind/slicer/Initialize()
+/mob/living/basic/fleshmind/slicer/Initialize(mapload)
 	. = ..()
 	var/list/loot = string_list(list(/obj/item/bot_assembly/medbot, /obj/effect/gibspawner/robot))
 	AddElement(/datum/element/death_drops, loot)
@@ -527,7 +527,7 @@
 	var/stun_cooldown_time = 2 SECONDS
 	COOLDOWN_DECLARE(stun_cooldown)
 
-/mob/living/basic/fleshmind/stunner/Initialize()
+/mob/living/basic/fleshmind/stunner/Initialize(mapload)
 	. = ..()
 	var/static/list/loot = list(/obj/item/bot_assembly/secbot, /obj/effect/gibspawner/robot)
 	AddElement(/datum/element/death_drops, loot)
@@ -1341,7 +1341,7 @@
 		"A dozen needles slide effortless into your muscles, injecting you with an unknown vigor!",
 		"You feel a cold worm-like thing trying to wriggle into your solar plexus, burrowing underneath your skin!",
 	)
-/mob/living/basic/fleshmind/mechiver/Initialize()
+/mob/living/basic/fleshmind/mechiver/Initialize(mapload)
 	. = ..()
 	var/list/loot = string_list(list(/obj/effect/gibspawner/robot))
 	AddElement(/datum/element/death_drops, loot)
@@ -1497,7 +1497,7 @@
 		"OOOOOOOOOOK!!!",
 	)
 
-/mob/living/basic/fleshmind/mauler_monkey/Initialize()
+/mob/living/basic/fleshmind/mauler_monkey/Initialize(mapload)
 	. = ..()
 	ai_controller.set_blackboard_key(BB_MONKEY_AGGRESSIVE, TRUE) // Little angry cunt.
 */
