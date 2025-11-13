@@ -41,13 +41,18 @@
 // TRAM FLOORS
 
 /turf/open/floor/noslip/tram
-	icon = 'modular_zubbers/icons/turf/floors/tram.dmi'	
+	icon = 'modular_zubbers/icons/turf/floors/tram.dmi'
 
 /turf/open/floor/tram
-	icon = 'modular_zubbers/icons/turf/floors/tram.dmi'	
+	icon = 'modular_zubbers/icons/turf/floors/tram.dmi'
 
 /turf/open/indestructible/tram
-	icon = 'modular_zubbers/icons/turf/floors/tram.dmi'	
+	icon = 'modular_zubbers/icons/turf/floors/tram.dmi'
 
 /obj/structure/thermoplastic
-	icon = 'modular_zubbers/icons/turf/floors/tram.dmi'	
+	icon = 'modular_zubbers/icons/turf/floors/tram.dmi'
+
+// LIVING FLOORS
+
+/mob/living/basic/living_floor
+	icon = 'modular_zubbers/icons/turf/floors/floors.dmi'
