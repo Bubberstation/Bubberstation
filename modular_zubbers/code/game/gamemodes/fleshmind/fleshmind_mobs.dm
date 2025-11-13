@@ -76,7 +76,7 @@
 	// We set a unique name when we are created, to give some feeling of randomness.
 	name = "[pick(FLESHMIND_NAME_MODIFIER_LIST)] [name]"
 	our_controller = incoming_controller
-	for(var/iterating_action as anything in default_actions)
+	for(var/iterating_action in default_actions)
 		var/datum/action/new_action = new iterating_action
 		new_action.Grant(src)
 	update_appearance()

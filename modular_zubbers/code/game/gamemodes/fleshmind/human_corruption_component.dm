@@ -54,7 +54,7 @@
 		RegisterSignal(our_controller, COMSIG_QDELETING, PROC_REF(component_death))
 
 	// Action generation and granting
-	for(var/iterating_action as anything in actions_to_give)
+	for(var/iterating_action in actions_to_give)
 		var/datum/action/new_action = new iterating_action
 		new_action.Grant(infected_human)
 		granted_actions += new_action
@@ -62,7 +62,7 @@
 
 	infected_human.faction |= FACTION_FLESHMIND
 
-	for(var/trait as anything in traits_to_give)
+	for(var/trait in traits_to_give)
 		ADD_TRAIT(infected_human, trait, "fleshmind")
 
 	create_glow()
@@ -80,7 +80,7 @@
 		COMSIG_ATOM_EMP_ACT,
 		COMSIG_LIVING_DEATH,
 	))
-	for(var/trait as anything in traits_to_give)
+	for(var/trait in traits_to_give)
 		REMOVE_TRAIT(parent_mob, trait, "fleshmind")
 	parent_mob.remove_filter("corruption_glow")
 	parent_mob.update_appearance()
