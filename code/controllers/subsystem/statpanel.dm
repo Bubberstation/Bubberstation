@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(statpanels)
 			global_data = list("Map: [SSmapping.current_map?.map_name]")
 
 		if(SSmapping.current_map?.mapping_url)
-			global_data += list(list("same_line", " | (View in Browser)", "action=openWebMap"))
+			global_data += list(list("same_line", " (View Map in Browser)", "action=openWebMap")) // BUBBER EDIT CHANGE - Original: (View in Browser)
 
 		if(cached)
 			global_data += "Next Map: [cached.map_name]"
