@@ -34,7 +34,7 @@
 
 	shuffle(areas)
 
-	var/list/turf/picked_turf_list // List of turfs to randomize
+	var/list/picked_turf_list = list() // List of turfs to randomize
 	var/turf/picked_turf // Final turf
 
 	for(var/i in 1 to 5) // Get five turfs in diffrent areas.
