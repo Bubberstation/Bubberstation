@@ -107,3 +107,22 @@
 		/datum/action/cooldown/spell/conjure/cosmic_expansion,
 		/datum/action/cooldown/spell/pointed/projectile/star_blast,
 	)
+
+/// Tries to find a ghost to take control of the mob, if there are none, it shuts the fuck up.
+/mob/living/basic/heretic_summon/star_gazer/contained/proc/beg_for_ghostie()
+	if(timeleft(begging_timer) && !client)
+		return
+	begging_timer = addtimer(CALLBACK(src, PROC_REF(beg_for_ghostie)), 600 MINUTES, TIMER_STOPPABLE | TIMER_UNIQUE) // Keep begging until someone accepts
+	var/mob/chosen_ghost = SSpolling.poll_ghost_candidates(
+		"Do you want to play as an ascended heretic's stargazer?",
+		check_jobban = ROLE_HERETIC,
+		poll_time = 20 SECONDS,
+		ignore_category = POLL_IGNORE_HERETIC_MONSTER,
+		alert_pic = mutable_appearance('icons/effects/eldritch.dmi', "cosmic_diamond"),
+		jump_target = src,
+		role_name_text = "star gazer",
+		amount_to_pick = 1
+	)
+	if(chosen_ghost)
+		PossessByPlayer(chosen_ghost.key)
+		deltimer(begging_timer)
