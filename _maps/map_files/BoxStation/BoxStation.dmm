@@ -357,6 +357,7 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 8
 	},
+/obj/machinery/light/directional/east,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/command/heads_quarters/qm)
 "acN" = (
@@ -580,7 +581,6 @@
 	pixel_x = 32;
 	pixel_y = 4
 	},
-/obj/machinery/light/directional/east,
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
@@ -615,9 +615,13 @@
 	pixel_x = -6;
 	pixel_y = 12
 	},
+/obj/item/coin/silver{
+	pixel_x = 6;
+	pixel_y = -1
+	},
 /obj/item/stamp/head/qm{
-	pixel_y = 6;
-	pixel_x = 6
+	pixel_y = 10;
+	pixel_x = 7
 	},
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/qm)
@@ -3918,6 +3922,11 @@
 /obj/machinery/conveyor{
 	dir = 8;
 	id = "boulderbelt"
+	},
+/obj/machinery/camera/directional/west{
+	c_tag = "Mining Dock";
+	network = list("ss13","cargo");
+	dir = 1
 	},
 /turf/open/floor/iron/textured_large,
 /area/station/cargo/miningdock)
@@ -14719,6 +14728,7 @@
 /obj/effect/turf_decal/siding/wideplating/dark{
 	dir = 5
 	},
+/obj/machinery/light/small/dim/directional/east,
 /turf/open/floor/mineral/gold,
 /area/station/command/heads_quarters/qm)
 "bdX" = (
@@ -17664,10 +17674,10 @@
 	fax_name = "Cargo Office";
 	name = "Cargo Office Fax Machine"
 	},
-/obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/siding/thinplating_new{
 	dir = 8
 	},
+/obj/effect/turf_decal/bot,
 /turf/open/floor/iron/textured_large,
 /area/station/cargo/office)
 "bmR" = (
@@ -18619,11 +18629,11 @@
 /turf/open/floor/plating,
 /area/station/cargo/miningdock)
 "bps" = (
-/obj/effect/turf_decal/loading_area{
-	dir = 4
-	},
 /obj/effect/turf_decal/siding/thinplating_new{
 	dir = 1
+	},
+/obj/effect/turf_decal/loading_area{
+	dir = 4
 	},
 /turf/open/floor/iron/textured_large,
 /area/station/cargo/storage)
@@ -18645,8 +18655,8 @@
 /obj/machinery/computer/cargo{
 	dir = 1
 	},
-/obj/effect/turf_decal/delivery,
 /obj/effect/turf_decal/siding/thinplating_new,
+/obj/effect/turf_decal/delivery,
 /turf/open/floor/iron/textured_large,
 /area/station/cargo/office)
 "bpD" = (
@@ -19238,8 +19248,8 @@
 /obj/effect/turf_decal/siding/thinplating_new{
 	dir = 4
 	},
-/obj/effect/turf_decal/bot,
 /obj/machinery/rnd/production/techfab/department/cargo,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/iron/textured_large,
 /area/station/cargo/office)
 "brP" = (
@@ -19983,12 +19993,12 @@
 /obj/machinery/modular_computer/preset/cargochat/cargo{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
 /obj/machinery/firealarm/directional/west,
-/obj/effect/turf_decal/delivery,
 /obj/effect/turf_decal/siding/thinplating_new{
 	dir = 4
 	},
+/obj/effect/turf_decal/delivery,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/textured_large,
 /area/station/cargo/office)
 "btu" = (
@@ -20506,12 +20516,12 @@
 /obj/machinery/computer/cargo{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/directional/west,
-/obj/effect/turf_decal/delivery,
 /obj/effect/turf_decal/siding/thinplating_new{
 	dir = 4
 	},
+/obj/effect/turf_decal/delivery,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/textured_large,
 /area/station/cargo/office)
 "buF" = (
@@ -25200,11 +25210,11 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/airlock/mining/glass{
 	name = "Mining Dock"
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/textured_large,
 /area/station/cargo/miningdock)
 "bJg" = (
@@ -37019,12 +37029,15 @@
 /obj/machinery/computer/shuttle/mining{
 	dir = 4
 	},
-/obj/effect/turf_decal/bot,
 /obj/machinery/requests_console{
 	department = "Mining";
 	pixel_x = -30
 	},
-/turf/open/floor/iron/dark/smooth_large,
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 5
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/iron/textured_large,
 /area/station/cargo/miningdock)
 "cTE" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/air_input{
@@ -44779,12 +44792,11 @@
 /area/station/engineering/atmos/hfr_room)
 "gKq" = (
 /obj/machinery/computer/security/telescreen/cargo/directional/north,
-/obj/effect/landmark/start/quartermaster,
 /obj/structure/chair/office,
-/obj/item/coin/silver,
 /obj/effect/turf_decal/siding/wood/end{
 	dir = 8
 	},
+/obj/effect/landmark/start/quartermaster,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/qm)
 "gKt" = (
@@ -50858,13 +50870,13 @@
 /area/station/maintenance/abandon_cafeteria)
 "jzA" = (
 /obj/effect/decal/cleanable/rubble,
-/obj/effect/turf_decal/delivery,
 /obj/structure/closet/cardboard/metal{
 	opened = 1
 	},
 /obj/effect/turf_decal/siding/thinplating_new{
 	dir = 8
 	},
+/obj/effect/turf_decal/delivery,
 /turf/open/floor/iron/textured_large,
 /area/station/cargo/miningdock)
 "jzM" = (
@@ -58605,8 +58617,11 @@
 /obj/machinery/computer/security/mining{
 	dir = 4
 	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 6
+	},
 /obj/effect/turf_decal/bot,
-/turf/open/floor/iron/dark/smooth_large,
+/turf/open/floor/iron/textured_large,
 /area/station/cargo/miningdock)
 "neA" = (
 /obj/structure/cable,
