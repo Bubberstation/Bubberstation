@@ -45,7 +45,7 @@
 */
 
 /datum/loadout_item/accessory/heirloom
-	abstract_type = /datum/loadout_item/accessory/armband
+	abstract_type = /datum/loadout_item/accessory/heirloom
 	group = "Heirlooms and Badges"
 
 /datum/loadout_item/accessory/heirloom/bone_charm

@@ -207,7 +207,7 @@
 */
 
 /datum/loadout_item/glasses/shades
-	abstract_type = /datum/loadout_item/accessory/eyepatch
+	abstract_type = /datum/loadout_item/glasses/shades
 	group = "Sunglasses and Aviators"
 
 /datum/loadout_item/glasses/shades/aviator/gold
