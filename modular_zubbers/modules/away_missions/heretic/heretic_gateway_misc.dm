@@ -90,3 +90,20 @@
 /obj/machinery/computer/pod/old/mass_driver_controller/feeder
 	id = "MASSDRIVER_HERETIC"
 
+/mob/living/basic/heretic_summon/star_gazer/contained
+	name = "The Fylakismenos"
+	desc = "A creature that was tasked to watch over the stars, Now its tasked with watching its cell decay."
+	speed = -0.2
+	maxHealth = 2000
+	health = 2000
+
+	obj_damage = 400
+	armour_penetration = 20
+	melee_damage_lower = 30
+	melee_damage_upper = 30
+	ghost_controllable = 1
+	///---- Abilities given to the star gazer mob
+	abilities_to_grant = list(
+		/datum/action/cooldown/spell/conjure/cosmic_expansion,
+		/datum/action/cooldown/spell/pointed/projectile/star_blast,
+	)
