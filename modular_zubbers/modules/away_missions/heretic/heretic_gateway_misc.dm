@@ -90,7 +90,7 @@
 /obj/machinery/computer/pod/old/mass_driver_controller/feeder
 	id = "MASSDRIVER_HERETIC"
 
-/mob/living/basic/heretic_summon/star_gazer/contained //The, idea of this is to give players a unique roleplaying oppourtunity, however I had issues with it spamming d-chat and was un-able to fix it, so if your reading this and you know how to stop it from spamming d-chat, please make a PR or just dm and tell me how and i will impliment this and remove the bunny
+/mob/living/basic/heretic_summon/star_gazer/contained
 	name = "The Fylakismenos"
 	desc = "A creature that was tasked to watch over the stars, Now its tasked with watching its cell decay."
 	speed = -0.2
