@@ -107,3 +107,6 @@
 		/datum/action/cooldown/spell/conjure/cosmic_expansion,
 		/datum/action/cooldown/spell/pointed/projectile/star_blast,
 	)
+
+/mob/living/basic/heretic_summon/star_gazer/contained/beg_for_ghost()
+  return
