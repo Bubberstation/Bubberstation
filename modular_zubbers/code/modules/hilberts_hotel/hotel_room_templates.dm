@@ -7,6 +7,10 @@
 
 /datum/map_template/ghost_cafe_rooms
 	var/category = GHC_MISC //Room categorizing
+	var/list/landing_coords
+
+/datum/map_template/ghost_cafe_rooms/New(path, rename, cache)
+	. = ..()
 
 /datum/map_template/ghost_cafe_rooms/apartment
 	category = GHC_APARTMENT
@@ -42,6 +46,33 @@
 	category = GHC_SPECIAL
 
 /datum/map_template/ghost_cafe_rooms/grotto2
+	category = GHC_SPECIAL
+
+/datum/map_template/ghost_cafe_rooms/foxbar
+	category = GHC_APARTMENT
+
+/datum/map_template/ghost_cafe_rooms/nightclub
+	category = GHC_STATION
+
+/datum/map_template/ghost_cafe_rooms/eva
+	category = GHC_STATION
+
+/datum/map_template/ghost_cafe_rooms/oasis
+	category = GHC_BEACH
+
+/datum/map_template/ghost_cafe_rooms/oasisalt
+	category = GHC_BEACH
+
+/datum/map_template/ghost_cafe_rooms/pool
+	category = GHC_STATION
+
+/datum/map_template/ghost_cafe_rooms/engineering
+	category = GHC_STATION
+
+/datum/map_template/ghost_cafe_rooms/syndieoffice
+	category = GHC_SPECIAL
+
+/datum/map_template/ghost_cafe_rooms/synopcenter
 	category = GHC_SPECIAL
 
 // Bubber's custom room templates

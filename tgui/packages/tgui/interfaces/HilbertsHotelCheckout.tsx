@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   Box,
   Button,
@@ -241,7 +241,7 @@ const RoomCheckIn = ({
             step={1}
             value={current_room}
             format={(value) => String(Math.floor(value))}
-            onDrag={(value) =>
+            onChange={(value) =>
               act('update_room', {
                 room: value,
               })

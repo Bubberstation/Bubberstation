@@ -1,3 +1,11 @@
+//
+//   _  _ _ _ _             _   _      	 _  _     _       _
+//  | || (_) | |__  ___ _ _| |_( )___ 		| || |___| |_ ___| |
+//  | __ | | | '_ \/ -_) '_|  _|/(_-< 		| __ / _ \  _/ -_) |
+//  |_||_|_|_|_.__/\___|_|  \__| /__/ 		|_||_\___/\__\___|_|
+//
+//
+
 /obj/item/hilbertshotel
 	name = "Hilbert's Hotel"
 	desc = "A sphere of what appears to be an intricate network of bluespace. Observing it in detail seems to give you a headache as you try to comprehend the infinite amount of infinitesimally distinct points on its surface."
@@ -9,11 +17,6 @@
 
 /obj/item/hilbertshotel/New()
 	. = ..()
-
-#ifndef UNIT_TESTS // This is a hack to prevent the storage turf from being loaded in unit tests and causing errors
-	if(!SShilbertshotel.storageTurf && CONFIG_GET(flag/hilbertshotel_enabled)) // setting up a storage for the room objects
-		SShilbertshotel.setup_storage_turf()
-#endif
 
 /obj/item/hilbertshotel/Initialize(mapload)
 	. = ..()
@@ -46,6 +49,9 @@
 
 	to_chat(user, span_notice("You invite [target_mob] to the hotel."))
 	ui_interact(target_mob)
+
+/obj/item/hilbertshotel/ghostdojo
+	w_class = WEIGHT_CLASS_GIGANTIC
 
 /obj/item/hilbertshotel/ghostdojo/examine(mob/user)
 	. = ..()
@@ -147,6 +153,7 @@
 
 	data["current_room"] = SShilbertshotel.user_data[user.ckey]["room_number"]
 	data["selected_template"] = SShilbertshotel.user_data[user.ckey]["template"]
+	data["user_ckey"] = user.ckey
 
 	data["active_rooms"] = list()
 	for(var/room_number in SShilbertshotel.room_data)

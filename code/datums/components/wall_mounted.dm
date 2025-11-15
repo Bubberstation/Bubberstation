@@ -6,7 +6,7 @@
 
 /datum/component/wall_mounted/Initialize(target_wall, on_drop_callback)
 	. = ..()
-	if(!isobj(parent) || !iswallturf(target_wall))
+	if(!isobj(parent) || !isclosedturf(target_wall)) // BUBBER EDIT - PREVIOUS: `!iswallturf(target_wall)`, required for Hilbert's Hotel room saving workaround
 		return COMPONENT_INCOMPATIBLE
 	hanging_wall_turf = target_wall
 
@@ -51,6 +51,11 @@
  */
 /datum/component/wall_mounted/proc/on_move(datum/source, atom/old_loc, dir, forced, list/old_locs)
 	SIGNAL_HANDLER
+	// BUBBER ADDITION - START - Hilbert's Hotel room saving workaround
+	var/obj/hanging_parent = parent
+	if(hanging_parent.resistance_flags & INDESTRUCTIBLE)
+		return
+	// BUBBER ADDITION - END
 	// If we're having our lighting messed with we're likely to get dragged about
 	// That shouldn't lead to a decon
 	if(HAS_TRAIT(parent, TRAIT_LIGHTING_DEBUGGED))
@@ -65,21 +70,20 @@
 	PRIVATE_PROC(TRUE)
 
 	var/obj/hanging_parent = parent
+	hanging_parent.visible_message(message = span_warning("\The [hanging_parent] falls apart!"), vision_distance = 5)
+	hanging_parent.deconstruct(FALSE)
 
 	// BUBBER ADDITION - START - Hilbert's Hotel room saving workaround
 	if(hanging_parent.resistance_flags & INDESTRUCTIBLE)
 		return
 	// BUBBER ADDITION - END
-	hanging_parent.visible_message(message = span_warning("\The [hanging_parent] falls apart!"), vision_distance = 5)
-	hanging_parent.deconstruct(FALSE)
-
 
 ///Checks object direction and then verifies if there's a wall in that direction. Finally, applies a wall_mounted component to the object.
 /obj/proc/find_and_hang_on_wall()
 	if(istype(get_area(src), /area/shuttle))
 		return FALSE //For now, we're going to keep the component off of shuttles to avoid the turf changing issue. We'll hit that later really;
 	var/turf/attachable_wall = loc //first attempt to locate a wall in our current turf
-	if(!iswallturf(attachable_wall))
+	if(!isclosedturf(attachable_wall)) // BUBBER EDIT - PREVIOUS: `!iswallturf(attachable_wall)`
 		attachable_wall = get_step(src, dir) //if no then attempt to locate it in our direction
 	if(!isclosedturf(attachable_wall)) // BUBBER EDIT - PREVIOUS: `!iswallturf(attachable_wall)`
 		return FALSE //Nothing to latch onto, or not the right thing.

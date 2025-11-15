@@ -6,7 +6,7 @@
 /obj/machinery/room_controller
 	name = "Hilbert's Hotel Room Controller"
 	desc = "A mysterious device."
-	icon = 'modular_zzplurt/icons/obj/machines/room_controller.dmi'
+	icon = 'modular_zubbers/icons/obj/machines/room_controller.dmi'
 	icon_state = "room_controller"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	use_power = NO_POWER_USE
@@ -45,7 +45,7 @@
 	. = ..()
 	. += span_info("The screen displays [!room_number ? "the word \"Error\". Nothing else." : "some small text and a large number [room_number]."]")
 
-/obj/machinery/room_controller/Initialize()
+/obj/machinery/room_controller/Initialize(mapload)
 	. = ..()
 	if(!SShilbertshotel.initialized)
 		message_admins("Attention: [ADMIN_VERBOSEJMP(src)] at room [room_number] failed to locate the main hotel sphere!")
@@ -58,6 +58,11 @@
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), "Welcome to Hilbert's Hotel."), 3 SECONDS)
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), "Enjoy your stay!"), 5 SECONDS)
 	update_appearance()
+
+/obj/machinery/room_controller/Destroy(force)
+	if(bluespace_box)
+		QDEL_NULL(bluespace_box)
+	. = ..()
 
 /obj/machinery/room_controller/update_overlays()
 	. = ..()
@@ -203,7 +208,7 @@
 	SStgui.update_uis(src)
 	return TRUE
 
-/obj/machinery/room_controller/attackby(obj/item/item, mob/user, params)
+/obj/machinery/room_controller/attackby(obj/item/item, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(item, /obj/item/card/id))
 		if(inserted_id)
 			to_chat(user, span_warning("There's already an ID card inside!"))
@@ -285,7 +290,6 @@
 	control_computer.frozen_item += bluespace_box
 	if(departing_mob.mind)
 		departing_mob.mind.objectives = list()
-		departing_mob.mind.special_roles = null
 	visible_message(span_notice("[src] whizzes as it swallows the ID card."))
 	playsound(src, 'sound/machines/terminal/terminal_success.ogg', 50, TRUE)
 	say("Transfer successful.")

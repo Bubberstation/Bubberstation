@@ -1,7 +1,7 @@
 /obj/item/storage/box/bluespace
 	name = "bluespace box"
 	desc = "A box that stores items in a bluespace pocket dimension."
-	icon = 'modular_zzplurt/icons/obj/machines/room_controller.dmi'
+	icon = 'modular_zubbers/icons/obj/machines/room_controller.dmi'
 	icon_state = "box"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	foldable_result = null
@@ -61,6 +61,13 @@
 	creation_area = get_area(src)
 	update_icon()
 	START_PROCESSING(SSobj, src)
+
+/obj/item/storage/box/bluespace/Destroy(force)
+	if(origin_controller)
+		var/obj/machinery/room_controller/controller = origin_controller.resolve()
+		if(controller)
+			controller.bluespace_box = null
+	. = ..()
 
 /obj/item/storage/box/bluespace/process()
 	if(!creation_area)

@@ -489,7 +489,7 @@ export const HilbertsHotelRoomControl = (props) => {
                       width="100%"
                       placeholder="Enter room name here..."
                       value={localName}
-                      onChange={(e, value) => setLocalName(value)}
+                      onChange={(value) => setLocalName(value)}
                       maxLength={20}
                     />
                   </Stack.Item>
@@ -522,7 +522,7 @@ export const HilbertsHotelRoomControl = (props) => {
                     }}
                     placeholder="Enter room description here..."
                     value={localDescription}
-                    onChange={(e, value) => setLocalDescription(value)}
+                    onChange={(value) => setLocalDescription(value)}
                     maxLength={220}
                   />
                 </Stack.Item>
