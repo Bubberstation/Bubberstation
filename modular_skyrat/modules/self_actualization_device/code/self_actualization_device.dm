@@ -215,6 +215,7 @@
 
 	patient.client?.prefs?.safe_transfer_prefs_to_with_damage(patient, visuals_only = TRUE)
 	patient.dna.update_dna_identity()
+	patient.updateappearance()
 	patient.wash(CLEAN_SCRUB)
 	if(patient.dna.real_name != original_name)
 		log_game("[key_name(patient)] has used the Self-Actualization Device at [loc_name(src)], changed the name of their character. \
