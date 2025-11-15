@@ -405,7 +405,7 @@
 	icon_state = "hilbertshotel"
 	requires_power = FALSE
 	default_gravity = STANDARD_GRAVITY
-	area_flags = NOTELEPORT | HIDDEN_AREA
+	area_flags = NOTELEPORT | HIDDEN_AREA | UNLIMITED_FISHING
 	static_lighting = TRUE
 	var/room_number = 0
 	var/obj/item/hilbertshotel/parentSphere
