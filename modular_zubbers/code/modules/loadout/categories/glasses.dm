@@ -249,22 +249,22 @@
 	item_path = /obj/item/clothing/glasses/hud/ar/aviator/security/prescription
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_BOUNCER, JOB_ORDERLY, JOB_SCIENCE_GUARD, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_BLUESHIELD)
 
-/datum/loadout_item/glasses/prescription/aviator/health
+/datum/loadout_item/glasses/shades/prescription/aviator/health
 	name = "Prescription Medical HUD Aviators"
 	item_path = /obj/item/clothing/glasses/hud/ar/aviator/health/prescription
 	restricted_roles = list(JOB_MEDICAL_DOCTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_GENETICIST, JOB_CHEMIST, JOB_PARAMEDIC, JOB_ORDERLY, JOB_CORONER)
 
-/datum/loadout_item/glasses/prescription/aviator/meson
+/datum/loadout_item/glasses/shades/prescription/aviator/meson
 	name = "Prescription Meson HUD Aviators"
 	item_path = /obj/item/clothing/glasses/hud/ar/aviator/meson/prescription
 	restricted_roles = list(JOB_QUARTERMASTER, JOB_CARGO_TECHNICIAN, JOB_SHAFT_MINER, JOB_CUSTOMS_AGENT, JOB_CHIEF_ENGINEER, JOB_STATION_ENGINEER, JOB_ATMOSPHERIC_TECHNICIAN, JOB_ENGINEERING_GUARD)
 
-/datum/loadout_item/glasses/prescription/aviator/diagnostic
+/datum/loadout_item/glasses/shades/prescription/aviator/diagnostic
 	name = "Prescription Diagnostic HUD Aviators"
 	item_path = /obj/item/clothing/glasses/hud/ar/aviator/diagnostic/prescription
 	restricted_roles = list(JOB_RESEARCH_DIRECTOR, JOB_SCIENTIST, JOB_ROBOTICIST)
 
-/datum/loadout_item/glasses/prescription/aviator/science
+/datum/loadout_item/glasses/shades/prescription/aviator/science
 	name = "Prescription Science Aviators"
 	item_path = /obj/item/clothing/glasses/hud/ar/aviator/science/prescription
 	restricted_roles = list(JOB_SCIENTIST, JOB_ROBOTICIST, JOB_GENETICIST, JOB_RESEARCH_DIRECTOR, JOB_CHEMIST, JOB_SCIENCE_GUARD)
