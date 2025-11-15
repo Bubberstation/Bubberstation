@@ -267,7 +267,6 @@
 	items_to_add = list(/obj/item/construction/rtd/borg,
 						/obj/item/airlock_painter/decal/cyborg,
 						)
-	items_to_remove = list(/obj/item/stack/tile/iron/base/cyborg)
 
 /obj/item/borg/upgrade/cyborg_cable_coil
 	name = "integrated cable coil"
