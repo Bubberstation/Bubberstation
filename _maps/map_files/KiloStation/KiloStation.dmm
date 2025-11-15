@@ -36610,7 +36610,10 @@
 	name = "Security Requests Console"
 	},
 /obj/structure/filingcabinet,
-/obj/machinery/camera/directional/north,
+/obj/machinery/camera/directional/north{
+	c_tag = "Medical Checkpoint Post";
+	name = "medical camera"
+	},
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
@@ -48088,6 +48091,11 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/mapping_helpers/airlock/access/all/supply/general,
+/obj/machinery/camera/directional/south{
+	c_tag = "Cargo Checkpoint Post";
+	name = "cargo camera";
+	network = list("ss13","qm")
+	},
 /turf/open/floor/iron/dark,
 /area/station/cargo/storage)
 "pAx" = (
