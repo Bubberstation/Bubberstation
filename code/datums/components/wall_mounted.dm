@@ -35,12 +35,12 @@
  * When the type of turf changes, if it is changing into a floor we should drop our contents
  */
 /datum/component/wall_mounted/proc/on_turf_changing(datum/source, path, new_baseturfs, flags, post_change_callbacks)
+	SIGNAL_HANDLER
 	// BUBBER ADDITION - START - Hilbert's Hotel room saving workaround
 	var/obj/hanging_parent = parent
 	if(hanging_parent.resistance_flags & INDESTRUCTIBLE)
 		return
 	// BUBBER ADDITION - END
-	SIGNAL_HANDLER
 
 	if(ispath(path, /turf/open))
 		drop_wallmount()

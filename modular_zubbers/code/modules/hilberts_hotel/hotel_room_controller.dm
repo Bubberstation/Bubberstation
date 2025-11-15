@@ -196,7 +196,7 @@
 	var/obj/item/card/id/this_id = id
 	var/mob/living/carbon/human/this_humanoid = user
 	this_id.forceMove(drop_location())
-	if(this_humanoid.CanReach(this_id))
+	if(this_id.IsReachableBy(this_humanoid))
 		this_humanoid.put_in_hands(this_id)
 	inserted_id = null
 	update_appearance()
@@ -285,7 +285,7 @@
 	control_computer.frozen_item += bluespace_box
 	if(departing_mob.mind)
 		departing_mob.mind.objectives = list()
-		departing_mob.mind.special_role = null
+		departing_mob.mind.special_roles = null
 	visible_message(span_notice("[src] whizzes as it swallows the ID card."))
 	playsound(src, 'sound/machines/terminal/terminal_success.ogg', 50, TRUE)
 	say("Transfer successful.")
