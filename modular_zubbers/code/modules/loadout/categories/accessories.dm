@@ -4,7 +4,7 @@
 	abstract_type = /datum/loadout_item/accessory/armband
 	group = "Armbands"
 
-/datum/loadout_item/accessory/armband/medblue
+/datum/loadout_item/accessory/armband/med/blue
 	name = "Blue-White Armband"
 	item_path = /obj/item/clothing/accessory/armband/medblue/nonsec
 
@@ -20,7 +20,7 @@
 	name = "Orange Armband"
 	item_path = /obj/item/clothing/accessory/armband/engine/nonsec
 
-/datum/loadout_item/accessory/armband_security_nonsec
+/datum/loadout_item/accessory/armband/blue
 	name = "Blue Armband"
 	item_path = /obj/item/clothing/accessory/armband/deputy/lopland/nonsec
 
