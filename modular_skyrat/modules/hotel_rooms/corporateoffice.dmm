@@ -236,7 +236,7 @@
 /area/misc/hilbertshotel)
 "uM" = (
 /obj/item/banner/command/mundane,
-/obj/structure/extinguisher_cabinet/directional/north,
+/obj/machinery/room_controller/directional/north,
 /turf/open/indestructible/dark/smooth_large,
 /area/misc/hilbertshotel)
 "wV" = (
@@ -256,7 +256,7 @@
 /turf/open/indestructible/dark,
 /area/misc/hilbertshotel)
 "yM" = (
-/obj/machinery/vending/boozeomat/cafe,
+/obj/machinery/vending/boozeomat,
 /turf/closed/indestructible/riveted,
 /area/misc/hilbertshotel)
 "yX" = (
@@ -267,16 +267,12 @@
 	pixel_y = 11
 	},
 /obj/item/stamp/denied{
-	pixel_y = 7;
+	pixel_y = 6;
 	pixel_x = -9
 	},
 /obj/item/stamp/void{
 	pixel_x = -9;
-	pixel_y = 3
-	},
-/obj/item/stamp/centcom{
-	pixel_x = -9;
-	pixel_y = -1
+	pixel_y = 0
 	},
 /turf/open/indestructible/dark,
 /area/misc/hilbertshotel)
@@ -294,11 +290,9 @@
 /turf/closed/indestructible/riveted,
 /area/misc/hilbertshotel)
 "AU" = (
-/obj/structure/table/wood,
-/obj/item/documents/nanotrasen{
-	pixel_y = 3
-	},
-/turf/open/indestructible/carpet,
+/obj/effect/turf_decal/tile/neutral/full,
+/obj/machinery/vending/dorms,
+/turf/open/indestructible/dark/smooth_large,
 /area/misc/hilbertshotel)
 "Bo" = (
 /obj/effect/turf_decal/siding/wood{
@@ -464,9 +458,8 @@
 /turf/open/indestructible/dark/smooth_large,
 /area/misc/hilbertshotel)
 "Sq" = (
-/obj/effect/turf_decal/tile/neutral/full,
-/obj/machinery/vending/coffee,
-/turf/open/indestructible/dark/smooth_large,
+/obj/structure/table/wood,
+/turf/open/indestructible/carpet,
 /area/misc/hilbertshotel)
 "Sx" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -526,6 +519,7 @@
 
 (1,1,1) = {"
 zb
+zb
 pD
 pD
 pD
@@ -539,9 +533,9 @@ pD
 pD
 zb
 zb
-zb
 "}
 (2,1,1) = {"
+zb
 pD
 pD
 pD
@@ -556,9 +550,9 @@ pD
 pD
 pD
 zb
-zb
 "}
 (3,1,1) = {"
+zb
 pD
 pD
 pD
@@ -573,9 +567,9 @@ pD
 pD
 pD
 zb
-zb
 "}
 (4,1,1) = {"
+zb
 pD
 pD
 PO
@@ -590,16 +584,16 @@ bA
 pD
 pD
 zb
-zb
 "}
 (5,1,1) = {"
+zb
 pD
 pD
-Sq
+AU
 oO
 Ew
 UR
-AU
+Sq
 kL
 Xi
 Sx
@@ -607,9 +601,9 @@ wV
 pD
 pD
 zb
-zb
 "}
 (6,1,1) = {"
+zb
 pD
 pD
 AN
@@ -624,9 +618,9 @@ Zo
 pD
 pD
 zb
-zb
 "}
 (7,1,1) = {"
+zb
 pD
 pD
 QQ
@@ -641,9 +635,9 @@ wV
 pD
 pD
 zb
-zb
 "}
 (8,1,1) = {"
+zb
 pD
 pD
 Ps
@@ -658,9 +652,9 @@ bA
 pD
 pD
 zb
-zb
 "}
 (9,1,1) = {"
+zb
 pD
 pD
 pD
@@ -675,9 +669,9 @@ pD
 pD
 pD
 zb
-zb
 "}
 (10,1,1) = {"
+zb
 zb
 pD
 yM
@@ -692,9 +686,9 @@ pD
 pD
 pD
 zb
-zb
 "}
 (11,1,1) = {"
+zb
 zb
 pD
 pD
@@ -709,9 +703,9 @@ pD
 pD
 zb
 zb
-zb
 "}
 (12,1,1) = {"
+zb
 zb
 pD
 pD
@@ -726,9 +720,9 @@ pD
 pD
 zb
 zb
-zb
 "}
 (13,1,1) = {"
+zb
 zb
 pD
 pD
@@ -743,19 +737,18 @@ pD
 pD
 zb
 zb
-zb
 "}
 (14,1,1) = {"
 zb
 zb
 zb
 zb
-dE
-dE
-dE
-dE
-dE
 zb
+dE
+dE
+dE
+dE
+dE
 zb
 zb
 zb

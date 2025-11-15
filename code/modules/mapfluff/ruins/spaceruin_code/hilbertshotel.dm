@@ -1,3 +1,7 @@
+/*
+BUBBER EDIT - HILBERTS HOTEL
+SEE modular_zubbers/code/modules/hilberts_hotel FOR RELEVENT FILES
+
 GLOBAL_VAR_INIT(hhStorageTurf, null)
 GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 
@@ -848,3 +852,4 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 
 /obj/projectile/magic/teleport/bluespace
 	antimagic_flags = NONE
+*/

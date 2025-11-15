@@ -23,9 +23,10 @@
 	},
 /area/misc/hilbertshotel)
 "aD" = (
-/obj/effect/mapping_helpers/broken_floor,
-/obj/effect/mob_spawn/corpse/human/scientist,
-/turf/open/indestructible/plating{
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/machinery/vending/dorms,
+/turf/open/indestructible/hotelwood{
 	force_no_gravity = 1
 	},
 /area/misc/hilbertshotel)
@@ -74,22 +75,21 @@
 	},
 /area/misc/hilbertshotel)
 "dY" = (
-/obj/machinery/modular_computer/preset/research{
-	is_operational = 0;
-	name = "Research Terminal";
-	desc = "A stationary Research computer. This one appears to have been wiped clean and displays an Evactuation order."
-	},
 /obj/machinery/light/broken/directional/north,
+/obj/structure/showcase/fakeid{
+	name = "research console"
+	},
 /turf/open/indestructible/dark/textured{
 	force_no_gravity = 1;
 	name = "Dark Tiling"
 	},
 /area/misc/hilbertshotel)
 "eM" = (
-/obj/machinery/rnd/production/protolathe/department/science{
-	on_station_lathe = 0;
-	is_operational = 0;
-	name = "Cloning Lab Lathe"
+/obj/structure/showcase{
+	icon = 'icons/obj/machines/research.dmi';
+	icon_state = "protolathe";
+	name = "Science Protolathe";
+	desc = "A special protolathe with a built in interface meant for departmental usage, with built in ExoSync receivers allowing it to print designs researched that match its ROM-encoded department type."
 	},
 /turf/open/indestructible/dark/textured{
 	force_no_gravity = 1;
@@ -154,6 +154,7 @@
 /obj/effect/mapping_helpers/burnt_floor,
 /obj/machinery/light/broken/directional/north,
 /obj/machinery/vending/hydronutrients,
+/obj/effect/mapping_helpers/broken_machine,
 /turf/open/indestructible/dark/textured{
 	force_no_gravity = 1;
 	name = "Dark Tiling"
@@ -326,6 +327,7 @@
 /area/misc/hilbertshotel)
 "rV" = (
 /obj/machinery/vending/hydroseeds,
+/obj/effect/mapping_helpers/broken_machine,
 /turf/open/indestructible/dark/textured{
 	force_no_gravity = 1;
 	name = "Dark Tiling"
@@ -490,6 +492,7 @@
 "Bl" = (
 /obj/machinery/power/smes,
 /obj/structure/cable,
+/obj/effect/mapping_helpers/broken_machine,
 /turf/open/indestructible/plating{
 	force_no_gravity = 1
 	},
@@ -647,15 +650,10 @@
 /turf/closed/indestructible/titanium,
 /area/misc/hilbertshotel)
 "Ju" = (
-/obj/item/clothing/shoes/magboots/advance,
-/obj/item/clothing/shoes/magboots/advance{
-	pixel_x = 4;
-	pixel_y = -8
-	},
-/turf/open/indestructible/dark/textured{
-	force_no_gravity = 1;
-	name = "Dark Tiling"
-	},
+/obj/effect/spawner/structure/window/reinforced/plasma,
+/obj/structure/cable,
+/obj/machinery/door/firedoor/closed,
+/turf/open/indestructible/plating,
 /area/misc/hilbertshotel)
 "Ka" = (
 /turf/open/indestructible/hotelwood{
@@ -729,6 +727,13 @@
 /obj/effect/spawner/structure/window/reinforced/plasma,
 /obj/effect/mapping_helpers/damaged_window,
 /turf/open/indestructible/plating,
+/area/misc/hilbertshotel)
+"Og" = (
+/obj/machinery/room_controller/directional/south,
+/turf/open/indestructible/dark/textured{
+	force_no_gravity = 1;
+	name = "Dark Tiling"
+	},
 /area/misc/hilbertshotel)
 "PC" = (
 /obj/machinery/firealarm/directional/north{
@@ -905,11 +910,11 @@
 	},
 /area/misc/hilbertshotel)
 "Xy" = (
-/obj/effect/mob_spawn/corpse/human/scientist,
-/turf/open/indestructible/dark/textured{
-	force_no_gravity = 1;
-	name = "Dark Tiling"
-	},
+/obj/effect/spawner/structure/window/reinforced/plasma,
+/obj/effect/mapping_helpers/damaged_window,
+/obj/structure/cable,
+/obj/machinery/door/firedoor/closed,
+/turf/open/indestructible/plating,
 /area/misc/hilbertshotel)
 "Yh" = (
 /obj/structure/grille/broken,
@@ -948,15 +953,17 @@
 	name = "Cloning Chamber";
 	desc = "A deactivated Cloning Pod designed for the Hydroponics Research Wing."
 	},
+/obj/effect/mapping_helpers/broken_machine,
 /turf/open/indestructible/dark/textured{
 	force_no_gravity = 1;
 	name = "Dark Tiling"
 	},
 /area/misc/hilbertshotel)
 "ZQ" = (
-/obj/machinery/cryopod{
+/obj/structure/showcase/machinery/oldpod/used{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/broken_machine,
 /turf/open/indestructible/dark/textured{
 	force_no_gravity = 1;
 	name = "Dark Tiling"
@@ -983,7 +990,7 @@ Mc
 (2,1,1) = {"
 vJ
 Zs
-Ju
+jp
 AA
 fM
 rX
@@ -1050,7 +1057,7 @@ Oe
 "}
 (6,1,1) = {"
 Mc
-Zh
+Ju
 uL
 zG
 zG
@@ -1067,8 +1074,8 @@ SL
 "}
 (7,1,1) = {"
 Mc
-vJ
 Xy
+jp
 tb
 WL
 wr
@@ -1161,7 +1168,7 @@ QO
 WL
 Ht
 kG
-kg
+aD
 kg
 pz
 aj
@@ -1188,12 +1195,12 @@ Rt
 tY
 Xt
 jV
-aD
+zG
 cA
 cK
 Jr
 bl
-jp
+Og
 Rt
 Ka
 uN

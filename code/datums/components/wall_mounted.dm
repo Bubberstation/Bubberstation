@@ -35,6 +35,11 @@
  * When the type of turf changes, if it is changing into a floor we should drop our contents
  */
 /datum/component/wall_mounted/proc/on_turf_changing(datum/source, path, new_baseturfs, flags, post_change_callbacks)
+	// BUBBER ADDITION - START - Hilbert's Hotel room saving workaround
+	var/obj/hanging_parent = parent
+	if(hanging_parent.resistance_flags & INDESTRUCTIBLE)
+		return
+	// BUBBER ADDITION - END
 	SIGNAL_HANDLER
 
 	if(ispath(path, /turf/open))
@@ -60,6 +65,11 @@
 	PRIVATE_PROC(TRUE)
 
 	var/obj/hanging_parent = parent
+
+	// BUBBER ADDITION - START - Hilbert's Hotel room saving workaround
+	if(hanging_parent.resistance_flags & INDESTRUCTIBLE)
+		return
+	// BUBBER ADDITION - END
 	hanging_parent.visible_message(message = span_warning("\The [hanging_parent] falls apart!"), vision_distance = 5)
 	hanging_parent.deconstruct(FALSE)
 
@@ -71,7 +81,7 @@
 	var/turf/attachable_wall = loc //first attempt to locate a wall in our current turf
 	if(!iswallturf(attachable_wall))
 		attachable_wall = get_step(src, dir) //if no then attempt to locate it in our direction
-	if(!iswallturf(attachable_wall))
+	if(!isclosedturf(attachable_wall)) // BUBBER EDIT - PREVIOUS: `!iswallturf(attachable_wall)`
 		return FALSE //Nothing to latch onto, or not the right thing.
 	AddComponent(/datum/component/wall_mounted, attachable_wall)
 	return TRUE

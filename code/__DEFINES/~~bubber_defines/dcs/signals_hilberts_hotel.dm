@@ -1,0 +1,1 @@
+#define COMSIG_HILBERT_ROOM_UPDATED "hilbert_room_updated"

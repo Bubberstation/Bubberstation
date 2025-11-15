@@ -92,6 +92,10 @@
 /obj/machinery/light/warm/dim/directional/east,
 /turf/open/floor/iron,
 /area/misc/hilbertshotel)
+"nq" = (
+/obj/machinery/room_controller/directional/south,
+/turf/open/floor/iron,
+/area/misc/hilbertshotel)
 "nG" = (
 /obj/machinery/prisongate,
 /turf/open/floor/iron,
@@ -167,10 +171,10 @@
 /turf/open/floor/iron,
 /area/misc/hilbertshotel)
 "ws" = (
-/obj/machinery/vending/security/noaccess,
 /obj/item/toy/figure/secofficer{
 	pixel_y = 16
 	},
+/obj/structure/showcase/fakesec,
 /turf/open/floor/iron,
 /area/misc/hilbertshotel)
 "xh" = (
@@ -210,7 +214,9 @@
 /turf/open/floor/grass,
 /area/misc/hilbertshotel)
 "zx" = (
-/obj/structure/table/reinforced,
+/obj/structure/table/reinforced{
+	pixel_y = 0
+	},
 /obj/item/storage/box/prisoner{
 	pixel_y = 4;
 	pixel_x = -6
@@ -228,7 +234,9 @@
 /turf/open/floor/iron,
 /area/misc/hilbertshotel)
 "Ab" = (
-/obj/item/toy/basketball,
+/obj/item/toy/basketball{
+	pixel_x = 0
+	},
 /turf/open/floor/iron,
 /area/misc/hilbertshotel)
 "AP" = (
@@ -384,6 +392,10 @@
 	},
 /turf/open/floor/iron,
 /area/misc/hilbertshotel)
+"OW" = (
+/obj/machinery/room_controller/directional/north,
+/turf/open/floor/iron,
+/area/misc/hilbertshotel)
 "OY" = (
 /obj/structure/window/reinforced/spawner/directional/north,
 /turf/open/floor/grass,
@@ -428,7 +440,9 @@
 	pixel_x = -4;
 	pixel_y = 2
 	},
-/obj/item/toy/figure/ian,
+/obj/item/toy/figure/ian{
+	pixel_x = 0
+	},
 /obj/item/toy/figure/ian{
 	pixel_x = 4;
 	pixel_y = 2
@@ -442,7 +456,6 @@
 /obj/structure/closet,
 /obj/effect/spawner/random/entertainment/coin,
 /obj/effect/spawner/random/entertainment/coin,
-/obj/item/gun/ballistic/automatic/l6_saw/toy,
 /obj/effect/spawner/random/entertainment/toy_figure,
 /obj/item/pen/sleepy,
 /turf/open/floor/iron,
@@ -525,7 +538,7 @@ zo
 kP
 LV
 cP
-NN
+nq
 LV
 "}
 (3,1,1) = {"
@@ -660,7 +673,7 @@ El
 El
 El
 LV
-NN
+OW
 TT
 LV
 "}
