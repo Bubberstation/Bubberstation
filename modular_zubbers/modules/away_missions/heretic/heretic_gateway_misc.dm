@@ -96,7 +96,6 @@
 	speed = -0.2
 	maxHealth = 2000
 	health = 2000
-
 	obj_damage = 400
 	armour_penetration = 20
 	melee_damage_lower = 30
@@ -107,6 +106,5 @@
 		/datum/action/cooldown/spell/conjure/cosmic_expansion,
 		/datum/action/cooldown/spell/pointed/projectile/star_blast,
 	)
-
 /mob/living/basic/heretic_summon/star_gazer/contained/beg_for_ghost()
-  return
+	return
