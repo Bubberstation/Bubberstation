@@ -19,3 +19,6 @@
 #define ROLE_MONSTERHUNTER "Monster Hunter"
 #define ROLE_VASSAL "Ghoul"
 #define ROLE_CHANGELING_ZOMBIE "Changeling Zombie"
+
+#define ROLE_FAMILIES "Gangster"
+#define ROLE_FAMILY_HEAD_ASPIRANT "Family Head Aspirant"

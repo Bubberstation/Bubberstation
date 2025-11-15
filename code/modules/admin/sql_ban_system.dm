@@ -417,6 +417,7 @@
 				ROLE_BROTHER,
 				ROLE_CHANGELING,
 				ROLE_CULTIST,
+				ROLE_FAMILIES, //Bubber addition
 				ROLE_HERETIC,
 				ROLE_HIVE,
 				ROLE_MALF,
