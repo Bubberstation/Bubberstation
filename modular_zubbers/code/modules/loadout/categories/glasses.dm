@@ -37,14 +37,6 @@
 	abstract_type = /datum/loadout_item/glasses/goggles
 	group = "Goggles"
 
-/datum/loadout_item/glasses/goggles/cold
-	name = "Cold Glasses"
-	item_path = /obj/item/clothing/glasses/cold
-
-/datum/loadout_item/glasses/goggles/heat
-	name = "Heat Glasses"
-	item_path = /obj/item/clothing/glasses/heat
-
 /datum/loadout_item/glasses/goggles/geist
 	name = "Geist Gazers"
 	item_path = /obj/item/clothing/glasses/geist_gazers
@@ -125,10 +117,6 @@
 /datum/loadout_item/glasses/costume/obsoleteblindfold
 	name = "Obselete Fake Blindfold"
 	item_path = /obj/item/clothing/glasses/trickblindfold/obsolete
-
-/datum/loadout_item/glasses/costume/monocle
-	name = "Monocle"
-	item_path = /obj/item/clothing/glasses/monocle
 
 /*
 *	JOB-LOCKED
