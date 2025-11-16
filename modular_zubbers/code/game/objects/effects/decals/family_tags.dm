@@ -3,7 +3,7 @@ GLOBAL_LIST(gang_tags)
 /obj/effect/decal/cleanable/crayon/gang
 	name = "Leet Like Jeff K gang tag"
 	desc = "Looks like someone's claimed this area for Leet Like Jeff K."
-	icon = 'icons/obj/gang/tags.dmi'
+	icon = 'icons/obj/antags/gang/tags.dmi'
 	layer = BELOW_MOB_LAYER
 	var/datum/team/gang/my_gang
 

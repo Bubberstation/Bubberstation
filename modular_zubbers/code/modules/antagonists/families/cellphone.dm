@@ -1,3 +1,7 @@
+// still exists in the code it seems. Ported maybe for nothing. Even has a working sprite in the other file.
+// I'll leave this here to get a reviewer opinion
+// The other cellphone is in "modular_skyrat/modules/goofsec/code/cellphone.dm"
+/*
 GLOBAL_LIST_EMPTY(gangster_cell_phones)
 
 /obj/item/gangster_cellphone
@@ -59,3 +63,4 @@ GLOBAL_LIST_EMPTY(gangster_cell_phones)
 		if(HAS_TRAIT(cellphone_hearer, TRAIT_DEAF))
 			continue
 		to_chat(cellphone_hearer, span_gangradio("<b>[speaker.name]</b> \[CELL: [gang_id]\] says, \"[message]\""))
+*/

@@ -1,6 +1,6 @@
 /obj/item/gang_induction_package
 	name = "family signup package"
-	icon = 'icons/obj/gang/signup_points.dmi'
+	icon = 'icons/obj/antags/gang/signup_points.dmi'
 	icon_state = "signup_book"
 	/// References the active families gamemode handler (if one exists), for adding new family members to.
 	var/datum/gang_handler/handler

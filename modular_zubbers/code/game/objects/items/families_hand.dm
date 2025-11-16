@@ -2,7 +2,7 @@
 /obj/item/hand_item/slapper/secret_handshake
 	name = "Secret Handshake"
 	icon_state = "recruit"
-	icon = 'icons/obj/gang/actions.dmi'
+	icon = 'icons/obj/antags/gang/actions.dmi'
 	/// References the active families gamemode handler (if one exists), for adding new family members to.
 	var/datum/gang_handler/handler
 	/// The typepath of the gang antagonist datum that the person who uses the package should have added to them -- remember that the distinction between e.g. Ballas and Grove Street is on the antag datum level, not the team datum level.

@@ -204,7 +204,7 @@ GLOBAL_VAR(families_override_theme)
 
 /// Internal. Announces the presence of families to the entire station and sets sent_announcement to true to allow other checks to occur.
 /datum/gang_handler/proc/announce_gang_locations()
-	priority_announce(current_theme.description, current_theme.name, 'sound/voice/beepsky/radio.ogg')
+	priority_announce(current_theme.description, current_theme.name, 'sound/mobs/non-humanoids/beepsky/radio.ogg')
 	sent_announcement = TRUE
 
 /// Internal. Checks if our wanted level has changed; calls update_wanted_level. Only updates wanted level post the initial announcement and until the cops show up. After that, it's locked.

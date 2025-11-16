@@ -1,9 +1,13 @@
+//Frankly, this is more red than not. Probably incompatible, maybe just needs some vars to be renamed.
+//For now I am just commenting it all out, since we don't run dynamic anyway
+
 //////////////////////////////////////////////
 //                                          //
 //                 FAMILIES                 //
 //                                          //
 //////////////////////////////////////////////
 
+/*
 /datum/dynamic_ruleset/midround/families
 	name = "Family Head Aspirants"
 	midround_ruleset_style = MIDROUND_RULESET_STYLE_HEAVY
@@ -75,3 +79,4 @@
 
 /datum/dynamic_ruleset/midround/families/round_result()
 	return handler.set_round_result_analogue()
+*/

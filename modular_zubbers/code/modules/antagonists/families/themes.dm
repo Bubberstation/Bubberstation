@@ -130,7 +130,7 @@
 	Today we'll be discussing the fall of the famous United States empire in the early 21st century. The program will last about an hour, and we'll get right into it after a quick word \
 	from today's sponsor, Majima Construction: We Build Shit!"
 	involved_gangs = list(/datum/antagonist/gang/yakuza, /datum/antagonist/gang/irs)
-	bonus_first_gangster_items = list(/obj/item/storage/secure/briefcase/syndie) // the cash
+	bonus_first_gangster_items = list(/obj/item/storage/briefcase/secure/syndie) // the cash
 	starting_gangsters = 5
 	gang_objectives = list(
 

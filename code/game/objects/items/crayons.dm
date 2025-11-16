@@ -563,20 +563,20 @@
 		else
 			//BUBBER EDIT END - Families territory claims
 			switch(paint_mode)
-			if(PAINT_NORMAL)
-				created_art = new(target, paint_color, drawing, temp, graf_rot)
-				created_art.pixel_x = clickx
-				created_art.pixel_y = clicky
-			if(PAINT_LARGE_HORIZONTAL)
-				var/turf/left = locate(target.x-1,target.y,target.z)
-				var/turf/right = locate(target.x+1,target.y,target.z)
-				if(isValidSurface(left) && isValidSurface(right))
-					created_art = new(left, paint_color, drawing, temp, graf_rot, PAINT_LARGE_HORIZONTAL_ICON)
-					affected_turfs += left
-					affected_turfs += right
-				else
-					balloon_alert(user, "no room!")
-					return ITEM_INTERACT_BLOCKING
+				if(PAINT_NORMAL)
+					created_art = new(target, paint_color, drawing, temp, graf_rot)
+					created_art.pixel_x = clickx
+					created_art.pixel_y = clicky
+				if(PAINT_LARGE_HORIZONTAL)
+					var/turf/left = locate(target.x-1,target.y,target.z)
+					var/turf/right = locate(target.x+1,target.y,target.z)
+					if(isValidSurface(left) && isValidSurface(right))
+						created_art = new(left, paint_color, drawing, temp, graf_rot, PAINT_LARGE_HORIZONTAL_ICON)
+						affected_turfs += left
+						affected_turfs += right
+					else
+						balloon_alert(user, "no room!")
+						return ITEM_INTERACT_BLOCKING
 		created_art.add_hiddenprint(user)
 		if(istagger)
 			created_art.AddElement(/datum/element/art, GOOD_ART)

@@ -1,4 +1,6 @@
 // WEE WOO WEE WOO WANTED
+//Temporarily removed until reviewer feedback
+/*
 /datum/hud
 	var/atom/movable/screen/wanted/wanted_lvl
 
@@ -28,3 +30,4 @@
 /atom/movable/screen/wanted/update_icon_state()
 	icon_state = "[base_icon_state]_[level][cops_arrived ? "_active" : null]"
 	return ..()
+*/

@@ -50,7 +50,7 @@
 	plasmaman_outfit = /datum/outfit/plasmaman/security
 	var/free_clothes = list(/obj/item/clothing/glasses/hud/spacecop/hidden,
 						/obj/item/clothing/under/rank/security/officer/beatcop,
-						/obj/item/clothing/head/spacepolice)
+						/obj/item/clothing/head) //DEBUG: Placeholder head clothing. Replace this with something appropriate
 	forge_objectives_for_ert = FALSE
 	equip_ert = FALSE
 	random_names = FALSE
@@ -60,7 +60,7 @@
 		for(var/C in free_clothes)
 			var/obj/O = new C(owner.current)
 			var/list/slots = list (
-				"backpack" = ITEM_SLOT_BACKPACK,
+				"backpack" = ITEM_SLOT_BACK,
 				"left pocket" = ITEM_SLOT_LPOCKET,
 				"right pocket" = ITEM_SLOT_RPOCKET
 			)

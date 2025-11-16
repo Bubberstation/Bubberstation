@@ -1,9 +1,13 @@
+//Frankly, this is more red than not. Probably incompatible, maybe just needs some vars to be renamed.
+//For now I am just commenting it all out, since we don't run dynamic anyway
+
 //////////////////////////////////////////////
 //                                          //
 //                 FAMILIES                 //
 //                                          //
 //////////////////////////////////////////////
 
+/*
 /datum/dynamic_ruleset/roundstart/families
 	name = "Families"
 	persistent = TRUE
@@ -50,3 +54,4 @@
 
 /datum/dynamic_ruleset/roundstart/families/round_result()
 	return handler.set_round_result_analogue()
+*/
