@@ -22,7 +22,7 @@
 	glasses = /obj/item/clothing/glasses/sunglasses
 	ears = /obj/item/radio/headset/headset_sec/alt
 	mask = null
-	head = /obj/item/clothing/head/spacepolice
+	head = /obj/item/clothing/head //DEBUG: Placeholder clothing
 	belt = /obj/item/gun/ballistic/automatic/pistol/m1911
 	r_pocket = /obj/item/lighter
 	l_pocket = /obj/item/restraints/handcuffs
@@ -54,7 +54,7 @@
 /datum/outfit/families_police/beatcop/swat
 	name = "Families: SWAT Beat Cop"
 	suit = /obj/item/clothing/suit/armor/riot
-	head = /obj/item/clothing/head/helmet/riot
+	head = /obj/item/clothing/head/helmet //DEBUG: Placeholder clothing
 	gloves = /obj/item/clothing/gloves/combat
 	belt = null
 	l_hand = /obj/item/gun/ballistic/shotgun/automatic/combat
@@ -68,7 +68,7 @@
 /datum/outfit/families_police/beatcop/fbi
 	name = "Families: Space FBI Officer"
 	suit = /obj/item/clothing/suit/armor/laserproof
-	head = /obj/item/clothing/head/helmet/riot
+	head = /obj/item/clothing/head/helmet //DEBUG: Placeholder clothing
 	belt = /obj/item/gun/ballistic/automatic/proto/unrestricted
 	gloves = /obj/item/clothing/gloves/combat
 	backpack_contents = list(/obj/item/storage/box/handcuffs = 1,
