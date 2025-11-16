@@ -214,7 +214,7 @@
 	desc = "Teach new recruits the Secret Handshake to join."
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "recruit"
-	icon_icon = 'icons/obj/gang/actions.dmi'
+	icon_icon = 'icons/obj/antags/gang/actions.dmi'
 	cooldown_time = 300
 	/// The family antagonist datum of the "owner" of this action.
 	var/datum/antagonist/gang/my_gang_datum
@@ -274,8 +274,8 @@
 		/obj/item/clothing/neck/scarf/red,
 		/obj/item/clothing/under/suit/white,
 		/obj/item/clothing/head/beanie/red,
-		/obj/item/clothing/head/ushanka)
-	free_clothes = list(/obj/item/clothing/head/ushanka,
+		/obj/item/clothing/head/costume/ushanka)
+	free_clothes = list(/obj/item/clothing/head/costume/ushanka,
 		/obj/item/clothing/under/suit/white,
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "Russian"
@@ -319,11 +319,11 @@
 	roundend_category = "The Tunnel Snakes"
 	gang_name = "Tunnel Snakes"
 	gang_id = "TS"
-	acceptable_clothes = list(/obj/item/clothing/under/pants/classicjeans,
+	acceptable_clothes = list(/obj/item/clothing/under/pants/jeans,
 		/obj/item/clothing/suit/jacket,
 		/obj/item/clothing/mask/bandana/skull/black)
 	free_clothes = list(/obj/item/clothing/suit/jacket,
-		/obj/item/clothing/under/pants/classicjeans,
+		/obj/item/clothing/under/pants/jeans,
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "Snakes"
 	gang_team_type = /datum/team/gang/tunnel_snakes
@@ -400,11 +400,11 @@
 	acceptable_clothes = list(/obj/item/clothing/head/soft/blue,
 		/obj/item/clothing/under/costume/jackbros,
 		/obj/item/clothing/shoes/jackbros,
-		/obj/item/clothing/head/jackbros,
+		/obj/item/clothing/head/costume/jackbros,
 		/obj/item/clothing/mask/bandana/blue)
 	free_clothes = list(/obj/item/clothing/under/costume/jackbros,
 		/obj/item/clothing/shoes/jackbros,
-		/obj/item/clothing/head/jackbros,
+		/obj/item/clothing/head/costume/jackbros,
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "JackFrost"
 	gang_team_type = /datum/team/gang/jackbros
@@ -426,12 +426,12 @@
 	gang_id = "VDL"
 	acceptable_clothes = list(/obj/item/clothing/head/soft/black,
 		/obj/item/clothing/under/costume/dutch,
-		/obj/item/clothing/suit/costume/dutch,
-		/obj/item/clothing/head/bowler,
+		///obj/item/clothing/suit/costume/dutch, DEBUG: doesn't seem to exist anymore
+		/obj/item/clothing/head/hats/bowler,
 		/obj/item/clothing/mask/bandana/black)
 	free_clothes = list(/obj/item/clothing/under/costume/dutch,
-		/obj/item/clothing/head/bowler,
-		/obj/item/clothing/suit/costume/dutch,
+		/obj/item/clothing/head/hats/bowler,
+		/obj/item/clothing/under/costume/dutch,
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "Dutch"
 	gang_team_type = /datum/team/gang/dutch

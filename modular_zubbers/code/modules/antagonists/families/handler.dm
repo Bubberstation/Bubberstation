@@ -128,7 +128,6 @@ GLOBAL_VAR(families_override_theme)
 		else
 			gangbanger = taken
 		gangbangers += gangbanger
-		gangbanger.restricted_roles = restricted_jobs
 		log_game("[key_name(gangbanger)] has been selected as a starting gangster!")
 		if(!midround_ruleset)
 			GLOB.pre_setup_antags += gangbanger
@@ -369,7 +368,7 @@ GLOBAL_VAR(families_override_theme)
 				announcer = "Spinward Stellar Coalition National Guard"
 
 	priority_announce(announcement_message, announcer, 'sound/effects/families_police.ogg')
-	var/list/candidates = poll_ghost_candidates("Do you want to help clean up crime on this station?", "deathsquad")
+	var/list/candidates = SSpolling.poll_ghost_candidates("Do you want to help clean up crime on this station?", "deathsquad")
 
 
 	if(candidates.len)
@@ -396,8 +395,10 @@ GLOBAL_VAR(families_override_theme)
 			var/datum/antagonist/ert/families/ert_antag = new cops_to_send
 
 			cop.mind.add_antag_datum(ert_antag)
-			cop.mind.set_assigned_role(SSjob.GetJobType(ert_antag.ert_job_path))
-			SSjob.SendToLateJoin(cop)
+			cop.mind.set_assigned_role(ert_antag.ert_job_path)
+			//DEBUG: Should probably make a ghost role spawn for this? maybe just remove it for the sake of my sanity.
+			// Space cops are having a staffing shortage.
+			//SSjob.SendToLateJoin(cop)
 
 			//Logging and cleanup
 			log_game("[key_name(cop)] has been selected as an [ert_antag.name]")
