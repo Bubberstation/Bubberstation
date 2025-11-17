@@ -15,7 +15,7 @@
 	range = 100
 	can_hit_turfs = FALSE
 
-	var/explosion_damage = 30 //Same as a light explosion.
+	var/explosion_damage = 50 //A light explosion is 30.
 	var/ignition_speed = 1 //Speed is set to this value after meeting minimium range.
 	var/minimum_range = 2
 	var/cached_range = 0 //Cheaper than calling initial(range) constantly.

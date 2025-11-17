@@ -11,7 +11,7 @@
 	baseturfs = /turf/open/water/moonstation
 	turf_flags = NO_RUST | TURF_BLOCKS_POPULATE_TERRAIN_FLORAFEATURES | NO_LAVA_GEN
 
-	tiled_dirt = FALSE
+	tiled_turf = FALSE
 
 	initial_gas_mix = MOONSTATION_ATMOS
 	planetary_atmos = TRUE
