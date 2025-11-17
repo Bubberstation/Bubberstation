@@ -24,6 +24,10 @@
 		/area/station/tcommsat,
 		/area/station/hallway,
 		/area/station/commons/dorms,
+		/area/station/security/armory,
+		/area/station/command/vault,
+		/area/station/command/eva,
+		/area/station/ai/satellite,
 	))
 	for(var/area/iterating_area in GLOB.areas)
 		if(!is_station_level(iterating_area.z))
