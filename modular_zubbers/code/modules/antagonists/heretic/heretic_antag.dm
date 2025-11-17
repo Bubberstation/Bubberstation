@@ -440,7 +440,7 @@
 	return "<div>[flavor.Join("<br>")]</div>" // END HERE
 
 /datum/antagonist/heretic
-	/// Whether an admin has approved this heretic to ascend (must be changed via VV)
+	/// Whether an admin has approved this heretic to ascend (must be changed via VV or TP)
 	var/ascension_approved = FALSE
 
 // Overriding the text
