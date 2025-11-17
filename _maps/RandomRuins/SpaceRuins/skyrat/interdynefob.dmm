@@ -821,7 +821,6 @@
 /area/ruin/space/has_grav/skyrat/interdynefob/security/prison)
 "dy" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored{
-	chamber_id = "interdynefobn2";
 	dir = 4
 	},
 /turf/open/floor/engine/n2,
@@ -1581,7 +1580,6 @@
 /area/ruin/space/has_grav/skyrat/interdynefob/security)
 "gN" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/incinerator_input{
-	chamber_id = "syndicatelava_incinerator";
 	dir = 8
 	},
 /turf/open/floor/engine,
@@ -7142,9 +7140,6 @@
 /obj/item/gun/ballistic/shotgun/riot/sol/evil{
 	pixel_x = 0
 	},
-/obj/item/gun/ballistic/automatic/sol_rifle/evil{
-	pixel_x = 8
-	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/skyrat/interdynefob/security/armory)
 "Hh" = (
@@ -7501,7 +7496,7 @@
 /obj/machinery/suit_storage_unit{
 	mask_type = /obj/item/clothing/mask/gas/syndicate;
 	mod_type = /obj/item/mod/control/pre_equipped/traitor_elite;
-	storage_type = /obj/item/tank/jetpack/oxygen/harness
+	storage_type = /obj/item/tank/jetpack/harness
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/skyrat/interdynefob/bridge/admiral)
@@ -10225,7 +10220,6 @@
 /area/ruin/space/has_grav/skyrat/interdynefob/security/prison)
 "Vf" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored{
-	chamber_id = "interdynefobo2";
 	dir = 4
 	},
 /turf/open/floor/engine/o2,
@@ -10492,7 +10486,6 @@
 /area/ruin/space/has_grav/skyrat/interdynefob/cargo)
 "Wk" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored{
-	chamber_id = "interdynefobplasma";
 	dir = 4
 	},
 /turf/open/floor/engine/plasma,
@@ -11249,7 +11242,6 @@
 	ailock = 1;
 	control_area = "/area/ruin/space/has_grav/skyrat/interdynefob/bridge/vault";
 	dir = 1;
-	icon_state = "control_kill";
 	lethal = 1;
 	name = "DS2 turret controls";
 	pixel_x = -30;

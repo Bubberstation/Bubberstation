@@ -1,3 +1,5 @@
+//Title Capitalization for names please!!!
+
 /*
 *	BOOZE
 */
@@ -55,7 +57,7 @@
 	item_path = /obj/item/sign/flag/pride/trans
 
 /datum/loadout_item/pocket_items/flag_galfed //sprites by Crumpaloo
-	name = "Folded Galactic Federation Flag"
+	name = "Galactic Federation Flag"
 	item_path = /obj/item/sign/flag/galfed
 
 /*
@@ -131,5 +133,5 @@
 /// Lustwish stuff
 
 /datum/loadout_item/pocket_items/lustwish_theme
-	name = "Lustwish MOD theme"
+	name = "Lustwish MOD Plating"
 	item_path = /obj/item/mod/construction/plating/lustwish

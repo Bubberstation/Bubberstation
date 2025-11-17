@@ -4,7 +4,6 @@
 	make_default_mutant_bodypart_references()
 	make_body_marking_references()
 	make_body_marking_set_references()
-	make_body_marking_dna_block_references()
 	populate_total_ui_len_by_block()
 	populate_total_uf_len_by_block()
 	make_augment_references()
@@ -65,14 +64,6 @@
 		if(initial(BM.name))
 			BM = new path()
 			GLOB.body_marking_sets[BM.name] = BM
-
-/proc/make_body_marking_dna_block_references()
-	for(var/marking_zone in GLOB.marking_zones)
-		GLOB.dna_body_marking_blocks[marking_zone] = SSaccessories.dna_total_feature_blocks+1
-		for(var/feature_block_set in 1 to MAXIMUM_MARKINGS_PER_LIMB)
-			for(var/color_block in 1 to DNA_MARKING_COLOR_BLOCKS_PER_MARKING)
-				SSaccessories.features_block_lengths["[GLOB.dna_body_marking_blocks[marking_zone] + (feature_block_set - 1) * DNA_BLOCKS_PER_MARKING + color_block]"] = DNA_BLOCK_SIZE_COLOR
-		SSaccessories.dna_total_feature_blocks += DNA_BLOCKS_PER_MARKING_ZONE
 
 /proc/init_skyrat_stack_recipes()
 	var/list/additional_stack_recipes = list(

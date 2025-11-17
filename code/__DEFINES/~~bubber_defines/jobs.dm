@@ -1,5 +1,5 @@
 #define RECORDS_TEXT_CHAR_REQUIREMENT 15
-#define JOB_UNAVAILABLE_FLAVOUR_SILICON (JOB_UNAVAILABLE_AUGMENT + 1)
+#define JOB_UNAVAILABLE_FLAVOUR_SILICON (JOB_UNAVAILABLE_NOHANDS + 1)
 //A proc to determine if a job is a silicon job.
 #define is_silicon_job(A) (istype(A, /datum/job/ai) || istype(A, /datum/job/cyborg))
 
@@ -60,7 +60,7 @@
 	/obj/item/mod/control/pre_equipped/blueshield, \
 	/obj/item/clothing/suit/armor/vest/warden, \
 	/obj/item/clothing/glasses/hud/security/sunglasses, \
-	/obj/item/clothing/gloves/krav_maga/sec, \
+	/obj/item/clothing/gloves/kaza_ruk/sec, \
 	/obj/item/clothing/suit/armor/vest/alt/sec, \
 	/obj/item/storage/belt/holster/detective/full, \
 	/obj/item/reagent_containers/spray/pepper, \

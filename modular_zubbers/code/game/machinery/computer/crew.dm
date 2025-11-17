@@ -113,9 +113,3 @@
 		JOB_TERRAGOV_LIASON = 903
 
 	)
-
-/datum/crewmonitor/ui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if (!ui)
-		ui = new(user, src, "CrewConsoleBubbers")
-		ui.open()

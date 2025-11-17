@@ -123,8 +123,8 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 /datum/antagonist/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
-	if(. || isobserver(ui.user))
-		return
+	if(. || ui.user != owner.current)
+		return TRUE
 	switch(action)
 		if("change_objectives")
 			submit_player_objective()
@@ -155,12 +155,12 @@ GLOBAL_LIST_EMPTY(antagonists)
 	. = ..()
 	name = "Open [target] Information:"
 
-/datum/action/antag_info/Trigger(trigger_flags)
+/datum/action/antag_info/Trigger(mob/clicker, trigger_flags)
 	. = ..()
 	if(!.)
 		return
 
-	target.ui_interact(usr || owner)
+	target.ui_interact(clicker || owner)
 
 /datum/action/antag_info/IsAvailable(feedback = FALSE)
 	if(!target)
@@ -191,7 +191,8 @@ GLOBAL_LIST_EMPTY(antagonists)
 		old_body.remove_from_current_living_antags()
 	var/datum/action/antag_info/info_button = info_button_ref?.resolve()
 	if(info_button)
-		info_button.Remove(old_body)
+		if(old_body)
+			info_button.Remove(old_body)
 		info_button.Grant(new_body)
 	apply_innate_effects(new_body)
 	if(new_body.stat != DEAD)
@@ -475,6 +476,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 	dummy = dummy || new /mob/living/carbon/human/dummy/consistent
 	dummy.equipOutfit(outfit, visuals_only = TRUE)
 	dummy.wear_suit?.update_greyscale()
+	dummy.set_combat_mode(TRUE)
 	var/icon = getFlatIcon(dummy)
 
 	// We don't want to qdel the dummy right away, since its items haven't initialized yet.

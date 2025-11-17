@@ -1,10 +1,8 @@
 /datum/sprite_accessory/horns
 	key = "horns"
-	generic = "Horns"
 	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER, BODY_ADJ_LAYER)
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/horns.dmi'
 	default_color = "#555555"
-	genetic = TRUE
 	organ_type = /obj/item/organ/horns
 
 /datum/sprite_accessory/horns/is_hidden(mob/living/carbon/human/wearer)
@@ -20,7 +18,7 @@
 		return FALSE
 
 	// Hide accessory if flagged to do so
-	if((wearer.head?.flags_inv & HIDEHAIR || wearer.wear_mask?.flags_inv & HIDEHAIR) \
+	if((wearer.covered_slots & HIDEHAIR) \
 		&& !(wearer.wear_mask && wearer.wear_mask.flags_inv & SHOWSPRITEEARS))
 		return TRUE
 
@@ -29,6 +27,7 @@
 /datum/sprite_accessory/horns/none
 	name = SPRITE_ACCESSORY_NONE
 	icon_state = "none"
+	factual = FALSE
 
 /datum/sprite_accessory/horns/angler
 	default_color = DEFAULT_SECONDARY

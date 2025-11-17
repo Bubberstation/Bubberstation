@@ -45,7 +45,7 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 //Instead of just deleting our equipment, we save what we can and reinsert it into SSwardrobe's store
 //Hopefully this makes preference reloading not the worst thing ever
 /mob/living/carbon/human/dummy/delete_equipment()
-	var/list/items_to_check = get_equipped_items(INCLUDE_POCKETS | INCLUDE_HELD)
+	var/list/items_to_check = get_equipped_items(INCLUDE_POCKETS|INCLUDE_HELD|INCLUDE_PROSTHETICS|INCLUDE_ABSTRACT)
 	var/list/to_nuke = list() //List of items queued for deletion, can't qdel them before iterating their contents in case they hold something
 	///Travel to the bottom of the contents chain, expanding it out
 	for(var/i = 1; i <= length(items_to_check); i++) //Needs to be a c style loop since it can expand
@@ -54,6 +54,8 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 			continue
 		if(!isitem(checking)) //What the fuck are you on
 			to_nuke += checking
+			continue
+		if(checking.item_flags & DO_NOT_WARDROBE) // Skip any items like MOD parts, which are created in the contents of a stashed item and should not be destroyed
 			continue
 
 		var/list/contents = checking.contents
@@ -72,11 +74,17 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 		qdel(delete)
 
 /mob/living/carbon/human/dummy/has_equipped(obj/item/item, slot, initial = FALSE)
+	SHOULD_CALL_PARENT(FALSE) // assuming direct control
 	item.item_flags |= IN_INVENTORY
-	return item.visual_equipped(src, slot, initial)
+	if(!item.visual_equipped(src, slot, initial))
+		return FALSE
+
+	add_item_coverage(item)
+	return TRUE
 
 /mob/living/carbon/human/dummy/proc/wipe_state()
 	delete_equipment()
+	update_lips(null, null, null, update = FALSE)
 	cut_overlays(TRUE)
 
 /mob/living/carbon/human/dummy/setup_human_dna()
@@ -105,25 +113,12 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 	return consistent_entry
 
 /proc/create_consistent_human_dna(mob/living/carbon/human/target)
-	target.dna.features["mcolor"] = COLOR_VIBRANT_LIME
-	target.dna.features["ethcolor"] = COLOR_WHITE
-	/* SKYRAT EDIT START REMOVAL START - Customization
-	target.dna.features["lizard_markings"] = get_consistent_feature_entry(SSaccessories.lizard_markings_list)
-	target.dna.features["ears"] = get_consistent_feature_entry(SSaccessories.ears_list)
-	target.dna.features["frills"] = get_consistent_feature_entry(SSaccessories.frills_list)
-	target.dna.features["horns"] = get_consistent_feature_entry(SSaccessories.horns_list)
-	target.dna.features["moth_antennae"] = get_consistent_feature_entry(SSaccessories.moth_antennae_list)
-	target.dna.features["moth_markings"] = get_consistent_feature_entry(SSaccessories.moth_markings_list)
-	target.dna.features["moth_wings"] = get_consistent_feature_entry(SSaccessories.moth_wings_list)
-	target.dna.features["snout"] = get_consistent_feature_entry(SSaccessories.snouts_list)
-	target.dna.features["spines"] = get_consistent_feature_entry(SSaccessories.spines_list)
-	target.dna.features["tail_cat"] = get_consistent_feature_entry(SSaccessories.tails_list_felinid) // it's a lie
-	target.dna.features["tail_lizard"] = get_consistent_feature_entry(SSaccessories.tails_list_lizard)
-	target.dna.features["tail_monkey"] = get_consistent_feature_entry(SSaccessories.tails_list_monkey)
-	target.dna.features["fish_tail"] = get_consistent_feature_entry(SSaccessories.tails_list_fish)
-	target.dna.features["pod_hair"] = get_consistent_feature_entry(SSaccessories.pod_hair_list)
-	target.dna.features["caps"] = get_consistent_feature_entry(SSaccessories.caps_list)
-	*/ // SKYRAT EDIT REMOVAL END
+	target.dna.features[FEATURE_MUTANT_COLOR] = COLOR_VIBRANT_LIME
+	target.dna.features[FEATURE_ETHEREAL_COLOR] = COLOR_WHITE
+	/* BUBBER EDIT REMOVAL BEGIN - Customization
+	for(var/feature_key in SSaccessories.feature_list)
+		target.dna.features[feature_key] = get_consistent_feature_entry(SSaccessories.feature_list[feature_key])
+	*/// BUBBER EDIT REMOVAL END
 	target.dna.initialize_dna(newblood_type = get_blood_type(BLOOD_TYPE_O_MINUS), create_mutation_blocks = FALSE, randomize_features = FALSE)
 	// UF and UI are nondeterministic, even though the features are the same some blocks will randomize slightly
 	// In practice this doesn't matter, but this is for the sake of 100%(ish) consistency
@@ -152,6 +147,21 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 
 /mob/living/carbon/human/consistent/domutcheck()
 	return // We skipped adding any mutations so this runtimes
+
+/mob/living/carbon/human/consistent/slow
+
+#ifdef UNIT_TESTS
+//unit test dummies should be very fast with actions
+/mob/living/carbon/human/dummy/consistent/initialize_actionspeed()
+	add_or_update_variable_actionspeed_modifier(/datum/actionspeed_modifier/base, multiplicative_slowdown = -1)
+
+/mob/living/carbon/human/consistent/initialize_actionspeed()
+	add_or_update_variable_actionspeed_modifier(/datum/actionspeed_modifier/base, multiplicative_slowdown = -1)
+
+//this one gives us a small window of time for checks on asynced actions.
+/mob/living/carbon/human/consistent/slow/initialize_actionspeed()
+	add_or_update_variable_actionspeed_modifier(/datum/actionspeed_modifier/base, multiplicative_slowdown = 0.1)
+#endif
 
 //Inefficient pooling/caching way.
 GLOBAL_LIST_EMPTY(human_dummy_list)

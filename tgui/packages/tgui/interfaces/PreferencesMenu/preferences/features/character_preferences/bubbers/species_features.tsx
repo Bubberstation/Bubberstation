@@ -67,7 +67,7 @@ export const human_pref: FeatureChoiced = {
 export const character_ad: Feature<string> = {
   name: 'Character Advert',
   description:
-    'A built-in advertisement for your character. Talk about what you are looking for in terms of roleplay, and how to approach your character. Try to do more than just write that you are free to talk anytime.',
+    'A roleplay advert for your character. Talk about what you are looking for in terms of roleplay, and how to approach. Give specifics as much as possible.',
   component: FeatureTextInput,
 };
 
@@ -88,8 +88,26 @@ export const display_gender: FeatureChoiced = {
 export const flavor_text_nsfw: Feature<string> = {
   name: 'NSFW Flavor Text',
   description:
-    'A portion of your flavor text that is censored in examine. Used to store visual sexual details.',
+    'The NSFW part of your flavor text. Used to store visual sexual details.',
   component: FeatureTextInput,
+};
+
+export const low_arousal_text: Feature<string> = {
+  name: 'Arousal Flavor - Low',
+  description: 'How your character can be perceived to be slightly aroused',
+  component: FeatureShortTextInput,
+};
+
+export const medium_arousal_text: Feature<string> = {
+  name: 'Arousal Flavor - Medium',
+  description: 'How your character can be perceived to be somewhat aroused',
+  component: FeatureShortTextInput,
+};
+
+export const high_arousal_text: Feature<string> = {
+  name: 'Arousal Flavor - Strong',
+  description: 'How your character can be perceived to be highly aroused',
+  component: FeatureShortTextInput,
 };
 
 export const silicon_flavor_text_nsfw: Feature<string> = {

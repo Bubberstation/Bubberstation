@@ -41,6 +41,10 @@
 	SIGNAL_HANDLER
 	if (!istype(swimmer))
 		return
+	if(QDELETED(swimmer))
+		return
+	if(HAS_TRAIT(swimmer, TRAIT_IMMERSED))
+		return
 	RegisterSignal(swimmer, SIGNAL_ADDTRAIT(TRAIT_IMMERSED), PROC_REF(dip_in))
 	if(HAS_TRAIT(swimmer, TRAIT_IMMERSED))
 		dip_in(swimmer)
@@ -60,7 +64,7 @@
 		var/effective_stamina_entry_cost = HAS_TRAIT(floater, TRAIT_STRENGTH) ? (stamina_entry_cost + clothing_weight(floater)) : ((stamina_entry_cost + clothing_weight(floater)) / 2)
 
 		//Being in high gravity doubles our effective stamina cost
-		var/gravity_modifier = floater.has_gravity() > STANDARD_GRAVITY ? 1 : 2
+		var/gravity_modifier = floater.has_gravity() > STANDARD_GRAVITY ? 2 : 1
 
 		//If our floater has a specialized spine, include that as a factor.
 		var/obj/item/organ/cyberimp/chest/spine/potential_spine = floater.get_organ_slot(ORGAN_SLOT_SPINE)
@@ -120,7 +124,7 @@
 
 	var/effective_stamina_per_interval = HAS_TRAIT(owner, TRAIT_STRENGTH) ? stamina_per_interval : (stamina_per_interval / 2)
 
-	var/gravity_modifier = owner.has_gravity() > STANDARD_GRAVITY ? 1 : 2
+	var/gravity_modifier = owner.has_gravity() > STANDARD_GRAVITY ? 2 : 1
 
 	var/under_pressure = prob(drowning_process_probability * gravity_modifier)
 

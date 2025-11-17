@@ -1,0 +1,64 @@
+/obj/item/clothing/suit/hooded/seva
+	name = "SEVA suit"
+	desc = "A fire-proof suit for exploring hot environments. Its design doesn't allow for upgrading with goliath plates."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/armor_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+	icon_state = "seva"
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	flags_inv = HIDEJUMPSUIT|HIDETAIL
+	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+	w_class = WEIGHT_CLASS_BULKY
+	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
+	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	hoodtype = /obj/item/clothing/head/hooded/seva
+	armor_type = /datum/armor/hooded_seva
+	resistance_flags = FIRE_PROOF
+	transparent_protection = HIDEJUMPSUIT
+
+/datum/armor/hooded_seva
+	melee = 30
+	bullet = 10
+	laser = 10
+	energy = 10
+	bomb = 30
+	bio = 50
+	fire = 100
+	acid = 50
+	wound = 10
+
+/obj/item/clothing/head/hooded/seva
+	name = "SEVA hood"
+	desc = "A fire-proof hood for exploring hot environments. Its design doesn't allow for upgrading with goliath plates."
+	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
+	worn_icon_muzzled = 'modular_zubbers/icons/mob/clothing/head/helmet_muzzled.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
+	icon_state = "seva"
+	body_parts_covered = HEAD
+	flags_inv = HIDEHAIR|HIDEFACE|HIDEEARS|HIDESNOUT
+	cold_protection = HEAD
+	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
+	heat_protection = HEAD
+	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
+	clothing_traits = list(TRAIT_ASHSTORM_IMMUNE)
+	armor_type = /datum/armor/hooded_seva
+	resistance_flags = FIRE_PROOF
+	supports_variations_flags = CLOTHING_SNOUTED_VARIATION //I can't find the snout sprite so I'm just gonna force it to do this
+
+/obj/item/clothing/suit/hooded/seva/Initialize(mapload)
+	. = ..()
+	allowed = GLOB.mining_suit_allowed
+
+/obj/item/clothing/mask/gas/seva
+	name = "SEVA mask"
+	desc = "A head-covering mask that can be connected to an external air supply. Intended for use with the SEVA Suit."
+	icon = 'modular_zubbers/icons/obj/clothing/mask/mask.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/mask/mask.dmi'
+	worn_icon_muzzled = 'modular_zubbers/icons/mob/clothing/mask/mask_muzzled.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/mask/mask_teshari.dmi'
+	icon_state = "seva"
+	resistance_flags = FIRE_PROOF
+	flags_inv = HIDEFACIALHAIR|HIDEFACE|HIDEEYES|HIDEEARS|HIDEHAIR|HIDESNOUT

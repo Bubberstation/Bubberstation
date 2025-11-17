@@ -290,6 +290,7 @@ SUBSYSTEM_DEF(id_access)
 	desc_by_access["[ACCESS_VIROLOGY]"] = "Virology"
 	desc_by_access["[ACCESS_PSYCHOLOGY]"] = "Psychology"
 	desc_by_access["[ACCESS_CMO]"] = "CMO Office"
+	desc_by_access["[ACCESS_PARAMEDIC]"] = "Paramedic Office"
 	desc_by_access["[ACCESS_QM]"] = "QM Office"
 	desc_by_access["[ACCESS_SURGERY]"] = "Surgery"
 	desc_by_access["[ACCESS_THEATRE]"] = "Theatre"
@@ -418,6 +419,9 @@ SUBSYSTEM_DEF(id_access)
 	id_card.update_label()
 	id_card.update_icon()
 
+	// Apply any currently active RETA grants to this newly trimmed card
+	apply_active_reta_grants_to_card(id_card)
+
 	return TRUE
 
 /**
@@ -458,7 +462,10 @@ SUBSYSTEM_DEF(id_access)
 
 	if (ishuman(id_card.loc))
 		var/mob/living/carbon/human/owner = id_card.loc
-		owner.sec_hud_set_ID()
+		owner.update_ID_card()
+
+	// Apply any currently active RETA grants to this card with updated trim override
+	apply_active_reta_grants_to_card(id_card)
 
 /**
  * Removes a trim from a ID card.
@@ -479,7 +486,7 @@ SUBSYSTEM_DEF(id_access)
 
 	if (ishuman(id_card.loc))
 		var/mob/living/carbon/human/owner = id_card.loc
-		owner.sec_hud_set_ID()
+		owner.update_ID_card()
 
 /**
  * Adds the accesses associated with a trim to an ID card.
@@ -501,6 +508,9 @@ SUBSYSTEM_DEF(id_access)
 	if(istype(trim, /datum/id_trim/job))
 		var/datum/id_trim/job/job_trim = trim // Here is where we update a player's paycheck department for the purposes of discounts/paychecks.
 		id_card.registered_account.account_job.paycheck_department = job_trim.job.paycheck_department
+
+	// Apply any currently active RETA grants to this card with updated trim access
+	apply_active_reta_grants_to_card(id_card)
 
 /**
  * Tallies up all accesses the card has that have flags greater than or equal to the access_flag supplied.

@@ -3,6 +3,7 @@
 	desc = "A somewhat sterile apron made from thick leather, perfect for sawing limbs off without getting your uniform bloody."
 	icon = 'modular_zubbers/icons/obj/clothing/outlast.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/outlast.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/outlast.dmi'
 	icon_state = "leatherapron"
 	allowed = list(
 		/obj/item/bonesetter,

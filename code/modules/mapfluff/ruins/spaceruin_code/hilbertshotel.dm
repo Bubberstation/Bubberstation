@@ -9,7 +9,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	//SKYRAT EDIT ADDITION - GHOST HOTEL UPDATE + EXTRA STUFF
-	var/static/list/hotel_maps = list("Generic", "Apartment", "Beach Condo", "Station Side", "Library", "Cultist's Cavern", "Winter Woods", "Evacuated Station", "Prison", "Corporate Office", "Recovery Wing", "Grotto", "Grotto (Night)", "Fox Bar", "The Nightclub", "EVA", "Oasis", "Oasis (Night)")
+	var/static/list/hotel_maps = list("Generic", "Apartment", "Beach Condo", "Station Side", "Library", "Cultist's Cavern", "Winter Woods", "Evacuated Station", "Prison", "Corporate Office", "Recovery Wing", "Grotto", "Grotto (Night)", "Fox Bar", "The Nightclub", "EVA", "Oasis", "Oasis (Night)", "Public Pool", "Mini Engineering", "Syndicate Office", "Syndicate Ops Centre")
 	//standart - hilber's hotel room
 	//apartment - see /datum/map_template/ghost_cafe_rooms
 	//beach condo - Beach themed apartment
@@ -34,6 +34,11 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	var/datum/map_template/ghost_cafe_rooms/eva/ghost_cafe_rooms_eva
 	var/datum/map_template/ghost_cafe_rooms/oasis/ghost_cafe_rooms_oasis
 	var/datum/map_template/ghost_cafe_rooms/oasisalt/ghost_cafe_rooms_oasisalt
+
+	var/datum/map_template/ghost_cafe_rooms/pool/ghost_cafe_rooms_pool
+	var/datum/map_template/ghost_cafe_rooms/engineering/ghost_cafe_rooms_engineering
+	var/datum/map_template/ghost_cafe_rooms/syndieoffice/ghost_cafe_rooms_syndieoffice
+	var/datum/map_template/ghost_cafe_rooms/synopcenter/ghost_cafe_rooms_synopcenter
 	//BUBBER EDIT END
 
 	var/datum/map_template/hilbertshotel/hotelRoomTemp
@@ -74,6 +79,11 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	ghost_cafe_rooms_eva = new()
 	ghost_cafe_rooms_oasis = new()
 	ghost_cafe_rooms_oasisalt = new()
+
+	ghost_cafe_rooms_pool = new()
+	ghost_cafe_rooms_engineering = new()
+	ghost_cafe_rooms_syndieoffice = new()
+	ghost_cafe_rooms_synopcenter = new()
 	//BUBBER EDIT END
 
 	var/area/currentArea = get_area(src)
@@ -267,6 +277,18 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 
 	else if(chosen_room == "Oasis (Night)")
 		load_from = ghost_cafe_rooms_oasisalt
+
+	else if(chosen_room == "Public Pool")
+		load_from = ghost_cafe_rooms_pool
+
+	else if(chosen_room == "Mini Engineering")
+		load_from = ghost_cafe_rooms_engineering
+
+	else if(chosen_room == "Syndicate Office")
+		load_from = ghost_cafe_rooms_syndieoffice
+
+	else if(chosen_room == "Syndicate Ops Centre")
+		load_from = ghost_cafe_rooms_synopcenter
 	//BUBBER EDIT END
 
 
@@ -375,13 +397,13 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	desc = "Stylish dark wood with extra reinforcement. Secured firmly to the floor to prevent tampering."
 	icon_state = "wood"
 	footstep = FOOTSTEP_WOOD
-	tiled_dirt = FALSE
+	tiled_turf = FALSE
 
 /turf/open/indestructible/hoteltile
 	desc = "Smooth tile with extra reinforcement. Secured firmly to the floor to prevent tampering."
 	icon_state = "showroomfloor"
 	footstep = FOOTSTEP_FLOOR
-	tiled_dirt = FALSE
+	tiled_turf = FALSE
 
 /turf/open/space/bluespace
 	name = "\proper bluespace hyperzone"
@@ -639,7 +661,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 /obj/item/analyzer/hilbertsanalyzer/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!istype(interacting_with, /obj/item/hilbertshotel))
 		return ..()
-	if(!user.CanReach(interacting_with))
+	if(!interacting_with.IsReachableBy(user))
 		to_chat(user, span_warning("It's to far away to scan!"))
 		return ITEM_INTERACT_BLOCKING
 	var/obj/item/hilbertshotel/sphere = interacting_with

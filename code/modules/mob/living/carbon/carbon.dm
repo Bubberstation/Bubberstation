@@ -220,34 +220,11 @@
 
 /mob/living/carbon/proc/uncuff()
 	if (handcuffed)
-		var/obj/item/W = handcuffed
-		set_handcuffed(null)
-		if (buckled?.buckle_requires_restraints)
-			buckled.unbuckle_mob(src)
-		update_handcuffed()
-		if (client)
-			client.screen -= W
-		if (W)
-			W.forceMove(drop_location())
-			W.dropped(src)
-			if (W)
-				W.layer = initial(W.layer)
-				SET_PLANE_EXPLICIT(W, initial(W.plane), src)
+		dropItemToGround(handcuffed, TRUE)
 		changeNext_move(0)
 	if (legcuffed)
-		var/obj/item/W = legcuffed
-		legcuffed = null
-		update_worn_legcuffs()
-		if (client)
-			client.screen -= W
-		if (W)
-			W.forceMove(drop_location())
-			W.dropped(src)
-			if (W)
-				W.layer = initial(W.layer)
-				SET_PLANE_EXPLICIT(W, initial(W.plane), src)
+		dropItemToGround(legcuffed, TRUE)
 		changeNext_move(0)
-	update_equipment_speed_mods() // In case cuffs ever change speed
 
 /mob/living/carbon/proc/clear_cuffs(obj/item/I, cuff_break)
 	if(!I.loc || buckled)
@@ -264,18 +241,10 @@
 
 	else
 		if(I == handcuffed)
-			handcuffed.forceMove(drop_location())
-			set_handcuffed(null)
-			I.dropped(src)
-			if(buckled?.buckle_requires_restraints)
-				buckled.unbuckle_mob(src)
-			update_handcuffed()
+			dropItemToGround(I, TRUE)
 			return TRUE
 		if(I == legcuffed)
-			legcuffed.forceMove(drop_location())
-			legcuffed = null
-			I.dropped(src)
-			update_worn_legcuffs()
+			dropItemToGround(I, TRUE)
 			return TRUE
 
 /mob/living/carbon/proc/accident(obj/item/I)
@@ -548,7 +517,7 @@
  */
 /mob/living/carbon/proc/update_tint()
 	var/tint = 0
-	for(var/obj/item/clothing/worn_item in get_equipped_items())
+	for(var/obj/item/clothing/worn_item in get_equipped_items(INCLUDE_ABSTRACT))
 		tint += worn_item.tint
 
 	var/obj/item/organ/eyes/eyes = get_organ_slot(ORGAN_SLOT_EYES)
@@ -842,8 +811,6 @@
 	if(heal_flags & HEAL_RESTRAINTS)
 		QDEL_NULL(handcuffed)
 		QDEL_NULL(legcuffed)
-		set_handcuffed(null)
-		update_handcuffed()
 
 	return ..()
 
@@ -852,7 +819,9 @@
 	return ..()
 
 /mob/living/carbon/can_be_revived()
-	if(!get_organ_by_type(/obj/item/organ/brain) && (!IS_CHANGELING(src)) || HAS_TRAIT(src, TRAIT_HUSK))
+	if(HAS_TRAIT(src, TRAIT_HUSK))
+		return FALSE
+	if(!HAS_TRAIT(src, TRAIT_BRAINLESS_CARBON) && !get_organ_by_type(/obj/item/organ/brain))
 		return FALSE
 //SKYRAT EDIT ADDITION - DNR TRAIT // BUBBER EDIT REMOVAL
 //	if(HAS_TRAIT(src, TRAIT_DNR))
@@ -871,37 +840,50 @@
 	if (HAS_TRAIT(src, TRAIT_HUSK))
 		return DEFIB_FAIL_HUSK
 
+	if (IS_FAKE_KEY(key))
+		return DEFIB_NOGRAB_AGHOST
+
 	if (HAS_TRAIT(src, TRAIT_DEFIB_BLACKLISTED))
 		return DEFIB_FAIL_BLACKLISTED
 
 	if ((getBruteLoss() >= MAX_REVIVE_BRUTE_DAMAGE) || (getFireLoss() >= MAX_REVIVE_FIRE_DAMAGE))
 		return DEFIB_FAIL_TISSUE_DAMAGE
 
-	// Only check for a heart if they actually need a heart. Who would've thunk
-	if (needs_heart())
-		var/obj/item/organ/heart = get_organ_by_type(/obj/item/organ/heart)
+	var/heart_status = can_defib_heart(get_organ_by_type(/obj/item/organ/heart))
+	if (heart_status)
+		return heart_status
 
-		if (!heart)
-			return DEFIB_FAIL_NO_HEART
-
-		if (heart.organ_flags & ORGAN_FAILING)
-			return DEFIB_FAIL_FAILING_HEART
-
-	var/obj/item/organ/brain/current_brain = get_organ_by_type(/obj/item/organ/brain)
-
-	if (QDELETED(current_brain))
-		return DEFIB_FAIL_NO_BRAIN
-
-	if (current_brain.organ_flags & ORGAN_FAILING)
-		return DEFIB_FAIL_FAILING_BRAIN
-
-	if (current_brain.suicided || (current_brain.brainmob && HAS_TRAIT(current_brain.brainmob, TRAIT_SUICIDED)))
-		return DEFIB_FAIL_NO_INTELLIGENCE
-
-	if(IS_FAKE_KEY(key))
-		return DEFIB_NOGRAB_AGHOST
+	var/brain_status = SEND_SIGNAL(src, COMSIG_CARBON_DEFIB_BRAIN_CHECK) || can_defib_brain(get_organ_by_type(/obj/item/organ/brain))
+	if (brain_status)
+		return brain_status
 
 	return DEFIB_POSSIBLE
+
+/// Return a defib status based on the heart organ provided
+/mob/living/carbon/proc/can_defib_heart(obj/item/organ/heart/heart_organ)
+	if (!needs_heart())
+		return NONE
+
+	if (QDELETED(heart_organ))
+		return DEFIB_FAIL_NO_HEART
+
+	if (heart_organ.organ_flags & ORGAN_FAILING)
+		return DEFIB_FAIL_FAILING_HEART
+
+	return NONE
+
+/// Return a defib status based on the brain organ provided
+/mob/living/carbon/proc/can_defib_brain(obj/item/organ/brain/brain_organ)
+	if (QDELETED(brain_organ))
+		return DEFIB_FAIL_NO_BRAIN
+
+	if (brain_organ.organ_flags & ORGAN_FAILING)
+		return DEFIB_FAIL_FAILING_BRAIN
+
+	if (brain_organ.suicided || (brain_organ.brainmob && HAS_TRAIT(brain_organ.brainmob, TRAIT_SUICIDED)))
+		return DEFIB_FAIL_NO_INTELLIGENCE
+
+	return NONE
 
 /mob/living/carbon/proc/can_defib_client()
 	return (client || get_ghost(FALSE, FALSE)) && (can_defib() & DEFIB_REVIVABLE_STATES) // SKYRAT EDIT - ORIGINAL: return (client || get_ghost(FALSE, TRUE)) && (can_defib() & DEFIB_REVIVABLE_STATES)
@@ -1123,18 +1105,6 @@
 /mob/living/carbon/can_resist()
 	return bodyparts.len > 2 && ..()
 
-/mob/living/carbon/proc/hypnosis_vulnerable()
-	if(HAS_MIND_TRAIT(src, TRAIT_UNCONVERTABLE))
-		return FALSE
-	if(has_status_effect(/datum/status_effect/hallucination) || has_status_effect(/datum/status_effect/drugginess))
-		return TRUE
-	if(IsSleeping() || IsUnconscious())
-		return TRUE
-	if(HAS_TRAIT(src, TRAIT_DUMB))
-		return TRUE
-	if(mob_mood.sanity < SANITY_UNSTABLE)
-		return TRUE
-
 /mob/living/carbon/wash(clean_types)
 	. = ..()
 	// Wash equipped stuff that cannot be covered
@@ -1142,7 +1112,7 @@
 		. |= held_thing.wash(clean_types)
 
 	// Check and wash stuff that isn't covered
-	var/covered = check_covered_slots()
+	var/covered = hidden_slots_to_inventory_slots(covered_slots)
 	for(var/obj/item/worn as anything in get_equipped_items())
 		var/slot = get_slot_by_item(worn)
 		// Don't wash glasses if something other than them is covering our eyes
@@ -1152,17 +1122,22 @@
 			// /obj/item/wash() already updates our clothing slot
 			. = worn.wash(clean_types) || .
 
+	// BUBBER EDIT ADDITION BEGIN - COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
+	if(clean_types & CLEAN_TYPE_LIGHT_DECAL)
+		remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
+	// BUBBER EDIT ADDITION END - COLORFUL REAGENT COLORS MOB INSTEAD OF ORGANS
+
 /// if any of our bodyparts are bleeding
 /mob/living/carbon/proc/is_bleeding()
 	for(var/obj/item/bodypart/part as anything in bodyparts)
-		if(part.get_modified_bleed_rate())
+		if(part.cached_bleed_rate)
 			return TRUE
 
 /// get our total bleedrate
 /mob/living/carbon/proc/get_total_bleed_rate()
 	var/total_bleed_rate = 0
 	for(var/obj/item/bodypart/part as anything in bodyparts)
-		total_bleed_rate += part.get_modified_bleed_rate()
+		total_bleed_rate += part.cached_bleed_rate
 
 	return total_bleed_rate
 
@@ -1198,9 +1173,6 @@
 			scaries.generate(scar_part, phantom_wound)
 			scaries.fake = TRUE
 			QDEL_NULL(phantom_wound)
-
-/mob/living/carbon/is_face_visible()
-	return !(wear_mask?.flags_inv & HIDEFACE) && !(head?.flags_inv & HIDEFACE)
 
 /// Returns whether or not the carbon should be able to be shocked
 /mob/living/carbon/proc/should_electrocute(power_source)
@@ -1245,7 +1217,7 @@
 			REMOVE_TRAIT(src, TRAIT_RESTRAINED, HANDCUFFED_TRAIT)
 	else if(handcuffed)
 		ADD_TRAIT(src, TRAIT_RESTRAINED, HANDCUFFED_TRAIT)
-
+	update_handcuffed()
 
 /mob/living/carbon/on_lying_down(new_lying_angle)
 	. = ..()

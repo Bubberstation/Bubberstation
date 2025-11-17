@@ -92,6 +92,7 @@
 	design_ids += list(
 		"blanksynth",
 		"dominatrixmodule",
+		"obediencemodule",
 		"borg_upgrade_expand",
 		"borg_upgrade_shrink",
 	)
@@ -106,8 +107,25 @@
 	. = ..()
 	design_ids += list(
 		"pinpointer_vent_cyborg",
-		"adv_xenoarchbag_cyborg"
+		"adv_xenoarchbag_cyborg",
+		"pka_railgun_cyborg",
+		"pka_repeater_cyborg",
+		"pka_shotgun_cyborg",
+		"pka_pistol_cyborg",
+		"pka_shockwave_cyborg",
+		"pka_m79_cyborg",
 	)
+/datum/techweb_node/mechlaunchpad
+	id = TECHWEB_NODE_MECHLAUNCHPAD
+	display_name = "Mech Logistics Solutions"
+	description = "Advancements in utilizing bluespace technology allow us to rapidly deliver mechs from workshop to destination."
+	prereq_ids = list(TECHWEB_NODE_BLUESPACE_TRAVEL, TECHWEB_NODE_MECH_EQUIPMENT)
+	design_ids = list(
+		"mechlauncher_pad",
+		"mechlauncher_console",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
+	announce_channels = list(RADIO_CHANNEL_SCIENCE)
 
 // Computer Tech
 /datum/techweb_node/gaming/New()
@@ -117,18 +135,13 @@
 	)
 
 /datum/techweb_node/riot_supression/New()
-	design_ids += "wt550_ammo_rubber"
-	design_ids += "wt550_ammo_flathead"
-	design_ids += "sol35_shortmag"
-	design_ids += "m45_mag"
-	design_ids += "s12g_hornet"
-	design_ids += "s12g_antitide"
 	design_ids += "s12g_rubber"
 	design_ids += "s12g_bslug"
+	design_ids += "s12g_br"
 	design_ids += "s12g_incinslug"
 	design_ids += "wt550_ammo_normal"
-	design_ids += "sol35_shortextmag"
-	design_ids += "sol40_riflemag"
+	design_ids += "m9mm_mag"
+	design_ids += "m45_mag"
 	design_ids += "solgrenade_mag"
 	. = ..()
 
@@ -141,10 +154,13 @@
 	design_ids -= "mag_autorifle_ap"
 	design_ids -= "mag_autorifle_ic"
 	design_ids += "wt550_ammo_incendiary"
-	design_ids += "s12g_magnum"
-	design_ids += "s12g_express"
 	design_ids += "mod_mind_transfer"
 	. = ..()
+
+// Modsuit tech
+/datum/techweb_node/mod_equip/New()
+	. = ..()
+	design_ids += list("mod_remote_module")
 
 /datum/techweb_node/nerd
 	id = TECHWEB_NODE_NERD
@@ -182,6 +198,6 @@
 	)
 
 /datum/techweb_node/mod_equip/New()
-	design_ids += "mod_protean_servo"
+	design_ids += list("mod_protean_servo", "mod_hat_stabilizer",
+	)
 	. = ..()
-

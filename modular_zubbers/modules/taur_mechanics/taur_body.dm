@@ -1,4 +1,4 @@
-#define LAYDOWN_COOLDOWN 2 SECONDS
+#define LAYDOWN_COOLDOWN 1 SECONDS
 
 /obj/item/organ/taur_body
 	name = "taur body"
@@ -7,10 +7,12 @@
 	external_bodyshapes = BODYSHAPE_TAUR
 	use_mob_sprite_as_obj_sprite = TRUE
 
-	preference = "feature_taur"
 	mutantpart_key = "taur"
 	mutantpart_info = list(MUTANT_INDEX_NAME = "None", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF"))
 	bodypart_overlay = /datum/bodypart_overlay/mutant/taur_body
+
+	/// The icon state used to crop clothing not made for us. See 'modular_skyrat\master_files\icons\mob\clothing\taur_masking_helpers.dmi' for more
+	var/clothing_cropping_state = DEFAULT_TAUR_CLIPPING_MASK
 
 	/// If not null, the left leg limb we add to our mob will have this name.
 	var/left_leg_name = "front legs"
@@ -69,9 +71,6 @@
 	left_leg_name = "upper serpentine body"
 	right_leg_name = "lower serpentine body"
 
-/obj/item/organ/taur_body/serpentine/synth
-	organ_flags = ORGAN_ROBOTIC
-
 /obj/item/organ/taur_body/spider
 	left_leg_name = "left legs"
 	right_leg_name = "right legs"
@@ -94,7 +93,7 @@
 	organ_flags = ORGAN_ROBOTIC
 
 /datum/bodypart_overlay/mutant/taur_body
-	feature_key = "taur"
+	feature_key = FEATURE_TAUR
 	layers = ALL_EXTERNAL_OVERLAYS | EXTERNAL_FRONT_UNDER_CLOTHES | EXTERNAL_FRONT_OVER
 	color_source = ORGAN_COLOR_OVERRIDE
 
@@ -117,10 +116,6 @@
 
 /datum/bodypart_overlay/mutant/taur_body/override_color(rgb_value)
 	return draw_color
-
-/datum/bodypart_overlay/mutant/taur_body/get_global_feature_list()
-	return SSaccessories.sprite_accessories["taur"]
-
 
 /obj/item/organ/taur_body/on_mob_insert(mob/living/carbon/receiver, special, movement_flags)
 	if(sprite_accessory_flags & SPRITE_ACCESSORY_HIDE_SHOES)
@@ -170,7 +165,7 @@
 	var/datum/bodypart_overlay/mutant/taur_body/overlay = bodypart_overlay
 	if(overlay.can_lay_down)
 		add_verb(receiver, /obj/item/organ/taur_body/proc/toggle_laying)
-
+	add_verb(receiver, /obj/item/organ/taur_body/proc/toggle_cropping)
 
 /obj/item/organ/taur_body/on_mob_remove(mob/living/carbon/organ_owner, special, movement_flags)
 	var/obj/item/bodypart/leg/left/left_leg = organ_owner.get_bodypart(BODY_ZONE_L_LEG)
@@ -194,6 +189,7 @@
 
 	// We don't call `synchronize_bodytypes()` here, because it's already going to get called in the parent because `external_bodyshapes` has a value.
 	remove_verb(organ_owner, /obj/item/organ/taur_body/proc/toggle_laying)
+	remove_verb(organ_owner, /obj/item/organ/taur_body/proc/toggle_cropping)
 	return ..()
 
 /obj/item/organ/taur_body/proc/get_riding_offset(oversized = FALSE)
@@ -254,3 +250,27 @@
 			playsound(owner, "bodyfall", 50, TRUE)
 
 #undef LAYDOWN_COOLDOWN
+
+/obj/item/organ/taur_body/proc/toggle_cropping()
+	set category = "Taur"
+	set name = "Override Taur Cropping Settings"
+
+	var/mob/living/carbon/human/owner = src
+	if(!istype(owner))
+		return
+
+	var/obj/item/organ/taur_body/organ = owner.get_organ_by_type(/obj/item/organ/taur_body)
+	if(isnull(organ))
+		stack_trace("Taur cropping override down triggered without Taur organ")
+		return
+
+	if (!isnull(owner))
+		if (HAS_TRAIT(owner, TRAIT_TAUR_IGNORING_CROPPING))
+			REMOVE_TRAIT(owner, TRAIT_TAUR_IGNORING_CROPPING, TRAIT_SOURCE_TAURCROP)
+		else
+			ADD_TRAIT(owner, TRAIT_TAUR_IGNORING_CROPPING, TRAIT_SOURCE_TAURCROP)
+
+		var/setting_string = (HAS_TRAIT(owner, TRAIT_TAUR_IGNORING_CROPPING) ? "now ignoring cropping" : "no longer ignoring cropping")
+		balloon_alert(owner, setting_string)
+
+		owner.update_clothing(ITEM_SLOT_OCLOTHING|ITEM_SLOT_ICLOTHING) // the only items with taur cropping

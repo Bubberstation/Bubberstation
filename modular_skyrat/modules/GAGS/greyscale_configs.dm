@@ -670,6 +670,43 @@
 	name = "Branded Hoodie Worn"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/hoodie/hoodie_branded_worn.json'
 
+
+//Doppler Hoodies.
+/datum/greyscale_config/big_hoodie
+	name = "Big Hoodie"
+	icon_file = 'modular_skyrat/modules/GAGS/icons/suit/dopplerhoodieobj.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/suits/hoodies/big_hoodie.json'
+
+/datum/greyscale_config/big_hoodie/worn
+	name = "Big Hoodie (Worn)"
+	icon_file = 'modular_skyrat/modules/GAGS/icons/suit/dopplerhoodie.dmi'
+
+/datum/greyscale_config/big_hoodie_hood
+	name = "Big Hoodie Hood"
+	icon_file = 'modular_skyrat/modules/GAGS/icons/suit/dopplerhoodie.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/suits/hoodies/big_hoodie_hood.json'
+
+/datum/greyscale_config/big_hoodie_hood/worn
+	name = "Big Hoodie Hood (Worn)"
+
+/datum/greyscale_config/twee_hoodie
+	name = "Twee Hoodie"
+	icon_file = 'modular_skyrat/modules/GAGS/icons/suit/dopplerhoodieobj.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/suits/hoodies/twee_hoodie.json'
+
+/datum/greyscale_config/twee_hoodie/worn
+	name = "Twee Hoodie (Worn)"
+	icon_file = 'modular_skyrat/modules/GAGS/icons/suit/dopplerhoodie.dmi'
+
+/datum/greyscale_config/twee_hoodie_hood
+	name = "Twee Hoodie Hood"
+	icon_file = 'modular_skyrat/modules/GAGS/icons/suit/dopplerhoodie.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/suits/hoodies/twee_hoodie_hood.json'
+
+/datum/greyscale_config/twee_hoodie_hood/worn
+	name = "Twee Hoodie Hood (Worn)"
+
+
 // CARDIGAN
 
 /datum/greyscale_config/cardigan
@@ -1307,7 +1344,7 @@ TREK
 /datum/greyscale_config/sandals/worn/oldvox
 	icon_file = 'modular_skyrat/modules/GAGS/icons/shoes/shoes_oldvox.dmi'
 
-// WRAPS
+// WRAPS AND GLOVES
 
 /datum/greyscale_config/clothwraps
 	name = "Cloth Wraps"
@@ -1344,6 +1381,15 @@ TREK
 	name = "Cloth Arm Wraps (Worn)"
 	icon_file = 'modular_skyrat/master_files/icons/donator/mob/clothing/hands.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/arm_wraps/arm_wraps_worn.json'
+
+/datum/greyscale_config/catgloves
+	name = "Catgloves"
+	icon_file = 'modular_skyrat/modules/GAGS/icons/catglove.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/gloves/catgloves.json'
+
+/datum/greyscale_config/catgloves/worn
+	name = "Catgloves Worn"
+	icon_file = 'modular_skyrat/modules/GAGS/icons/catglove_worn.dmi'
 
 // MISC SHOES
 
@@ -1600,3 +1646,4 @@ TREK
 /datum/greyscale_config/turret/toolbox
 	name = "Donksoft Turret"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/turret/turret_toolbox.json'
+

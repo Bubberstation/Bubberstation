@@ -18,7 +18,7 @@
 	mutantheart = /obj/item/organ/heart/protean
 	mutantstomach = /obj/item/organ/stomach/protean
 	mutantlungs = null
-	mutantliver = null
+	mutantliver = /obj/item/organ/liver/protean
 	mutantappendix = null
 	mutanteyes = /obj/item/organ/eyes/robotic/protean
 	mutantears = /obj/item/organ/ears/cybernetic/protean
@@ -44,7 +44,6 @@
 
 		// Needed to exist without dying and robot specific stuff.
 		TRAIT_NOBREATH,
-		TRAIT_LIVERLESS_METABOLISM,
 		TRAIT_ROCK_EATER,
 		TRAIT_STABLEHEART, // TODO: handle orchestrator code
 		TRAIT_NOHUNGER, // They will have metal stored in the stomach. Fuck nutrition code.
@@ -57,6 +56,7 @@
 		TRAIT_SYNTHETIC, // Not used in any code, but just in case
 		TRAIT_TOXIMMUNE,
 		TRAIT_NEVER_WOUNDED, // Does not wound.
+		TRAIT_VIRUSIMMUNE, // So they can't roll for fake virus, they can't get sick anyways
 
 		// Extra cool stuff
 		TRAIT_RADIMMUNE,
@@ -71,7 +71,7 @@
 	)
 
 	inherent_biotypes = MOB_ROBOTIC | MOB_HUMANOID
-	reagent_flags = null
+	reagent_flags = PROCESS_PROTEAN
 
 	/// Reference to the
 	var/obj/item/mod/control/pre_equipped/protean/species_modsuit
@@ -79,6 +79,7 @@
 	/// Reference to the species owner
 	var/mob/living/carbon/human/owner
 	var/list/organ_slots = list(ORGAN_SLOT_BRAIN, ORGAN_SLOT_HEART, ORGAN_SLOT_STOMACH, ORGAN_SLOT_EYES)
+	language_prefs_whitelist = list(/datum/language/monkey)
 
 /mob/living/carbon/human/species/protean
 	race = /datum/species/protean

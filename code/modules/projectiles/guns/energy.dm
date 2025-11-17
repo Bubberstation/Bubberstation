@@ -47,6 +47,8 @@
 	var/charge_delay = 8
 	/// The amount restored by the gun to the cell per self charge tick
 	var/self_charge_amount = STANDARD_ENERGY_GUN_SELF_CHARGE_RATE
+	/// sound played when fire mode select is done
+	var/fire_mode_switch_sound = SFX_FIRE_MODE_SWITCH
 
 /obj/item/gun/energy/fire_sounds()
 	// What frequency the energy gun's sound will make
@@ -146,7 +148,6 @@
 		ammo_type[i] = shot
 	shot = ammo_type[select]
 	fire_sound = shot.fire_sound
-	fire_sound_volume = shot.fire_sound_volume //SKYRAT EDIT ADDITION
 	fire_delay = shot.delay
 
 /obj/item/gun/energy/Destroy()
@@ -231,13 +232,14 @@
 		select = 1
 	var/obj/item/ammo_casing/energy/shot = ammo_type[select]
 	fire_sound = shot.fire_sound
-	fire_sound_volume = shot.fire_sound_volume //SKYRAT EDIT ADDITION
 	fire_delay = shot.delay
 	if (shot.select_name && user)
 		balloon_alert(user, "set to [shot.select_name]")
 	chambered = null
 	recharge_newshot(TRUE)
 	update_appearance()
+	if(fire_mode_switch_sound)
+		playsound(src, fire_mode_switch_sound, 50, TRUE)
 
 /obj/item/gun/energy/update_icon_state()
 	var/skip_inhand = initial(inhand_icon_state) //only build if we aren't using a preset inhand icon

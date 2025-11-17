@@ -11,29 +11,28 @@
 		/obj/structure/flora/bush/grassy/style_random = 1,
 		/obj/structure/flora/bush/leavy/style_random = 1,
 		/obj/structure/flora/bush/sparsegrass/style_random = 3,
-		/obj/structure/flora/bush/stalky/style_random = 5,
+		/obj/structure/flora/bush/stalky/style_random = 5
 	)
 
 	weighted_mob_spawn_list = list(
 		/mob/living/basic/mining/cazador = 10,
 		/mob/living/basic/mining/scorpion = 40,
-		/obj/effect/decal/cleanable/ants/fire = 50
+		/obj/effect/decal/cleanable/ants/fire = 50,
+		/mob/living/basic/mining/moonsnake = 20
 	)
 
 	weighted_feature_spawn_list = list(
 		/obj/structure/geyser/random = 4,
-		/obj/structure/ore_vent/random/moonstation = 1
+		/obj/structure/antfarm/natural = 1
 	)
 
+	flora_spawn_chance = 4
 	feature_spawn_chance = 0.1
-	mob_spawn_chance = 1
+	mob_spawn_chance = 0.3
 	initial_closed_chance = 30
 	smoothing_iterations = 50
 	birth_limit = 4
 	death_limit = 3
-
-
-
 
 //Underground
 /datum/map_generator/cave_generator/moonstation/cave
@@ -48,40 +47,70 @@
 
 
 	weighted_mob_spawn_list = list(
-		SPAWN_MEGAFAUNA = 2,
 		/mob/living/basic/mining/basilisk = 20,
-		/mob/living/basic/mining/bileworm = 30,
 		/obj/effect/spawner/random/lavaland_mob/goliath = 10,
-		/obj/effect/spawner/random/lavaland_mob/legion = 20,
 		/mob/living/basic/mining/watcher = 30,
-		/mob/living/basic/mining/goldgrub = 10,
 		/mob/living/basic/mining/brimdemon = 10,
-		/obj/structure/spawner/mining/goliath = 5
+		/obj/structure/spawner/mining/goliath = 3,
+		/mob/living/basic/mining/moonsnake = 20
 	)
 
 	weighted_flora_spawn_list = list(
-		/obj/structure/flora/rock/style_random = 5,
+		/obj/structure/flora/rock/style_random = 20,
+		/obj/structure/flora/rock/pile/style_random = 20,
 		/obj/structure/flora/ash/cap_shroom = 10,
 		/obj/structure/flora/ash/leaf_shroom = 5,
 		/obj/structure/flora/ash/stem_shroom = 5,
 		/obj/structure/flora/ash/tall_shroom = 5,
 	)
 
-	///Note that this spawn list is also in the lavaland and icemoon generator
 	weighted_feature_spawn_list = list(
 		/obj/structure/geyser/hollowwater = 10,
 		/obj/structure/geyser/plasma_oxide = 10,
 		/obj/structure/geyser/protozine = 10,
+		/obj/structure/geyser/random = 2,
 		/obj/structure/geyser/wittel = 10,
-		/obj/structure/ore_vent/random/moonstation/cave = 10
+		/obj/structure/ore_vent/random/moonstation/cave = 2.5 // This was at 100 and the sole item in the list, but it was runtiming.
 	)
 
-	feature_spawn_chance = 0.2
-	mob_spawn_chance = 4
-	initial_closed_chance = 45
+	flora_spawn_chance = 2
+	feature_spawn_chance = 0.4
+	mob_spawn_chance = 1.5
+	initial_closed_chance = 40
 	smoothing_iterations = 50
 	birth_limit = 4
 	death_limit = 3
 
 
+/* Here lies dead code that I wish to get working again. Because of how changeturf works, this cannot work without causing runtimes. Maybe in the future this can be re-added.  ~ Burger
+/obj/effect/mapping_helpers/turf_spreader
+	name = "turf spreader"
+	desc = "Spread the love!"
 
+	var/turf/desired_spread_type
+
+	var/spread_prob_base = 80
+	var/spread_prob_loss = 10
+
+/obj/effect/mapping_helpers/turf_spreader/Initialize(mapload)
+
+	. = ..()
+
+	var/turf/our_turf = get_turf(src)
+
+	if(!our_turf) //huh
+		return
+
+	if(our_turf.turf_flags & NO_LAVA_GEN)
+		return .
+
+	var/area/our_area = our_turf.loc
+
+	if(desired_spread_type && our_turf.type != desired_spread_type)
+		our_turf.ChangeTurf(desired_spread_type)
+
+	our_turf.Spread(spread_prob_base,spread_prob_loss,our_area.type)
+
+/obj/effect/mapping_helpers/turf_spreader/moonstation_water
+	desired_spread_type = /turf/open/water/moonstation
+*/

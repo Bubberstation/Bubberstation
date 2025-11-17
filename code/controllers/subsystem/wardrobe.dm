@@ -66,10 +66,9 @@ SUBSYSTEM_DEF(wardrobe)
 /datum/controller/subsystem/wardrobe/stat_entry(msg)
 	var/total_provided = max(stock_hit + stock_miss, 1)
 	var/current_max_store = (one_go_master * cache_intensity) + (overflow_lienency * length(canon_minimum))
-	msg += " P:[length(canon_minimum)] Q:[length(order_list)] S:[length(preloaded_stock)] I:[cache_intensity] O:[overflow_lienency]"
-	msg += " H:[stock_hit] M:[stock_miss] T:[total_provided] H/T:[PERCENT(stock_hit / total_provided)]% M/T:[PERCENT(stock_miss / total_provided)]%"
-	msg += " MAX:[current_max_store]"
-	msg += " ID:[inspect_delay] NI:[last_inspect_time + inspect_delay]"
+	msg += "\n  P:[length(canon_minimum)] Q:[length(order_list)] S:[length(preloaded_stock)] I:[cache_intensity] O:[overflow_lienency] MAX:[current_max_store]"
+	msg += "\n  H:[stock_hit] M:[stock_miss] T:[total_provided] H/T:[PERCENT(stock_hit / total_provided)]% M/T:[PERCENT(stock_miss / total_provided)]%"
+	msg += "\n  ID:[inspect_delay] NI:[last_inspect_time + inspect_delay]"
 	return ..()
 
 /datum/controller/subsystem/wardrobe/fire(resumed=FALSE)
@@ -210,7 +209,9 @@ SUBSYSTEM_DEF(wardrobe)
 
 /// Take an existing object, and insert it into our storage
 /// If we can't or won't take it, it's deleted. You do not own this object after passing it in
-/datum/controller/subsystem/wardrobe/proc/stash_object(atom/movable/object)
+/datum/controller/subsystem/wardrobe/proc/stash_object(obj/item/object)
+	if(object.item_flags & DO_NOT_WARDROBE)
+		return
 	var/object_type = object.type
 	var/list/master_info = canon_minimum[object_type]
 	// I will not permit objects you didn't reserve ahead of time
