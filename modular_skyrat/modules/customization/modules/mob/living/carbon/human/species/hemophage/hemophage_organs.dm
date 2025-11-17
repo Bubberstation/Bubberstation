@@ -34,7 +34,7 @@
 		drinker.adjust_disgust(blood_eatable, DISGUST_LEVEL_DISGUSTED)
 		maximum_gained = BLOOD_VOLUME_NORMAL
 
-	else if(ishuman(victim) && GET_CLIENT(victim))
+	else if(ishuman(victim) && victim.mind)
 		drinker.apply_status_effect(/datum/status_effect/blood_thirst_satiated)
 		drinker.disgust *= 0.3 //also clears a little bit of disgust too
 
