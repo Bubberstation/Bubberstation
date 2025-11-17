@@ -833,8 +833,8 @@
 			SKIN_ICON = CYBORG_ICON_SERVICE_XENOBORG,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUEPANEL, TRAIT_R_WIDE),
 			RAPTOR_HAT_OFFSET
+		),
 	)
-
 // Cargo borgs
 /obj/item/robot_model/cargo/Initialize(mapload)
 	. = ..()

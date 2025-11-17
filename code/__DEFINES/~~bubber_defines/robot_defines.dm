@@ -203,7 +203,6 @@
 
 // XENOBORG ICON DEFINES - Spritework done by Octopus King
 #define CYBORG_ICON_TYPE_XENOBORG "xenoborg"
-
 #define CYBORG_ICON_ENGI_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_engi.dmi'
 #define CYBORG_ICON_CARGO_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_cargo.dmi'
 #define CYBORG_ICON_JANI_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_jani.dmi'
