@@ -38,14 +38,15 @@
 
 /obj/item/ammo_box/magazine/recharge/plasma_battery
 	name = "plasma power pack"
-	desc = "A rechargeable, detachable battery that serves as a power source for plasma projectors."
+	desc = "A detachable battery that serves as a power source for plasma projectors."
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/ammo.dmi'
 	base_icon_state = "plasma_battery"
 	icon_state = "plasma_battery"
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
-	ammo_type = /obj/item/ammo_casing/energy/laser/plasma_glob
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/plasma_glob)
 	caliber = CALIBER_LASER
 	max_ammo = 15
+	var/overcharged = FALSE
 
 /obj/item/ammo_box/magazine/recharge/plasma_battery/update_icon_state() // FUCK YOU /OBJ/ITEM/AMMO_BOX/MAGAZINE/RECHARGE
 	. = ..()
