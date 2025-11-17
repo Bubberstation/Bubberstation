@@ -156,7 +156,7 @@
 
 /mob/living/basic/fleshmind/proc/kill_mob() // Used to make all fleshmind mobs lightly explode
 
-	explosion(src, 0, 0, 2, 2, 0, FALSE)
+	explosion(src, 0, 0, 1, 1, 0, FALSE)
 	gib()
 
 /**
@@ -271,11 +271,11 @@
 	name = "Slicer"
 	desc = "A small organic robot, it somewhat resembles a medibot, but it has a blade slashing around."
 	icon_state = "slicer"
-	health = 50
-	maxHealth = 50
-	wound_bonus = 20
-	melee_damage_lower = 15
-	melee_damage_upper = 20
+	health = 30
+	maxHealth = 30
+	wound_bonus = 10
+	melee_damage_lower = 10
+	melee_damage_upper = 15
 	mob_size = MOB_SIZE_SMALL
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
@@ -354,8 +354,8 @@
 			'modular_zubbers/sound/fleshmind/robot_talk_light5.ogg',
 		)
 	)
-	health = 10
-	maxHealth = 10
+	health = 5
+	maxHealth = 5
 	var/explode_attack = /datum/action/cooldown/mob_cooldown/floater_explode
 	mob_size = MOB_SIZE_SMALL
 	light_color = "#820D1C"
@@ -392,7 +392,7 @@
 	if(exploded)
 		return
 	exploded = TRUE
-	explosion(src, 0, 0, 2, 3)
+	explosion(src, 0, 0, 1, 2)
 	death()
 
 /datum/action/cooldown/mob_cooldown/floater_explode
@@ -428,8 +428,8 @@
 	malfunction_chance = MALFUNCTION_CHANCE_MEDIUM
 	melee_damage_lower = 1 // Ranged only
 	melee_damage_upper = 1
-	health = 75
-	maxHealth = 75
+	health = 50
+	maxHealth = 50
 	mob_size = MOB_SIZE_SMALL
 	var/projectile_type = /obj/projectile/treader/weak
 	var/ranged_cooldown = 3 SECONDS
@@ -476,7 +476,7 @@
 
 /obj/projectile/treader/weak
 	knockdown = 0
-	damage = 15
+	damage = 5
 
 /**
  * Stunner
@@ -496,8 +496,8 @@
 	malfunction_chance = MALFUNCTION_CHANCE_MEDIUM
 	melee_damage_lower = 1 // Not very harmful, just annoying.
 	melee_damage_upper = 2
-	health = 100
-	maxHealth = 100
+	health = 65
+	maxHealth = 65
 	attack_verb_continuous = "harmbatons"
 	attack_verb_simple = "harmbaton"
 	mob_size = MOB_SIZE_SMALL
@@ -562,10 +562,10 @@
 	icon_dead = "hiborg-dead"
 	ai_controller = /datum/ai_controller/basic_controller/fleshmind
 	malfunction_chance = MALFUNCTION_CHANCE_MEDIUM
-	health = 350
-	maxHealth = 350
-	melee_damage_lower = 25
-	melee_damage_upper = 30
+	health = 225
+	maxHealth = 225
+	melee_damage_lower = 15
+	melee_damage_upper = 20
 	attack_verb_continuous = "saws"
 	attack_verb_simple = "saw"
 	mob_size = MOB_SIZE_HUMAN
@@ -696,14 +696,14 @@
 	icon_state = "himan"
 	icon_dead = "himan-dead"
 	base_icon_state = "himan"
-	maxHealth = 250
-	health = 250
+	maxHealth = 150
+	health = 150
 	speed = 2
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
-	melee_damage_lower = 25
-	melee_damage_upper = 30
+	melee_damage_lower = 15
+	melee_damage_upper = 20
 	malfunction_chance = MALFUNCTION_CHANCE_HIGH
 	mob_size = MOB_SIZE_HUMAN
 	attack_speak = list(
@@ -856,11 +856,11 @@
 	var/ranged_cooldown = 5 SECONDS
 	var/shoot_sound = 'sound/effects/chemistry/saturnx_fade.ogg'
 	malfunction_chance = MALFUNCTION_CHANCE_HIGH
-	melee_damage_lower = 15
-	melee_damage_upper = 15
+	melee_damage_lower = 10
+	melee_damage_upper = 10
 	basic_mob_flags = DEL_ON_DEATH
-	health = 200
-	maxHealth = 200
+	health = 130
+	maxHealth = 130
 	speed = 3
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	light_color = FLESHMIND_LIGHT_BLUE
@@ -935,7 +935,7 @@
 /obj/projectile/treader
 	name = "nasty ball of ooze"
 	icon_state = "neurotoxin"
-	damage = 20
+	damage = 10
 	damage_type = BURN
 	knockdown = 20
 	armor_flag = BIO
@@ -958,14 +958,14 @@
 	icon_state = "phaser-1"
 	base_icon_state = "phaser"
 	ai_controller = /datum/ai_controller/basic_controller/fleshmind/phaser
-	health = 160
-	maxHealth = 160
+	health = 105
+	maxHealth = 105
 	malfunction_chance = null
 	attack_sound = 'sound/effects/blob/attackblob.ogg'
 	attack_verb_continuous = "warps"
 	attack_verb_simple = "warp"
-	melee_damage_lower = 10
-	melee_damage_upper = 15
+	melee_damage_lower = 5
+	melee_damage_upper = 10
 	alert_sounds = null
 	escapes_closets = FALSE
 	mob_size = MOB_SIZE_HUMAN
@@ -1270,10 +1270,10 @@
 	base_icon_state = "mechiver"
 	icon_dead = "mechiver-dead"
 	ai_controller = /datum/ai_controller/basic_controller/fleshmind/mechiver
-	health = 450
-	maxHealth = 450
-	melee_damage_lower = 20
-	melee_damage_upper = 30
+	health = 300
+	maxHealth = 300
+	melee_damage_lower = 10
+	melee_damage_upper = 15
 	attack_verb_continuous = "crushes"
 	attack_verb_simple = "crush"
 	attack_sound = 'sound/items/weapons/smash.ogg'
@@ -1490,8 +1490,8 @@
 	icon_state = "mauler_monkey"
 	ai_controller = /datum/ai_controller/monkey
 	speed = 2 // We want it to be quite fast.
-	health = 140
-	maxHealth = 140
+	health = 90
+	maxHealth = 90
 	attack_emote = list(
 		"OOK OOK OOK!!!",
 		"SEEK!",

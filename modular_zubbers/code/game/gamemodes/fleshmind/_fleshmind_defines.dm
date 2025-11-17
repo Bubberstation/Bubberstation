@@ -98,7 +98,7 @@
 #define WIREWEED_HEAL_AMOUNT 3
 
 // MECHIVER RELATED DEFINES
-#define MECHIVER_INTERNAL_MOB_DAMAGE_UPPER 60 // Upder damage done to internal mob
-#define MECHIVER_INTERNAL_MOB_DAMAGE_LOWER 30 // Lower damage done to internal mob
+#define MECHIVER_INTERNAL_MOB_DAMAGE_UPPER 40 // Upder damage done to internal mob
+#define MECHIVER_INTERNAL_MOB_DAMAGE_LOWER 20 // Lower damage done to internal mob
 #define MECHIVER_CONVERSION_TIME 20 SECONDS // Time to convert someone inside
 #define MECHIVER_CONSUME_COOLDOWN 1 MINUTES // How long it takes to be ready to consume again
