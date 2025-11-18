@@ -89,7 +89,7 @@
 	my_gang.rename_gangster(owner, original_name, starter_gangster) // fully_replace_character_name
 	if(starter_gangster)
 		equip_gangster_in_inventory()
-	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/thatshowfamiliesworks.ogg', 100, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
+	owner.current.playsound_local(get_turf(owner.current), 'sound/music/antag/thatshowfamiliesworks.ogg', 100, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
 	add_objectives()
 	..()
 
@@ -214,7 +214,7 @@
 	desc = "Teach new recruits the Secret Handshake to join."
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "recruit"
-	icon_icon = 'icons/obj/antags/gang/actions.dmi'
+	base_icon_state = 'icons/obj/antags/gang/actions.dmi'
 	cooldown_time = 300
 	/// The family antagonist datum of the "owner" of this action.
 	var/datum/antagonist/gang/my_gang_datum
@@ -236,7 +236,7 @@
  */
 /datum/action/cooldown/spawn_induction_package/proc/offer_handshake()
 	var/mob/living/carbon/human/human_owner = owner
-	if(human_owner.stat != CONSCIOUS || human_owner.incapacitated())
+	if(human_owner.stat != CONSCIOUS || human_owner.incapacitated == NONE)
 		return FALSE
 
 	var/obj/item/hand_item/slapper/secret_handshake/secret_handshake_item = new(owner)
@@ -251,8 +251,9 @@
 		span_notice("You offer to induct people into the Family."),
 		vision_distance = 2,
 		)
-	if(human_owner.has_status_effect(/datum/status_effect/offering/secret_handshake))
-		return FALSE
+	//DEBUG: Probably not vital. away it goes!
+	//if(human_owner.has_status_effect(/datum/status_effect/offering/secret_handshake))
+		//return FALSE
 	if(!(locate(/mob/living/carbon) in orange(1, owner)))
 		owner.visible_message(
 			span_danger("[human_owner] offers to induct people into the Family, but nobody was around."),
@@ -260,8 +261,8 @@
 			vision_distance = 2,
 			)
 		return FALSE
-
-	human_owner.apply_status_effect(/datum/status_effect/offering/secret_handshake, secret_handshake_item)
+	//DEBUG: Ditto of the above. I get that this is supposed to prevent offering a handshake wile you're already doing so (probably) but I don't think it will break anything.
+	//human_owner.apply_status_effect(/datum/status_effect/offering/secret_handshake, secret_handshake_item)
 	return TRUE
 
 /datum/antagonist/gang/russian_mafia
@@ -368,17 +369,17 @@
 	gang_name = "Tojo Clan"
 	gang_id = "YAK"
 	acceptable_clothes = list(/obj/item/clothing/head/soft/yellow,
-		/obj/item/clothing/under/costume/yakuza,
-		/obj/item/clothing/shoes/yakuza,
+		/obj/item/clothing/under/suit/fancy,
+		/obj/item/clothing/shoes/laceup,
 		/obj/item/clothing/neck/scarf/yellow,
 		/obj/item/clothing/head/beanie/yellow,
 		/obj/item/clothing/mask/bandana/gold,
-		/obj/item/clothing/head/hardhat,
-		/obj/item/clothing/suit/costume/yakuza)
-	free_clothes = list(/obj/item/clothing/under/costume/yakuza,
-		/obj/item/clothing/shoes/yakuza,
-		/obj/item/clothing/suit/costume/yakuza,
-		/obj/item/clothing/head/hardhat,
+		/obj/item/clothing/head/utility/hardhat/orange,
+		/obj/item/clothing/suit/toggle/jacket/sweater) //DEBUG: recolor this later
+	free_clothes = list(/obj/item/clothing/under/suit/fancy,
+		/obj/item/clothing/shoes/laceup,
+		/obj/item/clothing/suit/toggle/jacket/sweater, //DEBUG: recolor this later
+		/obj/item/clothing/head/utility/hardhat/orange,
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "Tojo"
 	gang_team_type = /datum/team/gang/yakuza
@@ -452,11 +453,11 @@
 	gang_name = "Internal Revenue Service"
 	gang_id = "IRS"
 	acceptable_clothes = list(/obj/item/clothing/suit/costume/irs,
-		/obj/item/clothing/under/costume/irs,
-		/obj/item/clothing/head/irs)
+		/obj/item/clothing/under/costume/buttondown/slacks,
+		/obj/item/clothing/head/costume/irs)
 	free_clothes = list(/obj/item/clothing/suit/costume/irs,
-		/obj/item/clothing/under/costume/irs,
-		/obj/item/clothing/head/irs,
+		/obj/item/clothing/under/costume/buttondown/slacks,
+		/obj/item/clothing/head/costume/irs,
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "IRS"
 	gang_team_type = /datum/team/gang/irs
@@ -475,10 +476,10 @@
 	roundend_category = "O.S.I. Agents"
 	gang_name = "Office of Secret Intelligence"
 	gang_id = "OSI"
-	acceptable_clothes = list(/obj/item/clothing/suit/costume/osi,
+	acceptable_clothes = list(/obj/item/clothing/suit/toggle/jacket/trenchcoat,
 		/obj/item/clothing/under/costume/osi,
 		/obj/item/clothing/glasses/osi)
-	free_clothes = list(/obj/item/clothing/suit/costume/osi,
+	free_clothes = list(/obj/item/clothing/suit/toggle/jacket/trenchcoat,
 		/obj/item/clothing/under/costume/osi,
 		/obj/item/clothing/glasses/osi,
 		/obj/item/toy/crayon/spraycan)
@@ -501,10 +502,10 @@
 	gang_id = "TMC"
 	acceptable_clothes = list(/obj/item/clothing/suit/costume/tmc,
 		/obj/item/clothing/under/costume/tmc,
-		/obj/item/clothing/head/tmc)
+		/obj/item/clothing/head/costume/tmc)
 	free_clothes = list(/obj/item/clothing/suit/costume/tmc,
 		/obj/item/clothing/under/costume/tmc,
-		/obj/item/clothing/head/tmc,
+		/obj/item/clothing/head/costume/tmc,
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "LostMC"
 	gang_team_type = /datum/team/gang/tmc
@@ -524,11 +525,11 @@
 	gang_name = "Powder Gangers"
 	gang_id = "PG"
 	acceptable_clothes = list(/obj/item/clothing/suit/costume/pg,
-		/obj/item/clothing/under/costume/pg,
-		/obj/item/clothing/head/pg)
+		/obj/item/clothing/under/color/orange, //DEBUG: temp clothes. closest think to prisoner suit without stuck sensors
+		/obj/item/clothing/head/beanie)
 	free_clothes = list(/obj/item/clothing/suit/costume/pg,
-		/obj/item/clothing/under/costume/pg,
-		/obj/item/clothing/head/pg,
+		/obj/item/clothing/under/color/orange, //DEBUG: temp clothes. closest think to prisoner suit without stuck sensors
+		/obj/item/clothing/head/beanie,
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "PowderGang"
 	gang_team_type = /datum/team/gang/pg
@@ -548,12 +549,14 @@
 	roundend_category = "O'Driscoll's Gangsters"
 	gang_name = "O'Driscoll's Gang"
 	gang_id = "DB"
-	acceptable_clothes = list(/obj/item/clothing/suit/costume/driscoll,
-		/obj/item/clothing/under/costume/driscoll,
+	acceptable_clothes = list(/obj/item/clothing/neck/infinity_scarf, //DEBUG: temp clothing. make a green variant
+		/obj/item/clothing/under/costume/buttondown/slacks,
+		/obj/item/clothing/suit/toggle/jacket/trenchcoat,
 		/obj/item/clothing/mask/gas/driscoll,
 		/obj/item/clothing/shoes/cowboy)
-	free_clothes = list(/obj/item/clothing/suit/costume/driscoll,
-		/obj/item/clothing/under/costume/driscoll,
+	free_clothes = list(/obj/item/clothing/neck/infinity_scarf, //DEBUG: temp clothing. make a green variant
+		/obj/item/clothing/under/costume/buttondown/slacks,
+		/obj/item/clothing/suit/toggle/jacket/trenchcoat,
 		/obj/item/clothing/mask/gas/driscoll,
 		/obj/item/clothing/shoes/cowboy,
 		/obj/item/toy/crayon/spraycan)
@@ -576,12 +579,14 @@
 	gang_id = "DK"
 	acceptable_clothes = list(/obj/item/clothing/suit/costume/deckers,
 		/obj/item/clothing/under/costume/deckers,
-		/obj/item/clothing/head/deckers,
-		/obj/item/clothing/shoes/deckers)
+		/obj/item/clothing/under/costume/deckers/alt,
+		/obj/item/clothing/suit/costume/deckers,
+		/obj/item/clothing/head/costume/deckers,
+		/obj/item/clothing/shoes/glow)
 	free_clothes = list(/obj/item/clothing/suit/costume/deckers,
 		/obj/item/clothing/under/costume/deckers,
-		/obj/item/clothing/head/deckers,
-		/obj/item/clothing/shoes/deckers,
+		/obj/item/clothing/head/costume/deckers,
+		/obj/item/clothing/shoes/glow,
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "Deckers"
 	gang_team_type = /datum/team/gang/deckers
@@ -601,11 +606,11 @@
 	roundend_category = "Morningstar Member"
 	gang_name = "Morningstar"
 	gang_id = "MS"
-	acceptable_clothes = list(/obj/item/clothing/suit/costume/morningstar,
+	acceptable_clothes = list(/obj/item/clothing/suit/jacket/oversized,
 		/obj/item/clothing/under/costume/morningstar,
 		/obj/item/clothing/head/morningstar,
 		/obj/item/clothing/shoes/morningstar)
-	free_clothes = list(/obj/item/clothing/suit/costume/morningstar,
+	free_clothes = list(/obj/item/clothing/suit/jacket/oversized,
 		/obj/item/clothing/under/costume/morningstar,
 		/obj/item/clothing/head/morningstar,
 		/obj/item/clothing/shoes/morningstar,
@@ -627,13 +632,12 @@
 	roundend_category = "Third Street Saints Gangsters"
 	gang_name = "Third Street Saints"
 	gang_id = "TSS"
-	acceptable_clothes = list(/obj/item/clothing/suit/costume/saints,
-		/obj/item/clothing/under/costume/saints,
-		/obj/item/clothing/head/saints,
+	acceptable_clothes = list(/obj/item/clothing/suit/jacket/fancy,
+		/obj/item/clothing/under/suit/fancy,
 		/obj/item/clothing/shoes/saints)
-	free_clothes = list(/obj/item/clothing/suit/costume/saints,
-		/obj/item/clothing/under/costume/saints,
-		/obj/item/clothing/head/saints,
+	free_clothes = list(/obj/item/clothing/under/suit/fancy,
+		/obj/item/clothing/suit/jacket/fancy,
+		/obj/item/clothing/head/costume/fancy,
 		/obj/item/clothing/shoes/saints,
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "TheSaints"
@@ -654,11 +658,11 @@
 	roundend_category = "Phantom Thieves"
 	gang_name = "Phantom Thieves of Hearts"
 	gang_id = "PT"
-	acceptable_clothes = list(/obj/item/clothing/suit/costume/phantom,
+	acceptable_clothes = list(/obj/item/clothing/suit/jacket/oversized,
 		/obj/item/clothing/under/costume/phantom,
 		/obj/item/clothing/glasses/phantom,
 		/obj/item/clothing/shoes/phantom)
-	free_clothes = list(/obj/item/clothing/suit/costume/phantom,
+	free_clothes = list(/obj/item/clothing/suit/jacket/oversized,
 		/obj/item/clothing/under/costume/phantom,
 		/obj/item/clothing/glasses/phantom,
 		/obj/item/clothing/shoes/phantom,
