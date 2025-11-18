@@ -684,7 +684,7 @@
 	roundend_category = "Allies"
 	gang_name = "Allies"
 	gang_id = "ALLIES"
-	free_clothes = list(/obj/item/clothing/suit/costume/allies,
+	free_clothes = list(/obj/item/clothing/suit/allies,
 		/obj/item/clothing/under/costume/allies,
 		/obj/item/clothing/head/allies,
 		/obj/item/clothing/gloves/color/black,
@@ -709,7 +709,7 @@
 	gang_id = "SOV"
 	free_clothes = list(/obj/item/clothing/suit/costume/soviet,
 		/obj/item/clothing/under/costume/soviet_families,
-		/obj/item/clothing/head/ushanka/soviet,
+		/obj/item/clothing/head/costume/ushanka/soviet,
 		/obj/item/clothing/gloves/color/black,
 		/obj/item/clothing/shoes/jackboots,
 		/obj/item/toy/crayon/spraycan)
@@ -753,7 +753,7 @@
 	roundend_category = "Sybil Slickers"
 	gang_name = "Sybil Slickers"
 	gang_id = "SS"
-	free_clothes = list(/obj/item/clothing/suit/costume/sybil_slickers,
+	free_clothes = list(/obj/item/clothing/suit/sybil_slickers,
 		/obj/item/clothing/under/costume/sybil_slickers,
 		/obj/item/clothing/head/sybil_slickers,
 		/obj/item/clothing/gloves/tackler/football,
@@ -776,7 +776,7 @@
 	roundend_category = "Basil Boys"
 	gang_name = "Basil Boys"
 	gang_id = "BB"
-	free_clothes = list(/obj/item/clothing/suit/costume/basil_boys,
+	free_clothes = list(/obj/item/clothing/suit/basil_boys,
 		/obj/item/clothing/under/costume/basil_boys,
 		/obj/item/clothing/head/basil_boys,
 		/obj/item/clothing/gloves/tackler/football,
