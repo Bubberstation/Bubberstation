@@ -1,7 +1,6 @@
-import { multiline } from 'common/string';
 import { type Antagonist, Category } from '../base';
 
-export const GANGSTER_MECHANICAL_DESCRIPTION = multiline`
+export const GANGSTER_MECHANICAL_DESCRIPTION = `
       Convince people to join your family, wear your uniform, tag turf
       for the family, and accomplish your family's goals.
    `;
