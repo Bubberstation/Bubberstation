@@ -191,16 +191,6 @@
 #define CYBORG_ICON_SCI_MERMAID 'modular_zubbers/code/modules/silicons/borgs/sprites/merborg/mermaidbot_sci.dmi'
 #define CYBORG_ICON_ENG_MERMAID 'modular_zubbers/code/modules/silicons/borgs/sprites/merborg/mermaidbot_eng.dmi'
 
-//WAGECAGE CARGOBORG DEFINES - Sprites by Boviro
-
-#define CYBORG_ICON_CARGO_WAGECAGE 'modular_zubbers/code/modules/silicons/borgs/sprites/wagecage.dmi'
-#define CYBORG_ICON_TYPE_WAGECAGE "wagecage"
-
-//MERMAID BORG ICON DEFINES
-#define CYBORG_ICON_MED_MERMAID 'modular_zubbers/code/modules/silicons/borgs/sprites/merborg/mermaidbot_med.dmi'
-#define CYBORG_ICON_SCI_MERMAID 'modular_zubbers/code/modules/silicons/borgs/sprites/merborg/mermaidbot_sci.dmi'
-#define CYBORG_ICON_ENG_MERMAID 'modular_zubbers/code/modules/silicons/borgs/sprites/merborg/mermaidbot_eng.dmi'
-
 // XENOBORG ICON DEFINES - Spritework done by Octopus King
 #define CYBORG_ICON_TYPE_XENOBORG "xenoborg"
 #define CYBORG_ICON_ENGI_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_engi.dmi'
