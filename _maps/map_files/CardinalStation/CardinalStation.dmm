@@ -5516,6 +5516,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer4,
 /obj/structure/cable,
+/obj/machinery/door/window,
 /turf/open/floor/circuit/off,
 /area/station/ai/satellite/chamber)
 "boL" = (
@@ -23644,11 +23645,9 @@
 	dir = 6
 	},
 /obj/machinery/door/poddoor/preopen{
-	id = "AI Chamber entrance shutters"
+	id = sssss
 	},
-/obj/machinery/door/window{
-	dir = 1
-	},
+/obj/structure/window/reinforced/spawner,
 /turf/open/floor/circuit,
 /area/station/ai/satellite/chamber)
 "fGV" = (
@@ -30796,13 +30795,6 @@
 /area/space/nearstation)
 "hpB" = (
 /obj/effect/turf_decal/caution/stand_clear,
-/obj/machinery/button/door{
-	id = "AI Chamber entrance shutters";
-	name = "AI Chamber entrance shutters control";
-	pixel_y = -8;
-	req_access_txt = "16";
-	pixel_x = -24
-	},
 /obj/machinery/power/apc/auto_name/directional/east,
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer2{
 	dir = 1
@@ -30810,6 +30802,10 @@
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer4,
 /obj/structure/cable,
 /obj/effect/landmark/start/ai,
+/obj/machinery/button/door/directional/west{
+	name = "AI Chamber lockdown";
+	id = "AI Chamber entrance shutters"
+	},
 /turf/open/floor/circuit/off,
 /area/station/ai/satellite/chamber)
 "hpE" = (
@@ -34944,7 +34940,7 @@
 /area/station/science/genetics)
 "ioL" = (
 /obj/machinery/turretid{
-	control_area = "/area/ai_monitored/turret_protected/aisat/service";
+	control_area = "/area/station/ai/satellite/maintenance/storage";
 	name = "Service Bay Turret Control";
 	pixel_x = -28;
 	req_access = null;
@@ -39383,6 +39379,10 @@
 	dir = 1
 	},
 /area/station/science/genetics)
+"jnM" = (
+/obj/structure/window/reinforced/spawner,
+/turf/closed/wall/mineral/plastitanium,
+/area/station/ai/satellite/chamber)
 "jnT" = (
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/grass,
@@ -52956,12 +52956,7 @@
 /obj/machinery/door/poddoor/preopen{
 	id = "AI Chamber entrance shutters"
 	},
-/obj/structure/window/reinforced/spawner{
-	dir = 1
-	},
-/obj/machinery/door/window{
-	dir = 8
-	},
+/obj/structure/window/reinforced/spawner,
 /turf/open/floor/circuit,
 /area/station/ai/satellite/chamber)
 "mzV" = (
@@ -56041,12 +56036,7 @@
 /obj/machinery/door/poddoor/preopen{
 	id = "AI Chamber entrance shutters"
 	},
-/obj/structure/window/reinforced/spawner{
-	dir = 1
-	},
-/obj/machinery/door/window{
-	dir = 4
-	},
+/obj/structure/window/reinforced/spawner,
 /turf/open/floor/circuit,
 /area/station/ai/satellite/chamber)
 "nmk" = (
@@ -74352,10 +74342,6 @@
 /obj/machinery/door/poddoor/preopen{
 	id = "AI Chamber entrance shutters"
 	},
-/obj/structure/window/reinforced/spawner,
-/obj/structure/window/reinforced/spawner{
-	dir = 8
-	},
 /turf/open/floor/circuit,
 /area/station/ai/satellite/chamber)
 "ryH" = (
@@ -80002,7 +79988,6 @@
 /obj/machinery/door/poddoor/preopen{
 	id = "AI Chamber entrance shutters"
 	},
-/obj/machinery/door/window,
 /turf/open/floor/circuit,
 /area/station/ai/satellite/chamber)
 "sTd" = (
@@ -81818,7 +81803,8 @@
 /obj/machinery/turretid{
 	name = "AI Chamber turret control";
 	pixel_x = 3;
-	pixel_y = -23
+	pixel_y = -23;
+	control_area = "/area/station/ai/upload/chamber"
 	},
 /turf/open/floor/iron/dark,
 /area/station/ai/upload/foyer)
@@ -85006,10 +84992,6 @@
 /obj/structure/cable,
 /obj/machinery/door/poddoor/preopen{
 	id = "AI Chamber entrance shutters"
-	},
-/obj/structure/window/reinforced/spawner,
-/obj/structure/window/reinforced/spawner{
-	dir = 4
 	},
 /turf/open/floor/circuit,
 /area/station/ai/satellite/chamber)
@@ -113342,7 +113324,7 @@ csK
 cFY
 mzT
 mIs
-mIs
+jnM
 ryz
 rJh
 gOV
@@ -113856,7 +113838,7 @@ vLd
 usi
 nmc
 mIs
-mIs
+jnM
 udd
 rJh
 qLU
