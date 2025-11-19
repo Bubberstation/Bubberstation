@@ -1428,7 +1428,6 @@
 /turf/open/floor/plating,
 /area/station/ai/satellite/interior)
 "ajY" = (
-/obj/effect/mapping_helpers/dead_body_placer,
 /obj/effect/turf_decal/trimline/dark/filled/line,
 /obj/effect/turf_decal/trimline/dark/filled/line{
 	dir = 1
@@ -8461,7 +8460,11 @@
 /obj/structure/railing/corner/end{
 	dir = 4
 	},
-/turf/open/floor/wood/stairs/right,
+/obj/structure/steps{
+	dir = 4;
+	color = "#FFB25B"
+	},
+/turf/open/floor/wood/large,
 /area/station/service/bar)
 "aKs" = (
 /obj/structure/disposalpipe/segment,
@@ -15890,7 +15893,7 @@
 /area/station/science/ordnance/bomb)
 "bhm" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
-/turf/open/floor/iron/dark/smooth_large,
+/turf/open/floor/iron/dark/small,
 /area/station/medical/morgue)
 "bho" = (
 /obj/effect/turf_decal/siding/wood,
@@ -18940,7 +18943,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/white/smooth_large,
+/turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "bpP" = (
 /obj/structure/cable,
@@ -19264,9 +19267,6 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 9
-	},
-/obj/effect/turf_decal/siding/dark_blue/corner{
-	dir = 8
 	},
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	alpha = 160
@@ -19946,7 +19946,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/white/smooth_large,
+/turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "bsI" = (
 /obj/item/kirbyplants/random,
@@ -23123,8 +23123,16 @@
 	},
 /obj/structure/closet/secure_closet/medical3,
 /obj/machinery/airalarm/directional/west,
-/obj/item/clothing/under/plasmaman/paramedic,
-/obj/item/clothing/head/helmet/space/plasmaman/paramedic,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/under/plasmaman/medical,
+/obj/item/clothing/head/helmet/space/plasmaman/medical,
+/obj/item/storage/belt/medical{
+	pixel_y = 2
+	},
+/obj/item/defibrillator/loaded,
+/obj/item/clothing/gloves/latex/nitrile,
+/obj/item/clothing/gloves/latex/nitrile,
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "bBL" = (
@@ -23482,17 +23490,10 @@
 	pixel_x = -30
 	},
 /obj/effect/mapping_helpers/requests_console/assistance,
-/obj/item/reagent_containers/chem_pack{
-	pixel_x = 1;
-	pixel_y = 1
-	},
-/obj/item/reagent_containers/chem_pack{
-	pixel_x = 7;
-	pixel_y = 10
-	},
 /obj/machinery/light/directional/west,
 /obj/effect/turf_decal/tile/blue/full,
 /obj/structure/table/glass,
+/obj/item/book/manual/wiki/medicine,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/medical/treatment_center)
 "bCO" = (
@@ -39641,9 +39642,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
-"dON" = (
-/turf/open/floor/iron/white/smooth_large,
-/area/station/medical/medbay/central)
 "dOY" = (
 /obj/machinery/airalarm/directional/south,
 /turf/open/floor/iron/dark,
@@ -40852,7 +40850,11 @@
 /obj/structure/railing/corner/end/flip{
 	dir = 8
 	},
-/turf/open/floor/wood/stairs/left,
+/obj/structure/steps{
+	dir = 8;
+	color = "#FFB25B"
+	},
+/turf/open/floor/wood/large,
 /area/station/service/bar)
 "eqc" = (
 /obj/structure/bed/double,
@@ -40961,6 +40963,11 @@
 	sign_change_name = "Warning - Disposals: Leads to Robotics";
 	name = "DISPOSAL: LEADS TO ROBOTICS";
 	desc = "A warning sign which reads 'DISPOSAL: LEADS TO ROBOTICS'."
+	},
+/obj/machinery/door/window/right/directional/south{
+	name = "Robotics Chute";
+	req_access = list("robotics");
+	state_open = 1
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/medical/morgue)
@@ -49112,26 +49119,24 @@
 /obj/structure/table,
 /obj/machinery/power/apc/auto_name/directional/east,
 /obj/structure/cable,
-/obj/item/book/manual/wiki/medicine,
 /obj/item/reagent_containers/spray/cleaner{
 	pixel_x = 9;
 	pixel_y = 4
 	},
-/obj/item/blood_filter,
-/obj/item/storage/belt/medical{
-	pixel_y = 2
-	},
-/obj/item/storage/belt/medical{
-	pixel_y = 2
-	},
-/obj/item/clothing/glasses/hud/health,
-/obj/item/clothing/glasses/hud/health,
-/obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,
 /obj/machinery/light/directional/east,
+/obj/item/blood_filter,
+/obj/item/storage/belt/medical{
+	pixel_y = 2
+	},
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health{
+	pixel_x = -3;
+	pixel_y = 2
+	},
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "iob" = (
@@ -53477,7 +53482,6 @@
 /turf/open/floor/circuit,
 /area/station/ai/satellite/chamber)
 "kgW" = (
-/obj/effect/mapping_helpers/dead_body_placer,
 /obj/effect/turf_decal/trimline/dark/filled/line{
 	dir = 1
 	},
@@ -59004,7 +59008,7 @@
 /area/station/medical/psychology)
 "mFu" = (
 /obj/effect/turf_decal/caution/white{
-	color = "#ae4fd6"
+	color = "#D381C9"
 	},
 /obj/effect/turf_decal/trimline/dark/filled/line{
 	dir = 9
@@ -68379,7 +68383,6 @@
 	alpha = 160;
 	dir = 4
 	},
-/obj/effect/spawner/random/medical/patient_stretcher,
 /obj/effect/turf_decal/trimline/white/line{
 	dir = 4
 	},
@@ -70424,11 +70427,12 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
-/obj/structure/closet/secure_closet/medical3,
-/obj/item/clothing/under/plasmaman/medical,
-/obj/item/clothing/head/helmet/space/plasmaman/medical,
 /obj/machinery/light/directional/west,
 /obj/machinery/firealarm/directional/west,
+/obj/structure/closet/secure_closet/paramedic,
+/obj/item/surgicaldrill,
+/obj/item/clothing/under/plasmaman/paramedic,
+/obj/item/clothing/head/helmet/space/plasmaman/paramedic,
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "rMl" = (
@@ -72501,7 +72505,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
 	},
-/obj/effect/turf_decal/siding/dark_blue/corner,
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	alpha = 160
 	},
@@ -78397,6 +78400,7 @@
 /obj/effect/turf_decal/trimline/white/warning{
 	dir = 6
 	},
+/obj/effect/spawner/random/medical/patient_stretcher,
 /turf/open/floor/iron/white/smooth_corner{
 	dir = 1
 	},
@@ -79900,7 +79904,6 @@
 	},
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/machinery/light/directional/south,
-/obj/effect/turf_decal/siding/dark_blue,
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	alpha = 160
 	},
@@ -124048,7 +124051,7 @@ tJO
 lQp
 bBN
 vof
-dON
+hjZ
 nbA
 tmD
 brl
