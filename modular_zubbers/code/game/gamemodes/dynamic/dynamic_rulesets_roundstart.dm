@@ -1,57 +1,17 @@
-//Frankly, this is more red than not. Probably incompatible, maybe just needs some vars to be renamed.
-//For now I am just commenting it all out, since we don't run dynamic anyway
-
-//////////////////////////////////////////////
-//                                          //
-//                 FAMILIES                 //
-//                                          //
-//////////////////////////////////////////////
-
-/*
-/datum/dynamic_ruleset/roundstart/families
+/datum/dynamic_ruleset/roundstart/gang
 	name = "Families"
-	persistent = TRUE
-	antag_datum = /datum/antagonist/gang
-	antag_flag = ROLE_FAMILIES
-	protected_roles = list(
-		JOB_HEAD_OF_PERSONNEL,
-		JOB_PRISONER,
-	)
-	restricted_roles = list(
-		JOB_AI,
-		JOB_CAPTAIN,
-		JOB_CYBORG,
-		JOB_DETECTIVE,
-		JOB_HEAD_OF_SECURITY,
-		JOB_RESEARCH_DIRECTOR,
-		JOB_SECURITY_OFFICER,
-		JOB_WARDEN,
-	)
-	required_candidates = 3
+	config_tag = "Roundstart gang"
+	preview_antag_datum = /datum/antagonist/gang
+	pref_flag = ROLE_FAMILIES
 	weight = 1
-	cost = 19
-	requirements = list(101,101,40,40,30,20,10,10,10,10)
-	flags = HIGH_IMPACT_RULESET
-	/// A reference to the handler that is used to run pre_execute(), execute(), etc..
-	var/datum/gang_handler/handler
+	min_pop = 10
+	max_antag_cap = 3
 
-/datum/dynamic_ruleset/roundstart/families/pre_execute(population)
-	..()
-	handler = new /datum/gang_handler(candidates,restricted_roles)
-	handler.gang_balance_cap = clamp((indice_pop - 3), 2, 5) // gang_balance_cap by indice_pop: (2,2,2,2,2,3,4,5,5,5)
-	handler.use_dynamic_timing = TRUE
-	return handler.pre_setup_analogue()
-
-/datum/dynamic_ruleset/roundstart/families/execute()
-	return handler.post_setup_analogue(TRUE)
-
-/datum/dynamic_ruleset/roundstart/families/clean_up()
-	QDEL_NULL(handler)
-	..()
-
-/datum/dynamic_ruleset/roundstart/families/rule_process()
-	return handler.process_analogue()
-
-/datum/dynamic_ruleset/roundstart/families/round_result()
-	return handler.set_round_result_analogue()
-*/
+/datum/dynamic_ruleset/midround/family_head_aspirant
+	name = "Families"
+	config_tag = "Midround gang"
+	preview_antag_datum = /datum/antagonist/gang
+	pref_flag = ROLE_FAMILY_HEAD_ASPIRANT
+	weight = 1
+	min_pop = 10
+	max_antag_cap = 3

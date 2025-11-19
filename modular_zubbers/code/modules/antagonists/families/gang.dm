@@ -32,7 +32,7 @@
 /datum/outfit/gangster
 	name = "Gangster (Preview only)"
 
-	uniform = /obj/item/clothing/under/suit/henchmen
+	uniform = /obj/item/clothing/under/costume/henchmen
 	back = /obj/item/storage/backpack/henchmen
 
 /datum/antagonist/gang/get_team()
