@@ -406,3 +406,18 @@ GLOBAL_VAR(families_override_theme)
 	cops_arrived = TRUE
 	update_wanted_level(wanted_level) // gotta make sure everyone's wanted level display looks nice
 	return TRUE
+
+#undef LOWPOP_FAMILIES_COUNT
+
+#undef TWO_STARS_HIGHPOP
+#undef THREE_STARS_HIGHPOP
+#undef FOUR_STARS_HIGHPOP
+#undef FIVE_STARS_HIGHPOP
+
+#undef TWO_STARS_LOW
+#undef THREE_STARS_LOW
+#undef FOUR_STARS_LOW
+#undef FIVE_STARS_LOW
+
+#undef CREW_SIZE_MIN
+#undef CREW_SIZE_MAX
