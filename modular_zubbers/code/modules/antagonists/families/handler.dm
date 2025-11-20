@@ -95,13 +95,13 @@ GLOBAL_VAR(families_override_theme)
 	restricted_jobs = revised_restricted
 
 /**
- * pre_setup() or pre_execute() equivalent.
+ * pre_setup() or prepare_execute() equivalent.
  *
  * This proc is always called externally, by the instantiating game_mode / dynamic_ruleset.
- * This is done during the pre_setup() or pre_execute() phase, after first instantiation
+ * This is done during the pre_setup() or prepare_execute() phase, after first instantiation
  * and the modification of gangs_to_generate, gang_balance_cap, and midround_ruleset.
  * It is intended to take the place of the code that would normally occupy the pre_setup()
- * or pre_execute() proc, were the code localized to the game_mode or dynamic_ruleset datum respectively
+ * or prepare_execute() proc, were the code localized to the game_mode or dynamic_ruleset datum respectively
  * as opposed to this handler. As such, it picks players to be chosen for starting familiy members
  * or undercover cops prior to assignment to jobs. Sets start_time, default end_time,
  * and the current value of deaths_during_shift, to ensure the wanted level only cares about
@@ -140,9 +140,9 @@ GLOBAL_VAR(families_override_theme)
  * post_setup() or execute() equivalent.
  *
  * This proc is always called externally, by the instantiating game_mode / dynamic_ruleset.
- * This is done during the post_setup() or execute() phase, after the pre_setup() / pre_execute() phase.
- * It is intended to take the place of the code that would normally occupy the pre_setup()
- * or pre_execute() proc. As such, it ensures that all prospective starting family members /
+ * This is done during the post_setup() or execute() phase, after the pre_setup() / preprepare_execute() phase.
+ * It is intended to take the place of the code that would normally occupy the prepare_setup()
+ * or prepare_execute() proc. As such, it ensures that all prospective starting family members /
  * undercover cops are eligible, and picks replacements if there were ineligible cops / family members.
  * It then assigns gear to the finalized family members and undercover cops, adding them to its lists,
  * and sets the families announcement proc (that does the announcing) to trigger in five minutes.
