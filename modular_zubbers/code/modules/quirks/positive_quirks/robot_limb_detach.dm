@@ -4,7 +4,7 @@
 	gain_text = span_notice("Internal sensors report limb disengagement protocols are ready and waiting.")
 	lose_text = span_notice("ERROR: LIMB DISENGAGEMENT PROTOCOLS OFFLINE.")
 	medical_record_text = "Patient bears quick-attach and release limb joint cybernetics."
-	value = 1
+	value = 4
 	mob_trait = TRAIT_ROBOTIC_LIMBATTACHMENT
 	icon = FA_ICON_HANDSHAKE_SIMPLE_SLASH
 	quirk_flags = QUIRK_HUMAN_ONLY
