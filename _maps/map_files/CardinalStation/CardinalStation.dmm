@@ -1790,6 +1790,15 @@
 /obj/item/trash/can,
 /turf/open/floor/iron,
 /area/station/maintenance/department/medical/chemistry)
+"avF" = (
+/obj/machinery/door/poddoor/shutters/radiation/preopen{
+	id = "smrad"
+	},
+/obj/machinery/light/small/directional/south,
+/turf/open/floor/iron/dark/textured_half{
+	dir = 1
+	},
+/area/station/engineering/supermatter)
 "avR" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
@@ -5866,6 +5875,10 @@
 	},
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 1
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "smlock";
+	name = "Lockdown mechanism"
 	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
@@ -11253,12 +11266,9 @@
 /turf/open/floor/iron/dark,
 /area/station/security/prison)
 "cDu" = (
-/obj/effect/turf_decal/trimline/green/filled/line{
-	dir = 4
-	},
-/obj/machinery/light/small/directional/east,
-/turf/open/floor/iron/white,
-/area/station/medical/virology)
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/station/engineering/supermatter/room/upper)
 "cDy" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
@@ -16244,6 +16254,10 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/white/line,
+/obj/machinery/door/poddoor/preopen{
+	id = "smlock";
+	name = "Lockdown mechanism"
+	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
 "dNo" = (
@@ -24207,7 +24221,6 @@
 /turf/open/floor/vault,
 /area/station/command/vault)
 "fPj" = (
-/obj/effect/landmark/start/assistant,
 /obj/structure/chair,
 /turf/open/floor/wood,
 /area/station/security/courtroom)
@@ -24662,6 +24675,10 @@
 	dir = 1
 	},
 /obj/machinery/air_sensor/engine_chamber,
+/obj/machinery/door/poddoor/preopen{
+	id = "smlock";
+	name = "Lockdown mechanism"
+	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
 "fUh" = (
@@ -27797,6 +27814,13 @@
 	},
 /turf/open/floor/plating,
 /area/station/science/genetics)
+"gEl" = (
+/obj/item/toy/plush/ghoul{
+	name = "Tom";
+	desc = "Ghoul. This plushie is quite lanky."
+	},
+/turf/open/floor/iron/dark,
+/area/station/maintenance/central/lesser)
 "gEm" = (
 /obj/structure/disposalpipe/junction/flip{
 	dir = 4
@@ -32762,6 +32786,12 @@
 	pixel_x = 1
 	},
 /obj/structure/window/reinforced/spawner/directional/west,
+/obj/machinery/button/door{
+	pixel_x = 8;
+	pixel_y = 9;
+	id = "smlock";
+	name = "Supermatter lock in sequence"
+	},
 /turf/open/floor/iron/smooth,
 /area/station/engineering/supermatter/room)
 "hNz" = (
@@ -34133,6 +34163,10 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/white/line,
+/obj/machinery/door/poddoor/preopen{
+	id = "smlock";
+	name = "Lockdown mechanism"
+	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
 "ieo" = (
@@ -35279,12 +35313,11 @@
 /turf/open/floor/iron/smooth,
 /area/station/engineering/atmos)
 "itB" = (
-/obj/item/toy/plush/ghoul{
-	name = "Tom";
-	desc = "Ghoul. This plushie is quite lanky."
+/obj/structure/chair/office{
+	dir = 4
 	},
-/turf/open/floor/iron/dark,
-/area/station/maintenance/central/lesser)
+/turf/open/floor/engine,
+/area/station/science/cytology)
 "itF" = (
 /obj/effect/turf_decal/siding/yellow,
 /obj/effect/turf_decal/siding/dark{
@@ -52352,9 +52385,10 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port)
 "msT" = (
-/obj/structure/grille,
-/turf/open/floor/plating,
-/area/station/engineering/supermatter/room/upper)
+/obj/effect/landmark/start/assistant,
+/obj/structure/chair,
+/turf/open/floor/wood,
+/area/station/security/courtroom)
 "msU" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 8
@@ -62999,6 +63033,14 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/delam_scram/directional/south,
+/obj/machinery/mass_driver{
+	armor = list("melee"=10,"bullet"=10,"laser"=10,"energy"=0,"bomb"=0,"bio"=0,"rad"=0,"fire"=100,"acid"=70);
+	critical_machine = 1;
+	id = "smeject";
+	name = "emergency supermatter ejection pad";
+	explosive_resistance = 99;
+	max_integrity = 10000
+	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
 "oUT" = (
@@ -64555,9 +64597,9 @@
 /turf/open/floor/iron/edge,
 /area/station/cargo/sorting)
 "pmJ" = (
-/obj/structure/chair,
-/turf/open/floor/wood,
-/area/station/security/courtroom)
+/obj/structure/window/reinforced/spawner,
+/turf/closed/wall/mineral/plastitanium,
+/area/station/ai/satellite/chamber)
 "pmM" = (
 /obj/effect/landmark/start/scientist,
 /obj/structure/disposalpipe/segment{
@@ -65840,6 +65882,10 @@
 	},
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 1
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "smlock";
+	name = "Lockdown mechanism"
 	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
@@ -68655,6 +68701,10 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/machinery/door/poddoor/preopen{
+	id = "smlock";
+	name = "Lockdown mechanism"
+	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
 "qkd" = (
@@ -70538,10 +70588,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron/white/textured,
 /area/station/medical/medbay/central)
-"qHo" = (
-/obj/structure/window/reinforced/spawner,
-/turf/closed/wall/mineral/plastitanium,
-/area/station/ai/satellite/chamber)
 "qHp" = (
 /turf/closed/wall,
 /area/station/command/heads_quarters/cmo)
@@ -74967,7 +75013,7 @@
 	id = "smeject";
 	name = "emergency supermatter ejection pad";
 	explosive_resistance = 99;
-	max_integrity = 25000
+	max_integrity = 10000
 	},
 /obj/machinery/power/supermatter_crystal/engine{
 	moveable = 1
@@ -87507,31 +87553,6 @@
 	},
 /turf/open/floor/carpet/stellar,
 /area/station/command/heads_quarters/captain/private)
-"uIx" = (
-/obj/effect/turf_decal/trimline/white/line{
-	dir = 9
-	},
-/obj/effect/turf_decal/trimline/white/filled/warning{
-	dir = 9
-	},
-/obj/effect/turf_decal/trimline/white/line{
-	dir = 9
-	},
-/obj/effect/turf_decal/trimline/white/mid_joiner{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/white/mid_joiner{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/white/mid_joiner{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/white/mid_joiner{
-	dir = 8
-	},
-/obj/machinery/camera/directional/west,
-/turf/open/floor/iron/dark/smooth_large,
-/area/awaymission/station/science/xenobiology)
 "uIG" = (
 /turf/open/floor/carpet/black,
 /area/station/commons/vacant_room/office)
@@ -90077,12 +90098,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/primary/fore)
-"vlY" = (
-/obj/structure/chair/office{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/station/science/cytology)
 "vmj" = (
 /obj/effect/turf_decal/caution,
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer4{
@@ -90285,14 +90300,12 @@
 	},
 /area/station/security/brig/upper)
 "vpc" = (
-/obj/machinery/door/poddoor/shutters/radiation/preopen{
-	id = "smrad"
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 4
 	},
-/obj/machinery/light/small/directional/south,
-/turf/open/floor/iron/dark/textured_half{
-	dir = 1
-	},
-/area/station/engineering/supermatter)
+/obj/machinery/light/small/directional/east,
+/turf/open/floor/iron/white,
+/area/station/medical/virology)
 "vpl" = (
 /obj/effect/turf_decal/siding/wideplating_new/light,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -91912,6 +91925,10 @@
 "vGY" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "smlock";
+	name = "Lockdown mechanism"
 	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
@@ -101162,6 +101179,31 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/maintenance/department/science/xenobiology)
+"xTg" = (
+/obj/effect/turf_decal/trimline/white/line{
+	dir = 9
+	},
+/obj/effect/turf_decal/trimline/white/filled/warning{
+	dir = 9
+	},
+/obj/effect/turf_decal/trimline/white/line{
+	dir = 9
+	},
+/obj/effect/turf_decal/trimline/white/mid_joiner{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/white/mid_joiner{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/white/mid_joiner{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/white/mid_joiner{
+	dir = 8
+	},
+/obj/machinery/camera/directional/west,
+/turf/open/floor/iron/dark/smooth_large,
+/area/awaymission/station/science/xenobiology)
 "xTj" = (
 /obj/machinery/light/small/directional/south,
 /turf/open/floor/plating,
@@ -102267,8 +102309,8 @@
 /area/station/hallway/primary/central)
 "yhQ" = (
 /obj/machinery/door/poddoor{
-	id = "smeject";
-	name = "Supermatter Ejection Door"
+	name = "Supermatter Ejection Door";
+	id = "smeject"
 	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
@@ -113296,7 +113338,7 @@ csK
 cFY
 mzT
 mIs
-qHo
+pmJ
 ryz
 rJh
 gOV
@@ -113810,7 +113852,7 @@ vLd
 usi
 nmc
 mIs
-qHo
+pmJ
 udd
 rJh
 qLU
@@ -127964,7 +128006,7 @@ kdx
 cPG
 wph
 wph
-vlY
+itB
 ixW
 veM
 qXO
@@ -128493,7 +128535,7 @@ jIR
 aLC
 aJF
 mOX
-uIx
+xTg
 jIR
 tqM
 dYm
@@ -134186,7 +134228,7 @@ rqj
 fUb
 tVg
 fkb
-vpc
+avF
 fUb
 rvG
 tiR
@@ -134445,7 +134487,7 @@ mJI
 egd
 lso
 pML
-msT
+cDu
 psZ
 gOH
 ofK
@@ -134702,7 +134744,7 @@ vSY
 fPk
 ptv
 fUb
-msT
+cDu
 hQP
 hHR
 nfN
@@ -135730,7 +135772,7 @@ lcQ
 qTw
 pya
 fUb
-msT
+cDu
 lTY
 ycA
 nfN
@@ -135857,7 +135899,7 @@ kGJ
 ovL
 lMT
 lTW
-fPj
+msT
 xNK
 uVJ
 dOA
@@ -135987,7 +136029,7 @@ jeb
 jBb
 vLN
 pML
-msT
+cDu
 mIR
 aZL
 ofK
@@ -136114,7 +136156,7 @@ aXZ
 ntV
 mXA
 lTW
-pmJ
+fPj
 xNK
 uVJ
 tPI
@@ -136242,7 +136284,7 @@ fWz
 fUb
 tVg
 fkb
-vpc
+avF
 fUb
 rvG
 iWd
@@ -136628,7 +136670,7 @@ vuW
 vyc
 lMT
 lTW
-pmJ
+fPj
 ryw
 uVJ
 xNK
@@ -137656,7 +137698,7 @@ udR
 gnk
 lMT
 lTW
-pmJ
+fPj
 xNK
 uVJ
 xNK
@@ -137913,7 +137955,7 @@ aXZ
 ntV
 mXA
 lTW
-pmJ
+fPj
 njc
 uVJ
 rSW
@@ -138170,7 +138212,7 @@ aXZ
 ntV
 mXA
 lTW
-fPj
+msT
 xNK
 uVJ
 dgo
@@ -139763,7 +139805,7 @@ qPY
 iDo
 xvT
 xJv
-itB
+gEl
 oNw
 cDJ
 xvT
@@ -158481,10 +158523,10 @@ nzj
 hyT
 aqb
 tit
-cDu
+vpc
 dKJ
 dKJ
-cDu
+vpc
 dKJ
 orH
 kLt
