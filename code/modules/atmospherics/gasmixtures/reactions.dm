@@ -7,10 +7,10 @@
 	//Builds a list of gas id to reaction group
 	for(var/gas_id in GLOB.meta_gas_info)
 		priority_reactions[gas_id] = list(
-			PRIORITY_PRE_FORMATION = list(),
-			PRIORITY_FORMATION = list(),
-			PRIORITY_POST_FORMATION = list(),
-			PRIORITY_FIRE = list()
+			/* PRIORITY_PRE_FORMATION = */ list(),
+			/* PRIORITY_FORMATION = */ list(),
+			/* PRIORITY_POST_FORMATION = */ list(),
+			/* PRIORITY_FIRE = */ list()
 		)
 
 	for(var/datum/gas_reaction/reaction as anything in subtypesof(/datum/gas_reaction))
@@ -815,8 +815,8 @@
 	var/list/tritium = cached_gases[/datum/gas/tritium]
 	/// List of gases we will assert, and possibly garbage collect.
 	var/list/asserted_gases = list(/datum/gas/hypernoblium, /datum/gas/bz)
-	var/list/bz = cached_gases[/datum/gas/bz]
 	air.assert_gases(arglist(asserted_gases))
+	var/list/bz = cached_gases[/datum/gas/bz]
 	var/reduction_factor = clamp(tritium[MOLES] / (tritium[MOLES] + bz[MOLES]), 0.001 , 1) //reduces trit consumption in presence of bz upward to 0.1% reduction
 	var/nob_formed = min((nitrogen[MOLES] + tritium[MOLES]) * 0.01, tritium[MOLES] * INVERSE(5 * reduction_factor), nitrogen[MOLES] * INVERSE(10))
 

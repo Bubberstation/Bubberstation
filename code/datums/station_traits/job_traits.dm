@@ -101,7 +101,7 @@
 	// monkey carries the crates, the age of robot is over
 	if(GLOB.cargo_ripley)
 		qdel(GLOB.cargo_ripley)
-
+/* // Bubber EDIT Start - We're adding BA back!!!
 /datum/station_trait/job/bridge_assistant
 	name = "Bridge Assistant"
 	button_desc = "Sign up to become the Bridge Assistant and watch over the Bridge."
@@ -154,7 +154,7 @@
 	new /obj/machinery/coffeemaker/impressa(picked_turf)
 	new /obj/item/reagent_containers/cup/coffeepot(picked_turf)
 	new /obj/item/storage/box/coffeepack(picked_turf)
-
+*/
 /datum/station_trait/job/veteran_advisor
 	name = "Veteran Advisor"
 	button_desc = "Sign up to become a DISABLED but hard boiled Veteran Advisor of Nanotrasen Security Force. Advise HoS and Captain, train Officers, all while fighting your PTSD."
@@ -205,7 +205,7 @@
 /// Gives the AI SAT a fax machine if it doesn't have one. This is copy pasted from Bridge Assistant's coffee maker.
 /datum/station_trait/job/human_ai/proc/give_fax_machine(datum/source)
 	SIGNAL_HANDLER
-	var/area/sat_area = GLOB.areas_by_type[/area/station/ai_monitored/turret_protected/ai]
+	var/area/sat_area = GLOB.areas_by_type[/area/station/ai/satellite/chamber]
 	if(isnull(sat_area))
 		return
 	var/list/fax_machines = SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/fax)

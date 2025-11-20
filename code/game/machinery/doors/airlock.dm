@@ -196,19 +196,25 @@
 		damage_deflection = AIRLOCK_DAMAGE_DEFLECTION_R
 
 	prepare_huds()
-	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.add_atom_to_hud(src)
+	var/datum/atom_hud/data/diagnostic/diag_hud = GLOB.huds[DATA_HUD_DIAGNOSTIC]
+	diag_hud.add_atom_to_hud(src)
 
 	diag_hud_set_electrified()
 
 	// Click on the floor to close airlocks
-	AddComponent(/datum/component/redirect_attack_hand_from_turf)
+	AddComponent(/datum/component/redirect_attack_hand_from_turf, interact_check = CALLBACK(src, PROC_REF(drag_check)))
 
 	AddElement(/datum/element/nav_computer_icon, 'icons/effects/nav_computer_indicators.dmi', "airlock", TRUE)
 
 	RegisterSignal(src, COMSIG_MACHINERY_BROKEN, PROC_REF(on_break))
 
 	RegisterSignal(SSdcs, COMSIG_GLOB_GREY_TIDE, PROC_REF(grey_tide))
+
+// if dragging, block 'Click on the floor to close airlocks'
+/obj/machinery/door/airlock/proc/drag_check(mob/user)
+	if (user.pulling)
+		return FALSE
+	return TRUE
 
 /obj/machinery/door/airlock/proc/grey_tide(datum/source, list/grey_tide_areas)
 	SIGNAL_HANDLER
@@ -325,8 +331,8 @@
 		close_others.Cut()
 	QDEL_NULL(note)
 	QDEL_NULL(seal)
-	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.remove_atom_from_hud(src)
+	var/datum/atom_hud/data/diagnostic/diag_hud = GLOB.huds[DATA_HUD_DIAGNOSTIC]
+	diag_hud.remove_atom_from_hud(src)
 	return ..()
 
 /obj/machinery/door/airlock/Exited(atom/movable/gone, direction)
@@ -520,7 +526,10 @@
 /obj/machinery/door/airlock/proc/is_secure()
 	return (security_level > 0)
 
-/// Checks if this door would be affected by any currently active RETA grants
+/**
+ * Checks if this door would be affected by any currently active RETA grants
+ * If a grant is active, return the authorized department
+ */
 /obj/machinery/door/airlock/proc/has_active_reta_access()
 	if(!CONFIG_GET(flag/reta_enabled))
 		return FALSE
@@ -538,11 +547,11 @@
 
 			for(var/required_access in req_access)
 				if(required_access in origin_dept_access)
-					return TRUE
+					return target_dept
 
 			for(var/required_access in req_one_access)
 				if(required_access in origin_dept_access)
-					return TRUE
+					return target_dept
 
 	return FALSE
 
@@ -755,6 +764,10 @@
 		else
 			. += "It looks very robust."
 
+	var/active_reta = has_active_reta_access()
+	if(active_reta)
+		. += span_nicegreen("Emergency Temporary Access is enabled for [EXAMINE_HINT(active_reta)].")
+
 	if(issilicon(user) && !(machine_stat & BROKEN))
 		. += span_notice("Shift-click [src] to [ density ? "open" : "close"] it.")
 		. += span_notice("Ctrl-click [src] to [ locked ? "raise" : "drop"] its bolts.")
@@ -963,7 +976,7 @@
 		security_level = AIRLOCK_SECURITY_PLASTEEL_O
 		return .
 	if(note)
-		if(user.CanReach(src))
+		if(IsReachableBy(user))
 			user.visible_message(span_notice("[user] cuts down [note] from [src]."), span_notice("You remove [note] from [src]."))
 		else //telekinesis
 			visible_message(span_notice("[tool] cuts down [note] from [src]."))
@@ -1171,7 +1184,7 @@
 			return
 
 		if(atom_integrity < max_integrity)
-			if(!W.tool_start_check(user, amount=1))
+			if(!W.tool_start_check(user, amount=1, heat_required = HIGH_TEMPERATURE_REQUIRED))
 				return
 			user.visible_message(span_notice("[user] begins welding the airlock."), \
 							span_notice("You begin repairing the airlock..."), \
@@ -1186,7 +1199,7 @@
 			to_chat(user, span_notice("The airlock doesn't need repairing."))
 
 /obj/machinery/door/airlock/try_to_weld_secondary(obj/item/weldingtool/tool, mob/user)
-	if(!tool.tool_start_check(user, amount=1))
+	if(!tool.tool_start_check(user, amount=1, heat_required = HIGH_TEMPERATURE_REQUIRED))
 		return
 	user.visible_message(span_notice("[user] begins [welded ? "unwelding":"welding"] the airlock."), \
 		span_notice("You begin [welded ? "unwelding":"welding"] the airlock..."), \
@@ -1308,6 +1321,11 @@
 		prying_so_hard = FALSE
 		return
 
+	if(!isnull(tool))
+		if(SEND_SIGNAL(tool, COMSIG_TOOL_FORCE_OPEN_AIRLOCK, user, src) & COMPONENT_TOOL_DO_NOT_ALLOW_FORCE_OPEN)
+			prying_so_hard = FALSE
+			return
+
 	prying_so_hard = FALSE
 
 	if(check_electrified && shock(user, 100))
@@ -1358,10 +1376,9 @@
 	set_airlock_state(AIRLOCK_OPENING, animated = TRUE, force_type = forced)
 	var/transparent_delay = animation_segment_delay(AIRLOCK_OPENING_TRANSPARENT)
 	sleep(transparent_delay)
-	set_opacity(0)
+	set_opacity(FALSE)
 	if(multi_tile)
 		filler.set_opacity(FALSE)
-	update_freelook_sight()
 	var/passable_delay = animation_segment_delay(AIRLOCK_OPENING_PASSABLE) - transparent_delay
 	sleep(passable_delay)
 	set_density(FALSE)
@@ -1448,7 +1465,6 @@
 		set_opacity(TRUE)
 		if(multi_tile)
 			filler.set_opacity(TRUE)
-	update_freelook_sight()
 	var/close_delay = animation_segment_delay(AIRLOCK_CLOSING_FINISHED) - unpassable_delay - opaque_delay
 	sleep(close_delay)
 	set_airlock_state(AIRLOCK_CLOSED, animated = FALSE)
