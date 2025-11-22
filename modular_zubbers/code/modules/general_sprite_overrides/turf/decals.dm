@@ -1,3 +1,11 @@
+//WARNING
+
+//standard
+/obj/effect/turf_decal/stripes
+	icon = 'modular_zubbers/icons/turf/decals/stripes.dmi'
+
+//SIDING
+
 /obj/effect/turf_decal/siding
 	icon = 'modular_zubbers/icons/turf/decals/siding.dmi'
 

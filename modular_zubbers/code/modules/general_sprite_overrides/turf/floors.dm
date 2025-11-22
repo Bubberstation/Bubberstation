@@ -48,14 +48,22 @@
 /turf/open/floor/tram/plate
 	icon = 'modular_zubbers/icons/turf/floors/tram.dmi'
 
-
 /turf/open/indestructible/tram
-	icon = 'modular_zubbers/icons/turf/floors/tram.dmi'
-
-/obj/structure/thermoplastic
 	icon = 'modular_zubbers/icons/turf/floors/tram.dmi'
 
 // LIVING FLOORS
 
 /mob/living/basic/living_floor
 	icon = 'modular_zubbers/icons/turf/floors/floors.dmi'
+
+// STRUCTURE BASED
+// I know these are structures but it's more organized if we keep these specific ones here.
+
+/obj/structure/broken_flooring
+	icon = 'modular_zubbers/icons/obj/fluff/brokentiling.dmi'
+
+/obj/structure/transport/linear/public
+	icon = 'modular_zubbers/icons/turf/floors/floors.dmi'
+
+/obj/structure/thermoplastic
+	icon = 'modular_zubbers/icons/turf/floors/tram.dmi'
