@@ -148,7 +148,6 @@
 	brute_modifier = 1.25
 	burn_modifier = 1.2
 
-
 	max_damage = LIMB_MAX_HP_PROSTHESIS
 	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_PROSTHESIS
 
