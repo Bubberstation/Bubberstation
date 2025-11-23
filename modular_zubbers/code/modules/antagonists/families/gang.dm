@@ -1,7 +1,7 @@
 /datum/antagonist/gang
 	name = "\improper Family Member"
 	roundend_category = "gangsters"
-	ui_name = "AntagInfoGangmember"
+	ui_name = "AntagInfoGangmember" //This has a bunch of red errors in-game but it works fine, so I don't know what to believe.
 	antag_hud_name = "hud_gangster"
 	antagpanel_category = "Family"
 	show_in_antagpanel = FALSE // i don't *think* this base class is buggy but it's too worthless to test
