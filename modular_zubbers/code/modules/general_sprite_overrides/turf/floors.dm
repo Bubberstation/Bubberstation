@@ -4,10 +4,7 @@
 /turf/open/floor/catwalk_floor
 	icon = 'modular_zubbers/icons/turf/floors/catwalk_plating.dmi'
 
-/turf/open/indestructible/hoteltile
-	icon = 'modular_zubbers/icons/turf/floors/floors.dmi'
-
-/turf/open/indestructible/bitrunning_transport
+/turf/open/indestructible
 	icon = 'modular_zubbers/icons/turf/floors/floors.dmi'
 
 /turf/open/indestructible/cobble
