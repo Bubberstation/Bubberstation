@@ -13333,11 +13333,11 @@
 /area/station/maintenance/abandon_arcade)
 "cZN" = (
 /obj/docking_port/stationary{
-	dwidth = 22;
+	dwidth = 21;
 	height = 40;
-	id = "emergency_home";
 	name = "Card emergency evac bay";
-	width = 44
+	width = 44;
+	shuttle_id = "emergency_home"
 	},
 /turf/open/space/basic,
 /area/space)
@@ -22549,14 +22549,7 @@
 /turf/open/floor/engine,
 /area/station/engineering/gravity_generator)
 "fpE" = (
-/obj/docking_port/stationary{
-	dwidth = 3;
-	height = 5;
-	id = "laborcamp_home";
-	name = "fore bay 1";
-	roundstart_template = /datum/map_template/shuttle/labour/card;
-	width = 11
-	},
+/obj/docking_port/stationary/laborcamp_home,
 /turf/open/space/basic,
 /area/space)
 "fpG" = (
@@ -38070,7 +38063,7 @@
 "iQx" = (
 /obj/docking_port/stationary{
 	dwidth = 1;
-	height = 13;
+	height = 12;
 	shuttle_id = "arrivals_stationary";
 	name = "arrivals";
 	width = 5;
@@ -57586,10 +57579,9 @@
 	dir = 4;
 	dwidth = 5;
 	height = 7;
-	id = "supply_home";
 	name = "Cargo Bay";
-	width = 13;
-	shuttle_id = "cargo_home"
+	shuttle_id = "cargo_home";
+	width = 13
 	},
 /turf/open/space/basic,
 /area/space)
@@ -72053,14 +72045,11 @@
 /turf/open/floor/iron/solarpanel/airless,
 /area/ruin/powered)
 "qMg" = (
-/obj/docking_port/stationary{
+/obj/docking_port/stationary/mining_home{
 	dir = 4;
-	dwidth = 2;
-	height = 8;
-	id = "mining_home";
-	name = "mining shuttle bay";
-	roundstart_template = /datum/map_template/shuttle/mining/card;
-	width = 5
+	dwidth = 4;
+	height = 17;
+	width = 10
 	},
 /turf/open/space/basic,
 /area/space)
