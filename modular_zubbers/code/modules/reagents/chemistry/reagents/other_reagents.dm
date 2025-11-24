@@ -393,6 +393,28 @@
 		"Your blood coagulates!" = MUT_MSG_EXTENDED,
 		"You feel a yearning for flesh and brains" = MUT_MSG_ABOUT2TURN)
 
+/datum/reagent/juice_that_makes_you_weh
+	name = "Juice That Makes You Weh"
+	description = "This liquid, once inside a sentient being, will cause it to 'weh' uncontrollably for a time"
+	color = "#37e427" // rgb: 165, 240, 238
+	taste_description = "weh"
+	reagent_weight = 0.6 //so it sprays further
+	penetrates_skin = VAPOR
+	ph = 5.5
+	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+
+/datum/reagent/juice_that_makes_you_weh/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
+	. = ..()
+	if(current_cycle > 10 && SPT_PROB(7.5, seconds_per_tick))
+		to_chat(affected_mob, span_warning("You feel the urge to weh..."))
+		current_cycle = 1
+		addtimer(CALLBACK(affected_mob, TYPE_PROC_REF(/mob/living, weh_juice_weh)), 3 SECONDS)
+
+/mob/living/proc/weh_juice_weh()
+	mob/living/carbon/affected_mob.emote(/mob/living/proc/emote_weh)
+
+
+
 #undef MUT_MSG_IMMEDIATE
 #undef MUT_MSG_EXTENDED
 #undef MUT_MSG_ABOUT2TURN
