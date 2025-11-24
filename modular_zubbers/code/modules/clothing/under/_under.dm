@@ -1,7 +1,3 @@
-/datum/armor/clothing_under/standard
-	bio = 10
-	wound = 5
-
 /obj/item/clothing/under/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
