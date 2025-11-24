@@ -172,11 +172,6 @@
 	item_path = /obj/item/clothing/neck/inferno_collar
 	//ckeywhitelist = list("inferno707")
 
-/datum/loadout_item/pocket_items/kiaramedal
-	name = "Insignia of Steele"
-	item_path = /obj/item/clothing/accessory/medal/steele
-	//ckeywhitelist = list("inferno707")
-
 /datum/loadout_item/toys/darksabre
 	name = "Dark Sabre"
 	item_path = /obj/item/toy/darksabre
@@ -280,11 +275,6 @@
 	item_path = /obj/item/toy/plush/skyrat/voodoo
 	//ckeywhitelist = list("gamerguy14948")
 
-/datum/loadout_item/glasses/roseglasses
-	name = "Rose-Colored Glasses"
-	item_path = /obj/item/clothing/glasses/rosecolored
-	//ckeywhitelist = list("1ceres", "irrigoimport", "zeskorion", "wizardlywoz", "duckymomo", "samarai1000", "funkyfetusstrikesback", "m97screwsyourparents", "lynxqueen", "kaynite", "mahalia", "sapphoqueer", "emmakisst", "ceasethebridge", "valorthix" )
-
 /datum/loadout_item/pocket_items/fuzzy_huglicense
 	name = "License To Hug"
 	item_path = /obj/item/card/fuzzy_license
@@ -299,11 +289,6 @@
 	name = "Korpstech Poster"
 	item_path = /obj/item/poster/korpstech
 	//ckeywhitelist = list("1ceres")
-
-/datum/loadout_item/glasses/roseeyepatch
-	name = "Rose-Colored Eyepatch"
-	item_path = /obj/item/clothing/glasses/eyepatch/rosecolored
-	//ckeywhitelist = list("kaynite")
 
 /datum/loadout_item/suit/tenrai_coat
 	name = "Tenrai Coat"
@@ -346,21 +331,10 @@
 	//ckeywhitelist = list("ultimarifox")
 	restricted_roles = list(JOB_HEAD_OF_SECURITY)
 
-/datum/loadout_item/glasses/redgigagar
-	name = "Red-tinted Giga HUD Gar Glasses"
-	item_path = /obj/item/clothing/glasses/hud/security/sunglasses/gars/giga/roselia
-	//ckeywhitelist = list("ultimarifox")
-	restricted_roles = list(JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER)
-
 /datum/loadout_item/toys/roselia_plush
 	name = "Obscene Sergal Plushie"
 	item_path = /obj/item/toy/plush/skyrat/roselia
 	//ckeywhitelist = list("ultimarifox")
-
-/datum/loadout_item/accessory/mercbadge
-	name = "Jade Badge"
-	item_path = /obj/item/clothing/accessory/badge/holo/jade
-	//ckeywhitelist = list("konstyantyn")
 
 /datum/loadout_item/toys/plushe_winrow
 	name = "Dark and Brooding Lizard Plushie"
@@ -503,11 +477,6 @@
 	name = "Broken Helian Transponder"
 	item_path = /obj/item/donator/transponder
 //	ckeywhitelist = list("glacii")
-
-/datum/loadout_item/glasses/goldaviator
-	name = "Purple and Gold Aviators"
-	item_path = /obj/item/clothing/glasses/gold_aviators
-	//ckeywhitelist = list("nikohyena")
 
 /datum/loadout_item/uniform/caged_dress
 	name = "Caged Purple Dress"
