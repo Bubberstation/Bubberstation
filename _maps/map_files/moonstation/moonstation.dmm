@@ -2241,7 +2241,6 @@
 /area/moonstation/underground)
 "aDz" = (
 /obj/effect/mapping_helpers/broken_floor,
-/obj/effect/spawner/random/vending/snackvend,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
 /area/station/service/abandoned_gambling_den/gaming)
@@ -2807,8 +2806,12 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/crew_quarters/bar)
 "aKX" = (
+/obj/structure/table/wood,
+/obj/item/modular_computer/laptop/gamer,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/carpet/black{
+	initial_gas_mix = "miasma=15;o2=22;n2=82;TEMP=293.15"
+	},
 /area/station/maintenance/gamer_lair)
 "aLb" = (
 /obj/machinery/airalarm/directional/east,
@@ -3957,10 +3960,12 @@
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance)
 "aZL" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
-/turf/open/floor/catwalk_floor/iron_dark,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/plating{
+	initial_gas_mix = "miasma=15;o2=22;n2=82;TEMP=293.15"
+	},
 /area/station/maintenance/gamer_lair)
 "aZT" = (
 /obj/effect/turf_decal/tile/purple/half/contrasted,
@@ -11529,7 +11534,7 @@
 "dgm" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/sign/poster/contraband/random/directional/west,
+/obj/structure/extinguisher_cabinet/directional/west,
 /turf/open/floor/eighties,
 /area/station/maintenance/abandon_arcade)
 "dgx" = (
@@ -12474,6 +12479,9 @@
 /obj/effect/mapping_helpers/airlock/autoname,
 /turf/open/floor/plating,
 /area/station/science/robotics/lab)
+"dtJ" = (
+/turf/closed/wall/rust,
+/area/station/maintenance/gamer_lair)
 "dtM" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/light/small/directional/east,
@@ -13667,7 +13675,6 @@
 /turf/open/floor/plating,
 /area/station/maintenance/starboard)
 "dKq" = (
-/obj/machinery/netpod,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -17122,7 +17129,7 @@
 	dir = 9
 	},
 /obj/effect/spawner/random/trash/graffiti,
-/obj/effect/spawner/random/burgerstation/atmos,
+/obj/machinery/portable_atmospherics/scrubber,
 /turf/open/floor/plating,
 /area/station/maintenance/port)
 "eGq" = (
@@ -19122,8 +19129,6 @@
 /area/station/maintenance/abandon_arcade)
 "fgW" = (
 /obj/structure/chair/stool/directional/east,
-/obj/effect/gibspawner/human/bodypartless,
-/obj/item/clothing/head/cone,
 /turf/open/floor/eighties,
 /area/station/maintenance/abandon_arcade)
 "fhd" = (
@@ -22008,10 +22013,12 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/engine_smes)
 "fRv" = (
+/obj/effect/mapping_helpers/broken_floor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/wood{
+	initial_gas_mix = "miasma=15;o2=22;n2=82;TEMP=293.15"
+	},
 /area/station/maintenance/gamer_lair)
 "fRB" = (
 /obj/effect/turf_decal/tile/green/half/contrasted{
@@ -23039,6 +23046,15 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/purple/visible/layer5,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos/hfr_room)
+"giv" = (
+/obj/machinery/digital_clock/directional/east,
+/obj/effect/mapping_helpers/broken_floor,
+/obj/effect/mapping_helpers/airalarm/tlv_no_checks,
+/obj/machinery/airalarm/directional/south,
+/turf/open/floor/carpet/black{
+	initial_gas_mix = "miasma=15;o2=22;n2=82;TEMP=293.15"
+	},
+/area/station/maintenance/gamer_lair)
 "giy" = (
 /obj/machinery/atmospherics/pipe/smart/simple/dark/visible,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -26544,11 +26560,9 @@
 /turf/open/floor/iron/checker,
 /area/station/hallway/secondary/exit/departure_lounge)
 "hiT" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
+/turf/open/floor/wood{
+	initial_gas_mix = "miasma=15;o2=22;n2=82;TEMP=293.15"
 	},
-/obj/machinery/light/small/red/dim/directional/east,
-/turf/open/floor/circuit/red,
 /area/station/maintenance/gamer_lair)
 "hiV" = (
 /obj/machinery/light/moonstation/directional/south,
@@ -29893,12 +29907,12 @@
 /turf/open/floor/iron/white,
 /area/station/medical/chemistry)
 "hZN" = (
-/obj/machinery/netpod,
-/obj/effect/mapping_helpers/broken_machine,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
+/obj/machinery/vending/cola/pwr_game,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/machinery/light_switch/directional/north,
+/turf/open/floor/plating{
+	initial_gas_mix = "miasma=15;o2=22;n2=82;TEMP=293.15"
 	},
-/turf/open/floor/circuit/red,
 /area/station/maintenance/gamer_lair)
 "hZR" = (
 /obj/effect/mapping_helpers/broken_floor,
@@ -31994,11 +32008,13 @@
 /turf/open/floor/plating/rust/moonstation,
 /area/moonstation/surface)
 "iFD" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
+/obj/machinery/light/small/directional/east,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
 	},
-/obj/machinery/light/small/red/dim/directional/east,
-/turf/open/floor/circuit/red,
+/turf/open/floor/carpet/black{
+	initial_gas_mix = "miasma=15;o2=22;n2=82;TEMP=293.15"
+	},
 /area/station/maintenance/gamer_lair)
 "iFE" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -33062,12 +33078,14 @@
 /area/station/maintenance/central)
 "iUo" = (
 /obj/effect/mapping_helpers/broken_floor,
-/obj/effect/spawner/random/entertainment/arcade{
-	dir = 4
-	},
-/obj/effect/mapping_helpers/broken_machine,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/radio/intercom/directional/north,
+/obj/machinery/computer/arcade/amputation{
+	dir = 4
+	},
+/obj/item/clothing/head/cone{
+	pixel_y = 13
+	},
 /turf/open/floor/wood,
 /area/station/service/abandoned_gambling_den/gaming)
 "iUp" = (
@@ -36822,6 +36840,16 @@
 "jTR" = (
 /turf/closed/wall,
 /area/station/service/library/abandoned)
+"jTU" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/obj/structure/sign/warning/biohazard/directional/south,
+/turf/open/floor/plating,
+/area/station/maintenance/port)
 "jUg" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
@@ -36900,8 +36928,12 @@
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance)
 "jVm" = (
-/obj/effect/spawner/random/burgerstation/loot,
-/turf/open/floor/catwalk_floor/iron_dark,
+/obj/effect/spawner/random/structure/chair_comfy{
+	dir = 1
+	},
+/turf/open/floor/carpet/black{
+	initial_gas_mix = "miasma=15;o2=22;n2=82;TEMP=293.15"
+	},
 /area/station/maintenance/gamer_lair)
 "jVx" = (
 /obj/effect/spawner/random/trash/grille_or_waste,
@@ -40475,7 +40507,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
-/obj/effect/landmark/start/bitrunner,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/station/cargo/bitrunning/den)
 "kSA" = (
@@ -43376,11 +43407,15 @@
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
 "lEg" = (
-/obj/structure/chair/stool/directional/east,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/eighties,
-/area/station/maintenance/abandon_arcade)
+/obj/structure/table/wood,
+/obj/structure/sign/poster/official/tactical_game_cards,
+/obj/item/storage/cans/sixgamerdrink,
+/obj/machinery/requests_console/auto_name/directional/south,
+/obj/machinery/newscaster/directional/west,
+/turf/open/floor/carpet/black{
+	initial_gas_mix = "miasma=15;o2=22;n2=82;TEMP=293.15"
+	},
+/area/station/maintenance/gamer_lair)
 "lEk" = (
 /obj/machinery/holopad,
 /turf/open/floor/iron/grimy,
@@ -46318,15 +46353,11 @@
 "mrg" = (
 /obj/effect/mapping_helpers/broken_floor,
 /obj/structure/chair/stool/bar/directional/west,
-/obj/item/clothing/suit/costume/wellworn_shirt/messy/graphic/gamer,
-/obj/item/clothing/head/fedora,
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/spawner/random/structure/chair_maintenance{
-	dir = 8
-	},
+/obj/effect/decal/cleanable/blood/gibs/old,
 /turf/open/floor/wood,
 /area/station/service/abandoned_gambling_den/gaming)
 "mrJ" = (
@@ -47608,11 +47639,11 @@
 /area/station/commons/vacant_room/commissary)
 "mKm" = (
 /obj/machinery/door/airlock/maintenance,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/welded,
 /obj/structure/cable,
-/obj/structure/barricade/wooden/crude,
+/obj/structure/fans/tiny,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/plating,
 /area/station/maintenance/gamer_lair)
 "mKr" = (
@@ -50940,14 +50971,14 @@
 /turf/open/floor/iron/cafeteria,
 /area/station/service/kitchen/abandoned)
 "nGY" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 4
+/obj/structure/table/wood,
+/obj/item/clothing/suit/costume/wellworn_shirt/messy/graphic/gamer,
+/obj/item/clothing/head/fedora,
+/obj/item/storage/fancy/nugget_box,
+/obj/item/radio/intercom/directional/west,
+/turf/open/floor/carpet/black{
+	initial_gas_mix = "miasma=15;o2=22;n2=82;TEMP=293.15"
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/machinery/light/small/red/dim/directional/west,
-/turf/open/floor/iron/dark,
 /area/station/maintenance/gamer_lair)
 "nHc" = (
 /obj/structure/marker_beacon/burgundy,
@@ -55774,10 +55805,6 @@
 /area/station/terminal/lobby)
 "oVp" = (
 /obj/machinery/airalarm/directional/south,
-/obj/item/toy/katana{
-	desc = "As seen in your favourite Japanese cartoon.";
-	name = "anime katana"
-	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
@@ -72100,8 +72127,8 @@
 /obj/effect/mapping_helpers/requests_console/assistance,
 /obj/effect/mapping_helpers/requests_console/supplies,
 /obj/effect/mapping_helpers/requests_console/information,
-/obj/structure/sign/poster/random/directional/west,
 /obj/machinery/quantum_server,
+/obj/structure/sign/poster/contraband/pwr_game/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/cargo/bitrunning/den)
 "tpu" = (
@@ -73872,14 +73899,16 @@
 /turf/open/floor/engine,
 /area/station/maintenance/disposal/incinerator)
 "tMm" = (
+/obj/effect/mapping_helpers/broken_floor,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
+/obj/effect/decal/cleanable/garbage,
+/obj/machinery/light/small/directional/west,
+/obj/structure/sign/poster/contraband/pwr_game/directional/west,
+/turf/open/floor/plating{
+	initial_gas_mix = "miasma=15;o2=22;n2=82;TEMP=293.15"
 	},
-/obj/machinery/light/small/red/dim/directional/west,
-/turf/open/floor/iron/dark,
 /area/station/maintenance/gamer_lair)
 "tMs" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
@@ -76345,9 +76374,9 @@
 /area/station/command/gateway)
 "uuE" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
-/obj/effect/landmark/generic_maintenance_landmark,
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/wood{
+	initial_gas_mix = "miasma=15;o2=22;n2=82;TEMP=293.15"
+	},
 /area/station/maintenance/gamer_lair)
 "uuM" = (
 /turf/closed/wall,
@@ -77031,7 +77060,10 @@
 "uEv" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/extinguisher_cabinet/directional/east,
+/obj/machinery/firealarm/partyalarm{
+	dir = 4;
+	pixel_x = 24
+	},
 /turf/open/floor/wood,
 /area/station/maintenance/abandon_arcade)
 "uEz" = (
@@ -77532,7 +77564,6 @@
 /area/station/security/prison/upper)
 "uMg" = (
 /obj/effect/mapping_helpers/broken_floor,
-/obj/structure/sign/poster/contraband/lusty_xenomorph/directional/north,
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -79942,13 +79973,13 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
-/obj/machinery/computer/arcade/amputation{
-	dir = 8
-	},
 /obj/item/stack/arcadeticket/thirty,
 /obj/structure/sign/poster/contraband/random/directional/east,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/light/small/directional/south,
+/obj/effect/spawner/random/entertainment/arcade{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/station/maintenance/abandon_arcade)
 "vvG" = (
@@ -80400,7 +80431,6 @@
 /area/station/medical/treatment_center)
 "vBQ" = (
 /obj/machinery/light/small/directional/north,
-/obj/structure/sign/poster/official/random/directional/north,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/emcloset/anchored,
 /turf/open/floor/iron/dark/side{
@@ -82056,14 +82086,8 @@
 /area/station/maintenance/disposal)
 "vYN" = (
 /obj/machinery/light/moonstation/directional/east,
-/obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/cup/soda_cans/pwr_game,
-/obj/item/reagent_containers/cup/soda_cans/pwr_game,
-/obj/item/reagent_containers/cup/soda_cans/pwr_game,
-/obj/item/reagent_containers/cup/soda_cans/pwr_game,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/light_switch/directional/east,
-/obj/item/storage/cans/sixgamerdrink,
 /turf/open/floor/plating,
 /area/station/service/abandoned_gambling_den/gaming)
 "vYQ" = (
@@ -85946,8 +85970,13 @@
 /turf/open/floor/iron,
 /area/station/terminal/lobby)
 "xbW" = (
+/obj/effect/spawner/random/trash/bin,
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/directional/west,
 /obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/catwalk_floor/iron_dark,
+/turf/open/floor/plating{
+	initial_gas_mix = "miasma=15;o2=22;n2=82;TEMP=293.15"
+	},
 /area/station/maintenance/gamer_lair)
 "xci" = (
 /obj/effect/spawner/random/burgerstation/liquid,
@@ -88844,12 +88873,20 @@
 /turf/open/floor/iron/white,
 /area/station/medical/storage)
 "xQB" = (
-/obj/effect/turf_decal/stripes/line{
+/obj/structure/bed/wood{
 	dir = 4
 	},
-/obj/machinery/power/apc/auto_name/directional/west,
-/obj/structure/cable,
-/turf/open/floor/iron/dark,
+/obj/item/bedsheet/patriot{
+	dir = 4
+	},
+/obj/item/toy/katana{
+	desc = "As seen in your favourite Japanese cartoon.";
+	name = "anime katana"
+	},
+/obj/structure/sign/poster/contraband/lusty_xenomorph/directional/west,
+/turf/open/floor/plating{
+	initial_gas_mix = "miasma=15;o2=22;n2=82;TEMP=293.15"
+	},
 /area/station/maintenance/gamer_lair)
 "xQI" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -89702,8 +89739,8 @@
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
 "ybf" = (
-/turf/closed/wall/r_wall/rust,
-/area/station/cargo/miningdock)
+/turf/closed/wall,
+/area/station/maintenance/gamer_lair)
 "ybm" = (
 /obj/effect/turf_decal/trimline/dark/filled/warning{
 	dir = 8
@@ -240395,7 +240432,7 @@ qMl
 qMl
 qMl
 qMl
-ybf
+qMl
 hni
 ujL
 pXD
@@ -240645,14 +240682,14 @@ ldl
 uaL
 jQc
 lGP
-ovm
+jTU
 ckk
 xbW
 tMm
 xQB
 nGY
-jVm
-ugD
+lEg
+dtJ
 aIy
 aiI
 aIy
@@ -240909,7 +240946,7 @@ fRv
 uuE
 aKX
 jVm
-wLw
+ybf
 xZh
 dDw
 hvS
@@ -241161,12 +241198,12 @@ jQc
 cSz
 tAw
 ckk
-jVm
-hiT
 hZN
+hiT
+hiT
 iFD
-jVm
-wLw
+giv
+ybf
 vBQ
 vxW
 smP
@@ -246084,8 +246121,8 @@ rdH
 rdH
 mcl
 jqG
-jch
-jqG
+uoL
+dTD
 uoL
 uoL
 dTD
@@ -274371,7 +274408,7 @@ lMH
 fsw
 eBU
 eBU
-lEg
+fsw
 fgW
 mMU
 stM
