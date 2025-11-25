@@ -37,7 +37,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 
 /obj/item/clothing/under/syndicate/syndibunny/fake
-	armor_type = /datum/armor/clothing_under/none
+	armor_type = /datum/armor/clothing_under
 
 /obj/item/clothing/under/costume/playbunny/magician
 	name = "magician's bunny suit"
