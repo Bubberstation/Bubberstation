@@ -474,6 +474,7 @@
 	ascension_approved = !ascension_approved
 	if(owner?.current)
 		to_chat(owner.current, span_boldnotice("Your ascension approval has been [ascension_approved ? "granted" : "revoked"] by an administrator."))
+		owner.current.balloon_alert(owner.current, "ascension [ascension_approved ? "approved" : "denied"]")
 
 /datum/antagonist/heretic/get_admin_commands()
 	. = ..()
