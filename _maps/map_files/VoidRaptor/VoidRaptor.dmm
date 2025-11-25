@@ -30514,7 +30514,6 @@
 	},
 /obj/effect/landmark/start/ai,
 /obj/machinery/turretid{
-	icon_state = "control_stun";
 	name = "AI Chamber turret control";
 	pixel_x = 32;
 	pixel_y = 32
@@ -40221,7 +40220,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 9
 	},
-/obj/effect/turf_decal/trimline/blue/filled/corner,
 /turf/open/floor/iron/white,
 /area/station/medical/storage)
 "lte" = (
@@ -67122,7 +67120,6 @@
 "sLq" = (
 /obj/machinery/turretid{
 	control_area = "/area/station/ai/upload/chamber";
-	icon_state = "control_stun";
 	name = "AI Upload turret control";
 	pixel_y = 32
 	},
@@ -73675,13 +73672,22 @@
 /turf/open/floor/vault,
 /area/station/ai/satellite/chamber)
 "uwo" = (
-/obj/structure/closet/l3closet/virology,
 /obj/machinery/newscaster/directional/north,
-/obj/effect/turf_decal/trimline/blue/filled/end{
+/obj/effect/turf_decal/bot_blue,
+/obj/structure/closet/secure_closet/paramedic,
+/obj/effect/turf_decal/trimline/dark_blue/filled,
+/obj/effect/turf_decal/trimline/dark_blue/filled/mid_joiner,
+/obj/effect/turf_decal/trimline/dark_blue/filled/mid_joiner{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/dark_blue/filled/mid_joiner{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/dark_blue/filled/mid_joiner{
 	dir = 4
 	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/iron/white,
+/obj/item/surgicaldrill,
+/turf/open/floor/iron/dark/smooth_large,
 /area/station/medical/storage)
 "uwV" = (
 /obj/effect/mapping_helpers/airlock/access/all/supply/general,

@@ -1633,6 +1633,22 @@
 	},
 /turf/open/floor/iron/dark,
 /area/shuttle/sbc_starfury)
+"gs" = (
+/obj/item/toy/cards/deck/syndicate{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/cup/glass/bottle/beer{
+	pixel_x = 5;
+	pixel_y = -2
+	},
+/obj/item/rag,
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/turf/open/floor/iron/dark,
+/area/shuttle/sbc_starfury)
 "gx" = (
 /obj/effect/mob_spawn/ghost_role/human/syndicate/battlecruiser{
 	dir = 8
@@ -3778,6 +3794,14 @@
 /obj/effect/turf_decal/box/corners,
 /turf/open/floor/engine,
 /area/shuttle/sbc_starfury)
+"qo" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment,
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/iron/dark/textured_large,
+/area/shuttle/sbc_starfury)
 "qz" = (
 /obj/machinery/light/small/directional/north,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -3874,6 +3898,10 @@
 /obj/machinery/light/small/directional/west,
 /turf/open/floor/plating,
 /area/shuttle/sbc_starfury)
+"sA" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/plating,
+/area/shuttle/sbc_starfury)
 "sB" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -3881,10 +3909,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/pod/dark,
-/area/shuttle/sbc_starfury)
-"sL" = (
-/obj/effect/decal/cleanable/blood/oil,
-/turf/open/floor/plating,
 /area/shuttle/sbc_starfury)
 "sY" = (
 /obj/structure/disposalpipe/segment,
@@ -4246,6 +4270,17 @@
 	},
 /obj/machinery/portable_atmospherics/pump,
 /turf/open/floor/plating,
+/area/shuttle/sbc_starfury)
+"yG" = (
+/obj/machinery/light/directional/south,
+/obj/machinery/turretid{
+	ailock = 1;
+	desc = "A specially designed set of turret controls. Looks to be covered in protective casing to prevent AI interfacing.";
+	name = "Ship Turret Control";
+	pixel_y = -28;
+	req_access = list("syndicate")
+	},
+/turf/open/floor/mineral/plastitanium,
 /area/shuttle/sbc_starfury)
 "yM" = (
 /obj/effect/turf_decal/stripes/line{
@@ -4928,18 +4963,6 @@
 /obj/effect/turf_decal/tile/yellow/half/contrasted,
 /turf/open/floor/iron,
 /area/shuttle/sbc_starfury)
-"KP" = (
-/obj/machinery/light/directional/south,
-/obj/machinery/turretid{
-	ailock = 1;
-	desc = "A specially designed set of turret controls. Looks to be covered in protective casing to prevent AI interfacing.";
-	icon_state = "control_stun";
-	name = "Ship Turret Control";
-	pixel_y = -28;
-	req_access = list("syndicate")
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/sbc_starfury)
 "KR" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
@@ -5165,16 +5188,18 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/sbc_starfury)
+"Pt" = (
+/obj/effect/decal/cleanable/blood/oil,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/pod/dark,
+/area/shuttle/sbc_starfury)
 "PF" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
 /turf/open/floor/iron/dark/smooth_large,
-/area/shuttle/sbc_starfury)
-"PH" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/decal/cleanable/blood/oil,
-/turf/open/floor/plating,
 /area/shuttle/sbc_starfury)
 "PL" = (
 /obj/structure/cable,
@@ -5195,18 +5220,18 @@
 	},
 /turf/open/floor/engine,
 /area/shuttle/sbc_starfury)
-"PX" = (
-/obj/effect/decal/cleanable/blood/oil,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron/dark/textured_large,
-/area/shuttle/sbc_starfury)
 "PY" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /obj/machinery/airalarm/directional/north,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/iron/dark,
+/area/shuttle/sbc_starfury)
+"PZ" = (
+/obj/effect/decal/cleanable/blood/oil,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/dark/textured_large,
 /area/shuttle/sbc_starfury)
 "Qf" = (
 /obj/machinery/power/port_gen/pacman/super,
@@ -5368,6 +5393,11 @@
 /obj/structure/cable,
 /turf/open/floor/pod/dark,
 /area/shuttle/sbc_starfury)
+"SW" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/pod/dark,
+/area/shuttle/sbc_starfury)
 "Ta" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -5384,11 +5414,6 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/shuttle/sbc_starfury)
-"Tp" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/decal/cleanable/blood/oil,
-/turf/open/floor/pod/dark,
 /area/shuttle/sbc_starfury)
 "Tr" = (
 /obj/effect/turf_decal/siding/dark_red/end{
@@ -5411,14 +5436,6 @@
 	dir = 1
 	},
 /turf/open/floor/plating/airless,
-/area/shuttle/sbc_starfury)
-"Uw" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment,
-/obj/effect/decal/cleanable/blood/oil,
-/turf/open/floor/iron/dark/textured_large,
 /area/shuttle/sbc_starfury)
 "Uy" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -5591,13 +5608,6 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/shuttle/sbc_starfury)
-"WJ" = (
-/obj/effect/decal/cleanable/blood/oil,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
-/turf/open/floor/pod/dark,
-/area/shuttle/sbc_starfury)
 "WV" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
@@ -5757,21 +5767,10 @@
 	},
 /turf/open/floor/iron/dark,
 /area/shuttle/sbc_starfury)
-"ZI" = (
-/obj/item/toy/cards/deck/syndicate{
-	pixel_x = -6;
-	pixel_y = 6
-	},
-/obj/item/reagent_containers/cup/glass/bottle/beer{
-	pixel_x = 5;
-	pixel_y = -2
-	},
-/obj/item/rag,
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/effect/turf_decal/siding/dark{
-	dir = 1
-	},
-/turf/open/floor/iron/dark,
+"Zx" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/plating,
 /area/shuttle/sbc_starfury)
 "ZK" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -6117,7 +6116,7 @@ kx
 ng
 hf
 ei
-ZI
+gs
 Tr
 ay
 ae
@@ -6268,7 +6267,7 @@ kN
 ae
 MP
 aH
-sL
+sA
 IH
 Tn
 mH
@@ -6443,7 +6442,7 @@ et
 et
 et
 et
-PX
+PZ
 et
 et
 et
@@ -6543,7 +6542,7 @@ VV
 lF
 qC
 ae
-PH
+Zx
 mH
 ir
 ir
@@ -6569,7 +6568,7 @@ dW
 ae
 eT
 pa
-Tp
+SW
 Lt
 aH
 aH
@@ -7035,7 +7034,7 @@ aM
 bE
 uq
 cB
-KP
+yG
 ae
 as
 bp
@@ -7197,7 +7196,7 @@ aH
 aH
 aH
 hB
-WJ
+Pt
 fo
 xG
 HL
@@ -7292,7 +7291,7 @@ aH
 aH
 ae
 aH
-PH
+Zx
 mH
 ir
 ir
@@ -7603,7 +7602,7 @@ Qu
 Qu
 Qu
 aI
-Uw
+qo
 Ju
 nD
 Qw
@@ -7659,7 +7658,7 @@ AJ
 dd
 ik
 et
-PX
+PZ
 et
 et
 et
@@ -7833,7 +7832,7 @@ Pb
 aH
 aH
 KR
-sL
+sA
 mF
 ae
 ae
