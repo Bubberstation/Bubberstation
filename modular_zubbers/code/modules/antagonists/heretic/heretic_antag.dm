@@ -463,14 +463,6 @@
 		if(ispath(knowledge_path, /datum/heretic_knowledge/ultimate))
 			if(!ascension_approved)
 				knowledge_data["disabled"] = TRUE
-			else
-				var/ascension_check = can_ascend()
-				if(ascension_check != HERETIC_CAN_ASCEND)
-					knowledge_data["disabled"] = TRUE
-					knowledge_data["tooltip"] = ascension_check
-				else
-					knowledge_data["disabled"] = FALSE
-					knowledge_data["can_research"] = TRUE
 
 //Traitor panel stuff so no VV is needed
 /datum/antagonist/heretic/antag_panel_data()
