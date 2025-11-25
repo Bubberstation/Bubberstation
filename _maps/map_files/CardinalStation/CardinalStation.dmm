@@ -13333,11 +13333,11 @@
 /area/station/maintenance/abandon_arcade)
 "cZN" = (
 /obj/docking_port/stationary{
-	dwidth = 21;
+	dwidth = 22;
 	height = 40;
+	id = "emergency_home";
 	name = "Card emergency evac bay";
-	width = 44;
-	shuttle_id = "emergency_home"
+	width = 44
 	},
 /turf/open/space/basic,
 /area/space)
@@ -14467,9 +14467,6 @@
 /area/station/medical/storage)
 "dof" = (
 /obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/stripes/white/corner{
-	dir = 4
-	},
 /obj/structure/extinguisher_cabinet/directional/east,
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/iron/white/corner{
@@ -20651,14 +20648,11 @@
 /turf/open/floor/catwalk_floor/iron,
 /area/station/maintenance/department/science/upper)
 "eQN" = (
-/obj/effect/turf_decal/stripes/line{
+/obj/docking_port/stationary/mining_home/common{
 	dir = 4
 	},
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 4
-	},
-/turf/open/floor/iron,
-/area/station/hallway/secondary/entry)
+/turf/open/space/basic,
+/area/space)
 "eQV" = (
 /obj/machinery/light/small/directional/north,
 /obj/structure/window/reinforced/tinted/spawner/directional/west,
@@ -22549,7 +22543,14 @@
 /turf/open/floor/engine,
 /area/station/engineering/gravity_generator)
 "fpE" = (
-/obj/docking_port/stationary/laborcamp_home,
+/obj/docking_port/stationary{
+	dwidth = 3;
+	height = 5;
+	id = "laborcamp_home";
+	name = "fore bay 1";
+	roundstart_template = /datum/map_template/shuttle/labour/card;
+	width = 11
+	},
 /turf/open/space/basic,
 /area/space)
 "fpG" = (
@@ -27441,9 +27442,7 @@
 	},
 /obj/structure/cable,
 /obj/structure/cable,
-/obj/structure/safe/floor{
-	locked = 0
-	},
+/obj/structure/safe/floor/open,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered)
 "gvX" = (
@@ -38063,7 +38062,7 @@
 "iQx" = (
 /obj/docking_port/stationary{
 	dwidth = 1;
-	height = 12;
+	height = 13;
 	shuttle_id = "arrivals_stationary";
 	name = "arrivals";
 	width = 5;
@@ -49664,8 +49663,11 @@
 	},
 /area/station/hallway/primary/aft)
 "lCw" = (
-/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
 /obj/machinery/light/small/directional/south,
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/iron/dark/smooth_half,
 /area/station/hallway/secondary/entry)
 "lCy" = (
@@ -57579,9 +57581,10 @@
 	dir = 4;
 	dwidth = 5;
 	height = 7;
+	id = "supply_home";
 	name = "Cargo Bay";
-	shuttle_id = "cargo_home";
-	width = 13
+	width = 13;
+	shuttle_id = "cargo_home"
 	},
 /turf/open/space/basic,
 /area/space)
@@ -67548,7 +67551,7 @@
 /obj/machinery/light/small/directional/north,
 /obj/structure/lattice,
 /turf/open/space/basic,
-/area/station/hallway/secondary/entry)
+/area/space/nearstation)
 "pJk" = (
 /obj/effect/turf_decal/trimline/white/end{
 	dir = 1
@@ -72045,11 +72048,14 @@
 /turf/open/floor/iron/solarpanel/airless,
 /area/ruin/powered)
 "qMg" = (
-/obj/docking_port/stationary/mining_home{
+/obj/docking_port/stationary{
 	dir = 4;
-	dwidth = 4;
-	height = 17;
-	width = 10
+	dwidth = 2;
+	height = 8;
+	id = "mining_home";
+	name = "mining shuttle bay";
+	roundstart_template = /datum/map_template/shuttle/mining/card;
+	width = 5
 	},
 /turf/open/space/basic,
 /area/space)
@@ -76140,17 +76146,19 @@
 /turf/closed/wall,
 /area/station/maintenance/department/science/xenobiology)
 "rJc" = (
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/stripes/corner{
+/obj/effect/turf_decal/stripes/corner,
+/obj/effect/turf_decal/stripes/white/corner,
+/obj/machinery/light/directional/east,
+/obj/machinery/airalarm/directional/east,
+/obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/effect/turf_decal/stripes/white/corner{
+/obj/effect/turf_decal/stripes/white/line{
 	dir = 4
 	},
-/obj/effect/turf_decal/caution/red{
-	dir = 8
+/turf/open/floor/iron/white/corner{
+	dir = 4
 	},
-/turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "rJh" = (
 /obj/effect/turf_decal/siding/dark{
@@ -78006,10 +78014,12 @@
 /turf/open/floor/plating,
 /area/station/engineering/supermatter/room/upper)
 "scZ" = (
-/obj/effect/turf_decal/stripes/corner,
-/obj/effect/turf_decal/stripes/white/corner,
-/obj/machinery/light/directional/east,
-/obj/machinery/airalarm/directional/east,
+/obj/effect/turf_decal/tile/blue,
+/obj/structure/extinguisher_cabinet/directional/east,
+/obj/effect/turf_decal/tile/blue,
+/obj/machinery/computer/shuttle/mining/common{
+	dir = 8
+	},
 /turf/open/floor/iron/white/corner{
 	dir = 4
 	},
@@ -80451,6 +80461,13 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/hallway/primary/aft)
+"sIY" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/machinery/camera/directional/east,
+/turf/open/floor/iron/white/corner{
+	dir = 4
+	},
+/area/station/hallway/secondary/entry)
 "sJq" = (
 /obj/machinery/atmospherics/pipe/smart/simple/green/visible{
 	dir = 5
@@ -97345,16 +97362,13 @@
 /turf/open/floor/iron/white,
 /area/station/science/research/abandoned)
 "wEw" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 4
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},
-/turf/open/floor/iron,
+/obj/effect/turf_decal/tile/blue,
+/turf/open/floor/iron/white/corner{
+	dir = 4
+	},
 /area/station/hallway/secondary/entry)
 "wEy" = (
 /obj/effect/turf_decal/tile/yellow/opposingcorners,
@@ -101587,12 +101601,17 @@
 /turf/open/floor/iron/dark,
 /area/station/medical/virology)
 "xGc" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
+/obj/effect/turf_decal/tile/blue,
+/obj/machinery/light/directional/east,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
 	},
-/obj/structure/closet/emcloset,
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4
+	},
+/obj/machinery/mining_weather_monitor/directional/east,
 /turf/open/floor/iron/white/corner{
-	dir = 8
+	dir = 4
 	},
 /area/station/hallway/secondary/entry)
 "xGj" = (
@@ -101934,8 +101953,14 @@
 /turf/open/floor/iron/white/textured,
 /area/station/medical/pharmacy)
 "xJJ" = (
-/obj/structure/lattice,
-/turf/open/space/basic,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/structure/closet/emcloset,
+/obj/machinery/camera/directional/north,
+/turf/open/floor/iron/white/corner{
+	dir = 8
+	},
 /area/station/hallway/secondary/entry)
 "xJL" = (
 /obj/effect/turf_decal/stripes/corner{
@@ -103648,10 +103673,16 @@
 /turf/open/floor/iron/dark,
 /area/awaymission/station/science/xenobiology)
 "yfG" = (
+/obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/stripes/line{
-	dir = 1
+	dir = 4
 	},
-/turf/open/floor/iron/dark/smooth_half,
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4
+	},
+/turf/open/floor/iron/white/corner{
+	dir = 4
+	},
 /area/station/hallway/secondary/entry)
 "yfM" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -105605,7 +105636,7 @@ nzj
 nzj
 nzj
 nzj
-stU
+hyT
 nzj
 nzj
 nzj
@@ -107660,7 +107691,7 @@ nzj
 nzj
 nzj
 uok
-stU
+hyT
 nzj
 nzj
 nzj
@@ -107913,14 +107944,14 @@ nzj
 nzj
 nzj
 nzj
-stU
+hyT
 nzj
 nzj
 nzj
 nzj
 nzj
 nzj
-stU
+hyT
 nzj
 nzj
 nzj
@@ -108175,7 +108206,7 @@ nzj
 nzj
 nzj
 nzj
-stU
+hyT
 nzj
 nzj
 nzj
@@ -108429,7 +108460,7 @@ nzj
 nzj
 nzj
 nzj
-stU
+hyT
 nzj
 nzj
 nzj
@@ -109712,7 +109743,7 @@ nzj
 nzj
 nzj
 nzj
-stU
+hyT
 nzj
 nzj
 nzj
@@ -135049,10 +135080,10 @@ nzj
 nzj
 nzj
 nzj
-nzj
-nzj
-nzj
 hyT
+nzj
+nzj
+nzj
 nzj
 nzj
 nzj
@@ -135306,14 +135337,14 @@ nzj
 nzj
 nzj
 nzj
+hyT
+hyT
+hyT
+hyT
+hyT
+hyT
+hyT
 nzj
-nzj
-nzj
-hyT
-hyT
-hyT
-hyT
-hyT
 jVu
 kVK
 jVu
@@ -135563,14 +135594,14 @@ nzj
 nzj
 nzj
 nzj
-nzj
-nzj
-nzj
 hyT
-fjZ
 jVu
 jVu
 jVu
+jVu
+jVu
+hyT
+hyT
 fjZ
 jJj
 fjZ
@@ -135818,16 +135849,16 @@ nzj
 nzj
 nzj
 nzj
-nzj
-nzj
-nzj
 vcD
 iub
 iub
 fjZ
-xGc
+xJJ
 uCK
 vkG
+fjZ
+fjZ
+fjZ
 fjZ
 pIr
 fjZ
@@ -136075,9 +136106,6 @@ nzj
 nzj
 nzj
 nzj
-nzj
-nzj
-nzj
 wdw
 gCN
 ooo
@@ -136085,6 +136113,9 @@ fXk
 cPm
 cwV
 aHK
+hCC
+hCC
+hCC
 ihA
 oDs
 yfO
@@ -136332,14 +136363,14 @@ nzj
 nzj
 nzj
 nzj
-nzj
-nzj
-nzj
 wdw
 sBk
 oBZ
 fXk
 wfT
+rXM
+rXM
+rXM
 rXM
 rXM
 sPP
@@ -136589,20 +136620,20 @@ nzj
 nzj
 nzj
 nzj
-nzj
-nzj
-nzj
 vcD
 iub
 iub
 fjZ
 hrv
 clg
+rJc
+yfG
+xGc
 scZ
 wEw
-eQN
-rJc
 clg
+clg
+sIY
 ciM
 dof
 clg
@@ -136846,9 +136877,6 @@ nzj
 nzj
 nzj
 nzj
-nzj
-nzj
-nzj
 eHl
 eHl
 eHl
@@ -136857,8 +136885,11 @@ jVu
 jVu
 fjZ
 dPK
-dPK
 fjZ
+fjZ
+jVu
+jVu
+jVu
 fjZ
 fjZ
 fjZ
@@ -137107,18 +137138,18 @@ nzj
 nzj
 nzj
 nzj
-nzj
-nzj
-nzj
 hyT
 hyT
 jVu
-yfG
 lCw
 fjZ
 pJi
-xJJ
-xJJ
+hyT
+hyT
+hyT
+pJi
+hyT
+hyT
 hyT
 hyT
 hyT
@@ -137366,16 +137397,16 @@ nzj
 nzj
 nzj
 nzj
-nzj
-nzj
-nzj
 vcD
 lyE
-lyE
 fjZ
-xJJ
-eHl
-eHl
+hyT
+nzj
+nzj
+nzj
+nzj
+nzj
+nzj
 nzj
 nzj
 nzj
@@ -137624,7 +137655,7 @@ nzj
 nzj
 nzj
 nzj
-nzj
+eQN
 nzj
 nzj
 nzj
