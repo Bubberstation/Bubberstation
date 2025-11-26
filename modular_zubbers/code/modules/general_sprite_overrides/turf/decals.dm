@@ -2,15 +2,15 @@
 
 //standard
 /obj/effect/turf_decal/stripes
-	icon = 'modular_zubbers/icons/turf/decals/stripes.dmi'
+	icon = 'modular_zubbers/icons/turf/decals/decals.dmi'
 
 //SIDING
 
 /obj/effect/turf_decal/siding
-	icon = 'modular_zubbers/icons/turf/decals/siding.dmi'
+	icon = 'modular_zubbers/icons/turf/decals/decals.dmi'
 
 /obj/effect/turf_decal/siding/wood
-	icon = 'modular_zubbers/icons/turf/decals/siding.dmi'
+	icon = 'modular_zubbers/icons/turf/decals/decals.dmi'
 	icon_state = "siding_wood"
 	color = "#653923"
 
