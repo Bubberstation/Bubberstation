@@ -7487,6 +7487,7 @@
 	pixel_x = -6
 	},
 /obj/effect/turf_decal/siding/purple,
+/obj/structure/extinguisher_cabinet/directional/east,
 /turf/open/floor/iron/white,
 /area/station/science/robotics/augments)
 "ccT" = (
@@ -13791,13 +13792,11 @@
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 8
 	},
-/obj/machinery/requests_console/auto_name/directional/west,
-/obj/effect/mapping_helpers/requests_console/assistance,
-/obj/effect/mapping_helpers/requests_console/information,
-/obj/effect/mapping_helpers/requests_console/supplies,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
+/obj/effect/landmark/start/science_guard,
+/obj/structure/extinguisher_cabinet/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/science)
 "dMY" = (
@@ -16681,6 +16680,7 @@
 /obj/machinery/camera/autoname/science/directional/south,
 /obj/structure/closet/wardrobe/genetics_white,
 /obj/effect/turf_decal/tile/purple/anticorner/contrasted,
+/obj/machinery/firealarm/directional/south,
 /turf/open/floor/iron/white,
 /area/station/science/genetics)
 "eAv" = (
@@ -39521,8 +39521,14 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
+/obj/effect/landmark/start/science_guard,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/science)
+"kCF" = (
+/obj/effect/turf_decal/siding/dark,
+/obj/effect/landmark/start/scientist,
+/turf/open/floor/iron/white,
+/area/station/science/lab)
 "kCG" = (
 /obj/structure/chair/office{
 	dir = 8
@@ -39729,9 +39735,9 @@
 "kFt" = (
 /obj/structure/table,
 /obj/item/surgery_tray/full/deployed,
-/obj/structure/extinguisher_cabinet/directional/west,
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
+/obj/machinery/firealarm/directional/west,
 /turf/open/floor/iron/white,
 /area/station/science/robotics/augments)
 "kFz" = (
@@ -42704,6 +42710,7 @@
 /area/station/service/hydroponics)
 "ltT" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/landmark/start/science_guard,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/science)
 "lub" = (
@@ -45805,6 +45812,7 @@
 /obj/structure/chair/office{
 	dir = 8
 	},
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/iron,
 /area/station/science/lab)
 "miG" = (
@@ -47222,6 +47230,9 @@
 	dir = 1
 	},
 /obj/machinery/requests_console/directional/west,
+/obj/effect/mapping_helpers/requests_console/assistance,
+/obj/effect/mapping_helpers/requests_console/supplies,
+/obj/effect/mapping_helpers/requests_console/information,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/science)
 "mDt" = (
@@ -48478,6 +48489,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/iron,
 /area/station/science/explab)
 "mWf" = (
@@ -63400,6 +63412,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/iron,
 /area/station/science/explab)
 "qSM" = (
@@ -68064,6 +68077,7 @@
 /obj/effect/turf_decal/tile/red/anticorner/contrasted{
 	dir = 4
 	},
+/obj/machinery/newscaster/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/science)
 "sid" = (
@@ -70685,6 +70699,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/red/half/contrasted,
+/obj/effect/landmark/start/science_guard,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/science)
 "sSX" = (
@@ -73624,6 +73639,7 @@
 /obj/effect/turf_decal/tile/purple/anticorner/contrasted{
 	dir = 1
 	},
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/iron/white,
 /area/station/science/lab)
 "tGL" = (
@@ -82157,6 +82173,7 @@
 	dir = 8
 	},
 /obj/machinery/light/cold/directional/west,
+/obj/effect/landmark/start/science_guard,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/science)
 "vXN" = (
@@ -84326,6 +84343,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/landmark/start/science_guard,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/science)
 "wDe" = (
@@ -86170,6 +86188,7 @@
 	},
 /obj/structure/rack,
 /obj/item/restraints/handcuffs,
+/obj/machinery/computer/security/telescreen/research/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/science)
 "xci" = (
@@ -86867,6 +86886,7 @@
 	dir = 8
 	},
 /obj/machinery/airalarm/directional/west,
+/obj/effect/landmark/start/science_guard,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/science)
 "xmZ" = (
@@ -88036,7 +88056,7 @@
 /obj/effect/turf_decal/tile/red/anticorner/contrasted{
 	dir = 8
 	},
-/obj/structure/extinguisher_cabinet/directional/west,
+/obj/machinery/firealarm/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/science)
 "xCo" = (
@@ -90645,6 +90665,7 @@
 	},
 /obj/effect/turf_decal/tile/red/anticorner/contrasted,
 /obj/item/radio/intercom/directional/east,
+/obj/effect/landmark/start/science_guard,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/science)
 "ylv" = (
@@ -268979,7 +269000,7 @@ svI
 aZT
 iBD
 cov
-dZs
+kCF
 lBf
 jKZ
 asU
@@ -269493,7 +269514,7 @@ uNy
 qcW
 iBD
 chL
-dZs
+kCF
 fZj
 tcs
 sSo
@@ -270253,9 +270274,9 @@ lAK
 soU
 tTq
 jOI
+jOI
 biy
-biy
-biy
+jOI
 jOI
 jOI
 jOI
