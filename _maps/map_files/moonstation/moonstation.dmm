@@ -6323,6 +6323,13 @@
 	dir = 1
 	},
 /area/station/hallway/primary/port)
+"bKl" = (
+/obj/effect/mapping_helpers/broken_floor,
+/obj/item/assembly/mousetrap/armed{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/station/maintenance/aft)
 "bKn" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
@@ -20485,6 +20492,9 @@
 	},
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/computer/atmos_alert/station_only{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/engine)
 "fyJ" = (
@@ -32415,6 +32425,7 @@
 /area/station/commons/storage/primary)
 "iKB" = (
 /obj/machinery/door/airlock/maintenance,
+/obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
 "iKG" = (
@@ -38431,6 +38442,10 @@
 /obj/effect/spawner/random/burgerstation/atmos,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos/hfr_room)
+"koM" = (
+/obj/effect/spawner/random/trash/bacteria,
+/turf/open/floor/plating,
+/area/station/maintenance/aft)
 "koR" = (
 /turf/open/indestructible/tram,
 /area/station/hallway/primary/tram/left)
@@ -57502,6 +57517,7 @@
 /area/station/maintenance/department/engine/atmos)
 "pou" = (
 /obj/effect/decal/cleanable/greenglow/filled,
+/obj/effect/spawner/random/mod/maint,
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
 "pow" = (
@@ -57745,6 +57761,7 @@
 /area/station/maintenance/department/prison)
 "psw" = (
 /obj/effect/spawner/random/trash/hobo_squat,
+/obj/item/relic,
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
 "psB" = (
@@ -87956,6 +87973,12 @@
 /obj/effect/mapping_helpers/airlock/access/any/service/kitchen,
 /turf/open/floor/iron/kitchen,
 /area/station/service/kitchen)
+"xBN" = (
+/obj/item/assembly/mousetrap/armed{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/station/maintenance/aft)
 "xBY" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -264817,12 +264840,12 @@ cKG
 wsh
 qFK
 psw
-caA
+jsu
 unD
 bGR
 cKG
 wsh
-caA
+jsu
 iGh
 cKG
 dAb
@@ -265073,7 +265096,7 @@ cKG
 cmj
 mIK
 xWH
-caA
+xBN
 nOs
 nOs
 iGh
@@ -265589,7 +265612,7 @@ oYH
 yda
 sSf
 qDt
-unD
+bKl
 iGh
 cKG
 ltq
@@ -266103,7 +266126,7 @@ qJU
 nNd
 cKG
 rDU
-caA
+koM
 cKG
 mIK
 cmj
@@ -266360,10 +266383,10 @@ cEC
 iyh
 cLA
 meI
-caA
+jsu
 iKB
 caA
-caA
+jsu
 jvi
 mjp
 vra
