@@ -395,24 +395,27 @@
 
 /datum/reagent/juice_that_makes_you_weh
 	name = "Juice That Makes You Weh"
-	description = "This liquid, once inside a sentient being, will cause it to 'weh' uncontrollably for a time"
+	description = "A strange green chemical, will cause iliving beings to 'weh' uncontrollably for a time"
 	color = "#37e427" // rgb: 165, 240, 238
-	taste_description = "weh"
-	reagent_weight = 0.6 //so it sprays further
+	taste_description = "an odd sweetness"
+	metabolization_rate = 2 // metabolises a lot faster, will occur more often but not hang around for ages
 	penetrates_skin = VAPOR
 	ph = 5.5
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/juice_that_makes_you_weh/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
-	if(current_cycle > 10 && SPT_PROB(7.5, seconds_per_tick))
+
+	if (prob(50))
 		to_chat(affected_mob, span_warning("You feel the urge to weh..."))
-		current_cycle = 1
-		addtimer(CALLBACK(affected_mob, TYPE_PROC_REF(/mob/living, weh_juice_weh)), 3 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(do_weh_sound), affected_mob), rand(1, 4) SECONDS)
 
-/mob/living/proc/weh_juice_weh()
-	mob/living/carbon/affected_mob.emote(/mob/living/proc/emote_weh)
+/datum/reagent/juice_that_makes_you_weh/proc/do_weh_sound(mob/living/carbon/M)
+	if (!M || M.stat == DEAD)
+		return
 
+	// Play randomized-pitch 'weh'
+	playsound(M, 'modular_skyrat/modules/emotes/sound/voice/weh.ogg', 50, TRUE)
 
 
 #undef MUT_MSG_IMMEDIATE
