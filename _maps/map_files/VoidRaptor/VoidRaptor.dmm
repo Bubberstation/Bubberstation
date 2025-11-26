@@ -8467,10 +8467,8 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/window/reinforced/spawner/directional/west{
-	pixel_x = -4
-	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/wall_healer/directional/west,
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 4
 	},
@@ -18096,9 +18094,6 @@
 "fmM" = (
 /obj/structure/table/reinforced/rglass,
 /obj/machinery/door/firedoor,
-/obj/structure/window/reinforced/spawner/directional/south{
-	pixel_y = -4
-	},
 /obj/item/reagent_containers/cup/bottle/multiver{
 	pixel_x = 6
 	},
@@ -32711,13 +32706,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron/smooth_large,
 /area/station/hallway/secondary/construction)
-"jtG" = (
-/obj/structure/flora/ocean/glowweed,
-/obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
-	},
-/turf/open/misc/asteroid,
-/area/station/medical/medbay/lobby)
 "jtH" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Morgue Maintenance"
@@ -46808,14 +46796,18 @@
 /turf/closed/wall/r_wall/rust,
 /area/station/engineering/atmos)
 "nhi" = (
-/obj/structure/window/reinforced/spawner/directional/east{
-	pixel_x = 4
-	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
+	},
+/obj/machinery/button/door/directional/east{
+	id = "MedbayFoyer";
+	name = "Medbay Doors Control";
+	normaldoorcontrol = 1;
+	pixel_x = 21;
+	pixel_y = 10
 	},
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 8
@@ -117868,7 +117860,7 @@ mAQ
 puL
 aXQ
 fmM
-jtG
+dfF
 dqZ
 dfF
 iNT
