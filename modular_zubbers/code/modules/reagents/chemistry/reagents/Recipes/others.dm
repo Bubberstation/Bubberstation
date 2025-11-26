@@ -162,8 +162,3 @@
 	results = list(/datum/reagent/mutationtoxin/zombie = 1)
 	required_reagents  = list(/datum/reagent/liquid_dark_matter = 5, /datum/reagent/toxin/zombiepowder = 2, /datum/reagent/medicine/strange_reagent = 2, /datum/reagent/mutationtoxin = 1)
 	required_temp = 320
-
-/datum/chemical_reaction/juice_that_makes_you_weh
-	results = list(/datum/reagent/juice_that_makes_you_weh = 1)
-	required_reagents  = list(/datum/reagent/water = 5, /datum/reagent/silicon = 5)
-	required_temp = 500

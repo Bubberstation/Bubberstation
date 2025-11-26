@@ -16,3 +16,20 @@
 	crate_name = "patriotic crate"
 	contraband = TRUE
 
+/datum/supply_pack/misc/lizardcrate
+	name = "Lizard Crate"
+	desc = "Limited edition Lizard Crate! Contains your FAVOURITE lizard related items, including the coveted 'weh-nade'"
+	cost = CARGO_CRATE_VALUE * 3
+	contains = list(
+		/obj/item/grenade/chem_grenade/wehnade = 2,
+		/obj/item/toy/plush/lizard_plushie = 2,
+		/obj/item/toy/plush/lizard_plushie/green = 2,
+		/obj/item/toy/plush/lizard_plushie/space = 2,
+		/obj/effect/spawner/random/food_or_drink/snack/lizard = 4,
+		/obj/structure/sign/poster/contraband/lizard,
+		/obj/structure/sign/poster/contraband/imperial_propaganda,
+		/mob/living/basic/lizard = 4,
+	)
+	crate_type = /obj/structure/closet/crate/wooden
+	crate_name = "Lizard Crate"
+	contraband = TRUE
