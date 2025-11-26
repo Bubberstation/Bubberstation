@@ -6,6 +6,15 @@
 	donator_only = TRUE
 	restricted_roles = list(ALL_JOBS_SEC, JOB_BLUESHIELD)
 
+/datum/loadout_item/uniform/security/camo
+	name = "Armored Camouflage Uniform"
+	item_path = /obj/item/clothing/under/rank/security/camo
+	restricted_roles = list(ALL_JOBS_SEC, JOB_BLUESHIELD)
+
+/datum/loadout_item/uniform/camo
+	name = "Camouflage Uniform"
+	item_path = /obj/item/clothing/under/rank/civilian/bubber/camo
+
 /datum/loadout_item/uniform/command/stripper //Sprites by SierraGenevese
 	name = "Command Bikini"
 	item_path = /obj/item/clothing/under/rank/civilian/head_of_personnel/stripper
@@ -162,3 +171,7 @@
 /datum/loadout_item/uniform/miscellaneous/red_and_white_collared_outfit
 	name = "Red and White Collared Suit"
 	item_path = /obj/item/clothing/under/red_and_white_collared_outfit
+
+/datum/loadout_item/uniform/miscellaneous/midnightdress
+	name = "Midnight Gown"
+	item_path = /obj/item/clothing/under/dress/bubber/midnight_gown
