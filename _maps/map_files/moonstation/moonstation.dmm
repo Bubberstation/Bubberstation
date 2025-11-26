@@ -9914,6 +9914,7 @@
 	},
 /obj/effect/turf_decal/tile/purple/half/contrasted,
 /obj/machinery/door/firedoor,
+/obj/effect/landmark/navigate_destination/autoname,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/science)
 "cMc" = (
@@ -12938,6 +12939,10 @@
 /obj/effect/turf_decal/trimline/white/line,
 /turf/open/floor/iron,
 /area/station/security/prison/workout)
+"dzI" = (
+/obj/effect/landmark/navigate_destination/autoname,
+/turf/open/floor/glass/reinforced/scrape_below,
+/area/station/science/lobby)
 "dzM" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/orange/visible,
 /obj/machinery/meter,
@@ -45307,9 +45312,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/purple,
-/obj/structure/sign/directions/science/directional/east{
-	pixel_y = -24
-	},
 /obj/structure/sign/directions/medical/directional/north{
 	pixel_y = -32;
 	pixel_x = 32
@@ -45318,6 +45320,10 @@
 	pixel_y = -40
 	},
 /obj/structure/disposalpipe/segment,
+/obj/structure/sign/directions/science/directional/south{
+	pixel_y = -24;
+	pixel_x = 32
+	},
 /turf/open/floor/iron/checker,
 /area/station/hallway/secondary/exit)
 "mbE" = (
@@ -56242,6 +56248,7 @@
 	},
 /obj/structure/closet/emcloset,
 /obj/machinery/camera/autoname/science/directional/south,
+/obj/item/radio/intercom/directional/east,
 /turf/open/floor/iron/checker,
 /area/station/science)
 "oZZ" = (
@@ -56725,8 +56732,15 @@
 	req_access = list("genetics")
 	},
 /obj/machinery/door/firedoor,
-/obj/item/folder,
-/obj/item/pen,
+/obj/item/folder{
+	pixel_x = 6
+	},
+/obj/item/pen{
+	pixel_x = 7
+	},
+/obj/structure/desk_bell{
+	pixel_x = -7
+	},
 /turf/open/floor/iron/white,
 /area/station/science/genetics)
 "pfF" = (
@@ -77617,13 +77631,17 @@
 	id = "robotics_science_privacy";
 	name = "Robotics Shutters"
 	},
-/obj/structure/desk_bell,
+/obj/structure/desk_bell{
+	pixel_x = -7
+	},
 /obj/machinery/door/firedoor,
 /obj/machinery/door/window/left/directional/north{
 	name = "Robotics Desk";
 	req_access = list("robotics")
 	},
-/obj/item/pai_card,
+/obj/item/pai_card{
+	pixel_x = 6
+	},
 /turf/open/floor/plating,
 /area/station/science/robotics)
 "uLc" = (
@@ -82264,6 +82282,18 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit)
+"vZn" = (
+/obj/effect/turf_decal/tile/purple/half/contrasted{
+	dir = 4
+	},
+/obj/item/stack/sheet/iron/fifty{
+	pixel_y = 9;
+	pixel_x = -5
+	},
+/obj/item/stack/sheet/glass/fifty,
+/obj/structure/rack,
+/turf/open/floor/iron,
+/area/station/science/explab)
 "vZt" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -82826,6 +82856,12 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/engine/lower)
+"whK" = (
+/obj/structure/closet/firecloset,
+/obj/effect/turf_decal/stripes/line,
+/obj/item/radio/intercom/directional/west,
+/turf/open/floor/iron/checker,
+/area/station/science)
 "whN" = (
 /obj/effect/turf_decal/tile/bar/half/contrasted{
 	dir = 4
@@ -89098,6 +89134,7 @@
 /obj/effect/turf_decal/tile/purple/half/contrasted{
 	dir = 1
 	},
+/obj/machinery/recharge_station,
 /turf/open/floor/iron/dark,
 /area/station/science/robotics)
 "xRl" = (
@@ -267398,7 +267435,7 @@ gOL
 gTr
 kSZ
 vGS
-vGS
+dzI
 vGS
 wiD
 tke
@@ -268423,7 +268460,7 @@ qwo
 dnS
 kFt
 syf
-wAv
+whK
 wkb
 kaq
 iBD
@@ -272789,7 +272826,7 @@ tSK
 sVY
 eZF
 oNy
-eZF
+vZn
 aux
 uJk
 xpi
