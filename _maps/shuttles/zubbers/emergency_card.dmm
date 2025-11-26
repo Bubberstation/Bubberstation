@@ -2,15 +2,6 @@
 "ae" = (
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/shuttle/escape)
-"ag" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/machinery/power/shuttle_engine/huge{
-	dir = 4
-	},
-/turf/open/floor/plating/airless,
-/area/shuttle/escape)
 "aE" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 9
@@ -36,7 +27,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/effect/turf_decal/siding/red{
+/obj/effect/turf_decal/siding/red/real_red{
 	dir = 5
 	},
 /obj/machinery/light/small/directional/east,
@@ -47,6 +38,7 @@
 /area/shuttle/escape)
 "aJ" = (
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/door/window,
 /turf/open/floor/iron/textured_half{
 	dir = 1
 	},
@@ -66,13 +58,11 @@
 	dir = 1
 	},
 /area/shuttle/escape)
-"bH" = (
+"bC" = (
 /obj/effect/turf_decal/stripes/line{
-	dir = 1
+	dir = 4
 	},
-/obj/structure/chair/comfy/shuttle{
-	dir = 8
-	},
+/obj/structure/chair/comfy/shuttle,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "cE" = (
@@ -108,8 +98,8 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/effect/turf_decal/siding/red{
-	dir = 8
+/obj/effect/turf_decal/siding/red/real_red{
+	dir = 9
 	},
 /obj/structure/table/reinforced{
 	color = "#c2bfa3"
@@ -139,8 +129,15 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
+"db" = (
+/obj/machinery/camera/directional/west,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/shuttle/escape)
 "dx" = (
 /obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/door/window{
 	dir = 1
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
@@ -170,16 +167,11 @@
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
 	},
+/obj/item/storage/medkit/regular{
+	pixel_x = -1;
+	pixel_y = 6
+	},
 /turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"eu" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/structure/chair/comfy/shuttle{
-	dir = 8
-	},
-/turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "eN" = (
 /obj/effect/turf_decal/stripes/line{
@@ -223,7 +215,7 @@
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "gb" = (
-/obj/effect/turf_decal/siding/red{
+/obj/effect/turf_decal/siding/red/real_red{
 	dir = 4
 	},
 /obj/structure/chair/comfy/shuttle{
@@ -240,6 +232,15 @@
 /turf/open/floor/iron/textured_half{
 	dir = 1
 	},
+/area/shuttle/escape)
+"gk" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "gn" = (
 /obj/machinery/status_display/evac,
@@ -338,7 +339,7 @@
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/shuttle/escape)
 "jX" = (
-/obj/effect/turf_decal/siding/red,
+/obj/effect/turf_decal/siding/red/real_red,
 /obj/item/radio/intercom/directional/south,
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -374,12 +375,14 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
-"ne" = (
-/obj/structure/chair/bronze{
-	dir = 4
+"lO" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
 	},
-/obj/machinery/camera/directional/west,
-/turf/open/floor/mineral/titanium/yellow,
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "nr" = (
 /obj/effect/turf_decal/stripes/line{
@@ -408,14 +411,12 @@
 	},
 /turf/open/floor/iron/textured_half,
 /area/shuttle/escape)
-"nO" = (
-/obj/effect/turf_decal/stripes/line{
+"nA" = (
+/obj/structure/chair/bronze{
 	dir = 4
 	},
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
-	},
-/turf/open/floor/mineral/plastitanium,
+/obj/machinery/camera/directional/west,
+/turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
 "nR" = (
 /obj/effect/turf_decal/tile/yellow/opposingcorners,
@@ -439,6 +440,25 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
+/area/shuttle/escape)
+"oT" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/machinery/camera/directional/east,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/escape)
+"pd" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/door/window{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "po" = (
 /obj/machinery/computer/security,
@@ -468,13 +488,6 @@
 /turf/open/floor/iron/dark/textured_half{
 	dir = 1
 	},
-/area/shuttle/escape)
-"pO" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/structure/chair/comfy/shuttle,
-/turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "qv" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/east,
@@ -616,24 +629,14 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
-"sL" = (
+"sz" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
 /obj/structure/chair/comfy/shuttle{
 	dir = 8
 	},
-/obj/machinery/camera/directional/east,
 /turf/open/floor/mineral/plastitanium,
-/area/shuttle/escape)
-"sV" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/machinery/power/shuttle_engine/large{
-	dir = 4
-	},
-/turf/open/floor/plating/airless,
 /area/shuttle/escape)
 "sX" = (
 /obj/effect/turf_decal/stripes/line{
@@ -656,6 +659,15 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold/orange/hidden,
 /turf/open/floor/mineral/plastitanium,
+/area/shuttle/escape)
+"ub" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/power/shuttle_engine/huge{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
 /area/shuttle/escape)
 "un" = (
 /obj/effect/turf_decal/stripes/line{
@@ -709,6 +721,15 @@
 	dir = 1
 	},
 /turf/open/floor/mineral/plastitanium,
+/area/shuttle/escape)
+"wj" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/power/shuttle_engine/large{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
 /area/shuttle/escape)
 "wm" = (
 /obj/machinery/computer/apc_control{
@@ -837,6 +858,15 @@
 /obj/structure/extinguisher_cabinet/directional/south,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/shuttle/escape)
+"Ab" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/escape)
 "AA" = (
 /obj/machinery/computer/atmos_alert{
 	dir = 1
@@ -870,7 +900,11 @@
 	pixel_y = 26
 	},
 /obj/structure/extinguisher_cabinet/directional/east,
-/obj/item/toy/plush/Synth,
+/obj/item/toy/plush/snakeplushie,
+/obj/item/clothing/head/hats/bowler{
+	pixel_x = -5;
+	pixel_y = 2
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "BS" = (
@@ -891,6 +925,14 @@
 /obj/structure/window/reinforced/survival_pod/spawner/directional/east,
 /obj/machinery/power/smes/engineering{
 	charge = 2e+007
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"Ds" = (
+/obj/structure/window/reinforced/survival_pod/spawner/directional/east,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/general/visible,
+/obj/machinery/power/shuttle_engine/heater{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
@@ -925,19 +967,11 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
-"EX" = (
-/obj/structure/window/reinforced/survival_pod/spawner/directional/east,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/general/visible,
-/obj/machinery/power/shuttle_engine/heater{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
 "Fr" = (
-/obj/effect/turf_decal/siding/red{
+/obj/effect/turf_decal/siding/red/real_red{
 	dir = 8
 	},
-/obj/effect/turf_decal/siding/red/corner,
+/obj/effect/turf_decal/siding/red/real_red/corner,
 /obj/machinery/light/small/directional/west,
 /turf/open/floor/iron/smooth,
 /area/shuttle/escape)
@@ -949,7 +983,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "FK" = (
-/obj/effect/turf_decal/siding/red{
+/obj/effect/turf_decal/siding/red/real_red{
 	dir = 8
 	},
 /obj/structure/chair/comfy/shuttle{
@@ -975,18 +1009,16 @@
 	},
 /turf/open/floor/mineral/titanium/tiled/blue,
 /area/shuttle/escape)
+"Gq" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/chair/comfy/shuttle,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/escape)
 "Gr" = (
 /obj/machinery/status_display/ai,
 /turf/closed/wall/mineral/titanium/nodiagonal,
-/area/shuttle/escape)
-"Gu" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
-	},
-/turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "Gw" = (
 /obj/effect/turf_decal/stripes/line{
@@ -1019,10 +1051,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/machinery/door/airlock/security/glass{
-	name = "Brig";
-	req_access_txt = "2"
-	},
+/obj/machinery/door/airlock/security/old,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
@@ -1091,7 +1120,7 @@
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/shuttle/escape)
 "Jq" = (
-/obj/effect/turf_decal/siding/red{
+/obj/effect/turf_decal/siding/red/real_red{
 	dir = 6
 	},
 /obj/structure/table/reinforced{
@@ -1163,6 +1192,15 @@
 /obj/machinery/vending/wardrobe/engi_wardrobe,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
+"LD" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/door/window{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/escape)
 "LG" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -1193,6 +1231,10 @@
 /obj/effect/turf_decal/tile/blue/opposingcorners,
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/blue,
+/obj/item/storage/medkit/regular{
+	pixel_x = -1;
+	pixel_y = 6
+	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "Nu" = (
@@ -1247,13 +1289,6 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
-"Or" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/structure/chair/comfy/shuttle,
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/escape)
 "OF" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 10
@@ -1271,6 +1306,15 @@
 	},
 /obj/machinery/camera/directional/east,
 /turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"Pq" = (
+/obj/effect/turf_decal/siding/dark_blue{
+	dir = 8
+	},
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "Qb" = (
 /obj/effect/turf_decal/stripes/line{
@@ -1391,15 +1435,11 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
-"Wp" = (
-/obj/machinery/camera/directional/west,
-/turf/open/floor/mineral/titanium/tiled/white,
-/area/shuttle/escape)
 "Wq" = (
-/obj/effect/turf_decal/siding/red/corner{
+/obj/effect/turf_decal/siding/red/real_red/corner{
 	dir = 1
 	},
-/obj/effect/turf_decal/siding/red/corner{
+/obj/effect/turf_decal/siding/red/real_red/corner{
 	dir = 8
 	},
 /turf/open/floor/iron/smooth_edge{
@@ -1414,15 +1454,6 @@
 /obj/machinery/vending/tool,
 /obj/machinery/light/small/directional/east,
 /turf/open/floor/iron/textured,
-/area/shuttle/escape)
-"WQ" = (
-/obj/effect/turf_decal/siding/dark_blue{
-	dir = 8
-	},
-/obj/structure/chair/comfy/shuttle{
-	dir = 8
-	},
-/turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "WT" = (
 /obj/machinery/power/smes/engineering{
@@ -1445,6 +1476,10 @@
 /obj/structure/table/reinforced,
 /obj/structure/sign/poster/official/random{
 	pixel_x = 32
+	},
+/obj/item/storage/medkit/regular{
+	pixel_x = -1;
+	pixel_y = 6
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
@@ -1494,7 +1529,7 @@ wW
 KG
 eR
 eR
-WQ
+Pq
 eR
 eR
 oe
@@ -1542,10 +1577,10 @@ JB
 "}
 (7,1,1) = {"
 gK
-nO
+gk
 Gw
 aH
-nO
+gk
 DK
 ae
 ae
@@ -1568,15 +1603,15 @@ gK
 "}
 (9,1,1) = {"
 gK
-eu
+sz
 LG
 GQ
-sL
+oT
 qx
 ae
 ae
 ae
-Gu
+Ab
 gK
 "}
 (10,1,1) = {"
@@ -1586,7 +1621,7 @@ uK
 uK
 uK
 sX
-eN
+LD
 xt
 ae
 iG
@@ -1611,7 +1646,7 @@ SZ
 HA
 ig
 gK
-Or
+bC
 us
 Lc
 ae
@@ -1637,7 +1672,7 @@ ee
 AB
 Mu
 gK
-pO
+Gq
 eN
 GD
 ae
@@ -1664,10 +1699,10 @@ rS
 uK
 uK
 eQ
-us
+pd
 yu
 ae
-bH
+lO
 gK
 "}
 (17,1,1) = {"
@@ -1675,7 +1710,7 @@ gK
 Fw
 ae
 lx
-Wp
+db
 ae
 ae
 ae
@@ -1703,7 +1738,7 @@ ae
 dN
 cE
 LG
-eu
+sz
 go
 ae
 jT
@@ -1780,7 +1815,7 @@ Lx
 qV
 YH
 NN
-ne
+nA
 Hz
 st
 SJ
@@ -1818,7 +1853,7 @@ iF
 hD
 hD
 pu
-EX
+Ds
 Cg
 ou
 Ej
@@ -1843,7 +1878,7 @@ qS
 qS
 qS
 Uo
-sV
+wj
 iu
 Bk
 GJ
@@ -1859,7 +1894,7 @@ qS
 qS
 Uo
 Qb
-ag
+ub
 qS
 qS
 qS
