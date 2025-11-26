@@ -48,4 +48,4 @@
 
 /// returns the bitflag if it indeed reached max blood, otherwise NONE
 #define COMSIG_MOB_REACHED_MAX_BLOOD "mob_reached_max_blood"
-	#define REACHED_MAX_BLOOD (1 << 0)
+#define REACHED_MAX_BLOOD (1 << 0)
