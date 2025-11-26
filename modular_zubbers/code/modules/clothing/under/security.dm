@@ -64,3 +64,19 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/syndicate.dmi'
 	icon_state = "snake"
 	uses_advanced_reskins = FALSE
+
+/obj/item/clothing/under/rank/security/camo
+	name = "armored camouflage uniform"
+	desc = "DO YOU FIND THAT FUNNY BUTTHEAD?!"
+	icon = 'icons/map_icons/clothing/under/_under.dmi'
+	icon_state = "/obj/item/clothing/under/rank/security/camo"
+	post_init_icon_state = "solfed_camo"
+	worn_icon_state = "solfed_camo"
+	worn_icon_digi = "solfed_camo"
+	greyscale_config = /datum/greyscale_config/camo
+	greyscale_config_worn = /datum/greyscale_config/camo/worn
+	greyscale_config_worn_digi = /datum/greyscale_config/camo/worn/digi
+	greyscale_colors = "#A53228#333333#292929"
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	can_adjust = FALSE
+	uses_advanced_reskins = FALSE
