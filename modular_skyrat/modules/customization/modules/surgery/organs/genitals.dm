@@ -163,7 +163,7 @@
 			if(SHEATH_SLIT)
 				returned_string = "You see a slit." ///Typo fix.
 		if(aroused != AROUSAL_PARTIAL)
-			return
+			return returned_string
 		returned_string += " There's a [pname]penis poking out of it. "
 	else
 		returned_string += "You see a [pname]penis. "
@@ -177,7 +177,7 @@
 			//I love penis math
 			reported_length *= max(0.5, 1 - (-temperature_difference/50)**4)
 	reported_length = CEILING(reported_length,0.25)
-	returned_string = "You estimate it's about [reported_length] inches long, and about [reported_girth] inches in diameter."
+	returned_string += "You estimate it's about [reported_length] inches long, and about [reported_girth] inches in diameter."
 
 	switch(aroused)
 		if(AROUSAL_NONE)
