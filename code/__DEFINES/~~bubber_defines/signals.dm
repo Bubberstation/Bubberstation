@@ -44,7 +44,7 @@
 
 /// drink blood via the feed action
 #define COMSIG_MOB_FEED_DRINK "mob_feed_drink"
-	#define FEED_CANCEL_BLOOD_TRANSFER (1 << 0)
+#define FEED_CANCEL_BLOOD_TRANSFER (1 << 0)
 
 /// returns the bitflag if it indeed reached max blood, otherwise NONE
 #define COMSIG_MOB_REACHED_MAX_BLOOD "mob_reached_max_blood"
