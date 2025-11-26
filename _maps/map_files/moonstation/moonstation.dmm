@@ -24616,7 +24616,6 @@
 /obj/effect/turf_decal/tile/purple/half/contrasted{
 	dir = 1
 	},
-/obj/structure/reagent_dispensers/fueltank,
 /obj/machinery/button/door/directional/north{
 	id = "robotics_external_privacy";
 	name = "Privacy Shutters Control";
@@ -33608,6 +33607,7 @@
 "iZU" = (
 /obj/effect/turf_decal/siding/dark,
 /obj/machinery/light/directional/west,
+/obj/item/kirbyplants/random,
 /turf/open/floor/iron/dark,
 /area/station/science/robotics/mechbay)
 "iZY" = (
@@ -34027,7 +34027,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/turf_decal/tile/neutral/opposingcorners,
 /turf/open/floor/iron/showroomfloor,
-/area/station/commons/fitness/locker_room)
+/area/station/common/locker_room_shower)
 "jeV" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/west,
@@ -37170,7 +37170,7 @@
 	},
 /obj/effect/turf_decal/tile/neutral/opposingcorners,
 /turf/open/floor/iron/showroomfloor,
-/area/station/commons/fitness/locker_room)
+/area/station/common/locker_room_shower)
 "jXD" = (
 /obj/structure/railing,
 /obj/machinery/space_heater,
@@ -60124,7 +60124,7 @@
 /obj/effect/turf_decal/tile/neutral/opposingcorners,
 /obj/item/radio/intercom/directional/east,
 /turf/open/floor/iron/showroomfloor,
-/area/station/commons/fitness/locker_room)
+/area/station/common/locker_room_shower)
 "pYV" = (
 /obj/machinery/computer/records/security,
 /obj/machinery/newscaster/directional/north,
@@ -64604,6 +64604,7 @@
 /obj/machinery/camera/autoname/science/directional/east{
 	dir = 6
 	},
+/obj/item/kirbyplants/random,
 /turf/open/floor/iron/dark,
 /area/station/science/robotics/mechbay)
 "riC" = (
@@ -76675,6 +76676,10 @@
 /obj/effect/spawner/random/armory/rubbershot,
 /turf/open/floor/iron/dark,
 /area/station/security/armory)
+"uxw" = (
+/obj/structure/closet/emcloset,
+/turf/open/floor/plating,
+/area/station/maintenance/department/chapel)
 "uxH" = (
 /obj/effect/turf_decal/tile/green/diagonal_centre,
 /obj/structure/cable,
@@ -78010,7 +78015,7 @@
 /obj/structure/mirror/directional/east,
 /obj/effect/turf_decal/tile/neutral/opposingcorners,
 /turf/open/floor/iron/showroomfloor,
-/area/station/commons/fitness/locker_room)
+/area/station/common/locker_room_shower)
 "uQP" = (
 /turf/closed/wall,
 /area/station/ai/satellite/maintenance)
@@ -86497,6 +86502,10 @@
 /obj/structure/stone_tile/surrounding_tile/cracked,
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
+"xgA" = (
+/obj/structure/closet/firecloset,
+/turf/open/floor/plating,
+/area/station/maintenance/department/chapel)
 "xgJ" = (
 /obj/effect/turf_decal/tile/purple/half/contrasted,
 /turf/open/floor/iron/white,
@@ -87323,7 +87332,7 @@
 /obj/machinery/power/apc/auto_name/directional/east,
 /obj/effect/turf_decal/tile/neutral/opposingcorners,
 /turf/open/floor/iron/showroomfloor,
-/area/station/commons/fitness/locker_room)
+/area/station/common/locker_room_shower)
 "xtm" = (
 /obj/effect/turf_decal/trimline/yellow/warning{
 	dir = 4
@@ -267695,10 +267704,10 @@ kfB
 hBW
 pqO
 ucI
-ucI
+pes
 ekk
 arz
-pes
+uxw
 pqO
 kuZ
 soU
@@ -267955,7 +267964,7 @@ xgM
 xgM
 iQm
 hLr
-pes
+xgA
 pqO
 eLe
 soU
