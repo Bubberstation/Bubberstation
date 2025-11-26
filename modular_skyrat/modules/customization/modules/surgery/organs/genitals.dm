@@ -524,7 +524,7 @@
 		to_chat(usr, span_warning("You can't toggle genitals visibility right now..."))
 		return
 
-	var/list/genital_list = list("All")
+	var/list/genital_list = list("all")
 	for(var/obj/item/organ/genital/genital in organs)
 		if(!genital.visibility_preference == GENITAL_SKIP_VISIBILITY)
 			genital_list += genital
@@ -533,7 +533,7 @@
 	//Full list of exposable genitals created
 	var/obj/item/organ/genital/picked_organ
 	picked_organ = input(src, "Choose which genitalia to expose/hide", "Expose/Hide genitals") as null|anything in genital_list
-	if(picked_organ && ((picked_organ in organs) || picked_organ == "All"))
+	if(picked_organ && ((picked_organ in organs) || picked_organ == "all"))
 		var/list/gen_vis_trans = list("Never show" = GENITAL_NEVER_SHOW,
 												"Hidden by clothes" = GENITAL_HIDDEN_BY_CLOTHES,
 												"Always show" = GENITAL_ALWAYS_SHOW
@@ -543,7 +543,7 @@
 			picked_organ.visibility_preference = gen_vis_trans[picked_visibility]
 			update_body()
 			SEND_SIGNAL(src, COMSIG_HUMAN_TOGGLE_GENITALS)
-		if(picked_visibility && picked_organ == "All")
+		if(picked_visibility && picked_organ == "all")
 			for(var/obj/item/organ/genital/genital in organs)
 				if(!genital.visibility_preference == GENITAL_SKIP_VISIBILITY)
 					genital.visibility_preference = gen_vis_trans[picked_visibility]
