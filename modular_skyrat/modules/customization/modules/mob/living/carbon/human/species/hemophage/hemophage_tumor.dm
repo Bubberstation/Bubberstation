@@ -63,6 +63,8 @@
 	// once.
 	// It's intended that you can't print a tumor, because why would you?
 	operated = FALSE
+	if(!owner?.client)
+		return
 
 	if(can_heal_owner_damage())
 		owner.apply_status_effect(/datum/status_effect/blood_regen_active)
