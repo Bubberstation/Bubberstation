@@ -82,34 +82,76 @@
 	)
 
 /obj/machinery/vending/wardrobe/robo_wardrobe
-	zubbers_products = list(
-		/obj/item/bonesetter = 2, // for dislocations
-		/obj/item/clothing/glasses/welding/steampunk_goggles = 2,
-		/obj/item/clothing/gloves/color/black = 2, // fire resistant, allows the robo to painlessly mold metal. also its down here because its a treatment item
-		/obj/item/clothing/head/beret/science/fancy/robo = 2,
-		/obj/item/clothing/head/playbunnyears/roboticist = 2,
-		/obj/item/clothing/mask/breath = 2,
-		/obj/item/clothing/neck/tie/bunnytie/roboticist = 2,
-		/obj/item/clothing/suit/toggle/jacket/zubber/bomber/science/robotics = 2,
-		/obj/item/clothing/suit/toggle/labcoat/roboticist/doctor_tailcoat = 2,
-		/obj/item/clothing/under/rank/rnd/roboticist/skyrat/sleek = 2,
-		/obj/item/clothing/under/rank/rnd/scientist/roboticist_bunnysuit = 2,
-		/obj/item/healthanalyzer/no_medibot = 2, // disallows medibot use so its not wasted immediately on medibots
-		/obj/item/healthanalyzer/simple = 2,
-		/obj/item/reagent_containers/cup/bottle/morphine = 2,
-		/obj/item/reagent_containers/spray/dinitrogen_plasmide = 2,
-		/obj/item/reagent_containers/spray/hercuri/chilled = 2,
-		/obj/item/reagent_containers/syringe = 2,
-		/obj/item/stack/medical/gauze = 4, // for ALL wounds
-		/obj/item/storage/backpack/duffelbag/science/robo = 2,
-		/obj/item/storage/backpack/messenger/science/robo = 2,
-		/obj/item/storage/backpack/satchel/science/robo = 2,
-		/obj/item/storage/backpack/science/robo = 2,
-		/obj/item/tank/internals/anesthetic = 2,
+	product_categories = list(
+		list(
+			"name" = "Clothing",
+			"icon" = FA_ICON_SHIRT,
+			"products" = list(
+				/obj/item/clothing/glasses/hud/diagnostic = 2,
+				/obj/item/clothing/head/soft/black = 2,
+				/obj/item/clothing/mask/bandana/skull/black = 2,
+				/obj/item/clothing/under/rank/rnd/roboticist = 2,
+				/obj/item/clothing/under/rank/rnd/roboticist/skirt = 2,
+				/obj/item/clothing/suit/toggle/labcoat/roboticist = 2,
+				/obj/item/clothing/suit/hooded/wintercoat/science/robotics = 2,
+				/obj/item/clothing/gloves/fingerless = 2,
+				/obj/item/clothing/shoes/sneakers/black = 2,
+				/obj/item/storage/backpack/science = 3,
+				/obj/item/storage/backpack/satchel/science = 3,
+				/obj/item/storage/backpack/duffelbag/science = 3,
+				/obj/item/storage/backpack/messenger/science = 3,
+				/obj/item/radio/headset/headset_sci = 2,
+				//Bubber Clothing Additions
+				/obj/item/clothing/glasses/welding/steampunk_goggles = 2,
+				/obj/item/clothing/gloves/color/black = 2, // fire resistant, allows the robo to painlessly mold metal. also its down here because its a treatment item
+				/obj/item/clothing/head/beret/science/fancy/robo = 2,
+				/obj/item/clothing/head/playbunnyears/roboticist = 2,
+				/obj/item/clothing/neck/tie/bunnytie/roboticist = 2,
+				/obj/item/clothing/suit/toggle/jacket/zubber/bomber/science/robotics = 2,
+				/obj/item/clothing/suit/toggle/labcoat/roboticist/doctor_tailcoat = 2,
+				/obj/item/clothing/under/rank/rnd/roboticist/skyrat/sleek = 2,
+				/obj/item/clothing/under/rank/rnd/scientist/roboticist_bunnysuit = 2,
+				/obj/item/storage/backpack/duffelbag/science/robo = 2,
+				/obj/item/storage/backpack/messenger/science/robo = 2,
+				/obj/item/storage/backpack/satchel/science/robo = 2,
+				/obj/item/storage/backpack/science/robo = 2,
+			),
+		),
+
+		list(
+			"name" = "Surgery",
+			"icon" = FA_ICON_VIAL,
+			"products" = list(
+				/obj/item/bonesetter = 2, // for dislocations
+				/obj/item/clothing/mask/breath = 2,
+				/obj/item/tank/internals/anesthetic = 2,
+				/obj/item/reagent_containers/syringe = 2,
+				/obj/item/reagent_containers/cup/bottle/morphine = 2,
+				/obj/item/reagent_containers/spray/dinitrogen_plasmide = 2,
+				/obj/item/reagent_containers/spray/hercuri/chilled = 2,
+				/obj/item/stack/medical/gauze = 4, // for ALL wounds
+				/obj/item/healthanalyzer/no_medibot = 2, // disallows medibot use so its not wasted immediately on medibots
+				/obj/item/healthanalyzer/simple = 2,
+				/obj/item/storage/pill_bottle/liquid_solder = 1,
+				/obj/item/storage/pill_bottle/nanite_slurry = 1,
+				/obj/item/storage/pill_bottle/system_cleaner = 1,
+				/obj/item/reagent_containers/blood/oil = 2,
+				/obj/item/paper/pamphlet/roboticist_reminder = 4,
+			),
+		),
 	)
-	zubbers_contraband = list(
+	contraband = list(
+		//TG Content
+		/obj/item/clothing/under/costume/mech_suit = 2,
+		/obj/item/clothing/suit/hooded/techpriest = 2,
+		/obj/item/organ/tongue/robot = 2,
+		//Bubbers Content
 		/obj/item/organ/tongue/lizard/robot = 2,
 		/obj/item/storage/box/purity_seal_box = 2, // purity seals for any techpriests working in robotics!
+	)
+	premium = list(
+		/obj/item/organ/stomach/protean = 1,
+		/obj/item/organ/heart/protean = 1,
 	)
 
 /obj/machinery/vending/wardrobe/gene_wardrobe
