@@ -46,6 +46,7 @@
 		frame.forceMove(computer.drop_location())
 
 	if(computer.stored_paper < 10)
+		do_harmless_sparks(number = 4, source = computer)
 		QDEL_NULL(computer)
 
 /datum/computer_file/program/portrait_printer/mini/proc/is_valid_frame(datum/painting/painting)
