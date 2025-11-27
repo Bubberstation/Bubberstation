@@ -577,11 +577,12 @@
 					else
 						balloon_alert(user, "no room!")
 						return ITEM_INTERACT_BLOCKING
-		created_art.add_hiddenprint(user)
-		if(istagger)
-			created_art.AddElement(/datum/element/art, GOOD_ART)
-		else
-			created_art.AddElement(/datum/element/art, BAD_ART)
+			created_art.add_hiddenprint(user)
+			if(istagger)
+				created_art.AddElement(/datum/element/art, GOOD_ART)
+			else
+				created_art.AddElement(/datum/element/art, BAD_ART)
+
 
 	if(!instant)
 		to_chat(user, span_notice("You finish drawing \the [temp]."))

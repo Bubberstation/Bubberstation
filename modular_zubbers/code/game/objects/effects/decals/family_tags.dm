@@ -5,6 +5,7 @@ GLOBAL_LIST(gang_tags)
 	desc = "Looks like someone's claimed this area for Leet Like Jeff K."
 	icon = 'icons/obj/antags/gang/tags.dmi'
 	layer = BELOW_MOB_LAYER
+	plane = GAME_PLANE
 	var/datum/team/gang/my_gang
 
 /obj/effect/decal/cleanable/crayon/gang/Initialize(mapload, main, type, e_name, graf_rot, alt_icon = null)
