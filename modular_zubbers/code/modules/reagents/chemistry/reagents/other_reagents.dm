@@ -399,7 +399,7 @@
 	description = "A strange green chemical, will cause iliving beings to 'weh' uncontrollably for a time"
 	color = "#37e427" // rgb: 165, 240, 238
 	taste_description = "an odd sweetness with a hint of spice"
-	metabolization_rate = 1 // metabolises 5x faster, will occur more often but not hang around for ages
+	metabolization_rate = 2 // metabolises 10x faster, will occur more often but not hang around for ages
 	penetrates_skin = VAPOR
 	ph = 5.5
 
