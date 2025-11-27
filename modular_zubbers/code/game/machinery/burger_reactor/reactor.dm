@@ -1,7 +1,10 @@
+GLOBAL_VAR_INIT(active_rbmk_machines, list())
+
 /obj/machinery/power/rbmk2
 	name = "\improper RB-MK2 reactor"
 	desc = "Radioscopical Bluespace Mark 2 reactor, or RB-MK2 for short, is a new state-of-the-art power generation technology that uses \"bluespace magic\" \
-	to directly convert small amounts of tritium particles into large amounts of energy with minimal heat generation."
+	to directly convert small amounts of tritium atoms into large amounts of electrical energy with minimal heat generation. \
+	Note that having more than 4 RB-MK machines in close proximity increases tritium consumption."
 	icon = 'modular_zubbers/icons/obj/equipment/burger_reactor.dmi'
 	icon_state = "platform"
 	base_icon_state = "platform"
@@ -52,7 +55,7 @@
 	var/last_power_generation = 0 //Display purposes. Do not edit.
 	var/last_power_generation_bonus = 0 //Display purposes. Do not edit.
 	var/last_tritium_consumption = 0 //Display purposes. Do not edit. This is measured in micromoles.
-	var/last_radiation_pulse = 0 //Display purposes. Do not edit.
+	var/last_radiation_pulse = 0 //Display purposes. Do not edit. This is measured in tiles (radius).
 
 	var/gas_consumption_base = 2400 //How much gas gets consumed, in micromoles, per cycle.
 	var/gas_consumption_heat = 4000 //How much gas gets consumed, in moles, per cycle, per 1000 kelvin (of the reactor rod temperature).
@@ -75,7 +78,10 @@
 
 	var/obj/machinery/power/supermatter_crystal/linked_supermatter
 
+	var/adjacent_rbmk_machines = 0 //Number of adjacent RBMK machines. More than 2 will reduce power.
+
 	COOLDOWN_DECLARE(auto_vent_cooldown)
+	COOLDOWN_DECLARE(radiation_cooldown)
 
 /datum/armor/rbmk2
 	melee = 50
@@ -98,6 +104,7 @@
 	SSair.start_processing_machine(src)
 
 	supermatter_link()
+	check_adjacent_rbmk()
 
 /obj/machinery/power/rbmk2/preloaded/Initialize(mapload)
 	. = ..()
@@ -146,10 +153,12 @@
 
 /obj/machinery/power/rbmk2/Destroy()
 
-	supermatter_unlink()
-
 	for(var/obj/machinery/rbmk2_sniffer/sniffer as anything in linked_sniffers)
-		sniffer.unlink_reactor(src)
+		sniffer.unlink_reactor(null,src)
+
+	check_adjacent_rbmk()
+
+	supermatter_unlink()
 
 	if(SSticker.IsRoundInProgress())
 		var/turf/T = get_turf(src)
@@ -164,6 +173,8 @@
 	set_wires(null)
 
 	SSair.stop_processing_machine(src)
+
+	GLOB.active_rbmk_machines -= src
 
 	. = ..()
 
@@ -342,6 +353,7 @@
 	active = desired_state
 
 	if(active)
+		GLOB.active_rbmk_machines |= src
 		var/turf/T = get_turf(src)
 		if(user)
 			user.log_message("turned on [src]", LOG_GAME)
@@ -349,6 +361,8 @@
 		else
 			log_game("[src] was turned on at [AREACOORD(T)]")
 			investigate_log("was turned on at [AREACOORD(T)]", INVESTIGATE_ENGINE)
+	else
+		GLOB.active_rbmk_machines -= src
 
 	update_appearance(UPDATE_ICON)
 

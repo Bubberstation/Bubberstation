@@ -6,10 +6,10 @@
 	. = ..()
 
 	if(mapload && is_main_engine && isturf(src.loc))
-		new/obj/structure/engine_choice(src.loc)
+		new/obj/machinery/engine_choice(src.loc)
 		return INITIALIZE_HINT_QDEL
 
-/obj/structure/engine_choice
+/obj/machinery/engine_choice
 
 	name = "engine choice beacon"
 	desc = "A clusterfuck of wiring and components that somehow allows you to select the desired engine you want for the shift. \
@@ -21,9 +21,20 @@
 	anchored = TRUE
 	density = FALSE
 
+	move_resist = INFINITY //some really fucking strong duct tape
+
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+
 	layer = TABLE_LAYER
 	obj_flags = CAN_BE_HIT
 	pass_flags = LETPASSTHROW
+
+	use_power = NO_POWER_USE
+	idle_power_usage = 0
+	active_power_usage = 0
+	static_power_usage = 0
+
+	obj_flags = DANGEROUS_POSSESSION | IGNORE_DENSITY | NO_DEBRIS_AFTER_DECONSTRUCTION
 
 	var/obj/item/radio/radio
 	var/radio_key = /obj/item/encryptionkey/headset_eng
@@ -32,30 +43,27 @@
 
 	var/deployment_timer_id
 
-/obj/structure/engine_choice/Initialize(mapload)
+/obj/machinery/engine_choice/Initialize(mapload)
 	. = ..()
 	radio = new(src)
 	radio.keyslot = new radio_key
 	radio.set_listening(FALSE)
 	radio.recalculateChannels()
 
-/obj/structure/engine_choice/Destroy()
+/obj/machinery/engine_choice/Destroy()
 	. = ..()
 	QDEL_NULL(radio)
 
 //Helper interaction for if we can interact with this (called before and after menu selection).
-/obj/structure/engine_choice/proc/can_use(mob/user)
+/obj/machinery/engine_choice/proc/can_use(mob/user)
 	if(QDELETED(src) || QDESTROYING(src))
 		return FALSE
 	return user.can_perform_action(src, FORBID_TELEKINESIS_REACH)
 
-/obj/structure/engine_choice/attack_hand(mob/living/user, list/modifiers)
-	. = ..()
-	if(.)
-		return
+/obj/machinery/engine_choice/interact(mob/user)
 	display_options(user)
 
-/obj/structure/engine_choice/multitool_act(mob/living/user, obj/item/multitool/tool)
+/obj/machinery/engine_choice/multitool_act(mob/living/user, obj/item/multitool/tool)
 
 	if(!can_use(user))
 		return TRUE
@@ -92,7 +100,7 @@
 
 	return TRUE
 
-/obj/structure/engine_choice/proc/display_options(mob/user)
+/obj/machinery/engine_choice/proc/display_options(mob/user)
 
 	if(!can_use(user))
 		return FALSE
@@ -144,7 +152,7 @@
 
 	deployment_timer_id = addtimer(CALLBACK(src, PROC_REF(do_deploy), center_turf, choice), deployment_time,  TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE |  TIMER_DELETE_ME)
 
-/obj/structure/engine_choice/proc/do_deploy(turf/center_turf,choice)
+/obj/machinery/engine_choice/proc/do_deploy(turf/center_turf,choice)
 
 	qdel(src)
 
@@ -157,7 +165,7 @@
 			deploy_rbmk(center_turf)
 
 //RB-MK2
-/obj/structure/engine_choice/proc/deploy_rbmk(turf/center_turf)
+/obj/machinery/engine_choice/proc/deploy_rbmk(turf/center_turf)
 
 	var/obj/machinery/rbmk2_sniffer/spawned_sniffer = new(center_turf)
 	for(var/turf/side_turf in orange(1,center_turf))
@@ -169,7 +177,7 @@
 	new /obj/item/paper/crumpled/rbmk2(center_turf)
 
 //Supermatter
-/obj/structure/engine_choice/proc/deploy_supermatter(turf/center_turf)
+/obj/machinery/engine_choice/proc/deploy_supermatter(turf/center_turf)
 	new /obj/machinery/power/supermatter_crystal/engine(center_turf)
 
 

@@ -21,6 +21,8 @@
 	else
 		amount_to_consume *= 0.1
 
+	amount_to_consume *= max(1,1 + (adjacent_rbmk_machines-4)*0.25) //Consume 25% more tritium for every nearby rbmk over 4.
+
 	if(meltdown && meltdown_start_time > 0)
 		//Tritium consumption will increase by 100% every 45 seconds after 120 seconds of meltdown time.
 		var/meltdown_penalty_math = ((world.time - meltdown_start_time) - (60 SECONDS)) / (40 SECONDS)
@@ -45,21 +47,14 @@
 	if(consumed_mix && last_tritium_consumption > 0)
 
 		last_power_generation = (base_power_generation * last_tritium_consumption) * power_efficiency
+
 		if(last_power_generation > max_power_generation*10)
-			last_power_generation = max_power_generation*10
+			last_power_generation = max_power_generation*10 //Hard caps power generation.
 
-		var/range_cap = GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE
-		last_radiation_pulse = min(last_power_generation/max_power_generation, range_cap)
-
-		//The LOWER the insulation_threshold, the stronger the radiation can penetrate.
-		//Values closer to the maximum range penetrate the most.
-		var/insulation_threshold_math = (range_cap - last_radiation_pulse) / range_cap
-		if(insulation_threshold_math <= RAD_LIGHT_INSULATION) //Don't bother making radiation if it isn't significant enough.
-			if(meltdown)
-				insulation_threshold_math = max(insulation_threshold_math - 0.25, RAD_FULL_INSULATION) //Go as low as possible. Nothing is safe from the RBMK.
-			else
-				insulation_threshold_math = max(insulation_threshold_math, RAD_EXTREME_INSULATION) //Don't go under RAD_EXTREME_INSULATION
-			radiation_pulse(src,last_radiation_pulse, threshold = insulation_threshold_math)
+		//Do radiation nonsense.
+		if(COOLDOWN_FINISHED(src,radiation_cooldown))
+			handle_radiation()
+			COOLDOWN_START(src,radiation_cooldown,4 SECONDS)
 
 		consumed_mix.remove_specific(/datum/gas/tritium, last_tritium_consumption_as_moles) //50% of used tritium gets deleted. The rest gets thrown into the air.
 
@@ -209,3 +204,27 @@
 		if(stored_rod)
 			//No buffer gas interaction here.
 			transfer_rod_temperature(turf_air,allow_cooling_limiter=FALSE)
+
+
+/obj/machinery/power/rbmk2/proc/handle_radiation()
+
+	var/radiation_power_percent = min( meltdown*0.25 + (last_power_generation/max_power_generation)*0.25, 1)
+	var/radiation_insulation_math = max(1 - radiation_power_percent, meltdown ? RAD_EXTREME_INSULATION : RAD_FULL_INSULATION)
+
+	if(radiation_insulation_math >= RAD_VERY_LIGHT_INSULATION) //Don't bother creating radiation if the radiation is too low.
+		last_radiation_pulse = 0
+	else
+		last_radiation_pulse = radiation_power_percent*GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE
+		if(meltdown)
+			radiation_insulation_math = max(radiation_insulation_math - 0.25, RAD_FULL_INSULATION) //Go as low as possible. Nothing is safe from the RBMK.
+		else
+			radiation_insulation_math = max(radiation_insulation_math, RAD_EXTREME_INSULATION) //Don't go under RAD_EXTREME_INSULATION
+		radiation_pulse(
+			src,
+			max_range=last_radiation_pulse,
+			threshold = radiation_insulation_math,
+			chance = radiation_power_percent*100,
+			minimum_exposure_time = 1 SECONDS
+		)
+
+	return TRUE

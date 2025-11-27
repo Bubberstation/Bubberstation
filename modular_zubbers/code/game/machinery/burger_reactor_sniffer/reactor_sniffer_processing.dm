@@ -8,6 +8,9 @@
 	var/has_meltdown = FALSE
 
 	for(var/obj/machinery/power/rbmk2/reactor as anything in linked_reactors)
+		if(!reactor)
+			linked_reactors -= reactor
+			continue
 		if(!reactor.active)
 			continue
 		var/integrity_percent = reactor.get_integrity()/reactor.max_integrity
