@@ -205,7 +205,6 @@
 			//No buffer gas interaction here.
 			transfer_rod_temperature(turf_air,allow_cooling_limiter=FALSE)
 
-
 /obj/machinery/power/rbmk2/proc/handle_radiation()
 
 	var/radiation_power_percent = min( meltdown*0.25 + (last_power_generation/max_power_generation)*0.25, 1)
