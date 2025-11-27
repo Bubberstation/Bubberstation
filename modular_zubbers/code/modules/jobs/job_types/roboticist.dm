@@ -57,5 +57,5 @@
 	<b>Liquid Solder</b> is used to heal <b>positronic damage</b><br>\n\
 	<b>System Cleaner</b> is used to heal synthetic <b>toxin damage</b><br>\n\
 	<b>Dinitrogen Plasmide</b> is used to treat synthetic overheating wounds safely.<br>\n\
-	<b>Blank Synthetic Shells</b> can be produced at the exofab for practice if mining has been gathering resources.\n\
+	<b>Blank Synthetic Shells</b> can be produced at the exofab for practice if mining has been gathering resources.<br>\n\
 	<b>Oil</b> functions as a synthetic creatures blood. It can be obtained from Chemistry, or if you're crafty, scooped off the floor."
