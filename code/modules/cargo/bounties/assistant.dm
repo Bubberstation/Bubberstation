@@ -1,3 +1,6 @@
+// Bounties moved to modular zubbers folder so it isn't a commented out nightmare of individual removals.
+
+/*
 /datum/bounty/item/assistant/strange_object
 	name = "Strange Object"
 	description = "Nanotrasen has taken an interest in strange objects. Find one in maintenance, and ship it off to CentCom right away."
@@ -281,3 +284,4 @@
 
 /datum/bounty/item/assistant/fish/fluid/can_ship_fish(obj/item/fish/fishie)
 	return (fluid_type in GLOB.fish_compatible_fluid_types[fishie.required_fluid_type])
+*/
