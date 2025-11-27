@@ -149,7 +149,7 @@
 
 /datum/status_effect/protean_servo_medical
 	id = "protean_servo_medical"
-	duration = 20 SECONDS
+	duration = 60 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/protean_servo_medical
 
 /datum/status_effect/protean_servo_medical/on_apply()
@@ -165,7 +165,7 @@
 
 /datum/status_effect/protean_servo_medical/proc/servo_surgery_bonus(mob/living/carbon/_source, mob/living/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, datum/surgery_step/step, list/modifiers)
 	SIGNAL_HANDLER
-	modifiers[SPEED_MOD_INDEX] *= 0.5 //surgery speed modifier
+	modifiers[SPEED_MOD_INDEX] *= 0.25 //surgery speed modifier
 
 //Engineering option
 /atom/movable/screen/alert/status_effect/protean_servo_engineer
@@ -176,7 +176,7 @@
 
 /datum/status_effect/protean_servo_engineer
 	id = "protean_servo_engineer"
-	duration = 20 SECONDS
+	duration = 60 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/protean_servo_engineer
 
 /datum/status_effect/protean_servo_engineer/on_apply()

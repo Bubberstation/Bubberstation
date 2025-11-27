@@ -636,3 +636,18 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/syndicate.dmi'
 	icon_state = "snake"
 
+/obj/item/clothing/under/rank/civilian/bubber/camo
+	name = "camouflage uniform"
+	desc = "Well my wife left me, so now I make stolen valor videos at the mall."
+	icon = 'icons/map_icons/clothing/under/_under.dmi'
+	icon_state = "/obj/item/clothing/under/rank/civilian/bubber/camo"
+	post_init_icon_state = "solfed_camo"
+	worn_icon_state = "solfed_camo"
+	worn_icon_digi = "solfed_camo"
+	greyscale_config = /datum/greyscale_config/camo
+	greyscale_config_worn = /datum/greyscale_config/camo/worn
+	greyscale_config_worn_digi = /datum/greyscale_config/camo/worn/digi
+	greyscale_colors = "#4d4d4d#333333#292929"
+	flags_1 = IS_PLAYER_COLORABLE_1
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	can_adjust = FALSE
