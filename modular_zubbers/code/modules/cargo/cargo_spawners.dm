@@ -15,9 +15,9 @@
 
 		//assorted lizard foods
 		/obj/item/food/tiziran_sausage = 10,
-		/obj/item/food/crispy_headcheese = 10,
-		/obj/item/food/lizard_surf_n_turf = 5,
-		/obj/item/food/pizza/flatbread/imperial = 10,
+		/obj/item/food/headcheese_slice = 10,
+		/obj/item/storage/box/spaceman_ration/meats/lizard = 5,
+		/obj/item/food/root_flatbread = 10,
 
 		//lil lizards
 		/mob/living/basic/lizard = 40,
