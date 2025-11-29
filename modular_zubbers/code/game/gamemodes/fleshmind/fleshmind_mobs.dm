@@ -495,7 +495,7 @@
 	icon_state = "stunner"
 	ai_controller = /datum/ai_controller/basic_controller/fleshmind/stunner
 	malfunction_chance = MALFUNCTION_CHANCE_MEDIUM
-	melee_damage_lower = 2 // Not very harmful, just annoying.
+	melee_damage_lower = 1 // Not very harmful, just annoying.
 	melee_damage_upper = 2
 	health = 65
 	maxHealth = 65
@@ -565,8 +565,8 @@
 	malfunction_chance = MALFUNCTION_CHANCE_MEDIUM
 	health = 225
 	maxHealth = 225
-	melee_damage_lower = 18
-	melee_damage_upper = 18
+	melee_damage_lower = 20
+	melee_damage_upper = 25
 	attack_verb_continuous = "saws"
 	attack_verb_simple = "saw"
 	mob_size = MOB_SIZE_HUMAN
@@ -703,8 +703,8 @@
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
-	melee_damage_lower = 18
-	melee_damage_upper = 18
+	melee_damage_lower = 15
+	melee_damage_upper = 20
 	malfunction_chance = MALFUNCTION_CHANCE_HIGH
 	mob_size = MOB_SIZE_HUMAN
 	attack_speak = list(
@@ -936,7 +936,7 @@
 /obj/projectile/treader
 	name = "nasty ball of ooze"
 	icon_state = "neurotoxin"
-	damage = 10
+	damage = 20
 	damage_type = BURN
 	knockdown = 20
 	armor_flag = BIO
@@ -965,8 +965,8 @@
 	attack_sound = 'sound/effects/blob/attackblob.ogg'
 	attack_verb_continuous = "warps"
 	attack_verb_simple = "warp"
-	melee_damage_lower = 7
-	melee_damage_upper = 7
+	melee_damage_lower = 10
+	melee_damage_upper = 15
 	alert_sounds = null
 	escapes_closets = FALSE
 	mob_size = MOB_SIZE_HUMAN
@@ -1271,8 +1271,8 @@
 	base_icon_state = "mechiver"
 	icon_dead = "mechiver-dead"
 	ai_controller = /datum/ai_controller/basic_controller/fleshmind/mechiver
-	health = 300
-	maxHealth = 300
+	health = 450
+	maxHealth = 450
 	melee_damage_lower = 13
 	melee_damage_upper = 13
 	attack_verb_continuous = "crushes"
