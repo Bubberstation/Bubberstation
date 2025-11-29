@@ -16811,8 +16811,6 @@
 /obj/effect/turf_decal/delivery/red,
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=4";
-	dir = 4;
-	freq = 1400;
 	location = "Bar";
 	name = "navigation beacon (Bar)"
 	},
@@ -36935,7 +36933,6 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
-	freq = 1400;
 	location = "QM #3"
 	},
 /obj/structure/disposalpipe/segment{
@@ -36949,8 +36946,7 @@
 	},
 /mob/living/simple_animal/bot/mulebot{
 	home_destination = "QM #2";
-	suffix = "#2";
-	beacon_freq = 1400
+	suffix = "#2"
 	},
 /turf/open/floor/iron/dark/diagonal,
 /area/station/cargo/sorting)
@@ -43873,8 +43869,6 @@
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=1";
-	dir = 1;
-	freq = 1400;
 	location = "Bridge"
 	},
 /obj/effect/turf_decal/delivery/white{
@@ -44262,11 +44256,6 @@
 	pixel_y = 5
 	},
 /obj/item/clothing/shoes/laceup,
-/obj/item/clothing/head/beret/sec{
-	armor = list("melee"=0,"bullet"=0,"laser"=0,"energy"=0,"bomb"=0,"bio"=0,"rad"=0,"stamina"=0);
-	desc = "A replica beret resembling that of a special operations officer under Nanotrasen.";
-	name = "replica officer's beret"
-	},
 /obj/item/restraints/handcuffs,
 /obj/item/toy/gun,
 /obj/item/book/manual/wiki/security_space_law{
@@ -45822,7 +45811,6 @@
 "kDy" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=8";
-	freq = 1400;
 	location = "Tool Storage"
 	},
 /obj/effect/turf_decal/delivery,
@@ -46665,7 +46653,6 @@
 "kOh" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=1";
-	freq = 1400;
 	location = "Robotics";
 	name = "navigation beacon (Robotics)"
 	},
@@ -57994,7 +57981,6 @@
 /obj/structure/sign/poster/official/random/directional/north,
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
-	freq = 1400;
 	location = "QM #1"
 	},
 /obj/structure/disposalpipe/segment{
@@ -58007,7 +57993,6 @@
 	dir = 8
 	},
 /mob/living/simple_animal/bot/mulebot{
-	beacon_freq = 1400;
 	home_destination = "QM #1";
 	suffix = "#1"
 	},
@@ -63670,7 +63655,6 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=1";
-	freq = 1400;
 	location = "Hydroponics";
 	name = "navigation beacon (Hydroponics)"
 	},
@@ -65412,8 +65396,6 @@
 /obj/effect/turf_decal/delivery,
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=1";
-	dir = 1;
-	freq = 1400;
 	location = "Atmospherics";
 	name = "navigation beacon (Atmospherics Delivery)"
 	},
@@ -66035,7 +66017,6 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
-	freq = 1400;
 	location = "Medbay"
 	},
 /obj/effect/turf_decal/box/white,
@@ -66981,7 +66962,6 @@
 	id_tag = "exploration";
 	name = "Exploration Shuttle";
 	port_direction = 8;
-	shuttle_object_type = /datum/orbital_object/shuttle/custom_shuttle;
 	width = 19;
 	preferred_direction = 2;
 	shuttle_id = "Explorer"
@@ -82702,8 +82682,6 @@
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=1";
-	dir = 1;
-	freq = 1400;
 	location = "Kitchen"
 	},
 /obj/machinery/door/window/left/directional/west{
@@ -83005,7 +82983,6 @@
 /area/station/medical/treatment_center)
 "the" = (
 /obj/structure/blob/normal,
-/obj/effect/decal/remains/human,
 /turf/open/floor/iron/dark/textured,
 /area/station/science/research/abandoned)
 "thk" = (
@@ -85118,7 +85095,6 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
-	freq = 1400;
 	location = "QM #2"
 	},
 /obj/structure/disposalpipe/segment{
@@ -85132,8 +85108,7 @@
 	},
 /mob/living/simple_animal/bot/mulebot{
 	home_destination = "QM #2";
-	suffix = "#2";
-	beacon_freq = 1400
+	suffix = "#2"
 	},
 /turf/open/floor/iron/dark/diagonal,
 /area/station/cargo/sorting)
@@ -86140,7 +86115,6 @@
 /obj/structure/sign/poster/official/random/directional/north,
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
-	freq = 1400;
 	location = "QM #4"
 	},
 /obj/structure/disposalpipe/segment{
@@ -86154,8 +86128,7 @@
 	},
 /mob/living/simple_animal/bot/mulebot{
 	home_destination = "QM #2";
-	suffix = "#2";
-	beacon_freq = 1400
+	suffix = "#2"
 	},
 /turf/open/floor/iron/dark/diagonal,
 /area/station/cargo/sorting)
@@ -88056,8 +88029,6 @@
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=1";
-	dir = 1;
-	freq = 1400;
 	location = "Research Division";
 	name = "navigation beacon (Research Division)"
 	},
@@ -94554,7 +94525,6 @@
 /obj/structure/window/reinforced/spawner/directional/north,
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
-	freq = 1400;
 	location = "Engineering";
 	name = "navigation beacon (Engineering)"
 	},
@@ -95296,7 +95266,6 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=1";
-	freq = 1400;
 	location = "Security"
 	},
 /obj/effect/turf_decal/box/red,
