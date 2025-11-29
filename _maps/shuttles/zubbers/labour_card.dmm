@@ -9,10 +9,8 @@
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/mineral/stacking_unit_console{
-	machinedir = 4;
 	pixel_y = -32
 	},
-/obj/item/gps/security,
 /obj/item/restraints/handcuffs{
 	pixel_y = 14
 	},
@@ -20,48 +18,38 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/labor)
 "e" = (
-/obj/effect/turf_decal/siding/thinplating_new/dark,
-/obj/effect/turf_decal/siding/thinplating_new/dark{
-	dir = 1
+/obj/effect/turf_decal/bot_white,
+/obj/machinery/mineral/labor_claim_console{
+	pixel_x = 30
 	},
-/obj/effect/turf_decal/guideline/guideline_in/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/alphabet/letter_s/cardinal{
-	dir = 4
-	},
-/turf/open/floor/pod/light,
+/turf/open/floor/mineral/plastitanium,
 /area/shuttle/labor)
 "h" = (
-/obj/structure/shuttle/engine/propulsion/left{
-	dir = 8
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
+	},
+/obj/machinery/power/shuttle_engine/propulsion{
+	dir = 8
 	},
 /turf/open/floor/plating/airless,
 /area/shuttle/labor)
 "k" = (
-/obj/structure/shuttle/engine/propulsion/left{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plating/airless,
+/obj/effect/turf_decal/bot_white,
+/obj/structure/chair/comfy/shuttle,
+/turf/open/floor/mineral/plastitanium,
 /area/shuttle/labor)
 "n" = (
-/obj/effect/turf_decal/stripes/closeup,
 /obj/machinery/door/airlock/titanium{
-	name = "Labor Shuttle Airlock";
+	name = "Labor Shuttle Airlock"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /turf/open/floor/iron/dark/textured_half,
 /area/shuttle/labor)
 "o" = (
-/obj/structure/shuttle/engine/propulsion/right{
+/obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/effect/turf_decal/stripes/line{
+/obj/machinery/power/shuttle_engine/propulsion{
 	dir = 8
 	},
 /turf/open/floor/plating/airless,
@@ -80,18 +68,24 @@
 	},
 /obj/structure/window/reinforced/spawner/directional/north,
 /obj/machinery/light/small/directional/south,
+/obj/machinery/mineral/labor_claim_console{
+	pixel_y = -32
+	},
 /turf/open/floor/pod/light,
 /area/shuttle/labor)
 "s" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 10
 	},
+/obj/machinery/button/flasher{
+	id = "gulagshuttleflasher";
+	name = "Flash Control";
+	pixel_y = 28;
+	req_access = list("security")
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/labor)
 "u" = (
-/obj/structure/chair/fancy/shuttle{
-	dir = 4
-	},
 /obj/machinery/light/small/directional/south,
 /obj/machinery/atmospherics/pipe/smart/simple/orange/hidden{
 	dir = 9
@@ -106,14 +100,9 @@
 /obj/machinery/recharger{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/peppercloud_deployer{
-	pixel_x = 4;
-	pixel_y = -5
-	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/labor)
 "x" = (
-/obj/effect/turf_decal/stripes/closeup,
 /obj/machinery/door/airlock/external{
 	name = "Mining Shuttle External Airlock"
 	},
@@ -128,7 +117,6 @@
 /turf/open/floor/iron/dark/textured_half,
 /area/shuttle/labor)
 "z" = (
-/obj/structure/chair/fancy/shuttle,
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/labor)
@@ -140,26 +128,20 @@
 /obj/effect/turf_decal/siding/thinplating_new/dark/corner{
 	dir = 4
 	},
-/obj/effect/turf_decal/guideline/guideline_in/brown{
-	dir = 1
-	},
 /turf/open/floor/pod/light,
 /area/shuttle/labor)
 "B" = (
-/obj/structure/chair/fancy/shuttle{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/smart/simple/orange/hidden{
 	dir = 1
 	},
 /turf/open/floor/pod/dark,
 /area/shuttle/labor)
 "C" = (
-/obj/structure/shuttle/engine/propulsion/right{
-	dir = 8
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
+	},
+/obj/machinery/power/shuttle_engine/propulsion{
+	dir = 8
 	},
 /turf/open/floor/plating/airless,
 /area/shuttle/labor)
@@ -167,32 +149,20 @@
 /turf/closed/wall/mineral/plastitanium,
 /area/shuttle/labor)
 "G" = (
-/obj/machinery/door/window/southleft{
-	name = "Gulag";
-	dir = 4
-	},
 /obj/effect/turf_decal/siding/thinplating_new/dark,
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 1
 	},
-/obj/effect/turf_decal/guideline/guideline_in/brown{
-	dir = 1
+/obj/machinery/door/airlock/titanium{
+	name = "Labor Shuttle Airlock"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /turf/open/floor/pod/light,
 /area/shuttle/labor)
 "L" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark,
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 1
-	},
-/obj/effect/turf_decal/guideline/guideline_in/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/alphabet/letter_e/cardinal{
-	dir = 8
-	},
-/obj/effect/turf_decal/alphabet/letter_c/cardinal{
-	dir = 4
 	},
 /turf/open/floor/pod/light,
 /area/shuttle/labor)
@@ -294,23 +264,17 @@
 /area/shuttle/labor)
 "R" = (
 /obj/effect/turf_decal/siding/dark,
-/obj/structure/chair/fancy/shuttle{
+/obj/structure/chair/office{
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/labor)
 "S" = (
-/obj/structure/shuttle/engine/heater{
-	dir = 8
-	},
 /obj/structure/window/reinforced/survival_pod/spawner/directional/west,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/visible,
 /turf/open/floor/plating,
 /area/shuttle/labor)
 "T" = (
-/obj/structure/chair/fancy/shuttle{
-	dir = 4
-	},
 /obj/machinery/light/small/directional/north,
 /obj/machinery/atmospherics/pipe/smart/simple/orange/hidden{
 	dir = 10
@@ -321,20 +285,22 @@
 /obj/effect/turf_decal/siding/dark/corner{
 	dir = 8
 	},
-/obj/machinery/computer/shuttle_flight/labor{
+/obj/machinery/light/small/directional/north,
+/obj/machinery/computer/shuttle/labor{
 	dir = 8
 	},
-/obj/machinery/light/small/directional/north,
+/obj/structure/reagent_dispensers/wall/peppertank/directional/north,
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/labor)
 "V" = (
 /turf/open/floor/pod/dark,
 /area/shuttle/labor)
 "Y" = (
-/obj/structure/chair/fancy/shuttle{
-	dir = 1
-	},
 /obj/effect/turf_decal/bot_white,
+/obj/structure/closet/crate,
+/obj/machinery/flasher/directional/south{
+	id = "gulagshuttleflasher"
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/labor)
 
@@ -342,7 +308,7 @@
 h
 o
 E
-k
+o
 C
 "}
 (2,1,1) = {"
@@ -368,8 +334,8 @@ x
 "}
 (5,1,1) = {"
 q
-z
-e
+k
+L
 Y
 q
 "}
@@ -377,7 +343,7 @@ q
 a
 z
 L
-Y
+e
 a
 "}
 (7,1,1) = {"
