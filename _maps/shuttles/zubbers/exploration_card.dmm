@@ -35,9 +35,6 @@
 	dir = 4
 	},
 /obj/machinery/light/small/directional/east,
-/obj/structure/sign/poster/official/random{
-	pixel_x = 32
-	},
 /turf/open/floor/iron/dark/smooth_half{
 	dir = 1
 	},
@@ -84,10 +81,8 @@
 	},
 /area/shuttle/abandoned)
 "fE" = (
-/obj/structure/sign/poster/official/random{
-	pixel_y = -32
-	},
 /obj/machinery/light_switch/directional/east,
+/obj/structure/sign/poster/official/random/directional/east,
 /turf/open/floor/mineral/titanium/tiled/purple,
 /area/shuttle/abandoned)
 "ga" = (
@@ -185,9 +180,7 @@
 /area/shuttle/abandoned)
 "iB" = (
 /obj/structure/table/reinforced,
-/obj/structure/sign/poster/official/random{
-	pixel_x = -32
-	},
+/obj/structure/sign/poster/official/random/directional/west,
 /turf/open/floor/mineral/titanium/tiled/purple,
 /area/shuttle/abandoned)
 "iK" = (
@@ -196,16 +189,6 @@
 	},
 /obj/machinery/power/shuttle_engine/propulsion,
 /turf/open/floor/plating/airless,
-/area/shuttle/abandoned)
-"kc" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 1
-	},
-/obj/structure/sign/poster/official/random{
-	pixel_x = -32
-	},
-/obj/structure/spacevine/xen,
-/turf/open/floor/iron/smooth,
 /area/shuttle/abandoned)
 "ly" = (
 /obj/effect/decal/cleanable/blood/gibs/robot_debris/limb,
@@ -317,22 +300,18 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/docking_port/mobile{
-	dir = 8;
-	dwidth = 10;
-	height = 11;
-	id_tag = "exploration";
-	name = "Exploration Shuttle";
-	port_direction = 8;
-	width = 19;
-	preferred_direction = 2;
-	shuttle_id = "Explorer"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/cable,
+/obj/docking_port/mobile{
+	dir = 8;
+	id_tag = "exploration";
+	name = "Exploration Shuttle";
+	port_direction = 8;
+	preferred_direction = 2;
+	shuttle_id = "Explorer"
+	},
 /turf/open/floor/iron/textured_half{
 	dir = 1
 	},
@@ -394,6 +373,7 @@
 	},
 /obj/structure/spacevine/xen,
 /obj/structure/spacevine/xen/thick,
+/obj/structure/sign/poster/official/random/directional/west,
 /turf/open/floor/wood,
 /area/shuttle/abandoned)
 "sR" = (
@@ -892,12 +872,10 @@
 /area/shuttle/abandoned)
 "Yd" = (
 /obj/machinery/light/directional/east,
-/obj/structure/sign/poster/official/random{
-	pixel_x = 32
-	},
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden{
 	dir = 1
 	},
+/obj/structure/sign/poster/official/random/directional/east,
 /turf/open/floor/iron/smooth,
 /area/shuttle/abandoned)
 "Zh" = (
@@ -999,7 +977,7 @@ ug
 Sp
 cV
 DX
-kc
+hC
 sK
 eB
 hI
