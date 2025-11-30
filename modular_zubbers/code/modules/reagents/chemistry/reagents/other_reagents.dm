@@ -409,14 +409,12 @@
 
 	if (prob(50))
 		to_chat(affected_mob, span_warning("You feel the urge to weh..."))
-		addtimer(CALLBACK(src, PROC_REF(do_weh_sound), affected_mob), rand(1, 4) SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(do_weh), affected_mob), rand(1, 4) SECONDS)
 
-/datum/reagent/juice_that_makes_you_weh/proc/do_weh_sound(mob/living/carbon/M)
+/datum/reagent/juice_that_makes_you_weh/proc/do_weh(mob/living/carbon/M)
 	if (!M || M.stat == DEAD)
 		return
-
-	// Play randomized-pitch 'weh'
-	playsound(M, 'modular_skyrat/modules/emotes/sound/voice/weh.ogg', 50, TRUE)
+	M.say("*weh")
 
 
 #undef MUT_MSG_IMMEDIATE
