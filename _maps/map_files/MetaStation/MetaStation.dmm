@@ -5285,13 +5285,6 @@
 /obj/effect/landmark/start/scientist,
 /turf/open/floor/engine,
 /area/station/science/explab)
-"bRm" = (
-/obj/structure/closet/secure_closet/security/sec,
-/obj/effect/turf_decal/tile/red/anticorner/contrasted,
-/obj/machinery/power/apc/auto_name/directional/west,
-/obj/structure/cable,
-/turf/open/floor/iron/dark,
-/area/station/security/lockers)
 "bRp" = (
 /obj/effect/spawner/random/decoration/microwave{
 	dir = 1;
@@ -6818,6 +6811,13 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/dark/visible,
 /turf/open/floor/engine,
 /area/station/science/cytology)
+"cvs" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 4
+	},
+/obj/machinery/light/directional/west,
+/turf/open/floor/iron/dark,
+/area/station/security/lockers)
 "cvt" = (
 /obj/machinery/door/airlock/external,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
@@ -12373,13 +12373,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/hallway/primary/port)
-"emG" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 4
-	},
-/obj/machinery/light/directional/west,
-/turf/open/floor/iron/dark,
-/area/station/security/lockers)
 "emN" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -25237,21 +25230,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
-"iJX" = (
-/obj/machinery/turretid{
-	name = "AI Chamber turret control";
-	pixel_x = 3;
-	pixel_y = -23
-	},
-/obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/north,
-/obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/machinery/door/window/brigdoor/left/directional/west{
-	name = "Primary AI Core Access";
-	req_access = list("ai_upload")
-	},
-/turf/open/floor/iron/dark,
-/area/station/ai/satellite/chamber)
 "iKj" = (
 /obj/machinery/photocopier/prebuilt,
 /obj/effect/turf_decal/tile/red/half/contrasted{
@@ -33639,29 +33617,6 @@
 	},
 /turf/open/floor/plating,
 /area/station/cargo/storage)
-"lAb" = (
-/obj/machinery/turretid{
-	control_area = "/area/station/ai/upload/chamber";
-	name = "AI Upload Turret Control";
-	pixel_y = 28
-	},
-/obj/item/radio/intercom/directional/north{
-	broadcasting = 1;
-	frequency = 1447;
-	name = "Private Channel";
-	pixel_x = -26
-	},
-/obj/effect/landmark/start/cyborg,
-/obj/machinery/light/small/directional/west,
-/obj/machinery/computer/security/telescreen/aiupload/directional/west,
-/obj/structure/cable,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 4
-	},
-/obj/machinery/power/apc/auto_name/directional/south,
-/obj/effect/turf_decal/tile/neutral/fourcorners,
-/turf/open/floor/iron/dark,
-/area/station/ai/upload/foyer)
 "lAe" = (
 /obj/machinery/light/small/directional/south,
 /turf/open/floor/engine,
@@ -37180,6 +37135,33 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/wood,
 /area/station/service/library)
+"mMc" = (
+/obj/structure/table,
+/obj/item/folder/red,
+/obj/item/restraints/handcuffs,
+/obj/item/clothing/head/cone{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/clothing/head/cone{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/clothing/head/cone{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/clothing/head/cone{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/clothing/head/cone{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/machinery/light_switch/directional/west,
+/turf/open/floor/iron/dark,
+/area/station/security/lockers)
 "mMl" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -37565,6 +37547,29 @@
 /obj/effect/mapping_helpers/burnt_floor,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
+"mSI" = (
+/obj/machinery/turretid{
+	control_area = "/area/station/ai/upload/chamber";
+	name = "AI Upload Turret Control";
+	pixel_y = 28
+	},
+/obj/item/radio/intercom/directional/north{
+	broadcasting = 1;
+	frequency = 1447;
+	name = "Private Channel";
+	pixel_x = -26
+	},
+/obj/effect/landmark/start/cyborg,
+/obj/machinery/light/small/directional/west,
+/obj/machinery/computer/security/telescreen/aiupload/directional/west,
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
+/obj/machinery/power/apc/auto_name/directional/south,
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/turf/open/floor/iron/dark,
+/area/station/ai/upload/foyer)
 "mSM" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -44790,6 +44795,13 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/storage)
+"pti" = (
+/obj/structure/closet/secure_closet/security/sec,
+/obj/effect/turf_decal/tile/red/anticorner/contrasted,
+/obj/machinery/power/apc/auto_name/directional/west,
+/obj/structure/cable,
+/turf/open/floor/iron/dark,
+/area/station/security/lockers)
 "pts" = (
 /obj/machinery/light_switch/directional/west,
 /obj/effect/turf_decal/trimline/neutral/warning{
@@ -46814,6 +46826,21 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/hallway/primary/central)
+"qeQ" = (
+/obj/machinery/turretid{
+	name = "AI Chamber turret control";
+	pixel_x = 3;
+	pixel_y = -23
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/directional/north,
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/door/window/brigdoor/left/directional/west{
+	name = "Primary AI Core Access";
+	req_access = list("ai_upload")
+	},
+/turf/open/floor/iron/dark,
+/area/station/ai/satellite/chamber)
 "qfp" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/public/glass{
@@ -54827,33 +54854,6 @@
 /obj/machinery/duct,
 /turf/open/floor/plating,
 /area/station/maintenance/port)
-"sPu" = (
-/obj/structure/table,
-/obj/item/folder/red,
-/obj/item/restraints/handcuffs,
-/obj/item/clothing/head/cone{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/clothing/head/cone{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/clothing/head/cone{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/clothing/head/cone{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/clothing/head/cone{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/machinery/light_switch/directional/west,
-/turf/open/floor/iron/dark,
-/area/station/security/lockers)
 "sPy" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -96241,7 +96241,7 @@ aPv
 oWF
 eQg
 aJS
-lAb
+mSI
 aUx
 qhF
 htd
@@ -99298,10 +99298,10 @@ iTZ
 eft
 upR
 nJu
-bRm
+pti
 cvw
-emG
-sPu
+cvs
+mMc
 ahj
 jxV
 ayV
@@ -125798,7 +125798,7 @@ aVn
 tIa
 aWN
 aTV
-iJX
+qeQ
 aTV
 aTV
 aWN
