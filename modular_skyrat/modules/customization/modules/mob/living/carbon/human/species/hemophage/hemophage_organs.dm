@@ -27,10 +27,19 @@
 	. = ..()
 	UnregisterSignal(organ_owner, COMSIG_MOB_FEED_DRINK)
 
-/obj/item/organ/liver/hemophage/proc/on_blood_drunk(mob/living/carbon/blood_drunk, feed_target, blood_eatable, already_drunk)
+/obj/item/organ/liver/hemophage/proc/on_blood_drunk(mob/living/carbon/drinker, mob/living/carbon/victim, blood_eatable, already_drunk)
 	SIGNAL_HANDLER
-	blood_drunk.apply_status_effect(/datum/status_effect/blood_thirst_satiated)
-	blood_drunk.disgust *= 0.3 //also clears a little bit of disgust too
+	var/maximum_gained = BLOOD_VOLUME_MAXIMUM
+	if(ismonkey(victim) || istype(victim, /mob/living/carbon/human/species/monkey))
+		drinker.adjust_disgust(blood_eatable, DISGUST_LEVEL_DISGUSTED)
+		maximum_gained = BLOOD_VOLUME_NORMAL
+
+	else if(ishuman(victim) && victim.mind)
+		drinker.apply_status_effect(/datum/status_effect/blood_thirst_satiated)
+		drinker.disgust *= 0.3 //also clears a little bit of disgust too
+
+	drinker.blood_volume = min(drinker.blood_volume + blood_eatable, maximum_gained)
+	return FEED_CANCEL_BLOOD_TRANSFER
 
 /obj/item/organ/liver/hemophage/handle_chemical(mob/living/carbon/affected_mob, datum/reagent/chem, seconds_per_tick, times_fired)
 	. = ..()
@@ -76,7 +85,7 @@
 	// Sanitizes and heals, but with a limit
 	if(flesh_healing <= 0.1)
 		flesh_healing += 0.02
-	infestation_rate = max(infestation_rate - 0.005, 0)
+	infection_rate = max(infection_rate - 0.005, 0)
 	return TRUE
 
 

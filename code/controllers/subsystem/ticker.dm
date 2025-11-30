@@ -77,21 +77,6 @@ SUBSYSTEM_DEF(ticker)
 	var/discord_alerted = FALSE //SKYRAT EDIT - DISCORD PING SPAM PREVENTION
 
 /datum/controller/subsystem/ticker/Initialize()
-	var/list/byond_sound_formats = list(
-		"mid" = TRUE,
-		"midi" = TRUE,
-		"mod" = TRUE,
-		"it" = TRUE,
-		"s3m" = TRUE,
-		"xm" = TRUE,
-		"oxm" = TRUE,
-		"wav" = TRUE,
-		"ogg" = TRUE,
-		"raw" = TRUE,
-		"wma" = TRUE,
-		"aiff" = TRUE,
-	)
-
 	var/list/provisional_title_music = flist("[global.config.directory]/title_music/sounds/")
 	var/list/music = list()
 	var/use_rare_music = prob(1)
@@ -119,11 +104,8 @@ SUBSYSTEM_DEF(ticker)
 		music -= old_login_music
 
 	for(var/S in music)
-		var/list/L = splittext(S,".")
-		if(L.len >= 2)
-			var/ext = LOWER_TEXT(L[L.len]) //pick the real extension, no 'honk.ogg.exe' nonsense here
-			if(byond_sound_formats[ext])
-				continue
+		if(IS_SOUND_FILE(S))
+			continue
 		music -= S
 
 	if(!length(music))
