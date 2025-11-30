@@ -301,7 +301,7 @@
 					linked_mob.adjust_disgust(25)
 				if(2)
 					to_chat(linked_mob, span_warning("You feel a wave of fatigue roll over you!"))
-					linked_mob.adjustStaminaLoss(50)
+					linked_mob.adjust_stamina_loss(50)
 
 		if(NIF_CALIBRATION_STAGE_FINISHED to INFINITY)
 			send_message("The calibration process is complete.")

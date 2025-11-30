@@ -14,10 +14,10 @@
 /obj/item/gun/medbeam/afad/on_beam_tick(mob/living/target)
 	if(target.health != target.maxHealth)
 		new /obj/effect/temp_visual/heal(get_turf(target), "#80F5FF")
-	target.adjustBruteLoss(PHYSICAL_DAMAGE_HEALING)
-	target.adjustFireLoss(PHYSICAL_DAMAGE_HEALING)
-	target.adjustToxLoss(EXOTIC_DAMAGE_HEALING)
-	target.adjustOxyLoss(EXOTIC_DAMAGE_HEALING)
+	target.adjust_brute_loss(PHYSICAL_DAMAGE_HEALING)
+	target.adjust_fire_loss(PHYSICAL_DAMAGE_HEALING)
+	target.adjust_tox_loss(EXOTIC_DAMAGE_HEALING)
+	target.adjust_oxy_loss(EXOTIC_DAMAGE_HEALING)
 	return
 
 #undef PHYSICAL_DAMAGE_HEALING

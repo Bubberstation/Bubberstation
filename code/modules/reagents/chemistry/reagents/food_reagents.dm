@@ -194,7 +194,7 @@
 	span_userdanger("You're covered in boiling oil!"))
 	if(FryLoss)
 		exposed_mob.emote("scream")
-		exposed_mob.adjustFireLoss(FryLoss)
+		exposed_mob.adjust_fire_loss(FryLoss)
 	playsound(exposed_mob, 'sound/machines/fryer/deep_fryer_emerge.ogg', 25, TRUE)
 	ADD_TRAIT(exposed_mob, TRAIT_OIL_FRIED, "cooking_oil_react")
 	addtimer(CALLBACK(exposed_mob, TYPE_PROC_REF(/mob/living, unfry_mob)), 2 SECONDS)
@@ -422,7 +422,7 @@
 	if(reac_volume < 5)
 		return
 	for(var/mob/living/basic/slime/exposed_slime in exposed_turf)
-		exposed_slime.adjustToxLoss(rand(15,30))
+		exposed_slime.adjust_tox_loss(rand(15,30))
 
 /datum/reagent/consumable/condensedcapsaicin
 	name = "Condensed Capsaicin"
@@ -825,10 +825,10 @@
 	holder.add_reagent(/datum/reagent/consumable/sugar, 3 * REM * seconds_per_tick)
 	var/need_mob_update
 	if(SPT_PROB(33, seconds_per_tick))
-		need_mob_update = affected_mob.adjustBruteLoss(-1, updating_health = FALSE, required_bodytype = affected_bodytype)
-		need_mob_update += affected_mob.adjustFireLoss(-1, updating_health = FALSE, required_bodytype = affected_bodytype)
-		need_mob_update += affected_mob.adjustOxyLoss(-1, updating_health = FALSE, required_biotype = affected_biotype)
-		need_mob_update += affected_mob.adjustToxLoss(-1, updating_health = FALSE, required_biotype = affected_biotype)
+		need_mob_update = affected_mob.adjust_brute_loss(-1, updating_health = FALSE, required_bodytype = affected_bodytype)
+		need_mob_update += affected_mob.adjust_fire_loss(-1, updating_health = FALSE, required_bodytype = affected_bodytype)
+		need_mob_update += affected_mob.adjust_oxy_loss(-1, updating_health = FALSE, required_biotype = affected_biotype)
+		need_mob_update += affected_mob.adjust_tox_loss(-1, updating_health = FALSE, required_biotype = affected_biotype)
 	if(need_mob_update)
 		return UPDATE_MOB_HEALTH
 
@@ -914,9 +914,9 @@
 		affected_mob.Unconscious(40 * REM * seconds_per_tick, FALSE)
 	if(SPT_PROB(10, seconds_per_tick))
 		affected_mob.losebreath += 4
-		affected_mob.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2*REM, 150, affected_biotype)
-		affected_mob.adjustToxLoss(3*REM, updating_health = FALSE, required_biotype = affected_biotype)
-		affected_mob.adjustStaminaLoss(10*REM, updating_stamina = FALSE, required_biotype = affected_biotype)
+		affected_mob.adjust_organ_loss(ORGAN_SLOT_BRAIN, 2*REM, 150, affected_biotype)
+		affected_mob.adjust_tox_loss(3*REM, updating_health = FALSE, required_biotype = affected_biotype)
+		affected_mob.adjust_stamina_loss(10*REM, updating_stamina = FALSE, required_biotype = affected_biotype)
 		affected_mob.set_eye_blur_if_lower(10 SECONDS)
 		need_mob_update = TRUE
 	if(need_mob_update)
@@ -960,8 +960,8 @@
 	. = ..()
 	var/need_mob_update
 	if(SPT_PROB(55, seconds_per_tick))
-		need_mob_update = affected_mob.adjustBruteLoss(-1 * REM * seconds_per_tick, updating_health = FALSE, required_bodytype = affected_bodytype)
-		need_mob_update += affected_mob.adjustFireLoss(-1 * REM * seconds_per_tick, updating_health = FALSE, required_bodytype = affected_bodytype)
+		need_mob_update = affected_mob.adjust_brute_loss(-1 * REM * seconds_per_tick, updating_health = FALSE, required_bodytype = affected_bodytype)
+		need_mob_update += affected_mob.adjust_fire_loss(-1 * REM * seconds_per_tick, updating_health = FALSE, required_bodytype = affected_bodytype)
 	if(need_mob_update)
 		return UPDATE_MOB_HEALTH
 
@@ -989,7 +989,7 @@
 /datum/reagent/consumable/liquidelectricity/enriched/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
 	if(isethereal(affected_mob))
-		affected_mob.blood_volume += 1 * seconds_per_tick
+		affected_mob.adjust_blood_volume(1 * seconds_per_tick)
 	else if(SPT_PROB(10, seconds_per_tick)) //lmao at the newbs who eat energy bars
 		affected_mob.electrocute_act(rand(5,10), "Liquid Electricity in their body", 1, SHOCK_NOGLOVES) //the shock is coming from inside the house
 		playsound(affected_mob, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)

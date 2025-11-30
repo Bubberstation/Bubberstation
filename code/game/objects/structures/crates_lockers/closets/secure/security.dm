@@ -92,6 +92,7 @@
 	new /obj/item/storage/belt/security/full(src)
 	new /obj/item/flashlight/seclite(src)
 	new /obj/item/door_remote/head_of_security(src)
+	new /obj/item/storage/belt/bandolier(src)
 
 
 /obj/structure/closet/secure_closet/warden/populate_contents_immediate()
@@ -328,7 +329,7 @@
 	new /obj/item/storage/box/firingpins(src)
 	new /obj/item/gun/energy/ionrifle(src)
 	for(var/i in 1 to 3)
-		new /obj/item/gun/energy/laser/thermal(src)
+		new /obj/item/gun/energy/laser/pistol(src)
 
 /obj/structure/closet/secure_closet/armory3/populate_contents_immediate()
 	for(var/i in 1 to 3)

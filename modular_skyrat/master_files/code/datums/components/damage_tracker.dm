@@ -21,10 +21,10 @@
 	if(!istype(tracked_mob))
 		return FALSE
 
-	brute_damage = tracked_mob.getBruteLoss()
-	burn_damage = tracked_mob.getFireLoss()
-	toxin_damage = tracked_mob.getToxLoss()
-	oxygen_damage = tracked_mob.getOxyLoss()
+	brute_damage = tracked_mob.get_brute_loss()
+	burn_damage = tracked_mob.get_fire_loss()
+	toxin_damage = tracked_mob.get_tox_loss()
+	oxygen_damage = tracked_mob.get_oxy_loss()
 	stored_blood_volume = tracked_mob.blood_volume
 
 	return TRUE
@@ -35,10 +35,10 @@
 	if(!istype(tracked_mob))
 		return FALSE
 
-	tracked_mob.setBruteLoss(brute_damage)
-	tracked_mob.setFireLoss(burn_damage)
-	tracked_mob.setToxLoss(toxin_damage)
-	tracked_mob.setOxyLoss(oxygen_damage)
+	tracked_mob.set_brute_loss(brute_damage)
+	tracked_mob.set_fire_loss(burn_damage)
+	tracked_mob.set_tox_loss(toxin_damage)
+	tracked_mob.set_oxy_loss(oxygen_damage)
 	tracked_mob.blood_volume = stored_blood_volume
 
 	return TRUE
@@ -111,13 +111,13 @@
 	if(!. || !istype(human_parent))
 		return FALSE
 
-	human_parent.setOrganLoss(ORGAN_SLOT_HEART, heart_damage)
-	human_parent.setOrganLoss(ORGAN_SLOT_LIVER, liver_damage)
-	human_parent.setOrganLoss(ORGAN_SLOT_LUNGS, lung_damage)
-	human_parent.setOrganLoss(ORGAN_SLOT_STOMACH, stomach_damage)
-	human_parent.setOrganLoss(ORGAN_SLOT_EYES, eye_damage)
-	human_parent.setOrganLoss(ORGAN_SLOT_EARS, ear_damage)
-	human_parent.setOrganLoss(ORGAN_SLOT_BRAIN, brain_damage)
+	human_parent.set_organ_loss(ORGAN_SLOT_HEART, heart_damage)
+	human_parent.set_organ_loss(ORGAN_SLOT_LIVER, liver_damage)
+	human_parent.set_organ_loss(ORGAN_SLOT_LUNGS, lung_damage)
+	human_parent.set_organ_loss(ORGAN_SLOT_STOMACH, stomach_damage)
+	human_parent.set_organ_loss(ORGAN_SLOT_EYES, eye_damage)
+	human_parent.set_organ_loss(ORGAN_SLOT_EARS, ear_damage)
+	human_parent.set_organ_loss(ORGAN_SLOT_BRAIN, brain_damage)
 
 	var/obj/item/organ/brain/human_brain = human_parent.get_organ_by_type(/obj/item/organ/brain)
 	if(!human_brain)

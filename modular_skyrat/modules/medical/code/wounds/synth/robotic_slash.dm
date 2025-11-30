@@ -35,7 +35,7 @@
 
 	treatable_tools = list(TOOL_WIRECUTTER, TOOL_RETRACTOR)
 	treatable_by = list(/obj/item/stack/medical/suture)
-	treatable_by_grabbed = list(/obj/item/stack/cable_coil)
+	var/treatable_by_grabbed = list(/obj/item/stack/cable_coil)
 
 	default_scar_file = METAL_SCAR_FILE
 

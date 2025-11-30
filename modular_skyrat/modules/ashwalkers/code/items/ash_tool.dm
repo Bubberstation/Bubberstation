@@ -97,11 +97,11 @@
 	if(!do_after(living_user, 4 SECONDS, target = src))
 		return
 	to_chat(living_user, span_warning("[src] begins to crawl between your hand's appendages, crawling up your arm..."))
-	living_user.adjustBruteLoss(35)
+	living_user.adjust_brute_loss(35)
 	if(!do_after(living_user, 4 SECONDS, target = src))
 		return
 	to_chat(living_user, span_warning("[src] wraps around your chest and begins to tighten, causing an odd needling sensation..."))
-	living_user.adjustBruteLoss(35)
+	living_user.adjust_brute_loss(35)
 	if(!do_after(living_user, 4 SECONDS, target = src))
 		return
 	to_chat(living_user, span_warning("[src] leaps from you satisfied and begins to grossly assemble itself!"))

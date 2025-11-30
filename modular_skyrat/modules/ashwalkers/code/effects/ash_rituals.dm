@@ -265,7 +265,7 @@
 	if(!human_victim)
 		return
 
-	var/total_damage = human_victim.getBruteLoss() + human_victim.getFireLoss()
+	var/total_damage = human_victim.get_brute_loss() + human_victim.get_fire_loss()
 	var/divide_damage = 0
 	var/list/valid_humans = list()
 
@@ -282,9 +282,9 @@
 	var/singular_damage = total_damage / divide_damage
 
 	for(var/mob/living/carbon/human/human_target in valid_humans)
-		human_target.adjustBruteLoss(singular_damage)
+		human_target.adjust_brute_loss(singular_damage)
 
-	human_victim.heal_overall_damage(human_victim.getBruteLoss(), human_victim.getFireLoss())
+	human_victim.heal_overall_damage(human_victim.get_brute_loss(), human_victim.get_fire_loss())
 
 /datum/ash_ritual/banish_kin
 	name = "Banish Kin"

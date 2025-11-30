@@ -60,7 +60,7 @@
 /mob/living/simple_animal/hostile/true_changeling/Life()
 	. = ..()
 
-	adjustBruteLoss(-TRUE_CHANGELING_PASSIVE_HEAL)
+	adjust_brute_loss(-TRUE_CHANGELING_PASSIVE_HEAL)
 
 /mob/living/simple_animal/hostile/true_changeling/AttackingTarget()
 	. = ..()
@@ -143,7 +143,7 @@
 		if(mind)
 			mind.transfer_to(stored_changeling)
 		stored_changeling.Paralyze(10 SECONDS)
-		stored_changeling.adjustBruteLoss(30, TRUE, TRUE)
+		stored_changeling.adjust_brute_loss(30, TRUE, TRUE)
 		REMOVE_TRAIT(stored_changeling, TRAIT_GODMODE, INNATE_TRAIT)
 		stored_changeling.emote("scream")
 		stored_changeling.gib()
@@ -262,7 +262,7 @@
 	if(!lunch || !ishuman(lunch))
 		return FALSE
 
-	if(lunch.getBruteLoss() + lunch.getFireLoss() >= 200)
+	if(lunch.get_brute_loss() + lunch.get_fire_loss() >= 200)
 		horrorform.visible_message(span_warning("[lunch] provides no further nutrients for [horrorform]!"), \
 						span_danger("[lunch] has no more useful flesh for us to consume!!"))
 		return FALSE
@@ -276,7 +276,7 @@
 		return FALSE
 
 	horrorform.devouring = FALSE
-	lunch.adjustBruteLoss(60)
+	lunch.adjust_brute_loss(60)
 
 	horrorform.visible_message(span_warning("[horrorform] tears a chunk from [lunch]'s flesh!"), \
 					span_danger("We tear a chunk of flesh from [lunch] and devour it!"))
@@ -299,9 +299,9 @@
 	lunch.emote("scream")
 
 	if(lunch.nutrition >= NUTRITION_LEVEL_FAT)
-		horrorform.adjustBruteLoss(-100)
+		horrorform.adjust_brute_loss(-100)
 	else
-		horrorform.adjustBruteLoss(-50)
+		horrorform.adjust_brute_loss(-50)
 
 #undef TRUE_CHANGELING_REFORM_THRESHOLD
 #undef TRUE_CHANGELING_PASSIVE_HEAL

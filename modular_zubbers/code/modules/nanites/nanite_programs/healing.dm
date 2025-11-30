@@ -13,7 +13,7 @@
 /datum/nanite_program/regenerative/check_conditions()
 	if(always_active)
 		return TRUE
-	if(!host_mob.getBruteLoss() && !host_mob.getFireLoss())
+	if(!host_mob.get_brute_loss() && !host_mob.get_fire_loss())
 		return FALSE
 	if(iscarbon(host_mob))
 		var/mob/living/carbon/carbon = host_mob
@@ -78,7 +78,7 @@
 		return FALSE // No trying to purge simple mobs
 
 /datum/nanite_program/purging/active_effect()
-	host_mob.adjustToxLoss(-healing_rate, forced = force_heal)
+	host_mob.adjust_tox_loss(-healing_rate, forced = force_heal)
 	for(var/datum/reagent/R as anything in host_mob.reagents.reagent_list)
 		if(!istype(R, purge_path))
 			continue
@@ -130,7 +130,7 @@
 	return FALSE
 
 /datum/nanite_program/brain_heal/active_effect()
-	host_mob.adjustOrganLoss(ORGAN_SLOT_BRAIN, -NANITE_BRAIN_REGENERATION)
+	host_mob.adjust_organ_loss(ORGAN_SLOT_BRAIN, -NANITE_BRAIN_REGENERATION)
 	if(iscarbon(host_mob) && prob(1))
 		var/mob/living/carbon/C = host_mob
 		C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_BASIC)
@@ -142,7 +142,7 @@
 	rogue_types = list(/datum/nanite_program/brain_decay, /datum/nanite_program/brain_misfire)
 
 /datum/nanite_program/brain_heal_advanced/active_effect()
-	host_mob.adjustOrganLoss(ORGAN_SLOT_BRAIN, -NANITE_ADV_BRAIN_REGENERATION)
+	host_mob.adjust_organ_loss(ORGAN_SLOT_BRAIN, -NANITE_ADV_BRAIN_REGENERATION)
 	if(iscarbon(host_mob) && prob(1))
 		var/mob/living/carbon/C = host_mob
 		C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_LOBOTOMY)
@@ -175,8 +175,8 @@
 	C.get_ghost()
 	if(check_revivable())
 		if(C.stat == DEAD)
-			var/original_oxyloss = C.getOxyLoss()
-			C.setOxyLoss(OXYLOSS_PASSOUT_THRESHOLD - 5)
+			var/original_oxyloss = C.get_oxy_loss()
+			C.set_oxy_loss(OXYLOSS_PASSOUT_THRESHOLD - 5)
 			C.SetSleeping(5 SECONDS)
 			C.set_heartattack(FALSE)
 			if(C.revive())
@@ -188,7 +188,7 @@
 				send_user_message("User revival sequence success.")
 				return
 			else
-				C.setOxyLoss(original_oxyloss)
+				C.set_oxy_loss(original_oxyloss)
 	if(C.undergoing_cardiac_arrest() || C.has_status_effect(/datum/status_effect/heart_attack))
 		SEND_SIGNAL(C, COMSIG_HEARTATTACK_DEFIB)
 		send_user_message("User cardiac arrest prevention attempted.")

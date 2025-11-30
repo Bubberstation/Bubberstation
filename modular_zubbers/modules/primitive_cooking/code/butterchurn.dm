@@ -65,7 +65,7 @@
 		to_chat(user, span_warning("Someone's already using \the [src]!"))
 		return
 
-	if(user.getStaminaLoss() > CHURN_STAMINA_MINIMUM)
+	if(user.get_stamina_loss() > CHURN_STAMINA_MINIMUM)
 		balloon_alert(user, "too tired")
 		return
 
@@ -92,7 +92,7 @@
 	var/stamina_use = CHURN_STAMINA_USE
 	if(prob(user.mind.get_skill_modifier(/datum/skill/primitive, SKILL_PROBS_MODIFIER)))
 		stamina_use *= 0.5 //so it uses half the amount of stamina (25 instead of 50)
-	user.adjustStaminaLoss(stamina_use) // Prevents spamming it
+	user.adjust_stamina_loss(stamina_use) // Prevents spamming it
 	busy = FALSE
 	user.visible_message(span_notice("[user] churns \the [src]."), span_notice("You finish churning \the [src]."))
 	var/cream_amt = reagents.get_reagent_amount(/datum/reagent/consumable/milk) / CHURN_CREAM_RATIO

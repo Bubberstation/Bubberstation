@@ -77,7 +77,7 @@
 	if(user.move_intent != MOVE_INTENT_WALK)
 		user.toggle_move_intent()
 		user.balloon_alert(user, "you attempt to run, crushing yourself.")
-		user.adjustBruteLoss(rand(5,15))
+		user.adjust_brute_loss(rand(5,15))
 	/// We don't want people using fortitude being able to use vehicles
 	if(user.buckled && istype(user.buckled, /obj/vehicle))
 		user.buckled.unbuckle_mob(src, force=TRUE)

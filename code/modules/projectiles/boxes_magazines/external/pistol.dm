@@ -30,7 +30,7 @@
 	. = ..()
 	if(!QDELETED(hit_mob))
 		hit_mob.Knockdown(2 SECONDS)
-		hit_mob.adjustBruteLoss(40)
+		hit_mob.adjust_brute_loss(40)
 	qdel()
 
 /obj/item/ammo_box/magazine/m9mm/fire

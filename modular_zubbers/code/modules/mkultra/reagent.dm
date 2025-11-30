@@ -247,7 +247,7 @@ Creating a chem with a low purity will make you permanently fall in love with so
 	SSblackbox.record_feedback("tally", "fermi_chem", 1, "Thralls mindbroken")
 
 /datum/reagent/mkultra/overdose_process(mob/living/carbon/mob_affected)
-	mob_affected.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2)//should be ~30 in total
+	mob_affected.adjust_organ_loss(ORGAN_SLOT_BRAIN, 0.2)//should be ~30 in total
 	..()
 
 /datum/reagent/mkultra/proc/FallInLove(mob/living/carbon/Lover, mob/living/carbon/Love)

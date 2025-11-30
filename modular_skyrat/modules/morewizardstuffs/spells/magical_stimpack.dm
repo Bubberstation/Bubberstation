@@ -12,7 +12,7 @@
 	. = ..()
 	cast_on.balloon_alert(cast_on, "speeding up")
 	cast_on.SetKnockdown(0)
-	cast_on.setStaminaLoss(0)
+	cast_on.set_stamina_loss(0)
 	cast_on.set_resting(FALSE)
 	cast_on.reagents.add_reagent(/datum/reagent/medicine/stimulants, 3) // Ideally this comes out to a bit less than 30 seconds with tidi taken into account.
 	return TRUE

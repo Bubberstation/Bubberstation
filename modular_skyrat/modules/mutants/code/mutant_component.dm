@@ -88,14 +88,14 @@
 
 /datum/component/mutant_infection/process(seconds_per_tick)
 	if(!ismutant(host) && host.stat != DEAD)
-		var/toxloss = host.getToxLoss()
+		var/toxloss = host.get_tox_loss()
 		if(toxloss < 50)
-			host.adjustToxLoss(tox_loss_mod * seconds_per_tick)
+			host.adjust_tox_loss(tox_loss_mod * seconds_per_tick)
 			if(SPT_PROB(5, seconds_per_tick))
 				to_chat(host, span_userdanger("You feel your motor controls seize up for a moment!"))
 				host.Paralyze(10)
 		else
-			host.adjustToxLoss((tox_loss_mod * 2) * seconds_per_tick)
+			host.adjust_tox_loss((tox_loss_mod * 2) * seconds_per_tick)
 			if(SPT_PROB(10, seconds_per_tick))
 				var/obj/item/bodypart/wound_area = host.get_bodypart(BODY_ZONE_CHEST)
 				if(wound_area)

@@ -304,10 +304,10 @@
 	if(mod.wearer.health > health_threshold)
 		return
 
-	var/new_bruteloss = mod.wearer.getBruteLoss()
-	var/new_fireloss = mod.wearer.getFireLoss()
-	var/new_toxloss = mod.wearer.getToxLoss()
-	var/new_stamloss = mod.wearer.getStaminaLoss()
+	var/new_bruteloss = mod.wearer.get_brute_loss()
+	var/new_fireloss = mod.wearer.get_fire_loss()
+	var/new_toxloss = mod.wearer.get_tox_loss()
+	var/new_stamloss = mod.wearer.get_stamina_loss()
 	playsound(mod.wearer, 'modular_skyrat/modules/hev_suit/sound/hev/hiss.ogg', 100)
 
 	if(new_bruteloss)

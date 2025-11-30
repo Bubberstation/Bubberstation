@@ -53,7 +53,7 @@
 		show_message = TRUE
 
 	if(show_message)
-		return "[round(1 / speed_mod, 0.1)]x (<font color='#F0197D'>[target.getBruteLoss()]</font>) <font color='#7DF9FF'>[feedback_value]</font>"
+		return "[round(1 / speed_mod, 0.1)]x (<font color='#F0197D'>[target.get_brute_loss()]</font>) <font color='#7DF9FF'>[feedback_value]</font>"
 
 /datum/surgery_step/heal/burn/get_feedback_message(mob/living/user, mob/living/target, speed_mod = 1)
 	var/show_message = FALSE
@@ -65,7 +65,7 @@
 		show_message = TRUE
 
 	if(show_message)
-		return "[round(1 / speed_mod, 0.1)]x (<font color='#FF7F50'>[target.getFireLoss()]</font>) <font color='#7DF9FF'>[feedback_value]</font>"
+		return "[round(1 / speed_mod, 0.1)]x (<font color='#FF7F50'>[target.get_fire_loss()]</font>) <font color='#7DF9FF'>[feedback_value]</font>"
 
 /datum/surgery_step/heal/combo/get_feedback_message(mob/living/user, mob/living/target, speed_mod = 1)
 	var/show_message = FALSE
@@ -77,4 +77,4 @@
 		show_message = TRUE
 
 	if(show_message)
-		return "[round(1 / speed_mod, 0.1)]x (<font color='#F0197D'>[target.getBruteLoss()]</font>/<font color='#FF7F50'>[target.getFireLoss()]</font>) <font color='#7DF9FF'>[feedback_value]</font>"
+		return "[round(1 / speed_mod, 0.1)]x (<font color='#F0197D'>[target.get_brute_loss()]</font>/<font color='#FF7F50'>[target.get_fire_loss()]</font>) <font color='#7DF9FF'>[feedback_value]</font>"

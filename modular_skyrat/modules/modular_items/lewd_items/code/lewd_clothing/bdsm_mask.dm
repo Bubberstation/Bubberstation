@@ -310,7 +310,7 @@
 	if(time_to_choke_left <= 0)
 		if(tt <= 0)
 			if(affected_carbon.stat == CONSCIOUS)
-				affected_carbon.adjustOxyLoss(rand(4, 8)) // Oxy dmg
+				affected_carbon.adjust_oxy_loss(rand(4, 8)) // Oxy dmg
 				affected_carbon.try_lewd_autoemote(pick("gasp", "choke", "moan"))
 				tt = time
 			else
