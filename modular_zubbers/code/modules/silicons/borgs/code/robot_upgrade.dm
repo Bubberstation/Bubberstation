@@ -93,8 +93,8 @@
 	desc = "An upgrade to allow a cyborg to use a Rapid Lighting Device."
 	icon_state = "module_engineer"
 	require_model = TRUE
-	model_type = list(/obj/item/robot_model/engineering)
-	model_flags = BORG_MODEL_ENGINEERING
+	model_type = list(/obj/item/robot_model/engineering, /obj/item/robot_model/janitor)
+	model_flags = list(BORG_MODEL_ENGINEERING, BORG_MODEL_JANITOR)
 	items_to_add = list(/obj/item/construction/rld/cyborg)
 
 // Borg Advanced Xenoarchaeology Bag
@@ -255,3 +255,25 @@
 			borg.hasToys = FALSE
 
 		borg.remove_quirk(/datum/quirk/well_trained)
+
+/obj/item/borg/upgrade/detailer
+	name = "janitor detailing toolset"
+	desc = "Upgrades a janitor cyborgs tiling capabilities while adding the ability to modify floor decals."
+	icon_state = "module_janitor"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/janitor)
+	model_flags = BORG_MODEL_JANITOR
+
+	items_to_add = list(/obj/item/construction/rtd/borg,
+						/obj/item/airlock_painter/decal/cyborg,
+						)
+
+/obj/item/borg/upgrade/cyborg_cable_coil
+	name = "integrated cable coil"
+	desc = "Condensed spooling technology allows cabling technology in janitorial modules."
+	icon_state = "module_janitor"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/janitor)
+	model_flags = BORG_MODEL_JANITOR
+
+	items_to_add = list (/obj/item/stack/cable_coil)

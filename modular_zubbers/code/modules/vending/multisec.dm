@@ -53,6 +53,7 @@
 					/obj/item/storage/backpack/duffelbag/sec/redsec = 6,
 					/obj/item/clothing/under/rank/security/officer/redsec = 6,
 					/obj/item/clothing/under/rank/security/peacekeeper/armadyne = 6,
+					/obj/item/clothing/under/rank/security/camo = 6,
 					/obj/item/clothing/shoes/jackboots = 6,
 					/obj/item/clothing/shoes/jackboots/peacekeeper/armadyne = 6,
 					/obj/item/clothing/shoes/jackboots/gogo_boots = 6,
