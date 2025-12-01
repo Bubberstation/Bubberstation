@@ -446,7 +446,7 @@
 				continue
 			if(isliving(current_atom))
 				var/mob/living/current_mob = atom
-				if(current_mob.buckled || current_mob.mob_size >= MOB_SIZE_LARGE)
+				if(current_mob.buckled || current_mob.mob_size >= MOB_SIZE_LARGE && !ignore_size) // BUBBER EDIT - ADDITION - "&& !ignore_size"
 					continue
 			target = atom
 
