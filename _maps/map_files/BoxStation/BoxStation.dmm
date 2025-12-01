@@ -19297,7 +19297,8 @@
 	normaldoorcontrol = 1;
 	pixel_y = -26;
 	req_access = list("medical");
-	icon_state = "button-warning"
+	icon_state = "button-warning";
+	skin = "-warning"
 	},
 /obj/machinery/button/door{
 	desc = "A remote control switch for the medbay foyer.";
@@ -21197,7 +21198,9 @@
 	normaldoorcontrol = 1;
 	pixel_y = 7;
 	req_access = list("medical");
-	pixel_x = -24
+	pixel_x = -24;
+	skin = "-warning";
+	icon_state = "button-warning"
 	},
 /obj/effect/landmark/start/depsec/medical,
 /turf/open/floor/iron/dark,
@@ -42940,7 +42943,8 @@
 /obj/effect/turf_decal/trimline/white/mid_joiner{
 	dir = 1
 	},
-/obj/machinery/newscaster/directional/north,
+/obj/machinery/requests_console/auto_name/directional/north,
+/obj/effect/mapping_helpers/requests_console/assistance,
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 1
 	},
@@ -59680,7 +59684,8 @@
 	normaldoorcontrol = 1;
 	pixel_y = -26;
 	req_access = list("medical");
-	icon_state = "button-warning"
+	icon_state = "button-warning";
+	skin = "-warning"
 	},
 /obj/machinery/button/door{
 	desc = "A remote control switch for the medbay foyer.";

@@ -16960,7 +16960,8 @@
 	pixel_y = -32;
 	pixel_x = 0;
 	icon_state = "button-warning";
-	req_access = list("medical")
+	req_access = list("medical");
+	skin = "-warning"
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
@@ -34450,10 +34451,11 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
 	},
-/obj/machinery/newscaster/directional/north,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/requests_console/auto_name/directional/north,
+/obj/effect/mapping_helpers/requests_console/assistance,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "gAF" = (
@@ -64742,7 +64744,8 @@
 	id = "MedbayFoyer";
 	name = "Medbay Doors Control";
 	normaldoorcontrol = 1;
-	req_access = list("medical")
+	req_access = list("medical");
+	skin = "-warning"
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
@@ -119512,7 +119515,8 @@
 	id = "MedbayFoyer";
 	name = "Medbay Doors Control";
 	normaldoorcontrol = 1;
-	req_access = list("medical")
+	req_access = list("medical");
+	skin = "-warning"
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)

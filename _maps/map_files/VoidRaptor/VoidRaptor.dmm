@@ -46818,7 +46818,8 @@
 	pixel_x = 21;
 	pixel_y = 10;
 	icon_state = "button-warning";
-	req_access = list("medical")
+	req_access = list("medical");
+	skin = "-warning"
 	},
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 8
@@ -50644,7 +50645,8 @@
 	normaldoorcontrol = 1;
 	pixel_x = 5;
 	req_access = list("medical");
-	icon_state = "button-warning"
+	icon_state = "button-warning";
+	skin = "-warning"
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
@@ -61825,7 +61827,8 @@
 	icon_state = "button-warning";
 	id = "MedbayFoyer";
 	name = "Medbay Doors Control";
-	normaldoorcontrol = 1
+	normaldoorcontrol = 1;
+	skin = "-warning"
 	},
 /obj/machinery/duct,
 /turf/open/floor/iron/white/smooth_edge{

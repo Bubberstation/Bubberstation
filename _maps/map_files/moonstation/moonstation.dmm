@@ -28427,7 +28427,8 @@
 	id = "medbay_access";
 	name = "Medbay Doors Control";
 	normaldoorcontrol = 1;
-	req_access = list("medical")
+	req_access = list("medical");
+	skin = "-warning"
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
@@ -34222,7 +34223,8 @@
 	name = "Medbay Doors Control";
 	normaldoorcontrol = 1;
 	req_access = list("medical");
-	pixel_y = -10
+	pixel_y = -10;
+	skin = "-warning"
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
@@ -64070,7 +64072,8 @@
 	name = "Medbay Doors Control";
 	normaldoorcontrol = 1;
 	req_access = list("medical");
-	pixel_y = -8
+	pixel_y = -8;
+	skin = "-warning"
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
@@ -78945,7 +78948,8 @@
 /obj/effect/turf_decal/trimline/white/arrow_ccw{
 	dir = 8
 	},
-/obj/structure/sign/warning/no_smoking/directional/west,
+/obj/machinery/requests_console/auto_name/directional/west,
+/obj/effect/mapping_helpers/requests_console/assistance,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "vfG" = (
