@@ -12774,9 +12774,6 @@
 	},
 /area/station/hallway/primary/port)
 "cvq" = (
-/obj/machinery/medical_kiosk{
-	pixel_x = -3
-	},
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -12784,6 +12781,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
+/obj/machinery/self_actualization_device,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "cvt" = (
@@ -21306,7 +21304,6 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/obj/structure/chair,
 /turf/open/floor/iron/white/side,
 /area/station/medical/medbay/lobby)
 "eaR" = (
@@ -32865,9 +32862,11 @@
 /area/station/service/hydroponics)
 "glI" = (
 /obj/effect/turf_decal/bot,
-/obj/item/kirbyplants/random,
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 5
+	},
+/obj/machinery/medical_kiosk{
+	pixel_x = -3
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
@@ -38747,7 +38746,6 @@
 /obj/structure/railing/corner{
 	dir = 1
 	},
-/obj/structure/chair,
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 4
 	},
