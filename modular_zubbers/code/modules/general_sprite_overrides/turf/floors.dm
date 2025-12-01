@@ -34,6 +34,18 @@
 /turf/open/floor/circuit
 	icon = 'modular_zubbers/icons/turf/floors/floors.dmi'
 
+/turf/open/floor/light/broken_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+
+/turf/open/floor/engine/cult
+	icon = 'modular_zubbers/icons/turf/floors/floors.dmi'
+
+/obj/effect/cult_turf
+	icon = 'modular_zubbers/icons/turf/floors/floors.dmi'
+
+/turf/open/floor/cult/broken_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+
 // TRAM FLOORS
 
 /turf/open/floor/noslip/tram
@@ -47,6 +59,24 @@
 
 /turf/open/indestructible/tram
 	icon = 'modular_zubbers/icons/turf/floors/tram.dmi'
+
+/turf/open/floor/tram/broken_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+
+/turf/open/floor/tram/tram_platform/burnt_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+
+/turf/open/floor/tram/plate/broken_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+
+/turf/open/floor/tram/plate/burnt_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+
+/turf/open/floor/tram/plate/energized/broken_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+
+/turf/open/floor/tram/plate/energized/burnt_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
 
 // LIVING FLOORS
 
