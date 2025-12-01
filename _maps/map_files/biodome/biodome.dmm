@@ -4306,7 +4306,8 @@
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 4
 	},
-/obj/structure/sign/eyechart/directional/east,
+/obj/effect/mapping_helpers/requests_console/assistance,
+/obj/machinery/requests_console/auto_name/directional/east,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "bxk" = (
@@ -29292,7 +29293,9 @@
 	name = "Medbay Foyer Doors";
 	normaldoorcontrol = 1;
 	pixel_x = -6;
-	pixel_y = -26
+	pixel_y = -26;
+	skin = "-warning";
+	icon_state = "button-warning"
 	},
 /obj/machinery/light_switch/directional/south{
 	pixel_x = 6
@@ -63870,7 +63873,10 @@
 /obj/machinery/button/door/directional/east{
 	id = "MedbayFoyer";
 	name = "Medbay Foyer Doors";
-	normaldoorcontrol = 1
+	normaldoorcontrol = 1;
+	icon_state = "button-warning";
+	skin = "-warning";
+	req_access = list("medical")
 	},
 /obj/structure/chair{
 	dir = 8

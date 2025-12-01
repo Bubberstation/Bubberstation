@@ -3525,7 +3525,6 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/fore)
 "bjk" = (
-/obj/machinery/airalarm/directional/north,
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
@@ -3534,6 +3533,14 @@
 	},
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
+	},
+/obj/machinery/button/door/directional/north{
+	icon_state = "button-warning";
+	id = "medbay_front_door";
+	name = "Medbay Doors Control";
+	normaldoorcontrol = 1;
+	req_access = list("medical");
+	skin = "-warning"
 	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/medbay/central)
@@ -4180,7 +4187,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
-/obj/machinery/firealarm/directional/south,
 /obj/effect/turf_decal/stripes/corner,
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue/half/contrasted,
@@ -7395,9 +7401,11 @@
 "cvL" = (
 /obj/machinery/button/door/directional/south{
 	id = "medbay_front_door";
-	name = "Medbay Doors Toggle";
+	name = "Medbay Doors Control";
 	normaldoorcontrol = 1;
-	req_access = list("medical")
+	req_access = list("medical");
+	icon_state = "button-warning";
+	skin = "-warning"
 	},
 /obj/machinery/computer/crew{
 	dir = 4
@@ -32017,6 +32025,7 @@
 /obj/effect/turf_decal/box,
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted,
+/obj/machinery/firealarm/directional/east,
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/exam_room)
 "knR" = (
@@ -39449,18 +39458,14 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
-/obj/machinery/button/door/directional/north{
-	id = "medbay_front_door";
-	name = "Medbay Doors Toggle";
-	normaldoorcontrol = 1;
-	req_access = list("medical")
-	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/requests_console/assistance,
+/obj/machinery/requests_console/auto_name/directional/north,
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/medbay/central)
 "mEH" = (
@@ -55835,6 +55840,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue/half/contrasted,
+/obj/machinery/airalarm/directional/south,
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/medbay/central)
 "rZK" = (
