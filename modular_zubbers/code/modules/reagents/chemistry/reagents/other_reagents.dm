@@ -393,7 +393,7 @@
 		"Your blood coagulates!" = MUT_MSG_EXTENDED,
 		"You feel a yearning for flesh and brains" = MUT_MSG_ABOUT2TURN)
 
-//New chemical which only causes people to 'weh' (emit the sound, not emote spam). No way to create this, currently will only be in rare foam grenades found as loot
+//New chemical which only causes people to perform the 'weh' emote. No way to create this, currently will only be in rare foam grenades found as loot
 /datum/reagent/juice_that_makes_you_weh
 	name = "Juice That Makes You Weh"
 	description = "A strange green chemical, will cause iliving beings to 'weh' uncontrollably for a time"
@@ -414,9 +414,7 @@
 /datum/reagent/juice_that_makes_you_weh/proc/do_weh(mob/living/carbon/M)
 	if (QDELETED(M))
 		return
-	if (isnull(M))
-		return
-	M.say("*weh")
+	M.emote("weh")
 
 
 #undef MUT_MSG_IMMEDIATE
