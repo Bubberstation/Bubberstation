@@ -412,7 +412,9 @@
 		addtimer(CALLBACK(src, PROC_REF(do_weh), affected_mob), rand(1, 4) SECONDS)
 
 /datum/reagent/juice_that_makes_you_weh/proc/do_weh(mob/living/carbon/M)
-	if (!M || M.stat == DEAD)
+	if (QDELETED(M))
+		return
+	if (isnull(M))
 		return
 	M.say("*weh")
 
