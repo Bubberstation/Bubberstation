@@ -5450,7 +5450,10 @@
 "bxp" = (
 /obj/effect/turf_decal/tile/blue/half/contrasted,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/item/radio/intercom/directional/south,
+/obj/effect/mapping_helpers/requests_console/information,
+/obj/effect/mapping_helpers/requests_console/supplies,
+/obj/effect/mapping_helpers/requests_console/assistance,
+/obj/machinery/requests_console/auto_name/directional/south,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "bxy" = (
@@ -28418,11 +28421,14 @@
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/requests_console/supplies,
-/obj/effect/mapping_helpers/requests_console/information,
-/obj/effect/mapping_helpers/requests_console/assistance,
-/obj/machinery/requests_console/auto_name/directional/south,
 /obj/machinery/camera/autoname/directional/south,
+/obj/machinery/button/door/directional/south{
+	icon_state = "button-warning";
+	id = "medbay_access";
+	name = "Medbay Doors Control";
+	normaldoorcontrol = 1;
+	req_access = list("medical")
+	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "hGv" = (
@@ -34204,10 +34210,22 @@
 /turf/open/floor/iron/checker,
 /area/station/engineering/storage/tech)
 "jiA" = (
-/obj/effect/turf_decal/tile/blue/half/contrasted,
-/obj/machinery/firealarm/directional/south,
-/turf/open/floor/iron/dark/corner,
-/area/station/hallway/primary/starboard)
+/obj/effect/turf_decal/tile/blue/half/contrasted{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/white/arrow_ccw{
+	dir = 4
+	},
+/obj/machinery/button/door/directional/east{
+	icon_state = "button-warning";
+	id = "medbay_access";
+	name = "Medbay Doors Control";
+	normaldoorcontrol = 1;
+	req_access = list("medical");
+	pixel_y = -10
+	},
+/turf/open/floor/iron/white,
+/area/station/medical/medbay/central)
 "jiF" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
@@ -52264,6 +52282,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/firealarm/directional/south,
 /turf/open/floor/iron/dark/corner,
 /area/station/hallway/primary/starboard)
 "nZr" = (
@@ -52894,11 +52913,10 @@
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "ofS" = (
-/obj/structure/chair,
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
 	},
-/obj/item/healthanalyzer/simple,
+/obj/machinery/wall_healer/directional/north,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "ofU" = (
@@ -64039,13 +64057,6 @@
 /area/station/medical/medbay/lobby)
 "rdi" = (
 /obj/structure/table/reinforced,
-/obj/machinery/button/door/directional/east{
-	id = "medbay_access";
-	name = "Medbay Access Door Control";
-	normaldoorcontrol = 1;
-	pixel_y = -8;
-	req_access = list("medical")
-	},
 /obj/effect/spawner/random/medical/injector,
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
 	dir = 4
@@ -64053,6 +64064,14 @@
 /obj/item/emergency_bed,
 /obj/machinery/light/no_nightlight/directional/east,
 /obj/item/hand_labeler,
+/obj/machinery/button/door/directional/east{
+	icon_state = "button-warning";
+	id = "medbay_access";
+	name = "Medbay Doors Control";
+	normaldoorcontrol = 1;
+	req_access = list("medical");
+	pixel_y = -8
+	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "rdk" = (
@@ -257889,7 +257908,7 @@ ukP
 wUZ
 vWS
 gzH
-jiA
+xUZ
 hfe
 ofS
 cAp
@@ -258928,7 +258947,7 @@ nYT
 oRp
 lnj
 eDj
-eDj
+jiA
 eDj
 fcw
 eDj

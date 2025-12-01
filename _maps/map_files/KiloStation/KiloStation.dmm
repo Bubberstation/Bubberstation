@@ -3525,7 +3525,6 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/fore)
 "bjk" = (
-/obj/machinery/airalarm/directional/north,
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
@@ -3534,6 +3533,13 @@
 	},
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
+	},
+/obj/machinery/button/door/directional/north{
+	icon_state = "button-warning";
+	id = "medbay_front_door";
+	name = "Medbay Doors Control";
+	normaldoorcontrol = 1;
+	req_access = list("medical")
 	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/medbay/central)
@@ -7395,9 +7401,10 @@
 "cvL" = (
 /obj/machinery/button/door/directional/south{
 	id = "medbay_front_door";
-	name = "Medbay Doors Toggle";
+	name = "Medbay Doors Control";
 	normaldoorcontrol = 1;
-	req_access = list("medical")
+	req_access = list("medical");
+	icon_state = "button-warning"
 	},
 /obj/machinery/computer/crew{
 	dir = 4
@@ -55835,6 +55842,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue/half/contrasted,
+/obj/machinery/airalarm/directional/south,
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/medbay/central)
 "rZK" = (

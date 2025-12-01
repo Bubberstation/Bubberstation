@@ -16960,7 +16960,9 @@
 	name = "Medbay Doors Control";
 	normaldoorcontrol = 1;
 	pixel_y = -32;
-	pixel_x = 0
+	pixel_x = 0;
+	icon_state = "button-warning";
+	req_access = list("medical")
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
@@ -28818,11 +28820,6 @@
 	dir = 8
 	},
 /area/station/hallway/secondary/entry)
-"fwb" = (
-/obj/machinery/door/firedoor,
-/obj/structure/sign/departments/exam_room/directional/south,
-/turf/open/floor/iron/white,
-/area/station/medical/treatment_center)
 "fwc" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -64742,7 +64739,13 @@
 	},
 /obj/machinery/light/directional/east,
 /obj/structure/disposalpipe/segment,
-/obj/machinery/firealarm/directional/east,
+/obj/machinery/button/door/directional/east{
+	icon_state = "button-warning";
+	id = "MedbayFoyer";
+	name = "Medbay Doors Control";
+	normaldoorcontrol = 1;
+	req_access = list("medical")
+	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "msf" = (
@@ -109341,7 +109344,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
 	},
-/obj/machinery/light_switch/directional/west,
+/obj/machinery/firealarm/directional/west,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "uQl" = (
@@ -119506,6 +119509,13 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/button/door/directional/east{
+	icon_state = "button-warning";
+	id = "MedbayFoyer";
+	name = "Medbay Doors Control";
+	normaldoorcontrol = 1;
+	req_access = list("medical")
+	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "wJg" = (
@@ -229776,7 +229786,7 @@ tRa
 atX
 hEA
 kFt
-fwb
+hEA
 atX
 tRa
 tRa

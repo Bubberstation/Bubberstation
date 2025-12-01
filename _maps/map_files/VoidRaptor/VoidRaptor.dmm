@@ -11546,6 +11546,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/maintenance/department/medical/central)
+"dvc" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/turf/open/floor/iron/white/smooth_edge{
+	dir = 4
+	},
+/area/station/medical/medbay/central)
 "dve" = (
 /obj/structure/rack,
 /obj/item/clothing/head/utility/welding,
@@ -46807,7 +46815,9 @@
 	name = "Medbay Doors Control";
 	normaldoorcontrol = 1;
 	pixel_x = 21;
-	pixel_y = 10
+	pixel_y = 10;
+	icon_state = "button-warning";
+	req_access = list("medical")
 	},
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 8
@@ -50631,7 +50641,9 @@
 	id = "MedbayFoyer";
 	name = "Medbay Doors Control";
 	normaldoorcontrol = 1;
-	pixel_x = 5
+	pixel_x = 5;
+	req_access = list("medical");
+	icon_state = "button-warning"
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
@@ -61808,6 +61820,13 @@
 	dir = 8
 	},
 /obj/structure/sink/directional/east,
+/obj/machinery/button/door/directional/west{
+	pixel_y = 11;
+	icon_state = "button-warning";
+	id = "MedbayFoyer";
+	name = "Medbay Doors Control";
+	normaldoorcontrol = 1
+	},
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 4
 	},
@@ -116322,7 +116341,7 @@ dyZ
 yae
 cnC
 wXr
-rjQ
+dvc
 rjQ
 nkQ
 qtZ
