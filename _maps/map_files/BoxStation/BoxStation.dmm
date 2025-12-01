@@ -13160,24 +13160,6 @@
 /obj/machinery/computer/crew{
 	dir = 1
 	},
-/obj/machinery/button/door{
-	desc = "A remote control switch for the medbay foyer.";
-	id = "MedbayFoyer";
-	name = "Medbay Doors Control";
-	normaldoorcontrol = 1;
-	pixel_y = -26;
-	req_access = list("medical");
-	icon_state = "button-warning";
-	skin = "-warning"
-	},
-/obj/machinery/button/door{
-	desc = "A remote control switch for the medbay foyer.";
-	id = "MedbayAft";
-	name = "Side Medbay Doors Control";
-	normaldoorcontrol = 1;
-	pixel_y = -37;
-	req_access = list("medical")
-	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/medical/medbay/lobby)
 "bns" = (
@@ -46970,31 +46952,7 @@
 	alpha = 160
 	},
 /obj/structure/cable,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	alpha = 160;
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/white/line{
-	dir = 1
-	},
 /obj/effect/turf_decal/trimline/blue/filled/mid_joiner{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/blue/filled/mid_joiner{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/white/mid_joiner{
 	dir = 1
 	},
 /obj/machinery/requests_console/auto_name/directional/north,
@@ -56594,10 +56552,6 @@
 	c_tag = "Medbay North";
 	network = list("ss13","medbay")
 	},
-/obj/machinery/newscaster/directional/east{
-	pixel_x = 0;
-	pixel_y = -30
-	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	alpha = 160
 	},
@@ -56605,21 +56559,6 @@
 	dir = 2;
 	alpha = 160
 	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/machinery/camera/directional/south{
-	c_tag = "Medbay North";
-	network = list("ss13","medbay")
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	alpha = 160
-	},
-/obj/effect/turf_decal/trimline/white/line,
-/obj/effect/turf_decal/trimline/blue/filled/mid_joiner,
-/obj/effect/turf_decal/trimline/blue/filled/mid_joiner,
-/obj/effect/turf_decal/trimline/white/mid_joiner,
 /obj/machinery/button/door{
 	desc = "A remote control switch for the medbay foyer.";
 	id = "MedbayFoyer";
