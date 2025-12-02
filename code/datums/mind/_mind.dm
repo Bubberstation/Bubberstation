@@ -238,6 +238,10 @@
 		if(!istype(A))
 			to_chat(usr,span_warning("Invalid antagonist ref to be removed."))
 			return
+		// BUBBER EDIT ADDITION BEGIN - ANTAG RE-ROLLING
+		if(tgui_alert(usr, "Would you like to re-roll a new random crew antagonist as a replacement?", "Passing The Torch", list("No", "Yeah!")) == "Yeah!")
+			SSgamemode.reroll_antagonist(antag_name = name)
+		// BUBBER EDIT ADDITION END - ANTAG RE-ROLLING
 		A.admin_remove(usr)
 
 	if(href_list["open_antag_vv"])

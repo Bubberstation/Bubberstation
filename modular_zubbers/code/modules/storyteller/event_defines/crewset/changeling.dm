@@ -14,3 +14,10 @@
 /datum/round_event_control/antagonist/solo/changeling/midround
 	name = "Genome Awakening (Changelings)"
 	roundstart = FALSE
+
+/datum/round_event_control/antagonist/solo/changeling/event
+	name = "Event Generated Changeling"
+	roundstart = FALSE
+	tags = list(TAG_ANTAG_REROLL)
+	max_occurrences = 0
+	maximum_antags = 1
