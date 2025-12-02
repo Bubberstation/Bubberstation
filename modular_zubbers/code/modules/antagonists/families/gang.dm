@@ -251,9 +251,8 @@
 		span_notice("You offer to induct people into the Family."),
 		vision_distance = 2,
 		)
-	//DEBUG: Probably not vital. away it goes!
-	//if(human_owner.has_status_effect(/datum/status_effect/offering/secret_handshake))
-		//return FALSE
+	if(human_owner.has_status_effect(/datum/status_effect/offering/secret_handshake))
+		return FALSE
 	if(!(locate(/mob/living/carbon) in orange(1, owner)))
 		owner.visible_message(
 			span_danger("[human_owner] offers to induct people into the Family, but nobody was around."),
@@ -261,9 +260,23 @@
 			vision_distance = 2,
 			)
 		return FALSE
-	//DEBUG: Ditto of the above. I get that this is supposed to prevent offering a handshake wile you're already doing so (probably) but I don't think it will break anything.
-	//human_owner.apply_status_effect(/datum/status_effect/offering/secret_handshake, secret_handshake_item)
+	human_owner.apply_status_effect(/datum/status_effect/offering/secret_handshake, secret_handshake_item)
 	return TRUE
+
+/datum/status_effect/offering/secret_handshake
+	id = "secret_handshake"
+	give_alert_type = /atom/movable/screen/alert/give/secret_handshake
+
+/atom/movable/screen/alert/give/secret_handshake
+	icon_state = "default"
+
+/atom/movable/screen/alert/give/secret_handshake/get_receiving_name(mob/living/taker, mob/living/offerer, obj/item/receiving)
+	name = "[offerer] is offering a Handshake"
+	desc = "[offerer] wants to teach you the Secret Handshake for their Family and induct you! Click on this alert to accept."
+	icon_state = "template"
+	cut_overlays()
+	add_overlay(receiving)
+	return name;
 
 /datum/antagonist/gang/russian_mafia
 	show_in_antagpanel = TRUE

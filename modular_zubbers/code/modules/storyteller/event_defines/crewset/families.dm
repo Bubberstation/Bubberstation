@@ -1,4 +1,3 @@
-//DEBUG: Fix possible here maybe??
 /datum/round_event_control/antagonist/families
 	name = "Families"
 	description = "Create a number of themed faction and send them at eachother's throats"
@@ -7,7 +6,7 @@
 	antag_datum = /datum/antagonist/gang
 	typepath = /datum/round_event/antagonist/families
 
-	min_players = 2 //DEBUG: Set this to 10 later
+	min_players = 20
 	max_occurrences = 0 //disabled from naturally spawning until further notice
 	maximum_antags = 3
 	base_antags = 2
