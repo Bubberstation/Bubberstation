@@ -4,9 +4,9 @@
 	name = "Spawn Void Walker"
 	typepath = /datum/round_event/ghost_role/void_walker
 	max_occurrences = 1
-	weight = 3
+	weight = 5
 	earliest_start = 20 MINUTES
-	min_players = 30
+	min_players = 25
 	category = EVENT_CATEGORY_ENTITIES
 	description = "A Void Walker that drags people out of the station and into the abyss"
 	map_flags = EVENT_SPACE_ONLY
