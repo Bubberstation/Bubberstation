@@ -16,3 +16,12 @@
 	crate_name = "patriotic crate"
 	contraband = TRUE
 
+/datum/supply_pack/imports/lizardgoodscrate
+	name = "Lizard Goods Crate"
+	desc = "Limited edition Lizard Goods Crate! Contains a random assortment of your FAVOURITE lizard related items, including the coveted 'weh-nade'"
+	cost = CARGO_CRATE_VALUE * 3
+	contains = list(
+		/obj/effect/spawner/random/lizard_crate = 8
+	)
+	crate_name = "lizard goods crate"
+	contraband = TRUE
