@@ -13,7 +13,7 @@
 /// You do not need to raise this if you are adding new values that have sane defaults.
 /// Only raise this value when changing the meaning/format/name/layout of an existing value
 /// where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX 50
+#define SAVEFILE_VERSION_MAX 51
 
 #define IS_DATA_OBSOLETE(version) (version == SAVE_DATA_OBSOLETE)
 #define SHOULD_UPDATE_DATA(version) (version >= SAVE_DATA_NO_ERROR && version < SAVEFILE_VERSION_MAX)
@@ -163,6 +163,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			quirk_to_migrate = "Spiritual",
 			new_typepath = /datum/personality/spiritual,
 		)
+	if(current_version < 51)
+		migrate_felinid_feature_keys(save_data)
 
 /// checks through keybindings for outdated unbound keys and updates them
 /datum/preferences/proc/check_keybindings()
@@ -387,14 +389,20 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	return needs_update != -3 // BUBBER EDIT
 
-/datum/preferences/proc/save_character(update) // Skyrat edit - Choose when to update (This is stupid)
+/datum/preferences/proc/save_character(update, override_slot) // Skyrat edit - Choose when to update (This is stupid) //Bubber Edit - duplication support
 	SHOULD_NOT_SLEEP(TRUE)
 	if(!path)
 		return FALSE
 	var/tree_key = "character[default_slot]"
 	if(!(tree_key in savefile.get_entry()))
 		savefile.set_entry(tree_key, list())
-	var/save_data = savefile.get_entry(tree_key)
+	var/save_data //BUBBER EDIT START - Original var/save_data = savefile.get_entry(tree_key)
+	if(!isnull(override_slot))
+		var/override_tree_key = "character[override_slot]"
+		savefile.set_entry(override_tree_key, list())
+		save_data = savefile.get_entry(override_tree_key)
+	else
+		save_data = savefile.get_entry(tree_key) //BUBBER EDIT END
 
 	for (var/datum/preference/preference as anything in get_preferences_in_priority_order())
 		if (preference.savefile_identifier != PREFERENCE_CHARACTER)
@@ -406,7 +414,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		recently_updated_keys -= preference.type
 
 		if (preference.type in value_cache)
-			write_preference(preference, preference.serialize(value_cache[preference.type]))
+			if(!isnull(override_slot)) //BUBBER EDIT ADDITION START - Original: write_preference(preference, preference.serialize(value_cache[preference.type]))
+				write_preference_special(preference, preference.serialize(value_cache[preference.type]), override_slot)
+			else
+				write_preference(preference, preference.serialize(value_cache[preference.type])) //BUBBER EDIT ADDITION END
 
 	save_data["version"] = SAVEFILE_VERSION_MAX //load_character will sanitize any bad data, so assume up-to-date.
 
@@ -464,6 +475,20 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	savefile.remove_entry("character[default_slot]")
 	tainted_character_profiles = TRUE
 	switch_to_slot(closest_slot)
+
+/datum/preferences/proc/duplicate_current_slot(target_slot)
+	PRIVATE_PROC(TRUE)
+	if(isnull(target_slot))
+		return
+	save_character(TRUE, target_slot)
+
+/datum/preferences/proc/write_preference_special(datum/preference/preference, preference_value, override_slot)
+	var/save_data = savefile.get_entry("character[override_slot]")
+	var/new_value = preference.deserialize(preference_value, src)
+	var/success = preference.write(save_data, new_value)
+	if (success)
+		value_cache[preference.type] = new_value
+	return success
 
 /datum/preferences/proc/sanitize_be_special(list/input_be_special)
 	var/list/output = list()
