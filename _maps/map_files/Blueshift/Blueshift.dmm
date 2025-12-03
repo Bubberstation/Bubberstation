@@ -10975,6 +10975,13 @@
 /obj/structure/cable,
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology/control)
+"cfi" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/iron/white,
+/area/station/medical/medbay/lobby)
 "cfj" = (
 /obj/structure/window/spawner/directional/north,
 /obj/structure/window/spawner/directional/west,
@@ -25840,12 +25847,12 @@
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
 "eSV" = (
-/obj/item/kirbyplants/random,
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 6
 	},
 /obj/machinery/firealarm/directional/east,
+/obj/structure/reagent_dispensers/water_cooler/punch_cooler,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "eSY" = (
@@ -65461,9 +65468,8 @@
 	},
 /area/station/service/theater)
 "mzN" = (
-/obj/machinery/door/airlock/security/glass{
-	id_tag = "meddoor";
-	name = "Medical Cell"
+/obj/machinery/door/airlock/security{
+	name = "Medbay Security Post"
 	},
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/trimline/blue/filled/warning,
@@ -66977,6 +66983,15 @@
 /obj/effect/turf_decal/bot_red,
 /turf/open/floor/mineral/plastitanium,
 /area/station/science/robotics/mechbay)
+"mOP" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "medsecprivacy";
+	name = "Privacy Shutters"
+	},
+/turf/open/floor/plating,
+/area/station/security/checkpoint/medical)
 "mOS" = (
 /obj/machinery/atmospherics/components/binary/pump,
 /obj/structure/cable,
@@ -81763,6 +81778,12 @@
 	},
 /obj/machinery/light_switch/directional/north,
 /obj/machinery/light/directional/north,
+/obj/machinery/button/door/directional/north{
+	id = "medsecprivacy";
+	name = "Privacy Shutters Control";
+	req_access = list("security");
+	pixel_x = -14
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/medical)
 "pFN" = (
@@ -120654,6 +120675,11 @@
 /obj/machinery/light_switch/directional/east,
 /turf/open/floor/wood,
 /area/station/security/prison/rec)
+"wUW" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/machinery/light/floor,
+/turf/open/floor/iron/white,
+/area/station/medical/medbay/lobby)
 "wUX" = (
 /obj/structure/rack,
 /obj/effect/turf_decal/bot,
@@ -226701,11 +226727,11 @@ dUv
 isi
 aZP
 qun
-ksY
+cfi
 vNX
 oYi
 vNX
-bst
+wUW
 bql
 exf
 frF
@@ -228998,7 +229024,7 @@ tEi
 axQ
 ext
 shb
-tCr
+mOP
 ksJ
 tYA
 smS
@@ -229512,7 +229538,7 @@ xRw
 tcL
 pHf
 kHj
-tCr
+mOP
 rXC
 vUt
 eSR
