@@ -393,6 +393,30 @@
 		"Your blood coagulates!" = MUT_MSG_EXTENDED,
 		"You feel a yearning for flesh and brains" = MUT_MSG_ABOUT2TURN)
 
+//New chemical which only causes people to perform the 'weh' emote. No way to create this, currently will only be in rare foam grenades found as loot
+/datum/reagent/juice_that_makes_you_weh
+	name = "Juice That Makes You Weh"
+	description = "A strange green chemical, will cause iliving beings to 'weh' uncontrollably for a time"
+	color = "#37e427" // rgb: 165, 240, 238
+	taste_description = "an odd sweetness with a hint of spice"
+	metabolization_rate = 2 // metabolises 10x faster, will occur more often but not hang around for ages
+	penetrates_skin = VAPOR
+	ph = 5.5
+
+//This code allows it to randomly proc regularly, causing a random pitch 'weh' sound
+/datum/reagent/juice_that_makes_you_weh/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
+	. = ..()
+
+	if (prob(50))
+		to_chat(affected_mob, span_warning("You feel the urge to weh..."))
+		addtimer(CALLBACK(src, PROC_REF(do_weh), affected_mob), rand(1, 4) SECONDS)
+
+/datum/reagent/juice_that_makes_you_weh/proc/do_weh(mob/living/carbon/M)
+	if (QDELETED(M))
+		return
+	M.emote("weh")
+
+
 #undef MUT_MSG_IMMEDIATE
 #undef MUT_MSG_EXTENDED
 #undef MUT_MSG_ABOUT2TURN
