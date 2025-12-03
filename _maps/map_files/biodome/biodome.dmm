@@ -1097,7 +1097,7 @@
 /turf/closed/wall/r_wall,
 /area/station/maintenance/fore/lesser)
 "asB" = (
-/obj/machinery/door/airlock/security/glass{
+/obj/machinery/door/airlock/security{
 	name = "Medbay Security Post"
 	},
 /obj/structure/cable,
@@ -6344,10 +6344,10 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/item/kirbyplants/random,
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
 /obj/machinery/airalarm/directional/west,
+/obj/structure/reagent_dispensers/water_cooler/punch_cooler,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "cin" = (
@@ -16243,6 +16243,11 @@
 /obj/structure/closet/secure_closet/security/med,
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
+	},
+/obj/machinery/button/door/directional/north{
+	id = "medsecprivacy";
+	name = "Privacy Shutters Control";
+	req_access = list("security")
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/security/checkpoint/medical)
@@ -33545,6 +33550,10 @@
 "lym" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "medsecprivacy";
+	name = "Privacy Shutters"
+	},
 /turf/open/floor/plating,
 /area/station/medical/medbay/lobby)
 "lyp" = (
@@ -58306,6 +58315,11 @@
 "tPg" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 8;
+	id = "medsecprivacy";
+	name = "Privacy Shutters"
+	},
 /turf/open/floor/plating,
 /area/station/security/checkpoint/medical)
 "tPt" = (
