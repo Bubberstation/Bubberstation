@@ -254,10 +254,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			save_character()
 			if(sanitize_languages())
 				save_character()
-			var/experimental_warning_confirmation = tgui_alert(ui.user, "Warning, character duplication is currently experimental, it is highly reccomended that you backup your characters before proceeding", "Warning Experimental Feature", list("Proceed", "Cancel")) //Delete before merge
-			if(experimental_warning_confirmation != "Proceed") //Delete before merge
-				tgui_alert(ui.user, "Cancelled Duplication", "Duplicate Character") //Delete before merge
-				return TRUE //Delete before merge
 			var/list/character_list = create_character_profiles()
 			var/list/slot_choices = list()
 			for(var/i = 1, i <= character_list.len, i++)
