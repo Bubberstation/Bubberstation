@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { NoticeBox, Stack } from 'tgui-core/components';
+import { NoticeBox, Stack, Button } from 'tgui-core/components'; // BUBBER EDIT CHANGE - ORIGINAL : import { NoticeBox, Stack } from 'tgui-core/components';
 import { exhaustiveCheck } from 'tgui-core/exhaustive';
 
 import { SideDropdown } from '../../../bubber_components/SideDropdown'; // BUBBER EDIT ADDITION
@@ -137,6 +137,17 @@ export function CharacterPreferenceWindow(props) {
               }}
               profiles={data.character_profiles}
             />
+          </Stack.Item>
+          {/* BUBBER EDIT ADDITION BEGIN */}
+          <Stack.Item>
+            <Button
+              onClick={() => {act('duplicate_current_slot');}}
+              fontSize="13px"
+              icon="copy"
+              tooltip="Duplicate Current Character (Experimental)" //Delete this comment about being experimental before merge
+              tooltipPosition="top"
+            />
+            {/* BUBBER EDIT ADDITION END */}
           </Stack.Item>
           {!data.content_unlocked && (
             <Stack.Item grow align="center" mb={-1}>
