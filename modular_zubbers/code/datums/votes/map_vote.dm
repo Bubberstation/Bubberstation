@@ -1,0 +1,6 @@
+/datum/vote/map_vote/create_vote()
+	. = ..()
+	if(.)
+		var/filtered_players = get_active_player_count(alive_check = FALSE, afk_check = TRUE, human_check = FALSE)
+		var/observing_players = length(GLOB.current_observers_list)
+		log_vote("Players at vote creation: Filtered: [filtered_players] | Total: [GLOB.clients.len] | Observing: [observing_players]")
