@@ -59,5 +59,5 @@
 	track = EVENT_TRACK_MODERATE
 
 /datum/round_event_control/radiation_storm
-	track = EVENT_TRACK_MAJOR
+	track = EVENT_TRACK_MODERATE
 	tags = list(TAG_COMMUNAL)
