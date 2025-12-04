@@ -30,6 +30,15 @@
 	desc = "A mining bomber jacket. Probably not great for Lavaland, but this, a hot chocolate and some snow? Comfymaxxing has never been so cheap!"
 	cost_per_order = 100
 
+//EXTRAS
+
+//Adding the ability for miners to purchase a status readout module.
+/datum/orderable_item/mining/status_readout
+	purchase_path = /obj/item/mod/module/status_readout
+	name = "Status Readout Module"
+	desc = "A modsuit module which provides long range suit sensor broadcasting. Useful in a modsuit as it will cover kheiral cuffs!"
+	cost_per_order = 450
+
 
 /// PODS
 /obj/item/survivalcapsule/plap

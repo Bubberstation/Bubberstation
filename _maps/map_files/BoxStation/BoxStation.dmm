@@ -1428,7 +1428,6 @@
 /turf/open/floor/plating,
 /area/station/ai/satellite/interior)
 "ajY" = (
-/obj/effect/mapping_helpers/dead_body_placer,
 /obj/effect/turf_decal/trimline/dark/filled/line,
 /obj/effect/turf_decal/trimline/dark/filled/line{
 	dir = 1
@@ -8461,7 +8460,11 @@
 /obj/structure/railing/corner/end{
 	dir = 4
 	},
-/turf/open/floor/wood/stairs/right,
+/obj/structure/steps{
+	dir = 4;
+	color = "#FFB25B"
+	},
+/turf/open/floor/wood/large,
 /area/station/service/bar)
 "aKs" = (
 /obj/structure/disposalpipe/segment,
@@ -15890,7 +15893,7 @@
 /area/station/science/ordnance/bomb)
 "bhm" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
-/turf/open/floor/iron/dark/smooth_large,
+/turf/open/floor/iron/dark/small,
 /area/station/medical/morgue)
 "bho" = (
 /obj/effect/turf_decal/siding/wood,
@@ -18940,7 +18943,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/white/smooth_large,
+/turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "bpP" = (
 /obj/structure/cable,
@@ -19265,9 +19268,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 9
 	},
-/obj/effect/turf_decal/siding/dark_blue/corner{
-	dir = 8
-	},
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	alpha = 160
 	},
@@ -19283,10 +19283,6 @@
 	c_tag = "Medbay North";
 	network = list("ss13","medbay")
 	},
-/obj/machinery/newscaster/directional/east{
-	pixel_x = 0;
-	pixel_y = -30
-	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	alpha = 160
 	},
@@ -19294,6 +19290,24 @@
 /obj/effect/turf_decal/trimline/blue/filled/mid_joiner,
 /obj/effect/turf_decal/trimline/blue/filled/mid_joiner,
 /obj/effect/turf_decal/trimline/white/mid_joiner,
+/obj/machinery/button/door{
+	desc = "A remote control switch for the medbay foyer.";
+	id = "MedbayFoyer";
+	name = "Medbay Doors Control";
+	normaldoorcontrol = 1;
+	pixel_y = -26;
+	req_access = list("medical");
+	icon_state = "button-warning";
+	skin = "-warning"
+	},
+/obj/machinery/button/door{
+	desc = "A remote control switch for the medbay foyer.";
+	id = "MedbayAft";
+	name = "Side Medbay Doors Control";
+	normaldoorcontrol = 1;
+	pixel_y = -37;
+	req_access = list("medical")
+	},
 /turf/open/floor/iron/white/smooth_edge,
 /area/station/medical/medbay/central)
 "brb" = (
@@ -19946,7 +19960,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/white/smooth_large,
+/turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "bsI" = (
 /obj/item/kirbyplants/random,
@@ -21184,7 +21198,9 @@
 	normaldoorcontrol = 1;
 	pixel_y = 7;
 	req_access = list("medical");
-	pixel_x = -24
+	pixel_x = -24;
+	skin = "-warning";
+	icon_state = "button-warning"
 	},
 /obj/effect/landmark/start/depsec/medical,
 /turf/open/floor/iron/dark,
@@ -21747,6 +21763,13 @@
 	dir = 8
 	},
 /obj/effect/landmark/start/depsec/medical,
+/obj/machinery/button/door/directional/north{
+	id = "medsecprivacy";
+	name = "Privacy Shutters Control";
+	req_access = list("security");
+	pixel_x = -8;
+	pixel_y = 22
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/medical)
 "bwH" = (
@@ -23123,8 +23146,16 @@
 	},
 /obj/structure/closet/secure_closet/medical3,
 /obj/machinery/airalarm/directional/west,
-/obj/item/clothing/under/plasmaman/paramedic,
-/obj/item/clothing/head/helmet/space/plasmaman/paramedic,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/under/plasmaman/medical,
+/obj/item/clothing/head/helmet/space/plasmaman/medical,
+/obj/item/storage/belt/medical{
+	pixel_y = 2
+	},
+/obj/item/defibrillator/loaded,
+/obj/item/clothing/gloves/latex/nitrile,
+/obj/item/clothing/gloves/latex/nitrile,
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "bBL" = (
@@ -23482,17 +23513,10 @@
 	pixel_x = -30
 	},
 /obj/effect/mapping_helpers/requests_console/assistance,
-/obj/item/reagent_containers/chem_pack{
-	pixel_x = 1;
-	pixel_y = 1
-	},
-/obj/item/reagent_containers/chem_pack{
-	pixel_x = 7;
-	pixel_y = 10
-	},
 /obj/machinery/light/directional/west,
 /obj/effect/turf_decal/tile/blue/full,
 /obj/structure/table/glass,
+/obj/item/book/manual/wiki/medicine,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/medical/treatment_center)
 "bCO" = (
@@ -39641,9 +39665,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
-"dON" = (
-/turf/open/floor/iron/white/smooth_large,
-/area/station/medical/medbay/central)
 "dOY" = (
 /obj/machinery/airalarm/directional/south,
 /turf/open/floor/iron/dark,
@@ -40852,7 +40873,11 @@
 /obj/structure/railing/corner/end/flip{
 	dir = 8
 	},
-/turf/open/floor/wood/stairs/left,
+/obj/structure/steps{
+	dir = 8;
+	color = "#FFB25B"
+	},
+/turf/open/floor/wood/large,
 /area/station/service/bar)
 "eqc" = (
 /obj/structure/bed/double,
@@ -40961,6 +40986,11 @@
 	sign_change_name = "Warning - Disposals: Leads to Robotics";
 	name = "DISPOSAL: LEADS TO ROBOTICS";
 	desc = "A warning sign which reads 'DISPOSAL: LEADS TO ROBOTICS'."
+	},
+/obj/machinery/door/window/right/directional/south{
+	name = "Robotics Chute";
+	req_access = list("robotics");
+	state_open = 1
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/medical/morgue)
@@ -42920,6 +42950,8 @@
 /obj/effect/turf_decal/trimline/white/mid_joiner{
 	dir = 1
 	},
+/obj/machinery/requests_console/auto_name/directional/north,
+/obj/effect/mapping_helpers/requests_console/assistance,
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 1
 	},
@@ -46769,8 +46801,8 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
 	},
-/obj/machinery/door/airlock/security/glass{
-	name = "Security Office"
+/obj/machinery/door/airlock/security{
+	name = "Medbay Security Post"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/security/general,
 /turf/open/floor/iron/dark,
@@ -49112,26 +49144,24 @@
 /obj/structure/table,
 /obj/machinery/power/apc/auto_name/directional/east,
 /obj/structure/cable,
-/obj/item/book/manual/wiki/medicine,
 /obj/item/reagent_containers/spray/cleaner{
 	pixel_x = 9;
 	pixel_y = 4
 	},
-/obj/item/blood_filter,
-/obj/item/storage/belt/medical{
-	pixel_y = 2
-	},
-/obj/item/storage/belt/medical{
-	pixel_y = 2
-	},
-/obj/item/clothing/glasses/hud/health,
-/obj/item/clothing/glasses/hud/health,
-/obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,
 /obj/machinery/light/directional/east,
+/obj/item/blood_filter,
+/obj/item/storage/belt/medical{
+	pixel_y = 2
+	},
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health{
+	pixel_x = -3;
+	pixel_y = 2
+	},
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "iob" = (
@@ -53477,7 +53507,6 @@
 /turf/open/floor/circuit,
 /area/station/ai/satellite/chamber)
 "kgW" = (
-/obj/effect/mapping_helpers/dead_body_placer,
 /obj/effect/turf_decal/trimline/dark/filled/line{
 	dir = 1
 	},
@@ -57696,6 +57725,11 @@
 "lYP" = (
 /obj/structure/cable,
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "medsecprivacy";
+	name = "Privacy Shutters"
+	},
 /turf/open/floor/plating,
 /area/station/medical/treatment_center)
 "lZo" = (
@@ -59004,7 +59038,7 @@
 /area/station/medical/psychology)
 "mFu" = (
 /obj/effect/turf_decal/caution/white{
-	color = "#ae4fd6"
+	color = "#D381C9"
 	},
 /obj/effect/turf_decal/trimline/dark/filled/line{
 	dir = 9
@@ -59661,7 +59695,9 @@
 	name = "Medbay Doors Control";
 	normaldoorcontrol = 1;
 	pixel_y = -26;
-	req_access = list("medical")
+	req_access = list("medical");
+	icon_state = "button-warning";
+	skin = "-warning"
 	},
 /obj/machinery/button/door{
 	desc = "A remote control switch for the medbay foyer.";
@@ -64702,6 +64738,7 @@
 /obj/effect/turf_decal/trimline/white/line{
 	dir = 6
 	},
+/obj/structure/reagent_dispensers/water_cooler/punch_cooler,
 /turf/open/floor/iron/white/smooth_corner{
 	dir = 1
 	},
@@ -68379,7 +68416,6 @@
 	alpha = 160;
 	dir = 4
 	},
-/obj/effect/spawner/random/medical/patient_stretcher,
 /obj/effect/turf_decal/trimline/white/line{
 	dir = 4
 	},
@@ -70424,11 +70460,12 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
-/obj/structure/closet/secure_closet/medical3,
-/obj/item/clothing/under/plasmaman/medical,
-/obj/item/clothing/head/helmet/space/plasmaman/medical,
 /obj/machinery/light/directional/west,
 /obj/machinery/firealarm/directional/west,
+/obj/structure/closet/secure_closet/paramedic,
+/obj/item/surgicaldrill,
+/obj/item/clothing/under/plasmaman/paramedic,
+/obj/item/clothing/head/helmet/space/plasmaman/paramedic,
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "rMl" = (
@@ -70567,6 +70604,11 @@
 "rQe" = (
 /obj/structure/cable,
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 8;
+	id = "medsecprivacy";
+	name = "Privacy Shutters"
+	},
 /turf/open/floor/plating,
 /area/station/security/checkpoint/medical)
 "rQi" = (
@@ -72501,7 +72543,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
 	},
-/obj/effect/turf_decal/siding/dark_blue/corner,
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	alpha = 160
 	},
@@ -75600,6 +75641,16 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/station/security/processing)
+"uay" = (
+/obj/structure/cable,
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 1;
+	id = "medsecprivacy";
+	name = "Privacy Shutters"
+	},
+/turf/open/floor/plating,
+/area/station/security/checkpoint/medical)
 "uaA" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/line,
@@ -78397,6 +78448,7 @@
 /obj/effect/turf_decal/trimline/white/warning{
 	dir = 6
 	},
+/obj/effect/spawner/random/medical/patient_stretcher,
 /turf/open/floor/iron/white/smooth_corner{
 	dir = 1
 	},
@@ -79900,7 +79952,6 @@
 	},
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/machinery/light/directional/south,
-/obj/effect/turf_decal/siding/dark_blue,
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	alpha = 160
 	},
@@ -120196,7 +120247,7 @@ bfF
 bfF
 vbw
 ruy
-rQe
+uay
 bvj
 bwG
 gGW
@@ -120710,7 +120761,7 @@ sdT
 ptB
 bpN
 bCS
-rQe
+uay
 btg
 bDR
 xjt
@@ -124048,7 +124099,7 @@ tJO
 lQp
 bBN
 vof
-dON
+hjZ
 nbA
 tmD
 brl

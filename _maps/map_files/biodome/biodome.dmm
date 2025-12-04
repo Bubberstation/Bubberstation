@@ -1097,7 +1097,7 @@
 /turf/closed/wall/r_wall,
 /area/station/maintenance/fore/lesser)
 "asB" = (
-/obj/machinery/door/airlock/security/glass{
+/obj/machinery/door/airlock/security{
 	name = "Medbay Security Post"
 	},
 /obj/structure/cable,
@@ -4306,7 +4306,8 @@
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 4
 	},
-/obj/structure/sign/eyechart/directional/east,
+/obj/effect/mapping_helpers/requests_console/assistance,
+/obj/machinery/requests_console/auto_name/directional/east,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "bxk" = (
@@ -6343,10 +6344,10 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/item/kirbyplants/random,
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
 /obj/machinery/airalarm/directional/west,
+/obj/structure/reagent_dispensers/water_cooler/punch_cooler,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "cin" = (
@@ -16242,6 +16243,11 @@
 /obj/structure/closet/secure_closet/security/med,
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
+	},
+/obj/machinery/button/door/directional/north{
+	id = "medsecprivacy";
+	name = "Privacy Shutters Control";
+	req_access = list("security")
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/security/checkpoint/medical)
@@ -29292,7 +29298,9 @@
 	name = "Medbay Foyer Doors";
 	normaldoorcontrol = 1;
 	pixel_x = -6;
-	pixel_y = -26
+	pixel_y = -26;
+	skin = "-warning";
+	icon_state = "button-warning"
 	},
 /obj/machinery/light_switch/directional/south{
 	pixel_x = 6
@@ -33542,6 +33550,10 @@
 "lym" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "medsecprivacy";
+	name = "Privacy Shutters"
+	},
 /turf/open/floor/plating,
 /area/station/medical/medbay/lobby)
 "lyp" = (
@@ -58303,6 +58315,11 @@
 "tPg" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 8;
+	id = "medsecprivacy";
+	name = "Privacy Shutters"
+	},
 /turf/open/floor/plating,
 /area/station/security/checkpoint/medical)
 "tPt" = (
@@ -63870,7 +63887,10 @@
 /obj/machinery/button/door/directional/east{
 	id = "MedbayFoyer";
 	name = "Medbay Foyer Doors";
-	normaldoorcontrol = 1
+	normaldoorcontrol = 1;
+	icon_state = "button-warning";
+	skin = "-warning";
+	req_access = list("medical")
 	},
 /obj/structure/chair{
 	dir = 8
@@ -70414,7 +70434,8 @@
 /turf/open/floor/iron/smooth_large,
 /area/station/security/brig)
 "xXK" = (
-/obj/structure/closet/l3closet,
+/obj/structure/closet/secure_closet/paramedic,
+/obj/item/surgicaldrill,
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "xXM" = (
@@ -156163,7 +156184,7 @@ gNu
 bYo
 nol
 bwK
-vZj
+xXK
 xRF
 fZz
 mKp
@@ -156934,7 +156955,7 @@ jOb
 aEh
 pPs
 dfH
-xXK
+vZj
 jBW
 jJt
 kKA
