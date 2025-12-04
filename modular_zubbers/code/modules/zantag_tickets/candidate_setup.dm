@@ -1,3 +1,4 @@
+/*
 /datum/round_event/antagonist/candidate_setup(datum/round_event_control/antagonist/cast_control)
 
 	var/list/candidates_tickets = candidates_to_tickets(cast_control.get_candidates())
@@ -19,3 +20,4 @@
 		var/our_weight = candidates_tickets[candidate]
 		var/percent_chance = round( (our_weight/total_tickets)*100, 1)
 		log_antag_tickets("[key_name(candidate)] was made an antagonist with a [percent_chance]% chance to roll (self tickets: [our_weight], total tickets: [total_tickets], average tickets: [average_tickets]).")
+*/
