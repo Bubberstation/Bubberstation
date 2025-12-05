@@ -26,6 +26,7 @@ GLOBAL_LIST_EMPTY(dead_players_during_shift)
 
 	if(client && !HAS_TRAIT(src, TRAIT_SUICIDED) && !(client in GLOB.dead_players_during_shift))
 		GLOB.dead_players_during_shift += client
+		GLOB.deaths_during_shift++ //Bubber addition
 
 	if(SSticker.HasRoundStarted())
 		SSblackbox.ReportDeath(src)

@@ -816,6 +816,12 @@ SUBSYSTEM_DEF(ticker)
 		if(SUPERMATTER_CASCADE)
 			news_message = "Officials are advising nearby colonies about a newly declared exclusion zone in \
 				the sector surrounding [decoded_station_name]."
+		//BUBBER EDIT BEGIN - Families
+		if(GANG_OPERATING)
+			news_message = "The company would like to state that any rumors of criminal organizing on board stations such as [decoded_station_name] are falsehoods, and not to be emulated."
+		if(GANG_DESTROYED)
+			news_message = "The crew of [decoded_station_name] would like to thank the Spinward Stellar Coalition Police Department for quickly resolving a minor terror threat to the station."
+		//BUBBER EDIT END - Families
 
 	//SKYRAT EDIT - START
 	if(SSblackbox.first_death)
