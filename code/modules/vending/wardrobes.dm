@@ -223,12 +223,11 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	machine_name = "CargoDrobe"
 
 /obj/machinery/vending/wardrobe/robo_wardrobe
-	name = "RoboVend" //BUBBERS EDIT
-	desc = "A vending machine designed to dispense clothing and equipment for roboticists." //BUBBERS EDIT
+	name = "RoboDrobe"
+	desc = "A vending machine designed to dispense clothing known only to roboticists."
 	icon_state = "robodrobe"
 	product_ads = "You turn me TRUE, use defines!;0110001101101100011011110111010001101000011001010111001101101000011001010111001001100101"
 	vend_reply = "Thank you for using the RoboDrobe!"
-	/* BUBBERS EDIT - Overwritten in modular_zubbers\code\modules\vending\wardrobe.dm
 	products = list(
 		/obj/item/clothing/glasses/hud/diagnostic = 2,
 		/obj/item/clothing/head/soft/black = 2,
@@ -250,7 +249,7 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 		/obj/item/clothing/suit/hooded/techpriest = 2,
 		/obj/item/organ/tongue/robot = 2,
 	)
-	*/
+
 	refill_canister = /obj/item/vending_refill/wardrobe/robo_wardrobe
 	extra_price = PAYCHECK_COMMAND * 2.0 // Bubbers Change, up from 1.2
 	payment_department = ACCOUNT_SCI
