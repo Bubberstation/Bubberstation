@@ -138,10 +138,10 @@
 	extra_price = PAYCHECK_COMMAND * 2.0 // This ensures the protean organs are ~200 credits each.
 
 /obj/machinery/vending/wardrobe/robo_wardrobe/Initialize(mapload)
-    product_categories[1]["products"] += products
+	product_categories[1]["products"] += products
 
-    products.Cut()
-    . = ..()
+	products.Cut()
+	. = ..()
 
 /obj/item/vending_refill/wardrobe/robo_wardrobe
 	machine_name = "RoboVend"
