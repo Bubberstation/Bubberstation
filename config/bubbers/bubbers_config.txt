@@ -25,3 +25,17 @@ RESPAWN_GRACE_PERIOD 18000
 
 ## Offsets the station time by this amount (in minutes) when SHIFT_TIME_REALTIME is enabled. Minimum 0, Maximum 1439.
 #SHIFT_TIME_CLOCK_OFFSET 0
+
+## Hilbert's Hotel
+# Toggle on to enable Hilbert's hotel and its functionalities
+# Editing in round will require to reinitialize the hilbert's hotel controller and might cause issues with infinidorms entry points
+HILBERTSHOTEL_ENABLED
+
+## Max rooms that can be spawned by hilbert's hotel
+# -1 for infinity
+#HILBERTSHOTEL_MAX_ROOMS 100
+
+## Hilbert's hotel ghost cafe restricted
+# Toggle on to disallow ghost cafe rooms from being accessed through the station and viceversa
+# Enabled by default
+HILBERTSHOTEL_GHOST_CAFE_RESTRICTED

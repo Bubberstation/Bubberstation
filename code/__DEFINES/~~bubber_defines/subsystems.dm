@@ -4,3 +4,5 @@
 
 /// The choice with the most votes wins. Ties are broken by the first choice to reach that number of votes.
 #define VOTE_WINNER_METHOD_RANKED "Ranked"
+
+#define INIT_ORDER_HILBERTSHOTEL -160

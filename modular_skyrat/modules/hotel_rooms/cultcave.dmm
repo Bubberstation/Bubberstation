@@ -33,6 +33,10 @@
 /obj/effect/decal/remains/xeno,
 /turf/open/misc/dirt/jungle/dark,
 /area/misc/hilbertshotel)
+"gr" = (
+/obj/structure/barricade/wooden/crude,
+/turf/open/misc/dirt/jungle/dark,
+/area/misc/hilbertshotel)
 "gQ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood/large,
@@ -104,8 +108,8 @@
 	},
 /area/misc/hilbertshotel)
 "pm" = (
-/obj/structure/destructible/cult/item_dispenser/archives/library,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/wood/shuttle_bar,
 /turf/open/floor/wood/large,
 /area/misc/hilbertshotel)
 "pv" = (
@@ -127,9 +131,9 @@
 /turf/open/misc/dirt/jungle/dark,
 /area/misc/hilbertshotel)
 "tZ" = (
-/obj/structure/destructible/cult/pants_altar,
 /obj/item/toy/toy_dagger,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/wood/shuttle_bar,
 /turf/open/floor/wood/large,
 /area/misc/hilbertshotel)
 "uX" = (
@@ -138,6 +142,7 @@
 /area/misc/hilbertshotel)
 "wb" = (
 /obj/structure/flora/rock/pile,
+/obj/machinery/vending/dorms,
 /turf/open/misc/dirt/jungle/dark,
 /area/misc/hilbertshotel)
 "wl" = (
@@ -269,7 +274,9 @@
 /turf/open/floor/wood/large,
 /area/misc/hilbertshotel)
 "Je" = (
-/obj/structure/wall_torch/spawns_lit/directional/north,
+/obj/machinery/room_controller/directional/north{
+	layer = 3.5
+	},
 /turf/open/misc/dirt/jungle/dark,
 /area/misc/hilbertshotel)
 "JW" = (
@@ -421,7 +428,7 @@ Zq
 "}
 (4,1,1) = {"
 Zq
-Zq
+gr
 Je
 Tu
 DX
