@@ -58,14 +58,14 @@
 					var/cooldown_left = (REGEN_TIME - COOLDOWN_TIMELEFT(src, damage_delay)) / REGEN_TIME
 					hunger_modifier *= cooldown_left
 					healing_amount *= cooldown_left
-				owner.adjustBruteLoss(healing_amount, forced = TRUE)
-				owner.adjustFireLoss(healing_amount, forced = TRUE)
+				owner.adjust_brute_loss(healing_amount, forced = TRUE)
+				owner.adjust_fire_loss(healing_amount, forced = TRUE)
 			if(owner.blood_volume < BLOOD_VOLUME_NORMAL)
 				hunger_modifier += 100
 				owner.blood_volume = min(owner.blood_volume + (((BLOOD_REGEN_FACTOR * PROTEAN_METABOLISM_RATE) * 0.05) * seconds_per_tick), BLOOD_VOLUME_NORMAL)
 		metal -= clamp(((PROTEAN_STOMACH_FULL / PROTEAN_METABOLISM_RATE) * hunger_modifier * seconds_per_tick), 0, metal_max)
 		return
-	owner.adjustBruteLoss(2, forced = TRUE)
+	owner.adjust_brute_loss(2, forced = TRUE)
 	if(COOLDOWN_FINISHED(src, starving_message))
 		to_chat(owner, span_warning("You are starving! You must find metal now!"))
 		owner.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/protean_slowdown, multiplicative_slowdown = 2)
@@ -94,7 +94,7 @@
 		var/obj/item/food/golem_food/food = edible
 		metal = clamp(metal + 1, 0, PROTEAN_STOMACH_FULL)
 		if(food.owner.loc != owner) // Other people feeding them will heal them.
-			owner.adjustBruteLoss(-20, forced = TRUE)
+			owner.adjust_brute_loss(-20, forced = TRUE)
 			var/health_check = owner.health >= owner.maxHealth ? "fully healed!" : "healed!"
 			owner.balloon_alert_to_viewers("[health_check]")
 

@@ -129,7 +129,7 @@
 	// SKYRAT EDIT BEGIN
 	if(owner.dna.features["body_size"] < 1 || isteshari(owner))
 		to_chat(owner, "You feel your body try to shrink, but your organs don't! Uh oh!")
-		owner.adjustBruteLoss(25)
+		owner.adjust_brute_loss(25)
 		return
 	// SKYRAT EDIT END
 	ADD_TRAIT(owner, TRAIT_DWARF, GENETIC_MUTATION)
@@ -200,7 +200,7 @@
 	// SKYRAT EDIT BEGIN
 	if(owner.dna.features["body_size"] > 1)
 		to_chat(owner, "You feel your body expanding even further, but it feels like your bones are expanding too much!")
-		owner.adjustBruteLoss(25) // take some DAMAGE
+		owner.adjust_brute_loss(25) // take some DAMAGE
 		return
 	// SKYRAT EDIT END
 	ADD_TRAIT(owner, TRAIT_GIANT, GENETIC_MUTATION)
@@ -726,9 +726,9 @@
 		return
 	// Gives you 30 seconds of being in soft crit... give or take
 	if(HAS_TRAIT(owner, TRAIT_TOXIMMUNE) || HAS_TRAIT(owner, TRAIT_TOXINLOVER))
-		owner.adjustBruteLoss(1 * seconds_per_tick * GET_MUTATION_SYNCHRONIZER(src), forced = TRUE)
+		owner.adjust_brute_loss(1 * seconds_per_tick * GET_MUTATION_SYNCHRONIZER(src), forced = TRUE)
 	else
-		owner.adjustToxLoss(0.5 * seconds_per_tick * GET_MUTATION_SYNCHRONIZER(src), forced = TRUE)
-		owner.adjustBruteLoss(0.5 * seconds_per_tick * GET_MUTATION_SYNCHRONIZER(src), forced = TRUE)
+		owner.adjust_tox_loss(0.5 * seconds_per_tick * GET_MUTATION_SYNCHRONIZER(src), forced = TRUE)
+		owner.adjust_brute_loss(0.5 * seconds_per_tick * GET_MUTATION_SYNCHRONIZER(src), forced = TRUE)
 	// Offsets suffocation but not entirely
-	owner.adjustOxyLoss(-0.5 * seconds_per_tick, forced = TRUE)
+	owner.adjust_oxy_loss(-0.5 * seconds_per_tick, forced = TRUE)

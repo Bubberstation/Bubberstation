@@ -98,8 +98,7 @@
 	if(!core)
 		return
 
-	if(owner.blood_volume <= BLOOD_VOLUME_NORMAL)
-		owner.blood_volume += 5 * seconds_per_tick
+	owner.adjust_blood_volume(5 * seconds_per_tick, maximum = BLOOD_VOLUME_NORMAL)
 
 	if(owner.health <= owner.crit_threshold)
 		activate_survival(owner)
@@ -189,8 +188,8 @@
 
 	if(owner.health <= owner.crit_threshold)
 		owner.heal_overall_damage(5, 5)
-		owner.adjustOxyLoss(-5)
-		owner.adjustToxLoss(-5)
+		owner.adjust_oxy_loss(-5)
+		owner.adjust_tox_loss(-5)
 
 /datum/status_effect/voltaic_overdrive/on_apply()
 	. = ..()

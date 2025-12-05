@@ -46,7 +46,7 @@
 /datum/surgery_step/hydraulic/repair/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	var/mob/living/carbon/human/patient = target
 	var/obj/item/organ/heart/hydraulic = patient.get_organ_slot(ORGAN_SLOT_HEART)
-	patient.setOrganLoss(ORGAN_SLOT_HEART, 0) // adjustOrganLoss didnt work here without runtimes spamming, setting to 0 as synths have no natural organ decay/regeneration
+	patient.set_organ_loss(ORGAN_SLOT_HEART, 0) // adjust_organ_loss didnt work here without runtimes spamming, setting to 0 as synths have no natural organ decay/regeneration
 	if(hydraulic.organ_flags & ORGAN_EMP)
 		hydraulic.organ_flags &= ~ORGAN_EMP
 	display_results(
@@ -70,5 +70,5 @@
 			span_warning("[user] completes the surgery, but is that oil supposed to be squirting out of [target]'s chest like that?"),
 		)
 		display_pain(target, "Your chest burns; you feel oil flooding your chest cavity!")
-		patient.adjustOrganLoss(ORGAN_SLOT_HEART, 20)
+		patient.adjust_organ_loss(ORGAN_SLOT_HEART, 20)
 	return FALSE

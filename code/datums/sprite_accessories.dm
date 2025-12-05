@@ -2117,6 +2117,11 @@ GLOBAL_LIST_EMPTY(blended_hair_icons_cache)
 	name = "Round"
 	icon_state = "round"
 
+/datum/sprite_accessory/ears/cat/cybernetic
+	name = "Cybernetic"
+	icon_state = "cyber"
+	locked = TRUE
+
 /datum/sprite_accessory/ears/fox
 	icon = 'icons/mob/human/fox_features.dmi'
 	name = "Fox"

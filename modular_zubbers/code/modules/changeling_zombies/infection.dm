@@ -110,11 +110,11 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 
 	if(zombified)
 		var/list/healing_options = list()
-		if(host.getBruteLoss() > 0)
+		if(host.get_brute_loss() > 0)
 			healing_options += BRUTE
-		if(host.getFireLoss() > 0)
+		if(host.get_fire_loss() > 0)
 			healing_options += BURN
-		if(host.getToxLoss() > 0)
+		if(host.get_tox_loss() > 0)
 			healing_options += TOX
 		if(length(healing_options))
 			host.heal_damage_type(CHANGELING_ZOMBIE_PASSIVE_HEALING,pick(healing_options))
@@ -135,13 +135,13 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 				playsound(host, 'sound/effects/splat.ogg', 50)
 
 	else if(spaceacillin_resistance < 100 && host.reagents?.has_reagent(/datum/reagent/medicine/spaceacillin))
-		var/current_toxin_damage = host.getToxLoss()
+		var/current_toxin_damage = host.get_tox_loss()
 		if(can_cure || current_toxin_damage > CHANGELING_ZOMBIE_TOXINS_THRESHOLD_TO_CURE*0.5 + spaceacillin_resistance)
 			qdel(src)
 			return
 		spaceacillin_resistance += seconds_per_tick
 	else
-		var/current_toxin_damage = host.getToxLoss()
+		var/current_toxin_damage = host.get_tox_loss()
 		if(can_cure && current_toxin_damage <= 5) //Not exactly 0 just in case there are race conditions with healing.
 			qdel(src) //Cured!
 			return
@@ -154,7 +154,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 				if(can_cure)
 					damage_multiplier = min(2,damage_multiplier) //Caps it to double.
 				if(host.stat && host.stat == DEAD)
-					host.adjustToxLoss(round(CHANGELING_ZOMBIE_TOXINS_PER_SECOND_DEAD * seconds_per_tick * damage_multiplier,0.1))
+					host.adjust_tox_loss(round(CHANGELING_ZOMBIE_TOXINS_PER_SECOND_DEAD * seconds_per_tick * damage_multiplier,0.1))
 				else
 					if(!can_cure && current_toxin_damage >= CHANGELING_ZOMBIE_TOXINS_THRESHOLD_TO_CURE) //50 toxins to cure
 						can_cure = TRUE
@@ -164,7 +164,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 							span_hear("You hear flesh growing!"),
 							COMBAT_MESSAGE_RANGE
 						)
-					host.adjustToxLoss(round(CHANGELING_ZOMBIE_TOXINS_PER_SECOND_LIVING * seconds_per_tick * damage_multiplier,0.1))
+					host.adjust_tox_loss(round(CHANGELING_ZOMBIE_TOXINS_PER_SECOND_LIVING * seconds_per_tick * damage_multiplier,0.1))
 				if(SPT_PROB(4, seconds_per_tick))
 					if(current_toxin_damage > CHANGELING_ZOMBIE_TOXINS_THRESHOLD_TO_CURE)
 						var/obj/item/bodypart/wound_area = host.get_bodypart(pick(BODY_ZONE_L_ARM,BODY_ZONE_R_ARM))
@@ -245,7 +245,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 
 	//Extra boost
 	host.SetKnockdown(0)
-	host.setStaminaLoss(0)
+	host.set_stamina_loss(0)
 	host.set_resting(FALSE)
 	host.reagents.add_reagent(/datum/reagent/medicine/changelingadrenaline, 4)
 	host.reagents.add_reagent(/datum/reagent/medicine/changelinghaste, 3)

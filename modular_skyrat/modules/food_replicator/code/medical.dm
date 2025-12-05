@@ -12,7 +12,7 @@
 	. = ..()
 	if(healed_mob.blood_volume <= BLOOD_VOLUME_SAFE)
 		healed_mob.reagents.add_reagent(/datum/reagent/medicine/salglu_solution, 2)
-		healed_mob.adjustOxyLoss(-amount_healed)
+		healed_mob.adjust_oxy_loss(-amount_healed)
 
 /obj/item/stack/medical/mesh/bloody
 	name = "hemostatic mesh"
@@ -36,7 +36,7 @@
 	. = ..()
 	if(healed_mob.blood_volume <= BLOOD_VOLUME_SAFE)
 		healed_mob.reagents.add_reagent(/datum/reagent/medicine/salglu_solution, 2)
-		healed_mob.adjustOxyLoss(-amount_healed)
+		healed_mob.adjust_oxy_loss(-amount_healed)
 
 /obj/item/reagent_containers/hypospray/medipen/glucose
 	name = "glucose medipen"

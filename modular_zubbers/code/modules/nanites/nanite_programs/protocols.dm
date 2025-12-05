@@ -186,7 +186,7 @@
 /datum/nanite_program/protocol/unsafe_storage/active_effect()
 	if(!iscarbon(host_mob))
 		if(prob(10))
-			host_mob.adjustBruteLoss(((max(nanites.nanite_volume - 450, 0) / 450) ** 2 ) * 0.5) // 0.5 -> 2 -> 4.5 -> 8 damage per successful tick
+			host_mob.adjust_brute_loss(((max(nanites.nanite_volume - 450, 0) / 450) ** 2 ) * 0.5) // 0.5 -> 2 -> 4.5 -> 8 damage per successful tick
 		return
 
 	var/mob/living/carbon/carbon = host_mob
@@ -233,11 +233,11 @@
 		current_stage++
 	if(nanites.nanite_volume > 1500) //Nanites start spilling into the bloodstream, causing toxicity
 		if(prob(15))
-			carbon.adjustToxLoss(0.5, TRUE, forced = TRUE) //Not healthy for slimepeople either
+			carbon.adjust_tox_loss(0.5, TRUE, forced = TRUE) //Not healthy for slimepeople either
 		current_stage++
 	if(nanites.nanite_volume > 1750) //Nanites have almost reached their physical limit, and the pressure itself starts causing tissue damage
 		if(prob(15))
-			carbon.adjustBruteLoss(0.75, TRUE)
+			carbon.adjust_brute_loss(0.75, TRUE)
 		current_stage++
 
 	volume_warning(current_stage)

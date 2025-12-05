@@ -169,7 +169,7 @@
 			to_chat(target, span_warning("You get a bad feeling about this..."))
 		if(1)
 			//Drain bamage.
-			target.adjustOrganLoss(ORGAN_SLOT_BRAIN, BRAIN_DAMAGE_DEATH - 1, BRAIN_DAMAGE_DEATH - 1)
+			target.adjust_organ_loss(ORGAN_SLOT_BRAIN, BRAIN_DAMAGE_DEATH - 1, BRAIN_DAMAGE_DEATH - 1)
 			to_chat(target, span_warning("You feel <b>stupid</b> for rolling [src]..."))
 		if(2)
 			//Forced to speak a random language.
@@ -184,7 +184,7 @@
 			//Lighting bolt smite.
 			var/turf/lightning_source = get_turf(src)
 			lightning_source.Beam(target, icon_state="lightning[rand(1,12)]", time = 5)
-			target.adjustFireLoss(LIGHTNING_BOLT_DAMAGE)
+			target.adjust_fire_loss(LIGHTNING_BOLT_DAMAGE)
 			playsound(get_turf(target), 'sound/effects/magic/lightningbolt.ogg', 50, TRUE)
 			target.electrocution_animation(LIGHTNING_BOLT_ELECTROCUTION_ANIMATION_LENGTH)
 			to_chat(target, span_warning("LIGHTNING BOLT!!"))

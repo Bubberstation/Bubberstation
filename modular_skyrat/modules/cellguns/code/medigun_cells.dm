@@ -25,7 +25,7 @@
 	if(!IsLivingHuman(target))
 		return FALSE
 
-	target.adjustOxyLoss(-amount_healed)
+	target.adjust_oxy_loss(-amount_healed)
 
 /*
 *	PROCS
@@ -65,40 +65,40 @@
 	if(!IsLivingHuman(target))
 		return FALSE
 
-	DamageDisgust(target, target.getBruteLoss())
+	DamageDisgust(target, target.get_brute_loss())
 	target.adjust_disgust(base_disgust)
-	target.adjustBruteLoss(-amount_healed)
+	target.adjust_brute_loss(-amount_healed)
 
 /// Heals Burn swithout safety
 /obj/projectile/energy/medical/proc/healBurn(mob/living/target, amount_healed, max_clone, base_disgust)
 	if(!IsLivingHuman(target))
 		return FALSE
 
-	DamageDisgust(target, target.getFireLoss())
+	DamageDisgust(target, target.get_fire_loss())
 	target.adjust_disgust(base_disgust)
-	target.adjustFireLoss(-amount_healed)
+	target.adjust_fire_loss(-amount_healed)
 
 /// Heals Brute with safety
 /obj/projectile/energy/medical/proc/safeBrute(mob/living/target, amount_healed, base_disgust)
 	if(!IsLivingHuman(target))
 		return FALSE
 
-	if(target.getBruteLoss() >= 50 )
+	if(target.get_brute_loss() >= 50 )
 		return FALSE
 
 	target.adjust_disgust(base_disgust)
-	target.adjustBruteLoss(-amount_healed)
+	target.adjust_brute_loss(-amount_healed)
 
 /// Heals Burn with safety.
 /obj/projectile/energy/medical/proc/safeBurn(mob/living/target, amount_healed, base_disgust)
 	if(!IsLivingHuman(target))
 		return FALSE
 
-	if(target.getFireLoss() >= 50 )
+	if(target.get_fire_loss() >= 50 )
 		return FALSE
 
 	target.adjust_disgust(base_disgust)
-	target.adjustFireLoss(-amount_healed)
+	target.adjust_fire_loss(-amount_healed)
 
 /// Heals Toxins
 /obj/projectile/energy/medical/proc/healTox(mob/living/target, amount_healed)
@@ -112,7 +112,7 @@
 	if(healing_multiplier < 0.25)
 		healing_multiplier = 0.25
 
-	target.adjustToxLoss(-(amount_healed * healing_multiplier))
+	target.adjust_tox_loss(-(amount_healed * healing_multiplier))
 
 /*
 *	HEALING PROJECTILES

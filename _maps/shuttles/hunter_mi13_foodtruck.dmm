@@ -99,6 +99,17 @@
 /obj/structure/sign/poster/official/high_class_martini/directional/north,
 /turf/open/floor/circuit/red/off,
 /area/shuttle/hunter/mi13_foodtruck)
+"dC" = (
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/binoculars{
+	pixel_y = 10
+	},
+/obj/item/storage/box/zipties{
+	pixel_y = -4;
+	pixel_x = 4
+	},
+/turf/open/floor/circuit/red/off,
+/area/shuttle/hunter/mi13_foodtruck)
 "dJ" = (
 /obj/machinery/computer/records/security/syndie,
 /turf/open/floor/circuit/red/off,
@@ -134,17 +145,6 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/shuttle/hunter/mi13_foodtruck)
-"fw" = (
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/binoculars{
-	pixel_y = 10
-	},
-/obj/item/storage/box/zipties{
-	pixel_y = -4;
-	pixel_x = 4
-	},
-/turf/open/floor/circuit/red/off,
 /area/shuttle/hunter/mi13_foodtruck)
 "gc" = (
 /obj/structure/closet/crate/cardboard/mothic,
@@ -330,26 +330,6 @@
 "nh" = (
 /obj/structure/sign/poster/ripped/directional/south,
 /turf/open/floor/mineral/titanium,
-/area/shuttle/hunter/mi13_foodtruck)
-"on" = (
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/reagent_containers/syringe{
-	pixel_y = -3;
-	pixel_x = -5
-	},
-/obj/item/reagent_containers/dropper{
-	pixel_y = 6;
-	pixel_x = -3
-	},
-/obj/item/reagent_containers/cup/beaker/large{
-	pixel_y = 6;
-	pixel_x = 8
-	},
-/obj/item/reagent_containers/applicator/pill/cyanide{
-	pixel_y = -6;
-	pixel_x = 10
-	},
-/turf/open/floor/circuit/red/off,
 /area/shuttle/hunter/mi13_foodtruck)
 "oA" = (
 /obj/structure/railing{
@@ -564,25 +544,6 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/hunter/mi13_foodtruck)
-"AR" = (
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/reagent_containers/cup/glass/mug/tea{
-	pixel_x = 8;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/cup/beaker{
-	pixel_x = 8
-	},
-/obj/item/reagent_containers/cup/beaker{
-	pixel_x = -5;
-	pixel_y = 3
-	},
-/obj/item/reagent_containers/applicator/pill/cyanide{
-	pixel_y = -9;
-	pixel_x = -2
-	},
-/turf/open/floor/circuit/red/off,
-/area/shuttle/hunter/mi13_foodtruck)
 "Bn" = (
 /obj/machinery/computer/crew/syndie,
 /turf/open/floor/circuit/red,
@@ -651,6 +612,25 @@
 /obj/machinery/airalarm/directional/south,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/mineral/plastitanium,
+/area/shuttle/hunter/mi13_foodtruck)
+"KV" = (
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/reagent_containers/cup/glass/mug/tea{
+	pixel_x = 8;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/cup/beaker{
+	pixel_x = 8
+	},
+/obj/item/reagent_containers/cup/beaker{
+	pixel_x = -5;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/applicator/pill/cyanide{
+	pixel_y = -9;
+	pixel_x = -2
+	},
+/turf/open/floor/circuit/red/off,
 /area/shuttle/hunter/mi13_foodtruck)
 "Lm" = (
 /obj/machinery/vending/dinnerware,
@@ -753,6 +733,26 @@
 	specialfunctions = 4;
 	pixel_y = -10;
 	name = "Fire Escape Bolt Switch"
+	},
+/turf/open/floor/circuit/red/off,
+/area/shuttle/hunter/mi13_foodtruck)
+"Yi" = (
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/reagent_containers/syringe{
+	pixel_y = -3;
+	pixel_x = -5
+	},
+/obj/item/reagent_containers/dropper{
+	pixel_y = 6;
+	pixel_x = -3
+	},
+/obj/item/reagent_containers/cup/beaker/large{
+	pixel_y = 6;
+	pixel_x = 8
+	},
+/obj/item/reagent_containers/applicator/pill/cyanide{
+	pixel_y = -6;
+	pixel_x = 10
 	},
 /turf/open/floor/circuit/red/off,
 /area/shuttle/hunter/mi13_foodtruck)
@@ -962,9 +962,9 @@ cm
 Am
 ku
 lX
-AR
-on
-fw
+KV
+Yi
+dC
 kj
 af
 ku

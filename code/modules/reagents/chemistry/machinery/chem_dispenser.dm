@@ -23,7 +23,7 @@
 	/// If the UI has the pH meter shown
 	var/show_ph = TRUE
 	/// The overlay used to display the beaker on the machine
-	var/mutable_appearance/beaker_overlay
+	VAR_PRIVATE/mutable_appearance/beaker_overlay
 	/// Icon to display when the machine is powered
 	var/working_state = "dispenser_working"
 	/// Icon to display when the machine is not powered
@@ -47,9 +47,14 @@
 	/// Starting purity of the created reagents
 	var/base_reagent_purity = 1
 	/// Records the reagents dispensed by the user if this list is not null
-	var/list/recording_recipe
+	VAR_PRIVATE/list/recording_recipe
 	/// Saves all the recipes recorded by the machine
-	var/list/saved_recipes = list()
+	VAR_PRIVATE/list/saved_recipes = list()
+
+	/// Filters out all reactions that don't have any of these tags from the reaction list
+	var/shown_reaction_tags = DAMAGE_HEALING_REACTION_TAGS | MEDICATION_REACTION_TAGS | CHEMIST_REACTION_TAGS
+	/// Filters out all reactions that have any one of these tags from the reaction list
+	var/hidden_reaction_tags = REACTION_TAG_ACTIVE | REACTION_TAG_FOOD | REACTION_TAG_DRINK
 	// SKYRAT EDIT ADDITION BEGIN
 	/// Used for custom transfer amounts
 	var/list/transferAmounts = list()
@@ -83,11 +88,8 @@
 		/datum/reagent/sulfur,
 		/datum/reagent/toxin/acid,
 		/datum/reagent/water,
-		/datum/reagent/fuel,
+		/datum/reagent/fuel
 	)
-
-	//SKYRAT EDIT CHANGE BEGIN - ORIGINAL
-	/*
 	/// The default list of reagents upgrade_reagents
 	var/static/list/default_upgrade_reagents = list(
 		/datum/reagent/acetone,
@@ -105,33 +107,6 @@
 		/datum/reagent/drug/space_drugs,
 		/datum/reagent/toxin
 	)
-	*/
-	var/static/list/default_upgrade_reagents = list(
-		/datum/reagent/fuel/oil,
-		/datum/reagent/ammonia,
-		/datum/reagent/ash
-	)
-
-	var/static/list/default_upgrade2_reagents = list(
-		/datum/reagent/acetone,
-		/datum/reagent/phenol,
-		/datum/reagent/diethylamine
-	)
-
-	var/static/list/default_upgrade3_reagents = list(
-		/datum/reagent/medicine/mine_salve,
-		/datum/reagent/toxin
-	)
-
-	var/static/list/default_emagged_reagents = list(
-		/datum/reagent/drug/space_drugs,
-		/datum/reagent/toxin/plasma,
-		/datum/reagent/consumable/frostoil,
-		/datum/reagent/toxin/carpotoxin,
-		/datum/reagent/toxin/histamine,
-		/datum/reagent/medicine/morphine
-	)
-	//SKYRAT EDIT CHANGE END
 
 /obj/machinery/chem_dispenser/Initialize(mapload)
 	if(dispensable_reagents != null && !dispensable_reagents.len)
@@ -143,16 +118,6 @@
 		upgrade_reagents = default_upgrade_reagents
 	if(upgrade_reagents)
 		upgrade_reagents = sort_list(upgrade_reagents, GLOBAL_PROC_REF(cmp_reagents_asc))
-	//SKYRAT EDIT ADDITION BEGIN
-	if(upgrade2_reagents != null && !upgrade2_reagents.len)
-		upgrade2_reagents = default_upgrade2_reagents
-	if(upgrade2_reagents)
-		upgrade2_reagents = sort_list(upgrade2_reagents, GLOBAL_PROC_REF(cmp_reagents_asc))
-	if(upgrade3_reagents != null && !upgrade3_reagents.len)
-		upgrade3_reagents = default_upgrade3_reagents
-	if(upgrade3_reagents)
-		upgrade3_reagents = sort_list(upgrade3_reagents, GLOBAL_PROC_REF(cmp_reagents_asc))
-	//SKYRAT EDIT ADDITION END
 
 	if(emagged_reagents != null && !emagged_reagents.len)
 		emagged_reagents = default_emagged_reagents
@@ -309,6 +274,18 @@
 				beakerContents += list(list("name" = reagent.name, "volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING))) // list in a list because Byond merges the first list...
 		beaker_data["contents"] = beakerContents
 	.["beaker"] = beaker_data
+
+/obj/machinery/chem_dispenser/ui_static_data(mob/user)
+	var/list/data = list()
+
+	data["reaction_list"] = get_reaction_list()
+	data["all_bitflags"] = list()
+	for(var/readable_flag, real_flag in REACTION_TAG_READABLE)
+		if((real_flag & hidden_reaction_tags) || !(real_flag & shown_reaction_tags))
+			continue
+		data["all_bitflags"][readable_flag] = real_flag
+
+	return data
 
 /obj/machinery/chem_dispenser/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
@@ -592,6 +569,61 @@
 /obj/machinery/chem_dispenser/attack_ai_secondary(mob/user, list/modifiers)
 	return attack_hand_secondary(user, modifiers)
 
+/obj/machinery/chem_dispenser/proc/get_reaction_list()
+	var/static/list/reaction_list
+	if(reaction_list?[type])
+		return reaction_list[type]
+
+	reaction_list ||= list()
+	reaction_list[type] = list()
+
+	var/list/new_reaction_list = list()
+	for(var/result, reactions in GLOB.chemical_reactions_list_product_index - dispensable_reagents)
+		var/datum/reagent/result_datum = GLOB.chemical_reagents_list[result]
+		for(var/datum/chemical_reaction/reaction as anything in reactions)
+			if(!(reaction.reaction_tags & shown_reaction_tags))
+				continue
+			if(reaction.reaction_tags & hidden_reaction_tags)
+				continue
+			if(reaction.required_container)
+				continue
+
+			var/index = result_datum.name
+			var/list/new_info = get_reaction_info(reaction)
+			new_info["description"] = result_datum.description
+			new_info["color"] = result_datum.color
+
+			var/num_alts = 0
+			while(new_reaction_list[index])
+				num_alts++
+				index = "[result_datum.name] (Alt[num_alts == 1 ? "" : " #[num_alts]"])"
+
+			new_reaction_list[index] = new_info
+
+	reaction_list[type] = new_reaction_list
+	return reaction_list[type]
+
+/obj/machinery/chem_dispenser/proc/get_reaction_info(datum/chemical_reaction/reaction)
+	var/list/info = list()
+	info["id"] = reaction.type
+	info["lower_temperature"] = reaction.required_temp
+	info["upper_temperature"] = reaction.optimal_temp
+	info["lower_ph"] = reaction.optimal_ph_min
+	info["upper_ph"] = reaction.optimal_ph_max
+	info["bitflags"] = reaction.reaction_tags
+	info["required_reagents"] = reagent_list_to_info(reaction.required_reagents)
+	info["required_catalysts"] = reagent_list_to_info(reaction.required_catalysts)
+	return info
+
+/obj/machinery/chem_dispenser/proc/reagent_list_to_info(list/reagent_list)
+	var/list/info = list()
+	for(var/datum/reagent/reagent_typepath as anything in reagent_list)
+		info += list(list(
+			"name" = reagent_typepath::name,
+			"amount" = reagent_list[reagent_typepath],
+			"typepath" = reagent_typepath,
+		))
+	return info
 
 /obj/machinery/chem_dispenser/drinks
 	name = "soda dispenser"
@@ -608,6 +640,8 @@
 	nopower_state = null
 	pass_flags = PASSTABLE
 	show_ph = FALSE
+	shown_reaction_tags = KITCHEN_REACTION_TAGS
+	hidden_reaction_tags = REACTION_TAG_ACTIVE
 	/// The default list of reagents dispensable by the soda dispenser
 	var/static/list/drinks_dispensable_reagents = list(
 		/datum/reagent/consumable/coffee,
@@ -798,6 +832,8 @@
 	name = "botanical chemical dispenser"
 	desc = "Creates and dispenses chemicals useful for botany."
 	circuit = /obj/item/circuitboard/machine/chem_dispenser/mutagensaltpeter
+	shown_reaction_tags = BOTANIST_REACTION_TAGS
+	hidden_reaction_tags = REACTION_TAG_ACTIVE
 
 	/// The default list of dispensable reagents available in the mutagensaltpeter chem dispenser
 	var/static/list/mutagensaltpeter_dispensable_reagents = list(

@@ -79,7 +79,7 @@
 			on_grille_bump(source, poorgrille, do_move = FALSE)
 		source.forceMove(new_turf)
 	else
-		source.adjustStaminaLoss(20, forced = TRUE)
+		source.adjust_stamina_loss(20, forced = TRUE)
 		source.Paralyze(0.5 SECONDS, ignore_canstun = FALSE)
 		source.apply_damage(damage = 5, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD)
 		var/harsh_crash = FALSE

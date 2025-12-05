@@ -24,7 +24,7 @@
 	process_flags = REAGENT_SYNTHETIC
 
 /datum/reagent/medicine/system_cleaner/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
-	affected_mob.adjustToxLoss(-2 * REM * seconds_per_tick, 0)
+	affected_mob.adjust_tox_loss(-2 * REM * seconds_per_tick, 0)
 	affected_mob.adjust_disgust(-5 * REM * seconds_per_tick)
 	affected_mob.adjust_drunk_effect(-10 * REM * seconds_per_tick)
 	var/remove_amount = 1 * REM * seconds_per_tick;
@@ -44,7 +44,7 @@
 
 /datum/reagent/medicine/liquid_solder/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick)
 	for(var/obj/item/organ/organ in affected_mob.organs)
-		affected_mob.adjustOrganLoss(organ.slot, -3 * REM * seconds_per_tick)
+		affected_mob.adjust_organ_loss(organ.slot, -3 * REM * seconds_per_tick)
 	if(prob(10))
 		affected_mob.cure_trauma_type(resilience = TRAUMA_RESILIENCE_BASIC)
 	return ..()
@@ -77,7 +77,7 @@
 /datum/reagent/medicine/nanite_slurry/overdose_process(mob/living/carbon/affected_mob, seconds_per_tick, times_fired) // Mostly to treat a synthetic being EMP'd
 	if(affected_mob.mob_biotypes & MOB_ROBOTIC)
 		affected_mob.adjust_bodytemperature(temperature_change * REM * seconds_per_tick) // Overheats
-		affected_mob.adjustOrganLoss(pick(ORGAN_SLOT_EYES,ORGAN_SLOT_EARS,ORGAN_SLOT_HEART,ORGAN_SLOT_LUNGS,ORGAN_SLOT_STOMACH,ORGAN_SLOT_LIVER),(-5 * REM * seconds_per_tick) * 1.5) // 30 units do ~ 70 brute and 20 burn and heal 240 organ damage (mostly used after being EMP'd)
+		affected_mob.adjust_organ_loss(pick(ORGAN_SLOT_EYES,ORGAN_SLOT_EARS,ORGAN_SLOT_HEART,ORGAN_SLOT_LUNGS,ORGAN_SLOT_STOMACH,ORGAN_SLOT_LIVER),(-5 * REM * seconds_per_tick) * 1.5) // 30 units do ~ 70 brute and 20 burn and heal 240 organ damage (mostly used after being EMP'd)
 		affected_mob.take_bodypart_damage(brute = (healing * REM * seconds_per_tick) * 1.5) // Damages at half healing rate
 		return ..()
 	affected_mob.reagents.remove_reagent(type, NANITE_SLURRY_ORGANIC_PURGE_RATE) //gets removed from organics very fast

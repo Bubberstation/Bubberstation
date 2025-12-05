@@ -89,7 +89,7 @@
 
 /datum/surgery_step/robot_heal/initiate(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
 	if(..())
-		while((heals_brute && target.getBruteLoss() && tool) || (heals_burn && target.getFireLoss() && tool))
+		while((heals_brute && target.get_brute_loss() && tool) || (heals_burn && target.get_fire_loss() && tool))
 			if(!..())
 				break
 
@@ -103,12 +103,12 @@
 	if(heals_brute)
 		brute_healed = brute_heal_amount
 		tool.use_tool(target, user, 0, volume = 50, amount = 1)
-		brute_healed += round((target.getBruteLoss() * brute_multiplier), DAMAGE_ROUNDING)
+		brute_healed += round((target.get_brute_loss() * brute_multiplier), DAMAGE_ROUNDING)
 
 	if(heals_burn)
 		burn_healed = burn_heal_amount
 		tool.use_tool(target, user, 0, volume = 50, amount = 1)
-		burn_healed += round((target.getFireLoss() * burn_multiplier), DAMAGE_ROUNDING)
+		burn_healed += round((target.get_fire_loss() * burn_multiplier), DAMAGE_ROUNDING)
 
 	if(!get_location_accessible(target, target_zone))
 		brute_healed *= FINAL_STEP_HEAL_MULTIPLIER
@@ -158,11 +158,11 @@
 	var/burn_dealt = 0
 	if(heals_brute)
 		brute_dealt = brute_heal_amount * FAIL_DAMAGE_MULTIPLIER
-		brute_dealt += round((target.getBruteLoss() * (brute_multiplier * 0.5)), DAMAGE_ROUNDING)
+		brute_dealt += round((target.get_brute_loss() * (brute_multiplier * 0.5)), DAMAGE_ROUNDING)
 
 	if(heals_burn)
 		burn_dealt = burn_heal_amount * FAIL_DAMAGE_MULTIPLIER
-		burn_dealt += round((target.getFireLoss() * (burn_multiplier * 0.5)), DAMAGE_ROUNDING)
+		burn_dealt += round((target.get_fire_loss() * (burn_multiplier * 0.5)), DAMAGE_ROUNDING)
 
 	target.take_bodypart_damage(brute_dealt, burn_dealt, wound_bonus = CANT_WOUND)
 	return FALSE
@@ -217,17 +217,17 @@
 /datum/surgery_step/robot_heal/proc/get_progress(mob/user, mob/living/carbon/target, brute_healed, burn_healed)
 	var/estimated_remaining_steps = 0
 	if(brute_healed > 0)
-		estimated_remaining_steps = max(0, (target.getBruteLoss() / brute_healed))
+		estimated_remaining_steps = max(0, (target.get_brute_loss() / brute_healed))
 	if(burn_healed > 0)
-		estimated_remaining_steps = max(estimated_remaining_steps, (target.getFireLoss() / burn_healed)) // whichever is higher between brute or burn steps
+		estimated_remaining_steps = max(estimated_remaining_steps, (target.get_fire_loss() / burn_healed)) // whichever is higher between brute or burn steps
 
 	var/progress_text
 
 	if(locate(/obj/item/healthanalyzer) in user.held_items)
-		if(target.getBruteLoss())
-			progress_text = ". Remaining brute: <font color='#ff3333'>[target.getBruteLoss()]</font>"
-		if(target.getFireLoss())
-			progress_text += ". Remaining burn: <font color='#ff9933'>[target.getFireLoss()]</font>"
+		if(target.get_brute_loss())
+			progress_text = ". Remaining brute: <font color='#ff3333'>[target.get_brute_loss()]</font>"
+		if(target.get_fire_loss())
+			progress_text += ". Remaining burn: <font color='#ff9933'>[target.get_fire_loss()]</font>"
 	else
 		switch(estimated_remaining_steps)
 			if(-INFINITY to 1)
@@ -260,9 +260,9 @@
 		return
 
 	if(heals_brute)
-		return "[round(1 / speed_mod, 0.1)]x (<font color='#F0197D'>[target.getBruteLoss()]</font>) <font color='#7DF9FF'>[feedback_value]</font>"
+		return "[round(1 / speed_mod, 0.1)]x (<font color='#F0197D'>[target.get_brute_loss()]</font>) <font color='#7DF9FF'>[feedback_value]</font>"
 	else
-		return "[round(1 / speed_mod, 0.1)]x (<font color='#FF7F50'>[target.getFireLoss()]</font>) <font color='#7DF9FF'>[feedback_value]</font>"
+		return "[round(1 / speed_mod, 0.1)]x (<font color='#FF7F50'>[target.get_fire_loss()]</font>) <font color='#7DF9FF'>[feedback_value]</font>"
 
 #undef DAMAGE_ROUNDING
 #undef FAIL_DAMAGE_MULTIPLIER
