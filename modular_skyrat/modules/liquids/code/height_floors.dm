@@ -50,7 +50,7 @@
 
 /turf/open/floor/iron/pool/cobble
 	name = "cobblestone pool floor"
-	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	icon = 'modular_zubbers/icons/turf/floors/floors.dmi'
 	base_icon_state = "cobble"
 	icon_state = "cobble"
 	footstep = FOOTSTEP_FLOOR

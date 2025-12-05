@@ -132,6 +132,15 @@
 /turf/open/floor/iron/shuttle/cargo/airless
 	initial_gas_mix = AIRLESS_ATMOS
 
+/turf/open/floor/iron/shuttle/cargo/cargo_mainta
+	icon_state = "floor_mainta"
+
+/turf/open/floor/iron/shuttle/cargo/cargo_maintb
+	icon_state = "floor_maintb"
+
+/turf/open/floor/iron/shuttle/cargo/cargo_maintc
+	icon_state = "floor_maintc"
+
 /*
 *	MINING
 */
@@ -242,3 +251,5 @@
 
 /turf/open/floor/iron/shuttle/exploration/hazard/airless
 	initial_gas_mix = AIRLESS_ATMOS
+
+/turf/open/floor/iron/shuttle/exploration_new
