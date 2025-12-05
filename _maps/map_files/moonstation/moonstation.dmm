@@ -2438,6 +2438,11 @@
 /obj/effect/turf_decal/tile/red/anticorner/contrasted{
 	dir = 1
 	},
+/obj/machinery/button/door/directional/north{
+	id = "medsecprivacy";
+	name = "Privacy Shutters Control";
+	req_access = list("security")
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/medical)
 "aGa" = (
@@ -3152,6 +3157,15 @@
 /obj/structure/sign/poster/random/directional/south,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/station/maintenance/department/engine)
+"aPS" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 8;
+	id = "medsecprivacy";
+	name = "Privacy Shutters"
+	},
+/turf/open/floor/plating,
+/area/station/security/checkpoint/medical)
 "aPT" = (
 /obj/effect/turf_decal/tile/green/half/contrasted{
 	dir = 8
@@ -8970,8 +8984,8 @@
 /turf/open/floor/iron/grimy,
 /area/station/service/library/abandoned)
 "cyf" = (
-/obj/machinery/door/airlock/security/glass{
-	name = "Security Post - Medbay"
+/obj/machinery/door/airlock/security{
+	name = "Medbay Security Post"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/medical/orderly,
 /obj/effect/turf_decal/tile/red/half/contrasted{
@@ -52788,6 +52802,11 @@
 /area/station/commons/dorms/room1)
 "oeJ" = (
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "medsecprivacy";
+	name = "Privacy Shutters";
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/station/security/checkpoint/medical)
 "oeL" = (
@@ -55199,10 +55218,10 @@
 /turf/open/floor/iron/large,
 /area/station/engineering/atmos/hallway)
 "oKG" = (
-/obj/item/kirbyplants/random,
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
 	},
+/obj/structure/reagent_dispensers/water_cooler/punch_cooler,
 /obj/machinery/firealarm/directional/north,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
@@ -256668,9 +256687,9 @@ hfe
 frd
 frd
 xgq
-oeJ
-oeJ
-oeJ
+aPS
+aPS
+aPS
 xAV
 xAV
 xAV

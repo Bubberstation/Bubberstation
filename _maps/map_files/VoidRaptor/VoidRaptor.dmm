@@ -10571,6 +10571,16 @@
 /obj/machinery/atmospherics/pipe/smart/simple/dark/visible,
 /turf/open/floor/engine,
 /area/station/maintenance/disposal/incinerator)
+"dgR" = (
+/obj/structure/cable,
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "medsecprivacy";
+	name = "Privacy Shutters";
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/station/security/checkpoint/medical)
 "dhd" = (
 /obj/machinery/camera/directional/north{
 	c_tag = "Atmospherics - Plasma Cell";
@@ -29246,6 +29256,10 @@
 "ivR" = (
 /obj/structure/cable,
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "medsecprivacy";
+	name = "Privacy Shutters"
+	},
 /turf/open/floor/plating/airless,
 /area/station/security/checkpoint/medical)
 "ivS" = (
@@ -39019,6 +39033,10 @@
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "medsecprivacy";
+	name = "Privacy Shutters"
+	},
 /turf/open/floor/plating/airless,
 /area/station/security/checkpoint/medical)
 "lbM" = (
@@ -48501,10 +48519,10 @@
 /area/station/engineering/atmos/hfr_room)
 "nFV" = (
 /obj/effect/turf_decal/tile/blue/fourcorners,
-/obj/machinery/status_display/ai/directional/north,
 /obj/effect/turf_decal/bot,
 /obj/machinery/computer/records/medical,
 /obj/machinery/light/cold/directional/north,
+/obj/machinery/airalarm/directional/north,
 /turf/open/floor/iron/freezer,
 /area/station/security/checkpoint/medical)
 "nGa" = (
@@ -55553,7 +55571,20 @@
 	pixel_x = 5;
 	pixel_y = 3
 	},
-/obj/machinery/airalarm/directional/east,
+/obj/machinery/button/door/directional/east{
+	icon_state = "button-warning";
+	id = "MedbayFoyer";
+	name = "Medbay Doors Control";
+	normaldoorcontrol = 1;
+	req_access = list("medical");
+	skin = "-warning"
+	},
+/obj/machinery/button/door/directional/east{
+	pixel_y = -9;
+	id = "medsecprivacy";
+	name = "Privacy Shutters Control";
+	req_access = list("security")
+	},
 /turf/open/floor/iron/freezer,
 /area/station/security/checkpoint/medical)
 "pzY" = (
@@ -61828,7 +61859,8 @@
 	id = "MedbayFoyer";
 	name = "Medbay Doors Control";
 	normaldoorcontrol = 1;
-	skin = "-warning"
+	skin = "-warning";
+	req_access = list("medical")
 	},
 /obj/machinery/duct,
 /turf/open/floor/iron/white/smooth_edge{
@@ -63183,10 +63215,8 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
-/obj/structure/chair{
-	dir = 8
-	},
 /obj/effect/landmark/start/assistant,
+/obj/structure/reagent_dispensers/water_cooler/punch_cooler,
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 8
 	},
@@ -116086,8 +116116,8 @@ cnC
 abF
 lZg
 qxO
-ivR
-ivR
+dgR
+dgR
 qxO
 ore
 uGJ
