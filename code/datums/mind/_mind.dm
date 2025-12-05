@@ -238,10 +238,6 @@
 		if(!istype(A))
 			to_chat(usr,span_warning("Invalid antagonist ref to be removed."))
 			return
-		// BUBBER EDIT ADDITION BEGIN - ANTAG RE-ROLLING
-		if(tgui_alert(usr, "Would you like to re-roll a new random crew antagonist as a replacement?", "Passing The Torch", list("No", "Yeah!")) == "Yeah!")
-			SSgamemode.reroll_antagonist(antag_name = name)
-		// BUBBER EDIT ADDITION END - ANTAG RE-ROLLING
 		A.admin_remove(usr)
 
 	if(href_list["open_antag_vv"])
@@ -464,6 +460,17 @@
 
 	else if (href_list["obj_announce"])
 		announce_objectives()
+
+	// BUBBER EDIT ADDITION BEGIN - ANTAG RE-ROLLING
+	else if (href_list["reroll_antag"])
+		var/datum/antagonist/antag = locate(href_list["reroll_antag"]) in antag_datums
+		if(!istype(antag))
+			to_chat(usr, span_warning("Invalid antagonist ref to be removed."))
+			return
+
+		SSgamemode.reroll_antagonist(antag_name = name)
+		antag.admin_remove(usr)
+	// BUBBER EDIT ADDITION END - ANTAG RE-ROLLING
 
 	//Something in here might have changed your mob
 	if(self_antagging && (!usr || !usr.client) && current.client)
