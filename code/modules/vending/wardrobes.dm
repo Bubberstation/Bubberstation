@@ -249,9 +249,8 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 		/obj/item/clothing/suit/hooded/techpriest = 2,
 		/obj/item/organ/tongue/robot = 2,
 	)
-
 	refill_canister = /obj/item/vending_refill/wardrobe/robo_wardrobe
-	extra_price = PAYCHECK_COMMAND * 2.0 // Bubbers Change, up from 1.2
+	extra_price = PAYCHECK_COMMAND * 1.2
 	payment_department = ACCOUNT_SCI
 
 /obj/item/vending_refill/wardrobe/robo_wardrobe

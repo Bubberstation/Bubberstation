@@ -82,30 +82,30 @@
 	)
 
 /obj/machinery/vending/wardrobe/robo_wardrobe
-    product_categories = list(
-        list(
-            "name" = "Clothing",
-            "icon" = FA_ICON_SHIRT,
-            "products" = list(
-                /obj/item/clothing/glasses/welding/steampunk_goggles = 2,
-                /obj/item/clothing/gloves/color/black = 2, // fire resistant, allows the robo to painlessly mold metal. also its down here because its a treatment item
-                /obj/item/clothing/head/beret/science/fancy/robo = 2,
-                /obj/item/clothing/head/playbunnyears/roboticist = 2,
-                /obj/item/clothing/neck/tie/bunnytie/roboticist = 2,
-                /obj/item/clothing/suit/toggle/jacket/zubber/bomber/science/robotics = 2,
-                /obj/item/clothing/suit/toggle/labcoat/roboticist/doctor_tailcoat = 2,
-                /obj/item/clothing/under/rank/rnd/roboticist/skyrat/sleek = 2,
-                /obj/item/clothing/under/rank/rnd/scientist/roboticist_bunnysuit = 2,
-                /obj/item/storage/backpack/duffelbag/science/robo = 2,
+	product_categories = list(
+		list(
+			"name" = "Clothing",
+			"icon" = FA_ICON_SHIRT,
+			"products" = list(
+				/obj/item/clothing/glasses/welding/steampunk_goggles = 2,
+				/obj/item/clothing/gloves/color/black = 2, // fire resistant, allows the robo to painlessly mold metal. also its down here because its a treatment item
+				/obj/item/clothing/head/beret/science/fancy/robo = 2,
+				/obj/item/clothing/head/playbunnyears/roboticist = 2,
+				/obj/item/clothing/neck/tie/bunnytie/roboticist = 2,
+				/obj/item/clothing/suit/toggle/jacket/zubber/bomber/science/robotics = 2,
+				/obj/item/clothing/suit/toggle/labcoat/roboticist/doctor_tailcoat = 2,
+				/obj/item/clothing/under/rank/rnd/roboticist/skyrat/sleek = 2,
+				/obj/item/clothing/under/rank/rnd/scientist/roboticist_bunnysuit = 2,
+				/obj/item/storage/backpack/duffelbag/science/robo = 2,
 				/obj/item/storage/backpack/messenger/science/robo = 2,
-                /obj/item/storage/backpack/satchel/science/robo = 2,
-                /obj/item/storage/backpack/science/robo = 2,
-            ),
-        ),
-        list(
-            "name" = "Surgery",
-            "icon" = FA_ICON_VIAL,
-            "products" = list(
+				/obj/item/storage/backpack/satchel/science/robo = 2,
+				/obj/item/storage/backpack/science/robo = 2,
+			),
+		),
+		list(
+			"name" = "Surgery",
+			"icon" = FA_ICON_VIAL,
+			"products" = list(
 				/obj/item/bonesetter = 2, // for dislocations
 				/obj/item/clothing/mask/breath = 2,
 				/obj/item/tank/internals/anesthetic = 2,
@@ -121,9 +121,9 @@
 				/obj/item/storage/pill_bottle/system_cleaner = 1,
 				/obj/item/reagent_containers/blood/oil = 2,
 				/obj/item/paper/pamphlet/roboticist_reminder = 4,
-            ),
-        )
-    )
+			),
+		)
+	)
 /obj/machinery/vending/wardrobe/robo_wardrobe // I don't know why but if I don't put this in here again, contraband and premium don't want to work.
 	contraband = list(
 		/obj/item/organ/tongue/lizard/robot = 2,
@@ -133,6 +133,7 @@
 		/obj/item/organ/stomach/protean = 1,
 		/obj/item/organ/heart/protean = 1,
 	)
+	extra_price = PAYCHECK_COMMAND * 2.0 // This ensures the protean organs are ~200 credits each.
 
 /obj/machinery/vending/wardrobe/robo_wardrobe/Initialize(mapload)
     product_categories[1]["products"] += products
