@@ -93,7 +93,7 @@
 /datum/round_event_control/cortical_borer
 	name = "Cortical Borer Infestation"
 	typepath = /datum/round_event/ghost_role/cortical_borer
-	weight = 10
+	weight = 0
 	min_players = 999
 	max_occurrences = 1 //should only ever happen once
 	category = EVENT_CATEGORY_ENTITIES
@@ -146,8 +146,8 @@
 	midround_type = LIGHT_MIDROUND
 	pref_flag = ROLE_BORER
 	min_antag_cap = 1
-	weight = 3
-	min_pop = 20
+	weight = 0
+	min_pop = 999
 	repeatable = TRUE
 
 /datum/dynamic_ruleset/midround/from_ghosts/cortical_borer/create_ruleset_body()
