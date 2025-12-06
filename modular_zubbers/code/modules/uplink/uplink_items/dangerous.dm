@@ -4,6 +4,6 @@
 			learn new chemicals through the blood if old enough. Be careful as there is no way to get the borer to pledge allegiance \
 			to yourself. The egg is extremely fragile, do not crush it in your hand nor throw it. \
 			The egg is required to sit out in the open in order to hatch. (Cannot be hidden in closets, etc.)"
-	progression_minimum = 20 MINUTES
+	progression_minimum = 150 MINUTES // If someone wants to spend 10-20 TC for a borer egg after two and a half hours, that's their business.
 	item = /obj/effect/mob_spawn/ghost_role/borer_egg/traitor
 	cost = 20
