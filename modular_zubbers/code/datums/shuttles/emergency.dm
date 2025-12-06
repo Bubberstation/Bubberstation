@@ -42,3 +42,22 @@
 	admin_notes = "A shuttle that has it's own protolathes, as well as severely upgraded tools, and gear. A very luxurious evacuation shuttle, with no drawbacks. Two Authentication Devices, spare Head of Staff MOD's, gives NTC a Corporate MOD, gives Blueshield a Asset Protection MOD, atmospherics, shocked grilles, Gives everyone what they need while leaving a burning heap of a station, or just getting off from a nice calm shift."
 	credit_cost = CARGO_CRATE_VALUE * 625
 	occupancy_limit = "65"
+
+/datum/map_template/shuttle/emergency/card
+	prefix = "_maps/shuttles/zubbers/"
+	suffix = "card"
+	name = "Card Station Emergency Shuttle"
+	description = "A standard pattern exfiltration shuttle, equipped with a medbay, brig and an aft engineering section. It's upgraded engines ensure the smoothest and quickest ride."
+	admin_notes = "A standard pattern exfiltration shuttle, equipped with a medbay, brig and an aft engineering section. It's upgraded engines ensure the smoothest and quickest ride."
+	credit_cost = CARGO_CRATE_VALUE * 20
+	occupancy_limit = "65"
+
+/datum/map_template/shuttle/cargo/card
+	prefix = "_maps/shuttles/zubbers/"
+	suffix = "card"
+	name = "supply shuttle (Card)"
+
+/datum/map_template/shuttle/mining/card
+	prefix = "_maps/shuttles/zubbers/"
+	suffix = "card"
+	name = "mining shuttle (Card)"
