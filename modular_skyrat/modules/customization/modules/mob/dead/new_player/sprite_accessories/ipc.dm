@@ -161,8 +161,11 @@
 		return FALSE
 //	Hide accessory if flagged to do so
 	if((wearer.covered_slots & HIDEHAIR) \
-		// This line basically checks if we FORCE accessory-ears to show, for items with earholes like Balaclavas and Luchador masks
-		&& ((wearer.head && !(wearer.head.flags_inv & SHOWSPRITEEARS)) || (wearer.wear_mask && !(wearer.wear_mask?.flags_inv & SHOWSPRITEEARS))))
+		// These lines basically checks if we FORCE accessory-ears to show, for items with earholes like Balaclavas and Luchador masks
+		&& ( \
+			(wearer.head && (wearer.head.flags_inv & HIDEHAIR) && !(wearer.head.flags_inv & SHOWSPRITEEARS)) \
+			|| (wearer.wear_mask && (wearer.wear_mask.flags_inv & HIDEHAIR) && !(wearer.wear_mask?.flags_inv & SHOWSPRITEEARS)) \
+		))
 		return TRUE
 
 /datum/sprite_accessory/antenna/none
