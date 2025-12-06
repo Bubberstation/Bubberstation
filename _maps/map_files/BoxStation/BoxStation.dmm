@@ -12664,6 +12664,24 @@
 /obj/machinery/computer/crew{
 	dir = 1
 	},
+/obj/machinery/button/door{
+	desc = "A remote control switch for the medbay foyer.";
+	id = "MedbayFoyer";
+	name = "Medbay Doors Control";
+	normaldoorcontrol = 1;
+	pixel_y = -26;
+	req_access = list("medical");
+	icon_state = "button-warning";
+	skin = "-warning"
+	},
+/obj/machinery/button/door{
+	desc = "A remote control switch for the medbay foyer.";
+	id = "MedbayAft";
+	name = "Side Medbay Doors Control";
+	normaldoorcontrol = 1;
+	pixel_y = -37;
+	req_access = list("medical")
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/medical/medbay/lobby)
 "bns" = (
