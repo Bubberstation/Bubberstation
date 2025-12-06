@@ -223,8 +223,3 @@
 	melee = 10
 	fire = 50
 	acid = 40
-
-/obj/item/clothing/under/rank/security/head_of_security/skyrat/imperial //Rank pins of the Grand General
-	desc = "A tar black naval suit and a rank badge denoting the Officer of The Internal Security Division. Be careful your underlings don't bump their head on a door."
-	name = "head of security's naval jumpsuit"
-	icon_state = "imphos"

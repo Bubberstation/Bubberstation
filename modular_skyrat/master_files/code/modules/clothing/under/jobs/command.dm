@@ -22,13 +22,6 @@
 	icon_state = "terragov_dress"
 	can_adjust = FALSE
 
-/obj/item/clothing/under/rank/captain/skyrat/imperial
-	name = "captain's naval jumpsuit"
-	desc = "A white naval suit adorned with golden epaulets and a rank badge denoting a Captain. There are two ways to destroy a person, kill him, or ruin his reputation."
-	//Rank pins of the Grand Admiral, not a Captain.
-	icon_state = "impcap"
-	can_adjust = FALSE
-
 //Donor item for Gandalf - all donors have access
 /obj/item/clothing/under/rank/captain/skyrat/black
 	name = "captain's black suit"
@@ -196,26 +189,6 @@
 /obj/item/clothing/under/rank/captain/skyrat/utility/syndicate
 	armor_type = /datum/armor/clothing_under/utility_syndicate
 	has_sensor = NO_SENSORS
-
-/obj/item/clothing/under/rank/captain/skyrat/imperial/generic
-	desc = "A grey naval suit with a rank badge denoting an Officer. Doesn't protect against blaster fire."
-	name = "grey officer's naval jumpsuit"
-	icon_state = "impcom"
-
-/obj/item/clothing/under/rank/captain/skyrat/imperial/generic/pants
-	desc = "A grey naval suit over black pants, with a rank badge denoting an Officer. Doesn't protect against blaster fire."
-	name = "officer's naval jumpsuit"
-	icon_state = "impcom_pants"
-
-/obj/item/clothing/under/rank/captain/skyrat/imperial/generic/grey
-	desc = "A dark grey naval suit with a rank badge denoting an Officer. Doesn't protect against blaster fire."
-	name = "dark grey officer's naval jumpsuit"
-	icon_state = "impcom_dark"
-
-/obj/item/clothing/under/rank/captain/skyrat/imperial/generic/red
-	desc = "A red naval suit with a rank badge denoting an Officer. Doesn't protect against blaster fire."
-	name = "red officer's naval jumpsuit"
-	icon_state = "impcom_red"
 
 /*
 *	MISC
