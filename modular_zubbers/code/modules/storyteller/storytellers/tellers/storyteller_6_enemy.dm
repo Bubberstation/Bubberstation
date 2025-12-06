@@ -30,5 +30,5 @@
 	threshold_mundane = 1200
 	threshold_moderate = 1800
 	threshold_major = 8000
-	threshold_crewset = 3000
+	threshold_crewset = 2350
 	threshold_ghostset = 8000
