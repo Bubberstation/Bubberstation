@@ -2,12 +2,12 @@
 
 /datum/id_trim/job/blueshield
 	job = /datum/job/blueshield
-	honorifics = list("Agent")
+	honorifics = list("Agent", "ESS", "CPO", "CSS")
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
 
 /datum/id_trim/job/chaplain/New()
 	job = /datum/job/chaplain
-	honorifics += list("Father", "Mother")
+	honorifics += list("Father", "Mother", "Preacher", "Rabbi", "Imam", "Monk", "Nun", "Oracle", "Pontifex", "Magister", "High Priest", "High Priestess")
 	return ..()
 
 /datum/id_trim/job/corrections_officer
@@ -31,10 +31,60 @@
 
 /datum/id_trim/job/head_of_security/New()
 	job = /datum/job/head_of_security
-	honorifics += list("Sheriff", "Commander")
+	honorifics += list("Commissioner", "Chief Constable", "Sheriff", "Security Commander", "S.CMDR.")
 	return ..()
 
 /datum/id_trim/job/nanotrasen_consultant
 	job = /datum/job/nanotrasen_consultant
-	honorifics = list("Representative", "Consultant", "Rep.")
+	honorifics = list("Advisor", "Consultant", "Representative", "Rep.", "Interest Officer", "Liason")
+	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
+
+/datum/id_trim/job/captain
+	job = /datum/job/captain
+	honorifics = list("Facility Director", "Station Commander", "Commander", "CMDR.", "Site Manager")
+	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
+
+/datum/id_trim/job/cook/chef
+	job = /datum/job/cook
+	honorifics = list("Sous-Chef", "Junior Chef", "Tavern Chef", "Confectionist", "Pastry Chef", "All-American")
+	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
+
+/datum/id_trim/job/quartermaster
+	job = /datum/job/quartermaster
+	honorifics = list("Deck Chief", "Logistics Coordinator", "Supply Foreman", "Union Requisitions Officer", "Supervisor")
+	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
+
+/datum/id_trim/job/research_director
+	job = /datum/job/research_director
+	honorifics = list("Head Researcher", "Administrator")
+	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
+
+/datum/id_trim/job/security_officer
+	job = /datum/job/security_officer
+	honorifics = list("Security Specialist", "Guard", "Security Officer", "Constable")
+	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
+
+/datum/id_trim/job/warden
+	job = /datum/job/warden
+	honorifics = list("Warden", "Sergeant", "Sgt.", "Lieutenant", "Lt.", "Master-at-Arms", "Superintendent")
+	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
+
+/datum/id_trim/job/station_engineer
+	job = /datum/job/station_engineer
+	honorifics = list("Technician")
+	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
+
+/datum/id_trim/job/research_director
+	job = /datum/job/research_director
+	honorifics = list("Head Researcher", "Administrator")
+	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
+
+/datum/id_trim/job/chief_engineer
+	job = /datum/job/chief_engineer
+	honorifics = list("Chief Engineer", "Engineering Foreman",)
+	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
+
+/datum/id_trim/job/cargo_technician
+	job = /datum/job/cargo_technician
+	honorifics = list("Associate")
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
