@@ -11,7 +11,7 @@ GLOBAL_LIST_INIT(chat_colors_by_mob_name, list(
 
 /// Blood colors
 //teal oxidized skrell blood - slightly brightened copper oxide hue
-#define BLOOD_COLOR_COPPER "#84d3b0"
+#define BLOOD_COLOR_COPPER "#70B596"
 #define BLOOD_COLOR_NANITE_SLURRY "#CCCCCC"
 //alternate lizard blood
 #define BLOOD_COLOR_GREEN "#339933"
