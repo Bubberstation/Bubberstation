@@ -10,7 +10,7 @@
 
 	tag_multipliers = list(
 		TAG_COMBAT = 0.3,
-		TAG_DESTRUCTIVE = 0.5,
+		TAG_DESTRUCTIVE = 0.2,
 		TAG_CHAOTIC = 0.2
 	)
 	storyteller_type = STORYTELLER_TYPE_ALWAYS_AVAILABLE
