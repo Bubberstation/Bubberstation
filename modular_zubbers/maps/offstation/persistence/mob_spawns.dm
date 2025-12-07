@@ -1,8 +1,10 @@
-/datum/job/persistence // Job Define
+/datum/job/ghost_role/persistence // Job Define
 	title = ROLE_PERSISTENCE
 	policy_index = ROLE_PERSISTENCE
 	akula_outfit = /datum/outfit/akula
 	antagonist_restricted = TRUE
+	paycheck = PAYCHECK_CREW
+	paycheck_department = ACCOUNT_INT
 
 // Persistence mining rig Ghost Spawners
 
@@ -18,7 +20,7 @@
 	random_appearance = FALSE
 	loadout_enabled = TRUE
 	computer_area = /area/ruin/space/has_grav/bubbers/persistance/service/lockers
-	spawner_job_path = /datum/job/persistence
+	spawner_job_path = /datum/job/ghost_role/persistence
 	/// If true, this spawner will give it's target exploitables access.
 	var/give_exploitables = TRUE
 
@@ -62,7 +64,7 @@
 	icon_state = "robostorage"
 	anchored = TRUE
 	density = FALSE
-	spawner_job_path = /datum/job/persistence
+	spawner_job_path = /datum/job/ghost_role/persistence
 	you_are_text = "You are a Syndicate cyborg, assigned to be part of a crew aboard a landcrawler"
 	flavour_text = "You have been deployed into enemy territory. Continue working the best you can, and keep a low profile."
 	deletes_on_zero_uses_left = TRUE
