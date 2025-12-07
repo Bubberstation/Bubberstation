@@ -1294,7 +1294,6 @@
 	desc = "A mustard coloured prison jumpskirt, often worn by former Security members, informants and former CentCom employees. Its suit sensors are stuck in the \"Fully On\" position."
 	icon_state = "/obj/item/clothing/under/rank/prisoner/skirt/protcust"
 	greyscale_colors = "#FFB600"
-	supports_variations_flags = NONE
 
 /obj/item/clothing/under/rank/prisoner/lowsec
 	name = "low security prisoner jumpsuit"
@@ -1307,7 +1306,6 @@
 	desc = "A pale, almost creamy prison jumpskirt, this one denotes a low security prisoner, things like fraud and anything white collar. Its suit sensors are stuck in the \"Fully On\" position."
 	icon_state = "/obj/item/clothing/under/rank/prisoner/skirt/lowsec"
 	greyscale_colors = "#AB9278"
-	supports_variations_flags = NONE
 
 /obj/item/clothing/under/rank/prisoner/highsec
 	name = "high risk prisoner jumpsuit"
@@ -1320,7 +1318,6 @@
 	desc = "A bright red prison jumpskirt, depending on who sees it, either a badge of honour or a sign to avoid. Its suit sensors are stuck in the \"Fully On\" position."
 	icon_state = "/obj/item/clothing/under/rank/prisoner/skirt/highsec"
 	greyscale_colors = "#FF3400"
-	supports_variations_flags = NONE
 
 /obj/item/clothing/under/rank/prisoner/supermax
 	name = "supermax prisoner jumpsuit"
@@ -1333,7 +1330,6 @@
 	desc = "A dark crimson red prison jumpskirt, for the worst of the worst, or the Clown. Its suit sensors are stuck in the \"Fully On\" position."
 	icon_state = "/obj/item/clothing/under/rank/prisoner/skirt/supermax"
 	greyscale_colors = "#992300"
-	supports_variations_flags = NONE
 
 /obj/item/clothing/under/rank/prisoner/classic
 	name = "classic prisoner jumpsuit"
@@ -1363,7 +1359,6 @@
 	icon_state = "/obj/item/clothing/under/rank/prisoner/skirt/syndicate"
 	greyscale_colors = "#992300"
 	has_sensor = FALSE
-	supports_variations_flags = NONE
 
 /obj/item/clothing/under/rank/prisoner/syndicate/station
 	name = "syndicate prisoner jumpsuit"
