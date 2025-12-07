@@ -7,7 +7,7 @@
 
 /datum/id_trim/job/chaplain/New()
 	job = /datum/job/chaplain
-	honorifics += list("Father", "Mother", "Preacher", "Rabbi", "Imam", "Monk", "Nun", "Oracle", "Pontifex", "Magister", "High Priest", "High Priestess")
+	honorifics += list("Father", "Mother", "Preacher", "Rabbi", "Imam", "Monk", "Nun", "Oracle", "Pontifex", "Magister", "High Priest", "High Priestess", "Cleric")
 	return ..()
 
 /datum/id_trim/job/corrections_officer
@@ -87,4 +87,9 @@
 /datum/id_trim/job/cargo_technician
 	job = /datum/job/cargo_technician
 	honorifics = list("Associate")
+	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
+
+/datum/id_trim/job/atmospheric_technician
+	job = /datum/job/atmospheric_technician
+	honorifics = list("Technician")
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
