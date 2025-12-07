@@ -1107,7 +1107,6 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	icon_state = "runner"
-	supports_variations_flags = NONE
 	can_adjust = FALSE
 
 //Warden
