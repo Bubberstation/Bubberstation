@@ -74,6 +74,8 @@ GLOBAL_VAR_INIT(active_rbmk_machines, list())
 
 	var/heat_waste_multiplier = 0.04
 
+	var/heating_multiplier = 1 //Heat transfer multiplier, to the RBMK.
+
 	var/list/obj/machinery/rbmk2_sniffer/linked_sniffers = list()
 
 	var/obj/machinery/power/supermatter_crystal/linked_supermatter
@@ -102,7 +104,6 @@ GLOBAL_VAR_INIT(active_rbmk_machines, list())
 	SSair.start_processing_machine(src)
 
 	supermatter_link()
-	check_adjacent_rbmk()
 
 /obj/machinery/power/rbmk2/preloaded/Initialize(mapload)
 	. = ..()
@@ -153,8 +154,6 @@ GLOBAL_VAR_INIT(active_rbmk_machines, list())
 
 	for(var/obj/machinery/rbmk2_sniffer/sniffer as anything in linked_sniffers)
 		sniffer.unlink_reactor(null,src)
-
-	check_adjacent_rbmk()
 
 	supermatter_unlink()
 
@@ -435,10 +434,14 @@ GLOBAL_VAR_INIT(active_rbmk_machines, list())
 	safeties_max_power_generation = max(initial(safeties_max_power_generation),round(max_power_generation*(safeties_upgrade ? 0.9: 0.75),25000))
 
 	//Requires x4 servos
-	//Servos increase the strength of the fans, forcing out gas at a higher rate.
+	//Servos increase the strength of the fans, forcing out gas at a higher rate, leading to better cooling.
 	var/vent_pressure_multiplier = 0
+	var/heating_divisor = 1
 	for(var/datum/stock_part/servo/new_servo in component_parts)
 		vent_pressure_multiplier += new_servo.tier * 0.25
+		heating_divisor += (new_servo.tier-1)/(3*4*2) //At T4, this value should be 1.5.
+
+	heating_multiplier = initial(heating_multiplier) / heating_divisor
 	vent_pressure = initial(vent_pressure) * vent_pressure_multiplier
 
 /obj/machinery/power/rbmk2/ui_interact(mob/user, datum/tgui/ui)
@@ -604,12 +607,15 @@ GLOBAL_VAR_INIT(active_rbmk_machines, list())
 	var/energy_transfer = ((delta_temperature*rod_mix_heat_capacity*gas_source_heat_capacity) / (rod_mix_heat_capacity+gas_source_heat_capacity))*multiplier
 
 	var/temperature_change = (energy_transfer/rod_mix_heat_capacity)
-	if(allow_cooling_limiter && temperature_change > 0) //Cooling!
-		if(cooling_limiter == cooling_limiter_max) //Auto
-			var/temperature_mod = clamp( ( (rod_mix.temperature-200) / stored_rod.temperature_limit) * 2 ,0,1)
-			temperature_change *= temperature_mod
-		else
-			temperature_change *= clamp(1 - cooling_limiter*0.01,0,1) //Clamped in case of adminbus fuckery.
+	if(temperature_change > 0) //Cooling!
+		if(allow_cooling_limiter)
+			if(cooling_limiter == cooling_limiter_max) //Auto
+				var/temperature_mod = clamp( ( (rod_mix.temperature-200) / stored_rod.temperature_limit) * 2 ,0,1)
+				temperature_change *= temperature_mod
+			else
+				temperature_change *= clamp(1 - cooling_limiter*0.01,0,1) //Clamped in case of adminbus fuckery.
+	else //Heating!
+		temperature_change *= clamp(heating_multiplier,0.25,1) //Clamped in case of adminbus fuckery.
 
 	rod_mix.temperature -= temperature_change
 	gas_source.temperature += temperature_change

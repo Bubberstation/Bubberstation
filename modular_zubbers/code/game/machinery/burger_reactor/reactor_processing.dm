@@ -21,8 +21,6 @@
 	else
 		amount_to_consume *= 0.1
 
-	amount_to_consume *= max(1,1 + (adjacent_rbmk_machines-4)*0.25) //Consume 25% more tritium for every nearby rbmk over 4.
-
 	if(meltdown && meltdown_start_time > 0)
 		//Tritium consumption will increase by 100% every 45 seconds after 120 seconds of meltdown time.
 		var/meltdown_penalty_math = ((world.time - meltdown_start_time) - (60 SECONDS)) / (40 SECONDS)
