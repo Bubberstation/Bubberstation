@@ -78,8 +78,6 @@ GLOBAL_VAR_INIT(active_rbmk_machines, list())
 
 	var/obj/machinery/power/supermatter_crystal/linked_supermatter
 
-	var/adjacent_rbmk_machines = 0 //Number of adjacent RBMK machines. More than 2 will reduce power.
-
 	COOLDOWN_DECLARE(auto_vent_cooldown)
 	COOLDOWN_DECLARE(radiation_cooldown)
 
@@ -415,27 +413,29 @@ GLOBAL_VAR_INIT(active_rbmk_machines, list())
 	return TRUE
 
 /obj/machinery/power/rbmk2/RefreshParts()
+
 	. = ..()
 
 	//Requires x4 capacitors
+	//Capacitors increase power efficiency (more power generated per tritium consumed).
 	var/power_efficiency_mul = 0.75
 	for(var/datum/stock_part/capacitor/new_capacitor in component_parts)
 		power_efficiency_mul += (new_capacitor.tier * 0.0625)
 	power_efficiency = initial(power_efficiency) * power_efficiency_mul
 
 	//Requires x2 matter bins
+	//Matter pins increase the maximum power generation allowed and the amount of goblin gas generated.
 	var/max_power_generation_mul = 0
 	goblin_multiplier = initial(goblin_multiplier)
 	for(var/datum/stock_part/matter_bin/new_matter_bin in component_parts)
 		max_power_generation_mul += (new_matter_bin.tier * 0.5) + max(0,new_matter_bin.tier-1)*0.1
 		goblin_multiplier += (new_matter_bin.tier-1)*0.5
 	max_power_generation = initial(max_power_generation) * (max_power_generation_mul**(1 + (max_power_generation_mul-1)*0.1))
-	max_power_generation = FLOOR(max_power_generation,10000)
-
-
+	max_power_generation = FLOOR(max_power_generation, 10000)
 	safeties_max_power_generation = max(initial(safeties_max_power_generation),round(max_power_generation*(safeties_upgrade ? 0.9: 0.75),25000))
 
 	//Requires x4 servos
+	//Servos increase the strength of the fans, forcing out gas at a higher rate.
 	var/vent_pressure_multiplier = 0
 	for(var/datum/stock_part/servo/new_servo in component_parts)
 		vent_pressure_multiplier += new_servo.tier * 0.25
@@ -565,7 +565,7 @@ GLOBAL_VAR_INIT(active_rbmk_machines, list())
 	else if(jammed)
 		. += span_danger("The reactor rod is jammed! <b>Pry</b> the rod back in to unjam in!")
 	else if(meltdown)
-		. += span_danger("The reactor rod is leaping erractically! Lower power output!")
+		. += span_danger("The reactor rod is leaping erractically! Lower the power output!")
 	else
 		. += span_notice("There is an RB-MK2 reactor rod installed. <b>Bolt</b> it down to activate, or remove it with ALT+CLICK.")
 

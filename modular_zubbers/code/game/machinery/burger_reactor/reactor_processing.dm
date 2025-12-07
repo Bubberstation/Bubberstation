@@ -71,7 +71,7 @@
 		consumed_mix.gases[/datum/gas/goblin][MOLES] += last_tritium_consumption_as_moles*goblin_multiplier
 		var/our_heat_capacity = consumed_mix.heat_capacity()
 		if(our_heat_capacity > 0)
-			var/temperature_mod = clamp(1.5 - consumed_mix.temperature/500,0.05,1)
+			var/temperature_mod = clamp(2 - consumed_mix.temperature/200,1,2) //Colder temperatures actually increases temperature generation.
 			var/temperature_to_add = ((last_power_generation*heat_waste_multiplier)*(1 + overclocked)*(0.75 + power_efficiency*0.25)*temperature_mod) / our_heat_capacity
 			consumed_mix.temperature += temperature_to_add
 			consumed_mix.temperature = clamp(consumed_mix.temperature,5,0xFFFFFF)
@@ -107,7 +107,6 @@
 		meltdown = FALSE
 		meltdown_start_time = 0
 		update_appearance(UPDATE_ICON)
-
 
 	if(auto_vent_upgrade && auto_vent && COOLDOWN_FINISHED(src,auto_vent_cooldown))
 		if(rod_mix.temperature >= stored_rod.temperature_limit*0.5 || last_power_generation >= safeties_max_power_generation*0.75)
