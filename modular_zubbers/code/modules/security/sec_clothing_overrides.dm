@@ -1094,8 +1094,8 @@
 	desc = "A blue shirt and dark jeans, with a pair of spurred cowboy boots to boot."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'	//Donator item-ish? See the /armorless one below it
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
 	icon_state = "cowboy_uniform"
-	supports_variations_flags = NONE
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/detective/cowboy/armorless //Donator variant, just uses the sprite.
