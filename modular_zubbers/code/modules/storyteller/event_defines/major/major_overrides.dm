@@ -23,10 +23,6 @@
 /datum/round_event_control/meteor_wave/catastrophic
 	weight = 0
 
-/datum/round_event_control/radiation_storm
-	track = EVENT_TRACK_MAJOR
-	tags = list(TAG_COMMUNAL)
-
 /datum/round_event_control/wormholes
 	track = EVENT_TRACK_MAJOR
 	tags = list(TAG_COMMUNAL)

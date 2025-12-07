@@ -109,6 +109,7 @@
 	)
 	zubbers_contraband = list(
 		/obj/item/organ/tongue/lizard/robot = 2,
+		/obj/item/storage/box/purity_seal_box = 2, // purity seals for any techpriests working in robotics!
 	)
 
 /obj/machinery/vending/wardrobe/gene_wardrobe

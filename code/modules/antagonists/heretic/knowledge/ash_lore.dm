@@ -95,7 +95,7 @@
 
 	action_to_add = /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash
 	cost = 2
-	drafting_tier = 5
+	// drafting_tier = 5 BUBBER REMOVAL
 
 /datum/heretic_knowledge/spell/fire_blast
 	name = "Volcano Blast"

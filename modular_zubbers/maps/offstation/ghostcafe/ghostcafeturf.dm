@@ -20,7 +20,7 @@
 	icon_state = "titanium_blue_old";
 	name = "bathroom floor"
 	footstep = FOOTSTEP_FLOOR
-	tiled_dirt = FALSE
+	tiled_turf = FALSE
 
 /turf/open/indestructible/carpet
 	desc = "It's really cozy! Great for soft paws!";
@@ -32,4 +32,4 @@
 	barefootstep = FOOTSTEP_CARPET_BAREFOOT
 	clawfootstep = FOOTSTEP_CARPET_BAREFOOT
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
-	tiled_dirt = FALSE
+	tiled_turf = FALSE

@@ -1738,6 +1738,8 @@
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_MEDICAL
 	)
 
+// BUBBERS EDIT. Added as a default module.
+/*
 /datum/design/borg_upgrade_broomer
 	name = "Experimental Push Broom"
 	id = "borg_upgrade_broomer"
@@ -1751,6 +1753,7 @@
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_JANITOR
 	)
+*/
 
 /datum/design/mmi
 	name = "Man-Machine Interface"

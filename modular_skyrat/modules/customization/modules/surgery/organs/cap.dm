@@ -26,9 +26,6 @@
 		randomize_cap_color()
 	return draw_color
 
-/datum/bodypart_overlay/mutant/mushroom_cap/get_global_feature_list()
-	return SSaccessories.sprite_accessories["caps"]
-
 /datum/bodypart_overlay/mutant/mushroom_cap/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner)
 	var/mob/living/carbon/human/human = bodypart_owner.owner
 	if(!human)

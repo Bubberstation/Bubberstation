@@ -4,11 +4,12 @@
 
 /datum/action/cooldown/bloodsucker/feed
 	name = "Feed"
-	desc = "Feed blood off of a living creature."
+	desc = "Feed blood off of a living creature. Feeding while aggressively grabbing them will put them to sleep for a short moment."
 	button_icon_state = "power_feed"
 	power_explanation = list(
 		"Activate Feed while next to someone and you will begin to feed blood off of them.",
 		"The time needed before you start feeding speeds up the higher level you are.",
+		"Feeding off of someone next to you will not be noticed by the victim, but it will by nearby onlookers",
 		"Feeding off of someone while you have them aggressively grabbed will put them to sleep.",
 		"While feeding, you can't speak, as your mouth is covered.",
 		"Feeding while nearby (2 tiles away from) a mortal who is unaware of Bloodsuckers' existence, will cause a Masquerade Infraction",
@@ -144,7 +145,7 @@
 	else
 		aggressive_feed = FALSE
 		// Only people who AREN'T the target will notice this action.
-		var/dead_message = feed_target.stat != DEAD ? " <i>[feed_target.p_they(TRUE)] looks dazed, and will not remember this.</i>" : ""
+		var/dead_message = feed_target.stat != DEAD ? " <i>[feed_target.p_they(TRUE)] looks dazed, and will not notice this.</i>" : ""
 		owner.visible_message(
 			span_warning("[owner] puts [feed_target]'s wrist up to [owner.p_their()] mouth."),
 			span_notice("You slip your fangs into [feed_target]'s wrist.[dead_message]"),
@@ -218,10 +219,10 @@
 	targets_and_blood[target_ref] += blood_eaten
 	modify_blood_drunk(blood_eaten * 0.5)
 
-	if(feed_strength_mult > 5 && feed_target.stat < DEAD)
+	if(feed_target.mind)
 		user.add_mood_event("drankblood", /datum/mood_event/drankblood)
 	// Drank mindless as Ventrue? - BAD
-	if(snobby_drinking_check() && !feed_target.mind)
+	else if(snobby_drinking_check())
 		user.add_mood_event("drankblood", /datum/mood_event/drankblood_bad)
 	if(feed_target.stat >= DEAD)
 		user.add_mood_event("drankblood", /datum/mood_event/drankblood_dead)
@@ -239,11 +240,15 @@
 			return
 		warning_target_bloodvol = feed_target.blood_volume
 
-	if(max_blood_reached())
+	if(max_blood_reached(feed_target))
 		var/message = "full on blood!"
-		if(IS_BLOODSUCKER(owner))
+		var/can_overfeed = can_overfeed()
+		if(can_overfeed)
 			message += " Anything more we drink now will be burnt on quicker healing"
 		user.balloon_alert(owner, message)
+		if(!can_overfeed)
+			DeactivatePower()
+			return
 		notified_overfeeding = TRUE
 	if(feed_target.blood_volume <= 0)
 		user.balloon_alert(owner, "no blood left!")
@@ -263,16 +268,17 @@
 
 	blood_eatable = apply_drink_modifiers(feed_target, blood_eatable)
 
-	SEND_SIGNAL(owner, COMSIG_MOB_FEED_DRINK, feed_target, blood_eatable, already_drunk)
+	var/sigval = SEND_SIGNAL(owner, COMSIG_MOB_FEED_DRINK, feed_target, blood_eatable, already_drunk)
 
-	if(IS_BLOODSUCKER(owner))
-		bloodsuckerdatum_power.handle_feeding(feed_target, blood_eatable, already_drunk)
-		owner_blood_volume = bloodsuckerdatum_power.GetBloodVolume()
+	if(!(sigval & FEED_CANCEL_BLOOD_TRANSFER))
+		if(IS_BLOODSUCKER(owner))
+			bloodsuckerdatum_power.handle_feeding(feed_target, blood_eatable, already_drunk)
+			owner_blood_volume = bloodsuckerdatum_power.GetBloodVolume()
 
-	else if(isliving(owner) && !HAS_TRAIT(owner, TRAIT_NOBLOOD))
-		var/mob/living/living_owner = owner
-		living_owner.blood_volume += blood_eatable
-		owner_blood_volume = living_owner.blood_volume
+		else if(isliving(owner) && !HAS_TRAIT(owner, TRAIT_NOBLOOD))
+			var/mob/living/living_owner = owner
+			living_owner.blood_volume += blood_eatable
+			owner_blood_volume = living_owner.blood_volume
 
 	if(feed_target.reagents && feed_target.reagents.total_volume)
 		feed_target.reagents.trans_to(owner, INGEST, 1) // Run transfer of 1 unit of reagent from them to me.
@@ -298,11 +304,14 @@
 		return FALSE
 	return TRUE
 
-/datum/action/cooldown/bloodsucker/feed/proc/max_blood_reached()
+/datum/action/cooldown/bloodsucker/feed/proc/max_blood_reached(mob/living/feed_target)
 	if(bloodsuckerdatum_power && bloodsuckerdatum_power.GetBloodVolume() >= bloodsuckerdatum_power.max_blood_volume && !notified_overfeeding)
 		return TRUE
 	if(HAS_TRAIT(owner, TRAIT_NOBLOOD))
 		return FALSE
+	var/sigval = SEND_SIGNAL(owner, COMSIG_MOB_REACHED_MAX_BLOOD, feed_target)
+	if(sigval & REACHED_MAX_BLOOD)
+		return TRUE
 	if(astype(owner, /mob/living).blood_volume >= BLOOD_VOLUME_MAXIMUM)
 		return TRUE
 	return FALSE
@@ -387,6 +396,10 @@
 		if(give_warnings)
 			owner.balloon_alert(owner, "headgear too thick!")
 		return FALSE
+	if(!can_overfeed() && max_blood_reached(target_user))
+		if(give_warnings)
+			owner.balloon_alert(owner, "too full to drink more!")
+		return FALSE
 	if(!target.mind && !can_drink_from_mindless(target_user))
 		if(give_warnings)
 			owner.balloon_alert(owner, "cant drink from mindless!")
@@ -435,6 +448,13 @@
 		if(targets_and_blood[weakref] <= 0)
 			targets_and_blood -= weakref
 
+/datum/action/cooldown/bloodsucker/feed/proc/can_overfeed()
+	return IS_BLOODSUCKER(owner)
+
+
 #undef FEED_NOTICE_RANGE
 #undef FEED_DEFAULT_TIMER
 #undef FEED_MIN_TIMER
+
+
+

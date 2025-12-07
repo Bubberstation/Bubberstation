@@ -53,6 +53,7 @@
 					/obj/item/storage/backpack/duffelbag/sec/redsec = 6,
 					/obj/item/clothing/under/rank/security/officer/redsec = 6,
 					/obj/item/clothing/under/rank/security/peacekeeper/armadyne = 6,
+					/obj/item/clothing/under/rank/security/camo = 6,
 					/obj/item/clothing/shoes/jackboots = 6,
 					/obj/item/clothing/shoes/jackboots/peacekeeper/armadyne = 6,
 					/obj/item/clothing/shoes/jackboots/gogo_boots = 6,
@@ -157,8 +158,6 @@
 					/obj/item/clothing/mask/gas/half_mask = 3,
 					/obj/item/clothing/head/hats/caphat/parade/fedcap/sec = 3,
 					/obj/item/clothing/suit/fedcoat/modern/sec = 3,
-					/obj/item/clothing/mask/gas/soviet = 3,
-					/obj/item/clothing/mask/gas/german = 3, //As far as I can tell, this is nowhere else in the game.
 					/obj/item/clothing/head/soft/veteran = 1,
 					/obj/item/clothing/head/helmet/toggleable/justice = 1, //More than one of these in the Vendor and they'll get annoying fast. Hence why Justice2 isn't here.
 					/obj/item/clothing/head/bandana/snake/sec = 1, //There's only room for one Boss, and one Snake.

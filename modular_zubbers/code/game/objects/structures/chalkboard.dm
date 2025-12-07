@@ -1,6 +1,6 @@
 /obj/structure/chalkboard
 	name = "Chalkboard"
-	icon = 'modular_zubbers/icons/obj/structure/chalkboard.dmi'
+	icon = 'modular_zubbers/icons/obj/structures/chalkboard.dmi'
 	icon_state = "chalkboard"
 	maptext_width = 64
 	//The text that is written on the chalkboard. Cleared when erased.

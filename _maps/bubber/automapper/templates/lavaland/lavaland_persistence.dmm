@@ -4697,7 +4697,6 @@
 	ailock = 1;
 	control_area = "/area/ruin/space/has_grav/bubbers/dauntless/command/vault";
 	dir = 1;
-	icon_state = "control_kill";
 	lethal = 1;
 	name = "Base turret controls";
 	pixel_y = 30;
@@ -10191,6 +10190,12 @@
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison)
 "uK" = (
+/obj/machinery/suit_storage_unit{
+	mask_type = /obj/item/clothing/mask/gas/syndicate;
+	mod_type = /obj/item/mod/control/pre_equipped/traitor_elite;
+	storage_type = /obj/item/tank/jetpack/harness;
+	req_access = list("syndicate_leader")
+	},
 /obj/structure/marker_beacon/burgundy,
 /obj/machinery/suit_storage_unit/industrial/bloodredsuit{
 	req_access = list("syndicate")

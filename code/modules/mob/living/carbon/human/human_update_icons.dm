@@ -364,7 +364,7 @@ There are several things that need to be remembered:
 		var/obj/item/bodypart/chest/my_chest = get_bodypart(BODY_ZONE_CHEST)
 		// SKYRAT EDIT ADDITION
 		if(!mutant_override)
-			my_chest?.worn_belt_offset?.apply_offset(neck_overlay)
+			my_chest?.worn_neck_offset?.apply_offset(neck_overlay)
 		// SKYRAT EDIT END
 		overlays_standing[NECK_LAYER] = neck_overlay
 
