@@ -12839,13 +12839,10 @@
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "zU" = (
-/obj/machinery/suit_storage_unit{
-	mask_type = /obj/item/clothing/mask/gas/syndicate;
-	mod_type = /obj/item/mod/control/pre_equipped/traitor_elite;
-	storage_type = /obj/item/tank/jetpack/oxygen/harness;
-	req_access = list("syndicate_leader")
-	},
 /obj/structure/marker_beacon/burgundy,
+/obj/machinery/suit_storage_unit/industrial/bloodredsuit{
+	req_access = list("syndicate")
+	},
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/persistance/command/admiral)
 "zV" = (
@@ -15983,10 +15980,13 @@
 	dir = 4;
 	icon_state = "siding_plain_end"
 	},
-/obj/machinery/suit_storage_unit/industrial/bloodredsuit{
-	req_access = list("syndicate")
-	},
 /obj/structure/marker_beacon/burgundy,
+/obj/machinery/suit_storage_unit{
+	mask_type = /obj/item/clothing/mask/gas/syndicate;
+	mod_type = /obj/item/mod/control/pre_equipped/traitor_elite;
+	storage_type = /obj/item/tank/jetpack/oxygen/harness;
+	req_access = list("syndicate_leader")
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/maa)
 "FU" = (
