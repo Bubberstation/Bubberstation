@@ -225,7 +225,6 @@
 
 	if(!ishuman(owner))
 		return FALSE
-
 	StartCooldown(10 SECONDS)
 	offer_handshake()
 	StartCooldown()
@@ -236,9 +235,8 @@
  */
 /datum/action/cooldown/spawn_induction_package/proc/offer_handshake()
 	var/mob/living/carbon/human/human_owner = owner
-	if(human_owner.stat != CONSCIOUS || human_owner.incapacitated == NONE)
+	if(human_owner.stat != CONSCIOUS || human_owner.incapacitated != NONE)
 		return FALSE
-
 	var/obj/item/hand_item/slapper/secret_handshake/secret_handshake_item = new(owner)
 	if(owner.put_in_hands(secret_handshake_item))
 		to_chat(owner, span_notice("You ready your secret handshake."))
