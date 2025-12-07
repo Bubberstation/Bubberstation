@@ -10,7 +10,7 @@
 	has_desc = TRUE
 	count_method = VOTE_COUNT_METHOD_RANKED
 	winner_method = VOTE_WINNER_METHOD_RANKED
-	ranked_winner_threshold = 101
+	ranked_winner_threshold = 50
 	display_statistics = TRUE
 	vote_reminder = TRUE
 
