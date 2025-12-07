@@ -211,6 +211,7 @@
 			/obj/item/stack/medical,
 			/obj/item/stamp,
 			/obj/item/toy/crayon,
+			/obj/item/poker_chip,
 			// SKYRAT EDIT BEGIN
 			/obj/item/condom_pack,
 			/obj/item/gbp_punchcard,

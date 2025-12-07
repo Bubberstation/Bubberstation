@@ -48,6 +48,49 @@ GLOBAL_LIST_INIT(autodrobe_costumes_items, list(
 	/obj/item/clothing/under/costume/gi = 4,
 	/obj/item/clothing/head/soft/propeller_hat = 3,
 	/obj/item/clothing/neck/bowtie/rainbow = 3,
+	// BUBBER EDIT ADDITION BEGIN - Extra stuff
+	/obj/item/clothing/glasses/surgerygoggles = 3,
+	/obj/item/clothing/gloves/longrubbergloves = 3,
+	/obj/item/clothing/head/anubite = 3,
+	/obj/item/clothing/head/avipilot = 3,
+	/obj/item/clothing/head/costume/kabuto = 5,
+	/obj/item/clothing/head/costume/strigihat = 3,
+	/obj/item/clothing/head/drake_skull = 3,
+	/obj/item/clothing/head/playbunnyears = 6,
+	/obj/item/clothing/head/playbunnyears/british = 6,
+	/obj/item/clothing/head/playbunnyears/communist = 6,
+	/obj/item/clothing/head/playbunnyears/usa = 6,
+	/obj/item/clothing/head/recruiter_cap = 3,
+	/obj/item/clothing/mask/animal/wolf = 3,
+	/obj/item/clothing/mask/luchador/enzo = 3,
+	/obj/item/clothing/neck/bunny_pendant = 3,
+	/obj/item/clothing/neck/tie/bunnytie = 6,
+	/obj/item/clothing/neck/tie/bunnytie/blue = 6,
+	/obj/item/clothing/neck/tie/bunnytie/communist = 6,
+	/obj/item/clothing/neck/tie/bunnytie/magician = 6,
+	/obj/item/clothing/shoes/horseshoe = 3,
+	/obj/item/clothing/suit/costume/samurai = 5,
+	/obj/item/clothing/suit/dutchjacketsr = 5,
+	/obj/item/clothing/suit/jacket/tailcoat = 6,
+	/obj/item/clothing/suit/jacket/tailcoat/british = 6,
+	/obj/item/clothing/suit/jacket/tailcoat/communist = 6,
+	/obj/item/clothing/suit/jacket/tailcoat/magician = 6,
+	/obj/item/clothing/suit/jacket/tailcoat/plasmaman = 6,
+	/obj/item/clothing/suit/jacket/tailcoat/usa = 6,
+	/obj/item/clothing/suit/leatherapron = 3,
+	/obj/item/clothing/suit/toggle/rainbowcoat = 3,
+	/obj/item/clothing/suit/toggle/recruiter_jacket = 3,
+	/obj/item/clothing/under/costume/dragon_maid = 3,
+	/obj/item/clothing/under/costume/hlciv = 6,
+	/obj/item/clothing/under/costume/playbunny/british = 6,
+	/obj/item/clothing/under/costume/playbunny/communist = 6,
+	/obj/item/clothing/under/costume/playbunny/greyscale = 6,
+	/obj/item/clothing/under/costume/playbunny/magician = 6,
+	/obj/item/clothing/under/costume/playbunny/usa = 6,
+	/obj/item/clothing/under/costume/skyrat/cavalry = 5,
+	/obj/item/clothing/under/doug_dimmadome = 5,
+	/obj/item/clothing/under/recruiter_uniform = 3,
+	// BUBBER EDIT ADDITION END - Extra stuff
 ))
 
 GLOBAL_LIST_INIT(autodrobe_supernatural_items, list(
@@ -91,6 +134,34 @@ GLOBAL_LIST_INIT(autodrobe_entretainers_items, list(
 	/obj/item/clothing/shoes/singerb = 1,
 	/obj/item/clothing/under/costume/singer/blue = 1,
 	/obj/item/clothing/head/costume/cueball = 1,
+	// BUBBER EDIT ADDITION BEGIN - Extra stuff
+	/obj/item/clothing/head/beret/clown = 3,
+	/obj/item/clothing/head/costume/jesteralt = 1,
+	/obj/item/clothing/head/costume/bubber/clussy = 3,
+	/obj/item/clothing/head/costume/bubber/jester = 3,
+	/obj/item/clothing/head/playbunnyears/clown = 3,
+	/obj/item/clothing/head/playbunnyears/mime = 3,
+	/obj/item/clothing/gloves/bubber/clussy = 3,
+	/obj/item/clothing/mask/gas/clown_colourable = 1,
+	/obj/item/clothing/mask/gas/clownbald = 1,
+	/obj/item/clothing/mask/gas/britches = 3,
+	/obj/item/clothing/mask/gas/bubber/clown = 3,
+	/obj/item/clothing/neck/tie/clown = 3,
+	/obj/item/clothing/shoes/clown_shoes/britches = 3,
+	/obj/item/clothing/shoes/clown_shoes/bubber/clussy = 3,
+	/obj/item/clothing/shoes/clown_shoes/bubber/jester = 3,
+	/obj/item/clothing/shoes/clown_shoes/heeled = 3,
+	/obj/item/clothing/suit/jacket/tailcoat/clown = 3,
+	/obj/item/clothing/suit/jacket/tailcoat/mime = 3,
+	/obj/item/clothing/under/rank/civilian/clown/jesteralt = 1,
+	/obj/item/clothing/under/bubbly_clown/skirt = 3,
+	/obj/item/clothing/under/rank/civilian/bubber/clown/jester = 3,
+	/obj/item/clothing/under/rank/civilian/bubber/clown/skirt = 3,
+	/obj/item/clothing/under/rank/civilian/bubber/clown/skirt/clussy = 3,
+	/obj/item/clothing/under/rank/civilian/clown/britches = 3,
+	/obj/item/clothing/under/rank/civilian/clown/clown_bunnysuit = 3,
+	/obj/item/clothing/under/rank/civilian/mime_bunnysuit = 3,
+	// BUBBER EDIT ADDITION END - Extra stuff
 ))
 
 GLOBAL_LIST_INIT(autodrobe_fancy_items, list(
@@ -113,6 +184,17 @@ GLOBAL_LIST_INIT(autodrobe_fancy_items, list(
 	/obj/item/clothing/suit/costume/changshan_blue = 3,
 	/obj/item/clothing/suit/costume/cheongsam_red = 3,
 	/obj/item/clothing/suit/costume/cheongsam_blue = 3,
+	// BUBBER EDIT ADDITION BEGIN - Extra stuff
+	/obj/item/clothing/head/beret/badge = 5,
+	/obj/item/clothing/mask/masquerade = 5,
+	/obj/item/clothing/mask/masquerade/feathered = 5,
+	/obj/item/clothing/mask/masquerade/two_colors = 5,
+	/obj/item/clothing/mask/masquerade/two_colors/feathered = 5,
+	/obj/item/clothing/under/costume/skyrat/kamishimo = 5,
+	/obj/item/clothing/under/costume/skyrat/kimono = 5,
+	/obj/item/clothing/under/costume/skyrat/yukata = 5,
+	/obj/item/clothing/under/pants/skyrat/vicvest = 5,
+	// BUBBER EDIT ADDITION END - Extra stuff
 ))
 
 GLOBAL_LIST_INIT(autodrobe_animal_items, list(
@@ -148,6 +230,12 @@ GLOBAL_LIST_INIT(autodrobe_service_items, list(
 	/obj/item/clothing/under/costume/maid = 3,
 	/obj/item/clothing/under/rank/civilian/janitor/maid = 3,
 	/obj/item/clothing/accessory/maidapron = 3,
+	// BUBBER EDIT ADDITION BEGIN - Extra stuff
+	/obj/item/clothing/gloves/maid_arm_covers = 1,
+	/obj/item/clothing/head/maid_headband = 1,
+	/obj/item/clothing/neck/maid_neck_cover = 1,
+	/obj/item/clothing/under/maid_costume = 1,
+	// BUBBER EDIT ADDITION END - Extra stuff
 ))
 
 GLOBAL_LIST_INIT(autodrobe_other_items, list(
@@ -163,6 +251,23 @@ GLOBAL_LIST_INIT(autodrobe_other_items, list(
 	/obj/item/clothing/mask/gas/prop = 4,
 	/obj/item/clothing/mask/gas/atmosprop = 3,
 	/obj/item/clothing/mask/animal/small/tribal = 1,
+	// BUBBER EDIT ADDITION BEGIN - Extra stuff
+	/obj/item/clothing/glasses/biker = 5,
+	/obj/item/clothing/head/costume/irs = 5,
+	/obj/item/clothing/head/costume/santa/gags = 5,
+	/obj/item/clothing/shoes/winterboots/christmas = 5,
+	/obj/item/clothing/shoes/winterboots/christmas/green = 5,
+	/obj/item/clothing/suit/costume/irs = 5,
+	/obj/item/clothing/suit/hooded/wintercoat/skyrat/christmas = 5,
+	/obj/item/clothing/suit/hooded/wintercoat/skyrat/christmas/green = 5,
+	/obj/item/clothing/suit/trenchblack = 5,
+	/obj/item/clothing/suit/trenchbrown = 5,
+	/obj/item/clothing/under/costume/skyrat/christmas = 5,
+	/obj/item/clothing/under/costume/skyrat/christmas/croptop = 5,
+	/obj/item/clothing/under/costume/skyrat/christmas/croptop/green = 5,
+	/obj/item/clothing/under/costume/skyrat/christmas/green = 5,
+	/obj/item/clothing/under/pants/tactical = 5,
+	// BUBBER EDIT ADDITION END - Extra stuff
 ))
 
 GLOBAL_LIST_INIT(autodrobe_premium_items, list(
@@ -202,6 +307,40 @@ GLOBAL_LIST_INIT(autodrobe_contraband_items, list(
 	/obj/item/gun/magic/wand/nothing = 2,
 	/obj/item/skillchip/musical = 3,
 	/obj/item/storage/box/tape_wizard = 1,
+	// BUBBER EDIT ADDITION BEGIN - Extra stuff
+	/obj/item/clothing/head/hats/imperial = 5,
+	/obj/item/clothing/head/hats/imperial/grey = 5,
+	/obj/item/clothing/head/hats/imperial/helmet = 5,
+	/obj/item/clothing/head/hats/imperial/red = 5,
+	/obj/item/clothing/head/playbunnyears/syndicate/fake = 3,
+	/obj/item/clothing/mask/balaclava/threehole = 5,
+	/obj/item/clothing/mask/balaclava/threehole/green = 5,
+	/obj/item/clothing/mask/balaclavaadjust = 5,
+	/obj/item/clothing/mask/breath/vox/octus = 3,
+	/obj/item/clothing/neck/tie/bunnytie/syndicate = 3, //Armored but it's only Fire and Acid, not a balance concern
+	/obj/item/clothing/neck/warrior_cape/loadout = 3,
+	/obj/item/clothing/suit/armor/vest/darkcarapace = 3,
+	/obj/item/clothing/suit/hooded/cloak/zuliecloak = 3,
+	/obj/item/clothing/suit/jacket/gorlex_harness = 3,
+	/obj/item/clothing/suit/jacket/tailcoat/syndicate/fake = 3,
+	/obj/item/clothing/suit/scraparmour = 3,
+	/obj/item/clothing/suit/toggle/jacket/zubber/bomber/syndicate/fake = 3,
+	/obj/item/clothing/under/rank/captain/skyrat/imperial/generic = 5,
+	/obj/item/clothing/under/rank/captain/skyrat/imperial/generic/grey = 5,
+	/obj/item/clothing/under/rank/captain/skyrat/imperial/generic/pants = 5,
+	/obj/item/clothing/under/rank/captain/skyrat/imperial/generic/red = 5,
+	/obj/item/clothing/under/rank/security/detective/cowboy/armorless = 3,
+	/obj/item/clothing/under/syndicate/skyrat/enclave = 3,
+	/obj/item/clothing/under/syndicate/skyrat/enclave/officer = 3,
+	/obj/item/clothing/under/syndicate/syndibunny/fake = 3,
+	/obj/item/clothing/head/bandana/snake = 3, //Solid, Vic and ... Venom I guess?
+	/obj/item/clothing/under/rank/civilian/bubber/boss = 3, //Okay maybe there is room for more than one Boss and Snake
+	/obj/item/clothing/gloves/bubber/boss = 3,
+	/obj/item/clothing/shoes/jackboots/boss = 3,
+	/obj/item/clothing/under/rank/civilian/bubber/snake = 3,
+	/obj/item/clothing/gloves/bubber/snake = 3,
+	/obj/item/clothing/shoes/jackboots/snake = 3,
+	// BUBBER EDIT ADDITION END - Extra stuff
 ))
 
 GLOBAL_VAR_INIT(all_autodrobe_items, (autodrobe_costumes_items +\
@@ -234,7 +373,6 @@ GLOBAL_VAR_INIT(all_autodrobe_items, (autodrobe_costumes_items +\
 	extra_price = PAYCHECK_COMMAND
 	payment_department = ACCOUNT_SRV
 	light_mask = "theater-light-mask"
-	allow_custom = TRUE
 
 /obj/machinery/vending/autodrobe/Initialize(mapload)
 	product_categories = list(

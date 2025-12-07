@@ -36,6 +36,9 @@
 	if(!owner || !owner.current || isbrain(owner.current))
 		return
 
+	if(HAS_TRAIT(owner.current, TRAIT_SHADED))
+		return
+
 	if(!istype(owner.current.loc, /obj/structure))
 		if(COOLDOWN_FINISHED(src, bloodsucker_spam_sol_burn))
 			if(bloodsucker_level > 0)

@@ -19,7 +19,7 @@
 
 /obj/item/storage/toolbox/ammobox/full/mosin
 	name = "ammo box (Sakhno)"
-	ammo_type = /obj/item/ammo_box/strilka310
+	ammo_type = /obj/item/ammo_box/speedloader/strilka310
 	amount = 7
 
 /obj/item/storage/toolbox/ammobox/full/krinkov

@@ -242,7 +242,7 @@
 		to_chat(user, span_warning("You have exhausted your usefulness to the Necropolis."))
 	return FALSE
 
-/obj/effect/mob_spawn/ghost_role/human/ash_walker/special(mob/living/carbon/human/spawned_human)
+/obj/effect/mob_spawn/ghost_role/human/ash_walker/special(mob/living/carbon/human/spawned_human, mob/mob_possessor)
 	// SKYRAT EDIT ADDITION BEGIN
 	spawned_human.fully_replace_character_name(null, spawned_human.generate_random_mob_name(TRUE)) // SKYRAT EDIT MOVE - Moving before parent call prevents char name randomization
 	quirks_enabled = TRUE // ghost role quirks
@@ -301,7 +301,7 @@
 	random_appearance = FALSE // SKYRAT EDIT ADDITION
 	deletes_on_zero_uses_left = FALSE
 
-/obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/special(mob/living/new_spawn)
+/obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/special(mob/living/new_spawn, mob/mob_possessor)
 	. = ..()
 	new_spawn.grant_language(/datum/language/codespeak, source = LANGUAGE_SPAWNER) // SKYRAT EDIT CHANGE - ORIGINAL: new_spawn.grant_language(/datum/language/codespeak, source = LANGUAGE_MIND)
 

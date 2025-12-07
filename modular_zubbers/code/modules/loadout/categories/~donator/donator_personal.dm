@@ -34,7 +34,7 @@
 *	GLASSES
 */
 
-/datum/loadout_item/glasses/silk_blindfold
+/datum/loadout_item/glasses/costume/silk_blindfold
 	name = "Silk Blindfold"
 	item_path = /obj/item/clothing/glasses/trickblindfold/lace
 	ckeywhitelist = list("thedragmeme")
@@ -124,12 +124,12 @@
 *	SHOES
 */
 
-/datum/loadout_item/shoes/lace_heels
+/datum/loadout_item/shoes/formal/lace_heels
 	name = "Elegant Heels"
 	item_path = /obj/item/clothing/shoes/heels/drag/lace
 	ckeywhitelist = list("thedragmeme")
 
-/datum/loadout_item/shoes/diver //Donor item for patriot210
+/datum/loadout_item/shoes/boots/diver //Donor item for patriot210
 	name = "Black Divers Boots"
 	item_path = /obj/item/clothing/shoes/boots/diver
 	//ckeywhitelist = list("sexmaster", "leafydasurvivor")

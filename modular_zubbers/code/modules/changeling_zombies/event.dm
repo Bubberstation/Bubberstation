@@ -30,7 +30,7 @@
 /obj/structure/closet/crate/changeling_zombie/PopulateContents()
 	new /obj/item/reagent_containers/cup/glass/changeling_zombie_virus(src)
 	var/obj/item/reagent_containers/cup/glass/changeling_zombie_virus/empty/broken_one = new(src)
-	broken_one.smash(src.loc,null,FALSE,TRUE)
+	broken_one.smash(src.loc, null, null, TRUE)
 
 //The cure.
 /obj/item/paper/fluff/shuttles/changeling_zombie_instructions/Initialize(mapload, ...)

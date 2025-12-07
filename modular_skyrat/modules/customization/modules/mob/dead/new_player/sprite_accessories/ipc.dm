@@ -12,6 +12,7 @@
 /datum/sprite_accessory/screen/none
 	name = SPRITE_ACCESSORY_NONE
 	icon_state = null
+	factual = FALSE
 
 /datum/sprite_accessory/screen/blank
 	name = "Blank"
@@ -159,7 +160,7 @@
 	if(istype(wearer.head, /obj/item/clothing/head/mod))
 		return FALSE
 //	Hide accessory if flagged to do so
-	if((wearer.head?.flags_inv & HIDEHAIR || wearer.wear_mask?.flags_inv & HIDEHAIR) \
+	if((wearer.covered_slots & HIDEHAIR) \
 		// This line basically checks if we FORCE accessory-ears to show, for items with earholes like Balaclavas and Luchador masks
 		&& ((wearer.head && !(wearer.head.flags_inv & SHOWSPRITEEARS)) || (wearer.wear_mask && !(wearer.wear_mask?.flags_inv & SHOWSPRITEEARS))))
 		return TRUE
@@ -168,6 +169,7 @@
 	name = SPRITE_ACCESSORY_NONE
 	icon_state = "None"
 	recommended_species = null
+	factual = FALSE
 
 /datum/sprite_accessory/antenna/antennae
 	name = "Angled Antennae"

@@ -401,8 +401,10 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 /datum/movespeed_modifier/overweight
 	multiplicative_slowdown = 0.5 //Around that of a dufflebag, enough to be impactful but not debilitating.
 
-/datum/mood_event/fat/New(mob/parent_mob, ...)
+/datum/mood_event/fat/can_effect_mob(datum/mood/home, mob/living/target, ...)
 	. = ..()
-	if(HAS_TRAIT_FROM(parent_mob, TRAIT_FAT, QUIRK_TRAIT))
+
+	if(HAS_TRAIT_FROM(target, TRAIT_FAT, QUIRK_TRAIT))
 		mood_change = 0 // They are probably used to it, no reason to be viscerally upset about it.
 		description = "<b>I'm fat.</b>"
+	return TRUE

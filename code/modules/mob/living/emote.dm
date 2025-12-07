@@ -416,8 +416,10 @@
 	message = "screams!"
 	message_mime = "acts out a scream!"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
-	mob_type_blacklist_typecache = list(/mob/living/brain, /mob/living/carbon/human)
+	mob_type_blacklist_typecache = list(/mob/living/brain)
 	sound_wall_ignore = TRUE
+	specific_emote_audio_cooldown = 10 SECONDS
+	vary = TRUE
 
 /datum/emote/living/scream/run_emote(mob/user, params, type_override, intentional = FALSE)
 	if(!intentional && HAS_TRAIT(user, TRAIT_ANALGESIA))
@@ -428,6 +430,12 @@
 	. = ..()
 	if(!intentional && isanimal_or_basicmob(user))
 		return "makes a loud and pained whimper."
+
+/datum/emote/living/scream/get_sound(mob/living/user)
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/humie = user
+	return humie.dna.species.get_scream_sound(user)
 
 /datum/emote/living/scowl
 	key = "scowl"
@@ -824,3 +832,15 @@
 
 /datum/emote/living/carbon/whistle/get_sound(mob/living/user)
 	return 'sound/mobs/humanoids/human/whistle/whistle1.ogg'
+
+/datum/emote/living/gulp
+	key = "gulp"
+	key_third_person = "gulps"
+	message = "gulps nervously."
+	message_mime = "gulps silently!"
+	vary = TRUE
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+
+/datum/emote/living/gulp/get_sound(mob/living/user)
+	return pick('sound/mobs/humanoids/human/gulp/gulp1.ogg',
+				'sound/mobs/humanoids/human/gulp/gulp2.ogg')

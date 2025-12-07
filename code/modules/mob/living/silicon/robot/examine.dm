@@ -52,3 +52,6 @@
 	. += "</span>"
 
 	. += ..()
+
+/mob/living/silicon/robot/examine_descriptor(mob/user)
+	return "cyborg"

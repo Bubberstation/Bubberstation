@@ -31,6 +31,7 @@
 	density = TRUE
 	active_power_usage = 240 KILO WATTS
 	idle_power_usage = 24 KILO WATTS
+	ignore_size = TRUE
 	/// Is someone being processed inside of the machine?
 	var/processing = FALSE
 	/// How long does the machine take to work?
@@ -215,6 +216,7 @@
 
 	patient.client?.prefs?.safe_transfer_prefs_to_with_damage(patient, visuals_only = TRUE)
 	patient.dna.update_dna_identity()
+	patient.updateappearance()
 	patient.wash(CLEAN_SCRUB)
 	if(patient.dna.real_name != original_name)
 		log_game("[key_name(patient)] has used the Self-Actualization Device at [loc_name(src)], changed the name of their character. \
@@ -224,7 +226,9 @@
 
 	playsound(src, 'sound/machines/microwave/microwave-end.ogg', 100, FALSE)
 	say("Procedure complete! Enjoy your life being a new you!")
-
+	if(isethereal(patient.dna.species))
+		var/datum/species/ethereal/ethereal = patient.dna.species
+		ethereal.refresh_light_color(patient)
 	open_machine()
 	SSquirks.OverrideQuirks(patient, patient.client)
 
