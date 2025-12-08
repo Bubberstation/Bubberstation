@@ -93,8 +93,8 @@
 /datum/round_event_control/cortical_borer
 	name = "Cortical Borer Infestation"
 	typepath = /datum/round_event/ghost_role/cortical_borer
-	weight = 3
-	min_players = 20
+	weight = 10
+	min_players = 999
 	max_occurrences = 0 //should only ever happen once. If they were enabled, that is.
 	category = EVENT_CATEGORY_ENTITIES
 	description = "A cortical borer has appeared on station. It will also attempt to produce eggs, and will attempt to gather willing hosts and learn chemicals through the blood."
@@ -146,8 +146,8 @@
 	midround_type = LIGHT_MIDROUND
 	pref_flag = ROLE_BORER
 	min_antag_cap = 1
-	weight = 0
-	min_pop = 999
+	weight = 3
+	min_pop = 20
 	repeatable = TRUE
 
 /datum/dynamic_ruleset/midround/from_ghosts/cortical_borer/create_ruleset_body()
