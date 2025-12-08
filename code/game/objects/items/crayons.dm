@@ -499,6 +499,15 @@
 	else if(drawing in (graffiti|oriented))
 		temp = "graffiti"
 
+	//BUBBER EDIT START - Family tagging
+	var/gang_mode
+	if(user.mind)
+		gang_mode = user.mind.has_antag_datum(/datum/antagonist/gang)
+
+	if(gang_mode && (!can_claim_for_gang(user, target, gang_mode)))
+		return
+	//BUBBER EDIT END - Family tagging
+
 	var/graf_rot
 	if(drawing in oriented)
 		switch(user.dir)
@@ -518,7 +527,7 @@
 		clickx = clamp(text2num(LAZYACCESS(modifiers, ICON_X)) - 16, -(ICON_SIZE_X/2), ICON_SIZE_X/2)
 		clicky = clamp(text2num(LAZYACCESS(modifiers, ICON_Y)) - 16, -(ICON_SIZE_Y/2), ICON_SIZE_Y/2)
 
-	if(!instant)
+	if(gang_mode || !instant) //Bubber line edit: used to be "if(!instant)"
 		to_chat(user, span_notice("You start drawing a [temp] on \the [target]..."))
 
 	if(pre_noise)
@@ -545,26 +554,35 @@
 
 	if(actually_paints)
 		var/obj/effect/decal/cleanable/crayon/created_art
-		switch(paint_mode)
-			if(PAINT_NORMAL)
-				created_art = new(target, paint_color, drawing, temp, graf_rot)
-				created_art.pixel_x = clickx
-				created_art.pixel_y = clicky
-			if(PAINT_LARGE_HORIZONTAL)
-				var/turf/left = locate(target.x-1,target.y,target.z)
-				var/turf/right = locate(target.x+1,target.y,target.z)
-				if(isValidSurface(left) && isValidSurface(right))
-					created_art = new(left, paint_color, drawing, temp, graf_rot, PAINT_LARGE_HORIZONTAL_ICON)
-					affected_turfs += left
-					affected_turfs += right
-				else
-					balloon_alert(user, "no room!")
-					return ITEM_INTERACT_BLOCKING
-		created_art.add_hiddenprint(user)
-		if(istagger)
-			created_art.AddElement(/datum/element/art, GOOD_ART)
+		//BUBBER EDIT START - Families territory claims
+		if(gang_mode)
+			if(!can_claim_for_gang(user, target))
+				return
+			tag_for_gang(user, target, gang_mode)
+			affected_turfs += target
 		else
-			created_art.AddElement(/datum/element/art, BAD_ART)
+			//BUBBER EDIT END - Families territory claims
+			switch(paint_mode)
+				if(PAINT_NORMAL)
+					created_art = new(target, paint_color, drawing, temp, graf_rot)
+					created_art.pixel_x = clickx
+					created_art.pixel_y = clicky
+				if(PAINT_LARGE_HORIZONTAL)
+					var/turf/left = locate(target.x-1,target.y,target.z)
+					var/turf/right = locate(target.x+1,target.y,target.z)
+					if(isValidSurface(left) && isValidSurface(right))
+						created_art = new(left, paint_color, drawing, temp, graf_rot, PAINT_LARGE_HORIZONTAL_ICON)
+						affected_turfs += left
+						affected_turfs += right
+					else
+						balloon_alert(user, "no room!")
+						return ITEM_INTERACT_BLOCKING
+			created_art.add_hiddenprint(user)
+			if(istagger)
+				created_art.AddElement(/datum/element/art, GOOD_ART)
+			else
+				created_art.AddElement(/datum/element/art, BAD_ART)
+
 
 	if(!instant)
 		to_chat(user, span_notice("You finish drawing \the [temp]."))
@@ -629,6 +647,53 @@
 		color = paint_color,
 		use_bold = TRUE,
 	)
+
+//BUBBER EDIT START - Claiming Procs for Families
+/obj/item/toy/crayon/proc/can_claim_for_gang(mob/user, atom/target, datum/antagonist/gang/user_gang)
+	var/area/A = get_area(target)
+	if(!A || (!is_station_level(A.z)))
+		to_chat(user, span_warning("[A] is unsuitable for tagging."))
+		return FALSE
+
+	var/spraying_over = FALSE
+	for(var/obj/effect/decal/cleanable/crayon/gang/G in target)
+		spraying_over = TRUE
+
+	for(var/obj/machinery/power/apc in target)
+		to_chat(user, span_warning("You can't tag an APC."))
+		return FALSE
+
+	var/obj/effect/decal/cleanable/crayon/gang/occupying_gang = territory_claimed(A, user)
+	if(occupying_gang && !spraying_over)
+		if(occupying_gang.my_gang == user_gang.my_gang)
+			to_chat(user, span_danger("[A] has already been tagged by our gang!"))
+		else
+			to_chat(user, span_danger("[A] has already been tagged by a gang! You must find and spray over the old tag instead!"))
+		return FALSE
+
+	// stolen from oldgang lmao
+	return TRUE
+
+/obj/item/toy/crayon/proc/tag_for_gang(mob/user, atom/target, datum/antagonist/gang/user_gang)
+	for(var/obj/effect/decal/cleanable/crayon/old_marking in target)
+		qdel(old_marking)
+
+	var/area/territory = get_area(target)
+
+	var/obj/effect/decal/cleanable/crayon/gang/tag = new /obj/effect/decal/cleanable/crayon/gang(target)
+	tag.my_gang = user_gang.my_gang
+	tag.icon_state = "[user_gang.gang_id]_tag"
+	tag.name = "[tag.my_gang.name] gang tag"
+	tag.desc = "Looks like someone's claimed this area for [tag.my_gang.name]."
+	to_chat(user, span_notice("You tagged [territory] for [tag.my_gang.name]!"))
+
+/obj/item/toy/crayon/proc/territory_claimed(area/territory, mob/user)
+	for(var/obj/effect/decal/cleanable/crayon/gang/G in GLOB.gang_tags)
+		if(get_area(G) == territory)
+			return G
+
+
+//BUBBER EDIT END - Claiming Procs for Families
 
 /obj/item/toy/crayon/red
 	name = "red crayon"
