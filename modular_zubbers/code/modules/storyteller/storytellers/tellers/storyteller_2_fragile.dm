@@ -20,4 +20,4 @@
 	threshold_moderate = 1800
 	threshold_major = 10000
 	threshold_crewset = 3000
-	threshold_ghostset = 9000
+	threshold_ghostset = 6800
