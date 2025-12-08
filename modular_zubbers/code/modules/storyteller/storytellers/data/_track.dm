@@ -7,4 +7,4 @@
 	var/threshold_moderate = 1800
 	var/threshold_major = 7000
 	var/threshold_crewset = 2400
-	var/threshold_ghostset = 7500
+	var/threshold_ghostset = 6000
