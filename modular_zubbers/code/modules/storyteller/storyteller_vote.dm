@@ -11,17 +11,13 @@
 	count_method = VOTE_COUNT_METHOD_RANKED
 	winner_method = VOTE_WINNER_METHOD_RANKED
 	ranked_winner_threshold = 50
-	display_statistics = TRUE
+	display_statistics = FALSE
 	vote_reminder = TRUE
 
 /datum/vote/storyteller/New()
 	. = ..()
 	default_choices = list()
 	default_choices = SSgamemode.storyteller_vote_choices()
-
-/datum/vote/storyteller/initiate_vote(initiator, duration)
-	. = ..()
-	to_chat(world, vote_font(fieldset_block("Storyteller Vote", "[span_vote_notice("All votes matter!")]", "boxed_message purple_box")))
 
 /datum/vote/storyteller/return_desc(vote_name)
 	return SSgamemode.storyteller_desc(vote_name)
