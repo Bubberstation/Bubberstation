@@ -1742,7 +1742,8 @@
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 8
 	},
-/obj/structure/reagent_dispensers/water_cooler/punch_cooler,
+/obj/structure/reagent_dispensers/water_cooler/punch_cooler/medical,
+/obj/effect/turf_decal/tile/purple/opposingcorners,
 /turf/open/floor/iron/dark,
 /area/station/medical/medbay/lobby)
 "aCi" = (
@@ -5707,6 +5708,7 @@
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 8
 	},
+/obj/effect/turf_decal/trimline/purple/punch,
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/medbay/lobby)
 "bXS" = (
@@ -15308,6 +15310,7 @@
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
 	},
+/obj/effect/turf_decal/trimline/purple/punch,
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/medbay/lobby)
 "fgA" = (
@@ -20925,6 +20928,7 @@
 /obj/effect/turf_decal/tile/neutral/anticorner/contrasted{
 	dir = 8
 	},
+/obj/effect/turf_decal/trimline/purple/punch,
 /turf/open/floor/iron/dark,
 /area/station/medical/medbay/lobby)
 "gOo" = (
@@ -40557,6 +40561,14 @@
 	},
 /turf/open/floor/iron,
 /area/station/cargo/storage)
+"mWc" = (
+/obj/effect/turf_decal/tile/blue/opposingcorners,
+/obj/effect/turf_decal/tile/blue/anticorner/contrasted{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/purple/warning,
+/turf/open/floor/iron/showroomfloor,
+/area/station/medical/medbay/lobby)
 "mWg" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/reagent_dispensers/watertank,
@@ -57623,6 +57635,9 @@
 	dir = 4
 	},
 /obj/effect/landmark/navigate_destination/med,
+/obj/effect/turf_decal/trimline/purple/punch{
+	dir = 8
+	},
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/central/fore)
 "sCr" = (
@@ -62273,6 +62288,9 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/public/glass{
 	name = "Medbay"
+	},
+/obj/effect/turf_decal/trimline/purple/punch{
+	dir = 8
 	},
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/central/fore)
@@ -74083,6 +74101,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
+/obj/effect/turf_decal/trimline/purple/warning,
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/medbay/lobby)
 "xEB" = (
@@ -98583,7 +98602,7 @@ ciA
 krM
 xvW
 fXm
-nes
+mWc
 uTM
 eyA
 eIW
