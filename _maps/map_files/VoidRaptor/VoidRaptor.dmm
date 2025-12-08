@@ -1160,6 +1160,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/trimline/purple/punch,
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 8
 	},
@@ -2106,6 +2107,9 @@
 /area/station/security/armory)
 "aFv" = (
 /obj/machinery/door/firedoor,
+/obj/effect/turf_decal/trimline/purple/punch{
+	dir = 1
+	},
 /turf/open/floor/iron/white/smooth_large,
 /area/station/medical/medbay/lobby)
 "aFy" = (
@@ -25695,6 +25699,9 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/effect/landmark/navigate_destination/med,
+/obj/effect/turf_decal/trimline/purple/punch{
+	dir = 1
+	},
 /turf/open/floor/iron/white/smooth_large,
 /area/station/medical/medbay/lobby)
 "hxv" = (
@@ -27033,6 +27040,9 @@
 	dir = 4;
 	name = "Arrivals"
 	},
+/obj/effect/turf_decal/trimline/purple/punch{
+	dir = 8
+	},
 /turf/open/floor/iron/white/smooth_large,
 /area/station/medical/medbay/lobby)
 "hQF" = (
@@ -27339,6 +27349,7 @@
 "hTP" = (
 /obj/machinery/holopad,
 /obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/trimline/purple/warning,
 /turf/open/floor/iron/white/smooth_large,
 /area/station/medical/medbay/lobby)
 "hTW" = (
@@ -32502,6 +32513,7 @@
 /turf/open/floor/plating,
 /area/station/engineering/supermatter)
 "jrm" = (
+/obj/effect/turf_decal/trimline/purple/punch,
 /turf/open/floor/iron/white/smooth_large,
 /area/station/medical/medbay/lobby)
 "jrn" = (
@@ -34415,10 +34427,8 @@
 /turf/open/floor/plating,
 /area/station/security/prison/garden)
 "jPU" = (
-/obj/effect/turf_decal/trimline/blue/filled/corner{
-	dir = 8
-	},
 /obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/trimline/purple/punch,
 /turf/open/floor/iron/white/smooth_corner{
 	dir = 8
 	},
@@ -35421,8 +35431,8 @@
 	},
 /area/station/science/xenobiology)
 "kgj" = (
-/obj/effect/turf_decal/trimline/blue/filled/warning,
 /obj/effect/landmark/start/hangover,
+/obj/effect/turf_decal/trimline/purple/warning,
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 1
 	},
@@ -35636,6 +35646,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/firedoor,
+/obj/effect/turf_decal/trimline/purple/warning,
 /turf/open/floor/iron/white/smooth_large,
 /area/station/medical/medbay/lobby)
 "kiZ" = (
@@ -54890,14 +54901,15 @@
 	},
 /area/station/science/research)
 "ppb" = (
-/obj/effect/turf_decal/trimline/blue/filled/warning{
-	dir = 10
-	},
 /obj/structure/closet/firecloset/wall{
 	pixel_x = -32
 	},
 /obj/effect/turf_decal/trimline/white/end{
 	dir = 4
+	},
+/obj/effect/turf_decal/trimline/purple/punch,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
@@ -63212,11 +63224,10 @@
 /turf/open/floor/pod/dark,
 /area/station/service/chapel)
 "rFl" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
+/obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 4
 	},
-/obj/effect/landmark/start/assistant,
-/obj/structure/reagent_dispensers/water_cooler/punch_cooler,
+/obj/structure/reagent_dispensers/water_cooler/punch_cooler/medical,
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 8
 	},
@@ -81468,6 +81479,13 @@
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/command/heads_quarters/cmo)
+"wCC" = (
+/obj/machinery/door/firedoor,
+/obj/effect/turf_decal/trimline/purple/punch{
+	dir = 8
+	},
+/turf/open/floor/iron/white/smooth_large,
+/area/station/medical/medbay/lobby)
 "wCL" = (
 /obj/structure/window/spawner/directional/south,
 /obj/structure/window/spawner/directional/west,
@@ -82004,6 +82022,13 @@
 	dir = 8
 	},
 /area/station/cargo/storage)
+"wJU" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/trimline/purple/warning,
+/turf/open/floor/iron/white/smooth_large,
+/area/station/medical/medbay/lobby)
 "wKa" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -118935,7 +118960,7 @@ dLw
 cnC
 uai
 xRC
-sSx
+wJU
 sSx
 sCj
 vHW
@@ -120225,7 +120250,7 @@ uTt
 toS
 oMY
 dfF
-aFv
+wCC
 hQx
 fDn
 fDn
