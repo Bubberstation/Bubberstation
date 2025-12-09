@@ -60,7 +60,7 @@
 	SIGNAL_HANDLER
 
 	flick("recycler_grind", src)
-	playsound(src, item_recycle_sound, 50, TRUE)
+	conditional_pref_sound(src, item_recycle_sound, vol = 50, vary = TRUE, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
 	use_energy(min(active_power_usage * 0.25, amount_inserted / 100))
 
 	if(amount_inserted)
