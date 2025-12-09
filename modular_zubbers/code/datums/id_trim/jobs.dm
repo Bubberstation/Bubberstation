@@ -38,7 +38,6 @@
 	job = /datum/job/nanotrasen_consultant
 	honorifics = list("Advisor", "Consultant", "Representative", "Rep.", "Interest Officer", "Liason")
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
-	return ..()
 
 /datum/id_trim/job/captain
 	job = /datum/job/captain
