@@ -28,7 +28,6 @@
 	job = /datum/job/head_of_personnel
 	honorifics = list("Personnel Officer", "Officer")
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
-	return ..()
 
 /datum/id_trim/job/head_of_security/New()
 	job = /datum/job/head_of_security
