@@ -1265,9 +1265,6 @@
 /obj/item/clothing/under/rank/security/head_of_security/peacekeeper
 	unique_reskin = null
 
-/obj/item/clothing/under/rank/security/head_of_security/skyrat/imperial
-	unique_reskin = null
-
 /obj/item/clothing/under/rank/security/head_of_security/bunnysuit
 	unique_reskin = null
 
