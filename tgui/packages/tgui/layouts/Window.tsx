@@ -24,6 +24,7 @@ import {
   recallWindowGeometry,
   resizeStartHandler,
   setWindowKey,
+  setWindowPosition, // BUBBER EDIT ADDITION - TGUI WINDOW RESET
 } from '../drag';
 import { createLogger } from '../logging';
 import { Layout } from './Layout';
@@ -162,6 +163,10 @@ type ContentProps = Partial<{
 const WindowContent = (props: ContentProps) => {
   const { className, fitted, children, ...rest } = props;
 
+  // BUBBER EDIT ADDITION BEGIN - TGUI WINDOW RESET
+  // Allow front end to force a position reset.
+  Byond.subscribeTo('resetposition', function (payload) { setWindowPosition([0, 0]); });
+  // BUBBER EDIT ADDITION END
   return (
     <Layout.Content
       className={classes(['Window__content', className])}
