@@ -14,7 +14,6 @@
 	job = /datum/job/corrections_officer
 	honorifics = list("Officer")
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
-	return ..()
 
 /datum/id_trim/job/curator
 	job = /datum/job/curator
