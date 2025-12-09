@@ -49,10 +49,6 @@
 	item_path = /obj/item/clothing/neck/cloak/colonial/nri_police
 	restricted_roles = list(ALL_JOBS_SEC, JOB_CUSTOMS_AGENT)
 
-/datum/loadout_item/neck/bunnypendant
-	name = "Rabbit Pendant"
-	item_path = /obj/item/clothing/neck/bunny_pendant
-
 /datum/loadout_item/neck/scarf/pride
 	name = "Pride Scarf"
 	item_path = /obj/item/clothing/neck/scarf/pride

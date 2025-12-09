@@ -48,20 +48,6 @@
 		/obj/item/clothing/mask/gas/seva,
 	)
 
-/datum/voucher_set/mining_suit/carota
-	name = "Bunny Suit"
-	description = "Designed for Miners on the planet of Carota, while you might get some odd looks from your co-workers, decency is a foreign word around here."
-	icon = 'icons/mob/simple/rabbit.dmi'
-	icon_state = "rabbit_white"
-	set_items = list(
-		/obj/item/clothing/head/playbunnyears/miner,
-		/obj/item/clothing/neck/tie/bunnytie/miner,
-		/obj/item/clothing/suit/jacket/tailcoat/miner,
-		/obj/item/clothing/under/rank/cargo/miner/bunnysuit,
-		/obj/item/clothing/shoes/workboots/mining/heeled,
-		/obj/item/clothing/mask/gas/explorer, //No bunny mask, this'll have to do.
-	)
-
 /datum/voucher_set/mining_suit/winter
 	name = "Winter Suit"
 	description = "Brr! Chilly! While this won't get you far on Lavaland, it's perfectly suited for colder locales! Includes free Hot Coco!"
