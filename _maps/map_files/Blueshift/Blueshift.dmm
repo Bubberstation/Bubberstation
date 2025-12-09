@@ -19405,7 +19405,8 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/wall_healer/directional/south,
 /obj/effect/turf_decal/trimline/purple/warning{
-	dir = 8
+	dir = 8;
+	alpha = 160
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
@@ -33056,8 +33057,10 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/trimline/purple/punch,
-/turf/open/floor/iron/white,
+/obj/effect/turf_decal/trimline/purple/punch{
+	alpha = 160
+	},
+/turf/open/floor/iron/white/smooth_edge,
 /area/station/medical/medbay/lobby)
 "gnb" = (
 /obj/effect/decal/cleanable/dirt{
@@ -42670,9 +42673,10 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/trimline/purple/punch{
-	dir = 4
+	dir = 4;
+	alpha = 160
 	},
-/turf/open/floor/iron/white/side{
+/turf/open/floor/iron/white/smooth_edge{
 	dir = 4
 	},
 /area/station/medical/medbay/lobby)
@@ -74045,9 +74049,12 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/trimline/purple/punch{
+	dir = 8;
+	alpha = 160
+	},
+/turf/open/floor/iron/white/smooth_edge{
 	dir = 8
 	},
-/turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "ogR" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -93308,11 +93315,10 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/trimline/purple/warning{
-	dir = 4
+	dir = 4;
+	alpha = 160
 	},
-/turf/open/floor/iron/white/side{
-	dir = 4
-	},
+/turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "rNe" = (
 /obj/machinery/door/airlock/maintenance,
@@ -112739,9 +112745,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/turf_decal/trimline/purple/punch{
-	dir = 4
+	dir = 4;
+	alpha = 160
 	},
-/turf/open/floor/iron/white/side{
+/turf/open/floor/iron/white/smooth_edge{
 	dir = 4
 	},
 /area/station/medical/medbay/lobby)
@@ -120071,7 +120078,9 @@
 "wPf" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/light/floor,
-/obj/effect/turf_decal/trimline/purple/warning,
+/obj/effect/turf_decal/trimline/purple/warning{
+	alpha = 160
+	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "wPg" = (
