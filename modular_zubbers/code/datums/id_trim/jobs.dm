@@ -43,7 +43,11 @@
 	job = /datum/job/captain
 	honorifics = list("Facility Director", "Station Commander", "Commander", "CMDR.", "Site Manager")
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
-	return ..()
+	/datum/id_trim/job/captain
+		honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
+	/datum/id_trim/job/captain/New()
+		honorifics += list("Facility Director", "Station Commander", "Commander", "CMDR.", "Site Manager")
+		return ..()
 
 /datum/id_trim/job/cook/chef
 	job = /datum/job/cook
