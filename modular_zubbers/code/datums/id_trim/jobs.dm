@@ -24,7 +24,6 @@
 /datum/id_trim/job/geneticist
 	job = /datum/job/geneticist
 	honorifics = list("Researcher")
-	return ..()
 
 /datum/id_trim/job/head_of_personnel
 	job = /datum/job/head_of_personnel
