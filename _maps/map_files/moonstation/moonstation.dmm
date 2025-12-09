@@ -6172,7 +6172,8 @@
 /area/station/service/bar)
 "bHQ" = (
 /obj/effect/turf_decal/trimline/purple/warning{
-	dir = 1
+	dir = 1;
+	alpha = 160
 	},
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/iron/white,
@@ -8433,9 +8434,12 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/item/radio/intercom/directional/east,
 /obj/effect/turf_decal/trimline/purple/punch{
+	dir = 1;
+	alpha = 160
+	},
+/turf/open/floor/iron/white/smooth_edge{
 	dir = 1
 	},
-/turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "coa" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
@@ -9178,7 +9182,8 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/trimline/purple/warning{
-	dir = 4
+	dir = 4;
+	alpha = 160
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
@@ -13644,10 +13649,11 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/self_actualization_device,
 /obj/effect/turf_decal/trimline/purple/warning{
-	dir = 1
+	dir = 9;
+	alpha = 160
 	},
+/obj/machinery/self_actualization_device,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "dKl" = (
@@ -33443,9 +33449,12 @@
 "iXx" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/turf_decal/trimline/purple/punch{
+	dir = 4;
+	alpha = 160
+	},
+/turf/open/floor/iron/white/smooth_edge{
 	dir = 4
 	},
-/turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "iXA" = (
 /obj/effect/turf_decal/stripes/white/line{
@@ -38547,7 +38556,8 @@
 "kpS" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /obj/effect/turf_decal/trimline/purple/warning{
-	dir = 4
+	dir = 4;
+	alpha = 160
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
@@ -50927,9 +50937,12 @@
 /area/station/maintenance/port/fore)
 "nFM" = (
 /obj/effect/turf_decal/trimline/purple/punch{
+	dir = 4;
+	alpha = 160
+	},
+/turf/open/floor/iron/white/smooth_edge{
 	dir = 4
 	},
-/turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "nFN" = (
 /turf/closed/wall,
@@ -58386,9 +58399,12 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/trimline/purple/punch{
+	dir = 1;
+	alpha = 160
+	},
+/turf/open/floor/iron/white/smooth_edge{
 	dir = 1
 	},
-/turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "pAA" = (
 /obj/effect/spawner/random/burgerstation/liquid,
@@ -76344,9 +76360,6 @@
 	},
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
-/obj/effect/turf_decal/trimline/purple/warning{
-	dir = 1
-	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "uri" = (
@@ -84618,13 +84631,19 @@
 /obj/machinery/door/airlock/public/glass{
 	name = "Medbay"
 	},
-/obj/effect/turf_decal/tile/blue/fourcorners,
 /obj/machinery/door/firedoor,
-/obj/effect/turf_decal/trimline/yellow/warning{
+/obj/effect/turf_decal/tile/blue/half,
+/obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
 	},
-/obj/effect/turf_decal/trimline/purple/punch,
-/turf/open/floor/iron/white/side,
+/obj/effect/turf_decal/trimline/purple/punch{
+	alpha = 160
+	},
+/obj/effect/turf_decal/trimline/purple/warning{
+	dir = 1;
+	alpha = 160
+	},
+/turf/open/floor/iron/white/smooth_edge,
 /area/station/medical/medbay/lobby)
 "wGb" = (
 /obj/structure/sign/warning/cold_temp/directional/south,
@@ -84852,14 +84871,20 @@
 /obj/machinery/door/airlock/public/glass{
 	name = "Medbay"
 	},
-/obj/effect/turf_decal/tile/blue/fourcorners,
 /obj/machinery/door/firedoor,
-/obj/effect/turf_decal/trimline/yellow/warning{
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/tile/blue/half,
+/obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
 	},
-/obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/trimline/purple/punch,
-/turf/open/floor/iron/white/side,
+/obj/effect/turf_decal/trimline/purple/punch{
+	alpha = 160
+	},
+/obj/effect/turf_decal/trimline/purple/warning{
+	dir = 1;
+	alpha = 160
+	},
+/turf/open/floor/iron/white/smooth_edge,
 /area/station/medical/medbay/lobby)
 "wIV" = (
 /obj/structure/sign/warning/directional/south,
@@ -86925,11 +86950,14 @@
 	},
 /obj/effect/turf_decal/tile/blue/fourcorners,
 /obj/machinery/door/firedoor,
-/obj/effect/turf_decal/trimline/yellow/warning{
-	dir = 1
+/obj/effect/turf_decal/trimline/purple/warning{
+	alpha = 160
 	},
-/obj/effect/turf_decal/trimline/purple/warning,
-/turf/open/floor/iron/white/side,
+/obj/effect/turf_decal/trimline/purple/warning{
+	dir = 1;
+	alpha = 160
+	},
+/turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "xmM" = (
 /obj/machinery/computer/message_monitor{
