@@ -617,11 +617,11 @@
 	roundend_category = "Morningstar Member"
 	gang_name = "Morningstar"
 	gang_id = "MS"
-	acceptable_clothes = list(/obj/item/clothing/suit/jacket/oversized,
+	acceptable_clothes = list(/obj/item/clothing/suit/morningstar,
 		/obj/item/clothing/under/costume/morningstar,
 		/obj/item/clothing/head/morningstar,
 		/obj/item/clothing/shoes/morningstar)
-	free_clothes = list(/obj/item/clothing/suit/jacket/oversized,
+	free_clothes = list(/obj/item/clothing/suit/morningstar,
 		/obj/item/clothing/under/costume/morningstar,
 		/obj/item/clothing/head/morningstar,
 		/obj/item/clothing/shoes/morningstar,

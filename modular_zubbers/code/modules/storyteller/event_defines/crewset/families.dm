@@ -28,7 +28,7 @@
 
 
 
-/datum/round_event_control/antagonist/solo/families/midround
+/datum/round_event_control/antagonist/families/midround
 	name = "Family head aspirant"
 	roundstart = FALSE
 	antag_flag = ROLE_FAMILY_HEAD_ASPIRANT
