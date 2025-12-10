@@ -18,7 +18,7 @@
 
 /datum/id_trim/job/curator
 	job = /datum/job/curator
-	honorifics = list("Professor", "Prof.", "Curator", "Archivist", "Librarian", "Historian", "PhD", "Professor")
+	honorifics = list("Professor", "Prof.", "Curator", "Archivist", "Librarian", "Historian", "PhD")
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
 
 /datum/id_trim/job/geneticist
@@ -28,12 +28,12 @@
 
 /datum/id_trim/job/head_of_personnel
 	job = /datum/job/head_of_personnel
-	honorifics = list("Personnel Officer", "Executive Officer", "Head of Personnel", "HOP")
+	honorifics = list("Personnel Officer", "Executive Officer", "Head of Personnel", "HoP")
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
 
 /datum/id_trim/job/head_of_security/New()
 	job = /datum/job/head_of_security
-	honorifics += list("Commissioner", "Chief Constable", "Sheriff", "Security Commander", "S.CMDR.")
+	honorifics += list("Commissioner", "Chief Constable", "Sheriff", "Security Commander", "S.CMDR.", "HoS")
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
 	return ..()
 
@@ -56,13 +56,13 @@
 
 /datum/id_trim/job/quartermaster/New()
 	job = /datum/job/quartermaster
-	honorifics += list("Deck Chief", "Logistics Coordinator", "Supply Foreman", "Union Requisitions Officer", "Supervisor")
+	honorifics += list("Deck Chief", "Logistics Coordinator", "Supply Foreman", "Union Requisitions Officer", "Supervisor", "QM")
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
 	return ..()
 
 /datum/id_trim/job/research_director/New()
 	job = /datum/job/research_director
-	honorifics += list("Head Researcher", "Administrator")
+	honorifics += list("Head Researcher", "Administrator", "RD")
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
 	return ..()
 
@@ -92,7 +92,7 @@
 
 /datum/id_trim/job/chief_engineer/New()
 	job = /datum/job/chief_engineer
-	honorifics += list("Chief Engineer", "Engineering Foreman")
+	honorifics += list("Chief Engineer", "Engineering Foreman", "CE")
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
 	return ..()
 
