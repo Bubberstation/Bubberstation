@@ -17,42 +17,40 @@
 	priority_announce("Confirmed outbreak of level CLASSIFIED biohazard aboard [station_name()]. Station quarantine subroutines activated.", "Critical Biohazard Alert", ANNOUNCER_MUTANTS)
 
 /datum/round_event/fleshmind/start()
-	var/list/areas = list() // List of all the final areas
-	// Blacklisted areas that the wireweed can't spawn in.
-	var/list/blacklisted_areas = typecacheof(typesof(
-		/area/station/engineering/supermatter,
-		/area/station/tcommsat,
-		/area/station/hallway,
-		/area/station/commons/dorms,
-		/area/station/security/armory,
-		/area/station/command/vault,
-		/area/station/command/eva,
-		/area/station/ai/satellite,
-	))
-	for(var/area/iterating_area in GLOB.areas)
-		if(!is_station_level(iterating_area.z))
-			continue
-		if(is_type_in_typecache(iterating_area, blacklisted_areas))
-			continue
-		areas += iterating_area
+	var/turf/current_turf = get_turf(src)
 
-	shuffle(areas)
+	if(is_valid_turf(current_turf))
+		return
 
-	var/list/picked_turf_list = list() // List of turfs to randomize
-	var/turf/picked_turf // Final turf
+	var/turf/spawn_turf = null
 
-	for(var/i in 1 to 5) // Get five turfs in diffrent areas.
-		var/turf = get_safe_random_station_turf(areas)
-		picked_turf_list += turf
-		areas -= get_area(turf)
+	if(LAZYLEN(GLOB.blobstart))
+		var/list/shuffled_blobstarts = shuffle(GLOB.blobstart)
 
-	picked_turf = pick(picked_turf_list) // Pick the final turf
+		for(var/turf/blob_turf in shuffled_blobstarts)
+			if(is_valid_turf(blob_turf))
+				spawn_turf = blob_turf
+				break
 
-	if(!picked_turf)
-		message_admins("Fleshmind failed to pick a valid turf!")
-		return FALSE
+	else
+		for(var/attempt in 1 to 16)
+			var/turf/candidate_turf = get_safe_random_station_turf_equal_weight()
 
-	make_core(picked_turf)
+			if(is_valid_turf(candidate_turf))
+				spawn_turf = candidate_turf
+				break
+
+	if(!spawn_turf)
+		CRASH("Fleshmind failed to pick a valid turf!")
+
+	make_core(spawn_turf)
 
 /datum/round_event/fleshmind/proc/make_core(turf/location)
 	new /obj/structure/fleshmind/structure/core(location)
+
+/// Copied from line 150 of code/modules/antagonists/blob/overmind.dm
+/datum/round_event/fleshmind/proc/is_valid_turf(turf/tile)
+	var/area/area = get_area(tile)
+	if((area && !(area.area_flags & BLOBS_ALLOWED)) || !tile || !is_station_level(tile.z) || isgroundlessturf(tile))
+		return FALSE
+	return TRUE
