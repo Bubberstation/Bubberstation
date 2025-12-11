@@ -83,8 +83,11 @@
 /mob/living/basic/living_floor
 	icon = 'modular_zubbers/icons/turf/floors/floors.dmi'
 
-// STRUCTURE BASED
-// I know these are structures but it's more organized if we keep these specific ones here.
+// OBJECT BASED
+// I know these are objects but it's more organized if we keep these specific ones here.
+
+/obj/item/stack/tile
+	icon = 'modular_zubbers/icons/obj/tiles.dmi'
 
 /obj/structure/broken_flooring
 	icon = 'modular_zubbers/icons/obj/fluff/brokentiling.dmi'
