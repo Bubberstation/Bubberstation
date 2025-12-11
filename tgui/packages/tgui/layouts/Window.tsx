@@ -12,7 +12,7 @@ import {
   useLayoutEffect,
   useState,
 } from 'react';
-import type { Box } from 'tgui-core/components';
+import { KeyListener, type Box } from 'tgui-core/components';  // BUBBER EDIT ADDITION - TGUI WINDOW RESET - Add KeyListener
 import { UI_DISABLED, UI_INTERACTIVE } from 'tgui-core/constants';
 import { type BooleanLike, classes } from 'tgui-core/react';
 import { decodeHtmlEntities } from 'tgui-core/string';
@@ -25,10 +25,13 @@ import {
   resizeStartHandler,
   setWindowKey,
   setWindowPosition, // BUBBER EDIT ADDITION - TGUI WINDOW RESET
+  storeWindowGeometry, // BUBBER EDIT ADDITION - TGUI WINDOW RESET
 } from '../drag';
 import { createLogger } from '../logging';
 import { Layout } from './Layout';
 import { TitleBar } from './TitleBar';
+import { KeyEvent } from 'tgui-core/events'; // BUBBER EDIT ADDITION - TGUI WINDOW RESET
+import { KEY_ALT } from 'tgui-core/keycodes'; // BUBBER EDIT ADDITION - TGUI WINDOW RESET
 
 const logger = createLogger('Window');
 const DEFAULT_SIZE: [number, number] = [400, 600];
@@ -160,18 +163,52 @@ type ContentProps = Partial<{
   ComponentProps<typeof Box> &
   PropsWithChildren;
 
+// BUBBER EDIT CHANGE BEGIN - TGUI WINDOW RESET
+/*
 const WindowContent = (props: ContentProps) => {
   const { className, fitted, children, ...rest } = props;
 
-  // BUBBER EDIT ADDITION BEGIN - TGUI WINDOW RESET
-  // Allow front end to force a position reset.
-  Byond.subscribeTo('resetposition', function (payload) { setWindowPosition([0, 0]); });
-  // BUBBER EDIT ADDITION END
   return (
     <Layout.Content
       className={classes(['Window__content', className])}
       {...rest}
     >
+      {(fitted && children) || (
+        <div className="Window__contentPadding">{children}</div>
+      )}
+    </Layout.Content>
+  );
+};
+*/
+const WindowContent = (props: ContentProps) => {
+  const { className, fitted, children, ...rest } = props;
+  const [altDown, setAltDown] = useState(false);
+
+  var dragStartIfAltHeld = (event) => {
+    if(altDown)
+    {
+      dragStartHandler(event);
+    }
+  };
+
+  Byond.subscribeTo('resetposition', function (payload) {
+    setWindowPosition([0, 0]);
+    storeWindowGeometry();
+  });
+  return (
+    <Layout.Content onMouseDown={dragStartIfAltHeld}
+      className={classes(['Window__content', className])}
+      {...rest}
+    >
+      <KeyListener
+        onKeyDown={(e: KeyEvent) => {
+          if(KEY_ALT === e.code) { setAltDown(true); logger.log(`alt on ${altDown}`) }
+        }}
+        onKeyUp ={(e: KeyEvent) => {
+          if(KEY_ALT === e.code) { setAltDown(false); logger.log(`alt off ${altDown}`)}
+        }}
+        />
+
       {(fitted && children) || (
         <div className="Window__contentPadding">{children}</div>
       )}

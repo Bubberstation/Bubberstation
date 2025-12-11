@@ -106,7 +106,7 @@ export const touchRecents = (
 };
 
 // Store window geometry in local storage
-const storeWindowGeometry = async () => {
+export const storeWindowGeometry = async () => { // BUBBER EDIT CHANGE - TGUI WINDOW RESET (add 'export')
   logger.log('storing geometry');
   const geometry = {
     pos: getWindowPosition(),
