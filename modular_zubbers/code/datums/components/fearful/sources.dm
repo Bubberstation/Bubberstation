@@ -1,7 +1,7 @@
 // Adjusted clausophobia check to look for Santa themself rather than the clothing
 /datum/terror_handler/simple_source/clausophobia/check_condition(seconds_per_tick, terror_buildup)
 	. = ..()
-	if (!.)
+	if(!.)
 		return
 
 	var/certified_jolly = FALSE
@@ -12,10 +12,10 @@
 			certified_jolly = TRUE
 			break
 
-	if (!certified_jolly)
+	if(!certified_jolly)
 		return FALSE
 
-	if (SPT_PROB(15, seconds_per_tick))
+	if(SPT_PROB(15, seconds_per_tick))
 		to_chat(owner, span_userdanger("Santa Claus is here! I gotta get out of here!"))
 
 	return TRUE
