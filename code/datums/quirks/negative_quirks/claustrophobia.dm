@@ -9,7 +9,7 @@
 	mail_goodies = list(/obj/item/reagent_containers/syringe/convermol) // to help breathing
 
 /datum/quirk/claustrophobia/add(client/client_source)
-	quirk_holder.AddComponentFrom(type, /datum/component/fearful, list(/datum/terror_handler/simple_source/claustrophobia, /datum/terror_handler/simple_source/clausophobia))
+	quirk_holder.AddComponentFrom(type, /datum/component/fearful, list(/datum/terror_handler/simple_source/claustrophobia)) // BUBBER EDIT CHANGE - Remove terror from santa hats - Original: list(/datum/terror_handler/simple_source/claustrophobia, /datum/terror_handler/simple_source/clausophobia)
 
 /datum/quirk/claustrophobia/remove()
 	quirk_holder.RemoveComponentSource(type, /datum/component/fearful)
