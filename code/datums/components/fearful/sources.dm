@@ -117,6 +117,8 @@
 /datum/terror_handler/simple_source/clausophobia
 	buildup_per_second = 20
 
+// BUBBER EDIT REMOVAL BEGIN - CLAUSOPHOBIA - Moved to modular_zubbers/code/datums/components/fearful/sources.dm
+/*
 /datum/terror_handler/simple_source/clausophobia/check_condition(seconds_per_tick, terror_buildup)
 	. = ..()
 	if (!.)
@@ -144,6 +146,8 @@
 		to_chat(owner, span_warning("Santa Claus is here! I gotta get out of here!"))
 
 	return TRUE
+*/
+// BUBBER EDIT REMOVAL END - CLAUSOPHOBIA
 
 /// Makes the owner afraid of being alone
 /datum/terror_handler/simple_source/monophobia
