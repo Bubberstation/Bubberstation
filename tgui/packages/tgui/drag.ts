@@ -39,8 +39,6 @@ export const getWindowSize = (): [number, number] => [
   window.innerHeight * pixelRatio,
 ];
 
-// BUBBER EDIT CHANGE BEGIN - TGUI WINDOW RESET
-/*
 // Set window position
 export const setWindowPosition = (vec: [number, number]) => {
   const byondPos = vecAdd(vec, screenOffset);
@@ -48,14 +46,6 @@ export const setWindowPosition = (vec: [number, number]) => {
     pos: `${byondPos[0]},${byondPos[1]}`,
   });
 };
-*/
-export const setWindowPosition = (vec: [number, number]) => {
-  const byondPos = vecAdd(vec, screenOffset);
-  Byond.winset(Byond.windowId, { pos: `${byondPos[0]},${byondPos[1]}`, });
-  storeWindowGeometry();
-  return
-};
-// BUBBER EDIT CHANGE END - TGUI WINDOW RESET
 
 // Set window size
 const setWindowSize = (vec: [number, number]) => {
