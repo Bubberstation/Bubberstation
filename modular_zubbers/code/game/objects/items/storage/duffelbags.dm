@@ -5,6 +5,8 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
 	icon_state = "duffel-hydro"
 	inhand_icon_state = "duffel-hydro"
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/equipment/backpack_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/equipment/backpack_righthand.dmi'
 	storage_type = /datum/storage/hydro_duffel
 	resistance_flags = FIRE_PROOF
 
