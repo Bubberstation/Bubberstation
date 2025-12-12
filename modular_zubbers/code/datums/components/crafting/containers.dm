@@ -1,5 +1,5 @@
 /datum/crafting_recipe/hydro_duffel
-	name = "Elder Atmosian Duffelbag"
+	name = "Elder Atmosian Duffel Bag"
 	result = /obj/item/storage/backpack/hydro_duffel
 	time = 15 SECONDS
 	tool_behaviors = list(TOOL_WELDER, TOOL_WIRECUTTER)
