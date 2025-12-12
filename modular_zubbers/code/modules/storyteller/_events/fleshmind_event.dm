@@ -53,4 +53,14 @@
 	var/area/area = get_area(tile)
 	if((area && !(area.area_flags & BLOBS_ALLOWED)) || !tile || !is_station_level(tile.z) || isgroundlessturf(tile))
 		return FALSE
+
+	if(area_has_player(tile, 7))
+		return FALSE
+
 	return TRUE
+
+/datum/round_event/fleshmind/proc/area_has_player(turf/center, range = 7)
+	for(var/mob/living/blocked_mob in range(range, center))
+		if(blocked_mob.client)
+			return TRUE
+	return FALSE
