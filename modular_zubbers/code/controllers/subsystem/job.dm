@@ -8,7 +8,8 @@
 			JOB_QUARTERMASTER = 6,
 			JOB_NT_REP = 7,
 			JOB_HEAD_OF_SECURITY = 8,
-			JOB_BLUESHIELD = 9
+			JOB_BLUESHIELD = 9,
+			JOB_BRIDGE_ASSISTANT = 10
 		)
 
 /datum/controller/subsystem/job/proc/get_pda_type_by_job(job_name)

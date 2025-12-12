@@ -293,11 +293,6 @@
 		"Junior Pathologist",
 	)
 
-/datum/job/engineering_guard //see orderly
-	alt_titles = list(
-		"Engineering Guard",
-	)
-
 /datum/job/geneticist
 	alt_titles = list(
 		"Geneticist",

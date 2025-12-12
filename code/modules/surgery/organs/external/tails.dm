@@ -7,7 +7,7 @@
 	zone = BODY_ZONE_PRECISE_GROIN
 	slot = ORGAN_SLOT_EXTERNAL_TAIL
 
-	//dna_block = /datum/dna_block/feature/tail // BUBBER EDIT REMOVAL - Customization - We have our own system to handle DNA.
+	//dna_block = /datum/dna_block/feature/accessory/tail // BUBBER EDIT REMOVAL - Customization - We have our own system to handle DNA.
 	restyle_flags = EXTERNAL_RESTYLE_FLESH
 
 	// defaults to cat, but the parent type shouldn't be created regardless
@@ -147,22 +147,17 @@
 /datum/bodypart_overlay/mutant/tail
 	layers = EXTERNAL_FRONT|EXTERNAL_BEHIND
 	dyable = TRUE
+	feature_key = FEATURE_TAIL_GENERIC
 	var/wagging = FALSE
 
 /datum/bodypart_overlay/mutant/tail/get_base_icon_state()
 	return "[wagging ? "wagging_" : ""][sprite_datum.icon_state]" //add the wagging tag if we be wagging
-
-// SKYRAT EDIT ADDITION - CUSTOMIZATION
-/datum/bodypart_overlay/mutant/tail/get_global_feature_list()
-	return SSaccessories.sprite_accessories[FEATURE_TAIL_GENERIC]
-// SKYRAT EDIT ADDITION END
 
 /datum/bodypart_overlay/mutant/tail/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner)
 	return !(bodypart_owner.owner?.obscured_slots & HIDEJUMPSUIT)
 
 /obj/item/organ/tail/cat
 	name = "tail"
-	preference = "feature_human_tail"
 
 	bodypart_overlay = /datum/bodypart_overlay/mutant/tail/cat
 	restyle_flags = EXTERNAL_RESTYLE_FLESH
@@ -177,15 +172,11 @@
 
 ///Cat tail bodypart overlay
 /datum/bodypart_overlay/mutant/tail/cat
-	feature_key = FEATURE_TAIL_GENERIC // BUBBER EDIT CHANGE - Customization - ORIGINAL: feature_key = FEATURE_TAIL
+	feature_key = FEATURE_TAIL_GENERIC // BUBBER EDIT CHANGE - Customization - ORIGINAL: feature_key = FEATURE_TAIL_CAT
 	// color_source = ORGAN_COLOR_HAIR // SKYRAT EDIT REMOVAL
-
-/datum/bodypart_overlay/mutant/tail/cat/get_global_feature_list()
-	return SSaccessories.sprite_accessories[FEATURE_TAIL_GENERIC] // BUBBER EDIT CHANGE - ORIGINAL: return SSaccessories.tails_list_felinid
 
 /obj/item/organ/tail/monkey
 	name = "monkey tail"
-	preference = "feature_monkey_tail"
 	icon_state = "severedmonkeytail"
 	dna_block = null
 	bodypart_overlay = /datum/bodypart_overlay/mutant/tail/monkey
@@ -193,10 +184,7 @@
 ///Monkey tail bodypart overlay
 /datum/bodypart_overlay/mutant/tail/monkey
 	color_source = NONE
-	feature_key = FEATURE_TAIL_GENERIC // BUBBER EDIT CHANGE - Customization - ORIGINAL: feature_key = FEATURE_TAIL_MONKEY
-
-/datum/bodypart_overlay/mutant/tail/monkey/get_global_feature_list()
-	return SSaccessories.tails_list_monkey
+	feature_key = FEATURE_TAIL_MONKEY
 
 /obj/item/organ/tail/xeno
 	name = "alien tail"
@@ -245,9 +233,6 @@
 	. = ..()
 	set_appearance_from_name(default_appearance)
 
-/datum/bodypart_overlay/mutant/tail/xeno/get_global_feature_list()
-	return SSaccessories.tails_list_xeno
-
 /datum/bodypart_overlay/mutant/tail/xeno/randomize_appearance()
 	set_appearance_from_name(default_appearance)
 
@@ -257,19 +242,15 @@
 /obj/item/organ/tail/lizard
 	name = "lizard tail"
 	desc = "A severed lizard tail. Somewhere, no doubt, a lizard hater is very pleased with themselves."
-	preference = "feature_lizard_tail"
 
 	bodypart_overlay = /datum/bodypart_overlay/mutant/tail/lizard
 
 	wag_flags = WAG_ABLE
-	//dna_block = /datum/dna_block/feature/tail_lizard // BUBBER EDIT REMOVAL - Customization - We have our own system to handle DNA.
+	//dna_block = /datum/dna_block/feature/accessory/tail_lizard // BUBBER EDIT REMOVAL - Customization - We have our own system to handle DNA.
 
 ///Lizard tail bodypart overlay datum
 /datum/bodypart_overlay/mutant/tail/lizard
 	feature_key = FEATURE_TAIL_GENERIC // BUBBER EDIT CHANGE - Customization - ORIGINAL: feature_key = FEATURE_TAIL_LIZARD
-
-/datum/bodypart_overlay/mutant/tail/lizard/get_global_feature_list()
-	return SSaccessories.sprite_accessories[FEATURE_TAIL_GENERIC] // BUBBER EDIT CHANGE - Customization - ORIGINAL: return SSaccessories.tails_list_lizard
 
 /obj/item/organ/tail/lizard/fake
 	name = "fabricated lizard tail"
@@ -283,9 +264,6 @@
 	var/wagging = FALSE
 	/// Key for tail spine states, depends on the shape of the tail. Defined in the tail sprite datum.
 	var/tail_spine_key = NONE
-
-/datum/bodypart_overlay/mutant/tail_spines/get_global_feature_list()
-	return SSaccessories.sprite_accessories["tailspines"] // SKYRAT EDIT CHANGE - ORIGINAL: return SSaccessories.tail_spines_list
 
 /datum/bodypart_overlay/mutant/tail_spines/get_base_icon_state()
 	return (!isnull(tail_spine_key) ? "[tail_spine_key]_" : "") + (wagging ? "wagging_" : "") + sprite_datum.icon_state // Select the wagging state if appropriate

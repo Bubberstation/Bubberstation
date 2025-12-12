@@ -46,6 +46,7 @@ export const ExaminePanel = () => {
   const [lowerTabIndex, setLowerTabIndex] = useState(1);
   const [page, setPage] = useState('main');
   const { act, data } = useBackend();
+
   const {
     character_name,
     obscured,
@@ -65,6 +66,14 @@ export const ExaminePanel = () => {
   const handlePageChange = (page, newPage) => {
     setPage(newPage);
   };
+
+  //This does not fix the problem, however, it does make it work right now. I am so sorry.
+  const [previewKey, setPreviewKey] = useState(0);
+  if (previewKey === 0 && assigned_map) {
+    setTimeout(() => {
+      setPreviewKey(1);
+    }, 200);
+  }
 
   return (
     <Window
@@ -100,6 +109,7 @@ export const ExaminePanel = () => {
                     title="Character Preview"
                   >
                     <ByondUi
+                      key={previewKey}
                       height="100%"
                       width="100%"
                       className="ExaminePanel__map"
@@ -117,6 +127,7 @@ export const ExaminePanel = () => {
                       style={{ textAlign: 'center' }}
                     >
                       <ByondUi
+                        key={previewKey}
                         height="260px"
                         width="100%"
                         className="ExaminePanel__map"

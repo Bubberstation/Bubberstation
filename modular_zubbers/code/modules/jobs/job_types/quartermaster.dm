@@ -1,2 +1,2 @@
-/datum/outfit/job/quartermaster //to-do: upstream this to skyrat
+/datum/outfit/job/quartermaster
 	glasses = /obj/item/clothing/glasses/hud/gun_permit/sunglasses

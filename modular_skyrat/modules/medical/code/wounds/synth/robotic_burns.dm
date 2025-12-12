@@ -3,7 +3,7 @@
 /datum/wound_pregen_data/burnt_metal
 	abstract = TRUE
 	required_limb_biostate = BIO_METAL
-	required_wounding_types = list(WOUND_BURN)
+	required_wounding_type = WOUND_BURN
 	wound_series = WOUND_SERIES_METAL_BURN_OVERHEAT
 
 /datum/wound_pregen_data/burnt_metal/generate_scar_priorities()

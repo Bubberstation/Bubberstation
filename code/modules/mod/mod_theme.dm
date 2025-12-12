@@ -128,6 +128,7 @@
 		part.set_armor(armor_type)
 		part.resistance_flags = resistance_flags
 		part.flags_1 |= atom_flags //flags like initialization or admin spawning are here, so we cant set, have to add
+		part.item_flags |= DO_NOT_WARDROBE
 		part.heat_protection = NONE
 		part.cold_protection = NONE
 		part.max_heat_protection_temperature = max_heat_protection_temperature
@@ -643,6 +644,7 @@
 		/obj/item/storage/pill_bottle,
 		/obj/item/storage/bag/chemistry,
 		/obj/item/storage/bag/bio,
+		/obj/item/crowbar/power/paramedic,
 	)
 	variants = list(
 		"medical" = list(
@@ -1414,7 +1416,7 @@
 	resistance_flags = FIRE_PROOF|ACID_PROOF
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
 	charge_drain = DEFAULT_CHARGE_DRAIN * 2
-	slowdown_deployed = -0.5
+	slowdown_deployed = 0 //bubber edit from -0.5. This suit was causing speed issues.
 	inbuilt_modules = list(/obj/item/mod/module/quick_carry/advanced, /obj/item/mod/module/hearing_protection)
 	allowed_suit_storage = list(
 		/obj/item/assembly/flash,

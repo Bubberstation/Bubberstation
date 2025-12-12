@@ -7,7 +7,6 @@
 	external_bodyshapes = BODYSHAPE_TAUR
 	use_mob_sprite_as_obj_sprite = TRUE
 
-	preference = "feature_taur"
 	mutantpart_key = "taur"
 	mutantpart_info = list(MUTANT_INDEX_NAME = "None", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF"))
 	bodypart_overlay = /datum/bodypart_overlay/mutant/taur_body
@@ -94,7 +93,7 @@
 	organ_flags = ORGAN_ROBOTIC
 
 /datum/bodypart_overlay/mutant/taur_body
-	feature_key = "taur"
+	feature_key = FEATURE_TAUR
 	layers = ALL_EXTERNAL_OVERLAYS | EXTERNAL_FRONT_UNDER_CLOTHES | EXTERNAL_FRONT_OVER
 	color_source = ORGAN_COLOR_OVERRIDE
 
@@ -117,10 +116,6 @@
 
 /datum/bodypart_overlay/mutant/taur_body/override_color(rgb_value)
 	return draw_color
-
-/datum/bodypart_overlay/mutant/taur_body/get_global_feature_list()
-	return SSaccessories.sprite_accessories["taur"]
-
 
 /obj/item/organ/taur_body/on_mob_insert(mob/living/carbon/receiver, special, movement_flags)
 	if(sprite_accessory_flags & SPRITE_ACCESSORY_HIDE_SHOES)

@@ -17,7 +17,7 @@
 		return FALSE
 
 	// Hide accessory if flagged to do so
-	if((wearer.head?.flags_inv & HIDEHAIR || wearer.wear_mask?.flags_inv & HIDEHAIR) \
+	if(((wearer.covered_slots & HIDEHAIR) || (wearer.covered_slots & HIDEEARS)) \
 		// This line basically checks if we FORCE accessory-ears to show, for items with earholes like Balaclavas and Luchador masks
 		&& ((wearer.head && !(wearer.head.flags_inv & SHOWSPRITEEARS)) || (wearer.wear_mask && !(wearer.wear_mask?.flags_inv & SHOWSPRITEEARS))))
 		return TRUE
@@ -27,6 +27,7 @@
 /datum/sprite_accessory/ears/none
 	name = SPRITE_ACCESSORY_NONE
 	icon_state = "none"
+	factual = FALSE
 
 /datum/sprite_accessory/ears/cat
 	recommended_species = list(SPECIES_MAMMAL, SPECIES_HUMAN, SPECIES_SYNTH, SPECIES_FELINE, SPECIES_HUMANOID, SPECIES_GHOUL)

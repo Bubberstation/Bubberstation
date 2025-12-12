@@ -396,7 +396,7 @@
 	var/turf/this_turf = get_turf(src)
 	for(var/atom/movable/movable_atom in contents)
 		//so machines like microwaves dont dump out signalers after cooking
-		if(wires && (movable_atom in flatten_list(wires.assemblies)))
+		if(wires && (movable_atom in assoc_to_values(wires.assemblies)))
 			continue
 
 		if(subset && !(movable_atom in subset))
@@ -446,7 +446,7 @@
 				continue
 			if(isliving(current_atom))
 				var/mob/living/current_mob = atom
-				if(current_mob.buckled || current_mob.mob_size >= MOB_SIZE_LARGE)
+				if(current_mob.buckled || current_mob.mob_size >= MOB_SIZE_LARGE && !ignore_size) // BUBBER EDIT - ADDITION - "&& !ignore_size"
 					continue
 			target = atom
 
@@ -738,7 +738,7 @@
 	var/mob/user = ui.user
 	add_fingerprint(user)
 	update_last_used(user)
-	if(isAI(user) && !GLOB.cameranet.checkTurfVis(get_turf(src))) //We check if they're an AI specifically here, so borgs/adminghosts/human wand can still access off-camera stuff.
+	if(isAI(user) && !SScameras.is_visible_by_cameras(get_turf(src))) //We check if they're an AI specifically here, so borgs/adminghosts/human wand can still access off-camera stuff.
 		to_chat(user, span_warning("You can no longer connect to this device!"))
 		return FALSE
 	return ..()
@@ -1237,8 +1237,9 @@
 	dropped_atom.pixel_x = -8 + ((.%3)*8)
 	dropped_atom.pixel_y = -8 + (round( . / 3)*8)
 
-/obj/machinery/rust_heretic_act()
-	take_damage(500, BRUTE, MELEE, 1)
+/obj/machinery/rust_heretic_act(rust_strength)
+	var/damage = 500 + rust_strength * 200
+	take_damage(damage, BRUTE, BOMB, 1)
 
 /obj/machinery/vv_edit_var(vname, vval)
 	if(vname == NAMEOF(src, occupant))

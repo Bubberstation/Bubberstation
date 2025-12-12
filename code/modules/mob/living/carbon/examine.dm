@@ -180,7 +180,7 @@
 			if(appears_dead)
 				bleed_text += ", but it has pooled and is not flowing."
 			else
-				if(HAS_TRAIT(src, TRAIT_BLOODY_MESS))
+				if(HAS_TRAIT(src, TRAIT_BLOOD_FOUNTAIN))
 					bleed_text += " incredibly quickly"
 				bleed_text += "!"
 
@@ -198,39 +198,13 @@
 	if(reagents.has_reagent(/datum/reagent/teslium, needs_metabolizing = TRUE))
 		. += span_smallnoticeital("[t_He] [t_is] emitting a gentle blue glow!") // this should be signalized
 
+	var/mob/living/living_user = user
+	SEND_SIGNAL(living_user, COMSIG_CARBON_MID_EXAMINE, src, .) // Adds examine text after clothing and wounds but before death and scars
 	if(just_sleeping)
 		. += span_notice("[t_He] [t_is]n't responding to anything around [t_him] and seem[p_s()] to be asleep.")
-
 	else if(!appears_dead)
-		var/mob/living/living_user = user
 		if(src != user)
-			if(HAS_TRAIT(user, TRAIT_EMPATH))
-				if (combat_mode)
-					. += "[t_He] seem[p_s()] to be on guard."
-				if (getOxyLoss() >= 10)
-					. += "[t_He] seem[p_s()] winded."
-				if (getToxLoss() >= 10)
-					. += "[t_He] seem[p_s()] sickly."
-				if(mob_mood.sanity <= SANITY_DISTURBED)
-					. += "[t_He] seem[p_s()] distressed."
-					living_user.add_mood_event("empath", /datum/mood_event/sad_empath, src)
-				if(is_blind())
-					. += "[t_He] appear[p_s()] to be staring off into space."
-				if (HAS_TRAIT(src, TRAIT_DEAF))
-					. += "[t_He] appear[p_s()] to not be responding to noises."
-				if (bodytemperature > dna.species.bodytemp_heat_damage_limit)
-					. += "[t_He] [t_is] flushed and wheezing."
-				if (bodytemperature < dna.species.bodytemp_cold_damage_limit)
-					. += "[t_He] [t_is] shivering."
-				if(HAS_TRAIT(src, TRAIT_EVIL))
-					. += "[t_His] eyes radiate with a unfeeling, cold detachment. There is nothing but darkness within [t_his] soul."
-					if(living_user.mind?.holy_role >= HOLY_ROLE_PRIEST)
-						. += span_warning("PERFECT FOR SMITING!!")
-					else
-						living_user.add_mood_event("encountered_evil", /datum/mood_event/encountered_evil)
-						living_user.set_jitter_if_lower(15 SECONDS)
-
-			if(HAS_TRAIT(user, TRAIT_SPIRITUAL) && mind?.holy_role)
+			if(HAS_TRAIT(user, TRAIT_SPIRITUAL) && mind?.holy_role && user != src)
 				. += "[t_He] [t_has] a holy aura about [t_him]."
 				living_user.add_mood_event("religious_comfort", /datum/mood_event/religiously_comforted)
 
@@ -313,7 +287,7 @@
 	var/preview_text = copytext_char((dna.features["flavor_text"]), 1, FLAVOR_PREVIEW_LIMIT)
 	// What examine_tgui.dm uses to determine if flavor text appears as "Obscured".
 	var/obscurity_examine_pref = (client?.prefs?.read_preference(/datum/preference/toggle/obscurity_examine)) //BUBBERSTATION EDIT
-	var/face_obscured = (wear_mask && (wear_mask.flags_inv & HIDEFACE) && obscurity_examine_pref) || (head && (head.flags_inv & HIDEFACE) && obscurity_examine_pref) // BUBBERSTATION EDIT
+	var/face_obscured = (covered_slots & HIDEFACE) && obscurity_examine_pref // BUBBERSTATION EDIT
 
 	if (!(face_obscured))
 		flavor_text_link = span_notice("[preview_text]... <a href='byond://?src=[REF(src)];lookup_info=open_examine_panel'>\[Look closer?\]</a>")

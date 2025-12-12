@@ -412,7 +412,7 @@
 	add_overlay(penis_image)
 
 /obj/lewd_portal_relay/proc/lower_body_only()
-	owner.dna.species.handle_body(owner) //Suboptimal way for doing this but I couldn't figure out another way to maintain underwear when dropping items
+	owner.update_body() //Suboptimal way for doing this but I couldn't figure out another way to maintain underwear when dropping items
 	cut_overlays()
 	for(var/limb in list(BODY_ZONE_R_LEG, BODY_ZONE_L_LEG, BODY_ZONE_CHEST))
 		var/obj/item/bodypart/limb_object = owner.get_bodypart(limb)

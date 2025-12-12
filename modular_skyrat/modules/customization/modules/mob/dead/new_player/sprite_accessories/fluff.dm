@@ -9,9 +9,10 @@
 /datum/sprite_accessory/fluff/moth/none
 	name = SPRITE_ACCESSORY_NONE
 	icon_state = "none"
+	factual = FALSE
 
 /datum/sprite_accessory/fluff/moth/is_hidden(mob/living/carbon/human/human)
-	if((human.head?.flags_inv & HIDEHAIR) || (human.wear_mask?.flags_inv & HIDEHAIR))
+	if(human.covered_slots & HIDEHAIR)
 		return TRUE
 
 	return FALSE

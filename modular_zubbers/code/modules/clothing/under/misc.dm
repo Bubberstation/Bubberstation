@@ -37,7 +37,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 
 /obj/item/clothing/under/syndicate/syndibunny/fake
-	armor_type = /datum/armor/clothing_under/none
+	armor_type = /datum/armor/clothing_under
 
 /obj/item/clothing/under/costume/playbunny/magician
 	name = "magician's bunny suit"
@@ -626,3 +626,28 @@
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
 	icon_state = "citizenblue"
+
+//MGS stuff sprited by Crumpaloo for onlyplateau, please credit when porting, which you obviously have permission to do.
+
+/obj/item/clothing/under/rank/civilian/bubber/snake
+	name = "big boss' stealth suit"
+	desc = "We may all be headed straight to hell. But what better place for us than this?"
+	icon = 'modular_zubbers/icons/obj/clothing/under/syndicate.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/syndicate.dmi'
+	icon_state = "snake"
+
+/obj/item/clothing/under/rank/civilian/bubber/camo
+	name = "camouflage uniform"
+	desc = "Well my wife left me, so now I make stolen valor videos at the mall."
+	icon = 'icons/map_icons/clothing/under/_under.dmi'
+	icon_state = "/obj/item/clothing/under/rank/civilian/bubber/camo"
+	post_init_icon_state = "solfed_camo"
+	worn_icon_state = "solfed_camo"
+	worn_icon_digi = "solfed_camo"
+	greyscale_config = /datum/greyscale_config/camo
+	greyscale_config_worn = /datum/greyscale_config/camo/worn
+	greyscale_config_worn_digi = /datum/greyscale_config/camo/worn/digi
+	greyscale_colors = "#4d4d4d#333333#292929"
+	flags_1 = IS_PLAYER_COLORABLE_1
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	can_adjust = FALSE

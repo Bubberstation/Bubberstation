@@ -90,6 +90,7 @@
 	design_ids += list(
 		"gbp_machine",
 		"plastic_hair_tie",
+		"umbrella",
 	)
 	return ..()
 
@@ -285,7 +286,7 @@
 		"borg_upgrade_clamp",
 		"borg_upgrade_cargo_tele",
 		"borg_upgrade_forging",
-		"borg_upgrade_brush",
+//		"borg_upgrade_brush", BUBBERS EDIT, ROUNDSTART MODULE
 	)
 	return ..()
 
