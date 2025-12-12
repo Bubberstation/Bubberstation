@@ -6,6 +6,7 @@
 	icon_state = "duffel-hydro"
 	inhand_icon_state = "duffel-hydro"
 	storage_type = /datum/storage/hydro_duffel
+	resistance_flags = FIRE_PROOF
 
 /datum/storage/hydro_duffel
 	max_total_storage = 35
