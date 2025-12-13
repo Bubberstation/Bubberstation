@@ -337,7 +337,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 		update_actually_on(intended_on)
 
 	// Reclaim water
-//	if(!actually_on) BUBBERS CHANGE. Unlimited water for showers.
+//if(!actually_on) BUBBER EDIT CHANGE - Unlimited water for showers
 		if(has_water_reclaimer && reagents.total_volume < reagents.maximum_volume)
 			reagents.add_reagent(reagent_id, refill_rate * seconds_per_tick)
 			return 0
