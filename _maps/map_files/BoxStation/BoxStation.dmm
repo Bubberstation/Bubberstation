@@ -13154,10 +13154,6 @@
 "aZb" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/camera/directional/south{
-	c_tag = "Bar South";
-	network = list("ss13","bar")
-	},
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 1
 	},
@@ -13520,6 +13516,10 @@
 	dir = 1
 	},
 /obj/machinery/light/floor,
+/obj/machinery/camera/directional/south{
+	c_tag = "Bar South";
+	network = list("ss13","bar")
+	},
 /turf/open/floor/stone,
 /area/station/service/bar)
 "bae" = (
@@ -24666,7 +24666,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/bot,
-/obj/machinery/airalarm/directional/north,
+/obj/machinery/computer/security/telescreen/ordnance/directional/north,
 /turf/open/floor/iron,
 /area/station/science/ordnance/testlab)
 "bGe" = (
@@ -30864,15 +30864,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/iron/dark,
 /area/station/maintenance/starboard/aft)
-"cdT" = (
-/obj/machinery/camera/directional/north{
-	c_tag = "Engineering SMES"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/iron/smooth_large,
-/area/station/engineering/engine_smes)
 "cdU" = (
 /obj/structure/chair/office/light{
 	dir = 4
@@ -38841,6 +38832,7 @@
 /obj/machinery/atmospherics/components/binary/crystallizer{
 	dir = 4
 	},
+/obj/machinery/light/directional/west,
 /turf/open/floor/engine,
 /area/station/engineering/atmos)
 "dtB" = (
@@ -41087,6 +41079,9 @@
 "ewU" = (
 /obj/structure/cable,
 /obj/machinery/modular_computer/preset/engineering,
+/obj/machinery/camera/directional/north{
+	c_tag = "Engineering SMES"
+	},
 /turf/open/floor/iron/smooth_large,
 /area/station/engineering/engine_smes)
 "ewX" = (
@@ -47186,11 +47181,6 @@
 "hvP" = (
 /obj/structure/window/reinforced/tinted/spawner/directional/south,
 /obj/machinery/light/directional/east,
-/obj/machinery/camera/directional/south{
-	c_tag = "Prison - Library";
-	network = list("ss13","prison");
-	pixel_y = 8
-	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
 	},
@@ -47771,6 +47761,10 @@
 	},
 /obj/effect/turf_decal/trimline/dark/line{
 	dir = 9
+	},
+/obj/machinery/camera/directional/west{
+	c_tag = "Prison Hallway West";
+	network = list("ss13","prison")
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/execution/transfer)
@@ -58415,11 +58409,6 @@
 /turf/open/floor/engine,
 /area/station/science/explab)
 "msK" = (
-/obj/machinery/camera{
-	c_tag = "Prison - Garden";
-	dir = 5;
-	network = list("ss13","prison")
-	},
 /obj/effect/turf_decal/siding/wideplating_new{
 	dir = 4
 	},
@@ -67539,10 +67528,6 @@
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "qEv" = (
-/obj/machinery/camera/directional/west{
-	c_tag = "Prison Hallway West";
-	network = list("ss13","prison")
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -68322,10 +68307,6 @@
 /obj/item/stock_parts/scanning_module{
 	pixel_x = -5;
 	pixel_y = 7
-	},
-/obj/machinery/camera{
-	c_tag = "Cargo - Drone Bay";
-	dir = 6
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/station/cargo/drone_bay)
@@ -71493,11 +71474,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
-/obj/machinery/camera/directional/east{
-	c_tag = "Chief Medical Office";
-	network = list("ss13","medbay");
-	pixel_y = -22
-	},
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/cmo)
 "skF" = (
@@ -73521,6 +73497,7 @@
 	pixel_y = -2
 	},
 /obj/structure/table/reinforced,
+/obj/machinery/airalarm/directional/south,
 /turf/open/floor/iron,
 /area/station/science/ordnance/testlab)
 "tfs" = (
@@ -75091,6 +75068,7 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 5
 	},
+/obj/machinery/camera/directional/east,
 /turf/open/water,
 /area/station/security/prison)
 "tPr" = (
@@ -77098,6 +77076,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
 	},
+/obj/machinery/camera/directional/west,
 /turf/open/floor/wood,
 /area/station/security/prison)
 "uNg" = (
@@ -78990,6 +78969,11 @@
 	pixel_y = -3
 	},
 /obj/machinery/keycard_auth/wall_mounted/directional/east,
+/obj/machinery/camera/directional/east{
+	c_tag = "Chief Medical Office";
+	network = list("ss13","medbay");
+	pixel_y = -22
+	},
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/cmo)
 "vEh" = (
@@ -80041,7 +80025,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
-/obj/machinery/computer/security/telescreen/ordnance/directional/east,
 /turf/open/floor/iron,
 /area/station/science/ordnance/testlab)
 "wed" = (
@@ -113040,7 +113023,7 @@ tau
 cay
 tau
 xIb
-cdT
+cjf
 cCY
 kul
 kul
@@ -118166,7 +118149,7 @@ bRC
 bMQ
 bwO
 cfn
-bVW
+lNr
 dtr
 bXS
 bZI
