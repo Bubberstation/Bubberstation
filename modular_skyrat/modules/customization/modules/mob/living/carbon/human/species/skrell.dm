@@ -125,7 +125,7 @@
 	desc = "Large black orbs."
 	icon = 'modular_skyrat/modules/organs/icons/skrell_organ.dmi'
 	icon_state = "eyes"
-	flash_protect = FLASH_PROTECTION_SENSITIVE
+	flash_protect = FLASH_PROTECTION_NONE //flash buff given their weakness to brute and cold
 
 /obj/item/organ/lungs/skrell
 	name = "skrell lungs"
