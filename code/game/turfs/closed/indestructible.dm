@@ -23,7 +23,7 @@
 	if(istype(attacking_item, /obj/item/wallframe/lewd_portal) && Adjacent(user))
 		var/obj/item/wallframe/lewd_portal = attacking_item
 		if(lewd_portal.try_build(src, user))
-			lewd_portal.attach(src, user)
+			lewd_portal.interact_with_atom(src, user)
 			return TRUE
 	return ..()	//BUBBER EDIT END
 
