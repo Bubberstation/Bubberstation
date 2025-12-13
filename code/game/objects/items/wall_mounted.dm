@@ -56,6 +56,11 @@
 		to_chat(user, span_warning("[src] Could not find all to mount on!."))
 		return
 	after_attach(hanging_object)
+	//BUBBER EDIT START - For lewd_portals, you can place multiple with the same frame.
+	if(multi_use > 1)
+		multi_use--
+		return
+	//BUBBER EDIT END
 	qdel(src)
 
 	return ITEM_INTERACT_SUCCESS
@@ -98,36 +103,6 @@
  * Arguments
  * * obj/attached_to - the object that has been created on the atom
 */
-/obj/item/wallframe/proc/attach(turf/on_wall, mob/user)
-	if(result_path)
-		playsound(src.loc, 'sound/machines/click.ogg', 75, TRUE)
-		user.visible_message(span_notice("[user.name] attaches [src] to the wall."),
-			span_notice("You attach [src] to the wall."),
-			span_hear("You hear clicking."))
-		var/floor_to_wall = get_dir(user, on_wall)
-
-		var/obj/hanging_object = new result_path(get_turf(user))
-		hanging_object.setDir(floor_to_wall)
-		if(pixel_shift)
-			switch(floor_to_wall)
-				if(NORTH)
-					hanging_object.pixel_y = pixel_shift
-				if(SOUTH)
-					hanging_object.pixel_y = -pixel_shift
-				if(EAST)
-					hanging_object.pixel_x = pixel_shift
-				if(WEST)
-					hanging_object.pixel_x = -pixel_shift
-		hanging_object.find_and_hang_on_atom()
-		after_attach(hanging_object)
-	//BUBBER EDIT START - For lewd_portals, you can place multiple with the same frame.
-	if(multi_use > 1)
-		multi_use--
-		return
-	//BUBBER EDIT END
-	qdel(src)
-
-
 /obj/item/wallframe/proc/after_attach(obj/attached_to)
 	transfer_fingerprints_to(attached_to)
 

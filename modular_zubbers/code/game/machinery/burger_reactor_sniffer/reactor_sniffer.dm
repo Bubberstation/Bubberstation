@@ -55,7 +55,7 @@
 	stored_radio.set_listening(FALSE)
 	stored_radio.recalculateChannels()
 
-	find_and_hang_on_atom()
+	find_and_mount_on_atom()
 
 	if(mapload)
 		for(var/obj/machinery/power/rbmk2/reactor in range(10,src))
