@@ -4724,9 +4724,9 @@
 /turf/closed/wall,
 /area/station/security/checkpoint/escape)
 "bEG" = (
-/obj/machinery/light/small/blacklight/directional/east,
-/turf/closed/wall,
-/area/station/command/heads_quarters/qm)
+/obj/structure/sign/painting/large/library_private,
+/turf/closed/wall/mineral/wood,
+/area/station/service/library)
 "bEJ" = (
 /obj/machinery/vending/boozeomat,
 /turf/closed/wall,
@@ -6008,10 +6008,10 @@
 /turf/open/floor/wood/large,
 /area/station/maintenance/department/crew_quarters/bar)
 "cbX" = (
-/obj/machinery/light/small/directional/east,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/light/small/directional/south,
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/department/crew_quarters/bar)
 "cca" = (
@@ -6804,6 +6804,11 @@
 /area/station/science/explab)
 "cqR" = (
 /obj/machinery/chem_master,
+/obj/machinery/button/door/directional/north{
+	id = "pharmacy_shutters";
+	name = "Pharmacy Shutter Controls";
+	req_access = list("pharmacy")
+	},
 /turf/open/floor/iron/white/small,
 /area/station/medical/pharmacy)
 "cqS" = (
@@ -6890,6 +6895,9 @@
 /area/station/biodome/fore)
 "csb" = (
 /obj/structure/fluff/clockwork/clockgolem_remains,
+/obj/machinery/camera/directional/north{
+	c_tag = "Biodome - Chapel Back Alley"
+	},
 /turf/open/misc/ashplanet/wateryrock/biodome,
 /area/station/maintenance/central/greater)
 "csm" = (
@@ -12509,19 +12517,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
-"eoF" = (
-/obj/machinery/button/door/directional/north{
-	id = "pharmacy_shutters";
-	name = "Pharmacy Shutter Controls";
-	pixel_y = 55;
-	req_access = list("pharmacy")
-	},
-/obj/structure/chair/office/light{
-	dir = 4
-	},
-/obj/effect/landmark/start/chemist,
-/turf/open/floor/iron/white/small,
-/area/station/medical/pharmacy)
 "eoI" = (
 /obj/effect/spawner/random/trash/graffiti,
 /turf/open/floor/plating,
@@ -14261,9 +14256,6 @@
 "eRj" = (
 /obj/item/taperecorder,
 /obj/structure/table/wood,
-/obj/structure/sign/painting/library_private{
-	pixel_y = -32
-	},
 /turf/open/floor/engine/cult,
 /area/station/service/library)
 "eRk" = (
@@ -16440,9 +16432,6 @@
 /obj/item/honey_frame,
 /obj/item/honey_frame,
 /obj/item/queen_bee/bought,
-/obj/machinery/camera/directional/west{
-	c_tag = "Service - Apiary"
-	},
 /obj/effect/turf_decal/trimline/dark_green/filled/line{
 	dir = 1
 	},
@@ -21890,6 +21879,21 @@
 /obj/effect/turf_decal/tile/blue/fourcorners,
 /turf/open/floor/iron/white,
 /area/station/medical/surgery/fore)
+"hAi" = (
+/obj/effect/turf_decal/trimline/dark_green/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/green/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/dark_green/filled/mid_joiner{
+	dir = 1
+	},
+/obj/machinery/camera/directional/west{
+	c_tag = "Service - Apiary"
+	},
+/turf/open/floor/iron/white/smooth_large,
+/area/station/service/hydroponics)
 "hAk" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Security Desk"
@@ -23402,14 +23406,9 @@
 /turf/open/floor/iron/smooth_half,
 /area/station/security/warden)
 "icq" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/machinery/camera/directional/west{
-	c_tag = "Service - Hall Roof Port"
-	},
-/turf/open/floor/wood/large,
-/area/station/hallway/secondary/service)
+/obj/structure/cable,
+/turf/open/floor/glass/reinforced,
+/area/station/science/xenobiology)
 "ict" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/yellow/visible,
 /turf/open/floor/iron/dark,
@@ -27656,6 +27655,10 @@
 /obj/structure/window/spawner/directional/north,
 /turf/open/floor/carpet,
 /area/station/commons/vacant_room/office)
+"jEd" = (
+/obj/structure/sign/painting/library_private,
+/turf/closed/wall/mineral/wood,
+/area/station/service/library)
 "jED" = (
 /turf/open/misc/beach/sand,
 /area/station/command/vault)
@@ -45196,10 +45199,6 @@
 /obj/item/plant_analyzer,
 /turf/open/misc/asteroid,
 /area/station/security/prison/garden)
-"ptc" = (
-/obj/structure/cable,
-/turf/open/floor/glass/reinforced,
-/area/station/science/xenobiology)
 "ptd" = (
 /obj/structure/cable,
 /turf/open/floor/iron/white/smooth_large,
@@ -45773,6 +45772,13 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/fore)
+"pEs" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/machinery/camera/directional/east,
+/turf/open/floor/wood/large,
+/area/station/hallway/secondary/service)
 "pEA" = (
 /obj/structure/table/reinforced,
 /obj/item/hfr_box/body/waste_output{
@@ -46953,10 +46959,6 @@
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "qbc" = (
-/obj/structure/sign/painting/large/library_private{
-	dir = 1;
-	pixel_x = -15
-	},
 /obj/structure/displaycase/curator,
 /turf/open/floor/engine/cult,
 /area/station/service/library)
@@ -50932,9 +50934,6 @@
 /area/station/commons/dorms)
 "roR" = (
 /obj/effect/decal/cleanable/cobweb,
-/obj/machinery/camera/directional/north{
-	c_tag = "Biodome - Chapel Back Alley"
-	},
 /turf/open/floor/plating,
 /area/station/maintenance/central/greater)
 "roZ" = (
@@ -61059,7 +61058,6 @@
 "uTS" = (
 /obj/effect/landmark/start/research_director,
 /obj/structure/chair/office,
-/obj/machinery/light/directional/south,
 /turf/open/floor/iron/white,
 /area/station/command/heads_quarters/rd)
 "uTW" = (
@@ -61598,11 +61596,11 @@
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "vdm" = (
-/obj/machinery/computer/security/telescreen/prison,
 /obj/structure/chair/office{
 	dir = 1
 	},
 /obj/effect/landmark/start/warden,
+/obj/machinery/computer/security/telescreen/prison/directional/south,
 /turf/open/floor/carpet/blue,
 /area/station/security/warden)
 "vdw" = (
@@ -63859,6 +63857,7 @@
 	dir = 1
 	},
 /obj/structure/sign/clock/directional/south,
+/obj/machinery/light/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/rd)
 "vUj" = (
@@ -69520,7 +69519,6 @@
 /obj/machinery/computer/rdconsole{
 	dir = 1
 	},
-/obj/item/folder/white,
 /obj/effect/turf_decal/tile/purple/half/contrasted,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/rd)
@@ -99296,11 +99294,11 @@ gpa
 gpa
 gpa
 fpZ
-weR
+bEG
 qbc
 kIm
 eRj
-weR
+jEd
 yin
 vxS
 oAe
@@ -102292,16 +102290,16 @@ cCZ
 hNy
 hNy
 oYs
-ptc
-ptc
+icq
+icq
 xeN
-ptc
+icq
 rlY
 gzR
-ptc
-ptc
+icq
+icq
 hXT
-ptc
+icq
 rsj
 uFX
 rtR
@@ -102549,16 +102547,16 @@ cCZ
 hNy
 hNy
 oYs
-ptc
+icq
 rlY
 bvV
-ptc
-ptc
+icq
+icq
 ris
-ptc
+icq
 rlY
 aKi
-ptc
+icq
 ixB
 hXj
 bTm
@@ -161994,7 +161992,7 @@ epr
 epr
 nRf
 cqR
-eoF
+jXb
 iEt
 jtS
 gFM
@@ -165051,9 +165049,9 @@ cGo
 pGm
 fsz
 fgk
-aUs
+pEs
 fkg
-icq
+aUs
 aUs
 aUs
 fkg
@@ -167109,7 +167107,7 @@ ggF
 dIi
 kRr
 ydh
-jRa
+hAi
 xDt
 wxH
 wxH
@@ -181012,7 +181010,7 @@ fTd
 lqK
 vJH
 vJH
-bEG
+vJH
 vJH
 eZB
 eQc
