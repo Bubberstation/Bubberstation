@@ -3547,6 +3547,7 @@
 /obj/machinery/light/cold,
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/structure/window/reinforced/spawner/directional/east,
+/obj/machinery/light/floor,
 /turf/open/floor/iron/dark,
 /area/awaymission/black_mesa/hecu_zone_camp)
 "aTE" = (
@@ -4150,6 +4151,7 @@
 "bik" = (
 /obj/structure/table,
 /obj/item/clothing/accessory/armband,
+/obj/machinery/light/floor,
 /turf/open/floor/iron/dark,
 /area/awaymission/black_mesa/hecu_zone_camp)
 "bix" = (
@@ -4874,9 +4876,13 @@
 /turf/open/floor/iron/smooth,
 /area/awaymission/black_mesa/black_ops_server)
 "cyy" = (
-/obj/machinery/light/red/directional/south,
+/obj/effect/turf_decal/stripes{
+	dir = 1
+	},
+/obj/structure/curtain/cloth,
+/obj/machinery/light/floor,
 /turf/open/floor/iron/dark,
-/area/awaymission/black_mesa/xen/acid_lake_building)
+/area/awaymission/black_mesa/hecu_zone_camp)
 "czJ" = (
 /obj/structure/barricade/sandbags,
 /turf/open/floor/iron/textured,
@@ -4964,13 +4970,6 @@
 "cNZ" = (
 /turf/closed/wall/r_wall,
 /area/awaymission/black_mesa/genetics)
-"cOX" = (
-/obj/machinery/light/cold/directional/east,
-/obj/effect/turf_decal/arrows{
-	dir = 1
-	},
-/turf/open/floor/iron/dark,
-/area/awaymission/black_mesa/hecu_zone_camp)
 "cPd" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing,
@@ -5269,7 +5268,6 @@
 /area/awaymission/black_mesa/hecu_zone_external_hall)
 "dok" = (
 /obj/structure/table,
-/obj/structure/sign/calendar/directional/west,
 /turf/open/floor/iron/dark,
 /area/awaymission/black_mesa/hecu_zone_camp)
 "dop" = (
@@ -5646,7 +5644,6 @@
 /obj/effect/turf_decal/stripes,
 /obj/structure/table,
 /obj/structure/bedsheetbin,
-/obj/structure/sign/clock/directional/south,
 /turf/open/floor/iron/dark,
 /area/awaymission/black_mesa/hecu_zone_camp)
 "dWt" = (
@@ -5887,14 +5884,6 @@
 /obj/effect/baseturf_helper/black_mesa,
 /turf/closed/indestructible/reinforced,
 /area/awaymission/black_mesa/dorm_tunnel)
-"ets" = (
-/obj/structure/inflatable{
-	color = "#556B2F";
-	opacity = 1
-	},
-/obj/machinery/light/broken/directional/south,
-/turf/open/floor/iron/white,
-/area/awaymission/black_mesa/hecu_zone_camp)
 "euc" = (
 /turf/closed/indestructible/reinforced,
 /area/awaymission/black_mesa/employee_dorm_room)
@@ -5928,7 +5917,6 @@
 "eyI" = (
 /obj/structure/table,
 /obj/item/storage/medkit/regular,
-/obj/machinery/light/cold/directional/north,
 /turf/open/floor/iron/smooth_large,
 /area/awaymission/black_mesa/xen/acid_lake_building)
 "ezH" = (
@@ -5972,9 +5960,8 @@
 	},
 /area/awaymission/black_mesa/hecu_zone_camp)
 "eCX" = (
-/obj/effect/turf_decal/stripes,
-/obj/machinery/light/cold,
-/obj/structure/sign/flag/usa/directional/south,
+/obj/effect/turf_decal/stripes/corner,
+/obj/machinery/light/floor,
 /turf/open/floor/iron/dark,
 /area/awaymission/black_mesa/hecu_zone_camp)
 "eDD" = (
@@ -5994,7 +5981,6 @@
 /obj/effect/turf_decal/stripes,
 /obj/structure/table,
 /obj/item/flashlight/seclite,
-/obj/structure/sign/calendar/directional/south,
 /turf/open/floor/iron/dark,
 /area/awaymission/black_mesa/hecu_zone_camp)
 "eGs" = (
@@ -6386,6 +6372,7 @@
 /area/awaymission/black_mesa/scientist_hall)
 "fpv" = (
 /obj/item/clothing/gloves/latex/nitrile,
+/obj/machinery/light/floor,
 /turf/open/floor/iron/white,
 /area/awaymission/black_mesa/hecu_zone_camp)
 "fpy" = (
@@ -6648,10 +6635,6 @@
 	},
 /turf/open/misc/xen,
 /area/awaymission/black_mesa/xen/lost_camp)
-"fYD" = (
-/obj/machinery/light/cold/directional/north,
-/turf/open/floor/iron/dark,
-/area/awaymission/black_mesa/xen/acid_lake_building)
 "fYL" = (
 /obj/machinery/door/airlock/maintenance,
 /turf/open/floor/plating,
@@ -6747,7 +6730,6 @@
 /area/awaymission/black_mesa/hecu_zone_infirmary)
 "ggg" = (
 /obj/structure/table/optable,
-/obj/machinery/light/cold/directional/east,
 /obj/item/storage/medkit/surgery,
 /obj/item/clothing/mask/breath/medical,
 /obj/effect/decal/cleanable/blood,
@@ -6839,7 +6821,6 @@
 /obj/effect/turf_decal/stripes{
 	dir = 1
 	},
-/obj/structure/sign/poster/random/directional/north,
 /obj/structure/table,
 /obj/item/storage/box/cups,
 /turf/open/floor/iron/dark,
@@ -6852,7 +6833,6 @@
 /obj/effect/turf_decal/stripes{
 	dir = 8
 	},
-/obj/machinery/light/cold/directional/west,
 /obj/structure/table,
 /obj/item/storage/box/donkpockets/donkpocketpizza{
 	pixel_x = -6
@@ -6987,10 +6967,6 @@
 /obj/effect/spawner/random/bioluminescent_plant/weak,
 /turf/open/misc/xen,
 /area/awaymission/black_mesa/xen/mp5_outpost)
-"gHY" = (
-/obj/machinery/light/dim/directional/west,
-/turf/open/floor/iron/dark,
-/area/awaymission/black_mesa/xen/lost_camp)
 "gIf" = (
 /obj/structure/table,
 /obj/item/gun/ballistic/automatic/pistol/sol,
@@ -7062,13 +7038,6 @@
 /obj/machinery/porta_turret/black_mesa,
 /turf/open/floor/iron/smooth_large,
 /area/awaymission/black_mesa/deep_sci_hall)
-"gQg" = (
-/obj/effect/turf_decal/stripes{
-	dir = 4
-	},
-/obj/machinery/light/cold/directional/east,
-/turf/open/floor/iron/dark,
-/area/awaymission/black_mesa/hecu_zone_camp)
 "gRA" = (
 /obj/effect/mob_spawn/corpse/human/scientist_zombie,
 /turf/open/floor/iron/smooth_large,
@@ -7210,7 +7179,6 @@
 /obj/structure/table,
 /obj/item/paper_bin,
 /obj/item/pen/blue,
-/obj/structure/sign/clock/directional/west,
 /turf/open/floor/iron/dark,
 /area/awaymission/black_mesa/hecu_zone_camp)
 "hfc" = (
@@ -7844,10 +7812,6 @@
 /obj/structure/lattice/catwalk,
 /turf/open/water/xen_acid,
 /area/awaymission/black_mesa/xen/acid_lake_building)
-"irD" = (
-/obj/machinery/light/cold/directional/south,
-/turf/open/floor/iron/dark,
-/area/awaymission/black_mesa/xen/lost_camp)
 "irU" = (
 /obj/effect/decal/remains/human,
 /turf/open/water/xen_acid,
@@ -7877,7 +7841,6 @@
 /turf/open/floor/iron/textured_large,
 /area/awaymission/black_mesa/high_security_surgery)
 "ium" = (
-/obj/machinery/light/cold/directional/west,
 /obj/machinery/autolathe/hacked,
 /turf/open/floor/iron/dark,
 /area/awaymission/black_mesa/hecu_zone_camp)
@@ -7938,14 +7901,13 @@
 	dir = 1
 	},
 /area/awaymission/black_mesa/resonant_chamber)
-"izv" = (
-/obj/machinery/light/broken/directional/west,
-/turf/open/floor/iron/dark,
-/area/awaymission/black_mesa/xen/lost_camp)
 "iAn" = (
-/obj/machinery/light/dim/directional/east,
+/obj/structure/chair/plastic{
+	dir = 8
+	},
+/obj/machinery/light/floor,
 /turf/open/floor/iron/dark,
-/area/awaymission/black_mesa/xen/lost_camp)
+/area/awaymission/black_mesa/hecu_zone_camp)
 "iBo" = (
 /obj/effect/baseturf_helper/black_mesa,
 /turf/closed/wall/r_wall,
@@ -8203,7 +8165,6 @@
 /area/awaymission/black_mesa/science_internal)
 "iZO" = (
 /obj/structure/table,
-/obj/machinery/light/cold/directional/east,
 /obj/effect/turf_decal/stripes{
 	dir = 4
 	},
@@ -8602,7 +8563,6 @@
 /obj/structure/rack,
 /obj/item/storage/box/ammo_box,
 /obj/item/storage/box/ammo_box,
-/obj/machinery/light/cold/directional/west,
 /turf/open/floor/iron/dark,
 /area/awaymission/black_mesa/hecu_zone_camp)
 "jHm" = (
@@ -8709,10 +8669,6 @@
 	icon_state = "bus"
 	},
 /area/awaymission/black_mesa/black_ops_bus)
-"jSB" = (
-/obj/structure/sign/flag/terragov/directional/south,
-/turf/open/floor/iron/dark,
-/area/awaymission/black_mesa/hecu_zone_camp)
 "jST" = (
 /turf/open/misc/beach/coastline_t/xen{
 	dir = 8
@@ -9684,6 +9640,7 @@
 /obj/item/storage/medkit/regular,
 /obj/item/storage/medkit/regular,
 /obj/item/storage/medkit/regular,
+/obj/machinery/light/floor,
 /turf/open/floor/iron/white,
 /area/awaymission/black_mesa/hecu_zone_camp)
 "lKo" = (
@@ -9714,10 +9671,6 @@
 "lNP" = (
 /turf/open/floor/engine,
 /area/awaymission/black_mesa/high_security_emitter)
-"lPn" = (
-/obj/machinery/light/cold,
-/turf/open/floor/iron/dark,
-/area/awaymission/black_mesa/hecu_zone_camp)
 "lQc" = (
 /turf/closed/wall/r_wall,
 /area/awaymission/black_mesa/black_ops_hallway_two)
@@ -9840,7 +9793,7 @@
 /turf/open/floor/iron/smooth_large,
 /area/awaymission/black_mesa/deep_sci_turret)
 "mcx" = (
-/obj/machinery/light/cold/directional/south,
+/obj/machinery/light/floor,
 /turf/open/floor/iron/dark,
 /area/awaymission/black_mesa/xen/acid_lake_building)
 "mcP" = (
@@ -10048,8 +10001,6 @@
 /obj/effect/turf_decal/stripes{
 	dir = 1
 	},
-/obj/machinery/light/cold/directional/north,
-/obj/structure/sign/poster/random/directional/north,
 /obj/machinery/oven,
 /obj/structure/window/reinforced/spawner/directional/east,
 /turf/open/floor/iron/dark,
@@ -10972,10 +10923,6 @@
 	},
 /turf/open/misc/dirt/planet/xen,
 /area/awaymission/black_mesa/xen/vortigaunt_village)
-"otA" = (
-/obj/machinery/light/cold/directional/west,
-/turf/open/floor/iron/dark,
-/area/awaymission/black_mesa/xen/lost_camp)
 "otO" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/window/reinforced/spawner/directional/north,
@@ -11130,10 +11077,10 @@
 /turf/open/floor/iron/smooth_large,
 /area/awaymission/black_mesa/black_ops_server)
 "oIk" = (
-/obj/effect/turf_decal/stripes{
-	dir = 1
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
 	},
-/obj/structure/sign/poster/random/directional/north,
+/obj/machinery/light/floor,
 /turf/open/floor/iron/dark,
 /area/awaymission/black_mesa/hecu_zone_camp)
 "oKh" = (
@@ -11490,6 +11437,7 @@
 "psX" = (
 /obj/structure/table,
 /obj/item/storage/box/bodybags,
+/obj/machinery/light/floor,
 /turf/open/floor/iron/white,
 /area/awaymission/black_mesa/hecu_zone_camp)
 "pto" = (
@@ -11852,9 +11800,10 @@
 /turf/closed/wall/r_wall,
 /area/awaymission/black_mesa/black_ops_eng_storage)
 "qjg" = (
-/obj/effect/turf_decal/stripes,
-/obj/structure/sign/poster/random/directional/south,
-/turf/open/floor/iron/dark,
+/obj/structure/bed/medical/emergency,
+/obj/structure/curtain,
+/obj/machinery/light/floor,
+/turf/open/floor/iron/white,
 /area/awaymission/black_mesa/hecu_zone_camp)
 "qkc" = (
 /obj/machinery/light/cold/directional/north,
@@ -12311,8 +12260,6 @@
 /area/awaymission/black_mesa/hecu_zone_test_chambers)
 "qWA" = (
 /obj/effect/turf_decal/stripes,
-/obj/machinery/light/cold,
-/obj/structure/sign/poster/random/directional/south,
 /obj/structure/curtain/cloth,
 /turf/open/floor/iron/dark,
 /area/awaymission/black_mesa/hecu_zone_camp)
@@ -13261,7 +13208,6 @@
 /area/awaymission/black_mesa/black_ops_server)
 "sJk" = (
 /obj/structure/table,
-/obj/machinery/light/cold,
 /obj/machinery/microwave,
 /obj/effect/turf_decal/stripes,
 /turf/open/floor/iron/dark,
@@ -13306,7 +13252,6 @@
 /turf/open/floor/engine,
 /area/awaymission/black_mesa/high_security_emitter)
 "sOH" = (
-/obj/machinery/light/small/red/directional/west,
 /obj/effect/random_mob_placer/hev_zombie,
 /turf/open/misc/xen,
 /area/awaymission/black_mesa/xen/mp5_outpost)
@@ -13533,10 +13478,6 @@
 	},
 /turf/open/floor/iron/textured,
 /area/awaymission/black_mesa/black_ops_button)
-"tlF" = (
-/obj/machinery/light/cold/directional/north,
-/turf/open/floor/iron/dark,
-/area/awaymission/black_mesa/hecu_zone_camp)
 "tmC" = (
 /obj/structure/flora/biolumi/flower/weaklight,
 /obj/structure/alien/weeds/xen,
@@ -13651,11 +13592,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/awaymission/black_mesa/genetics_elevator)
-"tBP" = (
-/obj/structure/cable,
-/obj/machinery/light/cold/directional/east,
-/turf/open/floor/iron/dark,
-/area/awaymission/black_mesa/xen/lost_camp)
 "tCX" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/light/cold,
@@ -13897,7 +13833,6 @@
 /turf/open/floor/iron/textured_large,
 /area/awaymission/black_mesa/black_ops_button)
 "uek" = (
-/obj/machinery/light/cold/directional/east,
 /obj/structure/table,
 /obj/item/modular_computer/laptop/preset/civilian,
 /turf/open/floor/iron/dark,
@@ -14019,7 +13954,6 @@
 	dir = 1
 	},
 /obj/machinery/light/cold/directional/north,
-/obj/structure/sign/flag/usa/directional/north,
 /obj/structure/table,
 /obj/machinery/coffeemaker,
 /turf/open/floor/iron/dark,
@@ -14213,7 +14147,7 @@
 /turf/open/floor/iron/dark,
 /area/awaymission/black_mesa/high_security_surgery)
 "uKr" = (
-/obj/machinery/light/cold/directional/north,
+/obj/machinery/light/floor,
 /turf/open/floor/iron/dark,
 /area/awaymission/black_mesa/xen/lost_camp)
 "uKX" = (
@@ -14328,7 +14262,7 @@
 /obj/structure/chair/plastic{
 	dir = 4
 	},
-/obj/machinery/light/cold/directional/west,
+/obj/machinery/light/floor,
 /turf/open/floor/iron/dark,
 /area/awaymission/black_mesa/xen/lost_camp)
 "uVx" = (
@@ -14487,7 +14421,7 @@
 /turf/open/floor/iron/dark,
 /area/awaymission/black_mesa/science_internal)
 "vio" = (
-/obj/structure/sign/flag/usa/directional/south,
+/obj/machinery/light/floor,
 /turf/open/floor/iron/dark,
 /area/awaymission/black_mesa/hecu_zone_camp)
 "vju" = (
@@ -14645,13 +14579,6 @@
 /obj/item/flashlight/flare,
 /turf/open/floor/iron/freezer,
 /area/awaymission/black_mesa/hecu_zone_bathroom)
-"vxO" = (
-/obj/effect/turf_decal/stripes{
-	dir = 8
-	},
-/obj/machinery/light/cold/directional/west,
-/turf/open/floor/iron/dark,
-/area/awaymission/black_mesa/hecu_zone_camp)
 "vyO" = (
 /turf/open/floor/iron/smooth_large,
 /area/awaymission/black_mesa/high_security_emitter)
@@ -15250,8 +15177,8 @@
 "wGZ" = (
 /obj/structure/cable,
 /obj/structure/table,
-/obj/machinery/light/cold/directional/east,
 /obj/item/modular_computer/laptop,
+/obj/machinery/light/floor,
 /turf/open/floor/iron/dark,
 /area/awaymission/black_mesa/xen/lost_camp)
 "wHI" = (
@@ -15565,7 +15492,7 @@
 /turf/open/floor/iron/smooth_large,
 /area/awaymission/black_mesa/deep_sci_chem)
 "xhr" = (
-/obj/machinery/light/cold/directional/south,
+/obj/machinery/light/floor,
 /turf/open/floor/iron/smooth_large,
 /area/awaymission/black_mesa/xen/acid_lake_building)
 "xhC" = (
@@ -15719,7 +15646,7 @@
 /area/awaymission/black_mesa/xen/lost_camp)
 "xsB" = (
 /obj/structure/cable,
-/obj/machinery/light/dim/directional/west,
+/obj/machinery/light/floor,
 /turf/open/floor/iron/dark,
 /area/awaymission/black_mesa/xen/lost_camp)
 "xuC" = (
@@ -16096,10 +16023,6 @@
 /obj/structure/chair/sofa/bench,
 /turf/open/floor/iron/textured_large,
 /area/awaymission/black_mesa/employee_dorm_room)
-"yix" = (
-/obj/machinery/light/cold/directional/east,
-/turf/open/floor/iron/dark,
-/area/awaymission/black_mesa/hecu_zone_camp)
 "yiT" = (
 /turf/open/floor/iron/stairs/medium,
 /area/awaymission/black_mesa/black_ops_downstairs_atrium)
@@ -20543,7 +20466,7 @@ uVv
 rGk
 rGk
 gZV
-otA
+uKr
 gZV
 kYz
 ceE
@@ -20794,7 +20717,7 @@ wwU
 wwU
 wwU
 wwU
-ksv
+kYz
 gZV
 tbC
 dFF
@@ -21066,7 +20989,7 @@ uKr
 gZV
 gZV
 gZV
-irD
+uKr
 kYz
 ceE
 ceE
@@ -21317,7 +21240,7 @@ gZV
 gZV
 gZV
 pPh
-gHY
+uKr
 pPh
 gZV
 hcB
@@ -21822,7 +21745,7 @@ dTJ
 wwU
 wwU
 wwU
-ksv
+kYz
 gZV
 gZV
 gZV
@@ -22084,8 +22007,8 @@ eYQ
 tpK
 wGZ
 neN
-tBP
 neN
+xsB
 jVn
 dsQ
 byK
@@ -22610,8 +22533,8 @@ tgl
 gZV
 gZV
 pPh
-gHY
 gZV
+uKr
 pPh
 hlW
 hlW
@@ -22867,8 +22790,8 @@ kht
 gZV
 gZV
 pPh
-iAn
 gZV
+uKr
 pPh
 hlW
 hlW
@@ -23370,7 +23293,7 @@ jnZ
 xsB
 gZV
 gZV
-izv
+uKr
 qaj
 kYz
 ceE
@@ -23622,7 +23545,7 @@ dTJ
 dTJ
 wwU
 wwU
-ksv
+kYz
 gZV
 neN
 xmK
@@ -24144,7 +24067,7 @@ dGM
 lHB
 gZV
 pPh
-gHY
+uKr
 pPh
 gZV
 gZV
@@ -24407,7 +24330,7 @@ uKr
 gZV
 lHB
 gZV
-irD
+uKr
 kYz
 ceE
 ceE
@@ -24650,7 +24573,7 @@ ocV
 wwU
 wwU
 wwU
-ksv
+kYz
 dGM
 loc
 xrM
@@ -29354,7 +29277,7 @@ rIg
 qiS
 qiS
 wYs
-fYD
+mcx
 vIy
 nLL
 vIy
@@ -30382,7 +30305,7 @@ rIg
 rIg
 qiS
 wYs
-fYD
+mcx
 vIy
 vIy
 vIy
@@ -31157,7 +31080,7 @@ wYs
 lBD
 wmp
 lZj
-cyy
+mcx
 wYs
 wYs
 qlP
@@ -31673,7 +31596,7 @@ eTC
 lZj
 vIy
 qlP
-nmp
+xhr
 nmp
 nmp
 nmp
@@ -32185,7 +32108,7 @@ wYs
 xgz
 lZj
 vIy
-cyy
+mcx
 wYs
 eyI
 cch
@@ -43711,7 +43634,7 @@ oxJ
 hEr
 lXv
 ewW
-jSB
+lXv
 ugW
 cvs
 psA
@@ -44225,7 +44148,7 @@ lXv
 lXv
 lXv
 lXv
-lPn
+lXv
 ugW
 kRK
 sTe
@@ -44465,11 +44388,11 @@ gdr
 gdr
 gdr
 gdr
-vtK
+ugW
 lXv
 lXv
 sEo
-lXv
+vio
 sXV
 lXv
 gdr
@@ -44477,7 +44400,7 @@ wAJ
 dsI
 gdr
 ugW
-tlF
+lXv
 sEo
 sEo
 sEo
@@ -44733,7 +44656,7 @@ gdr
 wAJ
 dsI
 gdr
-vtK
+ugW
 lXv
 pSp
 wEc
@@ -44980,9 +44903,9 @@ gdr
 gdr
 gdr
 ugW
-lXv
+vio
 bYS
-cOX
+rqo
 rqo
 ugW
 lXv
@@ -44992,11 +44915,11 @@ dsI
 gdr
 ugW
 lXv
+iAn
 kJZ
 kJZ
 kJZ
-kJZ
-lXv
+vio
 lXv
 oxJ
 vPz
@@ -45251,7 +45174,7 @@ ugW
 lXv
 lXv
 lXv
-yix
+lXv
 lXv
 lXv
 lXv
@@ -46294,11 +46217,11 @@ lXv
 wAJ
 ugW
 qiB
-lXv
+vio
 uBZ
 lXv
 lXv
-lXv
+vio
 fkz
 sXV
 gdr
@@ -46807,13 +46730,13 @@ lXv
 lXv
 wAJ
 ugW
-oIk
+qiB
 lXv
 lXv
 lXv
 lXv
 lXv
-qjg
+fkz
 ugW
 gdr
 gdr
@@ -47070,7 +46993,7 @@ lXv
 lXv
 lXv
 lXv
-qjg
+fkz
 ugW
 gdr
 gdr
@@ -47327,7 +47250,7 @@ gWF
 pjD
 qJa
 lXv
-eCX
+fkz
 ugW
 gdr
 gdr
@@ -47579,11 +47502,11 @@ gdr
 wAJ
 vtK
 fAW
-lXv
+vio
 gWF
 hHC
 qJa
-lXv
+vio
 fkz
 ugW
 gdr
@@ -48325,7 +48248,7 @@ mas
 mas
 mas
 hhL
-ets
+qae
 gdr
 dsI
 gdr
@@ -48589,7 +48512,7 @@ gdr
 vmb
 xAE
 hMr
-vxO
+wJo
 wJo
 wqi
 ugW
@@ -48607,11 +48530,11 @@ xZk
 wAJ
 ycu
 sms
-feA
+oIk
 lXv
 lXv
 lXv
-cWJ
+eCX
 vAB
 ugW
 gdr
@@ -48844,10 +48767,10 @@ gdr
 dsI
 gdr
 vmb
-oxS
+cyy
 kBZ
 kBZ
-lXv
+vio
 sVG
 ugW
 qGl
@@ -49348,11 +49271,11 @@ dsI
 gdr
 gdr
 qae
-hhL
+qjg
 jtW
 mas
 mas
-hhL
+qjg
 qae
 gdr
 dsI
@@ -49872,10 +49795,10 @@ gdr
 dsI
 gdr
 vmb
-oxS
+cyy
 kBZ
 kBZ
-lXv
+vio
 gIM
 ugW
 gWB
@@ -50900,10 +50823,10 @@ gdr
 dsI
 gdr
 vmb
-oxS
+cyy
 kBZ
 kBZ
-lXv
+vio
 klO
 ugW
 nTv
@@ -50920,10 +50843,10 @@ mxf
 hRb
 jtF
 sXV
+vio
 lXv
 lXv
-lXv
-lXv
+vio
 vTf
 ugW
 gdr
@@ -51159,7 +51082,7 @@ gdr
 vmb
 rvm
 qmB
-gQg
+vpb
 vpb
 iyb
 ugW
