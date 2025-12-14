@@ -1742,7 +1742,8 @@
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 8
 	},
-/obj/structure/reagent_dispensers/water_cooler/punch_cooler,
+/obj/structure/reagent_dispensers/water_cooler/punch_cooler/medical,
+/obj/effect/turf_decal/tile/purple/opposingcorners,
 /turf/open/floor/iron/dark,
 /area/station/medical/medbay/lobby)
 "aCi" = (
@@ -5707,6 +5708,9 @@
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 8
 	},
+/obj/effect/turf_decal/trimline/purple/punch{
+	alpha = 160
+	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/medbay/lobby)
 "bXS" = (
@@ -8510,6 +8514,9 @@
 	name = "Medbay"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/medical/general,
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 8
+	},
 /turf/open/floor/iron/dark,
 /area/station/medical/medbay/central)
 "cTN" = (
@@ -10670,7 +10677,9 @@
 	id = "emmd";
 	name = "Emergency Medical Lockdown Shutters"
 	},
-/obj/effect/turf_decal/caution/stand_clear,
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 4
+	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark,
 /area/station/medical/medbay/lobby)
@@ -15307,6 +15316,9 @@
 	},
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
+	},
+/obj/effect/turf_decal/trimline/purple/punch{
+	alpha = 160
 	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/medbay/lobby)
@@ -20066,6 +20078,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/access/all/medical/general,
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 8
+	},
 /turf/open/floor/iron/dark,
 /area/station/medical/medbay/central)
 "gBd" = (
@@ -20925,7 +20940,10 @@
 /obj/effect/turf_decal/tile/neutral/anticorner/contrasted{
 	dir = 8
 	},
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/trimline/purple/punch{
+	alpha = 160
+	},
+/turf/open/floor/iron/dark/smooth_edge,
 /area/station/medical/medbay/lobby)
 "gOo" = (
 /obj/structure/sign/directions/evac{
@@ -32150,13 +32168,18 @@
 	id = "emmd";
 	name = "Emergency Medical Lockdown Shutters"
 	},
-/obj/effect/turf_decal/caution/stand_clear,
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/trimline/purple/corner{
+	alpha = 160
+	},
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/medical/medbay/lobby)
 "kqs" = (
@@ -39762,7 +39785,13 @@
 /obj/effect/turf_decal/stripes/corner,
 /obj/structure/disposalpipe/segment,
 /obj/effect/mapping_helpers/airlock/access/all/medical/pharmacy,
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/trimline/purple/punch{
+	dir = 1;
+	alpha = 160
+	},
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 1
+	},
 /area/station/medical/pharmacy)
 "mJo" = (
 /obj/structure/disposalpipe/junction/flip{
@@ -40557,6 +40586,16 @@
 	},
 /turf/open/floor/iron,
 /area/station/cargo/storage)
+"mWc" = (
+/obj/effect/turf_decal/tile/blue/opposingcorners,
+/obj/effect/turf_decal/tile/blue/anticorner/contrasted{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/purple/warning{
+	alpha = 160
+	},
+/turf/open/floor/iron/showroomfloor,
+/area/station/medical/medbay/lobby)
 "mWg" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/reagent_dispensers/watertank,
@@ -57623,7 +57662,13 @@
 	dir = 4
 	},
 /obj/effect/landmark/navigate_destination/med,
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/trimline/purple/punch{
+	dir = 8;
+	alpha = 160
+	},
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 8
+	},
 /area/station/hallway/primary/central/fore)
 "sCr" = (
 /obj/structure/reagent_dispensers/fueltank,
@@ -62274,7 +62319,13 @@
 /obj/machinery/door/airlock/public/glass{
 	name = "Medbay"
 	},
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/trimline/purple/punch{
+	dir = 8;
+	alpha = 160
+	},
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 8
+	},
 /area/station/hallway/primary/central/fore)
 "tWg" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -67932,6 +67983,14 @@
 /obj/machinery/light/directional/east,
 /turf/open/floor/plating/airless,
 /area/station/hallway/secondary/entry)
+"vJn" = (
+/obj/effect/spawner/structure/window,
+/obj/effect/turf_decal/trimline/purple/corner{
+	dir = 8;
+	alpha = 160
+	},
+/turf/open/floor/plating,
+/area/station/hallway/primary/central/fore)
 "vJv" = (
 /obj/structure/extinguisher_cabinet/directional/north,
 /obj/machinery/component_printer,
@@ -74082,6 +74141,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
+	},
+/obj/effect/turf_decal/trimline/purple/warning{
+	alpha = 160
 	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/medbay/lobby)
@@ -98583,7 +98645,7 @@ ciA
 krM
 xvW
 fXm
-nes
+mWc
 uTM
 eyA
 eIW
@@ -99097,7 +99159,7 @@ mFQ
 wQc
 cXZ
 hdo
-hdo
+vJn
 tWe
 sCa
 hdo
