@@ -3544,7 +3544,6 @@
 /turf/open/floor/iron/dark,
 /area/awaymission/black_mesa/servers)
 "aTt" = (
-/obj/machinery/light/cold,
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/machinery/light/floor,
@@ -3683,10 +3682,6 @@
 	planetary_atmos = 1
 	},
 /area/awaymission/black_mesa/tram_room)
-"aVs" = (
-/obj/machinery/light/cold/directional/north,
-/turf/open/floor/iron/white,
-/area/awaymission/black_mesa/hecu_zone_camp)
 "aVu" = (
 /obj/effect/spawner/random/bioluminescent_plant/weak,
 /turf/open/misc/xen,
@@ -4568,7 +4563,6 @@
 /turf/open/floor/mineral/titanium,
 /area/awaymission/black_mesa/genetics_elevator)
 "cbq" = (
-/obj/machinery/light/cold/directional/west,
 /obj/machinery/modular_computer/preset/civilian{
 	dir = 4
 	},
@@ -6696,7 +6690,6 @@
 /area/awaymission/black_mesa/xen/lost_camp)
 "gee" = (
 /obj/structure/rack/shelf,
-/obj/machinery/light/cold,
 /obj/item/gun/ballistic/automatic/sol_rifle,
 /turf/open/floor/iron/smooth,
 /area/awaymission/black_mesa/black_ops_armory)
@@ -7539,11 +7532,6 @@
 	},
 /turf/open/floor/iron,
 /area/awaymission/black_mesa/entrance_internal_hall)
-"hKg" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/light/dim/directional/east,
-/turf/open/floor/iron/dark,
-/area/awaymission/black_mesa/xen/acid_lake)
 "hKE" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 4
@@ -7773,10 +7761,9 @@
 /turf/open/floor/iron/textured,
 /area/awaymission/black_mesa/hecu_zone_atrium)
 "imi" = (
-/obj/structure/spacevine/xen/thick,
-/obj/structure/sign/warning/biohazard,
-/turf/open/misc/xen,
-/area/awaymission/black_mesa/xen/lost_camp_hallway)
+/obj/machinery/light/floor,
+/turf/open/floor/iron/smooth,
+/area/awaymission/black_mesa/black_ops_armory)
 "ipj" = (
 /obj/effect/random_mob_placer/xen/zombie,
 /turf/open/floor/iron/smooth_large,
@@ -8904,14 +8891,6 @@
 /obj/structure/alien/weeds/xen,
 /turf/open/floor/iron/smooth_large,
 /area/awaymission/black_mesa/entrance_internal_hall)
-"ksv" = (
-/obj/structure/inflatable{
-	color = "#556B2F";
-	opacity = 1
-	},
-/obj/structure/sign/warning/biohazard,
-/turf/open/misc/xen,
-/area/awaymission/black_mesa/xen/lost_camp)
 "kuR" = (
 /obj/structure/chair/sofa/bench{
 	dir = 1
@@ -10642,9 +10621,12 @@
 /turf/open/floor/iron/dark,
 /area/awaymission/black_mesa/xen/acid_lake_building)
 "nLY" = (
-/obj/machinery/light/cold,
-/turf/open/floor/iron/white,
-/area/awaymission/black_mesa/hecu_zone_camp)
+/obj/structure/fluff/paper/stack{
+	dir = 5;
+	pixel_x = 1
+	},
+/turf/open/floor/plating,
+/area/awaymission/black_mesa/xen/acid_lake_building)
 "nMQ" = (
 /turf/open/misc/beach/coastline_t/xen{
 	dir = 5
@@ -11858,11 +11840,6 @@
 /obj/effect/spawner/random/bioluminescent_plant/weak,
 /turf/open/misc/xen,
 /area/awaymission/black_mesa/xen/entering_zone)
-"qpw" = (
-/obj/item/chair,
-/obj/machinery/light/cold/directional/south,
-/turf/open/floor/iron/smooth_large,
-/area/awaymission/black_mesa/xen/acid_lake_building)
 "qpF" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/corner{
 	dir = 1
@@ -12445,11 +12422,6 @@
 /obj/effect/random_mob_placer/xen/zombie,
 /turf/open/floor/iron/smooth_large,
 /area/awaymission/black_mesa/dorm_computers)
-"rnE" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/light/dim/directional/west,
-/turf/open/floor/iron/dark,
-/area/awaymission/black_mesa/xen/acid_lake)
 "rnF" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/line{
 	dir = 1
@@ -13953,7 +13925,6 @@
 /obj/effect/turf_decal/stripes{
 	dir = 1
 	},
-/obj/machinery/light/cold/directional/north,
 /obj/structure/table,
 /obj/machinery/coffeemaker,
 /turf/open/floor/iron/dark,
@@ -14526,16 +14497,6 @@
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/iron/textured_large,
 /area/awaymission/black_mesa/black_ops_entrance)
-"vtK" = (
-/obj/structure/inflatable{
-	color = "#556B2F";
-	opacity = 1
-	},
-/obj/structure/noticeboard{
-	pixel_y = -5
-	},
-/turf/open/floor/iron/dark,
-/area/awaymission/black_mesa/hecu_zone_camp)
 "vtU" = (
 /obj/structure/rack/shelf,
 /obj/item/gun/ballistic/automatic/xhihao_smg,
@@ -14777,12 +14738,11 @@
 /turf/open/misc/ironsand/black_mesa,
 /area/awaymission/black_mesa/hecu_zone_camp)
 "vPz" = (
-/obj/machinery/light/cold,
-/obj/structure/server{
-	anchored = 1
-	},
-/turf/open/floor/iron/dark,
-/area/awaymission/black_mesa/hecu_zone_camp)
+/obj/structure/rack/shelf,
+/obj/item/ammo_box/magazine/c35sol_pistol/stendo,
+/obj/machinery/light/floor,
+/turf/open/floor/iron/smooth,
+/area/awaymission/black_mesa/black_ops_armory)
 "vPK" = (
 /obj/structure/deployable_barricade/metal{
 	dir = 4
@@ -15193,12 +15153,6 @@
 /obj/item/ammo_box/magazine/c35sol_pistol/stendo,
 /turf/open/misc/xen,
 /area/awaymission/black_mesa/xen/acid_lake_hallway)
-"wIC" = (
-/obj/structure/rack/shelf,
-/obj/machinery/light/cold,
-/obj/item/ammo_box/magazine/c40sol_rifle/standard,
-/turf/open/floor/iron/smooth,
-/area/awaymission/black_mesa/black_ops_armory)
 "wJo" = (
 /obj/effect/turf_decal/stripes{
 	dir = 8
@@ -22275,7 +22229,7 @@ gdX
 kht
 gZV
 gZV
-ksv
+kYz
 kYz
 kYz
 kYz
@@ -23046,7 +23000,7 @@ gdX
 tgl
 gZV
 gZV
-ksv
+kYz
 kYz
 kYz
 kYz
@@ -23574,7 +23528,7 @@ arz
 arz
 aoE
 aoE
-imi
+rJt
 wyy
 wyy
 wyy
@@ -28514,10 +28468,10 @@ qiS
 qiS
 qiS
 qiS
-hKg
 qiS
 qiS
-hKg
+qiS
+qiS
 qiS
 rIg
 rIg
@@ -29285,9 +29239,9 @@ vIy
 mcx
 wYs
 qqt
-vIy
-vIy
 mcx
+vIy
+vIy
 wYs
 qiS
 rIg
@@ -30573,7 +30527,7 @@ vIy
 vIy
 wYs
 nmp
-qpw
+uWO
 wYs
 qiS
 rIg
@@ -31079,8 +31033,8 @@ byl
 wYs
 lBD
 wmp
-lZj
 mcx
+vIy
 wYs
 wYs
 qlP
@@ -31335,7 +31289,7 @@ rIg
 rIg
 rIg
 nrw
-eTC
+nLY
 vIy
 vIy
 wYs
@@ -32107,8 +32061,8 @@ byl
 wYs
 xgz
 lZj
-vIy
 mcx
+vIy
 wYs
 eyI
 cch
@@ -32620,10 +32574,10 @@ rIg
 qiS
 qiS
 qiS
-rnE
 qiS
 qiS
-rnE
+qiS
+qiS
 qiS
 qiS
 qiS
@@ -44922,7 +44876,7 @@ kJZ
 vio
 lXv
 oxJ
-vPz
+ygT
 ugW
 gdr
 qGl
@@ -47500,7 +47454,7 @@ gdr
 gdr
 gdr
 wAJ
-vtK
+ugW
 fAW
 vio
 gWF
@@ -48501,9 +48455,9 @@ gdr
 gdr
 qae
 qae
-aVs
+mas
 seS
-nLY
+mas
 qae
 qae
 gdr
@@ -73420,7 +73374,7 @@ aNo
 fqj
 xPH
 nZI
-nZI
+imi
 nZI
 nZI
 nZI
@@ -74962,9 +74916,9 @@ aNo
 fqj
 rnS
 nZI
-eZJ
+vPz
 nZI
-wIC
+gVv
 lbg
 fqj
 ylC
@@ -75221,7 +75175,7 @@ jvn
 evY
 jvn
 evY
-wIC
+gVv
 nZI
 fqj
 ylC

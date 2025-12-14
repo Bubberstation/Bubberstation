@@ -11842,7 +11842,8 @@
 /area/station/engineering/atmos/test_chambers)
 "cnZ" = (
 /obj/machinery/light/floor,
-/turf/open/floor/iron,
+/obj/structure/lattice/catwalk,
+/turf/open/floor/plating,
 /area/station/commons/dorms)
 "cob" = (
 /obj/structure/ore_box,
@@ -41526,11 +41527,7 @@
 /turf/open/floor/iron/dark,
 /area/station/maintenance/department/engineering/atmos_aux_port)
 "hUD" = (
-/obj/machinery/camera{
-	c_tag = "Leisure Hallway - Port Center";
-	dir = 10;
-	name = "hallway camera"
-	},
+/obj/machinery/camera/autoname/directional/west,
 /turf/open/floor/wood,
 /area/station/hallway/primary/port)
 "hUE" = (
@@ -57992,10 +57989,6 @@
 /obj/item/pneumatic_cannon/pie/selfcharge,
 /turf/open/floor/noslip,
 /area/station/maintenance/gag_room)
-"lbT" = (
-/obj/machinery/light/directional/west,
-/turf/open/openspace,
-/area/station/hallway/primary/upper)
 "lbY" = (
 /obj/structure/flora/bush/flowers_br,
 /mob/living/carbon/human/species/monkey,
@@ -65573,10 +65566,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/science/robotics/mechbay)
-"mBM" = (
-/obj/machinery/light/directional/east,
-/turf/open/openspace,
-/area/station/hallway/primary/upper)
 "mBR" = (
 /obj/machinery/atmospherics/pipe/smart/simple/orange/hidden{
 	dir = 4
@@ -82426,7 +82415,8 @@
 /area/space/nearstation)
 "pMQ" = (
 /obj/machinery/light/floor,
-/turf/open/floor/iron,
+/obj/structure/lattice/catwalk,
+/turf/open/floor/plating,
 /area/station/hallway/primary/upper)
 "pMR" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -224215,7 +224205,7 @@ cfl
 cfl
 rtQ
 cfl
-mBM
+cfl
 cfl
 rtQ
 cfl
@@ -224472,7 +224462,7 @@ pMQ
 hQq
 rtQ
 hQq
-hQq
+pMQ
 hQq
 rtQ
 iyo
@@ -224729,7 +224719,7 @@ cfl
 cfl
 rtQ
 cfl
-lbT
+cfl
 cfl
 rtQ
 cfl
