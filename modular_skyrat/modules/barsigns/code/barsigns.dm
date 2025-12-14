@@ -306,7 +306,7 @@
 	neon_color = ""
 
 /datum/barsign/skyrat/coldones
-	name = "cold ones"
+	name = "Cold Ones"
 	icon_state = "cold-ones"
 	desc = "That's what they call the yogurt effect."
 	neon_color = ""
