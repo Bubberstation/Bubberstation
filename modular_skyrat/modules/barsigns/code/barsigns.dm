@@ -293,6 +293,24 @@
 	desc = ""
 	neon_color = "#000066"
 
+/datum/barsign/skyrat/nukies
+	name = "Nukie's"
+	icon_state = "nukies"
+	desc = "There'd better not be a leaf in my drink..."
+	neon_color = ""
+
+/datum/barsign/skyrat/duellingmoons
+	name = "Duelling Moons"
+	icon_state = "duelling-moons"
+	desc = "They're just missing the celestial body they belong to."
+	neon_color = ""
+
+/datum/barsign/skyrat/coldones
+	name = "cold ones"
+	icon_state = "cold-ones"
+	desc = "That's what they call the yogurt effect."
+	neon_color = ""
+
 // 96x96 signs
 
 /datum/barsign/skyrat/large/cyberslyph
