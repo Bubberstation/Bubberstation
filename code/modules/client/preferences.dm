@@ -250,6 +250,21 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if ("remove_current_slot")
 			remove_current_slot()
 			return TRUE
+		if ("duplicate_current_slot") //BUBBER ADDITION START - Character duplication
+			save_character()
+			if(sanitize_languages())
+				save_character()
+			var/list/character_list = create_character_profiles()
+			var/list/slot_choices = list()
+			for(var/i = 1, i <= character_list.len, i++)
+				slot_choices += "Slot [i]: [character_list[i]]"
+			var/target_slot = tgui_input_list(ui.user, "Pick a slot to copy to.", "Duplicate Character", slot_choices, null)
+			if(!isnull(target_slot))
+				duplicate_current_slot(slot_choices.Find(target_slot))
+				tainted_character_profiles = TRUE
+			else
+				tgui_alert(ui.user, "Cancelled Duplication", "Duplicate Character")
+			return TRUE //BUBBER ADDITION END - Character duplication
 		if ("rotate")
 			/* SKYRAT EDIT - Bi-directional prefs menu rotation - ORIGINAL:
 			character_preview_view.dir = turn(character_preview_view.dir, -90)

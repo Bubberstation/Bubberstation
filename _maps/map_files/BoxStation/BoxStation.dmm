@@ -19283,10 +19283,6 @@
 	c_tag = "Medbay North";
 	network = list("ss13","medbay")
 	},
-/obj/machinery/newscaster/directional/east{
-	pixel_x = 0;
-	pixel_y = -30
-	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	alpha = 160
 	},
@@ -19294,6 +19290,24 @@
 /obj/effect/turf_decal/trimline/blue/filled/mid_joiner,
 /obj/effect/turf_decal/trimline/blue/filled/mid_joiner,
 /obj/effect/turf_decal/trimline/white/mid_joiner,
+/obj/machinery/button/door{
+	desc = "A remote control switch for the medbay foyer.";
+	id = "MedbayFoyer";
+	name = "Medbay Doors Control";
+	normaldoorcontrol = 1;
+	pixel_y = -26;
+	req_access = list("medical");
+	icon_state = "button-warning";
+	skin = "-warning"
+	},
+/obj/machinery/button/door{
+	desc = "A remote control switch for the medbay foyer.";
+	id = "MedbayAft";
+	name = "Side Medbay Doors Control";
+	normaldoorcontrol = 1;
+	pixel_y = -37;
+	req_access = list("medical")
+	},
 /turf/open/floor/iron/white/smooth_edge,
 /area/station/medical/medbay/central)
 "brb" = (
@@ -21184,7 +21198,9 @@
 	normaldoorcontrol = 1;
 	pixel_y = 7;
 	req_access = list("medical");
-	pixel_x = -24
+	pixel_x = -24;
+	skin = "-warning";
+	icon_state = "button-warning"
 	},
 /obj/effect/landmark/start/depsec/medical,
 /turf/open/floor/iron/dark,
@@ -21747,6 +21763,13 @@
 	dir = 8
 	},
 /obj/effect/landmark/start/depsec/medical,
+/obj/machinery/button/door/directional/north{
+	id = "medsecprivacy";
+	name = "Privacy Shutters Control";
+	req_access = list("security");
+	pixel_x = -8;
+	pixel_y = 22
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/medical)
 "bwH" = (
@@ -42922,6 +42945,8 @@
 /obj/effect/turf_decal/trimline/white/mid_joiner{
 	dir = 1
 	},
+/obj/machinery/requests_console/auto_name/directional/north,
+/obj/effect/mapping_helpers/requests_console/assistance,
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 1
 	},
@@ -46771,8 +46796,8 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
 	},
-/obj/machinery/door/airlock/security/glass{
-	name = "Security Office"
+/obj/machinery/door/airlock/security{
+	name = "Medbay Security Post"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/security/general,
 /turf/open/floor/iron/dark,
@@ -57694,6 +57719,11 @@
 "lYP" = (
 /obj/structure/cable,
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "medsecprivacy";
+	name = "Privacy Shutters"
+	},
 /turf/open/floor/plating,
 /area/station/medical/treatment_center)
 "lZo" = (
@@ -59656,7 +59686,9 @@
 	name = "Medbay Doors Control";
 	normaldoorcontrol = 1;
 	pixel_y = -26;
-	req_access = list("medical")
+	req_access = list("medical");
+	icon_state = "button-warning";
+	skin = "-warning"
 	},
 /obj/machinery/button/door{
 	desc = "A remote control switch for the medbay foyer.";
@@ -64697,6 +64729,7 @@
 /obj/effect/turf_decal/trimline/white/line{
 	dir = 6
 	},
+/obj/structure/reagent_dispensers/water_cooler/punch_cooler,
 /turf/open/floor/iron/white/smooth_corner{
 	dir = 1
 	},
@@ -70559,6 +70592,11 @@
 "rQe" = (
 /obj/structure/cable,
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 8;
+	id = "medsecprivacy";
+	name = "Privacy Shutters"
+	},
 /turf/open/floor/plating,
 /area/station/security/checkpoint/medical)
 "rQi" = (
@@ -75588,6 +75626,16 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/station/security/processing)
+"uay" = (
+/obj/structure/cable,
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 1;
+	id = "medsecprivacy";
+	name = "Privacy Shutters"
+	},
+/turf/open/floor/plating,
+/area/station/security/checkpoint/medical)
 "uaA" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/line,
@@ -120189,7 +120237,7 @@ bfF
 bfF
 vbw
 ruy
-rQe
+uay
 bvj
 bwG
 gGW
@@ -120703,7 +120751,7 @@ sdT
 ptB
 bpN
 bCS
-rQe
+uay
 btg
 bDR
 xjt
