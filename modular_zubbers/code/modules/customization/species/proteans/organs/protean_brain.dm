@@ -42,7 +42,7 @@
 	if(owner.loc == suit)
 		return
 	if(isnull(organ) || !istype(organ, /obj/item/organ/stomach/protean))
-		owner.adjustBruteLoss(3, forced = TRUE)
+		owner.adjust_brute_loss(3, forced = TRUE)
 		if(COOLDOWN_FINISHED(src, refactory_cooldown))
 			to_chat(owner, span_warning("Your mass is slowly degrading without your refactory!"))
 			COOLDOWN_START(src, refactory_cooldown, 30 SECONDS)
