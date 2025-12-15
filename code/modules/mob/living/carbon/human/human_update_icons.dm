@@ -1198,7 +1198,7 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 
 /mob/living/carbon/human/proc/update_underwear() // OVERRIDDEN IN MODULAR_ZUBBERS
 	remove_overlay(BODY_LAYER)
-	if(HAS_TRAIT(src, TRAIT_HUSK) || HAS_TRAIT(src, TRAIT_INVISIBLE_MAN))
+	if(HAS_TRAIT(src, TRAIT_HUSK) || HAS_TRAIT(src, TRAIT_INVISIBLE_MAN) || HAS_TRAIT(src, TRAIT_NO_UNDERWEAR))
 		return
 	// Underwear, Undershirts & Socks
 	var/list/standing = list()

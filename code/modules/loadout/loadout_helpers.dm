@@ -28,9 +28,16 @@
 	else
 		CRASH("Invalid outfit passed to equip_outfit_and_loadout ([outfit])")
 
-	var/list/preference_list = preference_source.read_preference(/datum/preference/loadout)
+	var/list/item_details = preference_source.read_preference(/datum/preference/loadout)
+	var/list/loadout_datums = loadout_list_to_datums(item_details)
+	// Slap our things into the outfit given
+	for(var/datum/loadout_item/item as anything in loadout_datums)
+		if(!item.is_equippable(src, item_details?[item.item_path] || list()))
+			loadout_datums -= item
+			continue
+
+		item.insert_path_into_outfit(equipped_outfit, src, visuals_only)
 	preference_list = preference_list[preference_source.read_preference(/datum/preference/loadout_index)] // BUBBER EDIT ADDITION: Multiple loadout presets
-	var/list/loadout_datums = loadout_list_to_datums(preference_list)
 	// SKYRAT EDIT ADDITION BEGIN
 	var/obj/item/storage/briefcase/empty/travel_suitcase
 	var/loadout_placement_preference = preference_source.read_preference(/datum/preference/choiced/loadout_override_preference)
@@ -82,7 +89,7 @@
 	for(var/datum/loadout_item/item as anything in loadout_datums)
 		update |= item.on_equip_item(
 			equipped_item = (loadout_placement_preference == LOADOUT_OVERRIDE_CASE && !visuals_only) ? locate(item.item_path) in travel_suitcase : locate(item.item_path) in new_contents, // BUBBER EDIT CHANGE - ORIGINAL: equipped_item = locate(item.item_path) in new_contents,
-			item_details = preference_list?[item.item_path] || list(),
+			item_details = item_details?[item.item_path] || list(),
 			equipper = src,
 			outfit = equipped_outfit,
 			visuals_only = visuals_only,

@@ -20,8 +20,6 @@
 
 #define AIRLOCK_DENY_ANIMATION_TIME (0.6 SECONDS) /// The amount of time for the airlock deny animation to show
 
-#define DOOR_CLOSE_WAIT 60 /// Time before a door closes, if not overridden
-
 #define DOOR_VISION_DISTANCE 11 ///The maximum distance a door will see out to
 
 #define AIRLOCK_LIGHT_POWER 0.5
