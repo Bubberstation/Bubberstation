@@ -17,5 +17,5 @@
 		if(needed <= 0)
 			return TRUE
 
-	loc.balloon_alert(user, "ritual failed: missing Welding Fuel (30u)!")
+	loc.balloon_alert(user, "ritual failed: missing welding fuel (30u)!")
 	return FALSE

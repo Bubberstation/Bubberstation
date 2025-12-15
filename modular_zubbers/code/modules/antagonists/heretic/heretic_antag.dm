@@ -487,10 +487,3 @@
 	toggle_ascension_approval()
 	log_admin("[key_name(admin)] [ascension_approved ? "approved" : "revoked"] ascension for [key_name(owner?.current)]")
 	message_admins("[key_name(admin)] [ascension_approved ? "approved" : "revoked"] ascension for [key_name(owner?.current)]")
-
-/datum/antagonist/heretic/gain_knowledge(datum/heretic_knowledge/knowledge_type, category, update)
-	. = ..()
-	if(unlimited_blades)
-		return
-	if(length(researched_knowledge) >= 16)
-		disable_blade_breaking()
