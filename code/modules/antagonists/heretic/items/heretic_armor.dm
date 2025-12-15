@@ -1056,7 +1056,7 @@
 	. = ..()
 	if(!COOLDOWN_FINISHED(src, stealth_cooldown))
 		return
-	COOLDOWN_START(src, stealth_cooldown, 20 SECONDS)
+	COOLDOWN_START(src, stealth_cooldown, 40 SECONDS) // BUBBER EDIT - Previous: COOLDOWN_START(src, stealth_cooldown, 20 SECONDS)
 	stealth_timer = addtimer(CALLBACK(src, PROC_REF(end_stealth), owner), 5 SECONDS, TIMER_STOPPABLE)
 	owner.alpha = 0
 	return TRUE
