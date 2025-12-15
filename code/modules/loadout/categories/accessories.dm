@@ -84,4 +84,4 @@
 /datum/loadout_item/accessory/pride
 	name = "Pride Pin"
 	item_path = /obj/item/clothing/accessory/pride
-	reskin_datum = /datum/atom_skin/pride_pin
+	loadout_flags = LOADOUT_FLAG_ALLOW_RESKIN
