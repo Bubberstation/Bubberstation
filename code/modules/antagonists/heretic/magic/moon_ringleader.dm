@@ -42,12 +42,18 @@
 	return stuff
 
 /datum/action/cooldown/spell/aoe/moon_ringleader/cast_on_thing_in_aoe(mob/living/carbon/victim, mob/living/caster)
-	var/mob/living/simple_animal/hostile/illusion/fake_clone = new(pick(RANGE_TURFS(2, victim)))
-	fake_clone.faction = caster.faction.Copy()
-	fake_clone.Copy_Parent(caster, 30 SECONDS, caster.health, 1, 0, "shove_mode")
-	fake_clone.GiveTarget(victim)
-	fake_clone.AddElement(/datum/element/relay_attackers)
-	RegisterSignal(fake_clone, COMSIG_ATOM_WAS_ATTACKED, PROC_REF(on_attacked))
+	var/mob/living/basic/illusion/shover/shove_clone = new(pick(RANGE_TURFS(2, victim)))
+	shove_clone.full_setup(
+		caster,
+		target_mob = victim,
+		faction = caster.faction,
+		life = 30 SECONDS,
+		hp = caster.health,
+		damage = 1,
+		replicate = 0,
+	)
+	shove_clone.AddElement(/datum/element/relay_attackers)
+	RegisterSignal(shove_clone, COMSIG_ATOM_WAS_ATTACKED, PROC_REF(on_attacked))
 
 // BUBBER EDIT - START
 /datum/action/cooldown/spell/aoe/moon_ringleader/proc/on_attacked(mob/victim, atom/attacker)
@@ -62,7 +68,7 @@
 
 	playsound(victim, 'sound/items/party_horn.ogg', 30)
 	new /obj/effect/decal/cleanable/confetti(get_turf(victim))
-	var/mob/living/simple_animal/hostile/illusion/fake_clone = victim
+	var/mob/living/basic/illusion/fake_clone = victim
 	var/mob/living/living_owner = fake_clone.parent_mob_ref?.resolve()
 
 	if(living_owner)

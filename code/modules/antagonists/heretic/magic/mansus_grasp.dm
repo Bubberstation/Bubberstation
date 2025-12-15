@@ -127,7 +127,7 @@
 			return FIRELOSS
 
 		if(prob(70))
-			carbon_user.adjustFireLoss(20)
+			carbon_user.adjust_fire_loss(20)
 			playsound(carbon_user, 'sound/effects/wounds/sizzle1.ogg', 70, vary = TRUE)
 			if(prob(50))
 				carbon_user.emote("scream")
