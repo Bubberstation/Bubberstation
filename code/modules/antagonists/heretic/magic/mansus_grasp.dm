@@ -64,7 +64,7 @@
 		return TRUE
 
 	carbon_hit.adjust_timed_status_effect(4 SECONDS, /datum/status_effect/speech/slurring/heretic)
-	carbon_hit.AdjustKnockdown(5 SECONDS, daze_amount = 3 SECONDS)
+	carbon_hit.AdjustKnockdown(3 SECONDS, daze_amount = 3 SECONDS) // BUBBER EDIT - Previous: carbon_hit.AdjustKnockdown(5 SECONDS, daze_amount = 3 SECONDS)
 	carbon_hit.adjustStaminaLoss(80)
 
 	return TRUE

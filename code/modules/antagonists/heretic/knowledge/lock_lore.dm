@@ -131,7 +131,7 @@
 		/obj/item/card/id/advanced = 1,
 	)
 	result_atoms = list(/obj/item/card/id/advanced/heretic)
-	cost = 2
+	cost = 3 // BUBBER EDIT - Previous: 2
 	research_tree_icon_path = 'icons/obj/card.dmi'
 	research_tree_icon_state = "card_gold"
 
@@ -158,7 +158,7 @@
 		/obj/item/multitool = 1,
 	)
 	result_atoms = list(/obj/item/heretic_labyrinth_handbook)
-	cost = 2
+	cost = 3 // BUBBER EDIT - Previous: 2
 	research_tree_icon_path = 'icons/obj/service/library.dmi'
 	research_tree_icon_state = "heretichandbook"
 	drafting_tier = 5
@@ -185,7 +185,7 @@
 	gain_text = "Consorting with Burglar spirits is frowned upon, but a Steward will always want to learn about new doors."
 
 	action_to_add = /datum/action/cooldown/spell/pointed/burglar_finesse
-	cost = 2
+	cost = 3 // BUBBER EDIT - Previous: 2
 
 /datum/heretic_knowledge/blade_upgrade/flesh/lock
 	name = "Opening Blade"
@@ -207,7 +207,7 @@
 		You are invincible but unable to harm anything. Cancelled by being hit with an anti-magic item."
 	gain_text = "Jealously, the Guard and the Hound hunted me. But I unlocked my form, and was but a haze, untouchable."
 	action_to_add = /datum/action/cooldown/spell/caretaker
-	cost = 2
+	cost = 3 // BUBBER EDIT - Previous: 2
 	is_final_knowledge = TRUE
 
 /datum/heretic_knowledge/ultimate/lock_final

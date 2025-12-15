@@ -95,7 +95,7 @@
 	gain_text = "My mind swings open like a gate, and its insight will let me perceive the truth."
 
 	action_to_add = /datum/action/cooldown/spell/pointed/mind_gate
-	cost = 2
+	cost = 3 // BUBBER EDIT - Previous: 2
 
 /datum/heretic_knowledge/moon_amulet
 	name = "Moonlight Amulet"
@@ -112,7 +112,7 @@
 		/obj/item/clothing/neck/tie = 1,
 	)
 	result_atoms = list(/obj/item/clothing/neck/heretic_focus/moon_amulet)
-	cost = 2
+	cost = 3 // BUBBER EDIT - Previous: 2
 
 	research_tree_icon_path = 'icons/obj/antags/eldritch.dmi'
 	research_tree_icon_state = "moon_amulette"
@@ -138,7 +138,7 @@
 		when hitting someone they are forced to join the parade and suffer hallucinations."
 	gain_text = "The music like a reflection of the soul compelled them, like moths to a flame they followed"
 	action_to_add = /datum/action/cooldown/spell/pointed/projectile/moon_parade
-	cost = 2
+	cost = 3 // BUBBER EDIT - Previous: 2
 	drafting_tier = 5
 
 /datum/heretic_knowledge/blade_upgrade/moon
@@ -177,7 +177,7 @@
 		The ringleader pointed up and the dim light of truth illuminated us further."
 
 	action_to_add = /datum/action/cooldown/spell/aoe/moon_ringleader
-	cost = 2
+	cost = 3 // BUBBER EDIT - Previous: 2
 
 	research_tree_icon_frame = 5
 	is_final_knowledge = TRUE
