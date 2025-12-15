@@ -16,7 +16,7 @@
 	*/
 	//SKYRAT EDIT REMOVAL END
 
-	human.setOxyLoss(140)
+	human.set_oxy_loss(140)
 
 	TEST_ASSERT(human.stat != CONSCIOUS, "Human is somehow conscious after receiving suffocation damage")
 

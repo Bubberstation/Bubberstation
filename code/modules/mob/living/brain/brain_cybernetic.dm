@@ -63,8 +63,8 @@
 	switch(severity)
 		if (EMP_HEAVY)
 			to_chat(owner, span_boldwarning("You feel [pick("like your brain is being fried", "a sharp pain in your head")]!")) //BUBBER EDIT - added alert text for getting EMP'd.
-			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, (20*emp_dmg_mult), emp_dmg_max) //BUBBER EDIT - cap implemented
+			owner.adjust_organ_loss(ORGAN_SLOT_BRAIN, (20*emp_dmg_mult), emp_dmg_max) //BUBBER EDIT - cap implemented
 		if (EMP_LIGHT)
 			to_chat(owner, span_warning("You feel [pick("disoriented", "confused", "dizzy")].")) //BUBBER EDIT - added alert text for getting EMP'd.
-			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, (10*emp_dmg_mult), emp_dmg_max) //BUBBER EDIT - cap implemented
+			owner.adjust_organ_loss(ORGAN_SLOT_BRAIN, (10*emp_dmg_mult), emp_dmg_max) //BUBBER EDIT - cap implemented
 

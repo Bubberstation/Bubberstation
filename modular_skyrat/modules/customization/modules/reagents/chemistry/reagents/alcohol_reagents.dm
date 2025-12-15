@@ -282,7 +282,7 @@
 /datum/reagent/consumable/ethanol/hotlime_miami/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
 	affected_mob.set_drugginess(1.5 MINUTES * REM * seconds_per_tick)
-	if(affected_mob.adjustStaminaLoss(-2 * REM * seconds_per_tick, updating_stamina = FALSE))
+	if(affected_mob.adjust_stamina_loss(-2 * REM * seconds_per_tick, updating_stamina = FALSE))
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/ethanol/coggrog
@@ -575,7 +575,7 @@
 /datum/reagent/consumable/ethanol/jell_wyrm/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
 	if(prob(20))
-		if(affected_mob.adjustToxLoss(0.5 * REM * seconds_per_tick, updating_health = FALSE))
+		if(affected_mob.adjust_tox_loss(0.5 * REM * seconds_per_tick, updating_health = FALSE))
 			return UPDATE_MOB_HEALTH
 
 #define JELLWYRM_DISGUST 25
@@ -779,7 +779,7 @@
 		affected_mob.remove_status_effect(effect)
 	affected_mob.reagents.remove_reagent(/datum/reagent/consumable/ethanol, 3 * REM * seconds_per_tick, include_subtypes = TRUE)
 	. = ..()
-	if(affected_mob.adjustToxLoss(-0.2 * REM * seconds_per_tick, updating_health = FALSE, required_biotype = affected_biotype))
+	if(affected_mob.adjust_tox_loss(-0.2 * REM * seconds_per_tick, updating_health = FALSE, required_biotype = affected_biotype))
 		. = UPDATE_MOB_HEALTH
 	affected_mob.adjust_drunk_effect(-10 * REM * seconds_per_tick)
 
