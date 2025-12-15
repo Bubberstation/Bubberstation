@@ -190,7 +190,16 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 	)
 
 	for(var/datum/heretic_knowledge/type as anything in tree_paths)
-		heretic_research_tree[type] = make_knowledge_entry(type, heretic_path, depth = 1)
+		// BUBBER EDIT - START
+		var/list/entry = make_knowledge_entry(type, heretic_path, depth = 1)
+
+		if(type == /datum/heretic_knowledge/spell/space_phase)
+			entry[HKT_BAN] += /datum/heretic_knowledge_tree_column/ash
+		if(type == /datum/heretic_knowledge/spell/ash_passage)
+			entry[HKT_BAN] += /datum/heretic_knowledge_tree_column/cosmic
+
+		heretic_research_tree[type] = entry
+		// BUBBER EDIT - END
 
 	var/knowledge_tier1 = heretic_path.knowledge_tier1
 	var/knowledge_tier2 = heretic_path.knowledge_tier2

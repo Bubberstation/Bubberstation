@@ -527,10 +527,10 @@
 	// Heals all damage + Stamina
 	var/need_mob_update = FALSE
 	var/delta_time = DELTA_WORLD_TIME(SSmobs) * 0.5 // SSmobs.wait is 2 secs, so this should be halved.
-	var/main_healing = 1 + 1 * passive_level * delta_time
-	var/stam_healing = 5 + 5 * passive_level * delta_time
+	var/healing_mult = 1 // BUBBER EDIT - ADDITION
+	var/main_healing = 1 + 1 * passive_level * delta_time * healing_mult // BUBBER EDIT - ADDITION - Previous: 1 + 1 * passive_level * delta_time
+	var/stam_healing = 5 + 5 * passive_level * delta_time * healing_mult // BUBBER EDIT - ADDITION - Previous: 5 + 5 * passive_level * delta_time
 	// BUBBER EDIT - ADDITION - START
-	var/healing_mult = 1
 	if(!istype(heretic_datum.heretic_path, /datum/heretic_knowledge_tree_column/rust))
 		healing_mult = 0.67 // 33% reduction
 	// BUBBER EDIT - ADDITION - END

@@ -198,8 +198,8 @@
 
 /datum/armor/eldritch_armor/ash
 	melee = 40
-	bullet = 60
-	laser = 50
+	bullet = 40 // BUBBER EDIT - Previous: 60
+	laser = 60 // BUBBER EDIT - Previous: 50
 	energy = 50
 	bomb = 100
 	bio = 20
