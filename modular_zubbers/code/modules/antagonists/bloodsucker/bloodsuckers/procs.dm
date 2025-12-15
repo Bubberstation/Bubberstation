@@ -229,13 +229,13 @@
 	return brain.loc
 
 // helper procs for damage checking, just in case a synth becomes one, let's them heal thesmelves
-/datum/antagonist/bloodsucker/proc/getBruteLoss()
+/datum/antagonist/bloodsucker/proc/get_brute_loss()
 	var/mob/living/carbon/human/humie = owner.current
-	return issynthetic(humie) ? humie.getBruteLoss() : humie.getBruteLoss_nonProsthetic()
+	return issynthetic(humie) ? humie.get_brute_loss() : humie.get_brute_loss_nonProsthetic()
 
-/datum/antagonist/bloodsucker/proc/getFireLoss()
+/datum/antagonist/bloodsucker/proc/get_fire_loss()
 	var/mob/living/carbon/human/humie = owner.current
-	return issynthetic(humie) ? humie.getFireLoss() : humie.getFireLoss_nonProsthetic()
+	return issynthetic(humie) ? humie.get_fire_loss() : humie.get_fire_loss_nonProsthetic()
 
 /datum/antagonist/bloodsucker/proc/admin_set_blood(mob/admin)
 	var/blood = tgui_input_number(admin, "What blood level to set [owner.current]'s to?", "Blood is life.", floor(bloodsucker_blood_volume), max_blood_volume, 0)

@@ -337,7 +337,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 		update_actually_on(intended_on)
 
 	// Reclaim water
-	if(!actually_on)
+//if(!actually_on) BUBBER EDIT CHANGE - Unlimited water for showers
 		if(has_water_reclaimer && reagents.total_volume < reagents.maximum_volume)
 			reagents.add_reagent(reagent_id, refill_rate * seconds_per_tick)
 			return 0
@@ -382,7 +382,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 		to_chat(living, span_warning("[src] is freezing!"))
 	else if(current_temperature == SHOWER_BOILING)
 		living.adjust_bodytemperature(35, 0, 500)
-		living.adjustFireLoss(5)
+		living.adjust_fire_loss(5)
 		to_chat(living, span_danger("[src] is searing!"))
 
 

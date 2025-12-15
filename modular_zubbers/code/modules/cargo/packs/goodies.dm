@@ -48,6 +48,7 @@
 
 /datum/supply_pack/goody/double_barrel
 	cost = PAYCHECK_COMMAND * 10 //1400 is too much considering the combat shotgun is 1500 for 1
+	access_view = ACCESS_WEAPONS
 
 /datum/supply_pack/goody/plasma_marksman
 	name = "Gwiazda Plasma Sharpshooters Single-pack"

@@ -91,7 +91,7 @@
 		'modular_skyrat/modules/black_mesa/sound/mobs/nihilanth/nihilanth_freeeemmaan01.ogg'
 	)), 100)
 
-/mob/living/basic/blackmesa/xen/nihilanth/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE, required_bodytype)
+/mob/living/basic/blackmesa/xen/nihilanth/adjust_brute_loss(amount, updating_health = TRUE, forced = FALSE, required_bodytype)
 	. = ..()
 	if(amount <= 0 || !COOLDOWN_FINISHED(src, voice_cooldown))  // Don't play sounds for healing or during cooldown
 		return
