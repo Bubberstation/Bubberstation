@@ -70,12 +70,12 @@
 		if(TOOL_RUSTSCRAPER)
 			if(!item.tool_start_check(user))
 				return
-			ADD_TRAIT(user, TRAIT_IGNORE_RUST, src) // BUBBER EDIT - ADDITION
+			ADD_TRAIT(user, TRAIT_IGNORE_RUST, REF(src)) // BUBBER EDIT - ADDITION
 			user.balloon_alert(user, "scraping off rust...")
 			if(!item.use_tool(source, user, 2 SECONDS))
-				REMOVE_TRAIT(user, TRAIT_IGNORE_RUST, src) // BUBBER EDIT - ADDITION
+				REMOVE_TRAIT(user, TRAIT_IGNORE_RUST, REF(src)) // BUBBER EDIT - ADDITION
 				return
-			REMOVE_TRAIT(user, TRAIT_IGNORE_RUST, src) // BUBBER EDIT - ADDITION
+			REMOVE_TRAIT(user, TRAIT_IGNORE_RUST, REF(src)) // BUBBER EDIT - ADDITION
 			user.balloon_alert(user, "scraped off rust")
 			Detach(source)
 			return
