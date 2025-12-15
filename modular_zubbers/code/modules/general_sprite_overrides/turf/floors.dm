@@ -84,10 +84,37 @@
 	icon = 'modular_zubbers/icons/turf/floors/floors.dmi'
 
 // OBJECT BASED
-// I know these are objects but it's more organized if we keep these specific ones here.
+// I know these are objects but it's more organized if we keep specific ones here.
 
 /obj/item/stack/tile
 	icon = 'modular_zubbers/icons/obj/tiles.dmi'
+
+/obj/item/stack/tile/mineral/titanium
+	tile_reskin_types = list(
+		/obj/item/stack/tile/mineral/titanium,
+		/obj/item/stack/tile/mineral/titanium/yellow,
+		/obj/item/stack/tile/mineral/titanium/blue,
+		/obj/item/stack/tile/mineral/titanium/white,
+		/obj/item/stack/tile/mineral/titanium/purple,
+		/obj/item/stack/tile/mineral/titanium/tiled,
+		/obj/item/stack/tile/mineral/titanium/tiled/yellow,
+		/obj/item/stack/tile/mineral/titanium/tiled/blue,
+		/obj/item/stack/tile/mineral/titanium/tiled/white,
+		/obj/item/stack/tile/mineral/titanium/tiled/purple,
+		/obj/item/stack/tile/mineral/titanium/cargo,
+		/obj/item/stack/tile/mineral/titanium/cargo/mainta,
+		/obj/item/stack/tile/mineral/titanium/cargo/maintb,
+		/obj/item/stack/tile/mineral/titanium/cargo/maintc,
+		/obj/item/stack/tile/mineral/titanium/exploration,
+		/obj/item/stack/tile/mineral/titanium/exploration/flat,
+		/obj/item/stack/tile/mineral/titanium/exploration/flat_textured,
+		/obj/item/stack/tile/mineral/titanium/exploration/hazard,
+		/obj/item/stack/tile/mineral/titanium/shuttle_arrivals,
+		/obj/item/stack/tile/mineral/titanium/shuttle_evac,
+		)
+
+/obj/item/stack/tile/mineral/bananium
+	tile_rotate_dirs = list(SOUTH, NORTH, EAST, WEST, SOUTHEAST, SOUTHWEST, NORTHEAST, NORTHWEST)
 
 /obj/structure/broken_flooring
 	icon = 'modular_zubbers/icons/obj/fluff/brokentiling.dmi'

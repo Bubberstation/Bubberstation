@@ -98,8 +98,8 @@
 	icon_state = "lowered_plasteel-0"
 	base_icon_state = "lowered_plasteel"
 	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_ELEVATED_PLASTEEL
-	canSmoothWith = SMOOTH_GROUP_ELEVATED_PLASTEEL
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_LOWERED_PLASTEEL
+	canSmoothWith = SMOOTH_GROUP_LOWERED_PLASTEEL
 	liquid_height = -30
 	turf_height = -30
 
