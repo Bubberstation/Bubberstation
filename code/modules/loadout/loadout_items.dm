@@ -42,6 +42,8 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	var/group = null
 	/// Loadout flags, see LOADOUT_FLAG_* defines
 	var/loadout_flags = LOADOUT_FLAG_ALLOW_NAMING // BUBBER EDIT CHANGE - Original: var/loadout_flags = NONE
+	/// If set, this item can only be selected during the holiday specified.
+	var/required_holiday
 	/// The actual item path of the loadout item.
 	var/obj/item/item_path
 	/// Icon file (DMI) for the UI to use for preview icons.
@@ -243,6 +245,9 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	if(!cached_reskin_options[reskin_to])
 		return FALSE
 
+	if(!cached_reskin_options[reskin_to])
+		return FALSE
+
 	var/list/loadout = manager.get_current_loadout() // BUBBER EDIT: Multiple loadout presets: ORIGINAL: var/list/loadout = manager.preferences.read_preference(/datum/preference/loadout)
 	if(!loadout?[item_path])
 		return FALSE
@@ -372,6 +377,18 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	return formatted_item
 
 /**
+ * Checks if this item is disabled and cannot be selected or granted
+ */
+/datum/loadout_item/proc/is_disabled()
+	return required_holiday && !check_holidays(required_holiday)
+
+/**
+ * Checks if this item is disabled or unequippable for the given item details.
+ */
+/datum/loadout_item/proc/is_equippable(mob/living/carbon/human/equipper, list/item_details)
+	return !is_disabled()
+
+/**
  * Returns a list of information to display about this item in the loadout UI.
  * Icon -> tooltip displayed when its hovered over
  */
@@ -385,6 +402,9 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 
 	if(loadout_flags & LOADOUT_FLAG_ALLOW_RESKIN)
 		displayed_text[FA_ICON_SWATCHBOOK] = "Reskinnable"
+
+	if(required_holiday)
+		displayed_text[FA_ICON_CALENDAR_CHECK] = "Only available: [required_holiday]"
 
 	// SKYRAT EDIT ADDITION
 	if(donator_only)

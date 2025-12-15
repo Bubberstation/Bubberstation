@@ -23,7 +23,7 @@
 /datum/supply_pack/misc/changeling_zombie
 	name = "NT-CZV-1 Vials"
 	desc = "Contains a NT-CZV vials. Highly classified."
-	special = TRUE //Cannot be ordered via cargo
+	order_flags = ORDER_CONTRABAND //Cannot be ordered via cargo
 	contains = list() //We don't put contents in this to do snowflake content in populate_contents
 	crate_type = /obj/structure/closet/crate/changeling_zombie
 

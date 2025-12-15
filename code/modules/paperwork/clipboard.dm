@@ -14,6 +14,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	resistance_flags = FLAMMABLE
 
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT, /datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT)
 	unique_reskin = list(
 		"Brown" = "clipboard",
 		"Black" = "clipboard_black",
