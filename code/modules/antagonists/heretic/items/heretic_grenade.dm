@@ -27,9 +27,9 @@
 	var/obj/item/reagent_containers/cup/beaker/large/beaker_two = new(src)
 
 	beaker_one.reagents.add_reagent(/datum/reagent/heretic_rust, 50)
-	beaker_one.reagents.add_reagent(/datum/reagent/potassium, 50)
-	beaker_two.reagents.add_reagent(/datum/reagent/phosphorus, 50)
-	beaker_two.reagents.add_reagent(/datum/reagent/consumable/sugar, 50)
+	beaker_one.reagents.add_reagent(/datum/reagent/potassium, 25) // BUBBER EDIT - Previous: 50
+	beaker_two.reagents.add_reagent(/datum/reagent/phosphorus, 25) // BUBBER EDIT - Previous: 50
+	beaker_two.reagents.add_reagent(/datum/reagent/consumable/sugar, 25) // BUBBER EDIT - Previous: 50
 
 	beakers += beaker_one
 	beakers += beaker_two

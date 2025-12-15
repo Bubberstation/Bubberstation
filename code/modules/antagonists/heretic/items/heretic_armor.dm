@@ -999,15 +999,15 @@
 		set_armor(/datum/armor/eldritch_armor/rust)
 
 /datum/armor/eldritch_armor/rust
-	melee = 30
-	bullet = 30
-	laser = 30
-	energy = 30
-	bomb = 50
-	bio = 30
-	fire = 30
-	acid = 30
-	wound = 30
+	melee = 24 // BUBBER EDIT - Previous: 30
+	bullet = 24 // BUBBER EDIT - Previous: 30
+	laser = 24 // BUBBER EDIT - Previous: 30
+	energy = 24 // BUBBER EDIT - Previous: 30
+	bomb = 40 // BUBBER EDIT - Previous: 50
+	bio = 24 // BUBBER EDIT - Previous: 30
+	fire = 24 // BUBBER EDIT - Previous: 30
+	acid = 24 // BUBBER EDIT - Previous: 30
+	wound = 24 // BUBBER EDIT - Previous: 30
 
 /datum/armor/eldritch_armor/rust/on_rust
 	melee = 60

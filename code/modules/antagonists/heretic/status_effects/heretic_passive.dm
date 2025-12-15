@@ -520,11 +520,20 @@
 	if(!HAS_TRAIT(our_turf, TRAIT_RUSTY))
 		return
 
+	// BUBBER EDIT - ADDITION - START
+	if(passive_level < HERETIC_LEVEL_UPGRADE && !source.combat_mode)
+		return
+	// BUBBER EDIT - ADDTION - END
 	// Heals all damage + Stamina
 	var/need_mob_update = FALSE
 	var/delta_time = DELTA_WORLD_TIME(SSmobs) * 0.5 // SSmobs.wait is 2 secs, so this should be halved.
 	var/main_healing = 1 + 1 * passive_level * delta_time
 	var/stam_healing = 5 + 5 * passive_level * delta_time
+	// BUBBER EDIT - ADDITION - START
+	var/healing_mult = 1
+	if(!istype(heretic_datum.heretic_path, /datum/heretic_knowledge_tree_column/rust))
+		healing_mult = 0.67 // 33% reduction
+	// BUBBER EDIT - ADDITION - END
 	need_mob_update += source.heal_overall_damage(-main_healing, -main_healing, updating_health = FALSE)
 	need_mob_update += source.adjustStaminaLoss(-stam_healing, updating_stamina = FALSE)
 	need_mob_update += source.adjustToxLoss(-main_healing, updating_health = FALSE, forced = TRUE) // Slimes are people too

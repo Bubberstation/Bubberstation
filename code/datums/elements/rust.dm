@@ -70,9 +70,12 @@
 		if(TOOL_RUSTSCRAPER)
 			if(!item.tool_start_check(user))
 				return
+			ADD_TRAIT(user, TRAIT_IGNORE_RUST, src) // BUBBER EDIT - ADDITION
 			user.balloon_alert(user, "scraping off rust...")
 			if(!item.use_tool(source, user, 2 SECONDS))
+				REMOVE_TRAIT(user, TRAIT_IGNORE_RUST, src) // BUBBER EDIT - ADDITION
 				return
+			REMOVE_TRAIT(user, TRAIT_IGNORE_RUST, src) // BUBBER EDIT - ADDITION
 			user.balloon_alert(user, "scraped off rust")
 			Detach(source)
 			return
@@ -122,6 +125,10 @@
 	if(!isliving(entered))
 		return
 	var/mob/living/victim = entered
+	// BUBBER EDIT - START
+	if(HAS_TRAIT(victim, TRAIT_IGNORE_RUST))
+		return
+	// BUBBER EDIT - END
 	if(IS_HERETIC(victim))
 		return
 	if(victim.can_block_magic(MAGIC_RESISTANCE))

@@ -45,7 +45,8 @@
 			/obj/item/food/boiledegg/rotten,
 			/obj/item/food/egg/rotten
 		) = 1,
-		/obj/item/grenade/chem_grenade = 1
+		/obj/item/grenade/chem_grenade = 1, // BUBBER EDIT
+		/datum/reagent/fuel = 30 // BUBBER EDIT - ADDITION
 	)
 	result_atoms = list(/obj/item/grenade/chem_grenade/rust_sower)
 	cost = 2
