@@ -77,7 +77,7 @@
 
 	living_attacker.AdjustStun(2 SECONDS)
 	living_attacker.AdjustKnockdown(1 SECONDS)
-	living_attacker.adjustOrganLoss(ORGAN_SLOT_BRAIN, 50, 150)
+	living_attacker.adjust_organ_loss(ORGAN_SLOT_BRAIN, 50, 150)
 	living_attacker.mob_mood?.adjust_sanity(-50)
 
 	qdel(victim)
