@@ -135,7 +135,7 @@
 	desc ="A suit by Honk Ltd. Protects against low humor environments. Most of the tech went to lower the power cost."
 	cost = PAYCHECK_COMMAND * 2
 	contains = list(/obj/item/mod/construction/plating/cosmohonk)
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND
 
 /datum/supply_pack/goody/magnetic_deployable
 	name = "MOD Magnetic Deployment Module"

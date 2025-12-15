@@ -37,7 +37,6 @@
 			continue
 
 		item.insert_path_into_outfit(equipped_outfit, src, visuals_only)
-	preference_list = preference_list[preference_source.read_preference(/datum/preference/loadout_index)] // BUBBER EDIT ADDITION: Multiple loadout presets
 	// SKYRAT EDIT ADDITION BEGIN
 	var/obj/item/storage/briefcase/empty/travel_suitcase
 	var/loadout_placement_preference = preference_source.read_preference(/datum/preference/choiced/loadout_override_preference)
