@@ -110,7 +110,7 @@
 
 /datum/id_trim/job/paramedic/New()
 	job = /datum/job/paramedic
-	honorifics += list("Paramedic", "Emergency Medical Technician", "First Responder")
+	honorifics += list("Paramedic", "Emergency Medical Technician", "First Responder", "E.M.T.")
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
 	return ..()
 
