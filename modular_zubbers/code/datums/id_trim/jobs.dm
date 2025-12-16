@@ -124,34 +124,28 @@
 	job = /datum/job/shaft_miner
 	honorifics = list("Miner", "Excavator", "Junior Miner", "Dredger", "Rockbreaker", "Prospector", "Spelunker", "Apprentice Miner", "Drill Technician", "Contract Miner", "Field Scout")
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
-	return ..()
 
 /datum/id_trim/job/assistant/
 	job = /datum/job/assistant
 	honorifics = list("Assistant", "Mr.", "Ms.", "Mrs.", "Miss", "Crewmember", "Crewmate")
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
-	return ..()
 
 /datum/id_trim/job/bartender/
 	job = /datum/job/bartender
 	honorifics = list("Bartender", "Barkeep", "Barmaid", "Barman", "Barwoman", "Barperson")
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
-	return ..()
 
 /datum/id_trim/job/bitrunner/
 	job = /datum/job/bitrunner
 	honorifics = list("Runner", "BDT", "DRS", "ND", "UB", "Junior Runner")
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
-	return ..()
 
-/datum/id_trim/job/botanist/New()
+/datum/id_trim/job/botanist/
 	job = /datum/job/botanist
 	honorifics = list("Botanist", "Gardener", "Landscaper")
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
-	return ..()
 
 /datum/id_trim/job/coroner/
 	job = /datum/job/coroner
 	honorifics = list("Coroner", "Medical Examiner", "Medical Investigator", "Forensic Pathologist", "Funeral Director", "Mortician", "Undertaker")
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
-	return ..()
