@@ -11,7 +11,7 @@
 	random_appearance = FALSE
 	loadout_enabled = TRUE
 	outfit = /datum/outfit/lavaland_gasstation
-	allow_custom_character = TRUE
+	allow_custom_character = ALL
 
 /datum/outfit/lavaland_gasstation
 	name = "Lizard Gas Station Attendant"

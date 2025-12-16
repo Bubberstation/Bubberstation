@@ -15,7 +15,7 @@
 	quirks_enabled = TRUE
 	random_appearance = FALSE
 	computer_area = /area/ruin/space/has_grav/port_tarkon/centerhall
-	allow_custom_character = TRUE
+	allow_custom_character = ALL
 
 /datum/outfit/tarkon
 	name = "default port tarkon outfit"
