@@ -5183,7 +5183,7 @@
 	pixel_y = 8;
 	pixel_x = 11
 	},
-/turf/open/floor/glass/reinforced/plasma,
+/turf/open/floor/glass/reinforced/plasma/scrape_below,
 /area/station/command/heads_quarters/ce)
 "boz" = (
 /obj/effect/spawner/random/burgerstation/loot,
@@ -14981,7 +14981,7 @@
 /turf/open/floor/iron/dark/herringbone,
 /area/station/science/robotics)
 "dTv" = (
-/turf/open/floor/glass/reinforced/plasma,
+/turf/open/floor/glass/reinforced/plasma/scrape_below,
 /area/station/common/night_club)
 "dTx" = (
 /obj/machinery/door/firedoor,
@@ -21083,6 +21083,13 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/interrogation)
+"fvQ" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 9
+	},
+/obj/structure/marker_beacon/burgundy,
+/turf/open/floor/plating/rust/moonstation,
+/area/moonstation/underground)
 "fvU" = (
 /obj/machinery/atmospherics/components/binary/pump/off/general/visible{
 	dir = 1
@@ -21625,7 +21632,7 @@
 	id = "nightclub_curtains";
 	name = "Show Curtains"
 	},
-/turf/open/floor/glass/reinforced/plasma,
+/turf/open/floor/glass/reinforced/plasma/scrape_below,
 /area/station/common/night_club)
 "fCf" = (
 /obj/machinery/computer/communications,
@@ -23353,7 +23360,7 @@
 /obj/item/paper_bin,
 /obj/item/pen,
 /obj/item/hand_labeler,
-/turf/open/floor/glass/reinforced/plasma,
+/turf/open/floor/glass/reinforced/plasma/scrape_below,
 /area/station/command/heads_quarters/ce)
 "fYp" = (
 /obj/effect/turf_decal/tile/yellow/half/contrasted,
@@ -28358,6 +28365,15 @@
 	},
 /turf/open/floor/wood/parquet,
 /area/station/commons/lounge)
+"hrf" = (
+/obj/structure/closet{
+	name = "secret fox closet"
+	},
+/mob/living/basic/pet/fox/docile{
+	name = "secret fox"
+	},
+/turf/open/floor/iron/dark,
+/area/station/maintenance/night_club)
 "hrv" = (
 /obj/machinery/atmospherics/components/binary/pressure_valve/on{
 	target_pressure = 3000
@@ -49344,7 +49360,7 @@
 /area/moonstation/underground)
 "mHw" = (
 /obj/structure/chair/stool/bar/directional/west,
-/turf/open/floor/glass/reinforced/plasma,
+/turf/open/floor/glass/reinforced/plasma/scrape_below,
 /area/station/common/night_club)
 "mHB" = (
 /obj/effect/spawner/random/structure/chair_comfy{
@@ -55632,6 +55648,8 @@
 "ooD" = (
 /obj/effect/turf_decal/tile/red/half/contrasted,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/apc/auto_name/directional/south,
+/obj/structure/cable,
 /turf/open/floor/iron/smooth,
 /area/mine/laborcamp)
 "ooF" = (
@@ -57260,7 +57278,7 @@
 /obj/item/storage/photo_album/ce,
 /obj/item/toy/figure/ce,
 /obj/item/storage/box/stickers/chief_engineer,
-/turf/open/floor/glass/reinforced/plasma,
+/turf/open/floor/glass/reinforced/plasma/scrape_below,
 /area/station/command/heads_quarters/ce)
 "oLm" = (
 /obj/effect/landmark/start/station_engineer,
@@ -64326,6 +64344,9 @@
 /obj/effect/spawner/random/burgerstation/loot,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard)
+"qzP" = (
+/turf/open/floor/iron/smooth,
+/area/mine/laborcamp)
 "qzR" = (
 /obj/effect/turf_decal/tile/brown/half/contrasted{
 	dir = 8
@@ -68304,7 +68325,7 @@
 	id = "nightclub_curtains";
 	name = "Show Curtains"
 	},
-/turf/open/floor/glass/reinforced/plasma,
+/turf/open/floor/glass/reinforced/plasma/scrape_below,
 /area/station/common/night_club)
 "rBE" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -69248,7 +69269,7 @@
 "rNN" = (
 /obj/structure/stripper_pole,
 /obj/effect/spawner/random/entertainment/money_small,
-/turf/open/floor/glass/reinforced/plasma,
+/turf/open/floor/glass/reinforced/plasma/scrape_below,
 /area/station/common/night_club)
 "rNR" = (
 /obj/structure/table,
@@ -73401,8 +73422,6 @@
 /area/station/engineering/atmos/control_center)
 "sVT" = (
 /obj/machinery/camera/autoname/labor/directional/east,
-/obj/machinery/power/apc/auto_name/directional/east,
-/obj/structure/cable,
 /turf/open/floor/iron/smooth,
 /area/mine/laborcamp/quarters)
 "sVY" = (
@@ -91908,7 +91927,6 @@
 	dir = 5
 	},
 /obj/structure/chair/stool/directional/south,
-/obj/structure/cable,
 /turf/open/floor/iron/checker,
 /area/mine/laborcamp/quarters)
 "xOw" = (
@@ -168077,7 +168095,7 @@ dOF
 rec
 vYx
 vYx
-rxx
+fvQ
 coA
 srB
 jaq
@@ -169627,7 +169645,7 @@ qIo
 azL
 prP
 jKS
-jKS
+qzP
 xOt
 bJz
 avY
@@ -170647,7 +170665,7 @@ vYx
 vYx
 vYx
 vYx
-wgY
+ojN
 coA
 xJX
 ohm
@@ -234641,13 +234659,13 @@ wjy
 wjy
 cMg
 wBG
+ecZ
 wBG
 wBG
+ecZ
 wBG
 wBG
-wBG
-wBG
-wBG
+ecZ
 wBG
 wBG
 wBG
@@ -236951,13 +236969,13 @@ wjy
 wjy
 cMg
 wBG
+ecZ
 wBG
 wBG
+ecZ
 wBG
 wBG
-wBG
-wBG
-wBG
+ecZ
 wBG
 wBG
 wBG
@@ -243627,7 +243645,7 @@ vmO
 vmO
 vmO
 vmO
-kDJ
+vmO
 vmO
 vmO
 vmO
@@ -244977,7 +244995,7 @@ iJZ
 uuM
 uuM
 uuM
-tZX
+hrf
 szH
 dER
 dER
@@ -245422,7 +245440,7 @@ vmO
 vmO
 vmO
 vmO
-vmO
+kDJ
 vmO
 vmO
 vmO
