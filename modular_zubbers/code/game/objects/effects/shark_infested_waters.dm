@@ -10,7 +10,7 @@
 	layer = MOB_LAYER
 
 	//Defines. Feel free to change.
-	var/obj/projectile/projectile_type = /obj/projectile/beam/laser/carbine
+	var/obj/projectile/projectile_type = /obj/projectile/beam/laser/rapid
 	var/turf/valid_turf_type = /turf/open/water/moonstation/infested
 
 	//Internal. Do not change.
@@ -118,14 +118,6 @@
 	setDir(desired_dir)
 
 	return FALSE
-
-/obj/effect/shark_infested_waters/proc/check_on_hit(atom/movable/firer, atom/target, angle, hit_limb, blocked, pierce_hit)
-
-	SIGNAL_HANDLER
-
-	if(target == current_target)
-		last_hit = world.time
-
 
 /obj/effect/shark_infested_waters/process(seconds_per_tick)
 
