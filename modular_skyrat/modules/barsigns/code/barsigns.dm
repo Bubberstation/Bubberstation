@@ -311,6 +311,36 @@
 	desc = "That's what they call the yogurt effect."
 	neon_color = ""
 
+/datum/barsign/skyrat/doctorsorders
+	name = "Doctor's Orders"
+	icon_state = "doctors-orders"
+	desc = "For over-the-counter painkillers."
+	neon_color = ""
+
+/datum/barsign/skyrat/lowhanginfruit
+	name = "The Low Hangin Fruit"
+	icon_state = "the-low-hangin-fruit"
+	desc = "Botanists have one joke..."
+	neon_color = ""
+
+/datum/barsign/skyrat/peeps
+	name = "Peeps"
+	icon_state = "peeps"
+	desc = "Twice, like a bird!"
+	neon_color = ""
+
+/datum/barsign/skyrat/wrongturn
+	name = "Wrong Turn"
+	icon_state = "wrong-turn"
+	desc = "You don't feel lost. Nothing a few drinks cant fix, though."
+	neon_color = ""
+
+/datum/barsign/skyrat/o2n2
+	name = "02n2"
+	icon_state = "02n2"
+	desc = "The kind of place where beer's served in a gilded glass... At ten-times the cost."
+	neon_color = ""
+
 // 96x96 signs
 
 /datum/barsign/skyrat/large/cyberslyph
