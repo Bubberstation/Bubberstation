@@ -323,7 +323,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 	// the TIMED mode cutoff feature. User has to manually reactivate.
 	if(intended_on && mode == SHOWER_MODE_TIMED && COOLDOWN_FINISHED(src, timed_cooldown))
 		// the TIMED mode cutoff feature. User has to manually reactivate.
-		intended_on = FALSE
+		// BUBBER EDIT CHANGE BEGIN - Showers have infinite water
+		// Original:
+		// intended_on = FALSE
+		if(!shower_occupied())
+			intended_on = FALSE
+		// BUBBER EDIT CHANGE END - Showers have infinite water
 
 	// Out of water.
 	if(actually_on && reagents.total_volume < SHOWER_SPRAY_VOLUME)
@@ -337,7 +342,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 		update_actually_on(intended_on)
 
 	// Reclaim water
-//if(!actually_on) BUBBER EDIT CHANGE - Unlimited water for showers
+	if(!actually_on)
 		if(has_water_reclaimer && reagents.total_volume < reagents.maximum_volume)
 			reagents.add_reagent(reagent_id, refill_rate * seconds_per_tick)
 			return 0
@@ -368,7 +373,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 	expose_to_reagents(loc)
 	for(var/atom/movable/movable_content as anything in loc)
 		expose_to_reagents(movable_content) // Wash the items on the turf (=expose them to the shower reagent)
-	reagents.remove_all(SHOWER_SPRAY_VOLUME)
+	//reagents.remove_all(SHOWER_SPRAY_VOLUME) // BUBBER EDIT REMOVAL - Showers have infinite water
 
 /obj/machinery/shower/on_deconstruction(disassembled = TRUE)
 	new /obj/item/stack/sheet/iron(drop_location(), 2)
