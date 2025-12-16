@@ -1,6 +1,7 @@
 /obj/effect/shark_infested_waters
 	name = "a carp with a fricken laser rifle attached to their head"
-	desc = "An ill-tempered endangered species of territorial water carp with a laser rifle on its head. Captured and trained to kill any who attempt to cross its waters. Pretty much killable."
+	desc = "An ill-tempered endangered species of territorial water carp with a laser rifle on its head. \
+	Captured and trained to kill any who attempt to cross its waters. Pretty much unkillable."
 	icon = 'modular_zubbers/icons/effects/shark_infested_waters.dmi'
 	icon_state = "shark"
 	glide_size = 32
@@ -14,7 +15,7 @@
 
 	//Internal. Do not change.
 	var/woke = FALSE
-	var/last_hit
+	var/last_detect
 	var/mob/living/current_target
 
 	var/datum/proximity_monitor/proximity_monitor
@@ -26,13 +27,21 @@
 	. = ..()
 
 /obj/effect/shark_infested_waters/Initialize(mapload)
+	. = ..()
 	proximity_monitor = new(src, 6)
-
+	src.setDir(pick(GLOB.cardinals))
 
 /obj/effect/shark_infested_waters/HasProximity(atom/movable/arrived)
 	. = ..()
-	if(!current_target && isliving(arrived) && is_target_valid(arrived))
-		set_target(arrived)
+	if(!current_target && isliving(arrived))
+
+		if(is_target_valid(arrived))
+			set_target(arrived)
+		else
+			src.audible_message(
+				span_warning("[src] growls at [arrived]..."),
+				hearing_distance = COMBAT_MESSAGE_RANGE
+			)
 
 /obj/effect/shark_infested_waters/proc/wake_up()
 
@@ -40,7 +49,6 @@
 		return FALSE
 
 	START_PROCESSING(SSprocessing, src)
-	last_hit = world.time
 
 	return TRUE
 
@@ -65,8 +73,13 @@
 
 	if(desired_target)
 		current_target = desired_target
-		wake_up()
+		last_detect = world.time
 		. = TRUE
+
+	if(current_target)
+		wake_up()
+	else
+		go_to_sleep()
 
 
 /obj/effect/shark_infested_waters/proc/is_target_valid(mob/living/target_to_check,check_water = TRUE, check_distance = TRUE)
@@ -98,6 +111,8 @@
 	var/turf/step_turf = get_step(src,desired_dir)
 
 	if(step_turf && istype(step_turf,valid_turf_type))
+		if(locate(/obj/effect/shark_infested_waters) in step_turf) //Prevents stacking.
+			return FALSE
 		return src.Move(step_turf)
 
 	setDir(desired_dir)
@@ -116,7 +131,6 @@
 
 	if(current_target && !is_target_valid(current_target,check_water = FALSE))
 		set_target(null)
-		go_to_sleep()
 
 	if(current_target)
 		var/target_direction = get_dir(src,current_target)
@@ -131,10 +145,11 @@
 					fired_projectile.firer = src
 					fired_projectile.impacted = list(WEAKREF(src) = TRUE)
 					fired_projectile.aim_projectile(current_target, src)
-					RegisterSignal(fired_projectile, COMSIG_PROJECTILE_ON_HIT, PROC_REF(check_on_hit))
 					fired_projectile.fire()
 
-		if( (last_hit + 10 SECONDS) <= world.time)
-			go_to_sleep()
-
+		var/turf/target_turf = get_turf(current_target)
+		if(target_turf && istype(target_turf,valid_turf_type))
+			last_detect = world.time
+		else if((last_detect + 5 SECONDS) <= world.time)
+			set_target(null)
 
