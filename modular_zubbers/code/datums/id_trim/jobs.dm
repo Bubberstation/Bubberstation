@@ -114,11 +114,10 @@
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
 	return ..()
 
-/datum/id_trim/job/orderly/New()
-	job += /datum/job/orderly
-	honorifics += list("Guard", "Medical Attendant", "Medical Support Officer", "Medical Technician")
+/datum/id_trim/job/orderly/
+	job = /datum/job/orderly
+	honorifics = list("Guard", "Medical Attendant", "Medical Support Officer", "Medical Technician")
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
-	return ..()
 
 /datum/id_trim/job/shaft_miner
 	job = /datum/job/shaft_miner
