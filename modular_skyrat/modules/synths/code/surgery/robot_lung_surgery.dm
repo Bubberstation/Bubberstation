@@ -47,7 +47,7 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/patient = target
 		var/obj/item/organ/lungs/heatsink = patient.get_organ_slot(ORGAN_SLOT_LUNGS)
-		patient.setOrganLoss(ORGAN_SLOT_LUNGS, 0) // adjustOrganLoss didnt work here without runtimes spamming, setting to 0 as synths have no natural organ decay/regeneration
+		patient.set_organ_loss(ORGAN_SLOT_LUNGS, 0) // adjust_organ_loss didnt work here without runtimes spamming, setting to 0 as synths have no natural organ decay/regeneration
 		if(heatsink.organ_flags & ORGAN_EMP)
 			heatsink.organ_flags &= ~ORGAN_EMP
 		display_results(
@@ -71,5 +71,5 @@
 			span_warning("[user] screws up, nearly dropping the [tool] into [target]'s chest!"),
 		)
 		display_pain(target, "You feel a dull thud in your chest; it feels like a [tool] fell into your chest cavity!")
-		patient.adjustOrganLoss(ORGAN_SLOT_LUNGS, 10) // better find your wrench!
+		patient.adjust_organ_loss(ORGAN_SLOT_LUNGS, 10) // better find your wrench!
 	return FALSE

@@ -8,7 +8,7 @@
 "ac" = (
 /obj/item/trash/sosjerky,
 /turf/template_noop,
-/area/template_noop)
+/area/space/nearstation)
 "am" = (
 /obj/structure/fluff/bus/passable/seat,
 /obj/effect/decal/cleanable/dirt,
@@ -214,6 +214,10 @@
 	icon_state = "bus"
 	},
 /area/ruin/space)
+"hZ" = (
+/obj/effect/decal/cleanable/blood/gibs/robot_debris/old,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space)
 "iE" = (
 /obj/structure/table,
 /obj/item/pai_card,
@@ -223,12 +227,11 @@
 /obj/item/clothing/head/helmet/space,
 /turf/open/misc/asteroid/airless,
 /area/ruin/space)
-"ky" = (
-/obj/effect/decal/cleanable/blood/gibs/robot_debris/old,
-/turf/open/misc/asteroid/airless,
-/area/ruin/space)
-"nO" = (
-/obj/item/rag,
+"mS" = (
+/obj/structure/fluff/bus/dense{
+	icon_state = "frontwallbottom"
+	},
+/obj/effect/decal/cleanable/blood/oil,
 /turf/open/misc/asteroid/airless,
 /area/ruin/space)
 "sl" = (
@@ -256,13 +259,6 @@
 /turf/open/misc/asteroid/airless,
 /area/ruin/space)
 "yY" = (
-/turf/open/misc/asteroid/airless,
-/area/ruin/space)
-"Af" = (
-/obj/structure/fluff/bus/dense{
-	icon_state = "frontwallbottom"
-	},
-/obj/effect/decal/cleanable/blood/oil,
 /turf/open/misc/asteroid/airless,
 /area/ruin/space)
 "CO" = (
@@ -325,23 +321,23 @@
 /obj/item/clothing/head/collectable/swat,
 /turf/open/misc/asteroid/airless,
 /area/ruin/space)
-"Gv" = (
-/obj/effect/decal/cleanable/blood/oil,
+"GK" = (
+/obj/item/rag,
 /turf/open/misc/asteroid/airless,
 /area/ruin/space)
 "Hb" = (
 /obj/item/clothing/head/cone,
 /turf/open/misc/asteroid/airless,
 /area/ruin/space)
+"JI" = (
+/obj/item/storage/toolbox/mechanical,
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space)
 "KK" = (
 /obj/structure/fluff/bus/dense{
 	icon_state = "frontwallbottom"
 	},
-/turf/open/misc/asteroid/airless,
-/area/ruin/space)
-"Ln" = (
-/obj/item/storage/toolbox/mechanical,
-/obj/effect/decal/cleanable/blood/oil,
 /turf/open/misc/asteroid/airless,
 /area/ruin/space)
 "Ne" = (
@@ -351,6 +347,10 @@
 "Nm" = (
 /obj/effect/decal/cleanable/food/salt,
 /obj/item/reagent_containers/condiment/saltshaker,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space)
+"OD" = (
+/obj/effect/decal/cleanable/blood/oil,
 /turf/open/misc/asteroid/airless,
 /area/ruin/space)
 "Qd" = (
@@ -442,7 +442,7 @@ ab
 ab
 yY
 yY
-Gv
+OD
 yY
 yY
 yY
@@ -461,7 +461,7 @@ ab
 ab
 ab
 yY
-Gv
+OD
 yY
 yY
 Ne
@@ -502,12 +502,12 @@ yY
 yY
 yY
 yY
-Gv
+OD
 yY
 Ne
 aV
 az
-Af
+mS
 yY
 yY
 "}
@@ -583,7 +583,7 @@ Ne
 ba
 aA
 KK
-nO
+GK
 yY
 Qd
 yY
@@ -604,7 +604,7 @@ ap
 aB
 KK
 yY
-Ln
+JI
 yY
 yY
 Hb
@@ -622,7 +622,7 @@ yY
 Ne
 aq
 aC
-Af
+mS
 yY
 yY
 Gf
@@ -664,7 +664,7 @@ aU
 aD
 KK
 yY
-ky
+hZ
 yY
 yY
 yY
@@ -742,7 +742,7 @@ ab
 ab
 yY
 yY
-ky
+hZ
 yY
 yY
 yY
