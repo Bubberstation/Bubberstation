@@ -1,3 +1,9 @@
+/obj/item/clothing/mask/gas
+	flags_inv = HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
+
+/obj/item/clothing/mask/gas/welding
+	flags_inv = HIDEEYES|HIDEFACE|HIDESNOUT
+
 /obj/item/clothing/mask/gas/modulator
 	name = "modified gas mask"
 	desc = "An older model of gas mask issued for use on station to help protect against airborne hazards. This one appears to be \
