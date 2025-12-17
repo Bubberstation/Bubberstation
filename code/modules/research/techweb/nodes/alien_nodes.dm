@@ -86,6 +86,7 @@ ABDUCTOR_SUBTYPE_UNLOCKS(/datum/techweb_node/alien_engi)
 		"surgery_brainwashing_mechanic",
 		"surgery_heal_combo_upgrade_femto",
 		"surgery_zombie",
+		"surgical_processor", //BUBBERS EDIT: Surgical Processor addition to med lathe
 	)
 	required_items_to_unlock = list(
 		/obj/item/cautery/alien,
