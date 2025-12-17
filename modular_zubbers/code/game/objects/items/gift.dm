@@ -54,4 +54,13 @@
 		/obj/item/physic_manipulation_tool/advanced,
 		/obj/item/gun/magic/wand/polymorph,
 		/obj/item/gun/magic/staff/chaos,
+		/obj/item/gun/energy/pulse,
+		/obj/item/dna_probe/carp_scanner,
+		/obj/item/antag_granter,
+		/obj/item/storage/box/syndie_kit/romerol,
+		/obj/item/reagent_containers/cup/bottle/romerol,
+		/obj/item/card/emag/battlecruiser,
+		/obj/structure/fluff/paper, // So I stop getting 500 papers
+		/obj/item/circuitboard, // Like above but for boards.
+		/obj/item/circuit_component, // I hate these things.
 	)
