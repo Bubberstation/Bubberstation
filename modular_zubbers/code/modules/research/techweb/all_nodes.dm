@@ -80,6 +80,14 @@
 		"rld_cyborg"
 	)
 
+/datum/techweb_node/borg_utility/New()
+	design_ids += list(
+		"borg_upgrade_detailer",
+		"rld_cyborg_janitor",
+		"cable_coil_cyborg"
+	)
+	return ..()
+
 /datum/techweb_node/borg_medical/New()
 	design_ids += list(
 		"borg_upgrade_surgicalprocessor_sci",

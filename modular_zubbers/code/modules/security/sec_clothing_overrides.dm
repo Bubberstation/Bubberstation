@@ -1094,12 +1094,12 @@
 	desc = "A blue shirt and dark jeans, with a pair of spurred cowboy boots to boot."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'	//Donator item-ish? See the /armorless one below it
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
 	icon_state = "cowboy_uniform"
-	supports_variations_flags = NONE
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/detective/cowboy/armorless //Donator variant, just uses the sprite.
-	armor_type = /datum/armor/clothing_under/none
+	armor_type = /datum/armor/clothing_under
 
 /obj/item/clothing/under/rank/security/detective/runner
 	name = "runner sweater"
@@ -1107,7 +1107,6 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	icon_state = "runner"
-	supports_variations_flags = NONE
 	can_adjust = FALSE
 
 //Warden
@@ -1266,9 +1265,6 @@
 /obj/item/clothing/under/rank/security/head_of_security/peacekeeper
 	unique_reskin = null
 
-/obj/item/clothing/under/rank/security/head_of_security/skyrat/imperial
-	unique_reskin = null
-
 /obj/item/clothing/under/rank/security/head_of_security/bunnysuit
 	unique_reskin = null
 
@@ -1294,7 +1290,6 @@
 	desc = "A mustard coloured prison jumpskirt, often worn by former Security members, informants and former CentCom employees. Its suit sensors are stuck in the \"Fully On\" position."
 	icon_state = "/obj/item/clothing/under/rank/prisoner/skirt/protcust"
 	greyscale_colors = "#FFB600"
-	supports_variations_flags = NONE
 
 /obj/item/clothing/under/rank/prisoner/lowsec
 	name = "low security prisoner jumpsuit"
@@ -1307,7 +1302,6 @@
 	desc = "A pale, almost creamy prison jumpskirt, this one denotes a low security prisoner, things like fraud and anything white collar. Its suit sensors are stuck in the \"Fully On\" position."
 	icon_state = "/obj/item/clothing/under/rank/prisoner/skirt/lowsec"
 	greyscale_colors = "#AB9278"
-	supports_variations_flags = NONE
 
 /obj/item/clothing/under/rank/prisoner/highsec
 	name = "high risk prisoner jumpsuit"
@@ -1320,7 +1314,6 @@
 	desc = "A bright red prison jumpskirt, depending on who sees it, either a badge of honour or a sign to avoid. Its suit sensors are stuck in the \"Fully On\" position."
 	icon_state = "/obj/item/clothing/under/rank/prisoner/skirt/highsec"
 	greyscale_colors = "#FF3400"
-	supports_variations_flags = NONE
 
 /obj/item/clothing/under/rank/prisoner/supermax
 	name = "supermax prisoner jumpsuit"
@@ -1333,7 +1326,6 @@
 	desc = "A dark crimson red prison jumpskirt, for the worst of the worst, or the Clown. Its suit sensors are stuck in the \"Fully On\" position."
 	icon_state = "/obj/item/clothing/under/rank/prisoner/skirt/supermax"
 	greyscale_colors = "#992300"
-	supports_variations_flags = NONE
 
 /obj/item/clothing/under/rank/prisoner/classic
 	name = "classic prisoner jumpsuit"
@@ -1348,7 +1340,7 @@
 	greyscale_config_inhand_left = null
 	greyscale_config_inhand_right = null
 	greyscale_config_worn = null
-	supports_variations_flags = NONE
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/prisoner/syndicate
 	name = "syndicate prisoner jumpsuit"
@@ -1363,7 +1355,6 @@
 	icon_state = "/obj/item/clothing/under/rank/prisoner/skirt/syndicate"
 	greyscale_colors = "#992300"
 	has_sensor = FALSE
-	supports_variations_flags = NONE
 
 /obj/item/clothing/under/rank/prisoner/syndicate/station
 	name = "syndicate prisoner jumpsuit"

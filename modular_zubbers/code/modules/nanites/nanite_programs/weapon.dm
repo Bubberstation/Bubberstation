@@ -12,7 +12,7 @@
 		var/mob/living/carbon/C = host_mob
 		C.take_bodypart_damage(1, 0, TRUE)
 	else
-		host_mob.adjustBruteLoss(1, TRUE)
+		host_mob.adjust_brute_loss(1, TRUE)
 	if(prob(3))
 		to_chat(host_mob, span_warning("You feel a stab of pain from somewhere inside you."))
 
@@ -23,7 +23,7 @@
 	rogue_types = list(/datum/nanite_program/toxic)
 
 /datum/nanite_program/poison/active_effect()
-	host_mob.adjustToxLoss(1)
+	host_mob.adjust_tox_loss(1)
 	if(prob(2))
 		to_chat(host_mob, span_warning("You feel nauseous."))
 		if(iscarbon(host_mob))
@@ -54,7 +54,7 @@
 /datum/nanite_program/aggressive_replication/active_effect()
 	var/extra_regen = round(nanites.nanite_volume / 200, 0.1)
 	nanites.adjust_nanites(null, extra_regen)
-	host_mob.adjustBruteLoss(extra_regen / 2, TRUE)
+	host_mob.adjust_brute_loss(extra_regen / 2, TRUE)
 
 /datum/nanite_program/meltdown
 	name = "Meltdown"
@@ -64,7 +64,7 @@
 	rogue_types = list(/datum/nanite_program/glitch)
 
 /datum/nanite_program/meltdown/active_effect()
-	host_mob.adjustFireLoss(3.5)
+	host_mob.adjust_fire_loss(3.5)
 
 /datum/nanite_program/meltdown/enable_passive_effect()
 	. = ..()
