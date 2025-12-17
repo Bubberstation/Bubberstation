@@ -165,6 +165,7 @@
 	spawner_job_path = /datum/job/lifebringer
 	restricted_species = list(/datum/species/pod) //SKYRAT EDIT ADDITION
 	random_appearance = FALSE // SKYRAT EDIT ADDITION
+	allow_custom_character = ALL // BUBBER EDIT ADDITION
 
 /obj/effect/mob_spawn/ghost_role/human/seed_vault/Initialize(mapload)
 	. = ..()
@@ -234,6 +235,7 @@
 	var/obj/structure/ash_walker_eggshell/eggshell
 	restricted_species = list(/datum/species/lizard/ashwalker) //SKYRAT EDIT ADDITION
 	random_appearance = FALSE // SKYRAT EDIT ADDITION
+	allow_custom_character = GHOSTROLE_TAKE_PREFS_SPECIES // BUBBER EDIT ADDITION
 
 /obj/effect/mob_spawn/ghost_role/human/ash_walker/Destroy()
 	eggshell = null
