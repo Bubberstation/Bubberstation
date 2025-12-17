@@ -52,4 +52,6 @@
 		/obj/item/melee/energy/axe,
 		/obj/item/phystool,
 		/obj/item/physic_manipulation_tool/advanced,
+		/obj/item/gun/magic/wand/polymorph,
+		/obj/item/gun/magic/staff/chaos,
 	)
