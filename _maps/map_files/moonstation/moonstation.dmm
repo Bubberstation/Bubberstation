@@ -2014,6 +2014,7 @@
 	},
 /obj/item/seeds/soya,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/autoname/labor/directional/east,
 /turf/open/floor/iron/smooth,
 /area/mine/laborcamp/quarters)
 "azI" = (
@@ -16687,11 +16688,12 @@
 /turf/open/floor/iron,
 /area/station/cargo/sorting)
 "epT" = (
-/obj/machinery/camera/autoname/security/directional/north{
-	dir = 9
+/obj/effect/turf_decal/siding/dark_blue{
+	dir = 8
 	},
-/turf/open/openspace,
-/area/station/security/brig)
+/obj/machinery/camera/autoname/directional/east,
+/turf/open/floor/iron/dark,
+/area/station/commons/dorms)
 "epY" = (
 /obj/effect/turf_decal/tile/purple/diagonal_centre,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -39270,14 +39272,9 @@
 /turf/open/floor/carpet,
 /area/station/security/processing)
 "kia" = (
-/obj/effect/turf_decal/siding/dark_blue{
-	dir = 8
-	},
-/obj/machinery/camera/autoname/directional/east{
-	dir = 6
-	},
-/turf/open/floor/iron/dark,
-/area/station/commons/dorms)
+/obj/machinery/camera/autoname/security/directional/south,
+/turf/open/openspace,
+/area/station/security/brig)
 "kie" = (
 /obj/machinery/door/airlock/external/glass{
 	name = "External Public Airlock"
@@ -46489,11 +46486,9 @@
 /area/station/service/chapel/office)
 "lVj" = (
 /obj/effect/turf_decal/tile/red/half/contrasted,
-/obj/machinery/camera/autoname/labor/directional/south{
-	dir = 5
-	},
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/south,
+/obj/machinery/camera/autoname/labor/directional/south,
 /turf/open/floor/iron/smooth,
 /area/mine/laborcamp/security)
 "lVl" = (
@@ -66344,9 +66339,6 @@
 	dir = 4
 	},
 /obj/structure/closet/firecloset,
-/obj/machinery/camera/autoname/security/directional/east{
-	dir = 6
-	},
 /turf/open/floor/iron/dark,
 /area/station/security/processing)
 "rau" = (
@@ -80933,6 +80925,7 @@
 	dir = 8
 	},
 /obj/item/radio/intercom/directional/west,
+/obj/machinery/camera/autoname/security/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/security/processing)
 "uUa" = (
@@ -234665,7 +234658,7 @@ wBG
 ecZ
 wBG
 wBG
-ecZ
+wBG
 wBG
 wBG
 wBG
@@ -236969,7 +236962,7 @@ wjy
 wjy
 cMg
 wBG
-ecZ
+wBG
 wBG
 wBG
 ecZ
@@ -262214,9 +262207,9 @@ xWP
 dYw
 hGW
 eBY
-epT
 lGa
 lGa
+kia
 eBY
 gNP
 gxp
@@ -273038,9 +273031,9 @@ kUj
 lZD
 bKR
 kBO
-kia
 aKn
 aKn
+epT
 kBO
 pqO
 pqO

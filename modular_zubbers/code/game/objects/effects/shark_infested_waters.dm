@@ -20,6 +20,8 @@
 
 	var/datum/proximity_monitor/proximity_monitor
 
+	COOLDOWN_DECLARE(growl_cooldown)
+
 /obj/effect/shark_infested_waters/Destroy()
 	QDEL_NULL(proximity_monitor)
 	current_target = null
@@ -38,10 +40,13 @@
 		if(is_target_valid(arrived))
 			set_target(arrived)
 		else
-			src.audible_message(
-				span_warning("[src] growls at [arrived]..."),
-				hearing_distance = COMBAT_MESSAGE_RANGE
-			)
+			src.setDir(get_dir(src,arrived))
+			if(COOLDOWN_FINISHED(src,growl_cooldown) && !prob(80)) // Growl optimization
+				COOLDOWN_START(src,growl_cooldown,3 SECONDS)
+				src.audible_message(
+					span_warning("[src] growls at [arrived]..."),
+					hearing_distance = COMBAT_MESSAGE_RANGE
+				)
 
 /obj/effect/shark_infested_waters/proc/wake_up()
 
