@@ -221,7 +221,7 @@
 	heretic_datum.total_sacrifices++
 	check_sacrifice_total(user, heretic_datum) //BUBBER EDIT
 	if((sac_job_flag & JOB_HEAD_OF_STAFF))
-		heretic_datum.adjust_knowledge_points(5) // BUBBER EDIT - Previous: 3
+		heretic_datum.adjust_knowledge_points(4) // BUBBER EDIT - Previous: 3
 		heretic_datum.high_value_sacrifices++
 		feedback += " <i>graciously</i>"
 	if(cultist_datum)
