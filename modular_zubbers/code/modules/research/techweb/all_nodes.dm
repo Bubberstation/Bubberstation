@@ -41,7 +41,7 @@
 // MEDICAL
 
 /datum/techweb_node/alien_surgery/New()
-	design_ids = list(
+	design_ids += list(
 		"surgical_processor",
 	)
 
