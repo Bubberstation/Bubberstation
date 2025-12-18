@@ -64,4 +64,6 @@
 		/obj/structure/fluff/paper, // So I stop getting 500 papers
 		/obj/item/circuitboard, // Like above but for boards.
 		/obj/item/circuit_component, // I hate these things.
+		/obj/item/organ/genital, // Rule 8.
+		/obj/item/melee/supermatter_sword,
 	)
