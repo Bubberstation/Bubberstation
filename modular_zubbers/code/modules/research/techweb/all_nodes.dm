@@ -40,11 +40,6 @@
 
 // MEDICAL
 
-/datum/techweb_node/alien_surgery/New()
-	design_ids += list(
-		"surgical_processor",
-	)
-
 /datum/techweb_node/medbay_equip_adv/New()
 	. = ..()
 	design_ids += list(
