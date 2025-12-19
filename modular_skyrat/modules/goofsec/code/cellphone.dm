@@ -31,9 +31,10 @@ GLOBAL_LIST_EMPTY(gangster_cell_phones)
 
 /obj/item/gangster_cellphone/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, list/message_mods, message_range)
 	. = ..()
+	to_chat(world, span_yellow("DEBUG: Message Heard"))
 	if(!activated)
 		return
-	if(get_turf(speaker) != get_turf(src))
+	if(src.loc != speaker)
 		return
 	broadcast_message(raw_message, speaker)
 
