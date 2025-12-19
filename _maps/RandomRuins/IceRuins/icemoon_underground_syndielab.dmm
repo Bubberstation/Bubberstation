@@ -101,13 +101,6 @@
 /obj/structure/cable/layer1,
 /turf/open/floor/iron/dark/textured,
 /area/ruin/syndielab)
-"cP" = (
-/obj/effect/mapping_helpers/bombable_wall,
-/turf/closed/wall/r_wall/plastitanium/syndicate/nodiagonal{
-	desc = "An ominous looking wall. It has extra insulation to keep the heat in.";
-	name = "plastitanium wall"
-	},
-/area/ruin/syndielab)
 "dD" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/condiment/bbqsauce{
@@ -188,6 +181,13 @@
 	pixel_x = -5
 	},
 /turf/open/floor/mineral/plastitanium,
+/area/ruin/syndielab)
+"jL" = (
+/obj/machinery/light/warm/directional/north,
+/obj/effect/decal/cleanable/blood/splatter/oil,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/dark/hidden,
+/obj/structure/cable/layer1,
+/turf/open/floor/iron/dark/textured,
 /area/ruin/syndielab)
 "lW" = (
 /obj/structure/filingcabinet,
@@ -321,13 +321,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/syndielab)
-"tb" = (
-/obj/machinery/light/warm/directional/north,
-/obj/effect/decal/cleanable/blood/splatter/oil,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/dark/hidden,
-/obj/structure/cable/layer1,
-/turf/open/floor/iron/dark/textured,
-/area/ruin/syndielab)
 "tC" = (
 /obj/structure/cable/layer1,
 /turf/open/floor/iron/dark/textured,
@@ -457,7 +450,8 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndielab)
-"AR" = (
+"AT" = (
+/obj/effect/mapping_helpers/bombable_wall,
 /turf/closed/wall/r_wall/plastitanium/syndicate/nodiagonal{
 	desc = "An ominous looking wall. It has extra insulation to keep the heat in.";
 	name = "plastitanium wall"
@@ -598,6 +592,12 @@
 /obj/structure/rack,
 /obj/item/storage/toolbox/syndicate,
 /turf/open/floor/iron/dark/textured,
+/area/ruin/syndielab)
+"Ig" = (
+/turf/closed/wall/r_wall/plastitanium/syndicate/nodiagonal{
+	desc = "An ominous looking wall. It has extra insulation to keep the heat in.";
+	name = "plastitanium wall"
+	},
 /area/ruin/syndielab)
 "IQ" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/dark/hidden,
@@ -918,10 +918,10 @@ MW
 MW
 MW
 Xt
-AR
-AR
+Ig
+Ig
 vO
-AR
+Ig
 Xt
 Xt
 Xt
@@ -936,13 +936,13 @@ MW
 Xt
 Xt
 Xt
-AR
+Ig
 cg
 xg
-AR
-AR
-cP
-AR
+Ig
+Ig
+AT
+Ig
 Xt
 Xt
 Xt
@@ -950,65 +950,65 @@ MW
 "}
 (4,1,1) = {"
 MW
-AR
-AR
-AR
-AR
-AR
-AR
+Ig
+Ig
+Ig
+Ig
+Ig
+Ig
 UF
-AR
+Ig
 na
 mi
-AR
-AR
-AR
+Ig
+Ig
+Ig
 Xt
 Xt
 "}
 (5,1,1) = {"
 Xt
-AR
+Ig
 aa
 Wn
 bC
 EY
 el
 el
-AR
+Ig
 iQ
 iy
 vE
 Xe
-AR
-AR
+Ig
+Ig
 Xt
 "}
 (6,1,1) = {"
 Xt
-AR
+Ig
 Ts
 sj
 FJ
-AR
+Ig
 qy
 el
-AR
+Ig
 AD
 ry
 ey
 VO
 Tl
-AR
+Ig
 Xt
 "}
 (7,1,1) = {"
 Xt
-AR
+Ig
 bn
 Vf
 xa
-AR
+Ig
 Ze
 Gi
 cu
@@ -1017,30 +1017,30 @@ ey
 wl
 sa
 Hq
-AR
+Ig
 Xt
 "}
 (8,1,1) = {"
 Xt
-AR
-AR
-AR
+Ig
+Ig
+Ig
 EY
-AR
+Ig
 qC
 qC
-AR
-tb
+Ig
+jL
 HS
 ey
 sp
 UM
-AR
+Ig
 Xt
 "}
 (9,1,1) = {"
 Xt
-AR
+Ig
 pK
 KV
 el
@@ -1052,13 +1052,13 @@ el
 Sq
 cM
 Hs
-AR
-AR
+Ig
+Ig
 Xt
 "}
 (10,1,1) = {"
 Xt
-AR
+Ig
 JF
 sj
 el
@@ -1070,31 +1070,31 @@ el
 oY
 Fz
 Zx
-AR
+Ig
 Xt
 Xt
 "}
 (11,1,1) = {"
 Xt
-AR
+Ig
 Jc
 ey
 FJ
-AR
+Ig
 qC
 qC
-AR
+Ig
 GV
-AR
+Ig
 qC
 qC
-AR
+Ig
 Xt
 MW
 "}
 (12,1,1) = {"
 Xt
-AR
+Ig
 HH
 GL
 hl
@@ -1106,68 +1106,68 @@ Te
 hu
 TB
 lW
-AR
+Ig
 Xt
 MW
 "}
 (13,1,1) = {"
 Xt
-AR
+Ig
 QO
 hn
 el
 Xm
 rO
 aP
-AR
+Ig
 Lt
 AX
 yW
 YH
-AR
+Ig
 Xt
 MW
 "}
 (14,1,1) = {"
 Xt
-AR
-AR
-AR
+Ig
+Ig
+Ig
 EY
 qC
 qC
 qC
-AR
+Ig
 ZW
 uT
 yW
 Vu
-AR
+Ig
 Xt
 MW
 "}
 (15,1,1) = {"
 Xt
 Xt
-AR
+Ig
 gE
 el
 wj
 dD
 Co
-AR
+Ig
 cd
 Wo
 yW
 Dd
-AR
+Ig
 Xt
 MW
 "}
 (16,1,1) = {"
 MW
 Xt
-AR
+Ig
 sV
 NM
 tC
@@ -1178,25 +1178,25 @@ WO
 vr
 CS
 wJ
-AR
+Ig
 Xt
 MW
 "}
 (17,1,1) = {"
 MW
 Xt
-AR
-AR
-AR
+Ig
+Ig
+Ig
 nD
 wh
 De
-AR
-AR
-AR
-AR
-AR
-AR
+Ig
+Ig
+Ig
+Ig
+Ig
+Ig
 MW
 MW
 "}
@@ -1205,11 +1205,11 @@ MW
 MW
 Xt
 Xt
-AR
-AR
-AR
-AR
-AR
+Ig
+Ig
+Ig
+Ig
+Ig
 Xt
 Xt
 Xt

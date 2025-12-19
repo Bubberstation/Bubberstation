@@ -4135,7 +4135,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/cable,
-/obj/machinery/camera/autoname/engineering/directional/south,
+/obj/machinery/camera/directional/south{
+	dir = 5
+	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "bip" = (
@@ -5312,6 +5314,22 @@
 	},
 /turf/open/floor/iron/large,
 /area/station/hallway/primary/fore)
+"bBn" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible{
+	dir = 4
+	},
+/obj/machinery/camera/directional/north{
+	c_tag = "Atmospherics - Nitrogen Cell";
+	name = "atmospherics camera"
+	},
+/turf/open/floor/iron/smooth_edge,
+/area/station/engineering/atmos)
 "bBp" = (
 /obj/machinery/door/airlock/external{
 	name = "MiniSat External Access"
@@ -8066,7 +8084,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/camera/autoname/engineering/directional/east,
 /turf/open/floor/iron/smooth_edge{
 	dir = 8
 	},
@@ -9171,10 +9188,6 @@
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible{
 	dir = 6
 	},
-/obj/machinery/camera/directional/north{
-	c_tag = "Atmospherics - Oxygen Supply";
-	name = "atmospherics camera"
-	},
 /turf/open/floor/iron/smooth_edge,
 /area/station/engineering/atmos)
 "cLr" = (
@@ -9499,6 +9512,11 @@
 /turf/open/floor/grass,
 /area/station/service/chapel)
 "cQn" = (
+/obj/machinery/camera/directional/south{
+	c_tag = "Atmospherics - Project Room Fore";
+	dir = 5;
+	name = "atmospherics camera"
+	},
 /obj/effect/turf_decal/bot,
 /obj/structure/table,
 /obj/item/multitool,
@@ -13411,11 +13429,6 @@
 /obj/effect/spawner/random/trash/grille_or_waste,
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/department/engine/atmos)
-"dVh" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/sign/barber/directional/east,
-/turf/open/floor/plating,
-/area/station/maintenance/department/crew_quarters/bar)
 "dVs" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -22160,7 +22173,6 @@
 /obj/item/flashlight,
 /obj/structure/rack,
 /obj/effect/turf_decal/bot,
-/obj/machinery/light/small/directional/east,
 /turf/open/floor/pod/dark,
 /area/station/engineering/storage/tech)
 "gxq" = (
@@ -22375,7 +22387,6 @@
 "gAG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/firecloset,
-/obj/structure/sign/barber/directional/east,
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/department/crew_quarters/bar)
 "gAQ" = (
@@ -22559,7 +22570,6 @@
 /obj/structure/sign/warning/no_smoking/directional/north,
 /obj/structure/extinguisher_cabinet/directional/west,
 /obj/effect/decal/cleanable/cobweb,
-/obj/machinery/light/small/directional/west,
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/maintenance/starboard/fore)
 "gDG" = (
@@ -29842,7 +29852,11 @@
 /area/station/hallway/secondary/entry)
 "iEJ" = (
 /obj/effect/turf_decal/weather/snow,
-/obj/machinery/camera/autoname/directional/south,
+/obj/machinery/camera/directional/west{
+	c_tag = "Service - Kitchen Coldroom";
+	dir = 5;
+	name = "service camera"
+	},
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
 "iEL" = (
@@ -32925,6 +32939,7 @@
 "jvB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
+/obj/machinery/light/small/directional/west,
 /obj/item/stack/cable_coil{
 	pixel_y = 8
 	},
@@ -35524,7 +35539,9 @@
 /obj/structure/cable,
 /obj/effect/turf_decal/trimline/yellow/filled/line,
 /obj/machinery/firealarm/directional/south,
-/obj/machinery/camera/autoname/engineering/directional/south,
+/obj/machinery/camera/directional/south{
+	dir = 5
+	},
 /turf/open/floor/iron/smooth_edge{
 	dir = 1
 	},
@@ -38431,6 +38448,7 @@
 	},
 /obj/item/stack/cable_coil,
 /obj/item/stock_parts/power_store/battery/high,
+/obj/machinery/light/small/directional/east,
 /turf/open/floor/pod/dark,
 /area/station/engineering/storage/tech)
 "kUb" = (
@@ -39788,6 +39806,10 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/simple/yellow/visible,
 /obj/machinery/light/warm/directional/north,
+/obj/machinery/camera/directional/north{
+	c_tag = "Atmospherics - Oxygen Supply";
+	name = "atmospherics camera"
+	},
 /obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/iron/smooth,
 /area/station/engineering/atmos)
@@ -46499,6 +46521,11 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/camera/directional/south{
+	c_tag = "Atmospherics - Project Room Fore";
+	dir = 5;
+	name = "atmospherics camera"
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/engineering/atmos)
 "naG" = (
@@ -75968,7 +75995,11 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/sign/barber{
+	pixel_x = -13
+	},
 /obj/structure/sign/poster/official/random/directional/south,
+/obj/item/kirbyplants/random,
 /turf/open/floor/iron/white,
 /area/station/hallway/primary/fore)
 "vdi" = (
@@ -78697,7 +78728,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/camera/directional/west,
 /turf/open/floor/iron/freezer,
 /area/station/medical/pharmacy)
 "vRB" = (
@@ -79005,6 +79035,11 @@
 "vVO" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 1
+	},
+/obj/machinery/camera/directional/north{
+	c_tag = "Medbay - Pharmacy";
+	name = "medbay camera";
+	network = list("ss13","medbay")
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -85826,9 +85861,13 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/science/auxlab/firing_range)
 "xSp" = (
+/obj/structure/sign/barber{
+	pixel_x = -13
+	},
 /obj/effect/turf_decal/trimline/green/filled/warning{
 	dir = 9
 	},
+/obj/item/kirbyplants/random,
 /turf/open/floor/iron/white,
 /area/station/hallway/primary/fore)
 "xSq" = (
@@ -112829,7 +112868,7 @@ dYh
 nyT
 cjC
 fIQ
-cMm
+bBn
 nEW
 dYh
 vxF
@@ -113763,7 +113802,7 @@ vew
 clk
 gAG
 bnJ
-dVh
+lQf
 lQf
 vWf
 nGH

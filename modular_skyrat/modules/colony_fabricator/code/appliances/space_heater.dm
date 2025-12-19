@@ -8,6 +8,7 @@
 	circuit = null
 	heating_energy = STANDARD_CELL_RATE * 0.2
 	efficiency = 30
+	display_panel = TRUE
 	cell = null
 	/// What this repacks into when its wrenched off a wall
 	var/repacked_type = /obj/item/wallframe/wall_heater
@@ -16,8 +17,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/space_heater/wall_mounted, 29)
 
 /obj/machinery/space_heater/wall_mounted/Initialize(mapload)
 	. = ..()
-	if(mapload)
-		find_and_mount_on_atom()
+	find_and_hang_on_wall()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)
 	RemoveElement(/datum/element/elevation, pixel_shift = 8)
 	RemoveElement(/datum/element/climbable)

@@ -207,7 +207,7 @@
 		else if(!HAS_TRAIT(src, TRAIT_INCAPACITATED))
 			playsound(loc, 'sound/items/weapons/pierce.ogg', 25, TRUE, -1)
 			var/shovetarget = get_edge_target_turf(user, get_dir(user, get_step_away(src, user)))
-			adjust_stamina_loss(35)
+			adjustStaminaLoss(35)
 			throw_at(shovetarget, 4, 2, user, force = MOVE_FORCE_OVERPOWERING)
 			log_combat(user, src, "shoved")
 			visible_message(span_danger("[user] tackles [src] down!"), \
@@ -580,7 +580,7 @@
 	for(var/t in missing)
 		combined_msg += span_boldannounce("&rdsh; Your [parse_zone(t)] is missing!")
 
-	var/tox = get_tox_loss() + (disgust / 5) + (HAS_TRAIT(src, TRAIT_SELF_AWARE) ? 0 : (rand(-3, 0) * 5))
+	var/tox = getToxLoss() + (disgust / 5) + (HAS_TRAIT(src, TRAIT_SELF_AWARE) ? 0 : (rand(-3, 0) * 5))
 	switch(tox)
 		if(10 to 20)
 			combined_msg += span_danger("You feel sick.")
@@ -589,8 +589,7 @@
 		if(40 to INFINITY)
 			combined_msg += span_danger("You feel very unwell!")
 
-	var/cached_blood_volume = get_blood_volume(apply_modifiers = TRUE)
-	var/oxy = get_oxy_loss() + (losebreath * 4) + (cached_blood_volume < BLOOD_VOLUME_NORMAL ? ((BLOOD_VOLUME_NORMAL - cached_blood_volume) * 0.1) : 0) + (HAS_TRAIT(src, TRAIT_SELF_AWARE) ? 0 : (rand(-3, 0) * 5))
+	var/oxy = getOxyLoss() + (losebreath * 4) + (blood_volume < BLOOD_VOLUME_NORMAL ? ((BLOOD_VOLUME_NORMAL - blood_volume) * 0.1) : 0) + (HAS_TRAIT(src, TRAIT_SELF_AWARE) ? 0 : (rand(-3, 0) * 5))
 	switch(oxy)
 		if(10 to 20)
 			combined_msg += span_danger("You feel lightheaded.")
@@ -599,8 +598,8 @@
 		if(40 to INFINITY)
 			combined_msg += span_danger("You feel like you're about to pass out!")
 
-	if(get_stamina_loss())
-		if(get_stamina_loss() > 30)
+	if(getStaminaLoss())
+		if(getStaminaLoss() > 30)
 			combined_msg += span_info("You're completely exhausted.")
 		else
 			combined_msg += span_info("You feel fatigued.")

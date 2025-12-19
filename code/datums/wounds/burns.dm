@@ -17,6 +17,8 @@
 
 	default_scar_file = FLESH_SCAR_FILE
 
+	treatable_by = list(/obj/item/stack/medical/ointment, /obj/item/stack/medical/mesh) // sterilizer and alcohol will require reagent treatments, coming soon
+
 	// Flesh damage vars
 	/// How much damage to our flesh we currently have. Once both this and infection reach 0, the wound is considered healed
 	var/flesh_damage = 5
@@ -41,7 +43,7 @@
 
 	. = ..()
 	if(strikes_to_lose_limb <= 0) // we've already hit sepsis, nothing more to do
-		victim.adjust_tox_loss(0.25 * seconds_per_tick)
+		victim.adjustToxLoss(0.25 * seconds_per_tick)
 		if(SPT_PROB(0.5, seconds_per_tick))
 			victim.visible_message(span_danger("The infection on the remnants of [victim]'s [limb.plaintext_zone] shift and bubble nauseatingly!"), span_warning("You can feel the infection on the remnants of your [limb.plaintext_zone] coursing through your veins!"), vision_distance = COMBAT_MESSAGE_RANGE)
 		return
@@ -89,7 +91,7 @@
 
 		if(WOUND_INFECTION_MODERATE to WOUND_INFECTION_SEVERE)
 			if(SPT_PROB(15, seconds_per_tick))
-				victim.adjust_tox_loss(0.2)
+				victim.adjustToxLoss(0.2)
 				if(prob(6))
 					to_chat(victim, span_warning("The blisters on your [limb.plaintext_zone] ooze a strange pus..."))
 		if(WOUND_INFECTION_SEVERE to WOUND_INFECTION_CRITICAL)
@@ -104,7 +106,7 @@
 				return
 
 			if(SPT_PROB(10, seconds_per_tick))
-				victim.adjust_tox_loss(0.5)
+				victim.adjustToxLoss(0.5)
 
 		if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
 			if(!disabling)
@@ -120,9 +122,9 @@
 			if(SPT_PROB(2.48, seconds_per_tick))
 				if(prob(20))
 					to_chat(victim, span_warning("You contemplate life without your [limb.plaintext_zone]..."))
-					victim.adjust_tox_loss(0.75)
+					victim.adjustToxLoss(0.75)
 				else
-					victim.adjust_tox_loss(1)
+					victim.adjustToxLoss(1)
 
 		if(WOUND_INFECTION_SEPTIC to INFINITY)
 			if(SPT_PROB(0.5 * infection, seconds_per_tick))
@@ -237,18 +239,19 @@
 /datum/wound/burn/flesh/proc/uv(obj/item/flashlight/pen/paramedic/I, mob/user)
 	if(!COOLDOWN_FINISHED(I, uv_cooldown))
 		to_chat(user, span_notice("[I] is still recharging!"))
-		return
+		return TRUE
 	if(infection <= 0 || infection < sanitization)
 		to_chat(user, span_notice("There's no infection to treat on [victim]'s [limb.plaintext_zone]!"))
-		return
+		return TRUE
 
 	user.visible_message(span_notice("[user] flashes the burns on [victim]'s [limb] with [I]."), span_notice("You flash the burns on [user == victim ? "your" : "[victim]'s"] [limb.plaintext_zone] with [I]."), vision_distance=COMBAT_MESSAGE_RANGE)
 	sanitization += I.uv_power
 	COOLDOWN_START(I, uv_cooldown, I.uv_cooldown_length)
+	return TRUE
 
-/datum/wound/burn/flesh/treat(obj/item/tool, mob/user)
-	if(istype(tool, /obj/item/flashlight/pen/paramedic))
-		uv(tool, user)
+/datum/wound/burn/flesh/treat(obj/item/I, mob/user)
+	if(istype(I, /obj/item/flashlight/pen/paramedic))
+		return uv(I, user)
 
 // people complained about burns not healing on stasis beds, so in addition to checking if it's cured, they also get the special ability to very slowly heal on stasis beds if they have the healing effects stored
 /datum/wound/burn/flesh/on_stasis(seconds_per_tick, times_fired)
@@ -320,7 +323,7 @@
 	damage_multiplier_penalty = 1.2
 	series_threshold_penalty = 40
 	status_effect_type = /datum/status_effect/wound/burn/flesh/severe
-	treatable_by = list(/obj/item/flashlight/pen/paramedic)
+	treatable_by = list(/obj/item/flashlight/pen/paramedic, /obj/item/stack/medical/ointment, /obj/item/stack/medical/mesh)
 	infection_rate = 0.07 // appx 9 minutes to reach sepsis without any treatment
 	flesh_damage = 12.5
 	scar_keyword = "burnsevere"
@@ -351,7 +354,7 @@
 	sound_effect = 'sound/effects/wounds/sizzle2.ogg'
 	threshold_penalty = 25
 	status_effect_type = /datum/status_effect/wound/burn/flesh/critical
-	treatable_by = list(/obj/item/flashlight/pen/paramedic)
+	treatable_by = list(/obj/item/flashlight/pen/paramedic, /obj/item/stack/medical/ointment, /obj/item/stack/medical/mesh)
 	infection_rate = 0.075 // appx 4.33 minutes to reach sepsis without any treatment
 	flesh_damage = 20
 	scar_keyword = "burncritical"

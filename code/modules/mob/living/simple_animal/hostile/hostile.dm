@@ -11,7 +11,7 @@
 	///How many shots per volley.
 	var/rapid = 0
 	///Time between rapid fire shots
-	var/rapid_fire_delay = 2 DECISECONDS
+	var/rapid_fire_delay = 2
 
 	///Are we dodging?
 	var/dodging = FALSE

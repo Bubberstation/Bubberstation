@@ -9,7 +9,6 @@ GLOBAL_LIST_INIT(command_strings, list(
 #define SENTIENT_BOT_RESET_TIMER 45 SECONDS
 
 /mob/living/basic/bot
-	abstract_type = /mob/living/basic/bot
 	icon = 'icons/mob/silicon/aibots.dmi'
 	layer = MOB_LAYER
 	gender = NEUTER
@@ -771,7 +770,7 @@ GLOBAL_LIST_INIT(command_strings, list(
 	update_appearance()
 
 /mob/living/basic/bot/rust_heretic_act()
-	adjust_brute_loss(400)
+	adjustBruteLoss(400)
 
 /mob/living/basic/bot/proc/attempt_access(mob/bot, obj/door_attempt)
 	SIGNAL_HANDLER

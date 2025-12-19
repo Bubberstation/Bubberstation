@@ -7,7 +7,7 @@
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
-	resistance_flags = FIRE_PROOF
+	resistance_flags = NONE
 	armor_type = /datum/armor/color_plasmaman
 	equip_sound = 'sound/items/equip/glove_equip.ogg'
 

@@ -24,10 +24,9 @@
 /datum/experiment/physical/meat_wall_explosion/proc/check_experiment(datum/source, obj/projectile/proj)
 	SIGNAL_HANDLER
 	if(istype(proj, /obj/projectile/beam/emitter))
-		UnregisterSignal(currently_scanned_atom, COMSIG_ATOM_BULLET_ACT)
 		finish_experiment(linked_experiment_handler)
 
-/datum/experiment/physical/meat_wall_explosion/finish_experiment(datum/component/experiment_handler/experiment_handler, datum/techweb/linked_web_override)
+/datum/experiment/physical/meat_wall_explosion/finish_experiment(datum/component/experiment_handler/experiment_handler)
 	. = ..()
 	new /obj/effect/gibspawner/generic(currently_scanned_atom)
 	var/turf/meat_wall = currently_scanned_atom
@@ -56,5 +55,4 @@
 
 /datum/experiment/physical/arcade_winner/proc/win_arcade(datum/source)
 	SIGNAL_HANDLER
-	UnregisterSignal(currently_scanned_atom, COMSIG_ARCADE_VICTORY)
 	finish_experiment(linked_experiment_handler)

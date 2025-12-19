@@ -23,9 +23,6 @@
 /obj/structure/sign/map/meta/right
 	icon_state = "map-right-MS"
 
-/obj/structure/sign/map/pubby
-	icon_state = "map-pubby"
-
 /obj/structure/sign/directions/science
 	name = "science department sign"
 	desc = "A direction sign, pointing out which way the Science department is."

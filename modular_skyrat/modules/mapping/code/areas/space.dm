@@ -277,7 +277,7 @@
 /area/ruin/space/has_grav/port_tarkon/vault
 	name = "P-T Vault"
 	icon_state = "vault"
-	area_flags = NOTELEPORT
+	area_flags = UNIQUE_AREA | NOTELEPORT
 
 // Cargodise Lost Freighter
 
@@ -325,6 +325,6 @@
 /area/ruin/solars/hotel/solars
 	name = "\improper Hotel Solar Array"
 	requires_power = FALSE
-	area_flags = NONE
+	area_flags = UNIQUE_AREA
 	sound_environment = SOUND_AREA_SPACE
 	base_lighting_alpha = 255

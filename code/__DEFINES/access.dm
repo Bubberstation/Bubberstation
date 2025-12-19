@@ -184,7 +184,6 @@
 #define ACCESS_CENT_TELEPORTER "cent_teleporter"
 #define ACCESS_CENT_CAPTAIN "cent_captain"
 #define ACCESS_CENT_BAR "cent_bar"
-#define ACCESS_CENT_OFFICER "cent_officer"
 /// Special Ops. Captain's display case, Marauder and Seraph mechs.
 #define ACCESS_CENT_SPECOPS "cent_specops"
 
@@ -390,7 +389,6 @@
 	ACCESS_CENT_STORAGE, \
 	ACCESS_CENT_TELEPORTER, \
 	ACCESS_CENT_THUNDER, \
-	ACCESS_CENT_OFFICER, \
 )
 
 /// Syndicate areas off station. Do not use direct, access via SSid_access.get_flag_access_list(ACCESS_FLAG_SYNDICATE)

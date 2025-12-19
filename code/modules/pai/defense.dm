@@ -85,8 +85,8 @@
 	take_holo_damage(amount * ((forced) ? 1 : 0.25))
 	return COMPONENT_IGNORE_CHANGE
 
-/mob/living/silicon/pai/get_brute_loss()
+/mob/living/silicon/pai/getBruteLoss()
 	return HOLOCHASSIS_MAX_HEALTH - holochassis_health
 
-/mob/living/silicon/pai/get_fire_loss()
+/mob/living/silicon/pai/getFireLoss()
 	return HOLOCHASSIS_MAX_HEALTH - holochassis_health

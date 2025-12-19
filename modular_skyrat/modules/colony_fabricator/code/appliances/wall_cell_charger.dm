@@ -14,8 +14,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/cell_charger_multi/wall_mounted, 29)
 
 /obj/machinery/cell_charger_multi/wall_mounted/Initialize(mapload)
 	. = ..()
-	if(mapload)
-		find_and_mount_on_atom()
+	find_and_hang_on_wall()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)
 
 /obj/machinery/cell_charger_multi/wall_mounted/wrench_act(mob/living/user, obj/item/tool)

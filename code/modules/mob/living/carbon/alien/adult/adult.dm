@@ -1,5 +1,4 @@
 /mob/living/carbon/alien/adult
-	abstract_type = /mob/living/carbon/alien/adult
 	name = "alien"
 	icon_state = "alien"
 	pass_flags = PASSTABLE

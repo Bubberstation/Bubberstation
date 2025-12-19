@@ -24,10 +24,7 @@
 	/// This uses the same nested list format as turfs_by_zlevel
 	var/list/list/turf/turfs_to_uncontain_by_zlevel = list()
 
-	/// General flag for area properties
-	var/area_flags = VALID_TERRITORY | BLOBS_ALLOWED | CULT_PERMITTED
-	/// Flag for mapping related area properties (such as cavegen)
-	var/area_flags_mapping = UNIQUE_AREA
+	var/area_flags = VALID_TERRITORY | BLOBS_ALLOWED | UNIQUE_AREA | CULT_PERMITTED
 
 	///Do we have an active fire alarm?
 	var/fire = FALSE
@@ -168,7 +165,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /area/New()
 	// This interacts with the map loader, so it needs to be set immediately
 	// rather than waiting for atoms to initialize.
-	if (area_flags_mapping & UNIQUE_AREA)
+	if (area_flags & UNIQUE_AREA)
 		GLOB.areas_by_type[type] = src
 	GLOB.areas += src
 	energy_usage = new /list(AREA_USAGE_LEN) // Some atoms would like to use power in Initialize()

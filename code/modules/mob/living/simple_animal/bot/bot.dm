@@ -1,6 +1,5 @@
 // AI (i.e. game AI, not the AI player) controlled bots
 /mob/living/simple_animal/bot
-	abstract_type = /mob/living/simple_animal/bot
 	icon = 'icons/mob/silicon/aibots.dmi'
 	layer = MOB_LAYER
 	gender = NEUTER
@@ -1210,7 +1209,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 		addtimer(CALLBACK(src, PROC_REF(set_path), null), 0.6 SECONDS) // Enough time for the animate to finish
 
 /mob/living/simple_animal/bot/rust_heretic_act()
-	adjust_brute_loss(400)
+	adjustBruteLoss(400)
 
 /mob/living/simple_animal/bot/get_hit_area_message(input_area)
 	// we just get hit, there's no complexity for hitting an arm (if it exists) or anything.

@@ -115,13 +115,15 @@
 
 	mode = RCD_TURF
 	user.visible_message(span_suicide("[user] sets the RCD to 'Wall' and points it down [user.p_their()] throat! It looks like [user.p_theyre()] trying to commit suicide!"))
-	if(useResource(16, user)) // It takes 16 resources to construct a wall
+	if(checkResource(16, user)) // It takes 16 resources to construct a wall
 		var/success = T.rcd_act(user, src, list("[RCD_DESIGN_MODE]" = RCD_TURF, "[RCD_DESIGN_PATH]" = /turf/open/floor/plating/rcd))
 		T = get_turf(user)
 		// If the RCD placed a floor instead of a wall, having a wall without plating under it is cursed
 		// There isn't an easy programmatical way to check if rcd_act will place a floor or a wall, so just repeat using it for free
 		if(success && isopenturf(T))
 			T.rcd_act(user, src, list("[RCD_DESIGN_MODE]" = RCD_TURF, "[RCD_DESIGN_PATH]" = /turf/open/floor/plating/rcd))
+		useResource(16, user)
+		activate()
 		playsound(get_turf(user), SFX_TOOL_SWITCH, 20, TRUE)
 		user.gib(DROP_ALL_REMAINS)
 		return MANUAL_SUICIDE
@@ -171,18 +173,9 @@
 		 * if we are trying to create plating on turf which is not a proper floor then don't check for objects on top of the turf just allow that turf to be converted into plating. e.g. create plating beneath a player or underneath a machine frame/any dense object
 		 * if we are trying to finish a wall girder then let it finish then make sure no one/nothing is stuck in the girder
 		 */
-		else if(rcd_mode == RCD_TURF && rcd_structure == /turf/open/floor/plating/rcd)
+		else if(rcd_mode == RCD_TURF && rcd_structure == /turf/open/floor/plating/rcd  && (!istype(target_turf, /turf/open/floor) || istype(target, /obj/structure/girder)))
 			//if a player builds a wallgirder on top of himself manually with iron sheets he can't finish the wall if he is still on the girder. Exclude the girder itself when checking for other dense objects on the turf
-			var/list/ignore_types = list()
-			if(isturf(target))
-				if(isfloorturf(target))
-					ignore_types += /obj/structure/girder
-				else
-					ignore_types = null
-			else if(istype(target, /obj/structure/girder))
-				ignore_types += /obj/structure/girder
-
-			if(ignore_types && target_turf.is_blocked_turf(exclude_mobs = FALSE, source_atom = null, ignore_atoms = ignore_types, type_list = TRUE))
+			if(istype(target, /obj/structure/girder) && target_turf.is_blocked_turf(exclude_mobs = FALSE, source_atom = null, ignore_atoms = list(target)))
 				playsound(get_turf(user), SFX_TOOL_SWITCH, 20, TRUE)
 				balloon_alert(user, "something is on the girder!")
 				return FALSE
@@ -295,7 +288,7 @@
 	var/obj/effect/constructing_effect/rcd_effect = new(get_turf(target), delay, rcd_results["[RCD_DESIGN_MODE]"], construction_upgrades)
 
 	//resource & structure placement sanity checks before & after delay along with beam effects
-	if(!useResource(rcd_results["cost"], user, TRUE) || !can_place(target, rcd_results, user))
+	if(!checkResource(rcd_results["cost"], user) || !can_place(target, rcd_results, user))
 		qdel(rcd_effect)
 		return FALSE
 	var/beam
@@ -309,14 +302,17 @@
 		return FALSE
 	if (QDELETED(rcd_effect))
 		return FALSE
-	if(!useResource(rcd_results["cost"], user, TRUE) || !can_place(target, rcd_results, user))
+	if(!checkResource(rcd_results["cost"], user) || !can_place(target, rcd_results, user))
 		qdel(rcd_effect)
 		return FALSE
 
+	if(!useResource(rcd_results["cost"], user))
+		qdel(rcd_effect)
+		return FALSE
+	activate()
 	if(!target.rcd_act(user, src, rcd_results))
 		qdel(rcd_effect)
 		return FALSE
-	useResource(rcd_results["cost"], user)
 	playsound(loc, 'sound/machines/click.ogg', 50, TRUE)
 	rcd_effect.end_animation()
 	return TRUE
@@ -490,20 +486,31 @@
 	max_matter = borgy.cell.maxcharge
 	return borgy.cell.charge
 
-/obj/item/construction/rcd/borg/useResource(amount, mob/user, dry_run)
+/obj/item/construction/rcd/borg/useResource(amount, mob/user)
+	if(!iscyborg(user))
+		return 0
 	var/mob/living/silicon/robot/borgy = user
-	if(!iscyborg(borgy))
-		return FALSE
 	if(!borgy.cell)
-		balloon_alert(user, "no cell found!")
-		return FALSE
-	if(borgy.cell.charge < (amount * energyfactor))
+		if(user)
+			balloon_alert(user, "no cell found!")
+		return 0
+	. = borgy.cell.use(amount * energyfactor) //borgs get 1.3x the use of their RCDs
+	if(!. && user)
 		balloon_alert(user, "insufficient charge!")
-		return FALSE
-	if(!dry_run)
-		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
-		return borgy.cell.use(amount * energyfactor)
-	return TRUE
+	return .
+
+/obj/item/construction/rcd/borg/checkResource(amount, mob/user)
+	if(!iscyborg(user))
+		return 0
+	var/mob/living/silicon/robot/borgy = user
+	if(!borgy.cell)
+		if(user)
+			balloon_alert(user, "no cell found!")
+		return 0
+	. = borgy.cell.charge >= (amount * energyfactor)
+	if(!. && user)
+		balloon_alert(user, "insufficient charge!")
+	return .
 
 /obj/item/construction/rcd/borg/syndicate
 	name = "syndicate RCD"
@@ -596,18 +603,26 @@
 	var/obj/vehicle/sealed/mecha/gundam = owner
 	return round(gundam.get_charge() / MASS_TO_ENERGY)
 
-/obj/item/construction/rcd/exosuit/useResource(amount, mob/user, dry_run)
+/obj/item/construction/rcd/exosuit/useResource(amount, mob/user)
 	if(silo_link)
 		return ..()
 	if(!ismecha(owner))
+		return 0
+	var/obj/vehicle/sealed/mecha/gundam = owner
+	if(!gundam.use_energy(amount * MASS_TO_ENERGY))
+		gundam.balloon_alert(user, "insufficient charge!")
 		return FALSE
+	return TRUE
+
+/obj/item/construction/rcd/exosuit/checkResource(amount, mob/user)
+	if(silo_link)
+		return ..()
+	if(!ismecha(owner))
+		return 0
 	var/obj/vehicle/sealed/mecha/gundam = owner
 	if(!gundam.has_charge(amount * MASS_TO_ENERGY))
 		gundam.balloon_alert(user, "insufficient charge!")
 		return FALSE
-	if(!dry_run)
-		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
-		return gundam.use_energy(amount * MASS_TO_ENERGY)
 	return TRUE
 
 #undef MASS_TO_ENERGY

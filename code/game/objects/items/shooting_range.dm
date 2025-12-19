@@ -32,7 +32,7 @@
 	if(isnull(always_leave_marks))
 		always_leave_marks = typecacheof(list(
 			/obj/projectile/beam/practice,
-			/obj/projectile/beam/laser/rapid/practice,
+			/obj/projectile/beam/laser/carbine/practice,
 		))
 
 	var/is_invalid_damage = hitting_projectile.damage_type != BRUTE && hitting_projectile.damage_type != BURN

@@ -166,7 +166,7 @@
 /mob/living/basic/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(staminaloss > 0)
-		adjust_stamina_loss(-stamina_recovery * seconds_per_tick, forced = TRUE)
+		adjustStaminaLoss(-stamina_recovery * seconds_per_tick, forced = TRUE)
 
 /mob/living/basic/get_default_say_verb()
 	return length(speak_emote) ? pick(speak_emote) : ..()

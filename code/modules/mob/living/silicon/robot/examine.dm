@@ -10,13 +10,13 @@
 	if(act_module)
 		. += "[p_Theyre()] holding [icon2html(act_module, user)] \a [act_module]."
 	. += get_status_effect_examinations()
-	if (get_brute_loss())
-		if (get_brute_loss() < maxHealth*0.5)
+	if (getBruteLoss())
+		if (getBruteLoss() < maxHealth*0.5)
 			. += span_warning("[p_They()] look[p_s()] slightly dented.")
 		else
 			. += span_boldwarning("[p_They()] look[p_s()] severely dented!")
-	if (get_fire_loss() || get_tox_loss())
-		var/overall_fireloss = get_fire_loss() + get_tox_loss()
+	if (getFireLoss() || getToxLoss())
+		var/overall_fireloss = getFireLoss() + getToxLoss()
 		if (overall_fireloss < maxHealth * 0.5)
 			. += span_warning("[p_They()] look[p_s()] slightly charred.")
 		else

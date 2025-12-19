@@ -52,25 +52,20 @@
 				final_turf_candidates += floor
 		qdel(vine)
 
-	if(!length(final_turf_candidates))
-		return
+	if(length(final_turf_candidates)) //Pick a turf to spawn at if we can
+		var/turf/floor = pick(final_turf_candidates)
+		var/list/selected_mutations = list()
 
-	// Pick a turf to spawn at if we can
-	var/turf/floor = pick(final_turf_candidates)
-	var/list/selected_mutations = list()
+		if(mutations_overridden == FALSE)
+			selected_mutations = list(pick(subtypesof(/datum/spacevine_mutation)))
+		else
+			selected_mutations = override_mutations
+		if(isnull(potency))
+			potency = rand(50,100)
+		if(isnull(production))
+			production = rand(1, 4)
 
-	if(mutations_overridden)
-		selected_mutations = override_mutations
-	else
-		selected_mutations = list(pick(valid_subtypesof(/datum/spacevine_mutation)))
-
-	if(isnull(potency))
-		potency = rand(50, 100)
-
-	if(isnull(production))
-		production = rand(1, 4)
-
-	new /datum/spacevine_controller(floor, selected_mutations, potency, production, src) //spawn a controller at turf with randomized stats and a single random mutation
+		new /datum/spacevine_controller(floor, selected_mutations, potency, production, src) //spawn a controller at turf with randomized stats and a single random mutation
 
 /datum/event_admin_setup/set_location/spacevine
 	input_text = "Spawn vines at current location?"
@@ -88,17 +83,17 @@
 		if("Custom")
 			return ..()
 		if("Random")
-			choices = list("[pick(valid_subtypesof(/datum/spacevine_mutation))]")
+			choices = list("[pick(subtypesof(/datum/spacevine_mutation))]")
 		else
 			return ADMIN_CANCEL_EVENT
 
 /datum/event_admin_setup/multiple_choice/spacevine/get_options()
-	return valid_subtypesof(/datum/spacevine_mutation)
+	return subtypesof(/datum/spacevine_mutation/)
 
 /datum/event_admin_setup/multiple_choice/spacevine/apply_to_event(datum/round_event/spacevine/event)
 	var/list/type_choices = list()
-	for(var/list/choice in choices)
-		type_choices += text2path(choice[1])
+	for(var/choice in choices)
+		type_choices += text2path(choice)
 	event.mutations_overridden = TRUE
 	event.override_mutations = type_choices
 

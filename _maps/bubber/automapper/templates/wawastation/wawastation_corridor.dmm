@@ -119,13 +119,6 @@
 	},
 /turf/closed/wall,
 /area/station/hallway/secondary/entry)
-"la" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/station/maintenance/central/greater)
 "ma" = (
 /obj/structure/fluff/tram_rail/electric,
 /obj/structure/transport/linear/tram,
@@ -341,8 +334,13 @@
 /turf/open/floor/plating,
 /area/station/maintenance/central/greater)
 "CO" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
+/obj/machinery/light/blacklight/directional/south{
+	brightness = 9;
+	nightshift_brightness = 9;
+	bulb_power = 0.4;
+	light_angle = 180
+	},
+/turf/template_noop,
 /area/station/maintenance/central/greater)
 "Dy" = (
 /obj/structure/transport/linear/tram/corner/northeast,
@@ -452,10 +450,6 @@
 /area/station/maintenance/central/greater)
 "Np" = (
 /obj/effect/landmark/start/hangover,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/station/maintenance/central/greater)
 "Nq" = (
@@ -962,7 +956,7 @@ Pm
 VV
 Ol
 tK
-om
+RJ
 Ok
 "}
 (21,1,1) = {"
@@ -977,8 +971,8 @@ Pm
 VV
 Ol
 tK
-la
-Ok
+RJ
+CO
 "}
 (22,1,1) = {"
 Ok
@@ -992,7 +986,7 @@ Pm
 VV
 Ol
 tK
-la
+RJ
 Ok
 "}
 (23,1,1) = {"
@@ -1007,8 +1001,8 @@ Pm
 VV
 Ol
 tK
-la
-Ok
+RJ
+Cj
 "}
 (24,1,1) = {"
 Ok
@@ -1037,7 +1031,7 @@ Pm
 VV
 Ol
 tK
-la
+RJ
 Ok
 "}
 (26,1,1) = {"
@@ -1052,7 +1046,7 @@ Pm
 VV
 Ol
 tK
-la
+RJ
 Ok
 "}
 (27,1,1) = {"
@@ -1067,7 +1061,7 @@ Pm
 VV
 Ol
 tK
-la
+RJ
 Ok
 "}
 (28,1,1) = {"
@@ -1083,5 +1077,5 @@ VV
 Ol
 tK
 Hs
-CO
+Ok
 "}

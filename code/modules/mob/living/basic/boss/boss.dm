@@ -74,7 +74,7 @@
 		qdel(victim.get_organ_slot(ORGAN_SLOT_LUNGS))
 		qdel(victim.get_organ_slot(ORGAN_SLOT_HEART))
 		qdel(victim.get_organ_slot(ORGAN_SLOT_LIVER))
-	victim.adjust_brute_loss(500)
+	victim.adjustBruteLoss(500)
 	victim.death() //make sure they die
 	victim.apply_status_effect(/datum/status_effect/gutted)
 	return TRUE
@@ -87,12 +87,12 @@
 /mob/living/basic/boss/ex_act(severity, target)
 	switch (severity)
 		if (EXPLODE_DEVASTATE)
-			adjust_brute_loss(250)
+			adjustBruteLoss(250)
 
 		if (EXPLODE_HEAVY)
-			adjust_brute_loss(100)
+			adjustBruteLoss(100)
 
 		if (EXPLODE_LIGHT)
-			adjust_brute_loss(50)
+			adjustBruteLoss(50)
 
 	return TRUE

@@ -1176,6 +1176,9 @@
 /turf/open/floor/iron/white,
 /area/awaymission/moonoutpost19/research)
 "il" = (
+/obj/machinery/newscaster{
+	pixel_x = -30
+	},
 /obj/item/chair{
 	pixel_x = 5;
 	pixel_y = 5
@@ -1188,7 +1191,6 @@
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 8
 	},
-/obj/machinery/newscaster/directional/west,
 /turf/open/floor/iron,
 /area/awaymission/moonoutpost19/research)
 "io" = (
@@ -1438,8 +1440,12 @@
 /turf/open/floor/iron,
 /area/awaymission/moonoutpost19/research)
 "ki" = (
+/obj/structure/sign/warning/vacuum{
+	desc = "A warning sign which reads 'HOSTILE ATMOSPHERE AHEAD'";
+	name = "\improper HOSTILE ATMOSPHERE AHEAD";
+	pixel_x = -32
+	},
 /obj/effect/turf_decal/lunar_sand/plating,
-/obj/structure/sign/warning/vacuum/directional/west,
 /turf/open/floor/plating,
 /area/awaymission/moonoutpost19/arrivals)
 "kj" = (
@@ -1937,9 +1943,14 @@
 /turf/open/floor/mineral/titanium/yellow,
 /area/awaymission/moonoutpost19/arrivals)
 "mJ" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/sign/warning/vacuum/directional/north,
-/turf/open/floor/plating,
+/obj/structure/sign/warning/vacuum{
+	desc = "A beacon used by a teleporter.";
+	icon = 'icons/obj/devices/tracker.dmi';
+	icon_state = "beacon";
+	name = "tracking beacon"
+	},
+/obj/effect/landmark/awaystart/moonoutpost,
+/turf/open/floor/mineral/titanium/yellow,
 /area/awaymission/moonoutpost19/arrivals)
 "mK" = (
 /obj/machinery/door/airlock/titanium{
@@ -2874,10 +2885,12 @@
 	},
 /area/awaymission/moonoutpost19/mines)
 "si" = (
+/obj/structure/sign/warning/biohazard{
+	pixel_x = 32
+	},
 /obj/structure/alien/weeds,
 /obj/effect/turf_decal/tile/purple,
 /obj/structure/cable,
-/obj/structure/sign/warning/biohazard/directional/east,
 /turf/open/floor/iron/white,
 /area/awaymission/moonoutpost19/research)
 "sn" = (
@@ -3847,6 +3860,14 @@
 	},
 /turf/open/floor/carpet/red,
 /area/awaymission/moonoutpost19/arrivals)
+"yT" = (
+/obj/structure/sign/warning/vacuum{
+	desc = "A warning sign which reads 'HOSTILE ATMOSPHERE AHEAD'";
+	name = "\improper HOSTILE ATMOSPHERE AHEAD"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/awaymission/moonoutpost19/arrivals)
 "yV" = (
 /turf/open/misc/asteroid/moon,
 /area/awaymission/moonoutpost19/main)
@@ -3962,8 +3983,12 @@
 	},
 /area/awaymission/moonoutpost19/research)
 "zK" = (
+/obj/structure/sign/warning/vacuum{
+	desc = "A warning sign which reads 'HOSTILE ATMOSPHERE AHEAD'";
+	name = "\improper HOSTILE ATMOSPHERE AHEAD";
+	pixel_y = 32
+	},
 /obj/effect/turf_decal/lunar_sand/plating,
-/obj/structure/sign/warning/vacuum/directional/north,
 /turf/open/floor/plating,
 /area/awaymission/moonoutpost19/arrivals)
 "zN" = (
@@ -5137,11 +5162,13 @@
 /turf/open/floor/iron,
 /area/awaymission/moonoutpost19/research)
 "HY" = (
+/obj/structure/sign/departments/science{
+	pixel_y = 32
+	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/purple/anticorner{
 	dir = 1
 	},
-/obj/structure/sign/departments/science/directional/north,
 /turf/open/floor/iron,
 /area/awaymission/moonoutpost19/arrivals)
 "Ia" = (
@@ -33647,7 +33674,7 @@ My
 ld
 mc
 mt
-mI
+mJ
 mt
 mc
 ld
@@ -35445,8 +35472,8 @@ hI
 My
 My
 My
-iM
-mJ
+yT
+Ue
 iM
 My
 My
@@ -36433,7 +36460,7 @@ LG
 dA
 My
 My
-dA
+DS
 My
 My
 My

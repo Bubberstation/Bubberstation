@@ -13,7 +13,7 @@
 
 /mob/living/silicon/ai/blob_act(obj/structure/blob/B)
 	if (stat != DEAD)
-		adjust_brute_loss(60)
+		adjustBruteLoss(60)
 		return TRUE
 	return FALSE
 
@@ -36,11 +36,11 @@
 			gib(DROP_ALL_REMAINS)
 		if(EXPLODE_HEAVY)
 			if (stat != DEAD)
-				adjust_brute_loss(60)
-				adjust_fire_loss(60)
+				adjustBruteLoss(60)
+				adjustFireLoss(60)
 		if(EXPLODE_LIGHT)
 			if (stat != DEAD)
-				adjust_brute_loss(30)
+				adjustBruteLoss(30)
 
 	return TRUE
 

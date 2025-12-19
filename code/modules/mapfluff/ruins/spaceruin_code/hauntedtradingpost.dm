@@ -170,9 +170,6 @@
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
 
-/obj/machinery/button/door/invisible_tripwire/find_and_mount_on_atom(mark_for_late_init, late_init)
-	return //these exist independently on an turf
-
 /obj/machinery/button/door/invisible_tripwire/post_machine_initialize()
 	. = ..()
 	if(!suicide_pact || isnull(SSqueuelinks.queues[suicide_pact_id]))
@@ -328,7 +325,7 @@
 	desc = "A ballistic machine gun auto-turret with Donk Co. branding. It uses 9mm rounds."
 	armor_type = /datum/armor/donk_turret
 	scan_range = 6
-	shot_delay = 1 SECONDS
+	shot_delay = 10
 
 /datum/armor/donk_turret
 	melee = 20
@@ -355,7 +352,7 @@
 	desc = "An energy gun auto-turret with Cybersun branding. It fires high-energy plasma beams that do a lot of damage, but it can be fairly slow."
 	armor_type = /datum/armor/syndicate_shuttle
 	scan_range = 6
-	shot_delay = 5 SECONDS
+	shot_delay = 50
 	always_up = FALSE
 	has_cover = TRUE
 

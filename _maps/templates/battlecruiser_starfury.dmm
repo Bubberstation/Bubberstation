@@ -4271,6 +4271,17 @@
 /obj/machinery/portable_atmospherics/pump,
 /turf/open/floor/plating,
 /area/shuttle/sbc_starfury)
+"yG" = (
+/obj/machinery/light/directional/south,
+/obj/machinery/turretid{
+	ailock = 1;
+	desc = "A specially designed set of turret controls. Looks to be covered in protective casing to prevent AI interfacing.";
+	name = "Ship Turret Control";
+	pixel_y = -28;
+	req_access = list("syndicate")
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/sbc_starfury)
 "yM" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -4951,17 +4962,6 @@
 	},
 /obj/effect/turf_decal/tile/yellow/half/contrasted,
 /turf/open/floor/iron,
-/area/shuttle/sbc_starfury)
-"KP" = (
-/obj/machinery/light/directional/south,
-/obj/machinery/turretid{
-	ailock = 1;
-	desc = "A specially designed set of turret controls. Looks to be covered in protective casing to prevent AI interfacing.";
-	name = "Ship Turret Control";
-	pixel_y = -28;
-	req_access = list("syndicate")
-	},
-/turf/open/floor/mineral/plastitanium,
 /area/shuttle/sbc_starfury)
 "KR" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -7034,7 +7034,7 @@ aM
 bE
 uq
 cB
-KP
+yG
 ae
 as
 bp

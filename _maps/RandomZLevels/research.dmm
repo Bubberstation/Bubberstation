@@ -1604,11 +1604,18 @@
 /turf/open/floor/iron/white,
 /area/awaymission/research/interior)
 "hP" = (
-/obj/structure/sign/directions/evac{
-	pixel_y = 10
+/obj/structure/sign/directions/medical{
+	pixel_x = 32;
+	pixel_y = -32
 	},
-/obj/structure/sign/directions/medical,
-/turf/closed/wall/r_wall,
+/obj/structure/sign/directions/evac{
+	pixel_x = 32;
+	pixel_y = -24
+	},
+/obj/effect/turf_decal/tile/green/anticorner/contrasted{
+	dir = 1
+	},
+/turf/open/floor/iron/white,
 /area/awaymission/research/interior)
 "hQ" = (
 /turf/open/floor/iron/white/corner{
@@ -3133,18 +3140,24 @@
 /turf/open/floor/iron/white,
 /area/awaymission/research/interior/security)
 "yj" = (
-/obj/structure/sign/directions/science{
+/obj/structure/sign/directions/security{
 	dir = 1;
-	pixel_y = 10
+	pixel_x = 32;
+	pixel_y = 40
 	},
 /obj/structure/sign/directions/engineering{
 	dir = 1;
-	pixel_y = -10
+	pixel_x = 32;
+	pixel_y = 33
 	},
-/obj/structure/sign/directions/security{
-	dir = 1
+/obj/structure/sign/directions/science{
+	dir = 1;
+	pixel_x = 32;
+	pixel_y = 26
 	},
-/turf/closed/wall/r_wall,
+/mob/living/basic/trooper/syndicate/ranged/smg,
+/obj/effect/turf_decal/tile/green/fourcorners,
+/turf/open/floor/iron/white,
 /area/awaymission/research/interior)
 "yn" = (
 /obj/item/ammo_casing/c45,
@@ -42245,7 +42258,7 @@ Nf
 eJ
 eJ
 hB
-kv
+hP
 ia
 ia
 it
@@ -42256,7 +42269,7 @@ ia
 ia
 ia
 ia
-sn
+yj
 ut
 HS
 kv
@@ -42503,7 +42516,7 @@ eJ
 eJ
 hC
 hM
-hP
+cp
 cp
 eH
 cp
@@ -42512,7 +42525,7 @@ cp
 cp
 cp
 cp
-yj
+cp
 js
 ry
 ke

@@ -1,5 +1,4 @@
 /mob/living/basic/pet/penguin
-	abstract_type = /mob/living/basic/pet/penguin
 
 	icon = 'icons/mob/simple/penguins.dmi'
 	gender = FEMALE

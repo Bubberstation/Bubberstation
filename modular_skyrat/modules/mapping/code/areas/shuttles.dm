@@ -38,7 +38,7 @@
 	name = "Trader Ship Cargo Bay"
 
 /area/shuttle/escape/no_light
-	static_lighting = FALSE
+	area_flags = UNIQUE_AREA
 
 /area/shuttle/arrival/no_light
 	static_lighting = FALSE

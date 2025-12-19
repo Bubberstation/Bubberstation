@@ -36,7 +36,7 @@
 		return ..()
 
 	if(damage_type & SHAME)
-		adjust_stamina_loss(200)
+		adjustStaminaLoss(200)
 		set_suicide(FALSE)
 		add_mood_event("shameful_suicide", /datum/mood_event/shameful_suicide)
 		return FALSE

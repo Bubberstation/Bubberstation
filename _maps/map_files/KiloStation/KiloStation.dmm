@@ -40130,6 +40130,11 @@
 "mPE" = (
 /obj/structure/sink/directional/west,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/camera/directional/east{
+	c_tag = "Xenobiology Computers";
+	name = "xenobiology camera";
+	network = list("ss13","rd","xeno")
+	},
 /obj/effect/turf_decal/tile/purple,
 /obj/effect/turf_decal/tile/purple/half/contrasted{
 	dir = 4
@@ -41037,11 +41042,6 @@
 /area/station/command/bridge)
 "ndz" = (
 /obj/machinery/smartfridge/extract/preloaded,
-/obj/machinery/camera/directional/east{
-	c_tag = "Xenobiology Computers";
-	name = "xenobiology camera";
-	network = list("ss13","rd","xeno")
-	},
 /turf/open/floor/iron/dark,
 /area/station/science/xenobiology)
 "ndP" = (
@@ -41507,10 +41507,6 @@
 	},
 /obj/machinery/airalarm/directional/west,
 /obj/effect/turf_decal/tile/neutral/anticorner/contrasted,
-/obj/machinery/camera/directional/west{
-	c_tag = "Hydroponcis Fore";
-	name = "hydroponics camera"
-	},
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics)
 "not" = (
@@ -45321,6 +45317,10 @@
 	pixel_y = 6
 	},
 /obj/item/hand_labeler,
+/obj/machinery/camera/directional/west{
+	c_tag = "Hydroponcis Fore";
+	name = "hydroponics camera"
+	},
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/tile/neutral/anticorner/contrasted{
 	dir = 4

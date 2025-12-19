@@ -50,7 +50,7 @@
 	visible_message(span_danger("[user] punches [src]!"), \
 					span_userdanger("You're punched by [user]!"), null, COMBAT_MESSAGE_RANGE, user)
 	to_chat(user, span_danger("You punch [src]!"))
-	adjust_brute_loss(15)
+	adjustBruteLoss(15)
 
 /mob/living/simple_animal/attack_paw(mob/living/carbon/human/user, list/modifiers)
 	if(..()) //successful monkey bite.
@@ -118,7 +118,7 @@
 /mob/living/simple_animal/proc/ex_act_devastate()
 	var/bomb_armor = getarmor(null, BOMB)
 	if(prob(bomb_armor))
-		adjust_brute_loss(500)
+		adjustBruteLoss(500)
 	else
 		investigate_log("has been gibbed by an explosion.", INVESTIGATE_DEATHS)
 		gib()
@@ -129,7 +129,7 @@
 	var/bloss = 60
 	if(prob(bomb_armor))
 		bloss = bloss / 1.5
-	adjust_brute_loss(bloss)
+	adjustBruteLoss(bloss)
 
 /// Called when a light explosive acts on this mob
 /mob/living/simple_animal/proc/ex_act_light()
@@ -137,10 +137,10 @@
 	var/bloss = 30
 	if(prob(bomb_armor))
 		bloss = bloss / 1.5
-	adjust_brute_loss(bloss)
+	adjustBruteLoss(bloss)
 
 /mob/living/simple_animal/blob_act(obj/structure/blob/B)
-	adjust_brute_loss(20)
+	adjustBruteLoss(20)
 	return
 
 /mob/living/simple_animal/do_attack_animation(atom/A, visual_effect_icon, used_item, no_effect)

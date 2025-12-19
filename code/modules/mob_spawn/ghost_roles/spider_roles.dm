@@ -139,9 +139,8 @@
 		if(!silent)
 			to_chat(user, span_warning("\The [src] is not ready to hatch yet!"))
 		return FALSE
-	return TRUE
 
-/obj/effect/mob_spawn/ghost_role/spider/special(mob/living/basic/spider/spawned_mob, mob/mob_possessor, apply_prefs)
+/obj/effect/mob_spawn/ghost_role/spider/special(mob/living/basic/spider/spawned_mob, mob/mob_possessor)
 	. = ..()
 	if (isspider(spawned_mob))
 		spawned_mob.directive = directive
@@ -198,12 +197,21 @@
 	)
 	flash_window = TRUE
 
-/obj/effect/mob_spawn/ghost_role/spider/pre_ghost_take(mob/dead/observer/user)
+/**
+ * Makes a ghost into a spider based on the type of egg cluster.
+ *
+ * Allows a ghost to get a prompt to use the egg cluster to become a spider.
+ *
+ * Arguments:
+ * * user - The ghost attempting to become a spider
+ * * newname - If set, renames the mob to this name
+ */
+/obj/effect/mob_spawn/ghost_role/spider/create(mob/user, newname)
 	var/chosen_spider = length(potentialspawns) > 1 ? get_radial_choice(user) : potentialspawns[1]
-	if(isnull(chosen_spider))
+	if(QDELETED(src) || QDELETED(user) || isnull(chosen_spider))
 		return FALSE
 	mob_type = chosen_spider
-	return TRUE
+	return ..()
 
 /// Pick a spider type from a radial menu
 /obj/effect/mob_spawn/ghost_role/spider/proc/get_radial_choice(mob/user)

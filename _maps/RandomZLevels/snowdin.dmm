@@ -1461,6 +1461,10 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/iron,
 /area/awaymission/snowdin/post/gateway)
+"fI" = (
+/obj/machinery/light/empty/directional/south,
+/turf/open/floor/plating/snowed,
+/area/awaymission/snowdin/cave)
 "fJ" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/bar/opposingcorners,
@@ -5428,8 +5432,7 @@
 /area/awaymission/snowdin/post/cavern1)
 "un" = (
 /obj/structure/sign/nanotrasen{
-	pixel_x = 32;
-	dir = 4
+	pixel_x = 32
 	},
 /obj/machinery/light/small/broken/directional/east,
 /turf/open/floor/plating/snowed/cavern,
@@ -5770,10 +5773,6 @@
 /obj/effect/baseturf_helper/asteroid/snow,
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/broken_shuttle)
-"vO" = (
-/obj/structure/sign/nanotrasen,
-/turf/closed/wall,
-/area/awaymission/snowdin/outside)
 "vP" = (
 /obj/structure/plasticflaps,
 /obj/machinery/conveyor{
@@ -7506,11 +7505,6 @@
 /obj/effect/turf_decal/weather/snow,
 /turf/open/floor/plating/snowed,
 /area/awaymission/snowdin/cave)
-"De" = (
-/obj/structure/table/reinforced,
-/obj/machinery/light/empty/directional/west,
-/turf/open/floor/iron/dark,
-/area/awaymission/snowdin/cave)
 "Df" = (
 /obj/item/stack/rods,
 /obj/item/reagent_containers/cup/glass/bottle/beer{
@@ -7592,10 +7586,6 @@
 "Dv" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating/snowed/smoothed,
-/area/awaymission/snowdin/cave)
-"Dx" = (
-/obj/machinery/light/empty/directional/south,
-/turf/open/floor/plating/snowed,
 /area/awaymission/snowdin/cave)
 "DA" = (
 /obj/item/stack/rods,
@@ -7884,11 +7874,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/awaymission/snowdin/cave)
-"ES" = (
-/obj/structure/table/reinforced,
-/obj/machinery/light/empty/directional/south,
-/turf/open/floor/iron/dark,
-/area/awaymission/snowdin/cave)
 "ET" = (
 /obj/machinery/porta_turret/syndicate{
 	dir = 10
@@ -7899,13 +7884,6 @@
 /obj/item/stack/ore/iron,
 /turf/closed/mineral/iron/ice,
 /area/awaymission/snowdin/cave/cavern)
-"EW" = (
-/obj/structure/sign/nanotrasen,
-/obj/structure/fence{
-	dir = 4
-	},
-/turf/open/misc/asteroid/snow,
-/area/awaymission/snowdin/outside)
 "EX" = (
 /obj/item/pickaxe/drill{
 	pixel_x = 3;
@@ -9253,6 +9231,11 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark/snowdin,
 /area/awaymission/snowdin/cave)
+"Mw" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light/empty/directional/west,
+/turf/open/floor/iron/dark,
+/area/awaymission/snowdin/cave)
 "Mz" = (
 /obj/structure/fence,
 /turf/open/misc/asteroid/snow,
@@ -9679,6 +9662,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/showroomfloor,
 /area/awaymission/snowdin/post/dorm)
+"OU" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light/empty/directional/south,
+/turf/open/floor/iron/dark,
+/area/awaymission/snowdin/cave)
 "OV" = (
 /obj/structure/table/wood,
 /turf/open/misc/asteroid/snow{
@@ -10899,8 +10887,7 @@
 "Vz" = (
 /obj/machinery/light/small/directional/east,
 /obj/structure/sign/nanotrasen{
-	pixel_x = 32;
-	dir = 4
+	pixel_x = 32
 	},
 /turf/open/floor/plating/snowed/cavern,
 /area/awaymission/snowdin/post/cavern2)
@@ -11324,14 +11311,6 @@
 	},
 /turf/open/misc/asteroid/snow,
 /area/awaymission/snowdin/outside)
-"Yg" = (
-/obj/machinery/light/small/directional/north,
-/obj/structure/sign/nanotrasen{
-	pixel_y = 32;
-	dir = 1
-	},
-/turf/open/floor/plating/snowed/cavern,
-/area/awaymission/snowdin/cave/cavern)
 "Yh" = (
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
@@ -20270,7 +20249,7 @@ eo
 Zy
 Zy
 YE
-vO
+Va
 TI
 Zy
 Zy
@@ -21812,7 +21791,7 @@ Qj
 Zy
 YE
 Zy
-vO
+Va
 Qj
 Zy
 Zy
@@ -21959,7 +21938,7 @@ dX
 dX
 Zy
 Zy
-EW
+Va
 Zy
 Zy
 Zy
@@ -23501,7 +23480,7 @@ Cu
 Zy
 Zy
 dX
-EW
+Va
 Zy
 Zy
 Zy
@@ -32120,7 +32099,7 @@ ae
 wS
 wS
 an
-Dx
+fI
 CC
 DH
 bC
@@ -33146,7 +33125,7 @@ AU
 CC
 CH
 CH
-De
+Mw
 CH
 CH
 DH
@@ -34700,7 +34679,7 @@ CC
 CC
 ED
 au
-ES
+OU
 CC
 Zy
 Zy
@@ -35557,7 +35536,7 @@ ai
 ai
 ai
 Zy
-EW
+Va
 Zy
 Zy
 Zy
@@ -35828,7 +35807,7 @@ Zy
 dX
 dX
 Zy
-EW
+Va
 Zy
 Zy
 Zy
@@ -37356,7 +37335,7 @@ ai
 ai
 ai
 Zy
-EW
+Va
 Zy
 Zy
 Zy
@@ -37370,7 +37349,7 @@ Zy
 ZK
 Zy
 Zy
-EW
+Va
 Zy
 Zy
 Zy
@@ -62913,7 +62892,7 @@ wD
 wE
 wD
 xW
-Yg
+VO
 qi
 qi
 At

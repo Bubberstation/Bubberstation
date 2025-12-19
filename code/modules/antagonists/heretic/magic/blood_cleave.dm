@@ -36,7 +36,7 @@
 			)
 			continue
 
-		if(!CAN_HAVE_BLOOD(victim))
+		if(!victim.blood_volume)
 			continue
 
 		victim.visible_message(

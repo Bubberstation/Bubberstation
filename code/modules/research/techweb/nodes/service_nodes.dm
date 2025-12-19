@@ -92,12 +92,6 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SERVICE)
 
-/datum/techweb_node/consoles/New()
-	var/has_monastery = CHECK_MAP_JOB_CHANGE(JOB_CHAPLAIN, "has_monastery")
-	if(has_monastery)
-		design_ids += "telescreen_monastery"
-	return ..()
-
 /datum/techweb_node/gaming
 	id = TECHWEB_NODE_GAMING
 	display_name = "Gaming"
@@ -152,6 +146,7 @@
 		"oven",
 		"stove",
 		"range",
+		"souppot",
 		"processor",
 		"gibber",
 		"monkey_recycler",

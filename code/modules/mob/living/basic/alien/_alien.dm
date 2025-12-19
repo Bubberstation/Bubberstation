@@ -47,7 +47,7 @@
 	unsuitable_heat_damage = 20
 
 	ai_controller = /datum/ai_controller/basic_controller/alien
-	default_blood_volume = BLOOD_VOLUME_NORMAL
+	blood_volume = BLOOD_VOLUME_NORMAL
 
 	///List of loot items to drop when deleted, if this is set then we apply DEL_ON_DEATH
 	var/list/loot

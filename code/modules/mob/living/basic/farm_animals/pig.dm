@@ -25,7 +25,7 @@
 	health = 50
 	maxHealth = 50
 	gold_core_spawnable = FRIENDLY_SPAWN
-	default_blood_volume = BLOOD_VOLUME_NORMAL
+	blood_volume = BLOOD_VOLUME_NORMAL
 	ai_controller = /datum/ai_controller/basic_controller/pig
 
 /datum/emote/pig

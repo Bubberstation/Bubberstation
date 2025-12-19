@@ -260,7 +260,7 @@ SUBSYSTEM_DEF(ticker)
 	can_continue = can_continue && SSjob.divide_occupations() //Distribute jobs
 	CHECK_TICK
 
-	if(!GLOB.debugging_enabled)
+	if(!GLOB.Debug2)
 		if(!can_continue)
 			log_game("Game failed pre_setup")
 			to_chat(world, "<B>Error setting up game.</B> Reverting to pre-game lobby.")

@@ -43,7 +43,6 @@
 /area/ruin/unpowered/cultaltar
 	name = "\improper Cult Altar"
 	area_flags = CULT_PERMITTED
-	area_flags_mapping = NONE
 	ambience_index = AMBIENCE_SPOOKY
 
 /area/ruin/thelizardsgas_lavaland

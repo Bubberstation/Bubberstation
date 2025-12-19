@@ -525,7 +525,6 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	requires_power = FALSE
 	default_gravity = STANDARD_GRAVITY
 	area_flags = NOTELEPORT | HIDDEN_AREA
-	area_flags_mapping = NONE
 	static_lighting = TRUE
 	/* 	SKYRAT EDIT REMOVAL - GHOST HOTEL UPDATE
 	ambientsounds = list('sound/ambience/servicebell.ogg')
@@ -616,8 +615,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	icon = 'icons/area/areas_ruins.dmi'
 	icon_state = "hilbertshotel"
 	requires_power = FALSE
-	area_flags = HIDDEN_AREA | NOTELEPORT
-	area_flags_mapping = UNIQUE_AREA
+	area_flags = HIDDEN_AREA | NOTELEPORT | UNIQUE_AREA
 	default_gravity = STANDARD_GRAVITY
 
 
@@ -652,7 +650,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	name = "Hilbert Research Facility"
 
 /area/ruin/space/has_grav/powered/hilbertresearchfacility/secretroom
-	area_flags = NOTELEPORT | HIDDEN_AREA
+	area_flags = UNIQUE_AREA | NOTELEPORT | HIDDEN_AREA
 
 /obj/item/analyzer/hilbertsanalyzer
 	name = "custom rigged analyzer"

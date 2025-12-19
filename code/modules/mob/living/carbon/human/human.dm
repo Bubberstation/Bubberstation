@@ -192,12 +192,12 @@
 			if(!HAS_TRAIT(human_user, TRAIT_MEDICAL_HUD))
 				return
 			if(href_list["evaluation"])
-				if(!get_brute_loss() && !get_fire_loss() && !get_oxy_loss() && get_tox_loss() < 20)
+				if(!getBruteLoss() && !getFireLoss() && !getOxyLoss() && getToxLoss() < 20)
 					to_chat(human_user, "[span_notice("No external injuries detected.")]<br>")
 					return
 				var/span = "notice"
 				var/status = ""
-				if(get_brute_loss())
+				if(getBruteLoss())
 					to_chat(human_user, "<b>Physical trauma analysis:</b>")
 					for(var/X in bodyparts)
 						var/obj/item/bodypart/BP = X
@@ -213,7 +213,7 @@
 							span = "userdanger"
 						if(brutedamage)
 							to_chat(human_user, "<span class='[span]'>[BP] appears to have [status]</span>")
-				if(get_fire_loss())
+				if(getFireLoss())
 					to_chat(human_user, "<b>Analysis of skin burns:</b>")
 					for(var/X in bodyparts)
 						var/obj/item/bodypart/BP = X
@@ -229,9 +229,9 @@
 							span = "userdanger"
 						if(burndamage)
 							to_chat(human_user, "<span class='[span]'>[BP] appears to have [status]</span>")
-				if(get_oxy_loss())
+				if(getOxyLoss())
 					to_chat(human_user, span_danger("Patient has signs of suffocation, emergency treatment may be required!"))
-				if(get_tox_loss() > 20)
+				if(getToxLoss() > 20)
 					to_chat(human_user, span_danger("Gathered data is inconsistent with the analysis, possible cause: poisoning."))
 			if(!human_user.wear_id) //You require access from here on out.
 				to_chat(human_user, span_warning("ERROR: Invalid access"))
@@ -607,7 +607,7 @@
 		else if (!target.get_organ_slot(ORGAN_SLOT_LUNGS))
 			to_chat(target, span_unconscious("You feel a breath of fresh air... but you don't feel any better..."))
 		else
-			target.adjust_oxy_loss(-min(target.get_oxy_loss(), 7))
+			target.adjustOxyLoss(-min(target.getOxyLoss(), 7))
 			to_chat(target, span_unconscious("You feel a breath of fresh air enter your lungs... It feels good..."))
 
 		if (target.health <= target.crit_threshold)
@@ -760,7 +760,7 @@
 	return ..()
 
 /mob/living/carbon/human/vomit(vomit_flags = VOMIT_CATEGORY_DEFAULT, vomit_type = /obj/effect/decal/cleanable/vomit/toxic, lost_nutrition = 10, distance = 1, purge_ratio = 0.1)
-	if(!((vomit_flags & MOB_VOMIT_BLOOD) && !CAN_HAVE_BLOOD(src) && !HAS_TRAIT(src, TRAIT_TOXINLOVER)))
+	if(!((vomit_flags & MOB_VOMIT_BLOOD) && HAS_TRAIT(src, TRAIT_NOBLOOD) && !HAS_TRAIT(src, TRAIT_TOXINLOVER)))
 		return ..()
 
 	if(vomit_flags & MOB_VOMIT_MESSAGE)
@@ -1055,6 +1055,16 @@
 	else
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown)
 
+/mob/living/carbon/human/is_bleeding()
+	if(HAS_TRAIT(src, TRAIT_NOBLOOD))
+		return FALSE
+	return ..()
+
+/mob/living/carbon/human/get_total_bleed_rate()
+	if(HAS_TRAIT(src, TRAIT_NOBLOOD))
+		return FALSE
+	return ..()
+
 /mob/living/carbon/human/get_exp_list(minutes)
 	. = ..()
 	if(mind.assigned_role.title in SSjob.name_occupations)
@@ -1110,7 +1120,6 @@
 	ai_controller = /datum/ai_controller/monkey
 
 /mob/living/carbon/human/species
-	abstract_type = /mob/living/carbon/human/species
 	var/race = null
 	var/use_random_name = TRUE
 

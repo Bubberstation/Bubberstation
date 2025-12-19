@@ -158,9 +158,9 @@
 			investigate_log("has died from a devastating explosion.", INVESTIGATE_DEATHS)
 			death()
 		if(EXPLODE_HEAVY)
-			adjust_brute_loss(60)
+			adjustBruteLoss(60)
 		if(EXPLODE_LIGHT)
-			adjust_brute_loss(30)
+			adjustBruteLoss(30)
 
 	return TRUE
 
