@@ -93,6 +93,7 @@
 	/// The default list of reagents upgrade_reagents
 	var/static/list/default_upgrade_reagents = list(
 		/datum/reagent/acetone,
+		/datum/reagent/phenol,
 		/datum/reagent/ammonia,
 		/datum/reagent/ash,
 		/datum/reagent/diethylamine,
