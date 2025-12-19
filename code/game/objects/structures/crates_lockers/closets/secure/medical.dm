@@ -84,7 +84,6 @@
 	new /obj/item/radio/headset/heads/cmo(src)
 	new /obj/item/megaphone/command(src)
 	new /obj/item/defibrillator/compact/loaded(src)
-	new /obj/item/healthanalyzer/advanced(src)
 	new /obj/item/assembly/flash/handheld(src)
 	new /obj/item/storage/briefcase/medicalgunset/cmo(src) //SKYRAT EDIT ADDITION MEDIGUNS
 	new /obj/item/autosurgeon/medical_hud(src)

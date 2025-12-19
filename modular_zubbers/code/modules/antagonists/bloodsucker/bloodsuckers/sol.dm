@@ -52,7 +52,7 @@
 		if(bloodsucker_level > 0)
 			owner.current.adjust_fire_stacks(0.2 + bloodsucker_level / 10)
 			owner.current.ignite_mob()
-		owner.current.adjustFireLoss(2 + (bloodsucker_level / 2))
+		owner.current.adjust_fire_loss(2 + (bloodsucker_level / 2))
 		owner.current.updatehealth()
 		owner.current.add_mood_event("vampsleep", /datum/mood_event/daylight_sun_scorched)
 		return
@@ -69,7 +69,7 @@
 	if(COOLDOWN_FINISHED(src, bloodsucker_spam_sol_burn)) // Closets offer SOME protection
 		to_chat(owner, span_warning("Your skin sizzles. [owner.current.loc] doesn't protect well against UV bombardment."))
 		COOLDOWN_START(src, bloodsucker_spam_sol_burn, BLOODSUCKER_SPAM_SOL) //This should happen twice per Sol
-	owner.current.adjustFireLoss(0.5 + (bloodsucker_level / 4))
+	owner.current.adjust_fire_loss(0.5 + (bloodsucker_level / 4))
 	owner.current.updatehealth()
 	owner.current.add_mood_event("vampsleep", /datum/mood_event/daylight_bad_sleep)
 
@@ -111,7 +111,7 @@
 		to_chat(user, span_userdanger("Your frenzy prevents you from entering torpor!"))
 		return FALSE
 	// sometimes you might incur these damage types when you really, should not, important to check for it here so we can heal it later
-	var/total_damage = getBruteLoss() + getFireLoss() + user.getToxLoss() + user.getOxyLoss()
+	var/total_damage = get_brute_loss() + get_fire_loss() + user.get_tox_loss() + user.get_oxy_loss()
 	/// Checks - Not daylight & Has more than 10 Brute/Burn & not already in Torpor
 	if(SkipChecks & TORPOR_SKIP_CHECK_DAMAGE || !SSsunlight.sunlight_active && total_damage >= 10 && !is_in_torpor())
 		torpor_begin()
@@ -123,8 +123,8 @@
 
 /datum/antagonist/bloodsucker/proc/check_end_torpor(early_end = FALSE)
 	var/mob/living/carbon/user = owner.current
-	var/total_brute = getBruteLoss()
-	var/total_burn = getFireLoss()
+	var/total_brute = get_brute_loss()
+	var/total_burn = get_fire_loss()
 	// for waking up we ignore all other damage types so we don't get stuck
 	var/total_damage = total_brute + total_burn
 	var/is_in_coffin = is_valid_coffin()
