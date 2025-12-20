@@ -131,7 +131,7 @@
 		limb.receive_damage(brute = WOUND_SEVERITY_CRITICAL, wound_bonus = 100)
 		parent_human.update_damage_overlays()
 
-	parent_human.adjustBruteLoss(pick(rand(50,75)))
+	parent_human.adjust_brute_loss(pick(rand(50,75)))
 	qdel(src)
 
 /datum/component/human_corruption/proc/emp_act(datum/source, severity)
