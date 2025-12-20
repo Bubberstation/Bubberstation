@@ -118,6 +118,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		"mining",
 		"pirate",
 		"spider",
+		"syndicate",
 		"wizard",
 		"Custom"
 	)
@@ -652,7 +653,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 
 			var/new_faction = params["faction"]
 			if(new_faction == "Custom")
-				new_faction = input(admin_client, "Enter custom faction name:", "Custom Faction") as text
+				new_faction = tgui_input_text(admin_client, "Enter custom faction name:", "Custom Faction")
 				if(!new_faction)
 					return
 
@@ -676,10 +677,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 			if(!living_mob.faction || !islist(living_mob.faction))
 				return
 
-			living_mob.faction -= faction_to_remove
-
-			if(!length(living_mob.faction))
-				living_mob.faction = null
+			LAZYREMOVE(living_mob.faction, faction_to_remove)
 
 			log_admin("[key_name(admin_client)] removed faction [faction_to_remove] from [key_name(target_mob)].")
 			message_admins(span_adminnotice("[key_name_admin(admin_client)] removed faction [faction_to_remove] from [key_name_admin(target_mob)]."))
