@@ -283,7 +283,17 @@ export const ChemDispenser = (props) => {
                   </Box>
                 </Section>
               </Stack.Item>
-              <Stack.Item>
+              {/* BUBBER EDIT ADDITION START - CUSTOM AMOUNTS*/}
+              <Stack.Item textAlign="right" mb={-1} mr={1}>
+                <Button
+                  icon="pen"
+                  iconPosition = "right"
+                  content="Custom Amount"
+                  onClick={() => act('custom_amount')}
+                />
+                </Stack.Item>
+              {/* BUBBER EDIT ADDITION END - CUSTOM AMOUNTS*/}
+                <Stack.Item>
                 <Section
                   title="Dispense"
                   buttons={beakerTransferAmounts.map((amount) => (
@@ -324,12 +334,7 @@ export const ChemDispenser = (props) => {
                       icon="minus"
                       disabled={recording}
                       onClick={() => act('remove', { amount })}
-                    >        
-          <Button // SKYRAT EDIT ADDITION BEGIN - CHEMISTRY QOL
-          icon="pen"
-          content="Custom Amount"
-          onClick={() => act('custom_amount')}
-        />
+                    >
                       {amount}
                     </Button>
                   ))}
