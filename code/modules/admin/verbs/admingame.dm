@@ -129,7 +129,8 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mo
 	body += "<A href='byond://?_src_=holder;[HrefToken()];narrateto=[REF(player)]'>Narrate to</A> | "
 	body += "<A href='byond://?_src_=holder;[HrefToken()];subtlemessage=[REF(player)]'>Subtle message</A> | "
 	body += "<A href='byond://?_src_=holder;[HrefToken()];playsoundto=[REF(player)]'>Play sound to</A> | "
-	body += "<A href='byond://?_src_=holder;[HrefToken()];languagemenu=[REF(player)]'>Language Menu</A>"
+	body += "<A href='byond://?_src_=holder;[HrefToken()];languagemenu=[REF(player)]'>Language Menu</A> | "
+	body += "<A href='byond://?_src_=holder;[HrefToken()];rpreminder=[REF(player)]'>Roleplay Reminder</A>"
 
 	if(player.client)
 		if(!isnewplayer(player))
@@ -368,15 +369,17 @@ ADMIN_VERB(combo_hud, R_ADMIN, "Toggle Combo HUD", "Toggles the Admin Combo HUD.
 	log_admin("[key_name(user)] toggled their admin combo HUD [user.combo_hud_enabled ? "ON" : "OFF"].")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Combo HUD", "[user.combo_hud_enabled ? "Enabled" : "Disabled"]")) // If you are copy-pasting this, ensure the 4th parameter is unique to the new proc!
 
+/// List of hud traits in the admin combo hud
+#define ADMIN_HUDS list(TRAIT_SECURITY_HUD, TRAIT_MEDICAL_HUD, TRAIT_DIAGNOSTIC_HUD, TRAIT_BOT_PATH_HUD)
+
 /client/proc/enable_combo_hud()
 	if (combo_hud_enabled)
 		return
 
 	combo_hud_enabled = TRUE
 
-	for (var/hudtype in list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC, DATA_HUD_BOT_PATH))
-		var/datum/atom_hud/atom_hud = GLOB.huds[hudtype]
-		atom_hud.show_to(mob)
+	for (var/hudtrait in ADMIN_HUDS)
+		ADD_TRAIT(mob, hudtrait, ADMIN_TRAIT)
 
 	for (var/datum/atom_hud/alternate_appearance/basic/antagonist_hud/antag_hud in GLOB.active_alternate_appearances)
 		antag_hud.show_to(mob)
@@ -390,15 +393,16 @@ ADMIN_VERB(combo_hud, R_ADMIN, "Toggle Combo HUD", "Toggles the Admin Combo HUD.
 
 	combo_hud_enabled = FALSE
 
-	for (var/hudtype in list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC, DATA_HUD_BOT_PATH))
-		var/datum/atom_hud/atom_hud = GLOB.huds[hudtype]
-		atom_hud.hide_from(mob)
+	for (var/hudtrait in ADMIN_HUDS)
+		REMOVE_TRAIT(mob, hudtrait, ADMIN_TRAIT)
 
 	for (var/datum/atom_hud/alternate_appearance/basic/antagonist_hud/antag_hud in GLOB.active_alternate_appearances)
 		antag_hud.hide_from(mob)
 
 	mob.lighting_cutoff = mob.default_lighting_cutoff()
 	mob.update_sight()
+
+#undef ADMIN_HUDS
 
 ADMIN_VERB(show_traitor_panel, R_ADMIN, "Show Traitor Panel", "Edit mobs's memory and role", ADMIN_CATEGORY_GAME, mob/target_mob)
 	var/datum/mind/target_mind = target_mob.mind
@@ -446,8 +450,9 @@ ADMIN_VERB(lag_switch_panel, R_ADMIN, "Show Lag Switches", "Display the controls
 	user << browse(dat.Join(), "window=lag_switch_panel;size=420x480")
 
 ADMIN_VERB(spawn_panel, R_SPAWN, "Spawn Panel", "Spawn Panel (TGUI).", ADMIN_CATEGORY_GAME)
-	var/datum/spawnpanel/panel = get_spawnpanel_for_admin(user.mob)
-	if(panel)
-		panel.ui_interact(user.mob)
+	var/datum/spawnpanel/panel = user.holder.spawn_panel
+	if(!panel)
+		panel = new()
+		user.holder.spawn_panel = panel
+	panel.ui_interact(user.mob)
 	BLACKBOX_LOG_ADMIN_VERB("Spawn Panel")
-

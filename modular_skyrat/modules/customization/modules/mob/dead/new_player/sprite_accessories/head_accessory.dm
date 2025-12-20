@@ -11,7 +11,7 @@
 	factual = FALSE
 
 /datum/sprite_accessory/head_accessory/is_hidden(mob/living/carbon/human/H)
-	if(H.head && (H.head.flags_inv & HIDEHAIR) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)))
+	if(H.covered_slots & HIDEHAIR)
 		return TRUE
 	return FALSE
 

@@ -51,7 +51,7 @@
 
 /datum/holiday/halloween
 	name = HALLOWEEN
-	begin_day = 17
+	begin_day = 1 // A whole spooktacular month!
 	holiday_colors = list()
 
 /datum/holiday/halloween/New()

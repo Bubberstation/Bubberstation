@@ -130,13 +130,15 @@ SUBSYSTEM_DEF(gamemode)
 	var/sec_crew = 0
 	var/med_crew = 0
 
+	//Security Based Antag Cap
+	var/sec_antag_cap = 0
+
 	/// Whether we looked up pop info in this process tick
 	var/pop_data_cached = FALSE
 
 	var/wizardmode = FALSE
 
 	var/storyteller_voted = FALSE
-	var/ready_only_vote = FALSE
 	var/datum/vote/storyteller/vote_datum
 
 /datum/controller/subsystem/gamemode/Initialize(time, zlevel)
@@ -243,7 +245,7 @@ SUBSYSTEM_DEF(gamemode)
 		return 0
 	if(!storyteller.antag_divisor)
 		return 0
-	return round(max(min(get_correct_popcount() / storyteller.antag_divisor + sec_crew ,sec_crew * 1.5),ANTAG_CAP_FLAT))
+	return round(max(min(get_correct_popcount() / storyteller.antag_divisor + sec_antag_cap ,sec_antag_cap * 1.5),ANTAG_CAP_FLAT))
 
 /// Whether events can inject more antagonists into the round
 /datum/controller/subsystem/gamemode/proc/can_inject_antags()
@@ -416,6 +418,7 @@ SUBSYSTEM_DEF(gamemode)
 	eng_crew = 0
 	med_crew = 0
 	sec_crew = 0
+	sec_antag_cap = 0
 
 	for(var/mob/player_mob as anything in GLOB.alive_player_list)
 
@@ -452,6 +455,7 @@ SUBSYSTEM_DEF(gamemode)
 			med_crew++
 		if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_SECURITY)
 			sec_crew++
+			sec_antag_cap += player_role.sec_antag_cap
 
 	pop_data_cached = TRUE
 
@@ -751,13 +755,6 @@ SUBSYSTEM_DEF(gamemode)
 		log_dynamic("Roundstart picked storyteller [storyteller_pick.name] randomly due to no vote result.")
 		voted_storyteller = storyteller_pick
 
-	if(ready_only_vote)
-		var/processed_storyteller = process_storyteller_vote()
-		if(!isnull(processed_storyteller))
-			voted_storyteller = processed_storyteller
-		else
-			stack_trace("Processing storyteller vote results failed! That's less than ideal. Using backup non-weighted result [voted_storyteller]")
-
 	set_storyteller(voted_storyteller)
 	if(vote_datum)
 		var/list/vote_results = vote_datum.elimination_results
@@ -775,46 +772,6 @@ SUBSYSTEM_DEF(gamemode)
 			new /datum/tgs_message_content("The storyteller selected for this round is [storyteller.name]!"),
 			channel_tag,
 		)
-
-/datum/controller/subsystem/gamemode/proc/process_storyteller_vote()
-	var/list/players = list()
-	if(!length(vote_datum?.choices_by_ckey))
-		return
-
-	for(var/mob/dead/new_player/player as anything in GLOB.new_player_list)
-		if(player.ready == PLAYER_READY_TO_PLAY)
-			players += player.ckey
-
-	log_dynamic("[players.len] players ready! Processing storyteller vote results.")
-
-	for(var/vote in vote_datum.choices_by_ckey)
-		if(!vote_datum.choices_by_ckey[vote])
-			continue
-		var/vote_string = "[vote]"
-		var/list/vote_components = splittext(vote_string, "_")
-		var/vote_ckey = vote_components[1]
-		var/vote_storyteller = vote_components[2]
-		if(players.Find(vote_ckey))
-			log_dynamic("VALID: [vote_ckey] voted for [vote_storyteller]")
-		else
-			log_dynamic("INVALID: [vote_ckey] not eligible to vote for [vote_storyteller]")
-			if(vote_datum.choices_by_ckey[vote] == 1) //only the player's 1st choice is mapped in the other table
-				vote_datum.choices[vote_storyteller]--
-			vote_datum.choices_by_ckey -= vote
-
-	var/list/vote_winner = vote_datum.get_vote_result()
-	log_dynamic("Storyteller vote winner is [vote_winner[1]]")
-	to_chat(GLOB.admins,
-		type = MESSAGE_TYPE_ADMINLOG,
-		html = span_vote_notice(fieldset_block("Storyteller", "Selected storyteller: [vote_winner[1]]", "boxed_message blue_box")),
-		confidential = TRUE,
-	)
-	for(var/storyteller_type in storytellers)
-		var/datum/storyteller/storyboy = storytellers[storyteller_type]
-		if(storyboy.name == vote_winner[1])
-			return storyteller_type
-
-	stack_trace("Storyteller [vote_winner[1]] was declared vote winner, but couldn't locate datum in storytellers! This should never happen!")
 
 /**
  * set_storyteller

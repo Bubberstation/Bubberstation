@@ -25,19 +25,19 @@
 /datum/action/cooldown/mob_cooldown/turtle_tree/healer/harmonizing_pulses/tree_effect()
 	. = ..()
 	for(var/mob/living/creature in oview(tree_range, owner))
-		var/damage_total = creature.getBruteLoss() + creature.getFireLoss()
+		var/damage_total = creature.get_brute_loss() + creature.get_fire_loss()
 		if(!(creature.mob_biotypes & MOB_ORGANIC))
 			return
 		if (iscarbon(creature))
-			damage_total = damage_total + creature.getToxLoss() + creature.getOxyLoss()
+			damage_total = damage_total + creature.get_tox_loss() + creature.get_oxy_loss()
 			if(!damage_total)
 				return //Div by zero prevention
-			creature.adjustToxLoss(-floor((heal_amount * (creature.getToxLoss() / damage_total)) + 0.5), updating_health = FALSE, forced = TRUE)
-			creature.adjustOxyLoss(-floor((heal_amount * (creature.getOxyLoss() / damage_total)) + 0.5), updating_health = FALSE)
+			creature.adjust_tox_loss(-floor((heal_amount * (creature.get_tox_loss() / damage_total)) + 0.5), updating_health = FALSE, forced = TRUE)
+			creature.adjust_oxy_loss(-floor((heal_amount * (creature.get_oxy_loss() / damage_total)) + 0.5), updating_health = FALSE)
 		if(!damage_total)
 			return
-		creature.adjustBruteLoss(-floor((heal_amount * (creature.getBruteLoss() / damage_total)) + 0.5), updating_health = FALSE)
-		creature.adjustFireLoss(-floor((heal_amount * (creature.getFireLoss() / damage_total)) + 0.5), updating_health = FALSE)
+		creature.adjust_brute_loss(-floor((heal_amount * (creature.get_brute_loss() / damage_total)) + 0.5), updating_health = FALSE)
+		creature.adjust_fire_loss(-floor((heal_amount * (creature.get_fire_loss() / damage_total)) + 0.5), updating_health = FALSE)
 		creature.updatehealth()
 
 /obj/effect/temp_visual/circle_wave/tree/harmonizing_pulses

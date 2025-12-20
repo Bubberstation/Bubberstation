@@ -51,8 +51,9 @@
 	achievement_type = /datum/award/achievement/boss/colossus_kill
 	crusher_achievement_type = /datum/award/achievement/boss/colossus_crusher
 	score_achievement_type = /datum/award/score/colussus_score
-	crusher_loot = list(/obj/structure/closet/crate/necropolis/colossus/crusher)
 	loot = list(/obj/structure/closet/crate/necropolis/colossus)
+	crusher_loot = /obj/structure/closet/crate/necropolis/colossus/crusher
+	replace_crusher_drop = TRUE
 	death_message = "disintegrates, leaving a glowing core in its wake."
 	death_sound = 'sound/effects/magic/demon_dies.ogg'
 	summon_line = "Your trial begins now."
@@ -213,7 +214,7 @@
 				qdel(dust_mob.get_organ_slot(ORGAN_SLOT_LUNGS))
 				qdel(dust_mob.get_organ_slot(ORGAN_SLOT_HEART))
 				qdel(dust_mob.get_organ_slot(ORGAN_SLOT_LIVER))
-			dust_mob.adjustBruteLoss(500)
+			dust_mob.adjust_brute_loss(500)
 			dust_mob.apply_status_effect(/datum/status_effect/gutted)
 		return
 // BUBBER EDIT END

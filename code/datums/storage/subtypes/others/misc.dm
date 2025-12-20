@@ -34,6 +34,7 @@
 		/obj/item/reagent_containers/medigel/sterilizine,
 		/obj/item/retractor,
 		/obj/item/scalpel,
+		/obj/item/shears,
 		/obj/item/stack/medical/bone_gel,
 		/obj/item/stack/sticky_tape/surgical,
 		/obj/item/surgical_drapes,
@@ -211,6 +212,7 @@
 			/obj/item/stack/medical,
 			/obj/item/stamp,
 			/obj/item/toy/crayon,
+			/obj/item/poker_chip,
 			// SKYRAT EDIT BEGIN
 			/obj/item/condom_pack,
 			/obj/item/gbp_punchcard,

@@ -11,6 +11,9 @@
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT
 	item_flags = NOBLUDGEON
+	sound_vary = TRUE
+	pickup_sound = SFX_GENERIC_DEVICE_PICKUP
+	drop_sound = SFX_GENERIC_DEVICE_DROP
 	var/flush = FALSE
 	var/mob/living/silicon/ai/AI
 
@@ -156,7 +159,7 @@
 	if(AI && AI.loc == src)
 		to_chat(AI, span_userdanger("Your core files are being wiped!"))
 		while(AI.stat != DEAD && flush)
-			AI.adjustOxyLoss(5)
+			AI.adjust_oxy_loss(5)
 			AI.updatehealth()
 			sleep(0.5 SECONDS)
 		flush = FALSE

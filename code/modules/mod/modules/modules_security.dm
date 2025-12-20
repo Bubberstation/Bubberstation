@@ -10,7 +10,7 @@
 	incompatible_modules = list(/obj/item/mod/module/magnetic_harness)
 	required_slots = list(ITEM_SLOT_OCLOTHING)
 	/// Time before we activate the magnet.
-	var/magnet_delay = 0.8 SECONDS
+	var/magnet_delay = 0.5 SECONDS
 	/// The typecache of all guns we allow.
 	var/static/list/guns_typecache
 	/// The guns already allowed by the modsuit chestplate.
@@ -19,7 +19,14 @@
 /obj/item/mod/module/magnetic_harness/Initialize(mapload)
 	. = ..()
 	if(!guns_typecache)
-		guns_typecache = typecacheof(list(/obj/item/gun/ballistic, /obj/item/gun/energy, /obj/item/gun/grenadelauncher, /obj/item/gun/chem, /obj/item/gun/syringe))
+		guns_typecache = typecacheof(list(
+			/obj/item/gun/ballistic,
+			/obj/item/gun/energy,
+			/obj/item/gun/grenadelauncher,
+			/obj/item/gun/chem,
+			/obj/item/gun/syringe,
+			/obj/item/kinetic_crusher,
+		))
 
 /obj/item/mod/module/magnetic_harness/on_install()
 	. = ..()
@@ -139,7 +146,7 @@
 /obj/item/mod/module/holster/on_uninstall(deleting = FALSE)
 	. = ..()
 	if(holstered)
-		holstered.forceMove(drop_location())
+		holstered.forceMove(mod.drop_location())
 
 /obj/item/mod/module/holster/Exited(atom/movable/gone, direction)
 	if(gone == holstered)
@@ -296,8 +303,8 @@
 	. = ..()
 	do_sparks(rand(3, 6), FALSE, src)
 	if(thrower)
-		var/mob/living/simple_animal/hostile/illusion/mirage/mirage = new(get_turf(src))
-		mirage.Copy_Parent(thrower, 15 SECONDS)
+		var/mob/living/basic/illusion/mirage/mirage = new(get_turf(src))
+		mirage.mock_as(thrower, 15 SECONDS)
 	qdel(src)
 
 ///Projectile Dampener - Weakens projectiles in range.

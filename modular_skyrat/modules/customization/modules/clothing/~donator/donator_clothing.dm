@@ -219,11 +219,9 @@
 	icon_state = "black_turtleneck"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
 	supports_variations_flags = NONE
-	armor_type = /datum/armor/clothing_under/none
+	armor_type = /datum/armor/clothing_under
 	can_adjust = FALSE //There wasnt an adjustable sprite anyways
 	has_sensor = HAS_SENSORS	//Actually has sensors, to balance the new lack of armor
-
-/datum/armor/clothing_under/none
 
 // Donation reward for Bloodrite
 /obj/item/clothing/shoes/clown_shoes/britches

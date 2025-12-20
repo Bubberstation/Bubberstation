@@ -36,3 +36,15 @@
 	message = "plays a laughtrack."
 	emote_type = EMOTE_AUDIBLE
 	sound = 'sound/items/sitcom_laugh/SitcomLaugh2.ogg'
+
+/datum/emote/silicon/wink
+	key = "wink"
+	key_third_person = "winks"
+	message = "winks."
+	sound = 'sound/mobs/humanoids/human/wink/wink.ogg'
+
+/datum/emote/silicon/blink
+	key = "blink"
+	key_third_person = "blinks"
+	message = "blinks."
+	sound = 'sound/mobs/humanoids/human/blink/blink.ogg'
