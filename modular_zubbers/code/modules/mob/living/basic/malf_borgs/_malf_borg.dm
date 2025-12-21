@@ -2,17 +2,19 @@
 	name = "Malfunctioning Cyborg"
 	desc = "A small cyborg unit, hacked or malfunctioning. It is likely hostile."
 	icon = 'modular_skyrat/master_files/icons/mob/newmobs.dmi'
-	icon_state = "evilbotold"
-	icon_living = "evilbotold"
 
 	ai_controller = /datum/ai_controller/basic_controller/simple/simple_skirmisher
+
+	icon_state = "evilbotold"
+	icon_living = "evilbotold"
 
 	gender = NEUTER
 	mob_biotypes = MOB_ROBOTIC
 
 	health = 75
 	maxHealth = 75
-	max_stamina = BASIC_MOB_STAMINA_MATCH_HEALTH
+
+	speed = 1
 
 	obj_damage = 15
 	armour_penetration = 10
@@ -24,16 +26,11 @@
 
 	attack_verb_continuous = "claws"
 	attack_verb_simple = "claw"
-
-	var/projectile_type = /obj/projectile/hivebotbullet
-	var/projectile_sound = 'sound/items/weapons/gun/pistol/shot.ogg'
-	var/ranged_attack_range = 6
-	var/ranged_attack_cooldown = 2 SECONDS
-	var/next_ranged_attack = 0
-
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	attack_vis_effect = ATTACK_EFFECT_CLAW
 	attacked_sound = SFX_PUNCH
+
+	projectile_sound = 'sound/items/weapons/gun/pistol/shot.ogg'
 
 	verb_say = "states"
 	verb_ask = "queries"
@@ -58,5 +55,3 @@
 	butcher_results = list(
 		/obj/effect/decal/cleanable/blood/gibs/robot_debris = 1
 	)
-
-	speed = 1
