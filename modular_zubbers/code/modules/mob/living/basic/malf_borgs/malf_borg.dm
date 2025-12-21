@@ -33,8 +33,10 @@
 	attack_vis_effect = ATTACK_EFFECT_CLAW
 	attacked_sound = SFX_PUNCH
 
-	var/projectile_type = /obj/projectile/hivebotbullet
-	var/projectile_sound = 'sound/items/weapons/gun/pistol/shot.ogg'
+	///The type of projectile that fires from attacks.
+	var/projectiletype = /obj/projectile/hivebotbullet
+	///The sound that plays when the projectile is fired.
+	var/projectilesound = 'sound/items/weapons/gun/pistol/shot.ogg'
 
 	verb_say = "states"
 	verb_ask = "queries"
@@ -55,11 +57,14 @@
 		STAMINA = 1
 	)
 
-	basic_mob_flags = DEL_ON_DEATH
 	guaranteed_butcher_results = list(
 		/obj/effect/decal/cleanable/blood/gibs/robot_debris = 1
 	)
 
 /mob/living/basic/malf_borg/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/ranged_attacks, projectile_type = projectile_type, projectile_sound = projectile_sound)
+	AddComponent(/datum/component/ranged_attacks, projectile_type = projectiletype, projectile_sound = projectilesound)
+
+/mob/living/basic/malf_borg/death(gibbed)
+	do_sparks(number = 3, cardinal_only = TRUE, source = src)
+	return ..()

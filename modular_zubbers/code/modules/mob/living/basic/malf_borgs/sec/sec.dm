@@ -16,11 +16,9 @@
 	attack_verb_simple = "gunbutt"
 	attack_sound = 'sound/items/weapons/smash.ogg'
 
-	projectile_type = /obj/projectile/bullet/c45
-	projectile_sound = 'sound/items/weapons/gun/smg/shot.ogg'
-
-	basic_mob_flags = null
+	projectiletype = /obj/projectile/bullet/c45
+	projectilesound = 'sound/items/weapons/gun/smg/shot.ogg'
 
 /mob/living/basic/malf_borg/sec/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/ranged_attacks, projectile_type = projectile_type, projectile_sound = projectile_sound)
+	AddComponent(/datum/component/ranged_attacks, projectile_type = projectiletype, projectile_sound = projectilesound)

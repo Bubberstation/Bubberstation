@@ -21,7 +21,5 @@
 	attack_verb_simple = "punch"
 	attack_sound = 'sound/items/weapons/genhit2.ogg'
 
-	basic_mob_flags = null
-
 /mob/living/basic/malf_borg/protect/Initialize(mapload)
 	. = ..()

@@ -23,8 +23,6 @@
 	attack_verb_simple = "smash"
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 
-	basic_mob_flags = null
-
 /mob/living/basic/malf_borg/dog/Initialize(mapload)
 	. = ..()
 
@@ -52,8 +50,6 @@
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/items/weapons/bite.ogg'
-
-	basic_mob_flags = null
 
 /mob/living/basic/malf_borg/dogstrong/Initialize(mapload)
 	. = ..()
