@@ -32,3 +32,9 @@
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_shoes.dmi'
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_shoes.dmi'
 	worn_icon_digi = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_shoes_digi.dmi'
+
+// Ballet Heels
+/obj/item/clothing/shoes/latex_heels/ballet_heels
+	name = "ballet  heels"
+	desc = "A pair of ballet dancing heels."
+	icon_state = "balletheels"
