@@ -20,3 +20,8 @@
 	attack_verb_continuous = "smacks"
 	attack_verb_simple = "smack"
 	attack_sound = 'sound/items/weapons/cqchit1.ogg'
+
+	basic_mob_flags = null
+
+/mob/living/basic/malf_borg/peace/Initialize(mapload)
+	. = ..()

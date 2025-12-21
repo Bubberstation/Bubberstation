@@ -22,3 +22,8 @@
 	attack_verb_continuous = "saws"
 	attack_verb_simple = "saw"
 	attack_sound = 'sound/items/weapons/chainsawhit.ogg'
+
+	basic_mob_flags = null
+
+/mob/living/basic/malf_borg/heavy/Initialize(mapload)
+	. = ..()

@@ -10,11 +10,15 @@
 
 	gender = NEUTER
 	mob_biotypes = MOB_ROBOTIC
+	faction = list(FACTION_HOSTILE)
+	combat_mode = TRUE
 
 	health = 75
 	maxHealth = 75
 
 	speed = 1
+	melee_damage_lower = 5
+	melee_damage_upper = 10
 	obj_damage = 15
 	armour_penetration = 10
 	melee_damage_type = BRUTE
@@ -31,10 +35,6 @@
 
 	var/projectile_type = /obj/projectile/hivebotbullet
 	var/projectile_sound = 'sound/items/weapons/gun/pistol/shot.ogg'
-	var/ranged_attack_range = 6
-	var/ranged_attack_cooldown = 2 SECONDS
-	var/next_ranged_attack = 0
-	projectile_sound = 'sound/items/weapons/gun/pistol/shot.ogg'
 
 	verb_say = "states"
 	verb_ask = "queries"
@@ -56,6 +56,10 @@
 	)
 
 	basic_mob_flags = DEL_ON_DEATH
-	butcher_results = list(
+	guaranteed_butcher_results = list(
 		/obj/effect/decal/cleanable/blood/gibs/robot_debris = 1
 	)
+
+/mob/living/basic/malf_borg/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/ranged_attacks, projectile_type = projectile_type, projectile_sound = projectile_sound)

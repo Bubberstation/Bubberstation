@@ -20,3 +20,8 @@
 	attack_verb_continuous = "welds"
 	attack_verb_simple = "weld"
 	attack_sound = 'sound/items/tools/welder.ogg'
+
+	basic_mob_flags = null
+
+/mob/living/basic/malf_borg/engi/Initialize(mapload)
+	. = ..()

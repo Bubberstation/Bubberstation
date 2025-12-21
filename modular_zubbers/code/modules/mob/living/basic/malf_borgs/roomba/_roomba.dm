@@ -22,3 +22,8 @@
 	attack_verb_continuous = "pokes"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/items/weapons/genhit2.ogg'
+
+	basic_mob_flags = null
+
+/mob/living/basic/malf_borg/roomba/Initialize(mapload)
+	. = ..()
