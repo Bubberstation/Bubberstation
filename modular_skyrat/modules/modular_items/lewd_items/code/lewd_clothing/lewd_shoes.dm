@@ -35,6 +35,6 @@
 
 // Ballet Heels
 /obj/item/clothing/shoes/latex_heels/ballet_heels
-	name = "ballet  heels"
+	name = "ballet heels"
 	desc = "A pair of ballet dancing heels."
 	icon_state = "balletheels"
