@@ -434,14 +434,11 @@ GLOBAL_VAR_INIT(active_rbmk_machines, list())
 	safeties_max_power_generation = max(initial(safeties_max_power_generation),round(max_power_generation*(safeties_upgrade ? 0.9: 0.75),25000))
 
 	//Requires x4 servos
-	//Servos increase the strength of the fans, forcing out gas at a higher rate, leading to better cooling.
+	//Servos increase the strength of the fans, forcing out gas at a higher rate.
 	var/vent_pressure_multiplier = 0
-	var/heating_divisor = 1
 	for(var/datum/stock_part/servo/new_servo in component_parts)
 		vent_pressure_multiplier += new_servo.tier * 0.25
-		heating_divisor += (new_servo.tier-1)/(3*4*2) //At T4, this value should be 1.5.
 
-	heating_multiplier = initial(heating_multiplier) / heating_divisor
 	vent_pressure = initial(vent_pressure) * vent_pressure_multiplier
 
 /obj/machinery/power/rbmk2/ui_interact(mob/user, datum/tgui/ui)
