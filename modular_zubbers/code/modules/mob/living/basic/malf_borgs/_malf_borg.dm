@@ -15,7 +15,6 @@
 	maxHealth = 75
 
 	speed = 1
-
 	obj_damage = 15
 	armour_penetration = 10
 	melee_damage_type = BRUTE
@@ -30,6 +29,11 @@
 	attack_vis_effect = ATTACK_EFFECT_CLAW
 	attacked_sound = SFX_PUNCH
 
+	var/projectile_type = /obj/projectile/hivebotbullet
+	var/projectile_sound = 'sound/items/weapons/gun/pistol/shot.ogg'
+	var/ranged_attack_range = 6
+	var/ranged_attack_cooldown = 2 SECONDS
+	var/next_ranged_attack = 0
 	projectile_sound = 'sound/items/weapons/gun/pistol/shot.ogg'
 
 	verb_say = "states"
