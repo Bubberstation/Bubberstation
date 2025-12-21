@@ -1,0 +1,62 @@
+/mob/living/basic/malf_borg
+	name = "Malfunctioning Cyborg"
+	desc = "A small cyborg unit, hacked or malfunctioning. It is likely hostile."
+	icon = 'modular_skyrat/master_files/icons/mob/newmobs.dmi'
+	icon_state = "evilbotold"
+	icon_living = "evilbotold"
+
+	ai_controller = /datum/ai_controller/basic_controller/simple/simple_skirmisher
+
+	gender = NEUTER
+	mob_biotypes = MOB_ROBOTIC
+
+	health = 75
+	maxHealth = 75
+	max_stamina = BASIC_MOB_STAMINA_MATCH_HEALTH
+
+	obj_damage = 15
+	armour_penetration = 10
+	melee_damage_type = BRUTE
+	wound_bonus = CANT_WOUND
+	sharpness = SHARP_EDGED
+
+	melee_attack_cooldown = 2 SECONDS
+
+	attack_verb_continuous = "claws"
+	attack_verb_simple = "claw"
+
+	var/projectile_type = /obj/projectile/hivebotbullet
+	var/projectile_sound = 'sound/items/weapons/gun/pistol/shot.ogg'
+	var/ranged_attack_range = 6
+	var/ranged_attack_cooldown = 2 SECONDS
+	var/next_ranged_attack = 0
+
+	attack_sound = 'sound/items/weapons/bladeslice.ogg'
+	attack_vis_effect = ATTACK_EFFECT_CLAW
+	attacked_sound = SFX_PUNCH
+
+	verb_say = "states"
+	verb_ask = "queries"
+	verb_exclaim = "declares"
+	verb_yell = "alarms"
+	bubble_icon = "machine"
+	speech_span = SPAN_ROBOT
+
+	habitable_atmos = null
+	minimum_survivable_temperature = 0
+	maximum_survivable_temperature = INFINITY
+
+	damage_coeff = list(
+		BRUTE = 1,
+		BURN = 1,
+		TOX = 0,
+		OXY = 0,
+		STAMINA = 1
+	)
+
+	basic_mob_flags = DEL_ON_DEATH
+	butcher_results = list(
+		/obj/effect/decal/cleanable/blood/gibs/robot_debris = 1
+	)
+
+	speed = 1
