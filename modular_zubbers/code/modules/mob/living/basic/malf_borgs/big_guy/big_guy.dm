@@ -27,3 +27,4 @@
 /mob/living/basic/malf_borg/big_guy/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/ranged_attacks, projectile_type = projectiletype, projectile_sound = projectilesound)
+	ADD_TRAIT(src, TRAIT_SUBTREE_REQUIRED_OPERATIONAL_DATUM, /datum/component/ranged_attacks)
