@@ -72,6 +72,11 @@
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
 	return ..()
 
+/datum/id_trim/job/security_medic
+	job = /datum/job/security_medic
+	honorifics = list("Line Medic", "Squad Physician", "Medical Specialist", "Support Specialist", "Doc.")
+	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
+
 /datum/id_trim/job/security_officer/New()
 	job = /datum/job/security_officer
 	honorifics += list("Security Specialist", "Guard", "Security Officer", "Constable", "Trooper", "Deputy", "Cadet")
