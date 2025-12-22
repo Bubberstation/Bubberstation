@@ -69,10 +69,10 @@
 // Balance specific defines
 #define FLESHCORE_SPREAD_PROGRESS_REQUIRED 200 // How much progress is required to spread?
 #define FLESHCORE_SPREADS_FOR_STRUCTURE 50 // How many times do we need to spread until we can create a new structure?
-#define FLESHCORE_INITIAL_EXPANSION_SPREADS 30 // Upon creation, how many times do we spread instantly?
+#define FLESHCORE_INITIAL_EXPANSION_SPREADS 35 // Upon creation, how many times do we spread instantly?
 #define FLESHCORE_INITIAL_EXPANSION_STRUCTURES 5 // Upon creation, how many structures do we spawn instantly?
-#define FLESHCORE_SPREAD_PROGRESS_PER_SUBSYSTEM_FIRE 100 // Every subsystem fire, how much progress do we gain?
-#define FLESHCORE_BASE_SPREAD_PROGRESS_PER_SUBSYSTEM_FIRE 100 // The baseline of the above.
+#define FLESHCORE_SPREAD_PROGRESS_PER_SUBSYSTEM_FIRE 115 // Every subsystem fire, how much progress do we gain?
+#define FLESHCORE_BASE_SPREAD_PROGRESS_PER_SUBSYSTEM_FIRE 115 // The baseline of the above.
 #define FLESHCORE_ATTACK_PROB 20 // How likely are we to attack every SS fire?
 #define FLESHCORE_WALL_PROB 30 // How likely are we to spawn a wall to seal a gap every SS fire?
 #define FLESHCORE_NEXT_CORE_DAMAGE_WIREWEED_ACTIVATION_COOLDOWN 10 SECONDS // The amount of time until we can activate nearby wireweed again.
