@@ -17,7 +17,8 @@ Use CTRL + SHIFT + LEFT CLICK to turn them on and off.
 /obj/item/clothing/suit/examine(mob/user)
 	. = ..()
 	if(!(HAS_TRAIT(src, TRAIT_NODROP)))
-		. += span_notice("Ctrl + Shift + Left Click to swap between functional (suit) and non-functional (neck) mode, to allow for things such as wearing a (nonfunctional) jacket over a piece of armor for the visual effect.")
+		if(!only_functional)
+			. += span_notice("Ctrl + Shift + Left Click to swap between functional (suit) and non-functional (neck) mode, to allow for things such as wearing a (nonfunctional) jacket over a piece of armor for the visual effect.")
 	else
 		only_functional = TRUE
 
@@ -84,9 +85,25 @@ Use CTRL + SHIFT + LEFT CLICK to turn them on and off.
 /obj/item/clothing/suit/space
 	only_functional = TRUE
 
+/obj/item/clothing/suit/hooded/cultrobes
+	only_functional = TRUE
+
+/obj/item/clothing/suit/wizrobe
+	only_functional = TRUE
+
 // Stuff that gives other effects, like reactive armor, reflective armor, etc.
 
+/obj/item/clothing/suit/armor/nerd
+	only_functional = TRUE
+
 /obj/item/clothing/suit/armor/reactive
+	only_functional = TRUE
+
+//this is an abstract which hits the holymelon armor. im not sure why it's abstracted
+/obj/item/clothing/suit/armor/durability
+	only_functional = TRUE
+
+/obj/item/clothing/suit/jacket/tailcoat/miner
 	only_functional = TRUE
 
 /obj/item/clothing/suit/hooded/ablative
@@ -101,5 +118,25 @@ Use CTRL + SHIFT + LEFT CLICK to turn them on and off.
 /obj/item/clothing/suit/hooded/berserker
 	only_functional = TRUE
 
+/obj/item/clothing/suit/hooded/cloak/drake
+	only_functional = TRUE
+
+/obj/item/clothing/suit/hooded/cloak/goliath
+	only_functional = TRUE
+
+/obj/item/clothing/suit/hooded/explorer
+	only_functional = TRUE
+
 /obj/item/clothing/suit/armor/abductor/vest
 	only_functional = TRUE
+
+// Children of above which shouldnt-be-problematic to remain enabled.
+
+/obj/item/clothing/suit/wizrobe/marisa/fake
+	only_functional = FALSE
+
+/obj/item/clothing/suit/wizrobe/tape/fake
+	only_functional = FALSE
+
+/obj/item/clothing/suit/wizrobe/fake
+	only_functional = FALSE
