@@ -99,7 +99,8 @@ Use CTRL + SHIFT + LEFT CLICK to turn them on and off.
 /obj/item/clothing/suit/armor/reactive
 	only_functional = TRUE
 
-/obj/item/clothing/suit/armor/durability //this is an abstract which hits the holymelon armor. im not sure why it's abstracted
+//this is an abstract which hits the holymelon armor. im not sure why it's abstracted
+/obj/item/clothing/suit/armor/durability
 	only_functional = TRUE
 
 /obj/item/clothing/suit/jacket/tailcoat/miner
