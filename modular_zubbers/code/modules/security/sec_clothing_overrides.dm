@@ -188,10 +188,20 @@
 	)
 
 /obj/item/storage/belt/security/webbing/peacekeeper //did I mention this codebase is fucking awful
-	current_skin = "peacekeeper_webbing"
+
+/obj/item/storage/belt/security/webbing/peacekeeper/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/storage/belt/security/webbing/peacekeeper/armadyne //You two only exist because I don't want to purge you, because it'd break some stuff. Thin fucking ice.
-	current_skin = "armadyne_webbing"
+
+/obj/item/storage/belt/security/webbing/peacekeeper/armadyne/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 ///Enables you to quickdraw weapons from security holsters
 /datum/storage/security/open_storage(datum/source, mob/user)
@@ -884,7 +894,12 @@
 	)
 
 /obj/item/clothing/suit/armor/hos/trenchcoat/winter
-	current_skin = "hoswinter" //prevents reskinning
+
+/obj/item/clothing/suit/armor/hos/trenchcoat/winter/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 //Standard Bulletproof Vest
 /obj/item/clothing/suit/armor/bulletproof
@@ -968,7 +983,12 @@
 /obj/item/clothing/suit/armor/vest/warden/alt //un-overrides this since its sprite is TG
 	icon = 'icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'icons/mob/clothing/suits/armor.dmi'
-	current_skin = "warden_jacket" //prevents reskinning
+
+/obj/item/clothing/suit/armor/vest/warden/alt/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 //Security Wintercoat (and hood)
 /obj/item/clothing/head/hooded/winterhood/security
@@ -988,8 +1008,13 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "hosformal_blue"
-	current_skin = "hosformal_blue"	//prevents reskinning (but not toggling!)
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/suit/armor/hos/hos_formal/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /*
 * UNDER
@@ -1492,7 +1517,12 @@
 	worn_icon = 'icons/mob/clothing/eyes.dmi'
 	icon_state = "sunhudsec"
 	glass_colour_type = /datum/client_colour/glass_colour/darkred
-	current_skin = "sunhudsec" //prevents reskinning; a bit hacky to say its already reskinned but its better than a code rewrite
+
+/obj/item/clothing/glasses/hud/security/sunglasses/redsec/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch/redsec
 	icon = 'icons/obj/clothing/glasses.dmi'
@@ -1703,11 +1733,21 @@
 
 /obj/item/clothing/under/rank/security/officer/redsec
 	icon_state = "rsecurity"
-	current_skin = "rsecurity" //prevents reskinning
+
+/obj/item/clothing/under/rank/security/officer/redsec/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/officer/skirt/redsec
 	icon_state = "secskirt"
-	current_skin = "secskirt"
+
+/obj/item/clothing/under/rank/security/officer/skirt/redsec/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/warden/redsec
 	icon_state = "rwarden"
@@ -1808,14 +1848,24 @@
 	icon = 'icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'icons/mob/clothing/suits/armor.dmi'
 	icon_state = "armor_sec"
-	current_skin = "armor_sec" //prevents reskinning
+
+/obj/item/clothing/suit/armor/vest/alt/sec/redsec/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/suit/armor/hos/hos_formal/redsec
 	icon = 'icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'icons/mob/clothing/suits/armor.dmi'
 	icon_state = "hosformal"
-	current_skin = "hosformal"	//prevents reskinning (but not toggling!)
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/suit/armor/hos/hos_formal/redsec/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /*
 *	FEET
@@ -1826,7 +1876,12 @@
 	icon_state = "jackboots_sec"
 	icon = 'icons/obj/clothing/shoes.dmi'
 	worn_icon = 'icons/mob/clothing/feet.dmi'
-	current_skin = "jackboots_sec" //prevents reskinning
+
+/obj/item/clothing/shoes/jackboots/sec/redsec/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 //Finally, a few description changes for items that couldn't get a resprite.
 /obj/item/clothing/head/bio_hood/security
