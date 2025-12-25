@@ -96,4 +96,9 @@
 	icon = 'icons/obj/clothing/glasses.dmi'
 	worn_icon = 'icons/mob/clothing/eyes.dmi'
 	icon_state = "sun"
-	unique_reskin = null
+
+/obj/item/clothing/glasses/hud/security/sunglasses/black/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)

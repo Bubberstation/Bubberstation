@@ -336,12 +336,22 @@
 	desc = "a fake blindfold with a security HUD inside, helps you look like blind justice. This won't provide the same protection that you'd get from sunglasses."
 	icon_state =  "secfold"
 	base_icon_state =  "secfold"
-	unique_reskin = null
+
+/obj/item/clothing/glasses/hud/eyepatch/sec/blindfold/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/glasses/hud/security/night
 	icon = 'icons/obj/clothing/glasses.dmi'
 	worn_icon = 'icons/mob/clothing/eyes.dmi'
-	unique_reskin = null
+
+/obj/item/clothing/glasses/hud/security/night/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/gars
 	uses_advanced_reskins = TRUE
@@ -374,7 +384,12 @@
 	)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/gars/giga/roselia
-	unique_reskin = null
+
+/obj/item/clothing/glasses/hud/security/sunglasses/gars/giga/roselia/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /*
 * HEAD
@@ -532,11 +547,20 @@
 	)
 
 /obj/item/clothing/head/hats/warden/red
-	unique_reskin = null
+
+/obj/item/clothing/head/hats/warden/red/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/head/hats/warden/drill
-	unique_reskin = null
 
+/obj/item/clothing/head/hats/warden/drill/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/head/hats/hos/cap
 	uses_advanced_reskins = TRUE
@@ -571,7 +595,12 @@
 	)
 
 /obj/item/clothing/head/hats/hos/cap/syndicate
-	unique_reskin = null
+
+/obj/item/clothing/head/hats/hos/cap/syndicate/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /*
 * NECK
@@ -1031,7 +1060,12 @@
 	)
 
 /obj/item/clothing/under/rank/security/officer/formal
-	unique_reskin = null // prevents you from losing the unique sprite
+
+/obj/item/clothing/under/rank/security/officer/formal/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/officer/skirt
 	alt_covers_chest = FALSE
@@ -1156,8 +1190,12 @@
 	)
 
 /obj/item/clothing/under/rank/security/warden/formal
-	unique_reskin = null
 
+/obj/item/clothing/under/rank/security/warden/formal/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 //HoS
 /obj/item/clothing/under/rank/security/head_of_security
@@ -1263,17 +1301,36 @@
 	)
 
 /obj/item/clothing/under/rank/security/head_of_security/peacekeeper
-	unique_reskin = null
+
+/obj/item/clothing/under/rank/security/head_of_security/peacekeeper/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/head_of_security/bunnysuit
-	unique_reskin = null
+
+/obj/item/clothing/under/rank/security/head_of_security/bunnysuit/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/head_of_security/alt/roselia
-	unique_reskin = null
+
+/obj/item/clothing/under/rank/security/head_of_security/alt/roselia/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/head_of_security/grey
-	unique_reskin = null
 
+/obj/item/clothing/under/rank/security/head_of_security/grey/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 // PRISONER
 
@@ -1423,7 +1480,12 @@
 	worn_icon = 'icons/mob/clothing/eyes.dmi'
 	icon_state = "securityhud"
 	glass_colour_type = /datum/client_colour/glass_colour/red
-	unique_reskin = null
+
+/obj/item/clothing/glasses/hud/security/redsec/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/redsec
 	icon = 'icons/obj/clothing/glasses.dmi'
@@ -1437,13 +1499,23 @@
 	worn_icon = 'icons/mob/clothing/eyes.dmi'
 	icon_state = "hudpatch"
 	base_icon_state = "hudpatch"
-	unique_reskin = null
+
+/obj/item/clothing/glasses/hud/security/sunglasses/eyepatch/redsec/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/glasses/hud/security/night/redsec
 	icon = 'icons/obj/clothing/glasses.dmi'
 	worn_icon = 'icons/mob/clothing/eyes.dmi'
 	icon_state = "securityhudnight"
-	unique_reskin = null
+
+/obj/item/clothing/glasses/hud/security/night/redsec/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /*
 *	NECK
@@ -1453,7 +1525,12 @@
 	icon = 'icons/obj/clothing/cloaks.dmi'
 	worn_icon = 'icons/mob/clothing/neck.dmi'
 	icon_state = "hoscloak"
-	unique_reskin = null
+
+/obj/item/clothing/neck/cloak/hos/redsec/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /*
 *	BACK
@@ -1463,19 +1540,34 @@
 	icon = 'icons/obj/storage/backpack.dmi'
 	worn_icon = 'icons/mob/clothing/back/backpack.dmi'
 	icon_state = "backpack-security"
-	current_skin = "backpack-security" //prevents reskinning
+
+/obj/item/storage/backpack/security/redsec/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/storage/backpack/satchel/sec/redsec
 	icon = 'icons/obj/storage/backpack.dmi'
 	worn_icon = 'icons/mob/clothing/back/backpack.dmi'
 	icon_state = "satchel-security"
-	unique_reskin = null
+
+/obj/item/storage/backpack/satchel/sec/redsec/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/storage/backpack/duffelbag/sec/redsec
 	icon = 'icons/obj/storage/backpack.dmi'
 	worn_icon = 'icons/mob/clothing/back/backpack.dmi'
 	icon_state = "duffel-security"
-	current_skin = "duffel-security" //prevents reskinning
+
+/obj/item/storage/backpack/duffelbag/sec/redsec/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /*
 *	BELT + HOLSTERS
@@ -1487,7 +1579,12 @@
 	icon_state = "security"
 	inhand_icon_state = "security"
 	worn_icon_state = "security"
-	current_skin = "security" //prevents reskinning
+
+/obj/item/storage/belt/security/redsec/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/storage/belt/holster
 	desc = "A rather plain but still cool looking holster that can hold a handgun, and some ammo."
@@ -1593,7 +1690,12 @@
 	worn_icon = 'icons/mob/clothing/head/hats.dmi'
 	icon_state = "hoscap"
 	base_icon_state = "hoscap"
-	unique_reskin = null
+
+/obj/item/clothing/head/hats/hos/cap/red/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /*
 *	UNIFORM
@@ -1609,35 +1711,75 @@
 
 /obj/item/clothing/under/rank/security/warden/redsec
 	icon_state = "rwarden"
-	unique_reskin = null
+
+/obj/item/clothing/under/rank/security/warden/redsec/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/warden/skirt/redsec
 	icon_state = "rwarden_skirt"
-	unique_reskin = null
+
+/obj/item/clothing/under/rank/security/warden/skirt/redsec/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/head_of_security/redsec
 	icon_state = "rhos"
-	unique_reskin = null
+
+/obj/item/clothing/under/rank/security/head_of_security/redsec/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/head_of_security/skirt/redsec
 	icon_state = "rhos_skirt"
-	unique_reskin = null
+
+/obj/item/clothing/under/rank/security/head_of_security/skirt/redsec/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/head_of_security/parade/redsec
 	icon_state = "hos_parade_male"
-	unique_reskin = null
+
+/obj/item/clothing/under/rank/security/head_of_security/parade/redsec/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/head_of_security/parade/female/redsec
 	icon_state = "hos_parade_fem"
-	unique_reskin = null
+
+/obj/item/clothing/under/rank/security/head_of_security/parade/female/redsec/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/head_of_security/alt/redsec
 	icon_state = "hosalt"
-	unique_reskin = null
+
+/obj/item/clothing/under/rank/security/head_of_security/alt/redsec/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/head_of_security/alt/skirt/redsec
 	icon_state = "hosalt_skirt"
-	unique_reskin = null
+
+/obj/item/clothing/under/rank/security/head_of_security/alt/skirt/redsec/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /*
 *	WINTER COAT

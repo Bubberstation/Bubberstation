@@ -39,11 +39,16 @@
 /obj/item/storage/bag/plants/primitive
 	current_skin = RESKIN_LINEN // Just so it displays properly when in suit storage
 	uses_advanced_reskins = FALSE
-	unique_reskin = null
 	icon = 'modular_skyrat/modules/primitive_cooking_additions/icons/plant_bag.dmi'
 	icon_state = "plantbag_primitive"
 	worn_icon = 'modular_skyrat/modules/primitive_cooking_additions/icons/plant_bag_worn.dmi'
 	worn_icon_state = "plantbag_primitive"
+
+/obj/item/storage/bag/plants/primitive/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/storage/bag/plants/on_craft_completion(list/components, datum/crafting_recipe/current_recipe, atom/crafter)
 	. = ..()
@@ -53,6 +58,11 @@
 
 /obj/item/storage/bag/plants/portaseeder
 	uses_advanced_reskins = FALSE
-	unique_reskin = null
+
+/obj/item/storage/bag/plants/portaseeder/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 #undef RESKIN_LINEN

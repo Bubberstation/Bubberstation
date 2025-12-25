@@ -131,7 +131,12 @@
 	desc = "A fancy tail-coated suit with a fluffy bow emblazoned on the chest, complete with an NT pin."
 	icon_state = "beeze"
 	obj_flags = null
-	unique_reskin = null
+
+/obj/item/clothing/under/suit/skyrat/inferno/beeze/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/under/suit/skyrat/helltaker
 	name = "red shirt with white pants"

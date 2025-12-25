@@ -56,7 +56,12 @@
 	icon = 'modular_zubbers/icons/obj/clothing/gloves/gloves.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/gloves/gloves.dmi'
 	icon_state = "snake"
-	unique_reskin = null
+
+/obj/item/clothing/gloves/color/black/security/snake/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/gloves/bubber/snake
 	name = "big boss' gloves"

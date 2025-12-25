@@ -9,7 +9,12 @@
 /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat
 	//Effectively the same as TG's blueshirt, including icon. The /skyrat path makes it easier for sorting.
 	name = "science guard's uniform"
-	unique_reskin = null
+
+/obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/orderly
 	name = "orderly uniform"
@@ -54,8 +59,13 @@
 	//Effectively the same as TG's blueshirt, including icon. The /skyrat path makes it easier for sorting.
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi'
-	unique_reskin = null
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+
+/obj/item/clothing/suit/armor/vest/blueshirt/skyrat/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/suit/armor/vest/blueshirt/skyrat/guard //Badge-less version of the blueshirt vest
 	icon_state = "guard_armor"
@@ -87,7 +97,12 @@
 /obj/item/clothing/head/helmet/blueshirt/skyrat
 	//Effectively the same as TG's blueshirt, including icon. The /skyrat path makes it easier for sorting.
 	//The base one is used for science guards, and the sprite is unchanged
-	unique_reskin = null
+
+/obj/item/clothing/head/helmet/blueshirt/skyrat/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/head/helmet/blueshirt/skyrat/guard //Version of the blueshirt helmet without a blue line. Used by all dept guards right now.
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/head/helmet.dmi'

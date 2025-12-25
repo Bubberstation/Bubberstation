@@ -39,7 +39,12 @@
 	icon_state = "util_sec_old"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
-	unique_reskin = null
+
+/obj/item/clothing/under/rank/security/skyrat/utility/redsec/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/skyrat/utility/redsec/syndicate
 	armor_type = /datum/armor/clothing_under/redsec_syndicate
@@ -71,9 +76,14 @@
 	worn_icon_state = "security_skirt_redsec"
 	icon_state = "security_skirt_redsec"
 	can_adjust = TRUE
-	unique_reskin = null
 	alt_covers_chest = FALSE
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
+
+/obj/item/clothing/under/rank/security/peacekeeper/skirt_redsec/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/peacekeeper/skirt_hos
 	name = "head of security battle dress"
@@ -81,9 +91,14 @@
 	worn_icon_state = "security_skirt_hos"
 	icon_state = "security_skirt_hos"
 	can_adjust = TRUE
-	unique_reskin = null
 	alt_covers_chest = FALSE
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
+
+/obj/item/clothing/under/rank/security/peacekeeper/skirt_hos/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/peacekeeper/trousers
 	name = "security trousers"

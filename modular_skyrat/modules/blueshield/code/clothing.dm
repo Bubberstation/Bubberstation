@@ -156,11 +156,13 @@
 	desc = "An expensive kevlar-lined jacket with a golden badge on the chest and \"NT\" emblazoned on the back. It weighs surprisingly little, despite how heavy it looks."
 	icon_state = "blueshield"
 	body_parts_covered = CHEST|ARMS
-	unique_reskin = null
 
 /obj/item/clothing/suit/armor/vest/blueshield/jacket/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/toggle_icon)
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/suit/hooded/wintercoat/skyrat/blueshield
 	name = "blueshield's winter coat"

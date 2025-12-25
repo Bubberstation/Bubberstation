@@ -96,7 +96,12 @@
 	icon_state = "urban_camo"
 	inhand_icon_state = "w_suit"
 	uses_advanced_reskins = FALSE
-	unique_reskin = null
+
+/obj/item/clothing/under/rank/security/officer/hecu/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/storage/backpack/ert/odst/hecu
 	name = "hecu backpack"
