@@ -125,26 +125,25 @@
 	body_parts_covered = CHEST
 	armor_type = /datum/armor/suit_armor/blueshield
 	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Slim" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi',
-			RESKIN_ICON_STATE = "blueshieldarmor",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi',
-			RESKIN_WORN_ICON_STATE = "blueshieldarmor",
-		),
-		"Marine" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi',
-			RESKIN_ICON_STATE = "bs_marine",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi',
-			RESKIN_WORN_ICON_STATE = "bs_marine",
-		),
-		"Bulky" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi',
-			RESKIN_ICON_STATE = "vest_black",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi',
-			RESKIN_WORN_ICON_STATE = "vest_black",
-		),
-	)
+
+/obj/item/clothing/suit/armor/vest/blueshield/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/blueshield_armor)
+
+/datum/atom_skin/blueshield_armor
+	abstract_type = /datum/atom_skin/blueshield_armor
+
+/datum/atom_skin/blueshield_armor/slim
+	preview_name = "Slim"
+	new_icon_state = "blueshieldarmor"
+
+/datum/atom_skin/blueshield_armor/marine
+	preview_name = "Marine"
+	new_icon_state = "bs_marine"
+
+/datum/atom_skin/blueshield_armor/bulky
+	preview_name = "Bulky"
+	new_icon_state = "vest_black"
 
 /datum/armor/suit_armor/blueshield
 	bomb = 30
