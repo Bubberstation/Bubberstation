@@ -23,6 +23,19 @@
 	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_MOONWATER
 	canSmoothWith = SMOOTH_GROUP_MOONWATER
 
+/turf/open/water/moonstation/infested
+
+	name = "carp-infested deep treacherous lunar water"
+	desc = "Very dangerous lunar water. You feel like it would be a very bad idea to enter this water unprepared."
+
+	immerse_overlay = "immerse_deep"
+	is_swimming_tile = TRUE
+
+	stamina_entry_cost = 25
+	ticking_stamina_cost = 15
+	ticking_oxy_damage = 2
+	exhaust_swimmer_prob = 100
+
 /turf/open/water/moonstation/surface
 
 	name = "lunar surface water"
