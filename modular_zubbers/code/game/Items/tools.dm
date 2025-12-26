@@ -10,9 +10,10 @@
 
 /obj/item/crowbar/power/protonitrate/Initialize(mapload)
 	. = ..()
+	UnregisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM)
 	RegisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM, PROC_REF(on_transform_toolspeed))
 
-/obj/item/crowbar/power/protonitrate/proc/on_transform_toolspeed(obj/item/source, mob/user, active) //Toolspeed affects how fast you can force open doors, this is so ONLY the prying mode has speed 0.5 while cutting mode stays 0.25
+/obj/item/crowbar/power/protonitrate/proc/on_transform_toolspeed(obj/item/source, mob/user, active) //Toolspeed affects how fast you can force open doors, this is so ONLY the prying mode has speed 0.5 while cutting mode is 0.25
 	SIGNAL_HANDLER
 
 	tool_behaviour = (active ? second_tool_behavior : first_tool_behavior)
