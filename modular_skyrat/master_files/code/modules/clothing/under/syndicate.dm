@@ -33,11 +33,22 @@
 	has_sensor = HAS_SENSORS
 	armor_type = /datum/armor/clothing_under
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
-	unique_reskin = list(
-		RESKIN_NT = "tactifool_blue",
-		RESKIN_CHARCOAL = "tactifool"
-	)
 	resistance_flags = FLAMMABLE
+
+/obj/item/clothing/under/syndicate/tacticool/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/tacticool_turtleneck)
+
+/datum/atom_skin/tacticool_turtleneck
+	abstract_type = /datum/atom_skin/tacticool_turtleneck
+
+/datum/atom_skin/tacticool_turtleneck/nt
+	preview_name = RESKIN_NT
+	new_icon_state = "tactifool_blue"
+
+/datum/atom_skin/tacticool_turtleneck/charcoal
+	preview_name = RESKIN_CHARCOAL
+	new_icon_state = "tactifool"
 
 /obj/item/clothing/under/syndicate/tacticool/reskin_obj(mob/M)
 	..()
@@ -54,10 +65,21 @@
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	dying_key = DYE_REGISTRY_JUMPSKIRT
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
-	unique_reskin = list(
-		RESKIN_NT = "tactifool_blue_skirt",
-		RESKIN_CHARCOAL = "tactifool_skirt"
-	)
+
+/obj/item/clothing/under/syndicate/tacticool/skirt/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/tacticool_skirtleneck)
+
+/datum/atom_skin/tacticool_skirtleneck
+	abstract_type = /datum/atom_skin/tacticool_skirtleneck
+
+/datum/atom_skin/tacticool_skirtleneck/nt
+	preview_name = RESKIN_NT
+	new_icon_state = "tactifool_blue_skirt"
+
+/datum/atom_skin/tacticool_skirtleneck/charcoal
+	preview_name = RESKIN_CHARCOAL
+	new_icon_state = "tactifool_skirt"
 
 /obj/item/clothing/under/syndicate/bloodred/sleepytime/sensors //Halloween-only
 	has_sensor = HAS_SENSORS
@@ -83,10 +105,21 @@
 	alt_covers_chest = TRUE
 	armor_type = /datum/armor/clothing_under/syndicate
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
-	unique_reskin = list(
-		RESKIN_SYNDIE = "syndicate_red",
-		RESKIN_CHARCOAL = "syndicate"
-	)
+
+/obj/item/clothing/under/syndicate/skyrat/tactical/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/tactical_turtleneck)
+
+/datum/atom_skin/tactical_turtleneck
+	abstract_type = /datum/atom_skin/tactical_turtleneck
+
+/datum/atom_skin/tactical_turtleneck/syndie
+	preview_name = RESKIN_SYNDIE
+	new_icon_state = "syndicate_red"
+
+/datum/atom_skin/tactical_turtleneck/charcoal
+	preview_name = RESKIN_CHARCOAL
+	new_icon_state = "syndicate"
 
 /obj/item/clothing/under/syndicate/skyrat/tactical/reskin_obj(mob/M)
 	..()
@@ -102,10 +135,21 @@
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	dying_key = DYE_REGISTRY_JUMPSKIRT
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
-	unique_reskin = list(
-		RESKIN_SYNDIE = "syndicate_red_skirt",
-		RESKIN_CHARCOAL = "syndicate_skirt"
-	)
+
+/obj/item/clothing/under/syndicate/skyrat/tactical/skirt/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/tactical_skirtleneck)
+
+/datum/atom_skin/tactical_skirtleneck
+	abstract_type = /datum/atom_skin/tactical_skirtleneck
+
+/datum/atom_skin/tactical_skirtleneck/syndie
+	preview_name = RESKIN_SYNDIE
+	new_icon_state = "syndicate_red_skirt"
+
+/datum/atom_skin/tactical_skirtleneck/charcoal
+	preview_name = RESKIN_CHARCOAL
+	new_icon_state = "syndicate_skirt"
 
 /obj/item/clothing/under/syndicate/skyrat/tactical/skirt/reskin_obj(mob/M)
 	..()
