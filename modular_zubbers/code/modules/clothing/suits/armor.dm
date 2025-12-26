@@ -119,33 +119,38 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "civilprotection"
 	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Metro Cop" = list(
-			RESKIN_ICON_STATE = "civilprotection",
-			RESKIN_WORN_ICON_STATE = "civilprotection"
-		),
-		"MetroCop Coat" = list(
-			RESKIN_ICON_STATE = "cp_trenchcoat",
-			RESKIN_WORN_ICON_STATE = "cp_trenchcoat"
-		),
-		"Medic" = list(
-			RESKIN_ICON_STATE = "medicalofficer",
-			RESKIN_WORN_ICON_STATE = "medicalofficer"
-		),
-		"Red Trim" = list(
-			RESKIN_ICON_STATE = "dv_vest",
-			RESKIN_WORN_ICON_STATE = "dv_vest"
-		),
-		"White Overwatch" = list(
-			RESKIN_ICON_STATE = "overwatch_white",
-			RESKIN_WORN_ICON_STATE = "overwatch_white"
-		),
-		"Overwatch" = list(
-			RESKIN_ICON_STATE = "overwatch",
-			RESKIN_WORN_ICON_STATE = "overwatch"
-		),
-		"Red Overwatch" = list(
-			RESKIN_ICON_STATE = "overwatch_red",
-			RESKIN_WORN_ICON_STATE = "overwatch_red"
-		),
-	)
+
+/obj/item/clothing/suit/armor/vest/alt/sec/metrocop/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/metrocop_armor)
+
+/datum/atom_skin/metrocop_armor
+	abstract_type = /datum/atom_skin/metrocop_armor
+
+/datum/atom_skin/metrocop_armor/metro_cop
+	preview_name = "Metro Cop"
+	new_icon_state = "civilprotection"
+
+/datum/atom_skin/metrocop_armor/metro_coat
+	preview_name = "MetroCop Coat"
+	new_icon_state = "cp_trenchcoat"
+
+/datum/atom_skin/metrocop_armor/medic
+	preview_name = "Medic"
+	new_icon_state = "medicalofficer"
+
+/datum/atom_skin/metrocop_armor/red_trim
+	preview_name = "Red Trim"
+	new_icon_state = "dv_vest"
+
+/datum/atom_skin/metrocop_armor/overwatch_white
+	preview_name = "White Overwatch"
+	new_icon_state = "overwatch_white"
+
+/datum/atom_skin/metrocop_armor/overwatch
+	preview_name = "Overwatch"
+	new_icon_state = "overwatch"
+
+/datum/atom_skin/metrocop_armor/overwatch_red
+	preview_name = "Red Overwatch"
+	new_icon_state = "overwatch_red"
