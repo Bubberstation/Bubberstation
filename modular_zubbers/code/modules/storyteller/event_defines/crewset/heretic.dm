@@ -18,3 +18,11 @@
 /datum/round_event_control/antagonist/solo/heretic/midround
 	name = "Midround Heretics"
 	roundstart = FALSE
+
+/datum/round_event_control/antagonist/solo/heretic/can_spawn_event(players_amt, allow_magic = FALSE)
+	. = ..()
+	if(!.) //if we can't spawn it normally, then don't bother checking below
+		return .
+	var/datum/job/chaplain_job = SSjob.get_job(JOB_CHAPLAIN)
+	if(chaplain_job.current_positions <= 0) //Current positions is the amount of people in this job.
+		return FALSE
