@@ -21,6 +21,7 @@
 	spawner_job_path = /datum/job/persistence
 	/// If true, this spawner will give it's target exploitables access.
 	var/give_exploitables = TRUE
+	allow_custom_character = ALL
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/special(mob/living/spawned_mob, mob/mob_possessor)
 	. = ..()
@@ -66,6 +67,7 @@
 	you_are_text = "You are a Syndicate cyborg, assigned to be part of a crew aboard a landcrawler"
 	flavour_text = "You have been deployed into enemy territory. Continue working the best you can, and keep a low profile."
 	deletes_on_zero_uses_left = TRUE
+	allow_custom_character = ALL
 
 /obj/effect/mob_spawn/ghost_role/robot/persistence/special(mob/living/silicon/robot/new_spawn)
 	. = ..()

@@ -17,16 +17,6 @@
 /area/mine/blacksmith)
 "n" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/stack/sheet/mineral/coal/ten,
-/obj/item/forging/billow,
-/obj/item/forging/hammer,
-/obj/item/forging/tongs,
-/obj/item/stack/sheet/bronze/thirty,
-/obj/item/stack/sheet/iron/twenty,
-/obj/item/stack/rods/twentyfive,
-/obj/item/clothing/suit/toggle/jacket/zubber/bomber/cargo/smith,
-/obj/item/clothing/suit/leatherapron,
-/obj/structure/cargo_shelf,
 /obj/machinery/airalarm/directional/east,
 /turf/open/floor/stone,
 /area/mine/blacksmith)
@@ -82,8 +72,8 @@
 /area/mine/blacksmith)
 "O" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/space_heater,
 /obj/machinery/camera/autoname/mine/directional/east,
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/stone,
 /area/mine/blacksmith)
 "P" = (
@@ -105,9 +95,26 @@
 /obj/item/radio/intercom/directional/west,
 /turf/open/floor/stone,
 /area/mine/blacksmith)
+"U" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/wooden,
+/obj/item/clothing/suit/leatherapron,
+/obj/item/clothing/suit/toggle/jacket/zubber/bomber/cargo/smith,
+/obj/item/stack/rods/twentyfive,
+/obj/item/stack/sheet/iron/twenty,
+/obj/item/stack/sheet/bronze/thirty,
+/obj/item/forging/tongs,
+/obj/item/forging/hammer,
+/obj/item/forging/billow,
+/obj/item/stack/sheet/mineral/coal/ten,
+/turf/open/floor/stone,
+/area/mine/blacksmith)
 "V" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/space_heater,
 /turf/open/floor/stone,
 /area/mine/blacksmith)
 
@@ -133,7 +140,7 @@ L
 V
 l
 y
-C
+U
 "}
 (5,1,1) = {"
 O

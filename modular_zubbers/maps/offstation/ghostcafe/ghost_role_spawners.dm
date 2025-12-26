@@ -19,6 +19,7 @@
 	flavour_text = "Who could have thought? This awesome local cafe accepts cyborgs too!"
 	mob_type = /mob/living/silicon/robot/model/roleplay
 	random_appearance = FALSE
+	allow_custom_character = ALL
 
 /obj/effect/mob_spawn/ghost_role/robot/ghostcafe/special(mob/living/silicon/robot/new_spawn)
 	. = ..()
@@ -53,6 +54,7 @@
 	random_appearance = FALSE
 	loadout_enabled = TRUE
 	quirks_enabled = TRUE
+	allow_custom_character = ALL
 
 /obj/effect/mob_spawn/ghost_role/human/ghostcafe/special(mob/living/carbon/human/new_spawn)
 	. = ..()

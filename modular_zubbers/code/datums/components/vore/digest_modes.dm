@@ -105,10 +105,10 @@ GLOBAL_DATUM_INIT(vore_cryopod, /obj/machinery/cryopod/quiet/vore, new /obj/mach
 				vore_belly.digestion_death(L)
 			continue
 		if(vore_belly.brute_damage > 0)
-			L.adjustBruteLoss(vore_belly.brute_damage * seconds_per_tick)
+			L.adjust_brute_loss(vore_belly.brute_damage * seconds_per_tick)
 			living_parent.adjust_nutrition(NUTRITION_PER_DAMAGE * vore_belly.brute_damage * seconds_per_tick)
 		if(vore_belly.burn_damage > 0)
-			L.adjustFireLoss(vore_belly.burn_damage * seconds_per_tick)
+			L.adjust_fire_loss(vore_belly.burn_damage * seconds_per_tick)
 			living_parent.adjust_nutrition(NUTRITION_PER_DAMAGE * vore_belly.burn_damage * seconds_per_tick)
 
 /datum/digest_mode/absorb
