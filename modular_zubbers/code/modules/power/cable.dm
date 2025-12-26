@@ -8,8 +8,12 @@
 	return try_heal(interacting_with, user)
 
 /obj/item/stack/cable_coil/proc/try_heal(atom/interacting_with, mob/living/user)
-	var/mob/living/carbon/carbon_patient = interacting_with
+	var/mob/living/carbon/human/carbon_patient = interacting_with
 	var/obj/item/bodypart/preferred_limb = carbon_patient.get_bodypart(check_zone(user.zone_selected))
+	var/obj/item/clothing/under/uniform = carbon_patient.w_uniform
+	if(uniform?.has_sensor == BROKEN_SENSORS)
+		if(uniform?.repair_sensors(user))
+			return ITEM_INTERACT_SUCCESS
 	if(isnull(preferred_limb) || !IS_ROBOTIC_LIMB(preferred_limb))
 		return NONE
 	if(!(preferred_limb.burn_dam > 0))
