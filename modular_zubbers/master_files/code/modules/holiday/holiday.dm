@@ -130,6 +130,13 @@
 	name = CHRISTMAS
 	begin_day = 18
 	no_mail_holiday = FALSE
+	holiday_mail = list(
+		/obj/item/clothing/head/beanie/christmas,
+		/obj/item/clothing/neck/scarf/christmas,
+		/obj/item/food/cookie/sugar,
+		/obj/item/gift/anything,
+		/obj/item/toy/xmas_cracker,
+	)
 	holiday_colors = list()
 
 /datum/holiday/xmas/New()
