@@ -79,3 +79,10 @@
 	icon_state = "chocolatepudding"
 	name = "glass of beer batter"
 	desc = "Used in cooking, pure cholesterol, Scottish people eat it."
+
+/datum/reagent/consumable/liz_fizz
+	name = "Liz Fizz"
+	description = "Triple citrus layered with some ice and cream."
+	color = "#D8FF59"
+	quality = DRINK_NICE
+	taste_description = "brain freezing sourness"
