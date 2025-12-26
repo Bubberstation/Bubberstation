@@ -34,6 +34,15 @@
 	)
 	special_light_key = null
 	borg_skins = list(
+		"Standard" = list(
+			SKIN_ICON_STATE = "centcom",
+			SKIN_ICON = CYBORG_ICON_CENTCOM,
+		), //Credit: Monkestation
+		"Kerfus" = list(
+			SKIN_ICON_STATE = "kerfus_centcom",
+			SKIN_LIGHT_KEY = NONE,
+			SKIN_ICON = CYBORG_ICON_CENTCOM,
+		), //Credit: TauCeti
 		"Raptor" = list(
 			SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR,
 			SKIN_ICON = CYBORG_ICON_CENTCOM_LARGE_BUBBER,

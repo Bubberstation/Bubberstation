@@ -7,9 +7,7 @@
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_EXTERNAL_SPINES
 
-	preference = "feature_lizard_spines"
-
-	//dna_block = /datum/dna_block/feature/spine // BUBBER EDIT REMOVAL - Customization - We have our own system to handle DNA.
+	//dna_block = /datum/dna_block/feature/accessory/spine // BUBBER EDIT REMOVAL - Customization - We have our own system to handle DNA.
 	restyle_flags = EXTERNAL_RESTYLE_FLESH
 
 	bodypart_overlay = /datum/bodypart_overlay/mutant/spines
@@ -33,9 +31,6 @@
 	layers = EXTERNAL_ADJACENT|EXTERNAL_BEHIND
 	feature_key = FEATURE_SPINES
 	dyable = TRUE
-
-/datum/bodypart_overlay/mutant/spines/get_global_feature_list()
-	return SSaccessories.sprite_accessories["spines"] // SKYRAT EDIT - Customization - ORIGINAL: return SSaccessories.spines_list
 
 /datum/bodypart_overlay/mutant/spines/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner)
 	return !(bodypart_owner.owner?.obscured_slots & HIDEJUMPSUIT)

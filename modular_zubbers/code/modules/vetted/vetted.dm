@@ -5,7 +5,6 @@ GLOBAL_PROTECT(vetted_list)
 
 /datum/player_rank_controller/vetted
 	rank_title = "vetted user"
-	var/file_path_vetted
 
 /client/
 	var/is_vetted = null

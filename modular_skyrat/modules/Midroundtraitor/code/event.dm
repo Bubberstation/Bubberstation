@@ -55,7 +55,7 @@
 	internals_slot = ITEM_SLOT_RPOCKET
 	belt = /obj/item/storage/belt/military
 	backpack_contents = list(/obj/item/storage/box/survival/syndie=1,\
-		/obj/item/tank/jetpack/oxygen/harness=1,\
+		/obj/item/tank/jetpack/harness=1,\
 		/obj/item/gun/ballistic/automatic/pistol=1,\
 		/obj/item/knife/combat/survival=1,\
 		/obj/item/implanter/explosive=1)

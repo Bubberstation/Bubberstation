@@ -39,6 +39,7 @@
 	)
 
 // MEDICAL
+
 /datum/techweb_node/medbay_equip_adv/New()
 	. = ..()
 	design_ids += list(
@@ -80,6 +81,14 @@
 		"rld_cyborg"
 	)
 
+/datum/techweb_node/borg_utility/New()
+	design_ids += list(
+		"borg_upgrade_detailer",
+		"rld_cyborg_janitor",
+		"cable_coil_cyborg"
+	)
+	return ..()
+
 /datum/techweb_node/borg_medical/New()
 	design_ids += list(
 		"borg_upgrade_surgicalprocessor_sci",
@@ -107,7 +116,13 @@
 	. = ..()
 	design_ids += list(
 		"pinpointer_vent_cyborg",
-		"adv_xenoarchbag_cyborg"
+		"adv_xenoarchbag_cyborg",
+		"pka_railgun_cyborg",
+		"pka_repeater_cyborg",
+		"pka_shotgun_cyborg",
+		"pka_pistol_cyborg",
+		"pka_shockwave_cyborg",
+		"pka_m79_cyborg",
 	)
 /datum/techweb_node/mechlaunchpad
 	id = TECHWEB_NODE_MECHLAUNCHPAD

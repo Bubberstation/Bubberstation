@@ -13,7 +13,7 @@
  * Sensitive areas like the vault, command quarters, heads' offices, etc. are not applicable.
 */
 
-/area/station/ai_monitored/command/storage/eva
+/area/station/command/eva
 	engineering_override_eligible = TRUE
 
 /area/station/cargo

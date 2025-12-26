@@ -1,4 +1,3 @@
-
 /datum/uplink_item/role_restricted/combat_clown_shoes
 	name = "Combat Clown Shoes"
 	desc = "Advanced clown shoes that protect the wearer and render them nearly immune to slipping on their own peels. They also squeak at 100% capacity."
@@ -16,3 +15,8 @@
 	category = /datum/uplink_category/role_restricted
 	restricted_roles = list(JOB_CLOWN)
 	purchasable_from = UPLINK_TRAITORS
+
+/datum/uplink_item/role_restricted/evil_seedling
+	desc = "A rare seed we have recovered that grows into a dangerous species that will aid you with your tasks! <b>Note that this cannot be used with the Perennial Growth trait!</b>"
+	cost = 2
+

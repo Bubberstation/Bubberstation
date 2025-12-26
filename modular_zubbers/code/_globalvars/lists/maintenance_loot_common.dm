@@ -506,6 +506,8 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/clothing/mask/gas/cyborg = 10,
 		/obj/item/clothing/mask/gas/explorer = 5,
 		/obj/item/clothing/mask/gas/glass = 50,
+		/obj/item/clothing/mask/gas/soviet = 30,
+		/obj/item/clothing/mask/gas/german = 30,
 		/obj/item/gas_filter = 50,
 		/obj/item/gas_filter/damaged = 100,
 		/obj/item/gas_filter/plasmaman = 25,

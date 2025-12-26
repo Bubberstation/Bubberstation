@@ -64,10 +64,10 @@
 		owner.adjust_hallucinations(60 SECONDS)
 		lust_message = "You begin to fantasize of what you could do to someone..."
 	if(stress >= 240)
-		human_owner.adjustStaminaLoss(30)
+		human_owner.adjust_stamina_loss(30)
 		lust_message = "You body feels so very hot, almost unwilling to cooperate..."
 	if(stress >= 300)
-		human_owner.adjustOxyLoss(40)
+		human_owner.adjust_oxy_loss(40)
 		lust_message = "You feel your neck tightening, straining..."
 	to_chat(human_owner, span_purple(lust_message))
 	return TRUE
@@ -337,24 +337,14 @@
 *	EMPATH BONUS
 */
 
-/mob/living/carbon/human/examine(mob/user)
-	. = ..()
-	var/mob/living/examiner = user
-	if(stat >= DEAD || HAS_TRAIT(src, TRAIT_FAKEDEATH) || src == examiner || !HAS_TRAIT(examiner, TRAIT_EMPATH))
-		return
-
-	if(examiner.client?.prefs?.read_preference(/datum/preference/toggle/erp))
-		var/arousal_message
-		switch(arousal)
-			if(AROUSAL_MINIMUM_DETECTABLE to AROUSAL_LOW)
-				arousal_message = span_purple("[p_they()] [p_are()] slightly blushed.") + "\n"
-			if(AROUSAL_LOW to AROUSAL_MEDIUM)
-				arousal_message = span_purple("[p_they()] [p_are()] quite aroused and seems to be stirring up lewd thoughts in [p_their()] head.") + "\n"
-			if(AROUSAL_HIGH to AROUSAL_AUTO_CLIMAX_THRESHOLD)
-				arousal_message = span_purple("[p_they()] [p_are()] aroused as hell.") + "\n"
-			if(AROUSAL_AUTO_CLIMAX_THRESHOLD to INFINITY)
-				arousal_message = span_purple("[p_they()] [p_are()] extremely excited, exhausting from entolerable desire.") + "\n"
-		if(arousal_message)
-			. += arousal_message
-	else if(arousal > AROUSAL_MINIMUM_DETECTABLE)
-		. += span_purple("[p_they()] [p_are()] slightly blushed.") + "\n"
+/// Used in the empathy component
+/mob/living/carbon/human/proc/get_arousal_info()
+	switch(arousal)
+		if(AROUSAL_MINIMUM_DETECTABLE to AROUSAL_LOW)
+			return span_purple("[p_they()] [p_are()] slightly blushed.")
+		if(AROUSAL_LOW to AROUSAL_MEDIUM)
+			return span_purple("[p_they()] [p_are()] quite aroused and seems to be stirring up lewd thoughts in [p_their()] head.")
+		if(AROUSAL_HIGH to AROUSAL_AUTO_CLIMAX_THRESHOLD)
+			return span_purple("[p_they()] [p_are()] aroused as hell.")
+		if(AROUSAL_AUTO_CLIMAX_THRESHOLD to INFINITY)
+			return span_purple("[p_they()] [p_are()] extremely excited, exhausting from intolerable desire.")

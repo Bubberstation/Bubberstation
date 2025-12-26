@@ -166,7 +166,7 @@
 	base_pixel_x = 0
 	pixel_x = 0
 	force = 2 //Also very weak because it's smaller
-	suppressed = TRUE //Softer fire sound
+	suppressed = SUPPRESSED_QUIET //Softer fire sound
 	can_unsuppress = FALSE //Permanently silenced
 	syringes = list(new /obj/item/reagent_containers/syringe())
 
@@ -234,5 +234,5 @@
 	if(!.)
 		return
 	visible_message(span_danger("[user] shoots the blowgun!"))
-	user.adjustStaminaLoss(20, updating_stamina = FALSE)
-	user.adjustOxyLoss(20)
+	user.adjust_stamina_loss(20, updating_stamina = FALSE)
+	user.adjust_oxy_loss(20)

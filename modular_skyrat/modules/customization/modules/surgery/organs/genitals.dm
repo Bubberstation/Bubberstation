@@ -163,7 +163,7 @@
 			if(SHEATH_SLIT)
 				returned_string = "You see a slit." ///Typo fix.
 		if(aroused != AROUSAL_PARTIAL)
-			return
+			return returned_string
 		returned_string += " There's a [pname]penis poking out of it. "
 	else
 		returned_string += "You see a [pname]penis. "
@@ -177,7 +177,7 @@
 			//I love penis math
 			reported_length *= max(0.5, 1 - (-temperature_difference/50)**4)
 	reported_length = CEILING(reported_length,0.25)
-	returned_string = "You estimate it's about [reported_length] inches long, and about [reported_girth] inches in diameter."
+	returned_string += "You estimate it's about [reported_length] inches long, and about [reported_girth] inches in diameter."
 
 	switch(aroused)
 		if(AROUSAL_NONE)
@@ -524,16 +524,16 @@
 		to_chat(usr, span_warning("You can't toggle genitals visibility right now..."))
 		return
 
-	var/list/genital_list = list()
+	var/list/genital_list = list("all")
 	for(var/obj/item/organ/genital/genital in organs)
 		if(!genital.visibility_preference == GENITAL_SKIP_VISIBILITY)
 			genital_list += genital
-	if(!genital_list.len) //There is nothing to expose
+	if(genital_list.len == 1) //There is nothing to expose
 		return
 	//Full list of exposable genitals created
 	var/obj/item/organ/genital/picked_organ
 	picked_organ = input(src, "Choose which genitalia to expose/hide", "Expose/Hide genitals") as null|anything in genital_list
-	if(picked_organ && (picked_organ in organs))
+	if(picked_organ && ((picked_organ in organs) || picked_organ == "all"))
 		var/list/gen_vis_trans = list("Never show" = GENITAL_NEVER_SHOW,
 												"Hidden by clothes" = GENITAL_HIDDEN_BY_CLOTHES,
 												"Always show" = GENITAL_ALWAYS_SHOW
@@ -541,6 +541,12 @@
 		var/picked_visibility = input(src, "Choose visibility setting", "Expose/Hide genitals") as null|anything in gen_vis_trans
 		if(picked_visibility && picked_organ && (picked_organ in organs))
 			picked_organ.visibility_preference = gen_vis_trans[picked_visibility]
+			update_body()
+			SEND_SIGNAL(src, COMSIG_HUMAN_TOGGLE_GENITALS)
+		if(picked_visibility && picked_organ == "all")
+			for(var/obj/item/organ/genital/genital in organs)
+				if(!genital.visibility_preference == GENITAL_SKIP_VISIBILITY)
+					genital.visibility_preference = gen_vis_trans[picked_visibility]
 			update_body()
 			SEND_SIGNAL(src, COMSIG_HUMAN_TOGGLE_GENITALS)
 	return
@@ -561,25 +567,12 @@
 		to_chat(usr, span_warning("You can't toggle arousal right now..."))
 		return
 
-	var/list/genital_list = list()
-	for(var/obj/item/organ/genital/genital in organs)
-		if(!genital.aroused == AROUSAL_CANT)
-			genital_list += genital
-	if(!genital_list.len) //There is nothing to expose
-		return
-	//Full list of exposable genitals created
-	var/obj/item/organ/genital/picked_organ
-	picked_organ = input(src, "Choose which genitalia to change arousal", "Expose/Hide genitals") as null|anything in genital_list
-	if(picked_organ && (picked_organ in organs))
-		var/list/gen_arous_trans = list(
-			"Not aroused" = AROUSAL_NONE,
-			"Partly aroused" = AROUSAL_PARTIAL,
-			"Very aroused" = AROUSAL_FULL,
-		)
-		var/picked_arousal = input(src, "Choose arousal", "Toggle Arousal") as null|anything in gen_arous_trans
-		if(picked_arousal && picked_organ && (picked_organ in organs))
-			picked_organ.aroused = gen_arous_trans[picked_arousal]
-			picked_organ.update_sprite_suffix()
-			update_body()
-			SEND_SIGNAL(src, COMSIG_HUMAN_TOGGLE_AROUSAL)
+	var/arousal_target = tgui_input_number(src, "[AROUSAL_NONE]= No arousal, <[AROUSAL_LOW] Low/partial Arousal, [AROUSAL_LOW] - [AROUSAL_HIGH] Medium/full Arousal, >[AROUSAL_HIGH] Strong/full Arousal", "Set Arousal Amount", arousal, AROUSAL_LIMIT, AROUSAL_MINIMUM, 0)
+	if (!isnull(arousal_target))
+		var/datum/component/change_arousal_on_life/to_del = GetComponent(/datum/component/change_arousal_on_life/)
+		if (!isnull(to_del))
+			qdel(to_del)
+		AddComponent(/datum/component/change_arousal_on_life)
+		arousal_goal = arousal_target
+		SEND_SIGNAL(src, COMSIG_HUMAN_TOGGLE_AROUSAL)
 	return

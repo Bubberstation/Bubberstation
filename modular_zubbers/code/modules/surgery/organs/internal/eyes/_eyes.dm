@@ -16,3 +16,10 @@
 	blink_animation = FALSE
 	iris_overlay = null
 	lighting_cutoff = LIGHTING_CUTOFF_LOW
+
+/obj/item/organ/eyes/robotic/multitool_act(mob/living/user, obj/item/tool)
+	. = ..()
+	// Choose left and right eye color
+	to_chat(user, span_notice("Changing Eye Color: Pressing 'Cancel' or closing out the window will return the eye's current color."))
+	eye_color_left = tgui_color_picker(user, "Pick a new color", "Left Eye Color", eye_color_left)
+	eye_color_right = tgui_color_picker(user, "Pick a new color", "Right Eye Color", eye_color_right)

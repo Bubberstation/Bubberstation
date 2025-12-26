@@ -238,7 +238,7 @@
 									"GET OVER HERE!!",
 								)
 
-			INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), message = pick(ashie_messages), language = /datum/language/draconic)
+			INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), message = pick(ashie_messages), language = /datum/language/ashtongue)
 			introduced |= WEAKREF(target)
 			get_angry()
 			GiveTarget(target)

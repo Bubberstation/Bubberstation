@@ -91,11 +91,6 @@ STATION_GOAL_BUDGET 2
 ## Roundstart command report and greendshift announcements are unaffected.
 ROUNDSTART_BLUE_ALERT 1
 
-## If TRUE / 1, station is raised to blue alert at roundstart.
-## If FALSE / 0, station remains at green alert.
-## Roundstart command report and greendshift announcements are unaffected.
-ROUNDSTART_BLUE_ALERT 1
-
 ## GAME MODES ###
 
 ## Uncomment to not send a roundstart intercept report. Gamemodes may override this.
@@ -638,3 +633,5 @@ SPY_EASY_REWARD_TC_THRESHOLD 5
 ## Hard bounties grant uplink rewards that cost this much TC (or higher).
 ## Also functions as the upper end for medium bounties.
 SPY_HARD_REWARD_TC_THRESHOLD 15
+
+DEFAULT_QUIRK_POINTS 0

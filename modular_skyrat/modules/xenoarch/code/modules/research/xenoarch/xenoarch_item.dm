@@ -109,6 +109,9 @@
 	name = "magnified useless relic"
 	desc = "A useless relic that can be exported through Cargo. Has been magnified."
 
+/datum/export/xenoarch
+	abstract_type = /datum/export/xenoarch
+
 /datum/export/xenoarch/useless_relic
 	cost = CARGO_CRATE_VALUE * 3 //600
 	unit_name = "useless relic"

@@ -59,6 +59,11 @@ const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
     text: 'Unknot',
   },
 
+  remove_item_cuffs: {
+    icon: 'handcuffs',
+    text: 'Remove Handcuffs',
+  },
+
   enable_internals: {
     icon: 'tg-air-tank',
     text: 'Enable internals',
@@ -83,6 +88,11 @@ const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
     icon: 'power-off',
     text: 'Emergency MODsuit reactivation',
   }, // BUBBER EDIT END
+
+  strip_accessory: {
+    icon: 'ribbon',
+    text: 'Strip accessory',
+  },
 };
 
 const SLOTS: Record<
@@ -343,7 +353,7 @@ export const StripMenu = (props) => {
                     );
 
                     tooltip = item.name;
-                    if (item.alternate) {
+                    if (item.alternate?.length) {
                       alternateActions = item.alternate.map(
                         (alternateKey, idx) => {
                           const alternateAction =
@@ -359,6 +369,7 @@ export const StripMenu = (props) => {
                             zIndex: '2',
                             left: `${idx === 0 ? '0' : undefined}`,
                             right: `${idx === 1 ? '0' : undefined}`,
+                            top: `${idx === 2 ? '0' : undefined}`,
                             bottom: '0',
                             padding: '0',
                             textAlign: 'center',
