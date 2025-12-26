@@ -23,7 +23,6 @@
 	greyscale_config_inhand_right = /datum/greyscale_config/collar/gps/righthand
 	greyscale_colors = "#8B96B7#505665"
 	flags_1 = IS_PLAYER_COLORABLE_1
-	unique_reskin = null
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/neck/kink_collar/locked/gps/Initialize(mapload)
@@ -33,6 +32,9 @@
 	register_context()
 	update_icon(UPDATE_OVERLAYS)
 	RegisterSignal(src, COMSIG_NAME_CHANGED, PROC_REF(on_update_name))
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 /obj/item/clothing/neck/kink_collar/locked/gps/proc/on_update_name()
 	SIGNAL_HANDLER

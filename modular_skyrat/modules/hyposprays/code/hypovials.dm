@@ -15,17 +15,49 @@
 	fill_icon = 'modular_skyrat/modules/hyposprays/icons/hypospray_fillings.dmi'
 	current_skin = "hypovial"
 
-	unique_reskin = list(
-		"Sterile" = "hypovial",
-		"Generic" = "hypovial-generic",
-		"Brute" = "hypovial-brute",
-		"Burn" = "hypovial-burn",
-		"Toxin" = "hypovial-tox",
-		"Oxyloss" = "hypovial-oxy",
-		"Crit" = "hypovial-crit",
-		"Buff" = "hypovial-buff",
-		"Custom" = "hypovial-custom",
-	)
+/obj/item/reagent_containers/cup/vial/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hypovial)
+
+/datum/atom_skin/hypovial
+	abstract_type = /datum/atom_skin/hypovial
+
+/datum/atom_skin/hypovial/sterile
+	preview_name = "Sterile"
+	new_icon_state = "hypovial"
+
+/datum/atom_skin/hypovial/generic
+	preview_name = "Generic"
+	new_icon_state = "hypovial-generic"
+
+/datum/atom_skin/hypovial/brute
+	preview_name = "Brute"
+	new_icon_state = "hypovial-brute"
+
+/datum/atom_skin/hypovial/burn
+	preview_name = "Burn"
+	new_icon_state = "hypovial-burn"
+
+/datum/atom_skin/hypovial/toxin
+	preview_name = "Toxin"
+	new_icon_state = "hypovial-tox"
+
+/datum/atom_skin/hypovial/oxyloss
+	preview_name = "Oxyloss"
+	new_icon_state = "hypovial-oxy"
+
+/datum/atom_skin/hypovial/crit
+	preview_name = "Crit"
+	new_icon_state = "hypovial-crit"
+
+/datum/atom_skin/hypovial/buff
+	preview_name = "Buff"
+	new_icon_state = "hypovial-buff"
+
+/datum/atom_skin/hypovial/custom
+	preview_name = "Custom"
+	new_icon_state = "hypovial-custom"
+
 	/// The original icon file where our overlays reside.
 	var/original_icon = 'modular_skyrat/modules/hyposprays/icons/vials.dmi'
 
@@ -119,17 +151,48 @@
 	possible_transfer_amounts = list(1,2,5,10,20,30,40,50,100)
 	type_suffix = "-l"
 
-	unique_reskin = list(
-		"Sterile" = "hypoviallarge",
-		"Generic" = "hypoviallarge-generic",
-		"Brute" = "hypoviallarge-brute",
-		"Burn" = "hypoviallarge-burn",
-		"Toxin" = "hypoviallarge-tox",
-		"Oxyloss" = "hypoviallarge-oxy",
-		"Crit" = "hypoviallarge-crit",
-		"Buff" = "hypoviallarge-buff",
-		"Custom" = "hypoviallarge-custom",
-	)
+/obj/item/reagent_containers/cup/vial/large/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hypovial_large)
+
+/datum/atom_skin/hypovial_large
+	abstract_type = /datum/atom_skin/hypovial_large
+
+/datum/atom_skin/hypovial_large/sterile
+	preview_name = "Sterile"
+	new_icon_state = "hypoviallarge"
+
+/datum/atom_skin/hypovial_large/generic
+	preview_name = "Generic"
+	new_icon_state = "hypoviallarge-generic"
+
+/datum/atom_skin/hypovial_large/brute
+	preview_name = "Brute"
+	new_icon_state = "hypoviallarge-brute"
+
+/datum/atom_skin/hypovial_large/burn
+	preview_name = "Burn"
+	new_icon_state = "hypoviallarge-burn"
+
+/datum/atom_skin/hypovial_large/toxin
+	preview_name = "Toxin"
+	new_icon_state = "hypoviallarge-tox"
+
+/datum/atom_skin/hypovial_large/oxyloss
+	preview_name = "Oxyloss"
+	new_icon_state = "hypoviallarge-oxy"
+
+/datum/atom_skin/hypovial_large/crit
+	preview_name = "Crit"
+	new_icon_state = "hypoviallarge-crit"
+
+/datum/atom_skin/hypovial_large/buff
+	preview_name = "Buff"
+	new_icon_state = "hypoviallarge-buff"
+
+/datum/atom_skin/hypovial_large/custom
+	preview_name = "Custom"
+	new_icon_state = "hypoviallarge-custom"
 
 /obj/item/reagent_containers/cup/vial/large/style/
 	icon_state = "hypoviallarge"

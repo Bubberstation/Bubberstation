@@ -23,33 +23,6 @@
 	interaction_flags_click = NEED_DEXTERITY
 	w_class = WEIGHT_CLASS_SMALL
 	actions_types = list(/datum/action/item_action/adjust/papermask)
-	unique_reskin = list(
-			"Blank" = "mask_paper",
-			"Neutral" = "mask_neutral",
-			"Eye" = "mask_eye",
-			"Sleep" = "mask_sleep",
-			"Heart" = "mask_heart",
-			"Core" = "mask_core",
-			"Plus" = "mask_plus",
-			"Square" = "mask_square",
-			"Bullseye" = "mask_bullseye",
-			"Vertical" = "mask_vertical",
-			"Horizontal" = "mask_horizontal",
-			"X" = "mask_x",
-			"Bug" = "mask_bug",
-			"Double" = "mask_double",
-			"Mark" = "mask_mark",
-			"Line" = "mask_line",
-			"Minus" = "mask_minus",
-			"Four" = "mask_four",
-			"Diamond" = "mask_diamond",
-			"Cat" = "mask_cat",
-			"Big Eye" = "mask_bigeye",
-			"Good" = "mask_good",
-			"Bad" = "mask_bad",
-			"Happy" = "mask_happy",
-			"Sad" = "mask_sad",
-	)
 
 	/// Whether or not the mask is currently being layered over (or under!) hair. FALSE/null means the mask is layered over the hair (this is how it starts off).
 	var/wear_hair_over
@@ -60,6 +33,110 @@
 	. = ..()
 	if(wear_hair_over)
 		alternate_worn_layer = BACK_LAYER
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/paper_mask, infinite = TRUE)
+
+/datum/atom_skin/paper_mask
+	abstract_type = /datum/atom_skin/paper_mask
+
+/datum/atom_skin/paper_mask/blank
+	preview_name = "Blank"
+	new_icon_state = "mask_paper"
+
+/datum/atom_skin/paper_mask/neutral
+	preview_name = "Neutral"
+	new_icon_state = "mask_neutral"
+
+/datum/atom_skin/paper_mask/eye
+	preview_name = "Eye"
+	new_icon_state = "mask_eye"
+
+/datum/atom_skin/paper_mask/sleepy
+	preview_name = "Sleep"
+	new_icon_state = "mask_sleep"
+
+/datum/atom_skin/paper_mask/heart
+	preview_name = "Heart"
+	new_icon_state = "mask_heart"
+
+/datum/atom_skin/paper_mask/core
+	preview_name = "Core"
+	new_icon_state = "mask_core"
+
+/datum/atom_skin/paper_mask/plus
+	preview_name = "Plus"
+	new_icon_state = "mask_plus"
+
+/datum/atom_skin/paper_mask/square
+	preview_name = "Square"
+	new_icon_state = "mask_square"
+
+/datum/atom_skin/paper_mask/bullseye
+	preview_name = "Bullseye"
+	new_icon_state = "mask_bullseye"
+
+/datum/atom_skin/paper_mask/vertical
+	preview_name = "Vertical"
+	new_icon_state = "mask_vertical"
+
+/datum/atom_skin/paper_mask/horizontal
+	preview_name = "Horizontal"
+	new_icon_state = "mask_horizontal"
+
+/datum/atom_skin/paper_mask/x
+	preview_name = "X"
+	new_icon_state = "mask_x"
+
+/datum/atom_skin/paper_mask/bug
+	preview_name = "Bug"
+	new_icon_state = "mask_bug"
+
+/datum/atom_skin/paper_mask/double
+	preview_name = "Double"
+	new_icon_state = "mask_double"
+
+/datum/atom_skin/paper_mask/mark
+	preview_name = "Mark"
+	new_icon_state = "mask_mark"
+
+/datum/atom_skin/paper_mask/line
+	preview_name = "Line"
+	new_icon_state = "mask_line"
+
+/datum/atom_skin/paper_mask/minus
+	preview_name = "Minus"
+	new_icon_state = "mask_minus"
+
+/datum/atom_skin/paper_mask/four
+	preview_name = "Four"
+	new_icon_state = "mask_four"
+
+/datum/atom_skin/paper_mask/diamond
+	preview_name = "Diamond"
+	new_icon_state = "mask_diamond"
+
+/datum/atom_skin/paper_mask/cat
+	preview_name = "Cat"
+	new_icon_state = "mask_cat"
+
+/datum/atom_skin/paper_mask/big_eye
+	preview_name = "Big Eye"
+	new_icon_state = "mask_bigeye"
+
+/datum/atom_skin/paper_mask/good
+	preview_name = "Good"
+	new_icon_state = "mask_good"
+
+/datum/atom_skin/paper_mask/bad
+	preview_name = "Bad"
+	new_icon_state = "mask_bad"
+
+/datum/atom_skin/paper_mask/happy
+	preview_name = "Happy"
+	new_icon_state = "mask_happy"
+
+/datum/atom_skin/paper_mask/sad
+	preview_name = "Sad"
+	new_icon_state = "mask_sad"
 
 /obj/item/clothing/mask/paper/worn_overlays(mutable_appearance/standing, isinhands, icon_file)
 	. = ..()
@@ -95,8 +172,6 @@
 		carbon_user = user
 	if(carbon_user && carbon_user.wear_mask == src)
 		carbon_user.update_worn_mask()
-
-	current_skin = null //so we can infinitely reskin
 
 /obj/item/clothing/mask/paper/proc/adjust_mask(mob/living/carbon/human/user)
 	if(!istype(user))
