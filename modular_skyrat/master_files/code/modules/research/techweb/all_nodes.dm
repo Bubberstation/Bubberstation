@@ -233,6 +233,7 @@
 		"brute3medicell",
 		"burn3medicell",
 		"oxy3medicell",
+		"surgical_processor",
 		"toxin3medicell",
 	)
 	return ..()
