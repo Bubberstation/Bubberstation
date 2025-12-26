@@ -100,7 +100,7 @@
 		This spell can be cast in rapid succession, but doing so will increase the cooldown."
 	gain_text = "In the flurry of death, he found peace within himself. Despite insurmountable odds, he forged on."
 	action_to_add = /datum/action/cooldown/spell/realignment
-	cost = 2
+	cost = 3 // BUBBER EDIT - Previous: 2
 
 /// The amount of blood flow reduced per level of severity of gained bleeding wounds for Stance of the Torn Champion.
 #define BLOOD_FLOW_PER_SEVEIRTY -1
@@ -112,7 +112,7 @@
 		you gain increased resistance to gaining wounds and resistance to slowdown."
 	gain_text = "In time, it was he who stood alone among the bodies of his former comrades, awash in blood, none of it his own. \
 		He was without rival, equal, or purpose."
-	cost = 2
+	cost = 3 // BUBBER EDIT - Previous: 2
 	research_tree_icon_path = 'icons/effects/blood.dmi'
 	research_tree_icon_state = "suitblood"
 	research_tree_icon_dir = SOUTH
@@ -197,7 +197,7 @@
 		I have made an enemy of all, and peace will never be known to me \
 		again. I have shattered bonds and severed all alliances. In this truth, \
 		I know now the fragility of comradery. My enemies will be all, divided."
-	cost = 2
+	cost = 3 // BUBBER EDIT - Previous: 2
 	action_to_add = /datum/action/cooldown/spell/wolves_among_sheep
 	is_final_knowledge = TRUE
 
@@ -305,7 +305,7 @@
 	gain_text = "Without thinking, I took the knife of a fallen soldier and threw with all my might. My aim was true! \
 		The Torn Champion smiled at their first taste of agony, and with a nod, their blades became my own."
 	action_to_add = /datum/action/cooldown/spell/pointed/projectile/furious_steel
-	cost = 2
+	cost = 3 // BUBBER EDIT - Previous: 2
 
 /datum/heretic_knowledge/ultimate/blade_final
 	name = "Maelstrom of Silver"

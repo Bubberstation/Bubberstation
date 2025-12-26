@@ -108,9 +108,9 @@
 		"Cooldown of the riposte reduced to 10 seconds."
 	)
 	/// The cooldown before we can riposte again
-	var/base_cooldown = 20 SECONDS
+	var/base_cooldown = 18 SECONDS // BUBBER EDIT - Previous: 20 SECONDS
 	/// The cooldown reduction gained from upgrading
-	var/cooldown_reduction = 5 SECONDS
+	var/cooldown_reduction = 4.5 SECONDS // BUBBER EDIT - Previous: 5 SECONDS
 	/// Whether the counter-attack is ready or not.
 	/// Used so we can give feedback when it's ready again
 	var/riposte_ready = TRUE
@@ -519,11 +519,20 @@
 	if(!HAS_TRAIT(our_turf, TRAIT_RUSTY))
 		return
 
+	// BUBBER EDIT - ADDITION - START
+	if(passive_level < HERETIC_LEVEL_UPGRADE && !source.combat_mode)
+		return
+	// BUBBER EDIT - ADDTION - END
 	// Heals all damage + Stamina
 	var/need_mob_update = FALSE
 	var/delta_time = DELTA_WORLD_TIME(SSmobs) * 0.5 // SSmobs.wait is 2 secs, so this should be halved.
-	var/main_healing = 1 + 1 * passive_level * delta_time
-	var/stam_healing = 5 + 5 * passive_level * delta_time
+	var/healing_mult = 1 // BUBBER EDIT - ADDITION
+	var/main_healing = 1 + 1 * passive_level * delta_time * healing_mult // BUBBER EDIT - ADDITION - Previous: 1 + 1 * passive_level * delta_time
+	var/stam_healing = 5 + 5 * passive_level * delta_time * healing_mult // BUBBER EDIT - ADDITION - Previous: 5 + 5 * passive_level * delta_time
+	// BUBBER EDIT - ADDITION - START
+	if(!istype(heretic_datum.heretic_path, /datum/heretic_knowledge_tree_column/rust))
+		healing_mult = 0.67 // 33% reduction
+	// BUBBER EDIT - ADDITION - END
 	need_mob_update += source.heal_overall_damage(-main_healing, -main_healing, updating_health = FALSE)
 	need_mob_update += source.adjust_stamina_loss(-stam_healing, updating_stamina = FALSE)
 	need_mob_update += source.adjust_tox_loss(-main_healing, updating_health = FALSE, forced = TRUE) // Slimes are people too

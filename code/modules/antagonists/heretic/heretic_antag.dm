@@ -69,7 +69,7 @@
 	/// Reference to the overlay heretics get when they get strong enough
 	var/static/mutable_appearance/eldritch_overlay = mutable_appearance('icons/mob/effects/heretic_aura.dmi', "heretic_aura")
 	/// A sum of how many knowledge points this heretic CURRENTLY has. Used to research.
-	var/knowledge_points = 2 //SKYRAT EDIT - ORIGINAL 1
+	var/knowledge_points = 3 // BUBBER EDIT - Previous: 1
 	/// The time between gaining influence passively. The heretic gain +1 knowledge points every this duration of time.
 	var/passive_gain_timer = 20 MINUTES
 	/// Tracks how many knowledge points the heretic has aqcuired. Once you get enough points you lose the ability to blade break
