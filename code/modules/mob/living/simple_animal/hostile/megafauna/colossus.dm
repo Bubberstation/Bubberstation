@@ -214,7 +214,7 @@
 				qdel(dust_mob.get_organ_slot(ORGAN_SLOT_LUNGS))
 				qdel(dust_mob.get_organ_slot(ORGAN_SLOT_HEART))
 				qdel(dust_mob.get_organ_slot(ORGAN_SLOT_LIVER))
-			dust_mob.adjustBruteLoss(500)
+			dust_mob.adjust_brute_loss(500)
 			dust_mob.apply_status_effect(/datum/status_effect/gutted)
 		return
 // BUBBER EDIT END
