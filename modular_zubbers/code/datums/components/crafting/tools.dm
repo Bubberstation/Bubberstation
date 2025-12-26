@@ -10,7 +10,7 @@
 	name = "PN Hand Drill"
 	result = /obj/item/screwdriver/power/protonitrate
 	time = 20 SECONDS
-	reqs = list(/obj/item/screwdriver/power/protonitrate = 1,
+	reqs = list(/obj/item/screwdriver/power = 1,
 	/obj/item/grenade/gas_crystal/proto_nitrate_crystal = 1)
 	category = CAT_TOOLS
 
