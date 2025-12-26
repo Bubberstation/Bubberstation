@@ -161,8 +161,8 @@
 		return
 
 	. += span_userdanger("Your mind burns as you stare at the tear!")
-	user.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 190)
-	//user.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus) // BUBBER EDIT - Hugboxes
+	user.adjust_organ_loss(ORGAN_SLOT_BRAIN, 10, 190)
+	user.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus)
 
 /obj/effect/heretic_influence
 	name = "reality smash"
