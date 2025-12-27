@@ -287,7 +287,6 @@
 	desc = "This crate contains pre-wrapped gifts addressed to station employees, sourced at random from Nanotrasen surplus as part of a morale boosting initiative."
 	cost = CARGO_CRATE_VALUE * 30
 	contains = list()
-	order_flags = ORDER_SPECIAL
 	crate_type = /obj/structure/closet/crate/mail
 	discountable = SUPPLY_PACK_NOT_DISCOUNTABLE
 
