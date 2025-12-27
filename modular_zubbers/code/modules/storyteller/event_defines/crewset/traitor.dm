@@ -12,3 +12,10 @@
 /datum/round_event_control/antagonist/solo/traitor/midround
 	name = "Sleeper Agents (Traitors)"
 	roundstart = FALSE
+
+/datum/round_event_control/antagonist/solo/traitor/event
+	name = "Event Generated Traitor"
+	roundstart = FALSE
+	tags = list(TAG_ANTAG_REROLL)
+	max_occurrences = 0
+	maximum_antags = 1
