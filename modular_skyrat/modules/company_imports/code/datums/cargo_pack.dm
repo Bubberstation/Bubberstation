@@ -1,7 +1,7 @@
 #define CARGO_CUT 0.05
 
 /datum/supply_pack/armament
-	goody = TRUE
+	order_flags = ORDER_GOODY
 	crate_type = /obj/structure/closet/crate/large/import
 
 /datum/supply_pack/armament/generate(atom/A, datum/bank_account/paying_account)
