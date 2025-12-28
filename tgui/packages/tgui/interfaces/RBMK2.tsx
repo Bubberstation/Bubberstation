@@ -23,19 +23,24 @@ type ReactorInfo = {
   max_power_generation: number;
   safeties_max_power_generation: number;
   raw_last_power_output: number;
+  raw_last_power_output_bonus: number;
   last_power_output: string;
-  consuming: string;
-  consuming_unit: string;
-  raw_consuming: number;
+  last_power_output_bonus: string;
+  last_tritium_consumption: number;
+  fuel_time_left: number;
+  fuel_time_left_text: string;
   rod: BooleanLike;
   rod_mix_pressure: number;
   rod_pressure_limit: number;
   rod_mix_temperature: number;
   rod_trit_moles: number;
-
-  // Misc
+  temperature_limit: number;
+  magic_number: number;
+  auto_vent_upgrade: BooleanLike;
+  auto_vent: BooleanLike;
   jammed: BooleanLike;
   meltdown: BooleanLike;
+  overclocked_upgrade: BooleanLike;
 };
 
 export const RBMK2 = (props) => {
@@ -47,7 +52,7 @@ export const RBMK2 = (props) => {
           <LabeledList>
             <LabeledList.Item
               label="Activity"
-              tooltip="NOTICE: REACTOR CANNOT BE DEACTIVATED DURING MELTDOWN"
+              tooltip="If the reactor is considered active or not."
             >
               <NoticeBox
                 danger
@@ -58,51 +63,61 @@ export const RBMK2 = (props) => {
               </NoticeBox>
             </LabeledList.Item>
             <LabeledList.Item
-              label="Reaction"
-              tooltip="NOTICE: ATTEMPTING TO DEACTIVATE WHILE REACTION SAYS 'MELTDOWN' WILL RESULT IN A JAM."
+              label="Stability"
+              tooltip="If the reactor is considered stable or not."
             >
               <NoticeBox
                 danger
                 textAlign="center"
-                backgroundColor={data.meltdown ? 'bad' : 'good'}
+                backgroundColor={data.meltdown ? 'danger' : 'good'}
               >
                 {data.meltdown ? 'MELTDOWN' : 'STABLE'}
               </NoticeBox>
             </LabeledList.Item>
             <LabeledList.Item
-              label="Clearance"
-              tooltip="NOTICE: DOES NOT SHOW WHETHER OR NOT THE ROD WILL JAM WHEN ATTEMPTING TO DEACTIVATE."
+              label="Connection"
+              tooltip="The physical connection of the reactor. Jammed connections may result in problems."
             >
               <NoticeBox
                 danger
                 textAlign="center"
-                backgroundColor={data.jammed ? 'bad' : 'good'}
+                backgroundColor={data.jammed ? 'danger' : 'good'}
               >
                 {data.jammed ? 'JAMMED' : 'SAFE'}
               </NoticeBox>
             </LabeledList.Item>
             <LabeledList.Item
               label="Power Generation"
-              tooltip="Power generation is influenced by pressure and temperature. If unsure, view those meters for further explanations."
+              tooltip="Power generation is influenced by rod temperature and quality of parts. It is possible to generate bonus power when going over the safety limit, but that is not recommended."
             >
               <ProgressBar
                 value={data.raw_last_power_output}
                 minValue={0}
                 maxValue={data.safeties_max_power_generation}
                 ranges={{
-                  maroon: [data.max_power_generation * 10, Infinity],
+                  danger: [
+                    data.max_power_generation,
+                    Infinity
+                    ],
                   bad: [
-                    data.max_power_generation,
-                    data.max_power_generation * 10,
+                    data.safeties_max_power_generation*0.9,
+                    data.max_power_generation
                   ],
-                  yellow: [
-                    data.safeties_max_power_generation,
-                    data.max_power_generation,
+                  average: [
+                    data.safeties_max_power_generation*0.75,
+                    data.safeties_max_power_generation*0.9
                   ],
-                  good: [0, data.safeties_max_power_generation],
+                  good: [
+                    data.safeties_max_power_generation*0.5,
+                    data.safeties_max_power_generation*0.75
+                  ],
+                  cyan: [
+                    -Infinity,
+                    data.safeties_max_power_generation*0.5               
+                  ],
                 }}
               >
-                {data.last_power_output}
+                {data.raw_last_power_output_bonus > 0 ? `${data.last_power_output} + ${data.last_power_output_bonus}` : data.last_power_output}
               </ProgressBar>
             </LabeledList.Item>
             <LabeledList.Item
@@ -114,63 +129,111 @@ export const RBMK2 = (props) => {
                 minValue={0}
                 maxValue={data.rod_pressure_limit}
                 ranges={{
-                  maroon: [data.rod_pressure_limit * 2, Infinity],
-                  bad: [data.rod_pressure_limit, data.rod_pressure_limit * 2],
-                  orange: [
-                    data.rod_pressure_limit * 0.75,
+                  bad: [
                     data.rod_pressure_limit,
+                    Infinity,
                   ],
-                  yellow: [
-                    data.rod_pressure_limit * 0.5,
-                    data.rod_pressure_limit * 0.75,
+                  orange: [
+                    data.rod_pressure_limit * 0.9,
+                    data.rod_pressure_limit
                   ],
-                  good: [-Infinity, data.rod_pressure_limit * 0.5],
+                  average: [
+                    data.rod_pressure_limit * 0.6,
+                    data.rod_pressure_limit * 0.9
+                  ],
+                  good: [
+                    -Infinity,
+                    data.rod_pressure_limit * 0.6
+                  ],
                 }}
               >
                 {data.rod_mix_pressure} kPa
               </ProgressBar>
             </LabeledList.Item>
             <LabeledList.Item
+              label="Core Temperature"
+              tooltip="The general estimate of the core temperature, based on core reactivity. Generally speaking, you should never let this get over 9000 Kelvin."
+            >
+              <ProgressBar
+                value={data.magic_number}
+                minValue={0}
+                maxValue={9000}
+                ranges={{
+                  bad: [
+                    9000,
+                    Infinity
+                  ],
+                  orange: [
+                    8000,
+                    9000
+                  ],
+                  average: [
+                    7500,
+                    8000
+                  ],
+                  good: [
+                    2500,
+                    7500
+                  ],
+                  cyan: [
+                   -Infinity,
+                   2500
+                  ],
+                }}
+              >
+                {data.magic_number} Kelvin
+              </ProgressBar>
+            </LabeledList.Item>
+            <LabeledList.Item
               label="Rod Temperature"
-              tooltip="As the temperature of the mix increases, fuel consumption rises, leading to greater power generation. If safeties are disabled, the reactor will begin to meltdown at 2,073.15°K."
+              tooltip="As the temperature of the mix increases, fuel consumption rises, leading to greater power generation."
             >
               <ProgressBar
                 value={data.rod_mix_temperature}
-                // Thermomachine/gas meter colors + maroon.
+                minValue={0}
+                maxValue={data.temperature_limit}
                 ranges={{
-                  maroon: [2000, Infinity],
-                  red: [700, 2000],
-                  orange: [460, 700],
-                  yellow: [340, 460],
-                  good: [200, 340],
-                  cyan: [120, 200],
-                  blue: [60, 120],
-                  violet: [-Infinity, 60],
+                  bad: [
+                    data.temperature_limit*0.9,
+                    Infinity
+                  ],
+                  orange: [
+                    data.temperature_limit*0.75,
+                    data.temperature_limit*0.9
+                  ],
+                  average: [
+                    data.temperature_limit*0.5,
+                    data.temperature_limit*0.75
+                  ],
+                  good: [
+                    -Infinity,
+                    data.temperature_limit*0.5
+                  ],
                 }}
               >
-                {data.rod_mix_temperature} K
+                {data.rod_mix_temperature} Kelvin
               </ProgressBar>
             </LabeledList.Item>
             <LabeledList.Item
               label="Remaining Fuel"
-              tooltip="Amount of tritium remaining in the current rod. Assuming a sane operator, 9 moles can produce 1 MW for 3 hours. We have calculated for 5, 10, and 15 minutes to give colored warnings."
+              tooltip="Amount of tritium remaining in the current rod."
             >
               <ProgressBar // Changes color based on rate of consumption while giving you a total reading.
-                value={data.rod_trit_moles}
+                value={data.fuel_time_left}
                 minValue={0}
-                maxValue={9}
+                maxValue={60*60*3} //3 hours.
                 ranges={{
-                  bad: [-Infinity, data.raw_consuming * 300],
-                  orange: [data.raw_consuming * 300, data.raw_consuming * 600],
-                  yellow: [data.raw_consuming * 600, data.raw_consuming * 900],
-                  good: [data.raw_consuming * 900, Infinity],
+                  bad: [-Infinity, 60*5], //5 minutes
+                  orange: [60*5, 60*30], //30 minutes
+                  average: [60*30, 60*60], //1 hour
+                  good: [60*60, Infinity],
                 }}
               >
-                {data.rod_trit_moles} Moles
+                {data.rod_trit_moles} Moles ({data.fuel_time_left_text})
               </ProgressBar>
             </LabeledList.Item>
             <LabeledList.Item label="Tritium Usage">
-              {data.consuming}/s
+              {data.last_tritium_consumption}μmol/s
             </LabeledList.Item>
             <LabeledList.Item
               label="Criticality"
@@ -181,27 +244,28 @@ export const RBMK2 = (props) => {
                 minValue={0}
                 maxValue={100}
                 ranges={{
-                  maroon: [100, Infinity],
-                  bad: [75, 100],
-                  orange: [50, 75],
-                  yellow: [25, 50],
-                  good: [-Infinity, 25],
+                  bad: [100, Infinity],
+                  orange: [50, 100],
+                  average: [5, 50],
+                  good: [-Infinity, 5],
                 }}
               >
                 {data.criticality}%
               </ProgressBar>
             </LabeledList.Item>
-            <LabeledList.Item label="Integrity">
+            <LabeledList.Item
+              label="Integrity"
+              tooltip="Estimated structural integrity of the reactor. Don't let this fall below 0%."
+            >
               <ProgressBar
                 value={data.health_percent}
                 minValue={0}
                 maxValue={100}
                 ranges={{
-                  good: [80, Infinity],
-                  yellow: [50, 80],
+                  good: [90, Infinity],
+                  average: [50, 90],
                   orange: [25, 50],
-                  bad: [5, 25],
-                  maroon: [-Infinity, 5],
+                  bad: [-Infinity, 25],
                 }}
               >
                 {data.health_percent}%
@@ -217,7 +281,7 @@ export const RBMK2 = (props) => {
               width="100%"
               icon="fa-power-off"
               confirmContent="Are you sure?"
-              color={data.active ? 'yellow' : 'good'}
+              color={data.active ? 'average' : 'good'}
               onClick={() => act('activate')}
             >
               {data.active ? 'Deactivate' : 'Activate'}
@@ -228,7 +292,7 @@ export const RBMK2 = (props) => {
                 textAlign="center"
                 width="100%"
                 icon="fa-eject"
-                color="bad"
+                color="orange"
                 onClick={() => act('eject')}
               >
                 Eject Fuel Rod
@@ -249,14 +313,14 @@ export const RBMK2 = (props) => {
               label="Vent Power"
               buttons={
                 <>
-                  <Box inline mx={2} color={data.venting ? 'good' : 'bad'}>
+                  <Box inline mx={2} color={data.venting ? 'good' : 'orange'}>
                     {data.venting ? 'ONLINE' : 'OFFLINE'}
                   </Box>
                   <Button.Confirm
                     tooltip="Toggle the vents On/Off."
                     textAlign="center"
                     icon="fa-fan"
-                    color={data.venting ? 'bad' : 'good'}
+                    color={data.venting ? 'orange' : 'good'}
                     onClick={() => act('venttoggle')}
                   >
                     TOGGLE
@@ -268,14 +332,14 @@ export const RBMK2 = (props) => {
               label="Vent Direction"
               buttons={
                 <>
-                  <Box inline mx={5.68} color={data.vent_dir ? 'bad' : 'good'}>
+                  <Box inline mx={5.68} color={data.vent_dir ? 'orange' : 'good'}>
                     {data.vent_dir ? 'PULLING' : 'PUSHING'}
                   </Box>
                   <Button
                     tooltip="Adjust the vents to draw air from the surrounding environment into the internal chamber of the RBMK2."
                     icon="fa-clock-rotate-left"
                     disabled={data.venting}
-                    color={data.vent_dir ? 'yellow' : 'blue'}
+                    color={data.vent_dir ? 'caution' : 'blue'}
                     onClick={() => act('ventpull')}
                   />
                   <Button
@@ -284,6 +348,13 @@ export const RBMK2 = (props) => {
                     disabled={data.venting}
                     color={data.vent_dir ? 'blue' : 'good'}
                     onClick={() => act('ventpush')}
+                  />
+                  <Button
+                    tooltip="Set the vents to automatically open when too hot, and close when too cold. Requires auto-vent upgrade disk."
+                    icon="fa-balance-scale"
+					disabled={!data.auto_vent_upgrade}
+                    color={data.auto_vent ? 'good' : 'blue'}
+                    onClick={() => act('autovent')}
                   />
                 </>
               }
@@ -295,34 +366,17 @@ export const RBMK2 = (props) => {
           </Section>
           <LabeledList>
             <LabeledList.Item
-              label="Safeties"
-              buttons={
-                <>
-                  <Box inline mx={2} color={data.safety ? 'good' : 'bad'}>
-                    {data.safety ? 'ONLINE' : 'OFFLINE'}
-                  </Box>
-                  <Button.Confirm
-                    tooltip="DANGER: Toggle safeties on/off. Only do this if you KNOW what you're doing!"
-                    icon="fa-helmet-safety"
-                    color={data.safety ? 'bad' : 'good'}
-                    onClick={() => act('safetytoggle')}
-                  >
-                    TOGGLE
-                  </Button.Confirm>
-                </>
-              }
-            />
-            <LabeledList.Item
               label="Overclock"
               buttons={
                 <>
-                  <Box inline mx={2} color={data.overclocked ? 'good' : 'bad'}>
+                  <Box inline mx={2} color={data.overclocked ? 'good' : 'orange'}>
                     {data.overclocked ? 'ONLINE' : 'OFFLINE'}
                   </Box>
                   <Button.Confirm
-                    tooltip="DANGER: Toggle overclock on/off. When combined with disabled safeties, this can be very volatile! Make sure you know what you're doing!"
+                    tooltip="Increases power output at the cost of more tritium consumed and more heat generated. Requires overlock upgrade disk."
                     icon="exclamation-triangle"
-                    color={data.overclocked ? 'yellow' : 'good'}
+                    color={data.overclocked ? 'average' : 'good'}
+					disabled={!data.overclocked_upgrade}
                     onClick={() => act('overclocktoggle')}
                   >
                     TOGGLE
