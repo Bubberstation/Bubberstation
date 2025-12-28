@@ -1,12 +1,12 @@
-/mob/living/basic/bot/firebot/freon_upgrade
+/mob/living/basic/bot/firebot/hotice_upgrade
 	name = "firebot"
 	desc = "Looks like he's holding a piece of hot ice! His foam will bring air temperature to 20C."
 	light_color = "#8cdeff"
 
-/mob/living/basic/bot/firebot/freon_upgrade/should_atmos_process(datum/gas_mixture/air, exposed_temperature)
-	return (exposed_temperature > FIREBOT_TLV_TEMP_WARN_MAX || exposed_temperature < FIREBOT_TLV_TEMP_WARN_MIN)
+/mob/living/basic/bot/firebot/hotice_upgrade/should_atmos_process(datum/gas_mixture/air, exposed_temperature)
+	return (exposed_temperature > FIREBOT_HOTICE_TLV_TEMP_WARN_MAX || exposed_temperature < FIREBOT_HOTICE_TLV_TEMP_WARN_MIN)
 
-/mob/living/basic/bot/firebot/freon_upgrade/atmos_expose(datum/gas_mixture/air, exposed_temperature)
+/mob/living/basic/bot/firebot/hotice_upgrade/atmos_expose(datum/gas_mixture/air, exposed_temperature)
 	if(!COOLDOWN_FINISHED(src, foam_cooldown))
 		return
 	var/datum/effect_system/fluid_spread/foam/firefighting_freon/foam = new
@@ -15,7 +15,7 @@
 
 	COOLDOWN_START(src, foam_cooldown, 5 SECONDS)
 
-/mob/living/basic/bot/firebot/freon_upgrade/update_overlays()
+/mob/living/basic/bot/firebot/hotice_upgrade/update_overlays()
 	. = ..()
 	var/mutable_appearance/hot_ice = mutable_appearance('modular_zubbers/icons/mob/silicon/aibots.dmi', "firebot_hotice", BELOW_MOB_LAYER - 0.02)
 	. += hot_ice
@@ -29,7 +29,7 @@
 	to_chat(user, span_warning("You give a piece of hot ice to the firebot. He seems rather happy! His foam will now bring air temperature toward 20C."))
 	var/atom/movable/to_move = ice.split_stack(1)
 	to_move.forceMove(src)
-	src.change_mob_type(/mob/living/basic/bot/firebot/freon_upgrade, delete_old_mob = TRUE)
+	src.change_mob_type(/mob/living/basic/bot/firebot/hotice_upgrade, delete_old_mob = TRUE)
 	update_appearance()
 
 // freon firefighting foam
