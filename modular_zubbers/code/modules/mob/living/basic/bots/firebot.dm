@@ -1,6 +1,8 @@
+/mob/living/basic/bot/firebot
+	desc = "A little fire extinguishing bot. He looks rather anxious. Giving him a piece of <b>hot ice</b> would be quite an upgrade."
+
 /mob/living/basic/bot/firebot/hotice_upgrade
-	name = "firebot"
-	desc = "Looks like he's holding a piece of hot ice! His foam will bring air temperature to 20C."
+	desc = "A little fire extinguishing bot. Looks like he's holding a piece of <b>hot ice</b>! His foam will bring air temperature toward 20C."
 	light_color = "#8cdeff"
 
 /mob/living/basic/bot/firebot/hotice_upgrade/should_atmos_process(datum/gas_mixture/air, exposed_temperature)
