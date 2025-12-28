@@ -1,8 +1,4 @@
 //OVERRIDES
-
-/datum/supply_pack/security/ammo
-	special = TRUE
-
 /datum/supply_pack/security/armory/ballistic
 	name = "Peacekeeper Combat Shotguns Crates"
 	contains = list(/obj/item/gun/ballistic/shotgun/automatic/combat = 3,

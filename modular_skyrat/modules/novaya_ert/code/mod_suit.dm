@@ -135,7 +135,7 @@
 		This one has been stripped of its combat modules, but is still a good suit for those who need protection and mobility. \
 		Notably, does not use or require a armor module."
 	cost = CARGO_CRATE_VALUE * 22
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND
 	contains = list(/obj/item/mod/control/pre_equipped/frontline/surplus)
 	crate_name = "surplus MODsuit crate"
 

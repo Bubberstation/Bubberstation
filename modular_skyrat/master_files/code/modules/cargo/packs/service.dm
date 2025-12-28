@@ -1,2 +1,2 @@
 /datum/supply_pack/service/survivalknives
-	special = TRUE
+	order_flags = ORDER_SPECIAL

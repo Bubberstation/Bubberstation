@@ -1,2 +1,2 @@
 /datum/supply_pack/misc/bicycle
-	special = TRUE
+	order_flags = ORDER_SPECIAL
