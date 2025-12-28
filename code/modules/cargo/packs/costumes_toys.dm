@@ -301,7 +301,7 @@
 		mail_recipients += human.mind
 
 	for (var/i in 1 to rand(4, 6))
-		var/obj/item/gift/anything/gift = new(crate)
+		var/obj/item/gift/mostly_anything/gift = new(crate) // BUBBER EDIT CHANGE - gift/anything to gift/mostly_anything
 		var/datum/mind/recipient = pick_n_take(mail_recipients)
 		if(recipient)
 			gift.assign_recipient(recipient)
