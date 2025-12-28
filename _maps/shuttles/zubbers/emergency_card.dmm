@@ -38,18 +38,15 @@
 /area/shuttle/escape)
 "aJ" = (
 /obj/effect/turf_decal/stripes/line,
-/obj/machinery/door/window,
+/obj/machinery/door/window/left/directional/south,
 /turf/open/floor/iron/textured_half{
 	dir = 1
 	},
 /area/shuttle/escape)
 "aZ" = (
 /obj/effect/turf_decal/stripes/line,
-/obj/machinery/atmospherics/pipe/smart/simple/orange/hidden{
-	dir = 10
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
+/obj/machinery/atmospherics/pipe/smart/manifold/orange/hidden{
+	dir = 1
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
@@ -69,20 +66,21 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/structure/sign/poster/official/random{
-	pixel_x = 32
-	},
 /obj/structure/chair/comfy/shuttle{
 	dir = 8
 	},
+/obj/structure/sign/poster/official/random/directional/east,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "cI" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 8
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold/orange/visible,
-/turf/open/floor/plating,
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/structure/sign/poster/official/random/directional/west,
+/turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "cJ" = (
 /obj/effect/turf_decal/stripes/line{
@@ -148,9 +146,6 @@
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/shuttle/escape)
 "dQ" = (
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -293,9 +288,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold/orange/visible{
-	dir = 1
-	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/orange/visible,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "ig" = (
@@ -451,9 +444,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/machinery/door/window{
-	dir = 4
-	},
+/obj/machinery/door/window/left/directional/east,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "po" = (
@@ -646,9 +637,6 @@
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "tZ" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -674,11 +662,7 @@
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer2{
 	dir = 1
 	},
-/obj/machinery/door/window/brigdoor/security/cell/left/directional/south{
-	id_tag = "Cell 1";
-	name = "Cell";
-	dir = 1
-	},
+/obj/machinery/door/window/brigdoor/security/cell/left/directional/north,
 /turf/open/floor/iron/smooth_edge,
 /area/shuttle/escape)
 "us" = (
@@ -739,11 +723,8 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
 	},
-/obj/machinery/power/terminal{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
+/obj/machinery/atmospherics/pipe/smart/manifold/orange/visible{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
@@ -770,7 +751,6 @@
 /obj/structure/fans/tiny,
 /obj/docking_port/mobile/emergency{
 	name = "Card emergency shuttle";
-	width = 31;
 	dir = 1;
 	preferred_direction = 8
 	},
@@ -874,9 +854,6 @@
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "AP" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
@@ -918,9 +895,10 @@
 /area/shuttle/escape)
 "Cg" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/east,
-/obj/machinery/power/smes/engineering{
-	charge = 2e+007
+/obj/machinery/power/shuttle_engine/heater{
+	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/general/visible,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "Ds" = (
@@ -1140,13 +1118,10 @@
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/escape)
 "JH" = (
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/machinery/power/terminal,
 /obj/effect/turf_decal/stripes/line,
-/obj/structure/sign/poster/official/random{
-	pixel_x = 32
+/obj/structure/sign/poster/official/random/directional/east,
+/obj/machinery/atmospherics/pipe/smart/simple/orange/hidden{
+	dir = 10
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
@@ -1191,9 +1166,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/machinery/door/window{
-	dir = 8
-	},
+/obj/machinery/door/window/left/directional/west,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "LG" = (
@@ -1449,10 +1422,11 @@
 /turf/open/floor/iron/textured,
 /area/shuttle/escape)
 "WT" = (
-/obj/machinery/power/smes/engineering{
-	charge = 2e+007
-	},
 /obj/machinery/light/small/directional/east,
+/obj/machinery/atmospherics/components/tank/plasma{
+	dir = 1
+	},
+/obj/structure/window/reinforced/survival_pod/spawner/directional/north,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "Xu" = (
@@ -1467,9 +1441,6 @@
 /area/shuttle/escape)
 "XS" = (
 /obj/structure/table/reinforced,
-/obj/structure/sign/poster/official/random{
-	pixel_x = 32
-	},
 /obj/item/storage/medkit/regular{
 	pixel_x = -1;
 	pixel_y = 6
@@ -1573,7 +1544,7 @@ gK
 gk
 Gw
 aH
-gk
+cI
 DK
 ae
 ae
@@ -1833,7 +1804,7 @@ hD
 Rk
 cM
 gG
-cI
+ib
 wx
 ib
 OF
