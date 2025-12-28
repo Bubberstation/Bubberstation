@@ -61,6 +61,15 @@ GLOBAL_VAR_INIT(blooper_allowed, TRUE) // For administrators
 /datum/preference/choiced/blooper/apply_to_human(mob/living/carbon/human/target, value)
 	target.set_blooper(value)
 
+/datum/preference/choiced/blooper/compile_constant_data()
+	var/list/data = ..()
+	var/list/display_names = list()
+	for(var/id in GLOB.blooper_list)
+		var/datum/blooper/blooper_path = GLOB.blooper_list[id]
+		display_names[id] = blooper_path::name
+	data[CHOICED_PREFERENCE_DISPLAY_NAMES] = display_names
+	return data
+
 /datum/preference_middleware/blooper
 	/// Cooldown on requesting a Blooper preview.
 	COOLDOWN_DECLARE(blooper_cooldown)

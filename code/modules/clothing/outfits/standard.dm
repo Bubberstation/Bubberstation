@@ -35,7 +35,7 @@
 	uniform = /obj/item/clothing/under/color/grey
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	suit = /obj/item/clothing/suit/space
-	back = /obj/item/tank/jetpack/oxygen
+	back = /obj/item/tank/jetpack
 	head = /obj/item/clothing/head/helmet/space
 	mask = /obj/item/clothing/mask/breath
 
@@ -427,7 +427,7 @@
 		/obj/item/debug/human_spawner = 1,
 		/obj/item/debug/omnitool = 1,
 )
-	belt = /obj/item/storage/belt/utility/chief/full
+	belt = /obj/item/storage/belt/utility/full/powertools
 	ears = /obj/item/radio/headset/headset_cent/commander
 	glasses = /obj/item/clothing/glasses/debug
 	gloves = /obj/item/clothing/gloves/combat
@@ -459,7 +459,7 @@
 		/obj/item/debug/omnitool = 1,
 		/obj/item/storage/box/stabilized = 1,
 )
-	belt = /obj/item/storage/belt/utility/chief/full
+	belt = /obj/item/storage/belt/utility/full/powertools
 	ears = /obj/item/radio/headset/headset_cent/commander
 	glasses = /obj/item/clothing/glasses/debug
 	gloves = /obj/item/clothing/gloves/combat

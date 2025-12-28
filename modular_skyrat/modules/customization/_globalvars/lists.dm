@@ -110,3 +110,16 @@ GLOBAL_LIST_INIT(color_list_ghoul, list( \
 	"Plutonium Blue" = "a5cfcc", \
 	"Marked Red" = "f05b68" \
 ))
+
+//blood colours
+GLOBAL_LIST_INIT(custom_blood_colors, list(
+	"Red/Human" = BLOOD_COLOR_RED,
+	"D.Green/Lizard" = BLOOD_COLOR_LIZARD,
+	"Green" = BLOOD_COLOR_GREEN,
+	"Lime/Xeno" = BLOOD_COLOR_XENO,
+	"Violet/Avali" = BLOOD_COLOR_VIOLET,
+	"Cyan/Vox" = BLOOD_COLOR_CYAN,
+	"Teal/Skrell" = BLOOD_COLOR_COPPER,
+	"White/Nanites" = BLOOD_COLOR_NANITE_SLURRY,
+	"Black" = BLOOD_COLOR_BLACK,
+))

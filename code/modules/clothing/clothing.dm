@@ -72,17 +72,6 @@
 	if(!icon_state)
 		item_flags |= ABSTRACT
 
-/obj/item/clothing/mouse_drop_dragged(atom/over_object, mob/user, src_location, over_location, params)
-	var/mob/M = user
-
-	if(ismecha(M.loc)) // stops inventory actions in a mech
-		return
-
-	if(loc == M && istype(over_object, /atom/movable/screen/inventory/hand))
-		var/atom/movable/screen/inventory/hand/H = over_object
-		if(M.putItemFromInventoryInHandIfPossible(src, H.held_index))
-			add_fingerprint(user)
-
 /obj/item/food/clothing
 	name = "temporary moth clothing snack item"
 	desc = "If you're reading this it means I messed up. This is related to moths eating clothes and I didn't know a better way to do it than making a new food object. <--- stinky idiot wrote this"
@@ -217,7 +206,8 @@
 		zone_name = parse_zone(def_zone)
 
 	zones_disabled++
-	body_parts_covered &= ~body_zone2cover_flags(def_zone)
+	if(clothing_flags & NO_ZONE_DISABLING)
+		body_parts_covered &= ~body_zone2cover_flags(def_zone)
 
 	if(body_parts_covered == NONE) // if there are no more parts to break then the whole thing is kaput
 		atom_destruction((damage_type == BRUTE ? MELEE : LASER)) // melee/laser is good enough since this only procs from direct attacks anyway and not from fire/bombs
@@ -366,9 +356,9 @@
 	if (clothing_flags & CASTING_CLOTHES)
 		.["magical"] = "Allows magical beings to cast spells when wearing [src]."
 	if((clothing_flags & STOPSPRESSUREDAMAGE) || (visor_flags & STOPSPRESSUREDAMAGE))
-		.["pressureproof"] = "Protects the wearer from extremely low or high pressure, such as vacuum of space."
+		.["pressure-proof"] = "Protects the wearer from extremely low or high pressure, such as vacuum of space."
 	if(flags_cover & PEPPERPROOF)
-		.["pepperproof"] = "Protects the wearer from the effects of pepperspray."
+		.["pepper-proof"] = "Protects the wearer from the effects of pepperspray."
 	if (heat_protection || cold_protection)
 		var/heat_desc
 		var/cold_desc

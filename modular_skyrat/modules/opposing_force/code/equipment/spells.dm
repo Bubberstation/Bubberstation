@@ -67,10 +67,10 @@
 			and gain the ability to swat bullets from the air, but you will also refuse to use dishonorable ranged weaponry."
 	admin_note = "Sleeping Carp is capable of letting you reflect bullets."
 
-/datum/opposing_force_equipment/martial_art/kravmaga
-	name = "Krav Maga Implanter"
-	item_type = /obj/item/implanter/krav_maga
-	description = "No need for gloves! This handy implanter teaches you everything you need to know about Krav Maga."
+/datum/opposing_force_equipment/martial_art/kazaruk
+	name = "Kaza Ruk Implanter"
+	item_type = /obj/item/implanter/kaza_ruk
+	description = "No need for gloves! This handy implanter teaches you everything you need to know about Kaza Ruk."
 
 /datum/opposing_force_equipment/martial_art/wrestling
 	name = "Wrestling Belt"

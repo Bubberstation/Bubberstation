@@ -44,9 +44,11 @@
 			if(ishuman(owner))
 				var/mob/living/carbon/human/owner_human = owner
 				owner_human.update_held_items()
+			to_chat(owner, span_notice("You stop focusing on moving objects with your mind."))
 		else
 			ADD_TRAIT(owner, TRAIT_FLOATING_HELD, QUIRK_TRAIT)
 			if(ishuman(owner))
 				var/mob/living/carbon/human/owner_human = owner
 				owner_human.update_held_items()
+			to_chat(owner, span_notice("You feel ready to move objects with your mind."))
 	return TRUE

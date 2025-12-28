@@ -43,7 +43,7 @@
 
 /obj/item/clothing/mask/gas/soviet
 	name = "soviet gas mask"
-	desc = "A white gas mask with a green filter, there's a small sticker attached saying it's not got Asbestos anymore."
+	desc = "A white gas mask with a green filter, there's a small sticker verifying it's Asbestos free! An even smaller sticker has been torn off. Nothing to worry about."
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/masks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/mask.dmi'
 	icon_state = "gp5_mask"

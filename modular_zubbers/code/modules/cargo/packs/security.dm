@@ -53,12 +53,6 @@
 		/obj/item/storage/backpack/duffelbag/deforest_medkit/stocked,
 	)
 
-/datum/supply_pack/security/plasma_marksman
-	name = "Gwiazda Plasma Sharpshooter Single-Pack"
-	crate_name = "Gwiadza Plasma Sharpshooter Crate"
-	desc = "Contains a Gwiazda Plasma Sharpshooter and one plasma battery for it."
-	contains = list(/obj/item/gun/ballistic/automatic/pistol/plasma_marksman = 1,
-	/obj/item/ammo_box/magazine/recharge/plasma_battery = 1)
 	cost = CARGO_CRATE_VALUE * 10
 	access = ACCESS_SECURITY
 

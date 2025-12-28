@@ -23,3 +23,27 @@
 	gets_cropped_on_taurs = FALSE
 	can_adjust = TRUE
 	body_parts_covered = GROIN | LEGS
+
+/obj/item/clothing/under/dress/bubber/midnight_gown
+	name = "midnight gown"
+	desc = "A seductive gown purpose tailored to show off one's legs."
+	icon = 'icons/map_icons/clothing/under/dress.dmi'
+	icon_state = "/obj/item/clothing/under/dress/bubber/midnight_gown"
+	post_init_icon_state = "midnight_right"
+	greyscale_config = /datum/greyscale_config/midnight_gown
+	greyscale_config_worn = /datum/greyscale_config/midnight_gown/worn
+	greyscale_config_worn_digi = /datum/greyscale_config/midnight_gown/worn/digi
+	greyscale_colors = "#1D253B"
+	flags_1 = IS_PLAYER_COLORABLE_1
+	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	body_parts_covered = CHEST|GROIN|LEGS
+	can_adjust = FALSE
+	alternate_worn_layer = ABOVE_SHOES_LAYER
+	gets_cropped_on_taurs = FALSE
+	unique_reskin = list(
+		"Right" = "midnight_right",
+		"Left" = "midnight_left",
+		"Middle" = "midnight_mid"
+	)
+

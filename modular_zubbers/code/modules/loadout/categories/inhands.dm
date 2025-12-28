@@ -31,5 +31,9 @@
 	item_path = /obj/item/wheelchair
 
 /datum/loadout_item/inhand/sex_sign
-	name = "sex holosign projector"
+	name = "Sex Holosign Projector"
 	item_path = /obj/item/holosign_creator/sex
+
+/datum/loadout_item/inhand/umbrella
+	name = "Umbrella"
+	item_path = /obj/item/umbrella

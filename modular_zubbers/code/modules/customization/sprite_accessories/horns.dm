@@ -116,6 +116,6 @@
 	name = "Cryptid Antlers"
 	icon_state = "cryptid"
 
-/datum/sprite_accessory/horns/bubber/antennae/wisteria
+/datum/sprite_accessory/horns/bubber/antennae/insectoidcrest
 	name = "Sharp Insectoid Crest"
 	icon_state = "sharp_crest"

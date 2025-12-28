@@ -1,7 +1,7 @@
 /datum/area_spawn_over/big_bertha
 	target_areas = list(
-		/area/station/ai_monitored/security/armory,
-		/area/station/ai_monitored/security/armory/upper
+		/area/station/security/armory,
+		/area/station/security/armory/upper
 	)
 	over_atoms = list(
 		/obj/item/shield/riot
@@ -14,8 +14,8 @@
 
 /datum/area_spawn_over/security_missile_launcher
 	target_areas = list(
-		/area/station/ai_monitored/security/armory,
-		/area/station/ai_monitored/security/armory/upper
+		/area/station/security/armory,
+		/area/station/security/armory/upper
 	)
 	over_atoms = list(
 		/obj/item/gun/energy/temperature
@@ -28,8 +28,8 @@
 
 /datum/area_spawn_over/security_missile_launcher_ammo
 	target_areas = list(
-		/area/station/ai_monitored/security/armory,
-		/area/station/ai_monitored/security/armory/upper
+		/area/station/security/armory,
+		/area/station/security/armory/upper
 	)
 	over_atoms = list(
 		/obj/item/gun/energy/temperature

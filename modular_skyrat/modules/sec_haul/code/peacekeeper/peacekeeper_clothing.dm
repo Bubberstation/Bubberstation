@@ -173,9 +173,9 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "peacekeeper_gripper_gloves"
 
-/obj/item/clothing/gloves/krav_maga/sec/peacekeeper
-	name = "peacekeeper krav maga gloves"
-	desc = "These gloves can teach you to perform Krav Maga using nanochips."
+/obj/item/clothing/gloves/kaza_ruk/sec/peacekeeper
+	name = "peacekeeper kaza ruk gloves"
+	desc = "These gloves can teach you to perform Kaza Ruk using nanochips."
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "peacekeeper_gripper_gloves"

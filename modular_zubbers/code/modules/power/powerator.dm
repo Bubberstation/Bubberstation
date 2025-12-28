@@ -180,7 +180,7 @@
 	if(!attached_cable.avail(current_power))
 		if(!attached_cable.newavail())
 			return
-		current_power = attached_cable.newavail()
+		current_power = min(max_power, attached_cable.newavail())
 	attached_cable.add_delayedload(current_power)
 
 	var/money_ratio = round(current_power * divide_ratio) * powerator_penalty_multiplier_list[powerator_faction]

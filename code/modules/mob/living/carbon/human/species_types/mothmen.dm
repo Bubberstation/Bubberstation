@@ -43,7 +43,7 @@
 
 /datum/species/moth/randomize_features()
 	var/list/features = ..()
-	features[FEATURE_MOTH_MARKINGS] = pick(SSaccessories.moth_wings_list) // BUBBER EDIT CHANGE - ORIGINAL: features[FEATURE_MOTH_MARKINGS] = pick(SSaccessories.moth_markings_list)
+	features[FEATURE_MOTH_MARKINGS] = pick(SSaccessories.feature_list[FEATURE_MOTH_MARKINGS])
 	return features
 
 /datum/species/moth/get_scream_sound(mob/living/carbon/human/moth)
