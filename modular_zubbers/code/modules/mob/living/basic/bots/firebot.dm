@@ -4,7 +4,7 @@
 	light_color = "#8cdeff"
 
 /mob/living/basic/bot/firebot/freon_upgrade/should_atmos_process(datum/gas_mixture/air, exposed_temperature)
-	return (exposed_temperature > T20C + 1 || exposed_temperature < T20C - 1)
+	return (exposed_temperature > FIREBOT_TLV_TEMP_WARN_MAX || exposed_temperature < FIREBOT_TLV_TEMP_WARN_MIN)
 
 /mob/living/basic/bot/firebot/freon_upgrade/atmos_expose(datum/gas_mixture/air, exposed_temperature)
 	if(!COOLDOWN_FINISHED(src, foam_cooldown))
@@ -26,7 +26,7 @@
 		return ..()
 	var/obj/item/stack/sheet/hot_ice/ice = given_item
 	balloon_alert(user, "inserted")
-	to_chat(user, span_warning("You give a piece of hot ice to the firebot. He seems rather happy! His foam will now bring air temperature to 20C."))
+	to_chat(user, span_warning("You give a piece of hot ice to the firebot. He seems rather happy! His foam will now bring air temperature toward 20C."))
 	var/atom/movable/to_move = ice.split_stack(1)
 	to_move.forceMove(src)
 	src.change_mob_type(/mob/living/basic/bot/firebot/freon_upgrade, delete_old_mob = TRUE)
