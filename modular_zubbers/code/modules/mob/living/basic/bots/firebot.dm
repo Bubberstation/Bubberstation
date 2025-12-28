@@ -15,6 +15,11 @@
 
 	COOLDOWN_START(src, foam_cooldown, 5 SECONDS)
 
+/mob/living/basic/bot/firebot/freon_upgrade/update_overlays()
+	. = ..()
+	var/mutable_appearance/hot_ice = mutable_appearance('modular_zubbers/icons/mob/silicon/aibots.dmi', "firebot_hotice", BELOW_MOB_LAYER - 0.02)
+	. += hot_ice
+
 //Interaction to upgrade standard firebot by giving it hot ice
 /mob/living/basic/bot/firebot/attackby(obj/item/given_item, mob/living/carbon/human/user, list/modifiers, list/attack_modifiers)
 	if(!istype(given_item, /obj/item/stack/sheet/hot_ice))
@@ -25,6 +30,7 @@
 	var/atom/movable/to_move = ice.split_stack(1)
 	to_move.forceMove(src)
 	src.change_mob_type(/mob/living/basic/bot/firebot/freon_upgrade, delete_old_mob = TRUE)
+	update_appearance()
 
 // freon firefighting foam
 /// A variant of firefighting foam for firebot upgrade, atop of usual plasma removal and bringing temperature down, it will also raise the temperature up to 20C and wont leave plasma stains on floor
