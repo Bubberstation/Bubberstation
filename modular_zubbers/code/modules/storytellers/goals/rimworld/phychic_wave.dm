@@ -3,7 +3,7 @@
 	name = "Psychic Wave"
 	description = "Unleash a powerful psychic wave that disrupts the minds of the crew, causing hallucinations and mental distress."
 	story_category = STORY_GOAL_BAD | STORY_GOAL_MAJOR
-	tags = STORY_TAG_AFFECTS_CREW_MIND | STORY_TAG_WIDE_IMPACT | STORY_TAG_AFFECTS_WHOLE_STATION
+	tags = list(STORY_TAG_ENVIRONMENTAL, STORY_TAG_AFFECTS_WHOLE_STATION, STORY_TAG_REQUIRES_MEDICAL, STORY_TAG_SOCIAL, STORY_TAG_EPIC)
 	typepath = /datum/round_event/storyteller_psychic_wave
 
 	min_players = 4
@@ -135,11 +135,11 @@
 		var/in_space = isspaceturf(T)
 		var/near_space = FALSE
 		for(var/turf/V in view(7, human))
-			if(isspaceturf(V))
+			if(isspaceturf(V) && can_see(human, V, 7))
 				near_space = TRUE
 				break
 
-		var/multiplier = in_space ? 2 : (near_space ? 1.5 : 0.5)
+		var/multiplier = in_space ? 2 : (near_space ? 1.5 : 0.1)
 		human.add_mood_event("psychic_wave", /datum/mood_event/psychic_wave, mood_debuff_amount * multiplier, mood_debuff_duration * multiplier)
 		if(in_space || near_space)
 			human.overlay_fullscreen("psychic_wave", /atom/movable/screen/fullscreen/phychic_wave)

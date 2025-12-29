@@ -3,7 +3,7 @@
 	name = "ZZZZZT"
 	description = "A massive power surge."
 	story_category = STORY_GOAL_BAD
-	tags = STORY_TAG_ESCALATION
+	tags = list(STORY_TAG_HUMOROUS)
 	typepath = /datum/round_event/zzzzzt
 
 	min_players = 2

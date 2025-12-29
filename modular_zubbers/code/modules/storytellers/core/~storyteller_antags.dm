@@ -83,10 +83,10 @@
 
 	var/list/possible_candidates = SSstorytellers.filter_goals(STORY_GOAL_ANTAGONIST, STORY_TAG_ROUNDSTART)
 	var/datum/storyteller_balance_snapshot/bal = balancer.make_snapshot(inputs)
-	var/tags = mind.tokenize(STORY_GOAL_ANTAGONIST, src, inputs, bal, mood)
+	var/tags = behevour.tokenize(STORY_GOAL_ANTAGONIST, inputs, bal, mood)
 	var/spawn_count = calculate_roundstart_antag_count(pop, bal.balance_ratio)
 	for(var/i = 1 to spawn_count)
-		var/datum/round_event_control/antag_event = mind.select_weighted_goal(src, inputs, bal, possible_candidates, population_factor, tags)
+		var/datum/round_event_control/antag_event = behevour.select_weighted_goal(inputs, bal, possible_candidates, population_factor, tags)
 		if(!antag_event)
 			log_storyteller("[name] failed to select initial antagonist goal ([i]/[spawn_count])")
 			continue
@@ -127,12 +127,12 @@
 		return
 
 	var/list/possible_candidates = SSstorytellers.filter_goals(STORY_GOAL_ANTAGONIST, STORY_TAG_MIDROUND)
-	var/tags = mind.tokenize(STORY_GOAL_ANTAGONIST, src, inputs, snap, mood)
+	var/tags = behevour.tokenize(STORY_GOAL_ANTAGONIST, inputs, snap, mood)
 	var/spawn_count = clamp(round(spawn_weight / 20), 1, 3)
 
 
 	for(var/i = 1 to spawn_count)
-		var/datum/round_event_control/antag_event = mind.select_weighted_goal(src, inputs, snap, possible_candidates, population_factor, tags)
+		var/datum/round_event_control/antag_event = behevour.select_weighted_goal(inputs, snap, possible_candidates, population_factor, tags)
 		if(!antag_event)
 			continue
 

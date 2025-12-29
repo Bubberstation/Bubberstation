@@ -1,7 +1,7 @@
 /datum/round_event_control/grid_check
 	id = "grid_check"
 	story_category = STORY_GOAL_NEUTRAL
-	tags = STORY_TAG_AFFECTS_INFRASTRUCTURE | STORY_TAG_AFFECTS_WHOLE_STATION
+	tags = list(STORY_TAG_ENVIRONMENTAL, STORY_TAG_CHAOTIC)
 	typepath = /datum/round_event/grid_check/storyteller
 
 

@@ -1,21 +1,10 @@
 /datum/round_event_control/gravity_generator_blackout
 	id = "gravity_generator_error"
 	story_category = STORY_GOAL_NEUTRAL
-	tags = STORY_TAG_ESCALATION | STORY_TAG_AFFECTS_INFRASTRUCTURE | STORY_TAG_AFFECTS_ENVIRONMENT
+	tags = list(STORY_TAG_ENVIRONMENTAL)
 	typepath = /datum/round_event/gravity_generator_blackout
 	required_round_progress = STORY_ROUND_PROGRESSION_EARLY
 
-/datum/round_event_control/gravity_generator_malfunction
-	name = "Gravity Generator Malfunction"
-	description = "The station's gravity generators are malfunctioning, \
-		causing unpredictable gravity fluctuations throughout the station."
-	id = "gravity_generator_malfunction"
-	story_category = STORY_GOAL_NEUTRAL
-	tags = STORY_TAG_ESCALATION | STORY_TAG_AFFECTS_INFRASTRUCTURE | STORY_TAG_AFFECTS_ENVIRONMENT
-	typepath = /datum/round_event/storyteller_gravgen_malfunction
-	required_round_progress = STORY_ROUND_PROGRESSION_EARLY
-
-	map_flags = EVENT_SPACE_ONLY
 
 /datum/round_event_control/gravity_generator_malfunction
 	name = "Gravity Generator Malfunction"
@@ -23,7 +12,7 @@
 		causing unpredictable gravity fluctuations throughout the station."
 	id = "gravity_generator_malfunction"
 	story_category = STORY_GOAL_NEUTRAL
-	tags = STORY_TAG_ESCALATION | STORY_TAG_AFFECTS_INFRASTRUCTURE | STORY_TAG_AFFECTS_ENVIRONMENT
+	tags = list(STORY_TAG_ESCALATION, STORY_TAG_CHAOTIC, STORY_TAG_ENVIRONMENTAL, STORY_TAG_HEALTH)
 	typepath = /datum/round_event/storyteller_gravgen_malfunction
 	required_round_progress = STORY_ROUND_PROGRESSION_EARLY
 

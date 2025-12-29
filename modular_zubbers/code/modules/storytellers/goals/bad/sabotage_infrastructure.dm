@@ -3,7 +3,7 @@
 	name = "Sabotage Infrastructure"
 	description = "Sabotage the station machinery."
 	story_category = STORY_GOAL_BAD
-	tags = STORY_TAG_ESCALATION | STORY_TAG_WIDE_IMPACT | STORY_TAG_TARGETS_SYSTEMS
+	tags = list(STORY_TAG_REQUIRES_ENGINEERING)
 	typepath =  /datum/round_event/sabotage_machinery
 
 	min_players = 4

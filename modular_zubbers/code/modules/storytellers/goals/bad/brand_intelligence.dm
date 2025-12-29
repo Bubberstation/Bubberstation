@@ -3,7 +3,7 @@
 	name = "Brand Intelligence"
 	description = "Cause vending machines to gain aggressive intelligence and spread chaos."
 	story_category = STORY_GOAL_BAD
-	tags = STORY_TAG_ESCALATION | STORY_TAG_WIDE_IMPACT | STORY_TAG_ENTITIES | STORY_TAG_AFFECTS_WHOLE_STATION
+	tags = list(STORY_TAG_ESCALATION, STORY_TAG_HUMOROUS, STORY_TAG_ENTITIES, STORY_TAG_COMBAT)
 	typepath = /datum/round_event/storyteller_brand_intelligence
 
 	min_players = 5

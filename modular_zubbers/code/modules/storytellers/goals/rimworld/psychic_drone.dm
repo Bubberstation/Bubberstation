@@ -3,7 +3,7 @@
 	name = "Execute the Psychic Drone"
 	description = "Deploy a psychic drone to broadcast disruptive psionic noise across the station."
 	story_category = STORY_GOAL_BAD
-	tags = STORY_TAG_ESCALATION | STORY_TAG_AFFECTS_CREW_MIND
+	tags = list(STORY_TAG_ESCALATION, STORY_TAG_SOCIAL, STORY_TAG_CHAOTIC)
 	typepath = /datum/round_event/psychic_drone
 
 	min_players = 5

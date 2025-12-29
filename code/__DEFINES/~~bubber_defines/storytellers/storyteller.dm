@@ -177,9 +177,6 @@ DEFINE_BITFIELD(story_goal_category, list(
 	"STORY_GOAL_MAJOR" = STORY_GOAL_MAJOR,
 ))
 
-
-
-
 // Bitfield categories for jobs flags
 // Flags that mark job roles for special handling in storyteller logic
 
@@ -197,89 +194,53 @@ DEFINE_BITFIELD(story_job_flags, list(
 	"JOB_SECURITY" = STORY_JOB_SECURITY,
 ))
 
-// Bitfield for universal tags describing areas of influence
-// These tags characterize the scope or impact of a goal, such as escalation/deescalation or effects on specific station elements.
-// They complement categories (directionality like good/bad) by focusing on what the goal affects (e.g., crew health, resources).
-// Used in storyteller planning to filter/weight goals based on station metrics (e.g., low health prioritizes AFFECTS_CREW_HEALTH).
 
-// Escalation: Goals that increase tension, chaos, or threats (e.g., triggering conflicts or disasters).
-#define STORY_TAG_ESCALATION (1 << 0)
-// Deescalation: Goals that reduce tension, promote recovery, or stabilize the station (e.g., healing or resource restoration).
-#define STORY_TAG_DEESCALATION (1 << 1)
-// Affects Crew Health: Goals impacting crew well-being, such as healing wounds, spreading diseases, or causing harm.
-#define STORY_TAG_AFFECTS_CREW_HEALTH (1 << 2)
-// Affects Crew Mind: Goals impacting mental state (hallucinations, confusion, etc.)
-#define STORY_TAG_AFFECTS_CREW_MIND (1 << 3)
-// Affects Antagonist: Goals influencing antagonists, like boosting/hindering their power or triggering antag-related events.
-#define STORY_TAG_AFFECTS_ANTAGONIST (1 << 4)
-// Affects Resources: Goals related to station resources, such as generating/supplying items, destroying infrastructure, or economic impacts.
-#define STORY_TAG_AFFECTS_RESOURCES (1 << 5)
-// Affects Morale: Goals influencing crew mood or psychological state (e.g., events boosting/lowering happiness or panic).
-#define STORY_TAG_AFFECTS_MORALE (1 << 6)
-// Affects Infrastructure: Goals targeting station structures, like repairs, sabotage, or environmental changes.
-#define STORY_TAG_AFFECTS_INFRASTRUCTURE (1 << 7)
-// Affects Economy: Goals involving trade, credits, or resource allocation (e.g., cargo shipments or thefts).
-#define STORY_TAG_AFFECTS_ECONOMY (1 << 8)
-// Affects Security: Goals related to security systems, arrests, or law enforcement dynamics.
-#define STORY_TAG_AFFECTS_SECURITY (1 << 9)
-// Affects whole station on include wide-station impact
-#define STORY_TAG_AFFECTS_WHOLE_STATION (1 << 10)
-// Affects Research: Goals impacting science/tech progress, like experiments or tech unlocks/destruction.
-#define STORY_TAG_AFFECTS_RESEARCH (1 << 11)
-// Goals impacting station environment, like atmos breaches, radiation, or hull integrity.
-#define STORY_TAG_AFFECTS_ENVIRONMENT (1 << 12)
-// Goals related to tech systems, AI, comms, or machinery (e.g., hacks or upgrades).
-#define STORY_TAG_AFFECTS_TECHNOLOGY (1 << 13)
-// Goals influencing command structure, laws, or crew hierarchy (e.g., mutinies or promotions).
-#define STORY_TAG_AFFECTS_POLITICS (1 << 14)
-// Goals introducing randomness or unpredictability, favoring volatile moods.
-#define STORY_TAG_CHAOTIC (1 << 15)
-// Goals targeting specific individuals rather than groups or the whole station.
-#define STORY_TAG_TARGETS_INDIVIDUALS (1 << 16)
-// Goals with broad impact across multiple station systems or the entire station.
-#define STORY_TAG_WIDE_IMPACT (1 << 17)
-// Goals involving entities (mobs, creatures) rather than just objects or systems.
-#define STORY_TAG_ENTITIES (1 << 18)
-// This event relates to antagonists
-#define STORY_TAG_ANTAGONIST (1 << 19)
-// This event occurs mid-round
-#define STORY_TAG_MIDROUND (1 << 20)
-// this event occurs on round start
-#define STORY_TAG_ROUNDSTART (1 << 21)
 
-// Combined tag: targets infrastructure, technology, or environment systems
-#define STORY_TAG_TARGETS_SYSTEMS (STORY_TAG_AFFECTS_INFRASTRUCTURE | STORY_TAG_AFFECTS_TECHNOLOGY | STORY_TAG_AFFECTS_ENVIRONMENT)
+#define STORY_TAGS_MATCH 1 				// Tags are completely the same
+#define STORY_TAGS_MOST_MATCH 2 		// Most tags are the same
+#define STORY_TAGS_SOME_MATCH 3 		// Tags are somewhat different
+#define STORY_TAGS_DIFFERENT 4 			// Tags are completely different
 
-DEFINE_BITFIELD(story_universal_tags, list(
-	"ESCALATION" = STORY_TAG_ESCALATION,
-	"DEESCALATION" = STORY_TAG_DEESCALATION,
-	"AFFECTS_CREW_HEALTH" = STORY_TAG_AFFECTS_CREW_HEALTH,
-	"AFFECTS_CREW_MIND" = STORY_TAG_AFFECTS_CREW_MIND,
-	"AFFECTS_ANTAGONIST" = STORY_TAG_AFFECTS_ANTAGONIST,
-	"AFFECTS_RESOURCES" = STORY_TAG_AFFECTS_RESOURCES,
-	"AFFECTS_MORALE" = STORY_TAG_AFFECTS_MORALE,
-	"AFFECTS_INFRASTRUCTURE" = STORY_TAG_AFFECTS_INFRASTRUCTURE,
-	"AFFECTS_ECONOMY" = STORY_TAG_AFFECTS_ECONOMY,
-	"AFFECTS_SECURITY" = STORY_TAG_AFFECTS_SECURITY,
-	"AFFECTS_WHOLESTATION" = STORY_TAG_AFFECTS_WHOLE_STATION,
-	"AFFECTS_RESEARCH" = STORY_TAG_AFFECTS_RESEARCH,
-	"AFFECTS_ENVIRONMENT" = STORY_TAG_AFFECTS_ENVIRONMENT,
-	"AFFECTS_TECHNOLOGY" = STORY_TAG_AFFECTS_TECHNOLOGY,
-	"AFFECTS_POLITICS" = STORY_TAG_AFFECTS_POLITICS,
-	"CHAOTIC" = STORY_TAG_CHAOTIC,
-	"TARGETS_INDIVIDUALS" = STORY_TAG_TARGETS_INDIVIDUALS,
-	"WIDE_IMPACT" = STORY_TAG_WIDE_IMPACT,
-	"ENTITIES" = STORY_TAG_ENTITIES,
-	"ANTAGONIST" = STORY_TAG_ANTAGONIST,
-	"MIDROUND" = STORY_TAG_MIDROUND,
-	"ROUNDSTART" = STORY_TAG_ROUNDSTART,
-))
+// Escalation category
+#define STORY_TAG_ESCALATION "STORY_ESCALATION"
+#define STORY_TAG_DEESCALATION "STORY_DEESCLATION"
+
+// A classification of an event
+#define STORY_TAG_COMBAT "STORY_COMBAT"
+#define STORY_TAG_SOCIAL "STORY_SOCIAL"
+#define STORY_TAG_ENVIRONMENTAL "STORY_ENVIRONMENTAL"
+#define STORY_TAG_ENTITIES "STORY_TAG_ENTITIES"
+#define STORY_TAG_CHAOTIC "STORY_TAG_CHAOTIC"
+#define STORY_TAG_HEALTH "STORY_TAG_HEALTH"
+
+// Event target category
+#define STORY_TAG_WIDE_IMPACT "STORY_TAG_WIDE_IMPACT"
+#define STORY_TAG_TARGETS_INDIVIDUALS "STORY_TAG_TARGETS_INDIVIDUALS"
+#define STORY_TAG_AFFECTS_WHOLE_STATION "STORY_TAG_AFFECTS_WHOLE_STATION"
+
+// A requirement for the event to be selected
+#define STORY_TAG_REQUIRES_SECURITY "STORY_REQUIRES_SECURITY"
+#define STORY_TAG_REQUIRES_ENGINEERING "STORY_REQUIRES_ENGINEERING"
+#define STORY_TAG_REQUIRES_MEDICAL "STORY_REQUIRES_MEDICAL"
+
+// A tone of event
+#define STORY_TAG_EPIC "STORY_EPIC"
+#define STORY_TAG_HUMOROUS "STORY_HUMOROUS"
+#define STORY_TAG_TRAGIC "STORY_TRAGIC"
+
+// Antagonist related tags
+#define STORY_TAG_ANTAGONIST "STORY_TAG_ANTAGONIST"
+#define STORY_TAG_MAJOR "STORY_MAJOR"
+#define STORY_TAG_MIDROUND "STORY_TAG_MIDROUND"
+#define STORY_TAG_ROUNDSTART "STORY_TAG_ROUNDSTART"
 
 // Goals statuses in planning tree for external use
 #define STORY_GOAL_PENDING "goal_pending"
 #define STORY_GOAL_FIRING "goal_firing"
 #define STORY_GOAL_COMPLETED "goal_completed"
 #define STORY_GOAL_FAILED "goal_failed"
+
+
 
 // Core storyteller pacing and difficulty constants
 #define STORY_THINK_BASE_DELAY (2 MINUTES)          // Base delay between thinker cycles

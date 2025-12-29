@@ -4,7 +4,7 @@
 	description = "Heavily EMPs all telecommunication machines, blocking all communication for a while. \
 			On hight-threat levels can damage ears of tcoms users."
 	story_category = STORY_GOAL_BAD
-	tags = STORY_TAG_AFFECTS_CREW_MIND | STORY_TAG_AFFECTS_WHOLE_STATION
+	tags = list(STORY_TAG_AFFECTS_WHOLE_STATION, STORY_TAG_SOCIAL)
 
 	typepath = /datum/round_event/communications_blackout/storyteller
 

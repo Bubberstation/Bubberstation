@@ -3,8 +3,14 @@
 	name = "Lone Operative"
 	description = "A lone operative is spawned to infiltrate the station capture nuclear disk and explode the nuke."
 	story_category = STORY_GOAL_ANTAGONIST
-	tags = STORY_TAG_ANTAGONIST | STORY_TAG_ESCALATION | STORY_TAG_WIDE_IMPACT | STORY_TAG_AFFECTS_WHOLE_STATION | STORY_TAG_MIDROUND
-
+	tags = list(
+		STORY_TAG_ANTAGONIST,
+		STORY_TAG_ESCALATION,
+		STORY_TAG_AFFECTS_WHOLE_STATION,
+		STORY_TAG_MIDROUND,
+		STORY_TAG_COMBAT,
+		STORY_TAG_REQUIRES_SECURITY,
+	)
 	story_weight = STORY_WEIGHT_MAJOR_ANTAGONIST * 0.8
 	story_prioty = STORY_GOAL_HIGH_PRIORITY
 	requierd_threat_level = STORY_GOAL_THREAT_HIGH
@@ -73,8 +79,17 @@
 	id = "storyteller_revolution"
 	name = "Revolution"
 	description = "A joining player becomes a dormant head revolutionary."
-	story_category = STORY_GOAL_ANTAGONIST
-	tags = STORY_TAG_ANTAGONIST | STORY_TAG_ESCALATION | STORY_TAG_AFFECTS_POLITICS | STORY_TAG_WIDE_IMPACT | STORY_TAG_MIDROUND | STORY_TAG_ROUNDSTART
+	story_category = STORY_GOAL_ANTAGONIST | STORY_GOAL_MAJOR
+	tags = list(
+		STORY_TAG_ANTAGONIST,
+		STORY_TAG_ESCALATION,
+		STORY_TAG_WIDE_IMPACT,
+		STORY_TAG_MIDROUND,
+		STORY_TAG_ROUNDSTART,
+		STORY_TAG_COMBAT,
+		STORY_TAG_REQUIRES_SECURITY,
+		STORY_TAG_SOCIAL,
+	)
 	enabled = FALSE
 
 	story_weight = STORY_WEIGHT_MAJOR_ANTAGONIST
@@ -127,9 +142,17 @@
 	id = "storyteller_malf_ai"
 	name = "Malfunctioning AI"
 	description = "The station AI becomes malfunctioning."
-	story_category = STORY_GOAL_ANTAGONIST
-	tags = STORY_TAG_ANTAGONIST | STORY_TAG_ESCALATION | STORY_TAG_AFFECTS_TECHNOLOGY | STORY_TAG_WIDE_IMPACT | STORY_TAG_MIDROUND | STORY_TAG_ROUNDSTART
-
+	story_category = STORY_GOAL_ANTAGONIST | STORY_GOAL_MAJOR
+	tags = list(
+		STORY_TAG_ANTAGONIST,
+		STORY_TAG_ESCALATION,
+		STORY_TAG_WIDE_IMPACT,
+		STORY_TAG_MIDROUND,
+		STORY_TAG_ROUNDSTART,
+		STORY_TAG_COMBAT,
+		STORY_TAG_REQUIRES_SECURITY,
+		STORY_TAG_REQUIRES_ENGINEERING,
+	)
 	story_weight = STORY_WEIGHT_MAJOR_ANTAGONIST
 	story_prioty = STORY_GOAL_HIGH_PRIORITY
 	requierd_threat_level = STORY_GOAL_THREAT_HIGH
@@ -154,9 +177,15 @@
 	id = "storyteller_blob_infection"
 	name = "Blob Infection"
 	description = "A crew member becomes a blob host."
-	story_category = STORY_GOAL_ANTAGONIST
-	tags = STORY_TAG_ANTAGONIST | STORY_TAG_ESCALATION | STORY_TAG_AFFECTS_CREW_HEALTH | STORY_TAG_ENTITIES | STORY_TAG_WIDE_IMPACT | STORY_TAG_MIDROUND
-
+	story_category = STORY_GOAL_ANTAGONIST | STORY_GOAL_MAJOR
+	tags = list(
+		STORY_TAG_ANTAGONIST,
+		STORY_TAG_ESCALATION,
+		STORY_TAG_AFFECTS_WHOLE_STATION,
+		STORY_TAG_MIDROUND,
+		STORY_TAG_COMBAT,
+		STORY_TAG_EPIC,
+	)
 	story_weight = STORY_WEIGHT_MAJOR_ANTAGONIST
 	story_prioty = STORY_GOAL_HIGH_PRIORITY
 	requierd_threat_level = STORY_GOAL_THREAT_HIGH
@@ -174,9 +203,17 @@
 	id = "storyteller_wizard"
 	name = "Wizard"
 	description = "A wizard is spawned to invade the station."
-	story_category = STORY_GOAL_ANTAGONIST
-	tags = STORY_TAG_ANTAGONIST | STORY_TAG_ESCALATION | STORY_TAG_WIDE_IMPACT | STORY_TAG_ENTITIES | STORY_TAG_MIDROUND
-
+	story_category = STORY_GOAL_ANTAGONIST | STORY_GOAL_MAJOR
+	tags = list(
+		STORY_TAG_ANTAGONIST,
+		STORY_TAG_ESCALATION,
+		STORY_TAG_WIDE_IMPACT,
+		STORY_TAG_MIDROUND,
+		STORY_TAG_ROUNDSTART,
+		STORY_TAG_COMBAT,
+		STORY_TAG_EPIC,
+		STORY_TAG_CHAOTIC,
+	)
 	story_weight = STORY_WEIGHT_MAJOR_ANTAGONIST
 	story_prioty = STORY_GOAL_HIGH_PRIORITY
 	requierd_threat_level = STORY_GOAL_THREAT_HIGH
@@ -198,9 +235,16 @@
 	id = "storyteller_blob"
 	name = "Blob"
 	description = "A blob is spawned on the station."
-	story_category = STORY_GOAL_ANTAGONIST
-	tags = STORY_TAG_ANTAGONIST | STORY_TAG_ESCALATION | STORY_TAG_AFFECTS_INFRASTRUCTURE | STORY_TAG_WIDE_IMPACT | STORY_TAG_ENTITIES | STORY_TAG_MIDROUND
-
+	story_category = STORY_GOAL_ANTAGONIST | STORY_GOAL_MAJOR
+	tags = list(
+		STORY_TAG_ANTAGONIST,
+		STORY_TAG_ESCALATION,
+		STORY_TAG_AFFECTS_WHOLE_STATION,
+		STORY_TAG_MIDROUND,
+		STORY_TAG_COMBAT,
+		STORY_TAG_EPIC,
+		STORY_TAG_CHAOTIC,
+	)
 	story_weight = STORY_WEIGHT_MAJOR_ANTAGONIST
 	story_prioty = STORY_GOAL_HIGH_PRIORITY
 	requierd_threat_level = STORY_GOAL_THREAT_EXTREME
@@ -228,8 +272,15 @@
 	id = "storyteller_xenos"
 	name = "Xenomorphs"
 	description = "Xenomorphs are spawned to invade the station."
-	story_category = STORY_GOAL_ANTAGONIST
-	tags = STORY_TAG_ANTAGONIST | STORY_TAG_ESCALATION | STORY_TAG_AFFECTS_CREW_HEALTH | STORY_TAG_ENTITIES | STORY_TAG_WIDE_IMPACT | STORY_TAG_MIDROUND
+	story_category = STORY_GOAL_ANTAGONIST | STORY_GOAL_MAJOR
+	tags = list(
+		STORY_TAG_ANTAGONIST,
+		STORY_TAG_ESCALATION,
+		STORY_TAG_AFFECTS_WHOLE_STATION,
+		STORY_TAG_MIDROUND,
+		STORY_TAG_COMBAT,
+		STORY_TAG_EPIC,
+	)
 
 	story_weight = STORY_WEIGHT_MAJOR_ANTAGONIST
 	story_prioty = STORY_GOAL_HIGH_PRIORITY
@@ -252,8 +303,15 @@
 	name = "Nuclear Operatives"
 	description = "A team of nuclear operatives is spawned to assault the station."
 	story_category = STORY_GOAL_ANTAGONIST | STORY_GOAL_MAJOR
-	tags = STORY_TAG_ANTAGONIST | STORY_TAG_ESCALATION | STORY_TAG_WIDE_IMPACT | STORY_TAG_ENTITIES | STORY_TAG_MIDROUND
-	enabled = FALSE
+	tags = list(
+		STORY_TAG_ANTAGONIST,
+		STORY_TAG_ESCALATION,
+		STORY_TAG_AFFECTS_WHOLE_STATION,
+		STORY_TAG_MIDROUND,
+		STORY_TAG_COMBAT,
+		STORY_TAG_EPIC,
+	)
+	enabled = TRUE
 
 	story_weight = STORY_WEIGHT_MAJOR_ANTAGONIST + 3
 	story_prioty = STORY_GOAL_CRITICAL_PRIORITY
@@ -276,8 +334,15 @@
 	id = "storyteller_blood_cult"
 	name = "Blood Cult"
 	description = "A group of crew members form a blood cult, with one leader."
-	story_category = STORY_GOAL_ANTAGONIST
-	tags = STORY_TAG_ANTAGONIST | STORY_TAG_ESCALATION | STORY_TAG_WIDE_IMPACT | STORY_TAG_ENTITIES | STORY_TAG_ROUNDSTART
+	story_category = STORY_GOAL_ANTAGONIST | STORY_GOAL_MAJOR
+	tags = list(
+		STORY_TAG_ANTAGONIST,
+		STORY_TAG_ESCALATION,
+		STORY_TAG_AFFECTS_WHOLE_STATION,
+		STORY_TAG_MIDROUND,
+		STORY_TAG_SOCIAL,
+		STORY_TAG_EPIC,
+	)
 	enabled = FALSE
 
 	story_weight = STORY_WEIGHT_MAJOR_ANTAGONIST

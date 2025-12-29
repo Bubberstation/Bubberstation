@@ -6,7 +6,7 @@
 	description = "A fire has broken out and is spreading rapidly through the station.\
 			This event can cause significant damage to station infrastructure and pose a threat to crew safety if not contained quickly."
 	story_category = STORY_GOAL_BAD
-	tags = STORY_TAG_ESCALATION | STORY_TAG_WIDE_IMPACT | STORY_TAG_AFFECTS_ENVIRONMENT | STORY_TAG_ENTITIES
+	tags = list(STORY_TAG_ESCALATION, STORY_TAG_ENTITIES, STORY_TAG_ENVIRONMENTAL, STORY_TAG_TRAGIC)
 	typepath = /datum/round_event/fire_spread
 
 	min_players = 10

@@ -19,9 +19,6 @@
 /datum/storyteller_mood/proc/get_variance_multiplier()
 	return clamp(volatility, 0.0, 2.0)
 
-/datum/storyteller_mood/proc/get_value_multiplier()
-	return 1
-
 
 /datum/storyteller_mood/slow_builder
 	name = "Slow Builder"

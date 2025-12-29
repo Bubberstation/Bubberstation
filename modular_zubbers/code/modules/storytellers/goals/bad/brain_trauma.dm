@@ -3,7 +3,7 @@
 	name = "Induce Brain Trauma"
 	description = "Cause a crew members to suffer a sudden brain trauma."
 	story_category = STORY_GOAL_BAD
-	tags = STORY_TAG_AFFECTS_CREW_HEALTH | STORY_TAG_ESCALATION | STORY_TAG_TARGETS_INDIVIDUALS
+	tags = list(STORY_TAG_TARGETS_INDIVIDUALS, STORY_TAG_REQUIRES_MEDICAL, STORY_TAG_TRAGIC)
 	typepath = /datum/round_event/brain_trauma
 
 	min_players = 5

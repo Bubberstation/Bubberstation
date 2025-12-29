@@ -30,7 +30,7 @@
 			At peak threats, multiple strains may emerge simultaneously, accelerating chaos toward global objectives \
 			like evacuation or containment failure."
 	story_category = STORY_GOAL_BAD
-	tags = STORY_TAG_ESCALATION | STORY_TAG_AFFECTS_CREW_HEALTH | STORY_TAG_WIDE_IMPACT
+	tags = list(STORY_TAG_ESCALATION, STORY_TAG_REQUIRES_MEDICAL, STORY_TAG_HEALTH, STORY_TAG_TRAGIC)
 
 	min_players = 10
 	required_round_progress = STORY_ROUND_PROGRESSION_MID

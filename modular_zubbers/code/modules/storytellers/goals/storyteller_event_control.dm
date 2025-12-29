@@ -6,7 +6,7 @@
 	// Is control of this event was overrided by storyteller
 	var/storyteller_override = FALSE
 	// A universal tags that helps storyteller to predict event behevour
-	var/tags = NONE
+	var/list/tags = NONE
 	// A storyteller weight override for event selection
 	var/story_weight = STORY_GOAL_BASE_WEIGHT  // Low weight by default
 	// A storyteller priority override for event selection
@@ -20,7 +20,7 @@
 	// Should this event be allowed to select by storyteller
 	var/enabled = TRUE
 
-
+// Is this event avaible for selection on storyteller
 /datum/round_event_control/proc/is_avaible(datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
 	if(!can_spawn_event(inputs.get_entry(STORY_VAULT_CREW_ALIVE_COUNT)))
 		return FALSE
@@ -32,41 +32,30 @@
 		return FALSE
 	return TRUE
 
-
-
-
+// Return weight of this event for storyteller
 /datum/round_event_control/proc/get_story_weight(datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
 	return story_weight
 
-
-
-
+// Returns priority of this event for sroyteller. Priority is important for events with same weight
 /datum/round_event_control/proc/get_story_priority(datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
 	return story_prioty
 
-
-
-
-
+// Can storyteller fire this event just right now
 /datum/round_event_control/proc/can_fire_now(datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
 	return TRUE
-
-
-
 
 /datum/round_event_control/proc/pre_storyteller_run(datum/storyteller_inputs/inputs, datum/storyteller/storyteller, threat_points)
 	return
 
-
+// Run after storyteller plan this event
 /datum/round_event_control/proc/on_planned(fire_time)
 	return
-
 
 /datum/round_event_control/proc/run_event_as_storyteller(datum/storyteller_inputs/inputs, datum/storyteller/storyteller, threat_points)
 	pre_storyteller_run(inputs, storyteller, threat_points)
 
 	var/used_threath_points = FALSE
-	if(typepath) // For antagonist and other events that spawn a round_event datum
+	if(typepath) // For events that spawn a round_event datum
 		var/datum/round_event/round_event = new typepath(TRUE, src)
 		if(SEND_SIGNAL(SSdcs, COMSIG_GLOB_STORYTELLER_RUN_EVENT, round_event) && CANCEL_STORYTELLER_EVENT)
 			return FALSE
@@ -89,13 +78,82 @@
 	message_admins("[span_notice("[storyteller.name] fired event:")] [name || id], with [threat_points] threat points")
 	return TRUE
 
-// Base for storyteller antagonist events
-// Integrates with global goals: spawns antags as sub-events after station analysis
-// (e.g., "betrayal branch" → traitor; "intrusion" → wizard)
+/// Check how well event tags match desired tags (works with both bitfield and text tags)
+/datum/round_event_control/proc/check_tags(list/story_tags)
+	if(!story_tags || !length(story_tags))
+		return STORY_TAGS_DIFFERENT
+	if(!tags)
+		return STORY_TAGS_DIFFERENT
+
+	var/total_tags = length(story_tags)
+	var/right_tags = 0
+
+	for(var/tag in story_tags)
+		if(has_tag(tag))
+			right_tags += 1
+
+	if(right_tags == total_tags)
+		return STORY_TAGS_MATCH
+	else if(right_tags >= total_tags / 2)
+		return STORY_TAGS_MOST_MATCH
+	else if(right_tags > 0)
+		return STORY_TAGS_SOME_MATCH
+	else
+		return STORY_TAGS_DIFFERENT
+
+/// Universal tag check - works with both bitfield and text tags
+/datum/round_event_control/proc/has_tag(tag)
+	if(!tags)
+		return FALSE
+
+	// Text tags (new system)
+	if(istype(tags, /list))
+		return (tag in tags)
+
+	// Bitfield tags (old system)
+	if(isnum(tags) && isnum(tag))
+		return (tags & tag) != 0
+
+	return FALSE
+
+/// Check if event has any of the provided tags
+/datum/round_event_control/proc/has_any_tag(list/tag_list)
+	if(!tags || !tag_list || !length(tag_list))
+		return FALSE
+
+	for(var/tag in tag_list)
+		if(has_tag(tag))
+			return TRUE
+
+	return FALSE
+
+/// Check if event has all of the provided tags
+/datum/round_event_control/proc/has_all_tags(list/tag_list)
+	if(!tags || !tag_list || !length(tag_list))
+		return FALSE
+
+	for(var/tag in tag_list)
+		if(!has_tag(tag))
+			return FALSE
+
+	return TRUE
+
+/datum/round_event_control/proc/get_readable_tags()
+	var/list/readable_tags = list()
+	for(var/tag in tags)
+		var/tag_name = replacetext(tag, "_", " ")
+		tag_name = replacetext(tag_name, "STORY", "")
+		var/list/words = splittext(tag_name, " ")
+		var/final_tag = ""
+		for(var/word in words)
+			word = LOWER_TEXT(word)
+			final_tag += word + " "
+		readable_tags += final_tag
+	return readable_tags
+
 
 /datum/round_event_control/antagonist
 	story_category = STORY_GOAL_ANTAGONIST
-
 	// Antag datum type (e.g., /datum/antagonist/traitor)
 	var/datum/antagonist/antag_datum_type = null
 	// Display name

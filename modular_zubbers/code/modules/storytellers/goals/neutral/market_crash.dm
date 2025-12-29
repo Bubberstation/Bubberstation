@@ -1,7 +1,7 @@
 /datum/round_event_control/market_crash
 	id = "market_crash"
 	story_category = STORY_GOAL_NEUTRAL
-	tags = STORY_TAG_AFFECTS_ECONOMY | STORY_TAG_AFFECTS_POLITICS
+	tags = list(STORY_TAG_HUMOROUS, STORY_TAG_SOCIAL)
 	typepath = /datum/round_event/market_crash
 
 	story_weight = STORY_GOAL_BASE_WEIGHT * 1.2

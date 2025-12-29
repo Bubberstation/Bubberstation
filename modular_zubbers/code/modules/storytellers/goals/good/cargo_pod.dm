@@ -22,7 +22,7 @@
 	name = "Cargo Pod Delivery"
 	description = "A cargo pod has been dispatched to the station, containing supplies that could aid the crew in their duties."
 	story_category = STORY_GOAL_GOOD
-	tags = STORY_TAG_AFFECTS_CREW_MIND | STORY_TAG_AFFECTS_RESOURCES
+	tags = list(STORY_TAG_DEESCALATION, STORY_TAG_SOCIAL)
 	typepath = /datum/round_event/storyteller_cargo_pod
 
 	var/auto_cargo = FALSE

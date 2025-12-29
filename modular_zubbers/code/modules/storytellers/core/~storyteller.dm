@@ -1,10 +1,10 @@
 // Default population thresholds (can be overridden per storyteller instance)
-#define STORY_POPULATION_THRESHOLD_LOW_DEFAULT 10	   // Very low pop → mercy mode (positive goals)
-#define STORY_POPULATION_THRESHOLD_MEDIUM_DEFAULT 21	// Medium → standard
+#define STORY_POPULATION_THRESHOLD_LOW_DEFAULT 10	  // Very low pop → mercy mode (positive goals)
+#define STORY_POPULATION_THRESHOLD_MEDIUM_DEFAULT 21  // Medium → standard
 #define STORY_POPULATION_THRESHOLD_HIGH_DEFAULT 32	  // High → challenge
-#define STORY_POPULATION_THRESHOLD_FULL_DEFAULT 51	 // Full → max escalation
+#define STORY_POPULATION_THRESHOLD_FULL_DEFAULT 51	  // Full → max escalation
 
-#define STORY_POPULATION_FACTOR_LOW_DEFAULT 0.3		 // Low pop: easier, more positive branches
+#define STORY_POPULATION_FACTOR_LOW_DEFAULT 0.3		  // Low pop: easier, more positive branches
 #define STORY_POPULATION_FACTOR_MEDIUM_DEFAULT 0.5
 #define STORY_POPULATION_FACTOR_HIGH_DEFAULT 0.8
 #define STORY_POPULATION_FACTOR_FULL_DEFAULT 1.0
@@ -14,6 +14,9 @@
 #define STORY_POPULATION_HISTORY_MAX 20
 
 /datum/storyteller
+
+	/* BASIC STORYTELLER INFO */
+
 	var/name = "John Dynamic"
 	var/desc = "A generic storyteller managing station events and goals."
 	var/ooc_desc = "Tell to coder if you saw this storyteller in action."
@@ -21,22 +24,25 @@
 	var/portrait_path = ""
 	var/logo_path = ""
 	var/id = "john_dynamic"
-	/// Base cost multiplier for event cost calculations
-	var/base_cost_multiplier = 1.0
+
+
+	/* CORE STORYTELLER VARIABLES */
+
+
 	/// Current mood profile, affecting event pacing and tone
 	var/datum/storyteller_mood/mood
+	/// Behevour of storyteller; determines how they shoot events
+	var/datum/storyteller_behevour/behevour
 	/// Planner selects chain of goals and timeline-based execution
 	var/datum/storyteller_planner/planner
-	/// Mind of storyteller; determines how they shoot events
-	var/datum/storyteller_think/mind
 	/// Analyzer computes station value and inputs
 	var/datum/storyteller_analyzer/analyzer
 	/// Balancer computes weights of players vs antagonists
 	var/datum/storyteller_balance/balancer
 	/// Storyteller short memory of inputs and vault
 	var/datum/storyteller_inputs/inputs
-	/// Next time to update analysis and planning (in world.time)
-	var/next_think_time = 0
+
+
 	/// Base think frequency; scaled by mood pace (in ticks)
 	var/base_think_delay = STORY_THINK_BASE_DELAY
 	// Event pacing limits
@@ -60,10 +66,6 @@
 	var/adaptation_factor = 0
 	/// Rate at which adaptation decays over time (e.g., gradual recovery after disasters)
 	var/adaptation_decay_rate = STORY_ADAPTATION_DECAY_RATE
-	/// Threshold for triggering adaptation spikes
-	var/recent_damage_threshold = STORY_RECENT_DAMAGE_THRESHOLD
-	/// Target tension level; storyteller aims to keep overall_tension around this
-	var/target_tension = STORY_TARGET_TENSION
 	/// Current level of overall tension
 	var/current_tension = 0
 	/// Current grace period after major event when we avoid rapid-fire scheduling
@@ -74,25 +76,35 @@
 	var/round_start_time = 0
 	/// Cached progression 0..1 over target duration
 	var/round_progression = 0
+
+
+	/* DIFFICULTY SCALING VARIABLES */
+
 	/// Overall difficulty multiplier; scales all weights/threats (1.0 = normal)
 	var/difficulty_multiplier = STORY_DIFFICULTY_MULTIPLIER
-	/// Population factor; scales by active player population, larger crews get denser and more frequent events
-	var/population_factor = 0
-	/// History of population counts for counting population factor
-	VAR_PRIVATE/list/population_history = list()
-	/// History of raw crew counts (numeric) — used for spike detection
-	VAR_PRIVATE/list/population_count_history = list()
-	/// History of tension values used for spike detection
-	VAR_PRIVATE/list/tension_history = list()
+	/// Threshold for triggering adaptation spikes
+	var/recent_damage_threshold = STORY_RECENT_DAMAGE_THRESHOLD
+	/// Target tension level; storyteller aims to keep overall_tension around this
+	var/target_tension = STORY_TARGET_TENSION
 	/// Max threat scale; caps threat_points to prevent over-escalation
 	var/max_threat_scale = STORY_MAX_THREAT_SCALE
 	/// Repetition penalty; reduces weight of recently used events/goals for variety
 	var/repetition_penalty = STORY_REPETITION_PENALTY
 	/// Interval for mood adjustment (reuse planner recalc cadence)
 	var/mood_update_interval = STORY_RECALC_INTERVAL
-	/// Is this storyteller initialized
-	var/initialized = FALSE
+	/// History of tension values used for spike detection
+	VAR_PRIVATE/list/tension_history = list()
 
+
+	/* POPULATION SCALING VARIABLES */
+	/// It actually scaled how rare we fire events
+
+	/// Population factor; scales by active player population, larger crews get denser and more frequent events
+	var/population_factor = 0
+	/// History of population counts for counting population factor
+	VAR_PRIVATE/list/population_history = list()
+	/// History of raw crew counts (numeric) — used for spike detection
+	VAR_PRIVATE/list/population_count_history = list()
 	/// Population scaling configuration
 	/// Threshold for low population classification
 	var/population_threshold_low = STORY_POPULATION_THRESHOLD_LOW_DEFAULT
@@ -113,9 +125,9 @@
 	/// Smoothing weight for population factor changes (0-1, higher = slower changes)
 	var/population_smooth_weight = STORY_POPULATION_SMOOTH_WEIGHT_DEFAULT
 
-	COOLDOWN_DECLARE(mood_update_cooldown)
-	/// Cooldown for checking antagonist spawn balance (in ticks)
-	COOLDOWN_DECLARE(antag_balance_check_cooldown)
+
+	/* ANTAG VARIBLES */
+
 	/// Base interval for checking antagonist balance (default: 30 minutes for wave-based spawning)
 	var/antag_balance_check_interval = 30 MINUTES
 	/// Time when roundstart antagonists should be selected (approximately 10 minutes after round start)
@@ -123,6 +135,16 @@
 	/// Whether roundstart antagonists have been selected
 	var/roundstart_antags_selected = FALSE
 
+	/* STATE TRACKING VARIABLES */
+
+	/// Next time to update analysis and planning (in world.time)
+	var/next_think_time = 0
+	/// Is this storyteller initialized
+	var/initialized = FALSE
+	/// Cooldown for mood updates
+	COOLDOWN_DECLARE(mood_update_cooldown)
+	/// Cooldown for checking antagonist spawn balance
+	COOLDOWN_DECLARE(antag_balance_check_cooldown)
 
 /datum/storyteller/New()
 	..()
@@ -130,7 +152,6 @@
 	planner = new /datum/storyteller_planner(src)
 	analyzer = new /datum/storyteller_analyzer(src)
 	balancer = new /datum/storyteller_balance(src)
-	mind = new /datum/storyteller_think
 	inputs = new /datum/storyteller_inputs
 
 /datum/storyteller/Destroy(force)
@@ -138,7 +159,6 @@
 	qdel(planner)
 	qdel(analyzer)
 	qdel(balancer)
-	qdel(mind)
 	qdel(inputs)
 
 	UnregisterSignal(analyzer, COMSIG_STORYTELLER_FINISHED_ANALYZING)
@@ -211,6 +231,23 @@
 
 
 
+/datum/storyteller/proc/get_repeat_info(goal_id)
+	var/id_prefix = goal_id + "_"
+	var/count = 0
+	var/last_time = 0
+
+	for(var/hist_id in recent_events)
+		if(findtext(hist_id, id_prefix, 1, 0))
+			count++
+			var/list/details = recent_events[hist_id]
+			var/fire_time = details["fired_ts"]
+			if(fire_time > last_time)
+				last_time = fire_time
+
+	return list("count" = count, "last_time" = last_time)
+
+
+
 /// Event interval without population adjustment; for baseline pacing in global goal selection.
 /datum/storyteller/proc/get_event_interval_no_population_factor()
 	return average_event_interval * get_effective_pace()
@@ -267,6 +304,9 @@
 	else if(category == STORY_GOAL_BAD)
 		return round(base_threat * 1.2 * max(0.5, adaptation_factor))
 	return clamp(round(base_threat), 0, max_threat_scale * 100)
+
+/datum/storyteller/proc/get_next_event()
+	return behevour.get_next_event(balancer.make_snapshot(inputs), inputs)
 
 /**
  * Main thinker loop
@@ -366,12 +406,12 @@
 		return
 
 	var/tension_effect = 0
-	if(evt.tags & STORY_TAG_ESCALATION)
+	if(evt.has_tag(STORY_TAG_ESCALATION))
 		adaptation_factor = min(1.0, adaptation_factor + 0.3)
 		tension_effect += 5
-		if(evt.tags & STORY_GOAL_MAJOR)
+		if(evt.story_category & STORY_GOAL_MAJOR)
 			adaptation_factor = min(1.0, adaptation_factor + 0.2)
-	else if(evt.tags & STORY_TAG_DEESCALATION)
+	else if(evt.has_tag(STORY_TAG_DEESCALATION))
 		adaptation_factor = max(0, adaptation_factor - 0.1)
 
 	if(evt.story_category & STORY_GOAL_BAD)
@@ -525,6 +565,7 @@
 		addtimer(CALLBACK(src, PROC_REF(send_full_roundstart_report)), \
 			rand(60 SECONDS, 180 SECONDS), TIMER_UNIQUE)
 
+
 /// Sends a complete roundstart report independently, without using communications_controller
 /// Includes advisory report, station goals, and traits
 /datum/storyteller/proc/send_full_roundstart_report()
@@ -607,6 +648,7 @@
 #endif
 
 	log_storyteller("[name] sent full roundstart report with advisory level based on target_tension=[target_tension], difficulty=[difficulty_multiplier]")
+
 
 /// Determines if this should be treated as a greenshift (no threats)
 /datum/storyteller/proc/determine_greenshift_status()

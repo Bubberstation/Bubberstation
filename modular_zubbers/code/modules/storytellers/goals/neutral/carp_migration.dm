@@ -1,7 +1,7 @@
 /datum/round_event_control/carp_migration
 	id = "carp_migration"
 	story_category = STORY_GOAL_NEUTRAL
-	tags = STORY_TAG_WIDE_IMPACT | STORY_TAG_AFFECTS_ENVIRONMENT | STORY_TAG_ENTITIES
+	tags = list(STORY_TAG_ENTITIES, STORY_TAG_WIDE_IMPACT, STORY_TAG_COMBAT)
 	typepath = /datum/round_event/carp_migration
 
 	min_players = 5

@@ -187,9 +187,7 @@
 /// Adds the next event to the timeline with improved planning: selects category/event, calculates delay,
 /// enforces major event spacing and anti-clustering during insertion.
 /datum/storyteller_planner/proc/add_next_event(datum/storyteller/ctl, datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/bal)
-	var/category = select_event_category(ctl, bal)
-	var/derived_tags = derive_universal_tags(category, ctl, inputs, bal)
-	var/datum/round_event_control/new_event_control = build_event(ctl, inputs, bal, derived_tags, category)
+	var/datum/round_event_control/new_event_control = build_event(ctl)
 	if(!new_event_control)
 		return FALSE
 
@@ -400,30 +398,8 @@
 		cancel_event(offset)
 
 
-/datum/storyteller_planner/proc/build_event(datum/storyteller/ctl, datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/bal, tag_filter = 0, category = STORY_GOAL_NEUTRAL)
-	tag_filter = tag_filter || derive_universal_tags(category, ctl, inputs, bal)
-	var/list/candidates = SSstorytellers.filter_goals(category, tag_filter, null, FALSE)
-	if(!candidates.len)
-		candidates = SSstorytellers.filter_goals(STORY_GOAL_RANDOM)
-
-	var/datum/round_event_control/event_control = ctl.mind.select_weighted_goal(ctl, inputs, bal, candidates, ctl.population_factor, tag_filter)
-	return event_control
-
-
-/datum/storyteller_planner/proc/derive_universal_tags(category, datum/storyteller/ctl, datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/bal)
-	var/tags = ctl.mind.tokenize(category, ctl, inputs, bal, ctl.mood)
-	if(SSstorytellers.hard_debug)
-		var/string_tags = ""
-		for(var/tag_str in get_valid_bitflags("story_universal_tags"))
-			if(tags & get_valid_bitflags("story_universal_tags")[tag_str])
-				string_tags += tag_str + ", "
-		message_admins("Storyteller [ctl.name] tokenize station snapshot with next tags: [string_tags]")
-	return tags
-
-
-/datum/storyteller_planner/proc/select_event_category(datum/storyteller/ctl, datum/storyteller_balance_snapshot/bal)
-	return ctl.mind.determine_category(ctl, bal)
-
+/datum/storyteller_planner/proc/build_event(datum/storyteller/ctl)
+	return ctl.get_next_event()
 
 /datum/storyteller_planner/proc/get_next_event_delay(datum/round_event_control/event_control, datum/storyteller/ctl)
 	var/delay = ctl.get_event_interval()

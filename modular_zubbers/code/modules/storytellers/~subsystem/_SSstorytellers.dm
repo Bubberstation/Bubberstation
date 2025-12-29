@@ -191,7 +191,6 @@ SUBSYSTEM_DEF(storytellers)
 	new_st.id = id
 	new_st.name = data["name"]
 	new_st.desc = data["desc"]
-	new_st.base_cost_multiplier = data["base_cost_multiplier"]
 	new_st.player_antag_balance = data["player_antag_balance"]
 
 	// Core pacing/threat vars
@@ -294,10 +293,6 @@ SUBSYSTEM_DEF(storytellers)
 	SSevents.flags = SS_NO_FIRE
 	message_admins(span_bolditalic("ICES and random events were disabled by Storyteller"))
 
-/datum/controller/subsystem/storytellers/proc/active_goal_is_achieved(list/context)
-	return FALSE  // Stub: removed active_goal, as per chain refactor
-
-
 /datum/controller/subsystem/storytellers/proc/collect_available_goals()
 	events_by_id = list()
 	events_by_category = list()
@@ -316,7 +311,7 @@ SUBSYSTEM_DEF(storytellers)
 
 		if(!event_control.valid_for_map())
 			continue // Skip invalid for map
-		if(event_control.tags & STORY_GOAL_NEVER)
+		if(event_control.story_category & STORY_GOAL_NEVER)
 			continue // Skip never goals
 		if(istype(event_control, /datum/round_event_control/wizard))
 			continue
@@ -408,10 +403,10 @@ SUBSYSTEM_DEF(storytellers)
 	storyteller_vote_cache += active ? active.id : "n/a"
 	rustg_file_write(json_encode(storyteller_vote_cache), STORYTELLER_VOTE_CACHE)
 
-/datum/controller/subsystem/storytellers/proc/filter_goals(category = null, required_tags = null, subtype = null, all_tags_required = FALSE, include_children = TRUE)
+/datum/controller/subsystem/storytellers/proc/filter_goals(category = null, list/required_tags = null, minimum_match_category = STORY_TAGS_SOME_MATCH)
 	var/list/result = list()
 
-	var/list/goals_to_check = list()
+	var/list/events_to_check = list()
 	var/category_str
 	if(category)
 		if(category & STORY_GOAL_RANDOM)
@@ -429,34 +424,33 @@ SUBSYSTEM_DEF(storytellers)
 	else
 		category_str = "GOAL_RANDOM"  // Default to uncategorized if none specified
 
-	goals_to_check = _list_copy(events_by_category[category_str])
-	if(!goals_to_check)
+	events_to_check = _list_copy(events_by_category[category_str])
+	if(!events_to_check)
+		stack_trace("SSstorytelers: no events found for category [category_str]")
 		return list()
 
-	for(var/datum/round_event_control/event_control in goals_to_check)
-		if(!event_control.enabled)
+	for(var/datum/round_event_control/evt in events_to_check)
+		if(!evt.enabled)
 			continue
-		if(subtype && !istype(event_control, subtype))
+		if(!evt.valid_for_map())
 			continue
 		if(required_tags)
-			if(!event_control.tags)
+			if(!evt.tags)
 				continue
-			if(all_tags_required)
-				if((event_control.tags & required_tags) != required_tags)
-					continue
-			else
-				if(!(event_control.tags & required_tags))
-					continue
-
-		// round_event_control doesn't have parent_id, so skip parent check
-
-		// Additional filter for global flag if set in category
-		if(category & STORY_GOAL_GLOBAL && !(event_control.story_category & STORY_GOAL_GLOBAL))
-			continue
-
-		result += event_control
+			var/match = evt.check_tags(required_tags)
+			if(match <= minimum_match_category)
+				continue
+			result += evt
 	return result
 
+/datum/controller/subsystem/storytellers/proc/filter_goals_hard(category = null, list/required_tags = null)
+	return filter_goals(category, required_tags, STORY_TAGS_MOST_MATCH)
+
+/datum/controller/subsystem/storytellers/proc/filter_goals_exact(category = null, list/required_tags = null)
+	return filter_goals(category, required_tags, STORY_TAGS_MATCH)
+
+/datum/controller/subsystem/storytellers/proc/get_event_by_id(id)
+	return events_by_id[id]
 
 /// Convenience method to get root goals by category, tags, and subtype
 /datum/controller/subsystem/storytellers/proc/get_root_goals(category = null, required_tags = null, subtype = null, all_tags_required = FALSE)

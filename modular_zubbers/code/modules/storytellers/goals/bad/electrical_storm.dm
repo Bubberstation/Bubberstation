@@ -3,7 +3,7 @@
 	name = "Electrical Storm"
 	description = "Execite electrical storms to disable station lighting and machinery."
 	story_category = STORY_GOAL_BAD
-	tags = STORY_TAG_WIDE_IMPACT | STORY_TAG_TARGETS_SYSTEMS
+	tags = list(STORY_TAG_CHAOTIC, STORY_TAG_WIDE_IMPACT)
 	typepath = /datum/round_event/electrical_storm
 
 

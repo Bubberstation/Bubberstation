@@ -4,7 +4,7 @@
 	name = "Perform Raid"
 	description = "Sends a coordinated raid from a hostile faction on the station"
 	story_category = STORY_GOAL_BAD | STORY_GOAL_GLOBAL
-	tags = STORY_TAG_ESCALATION | STORY_TAG_ENTITIES | STORY_TAG_AFFECTS_CREW_HEALTH | STORY_TAG_AFFECTS_INFRASTRUCTURE
+	tags = list(STORY_TAG_ESCALATION, STORY_TAG_ENTITIES, STORY_TAG_COMBAT, STORY_TAG_EPIC, STORY_TAG_REQUIRES_SECURITY)
 	enabled = FALSE
 
 	min_players = 15

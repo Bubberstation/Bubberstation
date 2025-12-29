@@ -1,5 +1,5 @@
 // Storyteller vault metrics for tracking station state
-// Each metric represents a category of station conditions used by the storyteller to select goals and events
+// Each metric represents a category of station conditions used by the storyteller to select events
 
 /*
 	Health metrics
@@ -132,14 +132,14 @@
 // Number of active security personnel on station
 #define STORY_VAULT_SECURITY_COUNT "security_count"
 
-// Tracks security strength (number of active security officers, their gear, arrests made).
+// Tracks security strength (number of active security officers, their gear)
 #define STORY_VAULT_SECURITY_STRENGTH "security_strength"
 	#define STORY_VAULT_NO_SECURITY 0      // No active security
 	#define STORY_VAULT_WEAK_SECURITY 1    // Few/low-geared officers
 	#define STORY_VAULT_MODERATE_SECURITY 2 // Standard force
 	#define STORY_VAULT_STRONG_SECURITY 3  // High numbers/well-equipped
 
-// Tracks security alert level (green to delta).
+// Tracks security alert level (green to delta)
 #define STORY_VAULT_SECURITY_ALERT "security_alert"  // Already partially in code, expanded
 	#define STORY_VAULT_GREEN_ALERT 0
 	#define STORY_VAULT_BLUE_ALERT 1

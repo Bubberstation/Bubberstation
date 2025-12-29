@@ -3,7 +3,13 @@
 	name = "Ion Storm"
 	description = "Triggers an ion storm, disable and damage electronics and synthetics."
 	story_category = STORY_GOAL_BAD | STORY_GOAL_MAJOR
-	tags = STORY_TAG_AFFECTS_WHOLE_STATION | STORY_TAG_TARGETS_SYSTEMS
+	tags = list(
+		STORY_TAG_AFFECTS_WHOLE_STATION,
+		STORY_TAG_ENVIRONMENTAL,
+		STORY_TAG_REQUIRES_ENGINEERING,
+		STORY_TAG_EPIC,
+		STORY_TAG_CHAOTIC,
+	)
 	typepath = /datum/round_event/ion_storm
 
 	story_weight = STORY_GOAL_BASE_WEIGHT * 0.5
