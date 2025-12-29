@@ -12,7 +12,7 @@
 
 	antag_datum = /datum/antagonist/malf_ai
 	antag_flag = ROLE_MALF
-	weight = 6
+	weight = 4
 	tags = list(TAG_CREW_ANTAG, TAG_COMBAT, TAG_CHAOTIC)
 	restricted_roles = list("Cyborg")
 
