@@ -2082,6 +2082,13 @@
 /area/centcom/holding/cafe/park)
 "aVs" = (
 /obj/machinery/door/airlock/external/glass,
+/obj/machinery/light/floor{
+	alpha = 0;
+	invisibility = 100;
+	light_power = 10;
+	light_range = 20;
+	nightshift_light_power = 10
+	},
 /turf/open/floor/plating,
 /area/centcom/interlink)
 "aVA" = (
@@ -2469,10 +2476,10 @@
 "bnU" = (
 /obj/structure/dresser,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
-/obj/machinery/digital_clock/directional/north,
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
 	},
+/obj/machinery/digital_clock/directional/north,
 /turf/open/floor/wood/tile,
 /area/centcom/interlink/dorm_rooms)
 "boa" = (
@@ -8410,6 +8417,17 @@
 /obj/structure/flora/bush/fullgrass,
 /turf/open/misc/grass/planet,
 /area/centcom/holding/cafe/ruin/caves)
+"hLw" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/light/floor{
+	alpha = 0;
+	invisibility = 100;
+	light_power = 10;
+	light_range = 20;
+	nightshift_light_power = 10
+	},
+/turf/open/floor/plating,
+/area/centcom/interlink)
 "hLA" = (
 /obj/structure/table/wood,
 /obj/item/folder/yellow{
@@ -11568,7 +11586,6 @@
 	},
 /area/centcom/holding/cafe/station/command)
 "lcR" = (
-/obj/machinery/digital_clock/directional/north,
 /obj/item/condom_pack,
 /obj/structure/closet/secure_closet/personal/cabinet,
 /obj/effect/turf_decal/siding/wood,
@@ -23615,11 +23632,11 @@
 "yjN" = (
 /obj/structure/dresser,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
-/obj/machinery/digital_clock/directional/north,
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
 	},
 /obj/machinery/light/directional/east,
+/obj/machinery/digital_clock/directional/north,
 /turf/open/floor/wood/parquet,
 /area/centcom/interlink/dorm_rooms)
 "yjX" = (
@@ -35780,7 +35797,7 @@ fbS
 dbZ
 omh
 omh
-aDg
+hLw
 cal
 twE
 kKo
@@ -36808,7 +36825,7 @@ fbS
 dbZ
 omh
 omh
-aDg
+hLw
 cal
 hkT
 xzh
