@@ -4379,7 +4379,6 @@
 "bbJ" = (
 /obj/machinery/door/airlock/external,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /turf/open/floor/iron/dark,
@@ -17832,9 +17831,6 @@
 /turf/open/floor/iron,
 /area/station/commons/dorms)
 "efE" = (
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
 /obj/structure/cable,
 /obj/machinery/power/terminal{
 	dir = 1
@@ -25245,12 +25241,6 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer4{
 	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer2{
-	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -38672,9 +38662,6 @@
 "iWg" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/power/tracker,
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
 /obj/structure/railing{
 	dir = 1
 	},
@@ -45745,6 +45732,11 @@
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/engineering/atmos)
+"kDv" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable,
+/turf/open/space,
+/area/station/solars/starboard/fore)
 "kDy" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=8";
@@ -66907,12 +66899,9 @@
 /obj/structure/cable,
 /obj/docking_port/stationary{
 	dir = 8;
-	dwidth = 10;
-	height = 11;
 	id_tag = "exploration_home";
 	name = "Exploration Dock";
 	roundstart_template = /datum/map_template/shuttle/exploration/card;
-	width = 19;
 	shuttle_id = "Explorer_home"
 	},
 /turf/open/floor/iron/textured_half{
@@ -71293,15 +71282,6 @@
 /turf/open/floor/vault/rock,
 /area/station/science/ordnance)
 "qzz" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -73014,7 +72994,6 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -79191,9 +79170,6 @@
 /area/station/engineering/supermatter/room/upper)
 "smw" = (
 /obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /obj/structure/railing{
 	dir = 1
 	},
@@ -103627,14 +103603,13 @@
 /turf/open/floor/iron/large,
 /area/station/security/prison)
 "xXE" = (
-/obj/structure/cable{
-	icon_state = "4-8"
+/obj/machinery/power/solar{
+	id_tag = "portsolar";
+	name = "Port Solar Array"
 	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/turf/open/floor/catwalk_floor/iron_smooth,
-/area/station/engineering/engine_smes)
+/turf/open/floor/iron/solarpanel/airless,
+/area/station/solars/starboard/fore)
 "xXI" = (
 /obj/effect/turf_decal/trimline/yellow/filled/corner,
 /turf/open/floor/iron/smooth,
@@ -116694,22 +116669,22 @@ nzj
 vcV
 nzj
 nzj
-sjO
-sjO
-sjO
-sjO
-kQq
+xXE
+xXE
+xXE
+xXE
+xXE
 hyT
 hyT
 hyT
 mmC
 hyT
 hyT
-sjO
-sjO
-sjO
-sjO
-sjO
+xXE
+xXE
+xXE
+xXE
+xXE
 nzj
 nzj
 vcV
@@ -116951,22 +116926,22 @@ cwQ
 vcV
 hyT
 hyT
-kat
-tOC
-tOC
-tOC
-tOC
+kDv
+kDv
+kDv
+kDv
+kDv
 sCI
 uxS
 vJc
 heA
 rig
-jTX
-cQZ
-eTe
-cQZ
-cQZ
-nlQ
+sCI
+sCI
+sCI
+sCI
+sCI
+sCI
 hyT
 hyT
 vcV
@@ -117208,22 +117183,22 @@ nzj
 vcV
 nzj
 nzj
-kHO
-kHO
-kHO
-kHO
-bxD
+xXE
+xXE
+xXE
+xXE
+xXE
 hyT
 tqa
 tdk
 mcw
 mcw
 mcw
-kHO
-bxD
-kHO
-kHO
-kHO
+xXE
+xXE
+xXE
+xXE
+xXE
 nzj
 nzj
 vcV
@@ -117986,7 +117961,7 @@ uxS
 uxS
 uxS
 vJc
-jTX
+sCI
 eTe
 cQZ
 cQZ
@@ -134787,7 +134762,7 @@ jlc
 uaT
 xfd
 hjT
-xXE
+qzz
 npI
 eTk
 bTM
