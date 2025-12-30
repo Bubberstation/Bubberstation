@@ -3439,10 +3439,8 @@
 /obj/item/pen{
 	pixel_x = -8
 	},
-/obj/machinery/door/window/left/directional/east{
-	name = "Genetics Desk";
-	req_access = list("genetics");
-	dir = 1
+/obj/machinery/door/window/left/directional/north{
+	req_access = list("genetics")
 	},
 /turf/open/floor/plating,
 /area/station/science/genetics)
@@ -3453,10 +3451,8 @@
 	id_tag = "librc";
 	name = "Library Counter Shutters"
 	},
-/obj/machinery/door/window/left/directional/west{
-	name = "Library Desk Door";
-	req_access = list("library");
-	dir = 4
+/obj/machinery/door/window/left/directional/east{
+	req_access = list("library")
 	},
 /turf/open/floor/plating,
 /area/station/service/library)
@@ -16938,7 +16934,7 @@
 	dir = 8
 	},
 /obj/machinery/door/window/left/directional/east{
-	req_access = list("ai_upload")
+	req_access = list("xenobiology")
 	},
 /turf/open/floor/iron/dark,
 /area/station/science/xenobiology)
@@ -26432,10 +26428,8 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/machinery/door/window/left/directional/west{
-	name = "Library Desk Door";
-	req_access = list("library");
-	dir = 4
+/obj/machinery/door/window/left/directional/east{
+	req_access = list("library")
 	},
 /turf/open/floor/carpet/red,
 /area/station/service/library)
@@ -26720,7 +26714,7 @@
 	},
 /obj/effect/turf_decal/trimline/purple/filled,
 /obj/machinery/door/window/left/directional/east{
-	req_access = list("ai_upload")
+	req_access = list("xenobiology")
 	},
 /turf/open/floor/iron/dark,
 /area/station/science/xenobiology)
@@ -28374,7 +28368,8 @@
 	},
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/machinery/door/window/left/directional/west{
-	name = "AI Core Door"
+	name = "Containment Pen";
+	req_access = list("xenobiology")
 	},
 /turf/open/floor/iron/dark,
 /area/station/science/xenobiology)
@@ -31321,10 +31316,6 @@
 /turf/open/floor/plating,
 /area/station/medical/pharmacy)
 "hwm" = (
-/obj/machinery/door/window/brigdoor{
-	dir = 8;
-	name = "Telecommunications"
-	},
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer2{
 	dir = 8
 	},
@@ -31334,6 +31325,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold/general/hidden{
 	dir = 4
 	},
+/obj/machinery/door/window/brigdoor/left/directional/west,
 /turf/open/floor/pod,
 /area/station/maintenance/department/science/upper)
 "hwt" = (
@@ -31603,7 +31595,8 @@
 	name = "Creature Cell #2"
 	},
 /obj/machinery/door/window/left/directional/west{
-	name = "AI Core Door"
+	name = "Containment Pen";
+	req_access = list("xenobiology")
 	},
 /turf/open/floor/iron/dark,
 /area/station/science/xenobiology)
@@ -38169,7 +38162,8 @@
 	},
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/machinery/door/window/left/directional/west{
-	name = "AI Core Door"
+	name = "Containment Pen";
+	req_access = list("xenobiology")
 	},
 /turf/open/floor/iron/dark,
 /area/station/science/xenobiology)
@@ -40705,11 +40699,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/iron,
 /area/station/engineering/lobby)
-"jDn" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/catwalk_floor/iron,
-/area/station/maintenance/central/greater)
 "jDE" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -42825,10 +42814,9 @@
 	name = "Creature Cell #6"
 	},
 /obj/structure/window/reinforced/spawner/directional/east,
-/obj/machinery/door/window/left/directional/east{
+/obj/machinery/door/window/left/directional/west{
 	name = "Containment Pen";
-	req_access = list("xenobiology");
-	dir = 8
+	req_access = list("xenobiology")
 	},
 /turf/open/floor/iron/dark,
 /area/station/science/xenobiology)
@@ -43148,10 +43136,8 @@
 	color = "#6880f1"
 	},
 /obj/structure/cable,
-/obj/machinery/door/window/left/directional/east{
-	name = "Bridge Deliveries";
-	req_access = list("command");
-	dir = 8
+/obj/machinery/door/window/left/directional/west{
+	req_access = list("command")
 	},
 /turf/open/floor/pod,
 /area/station/command/teleporter)
@@ -43967,10 +43953,7 @@
 /obj/structure/rack,
 /obj/item/ai_module/reset/purge,
 /obj/item/ai_module/reset,
-/obj/machinery/door/window/brigdoor{
-	dir = 1;
-	name = "Core Modules"
-	},
+/obj/machinery/door/window/brigdoor/left/directional/north,
 /turf/open/floor/circuit,
 /area/station/ai/upload/chamber)
 "koL" = (
@@ -44618,9 +44601,7 @@
 	pixel_y = -17
 	},
 /obj/structure/window/reinforced/spawner/directional/north,
-/obj/machinery/door/window/brigdoor/left/directional/west{
-	name = "Core Modules"
-	},
+/obj/machinery/door/window/brigdoor/left/directional/west,
 /turf/open/floor/circuit,
 /area/station/ai/upload/chamber)
 "kxm" = (
@@ -45349,10 +45330,8 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/machinery/door/window/left/directional/west{
-	name = "Library Desk Door";
-	req_access = list("library");
-	dir = 1
+/obj/machinery/door/window/left/directional/north{
+	req_access = list("library")
 	},
 /turf/open/floor/carpet/red,
 /area/station/service/library)
@@ -46943,9 +46922,7 @@
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 8
 	},
-/obj/machinery/door/window{
-	dir = 8
-	},
+/obj/machinery/door/window/right/directional/west,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/medical/morgue)
 "lbk" = (
@@ -49325,10 +49302,8 @@
 "lEX" = (
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/left/directional/west{
-	req_access = list("cargo");
-	name = "Cargo Security Window";
-	dir = 4
+/obj/machinery/door/window/left/directional/east{
+	req_access = list("cargo")
 	},
 /turf/open/floor/plating,
 /area/station/cargo/lobby)
@@ -52459,7 +52434,8 @@
 	name = "Creature Cell #3"
 	},
 /obj/machinery/door/window/left/directional/west{
-	name = "AI Core Door"
+	name = "Containment Pen";
+	req_access = list("xenobiology")
 	},
 /turf/open/floor/iron/dark,
 /area/station/science/xenobiology)
@@ -57343,10 +57319,8 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/obj/machinery/door/window/left/directional/west{
-	name = "Library Desk Door";
-	req_access = list("library");
-	dir = 1
+/obj/machinery/door/window/left/directional/north{
+	req_access = list("library")
 	},
 /turf/open/floor/carpet/red,
 /area/station/service/library)
@@ -62133,7 +62107,8 @@
 	dir = 4
 	},
 /obj/machinery/door/window/left/directional/west{
-	name = "AI Core Door"
+	name = "Containment Pen";
+	req_access = list("xenobiology")
 	},
 /turf/open/floor/iron/dark,
 /area/station/science/xenobiology)
@@ -62669,10 +62644,8 @@
 	},
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/structure/window/reinforced/spawner/directional/north,
-/obj/machinery/door/window/left/directional/north{
-	name = "Hydroponics Desk";
-	req_access = list("hydroponics");
-	dir = 8
+/obj/machinery/door/window/left/directional/west{
+	req_access = list("hydroponics")
 	},
 /turf/open/floor/pod/dark,
 /area/station/service/hydroponics)
@@ -62879,10 +62852,8 @@
 	},
 /obj/item/paper_bin,
 /obj/item/pen,
-/obj/machinery/door/window/left/directional/west{
-	req_access = list("cargo");
-	name = "Cargo Security Window";
-	dir = 4
+/obj/machinery/door/window/left/directional/east{
+	req_access = list("cargo")
 	},
 /turf/open/floor/plating,
 /area/station/cargo/lobby)
@@ -76984,10 +76955,8 @@
 	id_tag = "quarantineshutters";
 	name = "Isolation Shutters"
 	},
-/obj/machinery/door/window/left/directional/east{
-	name = "Genetics Desk";
-	req_access = list("genetics");
-	dir = 1
+/obj/machinery/door/window/left/directional/north{
+	req_access = list("genetics")
 	},
 /turf/open/floor/plating,
 /area/station/science/genetics)
@@ -78027,10 +77996,8 @@
 /obj/item/folder/blue,
 /obj/structure/desk_bell,
 /obj/item/paper/pamphlet/centcom/visitor_info,
-/obj/machinery/door/window/brigdoor/left/directional/east{
-	name = "Security Desk";
-	req_access = list("security");
-	dir = 8
+/obj/machinery/door/window/brigdoor/left/directional/west{
+	req_access = list("security")
 	},
 /turf/open/floor/plating,
 /area/station/security/checkpoint/arrivals)
@@ -78900,10 +78867,8 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
 /obj/structure/cable,
-/obj/machinery/door/window/left/directional/south{
-	name = "Atmospherics Desk";
-	req_access = list("atmospherics");
-	dir = 4
+/obj/machinery/door/window/left/directional/east{
+	req_access = list("atmospherics")
 	},
 /turf/open/floor/plating,
 /area/station/engineering/atmos/office)
@@ -79241,11 +79206,8 @@
 /obj/item/ai_module/core/full/reporter{
 	pixel_y = 7
 	},
-/obj/machinery/door/window/brigdoor{
-	dir = 4;
-	name = "Core Modules"
-	},
 /obj/structure/window/reinforced/spawner/directional/north,
+/obj/machinery/door/window/brigdoor/left/directional/east,
 /turf/open/floor/circuit,
 /area/station/ai/upload/chamber)
 "sCm" = (
@@ -85880,11 +85842,6 @@
 	},
 /area/station/science/research)
 "uga" = (
-/obj/machinery/door/window/left/directional/east{
-	name = "Containment Pen";
-	req_access = list("xenobiology");
-	dir = 8
-	},
 /obj/effect/turf_decal/stripes/white/full,
 /obj/machinery/atmospherics/pipe/smart/simple/general/visible{
 	dir = 4
@@ -85892,6 +85849,9 @@
 /obj/machinery/door/poddoor/preopen{
 	id_tag = "xenosecure";
 	name = "Secure Pen Shutters"
+	},
+/obj/machinery/door/window/left/directional/west{
+	req_access = list("xenobiology")
 	},
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
@@ -86365,7 +86325,8 @@
 	},
 /obj/effect/turf_decal/trimline/purple/filled,
 /obj/machinery/door/window/left/directional/west{
-	name = "AI Core Door"
+	name = "Containment Pen";
+	req_access = list("xenobiology")
 	},
 /turf/open/floor/iron/dark,
 /area/station/science/xenobiology)
@@ -86684,10 +86645,8 @@
 	location = "Research Division";
 	name = "navigation beacon (Research Division)"
 	},
-/obj/machinery/door/window/left/directional/east{
-	name = "Research Lab Desk";
-	req_access = list("science");
-	dir = 1
+/obj/machinery/door/window/left/directional/north{
+	req_access = list("science")
 	},
 /turf/open/floor/pod/light,
 /area/station/science/lobby)
@@ -87719,6 +87678,7 @@
 "uCT" = (
 /obj/structure/table/reinforced,
 /obj/machinery/status_display/ai/directional/west,
+/obj/machinery/door/window/brigdoor/left/directional/east,
 /turf/open/floor/circuit,
 /area/station/ai/upload/chamber)
 "uCU" = (
@@ -91335,9 +91295,7 @@
 /area/station/engineering/atmos/office)
 "vuJ" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/left/directional/west{
-	name = "Core Modules"
-	},
+/obj/machinery/door/window/brigdoor/left/directional/west,
 /obj/item/ai_module/supplied/protect_station{
 	pixel_y = 7
 	},
@@ -95714,7 +95672,8 @@
 /area/station/command/heads_quarters/cmo)
 "wvp" = (
 /obj/machinery/door/window/left/directional/west{
-	name = "AI Core Door"
+	name = "Containment Pen";
+	req_access = list("xenobiology")
 	},
 /obj/machinery/door/window/left/directional/east{
 	req_access = list("xenobiology")
@@ -96194,10 +96153,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
-/obj/machinery/door/window/left/directional/west{
-	req_access = list("cargo");
-	name = "Cargo Security Window";
-	dir = 2
+/obj/machinery/door/window/left/directional/south{
+	req_access = list("cargo")
 	},
 /turf/open/floor/iron,
 /area/station/cargo/sorting)
@@ -101291,10 +101248,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 2
 	},
-/obj/machinery/door/window/left/directional/west{
-	req_access = list("cargo");
-	name = "Cargo Security Window";
-	dir = 2
+/obj/machinery/door/window/left/directional/south{
+	req_access = list("cargo")
 	},
 /turf/open/floor/iron,
 /area/station/cargo/sorting)
@@ -102685,7 +102640,8 @@
 	},
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/machinery/door/window/left/directional/west{
-	name = "AI Core Door"
+	name = "Containment Pen";
+	req_access = list("xenobiology")
 	},
 /turf/open/floor/iron/dark,
 /area/station/science/xenobiology)
@@ -126192,7 +126148,7 @@ ylr
 reV
 oqy
 pXb
-jDn
+reV
 reV
 gpW
 iua
