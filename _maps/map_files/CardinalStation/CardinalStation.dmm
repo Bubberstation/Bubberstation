@@ -4804,9 +4804,9 @@
 	id_tag = "AI"
 	},
 /obj/machinery/door/poddoor/shutters/preopen{
-	id_tag = "AI Chamber entrance shutters";
 	name = "AI Chamber Entrance Shutters";
-	dir = 8
+	dir = 8;
+	id = "AI Chamber entrance shutters"
 	},
 /turf/open/floor/circuit/red,
 /area/station/ai/satellite/chamber)
@@ -5913,8 +5913,8 @@
 	dir = 1
 	},
 /obj/machinery/door/poddoor/preopen{
-	id_tag = "smlock";
-	name = "Lockdown Mechanism"
+	name = "Lockdown Mechanism";
+	id = "smlock"
 	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
@@ -7617,9 +7617,9 @@
 /obj/machinery/light/small/directional/south,
 /obj/machinery/button/door{
 	name = "Radiation Shutters";
-	id_tag = "smrad";
 	pixel_y = -24;
-	color = "#74b366"
+	color = "#74b366";
+	id = "smrad"
 	},
 /turf/open/floor/iron/smooth,
 /area/station/engineering/supermatter/room)
@@ -12369,9 +12369,9 @@
 /area/station/tcommsat/computer)
 "cQo" = (
 /obj/machinery/door/poddoor/shutters/preopen{
-	id_tag = "AI Chamber entrance shutters";
 	name = "AI Chamber Entrance Shutters";
-	dir = 4
+	dir = 4;
+	id = "AI Chamber entrance shutters"
 	},
 /turf/open/floor/circuit/green,
 /area/station/ai/satellite/chamber)
@@ -16339,8 +16339,8 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/white/line,
 /obj/machinery/door/poddoor/preopen{
-	id_tag = "smlock";
-	name = "Lockdown Mechanism"
+	name = "Lockdown Mechanism";
+	id = "smlock"
 	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
@@ -23655,7 +23655,7 @@
 	},
 /obj/structure/window/reinforced/spawner,
 /obj/machinery/door/poddoor/preopen{
-	id_tag = "AI Chamber entrance shutters"
+	id = "AI Chamber entrance shutters"
 	},
 /turf/open/floor/circuit,
 /area/station/ai/satellite/chamber)
@@ -30057,8 +30057,8 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer4,
 /obj/machinery/door/poddoor/preopen{
-	id_tag = "AI Chamber entrance shutters";
-	name = "AI Chamber Entrance Blast Door"
+	name = "AI Chamber Entrance Blast Door";
+	id = "AI Chamber entrance shutters"
 	},
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/access/all/command/ai_upload,
@@ -30842,7 +30842,7 @@
 /obj/effect/landmark/start/ai,
 /obj/machinery/button/door/directional/west{
 	name = "AI Chamber lockdown";
-	id_tag = "AI Chamber entrance shutters"
+	id = "AI Chamber entrance shutters"
 	},
 /turf/open/floor/circuit,
 /area/station/ai/satellite/chamber)
@@ -32856,18 +32856,18 @@
 "hNm" = (
 /obj/structure/table/reinforced,
 /obj/machinery/button/massdriver{
-	id_tag = "smeject";
 	name = "supermatter ejection sequence";
 	pixel_y = 1;
 	color = "#ff0000";
-	pixel_x = 1
+	pixel_x = 1;
+	id = "smeject"
 	},
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/machinery/button/door{
 	pixel_x = 8;
 	pixel_y = 9;
-	id_tag = "smlock";
-	name = "Supermatter lock in sequence"
+	name = "Supermatter lock in sequence";
+	id = "smlock"
 	},
 /turf/open/floor/iron/smooth,
 /area/station/engineering/supermatter/room)
@@ -34252,8 +34252,8 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/white/line,
 /obj/machinery/door/poddoor/preopen{
-	id_tag = "smlock";
-	name = "Lockdown Mechanism"
+	name = "Lockdown Mechanism";
+	id = "smlock"
 	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
@@ -39885,9 +39885,9 @@
 /area/station/command/bridge)
 "jtP" = (
 /obj/machinery/door/poddoor/shutters/preopen{
-	id_tag = "AI Chamber entrance shutters";
 	name = "AI Chamber Entrance Shutters";
-	dir = 8
+	dir = 8;
+	id = "AI Chamber entrance shutters"
 	},
 /turf/open/floor/circuit/red,
 /area/station/ai/satellite/chamber)
@@ -53101,7 +53101,7 @@
 	id_tag = "AI"
 	},
 /obj/machinery/door/poddoor/preopen{
-	id_tag = "AI Chamber entrance shutters"
+	id = "AI Chamber entrance shutters"
 	},
 /obj/structure/window/reinforced/spawner,
 /turf/open/floor/circuit,
@@ -56176,7 +56176,7 @@
 	dir = 8
 	},
 /obj/machinery/door/poddoor/preopen{
-	id_tag = "AI Chamber entrance shutters"
+	id = "AI Chamber entrance shutters"
 	},
 /obj/structure/window/reinforced/spawner,
 /turf/open/floor/circuit,
@@ -62096,22 +62096,6 @@
 	},
 /turf/open/floor/grass,
 /area/station/service/hydroponics/garden)
-"oHA" = (
-/obj/effect/turf_decal/trimline/white/filled,
-/obj/effect/turf_decal/trimline/purple/filled,
-/obj/machinery/disposal/bin,
-/obj/structure/window/reinforced/spawner/directional/south,
-/obj/structure/window/reinforced/spawner/directional/east,
-/obj/structure/window/reinforced/spawner/directional/north,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/machinery/door/window/left/directional/west{
-	name = "Containment Pen";
-	req_access = list("xenobiology")
-	},
-/turf/open/floor/iron/dark,
-/area/station/science/xenobiology)
 "oHQ" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 8
@@ -66185,8 +66169,8 @@
 	dir = 1
 	},
 /obj/machinery/door/poddoor/preopen{
-	id_tag = "smlock";
-	name = "Lockdown Mechanism"
+	name = "Lockdown Mechanism";
+	id = "smlock"
 	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
@@ -67828,7 +67812,7 @@
 	},
 /obj/machinery/button/door/directional/west{
 	name = "AI Chamber lockdown";
-	id_tag = "AI Chamber entrance shutters"
+	id = "AI Chamber entrance shutters"
 	},
 /turf/open/floor/circuit/green,
 /area/station/ai/satellite/chamber)
@@ -69060,8 +69044,8 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor/preopen{
-	id_tag = "smlock";
-	name = "Lockdown Mechanism"
+	name = "Lockdown Mechanism";
+	id = "smlock"
 	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
@@ -72610,8 +72594,8 @@
 	},
 /obj/machinery/button/door/directional/west{
 	name = "AI Chamber lockdown";
-	id_tag = "AI Chamber entrance shutters";
-	pixel_x = 24
+	pixel_x = 24;
+	id = "AI Chamber entrance shutters"
 	},
 /turf/open/floor/circuit/red,
 /area/station/ai/satellite/chamber)
@@ -74744,7 +74728,7 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor/preopen{
-	id_tag = "AI Chamber entrance shutters"
+	id = "AI Chamber entrance shutters"
 	},
 /turf/open/floor/circuit,
 /area/station/ai/satellite/chamber)
@@ -80437,7 +80421,7 @@
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer4,
 /obj/structure/cable,
 /obj/machinery/door/poddoor/preopen{
-	id_tag = "AI Chamber entrance shutters"
+	id = "AI Chamber entrance shutters"
 	},
 /turf/open/floor/circuit,
 /area/station/ai/satellite/chamber)
@@ -85499,7 +85483,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/door/poddoor/preopen{
-	id_tag = "AI Chamber entrance shutters"
+	id = "AI Chamber entrance shutters"
 	},
 /turf/open/floor/circuit,
 /area/station/ai/satellite/chamber)
@@ -88700,9 +88684,9 @@
 	id_tag = "AI"
 	},
 /obj/machinery/door/poddoor/shutters/preopen{
-	id_tag = "AI Chamber entrance shutters";
 	name = "AI Chamber Entrance Shutters";
-	dir = 4
+	dir = 4;
+	id = "AI Chamber entrance shutters"
 	},
 /turf/open/floor/circuit/green,
 /area/station/ai/satellite/chamber)
@@ -89959,6 +89943,22 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/catwalk_floor/iron,
 /area/station/engineering/hallway)
+"vep" = (
+/obj/effect/turf_decal/trimline/white/filled,
+/obj/effect/turf_decal/trimline/purple/filled,
+/obj/machinery/disposal/bin,
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/door/window/left/directional/west{
+	name = "Containment Pen";
+	req_access = list("xenobiology")
+	},
+/turf/open/floor/iron/dark,
+/area/station/science/xenobiology)
 "vet" = (
 /turf/open/floor/wood/large,
 /area/station/security/detectives_office)
@@ -90137,8 +90137,8 @@
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/girder/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
-	id_tag = "AI Chamber entrance shutters";
-	name = "AI Chamber Entrance Shutters"
+	name = "AI Chamber Entrance Shutters";
+	id = "AI Chamber entrance shutters"
 	},
 /turf/open/floor/plating,
 /area/station/ai/satellite/chamber)
@@ -92410,8 +92410,8 @@
 	dir = 8
 	},
 /obj/machinery/door/poddoor/preopen{
-	id_tag = "smlock";
-	name = "Lockdown Mechanism"
+	name = "Lockdown Mechanism";
+	id = "smlock"
 	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
@@ -99098,8 +99098,8 @@
 /area/station/science/research)
 "xnU" = (
 /obj/machinery/door/poddoor{
-	id_tag = "smeject";
-	name = "Supermatter Ejection Door"
+	name = "Supermatter Ejection Door";
+	id = "smeject"
 	},
 /turf/open/floor/plating,
 /area/station/engineering/supermatter/room/upper)
@@ -102825,7 +102825,7 @@
 "yhQ" = (
 /obj/machinery/door/poddoor{
 	name = "Supermatter Ejection Door";
-	id_tag = "smeject"
+	id = "smeject"
 	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
@@ -130587,7 +130587,7 @@ eXc
 iOw
 gwO
 wOg
-oHA
+vep
 gLs
 xcG
 czP
@@ -130597,7 +130597,7 @@ yfv
 eHO
 czP
 wOg
-oHA
+vep
 kdl
 ycB
 czP
