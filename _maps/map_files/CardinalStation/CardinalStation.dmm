@@ -4907,17 +4907,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/disposal)
-"bgT" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/station/solars/starboard/aft)
 "bhc" = (
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer2{
 	dir = 10
@@ -6419,18 +6408,6 @@
 /obj/structure/window/reinforced/spawner/directional/north,
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
-"bxD" = (
-/obj/machinery/power/solar{
-	id_tag = "portsolar";
-	name = "Port Solar Array"
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/iron/solarpanel/airless,
-/area/station/solars/starboard/fore)
 "bxI" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/effect/turf_decal/siding/white/corner,
@@ -7763,9 +7740,6 @@
 	id_tag = "auxsolareast";
 	name = "Starboard Bow Solar Control"
 	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
 /obj/machinery/light/small/directional/north,
 /obj/structure/cable,
 /turf/open/floor/iron/smooth,
@@ -7864,17 +7838,6 @@
 "bQA" = (
 /turf/open/floor/iron/edge,
 /area/station/engineering/atmos)
-"bQG" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/structure/cable,
-/turf/open/space,
-/area/station/solars/port/fore)
 "bQL" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 8
@@ -8124,19 +8087,8 @@
 "bSO" = (
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
-"bSW" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/cable,
-/turf/open/space,
-/area/station/solars/starboard/aft)
 "bSY" = (
 /obj/machinery/power/terminal,
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	alpha = 180
 	},
@@ -12600,20 +12552,6 @@
 /obj/effect/mapping_helpers/airlock/access/any/command/teleporter,
 /turf/open/floor/iron/smooth_half,
 /area/station/command/teleporter)
-"cQZ" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/station/solars/starboard/fore)
 "cRc" = (
 /obj/machinery/door/airlock/science{
 	name = "Exploration Shuttle Dock"
@@ -13243,9 +13181,6 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/science/ordnance)
 "cYl" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /obj/structure/cable,
 /turf/open/floor/catwalk_floor,
 /area/station/maintenance/solars/port/fore)
@@ -20840,21 +20775,6 @@
 /obj/effect/mapping_helpers/airlock/access/any/engineering/general,
 /turf/open/floor/iron/smooth,
 /area/station/engineering/main)
-"eTe" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/station/solars/starboard/fore)
 "eTk" = (
 /obj/machinery/light/small/directional/south,
 /obj/machinery/power/smes/engineering,
@@ -20934,10 +20854,6 @@
 	id_tag = "portsolar";
 	name = "Port Solar Array"
 	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/iron/solarpanel/airless,
 /area/station/solars/starboard/aft)
@@ -22092,17 +22008,6 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space/nearstation)
-"fiJ" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/station/solars/port/fore)
 "fiS" = (
 /obj/effect/turf_decal/siding/dark,
 /obj/machinery/firealarm{
@@ -30375,7 +30280,7 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/turf/open/space,
+/turf/open/space/basic,
 /area/station/solars/starboard/fore)
 "heH" = (
 /obj/effect/turf_decal/tile/red/real_red/opposingcorners{
@@ -31030,14 +30935,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/dark/visible/layer5,
 /turf/open/floor/plating,
 /area/station/maintenance/central/greater)
-"hmH" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/station/solars/port/fore)
 "hmK" = (
 /obj/machinery/airalarm/directional/east,
 /turf/open/floor/wood,
@@ -31478,15 +31375,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/science/research)
-"hsI" = (
-/obj/machinery/power/solar{
-	id_tag = "auxsolareast";
-	name = "Port Auxiliary Solar Array"
-	},
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/iron/solarpanel/airless,
-/area/station/solars/port/fore)
 "hsZ" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
@@ -34624,9 +34512,6 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/access/any/engineering/general,
 /turf/open/floor/catwalk_floor,
@@ -37598,14 +37483,6 @@
 	dir = 1
 	},
 /area/station/cargo/sorting)
-"iKy" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/station/solars/starboard/aft)
 "iKF" = (
 /obj/machinery/light/floor,
 /obj/structure/disposalpipe/segment{
@@ -38647,7 +38524,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/space,
+/turf/open/space/basic,
 /area/station/solars/starboard/fore)
 "iWh" = (
 /obj/effect/turf_decal/plaque{
@@ -41985,20 +41862,6 @@
 /obj/machinery/light/small/directional/east,
 /turf/open/floor/iron/smooth,
 /area/station/construction/mining/aux_base)
-"jMR" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/station/solars/port/fore)
 "jMS" = (
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
@@ -42693,14 +42556,6 @@
 	},
 /turf/open/floor/carpet/blue,
 /area/station/medical/break_room)
-"jTX" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/station/solars/starboard/fore)
 "jUb" = (
 /obj/effect/turf_decal/tile/neutral/opposingcorners{
 	dir = 1
@@ -43241,17 +43096,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/commons/dorms)
-"kat" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/structure/cable,
-/turf/open/space,
-/area/station/solars/starboard/fore)
 "kaB" = (
 /obj/effect/turf_decal/trimline/neutral/filled/line,
 /obj/effect/turf_decal/trimline/neutral/line,
@@ -44297,14 +44141,6 @@
 	},
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/hop)
-"klK" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/station/solars/port/fore)
 "klL" = (
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer2{
 	dir = 10
@@ -45747,7 +45583,7 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/open/space,
+/turf/open/space/basic,
 /area/station/solars/starboard/aft)
 "kEi" = (
 /obj/structure/chair,
@@ -45948,17 +45784,6 @@
 /obj/effect/landmark/start/depsec/science,
 /turf/open/floor/iron/white,
 /area/station/science/research)
-"kHO" = (
-/obj/machinery/power/solar{
-	id_tag = "portsolar";
-	name = "Port Solar Array"
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/structure/cable,
-/turf/open/floor/iron/solarpanel/airless,
-/area/station/solars/starboard/fore)
 "kHR" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -46541,14 +46366,6 @@
 	dir = 1
 	},
 /area/station/hallway/primary/fore)
-"kOd" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable,
-/turf/open/space,
-/area/station/solars/port/fore)
 "kOh" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=1";
@@ -46663,18 +46480,6 @@
 /obj/machinery/camera/motion/directional/east,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/ai/satellite/chamber)
-"kQq" = (
-/obj/machinery/power/solar{
-	id_tag = "portsolar";
-	name = "Port Solar Array"
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/iron/solarpanel/airless,
-/area/station/solars/starboard/fore)
 "kQN" = (
 /obj/structure/grille,
 /turf/open/floor/plating,
@@ -48831,11 +48636,6 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/station/security/courtroom)
-"lpA" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable,
-/turf/open/space,
-/area/station/solars/port/fore)
 "lpC" = (
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	dir = 1
@@ -48977,9 +48777,6 @@
 "lqT" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/power/tracker,
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
 /obj/structure/cable,
 /turf/open/space/basic,
 /area/station/solars/starboard/aft)
@@ -56982,17 +56779,6 @@
 /obj/structure/window/reinforced/spawner/directional/east,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/cmo)
-"nlQ" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/station/solars/starboard/fore)
 "nlU" = (
 /obj/structure/lattice,
 /obj/structure/railing{
@@ -57604,7 +57390,7 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/open/space,
+/turf/open/space/basic,
 /area/station/solars/port/fore)
 "ntx" = (
 /obj/effect/turf_decal/trimline/purple/filled/warning,
@@ -58504,7 +58290,7 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/turf/open/space,
+/turf/open/space/basic,
 /area/station/solars/starboard/aft)
 "nDe" = (
 /obj/structure/closet/secure_closet/freezer{
@@ -61126,11 +60912,6 @@
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/iron/smooth,
 /area/station/security/checkpoint/medical)
-"oiA" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable,
-/turf/open/space,
-/area/station/solars/starboard/fore)
 "oiB" = (
 /obj/machinery/light/cold/directional/south,
 /obj/effect/turf_decal/trimline/yellow/filled/line,
@@ -62536,18 +62317,6 @@
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/science/nanite)
-"oCr" = (
-/obj/machinery/power/solar{
-	id_tag = "portsolar";
-	name = "Port Solar Array"
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/iron/solarpanel/airless,
-/area/station/solars/starboard/aft)
 "oCx" = (
 /obj/structure/table/wood,
 /turf/open/floor/iron/white/smooth_large,
@@ -63002,11 +62771,6 @@
 	},
 /turf/open/floor/grass,
 /area/station/service/hydroponics/garden)
-"oHA" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable,
-/turf/open/space,
-/area/station/solars/port/aft)
 "oHQ" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 8
@@ -66850,14 +66614,6 @@
 	dir = 1
 	},
 /area/shuttle/abandoned)
-"pxj" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/station/solars/port/fore)
 "pxn" = (
 /obj/effect/decal/cleanable/crayon{
 	icon_state = "stickman";
@@ -70077,10 +69833,6 @@
 	},
 /turf/open/floor/iron/freezer,
 /area/station/security/prison)
-"qlr" = (
-/obj/structure/lattice/catwalk,
-/turf/open/space,
-/area/station/solars/port/fore)
 "qlA" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark,
 /obj/effect/turf_decal/tile/yellow{
@@ -70640,7 +70392,7 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
-/turf/open/space,
+/turf/open/space/basic,
 /area/station/solars/starboard/aft)
 "qrS" = (
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer4{
@@ -71010,14 +70762,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /turf/open/floor/iron/half,
 /area/station/hallway/primary/starboard)
-"qwW" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/structure/cable,
-/turf/open/space,
-/area/station/solars/port/fore)
 "qwY" = (
 /obj/effect/turf_decal/siding/yellow,
 /obj/effect/turf_decal/siding/dark{
@@ -74242,7 +73986,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/open/space,
+/turf/open/space/basic,
 /area/station/solars/starboard/fore)
 "rio" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark{
@@ -74442,14 +74186,6 @@
 /obj/structure/cable,
 /turf/open/floor/vault/rock,
 /area/station/cargo/miningoffice)
-"rkO" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/station/solars/starboard/aft)
 "rkQ" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
@@ -75725,20 +75461,6 @@
 /obj/machinery/light/small/directional/east,
 /turf/open/floor/carpet/blue,
 /area/station/security/courtroom)
-"rxT" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/station/solars/starboard/aft)
 "rxW" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible,
 /obj/machinery/portable_atmospherics/canister/plasma,
@@ -78879,17 +78601,6 @@
 "sjN" = (
 /turf/closed/wall/rust,
 /area/station/common/night_club)
-"sjO" = (
-/obj/machinery/power/solar{
-	id_tag = "portsolar";
-	name = "Port Solar Array"
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/structure/cable,
-/turf/open/floor/iron/solarpanel/airless,
-/area/station/solars/starboard/fore)
 "sjX" = (
 /obj/machinery/conveyor_switch/oneway{
 	id_tag = "cargolobbyin";
@@ -79099,7 +78810,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/space,
+/turf/open/space/basic,
 /area/station/solars/starboard/fore)
 "smz" = (
 /obj/structure/table/reinforced,
@@ -79506,14 +79217,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/aft)
-"srS" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/station/solars/starboard/fore)
 "srV" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -84146,15 +83849,6 @@
 	dir = 1
 	},
 /area/station/hallway/primary/fore)
-"txA" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/station/solars/starboard/fore)
 "txE" = (
 /turf/open/floor/catwalk_floor/iron,
 /area/station/maintenance/port)
@@ -85516,20 +85210,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/central/greater)
-"tOC" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/structure/cable,
-/turf/open/space,
-/area/station/solars/starboard/fore)
 "tOE" = (
 /turf/closed/wall/r_wall,
 /area/station/engineering/supermatter/room)
@@ -86353,10 +86033,6 @@
 /obj/structure/dresser,
 /turf/open/floor/carpet/orange,
 /area/station/command/heads_quarters/ce)
-"tXu" = (
-/obj/structure/lattice/catwalk,
-/turf/open/space,
-/area/station/solars/port/aft)
 "tXy" = (
 /obj/effect/turf_decal/trimline/neutral/filled/corner,
 /obj/structure/disposalpipe/segment{
@@ -88560,10 +88236,6 @@
 /obj/machinery/airalarm/directional/west,
 /turf/open/floor/iron/white,
 /area/station/science/lobby)
-"uxS" = (
-/obj/structure/lattice/catwalk,
-/turf/open/space,
-/area/station/solars/starboard/fore)
 "uyf" = (
 /obj/structure/cable,
 /turf/open/floor/wood,
@@ -90145,20 +89817,6 @@
 "uRZ" = (
 /turf/closed/wall,
 /area/station/service/lawoffice)
-"uSf" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/structure/cable,
-/turf/open/space,
-/area/station/solars/port/fore)
 "uSq" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 8
@@ -90400,7 +90058,7 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/open/space,
+/turf/open/space/basic,
 /area/station/solars/port/aft)
 "uVI" = (
 /obj/effect/turf_decal/stripes/line{
@@ -91896,14 +91554,6 @@
 	},
 /turf/open/floor/circuit/telecomms/server,
 /area/station/maintenance/department/science/upper)
-"vlB" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/station/solars/starboard/aft)
 "vlL" = (
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/structure/window/reinforced/spawner/directional/south,
@@ -92073,7 +91723,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/open/space,
+/turf/open/space/basic,
 /area/station/solars/port/fore)
 "voC" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
@@ -93918,19 +93568,6 @@
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/iron,
 /area/station/maintenance/department/medical)
-"vIQ" = (
-/obj/machinery/power/solar{
-	id_tag = "portsolar";
-	name = "Port Solar Array"
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/structure/cable,
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/iron/solarpanel/airless,
-/area/station/solars/starboard/fore)
 "vIS" = (
 /obj/effect/turf_decal/siding/red/real_red/corner,
 /obj/effect/turf_decal/siding/red/real_red/corner{
@@ -93958,7 +93595,7 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
-/turf/open/space,
+/turf/open/space/basic,
 /area/station/solars/starboard/fore)
 "vJd" = (
 /turf/closed/wall,
@@ -98434,14 +98071,6 @@
 	dir = 1
 	},
 /area/station/cargo/miningdock)
-"wNA" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/station/solars/starboard/aft)
 "wNC" = (
 /obj/structure/closet/crate/bin,
 /obj/item/toy/sword{
@@ -98560,7 +98189,7 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
-/turf/open/space,
+/turf/open/space/basic,
 /area/station/solars/port/fore)
 "wOS" = (
 /obj/effect/turf_decal/trimline/purple/filled/warning,
@@ -99391,14 +99020,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron/smooth,
 /area/station/engineering/atmos)
-"xai" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/station/solars/port/fore)
 "xap" = (
 /obj/structure/window/reinforced/tinted/spawner/directional/east,
 /obj/structure/window/reinforced/spawner/directional/west,
@@ -104453,7 +104074,7 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/open/space,
+/turf/open/space/basic,
 /area/station/solars/port/aft)
 "yjJ" = (
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer2{
@@ -116840,13 +116461,13 @@ cwQ
 vcV
 hyT
 hyT
-oiA
-oiA
-oiA
-oiA
-oiA
 sCI
-uxS
+sCI
+sCI
+sCI
+sCI
+sCI
+tqa
 vJc
 heA
 rig
@@ -117608,22 +117229,22 @@ nzj
 vcV
 nzj
 nzj
-sjO
-sjO
-sjO
-sjO
-sjO
+kJh
+kJh
+kJh
+kJh
+kJh
 hyT
 hyT
 hyT
 hyT
 tqa
 hyT
-sjO
-kQq
-sjO
-sjO
-sjO
+kJh
+kJh
+kJh
+kJh
+kJh
 nzj
 nzj
 vcV
@@ -117865,22 +117486,22 @@ cwQ
 vcV
 hyT
 hyT
-kat
-tOC
-tOC
-tOC
-tOC
 sCI
-uxS
-uxS
-uxS
+sCI
+sCI
+sCI
+sCI
+sCI
+tqa
+tqa
+tqa
 vJc
 sCI
-eTe
-cQZ
-cQZ
-cQZ
-nlQ
+sCI
+sCI
+sCI
+sCI
+sCI
 hyT
 hyT
 vcV
@@ -118122,22 +117743,22 @@ nzj
 vcV
 nzj
 nzj
-kHO
-kHO
-kHO
-kHO
-kHO
+kJh
+kJh
+kJh
+kJh
+kJh
 hyT
 tqa
 tdk
 mcw
 mcw
 mcw
-kHO
-bxD
-bxD
-kHO
-bxD
+kJh
+kJh
+kJh
+kJh
+kJh
 nzj
 nzj
 vcV
@@ -118633,22 +118254,22 @@ nzj
 vcV
 nzj
 nzj
-sjO
-sjO
-sjO
-sjO
-sjO
+kJh
+kJh
+kJh
+kJh
+kJh
 hyT
 hyT
 hyT
 hyT
 tqa
 hyT
-sjO
-sjO
-sjO
-sjO
-sjO
+kJh
+kJh
+kJh
+kJh
+kJh
 nzj
 nzj
 vcV
@@ -118890,22 +118511,22 @@ cwQ
 vcV
 hyT
 hyT
-kat
-tOC
-tOC
-tOC
-tOC
 sCI
-uxS
-uxS
-uxS
+sCI
+sCI
+sCI
+sCI
+sCI
+tqa
+tqa
+tqa
 vJc
-jTX
-cQZ
-cQZ
-eTe
-eTe
-nlQ
+sCI
+sCI
+sCI
+sCI
+sCI
+sCI
 hyT
 hyT
 vcV
@@ -119147,22 +118768,22 @@ nzj
 vcV
 nzj
 nzj
-kHO
-kHO
-kHO
-kHO
-kHO
+kJh
+kJh
+kJh
+kJh
+kJh
 hyT
 oXv
 tdk
 mcw
 mcw
 mcw
-vIQ
-kHO
-kHO
-vIQ
-kHO
+kJh
+kJh
+kJh
+kJh
+kJh
 nzj
 nzj
 vcV
@@ -119667,7 +119288,7 @@ nzj
 nzj
 nzj
 czO
-srS
+sCI
 hyT
 nzj
 nzj
@@ -119924,7 +119545,7 @@ nzj
 nzj
 nzj
 azJ
-srS
+sCI
 nzj
 nzj
 nzj
@@ -120181,7 +119802,7 @@ nzj
 nzj
 nzj
 czO
-txA
+sCI
 hyT
 nzj
 nzj
@@ -120438,7 +120059,7 @@ hyT
 nzj
 nzj
 czO
-srS
+sCI
 soF
 nzj
 nzj
@@ -128286,7 +127907,7 @@ hzj
 hzj
 hyT
 qhR
-fiJ
+xIk
 qhR
 hyT
 nzj
@@ -128543,7 +128164,7 @@ hyT
 nzj
 nzj
 qhR
-jMR
+xIk
 qhR
 nzj
 nzj
@@ -128800,7 +128421,7 @@ hyT
 nzj
 nzj
 qhR
-jMR
+xIk
 qhR
 nzj
 nzj
@@ -129053,11 +128674,11 @@ hzj
 hzj
 hyT
 qhR
-fiJ
+xIk
 qhR
 hyT
 qhR
-jMR
+xIk
 qhR
 hyT
 nzj
@@ -129310,11 +128931,11 @@ hyT
 nzj
 nzj
 qhR
-jMR
+xIk
 qhR
 nzj
 qhR
-jMR
+xIk
 qhR
 nzj
 nzj
@@ -129567,11 +129188,11 @@ hyT
 nzj
 nzj
 qhR
-jMR
+xIk
 qhR
 nzj
 czO
-pxj
+xIk
 hyT
 nzj
 nzj
@@ -129820,15 +129441,15 @@ piT
 hyT
 hyT
 qhR
-fiJ
+xIk
 qhR
 hyT
 qhR
-jMR
+xIk
 qhR
 hyT
 czO
-qlr
+bwd
 hyT
 nzj
 nzj
@@ -130077,15 +129698,15 @@ vJP
 hyT
 nzj
 qhR
-jMR
+xIk
 qhR
 nzj
 qhR
-jMR
+xIk
 qhR
 nzj
 czO
-qlr
+bwd
 hyT
 rNd
 usD
@@ -130334,17 +129955,17 @@ piT
 hyT
 nzj
 qhR
-jMR
+xIk
 qhR
 nzj
 czO
-pxj
+xIk
 hyT
 nzj
 tdk
 ntm
 lrX
-klK
+xIk
 bnz
 tmN
 hyT
@@ -130591,11 +130212,11 @@ piT
 hyT
 hyT
 qhR
-jMR
+xIk
 qhR
 hyT
 czO
-qlr
+bwd
 bwd
 bwd
 wOH
@@ -130848,15 +130469,15 @@ hyT
 hyT
 nzj
 qhR
-jMR
+xIk
 qhR
 nzj
 czO
-qlr
+bwd
 hyT
 nzj
 hyT
-kOd
+xIk
 hyT
 nzj
 nzj
@@ -131105,15 +130726,15 @@ nzj
 nzj
 nzj
 czO
-pxj
+xIk
 hyT
 nzj
 tdk
-qlr
+bwd
 hyT
 nzj
 qhR
-uSf
+xIk
 qhR
 nzj
 nzj
@@ -131356,21 +130977,21 @@ mxQ
 fIO
 fIO
 jet
-xai
+xIk
 nlU
 nzj
 usD
 nzj
 tdk
-qlr
 bwd
 bwd
-qlr
-qlr
+bwd
+bwd
+bwd
 hyT
 hyT
 qhR
-uSf
+xIk
 qhR
 hyT
 nzj
@@ -131613,21 +131234,21 @@ oVF
 ufv
 oqA
 jrG
-hmH
-klK
-klK
+xIk
+xIk
+xIk
 xIk
 bwd
-qlr
-qlr
+bwd
+bwd
 hyT
 nzj
 hyT
-qwW
+xIk
 hyT
 nzj
 qhR
-uSf
+xIk
 qhR
 nzj
 nzj
@@ -131876,15 +131497,15 @@ nzj
 hyT
 nzj
 hyT
-lpA
+xIk
 hyT
 nzj
 qhR
-uSf
+xIk
 qhR
 nzj
 qhR
-uSf
+xIk
 qhR
 nzj
 nzj
@@ -132133,15 +131754,15 @@ nzj
 nzj
 nzj
 hyT
-lpA
+xIk
 hyT
 hyT
 qhR
-uSf
+xIk
 qhR
 hyT
 qhR
-bQG
+xIk
 qhR
 hyT
 nzj
@@ -132390,11 +132011,11 @@ nzj
 nzj
 nzj
 hyT
-qwW
+xIk
 hyT
 nzj
 qhR
-uSf
+xIk
 qhR
 nzj
 nzj
@@ -132647,11 +132268,11 @@ nzj
 nzj
 nzj
 qhR
-uSf
+xIk
 qhR
 nzj
 qhR
-uSf
+xIk
 qhR
 nzj
 nzj
@@ -132904,11 +132525,11 @@ hyT
 hyT
 hyT
 qhR
-uSf
+xIk
 qhR
 hyT
 qhR
-bQG
+xIk
 qhR
 hyT
 kFe
@@ -133160,8 +132781,8 @@ hyT
 nzj
 nzj
 nzj
-hsI
-uSf
+qhR
+xIk
 qhR
 nzj
 nzj
@@ -133418,7 +133039,7 @@ nzj
 nzj
 nzj
 qhR
-uSf
+xIk
 qhR
 nzj
 nzj
@@ -133675,7 +133296,7 @@ nzj
 nzj
 hyT
 qhR
-bQG
+xIk
 qhR
 hyT
 kFe
@@ -151783,15 +151404,15 @@ vcV
 hyT
 hyT
 czO
-wNA
-bSW
-bSW
-bSW
-bSW
-bSW
-bSW
-bSW
-bSW
+jbq
+jbq
+jbq
+jbq
+jbq
+jbq
+jbq
+jbq
+jbq
 qGF
 uPs
 tRi
@@ -152040,7 +151661,7 @@ vcV
 nzj
 nzj
 czO
-vlB
+jbq
 hyT
 hyT
 nzj
@@ -152297,7 +151918,7 @@ nzj
 nzj
 nzj
 tdk
-iKy
+jbq
 hyT
 nzj
 nzj
@@ -153059,22 +152680,22 @@ nzj
 vcV
 nzj
 nzj
-imf
-imf
-imf
-imf
-imf
+eTY
+eTY
+eTY
+eTY
+eTY
 usD
 usD
 usD
 cOX
 jMD
 hyT
-imf
-imf
-imf
-imf
-imf
+eTY
+eTY
+eTY
+eTY
+eTY
 nzj
 nzj
 vcV
@@ -153316,22 +152937,22 @@ cwQ
 vcV
 hyT
 hyT
-uqU
-riN
-riN
-riN
-riN
 jbq
-nhg
+jbq
+jbq
+jbq
+jbq
+jbq
+jMD
 nhg
 nhg
 qrQ
-rkO
-rxT
-rxT
-rxT
-rxT
-bgT
+jbq
+jbq
+jbq
+jbq
+jbq
+jbq
 hyT
 hyT
 vcV
@@ -153573,22 +153194,22 @@ nzj
 vcV
 nzj
 nzj
-hmB
-hmB
-hmB
-hmB
-hmB
+eTY
+eTY
+eTY
+eTY
+eTY
 hyT
 jMD
 hyT
 hyT
 hyT
 hyT
-hmB
-hmB
-hmB
-hmB
-hmB
+eTY
+eTY
+eTY
+eTY
+eTY
 nzj
 hyT
 vcV
@@ -154095,11 +153716,11 @@ usD
 cOX
 jMD
 hyT
-imf
-imf
-imf
-imf
-imf
+eTY
+eTY
+eTY
+eTY
+eTY
 nzj
 nzj
 vcV
@@ -154347,16 +153968,16 @@ riN
 riN
 riN
 jbq
-nhg
-nhg
-nhg
+jMD
+jMD
+jMD
 qrQ
-rkO
-rxT
-rxT
-rxT
-rxT
-bgT
+jbq
+jbq
+jbq
+jbq
+jbq
+jbq
 hyT
 hyT
 vcV
@@ -154609,11 +154230,11 @@ hyT
 hyT
 hyT
 hyT
-hmB
-hmB
-hmB
-hmB
-hmB
+eTY
+eTY
+eTY
+eTY
+eTY
 nzj
 nzj
 vcV
@@ -155109,22 +154730,22 @@ nzj
 vcV
 nzj
 nzj
-imf
-oCr
-imf
-imf
-imf
+eTY
+eTY
+eTY
+eTY
+eTY
 usD
 usD
 usD
 cOX
 enK
 hyT
-imf
-imf
-imf
-imf
-imf
+eTY
+eTY
+eTY
+eTY
+eTY
 nzj
 nzj
 vcV
@@ -155366,22 +154987,22 @@ cwQ
 vcV
 hyT
 hyT
-uqU
-riN
-riN
-riN
-riN
 jbq
-nhg
-nhg
+jbq
+jbq
+jbq
+jbq
+jbq
+jMD
+jMD
 kEg
 nDc
-rkO
-rxT
-rxT
-rxT
-rxT
-bgT
+jbq
+jbq
+jbq
+jbq
+jbq
+jbq
 hyT
 hyT
 vcV
@@ -155623,11 +155244,11 @@ nzj
 vcV
 nzj
 nzj
-hmB
-hmB
-hmB
-hmB
-hmB
+eTY
+eTY
+eTY
+eTY
+eTY
 hyT
 hyT
 hyT
@@ -155635,10 +155256,10 @@ czw
 hyT
 hyT
 eTY
-hmB
-hmB
-hmB
-hmB
+eTY
+eTY
+eTY
+eTY
 hyT
 hyT
 vcV
@@ -155888,7 +155509,7 @@ nzj
 nzj
 nzj
 rNd
-vlB
+jbq
 cFq
 nzj
 nzj
@@ -158036,7 +157657,7 @@ tsN
 eDc
 hyT
 czO
-tXu
+tWh
 hyT
 nzj
 nzj
@@ -158293,7 +157914,7 @@ tsN
 eDc
 nzj
 czO
-tXu
+tWh
 hyT
 rNd
 usD
@@ -158803,7 +158424,7 @@ tsN
 eDc
 hyT
 czO
-tXu
+tWh
 tWh
 tWh
 tWh
@@ -159060,11 +158681,11 @@ tsN
 eDc
 nzj
 czO
-tXu
+tWh
 hyT
 nzj
 hyT
-oHA
+tsN
 hyT
 nzj
 nzj
@@ -159317,11 +158938,11 @@ tsN
 hyT
 nzj
 tdk
-tXu
+tWh
 hyT
 nzj
 eDc
-oHA
+tsN
 eDc
 nzj
 nzj
@@ -159570,15 +159191,15 @@ hyT
 hyT
 hyT
 tdk
-tXu
 tWh
 tWh
-tXu
-tXu
+tWh
+tWh
+tWh
 hyT
 hyT
 eDc
-oHA
+tsN
 eDc
 hyT
 nzj
@@ -159826,16 +159447,16 @@ tsN
 tWh
 tWh
 tWh
-tXu
-tXu
+tWh
+tWh
 hyT
 nzj
 hyT
-oHA
+tsN
 hyT
 nzj
 eDc
-oHA
+tsN
 eDc
 nzj
 nzj
@@ -160084,15 +159705,15 @@ hyT
 hyT
 hyT
 hyT
-tXu
+tWh
 hyT
 nzj
 eDc
-oHA
+tsN
 eDc
 nzj
 eDc
-oHA
+tsN
 eDc
 nzj
 nzj
@@ -160341,15 +159962,15 @@ nzj
 nzj
 nzj
 hyT
-tXu
+tWh
 hyT
 hyT
 eDc
-oHA
+tsN
 eDc
 hyT
 eDc
-oHA
+tsN
 eDc
 hyT
 nzj
@@ -160598,11 +160219,11 @@ nzj
 nzj
 nzj
 hyT
-oHA
+tsN
 hyT
 nzj
 eDc
-oHA
+tsN
 eDc
 nzj
 nzj
@@ -160855,11 +160476,11 @@ nzj
 nzj
 nzj
 eDc
-oHA
+tsN
 eDc
 nzj
 eDc
-oHA
+tsN
 eDc
 nzj
 nzj
@@ -161112,11 +160733,11 @@ hyT
 hyT
 hyT
 eDc
-oHA
+tsN
 eDc
 hyT
 eDc
-oHA
+tsN
 eDc
 hyT
 kFe
@@ -161369,7 +160990,7 @@ nzj
 nzj
 nzj
 eDc
-oHA
+tsN
 eDc
 nzj
 nzj
@@ -161626,7 +161247,7 @@ nzj
 nzj
 nzj
 eDc
-oHA
+tsN
 eDc
 nzj
 nzj
@@ -161883,7 +161504,7 @@ nzj
 nzj
 hyT
 eDc
-oHA
+tsN
 eDc
 nzj
 kFe
