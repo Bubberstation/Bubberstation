@@ -4877,6 +4877,13 @@
 /obj/structure/cable,
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/disposal)
+"bgT" = (
+/obj/structure/window/reinforced/spawner/directional/north,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/circuit/red,
+/area/station/ai/satellite/chamber)
 "bhc" = (
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer2{
 	dir = 10
@@ -11025,9 +11032,7 @@
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 1
 	},
-/obj/structure/sign/poster/official/random{
-	pixel_y = 32
-	},
+/obj/structure/sign/poster/official/random/directional/north,
 /obj/machinery/vending/cola/black,
 /turf/open/floor/iron/large,
 /area/station/security/prison)
@@ -11850,7 +11855,7 @@
 /obj/machinery/ai_slipper{
 	uses = 10
 	},
-/turf/open/floor/circuit/green,
+/turf/open/floor/circuit/red,
 /area/station/ai/satellite/chamber)
 "cJG" = (
 /obj/structure/punching_bag,
@@ -12473,6 +12478,19 @@
 /obj/effect/mapping_helpers/airlock/access/any/command/teleporter,
 /turf/open/floor/iron/smooth_half,
 /area/station/command/teleporter)
+"cQZ" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/iron/half,
+/area/station/hallway/primary/starboard)
 "cRc" = (
 /obj/machinery/door/airlock/science{
 	name = "Exploration Shuttle Dock"
@@ -12566,10 +12584,7 @@
 /area/station/medical/chem_storage)
 "cRW" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/sign/poster/official/walk{
-	pixel_x = -32;
-	desc = "A poster instructing the viewer to walk instead of running. A corner seems to be peeling off..."
-	},
+/obj/structure/sign/poster/official/walk/directional/west,
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
@@ -13817,9 +13832,7 @@
 /area/station/engineering/atmos)
 "dgI" = (
 /obj/structure/fluff/paper,
-/obj/structure/sign/poster/official/wtf_is_co2{
-	pixel_y = -32
-	},
+/obj/structure/sign/poster/official/wtf_is_co2/directional/south,
 /obj/machinery/atmospherics/components/binary/temperature_gate{
 	dir = 4
 	},
@@ -40716,10 +40729,6 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/iron/large,
 /area/station/security/prison)
-"jBb" = (
-/obj/structure/cable,
-/turf/open/floor/iron/smooth_large,
-/area/station/engineering/supermatter)
 "jBg" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -41568,21 +41577,9 @@
 /turf/open/floor/stone,
 /area/station/cargo/blacksmith)
 "jNc" = (
-/obj/effect/turf_decal/trimline/white/filled,
-/obj/effect/turf_decal/trimline/purple/filled,
-/obj/machinery/disposal/bin,
-/obj/structure/window/reinforced/spawner/directional/south,
-/obj/structure/window/reinforced/spawner/directional/east,
-/obj/structure/window/reinforced/spawner/directional/north,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/machinery/door/window{
-	dir = 8;
-	name = s
-	},
-/turf/open/floor/iron/dark,
-/area/station/science/xenobiology)
+/obj/structure/sign/poster/official/random/directional/north,
+/turf/open/floor/iron,
+/area/station/security/prison)
 "jNf" = (
 /obj/effect/spawner/structure/window/reinforced/tinted,
 /turf/open/floor/plating,
@@ -42199,9 +42196,7 @@
 /turf/open/floor/iron/sepia,
 /area/station/service/theater)
 "jTI" = (
-/obj/structure/sign/poster/contraband/random{
-	pixel_x = 32
-	},
+/obj/structure/sign/poster/contraband/random/directional/east,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/siding/thinplating_new/terracotta{
 	dir = 5
@@ -43842,6 +43837,9 @@
 	},
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/hop)
+"klK" = (
+/turf/open/floor/circuit/red,
+/area/station/ai/satellite/chamber)
 "klL" = (
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer2{
 	dir = 10
@@ -45107,10 +45105,7 @@
 /obj/effect/turf_decal/box/corners{
 	dir = 8
 	},
-/obj/structure/sign/poster/official/random{
-	pixel_x = 32;
-	desc = "A large piece of space-resistant printed paper. A corner seems to be peeling off..."
-	},
+/obj/structure/sign/poster/official/random/directional/east,
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/commons/fitness)
@@ -46059,12 +46054,6 @@
 	dir = 1
 	},
 /area/station/hallway/primary/fore)
-"kOd" = (
-/obj/machinery/ai_slipper{
-	uses = 10
-	},
-/turf/open/floor/circuit/red,
-/area/station/ai/satellite/chamber)
 "kOh" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=1";
@@ -46234,9 +46223,7 @@
 	pixel_x = 19;
 	pixel_y = 4
 	},
-/obj/structure/sign/poster/official/work_for_a_future{
-	pixel_y = 32
-	},
+/obj/structure/sign/poster/official/work_for_a_future/directional/north,
 /turf/open/floor/iron/large,
 /area/station/commons/storage/primary)
 "kRr" = (
@@ -47328,6 +47315,15 @@
 	},
 /turf/open/floor/plating/rust,
 /area/station/maintenance/starboard/aft)
+"lcQ" = (
+/obj/structure/window/reinforced/plasma/spawner/directional/west,
+/obj/machinery/atmospherics/pipe/smart/manifold/general/visible{
+	dir = 4
+	},
+/obj/machinery/power/energy_accumulator/tesla_coil/anchored,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/station/engineering/supermatter)
 "lcV" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -48262,6 +48258,12 @@
 	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/captain)
+"loY" = (
+/obj/machinery/ai_slipper{
+	uses = 10
+	},
+/turf/open/floor/circuit/green,
+/area/station/ai/satellite/chamber)
 "lpb" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -49886,9 +49888,7 @@
 	dir = 5
 	},
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
-/obj/structure/sign/poster/contraband/atmosia_independence{
-	pixel_y = 32
-	},
+/obj/structure/sign/poster/contraband/atmosia_independence/directional/north,
 /turf/open/floor/circuit/off,
 /area/station/maintenance/department/science/upper)
 "lJR" = (
@@ -53772,6 +53772,10 @@
 	dir = 8
 	},
 /area/station/hallway/secondary/command)
+"mGd" = (
+/obj/machinery/holopad,
+/turf/open/floor/circuit/red,
+/area/station/ai/satellite/chamber)
 "mGn" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -62322,6 +62326,22 @@
 	},
 /turf/open/floor/grass,
 /area/station/service/hydroponics/garden)
+"oHA" = (
+/obj/effect/turf_decal/trimline/white/filled,
+/obj/effect/turf_decal/trimline/purple/filled,
+/obj/machinery/disposal/bin,
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/door/window{
+	dir = 8;
+	name = s
+	},
+/turf/open/floor/iron/dark,
+/area/station/science/xenobiology)
 "oHQ" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 8
@@ -63786,10 +63806,6 @@
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/science/nanite)
-"oXv" = (
-/obj/machinery/holopad,
-/turf/open/floor/circuit/green,
-/area/station/ai/satellite/chamber)
 "oXx" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark{
 	dir = 5
@@ -66211,15 +66227,6 @@
 	dir = 4
 	},
 /area/station/medical/chemistry)
-"pya" = (
-/obj/structure/window/reinforced/plasma/spawner/directional/west,
-/obj/machinery/atmospherics/pipe/smart/manifold/general/visible{
-	dir = 4
-	},
-/obj/machinery/power/energy_accumulator/tesla_coil/anchored,
-/obj/structure/cable,
-/turf/open/floor/engine,
-/area/station/engineering/supermatter)
 "pyt" = (
 /obj/machinery/button/door{
 	pixel_x = -24;
@@ -74935,13 +74942,6 @@
 /obj/machinery/light/small/directional/east,
 /turf/open/floor/carpet/blue,
 /area/station/security/courtroom)
-"rxT" = (
-/obj/structure/window/reinforced/spawner/directional/north,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/circuit/red,
-/area/station/ai/satellite/chamber)
 "rxW" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible,
 /obj/machinery/portable_atmospherics/canister/plasma,
@@ -78670,19 +78670,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/aft)
-"srS" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/floor/iron/half,
-/area/station/hallway/primary/starboard)
 "srV" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -82497,9 +82484,7 @@
 	dir = 5
 	},
 /obj/effect/landmark/start/captain,
-/obj/structure/sign/poster/official/cleanliness{
-	pixel_y = 32
-	},
+/obj/structure/sign/poster/official/cleanliness/directional/north,
 /obj/effect/landmark/start/blueshield,
 /turf/open/floor/mineral/diamond,
 /area/station/command/heads_quarters/captain/private)
@@ -84251,7 +84236,7 @@
 /area/station/security/warden)
 "tJw" = (
 /obj/machinery/holopad,
-/turf/open/floor/circuit/red,
+/turf/open/floor/circuit/green,
 /area/station/ai/satellite/chamber)
 "tJz" = (
 /obj/machinery/space_heater,
@@ -85482,15 +85467,6 @@
 /obj/structure/dresser,
 /turf/open/floor/carpet/orange,
 /area/station/command/heads_quarters/ce)
-"tXu" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/floor/iron/dark/smooth_edge{
-	dir = 1
-	},
-/area/station/science/robotics/mechbay)
 "tXy" = (
 /obj/effect/turf_decal/trimline/neutral/filled/corner,
 /obj/structure/disposalpipe/segment{
@@ -91110,6 +91086,15 @@
 /obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/iron/smooth_half,
 /area/station/engineering/main)
+"vow" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 1
+	},
+/area/station/science/robotics/mechbay)
 "voC" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
@@ -91181,10 +91166,7 @@
 	dir = 6
 	},
 /obj/structure/table/wood,
-/obj/structure/sign/poster/official/random{
-	pixel_x = 32;
-	desc = "A large piece of space-resistant printed paper. A corner seems to be peeling off..."
-	},
+/obj/structure/sign/poster/official/random/directional/east,
 /obj/machinery/light/small/directional/east,
 /obj/machinery/light_switch/directional/south,
 /turf/open/floor/carpet,
@@ -92769,9 +92751,7 @@
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
 "vHb" = (
-/obj/structure/sign/poster/contraband/random{
-	pixel_y = 32
-	},
+/obj/structure/sign/poster/contraband/random/directional/north,
 /obj/structure/trash_pile,
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical/chemistry)
@@ -93142,6 +93122,10 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
+"vLN" = (
+/obj/structure/cable,
+/turf/open/floor/iron/smooth_large,
+/area/station/engineering/supermatter)
 "vMk" = (
 /obj/machinery/power/apc/auto_name/directional/east,
 /obj/structure/cable,
@@ -94122,9 +94106,6 @@
 	},
 /turf/open/floor/iron/white/smooth_large,
 /area/station/medical/medbay/lobby)
-"vWT" = (
-/turf/open/floor/circuit/red,
-/area/station/ai/satellite/chamber)
 "vWY" = (
 /obj/effect/landmark/navigate_destination/hop,
 /turf/open/floor/iron/textured_half,
@@ -113746,7 +113727,7 @@ hKO
 qqY
 hfS
 hAG
-oXv
+tJw
 tOR
 npr
 vgV
@@ -114003,7 +113984,7 @@ iOy
 rTM
 oJX
 aKQ
-cJq
+loY
 tOR
 bQb
 vgV
@@ -115031,8 +115012,8 @@ xwm
 fxX
 uBx
 vcn
-kOd
-vWT
+cJq
+klK
 izG
 vgV
 krU
@@ -115287,9 +115268,9 @@ hKO
 hKO
 vAw
 kQa
-rxT
-tJw
-vWT
+bgT
+mGd
+klK
 fYN
 vgV
 dxr
@@ -128845,7 +128826,7 @@ sVN
 clq
 trc
 tum
-srS
+cQZ
 pPD
 pIN
 wge
@@ -131005,7 +130986,7 @@ yfv
 eHO
 czP
 wOg
-jNc
+oHA
 kdl
 ycB
 czP
@@ -133032,7 +133013,7 @@ tot
 kOh
 fda
 orc
-tXu
+vow
 qCG
 gmT
 kob
@@ -135401,9 +135382,9 @@ utK
 cke
 vpQ
 nDW
-jBb
-jBb
-jBb
+vLN
+vLN
+vLN
 pML
 itB
 psZ
@@ -136686,9 +136667,9 @@ mkg
 fUb
 lPz
 mXl
-pya
+lcQ
 qTw
-pya
+lcQ
 fUb
 itB
 lTY
@@ -136943,9 +136924,9 @@ jWX
 fJC
 nOs
 nDW
-jBb
-jBb
-jBb
+vLN
+vLN
+vLN
 pML
 itB
 mIR
@@ -147339,7 +147320,7 @@ hyT
 hyT
 hyT
 psM
-hQR
+jNc
 hQR
 hQR
 hQR
