@@ -32,7 +32,7 @@
 	/// Whether to spawn with quirks and/or loadout
 	var/give_quirks_loadout
 	/// Quirk/loadout options
-	var/list/quirk_loadout_options = list("Quirks & Loadout", "Quirks Only", "Loadout Only", "Neither")
+	var/list/quirk_loadout_options = list("Quirks Only", "Loadout Only", "Quirks & Loadout", "None")
 
 	teleport_option = tgui_alert(user, "How would you like to be spawned in?", "IC Quick Spawn", teleport_options)
 	if(!teleport_option || teleport_option == teleport_options[3])
@@ -63,7 +63,7 @@
 
 	// The give return option is only relevant if the user is spawning in someone else
 	if(target != user)
-		give_return = tgui_alert(user, "Do you want to give them the power to return? Not recommended for non-admins.", "IC Quick Spawn", list("Yes", "No"))
+		give_return = tgui_alert(user, "Do you want to give them the power to return? Not recommended for non-admins.", "IC Quick Spawn", list("No", "Yes"))
 		if(!give_return)
 			return
 
@@ -82,10 +82,11 @@
 
 	if(give_quirks_loadout == quirk_loadout_options[1])
 		SSquirks.AssignQuirks(new_player, target.client)
-		new_player.equip_outfit_and_loadout(outfit_option, target.client?.prefs)
+		new_player.equipOutfit(outfit_option)
 	else if(give_quirks_loadout == quirk_loadout_options[2])
-		SSquirks.AssignQuirks(new_player, target.client)
+		new_player.equip_outfit_and_loadout(outfit_option, target.client?.prefs)
 	else if(give_quirks_loadout == quirk_loadout_options[3])
+		SSquirks.AssignQuirks(new_player, target.client)
 		new_player.equip_outfit_and_loadout(outfit_option, target.client?.prefs)
 	else if(give_quirks_loadout == quirk_loadout_options[4] || !give_quirks_loadout) // null case matches if they chose random character
 		new_player.equipOutfit(outfit_option)
