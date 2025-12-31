@@ -171,6 +171,16 @@
 	new_worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
 	new_icon_state = "security"
 
+/datum/atom_skin/security_belt/basic
+	preview_name = "Basic Security"
+	new_icon_state = "security"
+
+/datum/atom_skin/security_belt/peacekeeper
+	preview_name = "Peacekeeper"
+	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
+	new_worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
+	new_icon_state = "peacekeeperbelt"
+
 /obj/item/storage/belt/security/webbing
 	uses_advanced_reskins = TRUE
 
