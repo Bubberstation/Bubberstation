@@ -304,7 +304,6 @@
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "caligram_cap_tan"
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/head/caligram_cap_tan/Initialize(mapload)
 	. = ..()
@@ -330,7 +329,6 @@
 	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
 	icon_state = "caligram_fatigues_tan"
 	worn_icon_state = "caligram_fatigues_tan"
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/under/jumpsuit/caligram_fatigues_tan/Initialize(mapload)
 	. = ..()
@@ -356,7 +354,6 @@
 	icon_state = "caligram_parka_tan"
 	body_parts_covered = CHEST|GROIN|ARMS
 	cold_protection = CHEST|GROIN|LEGS|ARMS|HANDS
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/suit/jacket/caligram_parka_tan/Initialize(mapload)
 	. = ..()
@@ -387,7 +384,6 @@
 	inhand_icon_state = "armor"
 	body_parts_covered = CHEST|GROIN|ARMS
 	cold_protection = CHEST|GROIN|LEGS|ARMS|HANDS
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/suit/armor/vest/caligram_parka_vest_tan/Initialize(mapload)
 	. = ..()
@@ -601,7 +597,6 @@
 	icon_state = "silver_dress_boots"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/feet.dmi'
 	supports_variations_flags = NONE
-	uses_advanced_reskins = FALSE
 
 
 /****************LEGACY REWARDS***************/
@@ -1669,7 +1664,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	cold_protection = CHEST|GROIN|LEGS|ARMS
 	supports_variations_flags = NONE
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/suit/armor/hos/elofy/Initialize(mapload)
 	. = ..()
@@ -1708,7 +1702,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	icon ='modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "hat_black"
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/head/hats/hos/elofy/Initialize(mapload)
 	. = ..()
@@ -1734,7 +1727,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/hands.dmi'
 	icon_state = "gloves_black"
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/gloves/elofy/Initialize(mapload)
 	. = ..()
@@ -1760,7 +1752,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/feet.dmi'
 	icon_state = "boots_blackblue"
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/shoes/jackboots/elofy/Initialize(mapload)
 	. = ..()

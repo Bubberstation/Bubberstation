@@ -1,6 +1,3 @@
-/obj/item/stack/medical/bone_gel
-	uses_advanced_reskins = TRUE
-
 /obj/item/stack/medical/bone_gel/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/bone_gel)

@@ -6,7 +6,6 @@
 	icon = 'modular_skyrat/modules/awaymissions_skyrat/icons/hecucloth.dmi'
 	worn_icon = 'modular_skyrat/modules/awaymissions_skyrat/icons/hecumob.dmi'
 	worn_icon_digi = 'modular_skyrat/modules/awaymissions_skyrat/icons/hecumob_digi.dmi'
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/suit/armor/vest/hecu/Initialize(mapload)
 	. = ..()
@@ -49,7 +48,6 @@
 	icon = 'modular_skyrat/modules/awaymissions_skyrat/icons/hecucloth.dmi'
 	worn_icon = 'modular_skyrat/modules/awaymissions_skyrat/icons/hecumob.dmi'
 	worn_icon_digi = 'modular_skyrat/modules/awaymissions_skyrat/icons/hecumob_muzzled.dmi'
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/head/helmet/hecu/Initialize(mapload)
 	. = ..()

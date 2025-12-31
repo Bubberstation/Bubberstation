@@ -124,7 +124,6 @@
 	icon_state = "blueshieldarmor"
 	body_parts_covered = CHEST
 	armor_type = /datum/armor/suit_armor/blueshield
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/suit/armor/vest/blueshield/Initialize(mapload)
 	. = ..()

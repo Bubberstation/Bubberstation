@@ -6,7 +6,6 @@
 	icon_state = "vest_worn"
 	inhand_icon_state = null
 	armor_type = /datum/armor/suit_armor
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
 		"Red Pattern" = list(
 			RESKIN_ICON_STATE = "vest_worn_red",
@@ -118,7 +117,6 @@
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "civilprotection"
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/suit/armor/vest/alt/sec/metrocop/Initialize(mapload)
 	. = ..()

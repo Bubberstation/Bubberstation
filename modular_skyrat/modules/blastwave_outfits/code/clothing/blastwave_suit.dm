@@ -6,7 +6,6 @@
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/suit_digi.dmi'
 	icon_state = "blastwave_suit"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/suit/blastwave/Initialize(mapload)
 	. = ..()

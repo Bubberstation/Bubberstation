@@ -5,7 +5,6 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
 	icon_state = "blastwave_helmet"
 	flags_inv = HIDEHAIR
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/head/blastwave/Initialize(mapload)
 	. = ..()

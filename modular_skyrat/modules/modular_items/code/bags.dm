@@ -19,8 +19,6 @@
 	icon = 'modular_skyrat/modules/modular_items/icons/storage.dmi'
 	icon_state = "ammopouch"
 	custom_price = PAYCHECK_CREW * 4
-	// this is just to have post_reskin called later
-	uses_advanced_reskins = TRUE
 
 /obj/item/storage/pouch/ammo/Initialize(mapload)
 	. = ..()

@@ -1,5 +1,4 @@
 /obj/item/storage/backpack/duffelbag/med
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
 		"korve" = list(
 		RESKIN_ICON = 'modular_zubbers/icons/obj/storage/backpack.dmi',

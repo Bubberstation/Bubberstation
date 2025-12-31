@@ -31,7 +31,6 @@
 	icon_state = "civilprotection"
 	inhand_icon_state =  null
 	can_adjust = FALSE
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/under/rank/security/metrocop/Initialize(mapload)
 	. = ..()
@@ -67,7 +66,6 @@
 	icon = 'modular_zubbers/icons/obj/clothing/under/syndicate.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/syndicate.dmi'
 	icon_state = "snake"
-	uses_advanced_reskins = FALSE
 
 /obj/item/clothing/under/rank/security/camo
 	name = "armored camouflage uniform"
@@ -83,4 +81,3 @@
 	greyscale_colors = "#A53228#333333#292929"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
-	uses_advanced_reskins = FALSE

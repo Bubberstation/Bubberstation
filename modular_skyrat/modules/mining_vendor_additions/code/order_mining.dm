@@ -7,7 +7,6 @@
 	cost_per_order = 2000
 
 /obj/item/kinetic_crusher
-	uses_advanced_reskins = TRUE
 	unique_reskin = list(
 		"Crusher" = list(
 			RESKIN_ICON = 'icons/obj/mining.dmi',

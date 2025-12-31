@@ -1,8 +1,5 @@
 #define RESKIN_LINEN "Linen"
 
-/obj/item/storage/bag/plants
-	uses_advanced_reskins = TRUE
-
 /obj/item/storage/bag/plants/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/plant_bag)
@@ -39,7 +36,6 @@
 
 /// A helper for the primitive variant, for mappers.
 /obj/item/storage/bag/plants/primitive
-	uses_advanced_reskins = FALSE
 	icon = 'modular_skyrat/modules/primitive_cooking_additions/icons/plant_bag.dmi'
 	icon_state = "plantbag_primitive"
 	worn_icon = 'modular_skyrat/modules/primitive_cooking_additions/icons/plant_bag_worn.dmi'
@@ -56,9 +52,6 @@
 	if(!isprimitivedemihuman(crafter) && !isashwalker(crafter))
 		return
 	make_primitive()
-
-/obj/item/storage/bag/plants/portaseeder
-	uses_advanced_reskins = FALSE
 
 /obj/item/storage/bag/plants/portaseeder/Initialize(mapload)
 	. = ..()

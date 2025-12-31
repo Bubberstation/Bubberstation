@@ -52,7 +52,6 @@
 	icon_state = "policeofficerpatrolcap"
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 	armor_type = /datum/armor/head_helmet
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/head/hats/warden/police/patrol/Initialize(mapload)
 	. = ..()

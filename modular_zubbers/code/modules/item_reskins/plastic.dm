@@ -1,6 +1,3 @@
-/obj/item/grenade/c4
-	uses_advanced_reskins = TRUE
-
 /obj/item/grenade/c4/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/c4)

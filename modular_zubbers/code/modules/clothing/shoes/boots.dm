@@ -317,7 +317,6 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	icon_state = "heel-jackboots"
-	uses_advanced_reskins = FALSE
 
 /obj/item/clothing/shoes/jackboots/heel/Initialize(mapload)
 	. = ..()

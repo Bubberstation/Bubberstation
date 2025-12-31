@@ -18,7 +18,6 @@
 	slowdown = 6 // The snail's shell is what's making them slow.
 	obj_flags = IMMUTABLE_SLOW //This should hopefully solve other issues involing it as well.
 	alternate_worn_layer = ABOVE_BODY_FRONT_LAYER //This makes them layer over tails like the cult backpack; some tails really shouldn't appear over them!
-	uses_advanced_reskins = TRUE
 
 /obj/item/storage/backpack/snail/Initialize(mapload)
 	. = ..()

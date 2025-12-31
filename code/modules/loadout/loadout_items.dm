@@ -101,15 +101,6 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 		ui_icon = item_path::icon_preview || item_path::icon
 		ui_icon_state = item_path::icon_state_preview || item_path::icon_state
 
-	if(loadout_flags & LOADOUT_FLAG_ALLOW_RESKIN)
-		var/obj/item/dummy_item = new item_path()
-		if(!length(dummy_item.unique_reskin))
-			loadout_flags &= ~LOADOUT_FLAG_ALLOW_RESKIN
-			stack_trace("Loadout item [item_path] has LOADOUT_FLAG_ALLOW_RESKIN but has no unique reskins.")
-		else
-			cached_reskin_options = dummy_item.unique_reskin.Copy()
-		qdel(dummy_item)
-
 	// SKYRAT EDIT ADDITION
 	// Let's sanitize in case somebody inserted the player's byond name instead of ckey in canonical form
 	if(ckeywhitelist)
@@ -243,9 +234,6 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 /// Used for reskinning an item to an alt skin.
 /datum/loadout_item/proc/set_skin(datum/preference_middleware/loadout/manager, mob/user, params)
 	var/reskin_to = params["skin"] // sanity checking isn't necessary because it's all checked when equipped anyways
-	var/list/loadout = manager.preferences.read_preference(/datum/preference/loadout)
-	if(!cached_reskin_options[reskin_to])
-		return FALSE
 
 	var/list/loadout = manager.get_current_loadout() // BUBBER EDIT: Multiple loadout presets: ORIGINAL: var/list/loadout = manager.preferences.read_preference(/datum/preference/loadout)
 	if(!loadout?[item_path])

@@ -6,7 +6,6 @@
 	icon_state = "hudpatch"
 	base_icon_state = "hudpatch"
 	inhand_icon_state = "sunhudmed"
-	uses_advanced_reskins = TRUE
 	can_switch_eye = TRUE	//See modular_skyrat\modules\customization\modules\clothing\glasses\glasses.dm
 	actions_types = list(/datum/action/item_action/flip)
 

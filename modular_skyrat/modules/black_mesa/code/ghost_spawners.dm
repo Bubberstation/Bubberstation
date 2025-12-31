@@ -95,7 +95,6 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/syndicate.dmi'
 	icon_state = "urban_camo"
 	inhand_icon_state = "w_suit"
-	uses_advanced_reskins = FALSE
 
 /obj/item/clothing/under/rank/security/officer/hecu/Initialize(mapload)
 	. = ..()
@@ -110,7 +109,6 @@
 	worn_icon_digi = 'modular_skyrat/modules/awaymissions_skyrat/icons/hecumob_digi.dmi'
 	icon_state = "hecu_pack"
 	worn_icon_state = "hecu_pack"
-	uses_advanced_reskins = TRUE
 
 /obj/item/storage/backpack/ert/odst/hecu/Initialize(mapload)
 	. = ..()
@@ -134,7 +132,6 @@
 	worn_icon_digi = 'modular_skyrat/modules/awaymissions_skyrat/icons/hecumob_digi.dmi'
 	icon_state = "hecu_belt"
 	worn_icon_state = "hecu_belt"
-	uses_advanced_reskins = TRUE
 
 /obj/item/storage/belt/military/assault/hecu/Initialize(mapload)
 	. = ..()

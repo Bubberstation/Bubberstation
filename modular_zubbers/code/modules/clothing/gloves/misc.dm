@@ -35,7 +35,6 @@
 	icon = 'modular_zubbers/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/hands.dmi'
 	icon_state = "civilprotection"
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/gloves/color/black/security/metrocop/Initialize(mapload)
 	. = ..()
@@ -56,7 +55,6 @@
 /obj/item/clothing/gloves/color/black/security/snake
 	name = "stealth gloves"
 	desc = "We will forsake our countries."
-	uses_advanced_reskins = FALSE
 	icon = 'modular_zubbers/icons/obj/clothing/gloves/gloves.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/gloves/gloves.dmi'
 	icon_state = "snake"

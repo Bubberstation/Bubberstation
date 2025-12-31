@@ -718,7 +718,6 @@
 	visor_flags_inv = null
 	visor_flags = null
 	slowdown = 0
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/head/helmet/space/hev_suit/pcv/Initialize(mapload)
 	. = ..()
@@ -782,7 +781,6 @@
 	resistance_flags = FIRE_PROOF|ACID_PROOF|FREEZE_PROOF
 	clothing_flags = SNUG_FIT
 	show_hud = FALSE
-	uses_advanced_reskins = TRUE
 
 	activation_song = null // removal of song only standard suit will have the song
 

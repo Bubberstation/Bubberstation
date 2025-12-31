@@ -21,7 +21,6 @@
 	worn_icon_state = "webbing_exp_corps"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
-	uses_advanced_reskins = TRUE
 
 /obj/item/storage/belt/military/expeditionary_corps/Initialize(mapload)
 	. = ..()
@@ -139,7 +138,6 @@
 	inhand_icon_state = "backpack"
 	icon = 'modular_skyrat/modules/exp_corps/icons/backpack.dmi'
 	worn_icon = 'modular_skyrat/modules/exp_corps/icons/mob_backpack.dmi'
-	uses_advanced_reskins = TRUE
 
 /obj/item/storage/backpack/duffelbag/expeditionary_corps/Initialize(mapload)
 	. = ..()

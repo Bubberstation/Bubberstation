@@ -46,7 +46,6 @@
 	name = "\proper the head of security's mantle"
 	desc = "A plated mantle that one might wrap around the upper torso. The 'scales' of the garment signify the members of security and how you're carrying them on your shoulders."
 	icon_state = "hosmantle"
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/neck/mantle/hosmantle/Initialize(mapload)
 	. = ..()

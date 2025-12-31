@@ -23,7 +23,6 @@
 	slowdown = 1
 	clothing_flags = THICKMATERIAL
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/suit/mush/Initialize(mapload)
 	. = ..()

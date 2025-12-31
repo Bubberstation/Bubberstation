@@ -4,7 +4,6 @@
 	worn_icon = 'modular_skyrat/modules/tarkon/icons/mob/clothing/neck.dmi'
 	icon = 'modular_skyrat/modules/tarkon/icons/obj/clothing/neck.dmi'
 	icon_state = "armplate_shemaugh"
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/neck/security_cape/tarkon/Initialize(mapload)
 	. = ..()

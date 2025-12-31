@@ -1,6 +1,3 @@
-/obj/item/scalpel
-	uses_advanced_reskins = TRUE
-
 /obj/item/scalpel/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/scalpel)
@@ -17,9 +14,6 @@
 	preview_name = "default"
 	new_icon_state = "scalpel"
 	new_icon = 'icons/obj/medical/surgery_tools.dmi'
-
-/obj/item/circular_saw
-	uses_advanced_reskins = TRUE
 
 /obj/item/circular_saw/Initialize(mapload)
 	. = ..()
@@ -38,9 +32,6 @@
 	new_icon_state = "saw"
 	new_icon = 'icons/obj/medical/surgery_tools.dmi'
 
-/obj/item/surgical_drapes
-	uses_advanced_reskins = TRUE
-
 /obj/item/surgical_drapes/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/drapes)
@@ -57,9 +48,6 @@
 	preview_name = "default"
 	new_icon_state = "drapes"
 	new_icon = 'icons/obj/medical/surgery_tools.dmi'
-
-/obj/item/retractor
-	uses_advanced_reskins = TRUE
 
 /obj/item/retractor/Initialize(mapload)
 	. = ..()
@@ -78,9 +66,6 @@
 	new_icon_state = "retractor"
 	new_icon = 'icons/obj/medical/surgery_tools.dmi'
 
-/obj/item/hemostat
-	uses_advanced_reskins = TRUE
-
 /obj/item/hemostat/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hemostat)
@@ -97,9 +82,6 @@
 	preview_name = "default"
 	new_icon_state = "hemostat"
 	new_icon = 'icons/obj/medical/surgery_tools.dmi'
-
-/obj/item/cautery
-	uses_advanced_reskins = TRUE
 
 /obj/item/cautery/Initialize(mapload)
 	. = ..()
@@ -118,9 +100,6 @@
 	new_icon_state = "cautery"
 	new_icon = 'icons/obj/medical/surgery_tools.dmi'
 
-/obj/item/blood_filter
-	uses_advanced_reskins = TRUE
-
 /obj/item/blood_filter/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/blood_filter)
@@ -137,9 +116,6 @@
 	preview_name = "default"
 	new_icon_state = "bloodfilter"
 	new_icon = 'icons/obj/medical/surgery_tools.dmi'
-
-/obj/item/surgicaldrill
-	uses_advanced_reskins = TRUE
 
 /obj/item/surgicaldrill/Initialize(mapload)
 	. = ..()
@@ -158,9 +134,6 @@
 	new_icon_state = "drill"
 	new_icon = 'icons/obj/medical/surgery_tools.dmi'
 
-/obj/item/bonesetter
-	uses_advanced_reskins = TRUE
-
 /obj/item/bonesetter/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/bonesetter)
@@ -177,9 +150,6 @@
 	preview_name = "default"
 	new_icon_state = "bonesetter"
 	new_icon = 'icons/obj/medical/surgery_tools.dmi'
-
-/obj/item/retractor/advanced
-	uses_advanced_reskins = TRUE
 
 /obj/item/retractor/advanced/Initialize(mapload)
 	. = ..()
@@ -198,9 +168,6 @@
 	new_icon_state = "adv_retractor"
 	new_icon = 'icons/obj/medical/surgery_tools.dmi'
 
-/obj/item/scalpel/advanced
-	uses_advanced_reskins = TRUE
-
 /obj/item/scalpel/advanced/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/scalpel_advanced)
@@ -218,9 +185,6 @@
 	new_icon_state = "e_scalpel"
 	new_icon = 'icons/obj/medical/surgery_tools.dmi'
 
-/obj/item/cautery/advanced
-	uses_advanced_reskins = TRUE
-
 /obj/item/cautery/advanced/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/cautery_advanced)
@@ -237,9 +201,6 @@
 	preview_name = "default"
 	new_icon_state = "e_cautery"
 	new_icon = 'icons/obj/medical/surgery_tools.dmi'
-
-/obj/item/blood_filter/advanced
-	uses_advanced_reskins = TRUE
 
 /obj/item/blood_filter/advanced/Initialize(mapload)
 	. = ..()

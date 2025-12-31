@@ -9,7 +9,6 @@
 	icon_state = "metrocopHelm"
 	inhand_icon_state = null
 	armor_type = /datum/armor/head_helmet
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/head/helmet/metrocophelmet/Initialize(mapload)
 	. = ..()
@@ -654,7 +653,6 @@
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "kepi_sec_red"
-	uses_advanced_reskins = TRUE
 	armor_type = /datum/armor/head_helmet
 	strip_delay = 60
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
@@ -688,7 +686,6 @@
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "kepi_sec_red_hos"
-	uses_advanced_reskins = TRUE
 	armor_type = /datum/armor/hats_hos
 	strip_delay = 60
 

@@ -105,7 +105,6 @@
 	desc = "A robust messenger bag for security related needs."
 	icon_state = "messenger_security_black"
 	inhand_icon_state = "messenger_security_black"
-	uses_advanced_reskins = TRUE
 
 /obj/item/storage/backpack/messenger/sec/Initialize(mapload)
 	. = ..()

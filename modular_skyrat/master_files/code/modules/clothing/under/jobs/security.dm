@@ -22,7 +22,6 @@
 	icon_state = "util_sec"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/under/rank/security/skyrat/utility/Initialize(mapload)
 	. = ..()
@@ -63,7 +62,6 @@
 	can_adjust = TRUE
 	alt_covers_chest = FALSE
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/under/rank/security/peacekeeper/skirt/Initialize(mapload)
 	. = ..()
@@ -120,7 +118,6 @@
 	can_adjust = FALSE
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	female_sprite_flags = FEMALE_UNIFORM_NO_BREASTS
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/under/rank/security/peacekeeper/trousers/Initialize(mapload)
 	. = ..()
@@ -145,7 +142,6 @@
 	name = "security shorts"
 	desc = "Some Peacekeeper-blue combat shorts. Definitely should pair it with a vest for safety."
 	icon_state = "workshorts_blue"
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/under/rank/security/peacekeeper/trousers/shorts/Initialize(mapload)
 	. = ..()
@@ -185,7 +181,6 @@
 	can_adjust = TRUE
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/under/rank/security/peacekeeper/jumpsuit/Initialize(mapload)
 	. = ..()
@@ -218,7 +213,6 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	gets_cropped_on_taurs = FALSE
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/under/rank/security/peacekeeper/shortskirt/Initialize(mapload)
 	. = ..()
@@ -243,7 +237,6 @@
 	gets_cropped_on_taurs = FALSE
 	can_adjust = TRUE
 	body_parts_covered = GROIN | LEGS
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/under/rank/security/peacekeeper/miniskirt/Initialize(mapload)
 	. = ..()

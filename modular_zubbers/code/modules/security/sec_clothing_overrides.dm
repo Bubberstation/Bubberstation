@@ -27,32 +27,33 @@
 	righthand_file = 'modular_skyrat/master_files/icons/mob/inhands/clothing/backpack_righthand.dmi'
 	icon_state = "backpack_security_black"
 	inhand_icon_state = "backpack_security_black"
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Black Variant" = list(
-			RESKIN_ICON_STATE = "backpack_security_black",
-			RESKIN_WORN_ICON_STATE = "backpack_security_black",
-			RESKIN_INHAND_STATE = "backpack_security_black"
-		),
-		"White Variant" = list(
-			RESKIN_ICON_STATE = "backpack_security_white",
-			RESKIN_WORN_ICON_STATE = "backpack_security_white",
-			RESKIN_INHAND_STATE = "backpack_security_white"
-		),
-		"Red Variant" = list(
-			RESKIN_ICON = 'icons/obj/storage/backpack.dmi',
-			RESKIN_ICON_STATE = "backpack-security",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/back/backpack.dmi',
-			RESKIN_INHAND_L = 'icons/mob/inhands/equipment/backpack_lefthand.dmi',
-			RESKIN_INHAND_R = 'icons/mob/inhands/equipment/backpack_righthand.dmi',
-			RESKIN_INHAND_STATE = "securitypack"
-		),
-		"Pink Variant" = list(
-			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/back/backpack.dmi',
-			RESKIN_ICON_STATE = "backpack-security",
-			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi',
-		),
-	)
+
+/obj/item/storage/backpack/security/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_backpack)
+
+/datum/atom_skin/security_backpack
+	abstract_type = /datum/atom_skin/security_backpack
+
+/datum/atom_skin/security_backpack/black
+	preview_name = "Black Variant"
+	new_icon_state = "backpack_security_black"
+
+/datum/atom_skin/security_backpack/white
+	preview_name = "White Variant"
+	new_icon_state = "backpack_security_white"
+
+/datum/atom_skin/security_backpack/red
+	preview_name = "Red Variant"
+	new_icon = 'icons/obj/storage/backpack.dmi'
+	new_worn_icon = 'icons/mob/clothing/back/backpack.dmi'
+	new_icon_state = "backpack-security"
+
+/datum/atom_skin/security_backpack/pink
+	preview_name = "Pink Variant"
+	new_icon = 'modular_zubbers/icons/obj/clothing/back/backpack.dmi'
+	new_worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
+	new_icon_state = "backpack-security"
 
 /obj/item/storage/backpack/satchel/sec
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi'
@@ -61,32 +62,33 @@
 	righthand_file = 'modular_skyrat/master_files/icons/mob/inhands/clothing/backpack_righthand.dmi'
 	icon_state = "satchel_security_black"
 	inhand_icon_state = "satchel_security_black"
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Black Variant" = list(
-			RESKIN_ICON_STATE = "satchel_security_black",
-			RESKIN_WORN_ICON_STATE = "satchel_security_black",
-			RESKIN_INHAND_STATE = "satchel_security_black"
-		),
-		"White Variant" = list(
-			RESKIN_ICON_STATE = "satchel_security_white",
-			RESKIN_WORN_ICON_STATE = "satchel_security_white",
-			RESKIN_INHAND_STATE = "satchel_security_white"
-		),
-		"Red Variant" = list(
-			RESKIN_ICON = 'icons/obj/storage/backpack.dmi',
-			RESKIN_ICON_STATE = "satchel-security",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/back/backpack.dmi',
-			RESKIN_INHAND_L = 'icons/mob/inhands/equipment/backpack_lefthand.dmi',
-			RESKIN_INHAND_R = 'icons/mob/inhands/equipment/backpack_righthand.dmi',
-			RESKIN_INHAND_STATE = "satchel-sec"
-		),
-		"Pink Variant" = list(
-			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/back/backpack.dmi',
-			RESKIN_ICON_STATE = "satchel-security",
-			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi',
-		),
-	)
+
+/obj/item/storage/backpack/satchel/sec/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_satchel)
+
+/datum/atom_skin/security_satchel
+	abstract_type = /datum/atom_skin/security_satchel
+
+/datum/atom_skin/security_satchel/black
+	preview_name = "Black Variant"
+	new_icon_state = "satchel_security_black"
+
+/datum/atom_skin/security_satchel/white
+	preview_name = "White Variant"
+	new_icon_state = "satchel_security_white"
+
+/datum/atom_skin/security_satchel/red
+	preview_name = "Red Variant"
+	new_icon = 'icons/obj/storage/backpack.dmi'
+	new_worn_icon = 'icons/mob/clothing/back/backpack.dmi'
+	new_icon_state = "satchel-security"
+
+/datum/atom_skin/security_satchel/pink
+	preview_name = "Pink Variant"
+	new_icon = 'modular_zubbers/icons/obj/clothing/back/backpack.dmi'
+	new_worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
+	new_icon_state = "satchel-security"
 
 /obj/item/storage/backpack/duffelbag/sec
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi'
@@ -95,32 +97,33 @@
 	righthand_file = 'modular_skyrat/master_files/icons/mob/inhands/clothing/backpack_righthand.dmi'
 	icon_state = "duffel_security_black"
 	inhand_icon_state = "duffel_security_black"
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Black Variant" = list(
-			RESKIN_ICON_STATE = "duffel_security_black",
-			RESKIN_WORN_ICON_STATE = "duffel_security_black",
-			RESKIN_INHAND_STATE = "duffel_security_black"
-		),
-		"White Variant" = list(
-			RESKIN_ICON_STATE = "duffel_security_white",
-			RESKIN_WORN_ICON_STATE = "duffel_security_white",
-			RESKIN_INHAND_STATE = "duffel_security_white"
-		),
-		"Red Variant" = list(
-			RESKIN_ICON = 'icons/obj/storage/backpack.dmi',
-			RESKIN_ICON_STATE = "duffel-security",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/back/backpack.dmi',
-			RESKIN_INHAND_L = 'icons/mob/inhands/equipment/backpack_lefthand.dmi',
-			RESKIN_INHAND_R = 'icons/mob/inhands/equipment/backpack_righthand.dmi',
-			RESKIN_INHAND_STATE = "duffel-sec"
-		),
-		"Pink Variant" = list(
-			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/back/backpack.dmi',
-			RESKIN_ICON_STATE = "duffel-security",
-			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi',
-		),
-	)
+
+/obj/item/storage/backpack/duffelbag/sec/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_duffel)
+
+/datum/atom_skin/security_duffel
+	abstract_type = /datum/atom_skin/security_duffel
+
+/datum/atom_skin/security_duffel/black
+	preview_name = "Black Variant"
+	new_icon_state = "duffel_security_black"
+
+/datum/atom_skin/security_duffel/white
+	preview_name = "White Variant"
+	new_icon_state = "duffel_security_white"
+
+/datum/atom_skin/security_duffel/red
+	preview_name = "Red Variant"
+	new_icon = 'icons/obj/storage/backpack.dmi'
+	new_worn_icon = 'icons/mob/clothing/back/backpack.dmi'
+	new_icon_state = "duffel-security"
+
+/datum/atom_skin/security_duffel/pink
+	preview_name = "Pink Variant"
+	new_icon = 'modular_zubbers/icons/obj/clothing/back/backpack.dmi'
+	new_worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
+	new_icon_state = "duffel-security"
 
 /*
 * BELTS
@@ -130,7 +133,6 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
 	icon_state = "belt_white"
 	worn_icon_state = "belt_white"
-	uses_advanced_reskins = TRUE
 
 /obj/item/storage/belt/security/Initialize(mapload)
 	. = ..()
@@ -180,9 +182,6 @@
 	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
 	new_worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
 	new_icon_state = "peacekeeperbelt"
-
-/obj/item/storage/belt/security/webbing
-	uses_advanced_reskins = TRUE
 
 /obj/item/storage/belt/security/webbing/Initialize(mapload)
 	. = ..()
@@ -255,7 +254,6 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi'
 	icon_state = "security_hud"
 	glass_colour_type = /datum/client_colour/glass_colour/lightblue
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/glasses/hud/security/Initialize(mapload)
 	. = ..()
@@ -277,7 +275,6 @@
 /obj/item/clothing/glasses/hud/security/sunglasses
 	icon_state = "security_hud_black"
 	glass_colour_type = /datum/client_colour/glass_colour/blue
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/glasses/hud/security/sunglasses/Initialize(mapload)
 	. = ..()
@@ -323,7 +320,6 @@
 /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch
 	icon_state = "security_eyepatch"
 	base_icon_state = "security_eyepatch"
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch/Initialize(mapload)
 	. = ..()
@@ -405,9 +401,6 @@
 	if(reskin_component)
 		qdel(reskin_component)
 
-/obj/item/clothing/glasses/hud/security/sunglasses/gars
-	uses_advanced_reskins = TRUE
-
 /obj/item/clothing/glasses/hud/security/sunglasses/gars/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_hud_gars)
@@ -424,9 +417,6 @@
 	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/glasses.dmi'
 	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi'
 	new_icon_state = "gar_sec"
-
-/obj/item/clothing/glasses/hud/security/sunglasses/gars/giga
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/glasses/hud/security/sunglasses/gars/giga/Initialize(mapload)
 	. = ..()
@@ -466,7 +456,6 @@
 	clothing_flags = SNUG_FIT | STACKABLE_HELMET_EXEMPT
 	dog_fashion = null
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/head/helmet/sec/Initialize(mapload)
 	. = ..()
@@ -503,7 +492,6 @@
 	icon_state = "security_helmet_future"
 	base_icon_state = "security_helmet_future"
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/head/helmet/sec/futuristic/Initialize(mapload)
 	. = ..()
@@ -544,7 +532,6 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
 	icon_state = "garrison_black"
-	uses_advanced_reskins = TRUE
 	armor_type = /datum/armor/head_helmet
 	strip_delay = 60
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
@@ -570,7 +557,6 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
 	icon_state = "security_cap_black"
-	uses_advanced_reskins = TRUE
 	armor_type = /datum/armor/head_helmet
 	strip_delay = 60
 	dog_fashion = null
@@ -611,7 +597,6 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
 	icon_state = "policehelm"
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/head/hats/warden/Initialize(mapload)
 	. = ..()
@@ -647,9 +632,6 @@
 	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
 	if(reskin_component)
 		qdel(reskin_component)
-
-/obj/item/clothing/head/hats/hos/cap
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/head/hats/hos/cap/Initialize(mapload)
 	. = ..()
@@ -700,7 +682,6 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/neck.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "hoscloak_blue"
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/neck/cloak/hos/Initialize(mapload)
 	. = ..()
@@ -725,7 +706,6 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "cape_black"
 	inhand_icon_state = "" //no unique inhands
-	uses_advanced_reskins = TRUE
 	///Decides the shoulder it lays on, false = RIGHT, TRUE = LEFT
 	var/swapped = FALSE
 
@@ -756,7 +736,6 @@
 	name = "security gauntlet"
 	desc = "A fashionable full-arm gauntlet worn by security officers. The gauntlet itself is made of plastic, and provides no protection, but it looks cool as hell."
 	icon_state = "armplate_black"
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/neck/security_cape/armplate/Initialize(mapload)
 	. = ..()
@@ -805,7 +784,6 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "gloves_white"
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/gloves/color/black/security/Initialize(mapload)
 	. = ..()
@@ -856,7 +834,6 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "tackle_blue"
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/gloves/tackler/security/Initialize(mapload)
 	. = ..()
@@ -883,7 +860,6 @@
 	icon = 'icons/obj/clothing/gloves.dmi'
 	worn_icon = 'icons/mob/clothing/hands.dmi'
 	icon_state = "gorilla"
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/gloves/tackler/combat/Initialize(mapload)
 	. = ..()
@@ -912,7 +888,6 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "fightgloves_blue"
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/gloves/kaza_ruk/sec/Initialize(mapload)
 	. = ..()
@@ -946,7 +921,6 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "vest_white"
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/suit/armor/vest/alt/sec/Initialize(mapload)
 	. = ..()
@@ -987,7 +961,6 @@
 
 /obj/item/clothing/suit/armor/hos
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/suit/armor/hos/Initialize(mapload)
 	. = ..()
@@ -1068,9 +1041,6 @@
 	heat_protection = CHEST|ARMS
 
 //Warden's Vest
-/obj/item/clothing/suit/armor/vest/warden
-	uses_advanced_reskins = TRUE
-
 /obj/item/clothing/suit/armor/vest/warden/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/warden_armor)
@@ -1158,7 +1128,6 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	icon_state = "security_black"
 	alt_covers_chest = TRUE
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/under/rank/security/officer/Initialize(mapload)
 	. = ..()
@@ -1233,7 +1202,6 @@
 	alt_covers_chest = FALSE
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
-	uses_advanced_reskins = TRUE
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/security/officer/skirt/Initialize(mapload)
@@ -1269,7 +1237,6 @@
 	icon_state = "jumpskirt_blue"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	gets_cropped_on_taurs = FALSE
-	uses_advanced_reskins = TRUE
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/security/officer/skirt/blue/Initialize(mapload)
@@ -1319,7 +1286,6 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	icon_state = "warden_black"
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/under/rank/security/warden/Initialize(mapload)
 	. = ..()
@@ -1349,9 +1315,6 @@
 	new_icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	new_icon_state = "rwarden"
 	new_worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
-
-/obj/item/clothing/under/rank/security/warden/skirt
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/under/rank/security/warden/skirt/Initialize(mapload)
 	. = ..()
@@ -1383,7 +1346,6 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	icon_state = "hos_black"
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/under/rank/security/head_of_security/Initialize(mapload)
 	. = ..()
@@ -1414,9 +1376,6 @@
 	new_icon_state = "rhos"
 	new_worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 
-/obj/item/clothing/under/rank/security/head_of_security/skirt
-	uses_advanced_reskins = TRUE
-
 /obj/item/clothing/under/rank/security/head_of_security/skirt/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hos_skirt)
@@ -1436,7 +1395,6 @@
 
 /obj/item/clothing/under/rank/security/head_of_security/parade
 	icon_state = "hos_parade_male_blue"
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/under/rank/security/head_of_security/parade/Initialize(mapload)
 	. = ..()
@@ -1455,7 +1413,6 @@
 
 /obj/item/clothing/under/rank/security/head_of_security/parade/female
 	icon_state = "hos_parade_fem_blue"
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/under/rank/security/head_of_security/parade/female/Initialize(mapload)
 	. = ..()
@@ -1474,7 +1431,6 @@
 
 /obj/item/clothing/under/rank/security/head_of_security/alt
 	icon_state = "hosalt_blue"
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/under/rank/security/head_of_security/alt/Initialize(mapload)
 	. = ..()
@@ -1493,7 +1449,6 @@
 
 /obj/item/clothing/under/rank/security/head_of_security/alt/skirt
 	icon_state = "hosalt_skirt_blue"
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/under/rank/security/head_of_security/alt/skirt/Initialize(mapload)
 	. = ..()
@@ -1640,7 +1595,6 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/feet.dmi'
 	clothing_traits = list(TRAIT_SILENT_FOOTSTEPS) // We have other footsteps.
-	uses_advanced_reskins = TRUE
 
 /obj/item/clothing/shoes/jackboots/sec/Initialize(mapload)
 	. = ..()
