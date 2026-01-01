@@ -205,9 +205,9 @@
 	STOP_PROCESSING(SSobj, src)
 
 
-/datum/component/hypothermia/proc/on_revive()
+/datum/component/hypothermia/proc/on_revive(mob/living/revived)
 	stored_bodytemperature = normal_body_temp
-	cleanup_effects()
+	cleanup_effects(revived)
 
 /datum/component/hypothermia/proc/on_heat_source_act(mob/target, datum/component/heat_source/source, amount, target_temperature)
 	SIGNAL_HANDLER
