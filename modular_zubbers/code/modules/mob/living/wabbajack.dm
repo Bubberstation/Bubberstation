@@ -4,13 +4,18 @@ GLOBAL_LIST_INIT(valid_wabbajack_types,generate_valid_wabbajack_types())
 	name = "Revert Form"
 	desc = "I want to get off Mr. Wizard's wild ride!"
 	keep_name = TRUE
+
 	cooldown_time = 5 MINUTES
+	shared_cooldown = NONE
+	text_cooldown = TRUE
+	cooldown_rounding = 1
+
 	revert_on_death = TRUE
 	die_with_shapeshifted_form = TRUE
 	spell_requirements = NONE
-	text_cooldown = TRUE
-	cooldown_rounding = 1
-	shared_cooldown = NONE
+
+	shapeshift_type = /mob/living/basic/cockroach
+	possible_shapes = list(/mob/living/basic/cockroach) // Only reason this exists is to shut linters up.
 
 /datum/action/cooldown/spell/shapeshift/polymorph_hugbox/do_unshapeshift(mob/living/caster)
 	. = ..()
