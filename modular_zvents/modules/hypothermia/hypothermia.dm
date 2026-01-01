@@ -129,16 +129,16 @@ ADMIN_VERB(setup_hypothermia_event, R_DEBUG|R_FUN, "setup hypothermia event", "S
 		)
 		return
 	var/saved_offset_y = victim.pixel_y
-	var/saved_offset_x = victim.pixel_x
+	// var/saved_offset_x = victim.pixel_x
 	victim.pixel_y = 200
-	victim.pixel_x = rand(-16, 16)
+	// victim.pixel_x = rand(-16, 16)
 	victim.alpha = 0
 	victim.spin(3 SECONDS, 1)
 	victim.forceMove(get_turf(spawnpoint))
 	victim.Knockdown(3 SECONDS)
 	animate(victim, 1 SECONDS, alpha = 255)
-	animate(victim, 3 SECONDS, pixel_y = saved_offset_y, flags = ANIMATION_PARALLEL, easing = BOUNCE_EASING)
-	animate(victim, 3 SECONDS, pixel_x = saved_offset_x, flags = ANIMATION_PARALLEL)
+	animate(victim, 3 SECONDS, pixel_y = saved_offset_y, easing = BOUNCE_EASING, flags = ANIMATION_PARALLEL)
+	// animate(victim, 3 SECONDS, pixel_x = saved_offset_x, flags = ANIMATION_PARALLEL, easing = BOUNCE_EASING)
 	sleep(2.8 SECONDS)
 	INVOKE_ASYNC(src, PROC_REF(cause_crash_injury), victim)
 	victim.throw_at(get_step(victim, pick(GLOB.alldirs)), rand(1, 3), 2)

@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(sneak_pod_list)
+
 /obj/structure/sneak_pod
 	name = "narrow crevice"
 	desc = "A tight squeeze in the frozen rock, barely wide enough to crawl or sidestep through. Moving through it requires careful maneuvering."
@@ -14,20 +16,22 @@
 	var/list/crawlers = list()  // List of mobs currently crawling
 	var/max_crawlers = 3  // Max small mobs allowed (adjust for balance)
 	var/list/crawler_pixel_offsets = list()  // Associative list: mob -> list(x, y, transform)
+	var/datum/component/seethrough/filtered/seethrough
 
 /obj/structure/sneak_pod/Initialize(mapload)
 	. = ..()
 	var/list/map = list(
 		list(-1, 1, 0), list(0, 1, 0), list(1, 1, 0),
-		list(-1, 0, 0), list(0, 0, 0), list(0, 1, 0),
-		list(-1, -1, 0), list(0, -1, 0), list(-1, 1, 0)
+		list(-1, 0, 0), list(0, 0, 0), list(1, 0, 0),
+		list(-1, -1, 0), list(0, -1, 0), list(1, -1, 0)
 	)
-	AddComponent(/datum/component/seethrough)
-	var/datum/component/seethrough/comp = GetComponent(/datum/component/seethrough)
-	comp.relative_turf_coords = map
-	comp.setup_perimeter(src)
+	seethrough = AddComponent(__IMPLIED_TYPE__)
+	seethrough.relative_turf_coords = map
+	seethrough.dismantle_perimeter()
+	GLOB.sneak_pod_list += src
 
 /obj/structure/sneak_pod/Destroy()
+	GLOB.sneak_pod_list -= src
 	for(var/mob/living/C in crawlers)
 		end_crawl(C, forced = TRUE)
 	return ..()
@@ -42,13 +46,15 @@
 		return
 	begin_crawl(M)
 
-
 /obj/structure/sneak_pod/proc/register_to_crawler(mob/living/crawler)
 	RegisterSignal(crawler, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(on_crawler_pre_move))
 	RegisterSignal(crawler, COMSIG_MOVABLE_MOVED, PROC_REF(on_crawler_moved))
 	RegisterSignal(crawler, COMSIG_QDELETING, PROC_REF(on_crawler_qdel))
 	RegisterSignal(crawler, COMSIG_LIVING_DEATH, PROC_REF(on_crawler_death))
 	RegisterSignal(crawler, COMSIG_LIVING_RESTING, PROC_REF(on_crawler_rest_change))
+
+	for(var/obj/structure/sneak_pod/sneaky as anything in GLOB.sneak_pod_list)
+		sneaky.seethrough.add_valid_target(crawler)
 
 /obj/structure/sneak_pod/proc/unregister_from_crawler(mob/living/crawler)
 	UnregisterSignal(crawler, list(
@@ -58,6 +64,8 @@
 		COMSIG_LIVING_DEATH,
 		COMSIG_LIVING_RESTING
 	))
+	for(var/obj/structure/sneak_pod/sneaky as anything in GLOB.sneak_pod_list)
+		sneaky.seethrough.remove_valid_target(crawler)
 
 /obj/structure/sneak_pod/proc/begin_crawl(mob/living/crawler, silent = FALSE)
 	if(crawler in crawlers)
