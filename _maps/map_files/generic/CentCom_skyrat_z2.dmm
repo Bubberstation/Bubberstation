@@ -759,6 +759,15 @@
 "aqG" = (
 /turf/open/floor/plating,
 /area/centcom/interlink)
+"aqK" = (
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 1
+	},
+/obj/machinery/door/airlock/public/glass{
+	name = "Interlink Shuttle"
+	},
+/turf/open/floor/iron/dark,
+/area/centcom/interlink)
 "aqV" = (
 /obj/structure/flora/grass/jungle/a/style_5,
 /turf/open/misc/grass/planet,
@@ -2051,8 +2060,12 @@
 /turf/open/misc/asteroid,
 /area/cruiser_dock)
 "aUg" = (
-/turf/closed/indestructible/riveted,
-/area/space)
+/obj/effect/light_emitter/interlink,
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8
+	},
+/turf/open/floor/grass,
+/area/centcom/interlink)
 "aUh" = (
 /turf/open/floor/carpet/black,
 /area/centcom/interlink)
@@ -5010,6 +5023,11 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/interlink)
+"dXK" = (
+/obj/effect/light_emitter/interlink,
+/obj/effect/turf_decal/siding/white,
+/turf/open/floor/grass,
+/area/centcom/interlink)
 "dXN" = (
 /obj/machinery/door/airlock/multi_tile/public/glass{
 	name = "Interlink Bar"
@@ -6189,6 +6207,16 @@
 	},
 /turf/open/floor/wood/large,
 /area/centcom/holding/cafe/station/commons/fitness/recreation/sauna)
+"fml" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 6
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1
+	},
+/obj/effect/light_emitter/interlink,
+/turf/open/floor/grass,
+/area/centcom/interlink)
 "fnD" = (
 /obj/structure/stone_tile/slab/cracked,
 /turf/open/floor/fakebasalt,
@@ -7481,11 +7509,8 @@
 /turf/open/floor/carpet/black,
 /area/centcom/interlink)
 "gIc" = (
-/obj/effect/light_emitter/interlink,
 /obj/structure/fluff/arc,
-/obj/effect/turf_decal/siding/white/end{
-	dir = 1
-	},
+/obj/effect/light_emitter/interlink,
 /turf/open/floor/stone,
 /area/centcom/interlink)
 "gIr" = (
@@ -8474,6 +8499,16 @@
 "hLW" = (
 /turf/open/floor/iron/smooth_edge,
 /area/cruiser_dock)
+"hNh" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Interlink Shuttle"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 1
+	},
+/turf/open/floor/iron/dark,
+/area/centcom/interlink)
 "hNQ" = (
 /obj/structure/chair/sofa/bench/right{
 	dir = 8
@@ -8769,6 +8804,13 @@
 "icb" = (
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/cruiser_dock)
+"icA" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/light_emitter/interlink,
+/turf/open/floor/grass,
+/area/centcom/interlink)
 "icB" = (
 /obj/effect/light_emitter/interlink,
 /obj/machinery/light/floor{
@@ -13782,6 +13824,16 @@
 	icon_state = "floor"
 	},
 /area/centcom/holding/cafe/park)
+"nlw" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 10
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4
+	},
+/obj/effect/light_emitter/interlink,
+/turf/open/floor/grass,
+/area/centcom/interlink)
 "nlB" = (
 /obj/structure/chair/stool{
 	name = "Jim Norton's Quebecois Coffee stool"
@@ -15249,6 +15301,13 @@
 	},
 /turf/open/floor/wood/tile,
 /area/centcom/interlink/dorm_rooms)
+"oYG" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/light_emitter/interlink,
+/turf/open/floor/grass,
+/area/centcom/interlink)
 "oYO" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -18365,6 +18424,14 @@
 	},
 /turf/open/floor/iron,
 /area/centcom/interlink)
+"smr" = (
+/obj/effect/turf_decal/weather/dirt,
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/light_emitter/interlink,
+/turf/open/floor/grass,
+/area/centcom/interlink)
 "smx" = (
 /obj/effect/turf_decal/siding{
 	color = "#2e2e2e"
@@ -18678,6 +18745,7 @@
 /obj/effect/light_emitter/interlink,
 /obj/structure/flora/bush/fullgrass/style_random,
 /obj/structure/flora/bush/flowers_br/style_random,
+/obj/effect/turf_decal/siding/white/corner,
 /turf/open/floor/grass,
 /area/centcom/interlink)
 "sIb" = (
@@ -28768,7 +28836,7 @@ aaa
 aaa
 aaa
 aaa
-aUg
+tvw
 tvw
 tvw
 tvw
@@ -31339,8 +31407,8 @@ vat
 pFM
 vat
 sGU
-vat
-kPb
+oYG
+nlw
 iPs
 iPs
 iPs
@@ -31356,7 +31424,7 @@ tvw
 adw
 dPd
 tvw
-aWb
+kdy
 hIH
 btJ
 pSx
@@ -31595,9 +31663,9 @@ vat
 fJQ
 pFM
 vat
-vat
+dXK
 gIc
-fVr
+smr
 iPs
 iPs
 sob
@@ -31852,9 +31920,9 @@ vat
 vat
 pFM
 pPO
-vat
-vat
-dVb
+aUg
+icA
+fml
 iPs
 hRr
 rVQ
@@ -33153,7 +33221,7 @@ ezk
 uzK
 lPi
 hpl
-sic
+wck
 tvw
 lHZ
 fMM
@@ -37252,7 +37320,7 @@ uyr
 adU
 jYq
 qKV
-tGG
+aqK
 lvR
 iwK
 oIK
@@ -37509,7 +37577,7 @@ rMF
 nRe
 aPY
 hvQ
-tGG
+aqK
 dGD
 hvQ
 hvQ
@@ -37766,7 +37834,7 @@ uFZ
 uFZ
 xxO
 cbl
-xLe
+hNh
 fIx
 raA
 rSK
