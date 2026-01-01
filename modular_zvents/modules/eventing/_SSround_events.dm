@@ -21,11 +21,16 @@ SUBSYSTEM_DEF(round_events)
 
 
 /datum/controller/subsystem/round_events/Initialize()
+	RegisterSignal(SSticker, COMSIG_TICKER_ROUND_STARTING, PROC_REF(on_setup))
+	RegisterSignal(SSticker, COMSIG_TICKER_ENTER_PREGAME, PROC_REF(on_enter_setup))
 	if(!active_event)
 		return SS_INIT_NO_NEED
 
-	RegisterSignal(SSticker, COMSIG_TICKER_ROUND_STARTING, PROC_REF(on_setup))
-	RegisterSignal(SSticker, COMSIG_TICKER_ENTER_PREGAME, PROC_REF(on_enter_setup))
+/datum/controller/subsystem/round_events/proc/set_active_event(datum/full_round_event/event)
+	if(!ispath(event, /datum/full_round_event))
+		return
+	event = new event()
+	active_event = event
 
 	active_event.initialize()
 	force_dnr = active_event.force_dnr
@@ -62,8 +67,7 @@ SUBSYSTEM_DEF(round_events)
 			if(istype(J, /datum/job/cyborg))
 				J.total_positions = 0
 				J.spawn_positions = 0
-
-
+	can_fire = TRUE
 
 /datum/controller/subsystem/round_events/proc/on_enter_setup()
 	SIGNAL_HANDLER

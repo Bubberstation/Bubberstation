@@ -49,9 +49,8 @@
 	var/endgame = FALSE
 
 ADMIN_VERB(setup_hypothermia_event, R_DEBUG|R_FUN, "setup hypothermia event", "Sets up the hypothermia event datum for the current round, changing the lobby menu and hooks into roundstart to spawn players into the hypothermia spawn points with the intro", ADMIN_CATEGORY_EVENTS)
-	var/datum/full_round_event/hypothermia/hypothermia_event = new()
-	SSround_events.active_event = hypothermia_event
-	hypothermia_event.lobby_loaded(user)
+	SSround_events.set_active_event(/datum/full_round_event/hypothermia)
+	SSround_events.on_enter_setup()
 	message_admins("[key_name_admin(user)] has setup the Hypothermia event for this round.")
 
 /datum/full_round_event/hypothermia/lobby_loaded(mob/user)

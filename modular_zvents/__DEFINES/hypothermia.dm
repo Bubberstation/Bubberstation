@@ -31,6 +31,8 @@ GLOBAL_LIST_INIT(hear_sources, list())
 
 #define MAJOR_ANNOUNCEMENT_TEXT(string) ("<span class='major_announcement_text'>" + string + "</span>")
 #define CHAT_ALERT_COLORED_SPAN(color, string) ("<div class='chat_alert_" + color + "'>" + string + "</div>")
+#define CHAT_ALERT_DEFAULT_SPAN(string) ("<div class='chat_alert_default'>" + string + "</div>")
+#define ANNOUNCEMENT_HEADER(string) ("<span class='announcement_header'>" + string + "</span>")
 
 /proc/speaker_announce(message, prefix = "...From the speakers comes", sound, color = "default", list/mob/players = GLOB.player_list, encode = TRUE)
 	if(!message)
@@ -45,5 +47,4 @@ GLOBAL_LIST_INIT(hear_sources, list())
 	var/sound_to_play = sound ? sound : SSstation.announcer.get_rand_alert_sound()
 	dispatch_announcement_to_players(final_announcement, players, sound_to_play)
 
-#undef MAJOR_ANNOUNCEMENT_TEXT
 #undef CHAT_ALERT_COLORED_SPAN
