@@ -1901,13 +1901,9 @@
 /turf/open/misc/grass/planet,
 /area/centcom/holding/cafe/park)
 "aSa" = (
-/obj/effect/light_emitter/interlink,
-/obj/structure/flora/bush/fullgrass/style_random,
-/obj/structure/flora/bush/flowers_pp/style_random,
-/obj/effect/turf_decal/weather/dirt{
-	dir = 4
-	},
-/turf/open/floor/grass,
+/obj/effect/turf_decal/trimline/dark_green/filled/line,
+/obj/machinery/duct,
+/turf/open/floor/iron,
 /area/centcom/interlink)
 "aSg" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -2054,6 +2050,9 @@
 /obj/machinery/light/cold/directional/south,
 /turf/open/misc/asteroid,
 /area/cruiser_dock)
+"aUg" = (
+/turf/closed/indestructible/riveted,
+/area/space)
 "aUh" = (
 /turf/open/floor/carpet/black,
 /area/centcom/interlink)
@@ -5465,21 +5464,12 @@
 /turf/open/floor/grass,
 /area/centcom/interlink)
 "ezk" = (
-/obj/structure/table{
-	name = "Jim Norton's Quebecois Coffee table"
+/obj/machinery/light/warm/directional/west,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
 	},
-/obj/item/coffee_cartridge/decaf{
-	pixel_y = 10
-	},
-/obj/item/coffee_cartridge/decaf{
-	pixel_y = 6
-	},
-/obj/item/coffee_cartridge/fancy,
-/obj/machinery/status_display/shuttle{
-	pixel_y = 32;
-	shuttle_id = "arrivals_shuttle"
-	},
-/turf/open/floor/iron,
+/obj/effect/turf_decal/skyrat_decals/misc/handicapped,
+/turf/open/floor/wood/tile,
 /area/centcom/interlink)
 "ezw" = (
 /obj/machinery/computer/camera_advanced/cafe,
@@ -8029,13 +8019,13 @@
 /turf/open/floor/iron,
 /area/centcom/holding/cafe/station/science/robotics/augments)
 "hmE" = (
-/obj/structure/sign/painting/library{
-	pixel_y = -32
-	},
 /obj/machinery/vending/imported/tiziran{
 	shut_up = 1
 	},
 /obj/effect/turf_decal/bot,
+/obj/structure/sign/painting/library{
+	pixel_y = -32
+	},
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "hmP" = (
@@ -8097,6 +8087,12 @@
 "hpR" = (
 /obj/effect/light_emitter/interlink,
 /obj/structure/flora/tree/jungle,
+/turf/open/floor/grass,
+/area/centcom/interlink)
+"hqz" = (
+/obj/effect/light_emitter/interlink,
+/obj/structure/flora/bush/fullgrass/style_random,
+/obj/structure/flora/bush/flowers_pp/style_random,
 /turf/open/floor/grass,
 /area/centcom/interlink)
 "hrp" = (
@@ -8830,7 +8826,12 @@
 	},
 /area/centcom/holding/cafe/station/command)
 "iel" = (
-/obj/effect/turf_decal/skyrat_decals/misc/handicapped,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/chair/sofa/left/brown{
+	dir = 8
+	},
 /turf/open/floor/wood/tile,
 /area/centcom/interlink)
 "iem" = (
@@ -9069,14 +9070,8 @@
 /turf/open/floor/carpet/royalblue,
 /area/centcom/interlink/dorm_rooms)
 "ioa" = (
-/obj/machinery/duct,
-/obj/effect/turf_decal/trimline/dark_green/filled/warning{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/iron,
+/obj/structure/chair/stool/bar,
+/turf/open/floor/wood/tile,
 /area/centcom/interlink)
 "iov" = (
 /obj/structure/flora/tree/jungle/small/style_random,
@@ -9224,6 +9219,11 @@
 	},
 /obj/machinery/modular_computer/preset/time_clock/directional/west,
 /turf/open/floor/iron,
+/area/centcom/interlink)
+"iyo" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/table/wood,
+/turf/open/floor/wood/tile,
 /area/centcom/interlink)
 "iyN" = (
 /obj/structure/chair/stool/bamboo,
@@ -9570,6 +9570,11 @@
 	icon_state = "darkfull"
 	},
 /area/centcom/holding/cafe/station/command)
+"iQo" = (
+/obj/machinery/duct,
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood/tile,
+/area/centcom/interlink)
 "iQP" = (
 /obj/item/kirbyplants/organic/plant22,
 /obj/effect/turf_decal/trimline/dark_green/line{
@@ -10383,11 +10388,8 @@
 /turf/open/floor/iron/smooth,
 /area/centcom/interlink)
 "jzh" = (
-/obj/structure/table{
-	name = "Jim Norton's Quebecois Coffee table"
-	},
-/obj/machinery/light/warm/directional/west,
-/turf/open/floor/wood/tile,
+/obj/structure/window/reinforced/spawner/directional/east,
+/turf/open/floor/iron,
 /area/centcom/interlink)
 "jzj" = (
 /obj/machinery/light/directional/south,
@@ -11068,6 +11070,10 @@
 /obj/effect/spawner/liquids_spawner,
 /turf/open/floor/iron/pool/cobble,
 /area/centcom/holding/cafe/park)
+"ktw" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood/tile,
+/area/centcom/interlink)
 "kuV" = (
 /obj/structure/flora/bush/leavy/style_2,
 /obj/structure/flora/tree/jungle/style_random,
@@ -13820,13 +13826,15 @@
 /obj/structure/table{
 	name = "Jim Norton's Quebecois Coffee table"
 	},
-/obj/machinery/coffeemaker{
+/obj/item/coffee_cartridge/decaf{
 	pixel_y = 10
 	},
-/obj/machinery/light/warm/directional/north,
-/obj/item/reagent_containers/cup/coffeepot{
-	pixel_x = -7;
-	pixel_y = 3
+/obj/item/coffee_cartridge/decaf{
+	pixel_y = 6
+	},
+/obj/item/coffee_cartridge/fancy,
+/obj/structure/chalkboard{
+	pixel_y = 32
 	},
 /turf/open/floor/iron,
 /area/centcom/interlink)
@@ -14655,6 +14663,12 @@
 	},
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
+"ogp" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood/tile,
+/area/centcom/interlink)
 "ogq" = (
 /obj/structure/chair/comfy/brown{
 	dir = 4
@@ -15130,9 +15144,11 @@
 	},
 /area/cruiser_dock)
 "oQW" = (
-/obj/structure/chair/sofa/right/brown{
-	dir = 1
+/obj/item/reagent_containers/cup/glass/coffee,
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
 	},
+/obj/structure/table/wood,
 /turf/open/floor/wood/tile,
 /area/centcom/interlink)
 "oRi" = (
@@ -15739,12 +15755,12 @@
 /area/centcom/holding/cafe/station/command/meeting_room)
 "pxW" = (
 /obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/machinery/light/warm/directional/north,
-/obj/effect/turf_decal/skyrat_decals/misc/handicapped,
-/obj/structure/sign/painting/large/library{
 	dir = 1
+	},
+/obj/structure/table/wood,
+/obj/machinery/status_display/shuttle{
+	pixel_y = 32;
+	shuttle_id = "arrivals_shuttle"
 	},
 /turf/open/floor/wood/tile,
 /area/centcom/interlink)
@@ -16030,6 +16046,13 @@
 /obj/machinery/light/directional/south,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe/station/service/library)
+"pKB" = (
+/obj/machinery/duct,
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/open/floor/wood/tile,
+/area/centcom/interlink)
 "pKT" = (
 /obj/structure/sign/poster/abductor/ayy_piping,
 /turf/closed/indestructible/alien,
@@ -16217,8 +16240,15 @@
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "pST" = (
-/obj/structure/table{
-	name = "Jim Norton's Quebecois Coffee table"
+/obj/structure/chair/sofa/right/brown{
+	dir = 8
+	},
+/obj/machinery/light/warm/directional/east,
+/obj/structure/sign/painting/library{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
 	},
 /turf/open/floor/wood/tile,
 /area/centcom/interlink)
@@ -16720,17 +16750,13 @@
 /obj/structure/table{
 	name = "Jim Norton's Quebecois Coffee table"
 	},
-/obj/item/coffee_cartridge{
+/obj/machinery/coffeemaker{
 	pixel_y = 10
 	},
-/obj/item/coffee_cartridge{
-	pixel_y = 6
+/obj/item/reagent_containers/cup/coffeepot{
+	pixel_x = -7;
+	pixel_y = 3
 	},
-/obj/item/coffee_cartridge/bootleg,
-/obj/structure/sign/painting/large/library{
-	dir = 1
-	},
-/obj/item/storage/fancy/coffee_condi_display,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "qsQ" = (
@@ -17013,10 +17039,11 @@
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "qLO" = (
-/obj/structure/table{
-	name = "Jim Norton's Quebecois Coffee table"
-	},
 /obj/machinery/light/directional/east,
+/obj/structure/chair/stool/bar,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
 /turf/open/floor/wood/tile,
 /area/centcom/interlink)
 "qLQ" = (
@@ -17581,6 +17608,16 @@
 	icon_state = "floor"
 	},
 /area/centcom/holding/cafe/station/service/hydroponics)
+"rqZ" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/duct,
+/obj/effect/turf_decal/trimline/dark_green/filled/warning{
+	dir = 1
+	},
+/turf/open/floor/iron,
+/area/centcom/interlink)
 "rrz" = (
 /obj/structure/toilet{
 	pixel_y = 14
@@ -17870,10 +17907,13 @@
 /turf/open/floor/iron/white,
 /area/centcom/interlink)
 "rOf" = (
-/obj/machinery/door/window/left/directional/east{
-	name = "Coffee Counter"
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
 	},
-/turf/open/floor/iron,
+/obj/structure/chair/sofa/right/brown{
+	dir = 4
+	},
+/turf/open/floor/wood/tile,
 /area/centcom/interlink)
 "rOn" = (
 /obj/structure/railing{
@@ -18661,9 +18701,8 @@
 /turf/open/misc/beach/sand,
 /area/centcom/holding/cafe/beach)
 "sIH" = (
-/obj/structure/chair/sofa/left/brown{
-	dir = 1
-	},
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/skyrat_decals/misc/handicapped,
 /turf/open/floor/wood/tile,
 /area/centcom/interlink)
 "sIZ" = (
@@ -20090,12 +20129,12 @@
 /turf/open/floor/plating,
 /area/centcom/interlink)
 "uoi" = (
-/obj/structure/sign/painting/library{
-	pixel_y = -32
-	},
 /obj/effect/turf_decal/bot,
 /obj/machinery/vending/imported/mothic{
 	shut_up = 1
+	},
+/obj/structure/sign/painting/library{
+	pixel_y = -32
 	},
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
@@ -20287,6 +20326,13 @@
 	dir = 4
 	},
 /area/centcom/holding/cafe/beach)
+"uzK" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/structure/table/wood,
+/turf/open/floor/wood/tile,
+/area/centcom/interlink)
 "uAi" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/arrow_cw{
 	dir = 8
@@ -20542,10 +20588,10 @@
 /turf/open/floor/iron,
 /area/centcom/holding/cafe/station/science/robotics/augments)
 "uPd" = (
-/obj/machinery/duct,
-/obj/structure/sign/poster/random/directional/south,
-/obj/effect/turf_decal/trimline/dark_green/filled/line,
-/turf/open/floor/iron,
+/obj/item/reagent_containers/cup/glass/coffee,
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/table/wood,
+/turf/open/floor/wood/tile,
 /area/centcom/interlink)
 "uPj" = (
 /turf/closed/indestructible/wood,
@@ -22994,6 +23040,15 @@
 	icon_state = "floor"
 	},
 /area/centcom/holding/cafe/station/service/hydroponics)
+"xBR" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/structure/chair/sofa/left/brown{
+	dir = 4
+	},
+/turf/open/floor/wood/tile,
+/area/centcom/interlink)
 "xCO" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
@@ -23671,6 +23726,21 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/carpet/red,
 /area/centcom/holding/cafe/dorms)
+"yeK" = (
+/obj/structure/table{
+	name = "Jim Norton's Quebecois Coffee table"
+	},
+/obj/item/coffee_cartridge{
+	pixel_y = 10
+	},
+/obj/item/coffee_cartridge{
+	pixel_y = 6
+	},
+/obj/item/coffee_cartridge/bootleg,
+/obj/item/storage/fancy/coffee_condi_display,
+/obj/machinery/light/warm/directional/west,
+/turf/open/floor/iron,
+/area/centcom/interlink)
 "yfb" = (
 /obj/machinery/vending/boozeomat{
 	shut_up = 1
@@ -23768,6 +23838,7 @@
 /area/centcom/holding/cafe/station/commons/fitness/recreation/sauna)
 "ykt" = (
 /obj/machinery/duct,
+/obj/structure/sign/poster/random/directional/south,
 /obj/effect/turf_decal/trimline/dark_green/filled/warning,
 /turf/open/floor/iron,
 /area/centcom/interlink)
@@ -28697,18 +28768,18 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aUg
+tvw
+tvw
+tvw
+tvw
+tvw
+tvw
+tvw
+tvw
+tvw
+tvw
+tvw
 aaa
 aaa
 aaa
@@ -28955,22 +29026,22 @@ tvw
 tvw
 tvw
 tvw
+vLx
+vLx
+vLx
+vLx
+vLx
+vLx
+vLx
+vLx
+vLx
+vLx
 tvw
 tvw
 tvw
 tvw
 tvw
 tvw
-tvw
-tvw
-tvw
-tvw
-tvw
-aaa
-aaa
-aaa
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -29213,21 +29284,21 @@ vLx
 vLx
 vLx
 vLx
-vLx
-vLx
-vLx
-vLx
-vLx
-vLx
-vLx
-vLx
-vLx
-tvw
-tvw
-tvw
-tvw
-tvw
-tvw
+vat
+hqz
+vat
+vat
+vat
+vat
+vat
+fHV
+vat
+lPi
+qLQ
+pmJ
+kvD
+ttx
+gsO
 tvw
 aaa
 aaa
@@ -29471,20 +29542,20 @@ krJ
 vat
 vat
 vat
-aSa
+dfL
 vat
 vat
 vat
 vat
+dgV
 vat
-fHV
-vat
+cNw
 lPi
 qLQ
-pmJ
-kvD
-ttx
-gsO
+aXG
+aXG
+aXG
+jzj
 tvw
 aaa
 aaa
@@ -29730,18 +29801,18 @@ vat
 dVb
 iPs
 rDg
+dfL
+rSa
 vat
 vat
-vat
-dgV
-vat
-cNw
-lPi
+eSk
+tvw
+tvw
 qLQ
 aXG
-aXG
-aXG
-jzj
+sEi
+nYB
+ePw
 tvw
 tvw
 tvw
@@ -29986,19 +30057,19 @@ iuK
 fVr
 iPs
 iPs
+moN
+aUA
 rDg
-dfL
-rSa
-vat
-vat
-eSk
+gtZ
+tvm
+mMW
 tvw
-tvw
-qLQ
-aXG
-sEi
-nYB
+tYf
+cKZ
+oDs
 ePw
+blq
+pMN
 tvw
 kvF
 dmb
@@ -30242,19 +30313,19 @@ dsW
 iuK
 fVr
 iPs
-iPs
-moN
-aUA
-rDg
-gtZ
-tvm
-mMW
-tvw
-tYf
-cKZ
-oDs
-ePw
-blq
+xqq
+vat
+iem
+cmV
+eOx
+nHK
+uGt
+lPi
+abZ
+rDL
+hvQ
+pMN
+eKW
 pMN
 tvw
 kvF
@@ -30499,15 +30570,15 @@ iuK
 wEF
 fVr
 iPs
-xqq
-vat
-iem
+iPs
+fFy
 cmV
+vat
 eOx
 nHK
-uGt
+fSs
 lPi
-abZ
+egW
 rDL
 hvQ
 pMN
@@ -30757,19 +30828,19 @@ vat
 fVr
 iPs
 iPs
-fFy
-cmV
-vat
-eOx
-nHK
-fSs
+iPs
+hZk
+dfL
+wwD
+pTF
+xzt
 lPi
-egW
-rDL
+ekE
+wOQ
 hvQ
-pMN
+hvQ
 eKW
-pMN
+bck
 tvw
 aWb
 hIH
@@ -31015,18 +31086,18 @@ fVr
 iPs
 iPs
 iPs
-hZk
-dfL
-wwD
-pTF
-xzt
-lPi
-ekE
-wOQ
+iPs
+iPs
+kZB
+jtf
+gBj
+tvw
+jaf
 hvQ
 hvQ
+aTS
 eKW
-bck
+hvQ
 tvw
 aWb
 dkE
@@ -31276,14 +31347,14 @@ iPs
 iPs
 kZB
 jtf
-gBj
+kwy
+lPi
+eXg
+hvQ
+deD
 tvw
-jaf
-hvQ
-hvQ
-aTS
-eKW
-hvQ
+adw
+dPd
 tvw
 aWb
 hIH
@@ -31529,18 +31600,18 @@ gIc
 fVr
 iPs
 iPs
-iPs
-iPs
-kZB
-jtf
-kwy
+sob
+iem
+gtZ
+xpy
+fSs
 lPi
-eXg
 hvQ
-deD
-tvw
-adw
-dPd
+hvQ
+hvQ
+kfb
+ayb
+wHJ
 tvw
 kdy
 hIH
@@ -31785,19 +31856,19 @@ vat
 vat
 dVb
 iPs
-iPs
-sob
-iem
-gtZ
-xpy
-fSs
+hRr
+rVQ
+rVQ
+eOx
+nHK
+xzt
 lPi
 hvQ
+aTS
 hvQ
-hvQ
-kfb
-ayb
-wHJ
+aXG
+wUm
+nJp
 tvw
 kdy
 hIH
@@ -32042,18 +32113,18 @@ vat
 uET
 iPs
 iPs
-hRr
-rVQ
-rVQ
-eOx
-nHK
-xzt
-lPi
-hvQ
-aTS
-hvQ
-aXG
-wUm
+iPs
+fFy
+lzk
+wwD
+pTF
+gBj
+tvw
+kQs
+tvw
+tvw
+tvw
+vzH
 nJp
 tvw
 kdy
@@ -32300,17 +32371,17 @@ fVr
 iPs
 iPs
 iPs
-fFy
-lzk
-wwD
-pTF
-gBj
-tvw
-kQs
-tvw
-tvw
-tvw
-vzH
+iPs
+iPs
+kZB
+jtf
+nHK
+nHK
+nHK
+nHK
+nHK
+fOv
+wUm
 ykt
 dCa
 hIH
@@ -32556,7 +32627,7 @@ pPO
 vat
 kPb
 iPs
-iPs
+wYH
 iPs
 iPs
 kZB
@@ -32566,9 +32637,9 @@ nHK
 nHK
 nHK
 nHK
-fOv
+eEL
 wUm
-uPd
+wck
 tvw
 tvw
 tvw
@@ -32813,19 +32884,19 @@ aek
 aek
 azR
 iPs
-wYH
-iPs
-iPs
-kZB
-jtf
-nHK
-nHK
-nHK
-nHK
-nHK
-eEL
-wUm
-wck
+rDg
+nKJ
+nKJ
+tvw
+tvw
+tvw
+tvw
+nFH
+tvw
+tvw
+tvw
+vzH
+sic
 tvw
 uis
 uis
@@ -33071,17 +33142,17 @@ jHi
 bjq
 iPs
 rDg
-nKJ
-nKJ
-tvw
-tvw
-tvw
-tvw
-nFH
-tvw
-tvw
-tvw
-vzH
+vat
+vat
+aDg
+yeK
+mHF
+qDc
+pKB
+ezk
+uzK
+lPi
+hpl
 sic
 tvw
 lHZ
@@ -33330,12 +33401,12 @@ tvw
 cNw
 vat
 eSk
-tvw
+aDg
 qrv
-mHF
-qDc
+hvQ
+gKe
 xgz
-jzh
+olE
 sIH
 lPi
 hpl
@@ -33590,13 +33661,13 @@ tvw
 tvw
 noA
 hvQ
-gKe
+mfN
 xgz
-pST
-oQW
-lPi
-hpl
-wck
+eqS
+iQo
+xYp
+rqZ
+aSa
 tvw
 fzV
 fMM
@@ -33845,15 +33916,15 @@ iWc
 omh
 kJO
 tvw
-ezk
-hvQ
-mfN
-xgz
-eqS
-eqS
-xYp
-ioa
-ykt
+sWb
+jzh
+blI
+lVL
+olE
+wtI
+wtI
+wUm
+cGt
 mVc
 fMM
 fMM
@@ -34102,14 +34173,14 @@ amv
 omh
 wAE
 tvw
-sWb
+xBR
 rOf
-blI
-lVL
-olE
-olE
-wtI
-wUm
+hPK
+cRs
+ioa
+uPd
+lPi
+neS
 nJp
 tvw
 tvw
@@ -34360,11 +34431,11 @@ omh
 pGj
 tvw
 pxW
-hPK
-hPK
-cRs
-pST
-sIH
+ktw
+olE
+olE
+ioa
+iyo
 lPi
 hpl
 cGt
@@ -34618,13 +34689,13 @@ uoi
 tvw
 pST
 iel
-olE
-olE
+ogp
+ogp
 qLO
 oQW
 lPi
 hpl
-nJp
+cGt
 xPZ
 aXG
 bWy
