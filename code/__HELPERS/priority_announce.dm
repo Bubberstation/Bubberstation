@@ -204,7 +204,7 @@
 		if(target.client?.prefs.read_preference(/datum/preference/toggle/sound_announcements))
 			SEND_SOUND(target, sound(sound_to_play))
 	*/
-	if(!sound_override)
+	if(!sound_override && !should_play_sound)
 		sound_override = SSstation.announcer.get_rand_alert_sound()
 	else if(SSstation.announcer.event_sounds[sound_override])
 		var/list/announcer_key = SSstation.announcer.event_sounds[sound_override]
@@ -223,9 +223,9 @@
 		to_chat(target, announcement)
 	// SKYRAT EDIT CHANGE END - CUSTOM ANNOUNCEMENTS
 
-#undef MAJOR_ANNOUNCEMENT_TITLE
-#undef MAJOR_ANNOUNCEMENT_TEXT
-#undef MINOR_ANNOUNCEMENT_TITLE
-#undef MINOR_ANNOUNCEMENT_TEXT
-#undef CHAT_ALERT_DEFAULT_SPAN
-#undef CHAT_ALERT_COLORED_SPAN
+// #undef MAJOR_ANNOUNCEMENT_TITLE
+// #undef MAJOR_ANNOUNCEMENT_TEXT
+// #undef MINOR_ANNOUNCEMENT_TITLE
+// #undef MINOR_ANNOUNCEMENT_TEXT
+// #undef CHAT_ALERT_DEFAULT_SPAN
+// #undef CHAT_ALERT_COLORED_SPAN

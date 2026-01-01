@@ -586,6 +586,8 @@ SUBSYSTEM_DEF(ticker)
 
 		if(ishuman(new_player_living))
 			SEND_SIGNAL(new_player_living, COMSIG_HUMAN_CHARACTER_SETUP_FINISHED)
+
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOBAL_PLAYER_SETUP_FINISHED, new_player_living)
 		CHECK_TICK
 
 	if(captainless)

@@ -40,7 +40,7 @@ SUBSYSTEM_DEF(round_events)
 
 	if(active_event.lock_respawn)
 		CONFIG_SET(flag/allow_respawn, RESPAWN_FLAG_DISABLED)
-		message_admins(span_adminnotice("active event force disabled respawns."))
+		message_admins(span_adminnotice("the current active event has disabled respawning for this round."))
 
 	if(active_event.only_related_observe)
 		disable_free_observation()
