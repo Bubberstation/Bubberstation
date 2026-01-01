@@ -77,7 +77,7 @@ ADMIN_VERB(setup_hypothermia_event, R_DEBUG|R_FUN, "setup hypothermia event", "S
 	victim.move_to_error_room()
 	victim.overlay_fullscreen("crash_blackout", /atom/movable/screen/fullscreen/flash/black)
 	victim.AddComponent(/datum/component/hypothermia)
-	victim.anchored = TRUE
+	victim.Stun(45 SECONDS)
 
 	victim.dispatch_personal_announcement("WARNING! CRITICAL HULL BREACH DETECTED! EMERGENCY CRASH LANDING IN 45 SECONDS! BRACE FOR IMPACT!", 'sound/effects/explosion/explosion_distant.ogg')
 	sleep(10 SECONDS)
@@ -104,7 +104,7 @@ ADMIN_VERB(setup_hypothermia_event, R_DEBUG|R_FUN, "setup hypothermia event", "S
 
 
 /datum/full_round_event/hypothermia/proc/teleport_to_crashsite(mob/living/victim)
-	victim.clear_fullscreen("crash_blackout", animated = 3 SECONDS)
+	victim.clear_fullscreen("crash_blackout", animated = 1 SECONDS)
 	var/job_spawn_title = victim?.mind?.assigned_role?.job_spawn_title
 	var/list/available = GLOB.start_landmarks_list.Copy()
 	var/obj/effect/landmark/start/spawnpoint
@@ -177,14 +177,12 @@ ADMIN_VERB(setup_hypothermia_event, R_DEBUG|R_FUN, "setup hypothermia event", "S
 		to_chat(victim, span_notice("Against all odds... you crawl from the wreckage completely unharmed. A miracle."))
 		victim.client.give_award(/datum/award/achievement/very_safe_landing, victim)
 
-	victim.anchored = FALSE
-
 /datum/full_round_event/hypothermia/proc/setup_hypothermia_fluff(mob/living/victim)
 	var/area/hypothermia/hypo_area = get_area(victim)
 	if(istype(hypo_area))
 		hypo_area.update_mob_visual(victim)
 
-	if(isnull(victim.mind))
+	if(isnull(victim.mind) || isnull(victim.client))
 		message_admins("Hypothermia event could not setup fluff for [victim], no mind found. Please help [ADMIN_FLW(victim)]")
 		return
 	to_chat(victim, span_boldwarning("The freezing darkness closes in... the cold is absolute..."))
