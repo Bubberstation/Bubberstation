@@ -20,7 +20,7 @@
 	desc = "A big storm is coming — the city must survive!"
 	database_id = "evt_hypothermia_c150fp"
 
-/datum/award/achievement/safe_laucnh
+/datum/award/achievement/safe_launch
 	name = "Let's Go!"
 	desc = "You escaped using the Buran shuttle — it finally took off!"
 	database_id = "evt_hypothermia_escape"
@@ -50,7 +50,6 @@
 
 ADMIN_VERB(setup_hypothermia_event, R_DEBUG|R_FUN, "setup hypothermia event", "Sets up the hypothermia event datum for the current round, changing the lobby menu and hooks into roundstart to spawn players into the hypothermia spawn points with the intro", ADMIN_CATEGORY_EVENTS)
 	SSround_events.set_active_event(/datum/full_round_event/hypothermia)
-	SSround_events.on_enter_setup()
 	message_admins("[key_name_admin(user)] has setup the Hypothermia event for this round.")
 
 /datum/full_round_event/hypothermia/lobby_loaded(mob/user)
@@ -75,7 +74,6 @@ ADMIN_VERB(setup_hypothermia_event, R_DEBUG|R_FUN, "setup hypothermia event", "S
 	setup_hypothermia_fluff(victim)
 
 /datum/full_round_event/hypothermia/proc/intro_sequence(mob/living/victim)
-	set waitfor = FALSE
 	victim.move_to_error_room()
 	victim.overlay_fullscreen("crash_blackout", /atom/movable/screen/fullscreen/flash/black)
 	victim.AddComponent(/datum/component/hypothermia)
@@ -94,7 +92,6 @@ ADMIN_VERB(setup_hypothermia_event, R_DEBUG|R_FUN, "setup hypothermia event", "S
 
 	victim.dispatch_personal_announcement("10 SECONDS... BRACE! BRACE! BRACE!", 'sound/effects/explosion/explosion_distant.ogg', volume = 70)
 	sleep(6 SECONDS)
-
 	victim.dispatch_personal_announcement("5 SECONDS...", 'sound/effects/explosion/explosion_distant.ogg', volume = 80)
 	INVOKE_ASYNC(src, PROC_REF(teleport_to_crashsite), victim)
 	sleep(5 SECONDS)
@@ -107,6 +104,7 @@ ADMIN_VERB(setup_hypothermia_event, R_DEBUG|R_FUN, "setup hypothermia event", "S
 
 
 /datum/full_round_event/hypothermia/proc/teleport_to_crashsite(mob/living/victim)
+	victim.clear_fullscreen("crash_blackout", animated = 3 SECONDS)
 	var/job_spawn_title = victim?.mind?.assigned_role?.job_spawn_title
 	var/list/available = GLOB.start_landmarks_list.Copy()
 	var/obj/effect/landmark/start/spawnpoint
@@ -136,7 +134,6 @@ ADMIN_VERB(setup_hypothermia_event, R_DEBUG|R_FUN, "setup hypothermia event", "S
 	victim.pixel_x = rand(-16, 16)
 	victim.alpha = 0
 	victim.spin(3 SECONDS, 1)
-	victim.clear_fullscreen("crash_blackout", animated = 20 SECONDS)
 	victim.forceMove(get_turf(spawnpoint))
 	victim.Knockdown(3 SECONDS)
 	animate(victim, 1 SECONDS, alpha = 255)
@@ -183,7 +180,6 @@ ADMIN_VERB(setup_hypothermia_event, R_DEBUG|R_FUN, "setup hypothermia event", "S
 	victim.anchored = FALSE
 
 /datum/full_round_event/hypothermia/proc/setup_hypothermia_fluff(mob/living/victim)
-	set waitfor = FALSE
 	var/area/hypothermia/hypo_area = get_area(victim)
 	if(istype(hypo_area))
 		hypo_area.update_mob_visual(victim)
@@ -201,13 +197,6 @@ ADMIN_VERB(setup_hypothermia_event, R_DEBUG|R_FUN, "setup hypothermia event", "S
 	crashland_antag.show_in_antagpanel = FALSE
 	crashland_antag.objectives += survive_objective
 	victim.mind.add_antag_datum(crashland_antag)
-
-/mob/proc/dispatch_personal_announcement(message, sound = 'sound/effects/alert.ogg', volume = 50)
-	var/header = ANNOUNCEMENT_HEADER(generate_unique_announcement_header("Automated AI Voice"))
-	var/text = MAJOR_ANNOUNCEMENT_TEXT(message)
-	var/finalized = CHAT_ALERT_DEFAULT_SPAN(jointext(list(header, text), ""))
-	dispatch_announcement_to_players(finalized, list(src), should_play_sound = FALSE)
-	playsound_local(src, sound, volume)
 
 /datum/full_round_event/hypothermia/proc/setup_weather()
 	for(var/datum/weather/eventual_death in SSweather.processing)
@@ -243,7 +232,7 @@ ADMIN_VERB(setup_hypothermia_event, R_DEBUG|R_FUN, "setup hypothermia event", "S
 		var/area/escape_area = get_area(crew)
 		if(!istype(escape_area, /area/shuttle/escape))
 			continue
-		crew.client.give_award(/datum/award/achievement/safe_laucnh, crew)
+		crew.client.give_award(/datum/award/achievement/safe_launch, crew)
 		if(length(crew.mind.antag_datums))
 			var/datum/antagonist/custom/survivor = locate() in crew.mind.antag_datums
 			if(!survivor)
