@@ -719,11 +719,10 @@
 	acid = 50
 	wound = 25
 
-/obj/item/clothing/head/helmet/space/plasmaman/plasmaxlblack
+/obj/item/clothing/head/helmet/space/plasmaman/plasmaxl_black
 	name = "plasMAX envirosuit helmet"
 	desc = "Extra large version of plasmaman helmet, made to fit those with non-humanoid skulls."
 	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
 	icon_state = "plasmaxl_black"
 	light_color = "#f399ff"
-	visor_icon = "plasmaxl_black-envisor"
