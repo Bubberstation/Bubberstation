@@ -190,7 +190,7 @@
 	qdel(breath_loop)
 
 
-/mob/living/basic/take_control(mob/user)
+/mob/living/basic/arctic_mutant/take_control(mob/user)
 	. = ..()
 	color = COLOR_RED
 	maxHealth = 250
