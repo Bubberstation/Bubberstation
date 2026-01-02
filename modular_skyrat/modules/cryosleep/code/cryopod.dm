@@ -500,10 +500,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 	/*
 	if(target == user)
 		if(target.mind.assigned_role.req_admin_notify)
-	 		tgui_alert(target, "You're an important role! [AHELP_FIRST_MESSAGE]")
-	 	var/datum/antagonist/antag = target.mind.has_antag_datum(/datum/antagonist)
-	 	if(antag)
-	 		tgui_alert(target, "You're \a [antag.name]! [AHELP_FIRST_MESSAGE]")
+			tgui_alert(target, "You're an important role! [AHELP_FIRST_MESSAGE]")
+		var/datum/antagonist/antag = target.mind.has_antag_datum(/datum/antagonist)
+		if(antag)
+			tgui_alert(target, "You're \a [antag.name]! [AHELP_FIRST_MESSAGE]")
 	*/
 
 	if(LAZYLEN(target.buckled_mobs) > 0)
