@@ -1088,14 +1088,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/commons/storage/primary)
-"ald" = (
-/obj/effect/turf_decal/trimline/green/filled/warning,
-/obj/item/kirbyplants/random,
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
-/turf/open/floor/iron/white,
-/area/station/medical/virology)
 "alg" = (
 /obj/machinery/button/door{
 	name = "Disposal Vent Control";
@@ -3717,6 +3709,14 @@
 	broken = 1
 	},
 /area/station/maintenance/department/engineering/atmos)
+"aUh" = (
+/obj/effect/turf_decal/trimline/green/filled/warning,
+/obj/item/kirbyplants/random,
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/turf/open/floor/iron/white,
+/area/station/medical/virology)
 "aUi" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 10
@@ -51897,9 +51897,7 @@
 /turf/open/floor/plating,
 /area/station/hallway/primary/central)
 "mkg" = (
-/obj/machinery/power/apc/auto_name/directional/south{
-	areastring = "/area/engine/supermatter"
-	},
+/obj/machinery/power/apc/auto_name/directional/south,
 /obj/machinery/atmospherics/pipe/smart/simple/cyan/visible{
 	dir = 4
 	},
@@ -78647,10 +78645,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/service/theater)
-"stj" = (
-/obj/machinery/light/floor,
-/turf/open/floor/iron/dark,
-/area/station/medical/virology)
 "stm" = (
 /obj/machinery/light/small/directional/north,
 /obj/structure/sign/poster/official/random/directional/north,
@@ -98116,6 +98110,10 @@
 	},
 /turf/open/floor/vault/rock,
 /area/station/command/heads_quarters/rd)
+"wZL" = (
+/obj/machinery/light/floor,
+/turf/open/floor/iron/dark,
+/area/station/medical/virology)
 "xac" = (
 /obj/item/stock_parts/subspace/crystal{
 	pixel_x = 14;
@@ -155394,7 +155392,7 @@ ewV
 xFX
 xDV
 ewV
-stj
+wZL
 qfs
 nzj
 nzj
@@ -155651,7 +155649,7 @@ lPS
 bTU
 qhj
 tcE
-ald
+aUh
 qfs
 nzj
 nzj
