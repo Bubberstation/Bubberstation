@@ -498,8 +498,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 	if(target == user && (tgui_alert(target, "Would you like to enter cryosleep?", "Enter Cryopod?", list("Yes", "No")) != "Yes"))
 		return
 
-	// if(target == user)
-	// 	if(target.mind.assigned_role.req_admin_notify)
+	//if(target == user)
+	//	if(target.mind.assigned_role.req_admin_notify)
 	// 		tgui_alert(target, "You're an important role! [AHELP_FIRST_MESSAGE]")
 	// 	var/datum/antagonist/antag = target.mind.has_antag_datum(/datum/antagonist)
 	// 	if(antag)
