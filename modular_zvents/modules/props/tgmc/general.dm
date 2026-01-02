@@ -2,7 +2,6 @@
 
 /obj/structure/prop/general
 	name = "A prop"
-	desc = "Lazy me!"
 	icon = 'modular_zvents/icons/structures/props/tgmc/urban/deco.dmi'
 
 // Subtypes based on icon_states from the image

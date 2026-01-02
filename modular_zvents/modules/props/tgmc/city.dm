@@ -2,7 +2,6 @@
 
 /obj/structure/prop/city
 	name = "A city prop"
-	desc = "Lazy me!"
 	icon = 'modular_zvents/icons/structures/props/tgmc/urban/64x64_urbanrandomprops.dmi'
 
 // Subtypes based on icon_states from the image
