@@ -354,7 +354,7 @@
 /obj/item/climbing_hook/emergency/safeguard/proc/try_rescue(mob/living/user, turf/chasm_turf)
 	var/list/possible_turfs = list()
 	for(var/turf/T in orange(2, chasm_turf))
-		if(!T.density && !T.GetComponent(/datum/component/chasm) && (isopenturf(T) || HAS_TRAIT(T, TRAIT_CHASM_STOPPED)))
+		if(!T.density && !T.GetComponent(/datum/component/chasm) && (isopenturf(T) || HAS_TRAIT(T, TRAIT_CHASM_STOPPER)))
 			possible_turfs += T
 	if(!length(possible_turfs))
 		drop_back(user, chasm_turf)

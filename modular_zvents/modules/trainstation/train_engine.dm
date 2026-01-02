@@ -615,9 +615,6 @@
 	heater_plumbing.send_request(REVERSE_DIR(dir))
 	var/energy_generated = plasma_consumed * PLASMA_SHEET_BURN_ENERGY
 
-	var/temp_error = target_temperature - temperature
-	var/consumption_adjust = temp_error * 0.0001
-
 	if(internal_reagents.has_reagent(/datum/reagent/water, 10) && temperature >= WATER_BOIL_TEMP)
 		var/water_boiled = min(internal_reagents.get_reagent_amount(/datum/reagent/water), 10 * seconds_per_tick)
 		internal_reagents.remove_reagent(/datum/reagent/water, water_boiled)

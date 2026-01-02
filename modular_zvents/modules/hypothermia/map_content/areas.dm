@@ -361,7 +361,7 @@
 /datum/map_generator/cave_generator/hypothermia/caven
 	initial_closed_chance = 45
 	flora_spawn_chance = 10
-	weighted_open_turf_types = list(/turf/open/misc/dirt/station = 1)
+	weighted_open_turf_types = list(/turf/open/misc/dirt/icy_planet = 1)
 
 	weighted_flora_spawn_list = list(
 		/obj/structure/flora/rock/icy/style_random = 20,
