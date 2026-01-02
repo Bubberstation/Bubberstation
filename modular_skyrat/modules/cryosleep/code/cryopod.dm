@@ -479,7 +479,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 					return
 				else if(tgui_alert(user, "Would you like to place [target] into [src]?", "Place into Cryopod?", list("Yes", "No")) == "Yes")
 					// if(target.mind.assigned_role.req_admin_notify)
-					// 	tgui_alert(user, "They are an important role! [AHELP_FIRST_MESSAGE]")
+					// tgui_alert(user, "They are an important role! [AHELP_FIRST_MESSAGE]")
 					to_chat(user, span_danger("You put [target] into [src]. [target.p_Theyre()] in the cryopod."))
 					log_admin("[key_name(user)] has put [key_name(target)] into a stasis pod.")
 					message_admins("[key_name(user)] has put [key_name(target)] into a stasis pod. [ADMIN_JMP(src)]")
@@ -497,8 +497,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 
 	if(target == user && (tgui_alert(target, "Would you like to enter cryosleep?", "Enter Cryopod?", list("Yes", "No")) != "Yes"))
 		return
-
-	/*if(target == user)
+	/*
+	if(target == user)
 		if(target.mind.assigned_role.req_admin_notify)
 	 		tgui_alert(target, "You're an important role! [AHELP_FIRST_MESSAGE]")
 	 	var/datum/antagonist/antag = target.mind.has_antag_datum(/datum/antagonist)
