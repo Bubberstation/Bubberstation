@@ -13,26 +13,20 @@
 	src.color = color
 
 /datum/listener_type/announce/apply_action(datum/trigger_type/trigger, list/extra_args, key)
-	var/final_title = title
 	var/final_message = message
 	var/final_sound = sound
 
 	if(length(extra_args))
 		var/list/data = extra_args[1]
 		if(islist(data))
-			if(data["title"])
-				final_title = data["title"]
 			if(data["message"])
 				final_message = data["message"]
 			if(data["sound"])
 				final_sound = data["sound"]
 
-	priority_announce(
-		text = final_message,
-		title = final_title,
+	speaker_announce(
+		message = final_message,
 		sound = final_sound,
-		sender_override = announcer,
-		color_override = color
 	)
 
 

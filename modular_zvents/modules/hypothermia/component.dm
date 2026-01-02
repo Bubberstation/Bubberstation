@@ -1,18 +1,5 @@
 #define HYPOTHERMIA_PARALYSIS "hypothermia_paralysis"
 
-#define THERMAL_PROTECTION_HEAD 0.3
-#define THERMAL_PROTECTION_CHEST 0.15
-#define THERMAL_PROTECTION_GROIN 0.15
-#define THERMAL_PROTECTION_LEG_LEFT 0.075
-#define THERMAL_PROTECTION_LEG_RIGHT 0.075
-#define THERMAL_PROTECTION_FOOT_LEFT 0.025
-#define THERMAL_PROTECTION_FOOT_RIGHT 0.025
-#define THERMAL_PROTECTION_ARM_LEFT 0.075
-#define THERMAL_PROTECTION_ARM_RIGHT 0.075
-#define THERMAL_PROTECTION_HAND_LEFT 0.025
-#define THERMAL_PROTECTION_HAND_RIGHT 0.025
-
-
 #define HYPOTHERMIA_COLDLEVEL_SAFE      0
 #define HYPOTHERMIA_COLDLEVEL_LOW       1
 #define HYPOTHERMIA_COLDLEVEL_MODERATE  2
@@ -25,101 +12,10 @@
 #define HYPOTHERMIA_TRESHOLD_HIGH      (T0C + 28)
 #define HYPOTHERMIA_TRESHOLD_LETHAL    (T0C + 24)
 
-
-/mob/living/carbon/human/proc/get_cold_protection_flags_improved(temperature)
-	var/thermal_protection_flags = 0
-
-	if(!LAZYLEN(get_equipped_items()))
-		thermal_protection_flags |= CHEST | GROIN | ARMS | LEGS
-		return thermal_protection_flags
-
-	for(var/obj/item/I in get_equipped_items())
-		if(!I.min_cold_protection_temperature || !I.max_heat_protection_temperature)
-			continue
-
-		var/protection_zone = I.cold_protection
-		if(!protection_zone)
-			continue
-
-		var/min_temp = I.min_cold_protection_temperature
-		var/max_temp = I.max_heat_protection_temperature
-
-
-		if(temperature >= max_temp)
-			thermal_protection_flags |= protection_zone
-			continue
-
-		if(temperature >= min_temp)
-			var/factor = (temperature - min_temp) / (max_temp - min_temp)
-			factor = clamp(factor, 0, 1)
-
-
-			if(factor >= 0.85)
-				thermal_protection_flags |= protection_zone
-			continue
-
-
-		var/delta = min_temp - temperature
-		var/falloff_range = 200
-		if(delta > falloff_range)
-			delta = falloff_range
-
-
-		var/factor = 1 - (delta / falloff_range)
-		factor = max(factor * factor, 0.05)
-
-		if(protection_zone & HEAD && factor >= 0.65)
-			thermal_protection_flags |= HEAD
-		if(protection_zone & CHEST && factor >= 0.60)
-			thermal_protection_flags |= CHEST
-		if(protection_zone & GROIN && factor >= 0.60)
-			thermal_protection_flags |= GROIN
-		if(protection_zone & LEGS && factor >= 0.45)
-			thermal_protection_flags |= LEGS
-		if(protection_zone & FEET && factor >= 0.35)
-			thermal_protection_flags |= FEET
-		if(protection_zone & ARMS && factor >= 0.45)
-			thermal_protection_flags |= ARMS
-		if(protection_zone & HANDS && factor >= 0.30)
-			thermal_protection_flags |= HANDS
-
-	return thermal_protection_flags
-
-/mob/living/carbon/human/proc/get_cold_protection_advanced(temperature = T20C)
-	temperature = max(temperature, 2.7)
-	var/thermal_protection_flags = get_cold_protection_flags_improved(temperature)
-
-	var/thermal_protection = cold_protection
-	if(thermal_protection_flags & HEAD)
-		thermal_protection += THERMAL_PROTECTION_HEAD
-	if(thermal_protection_flags & CHEST)
-		thermal_protection += THERMAL_PROTECTION_CHEST
-	if(thermal_protection_flags & GROIN)
-		thermal_protection += THERMAL_PROTECTION_GROIN
-	if(thermal_protection_flags & LEG_LEFT)
-		thermal_protection += THERMAL_PROTECTION_LEG_LEFT
-	if(thermal_protection_flags & LEG_RIGHT)
-		thermal_protection += THERMAL_PROTECTION_LEG_RIGHT
-	if(thermal_protection_flags & FOOT_LEFT)
-		thermal_protection += THERMAL_PROTECTION_FOOT_LEFT
-	if(thermal_protection_flags & FOOT_RIGHT)
-		thermal_protection += THERMAL_PROTECTION_FOOT_RIGHT
-	if(thermal_protection_flags & ARM_LEFT)
-		thermal_protection += THERMAL_PROTECTION_ARM_LEFT
-	if(thermal_protection_flags & ARM_RIGHT)
-		thermal_protection += THERMAL_PROTECTION_ARM_RIGHT
-	if(thermal_protection_flags & HAND_LEFT)
-		thermal_protection += THERMAL_PROTECTION_HAND_LEFT
-	if(thermal_protection_flags & HAND_RIGHT)
-		thermal_protection += THERMAL_PROTECTION_HAND_RIGHT
-
-
-	return clamp(round(thermal_protection, 0.001), 0, 1)
-
 /datum/component/hypothermia
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 	var/stored_bodytemperature = 310
-	var/cooling_rate = 0.25
+	var/cooling_rate = 0.33
 	var/heating_rate = 0.2
 	var/max_temp = 320
 	var/maximum_diff = -120
@@ -226,7 +122,7 @@
 	stored_bodytemperature = stored_bodytemperature + (amount * heating_rate)
 	return TRUE
 
-/datum/component/hypothermia/proc/adjust_scaled_temp(mob/living/living_mob, amount)
+/datum/component/hypothermia/proc/adjust_scaled_temp(mob/living/living_mob, amount, ignore_protection = FALSE)
 	var/area/hypothermia/HA = get_area(living_mob)
 	if(!istype(HA))
 		return
@@ -235,11 +131,11 @@
 	var/protection = 0
 	if(ishuman(living_mob))
 		var/mob/living/carbon/human/H = living_mob
-		protection = H.get_cold_protection_advanced(area_temperature)
+		protection = H.get_cold_protection(area_temperature)
 	else
 		protection = 1
 
-	var/effective_multiplier = 1 - (protection * 0.85)
+	var/effective_multiplier = 1 - (ignore_protection ? 0 : protection * 0.85)
 	effective_multiplier = max(effective_multiplier, 0.08)
 
 	var/scaled_amount = amount * base_rate * effective_multiplier
@@ -555,18 +451,6 @@
 
 
 #undef HYPOTHERMIA_PARALYSIS
-#undef THERMAL_PROTECTION_HEAD
-#undef THERMAL_PROTECTION_CHEST
-#undef THERMAL_PROTECTION_GROIN
-#undef THERMAL_PROTECTION_LEG_LEFT
-#undef THERMAL_PROTECTION_LEG_RIGHT
-#undef THERMAL_PROTECTION_FOOT_LEFT
-#undef THERMAL_PROTECTION_FOOT_RIGHT
-#undef THERMAL_PROTECTION_ARM_LEFT
-#undef THERMAL_PROTECTION_ARM_RIGHT
-#undef THERMAL_PROTECTION_HAND_LEFT
-#undef THERMAL_PROTECTION_HAND_RIGHT
-
 
 
 /datum/component/heat_source

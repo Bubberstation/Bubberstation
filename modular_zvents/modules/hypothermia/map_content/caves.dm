@@ -1,4 +1,5 @@
 GLOBAL_LIST_EMPTY(sneak_pod_list)
+#define TRAIT_CREVICE_CRAWLER "crevice_crawler"
 
 /obj/structure/sneak_pod
 	name = "narrow crevice"
@@ -13,9 +14,12 @@ GLOBAL_LIST_EMPTY(sneak_pod_list)
 	armor_type = /datum/armor/none
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
-	var/list/crawlers = list()  // List of mobs currently crawling
-	var/max_crawlers = 3  // Max small mobs allowed (adjust for balance)
-	var/list/crawler_pixel_offsets = list()  // Associative list: mob -> list(x, y, transform)
+	// List of mobs currently crawling
+	var/list/crawlers = list()
+	// Max small mobs allowed
+	var/max_crawlers = 3
+	// Associative list: mob -> list(x, y, transform)
+	var/list/crawler_pixel_offsets = list()
 	var/datum/component/seethrough/filtered/seethrough
 
 /obj/structure/sneak_pod/Initialize(mapload)
@@ -73,7 +77,7 @@ GLOBAL_LIST_EMPTY(sneak_pod_list)
 	crawlers += crawler
 	crawler.forceMove(loc)
 	crawler.pass_flags |= PASSMOB | PASSTABLE
-	ADD_TRAIT(crawler, TRAIT_FLOORED, src)
+	crawler.add_traits(list(TRAIT_FLOORED, TRAIT_CREVICE_CRAWLER), REF(src))
 	register_to_crawler(crawler)
 	if(!silent)
 		balloon_alert(crawler, "You squeeze into the crevice, crawling forward...")
@@ -85,11 +89,24 @@ GLOBAL_LIST_EMPTY(sneak_pod_list)
 	crawlers -= crawler
 	unregister_from_crawler(crawler)
 	crawler.pass_flags &= ~(PASSMOB | PASSTABLE)
-	REMOVE_TRAIT(crawler, TRAIT_FLOORED, src)
-
+	crawler.remove_traits(list(TRAIT_FLOORED, TRAIT_CREVICE_CRAWLER), REF(src))
 	if(!forced)
 		balloon_alert(crawler, "You emerge from the crevice.")
 
+
+/obj/structure/sneak_pod/Bumped(atom/movable/bumped_atom)
+	. = ..()
+	if(!isliving(bumped_atom))
+		return
+	var/mob/living/M = bumped_atom
+	if(HAS_TRAIT(M, TRAIT_CREVICE_CRAWLER))
+		return
+	if(!can_crawl_into(M, src))
+		return
+	if(!do_after(M, 5 SECONDS, src))
+		M.balloon_alert(M, "Failed to crawl!")
+		return
+	begin_crawl(M)
 
 
 /obj/structure/sneak_pod/proc/on_crawler_pre_move(datum/source, atom/newloc, direction)
@@ -146,10 +163,13 @@ GLOBAL_LIST_EMPTY(sneak_pod_list)
 	if(!can_crawl_into(C, newloc))
 		balloon_alert(C, "Movement blocked!")
 		return
-	if(!do_after(C, 1 SECONDS, src, IGNORE_USER_LOC_CHANGE | IGNORE_HELD_ITEM))
+	if(!do_after(C, 1 SECONDS, src, IGNORE_USER_LOC_CHANGE | IGNORE_HELD_ITEM, max_interact_count = 1))
 		balloon_alert(C, "Movement interrupted!")
 		return
 	var/obj/structure/sneak_pod/next_pod = locate() in newloc
+	if(isclosedturf(newloc))
+		balloon_alert(C, "The way is blocked!")
+		return
 	if(next_pod)
 		C.forceMove(newloc)
 		end_crawl(C, TRUE)
@@ -166,7 +186,7 @@ GLOBAL_LIST_EMPTY(sneak_pod_list)
 	var/obj/structure/sneak_pod/next_pod = locate() in C.loc
 	if(next_pod && next_pod != src)
 		end_crawl(C, TRUE)
-		next_pod.begin_crawl(C)
+		next_pod.begin_crawl(C, TRUE)
 
 /obj/structure/sneak_pod/proc/on_crawler_qdel(datum/source)
 	SIGNAL_HANDLER
@@ -185,3 +205,28 @@ GLOBAL_LIST_EMPTY(sneak_pod_list)
 
 /obj/structure/sneak_pod/proc/is_still_crawling(mob/living/C)
 	return (C in crawlers && C.resting)
+
+#undef TRAIT_CREVICE_CRAWLER
+
+/obj/structure/sneak_pod/iced
+	name = "ice-covered crevice"
+	icon = 'modular_zvents/icons/structures/crevice.dmi'
+	icon_state = "iced"
+
+/obj/structure/sneak_pod/iced/enterence
+	name = "ice-covered crevice"
+	icon = 'modular_zvents/icons/structures/crevice.dmi'
+	icon_state = "iced_enterence"
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sneak_pod/iced/enterence, 27)
+
+/obj/structure/sneak_pod/rock
+	name = "rock crevice"
+	icon = 'modular_zvents/icons/structures/crevice.dmi'
+	icon_state = "rock"
+
+/obj/structure/sneak_pod/rock/enterence
+	icon = 'modular_zvents/icons/structures/crevice.dmi'
+	icon_state = "rock_enterence"
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sneak_pod/rock/enterence, 27)

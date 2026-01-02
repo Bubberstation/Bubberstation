@@ -44,27 +44,26 @@ SUBSYSTEM_DEF(round_events)
 	if(!active_event.start_time)
 		active_event.start_time = world.time
 
-
 	if(active_event.disable_dynamic)
 		SSdynamic.can_fire = FALSE
 		SSdynamic.wait = 0
+		QDEL_NULL(SSgamemode.storyteller)
+		SSgamemode.can_fire = FALSE
 
 	if(active_event.lock_respawn)
 		CONFIG_SET(flag/allow_respawn, RESPAWN_FLAG_DISABLED)
 		message_admins(span_adminnotice("the current active event has disabled respawning for this round."))
-
-	if(active_event.only_related_observe)
-		disable_free_observation()
+		to_chat(world, span_boldwarning("Respawning has been disabled for this round due to the active event."))
 
 	if(active_event.delay_round_start)
-		SSticker.SetTimeLeft(INFINITE_RESKIN)
+		SSticker.SetTimeLeft(INFINITY)
 		SSticker.start_immediately = FALSE
 
 	for(var/datum/controller/subsystem/SS in active_event.supressed_subsystems)
-	/*
-		Master.subsystems(SS).can_fire = FALSE
-		Master.subsystems(SS).wait = 0
-	*/
+		var/datum/controller/subsystem/instance = locate(SS) in Master.subsystems
+		if(instance)
+			instance.can_fire = FALSE
+
 	if(active_event.disable_ai)
 		CONFIG_SET(flag/allow_ai, FALSE)
 
@@ -78,16 +77,13 @@ SUBSYSTEM_DEF(round_events)
 
 	if(post_pregame)
 		on_enter_pregame()
+		announce_event()
 
 	if(post_roundstart)
 		on_round_starting(world.time)
 
 /datum/controller/subsystem/round_events/proc/on_enter_pregame()
 	SIGNAL_HANDLER
-	if(active_event)
-		active_event.lobby_loaded()
-		to_chat(world, "<span class='infoplain'><div class=\"motd\">[active_event.short_desc]</div></span>", handle_whitespace=FALSE)
-		world.update_status()
 	post_pregame = TRUE
 
 /datum/controller/subsystem/round_events/proc/on_round_starting(start_time)
@@ -103,22 +99,11 @@ SUBSYSTEM_DEF(round_events)
 
 
 /datum/controller/subsystem/round_events/proc/announce_event()
+	if(active_event)
+		active_event.lobby_loaded()
+		to_chat(world, "<span class='infoplain'><div class=\"motd\">[active_event.short_desc]</div></span>", handle_whitespace=FALSE)
+		world.update_status()
 
-
-
-/datum/controller/subsystem/round_events/proc/disable_free_observation()
-	observation_lock = TRUE
-	for(var/datum/space_level/level in SSmapping.levels_by_trait(ZTRAIT_STATION))
-		level.traits |= list(ZTRAIT_SECRET  = TRUE, \
-							ZTRAIT_NOXRAY = TRUE, \
-							ZTRAIT_NOPHASE = TRUE)
-		SSweather.update_z_level(level)
-
-/datum/controller/subsystem/round_events/proc/enable_free_observation()
-	observation_lock = FALSE
-	for(var/datum/space_level/level in SSmapping.levels_by_trait(ZTRAIT_STATION))
-		level.traits -= ZTRAIT_SECRET | ZTRAIT_NOXRAY | ZTRAIT_NOPHASE
-		SSweather.update_z_level(level)
 
 /datum/controller/subsystem/round_events/proc/on_client_joined(client/user)
 	if(active_event)
@@ -128,7 +113,6 @@ SUBSYSTEM_DEF(round_events)
 /datum/controller/subsystem/round_events/proc/on_player_spawned(client/user, mob/living/player)
 	if(active_event)
 		active_event.new_player_spawned(user, player)
-
 
 
 /datum/controller/subsystem/round_events/proc/on_player_dead(mob/living/player)

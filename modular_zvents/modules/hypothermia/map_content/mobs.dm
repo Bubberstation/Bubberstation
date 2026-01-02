@@ -162,6 +162,8 @@
 	basic_mob_flags = DEL_ON_DEATH|FLAMMABLE_MOB
 	ai_controller = /datum/ai_controller/basic_controller/arctic_mutant
 
+
+
 	var/outfit = null
 	var/r_hand = null
 	var/l_hand = null
@@ -172,11 +174,11 @@
 	. = ..()
 	apply_dynamic_human_appearance(src, outfit, /datum/species/arctic_mutant, bloody_slots = ITEM_SLOT_OCLOTHING, r_hand = r_hand, l_hand = l_hand)
 	AddElement(/datum/element/death_drops, /obj/effect/decal/remains/human)
-
+	AddElement(/datum/element/footstep, FOOTSTEP_MOB_CLAW)
+	AddElement(/datum/element/prevent_attacking_of_types, GLOB.typecache_general_bad_hostile_attack_targets, "this tastes awful!")
+	AddComponent(/datum/component/health_scaling_effects, min_health_slowdown = 1.5)
 
 	breath_loop = new(src, TRUE)
-	ADD_TRAIT(src, TRAIT_NIGHT_VISION, INNATE_TRAIT)
-	update_sight()
 
 
 /mob/living/basic/arctic_mutant/death(gibbed)
@@ -186,6 +188,26 @@
 /mob/living/basic/arctic_mutant/Destroy()
 	. = ..()
 	qdel(breath_loop)
+
+
+/mob/living/basic/take_control(mob/user)
+	. = ..()
+	color = COLOR_RED
+	maxHealth = 250
+	name = "Evolved [name]"
+	AddComponent(/datum/component/regenerator, regeneration_delay = 6 SECONDS, brute_per_second = 5)
+	AddComponent(/datum/component/seethrough_mob)
+	lighting_cutoff_red = 22
+	lighting_cutoff_green = 5
+	lighting_cutoff_blue = 5
+	ADD_TRAIT(src, TRAIT_NIGHT_VISION, INNATE_TRAIT)
+	update_sight()
+	transform.Scale(1.3, 1.3)
+	add_movespeed_modifier(/datum/movespeed_modifier/arctic_mutant_player, TRUE)
+	grant_actions_by_list(list(/datum/action/cooldown/mob_cooldown/boss_charge/cheap))
+
+/datum/movespeed_modifier/arctic_mutant_player
+	multiplicative_slowdown = -1
 
 
 /mob/living/basic/arctic_mutant/light
@@ -605,7 +627,10 @@
 				shake_camera(living_target)
 	playsound(owner, 'sound/effects/blob/blobattack.ogg', 100, TRUE)
 
-
+/datum/action/cooldown/mob_cooldown/boss_charge/cheap
+	max_range = 5
+	charge_sound = 'modular_zvents/sounds/mobs/mutant_spoke_2.ogg'
+	charge_delay = 1 SECONDS
 
 
 /datum/action/cooldown/mob_cooldown/boss_tentacle

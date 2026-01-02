@@ -33,7 +33,7 @@ GLOBAL_LIST_INIT(hear_sources, list())
 #define CHAT_ALERT_COLORED_SPAN(color, string) ("<div class='chat_alert_" + color + "'>" + string + "</div>")
 #define CHAT_ALERT_DEFAULT_SPAN(string) ("<div class='chat_alert_default'>" + string + "</div>")
 
-/proc/speaker_announce(message, prefix = "...From the speakers comes", sound, color = "default", list/mob/players = GLOB.player_list, encode = TRUE)
+/proc/speaker_announce(message, prefix = "...From the speakers comes: ", sound, color = "default", list/mob/players = GLOB.player_list, encode = TRUE)
 	if(!message)
 		return
 

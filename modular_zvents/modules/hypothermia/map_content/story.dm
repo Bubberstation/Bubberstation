@@ -129,7 +129,11 @@
 	name = "Buran docking port"
 	hidden = FALSE
 	dir = WEST
-
+	dheight = 50
+	height = 60
+	dwidth = 40
+	width = 50
+	roundstart_template = /datum/map_template/shuttle/zvezda
 
 /obj/machinery/shuttle_launch_terminal
 	name = "shuttle launch terminal"
@@ -324,7 +328,7 @@
 	icon_state = "climbingrope_s"
 	slot_flags = ITEM_SLOT_BELT
 	var/attempting = FALSE	// To prevent infinite loops
-
+	var/dropping = FALSE
 
 /obj/item/climbing_hook/emergency/safeguard/examine(mob/user)
 	. = ..()
@@ -341,7 +345,7 @@
 
 /obj/item/climbing_hook/emergency/safeguard/proc/on_chasm_drop(mob/living/user, turf/chasm_turf)
 	SIGNAL_HANDLER
-	if(user.stat == DEAD || attempting)
+	if(user.stat == DEAD || attempting || dropping)
 		return
 	attempting = TRUE
 	addtimer(CALLBACK(src, PROC_REF(try_rescue), user, chasm_turf), 0)
@@ -350,7 +354,7 @@
 /obj/item/climbing_hook/emergency/safeguard/proc/try_rescue(mob/living/user, turf/chasm_turf)
 	var/list/possible_turfs = list()
 	for(var/turf/T in orange(2, chasm_turf))
-		if(!T.density && !T.GetComponent(/datum/component/chasm) && isopenturf(T))
+		if(!T.density && !T.GetComponent(/datum/component/chasm) && (isopenturf(T) || HAS_TRAIT(T, TRAIT_CHASM_STOPPED)))
 			possible_turfs += T
 	if(!length(possible_turfs))
 		drop_back(user, chasm_turf)
@@ -375,4 +379,6 @@
 /obj/item/climbing_hook/emergency/safeguard/proc/drop_back(mob/living/user, turf/chasm_turf)
 	attempting = FALSE
 	var/datum/component/chasm/chasm_comp = chasm_turf.GetComponent(/datum/component/chasm)
+	chasm_comp?.falling_atoms -= WEAKREF(user)
+	dropping = TRUE
 	chasm_comp?.drop(user)

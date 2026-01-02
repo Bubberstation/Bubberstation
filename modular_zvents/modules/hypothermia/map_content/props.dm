@@ -68,7 +68,7 @@
 	. = ..()
 	AddComponent(/datum/component/heat_source, \
 	_heat_output = 3, \
-	_heat_power = (5 KILO JOULES), \
+	_heat_power = (3.5 KILO JOULES), \
 	_range = 3, \
 	_target_temperature = (T0C + 45))
 
@@ -85,8 +85,20 @@
 	_heat_output = 1, \
 	_heat_power = (2 JOULES), \
 	_range = 1, \
-	_target_temperature = (T0C + 38))
+	_target_temperature = (T0C + 30))
 
 /obj/item/flashlight/flare/turn_off()
+	. = ..()
+	qdel(GetComponent(/datum/component/heat_source))
+
+/obj/item/weldingtool/switched_on(mob/user)
+	. = ..()
+	AddComponent(/datum/component/heat_source, \
+	_heat_output = 1, \
+	_heat_power = (1 KILO JOULES), \
+	_range = 1, \
+	_target_temperature = (T0C + 30))
+
+/obj/item/weldingtool/switched_off(mob/user)
 	. = ..()
 	qdel(GetComponent(/datum/component/heat_source))

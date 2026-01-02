@@ -1,5 +1,5 @@
 /datum/component/listener
-	dupe_mode = COMPONENT_DUPE_UNIQUE
+	dupe_mode = COMPONENT_DUPE_ALLOWED
 	var/key
 	var/datum/listener_type/real_listener
 	var/delete_after

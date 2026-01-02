@@ -237,6 +237,10 @@ ADMIN_VERB(setup_hypothermia_event, R_DEBUG|R_FUN, "setup hypothermia event", "S
 				continue
 			for(var/datum/objective/custom/obj in survivor.objectives)
 				obj.completed = TRUE
+		var/datum/component/hypothermia/hypo_comp = crew.GetComponent(/datum/component/hypothermia)
+		if(hypo_comp)
+			qdel(hypo_comp)
+
 
 /datum/full_round_event/hypothermia/event_process(ticks_per_second)
 	var/time_elapsed = world.time - SSticker.round_start_time
