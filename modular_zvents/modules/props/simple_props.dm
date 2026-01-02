@@ -2,7 +2,6 @@
 
 /obj/structure/prop
 	name = "A prop"
-	desc =  "Lazy me!"
 	icon = 'modular_zvents/icons/structures/props/32x32.dmi'
 	density = TRUE
 	pressure_resistance = 8
