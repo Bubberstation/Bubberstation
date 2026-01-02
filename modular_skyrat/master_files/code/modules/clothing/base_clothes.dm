@@ -26,6 +26,7 @@
 	var/worn_icon_taur_snake
 	var/worn_icon_taur_paw
 	var/worn_icon_taur_hoof
+	var/worn_icon_taur_big
 	var/worn_icon_muzzled
 
 	var/greyscale_config_worn_taur_snake
