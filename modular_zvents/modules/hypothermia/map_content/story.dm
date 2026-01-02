@@ -354,7 +354,7 @@
 /obj/item/climbing_hook/emergency/safeguard/proc/try_rescue(mob/living/user, turf/chasm_turf)
 	var/list/possible_turfs = list()
 	for(var/turf/T in orange(2, chasm_turf))
-		if(!T.density && !T.GetComponent(/datum/component/chasm) && (isopenturf(T) || HAS_TRAIT(T, TRAIT_CHASM_STOPPER)))
+		if(!T.density && !(ischasm(T) && !HAS_TRAIT(T, TRAIT_CHASM_STOPPED)) && isopenturf(T))
 			possible_turfs += T
 	if(!length(possible_turfs))
 		drop_back(user, chasm_turf)
@@ -371,6 +371,7 @@
 	playsound(user, 'sound/items/weapons/zipline_fire.ogg', 50)
 	chasm_turf.visible_message(span_warning("A climbing rope shoots out from [user] and latches onto [safe_turf]! [user] is pulled to safety!"))
 	user.take_bodypart_damage(20)
+	user.throw_at(safe_turf, get_dist(user, safe_turf), 1, src, FALSE, TRUE)
 	user.forceMove(safe_turf)
 	user.Paralyze(5 SECONDS)
 	var/datum/component/chasm/chasm_comp = chasm_turf.GetComponent(/datum/component/chasm)
@@ -382,3 +383,4 @@
 	chasm_comp?.falling_atoms -= WEAKREF(user)
 	dropping = TRUE
 	chasm_comp?.drop(user)
+	dropping = FALSE

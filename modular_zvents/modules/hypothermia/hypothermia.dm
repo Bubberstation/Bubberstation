@@ -77,21 +77,28 @@ ADMIN_VERB(setup_hypothermia_event, R_DEBUG|R_FUN, "setup hypothermia event", "S
 	victim.move_to_error_room()
 	victim.overlay_fullscreen("crash_blackout", /atom/movable/screen/fullscreen/flash/black)
 	victim.AddComponent(/datum/component/hypothermia)
-	victim.Stun(45 SECONDS)
+	victim.Stun(50 SECONDS)
 
-	victim.dispatch_personal_announcement("WARNING! CRITICAL HULL BREACH DETECTED! EMERGENCY CRASH LANDING IN 45 SECONDS! BRACE FOR IMPACT!", 'sound/effects/explosion/explosion_distant.ogg')
+	victim.dispatch_personal_announcement("WARNING! CRITICAL HULL BREACH DETECTED! EMERGENCY CRASH LANDING IN 45 SECONDS! BRACE FOR IMPACT!", 'sound/announcer/intern/meteors.ogg')
 	sleep(10 SECONDS)
 
 	victim.dispatch_personal_announcement("30 SECONDS TO IMPACT! ALL HANDS TO CRASH SEATS!", 'sound/effects/explosion/explosion_distant.ogg', volume = 60)
-	sleep(10 SECONDS)
+	sleep(6 SECONDS)
+	SEND_SOUND(victim, 'sound/effects/explosion/explosionfar.ogg')
 
-	victim.dispatch_personal_announcement("20 SECONDS REMAINING! BRACE FOR IMPACT!", 'sound/effects/explosion/explosionfar.ogg')
-	sleep(8 SECONDS)
+	sleep(4 SECONDS)
+	victim.dispatch_personal_announcement("20 SECONDS REMAINING! BRACE FOR IMPACT!")
+	sleep(3 SECONDS)
+	SEND_SOUND(victim, 'sound/effects/explosion/explosionfar.ogg')
+
+	sleep(5 SECONDS)
 
 	shake_camera(victim, 25, 2)
 
-	victim.dispatch_personal_announcement("10 SECONDS... BRACE! BRACE! BRACE!", 'sound/effects/explosion/explosion_distant.ogg', volume = 70)
-	sleep(6 SECONDS)
+	victim.dispatch_personal_announcement("10 SECONDS... BRACE! BRACE! BRACE!", volume = 70)
+	sleep(3 SECONDS)
+	SEND_SOUND(victim, 'sound/effects/explosion/explosion_distant.ogg')
+	sleep(3 SECONDS)
 	victim.dispatch_personal_announcement("5 SECONDS...", 'sound/effects/explosion/explosion_distant.ogg', volume = 80)
 	INVOKE_ASYNC(src, PROC_REF(teleport_to_crashsite), victim)
 	sleep(5 SECONDS)
