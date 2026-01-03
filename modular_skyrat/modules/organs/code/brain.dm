@@ -43,7 +43,7 @@
 		return span_info("This one is completely devoid of life.")
 
 // Hybrid repair option
-/obj/item/organ/brain/cybernetic/cortical/proc/check_for_repair(obj/item/item, mob/user)
+/obj/item/organ/brain/cybernetic/cortical/check_for_repair(obj/item/item, mob/user)
 	if(damage && item.is_drainable() && item.reagents.has_reagent(/datum/reagent/medicine/mannitol) && (organ_flags & ORGAN_ORGANIC)) //ganic repair option
 		if(brainmob?.health <= HEALTH_THRESHOLD_DEAD) //if the brain is fucked anyway, do nothing
 			to_chat(user, span_warning("[src] is far too damaged, there's nothing else we can do for it!"))
