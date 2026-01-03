@@ -1,0 +1,1 @@
+#define COMSIG_LIVING_WABBAJACK_RESTORE "living_wabbajack_restore"
