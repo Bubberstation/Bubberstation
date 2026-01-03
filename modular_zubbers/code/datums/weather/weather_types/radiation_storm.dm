@@ -6,7 +6,8 @@
 /datum/weather/rad_storm/New(...)
 	LAZYOR(protected_areas, list(
 		/area/station/terminal,
-		/area/lavaland/underground,
+		/area/lavaland,
+		/area/ruin,
 		/area/moonstation/underground,
 		/area/station/cargo/miningelevators,
 		/area/station/cargo/miningfoundry/event_protected,
