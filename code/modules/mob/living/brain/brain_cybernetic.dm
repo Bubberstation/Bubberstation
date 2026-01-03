@@ -2,7 +2,7 @@
 	name = "cybernetic brain"
 	desc = "A mechanical brain found inside of androids. Not to be confused with a positronic brain."
 	icon_state = "brain-c"
-	organ_flags = ORGAN_ROBOTIC | ORGAN_VITAL
+	organ_flags = ORGAN_ROBOTIC | ORGAN_VITAL | ORGAN_PROMINENT
 	failing_desc = "seems to be broken, and will not work without repairs."
 	shade_color = null
 	var/emp_dmg_mult = 1 //BUBBER EDIT - Variable multiplier for damage from EMPs. Note the base damage is 20.

@@ -1,5 +1,4 @@
-// moveed to modular_zubbers\code\datums\quirks\negative_quirks\prosthetic_organ_bubber.dm
-/* /datum/quirk/prosthetic_organ
+/datum/quirk/prosthetic_organ
 	name = "Prosthetic Organ"
 	desc = "An accident caused you to lose one of your organs. Because of this, you now have a surplus prosthetic!"
 	icon = FA_ICON_LUNGS
@@ -24,6 +23,7 @@
 		ORGAN_SLOT_LUNGS,
 		ORGAN_SLOT_LIVER,
 		ORGAN_SLOT_STOMACH,
+		ORGAN_SLOT_BRAIN,
 	)
 	var/preferred_organ = GLOB.organ_choice[client_source?.prefs?.read_preference(/datum/preference/choiced/prosthetic_organ)]
 	if(isnull(preferred_organ))  //Client is gone or they chose a random prosthetic
@@ -58,6 +58,9 @@
 		if(ORGAN_SLOT_STOMACH)
 			prosthetic = new /obj/item/organ/stomach/cybernetic/surplus
 			slot_string = "stomach"
+		if(ORGAN_SLOT_BRAIN)
+			prosthetic = new /obj/item/organ/brain/cybernetic/surplus
+			slot_string = "brain"
 	medical_record_text = "During physical examination, patient was found to have a low-budget prosthetic [slot_string]. \
 		Removal of these organs is known to be dangerous to the patient as well as the practitioner."
 	old_organ = human_holder.get_organ_slot(organ_slot)
@@ -67,10 +70,9 @@
 
 /datum/quirk/prosthetic_organ/post_add()
 	to_chat(quirk_holder, span_bolddanger("Your [slot_string] has been replaced with a surplus organ. It is weak and highly unstable. \
-	Additionally, any EMP will make it stop working entirely."))
+	Additionally, any EMP will make it cease full functions for a time."))
 
 /datum/quirk/prosthetic_organ/remove()
 	if(old_organ)
 		old_organ.Insert(quirk_holder, special = TRUE)
 	old_organ = null
- */
