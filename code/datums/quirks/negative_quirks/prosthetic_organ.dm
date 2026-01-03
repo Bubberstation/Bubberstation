@@ -1,4 +1,4 @@
-// moveed to modular_zubbers\code\datums\quirks\negative_quirks\prosthetic_organ_bubber.dm
+// BUBBER EDIT: moved to modular_zubbers\code\datums\quirks\negative_quirks\prosthetic_organ_bubber.dm
 /* /datum/quirk/prosthetic_organ
 	name = "Prosthetic Organ"
 	desc = "An accident caused you to lose one of your organs. Because of this, you now have a surplus prosthetic!"
