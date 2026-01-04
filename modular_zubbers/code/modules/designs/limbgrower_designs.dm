@@ -75,9 +75,79 @@
 	name = "Tajaran Organ Design Disk"
 	limb_designs = list(/datum/design/tajaran_eyes, /datum/design/tajaran_tongue, /datum/design/tajaran_ears)
 
+
+//teshari stuff
+/datum/design/teshari_leftarm
+	name = "Left Wing"
+	id = "arm/left"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 25)
+	build_path = /obj/item/bodypart/arm/left/mutant/teshari
+	category = list(SPECIES_TESHARI)
+
+/datum/design/teshari_rightarm
+	name = "Right Wing"
+	id = "arm/right"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 25)
+	build_path = /obj/item/bodypart/arm/right/mutant/teshari
+	category = list(SPECIES_TESHARI)
+
+/datum/design/teshari_leftleg
+	name = "Left Leg"
+	id = "leg/left"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 25)
+	build_path = /obj/item/bodypart/leg/left/mutant/teshari
+	category = list(SPECIES_TESHARI, RND_CATEGORY_LIMBS_DIGITIGRADE)
+
+/datum/design/teshari_rightleg
+	name = "Right Leg"
+	id = "leg/right"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 25)
+	build_path = /obj/item/bodypart/leg/right/mutant/teshari
+	category = list(SPECIES_TESHARI, RND_CATEGORY_LIMBS_DIGITIGRADE)
+
+/datum/design/teshari_ear
+	name = "Teshari Ears"
+	id = "teshari_ear"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
+	build_path = /obj/item/organ/ears/teshari
+	category = list(SPECIES_TESHARI)
+
+/datum/design/teshari_tail
+	name = "Teshari Tail"
+	id = "teshari_tail"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
+	build_path = /obj/item/organ/ears/teshari
+	category = list(SPECIES_TESHARI)
+
+/datum/design/limb_disk/teshari
+	name = "Teshari Organ Design Disk"
+	desc = "Contains designs for teshari organs for the limbgrower - Wings, legs, ears, and tail."
+	id = "limbdesign_teshari"
+	build_path = /obj/item/disk/design_disk/limbs/teshari
+
+/obj/item/disk/design_disk/limbs/teshari
+	name = "Teshari Organ Design Disk"
+	limb_designs = list(
+	/datum/design/teshari_rightleg,
+	/datum/design/teshari_leftleg,
+	/datum/design/teshari_rightarm,
+	/datum/design/teshari_leftarm,
+	/datum/design/teshari_tail,
+	/datum/design/teshari_ear,
+	)
+
 /obj/machinery/limbgrower/Initialize(mapload)
 	categories += list(
 		SPECIES_HEMOPHAGE,
-		SPECIES_TAJARAN
+		SPECIES_TAJARAN,
+		SPECIES_TESHARI,
 	)
 	. = ..()
+
+
