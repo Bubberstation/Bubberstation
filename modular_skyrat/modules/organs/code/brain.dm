@@ -103,3 +103,8 @@
 	desc = "A brain which has been in some part mechanized. It looks a bit cheap."
 	maxHealth = BRAIN_DAMAGE_DEATH*0.5 //200 -> 100, at time of creation
 	emp_dmg_max = 999
+
+/obj/item/organ/brain/cybernetic/surplus/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/dangerous_organ_removal, /*surgical = */ TRUE)
+
