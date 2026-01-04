@@ -27,21 +27,6 @@
 			owner.adjust_stutter(15 SECONDS)
 			owner.adjust_confusion(3 SECONDS)
 
-
-// It's still organic
-/obj/item/organ/brain/cybernetic/cortical/brain_damage_examine()
-	if(suicided)
-		return span_info("Its circuitry is smoking slightly. They must not have been able to handle the stress of it all.")
-	if(brainmob && (decoy_override || brainmob.client || brainmob.get_ghost()))
-		if(organ_flags & ORGAN_FAILING)
-			return span_info("It seems to still have a bit of energy within it, but it's rather damaged... You may be able to restore it with some <b>mannitol</b> or a <b>multitool</b> .")
-		else if(damage >= BRAIN_DAMAGE_DEATH*0.5)
-			return span_info("You can feel the small spark of life still left in this one, but it's got some bruises. You may be able to restore it with some <b>mannitol</b> or a <b>multitool</b> .")
-		else
-			return span_info("You can feel the small spark of life still left in this one.")
-	else
-		return span_info("This one is completely devoid of life.")
-
 // Hybrid repair option
 /obj/item/organ/brain/cybernetic/cortical/check_for_repair(obj/item/item, mob/user)
 	if(damage && item.is_drainable() && item.reagents.has_reagent(/datum/reagent/medicine/mannitol) && (organ_flags & ORGAN_ORGANIC)) //ganic repair option
