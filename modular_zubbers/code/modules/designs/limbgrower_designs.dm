@@ -134,12 +134,12 @@
 /obj/item/disk/design_disk/limbs/teshari
 	name = "Teshari Organ Design Disk"
 	limb_designs = list(
-	/datum/design/teshari_rightleg,
-	/datum/design/teshari_leftleg,
-	/datum/design/teshari_rightarm,
-	/datum/design/teshari_leftarm,
-	/datum/design/teshari_tail,
-	/datum/design/teshari_ear,
+		/datum/design/teshari_rightleg,
+		/datum/design/teshari_leftleg,
+		/datum/design/teshari_rightarm,
+		/datum/design/teshari_leftarm,
+		/datum/design/teshari_tail,
+		/datum/design/teshari_ear,
 	)
 
 /obj/machinery/limbgrower/Initialize(mapload)
