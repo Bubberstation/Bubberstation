@@ -38,6 +38,8 @@
 		possible_organ_slots -= ORGAN_SLOT_LIVER
 	if(HAS_TRAIT(human_holder, TRAIT_NOHUNGER))
 		possible_organ_slots -= ORGAN_SLOT_STOMACH
+	if(HAS_TRAIT(human_holder, TRAIT_BRAINLESS_CARBON))
+		possible_organ_slots -= ORGAN_SLOT_BRAIN
 	if(!length(organ_slots)) //what the hell
 		return
 

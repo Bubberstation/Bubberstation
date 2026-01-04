@@ -1884,6 +1884,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	to_add += create_pref_liver_perks()
 	to_add += create_pref_lung_perks()
+	to_add += create_pref_brain_perks() //BUBBER EDIT - We got brain stuff
 
 	return to_add
 
