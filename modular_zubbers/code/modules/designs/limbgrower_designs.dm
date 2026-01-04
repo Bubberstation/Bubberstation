@@ -79,7 +79,7 @@
 //teshari stuff
 /datum/design/teshari_leftarm
 	name = "Left Wing"
-	id = "arm/left"
+	id = "arm/teshleft"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 25)
 	build_path = /obj/item/bodypart/arm/left/mutant/teshari
@@ -87,7 +87,7 @@
 
 /datum/design/teshari_rightarm
 	name = "Right Wing"
-	id = "arm/right"
+	id = "arm/teshright"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 25)
 	build_path = /obj/item/bodypart/arm/right/mutant/teshari
@@ -95,7 +95,7 @@
 
 /datum/design/teshari_leftleg
 	name = "Left Leg"
-	id = "leg/left"
+	id = "leg/teshleft"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 25)
 	build_path = /obj/item/bodypart/leg/left/mutant/teshari
@@ -103,7 +103,7 @@
 
 /datum/design/teshari_rightleg
 	name = "Right Leg"
-	id = "leg/right"
+	id = "leg/teshright"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 25)
 	build_path = /obj/item/bodypart/leg/right/mutant/teshari
