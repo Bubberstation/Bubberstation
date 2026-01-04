@@ -126,7 +126,7 @@
 /// Gives a gangster their equipment in their backpack and / or pockets.
 /datum/antagonist/gang/proc/equip_gangster_in_inventory()
 	if(istype(owner.current, /mob/living/carbon/human))
-		var/obj/item/gangster_cellphone/phone = new()
+		var/obj/item/radio/gangphone/phone = new()
 		phone.gang_id = gang_name
 		phone.name = "[gang_name] branded cell phone"
 		var/mob/living/carbon/human/gangster_human = owner.current
