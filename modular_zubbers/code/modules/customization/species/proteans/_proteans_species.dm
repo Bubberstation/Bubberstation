@@ -193,3 +193,22 @@
 			Proteans are unkillable. Instead, they shunt themselves away into their core when catastrophic losses to their swarm occur. Their cores also mimic the functions of a modsuit and can even assimilate more functional suits to use. \
 			Proteans only have a few vital organs, which can only be replaced via cargo. Their refactory is a miniature factory, and without it, they will face slow, agonizing degradation. Their Orchestrator is a miniature processor required for ease of movement. \
 			Proteans are an extremely fragile species, weak in combat, but a powerful aid, or a puppeteer pulling the strings.")
+
+/datum/species/protean/create_pref_unique_perks()
+	var/list/perk_descriptions = list()
+
+	perk_descriptions += list(list(
+		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+		SPECIES_PERK_ICON = FA_ICON_REFRESH,
+		SPECIES_PERK_NAME = "MODsuit Mode",
+		SPECIES_PERK_DESC = "[plural_form] are able to turn into MODsuits, and have some special components. When you enter a critical state, you instead withdraw into MODsuit form until a refactory is inserted into you."
+	))
+
+	perk_descriptions += list(list(
+		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+		SPECIES_PERK_ICON = FA_ICON_SQUARE_VIRUS,
+		SPECIES_PERK_NAME = "Protean Oddities",
+		SPECIES_PERK_DESC = "[plural_form] are unable to gain nutrition from traditional foods. Instead, you must consume metals - Primarily, iron. \ In addition to this, you are unable to be surgically or chemically attended-to. You restore yourself over time."
+	))
+
+	return perk_descriptions
