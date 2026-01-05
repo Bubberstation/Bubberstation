@@ -1738,15 +1738,12 @@
 /turf/open/floor/iron/dark,
 /area/station/commons/locker)
 "aBN" = (
-/obj/structure/table,
-/obj/item/storage/box/bodybags{
-	pixel_y = 5
-	},
-/obj/item/pen,
 /obj/machinery/light/directional/south,
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 8
 	},
+/obj/structure/reagent_dispensers/water_cooler/punch_cooler/medical,
+/obj/effect/turf_decal/tile/purple/opposingcorners,
 /turf/open/floor/iron/dark,
 /area/station/medical/medbay/lobby)
 "aCi" = (
@@ -5711,6 +5708,9 @@
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 8
 	},
+/obj/effect/turf_decal/trimline/purple/punch{
+	alpha = 160
+	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/medbay/lobby)
 "bXS" = (
@@ -8514,6 +8514,9 @@
 	name = "Medbay"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/medical/general,
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 8
+	},
 /turf/open/floor/iron/dark,
 /area/station/medical/medbay/central)
 "cTN" = (
@@ -10674,7 +10677,9 @@
 	id = "emmd";
 	name = "Emergency Medical Lockdown Shutters"
 	},
-/obj/effect/turf_decal/caution/stand_clear,
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 4
+	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark,
 /area/station/medical/medbay/lobby)
@@ -15312,6 +15317,9 @@
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
 	},
+/obj/effect/turf_decal/trimline/purple/punch{
+	alpha = 160
+	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/medbay/lobby)
 "fgA" = (
@@ -18392,6 +18400,12 @@
 	dir = 4
 	},
 /obj/machinery/computer/security/telescreen/cmo/directional/south,
+/obj/machinery/button/door/directional/north{
+	id = "medsecprivacy";
+	name = "Privacy Shutters Control";
+	req_access = list("security");
+	pixel_x = -11
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/medical)
 "fZk" = (
@@ -20064,6 +20078,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/access/all/medical/general,
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 8
+	},
 /turf/open/floor/iron/dark,
 /area/station/medical/medbay/central)
 "gBd" = (
@@ -20923,7 +20940,10 @@
 /obj/effect/turf_decal/tile/neutral/anticorner/contrasted{
 	dir = 8
 	},
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/trimline/purple/punch{
+	alpha = 160
+	},
+/turf/open/floor/iron/dark/smooth_edge,
 /area/station/medical/medbay/lobby)
 "gOo" = (
 /obj/structure/sign/directions/evac{
@@ -26272,6 +26292,15 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/grass,
 /area/station/medical/psychology)
+"iue" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 8;
+	id = "medsecprivacy";
+	name = "Privacy Shutters"
+	},
+/turf/open/floor/plating,
+/area/station/security/checkpoint/medical)
 "iug" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/plasma_input{
 	dir = 1
@@ -32139,13 +32168,18 @@
 	id = "emmd";
 	name = "Emergency Medical Lockdown Shutters"
 	},
-/obj/effect/turf_decal/caution/stand_clear,
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/trimline/purple/corner{
+	alpha = 160
+	},
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/medical/medbay/lobby)
 "kqs" = (
@@ -36117,7 +36151,7 @@
 "lAu" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/door/airlock/security/glass{
+/obj/machinery/door/airlock/security{
 	name = "Medbay Security Post"
 	},
 /obj/structure/cable,
@@ -38333,6 +38367,7 @@
 /obj/item/storage/box/bandages{
 	pixel_y = 5
 	},
+/obj/item/storage/box/bodybags,
 /turf/open/floor/iron/dark,
 /area/station/medical/medbay/lobby)
 "mlB" = (
@@ -39750,7 +39785,13 @@
 /obj/effect/turf_decal/stripes/corner,
 /obj/structure/disposalpipe/segment,
 /obj/effect/mapping_helpers/airlock/access/all/medical/pharmacy,
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/trimline/purple/punch{
+	dir = 1;
+	alpha = 160
+	},
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 1
+	},
 /area/station/medical/pharmacy)
 "mJo" = (
 /obj/structure/disposalpipe/junction/flip{
@@ -40089,11 +40130,6 @@
 "mPE" = (
 /obj/structure/sink/directional/west,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/camera/directional/east{
-	c_tag = "Xenobiology Computers";
-	name = "xenobiology camera";
-	network = list("ss13","rd","xeno")
-	},
 /obj/effect/turf_decal/tile/purple,
 /obj/effect/turf_decal/tile/purple/half/contrasted{
 	dir = 4
@@ -40545,6 +40581,16 @@
 	},
 /turf/open/floor/iron,
 /area/station/cargo/storage)
+"mWc" = (
+/obj/effect/turf_decal/tile/blue/opposingcorners,
+/obj/effect/turf_decal/tile/blue/anticorner/contrasted{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/purple/warning{
+	alpha = 160
+	},
+/turf/open/floor/iron/showroomfloor,
+/area/station/medical/medbay/lobby)
 "mWg" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/reagent_dispensers/watertank,
@@ -40991,6 +41037,11 @@
 /area/station/command/bridge)
 "ndz" = (
 /obj/machinery/smartfridge/extract/preloaded,
+/obj/machinery/camera/directional/east{
+	c_tag = "Xenobiology Computers";
+	name = "xenobiology camera";
+	network = list("ss13","rd","xeno")
+	},
 /turf/open/floor/iron/dark,
 /area/station/science/xenobiology)
 "ndP" = (
@@ -41456,6 +41507,10 @@
 	},
 /obj/machinery/airalarm/directional/west,
 /obj/effect/turf_decal/tile/neutral/anticorner/contrasted,
+/obj/machinery/camera/directional/west{
+	c_tag = "Hydroponcis Fore";
+	name = "hydroponics camera"
+	},
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics)
 "not" = (
@@ -45266,10 +45321,6 @@
 	pixel_y = 6
 	},
 /obj/item/hand_labeler,
-/obj/machinery/camera/directional/west{
-	c_tag = "Hydroponcis Fore";
-	name = "hydroponics camera"
-	},
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/tile/neutral/anticorner/contrasted{
 	dir = 4
@@ -53177,6 +53228,15 @@
 /obj/effect/spawner/random/clothing/costume,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard)
+"rkb" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 1;
+	id = "medsecprivacy";
+	name = "Privacy Shutters"
+	},
+/turf/open/floor/plating,
+/area/station/security/checkpoint/medical)
 "rkn" = (
 /obj/item/stack/cable_coil,
 /turf/open/misc/asteroid/airless,
@@ -57602,7 +57662,13 @@
 	dir = 4
 	},
 /obj/effect/landmark/navigate_destination/med,
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/trimline/purple/punch{
+	dir = 8;
+	alpha = 160
+	},
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 8
+	},
 /area/station/hallway/primary/central/fore)
 "sCr" = (
 /obj/structure/reagent_dispensers/fueltank,
@@ -58826,6 +58892,11 @@
 /area/station/medical/chemistry)
 "sSJ" = (
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "medsecprivacy";
+	name = "Privacy Shutters"
+	},
 /turf/open/floor/plating,
 /area/station/security/checkpoint/medical)
 "sSN" = (
@@ -62248,7 +62319,13 @@
 /obj/machinery/door/airlock/public/glass{
 	name = "Medbay"
 	},
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/trimline/purple/punch{
+	dir = 8;
+	alpha = 160
+	},
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 8
+	},
 /area/station/hallway/primary/central/fore)
 "tWg" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -67906,6 +67983,14 @@
 /obj/machinery/light/directional/east,
 /turf/open/floor/plating/airless,
 /area/station/hallway/secondary/entry)
+"vJn" = (
+/obj/effect/spawner/structure/window,
+/obj/effect/turf_decal/trimline/purple/corner{
+	dir = 8;
+	alpha = 160
+	},
+/turf/open/floor/plating,
+/area/station/hallway/primary/central/fore)
 "vJv" = (
 /obj/structure/extinguisher_cabinet/directional/north,
 /obj/machinery/component_printer,
@@ -74056,6 +74141,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
+	},
+/obj/effect/turf_decal/trimline/purple/warning{
+	alpha = 160
 	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/medbay/lobby)
@@ -96503,9 +96591,9 @@ jTu
 wEJ
 kRu
 rFt
-sSJ
+iue
 lAu
-sSJ
+iue
 rFt
 owm
 jrs
@@ -97016,7 +97104,7 @@ xvW
 nbg
 mbc
 rUP
-sSJ
+rkb
 lfQ
 mHm
 rVp
@@ -98557,7 +98645,7 @@ ciA
 krM
 xvW
 fXm
-nes
+mWc
 uTM
 eyA
 eIW
@@ -99071,7 +99159,7 @@ mFQ
 wQc
 cXZ
 hdo
-hdo
+vJn
 tWe
 sCa
 hdo

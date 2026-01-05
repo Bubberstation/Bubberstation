@@ -165,8 +165,8 @@ GLOBAL_LIST_INIT(autodrobe_entretainers_items, list(
 ))
 
 GLOBAL_LIST_INIT(autodrobe_fancy_items, list(
-	/obj/item/clothing/under/rank/captain/suit = 1,
-	/obj/item/clothing/under/rank/captain/suit/skirt = 1,
+	/obj/item/clothing/under/costume/captain = 1,
+	/obj/item/clothing/under/costume/captain/skirt = 1,
 	/obj/item/clothing/under/costume/seifuku = 3,
 	/obj/item/clothing/under/costume/seifuku/red = 3,
 	/obj/item/clothing/under/costume/seifuku/teal = 3,
@@ -308,10 +308,6 @@ GLOBAL_LIST_INIT(autodrobe_contraband_items, list(
 	/obj/item/skillchip/musical = 3,
 	/obj/item/storage/box/tape_wizard = 1,
 	// BUBBER EDIT ADDITION BEGIN - Extra stuff
-	/obj/item/clothing/head/hats/imperial = 5,
-	/obj/item/clothing/head/hats/imperial/grey = 5,
-	/obj/item/clothing/head/hats/imperial/helmet = 5,
-	/obj/item/clothing/head/hats/imperial/red = 5,
 	/obj/item/clothing/head/playbunnyears/syndicate/fake = 3,
 	/obj/item/clothing/mask/balaclava/threehole = 5,
 	/obj/item/clothing/mask/balaclava/threehole/green = 5,
@@ -325,10 +321,6 @@ GLOBAL_LIST_INIT(autodrobe_contraband_items, list(
 	/obj/item/clothing/suit/jacket/tailcoat/syndicate/fake = 3,
 	/obj/item/clothing/suit/scraparmour = 3,
 	/obj/item/clothing/suit/toggle/jacket/zubber/bomber/syndicate/fake = 3,
-	/obj/item/clothing/under/rank/captain/skyrat/imperial/generic = 5,
-	/obj/item/clothing/under/rank/captain/skyrat/imperial/generic/grey = 5,
-	/obj/item/clothing/under/rank/captain/skyrat/imperial/generic/pants = 5,
-	/obj/item/clothing/under/rank/captain/skyrat/imperial/generic/red = 5,
 	/obj/item/clothing/under/rank/security/detective/cowboy/armorless = 3,
 	/obj/item/clothing/under/syndicate/skyrat/enclave = 3,
 	/obj/item/clothing/under/syndicate/skyrat/enclave/officer = 3,

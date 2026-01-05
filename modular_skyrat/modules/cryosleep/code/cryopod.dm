@@ -1,5 +1,5 @@
-#define AHELP_FIRST_MESSAGE "Please adminhelp before leaving the round, even if there are no administrators online!"
-
+// #define AHELP_FIRST_MESSAGE "Please adminhelp before leaving the round, even if there are no administrators online!"
+// Uncomment the check comments if we decide to bring back a pointless system to spam ahelps with
 /*
  * Cryogenic refrigeration unit. Basically a despawner.
  * Stealing a lot of concepts/code from sleepers due to massive laziness.
@@ -478,8 +478,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 					message_admins("[key_name(user)] has attempted to put [key_name(target)] into a stasis pod. [ADMIN_JMP(src)]")
 					return
 				else if(tgui_alert(user, "Would you like to place [target] into [src]?", "Place into Cryopod?", list("Yes", "No")) == "Yes")
-					if(target.mind.assigned_role.req_admin_notify)
-						tgui_alert(user, "They are an important role! [AHELP_FIRST_MESSAGE]")
+					// if(target.mind.assigned_role.req_admin_notify)
+					// tgui_alert(user, "They are an important role! [AHELP_FIRST_MESSAGE]")
 					to_chat(user, span_danger("You put [target] into [src]. [target.p_Theyre()] in the cryopod."))
 					log_admin("[key_name(user)] has put [key_name(target)] into a stasis pod.")
 					message_admins("[key_name(user)] has put [key_name(target)] into a stasis pod. [ADMIN_JMP(src)]")
@@ -500,10 +500,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 
 	if(target == user)
 		if(target.mind.assigned_role.req_admin_notify)
-			tgui_alert(target, "You're an important role! [AHELP_FIRST_MESSAGE]")
+			tgui_alert(target, "You're an important role! Please make sure to return all job-related gear before leaving.")
+		/*
 		var/datum/antagonist/antag = target.mind.has_antag_datum(/datum/antagonist)
 		if(antag)
 			tgui_alert(target, "You're \a [antag.name]! [AHELP_FIRST_MESSAGE]")
+	*/
 
 	if(LAZYLEN(target.buckled_mobs) > 0)
 		if(target == user)
@@ -579,16 +581,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/cryopod/prison, 18)
 	/// For figuring out where the local cryopod computer is. Must be set for cryo computer announcements.
 	var/area/computer_area
 
-/obj/effect/mob_spawn/ghost_role/create(mob/mob_possessor, newname)
-	var/mob/living/spawned_mob = ..()
-	var/obj/machinery/computer/cryopod/control_computer = find_control_computer()
-
-	var/alt_name = get_spawner_outfit_name()
-	GLOB.ghost_records.Add(list(list("name" = spawned_mob.real_name, "rank" = alt_name ? alt_name : name)))
-	if(control_computer)
-		control_computer.announce("CRYO_JOIN", spawned_mob.real_name, name)
-
-	return spawned_mob
 
 /obj/effect/mob_spawn/ghost_role/proc/find_control_computer()
 	if(!computer_area)
@@ -614,4 +606,4 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/cryopod/prison, 18)
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate
 	computer_area = /area/ruin/syndicate_lava_base/dormitories
 
-#undef AHELP_FIRST_MESSAGE
+//#undef AHELP_FIRST_MESSAGE
