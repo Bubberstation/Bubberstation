@@ -86,7 +86,7 @@
 //note that this is a direct child of the android brain, and is thus not organic
 /obj/item/organ/brain/cybernetic/surplus
 	name = "surplus augmented brain"
-	desc = "A partically-mechanized brain, not much of the flesh remains. Does this make them an IPC? "
+	desc = "A mostly-mechanized brain. Not much of the flesh remains. Does this make them an IPC? "
 	maxHealth = BRAIN_DAMAGE_DEATH*0.75 //200 -> 150, per original intention
 	emp_dmg_mult = 1.5 //Note that the base damage is 20/10
 	emp_dmg_max = 999
