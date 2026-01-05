@@ -879,7 +879,7 @@ ADMIN_VERB(create_antagonist, R_FUN, "Create Antagonist", "Inject a little more 
 		LAZYADD(available_antags, event)
 
 	var/datum/round_event_control/selected_event = tgui_input_list(user, "Choose a crew antagonist type to spawn.", "Create Antagonist", available_antags)
-	if(isnull(selected_event) || selected_event == "Cancel")
+	if(isnull(selected_event))
 		return
 
 	SSgamemode.reroll_antagonist(event_control = selected_event, antag_name = "nobody")
