@@ -133,7 +133,7 @@ SUBSYSTEM_DEF(gamemode)
 	//Security Based Antag Cap
 	var/sec_antag_cap = 0
 	/// A list of event controls to re-roll antagonists
-	var/antag_rerolls = list()
+	var/list/antag_rerolls
 
 	/// Whether we looked up pop info in this process tick
 	var/pop_data_cached = FALSE
@@ -855,42 +855,33 @@ SUBSYSTEM_DEF(gamemode)
 		if(event.type == text2path(type))
 			return event
 
-/datum/controller/subsystem/gamemode/proc/inject_event(string_path)
-	var/event_to_run_type = text2path(string_path)
-	if(!event_to_run_type)
+/datum/controller/subsystem/gamemode/proc/inject_event(datum/round_event_control/event_control)
+	if(!istype(event_control, /datum/round_event_control))
 		return
 
-	var/datum/round_event_control/event = locate(event_to_run_type) in SSevents.control
+	var/datum/round_event_control/event = locate(event_control) in SSevents.control
 	if(!event)
 		return
 
 	event.run_event(admin_forced = TRUE)
 
-/datum/controller/subsystem/gamemode/proc/reroll_antagonist(antag_type, antag_name)
+/datum/controller/subsystem/gamemode/proc/reroll_antagonist(datum/round_event_control/event_control, antag_name)
 	message_admins(span_yellowteamradio("[key_name_admin(usr)] requested a new antagonist to replace [antag_name]."))
 	log_admin("[key_name_admin(usr)] requested a new antagonist to replace [antag_name].")
-	if(isnull(antag_type))
-		antag_type = pick_weight(SSgamemode.antag_rerolls)
-	SSgamemode.inject_event(string_path = "[antag_type]")
+	if(isnull(event_control))
+		event_control = pick_weight(SSgamemode.antag_rerolls)
+	SSgamemode.inject_event(event_control = event_control)
 
 ADMIN_VERB(create_antagonist, R_FUN, "Create Antagonist", "Inject a little more action into the round.", ADMIN_CATEGORY_EVENTS)
-	var/antag_choice = tgui_input_list(user, "Choose a crew antagonist type to spawn.", "Create Antagonist", list("Random!", "Bloodsucker", "Changeling", "Heretic", "Spy", "Traitor", "Cancel"))
-	if(isnull(antag_choice) || antag_choice == "Cancel")
+	var/list/available_antags = list()
+	for(var/datum/round_event_control/event_control as anything in SSgamemode.antag_rerolls)
+		var/datum/round_event_control/event = locate(event_control) in SSevents.control
+		LAZYADD(available_antags, event)
+
+	var/datum/round_event_control/selected_event = tgui_input_list(user, "Choose a crew antagonist type to spawn.", "Create Antagonist", available_antags)
+	if(isnull(selected_event) || selected_event == "Cancel")
 		return
 
-	var/event_type
-	switch(antag_choice)
-		if("Bloodsucker")
-			event_type = "/datum/round_event_control/antagonist/solo/bloodsucker/event"
-		if("Changeling")
-			event_type = "/datum/round_event_control/antagonist/solo/changeling/event"
-		if("Heretic")
-			event_type = "/datum/round_event_control/antagonist/solo/heretic/event"
-		if("Spy")
-			event_type = "/datum/round_event_control/antagonist/solo/spy/event"
-		if("Traitor")
-			event_type = "/datum/round_event_control/antagonist/solo/traitor/event"
-
-	SSgamemode.reroll_antagonist(antag_type = event_type, antag_name = "nobody")
+	SSgamemode.reroll_antagonist(event_control = selected_event, antag_name = "nobody")
 
 #undef INIT_ORDER_GAMEMODE
