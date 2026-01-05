@@ -7,8 +7,13 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "warden_syndie"
-	current_skin = "warden_syndie" //prevents reskinning
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/suit/armor/vest/warden/syndicate/Initialize(mapload)
+	. = ..()
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(reskin_component)
+		qdel(reskin_component)
 
 // HEAD OF PERSONNEL
 /obj/item/clothing/suit/armor/vest/hop/hop_formal

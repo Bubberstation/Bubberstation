@@ -38,6 +38,7 @@
 /obj/item/clothing/under/syndicate/tacticool/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/tacticool_turtleneck)
+	RegisterSignal(src, COMSIG_OBJ_RESKIN, PROC_REF(on_reskin))
 
 /datum/atom_skin/tacticool_turtleneck
 	abstract_type = /datum/atom_skin/tacticool_turtleneck
@@ -50,11 +51,11 @@
 	preview_name = RESKIN_CHARCOAL
 	new_icon_state = "tactifool"
 
-/obj/item/clothing/under/syndicate/tacticool/reskin_obj(mob/M)
-	..()
-	if(current_skin && current_skin == RESKIN_CHARCOAL)
-		desc = "Just looking at it makes you want to buy an SKS, go into the woods, and -operate-." //Default decription of the normal tacticool
-		inhand_icon_state = "bl_suit" //May as well, while we're updating it
+/obj/item/clothing/under/syndicate/tacticool/proc/on_reskin(datum/source, skin_name)
+	SIGNAL_HANDLER
+	if(skin_name == RESKIN_CHARCOAL)
+		desc = "Just looking at it makes you want to buy an SKS, go into the woods, and -operate-."
+		inhand_icon_state = "bl_suit"
 
 /obj/item/clothing/under/syndicate/tacticool/skirt //Overwrites the 'fake' one. Zero armor, sensors, and default blue. More Balanced to make station-available.
 	name = "tacticool skirtleneck"
@@ -109,6 +110,7 @@
 /obj/item/clothing/under/syndicate/skyrat/tactical/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/tactical_turtleneck)
+	RegisterSignal(src, COMSIG_OBJ_RESKIN, PROC_REF(on_reskin))
 
 /datum/atom_skin/tactical_turtleneck
 	abstract_type = /datum/atom_skin/tactical_turtleneck
@@ -121,10 +123,10 @@
 	preview_name = RESKIN_CHARCOAL
 	new_icon_state = "syndicate"
 
-/obj/item/clothing/under/syndicate/skyrat/tactical/reskin_obj(mob/M)
-	..()
-	if(current_skin && current_skin == RESKIN_CHARCOAL)
-		desc = "A non-descript and slightly suspicious looking turtleneck with digital camouflage cargo pants." //(Digital camo? Brown? What?)
+/obj/item/clothing/under/syndicate/skyrat/tactical/proc/on_reskin(datum/source, skin_name)
+	SIGNAL_HANDLER
+	if(skin_name == RESKIN_CHARCOAL)
+		desc = "A non-descript and slightly suspicious looking turtleneck with digital camouflage cargo pants."
 		inhand_icon_state = "bl_suit"
 
 /obj/item/clothing/under/syndicate/skyrat/tactical/skirt
@@ -139,6 +141,7 @@
 /obj/item/clothing/under/syndicate/skyrat/tactical/skirt/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/tactical_skirtleneck)
+	RegisterSignal(src, COMSIG_OBJ_RESKIN, PROC_REF(on_reskin))
 
 /datum/atom_skin/tactical_skirtleneck
 	abstract_type = /datum/atom_skin/tactical_skirtleneck
@@ -151,9 +154,9 @@
 	preview_name = RESKIN_CHARCOAL
 	new_icon_state = "syndicate_skirt"
 
-/obj/item/clothing/under/syndicate/skyrat/tactical/skirt/reskin_obj(mob/M)
-	..()
-	if(current_skin && current_skin == RESKIN_CHARCOAL)
+/obj/item/clothing/under/syndicate/skyrat/tactical/skirt/proc/on_reskin(datum/source, skin_name)
+	SIGNAL_HANDLER
+	if(skin_name == RESKIN_CHARCOAL)
 		desc = "A non-descript and slightly suspicious looking skirtleneck."
 		inhand_icon_state = "bl_suit"
 

@@ -23,6 +23,7 @@
 /obj/item/clothing/mask/gas/bubber/clown/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/coloured_clown_mask, infinite = TRUE)
+	RegisterSignal(src, COMSIG_OBJ_RESKIN, PROC_REF(on_reskin))
 
 /datum/atom_skin/coloured_clown_mask
 	abstract_type = /datum/atom_skin/coloured_clown_mask
@@ -47,11 +48,12 @@
 	preview_name = "Rhubarb Rubber"
 	new_icon_state = "purpleclown"
 
-/obj/item/clothing/mask/gas/bubber/clown/reskin_obj(mob/user)
-	. = ..()
-	user.update_worn_mask()
+/obj/item/clothing/mask/gas/bubber/clown/proc/on_reskin(datum/source, skin_name)
+	SIGNAL_HANDLER
+	if(ismob(loc))
+		var/mob/clown = loc
+		clown.update_worn_mask()
 	voice_filter = null // performer masks expect to be talked through
-
 
 /obj/item/clothing/mask/gas/half_mask
 	name = "tacticool neck gaiter"

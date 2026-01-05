@@ -16,3 +16,6 @@
 
 /datum/component/reskinable_item/proc/is_using_skin(path)
 	return current_skin && istype(current_skin, path)
+
+/datum/component/reskinable_item/proc/has_skin()
+	return current_skin != null

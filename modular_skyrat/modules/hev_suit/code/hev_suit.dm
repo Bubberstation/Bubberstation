@@ -853,7 +853,10 @@
 
 /obj/item/clothing/suit/space/hev_suit/pcv/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	if(!current_skin)
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(!reskin_component)
+		return
+	if(!reskin_component.has_skin())
 		context[SCREENTIP_CONTEXT_ALT_LMB] = "Reskin"
 		return CONTEXTUAL_SCREENTIP_SET
 

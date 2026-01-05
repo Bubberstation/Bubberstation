@@ -10,7 +10,7 @@
 	if(trigger_flags & TRIGGER_SECONDARY_ACTION)
 		paper_mask.adjust_mask(usr)
 	else
-		paper_mask.reskin_obj(usr)
+		paper_mask.check_pen(usr)
 
 /obj/item/clothing/mask/paper
 	name = "paper mask"
@@ -34,6 +34,8 @@
 	if(wear_hair_over)
 		alternate_worn_layer = BACK_LAYER
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/paper_mask, infinite = TRUE)
+	RegisterSignal(src, COMSIG_CLICK_ALT, PROC_REF(check_pen))
+	RegisterSignal(src, COMSIG_OBJ_RESKIN, PROC_REF(on_reskin))
 
 /datum/atom_skin/paper_mask
 	abstract_type = /datum/atom_skin/paper_mask
@@ -160,16 +162,18 @@
 	context[SCREENTIP_CONTEXT_CTRL_LMB] = "Hide/Show Strap"
 	return CONTEXTUAL_SCREENTIP_SET
 
-/obj/item/clothing/mask/paper/reskin_obj(mob/user)
+/obj/item/clothing/mask/paper/proc/check_pen(datum/source, mob/user)
+	SIGNAL_HANDLER
 	if(!user.is_holding_item_of_type(/obj/item/pen))
 		balloon_alert(user, "must be holding a pen!")
-		return
+		return CLICK_ACTION_BLOCKING
+	return NONE
 
-	. = ..()
-
+/obj/item/clothing/mask/paper/proc/on_reskin(datum/source, skin_name)
+	SIGNAL_HANDLER
 	var/mob/living/carbon/carbon_user
-	if(iscarbon(user))
-		carbon_user = user
+	if(ismob(loc) && iscarbon(loc))
+		carbon_user = loc
 	if(carbon_user && carbon_user.wear_mask == src)
 		carbon_user.update_worn_mask()
 
