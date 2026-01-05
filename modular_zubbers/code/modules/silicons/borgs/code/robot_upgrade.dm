@@ -93,8 +93,8 @@
 	desc = "An upgrade to allow a cyborg to use a Rapid Lighting Device."
 	icon_state = "module_engineer"
 	require_model = TRUE
-	model_type = list(/obj/item/robot_model/engineering)
-	model_flags = BORG_MODEL_ENGINEERING
+	model_type = list(/obj/item/robot_model/engineering, /obj/item/robot_model/janitor)
+	model_flags = list(BORG_MODEL_ENGINEERING, BORG_MODEL_JANITOR)
 	items_to_add = list(/obj/item/construction/rld/cyborg)
 
 // Borg Advanced Xenoarchaeology Bag
@@ -119,6 +119,106 @@
 	model_type = list(/obj/item/robot_model/miner)
 	model_flags = BORG_MODEL_MINER
 	items_to_add = list(/obj/item/pinpointer/vent)
+
+//Borg Proto-Kinetic Accelerators
+
+/obj/item/borg/upgrade/modkit/action(mob/living/silicon/robot/mining_mods)
+	. = ..()
+	if (.)
+		for(var/obj/item/gun/energy/recharge/kinetic_accelerator/pkamods in mining_mods.model.modules)
+			return install(pkamods, usr, FALSE)
+
+/obj/item/gun/energy/recharge/kinetic_accelerator/railgun/cyborg
+	desc = "Portable particle accelerator. Only Usable on lavaland"
+	holds_charge = TRUE
+	unique_frequency = TRUE
+
+/obj/item/gun/energy/recharge/kinetic_accelerator/repeater/cyborg
+	desc = "A PKA with a three shot magazine"
+	holds_charge = TRUE
+	unique_frequency = TRUE
+
+/obj/item/gun/energy/recharge/kinetic_accelerator/shotgun/cyborg
+	desc = "A PKA that fires three shots with a longer cooldown."
+	holds_charge = TRUE
+	unique_frequency = TRUE
+
+/obj/item/gun/energy/recharge/kinetic_accelerator/glock/cyborg
+	desc = "A Snub Nosed PKA with more mode capacity but less damage and range."
+	holds_charge = TRUE
+	unique_frequency = TRUE
+
+/obj/item/gun/energy/recharge/kinetic_accelerator/shockwave/cyborg
+	desc = "Creates a shockwave around the user, with the same power as the base PKA."
+	holds_charge = TRUE
+	unique_frequency = TRUE
+
+/obj/item/gun/energy/recharge/kinetic_accelerator/m79/cyborg
+	desc = "Fires the same bombs used by the mining modsuit. Only usable on lavaland"
+	holds_charge = TRUE
+	unique_frequency = TRUE
+
+// Mining Borg PKA Upgrades
+
+/obj/item/borg/upgrade/kinetic_accelerator/railgun/cyborg
+	name = /obj/item/gun/energy/recharge/kinetic_accelerator/railgun::name
+	desc = /obj/item/gun/energy/recharge/kinetic_accelerator/railgun::desc
+	icon_state = "module_miner"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/miner)
+	model_flags = BORG_MODEL_MINER
+	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/railgun/cyborg)
+	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator)
+
+/obj/item/borg/upgrade/kinetic_accelerator/repeater/cyborg
+	name = /obj/item/gun/energy/recharge/kinetic_accelerator/repeater::name
+	desc = /obj/item/gun/energy/recharge/kinetic_accelerator/repeater::desc
+	icon_state = "module_miner"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/miner)
+	model_flags = BORG_MODEL_MINER
+	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/repeater/cyborg)
+	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator)
+
+/obj/item/borg/upgrade/kinetic_accelerator/shotgun/cyborg
+	name = /obj/item/gun/energy/recharge/kinetic_accelerator/shotgun::name
+	desc = /obj/item/gun/energy/recharge/kinetic_accelerator/shotgun::desc
+	icon_state = "module_miner"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/miner)
+	model_flags = BORG_MODEL_MINER
+	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/shotgun/cyborg)
+	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator)
+
+/obj/item/borg/upgrade/kinetic_accelerator/glock/cyborg
+	name = /obj/item/gun/energy/recharge/kinetic_accelerator/glock::name
+	desc = /obj/item/gun/energy/recharge/kinetic_accelerator/glock::desc
+	icon_state = "module_miner"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/miner)
+	model_flags = BORG_MODEL_MINER
+	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/glock/cyborg)
+	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator)
+
+/obj/item/borg/upgrade/kinetic_accelerator/shockwave/cyborg
+	name = /obj/item/gun/energy/recharge/kinetic_accelerator/shockwave::name
+	desc = /obj/item/gun/energy/recharge/kinetic_accelerator/shockwave::desc
+	icon_state = "module_miner"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/miner)
+	model_flags = BORG_MODEL_MINER
+	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/shockwave/cyborg)
+	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator)
+
+/obj/item/borg/upgrade/kinetic_accelerator/m79/cyborg
+	name = /obj/item/gun/energy/recharge/kinetic_accelerator/m79::name
+	desc = /obj/item/gun/energy/recharge/kinetic_accelerator/m79::desc
+	icon_state = "module_miner"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/miner)
+	model_flags = BORG_MODEL_MINER
+	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/m79/cyborg)
+	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator)
 
 /// "Good Borg" Obedience Training
 /mob/living/silicon/robot
@@ -155,3 +255,25 @@
 			borg.hasToys = FALSE
 
 		borg.remove_quirk(/datum/quirk/well_trained)
+
+/obj/item/borg/upgrade/detailer
+	name = "janitor detailing toolset"
+	desc = "Upgrades a janitor cyborgs tiling capabilities while adding the ability to modify floor decals."
+	icon_state = "module_janitor"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/janitor)
+	model_flags = BORG_MODEL_JANITOR
+
+	items_to_add = list(/obj/item/construction/rtd/borg,
+						/obj/item/airlock_painter/decal/cyborg,
+						)
+
+/obj/item/borg/upgrade/cyborg_cable_coil
+	name = "integrated cable coil"
+	desc = "Condensed spooling technology allows cabling technology in janitorial modules."
+	icon_state = "module_janitor"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/janitor)
+	model_flags = BORG_MODEL_JANITOR
+
+	items_to_add = list (/obj/item/stack/cable_coil)

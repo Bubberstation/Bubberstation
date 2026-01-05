@@ -48,6 +48,22 @@
 
 /datum/supply_pack/goody/double_barrel
 	cost = PAYCHECK_COMMAND * 10 //1400 is too much considering the combat shotgun is 1500 for 1
+	access_view = ACCESS_WEAPONS
+
+/datum/supply_pack/goody/plasma_marksman
+	name = "Gwiazda Plasma Sharpshooters Single-pack"
+	desc = "Contains a Gwiazda Plasma Sharpshooter and one plasma battery free of additional charge."
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/plasma_marksman = 1,
+	/obj/item/ammo_box/magazine/recharge/plasma_battery = 1)
+	access_view = ACCESS_WEAPONS
+	cost = PAYCHECK_COMMAND * 4
+
+/datum/supply_pack/goody/plasma_marksman_ammo
+	name = "Plasma Battery Single-pack"
+	desc = "Contains a single plasma battery."
+	contains = list(/obj/item/ammo_box/magazine/recharge/plasma_battery = 1)
+	access_view = ACCESS_WEAPONS
+	cost = PAYCHECK_COMMAND * 1
 
 /datum/supply_pack/goody/mars_single
 	special = FALSE
@@ -165,3 +181,14 @@
 	cost = PAYCHECK_COMMAND
 	contains = list(/obj/item/mod/module/storage/large_capacity)
 
+/datum/supply_pack/goody/crew_monitor
+	name = "Handheld Crew Monitor Single-Pack"
+	desc = "A miniature machine that tracks suit sensors across the station."
+	cost = PAYCHECK_COMMAND * 4.5
+	contains = list(/obj/item/sensor_device)
+
+/datum/supply_pack/goody/soap
+	name = "Soap Single-Pack"
+	desc = "Recommended for emergency self-cleaning, passive-aggressive demonstrations, or reminding others that hygiene is, in fact, part of the job."
+	cost = PAYCHECK_LOWER * 3
+	contains = list(/obj/item/soap/deluxe)

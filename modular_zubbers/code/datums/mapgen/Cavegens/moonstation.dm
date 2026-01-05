@@ -70,7 +70,7 @@
 		/obj/structure/geyser/protozine = 10,
 		/obj/structure/geyser/random = 2,
 		/obj/structure/geyser/wittel = 10,
-		/obj/structure/ore_vent/random/moonstation/cave = 2.5 // This was at 100 and the sole item in the list, but it was runtiming.
+		/obj/structure/ore_vent/random/moonstation/cave = 1 // This was at 100 and the sole item in the list, but it was runtiming.
 	)
 
 	flora_spawn_chance = 2

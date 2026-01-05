@@ -12,6 +12,9 @@
 /// Checks that every overlay passed into build_appearance_list exists in the icon
 /datum/unit_test/focus_only/invalid_overlays
 
+/// Checks that every screen alert with an overlay icon state is valid
+/datum/unit_test/focus_only/screen_alert_overlay
+
 /// Checks that every icon sent to the research_designs spritesheet is valid
 /datum/unit_test/focus_only/invalid_research_designs
 
@@ -72,3 +75,6 @@
 
 ///Checks that items have roughly the same materials whenever spawned via processing/microwaving/baking etc. or any other mean.
 /datum/unit_test/focus_only/check_materials_when_processed
+
+///Checks if an map loaded object found an valid support atom to hang on
+/datum/unit_test/focus_only/atom_mounted

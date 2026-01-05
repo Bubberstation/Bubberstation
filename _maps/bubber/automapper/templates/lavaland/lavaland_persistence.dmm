@@ -23,7 +23,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/end{
 	dir = 1
 	},
-/turf/open/floor/iron/white/smooth_large,
+/turf/open/floor/iron/white/textured_large,
 /area/ruin/space/has_grav/bubbers/persistance/med)
 "ac" = (
 /obj/machinery/light/cold/directional/north,
@@ -1160,18 +1160,12 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "ct" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
 /obj/structure/plaque{
 	desc = "In front of you is a small part of the wreckage recovered from the DS-2 Station after its destruction. Many loyal members of the syndicate were lost that day, but the syndicate has since come back stronger than ever.";
 	name = "DS-2 Memorial plaque"
 	},
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 1
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/bubbers/persistance/service)
+/turf/closed/wall/r_wall/plastitanium/syndicate/cruiser,
+/area/ruin/space/has_grav/bubbers/persistance/sec/armory)
 "cu" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/structure/chair{
@@ -1800,7 +1794,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "dG" = (
 /obj/structure/decorative/fluff{
-	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi';
+	icon = 'icons/turf/floors.dmi';
 	base_icon_state = "stairs-old";
 	icon_state = "stairs-r";
 	anchored = 1;
@@ -4717,7 +4711,6 @@
 	ailock = 1;
 	control_area = "/area/ruin/space/has_grav/bubbers/dauntless/command/vault";
 	dir = 1;
-	icon_state = "control_kill";
 	lethal = 1;
 	name = "Base turret controls";
 	pixel_y = 30;
@@ -6089,6 +6082,9 @@
 /obj/item/storage/box/beakers/bluespace,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/persistance/med/chem)
@@ -7620,13 +7616,11 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
 	},
-/obj/structure/sign/barber{
-	pixel_x = 14
-	},
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 5
 	},
 /obj/effect/turf_decal/siding/wideplating_new/corner,
+/obj/structure/sign/barber/directional/east,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "pN" = (
@@ -7869,7 +7863,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/structure/decorative/fluff{
-	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi';
+	icon = 'icons/turf/floors.dmi';
 	base_icon_state = "stairs-old";
 	icon_state = "stairs-old";
 	anchored = 1;
@@ -8411,7 +8405,7 @@
 	pixel_y = -8
 	},
 /obj/structure/decorative/fluff{
-	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi';
+	icon = 'icons/turf/floors.dmi';
 	base_icon_state = "stairs-old";
 	icon_state = "stairs-old";
 	anchored = 1;
@@ -10114,7 +10108,7 @@
 /obj/machinery/suit_storage_unit{
 	mask_type = /obj/item/clothing/mask/gas/syndicate;
 	mod_type = /obj/item/mod/control/pre_equipped/traitor_elite;
-	storage_type = /obj/item/tank/jetpack/oxygen/harness;
+	storage_type = /obj/item/tank/jetpack/harness;
 	req_access = list("syndicate_leader")
 	},
 /obj/structure/marker_beacon/burgundy,
@@ -10168,6 +10162,9 @@
 "uP" = (
 /obj/structure/kitchenspike,
 /obj/item/knife/butcher,
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/ruin/space/has_grav/bubbers/persistance/service/freezer)
 "uQ" = (
@@ -12605,7 +12602,7 @@
 "zv" = (
 /obj/structure/sign/poster/contraband/moffuchis_pizza/directional/east,
 /obj/structure/decorative/fluff{
-	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi';
+	icon = 'icons/turf/floors.dmi';
 	base_icon_state = "stairs-old";
 	icon_state = "stairs-r";
 	anchored = 1;
@@ -14349,7 +14346,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
 "Dh" = (
 /obj/structure/decorative/fluff{
-	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi';
+	icon = 'icons/turf/floors.dmi';
 	base_icon_state = "stairs-old";
 	icon_state = "stairs-l";
 	anchored = 1;
@@ -14382,7 +14379,7 @@
 	alpha = 200;
 	dir = 8
 	},
-/turf/open/floor/iron/white,
+/turf/open/floor/iron/white/textured,
 /area/ruin/space/has_grav/bubbers/persistance/med)
 "Dj" = (
 /obj/structure/flora/bush/large/style_2{
@@ -16194,7 +16191,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
 "Gq" = (
 /obj/structure/decorative/fluff{
-	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi';
+	icon = 'icons/turf/floors.dmi';
 	base_icon_state = "stairs-old";
 	icon_state = "stairs-r";
 	anchored = 1;
@@ -16860,9 +16857,6 @@
 /obj/machinery/duct,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/structure/closet/emcloset/wall{
-	pixel_y = 32
-	},
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "HS" = (
@@ -18600,7 +18594,7 @@
 	pixel_y = -8
 	},
 /obj/structure/decorative/fluff{
-	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi';
+	icon = 'icons/turf/floors.dmi';
 	base_icon_state = "stairs-old";
 	icon_state = "stairs-l";
 	anchored = 1;
@@ -19336,7 +19330,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/sauna)
 "Ni" = (
 /obj/structure/decorative/fluff{
-	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi';
+	icon = 'icons/turf/floors.dmi';
 	base_icon_state = "stairs-old";
 	icon_state = "stairs-m";
 	anchored = 1;
@@ -22329,7 +22323,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "Tz" = (
 /obj/structure/decorative/fluff{
-	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi';
+	icon = 'icons/turf/floors.dmi';
 	base_icon_state = "stairs-old";
 	icon_state = "stairs-old";
 	anchored = 1;
@@ -23307,6 +23301,7 @@
 	pixel_x = -4;
 	pixel_y = -2
 	},
+/obj/effect/turf_decal/siding/white,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/ruin/space/has_grav/bubbers/persistance/service/freezer)
 "Vm" = (
@@ -25382,7 +25377,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/structure/decorative/fluff{
-	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi';
+	icon = 'icons/turf/floors.dmi';
 	base_icon_state = "stairs-old";
 	icon_state = "stairs-l";
 	anchored = 1;
@@ -25865,7 +25860,7 @@ fE
 ue
 yE
 Vm
-gV
+aZ
 gV
 gV
 Gg
@@ -25934,7 +25929,7 @@ QP
 ue
 kQ
 mu
-aZ
+gV
 gV
 qI
 Cf
@@ -27232,9 +27227,9 @@ yo
 iB
 Dn
 cv
-aH
-HQ
 ct
+HQ
+TJ
 sQ
 Sz
 Yu

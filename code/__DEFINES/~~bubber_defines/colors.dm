@@ -9,8 +9,16 @@ GLOBAL_LIST_INIT(chat_colors_by_mob_name, list(
 	"Unknown" = list("#ffffff", "#d8d8d8"),
 ))
 
-#define BLOOD_COLOR_COPPER "#6E3B08"
+/// Blood colors
+//teal oxidized skrell blood - slightly brightened copper oxide hue
+#define BLOOD_COLOR_COPPER "#70B596"
 #define BLOOD_COLOR_NANITE_SLURRY "#CCCCCC"
+//alternate lizard blood
+#define BLOOD_COLOR_GREEN "#339933"
+//old-canon avalis had violet blood, so...
+#define BLOOD_COLOR_VIOLET "#9966FF"
+//cyan vox blood
+#define BLOOD_COLOR_CYAN "#33FFFF"
 
 /// Modsuit hardlight colors
 
