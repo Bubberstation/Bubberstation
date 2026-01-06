@@ -872,6 +872,31 @@
 	set category = "Emotes+"
 	usr.emote("honk1", intentional = TRUE)
 
+/mob/living/proc/emote_neigh()
+	set name = "> Neigh"
+	set category = "Emotes+"
+	usr.emote("neigh", intentional = TRUE)
+
+/mob/living/proc/emote_neigh2()
+	set name = "> Neigh2"
+	set category = "Emotes+"
+	usr.emote("neigh2", intentional = TRUE)
+
+/mob/living/proc/emote_snort()
+	set name = "> Snort"
+	set category = "Emotes+"
+	usr.emote("snort", intentional = TRUE)
+
+/mob/living/proc/emote_bray()
+	set name = "> Bray"
+	set category = "Emotes+"
+	usr.emote("bray", intentional = TRUE)
+
+/mob/living/proc/emote_bellow()
+	set name = "> Bellow"
+	set category = "Emotes+"
+	usr.emote("bellow", intentional = TRUE)
+
 // code\modules\mob\living\brain\emote.dm
 
 /mob/living/brain/proc/emote_alarm()
