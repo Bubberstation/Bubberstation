@@ -201,14 +201,14 @@
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_REFRESH,
 		SPECIES_PERK_NAME = "MODsuit Mode",
-		SPECIES_PERK_DESC = "[plural_form] are able to turn into MODsuits, and have some special components. When you enter a critical state, you instead withdraw into MODsuit form until a refactory is inserted into you."
+		SPECIES_PERK_DESC = "[plural_form] are able to turn into MODsuits, and have some special components available to them. When [plural_form] enter a critical state, they instead withdraw into MODsuit form until a refactory is inserted into them."
 	))
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = FA_ICON_SQUARE_VIRUS,
 		SPECIES_PERK_NAME = "Protean Oddities",
-		SPECIES_PERK_DESC = "[plural_form] are unable to gain nutrition from traditional foods. Instead, you must consume metals - Primarily, iron. \ In addition to this, you are unable to be surgically or chemically attended-to. You restore yourself over time."
+		SPECIES_PERK_DESC = "[plural_form] are inorganic beings. They are unable to gain nutrition from traditional foods. Instead, they must consume metals - Primarily, iron. \ In addition to this, [plural_form] are unable to be surgically or chemically headed; [plural_form] regenerate their body over time, consuming their nutrition to do so."
 	))
 
 	return perk_descriptions
