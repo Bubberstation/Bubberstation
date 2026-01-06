@@ -1,9 +1,6 @@
-/datum/supply_pack/goody/disablersmg_single
+/datum/supply_pack/goody/smg_single
 	name = "Disabler SMG Single-Pack"
-	desc = "Contains one disabler SMG, an automatic variant of the original workhorse."
 	cost = PAYCHECK_COMMAND * 3
-	access_view = ACCESS_WEAPONS
-	contains = list(/obj/item/gun/energy/disabler/smg)
 
 /datum/supply_pack/goody/lasercarbine_single
 	name = "Laser Carbine Single-Pack"
