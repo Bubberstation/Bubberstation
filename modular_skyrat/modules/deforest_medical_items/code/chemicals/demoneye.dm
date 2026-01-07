@@ -109,7 +109,7 @@
 
 	our_guy.add_mood_event("tweaking", /datum/mood_event/stimulant_heavy/sundowner, name)
 
-	our_guy.adjustStaminaLoss(-10 * REM * seconds_per_tick)
+	our_guy.adjust_stamina_loss(-10 * REM * seconds_per_tick)
 	our_guy.AdjustSleeping(-20 * REM * seconds_per_tick)
 	our_guy.adjust_drowsiness(-5 * REM * seconds_per_tick)
 
@@ -146,7 +146,7 @@
 	)
 	if(really_bad)
 		our_guy.vomit(0, TRUE, FALSE, 1)
-	our_guy.adjustOrganLoss(
+	our_guy.adjust_organ_loss(
 		pick(organs_we_damage),
 		damage,
 	)

@@ -569,7 +569,7 @@
 /area/awaymission/station/hallway/secondary/entry
 	name = "\improper Arrival Shuttle Hallway"
 	icon_state = "entry"
-	area_flags = UNIQUE_AREA | EVENT_PROTECTED
+	area_flags = EVENT_PROTECTED
 
 /area/awaymission/station/hallway/secondary/dock
 	name = "\improper Secondary Station Dock Hallway"
@@ -1776,7 +1776,7 @@
 /area/awaymission/station/solars
 	icon_state = "panels"
 	requires_power = FALSE
-	area_flags = UNIQUE_AREA
+	area_flags = NONE
 	flags_1 = NONE
 	ambience_index = AMBIENCE_ENGI
 	airlock_wires = /datum/wires/airlock/engineering

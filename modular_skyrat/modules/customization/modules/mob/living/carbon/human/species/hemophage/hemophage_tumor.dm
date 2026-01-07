@@ -23,6 +23,10 @@
 	var/is_dormant = PULSATING_TUMOR_ACTIVE
 	/// What is the current rate (per second) at which the tumor is consuming blood?
 	var/bloodloss_rate = NORMAL_BLOOD_DRAIN
+	/// maximum blood we can store when drinking from mobs with ckeys
+	var/max_blood_capacity = BLOOD_VOLUME_MAXIMUM
+	/// maximum blood we can drink from non-ckeyed mobs (monkeys mostly)
+	var/normal_blood_drain_capacity = BLOOD_VOLUME_NORMAL
 
 
 /obj/item/organ/heart/hemophage/on_mob_insert(mob/living/carbon/tumorful, special, movement_flags)
@@ -33,6 +37,7 @@
 	SEND_SIGNAL(tumorful, COMSIG_PULSATING_TUMOR_ADDED, tumorful)
 	tumorful.AddElement(/datum/element/tumor_corruption)
 	RegisterSignal(tumorful, COMSIG_MOB_GET_STATUS_TAB_ITEMS, PROC_REF(get_status_tab_item))
+	RegisterSignal(tumorful, COMSIG_MOB_REACHED_MAX_BLOOD, PROC_REF(has_reached_max_blood))
 
 
 /obj/item/organ/heart/hemophage/on_mob_remove(mob/living/carbon/tumorless, special = FALSE, movement_flags)
@@ -42,6 +47,7 @@
 	tumorless.RemoveElement(/datum/element/tumor_corruption)
 	tumorless.remove_status_effect(/datum/status_effect/blood_thirst_satiated)
 	UnregisterSignal(tumorless, COMSIG_MOB_GET_STATUS_TAB_ITEMS)
+	UnregisterSignal(tumorless, COMSIG_MOB_REACHED_MAX_BLOOD)
 
 	if(!ishuman(tumorless))
 		return
@@ -63,6 +69,8 @@
 	// once.
 	// It's intended that you can't print a tumor, because why would you?
 	operated = FALSE
+	if(!owner?.client)
+		return
 
 	if(can_heal_owner_damage())
 		owner.apply_status_effect(/datum/status_effect/blood_regen_active)
@@ -120,7 +128,7 @@
 	if(owner.health >= owner.maxHealth || is_dormant || owner.blood_volume <= MINIMUM_VOLUME_FOR_REGEN || (!in_closet(owner) && !in_total_darkness(owner)))
 		return FALSE
 
-	return length(owner.get_damaged_bodyparts(TRUE, TRUE, BODYTYPE_ORGANIC)) || (owner.getToxLoss() && owner.can_adjust_tox_loss())
+	return length(owner.get_damaged_bodyparts(TRUE, TRUE, BODYTYPE_ORGANIC)) || (owner.get_tox_loss() && owner.can_adjust_tox_loss())
 
 
 /// Simple helper to toggle the hemophage's vulnerability (or lack thereof) based on the status of their tumor.
@@ -139,7 +147,19 @@
 /obj/item/organ/heart/hemophage/proc/get_status_tab_item(mob/living/source, list/items)
 	SIGNAL_HANDLER
 
-	items += "Current blood level: [owner.blood_volume]/[BLOOD_VOLUME_MAXIMUM]"
+	items += "Current blood level: [owner.blood_volume]/[max_blood_capacity]"
+
+/obj/item/organ/heart/hemophage/proc/has_reached_max_blood(mob/living/source, mob/living/victim)
+	SIGNAL_HANDLER
+
+	if(ismonkey(victim) || istype(victim, /mob/living/carbon/human/species/monkey))
+		if(source.blood_volume >= normal_blood_drain_capacity)
+			return REACHED_MAX_BLOOD
+
+	if(owner.blood_volume >= max_blood_capacity)
+		return REACHED_MAX_BLOOD
+
+	return NONE
 
 
 #undef MINIMUM_LIGHT_THRESHOLD_FOR_REGEN

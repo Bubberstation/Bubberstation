@@ -102,7 +102,7 @@
 	prereq_ids = list(TECHWEB_NODE_BORG_SERVICES, TECHWEB_NODE_SANITATION)
 	design_ids = list(
 		"borg_upgrade_advancedmop",
-		"borg_upgrade_broomer",
+//		"borg_upgrade_broomer", BUBBERS EDIT, ROUNDSTART MODULE
 		"borg_upgrade_expand",
 		"borg_upgrade_prt",
 		"borg_upgrade_plunger",

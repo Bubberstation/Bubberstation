@@ -182,7 +182,7 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/reagent_crafting_bench/hammer_act(mob/living/user, obj/item/tool)
-	playsound(src, 'modular_skyrat/modules/reagent_forging/sound/forge.ogg', 50, TRUE)
+	conditional_pref_sound(src, 'modular_skyrat/modules/reagent_forging/sound/forge.ogg', vol = 35, vary = TRUE, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
 	if(length(contents))
 		if(!istype(contents[1], /obj/item/forging/complete))
 			balloon_alert(user, "invalid item")
