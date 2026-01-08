@@ -14,7 +14,7 @@
 	var/datum/action/cooldown/protean_servo/medical/servo_medical = new /datum/action/cooldown/protean_servo/medical
 	var/datum/action/cooldown/protean_servo/engineering/servo_engineering = new /datum/action/cooldown/protean_servo/engineering
 
-/obj/item/mod/module/protean_servo/on_activation()
+/obj/item/mod/module/protean_servo/on_activation(mob/activator)
 	. = ..()
 
 	var/obj/item/mod/core/protean/protean_core = mod.core
@@ -30,7 +30,7 @@
 	servo_medical.Grant(protean_in_suit)
 	servo_engineering.Grant(protean_in_suit)
 
-/obj/item/mod/module/protean_servo/on_deactivation(display_message = TRUE, deleting = FALSE)
+/obj/item/mod/module/protean_servo/on_deactivation(mob/activator, display_message = TRUE, deleting = FALSE)
 	. = ..()
 	var/obj/item/mod/core/protean/protean_core = mod.core
 	var/mob/living/carbon/human/protean_in_suit = protean_core?.linked_species.owner
