@@ -169,7 +169,7 @@
 	name = "Wizoff Deck"
 	item_path = /obj/item/toy/cards/deck/wizoff
 
-// Bubber edit end
+// BUBBER EDIT - END
 
 /datum/loadout_item/pocket_items/lipstick
 	name = "Lipstick"
