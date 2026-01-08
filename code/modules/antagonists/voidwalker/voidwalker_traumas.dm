@@ -135,7 +135,3 @@
 
 	qdel(owner.GetComponent(/datum/component/glass_passer))
 
-//BUBBER ADDITION - positive mood event for having the Trauma
-/datum/mood_event/voided
-	description = "I was enlightened by something I can't quite explain"
-	mood_change = 4
