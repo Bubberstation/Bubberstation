@@ -46,7 +46,7 @@
 
 /datum/atom_skin/drapes/default
 	preview_name = "default"
-	new_icon_state = "drapes"
+	new_icon_state = "surgical_drapes"
 	new_icon = 'icons/obj/medical/surgery_tools.dmi'
 
 /obj/item/retractor/Initialize(mapload)

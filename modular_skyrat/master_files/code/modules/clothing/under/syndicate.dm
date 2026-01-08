@@ -141,7 +141,6 @@
 /obj/item/clothing/under/syndicate/skyrat/tactical/skirt/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/tactical_skirtleneck)
-	RegisterSignal(src, COMSIG_OBJ_RESKIN, PROC_REF(on_reskin))
 
 /datum/atom_skin/tactical_skirtleneck
 	abstract_type = /datum/atom_skin/tactical_skirtleneck
@@ -155,6 +154,7 @@
 	new_icon_state = "syndicate_skirt"
 
 /obj/item/clothing/under/syndicate/skyrat/tactical/skirt/on_reskin()
+	. = ..()
 	if(icon_state == "syndicate_skirt")
 		desc = "A non-descript and slightly suspicious looking skirtleneck."
 		inhand_icon_state = "bl_suit"
