@@ -10,9 +10,9 @@
 	. = ..()
 	RegisterSignal(src, COMSIG_OBJ_RESKIN, PROC_REF(on_reskin))
 
-/obj/item/kinetic_crusher/on_reskin(datum/source, skin_name, mob/our_mob)
+/obj/item/kinetic_crusher/proc/on_reskin(mob/our_mob)
 	SIGNAL_HANDLER
-	if(skin_name == "Glaive")
+	if(icon_state == "crusher_glaive")
 		name = "proto-kinetic glaive"
 		desc = "A modified proto-kinetic crusher, it is still little more than various mining tools cobbled together \
 			into a high-tech knife on a stick with a handguard and goliath-leather grip. While equally as effective as its unmodified compatriots, \
