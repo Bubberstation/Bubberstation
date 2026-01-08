@@ -1077,6 +1077,9 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 			else if ((mutant_styles & STYLE_TAUR_HOOF) && worn_icon_taur_hoof)
 				override_file = worn_icon_taur_hoof
 				using_taur_variant = TRUE
+			else if ((mutant_styles & STYLE_TAUR_BIG) && worn_icon_taur_big)
+				override_file = worn_icon_taur_big
+				using_taur_variant = TRUE
 	// SKYRAT EDIT END
 	//Find a valid icon_state from variables+arguments
 	var/t_state = override_state || (isinhands ? inhand_icon_state : worn_icon_state) || icon_state
