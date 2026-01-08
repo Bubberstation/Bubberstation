@@ -51,9 +51,9 @@
 	preview_name = RESKIN_CHARCOAL
 	new_icon_state = "tactifool"
 
-/obj/item/clothing/under/syndicate/tacticool/proc/on_reskin()
+/obj/item/clothing/under/syndicate/tacticool/proc/on_reskin(datum/source, skin_name)
 	SIGNAL_HANDLER
-	if(icon_state == "tactifool")
+	if(skin_name == RESKIN_CHARCOAL)
 		desc = "Just looking at it makes you want to buy an SKS, go into the woods, and -operate-."
 		inhand_icon_state = "bl_suit"
 
@@ -123,9 +123,9 @@
 	preview_name = RESKIN_CHARCOAL
 	new_icon_state = "syndicate"
 
-/obj/item/clothing/under/syndicate/skyrat/tactical/proc/on_reskin()
+/obj/item/clothing/under/syndicate/skyrat/tactical/proc/on_reskin(datum/source, skin_name)
 	SIGNAL_HANDLER
-	if(icon_state == "syndicate")
+	if(skin_name == RESKIN_CHARCOAL)
 		desc = "A non-descript and slightly suspicious looking turtleneck with digital camouflage cargo pants."
 		inhand_icon_state = "bl_suit"
 
@@ -154,8 +154,9 @@
 	preview_name = RESKIN_CHARCOAL
 	new_icon_state = "syndicate_skirt"
 
-/obj/item/clothing/under/syndicate/skyrat/tactical/skirt/on_reskin()
-	if(icon_state == "syndicate_skirt")
+/obj/item/clothing/under/syndicate/skyrat/tactical/skirt/proc/on_reskin(datum/source, skin_name)
+	SIGNAL_HANDLER
+	if(skin_name == RESKIN_CHARCOAL)
 		desc = "A non-descript and slightly suspicious looking skirtleneck."
 		inhand_icon_state = "bl_suit"
 
