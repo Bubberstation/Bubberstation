@@ -6,21 +6,25 @@
 	icon_state = "vest_worn"
 	inhand_icon_state = null
 	armor_type = /datum/armor/suit_armor
-	unique_reskin = list(
-		"Red Pattern" = list(
-			RESKIN_ICON_STATE = "vest_worn_red",
-			RESKIN_WORN_ICON_STATE = "vest_worn_red"
-		),
-		"Neutral Pattern" = list(
-			RESKIN_ICON_STATE = "vest_worn",
-			RESKIN_WORN_ICON_STATE = "vest_worn",
-		),
-		"Blue Pattern" = list(
-			RESKIN_ICON_STATE = "vest_worn_blue",
-			RESKIN_WORN_ICON_STATE = "vest_worn_blue",
-			RESKIN_SUPPORTS_VARIATIONS_FLAGS = NONE
-		)
-	)
+
+/datum/atom_skin/collared_vest
+	abstract_type = /datum/atom_skin/collared_vest
+
+/datum/atom_skin/collared_vest/red
+	preview_name = "Red Pattern"
+	new_icon_state = "vest_worn_red"
+
+/datum/atom_skin/collared_vest/neutral
+	preview_name = "Neutral Pattern"
+	new_icon_state = "vest_worn"
+
+/datum/atom_skin/collared_vest/blue
+	preview_name = "Blue Pattern"
+	new_icon_state = "vest_worn_blue"
+
+/obj/item/clothing/suit/armor/vest/collared_vest/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/collared_vest)
 
 /obj/item/clothing/suit/armor/vest/secjacket // Port from TG Station (DrTuxedo)
 	name = "security jacket"
