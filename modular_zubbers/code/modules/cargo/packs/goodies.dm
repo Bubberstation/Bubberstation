@@ -1,9 +1,6 @@
-/datum/supply_pack/goody/disablersmg_single
+/datum/supply_pack/goody/smg_single
 	name = "Disabler SMG Single-Pack"
-	desc = "Contains one disabler SMG, an automatic variant of the original workhorse."
 	cost = PAYCHECK_COMMAND * 3
-	access_view = ACCESS_WEAPONS
-	contains = list(/obj/item/gun/energy/disabler/smg)
 
 /datum/supply_pack/goody/lasercarbine_single
 	name = "Laser Carbine Single-Pack"
@@ -181,3 +178,14 @@
 	cost = PAYCHECK_COMMAND
 	contains = list(/obj/item/mod/module/storage/large_capacity)
 
+/datum/supply_pack/goody/crew_monitor
+	name = "Handheld Crew Monitor Single-Pack"
+	desc = "A miniature machine that tracks suit sensors across the station."
+	cost = PAYCHECK_COMMAND * 4.5
+	contains = list(/obj/item/sensor_device)
+
+/datum/supply_pack/goody/soap
+	name = "Soap Single-Pack"
+	desc = "Recommended for emergency self-cleaning, passive-aggressive demonstrations, or reminding others that hygiene is, in fact, part of the job."
+	cost = PAYCHECK_LOWER * 3
+	contains = list(/obj/item/soap/deluxe)
