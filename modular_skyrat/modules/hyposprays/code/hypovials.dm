@@ -13,7 +13,6 @@
 	var/chem_color = "#FFFFFF" //Used for hypospray overlay
 	var/type_suffix = "-s"
 	fill_icon = 'modular_skyrat/modules/hyposprays/icons/hypospray_fillings.dmi'
-	current_skin = "hypovial"
 
 /obj/item/reagent_containers/cup/vial/Initialize(mapload)
 	. = ..()
@@ -73,27 +72,30 @@
 	. = ..()
 	. += span_notice("Ctrl-Shift-Click to reskin or set a custom color.")
 
-/obj/item/reagent_containers/cup/vial/click_ctrl_shift(mob/user, obj/item/I)
-	current_skin = null
+/obj/item/reagent_containers/cup/vial/click_ctrl_shift(mob/user, obj/item/held_item)
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(isnull(reskin_component))
+		return
 	icon_state = initial(icon_state)
-	icon = original_icon
+	icon = initial(icon)
 	greyscale_colors = null
-	reskin_obj(user)
+	reskin_component.reskin_obj(user)
 
-/obj/item/reagent_containers/cup/vial/proc/on_reskin()
-	if(current_skin == "Custom")
-		icon_state = unique_reskin["Sterile"]
-		current_skin = unique_reskin["Sterile"]
-		var/atom/fake_atom = src
-		var/list/allowed_configs = list()
-		var/config = initial(fake_atom.greyscale_config)
-		allowed_configs += "[config]"
-		if(greyscale_colors == null)
-			greyscale_colors = "#FFFF00"
-		var/datum/greyscale_modify_menu/menu = new(src, usr, allowed_configs)
-		menu.ui_interact(usr)
-	else
-		icon_state = unique_reskin[current_skin]
+/obj/item/reagent_containers/cup/vial/proc/on_reskin(datum/source, datum/atom_skin/applied_skin)
+	if(!istype(applied_skin, /datum/atom_skin/hypovial/custom))
+		return
+	icon_state = "hypovial"
+	open_custom_greyscale_menu()
+
+/obj/item/reagent_containers/cup/vial/proc/open_custom_greyscale_menu()
+	var/list/allowed_greyscale_configs = list("[initial(greyscale_config)]")
+	if(isnull(greyscale_colors))
+		greyscale_colors = "#FFFF00"
+	var/mob/user = usr
+	if(isnull(user))
+		return
+	var/datum/greyscale_modify_menu/greyscale_menu = new(src, user, allowed_greyscale_configs)
+	greyscale_menu.ui_interact(user)
 
 /obj/item/reagent_containers/cup/vial/update_overlays()
 	. = ..()
@@ -145,7 +147,6 @@
 	name = "large hypovial"
 	icon_state = "hypoviallarge"
 	fill_icon_state = "hypoviallarge_fill"
-	current_skin = "hypoviallarge"
 	desc = "A large, 100u capacity vial that fits only in the most deluxe hyposprays."
 	volume = 100
 	possible_transfer_amounts = list(1,2,5,10,20,30,40,50,100)
