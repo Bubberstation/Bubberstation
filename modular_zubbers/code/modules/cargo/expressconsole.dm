@@ -12,17 +12,6 @@
 	req_access = list(ACCESS_SYNDICATE)
 	cargo_account = ACCOUNT_INT
 	contraband = TRUE
-	var/allowed_categories = list(COMPANY_NAME_VITEZSTVI_AMMO, 	//used for company items import supports companies and specific categories
-	COMPANY_NAME_ALLSTAR_ENERGY,
-	COMPANY_NAME_MICRON_CONTROL_SYSTEMS,
-	COMPANY_NAME_SOL_DEFENSE_DEFENSE,
-	COMPANY_NAME_FRONTIER_EQUIPMENT,
-	COMPANY_NAME_KAHRAMAN_INDUSTRIES,
-	COMPANY_NAME_DONK_CO,
-	COMPANY_NAME_DEFOREST_MEDICAL,
-	COMPANY_NAME_NRI_SURPLUS,
-	COMPANY_NAME_BLACKSTEEL_FOUNDATION,
-	)
 	pod_type = /obj/structure/closet/supplypod/bluespacepod
 
 /obj/machinery/computer/cargo/express/interdyne/emag_act(mob/user, obj/item/card/emag/emag_card)
