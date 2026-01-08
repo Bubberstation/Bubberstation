@@ -11,8 +11,8 @@
 
 /obj/item/clothing/suit/armor/vest/warden/syndicate/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 // HEAD OF PERSONNEL

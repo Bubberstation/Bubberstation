@@ -43,8 +43,8 @@
 
 /obj/item/storage/bag/plants/primitive/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/storage/bag/plants/on_craft_completion(list/components, datum/crafting_recipe/current_recipe, atom/crafter)
@@ -55,8 +55,8 @@
 
 /obj/item/storage/bag/plants/portaseeder/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 #undef RESKIN_LINEN

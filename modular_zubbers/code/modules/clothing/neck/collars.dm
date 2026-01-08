@@ -32,8 +32,8 @@
 	register_context()
 	update_icon(UPDATE_OVERLAYS)
 	RegisterSignal(src, COMSIG_NAME_CHANGED, PROC_REF(on_update_name))
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/clothing/neck/kink_collar/locked/gps/proc/on_update_name()

@@ -98,8 +98,8 @@
 
 /obj/item/clothing/under/rank/security/officer/hecu/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/storage/backpack/ert/odst/hecu

@@ -46,8 +46,8 @@
 
 /obj/item/clothing/under/rank/security/skyrat/utility/redsec/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/skyrat/utility/redsec/syndicate
@@ -89,8 +89,8 @@
 
 /obj/item/clothing/under/rank/security/peacekeeper/skirt_redsec/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/peacekeeper/skirt_hos
@@ -104,8 +104,8 @@
 
 /obj/item/clothing/under/rank/security/peacekeeper/skirt_hos/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/peacekeeper/trousers

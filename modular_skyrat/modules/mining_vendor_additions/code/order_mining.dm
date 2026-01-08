@@ -10,7 +10,7 @@
 	. = ..()
 	RegisterSignal(src, COMSIG_OBJ_RESKIN, PROC_REF(on_reskin))
 
-/obj/item/kinetic_crusher/on_reskin(mob/our_mob)
+/obj/item/kinetic_crusher/proc/on_reskin(mob/our_mob)
 	SIGNAL_HANDLER
 	if(icon_state == "crusher_glaive")
 		name = "proto-kinetic glaive"

@@ -209,16 +209,16 @@
 
 /obj/item/storage/belt/security/webbing/peacekeeper/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/storage/belt/security/webbing/peacekeeper/armadyne //You two only exist because I don't want to purge you, because it'd break some stuff. Thin fucking ice.
 
 /obj/item/storage/belt/security/webbing/peacekeeper/armadyne/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 ///Enables you to quickdraw weapons from security holsters
@@ -387,8 +387,8 @@
 
 /obj/item/clothing/glasses/hud/eyepatch/sec/blindfold/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/clothing/glasses/hud/security/night
@@ -397,8 +397,8 @@
 
 /obj/item/clothing/glasses/hud/security/night/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/gars/Initialize(mapload)
@@ -439,8 +439,8 @@
 
 /obj/item/clothing/glasses/hud/security/sunglasses/gars/giga/roselia/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /*
@@ -621,16 +621,16 @@
 
 /obj/item/clothing/head/hats/warden/red/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/clothing/head/hats/warden/drill
 
 /obj/item/clothing/head/hats/warden/drill/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/clothing/head/hats/hos/cap/Initialize(mapload)
@@ -671,8 +671,8 @@
 
 /obj/item/clothing/head/hats/hos/cap/syndicate/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /*
@@ -997,8 +997,8 @@
 
 /obj/item/clothing/suit/armor/hos/trenchcoat/winter/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 //Standard Bulletproof Vest
@@ -1088,8 +1088,8 @@
 
 /obj/item/clothing/suit/armor/vest/warden/alt/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 //Security Wintercoat (and hood)
@@ -1114,8 +1114,8 @@
 
 /obj/item/clothing/suit/armor/hos/hos_formal/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /*
@@ -1194,8 +1194,8 @@
 
 /obj/item/clothing/under/rank/security/officer/formal/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/officer/skirt
@@ -1337,8 +1337,8 @@
 
 /obj/item/clothing/under/rank/security/warden/formal/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 //HoS
@@ -1469,32 +1469,32 @@
 
 /obj/item/clothing/under/rank/security/head_of_security/peacekeeper/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/head_of_security/bunnysuit
 
 /obj/item/clothing/under/rank/security/head_of_security/bunnysuit/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/head_of_security/alt/roselia
 
 /obj/item/clothing/under/rank/security/head_of_security/alt/roselia/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/head_of_security/grey
 
 /obj/item/clothing/under/rank/security/head_of_security/grey/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 // PRISONER
@@ -1648,8 +1648,8 @@
 
 /obj/item/clothing/glasses/hud/security/redsec/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/redsec
@@ -1660,8 +1660,8 @@
 
 /obj/item/clothing/glasses/hud/security/sunglasses/redsec/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch/redsec
@@ -1672,8 +1672,8 @@
 
 /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch/redsec/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/clothing/glasses/hud/security/night/redsec
@@ -1683,8 +1683,8 @@
 
 /obj/item/clothing/glasses/hud/security/night/redsec/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /*
@@ -1698,8 +1698,8 @@
 
 /obj/item/clothing/neck/cloak/hos/redsec/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /*
@@ -1713,8 +1713,8 @@
 
 /obj/item/storage/backpack/security/redsec/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/storage/backpack/satchel/sec/redsec
@@ -1724,8 +1724,8 @@
 
 /obj/item/storage/backpack/satchel/sec/redsec/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/storage/backpack/duffelbag/sec/redsec
@@ -1735,8 +1735,8 @@
 
 /obj/item/storage/backpack/duffelbag/sec/redsec/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /*
@@ -1752,8 +1752,8 @@
 
 /obj/item/storage/belt/security/redsec/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/storage/belt/holster
@@ -1863,8 +1863,8 @@
 
 /obj/item/clothing/head/hats/hos/cap/red/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /*
@@ -1876,8 +1876,8 @@
 
 /obj/item/clothing/under/rank/security/officer/redsec/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/officer/skirt/redsec
@@ -1885,8 +1885,8 @@
 
 /obj/item/clothing/under/rank/security/officer/skirt/redsec/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/warden/redsec
@@ -1894,8 +1894,8 @@
 
 /obj/item/clothing/under/rank/security/warden/redsec/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/warden/skirt/redsec
@@ -1903,8 +1903,8 @@
 
 /obj/item/clothing/under/rank/security/warden/skirt/redsec/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/head_of_security/redsec
@@ -1912,8 +1912,8 @@
 
 /obj/item/clothing/under/rank/security/head_of_security/redsec/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/head_of_security/skirt/redsec
@@ -1921,8 +1921,8 @@
 
 /obj/item/clothing/under/rank/security/head_of_security/skirt/redsec/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/head_of_security/parade/redsec
@@ -1930,8 +1930,8 @@
 
 /obj/item/clothing/under/rank/security/head_of_security/parade/redsec/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/head_of_security/parade/female/redsec
@@ -1939,8 +1939,8 @@
 
 /obj/item/clothing/under/rank/security/head_of_security/parade/female/redsec/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/head_of_security/alt/redsec
@@ -1948,8 +1948,8 @@
 
 /obj/item/clothing/under/rank/security/head_of_security/alt/redsec/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/head_of_security/alt/skirt/redsec
@@ -1957,8 +1957,8 @@
 
 /obj/item/clothing/under/rank/security/head_of_security/alt/skirt/redsec/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /*
@@ -1991,8 +1991,8 @@
 
 /obj/item/clothing/suit/armor/vest/alt/sec/redsec/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /obj/item/clothing/suit/armor/hos/hos_formal/redsec
@@ -2003,8 +2003,8 @@
 
 /obj/item/clothing/suit/armor/hos/hos_formal/redsec/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 /*
@@ -2019,8 +2019,8 @@
 
 /obj/item/clothing/shoes/jackboots/sec/redsec/Initialize(mapload)
 	. = ..()
-	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
-	if(reskin_component)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
 
 //Finally, a few description changes for items that couldn't get a resprite.
