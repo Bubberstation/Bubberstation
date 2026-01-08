@@ -220,7 +220,7 @@
 GLOBAL_LIST_EMPTY(nebula_vomits)
 
 /obj/effect/decal/cleanable/vomit/nebula
-	name = "nebula puddle" //BUBBER EDIT used to be "nebula vomit"
+	name = "nebula vomit"
 	desc = "Gosh, how... beautiful."
 	icon_state = "vomitnebula_1"
 	random_icon_states = list("vomitnebula_1", "vomitnebula_2", "vomitnebula_3", "vomitnebula_4")

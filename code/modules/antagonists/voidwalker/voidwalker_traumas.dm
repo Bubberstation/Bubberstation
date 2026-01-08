@@ -59,7 +59,6 @@
 		human.socks = "Nude"
 
 	owner.update_body()
-	owner.add_mood_event("voided", /datum/mood_event/voided) //BUBBER ADDITION - positive mood event for having the Trauma
 
 /datum/brain_trauma/voided/on_lose()
 	. = ..()
@@ -78,7 +77,6 @@
 	for(var/obj/item/bodypart/bodypart as anything in owner.bodyparts)
 		untexture_limb(owner, bodypart)
 	owner.update_body()
-	owner.clear_mood_event("voided") //BUBBER ADDITION - positive mood event for having the Trauma
 
 /datum/brain_trauma/voided/on_life(seconds_per_tick, times_fired)
 	. = ..()
