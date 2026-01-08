@@ -32,6 +32,7 @@
 	var/greyscale_config_worn_taur_snake
 	var/greyscale_config_worn_taur_paw
 	var/greyscale_config_worn_taur_hoof
+	var/greyscale_config_worn_taur_big
 
 	/// Used for BODYSHAPE_CUSTOM: Needs to follow this syntax: a list() with the x and y coordinates of the pixel you want to get the color from. Colors are filled in as GAGs values for fallback.
 	var/list/species_clothing_color_coords = null
