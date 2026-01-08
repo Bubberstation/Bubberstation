@@ -37,7 +37,7 @@
 
 	return ..()
 
-// BUBBER EDIT: Put toys in the toys category
+// BUBBER EDIT - START: Put toys in the toys category
 
 /datum/loadout_item/toys/plush
 	group = "Plushies"
