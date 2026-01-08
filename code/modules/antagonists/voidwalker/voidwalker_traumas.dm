@@ -132,4 +132,3 @@
 	. = ..()
 
 	qdel(owner.GetComponent(/datum/component/glass_passer))
-
