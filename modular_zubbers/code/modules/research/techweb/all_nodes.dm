@@ -51,6 +51,7 @@
 	design_ids += list(
 		"limbdesign_hemophage",
 		"limbdesign_tajaran",
+		"limbdesign_teshari",
 	)
 
 //ENGINEERING
