@@ -14,12 +14,22 @@
 	/// Leash line visual for the hooked item
 	var/datum/beam/leash_line/leash_line
 
-	unique_reskin = list(
-		"Pink" = "neckleash_pink",
-		"Teal" = "neckleash_teal",
-	)
-
 	COOLDOWN_DECLARE(tug_cd)
+
+/obj/item/clothing/erp_leash/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/erp_leash)
+
+/datum/atom_skin/erp_leash
+	abstract_type = /datum/atom_skin/erp_leash
+
+/datum/atom_skin/erp_leash/pink
+	preview_name = "Pink"
+	new_icon_state = "neckleash_pink"
+
+/datum/atom_skin/erp_leash/teal
+	preview_name = "Teal"
+	new_icon_state = "neckleash_teal"
 
 /// HERE BE DRAGONS ///
 

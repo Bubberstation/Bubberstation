@@ -109,29 +109,65 @@
 	icon_state = "lucifer"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	obj_flags = UNIQUE_RENAME
-	unique_reskin = list(
-		"Pride" = "lucifer",
-		"Wrath" = "justice",
-		"Gluttony" = "malina",
-		"Envy" = "zdara",
-		"Vanity" = "cereberus",
-	)
+
+/obj/item/clothing/under/suit/skyrat/inferno/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/inferno_suit)
+
+/datum/atom_skin/inferno_suit
+	abstract_type = /datum/atom_skin/inferno_suit
+
+/datum/atom_skin/inferno_suit/pride
+	preview_name = "Pride"
+	new_icon_state = "lucifer"
+
+/datum/atom_skin/inferno_suit/wrath
+	preview_name = "Wrath"
+	new_icon_state = "justice"
+
+/datum/atom_skin/inferno_suit/gluttony
+	preview_name = "Gluttony"
+	new_icon_state = "malina"
+
+/datum/atom_skin/inferno_suit/envy
+	preview_name = "Envy"
+	new_icon_state = "zdara"
+
+/datum/atom_skin/inferno_suit/vanity
+	preview_name = "Vanity"
+	new_icon_state = "cereberus"
 
 /obj/item/clothing/under/suit/skyrat/inferno/skirt
 	name = "inferno suitskirt"
 	icon_state = "modeus"
 	obj_flags = UNIQUE_RENAME
-	unique_reskin = list(
-		"Lust" = "modeus",
-		"Sloth" = "pande",
-	)
+
+/obj/item/clothing/under/suit/skyrat/inferno/skirt/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/inferno_suitskirt)
+
+/datum/atom_skin/inferno_suitskirt
+	abstract_type = /datum/atom_skin/inferno_suitskirt
+
+/datum/atom_skin/inferno_suitskirt/lust
+	preview_name = "Lust"
+	new_icon_state = "modeus"
+
+/datum/atom_skin/inferno_suitskirt/sloth
+	preview_name = "Sloth"
+	new_icon_state = "pande"
 
 /obj/item/clothing/under/suit/skyrat/inferno/beeze
 	name = "designer inferno suit"
 	desc = "A fancy tail-coated suit with a fluffy bow emblazoned on the chest, complete with an NT pin."
 	icon_state = "beeze"
 	obj_flags = null
-	unique_reskin = null
+
+/obj/item/clothing/under/suit/skyrat/inferno/beeze/Initialize(mapload)
+	. = ..()
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+		qdel(reskin_component)
 
 /obj/item/clothing/under/suit/skyrat/helltaker
 	name = "red shirt with white pants"
