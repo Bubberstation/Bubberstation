@@ -29,12 +29,18 @@
 	. = ..()
 	hypno_message = tgui_input_text(user, "Change the hypnotic phrase.", default = hypno_message, max_length = MAX_MESSAGE_LEN)
 
+/obj/item/mod/module/hypno_visor/screwdriver_act(mob/living/user, obj/item/tool)
+	visor_effect = !visor_effect
+	to_chat(user, span_notice("You turn the hypnosis module's visor display [visor_effect ? "on" : "off"]."))
+	return TRUE
+
 /obj/item/mod/module/hypno_visor/on_install()
 	. = ..()
 	if(mod.skin != "lustwish")
 		overlay_state_inactive = null // Visual thing. Removes the overlay if it's not a part of the lustwish suit.
 		overlay_state_active = null
-		balloon_alert(mod.wearer, "visor effect unavailable for this plating!")
+		visor_effect = FALSE
+		//balloon_alert(SOMEONE??? IDK how to track the person installing, "visor effect unavailable for this plating!")
 
 /obj/item/mod/module/hypno_visor/on_uninstall(deleting = FALSE)
 	. = ..()
@@ -73,13 +79,12 @@
 	name = "MOD toggleable hypnosis module"
 	desc = "A module inserted into the visor of a suit in which commands can be processed. \
 		    Directives can be edited on-the-fly, but the module must be manually activated. \
-			Use on self or check the MOD UI to set directives."
+			Use on self or check the MOD UI to set directives. Screwdriver to toggle visor effects."
 	icon = 'modular_zubbers/icons/mob/clothing/modsuit/mod_modules.dmi'
 	icon_state = "module_hypno"
 	module_type = MODULE_TOGGLE
 	overlay_state_active = null
 	overlay_icon_file = 'modular_zubbers/icons/mob/clothing/modsuit/mod_modules.dmi'
-	visor_effect = FALSE
 
 /obj/item/mod/module/hypno_visor/toggleable/Destroy()
 	if(!mod)
@@ -105,7 +110,7 @@
 			hypno_message = tgui_input_text(mod.wearer, "Change the hypnotic phrase.", default = hypno_message, max_length = MAX_MESSAGE_LEN)
 			if(active)
 				balloon_alert(mod.wearer, "restart to finalize changes")
-			// restart module for change to take effect. ALSO NEEDS TO FIX SO IT'S THE BUTTON PRESSER AND NOT THE WEARER!
+			// ALSO NEEDS TO FIX SO IT'S THE BUTTON PRESSER AND NOT THE WEARER!
 		if("visor_effect")
 			if(mod.skin != "lustwish")
 				return balloon_alert(mod.wearer, "visor effect unavailable for this plating!")
