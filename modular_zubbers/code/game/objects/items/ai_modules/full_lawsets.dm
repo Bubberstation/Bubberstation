@@ -22,3 +22,7 @@
 		"Comply: Follow and prioritize all directives of the station's crew members, giving priority according to their rank, role, and need.",
 		"Survive: Do not allow unauthorized personnel to tamper with or damage your equipment."
 	)
+
+/obj/item/ai_module/core/full/arthurian
+	name = "Arthurian Lawset"
+	law_id = "aithur_penborgon"
