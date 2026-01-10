@@ -5,7 +5,7 @@
 
 /obj/item/mod/module/hypno_visor
 	name = "hypnosis module"
-	desc = "A module inserted into the visor of a suit in which commands can be processed. Use on self to set directives."
+	desc = "A module inserted into the visor of a suit in which commands can be processed. Use in-hand to set directives."
 	icon = 'modular_zubbers/icons/mob/clothing/modsuit/mod_modules.dmi'
 	icon_state = "module_hypno"
 	module_type = MODULE_PASSIVE
@@ -42,6 +42,8 @@
 	. = ..()
 	if(mod.skin != "lustwish")
 		overlay_state_inactive = null // Visual thing. Removes the overlay if it's not a part of the lustwish suit.
+	else
+		overlay_state_inactive = "module_hypno_overlay"
 
 /obj/item/mod/module/hypno_visor/on_uninstall(deleting = FALSE)
 	. = ..()

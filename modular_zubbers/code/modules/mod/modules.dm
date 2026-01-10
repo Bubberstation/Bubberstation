@@ -1,7 +1,9 @@
 /obj/item/mod/module/mind_swap
 	name = "MOD Neural Transference module"
 	desc = "Swaps the MOD wearer's and Assistant AI's neural pathways."
-	removable = FALSE
+	icon = 'modular_zubbers/icons/mob/clothing/modsuit/mod_modules.dmi'
+	icon_state = "module_swap"
+	removable = FALSE // ???
 	required_slots = list(ITEM_SLOT_FEET, ITEM_SLOT_GLOVES, ITEM_SLOT_OCLOTHING, ITEM_SLOT_HEAD)
 	module_type = MODULE_ACTIVE
 	//Who's in control of the wearer's body
@@ -12,7 +14,7 @@
 	var/wearer_key
 	cooldown_time = 30 SECONDS
 
-/obj/item/mod/module/mind_swap/on_select()
+/obj/item/mod/module/mind_swap/on_select(mob/activator)
 	if(!mod.ai_assistant)
 		balloon_alert(mod.wearer, "no AI present")
 		return
@@ -24,10 +26,10 @@
 		return
 	return ..()
 
-/obj/item/mod/module/mind_swap/on_activation()
+/obj/item/mod/module/mind_swap/on_activation(mob/activator)
 	swap_minds()
 
-/obj/item/mod/module/mind_swap/on_deactivation(display_message, deleting)
+/obj/item/mod/module/mind_swap/on_deactivation(mob/activator, display_message, deleting)
 	swap_minds()
 
 /obj/item/mod/module/mind_swap/on_part_activation()
