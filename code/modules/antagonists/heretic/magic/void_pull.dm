@@ -44,7 +44,7 @@
 /datum/action/cooldown/spell/aoe/void_pull/cast_on_thing_in_aoe(mob/living/victim, atom/caster)
 	victim.apply_damage(30, BRUTE, wound_bonus = CANT_WOUND)
 	victim.apply_status_effect(/datum/status_effect/void_chill, 3)
-	victim.AdjustKnockdown(3 SECONDS)
+	victim.AdjustKnockdown(2 SECONDS) // BUBBER EDIT - Previous: victim.AdjustKnockdown(3 SECONDS)
 	victim.AdjustParalyzed(0.5 SECONDS)
 	for(var/i in 1 to 3)
 		victim.forceMove(get_step_towards(victim, caster))

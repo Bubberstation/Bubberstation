@@ -94,7 +94,7 @@
 	gain_text = "He knew how to walk between the planes."
 
 	action_to_add = /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash
-	cost = 2
+	cost = 3 // BUBBER EDIT - Previous: 2
 	// drafting_tier = 5 BUBBER REMOVAL
 
 /datum/heretic_knowledge/spell/fire_blast
@@ -105,7 +105,7 @@
 		When empowered, has instant cast time and blasts enemies with more flames."
 	gain_text = "No fire was hot enough to rekindle them. No fire was bright enough to save them. No fire is eternal."
 	action_to_add = /datum/action/cooldown/spell/charged/beam/fire_blast
-	cost = 2
+	cost = 3 // BUBBER EDIT - Previous: 2
 	research_tree_icon_frame = 7
 
 /datum/heretic_knowledge/armor/ash
@@ -136,7 +136,7 @@
 		/obj/item/flashlight/flare/candle = 4,
 	)
 	result_atoms = list(/obj/item/clothing/mask/madness_mask)
-	cost = 2
+	cost = 3 // BUBBER EDIT - Previous: 2
 	research_tree_icon_path = 'icons/obj/clothing/masks.dmi'
 	research_tree_icon_state = "mad_mask"
 
@@ -165,7 +165,7 @@
 	gain_text = "The fire was inescapable, and yet, life remained in his charred body. \
 		The Nightwatcher was a particular man, always watching."
 	action_to_add = /datum/action/cooldown/spell/aoe/fiery_rebirth
-	cost = 2
+	cost = 3 // BUBBER EDIT - Previous: 2
 	research_tree_icon_frame = 5
 	is_final_knowledge = TRUE
 

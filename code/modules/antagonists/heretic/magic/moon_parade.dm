@@ -9,7 +9,7 @@
 
 	sound = 'sound/effects/magic/cosmic_energy.ogg'
 	school = SCHOOL_FORBIDDEN
-	cooldown_time = 30 SECONDS
+	cooldown_time = 40 SECONDS // BUBBER EDIT - Previous: cooldown_time = 30 SECONDS
 
 	invocation = "L'N'R P'R'D!"
 	invocation_type = INVOCATION_SHOUT
@@ -28,7 +28,7 @@
 	damage_type = BURN
 	speed = 0.2
 	range = 75
-	ricochets_max = 40
+	ricochets_max = 4 // BUBBER EDIT - Previous: ricochets_max = 40
 	ricochet_chance = 500
 	ricochet_incidence_leeway = 0
 	projectile_piercing = PASSMOB|PASSVEHICLE

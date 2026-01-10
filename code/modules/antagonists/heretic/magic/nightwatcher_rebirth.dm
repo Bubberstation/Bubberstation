@@ -9,7 +9,7 @@
 	button_icon_state = "smoke"
 
 	school = SCHOOL_FORBIDDEN
-	cooldown_time = 1 MINUTES
+	cooldown_time = 35 SECONDS // BUBBER EDIT - Previous: 1 MINUTE
 	aoe_radius = 14
 
 	invocation = "GL'RY T' TH' N'GHT'W'TCH'ER."
@@ -49,12 +49,18 @@
 	new /obj/effect/temp_visual/eldritch_smoke(get_turf(victim))
 	victim.Beam(caster, icon_state = "r_beam", time = 2 SECONDS)
 
+// BUBBER EDIT - START
+/*
 	//This is essentially a death mark, use this to finish your opponent quicker.
 	if(CAN_SUCCUMB(victim))
 		victim.investigate_log("has been executed by fiery rebirth.", INVESTIGATE_DEATHS)
 		victim.death()
-	victim.apply_damage(20, BURN)
-	victim.extinguish_mob()
+*/
+	if(victim.stat != DEAD)
+		victim.apply_damage(10, BURN)
+		victim.apply_damage(25, STAMINA)
+		victim.extinguish_mob()
+// BUBBER EDIT - END
 
 	// Heal the caster for every victim damaged
 	var/need_mob_update = FALSE

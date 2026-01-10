@@ -60,3 +60,6 @@
 
 // For Bloodsuckers/Hemophages that vomit blood
 #define TRAIT_STOMACH_BLOOD_VOMIT "stomach_blood_vomit"
+
+// The mob ignores heretic rust. Currently used for wirebrushes.
+#define TRAIT_IGNORE_RUST "ignore_rust"
