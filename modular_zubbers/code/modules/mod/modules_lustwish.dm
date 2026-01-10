@@ -15,6 +15,8 @@
 	required_slots = list(ITEM_SLOT_HEAD)
 	overlay_icon_file = 'modular_zubbers/icons/mob/clothing/modsuit/mod_modules.dmi'
 	var/hypno_message = "Obey"
+		///Does the visor overlay show on the character sprite when installed?
+	var/visor_effect = TRUE
 
 /obj/item/mod/module/hypno_visor/proc/apply_hypnosis()
 	if(!(mod.wearer.client?.prefs?.read_preference(/datum/preference/toggle/erp/hypnosis) && mod.wearer.client.prefs.read_preference(/datum/preference/toggle/erp/sex_toy)))
@@ -31,6 +33,8 @@
 	. = ..()
 	if(mod.skin != "lustwish")
 		overlay_state_inactive = null // Visual thing. Removes the overlay if it's not a part of the lustwish suit.
+		overlay_state_active = null
+		balloon_alert(mod.wearer, "visor effect unavailable for this plating!")
 
 /obj/item/mod/module/hypno_visor/on_uninstall(deleting = FALSE)
 	. = ..()
@@ -41,7 +45,8 @@
 /obj/item/mod/module/hypno_visor/passive
 	name = "MOD passive hypnosis module"
 	desc = "A module inserted into the visor of a suit in which commands can be processed. \
-			Enables automatically when visor is activated. Use on self to set directives."
+			Enables automatically when visor is activated. Use on self to set directives. \
+			Screwdriver to toggle visor effects."
 	module_type = MODULE_PASSIVE
 	overlay_state_inactive = "module_hypno_overlay"
 
@@ -72,10 +77,9 @@
 	icon = 'modular_zubbers/icons/mob/clothing/modsuit/mod_modules.dmi'
 	icon_state = "module_hypno"
 	module_type = MODULE_TOGGLE
-	overlay_state_active = "module_hypno_overlay"
+	overlay_state_active = null
 	overlay_icon_file = 'modular_zubbers/icons/mob/clothing/modsuit/mod_modules.dmi'
-	///Does the visor overlay show on the character sprite when installed? Disabled due to the checkbox not working.
-	//var/visor_effect = FALSE
+	visor_effect = FALSE
 
 /obj/item/mod/module/hypno_visor/toggleable/Destroy()
 	if(!mod)
@@ -93,7 +97,7 @@
 /obj/item/mod/module/hypno_visor/toggleable/get_configuration()
 	. = ..()
 	.["hypno_message"] = add_ui_configuration("Hypnotic Message", "button", "list")
-	//.["visor_effect"] = add_ui_configuration("Visor Effect", "bool", visor_effect)
+	.["visor_effect"] = add_ui_configuration("Visor Effect", "bool", visor_effect)
 
 /obj/item/mod/module/hypno_visor/toggleable/configure_edit(key, value)
 	switch(key)
@@ -102,8 +106,13 @@
 			if(active)
 				balloon_alert(mod.wearer, "restart to finalize changes")
 			// restart module for change to take effect. ALSO NEEDS TO FIX SO IT'S THE BUTTON PRESSER AND NOT THE WEARER!
-		//if("visor_effect")
-		//	overlay_state_active = visor_effect ? "module_hypno_overlay" : null
+		if("visor_effect")
+			if(mod.skin != "lustwish")
+				return balloon_alert(mod.wearer, "visor effect unavailable for this plating!")
+			visor_effect = text2num(value)
+			overlay_state_active = visor_effect ? "module_hypno_overlay" : null
+			if(active)
+				balloon_alert(mod.wearer, "restart to finalize changes")
 
 
 /datum/storage/pockets/small/remote_module
