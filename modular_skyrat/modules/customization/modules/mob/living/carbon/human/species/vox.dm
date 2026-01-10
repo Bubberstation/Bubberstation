@@ -1,6 +1,7 @@
 /datum/species/vox
 	// Bird-like humanoids
 	name = "Vox Primalis"
+	plural_form = "Vox Primalis"
 	id = SPECIES_VOX
 	eyes_icon = 'modular_skyrat/modules/organs/icons/vox_eyes.dmi'
 	can_augment = FALSE
