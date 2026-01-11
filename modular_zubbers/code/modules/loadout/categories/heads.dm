@@ -181,3 +181,8 @@
 /datum/loadout_item/head/soft/frontier_colonist
 	name = "Frontier Cap"
 	item_path = /obj/item/clothing/head/soft/frontier_colonist
+
+/datum/loadout_item/head/skull
+	name = "Skull Helmet"
+	item_path = /obj/item/clothing/head/helmet/skull/fake
+
