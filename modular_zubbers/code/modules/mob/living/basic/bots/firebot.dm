@@ -12,7 +12,7 @@
 	if(!COOLDOWN_FINISHED(src, foam_cooldown))
 		return
 	var/datum/effect_system/fluid_spread/foam/firefighting_freon/foam = new
-	foam.set_up(7, holder = src, location = loc)
+	foam.set_up(5, holder = src, location = loc)
 	foam.start()
 
 	COOLDOWN_START(src, foam_cooldown, 8 SECONDS)
