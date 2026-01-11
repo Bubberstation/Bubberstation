@@ -81,8 +81,11 @@
 /datum/brain_trauma/voided/on_life(seconds_per_tick, times_fired)
 	. = ..()
 
+	//BUBBER EDIT START - makes nebula vomit not painful to deal with
 	if(prob(vomit_frequency))
-		owner.vomit(MOB_VOMIT_KNOCKDOWN, vomit_type = /obj/effect/decal/cleanable/vomit/nebula, distance = 0)
+		new /obj/effect/decal/cleanable/vomit/nebula(owner.loc)
+		owner.visible_message(span_notice("a beautifully sparkling liquid drips off of [owner] and forms a puddle"), span_notice("The beautifully sparkling liquid dripping off of you forms a puddle"))
+	//BUBBER EDIT END
 
 /// Apply the space texture
 /datum/brain_trauma/voided/proc/texture_limb(atom/source, obj/item/bodypart/limb)
