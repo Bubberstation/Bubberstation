@@ -70,6 +70,8 @@
 	. = ..()
 	if(!.)
 		return
+	if(world.time-SSticker.round_start_time >= (2 HOURS))
+		return FALSE
 	if(!roundstart && !SSgamemode.can_inject_antags())
 		return FALSE
 	if(!get_antag_amount())
