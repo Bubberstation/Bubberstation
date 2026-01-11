@@ -331,4 +331,5 @@
 						/obj/item/spanking_pad,
 						/obj/item/tickle_feather,
 						/obj/item/clothing/erp_leash,
+						/obj/item/clicker
 						)
