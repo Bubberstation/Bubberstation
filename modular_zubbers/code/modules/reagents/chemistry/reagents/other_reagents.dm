@@ -417,6 +417,86 @@
 	M.emote("weh")
 
 
+/datum/reagent/medicine/c2/penthrite/synthrite
+	name = "Synthrite"
+	description = "An expensive concoction of chemicals allowing machines to run in spite of degradation, fluid leakage and a fizzling battery. May cause arcing on overdose."
+	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+	process_flags = REAGENT_SYNTHETIC | REAGENT_ORGANIC
+	/// List of traits to add/remove from our subject when we are in their system
+
+/atom/movable/screen/alert/penthrite/synthrite
+	name = "Strong Current"
+	desc = "You feel arcs coarsing through your frame!"
+
+/datum/reagent/medicine/c2/penthrite/synthrite/on_mob_metabolize(mob/living/user)
+	. = ..()
+	send_alert(user)
+	user.add_traits(subject_traits, type)
+
+/datum/reagent/medicine/c2/penthrite/synthrite/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
+	. = ..()
+	if(affected_mob.mob_biotypes & MOB_ROBOTIC && affected_mob.health <= HEALTH_THRESHOLD_CRIT && affected_mob.health > (affected_mob.crit_threshold + HEALTH_THRESHOLD_FULLCRIT * (2 * normalise_creation_purity()))) //we cannot save someone below our lowered crit threshold.
+
+		var/heal_amount = 5 * REM * seconds_per_tick
+		affected_mob.heal_bodypart_damage(heal_amount, heal_amount, required_bodytype = BODYTYPE_ROBOTIC)
+
+		affected_mob.set_jitter_if_lower(rand(0 SECONDS, 4 SECONDS) * REM * seconds_per_tick)
+		affected_mob.set_dizzy_if_lower(rand(0 SECONDS, 4 SECONDS) * REM * seconds_per_tick)
+
+		if(SPT_PROB(18, seconds_per_tick))
+			to_chat(affected_mob,span_danger("Your parts are giving up, but your power keeps coarsing!"))
+
+	if(affected_mob.health <= (affected_mob.crit_threshold + HEALTH_THRESHOLD_FULLCRIT*(2*normalise_creation_purity()))) //certain death below this threshold
+		REMOVE_TRAIT(affected_mob, TRAIT_STABLEHEART, type) //we have to remove the stable heart trait before we give them a heart attack
+		affected_mob.remove_traits(subject_traits, type)
+		to_chat(affected_mob, span_danger("You feel something rupturing inside your chest!"))
+		if(!HAS_TRAIT(affected_mob, TRAIT_ANALGESIA))
+			affected_mob.emote("scream")
+		affected_mob.set_heartattack(TRUE)
+		volume = 0
+
+/datum/reagent/medicine/c2/penthrite/synthrite/on_mob_end_metabolize(mob/living/affected_mob)
+	. = ..()
+	remove_alert(affected_mob)
+	affected_mob.remove_traits(subject_traits, type)
+
+/datum/reagent/medicine/c2/penthrite/synthrite/overdose_process(mob/living/carbon/human/affected_mob, seconds_per_tick, times_fired)
+	. = ..()
+	REMOVE_TRAIT(affected_mob, TRAIT_STABLEHEART, type)
+	if(affected_mob.mob_biotypes & MOB_ROBOTIC)
+		to_chat(affected_mob, span_warning("You begin to lose control over your charge!"))
+	if(affected_mob.mob_biotypes & MOB_ORGANIC)
+		to_chat(affected_mob, span_warning("You feel electricity course throughout your fleshy body!"))
+	affected_mob.visible_message(span_danger("[affected_mob] begins to spark violently!"))
+	var/static/mutable_appearance/overcharge //shameless copycode from lightning spell
+	overcharge = overcharge || mutable_appearance('icons/effects/effects.dmi', "electricity", EFFECTS_LAYER)
+	affected_mob.add_overlay(overcharge)
+
+	if(do_after(affected_mob, 5 SECONDS, timed_action_flags = (IGNORE_USER_LOC_CHANGE|IGNORE_HELD_ITEM|IGNORE_INCAPACITATED)))
+		if(ishuman(affected_mob))
+			var/mob/living/carbon/human/human = affected_mob
+			if(human.dna?.species)
+				//fixed_mut_color is also ethereal color (for some reason)
+				affected_mob.flash_lighting_fx(5, 7, human.dna.species.fixed_mut_color ? human.dna.species.fixed_mut_color : human.dna.features[FEATURE_MUTANT_COLOR])
+
+		playsound(affected_mob, 'sound/effects/magic/lightningshock.ogg', 100, TRUE, extrarange = 5)
+		affected_mob.cut_overlay(overcharge)
+		// Only a small amount of the energy gets discharged as the zap. The rest dissipates as heat. Keeps the damage and energy from the zap the same regardless of what STANDARD_CELL_CHARGE is.
+		tesla_zap(source = affected_mob, zap_range = 2, power = 1000, cutoff = 1 KILO JOULES, zap_flags = ZAP_OBJ_DAMAGE | ZAP_LOW_POWER_GEN | ZAP_ALLOW_DUPLICATES)
+		affected_mob.visible_message(span_danger("[affected_mob] violently discharges energy!"), span_warning("You violently discharge energy!"))
+
+		affected_mob.Paralyze(100)
+
+/datum/reagent/medicine/c2/penthrite/synthrite/send_alert(mob/living/affected_mob)
+	affected_mob.throw_alert("synthrite", /atom/movable/screen/alert/penthrite/synthrite)
+
+/datum/reagent/medicine/c2/penthrite/synthrite/remove_alert(mob/living/affected_mob)
+	affected_mob.clear_alert("synthrite")
+
+/******NICHE******/
+//todo
+
+
 #undef MUT_MSG_IMMEDIATE
 #undef MUT_MSG_EXTENDED
 #undef MUT_MSG_ABOUT2TURN
