@@ -56,7 +56,7 @@
 
 /obj/item/mod/module/hypno_visor/on_install()
 	. = ..()
-	if(mod.skin != "lustwish")
+	if(mod.skin != "lustwish" && visor_effect == TRUE)
 		overlay_state_inactive = null // Visual thing. Removes the overlay if it's not a part of the lustwish suit.
 		overlay_state_active = null
 		visor_effect = FALSE
