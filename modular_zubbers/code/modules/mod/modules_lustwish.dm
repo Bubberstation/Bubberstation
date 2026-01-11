@@ -107,17 +107,16 @@
 /obj/item/mod/module/hypno_visor/toggleable/configure_edit(key, value)
 	switch(key)
 		if("hypno_message")
-			hypno_message = tgui_input_text(mod.wearer, "Change the hypnotic phrase.", default = hypno_message, max_length = MAX_MESSAGE_LEN)
+			hypno_message = tgui_input_text(usr, "Change the hypnotic phrase.", default = hypno_message, max_length = MAX_MESSAGE_LEN)
 			if(active)
-				balloon_alert(mod.wearer, "restart to finalize changes")
-			// ALSO NEEDS TO FIX SO IT'S THE BUTTON PRESSER AND NOT THE WEARER!
+				balloon_alert(usr, "restart to finalize changes")
 		if("visor_effect")
 			if(mod.skin != "lustwish")
-				return balloon_alert(mod.wearer, "visor effect unavailable for this plating!")
+				return balloon_alert(usr, "visor effect unavailable for this plating!")
 			visor_effect = text2num(value)
 			overlay_state_active = visor_effect ? "module_hypno_overlay" : null
 			if(active)
-				balloon_alert(mod.wearer, "restart to finalize changes")
+				balloon_alert(usr, "restart to finalize changes")
 
 
 /datum/storage/pockets/small/remote_module
