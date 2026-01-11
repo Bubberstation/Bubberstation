@@ -196,7 +196,7 @@
 //Engineering cyborg apparatus
 /obj/item/borg/apparatus/engineering
 	name = "Engineering manipulation gripper"
-	desc = "A simple grasping tool for interacting with various engineering related items, such as circuits, gas tanks, conveyer belts and more."
+	desc = "A simple grasping tool for interacting with various engineering related items, such as circuits, gas tanks, conveyor belts and more."
 	icon = 'modular_zubbers/icons/mob/silicon/robot_items.dmi'
 	icon_state = "gripper"
 	storable = list(
@@ -209,7 +209,8 @@
 					/obj/item/tank,
 					/obj/item/stock_parts,
 					/obj/item/assembly/control,
-					/obj/item/electronics/airlock
+					/obj/item/electronics,
+					/obj/item/circuitboard,
 					)
 
 //Mining cyborg apparatus
