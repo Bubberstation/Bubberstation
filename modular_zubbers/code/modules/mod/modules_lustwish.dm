@@ -77,7 +77,7 @@
 /obj/item/mod/module/hypno_visor/Destroy()
 	if(!mod)
 		return ..()
-	if(module_type = ((module_type == MODULE_PASSIVE && part_activated) || (module_type == MODULE_TOGGLE && active)) && mod.wearer)
+	if(module_type == ((module_type == MODULE_PASSIVE && part_activated) || (module_type == MODULE_TOGGLE && active)) && mod.wearer)
 		mod.wearer.cure_trauma_type(/datum/brain_trauma/very_special/induced_hypnosis, TRAUMA_RESILIENCE_MAGIC)
 	return ..()
 
