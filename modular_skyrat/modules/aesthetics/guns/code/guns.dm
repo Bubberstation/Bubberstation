@@ -39,6 +39,7 @@
 /obj/item/gun/ballistic/shotgun/automatic/combat/compact
 	name = "\improper Peacekeeper compact combat shotgun"
 	desc = "A tactical variant of the peacekeeper combat shotgun used by NT Raiding Parties and Space Marines. It has a gyroscopic stabilizer on it, letting you fire one handed."
+	inhand_icon_state = "shotgun_combat_compact"
 	weapon_weight = WEAPON_MEDIUM
 
 /obj/item/gun/grenadelauncher
