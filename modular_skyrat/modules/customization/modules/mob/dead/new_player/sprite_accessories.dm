@@ -106,6 +106,30 @@
 
 	return colors
 
+// Shared logic for head bobbins (Ears, Horns, Moth Antennae, and Synthetic Antennae)
+/datum/sprite_accessory/proc/is_deely_bobber_hidden(mob/living/carbon/human/wearer, hiding_flags, force_render_flags)
+	if(!wearer.head)
+		return FALSE
+
+	// Can hide if wearing hat
+	if(key in wearer.try_hide_mutant_parts)
+		return TRUE
+
+	// Exception for MODs
+	if(istype(wearer.head, /obj/item/clothing/head/mod))
+		return FALSE
+
+	// Hide accessory if flagged to do so
+	if((wearer.covered_slots & hiding_flags) \
+		// Force render bypass check
+		&& ( \
+			(wearer.head && (wearer.head.flags_inv & hiding_flags) && !(wearer.head.flags_inv & force_render_flags)) \
+			|| (wearer.wear_mask && (wearer.wear_mask.flags_inv & hiding_flags) && !(wearer.wear_mask?.flags_inv & force_render_flags)) \
+		))
+		return TRUE
+
+	return FALSE
+
 /datum/sprite_accessory/moth_markings
 	key = "moth_markings"
 	// organ_type = /obj/item/organ/moth_markings // UNCOMMENT THIS IF THEY EVER FIX IT UPSTREAM, CAN'T BE BOTHERED TO FIX IT MYSELF

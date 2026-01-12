@@ -136,7 +136,7 @@
 									tiling like a BABY born of BRILLIANCE. Then NEXT is the Mansus where so many FRIENDLY faces lie. To the Wanderer's Tavern, YES, you \
 									think with PRIDE. ALL THOSE THERE WILL BEHOLD AND BOW BEFORE YOUR GLORY! ALL THOSE THERE WILL JOIN THE ONE TRUE FAMILY!"
 			else //Dead
-				flavor_message += 	"WHAT has happened to your GLORIOUS new form? You ATE and ATE and ATE and you were WONDEROUS! The once-master scoffs at you now- \
+				flavor_message += 	"WHAT has happened to your GLORIOUS new form? You ATE and ATE and ATE and you were WONDROUS! The once-master scoffs at you now- \
 									HOW he JUDGES the WEAK flesh. You know better. You can UNDERSTAND and SEE MUCH more than HE. Bound to you are the SPIRITS of those \
 									you CONSUME. WHO IS HE TO THINK YOU PITIFUL? THOUGH THE LIGHT FADES, ALL IS PURE. PURITY OF BODY. PURITY OF MIND."
 		else if(cultiewin) //Completed objectives
@@ -438,3 +438,52 @@
 
 	flavor += "<font color=[message_color]>[flavor_message]</font></div>"
 	return "<div>[flavor.Join("<br>")]</div>" // END HERE
+
+/datum/antagonist/heretic
+	/// Whether an admin has approved this heretic to ascend (must be changed via VV or TP)
+	var/ascension_approved = FALSE
+
+// Overriding the text
+/datum/antagonist/heretic/can_ascend()
+	for(var/datum/objective/must_be_done as anything in objectives)
+		if(!must_be_done.check_completion())
+			return "Must complete all objectives and seek administrator approval before ascending."
+	if(!ascension_approved)
+		return "Must complete all objectives and seek administrator approval before ascending."
+	return ..()
+
+// Bubber Override To Make It Require Approval TO Ascend
+/datum/antagonist/heretic/get_researchable_knowledge()
+	. = ..()
+
+	// Apply approval checks to ultimate knowledge
+	for(var/knowledge_path in .)
+		var/list/knowledge_data = .[knowledge_path]
+
+		if(ispath(knowledge_path, /datum/heretic_knowledge/ultimate))
+			if(!ascension_approved)
+				knowledge_data["disabled"] = TRUE
+
+//Traitor panel stuff so no VV is needed
+/datum/antagonist/heretic/antag_panel_data()
+	var/list/data = ..()
+	data["ascension_approved"] = ascension_approved
+	return data
+
+/datum/antagonist/heretic/proc/toggle_ascension_approval()
+	ascension_approved = !ascension_approved
+	if(owner?.current)
+		to_chat(owner.current, span_boldnotice("Your ascension approval has been [ascension_approved ? "granted" : "revoked"] by an administrator."))
+		owner.current.balloon_alert(owner.current, "ascension [ascension_approved ? "approved" : "denied"]")
+
+/datum/antagonist/heretic/get_admin_commands()
+	. = ..()
+	.["Toggle Ascension Approval"] = CALLBACK(src, PROC_REF(admin_toggle_ascension))
+
+/datum/antagonist/heretic/proc/admin_toggle_ascension(mob/admin)
+	if(!admin.client?.holder)
+		to_chat(admin, span_warning("You shouldn't be using this!"))
+		return
+	toggle_ascension_approval()
+	log_admin("[key_name(admin)] [ascension_approved ? "approved" : "revoked"] ascension for [key_name(owner?.current)]")
+	message_admins("[key_name(admin)] [ascension_approved ? "approved" : "revoked"] ascension for [key_name(owner?.current)]")

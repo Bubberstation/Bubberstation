@@ -63,7 +63,7 @@
 		COOLDOWN_START(src, dash_cooldown, 6 SECONDS)
 		var/mob/living/dash_user = owner
 		if(istype(dash_user))
-			dash_user.adjustStaminaLoss(40) //Given the risk of flying into things and crashing quite violently, you get four of these. Every one slows you down anyway.
+			dash_user.adjust_stamina_loss(40) //Given the risk of flying into things and crashing quite violently, you get four of these. Every one slows you down anyway.
 	else
 		to_chat(owner, span_warning("Something prevents you from dashing forward!"))
 

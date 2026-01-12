@@ -132,6 +132,8 @@ SUBSYSTEM_DEF(gamemode)
 
 	//Security Based Antag Cap
 	var/sec_antag_cap = 0
+	/// A list of event controls to re-roll antagonists
+	var/list/antag_rerolls
 
 	/// Whether we looked up pop info in this process tick
 	var/pop_data_cached = FALSE
@@ -139,7 +141,6 @@ SUBSYSTEM_DEF(gamemode)
 	var/wizardmode = FALSE
 
 	var/storyteller_voted = FALSE
-	var/ready_only_vote = FALSE
 	var/datum/vote/storyteller/vote_datum
 
 /datum/controller/subsystem/gamemode/Initialize(time, zlevel)
@@ -180,8 +181,14 @@ SUBSYSTEM_DEF(gamemode)
 			if(!holiday_categorized)
 				uncategorized += event
 			continue
-		else
-			event_pools[event.track] += event //Add it to the categorized event pools
+
+		var/list/event_tags = event.tags
+		if(LAZYLEN(event_tags))
+			if(LAZYFIND(event_tags, TAG_ANTAG_REROLL))
+				LAZYADDASSOC(antag_rerolls, event.type, event.weight)
+				continue
+
+		event_pools[event.track] += event //Add it to the categorized event pools
 
 	return SS_INIT_SUCCESS
 
@@ -756,13 +763,6 @@ SUBSYSTEM_DEF(gamemode)
 		log_dynamic("Roundstart picked storyteller [storyteller_pick.name] randomly due to no vote result.")
 		voted_storyteller = storyteller_pick
 
-	if(ready_only_vote)
-		var/processed_storyteller = process_storyteller_vote()
-		if(!isnull(processed_storyteller))
-			voted_storyteller = processed_storyteller
-		else
-			stack_trace("Processing storyteller vote results failed! That's less than ideal. Using backup non-weighted result [voted_storyteller]")
-
 	set_storyteller(voted_storyteller)
 	if(vote_datum)
 		var/list/vote_results = vote_datum.elimination_results
@@ -780,46 +780,6 @@ SUBSYSTEM_DEF(gamemode)
 			new /datum/tgs_message_content("The storyteller selected for this round is [storyteller.name]!"),
 			channel_tag,
 		)
-
-/datum/controller/subsystem/gamemode/proc/process_storyteller_vote()
-	var/list/players = list()
-	if(!length(vote_datum?.choices_by_ckey))
-		return
-
-	for(var/mob/dead/new_player/player as anything in GLOB.new_player_list)
-		if(player.ready == PLAYER_READY_TO_PLAY)
-			players += player.ckey
-
-	log_dynamic("[players.len] players ready! Processing storyteller vote results.")
-
-	for(var/vote in vote_datum.choices_by_ckey)
-		if(!vote_datum.choices_by_ckey[vote])
-			continue
-		var/vote_string = "[vote]"
-		var/list/vote_components = splittext(vote_string, "_")
-		var/vote_ckey = vote_components[1]
-		var/vote_storyteller = vote_components[2]
-		if(players.Find(vote_ckey))
-			log_dynamic("VALID: [vote_ckey] voted for [vote_storyteller]")
-		else
-			log_dynamic("INVALID: [vote_ckey] not eligible to vote for [vote_storyteller]")
-			if(vote_datum.choices_by_ckey[vote] == 1) //only the player's 1st choice is mapped in the other table
-				vote_datum.choices[vote_storyteller]--
-			vote_datum.choices_by_ckey -= vote
-
-	var/list/vote_winner = vote_datum.get_vote_result()
-	log_dynamic("Storyteller vote winner is [vote_winner[1]]")
-	to_chat(GLOB.admins,
-		type = MESSAGE_TYPE_ADMINLOG,
-		html = span_vote_notice(fieldset_block("Storyteller", "Selected storyteller: [vote_winner[1]]", "boxed_message blue_box")),
-		confidential = TRUE,
-	)
-	for(var/storyteller_type in storytellers)
-		var/datum/storyteller/storyboy = storytellers[storyteller_type]
-		if(storyboy.name == vote_winner[1])
-			return storyteller_type
-
-	stack_trace("Storyteller [vote_winner[1]] was declared vote winner, but couldn't locate datum in storytellers! This should never happen!")
 
 /**
  * set_storyteller
@@ -894,5 +854,34 @@ SUBSYSTEM_DEF(gamemode)
 	for(var/datum/round_event_control/event as anything in track_events)
 		if(event.type == text2path(type))
 			return event
+
+/datum/controller/subsystem/gamemode/proc/inject_event(datum/round_event_control/event_control)
+	if(!istype(event_control, /datum/round_event_control))
+		return
+
+	var/datum/round_event_control/event = locate(event_control) in SSevents.control
+	if(!event)
+		return
+
+	event.run_event(admin_forced = TRUE)
+
+/datum/controller/subsystem/gamemode/proc/reroll_antagonist(datum/round_event_control/event_control, antag_name)
+	message_admins(span_yellowteamradio("[key_name_admin(usr)] requested a new antagonist to replace [antag_name]."))
+	log_admin("[key_name_admin(usr)] requested a new antagonist to replace [antag_name].")
+	if(isnull(event_control))
+		event_control = pick_weight(SSgamemode.antag_rerolls)
+	SSgamemode.inject_event(event_control = event_control)
+
+ADMIN_VERB(create_antagonist, R_FUN, "Create Antagonist", "Inject a little more action into the round.", ADMIN_CATEGORY_EVENTS)
+	var/list/available_antags = list()
+	for(var/datum/round_event_control/event_control as anything in SSgamemode.antag_rerolls)
+		var/datum/round_event_control/event = locate(event_control) in SSevents.control
+		LAZYADD(available_antags, event)
+
+	var/datum/round_event_control/selected_event = tgui_input_list(user, "Choose a crew antagonist type to spawn.", "Create Antagonist", available_antags)
+	if(isnull(selected_event))
+		return
+
+	SSgamemode.reroll_antagonist(event_control = selected_event, antag_name = "nobody")
 
 #undef INIT_ORDER_GAMEMODE
