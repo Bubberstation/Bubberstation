@@ -87,8 +87,6 @@
 					/obj/item/bodypart/chest/robot,
 					/obj/item/bodypart/head/robot,
 					/obj/item/borg/upgrade,
-					/obj/item/card/emag,
-					/obj/item/card/emagfake,
 					)
 
 /obj/item/borg/apparatus/illegal/examine()
