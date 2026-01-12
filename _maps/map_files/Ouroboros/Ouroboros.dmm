@@ -10868,10 +10868,6 @@
 /turf/open/floor/plating,
 /area/station/security/processing)
 "djQ" = (
-/obj/item/knife/combat{
-	name = "old knife";
-	desc = "An old, dusty combat knife. There appears to be some.. black substance on it."
-	},
 /obj/item/reagent_containers/syringe{
 	pixel_x = 10;
 	pixel_y = 14;
@@ -10885,6 +10881,7 @@
 	name = "writhing plushie";
 	desc = "How disgusting. It wirthes in an unearthly manner. Maybe you should put this down?"
 	},
+/obj/item/knife/plastic,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/greater)
 "djS" = (
@@ -12710,7 +12707,6 @@
 "dMh" = (
 /obj/effect/mapping_helpers/burnt_floor,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/restraints/legcuffs/beartrap/prearmed,
 /obj/effect/spawner/random/trash/garbage,
 /obj/effect/spawner/random/trash/grime,
 /obj/effect/spawner/random/trash/botanical_waste,
@@ -13713,7 +13709,6 @@
 /turf/open/floor/engine,
 /area/station/engineering/atmos/upper)
 "dZR" = (
-/obj/item/restraints/legcuffs/beartrap/prearmed,
 /obj/item/bot_assembly/medbot{
 	pixel_y = -6
 	},
@@ -28997,7 +28992,6 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/hallway/primary/port)
 "iuN" = (
-/obj/item/restraints/legcuffs/beartrap/prearmed,
 /obj/item/stack/sheet/iron/five,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
@@ -40817,7 +40811,7 @@
 "lLw" = (
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/access/all/science/genetics,
-/obj/machinery/door/airlock/medical{
+/obj/machinery/door/airlock/science{
 	name = "Genetics Lab"
 	},
 /turf/open/floor/iron/dark/smooth_large,
@@ -54400,7 +54394,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
-/obj/item/restraints/legcuffs/beartrap/prearmed,
 /obj/item/paper_bin,
 /obj/effect/spawner/random/engineering/vending_restock,
 /turf/open/floor/plating,
@@ -61753,7 +61746,6 @@
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Kitchen Freezer Maintenance"
 	},
-/obj/effect/mapping_helpers/airlock/access/any/supply/maintenance,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
@@ -69939,10 +69931,10 @@
 "uml" = (
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/access/all/science/genetics,
-/obj/machinery/door/airlock/medical{
+/obj/effect/landmark/navigate_destination,
+/obj/machinery/door/airlock/science{
 	name = "Genetics Lab"
 	},
-/obj/effect/landmark/navigate_destination,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/science/genetics)
 "umq" = (
