@@ -217,7 +217,6 @@
 					/obj/item/survivalcapsule/,
 					/obj/item/extraction_pack,
 					/obj/item/fulton_core,
-					/obj/item/card/id/advanced/mining,
 					)
 
 /obj/item/robot_model/miner/Initialize(mapload)

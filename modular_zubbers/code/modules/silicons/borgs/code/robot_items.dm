@@ -186,9 +186,3 @@
 		/obj/item/surgical_drapes/cyborg,
 		/obj/item/bonesetter/cyborg,
 	)
-
-//Research cyborg ID card
-
-/obj/item/card/id/advanced/cyborg_research
-	name = "Cyborg ID"
-	trim = /datum/id_trim/job/roboticist
