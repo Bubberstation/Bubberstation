@@ -187,12 +187,6 @@
 		),
 	)
 
-/obj/item/storage/belt/security/webbing/peacekeeper //did I mention this codebase is fucking awful
-	current_skin = "peacekeeper_webbing"
-
-/obj/item/storage/belt/security/webbing/peacekeeper/armadyne //You two only exist because I don't want to purge you, because it'd break some stuff. Thin fucking ice.
-	current_skin = "armadyne_webbing"
-
 ///Enables you to quickdraw weapons from security holsters
 /datum/storage/security/open_storage(datum/source, mob/user)
 	var/atom/resolve_parent = parent
