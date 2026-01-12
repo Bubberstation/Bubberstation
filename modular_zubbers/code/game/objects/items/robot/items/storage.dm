@@ -59,6 +59,7 @@
 					/obj/item/healthanalyzer, //To build medibots
 					/obj/item/electronics,
 					/obj/item/assembly,
+					/obj/item/assembly_holder,
 					)
 
 /obj/item/borg/apparatus/circuit_sci/examine()
@@ -87,6 +88,8 @@
 					/obj/item/bodypart/chest/robot,
 					/obj/item/bodypart/head/robot,
 					/obj/item/borg/upgrade,
+					/obj/item/assembly,
+					/obj/item/assembly_holder,
 					)
 
 /obj/item/borg/apparatus/illegal/examine()
