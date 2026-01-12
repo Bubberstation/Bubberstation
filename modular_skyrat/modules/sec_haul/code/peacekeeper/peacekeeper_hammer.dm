@@ -13,6 +13,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb_continuous = list("whacks","breaches","bulldozes","flings","thwachs")
 	attack_verb_simple = list("breach","hammer","whack","slap","thwach","fling")
+	obj_flags = parent_type::obj_flags & ~CONDUCTS_ELECTRICITY
 	/// Delay between door hits
 	var/breaching_delay = 2 SECONDS
 	/// The door we aim to breach
@@ -31,7 +32,7 @@
 /// Removes any form of tracking from the user and the item , make sure to call it on he proper item
 /obj/item/melee/breaching_hammer/proc/remove_track(mob/living/carbon/human/user)
 	breaching = FALSE
-	user.balloon_alert(owner, "You leave the airlock alone!")
+	user.balloon_alert(user, "You put your hammer down!")
 	breacher = null
 
 /obj/item/melee/breaching_hammer/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
