@@ -21,7 +21,7 @@
 	icon_state = "scangate_black"
 	circuit = /obj/item/circuitboard/machine/export_gate
 	/// Used to secure changing of payment mode
-	req_one_access = list(ACCESS_CARGO)
+	req_one_access = list(ACCESS_QM, ACCESS_ALL_PERSONAL_LOCKERS)
 	/// Cooldown on the scanner's beep
 	COOLDOWN_DECLARE(scanner_beep)
 	/// Cooldown on payout calculation
@@ -115,7 +115,7 @@
 	. += span_info("Registered crew accounts last cycle: <b>[LAZYLEN(payment_accounts)]</b>")
 	. += span_info("Total cubes registered: <b>[cubes_registered]</b>")
 	. += span_info("Total income: <b>[income_total] cr.</b>")
-	. += span_notice("The payment mode can be changed by swiping an authorized cargo department ID.")
+	. += span_notice("The payment mode can be changed by swiping an authorized command ID card.")
 
 /obj/machinery/export_gate/wrench_act(mob/living/user, obj/item/tool)
 	default_unfasten_wrench(user, tool)
