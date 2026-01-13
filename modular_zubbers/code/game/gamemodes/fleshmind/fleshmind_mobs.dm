@@ -1271,14 +1271,14 @@
 	base_icon_state = "mechiver"
 	icon_dead = "mechiver-dead"
 	ai_controller = /datum/ai_controller/basic_controller/fleshmind/mechiver
-	health = 450
-	maxHealth = 450
+	health = 475
+	maxHealth = 475
 	melee_damage_lower = 13
 	melee_damage_upper = 13
 	attack_verb_continuous = "crushes"
 	attack_verb_simple = "crush"
 	attack_sound = 'sound/items/weapons/smash.ogg'
-	speed = 3 // Slowish fucker
+	speed = 2.75 // Slowish fucker
 	mob_size = MOB_SIZE_LARGE
 	move_force = MOVE_FORCE_OVERPOWERING
 	move_resist = MOVE_FORCE_OVERPOWERING
