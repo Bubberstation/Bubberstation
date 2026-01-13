@@ -14,7 +14,7 @@
 		/obj/item/clothing/head/costume/griffin,
 	)
 	crate_name = "patriotic crate"
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND
 
 /datum/supply_pack/imports/lizardgoodscrate
 	name = "Lizard Goods Crate"
@@ -24,4 +24,4 @@
 		/obj/effect/spawner/random/lizard_crate = 8
 	)
 	crate_name = "lizard goods crate"
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND
