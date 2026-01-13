@@ -29,6 +29,7 @@
 		CRASH("Invalid outfit passed to equip_outfit_and_loadout ([outfit])")
 
 	var/list/item_details = preference_source.read_preference(/datum/preference/loadout)
+	item_details = item_details[preference_source.read_preference(/datum/preference/loadout_index)] // Bubber Edit Add - Custom Loadouts
 	var/list/loadout_datums = loadout_list_to_datums(item_details)
 	// Slap our things into the outfit given
 	for(var/datum/loadout_item/item as anything in loadout_datums)
