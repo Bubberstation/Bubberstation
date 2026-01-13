@@ -7,7 +7,7 @@
 	button_icon_state = "bubblegumfoot"
 	antimagic_flags = MAGIC_RESISTANCE_HOLY
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC
-	cooldown_time = 1 SECONDS
+	cooldown_time = 2.5 SECONDS
 
 	///The crayon used for the bloodwriting
 	var/obj/item/toy/crayon/revenant/blood_crayon
