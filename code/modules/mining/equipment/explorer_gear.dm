@@ -194,7 +194,6 @@
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF
-	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 6)
 
 /obj/item/clothing/suit/armor/bone/Initialize(mapload)
 	. = ..()
@@ -215,7 +214,6 @@
 	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
 	armor_type = /datum/armor/hooded_explorer
 	resistance_flags = FIRE_PROOF
-	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 4)
 
 /obj/item/clothing/head/helmet/skull/Initialize(mapload)
 	. = ..()

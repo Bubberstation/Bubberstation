@@ -115,7 +115,6 @@
 /obj/structure/table/reinforced,
 /obj/item/gun/ballistic/automatic/l6_saw/unrestricted,
 /obj/item/ammo_box/magazine/m7mm,
-/obj/structure/sign/departments/cargo/directional/north,
 /turf/open/floor/mineral/plastitanium,
 /area/virtual_domain/protected_space)
 "da" = (
@@ -123,8 +122,8 @@
 /turf/open/floor/plastic,
 /area/virtual_domain)
 "dd" = (
-/obj/structure/sign/warning/vacuum/external/directional/north,
-/turf/open/floor/mineral/plastitanium,
+/obj/structure/sign/warning/vacuum/external,
+/turf/closed/wall/r_wall/plastitanium/syndicate,
 /area/virtual_domain)
 "di" = (
 /obj/machinery/power/terminal{
@@ -223,6 +222,10 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/mineral/plastitanium/red,
 /area/virtual_domain)
+"iL" = (
+/obj/structure/sign/departments/cargo,
+/turf/closed/wall/r_wall/plastitanium/syndicate,
+/area/virtual_domain/protected_space)
 "iU" = (
 /obj/structure/closet/crate/secure/gear{
 	req_access = list("syndicate")
@@ -1000,10 +1003,6 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/mineral/plastitanium,
-/area/virtual_domain)
-"PQ" = (
-/obj/structure/sign/warning/vacuum/external/directional/south,
 /turf/open/floor/mineral/plastitanium,
 /area/virtual_domain)
 "PR" = (
@@ -2971,8 +2970,8 @@ qx
 ru
 uP
 uP
-ru
 dd
+uP
 uP
 uP
 Ox
@@ -2980,8 +2979,8 @@ aw
 uP
 uP
 uP
-PQ
-ru
+uP
+dd
 uP
 Qg
 ru
@@ -2992,7 +2991,7 @@ qx
 qx
 qx
 qx
-zN
+iL
 cZ
 dp
 dp

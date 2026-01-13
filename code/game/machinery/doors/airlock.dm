@@ -22,12 +22,21 @@
 /// Someone, for the love of god, profile this.  Is there a reason to cache mutable_appearance
 /// if so, why are we JUST doing the airlocks when we can put this in mutable_appearance.dm for
 /// everything
-/proc/get_airlock_overlay(icon_state, icon_file, atom/offset_spokesman, em_block)
+/proc/get_airlock_overlay(icon_state, icon_file, atom/offset_spokesman, em_block, state_color = null) // SKYRAT EDIT - Airlock accent greyscale color support - Added `state_color = null`
 	var/static/list/airlock_overlays = list()
 
-	var/base_icon_key = "[icon_state][REF(icon_file)]"
+	var/base_icon_key = "[icon_state][REF(icon_file)][state_color]" // SKYRAT EDIT - Airlock accent greyscale color support - ORIGINAL: var/base_icon_key = "[icon_state][REF(icon_file)]"
 	if(!(. = airlock_overlays[base_icon_key]))
+		/* SKYRAT EDIT - Airlock accent greyscale color support - ORIGINAL:
 		. = airlock_overlays[base_icon_key] = mutable_appearance(icon_file, icon_state)
+		*/ // SKYRAT EDIT START
+		var/mutable_appearance/airlock_overlay = mutable_appearance(icon_file, icon_state)
+		if(state_color)
+			airlock_overlay.color = state_color
+
+		. = airlock_overlays[base_icon_key] = airlock_overlay
+		// SKYRAT EDIT END
+
 	if(isnull(em_block))
 		return
 
@@ -45,6 +54,12 @@
 // "Would this be better with a global var"
 
 // Wires for the airlock are located in the datum folder, inside the wires datum folder.
+// SKYRAT EDIT REMOVAL START - moved to code/__DEFINES/~skyrat_defines/airlock.dm
+/*
+#define AIRLOCK_FRAME_CLOSED "closed"
+#define AIRLOCK_FRAME_CLOSING "closing"
+#define AIRLOCK_FRAME_OPEN "open"
+#define AIRLOCK_FRAME_OPENING "opening"
 
 #define AIRLOCK_FRAME_CLOSED "closed"
 #define AIRLOCK_FRAME_CLOSING "closing"
@@ -71,6 +86,8 @@
 #define DOOR_CLOSE_WAIT 60 /// Time before a door closes, if not overridden
 
 #define DOOR_VISION_DISTANCE 11 ///The maximum distance a door will see out to
+*/
+// SKYRAT EDIT REMOVAL END - moved to code/__DEFINES/~skyrat_defines/airlock.dm
 
 /obj/machinery/door/airlock
 	name = "Airlock"
@@ -135,9 +152,9 @@
 	var/previous_airlock = /obj/structure/door_assembly
 	/// Material of inner filling; if its an airlock with glass, this should be set to "glass"
 	var/airlock_material
-	var/overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi'
+	var/overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi' //OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
 	/// Used for papers and photos pinned to the airlock
-	var/note_overlay_file = 'icons/obj/doors/airlocks/station/overlays.dmi'
+	var/note_overlay_file = 'icons/obj/doors/airlocks/station/overlays.dmi'//OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
 
 	/// Airlock pump that overrides airlock controlls when set up for cycling
 	var/obj/machinery/atmospherics/components/unary/airlock_pump/cycle_pump
@@ -568,6 +585,7 @@
 	else
 		icon_state = "[base_icon_state]closed"
 
+/* SKYRAT EDIT MOVED TO AIRLOCK.DM IN AESTHETICS MODULE
 /obj/machinery/door/airlock/update_overlays()
 	. = ..()
 
@@ -650,6 +668,7 @@
 					floorlight.pixel_w = -32
 					floorlight.pixel_z = 0
 			. += floorlight
+*/
 
 /obj/machinery/door/airlock/run_animation(animation, force_type = DEFAULT_DOOR_CHECKS)
 	if(animation == DOOR_DENY_ANIMATION)
@@ -661,7 +680,7 @@
 
 /obj/machinery/door/airlock/animation_effects(animation, force_type = DEFAULT_DOOR_CHECKS)
 	if(force_type == BYPASS_DOOR_CHECKS)
-		playsound(src, soundin = 'sound/machines/airlock/airlockforced.ogg', vol = 30, vary = TRUE)
+		playsound(src, soundin = forcedOpen, vol = 30, vary = TRUE) // BUBBER EDIT - AESTHETICS - ORIGINAL: playsound(src, soundin = 'sound/machines/airlock/airlockforced.ogg', vol = 30, vary = TRUE)
 		return
 
 	switch(animation)
@@ -905,7 +924,8 @@
 			if(!istype(H.head, /obj/item/clothing/head/helmet))
 				H.visible_message(span_danger("[user] headbutts the airlock."), \
 									span_userdanger("You headbutt the airlock!"))
-				H.Paralyze(100)
+				//H.Paralyze(100) - SKYRAT EDIT REMOVAL - COMBAT
+				H.StaminaKnockdown(10, TRUE, TRUE)
 				H.apply_damage(10, BRUTE, BODY_ZONE_HEAD)
 			else
 				visible_message(span_danger("[user] headbutts the airlock. Good thing [user.p_theyre()] wearing a helmet."))
@@ -1685,7 +1705,7 @@
 	return FALSE
 
 /obj/machinery/door/airlock/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, list/rcd_data)
-	switch(rcd_data[RCD_DESIGN_MODE])
+	switch(rcd_data["[RCD_DESIGN_MODE]"])
 		if(RCD_DECONSTRUCT)
 			qdel(src)
 			return TRUE
@@ -2441,7 +2461,6 @@
 	aiControlDisabled = AI_WIRE_DISABLED
 	req_access = list(ACCESS_BLOODCULT)
 	damage_deflection = 10
-	custom_materials = list(/datum/material/runedmetal = SHEET_MATERIAL_AMOUNT)
 	var/openingoverlaytype = /obj/effect/temp_visual/cult/door
 	var/friendly = FALSE
 	var/stealthy = FALSE
@@ -2618,6 +2637,8 @@
 	opacity = FALSE
 	glass = TRUE
 
+// SKYRAT EDIT REMOVAL START - moved to code/__DEFINES/~skyrat_defines/airlock.dm
+/*
 #undef AIRLOCK_SECURITY_NONE
 #undef AIRLOCK_SECURITY_IRON
 #undef AIRLOCK_SECURITY_PLASTEEL_I_S
@@ -2642,3 +2663,5 @@
 #undef AIRLOCK_FRAME_CLOSING
 #undef AIRLOCK_FRAME_OPEN
 #undef AIRLOCK_FRAME_OPENING
+*/
+// SKYRAT EDIT REMOVAL END - moved to code/__DEFINES/~skyrat_defines/airlock.dm

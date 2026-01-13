@@ -18,7 +18,6 @@
 	integrity_failure = 0.4
 	pressure_resistance = 7 * ONE_ATMOSPHERE
 	req_access = list()
-	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
 
 	///Is the valve open?
 	var/valve_open = FALSE

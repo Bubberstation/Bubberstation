@@ -13,7 +13,9 @@
 
 /obj/machinery/computer/crew/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
-	AddComponent(/datum/component/usb_port, typecacheof(list(/obj/item/circuit_component/medical_console_data), only_root_path = TRUE))
+	AddComponent(/datum/component/usb_port, list(
+		/obj/item/circuit_component/medical_console_data,
+	))
 
 /obj/item/circuit_component/medical_console_data
 	display_name = "Crew Monitoring Data"

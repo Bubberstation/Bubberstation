@@ -67,20 +67,24 @@
 	item_reactions = list()
 	valid_items = list()
 
-	for(var/obj/item/item_path as anything in valid_subtypesof(/obj/item))
-		if(ispath(item_path, /obj/item/relic))
-			item_reactions["[item_path]"] = SCANTYPE_DISCOVER
+	for(var/I in typesof(/obj/item))
+		if(ispath(I, /obj/item/relic))
+			item_reactions["[I]"] = SCANTYPE_DISCOVER
 		else
-			item_reactions["[item_path]"] = pick(SCANTYPE_POKE,SCANTYPE_IRRADIATE,SCANTYPE_GAS,SCANTYPE_HEAT,SCANTYPE_COLD,SCANTYPE_OBLITERATE)
+			item_reactions["[I]"] = pick(SCANTYPE_POKE,SCANTYPE_IRRADIATE,SCANTYPE_GAS,SCANTYPE_HEAT,SCANTYPE_COLD,SCANTYPE_OBLITERATE)
 
-		if(is_type_in_typecache(item_path, banned_typecache))
+		if(is_type_in_typecache(I, banned_typecache))
 			continue
 
-		if(ispath(item_path, /obj/item/stock_parts) || ispath(item_path, /obj/item/grenade/chem_grenade) || ispath(item_path, /obj/item/knife))
-			valid_items["[item_path]"] += 15
+		if(ispath(I, /obj/item/stock_parts) || ispath(I, /obj/item/grenade/chem_grenade) || ispath(I, /obj/item/knife))
+			var/obj/item/tempCheck = I
+			if(initial(tempCheck.icon_state) != null) //check it's an actual usable item, in a hacky way
+				valid_items["[I]"] += 15
 
-		if(ispath(item_path, /obj/item/food))
-			valid_items["[item_path]"] += rand(1,4)
+		if(ispath(I, /obj/item/food))
+			var/obj/item/tempCheck = I
+			if(initial(tempCheck.icon_state) != null) //check it's an actual usable item, in a hacky way
+				valid_items["[I]"] += rand(1,4)
 
 /obj/machinery/rnd/experimentor/Initialize(mapload)
 	. = ..()
@@ -686,8 +690,7 @@
 	)
 	for(var/counter in 1 to rand(1, 25))
 		var/animal_spawn = pick(valid_animals)
-		var/mob/living/animal = new animal_spawn(get_turf(src))
-		ADD_TRAIT(animal, TRAIT_SPAWNED_MOB, INNATE_TRAIT)
+		new animal_spawn(get_turf(src))
 	warn_admins(user, "Mass Mob Spawn")
 	if(prob(60))
 		to_chat(user, span_warning("[src] falls apart!"))

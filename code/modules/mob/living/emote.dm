@@ -698,7 +698,6 @@
 /datum/emote/living/custom
 	key = "me"
 	key_third_person = "custom"
-	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	message = null
 
 /datum/emote/living/custom/can_run_emote(mob/user, status_check, intentional, params)
@@ -783,15 +782,23 @@
 	if(!emote_is_valid(user, our_message))
 		return FALSE
 
+	if(type_override)
+		emote_type = type_override
+
 	if(!params)
 		var/user_emote_type = get_custom_emote_type_from_user()
 
 		if(!user_emote_type)
 			return FALSE
 
-		type_override = user_emote_type
+		emote_type = user_emote_type
 
-	. = ..(user = user, params = our_message, type_override = type_override, intentional = intentional)
+	message = our_message
+	. = ..()
+
+	///Reset the message and emote type after it's run.
+	message = null
+	emote_type = EMOTE_VISIBLE
 
 /datum/emote/living/custom/replace_pronoun(mob/user, message)
 	return message

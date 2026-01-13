@@ -229,7 +229,6 @@
 	inhand_icon_state = "gold_horn"
 	worn_icon_state = "horn_gold"
 	COOLDOWN_DECLARE(golden_horn_cooldown)
-	custom_materials = list(/datum/material/bananium = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/item/bikehorn/golden/attack()
 	flip_mobs()

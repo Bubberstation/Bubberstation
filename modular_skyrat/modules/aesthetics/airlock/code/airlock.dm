@@ -26,7 +26,7 @@
 	..()
 	update_icon()
 
-/* /obj/machinery/door/airlock/update_overlays()
+/obj/machinery/door/airlock/update_overlays()
 	. = ..()
 	var/frame_state
 	var/light_state = AIRLOCK_LIGHT_POWERON
@@ -150,7 +150,7 @@
 					floorlight.pixel_x = -32
 					floorlight.pixel_y = 0
 			. += floorlight
- */
+
 //STATION AIRLOCKS
 /obj/machinery/door/airlock
 	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/station/public.dmi'

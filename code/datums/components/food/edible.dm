@@ -39,11 +39,11 @@ Behavior that's still missing from this component that original food items had t
 	///Last time we checked for food likes
 	var/last_check_time
 	///Assoc list of sources and their foodtypes
-	var/list/foodtypes_by_source
+	var/list/foodtypes_by_source = list()
 	///Assoc list of sources and their food flags
-	var/list/food_flags_by_source
+	var/list/food_flags_by_source = list()
 	///Assoc list of sources and their junkiness
-	var/list/junkiness_by_source
+	var/list/junkiness_by_source = list()
 
 /datum/component/edible/Initialize(
 	list/initial_reagents,
@@ -93,6 +93,10 @@ Behavior that's still missing from this component that original food items had t
 		RegisterSignal(parent, COMSIG_ITEM_ATTACK, PROC_REF(UseFromHand))
 		RegisterSignal(parent, COMSIG_ITEM_USED_AS_INGREDIENT, PROC_REF(used_to_customize))
 
+		var/obj/item/item = parent
+		if(!item.grind_results)
+			item.grind_results = list() //If this doesn't already exist, add it as an empty list. This is needed for the grinder to accept it.
+
 	else if(isturf(parent) || isstructure(parent))
 		RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(TryToEatIt))
 
@@ -141,16 +145,16 @@ Behavior that's still missing from this component that original food items had t
 
 	var/recalculate = FALSE
 	if(!isnull(foodtypes))
-		if(LAZYACCESS(foodtypes_by_source, source)) //foodtypes being overriden
+		if(foodtypes_by_source[source]) //foodtypes being overriden
 			recalculate = TRUE
-		LAZYSET(foodtypes_by_source, source, foodtypes)
+		foodtypes_by_source[source] = foodtypes
 	if(!isnull(food_flags))
-		if(LAZYACCESS(food_flags_by_source, source)) //food_flags being overridden
+		if(food_flags_by_source[source]) //food_flags being overriden
 			recalculate = TRUE
-		LAZYSET(food_flags_by_source, source, food_flags)
+		food_flags_by_source[source] = food_flags
 	if(!isnull(junkiness))
-		src.junkiness += junkiness - LAZYACCESS(junkiness_by_source, source)
-		LAZYSET(junkiness_by_source, source, junkiness)
+		src.junkiness += junkiness - junkiness_by_source[source]
+		junkiness_by_source[source] = junkiness
 
 	if(recalculate)
 		recalculate_food_flags()
@@ -190,10 +194,10 @@ Behavior that's still missing from this component that original food items had t
 
 /datum/component/edible/on_source_remove(source)
 	//rebuild the foodtypes and food_flags bitfields without the removed source
-	LAZYREMOVE(foodtypes_by_source, source)
-	LAZYREMOVE(food_flags_by_source, source)
-	junkiness -= LAZYACCESS(junkiness_by_source, source)
-	LAZYREMOVE(junkiness_by_source, source)
+	foodtypes_by_source -= source
+	food_flags_by_source -= source
+	junkiness -= junkiness_by_source[source]
+	junkiness_by_source -= source
 	recalculate_food_flags()
 	return ..()
 
@@ -201,8 +205,8 @@ Behavior that's still missing from this component that original food items had t
 	foodtypes = NONE
 	food_flags = NONE
 	for(var/source_key in foodtypes_by_source)
-		foodtypes |= LAZYACCESS(foodtypes_by_source, source_key)
-		food_flags |= LAZYACCESS(food_flags_by_source, source_key)
+		foodtypes |= foodtypes_by_source[source_key]
+		food_flags |= food_flags_by_source[source_key]
 	if(foodtypes & GORE)
 		ADD_TRAIT(parent, TRAIT_VALID_DNA_INFUSION, REF(src))
 	else

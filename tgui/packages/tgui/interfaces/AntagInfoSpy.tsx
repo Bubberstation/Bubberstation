@@ -56,9 +56,7 @@ export const AntagInfoSpy = () => {
             </Stack.Item>
             <Stack.Item>
               Work together or work against them: The choice is yours, but{' '}
-              <span style={redText}>
-                the same bounty cannot be claimed twice.
-              </span>
+              <span style={redText}>you cannot share the rewards.</span>
             </Stack.Item>
             <Stack.Divider />
             <Stack.Item>

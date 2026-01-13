@@ -1179,6 +1179,6 @@
 /datum/outfit/heretic
 	name = "Heretic (Preview only)"
 
-	suit = /obj/item/clothing/suit/hooded/cultrobes/eldritch/rust
-	head = /obj/item/clothing/head/hooded/cult_hoodie/eldritch/rust
+	suit = /obj/item/clothing/suit/hooded/cultrobes/eldritch
+	head = /obj/item/clothing/head/hooded/cult_hoodie/eldritch
 	r_hand = /obj/item/melee/touch_attack/mansus_fist

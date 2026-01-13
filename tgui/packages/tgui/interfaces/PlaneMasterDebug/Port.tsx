@@ -14,8 +14,7 @@ export type PortProps = {
 export function Port(props: PortProps) {
   const { connection, source, target_ref } = props;
   const { act } = useBackend();
-  const { setConnectionHighlight, zoomToX, setZoomToX, zoomToY, setZoomToY } =
-    usePlaneDebugContext();
+  const { setConnectionHighlight } = usePlaneDebugContext();
   const sourcePlane: Plane = (
     source ? connection.source : connection.target
   ) as Plane;
@@ -66,16 +65,8 @@ export function Port(props: PortProps) {
             target: connectedPlane.plane,
           });
         }}
-        onMouseLeave={() => setConnectionHighlight(undefined)}
-        onDoubleClick={() => {
-          setZoomToX(
-            connectedPlane.position.x +
-              (zoomToX === connectedPlane.position.x ? 0.1 : 0),
-          );
-          setZoomToY(
-            connectedPlane.position.y +
-              (zoomToY === connectedPlane.position.y ? 0.1 : 0),
-          );
+        onMouseLeave={() => {
+          setConnectionHighlight(undefined);
         }}
       >
         <svg

@@ -1,7 +1,7 @@
 /// Exploration drone unlockables ///
 
 /datum/supply_pack/exploration
-	order_flags = ORDER_SPECIAL
+	special = TRUE
 	group = "Outsourced"
 
 /datum/supply_pack/exploration/scrapyard

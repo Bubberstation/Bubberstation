@@ -317,12 +317,8 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	icon_state = "heel-jackboots"
-
-/obj/item/clothing/shoes/jackboots/heel/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	uses_advanced_reskins = FALSE
+	unique_reskin = NONE
 
 // Diesel Boots | Sprites by Fluff from Bad Deathclaw
 /obj/item/clothing/shoes/jackboots/diesel_m

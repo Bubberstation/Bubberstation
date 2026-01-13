@@ -45,7 +45,6 @@
 	dir = 4
 	},
 /obj/machinery/light/small/directional/north,
-/obj/structure/sign/nanotrasen/directional/north,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/shuttle/escape)
 "cZ" = (
@@ -147,14 +146,6 @@
 /obj/effect/turf_decal/tile/dark_red/opposingcorners,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
-"hP" = (
-/obj/item/kirbyplants/random,
-/obj/effect/turf_decal/tile/dark/half/contrasted{
-	dir = 4
-	},
-/obj/structure/sign/warning/directional/east,
-/turf/open/floor/wood/tile,
-/area/shuttle/escape)
 "iA" = (
 /obj/structure/chair/pew/right{
 	dir = 1
@@ -236,6 +227,10 @@
 	dir = 8
 	},
 /turf/open/floor/wood/tile,
+/area/shuttle/escape)
+"oA" = (
+/obj/structure/sign/nanotrasen,
+/turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/escape)
 "oB" = (
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
@@ -785,7 +780,6 @@
 	dir = 8
 	},
 /obj/machinery/light/small/directional/north,
-/obj/structure/sign/nanotrasen/directional/north,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/shuttle/escape)
 "Tn" = (
@@ -875,11 +869,8 @@
 /turf/open/floor/mineral/titanium/tiled/blue,
 /area/shuttle/escape)
 "WX" = (
-/obj/effect/turf_decal/tile/dark/half/contrasted{
-	dir = 4
-	},
-/obj/structure/sign/warning/directional/east,
-/turf/open/floor/wood/tile,
+/obj/structure/sign/warning,
+/turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/escape)
 "Xx" = (
 /obj/structure/chair/comfy/shuttle{
@@ -1056,7 +1047,7 @@ Kg
 "}
 (5,1,1) = {"
 Me
-jL
+oA
 SS
 qA
 aa
@@ -1154,9 +1145,9 @@ Ih
 Ih
 Ou
 pQ
-hP
+BA
 bB
-WX
+bB
 bB
 BA
 bB
@@ -1172,7 +1163,7 @@ Kg
 "}
 (9,1,1) = {"
 Me
-jL
+oA
 cf
 qA
 aa
@@ -1183,9 +1174,9 @@ qO
 AV
 EC
 jL
-jL
+WX
 QN
-jL
+WX
 jL
 aa
 XZ

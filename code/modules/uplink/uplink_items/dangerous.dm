@@ -15,10 +15,7 @@
 	item = /obj/item/storage/toolbox/guncase/traitor/donksoft
 	cost = 6
 	surplus = 10
-	purchasable_from = ~(UPLINK_SERIOUS_OPS | UPLINK_SPY)
-	relevant_child_items = list(
-		/datum/uplink_item/ammo/toydarts,
-	)
+	purchasable_from = ~UPLINK_SERIOUS_OPS
 
 /datum/uplink_item/dangerous/pistol
 	name = "Makarov Pistol Case"
@@ -27,13 +24,7 @@
 		While not included in the kit, the pistol is compatible with suppressors, which can be purchased separately."
 	item = /obj/item/storage/toolbox/guncase/traitor
 	cost = 7
-	purchasable_from = ~(UPLINK_ALL_SYNDIE_OPS | UPLINK_SPY)
-	relevant_child_items = list(
-		/datum/uplink_item/ammo/pistol,
-		/datum/uplink_item/ammo/pistolap,
-		/datum/uplink_item/ammo/pistolhp,
-		/datum/uplink_item/ammo/pistolfire,
-	)
+	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS
 
 /datum/uplink_item/dangerous/throwingweapons
 	name = "Box of Throwing Weapons"
@@ -105,9 +96,3 @@
 	cost = 13
 	surplus = 50
 	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS //only traitors get the original revolver
-	relevant_child_items = list(
-		/datum/uplink_item/ammo/revolver,
-		/datum/uplink_item/ammo_nuclear/basic/revolver,
-		/datum/uplink_item/ammo_nuclear/special/revolver/phasic,
-		/datum/uplink_item/ammo_nuclear/special/revolver/heartseeker,
-	)

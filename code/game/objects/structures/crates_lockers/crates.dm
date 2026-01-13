@@ -184,7 +184,6 @@
 	paint_jobs = null
 	elevation_open = 0
 	can_weld_shut = FALSE
-	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/structure/closet/crate/trashcart //please make this a generic cart path later after things calm down a little
 	desc = "A heavy, metal trashcart with wheels."

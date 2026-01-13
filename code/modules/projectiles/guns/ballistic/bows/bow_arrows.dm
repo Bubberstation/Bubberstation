@@ -11,7 +11,6 @@
 	throwforce = 1
 	firing_effect_type = null
 	caliber = CALIBER_ARROW
-	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT, /datum/material/iron = SHEET_MATERIAL_AMOUNT)
 	///Whether the bullet type spawns another casing of the same type or not.
 	var/reusable = TRUE
 
@@ -132,7 +131,6 @@
 	base_icon_state = "plastic_arrow"
 	projectile_type = /obj/projectile/bullet/arrow/plastic
 	reusable = FALSE //cheap shit
-	custom_materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT)
 
 /// plastic arrow projectile
 /obj/projectile/bullet/arrow/plastic
@@ -181,7 +179,6 @@
 	inhand_icon_state = "ashen_arrow"
 	base_icon_state = "ashen_arrow"
 	projectile_type = /obj/projectile/bullet/arrow/ashen
-	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
 
 /// ashen arrow projectile
 /obj/projectile/bullet/arrow/ashen

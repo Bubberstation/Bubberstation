@@ -53,3 +53,6 @@
 /datum/ai_movement/jps/bot/travel_to_beacon
 	maximum_length = AI_BOT_PATH_LENGTH
 	max_pathing_attempts = 10
+
+/datum/ai_movement/jps/modsuit
+	maximum_length = MOD_AI_RANGE

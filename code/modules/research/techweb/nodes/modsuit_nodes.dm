@@ -1,7 +1,7 @@
 /datum/techweb_node/mod_suit
 	id = TECHWEB_NODE_MOD_SUIT
 	starting_node = TRUE
-	display_name = "Modular Suits"
+	display_name = "Modular Suit"
 	description = "Specialized back mounted power suits with various different modules."
 	prereq_ids = list(TECHWEB_NODE_ROBOTICS)
 	design_ids = list(
@@ -26,33 +26,22 @@
 	prereq_ids = list(TECHWEB_NODE_MOD_SUIT)
 	design_ids = list(
 		"modlink_scryer",
+		"mod_clamp",
 		"mod_tether",
 		"mod_welding",
+		"mod_safety",
+		"mod_mouthhole",
 		"mod_longfall",
 		"mod_thermal_regulator",
 		"mod_sign_radio",
+		"mod_mister_janitor",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SCIENCE)
 
-/datum/techweb_node/mod_service
-	id = TECHWEB_NODE_MOD_SERVICE
-	display_name = "Civilian Modular Suits"
-	description = "Civilian MODsuits for dignified living."
-	prereq_ids = list(TECHWEB_NODE_MOD_SUIT)
-	design_ids = list(
-		"mod_clamp",
-		"mod_safety",
-		"mod_mouthhole",
-		"mod_mister_janitor",
-		"mod_plating_portable_suit"
-	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS / 2)
-	announce_channels = list(RADIO_CHANNEL_SCIENCE, RADIO_CHANNEL_SERVICE)
-
 /datum/techweb_node/mod_entertainment
 	id = TECHWEB_NODE_MOD_ENTERTAINMENT
-	display_name = "Entertainment Modular Suits"
+	display_name = "Entertainment Modular Suit"
 	description = "Powered suits for protection against low-humor environments."
 	prereq_ids = list(TECHWEB_NODE_MOD_SUIT)
 	design_ids = list(
@@ -66,7 +55,7 @@
 
 /datum/techweb_node/mod_medical
 	id = TECHWEB_NODE_MOD_MEDICAL
-	display_name = "Medical Modular Suits"
+	display_name = "Medical Modular Suit"
 	description = "Medical MODsuits for quick rescue purposes."
 	prereq_ids = list(TECHWEB_NODE_MOD_SUIT, TECHWEB_NODE_CHEM_SYNTHESIS)
 	design_ids = list(
@@ -128,7 +117,7 @@
 
 /datum/techweb_node/mod_engi_adv
 	id = TECHWEB_NODE_MOD_ENGI_ADV
-	display_name = "Advanced Engineering Modular Suits"
+	display_name = "Advanced Engineering Modular Suit"
 	description = "Advanced Engineering suits, for advanced powered engineers."
 	prereq_ids = list(TECHWEB_NODE_MOD_ENGI)
 	design_ids = list(
@@ -148,7 +137,7 @@
 
 /datum/techweb_node/mod_anomaly
 	id = TECHWEB_NODE_MOD_ANOMALY
-	display_name = "Anomalock Modular Suits"
+	display_name = "Anomalock Modular Suit"
 	description = "Modules for MODsuits that require anomaly cores to function."
 	prereq_ids = list(TECHWEB_NODE_MOD_ENGI_ADV, TECHWEB_NODE_ANOMALY_RESEARCH)
 	design_ids = list(

@@ -17,7 +17,3 @@
 
 /obj/item/sensor_device/attack_self(mob/user)
 	GLOB.crewmonitor.show(user,src) //Proc already exists, just had to call it
-
-/obj/item/sensor_device/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/drag_to_activate)

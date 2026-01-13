@@ -35,7 +35,6 @@
 	icon_state = "shell_unfinished"
 	desc = "The incomplete body of a golem. Add ten sheets of certain minerals to finish."
 	w_class = WEIGHT_CLASS_BULKY
-	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 20)
 	/// Amount of minerals you need to feed the shell to wake it up
 	var/required_stacks = 10
 	/// Type of shell to create
@@ -66,4 +65,3 @@
 /obj/item/golem_shell/servant
 	name = "incomplete servant golem shell"
 	shell_type = /obj/effect/mob_spawn/ghost_role/human/golem/servant
-	custom_materials = list(/datum/material/adamantine = SHEET_MATERIAL_AMOUNT * 3)

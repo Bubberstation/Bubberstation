@@ -24,7 +24,9 @@
 	id = "[rand(1000, 9999)]"
 	link_power_station()
 
-	AddComponent(/datum/component/usb_port, typecacheof(list(/obj/item/circuit_component/teleporter_control_console), only_root_path = TRUE))
+	AddComponent(/datum/component/usb_port, list(
+		/obj/item/circuit_component/teleporter_control_console,
+	))
 
 /obj/machinery/computer/teleporter/Destroy()
 	if (power_station)

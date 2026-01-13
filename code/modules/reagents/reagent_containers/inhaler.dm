@@ -74,7 +74,7 @@
 	var/mob/living/target_mob = interacting_with
 
 	if (!can_puff(target_mob, user))
-		return ITEM_INTERACT_BLOCKING
+		return NONE
 
 	var/puff_timer = 0
 
@@ -110,10 +110,10 @@
 		to_chat(user, pre_use_self_message)
 		if (pre_use_target_message)
 			to_chat(target_mob, pre_use_target_message)
-		if (!do_after(user, puff_timer, target_mob))
-			return ITEM_INTERACT_BLOCKING
+		if (!do_after(user, puff_timer, src))
+			return NONE
 		if (!can_puff(target_mob, user)) // sanity
-			return ITEM_INTERACT_BLOCKING
+			return NONE
 
 	user.visible_message(post_use_visible_message, ignored_mobs = list(user, target_mob))
 	to_chat(user, post_use_self_message)
@@ -121,7 +121,6 @@
 		to_chat(target_mob, post_use_target_message)
 
 	canister.puff(user, target_mob)
-	return ITEM_INTERACT_SUCCESS
 
 /obj/item/inhaler/attack_self(mob/user, modifiers)
 	try_remove_canister(user, modifiers)

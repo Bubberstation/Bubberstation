@@ -11,6 +11,7 @@ type TitleBarProps = Partial<{
   className: string;
   title: string;
   status: number;
+  fancy: BooleanLike;
   canClose: BooleanLike;
   onClose: (e) => void;
   onDragStart: (e) => void;
@@ -29,8 +30,16 @@ function statusToColor(status: number): string {
 }
 
 export function TitleBar(props: TitleBarProps) {
-  const { className, title, status, canClose, onDragStart, onClose, children } =
-    props;
+  const {
+    className,
+    title,
+    status,
+    canClose,
+    fancy,
+    onDragStart,
+    onClose,
+    children,
+  } = props;
   const dispatch = globalStore.dispatch;
 
   const finalTitle =
@@ -43,7 +52,7 @@ export function TitleBar(props: TitleBarProps) {
     <div className={classes(['TitleBar', className])}>
       <div
         className="TitleBar__dragZone"
-        onMouseDown={(e) => onDragStart?.(e)}
+        onMouseDown={(e) => fancy && onDragStart && onDragStart(e)}
       />
       {status === undefined ? (
         <Icon className="TitleBar__statusIcon" name="tools" opacity={0.5} />
@@ -63,7 +72,7 @@ export function TitleBar(props: TitleBarProps) {
           onClick={() => dispatch(toggleKitchenSink())}
         />
       )}
-      {!!canClose && (
+      {Boolean(fancy && canClose) && (
         <div className="TitleBar__close" onClick={onClose}>
           <Icon className="TitleBar__close--icon" name="times" />
         </div>

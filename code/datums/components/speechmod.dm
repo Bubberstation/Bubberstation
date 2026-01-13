@@ -50,13 +50,10 @@
 		targeted = owner.loc
 		RegisterSignal(targeted, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 
-	if (isorgan(parent))
-		RegisterSignal(parent, COMSIG_ORGAN_IMPLANTED, PROC_REF(on_implanted))
-		RegisterSignal(parent, COMSIG_ORGAN_REMOVED, PROC_REF(on_removed))
-	else
-		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(on_equipped))
-		RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(on_unequipped))
-
+	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(on_equipped))
+	RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(on_unequipped))
+	RegisterSignal(parent, COMSIG_ORGAN_IMPLANTED, PROC_REF(on_implanted))
+	RegisterSignal(parent, COMSIG_ORGAN_REMOVED, PROC_REF(on_removed))
 
 /datum/component/speechmod/proc/handle_speech(datum/source, list/speech_args)
 	SIGNAL_HANDLER

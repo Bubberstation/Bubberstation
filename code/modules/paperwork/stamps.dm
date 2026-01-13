@@ -1,8 +1,8 @@
 /obj/item/stamp
-	name = "rubber stamp"
+	name = "\improper GRANTED rubber stamp"
 	desc = "A rubber stamp for stamping important documents."
 	icon = 'icons/obj/service/bureaucracy.dmi'
-	abstract_type = /obj/item/stamp
+	icon_state = "stamp-ok"
 	worn_icon_state = "nothing"
 	inhand_icon_state = "stamp"
 	throwforce = 0
@@ -34,7 +34,6 @@
 	dye_color = DYE_LAW
 
 /obj/item/stamp/head
-	abstract_type = /obj/item/stamp/head
 
 /obj/item/stamp/head/Initialize(mapload)
 	. = ..()
@@ -75,11 +74,6 @@
 	name = "quartermaster's rubber stamp"
 	icon_state = "stamp-qm"
 	dye_color = DYE_QM
-
-/obj/item/stamp/granted
-	name = "\improper GRANTED rubber stamp"
-	icon_state = "stamp-ok"
-	dye_color = DYE_GREEN
 
 /obj/item/stamp/denied
 	name = "\improper DENIED rubber stamp"

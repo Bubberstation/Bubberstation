@@ -11,7 +11,7 @@
 	  * Assoc list of atoms as keys and number of time the same element instance has been attached to them as assoc value.
 	  * So things don't get odd with same-valued yet dissimilar beauty modifiers being added to the same atom.
 	  */
-	var/beauty_counter
+	var/beauty_counter = list()
 
 /datum/element/beauty/Attach(datum/target, beauty)
 	. = ..()
@@ -19,7 +19,6 @@
 		return ELEMENT_INCOMPATIBLE
 
 	src.beauty = beauty
-	LAZYINITLIST(beauty_counter)
 
 	var/area/current_area = get_area(target)
 	var/beauty_active = TRUE

@@ -105,11 +105,13 @@ GLOBAL_VAR(department_cd_override)
 /// Checks if we can "see" the passed supply pack
 /datum/computer_file/program/department_order/proc/can_see_pack(datum/supply_pack/to_check)
 	PROTECTED_PROC(TRUE)
-	if((to_check.order_flags & ORDER_EMAG_ONLY) && !(computer.obj_flags & EMAGGED))
+	if(to_check.hidden && !(computer.obj_flags & EMAGGED))
 		return FALSE
-	if((to_check.order_flags & ORDER_SPECIAL) && !(to_check.order_flags & ORDER_SPECIAL_ENABLED))
+	if(to_check.special && !to_check.special_enabled)
 		return FALSE
-	if(to_check.order_flags & (ORDER_INVISIBLE | ORDER_POD_ONLY | ORDER_GOODY | ORDER_NOT_DEPARTMENTAL))
+	if(to_check.drop_pod_only)
+		return FALSE
+	if(to_check.goody)
 		return FALSE
 	return TRUE
 

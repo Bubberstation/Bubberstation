@@ -104,7 +104,9 @@
 	update_indicator()
 
 	if(stationary)
-		AddComponent(/datum/component/usb_port, typecacheof(list(/obj/item/circuit_component/bluespace_launchpad), only_root_path = TRUE))
+		AddComponent(/datum/component/usb_port, list(
+			/obj/item/circuit_component/bluespace_launchpad,
+		))
 
 /// Whether this launchpad can send or receive.
 /obj/machinery/launchpad/proc/is_available()

@@ -24,7 +24,9 @@
 
 /obj/machinery/atmospherics/components/binary/pump/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/usb_port, typecacheof(list(/obj/item/circuit_component/atmos_pump), only_root_path = TRUE))
+	AddComponent(/datum/component/usb_port, list(
+		/obj/item/circuit_component/atmos_pump,
+	))
 	register_context()
 
 /obj/machinery/atmospherics/components/binary/pump/add_context(atom/source, list/context, obj/item/held_item, mob/user)

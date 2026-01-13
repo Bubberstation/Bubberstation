@@ -325,7 +325,6 @@ do { \
 
 // Cham Stamp
 /obj/item/stamp/chameleon
-	icon_state = "stamp-syndicate"
 	actions_types = list(/datum/action/item_action/chameleon/change/stamp)
 	action_slots = ALL
 

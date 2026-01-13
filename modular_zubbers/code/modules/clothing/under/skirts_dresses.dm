@@ -41,22 +41,9 @@
 	can_adjust = FALSE
 	alternate_worn_layer = ABOVE_SHOES_LAYER
 	gets_cropped_on_taurs = FALSE
+	unique_reskin = list(
+		"Right" = "midnight_right",
+		"Left" = "midnight_left",
+		"Middle" = "midnight_mid"
+	)
 
-/obj/item/clothing/under/dress/bubber/midnight_gown/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/midnight_gown)
-
-/datum/atom_skin/midnight_gown
-	abstract_type = /datum/atom_skin/midnight_gown
-
-/datum/atom_skin/midnight_gown/right
-	preview_name = "Right"
-	new_icon_state = "midnight_right"
-
-/datum/atom_skin/midnight_gown/left
-	preview_name = "Left"
-	new_icon_state = "midnight_left"
-
-/datum/atom_skin/midnight_gown/middle
-	preview_name = "Middle"
-	new_icon_state = "midnight_mid"

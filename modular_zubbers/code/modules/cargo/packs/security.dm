@@ -19,6 +19,7 @@
 					/obj/item/ammo_box/speedloader/c38/hotshot,
 					/obj/item/ammo_box/speedloader/c38/iceblox,
 				)
+	special = FALSE
 //This makes the Security ammo crate use the cool advanced ammo boxes instead of the old ones
 
 
@@ -100,7 +101,7 @@
 	desc = "Extra supplies we got from some weird old guy in a blue suit. Contains six uniforms, \
 		vests, boots, gloves and helmets."
 	cost = 1116
-	order_flags = ORDER_CONTRABAND
+	contraband = TRUE
 	contains = list(/obj/item/clothing/head/helmet/metrocophelmet = 6,
 					/obj/item/clothing/suit/armor/vest/alt/sec/metrocop = 6,
 					/obj/item/clothing/under/rank/security/metrocop = 6,

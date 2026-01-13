@@ -601,7 +601,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/access/any/supply/maintenance,
-/obj/effect/mapping_helpers/airlock/unres/delayed,
+/obj/effect/mapping_helpers/airlock/unres,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/maintenance/starboard/lesser)
@@ -1382,7 +1382,7 @@
 	pixel_x = -6;
 	pixel_y = 6
 	},
-/obj/item/stamp/granted{
+/obj/item/stamp{
 	pixel_x = -6
 	},
 /obj/structure/disposalpipe/segment,
@@ -1694,7 +1694,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -1780,7 +1780,7 @@
 /area/station/commons/dorms)
 "aAc" = (
 /obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
 /obj/machinery/door/airlock/maintenance{
@@ -1904,7 +1904,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/mapping_helpers/airlock/abandoned,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -1963,7 +1963,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/access/any/security/maintenance,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
@@ -3027,7 +3027,7 @@
 	cycle_id = "rnd-enterance"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/science/general,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment,
@@ -5934,7 +5934,7 @@
 	name = "Dormitories Maintenance"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
@@ -6589,7 +6589,7 @@
 /obj/effect/mapping_helpers/airlock/access/any/command/maintenance,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/mapping_helpers/airlock/abandoned,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
@@ -8262,7 +8262,7 @@
 /obj/machinery/door/airlock/maintenance/external/glass{
 	name = "Space Bridge Access"
 	},
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
 /obj/effect/mapping_helpers/airlock/access/any/science/maintenance,
@@ -8284,7 +8284,7 @@
 /obj/machinery/door/airlock/maintenance/external/glass{
 	name = "Space Bridge Access"
 	},
-/obj/effect/mapping_helpers/airlock/unres/delayed,
+/obj/effect/mapping_helpers/airlock/unres,
 /obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -8606,7 +8606,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
@@ -9671,7 +9671,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
 /obj/effect/mapping_helpers/airlock/access/any/command/maintenance,
@@ -11749,7 +11749,7 @@
 /obj/machinery/door/airlock/maintenance/external/glass{
 	name = "Space Bridge Access"
 	},
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
 /obj/effect/mapping_helpers/airlock/access/any/medical/maintenance,
@@ -12717,7 +12717,7 @@
 	name = "Garden Maintenance"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
@@ -13275,7 +13275,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/barricade/wooden/crude,
 /obj/structure/cable,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
 /obj/effect/mapping_helpers/airlock/access/any/security/maintenance,
@@ -14732,7 +14732,7 @@
 	pixel_x = -7;
 	pixel_y = 9
 	},
-/obj/item/stamp/granted{
+/obj/item/stamp{
 	pixel_x = -7;
 	pixel_y = 1
 	},
@@ -16415,7 +16415,7 @@
 	cycle_id = "rnd-enterance"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/science/general,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -17291,7 +17291,7 @@
 	name = "Entertainment Maintenance"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/supply/maintenance,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -17474,7 +17474,7 @@
 /area/station/maintenance/department/engine/atmos)
 "fcc" = (
 /obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
-/obj/effect/mapping_helpers/airlock/unres/delayed,
+/obj/effect/mapping_helpers/airlock/unres,
 /obj/machinery/door/airlock/maintenance{
 	name = "Aft Primary Hallway Maintenance"
 	},
@@ -18307,7 +18307,7 @@
 	cycle_id = "rnd-enterance"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/science/general,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
 /obj/machinery/duct,
@@ -18324,7 +18324,7 @@
 /area/station/maintenance/department/engine/atmos/lesser)
 "fpl" = (
 /obj/effect/mapping_helpers/airlock/access/any/medical/maintenance,
-/obj/effect/mapping_helpers/airlock/unres/delayed,
+/obj/effect/mapping_helpers/airlock/unres,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/maintenance{
 	name = "Medical Maintenance"
@@ -18630,7 +18630,7 @@
 /turf/open/floor/iron/large,
 /area/station/service/hydroponics)
 "fuT" = (
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
 /obj/machinery/door/airlock/maintenance_hatch,
@@ -18856,7 +18856,7 @@
 /obj/machinery/door/airlock/maintenance{
 	name = "Fire Closet"
 	},
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
@@ -19065,7 +19065,7 @@
 /obj/machinery/door/airlock/maintenance/external/glass{
 	name = "Space Bridge Access"
 	},
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /obj/effect/mapping_helpers/airlock/access/any/security/maintenance,
@@ -19654,7 +19654,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/airlock/maintenance_hatch,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
@@ -20612,7 +20612,7 @@
 	id_tag = "MedbayFoyer";
 	name = "Medbay"
 	},
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
 /obj/machinery/door/firedoor,
@@ -23718,7 +23718,7 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/crew_quarters/bar)
 "gTJ" = (
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
 /obj/effect/mapping_helpers/airlock/access/any/supply/maintenance,
@@ -24072,7 +24072,7 @@
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/effect/mapping_helpers/broken_floor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/mapping_helpers/airlock/unres/delayed,
+/obj/effect/mapping_helpers/airlock/unres,
 /obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/maintenance/department/engine/atmos)
@@ -24083,7 +24083,7 @@
 	name = "Abandoned Room"
 	},
 /obj/effect/mapping_helpers/airlock/abandoned,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
@@ -28760,7 +28760,7 @@
 	dir = 4
 	},
 /obj/machinery/duct,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -29719,7 +29719,7 @@
 	pixel_x = -7;
 	pixel_y = 9
 	},
-/obj/item/stamp/granted{
+/obj/item/stamp{
 	pixel_x = -7;
 	pixel_y = 1
 	},
@@ -30896,7 +30896,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/access/any/medical/maintenance,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
@@ -30976,7 +30976,7 @@
 /obj/machinery/door/airlock/maintenance/external/glass{
 	name = "Space Bridge Access"
 	},
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /obj/effect/mapping_helpers/airlock/access/any/security/maintenance,
@@ -31762,7 +31762,7 @@
 	},
 /area/station/hallway/primary/aft)
 "jgg" = (
-/obj/effect/mapping_helpers/airlock/unres/delayed,
+/obj/effect/mapping_helpers/airlock/unres,
 /obj/effect/mapping_helpers/airlock/access/any/medical/maintenance,
 /obj/machinery/door/airlock/maintenance{
 	name = "Hangar Maintenance"
@@ -33003,7 +33003,7 @@
 	name = "Toilets Maintenance"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/supply/maintenance,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -33049,7 +33049,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/mapping_helpers/airlock/access/any/command/maintenance,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
 /obj/machinery/door/airlock/maintenance{
@@ -33104,7 +33104,7 @@
 "jzf" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/mapping_helpers/airlock/access/any/science/maintenance,
-/obj/effect/mapping_helpers/airlock/unres/delayed,
+/obj/effect/mapping_helpers/airlock/unres,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Research Maintenance"
@@ -37121,7 +37121,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/mapping_helpers/airlock/access/all/medical/general,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /obj/machinery/door/airlock/medical/glass{
@@ -38140,7 +38140,7 @@
 	name = "Pod Docking Bay"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
 /turf/open/floor/catwalk_floor/iron_dark,
@@ -39474,7 +39474,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
-/obj/effect/mapping_helpers/airlock/unres/delayed,
+/obj/effect/mapping_helpers/airlock/unres,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/maintenance/starboard/greater)
@@ -40395,7 +40395,7 @@
 	name = "Barbershop Maintenance"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
@@ -40976,7 +40976,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/access/any/command/maintenance,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance{
@@ -41313,7 +41313,7 @@
 /area/station/hallway/primary/central/aft)
 "lHD" = (
 /obj/effect/mapping_helpers/airlock/access/any/supply/maintenance,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment,
@@ -41895,7 +41895,7 @@
 /turf/open/space/basic,
 /area/space/nearstation)
 "lPJ" = (
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
 /obj/effect/mapping_helpers/airlock/access/any/science/maintenance,
@@ -42583,7 +42583,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/access/any/medical/maintenance,
-/obj/effect/mapping_helpers/airlock/unres/delayed,
+/obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/maintenance/department/medical)
 "lWY" = (
@@ -42767,7 +42767,7 @@
 	pixel_x = -7;
 	pixel_y = 9
 	},
-/obj/item/stamp/granted{
+/obj/item/stamp{
 	pixel_x = -7;
 	pixel_y = 1
 	},
@@ -43263,7 +43263,7 @@
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
 "mhC" = (
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /obj/effect/mapping_helpers/airlock/access/any/medical/maintenance,
@@ -44613,7 +44613,7 @@
 /area/station/maintenance/disposal/incinerator)
 "mCM" = (
 /obj/effect/mapping_helpers/airlock/access/all/medical/general,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /obj/machinery/door/airlock/medical/glass{
@@ -44890,7 +44890,7 @@
 /turf/open/floor/circuit,
 /area/station/ai/satellite/atmos)
 "mHq" = (
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
 /obj/machinery/door/airlock/maintenance_hatch,
@@ -44941,7 +44941,7 @@
 	cycle_id = "rnd-enterance"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/science/general,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -44960,7 +44960,7 @@
 /obj/machinery/door/airlock/maintenance/external/glass{
 	name = "Space Bridge Access"
 	},
-/obj/effect/mapping_helpers/airlock/unres/delayed,
+/obj/effect/mapping_helpers/airlock/unres,
 /obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/effect/turf_decal/stripes/line,
@@ -46257,7 +46257,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
@@ -47925,7 +47925,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment,
@@ -48968,7 +48968,7 @@
 /obj/machinery/door/airlock/maintenance/external/glass{
 	name = "Space Bridge Access"
 	},
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
 /obj/effect/mapping_helpers/airlock/access/any/medical/maintenance,
@@ -50478,7 +50478,7 @@
 /obj/machinery/door/airlock/maintenance/external/glass{
 	name = "Space Bridge Access"
 	},
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /obj/effect/mapping_helpers/airlock/access/any/security/maintenance,
@@ -50916,7 +50916,7 @@
 /obj/effect/mapping_helpers/airlock/access/any/supply/maintenance,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -52694,7 +52694,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/access/any/medical/maintenance,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment,
@@ -53938,7 +53938,7 @@
 /obj/machinery/door/airlock/maintenance/external/glass{
 	name = "Space Bridge Access"
 	},
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /obj/effect/mapping_helpers/airlock/access/any/security/maintenance,
@@ -54204,7 +54204,7 @@
 	pixel_x = -7;
 	pixel_y = 9
 	},
-/obj/item/stamp/granted{
+/obj/item/stamp{
 	pixel_x = -7;
 	pixel_y = 1
 	},
@@ -54422,7 +54422,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/abandoned,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
@@ -55062,7 +55062,7 @@
 	id_tag = "MedbayFoyer";
 	name = "Medbay"
 	},
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
 /obj/machinery/door/firedoor,
@@ -55112,7 +55112,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/abandoned,
-/obj/effect/mapping_helpers/airlock/unres/delayed,
+/obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/commons/vacant_room/office)
 "ptT" = (
@@ -56439,7 +56439,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
 /obj/effect/mapping_helpers/airlock/access/any/command/maintenance,
@@ -57726,7 +57726,7 @@
 	name = "Departures Maintenance"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/supply/maintenance,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
@@ -58405,7 +58405,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
 /obj/machinery/door/firedoor,
@@ -59749,7 +59749,7 @@
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/department/medical)
 "qFI" = (
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance_hatch,
@@ -60047,7 +60047,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/any/command/maintenance,
 /obj/effect/mapping_helpers/airlock/abandoned,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
@@ -60652,7 +60652,7 @@
 	cycle_id = "rnd-enterance"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/science/general,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -60874,7 +60874,7 @@
 	},
 /area/station/engineering/gravity_generator)
 "qVy" = (
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
@@ -61683,7 +61683,7 @@
 	pixel_x = -6;
 	pixel_y = 4
 	},
-/obj/item/stamp/granted{
+/obj/item/stamp{
 	pixel_x = -6
 	},
 /obj/item/coin/adamantine{
@@ -62221,7 +62221,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/segment,
-/obj/effect/mapping_helpers/airlock/unres/delayed,
+/obj/effect/mapping_helpers/airlock/unres,
 /obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/hallway/primary/aft)
@@ -63835,7 +63835,7 @@
 /obj/machinery/door/airlock/maintenance/external/glass{
 	name = "Space Bridge Access"
 	},
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
 /obj/effect/mapping_helpers/airlock/access/any/science/maintenance,
@@ -64383,7 +64383,7 @@
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Research Maintenance"
 	},
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
@@ -65342,7 +65342,7 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/command)
 "snv" = (
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
 /obj/machinery/door/airlock/maintenance_hatch{
@@ -65713,7 +65713,7 @@
 	cycle_id = "rnd-enterance"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/science/general,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment,
@@ -66591,7 +66591,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
 /obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
@@ -66964,7 +66964,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/access/any/supply/maintenance,
 /obj/structure/disposalpipe/segment,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
@@ -67219,7 +67219,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/abandoned,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
@@ -67779,7 +67779,7 @@
 /obj/effect/mapping_helpers/airlock/access/any/command/maintenance,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/abandoned,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
@@ -68511,7 +68511,7 @@
 /obj/machinery/door/airlock/research/glass{
 	name = "Research Satellite Access"
 	},
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -69127,7 +69127,7 @@
 	name = "Pool Maintenance"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/supply/maintenance,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -70497,7 +70497,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
 /obj/effect/mapping_helpers/airlock/access/any/science/maintenance,
@@ -70665,7 +70665,7 @@
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/maintenance/aft)
 "tFf" = (
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance_hatch,
@@ -71805,7 +71805,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/abandoned,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
 /obj/structure/spider/stickyweb,
@@ -72731,7 +72731,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/barricade/wooden/crude,
-/obj/effect/mapping_helpers/airlock/unres/delayed,
+/obj/effect/mapping_helpers/airlock/unres,
 /obj/effect/mapping_helpers/airlock/access/any/medical/maintenance,
 /obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/catwalk_floor/iron_smooth,
@@ -72792,7 +72792,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/access/any/supply/maintenance,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
@@ -73969,7 +73969,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
 /obj/machinery/duct,
@@ -74464,7 +74464,7 @@
 /obj/machinery/duct,
 /obj/structure/disposalpipe/segment,
 /obj/effect/mapping_helpers/airlock/access/any/science/maintenance,
-/obj/effect/mapping_helpers/airlock/unres/delayed,
+/obj/effect/mapping_helpers/airlock/unres,
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Research Satellite Maintenance"
 	},
@@ -74568,7 +74568,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
@@ -76583,7 +76583,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
-/obj/effect/mapping_helpers/airlock/unres/delayed,
+/obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/wood,
 /area/station/service/library/abandoned)
 "vnb" = (
@@ -81637,7 +81637,7 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/medical/morgue)
 "wEm" = (
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /obj/effect/mapping_helpers/airlock/access/any/science/maintenance,
@@ -81914,7 +81914,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
@@ -82413,7 +82413,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -84702,7 +84702,7 @@
 	id_tag = "MedbayFoyer";
 	name = "Emergency Medical Entrance"
 	},
-/obj/effect/mapping_helpers/airlock/unres/delayed,
+/obj/effect/mapping_helpers/airlock/unres,
 /obj/effect/mapping_helpers/airlock/access/any/medical/general,
 /turf/open/floor/iron/white/smooth_large,
 /area/station/medical/treatment_center)

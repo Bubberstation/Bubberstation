@@ -660,7 +660,7 @@
 	name = "Authentic Renaissance Faire Crate"
 	desc = "Contains two authentic suits of armor, swords, and two bows and cuirass' for the cowards hiding in the back."
 	cost = CARGO_CRATE_VALUE * 30
-	order_flags = ORDER_CONTRABAND
+	contraband = TRUE
 	contains = list(
 		/obj/item/clothing/suit/armor/riot/knight/larp/red,
 		/obj/item/clothing/gloves/plate/larp/red,
@@ -740,7 +740,7 @@
 /datum/supply_pack/imports/cin_surplus
 	name = "CIN Military Surplus Crate"
 	desc = "A collection of surplus equipment sourced from the Coalition of Independent Nations' military stockpiles. Likely to contain old and outdated equipment, as is the nature of surplus."
-	order_flags = ORDER_CONTRABAND
+	contraband = TRUE
 	cost = CARGO_CRATE_VALUE * 9
 	contains = list(
 		/obj/item/storage/box/colonial_rations = 1,

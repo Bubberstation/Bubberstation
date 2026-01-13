@@ -40,125 +40,40 @@
 /obj/item/clothing/accessory/fake/medal
 	name = "plastic medal"
 	desc = "Yeah nice try buddy. They won't record this one. Especially since it reads 'youre winnar!!'. Alt-Click to reskin!"
-
-/obj/item/clothing/accessory/fake/medal/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/medal)
-
-/datum/atom_skin/medal
-	abstract_type = /datum/atom_skin/medal
-
-/datum/atom_skin/medal/bronze
-	preview_name = "Bronze"
-	new_icon_state = "bronze"
-
-/datum/atom_skin/medal/bronze_heart
-	preview_name = "Bronze Heart"
-	new_icon_state = "bronze_heart"
-
-/datum/atom_skin/medal/silver
-	preview_name = "Silver"
-	new_icon_state = "silver"
-
-/datum/atom_skin/medal/gold
-	preview_name = "Gold"
-	new_icon_state = "gold"
-
-/datum/atom_skin/medal/plasma
-	preview_name = "Plasma"
-	new_icon_state = "plasma"
-
-/datum/atom_skin/medal/cargo
-	preview_name = "Cargo"
-	new_icon_state = "cargo"
-
-/datum/atom_skin/medal/paperwork
-	preview_name = "Paperwork"
-	new_icon_state = "medal_paperwork"
-
-/datum/atom_skin/medal/medical_second_class
-	preview_name = "Medical Second Class"
-	new_icon_state = "med_medal"
-
-/datum/atom_skin/medal/medical_first_class
-	preview_name = "Medical First Class"
-	new_icon_state = "med_medal2"
-
-/datum/atom_skin/medal/atmosian
-	preview_name = "Atmosian"
-	new_icon_state = "elderatmosian"
-
-/datum/atom_skin/medal/emergency_general
-	preview_name = "Emergency Service - General"
-	new_icon_state = "emergencyservices"
-
-/datum/atom_skin/medal/emergency_engineering
-	preview_name = "Emergency Service - Engineering"
-	new_icon_state = "emergencyservices_engi"
-
-/datum/atom_skin/medal/emergency_medical
-	preview_name = "Emergency Service - Medical"
-	new_icon_state = "emergencyservices_med"
-
+	unique_reskin = list(
+			"Bronze" = "bronze",
+			"Bronze Heart" = "bronze_heart",
+			"Silver" = "silver",
+			"Gold" = "gold",
+			"Plasma" = "plasma",
+			"Cargo" = "cargo",
+			"Paperwork" = "medal_paperwork",
+			"Medical Second Class" = "med_medal",
+			"Medical First Class" = "med_medal2",
+			"Atmosian" = "elderatmosian",
+			"Emergency Service - General" = "emergencyservices",
+			"Emergency Service - Engineering" = "emergencyservices_engi",
+			"Emergency Service - Medical" = "emergencyservices_med"
+	)
 // Pride Pin Over-ride
 /obj/item/clothing/accessory/pride
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/accessories.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/accessories.dmi'
 
-/obj/item/clothing/accessory/pride/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/pride)
-
-/datum/atom_skin/pride
-	abstract_type = /datum/atom_skin/pride
-
-/datum/atom_skin/pride/rainbow
-	preview_name = "Rainbow Pride"
-	new_icon_state = "pride"
-
-/datum/atom_skin/pride/bisexual
-	preview_name = "Bisexual Pride"
-	new_icon_state = "pride_bi"
-
-/datum/atom_skin/pride/pansexual
-	preview_name = "Pansexual Pride"
-	new_icon_state = "pride_pan"
-
-/datum/atom_skin/pride/asexual
-	preview_name = "Asexual Pride"
-	new_icon_state = "pride_ace"
-
-/datum/atom_skin/pride/nonbinary
-	preview_name = "Non-binary Pride"
-	new_icon_state = "pride_enby"
-
-/datum/atom_skin/pride/transgender
-	preview_name = "Transgender Pride"
-	new_icon_state = "pride_trans"
-
-/datum/atom_skin/pride/intersex
-	preview_name = "Intersex Pride"
-	new_icon_state = "pride_intersex"
-
-/datum/atom_skin/pride/lesbian
-	preview_name = "Lesbian Pride"
-	new_icon_state = "pride_lesbian"
-
-/datum/atom_skin/pride/mlm
-	preview_name = "Man-Loving-Man / Gay Pride"
-	new_icon_state = "pride_mlm"
-
-/datum/atom_skin/pride/genderfluid
-	preview_name = "Genderfluid Pride"
-	new_icon_state = "pride_genderfluid"
-
-/datum/atom_skin/pride/genderqueer
-	preview_name = "Genderqueer Pride"
-	new_icon_state = "pride_genderqueer"
-
-/datum/atom_skin/pride/aromantic
-	preview_name = "Aromantic Pride"
-	new_icon_state = "pride_aromantic"
+	unique_reskin  = list(
+	"Rainbow Pride" = "pride",
+	"Bisexual Pride" = "pride_bi",
+	"Pansexual Pride" = "pride_pan",
+	"Asexual Pride" = "pride_ace",
+	"Non-binary Pride" = "pride_enby",
+	"Transgender Pride" = "pride_trans",
+	"Intersex Pride" = "pride_intersex",
+	"Lesbian Pride" = "pride_lesbian",
+	"Man-Loving-Man / Gay Pride" = "pride_mlm",
+	"Genderfluid Pride" = "pride_genderfluid",
+	"Genderqueer Pride" = "pride_genderqueer",
+	"Aromantic Pride" = "pride_aromantic",
+)
 
 // Dogtags
 /obj/item/clothing/accessory/dogtags
@@ -380,53 +295,18 @@ Potential future ideas:
 	greyscale_config = /datum/greyscale_config/medals/glow
 	greyscale_config_worn = /datum/greyscale_config/medals/glow/worn
 	greyscale_colors = "#7effff"
-
-/obj/item/clothing/accessory/bubber/acc_medal/glowcrystal/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/glowcrystal)
-
-/datum/atom_skin/glowcrystal
-	abstract_type = /datum/atom_skin/glowcrystal
-
-/datum/atom_skin/glowcrystal/crystal
-	preview_name = "Crystal"
-	new_icon_state = "necklace_crystal"
-
-/datum/atom_skin/glowcrystal/bar
-	preview_name = "Bar"
-	new_icon_state = "necklace_bar"
-
-/datum/atom_skin/glowcrystal/bar_hollow
-	preview_name = "Hollow Bar"
-	new_icon_state = "necklace_bar_hollow"
-
-/datum/atom_skin/glowcrystal/diamond
-	preview_name = "Diamond"
-	new_icon_state = "necklace_diamond"
-
-/datum/atom_skin/glowcrystal/diamond_hollow
-	preview_name = "Hollow Diamond"
-	new_icon_state = "necklace_diamond_hollow"
-
-/datum/atom_skin/glowcrystal/shard
-	preview_name = "Shard"
-	new_icon_state = "necklace_shard"
-
-/datum/atom_skin/glowcrystal/shard_hollow
-	preview_name = "Hollow Shard"
-	new_icon_state = "necklace_shard_hollow"
-
-/datum/atom_skin/glowcrystal/triangle
-	preview_name = "Triangle"
-	new_icon_state = "necklace_triangle"
-
-/datum/atom_skin/glowcrystal/triangle_hollow
-	preview_name = "Hollow Triangle"
-	new_icon_state = "necklace_triangle_hollow"
-
-/datum/atom_skin/glowcrystal/circle
-	preview_name = "Circle"
-	new_icon_state = "necklace_circle"
+	unique_reskin = list(
+		"Crystal" = "necklace_crystal",
+		"Bar" = "necklace_bar",
+		"Hollow Bar" = "necklace_bar_hollow",
+		"Diamond" = "necklace_diamond",
+		"Hollow Diamond" = "necklace_diamond_hollow",
+		"Shard" = "necklace_shard",
+		"Hollow Shard" = "necklace_shard_hollow",
+		"Triangle" = "necklace_triangle",
+		"Hollow Triangle" = "necklace_triangle_hollow",
+		"Circle" = "necklace_circle",
+	)
 
 /*
 // Rank pins

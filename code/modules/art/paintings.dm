@@ -12,7 +12,6 @@
 	density = TRUE
 	resistance_flags = FLAMMABLE
 	max_integrity = 60
-	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
 	var/obj/item/canvas/painting = null
 
 //Adding canvases
@@ -259,10 +258,7 @@
 	LAZYREMOVE(zoom_by_observer, user.key)
 
 /obj/item/canvas/proc/finalize(mob/user)
-	if(finalized || painting_metadata.loaded_from_json)
-		return
-	if(!in_range(src, user))
-		user.balloon_alert(user, "too far away!")
+	if(painting_metadata.loaded_from_json || finalized)
 		return
 	if(!try_rename(user))
 		return
@@ -318,7 +314,7 @@
 			if(curator_cut)
 				for(var/datum/bank_account/curator as anything in curator_accounts)
 					curator.adjust_money(curator_cut, "Painting: Patronage cut")
-					curator.bank_card_talk("Cut on patronage received, account now holds [curator.account_balance] [MONEY_SYMBOL].")
+					curator.bank_card_talk("Cut on patronage received, account now holds [curator.account_balance] cr.")
 
 	if(istype(loc, /obj/structure/sign/painting))
 		var/obj/structure/sign/painting/frame = loc

@@ -133,7 +133,6 @@
 	starting_programs = list(
 		/datum/computer_file/program/records/security,
 		/datum/computer_file/program/robocontrol,
-		/datum/computer_file/program/budgetorders,
 	)
 
 /**

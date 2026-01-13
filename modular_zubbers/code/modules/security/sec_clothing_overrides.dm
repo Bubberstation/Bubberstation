@@ -27,33 +27,32 @@
 	righthand_file = 'modular_skyrat/master_files/icons/mob/inhands/clothing/backpack_righthand.dmi'
 	icon_state = "backpack_security_black"
 	inhand_icon_state = "backpack_security_black"
-
-/obj/item/storage/backpack/security/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_backpack)
-
-/datum/atom_skin/security_backpack
-	abstract_type = /datum/atom_skin/security_backpack
-
-/datum/atom_skin/security_backpack/black
-	preview_name = "Black Variant"
-	new_icon_state = "backpack_security_black"
-
-/datum/atom_skin/security_backpack/white
-	preview_name = "White Variant"
-	new_icon_state = "backpack_security_white"
-
-/datum/atom_skin/security_backpack/red
-	preview_name = "Red Variant"
-	new_icon = 'icons/obj/storage/backpack.dmi'
-	new_worn_icon = 'icons/mob/clothing/back/backpack.dmi'
-	new_icon_state = "backpack-security"
-
-/datum/atom_skin/security_backpack/pink
-	preview_name = "Pink Variant"
-	new_icon = 'modular_zubbers/icons/obj/clothing/back/backpack.dmi'
-	new_worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
-	new_icon_state = "backpack-security"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Black Variant" = list(
+			RESKIN_ICON_STATE = "backpack_security_black",
+			RESKIN_WORN_ICON_STATE = "backpack_security_black",
+			RESKIN_INHAND_STATE = "backpack_security_black"
+		),
+		"White Variant" = list(
+			RESKIN_ICON_STATE = "backpack_security_white",
+			RESKIN_WORN_ICON_STATE = "backpack_security_white",
+			RESKIN_INHAND_STATE = "backpack_security_white"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON = 'icons/obj/storage/backpack.dmi',
+			RESKIN_ICON_STATE = "backpack-security",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/back/backpack.dmi',
+			RESKIN_INHAND_L = 'icons/mob/inhands/equipment/backpack_lefthand.dmi',
+			RESKIN_INHAND_R = 'icons/mob/inhands/equipment/backpack_righthand.dmi',
+			RESKIN_INHAND_STATE = "securitypack"
+		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/back/backpack.dmi',
+			RESKIN_ICON_STATE = "backpack-security",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi',
+		),
+	)
 
 /obj/item/storage/backpack/satchel/sec
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi'
@@ -62,33 +61,32 @@
 	righthand_file = 'modular_skyrat/master_files/icons/mob/inhands/clothing/backpack_righthand.dmi'
 	icon_state = "satchel_security_black"
 	inhand_icon_state = "satchel_security_black"
-
-/obj/item/storage/backpack/satchel/sec/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_satchel)
-
-/datum/atom_skin/security_satchel
-	abstract_type = /datum/atom_skin/security_satchel
-
-/datum/atom_skin/security_satchel/black
-	preview_name = "Black Variant"
-	new_icon_state = "satchel_security_black"
-
-/datum/atom_skin/security_satchel/white
-	preview_name = "White Variant"
-	new_icon_state = "satchel_security_white"
-
-/datum/atom_skin/security_satchel/red
-	preview_name = "Red Variant"
-	new_icon = 'icons/obj/storage/backpack.dmi'
-	new_worn_icon = 'icons/mob/clothing/back/backpack.dmi'
-	new_icon_state = "satchel-security"
-
-/datum/atom_skin/security_satchel/pink
-	preview_name = "Pink Variant"
-	new_icon = 'modular_zubbers/icons/obj/clothing/back/backpack.dmi'
-	new_worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
-	new_icon_state = "satchel-security"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Black Variant" = list(
+			RESKIN_ICON_STATE = "satchel_security_black",
+			RESKIN_WORN_ICON_STATE = "satchel_security_black",
+			RESKIN_INHAND_STATE = "satchel_security_black"
+		),
+		"White Variant" = list(
+			RESKIN_ICON_STATE = "satchel_security_white",
+			RESKIN_WORN_ICON_STATE = "satchel_security_white",
+			RESKIN_INHAND_STATE = "satchel_security_white"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON = 'icons/obj/storage/backpack.dmi',
+			RESKIN_ICON_STATE = "satchel-security",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/back/backpack.dmi',
+			RESKIN_INHAND_L = 'icons/mob/inhands/equipment/backpack_lefthand.dmi',
+			RESKIN_INHAND_R = 'icons/mob/inhands/equipment/backpack_righthand.dmi',
+			RESKIN_INHAND_STATE = "satchel-sec"
+		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/back/backpack.dmi',
+			RESKIN_ICON_STATE = "satchel-security",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi',
+		),
+	)
 
 /obj/item/storage/backpack/duffelbag/sec
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi'
@@ -97,33 +95,32 @@
 	righthand_file = 'modular_skyrat/master_files/icons/mob/inhands/clothing/backpack_righthand.dmi'
 	icon_state = "duffel_security_black"
 	inhand_icon_state = "duffel_security_black"
-
-/obj/item/storage/backpack/duffelbag/sec/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_duffel)
-
-/datum/atom_skin/security_duffel
-	abstract_type = /datum/atom_skin/security_duffel
-
-/datum/atom_skin/security_duffel/black
-	preview_name = "Black Variant"
-	new_icon_state = "duffel_security_black"
-
-/datum/atom_skin/security_duffel/white
-	preview_name = "White Variant"
-	new_icon_state = "duffel_security_white"
-
-/datum/atom_skin/security_duffel/red
-	preview_name = "Red Variant"
-	new_icon = 'icons/obj/storage/backpack.dmi'
-	new_worn_icon = 'icons/mob/clothing/back/backpack.dmi'
-	new_icon_state = "duffel-security"
-
-/datum/atom_skin/security_duffel/pink
-	preview_name = "Pink Variant"
-	new_icon = 'modular_zubbers/icons/obj/clothing/back/backpack.dmi'
-	new_worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
-	new_icon_state = "duffel-security"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Black Variant" = list(
+			RESKIN_ICON_STATE = "duffel_security_black",
+			RESKIN_WORN_ICON_STATE = "duffel_security_black",
+			RESKIN_INHAND_STATE = "duffel_security_black"
+		),
+		"White Variant" = list(
+			RESKIN_ICON_STATE = "duffel_security_white",
+			RESKIN_WORN_ICON_STATE = "duffel_security_white",
+			RESKIN_INHAND_STATE = "duffel_security_white"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON = 'icons/obj/storage/backpack.dmi',
+			RESKIN_ICON_STATE = "duffel-security",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/back/backpack.dmi',
+			RESKIN_INHAND_L = 'icons/mob/inhands/equipment/backpack_lefthand.dmi',
+			RESKIN_INHAND_R = 'icons/mob/inhands/equipment/backpack_righthand.dmi',
+			RESKIN_INHAND_STATE = "duffel-sec"
+		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/back/backpack.dmi',
+			RESKIN_ICON_STATE = "duffel-security",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi',
+		),
+	)
 
 /*
 * BELTS
@@ -133,93 +130,68 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
 	icon_state = "belt_white"
 	worn_icon_state = "belt_white"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Black Variant" = list(
+			RESKIN_ICON_STATE = "belt_black",
+			RESKIN_WORN_ICON_STATE = "belt_black"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "belt_blue",
+			RESKIN_WORN_ICON_STATE = "belt_blue"
+		),
+		"White Variant" = list(
+			RESKIN_ICON_STATE = "belt_white",
+			RESKIN_WORN_ICON_STATE = "belt_white"
+		),
+		"Slim Variant" = list(
+			RESKIN_ICON_STATE = "belt_slim",
+			RESKIN_WORN_ICON_STATE = "belt_slim"
+		),
+		"Red Variant" = list(
+				RESKIN_ICON = 'icons/obj/clothing/belts.dmi',
+				RESKIN_ICON_STATE = "security",
+				RESKIN_WORN_ICON = 'icons/mob/clothing/belt.dmi',
+				RESKIN_WORN_ICON_STATE = "security",
+			),
+		"Armadyne Variant" = list(
+			RESKIN_ICON_STATE = "armadyne_belt",
+			RESKIN_WORN_ICON_STATE = "armadyne_belt"
+			),
+		"Pink Variant" = list(
+				RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/belt.dmi',
+				RESKIN_ICON_STATE = "security",
+				RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/belt.dmi',
+				RESKIN_WORN_ICON_STATE = "security",
+			),
+	)
 
-/obj/item/storage/belt/security/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_belt)
-
-/datum/atom_skin/security_belt
-	abstract_type = /datum/atom_skin/security_belt
-
-/datum/atom_skin/security_belt/black
-	preview_name = "Black Variant"
-	new_icon_state = "belt_black"
-
-/datum/atom_skin/security_belt/blue
-	preview_name = "Blue Variant"
-	new_icon_state = "belt_blue"
-
-/datum/atom_skin/security_belt/white
-	preview_name = "White Variant"
-	new_icon_state = "belt_white"
-
-/datum/atom_skin/security_belt/slim
-	preview_name = "Slim Variant"
-	new_icon_state = "belt_slim"
-
-/datum/atom_skin/security_belt/red
-	preview_name = "Red Variant"
-	new_icon = 'icons/obj/clothing/belts.dmi'
-	new_worn_icon = 'icons/mob/clothing/belt.dmi'
-	new_icon_state = "security"
-
-/datum/atom_skin/security_belt/armadyne
-	preview_name = "Armadyne Variant"
-	new_icon_state = "armadyne_belt"
-
-/datum/atom_skin/security_belt/pink
-	preview_name = "Pink Variant"
-	new_icon = 'modular_zubbers/icons/obj/clothing/belt.dmi'
-	new_worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
-	new_icon_state = "security"
-
-/datum/atom_skin/security_belt/basic
-	preview_name = "Basic Security"
-	new_icon_state = "security"
-
-/datum/atom_skin/security_belt/peacekeeper
-	preview_name = "Peacekeeper"
-	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
-	new_worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
-	new_icon_state = "peacekeeperbelt"
-
-/obj/item/storage/belt/security/webbing/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_webbing)
-
-/datum/atom_skin/security_webbing
-	abstract_type = /datum/atom_skin/security_webbing
-/datum/atom_skin/security_webbing/red
-	preview_name = "Red Variant"
-	new_icon_state = "securitywebbing"
-
-/datum/atom_skin/security_webbing/black
-	preview_name = "Black Variant"
-	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
-	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
-	new_icon_state = "armadyne_webbing"
-
-/datum/atom_skin/security_webbing/blue
-	preview_name = "Blue Variant"
-	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
-	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
-	new_icon_state = "peacekeeper_webbing"
+/obj/item/storage/belt/security/webbing
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "securitywebbing",
+			RESKIN_WORN_ICON_STATE = "securitywebbing"
+		),
+		"Black Variant" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi',
+			RESKIN_ICON_STATE = "armadyne_webbing",
+			RESKIN_WORN_ICON_STATE = "armadyne_webbing",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi',
+			RESKIN_ICON_STATE = "peacekeeper_webbing",
+			RESKIN_WORN_ICON_STATE = "peacekeeper_webbing",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
+		),
+	)
 
 /obj/item/storage/belt/security/webbing/peacekeeper //did I mention this codebase is fucking awful
-
-/obj/item/storage/belt/security/webbing/peacekeeper/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	current_skin = "peacekeeper_webbing"
 
 /obj/item/storage/belt/security/webbing/peacekeeper/armadyne //You two only exist because I don't want to purge you, because it'd break some stuff. Thin fucking ice.
-
-/obj/item/storage/belt/security/webbing/peacekeeper/armadyne/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	current_skin = "armadyne_webbing"
 
 ///Enables you to quickdraw weapons from security holsters
 /datum/storage/security/open_storage(datum/source, mob/user)
@@ -254,194 +226,155 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi'
 	icon_state = "security_hud"
 	glass_colour_type = /datum/client_colour/glass_colour/lightblue
-
-/obj/item/clothing/glasses/hud/security/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_hud_glasses)
-
-/datum/atom_skin/security_hud_glasses
-	abstract_type = /datum/atom_skin/security_hud_glasses
-
-/datum/atom_skin/security_hud_glasses/blue
-	preview_name = "Blue Variant"
-	new_icon_state = "security_hud"
-
-/datum/atom_skin/security_hud_glasses/red
-	preview_name = "Red Variant"
-	new_icon = 'icons/obj/clothing/glasses.dmi'
-	new_worn_icon = 'icons/mob/clothing/eyes.dmi'
-	new_icon_state = "securityhud"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "security_hud",
+			RESKIN_WORN_ICON_STATE = "security_hud"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON = 'icons/obj/clothing/glasses.dmi',
+			RESKIN_ICON_STATE = "securityhud",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/eyes.dmi',
+		),
+	)
 
 /obj/item/clothing/glasses/hud/security/sunglasses
 	icon_state = "security_hud_black"
 	glass_colour_type = /datum/client_colour/glass_colour/blue
-
-/obj/item/clothing/glasses/hud/security/sunglasses/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_hud_sunglasses)
-
-/datum/atom_skin/security_hud_sunglasses
-	abstract_type = /datum/atom_skin/security_hud_sunglasses
-
-/datum/atom_skin/security_hud_sunglasses/dark_tint
-	preview_name = "Dark-Tint Variant"
-	new_icon_state = "security_hud_black"
-
-/datum/atom_skin/security_hud_sunglasses/light_tint
-	preview_name = "Light-Tint Variant"
-	new_icon_state = "security_hud_blue"
-
-/datum/atom_skin/security_hud_sunglasses/red
-	preview_name = "Red Variant"
-	new_icon = 'icons/obj/clothing/glasses.dmi'
-	new_worn_icon = 'icons/mob/clothing/eyes.dmi'
-	new_icon_state = "sunhudsec"
-
-/datum/atom_skin/security_hud_sunglasses/pink
-	preview_name = "Pink Variant"
-	new_icon = 'modular_zubbers/icons/obj/clothing/glasses.dmi'
-	new_worn_icon = 'modular_zubbers/icons/mob/clothing/eyes.dmi'
-	new_icon_state = "sunhudsec"
-
-/datum/atom_skin/security_hud_sunglasses/blue_goggles
-	preview_name = "Blue Goggles Variant"
-	new_icon_state = "peacekeeperglasses"
-
-/datum/atom_skin/security_hud_sunglasses/red_goggles
-	preview_name = "Red Goggles Variant"
-	new_icon_state = "armadyne_glasses"
-
-/datum/atom_skin/security_hud_sunglasses/pink_goggles
-	preview_name = "Pink Goggles Variant"
-	new_icon = 'modular_zubbers/icons/obj/clothing/glasses.dmi'
-	new_worn_icon = 'modular_zubbers/icons/mob/clothing/eyes.dmi'
-	new_icon_state = "secgogpink"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Dark-Tint Variant" = list(
+			RESKIN_ICON_STATE = "security_hud_black",
+			RESKIN_WORN_ICON_STATE = "security_hud_black"
+		),
+		"Light-Tint Variant" = list(
+			RESKIN_ICON_STATE = "security_hud_blue",
+			RESKIN_WORN_ICON_STATE = "security_hud_blue"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON = 'icons/obj/clothing/glasses.dmi',
+			RESKIN_ICON_STATE = "sunhudsec",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/eyes.dmi',
+		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/glasses.dmi',
+			RESKIN_ICON_STATE = "sunhudsec",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/eyes.dmi',
+		),
+		"Blue Goggles Variant" = list(
+			RESKIN_ICON_STATE = "peacekeeperglasses",
+			RESKIN_WORN_ICON_STATE = "peacekeeperglasses"
+		),
+		"Red Goggles Variant" = list(
+			RESKIN_ICON_STATE = "armadyne_glasses",
+			RESKIN_WORN_ICON_STATE = "armadyne_glasses"
+		),
+		"Pink Goggles Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/glasses.dmi',
+			RESKIN_ICON_STATE = "secgogpink",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/eyes.dmi',
+			RESKIN_WORN_ICON_STATE = "secgogpink",
+		),
+	)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch
 	icon_state = "security_eyepatch"
 	base_icon_state = "security_eyepatch"
-
-/obj/item/clothing/glasses/hud/security/sunglasses/eyepatch/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_hud_eyepatch)
-
-/datum/atom_skin/security_hud_eyepatch
-	abstract_type = /datum/atom_skin/security_hud_eyepatch
-
-/datum/atom_skin/security_hud_eyepatch/red
-	preview_name = "Red Eyepatch"
-	new_icon = 'icons/obj/clothing/glasses.dmi'
-	new_worn_icon = 'icons/mob/clothing/eyes.dmi'
-	new_icon_state = "hudpatch"
-
-/datum/atom_skin/security_hud_eyepatch/blue
-	preview_name = "Blue Eyepatch"
-	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/glasses.dmi'
-	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi'
-	new_icon_state = "hudpatch"
-
-/datum/atom_skin/security_hud_eyepatch/pink
-	preview_name = "Pink Eyepatch"
-	new_icon = 'modular_zubbers/icons/obj/clothing/glasses.dmi'
-	new_worn_icon = 'modular_zubbers/icons/mob/clothing/eyes.dmi'
-	new_icon_state = "hudpatch"
-
-/datum/atom_skin/security_hud_eyepatch/fake_blindfold
-	preview_name = "Fake Blindfold"
-	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/glasses.dmi'
-	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi'
-	new_icon_state = "secfold"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Red Eyepatch" = list(
+			RESKIN_ICON = 'icons/obj/clothing/glasses.dmi',
+			RESKIN_ICON_STATE = "hudpatch",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/eyes.dmi',
+			RESKIN_WORN_ICON_STATE = "hudpatch"
+		),
+		"Blue Eyepatch" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/glasses.dmi',
+			RESKIN_ICON_STATE = "hudpatch",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi',
+			RESKIN_WORN_ICON_STATE = "hudpatch"
+		),
+		"Pink Eyepatch" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/glasses.dmi',
+			RESKIN_ICON_STATE = "hudpatch",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/eyes.dmi',
+			RESKIN_WORN_ICON_STATE = "hudpatch",
+		),
+		"Fake Blindfold" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/glasses.dmi',
+			RESKIN_ICON_STATE = "secfold",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi',
+			RESKIN_WORN_ICON_STATE = "secfold"
+		),
+	)
 
 /obj/item/clothing/glasses/hud/eyepatch/sec
 	name = "security eyepatch HUD"
 	desc = "Lost your eye beating an innocent clown? Thankfully your corporate overlords have made something to make up for this. May not do well against flashes."
 	clothing_traits = list(TRAIT_SECURITY_HUD)
 	glass_colour_type = /datum/client_colour/glass_colour/blue
-
-/obj/item/clothing/glasses/hud/eyepatch/sec/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_hud_eyepatch_simple)
-
-/datum/atom_skin/security_hud_eyepatch_simple
-	abstract_type = /datum/atom_skin/security_hud_eyepatch_simple
-
-/datum/atom_skin/security_hud_eyepatch_simple/blue
-	preview_name = "Blue Eyepatch"
-	new_icon_state = "hudpatch"
-
-/datum/atom_skin/security_hud_eyepatch_simple/red
-	preview_name = "Red Eyepatch"
-	new_icon = 'icons/obj/clothing/glasses.dmi'
-	new_worn_icon = 'icons/mob/clothing/eyes.dmi'
-	new_icon_state = "hudpatch"
-
-/datum/atom_skin/security_hud_eyepatch_simple/fake_blindfold
-	preview_name = "Fake Blindfold"
-	new_icon_state = "secfold"
+	unique_reskin = list(
+		"Blue Eyepatch" = list(
+			RESKIN_ICON_STATE = "hudpatch",
+			RESKIN_WORN_ICON_STATE = "hudpatch"
+		),
+		"Red Eyepatch" = list(
+			RESKIN_ICON = 'icons/obj/clothing/glasses.dmi',
+			RESKIN_ICON_STATE = "hudpatch",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/eyes.dmi',
+			RESKIN_WORN_ICON_STATE = "hudpatch"
+		),
+		"Fake Blindfold" = list(
+			RESKIN_ICON_STATE = "secfold",
+			RESKIN_WORN_ICON_STATE = "secfold"
+		)
+	)
 
 /obj/item/clothing/glasses/hud/eyepatch/sec/blindfold
 	name = "sec blindfold HUD"
 	desc = "a fake blindfold with a security HUD inside, helps you look like blind justice. This won't provide the same protection that you'd get from sunglasses."
 	icon_state =  "secfold"
 	base_icon_state =  "secfold"
-
-/obj/item/clothing/glasses/hud/eyepatch/sec/blindfold/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	unique_reskin = null
 
 /obj/item/clothing/glasses/hud/security/night
 	icon = 'icons/obj/clothing/glasses.dmi'
 	worn_icon = 'icons/mob/clothing/eyes.dmi'
+	unique_reskin = null
 
-/obj/item/clothing/glasses/hud/security/night/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+/obj/item/clothing/glasses/hud/security/sunglasses/gars
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Red Gars" = list(
+			RESKIN_ICON_STATE = "gar_sec",
+			RESKIN_WORN_ICON_STATE = "gar_sec"
+		),
+		"Blue Gars" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/glasses.dmi',
+			RESKIN_ICON_STATE = "gar_sec",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi',
+			RESKIN_WORN_ICON_STATE = "gar_sec"
+		),
+	)
 
-/obj/item/clothing/glasses/hud/security/sunglasses/gars/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_hud_gars)
-
-/datum/atom_skin/security_hud_gars
-	abstract_type = /datum/atom_skin/security_hud_gars
-
-/datum/atom_skin/security_hud_gars/red
-	preview_name = "Red Gars"
-	new_icon_state = "gar_sec"
-
-/datum/atom_skin/security_hud_gars/blue
-	preview_name = "Blue Gars"
-	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/glasses.dmi'
-	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi'
-	new_icon_state = "gar_sec"
-
-/obj/item/clothing/glasses/hud/security/sunglasses/gars/giga/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_hud_gars_giga)
-
-/datum/atom_skin/security_hud_gars_giga
-	abstract_type = /datum/atom_skin/security_hud_gars_giga
-
-/datum/atom_skin/security_hud_gars_giga/red
-	preview_name = "Red Gars"
-	new_icon_state = "gigagar_sec"
-
-/datum/atom_skin/security_hud_gars_giga/blue
-	preview_name = "Blue Gars"
-	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/glasses.dmi'
-	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi'
-	new_icon_state = "gigagar_sec"
+/obj/item/clothing/glasses/hud/security/sunglasses/gars/giga
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Red Gars" = list(
+			RESKIN_ICON_STATE = "gigagar_sec",
+			RESKIN_WORN_ICON_STATE = "gigagar_sec"
+		),
+		"Blue Gars" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/glasses.dmi',
+			RESKIN_ICON_STATE = "gigagar_sec",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi',
+			RESKIN_WORN_ICON_STATE = "gigagar_sec"
+		),
+	)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/gars/giga/roselia
-
-/obj/item/clothing/glasses/hud/security/sunglasses/gars/giga/roselia/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	unique_reskin = null
 
 /*
 * HEAD
@@ -456,23 +389,19 @@
 	clothing_flags = SNUG_FIT | STACKABLE_HELMET_EXEMPT
 	dog_fashion = null
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
-
-/obj/item/clothing/head/helmet/sec/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_helmet)
-
-/datum/atom_skin/security_helmet
-	abstract_type = /datum/atom_skin/security_helmet
-
-/datum/atom_skin/security_helmet/white
-	preview_name = "White Variant"
-	new_icon_state = "security_helmet"
-
-/datum/atom_skin/security_helmet/red
-	preview_name = "Red Variant"
-	new_icon = 'icons/obj/clothing/head/helmet.dmi'
-	new_worn_icon = 'icons/mob/clothing/head/helmet.dmi'
-	new_icon_state = "helmet"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"White Variant" = list(
+			RESKIN_ICON_STATE = "security_helmet",
+			RESKIN_WORN_ICON_STATE = "security_helmet"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON = 'icons/obj/clothing/head/helmet.dmi',
+			RESKIN_ICON_STATE = "helmet",
+			RESKIN_WORN_ICON_STATE = "helmet",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/head/helmet.dmi'
+		),
+	)
 
 /obj/item/clothing/head/helmet/sec/click_alt(mob/user)
 	flipped_visor = !flipped_visor
@@ -492,25 +421,22 @@
 	icon_state = "security_helmet_future"
 	base_icon_state = "security_helmet_future"
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"White Variant" = list(
+			RESKIN_ICON_STATE = "security_helmet_future",
+			RESKIN_WORN_ICON_STATE = "security_helmet_future"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "security_helmet_future_blue",
+			RESKIN_WORN_ICON_STATE = "security_helmet_future_blue"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "security_helmet_future_red",
+			RESKIN_WORN_ICON_STATE = "security_helmet_future_red"
+		),
+	)
 
-/obj/item/clothing/head/helmet/sec/futuristic/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_helmet_future)
-
-/datum/atom_skin/security_helmet_future
-	abstract_type = /datum/atom_skin/security_helmet_future
-
-/datum/atom_skin/security_helmet_future/white
-	preview_name = "White Variant"
-	new_icon_state = "security_helmet_future"
-
-/datum/atom_skin/security_helmet_future/blue
-	preview_name = "Blue Variant"
-	new_icon_state = "security_helmet_future_blue"
-
-/datum/atom_skin/security_helmet_future/red
-	preview_name = "Red Variant"
-	new_icon_state = "security_helmet_future_red"
 
 /obj/item/clothing/head/helmet/sec/futuristic/click_alt(mob/user)
 	flipped_visor = !flipped_visor
@@ -532,24 +458,20 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
 	icon_state = "garrison_black"
+	uses_advanced_reskins = TRUE
 	armor_type = /datum/armor/head_helmet
 	strip_delay = 60
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
-
-/obj/item/clothing/head/security_garrison/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_garrison_cap)
-
-/datum/atom_skin/security_garrison_cap
-	abstract_type = /datum/atom_skin/security_garrison_cap
-
-/datum/atom_skin/security_garrison_cap/black
-	preview_name = "Black Variant"
-	new_icon_state = "garrison_black"
-
-/datum/atom_skin/security_garrison_cap/blue
-	preview_name = "Blue Variant"
-	new_icon_state = "garrison_blue"
+	unique_reskin = list(
+		"Black Variant" = list(
+			RESKIN_ICON_STATE = "garrison_black",
+			RESKIN_WORN_ICON_STATE = "garrison_black"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "garrison_blue",
+			RESKIN_WORN_ICON_STATE = "garrison_blue"
+		),
+	)
 
 /obj/item/clothing/head/security_cap
 	name = "security cap"
@@ -557,123 +479,99 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
 	icon_state = "security_cap_black"
+	uses_advanced_reskins = TRUE
 	armor_type = /datum/armor/head_helmet
 	strip_delay = 60
 	dog_fashion = null
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
-
-/obj/item/clothing/head/security_cap/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_cap)
-
-/datum/atom_skin/security_cap
-	abstract_type = /datum/atom_skin/security_cap
-
-/datum/atom_skin/security_cap/black
-	preview_name = "Black Variant"
-	new_icon_state = "security_cap_black"
-
-/datum/atom_skin/security_cap/blue
-	preview_name = "Blue Variant"
-	new_icon_state = "security_cap_blue"
-
-/datum/atom_skin/security_cap/white
-	preview_name = "White Variant"
-	new_icon_state = "security_cap_white"
-
-/datum/atom_skin/security_cap/sol
-	preview_name = "Sol Variant"
-	new_icon_state = "policesoft"
-
-/datum/atom_skin/security_cap/sillitoe
-	preview_name = "Sillitoe Variant"
-	new_icon_state = "policetrafficsoft"
-
-/datum/atom_skin/security_cap/cadet
-	preview_name = "Cadet Variant"
-	new_icon_state = "policecadetsoft"
+	unique_reskin = list(
+		"Black Variant" = list(
+			RESKIN_ICON_STATE = "security_cap_black",
+			RESKIN_WORN_ICON_STATE = "security_cap_black"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "security_cap_blue",
+			RESKIN_WORN_ICON_STATE = "security_cap_blue"
+		),
+		"White Variant" = list(
+			RESKIN_ICON_STATE = "security_cap_white",
+			RESKIN_WORN_ICON_STATE = "security_cap_white"
+		),
+		"Sol Variant" = list(
+			RESKIN_ICON_STATE = "policesoft",
+			RESKIN_WORN_ICON_STATE = "policesoft"
+		),
+		"Sillitoe Variant" = list(
+			RESKIN_ICON_STATE = "policetrafficsoft",
+			RESKIN_WORN_ICON_STATE = "policetrafficsoft"
+		),
+		"Cadet Variant" = list(
+			RESKIN_ICON_STATE = "policecadetsoft",
+			RESKIN_WORN_ICON_STATE = "policecadetsoft"
+		),
+	)
 
 /obj/item/clothing/head/hats/warden
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
 	icon_state = "policehelm"
-
-/obj/item/clothing/head/hats/warden/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/warden_hat)
-
-/datum/atom_skin/warden_hat
-	abstract_type = /datum/atom_skin/warden_hat
-
-/datum/atom_skin/warden_hat/blue
-	preview_name = "Blue Cap"
-	new_icon_state = "policehelm"
-
-/datum/atom_skin/warden_hat/sol
-	preview_name = "Sol Cap"
-	new_icon_state = "policewardencap"
-
-/datum/atom_skin/warden_hat/red
-	preview_name = "Red Cap"
-	new_icon_state = "wardenhat"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Blue Cap" = list(
+			RESKIN_ICON_STATE = "policehelm",
+			RESKIN_WORN_ICON_STATE = "policehelm"
+		),
+		"Sol Cap" = list(
+			RESKIN_ICON_STATE = "policewardencap",
+			RESKIN_WORN_ICON_STATE = "policewardencap"
+		),
+		"Red Cap" = list(
+			RESKIN_ICON_STATE = "wardenhat",
+			RESKIN_WORN_ICON_STATE = "wardenhat"
+		),
+	)
 
 /obj/item/clothing/head/hats/warden/red
-
-/obj/item/clothing/head/hats/warden/red/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	unique_reskin = null
 
 /obj/item/clothing/head/hats/warden/drill
+	unique_reskin = null
 
-/obj/item/clothing/head/hats/warden/drill/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
 
-/obj/item/clothing/head/hats/hos/cap/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hos_cap)
-
-/datum/atom_skin/hos_cap
-	abstract_type = /datum/atom_skin/hos_cap
-
-/datum/atom_skin/hos_cap/red
-	preview_name = "Red Cap"
-	new_icon_state = "hoscap"
-
-/datum/atom_skin/hos_cap/blue
-	preview_name = "Blue Cap"
-	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
-	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
-	new_icon_state = "hoscap_blue"
-
-/datum/atom_skin/hos_cap/sol
-	preview_name = "Sol Cap"
-	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
-	new_icon_state = "policechiefcap"
-
-/datum/atom_skin/hos_cap/sheriff
-	preview_name = "Sheriff Hat"
-	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
-	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
-	new_icon_state = "cowboyhat_black"
-
-/datum/atom_skin/hos_cap/wide_sheriff
-	preview_name = "Wide Sheriff Hat"
-	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
-	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
-	new_icon_state = "cowboy_black"
+/obj/item/clothing/head/hats/hos/cap
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Red Cap" = list(
+			RESKIN_ICON_STATE = "hoscap",
+			RESKIN_WORN_ICON_STATE = "hoscap"
+		),
+		"Blue Cap" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi',
+			RESKIN_ICON_STATE = "hoscap_blue",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi',
+			RESKIN_WORN_ICON_STATE = "hoscap_blue"
+		),
+		"Sol Cap" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi',
+			RESKIN_ICON_STATE = "policechiefcap",
+			RESKIN_WORN_ICON_STATE = "policechiefcap"
+		),
+		"Sheriff Hat" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi',
+			RESKIN_ICON_STATE = "cowboyhat_black",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi',
+			RESKIN_WORN_ICON_STATE = "cowboyhat_black"
+		),
+		"Wide Sheriff Hat" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi',
+			RESKIN_ICON_STATE = "cowboy_black",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi',
+			RESKIN_WORN_ICON_STATE = "cowboy_black"
+		),
+	)
 
 /obj/item/clothing/head/hats/hos/cap/syndicate
-
-/obj/item/clothing/head/hats/hos/cap/syndicate/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	unique_reskin = null
 
 /*
 * NECK
@@ -682,21 +580,17 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/neck.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "hoscloak_blue"
-
-/obj/item/clothing/neck/cloak/hos/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hos_cloak)
-
-/datum/atom_skin/hos_cloak
-	abstract_type = /datum/atom_skin/hos_cloak
-
-/datum/atom_skin/hos_cloak/blue
-	preview_name = "Blue Cape"
-	new_icon_state = "hoscloak_blue"
-
-/datum/atom_skin/hos_cloak/red
-	preview_name = "Red Cape"
-	new_icon_state = "hoscloak"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Blue Cape" = list(
+			RESKIN_ICON_STATE = "hoscloak_blue",
+			RESKIN_WORN_ICON_STATE = "hoscloak_blue"
+		),
+		"Red Cape" = list(
+			RESKIN_ICON_STATE = "hoscloak",
+			RESKIN_WORN_ICON_STATE = "hoscloak"
+		),
+	)
 
 //Not technically an override but oh well
 /obj/item/clothing/neck/security_cape
@@ -706,59 +600,51 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "cape_black"
 	inhand_icon_state = "" //no unique inhands
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Black Variant" = list(
+			RESKIN_ICON_STATE = "cape_black",
+			RESKIN_WORN_ICON_STATE = "cape_black"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "cape_blue",
+			RESKIN_WORN_ICON_STATE = "cape_blue"
+		),
+		"White Variant" = list(
+			RESKIN_ICON_STATE = "cape_white",
+			RESKIN_WORN_ICON_STATE = "cape_white"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "cape_red",
+			RESKIN_WORN_ICON_STATE = "cape_red"
+		),
+	)
 	///Decides the shoulder it lays on, false = RIGHT, TRUE = LEFT
 	var/swapped = FALSE
-
-/obj/item/clothing/neck/security_cape/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_cape)
-
-/datum/atom_skin/security_cape
-	abstract_type = /datum/atom_skin/security_cape
-
-/datum/atom_skin/security_cape/black
-	preview_name = "Black Variant"
-	new_icon_state = "cape_black"
-
-/datum/atom_skin/security_cape/blue
-	preview_name = "Blue Variant"
-	new_icon_state = "cape_blue"
-
-/datum/atom_skin/security_cape/white
-	preview_name = "White Variant"
-	new_icon_state = "cape_white"
-
-/datum/atom_skin/security_cape/red
-	preview_name = "Red Variant"
-	new_icon_state = "cape_red"
 
 /obj/item/clothing/neck/security_cape/armplate
 	name = "security gauntlet"
 	desc = "A fashionable full-arm gauntlet worn by security officers. The gauntlet itself is made of plastic, and provides no protection, but it looks cool as hell."
 	icon_state = "armplate_black"
-
-/obj/item/clothing/neck/security_cape/armplate/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_armplate)
-
-/datum/atom_skin/security_armplate
-	abstract_type = /datum/atom_skin/security_armplate
-
-/datum/atom_skin/security_armplate/black
-	preview_name = "Black Variant"
-	new_icon_state = "armplate_black"
-
-/datum/atom_skin/security_armplate/blue
-	preview_name = "Blue Variant"
-	new_icon_state = "armplate_blue"
-
-/datum/atom_skin/security_armplate/capeless
-	preview_name = "Capeless Variant"
-	new_icon_state = "armplate"
-
-/datum/atom_skin/security_armplate/red
-	preview_name = "Red Variant"
-	new_icon_state = "armplate_red"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Black Variant" = list(
+			RESKIN_ICON_STATE = "armplate_black",
+			RESKIN_WORN_ICON_STATE = "armplate_black"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "armplate_blue",
+			RESKIN_WORN_ICON_STATE = "armplate_blue"
+		),
+		"Capeless Variant" = list(
+			RESKIN_ICON_STATE = "armplate",
+			RESKIN_WORN_ICON_STATE = "armplate"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "armplate_red",
+			RESKIN_WORN_ICON_STATE = "armplate_red"
+		),
+	)
 
 /obj/item/clothing/neck/security_cape/click_alt(mob/user)
 	swapped = !swapped
@@ -784,47 +670,43 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "gloves_white"
-
-/obj/item/clothing/gloves/color/black/security/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_gloves)
-
-/datum/atom_skin/security_gloves
-	abstract_type = /datum/atom_skin/security_gloves
-
-/datum/atom_skin/security_gloves/black
-	preview_name = "Black Variant"
-	new_icon_state = "gloves_black"
-
-/datum/atom_skin/security_gloves/blue
-	preview_name = "Blue Variant"
-	new_icon_state = "gloves_blue"
-
-/datum/atom_skin/security_gloves/white
-	preview_name = "White Variant"
-	new_icon_state = "gloves_white"
-
-/datum/atom_skin/security_gloves/armadyne
-	preview_name = "Armadyne Variant"
-	new_icon_state = "armadyne_gloves"
-
-/datum/atom_skin/security_gloves/red
-	preview_name = "Red Variant"
-	new_icon = 'icons/obj/clothing/gloves.dmi'
-	new_worn_icon = 'icons/mob/clothing/hands.dmi'
-	new_icon_state = "sec"
-
-/datum/atom_skin/security_gloves/peacekeeper
-	preview_name = "Peacekeeper Variant"
-	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
-	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
-	new_icon_state = "peacekeeper_gloves"
-
-/datum/atom_skin/security_gloves/pink
-	preview_name = "Pink Variant"
-	new_icon = 'modular_zubbers/icons/obj/clothing/gloves.dmi'
-	new_worn_icon = 'modular_zubbers/icons/mob/clothing/hands.dmi'
-	new_icon_state = "sec_gloves"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Black Variant" = list(
+			RESKIN_ICON_STATE = "gloves_black",
+			RESKIN_WORN_ICON_STATE = "gloves_black"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "gloves_blue",
+			RESKIN_WORN_ICON_STATE = "gloves_blue"
+		),
+		"White Variant" = list(
+			RESKIN_ICON_STATE = "gloves_white",
+			RESKIN_WORN_ICON_STATE = "gloves_white"
+		),
+		"Armadyne Variant" = list(
+			RESKIN_ICON_STATE = "armadyne_gloves",
+			RESKIN_WORN_ICON_STATE = "armadyne_gloves"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON = 'icons/obj/clothing/gloves.dmi',
+			RESKIN_ICON_STATE = "sec",
+			RESKIN_WORN_ICON_STATE = "sec",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/hands.dmi',
+		),
+		"Peacekeeper Variant" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi',
+			RESKIN_ICON_STATE = "peacekeeper_gloves",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi',
+			RESKIN_WORN_ICON_STATE = "peacekeeper",
+		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/gloves.dmi',
+			RESKIN_ICON_STATE = "sec_gloves",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/hands.dmi',
+			RESKIN_WORN_ICON_STATE = "sec_gloves",
+		),
+	)
 
 /obj/item/clothing/gloves/color/black/security/blu // Wait why these a subtype of black?!? Who did this
 	icon = 'icons/obj/clothing/gloves.dmi'
@@ -834,84 +716,71 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "tackle_blue"
-
-/obj/item/clothing/gloves/tackler/security/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_tackler_gloves)
-
-/datum/atom_skin/security_tackler_gloves
-	abstract_type = /datum/atom_skin/security_tackler_gloves
-
-/datum/atom_skin/security_tackler_gloves/black
-	preview_name = "Black Variant"
-	new_icon_state = "combat"
-
-/datum/atom_skin/security_tackler_gloves/blue
-	preview_name = "Blue Variant"
-	new_icon_state = "tackle_blue"
-
-/datum/atom_skin/security_tackler_gloves/red
-	preview_name = "Red Variant"
-	new_icon = 'icons/obj/clothing/gloves.dmi'
-	new_worn_icon = 'icons/mob/clothing/hands.dmi'
-	new_icon_state = "gorilla"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Black Variant" = list(
+			RESKIN_ICON_STATE = "combat",
+			RESKIN_WORN_ICON_STATE = "combat"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "tackle_blue",
+			RESKIN_WORN_ICON_STATE = "tackle_blue"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON = 'icons/obj/clothing/gloves.dmi',
+			RESKIN_WORN_ICON = 'icons/mob/clothing/hands.dmi',
+			RESKIN_ICON_STATE = "gorilla",
+			RESKIN_WORN_ICON_STATE = "gorilla"
+		),
+	)
 
 /obj/item/clothing/gloves/tackler/combat
 	icon = 'icons/obj/clothing/gloves.dmi'
 	worn_icon = 'icons/mob/clothing/hands.dmi'
 	icon_state = "gorilla"
-
-/obj/item/clothing/gloves/tackler/combat/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/combat_tackler_gloves)
-
-/datum/atom_skin/combat_tackler_gloves
-	abstract_type = /datum/atom_skin/combat_tackler_gloves
-
-/datum/atom_skin/combat_tackler_gloves/black
-	preview_name = "Black Variant"
-	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
-	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
-	new_icon_state = "combat"
-
-/datum/atom_skin/combat_tackler_gloves/blue
-	preview_name = "Blue Variant"
-	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
-	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
-	new_icon_state = "tackle_blue"
-
-/datum/atom_skin/combat_tackler_gloves/red
-	preview_name = "Red Variant"
-	new_icon_state = "gorilla"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Black Variant" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi',
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi',
+			RESKIN_ICON_STATE = "combat",
+			RESKIN_WORN_ICON_STATE = "combat"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi',
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi',
+			RESKIN_ICON_STATE = "tackle_blue",
+			RESKIN_WORN_ICON_STATE = "tackle_blue"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "gorilla",
+			RESKIN_WORN_ICON_STATE = "gorilla"
+		),
+	)
 
 /obj/item/clothing/gloves/kaza_ruk/sec
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "fightgloves_blue"
-
-/obj/item/clothing/gloves/kaza_ruk/sec/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_kaza_ruk_gloves)
-
-/datum/atom_skin/security_kaza_ruk_gloves
-	abstract_type = /datum/atom_skin/security_kaza_ruk_gloves
-
-/datum/atom_skin/security_kaza_ruk_gloves/black
-	preview_name = "Black Variant"
-	new_icon_state = "fightgloves_black"
-
-/datum/atom_skin/security_kaza_ruk_gloves/blue
-	preview_name = "Blue Variant"
-	new_icon_state = "fightgloves_blue"
-
-/datum/atom_skin/security_kaza_ruk_gloves/red
-	preview_name = "Red Variant"
-	new_icon_state = "fightgloves"
-
-/datum/atom_skin/security_kaza_ruk_gloves/white
-	preview_name = "White Variant"
-	new_icon_state = "fightgloves_white"
-
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Black Variant" = list(
+			RESKIN_ICON_STATE = "fightgloves_black",
+			RESKIN_WORN_ICON_STATE = "fightgloves_black"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "fightgloves_blue",
+			RESKIN_WORN_ICON_STATE = "fightgloves_blue"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "fightgloves",
+			RESKIN_WORN_ICON_STATE = "fightgloves"
+		),
+		"White Variant" = list(
+			RESKIN_ICON_STATE = "fightgloves_white",
+			RESKIN_WORN_ICON_STATE = "fightgloves_white"
+		),
+	)
 /*
 * SUITS
 */
@@ -921,85 +790,72 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "vest_white"
-
-/obj/item/clothing/suit/armor/vest/alt/sec/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_armor_vest_alt)
-
-/datum/atom_skin/security_armor_vest_alt
-	abstract_type = /datum/atom_skin/security_armor_vest_alt
-
-/datum/atom_skin/security_armor_vest_alt/black
-	preview_name = "Black Variant"
-	new_icon_state = "vest_black"
-
-/datum/atom_skin/security_armor_vest_alt/blue
-	preview_name = "Blue Variant"
-	new_icon_state = "vest_blue"
-
-/datum/atom_skin/security_armor_vest_alt/white
-	preview_name = "White Variant"
-	new_icon_state = "vest_white"
-
-/datum/atom_skin/security_armor_vest_alt/red
-	preview_name = "Red Variant"
-	new_icon = 'icons/obj/clothing/suits/armor.dmi'
-	new_worn_icon = 'icons/mob/clothing/suits/armor.dmi'
-	new_icon_state = "armor_sec"
-
-/datum/atom_skin/security_armor_vest_alt/pink
-	preview_name = "Pink Variant"
-	new_icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
-	new_worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
-	new_icon_state = "armor_sec"
-
-/datum/atom_skin/security_armor_vest_alt/armadyne
-	preview_name = "Armadyne Variant"
-	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi'
-	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi'
-	new_icon_state = "armadyne_armor"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Black Variant" = list(
+			RESKIN_ICON_STATE = "vest_black",
+			RESKIN_WORN_ICON_STATE = "vest_black"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "vest_blue",
+			RESKIN_WORN_ICON_STATE = "vest_blue"
+		),
+		"White Variant" = list(
+			RESKIN_ICON_STATE = "vest_white",
+			RESKIN_WORN_ICON_STATE = "vest_white"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON = 'icons/obj/clothing/suits/armor.dmi',
+			RESKIN_ICON_STATE = "armor_sec",
+			RESKIN_WORN_ICON_STATE = "armor_sec",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/suits/armor.dmi',
+		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi',
+			RESKIN_ICON_STATE = "armor_sec",
+			RESKIN_WORN_ICON_STATE = "armor_sec",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi',
+		),
+		"Armadyne Variant" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi',
+			RESKIN_ICON_STATE = "armadyne_armor",
+			RESKIN_WORN_ICON_STATE = "armadyne_armor",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi',
+		),
+	)
 
 /obj/item/clothing/suit/armor/hos
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
-
-/obj/item/clothing/suit/armor/hos/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hos_armor)
-
-/datum/atom_skin/hos_armor
-	abstract_type = /datum/atom_skin/hos_armor
-
-/datum/atom_skin/hos_armor/greatcoat
-	preview_name = "Greatcoat"
-	new_icon = 'icons/obj/clothing/suits/armor.dmi'
-	new_worn_icon = 'icons/mob/clothing/suits/armor.dmi'
-	new_icon_state = "hos"
-
-/datum/atom_skin/hos_armor/trenchcoat
-	preview_name = "Trenchcoat"
-	new_icon = 'icons/obj/clothing/suits/armor.dmi'
-	new_worn_icon = 'icons/mob/clothing/suits/armor.dmi'
-	new_icon_state = "hostrench"
-
-/datum/atom_skin/hos_armor/trenchcloak
-	preview_name = "Trenchcloak"
-	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi'
-	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi'
-	new_icon_state = "trenchcloak"
-
-/datum/atom_skin/hos_armor/white
-	preview_name = "White"
-	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi'
-	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi'
-	new_icon_state = "peacekeeper_trench_hos_white"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Greatcoat" = list(
+			RESKIN_ICON = 'icons/obj/clothing/suits/armor.dmi',
+			RESKIN_ICON_STATE = "hos",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/suits/armor.dmi',
+			RESKIN_WORN_ICON_STATE = "hos"
+		),
+		"Trenchcoat" = list(
+			RESKIN_ICON = 'icons/obj/clothing/suits/armor.dmi',
+			RESKIN_ICON_STATE = "hostrench",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/suits/armor.dmi',
+			RESKIN_WORN_ICON_STATE = "hostrench"
+		),
+		"Trenchcloak" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi',
+			RESKIN_ICON_STATE = "trenchcloak",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi',
+			RESKIN_WORN_ICON_STATE = "trenchcloak"
+		),
+		"White" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi',
+			RESKIN_ICON_STATE = "peacekeeper_trench_hos_white",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi',
+			RESKIN_WORN_ICON_STATE = "peacekeeper_trench_hos_white"
+		),
+	)
 
 /obj/item/clothing/suit/armor/hos/trenchcoat/winter
-
-/obj/item/clothing/suit/armor/hos/trenchcoat/winter/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	current_skin = "hoswinter" //prevents reskinning
 
 //Standard Bulletproof Vest
 /obj/item/clothing/suit/armor/bulletproof
@@ -1041,56 +897,49 @@
 	heat_protection = CHEST|ARMS
 
 //Warden's Vest
-/obj/item/clothing/suit/armor/vest/warden/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/warden_armor)
-
-/datum/atom_skin/warden_armor
-	abstract_type = /datum/atom_skin/warden_armor
-
-/datum/atom_skin/warden_armor/red
-	preview_name = "Red Variant"
-	new_icon_state = "warden_jacket"
-
-/datum/atom_skin/warden_armor/blue
-	preview_name = "Blue Variant"
-	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi'
-	new_icon_state = "vest_warden"
-	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi'
-
-/datum/atom_skin/warden_armor/black
-	preview_name = "Black Variant"
-	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi'
-	new_icon_state = "peacekeeper_trench_warden"
-	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi'
-
-/datum/atom_skin/warden_armor/edgy
-	preview_name = "Edgy Variant"
-	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi'
-	new_icon_state = "warden_syndie"
-	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi'
-
-/datum/atom_skin/warden_armor/pink
-	preview_name = "Pink Variant"
-	new_icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
-	new_icon_state = "warden_jacket"
-	new_worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
-
-/datum/atom_skin/warden_armor/basic
-	preview_name = "Basic Warden Armor"
-	new_icon = 'icons/obj/clothing/suits/armor.dmi'
-	new_icon_state = "warden_alt"
-	new_worn_icon = 'icons/mob/clothing/suits/armor.dmi'
+/obj/item/clothing/suit/armor/vest/warden
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "warden_jacket",
+			RESKIN_WORN_ICON_STATE = "warden_jacket"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi',
+			RESKIN_ICON_STATE = "vest_warden",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi',
+			RESKIN_WORN_ICON_STATE = "vest_warden"
+		),
+		"Black Variant" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi',
+			RESKIN_ICON_STATE = "peacekeeper_trench_warden",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi',
+			RESKIN_WORN_ICON_STATE = "peacekeeper_trench_warden"
+		),
+		"Edgy Variant" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi',
+			RESKIN_ICON_STATE = "warden_syndie",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi',
+			RESKIN_WORN_ICON_STATE = "warden_syndie"
+		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi',
+			RESKIN_ICON_STATE = "warden_jacket",
+			RESKIN_WORN_ICON_STATE = "warden_jacket",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi',
+		),
+		"Basic Warden Armor" = list(
+			RESKIN_ICON = 'icons/obj/clothing/suits/armor.dmi',
+			RESKIN_ICON_STATE = "warden_alt",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/suits/armor.dmi',
+			RESKIN_WORN_ICON_STATE = "warden_alt"
+		),
+	)
 
 /obj/item/clothing/suit/armor/vest/warden/alt //un-overrides this since its sprite is TG
 	icon = 'icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'icons/mob/clothing/suits/armor.dmi'
-
-/obj/item/clothing/suit/armor/vest/warden/alt/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	current_skin = "warden_jacket" //prevents reskinning
 
 //Security Wintercoat (and hood)
 /obj/item/clothing/head/hooded/winterhood/security
@@ -1110,13 +959,8 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "hosformal_blue"
+	current_skin = "hosformal_blue"	//prevents reskinning (but not toggling!)
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
-
-/obj/item/clothing/suit/armor/hos/hos_formal/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
 
 /*
 * UNDER
@@ -1128,106 +972,93 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	icon_state = "security_black"
 	alt_covers_chest = TRUE
-
-/obj/item/clothing/under/rank/security/officer/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_officer_uniform)
-
-/datum/atom_skin/security_officer_uniform
-	abstract_type = /datum/atom_skin/security_officer_uniform
-
-/datum/atom_skin/security_officer_uniform/black
-	preview_name = "Black Variant"
-	new_icon_state = "security_black"
-
-/datum/atom_skin/security_officer_uniform/blue
-	preview_name = "Blue Variant"
-	new_icon_state = "security_blue"
-
-/datum/atom_skin/security_officer_uniform/white
-	preview_name = "White Variant"
-	new_icon_state = "security_white"
-
-/datum/atom_skin/security_officer_uniform/sol
-	preview_name = "Sol Variant"
-	new_icon_state = "policealt"
-
-/datum/atom_skin/security_officer_uniform/cadet
-	preview_name = "Cadet Variant"
-	new_icon_state = "policecadetalt"
-
-/datum/atom_skin/security_officer_uniform/red
-	preview_name = "Red Variant"
-	new_icon_state = "rsecurity"
-
-/datum/atom_skin/security_officer_uniform/pink
-	preview_name = "Pink Variant"
-	new_icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
-	new_icon_state = "rsecurity"
-	new_worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
-
-/datum/atom_skin/security_officer_uniform/armadyne
-	preview_name = "Armadyne Variant"
-	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/under/centcom.dmi'
-	new_icon_state = "armadyne_shirt"
-	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/centcom.dmi'
-
-/datum/atom_skin/security_officer_uniform/armadyne_tac
-	preview_name = "Armadyne Tac Variant"
-	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/under/centcom.dmi'
-	new_icon_state = "armadyne_tac"
-	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/centcom.dmi'
-
-/datum/atom_skin/security_officer_uniform/lopland
-	preview_name = "Lopland Variant"
-	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/under/centcom.dmi'
-	new_icon_state = "lopland_shirt"
-	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/centcom.dmi'
-
-/datum/atom_skin/security_officer_uniform/lopland_tac
-	preview_name = "Lopland Tac Variant"
-	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/under/centcom.dmi'
-	new_icon_state = "lopland_tac"
-	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/centcom.dmi'
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Black Variant" = list(
+			RESKIN_ICON_STATE = "security_black",
+			RESKIN_WORN_ICON_STATE = "security_black"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "security_blue",
+			RESKIN_WORN_ICON_STATE = "security_blue"
+		),
+		"White Variant" = list(
+			RESKIN_ICON_STATE = "security_white",
+			RESKIN_WORN_ICON_STATE = "security_white"
+		),
+		"Sol Variant" = list(
+			RESKIN_ICON_STATE = "policealt",
+			RESKIN_WORN_ICON_STATE = "policealt"
+		),
+		"Cadet Variant" = list(
+			RESKIN_ICON_STATE = "policecadetalt",
+			RESKIN_WORN_ICON_STATE = "policecadetalt"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "rsecurity",
+			RESKIN_WORN_ICON_STATE = "rsecurity"
+		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/under/security.dmi',
+			RESKIN_ICON_STATE = "rsecurity",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/under/security.dmi',
+			RESKIN_WORN_ICON_STATE = "rsecurity"
+		),
+		"Armadyne Variant" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/under/centcom.dmi',
+			RESKIN_ICON_STATE = "armadyne_shirt",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/under/centcom.dmi',
+			RESKIN_WORN_ICON_STATE = "armadyne_shirt"
+		),
+		"Armadyne Tac Variant" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/under/centcom.dmi',
+			RESKIN_ICON_STATE = "armadyne_tac",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/under/centcom.dmi',
+			RESKIN_WORN_ICON_STATE = "armadyne_tac"
+		),
+		"Lopland Variant" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/under/centcom.dmi',
+			RESKIN_ICON_STATE = "lopland_shirt",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/under/centcom.dmi',
+			RESKIN_WORN_ICON_STATE = "lopland_shirt"
+		),
+		"Lopland Tac Variant" = list(
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/under/centcom.dmi',
+			RESKIN_ICON_STATE = "lopland_tac",
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/under/centcom.dmi',
+			RESKIN_WORN_ICON_STATE = "lopland_tac"
+		),
+	)
 
 /obj/item/clothing/under/rank/security/officer/formal
-
-/obj/item/clothing/under/rank/security/officer/formal/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	unique_reskin = null // prevents you from losing the unique sprite
 
 /obj/item/clothing/under/rank/security/officer/skirt
 	alt_covers_chest = FALSE
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
+	uses_advanced_reskins = TRUE
 	alt_covers_chest = TRUE
-
-/obj/item/clothing/under/rank/security/officer/skirt/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_officer_skirt)
-
-/datum/atom_skin/security_officer_skirt
-	abstract_type = /datum/atom_skin/security_officer_skirt
-
-/datum/atom_skin/security_officer_skirt/red
-	preview_name = "Red Variant"
-	new_icon_state = "secskirt"
-
-/datum/atom_skin/security_officer_skirt/blue
-	preview_name = "Blue Variant"
-	new_icon_state = "jumpskirt_blue"
-
-/datum/atom_skin/security_officer_skirt/black
-	preview_name = "Black Variant"
-	new_icon_state = "jumpskirt_black"
-
-/datum/atom_skin/security_officer_skirt/pink
-	preview_name = "Pink Variant"
-	new_icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
-	new_icon_state = "secskirt"
-	new_worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	unique_reskin = list(
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "secskirt",
+			RESKIN_WORN_ICON_STATE = "secskirt"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "jumpskirt_blue",
+			RESKIN_WORN_ICON_STATE = "jumpskirt_blue"
+		),
+		"Black Variant" = list(
+			RESKIN_ICON_STATE = "jumpskirt_black",
+			RESKIN_WORN_ICON_STATE = "jumpskirt_black"
+		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/under/security.dmi',
+			RESKIN_ICON_STATE = "secskirt",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/under/security.dmi',
+			RESKIN_WORN_ICON_STATE = "secskirt"
+		),
+	)
 
 /obj/item/clothing/under/rank/security/officer/skirt/blue
 	name = "security jumpskirt"
@@ -1237,28 +1068,25 @@
 	icon_state = "jumpskirt_blue"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	gets_cropped_on_taurs = FALSE
+	uses_advanced_reskins = TRUE
 	alt_covers_chest = TRUE
+	unique_reskin = list(
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "jumpskirt_blue",
+			RESKIN_WORN_ICON_STATE = "jumpskirt_blue"
+		),
+		"Black Variant" = list(
+			RESKIN_ICON_STATE = "jumpskirt_black",
+			RESKIN_WORN_ICON_STATE = "jumpskirt_black"
+		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/under/security.dmi',
+			RESKIN_ICON_STATE = "secskirt",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/under/security.dmi',
+			RESKIN_WORN_ICON_STATE = "secskirt"
+		),
+	)
 
-/obj/item/clothing/under/rank/security/officer/skirt/blue/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_officer_jumpskirt)
-
-/datum/atom_skin/security_officer_jumpskirt
-	abstract_type = /datum/atom_skin/security_officer_jumpskirt
-
-/datum/atom_skin/security_officer_jumpskirt/blue
-	preview_name = "Blue Variant"
-	new_icon_state = "jumpskirt_blue"
-
-/datum/atom_skin/security_officer_jumpskirt/black
-	preview_name = "Black Variant"
-	new_icon_state = "jumpskirt_black"
-
-/datum/atom_skin/security_officer_jumpskirt/pink
-	preview_name = "Pink Variant"
-	new_icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
-	new_icon_state = "secskirt"
-	new_worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 
 // DETECTIVE
 /obj/item/clothing/under/rank/security/detective/cowboy
@@ -1286,216 +1114,166 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	icon_state = "warden_black"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Black Variant" = list(
+			RESKIN_ICON_STATE = "warden_black",
+			RESKIN_WORN_ICON_STATE = "warden_black"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "peacekeeper_warden",
+			RESKIN_WORN_ICON_STATE = "peacekeeper_warden"
+		),
+		"Sol Variant" = list(
+			RESKIN_ICON_STATE = "policewardenalt",
+			RESKIN_WORN_ICON_STATE = "policewardenalt"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "rwarden",
+			RESKIN_WORN_ICON_STATE = "rwarden"
+		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/under/security.dmi',
+			RESKIN_ICON_STATE = "rwarden",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/under/security.dmi',
+			RESKIN_WORN_ICON_STATE = "rwarden"
+		),
+	)
 
-/obj/item/clothing/under/rank/security/warden/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/warden_uniform)
-
-/datum/atom_skin/warden_uniform
-	abstract_type = /datum/atom_skin/warden_uniform
-
-/datum/atom_skin/warden_uniform/black
-	preview_name = "Black Variant"
-	new_icon_state = "warden_black"
-
-/datum/atom_skin/warden_uniform/blue
-	preview_name = "Blue Variant"
-	new_icon_state = "peacekeeper_warden"
-
-/datum/atom_skin/warden_uniform/sol
-	preview_name = "Sol Variant"
-	new_icon_state = "policewardenalt"
-
-/datum/atom_skin/warden_uniform/red
-	preview_name = "Red Variant"
-	new_icon_state = "rwarden"
-
-/datum/atom_skin/warden_uniform/pink
-	preview_name = "Pink Variant"
-	new_icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
-	new_icon_state = "rwarden"
-	new_worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
-
-/obj/item/clothing/under/rank/security/warden/skirt/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/warden_skirt)
-
-/datum/atom_skin/warden_skirt
-	abstract_type = /datum/atom_skin/warden_skirt
-
-/datum/atom_skin/warden_skirt/red
-	preview_name = "Red Variant"
-	new_icon_state = "rwarden_skirt"
-
-/datum/atom_skin/warden_skirt/pink
-	preview_name = "Pink Variant"
-	new_icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
-	new_icon_state = "rwarden_skirt"
-	new_worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+/obj/item/clothing/under/rank/security/warden/skirt
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "rwarden_skirt",
+			RESKIN_WORN_ICON_STATE = "rwarden_skirt"
+		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/under/security.dmi',
+			RESKIN_ICON_STATE = "rwarden_skirt",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/under/security.dmi',
+			RESKIN_WORN_ICON_STATE = "rwarden_skirt"
+		),
+	)
 
 /obj/item/clothing/under/rank/security/warden/formal
+	unique_reskin = null
 
-/obj/item/clothing/under/rank/security/warden/formal/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
 
 //HoS
 /obj/item/clothing/under/rank/security/head_of_security
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	icon_state = "hos_black"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Black Variant" = list(
+			RESKIN_ICON_STATE = "hos_black",
+			RESKIN_WORN_ICON_STATE = "hos_black"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "peacekeeper_hos",
+			RESKIN_WORN_ICON_STATE = "peacekeeper_hos"
+		),
+		"Sol Variant" = list(
+			RESKIN_ICON_STATE = "policechiefalt",
+			RESKIN_WORN_ICON_STATE = "policechiefalt"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "rhos",
+			RESKIN_WORN_ICON_STATE = "rhos"
+		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/under/security.dmi',
+			RESKIN_ICON_STATE = "rhos",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/under/security.dmi',
+			RESKIN_WORN_ICON_STATE = "rhos"
+		),
+	)
 
-/obj/item/clothing/under/rank/security/head_of_security/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hos_uniform)
-
-/datum/atom_skin/hos_uniform
-	abstract_type = /datum/atom_skin/hos_uniform
-
-/datum/atom_skin/hos_uniform/black
-	preview_name = "Black Variant"
-	new_icon_state = "hos_black"
-
-/datum/atom_skin/hos_uniform/blue
-	preview_name = "Blue Variant"
-	new_icon_state = "peacekeeper_hos"
-
-/datum/atom_skin/hos_uniform/sol
-	preview_name = "Sol Variant"
-	new_icon_state = "policechiefalt"
-
-/datum/atom_skin/hos_uniform/red
-	preview_name = "Red Variant"
-	new_icon_state = "rhos"
-
-/datum/atom_skin/hos_uniform/pink
-	preview_name = "Pink Variant"
-	new_icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
-	new_icon_state = "rhos"
-	new_worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
-
-/obj/item/clothing/under/rank/security/head_of_security/skirt/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hos_skirt)
-
-/datum/atom_skin/hos_skirt
-	abstract_type = /datum/atom_skin/hos_skirt
-
-/datum/atom_skin/hos_skirt/red
-	preview_name = "Red Variant"
-	new_icon_state = "rhos_skirt"
-
-/datum/atom_skin/hos_skirt/pink
-	preview_name = "Pink Variant"
-	new_icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
-	new_icon_state = "rhos_skirt"
-	new_worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+/obj/item/clothing/under/rank/security/head_of_security/skirt
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "rhos_skirt",
+			RESKIN_WORN_ICON_STATE = "rhos_skirt"
+		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/under/security.dmi',
+			RESKIN_ICON_STATE = "rhos_skirt",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/under/security.dmi',
+			RESKIN_WORN_ICON_STATE = "rhos_skirt"
+		),
+	)
 
 /obj/item/clothing/under/rank/security/head_of_security/parade
 	icon_state = "hos_parade_male_blue"
-
-/obj/item/clothing/under/rank/security/head_of_security/parade/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hos_parade_male)
-
-/datum/atom_skin/hos_parade_male
-	abstract_type = /datum/atom_skin/hos_parade_male
-
-/datum/atom_skin/hos_parade_male/blue
-	preview_name = "Blue Variant"
-	new_icon_state = "hos_parade_male_blue"
-
-/datum/atom_skin/hos_parade_male/red
-	preview_name = "Red Variant"
-	new_icon_state = "hos_parade_male"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "hos_parade_male_blue",
+			RESKIN_WORN_ICON_STATE = "hos_parade_male_blue"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "hos_parade_male",
+			RESKIN_WORN_ICON_STATE = "hos_parade_male"
+		),
+	)
 
 /obj/item/clothing/under/rank/security/head_of_security/parade/female
 	icon_state = "hos_parade_fem_blue"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "hos_parade_fem_blue",
+			RESKIN_WORN_ICON_STATE = "hos_parade_fem_blue"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "hos_parade_fem",
+			RESKIN_WORN_ICON_STATE = "hos_parade_fem"
+		),
+	)
 
-/obj/item/clothing/under/rank/security/head_of_security/parade/female/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hos_parade_female)
-
-/datum/atom_skin/hos_parade_female
-	abstract_type = /datum/atom_skin/hos_parade_female
-
-/datum/atom_skin/hos_parade_female/blue
-	preview_name = "Blue Variant"
-	new_icon_state = "hos_parade_fem_blue"
-
-/datum/atom_skin/hos_parade_female/red
-	preview_name = "Red Variant"
-	new_icon_state = "hos_parade_fem"
 
 /obj/item/clothing/under/rank/security/head_of_security/alt
 	icon_state = "hosalt_blue"
-
-/obj/item/clothing/under/rank/security/head_of_security/alt/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hos_alt)
-
-/datum/atom_skin/hos_alt
-	abstract_type = /datum/atom_skin/hos_alt
-
-/datum/atom_skin/hos_alt/blue
-	preview_name = "Blue Variant"
-	new_icon_state = "hosalt_blue"
-
-/datum/atom_skin/hos_alt/red
-	preview_name = "Red Variant"
-	new_icon_state = "hosalt"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "hosalt_blue",
+			RESKIN_WORN_ICON_STATE = "hosalt_blue"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "hosalt",
+			RESKIN_WORN_ICON_STATE = "hosalt"
+		),
+	)
 
 /obj/item/clothing/under/rank/security/head_of_security/alt/skirt
 	icon_state = "hosalt_skirt_blue"
-
-/obj/item/clothing/under/rank/security/head_of_security/alt/skirt/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hos_alt_skirt)
-
-/datum/atom_skin/hos_alt_skirt
-	abstract_type = /datum/atom_skin/hos_alt_skirt
-
-/datum/atom_skin/hos_alt_skirt/blue
-	preview_name = "Blue Variant"
-	new_icon_state = "hosalt_skirt_blue"
-
-/datum/atom_skin/hos_alt_skirt/red
-	preview_name = "Red Variant"
-	new_icon_state = "hosalt_skirt"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "hosalt_skirt_blue",
+			RESKIN_WORN_ICON_STATE = "hosalt_skirt_blue"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "hosalt_skirt",
+			RESKIN_WORN_ICON_STATE = "hosalt_skirt"
+		),
+	)
 
 /obj/item/clothing/under/rank/security/head_of_security/peacekeeper
-
-/obj/item/clothing/under/rank/security/head_of_security/peacekeeper/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	unique_reskin = null
 
 /obj/item/clothing/under/rank/security/head_of_security/bunnysuit
-
-/obj/item/clothing/under/rank/security/head_of_security/bunnysuit/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	unique_reskin = null
 
 /obj/item/clothing/under/rank/security/head_of_security/alt/roselia
-
-/obj/item/clothing/under/rank/security/head_of_security/alt/roselia/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	unique_reskin = null
 
 /obj/item/clothing/under/rank/security/head_of_security/grey
+	unique_reskin = null
 
-/obj/item/clothing/under/rank/security/head_of_security/grey/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
 
 // PRISONER
 
@@ -1595,42 +1373,42 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/feet.dmi'
 	clothing_traits = list(TRAIT_SILENT_FOOTSTEPS) // We have other footsteps.
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Blue-Trimmed Variant" = list(
+			RESKIN_ICON_STATE = "security_boots",
+			RESKIN_WORN_ICON_STATE = "security_boots"
+		),
+		"White-Trimmed Variant" = list(
+			RESKIN_ICON_STATE = "security_boots_white",
+			RESKIN_WORN_ICON_STATE = "security_boots_white"
+		),
+		"Full White Variant" = list(
+			RESKIN_ICON_STATE = "security_boots_fullwhite",
+			RESKIN_WORN_ICON_STATE = "security_boots_fullwhite"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON = 'icons/obj/clothing/shoes.dmi',
+			RESKIN_ICON_STATE = "jackboots_sec",
+			RESKIN_WORN_ICON_STATE = "jackboots_sec",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/feet.dmi'
+		),
+		"Pink Variant" = list(
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi',
+			RESKIN_ICON_STATE = "jackboots_sec",
+			RESKIN_WORN_ICON_STATE = "jackboots_sec",
+			RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+		),
+		"Armadyne Variant" = list(
+			RESKIN_ICON_STATE = "armadyne_boots",
+			RESKIN_WORN_ICON_STATE = "armadyne_boots"
+		),
+	)
 
 /obj/item/clothing/shoes/jackboots/sec/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, list('modular_skyrat/master_files/sound/effects/footstep1.ogg'=1,'modular_skyrat/master_files/sound/effects/footstep2.ogg'=1, 'modular_skyrat/master_files/sound/effects/footstep3.ogg'=1), 100)
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_jackboots)
 
-/datum/atom_skin/security_jackboots
-	abstract_type = /datum/atom_skin/security_jackboots
-
-/datum/atom_skin/security_jackboots/blue_trim
-	preview_name = "Blue-Trimmed Variant"
-	new_icon_state = "security_boots"
-
-/datum/atom_skin/security_jackboots/white_trim
-	preview_name = "White-Trimmed Variant"
-	new_icon_state = "security_boots_white"
-
-/datum/atom_skin/security_jackboots/full_white
-	preview_name = "Full White Variant"
-	new_icon_state = "security_boots_fullwhite"
-
-/datum/atom_skin/security_jackboots/red
-	preview_name = "Red Variant"
-	new_icon = 'icons/obj/clothing/shoes.dmi'
-	new_icon_state = "jackboots_sec"
-	new_worn_icon = 'icons/mob/clothing/feet.dmi'
-
-/datum/atom_skin/security_jackboots/pink
-	preview_name = "Pink Variant"
-	new_icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
-	new_icon_state = "jackboots_sec"
-	new_worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
-
-/datum/atom_skin/security_jackboots/armadyne
-	preview_name = "Armadyne Variant"
-	new_icon_state = "armadyne_boots"
 
 /*
 *	A bunch of re-overrides so that admins can keep using some redsec stuff; not all of them have this though!
@@ -1645,47 +1423,27 @@
 	worn_icon = 'icons/mob/clothing/eyes.dmi'
 	icon_state = "securityhud"
 	glass_colour_type = /datum/client_colour/glass_colour/red
-
-/obj/item/clothing/glasses/hud/security/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	unique_reskin = null
 
 /obj/item/clothing/glasses/hud/security/sunglasses/redsec
 	icon = 'icons/obj/clothing/glasses.dmi'
 	worn_icon = 'icons/mob/clothing/eyes.dmi'
 	icon_state = "sunhudsec"
 	glass_colour_type = /datum/client_colour/glass_colour/darkred
-
-/obj/item/clothing/glasses/hud/security/sunglasses/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	current_skin = "sunhudsec" //prevents reskinning; a bit hacky to say its already reskinned but its better than a code rewrite
 
 /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch/redsec
 	icon = 'icons/obj/clothing/glasses.dmi'
 	worn_icon = 'icons/mob/clothing/eyes.dmi'
 	icon_state = "hudpatch"
 	base_icon_state = "hudpatch"
-
-/obj/item/clothing/glasses/hud/security/sunglasses/eyepatch/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	unique_reskin = null
 
 /obj/item/clothing/glasses/hud/security/night/redsec
 	icon = 'icons/obj/clothing/glasses.dmi'
 	worn_icon = 'icons/mob/clothing/eyes.dmi'
 	icon_state = "securityhudnight"
-
-/obj/item/clothing/glasses/hud/security/night/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	unique_reskin = null
 
 /*
 *	NECK
@@ -1695,12 +1453,7 @@
 	icon = 'icons/obj/clothing/cloaks.dmi'
 	worn_icon = 'icons/mob/clothing/neck.dmi'
 	icon_state = "hoscloak"
-
-/obj/item/clothing/neck/cloak/hos/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	unique_reskin = null
 
 /*
 *	BACK
@@ -1710,34 +1463,19 @@
 	icon = 'icons/obj/storage/backpack.dmi'
 	worn_icon = 'icons/mob/clothing/back/backpack.dmi'
 	icon_state = "backpack-security"
-
-/obj/item/storage/backpack/security/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	current_skin = "backpack-security" //prevents reskinning
 
 /obj/item/storage/backpack/satchel/sec/redsec
 	icon = 'icons/obj/storage/backpack.dmi'
 	worn_icon = 'icons/mob/clothing/back/backpack.dmi'
 	icon_state = "satchel-security"
-
-/obj/item/storage/backpack/satchel/sec/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	unique_reskin = null
 
 /obj/item/storage/backpack/duffelbag/sec/redsec
 	icon = 'icons/obj/storage/backpack.dmi'
 	worn_icon = 'icons/mob/clothing/back/backpack.dmi'
 	icon_state = "duffel-security"
-
-/obj/item/storage/backpack/duffelbag/sec/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	current_skin = "duffel-security" //prevents reskinning
 
 /*
 *	BELT + HOLSTERS
@@ -1749,12 +1487,7 @@
 	icon_state = "security"
 	inhand_icon_state = "security"
 	worn_icon_state = "security"
-
-/obj/item/storage/belt/security/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	current_skin = "security" //prevents reskinning
 
 /obj/item/storage/belt/holster
 	desc = "A rather plain but still cool looking holster that can hold a handgun, and some ammo."
@@ -1860,12 +1593,7 @@
 	worn_icon = 'icons/mob/clothing/head/hats.dmi'
 	icon_state = "hoscap"
 	base_icon_state = "hoscap"
-
-/obj/item/clothing/head/hats/hos/cap/red/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	unique_reskin = null
 
 /*
 *	UNIFORM
@@ -1873,93 +1601,43 @@
 
 /obj/item/clothing/under/rank/security/officer/redsec
 	icon_state = "rsecurity"
-
-/obj/item/clothing/under/rank/security/officer/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	current_skin = "rsecurity" //prevents reskinning
 
 /obj/item/clothing/under/rank/security/officer/skirt/redsec
 	icon_state = "secskirt"
-
-/obj/item/clothing/under/rank/security/officer/skirt/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	current_skin = "secskirt"
 
 /obj/item/clothing/under/rank/security/warden/redsec
 	icon_state = "rwarden"
-
-/obj/item/clothing/under/rank/security/warden/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	unique_reskin = null
 
 /obj/item/clothing/under/rank/security/warden/skirt/redsec
 	icon_state = "rwarden_skirt"
-
-/obj/item/clothing/under/rank/security/warden/skirt/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	unique_reskin = null
 
 /obj/item/clothing/under/rank/security/head_of_security/redsec
 	icon_state = "rhos"
-
-/obj/item/clothing/under/rank/security/head_of_security/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	unique_reskin = null
 
 /obj/item/clothing/under/rank/security/head_of_security/skirt/redsec
 	icon_state = "rhos_skirt"
-
-/obj/item/clothing/under/rank/security/head_of_security/skirt/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	unique_reskin = null
 
 /obj/item/clothing/under/rank/security/head_of_security/parade/redsec
 	icon_state = "hos_parade_male"
-
-/obj/item/clothing/under/rank/security/head_of_security/parade/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	unique_reskin = null
 
 /obj/item/clothing/under/rank/security/head_of_security/parade/female/redsec
 	icon_state = "hos_parade_fem"
-
-/obj/item/clothing/under/rank/security/head_of_security/parade/female/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	unique_reskin = null
 
 /obj/item/clothing/under/rank/security/head_of_security/alt/redsec
 	icon_state = "hosalt"
-
-/obj/item/clothing/under/rank/security/head_of_security/alt/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	unique_reskin = null
 
 /obj/item/clothing/under/rank/security/head_of_security/alt/skirt/redsec
 	icon_state = "hosalt_skirt"
-
-/obj/item/clothing/under/rank/security/head_of_security/alt/skirt/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	unique_reskin = null
 
 /*
 *	WINTER COAT
@@ -1988,24 +1666,14 @@
 	icon = 'icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'icons/mob/clothing/suits/armor.dmi'
 	icon_state = "armor_sec"
-
-/obj/item/clothing/suit/armor/vest/alt/sec/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	current_skin = "armor_sec" //prevents reskinning
 
 /obj/item/clothing/suit/armor/hos/hos_formal/redsec
 	icon = 'icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'icons/mob/clothing/suits/armor.dmi'
 	icon_state = "hosformal"
+	current_skin = "hosformal"	//prevents reskinning (but not toggling!)
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
-
-/obj/item/clothing/suit/armor/hos/hos_formal/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
 
 /*
 *	FEET
@@ -2016,12 +1684,7 @@
 	icon_state = "jackboots_sec"
 	icon = 'icons/obj/clothing/shoes.dmi'
 	worn_icon = 'icons/mob/clothing/feet.dmi'
-
-/obj/item/clothing/shoes/jackboots/sec/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+	current_skin = "jackboots_sec" //prevents reskinning
 
 //Finally, a few description changes for items that couldn't get a resprite.
 /obj/item/clothing/head/bio_hood/security

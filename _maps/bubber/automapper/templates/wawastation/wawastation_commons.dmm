@@ -50,7 +50,7 @@
 /area/station/commons)
 "bm" = (
 /obj/machinery/door/airlock/maintenance/external,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
@@ -497,7 +497,7 @@
 	name = "Tram Maintenance"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -716,7 +716,7 @@
 	name = "Tram Guideway";
 	desc = "There's always a light at the end of the tunnel. It may seem hard to get to it, but you can do it! Just keep working towards it and you'll find the positive side of things. Alternatively, you'll find a tram to the face."
 	},
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -1448,7 +1448,7 @@
 "Pq" = (
 /obj/machinery/door/airlock/maintenance/external,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
-/obj/effect/mapping_helpers/airlock/unres/delayed{
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /turf/open/floor/plating,

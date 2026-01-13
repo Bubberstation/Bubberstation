@@ -27,7 +27,7 @@
 
 	if(params["deselect"])
 		deselect_item(interacted_item)
-	else if(!interacted_item.is_disabled())
+	else
 		select_item(interacted_item)
 	return TRUE
 

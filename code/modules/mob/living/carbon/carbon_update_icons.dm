@@ -584,10 +584,9 @@
 		. += "-[facial_hairstyle]"
 		. += "-[override_hair_color || fixed_hair_color || facial_hair_color]"
 		. += "-[facial_hair_alpha]"
-		var/facial_hair_gradient_style = get_hair_gradient_style(GRADIENT_FACIAL_HAIR_KEY)
-		if(facial_hair_gradient_style)
-			. += "-[facial_hair_gradient_style]"
-			. += "-[get_hair_gradient_color(GRADIENT_FACIAL_HAIR_KEY)]"
+		if(gradient_styles?[GRADIENT_FACIAL_HAIR_KEY])
+			. += "-[gradient_styles[GRADIENT_FACIAL_HAIR_KEY]]"
+			. += "-[gradient_colors[GRADIENT_FACIAL_HAIR_KEY]]"
 
 	if(show_eyeless)
 		. += "-SHOW_EYELESS"
@@ -601,10 +600,9 @@
 		. += "-[hairstyle]"
 		. += "-[override_hair_color || fixed_hair_color || hair_color]"
 		. += "-[hair_alpha]"
-		var/hair_gradient_style = get_hair_gradient_style(GRADIENT_HAIR_KEY)
-		if(hair_gradient_style)
-			. += "-[hair_gradient_style]"
-			. += "-[get_hair_gradient_color(GRADIENT_HAIR_KEY)]"
+		if(gradient_styles?[GRADIENT_HAIR_KEY])
+			. += "-[gradient_styles[GRADIENT_HAIR_KEY]]"
+			. += "-[gradient_colors[GRADIENT_HAIR_KEY]]"
 		if(LAZYLEN(hair_masks))
 			. += "-[jointext(hair_masks, "-")]"
 

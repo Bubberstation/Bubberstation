@@ -3,11 +3,8 @@
 /turf/template_noop,
 /area/template_noop)
 "ac" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
-	},
-/obj/structure/sign/warning/radiation/directional/south,
-/turf/open/floor/mineral/titanium/yellow,
+/obj/structure/sign/warning/radiation,
+/turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "ad" = (
 /obj/effect/spawner/structure/window/reinforced/shuttle,
@@ -114,12 +111,10 @@
 	pixel_x = 4;
 	pixel_y = -4
 	},
-/obj/structure/sign/warning/radiation/directional/west,
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
 "aE" = (
 /obj/structure/reagent_dispensers/fueltank,
-/obj/structure/sign/warning/radiation/directional/east,
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
 "aF" = (
@@ -132,11 +127,8 @@
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "aI" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 8
-	},
-/obj/structure/sign/warning/radiation/directional/south,
-/turf/open/floor/mineral/titanium/yellow,
+/obj/structure/sign/warning/radiation,
+/turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/escape)
 "aL" = (
 /obj/machinery/door/airlock/external/ruin{
@@ -273,7 +265,6 @@
 	},
 /obj/item/clothing/glasses/meson/engine,
 /obj/machinery/light/small/directional/east,
-/obj/structure/sign/warning/radiation/directional/north,
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
 "bj" = (
@@ -282,7 +273,6 @@
 	},
 /obj/item/clothing/glasses/meson/engine,
 /obj/machinery/light/small/directional/west,
-/obj/structure/sign/warning/radiation/directional/north,
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
 "bk" = (
@@ -313,14 +303,6 @@
 	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
-"yI" = (
-/obj/structure/closet/radiation{
-	anchored = 1
-	},
-/obj/item/clothing/glasses/meson/engine,
-/obj/structure/sign/warning/radiation/directional/west,
-/turf/open/floor/mineral/titanium/yellow,
-/area/shuttle/escape)
 "Bi" = (
 /obj/structure/closet/radiation{
 	anchored = 1
@@ -329,14 +311,6 @@
 /obj/machinery/status_display/evac{
 	pixel_x = -32
 	},
-/turf/open/floor/mineral/titanium/yellow,
-/area/shuttle/escape)
-"Op" = (
-/obj/structure/closet/radiation{
-	anchored = 1
-	},
-/obj/item/clothing/glasses/meson/engine,
-/obj/structure/sign/warning/radiation/directional/east,
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
 "UA" = (
@@ -355,7 +329,7 @@ aa
 aa
 aw
 aA
-ae
+ac
 aF
 aw
 aa
@@ -374,7 +348,7 @@ aa
 aw
 ae
 ad
-ae
+ac
 ae
 ad
 aw
@@ -395,10 +369,10 @@ bc
 be
 "}
 (3,1,1) = {"
-ae
+ac
 bj
 ag
-yI
+ag
 Bi
 ag
 ag
@@ -428,8 +402,8 @@ ar
 ar
 ar
 ar
+ar
 aI
-aw
 aw
 aa
 aM
@@ -524,8 +498,8 @@ av
 av
 av
 av
-ac
-aw
+av
+aI
 aw
 aa
 aM
@@ -539,10 +513,10 @@ aa
 aa
 "}
 (9,1,1) = {"
-ae
+ac
 bi
 ag
-Op
+ag
 pb
 ag
 ag
@@ -566,7 +540,7 @@ be
 aw
 ae
 ad
-ae
+ac
 ae
 ad
 aw
@@ -595,7 +569,7 @@ aa
 aa
 aw
 aA
-ae
+ac
 aA
 aw
 aa

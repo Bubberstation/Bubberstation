@@ -48,7 +48,7 @@
 
 /* Calculates the volume of a sound based on distance
  *
- * https://www.desmos.com/calculator/shjpmz3ck7
+ * https://www.desmos.com/calculator/sqdfl8ipgf
  *
  * Arguments:
  * * volume: The initial volume of the sound being played

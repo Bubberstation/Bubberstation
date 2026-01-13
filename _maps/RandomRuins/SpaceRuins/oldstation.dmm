@@ -288,9 +288,7 @@
 /turf/open/floor/iron,
 /area/ruin/space/ancientstation/charlie/bridge)
 "bA" = (
-/obj/structure/ai_core{
-	state = 5
-	},
+/obj/structure/ai_core/deactivated,
 /turf/open/floor/iron/dark,
 /area/ruin/space/ancientstation/delta/ai)
 "bC" = (
@@ -1008,7 +1006,7 @@
 /turf/open/floor/iron/diagonal,
 /area/ruin/space/ancientstation/beta/gravity)
 "eF" = (
-/obj/machinery/computer/rdconsole/unlocked,
+/obj/machinery/computer/rdconsole,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/white,
 /area/ruin/space/ancientstation/delta/rnd)
@@ -2678,6 +2676,10 @@
 "mc" = (
 /turf/closed/mineral/plasma,
 /area/ruin/space/ancientstation/charlie/dorms)
+"md" = (
+/obj/structure/sign/warning/secure_area,
+/turf/closed/wall/r_wall,
+/area/ruin/space/ancientstation/delta/biolab)
 "me" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
@@ -4530,7 +4532,6 @@
 /obj/machinery/door/window/right/directional/east{
 	req_access = list("away_general")
 	},
-/obj/structure/sign/warning/secure_area/directional/north,
 /turf/open/floor/engine,
 /area/ruin/space/ancientstation/delta/biolab)
 "xT" = (
@@ -15372,7 +15373,7 @@ uo
 GX
 NG
 Lo
-rp
+md
 xM
 Go
 Yl

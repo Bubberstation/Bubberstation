@@ -45,7 +45,8 @@
 	malf.ShutOffDoomsdayDevice()
 	occupier = malf
 	if (isturf(malf.loc)) // create a deactivated AI core if the AI isn't coming from an emergency mech shunt
-		malf.create_core_link(new /obj/structure/ai_core(malf.loc, CORE_STATE_FINISHED, malf.make_mmi()))
+		malf.linked_core = new /obj/structure/ai_core/deactivated(malf.loc)
+		malf.linked_core.remote_ai = malf // note that we do not set the deactivated core's core_mmi.brainmob
 	malf.forceMove(src) // move INTO the APC, not to its tile
 	if(!findtext(occupier.name, "APC Copy"))
 		occupier.name = "[malf.name] APC Copy"
@@ -73,7 +74,9 @@
 		return
 	if(occupier.linked_core)
 		occupier.shunted = FALSE
-		occupier.resolve_core_link()
+		occupier.forceMove(occupier.linked_core.loc)
+		qdel(occupier.linked_core)
+		occupier.cancel_camera()
 		occupier = null
 	else
 		stack_trace("An AI: [occupier] has vacated an APC with no linked core and without being gibbed.")

@@ -48,7 +48,6 @@
 	inhand_icon_state = "violin"
 	hitsound = SFX_SWING_HIT
 	allowed_instrument_ids = "violin"
-	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 4, /datum/material/iron = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/instrument/violin/golden
 	name = "golden violin"
@@ -56,7 +55,6 @@
 	icon_state = "golden_violin"
 	inhand_icon_state = "golden_violin"
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
-	custom_materials = list(/datum/material/gold = SHEET_MATERIAL_AMOUNT * 4, /datum/material/iron = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/instrument/banjo
 	name = "banjo"

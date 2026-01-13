@@ -47,4 +47,4 @@
 		/obj/item/stock_parts/power_store/battery/high,
 	)
 	crate_name = "colonization kit crate"
-	order_flags = ORDER_CONTRABAND
+	contraband = TRUE

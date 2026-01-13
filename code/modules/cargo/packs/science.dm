@@ -155,7 +155,7 @@
 	contains = list(/obj/item/transfer_valve = 2)
 	crate_name = "tank transfer valves crate"
 	crate_type = /obj/structure/closet/crate/secure/science
-	order_flags = ORDER_DANGEROUS
+	dangerous = TRUE
 
 /datum/supply_pack/science/monkey_helmets
 	name = "Monkey Mind Magnification Helmet crate"

@@ -28,7 +28,6 @@
 	force = 12
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
-	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 2)
 
 /datum/crafting_recipe/oar
 	name = "Goliath Bone Oar"

@@ -594,7 +594,7 @@
 
 	//Let people order more nebula shielding
 	var/datum/supply_pack/pack = SSshuttle.supply_packs[/datum/supply_pack/engineering/rad_nebula_shielding_kit]
-	pack.order_flags |= ORDER_SPECIAL_ENABLED
+	pack.special_enabled = TRUE
 
 	//Give robotics some radiation protection modules for modsuits
 	var/datum/supply_pack/supply_pack_modsuits = new /datum/supply_pack/engineering/rad_protection_modules()

@@ -400,10 +400,10 @@ GLOBAL_DATUM(syndicate_code_response_regex, /regex)
 		return FALSE
 	return TRUE
 
-/// Generates and returns a list of both arabic and roman numerals for 1 through 99
+/// Build a list of strings containing the numbers 1-99 as both arabic and roman numerals
 /proc/generate_number_strings()
-	var/list/numbers = list()
+	var/list/L[198]
 	for(var/i in 1 to 99)
-		numbers += "[i]"
-		numbers += "\Roman[i]"
-	return numbers
+		L += "[i]"
+		L += "\Roman[i]"
+	return L

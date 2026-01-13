@@ -7,7 +7,6 @@
 	icon = 'icons/obj/antags/abductor.dmi'
 	build_stack_type = /obj/item/stack/sheet/mineral/abductor
 	icon_state = "bed"
-	custom_materials = list(/datum/material/alloy/alien = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/structure/table_frame/abductor
 	name = "alien table frame"
@@ -15,7 +14,6 @@
 	icon_state = "alien_frame"
 	framestack = /obj/item/stack/sheet/mineral/abductor
 	framestackamount = 1
-	custom_materials = list(/datum/material/alloy/alien = SHEET_MATERIAL_AMOUNT)
 
 /obj/structure/table_frame/abductor/get_table_type(obj/item/stack/our_stack)
 	if(istype(our_stack, /obj/item/stack/sheet/mineral/abductor))
@@ -38,7 +36,6 @@
 	frame = /obj/structure/table_frame/abductor
 	custom_materials = list(/datum/material/silver =SHEET_MATERIAL_AMOUNT)
 	can_flip = FALSE
-	custom_materials = list(/datum/material/alloy/alien = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/structure/table/optable/abductor
 	name = "alien operating table"
@@ -52,7 +49,6 @@
 	icon_state = "bed"
 	can_buckle = TRUE
 	buckle_lying = 90
-	custom_materials = list(/datum/material/alloy/alien = SHEET_MATERIAL_AMOUNT, /datum/material/silver = SHEET_MATERIAL_AMOUNT)
 	/// Amount to inject per second
 	var/inject_amount = 0.5
 
@@ -92,7 +88,6 @@
 	can_weld_shut = FALSE
 	door_anim_time = 0
 	material_drop = /obj/item/stack/sheet/mineral/abductor
-	custom_materials = list(/datum/material/alloy/alien = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/structure/door_assembly/door_assembly_abductor
 	name = "alien airlock assembly"
@@ -102,4 +97,3 @@
 	airlock_type = /obj/machinery/door/airlock/abductor
 	material_type = /obj/item/stack/sheet/mineral/abductor
 	noglass = TRUE
-	custom_materials = list(/datum/material/alloy/alien = SHEET_MATERIAL_AMOUNT * 4)

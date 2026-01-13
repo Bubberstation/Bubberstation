@@ -1,9 +1,11 @@
 ///A component that lets you turn an object invisible when you're standing on certain relative turfs to it, like behind a tree
 /datum/component/seethrough
+	///List of lists that represent relative coordinates to the source atom
+	var/list/relative_turf_coords
 	///A list of turfs on which we make ourself transparent
 	var/list/watched_turfs
 	///Associate list, with client = trickery_image. Track which client is being tricked with which image
-	var/list/tricked_mobs
+	var/list/tricked_mobs = list()
 
 	///Which alpha do we animate towards?
 	var/target_alpha
@@ -13,18 +15,18 @@
 	var/perimeter_reset_timer
 	///Does this object let clicks from players its transparent to pass through it
 	var/clickthrough
-	/// Define for the area which is considered behind
-	var/see_through_map
 
 ///see_through_map is a define pointing to a specific map. It's basically defining the area which is considered behind. See see_through_maps.dm for a list of maps
 /datum/component/seethrough/Initialize(see_through_map = SEE_THROUGH_MAP_DEFAULT, target_alpha = 100, animation_time = 0.5 SECONDS, perimeter_reset_timer = 2 SECONDS, clickthrough = TRUE)
 	. = ..()
 
-	//GLOB.see_through_maps[see_through_map is a list of lists that represent relative coordinates to the source atom
-	if(!isatom(parent) || !LAZYLEN(GLOB.see_through_maps[see_through_map]))
+	relative_turf_coords = GLOB.see_through_maps[see_through_map]
+
+	if(!isatom(parent) || !LAZYLEN(relative_turf_coords))
 		return COMPONENT_INCOMPATIBLE
 
-	src.see_through_map = see_through_map
+	relative_turf_coords = GLOB.see_through_maps[see_through_map]
+	src.relative_turf_coords = relative_turf_coords
 	src.target_alpha = target_alpha
 	src.animation_time = animation_time
 	src.perimeter_reset_timer = perimeter_reset_timer
@@ -38,7 +40,7 @@
 /datum/component/seethrough/proc/setup_perimeter(atom/parent)
 	watched_turfs = list()
 
-	for(var/list/coordinates as anything in GLOB.see_through_maps[see_through_map])
+	for(var/list/coordinates as anything in relative_turf_coords)
 		var/turf/target = TURF_FROM_COORDS_LIST(list(parent.x + coordinates[1], parent.y + coordinates[2], parent.z + coordinates[3]))
 
 		if(isnull(target))
@@ -88,7 +90,7 @@
 	if(mob in tricked_mobs)
 		var/image/trickery_image = tricked_mobs[mob]
 		animate(trickery_image, alpha = 255, time = animation_time)
-		LAZYREMOVE(tricked_mobs, mob)
+		tricked_mobs.Remove(mob)
 		UnregisterSignal(mob, COMSIG_MOB_LOGOUT)
 
 		//after playing the fade-in animation, remove the screen obj
@@ -117,7 +119,7 @@
 
 	animate(user_overlay, alpha = target_alpha, time = animation_time)
 
-	LAZYSET(tricked_mobs, fool, user_overlay)
+	tricked_mobs[fool] = user_overlay
 	RegisterSignal(fool, COMSIG_MOB_LOGOUT, PROC_REF(on_client_disconnect))
 
 
@@ -148,13 +150,13 @@
 		for(var/atom/movable/screen/plane_master/seethrough in our_hud.get_true_plane_masters(SEETHROUGH_PLANE))
 			seethrough.hide_plane(fool)
 
-	LAZYNULL(tricked_mobs)
+	tricked_mobs.Cut()
 
 ///Image is removed when they log out because client gets deleted, so drop the mob reference
 /datum/component/seethrough/proc/on_client_disconnect(mob/fool)
 	SIGNAL_HANDLER
 
-	LAZYREMOVE(tricked_mobs, fool)
+	tricked_mobs.Remove(fool)
 	UnregisterSignal(fool, COMSIG_MOB_LOGOUT)
 	RegisterSignal(fool, COMSIG_MOB_LOGIN, PROC_REF(trick_mob))
 	var/datum/hud/our_hud = fool.hud_used

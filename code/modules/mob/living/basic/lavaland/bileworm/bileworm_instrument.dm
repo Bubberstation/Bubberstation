@@ -6,7 +6,6 @@
 	icon_state = "bilehorn"
 	allowed_instrument_ids = "bilehorn"
 	inhand_icon_state = null
-	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 2)
 
 /datum/crafting_recipe/bilehorn
 	name = "Bilehorn"

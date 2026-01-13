@@ -69,8 +69,6 @@ GLOBAL_DATUM(bridge_axe, /obj/item/fireaxe)
 		return
 	if(target.resistance_flags & INDESTRUCTIBLE)
 		return
-	if(QDELETED(target))
-		return
 	if(istype(target, /obj/structure/window) || istype(target, /obj/structure/grille))
 		target.atom_destruction("fireaxe")
 
@@ -85,7 +83,6 @@ GLOBAL_DATUM(bridge_axe, /obj/item/fireaxe)
 	icon_angle = 180
 	force_unwielded = 5
 	force_wielded = 23
-	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 6)
 
 /*
  * Metal Hydrogen Axe
