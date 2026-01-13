@@ -46,17 +46,21 @@
 	name = "\proper the head of security's mantle"
 	desc = "A plated mantle that one might wrap around the upper torso. The 'scales' of the garment signify the members of security and how you're carrying them on your shoulders."
 	icon_state = "hosmantle"
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Red Variant" = list(
-			RESKIN_ICON_STATE = "hosmantle",
-			RESKIN_WORN_ICON_STATE = "hosmantle"
-		),
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "hosmantle_blue",
-			RESKIN_WORN_ICON_STATE = "hosmantle_blue"
-		),
-	)
+
+/obj/item/clothing/neck/mantle/hosmantle/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hos_mantle)
+
+/datum/atom_skin/hos_mantle
+	abstract_type = /datum/atom_skin/hos_mantle
+
+/datum/atom_skin/hos_mantle/red
+	preview_name = "Red Variant"
+	new_icon_state = "hosmantle"
+
+/datum/atom_skin/hos_mantle/blue
+	preview_name = "Blue Variant"
+	new_icon_state = "hosmantle_blue"
 
 /obj/item/clothing/neck/mantle/bsmantle
 	name = "\proper the blueshield's mantle"
