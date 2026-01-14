@@ -16,40 +16,39 @@
 
 /datum/action/cooldown/spell/revenant/bloodwriting/cast(atom/cast_on)
 	. = ..()
-	var/mob/living/basic/revenant/Rev = owner
-	if(!Rev)
+	var/mob/living/basic/revenant/rev = owner
+	if(isnull(rev))
 		return
 
 	if(active)
-		deactivate(Rev)
+		deactivate(rev)
 	else
-		activate(Rev)
+		activate(rev)
 
-/datum/action/cooldown/spell/revenant/bloodwriting/proc/activate(mob/living/basic/revenant/Rev)
+/datum/action/cooldown/spell/revenant/bloodwriting/proc/activate(mob/living/basic/revenant/rev)
 	active = TRUE
-	Rev.write_ability = src
+	rev.write_ability = src
 
 	if(!blood_crayon)
 		blood_crayon = new()
 		blood_crayon.drawtype = pick(blood_crayon.all_drawables)
 
-	blood_crayon.forceMove(Rev)
-	Rev.active_blood_crayon = blood_crayon
+	blood_crayon.forceMove(rev)
+	rev.active_blood_crayon = blood_crayon
 
-	blood_crayon.ui_interact(Rev, null)
-	to_chat(Rev, span_notice("You start writing in blood."))
+	blood_crayon.ui_interact(rev, null)
+	to_chat(rev, span_notice("You start writing in blood."))
 
-/datum/action/cooldown/spell/revenant/bloodwriting/proc/deactivate(mob/living/basic/revenant/Rev)
+/datum/action/cooldown/spell/revenant/bloodwriting/proc/deactivate(mob/living/basic/revenant/rev)
 	active = FALSE
 
 	if(blood_crayon)
-		SStgui.close_uis(blood_crayon, Rev)
-		qdel(blood_crayon)
-		blood_crayon = null
+		SStgui.close_uis(blood_crayon, rev)
+		QDEL_NULL(blood_crayon)
 
-	Rev.active_blood_crayon = null
-	Rev.write_ability = null
-	to_chat(Rev, span_notice("You stop writing in blood."))
+	rev.active_blood_crayon = null
+	rev.write_ability = null
+	to_chat(rev, span_notice("You stop writing in blood."))
 
 
 //Revenant mob changes needed
@@ -71,7 +70,7 @@
 
 /mob/living/basic/revenant/Destroy()
 	if(active_blood_crayon)
-		qdel(active_blood_crayon)
+		QDEL_NULL(active_blood_crayon)
 		active_blood_crayon = null
 	return ..()
 
