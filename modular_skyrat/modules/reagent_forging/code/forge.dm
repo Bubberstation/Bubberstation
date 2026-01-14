@@ -46,6 +46,7 @@
 
 	anchored = TRUE
 	density = TRUE
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
 
 	/// What the current internal temperature of the forge is
 	var/forge_temperature = 0

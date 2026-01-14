@@ -23,6 +23,7 @@
 	interaction_flags_click = NEED_DEXTERITY
 	w_class = WEIGHT_CLASS_SMALL
 	actions_types = list(/datum/action/item_action/adjust/papermask)
+	custom_materials = list(/datum/material/paper = SHEET_MATERIAL_AMOUNT * 1.25)
 
 	/// Whether or not the mask is currently being layered over (or under!) hair. FALSE/null means the mask is layered over the hair (this is how it starts off).
 	var/wear_hair_over
