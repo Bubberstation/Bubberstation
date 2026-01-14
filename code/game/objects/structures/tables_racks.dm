@@ -113,6 +113,94 @@
 	AddElement(/datum/element/climbable)
 	AddElement(/datum/element/elevation, pixel_shift = 12)
 
+/// Only allow Oversized players to buckle to regular tables (operating tables work normally)
+/obj/structure/table/is_buckle_possible(mob/living/target, force = FALSE, check_loc = TRUE)
+	// Operating tables should work normally for everyone
+	if(istype(src, /obj/structure/table/optable))
+		return ..()
+	// Regular tables only allow Oversized players to buckle
+	if(!force && !HAS_TRAIT(target, TRAIT_OVERSIZED))
+		return FALSE
+	return ..()
+
+/// Stores the approach direction for Oversized players sitting on tables
+/obj/structure/table/var/list/oversized_sit_directions = null
+/// Stores the original turf position for Oversized players sitting on tables (so they can return there when standing)
+/obj/structure/table/var/list/oversized_sit_original_turfs = null
+
+/// Position Oversized players at the edge of the table they approached from
+/obj/structure/table/post_buckle_mob(mob/living/buckled)
+	. = ..()
+	// Only apply directional seating for Oversized players on regular tables
+	if(istype(src, /obj/structure/table/optable))
+		return
+	if(!HAS_TRAIT(buckled, TRAIT_OVERSIZED))
+		return
+
+	// Get the approach direction
+	var/approach_dir = LAZYACCESS(oversized_sit_directions, buckled)
+	if(!approach_dir)
+		// Fallback: calculate from adjacent turfs
+		var/turf/table_turf = get_turf(src)
+		var/closest_dir = NORTH
+		var/closest_dist = INFINITY
+		for(var/dir in GLOB.cardinals)
+			var/turf/check_turf = get_step(table_turf, dir)
+			if(check_turf && buckled.loc == table_turf)
+				// Check if there's a path or if this is the closest
+				var/dist = get_dist(check_turf, buckled)
+				if(dist < closest_dist)
+					closest_dist = dist
+					closest_dir = dir
+		approach_dir = closest_dir
+
+	// Apply pixel offsets based on approach direction
+	// Position them at the edge they approached from (16 pixels = half tile width)
+	var/x_offset = 0
+	var/y_offset = 0
+	switch(approach_dir)
+		if(NORTH)
+			y_offset = 16 // Position at north edge
+		if(SOUTH)
+			y_offset = -16 // Position at south edge
+		if(EAST)
+			x_offset = 16 // Position at east edge
+		if(WEST)
+			x_offset = -16 // Position at west edge
+
+	if(x_offset || y_offset)
+		buckled.add_offsets(type, x_add = x_offset, y_add = y_offset)
+		// Face away from the table edge (toward the direction they came from)
+		buckled.setDir(approach_dir)
+
+/// Clean up stored directions and return Oversized players to their original position when unbuckling
+/obj/structure/table/post_unbuckle_mob(mob/living/unbuckled)
+	. = ..()
+	// Only handle Oversized players on regular tables
+	if(istype(src, /obj/structure/table/optable))
+		return
+	if(!HAS_TRAIT(unbuckled, TRAIT_OVERSIZED))
+		return
+
+	// Remove offsets
+	unbuckled.remove_offsets(type)
+
+	// Get the original turf position
+	var/turf/original_turf = LAZYACCESS(oversized_sit_original_turfs, unbuckled)
+	if(original_turf && isturf(original_turf))
+		// Move them back to their original position
+		unbuckled.forceMove(original_turf)
+
+	// Clean up stored data
+	if(oversized_sit_directions)
+		LAZYREMOVE(oversized_sit_directions, unbuckled)
+		if(!length(oversized_sit_directions))
+			oversized_sit_directions = null
+	if(oversized_sit_original_turfs)
+		LAZYREMOVE(oversized_sit_original_turfs, unbuckled)
+		if(!length(oversized_sit_original_turfs))
+			oversized_sit_original_turfs = null
+
 //proc that adds elements present in normal tables
 /obj/structure/table/proc/unflip_table()
 	playsound(src, unflip_table_sound, 100)
