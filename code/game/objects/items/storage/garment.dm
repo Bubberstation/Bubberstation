@@ -68,7 +68,6 @@
 	new /obj/item/clothing/under/rank/civilian/head_of_personnel/skirt(src)
 	new /obj/item/clothing/suit/armor/vest/hop(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/hop(src)
-	new /obj/item/clothing/glasses/hud/civilian/sunglasses //BUBBER EDIT - Civhud Sunglasses Instead of regular sunglasses
 	new /obj/item/clothing/head/hats/hopcap(src)
 	new /obj/item/clothing/neck/cloak/hop(src)
 	new /obj/item/clothing/shoes/laceup(src)
