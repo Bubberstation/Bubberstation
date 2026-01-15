@@ -702,7 +702,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	force = 12
 	throwforce = 8
 	w_class = WEIGHT_CLASS_BULKY
-	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5) // BUBBER EDIT - Original: custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5) // BUBBER EDIT CHANGE - Crafting materials parity - Original: custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5)
 	attack_verb_continuous = list("bludgeons", "whacks", "thrashes")
 	attack_verb_simple = list("bludgeon", "whack", "thrash")
 
