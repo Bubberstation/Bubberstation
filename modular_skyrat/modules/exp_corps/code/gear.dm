@@ -50,6 +50,11 @@
 	max_integrity = 200
 	shield_break_sound = 'sound/effects/glass/glassbr3.ogg'
 	shield_break_leftover = /obj/item/pointman_broken
+	custom_materials = list(
+		/datum/material/alloy/plasteel = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
+	)
 	var/repairable_by = /obj/item/stack/sheet/plasteel //what to repair the shield with
 
 /obj/item/shield/riot/pointman/attackby(obj/item/W, mob/user, params)

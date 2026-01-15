@@ -7,7 +7,7 @@
 
 /datum/atom_skin/c4/moth
 	preview_name = "Moth"
-	new_icon = 'modular_zubbers/code/modules/item_reskins/mothbomb.dmi'
+	new_icon = 'modular_zubbers/icons/obj/equipment/mothbomb.dmi'
 	new_icon_state = "moffplush_bomb"
 
 /datum/atom_skin/c4/default
