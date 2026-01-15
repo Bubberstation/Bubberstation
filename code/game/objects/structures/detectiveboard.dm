@@ -14,6 +14,7 @@
 	density = FALSE
 	anchored = TRUE
 	max_integrity = 150
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT) // BUBBER EDIT ADDITION - Needed for crafting recipe material parity
 
 	/// When player attaching evidence to board this will become TRUE
 	var/attaching_evidence = FALSE

@@ -10,3 +10,4 @@
 	icon = 'modular_skyrat/modules/tribal_extended/icons/dice.dmi'
 	icon_state = "db6"
 	microwave_riggable = FALSE // You can't melt bone in the microwave
+	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)

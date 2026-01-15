@@ -31,30 +31,33 @@
 	icon_state = "civilprotection"
 	inhand_icon_state =  null
 	can_adjust = FALSE
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"MetroCop" = list(
-			RESKIN_ICON_STATE = "civilprotection",
-			RESKIN_WORN_ICON_STATE = "civilprotection"
-		),
-		"Red" = list(
-			RESKIN_ICON_STATE = "divisionallead",
-			RESKIN_WORN_ICON_STATE = "divisionallead"
-		),
-		"White Overwatch" = list(
-			RESKIN_ICON_STATE = "overwatch_white",
-			RESKIN_WORN_ICON_STATE = "overwatch_white"
-		),
-		"Overwatch" = list(
-			RESKIN_ICON_STATE = "overwatch",
-			RESKIN_WORN_ICON_STATE = "overwatch"
-		),
-		"Red Overwatch" = list(
-			RESKIN_ICON_STATE = "overwatch_red",
-			RESKIN_WORN_ICON_STATE = "overwatch_red"
-		),
-	)
 
+/obj/item/clothing/under/rank/security/metrocop/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/metrocop)
+
+/datum/atom_skin/metrocop
+	abstract_type = /datum/atom_skin/metrocop
+
+/datum/atom_skin/metrocop/metro
+	preview_name = "MetroCop"
+	new_icon_state = "civilprotection"
+
+/datum/atom_skin/metrocop/red
+	preview_name = "Red"
+	new_icon_state = "divisionallead"
+
+/datum/atom_skin/metrocop/overwatch_white
+	preview_name = "White Overwatch"
+	new_icon_state = "overwatch_white"
+
+/datum/atom_skin/metrocop/overwatch
+	preview_name = "Overwatch"
+	new_icon_state = "overwatch"
+
+/datum/atom_skin/metrocop/overwatch_red
+	preview_name = "Red Overwatch"
+	new_icon_state = "overwatch_red"
 
 //MGS stuff sprited by Crumpaloo for onlyplateau, please credit when porting, which you obviously have permission to do.
 /obj/item/clothing/under/rank/security/snake
@@ -63,7 +66,6 @@
 	icon = 'modular_zubbers/icons/obj/clothing/under/syndicate.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/syndicate.dmi'
 	icon_state = "snake"
-	uses_advanced_reskins = FALSE
 
 /obj/item/clothing/under/rank/security/camo
 	name = "armored camouflage uniform"
@@ -79,4 +81,3 @@
 	greyscale_colors = "#A53228#333333#292929"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
-	uses_advanced_reskins = FALSE
