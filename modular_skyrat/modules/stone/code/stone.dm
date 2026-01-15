@@ -79,7 +79,7 @@ GLOBAL_LIST_INIT(stone_recipes, list ( \
 	inhand_icon_state = "tile"
 	turf_type = /turf/open/floor/stone
 	mineralType = "stone"
-	mats_per_unit = list(/datum/material/stone= HALF_SHEET_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/stone = HALF_SHEET_MATERIAL_AMOUNT / 2)
 	merge_type = /obj/item/stack/tile/mineral/stone
 
 /turf/open/floor/stone
