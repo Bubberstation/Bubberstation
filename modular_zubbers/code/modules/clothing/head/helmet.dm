@@ -719,6 +719,7 @@
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF
 	flags_inv = HIDEFACE | HIDEFACIALHAIR | HIDEHAIR | HIDEMASK | HIDEEYES | HIDEEARS
+	custom_materials = list(/datum/material/metalhydrogen = SHEET_MATERIAL_AMOUNT * 3)
 
 /datum/armor/helmet_elder_atmosian
 	melee = 40
