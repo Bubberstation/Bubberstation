@@ -179,7 +179,7 @@
 
 /datum/supply_pack/imports/selfdef/speedloader/det_bouncy
 	name = "C38 Speedloader (Bouncy)"
-	contains = list(/obj/item/ammo_box/c38/match)
+	contains = list(/obj/item/ammo_box/speedloader/c38/match)
 
 /datum/supply_pack/imports/selfdef/shotbox
 	cost = PAYCHECK_COMMAND
