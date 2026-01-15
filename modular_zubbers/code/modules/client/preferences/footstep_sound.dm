@@ -22,15 +22,15 @@
 		"Shoes" = FOOTSTEP_MOB_SHOE,
 		"Claws" = FOOTSTEP_MOB_CLAW,
 		"Highheels" = list(list(
-			'modular_skyrat/master_files/sound/effects/footstep/highheel1.ogg',
-			'modular_skyrat/master_files/sound/effects/footstep/highheel2.ogg',
-			'modular_skyrat/master_files/sound/effects/footstep/highheel3.ogg',
-			'modular_skyrat/master_files/sound/effects/footstep/highheel4.ogg'), 70, 1),
+			'modular_zubbers/sound/effects/footstep/highheel1.ogg',
+			'modular_zubbers/sound/effects/footstep/highheel2.ogg',
+			'modular_zubbers/sound/effects/footstep/highheel3.ogg',
+			'modular_zubbers/sound/effects/footstep/highheel4.ogg'), 70, 1),
 		"Hooves" = list(list(
-			'modular_skyrat/master_files/sound/effects/footstep/hardhoof1.ogg',
-			'modular_skyrat/master_files/sound/effects/footstep/hardhoof2.ogg',
-			'modular_skyrat/master_files/sound/effects/footstep/hardhoof3.ogg',
-			'modular_skyrat/master_files/sound/effects/footstep/hardhoof4.ogg'), 35, 1),
+			'modular_zubbers/sound/effects/footstep/hardhoof1.ogg',
+			'modular_zubbers/sound/effects/footstep/hardhoof2.ogg',
+			'modular_zubbers/sound/effects/footstep/hardhoof3.ogg',
+			'modular_zubbers/sound/effects/footstep/hardhoof4.ogg'), 35, 1),
 	)
 	var/footstep_type = value_to_define[value]
 

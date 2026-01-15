@@ -1433,7 +1433,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 /obj/item/clothing/shoes/fancy_heels/drag/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/squeak, list('modular_skyrat/master_files/sound/effects/footstep/highheel1.ogg' = 1, 'modular_skyrat/master_files/sound/effects/footstep/highheel2.ogg' = 1, 'modular_skyrat/master_files/sound/effects/footstep/highheel3.ogg' = 1, 'modular_skyrat/master_files/sound/effects/footstep/highheel4.ogg' = 1), 70)
+	AddComponent(/datum/component/squeak, list('modular_skyrat/master_files/sound/effects/footstep/highheel1.ogg' = 1, 'modular_zubbers/sound/effects/footstep/highheel2.ogg' = 1, 'modular_zubbers/sound/effects/footstep/highheel3.ogg' = 1, 'modular_zubbers/sound/effects/footstep/highheel4.ogg' = 1), 70)
 
 // Donation reward for Razurath
 
