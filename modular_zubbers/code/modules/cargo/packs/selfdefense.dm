@@ -171,7 +171,7 @@
 
 /datum/supply_pack/imports/selfdef/speedloader/det_lethal
 	name = "C38 Speedloader (Lethal)"
-	contains = list(/obj/item/ammo_box/c38)
+	contains = list(/obj/item/ammo_box/speedloader/c38)
 
 /datum/supply_pack/imports/selfdef/speedloader/det_dumdum
 	name = "C38 Speedloader (Dumdum)"
