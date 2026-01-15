@@ -2,7 +2,7 @@
 	access = NONE
 	cost = PAYCHECK_CREW
 	group = "MODSuits"
-	goody = TRUE
+	order_flags = ORDER_GOODY
 	crate_type = null
 	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
 
@@ -22,7 +22,7 @@
 	desc = "A MODSuit Module with unclear effects." ///figure out later
 	contains = list(/obj/item/mod/module/atrocinator)
 	cost = PAYCHECK_COMMAND * 2
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND
 
 /datum/supply_pack/imports/modsuit/mod_module/waddle
 	name = "MOD Waddle Module"
@@ -45,13 +45,13 @@
 	name = "MOD Tanning Module"
 	desc = "A MODSuit Module that makes you tan." //figure out later
 	contains = list(/obj/item/mod/module/tanner)
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND
 
 /datum/supply_pack/imports/modsuit/mod_module/rave
 	name = "MOD Rave Module"
 	desc = "A MODSuit Module that enables hard partying." // figure out later
 	contains = list(/obj/item/mod/module/visor/rave)
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND
 
 /datum/supply_pack/imports/modsuit/mod_module/hatstabilizer
 	name = "MOD Hat Stabilizer Module"

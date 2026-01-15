@@ -2,7 +2,7 @@
 	access = NONE
 	cost = PAYCHECK_CREW
 	group = "Sol Federation Imports" //figure this out later
-	goody = TRUE
+	order_flags = ORDER_GOODY
 	crate_type = null
 	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
 
@@ -129,7 +129,7 @@
 	name = "C980 Grenade Drum Magazine"
 	contains = list(/obj/item/ammo_box/magazine/c980_grenade/drum/starts_empty)
 	cost = PAYCHECK_CREW * 3
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND
 
 /datum/supply_pack/imports/selfdef/ammo_machines/bench
 	name = "Ammo Workbench Circuit"
@@ -219,9 +219,9 @@
 /datum/supply_pack/imports/selfdef/nadeshells/shrapnel
 	name = "C980 Grenade Launcher Shrapnel Shells"
 	contains = list(/obj/item/ammo_box/c980grenade/shrapnel)
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND
 
 /datum/supply_pack/imports/selfdef/nadeshells/phosphor
 	name = "C980 Grenade Launcher White Phosphorous Shells"
 	contains = list(/obj/item/ammo_box/c980grenade/shrapnel/phosphor)
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND

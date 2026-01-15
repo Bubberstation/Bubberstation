@@ -14,7 +14,7 @@
 /datum/supply_pack/imports/medical
 	access = NONE
 	group = "Medical" //figure this out later
-	goody = TRUE
+	order_flags = ORDER_GOODY
 	crate_type = null
 	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
 
@@ -179,7 +179,7 @@
 /datum/supply_pack/imports/medical/medpen/pentibinin
 	name = "Pentibinin Medpen"
 	contains = list(/obj/item/reagent_containers/hypospray/medipen/deforest/pentibinin)
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND
 
 // Autoinjectors for fighting
 /datum/supply_pack/imports/medical/combat_medpen
@@ -200,24 +200,24 @@
 /datum/supply_pack/imports/medical/combat_medpen/aranepaine
 	name = "Aranepaine Autoinjector"
 	contains = list(/obj/item/reagent_containers/hypospray/medipen/deforest/aranepaine)
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND
 
 /datum/supply_pack/imports/medical/combat_medpen/synalvipitol
 	name = "Synalvipitol Autoinjector"
 	contains = list(/obj/item/reagent_containers/hypospray/medipen/deforest/synalvipitol)
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND
 
 /datum/supply_pack/imports/medical/combat_medpen/twitch
 	name = "Twitch Autoinjector" //check this later
 	contains = list(/obj/item/reagent_containers/hypospray/medipen/deforest/twitch)
 	cost = PAYCHECK_COMMAND * 3
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND
 
 /datum/supply_pack/imports/medical/combat_medpen/demoneye
 	name = "Demoneye Autoinjector"
 	contains = list(/obj/item/reagent_containers/hypospray/medipen/deforest/demoneye)
 	cost = PAYCHECK_COMMAND * 3
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND
 
 /datum/supply_pack/imports/medical/treatment_zone_projector
 	name = "Medical Treatment Zone Projector"
@@ -346,9 +346,8 @@
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/janitor)
 
 /datum/supply_pack/imports/medical/implant/paperwork
-	name = "Janitor Toolset Implant"
+	name = "Paperwork Implant"
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/paperwork)
-	cost = PAYCHECK_COMMAND * 5
 
 /datum/supply_pack/imports/medical/medpod
 	name = "Medical Pod Capsule"

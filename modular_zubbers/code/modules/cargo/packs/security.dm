@@ -68,7 +68,7 @@
 	access = ACCESS_SECURITY
 	cost = PAYCHECK_COMMAND
 	group = "Security" //figure this out later
-	goody = TRUE
+	order_flags = ORDER_GOODY
 	crate_type = null
 	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
 

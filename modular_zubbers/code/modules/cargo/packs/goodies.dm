@@ -99,7 +99,7 @@
 	access = NONE
 	cost = PAYCHECK_CREW
 	group = "Goodies" //figure this out later
-	goody = TRUE
+	order_flags = ORDER_GOODY
 	crate_type = null
 	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
 
