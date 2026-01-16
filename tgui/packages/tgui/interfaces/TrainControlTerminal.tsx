@@ -298,7 +298,7 @@ export const TrainControlTerminal = (props: any, context: any) => {
                   </Box>
                 </Stack.Item>
               </Stack>
-              {blocking && (
+              {!!blocking && (
                 <>
                   <Divider />
                   <Box bold color="bad" textAlign="center" fontSize="1.8rem">

@@ -99,7 +99,7 @@ export const TrainTurbineComputer = () => {
                     disabled={active && rpm > 1000}
                     fluid
                   />
-                  {active && rpm > 0 && (
+                  {!!active && rpm > 0 && (
                     <Box inline color="bad" ml={1} fontSize="0.9rem">
                       <Icon name="lock" rotation={45} />
                       Stop rotation before turning off
@@ -155,7 +155,7 @@ export const TrainTurbineComputer = () => {
                   />
                 </LabeledList.Item>
 
-                <LabeledList.Item label="Steam Consumption">
+                <LabeledList.Item labelWrap label="Steam Consumption">
                   <Flex direction="row" align="center">
                     <Button
                       icon="minus"
