@@ -128,7 +128,7 @@
 // ====================================================================
 
 /datum/looping_sound/turbine_loop
-	mid_sounds = list('modular_zvents/sounds/turbine_loop.ogg'=1)
+	mid_sounds = 'sound/ambience/aurora_caelus/aurora_caelus_short.ogg'
 	mid_length = 24 SECONDS
 	volume = 60
 	falloff_exponent = 3
@@ -221,10 +221,14 @@
 	compressor_gas.gases[/datum/gas/water_vapor][MOLES] -= steam_consumed
 	compressor_gas.garbage_collect()
 
-	var/base_power = steam_consumed * 20000
+	var/base_power = 0
 
 	var/temp_bonus = max(inlet_temperature - MIN_STEAM_TEMPERATURE, 0)
-	base_power += steam_consumed * temp_bonus * 60
+	var/flow_bonus = max_flow * 500
+	var/steam_bonus = steam_consumed * 100
+	base_power += temp_bonus
+	base_power += flow_bonus
+	base_power += steam_bonus
 
 	var/total_efficiency = (compressor.efficiency + efficiency + turbine.efficiency) / 3
 	base_power *= total_efficiency
@@ -234,7 +238,7 @@
 	rpm += rpm_change * 0.1
 	// modify it towards target rpm
 	var/target_difference = target_rpm - rpm
-	rpm += target_difference * 0.05
+	rpm += target_difference * 0.01
 	rpm = clamp(rpm, 0, max_rpm)
 	// output is only based on current rpm
 	produced_energy = rpm * 5 * total_efficiency
@@ -248,9 +252,10 @@
 			COOLDOWN_START(src, turbine_damage_alert, 10 SECONDS)
 			playsound(src, 'sound/machines/engine_alert/engine_alert1.ogg', 100, FALSE)
 			balloon_alert_to_viewers("overheating! integrity [get_integrity()]%")
-
-	if(rpm > 5000)
-		damage += (rpm - 5000) * 0.001 * seconds_per_tick
+	// 1000 RPM above 5000
+	var/safe_threshold = max_rpm * 0.9
+	if(rpm > safe_threshold)
+		damage += (rpm - safe_threshold) * 0.001 * seconds_per_tick
 		if(damage > damage_archived + 1 && COOLDOWN_FINISHED(src, turbine_damage_alert))
 			COOLDOWN_START(src, turbine_damage_alert, 10 SECONDS)
 			playsound(src, 'sound/machines/engine_alert/engine_alert1.ogg', 100, FALSE)
@@ -280,8 +285,9 @@
 	if(!check_only)
 		compressor.rotor = src
 		turbine.rotor = src
-		max_temperature = (compressor.installed_part.get_tier_value(TURBINE_MAX_TEMP) + turbine.installed_part.get_tier_value(TURBINE_MAX_TEMP) + installed_part.get_tier_value(TURBINE_MAX_TEMP)) / 3
-		efficiency = (compressor.efficiency + turbine.efficiency + efficiency) / 3
+		max_temperature = 1000 + installed_part?.get_tier_value(TURBINE_MAX_TEMP) * 0.1 || 0
+		max_rpm = 5950 + installed_part?.get_tier_value(TURBINE_MAX_RPM) * 0.001 || 0
+		efficiency = (compressor.efficiency + turbine.efficiency) / 3
 
 	return TRUE
 
@@ -504,7 +510,12 @@
 /obj/item/paper/guides/jobs/atmos/train_turbine
 	name = "paper- 'Quick guide on the train turbine!'"
 	default_raw_text = "<B>How to operate the train turbine</B><BR>\
-	- Connect pipes to the inlet for hot water vapor supply.<BR>\
+	- Wrench and secure your buffer water vapor canister<BR>\
+	- Turn on the temperature control units to heat, and enable the pump, set the pressure based on how much power you will need.<BR>\
+	- For recycling the water vapor from steam, crowbar open the floor and ensure the fluid duct is connected<BR>\
+	- Unsecure it with a wrench and replace it to the same spot in front of the turbine outlet.<BR>\
+	- Fill the plasma heaters with sheets of plasma, and ensure they are connected to plumbed water from the north.<BR>\
+	- The heaters will recycle the liquid reagent water back into gas water vapour.<BR>\
 	- Use the control computer to set target RPM, regulate intake, and monitor temperatures/pressures.<BR>\
 	- Balance power output with temperature — overheating causes damage!<BR>\
 	- Emergency vent available for rapid cooling.<BR>\
