@@ -71,11 +71,11 @@ SUBSYSTEM_DEF(train_controller)
 
 /datum/controller/subsystem/train_controller/proc/announce_game()
 	to_chat(world, span_boldnotice( \
-		"Trainstation режим - активен \n \
-		Станция будет заменена на подвижный состав, что будет перемещаться между разными станциями. \
-		Вам и вамшим коллегам предстоит добраться от стартовой станции к конечному пункту назначения, \
-		в процессе вам предстоит следить за тем, чтобы предоставленный вам состав оставался в порядке и мог \
-		продолжать ваше путешествие. \n \
+		"Trainstation mode - active \n \
+		The station will be replaced by train that will move between different stations. \
+		You and your colleagues will have to get from the starting station to the final destination, \
+		and in the process, you will have to make sure that the train provided to you remains in good working order and can \
+		continue your journey. \n \
 		Event by: Fenysha \
 	"))
 
@@ -85,6 +85,7 @@ SUBSYSTEM_DEF(train_controller)
 
 	// Сперва на перво сообщим об правилах игры
 	announce_game()
+	set_station_name("Trainstation 13")
 	addtimer(CALLBACK(src, PROC_REF(set_lobby_screen)), 5 SECONDS)
 
 /datum/controller/subsystem/train_controller/proc/set_lobby_screen()
@@ -352,7 +353,6 @@ ADMIN_VERB(open_train_controller, R_ADMIN, "Open train controller", "Open active
 /* Оверскрин для отображения названия станции */
 /atom/movable/screen/station_logo
 	icon_state = "blank"
-	screen_loc = "CENTER-7,CENTER-7"
 	plane = HUD_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
 
@@ -415,7 +415,7 @@ ADMIN_VERB(open_train_controller, R_ADMIN, "Open train controller", "Open active
 			mid_sounds[sound_path] = pause_length
 
 	if(!length(mid_sounds))
-		stack_trace("train_sound_loop создан без указанных звуков поезда! Список train_sounds пуст или некорректен.")
+		stack_trace("train_sound_loop created without sounds!")
 		qdel(src)
 		return
 
