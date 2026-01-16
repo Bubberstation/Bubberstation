@@ -1,10 +1,22 @@
 /mob/living/carbon/human
 	/// Quad eyes offset in pixels. Positive is up, negative is down. (Suggested to not go above 2 or below -2)
 	var/quad_eyes_offset = 0
+	/// Used for footstep type pref, to apply to any new legs that get added to this mob. Uses a var instead of checking prefs because there are a lot of clientless mob situations.
+	var/footstep_type
+
 
 /mob/living/carbon/human/species/shadekin
 	race = /datum/species/shadekin
 
+// Just blanket apply the footstep pref on limb addition, it gets far too complicated otherwise as limbs are getting replaced more often than you'd think
+/obj/item/bodypart/leg/on_adding(mob/living/carbon/new_owner)
+	. = ..()
+	var/mob/living/carbon/human/human_owner = new_owner
+	if(istype(human_owner) && human_owner.footstep_type)
+		if(islist(human_owner.footstep_type))
+			special_footstep_sounds = human_owner.footstep_type
+		else
+			footstep_type = human_owner.footstep_type
 
 // This is expected to be called or used in situations where you already know the mob is dead
 /mob/living/carbon/human/proc/get_dnr()

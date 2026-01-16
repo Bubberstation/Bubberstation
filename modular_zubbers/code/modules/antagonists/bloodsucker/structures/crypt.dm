@@ -124,6 +124,11 @@
 	hunter_desc = "This is the ghoul rack, which monsters use to brainwash crewmembers into their loyal slaves.\n\
 		They usually ensure that victims are handcuffed, to prevent them from running away.\n\
 		Their rituals take time, allowing us to disrupt it."
+	custom_materials = list(
+		/datum/material/wood = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.3,
+		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 3,
+	)
 
 	/// Resets on each new character to be added to the chair. Some effects should lower it...
 	var/convert_progress = 3
@@ -451,6 +456,7 @@
 		You can turn it on and off by clicking on it while you are next to it.\n\
 		If your Master is part of the Ventrue Clan, they utilize this to upgrade their Favorite Ghoul."
 	hunter_desc = "This is a blue Candelabrum, which causes insanity to those near it while active."
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3.5)
 	var/lit = FALSE
 
 /obj/structure/bloodsucker/candelabrum/Destroy()
@@ -533,6 +539,7 @@
 	ghoul_desc = "This is a blood throne, it allows your Master to telepathically speak to you and others like you."
 	hunter_desc = "This is a chair that hurts those that try to buckle themselves onto it, though the Undead have no problem latching on.\n\
 		While buckled, Monsters can use this to telepathically communicate with eachother."
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/wood = SHEET_MATERIAL_AMOUNT)
 	var/mutable_appearance/armrest
 
 // Add rotating and armrest
