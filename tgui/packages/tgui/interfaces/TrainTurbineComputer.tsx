@@ -23,12 +23,11 @@ interface TurbineData {
 
   inlet_temp: number;
   rotor_temp: number;
-  outlet_temp: number;
 
   compressor_pressure: number;
   rotor_pressure: number;
-  outlet_pressure: number;
-
+  outlet_water_volume: number;
+  compressor_too_cold: boolean;
   regulator: number;
   steam_consumption: number;
 
@@ -47,10 +46,10 @@ export const TrainTurbineComputer = () => {
     max_temperature,
     inlet_temp,
     rotor_temp,
-    outlet_temp,
+    outlet_water_volume,
+    compressor_too_cold,
     compressor_pressure,
     rotor_pressure,
-    outlet_pressure,
     regulator,
     steam_consumption,
     target_rpm,
@@ -96,13 +95,19 @@ export const TrainTurbineComputer = () => {
                     icon={active ? 'power-off' : 'power-off'}
                     iconRotation={active ? 0 : 180}
                     onClick={() => act('toggle_power')}
-                    disabled={active && rpm > 1000}
+                    disabled={active && rpm > 0}
                     fluid
                   />
                   {!!active && rpm > 0 && (
                     <Box inline color="bad" ml={1} fontSize="0.9rem">
                       <Icon name="lock" rotation={45} />
                       Stop rotation before turning off
+                    </Box>
+                  )}
+                  {!!compressor_too_cold && (
+                    <Box inline color="bad" ml={1} fontSize="0.9rem">
+                      <Icon name="circle-exclamation" rotation={45} />
+                      Compressor water vapour/steam too cold!
                     </Box>
                   )}
                 </LabeledList.Item>
@@ -305,14 +310,14 @@ export const TrainTurbineComputer = () => {
                     <AnimatedNumber value={rotor_temp} /> / {max_temperature} K
                   </ProgressBar>
                 </LabeledList.Item>
-                <LabeledList.Item label="Outlet (K)">
+                {/* <LabeledList.Item label="Outlet (K)">
                   <ProgressBar
                     value={(outlet_temp - 273) / (800 - 273)}
                     color="blue"
                   >
                     <AnimatedNumber value={outlet_temp} /> K
                   </ProgressBar>
-                </LabeledList.Item>
+                </LabeledList.Item> */}
               </LabeledList>
             </Section>
 
@@ -323,17 +328,17 @@ export const TrainTurbineComputer = () => {
                     <AnimatedNumber value={compressor_pressure} /> kPa
                   </ProgressBar>
                 </LabeledList.Item>
-                <LabeledList.Item label="Rotor">
+                {/* <LabeledList.Item label="Rotor">
                   <ProgressBar
                     value={rotor_pressure / 800}
                     color={pressureWarning ? 'bad' : 'average'}
                   >
                     <AnimatedNumber value={rotor_pressure} /> kPa
                   </ProgressBar>
-                </LabeledList.Item>
+                </LabeledList.Item> */}
                 <LabeledList.Item label="Outlet">
-                  <ProgressBar value={outlet_pressure / 300} color="blue">
-                    <AnimatedNumber value={outlet_pressure} /> kPa
+                  <ProgressBar value={outlet_water_volume} color="blue">
+                    <AnimatedNumber value={outlet_water_volume} /> units
                   </ProgressBar>
                 </LabeledList.Item>
               </LabeledList>
