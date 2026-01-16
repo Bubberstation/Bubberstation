@@ -231,6 +231,7 @@
 		if(living_target.mobility_flags & MOBILITY_MOVE)
 			INVOKE_ASYNC(src, PROC_REF(sit_on_table), climbed_thing, living_target)
 		return COMPONENT_CANCEL_MOUSEDROPPED_ONTO
+	// BUBBER EDIT ADDITION END - OVERSIZED QUIRK
 
 	if(living_target.mobility_flags & MOBILITY_MOVE)
 		INVOKE_ASYNC(src, PROC_REF(climb_structure), climbed_thing, living_target, params)
