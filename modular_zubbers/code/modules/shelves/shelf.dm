@@ -161,6 +161,7 @@
 	icon = 'modular_zubbers/icons/obj/structures.dmi'
 	icon_state = "rack_parts"
 	desc = "Parts of a cargo shelf, for storing crates."
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 4)
 
 /obj/item/rack_parts/cargo_shelf/attack_self(mob/user)
 	if(building)
@@ -186,6 +187,7 @@
 /obj/item/rack_parts/gun
 	name = "gun rack parts"
 	desc = "Parts of a gun rack."
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/item/rack_parts/gun/attack_self(mob/user)
 	if(building)
@@ -211,6 +213,7 @@
 /obj/item/rack_parts/shelf
 	name = "shelf parts"
 	desc = "Parts of a standard shelf."
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/item/rack_parts/shelf/attack_self(mob/user)
 	if(building)
