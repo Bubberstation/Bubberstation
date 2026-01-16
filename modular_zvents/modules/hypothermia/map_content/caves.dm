@@ -30,7 +30,7 @@ GLOBAL_LIST_EMPTY(sneak_pod_list)
 		list(-1, -1, 0), list(0, -1, 0), list(1, -1, 0)
 	)
 	seethrough = AddComponent(__IMPLIED_TYPE__)
-	seethrough.relative_turf_coords = map
+	seethrough.see_through_map = map
 	seethrough.dismantle_perimeter()
 	GLOB.sneak_pod_list += src
 
