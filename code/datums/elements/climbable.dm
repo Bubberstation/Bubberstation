@@ -224,6 +224,7 @@
 		return
 	var/mob/living/living_target = dropped_atom
 
+	// BUBBER EDIT ADDITION BEGIN - OVERSIZED QUIRK
 	// Check if this is an Oversized player trying to sit on a table with Alt held
 	var/list/modifiers = params2list(params)
 	if(istype(climbed_thing, /obj/structure/table) && HAS_TRAIT(living_target, TRAIT_OVERSIZED) && LAZYACCESS(modifiers, ALT_CLICK))
