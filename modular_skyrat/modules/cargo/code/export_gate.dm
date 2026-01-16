@@ -286,15 +286,16 @@
 		else
 			stack_trace("[src.name] attempted to perform a bounty cube export payment to [payout_account.account_holder], but it failed!")
 
-/obj/machinery/export_gate/attackby(obj/item/item, mob/living/user, list/modifiers, list/attack_modifiers)
-	var/obj/item/card/id/id_card = item.GetID()
+/obj/machinery/export_gate/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	update_last_used(user)
+	var/obj/item/card/id/id_card = tool.GetID()
 	if(istype(id_card))
 		if(check_access(id_card))
 			set_payment_mode(user, id_card)
+			return ITEM_INTERACT_SUCCESS
 		else
-			to_chat(user, span_warning("Insufficient access."))
-		return
-	..()
+			user.balloon_alert(user, "insufficient access!")
+			return ITEM_INTERACT_BLOCKING
 
 /datum/controller/subsystem/economy/issue_paydays()
 	for(var/obj/machinery/export_gate/payout_gate as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/export_gate))
