@@ -194,6 +194,9 @@
 /obj/machinery/export_gate/proc/set_payment_mode(mob/user, obj/item/card/id/id_card)
 	var/list/payment_modes = list(MODE_CARGO_TECH, MODE_CUSTOMS_AGENT, MODE_QUARTERMASTER)
 	var/selected_mode = tgui_input_list(user, "Set bounty payment mode:", src.name, payment_modes)
+	if(!selected_mode)
+		return
+
 	switch(selected_mode)
 		if(MODE_CARGO_TECH)
 			payment_mode = EX_CARGO_TECHNICIAN
@@ -231,21 +234,21 @@
 			if(CT_account.off_duty_check())
 				continue
 
-			LAZYADD(manifest_accounts, CT_account)
+			manifest_accounts += CT_account
 
 	if(payment_mode & EX_CUSTOMS_AGENT)
 		for(var/datum/bank_account/CA_account as anything in CA_accounts)
 			if(CA_account.off_duty_check())
 				continue
 
-			LAZYADD(manifest_accounts, CA_account)
+			manifest_accounts += CA_account
 
 	if(payment_mode & EX_QUARTERMASTER)
 		for(var/datum/bank_account/QM_account as anything in QM_accounts)
 			if(QM_account.off_duty_check())
 				continue
 
-			LAZYADD(manifest_accounts, QM_account)
+			manifest_accounts += QM_account
 
 	// If there's nobody to pay, fallback to paying everyone
 	if(LAZYLEN(manifest_accounts) == 0 && !retry)
