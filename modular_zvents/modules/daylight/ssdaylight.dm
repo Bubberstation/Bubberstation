@@ -8,6 +8,8 @@
 /area/proc/initialize_daylight()
 	if(daylight)
 		SSdaylight.queue_area_for_setup(src)
+	else
+		SSdaylight.remove_daylight_from_area(src)
 
 
 SUBSYSTEM_DEF(daylight)
@@ -46,44 +48,58 @@ SUBSYSTEM_DEF(daylight)
 	)
 	var/static/night_color = "#4a6ab9"
 
-/datum/controller/subsystem/daylight/Initialize()
-	// Initial setup for existing areas is now handled via their own Initialize calls.
-	// We no longer need to loop through all areas here, as new areas will queue themselves dynamically.
-
 /datum/controller/subsystem/daylight/proc/queue_area_for_setup(area/A)
-	if(!istype(A) || !(A in GLOB.areas) || !A.daylight)
-		return
-	if(A in setup_queue)
-		return
-	setup_queue += A
-	start_setup()
+	if(!istype(A) || QDELETED(A) || !(A in GLOB.areas) || !A.daylight)
+		return FALSE
 
-/datum/controller/subsystem/daylight/proc/start_setup()
-	if(setup_running)
-		return
-	setup_running = TRUE
-	INVOKE_ASYNC(src, PROC_REF(process_setup_queue))
+	if(A in setup_queue)
+		return FALSE
+
+	setup_queue += A
+
+	if(!setup_running)
+		setup_running = TRUE
+		INVOKE_ASYNC(src, PROC_REF(process_setup_queue))
+
+	return TRUE
 
 /datum/controller/subsystem/daylight/proc/process_setup_queue()
-	while(length(setup_queue))
-		var/area/A = setup_queue[1]
-		setup_queue.Cut(1, 2)
+	var/list/areas_to_process = setup_queue.Copy()
+	setup_queue.Cut()
 
-		// Check if area still exists and is valid
-		if(!istype(A) || !(A in GLOB.areas) || !A.daylight)
+	while(areas_to_process.len)
+		var/area/A = areas_to_process[areas_to_process.len]
+		areas_to_process.len--
+
+		if(!istype(A) || QDELETED(A) || !(A in GLOB.areas) || !A.daylight)
 			continue
 
 		for(var/turf/T in A.contents)
 			if(locate(/obj/effect/light_emitter/daylight) in T)
 				continue
-			var/obj/effect/light_emitter/daylight/new_emitter = new (T)
-			register_emitter(new_emitter)  // Register immediately for consistency
+
+			var/obj/effect/light_emitter/daylight/new_emitter = new(T)
+			register_emitter(new_emitter)
 			CHECK_TICK
-		stoplag()
+
+		stoplag(1)
+
+
 	setup_running = FALSE
+	if(setup_queue.len)
+		setup_running = TRUE
+		INVOKE_ASYNC(src, PROC_REF(process_setup_queue))
+
+/datum/controller/subsystem/daylight/proc/remove_daylight_from_area(area/A)
+	if(!istype(A) || QDELETED(A) || !(A in GLOB.areas))
+		return
+
+	for(var/turf/T in A.contents)
+		for(var/obj/effect/light_emitter/daylight/E in T)
+			qdel(E)
 
 /datum/controller/subsystem/daylight/proc/register_emitter(obj/effect/light_emitter/daylight/emitter)
-	if(emitter in all_emitters)
+	if(!emitter || QDELETED(emitter) || (emitter in all_emitters))
 		return
 	all_emitters += emitter
 	emitter.apply_current_state()
@@ -93,7 +109,8 @@ SUBSYSTEM_DEF(daylight)
 
 /datum/controller/subsystem/daylight/proc/update_all_emitters()
 	for(var/obj/effect/light_emitter/daylight/E as anything in all_emitters)
-		E.apply_current_state()
+		if(!QDELETED(E))
+			E.apply_current_state()
 
 /datum/controller/subsystem/daylight/proc/set_intensity_and_color(intensity, color, force = FALSE)
 	intensity = clamp(intensity, 0, 1)
@@ -111,12 +128,7 @@ SUBSYSTEM_DEF(daylight)
 
 	if(manual_time >= 0)
 		target_intensity = manual_time
-		if(manual_time >= 0.9)
-			target_color = "#ffffff"
-		else if(manual_time >= 0.1)
-			target_color = "#ffaa70"
-		else
-			target_color = night_color
+		target_color = (manual_time >= 0.9 ? "#ffffff" : manual_time >= 0.1 ? "#ffaa70" : night_color)
 
 	else if(time_locked || cycle_locked)
 		target_intensity = current_intensity
@@ -127,12 +139,8 @@ SUBSYSTEM_DEF(daylight)
 
 		if(cycle_progress < daylight_fraction)
 			var/day_progress = cycle_progress / daylight_fraction
-			if(day_progress < 0.2)
-				target_intensity = day_progress / 0.2
-			else if(day_progress > 0.8)
-				target_intensity = (1 - day_progress) / 0.2
-			else
-				target_intensity = 1
+
+			target_intensity = (day_progress < 0.2 ? day_progress / 0.2 : day_progress > 0.8 ? (1 - day_progress) / 0.2 : 1)
 
 			var/list/keys = day_colors
 			var/lower = 0
@@ -151,7 +159,7 @@ SUBSYSTEM_DEF(daylight)
 
 			var/color1 = day_colors[lower_key]
 			var/color2 = day_colors[upper_key]
-			var/mix = (day_progress - lower) / (upper - lower)
+			var/mix = (upper > lower) ? (day_progress - lower) / (upper - lower) : 0
 			target_color = color_interpolate(color1, color2, mix)
 
 		else
@@ -187,7 +195,7 @@ SUBSYSTEM_DEF(daylight)
 		hex = copytext(hex, 2)
 
 	var/len = length(hex)
-	if(len == 3) // #fff → #ffffff
+	if(len == 3)
 		hex = "[copytext(hex,1,2)][copytext(hex,1,2)][copytext(hex,2,3)][copytext(hex,2,3)][copytext(hex,3,4)][copytext(hex,3,4)]"
 
 	if(length(hex) != 6)
@@ -207,7 +215,6 @@ SUBSYSTEM_DEF(daylight)
 	var/g = round(c1[2] + (c2[2] - c1[2]) * ratio, 1)
 	var/b = round(c1[3] + (c2[3] - c1[3]) * ratio, 1)
 	return rgb(r, g, b)
-
 
 
 ADMIN_VERB(set_daylight_time, R_ADMIN, "Set Daylight Time (0-1)", "Force daylight intensity or return to auto", ADMIN_CATEGORY_EVENTS)
@@ -239,8 +246,9 @@ ADMIN_VERB(toggle_daylight_cycle_lock, R_ADMIN, "Toggle Daylight Cycle Lock", "L
 		SSdaylight.time_locked = FALSE
 		SSdaylight.manual_time = -1
 
-	log_admin("[key_name(usr)] [SSdaylight.cycle_locked ? "lock" : "unlock"] daylight cycle")
-	message_admins(span_adminnotice("[key_name_admin(usr)] [SSdaylight.cycle_locked ? "lock" : "unlock"] daylight cycle"))
+	log_admin("[key_name(usr)] [SSdaylight.cycle_locked ? "locked" : "unlocked"] daylight cycle")
+	message_admins(span_adminnotice("[key_name_admin(usr)] [SSdaylight.cycle_locked ? "locked" : "unlocked"] daylight cycle"))
+
 
 /obj/effect/light_emitter
 	flags_1 = NO_TURF_MOVEMENT
@@ -255,16 +263,18 @@ ADMIN_VERB(toggle_daylight_cycle_lock, R_ADMIN, "Toggle Daylight Cycle Lock", "L
 	. = ..()
 	initial_lum = set_luminosity
 	initial_cap = set_cap
-	if(SSdaylight.initialized)
+	if(SSdaylight)
 		SSdaylight.register_emitter(src)
 
 /obj/effect/light_emitter/daylight/proc/apply_current_state()
+	if(!SSdaylight)
+		return
 	var/mult = SSdaylight.current_intensity
 	light_power = initial_cap * mult
 	light_color = SSdaylight.current_color
 	update_light()
 
 /obj/effect/light_emitter/daylight/Destroy()
-	if(SSdaylight?.initialized)
+	if(SSdaylight)
 		SSdaylight.unregister_emitter(src)
 	return ..()

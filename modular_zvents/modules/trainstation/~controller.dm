@@ -8,7 +8,7 @@ SUBSYSTEM_DEF(train_controller)
 
 	dependencies = list(
 		/datum/controller/subsystem/mapping,
-		/datum/controller/subsystem/statpanels,
+		/datum/controller/subsystem/daylight,
 	)
 
 	VAR_PRIVATE/moving = FALSE
@@ -23,6 +23,7 @@ SUBSYSTEM_DEF(train_controller)
 
 	var/list/station_terminals
 
+	var/obj/machinery/power/train_turbine/core_rotor/train_engine = null
 	// Загружается или выгружается в данный момент станция
 	var/loading = FALSE
 	// Станция запланированная для загрузки
@@ -32,7 +33,7 @@ SUBSYSTEM_DEF(train_controller)
 	// Известные, загруженные станции
 	var/static/list/known_stations = list()
 
-	var/default_travel_time = 20 MINUTES
+	var/default_travel_time = 35 MINUTES
 	var/time_to_next_station
 	var/total_travel_time
 
@@ -47,6 +48,8 @@ SUBSYSTEM_DEF(train_controller)
 	soundloop = new(start_immediately = FALSE)
 	RegisterSignal(SSticker, COMSIG_TICKER_ENTER_PREGAME, PROC_REF(on_enter_pregame))
 	load_stations()
+	load_startpoint()
+	load_train()
 
 /datum/controller/subsystem/train_controller/Destroy()
 	all_simulated_turfs.Cut()
@@ -82,12 +85,25 @@ SUBSYSTEM_DEF(train_controller)
 
 	// Сперва на перво сообщим об правилах игры
 	announce_game()
-	ASYNC
-		load_startpoint()
+	addtimer(CALLBACK(src, PROC_REF(set_lobby_screen)), 5 SECONDS)
 
+/datum/controller/subsystem/train_controller/proc/set_lobby_screen()
+	SStitle.change_title_screen('modular_zvents/icons/lobby/trainstation.jpg')
 
 /datum/controller/subsystem/train_controller/proc/load_startpoint()
 	load_station(/datum/train_station/start_point, stop_moving = FALSE, hide_for_players = FALSE, announce = FALSE)
+
+/datum/controller/subsystem/train_controller/proc/load_train()
+	var/datum/map_template/train/train_template = new()
+	var/obj/effect/landmark/trainstation/train_spawnpoint/spawnpoint = locate() in GLOB.landmarks_list
+	if(!spawnpoint || !istype(spawnpoint))
+		stack_trace("Failed to load train, no available spawnpoints!")
+		return
+	var/turf/actual_spawnpoint = get_turf(spawnpoint)
+	if(!actual_spawnpoint)
+		stack_trace("Failed to load train, spawnpoint out of bounds!")
+		return
+	train_template.load(actual_spawnpoint, centered = FALSE)
 
 /datum/controller/subsystem/train_controller/proc/on_station_unloaded()
 
@@ -168,6 +184,10 @@ SUBSYSTEM_DEF(train_controller)
 /datum/controller/subsystem/train_controller/proc/check_start()
 	if(SEND_SIGNAL(src, COMSIG_TRAIN_TRY_MOVE) & COMPONENT_BLOCK_TRAIN_MOVEMENT)
 		return FALSE
+	if(!train_engine)
+		return FALSE
+	if(!train_engine.is_active())
+		return FALSE
 	return TRUE
 
 /datum/controller/subsystem/train_controller/proc/register(turf/open/moving/T)
@@ -234,6 +254,9 @@ SUBSYSTEM_DEF(train_controller)
 		to_process += queue_list
 		LAZYNULL(queue_list)
 	if(!LAZYLEN(to_process))
+		return
+	if(!train_engine || !train_engine.is_active())
+		stop_moving()
 		return
 	if(moving && planned_to_load && time_to_next_station > 0)
 		time_to_next_station -= wait

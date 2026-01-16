@@ -12,6 +12,7 @@ import { Window } from '../layouts';
 
 interface TrainControlData {
   is_moving: boolean;
+  train_engine_active: boolean;
   current_station: string;
   planned_station: string;
   blocking: boolean;
@@ -29,11 +30,12 @@ export const TrainControlTerminal = (props: any, context: any) => {
 
   const {
     is_moving = false,
-    current_station = 'Неизвестно',
+    current_station = 'Unknown',
     planned_station = 'None',
     blocking = false,
     read_only = false,
     possible_next = [],
+    train_engine_active = false,
     progress = 0,
     time_remaining = 0,
   } = data;
@@ -42,14 +44,14 @@ export const TrainControlTerminal = (props: any, context: any) => {
   const safePossibleNext = Array.isArray(possible_next) ? possible_next : [];
 
   const formatTime = (seconds: number): string => {
-    if (seconds <= 0) return 'Прибытие';
+    if (seconds <= 0) return 'Arrived';
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   };
 
   const renderTravelView = () => (
-    <Section title="Движение по маршруту" fill>
+    <Section title="En Route" fill>
       <Stack vertical align="center" mt={6}>
         <Stack.Item>
           <Box fontSize="2rem" bold color="good">
@@ -70,7 +72,7 @@ export const TrainControlTerminal = (props: any, context: any) => {
           </ProgressBar>
         </Stack.Item>
         <Stack.Item mt={3} fontSize="1.6rem" opacity={0.8}>
-          Осталось:{' '}
+          Time remaining:{' '}
           <Box inline color="good" bold>
             {formatTime(time_remaining)}
           </Box>
@@ -83,9 +85,9 @@ export const TrainControlTerminal = (props: any, context: any) => {
     const numOptions = safePossibleNext.length;
     if (numOptions === 0) {
       return (
-        <Section title="Карта маршрута" fill textAlign="center" py={8}>
+        <Section title="Route Map" fill textAlign="center" py={8}>
           <Box color="average" fontSize="1.6rem">
-            Нет доступных маршрутов
+            No available routes
           </Box>
         </Section>
       );
@@ -96,7 +98,7 @@ export const TrainControlTerminal = (props: any, context: any) => {
     const radius = 160;
 
     return (
-      <Section title="Карта маршрута" fill>
+      <Section title="Route Map" fill>
         <Box textAlign="center" py={2}>
           <svg
             width="90%"
@@ -221,7 +223,7 @@ export const TrainControlTerminal = (props: any, context: any) => {
           </svg>
         </Box>
         <Box textAlign="center" mt={1} color="label" fontSize="1.1rem">
-          Нажмите на станцию на карте для выбора маршрута
+          Click on a station on the map to select the route
         </Box>
       </Section>
     );
@@ -229,7 +231,7 @@ export const TrainControlTerminal = (props: any, context: any) => {
 
   return (
     <Window
-      title="Терминал управления поездом"
+      title="Train Control Terminal"
       width={920}
       height={680}
       theme="ntos"
@@ -237,8 +239,8 @@ export const TrainControlTerminal = (props: any, context: any) => {
       <Window.Content scrollable>
         <Stack vertical>
           <Stack.Item>
-            <Section title="Статус поезда">
-              {/* Индикаторы в горизонтальном ряду */}
+            <Section title="Train Status">
+              {/* Indicators in a horizontal row */}
               <Stack>
                 <Stack.Item grow>
                   <Box
@@ -248,7 +250,7 @@ export const TrainControlTerminal = (props: any, context: any) => {
                     style={{ borderRadius: '8px' }}
                   >
                     <Box fontSize="1.1rem" color="label">
-                      Текущая станция
+                      Current Station
                     </Box>
                     <Box fontSize="1.6rem" bold mt={1}>
                       {current_station}
@@ -263,7 +265,7 @@ export const TrainControlTerminal = (props: any, context: any) => {
                     style={{ borderRadius: '8px' }}
                   >
                     <Box fontSize="1.1rem" color="label">
-                      Следующая станция
+                      Next Station
                     </Box>
                     <Box
                       fontSize="1.6rem"
@@ -283,7 +285,7 @@ export const TrainControlTerminal = (props: any, context: any) => {
                     style={{ borderRadius: '8px' }}
                   >
                     <Box fontSize="1.1rem" color="label">
-                      Состояние
+                      Status
                     </Box>
                     <Box
                       fontSize="1.6rem"
@@ -291,20 +293,27 @@ export const TrainControlTerminal = (props: any, context: any) => {
                       mt={1}
                       color={is_moving ? 'good' : 'average'}
                     >
-                      {is_moving ? 'В пути' : 'На станции'}
+                      {is_moving ? 'En Route' : 'At Station'}
                     </Box>
                   </Box>
                 </Stack.Item>
               </Stack>
-              {(blocking && (
+              {blocking && (
                 <>
                   <Divider />
                   <Box bold color="bad" textAlign="center" fontSize="1.8rem">
-                    ⚠ ДВИЖЕНИЕ ЗАБЛОКИРОВАНО!
+                    ⚠ MOVEMENT BLOCKED!
                   </Box>
                 </>
-              )) ||
-                ' '}
+              )}
+              {!train_engine_active && (
+                <>
+                  <Divider />
+                  <Box bold color="bad" textAlign="center" fontSize="1.8rem">
+                    ⚠ ENGINE NOT ACTIVE!
+                  </Box>
+                </>
+              )}
               {readOnly ? (
                 ' '
               ) : (
@@ -316,7 +325,9 @@ export const TrainControlTerminal = (props: any, context: any) => {
                     act(is_moving ? 'stop_moving' : 'start_moving')
                   }
                   disabled={
-                    blocking || (!is_moving && planned_station === 'None')
+                    blocking ||
+                    (!is_moving && planned_station === 'None') ||
+                    !train_engine_active
                   }
                   fluid
                   mt={3}
@@ -324,7 +335,7 @@ export const TrainControlTerminal = (props: any, context: any) => {
                   fontSize="1.8rem"
                   bold
                 >
-                  {is_moving ? 'ЭКСТРЕННОЕ ТОРМОЖЕНИЕ' : 'ОТПРАВИТЬСЯ'}
+                  {is_moving ? 'EMERGENCY STOP' : 'DEPART'}
                 </Button>
               )}
             </Section>

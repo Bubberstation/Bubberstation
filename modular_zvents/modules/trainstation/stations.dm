@@ -14,6 +14,12 @@
 /obj/effect/landmark/trainstation/station_spawnpoint
 	name = "Station Placer"
 
+/obj/effect/landmark/trainstation/train_spawnpoint
+	name = "Train Placer"
+
+/obj/effect/landmark/trainstation/crew_spawnpoint
+	name = "Crew Placer"
+
 
 /obj/effect/landmark/trainstation/object_spawner
 	name = "Object spawner"
@@ -97,6 +103,13 @@
 /turf/closed/indestructible/train_border
 	name = "Iced rock"
 	icon_state = "icerock"
+
+/datum/map_template/train
+	name = "Train Template"
+	width = 200
+	height = 13
+	mappath = "_maps/modular_events/trainstation/train_general.dmm"
+
 
 /datum/train_station
 	var/name = "Train station"
@@ -183,22 +196,49 @@
 		if(right_turf)
 			right_turf.ChangeTurf(/turf/closed/indestructible/train_border)
 			docking_turfs += right_turf
+	if(right_x <= world.maxx)
+		var/turf/corner = locate(right_x, end_y, z)
+		if(!corner)
+			return
+		for(var/x = right_x to world.maxx)
+			var/turf/top_turf = locate(x, end_y, z)
+			if(top_turf)
+				top_turf.ChangeTurf(/turf/closed/indestructible/train_border)
+				docking_turfs += top_turf
+
 
 /datum/train_station/proc/after_load()
 	if(station_flags & TRAINSTATION_BLOCKING)
 		blocking_moving = TRUE
 
 /datum/train_station/proc/unload_station(datum/callback/unload_callback)
+	var/obj/effect/landmark/trainstation/crew_spawnpoint/crew_mover = locate() in GLOB.landmarks_list
+
+
+	Master.StartLoadingMap()
 	for(var/turf/T in docking_turfs)
 		for(var/atom/movable/AM in T.contents)
 			if(HAS_TRAIT(AM, TRAIT_NO_STATION_UNLOAD))
 				continue
+			if(isliving(AM))
+				var/mob/living/living = AM
+				if(crew_mover && living.client)
+					living.forceMove(get_turf(crew_mover))
+					to_chat(living, span_warning("You barely made it to the train before it departed!"))
+					continue
+			if(isobserver(AM))
+				continue
 			qdel(AM)
-		T.ChangeTurf(/turf/open/space)
+		T.ChangeTurf(/turf/baseturf_bottom)
+		T.baseturfs = /turf/baseturf_bottom
 	docking_turfs.Cut()
 	template.created_atoms = null
 	if(unload_callback)
 		unload_callback.Invoke()
+	Master.StopLoadingMap()
+
+
+
 
 /datum/train_station/train_backstage
 	name = "Iced forest"
@@ -216,30 +256,24 @@
 
 /datum/train_station/military_house
 	name = "Military Side"
-	map_path = "_maps/modular_events/trainstation/startpoint.dmm"
+	map_path = "_maps/modular_events/trainstation/military_side.dmm"
 	station_flags = TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING
-
 
 
 /datum/train_station/warehouses
 	name = "Abandoned warehouses"
-	map_path = "_maps/modular_events/trainstation/startpoint.dmm"
+	map_path = "_maps/modular_events/trainstation/warehouse.dmm"
 	station_flags = TRAINSTATION_BLOCKING
 
 /datum/train_station/frozen_lake
 	name = "Frozen lake"
-	map_path = "_maps/modular_events/trainstation/startpoint.dmm"
-	station_flags = TRAINSTATION_BLOCKING
+	map_path = "_maps/modular_events/trainstation/iced_lake.dmm"
 
 /datum/train_station/mines
 	name = "Abandoned mines"
-	map_path = "_maps/modular_events/trainstation/startpoint.dmm"
+	map_path = "_maps/modular_events/trainstation/abandoned_mines.dmm"
 	station_flags = TRAINSTATION_BLOCKING
 
 /datum/train_station/deep_forest
 	name = "Deep forest"
-	map_path = "_maps/modular_events/trainstation/startpoint.dmm"
-
-/datum/train_station/plains
-	name = "Plains"
-	map_path = "_maps/modular_events/trainstation/startpoint.dmm"
+	map_path = "_maps/modular_events/trainstation/deep_forest.dmm"
