@@ -95,144 +95,139 @@
 	cost = PAYCHECK_CREW * 12
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/rope)
 
-/datum/supply_pack/donk
-	access = NONE
+/datum/supply_pack/goody/food
 	cost = PAYCHECK_CREW
-	group = "Goodies" //figure this out later
-	order_flags = ORDER_GOODY
-	crate_type = null
-	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
 
-/datum/supply_pack/donk/food/ready/standard
+/datum/supply_pack/goody/food/ready/standard
 	name = "Ready Donk"
 	contains = list(/obj/item/food/ready_donk)
 
-/datum/supply_pack/donk/food/ready/donkhiladas
+/datum/supply_pack/goody/food/ready/donkhiladas
 	name = "Ready Donkhiladas"
 	contains = list(/obj/item/food/ready_donk/donkhiladas)
 
-/datum/supply_pack/donk/food/ready/mac_n_cheese
+/datum/supply_pack/goody/food/ready/mac_n_cheese
 	name = "Mac & Cheese Ready Donk"
 	contains = list(/obj/item/food/ready_donk/mac_n_cheese)
 
-/datum/supply_pack/donk/food/pockets/standard
+/datum/supply_pack/goody/food/pockets/standard
 	name = "Donk Pockets"
 	contains = list(/obj/item/storage/box/donkpockets)
 
-/datum/supply_pack/donk/food/pockets/berry
+/datum/supply_pack/goody/food/pockets/berry
 	name = "Berry Honk Pockets"
 	contains = list(/obj/item/storage/box/donkpockets/donkpocketberry)
 
-/datum/supply_pack/donk/food/pockets/banana
+/datum/supply_pack/goody/food/pockets/banana
 	name = "Honk Pockets"
 	contains = list(/obj/item/storage/box/donkpockets/donkpockethonk)
 
-/datum/supply_pack/donk/food/pockets/pizza
+/datum/supply_pack/goody/food/pockets/pizza
 	name = "Pizza Donk Pockets"
 	contains = list(/obj/item/storage/box/donkpockets/donkpocketpizza)
 
-/datum/supply_pack/donk/food/pockets/spicy
+/datum/supply_pack/goody/food/pockets/spicy
 	name = "Spicy Donk Pockets"
 	contains = list(/obj/item/storage/box/donkpockets/donkpocketspicy)
 
-/datum/supply_pack/donk/food/pockets/teriyaki
+/datum/supply_pack/goody/food/pockets/teriyaki
 	name = "Teriyaki Donk Pockets"
 	contains = list(/obj/item/storage/box/donkpockets/donkpocketteriyaki)
 
-/datum/supply_pack/donk/merch/donk_carpet
+/datum/supply_pack/goody/merch/donk_carpet
 	name = "Donk Pocket Carpet"
 	contains = list(/obj/item/stack/tile/carpet/donk/thirty)
 
-/datum/supply_pack/donk/merch/tacticool_turtleneck
+/datum/supply_pack/goody/merch/tacticool_turtleneck
 	name = "Tacticool Turtleneck"
 	contains = list(/obj/item/clothing/under/syndicate/tacticool)
 
-/datum/supply_pack/donk/merch/tacticool_turtleneck_skirt
+/datum/supply_pack/goody/merch/tacticool_turtleneck_skirt
 	name = "Tacticool Turtleneck Skirt"
 	contains = list(/obj/item/clothing/under/syndicate/tacticool/skirt)
 
-/datum/supply_pack/donk/merch/fake_centcom_turtleneck
+/datum/supply_pack/goody/merch/fake_centcom_turtleneck
 	name = "Replica CentCom Turtleneck"
 	contains = list(/obj/item/clothing/under/rank/centcom/officer/replica)
 
-/datum/supply_pack/donk/merch/fake_centcom_turtleneck_skirt
+/datum/supply_pack/goody/merch/fake_centcom_turtleneck_skirt
 	name = "Replica CentCom Turtleneck Skirt"
 	contains = list(/obj/item/clothing/under/rank/centcom/officer_skirt/replica)
 
-/datum/supply_pack/donk/merch/snack_rig
+/datum/supply_pack/goody/merch/snack_rig
 	name = "Donk Co. Tactical Snack Belt"
 	contains = list(/obj/item/storage/belt/military/snack)
 	cost = PAYCHECK_COMMAND
 
-/datum/supply_pack/donk/merch/fake_syndie_suit
+/datum/supply_pack/goody/merch/fake_syndie_suit
 	name = "Replica Syndicate Suit"
 	contains = list(/obj/item/storage/box/fakesyndiesuit)
 
-/datum/supply_pack/donk/merch/syndicate_balloon
+/datum/supply_pack/goody/merch/syndicate_balloon
 	name = "Syndicate Balloon"
 	contains = list(/obj/item/toy/balloon/arrest)
 
-/datum/supply_pack/donk/foamforce
+/datum/supply_pack/goody/foamforce
 	cost = PAYCHECK_COMMAND
 
-/datum/supply_pack/donk/foamforce/pistol
+/datum/supply_pack/goody/foamforce/pistol
 	name = "Foam Dart Pistol"
 	contains = list(/obj/item/gun/ballistic/automatic/pistol/toy)
 
-/datum/supply_pack/donk/foamforce/shotgun
+/datum/supply_pack/goody/foamforce/shotgun
 	name = "Foam Dart Shotgun"
 	contains = list(/obj/item/gun/ballistic/shotgun/toy/riot)
 
-/datum/supply_pack/donk/foamforce/smg
+/datum/supply_pack/goody/foamforce/smg
 	name = "Foam Dart SMG"
 	contains = list(/obj/item/gun/ballistic/automatic/toy/riot)
 	cost = PAYCHECK_COMMAND * 3
 
-/datum/supply_pack/donk/foamforce/c20
+/datum/supply_pack/goody/foamforce/c20
 	name = "Foam Dart C20R"
 	contains = list(/obj/item/gun/ballistic/automatic/c20r/toy/unrestricted)
 	cost = PAYCHECK_COMMAND * 3
 
-/datum/supply_pack/donk/foamforce/lmg
+/datum/supply_pack/goody/foamforce/lmg
 	name = "Foam Dart L6 Saw"
 	contains = list(/obj/item/gun/ballistic/automatic/l6_saw/toy/unrestricted)
 	cost = PAYCHECK_COMMAND * 5
 
-/datum/supply_pack/donk/foamforce/turret
+/datum/supply_pack/goody/foamforce/turret
 	name = "Foam Dart Turret"
 	contains = list(/obj/item/storage/toolbox/emergency/turret/mag_fed/toy/pre_filled)
 	cost = PAYCHECK_COMMAND * 4
 
-/datum/supply_pack/donk/foamforce/pistol
+/datum/supply_pack/goody/foamforce/pistol
 	name = "Foam Dart Pistol"
 	contains = list(/obj/item/gun/ballistic/automatic/pistol/toy)
 
-/datum/supply_pack/donk/foamforce/ammo
+/datum/supply_pack/goody/foamforce/ammo
 	cost = PAYCHECK_CREW
 
-/datum/supply_pack/donk/foamforce/ammo/darts
+/datum/supply_pack/goody/foamforce/ammo/darts
 	name = "Foamforce Darts"
 	contains = list(/obj/item/ammo_box/foambox)
 	cost = PAYCHECK_LOWER
 
-/datum/supply_pack/donk/foamforce/ammo/riot
+/datum/supply_pack/goody/foamforce/ammo/riot
 	name = "Foamforce Riot Darts"
 	contains = list(/obj/item/ammo_box/foambox/riot)
 	cost = PAYCHECK_COMMAND * 1.5
 
-/datum/supply_pack/donk/foamforce/ammo/pistol_mag
+/datum/supply_pack/goody/foamforce/ammo/pistol_mag
 	name = "Foamforce Pistol Magazine"
 	contains = list(/obj/item/ammo_box/magazine/toy/pistol)
 
-/datum/supply_pack/donk/foamforce/ammo/smg_mag
+/datum/supply_pack/goody/foamforce/ammo/smg_mag
 	name = "Foamforce SMG Magazine"
 	contains = list(/obj/item/ammo_box/magazine/toy/smg)
 
-/datum/supply_pack/donk/foamforce/ammo/smgm45_mag
+/datum/supply_pack/goody/foamforce/ammo/smgm45_mag
 	name = "Foamforce SMGM45 Magazine"
 	contains = list(/obj/item/ammo_box/magazine/toy/smgm45)
 
-/datum/supply_pack/donk/foamforce/ammo/m762_mag
+/datum/supply_pack/goody/foamforce/ammo/m762_mag
 	name = "Foamforce M762 Mag"
 	contains = list(/obj/item/ammo_box/magazine/toy/m762)
 /datum/supply_pack/goody/pepperball_gun

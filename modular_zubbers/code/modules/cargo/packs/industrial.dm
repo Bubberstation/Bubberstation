@@ -1,11 +1,3 @@
-/datum/supply_pack/engineering
-	access = NONE
-	cost = PAYCHECK_COMMAND
-	group = "Industrial" //figure this out later
-	order_flags = ORDER_GOODY
-	crate_type = null
-	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
-
 /datum/supply_pack/engineering/omni_drill
 	name = "Omni-Drill"
 	contains = list(/obj/item/screwdriver/omni_drill)
