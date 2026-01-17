@@ -64,7 +64,7 @@
 	. = ..()
 	contains += list(/obj/item/storage/toolbox/guncase/skyrat/pistol/pepperball = 2)
 
-/datum/supply_pack/imports/security
+/datum/supply_pack/security
 	access = ACCESS_SECURITY
 	cost = PAYCHECK_COMMAND
 	group = "Security" //figure this out later
