@@ -1,4 +1,8 @@
 
+/obj/item/holosign_creator/security
+	desc = "A holographic projector that creates holographic security barriers and restraints. You can remotely open barriers with it.\
+			Restraints are applied with the creator itself, but the projections may destabilize when exposed to EMP's, or when the captive leaves it's 9 meter range."
+
 /obj/item/holosign_creator/security/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!iscarbon(interacting_with))
 		return ..()
@@ -71,16 +75,15 @@
 /obj/item/restraints/handcuffs/holographic/on_uncuffed(datum/source, mob/living/wearer)
 	. = ..()
 	wearer.visible_message(span_danger("[wearer]'s [name] breaks in a discharge of energy!"), span_userdanger("[wearer]'s [name] breaks in a discharge of energy!"))
-	var/datum/effect_system/spark_spread/sparks = new
-	sparks.set_up(4,0,wearer.loc)
-	sparks.start()
-
+	do_sparks(2, TRUE, src)
+	wearer.remove_status_effect(/datum/status_effect/holocuff_distance)
 	qdel(src)
 
 /obj/item/restraints/handcuffs/holographic/emp_act(severity)
 	. = ..()
 	if(severity <= EMP_HEAVY)
 		if(prob(50))
+			do_sparks(2, TRUE, our_guy)
 			qdel(src)
 
 
@@ -102,10 +105,8 @@
 	for(var/obj/item/restraints/handcuffs/holographic/used/ourcuffs in owner.contents)
 		var/dist = get_dist(get_turf(ourcuffs.our_guy), get_turf(ourcuffs.our_projector))
 		if(dist > 9)
+			do_sparks(2, TRUE, owner)
 			owner.dropItemToGround(ourcuffs, TRUE)
-			owner.visible_message(span_danger("[wearer]'s [name] breaks in a discharge of energy!"), span_userdanger("[wearer]'s [name] breaks in a discharge of energy!"))
-			var/datum/effect_system/spark_spread/sparks = new
-			sparks.set_up(4,0,wearer.loc)
-			sparks.start()
+			owner.visible_message(span_danger("[owner]'s holographic energy field breaks in a discharge of energy!"), span_userdanger("[owner]'s holographic energy field breaks in a discharge of energy!"))
 			Destroy()
 
