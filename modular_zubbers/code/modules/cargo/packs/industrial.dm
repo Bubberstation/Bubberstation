@@ -87,7 +87,7 @@
 	access_view = ACCESS_ENGINEERING
 
 /datum/supply_pack/imports/engineering/equipment/wearable/weldhat
-	name = "Weldning Hard Hat"
+	name = "Welding Hard Hat"
 	contains = list(/obj/item/clothing/head/utility/hardhat/welding/orange)
 	cost = PAYCHECK_CREW * 1.5
 
