@@ -97,13 +97,10 @@
 			log_combat(user, climbed_thing, "climbed onto")
 			if(adjusted_climb_stun)
 				user.Stun(adjusted_climb_stun)
-			// Don't auto-buckle Oversized players to tables - they should use Alt+drag to sit
 			var/atom/movable/buckle_target = climbed_thing
 			if(istype(buckle_target))
-				// Skip buckling if this is an Oversized player on a table (they should use Alt+drag to sit)
-				if(!(istype(buckle_target, /obj/structure/table) && HAS_TRAIT(user, TRAIT_OVERSIZED)))
-					if(buckle_target.is_buckle_possible(user))
-						buckle_target.buckle_mob(user)
+				if(buckle_target.is_buckle_possible(user) && !(istype(buckle_target, /obj/structure/table) && HAS_TRAIT(user, TRAIT_OVERSIZED))) // BUBBER EDIT CHANGE - Skip buckling if this is an Oversized player on a table (they should use Alt+drag to sit) - Original: if(buckle_target.is_buckle_possible(user))
+					buckle_target.buckle_mob(user)
 			user.mind?.adjust_experience(/datum/skill/athletics, round(ATHLETICS_SKILL_MISC_EXP/(fitness_level || 1), 1)) //Get a bit fitter with every climb. But it has diminishing returns at a certain point.
 		else
 			to_chat(user, span_warning("You fail to climb onto [climbed_thing]."))
