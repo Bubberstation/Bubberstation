@@ -618,13 +618,13 @@
 /obj/item/clothing/under/rank/security/corrections_officer/skirt,
 /obj/item/clothing/under/rank/security/corrections_officer,
 /obj/item/radio/headset/corrections_officer,
-/obj/structure/closet{
-	name = "brig officer's locker"
-	},
 /obj/machinery/light_switch/directional/east{
 	pixel_y = -8
 	},
 /obj/item/storage/belt/security/full,
+/obj/structure/closet/secure_closet/security{
+	name = "brig officer's locker"
+	},
 /turf/open/floor/engine,
 /area/station/security/corrections_officer)
 "ajr" = (
@@ -16615,6 +16615,11 @@
 	},
 /turf/open/floor/iron/dark/telecomms,
 /area/station/tcommsat/server)
+"eQS" = (
+/obj/effect/spawner/structure/window/reinforced/plasma,
+/obj/machinery/atmospherics/pipe/layer_manifold/brown/visible,
+/turf/open/floor/plating,
+/area/station/engineering/atmos/upper)
 "eQW" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable,
@@ -18737,10 +18742,10 @@
 /obj/item/clothing/under/rank/security/corrections_officer/sweater,
 /obj/item/radio/headset/corrections_officer,
 /obj/machinery/light/cold/directional/east,
-/obj/structure/closet{
+/obj/item/storage/belt/security/full,
+/obj/structure/closet/secure_closet/security{
 	name = "brig officer's locker"
 	},
-/obj/item/storage/belt/security/full,
 /turf/open/floor/engine,
 /area/station/security/corrections_officer)
 "fvY" = (
@@ -34211,13 +34216,9 @@
 /obj/effect/turf_decal/trimline/red/mid_joiner{
 	dir = 4
 	},
-/obj/structure/closet/crate/bin{
-	name = "biowaste bin"
-	},
-/obj/effect/turf_decal/box/white{
-	color = "#9FED58"
-	},
 /obj/machinery/light/cold/directional/north,
+/obj/structure/closet/secure_closet/security_medic,
+/obj/item/wallframe/defib_mount,
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 4
 	},
@@ -55964,7 +55965,7 @@
 /area/station/engineering/storage/tech)
 "qfs" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
-/obj/machinery/atmospherics/pipe/smart/simple/pink/visible,
+/obj/machinery/atmospherics/pipe/layer_manifold/pink/visible,
 /turf/open/floor/plating,
 /area/station/engineering/atmos/upper)
 "qfB" = (
@@ -67433,7 +67434,7 @@
 /area/station/maintenance/starboard/fore)
 "tAs" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
-/obj/machinery/atmospherics/pipe/smart/simple/green/visible,
+/obj/machinery/atmospherics/pipe/layer_manifold/green/visible,
 /turf/open/floor/plating,
 /area/station/engineering/atmos/upper)
 "tAH" = (
@@ -176488,7 +176489,7 @@ wPY
 wPY
 imk
 tey
-tey
+eQS
 fcQ
 noW
 eyE
