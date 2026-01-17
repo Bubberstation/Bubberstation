@@ -1,4 +1,5 @@
 import {
+  AnimatedNumber,
   Box,
   Button,
   Divider,
@@ -9,6 +10,7 @@ import {
 import type { BooleanLike } from 'tgui-core/react';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
+import { formatTime } from 'tgui-core/format';
 
 interface TrainControlData {
   is_moving: boolean;
@@ -42,13 +44,6 @@ export const TrainControlTerminal = (props: any, context: any) => {
 
   const readOnly = read_only || false;
   const safePossibleNext = Array.isArray(possible_next) ? possible_next : [];
-
-  const formatTime = (seconds: number): string => {
-    if (seconds <= 0) return 'Arrived';
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-  };
 
   const renderTravelView = () => (
     <Section title="En Route" fill>
