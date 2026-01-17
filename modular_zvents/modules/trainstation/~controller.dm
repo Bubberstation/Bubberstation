@@ -4,7 +4,7 @@
 
 SUBSYSTEM_DEF(train_controller)
 	name = "Train Controller"
-	wait = 0.1 SECONDS // Эта подсистема вызывает РЕАЛЬНО часто, но за счет оптимизации - это не дает сильного оверхеда
+	wait = 0.2 SECONDS
 
 	dependencies = list(
 		/datum/controller/subsystem/mapping,
@@ -350,11 +350,12 @@ ADMIN_VERB(open_train_controller, R_ADMIN, "Open train controller", "Open active
 /obj/effect/mapping_helpers/ztrait_injector/trainstation
 	traits_to_add = list(ZTRAIT_NOPARALLAX = TRUE, ZTRAIT_NOXRAY = TRUE, ZTRAIT_NOPHASE = TRUE, ZTRAT_TRAINSTATION = TRUE, ZTRAIT_BASETURF = /turf/open/space)
 
-/* Оверскрин для отображения названия станции */
+
 /atom/movable/screen/station_logo
 	icon_state = "blank"
 	plane = HUD_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
+	screen_loc = "CENTER-7,CENTER-7"
 
 	var/fade_delay = 7 SECONDS
 	var/client/parent = null
