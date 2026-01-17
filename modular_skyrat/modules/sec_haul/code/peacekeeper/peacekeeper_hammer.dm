@@ -53,7 +53,7 @@
 	breaching = TRUE
 	breacher = user
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/item/melee/breaching_hammer, breaching_loop), user, target)
-	user.balloon_alert(user, "You begin breaching the door!")
+	user.balloon_alert(user, "you begin breaching the door!")
 
 /// Keeps looping until the door is breached or conditions fail
 /obj/item/melee/breaching_hammer/proc/breaching_loop(mob/living/user, obj/target)
