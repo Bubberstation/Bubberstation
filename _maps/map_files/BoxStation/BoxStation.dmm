@@ -12106,11 +12106,26 @@
 	pixel_x = -23
 	},
 /obj/structure/disposalpipe/segment,
-/obj/structure/cable,
-/obj/item/stack/sheet/plasteel{
-	amount = 10;
-	pixel_x = -6;
+/obj/item/assembly/flash/handheld{
+	pixel_x = 10;
+	pixel_y = 12
+	},
+/obj/item/assembly/flash/handheld{
+	pixel_x = 10;
 	pixel_y = 4
+	},
+/obj/item/assembly/flash/handheld{
+	pixel_x = 10;
+	pixel_y = -4
+	},
+/obj/structure/table/glass,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/item/stack/sheet/plasteel/twenty{
+	pixel_y = 6;
+	pixel_x = -6
 	},
 /obj/item/stack/cable_coil{
 	pixel_x = -5;
@@ -12127,22 +12142,6 @@
 /obj/item/assembly/flash/handheld{
 	pixel_x = 2;
 	pixel_y = -4
-	},
-/obj/item/assembly/flash/handheld{
-	pixel_x = 10;
-	pixel_y = 12
-	},
-/obj/item/assembly/flash/handheld{
-	pixel_x = 10;
-	pixel_y = 4
-	},
-/obj/item/assembly/flash/handheld{
-	pixel_x = 10;
-	pixel_y = -4
-	},
-/obj/structure/table/glass,
-/obj/effect/turf_decal/siding/thinplating_new/dark{
-	dir = 1
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/science/robotics/lab)
