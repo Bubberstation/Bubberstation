@@ -32,7 +32,7 @@
 /// Removes any form of tracking from the user and the item , make sure to call it on he proper item
 /obj/item/melee/breaching_hammer/proc/remove_track(mob/living/carbon/human/user)
 	breaching = FALSE
-	user.balloon_alert(user, "You put your hammer down!")
+	user.balloon_alert(user, "you put your hammer down!")
 	breacher = null
 
 /obj/item/melee/breaching_hammer/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
@@ -65,6 +65,6 @@
 		target.take_damage(force * breaching_multipler)
 		playsound(target, 'sound/items/weapons/sonic_jackhammer.ogg', 70)
 		target.visible_message(span_warning("[target] begins to cave in and deform with each blow from [src]!"), span_warning("We are breaching [target]."), \
-		span_hear("You hear a thud of metal against metal."))
+		span_hear("you hear a thud of metal against metal."))
 		user.do_attack_animation(target, used_item = src)
 	remove_track(user)
