@@ -250,7 +250,7 @@
 	if(buyer != SSeconomy.get_dep_account(ACCOUNT_CAR))
 		created_order = new(created_pack, name, rank, ckey, paying_account = buyer, reason = reason, can_be_cancelled = TRUE)
 	else
-		created_pack.goody = FALSE // Cargo ordered stuff should just show up in a box I think
+		// Cargo ordered stuff should just show up in a box I think
 		created_order = new(created_pack, name, rank, ckey, reason = reason, can_be_cancelled = TRUE)
 	created_order.selected_entry = armament_entry
 	created_order.used_component = src
