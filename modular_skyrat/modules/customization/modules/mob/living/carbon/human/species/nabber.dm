@@ -136,6 +136,10 @@
 	icon = 'modular_skyrat/modules/organs/icons/nabber_organs.dmi'
 	icon_state = "eyes"
 	flash_protect = FLASH_PROTECTION_SENSITIVE
+	iris_overlay = null
+	blink_animation = FALSE
+	eye_icon = 'modular_skyrat/modules/organs/icons/nabber_eyes.dmi'
+	eye_icon_state = "eyes"
 
 /obj/item/organ/lungs/nabber
 	name = "nabber lungs"
