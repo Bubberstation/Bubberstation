@@ -1,18 +1,18 @@
 #define BASE_CLOTH_X_1 1
 #define BASE_CLOTH_Y_1 1
 
-#define NABBER_COLD_THRESHOLD_1 180
-#define NABBER_COLD_THRESHOLD_2 140
-#define NABBER_COLD_THRESHOLD_3 100
+#define SERPENTID_COLD_THRESHOLD_1 180
+#define SERPENTID_COLD_THRESHOLD_2 140
+#define SERPENTID_COLD_THRESHOLD_3 100
 
-#define NABBER_HEAT_THRESHOLD_1 300
-#define NABBER_HEAT_THRESHOLD_2 440
-#define NABBER_HEAT_THRESHOLD_3 600
+#define SERPENTID_HEAT_THRESHOLD_1 300
+#define SERPENTID_HEAT_THRESHOLD_2 440
+#define SERPENTID_HEAT_THRESHOLD_3 600
 
 /datum/species/gas
 	name = "Giant Armored Serpentid"
 	id = SPECIES_GAS
-	eyes_icon = 'modular_skyrat/modules/organs/icons/nabber_eyes.dmi'
+	eyes_icon = 'modular_skyrat/modules/organs/icons/serpentid_eyes.dmi'
 	can_augment = FALSE
 
 	inherent_traits = list(
@@ -36,29 +36,29 @@
 	bodytemp_heat_damage_limit = (BODYTEMP_HEAT_DAMAGE_LIMIT - 10)
 	bodytemp_cold_damage_limit = (BODYTEMP_COLD_DAMAGE_LIMIT - 25)
 
-	mutantbrain = /obj/item/organ/brain/nabber
-	mutanteyes = /obj/item/organ/eyes/nabber
-	mutantlungs = /obj/item/organ/lungs/nabber
-	mutantheart = /obj/item/organ/heart/nabber
-	mutantliver = /obj/item/organ/liver/nabber
-	mutantears = /obj/item/organ/ears/nabber
+	mutantbrain = /obj/item/organ/brain/serpentid
+	mutanteyes = /obj/item/organ/eyes/serpentid
+	mutantlungs = /obj/item/organ/lungs/serpentid
+	mutantheart = /obj/item/organ/heart/serpentid
+	mutantliver = /obj/item/organ/liver/serpentid
+	mutantears = /obj/item/organ/ears/serpentid
 	bodypart_overrides = list(
-		BODY_ZONE_HEAD = /obj/item/bodypart/head/mutant/nabber,
-		BODY_ZONE_CHEST = /obj/item/bodypart/chest/mutant/nabber,
-		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/mutant/nabber,
-		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/mutant/nabber,
-		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/mutant/nabber,
-		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/mutant/nabber,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/mutant/serpentid,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/mutant/serpentid,
+		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/mutant/serpentid,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/mutant/serpentid,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/mutant/serpentid,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/mutant/serpentid,
 	)
 	custom_worn_icons = list(
-		LOADOUT_ITEM_HEAD = NABBER_HEAD_ICON,
-		LOADOUT_ITEM_MASK = NABBER_MASK_ICON,
-		LOADOUT_ITEM_UNIFORM = NABBER_UNIFORM_ICON,
-		LOADOUT_ITEM_HANDS =  NABBER_HANDS_ICON,
-		LOADOUT_ITEM_GLASSES = NABBER_EYES_ICON,
-		LOADOUT_ITEM_BELT = NABBER_BELT_ICON,
-		LOADOUT_ITEM_MISC = NABBER_BACK_ICON,
-		LOADOUT_ITEM_EARS = NABBER_EARS_ICON
+		LOADOUT_ITEM_HEAD = SERPENTID_HEAD_ICON,
+		LOADOUT_ITEM_MASK = SERPENTID_MASK_ICON,
+		LOADOUT_ITEM_UNIFORM = SERPENTID_UNIFORM_ICON,
+		LOADOUT_ITEM_HANDS =  SERPENTID_HANDS_ICON,
+		LOADOUT_ITEM_GLASSES = SERPENTID_EYES_ICON,
+		LOADOUT_ITEM_BELT = SERPENTID_BELT_ICON,
+		LOADOUT_ITEM_MISC = SERPENTID_BACK_ICON,
+		LOADOUT_ITEM_EARS = SERPENTID_EARS_ICON
 	)
 
 /datum/species/gas/randomize_features(mob/living/carbon/human/human_mob)
@@ -83,13 +83,13 @@
 	features[FEATURE_MUTANT_COLOR_THREE] = main_color
 	return features
 
-/datum/species/gas/prepare_human_for_preview(mob/living/carbon/human/nabber)
-	var/nabber_color = "#00ac1d"
-	nabber.dna.features["mcolor"] = nabber_color
-	nabber.dna.features["mcolor2"] = nabber_color
-	nabber.dna.features["mcolor3"] = nabber_color
-	regenerate_organs(nabber, src, visual_only = TRUE)
-	nabber.update_body(TRUE)
+/datum/species/gas/prepare_human_for_preview(mob/living/carbon/human/serpentid)
+	var/serpentid_color = "#00ac1d"
+	serpentid.dna.features["mcolor"] = serpentid_color
+	serpentid.dna.features["mcolor2"] = serpentid_color
+	serpentid.dna.features["mcolor3"] = serpentid_color
+	regenerate_organs(serpentid, src, visual_only = TRUE)
+	serpentid.update_body(TRUE)
 
 /datum/species/gas/create_pref_unique_perks()
 	var/list/perk_descriptions = list()
@@ -117,41 +117,41 @@
 
 	return perk_descriptions
 
-/obj/item/organ/ears/nabber
-	name = "nabber ears"
-	icon = 'modular_skyrat/modules/organs/icons/nabber_organs.dmi'
+/obj/item/organ/ears/serpentid
+	name = "serpentid ears"
+	icon = 'modular_skyrat/modules/organs/icons/serpentid_organs.dmi'
 	icon_state = "ears"
 
-/obj/item/organ/heart/nabber
-	name = "nabber heart"
-	icon = 'modular_skyrat/modules/organs/icons/nabber_organs.dmi'
+/obj/item/organ/heart/serpentid
+	name = "serpentid heart"
+	icon = 'modular_skyrat/modules/organs/icons/serpentid_organs.dmi'
 	icon_state = "heart"
 
-/obj/item/organ/brain/nabber
-	name = "nabber brain"
-	icon = 'modular_skyrat/modules/organs/icons/nabber_organs.dmi'
+/obj/item/organ/brain/serpentid
+	name = "serpentid brain"
+	icon = 'modular_skyrat/modules/organs/icons/serpentid_organs.dmi'
 	icon_state = "brain"
 
-/obj/item/organ/eyes/nabber
-	name = "nabber eyes"
+/obj/item/organ/eyes/serpentid
+	name = "serpentid eyes"
 	desc = "Small orange orbs."
-	icon = 'modular_skyrat/modules/organs/icons/nabber_organs.dmi'
+	icon = 'modular_skyrat/modules/organs/icons/serpentid_organs.dmi'
 	icon_state = "eyes"
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 	iris_overlay = null
 	blink_animation = FALSE
-	eye_icon = 'modular_skyrat/modules/organs/icons/nabber_eyes.dmi'
+	eye_icon = 'modular_skyrat/modules/organs/icons/serpentid_eyes.dmi'
 	eye_icon_state = "eyes"
 
-/obj/item/organ/lungs/nabber
-	name = "nabber lungs"
-	icon = 'modular_skyrat/modules/organs/icons/nabber_organs.dmi'
+/obj/item/organ/lungs/serpentid
+	name = "serpentid lungs"
+	icon = 'modular_skyrat/modules/organs/icons/serpentid_organs.dmi'
 	icon_state = "lungs"
 
 	cold_message = "You can't stand the freezing cold with every breath you take!"
-	cold_level_1_threshold = NABBER_COLD_THRESHOLD_1
-	cold_level_2_threshold = NABBER_COLD_THRESHOLD_2
-	cold_level_3_threshold = NABBER_COLD_THRESHOLD_3
+	cold_level_1_threshold = SERPENTID_COLD_THRESHOLD_1
+	cold_level_2_threshold = SERPENTID_COLD_THRESHOLD_2
+	cold_level_3_threshold = SERPENTID_COLD_THRESHOLD_3
 	cold_level_1_damage = COLD_GAS_DAMAGE_LEVEL_1 //Keep in mind with gas damage levels, you can set these to be negative, if you want someone to heal, instead.
 	cold_level_2_damage = COLD_GAS_DAMAGE_LEVEL_1
 	cold_level_3_damage = COLD_GAS_DAMAGE_LEVEL_2
@@ -159,22 +159,22 @@
 
 
 	hot_message = "You can't stand the searing heat with every breath you take!"
-	heat_level_1_threshold = NABBER_HEAT_THRESHOLD_1
-	heat_level_2_threshold = NABBER_HEAT_THRESHOLD_2
-	heat_level_3_threshold = NABBER_HEAT_THRESHOLD_3
+	heat_level_1_threshold = SERPENTID_HEAT_THRESHOLD_1
+	heat_level_2_threshold = SERPENTID_HEAT_THRESHOLD_2
+	heat_level_3_threshold = SERPENTID_HEAT_THRESHOLD_3
 	heat_level_1_damage = HEAT_GAS_DAMAGE_LEVEL_2
 	heat_level_2_damage = HEAT_GAS_DAMAGE_LEVEL_3
 	heat_level_3_damage = HEAT_GAS_DAMAGE_LEVEL_3
 	heat_damage_type = BURN
 
-/obj/item/organ/liver/nabber
+/obj/item/organ/liver/serpentid
 	name = "skrell liver"
 	icon_state = "liver"
-	icon = 'modular_skyrat/modules/organs/icons/nabber_organs.dmi'
+	icon = 'modular_skyrat/modules/organs/icons/serpentid_organs.dmi'
 	liver_resistance = 0.8 * LIVER_DEFAULT_TOX_RESISTANCE // -40%
 
 /obj/item
-	var/datum/greyscale_config/greyscale_config_worn_nabber_fallback
+	var/datum/greyscale_config/greyscale_config_worn_serpentid_fallback
 
 /datum/species/gas/get_custom_worn_icon(item_slot, obj/item/item)
 	return item.worn_icon_gas
@@ -183,7 +183,7 @@
 	item.worn_icon_gas = icon
 
 /datum/species/gas/get_custom_worn_config_fallback(item_slot, obj/item/item)
-	return item.greyscale_config_worn_nabber_fallback
+	return item.greyscale_config_worn_serpentid_fallback
 
 /datum/species/gas/generate_custom_worn_icon(item_slot, obj/item/item, mob/living/carbon/human/human_owner)
 	. = ..()
@@ -196,37 +196,37 @@
 
 /obj/item/clothing/under
 	species_clothing_color_coords = list(list(BASE_CLOTH_X_1, BASE_CLOTH_Y_1))
-	greyscale_config_worn_nabber_fallback = /datum/greyscale_config/nabber
+	greyscale_config_worn_serpentid_fallback = /datum/greyscale_config/serpentid
 
 /obj/item/clothing/neck
 	species_clothing_color_coords = list(list(BASE_CLOTH_X_1, BASE_CLOTH_Y_1))
-	greyscale_config_worn_nabber_fallback = /datum/greyscale_config/nabber/scarf
+	greyscale_config_worn_serpentid_fallback = /datum/greyscale_config/serpentid/scarf
 
 /obj/item/clothing/neck/cloak
 	species_clothing_color_coords = list(list(BASE_CLOTH_X_1, BASE_CLOTH_Y_1))
-	greyscale_config_worn_nabber_fallback = /datum/greyscale_config/nabber/cloak
+	greyscale_config_worn_serpentid_fallback = /datum/greyscale_config/serpentid/cloak
 
 /obj/item/clothing/neck/tie
 	species_clothing_color_coords = list(list(BASE_CLOTH_X_1, BASE_CLOTH_Y_1))
-	greyscale_config_worn_nabber_fallback = /datum/greyscale_config/nabber/tie
+	greyscale_config_worn_serpentid_fallback = /datum/greyscale_config/serpentid/tie
 
 /obj/item/clothing/gloves
 	species_clothing_color_coords = list(list(BASE_CLOTH_X_1, BASE_CLOTH_Y_1))
-	greyscale_config_worn_nabber_fallback = /datum/greyscale_config/nabber/gloves
+	greyscale_config_worn_serpentid_fallback = /datum/greyscale_config/serpentid/gloves
 
 /obj/item/clothing/glasses
 	species_clothing_color_coords = list(list(BASE_CLOTH_X_1, BASE_CLOTH_Y_1))
-	greyscale_config_worn_nabber_fallback = /datum/greyscale_config/nabber/eyes
+	greyscale_config_worn_serpentid_fallback = /datum/greyscale_config/serpentid/eyes
 
 /obj/item/clothing/belt
 	species_clothing_color_coords = list(list(BASE_CLOTH_X_1, BASE_CLOTH_Y_1))
-	greyscale_config_worn_nabber_fallback = /datum/greyscale_config/nabber/belt
+	greyscale_config_worn_serpentid_fallback = /datum/greyscale_config/serpentid/belt
 
 #undef BASE_CLOTH_X_1
 #undef BASE_CLOTH_Y_1
-#undef NABBER_COLD_THRESHOLD_1
-#undef NABBER_COLD_THRESHOLD_2
-#undef NABBER_COLD_THRESHOLD_3
-#undef NABBER_HEAT_THRESHOLD_1
-#undef NABBER_HEAT_THRESHOLD_2
-#undef NABBER_HEAT_THRESHOLD_3
+#undef SERPENTID_COLD_THRESHOLD_1
+#undef SERPENTID_COLD_THRESHOLD_2
+#undef SERPENTID_COLD_THRESHOLD_3
+#undef SERPENTID_HEAT_THRESHOLD_1
+#undef SERPENTID_HEAT_THRESHOLD_2
+#undef SERPENTID_HEAT_THRESHOLD_3

@@ -42,4 +42,4 @@
 #define	AI_HOLOGRAM_REDPANDA "Red Panda"
 #define	AI_HOLOGRAM_FENNEC "Fennec"
 
-#define BODYPART_ICON_GAS 'modular_skyrat/modules/bodyparts/icons/nabber_parts_greyscale.dmi'
+#define BODYPART_ICON_GAS 'modular_skyrat/modules/bodyparts/icons/serpentid_parts_greyscale.dmi'

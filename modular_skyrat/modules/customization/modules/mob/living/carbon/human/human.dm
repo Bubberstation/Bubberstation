@@ -71,7 +71,7 @@
 /mob/living/carbon/human/species/skrell
 	race = /datum/species/skrell
 
-/mob/living/carbon/human/species/nabber
+/mob/living/carbon/human/species/serpentid
 	race = /datum/species/gas
 
 /mob/living/carbon/human/verb/toggle_undies()

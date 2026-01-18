@@ -2,14 +2,14 @@
 #define GAS_PUNCH_HIGH 5
 //GAS
 
-/obj/item/bodypart/head/mutant/nabber
+/obj/item/bodypart/head/mutant/serpentid
 	icon_greyscale = BODYPART_ICON_GAS
 	bodytype = BODYTYPE_ORGANIC
 	limb_id = SPECIES_GAS
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	head_flags = HEAD_EYESPRITES|HEAD_EYECOLOR|HEAD_EYEHOLES|HEAD_DEBRAIN
 
-/obj/item/bodypart/head/mutant/nabber/Initialize(mapload)
+/obj/item/bodypart/head/mutant/serpentid/Initialize(mapload)
 	worn_ears_offset = new(
 		attached_part = src,
 		feature_key = OFFSET_EARS,
@@ -28,13 +28,13 @@
 	return ..()
 
 
-/obj/item/bodypart/chest/mutant/nabber
+/obj/item/bodypart/chest/mutant/serpentid
 	icon_greyscale = BODYPART_ICON_GAS
 	bodytype = BODYTYPE_ORGANIC
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_GAS
 
-/obj/item/bodypart/chest/mutant/nabber/Initialize(mapload)
+/obj/item/bodypart/chest/mutant/serpentid/Initialize(mapload)
 	worn_back_offset = new(
 		attached_part = src,
 		feature_key = OFFSET_BACK,
@@ -48,7 +48,7 @@
 	return ..()
 
 
-/obj/item/bodypart/arm/left/mutant/nabber
+/obj/item/bodypart/arm/left/mutant/serpentid
 	icon_greyscale = BODYPART_ICON_GAS
 	bodytype = BODYTYPE_ORGANIC
 	limb_id = SPECIES_GAS
@@ -61,7 +61,7 @@
 	burn_modifier = 1.4
 
 
-/obj/item/bodypart/arm/right/mutant/nabber
+/obj/item/bodypart/arm/right/mutant/serpentid
 	icon_greyscale = BODYPART_ICON_GAS
 	bodytype = BODYTYPE_ORGANIC
 	limb_id = SPECIES_GAS
@@ -73,7 +73,7 @@
 	burn_modifier = 1.4
 
 
-/obj/item/bodypart/leg/left/mutant/nabber
+/obj/item/bodypart/leg/left/mutant/serpentid
 	icon_greyscale = BODYPART_ICON_GAS
 	bodytype = BODYTYPE_ORGANIC
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -83,7 +83,7 @@
 	burn_modifier = 1.4
 
 
-/obj/item/bodypart/leg/right/mutant/nabber
+/obj/item/bodypart/leg/right/mutant/serpentid
 	icon_greyscale = BODYPART_ICON_GAS
 	bodytype = BODYTYPE_ORGANIC
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
