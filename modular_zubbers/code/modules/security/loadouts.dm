@@ -52,7 +52,6 @@
 ////////// JOBS BELOW ///////////
 
 /datum/job/security_officer
-	department_head = list(JOB_HEAD_OF_SECURITY)
 	total_positions = 8 //Handled in /datum/controller/occupations/proc/setup_officer_positions()
 	spawn_positions = 8 //Handled in /datum/controller/occupations/proc/setup_officer_positions()
 
@@ -64,12 +63,6 @@
 	set_wires(new/datum/wires/radio(src))
 	secure_radio_connections = list()
 	recalculateChannels()
-
-/datum/job/detective
-	department_head = list(JOB_HEAD_OF_SECURITY)
-
-/datum/job/warden
-	department_head = list(JOB_HEAD_OF_SECURITY)
 
 
 /datum/job/head_of_security
