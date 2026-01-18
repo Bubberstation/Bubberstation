@@ -51,6 +51,12 @@
 	// Register signals to update when needed
 	RegisterSignal(human_owner, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_z_change))
 	RegisterSignal(human_owner, COMSIG_ATOM_POST_DIR_CHANGE, PROC_REF(on_dir_change))
+	RegisterSignal(human_owner, COMSIG_ATOM_UPDATED_ICON, PROC_REF(on_appearance_update))
+	RegisterSignal(human_owner, COMSIG_MOB_EQUIPPED_ITEM, PROC_REF(on_appearance_update))
+	RegisterSignal(human_owner, COMSIG_MOB_UNEQUIPPED_ITEM, PROC_REF(on_appearance_update))
+	RegisterSignal(human_owner, COMSIG_MOB_DROPPED_ITEM, PROC_REF(on_appearance_update))
+	RegisterSignal(human_owner, COMSIG_LIVING_PICKED_UP_ITEM, PROC_REF(on_appearance_update))
+	RegisterSignal(human_owner, COMSIG_MOB_SWAP_HANDS, PROC_REF(on_appearance_update))
 
 	active = TRUE
 	to_chat(human_owner, span_notice("You now see yourself at normal size."))
@@ -65,7 +71,13 @@
 
 	UnregisterSignal(human_owner, list(
 		COMSIG_MOVABLE_Z_CHANGED,
-		COMSIG_ATOM_POST_DIR_CHANGE
+		COMSIG_ATOM_POST_DIR_CHANGE,
+		COMSIG_ATOM_UPDATED_ICON,
+		COMSIG_MOB_EQUIPPED_ITEM,
+		COMSIG_MOB_UNEQUIPPED_ITEM,
+		COMSIG_MOB_DROPPED_ITEM,
+		COMSIG_LIVING_PICKED_UP_ITEM,
+		COMSIG_MOB_SWAP_HANDS
 	))
 
 	normal_size_image = null
@@ -83,6 +95,15 @@
 		return
 
 	// Update the image to reflect the new direction
+	update_normal_size_image()
+
+/// Updates the overlay when appearance changes (equipment, hands, etc.)
+/datum/action/oversized_self_view/proc/on_appearance_update(mob/living/carbon/human/source, ...)
+	SIGNAL_HANDLER
+	if(!active || !source.client)
+		return
+
+	// Update the image to reflect any appearance changes
 	update_normal_size_image()
 
 /// Creates or updates the normal-size image with proper scaling and foot alignment

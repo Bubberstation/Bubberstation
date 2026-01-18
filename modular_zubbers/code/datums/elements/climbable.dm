@@ -20,15 +20,15 @@
 	var/turf/table_turf = get_turf(target_table)
 	var/approach_dir = NORTH // Default fallback
 
-	// Store the original turf position so they can return there when standing
-	LAZYINITLIST(target_table.oversized_sit_original_turfs)
-	target_table.oversized_sit_original_turfs[user] = user_turf
-
 	if(user_turf != table_turf)
 		// User is on a different turf, use direction from table to user
 		approach_dir = get_dir(table_turf, user_turf)
-		// Convert to closest cardinal direction if diagonal
-		if(approach_dir & (approach_dir - 1)) // If diagonal
+		// Only allow mounting from cardinal directions, not diagonals
+		if(ISDIAGONALDIR(approach_dir))
+			to_chat(user, span_warning("You can only sit on [target_table] from the north, south, east, or west side!"))
+			return
+		// Convert to closest cardinal direction if not already cardinal (safety check)
+		if(approach_dir & (approach_dir - 1)) // If diagonal (shouldn't happen after above check, but just in case)
 			// Pick the dominant direction based on distance
 			if(approach_dir & NORTH && approach_dir & EAST)
 				approach_dir = (abs(user_turf.x - table_turf.x) > abs(user_turf.y - table_turf.y)) ? EAST : NORTH
@@ -39,11 +39,17 @@
 			else if(approach_dir & SOUTH && approach_dir & WEST)
 				approach_dir = (abs(user_turf.x - table_turf.x) > abs(user_turf.y - table_turf.y)) ? WEST : SOUTH
 		else if(!(approach_dir in GLOB.cardinals))
-			// Fallback to user's facing direction
+			// Fallback to user's facing direction (must be cardinal)
 			approach_dir = user.dir
+			if(ISDIAGONALDIR(approach_dir) || !(approach_dir in GLOB.cardinals))
+				// If user is facing diagonally or invalid direction, default to NORTH
+				approach_dir = NORTH
 	else
-		// User is already on the table turf, use their facing direction
+		// User is already on the table turf, use their facing direction (must be cardinal)
 		approach_dir = user.dir
+		if(ISDIAGONALDIR(approach_dir) || !(approach_dir in GLOB.cardinals))
+			// If user is facing diagonally or invalid direction, default to NORTH
+			approach_dir = NORTH
 
 	// Store the approach direction for post_buckle_mob
 	LAZYINITLIST(target_table.oversized_sit_directions)
@@ -56,7 +62,6 @@
 	if(user.loc != target_table.loc)
 		if(!do_after(user, 1 SECONDS, target_table))
 			LAZYREMOVE(target_table.oversized_sit_directions, user)
-			LAZYREMOVE(target_table.oversized_sit_original_turfs, user)
 			return
 		// Move to the table's turf
 		user.forceMove(get_turf(target_table))
