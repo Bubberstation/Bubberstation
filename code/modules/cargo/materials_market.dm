@@ -47,11 +47,16 @@
 
 /obj/machinery/materials_market/item_interaction(mob/living/user, obj/item/stack/exportable, list/modifiers)
 	. = NONE
-	// BUBBER EDIT REMOVAL BEGIN - GMM can't sell materials
-	/*
 	if(!isstack(exportable))
 		return
 
+	// BUBBER EDIT ADDITION BEGIN - GMM can't sell materials
+	balloon_alert(user, "export not available!")
+	return ITEM_INTERACT_FAILURE
+	// BUBBER EDIT ADDITION END - GMM can't sell materials
+
+	// BUBBER EDIT REMOVAL BEGIN - GMM can't sell materials
+	/*
 	if(!is_operational)
 		balloon_alert(user, "no power!")
 		return ITEM_INTERACT_FAILURE
