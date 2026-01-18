@@ -7,19 +7,19 @@
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/clicker/Initialize(mapload)
-    . = ..()
-    AddComponent(/datum/component/reskinable_item, /datum/atom_skin/clicker)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/clicker)
 
 /datum/atom_skin/clicker
-    abstract_type = /datum/atom_skin/clicker
+	abstract_type = /datum/atom_skin/clicker
 
 /datum/atom_skin/clicker/pink
-    preview_name = "Pink"
-    new_icon_state = "clicker_pink"
+	preview_name = "Pink"
+	new_icon_state = "clicker_pink"
 
 /datum/atom_skin/clicker/teal
-    preview_name = "Teal"
-    new_icon_state = "clicker_teal"
+	preview_name = "Teal"
+	new_icon_state = "clicker_teal"
 
 /obj/item/clicker/proc/click(atom/source, mob/user)
 	SIGNAL_HANDLER
