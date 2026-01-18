@@ -73,5 +73,4 @@
 
 
 /datum/job/head_of_security
-	department_head = list(JOB_CAPTAIN)
 	head_announce = list(RADIO_CHANNEL_SECURITY)
