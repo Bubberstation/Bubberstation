@@ -6,6 +6,7 @@
 	icon_greyscale = BODYPART_ICON_GAS
 	bodytype = BODYTYPE_ORGANIC
 	limb_id = SPECIES_GAS
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	head_flags = HEAD_EYESPRITES|HEAD_EYECOLOR|HEAD_EYEHOLES|HEAD_DEBRAIN
 
 /obj/item/bodypart/head/mutant/nabber/Initialize(mapload)
@@ -30,6 +31,7 @@
 /obj/item/bodypart/chest/mutant/nabber
 	icon_greyscale = BODYPART_ICON_GAS
 	bodytype = BODYTYPE_ORGANIC
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_GAS
 
 /obj/item/bodypart/chest/mutant/nabber/Initialize(mapload)
@@ -50,6 +52,7 @@
 	icon_greyscale = BODYPART_ICON_GAS
 	bodytype = BODYTYPE_ORGANIC
 	limb_id = SPECIES_GAS
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	unarmed_damage_low = GAS_PUNCH_LOW
 	unarmed_damage_high = GAS_PUNCH_HIGH
 
@@ -62,6 +65,7 @@
 	icon_greyscale = BODYPART_ICON_GAS
 	bodytype = BODYTYPE_ORGANIC
 	limb_id = SPECIES_GAS
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	unarmed_damage_low = GAS_PUNCH_LOW
 	unarmed_damage_high = GAS_PUNCH_HIGH
 
@@ -72,6 +76,7 @@
 /obj/item/bodypart/leg/left/mutant/nabber
 	icon_greyscale = BODYPART_ICON_GAS
 	bodytype = BODYTYPE_ORGANIC
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_GAS
 
 	brute_modifier = 0.8
@@ -81,6 +86,7 @@
 /obj/item/bodypart/leg/right/mutant/nabber
 	icon_greyscale = BODYPART_ICON_GAS
 	bodytype = BODYTYPE_ORGANIC
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_GAS
 	brute_modifier = 0.8
 	burn_modifier = 1.4

@@ -27,7 +27,8 @@
 
 	)
 	no_equip_flags = ITEM_SLOT_FEET | ITEM_SLOT_OCLOTHING | ITEM_SLOT_SUITSTORE
-	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
+	inherent_biotypes = MOB_ORGANIC | MOB_HUMANOID
+	no_gender_shaping = TRUE
 	mutanttongue = /obj/item/organ/tongue/insect
 
 	always_customizable = FALSE
