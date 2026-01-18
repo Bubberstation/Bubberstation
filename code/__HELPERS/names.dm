@@ -33,6 +33,8 @@
 	// BUBBER EDIT ADDITION BEGIN - Ashwalkers
 	if(istype(species_type, /datum/species/lizard))
 		return generate_ashwalker_name()
+	if(istype(species_type, /datum/species/gas))
+		return generate_gas_name()
 	// BUBBER EDIT ADDITION END - Ashwalkers
 	var/datum/language_holder/holder = GLOB.prototype_language_holders[species_type::species_language_holder]
 
