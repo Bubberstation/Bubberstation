@@ -13,6 +13,8 @@
 	mob_trait = TRAIT_OVERSIZED
 	icon = FA_ICON_EXPAND_ARROWS_ALT
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_CHANGES_APPEARANCE
+	/// The action that allows seeing yourself at normal size
+	var/datum/action/oversized_self_view/self_view_action
 
 /datum/quirk/oversized/add(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
@@ -45,6 +47,10 @@
 		var/obj/item/organ/stomach/oversized/new_stomach = new //YOU LOOK HUGE, THAT MUST MEAN YOU HAVE HUGE GUTS! RIP AND TEAR YOUR HUGE GUTS!
 		new_stomach.Insert(human_holder, special = TRUE)
 		to_chat(human_holder, span_warning("You feel your massive stomach rumble!"))
+
+	// Grant the self-view action
+	self_view_action = new(human_holder)
+	self_view_action.Grant(human_holder)
 
 /datum/quirk/oversized/remove()
 	var/mob/living/carbon/human/human_holder = quirk_holder
@@ -80,6 +86,11 @@
 	human_holder.physiology.hunger_mod /= OVERSIZED_HUNGER_MOD
 	human_holder.remove_movespeed_modifier(/datum/movespeed_modifier/oversized)
 
+	// Remove the self-view action
+	if(self_view_action)
+		self_view_action.Remove(human_holder)
+		QDEL_NULL(self_view_action)
+
 /datum/quirk/oversized/proc/on_gain_limb(datum/source, obj/item/bodypart/gained, special)
 	SIGNAL_HANDLER
 
@@ -106,3 +117,4 @@
 
 #undef OVERSIZED_HUNGER_MOD
 #undef OVERSIZED_SPEED_SLOWDOWN
+
