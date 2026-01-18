@@ -47,6 +47,8 @@
 
 /obj/machinery/materials_market/item_interaction(mob/living/user, obj/item/stack/exportable, list/modifiers)
 	. = NONE
+	// BUBBER EDIT REMOVAL BEGIN - GMM can't sell materials
+	/*
 	if(!isstack(exportable))
 		return
 
@@ -76,6 +78,8 @@
 	qdel(exportable)
 	use_energy(active_power_usage)
 	return ITEM_INTERACT_SUCCESS
+	*/
+	// BUBBER EDIT REMOVAL END - GMM can't sell materials
 
 /obj/machinery/materials_market/power_change()
 	. = ..()
