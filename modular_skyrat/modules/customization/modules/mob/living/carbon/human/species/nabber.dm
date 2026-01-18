@@ -220,3 +220,12 @@
 /obj/item/clothing/belt
 	species_clothing_color_coords = list(list(BASE_CLOTH_X_1, BASE_CLOTH_Y_1))
 	greyscale_config_worn_nabber_fallback = /datum/greyscale_config/nabber/belt
+
+#undef BASE_CLOTH_X_1
+#undef BASE_CLOTH_Y_1
+#undef NABBER_COLD_THRESHOLD_1
+#undef NABBER_COLD_THRESHOLD_2
+#undef NABBER_COLD_THRESHOLD_3
+#undef NABBER_HEAT_THRESHOLD_1
+#undef NABBER_HEAT_THRESHOLD_2
+#undef NABBER_HEAT_THRESHOLD_3
