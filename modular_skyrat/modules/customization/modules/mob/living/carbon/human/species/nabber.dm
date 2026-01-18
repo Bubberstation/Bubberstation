@@ -62,7 +62,7 @@
 	)
 
 /datum/species/gas/randomize_features(mob/living/carbon/human/human_mob)
-	. = ..()
+	var/list/features = ..()
 	var/main_color
 	var/random = rand(1,6)
 	switch(random)
@@ -78,9 +78,10 @@
 			main_color = "#c0ad00"
 		if(6)
 			main_color = "#e6ff03"
-	human_mob.dna.features["mcolor"] = main_color
-	human_mob.dna.features["mcolor2"] = main_color
-	human_mob.dna.features["mcolor3"] = main_color
+	features[FEATURE_MUTANT_COLOR] = main_color
+	features[FEATURE_MUTANT_COLOR_TWO] = main_color
+	features[FEATURE_MUTANT_COLOR_THREE] = main_color
+	return features
 
 /datum/species/gas/prepare_human_for_preview(mob/living/carbon/human/nabber)
 	var/nabber_color = "#00ac1d"
