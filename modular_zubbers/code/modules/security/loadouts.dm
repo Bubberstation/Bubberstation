@@ -58,6 +58,9 @@
 	family_heirlooms = list(/obj/item/book/manual/wiki/security_space_law, /obj/item/clothing/head/beret/sec/peacekeeper)
 
 
+/datum/job/security_officer/setup_department(mob/living/carbon/human/spawning, client/player_client, move_to = FALSE)
+	return
+
 /obj/item/radio/headset/headset_sec/alt/department/Initialize(mapload)
 	. = ..()
 	set_wires(new/datum/wires/radio(src))
