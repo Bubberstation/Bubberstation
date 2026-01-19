@@ -70,8 +70,10 @@
 	. = ..()
 	if(!.)
 		return
-	if(world.time-SSticker.round_start_time >= (2 HOURS))
-		return FALSE
+	var/crew_antag_time_maximum = CONFIG_GET(number/disallow_crew_antags_time_threshold)
+	if(crew_antag_time_maximum >= 0)
+		if( (world.time-SSticker.round_start_time) >= (crew_antag_time_maximum MINUTES))
+			return FALSE
 	if(!roundstart && !SSgamemode.can_inject_antags())
 		return FALSE
 	if(!get_antag_amount())
