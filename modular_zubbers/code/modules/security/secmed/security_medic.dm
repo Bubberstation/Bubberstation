@@ -47,6 +47,7 @@
 	jobtype = /datum/job/security_medic
 
 	backpack_contents = list(
+		/obj/item/security_voucher/primary = 1,
 		/obj/item/security_voucher/utility = 1
 		)
 	suit_store = /obj/item/flashlight/seclite

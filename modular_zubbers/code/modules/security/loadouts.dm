@@ -40,7 +40,7 @@
 	/obj/item/security_voucher/utility = 1
 	)
 
-
+//Brigmed is in it's own file
 /datum/outfit/job/hos
 	backpack_contents = list(
 		/obj/item/evidencebag = 1,
