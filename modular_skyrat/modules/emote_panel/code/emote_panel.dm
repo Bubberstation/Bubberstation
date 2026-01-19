@@ -147,7 +147,8 @@
 		/mob/living/proc/emote_purr,
 		/mob/living/proc/emote_moo,
 		/mob/living/proc/emote_honk1,
-		/mob/living/proc/emote_mggaow
+		/mob/living/proc/emote_mggaow,
+		/mob/living/proc/emote_slowclap
 	)
 	all_emotes += skyrat_living_emotes
 
@@ -184,7 +185,6 @@
 		/mob/living/proc/emote_ping,
 		/mob/living/proc/emote_sad,
 		/mob/living/proc/emote_warn,
-		/mob/living/proc/emote_slowclap
 	)
 	all_emotes += synth_emotes
 	var/static/list/allowed_species_synth = list(
@@ -723,6 +723,11 @@
 	set category = "Emotes+"
 	usr.emote("clap1", intentional = TRUE)
 
+/mob/living/proc/emote_slowclap()
+	set name = "> Slow Clap"
+	set category = "Emotes"
+	usr.emote("slowclap", intentional = TRUE)
+
 /mob/living/proc/emote_headtilt()
 	set name = "~ Head Hilt"
 	set category = "Emotes+"
@@ -977,11 +982,6 @@
 	set name = "< Warn >"
 	set category = "Emotes"
 	usr.emote("warn", intentional = TRUE)
-
-/mob/living/proc/emote_slowclap()
-	set name = "< Slow Clap >"
-	set category = "Emotes"
-	usr.emote("slowclap", intentional = TRUE)
 
 // modular_skyrat\modules\emotes\code\additionalemotes\overlay_emote.dm
 /mob/living/proc/emote_sweatdrop()

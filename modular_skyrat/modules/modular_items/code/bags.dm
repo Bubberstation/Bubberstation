@@ -19,16 +19,6 @@
 	icon = 'modular_skyrat/modules/modular_items/icons/storage.dmi'
 	icon_state = "ammopouch"
 	custom_price = PAYCHECK_CREW * 4
-	// this is just to have post_reskin called later
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Ammo Pouch" = list(
-			RESKIN_ICON_STATE = "ammopouch"
-		),
-		"Casing Pouch" = list(
-			RESKIN_ICON_STATE = "casingpouch"
-		),
-	)
 
 /obj/item/storage/pouch/ammo/Initialize(mapload)
 	. = ..()
@@ -37,8 +27,22 @@
 	atom_storage.max_slots = 3
 	atom_storage.numerical_stacking = FALSE
 	atom_storage.can_hold = typecacheof(list(/obj/item/ammo_box/magazine, /obj/item/ammo_casing))
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/ammo_pouch)
+	RegisterSignal(src, COMSIG_OBJ_RESKIN, PROC_REF(on_reskin))
 
-/obj/item/storage/pouch/ammo/post_reskin(mob/our_mob)
+/datum/atom_skin/ammo_pouch
+	abstract_type = /datum/atom_skin/ammo_pouch
+
+/datum/atom_skin/ammo_pouch/ammo
+	preview_name = "Ammo Pouch"
+	new_icon_state = "ammopouch"
+
+/datum/atom_skin/ammo_pouch/casing
+	preview_name = "Casing Pouch"
+	new_icon_state = "casingpouch"
+
+/obj/item/storage/pouch/ammo/proc/on_reskin()
+	SIGNAL_HANDLER
 	if(icon_state == "casingpouch")
 		name = "casing pouch"
 		desc = "A pouch for your ammo that goes in your pocket, carefully segmented for holding shell casings and nothing else."

@@ -68,7 +68,7 @@
 	required_reagents = list(/datum/reagent/consumable/ethanol/painkiller = 2, /datum/reagent/consumable/grenadine = 1, /datum/reagent/consumable/orangejuice = 1, /datum/reagent/consumable/ice = 1)
 
 /datum/chemical_reaction/drink/liz_fizz
-	results = list(/datum/reagent/consumable/ethanol/liz_fizz = 5)
+	results = list(/datum/reagent/consumable/liz_fizz = 5)
 	required_reagents = list(/datum/reagent/consumable/triple_citrus = 3, /datum/reagent/consumable/ice = 1, /datum/reagent/consumable/cream = 1)
 
 /datum/chemical_reaction/drink/hotlime_miami

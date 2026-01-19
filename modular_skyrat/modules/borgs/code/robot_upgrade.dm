@@ -242,6 +242,18 @@
 /mob/living/silicon/robot
 	var/hasShrunk = FALSE
 
+// Added checks for borg models who come from the Zoolander Center for Borgs Who Can't Upgrade Good
+/obj/item/borg/upgrade/expand/action(mob/living/silicon/robot/borg, mob/living/user = usr)
+	if(TRAIT_R_EXPANDER_BLOCKED in borg.model.model_features)
+		to_chat(usr, span_warning("This unit is unable to equip an expand module!"))
+		return FALSE
+
+	if(borg.model.type == /obj/item/robot_model)
+		to_chat(usr, span_warning("This unit is still in factory default configuration!"))
+		return FALSE
+
+	return ..()
+
 /obj/item/borg/upgrade/shrink
 	name = "borg shrinker"
 	desc = "A cyborg resizer, it makes a cyborg small."
@@ -249,32 +261,44 @@
 
 /obj/item/borg/upgrade/shrink/action(mob/living/silicon/robot/borg, user = usr)
 	. = ..()
-	if(.)
+	if(!. || HAS_TRAIT(borg, TRAIT_NO_TRANSFORM))
+		return FALSE
 
-		if(borg.hasShrunk)
-			to_chat(usr, span_warning("This unit already has a shrink module installed!"))
-			return FALSE
-		if(TRAIT_R_SMALL in borg.model.model_features)
-			to_chat(usr, span_warning("This unit's chassis cannot be shrunk any further."))
-			return FALSE
+	if(borg.model.type == /obj/item/robot_model)
+		to_chat(usr, span_warning("This unit is still in factory default configuration!"))
+		return FALSE
 
-		borg.hasShrunk = TRUE
-		ADD_TRAIT(borg, TRAIT_NO_TRANSFORM, REF(src))
-		var/prev_lockcharge = borg.lockcharge
-		borg.SetLockdown(TRUE)
-		borg.set_anchored(TRUE)
-		var/datum/effect_system/fluid_spread/smoke/smoke = new
-		smoke.set_up(1, location = get_turf(borg))
-		smoke.start()
-		sleep(0.2 SECONDS)
-		for(var/i in 1 to 4)
-			playsound(borg, pick('sound/items/tools/drill_use.ogg', 'sound/items/tools/jaws_cut.ogg', 'sound/items/tools/jaws_pry.ogg', 'sound/items/tools/welder.ogg', 'sound/items/tools/ratchet.ogg'), 80, TRUE, -1)
-			sleep(1.2 SECONDS)
-		if(!prev_lockcharge)
-			borg.SetLockdown(FALSE)
-		borg.set_anchored(FALSE)
-		REMOVE_TRAIT(borg, TRAIT_NO_TRANSFORM, REF(src))
-		borg.update_transform(0.75)
+	if(borg.hasShrunk)
+		to_chat(usr, span_warning("This unit already has a shrink module installed!"))
+		return FALSE
+
+	if(TRAIT_R_SMALL in borg.model.model_features)
+		to_chat(usr, span_warning("This unit's chassis cannot be shrunk any further."))
+		return FALSE
+
+	ADD_TRAIT(borg, TRAIT_NO_TRANSFORM, REF(src))
+	var/prev_lockcharge = borg.lockcharge
+	borg.SetLockdown(TRUE)
+	borg.set_anchored(TRUE)
+	var/datum/effect_system/fluid_spread/smoke/smoke = new
+	smoke.set_up(1, holder = borg, location = borg.loc)
+	smoke.start()
+	sleep(0.2 SECONDS)
+	for(var/i in 1 to 4)
+		playsound(borg, pick(
+			'sound/items/tools/drill_use.ogg',
+			'sound/items/tools/jaws_cut.ogg',
+			'sound/items/tools/jaws_pry.ogg',
+			'sound/items/tools/welder.ogg',
+			'sound/items/tools/ratchet.ogg',
+			), 80, TRUE, -1)
+		sleep(1.2 SECONDS)
+	if(!prev_lockcharge)
+		borg.SetLockdown(FALSE)
+	borg.set_anchored(FALSE)
+	REMOVE_TRAIT(borg, TRAIT_NO_TRANSFORM, REF(src))
+	borg.hasShrunk = TRUE
+	borg.update_transform(0.75)
 
 /obj/item/borg/upgrade/shrink/deactivate(mob/living/silicon/robot/borg, user = usr)
 	. = ..()

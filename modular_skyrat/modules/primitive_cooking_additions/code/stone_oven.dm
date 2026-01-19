@@ -6,6 +6,7 @@
 	icon = 'modular_skyrat/modules/primitive_cooking_additions/icons/stone_kitchen_machines.dmi'
 	circuit = null
 	use_power = FALSE
+	custom_materials = list(/datum/material/stone = SHEET_MATERIAL_AMOUNT * 5)
 
 	/// A list of the different oven trays we can spawn with
 	var/static/list/random_oven_tray_types = list(

@@ -351,10 +351,11 @@
 	l_hand = /obj/item/gun/ballistic/shotgun/hook
 	r_hand = /obj/item/gun/ballistic/shotgun/hook
 	uniform = /obj/item/clothing/under/costume/skeleton
-	suit = /obj/item/clothing/suit/hooded/cultrobes/eldritch
+	suit = /obj/item/clothing/suit/chaplainsuit/armor/heretic
 	mask = /obj/item/clothing/mask/gas/cyborg
 	shoes = /obj/item/clothing/shoes/sandal
 	belt = /obj/item/melee/cleric_mace
+	head = /obj/item/clothing/head/helmet/chaplain/heretic
 
 /datum/outfit/deathmatch_loadout/battler/cowboy
 	name = "Deathmatch: Cowboy"
@@ -832,7 +833,7 @@
 		/obj/item/etherealballdeployer,
 	)
 
-	mutations_to_add = list(/obj/item/dnainjector/shock) // pretend ethereals are interesting
+	mutations_to_add = list(/datum/mutation/shock) // pretend ethereals are interesting
 
 /datum/outfit/deathmatch_loadout/plasmamen
 	name = "Deathmatch: Plasmaman Species"
@@ -873,7 +874,7 @@
 	head = /obj/item/clothing/head/soft/rainbow
 	glasses = null
 	ears = /obj/item/radio/headset
-	neck = /obj/item/clothing/neck/petcollar
+	neck = /obj/item/clothing/neck/petcollar/wearable
 	//suit
 	uniform = /obj/item/clothing/under/color/rainbow
 	l_pocket = /obj/item/toy/cattoy
@@ -999,9 +1000,9 @@
 	display_name = "Heretic Warrior"
 	desc = "Prove the furious strength of the Mansus!"
 
-	head = /obj/item/clothing/head/hooded/cult_hoodie/eldritch
+	head = /obj/item/clothing/head/hooded/cult_hoodie/eldritch/blade
 	neck = /obj/item/clothing/neck/heretic_focus
-	suit = /obj/item/clothing/suit/hooded/cultrobes/eldritch
+	suit = /obj/item/clothing/suit/hooded/cultrobes/eldritch/blade
 	suit_store = /obj/item/melee/sickly_blade/dark
 	uniform = /obj/item/clothing/under/color/darkgreen
 	id_trim = null

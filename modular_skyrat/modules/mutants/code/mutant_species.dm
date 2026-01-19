@@ -156,8 +156,8 @@
 		if(HAS_TRAIT(carbon_mob, TRAIT_CRITICAL_CONDITION))
 			heal_amt *= 2
 		carbon_mob.heal_overall_damage(heal_amt * seconds_per_tick, heal_amt * seconds_per_tick)
-		carbon_mob.adjustStaminaLoss(-heal_amt * seconds_per_tick)
-		carbon_mob.adjustToxLoss(-heal_amt * seconds_per_tick)
+		carbon_mob.adjust_stamina_loss(-heal_amt * seconds_per_tick)
+		carbon_mob.adjust_tox_loss(-heal_amt * seconds_per_tick)
 		for(var/i in carbon_mob.all_wounds)
 			var/datum/wound/iter_wound = i
 			if(SPT_PROB(2-(iter_wound.severity/2), seconds_per_tick))
@@ -263,10 +263,10 @@
 		target.gib()
 		// zero as argument for no instant health update
 		var/need_health_update
-		need_health_update += user.adjustBruteLoss(-hp_gained, updating_health = FALSE)
-		need_health_update += user.adjustToxLoss(-hp_gained, updating_health = FALSE)
-		need_health_update += user.adjustFireLoss(-hp_gained, updating_health = FALSE)
+		need_health_update += user.adjust_brute_loss(-hp_gained, updating_health = FALSE)
+		need_health_update += user.adjust_tox_loss(-hp_gained, updating_health = FALSE)
+		need_health_update += user.adjust_fire_loss(-hp_gained, updating_health = FALSE)
 		if(need_health_update)
 			user.updatehealth()
-		user.adjustOrganLoss(ORGAN_SLOT_BRAIN, -hp_gained) // Zom Bee gibbers "BRAAAAISNSs!1!"
+		user.adjust_organ_loss(ORGAN_SLOT_BRAIN, -hp_gained) // Zom Bee gibbers "BRAAAAISNSs!1!"
 		user.set_nutrition(min(user.nutrition + hp_gained, NUTRITION_LEVEL_FULL))

@@ -22,24 +22,33 @@
 	icon_state = "util_sec"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "util_sec",
-			RESKIN_WORN_ICON_STATE = "util_sec"
-		),
-		"Red Variant" = list(
-			RESKIN_ICON_STATE = "util_sec_old",
-			RESKIN_WORN_ICON_STATE = "util_sec_old"
-		),
-	)
+
+/obj/item/clothing/under/rank/security/skyrat/utility/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_utility)
+
+/datum/atom_skin/security_utility
+	abstract_type = /datum/atom_skin/security_utility
+
+/datum/atom_skin/security_utility/blue
+	preview_name = "Blue Variant"
+	new_icon_state = "util_sec"
+
+/datum/atom_skin/security_utility/red
+	preview_name = "Red Variant"
+	new_icon_state = "util_sec_old"
 
 /obj/item/clothing/under/rank/security/skyrat/utility/redsec
 	desc = "A utility uniform worn by trained Security officers."
 	icon_state = "util_sec_old"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
-	unique_reskin = null
+
+/obj/item/clothing/under/rank/security/skyrat/utility/redsec/Initialize(mapload)
+	. = ..()
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/skyrat/utility/redsec/syndicate
 	armor_type = /datum/armor/clothing_under/redsec_syndicate
@@ -53,17 +62,21 @@
 	can_adjust = TRUE
 	alt_covers_chest = FALSE
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "security_skirt",
-			RESKIN_WORN_ICON_STATE = "security_skirt"
-		),
-		"Red Variant" = list(
-			RESKIN_ICON_STATE = "security_skirt_red",
-			RESKIN_WORN_ICON_STATE = "security_skirt_red"
-		),
-	)
+
+/obj/item/clothing/under/rank/security/peacekeeper/skirt/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_peacekeeper_skirt)
+
+/datum/atom_skin/security_peacekeeper_skirt
+	abstract_type = /datum/atom_skin/security_peacekeeper_skirt
+
+/datum/atom_skin/security_peacekeeper_skirt/blue
+	preview_name = "Blue Variant"
+	new_icon_state = "security_skirt"
+
+/datum/atom_skin/security_peacekeeper_skirt/red
+	preview_name = "Red Variant"
+	new_icon_state = "security_skirt_red"
 
 /obj/item/clothing/under/rank/security/peacekeeper/skirt_redsec
 	name = "security battle dress"
@@ -71,9 +84,14 @@
 	worn_icon_state = "security_skirt_redsec"
 	icon_state = "security_skirt_redsec"
 	can_adjust = TRUE
-	unique_reskin = null
 	alt_covers_chest = FALSE
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
+
+/obj/item/clothing/under/rank/security/peacekeeper/skirt_redsec/Initialize(mapload)
+	. = ..()
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/peacekeeper/skirt_hos
 	name = "head of security battle dress"
@@ -81,9 +99,14 @@
 	worn_icon_state = "security_skirt_hos"
 	icon_state = "security_skirt_hos"
 	can_adjust = TRUE
-	unique_reskin = null
 	alt_covers_chest = FALSE
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
+
+/obj/item/clothing/under/rank/security/peacekeeper/skirt_hos/Initialize(mapload)
+	. = ..()
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/peacekeeper/trousers
 	name = "security trousers"
@@ -95,53 +118,61 @@
 	can_adjust = FALSE
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	female_sprite_flags = FEMALE_UNIFORM_NO_BREASTS
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "workpants_blue",
-			RESKIN_WORN_ICON_STATE = "workpants_blue"
-		),
-		"White Variant" = list(
-			RESKIN_ICON_STATE = "workpants_white",
-			RESKIN_WORN_ICON_STATE = "workpants_white"
-		),
-		"Red Variant" = list(
-			RESKIN_ICON_STATE = "workpants_red",
-			RESKIN_WORN_ICON_STATE = "workpants_red"
-		),
-	)
+
+/obj/item/clothing/under/rank/security/peacekeeper/trousers/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_peacekeeper_trousers)
+
+/datum/atom_skin/security_peacekeeper_trousers
+	abstract_type = /datum/atom_skin/security_peacekeeper_trousers
+
+/datum/atom_skin/security_peacekeeper_trousers/blue
+	preview_name = "Blue Variant"
+	new_icon_state = "workpants_blue"
+
+/datum/atom_skin/security_peacekeeper_trousers/white
+	preview_name = "White Variant"
+	new_icon_state = "workpants_white"
+
+/datum/atom_skin/security_peacekeeper_trousers/red
+	preview_name = "Red Variant"
+	new_icon_state = "workpants_red"
 
 /obj/item/clothing/under/rank/security/peacekeeper/trousers/shorts
 	name = "security shorts"
 	desc = "Some Peacekeeper-blue combat shorts. Definitely should pair it with a vest for safety."
 	icon_state = "workshorts_blue"
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Blue Variant, Short" = list(
-			RESKIN_ICON_STATE = "workshorts_blue",
-			RESKIN_WORN_ICON_STATE = "workshorts_blue"
-		),
-		"Blue Variant, Short Short" = list(
-			RESKIN_ICON_STATE = "workshorts_blue_short",
-			RESKIN_WORN_ICON_STATE = "workshorts_blue_short"
-		),
-		"White Variant, Short" = list(
-			RESKIN_ICON_STATE = "workshorts_white",
-			RESKIN_WORN_ICON_STATE = "workshorts_white"
-		),
-		"White Variant, Short Short" = list(
-			RESKIN_ICON_STATE = "workshorts_white_short",
-			RESKIN_WORN_ICON_STATE = "workshorts_white_short"
-		),
-		"Red Variant, Short" = list(
-			RESKIN_ICON_STATE = "workshorts_red",
-			RESKIN_WORN_ICON_STATE = "workshorts_red"
-		),
-		"Red Variant, Short Short" = list(
-			RESKIN_ICON_STATE = "workshorts_red_short",
-			RESKIN_WORN_ICON_STATE = "workshorts_red_short"
-		),
-	)
+
+/obj/item/clothing/under/rank/security/peacekeeper/trousers/shorts/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_peacekeeper_shorts)
+
+/datum/atom_skin/security_peacekeeper_shorts
+	abstract_type = /datum/atom_skin/security_peacekeeper_shorts
+
+/datum/atom_skin/security_peacekeeper_shorts/blue_short
+	preview_name = "Blue Variant, Short"
+	new_icon_state = "workshorts_blue"
+
+/datum/atom_skin/security_peacekeeper_shorts/blue_short_short
+	preview_name = "Blue Variant, Short Short"
+	new_icon_state = "workshorts_blue_short"
+
+/datum/atom_skin/security_peacekeeper_shorts/white_short
+	preview_name = "White Variant, Short"
+	new_icon_state = "workshorts_white"
+
+/datum/atom_skin/security_peacekeeper_shorts/white_short_short
+	preview_name = "White Variant, Short Short"
+	new_icon_state = "workshorts_white_short"
+
+/datum/atom_skin/security_peacekeeper_shorts/red_short
+	preview_name = "Red Variant, Short"
+	new_icon_state = "workshorts_red"
+
+/datum/atom_skin/security_peacekeeper_shorts/red_short_short
+	preview_name = "Red Variant, Short Short"
+	new_icon_state = "workshorts_red_short"
 
 /obj/item/clothing/under/rank/security/peacekeeper/jumpsuit
 	name = "security jumpsuit"
@@ -150,17 +181,21 @@
 	can_adjust = TRUE
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "jumpsuit_blue",
-			RESKIN_WORN_ICON_STATE = "jumpsuit_blue"
-		),
-		"Red Variant" = list(
-			RESKIN_ICON_STATE = "jumpsuit_red",
-			RESKIN_WORN_ICON_STATE = "jumpsuit_red"
-		),
-	)
+
+/obj/item/clothing/under/rank/security/peacekeeper/jumpsuit/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_peacekeeper_jumpsuit)
+
+/datum/atom_skin/security_peacekeeper_jumpsuit
+	abstract_type = /datum/atom_skin/security_peacekeeper_jumpsuit
+
+/datum/atom_skin/security_peacekeeper_jumpsuit/blue
+	preview_name = "Blue Variant"
+	new_icon_state = "jumpsuit_blue"
+
+/datum/atom_skin/security_peacekeeper_jumpsuit/red
+	preview_name = "Red Variant"
+	new_icon_state = "jumpsuit_red"
 
 /obj/item/clothing/under/rank/security/officer/skirt
 	name = "security jumpskirt"
@@ -178,17 +213,21 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	gets_cropped_on_taurs = FALSE
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "shortskirt_blue",
-			RESKIN_WORN_ICON_STATE = "shortskirt_blue"
-		),
-		"Black Variant" = list(
-			RESKIN_ICON_STATE = "shortskirt_black",
-			RESKIN_WORN_ICON_STATE = "shortskirt_black"
-		),
-	)
+
+/obj/item/clothing/under/rank/security/peacekeeper/shortskirt/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_peacekeeper_shortskirt)
+
+/datum/atom_skin/security_peacekeeper_shortskirt
+	abstract_type = /datum/atom_skin/security_peacekeeper_shortskirt
+
+/datum/atom_skin/security_peacekeeper_shortskirt/blue
+	preview_name = "Blue Variant"
+	new_icon_state = "shortskirt_blue"
+
+/datum/atom_skin/security_peacekeeper_shortskirt/black
+	preview_name = "Black Variant"
+	new_icon_state = "shortskirt_black"
 
 /obj/item/clothing/under/rank/security/peacekeeper/miniskirt
 	name = "security miniskirt"
@@ -198,22 +237,25 @@
 	gets_cropped_on_taurs = FALSE
 	can_adjust = TRUE
 	body_parts_covered = GROIN | LEGS
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "miniskirt",
-			RESKIN_WORN_ICON_STATE = "miniskirt"
-		),
-		"Red Variant" = list(
-			RESKIN_ICON_STATE = "miniskirt_red",
-			RESKIN_WORN_ICON_STATE = "miniskirt_red"
-		),
-		"Black Variant" = list(
-			RESKIN_ICON_STATE = "miniskirt_black",
-			RESKIN_WORN_ICON_STATE = "miniskirt_black"
-		),
-	)
 
+/obj/item/clothing/under/rank/security/peacekeeper/miniskirt/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_peacekeeper_miniskirt)
+
+/datum/atom_skin/security_peacekeeper_miniskirt
+	abstract_type = /datum/atom_skin/security_peacekeeper_miniskirt
+
+/datum/atom_skin/security_peacekeeper_miniskirt/blue
+	preview_name = "Blue Variant"
+	new_icon_state = "miniskirt"
+
+/datum/atom_skin/security_peacekeeper_miniskirt/red
+	preview_name = "Red Variant"
+	new_icon_state = "miniskirt_red"
+
+/datum/atom_skin/security_peacekeeper_miniskirt/black
+	preview_name = "Black Variant"
+	new_icon_state = "miniskirt_black"
 
 /*
 *	HEAD OF SECURITY
@@ -223,8 +265,3 @@
 	melee = 10
 	fire = 50
 	acid = 40
-
-/obj/item/clothing/under/rank/security/head_of_security/skyrat/imperial //Rank pins of the Grand General
-	desc = "A tar black naval suit and a rank badge denoting the Officer of The Internal Security Division. Be careful your underlings don't bump their head on a door."
-	name = "head of security's naval jumpsuit"
-	icon_state = "imphos"
