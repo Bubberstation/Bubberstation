@@ -10,25 +10,42 @@
 	max_wizard_trigger_potency = NEVER_TRIGGERED_BY_WIZARDS
 
 	min_players = 30
-	max_occurrences = 0 // Previously 1
-	weight = 0 // Previously 10
+	max_occurrences = 1
+	weight = 10
 	earliest_start = 60 MINUTES
 
 	track = EVENT_TRACK_MODERATE
-	tags = list(TAG_COMMUNAL,TAG_COMBAT)
+	tags = list(TAG_COMMUNAL,TAG_COMBAT)	
 
 /datum/round_event/wizard_dice
-	announce_when = 5
+	announce_chance = 100
+	//the "when" stuff is measured in 2 second ticks, not deciseconds.
+	announce_when = 30 //1 minute
+	end_when = 300 //10 minutes
+	var/obj/item/dice/d20/teleporting_die_of_fate/created_dice
+	var/did_announce = FALSE
 
-/datum/round_event/wizard_dice/announce(fake)
-	if(prob(80)) //Announcement Optimization
-		priority_announce("A magical twenty-sided artifact was detected in the area. Please refrain from interacting with anything that cannot be explained by science.", "Magusologist Expert Warning")
+/datum/round_event/wizard_dice/setup()
+	//Create the dice and add the signal.
+	created_dice = new(get_safe_lucky_player_turf())
+	RegisterSignal(created_dice, COMSIG_QDELETING, PROC_REF(on_dice_destroy))
 
 /datum/round_event/wizard_dice/start()
+	//Announce the event.
+	announce_to_ghosts()
 
-	var/turf/desired_turf = get_safe_random_station_turf()
-	if(!desired_turf)
-		return
+/datum/round_event/wizard_dice/announce(fake)
+	priority_announce("A magical twenty-sided artifact was detected in the area. Please refrain from interacting with anything that cannot be explained by science.", "Magusologist Expert Warning")
+	did_announce = TRUE
 
-	var/obj/item/dice/d20/teleporting_die_of_fate/created_dice = new(desired_turf)
-	announce_to_ghosts(created_dice) //Me on my way to respawn and instantly rush at the spawned dice that has a 5% chance to actually give me wizard.
+/datum/round_event/wizard_dice/kill()
+	UnregisterSignal(created_dice, COMSIG_QDELETING) //Remove this signal first.
+	. = ..()
+	//Garbage day!
+	if(created_dice && !QDELETED(created_dice))
+		qdel(created_dice)
+	created_dice = null
+
+/datum/round_event/wizard_dice/proc/on_dice_destroy()
+	processing = FALSE //Stop processing the event.
+	kill() //Kill the event.

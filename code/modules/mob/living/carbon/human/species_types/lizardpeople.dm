@@ -17,6 +17,7 @@
 	)
 	mutanttongue = /obj/item/organ/tongue/lizard
 	mutanteyes = /obj/item/organ/eyes/lizard
+	mutantbrain = /obj/item/organ/brain/lizard
 	coldmod = 1.5
 	heatmod = 0.67
 	payday_modifier = 1.0
@@ -52,7 +53,7 @@
 /*
 /datum/species/lizard/randomize_features()
 	var/list/features = ..()
-	features[FEATURE_LIZARD_MARKINGS] = pick(SSaccessories.lizard_markings_list)
+	features[FEATURE_LIZARD_MARKINGS] = pick(SSaccessories.feature_list[FEATURE_LIZARD_MARKINGS])
 	return features
 
 */

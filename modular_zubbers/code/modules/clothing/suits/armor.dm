@@ -1,28 +1,3 @@
-/obj/item/clothing/suit/armor/metrocop //Sprite done by Gat1Day#2892
-	name = "Civil Protection Suit"
-	desc = "Standard issue armor for Civil Protection."
-	body_parts_covered = CHEST|ARMS|GROIN|LEGS
-	cold_protection = CHEST|ARMS|GROIN|LEGS
-	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
-	heat_protection = CHEST|ARMS|GROIN|LEGS
-	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
-	icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
-	icon_state = "hardsuit-metrocop"
-	inhand_icon_state =  null
-	blood_overlay_type = "hardsuit-metrocop"
-	armor_type = /datum/armor/suit_armor
-
-/obj/item/clothing/suit/armor/metrocopriot //Sprite done by Gat1Day#2892
-	name = "Riot Civil Protection Suit"
-	desc = "A Suit of armor to help Civil Protection deal with unruly citizens."
-	icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
-	icon_state = "hardsuit-metrocop-RL"
-	inhand_icon_state =  null
-	blood_overlay_type = "hardsuit-metrocop-RL"
-	armor_type = /datum/armor/armor_riot
-
 /obj/item/clothing/suit/armor/vest/collared_vest//Sprite done by offwrldr/Bangle - same person. Recently edited sprite.
 	name = "GLP-C 'Úlfur' Vest"
 	desc = "A set of General Light Protective armor, with complimentary pauldrons and an additional armored collar, similar to a gorget. This pattern of armored vest is typically afforded to diplomats and members of the press in hostile environments, though has seen use among private security forces. The armored collar is designed to protect the neck and throat from shrapnel. All things considered, it's quite comfortable, though many unfortunate wearers are often mistaken for combatants given the militarized aesthetic."
@@ -31,22 +6,25 @@
 	icon_state = "vest_worn"
 	inhand_icon_state = null
 	armor_type = /datum/armor/suit_armor
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Red Pattern" = list(
-			RESKIN_ICON_STATE = "vest_worn_red",
-			RESKIN_WORN_ICON_STATE = "vest_worn_red"
-		),
-		"Neutral Pattern" = list(
-			RESKIN_ICON_STATE = "vest_worn",
-			RESKIN_WORN_ICON_STATE = "vest_worn",
-		),
-		"Blue Pattern" = list(
-			RESKIN_ICON_STATE = "vest_worn_blue",
-			RESKIN_WORN_ICON_STATE = "vest_worn_blue",
-			RESKIN_SUPPORTS_VARIATIONS_FLAGS = NONE
-		)
-	)
+
+/datum/atom_skin/collared_vest
+	abstract_type = /datum/atom_skin/collared_vest
+
+/datum/atom_skin/collared_vest/red
+	preview_name = "Red Pattern"
+	new_icon_state = "vest_worn_red"
+
+/datum/atom_skin/collared_vest/neutral
+	preview_name = "Neutral Pattern"
+	new_icon_state = "vest_worn"
+
+/datum/atom_skin/collared_vest/blue
+	preview_name = "Blue Pattern"
+	new_icon_state = "vest_worn_blue"
+
+/obj/item/clothing/suit/armor/vest/collared_vest/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/collared_vest)
 
 /obj/item/clothing/suit/armor/vest/secjacket // Port from TG Station (DrTuxedo)
 	name = "security jacket"
@@ -105,3 +83,77 @@
 /obj/item/clothing/suit/armor/vest/maid/Initialize(mapload)
 	. = ..()
 	allowed += GLOB.security_vest_allowed
+
+/obj/item/clothing/suit/armor/elder_atmosian
+	desc = "The pinnacle of atmospherics equipment, an expensive modified atmospherics firesuit plated in one of the most luxurious and durable metals known to man. Providing full atmos coverage without the heavy materials of the firesuit to slow the user down, it also offers far greater protection to most sources of damage."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/armor_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+	material_flags = NONE
+	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+	resistance_flags = FIRE_PROOF
+	flags_inv = HIDEJUMPSUIT | HIDESHOES | HIDEGLOVES | HIDETAIL
+	custom_materials = list(/datum/material/metalhydrogen = SHEET_MATERIAL_AMOUNT * 5)
+
+/obj/item/clothing/suit/armor/elder_atmosian/Initialize(mapload)
+	. = ..()
+	allowed += list(
+		/obj/item/fireaxe/metal_h2_axe,
+	)
+
+/datum/armor/armor_elder_atmosian
+	melee = 40
+	bullet = 30
+	laser = 40
+	energy = 40
+	bomb = 100
+	bio = 50
+	fire = 100
+	acid = 50
+	wound = 25
+
+//MetroCop armor, by HL13 station.
+/obj/item/clothing/suit/armor/vest/alt/sec/metrocop
+	name = "metrocop armor"
+	desc = "Pick up that can. Uses advanced GigaSlop brand Matrixes to allow alternative variants!"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	icon_state = "civilprotection"
+
+/obj/item/clothing/suit/armor/vest/alt/sec/metrocop/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/metrocop_armor)
+
+/datum/atom_skin/metrocop_armor
+	abstract_type = /datum/atom_skin/metrocop_armor
+
+/datum/atom_skin/metrocop_armor/metro_cop
+	preview_name = "Metro Cop"
+	new_icon_state = "civilprotection"
+
+/datum/atom_skin/metrocop_armor/metro_coat
+	preview_name = "MetroCop Coat"
+	new_icon_state = "cp_trenchcoat"
+
+/datum/atom_skin/metrocop_armor/medic
+	preview_name = "Medic"
+	new_icon_state = "medicalofficer"
+
+/datum/atom_skin/metrocop_armor/red_trim
+	preview_name = "Red Trim"
+	new_icon_state = "dv_vest"
+
+/datum/atom_skin/metrocop_armor/overwatch_white
+	preview_name = "White Overwatch"
+	new_icon_state = "overwatch_white"
+
+/datum/atom_skin/metrocop_armor/overwatch
+	preview_name = "Overwatch"
+	new_icon_state = "overwatch"
+
+/datum/atom_skin/metrocop_armor/overwatch_red
+	preview_name = "Red Overwatch"
+	new_icon_state = "overwatch_red"

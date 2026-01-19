@@ -41,7 +41,7 @@
 		/obj/item/melee/energy/sword = 65,
 		/obj/item/knife = 45,
 		/obj/item/shard = 35)
-	time = 52
+	time = 5.2 SECONDS
 	preop_sound = 'sound/items/handling/surgery/scalpel1.ogg'
 	success_sound = 'sound/items/handling/surgery/organ1.ogg'
 	failure_sound = 'sound/items/handling/surgery/organ2.ogg'
@@ -71,7 +71,7 @@
 /datum/surgery_step/gastrectomy/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	var/mob/living/carbon/human/target_human = target
 	var/obj/item/organ/stomach/target_stomach = target.get_organ_slot(ORGAN_SLOT_STOMACH)
-	target_human.setOrganLoss(ORGAN_SLOT_STOMACH, 20) // Stomachs have a threshold for being able to even digest food, so I might tweak this number
+	target_human.set_organ_loss(ORGAN_SLOT_STOMACH, 20) // Stomachs have a threshold for being able to even digest food, so I might tweak this number
 	if(target_stomach)
 		target_stomach.operated = TRUE
 		if(target_stomach.organ_flags & ORGAN_EMP) //If our organ is failing due to an EMP, fix that
@@ -88,7 +88,7 @@
 
 /datum/surgery_step/gastrectomy/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery)
 	var/mob/living/carbon/human/target_human = target
-	target_human.adjustOrganLoss(ORGAN_SLOT_STOMACH, 15)
+	target_human.adjust_organ_loss(ORGAN_SLOT_STOMACH, 15)
 	display_results(
 		user,
 		target,

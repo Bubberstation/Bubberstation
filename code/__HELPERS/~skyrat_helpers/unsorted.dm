@@ -1,4 +1,4 @@
-/atom/proc/do_jiggle(targetangle = 45, timer = 20)
+/atom/proc/do_jiggle_sr(targetangle = 45, timer = 20)
 	var/matrix/OM = matrix(transform)
 	var/matrix/M = matrix(transform)
 	var/halftime = timer * 0.5

@@ -1,7 +1,7 @@
 /obj/machinery/vending/wardrobe/sec_wardrobe
 	name = "\improper MultiSec Outfitting Station"
 	desc = "A vending machine stocked with a multitude of security outfits, including standardized uniforms in multiple colors and general equipment. Now with more Multi!"
-	icon = 'modular_zubbers/icons/obj/machines/multisec.dmi'
+	icon = 'modular_zubbers/icons/obj/machines/vending.dmi'
 	icon_state = "multisec"
 	light_mask = null
 	products = list() // Overriding this to the default to prevent any issues when building the product menu
@@ -37,7 +37,7 @@
 					/obj/item/clothing/head/beret/sec/peacekeeper/white = 6,
 					/obj/item/clothing/head/helmet/sec/terra = 6,
 					/obj/item/clothing/head/hats/warden/police/patrol = 6,
-					/obj/item/clothing/head/costume/ushanka/sec = 10,
+					/obj/item/clothing/head/costume/ushanka/sec/blue = 10,
 					/obj/item/clothing/gloves/color/black/security = 10,
 					/obj/item/clothing/head/helmet/sec/futuristic = 6,
 					/obj/item/clothing/suit/armor/vest/collared_vest = 6, //added by Bangle
@@ -53,6 +53,7 @@
 					/obj/item/storage/backpack/duffelbag/sec/redsec = 6,
 					/obj/item/clothing/under/rank/security/officer/redsec = 6,
 					/obj/item/clothing/under/rank/security/peacekeeper/armadyne = 6,
+					/obj/item/clothing/under/rank/security/camo = 6,
 					/obj/item/clothing/shoes/jackboots = 6,
 					/obj/item/clothing/shoes/jackboots/peacekeeper/armadyne = 6,
 					/obj/item/clothing/shoes/jackboots/gogo_boots = 6,
@@ -62,6 +63,7 @@
 					/obj/item/clothing/head/beret/sec/peacekeeper/armadyne = 6,
 					/obj/item/clothing/head/soft/sec = 6,
 					/obj/item/clothing/head/security_beanie = 6,
+					/obj/item/clothing/head/costume/ushanka/sec = 10,
 					/obj/item/clothing/head/playbunnyears/security = 6,
 					/obj/item/clothing/under/rank/security/security_bunnysuit = 6,
 					/obj/item/clothing/suit/armor/security_tailcoat = 6,
@@ -84,6 +86,7 @@
 					/obj/item/clothing/suit/armor/vest/peacekeeper/armadyne = 6,
 					/obj/item/clothing/suit/armor/vest/peacekeeper/armadyne/armor = 6,
 					/obj/item/clothing/suit/armor/vest/caligram_parka_vest_tan = 6,
+					/obj/item/clothing/suit/toggle/jacket/zubber/bomber/sec = 6,
 				),
 			),
 		list(
@@ -127,7 +130,6 @@
 					/obj/item/clothing/suit/jacket/officer/blue = 6,
 					/obj/item/clothing/head/beret/sec/navyofficer = 6,
 					/obj/item/clothing/suit/jacket/officer/tan = 6,
-					/obj/item/clothing/head/helmet/metrocophelmet = 6,
 					/obj/item/clothing/accessory/badge/holo = 10, //I know there's a box of them but, why not have more, eh?
 					/obj/item/clothing/accessory/badge/holo/cord = 10,
 					/obj/item/clothing/head/helmet/blueshirt = 3,
@@ -144,6 +146,11 @@
 					/obj/item/clothing/head/cowboy/skyrat/cattleman/sec = 3,
 					/obj/item/clothing/head/cowboy/skyrat/cattleman/wide/sec = 3,
 					/obj/item/clothing/head/fedora/det_hat/cybergoggles = 3,
+					/obj/item/clothing/head/helmet/metrocophelmet = 6,
+					/obj/item/clothing/suit/armor/vest/alt/sec/metrocop = 6,
+					/obj/item/clothing/gloves/color/black/security/metrocop = 6,
+					/obj/item/clothing/under/rank/security/metrocop = 6,
+					/obj/item/clothing/shoes/jackboots/combine = 6,
 					/obj/item/clothing/glasses/hud/eyepatch/sec = 3, //No flash protection on the eyepatches, so they're worse than the sunnies.
 					/obj/item/clothing/glasses/hud/eyepatch/sec/blindfold = 3, //Ditto
 					/obj/item/clothing/glasses/hud/ar/aviator/security = 3, //Printable, but you have to choose between HUD and flash protection.
@@ -151,10 +158,12 @@
 					/obj/item/clothing/mask/gas/half_mask = 3,
 					/obj/item/clothing/head/hats/caphat/parade/fedcap/sec = 3,
 					/obj/item/clothing/suit/fedcoat/modern/sec = 3,
-					/obj/item/clothing/mask/gas/soviet = 3,
-					/obj/item/clothing/mask/gas/german = 3, //As far as I can tell, this is nowhere else in the game.
 					/obj/item/clothing/head/soft/veteran = 1,
 					/obj/item/clothing/head/helmet/toggleable/justice = 1, //More than one of these in the Vendor and they'll get annoying fast. Hence why Justice2 isn't here.
+					/obj/item/clothing/head/bandana/snake/sec = 1, //There's only room for one Boss, and one Snake.
+					/obj/item/clothing/under/rank/security/snake = 1,
+					/obj/item/clothing/gloves/color/black/security/snake = 1,
+					/obj/item/clothing/shoes/jackboots/snake = 1,
 	)
 
 	payment_department = ACCOUNT_SEC

@@ -9,7 +9,8 @@
 	normalize_organs(target)
 
 // handled by bane on null rod whip
-/datum/species/human/vampire/damage_weakness(datum/source, list/damage_mods, damage_amount, damagetype, def_zone, sharpness, attack_direction, obj/item/attacking_item)
+/datum/species/human/vampire/on_attackby(mob/living/source, obj/item/attacking_item, mob/living/attacker, list/modifiers, list/attack_modifiers)
+	. = ..()
 	return
 
 

@@ -33,18 +33,6 @@
 	icon_state = "bean"
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 
-/obj/item/ammo_box/advanced/s12gauge/magnum
-	name = "Magnum buckshot ammo box"
-	desc = "A box of 7 magnum buckshot shells. The size of the pellet is larger in diameter than the typical shot, but there are less of them inside each shell."
-	icon_state = "magnum"
-	ammo_type = /obj/item/ammo_casing/shotgun/magnum
-
-/obj/item/ammo_box/advanced/s12gauge/express
-	name = "Express pelletshot ammo box"
-	desc = "A box of 7 express pelletshot shells. The size of the pellet is smaller in diameter than the typical shot, but there are more of them inside each shell."
-	icon_state = "express"
-	ammo_type = /obj/item/ammo_casing/shotgun/express
-
 /obj/item/ammo_box/advanced/s12gauge/hunter
 	name = "Hunter slug ammo box"
 	desc = "A box of 7 hunter slug shells. These shotgun slugs excel at damaging the local fauna."
@@ -62,18 +50,6 @@
 	desc = "A box of 7 Dragon's breath shells. Each shell contains plasma inside to create a massive trailing flame, excel at collateral damage."
 	icon_state = "dragonsbreath"
 	ammo_type = /obj/item/ammo_casing/shotgun/dragonsbreath
-
-/obj/item/ammo_box/advanced/s12gauge/beehive
-	name = "Hornet's nest ammo box"
-	desc = "A box of 7 hornet's nest shells. These are less-lethal shells that will bounce off walls and direct themselves toward nearby targets."
-	icon_state = "beehive"
-	ammo_type = /obj/item/ammo_casing/shotgun/beehive
-
-/obj/item/ammo_box/advanced/s12gauge/antitide
-	name = "Stardust ammo box"
-	desc = "A box of 7 advanced anti riot shells. These are less-lethal and will embed in targets, causing pain on movement."
-	icon_state = "antitide"
-	ammo_type = /obj/item/ammo_casing/shotgun/antitide
 
 /obj/item/ammo_box/advanced/s12gauge/incendiary
 	name = "Incendiary Slug ammo box"
@@ -98,7 +74,7 @@
 	name = "Breaching Slug ammo box"
 	desc = "A box of 7 Breaching slug. It's able to punches through- quite literally anything with ease."
 	icon_state = "fslug"
-	ammo_type = /obj/item/ammo_casing/shotgun/breacher
+	ammo_type = /obj/item/ammo_casing/shotgun/frangible
 
 //This is intended for ERT! Have fun with it
 /obj/item/ammo_box/advanced/s12gauge/pulse
@@ -106,9 +82,3 @@
 	desc = "A box of 7 Pulse slug. It's able to punches through structures and anything behind it."
 	icon_state = "pulse"
 	ammo_type = /obj/item/ammo_casing/shotgun/pulseslug
-
-/obj/item/ammo_box/advanced/s12gauge/scatterion
-	name = "Scatter Ion ammo box"
-	desc = "A box of 7 Scatter ion. I hope you have no cybernetic organs."
-	icon_state = "pulse"
-	ammo_type = /obj/item/ammo_casing/shotgun/ion

@@ -15,7 +15,7 @@
 	/// If this pen has a timer for injecting others with, just for safety with some of the drugs in these (actually to stop people from gaming too hard)
 	inject_others_time = 1.5 SECONDS
 	no_sticker = TRUE
-	reagent_flags = TRANSPARENT
+	initial_reagent_flags = TRANSPARENT
 
 /obj/item/reagent_containers/hypospray/medipen/deforest/printable/Initialize(mapload)
 	. = ..()

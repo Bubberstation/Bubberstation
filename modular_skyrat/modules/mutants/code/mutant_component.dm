@@ -64,8 +64,7 @@
 /datum/component/mutant_infection/proc/remove_infection()
 	if(ismutant(host) && old_species)
 		host.set_species(old_species)
-	host.grab_ghost()
-	host.revive(TRUE, TRUE)
+	host.revive(HEAL_ALL,force_grab_ghost = TRUE)
 	to_chat(host, span_greentext("You feel like you're free of that foul disease!"))
 	ADD_TRAIT(host, TRAIT_MUTANT_IMMUNE, "mutant_virus")
 	host.mind?.remove_antag_datum(/datum/antagonist/mutant)
@@ -89,14 +88,14 @@
 
 /datum/component/mutant_infection/process(seconds_per_tick)
 	if(!ismutant(host) && host.stat != DEAD)
-		var/toxloss = host.getToxLoss()
+		var/toxloss = host.get_tox_loss()
 		if(toxloss < 50)
-			host.adjustToxLoss(tox_loss_mod * seconds_per_tick)
+			host.adjust_tox_loss(tox_loss_mod * seconds_per_tick)
 			if(SPT_PROB(5, seconds_per_tick))
 				to_chat(host, span_userdanger("You feel your motor controls seize up for a moment!"))
 				host.Paralyze(10)
 		else
-			host.adjustToxLoss((tox_loss_mod * 2) * seconds_per_tick)
+			host.adjust_tox_loss((tox_loss_mod * 2) * seconds_per_tick)
 			if(SPT_PROB(10, seconds_per_tick))
 				var/obj/item/bodypart/wound_area = host.get_bodypart(BODY_ZONE_CHEST)
 				if(wound_area)
@@ -152,6 +151,7 @@
 	SIGNAL_HANDLER
 	var/revive_time = rand(REVIVE_TIME_LOWER, REVIVE_TIME_UPPER)
 	to_chat(host, span_cult_large("You can feel your heart stopping, but something isn't right... you will rise again!"))
+	to_chat(host, span_redtext("You will revive in approximately [revive_time/10] seconds."))
 	timer_id = addtimer(CALLBACK(src, PROC_REF(regenerate)), revive_time, TIMER_STOPPABLE)
 
 /datum/component/mutant_infection/proc/regenerate()
@@ -160,12 +160,10 @@
 		if(!istype(canidate))
 			return
 		host.key = canidate.key
-	else
-		host.grab_ghost()
 	to_chat(host, span_notice("You feel an itching, both inside and \
 		outside as your tissues knit and reknit."))
 	playsound(host, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
-	host.revive(TRUE, TRUE)
+	host.revive(HEAL_ALL, force_grab_ghost = TRUE)
 
 /datum/component/mutant_infection/proc/create_glow()
 	var/atom/movable/parent_movable = parent

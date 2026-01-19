@@ -30,7 +30,7 @@
 	id_trim = /datum/id_trim/nri
 
 /datum/outfit/centcom/ert/nri/commander
-	name = "Novaya Rossiyskaya Imperiya Platoon Commander"
+	name = "Pan-Slavic Commonwealth Platoon Commander"
 	head = null
 	glasses = /obj/item/clothing/glasses/thermal/eyepatch
 	uniform = /obj/item/clothing/under/costume/nri/captain
@@ -115,7 +115,6 @@
 	belt = /obj/item/gun/ballistic/revolver/shotgun_revolver
 	back = /obj/item/storage/backpack/satchel/leather
 	backpack_contents = list(/obj/item/storage/box/nri_survival_pack,
-							/obj/item/ammo_box/advanced/s12gauge/express,
 							/obj/item/suppressor/standard,
 							/obj/item/knife/combat,
 							/obj/item/beamout_tool)

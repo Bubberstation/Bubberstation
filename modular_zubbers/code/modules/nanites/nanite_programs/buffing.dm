@@ -162,6 +162,9 @@
 /datum/nanite_program/dermal_armor/proc/update_damage_modifier(amount)
 	var/mob/living/carbon/human/humie = host_mob
 	var/valid_change = clamp(amount, 1, 30)
+	if(!humie)
+		stack_trace("A nanite program is running without a host mob present. Something's wrong.")
+		return
 	humie.physiology.flat_brute_mod += current_flat_mod
 	current_flat_mod = valid_change
 	humie.physiology.flat_brute_mod -= valid_change
@@ -176,6 +179,9 @@
 	rgb_color = list(255, 255, 0)
 
 /datum/nanite_program/dermal_armor/refractive/update_damage_modifier(mob/living/carbon/human/humie, amount)
+	if(!humie)
+		stack_trace("A nanite program is running without a host mob present. Something's wrong.")
+		return
 	humie.physiology.flat_burn_mod -= current_flat_mod
 	current_flat_mod = amount
 	humie.physiology.flat_burn_mod += amount

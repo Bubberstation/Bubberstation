@@ -37,7 +37,7 @@
 		/obj/item/melee/energy/sword = 65,
 		/obj/item/knife = 45,
 		/obj/item/shard = 35)
-	time = 42
+	time = 4.2 SECONDS
 	preop_sound = 'sound/items/handling/surgery/scalpel1.ogg'
 	success_sound = 'sound/items/handling/surgery/organ1.ogg'
 	failure_sound = 'sound/items/handling/surgery/organ2.ogg'
@@ -68,7 +68,7 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/human_target = target
 		var/obj/item/organ/lungs/target_lungs = human_target.get_organ_slot(ORGAN_SLOT_LUNGS)
-		human_target.setOrganLoss(ORGAN_SLOT_LUNGS, 60)
+		human_target.set_organ_loss(ORGAN_SLOT_LUNGS, 60)
 		if(target_lungs)
 			target_lungs.operated = TRUE
 			if(target_lungs.organ_flags & ORGAN_EMP) //If our organ is failing due to an EMP, fix that
@@ -95,5 +95,5 @@
 		)
 		display_pain(target, "You feel a sharp stab in your chest; the wind is knocked out of you and it hurts to catch your breath!")
 		human_target.losebreath += 4
-		human_target.adjustOrganLoss(ORGAN_SLOT_LUNGS, 10)
+		human_target.adjust_organ_loss(ORGAN_SLOT_LUNGS, 10)
 	return FALSE

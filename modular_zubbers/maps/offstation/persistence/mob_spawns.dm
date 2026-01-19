@@ -21,6 +21,7 @@
 	spawner_job_path = /datum/job/persistence
 	/// If true, this spawner will give it's target exploitables access.
 	var/give_exploitables = TRUE
+	allow_custom_character = ALL
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/special(mob/living/spawned_mob, mob/mob_possessor)
 	. = ..()
@@ -66,6 +67,7 @@
 	you_are_text = "You are a Syndicate cyborg, assigned to be part of a crew aboard a landcrawler"
 	flavour_text = "You have been deployed into enemy territory. Continue working the best you can, and keep a low profile."
 	deletes_on_zero_uses_left = TRUE
+	allow_custom_character = ALL
 
 /obj/effect/mob_spawn/ghost_role/robot/persistence/special(mob/living/silicon/robot/new_spawn)
 	. = ..()
@@ -191,7 +193,6 @@
 		/obj/item/borg/lollipop,
 		/obj/item/borg/apparatus/beaker,
 		/obj/item/restraints/handcuffs/cable/zipties,
-		/obj/item/borg/sight/meson,
 		/obj/item/borg_shapeshifter/dauntless
 		)
 
@@ -364,7 +365,7 @@
 	r_pocket = /obj/item/flashlight/seclite
 	implants = list(
 		/obj/item/implant/weapons_auth,
-		/obj/item/implant/krav_maga
+		/obj/item/implant/kaza_ruk
 		)
 
 /datum/outfit/persistence/command/corporateliaison
@@ -384,6 +385,7 @@
 		/obj/item/storage/box/survival = 1,
 		/obj/item/crowbar = 1,
 		/obj/item/choice_beacon/syndicateoffstation/morale = 1,
+		/obj/item/storage/lockbox/medal/bubber/synd = 1,
 		)
 	head = /obj/item/clothing/head/hats/hos/cap/syndicate
 	id = /obj/item/card/id/advanced/gold/generic

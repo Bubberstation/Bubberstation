@@ -27,9 +27,6 @@
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 
-/obj/item/riding_saddle/leather/Initialize(mapload)
-	. = ..()
-
 /obj/item/riding_saddle/leather/peacekeeper
 	name = "peacekeeper saddle"
 

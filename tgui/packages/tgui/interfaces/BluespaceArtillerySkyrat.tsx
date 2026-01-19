@@ -79,7 +79,7 @@ export const BluespaceArtillerySkyrat = (props) => {
                     step={100000}
                     stepPixelSize={1}
                     format={(value) => formatPower(value, 1)}
-                    onDrag={(e, value) =>
+                    onChange={(e, value) =>
                       act('capacitor_target_change', {
                         capacitor_target: value,
                       })

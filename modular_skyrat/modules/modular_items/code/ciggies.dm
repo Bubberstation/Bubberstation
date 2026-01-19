@@ -1,7 +1,7 @@
 /obj/item/holocigarette
 	name = "Holocigarette"
 	desc = "A cigarette created using holodeck technology. Want to smoke without all the downsides? Try Holocigarettes!"
-	icon = 'icons/obj/cigarettes.dmi'
+	icon = 'modular_zubbers/icons/obj/cigarettes.dmi'
 	icon_state = "cigoff"
 	throw_speed = 0.5
 	inhand_icon_state = "cigoff"
@@ -18,9 +18,10 @@
 /obj/item/holocigarette/cigar
 	name = "Bright Cosmos cigar"
 	desc = "A fancy cigar created using holodeck technology. They look like they have a \"Bright Cosmos\" branding on their wrap."
-	icon_state = "cigar2off"
-	icon_on = "cigar2on"
-	icon_off = "cigar2off"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/mask/mask.dmi'
+	icon_state = "holocigaroff"
+	icon_on = "holocigaron"
+	icon_off = "holocigaroff"
 
 /datum/action/item_action/toggle_lit
 	name = "Light"

@@ -2,7 +2,6 @@
 	title = JOB_SECURITY_MEDIC
 	description = "Patch up officers and prisoners, realize you don't have the tools to Tend Wounds, barge into Medbay and tell them how to do their jobs"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
-	department_head = list(JOB_HEAD_OF_SECURITY)
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
@@ -11,7 +10,7 @@
 	exp_requirements = 120
 	exp_required_type = EXP_TYPE_CREW
 	exp_required_type_department = EXP_TYPE_MEDICAL
-	exp_granted_type = EXP_TYPE_CREW
+	exp_granted_type = EXP_TYPE_SECURITY
 	config_tag = "SECURITY_MEDIC"
 
 	outfit = /datum/outfit/job/security_medic

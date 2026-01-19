@@ -3,10 +3,11 @@
 	desc = "Sandals with buckled leather straps on it."
 	icon_state = "roman"
 	inhand_icon_state = "wizshoe"
-	strip_delay = 100
-	equip_delay_other = 100
+	strip_delay = 10 SECONDS
+	equip_delay_other = 10 SECONDS
 	armor_type = /datum/armor/shoes_roman
 	fastening_type = SHOES_STRAPS
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/clothing/shoes/griffin
 	name = "griffon boots"
@@ -27,13 +28,13 @@
 	name = "yellow performer's boots"
 	desc = "These boots were made for dancing."
 	icon_state = "ysing"
-	equip_delay_other = 50
+	equip_delay_other = 5 SECONDS
 
 /obj/item/clothing/shoes/singerb
 	name = "blue performer's boots"
 	desc = "These boots were made for dancing."
 	icon_state = "bsing"
-	equip_delay_other = 50
+	equip_delay_other = 5 SECONDS
 
 /obj/item/clothing/shoes/bronze
 	name = "bronze boots"
@@ -41,6 +42,7 @@
 	icon = 'icons/obj/clothing/shoes.dmi'
 	icon_state = "clockwork_treads"
 	fastening_type = SHOES_SLIPON
+	custom_materials = list(/datum/material/bronze = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/clothing/shoes/bronze/Initialize(mapload)
 	. = ..()
@@ -66,6 +68,7 @@
 	desc = "They got me for my foams!"
 	icon_state = "SwagShoes"
 	inhand_icon_state = null
+	clothing_flags = parent_type::clothing_flags | CARP_STYLE_FACTOR
 
 /obj/item/clothing/shoes/glow
 	name = "glow shoes"

@@ -18,17 +18,15 @@
 /turf/closed/indestructible/singularity_act()
 	return
 
-/turf/closed/indestructible/attackby(obj/item/attacking_item, mob/user, list/modifiers)
-	if(istype(attacking_item, /obj/item/poster) && Adjacent(user))
-		return place_poster(attacking_item, user)
-	//BUBBER EDIT START - Its almost certain that people are going to want to make use of lewd portals on the interlink so they can be placed on reinforced walls
+/turf/closed/indestructible/attackby(obj/item/attacking_item, mob/user, list/modifiers)	//BUBBER EDIT START - Its almost certain that people are going to want to make use of lewd portals on the interlink so they can be placed on reinforced walls
+
 	if(istype(attacking_item, /obj/item/wallframe/lewd_portal) && Adjacent(user))
 		var/obj/item/wallframe/lewd_portal = attacking_item
 		if(lewd_portal.try_build(src, user))
-			lewd_portal.attach(src, user)
+			lewd_portal.interact_with_atom(src, user)
 			return TRUE
-	//BUBBER EDIT END
-	return ..()
+	return ..()	//BUBBER EDIT END
+
 
 /turf/closed/indestructible/oldshuttle
 	name = "strange shuttle wall"
@@ -144,12 +142,6 @@ SKYRAT EDIT REMOVAL END */
 	smoothing_groups = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_SYNDICATE_WALLS
 	canSmoothWith = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_PLASTITANIUM_WALLS + SMOOTH_GROUP_SYNDICATE_WALLS
 
-/turf/closed/indestructible/syndicate/nodiagonal
-	icon = 'icons/turf/walls/plastitanium_wall.dmi'
-	icon_state = "map-shuttle_nd"
-	base_icon_state = "plastitanium_wall"
-	smoothing_flags = SMOOTH_BITMASK
-
 /turf/closed/indestructible/riveted/uranium
 	icon = 'icons/turf/walls/uranium_wall.dmi'
 	icon_state = "uranium_wall-0"
@@ -167,7 +159,8 @@ SKYRAT EDIT REMOVAL END */
 	canSmoothWith = SMOOTH_GROUP_PLASTINUM_WALLS
 
 /turf/closed/indestructible/riveted/plastinum/nodiagonal
-	icon_state = "map-shuttle_nd"
+	icon = MAP_SWITCH('icons/turf/walls/plastinum_wall.dmi', 'icons/turf/walls/misc_wall.dmi')
+	icon_state = MAP_SWITCH("plastinum_wall-0", "plastinum_nd")
 	smoothing_flags = SMOOTH_BITMASK
 
 /turf/closed/indestructible/wood

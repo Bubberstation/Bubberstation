@@ -35,7 +35,7 @@
 
 	treatable_tools = list(TOOL_WIRECUTTER, TOOL_RETRACTOR)
 	treatable_by = list(/obj/item/stack/medical/suture)
-	treatable_by_grabbed = list(/obj/item/stack/cable_coil)
+	var/treatable_by_grabbed = list(/obj/item/stack/cable_coil)
 
 	default_scar_file = METAL_SCAR_FILE
 
@@ -105,7 +105,7 @@
 /datum/wound_pregen_data/electrical_damage
 	abstract = TRUE
 	required_limb_biostate = (BIO_WIRED)
-	required_wounding_types = list(WOUND_SLASH)
+	required_wounding_type = WOUND_SLASH
 	wound_series = WOUND_SERIES_WIRE_SLASH_ELECTRICAL_DAMAGE
 
 /datum/wound_pregen_data/electrical_damage/generate_scar_priorities()

@@ -1,3 +1,4 @@
+
 /datum/armament_entry/hecu/primary
 	category = ARMAMENT_CATEGORY_PRIMARY
 	category_item_limit = 4
@@ -34,12 +35,6 @@
 	cost = 11
 	magazine = /obj/item/ammo_box/magazine/c40sol_rifle/standard
 
-/datum/armament_entry/hecu/primary/shotgun
-	subcategory = ARMAMENT_SUBCATEGORY_SHOTGUN
-	mags_to_spawn = 1
-	magazine = /obj/item/storage/box/ammo_box/shotgun_12g
-	magazine_cost = 4
-
 /datum/armament_entry/hecu/primary/shotgun/shotgun_highcap
 	item_type = /obj/item/gun/ballistic/shotgun/riot/sol
 	max_purchase = 2
@@ -68,15 +63,3 @@
 	magazine_cost = 2
 
 /obj/item/storage/box/ammo_box/shotgun_12g
-
-/obj/item/storage/box/ammo_box/shotgun_12g/PopulateContents()
-	var/funshell = pick(
-		/obj/item/ammo_box/advanced/s12gauge/incendiary,
-		/obj/item/ammo_box/advanced/s12gauge/flechette,
-		/obj/item/ammo_box/advanced/s12gauge/beehive,
-		/obj/item/ammo_box/advanced/s12gauge/antitide,
-		/obj/item/ammo_box/advanced/s12gauge/express,
-	)
-	new /obj/item/ammo_box/advanced/s12gauge/magnum(src)
-	new /obj/item/ammo_box/advanced/s12gauge(src)
-	new funshell(src)

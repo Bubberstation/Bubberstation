@@ -29,7 +29,9 @@ SUBSYSTEM_DEF(autotransfer)
 	curvotes = SSautotransfer.curvotes
 
 /datum/controller/subsystem/autotransfer/fire()
-	if(REALTIMEOFDAY < targettime)
+	if(REALTIMEOFDAY < targettime || !SSticker.current_state == GAME_STATE_PLAYING || EMERGENCY_AT_LEAST_DOCKED)
+		return
+	if(!isnull(SSvote.current_vote))
 		return
 	if(maxvotes == NO_MAXVOTES_CAP || maxvotes > curvotes)
 		SSvote.initiate_vote(/datum/vote/transfer_vote, "automatic transfer", forced = TRUE)

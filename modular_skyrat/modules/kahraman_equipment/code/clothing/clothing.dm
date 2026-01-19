@@ -212,3 +212,35 @@
 /obj/item/clothing/mask/gas/atmos/frontier_colonist/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_KAHRAMAN)
+
+//// Loadout variant
+// suit
+/obj/item/clothing/suit/jacket/frontier_colonist/loadout
+	armor_type = /datum/armor/none
+
+/obj/item/clothing/suit/jacket/frontier_colonist/loadout/Initialize(mapload)
+	. = ..()
+	allowed = list()
+
+/obj/item/clothing/suit/jacket/frontier_colonist/short/loadout
+	armor_type = /datum/armor/none
+
+/obj/item/clothing/suit/jacket/frontier_colonist/short/loadout/Initialize(mapload)
+	. = ..()
+	allowed = list()
+
+// Gloves
+/obj/item/clothing/gloves/frontier_colonist/loadout
+	siemens_coefficient = 0.50
+
+// boots
+/obj/item/clothing/shoes/jackboots/frontier_colonist/loadout
+	name = "frontier jackboots"
+	armor_type = /datum/armor/shoes_jackboots
+
+// mask
+/obj/item/clothing/mask/gas/atmos/frontier_colonist/loadout
+	armor_type = /datum/armor/mask_gas
+	resistance_flags = NONE
+	max_filters = 1
+

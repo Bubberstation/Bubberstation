@@ -14,6 +14,7 @@
 	initial_language_holder = /datum/language_holder/empty // We get stuff from our species
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
 	max_grab = GRAB_KILL
+	examine_thats = "This is"
 
 	maxHealth = HUMAN_MAXHEALTH //SKYRAT EDIT ADDITION
 	health = HUMAN_MAXHEALTH //SKYRAT EDIT ADDITION
@@ -23,15 +24,9 @@
 	var/hairstyle = "Bald"
 
 	///Colours used for hair and facial hair gradients.
-	var/list/grad_color = list(
-		COLOR_BLACK,	//Hair Gradient Color
-		COLOR_BLACK,	//Facial Hair Gradient Color
-	)
+	var/list/grad_color
 	///Styles used for hair and facial hair gradients.
-	var/list/grad_style = list(
-		"None",	//Hair Gradient Style
-		"None",	//Facial Hair Gradient Style
-	)
+	var/list/grad_style
 
 	//Facial hair colour and style
 	var/facial_hair_color = COLOR_BLACK
@@ -77,7 +72,8 @@
 	var/obj/item/l_store = null
 	var/obj/item/s_store = null
 
-	var/special_voice = "" // For changing our voice. Used by a symptom.
+	/// Allows for special overrides of voice
+	var/override_voice = ""
 
 	var/datum/physiology/physiology
 

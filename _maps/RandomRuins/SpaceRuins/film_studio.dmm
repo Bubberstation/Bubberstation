@@ -31,7 +31,7 @@
 "aG" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
-/area/template_noop)
+/area/space/nearstation)
 "aI" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/structure/curtain/cloth/fancy,
@@ -80,6 +80,19 @@
 	dir = 8
 	},
 /area/ruin/space/has_grav/film_studio/starboard)
+"bu" = (
+/obj/effect/turf_decal/tile/bar/opposingcorners,
+/obj/structure/table,
+/obj/item/rag,
+/obj/item/reagent_containers/cup/glass/bottle/beer{
+	pixel_x = 5;
+	pixel_y = -2
+	},
+/obj/effect/turf_decal/siding/dark_green{
+	dir = 8
+	},
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/film_studio/dorms)
 "bx" = (
 /obj/structure/railing/corner/end/flip,
 /turf/open/floor/iron/white/smooth_large,
@@ -169,7 +182,7 @@
 /area/ruin/space/has_grav/film_studio/director)
 "dd" = (
 /turf/open/space/basic,
-/area/template_noop)
+/area/space/nearstation)
 "dg" = (
 /turf/closed/wall,
 /area/ruin/space/has_grav/film_studio/starboard)
@@ -239,7 +252,7 @@
 /obj/machinery/door/airlock/external{
 	name = "Solar Maintenance"
 	},
-/obj/effect/mapping_helpers/airlock/unres,
+/obj/effect/mapping_helpers/airlock/unres/delayed,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
@@ -860,7 +873,7 @@
 /turf/open/floor/catwalk_floor/iron,
 /area/ruin/space/has_grav/film_studio/dorms)
 "qL" = (
-/obj/structure/filingcabinet/filingcabinet,
+/obj/structure/filingcabinet/white,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/floor/pod/light,
@@ -899,19 +912,6 @@
 /obj/machinery/light/floor,
 /turf/open/floor/iron/large,
 /area/ruin/space/has_grav/film_studio/starboard)
-"rQ" = (
-/obj/effect/turf_decal/tile/bar/opposingcorners,
-/obj/structure/table,
-/obj/item/rag,
-/obj/item/reagent_containers/cup/glass/bottle/beer{
-	pixel_x = 5;
-	pixel_y = -2
-	},
-/obj/effect/turf_decal/siding/dark_green{
-	dir = 8
-	},
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/film_studio/dorms)
 "rZ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
@@ -2623,7 +2623,7 @@
 /turf/open/space/basic,
 /area/ruin/space)
 "Te" = (
-/obj/structure/filingcabinet/filingcabinet,
+/obj/structure/filingcabinet/white,
 /obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/floor/pod/light,
 /area/ruin/space/has_grav/film_studio/starboard)
@@ -3100,7 +3100,7 @@
 /obj/machinery/door/airlock/external{
 	name = "Solar Maintenance"
 	},
-/obj/effect/mapping_helpers/airlock/unres,
+/obj/effect/mapping_helpers/airlock/unres/delayed,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/access/all/away,
@@ -3951,7 +3951,7 @@ MU
 hY
 XK
 tq
-rQ
+bu
 XY
 vD
 LG

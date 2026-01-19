@@ -12,7 +12,7 @@
 
 /datum/computer_file/program/silicon_management/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
-	var/obj/item/card/id/user_id = computer.computer_id_slot
+	var/obj/item/card/id/user_id = computer.stored_id
 	if(!user_id || !(ACCESS_ROBOTICS in user_id.access))
 		return TRUE
 
@@ -30,7 +30,7 @@
 	var/list/data = list()
 
 	var/authed = FALSE
-	var/obj/item/card/id/user_id = computer.computer_id_slot
+	var/obj/item/card/id/user_id = computer.stored_id
 	if(user_id && (ACCESS_ROBOTICS in user_id.access))
 		authed = TRUE
 

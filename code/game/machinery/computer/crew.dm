@@ -13,9 +13,7 @@
 
 /obj/machinery/computer/crew/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
-	AddComponent(/datum/component/usb_port, list(
-		/obj/item/circuit_component/medical_console_data,
-	))
+	AddComponent(/datum/component/usb_port, typecacheof(list(/obj/item/circuit_component/medical_console_data), only_root_path = TRUE))
 
 /obj/item/circuit_component/medical_console_data
 	display_name = "Crew Monitoring Data"
@@ -292,7 +290,6 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			entry["burndam"] = rand(0,175)
 			entry["brutedam"] = rand(0,175)
 			entry["health"] = -50
-			entry["can_track"] = tracked_living_mob.can_track()
 			results[++results.len] = entry
 			continue
 
@@ -313,19 +310,16 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		// Damage
 		if (sensor_mode >= SENSOR_VITALS)
 			entry += list(
-				"oxydam" = round(tracked_living_mob.getOxyLoss(), 1),
-				"toxdam" = round(tracked_living_mob.getToxLoss(), 1),
-				"burndam" = round(tracked_living_mob.getFireLoss(), 1),
-				"brutedam" = round(tracked_living_mob.getBruteLoss(), 1),
+				"oxydam" = round(tracked_living_mob.get_oxy_loss(), 1),
+				"toxdam" = round(tracked_living_mob.get_tox_loss(), 1),
+				"burndam" = round(tracked_living_mob.get_fire_loss(), 1),
+				"brutedam" = round(tracked_living_mob.get_brute_loss(), 1),
 				"health" = round(tracked_living_mob.health, 1),
 			)
 
 		// Location
 		if (sensor_mode >= SENSOR_COORDS)
 			entry["area"] = get_area_name(tracked_living_mob, format_text = TRUE)
-
-		// Trackability
-		entry["can_track"] = tracked_living_mob.can_track()
 
 		results[++results.len] = entry
 

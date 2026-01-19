@@ -85,6 +85,41 @@
 	speaker.verb_sing = initial(verb_sing)
 	speaker.verb_yell = initial(verb_yell)
 
+/obj/item/organ/tongue/mouse
+	name = "murid tongue"
+	desc = "a short, rough tongue covered in bumps."
+	say_mod = "squeaks"
+	icon_state = "tongue"
+	modifies_speech = TRUE
+
+/obj/item/organ/tongue/mouse/modify_speech(datum/source, list/speech_args)
+	. = ..()
+	var/message = LOWER_TEXT(speech_args[SPEECH_MESSAGE])
+	if(message == "hi" || message == "hi.")
+		speech_args[SPEECH_MESSAGE] = "Cheesed to meet you!"
+	if(message == "hi?")
+		speech_args[SPEECH_MESSAGE] = "Um... cheesed to meet you?"
+
+/obj/item/organ/tongue/mouse/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/speechmod, replacements = strings("mouse_replacement.json", "mouse")) // This is prepawsterous! ...Or something like that.
+
+/obj/item/organ/tongue/mouse/on_mob_insert(mob/living/carbon/tongue_owner, special, movement_flags)
+	. = ..()
+	RegisterSignal(tongue_owner, COMSIG_LIVING_ITEM_GIVEN, PROC_REF(its_on_the_mouse))
+
+/obj/item/organ/tongue/mouse/on_mob_remove(mob/living/carbon/tongue_owner)
+	. = ..()
+	UnregisterSignal(tongue_owner, COMSIG_LIVING_ITEM_GIVEN)
+
+/obj/item/organ/tongue/mouse/proc/on_item_given(mob/living/carbon/offerer, mob/living/taker, obj/item/given)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(its_on_the_mouse), offerer, taker)
+
+/obj/item/organ/tongue/mouse/proc/its_on_the_mouse(mob/living/carbon/offerer, mob/living/taker)
+	offerer.say("For you, it's on the mouse.")
+	taker.add_mood_event("it_was_on_the_mouse", /datum/mood_event/it_was_on_the_mouse)
+
 /// This "human" tongue is only used in Character Preferences / Augmentation menu.
 /// The base tongue class lacked a say_mod. With say_mod included it makes a non-Human user sound like a Human.
 /obj/item/organ/tongue/human

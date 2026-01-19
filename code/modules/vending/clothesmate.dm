@@ -41,7 +41,6 @@
 				/obj/item/clothing/head/costume/sombrero/green = 3,
 				/obj/item/clothing/head/costume/nightcap/blue = 3,
 				/obj/item/clothing/head/costume/nightcap/red = 3,
-				/obj/item/clothing/head/soft/galfedcap = 5,
 			),
 		),
 
@@ -53,6 +52,7 @@
 				/obj/item/clothing/accessory/waistcoat = 4,
 				/obj/item/clothing/suit/toggle/suspenders = 4,
 				/obj/item/clothing/neck/tie/horrible = 3,
+				/obj/item/clothing/neck/robe_cape = 3,
 				/obj/item/clothing/glasses/regular = 3,
 				/obj/item/clothing/glasses/regular/jamjar = 3,
 				/obj/item/clothing/glasses/orange = 3,
@@ -120,11 +120,10 @@
 				/obj/item/clothing/suit/costume/poncho = 3,
 				/obj/item/clothing/under/dress/skirt = 3,
 				/obj/item/clothing/under/suit/white/skirt = 3,
-				/obj/item/clothing/under/rank/captain/suit/skirt = 2,
-				/obj/item/clothing/under/rank/civilian/head_of_personnel/suit/skirt = 2,
+				/obj/item/clothing/under/costume/captain/skirt = 2,
+				/obj/item/clothing/under/costume/head_of_personnel/skirt = 2,
 				/obj/item/clothing/under/rank/civilian/purple_bartender = 2,
 				/obj/item/clothing/suit/jacket/miljacket = 3,
-				/obj/item/clothing/suit/jacket/galfed = 3,
 				/obj/item/clothing/suit/apron/overalls = 3,
 				/obj/item/clothing/suit/costume/wellworn_shirt = 2,
 				/obj/item/clothing/suit/costume/wellworn_shirt/graphic = 2,
@@ -235,7 +234,6 @@
 	payment_department = NO_FREEBIES
 	light_mask = "wardrobe-light-mask"
 	light_color = LIGHT_COLOR_ELECTRIC_GREEN
-	allow_custom = TRUE
 
 /obj/item/vending_refill/clothing
 	machine_name = "ClothesMate"

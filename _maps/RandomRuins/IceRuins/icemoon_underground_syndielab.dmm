@@ -101,6 +101,13 @@
 /obj/structure/cable/layer1,
 /turf/open/floor/iron/dark/textured,
 /area/ruin/syndielab)
+"cP" = (
+/obj/effect/mapping_helpers/bombable_wall,
+/turf/closed/wall/r_wall/plastitanium/syndicate/nodiagonal{
+	desc = "An ominous looking wall. It has extra insulation to keep the heat in.";
+	name = "plastitanium wall"
+	},
+/area/ruin/syndielab)
 "dD" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/condiment/bbqsauce{
@@ -300,25 +307,12 @@
 	},
 /turf/open/floor/iron/dark/textured,
 /area/ruin/syndielab)
-"sm" = (
-/turf/closed/wall/r_wall/plastitanium/syndicate/nodiagonal{
-	desc = "An ominous looking wall. It has extra insulation to keep the heat in.";
-	name = "plastitanium wall"
-	},
-/area/ruin/syndielab)
 "sp" = (
 /obj/effect/decal/cleanable/plastic,
 /obj/structure/mop_bucket/janitorialcart{
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/syndielab)
-"sz" = (
-/obj/effect/mapping_helpers/bombable_wall,
-/turf/closed/wall/r_wall/plastitanium/syndicate/nodiagonal{
-	desc = "An ominous looking wall. It has extra insulation to keep the heat in.";
-	name = "plastitanium wall"
-	},
 /area/ruin/syndielab)
 "sV" = (
 /obj/machinery/vending/donksofttoyvendor{
@@ -386,7 +380,7 @@
 	},
 /obj/structure/fans/tiny,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
-/obj/effect/mapping_helpers/airlock/unres{
+/obj/effect/mapping_helpers/airlock/unres/delayed{
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -462,6 +456,12 @@
 	pixel_y = -2
 	},
 /turf/open/floor/mineral/plastitanium,
+/area/ruin/syndielab)
+"AR" = (
+/turf/closed/wall/r_wall/plastitanium/syndicate/nodiagonal{
+	desc = "An ominous looking wall. It has extra insulation to keep the heat in.";
+	name = "plastitanium wall"
+	},
 /area/ruin/syndielab)
 "AX" = (
 /obj/item/ammo_casing/shotgun/buckshot/spent{
@@ -672,8 +672,7 @@
 	},
 /obj/structure/flora/bush,
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/oxygen_output{
-	dir = 1;
-	chamber_id = "syndielab_biodome"
+	dir = 1
 	},
 /turf/open/floor/grass{
 	initial_gas_mix = "o2=1000;n2=1100;TEMP=280"
@@ -767,7 +766,7 @@
 /obj/structure/fans/tiny,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/dark/hidden,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
-/obj/effect/mapping_helpers/airlock/unres{
+/obj/effect/mapping_helpers/airlock/unres/delayed{
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -919,10 +918,10 @@ MW
 MW
 MW
 Xt
-sm
-sm
+AR
+AR
 vO
-sm
+AR
 Xt
 Xt
 Xt
@@ -937,13 +936,13 @@ MW
 Xt
 Xt
 Xt
-sm
+AR
 cg
 xg
-sm
-sm
-sz
-sm
+AR
+AR
+cP
+AR
 Xt
 Xt
 Xt
@@ -951,65 +950,65 @@ MW
 "}
 (4,1,1) = {"
 MW
-sm
-sm
-sm
-sm
-sm
-sm
+AR
+AR
+AR
+AR
+AR
+AR
 UF
-sm
+AR
 na
 mi
-sm
-sm
-sm
+AR
+AR
+AR
 Xt
 Xt
 "}
 (5,1,1) = {"
 Xt
-sm
+AR
 aa
 Wn
 bC
 EY
 el
 el
-sm
+AR
 iQ
 iy
 vE
 Xe
-sm
-sm
+AR
+AR
 Xt
 "}
 (6,1,1) = {"
 Xt
-sm
+AR
 Ts
 sj
 FJ
-sm
+AR
 qy
 el
-sm
+AR
 AD
 ry
 ey
 VO
 Tl
-sm
+AR
 Xt
 "}
 (7,1,1) = {"
 Xt
-sm
+AR
 bn
 Vf
 xa
-sm
+AR
 Ze
 Gi
 cu
@@ -1018,30 +1017,30 @@ ey
 wl
 sa
 Hq
-sm
+AR
 Xt
 "}
 (8,1,1) = {"
 Xt
-sm
-sm
-sm
+AR
+AR
+AR
 EY
-sm
+AR
 qC
 qC
-sm
+AR
 tb
 HS
 ey
 sp
 UM
-sm
+AR
 Xt
 "}
 (9,1,1) = {"
 Xt
-sm
+AR
 pK
 KV
 el
@@ -1053,13 +1052,13 @@ el
 Sq
 cM
 Hs
-sm
-sm
+AR
+AR
 Xt
 "}
 (10,1,1) = {"
 Xt
-sm
+AR
 JF
 sj
 el
@@ -1071,31 +1070,31 @@ el
 oY
 Fz
 Zx
-sm
+AR
 Xt
 Xt
 "}
 (11,1,1) = {"
 Xt
-sm
+AR
 Jc
 ey
 FJ
-sm
+AR
 qC
 qC
-sm
+AR
 GV
-sm
+AR
 qC
 qC
-sm
+AR
 Xt
 MW
 "}
 (12,1,1) = {"
 Xt
-sm
+AR
 HH
 GL
 hl
@@ -1107,68 +1106,68 @@ Te
 hu
 TB
 lW
-sm
+AR
 Xt
 MW
 "}
 (13,1,1) = {"
 Xt
-sm
+AR
 QO
 hn
 el
 Xm
 rO
 aP
-sm
+AR
 Lt
 AX
 yW
 YH
-sm
+AR
 Xt
 MW
 "}
 (14,1,1) = {"
 Xt
-sm
-sm
-sm
+AR
+AR
+AR
 EY
 qC
 qC
 qC
-sm
+AR
 ZW
 uT
 yW
 Vu
-sm
+AR
 Xt
 MW
 "}
 (15,1,1) = {"
 Xt
 Xt
-sm
+AR
 gE
 el
 wj
 dD
 Co
-sm
+AR
 cd
 Wo
 yW
 Dd
-sm
+AR
 Xt
 MW
 "}
 (16,1,1) = {"
 MW
 Xt
-sm
+AR
 sV
 NM
 tC
@@ -1179,25 +1178,25 @@ WO
 vr
 CS
 wJ
-sm
+AR
 Xt
 MW
 "}
 (17,1,1) = {"
 MW
 Xt
-sm
-sm
-sm
+AR
+AR
+AR
 nD
 wh
 De
-sm
-sm
-sm
-sm
-sm
-sm
+AR
+AR
+AR
+AR
+AR
+AR
 MW
 MW
 "}
@@ -1206,11 +1205,11 @@ MW
 MW
 Xt
 Xt
-sm
-sm
-sm
-sm
-sm
+AR
+AR
+AR
+AR
+AR
 Xt
 Xt
 Xt

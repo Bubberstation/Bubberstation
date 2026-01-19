@@ -16,6 +16,7 @@
 /obj/item/forging/tongs/primitive
 	name = "primitive forging tongs"
 	toolspeed = 2 SECONDS
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/item/forging/tongs/attack_self(mob/user, modifiers)
 	. = ..()
@@ -40,6 +41,7 @@
 
 /obj/item/forging/hammer/primitive
 	name = "primitive forging hammer"
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/item/forging/billow
 	name = "forging billow"
@@ -50,6 +52,7 @@
 /obj/item/forging/billow/primitive
 	name = "primitive forging billow"
 	toolspeed = 2 SECONDS
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
 
 //incomplete pre-complete items
 /obj/item/forging/incomplete
@@ -103,6 +106,11 @@
 	name = "incomplete katana blade"
 	icon_state = "hot_katanablade"
 	spawn_item = /obj/item/forging/complete/katana
+
+/obj/item/forging/incomplete/rapier
+	name = "incomplete rapier blade"
+	icon_state = "hot_rapierblade"
+	spawn_item = /obj/item/forging/complete/rapier
 
 /obj/item/forging/incomplete/dagger
 	name = "incomplete dagger blade"
@@ -195,6 +203,12 @@
 	desc = "A katana blade, ready to get some wood for completion."
 	icon_state = "katanablade"
 	spawning_item = /obj/item/forging/reagent_weapon/katana
+
+/obj/item/forging/complete/rapier
+	name = "rapier blade"
+	desc = "A rapier blade, ready to get some wood for completion."
+	icon_state = "rapierblade"
+	spawning_item = /obj/item/forging/reagent_weapon/rapier
 
 /obj/item/forging/complete/dagger
 	name = "dagger blade"

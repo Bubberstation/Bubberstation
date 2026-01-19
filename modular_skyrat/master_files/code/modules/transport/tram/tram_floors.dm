@@ -1,5 +1,5 @@
 /turf/open/floor/tram/guideway
-	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	icon = 'modular_zubbers/icons/turf/floors/floors.dmi'
 	icon_state = "elevatorshaft"
 	base_icon_state = "elevatorshaft"
 	floor_tile = /obj/item/stack/tile/noslip/tram/guideway
@@ -10,7 +10,7 @@
 /obj/item/stack/tile/noslip/tram/guideway
 	name = "tram guideway"
 	singular_name = "tram guideway"
-	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	icon = 'modular_zubbers/icons/turf/floors/floors.dmi'
 	icon_state = "elevatorshaft"
 	base_icon_state = "elevatorshaft"
 	inhand_icon_state = "tile-neon"

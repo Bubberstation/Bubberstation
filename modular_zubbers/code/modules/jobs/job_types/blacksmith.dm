@@ -1,7 +1,6 @@
 /datum/job/blacksmith
 	title = JOB_BLACKSMITH
 	description = "Smith wares, Sell them."
-	department_head = list(JOB_QUARTERMASTER)
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
@@ -34,7 +33,7 @@
 	job_spawn_title = JOB_ASSISTANT
 
 	voice_of_god_silence_power = 3
-	rpg_title = "Ye olde Smithy"
+	rpg_title = "Smithy"
 
 /datum/outfit/job/blacksmith
 	name = "Blacksmith"

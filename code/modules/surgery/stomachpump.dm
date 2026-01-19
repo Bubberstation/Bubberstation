@@ -35,7 +35,7 @@
 	name = "pump stomach (hand)"
 	accept_hand = TRUE
 	repeatable = TRUE
-	time = 20
+	time = 2 SECONDS
 	success_sound = 'sound/items/handling/surgery/organ2.ogg'
 
 /datum/surgery_step/stomach_pump/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -71,5 +71,5 @@
 			span_warning("[user] screws up, brusing [target_human]'s chest!"),
 			span_warning("[user] screws up!"),
 		)
-		target_human.adjustOrganLoss(ORGAN_SLOT_STOMACH, 5)
-		target_human.adjustBruteLoss(5)
+		target_human.adjust_organ_loss(ORGAN_SLOT_STOMACH, 5)
+		target_human.adjust_brute_loss(5)

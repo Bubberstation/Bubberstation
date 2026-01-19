@@ -1,6 +1,6 @@
 /obj/item/bodypart/head/lizard
 	icon_greyscale = BODYPART_ICON_LIZARD
-	head_flags = HEAD_ALL_FEATURES
+	head_flags = HEAD_DEFAULT_FEATURES
 
 /obj/item/bodypart/chest/lizard
 	icon_greyscale = BODYPART_ICON_LIZARD

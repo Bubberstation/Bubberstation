@@ -23,7 +23,7 @@
 	dmg_overlay_type = null
 	brute_modifier = 1.25 //ethereal are weak to brute damages
 	wing_types = null
-	bodypart_traits = list(TRAIT_NO_UNDERWEAR)
+	// bodypart_traits = list(TRAIT_NO_UNDERWEAR) BUBBER EDIT - let them wear underwear
 
 /obj/item/bodypart/chest/ethereal/update_limb(dropping_limb, is_creating)
 	. = ..()

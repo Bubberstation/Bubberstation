@@ -7,7 +7,6 @@
 		"operating",
 		"medicalbed",
 		"defibmountdefault",
-		"defibrillator",
 		"surgical_drapes",
 		"scalpel",
 		"retractor",
@@ -33,6 +32,7 @@
 		"jerrycan",
 		"reflex_hammer",
 		"blood_scanner",
+		"suit_sensor",
 	)
 	experiments_to_unlock = list(
 		/datum/experiment/autopsy/human,
@@ -49,6 +49,8 @@
 	prereq_ids = list(TECHWEB_NODE_MEDBAY_EQUIP)
 	design_ids = list(
 		"med_spray_bottle",
+		"inhaler",
+		"inhaler_canister",
 		"medigel",
 		"medipen_refiller",
 		"soda_dispenser",
@@ -77,10 +79,11 @@
 		"healthanalyzer_advanced",
 		"mod_health_analyzer",
 		"crewpinpointer",
-		"defibrillator_compact",
 		"defibmount",
 		"medicalbed_emergency",
 		"piercesyringe",
+		"diode_disk_healing",
+		"diode_disk_sanity",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	required_experiments = list(/datum/experiment/scanning/reagent/haloperidol)

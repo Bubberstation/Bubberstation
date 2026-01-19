@@ -52,52 +52,6 @@
 	name = "Shoredress Wetsuit"
 	item_path = /obj/item/clothing/under/akula_wetsuit
 
-/datum/loadout_item/uniform/jumpsuit/impcap
-	name = "Captain's Naval Jumpsuit"
-	item_path = /obj/item/clothing/under/rank/captain/skyrat/imperial
-	restricted_roles = list(JOB_CAPTAIN, JOB_NT_REP)
-
-/datum/loadout_item/uniform/jumpsuit/imphop
-	name = "Head of Personnel's Naval Jumpsuit"
-	item_path = /obj/item/clothing/under/rank/civilian/head_of_personnel/skyrat/imperial
-	restricted_roles = list(JOB_HEAD_OF_PERSONNEL, JOB_NT_REP)
-
-/datum/loadout_item/uniform/jumpsuit/imphos
-	name = "Head of Security's Naval Uniform"
-	item_path = /obj/item/clothing/under/rank/security/head_of_security/skyrat/imperial
-	restricted_roles = list(JOB_HEAD_OF_SECURITY)
-
-/datum/loadout_item/uniform/jumpsuit/impcmo
-	name = "Chief Medical Officer's Naval Uniform"
-	item_path = /obj/item/clothing/under/rank/medical/chief_medical_officer/skyrat/imperial
-	restricted_roles = list(JOB_CHIEF_MEDICAL_OFFICER)
-
-/datum/loadout_item/uniform/jumpsuit/impce
-	name = "Chief Engineer's Naval Uniform"
-	item_path = /obj/item/clothing/under/rank/engineering/chief_engineer/skyrat/imperial
-	restricted_roles = list(JOB_CHIEF_ENGINEER)
-
-/datum/loadout_item/uniform/jumpsuit/imprd
-	name = "Research Director's Naval Uniform"
-	item_path = /obj/item/clothing/under/rank/rnd/research_director/skyrat/imperial
-	restricted_roles = list(JOB_RESEARCH_DIRECTOR)
-
-/datum/loadout_item/uniform/jumpsuit/impcommand
-	name = "Light Grey Officer's Naval Jumpsuit"
-	item_path = /obj/item/clothing/under/rank/captain/skyrat/imperial/generic
-
-/datum/loadout_item/uniform/jumpsuit/impcom
-	name = "Grey Officer's Naval Jumpsuit"
-	item_path = /obj/item/clothing/under/rank/captain/skyrat/imperial/generic/grey
-
-/datum/loadout_item/uniform/jumpsuit/impred
-	name = "Red Officer's Naval Jumpsuit"
-	item_path = /obj/item/clothing/under/rank/captain/skyrat/imperial/generic/red
-
-/datum/loadout_item/uniform/jumpsuit/impcomtrous
-	name = "Grey Officer's Naval Jumpsuit (Trousers)"
-	item_path = /obj/item/clothing/under/rank/captain/skyrat/imperial/generic/pants
-
 /datum/loadout_item/uniform/jumpsuit/security_skirt
 	name = "Blue Security Battledress"
 	item_path = /obj/item/clothing/under/rank/security/peacekeeper/skirt
@@ -558,6 +512,14 @@
 	name = "Blastwave Uniform"
 	item_path = /obj/item/clothing/under/blastwave
 
+/datum/loadout_item/uniform/miscellaneous/royalkilt
+	name = "Royal Kilt"
+	item_path = /obj/item/clothing/under/costume/skyrat/kilt/royal
+
+/datum/loadout_item/uniform/miscellaneous/irishtact
+	name = "Irish Tactical Uniform"
+	item_path = /obj/item/clothing/under/costume/skyrat/tac/irish
+
 //HALLOWEEN
 /datum/loadout_item/uniform/miscellaneous/pj_blood
 	name = "Blood-red Pajamas"
@@ -950,28 +912,20 @@
 	item_path = /obj/item/clothing/under/suit/skyrat/pencil/green
 
 /datum/loadout_item/uniform/formal/azulea_oldblood
-	name = " Oldblood's Royal regalia"
+	name = " Oldblood's Royal Regalia"
 	item_path = /obj/item/clothing/under/rank/azulean/old_blood
-	restricted_roles = list(JOB_CAPTAIN, JOB_NT_REP)
-	restricted_species = list(SPECIES_AKULA)
 
 /datum/loadout_item/uniform/formal/azulea_oldblood/skirt
-	name = " Oldblood's Royal regalia (Skirt)"
+	name = " Oldblood's Royal Regalia (Skirt)"
 	item_path = /obj/item/clothing/under/rank/azulean/old_blood/skirt
-	restricted_roles = list(JOB_CAPTAIN, JOB_NT_REP)
-	restricted_species = list(SPECIES_AKULA)
 
 /datum/loadout_item/uniform/formal/azulea_upstart
 	name = "Upstart's Noble Getup"
 	item_path = /obj/item/clothing/under/rank/azulean/upstart
-	restricted_roles = list(JOB_CAPTAIN, JOB_NT_REP)
-	restricted_species = list(SPECIES_AKULA)
 
 /datum/loadout_item/uniform/formal/azulea_upstart/skirt
 	name = "Upstart's Noble Getup (Skirt)"
 	item_path = /obj/item/clothing/under/rank/azulean/upstart/skirt
-	restricted_roles = list(JOB_CAPTAIN, JOB_NT_REP)
-	restricted_species = list(SPECIES_AKULA)
 
 // DONATOR ONLY
 /datum/loadout_item/uniform/captain_black

@@ -16,6 +16,6 @@
 
 /turf/closed/indestructible/titanium/nodiagonal
 	icon = 'icons/turf/walls/shuttle_wall.dmi'
-	icon_state = "map-shuttle_nd"
+//	icon_state = "map-shuttle_nd" // broken
 	base_icon_state = "shuttle_wall"
 	smoothing_flags = SMOOTH_BITMASK

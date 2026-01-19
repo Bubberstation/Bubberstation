@@ -11,7 +11,5 @@
 	var/past_security_records
 
 /datum/record/locked
-	/// Contains their background information.
-	var/background_information
 	/// Contains their exploitable information.,
 	var/exploitable_information

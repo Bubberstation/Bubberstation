@@ -35,7 +35,7 @@
 			is_magnetic_found = TRUE
 
 		if(!is_magnetic_found)
-			var/card_tally = SSid_access.tally_access(id_card, ACCESS_FLAG_COMMAND)
+			var/card_tally = SSid_access.tally_access(id_card, ACCESS_FLAG_PRV_COMMAND)
 			if(card_tally > winning_tally)
 				winning_tally = card_tally
 				front_id = id_card
@@ -98,14 +98,14 @@
 /obj/item/storage/wallet/GetID()
 	return front_id
 
-/obj/item/storage/wallet/RemoveID()
+/obj/item/storage/wallet/remove_id()
 	if(!front_id)
 		return
 	. = front_id
 	front_id.forceMove(get_turf(src))
 
-/obj/item/storage/wallet/InsertID(obj/item/inserting_item)
-	var/obj/item/card/inserting_id = inserting_item.RemoveID()
+/obj/item/storage/wallet/insert_id(obj/item/inserting_item)
+	var/obj/item/card/inserting_id = inserting_item.remove_id()
 	if(!inserting_id)
 		return FALSE
 	attackby(inserting_id)

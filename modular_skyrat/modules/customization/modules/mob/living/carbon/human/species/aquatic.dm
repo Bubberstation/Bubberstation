@@ -24,6 +24,7 @@
 	)
 
 	meat = /obj/item/food/fishmeat/moonfish/akula
+	sort_bottom = TRUE //BUBBER EDIT ADDITION: We want to sort this to the bottom because it's a custom species template.
 
 /datum/species/aquatic/get_default_mutant_bodyparts()
 	return list(

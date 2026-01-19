@@ -27,8 +27,15 @@
 	var/traits = null
 	var/space_ruin_levels = DEFAULT_SPACE_RUIN_LEVELS
 	var/space_empty_levels = DEFAULT_SPACE_EMPTY_LEVELS
+
 	/// Boolean that tells us if this is a planetary station. (like IceBoxStation)
 	var/planetary = FALSE
+	/// How many z's to generate around a planetary station
+	var/wilderness_levels = 0
+	/// Directory to the wilderness area we can spawn in
+	var/wilderness_directory
+	/// Index of map names (inside wilderness_directory) with the amount to spawn. ("ice_planes" = 1) for one ice spawn
+	var/list/maps_to_spawn = list()
 
 	///The type of mining Z-level that should be loaded.
 	var/minetype = MINETYPE_LAVALAND
@@ -37,10 +44,10 @@
 
 	var/allow_custom_shuttles = TRUE
 	var/shuttles = list(
-		"cargo" = "cargo_skyrat",
+		"cargo" = "cargo_box",
 		"ferry" = "ferry_fancy",
 		"whiteship" = "whiteship_meta",
-		"emergency" = "emergency_skyrat", //SKYRAT EDIT CHANGE
+		"emergency" = "emergency_meta",
 	)
 
 	/// Dictionary of job sub-typepath to template changes dictionary
@@ -162,11 +169,6 @@
 		log_world("map_config shuttles is not a list!")
 		return
 
-	//BUBBERSTATION CHANGE: FIXES DUMB SKYRAT OVERRIDE. HOLY SHIT. THIS WASN'T EVEN MARKED AS MODULAR.
-	if(!json["emergency_override"])
-		shuttles["emergency"] = "emergency_skyrat"
-	//BUBBERSTATION CHANGE END
-
 	traits = json["traits"]
 	// "traits": [{"Linkage": "Cross"}, {"Space Ruins": true}]
 	if (islist(traits))
@@ -192,6 +194,13 @@
 		space_empty_levels = temp
 	else if (!isnull(temp))
 		log_world("map_config space_empty_levels is not a number!")
+		return
+
+	temp = json["wilderness_levels"]
+	if (isnum(temp))
+		wilderness_levels = temp
+	else if (!isnull(temp))
+		log_world("map_config wilderness_levels is not a number!")
 		return
 
 	if ("minetype" in json)
@@ -230,6 +239,17 @@
 
 	if ("height_autosetup" in json)
 		height_autosetup = json["height_autosetup"]
+
+	var/list/wilderness = json["wilderness"]
+	// If we got wilderness levels, fetch them from the config
+	if (islist(wilderness))
+		wilderness_directory = wilderness["directory"]
+		wilderness.Remove("directory")
+
+		// Just pick and take based on weight
+		for(var/i in 1 to wilderness_levels)
+			maps_to_spawn += pick_weight_take(wilderness)
+		shuffle(maps_to_spawn)
 
 #ifdef UNIT_TESTS
 	// Check for unit tests to skip, no reason to check these if we're not running tests

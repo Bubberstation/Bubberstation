@@ -21,7 +21,6 @@
 	)
 	premium = list(
 		/obj/item/storage/belt/security/webbing = 5,
-		/obj/item/storage/belt/security/webbing/peacekeeper = 5,
 		/obj/item/coin/antagtoken = 1,
 		/obj/item/clothing/head/helmet/blueshirt = 3,
 		/obj/item/clothing/suit/armor/vest/blueshirt = 3,
@@ -30,7 +29,6 @@
 		/obj/item/storage/belt/holster/energy = 4,
 		/obj/item/storage/box/holobadge = 1,
 		/obj/item/ammo_box/magazine/security = 12,
-		/obj/item/ammo_box/c10mm/speedloader/rubber = 12,
 		/obj/item/ammo_box/advanced/s12gauge/frangible = 2,
 	)
 

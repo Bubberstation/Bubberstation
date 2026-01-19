@@ -1,32 +1,11 @@
-/datum/supply_pack/goody/sol_pistol_single
-	name = "Sol 'Wespe' Pistol Single Pack"
-	desc = "The standard issue service pistol of the Terran Government's various military branches. Comes with an attached light and a spare magazine."
-	contains = list(/obj/item/gun/ballistic/automatic/pistol/sol = 1,
-	/obj/item/ammo_box/magazine/c35sol_pistol/starts_empty = 1,
-	)
-	cost = PAYCHECK_COMMAND * 10 //Half the cost of a Detective Revolver
-	access_view = ACCESS_WEAPONS
-
-/datum/supply_pack/goody/sol_revolver_single
-	name = "Sol 'Eland' Revolver Single Pack"
-	desc = "A stubby revolver chiefly found in the hands of Private Security forces due to its cheap price and decent stopping power. Comes with an ammo box."
-	contains = list(/obj/item/gun/ballistic/revolver/sol = 1,
-	/obj/item/ammo_box/c35sol = 1,
-	)
-	cost = PAYCHECK_COMMAND * 10 //Half the cost of a Detective Revolver
-	access_view = ACCESS_WEAPONS
-
-/datum/supply_pack/goody/disablersmg_single
+/datum/supply_pack/goody/smg_single
 	name = "Disabler SMG Single-Pack"
-	desc = "Contains one disabler SMG, an automatic variant of the original workhorse."
 	cost = PAYCHECK_COMMAND * 3
-	access_view = ACCESS_WEAPONS
-	contains = list(/obj/item/gun/energy/disabler/smg)
 
 /datum/supply_pack/goody/lasercarbine_single
 	name = "Laser Carbine Single-Pack"
 	desc = "Contains one laser carbine, an automatic variant of the laser gun. For when you need a fast-firing lethal-only solution."
-	cost = PAYCHECK_COMMAND * 12
+	cost = PAYCHECK_COMMAND * 7
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/laser/carbine)
 
@@ -37,59 +16,52 @@
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/e_gun/mini)
 
-/datum/supply_pack/goody/shotgun_revolver
-	name = "Bóbr 12 GA Revolver Single-Pack"
-	desc = "Contains 1 civilian-modified Bóbr revolver, chambered in 12 gauge. For when you really want the power of a shotgun in the palm of your hand. Comes with a box of beanbag shells."
-	contains = list(/obj/item/gun/ballistic/revolver/shotgun_revolver/civvie = 1,
-	/obj/item/ammo_box/advanced/s12gauge/bean = 1)
+/datum/supply_pack/goody/wt550_single
+	name = "WT-551 Autorifle Single-Pack"
+	desc = "An NT-security grade autorifle, it comes with excellent heating and poses no health-related risks for the user. Comes as a single-pack with one WT-551 locked and loaded."
+	cost = PAYCHECK_COMMAND * 8 //Nvm these are stronger than lasers in most scenarios so let's get them a bit of an edge. Plus gun price variety looks better
 	access_view = ACCESS_WEAPONS
-	cost = PAYCHECK_COMMAND * 20
+	contains = list(/obj/item/gun/ballistic/automatic/wt550/security)
 
-/datum/supply_pack/goody/plasma_projector
-	name = "Słońce Plasma Projector Single-Pack"
-	desc = "Contains one Słońce Plasma Projector. Spews an inaccurate stream of searing plasma out the magnetic barrel so long as it has power."
-	contains = list(/obj/item/gun/ballistic/automatic/pistol/plasma_thrower = 1,
+/datum/supply_pack/goody/wt550_ammo
+	name = "WT-550/WT-551 Autorifle Magazine Single-Pack"
+	desc = "A single-pack magazine with lethal regular rounds for the WT-551."
+	cost = PAYCHECK_CREW * 5 //Scale it like all guns
+	contains = list(/obj/item/ammo_box/magazine/wt550m9 = 1)
+
+/datum/supply_pack/goody/nt_shotgun
+	name = "Nanotrasen Woodstock Shotgun"
+	desc = "A classic shotgun used by hunters, police and frontiersmen alike, now at an affordable price."
+	cost = PAYCHECK_COMMAND * 12 //Worse renoster, let's make it a tad cheaper
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/gun/ballistic/shotgun/riot, /obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/hunter)
+
+/datum/supply_pack/goody/renoster_shotgun
+	name = "Renoster Shotgun Single-Pack"
+	desc = "A common modern shotgun used by Terran Government Police."
+	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol, /obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/rubber)
+	access_view = ACCESS_WEAPONS
+	cost = PAYCHECK_COMMAND * 14 //I'd say it's at odds with the combat shotgun, sustain vs burst and such, but since ss13 favours burst I'll make it a tad cheaper.
+
+/datum/supply_pack/goody/double_barrel
+	cost = PAYCHECK_COMMAND * 10 //1400 is too much considering the combat shotgun is 1500 for 1
+	access_view = ACCESS_WEAPONS
+
+/datum/supply_pack/goody/plasma_marksman
+	name = "Gwiazda Plasma Sharpshooters Single-pack"
+	desc = "Contains a Gwiazda Plasma Sharpshooter and one plasma battery free of additional charge."
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/plasma_marksman = 1,
 	/obj/item/ammo_box/magazine/recharge/plasma_battery = 1)
 	access_view = ACCESS_WEAPONS
-	cost = PAYCHECK_COMMAND * 6
+	cost = PAYCHECK_COMMAND * 4
 
-/datum/supply_pack/goody/sakhno_derringer_single
-	name = "Sakhno 'Yinbi' Derringer Single Pack"
-	desc = "A compact self-defense pistol, chambered in .310 strilka. Comes with a box of modern reproduction cartridges."
-	contains = list(/obj/item/gun/ballistic/derringer = 1,
-	/obj/item/ammo_box/c310_cargo_box = 1)
+/datum/supply_pack/goody/plasma_marksman_ammo
+	name = "Plasma Battery Single-pack"
+	desc = "Contains a single plasma battery."
+	contains = list(/obj/item/ammo_box/magazine/recharge/plasma_battery = 1)
 	access_view = ACCESS_WEAPONS
-	cost = PAYCHECK_COMMAND * 4.5 //It's a close-range cannon, very poor ranged performance. Slightly pricer than imported Sol pistols
+	cost = PAYCHECK_COMMAND * 1
 
-/datum/supply_pack/goody/mars_single
-	special = FALSE
-
-/datum/supply_pack/goody/dumdum38
-	special = FALSE
-
-/datum/supply_pack/goody/match38
-	special = FALSE
-
-/datum/supply_pack/goody/rubber
-	special = FALSE
-
-/datum/supply_pack/goody/ballistic_single
-	special = FALSE
-
-/datum/supply_pack/goody/disabler_single
-	special = FALSE
-
-/datum/supply_pack/goody/energy_single
-	special = FALSE
-
-/datum/supply_pack/goody/laser_single
-	special = FALSE
-
-/datum/supply_pack/goody/hell_single
-	special = FALSE
-
-/datum/supply_pack/goody/thermal_single
-	special = FALSE
 
 /datum/supply_pack/goody/medkit_surgery
 	name = "High Capacity Surgical Medkit"
@@ -160,7 +132,7 @@
 	desc ="A suit by Honk Ltd. Protects against low humor environments. Most of the tech went to lower the power cost."
 	cost = PAYCHECK_COMMAND * 2
 	contains = list(/obj/item/mod/construction/plating/cosmohonk)
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND
 
 /datum/supply_pack/goody/magnetic_deployable
 	name = "MOD Magnetic Deployment Module"
@@ -174,3 +146,14 @@
 	cost = PAYCHECK_COMMAND
 	contains = list(/obj/item/mod/module/storage/large_capacity)
 
+/datum/supply_pack/goody/crew_monitor
+	name = "Handheld Crew Monitor Single-Pack"
+	desc = "A miniature machine that tracks suit sensors across the station."
+	cost = PAYCHECK_COMMAND * 4.5
+	contains = list(/obj/item/sensor_device)
+
+/datum/supply_pack/goody/soap
+	name = "Soap Single-Pack"
+	desc = "Recommended for emergency self-cleaning, passive-aggressive demonstrations, or reminding others that hygiene is, in fact, part of the job."
+	cost = PAYCHECK_LOWER * 3
+	contains = list(/obj/item/soap/deluxe)

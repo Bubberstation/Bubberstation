@@ -2,6 +2,7 @@
 /mob/living/basic
 	name = "basic mob"
 	icon = 'icons/mob/simple/animal.dmi'
+	abstract_type = /mob/living/basic
 	health = 20
 	maxHealth = 20
 	max_stamina = BASIC_MOB_STAMINA_MATCH_HEALTH
@@ -165,7 +166,7 @@
 /mob/living/basic/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(staminaloss > 0)
-		adjustStaminaLoss(-stamina_recovery * seconds_per_tick, forced = TRUE)
+		adjust_stamina_loss(-stamina_recovery * seconds_per_tick, forced = TRUE)
 
 /mob/living/basic/get_default_say_verb()
 	return length(speak_emote) ? pick(speak_emote) : ..()

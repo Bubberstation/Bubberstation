@@ -1,12 +1,49 @@
+//Metro Cop stuff by HL13
+
 /obj/item/clothing/head/helmet/metrocophelmet
-	name = "Civil Protection Helmet"
+	name = "civil protection helmet"
 	flags_inv = HIDEHAIR | HIDEFACE | HIDESNOUT | HIDEFACIALHAIR
-	desc = "Standard issue helmet for Civil Protection."
-	icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
+	desc = "Standard issue helmet for Civil Protection. Uses advanced GigaSlop brand Matrixes to allow alternative variants!"
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
 	icon_state = "metrocopHelm"
 	inhand_icon_state = null
 	armor_type = /datum/armor/head_helmet
+
+/obj/item/clothing/head/helmet/metrocophelmet/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/metrocop_helmet)
+
+/datum/atom_skin/metrocop_helmet
+	abstract_type = /datum/atom_skin/metrocop_helmet
+
+/datum/atom_skin/metrocop_helmet/metrocop
+	preview_name = "Metrocop"
+	new_icon_state = "metrocopHelm"
+
+/datum/atom_skin/metrocop_helmet/medical
+	preview_name = "Medical Cop"
+	new_icon_state = "medicalofficer"
+
+/datum/atom_skin/metrocop_helmet/green
+	preview_name = "Green"
+	new_icon_state = "overseer"
+
+/datum/atom_skin/metrocop_helmet/puppet
+	preview_name = "Puppet"
+	new_icon_state = "dv_mask"
+
+/datum/atom_skin/metrocop_helmet/overwatch_white
+	preview_name = "White Overwatch"
+	new_icon_state = "overwatch_white"
+
+/datum/atom_skin/metrocop_helmet/overwatch
+	preview_name = "Overwatch"
+	new_icon_state = "overwatch"
+
+/datum/atom_skin/metrocop_helmet/overwatch_red
+	preview_name = "Red Overwatch"
+	new_icon_state = "overwatch_red"
 
 /obj/item/clothing/head/helmet/abductor/fake
 	name = "Kabrus Utility Helmet"
@@ -616,28 +653,32 @@
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "kepi_sec_red"
-	uses_advanced_reskins = TRUE
 	armor_type = /datum/armor/head_helmet
 	strip_delay = 60
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
-	unique_reskin = list(
-		"Red Security Kepi" = list(
-			RESKIN_ICON_STATE = "kepi_sec_red",
-			RESKIN_WORN_ICON_STATE = "kepi_sec_red"
-		),
-		"Blue Security Kepi" = list(
-			RESKIN_ICON_STATE = "kepi_sec_blue",
-			RESKIN_WORN_ICON_STATE = "kepi_sec_blue"
-		),
-		"White Security Kepi" = list(
-			RESKIN_ICON_STATE = "kepi_sec_white",
-			RESKIN_WORN_ICON_STATE = "kepi_sec_white"
-		),
-		"Black Security Kepi" = list(
-			RESKIN_ICON_STATE = "kepi_sec_black",
-			RESKIN_WORN_ICON_STATE = "kepi_sec_black"
-		),
-	)
+
+/obj/item/clothing/head/security_kepi/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_kepi)
+
+/datum/atom_skin/security_kepi
+	abstract_type = /datum/atom_skin/security_kepi
+
+/datum/atom_skin/security_kepi/red
+	preview_name = "Red Security Kepi"
+	new_icon_state = "kepi_sec_red"
+
+/datum/atom_skin/security_kepi/blue
+	preview_name = "Blue Security Kepi"
+	new_icon_state = "kepi_sec_blue"
+
+/datum/atom_skin/security_kepi/white
+	preview_name = "White Security Kepi"
+	new_icon_state = "kepi_sec_white"
+
+/datum/atom_skin/security_kepi/black
+	preview_name = "Black Security Kepi"
+	new_icon_state = "kepi_sec_black"
 
 /obj/item/clothing/head/hos_kepi
 	name = "HoS kepi"
@@ -645,18 +686,58 @@
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "kepi_sec_red_hos"
-	uses_advanced_reskins = TRUE
 	armor_type = /datum/armor/hats_hos
 	strip_delay = 60
-	unique_reskin = list(
-		"Red HoS Kepi" = list(
-			RESKIN_ICON_STATE = "kepi_sec_red_hos",
-			RESKIN_WORN_ICON_STATE = "kepi_sec_red_hos"
-		),
-		"Blue HoS Kepi" = list(
-			RESKIN_ICON_STATE = "kepi_sec_blue_hos",
-			RESKIN_WORN_ICON_STATE = "kepi_sec_blue_hos"
-		),
-	)
+
+/obj/item/clothing/head/hos_kepi/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hos_kepi)
+
+/datum/atom_skin/hos_kepi
+	abstract_type = /datum/atom_skin/hos_kepi
+
+/datum/atom_skin/hos_kepi/red
+	preview_name = "Red HoS Kepi"
+	new_icon_state = "kepi_sec_red_hos"
+
+/datum/atom_skin/hos_kepi/blue
+	preview_name = "Blue HoS Kepi"
+	new_icon_state = "kepi_sec_blue_hos"
 
 // END HATS ADDED BY APRIL
+
+/obj/item/clothing/head/helmet/elder_atmosian
+	desc = "The pinnacle of atmospherics equipment, an expensive modified atmospherics fire helmet plated in one of the most luxurous and durable metals known to man. Providing full atmos coverage without the heavy materials to slow the user down, it also offers far greater protection to most sources of damage, even offering great protection against gases, and other nasty things that try to get into your face."
+	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
+	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT | STACKABLE_HELMET_EXEMPT | SNUG_FIT | HEADINTERNALS
+	material_flags = NONE
+	heat_protection = HEAD
+	cold_protection = HEAD
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
+	resistance_flags = FIRE_PROOF
+	flags_inv = HIDEFACE | HIDEFACIALHAIR | HIDEHAIR | HIDEMASK | HIDEEYES | HIDEEARS
+	custom_materials = list(/datum/material/metalhydrogen = SHEET_MATERIAL_AMOUNT * 3)
+
+/datum/armor/helmet_elder_atmosian
+	melee = 40
+	bullet = 30
+	laser = 40
+	energy = 40
+	bomb = 100
+	bio = 50
+	fire = 100
+	acid = 50
+	wound = 25
+
+/obj/item/clothing/head/helmet/skull/fake
+
+	strip_delay = 2 SECONDS
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDESNOUT
+	flags_cover = HEADCOVERSEYES
+	min_cold_protection_temperature = HELMET_MIN_TEMP_PROTECT
+	max_heat_protection_temperature = HELMET_MAX_TEMP_PROTECT
+	armor_type = /datum/armor/none
+	resistance_flags = FIRE_PROOF

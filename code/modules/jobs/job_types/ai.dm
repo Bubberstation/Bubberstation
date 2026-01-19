@@ -113,3 +113,6 @@
 
 /datum/job/ai/on_respawn(mob/new_character)
 	new_character.AIize()
+
+/datum/job/ai/get_lobby_icon()
+	return icon('icons/mob/huds/hud.dmi', "hudai")

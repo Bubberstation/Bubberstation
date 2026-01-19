@@ -24,7 +24,7 @@
 		if(istype(wearer.wear_suit, /obj/item/clothing/suit/mod))
 			return FALSE
 	// Hide accessory if flagged to do so, taking species exceptions in account
-		else if((wearer.wear_suit.flags_inv & HIDEJUMPSUIT) \
+		else if((wearer.covered_slots & HIDEJUMPSUIT) \
 				&& (!wearer.wear_suit.species_exception \
 				|| !is_type_in_list(wearer.dna.species, wearer.wear_suit.species_exception)) \
 			)
@@ -49,7 +49,7 @@
 			return TRUE
 
 		// Hide accessory if flagged to do so, taking species exceptions in account
-		else if((wearer.wear_suit.flags_inv & HIDEJUMPSUIT) \
+		else if((wearer.covered_slots & HIDEJUMPSUIT) \
 				&& (!wearer.wear_suit.species_exception \
 				|| !is_type_in_list(src, wearer.wear_suit.species_exception)) \
 			)
@@ -110,7 +110,7 @@
 		if(istype(wearer.wear_suit, /obj/item/clothing/suit/mod))
 			return FALSE
 	// Hide accessory if flagged to do so, taking species exceptions in account
-		else if((wearer.wear_suit.flags_inv & HIDEJUMPSUIT) \
+		else if((wearer.covered_slots & HIDEJUMPSUIT) \
 				&& (!wearer.wear_suit.species_exception \
 				|| !is_type_in_list(wearer.dna.species, wearer.wear_suit.species_exception)) \
 			)
@@ -203,6 +203,10 @@
 	icon_state = "harpybat"
 	color_src = USE_MATRIXED_COLORS
 
+/datum/sprite_accessory/wings/mammal/harpy/bat/fluffless
+	name = "Harpy (Bat - Fluffless)"
+	icon_state = "harpybat_fluffless"
+
 /datum/sprite_accessory/wings/mammal/top/harpy/alt
 	name = "Harpy (Top - Alt)"
 	icon_state = "harpyalt_top"
@@ -215,6 +219,10 @@
 	name = "Harpy (Top - Bat)"
 	icon_state = "harpybat_top"
 	color_src = USE_MATRIXED_COLORS
+
+/datum/sprite_accessory/wings/mammal/top/harpy/bat/fluffless
+	name = "Harpy (Top - Bat - Fluffless)"
+	icon_state = "harpybat_fluffless_top"
 
 /datum/sprite_accessory/wings/mammal/pterodactyl
 	name = "Pterodactyl"

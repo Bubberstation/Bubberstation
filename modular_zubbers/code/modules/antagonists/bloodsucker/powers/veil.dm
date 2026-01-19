@@ -104,7 +104,7 @@
 	SIGNAL_HANDLER
 
 	identity[VISIBLE_NAME_FACE] = disguise_name
-	user.SetSpecialVoice(disguise_name)
+	user.get_message_voice(disguise_name)
 
 /datum/action/cooldown/bloodsucker/veil/DeactivatePower(deactivate_flags)
 	. = ..()
@@ -112,7 +112,7 @@
 		return
 	var/mob/living/carbon/human/user = owner
 	// Revert Identity
-	user.UnsetSpecialVoice()
+	user.get_message_voice()
 
 	// Revert Appearance
 	user.gender = prev_gender

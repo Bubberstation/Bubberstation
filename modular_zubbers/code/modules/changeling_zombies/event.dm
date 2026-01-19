@@ -23,14 +23,14 @@
 /datum/supply_pack/misc/changeling_zombie
 	name = "NT-CZV-1 Vials"
 	desc = "Contains a NT-CZV vials. Highly classified."
-	special = TRUE //Cannot be ordered via cargo
+	order_flags = ORDER_SPECIAL // Can only be sent by admins
 	contains = list() //We don't put contents in this to do snowflake content in populate_contents
 	crate_type = /obj/structure/closet/crate/changeling_zombie
 
 /obj/structure/closet/crate/changeling_zombie/PopulateContents()
 	new /obj/item/reagent_containers/cup/glass/changeling_zombie_virus(src)
 	var/obj/item/reagent_containers/cup/glass/changeling_zombie_virus/empty/broken_one = new(src)
-	broken_one.smash(src.loc,null,FALSE,TRUE)
+	broken_one.smash(src.loc, null, null, TRUE)
 
 //The cure.
 /obj/item/paper/fluff/shuttles/changeling_zombie_instructions/Initialize(mapload, ...)

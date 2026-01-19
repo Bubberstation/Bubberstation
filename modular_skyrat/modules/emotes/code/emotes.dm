@@ -258,7 +258,7 @@
 				'modular_skyrat/modules/emotes/sound/emotes/clap4.ogg')
 
 /datum/emote/living/clap/can_run_emote(mob/living/carbon/user, status_check = TRUE , intentional)
-	if(user.usable_hands < 2)
+	if(!istype(user) || user.usable_hands < 2)
 		return FALSE
 	return ..()
 
@@ -275,8 +275,14 @@
 	return pick('modular_zubbers/sound/emotes/claponce1.ogg',
 				'modular_zubbers/sound/emotes/claponce2.ogg')
 
+/datum/emote/living/slowclap
+	key = "slowclap"
+	message = "activates their slow clap processor."
+	emote_type = EMOTE_AUDIBLE
+	sound = 'sound/machines/slowclap.ogg'
+
 /datum/emote/living/clap1/can_run_emote(mob/living/carbon/user, status_check = TRUE , intentional)
-	if(user.usable_hands < 2)
+	if(!istype(user) || user.usable_hands < 2)
 		return FALSE
 	return ..()
 
@@ -415,7 +421,7 @@
 	sound = 'modular_skyrat/modules/emotes/sound/voice/howl.ogg'
 
 /datum/emote/living/howl/can_run_emote(mob/living/carbon/user, status_check = TRUE , intentional)
-	if(!HAS_TRAIT(user, TRAIT_CANINE))
+	if(!HAS_TRAIT(user, TRAIT_CANINE) && !islycan(user))
 		return FALSE
 	return ..()
 

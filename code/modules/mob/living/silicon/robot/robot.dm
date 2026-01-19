@@ -88,7 +88,13 @@
 	log_silicon("New cyborg [key_name(src)] created with [connected_ai ? "master AI: [key_name(connected_ai)]" : "no master AI"]")
 	log_current_laws()
 
-	alert_control = new(src, list(ALARM_ATMOS, ALARM_FIRE, ALARM_POWER, ALARM_CAMERA, ALARM_BURGLAR, ALARM_MOTION), list(z))
+	var/static/list/alert_areas
+	if(isnull(alert_areas))
+		alert_areas = (GLOB.the_station_areas + typesof(/area/mine))
+	if(is_station_level(z))
+		alert_control = new(src, list(ALARM_ATMOS, ALARM_FIRE, ALARM_POWER, ALARM_CAMERA, ALARM_BURGLAR, ALARM_MOTION), SSmapping.levels_by_trait(ZTRAIT_STATION), alert_areas)
+	else
+		alert_control = new(src, list(ALARM_ATMOS, ALARM_FIRE, ALARM_POWER, ALARM_CAMERA, ALARM_BURGLAR, ALARM_MOTION), (SSmapping.levels_by_trait(ZTRAIT_STATION) + z), alert_areas)
 	RegisterSignal(alert_control.listener, COMSIG_ALARM_LISTENER_TRIGGERED, PROC_REF(alarm_triggered))
 	RegisterSignal(alert_control.listener, COMSIG_ALARM_LISTENER_CLEARED, PROC_REF(alarm_cleared))
 	alert_control.listener.RegisterSignal(src, COMSIG_LIVING_DEATH, TYPE_PROC_REF(/datum/alarm_listener, prevent_alarm_changes))
@@ -326,7 +332,13 @@
 		eye_lights.layer = -2 //Bubber edit
 		add_overlay(eye_lights)
 
-	if(opened && !(TRAIT_R_UNIQUEPANEL in model.model_features))
+	var/obj/item/shield_module/shield_module = locate(/obj/item/shield_module) in src
+	if(shield_module && shield_module.active)
+		add_overlay(shield_module.shield_overlay)
+	else if (shield_module && !shield_module.active)
+		cut_overlay(shield_module.shield_overlay)
+
+	if(opened && !(TRAIT_R_UNIQUEPANEL in model.model_features)) // BUBBER EDIT - ADDITION
 		if(wiresexposed)
 			add_overlay("ov-opencover +w")
 		else if(cell)

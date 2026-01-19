@@ -2,7 +2,7 @@
 /obj/item/organ/cyberimp
 	name = "cybernetic implant"
 	desc = "A state-of-the-art implant that improves a baseline's functionality."
-
+	abstract_type = /obj/item/organ/cyberimp
 	organ_flags = ORGAN_ROBOTIC
 	failing_desc = "seems to be broken."
 	/// icon of the bodypart overlay we're going to be applying to our owner
@@ -202,8 +202,8 @@
 	owner.SetKnockdown(0)
 	owner.SetImmobilized(0)
 	owner.SetParalyzed(0)
-	owner.setStaminaLoss(0)
-	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob/living, setStaminaLoss), 0), stun_resistance_time)
+	owner.set_stamina_loss(0)
+	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob/living, set_stamina_loss), 0), stun_resistance_time)
 
 	var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread
 	sparks.set_up(5, 1, src)

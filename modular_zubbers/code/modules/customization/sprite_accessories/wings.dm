@@ -61,6 +61,14 @@
 	dimension_y = 32
 	color_src = USE_MATRIXED_COLORS
 
+/datum/sprite_accessory/wings/mammal/top/mantis
+	name = "Mantis (Top)"
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/wings.dmi'
+	icon_state = "mantis_top"
+	dimension_x = 32
+	dimension_y = 32
+	color_src = USE_MATRIXED_COLORS
+
 /datum/sprite_accessory/wings/mammal/tarantula
 	name = "Tarantula"
 	icon = 'modular_zubbers/icons/mob/sprite_accesory/wings.dmi'
@@ -89,6 +97,14 @@
 	name = "Spiderlegs (Thick)"
 	icon = 'modular_zubbers/icons/mob/sprite_accesory/wings.dmi'
 	icon_state = "spiderlegs_thick"
+	dimension_x = 32
+	dimension_y = 32
+	color_src = USE_MATRIXED_COLORS
+
+/datum/sprite_accessory/wings/mammal/spiderlegs/thick
+	name = "Half Spiderlegs (Thick)"
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/wings.dmi'
+	icon_state = "half_spiderlegs_thick"
 	dimension_x = 32
 	dimension_y = 32
 	color_src = USE_MATRIXED_COLORS

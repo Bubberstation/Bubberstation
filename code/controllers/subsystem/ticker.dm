@@ -14,7 +14,11 @@ SUBSYSTEM_DEF(ticker)
 	/// or a "round-ending" event, like summoning Nar'Sie, a blob victory, the nuke going off, etc. ([FORCE_END_ROUND])
 	var/force_ending = END_ROUND_AS_NORMAL
 	/// If TRUE, there is no lobby phase, the game starts immediately.
+	#ifdef ABSOLUTE_MINIMUM
+	var/start_immediately = TRUE
+	#else
 	var/start_immediately = FALSE
+	#endif
 	/// Boolean to track and check if our subsystem setup is done.
 	var/setup_done = FALSE
 
@@ -73,21 +77,6 @@ SUBSYSTEM_DEF(ticker)
 	var/discord_alerted = FALSE //SKYRAT EDIT - DISCORD PING SPAM PREVENTION
 
 /datum/controller/subsystem/ticker/Initialize()
-	var/list/byond_sound_formats = list(
-		"mid" = TRUE,
-		"midi" = TRUE,
-		"mod" = TRUE,
-		"it" = TRUE,
-		"s3m" = TRUE,
-		"xm" = TRUE,
-		"oxm" = TRUE,
-		"wav" = TRUE,
-		"ogg" = TRUE,
-		"raw" = TRUE,
-		"wma" = TRUE,
-		"aiff" = TRUE,
-	)
-
 	var/list/provisional_title_music = flist("[global.config.directory]/title_music/sounds/")
 	var/list/music = list()
 	var/use_rare_music = prob(1)
@@ -115,11 +104,8 @@ SUBSYSTEM_DEF(ticker)
 		music -= old_login_music
 
 	for(var/S in music)
-		var/list/L = splittext(S,".")
-		if(L.len >= 2)
-			var/ext = LOWER_TEXT(L[L.len]) //pick the real extension, no 'honk.ogg.exe' nonsense here
-			if(byond_sound_formats[ext])
-				continue
+		if(IS_SOUND_FILE(S))
+			continue
 		music -= S
 
 	if(!length(music))
@@ -173,7 +159,7 @@ SUBSYSTEM_DEF(ticker)
 			for(var/channel_tag in CONFIG_GET(str_list/channel_announce_new_game))
 				// BUBBER EDIT CHANGE BEGIN - Replace with more rich message
 				// send2chat(new /datum/tgs_message_content("New round starting on [SSmapping.current_map.map_name]!"), channel_tag)
-				send2chat(new /datum/tgs_message_content("<@&[CONFIG_GET(string/game_alert_role_id)]> Round **[GLOB.round_id]** starting on [SSmapping.current_map.map_name], [CONFIG_GET(string/servername)]! \nIf you wish to be pinged for game related stuff, go to <#[CONFIG_GET(string/role_assign_channel_id)]> and assign yourself the roles."), channel_tag)
+				send2chat(new /datum/tgs_message_content("Round **[GLOB.round_id]** starting on [SSmapping.current_map.map_name], [CONFIG_GET(string/servername)]! \nIf you wish to be pinged for game related stuff, go to <#[CONFIG_GET(string/role_assign_channel_id)]> and assign yourself the roles."), channel_tag)
 				// BUBBER EDIT CHANGE END - Replace with more rich message
 			current_state = GAME_STATE_PREGAME
 		// BUBBERSTATION EDIT START
@@ -196,12 +182,15 @@ SUBSYSTEM_DEF(ticker)
 			totalPlayers = LAZYLEN(GLOB.new_player_list)
 			totalPlayersReady = 0
 			total_admins_ready = 0
+			var/list/readied_players = list() //BUBBER EDIT ADDITION
 			for(var/mob/dead/new_player/player as anything in GLOB.new_player_list)
 				if(player.ready == PLAYER_READY_TO_PLAY)
+					readied_players[player.key] = player //BUBBER EDIT: job estimation, filling the readied list we use later
 					++totalPlayersReady
 					if(player.client?.holder)
 						++total_admins_ready
 
+			job_estimation_list = get_job_estimation(readied_players) //BUBBER EDIT ADDITION
 			if(start_immediately)
 				timeLeft = 0
 
@@ -253,9 +242,19 @@ SUBSYSTEM_DEF(ticker)
 		return TRUE
 	return FALSE
 
+/// Gets a list of players with their readied state so we can post it as a log
+/datum/controller/subsystem/ticker/proc/get_player_ready_states()
+	var/list/player_states = list()
+	for(var/mob/dead/new_player/player as anything in GLOB.new_player_list)
+		player_states[player.ckey] = player.ready
+	return player_states
+
 /datum/controller/subsystem/ticker/proc/setup()
 	to_chat(world, span_boldannounce("Starting game..."))
 	var/init_start = world.timeofday
+
+	var/list/players_and_readiness = get_player_ready_states()
+	log_game("Players and Readiness: [json_encode(players_and_readiness)]", players_and_readiness)
 
 	CHECK_TICK
 	//Configure mode and assign player to antagonists
@@ -271,7 +270,7 @@ SUBSYSTEM_DEF(ticker)
 	can_continue = can_continue && SSjob.divide_occupations() //Distribute jobs
 	CHECK_TICK
 
-	if(!GLOB.Debug2)
+	if(!GLOB.debugging_enabled)
 		if(!can_continue)
 			log_game("Game failed pre_setup")
 			to_chat(world, "<B>Error setting up game.</B> Reverting to pre-game lobby.")
@@ -345,7 +344,11 @@ SUBSYSTEM_DEF(ticker)
 		GLOB.communications_controller.queue_roundstart_report()
 	*/// BUBBER EDIT REMOVAL END - Storyteller
 	// Queue admin logout report
-	addtimer(CALLBACK(src, PROC_REF(display_roundstart_logout_report)), ROUNDSTART_LOGOUT_REPORT_TIME)
+	var/roundstart_logout_timer = CONFIG_GET(number/roundstart_logout_report_time_average)
+	var/roundstart_report_variance = CONFIG_GET(number/roundstart_logout_report_time_variance)
+	var/randomized_callback_timer = rand((roundstart_logout_timer - roundstart_report_variance), (roundstart_logout_timer + roundstart_report_variance))
+	addtimer(CALLBACK(src, PROC_REF(display_roundstart_logout_report)), randomized_callback_timer)
+	GLOB.logout_timer_set = randomized_callback_timer
 	// Queue suicide slot handling
 	if(CONFIG_GET(flag/reopen_roundstart_suicide_roles))
 		var/delay = (CONFIG_GET(number/reopen_roundstart_suicide_roles_delay) * 1 SECONDS) || 4 MINUTES
@@ -402,6 +405,7 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/display_roundstart_logout_report()
 	var/list/msg = list("[span_boldnotice("Roundstart logout report")]\n\n")
+
 	for(var/i in GLOB.mob_living_list)
 		var/mob/living/L = i
 		var/mob/living/carbon/C = L
@@ -414,7 +418,7 @@ SUBSYSTEM_DEF(ticker)
 
 		if(L.ckey && L.client)
 			var/failed = FALSE
-			if(L.client.inactivity >= ROUNDSTART_LOGOUT_AFK_THRESHOLD) //Connected, but inactive (alt+tabbed or something)
+			if(L.client.inactivity >= GLOB.logout_timer_set) //Connected, but inactive (alt+tabbed or something)
 				msg += "<b>[L.name]</b> ([L.key]), the [L.job] (<font color='#ffcc00'><b>Connected, Inactive</b></font>)\n"
 				failed = TRUE //AFK client
 			if(!failed && L.stat)
@@ -444,6 +448,8 @@ SUBSYSTEM_DEF(ticker)
 					else
 						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] ([span_bolddanger("Ghosted")])\n"
 						continue //Ghosted while alive
+
+	msg += "[span_boldnotice("Roundstart logout reported at: [DisplayTimeText(GLOB.logout_timer_set)]")]\n"
 
 	var/concatenated_message = msg.Join()
 	log_admin(concatenated_message)
@@ -579,10 +585,15 @@ SUBSYSTEM_DEF(ticker)
 			var/acting_captain = !is_captain_job(player_assigned_role)
 			SSjob.promote_to_captain(new_player_living, acting_captain)
 			OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce), player_assigned_role.get_captaincy_announcement(new_player_living)))
-		if((player_assigned_role.job_flags & JOB_ASSIGN_QUIRKS) && ishuman(new_player_living) && CONFIG_GET(flag/roundstart_traits))
-			if(new_player_mob.client?.prefs?.should_be_random_hardcore(player_assigned_role, new_player_living.mind))
-				new_player_mob.client.prefs.hardcore_random_setup(new_player_living)
-			SSquirks.AssignQuirks(new_player_living, new_player_mob.client)
+		if(ishuman(new_player_living))
+			if(player_assigned_role.job_flags & JOB_ASSIGN_QUIRKS)
+				if(CONFIG_GET(flag/roundstart_traits))
+					if(new_player_mob.client?.prefs?.should_be_random_hardcore(player_assigned_role, new_player_living.mind))
+						new_player_mob.client.prefs.hardcore_random_setup(new_player_living)
+					SSquirks.AssignQuirks(new_player_living, new_player_mob.client)
+			else // clear any personalities the prefs added since our job clearly does not want them
+				new_player_living.clear_personalities()
+
 		if(ishuman(new_player_living))
 			SEND_SIGNAL(new_player_living, COMSIG_HUMAN_CHARACTER_SETUP_FINISHED)
 		CHECK_TICK

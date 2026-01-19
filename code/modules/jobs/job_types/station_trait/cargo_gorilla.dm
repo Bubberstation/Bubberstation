@@ -1,7 +1,6 @@
 /datum/job/cargo_gorilla
 	title = JOB_CARGO_GORILLA
 	description = "Assist the supply department by moving freight and disposing of unwanted fruits."
-	department_head = list(JOB_QUARTERMASTER)
 	faction = FACTION_STATION
 	total_positions = 0
 	spawn_positions = 0
@@ -34,7 +33,7 @@
 	. = ..()
 	// Gorilla with a wage, what's he buyin?
 	var/datum/bank_account/bank_account = new(spawned.real_name, src)
-	bank_account.payday(STARTING_PAYCHECKS, TRUE)
+	bank_account.payday(STARTING_PAYCHECKS, free = TRUE)
 	bank_account.replaceable = FALSE
 	spawned.add_mob_memory(/datum/memory/key/account, remembered_id = bank_account.account_id)
 

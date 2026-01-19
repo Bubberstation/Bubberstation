@@ -14,7 +14,7 @@
 				continue
 			for(var/id in illegal_mech_node.design_ids)
 				var/datum/design/illegal_mech_design = SSresearch.techweb_design_by_id(id)
-				illegal_local_designs |= illegal_mech_design
+//				illegal_local_designs |= illegal_mech_design // Fix this if it's broken after.
 				cached_designs |= illegal_mech_design
 		say("R$c!i&ed ERROR de#i$ns. C@n%ec$%ng to ~NULL~ se%ve$s.")
 		playsound(src, 'sound/machines/uplink/uplinkerror.ogg', 50, TRUE)

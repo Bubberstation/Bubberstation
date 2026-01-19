@@ -6,11 +6,11 @@
 	icon_state = "blacktumor"
 	var/causes_damage = TRUE
 	var/datum/species/old_species = /datum/species/human
-	var/living_transformation_time = 30
+	var/living_transformation_time = 3 SECONDS
 	var/converts_living = FALSE
 
-	var/revive_time_min = 450
-	var/revive_time_max = 700
+	var/revive_time_min = 45 SECONDS
+	var/revive_time_max = 70 SECONDS
 	var/timer_id
 
 /obj/item/organ/zombie_infection/Initialize(mapload)
@@ -61,7 +61,7 @@
 	if(owner.mob_biotypes & MOB_MINERAL)//does not process in inorganic things
 		return
 	if (causes_damage && !iszombie(owner) && owner.stat != DEAD)
-		owner.adjustToxLoss(0.5 * seconds_per_tick)
+		owner.adjust_tox_loss(0.5 * seconds_per_tick)
 		if (SPT_PROB(5, seconds_per_tick))
 			to_chat(owner, span_danger("You feel sick..."))
 	if(timer_id || HAS_TRAIT(owner, TRAIT_SUICIDED) || !owner.get_organ_by_type(/obj/item/organ/brain))

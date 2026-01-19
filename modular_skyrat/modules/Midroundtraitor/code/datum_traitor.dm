@@ -1,5 +1,5 @@
 /datum/antagonist/traitor/lone_infiltrator
-	name = "Lone Infiltrator"
+	name = "Syndicate Boarder"
 	var/infil_outfit = /datum/outfit/syndicateinfiltrator
 	preview_outfit = /datum/outfit/lone_infiltrator_preview
 	pref_flag = ROLE_LONE_INFILTRATOR
@@ -15,7 +15,7 @@
 /datum/outfit/lone_infiltrator_preview
 	name = "Lone Infiltrator (Preview only)"
 
-	back = /obj/item/mod/control/pre_equipped/empty/syndicate
+	back = /obj/item/mod/control/pre_equipped/empty/infiltrator/preview_only
 	uniform = /obj/item/clothing/under/syndicate
 	l_hand = /obj/item/shield/energy
 	r_hand = /obj/item/gun/ballistic/automatic/c20r

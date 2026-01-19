@@ -579,7 +579,7 @@
 	return TRUE
 
 /obj/item/borg_shapeshifter/attack_self(mob/living/silicon/robot/user)
-	if (user && user.cell && user.cell.charge >  activationCost)
+	if (user && use_power(user, activationCost))
 		if (isturf(user.loc))
 			toggle(user)
 		else
@@ -665,7 +665,7 @@
 			f = user.filters[start+i]
 			animate(f, offset=f:offset, time=0, loop=3, flags=ANIMATION_PARALLEL)
 			animate(offset=f:offset-1, time=rand()*20+10)
-		if (do_after(user, 5 SECONDS, target=user) && user.cell.use(activationCost))
+		if (do_after(user, 5 SECONDS, target=user) && use_power(user, activationCost))
 			playsound(src, 'sound/effects/bamf.ogg', 100, TRUE, -6)
 			to_chat(user, span_notice("You are now disguised."))
 			activate(user)
@@ -686,7 +686,7 @@
 		var/list/details = disguise_model.borg_skins[skin]
 		var/image/reskin = image(icon = details[SKIN_ICON] || 'icons/mob/silicon/robots.dmi', icon_state = details[SKIN_ICON_STATE])
 		if (!isnull(details[SKIN_FEATURES]))
-			if (TRAIT_R_WIDE in details[SKIN_FEATURES])
+			if ((TRAIT_R_WIDE in details[SKIN_FEATURES]) || (TRAIT_R_BIG in details[SKIN_FEATURES]))
 				reskin.pixel_x -= 16
 		reskin_icons[skin] = reskin
 	var/borg_skin = show_radial_menu(cyborg, cyborg, reskin_icons, custom_check = CALLBACK(src, PROC_REF(check_menu), cyborg), radius = 38, require_near = TRUE)
@@ -702,10 +702,17 @@
 	return TRUE
 
 /obj/item/borg_shapeshifter/process()
-	if (user && !user.cell?.use(activationUpkeep))
+	if (user && !use_power(user, activationUpkeep))
 		disrupt(user)
 	else
 		return PROCESS_KILL
+
+/obj/item/borg_shapeshifter/proc/use_power(mob/living/silicon/robot/user, amount)
+	if(!istype(user))
+		return 0
+	if(!amount)
+		return 1
+	return user.cell?.use(amount)
 
 /obj/item/borg_shapeshifter/proc/activate(mob/living/silicon/robot/user)
 	src.user = user

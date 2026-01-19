@@ -21,15 +21,18 @@ type Department = {
 export const DEPARTMENT2COLOR: Record<string, Department> = {
   cargo: {
     color: 'brown',
-    trims: ['Bitrunner', 'Cargo Technician', 'Shaft Miner', 'Quartermaster'],
+    trims: ['Bitrunner', 'Cargo Technician', 'Shaft Miner', 'Quartermaster', 'Blacksmith', 'Customs Agent' ],
+    // BUBBER EDIT ADDITION - Blacksmith, Customs Agent
   },
   command: {
     color: 'blue',
-    trims: ['Captain', 'Head of Personnel'],
+    trims: ['Captain', 'Head of Personnel', 'Nanotrasen Consultant', 'Blueshield', 'Bridge Assistant'],
+    // BUBBER EDIT ADDITION - Nanotrasen Consultant, Blueshield, Bridge Assistant
   },
   engineering: {
     color: 'orange',
-    trims: ['Atmospheric Technician', 'Chief Engineer', 'Station Engineer'],
+    trims: ['Atmospheric Technician', 'Chief Engineer', 'Station Engineer', 'Telecomms Specialist', 'Engineering Guard'],
+    // BUBBER EDIT ADDITION - Telecomms Specialist, Engineering Guard
   },
   medical: {
     color: 'teal',
@@ -39,15 +42,18 @@ export const DEPARTMENT2COLOR: Record<string, Department> = {
       'Coroner',
       'Medical Doctor',
       'Paramedic',
+      'Orderly',  // BUBBER EDIT ADDITION
     ],
   },
   science: {
     color: 'pink',
-    trims: ['Geneticist', 'Research Director', 'Roboticist', 'Scientist'],
+    trims: ['Geneticist', 'Research Director', 'Roboticist', 'Scientist', 'Science Guard'],
+    // BUBBER EDIT ADDITION - Science Guard
   },
   security: {
     color: 'red',
-    trims: ['Detective', 'Head of Security', 'Security Officer', 'Warden'],
+    trims: ['Detective', 'Head of Security', 'Security Officer', 'Warden', 'Security Medic', 'Corrections Officer'],
+    // BUBBER EDIT ADDITION - Security Medic, Corrections Officer
   },
   service: {
     color: 'green',
@@ -63,6 +69,8 @@ export const DEPARTMENT2COLOR: Record<string, Department> = {
       'Lawyer',
       'Mime',
       'Psychologist',
+      'Barber',  // BUBBER EDIT ADDITION
+      'Bouncer',  // BUBBER EDIT ADDITION
     ],
   },
 };
