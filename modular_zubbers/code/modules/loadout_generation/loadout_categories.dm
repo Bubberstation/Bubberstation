@@ -15,6 +15,11 @@
 	generation_subtypes_whitelist = list(
 		/obj/item/clothing/glasses
 	)
+	generation_subtypes_blacklist = list(
+		/obj/item/clothing/glasses/meson,
+		/obj/item/clothing/glasses/hud,
+		/obj/item/clothing/mask/facehugger
+	)
 
 /datum/loadout_category/shoes
 	generation_subtypes_whitelist = list(
@@ -31,11 +36,6 @@
 		/obj/item/clothing/neck
 	)
 
-/datum/loadout_category/accessories
-	generation_subtypes_whitelist = list(
-		/obj/item/clothing/accessory
-	)
-
 /datum/loadout_category/belts
 	generation_subtypes_whitelist = list(
 		/obj/item/storage/belt/fannypack
@@ -50,10 +50,16 @@
 	generation_subtypes_whitelist = list(
 		/obj/item/clothing/gloves
 	)
+	generation_subtypes_blacklist = list(
+		/obj/item/clothing/gloves/tackler
+	)
 
 /datum/loadout_category/mask
 	generation_subtypes_whitelist = list(
 		/obj/item/clothing/mask
+	)
+	generation_subtypes_blacklist = list(
+		/obj/item/clothing/mask/muzzle
 	)
 
 /datum/loadout_category/uniform
