@@ -24,8 +24,8 @@
 		TRAIT_MUTANT_COLORS,
 		TRAIT_NO_UNDERWEAR,
 		TRAIT_NO_SLIP_ALL,
-
 	)
+
 	no_equip_flags = ITEM_SLOT_FEET | ITEM_SLOT_OCLOTHING | ITEM_SLOT_SUITSTORE
 	inherent_biotypes = MOB_ORGANIC | MOB_HUMANOID
 	no_gender_shaping = TRUE
