@@ -2,7 +2,6 @@
 	title = JOB_NT_REP
 	rpg_title = "Guild Adviser"
 	description = "Represent Nanotrasen on the station, argue with the HoS about why he can't just field execute people for petty theft, get drunk in your office."
-	department_head = list(JOB_CENTCOM)
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
@@ -64,7 +63,7 @@
 	messenger = /obj/item/storage/backpack/messenger
 
 	implants = list(/obj/item/implant/mindshield)
-	accessory = /obj/item/clothing/accessory/medal/gold/nanotrasen_consultant
+	accessory = /obj/item/clothing/accessory/bubber/acc_medal/neckpin/centcom
 
 	chameleon_extras = list(/obj/item/gun/energy/e_gun, /obj/item/stamp/centcom)
 

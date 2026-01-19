@@ -3,7 +3,6 @@
 	description = "Investigate crimes, gather evidence, perform interrogations, \
 		look badass, smoke cigarettes."
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
-	department_head = list(JOB_HEAD_OF_SECURITY)
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
@@ -23,6 +22,7 @@
 	paycheck = PAYCHECK_CREW
 	paycheck_department = ACCOUNT_SEC
 
+	mind_traits = list(SECURITY_MIND_TRAITS)
 	liver_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
 	display_order = JOB_DISPLAY_ORDER_DETECTIVE
@@ -70,6 +70,7 @@
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	l_pocket = /obj/item/modular_computer/pda/detective // SKYRAT EDIT CHANGE - ORIGINAL: /obj/item/toy/crayon/white
 	r_pocket = /obj/item/lighter
+	pda_slot = ITEM_SLOT_LPOCKET // BUBBER EDIT ADDITION
 
 	chameleon_extras = list(
 		/obj/item/clothing/glasses/sunglasses,

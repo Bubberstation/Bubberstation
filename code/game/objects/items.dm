@@ -184,7 +184,7 @@
 	VAR_PROTECTED/datum/embedding/embed_data
 
 	///for flags such as [GLASSESCOVERSEYES]
-	var/flags_cover = 0
+	var/flags_cover = NONE
 	var/heat = 0
 	/// All items with sharpness of SHARP_EDGED or higher will automatically get the butchering component.
 	var/sharpness = NONE
@@ -225,7 +225,7 @@
 	///What dye registry should be looked at when dying this item; see washing_machine.dm
 	var/dying_key
 
-	///Grinder var:A reagent list containing the reagents this item produces when ground up in a grinder - this can be an empty list to allow for reagent transferring only
+	/// A lazy reagent list containing the reagents this item produces when ground up in a grinder
 	var/list/grind_results
 	///A reagent the nutriments are converted into when the item is juiced.
 	var/datum/reagent/consumable/juice_typepath
@@ -236,22 +236,10 @@
 	var/override_notes = FALSE
 	/// Used if we want to have a custom verb text for throwing. "John Spaceman flicks the ciggerate" for example.
 	var/throw_verb
-	// SKYRAT EDIT ADDITION START
-	/// Does this use the advanced reskinning setup?
-	var/uses_advanced_reskins = FALSE
-	// SKYRAT EDIT ADDITION END
 
 	/// A lazylist used for applying fantasy values, contains the actual modification applied to a variable.
 	var/list/fantasy_modifications = null
 
-	/// Has the item been reskinned?
-	var/current_skin
-	/// List of options to reskin.
-	var/list/unique_reskin
-	/// If reskins change base icon state as well
-	var/unique_reskin_changes_base_icon_state = FALSE
-	/// If reskins change inhands as well
-	var/unique_reskin_changes_inhand = FALSE
 	/// Do we apply a click cooldown when resisting this object if it is restraining them?
 	var/resist_cooldown = CLICK_CD_BREAKOUT
 
@@ -287,9 +275,6 @@
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NEW_ITEM, src)
 
-	setup_reskinning()
-
-
 /obj/item/Destroy(force)
 	// This var exists as a weird proxy "owner" ref
 	// It's used in a few places. Stop using it, and optimially replace all uses please
@@ -303,19 +288,6 @@
 		remove_item_action(action)
 
 	return ..()
-
-
-/obj/item/add_context(atom/source, list/context, obj/item/held_item, mob/user)
-	. = ..()
-
-	if(!unique_reskin)
-		return
-
-	if(current_skin && !(obj_flags & INFINITE_RESKIN))
-		return
-
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "Reskin"
-	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/click_ctrl(mob/user)
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -445,6 +417,8 @@
 		worn_icon_taur_paw = SSgreyscale.GetColoredIconByType(greyscale_config_worn_taur_paw, greyscale_colors)
 	if(greyscale_config_worn_taur_hoof)
 		worn_icon_taur_hoof = SSgreyscale.GetColoredIconByType(greyscale_config_worn_taur_hoof, greyscale_colors)
+	if(greyscale_config_worn_taur_big)
+		worn_icon_taur_big = SSgreyscale.GetColoredIconByType(greyscale_config_worn_taur_big, greyscale_colors)
 	// SKYRAT EDIT ADD END
 	if(greyscale_config_inhand_left)
 		lefthand_file = SSgreyscale.GetColoredIconByType(greyscale_config_inhand_left, greyscale_colors)
@@ -481,19 +455,6 @@
 		.["insulated"] = "It is made from a robust electrical insulator and will block any electricity passing through it!"
 	else if (siemens_coefficient <= 0.5)
 		.["partially insulated"] = "It is made from a poor insulator that will dampen (but not fully block) electric shocks passing through it."
-
-	if(resistance_flags & INDESTRUCTIBLE)
-		.["indestructible"] = "It is extremely robust! It'll probably withstand anything that could happen to it!"
-		return
-
-	if(resistance_flags & LAVA_PROOF)
-		.["lavaproof"] = "It is made of an extremely heat-resistant material, it'd probably be able to withstand lava!"
-	if(resistance_flags & (ACID_PROOF | UNACIDABLE))
-		.["acidproof"] = "It looks pretty robust! It'd probably be able to withstand acid!"
-	if(resistance_flags & FREEZE_PROOF)
-		.["freezeproof"] = "It is made of cold-resistant materials."
-	if(resistance_flags & FIRE_PROOF)
-		.["fireproof"] = "It is made of fire-retardant materials."
 
 /obj/item/examine_descriptor(mob/user)
 	return "item"
@@ -648,7 +609,7 @@
 	if(throwing)
 		throwing.finalize(FALSE)
 	if(loc == user && outside_storage)
-		if(!allow_attack_hand_drop(user) || !user.temporarilyRemoveItemFromInventory(src))
+		if(!can_mob_unequip(user) || !user.temporarilyRemoveItemFromInventory(src))
 			return
 
 	. = FALSE
@@ -658,7 +619,9 @@
 		user.dropItemToGround(src)
 		return TRUE
 
-/obj/item/proc/allow_attack_hand_drop(mob/user)
+/// Called when a mob is manually attempting to unequip the item
+/// Returning FALSE will prevent the unequip from happening
+/obj/item/proc/can_mob_unequip(mob/user)
 	return TRUE
 
 /obj/item/attack_paw(mob/user, list/modifiers)
@@ -775,10 +738,10 @@
 
 	if(item_flags & DROPDEL && !QDELETED(src))
 		qdel(src)
-	item_flags &= ~IN_INVENTORY
 	UnregisterSignal(src, list(SIGNAL_ADDTRAIT(TRAIT_NO_WORN_ICON), SIGNAL_REMOVETRAIT(TRAIT_NO_WORN_ICON)))
 	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
-	if(!silent)
+	SEND_SIGNAL(user, COMSIG_MOB_DROPPED_ITEM, src)
+	if(!silent && drop_sound)
 		play_drop_sound(DROP_SOUND_VOLUME)
 
 /// called just as an item is picked up (loc is not yet changed)
@@ -786,7 +749,6 @@
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_PICKUP, user)
 	SEND_SIGNAL(user, COMSIG_LIVING_PICKED_UP_ITEM, src)
-	item_flags |= IN_INVENTORY
 
 /// called when "found" in pockets and storage items. Returns 1 if the search should end.
 /obj/item/proc/on_found(mob/finder)
@@ -839,7 +801,6 @@
 	for(var/datum/action/action as anything in actions)
 		give_item_action(action, user, slot)
 
-	item_flags |= IN_INVENTORY
 	RegisterSignals(src, list(SIGNAL_ADDTRAIT(TRAIT_NO_WORN_ICON), SIGNAL_REMOVETRAIT(TRAIT_NO_WORN_ICON)), PROC_REF(update_slot_icon), override = TRUE)
 
 	if(!initial && (slot_flags & slot) && (play_equip_sound()))
@@ -1006,7 +967,7 @@
 
 /obj/item/proc/update_slot_icon()
 	SIGNAL_HANDLER
-	if(!ismob(loc))
+	if(!ismob(loc) || QDELETED(loc))
 		return
 	var/mob/owner = loc
 	owner.update_clothing(slot_flags | owner.get_slot_by_item(src))
@@ -1120,7 +1081,7 @@
 	PROTECTED_PROC(TRUE)
 
 	. = FALSE
-	if(length(grind_results))
+	if(LAZYLEN(grind_results))
 		target_holder.add_reagent_list(grind_results)
 		. = TRUE
 	if(reagents?.trans_to(target_holder, reagents.total_volume, transferred_by = user))
@@ -1246,9 +1207,13 @@
 			if("operative")
 				outline_color = COLOR_THEME_OPERATIVE
 			if("clockwork")
-				outline_color = COLOR_THEME_CLOCKWORK //if you want free gbp go fix the fact that clockwork's tooltip css is glass'
+				outline_color = COLOR_THEME_CLOCKWORK
 			if("glass")
 				outline_color = COLOR_THEME_GLASS
+			if("trasen-knox")
+				outline_color = COLOR_THEME_TRASENKNOX
+			if("detective")
+				outline_color = COLOR_THEME_DETECTIVE
 			else //this should never happen, hopefully
 				outline_color = COLOR_WHITE
 	if(color)
@@ -1361,28 +1326,26 @@
 /obj/item/proc/get_part_rating()
 	return 0
 
+/**
+ * this proc override makes sure that even if DoUnEquip is not properly called through the appropriate channels,
+ * it'll still be called if we find that the item has the IN_INVENTORY flag.
+ *
+ * THIS IS BY NO MEAN AN EXCUSE TO KNOWINGLY AVOID CALLING THE RIGHT PROCS FOR INVENTORY MANAGEMENT,
+ * BUT A FALLBACK IN THE CASE WE MISTAKINGLY DON'T, TO MAKE SURE THINGS WORK AS INTENDED SINCE
+ * INVENTORY MANAGEMENT HAS A LOT MORE TO IT THAN JUST CALLING A PROC OR TWO MANUALLY.
+ */
 /obj/item/doMove(atom/destination)
-	if (!ismob(loc))
+	if (!(item_flags & IN_INVENTORY))
+		return ..()
+
+	if(!ismob(loc))
+		stack_trace("[src] had the IN_INVENTORY flag but the location was not a mob!")
+		item_flags &= ~IN_INVENTORY
 		return ..()
 
 	var/mob/owner = loc
-	var/hand_index = owner.get_held_index_of_item(src)
-	if(!hand_index)
-		return ..()
-
-	owner.held_items[hand_index] = null
-	owner.update_held_items()
-	if(owner.client)
-		owner.client.screen -= src
-	if(owner.observers?.len)
-		for(var/mob/dead/observe as anything in owner.observers)
-			if(observe.client)
-				observe.client.screen -= src
-	layer = initial(layer)
-	SET_PLANE_IMPLICIT(src, initial(plane))
-	appearance_flags &= ~NO_CLIENT_COLOR
-	dropped(owner, FALSE)
-	return ..()
+	// This should remove the IN_INVENTORY flag. Otherwise we'll end up having a loop
+	owner.transferItemToLoc(src, destination, force = TRUE, silent = TRUE, animated = FALSE)
 
 /obj/item/proc/canStrip(mob/stripper, mob/owner)
 	SHOULD_BE_PURE(TRUE)
@@ -1562,75 +1525,6 @@
 		return TRUE // both must be able to hold items for this to make sense
 	if(SEND_SIGNAL(src, COMSIG_ITEM_OFFER_TAKEN, offerer, taker) & COMPONENT_OFFER_INTERRUPT)
 		return TRUE
-
-/// SKYRAT EDIT ADDITION START
-/obj/item/reskin_obj(mob/M)
-	if(!uses_advanced_reskins)
-		return ..()
-	if(!LAZYLEN(unique_reskin))
-		return
-
-	/// Is the obj a glasses icon with swappable item states?
-	var/is_swappable = FALSE
-	/// if the item are glasses, this variable stores the item.
-	var/obj/item/clothing/glasses/reskinned_glasses
-
-	if(istype(src, /obj/item/clothing/glasses)) // TODO - Remove this mess about glasses, it shouldn't be necessary anymore.
-		reskinned_glasses = src
-		if(reskinned_glasses.can_switch_eye)
-			is_swappable = TRUE
-
-	var/list/items = list()
-
-
-	for(var/reskin_option in unique_reskin)
-		var/image/item_image = image(icon = unique_reskin[reskin_option][RESKIN_ICON] ? unique_reskin[reskin_option][RESKIN_ICON] : icon, icon_state = "[unique_reskin[reskin_option][RESKIN_ICON_STATE]]")
-		items += list("[reskin_option]" = item_image)
-	sort_list(items)
-
-	var/pick = show_radial_menu(M, src, items, custom_check = CALLBACK(src, PROC_REF(check_reskin_menu), M), radius = 38, require_near = TRUE)
-	if(!pick)
-		return
-	if(!unique_reskin[pick])
-		return
-	current_skin = pick
-
-	if(unique_reskin[pick][RESKIN_ICON])
-		icon = unique_reskin[pick][RESKIN_ICON]
-
-	if(unique_reskin[pick][RESKIN_ICON_STATE])
-		if(is_swappable)
-			base_icon_state = unique_reskin[pick][RESKIN_ICON_STATE]
-			icon_state = base_icon_state
-		else
-			icon_state = unique_reskin[pick][RESKIN_ICON_STATE]
-
-	if(unique_reskin[pick][RESKIN_WORN_ICON])
-		worn_icon = unique_reskin[pick][RESKIN_WORN_ICON]
-
-	if(unique_reskin[pick][RESKIN_WORN_ICON_STATE])
-		worn_icon_state = unique_reskin[pick][RESKIN_WORN_ICON_STATE]
-
-	if(unique_reskin[pick][RESKIN_INHAND_L])
-		lefthand_file = unique_reskin[pick][RESKIN_INHAND_L]
-	if(unique_reskin[pick][RESKIN_INHAND_R])
-		righthand_file = unique_reskin[pick][RESKIN_INHAND_R]
-	if(unique_reskin[pick][RESKIN_INHAND_STATE])
-		inhand_icon_state = unique_reskin[pick][RESKIN_INHAND_STATE]
-	if(unique_reskin[pick][RESKIN_SUPPORTS_VARIATIONS_FLAGS])
-		supports_variations_flags = unique_reskin[pick][RESKIN_SUPPORTS_VARIATIONS_FLAGS]
-	if(ishuman(M))
-		var/mob/living/carbon/human/wearer = M
-		wearer.regenerate_icons() // update that mf
-	to_chat(M, "[src] is now skinned as '[pick].'")
-	post_reskin(M)
-	return TRUE
-
-/// Automatically called after a reskin, for any extra variable changes.
-/obj/item/proc/post_reskin(mob/our_mob)
-	return
-
-/// SKYRAT EDIT ADDITION END
 
 /// Special stuff you want to do when an outfit equips this item.
 /obj/item/proc/on_outfit_equip(mob/living/carbon/human/outfit_wearer, visuals_only, item_slot)
@@ -2264,3 +2158,11 @@
 		target_limb = victim.get_bodypart(target_limb) || victim.bodyparts[1]
 
 	return get_embed()?.embed_into(victim, target_limb)
+
+/// Checks if user can insert a valid container into the chemistry machine.
+/obj/item/proc/can_insert_container(mob/living/user, obj/machinery/chem_machine)
+	return is_chem_container() && chem_machine.can_interact(user) && user.can_perform_action(chem_machine, ALLOW_SILICON_REACH | FORBID_TELEKINESIS_REACH)
+
+/// Checks if this container is valid for use with chemistry machinery.
+/obj/item/proc/is_chem_container()
+	return FALSE

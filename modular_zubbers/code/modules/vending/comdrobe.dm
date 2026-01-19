@@ -1,87 +1,285 @@
+/obj/machinery/vending/access/command
+	name = "\improper Command Outfitting Station"
+	desc = "A vending machine for specialised clothing for members of Command."
+	product_ads = "File paperwork in style!;It's red so you can't see the blood!;You have the right to be fashionable!;Now you can be the fashion police you always wanted to be!"
+	icon = 'modular_zubbers/icons/obj/machines/vending.dmi'
+	icon_state = "commdrobe"
+	light_mask = "wardrobe-light-mask"
+	vend_reply = "Thank you for using the CommDrobe!"
+	auto_build_products = TRUE
+	payment_department = ACCOUNT_CMD
+	allow_custom = TRUE
+
+	refill_canister = /obj/item/vending_refill/wardrobe/comm_wardrobe
+	payment_department = ACCOUNT_CMD
+	light_color = COLOR_COMMAND_BLUE
+
+/obj/item/vending_refill/wardrobe/comm_wardrobe
+	machine_name = "CommDrobe"
+
 /obj/machinery/vending/access/command/build_access_list(list/access_lists)
-	. = ..()
-	access_lists["[ACCESS_CAPTAIN]"] += list(
+	access_lists["[ACCESS_CAPTAIN]"] = list(
+		// CAPTAIN
+		/obj/item/clothing/head/hats/caphat = 1,
+		/obj/item/clothing/head/caphat/beret = 1,
+		/obj/item/clothing/head/caphat/beret/alt = 1,
 		/obj/item/clothing/head/hats/warden/drill/captain = 1,
 		/obj/item/clothing/head/hats/warden/drill/blueshield = 1,
+		/obj/item/clothing/head/hats/caphat/parade = 1,
+		/obj/item/clothing/head/costume/crown/fancy = 1,
+		/obj/item/clothing/head/hats/caphat/bicorne = 1,
+		/obj/item/clothing/head/hats/caphat/sonnensoldner = 1,
+		/obj/item/clothing/head/hats/caphat/bunnyears_captain = 1,
+		/obj/item/clothing/under/rank/captain = 1,
+		/obj/item/clothing/under/rank/captain/skirt = 1,
+		/obj/item/clothing/under/rank/captain/dress = 1,
+		/obj/item/clothing/under/rank/captain/skyrat/kilt = 1,
+		/obj/item/clothing/under/rank/captain/skyrat/shipdress = 1,
+		/obj/item/clothing/under/rank/captain/skyrat/pilot = 1,
+		/obj/item/clothing/under/rank/captain/skyrat/pilot/skirt = 1,
 		/obj/item/clothing/under/rank/captain/dress = 1,
 		/obj/item/clothing/under/rank/blueshield/netra = 1,
-		/obj/item/clothing/gloves/netra = 1, //These are meant to go with the dress above it.
+		/obj/item/clothing/under/rank/captain/parade = 1,
 		/obj/item/clothing/under/bimpcap = 1,
+		/obj/item/clothing/suit/armor/vest/capcarapace/captains_formal = 1,
+		/obj/item/clothing/suit/armor/vest/capcarapace/jacket = 1,
+		/obj/item/clothing/suit/armor/vest/capcarapace/robe = 1,
+		/obj/item/clothing/suit/armor/vest/capcarapace/robe/overseer = 1,
+		/obj/item/clothing/suit/armor/vest/capcarapace/bathrobe = 1,
+		/obj/item/clothing/suit/armor/vest/capcarapace/suitjacket = 1,
+		/obj/item/clothing/suit/armor/vest/capcarapace/gambison = 1,
+		/obj/item/clothing/suit/armor/vest/capcarapace/winterovercoat = 1,
+		/obj/item/clothing/suit/armor/vest/capcarapace/overcoat = 1,
+		/obj/item/clothing/suit/jacket/capjacket = 1,
+		/obj/item/clothing/suit/hooded/wintercoat/captain = 1,
+		/obj/item/clothing/neck/cloak/cap = 1,
+		/obj/item/clothing/neck/mantle/capmantle = 1,
+		/obj/item/clothing/gloves/netra = 1,
+		/obj/item/storage/backpack/captain = 1,
+		/obj/item/storage/backpack/satchel/cap = 1,
+		/obj/item/storage/backpack/duffelbag/captain = 1,
+		/obj/item/storage/backpack/messenger/cap = 1,
+		/obj/item/clothing/shoes/sneakers/brown = 1,
 		/obj/item/clothing/head/hats/caphat/bunnyears_captain = 1,
 		/obj/item/clothing/under/rank/captain/bunnysuit = 1,
 		/obj/item/clothing/suit/armor/vest/capcarapace/tailcoat_captain = 1,
 		/obj/item/clothing/neck/tie/bunnytie/captain = 1,
+
+		// BLUESHIELD
+		/obj/item/clothing/head/beret/blueshield = 1,
+		/obj/item/clothing/head/beret/blueshield/navy = 1,
+		/obj/item/clothing/under/rank/blueshield = 1,
+		/obj/item/clothing/under/rank/blueshield/skirt = 1,
+		/obj/item/clothing/under/rank/blueshield/turtleneck = 1,
+		/obj/item/clothing/under/rank/blueshield/turtleneck/skirt = 1,
+		/obj/item/clothing/under/rank/blueshield/consult = 1,
+		/obj/item/clothing/under/rank/blueshield/consult/skirt = 1,
+		/obj/item/clothing/under/rank/blueshield/russian = 1,
+		/obj/item/clothing/under/rank/blueshield/formal = 1,
+		/obj/item/clothing/under/rank/blueshield/naval = 1,
+		/obj/item/clothing/suit/armor/vest/blueshield = 1,
+		/obj/item/clothing/suit/armor/vest/blueshield/jacket = 1,
+		/obj/item/clothing/neck/mantle/bsmantle = 1,
+		/obj/item/storage/backpack/blueshield = 1,
+		/obj/item/storage/backpack/satchel/blueshield = 1,
+		/obj/item/storage/backpack/duffelbag/blueshield = 1,
+		/obj/item/storage/backpack/messenger/blueshield = 1,
+		/obj/item/clothing/shoes/laceup = 1,
 	)
 
-	access_lists["[ACCESS_HOS]"] += list(
-		/obj/item/clothing/head/hats/warden/drill/hos = 1,
-		/obj/item/clothing/under/rank/security/head_of_security/alt/roselia = 1,
-		/obj/item/clothing/glasses/hud/security/sunglasses/gars/giga/roselia = 1,
-		/obj/item/clothing/under/rank/security/head_of_security/redsec = 1,
-		/obj/item/clothing/under/rank/security/head_of_security/parade/redsec = 1,
-		/obj/item/clothing/under/rank/security/head_of_security/parade/female/redsec = 1,
-		/obj/item/clothing/head/hats/hos/elofy = 1,
-		/obj/item/clothing/suit/armor/hos/elofy = 1,
-		/obj/item/clothing/gloves/elofy = 1, //Part of a set so...
-		/obj/item/clothing/shoes/jackboots/elofy = 1,
-		/obj/item/clothing/head/playbunnyears/hos = 1,
-		/obj/item/clothing/under/rank/security/head_of_security/bunnysuit = 1,
-		/obj/item/clothing/suit/armor/hos_tailcoat = 1,
-		/obj/item/clothing/under/rank/security/peacekeeper/skirt_hos = 1,
-	)
-
-	access_lists["[ACCESS_HOP]"] += list(
+	access_lists["[ACCESS_HOP]"] = list( // Best head btw
+		/obj/item/clothing/head/hats/hopcap = 1,
+		/obj/item/clothing/head/hopcap/beret = 1,
+		/obj/item/clothing/head/hopcap/beret/alt = 1,
+		/obj/item/clothing/under/rank/civilian/head_of_personnel = 1,
+		/obj/item/clothing/under/rank/civilian/head_of_personnel/skirt = 1,
+		/obj/item/clothing/under/rank/civilian/head_of_personnel/skyrat/turtleneck = 1,
+		/obj/item/clothing/under/rank/civilian/head_of_personnel/skyrat/turtleneck/skirt = 1,
+		/obj/item/clothing/under/rank/civilian/head_of_personnel/skyrat/parade = 1,
+		/obj/item/clothing/under/rank/civilian/head_of_personnel/skyrat/parade/female = 1,
+		/obj/item/clothing/suit/armor/vest/hop/hop_formal = 1,
+		/obj/item/clothing/suit/hooded/wintercoat/hop = 1,
+		/obj/item/clothing/neck/cloak/hop = 1,
+		/obj/item/clothing/neck/mantle/hopmantle = 1,
+		/obj/item/storage/backpack/head_of_personnel = 1,
+		/obj/item/storage/backpack/satchel/head_of_personnel = 1,
+		/obj/item/storage/backpack/duffelbag/head_of_personnel = 1,
+		/obj/item/storage/backpack/messenger/head_of_personnel = 1,
+		/obj/item/clothing/shoes/sneakers/brown = 1,
 		/obj/item/clothing/head/playbunnyears/hop = 1,
 		/obj/item/clothing/under/rank/civilian/hop_bunnysuit = 1,
 		/obj/item/clothing/suit/armor/hop_tailcoat = 1,
 		/obj/item/clothing/neck/tie/bunnytie/hop = 1,
 	)
 
-	access_lists["[ACCESS_CMO]"] += list(
+	access_lists["[ACCESS_CMO]"] = list(
+		/obj/item/clothing/head/beret/medical/cmo = 1,
+		/obj/item/clothing/head/beret/medical/cmo/alt = 1,
+		/obj/item/clothing/head/utility/surgerycap/cmo = 1,
+		/obj/item/clothing/under/rank/medical/chief_medical_officer = 1,
+		/obj/item/clothing/under/rank/medical/chief_medical_officer/skirt = 1,
+		/obj/item/clothing/under/rank/medical/chief_medical_officer/turtleneck = 1,
+		/obj/item/clothing/under/rank/medical/chief_medical_officer/scrubs = 1,
+		/obj/item/clothing/suit/hooded/wintercoat/medical/cmo = 1,
+		/obj/item/clothing/neck/cloak/cmo = 1,
+		/obj/item/clothing/neck/mantle/cmomantle = 1,
+		/obj/item/clothing/shoes/sneakers/brown = 1,
 		/obj/item/clothing/head/playbunnyears/cmo = 1,
 		/obj/item/clothing/under/rank/medical/cmo_bunnysuit = 1,
 		/obj/item/clothing/suit/toggle/labcoat/cmo/doctor_tailcoat = 1,
 		/obj/item/clothing/neck/tie/bunnytie/cmo = 1,
 	)
 
-	access_lists["[ACCESS_RD]"] += list(
+	access_lists["[ACCESS_RD]"] = list(
+		/obj/item/clothing/head/beret/science/rd = 1,
+		/obj/item/clothing/head/beret/science/rd/alt = 1,
+		/obj/item/clothing/under/rank/rnd/research_director = 1,
+		/obj/item/clothing/under/rank/rnd/research_director/skirt = 1,
+		/obj/item/clothing/under/rank/rnd/research_director/alt = 1,
+		/obj/item/clothing/under/rank/rnd/research_director/turtleneck = 1,
+		/obj/item/clothing/under/rank/rnd/research_director/turtleneck/skirt = 1,
+		/obj/item/clothing/under/rank/rnd/research_director/skyrat/jumpsuit = 1,
+		/obj/item/clothing/under/rank/rnd/research_director/skyrat/jumpsuit/skirt = 1,
+		/obj/item/clothing/neck/cloak/rd = 1,
+		/obj/item/clothing/neck/mantle/rdmantle = 1,
+		/obj/item/clothing/suit/toggle/labcoat = 1,
+		/obj/item/clothing/suit/toggle/labcoat/skyrat/rd = 1,
+		/obj/item/clothing/suit/toggle/labcoat/research_director = 1,
+		/obj/item/clothing/suit/hooded/wintercoat/science/rd = 1,
+		/obj/item/clothing/shoes/sneakers/brown = 1,
 		/obj/item/clothing/head/playbunnyears/rd = 1,
 		/obj/item/clothing/under/rank/rnd/research_director/bunnysuit = 1,
 		/obj/item/clothing/suit/toggle/labcoat/research_director/tailcoat = 1,
 		/obj/item/clothing/neck/tie/bunnytie/rd = 1,
 	)
 
-	access_lists["[ACCESS_CE]"] += list(
+	access_lists["[ACCESS_CE]"] = list(
+		/obj/item/clothing/head/beret/engi/ce = 1,
+		/obj/item/clothing/head/utility/hardhat/white = 1,
+		/obj/item/clothing/head/utility/hardhat/welding/white = 1,
+		/obj/item/clothing/under/rank/engineering/chief_engineer = 1,
+		/obj/item/clothing/under/rank/engineering/chief_engineer/turtleneck = 1,
+		/obj/item/clothing/under/rank/engineering/chief_engineer/skirt = 1,
+		/obj/item/clothing/under/rank/engineering/chief_engineer/turtleneck/skirt = 1,
+		/obj/item/clothing/suit/hooded/wintercoat/engineering/ce = 1,
+		/obj/item/clothing/neck/cloak/ce = 1,
+		/obj/item/clothing/neck/mantle/cemantle = 1,
+		/obj/item/clothing/shoes/sneakers/brown = 1,
 		/obj/item/clothing/head/playbunnyears/ce = 1,
 		/obj/item/clothing/under/rank/engineering/chief_engineer/bunnysuit = 1,
 		/obj/item/clothing/suit/utility/fire/ce_tailcoat = 1,
 		/obj/item/clothing/neck/tie/bunnytie/ce = 1,
 	)
 
-	access_lists["[ACCESS_QM]"] += list(
+	access_lists["[ACCESS_HOS]"] = list(
+		/obj/item/clothing/head/hats/hos/cap = 1,
+		/obj/item/clothing/head/hats/hos/beret/navyhos = 1,
+		/obj/item/clothing/head/hats/hos/beret = 1,
+		/obj/item/clothing/head/hats/warden/drill/hos = 1,
+		/obj/item/clothing/head/hats/hos/elofy = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/peacekeeper = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/alt = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/alt/skirt = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/grey = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/alt/roselia = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/parade = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/parade/female = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/redsec = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/parade/redsec = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/parade/female/redsec = 1,
+		/obj/item/clothing/under/rank/security/peacekeeper/skirt_hos = 1,
+		/obj/item/clothing/suit/jacket/hos/blue = 1,
+		/obj/item/clothing/suit/armor/hos = 1,
+		/obj/item/clothing/suit/armor/hos/trenchcoat = 1,
+		/obj/item/clothing/suit/armor/hos/trenchcoat/winter = 1,
+		/obj/item/clothing/suit/armor/vest/leather = 1,
+		/obj/item/clothing/suit/armor/hos/hos_formal = 1,
+		/obj/item/clothing/neck/cloak/hos = 1,
+		/obj/item/clothing/neck/cloak/hos/redsec = 1,
+		/obj/item/clothing/neck/mantle/hosmantle = 1,
+		/obj/item/clothing/glasses/hud/security/sunglasses/eyepatch = 1,
+		/obj/item/clothing/glasses/hud/security/sunglasses/gars/giga = 1,
+		/obj/item/clothing/glasses/hud/security/sunglasses/gars/giga/roselia = 1,
+		/obj/item/clothing/gloves/elofy = 1,
+		/obj/item/clothing/mask/gas/sechailer/swat = 1,
+		/obj/item/clothing/shoes/sneakers/brown = 1,
+		/obj/item/clothing/shoes/jackboots/elofy = 1,
+		/obj/item/clothing/head/playbunnyears/hos = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/bunnysuit = 1,
+		/obj/item/clothing/suit/armor/hos_tailcoat = 1,
+	)
+
+	access_lists["[ACCESS_QM]"] = list(
+		/obj/item/clothing/head/beret/cargo/qm = 1,
+		/obj/item/clothing/head/beret/cargo/qm/alt = 1,
+		/obj/item/clothing/neck/cloak/qm = 1,
+		/obj/item/clothing/neck/mantle/qm = 1,
+		/obj/item/clothing/under/rank/cargo/qm = 1,
+		/obj/item/clothing/under/rank/cargo/qm/skirt = 1,
+		/obj/item/clothing/under/rank/cargo/qm/skyrat/gorka = 1,
+		/obj/item/clothing/under/rank/cargo/qm/skyrat/turtleneck = 1,
+		/obj/item/clothing/under/rank/cargo/qm/skyrat/turtleneck/skirt = 1,
+		/obj/item/clothing/suit/brownfurrich = 1,
+		/obj/item/clothing/under/rank/cargo/qm/skyrat/casual = 1,
+		/obj/item/clothing/suit/toggle/jacket/supply/head = 1,
+		/obj/item/clothing/under/rank/cargo/qm/skyrat/formal = 1,
+		/obj/item/clothing/under/rank/cargo/qm/skyrat/formal/skirt = 1,
+		/obj/item/clothing/shoes/sneakers/brown = 1,
 		/obj/item/clothing/head/playbunnyears/quartermaster = 1,
 		/obj/item/clothing/under/rank/cargo/quartermaster_bunnysuit = 1,
 		/obj/item/clothing/suit/jacket/tailcoat/quartermaster = 1,
 		/obj/item/clothing/neck/tie/bunnytie/cargo = 1,
 	)
 
-	access_lists["[ACCESS_CENT_GENERAL]"] += list(
+	access_lists["[ACCESS_CENT_GENERAL]"] = list( // CC Rep Shiz
+		/obj/item/clothing/head/nanotrasen_consultant = 1,
+		/obj/item/clothing/head/nanotrasen_consultant/beret = 1,
+		/obj/item/clothing/head/beret/centcom_formal/nt_consultant = 1,
+		/obj/item/clothing/head/nanotrasen_consultant/beret/officer = 1,
+		/obj/item/clothing/head/hats/centhat = 1,
+		/obj/item/clothing/head/hats/caphat/naval = 1,
 		/obj/item/clothing/head/hats/warden/drill/nanotrasen = 1,
+		/obj/item/clothing/head/nanotrasen_consultant/hubert = 1,
+		/obj/item/clothing/head/razurathhat = 1,
+		/obj/item/clothing/neck/cloak/admiral = 1,
+		/obj/item/clothing/under/rank/nanotrasen_consultant = 1,
+		/obj/item/clothing/under/rank/nanotrasen_consultant/skirt = 1,
+		/obj/item/clothing/under/rank/centcom/skyrat/naval = 1,
+		/obj/item/clothing/under/rank/centcom/skyrat/naval/commander = 1,
+		/obj/item/clothing/under/rank/centcom/skyrat/naval/admiral = 1,
+		/obj/item/clothing/under/rank/centcom/skyrat/naval/fleet_admiral = 1,
+		/obj/item/clothing/under/rank/nanotrasen_consultant/naval = 1,
 		/obj/item/clothing/under/rank/nanotrasen_consultant/stripper = 1,
 		/obj/item/clothing/under/nt_idol_skirt = 1,
-		/obj/item/clothing/head/nanotrasen_consultant/hubert = 1,
-		/obj/item/clothing/suit/armor/vest/nanotrasen_consultant/hubert = 1,
 		/obj/item/clothing/under/rank/nanotrasen_consultant/hubert = 1,
-		/obj/item/clothing/head/razurathhat = 1,
+		/obj/item/clothing/suit/armor/centcom_formal/nt_consultant = 1,
+		/obj/item/clothing/suit/armor/vest/nanotrasen_consultant/green = 1,
+		/obj/item/clothing/suit/armor/vest/nanotrasen_consultant/hubert = 1,
 		/obj/item/clothing/suit/razurathcoat = 1,
+		/obj/item/clothing/gloves/combat/naval/nanotrasen_consultant = 1,
 		/obj/item/clothing/head/playbunnyears/centcom = 1,
 		/obj/item/clothing/neck/tie/bunnytie/centcom = 1,
 		/obj/item/clothing/suit/jacket/tailcoat/centcom = 1,
 		/obj/item/clothing/under/costume/playbunny/centcom = 1,
 	)
 
-	access_lists["[ACCESS_COMMAND]"] += list(
+	access_lists["[ACCESS_COMMAND]"] = list(
+		/obj/item/clothing/head/hats/caphat/naval/fleet_admiral = 5,
+		/obj/item/clothing/suit/armor/vest/bridge = 5,
+		/obj/item/clothing/suit/armor/skyy = 5,
+		/obj/item/clothing/glasses/sunglasses/gar/giga = 5,
+		/obj/item/clothing/neck/cloak/fleet_admiral = 5,
+		/obj/item/clothing/under/rank/bridge_assistant = 5,
+		/obj/item/clothing/under/rank/bridge_assistant/skirt = 5,
+		/obj/item/clothing/under/rank/bridge_assistant/turtle = 5,
+		/obj/item/clothing/under/rank/bridge_assistant/turtle/skirt = 5,
 		/obj/item/clothing/under/rank/civilian/head_of_personnel/stripper = 5, //Multiple for heads. Urgh.
-		/obj/item/clothing/suit/armor/skyy = 2,
+		/obj/item/clothing/accessory/bubber/acc_medal/neckpin = 5,
+		/obj/item/clothing/accessory/bubber/acc_medal/neckpin/centcom = 5,
 	)
+
+
+
+
+
 

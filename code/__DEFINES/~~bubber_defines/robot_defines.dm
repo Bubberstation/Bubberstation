@@ -5,6 +5,7 @@
 *************************************************************/
 
 //CENTCOM BORG ICON DEFINES
+#define CYBORG_ICON_CENTCOM 'modular_zubbers/code/modules/silicons/borgs/sprites/robot_cc.dmi'
 #define CYBORG_ICON_CENTCOM_WIDE_BUBBER 'modular_zubbers/code/modules/silicons/borgs/sprites/widerobot_cc.dmi'
 #define CYBORG_ICON_CENTCOM_LARGE_BUBBER 'modular_zubbers/code/modules/silicons/borgs/sprites/largerobot_cc.dmi'
 
@@ -190,6 +191,18 @@
 #define CYBORG_ICON_SCI_MERMAID 'modular_zubbers/code/modules/silicons/borgs/sprites/merborg/mermaidbot_sci.dmi'
 #define CYBORG_ICON_ENG_MERMAID 'modular_zubbers/code/modules/silicons/borgs/sprites/merborg/mermaidbot_eng.dmi'
 
+// XENOBORG ICON DEFINES - Spritework done by Octopus King
+#define CYBORG_ICON_TYPE_XENOBORG "xenoborg"
+#define CYBORG_ICON_ENGI_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_engi.dmi'
+#define CYBORG_ICON_CARGO_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_cargo.dmi'
+#define CYBORG_ICON_JANI_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_jani.dmi'
+#define CYBORG_ICON_MED_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_med.dmi'
+#define CYBORG_ICON_MINING_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_mining.dmi'
+#define CYBORG_ICON_NINJA_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_ninja.dmi'
+#define CYBORG_ICON_PK_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_pk.dmi'
+#define CYBORG_ICON_SCI_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_sci.dmi'
+#define CYBORG_ICON_SERVICE_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_service.dmi'
+#define CYBORG_ICON_SYNDI_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_syndi.dmi'
 /************************************************************
 				CYBORG HAT OFFSETS GO BELOW
 *************************************************************/

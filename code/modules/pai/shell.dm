@@ -78,12 +78,7 @@
 	if(!holoform)
 		. = fold_out(force)
 		return FALSE
-	// BUBBER EDIT START: PAI ReLeashed
-	if(!holo_leash)
-		visible_message(span_notice("[src] deactivates its holochassis emitter and folds back into a compact card!")) // BUBBER EDIT: PAI Freedom: ORIGINAL: visible_message(span_notice("[src] dematerialises!"))
-	else
-		visible_message(span_notice("[src] dematerialises!"))
-	// BUBBER EDIT END
+	visible_message(span_notice("[src] dematerialises!"))
 	stop_pulling()
 	if(ispickedupmob(loc))
 		var/obj/item/mob_holder/mob_head = loc
@@ -93,11 +88,6 @@
 		client.set_eye(card)
 	if (isturf(loc))
 		new /obj/effect/temp_visual/guardian/phase/out(loc)
-	// BUBBER EDIT ADDITION START: PAI ReLeashed
-	if(!holo_leash)
-		var/turf/target = drop_location()
-		card.forceMove(target)
-	// BUBBER EDIT END
 	forceMove(card)
 	add_traits(list(TRAIT_IMMOBILIZED, TRAIT_HANDS_BLOCKED), PAI_FOLDED)
 	ADD_TRAIT(src, TRAIT_UNDENSE, PAI_FOLDED)
@@ -132,33 +122,13 @@
 	REMOVE_TRAIT(src, TRAIT_IMMOBILIZED, PAI_FOLDED)
 	REMOVE_TRAIT(src, TRAIT_HANDS_BLOCKED, PAI_FOLDED)
 	REMOVE_TRAIT(src, TRAIT_UNDENSE, PAI_FOLDED)
-	// BUBBER EDIT START: PAI ReLeashed: ORIGINAL: forceMove(get_turf(card))
-	if(!holo_leash)
-		if(istype(card.loc, /obj/item/modular_computer))
-			var/obj/item/modular_computer/pc = card.loc
-			pc.inserted_pai = null
-			pc.visible_message(span_notice("[src] ejects itself from [pc]!"))
-		if(isliving(card.loc))
-			var/mob/living/living_holder = card.loc
-			if(!living_holder.temporarilyRemoveItemFromInventory(card))
-				balloon_alert(src, "unable to expand")
-				return FALSE
-		forceMove(get_turf(card))
-		card.forceMove(src)
-	else
-		forceMove(get_turf(card))
-	// BUBBER EDIT END
+	forceMove(get_turf(card))
 	if(client)
 		client.perspective = EYE_PERSPECTIVE
 		client.set_eye(src)
 	set_light_on(FALSE)
 	update_appearance(UPDATE_ICON_STATE)
-	// BUBBER EDIT START: PAI ReLeashed
-	if(!holo_leash)
-		visible_message(span_boldnotice("[src] folds out its holochassis emitter and forms a holoshell around itself!")) // BUBBER EDIT: PAI Freedom: ORIGINAL: visible_message(span_boldnotice("[src] appears in a flash of light!"))
-	else
-		visible_message(span_boldnotice("[src] appears in a flash of light!"))
-	// BUBBER EDIT END: PAI ReLeashed
+	visible_message(span_boldnotice("[src] appears in a flash of light!"))
 	holoform = TRUE
 	return TRUE
 

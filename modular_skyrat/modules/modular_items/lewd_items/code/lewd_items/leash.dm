@@ -14,12 +14,22 @@
 	/// Leash line visual for the hooked item
 	var/datum/beam/leash_line/leash_line
 
-	unique_reskin = list(
-		"Pink" = "neckleash_pink",
-		"Teal" = "neckleash_teal",
-	)
-
 	COOLDOWN_DECLARE(tug_cd)
+
+/obj/item/clothing/erp_leash/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/erp_leash)
+
+/datum/atom_skin/erp_leash
+	abstract_type = /datum/atom_skin/erp_leash
+
+/datum/atom_skin/erp_leash/pink
+	preview_name = "Pink"
+	new_icon_state = "neckleash_pink"
+
+/datum/atom_skin/erp_leash/teal
+	preview_name = "Teal"
+	new_icon_state = "neckleash_teal"
 
 /// HERE BE DRAGONS ///
 
@@ -114,7 +124,7 @@
 		if(istype(parent, /mob/living))
 			var/mob/living/yoinked = parent
 			yoinked.Move(get_step_towards(yoinked,user))
-			yoinked.adjustStaminaLoss(10)
+			yoinked.adjust_stamina_loss(10)
 			yoinked.visible_message(span_warning("[yoinked] is pulled in as [user] tugs the [source]!"),\
 					span_userdanger("[user] suddenly tugs the [source], pulling you closer!"),\
 					span_userdanger("A sudden tug against your neck pulls you ahead!"))

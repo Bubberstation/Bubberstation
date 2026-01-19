@@ -43,3 +43,4 @@
 	icon_state = "gutlunch_trough"
 	x_offsets = list(-5, 8)
 	y_offsets = list(-2, -7)
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5) // BUBBER EDIT ADDITION - Needed for crafting material parity

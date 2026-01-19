@@ -280,7 +280,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 				if (can_buy_shuttles_or_fail_reason != FALSE)
 					to_chat(user, span_alert("[can_buy_shuttles_or_fail_reason]"))
 				return
-			var/list/shuttles = flatten_list(SSmapping.shuttle_templates)
+			var/list/shuttles = assoc_to_values(SSmapping.shuttle_templates)
 			var/datum/map_template/shuttle/shuttle = locate(params["shuttle"]) in shuttles
 			if (!istype(shuttle))
 				return
@@ -301,7 +301,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 			bank_account.adjust_money(-shuttle.credit_cost)
 
 			var/purchaser_name = (obj_flags & EMAGGED) ? scramble_message_replace_chars("AUTHENTICATION FAILURE: CVE-2018-17107", 60) : user.real_name
-			minor_announce("[purchaser_name] has purchased [shuttle.name] for [shuttle.credit_cost] credits.[shuttle.extra_desc ? " [shuttle.extra_desc]" : ""]" , "Shuttle Purchase")
+			minor_announce("[purchaser_name] has purchased [shuttle.name] for [shuttle.credit_cost] [MONEY_NAME].[shuttle.extra_desc ? " [shuttle.extra_desc]" : ""]" , "Shuttle Purchase")
 
 			message_admins("[ADMIN_LOOKUPFLW(user)] purchased [shuttle.name].")
 			log_shuttle("[key_name(user)] has purchased [shuttle.name].")

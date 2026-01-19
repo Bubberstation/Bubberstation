@@ -33,10 +33,8 @@
 		var/mutable_appearance/airlock_overlay = mutable_appearance(icon_file, icon_state)
 		if(state_color)
 			airlock_overlay.color = state_color
-
 		. = airlock_overlays[base_icon_key] = airlock_overlay
 		// SKYRAT EDIT END
-
 	if(isnull(em_block))
 		return
 
@@ -54,12 +52,6 @@
 // "Would this be better with a global var"
 
 // Wires for the airlock are located in the datum folder, inside the wires datum folder.
-// SKYRAT EDIT REMOVAL START - moved to code/__DEFINES/~skyrat_defines/airlock.dm
-/*
-#define AIRLOCK_FRAME_CLOSED "closed"
-#define AIRLOCK_FRAME_CLOSING "closing"
-#define AIRLOCK_FRAME_OPEN "open"
-#define AIRLOCK_FRAME_OPENING "opening"
 
 #define AIRLOCK_FRAME_CLOSED "closed"
 #define AIRLOCK_FRAME_CLOSING "closing"
@@ -86,8 +78,6 @@
 #define DOOR_CLOSE_WAIT 60 /// Time before a door closes, if not overridden
 
 #define DOOR_VISION_DISTANCE 11 ///The maximum distance a door will see out to
-*/
-// SKYRAT EDIT REMOVAL END - moved to code/__DEFINES/~skyrat_defines/airlock.dm
 
 /obj/machinery/door/airlock
 	name = "Airlock"
@@ -152,9 +142,9 @@
 	var/previous_airlock = /obj/structure/door_assembly
 	/// Material of inner filling; if its an airlock with glass, this should be set to "glass"
 	var/airlock_material
-	var/overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi' //OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
+	var/overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi'
 	/// Used for papers and photos pinned to the airlock
-	var/note_overlay_file = 'icons/obj/doors/airlocks/station/overlays.dmi'//OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
+	var/note_overlay_file = 'icons/obj/doors/airlocks/station/overlays.dmi'
 
 	/// Airlock pump that overrides airlock controlls when set up for cycling
 	var/obj/machinery/atmospherics/components/unary/airlock_pump/cycle_pump
@@ -196,19 +186,25 @@
 		damage_deflection = AIRLOCK_DAMAGE_DEFLECTION_R
 
 	prepare_huds()
-	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.add_atom_to_hud(src)
+	var/datum/atom_hud/data/diagnostic/diag_hud = GLOB.huds[DATA_HUD_DIAGNOSTIC]
+	diag_hud.add_atom_to_hud(src)
 
 	diag_hud_set_electrified()
 
 	// Click on the floor to close airlocks
-	AddComponent(/datum/component/redirect_attack_hand_from_turf)
+	AddComponent(/datum/component/redirect_attack_hand_from_turf, interact_check = CALLBACK(src, PROC_REF(drag_check)))
 
 	AddElement(/datum/element/nav_computer_icon, 'icons/effects/nav_computer_indicators.dmi', "airlock", TRUE)
 
 	RegisterSignal(src, COMSIG_MACHINERY_BROKEN, PROC_REF(on_break))
 
 	RegisterSignal(SSdcs, COMSIG_GLOB_GREY_TIDE, PROC_REF(grey_tide))
+
+// if dragging, block 'Click on the floor to close airlocks'
+/obj/machinery/door/airlock/proc/drag_check(mob/user)
+	if (user.pulling)
+		return FALSE
+	return TRUE
 
 /obj/machinery/door/airlock/proc/grey_tide(datum/source, list/grey_tide_areas)
 	SIGNAL_HANDLER
@@ -325,8 +321,8 @@
 		close_others.Cut()
 	QDEL_NULL(note)
 	QDEL_NULL(seal)
-	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.remove_atom_from_hud(src)
+	var/datum/atom_hud/data/diagnostic/diag_hud = GLOB.huds[DATA_HUD_DIAGNOSTIC]
+	diag_hud.remove_atom_from_hud(src)
 	return ..()
 
 /obj/machinery/door/airlock/Exited(atom/movable/gone, direction)
@@ -520,7 +516,10 @@
 /obj/machinery/door/airlock/proc/is_secure()
 	return (security_level > 0)
 
-/// Checks if this door would be affected by any currently active RETA grants
+/**
+ * Checks if this door would be affected by any currently active RETA grants
+ * If a grant is active, return the authorized department
+ */
 /obj/machinery/door/airlock/proc/has_active_reta_access()
 	if(!CONFIG_GET(flag/reta_enabled))
 		return FALSE
@@ -538,11 +537,11 @@
 
 			for(var/required_access in req_access)
 				if(required_access in origin_dept_access)
-					return TRUE
+					return LOWER_TEXT(target_dept)
 
 			for(var/required_access in req_one_access)
 				if(required_access in origin_dept_access)
-					return TRUE
+					return LOWER_TEXT(target_dept)
 
 	return FALSE
 
@@ -576,7 +575,6 @@
 	else
 		icon_state = "[base_icon_state]closed"
 
-/* SKYRAT EDIT MOVED TO AIRLOCK.DM IN AESTHETICS MODULE
 /obj/machinery/door/airlock/update_overlays()
 	. = ..()
 
@@ -659,7 +657,6 @@
 					floorlight.pixel_w = -32
 					floorlight.pixel_z = 0
 			. += floorlight
-*/
 
 /obj/machinery/door/airlock/run_animation(animation, force_type = DEFAULT_DOOR_CHECKS)
 	if(animation == DOOR_DENY_ANIMATION)
@@ -671,7 +668,7 @@
 
 /obj/machinery/door/airlock/animation_effects(animation, force_type = DEFAULT_DOOR_CHECKS)
 	if(force_type == BYPASS_DOOR_CHECKS)
-		playsound(src, soundin = forcedOpen, vol = 30, vary = TRUE) // BUBBER EDIT - AESTHETICS - ORIGINAL: playsound(src, soundin = 'sound/machines/airlock/airlockforced.ogg', vol = 30, vary = TRUE)
+		playsound(src, soundin = 'sound/machines/airlock/airlockforced.ogg', vol = 30, vary = TRUE)
 		return
 
 	switch(animation)
@@ -754,6 +751,10 @@
 			. += "It looks a bit stronger."
 		else
 			. += "It looks very robust."
+
+	var/active_reta = has_active_reta_access()
+	if(active_reta)
+		. += span_nicegreen("Emergency Temporary Access is enabled for [EXAMINE_HINT(active_reta)] ID cards.")
 
 	if(issilicon(user) && !(machine_stat & BROKEN))
 		. += span_notice("Shift-click [src] to [ density ? "open" : "close"] it.")
@@ -911,8 +912,7 @@
 			if(!istype(H.head, /obj/item/clothing/head/helmet))
 				H.visible_message(span_danger("[user] headbutts the airlock."), \
 									span_userdanger("You headbutt the airlock!"))
-				//H.Paralyze(100) - SKYRAT EDIT REMOVAL - COMBAT
-				H.StaminaKnockdown(10, TRUE, TRUE)
+				H.Paralyze(100)
 				H.apply_damage(10, BRUTE, BODY_ZONE_HEAD)
 			else
 				visible_message(span_danger("[user] headbutts the airlock. Good thing [user.p_theyre()] wearing a helmet."))
@@ -948,6 +948,9 @@
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
+/obj/machinery/door/airlock/screwdriver_act_secondary(mob/living/user, obj/item/tool)
+	return screwdriver_act(user, tool)
+
 /obj/machinery/door/airlock/wirecutter_act(mob/living/user, obj/item/tool)
 	if(panel_open && security_level == AIRLOCK_SECURITY_PLASTEEL)
 		. = ITEM_INTERACT_SUCCESS  // everything after this shouldn't result in attackby
@@ -963,7 +966,7 @@
 		security_level = AIRLOCK_SECURITY_PLASTEEL_O
 		return .
 	if(note)
-		if(user.CanReach(src))
+		if(IsReachableBy(user))
 			user.visible_message(span_notice("[user] cuts down [note] from [src]."), span_notice("You remove [note] from [src]."))
 		else //telekinesis
 			visible_message(span_notice("[tool] cuts down [note] from [src]."))
@@ -1171,7 +1174,7 @@
 			return
 
 		if(atom_integrity < max_integrity)
-			if(!W.tool_start_check(user, amount=1))
+			if(!W.tool_start_check(user, amount=1, heat_required = HIGH_TEMPERATURE_REQUIRED))
 				return
 			user.visible_message(span_notice("[user] begins welding the airlock."), \
 							span_notice("You begin repairing the airlock..."), \
@@ -1186,7 +1189,7 @@
 			to_chat(user, span_notice("The airlock doesn't need repairing."))
 
 /obj/machinery/door/airlock/try_to_weld_secondary(obj/item/weldingtool/tool, mob/user)
-	if(!tool.tool_start_check(user, amount=1))
+	if(!tool.tool_start_check(user, amount=1, heat_required = HIGH_TEMPERATURE_REQUIRED))
 		return
 	user.visible_message(span_notice("[user] begins [welded ? "unwelding":"welding"] the airlock."), \
 		span_notice("You begin [welded ? "unwelding":"welding"] the airlock..."), \
@@ -1308,6 +1311,11 @@
 		prying_so_hard = FALSE
 		return
 
+	if(!isnull(tool))
+		if(SEND_SIGNAL(tool, COMSIG_TOOL_FORCE_OPEN_AIRLOCK, user, src) & COMPONENT_TOOL_DO_NOT_ALLOW_FORCE_OPEN)
+			prying_so_hard = FALSE
+			return
+
 	prying_so_hard = FALSE
 
 	if(check_electrified && shock(user, 100))
@@ -1358,10 +1366,9 @@
 	set_airlock_state(AIRLOCK_OPENING, animated = TRUE, force_type = forced)
 	var/transparent_delay = animation_segment_delay(AIRLOCK_OPENING_TRANSPARENT)
 	sleep(transparent_delay)
-	set_opacity(0)
+	set_opacity(FALSE)
 	if(multi_tile)
 		filler.set_opacity(FALSE)
-	update_freelook_sight()
 	var/passable_delay = animation_segment_delay(AIRLOCK_OPENING_PASSABLE) - transparent_delay
 	sleep(passable_delay)
 	set_density(FALSE)
@@ -1448,7 +1455,6 @@
 		set_opacity(TRUE)
 		if(multi_tile)
 			filler.set_opacity(TRUE)
-	update_freelook_sight()
 	var/close_delay = animation_segment_delay(AIRLOCK_CLOSING_FINISHED) - unpassable_delay - opaque_delay
 	sleep(close_delay)
 	set_airlock_state(AIRLOCK_CLOSED, animated = FALSE)
@@ -1532,10 +1538,10 @@
 /obj/machinery/door/airlock/proc/finish_emag_act()
 	if(QDELETED(src))
 		return FALSE
-	set_machine_stat(machine_stat & ~MAINT)
 	operating = FALSE
 	if(!open())
 		set_airlock_state(AIRLOCK_CLOSED)
+	set_machine_stat(machine_stat & ~MAINT)
 	obj_flags |= EMAGGED
 	feedback = FALSE
 	locked = TRUE
@@ -1686,7 +1692,7 @@
 	return FALSE
 
 /obj/machinery/door/airlock/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, list/rcd_data)
-	switch(rcd_data["[RCD_DESIGN_MODE]"])
+	switch(rcd_data[RCD_DESIGN_MODE])
 		if(RCD_DECONSTRUCT)
 			qdel(src)
 			return TRUE
@@ -2442,6 +2448,7 @@
 	aiControlDisabled = AI_WIRE_DISABLED
 	req_access = list(ACCESS_BLOODCULT)
 	damage_deflection = 10
+	custom_materials = list(/datum/material/runedmetal = SHEET_MATERIAL_AMOUNT)
 	var/openingoverlaytype = /obj/effect/temp_visual/cult/door
 	var/friendly = FALSE
 	var/stealthy = FALSE
@@ -2618,8 +2625,6 @@
 	opacity = FALSE
 	glass = TRUE
 
-// SKYRAT EDIT REMOVAL START - moved to code/__DEFINES/~skyrat_defines/airlock.dm
-/*
 #undef AIRLOCK_SECURITY_NONE
 #undef AIRLOCK_SECURITY_IRON
 #undef AIRLOCK_SECURITY_PLASTEEL_I_S
@@ -2644,5 +2649,3 @@
 #undef AIRLOCK_FRAME_CLOSING
 #undef AIRLOCK_FRAME_OPEN
 #undef AIRLOCK_FRAME_OPENING
-*/
-// SKYRAT EDIT REMOVAL END - moved to code/__DEFINES/~skyrat_defines/airlock.dm

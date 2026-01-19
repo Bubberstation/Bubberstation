@@ -9,7 +9,12 @@
 /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat
 	//Effectively the same as TG's blueshirt, including icon. The /skyrat path makes it easier for sorting.
 	name = "science guard's uniform"
-	unique_reskin = null
+
+/obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/Initialize(mapload)
+	. = ..()
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/orderly
 	name = "orderly uniform"
@@ -54,8 +59,13 @@
 	//Effectively the same as TG's blueshirt, including icon. The /skyrat path makes it easier for sorting.
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi'
-	unique_reskin = null
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+
+/obj/item/clothing/suit/armor/vest/blueshirt/skyrat/Initialize(mapload)
+	. = ..()
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+		qdel(reskin_component)
 
 /obj/item/clothing/suit/armor/vest/blueshirt/skyrat/guard //Badge-less version of the blueshirt vest
 	icon_state = "guard_armor"
@@ -87,7 +97,12 @@
 /obj/item/clothing/head/helmet/blueshirt/skyrat
 	//Effectively the same as TG's blueshirt, including icon. The /skyrat path makes it easier for sorting.
 	//The base one is used for science guards, and the sprite is unchanged
-	unique_reskin = null
+
+/obj/item/clothing/head/helmet/blueshirt/skyrat/Initialize(mapload)
+	. = ..()
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+		qdel(reskin_component)
 
 /obj/item/clothing/head/helmet/blueshirt/skyrat/guard //Version of the blueshirt helmet without a blue line. Used by all dept guards right now.
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/head/helmet.dmi'
@@ -161,7 +176,6 @@
 	title = JOB_SCIENCE_GUARD
 	rpg_title = "Secrets Keeper"
 	description = "Figure out why the emails aren't working, keep an eye on the eggheads, protect them from their latest mistakes."
-	department_head = list(JOB_RESEARCH_DIRECTOR)
 	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
@@ -267,7 +281,6 @@
 	title = JOB_ORDERLY
 	rpg_title = "Praetorian"
 	description = "Defend the medical department, hold down idiots who refuse the vaccine, assist medical with prep and/or cleanup."
-	department_head = list(JOB_CHIEF_MEDICAL_OFFICER)
 	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
@@ -339,6 +352,7 @@
 		ACCESS_MEDICAL,
 		ACCESS_MINERAL_STOREROOM,
 		ACCESS_MORGUE,
+		ACCESS_PARAMEDIC,
 		ACCESS_PHARMACY,
 		ACCESS_PLUMBING,
 		ACCESS_SECURITY,
@@ -354,6 +368,7 @@
 		ACCESS_MEDICAL,
 		ACCESS_MINERAL_STOREROOM,
 		ACCESS_MORGUE,
+		ACCESS_PARAMEDIC,
 		ACCESS_PHARMACY,
 		ACCESS_PLUMBING,
 		ACCESS_SECURITY,
@@ -373,7 +388,6 @@
 	title = JOB_ENGINEERING_GUARD
 	rpg_title = "Crystal Guardian"
 	description = "Monitor the supermatter, keep an eye on atmospherics, make sure everyone is wearing Proper Protective Equipment."
-	department_head = list(JOB_CHIEF_ENGINEER)
 	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
@@ -480,7 +494,6 @@
 	title = JOB_CUSTOMS_AGENT
 	rpg_title = "Vault Keeper"
 	description = "Inspect the packages coming to and from the station, protect the cargo department, beat the shit out of people trying to ship Cocaine to the Spinward Stellar Coalition."
-	department_head = list(JOB_QUARTERMASTER)
 	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
@@ -581,7 +594,6 @@
 	title = JOB_BOUNCER
 	rpg_title = "Tavern Watch"
 	description = "Make sure people don't jump the kitchen counter, stop Chapel vandalism, check bargoer's IDs, prevent the dreaded \"food fight\"."
-	department_head = list(JOB_HEAD_OF_PERSONNEL)
 	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2

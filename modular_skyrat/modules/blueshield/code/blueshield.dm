@@ -3,7 +3,6 @@
 	rpg_title = "Guild Protectorate"
 	description = "Protect the Heads of Staff and get your hands dirty so they can keep theirs clean."
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
-	department_head = list(JOB_NT_REP)
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
@@ -62,6 +61,7 @@
 	box = /obj/item/storage/box/survival/security
 	belt = /obj/item/modular_computer/pda/blueshield
 	suit_store = /obj/item/gun/energy/e_gun/blueshield
+	accessory = /obj/item/clothing/accessory/bubber/acc_medal/neckpin/centcom
 
 	id_trim = /datum/id_trim/job/blueshield
 

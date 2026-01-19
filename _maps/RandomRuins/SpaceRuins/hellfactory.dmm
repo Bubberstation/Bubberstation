@@ -347,7 +347,7 @@
 "bm" = (
 /obj/structure/table,
 /obj/item/stamp/denied,
-/obj/item/stamp{
+/obj/item/stamp/granted{
 	pixel_x = 6;
 	pixel_y = 6
 	},
@@ -798,10 +798,6 @@
 /obj/machinery/light/floor/broken,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/hellfactory)
-"fh" = (
-/obj/effect/decal/cleanable/blood/oil,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/hellfactory)
 "gu" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/bot_white/left,
@@ -820,10 +816,6 @@
 "iE" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/random/engineering/material_rare,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/hellfactory)
-"iV" = (
-/obj/effect/decal/cleanable/blood/splatter/oil,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/hellfactory)
 "kD" = (
@@ -847,10 +839,6 @@
 /obj/structure/sign/warning/vacuum,
 /turf/closed/wall,
 /area/ruin/space/has_grav/hellfactory)
-"ni" = (
-/obj/machinery/photocopier/prebuilt,
-/turf/open/floor/iron/grimy,
-/area/ruin/space/has_grav/hellfactoryoffice)
 "oH" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small/directional/west,
@@ -879,12 +867,16 @@
 /obj/effect/spawner/random/exotic/languagebook,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/hellfactory)
+"qY" = (
+/obj/machinery/photocopier/prebuilt,
+/turf/open/floor/iron/grimy,
+/area/ruin/space/has_grav/hellfactoryoffice)
 "sk" = (
 /obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/hellfactory)
 "ux" = (
-/obj/machinery/light/small/directional/west,
+/obj/machinery/light/small/directional/east,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/hellfactory)
 "uL" = (
@@ -933,6 +925,14 @@
 "GU" = (
 /obj/structure/sign/warning/chem_diamond,
 /turf/closed/wall,
+/area/ruin/space/has_grav/hellfactory)
+"Ia" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/hellfactory)
+"KJ" = (
+/obj/effect/decal/cleanable/blood/splatter/oil,
+/turf/open/floor/iron,
 /area/ruin/space/has_grav/hellfactory)
 "KZ" = (
 /obj/machinery/modular_computer/preset/civilian,
@@ -1156,7 +1156,7 @@ bV
 cf
 aA
 aA
-iV
+KJ
 bL
 cs
 aW
@@ -1438,7 +1438,7 @@ aa
 aa
 ah
 ay
-ni
+qY
 aP
 aP
 ah
@@ -1507,7 +1507,7 @@ GE
 iE
 iE
 by
-fh
+Ia
 by
 cM
 cN

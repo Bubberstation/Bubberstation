@@ -68,7 +68,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/unres,
+/obj/effect/mapping_helpers/airlock/unres/delayed,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/skyrat/interdynefob/bridge/cl)
 "ao" = (
@@ -101,7 +101,7 @@
 /obj/machinery/door/airlock/security/old/glass{
 	name = "Security Checkpoint"
 	},
-/obj/effect/mapping_helpers/airlock/unres,
+/obj/effect/mapping_helpers/airlock/unres/delayed,
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/skyrat/interdynefob/cargo)
 "av" = (
@@ -186,7 +186,7 @@
 	dir = 4
 	},
 /turf/open/floor/engine/hull,
-/area/template_noop)
+/area/space/nearstation)
 "aL" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
@@ -936,7 +936,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/unres,
+/obj/effect/mapping_helpers/airlock/unres/delayed,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/skyrat/interdynefob/bridge/admiral)
 "dR" = (
@@ -2041,7 +2041,7 @@
 	dir = 8
 	},
 /turf/template_noop,
-/area/template_noop)
+/area/space/nearstation)
 "iF" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/line,
 /turf/open/floor/iron/white/small,
@@ -2429,7 +2429,7 @@
 /obj/structure/transit_tube/crossing/horizontal,
 /obj/structure/lattice,
 /turf/template_noop,
-/area/template_noop)
+/area/space/nearstation)
 "km" = (
 /obj/machinery/button/door{
 	id = "TESBattlespire";
@@ -2457,7 +2457,7 @@
 "kx" = (
 /obj/structure/lattice,
 /turf/template_noop,
-/area/template_noop)
+/area/space/nearstation)
 "kB" = (
 /obj/machinery/light/cold/directional/east,
 /obj/effect/turf_decal/stripes/red/corner{
@@ -4222,7 +4222,7 @@
 	dir = 1
 	},
 /turf/open/floor/engine/hull,
-/area/template_noop)
+/area/space/nearstation)
 "st" = (
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
@@ -4498,7 +4498,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
-/obj/effect/mapping_helpers/airlock/unres,
+/obj/effect/mapping_helpers/airlock/unres/delayed,
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/skyrat/interdynefob/security/armory)
 "tQ" = (
@@ -5478,7 +5478,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
-/obj/effect/mapping_helpers/airlock/unres{
+/obj/effect/mapping_helpers/airlock/unres/delayed{
 	dir = 4
 	},
 /turf/open/floor/iron/dark/textured_large,
@@ -5535,7 +5535,7 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/engine/hull,
-/area/template_noop)
+/area/space/nearstation)
 "zx" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -5918,7 +5918,7 @@
 	network = list("ds2")
 	},
 /turf/template_noop,
-/area/template_noop)
+/area/space/nearstation)
 "Bu" = (
 /obj/machinery/suit_storage_unit/syndicate/chameleon{
 	name = "suit storage unit";
@@ -6412,7 +6412,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
-/obj/effect/mapping_helpers/airlock/unres{
+/obj/effect/mapping_helpers/airlock/unres/delayed{
 	dir = 8
 	},
 /turf/open/floor/iron/dark/textured_large,
@@ -6579,7 +6579,7 @@
 /obj/structure/lattice/catwalk,
 /obj/structure/marker_beacon/burgundy,
 /turf/template_noop,
-/area/template_noop)
+/area/space/nearstation)
 "EL" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
 /turf/open/floor/plating,
@@ -7496,7 +7496,7 @@
 /obj/machinery/suit_storage_unit{
 	mask_type = /obj/item/clothing/mask/gas/syndicate;
 	mod_type = /obj/item/mod/control/pre_equipped/traitor_elite;
-	storage_type = /obj/item/tank/jetpack/oxygen/harness
+	storage_type = /obj/item/tank/jetpack/harness
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/skyrat/interdynefob/bridge/admiral)
@@ -7853,7 +7853,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "DS2brig"
 	},
-/obj/effect/mapping_helpers/airlock/unres,
+/obj/effect/mapping_helpers/airlock/unres/delayed,
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/skyrat/interdynefob/security)
 "KQ" = (
@@ -7974,7 +7974,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/stripes/red/line,
-/obj/effect/mapping_helpers/airlock/unres{
+/obj/effect/mapping_helpers/airlock/unres/delayed{
 	dir = 1
 	},
 /turf/open/floor/iron/dark/textured_large,
@@ -8343,7 +8343,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/unres{
+/obj/effect/mapping_helpers/airlock/unres/delayed{
 	dir = 8
 	},
 /turf/open/floor/iron/dark/textured_large,
@@ -9411,7 +9411,7 @@
 	pixel_x = 4;
 	pixel_y = 3
 	},
-/obj/item/stamp{
+/obj/item/stamp/granted{
 	pixel_x = -7;
 	pixel_y = 6
 	},
@@ -10015,7 +10015,7 @@
 	hackProof = 1;
 	name = "Bridge"
 	},
-/obj/effect/mapping_helpers/airlock/unres{
+/obj/effect/mapping_helpers/airlock/unres/delayed{
 	dir = 4
 	},
 /turf/open/floor/iron/dark/textured_large,
@@ -10084,7 +10084,7 @@
 	},
 /obj/structure/lattice,
 /turf/template_noop,
-/area/template_noop)
+/area/space/nearstation)
 "Uz" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -10363,7 +10363,7 @@
 /area/ruin/space/has_grav/skyrat/interdynefob/bridge/vault)
 "VJ" = (
 /turf/closed/wall/r_wall/plastitanium/syndicate/nodiagonal,
-/area/template_noop)
+/area/space/nearstation)
 "VK" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/north,
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -11242,7 +11242,6 @@
 	ailock = 1;
 	control_area = "/area/ruin/space/has_grav/skyrat/interdynefob/bridge/vault";
 	dir = 1;
-	icon_state = "control_kill";
 	lethal = 1;
 	name = "DS2 turret controls";
 	pixel_x = -30;

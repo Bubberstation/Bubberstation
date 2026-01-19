@@ -51,3 +51,22 @@
 				/obj/item/stack/sheet/cloth = 2)
 	time = 80
 	category = CAT_MISC
+
+/datum/crafting_recipe/stunsword
+	blacklist = list(
+		/obj/item/claymore/cutlass,
+		/obj/item/claymore/cutlass/old,
+		/obj/item/claymore/carrot,
+		/obj/item/claymore/shortsword,
+		/obj/item/claymore/highlander,
+		/obj/item/claymore/weak,
+		/obj/item/claymore/weak/weaker,
+		/obj/item/claymore/weak/ceremonial,
+		/obj/item/claymore/highlander/robot,
+		/obj/item/claymore/bone
+	)
+
+/datum/crafting_recipe/stunswordalt2
+	blacklist = list(
+		/obj/item/melee/sabre/cargo
+	)

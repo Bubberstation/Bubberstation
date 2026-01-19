@@ -82,9 +82,9 @@
 
 /turf/open/water/xen_acid/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
-	if(isliving(arrived) && !istype(arrived, /mob/living/simple_animal/hostile/blackmesa/xen/bullsquid)) // Bull squid territory!
+	if(isliving(arrived) && !istype(arrived, /mob/living/basic/blackmesa/xen/bullsquid)) // Bull squid territory!
 		var/mob/living/unlucky_mob = arrived
-		unlucky_mob.adjustFireLoss(acid_damage)
+		unlucky_mob.adjust_fire_loss(acid_damage)
 		playsound(unlucky_mob, 'sound/items/weapons/sear.ogg', 100, TRUE)
 
 /turf/open/water/electric
@@ -101,7 +101,7 @@
 		var/mob/living/unlucky_mob = arrived
 		unlucky_mob.Stun(1.5 SECONDS)
 		unlucky_mob.Knockdown(10 SECONDS)
-		unlucky_mob.adjustFireLoss(15)
+		unlucky_mob.adjust_fire_loss(15)
 		var/datum/effect_system/lightning_spread/s = new /datum/effect_system/lightning_spread
 		s.set_up(5, 1, unlucky_mob.loc)
 		s.start()

@@ -1,6 +1,6 @@
 /obj/item/clothing/shoes/boots/diver //Donor item for patriot210
-	icon = 'modular_zubbers/icons/obj/clothing/shoes.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/feet.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	name = "black divers boots"
 	desc = "An old pair of boots used by a now-defunct mining coalition, it seems close to the ones used by Nanotrasen miners, but without the compartments for fitting small items."
 	icon_state = "diver"
@@ -222,7 +222,7 @@
 
 // Syndicate slippers, guaranteed slipping for whoever wears them.
 /obj/item/clothing/shoes/banana_slippers
-	icon = 'modular_zubbers/icons/obj/clothing/shoes.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	name = "banana slippers"
@@ -317,8 +317,12 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	icon_state = "heel-jackboots"
-	uses_advanced_reskins = FALSE
-	unique_reskin = NONE
+
+/obj/item/clothing/shoes/jackboots/heel/Initialize(mapload)
+	. = ..()
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+		qdel(reskin_component)
 
 // Diesel Boots | Sprites by Fluff from Bad Deathclaw
 /obj/item/clothing/shoes/jackboots/diesel_m
@@ -340,7 +344,7 @@
 /obj/item/clothing/shoes/jackboots/toeless // Ported from SPLURT
 	name = "toe-less jackboots"
 	desc = "Modified pair of jackboots, particularly friendly to those species whose toes hold claws."
-	icon = 'modular_zubbers/icons/obj/clothing/shoes.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	icon_state = "jackboots-toeless"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
@@ -348,7 +352,7 @@
 /obj/item/clothing/shoes/workboots/toeless // Ported from SPLURT
 	name = "toe-less workboots"
 	desc = "A pair of toe-less work boots designed for use in industrial settings. Modified for species whose toes have claws."
-	icon = 'modular_zubbers/icons/obj/clothing/shoes.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	icon_state = "workboots-toeless"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
@@ -372,3 +376,26 @@
 	AddComponent(/datum/component/squeak, combine_sounds, 75)
 
 
+//MGS stuff sprited by Crumpaloo for onlyplateau, please credit when porting, which you obviously have permission to do.
+/obj/item/clothing/shoes/combat/boss
+	name = "patriot's boots"
+	desc = "There is nothing left inside me now. Nothing at all. No hatred, not even regret."
+	icon_state = "boss"
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	clothing_traits = list(TRAIT_SILENT_FOOTSTEPS) //Stealth suit.
+
+/obj/item/clothing/shoes/jackboots/boss
+	name = "mecury woman's boots"
+	desc = "There is nothing left inside me now. Nothing at all. No hatred, not even regret."
+	icon_state = "boss"
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+
+/obj/item/clothing/shoes/jackboots/snake
+	name = "stealth boots"
+	desc = "We will leave our motherlands behind us."
+	icon_state = "snake"
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	clothing_traits = list(TRAIT_SILENT_FOOTSTEPS)

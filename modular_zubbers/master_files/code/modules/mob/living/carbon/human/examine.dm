@@ -1,7 +1,7 @@
 // Species examine
 /mob/living/carbon/human/examine_title(mob/user, thats = FALSE)
 	. = ..()
-	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
+	var/skipface = covered_slots & HIDEFACE
 	var/species_visible
 	var/species_name_string
 	if(skipface || get_visible_name() == "Unknown")

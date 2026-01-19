@@ -272,33 +272,17 @@
 	update_icon()
 	return ..()
 
-/obj/structure/chair/pillow_small/GetArmrest()
-	if(current_color == "pink")
-		return mutable_appearance('modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_structures/pillows.dmi', "pillowpile_small_pink_overlay")
-	if(current_color == "teal")
-		return mutable_appearance('modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_structures/pillows.dmi', "pillowpile_small_teal_overlay")
-
-/obj/structure/chair/pillow_small/Destroy()
-	QDEL_NULL(armrest)
-	return ..()
-
 /obj/structure/chair/pillow_small/post_buckle_mob(mob/living/affected_mob)
 	. = ..()
-	update_icon()
 	density = TRUE
 	//Push them up from the normal lying position
-	affected_mob.pixel_y = affected_mob.base_pixel_y + 2
-
-/obj/structure/chair/pillow_small/update_overlays()
-	. = ..()
-	if(has_buckled_mobs())
-		. += mutable_appearance('modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_structures/pillows.dmi', "pillowpile_small_[current_color]_overlay", layer = ABOVE_MOB_LAYER + 0.2)
+	affected_mob.add_offsets("pillow_pile", 0, 0, 2, 0)
 
 /obj/structure/chair/pillow_small/post_unbuckle_mob(mob/living/affected_mob)
 	. = ..()
 	density = FALSE
 	//Set them back down to the normal lying position
-	affected_mob.pixel_y = affected_mob.base_pixel_y
+	affected_mob.remove_offsets("pillow_pile")
 
 /obj/structure/chair/pillow_small/update_icon_state()
 	. = ..()
@@ -378,7 +362,6 @@
 	base_icon_state = "pillowpile_large"
 	pseudo_z_axis = 4
 	var/current_color = "pink"
-	var/mutable_appearance/armrest
 	//Containing pillows that we have here
 	var/pillow1_color = "pink"
 	var/pillow2_color = "pink"
@@ -402,33 +385,24 @@
 	update_icon()
 	return ..()
 
-/obj/structure/bed/pillow_large/proc/GetArmrest()
-	if(current_color == "pink")
-		return mutable_appearance('modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_structures/pillows.dmi', "pillowpile_large_pink_overlay")
-	if(current_color == "teal")
-		return mutable_appearance('modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_structures/pillows.dmi', "pillowpile_large_teal_overlay")
-
-/obj/structure/bed/pillow_large/Destroy()
-	QDEL_NULL(armrest)
-	return ..()
-
 /obj/structure/bed/pillow_large/post_buckle_mob(mob/living/affected_mob)
 	. = ..()
 	update_icon()
 	density = TRUE
 	//Push them up from the normal lying position
-	affected_mob.pixel_y = affected_mob.base_pixel_y + 0.5
+	affected_mob.add_offsets("pillow_pile", 0, 0, 0.5, 0)
 
 /obj/structure/bed/pillow_large/update_overlays()
 	. = ..()
-	if(has_buckled_mobs())
-		. += mutable_appearance('modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_structures/pillows.dmi', "pillowpile_large_[current_color]_overlay", layer = ABOVE_MOB_LAYER + 0.2)
+	if(!has_buckled_mobs())
+		return
+	. += mutable_appearance(icon, "[icon_state]_armrest", ABOVE_MOB_LAYER, src, appearance_flags = KEEP_APART)
 
 /obj/structure/bed/pillow_large/post_unbuckle_mob(mob/living/affected_mob)
 	. = ..()
 	density = FALSE
 	//Set them back down to the normal lying position
-	affected_mob.pixel_y = affected_mob.base_pixel_y
+	affected_mob.remove_offsets("pillow_pile")
 
 /obj/structure/bed/pillow_large/update_icon_state()
 	. = ..()

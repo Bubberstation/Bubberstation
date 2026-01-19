@@ -73,7 +73,7 @@
 	. = ..()
 	if(!sliced)
 		return
-	user.visible_message(span_notice("You take a slice of [src]."), span_notice("[user] takes a slice of [src]."))
+	user.visible_message(span_notice("[user] takes a slice of [src]."), span_notice("You take a slice of [src]."))
 	produce_slice(user)
 
 /obj/item/food/pizza/proc/get_slices_filter() //to not repeat code
@@ -134,7 +134,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/pizzaslice/make_processable()
-	AddElement(/datum/element/processable, TOOL_ROLLINGPIN, /obj/item/stack/sheet/pizza, 1, 1 SECONDS, table_required = TRUE, screentip_verb = "Flatten")
+	AddElement(/datum/element/processable, TOOL_ROLLINGPIN, /obj/item/stack/sheet/pizza, 1, 1 SECONDS, table_required = TRUE, screentip_verb = "Flatten", sound_to_play = SFX_ROLLING_PIN_ROLLING)
 
 /obj/item/food/pizza/margherita
 	name = "pizza margherita"
@@ -467,7 +467,7 @@
 	boxtag = "9mm Pepperoni"
 	foodtypes = MEAT|GRAIN|DAIRY|VEGETABLES
 	crafting_complexity = FOOD_COMPLEXITY_4
-	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 8, /datum/material/meat = MEATSLAB_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 16, /datum/material/meat = MEATSLAB_MATERIAL_AMOUNT) // BUBBER EDIT CHANGE - Material parity - Original: custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 8, /datum/material/meat = MEATSLAB_MATERIAL_AMOUNT)
 
 /obj/item/food/pizza/arnold/raw
 	name = "raw Arnold pizza"

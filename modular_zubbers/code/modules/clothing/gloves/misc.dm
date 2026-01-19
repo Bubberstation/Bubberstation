@@ -35,14 +35,37 @@
 	icon = 'modular_zubbers/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/hands.dmi'
 	icon_state = "civilprotection"
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Metro Cop" = list(
-			RESKIN_ICON_STATE = "civilprotection",
-			RESKIN_WORN_ICON_STATE = "civilprotection"
-		),
-		"Overwatch" = list(
-			RESKIN_ICON_STATE = "overwatch",
-			RESKIN_WORN_ICON_STATE = "overwatch"
-		),
-	)
+
+/obj/item/clothing/gloves/color/black/security/metrocop/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/metrocop_gloves)
+
+/datum/atom_skin/metrocop_gloves
+	abstract_type = /datum/atom_skin/metrocop_gloves
+
+/datum/atom_skin/metrocop_gloves/metro_cop
+	preview_name = "Metro Cop"
+	new_icon_state = "civilprotection"
+
+/datum/atom_skin/metrocop_gloves/overwatch
+	preview_name = "Overwatch"
+	new_icon_state = "overwatch"
+
+//MGS stuff sprited by Crumpaloo for onlyplateau, please credit when porting, which you obviously have permission to do.
+/obj/item/clothing/gloves/color/black/security/snake
+	name = "stealth gloves"
+	desc = "We will forsake our countries."
+	icon = 'modular_zubbers/icons/obj/clothing/gloves/gloves.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/gloves/gloves.dmi'
+	icon_state = "snake"
+
+/obj/item/clothing/gloves/color/black/security/snake/Initialize(mapload)
+	. = ..()
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+		qdel(reskin_component)
+
+/obj/item/clothing/gloves/bubber/snake
+	name = "big boss' gloves"
+	desc = "We will forsake our countries."
+	icon_state = "snake"

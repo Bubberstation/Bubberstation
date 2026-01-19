@@ -27,10 +27,10 @@
 /obj/item/gun/ballistic/shotgun/automatic/combat
 	name = "\improper Peacekeeper combat shotgun"
 	desc = "A semi-automatic Nanotrasen Peacekeeper shotgun with tactical furnishing and heavier internals meant for sustained fire. Lacks a threaded barrel."
-	icon = 'modular_skyrat/modules/aesthetics/guns/icons/guns.dmi'
-	worn_icon = 'modular_skyrat/modules/aesthetics/guns/icons/guns_back.dmi'
-	lefthand_file = 'modular_skyrat/modules/aesthetics/guns/icons/guns_lefthand.dmi'
-	righthand_file = 'modular_skyrat/modules/aesthetics/guns/icons/guns_righthand.dmi'
+	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/guns48x.dmi'
+	worn_icon = 'modular_skyrat/modules/modular_weapons/icons/mob/company_and_or_faction_based/carwo_defense_systems/guns_worn.dmi'
+	lefthand_file = 'modular_skyrat/modules/modular_weapons/icons/mob/company_and_or_faction_based/carwo_defense_systems/guns_lefthand.dmi'
+	righthand_file = 'modular_skyrat/modules/modular_weapons/icons/mob/company_and_or_faction_based/carwo_defense_systems/guns_righthand.dmi'
 	inhand_icon_state = "shotgun_combat"
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
@@ -38,6 +38,8 @@
 /obj/item/gun/ballistic/shotgun/automatic/combat/compact
 	name = "\improper Peacekeeper compact combat shotgun"
 	desc = "A tactical variant of the peacekeeper combat shotgun used by NT Raiding Parties and Space Marines. It has a gyroscopic stabilizer on it, letting you fire one handed."
+	inhand_icon_state = "shotgun_combat_compact"
+	weapon_weight = WEAPON_MEDIUM
 
 /obj/item/gun/grenadelauncher
 	icon = 'modular_skyrat/modules/aesthetics/guns/icons/guns.dmi'
@@ -391,7 +393,7 @@
 	custom_materials = AMMO_MATS_HOMING // meme ammo. meme print cost
 
 // overrides for .38 Special, used in the .38 revolvers, including the det's
-/obj/item/ammo_box/c38
+/obj/item/ammo_box/speedloader/c38
 	caliber = CALIBER_38
 
 /obj/item/ammo_casing/c38/trac

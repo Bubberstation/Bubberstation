@@ -21,13 +21,11 @@
 	name = "Security Cape"
 	item_path = /obj/item/clothing/neck/security_cape
 	restricted_roles = list(ALL_JOBS_SEC)
-	can_be_reskinned = TRUE
 
 /datum/loadout_item/neck/security_cape/armplate
 	name = "Security Gauntlet"
 	item_path = /obj/item/clothing/neck/security_cape/armplate
 	restricted_roles = list(ALL_JOBS_SEC)
-	can_be_reskinned = TRUE
 
 /datum/loadout_item/neck/pauldron
 	name = "Lieutenant Commander's Pauldron"
@@ -56,7 +54,6 @@
 /datum/loadout_item/neck/scarf/pride
 	name = "Pride Scarf"
 	item_path = /obj/item/clothing/neck/scarf/pride
-	can_be_reskinned = TRUE
 
 /datum/loadout_item/neck/holobadge/hos
 	name = "Head of Security's Holobadge"

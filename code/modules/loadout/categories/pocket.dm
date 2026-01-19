@@ -29,149 +29,147 @@
 
 /datum/loadout_item/pocket_items
 	abstract_type = /datum/loadout_item/pocket_items
-	can_be_named = TRUE // BUBBER EDIT ADDITION
 
-/datum/loadout_item/pocket_items/on_equip_item(
-	obj/item/equipped_item,
-	datum/preferences/preference_source,
-	list/preference_list,
-	mob/living/carbon/human/equipper,
-	visuals_only = FALSE,
-)
+/datum/loadout_item/pocket_items/on_equip_item(obj/item/equipped_item, list/item_details, mob/living/carbon/human/equipper, datum/outfit/job/outfit, visuals_only = FALSE)
 	// Backpack items aren't created if it's a visual equipping, so don't do any on equip stuff. It doesn't exist.
 	if(visuals_only)
 		return NONE
 
 	return ..()
 
+// BUBBER EDIT - START: Put toys in the toys category
 
-/datum/loadout_item/pocket_items/plush
+/datum/loadout_item/toys/plush
 	group = "Plushies"
-	abstract_type = /datum/loadout_item/pocket_items/plush
-	can_be_named = TRUE
+	abstract_type = /datum/loadout_item/toys/plush
 
-/datum/loadout_item/pocket_items/plush/bee
+/datum/loadout_item/toys/plush/bee
 	name = "Plush (Bee)"
 	item_path = /obj/item/toy/plush/beeplushie
 
-/datum/loadout_item/pocket_items/plush/carp
+/datum/loadout_item/toys/plush/carp
 	name = "Plush (Carp)"
 	item_path = /obj/item/toy/plush/carpplushie
 
-/datum/loadout_item/pocket_items/plush/lizard_greyscale
+/datum/loadout_item/toys/plush/lizard_greyscale
 	name = "Plush (Lizard, Colorable)"
 	item_path = /obj/item/toy/plush/lizard_plushie/greyscale
 
-/datum/loadout_item/pocket_items/plush/lizard_random
+/datum/loadout_item/toys/plush/lizard_random
 	name = "Plush (Lizard, Random)"
-	can_be_greyscale = DONT_GREYSCALE
+	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_BLOCK_GREYSCALING
 	ui_icon = 'icons/obj/fluff/previews.dmi'
 	ui_icon_state = "plushie_lizard_random"
 	item_path = /obj/item/toy/plush/lizard_plushie
 
-/datum/loadout_item/pocket_items/plush/moth
+/datum/loadout_item/toys/plush/moth
 	name = "Plush (Moth)"
 	item_path = /obj/item/toy/plush/moth
 
-/datum/loadout_item/pocket_items/plush/nukie
+/datum/loadout_item/toys/plush/nukie
 	name = "Plush (Nukie)"
 	item_path = /obj/item/toy/plush/nukeplushie
 
-/datum/loadout_item/pocket_items/plush/peacekeeper
+/datum/loadout_item/toys/plush/peacekeeper
 	name = "Plush (Peacekeeper)"
 	item_path = /obj/item/toy/plush/pkplush
 
-/datum/loadout_item/pocket_items/plush/plasmaman
+/datum/loadout_item/toys/plush/plasmaman
 	name = "Plush (Plasmaman)"
 	item_path = /obj/item/toy/plush/plasmamanplushie
 
-/datum/loadout_item/pocket_items/plush/human
+/datum/loadout_item/toys/plush/human
 	name = "Plush (human)"
 	item_path = /obj/item/toy/plush/human
 
-/datum/loadout_item/pocket_items/plush/rouny
+/datum/loadout_item/toys/plush/rouny
 	name = "Plush (Rouny)"
 	item_path = /obj/item/toy/plush/rouny
 
-/datum/loadout_item/pocket_items/plush/snake
+/datum/loadout_item/toys/plush/snake
 	name = "Plush (Snake)"
 	item_path = /obj/item/toy/plush/snakeplushie
 
-/datum/loadout_item/pocket_items/plush/horse
+/datum/loadout_item/toys/plush/horse
 	name = "Plush (Horse)"
 	item_path = /obj/item/toy/plush/horse
 
-/datum/loadout_item/pocket_items/dice
+/datum/loadout_item/toys/dice
 	group = "Dice"
-	abstract_type = /datum/loadout_item/pocket_items/dice
 
-/datum/loadout_item/pocket_items/dice/dice_bag
+/datum/loadout_item/toys/dice/dice_bag
 	name = "Dice Bag"
 	item_path = /obj/item/storage/dice
 
-/datum/loadout_item/pocket_items/dice/d1
+/datum/loadout_item/toys/dice/d1
 	name = "D1"
 	item_path = /obj/item/dice/d1
 
-/datum/loadout_item/pocket_items/dice/d2
+/datum/loadout_item/toys/dice/d2
 	name = "D2"
 	item_path = /obj/item/dice/d2
 
-/datum/loadout_item/pocket_items/dice/d4
+/datum/loadout_item/toys/dice/d4
 	name = "D4"
 	item_path = /obj/item/dice/d4
 
-/datum/loadout_item/pocket_items/dice/d6
+/datum/loadout_item/toys/dice/d6
 	name = "D6"
 	item_path = /obj/item/dice/d6
 
-/datum/loadout_item/pocket_items/dice/d6_ebony
+/datum/loadout_item/toys/dice/d6_ebony
 	name = "D6 (Ebony)"
 	item_path = /obj/item/dice/d6/ebony
 
-/datum/loadout_item/pocket_items/dice/d6_space
+/datum/loadout_item/toys/dice/d6_space
 	name = "D6 (Space)"
 	item_path = /obj/item/dice/d6/space
 
-/datum/loadout_item/pocket_items/dice/d8
+/datum/loadout_item/toys/dice/d8
 	name = "D8"
 	item_path = /obj/item/dice/d8
 
-/datum/loadout_item/pocket_items/dice/d10
+/datum/loadout_item/toys/dice/d10
 	name = "D10"
 	item_path = /obj/item/dice/d10
 
-/datum/loadout_item/pocket_items/dice/d12
+/datum/loadout_item/toys/dice/d12
 	name = "D12"
 	item_path = /obj/item/dice/d12
 
-/datum/loadout_item/pocket_items/dice/d20
+/datum/loadout_item/toys/dice/d20
 	name = "D20"
 	item_path = /obj/item/dice/d20
 
-/datum/loadout_item/pocket_items/dice/d100
+/datum/loadout_item/toys/dice/d100
 	name = "D100"
 	item_path = /obj/item/dice/d100
 
-/datum/loadout_item/pocket_items/dice/d00
+/datum/loadout_item/toys/dice/d00
 	name = "D00"
 	item_path = /obj/item/dice/d00
 
-/datum/loadout_item/pocket_items/card_binder
+/datum/loadout_item/toys/cards
+	group = "Cards"
+	abstract_type = /datum/loadout_item/toys/cards
+
+/datum/loadout_item/toys/cards/card_binder
 	name = "Card Binder"
 	item_path = /obj/item/storage/card_binder
 
-/datum/loadout_item/pocket_items/card_deck
+/datum/loadout_item/toys/cards/card_deck
 	name = "Playing Card Deck"
 	item_path = /obj/item/toy/cards/deck
 
-/datum/loadout_item/pocket_items/kotahi_deck
+/datum/loadout_item/toys/cards/kotahi_deck
 	name = "Kotahi Deck"
 	item_path = /obj/item/toy/cards/deck/kotahi
 
-/datum/loadout_item/pocket_items/wizoff_deck
+/datum/loadout_item/toys/cards/wizoff_deck
 	name = "Wizoff Deck"
 	item_path = /obj/item/toy/cards/deck/wizoff
+
+// BUBBER EDIT - END
 
 /datum/loadout_item/pocket_items/lipstick
 	name = "Lipstick"
@@ -182,19 +180,15 @@
 	.[FA_ICON_PALETTE] = "Recolorable"
 
 /* SKYRAT EDIT REMOVAL
-/datum/loadout_item/pocket_items/lipstick/on_equip_item(
-	obj/item/lipstick/equipped_item,
-	datum/preferences/preference_source,
-	list/preference_list,
-	mob/living/carbon/human/equipper,
-	visuals_only,
-)
+/datum/loadout_item/pocket_items/lipstick/on_equip_item(obj/item/equipped_item, list/item_details, mob/living/carbon/human/equipper, datum/outfit/job/outfit, visuals_only = FALSE)
 	. = ..()
-	var/picked_style = style_to_style(preference_list[item_path]?[INFO_LAYER])
-	var/picked_color = preference_list[item_path]?[INFO_GREYSCALE] || /obj/item/lipstick::lipstick_color
-	if(istype(equipped_item)) // can be null for visuals_only
-		equipped_item.style = picked_style
-		equipped_item.lipstick_color = picked_color
+	if(isnull(equipped_item))
+		return
+	var/picked_style = style_to_style(item_details[INFO_LAYER])
+	var/picked_color = item_details[INFO_GREYSCALE] || /obj/item/lipstick::lipstick_color
+	var/obj/item/lipstick/lipstick_item = equipped_item
+	lipstick_item.style = picked_style
+	lipstick_item.lipstick_color = picked_color
 	equipper.update_lips(picked_style, picked_color)
 
 /// Converts style (readable) to style (internal)
@@ -292,13 +286,7 @@
 /datum/loadout_item/pocket_items/wallet/insert_path_into_outfit(datum/outfit/outfit, mob/living/carbon/human/equipper, visuals_only = FALSE)
 	return
 
-/datum/loadout_item/pocket_items/wallet/on_equip_item(
-	obj/item/equipped_item,
-	datum/preferences/preference_source,
-	list/preference_list,
-	mob/living/carbon/human/equipper,
-	visuals_only = FALSE,
-)
+/datum/loadout_item/pocket_items/wallet/on_equip_item(obj/item/equipped_item, list/item_details, mob/living/carbon/human/equipper, datum/outfit/job/outfit, visuals_only = FALSE)
 	// Do this at the very end of the setup process so we can insert quirk items and such
 	if(!visuals_only && !isdummy(equipper))
 		RegisterSignal(equipper, COMSIG_HUMAN_CHARACTER_SETUP_FINISHED, PROC_REF(apply_after_setup), override = TRUE)
@@ -337,13 +325,7 @@
 /datum/loadout_item/pocket_items/borg_me_dogtag
 	item_path = /obj/item/clothing/accessory/dogtag/borg_ready
 
-/datum/loadout_item/pocket_items/borg_me_dogtag/on_equip_item(
-	obj/item/equipped_item,
-	datum/preferences/preference_source,
-	list/preference_list,
-	mob/living/carbon/human/equipper,
-	visuals_only = FALSE,
-)
+/datum/loadout_item/pocket_items/borg_me_dogtag/on_equip_item(obj/item/equipped_item, list/item_details, mob/living/carbon/human/equipper, datum/outfit/job/outfit, visuals_only)
 	// We're hooking this datum to add an extra bit of flavor to the dogtag - a pregenerated medical record
 	if(!visuals_only && !isdummy(equipper))
 		RegisterSignal(equipper, COMSIG_HUMAN_CHARACTER_SETUP_FINISHED, PROC_REF(apply_after_setup), override = TRUE)
@@ -355,3 +337,7 @@
 	UnregisterSignal(source, COMSIG_HUMAN_CHARACTER_SETUP_FINISHED)
 	var/datum/record/crew/record = find_record(source.real_name)
 	record?.medical_notes += new /datum/medical_note("Central Command", "Patient is a registered brain donor for Robotics research.", null)
+
+/datum/loadout_item/pocket_items/candles
+	name = "Box of Candles"
+	item_path = /obj/item/storage/fancy/candle_box

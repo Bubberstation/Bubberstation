@@ -30,7 +30,7 @@
 	. = ..()
 	if(!QDELETED(hit_mob))
 		hit_mob.Knockdown(2 SECONDS)
-		hit_mob.adjustBruteLoss(40)
+		hit_mob.adjust_brute_loss(40)
 	qdel()
 
 /obj/item/ammo_box/magazine/m9mm/fire
@@ -123,6 +123,12 @@
 	max_ammo = 8
 	multiple_sprites = AMMO_BOX_PER_BULLET
 	multiple_sprite_use_base = TRUE
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10,
+		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 10,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 10,
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 10,
+	)
 
 // M1911 (.45) //
 

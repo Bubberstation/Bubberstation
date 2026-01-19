@@ -8,6 +8,7 @@
 /datum/sprite_accessory/xenodorsal/none
 	name = SPRITE_ACCESSORY_NONE
 	icon_state = "none"
+	factual = FALSE
 
 /datum/sprite_accessory/xenodorsal/standard
 	name = "Standard"
@@ -49,6 +50,7 @@
 /datum/sprite_accessory/xenohead/none
 	name = SPRITE_ACCESSORY_NONE
 	icon_state = "none"
+	factual = FALSE
 
 /datum/sprite_accessory/xenohead/standard
 	name = "Standard"

@@ -1,10 +1,5 @@
 //Title Capitalization for names please!!!
 
-/datum/loadout_item/suit/secjacket
-	name = "High-Vis Security Jacket"
-	item_path = /obj/item/clothing/suit/armor/vest/secjacket/blue
-	restricted_roles = list(ALL_JOBS_SEC)
-
 /datum/loadout_item/suit/leather_apron
 	name = "Leather Apron"
 	item_path = /obj/item/clothing/suit/leatherapron
@@ -42,6 +37,16 @@
 /datum/loadout_item/suit/toggle/jacket/sec/old
 	name = "Security Red Jacket"
 	item_path = /obj/item/clothing/suit/toggle/jacket/sec/old
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/suit/secjacket
+	name = "High-Vis Security Jacket"
+	item_path = /obj/item/clothing/suit/armor/vest/secjacket/blue
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/suit/secjacket/bomber
+	name = "Security Bomber Jacket"
+	item_path = /obj/item/clothing/suit/toggle/jacket/zubber/bomber/sec
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/suit/jacket/officer/tan
@@ -175,3 +180,59 @@
 /datum/loadout_item/suit/hoodie/twee_hoodie
 	name = "Disconcertingly Twee Hoodie"
 	item_path = /obj/item/clothing/suit/hooded/twee_hoodie
+
+//Para Bombers
+//Unless it has armor, real armor and not just like minor acid/fire I'm just gonna leave it unrestricted because the people want their drip. Me. I'm the people.
+/datum/loadout_item/suit/parabomber
+	name = "Three Piece Bomber Jacket"
+	item_path = /obj/item/clothing/suit/toggle/jacket/zubber/bomber
+
+/datum/loadout_item/suit/paraatmosbomber
+	name = "Atmos Bomber Jacket"
+	item_path = /obj/item/clothing/suit/utility/fire/atmosbomber
+	restricted_roles = list(ALL_JOBS_ENGINEERING)
+
+/datum/loadout_item/suit/paraengibomber
+	name = "Engineering Bomber Jacket"
+	item_path = /obj/item/clothing/suit/toggle/jacket/zubber/bomber/engi
+
+/datum/loadout_item/suit/paracargobomber
+	name = "Cargo Bomber Jacket"
+	item_path = /obj/item/clothing/suit/toggle/jacket/zubber/bomber/cargo
+
+/datum/loadout_item/suit/parathesmithsbomber
+	name = "Blacksmith Bomber Jacket"
+	item_path = /obj/item/clothing/suit/toggle/jacket/zubber/bomber/cargo/smith
+
+/datum/loadout_item/suit/paraminingbomber
+	name = "Mining Bomber Jacket"
+	item_path = /obj/item/clothing/suit/toggle/jacket/zubber/bomber/mining
+	restricted_roles = list(JOB_SHAFT_MINER)
+
+/datum/loadout_item/suit/parascibomber
+	name = "Scientist Bomber Jacket"
+	item_path = /obj/item/clothing/suit/toggle/jacket/zubber/bomber/science
+
+/datum/loadout_item/suit/pararobobomber
+	name = "Robotics Bomber Jacket"
+	item_path = /obj/item/clothing/suit/toggle/jacket/zubber/bomber/science/robotics
+
+/datum/loadout_item/suit/paramedbomber
+	name = "Medical Bomber Jacket"
+	item_path = /obj/item/clothing/suit/toggle/jacket/zubber/bomber/science/med
+
+/datum/loadout_item/suit/parachembomber
+	name = "Chemical Bomber Jacket"
+	item_path = /obj/item/clothing/suit/toggle/jacket/zubber/bomber/science/chem
+
+/datum/loadout_item/suit/paracorobomber
+	name = "Black Bomber Jacket"
+	item_path = /obj/item/clothing/suit/toggle/jacket/zubber/bomber/science/coroner
+
+/datum/loadout_item/suit/parabotbomber
+	name = "Botanical Bomber Jacket"
+	item_path = /obj/item/clothing/suit/toggle/jacket/zubber/bomber/hydro
+
+/datum/loadout_item/suit/paraimposterbomber
+	name = "Suspicious Bomber Jacket"
+	item_path = /obj/item/clothing/suit/toggle/jacket/zubber/bomber/syndicate/fake

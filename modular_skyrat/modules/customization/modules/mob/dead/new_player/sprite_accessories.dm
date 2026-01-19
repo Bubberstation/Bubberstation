@@ -43,6 +43,9 @@
 	/// If this sprite accessory will be inaccessable if ERP config is disabled
 	var/erp_accessory = FALSE
 
+/datum/sprite_accessory/blank
+	factual = FALSE
+
 /datum/sprite_accessory/New()
 	if(!default_color)
 		switch(color_src)
@@ -103,6 +106,30 @@
 
 	return colors
 
+// Shared logic for head bobbins (Ears, Horns, Moth Antennae, and Synthetic Antennae)
+/datum/sprite_accessory/proc/is_deely_bobber_hidden(mob/living/carbon/human/wearer, hiding_flags, force_render_flags)
+	if(!wearer.head)
+		return FALSE
+
+	// Can hide if wearing hat
+	if(key in wearer.try_hide_mutant_parts)
+		return TRUE
+
+	// Exception for MODs
+	if(istype(wearer.head, /obj/item/clothing/head/mod))
+		return FALSE
+
+	// Hide accessory if flagged to do so
+	if((wearer.covered_slots & hiding_flags) \
+		// Force render bypass check
+		&& ( \
+			(wearer.head && (wearer.head.flags_inv & hiding_flags) && !(wearer.head.flags_inv & force_render_flags)) \
+			|| (wearer.wear_mask && (wearer.wear_mask.flags_inv & hiding_flags) && !(wearer.wear_mask?.flags_inv & force_render_flags)) \
+		))
+		return TRUE
+
+	return FALSE
+
 /datum/sprite_accessory/moth_markings
 	key = "moth_markings"
 	// organ_type = /obj/item/organ/moth_markings // UNCOMMENT THIS IF THEY EVER FIX IT UPSTREAM, CAN'T BE BOTHERED TO FIX IT MYSELF
@@ -113,6 +140,7 @@
 /datum/sprite_accessory/moth_markings/none
 	name = SPRITE_ACCESSORY_NONE
 	icon_state = "none"
+	factual = FALSE
 
 /datum/sprite_accessory/pod_hair
 	icon = 'modular_skyrat/master_files/icons/mob/species/podperson_hair.dmi'
@@ -133,7 +161,7 @@
 	organ_type = /obj/item/organ/mushroom_cap
 
 /datum/sprite_accessory/caps/is_hidden(mob/living/carbon/human/human)
-	if(((human.head?.flags_inv & HIDEHAIR) || (human.wear_mask?.flags_inv & HIDEHAIR)) || (key in human.try_hide_mutant_parts))
+	if((human.covered_slots & HIDEHAIR) || (key in human.try_hide_mutant_parts))
 		return TRUE
 
 	return FALSE
@@ -155,6 +183,7 @@
 /datum/sprite_accessory/lizard_markings/none
 	name = SPRITE_ACCESSORY_NONE
 	icon_state = "none"
+	factual = FALSE
 
 
 /// Legs are a special case, they aren't actually sprite_accessories but are updated with them.

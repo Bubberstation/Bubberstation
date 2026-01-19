@@ -46,7 +46,7 @@
 	if(src.luck_mod > luck_mod)
 		src.luck_mod += luck_mod * 0.5
 	if(src.damage_mod > damage_mod)
-		src.luck_mod += luck_mod * 0.5
+		src.damage_mod += damage_mod * 0.5
 	// This means that if you had a strong temporary omen and it was replaced by a weaker but permanent omen, the latter is made worse.
 	// Feature!
 
@@ -296,6 +296,35 @@
 	player.spread_bodyparts()
 	player.spawn_gibs()
 
+	return
+
+// Variant of the quirk omen, also permanent, but only causes the limbs to be removed on death.
+/datum/component/omen/loose_limbs
+	incidents_left = INFINITY
+	luck_mod = 0 // 0% chance of bad things happening
+	damage_mod = 0 // 0% of normal damage
+	//luck and damage modifiers set to 0%, to ensure the other cursed effects are disabled.
+/datum/component/omen/loose_limbs/RegisterWithParent()
+	RegisterSignal(parent, COMSIG_LIVING_DEATH, PROC_REF(check_death))
+
+/datum/component/omen/loose_limbs/UnregisterFromParent()
+	UnregisterSignal(parent, COMSIG_LIVING_DEATH)
+
+/datum/component/omen/loose_limbs/check_death(mob/living/our_guy)
+	if(!iscarbon(our_guy))
+		our_guy.gib(DROP_ALL_REMAINS)
+		return
+
+	// Don't explode if buckled to a stasis bed
+	if(our_guy.buckled)
+		var/obj/machinery/stasis/stasis_bed = our_guy.buckled
+		if(istype(stasis_bed))
+			return
+
+	death_explode(our_guy)
+	var/mob/living/carbon/player = our_guy
+	player.spread_bodyparts()
+	//causes minor explosion and removes limbs, does not spawn gibs.
 	return
 
 /**

@@ -113,7 +113,7 @@ trait_name = "Station"
 map_files = ["catwalk_cryo.dmm"]
 directory = "_maps/bubber/automapper/templates/CatwalkStation/"
 required_map = "CatwalkStation_2023.dmm"
-coordinates = [142, 152, 1]
+coordinates = [141, 152, 1]
 trait_name = "Station"
 
 # Catwalk ERT Bay
@@ -163,14 +163,6 @@ map_files = ["centcom_shuttle_dock.dmm"]
 directory = "_maps/bubber/automapper/templates/centcom/"
 required_map = "CentCom_skyrat_z2.dmm"
 coordinates = [51, 167, 2]
-trait_name = "CentCom"
-
-# Interlink Admin Office
-[templates.interlink_adminoffice]
-map_files = ["interlink_adminoffice.dmm"]
-directory = "_maps/bubber/automapper/templates/centcom/"
-required_map = "CentCom_skyrat_z2.dmm"
-coordinates = [72, 183, 2]
 trait_name = "CentCom"
 
 # DELTASTATION MAP EDITS
@@ -375,6 +367,14 @@ map_files = ["lavaland_turbines.dmm"]
 directory = "_maps/bubber/automapper/templates/lavaland/"
 required_map = "Lavaland.dmm"
 coordinates = [107, 49, 1]
+trait_name = "Mining"
+
+#Lavaland Smithy
+[templates.lavaland_smithy]
+map_files = ["lavaland_smithy.dmm"]
+directory = "_maps/bubber/automapper/templates/lavaland/"
+required_map = "Lavaland.dmm"
+coordinates = [143, 38, 1]
 trait_name = "Mining"
 
 # METASTATION MAP EDITS

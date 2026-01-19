@@ -39,6 +39,10 @@
 	name = "quartermasters's garment bag"
 	desc = "A bag for storing extra clothes and shoes. This one belongs to the quartermaster."
 
+/obj/item/storage/bag/garment/paramedic
+	name = "EMT's garment bag"
+	desc = "A bag for storing extra clothes and shoes. This one belongs to the emergency medical team."
+
 /obj/item/storage/bag/garment/captain/PopulateContents()
 	new /obj/item/clothing/under/rank/captain(src)
 	new /obj/item/clothing/under/rank/captain/skirt(src)
@@ -54,13 +58,17 @@
 	new /obj/item/clothing/head/hats/caphat/parade(src)
 	new /obj/item/clothing/neck/cloak/cap(src)
 	new /obj/item/clothing/shoes/laceup(src)
+	new /obj/item/storage/backpack/captain(src)
+	new /obj/item/storage/backpack/satchel/cap(src)
+	new /obj/item/storage/backpack/duffelbag/captain(src)
+	new /obj/item/storage/backpack/messenger/cap(src)
 
 /obj/item/storage/bag/garment/hop/PopulateContents()
 	new /obj/item/clothing/under/rank/civilian/head_of_personnel(src)
 	new /obj/item/clothing/under/rank/civilian/head_of_personnel/skirt(src)
 	new /obj/item/clothing/suit/armor/vest/hop(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/hop(src)
-	new /obj/item/clothing/glasses/sunglasses(src)
+	//new /obj/item/clothing/glasses/sunglasses(src) //BUBBER REMOVAL - They get civhuds by override in modular file
 	new /obj/item/clothing/head/hats/hopcap(src)
 	new /obj/item/clothing/neck/cloak/hop(src)
 	new /obj/item/clothing/shoes/laceup(src)
@@ -71,12 +79,10 @@
 	new /obj/item/clothing/neck/tie/bunnytie/hop(src)
 	new /obj/item/clothing/head/hopcap/beret(src)
 	new /obj/item/clothing/head/hopcap/beret/alt(src)
-	new /obj/item/clothing/head/hats/imperial/hop(src)
 	new /obj/item/clothing/under/rank/civilian/head_of_personnel/skyrat/turtleneck(src)
 	new /obj/item/clothing/under/rank/civilian/head_of_personnel/skyrat/turtleneck/skirt(src)
 	new /obj/item/clothing/under/rank/civilian/head_of_personnel/skyrat/parade(src)
 	new /obj/item/clothing/under/rank/civilian/head_of_personnel/skyrat/parade/female(src)
-	new /obj/item/clothing/under/rank/civilian/head_of_personnel/skyrat/imperial(src)
 	new /obj/item/clothing/suit/armor/vest/hop/hop_formal(src)
 	new /obj/item/clothing/neck/mantle/hopmantle(src)
 
@@ -120,9 +126,7 @@
 	new	/obj/item/clothing/under/rank/security/head_of_security/bunnysuit(src)
 	new	/obj/item/clothing/suit/armor/hos_tailcoat(src)
 	new /obj/item/clothing/head/hats/hos/beret/navyhos(src)
-	new /obj/item/clothing/head/hats/imperial/hos(src)
 	new /obj/item/clothing/under/rank/security/head_of_security/peacekeeper(src)
-	new /obj/item/clothing/under/rank/security/head_of_security/skyrat/imperial(src)
 	new /obj/item/clothing/suit/jacket/hos/blue(src)
 	new /obj/item/clothing/neck/mantle/hosmantle(src)
 
@@ -135,7 +139,7 @@
 	new /obj/item/clothing/under/rank/security/warden/formal(src)
 	new /obj/item/clothing/suit/jacket/warden/blue(src) //SKYRAT ADDITION - FORMAL COAT
 	new /obj/item/clothing/under/rank/security/warden/skirt(src)
-	new /obj/item/clothing/gloves/krav_maga/sec(src)
+	new /obj/item/clothing/gloves/kaza_ruk/sec(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses(src)
 	new /obj/item/clothing/mask/gas/sechailer(src)
 
@@ -157,7 +161,6 @@
 	new /obj/item/clothing/head/beret/science/rd/alt(src)
 	new /obj/item/clothing/under/rank/rnd/research_director/skyrat/jumpsuit(src)
 	new /obj/item/clothing/under/rank/rnd/research_director/skyrat/jumpsuit/skirt(src)
-	new /obj/item/clothing/under/rank/rnd/research_director/skyrat/imperial(src)
 	new /obj/item/clothing/neck/mantle/rdmantle(src)
 	new /obj/item/clothing/suit/toggle/labcoat(src)
 	new /obj/item/clothing/suit/toggle/labcoat/research_director(src)
@@ -179,11 +182,13 @@
 	new /obj/item/clothing/head/beret/medical/cmo(src)
 	new /obj/item/clothing/head/utility/surgerycap/cmo(src)
 	new /obj/item/clothing/neck/cloak/cmo(src)
-	new /obj/item/clothing/shoes/sneakers/blue (src)
+	new /obj/item/clothing/shoes/sneakers/white(src)
+	new /obj/item/storage/backpack/chief_medic(src)
+	new /obj/item/storage/backpack/satchel/chief_medic(src)
+	new /obj/item/storage/backpack/duffelbag/chief_medic(src)
+	new /obj/item/storage/backpack/messenger/chief_medic(src)
 //Duplication from Commdrobe
 	new /obj/item/clothing/head/beret/medical/cmo/alt(src)
-	new /obj/item/clothing/head/hats/imperial/cmo(src)
-	new /obj/item/clothing/under/rank/medical/chief_medical_officer/skyrat/imperial(src)
 	new /obj/item/clothing/neck/mantle/cmomantle(src)
 	new /obj/item/clothing/head/playbunnyears/cmo(src)
 	new /obj/item/clothing/under/rank/medical/cmo_bunnysuit(src)
@@ -204,8 +209,6 @@
 	new /obj/item/clothing/shoes/sneakers/brown(src)
 //Duplication from Commdrobe
 	new /obj/item/clothing/head/beret/engi/ce(src)
-	new /obj/item/clothing/head/hats/imperial/ce(src)
-	new /obj/item/clothing/under/rank/engineering/chief_engineer/skyrat/imperial(src)
 	new /obj/item/clothing/neck/mantle/cemantle(src)
 	new /obj/item/clothing/head/playbunnyears/ce(src)
 	new /obj/item/clothing/under/rank/engineering/chief_engineer/bunnysuit(src)
@@ -240,3 +243,10 @@
 	new /obj/item/clothing/suit/jacket/tailcoat/quartermaster(src)
 	new /obj/item/clothing/neck/tie/bunnytie/cargo(src)
 
+
+/obj/item/storage/bag/garment/paramedic/PopulateContents()
+	new /obj/item/clothing/under/rank/medical/paramedic(src)
+	new /obj/item/clothing/under/rank/medical/paramedic/skirt(src)
+	new /obj/item/clothing/gloves/latex/nitrile(src)
+	new /obj/item/clothing/shoes/workboots/black(src)
+	new /obj/item/clothing/glasses/hud/health(src)
