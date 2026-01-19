@@ -6,7 +6,7 @@
 		/obj/item/clothing/head/hooded
 	)
 
-/datum/loadout_category/suit
+/datum/loadout_category/suits
 	generation_subtypes_whitelist = list(
 		/obj/item/clothing/suit
 	)
@@ -18,7 +18,6 @@
 	generation_subtypes_blacklist = list(
 		/obj/item/clothing/glasses/meson,
 		/obj/item/clothing/glasses/hud,
-		/obj/item/clothing/mask/facehugger
 	)
 
 /datum/loadout_category/shoes
@@ -59,7 +58,8 @@
 		/obj/item/clothing/mask
 	)
 	generation_subtypes_blacklist = list(
-		/obj/item/clothing/mask/muzzle
+		/obj/item/clothing/mask/muzzle,
+		/obj/item/clothing/mask/facehugger
 	)
 
 /datum/loadout_category/uniform

@@ -2,10 +2,16 @@ GLOBAL_LIST_INIT(loadout_blacklist_terms,list(
 	"debug",
 	"admin",
 	"god",
-	"dev"
+	"dev",
+	"centcom",
+	"central com",
+
 ))
 
 GLOBAL_LIST_INIT(loadout_blacklist,generate_loadout_blacklist())
+
+
+GLOBAL_LIST_INIT(loadout_blacklist_names,list())
 
 /proc/generate_loadout_blacklist() as /list
 
@@ -29,20 +35,28 @@ GLOBAL_LIST_INIT(loadout_blacklist,generate_loadout_blacklist())
 	if(length(GLOB.loadout_blacklist) && GLOB.loadout_blacklist[item_to_check])
 		return FALSE
 
+	if(length(GLOB.loadout_blacklist_names) && GLOB.loadout_blacklist[GLOB.loadout_blacklist_names])
+		return FALSE
+
 	if(item_to_check == item_to_check.abstract_type)
 		return FALSE
 
-	if(!item_to_check.name || !item_to_check.desc || !item_to_check.icon)
+	if(!item_to_check.name || !item_to_check.desc || !item_to_check.icon || !item_to_check.icon_state)
 		return FALSE
 
 	//Resistance Flags
 	if(item_to_check.resistance_flags & LOADOUT_BLACKLISTED_CLOTHING_RESISTANCES)
 		return FALSE
 
+	//Item flags.
+	if(item_to_check.item_flags & LOADOUT_BLACKLISTED_ITEM_FLAGS)
+		return FALSE
+
 	//Makes you fast.
 	if(item_to_check.slowdown < 0)
 		return FALSE
 
+	//Gives you unreasonable shock resist.
 	if(item_to_check.siemens_coefficient < 0.5) //0.5 is considered normal for most items.
 		return FALSE
 

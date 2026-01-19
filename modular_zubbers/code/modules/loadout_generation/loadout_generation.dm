@@ -16,7 +16,6 @@
 	var/list/loadout_config_items = list() //So things aren't double generated.
 
 	//Generate what we have configs for.
-	/*
 	for(var/datum/loadout_item/found_type as anything in typesof(type_to_generate))
 
 		if(!found_type.ckeywhitelist && !found_type.restricted_roles && !found_type.blacklisted_roles && !found_type.restricted_species && !found_type.donator_only && !found_type.required_season && !found_type.erp_item)
@@ -34,15 +33,17 @@
 			stack_trace("Loadout get_items(): Attempted to instantiate a loadout item ([found_type]) with an invalid or null typepath! (got path: [found_type.item_path])")
 			continue
 
+		var/item_name = full_capitalize("[item_path.name]") //The square brackets allow text macros to run.
 		loadout_config_items[item_path] = TRUE
+		GLOB.loadout_blacklist_names[item_name] = TRUE
 
 		var/datum/loadout_item/loadout_item_datum = new type_to_generate(
 			src,
-			full_capitalize("[item_path.name]"), //The square brackets allow text macros to run.
+			item_name,
 			item_path
 		)
 		. += loadout_item_datum
-	*/
+
 
 	//Generate everything else.
 
@@ -67,10 +68,12 @@
 			continue
 		if(length(GLOB.all_loadout_datums) && GLOB.all_loadout_datums[found_item]) //Already exists.
 			continue
+		var/item_name = full_capitalize("[found_item.name]") //The square brackets allow text macros to run.
 		var/datum/loadout_item/loadout_item_datum = new type_to_generate(
 			src,
-			full_capitalize("[found_item.name]"), //The square brackets allow text macros to run.
+			item_name,
 			found_item
 		)
 		loadout_config_items[found_item] = TRUE
+		GLOB.loadout_blacklist_names[item_name] = TRUE
 		. += loadout_item_datum
