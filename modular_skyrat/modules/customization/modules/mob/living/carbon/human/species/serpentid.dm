@@ -54,17 +54,17 @@
 		LOADOUT_ITEM_HEAD = SERPENTID_HEAD_ICON,
 		LOADOUT_ITEM_MASK = SERPENTID_MASK_ICON,
 		LOADOUT_ITEM_UNIFORM = SERPENTID_UNIFORM_ICON,
-		LOADOUT_ITEM_HANDS =  SERPENTID_HANDS_ICON,
+		LOADOUT_ITEM_HANDS = SERPENTID_HANDS_ICON,
 		LOADOUT_ITEM_GLASSES = SERPENTID_EYES_ICON,
 		LOADOUT_ITEM_BELT = SERPENTID_BELT_ICON,
 		LOADOUT_ITEM_MISC = SERPENTID_BACK_ICON,
 		LOADOUT_ITEM_EARS = SERPENTID_EARS_ICON
 	)
 
-/datum/species/gas/randomize_features(mob/living/carbon/human/human_mob)
+/datum/species/gas/randomize_features()
 	var/list/features = ..()
 	var/main_color
-	var/random = rand(1,6)
+	var/random = rand(1, 6)
 	switch(random)
 		if(1)
 			main_color = "#44FF77"
@@ -85,9 +85,9 @@
 
 /datum/species/gas/prepare_human_for_preview(mob/living/carbon/human/serpentid)
 	var/serpentid_color = "#00ac1d"
-	serpentid.dna.features["mcolor"] = serpentid_color
-	serpentid.dna.features["mcolor2"] = serpentid_color
-	serpentid.dna.features["mcolor3"] = serpentid_color
+	serpentid.dna.features[FEATURE_MUTANT_COLOR] = serpentid_color
+	serpentid.dna.features[FEATURE_MUTANT_COLOR_TWO] = serpentid_color
+	serpentid.dna.features[FEATURE_MUTANT_COLOR_THREE] = serpentid_color
 	regenerate_organs(serpentid, src, visual_only = TRUE)
 	serpentid.update_body(TRUE)
 
@@ -224,9 +224,11 @@
 
 #undef BASE_CLOTH_X_1
 #undef BASE_CLOTH_Y_1
+
 #undef SERPENTID_COLD_THRESHOLD_1
 #undef SERPENTID_COLD_THRESHOLD_2
 #undef SERPENTID_COLD_THRESHOLD_3
+
 #undef SERPENTID_HEAT_THRESHOLD_1
 #undef SERPENTID_HEAT_THRESHOLD_2
 #undef SERPENTID_HEAT_THRESHOLD_3
