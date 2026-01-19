@@ -11,10 +11,12 @@ GLOBAL_LIST_INIT(loadout_blacklist,generate_loadout_blacklist())
 
 	. = list()
 
+	//Prevents traitor items.
 	for(var/datum/uplink_item/syndie_uplink_datum as anything in typesof(/datum/uplink_item))
 		if(syndie_uplink_datum.item)
 			.[syndie_uplink_datum.item] = TRUE
 
+	//Prevents research items.
 	for(var/datum/design/research_design as anything in typesof(/datum/design))
 		if(research_design.build_path)
 			.[research_design.build_path] = TRUE
