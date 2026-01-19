@@ -13,8 +13,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb_continuous = list("whacks","breaches","bulldozes","flings","thwachs")
 	attack_verb_simple = list("breach","hammer","whack","slap","thwach","fling")
-	obj_flags = obj_flags & ~CONDUCTS_ELECTRICITY
-	armor_type = /datum/armor/hammer
+	obj_flags = 0
 
 	/// Delay between door hits
 	var/breaching_delay = 2 SECONDS
@@ -25,11 +24,6 @@
 	var/breacher = null
 	/// the amount that the force is multiplied by , that is then applied as damage to the door.
 	var/breaching_multipler = 2.5
-/datum/armor.hammer
-	melee = 100
-	energy = 100
-	fire = 50
-	acid = 50
 
 /obj/item/melee/breaching_hammer/Initialize(mapload)
 	. = ..()
