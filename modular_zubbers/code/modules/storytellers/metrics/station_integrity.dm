@@ -41,7 +41,7 @@
 		checked_areas += 1
 
 		if(station_area.fire)
-			total_firespots_weight += area_size / total_area_size
+			total_firespots_weight += area_size
 
 		if(!is_safe_area(station_area) || !length(station_area.air_vents))
 			unsafe_areas += 1
@@ -57,15 +57,17 @@
 	// Penalties based on unsafe % size and weighted fires (no count-based, size-focused)
 	var/unsafe_percentage = total_area_size > 0 ? (total_unsafe_area_size / total_area_size) * 100 : 0
 	var/penalty_unsafe = unsafe_percentage * (STORY_INTEGRITY_PENALTY_UNSAFE / 100)  // Scale penalty by % unsafe
-	var/penalty_fires = total_firespots_weight * STORY_INTEGRITY_PENALTY_FIRES  // Weighted by fire areas size
+	// Normalize fire weight by total area size for penalty calculation
+	var/fire_weight_normalized = total_area_size > 0 ? (total_firespots_weight / total_area_size) : 0
+	var/penalty_fires = fire_weight_normalized * STORY_INTEGRITY_PENALTY_FIRES  // Weighted by fire areas size
 	var/raw_integrity = clamp(base_integrity - penalty_unsafe - penalty_fires, 0, 100)
 
 	// Damage level based on % unsafe size + weighted fires (relative, not count)
-	var/damage_level = clamp((unsafe_percentage / 100 * STORY_VAULT_CRITICAL_DAMAGE) + (total_firespots_weight * 1.5), 0, 3)  // *1.5 tune for fires sensitivity
+	var/damage_level = clamp((unsafe_percentage / 100 * STORY_VAULT_CRITICAL_DAMAGE) + (fire_weight_normalized * 1.5), 0, 3)  // *1.5 tune for fires sensitivity
 
 
-	inputs.vault[STORY_VAULT_INFRA_DAMAGE] = round(damage_level)
-	inputs.vault[STORY_VAULT_STATION_INTEGRITY] = round(raw_integrity)
+	inputs.set_entry(STORY_VAULT_INFRA_DAMAGE, round(damage_level))
+	inputs.set_entry(STORY_VAULT_STATION_INTEGRITY, round(raw_integrity))
 	..()
 
 
@@ -104,8 +106,8 @@
 			smes_to_check += power_machine
 
 	if(!length(apc_to_check) && !length(smes_to_check))
-		inputs.vault[STORY_VAULT_POWER_GRID_STRENGTH] = 0
-		inputs.vault[STORY_VAULT_POWER_GRID_DAMAGE] = 3
+		inputs.set_entry(STORY_VAULT_POWER_GRID_STRENGTH, 0)
+		inputs.set_entry(STORY_VAULT_POWER_GRID_DAMAGE, 3)
 		return ..()
 
 
@@ -162,8 +164,8 @@
 		+ ((100 - smes_percent) / 100), 0, 3)
 
 
-	inputs.vault[STORY_VAULT_POWER_GRID_STRENGTH] = round(raw_strength)
-	inputs.vault[STORY_VAULT_POWER_GRID_DAMAGE] = round(damage_level)
+	inputs.set_entry(STORY_VAULT_POWER_GRID_STRENGTH, round(raw_strength))
+	inputs.set_entry(STORY_VAULT_POWER_GRID_DAMAGE, round(damage_level))
 
 	..()
 

@@ -1,6 +1,5 @@
 /datum/storyteller_metric/crew_strength
-
-	name = "Overral Station strength"
+	name = "Overall Station strength"
 
 /datum/storyteller_metric/crew_strength/perform(datum/storyteller_analyzer/anl, datum/storyteller/ctl, datum/storyteller_inputs/inputs, scan_flags)
 	var/total_crew_count = 0
@@ -52,13 +51,13 @@
 		for(var/obj/item/item in get_inventory(crew, TRUE))
 			if(istype(item, /obj/item/gun))
 				gear_score += 6  // Guns are powerful tools
-			if(istype(item, /obj/item/melee))
+			else if(istype(item, /obj/item/melee))
 				gear_score += 4  // Melee weapons add combat value
-			if(istype(item, /obj/item/stack/medical))
+			else if(istype(item, /obj/item/stack/medical))
 				gear_score += 1.5  // Medical supplies are valuable
-			if(istype(item, /obj/item/clothing/suit/armor))
+			else if(istype(item, /obj/item/clothing/suit/armor))
 				gear_score += 3  // Armor provides protection value
-			if(istype(item, /obj/item/clothing/head/helmet))
+			else if(istype(item, /obj/item/clothing/head/helmet))
 				gear_score += 2  // Helmets add protection
 
 		// MOD suits provide significant bonus
@@ -67,14 +66,10 @@
 
 		// Experience and skill modifiers (if available)
 		var/skill_mod = 1.0
-		if(crew.mind && crew.mind.assigned_role)
-			// Check for job importance and experience
-			// More experienced/important crew members are more effective
-			var/datum/job/job_role = crew.mind.assigned_role
-			if(job_role.story_tags & STORY_JOB_IMPORTANT)
-				skill_mod = 1.15  // Important crew members are more valuable
-			if(job_role.story_tags & STORY_JOB_HEAVYWEIGHT)
-				skill_mod = max(skill_mod, 1.2)  // Heavyweight jobs are highly valuable
+		if(job.story_tags & STORY_JOB_IMPORTANT)
+			skill_mod = 1.15  // Important crew members are more valuable
+		if(job.story_tags & STORY_JOB_HEAVYWEIGHT)
+			skill_mod = max(skill_mod, 1.2)  // Heavyweight jobs are highly valuable
 
 		total_gear_points += gear_score
 
@@ -87,11 +82,11 @@
 
 
 	if(total_crew_count > 0)
-		inputs.vault[STORY_VAULT_CREW_READINESS] = clamp((total_gear_points / total_crew_count) * 0.3, 0, 3)
-		inputs.set_entry(STORY_VAULT_CREW_WEIGHT, total_crew_weight / total_crew_count)
+		inputs.set_entry(STORY_VAULT_CREW_READINESS, clamp((total_gear_points / total_crew_count) * 0.3, 0, 3))
+		inputs.set_entry(STORY_VAULT_CREW_WEIGHT, total_crew_weight)
 	if(total_security > 0)
-		inputs.vault[STORY_VAULT_SECURITY_STRENGTH] = clamp((total_gear_points / total_security) * 1.3, 0, 3)
-		inputs.vault[STORY_VAULT_SECURITY_COUNT] = total_security
+		inputs.set_entry(STORY_VAULT_SECURITY_STRENGTH, clamp((total_security_gear_points / total_security) * 1.3, 0, 3))
+		inputs.set_entry(STORY_VAULT_SECURITY_COUNT, total_security)
 
 	var/alert_level = SSsecurity_level.current_security_level || STORY_VAULT_GREEN_ALERT  // 0 green -> 3 delta
 	var/real_level
@@ -105,5 +100,5 @@
 		real_level = STORY_VAULT_DELTA_ALERT
 	else
 		real_level = STORY_VAULT_GREEN_ALERT
-	inputs.vault[STORY_VAULT_SECURITY_ALERT] = real_level
+	inputs.set_entry(STORY_VAULT_SECURITY_ALERT, real_level)
 	..()

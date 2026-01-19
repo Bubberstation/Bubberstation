@@ -71,11 +71,11 @@
 	/// Current grace period after major event when we avoid rapid-fire scheduling
 	var/grace_period = STORY_GRACE_PERIOD
 	/// Time since last major event; used to enforce grace periods
-	var/last_event_time = 0
+	var/static/last_event_time = 0
 	/// Round start timestamp
-	var/round_start_time = 0
+	var/static/round_start_time = 0
 	/// Cached progression 0..1 over target duration
-	var/round_progression = 0
+	var/static/round_progression = 0
 
 
 	/* DIFFICULTY SCALING VARIABLES */
@@ -133,7 +133,7 @@
 	/// Time when roundstart antagonists should be selected (approximately 10 minutes after round start)
 	var/roundstart_antag_selection_time = 0
 	/// Whether roundstart antagonists have been selected
-	var/roundstart_antags_selected = FALSE
+	var/static/roundstart_antags_selected = FALSE
 
 	/* STATE TRACKING VARIABLES */
 
@@ -149,6 +149,7 @@
 /datum/storyteller/New()
 	..()
 	mood = new /datum/storyteller_mood
+	behevour = new /datum/storyteller_behevour(src)
 	planner = new /datum/storyteller_planner(src)
 	analyzer = new /datum/storyteller_analyzer(src)
 	balancer = new /datum/storyteller_balance(src)
@@ -156,6 +157,7 @@
 
 /datum/storyteller/Destroy(force)
 	qdel(mood)
+	qdel(behevour)
 	qdel(planner)
 	qdel(analyzer)
 	qdel(balancer)
@@ -526,7 +528,7 @@
 			continue
 		total += text2num(population_count_history[key])
 		count++
-	var/avg = (count > 0 ? total / count : 0)
+	var/avg = (count > 0 ? total / count : 0)ss
 	if(count < 3 || avg <= 0)
 		// not enough history to make a decision
 		return FALSE

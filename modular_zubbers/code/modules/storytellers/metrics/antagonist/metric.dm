@@ -24,11 +24,10 @@
 	var/threat_escalation = 0
 
 
-	var/list/to_check = GLOB.antagonists.Copy()
+	// Collect unique minds from all antagonists
 	var/list/minds_to_check = list()
-
-	for(var/datum/antagonist/antag in to_check)
-		if(!(antag.owner in minds_to_check))
+	for(var/datum/antagonist/antag in GLOB.antagonists)
+		if(antag.owner && !(antag.owner in minds_to_check))
 			minds_to_check += antag.owner
 
 	for(var/datum/mind/antag_mind in minds_to_check)
@@ -52,7 +51,6 @@
 		var/act_index = clamp(tracker.effective_activity_time / max(1, world.time / STORY_ACTIVITY_TIME_SCALE), 0, 1)
 		if(act_index < STORY_INACTIVITY_ACT_INDEX_THRESHOLD && tracker.kills <= 0 && \
 			tracker.objectives_completed <= 0 && tracker.burst_activity == 0)
-
 			inactive_count++
 
 		// New: Per-antag contributions to new metrics
@@ -87,19 +85,19 @@
 				major_threat = threat_type
 		threat_escalation = clamp(total_burst_activity / max(1, total_activity), 0, 3)
 
-		inputs.vault[STORY_VAULT_ANTAGONIST_ACTIVITY] = activity_level
-		inputs.vault[STORY_VAULT_ANTAG_KILLS] = clamp(total_kills / max(inputs.player_count() * 0.05, 1), 0, 3)
-		inputs.vault[STORY_VAULT_ANTAG_OBJECTIVES_COMPLETED] = clamp(total_objectives / min(alive_antags, STORY_OBJECTIVES_CAP), 0, 3)
-		inputs.vault[STORY_VAULT_ANTAG_DISRUPTION] = clamp(total_disruption / max(1, alive_antags), 0, 3)
-		inputs.vault[STORY_VAULT_ANTAG_INFLUENCE] = clamp(total_influence / max(1, alive_antags), 0, 3)
+		inputs.set_entry(STORY_VAULT_ANTAGONIST_ACTIVITY, activity_level)
+		inputs.set_entry(STORY_VAULT_ANTAG_KILLS, clamp(total_kills / max(inputs.player_count() * 0.05, 1), 0, 3))
+		inputs.set_entry(STORY_VAULT_ANTAG_OBJECTIVES_COMPLETED, clamp(total_objectives / min(alive_antags, STORY_OBJECTIVES_CAP), 0, 3))
+		inputs.set_entry(STORY_VAULT_ANTAG_DISRUPTION, clamp(total_disruption / max(1, alive_antags), 0, 3))
+		inputs.set_entry(STORY_VAULT_ANTAG_INFLUENCE, clamp(total_influence / max(1, alive_antags), 0, 3))
 
 		var/dead_count = inputs.antag_count() - alive_antags
-		inputs.vault[STORY_VAULT_ANTAG_DEAD_RATIO] = clamp((dead_count / max(1, inputs.antag_count())) * 3, 0, 3)
-		inputs.vault[STORY_VAULT_ANTAGONIST_PRESENCE] = clamp(alive_antags >= 4 ? 3 : (alive_antags >= 2 ? 2 : 1), 0, 3)
-		inputs.vault[STORY_VAULT_ANTAG_INACTIVE_RATIO] = (inactive_count / alive_antags)
-		inputs.vault[STORY_VAULT_ANTAG_INTENSITY] = clamp(activity_score / alive_antags, 0, 3)
-		inputs.vault[STORY_VAULT_ANTAG_TEAMWORK] = clamp(teamwork_score / alive_antags, 0, 3)
-		inputs.vault[STORY_VAULT_ANTAG_STEALTH] = clamp(stealth_score / alive_antags, 0, 3)
-		inputs.vault[STORY_VAULT_MAJOR_THREAT] = major_threat
-		inputs.vault[STORY_VAULT_THREAT_ESCALATION] = threat_escalation
+		inputs.set_entry(STORY_VAULT_ANTAG_DEAD_RATIO, clamp((dead_count / max(1, inputs.antag_count())) * 3, 0, 3))
+		inputs.set_entry(STORY_VAULT_ANTAGONIST_PRESENCE, clamp(alive_antags >= 4 ? 3 : (alive_antags >= 2 ? 2 : 1), 0, 3))
+		inputs.set_entry(STORY_VAULT_ANTAG_INACTIVE_RATIO, inactive_count / alive_antags)
+		inputs.set_entry(STORY_VAULT_ANTAG_INTENSITY, clamp(activity_score / alive_antags, 0, 3))
+		inputs.set_entry(STORY_VAULT_ANTAG_TEAMWORK, clamp(teamwork_score / alive_antags, 0, 3))
+		inputs.set_entry(STORY_VAULT_ANTAG_STEALTH, clamp(stealth_score / alive_antags, 0, 3))
+		inputs.set_entry(STORY_VAULT_MAJOR_THREAT, major_threat)
+		inputs.set_entry(STORY_VAULT_THREAT_ESCALATION, threat_escalation)
 	..()

@@ -210,5 +210,5 @@
 				human.emp_act(2)
 
 			if(issynthetic(human))
-				human.adjustFireLoss(rand(15,40), forced = TRUE)
+				human.adjust_fire_loss(rand(15,40), forced = TRUE)
 				to_chat(human, span_danger("Your internal components are burning up due to ion wave!"))

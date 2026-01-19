@@ -21,32 +21,27 @@
 			break
 
 	if(!station_tech)
-		inputs.vault[STORY_VAULT_RESEARCH_PROGRESS] = STORY_VAULT_LOW_RESEARCH
+		inputs.set_entry(STORY_VAULT_RESEARCH_PROGRESS, STORY_VAULT_LOW_RESEARCH)
 		return
-
 
 	var/unlocked_nodes = length(station_tech.researched_nodes)
 	var/total_nodes = length(SSresearch.techweb_nodes)
 
 	if(total_nodes <= 0)
-		inputs.vault[STORY_VAULT_RESEARCH_PROGRESS] = STORY_VAULT_LOW_RESEARCH
+		inputs.set_entry(STORY_VAULT_RESEARCH_PROGRESS, STORY_VAULT_LOW_RESEARCH)
 		return
-
 
 	var/unlocked_percent = (unlocked_nodes / total_nodes) * 100
 
-
-	var/progress_level = 0
+	var/progress_level = STORY_VAULT_LOW_RESEARCH
 	if(unlocked_percent >= STORY_RESEARCH_ADVANCED_THRESHOLD)
 		progress_level = STORY_VAULT_ADVANCED_RESEARCH
 	else if(unlocked_percent >= STORY_RESEARCH_HIGH_THRESHOLD)
 		progress_level = STORY_VAULT_HIGH_RESEARCH
 	else if(unlocked_percent >= STORY_RESEARCH_MODERATE_THRESHOLD)
 		progress_level = STORY_VAULT_MODERATE_RESEARCH
-	else
-		progress_level = STORY_VAULT_LOW_RESEARCH
 
-	inputs.vault[STORY_VAULT_RESEARCH_PROGRESS] = progress_level
+	inputs.set_entry(STORY_VAULT_RESEARCH_PROGRESS, progress_level)
 
 
 #undef STORY_RESEARCH_ADVANCED_THRESHOLD

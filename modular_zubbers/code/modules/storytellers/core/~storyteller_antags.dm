@@ -104,39 +104,34 @@
 		return
 
 	var/balance_ratio = snap.balance_ratio
-	var/antag_count = inputs.antag_count()
 	var/antag_weight = inputs.antag_weight()
 	var/player_weight = inputs.crew_weight()
 
-
-
-	var/needs_antags = FALSE
-	var/reason = ""
-	if(antag_count <= 0 || snap.antag_weak || snap.antag_inactive || balance_ratio < 0.5 || (player_weight > 0 && antag_weight / player_weight < 0.3))
-		needs_antags = TRUE
-		reason = "imbalance detected (ratio: [balance_ratio], antag_weight: [antag_weight])"
-
-	if(!needs_antags)
-		message_admins("[name] skipped antag spawn - balanced (ratio: [balance_ratio])")
-		return
-
-
+	// Calculate spawn weight (already validated in check_and_spawn_antagonists)
 	var/spawn_weight = calculate_antagonist_spawn_weight_wave(balance_ratio, snap, antag_weight, player_weight) * (mood ? mood.aggression : 1.0) * population_factor
 
 	if(spawn_weight <= 0)
 		return
 
 	var/list/possible_candidates = SSstorytellers.filter_goals(STORY_GOAL_ANTAGONIST, STORY_TAG_MIDROUND)
+	if(!length(possible_candidates))
+		log_storyteller("[name] skipped antag spawn - no available midround antagonist events")
+		return
+
 	var/tags = behevour.tokenize(STORY_GOAL_ANTAGONIST, inputs, snap, mood)
 	var/spawn_count = clamp(round(spawn_weight / 20), 1, 3)
-
+	var/spawned_count = 0
 
 	for(var/i = 1 to spawn_count)
 		var/datum/round_event_control/antag_event = behevour.select_weighted_goal(inputs, snap, possible_candidates, population_factor, tags)
 		if(!antag_event)
 			continue
 
-		// Delay scaled by mood.pace и traits
+		// Check if event is already planned
+		if(antag_event in planner.is_event_in_timeline(antag_event))
+			continue
+
+		// Delay scaled by mood.pace and traits
 		var/spawn_offset = rand(30 SECONDS, 5 MINUTES) * (mood ? mood.pace : 1.0)
 		if(HAS_TRAIT(src, STORYTELLER_TRAIT_IMMEDIATE_ANTAG_SPAWN))
 			spawn_offset *= 0.5
@@ -144,7 +139,11 @@
 			spawn_offset *= 1.5
 
 		if(planner.try_plan_event(antag_event, world.time + spawn_offset))
-			message_admins("[name] planned midround antag goal [antag_event.name] ([i]/[spawn_count]) - reason: [reason]")
+			spawned_count++
+			message_admins("[name] planned midround antag goal [antag_event.name] ([spawned_count]/[spawn_count])")
+
+	if(spawned_count > 0)
+		log_storyteller("[name] spawned [spawned_count] midround antagonist wave(s)")
 
 
 

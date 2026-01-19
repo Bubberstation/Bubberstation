@@ -143,6 +143,12 @@ SUBSYSTEM_DEF(storytellers)
 			log_storyteller("Invalid mood_type '[mood_str]' for [id], using default.")
 			parsed["mood_path"] = /datum/storyteller_mood
 
+		var/behevour_str = entry["behevour_type"]
+		parsed["behevour_path"] = text2path(behevour_str)
+		if(!ispath(parsed["behevour_path"], /datum/storyteller_behevour))
+			log_storyteller("Invalid behevour_type '[behevour_str]' for [id], using default.")
+			parsed["behevour_path"] = /datum/storyteller_behevour
+
 
 		parsed["base_think_delay"] = isnum(entry["base_think_delay"]) ? max(0, entry["base_think_delay"] SECONDS) : STORY_THINK_BASE_DELAY
 		parsed["average_event_interval"] = isnum(entry["average_event_interval"]) ? max(0, entry["average_event_interval"] MINUTES) : 15 MINUTES
@@ -212,6 +218,13 @@ SUBSYSTEM_DEF(storytellers)
 	var/mood = data["mood_path"]
 	if(ispath(mood, /datum/storyteller_mood))
 		new_st.mood = new mood
+
+	var/behevour = data["behevour_path"]
+	if(ispath(behevour, /datum/storyteller_behevour))
+		new_st.behevour = new behevour(new_st)
+	else
+		new_st.behevour = new /datum/storyteller_behevour(new_st)
+
 	var/list/traits = data["personality_traits"]
 	if(length(traits))
 		for(var/trait in traits)
@@ -388,6 +401,8 @@ SUBSYSTEM_DEF(storytellers)
 				stack_trace("Cannot override event tags in configuration for [id], skipping.")
 				continue
 			event.vars[event_variable] = loaded[id][event_variable]
+
+/datum/controller/subsystem/storytellers/proc/reroll_antagonist(antag_name)
 
 
 /datum/controller/subsystem/storytellers/proc/load_vote_cahce()

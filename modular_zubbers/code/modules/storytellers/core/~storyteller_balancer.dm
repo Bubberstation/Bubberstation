@@ -40,103 +40,126 @@
 	SHOULD_NOT_OVERRIDE(TRUE)
 
 	var/datum/storyteller_balance_snapshot/snap = new()
-	var/tension = get_tension_bonus()
 
+	// Get basic metrics from vault
 	var/crew_count = inputs.get_entry(STORY_VAULT_CREW_ALIVE_COUNT) || 0
 	var/security_count = inputs.get_entry(STORY_VAULT_SECURITY_COUNT) || 0
-	var/station_integrity = inputs.get_entry(STORY_VAULT_STATION_INTEGRITY) || 0
-	var/resource_strength = inputs.get_entry(STORY_VAULT_)
+	var/station_integrity = inputs.get_entry(STORY_VAULT_STATION_INTEGRITY) || 100
+	var/cargo_points = inputs.get_entry(STORY_VAULT_RESOURCE_OTHER) || 0
+	var/minerals = inputs.get_entry(STORY_VAULT_RESOURCE_MINERALS) || 0
+	var/crew_health = inputs.get_entry(STORY_VAULT_AVG_CREW_HEALTH) || 100
+	var/power_strength = inputs.get_entry(STORY_VAULT_POWER_GRID_STRENGTH) || 100
+	var/research_progress = inputs.get_entry(STORY_VAULT_RESEARCH_PROGRESS) || STORY_VAULT_LOW_RESEARCH
 
-	var/vault = inputs.vault
-	var/crew_count = vault[STORY_VAULT_CREW_ALIVE_COUNT] || 0
-	var/security_count = vault[STORY_VAULT_SECURITY_COUNT] || 0
-	var/crew_health = vault[STORY_VAULT_AVG_CREW_HEALTH] || 100
-	var/integrity = inputs.get_station_integrity() || 100
+	// Get antagonist metrics
+	var/antag_count = inputs.get_entry(STORY_VAULT_ANTAG_ALIVE_COUNT) || 0
+	var/antag_weight = inputs.get_entry(STORY_VAULT_ANTAG_WEIGHT) || 0
+	var/crew_weight = inputs.get_entry(STORY_VAULT_CREW_WEIGHT) || 0
+	var/antag_activity = inputs.get_entry(STORY_VAULT_ANTAGONIST_ACTIVITY) || STORY_VAULT_NO_ACTIVITY
+	var/antag_inactive_ratio = inputs.get_entry(STORY_VAULT_ANTAG_INACTIVE_RATIO) || 0
 
+	// Calculate station strength factors (normalized 0-1)
+	var/health_factor = NORMALIZE(crew_count > 0 ? crew_health / 100.0 : 1.0, 1.0)
+	var/integrity_factor = NORMALIZE(station_integrity, 100.0)
+	var/power_factor = NORMALIZE(power_strength, 100.0)
 
-	snap.strengths["station_raw"] = (
-		(crew_count / 60.0 * 100) * 0.3 + \
-		(security_count / max(crew_count * 0.2, 1) * 100) * 0.3 + \
-		crew_health * 0.2 + \
-		integrity * 0.2
-	)
+	// Resource factor: cargo points normalized to 100k, minerals to 10k
+	var/resource_factor = NORMALIZE((cargo_points / 100000.0) + (minerals / 10000.0), 1.0)
 
+	// Research factor: normalize 0-3 scale to 0-1
+	var/research_factor = NORMALIZE(research_progress, STORY_VAULT_ADVANCED_RESEARCH)
 
-	var/research = vault[STORY_VAULT_RESEARCH_PROGRESS] || 0
-	if(research >= STORY_VAULT_HIGH_RESEARCH)
-		snap.strengths["station_raw"] *= 1.15
-	else if(research <= STORY_VAULT_LOW_RESEARCH)
-		snap.strengths["station_raw"] *= 0.7
+	// Crew size factor: normalize to reasonable max (50 crew = 1.0)
+	var/crew_size_factor = NORMALIZE(crew_count, 50.0)
 
-	var/minerals = vault[STORY_VAULT_RESOURCE_MINERALS] || 0
-	if(minerals < 250)
-		snap.strengths["station_raw"] *= 0.9
+	// Security factor: normalize to reasonable max (10 sec = 1.0)
+	var/security_factor = NORMALIZE(security_count, 10.0)
 
-	snap.strengths["station"] = NORMALIZE(clamp(snap.strengths["station_raw"], 0, 100), 100)
+	// Calculate overall station strength (weighted average)
+	var/station_strength_raw = (health_factor * 0.25) + (integrity_factor * 0.20) + (power_factor * 0.15) + \
+		(resource_factor * 0.15) + (research_factor * 0.10) + (crew_size_factor * 0.10) + (security_factor * 0.05)
+	var/station_strength_norm = clamp(station_strength_raw, 0, 1)
 
-	// Simplified antag strength: activity + presence
-	var/antag_count = inputs.antag_count()
-	if(antag_count <= 0)
-		snap.strengths["antag_raw"] = 0
-		snap.strengths["antag"] = 0
-	else
-		var/activity = NORMALIZE(vault[STORY_VAULT_ANTAGONIST_ACTIVITY] || 0, 3)
-		var/presence = NORMALIZE(vault[STORY_VAULT_ANTAGONIST_PRESENCE] || 0, 3)
-		var/kills = NORMALIZE(vault[STORY_VAULT_ANTAG_KILLS] || 0, 3)
+	// Calculate antagonist strength
+	var/antag_activity_norm = NORMALIZE(antag_activity, STORY_VAULT_HIGH_ACTIVITY)
+	var/antag_weight_normalized = antag_count > 0 ? (antag_weight / max(crew_weight, 1)) : 0
+	var/antag_strength_raw = (antag_activity_norm * 0.6) + (clamp(antag_weight_normalized, 0, 2) * 0.4)
+	var/antag_strength_norm = clamp(antag_strength_raw, 0, 1)
 
-		snap.strengths["antag_raw"] = (activity * 0.5 + presence * 0.3 + kills * 0.2) * 100
-		snap.strengths["antag"] = NORMALIZE(snap.strengths["antag_raw"], 100)
+	// Calculate balance ratio (antag strength / station strength, inverted so higher = station stronger)
+	var/balance_ratio = station_strength_norm > 0 ? (antag_strength_norm / station_strength_norm) : 1.0
 
+	// Calculate antag activity index (0-1)
+	var/antag_activity_index = antag_activity_norm * (1.0 - antag_inactive_ratio)
 
-	snap.weights["player"] = crew_count * STORY_BALANCER_PLAYER_WEIGHT * snap.strengths["station"]
-	snap.weights["antag"] = antag_count * STORY_BALANCER_ANTAG_WEIGHT * snap.strengths["antag"]
+	// Check if antags are weak or inactive
+	snap.antag_weak = antag_weight_normalized < WEAK_ANTAG_THRESHOLD
+	snap.antag_inactive = antag_activity_index < INACTIVE_ACTIVITY_THRESHOLD
 
+	// Store values in snapshot
+	snap.strengths["station"] = station_strength_norm
+	snap.strengths["station_raw"] = station_strength_raw
+	snap.strengths["antag"] = antag_strength_norm
+	snap.strengths["antag_raw"] = antag_strength_raw
+	snap.weights["player"] = crew_weight
+	snap.weights["antag"] = antag_weight
+	snap.balance_ratio = balance_ratio
+	snap.antag_activity_index = antag_activity_index
+	snap.resource_strength = resource_factor
 
-	snap.balance_ratio = snap.strengths["antag_raw"] / max(snap.strengths["station_raw"], 1)
-
-
-	snap.antag_activity_index = NORMALIZE(vault[STORY_VAULT_ANTAGONIST_ACTIVITY] || 0, 3)
-	snap.antag_weak = snap.strengths["antag"] < WEAK_ANTAG_THRESHOLD
-	snap.antag_inactive = snap.antag_activity_index < INACTIVE_ACTIVITY_THRESHOLD
-
-
+	// Calculate overall tension (will be refined in calculate_overall_tension)
 	snap.overall_tension = calculate_overall_tension(inputs, snap)
-
-	// Flags
-	snap.flags = list(
-		"antag_coordinated" = NORMALIZE(vault[STORY_VAULT_ANTAG_TEAMWORK] || 0, 3) > 0.5,
-		"station_vulnerable" = snap.strengths["station"] < 0.5
-	)
-
-	// Resource strength (simplified)
-	var/other_res = vault[STORY_VAULT_RESOURCE_OTHER] || 0
-	snap.resource_strength = NORMALIZE(minerals / 1000 + other_res / 100000, 1)
 
 	return snap
 
-/// Calculate overall tension (simplified)
+/// Calculate overall tension
 /datum/storyteller_balance/proc/calculate_overall_tension(datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/snap)
 	PRIVATE_PROC(TRUE)
-	var/vault = inputs.vault
 
-	var/base = NORMALIZE(tension_bonus, MAX_TENSION_BONUS) * 30 * (1 - owner.adaptation_factor)
+	// Base tension starts at 20 (neutral)
+	var/base_tension = 20.0
 
-	var/antag_contrib = snap.strengths["antag"] * 40
+	// Get tension bonus from recent events
+	var/tension_bonus = get_tension_bonus()
 
-	var/crew_health = vault[STORY_VAULT_AVG_CREW_HEALTH] || 100
-	var/health_tension = (100 - crew_health) * 0.3
+	// Retrieve relevant factors
+	var/station_integrity = inputs.get_entry(STORY_VAULT_STATION_INTEGRITY) || 100
+	var/crew_health = inputs.get_entry(STORY_VAULT_AVG_CREW_HEALTH) || 100
+	var/security_count = inputs.get_entry(STORY_VAULT_SECURITY_COUNT) || 0
+	var/cargo_points = inputs.get_entry(STORY_VAULT_RESOURCE_OTHER) || 0
+	var/minerals = inputs.get_entry(STORY_VAULT_RESOURCE_MINERALS) || 0
 
+	// Normalize factors to 0-1 scale
+	var/integrity_factor = NORMALIZE(station_integrity, 100.0)
+	var/health_factor = NORMALIZE(crew_health, 100.0)
+	var/security_factor = NORMALIZE(security_count, 10.0)
+	var/resource_factor = NORMALIZE((cargo_points / 100000.0) + (minerals / 10000.0), 1.0)
 
-	var/integrity = inputs.get_station_integrity() || 100
-	var/integrity_tension = (100 - integrity) * 0.2
+	// Calculate inverse factors for tension (low value -> high tension contribution)
+	var/inverse_integrity = 1.0 - integrity_factor
+	var/inverse_health = 1.0 - health_factor
+	var/inverse_security = 1.0 - security_factor
+	var/inverse_resources = 1.0 - resource_factor
 
-	var/dead_ratio = NORMALIZE(vault[STORY_VAULT_CREW_DEAD_RATIO] || 0, STORY_VAULT_EXTREME_DEAD_RATIO)
-	var/death_tension = dead_ratio * 20
+	// Antag bias modifier: higher balance_ratio means antags stronger, higher tension
+	// Scale the excess over 1.0 (neutral)
+	var/antag_bias_modifier = max(snap.balance_ratio - 1.0, 0)  // Only positive bias contributes
 
+	// Apply weights for contributions
+	var/security_modifier = inverse_security * 25.0
+	var/integrity_modifier = inverse_integrity * 25.0
+	var/bias_modifier = antag_bias_modifier * 25.0
+	var/health_modifier = inverse_health * 10.0
+	var/resources_modifier = inverse_resources * 10.0
 
-	var/ratio_tension = clamp((snap.balance_ratio - 1) * 10, 0, 15)
+	// Include antag activity for additional context
+	var/activity_modifier = snap.antag_activity_index * 10.0
 
-	return clamp(base + antag_contrib + health_tension + integrity_tension + death_tension + ratio_tension, 0, 100)
+	// Calculate final tension
+	var/final_tension = base_tension + security_modifier + integrity_modifier + bias_modifier + \
+		health_modifier + resources_modifier + activity_modifier + tension_bonus
+	return clamp(final_tension, 0, 100)
+
 
 // Balance snapshot datum
 /datum/storyteller_balance_snapshot

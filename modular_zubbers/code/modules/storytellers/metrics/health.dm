@@ -55,7 +55,7 @@
 
 	for(var/mob/living/living in get_alive_crew(FALSE))  // Assume helper: alive station crew/antags
 		var/is_antag = living.is_antag() || FALSE
-		var/tot_damage =living.get_total_damage()  // Brute/burn/tox/oxy sum
+		var/tot_damage = living.get_total_damage()  // Brute/burn/tox/oxy sum
 		var/tot_wounds = 0
 		if(iscarbon(living))
 			var/mob/living/carbon/carbon = living
@@ -92,21 +92,22 @@
 
 	// Health thresholds: check from lowest (worst) to highest (best)
 	// HEALTH_NORMAL_THRESHOLD=10, HEALTH_DAMAGED_THRESHOLD=40, HEALTH_LOW_THRESHOLD=70
+	// Lower health = worse condition, so we check from worst to best
 	if(avg_crew_health_raw <= HEALTH_NORMAL_THRESHOLD)
-		crew_health_level = STORY_VAULT_HEALTH_NORMAL
+		crew_health_level = STORY_VAULT_HEALTH_LOW
 	else if(avg_crew_health_raw <= HEALTH_DAMAGED_THRESHOLD)
 		crew_health_level = STORY_VAULT_HEALTH_DAMAGED
 	else if(avg_crew_health_raw <= HEALTH_LOW_THRESHOLD)
-		crew_health_level = STORY_VAULT_HEALTH_LOW
+		crew_health_level = STORY_VAULT_HEALTH_NORMAL
 	else
 		crew_health_level = STORY_VAULT_HEALTH_HEALTHY
 
 	if(avg_antag_health_raw <= HEALTH_NORMAL_THRESHOLD)
-		antag_health_level = STORY_VAULT_HEALTH_NORMAL
+		antag_health_level = STORY_VAULT_HEALTH_LOW
 	else if(avg_antag_health_raw <= HEALTH_DAMAGED_THRESHOLD)
 		antag_health_level = STORY_VAULT_HEALTH_DAMAGED
 	else if(avg_antag_health_raw <= HEALTH_LOW_THRESHOLD)
-		antag_health_level = STORY_VAULT_HEALTH_LOW
+		antag_health_level = STORY_VAULT_HEALTH_NORMAL
 	else
 		antag_health_level = STORY_VAULT_HEALTH_HEALTHY
 

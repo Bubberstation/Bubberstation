@@ -167,7 +167,7 @@
 				target.add_mood_event("psychic_drone", /datum/mood_event/psychic_drone_negative/strong)
 			else if(strength <= 5)
 				target.add_mood_event("psychic_drone", /datum/mood_event/psychic_drone_negative/extreme)
-			target.adjustOxyLoss(rand(30-40), forced=TRUE)
+			target.adjust_oxy_loss(rand(30-40), forced=TRUE)
 			target.adjust_hallucinations(30 SECONDS)
 			target.adjust_drunk_effect(30)
 	else
