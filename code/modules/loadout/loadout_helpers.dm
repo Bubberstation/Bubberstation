@@ -112,7 +112,6 @@
  *
  * Returns a list of singleton datums
  */
- /* BUBBER EDIT: OVERWRITTEN IN MODULAR FILE
 /proc/loadout_list_to_datums(list/loadout_list) as /list
 	var/list/datums = list()
 
@@ -128,8 +127,8 @@
 		datums += actual_datum
 
 	return datums
-*/
-// SKYRAT EDIT ADDITION
+
+// BUBBER EDIT ADDITION BEGIN
 /*
  * Removes all invalid paths from loadout lists.
  *
@@ -137,6 +136,7 @@
  *
  * returns a list
  */
+ /* BUBBERSTATION CHANGE START: CHANGED IN MODULAR FILE.
 /proc/sanitize_loadout_list(list/passed_list)
 	RETURN_TYPE(/list)
 
@@ -151,8 +151,8 @@
 			LAZYREMOVE(list_to_clean, path)
 
 	return list_to_clean
+BUBBERSTATION CHANGE END*/
 
-// BUBBER EDIT ADDITION BEGIN
 /obj/item/storage/briefcase/empty/PopulateContents()
 	return
 // BUBBER EDIT ADDITION END
