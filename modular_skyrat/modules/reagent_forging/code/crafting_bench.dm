@@ -12,6 +12,7 @@
 
 	anchored = TRUE
 	density = TRUE
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
 
 	/// What the currently picked recipe is
 	var/datum/crafting_bench_recipe/selected_recipe
