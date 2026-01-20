@@ -167,6 +167,10 @@
 		add_datum_to_mind(antag_mind)
 		log_game("[antag_mind.current] was selected for antagonist role [antag_flag].")
 		message_admins(span_yellowteamradio("[ADMIN_LOOKUPFLW(antag_mind.current)] was selected for antagonist role [antag_flag]."))
+		on_start(antag_mind)
+
+/datum/round_event/antagonist/solo/proc/on_start(datum/mind/antag_mind)
+	return
 
 /datum/round_event/antagonist/proc/add_datum_to_mind(datum/mind/antag_mind)
 	antag_mind.add_antag_datum(antag_datum)
