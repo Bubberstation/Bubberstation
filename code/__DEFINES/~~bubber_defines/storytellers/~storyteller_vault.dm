@@ -101,28 +101,6 @@
 	These track station resources, antagonist presence, and related factors affecting economic and operational stability.
 */
 
-// Tracks the number of active antagonists on the station, influencing events like sabotage or crew conflict.
-#define STORY_VAULT_ANTAGONIST_PRESENCE "antagonist_presence"
-	// No active antagonists detected, favoring peaceful or routine station events.
-	#define STORY_VAULT_NO_ANTAGONISTS 0
-	// A small number of antagonists are active, prompting minor conflict or vigilance events.
-	#define STORY_VAULT_FEW_ANTAGONISTS 1
-	// A moderate number of antagonists are active, escalating to events requiring security response.
-	#define STORY_VAULT_MODERATE_ANTAGONISTS 2
-	// A large number of antagonists are active, triggering major conflict or crisis events.
-	#define STORY_VAULT_MANY_ANTAGONISTS 3
-
-// Tracks the inactivity ratio among alive antagonists (0..1).
-#define STORY_VAULT_ANTAG_INACTIVE_RATIO "antag_inactive_ratio"
-
-// Tracks the level of mineral resources on the station.
-#define STORY_VAULT_RESOURCE_MINERALS "resource_minerals"
-
-// Tracks the level of other (non-mineral) resources on the station.
-#define STORY_VAULT_RESOURCE_OTHER "resource_other"
-
-// Tracks overall low resource conditions on the station.
-#define STORY_VAULT_LOW_RESOURCE "low_station_resources"
 
 /*
 	Security metrics
@@ -131,7 +109,6 @@
 
 // Number of active security personnel on station
 #define STORY_VAULT_SECURITY_COUNT "security_count"
-
 // Tracks security strength (number of active security officers, their gear)
 #define STORY_VAULT_SECURITY_STRENGTH "security_strength"
 	#define STORY_VAULT_NO_SECURITY 0      // No active security
@@ -153,21 +130,18 @@
 
 // Total crew weight (sum of all crew member weights)
 #define STORY_VAULT_CREW_WEIGHT "crew_weight"
-
 // Tracks crew morale (happiness, stress from events/deaths).
 #define STORY_VAULT_CREW_MORALE "crew_morale"
 	#define STORY_VAULT_HIGH_MORALE 0     // Happy/productive
 	#define STORY_VAULT_MODERATE_MORALE 1 // Neutral
 	#define STORY_VAULT_LOW_MORALE 2      // Stressed
 	#define STORY_VAULT_CRITICAL_MORALE 3 // Mutiny-level low
-
 // Tracks crew readiness (access to weapons, meds, tools for crises).
 #define STORY_VAULT_CREW_READINESS "crew_readiness"
 	#define STORY_VAULT_UNPREPARED 0     // No gear/stockpiles
 	#define STORY_VAULT_BASIC_READY 1    // Minimal supplies
 	#define STORY_VAULT_PREPARED 2       // Good stockpiles
 	#define STORY_VAULT_HIGHLY_READY 3   // Overprepared (armory full, etc.)
-
 // Special state flags (boolean-like metrics)
 #define STORY_VAULT_STATION_ALLIES "station_allies"    // Station has allied NPCs/ships
 #define STORY_VAULT_NUKE_ACTIVATED "NUKE_INCOMING"    // Nuclear device activated
@@ -179,10 +153,7 @@
 	#define STORY_VAULT_FEW_HEADS 2 	 // Two-four heads on the station
 	#define STORY_VAULT_FULL_COMMAND 3 	 // Full of almost full command
 
-// Current integrity of station SM
-#define STORY_VAULT_ENGINE_INTEGRITY "ingine_integrity"
-// Current integiry of station ATMOS rooms
-#define STORY_VAULT_ATMOS_INTEGRITY "atmos_integrity"
+
 
 /*
 	Antagonist metrics
@@ -191,98 +162,36 @@
 
 // Total antagonist weight (sum of all antag weights)
 #define STORY_VAULT_ANTAG_WEIGHT "antag_weight"
-
-// Tracks the level of antagonist-driven disruption, influencing escalation or mitigation events.
-#define STORY_VAULT_ANTAGONIST_ACTIVITY "antagonist_activity"
-	// No significant antagonist activity, allowing calm or routine station operations.
-	#define STORY_VAULT_NO_ACTIVITY 0
-	// Minor antagonist actions (e.g., theft, minor sabotage), prompting low-level response events.
-	#define STORY_VAULT_LOW_ACTIVITY 1
-	// Noticeable antagonist actions (e.g., fights, system damage), requiring active security or repair events.
-	#define STORY_VAULT_MODERATE_ACTIVITY 2
-	// Major antagonist actions (e.g., bombings, mass chaos), escalating to critical station-wide events.
-	#define STORY_VAULT_HIGH_ACTIVITY 3
-
-// Tracks the number of crew killed by antagonists, influencing threat escalation.
-#define STORY_VAULT_ANTAG_KILLS "antag_kills"
-	// No kills by antagonists.
-	#define STORY_VAULT_NO_KILLS 0
-	// Few kills (e.g., 1-3).
-	#define STORY_VAULT_FEW_KILLS 1
-	// Moderate kills (e.g., 4-8).
-	#define STORY_VAULT_MODERATE_KILLS 2
-	// Many kills (e.g., >8).
-	#define STORY_VAULT_MANY_KILLS 3
-
-// Tracks completed objectives by antagonists (e.g., assassinations, thefts).
-#define STORY_VAULT_ANTAG_OBJECTIVES_COMPLETED "antag_objectives_completed"
-	// No objectives completed.
-	#define STORY_VAULT_NO_OBJECTIVES 0
-	// Few objectives done (e.g., 1-2 per antag).
-	#define STORY_VAULT_FEW_OBJECTIVES 1
-	// Moderate progress (e.g., half done).
-	#define STORY_VAULT_MODERATE_OBJECTIVES 2
-	// Most objectives completed.
-	#define STORY_VAULT_MANY_OBJECTIVES 3
-
-// Tracks antagonist influence (e.g., hacked systems, stolen resources, converted allies).
+// Total antagonist influence (weight * effectiveness)
 #define STORY_VAULT_ANTAG_INFLUENCE "antag_influence"
-	// Minimal influence (no hacks/conversions).
-	#define STORY_VAULT_LOW_INFLUENCE 0
-	// Some influence (e.g., minor hacks).
-	#define STORY_VAULT_MODERATE_INFLUENCE 1
-	// Significant control (e.g., department hacked).
-	#define STORY_VAULT_HIGH_INFLUENCE 2
-	// Dominant influence (e.g., cult majority).
-	#define STORY_VAULT_EXTREME_INFLUENCE 3
-
-// Tracks disruption caused (e.g., power failures, fires from sabotage).
-#define STORY_VAULT_ANTAG_DISRUPTION "antag_disruption"
-	// No disruption.
-	#define STORY_VAULT_NO_DISRUPTION 0
-	// Minor issues (e.g., single room sabotage).
-	#define STORY_VAULT_MINOR_DISRUPTION 1
-	// Moderate chaos (e.g., area-wide blackout).
-	#define STORY_VAULT_MAJOR_DISRUPTION 2
-	// Station-wide crisis.
-	#define STORY_VAULT_CRITICAL_DISRUPTION 3
-
-// Tracks intensity of antag actions (low: sporadic; high: constant pressure).
-#define STORY_VAULT_ANTAG_INTENSITY "antag_intensity"
-	#define STORY_VAULT_LOW_INTENSITY 0
-	#define STORY_VAULT_MODERATE_INTENSITY 1
-	#define STORY_VAULT_HIGH_INTENSITY 2
-	#define STORY_VAULT_EXTREME_INTENSITY 3
-
-// Tracks teamwork among antags (low: solo; high: coordinated teams).
-#define STORY_VAULT_ANTAG_TEAMWORK "antag_teamwork"
-	#define STORY_VAULT_NO_TEAMWORK 0
-	#define STORY_VAULT_LOW_TEAMWORK 1
-	#define STORY_VAULT_MODERATE_TEAMWORK 2
-	#define STORY_VAULT_HIGH_TEAMWORK 3
-
-// Tracks stealth level (high: undetected progress; low: obvious chaos).
-#define STORY_VAULT_ANTAG_STEALTH "antag_stealth"
-	#define STORY_VAULT_NO_STEALTH 0
-	#define STORY_VAULT_LOW_STEALTH 1
-	#define STORY_VAULT_MODERATE_STEALTH 2
-	#define STORY_VAULT_HIGH_STEALTH 3
-
 // Tracks the major current threat/crisis type (e.g., "cult", "blob").
 #define STORY_VAULT_MAJOR_THREAT "major_threat"
-
-// Tracks threat escalation rate (slow: buildup; fast: sudden spikes).
-#define STORY_VAULT_THREAT_ESCALATION "threat_escalation"
-	#define STORY_VAULT_SLOW_ESCALATION 0
-	#define STORY_VAULT_MODERATE_ESCALATION 1
-	#define STORY_VAULT_FAST_ESCALATION 2
-	#define STORY_VAULT_EXPLOSIVE_ESCALATION 3
+// Tracks the number of active antagonists on the station, influencing events like sabotage or crew conflict.
+#define STORY_VAULT_ANTAGONIST_PRESENCE "antagonist_presence"
+	// No active antagonists detected, favoring peaceful or routine station events.
+	#define STORY_VAULT_NO_ANTAGONISTS 0
+	// A small number of antagonists are active, prompting minor conflict or vigilance events.
+	#define STORY_VAULT_FEW_ANTAGONISTS 1
+	// A moderate number of antagonists are active, escalating to events requiring security response.
+	#define STORY_VAULT_MODERATE_ANTAGONISTS 2
+	// A large number of antagonists are active, triggering major conflict or crisis events.
+	#define STORY_VAULT_MANY_ANTAGONISTS 3
 
 /*
 	Station crises metrics
 	These track infrastructure, power, hazards, and research to influence emergency and recovery events.
 */
 
+// Tracks the level of mineral resources on the station.
+#define STORY_VAULT_RESOURCE_MINERALS "resource_minerals"
+// Tracks the level of other (non-mineral) resources on the station.
+#define STORY_VAULT_RESOURCE_OTHER "resource_other"
+// Tracks overall low resource conditions on the station.
+#define STORY_VAULT_LOW_RESOURCE "low_station_resources"
+// Current integrity of station SM
+#define STORY_VAULT_ENGINE_INTEGRITY "ingine_integrity"
+// Current integiry of station ATMOS rooms
+#define STORY_VAULT_ATMOS_INTEGRITY "atmos_integrity"
 // Overall station structural integrity (0-100, higher = better)
 #define STORY_VAULT_STATION_INTEGRITY "station_integrity"
 // Tracks infrastructure damage (power, hull breaches, etc.).
@@ -291,15 +200,12 @@
 	#define STORY_VAULT_MINOR_DAMAGE 1
 	#define STORY_VAULT_MAJOR_DAMAGE 2
 	#define STORY_VAULT_CRITICAL_DAMAGE 3
-
 // Tracks station power availability, influencing events like blackouts or engineering repairs.
 #define STORY_VAULT_POWER_STATUS "power_status"
 	#define STORY_VAULT_FULL_POWER 0
 	#define STORY_VAULT_LOW_POWER 1
 	#define STORY_VAULT_BLACKOUT 2
 	#define STORY_VAULT_CRITICAL_POWER_FAILURE 3
-
-
 // Power grid metrics
 #define STORY_POWER_SMES_DISCHARGE_DIVISOR "power_grid_smes"  // SMES discharge divisor for damage calculation
 #define STORY_VAULT_POWER_GRID_STRENGTH "power_grid_strength" // Overall power grid strength (0-100)
@@ -308,7 +214,6 @@
 	#define STORY_VAULT_POWER_GRID_FAILURES 1
 	#define STORY_VAULT_POWER_GRID_DAMAGED 2
 	#define STORY_VAULT_POWER_GRID_CRITICAL 3
-
 // Tracks overall research progress, influencing science-related goals.
 #define STORY_VAULT_RESEARCH_PROGRESS "research_progress"
 	#define STORY_VAULT_LOW_RESEARCH 0

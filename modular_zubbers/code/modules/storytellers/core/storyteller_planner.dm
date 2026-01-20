@@ -238,7 +238,7 @@
 	while(attempts < MAX_PLAN_ATTEMPTS)
 		var/target_time = fixed_time ? time : base_delay
 		var/target_str = time_key(target_time)
-		// Check for clustering: ensure no event within EVENT_CLUSTER_AVOIDANCE_BUFFER
+		// Check for clustering, ensure no event within EVENT_CLUSTER_AVOIDANCE_BUFFER
 		if(!is_slot_available(target_time) && !silence)
 			base_delay += EVENT_CLUSTER_AVOIDANCE_BUFFER + rand(10 SECONDS, 30 SECONDS)
 			attempts++
@@ -252,11 +252,22 @@
 			ENTRY_PLANNED_TIME = world.time,
 		)
 		if(!silence)
-			var/format_time = time2text(target_str, "hh:mm", NO_TIMEZONE)
+			var/delay = text2num(target_str) - world.time
+			var/delay_minutes = round(delay / 600, 0.1)  // deciseconds → minutes
+			var/time_str
+			if (delay_minutes >= 60)
+				var/h = round(delay_minutes / 60)
+				var/m = round(delay_minutes % 60)
+				time_str = m ? "[h]h [m]m" : "[h]h"
+			else
+				time_str = "[round(delay_minutes)]m"
+
 			var/format_name = "[event_control.name || event_control.id] [event_control.story_category & STORY_GOAL_ANTAGONIST ? span_red("- Antagonist event") : ""]"
 			var/cancel_ref = "[REF(event_control)]_[target_time]"
 			var/reroll_ref = "[REF(event_control)]_[target_time]_reroll"
-			message_admins("[owner.name] planned new event [format_name] at [format_time]. (<a href='byond://?src=[REF(src)];cancel_event=[cancel_ref]'>CANCEL</a>) (<a href='byond://?src=[REF(src)];reroll_event=[reroll_ref]'>REROLL</a>)")
+			message_admins("[owner.name] planned new event [format_name] in <b>[time_str]</b>. \
+				(<a href='byond://?src=[REF(src)];cancel_event=[cancel_ref]'>CANCEL</a>) \
+				(<a href='byond://?src=[REF(src)];reroll_event=[reroll_ref]'>REROLL</a>)")
 		return TRUE
 		base_delay += EVENT_CLUSTER_AVOIDANCE_BUFFER + rand(10 SECONDS, 30 SECONDS)
 		attempts++
@@ -298,18 +309,17 @@
 	return last_major
 
 
-/// Sorts timeline keys in ascending order.
+/proc/cmp_time_keys_asc(a, b)
+	return text2num(a) - text2num(b)
+
 /datum/storyteller_planner/proc/sort_events()
 	if(!timeline || !length(timeline))
 		return
-
-	var/list/sorted_keys = sortTim(timeline.Copy(), GLOBAL_PROC_REF(cmp_text_asc))
-	var/list/sorted_timeline = list()
-	for(var/offset_str in sorted_keys)
-		sorted_timeline[offset_str] = timeline[offset_str]
-
-	timeline = sorted_timeline
-
+	var/list/sorted_keys = sortTim(timeline.Copy(), GLOBAL_PROC_REF(cmp_time_keys_asc))
+	var/list/new_timeline = list()
+	for(var/key in sorted_keys)
+		new_timeline[key] = timeline[key]
+	timeline = new_timeline
 
 /// Checks if an event is already in the timeline.
 /datum/storyteller_planner/proc/is_event_in_timeline(datum/round_event_control/event_control)

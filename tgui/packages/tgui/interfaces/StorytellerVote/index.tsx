@@ -344,7 +344,15 @@ export const StorytellerVote = () => {
                 </Section>
               </Stack.Item>
 
-              <Stack.Item grow maxWidth="60%">
+              <Stack.Item grow maxWidth="50%">
+                <Section>
+                  <Box>
+                    The AI storyteller creates events like grid check, resource
+                    drops or enemy raids. Also they controls antagonist presence
+                    in the round. Their choices will affect on round difficulty
+                    and narrative.
+                  </Box>
+                </Section>
                 <Section title="Your Vote" scrollable>
                   {current ? (
                     <>
@@ -440,11 +448,7 @@ export const StorytellerVote = () => {
                                     ? `${selectedDifficultyInfo.tooltip} (Requires ${selectedDifficultyInfo.minPlayers}+ players)`
                                     : selectedDifficultyInfo.tooltip
                                 }
-                              >
-                                <Box ml={1} color="label" bold>
-                                  ×{selectedDifficultyInfo.value.toFixed(1)}
-                                </Box>
-                              </Tooltip>
+                              />
                             </Stack.Item>
                           </Stack>
                         </LabeledList.Item>

@@ -148,17 +148,16 @@
 				add_tag_with_bias(., STORY_TAG_REQUIRES_ENGINEERING, bias, 65)
 
 	// Antagonist-based tags
-	var/antag_activity = inputs.get_entry(STORY_VAULT_ANTAGONIST_ACTIVITY) || STORY_VAULT_NO_ACTIVITY
-	if(antag_activity >= STORY_VAULT_MODERATE_ACTIVITY)
-		add_tag_with_bias(., STORY_TAG_ANTAGONIST, bias, 50)
-		add_tag_with_bias(., STORY_TAG_COMBAT, bias, 40)
+	var/antagonist_weight = inputs.get_entry(STORY_VAULT_ANTAG_WEIGHT) || 0
+	if(antagonist_weight > 100)
+		add_tag_with_bias(., STORY_TAG_COMBAT, bias, 30)
 		if(!HAS_TRAIT(owner, STORYTELLER_TRAIT_IGNORE_SECURITY))
-			add_tag_with_bias(., STORY_TAG_REQUIRES_SECURITY, bias, 50 * antag_activity)
+			add_tag_with_bias(., STORY_TAG_REQUIRES_SECURITY, bias, 50 * (antagonist_weight / 100))
 
 	var/antag_count = inputs.get_entry(STORY_VAULT_ANTAG_ALIVE_COUNT) || 0
 	if(antag_count > 0)
-		var/antag_kills = inputs.get_entry(STORY_VAULT_ANTAG_KILLS) || STORY_VAULT_NO_KILLS
-		if(antag_kills >= STORY_VAULT_MODERATE_KILLS)
+		var/antagonist_presence = inputs.get_entry(STORY_VAULT_ANTAGONIST_PRESENCE) || STORY_VAULT_NO_ANTAGONISTS
+		if(antagonist_presence >= STORY_VAULT_FEW_ANTAGONISTS)
 			add_tag_with_bias(., STORY_TAG_COMBAT, bias, 60)
 			add_tag_with_bias(., STORY_TAG_TRAGIC, bias, 50)
 
@@ -274,7 +273,7 @@
 		var/list/rep_info = owner.get_repeat_info(evt.id)
 		if(rep_info["count"] > 0)
 			var/age = world.time - rep_info["last_time"]
-			var/decay = clamp(1 - (age / STORY_REPETITION_DECAY_TIME), 0, 1)
+			var/decay = clamp((age / STORY_REPETITION_DECAY_TIME) ** 1.5, 0, 1)
 			weight *= (1 - decay * STORY_REP_PENALTY_MAX)
 
 		// Tag match bonus

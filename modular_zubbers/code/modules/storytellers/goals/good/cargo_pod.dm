@@ -186,7 +186,6 @@
 	var/station_integrity = inputs.get_station_integrity() || 100
 	var/infra_damage = inputs.get_entry(STORY_VAULT_INFRA_DAMAGE) || STORY_VAULT_NO_DAMAGE
 	var/power_status = inputs.get_entry(STORY_VAULT_POWER_STATUS) || STORY_VAULT_FULL_POWER
-	var/antag_activity = inputs.get_entry(STORY_VAULT_ANTAGONIST_ACTIVITY) || STORY_VAULT_NO_ACTIVITY
 	var/low_resources = inputs.get_entry(STORY_VAULT_LOW_RESOURCE) || FALSE
 	var/crew_morale = inputs.get_entry(STORY_VAULT_CREW_MORALE) || STORY_VAULT_MODERATE_MORALE
 	var/research_progress = inputs.get_entry(STORY_VAULT_RESEARCH_PROGRESS) || STORY_VAULT_LOW_RESEARCH
@@ -198,7 +197,7 @@
 		need_category = CARGO_NEED_ENGINEERING
 	else if(power_status >= STORY_VAULT_LOW_POWER || inputs.get_entry(STORY_VAULT_POWER_GRID_DAMAGE) >= STORY_VAULT_POWER_GRID_FAILURES)
 		need_category = CARGO_NEED_POWER
-	else if(antag_activity >= STORY_VAULT_MODERATE_ACTIVITY || inputs.antag_crew_ratio() > 0.5 || inputs.get_entry(STORY_VAULT_ANTAG_DISRUPTION) >= STORY_VAULT_MAJOR_DISRUPTION)
+	else if(inputs.antag_crew_ratio() > 0.5)
 		need_category = CARGO_NEED_SECURITY
 	else if(low_resources || inputs.get_entry(STORY_VAULT_RESOURCE_MINERALS) < 100 || inputs.get_entry(STORY_VAULT_RESOURCE_OTHER) < 5000)
 		need_category = CARGO_NEED_RESOURCES
@@ -227,7 +226,7 @@
 			possible_cargo[path] *= base_weight_multiplier
 
 	// Global adjustments: If high antag influence or escalation, boost security items across levels (from 3+)
-	if(good_level >= CARGO_GOOD_LEVEL_HIGH && (inputs.get_entry(STORY_VAULT_ANTAG_INFLUENCE) >= STORY_VAULT_HIGH_INFLUENCE || inputs.get_entry(STORY_VAULT_THREAT_ESCALATION) >= STORY_VAULT_FAST_ESCALATION))
+	if(good_level >= CARGO_GOOD_LEVEL_HIGH && (inputs.get_entry(STORY_VAULT_ANTAGONIST_PRESENCE) >= STORY_VAULT_MODERATE_ANTAGONISTS))
 		possible_cargo += list(/obj/item/clothing/suit/armor/riot = 2)  // Riot gear
 		need_category = CARGO_NEED_SECURITY  // Override if threats are extreme
 
@@ -252,7 +251,7 @@
 			if(inputs.get_entry(STORY_VAULT_POWER_STATUS) >= STORY_VAULT_BLACKOUT)
 				possible_areas += get_areas(/area/station/engineering)
 		if(CARGO_NEED_SECURITY)
-			if(inputs.get_entry(STORY_VAULT_ANTAGONIST_ACTIVITY) >= STORY_VAULT_HIGH_ACTIVITY)
+			if(inputs.get_entry(STORY_VAULT_ANTAGONIST_PRESENCE) >= STORY_VAULT_MODERATE_ANTAGONISTS)
 				possible_areas += get_areas(/area/station/security)
 		if(CARGO_NEED_RESOURCES)
 			possible_areas += get_areas(/area/station/cargo)

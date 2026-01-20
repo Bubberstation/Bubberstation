@@ -333,7 +333,7 @@
 
 	// 1) Balance snapshot: derive tension, station strength, antag efficacy/inactivity
 	var/datum/storyteller_balance_snapshot/snap = balancer.make_snapshot(inputs)
-	player_antag_balance = round(snap.overall_tension)
+	player_antag_balance = round(snap.balance_ratio * 10)
 
 	// 2) Mood: adapt mood based on current tension vs target and recent adaptation
 	if(COOLDOWN_FINISHED(src, mood_update_cooldown))
@@ -627,8 +627,8 @@
 		)
 	else if(prob(90))
 		priority_announce(
-			"[SSsecurity_level.current_security_level.elevating_to_announcement]\n\n\
-				A summary has been copied and printed to all communications consoles.",
+			"[SSsecurity_level.current_security_level.elevating_to_announcement]\n\
+			A summary has been copied and printed to all communications consoles.",
 			"Security level elevated.",
 			ANNOUNCER_INTERCEPT,
 			color_override = SSsecurity_level.current_security_level.announcement_color,
@@ -647,7 +647,7 @@
 /// Determines if this should be treated as a greenshift (no threats)
 /datum/storyteller/proc/determine_greenshift_status()
 	// Greenshift if target tension is very low and difficulty is low
-	if(target_tension < 20 && difficulty_multiplier < 0.8)
+	if(target_tension < 20 && difficulty_multiplier < 0.7)
 		return TRUE
 	// Also greenshift if no antags trait is active
 	if(HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ANTAGS))
@@ -712,11 +712,11 @@
 
 	// Add information about expected antagonist activity
 	if(HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ANTAGS))
-		report += "However, no immediate antagonist activity is expected. "
+		report += "However, no immediate enemy activity is expected. "
 	else if(HAS_TRAIT(src, STORYTELLER_TRAIT_RARE_ANTAG_SPAWN))
-		report += "Antagonist activity is expected to be minimal and sporadic. "
+		report += "Enemy activity is expected to be minimal and sporadic. "
 	else if(HAS_TRAIT(src, STORYTELLER_TRAIT_FREQUENT_ANTAG_SPAWN))
-		report += "Multiple potential threats detected. Expect frequent antagonist encounters. "
+		report += "Multiple potential threats detected. Expect frequent enemy encounters. "
 	else if(HAS_TRAIT(src, STORYTELLER_TRAIT_IMMEDIATE_ANTAG_SPAWN))
 		report += "Rapid response threats may materialize quickly. "
 

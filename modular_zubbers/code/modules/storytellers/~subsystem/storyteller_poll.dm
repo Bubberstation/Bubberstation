@@ -38,19 +38,10 @@
 	for(var/mob/candidate_mob as anything in group)
 		if(!candidate_mob.client)
 			continue
-		// Skip ghost_roles pref check since this is for alive crew, not ghosts.
-		// if(!candidate_mob.client.prefs.read_preference(/datum/preference/toggle/ghost_roles))
-		// 	continue
-		// Skip admin opt-out since this is for crew.
-		// if((!candidate_mob.client.prefs.read_preference(/datum/preference/toggle/ghost_roles_as_admin)) && candidate_mob.client.holder)
-		// 	continue
 		if(!is_eligible(candidate_mob, null, null, ignore_category))
 			continue
 
 		window_flash(candidate_mob.client)
-
-		// If we somehow send two polls for the same type, but with a duration on the second one shorter than the time left on the first one,
-		// we need to keep the first one's timeout rather than use the shorter one
 		var/atom/movable/screen/alert/poll_alert/current_alert = LAZYACCESS(candidate_mob.alerts, category)
 		var/alert_time = poll_time
 		var/datum/storyteller_poll/alert_poll = new_poll

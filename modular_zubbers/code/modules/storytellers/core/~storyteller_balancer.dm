@@ -35,6 +35,8 @@
 	tension_bonus = clamp(final_bonus, 0, MAX_TENSION_BONUS)
 	return tension_bonus
 
+// How many sec officers we consider "very strong security"
+#define SECURITY_MAX_COUNT 8
 
 /datum/storyteller_balance/proc/make_snapshot(datum/storyteller_inputs/inputs)
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -54,26 +56,17 @@
 	// Get antagonist metrics
 	var/antag_count = inputs.get_entry(STORY_VAULT_ANTAG_ALIVE_COUNT) || 0
 	var/antag_weight = inputs.get_entry(STORY_VAULT_ANTAG_WEIGHT) || 0
+	var/antag_presence = inputs.get_entry(STORY_VAULT_ANTAGONIST_PRESENCE) || 0
 	var/crew_weight = inputs.get_entry(STORY_VAULT_CREW_WEIGHT) || 0
-	var/antag_activity = inputs.get_entry(STORY_VAULT_ANTAGONIST_ACTIVITY) || STORY_VAULT_NO_ACTIVITY
-	var/antag_inactive_ratio = inputs.get_entry(STORY_VAULT_ANTAG_INACTIVE_RATIO) || 0
 
 	// Calculate station strength factors (normalized 0-1)
-	var/health_factor = NORMALIZE(crew_count > 0 ? crew_health / 100.0 : 1.0, 1.0)
-	var/integrity_factor = NORMALIZE(station_integrity, 100.0)
-	var/power_factor = NORMALIZE(power_strength, 100.0)
-
-	// Resource factor: cargo points normalized to 100k, minerals to 10k
-	var/resource_factor = NORMALIZE((cargo_points / 100000.0) + (minerals / 10000.0), 1.0)
-
-	// Research factor: normalize 0-3 scale to 0-1
-	var/research_factor = NORMALIZE(research_progress, STORY_VAULT_ADVANCED_RESEARCH)
-
-	// Crew size factor: normalize to reasonable max (50 crew = 1.0)
-	var/crew_size_factor = NORMALIZE(crew_count, 50.0)
-
-	// Security factor: normalize to reasonable max (10 sec = 1.0)
-	var/security_factor = NORMALIZE(security_count, 10.0)
+	var/health_factor = clamp(crew_health / 100, 0, 1)
+	var/integrity_factor = clamp(station_integrity / 100, 0, 1)
+	var/power_factor = clamp(power_strength / 100, 0, 1)
+	var/resource_factor = clamp((cargo_points / 100000 + minerals / 500) / 2, 0, 1)
+	var/research_factor = clamp(research_progress / STORY_VAULT_ADVANCED_RESEARCH, 0, 1)
+	var/crew_size_factor = clamp(crew_count / owner.population_threshold_full, 0, 1)
+	var/security_factor = clamp(security_count / SECURITY_MAX_COUNT, 0, 1)
 
 	// Calculate overall station strength (weighted average)
 	var/station_strength_raw = (health_factor * 0.25) + (integrity_factor * 0.20) + (power_factor * 0.15) + \
@@ -81,16 +74,16 @@
 	var/station_strength_norm = clamp(station_strength_raw, 0, 1)
 
 	// Calculate antagonist strength
-	var/antag_activity_norm = NORMALIZE(antag_activity, STORY_VAULT_HIGH_ACTIVITY)
-	var/antag_weight_normalized = antag_count > 0 ? (antag_weight / max(crew_weight, 1)) : 0
-	var/antag_strength_raw = (antag_activity_norm * 0.6) + (clamp(antag_weight_normalized, 0, 2) * 0.4)
+	var/antag_activity_norm = clamp(antag_presence / STORY_VAULT_MANY_ANTAGONISTS, 0, 1)
+	var/antag_weight_normalized = antag_count > 0 ? clamp(antag_weight / crew_weight, 0, 2) : 0
+	var/antag_strength_raw = (antag_activity_norm * 0.4) + (antag_weight_normalized * 0.4)
 	var/antag_strength_norm = clamp(antag_strength_raw, 0, 1)
 
-	// Calculate balance ratio (station strength / antag strength, higher = antags stronger)
-	var/balance_ratio = NORMALIZE(antag_strength_norm > 0 ? (station_strength_norm / antag_strength_norm) : 1.0, 1.0)
+	// Calculate balance ratio (antag strength / station strength, higher = antags stronger)
+	var/balance_ratio = station_strength_norm > 0 ? clamp(antag_strength_norm / station_strength_norm, 0, 1) : 0
 
-	// Calculate antag activity index (0-1)
-	var/antag_activity_index = antag_activity_norm * (1.0 - antag_inactive_ratio)
+	// Calculate antag activity index (0-1), without inactive ratio since it's not in original inputs
+	var/antag_activity_index = antag_activity_norm
 
 	// Check if antags are weak or inactive
 	snap.antag_weak = antag_weight_normalized < WEAK_ANTAG_THRESHOLD
@@ -132,8 +125,6 @@
 #define TENSION_JITTER_MIN -2
 #define TENSION_JITTER_MAX 2
 
-// How many sec officers we consider "very strong security"
-#define SECURITY_MAX_COUNT 8
 
 /// Calculate overall tension
 /// Returns number between 0 and 100

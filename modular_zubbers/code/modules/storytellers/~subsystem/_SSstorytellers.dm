@@ -169,7 +169,7 @@ SUBSYSTEM_DEF(storytellers)
 		parsed["max_threat_scale"] = isnum(entry["max_threat_scale"]) ? max(0, entry["max_threat_scale"]) : STORY_MAX_THREAT_SCALE
 		parsed["repetition_penalty"] = isnum(entry["repetition_penalty"]) ? clamp(entry["repetition_penalty"], 0, 2) : STORY_REPETITION_PENALTY
 
-		// Placeholder lists: welcome and round speech (assume list of strings)
+		// Placeholder lists: welcome and round speech
 		parsed["storyteller_welcome_speech"] = islist(entry["welcome_speech"]) ? entry["welcome_speech"] : list()
 		parsed["storyteller_round_speech"] = islist(entry["round_speech"]) ? entry["round_speech"] : list()
 		parsed["personality_traits"] = islist(entry["personality_traits"]) ? entry["personality_traits"] : list()
@@ -334,7 +334,7 @@ SUBSYSTEM_DEF(storytellers)
 		if(istype(event_control, /datum/round_event_control/wizard))
 			continue
 		if(!event_control.id)
-			stack_trace("Storyteller event control [event_control.name] has no ID using name instead.")
+			WARNING("Storyteller event control [event_control.name] has no ID using name instead.")
 			event_control.id = event_control.name
 		if(events_by_id[event_control.id])  // Prevent duplicates
 			stack_trace("Duplicate event control ID [event_control.id] for [event_control.name], skipping.")
@@ -342,7 +342,7 @@ SUBSYSTEM_DEF(storytellers)
 		events_by_id[event_control.id] = event_control
 
 		if(!event_control.story_category)  // Use story_category instead of category
-			stack_trace("Storyteller event control [event_control.id] has no story_category, assigning random.")
+			WARNING("Storyteller event control [event_control.id] has no story_category, assigning random.")
 			event_control.story_category = STORY_GOAL_RANDOM
 
 		// Assign to all matching categories (bitflags allow multiple)

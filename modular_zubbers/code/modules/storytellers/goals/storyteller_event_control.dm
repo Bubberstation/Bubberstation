@@ -2,7 +2,7 @@
 	// Universal id of this event
 	var/id
 	// A storyteller category of this event
-	var/story_category =  STORY_GOAL_NEVER
+	var/story_category = STORY_GOAL_RANDOM
 	// Is control of this event was overrided by storyteller
 	var/storyteller_override = FALSE
 	// A universal tags that helps storyteller to predict event behevour
@@ -268,7 +268,7 @@
 	. = ..()
 	delayed = TRUE
 	candidates = list()
-	var/admin_msg = span_danger("[storyteller.name] is spawning [length(candidates)] [antag_name](s) in [admin_cancel_delay / 10] seconds. <a href='?src=[REF(src)];cancel_antag=1'>CANCEL</a>")
+	var/admin_msg = span_danger("[storyteller.name] is spawning [antag_name] event in [admin_cancel_delay / 10] seconds. <a href='?src=[REF(src)];cancel_antag=1'>CANCEL</a>")
 	message_admins(admin_msg)
 	candidates = poll_candidates_for_antag(inputs, storyteller, candidates)
 	// Set up admin cancel callback if needed
@@ -462,6 +462,8 @@
 		spawned_antags += antag_mind
 		spawned_count++
 		log_game("[key_name(final_mob)] became [antag_name] via [storyteller.name]")
+		message_admins("[key_name(final_mob)] became [antag_name] via [storyteller.name], [ADMIN_VERBOSEJMP(final_mob)]")
+
 
 	if(spawned_count == 0)
 		deadchat_broadcast("[storyteller.name]'s [antag_name] event failed: no valid candidates spawned", message_type=DEADCHAT_ANNOUNCEMENT)
