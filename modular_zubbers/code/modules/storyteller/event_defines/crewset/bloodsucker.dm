@@ -12,7 +12,7 @@
 	tags = list(TAG_COMBAT, TAG_SPOOKY, TAG_CREW_ANTAG)
 	typepath = /datum/round_event/antagonist/solo/bloodsucker
 	var/list/thrall_candidates = list()
-	var/thrall_flag = ROLE_GHOUL
+	var/thrall_flag = ROLE_VASSAL
 
 /datum/round_event_control/antagonist/solo/bloodsucker/get_candidates()
 	. = ..()
