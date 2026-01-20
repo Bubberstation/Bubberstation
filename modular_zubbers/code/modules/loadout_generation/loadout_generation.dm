@@ -2,24 +2,13 @@
 	var/list/generation_subtypes_whitelist = list()
 	var/list/generation_subtypes_blacklist = list()
 
-/datum/loadout_category/get_items()
-
-	if(!generation_subtypes_whitelist || !length(generation_subtypes_whitelist))
-		return ..() //Default behavior
+/datum/loadout_category/proc/generate_from_config()
 
 	if(!type_to_generate)
-		stack_trace("Loadout category [src.type] didn't have a type to generate!")
-		return ..()
-
-	. = list()
-
-	var/list/loadout_config_items = list() //So things aren't double generated.
+		return 0
 
 	//Generate what we have configs for.
 	for(var/datum/loadout_item/found_type as anything in typesof(type_to_generate))
-
-		if(!found_type.ckeywhitelist && !found_type.restricted_roles && !found_type.blacklisted_roles && !found_type.restricted_species && !found_type.donator_only && !found_type.required_season && !found_type.erp_item)
-			continue
 
 		if(found_type == found_type.abstract_type)
 			continue
@@ -34,19 +23,24 @@
 			continue
 
 		var/item_name = full_capitalize("[item_path.name]") //The square brackets allow text macros to run.
-		loadout_config_items[item_path] = TRUE
-		GLOB.loadout_blacklist_names[item_name] = TRUE
-
 		var/datum/loadout_item/loadout_item_datum = new type_to_generate(
 			src,
 			item_name,
 			item_path
 		)
-		. += loadout_item_datum
+		src.associated_items += loadout_item_datum
 
+	return length(src.associated_items) > 0
+
+/datum/loadout_category/proc/generate_from_world()
+
+	if(!type_to_generate)
+		return 0
+
+	if(!length(generation_subtypes_whitelist))
+		return 0
 
 	//Generate everything else.
-
 	var/list/generation_subtype = list()
 
 	for(var/found_subtype in generation_subtypes_whitelist)
@@ -55,25 +49,17 @@
 	for(var/found_subtype in generation_subtypes_blacklist)
 		generation_subtype -= typesof(found_subtype)
 
-	var/list/obj/item/found_items = generate_loadout_list(generation_subtype)
-
-	if(!length(found_items))
-		stack_trace("Found zero subtypes for loadout category [src.type]!")
-		return
-
-	for(var/obj/item/found_item as anything in found_items)
-		if(!found_item)
+	for(var/obj/item/item_to_check as anything in generation_subtype)
+		if(!is_loadout_safe(item_to_check))
 			continue
-		if(length(loadout_config_items) && loadout_config_items[found_item]) //Already exists.
-			continue
-		if(length(GLOB.all_loadout_datums) && GLOB.all_loadout_datums[found_item]) //Already exists.
-			continue
-		var/item_name = full_capitalize("[found_item.name]") //The square brackets allow text macros to run.
+		var/item_name = full_capitalize("[item_to_check.name]") //The square brackets allow text macros to run.
 		var/datum/loadout_item/loadout_item_datum = new type_to_generate(
 			src,
 			item_name,
-			found_item
+			item_to_check
 		)
-		loadout_config_items[found_item] = TRUE
-		GLOB.loadout_blacklist_names[item_name] = TRUE
-		. += loadout_item_datum
+		src.associated_items += loadout_item_datum
+
+	return length(src.associated_items) > 0
+
+

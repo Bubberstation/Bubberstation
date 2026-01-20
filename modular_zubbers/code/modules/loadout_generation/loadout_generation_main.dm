@@ -19,12 +19,12 @@ GLOBAL_LIST_INIT(loadout_blacklist_names,list())
 
 	//Prevents traitor items.
 	for(var/datum/uplink_item/syndie_uplink_datum as anything in typesof(/datum/uplink_item))
-		if(syndie_uplink_datum.item)
+		if(syndie_uplink_datum.item && ispath(syndie_uplink_datum.item,/obj/item/clothing))
 			.[syndie_uplink_datum.item] = TRUE
 
 	//Prevents research items.
 	for(var/datum/design/research_design as anything in typesof(/datum/design))
-		if(research_design.build_path)
+		if(research_design.build_path && ispath(research_design.build_path,/obj/item/clothing))
 			.[research_design.build_path] = TRUE
 
 	return .
@@ -35,12 +35,15 @@ GLOBAL_LIST_INIT(loadout_blacklist_names,list())
 	if(length(GLOB.loadout_blacklist) && GLOB.loadout_blacklist[item_to_check])
 		return FALSE
 
+	//Already exists
 	if(length(GLOB.loadout_blacklist_names) && GLOB.loadout_blacklist[GLOB.loadout_blacklist_names])
 		return FALSE
 
+	//Is abstract
 	if(item_to_check == item_to_check.abstract_type)
 		return FALSE
 
+	//(Likely) is abstract
 	if(!item_to_check.name || !item_to_check.desc || !item_to_check.icon || !item_to_check.icon_state)
 		return FALSE
 
@@ -97,6 +100,14 @@ GLOBAL_LIST_INIT(loadout_blacklist_names,list())
 							return FALSE
 						if(found_armor.get_rating(WOUND) > found_abstract_armor.get_rating(WOUND))
 							return FALSE
+					else
+						if(found_armor.get_rating(BIO) > 0)
+							return FALSE
+						if(found_armor.get_rating(ACID) > 0)
+							return FALSE
+						if(found_armor.get_rating(WOUND) > 0)
+							return FALSE
+
 				//If it has anything in these armor categories, then it also must be too good.
 				if(found_armor.get_rating(MELEE) > 0)
 					return FALSE
@@ -118,22 +129,3 @@ GLOBAL_LIST_INIT(loadout_blacklist_names,list())
 				return FALSE
 
 	return TRUE
-
-
-
-
-/proc/generate_loadout_list(list/possible_items) as /list
-
-	. = list()
-
-	if(!length(GLOB.armor_by_type))
-		stack_trace("Loadout nonsense generated before armor stuff could initialize! Shit's fucked!")
-		return
-
-	for(var/obj/item/item_to_check as anything in possible_items)
-
-		if(!is_loadout_safe(item_to_check))
-			continue
-
-		//All good.
-		. += item_to_check
