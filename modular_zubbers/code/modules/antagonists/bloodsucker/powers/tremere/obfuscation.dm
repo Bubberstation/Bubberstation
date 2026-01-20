@@ -15,7 +15,7 @@
 
 #define OBFUSCATION_HIDDEN_ALPHA 22
 #define OBFUSCATION_REVEALED_ALPHA 255
-#define OBFUSCATION_RECLOAK_TIME (10 SECONDS)
+#define OBFUSCATION_RECLOAK_TIME (4 SECONDS)
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/obfuscation
 	name = "Obfuscation"
@@ -44,7 +44,8 @@
 		COMSIG_ATOM_HITBY,
 		COMSIG_ATOM_HULK_ATTACK,
 		COMSIG_ATOM_ATTACK_PAW,
-		COMSIG_CARBON_CUFF_ATTEMPTED
+		COMSIG_CARBON_CUFF_ATTEMPTED,
+		COMSIG_ATOM_WAS_ATTACKED
 	)
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/obfuscation/on_power_upgrade()
@@ -95,8 +96,6 @@
 	. = ..()
 	revealed = FALSE
 	owner.AddElement(/datum/element/relay_attackers)
-	RegisterSignal(owner, COMSIG_ATOM_WAS_ATTACKED, PROC_REF(reveal))
-	RegisterSignals(owner, list(COMSIG_USER_ITEM_INTERACTION, COMSIG_USER_ITEM_INTERACTION_SECONDARY), PROC_REF(reveal))
 	RegisterSignals(owner, reveal_signals, PROC_REF(reveal))
 
 	ADD_TRAIT(owner, TRAIT_UNKNOWN_APPEARANCE, REF(src))
@@ -130,6 +129,9 @@
 		revealed = TRUE
 		animate(owner, alpha = OBFUSCATION_REVEALED_ALPHA, time = 2 SECONDS)
 	recloak_timer = addtimer(CALLBACK(src, PROC_REF(recloak)), OBFUSCATION_RECLOAK_TIME, TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE)
+
+/datum/action/cooldown/bloodsucker/targeted/tremere/obfuscation/proc/get_recloak_time()
+	return min(0.5 SECONDS, OBFUSCATION_RECLOAK_TIME - 0.5 SECONDS * level_current)
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/obfuscation/proc/recloak()
 	if(!active)
