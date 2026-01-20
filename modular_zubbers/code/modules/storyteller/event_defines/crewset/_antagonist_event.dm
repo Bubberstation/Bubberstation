@@ -151,10 +151,11 @@
 		setup_minds += candidate.mind
 		candidate_roles_setup(candidate)
 
-/datum/round_event/antagonist/proc/candidate_roles_setup(mob/candidate)
+/datum/round_event/antagonist/proc/candidate_roles_setup(mob/candidate, antag_flag_override = null)
 	SHOULD_CALL_PARENT(FALSE)
+	var/flag = isnull(antag_flag_override) ? antag_flag : antag_flag_override
 
-	LAZYADD(candidate.mind.special_roles, antag_flag)
+	LAZYADD(candidate.mind.special_roles, flag)
 	LAZYADDASSOC(SSjob.prevented_occupations, candidate.mind, restricted_roles)
 
 /datum/round_event/antagonist/proc/template_setup(datum/round_event_control/antagonist/cast_control)
