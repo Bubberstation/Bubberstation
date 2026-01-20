@@ -92,7 +92,7 @@
 		SPECIES_PERK_ICON = FA_ICON_RUNNING,
 		SPECIES_PERK_NAME = "Tablerunning",
 		SPECIES_PERK_DESC = "A being of extreme agility, you can jump on tables just by running into them!"
-
+	))
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_EAR_LISTEN,
