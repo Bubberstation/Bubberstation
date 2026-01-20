@@ -9,6 +9,7 @@
 	righthand_file = 'modular_zubbers/icons/mob/inhands/equipment/backpack_righthand.dmi'
 	storage_type = /datum/storage/hydro_duffel
 	resistance_flags = FIRE_PROOF
+	custom_materials = list(/datum/material/metalhydrogen = SHEET_MATERIAL_AMOUNT * 2)
 
 /datum/storage/hydro_duffel
 	max_total_storage = 35
