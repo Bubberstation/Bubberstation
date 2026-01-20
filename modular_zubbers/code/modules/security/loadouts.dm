@@ -18,9 +18,3 @@
 	backpack_contents = list(
 		/obj/item/evidencebag = 1,
 		/obj/item/flashlight/seclite = 1)
-
-/obj/item/radio/headset/headset_sec/alt/department/Initialize(mapload)
-	. = ..()
-	set_wires(new/datum/wires/radio(src))
-	secure_radio_connections = list()
-	recalculateChannels()
