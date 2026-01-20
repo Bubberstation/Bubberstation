@@ -21,7 +21,6 @@
 	name = "Obfuscation"
 	level_current = 1
 	button_icon_state = "power_obfuscation"
-	check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_WHILE_INCAPACITATED | BP_CANT_USE_WHILE_UNCONSCIOUS
 	purchase_flags = TREMERE_CAN_BUY
 	bloodcost = 10
 	constant_bloodcost = 2
@@ -33,6 +32,20 @@
 	var/revealed = FALSE
 	/// The timer to turn near-invisible again after being revealed.
 	var/recloak_timer
+	/// signals to reveal on if received
+	var/list/reveal_signals = list(
+		COMSIG_ATOM_WAS_ATTACKED,
+		COMSIG_USER_ITEM_INTERACTION,
+		COMSIG_USER_ITEM_INTERACTION_SECONDARY,
+		COMSIG_LIVING_UNARMED_ATTACK,
+		COMSIG_MOB_ITEM_ATTACK,
+		COMSIG_ATOM_ATTACKBY,
+		COMSIG_ATOM_ATTACK_HAND,
+		COMSIG_ATOM_HITBY,
+		COMSIG_ATOM_HULK_ATTACK,
+		COMSIG_ATOM_ATTACK_PAW,
+		COMSIG_CARBON_CUFF_ATTEMPTED
+	)
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/obfuscation/on_power_upgrade()
 	// 1 + for default, the other + is for the upgrade that hasn't been added yet.
@@ -82,26 +95,21 @@
 	. = ..()
 	revealed = FALSE
 	owner.AddElement(/datum/element/relay_attackers)
-	RegisterSignal(owner, COMSIG_ATOM_WAS_ATTACKED, PROC_REF(on_attacked))
-	RegisterSignals(owner, list(COMSIG_USER_ITEM_INTERACTION, COMSIG_USER_ITEM_INTERACTION_SECONDARY), PROC_REF(on_use_item))
-	RegisterSignals(owner, list(COMSIG_LIVING_UNARMED_ATTACK, COMSIG_HUMAN_MELEE_UNARMED_ATTACK), PROC_REF(on_unarmed_attack))
-	ADD_TRAIT(owner, TRAIT_UNKNOWN, REF(src))
+	RegisterSignal(owner, COMSIG_ATOM_WAS_ATTACKED, PROC_REF(reveal))
+	RegisterSignals(owner, list(COMSIG_USER_ITEM_INTERACTION, COMSIG_USER_ITEM_INTERACTION_SECONDARY), PROC_REF(reveal))
+	RegisterSignals(owner, reveal_signals, PROC_REF(reveal))
+
+	ADD_TRAIT(owner, TRAIT_UNKNOWN_APPEARANCE, REF(src))
 	owner.AddElement(/datum/element/digitalcamo)
 	animate(owner, alpha = OBFUSCATION_HIDDEN_ALPHA, time = 2 SECONDS)
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/obfuscation/DeactivatePower(deactivate_flags)
 	..()
-	UnregisterSignal(owner, list(
-		COMSIG_ATOM_WAS_ATTACKED,
-		COMSIG_USER_ITEM_INTERACTION,
-		COMSIG_USER_ITEM_INTERACTION_SECONDARY,
-		COMSIG_LIVING_UNARMED_ATTACK,
-		COMSIG_HUMAN_MELEE_UNARMED_ATTACK,
-	))
+	UnregisterSignal(owner, reveal_signals)
 	if(recloak_timer)
 		deltimer(recloak_timer)
 		recloak_timer = null
-	REMOVE_TRAIT(owner, TRAIT_UNKNOWN, REF(src))
+	REMOVE_TRAIT(owner, TRAIT_UNKNOWN_APPEARANCE, REF(src))
 	animate(owner, alpha = 255, time = 2 SECONDS)
 	owner.RemoveElement(/datum/element/relay_attackers)
 	owner.RemoveElement(/datum/element/digitalcamo)
@@ -114,23 +122,6 @@
 	. = ..()
 	obfuscation_blink(owner, get_turf(target))
 	return TRUE
-
-/datum/action/cooldown/bloodsucker/targeted/tremere/obfuscation/proc/on_use_item(mob/living/source, atom/target, obj/item/weapon, click_parameters)
-	SIGNAL_HANDLER
-	if(source == target)
-		return
-	if(istype(weapon, /obj/item/gun) || weapon.force)
-		reveal()
-
-/datum/action/cooldown/bloodsucker/targeted/tremere/obfuscation/proc/on_unarmed_attack(mob/living/source, atom/target, proximity, modifiers)
-	SIGNAL_HANDLER
-	if(source != target && proximity && isliving(target) && (source.istate & (ISTATE_HARM | ISTATE_SECONDARY)))
-		reveal()
-
-/datum/action/cooldown/bloodsucker/targeted/tremere/obfuscation/proc/on_attacked(mob/living/source, atom/attacker, attack_flags)
-	SIGNAL_HANDLER
-	if(source != attacker)
-		reveal()
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/obfuscation/proc/reveal()
 	if(!active)
@@ -165,13 +156,13 @@
 			var/obj/item/bodypart/bodypart = pick(living_mob.bodyparts)
 			var/severity = pick(WOUND_SEVERITY_MODERATE, WOUND_SEVERITY_CRITICAL)
 			living_mob.cause_wound_of_type_and_severity(WOUND_SLASH, bodypart, severity, wound_source = "obfuscation")
-			living_mob.adjustBruteLoss(15)
+			living_mob.adjust_brute_loss(15)
 		if(level_current >= OBFUSCATION_KNOCKDOWN_LEVEL)
 			living_mob.Knockdown(10 SECONDS, ignore_canstun = TRUE)
 
 	do_teleport(owner, targeted_turf, no_effects = TRUE, channel = TELEPORT_CHANNEL_QUANTUM)
 
-	power_activated_sucessfully(cost_override = blood_cost)
+	power_activated_successfully(cost_override = blood_cost)
 
 #undef OBFUSCATION_RECLOAK_TIME
 #undef OBFUSCATION_REVEALED_ALPHA

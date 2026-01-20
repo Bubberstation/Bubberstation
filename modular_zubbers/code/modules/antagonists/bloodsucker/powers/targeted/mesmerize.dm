@@ -138,7 +138,7 @@
 		var/mob/living/silicon/mesmerized = mesmerized_target
 		mesmerized.emp_act(EMP_HEAVY)
 		owner.balloon_alert(owner, "temporarily shut [mesmerized] down.")
-		PowerActivatedSuccesfully() // PAY COST! BEGIN COOLDOWN!
+		power_activated_successfully() // PAY COST! BEGIN COOLDOWN!
 		return
 	// slow them down during the mesmerize
 	mute_target(mesmerized_target)
@@ -157,7 +157,7 @@
 		return
 	owner.balloon_alert(owner, "successfully mesmerized [mesmerized_target].")
 	mesmerize_effects(user, mesmerized_target)
-	PowerActivatedSuccesfully() // PAY COST! BEGIN COOLDOWN!
+	power_activated_successfully() // PAY COST! BEGIN COOLDOWN!
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/FireSecondaryTargetedPower(atom/target, params)
 	if(!isliving(target))
@@ -190,7 +190,7 @@
 		mesmerized_target.Knockdown(effect_time)
 	else
 		mesmerized_target.adjust_confusion(effect_time)
-	PowerActivatedSuccesfully(cost_override = bloodcost * 0.5)
+	power_activated_successfully(cost_override = bloodcost * 0.5)
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/get_power_time()
 	return 9 SECONDS + level_current * 1 SECONDS

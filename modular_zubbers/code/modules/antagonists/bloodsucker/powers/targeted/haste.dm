@@ -100,7 +100,7 @@
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 	hit.Cut()
 	user.adjust_stamina_loss(-user.staminaloss)
-	PowerActivatedSuccesfully(temp_cooldown)
+	power_activated_successfully(temp_cooldown)
 
 /datum/action/cooldown/bloodsucker/targeted/haste/proc/GetKnockdown()
 	return 10 + level_current * 4

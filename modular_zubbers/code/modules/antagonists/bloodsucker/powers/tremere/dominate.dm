@@ -20,7 +20,6 @@
 	base_background_icon_state = "tremere_power_off"
 	button_icon = 'modular_zubbers/icons/mob/actions/tremere_bloodsucker.dmi'
 	background_icon = 'modular_zubbers/icons/mob/actions/tremere_bloodsucker.dmi'
-	check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_IN_FRENZY | BP_CANT_USE_WHILE_UNCONSCIOUS
 	level_current = 1
 	button_icon_state = "power_dominate"
 	purchase_flags = TREMERE_CAN_BUY
@@ -31,7 +30,7 @@
 	blind_at_level = 3
 	blocked_by_glasses = FALSE
 	/// Data huds to show while the power is active
-	var/list/datahuds = list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED)
+	var/list/datahuds = list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC, DATA_HUD_BOT_PATH)
 	/// assoc list of timer_id to ghoul datum
 	var/list/ghouls = list()
 	var/ghoul_creation_time = 6 SECONDS
@@ -61,16 +60,13 @@
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/CheckValidTarget(atom/target_atom)
 	// oozeling cores have special snowflake checks
-	if(!is_oozeling_core(target_atom))
-		return ..()
-	var/obj/item/organ/internal/brain/slime/oozeling_core = target_atom
-	if(level_current >= DOMINATE_GHOUL_LEVEL && oozeling_core.mind)
+	if(level_current >= DOMINATE_GHOUL_LEVEL)
 		return TRUE
 	return FALSE
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/CheckCanTarget(atom/target_atom)
 	var/mob/living/selected_target = target_atom
-	if(level_current >= DOMINATE_GHOULIZE_LEVEL && selected_target.stat >= SOFT_CRIT))
+	if(level_current >= DOMINATE_GHOULIZE_LEVEL && selected_target.stat >= SOFT_CRIT)
 		if(selected_target?.mind && owner.Adjacent(selected_target))
 			return TRUE
 	. = ..()
@@ -134,7 +130,7 @@
 	if(HAS_MIND_TRAIT(target, TRAIT_UNCONVERTABLE))
 		owner.balloon_alert(owner, "their body refuses to react...")
 		return FALSE
-	if(target?.mind?.dnr)
+	if(!target?.mind || HAS_TRAIT(target, TRAIT_DNR))
 		owner.balloon_alert(owner, "there's no soul...")
 		return FALSE
 	if(ghoul?.master == bloodsuckerdatum_power)
@@ -143,7 +139,7 @@
 			return FALSE
 		target.mind?.grab_ghost()
 		target.revive(ADMIN_HEAL_ALL)
-		power_activated_sucessfully(cost_override = TEMP_GHOUL_COST, cooldown_override = get_ghoulize_cooldown())
+		power_activated_successfully(cost_override = TEMP_GHOUL_COST, cooldown_override = get_ghoulize_cooldown())
 		to_chat(user, span_warning("We revive [target]!"))
 		owner.balloon_alert(owner, "successfully revived!")
 		log_combat(owner, target, "tremere revived", addition = "Revived their ghoul using dominate")
@@ -156,12 +152,12 @@
 	target.mind?.grab_ghost(TRUE)
 	target.revive(ADMIN_HEAL_ALL)
 	INVOKE_ASYNC(ghoul_datum, TYPE_PROC_REF(/datum, ui_interact), target) // make sure they see the ghoul popup!!
-	power_activated_sucessfully(cost_override = TEMP_GHOUL_COST, cooldown_override = get_ghoulize_cooldown())
+	power_activated_successfully(cost_override = TEMP_GHOUL_COST, cooldown_override = get_ghoulize_cooldown())
 	to_chat(user, span_warning("We revive [target]!"))
 	var/living_time = get_ghoul_duration()
 	log_combat(owner, target, "tremere mindslaved", addition = "Revived and converted [target] into a temporary tremere ghoul for [DisplayTimeText(living_time)].")
 	if(level_current <= DOMINATE_NON_MUTE_GHOUL_LEVEL)
-		target.add_traits(list(TRAIT_SOFTSPOKEN, TRAIT_HARD_OF_HEARING), DOMINATE_TRAIT)
+		target.add_traits(list(TRAIT_SOFTSPOKEN, TRAIT_DEAF), DOMINATE_TRAIT)
 	user.balloon_alert(target, "only [DisplayTimeText(living_time)] left to live!")
 	to_chat(target, span_warning("You will only live for [DisplayTimeText(living_time)]! Obey your master and go out in a blaze of glory!"))
 	var/timer_id = addtimer(CALLBACK(src, PROC_REF(end_possession), ghoul_datum), living_time, TIMER_STOPPABLE)
@@ -174,7 +170,7 @@
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/victim_has_blood(mob/living/target)
 	// you can always revive non-temporary ghoul
-	if(IS_VASSAL(target))
+	if(IS_GHOUL(target))
 		return TRUE
 	if(target.blood_volume < BLOOD_VOLUME_BAD)
 		owner.balloon_alert(owner, "not enough blood in victim!")
@@ -195,7 +191,7 @@
 	end_possession(ghoul, FALSE)
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/on_death(mob/living/thrall)
-	var/ghoul = IS_VASSAL(thrall)
+	var/ghoul = IS_GHOUL(thrall)
 	if(isnull(ghoul))
 		return
 	end_possession(ghoul)
@@ -213,7 +209,7 @@
 		return
 	if(ghoul_timer)
 		deltimer(ghoul_timer)
-	user.remove_traits(list(TRAIT_SOFTSPOKEN, TRAIT_HARD_OF_HEARING), DOMINATE_TRAIT)
+	user.remove_traits(list(TRAIT_SOFTSPOKEN, TRAIT_DEAF), DOMINATE_TRAIT)
 	UnregisterSignal(user, list(COMSIG_LIVING_DEATH, COMSIG_QDELETING))
 	UnregisterSignal(user.mind, COMSIG_ANTAGONIST_REMOVED)
 	if(!HAS_TRAIT(user, TRAIT_NOBLOOD))

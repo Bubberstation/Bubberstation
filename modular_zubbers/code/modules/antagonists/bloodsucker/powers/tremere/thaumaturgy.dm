@@ -180,7 +180,7 @@
 	if(charges <= 0)
 		// delay the message so it doesn't overlap with the cooldown message
 		addtimer(CALLBACK(owner, TYPE_PROC_REF(/atom, balloon_alert), owner, "no charges left!"), 0.5 SECONDS)
-		PowerActivatedSuccesfully(cost_override = 0)
+		power_activated_successfully(cost_override = 0)
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/proc/handle_shot(mob/user, atom/target)
 	magic_9ball = new(get_turf(user))
