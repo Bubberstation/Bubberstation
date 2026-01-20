@@ -40,13 +40,6 @@
 		SPECIES_PERK_DESC = "Shadekins regenerate their physical wounds while in the darkness."
 	))
 
-	to_add += list(list(
-		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
-		SPECIES_PERK_ICON = "crutch",
-		SPECIES_PERK_NAME = "Light Averse",
-		SPECIES_PERK_DESC = "Shadekins move slightly slower while in the light."
-	))
-
 	return to_add
 
 /datum/species/shadekin/get_default_mutant_bodyparts()
@@ -149,9 +142,6 @@
 
 	if (light_amount < SHADOW_SPECIES_LIGHT_THRESHOLD) //heal in the dark
 		owner.apply_status_effect(applied_status)
-		owner.remove_movespeed_modifier(/datum/movespeed_modifier/light_averse)
-	else
-		owner.add_movespeed_modifier(/datum/movespeed_modifier/light_averse)
 
 /datum/status_effect/shadekin_regeneration
 	id = "shadekin_regeneration"
@@ -177,6 +167,3 @@
 	name = "Dark Regeneration"
 	desc = "Feeling the tug of home on your fur, some of its soothing warmth comes to ease your burdens."
 	icon_state = "lightless"
-
-/datum/movespeed_modifier/light_averse
-	multiplicative_slowdown = 0.25
