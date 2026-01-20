@@ -2,7 +2,7 @@
  *	MEZMERIZE
  *	 Locks a target in place for a certain amount of time.
  *
- * 	Level 2: Additionally mutes
+* 	Level 2: Additionally mutes
  * 	Level 3: Can be used through face protection
  * 	Level 5: Doesn't need to be facing you anymore
  */
@@ -14,7 +14,7 @@
 	name = "Mesmerize"
 	button_icon_state = "power_mez"
 	power_flags = NONE
-	purchase_flags = BLOODSUCKER_CAN_BUY|GHOUL_CAN_BUY
+	purchase_flags = BLOODSUCKER_CAN_BUY| GHOUL_CAN_BUY
 	bloodcost = 30
 	cooldown_time = 30 SECONDS
 	target_range = 4
@@ -27,41 +27,27 @@
 	var/mesmerize_delay = 5 SECONDS
 	/// At what level this ability will blind the target at. Level 0 = never.
 	var/blind_at_level = 0
-	/// if the ability requires you to be physically facing the target
-	var/requires_facing_target = FALSE
 	/// if the ability requires you to not have your eyes covered
 	var/blocked_by_glasses = TRUE
-	/// if the ability will knockdown on secondary click
-	var/knockdown_on_secondary = FALSE
-	// string id timer of the current cast, used for combat glare
-	var/timer
-	// a cooldown to ensure you can't spam both the primary and secondary mesmerizes
-	COOLDOWN_DECLARE(mesmerize_cooldown)
-
+	var/mesmerize_layer = ABOVE_ALL_MOB_LAYER
+	var/mesmerize_plane = ABOVE_HUD_PLANE
+	/// at this protection mesmerize will fail
+	var/max_eye_protection = 2
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/get_power_desc_extended()
 	. += "[src] a target, locking them in place for a short time[level_current >= MESMERIZE_MUTE_LEVEL ? " and muting them" : ""].<br>"
-	if(knockdown_on_secondary)
-		. += "Right clicking on your victim will apply a knockdown for [DisplayTimeText(combat_mesmerize_time())].<br>"
-	else
-		. += "Right clicking on your victim will confuse them for [DisplayTimeText(combat_mesmerize_time())]."
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/get_power_explanation_extended()
 	. = list()
-	. += "Click any player to attempt to mesmerize them. This will stun the victim."
-	. += "The victim will realize they are being mesmerized, but will be unable to talk, but at level [MESMERIZE_MUTE_LEVEL] they will be also muted."
-	if(blocked_by_glasses && requires_facing_target)
-		. += "[src] requires you to not be wearing glasses and to be facing your target."
-	else if(blocked_by_glasses)
+	. += "Click any player to attempt to mesmerize them. If successful, will stun stun the victim."
+	. += "The victim will realize they are being mesmerized, but at level [MESMERIZE_MUTE_LEVEL] they will be also muted."
+	. += "They can escape the effect if they get out of range in time or you are knocked down or incapacitated."
+	if(blocked_by_glasses)
 		. += "[src] requires you to not be wearing glasses."
-	else if(requires_facing_target)
-		. += "[src] requires you to be facing your target."
-	. += "You cannot wear anything covering your face, and both parties must be facing eachother."
 	. += "Obviously, both parties need to not be blind."
-	. += "Right clicking with the ability will apply a knockdown for [DisplayTimeText(combat_mesmerize_time())], but will also confuse your victim for [DisplayTimeText(get_power_time())]."
 	. += "If your target is already mesmerized or a bloodsucker, the Power will fail."
-	. += "Once mesmerized, the target will be unable to move for [DisplayTimeText(get_power_time())] and muted for [DisplayTimeText(get_mute_time())], scaling with level."
+	. += "Flash protection will slow down mesmerize, but welding protection will completely stop it."
+	. += "Once mesmerized, the target will be unable to move or speak for [DisplayTimeText(get_power_time())], scaling with level."
 	. += "At level [MESMERIZE_GLASSES_LEVEL], you will be able to use the power through items covering your face."
-	. += "At level [MESMERIZE_FACING_LEVEL], you will be able to mesmerize regardless of your target's direction."
 	. += "Additionally it works on silicon lifeforms, causing a EMP effect instead of a freeze."
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/can_use(mob/living/carbon/user, trigger_flags)
@@ -73,7 +59,7 @@
 		to_chat(user, span_warning("You have no eyes with which to mesmerize."))
 		return FALSE
 	// Check: Eyes covered?
-	if(blocked_by_glasses && istype(user) && (user.is_eyes_covered() && level_current <= 2) || !isturf(user.loc))
+	if(blocked_by_glasses && istype(user) && (user.is_eyes_covered() && level_current < MESMERIZE_GLASSES_LEVEL) || !isturf(user.loc))
 		user.balloon_alert(user, "your eyes are concealed from sight.")
 		return FALSE
 	return TRUE
@@ -111,28 +97,45 @@
 	if(current_target.is_blind() && !issilicon(current_target))
 		owner.balloon_alert(owner, "[current_target] is blind.")
 		return FALSE
-	// Facing target?
-	if(requires_facing_target && !is_source_facing_target(owner, current_target)) // in unsorted.dm
-		owner.balloon_alert(owner, "you must be facing [current_target].")
+
+	if(!(owner in view(current_target)))
+		owner.balloon_alert(owner, "[current_target] has to be able to see you.")
 		return FALSE
-	// Target facing me? (On the floor, they're facing everyone)
-	if(((current_target.mobility_flags & MOBILITY_STAND) && requires_facing_target && !is_source_facing_target(current_target, owner) && level_current <= MESMERIZE_FACING_LEVEL))
-		owner.balloon_alert(owner, "[current_target] must be facing you.")
+
+	var/mob/living/living_owner = owner
+	if(istype(living_owner) && !(living_owner.mobility_flags & MOBILITY_STAND))
+		owner.balloon_alert(owner, "must stay standing!")
+		return FALSE
+
+	var/eye_protection = current_target.get_eye_protection()
+
+	if(eye_protection > max_eye_protection)
+		owner.balloon_alert(owner, "[current_target] has too much eye protection to mesmerize.")
 		return FALSE
 
 	// Gone through our checks, let's mark our guy.
 	target_ref = WEAKREF(current_target)
 	return TRUE
 
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/FireTargetedPower(atom/target, params)
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/FireTargetedPower(atom/target)
+	. = ..()
 	var/mob/living/user = owner
 	var/mob/living/carbon/mesmerized_target = target_ref?.resolve()
-	if(!COOLDOWN_FINISHED(src, mesmerize_cooldown))
-		return
 	if(!mesmerized_target)
 		CRASH("mesmerized_target is null")
 
-	perform_indicators(mesmerized_target, mesmerize_delay)
+	var/modified_delay = mesmerize_delay
+	var/eye_protection = mesmerized_target.get_eye_protection()
+	if(eye_protection > 0)
+		modified_delay += (eye_protection * 0.25) * mesmerize_delay
+		to_chat(mesmerized_target, span_warning("It feels like your eye-protection is helping you resist the victim's gaze!"))
+		to_chat(mesmerized_target, span_warning("But, you can still feel it making your eyes grow heavy."))
+		to_chat(user, span_warning("[mesmerized_target] is wearing eye-protection, it will take longer to mesmerize them."))
+		user.balloon_alert(user, "partially protected!")
+	else
+		to_chat(mesmerized_target, span_warning("[user]'s eyes look into yours, and [span_hypnophrase("you feel your mind slipping away")]..."))
+
+	perform_indicators(mesmerized_target, modified_delay)
 
 	if(issilicon(mesmerized_target))
 		var/mob/living/silicon/mesmerized = mesmerized_target
@@ -140,18 +143,20 @@
 		owner.balloon_alert(owner, "temporarily shut [mesmerized] down.")
 		power_activated_successfully() // PAY COST! BEGIN COOLDOWN!
 		return
-	// slow them down during the mesmerize
-	mute_target(mesmerized_target)
 
-	COOLDOWN_START(src, mesmerize_cooldown, mesmerize_delay)
-	if(!do_after(user, mesmerize_delay, mesmerized_target, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, TRUE, extra_checks = CALLBACK(src, PROC_REF(ContinueActive), user, mesmerized_target)))
+	mute_target(mesmerized_target, modified_delay)
+
+	if(!do_after(user, modified_delay, mesmerized_target, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, TRUE, extra_checks = CALLBACK(src, PROC_REF(ContinueActive), user, mesmerized_target), hidden = TRUE))
 		StartCooldown(cooldown_time * 0.5)
+		DeactivatePower()
+		unmute_target(mesmerized_target)
 		return
 	// Can't quite time it here, but oh well
 	to_chat(mesmerized_target, "[user]'s eyes look into yours, and [span_hypnophrase("you feel your mind slipping away")]...")
-	/*if(IS_MONSTERHUNTER(mesmerized_target))
-		to_chat(mesmerized_target, span_notice("You feel your eyes burn for a while, but it passes."))
-		return*/
+	// if(IS_MONSTERHUNTER(mesmerized_target))
+	// 	to_chat(mesmerized_target, span_notice("You feel your eyes burn for a while, but it passes."))
+	// 	mesmerized_target.balloon_alert(user, "resists!")
+	// 	return
 	if(HAS_TRAIT_FROM_ONLY(mesmerized_target, TRAIT_NO_TRANSFORM, MESMERIZE_TRAIT))
 		owner.balloon_alert(owner, "[mesmerized_target] is already in a hypnotic gaze.")
 		return
@@ -159,61 +164,33 @@
 	mesmerize_effects(user, mesmerized_target)
 	power_activated_successfully() // PAY COST! BEGIN COOLDOWN!
 
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/FireSecondaryTargetedPower(atom/target, params)
-	if(!isliving(target))
-		CRASH("[src] somehow casted on a non-living target, should have been stopped by CheckCanTarget.")
-	if(timer || !COOLDOWN_FINISHED(src, mesmerize_cooldown))
-		return
-	COOLDOWN_START(src, mesmerize_cooldown, 2 SECONDS)
-	var/mob/living/mesmerized_target = target
-	owner.balloon_alert(owner, "gazing [mesmerized_target]...")
-	perform_indicators(mesmerized_target, 3 SECONDS)
-	timer = addtimer(CALLBACK(src, PROC_REF(combat_mesmerize_effects), owner, mesmerized_target), 2 SECONDS)
-
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/mesmerize_effects(mob/living/user, mob/living/mesmerized_target)
 	var/power_time = get_power_time()
-	mute_target(mesmerized_target)
+	mute_target(mesmerized_target, power_time)
 	mesmerized_target.Immobilize(power_time)
 	mesmerized_target.next_move = world.time + power_time // <--- Use direct change instead. We want an unmodified delay to their next move // mesmerized_target.changeNext_move(power_time) // check click.dm
 	ADD_TRAIT(mesmerized_target, TRAIT_NO_TRANSFORM, MESMERIZE_TRAIT) // <--- Fuck it. We tried using next_move, but they could STILL resist. We're just doing a hard freeze.
 	addtimer(CALLBACK(src, PROC_REF(end_mesmerize), user, mesmerized_target), power_time)
 
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/combat_mesmerize_effects(mob/living/user, mob/living/mesmerized_target)
-	if(!ContinueActive(user, mesmerized_target))
-		StartCooldown(cooldown_time * 0.5)
-		owner.balloon_alert(owner, "failed!")
-		return
-	to_chat(mesmerized_target, "[src]'s eyes look into yours, and [span_hypnophrase("your head becomes fuzzy for a moment")]...")
-	var/effect_time = combat_mesmerize_time()
-	mute_target(mesmerized_target)
-	if(knockdown_on_secondary)
-		mesmerized_target.Knockdown(effect_time)
-	else
-		mesmerized_target.adjust_confusion(effect_time)
-	power_activated_successfully(cost_override = bloodcost * 0.5)
-
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/get_power_time()
 	return 9 SECONDS + level_current * 1 SECONDS
-
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/get_mute_time()
-	return get_power_time()
-
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/combat_mesmerize_time()
-	return get_power_time() * 0.3
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/blind_target(mob/living/mesmerized_target)
 	if(!blind_at_level && level_current < blind_at_level)
 		return
 	mesmerized_target.become_blind(MESMERIZE_TRAIT)
 
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/mute_target(mob/living/mesmerized_target)
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/mute_target(mob/living/mesmerized_target, duration)
 	if(level_current >= MESMERIZE_MUTE_LEVEL)
-		mesmerized_target.set_silence_if_lower(get_mute_time())
+		mesmerized_target.set_silence_if_lower(duration)
+
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/unmute_target(mob/living/mesmerized_target)
+	if(level_current >= MESMERIZE_MUTE_LEVEL)
+		mesmerized_target.set_silence(0)
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/DeactivatePower(deactivate_flags)
 	. = ..()
 	target_ref = null
-	timer = null
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/end_mesmerize(mob/living/user, mob/living/target)
 	REMOVE_TRAIT(target, TRAIT_NO_TRANSFORM, MESMERIZE_TRAIT)
@@ -234,8 +211,9 @@
 
 /// Display an animated overlay over our head to indicate what's going on
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/eldritch_eye(mob/target, icon_state = "eye_open", duration = 1 SECONDS)
-	var/image/image = image('icons/effects/eldritch.dmi', owner, icon_state, ABOVE_ALL_MOB_LAYER, pixel_x = -owner.pixel_x, pixel_y = 28) /// TODO make this disable cloak
-	SET_PLANE_EXPLICIT(image, ABOVE_LIGHTING_PLANE, owner)
+	var/image/image = image('icons/effects/eldritch.dmi', owner, icon_state, mesmerize_layer, pixel_x = -owner.pixel_x, pixel_y = 28) /// TODO make this disable cloak
+	image.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	SET_PLANE_EXPLICIT(image, mesmerize_plane, owner)
 	flick_overlay_global(image, list(owner?.client, target?.client), duration)
 
 #undef MESMERIZE_GLASSES_LEVEL
