@@ -11,3 +11,16 @@
 	secure_radio_connections = list()
 	recalculateChannels()
 
+/datum/outfit/job/security
+	head = /obj/item/clothing/head/security_garrison
+	suit_store = /obj/item/gun/energy/e_gun/advtaser
+	glasses = /obj/item/clothing/glasses/hud/security
+	backpack_contents = list(
+		/obj/item/evidencebag = 1,
+		/obj/item/flashlight/seclite = 1)
+
+/obj/item/radio/headset/headset_sec/alt/department/Initialize(mapload)
+	. = ..()
+	set_wires(new/datum/wires/radio(src))
+	secure_radio_connections = list()
+	recalculateChannels()
