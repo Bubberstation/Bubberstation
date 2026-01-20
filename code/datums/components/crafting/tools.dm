@@ -119,6 +119,7 @@
 	)
 	category = CAT_TOOLS
 
+/* BUBBER EDIT: REMOVAL
 /datum/crafting_recipe/jaws_of_recovery
 	name = "Modified Jaws of Recovery"
 	desc = "This one acts like regular jaws of life, letting you pry any door and doesn't announce doors you're prying open."
@@ -130,4 +131,4 @@
 		/obj/item/bonesetter = 1,
 	)
 	category = CAT_TOOLS
-
+*/// BUBBER EDIT: REMOVAL - END
