@@ -140,8 +140,10 @@
 		return
 	var/light_amount = owner_turf.get_lumcount()
 
-	if (light_amount < SHADOW_SPECIES_LIGHT_THRESHOLD) //heal in the dark
+	if (light_amount < SHADOW_SPECIES_LIGHT_THRESHOLD) // heal in the dark
 		owner.apply_status_effect(applied_status)
+	else
+		return
 
 /datum/status_effect/shadekin_regeneration
 	id = "shadekin_regeneration"
