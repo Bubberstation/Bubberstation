@@ -114,6 +114,8 @@
 
 	/// Base interval for checking antagonist balance (default: 30 minutes for wave-based spawning)
 	var/antag_balance_check_interval = 30 MINUTES
+	/// Next time to check antagonist balance
+	var/next_atnag_balance_check_time = -1 // -1 for ui before first check
 	/// Time when roundstart antagonists should be selected (approximately 10 minutes after round start)
 	var/roundstart_antag_selection_time = 0
 	/// Whether roundstart antagonists have been selected
@@ -366,9 +368,9 @@
 
 
 	// 5) Check antagonist balance and spawn if needed
-	if(COOLDOWN_FINISHED(src, antag_balance_check_cooldown) && SSstorytellers?.storyteller_replace_dynamic && roundstart_antags_selected)
+	if(next_atnag_balance_check_time <= world.time && SSstorytellers?.storyteller_replace_dynamic && roundstart_antags_selected)
 		check_and_spawn_antagonists(snap)
-		COOLDOWN_START(src, antag_balance_check_cooldown, antag_balance_check_interval)
+		next_atnag_balance_check_time = world.time + antag_balance_check_interval
 
 
 	// 6) Check if it's time to select roundstart antagonists
@@ -376,7 +378,7 @@
 	if(!roundstart_antags_selected && world.time >= roundstart_antag_selection_time)
 		if(spawn_initial_antagonists())
 			roundstart_antags_selected = TRUE
-			COOLDOWN_START(src, antag_balance_check_cooldown, antag_balance_check_interval)
+			next_atnag_balance_check_time = world.time + antag_balance_check_interval
 
 
 	var/latest_key = num2text(world.time)

@@ -360,6 +360,7 @@ export const Storyteller = (props) => {
     ooc_difficulty,
     upcoming_goals = [],
     next_think_time,
+    next_antag_wave_time,
     base_think_delay,
     average_event_interval,
     threat_growth_rate,
@@ -671,6 +672,19 @@ export const Storyteller = (props) => {
                     <Box color="good">Thinking</Box>
                   ) : (
                     formatTime(next_think_time, current_world_time)
+                  )}
+                </LabeledList.Item>
+                <LabeledList.Item
+                  label="Next Antagonist Wave"
+                  tooltip={TOOLTIPS.nextAntagWave}
+                >
+                  {next_antag_wave_time === -1 ? (
+                    <Box color="good">Unplanned</Box>
+                  ) : null}
+                  {(next_antag_wave_time || 0) <= (current_world_time ?? 0) ? (
+                    <Box color="good">Spawning</Box>
+                  ) : (
+                    formatTime(next_antag_wave_time, current_world_time)
                   )}
                 </LabeledList.Item>
               </LabeledList>

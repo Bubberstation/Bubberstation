@@ -57,6 +57,7 @@ export type StorytellerData = {
   mood?: StorytellerMood;
   upcoming_goals?: StorytellerUpcomingGoal[];
   next_think_time?: number;
+  next_antag_wave_time?: number;
   base_think_delay?: number;
   average_event_interval?: number;
   threat_growth_rate: number;
@@ -147,7 +148,8 @@ export const TOOLTIPS = {
     'Event difficulty modifier (×1). Overall modifier that increases the threat points applied to an event. Affects the intensity of all events.',
   nextThink:
     'Time until the storyteller\'s next "think." At this point, it analyzes the station and plans events.',
-
+  nextAntagWave:
+    "Time until the next antagonist wave. if unplanned then initial antagonists still doesn't selected!.",
   // Settings (Settings & Advanced)
   moodSelect:
     'Mood selection to change the global objective style. Each mood affects planning pace: "Fast Chaos" — frequent antagonist branches, "Slow Schemer" — hidden sub-objectives.',

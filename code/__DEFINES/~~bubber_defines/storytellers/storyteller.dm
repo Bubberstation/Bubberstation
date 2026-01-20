@@ -14,7 +14,7 @@
 // Weight for humans (core crew members)
 #define STORY_HUMAN_WEIGHT (STORY_DEFAULT_WEIGHT * 10)
 // Weight for antagonists (high threat/disruption)
-#define STORY_DEFAULT_ANTAG_WEIGHT (STORY_DEFAULT_WEIGHT * 2)
+#define STORY_DEFAULT_ANTAG_WEIGHT (STORY_DEFAULT_WEIGHT * 3.5)
 
 // Minor antagonist weight (weak threats like space ninjas)
 #define STORY_MINOR_ANTAG_WEIGHT (STORY_DEFAULT_ANTAG_WEIGHT)

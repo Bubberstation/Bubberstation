@@ -120,6 +120,7 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 	data["round_progression"] = ctl.round_progression
 	data["threat_level"] = ctl.threat_points
 	data["next_think_time"] = ctl.next_think_time
+	data["next_antag_wave_time"] = ctl.next_atnag_balance_check_time
 	data["base_think_delay"] = ctl.base_think_delay
 	data["average_event_interval"] = ctl.average_event_interval
 	data["player_count"] = ctl.inputs.player_count()
