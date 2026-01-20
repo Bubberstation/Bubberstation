@@ -149,11 +149,10 @@
 	var/inverse_security = 1 - security_factor
 
 	// Resources — the more we have, the less tension
-	var/raw_resources = \
-		inputs.get_entry(STORY_VAULT_RESOURCE_OTHER)   / 100000.0 + \
-		inputs.get_entry(STORY_VAULT_RESOURCE_MINERALS) / 10000.0
+	var/raw_resources = inputs.get_entry(STORY_VAULT_RESOURCE_OTHER) / 100000.0 + \
+						inputs.get_entry(STORY_VAULT_RESOURCE_MINERALS) / 500.0
 
-	var/resource_factor   = clamp(raw_resources, 0, 1)
+	var/resource_factor = clamp(raw_resources, 0, 1)
 	var/inverse_resources = 1 - resource_factor
 
 	//Penalties
