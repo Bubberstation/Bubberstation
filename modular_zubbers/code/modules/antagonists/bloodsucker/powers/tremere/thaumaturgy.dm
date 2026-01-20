@@ -59,7 +59,7 @@
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/get_power_desc_extended()
 	. = "<br>Projectile can seek for [get_shot_range()] tiles.<br>"
 	. += "Fire a slow seeking blood bolt at your enemy.<br>"
-		if(level_current >= THAUMATURGY_SHIELD_LEVEL)
+	if(level_current >= THAUMATURGY_SHIELD_LEVEL)
 		. += "Having the ability active will create a blood shield<br>"
 	if(level_current >= THAUMATURGY_CLOSET_BREAK_LEVEL)
 		. += "The projectile will open lockers"
