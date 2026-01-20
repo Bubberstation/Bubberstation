@@ -540,7 +540,7 @@
 	survive_objective.owner = owner
 	objectives += survive_objective
 
-	// Objective 1: Ghoulize a Head/Command, or a specific target
+	// Objective 1: Ghoul a Head/Command, or a specific target
 	switch(rand(1, 3))
 		if(1) // Conversion Objective
 			var/datum/objective/bloodsucker/conversion/chosen_subtype = pick(subtypesof(/datum/objective/bloodsucker/conversion))

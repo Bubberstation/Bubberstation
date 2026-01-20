@@ -8,9 +8,9 @@
  *	Level 5 - Target (if at least in crit & has a mind) will revive as a Ghoul for 8 minutes before dying.
  */
 
-#define TEMP_GHOULIZE_COST 150
+#define TEMP_GHOUL_COST 150
 #define DOMINATE_XRAY_LEVEL 3
-#define DOMINATE_NON_MUTE_GHOULIZE_LEVEL 4
+#define DOMINATE_NON_MUTE_GHOUL_LEVEL 4
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate
 	name = "Dominate"
 	button_icon_state = "power_auspex"
@@ -43,8 +43,8 @@
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/get_power_desc_extended()
 	. = ..()
-	if(level_current >= DOMINATE_GHOULIZE_LEVEL)
-		. += "If your target is in critical condition or dead, they will instead be turned into a temporary Ghoul. This will cost [TEMP_GHOULIZE_COST] blood. Pre-existing dead ghouls will simply be revived."
+	if(level_current >= DOMINATE_GHOUL_LEVEL)
+		. += "If your target is in critical condition or dead, they will instead be turned into a temporary Ghoul. This will cost [TEMP_GHOUL_COST] blood. Pre-existing dead ghouls will simply be revived."
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/get_power_explanation_extended()
 	. = list()
@@ -53,16 +53,16 @@
 	. += "A left click will completely immobilize, and blind them for the next [DisplayTimeText(get_power_time())] seconds, and will also mute them for [DisplayTimeText(get_power_time())] seconds."
 	. += "While this ability is active, you will be able to see additional information about everyone in the room."
 	. += "At level [DOMINATE_XRAY_LEVEL], you will gain X-Ray vision while this ability is active."
-	. += "At level [DOMINATE_GHOULIZE_LEVEL], while adjacent to the target, if your target is in critical condition or dead, they will instead be turned into a temporary Ghoul. This will cost [TEMP_GHOULIZE_COST] blood."
+	. += "At level [DOMINATE_GHOUL_LEVEL], while adjacent to the target, if your target is in critical condition or dead, they will instead be turned into a temporary Ghoul. This will cost [TEMP_GHOUL_COST] blood."
 	. += "The victim must have atleast [BLOOD_VOLUME_BAD] blood to be ghouled."
-	. += "The ghoul will be mute and deaf if the level of [src] is not at least [DOMINATE_NON_MUTE_GHOULIZE_LEVEL]"
+	. += "The ghoul will be mute and deaf if the level of [src] is not at least [DOMINATE_NON_MUTE_GHOUL_LEVEL]"
 	. += "If you use this on a currently dead normal Ghoul, they will will not suddenly cease to live as if a temporary Ghoul."
 	. += "They will have complete loyalty to you, until their death in [DisplayTimeText(get_ghoul_duration())] upon use."
-	. += "Ghoulizing or reviving a ghoul will make this ability go on cooldown for [DisplayTimeText(get_ghoulize_cooldown())]."
+	. += "Ghoulizing or reviving a ghoul will make this ability go on cooldown for [DisplayTimeText(get_ghoul_cooldown())]."
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/CheckCanTarget(atom/target_atom)
 	var/mob/living/selected_target = target_atom
-	if(level_current >= DOMINATE_GHOULIZE_LEVEL && (IS_GHOUL(selected_target) || selected_target.stat >= SOFT_CRIT))
+	if(level_current >= DOMINATE_GHOUL_LEVEL && (IS_GHOUL(selected_target) || selected_target.stat >= SOFT_CRIT))
 		if(selected_target?.mind && owner.Adjacent(selected_target))
 			return TRUE
 	. = ..()
@@ -99,9 +99,9 @@
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/FireTargetedPower(atom/target, params)
 	var/mob/living/target_mob = target
 	var/mob/living/user = owner
-	if(target_mob.stat != CONSCIOUS && level_current >= DOMINATE_GHOULIZE_LEVEL)
+	if(target_mob.stat != CONSCIOUS && level_current >= DOMINATE_GHOUL_LEVEL)
 		if(user.Adjacent(target))
-			attempt_ghoulize(target, user)
+			attempt_ghoul(target, user)
 		else
 			if(IS_GHOUL(target_mob))
 				owner.balloon_alert(owner, "too far to revive!")
@@ -110,7 +110,7 @@
 		return TRUE
 	return ..()
 
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/attempt_ghoulize(mob/living/target, mob/living/user)
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/attempt_ghoul(mob/living/target, mob/living/user)
 	owner.face_atom(target)
 	var/datum/antagonist/ghoul/ghoul = IS_GHOUL(target)
 	if(!victim_has_blood(target))
@@ -127,12 +127,12 @@
 		if(target.stat != DEAD)
 			owner.balloon_alert(owner, "not dead!")
 			return FALSE
-		PowerActivatedSuccesfully(get_ghoulize_cooldown())
+		PowerActivatedSuccesfully(get_ghoul_cooldown())
 		to_chat(user, span_warning("We revive [target]!"))
 		owner.balloon_alert(owner, "successfully revived!")
 		target.mind?.grab_ghost()
 		target.revive(ADMIN_HEAL_ALL)
-		pay_cost(TEMP_GHOULIZE_COST - bloodcost)
+		pay_cost(TEMP_GHOUL_COST - bloodcost)
 		log_combat(owner, target, "tremere revived", addition="Revived their ghoul using dominate")
 		return FALSE
 	if(!bloodsuckerdatum_power.make_ghoul(target))
@@ -142,7 +142,7 @@
 	/*if(IS_MONSTERHUNTER(target))
 		to_chat(target, span_notice("Their body refuses to react..."))
 		return*/
-	PowerActivatedSuccesfully(get_ghoulize_cooldown())
+	PowerActivatedSuccesfully(get_ghoul_cooldown())
 	to_chat(user, span_warning("We revive [target]!"))
 	// no escaping at this point
 	target.mind?.grab_ghost(TRUE)
@@ -151,7 +151,7 @@
 	ghouldatum.special_type = TREMERE_GHOUL //don't turn them into a favorite please
 	var/living_time = get_ghoul_duration()
 	log_combat(owner, target, "tremere mindslaved", addition="Revived and converted [target] into a temporary tremere ghoul for [DisplayTimeText(living_time)].")
-	if(level_current <= DOMINATE_NON_MUTE_GHOULIZE_LEVEL)
+	if(level_current <= DOMINATE_NON_MUTE_GHOUL_LEVEL)
 		target.add_traits(list(TRAIT_MUTE, TRAIT_DEAF), DOMINATE_TRAIT)
 	user.balloon_alert(target, "only [DisplayTimeText(living_time)] left to live!")
 	to_chat(target, span_warning("You will only live for [DisplayTimeText(living_time)]! Obey your master and go out in a blaze of glory!"))
@@ -161,7 +161,7 @@
 	thralls += target
 	RegisterSignals(target, list(COMSIG_LIVING_DEATH, COMSIG_QDELETING), PROC_REF(end_possession), timer_id)
 	RegisterSignal(ghouldatum, COMSIG_ANTAGONIST_REMOVED, PROC_REF(on_antag_datum_removal), target, timer_id)
-	pay_cost(TEMP_GHOULIZE_COST - bloodcost)
+	pay_cost(TEMP_GHOUL_COST - bloodcost)
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/victim_has_blood(mob/living/target)
@@ -209,9 +209,9 @@
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/get_ghoul_duration()
 	return 4 MINUTES * max(level_current, 1)
 
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/get_ghoulize_cooldown()
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/get_ghoul_cooldown()
 	return cooldown_time * 3
 
-#undef TEMP_GHOULIZE_COST
+#undef TEMP_GHOUL_COST
 #undef DOMINATE_XRAY_LEVEL
-#undef DOMINATE_NON_MUTE_GHOULIZE_LEVEL
+#undef DOMINATE_NON_MUTE_GHOUL_LEVEL

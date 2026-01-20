@@ -126,7 +126,7 @@
 	SIGNAL_HANDLER
 
 /**
- * Called when a Bloodsucker successfully Ghoulizes someone.
+ * Called when a Bloodsucker successfully ghouls someone.
  * args:
  * bloodsuckerdatum - the antagonist datum of the Bloodsucker running this.
  */

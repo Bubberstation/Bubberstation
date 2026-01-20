@@ -277,7 +277,7 @@
  *
  * * Tick Down Conversion from 3 to 0
  * * Break mindshielding/antag (on approve)
- * * Ghoulize target
+ * * Ghoul target
  */
 /obj/structure/bloodsucker/ghoulrack/proc/torture_victim(mob/living/user, mob/living/target)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(user)

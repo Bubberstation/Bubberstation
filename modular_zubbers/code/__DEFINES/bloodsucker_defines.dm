@@ -137,7 +137,7 @@
 #define DEACTIVATE_POWER_NO_COOLDOWN (1<<1)
 
 // ability levels that are used cross-file
-#define DOMINATE_GHOULIZE_LEVEL 2
+#define DOMINATE_GHOUL_LEVEL 2
 #define TREMERE_OBJECTIVE_POWER_LEVEL 4
 
 #define COFFIN_HEAL_COST_MULT 0.5
