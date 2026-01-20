@@ -15,7 +15,7 @@
 		var/datum/job/job = crew.mind.assigned_role
 		if(!job)
 			continue
-		var/is_security = job.story_tags & STORY_JOB_SECURITY
+		var/is_security = (/datum/job_department/security in job.departments_list)
 		total_crew_count += 1
 		if(is_security)
 			total_security += 1
@@ -62,7 +62,7 @@
 
 		// MOD suits provide significant bonus
 		if(istype(crew.back, /obj/item/mod))
-			gear_score += 5  // MOD suits are powerful equipment
+			gear_score += 5
 
 		// Experience and skill modifiers (if available)
 		var/skill_mod = 1.0

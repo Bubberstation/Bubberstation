@@ -1,5 +1,5 @@
 import '../../styles/interfaces/StorytellerVote.scss';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   Box,
   Button,
@@ -49,7 +49,47 @@ type StorytellerVoteConfig = {
   max_difficulty?: number;
 };
 
-export const StorytellerVote = (props) => {
+type DifficultyLevel = {
+  value: number;
+  label: string;
+  tooltip: string;
+  minPlayers: number;
+};
+
+const DIFFICULTY_LEVELS: readonly DifficultyLevel[] = [
+  {
+    value: 0.3,
+    label: 'Extended',
+    tooltip: 'Peaceful mode - minimal threats, more positive events',
+    minPlayers: 0,
+  },
+  {
+    value: 0.7,
+    label: 'Adventure',
+    tooltip: 'Easy mode - moderate events, balance between good and bad',
+    minPlayers: 0,
+  },
+  {
+    value: 1.0,
+    label: 'Struggle',
+    tooltip: 'Standard mode - balanced events and threats',
+    minPlayers: 15,
+  },
+  {
+    value: 2.0,
+    label: 'Blood and Ash',
+    tooltip: 'Hard mode - frequent threats and event escalation',
+    minPlayers: 30,
+  },
+  {
+    value: 5.0,
+    label: 'Losing is Fun',
+    tooltip: 'Extreme mode - maximum difficulty and constant threats',
+    minPlayers: 50,
+  },
+];
+
+export const StorytellerVote = () => {
   const { data, act, config } = useBackend<StorytellerVoteData>();
   const { min_difficulty = 0.3, max_difficulty = 5.0 } =
     config as StorytellerVoteConfig;
@@ -67,32 +107,139 @@ export const StorytellerVote = (props) => {
   } = data;
 
   const [selected, setSelected] = useState(personal_selection || '');
-  const [diff, setDiff] = useState(String(personal_difficulty));
+
+  const availableDifficultyLevels = useMemo(
+    () =>
+      DIFFICULTY_LEVELS.filter(
+        (level) => level.minPlayers === 0 || total_voters >= level.minPlayers,
+      ),
+    [total_voters],
+  );
+
+  const [difficultyCheckboxes, setDifficultyCheckboxes] = useState<
+    Record<string, boolean>
+  >(() => {
+    const initial: Record<string, boolean> = {};
+    DIFFICULTY_LEVELS.forEach((level) => {
+      initial[String(level.value)] = false;
+    });
+    return initial;
+  });
+
+  const findClosestDifficultyLevel = useMemo(() => {
+    const available =
+      total_voters > 0 ? availableDifficultyLevels : DIFFICULTY_LEVELS;
+    return available.reduce((prev, curr) =>
+      Math.abs(curr.value - personal_difficulty) <
+      Math.abs(prev.value - personal_difficulty)
+        ? curr
+        : prev,
+    );
+  }, [personal_difficulty, availableDifficultyLevels, total_voters]);
+
+  useEffect(() => {
+    const closestValue = String(findClosestDifficultyLevel.value);
+    setDifficultyCheckboxes((prev) => ({
+      ...Object.fromEntries(Object.keys(prev).map((key) => [key, false])),
+      [closestValue]: true,
+    }));
+  }, [personal_difficulty, findClosestDifficultyLevel.value]);
+
+  useEffect(() => {
+    const selectedValue = Object.keys(difficultyCheckboxes).find(
+      (key) => difficultyCheckboxes[key],
+    );
+
+    if (selectedValue) {
+      const currentLevel = DIFFICULTY_LEVELS.find(
+        (l) => String(l.value) === selectedValue,
+      );
+
+      if (
+        currentLevel &&
+        currentLevel.minPlayers > 0 &&
+        total_voters < currentLevel.minPlayers
+      ) {
+        const available = availableDifficultyLevels
+          .filter((l) => l.value <= currentLevel.value)
+          .sort((a, b) => b.value - a.value)[0];
+
+        if (available) {
+          const newValue = String(available.value);
+          setDifficultyCheckboxes((prev) => ({
+            ...Object.fromEntries(Object.keys(prev).map((key) => [key, false])),
+            [newValue]: true,
+          }));
+
+          if (is_open && can_vote) {
+            act('set_difficulty', { value: available.value });
+          }
+        }
+      }
+    }
+  }, [
+    total_voters,
+    availableDifficultyLevels,
+    difficultyCheckboxes,
+    is_open,
+    can_vote,
+    act,
+  ]);
 
   const select = (id: string) => {
     if (!is_open) return;
     setSelected(id);
-
-    if (!can_vote) return;
-    act('select_storyteller', { id });
+    if (can_vote) {
+      act('select_storyteller', { id });
+    }
   };
 
-  const applyDifficulty = (value: string) => {
+  const handleDifficultyCheckboxChange = (value: number, checked: boolean) => {
     if (!is_open || !can_vote) return;
-    setDiff(value);
-    const v = Math.max(
-      min_difficulty,
-      Math.min(max_difficulty, Number(value) || 1.0),
-    );
-    act('set_difficulty', { value: v });
+
+    if (checked) {
+      setDifficultyCheckboxes((prev) => ({
+        ...Object.fromEntries(Object.keys(prev).map((key) => [key, false])),
+        [String(value)]: true,
+      }));
+
+      const clampedValue = Math.max(
+        min_difficulty,
+        Math.min(max_difficulty, value),
+      );
+      act('set_difficulty', { value: clampedValue });
+    }
+    // При снятии галочки ничего не делаем — оставляем текущий выбор
   };
 
-  const current = storytellers.find((c) => c.id === selected) || null;
+  const current = useMemo(
+    () => storytellers.find((c) => c.id === selected) || null,
+    [storytellers, selected],
+  );
+
+  const selectedDifficultyInfo = useMemo(() => {
+    const selectedValue = Object.keys(difficultyCheckboxes).find(
+      (key) => difficultyCheckboxes[key],
+    );
+    return selectedValue
+      ? DIFFICULTY_LEVELS.find((l) => String(l.value) === selectedValue) ||
+          DIFFICULTY_LEVELS[2]
+      : DIFFICULTY_LEVELS[2];
+  }, [difficultyCheckboxes]);
+
+  const timeDisplay = useMemo(() => {
+    if (time_left <= 0) return 'Ended';
+    const seconds = Math.ceil(time_left / 10);
+    const minutes = Math.floor(seconds / 60);
+    const remaining = seconds % 60;
+    return minutes > 0 ? `${minutes}m ${remaining}s` : `${seconds}s`;
+  }, [time_left]);
 
   if (!is_open && top_tallies.length === 0) {
     return (
       <Window title="Storyteller Vote" width={760} height={560}>
         <Window.Content>
+          s
           <NoticeBox>Voting has ended. Check round logs for results!</NoticeBox>
         </Window.Content>
       </Window>
@@ -102,8 +249,8 @@ export const StorytellerVote = (props) => {
   return (
     <Window
       title={is_open ? 'Vote for Storyteller' : 'Storyteller Vote Results'}
-      width={800}
-      height={620}
+      width={1000}
+      height={700}
       theme="stortellerVote"
     >
       <Window.Content
@@ -117,19 +264,18 @@ export const StorytellerVote = (props) => {
           position: 'absolute',
         }}
       >
-        {!can_vote ? (
+        {!can_vote && (
           <NoticeBox>
             You cannot participate in the vote, but you can still view the
             candidates.
           </NoticeBox>
-        ) : (
-          ' '
         )}
+
         <Stack fill>
           <Stack.Item style={{ flex: '0 0 240px', boxSizing: 'border-box' }}>
             <Section
               title="Candidates"
-              scrollable={true}
+              scrollable
               style={{
                 maxWidth: '240px',
                 height: '100%',
@@ -139,41 +285,49 @@ export const StorytellerVote = (props) => {
                 overflowY: 'auto',
               }}
             >
-              <Box>
-                {storytellers.length ? (
-                  <Stack fill vertical>
-                    {storytellers.map((c) => (
-                      <Tooltip content={c.name} key={c.id}>
-                        <Button
-                          p={1}
-                          mb={1}
-                          width="96px"
-                          height="96px"
-                          style={{
-                            cursor: is_open ? 'pointer' : 'default',
-                            borderRadius: 4,
-                            opacity: is_open ? 1 : 0.6,
-                            maxWidth: '96px',
-                            maxHeight: '96px',
-                            backgroundImage: c.logo_path
-                              ? `url(${resolveAsset(`${c.id}_logo.png`)})`
-                              : undefined,
-                            backgroundColor:
-                              c.id === selected
-                                ? 'rgba(255,255,255,0.255)'
-                                : 'rgba(255,255,255,0.00)',
-                          }}
-                          onClick={() => select(c.id)}
-                        />
-                      </Tooltip>
-                    ))}
-                  </Stack>
-                ) : (
-                  <NoticeBox>No storytellers provided.</NoticeBox>
-                )}
-              </Box>
+              {storytellers.length ? (
+                <Stack fill vertical>
+                  {storytellers.map((c) => (
+                    <Tooltip
+                      key={c.id}
+                      content={
+                        <Box>
+                          <Box bold>{c.name}</Box>
+                          {c.ooc_desc && <Box>{c.ooc_desc}</Box>}
+                          {c.ooc_diff && (
+                            <Box color="average">Difficulty: {c.ooc_diff}</Box>
+                          )}
+                        </Box>
+                      }
+                    >
+                      <Button
+                        p={1}
+                        mb={1}
+                        width="96px"
+                        height="96px"
+                        style={{
+                          cursor: is_open ? 'pointer' : 'default',
+                          borderRadius: 4,
+                          opacity: is_open ? 1 : 0.6,
+                          backgroundImage: c.logo_path
+                            ? `url(${resolveAsset(`${c.id}_logo.png`)})`
+                            : undefined,
+                          backgroundColor:
+                            c.id === selected
+                              ? 'rgba(255,255,255,0.255)'
+                              : 'rgba(255,255,255,0.00)',
+                        }}
+                        onClick={() => select(c.id)}
+                      />
+                    </Tooltip>
+                  ))}
+                </Stack>
+              ) : (
+                <NoticeBox>No storytellers provided.</NoticeBox>
+              )}
             </Section>
           </Stack.Item>
+
           <Stack.Item grow maxWidth="60%">
             <Section title="Your Vote" scrollable>
               {current ? (
@@ -186,33 +340,85 @@ export const StorytellerVote = (props) => {
                     <LabeledList.Item label="OOC Description">
                       {current.ooc_desc || '-'}
                     </LabeledList.Item>
-                    <LabeledList.Item label="Difficulty">
+                    <LabeledList.Item label="OOC Difficulty">
                       {current.ooc_diff || '-'}
                     </LabeledList.Item>
                   </LabeledList>
+
                   <Divider />
+
                   <LabeledList>
                     <LabeledList.Item
-                      label="Difficulty Multiplier"
-                      tooltip="How much storyteller threat points will be multiplied."
+                      label="Difficulty"
+                      tooltip="Determines how much storyteller threat points will be multiplied. Higher values mean more difficult events and more threats. Some difficulty levels require a minimum number of players."
                     >
                       <Stack align="center">
                         <Stack.Item grow>
-                          <input
-                            type="range"
-                            min={min_difficulty}
-                            max={max_difficulty}
-                            step={0.1}
-                            value={diff}
-                            onChange={(e) =>
-                              applyDifficulty(e.currentTarget.value)
-                            }
-                            disabled={!is_open || !can_vote}
-                            style={{ width: '100%' }}
-                          />
+                          <Box mb={1}>
+                            <Stack fill vertical>
+                              {availableDifficultyLevels.map((level) => (
+                                <Stack.Item key={level.value}>
+                                  <Tooltip
+                                    content={
+                                      level.minPlayers > 0
+                                        ? `${level.tooltip} (Requires ${level.minPlayers}+ players)`
+                                        : level.tooltip
+                                    }
+                                  >
+                                    <Stack fill>
+                                      <Button.Checkbox
+                                        checked={
+                                          difficultyCheckboxes[
+                                            String(level.value)
+                                          ] || false
+                                        }
+                                        disabled={!is_open || !can_vote}
+                                        onClick={() =>
+                                          handleDifficultyCheckboxChange(
+                                            level.value,
+                                            !difficultyCheckboxes[
+                                              String(level.value)
+                                            ],
+                                          )
+                                        }
+                                      />
+                                      <Box ml={1}>
+                                        <Box fontSize="1.1em">
+                                          {level.label}
+                                        </Box>
+                                        {level.minPlayers > 0 && (
+                                          <Box fontSize="0.8em" color="average">
+                                            ({level.minPlayers}+ players)
+                                          </Box>
+                                        )}
+                                      </Box>
+                                    </Stack>
+                                  </Tooltip>
+                                </Stack.Item>
+                              ))}
+                            </Stack>
+                          </Box>
+
+                          {availableDifficultyLevels.length <
+                            DIFFICULTY_LEVELS.length && (
+                            <Box mt={0.5} color="average" fontSize="0.9em">
+                              Some difficulty levels require more players
+                            </Box>
+                          )}
                         </Stack.Item>
+
                         <Stack.Item>
-                          <Box ml={1}>{Number(diff).toFixed(1)}</Box>
+                          <Tooltip
+                            content={
+                              selectedDifficultyInfo.minPlayers > 0
+                                ? `${selectedDifficultyInfo.tooltip} (Requires ${selectedDifficultyInfo.minPlayers}+ players)`
+                                : selectedDifficultyInfo.tooltip
+                            }
+                          >
+                            <Box ml={1} color="label" bold>
+                              ×{selectedDifficultyInfo.value.toFixed(1)}
+                            </Box>
+                          </Tooltip>
                         </Stack.Item>
                       </Stack>
                     </LabeledList.Item>
@@ -222,6 +428,7 @@ export const StorytellerVote = (props) => {
                 <NoticeBox>Select a storyteller on the left.</NoticeBox>
               )}
             </Section>
+
             <Section title="Vote Progress">
               <LabeledList>
                 <LabeledList.Item label="Voters">
@@ -238,8 +445,9 @@ export const StorytellerVote = (props) => {
                     {voted_count}/{total_voters}
                   </ProgressBar>
                 </LabeledList.Item>
+
                 <LabeledList.Item label="Time Left">
-                  {time_left > 0 ? `${Math.ceil(time_left / 10)}s` : 'Ended'}
+                  {timeDisplay}
                 </LabeledList.Item>
               </LabeledList>
 

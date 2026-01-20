@@ -112,56 +112,118 @@
 
 	return snap
 
+// Tension calculation tuning constants
+#define BASE_TENSION 8.0
+
+#define SECURITY_WEIGHT 30.0
+#define SECURITY_POWER 1.1
+
+#define INTEGRITY_WEIGHT 40.0
+#define INTEGRITY_POWER 1.8
+
+#define BIAS_WEIGHT 35.0
+
+#define ACTIVITY_WEIGHT 15.0
+
+#define RESOURCE_WEIGHT 8.0
+#define HEALTH_WEIGHT 20.0
+
+// How much random jitter we add at the very end
+#define TENSION_JITTER_MIN -2
+#define TENSION_JITTER_MAX 2
+
+// How many sec officers we consider "very strong security"
+#define SECURITY_MAX_COUNT 8
+
 /// Calculate overall tension
+/// Returns number between 0 and 100
 /datum/storyteller_balance/proc/calculate_overall_tension(datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/snap)
 	PRIVATE_PROC(TRUE)
 
-	// Base tension starts at 20 (neutral)
-	var/base_tension = 20.0
-
-	// Get tension bonus from recent events
 	var/tension_bonus = get_tension_bonus()
 
-	// Retrieve relevant factors
+	//Raw values from vault
 	var/station_integrity = inputs.get_entry(STORY_VAULT_STATION_INTEGRITY) || 100
-	var/crew_health = inputs.get_entry(STORY_VAULT_AVG_CREW_HEALTH) || 100
-	var/security_count = inputs.get_entry(STORY_VAULT_SECURITY_COUNT) || 0
-	var/cargo_points = inputs.get_entry(STORY_VAULT_RESOURCE_OTHER) || 0
-	var/minerals = inputs.get_entry(STORY_VAULT_RESOURCE_MINERALS) || 0
+	var/crew_health = inputs.get_entry(STORY_VAULT_AVG_CREW_HEALTH)   || 100
+	var/security_count = inputs.get_entry(STORY_VAULT_SECURITY_COUNT)    || 0
 
-	// Normalize factors to 0-1 scale
-	var/integrity_factor = NORMALIZE(station_integrity, 100.0)
-	var/health_factor = NORMALIZE(crew_health, 100.0)
-	var/security_factor = NORMALIZE(security_count, 10.0)
-	var/resource_factor = NORMALIZE((cargo_points / 100000.0) + (minerals / 10000.0), 1.0)
+	//Normalized (0→1)
+	var/integrity_factor = clamp(station_integrity / 100, 0, 1)
+	var/health_factor = clamp(crew_health / 100, 0, 1)
+	var/security_factor = clamp(security_count / SECURITY_MAX_COUNT, 0, 1)
 
-	// Calculate inverse factors for tension (low value -> high tension contribution)
-	var/inverse_integrity = 1.0 - integrity_factor
-	var/inverse_health = 1.0 - health_factor
-	var/inverse_security = 1.0 - security_factor
-	var/inverse_resources = 1.0 - resource_factor
+	// The worse the situation — the bigger the penalty
+	var/inverse_integrity = 1 - integrity_factor
+	var/inverse_health = 1 - health_factor
+	var/inverse_security = 1 - security_factor
 
-	// Antag bias modifier: higher balance_ratio means antags stronger, higher tension
-	// Scale the excess over 1.0 (neutral)
-	var/antag_bias_modifier = max(snap.balance_ratio - 1.0, 0)  // Only positive bias contributes
+	// Resources — the more we have, the less tension
+	var/raw_resources = \
+		inputs.get_entry(STORY_VAULT_RESOURCE_OTHER)   / 100000.0 + \
+		inputs.get_entry(STORY_VAULT_RESOURCE_MINERALS) / 10000.0
 
-	// Apply weights for contributions
-	var/security_modifier = inverse_security * 25.0
-	var/integrity_modifier = inverse_integrity * 25.0
-	var/bias_modifier = antag_bias_modifier * 25.0
-	var/health_modifier = inverse_health * 10.0
-	var/resources_modifier = inverse_resources * 10.0
+	var/resource_factor   = clamp(raw_resources, 0, 1)
+	var/inverse_resources = 1 - resource_factor
 
-	// Include antag activity for additional context
-	var/activity_modifier = snap.antag_activity_index * 10.0
+	//Penalties
+	var/security_penalty  = inverse_security * SECURITY_POWER  * SECURITY_WEIGHT
+	if(owner.population_factor < 0.5)
+		security_penalty *= 1.2
+	else if(owner.population_factor < 0.3)
+		security_penalty *= 1.6
+	else
+		security_penalty *= 0.6
+	var/integrity_penalty = inverse_integrity * INTEGRITY_POWER * INTEGRITY_WEIGHT
+	if(owner.population_factor < 0.5)
+		integrity_penalty *= 1.2
+	else if(owner.population_factor < 0.3)
+		integrity_penalty *= 1.6
+	else
+		integrity_penalty *= 0.8
 
-	// Calculate final tension
-	var/final_tension = base_tension + security_modifier + integrity_modifier + bias_modifier + \
-		health_modifier + resources_modifier + activity_modifier + tension_bonus
+	var/antag_bias = max(snap.balance_ratio - 1, 0)
+	var/bias_penalty = antag_bias * BIAS_WEIGHT
+
+	var/activity_modifier = snap.antag_activity_index * ACTIVITY_WEIGHT
+
+	var/resource_penalty = inverse_resources * RESOURCE_WEIGHT
+	var/health_penalty   = inverse_health   * HEALTH_WEIGHT
+	if(owner.population_factor < 0.5)
+		health_penalty *= 1.4
+	else if(owner.population_factor < 0.3)
+		health_penalty *= 2
+	else
+		health_penalty *= 0.9
+
+	//Final calculation
+	var/final_tension = BASE_TENSION \
+	                  + security_penalty \
+	                  + integrity_penalty \
+	                  + bias_penalty \
+	                  + activity_modifier \
+	                  + resource_penalty \
+	                  + health_penalty \
+	                  + tension_bonus
+
+	// Small random jitter so tension doesn't sit perfectly still
+	final_tension += rand(TENSION_JITTER_MIN, TENSION_JITTER_MAX)
+
 	return clamp(final_tension, 0, 100)
 
 
-// Balance snapshot datum
+#undef BASE_TENSION
+#undef SECURITY_WEIGHT
+#undef SECURITY_POWER
+#undef INTEGRITY_WEIGHT
+#undef INTEGRITY_POWER
+#undef BIAS_WEIGHT
+#undef ACTIVITY_WEIGHT
+#undef RESOURCE_WEIGHT
+#undef HEALTH_WEIGHT
+#undef TENSION_JITTER_MIN
+#undef TENSION_JITTER_MAX
+#undef SECURITY_MAX_COUNT
+
 /datum/storyteller_balance_snapshot
 	var/list/strengths = list()  // "station": norm, "station_raw": raw, "antag": norm, "antag_raw": raw
 	var/list/weights = list()	// "player": total, "antag": total

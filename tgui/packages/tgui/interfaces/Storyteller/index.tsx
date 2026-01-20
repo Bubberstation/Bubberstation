@@ -1,7 +1,7 @@
 import '../../styles/interfaces/StorytellerVote.scss';
 
 import type { StringLike } from 'bun';
-import { useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   Box,
   Button,
@@ -14,51 +14,90 @@ import {
   Stack,
   Table,
   Tabs,
+  Tooltip,
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 import { resolveAsset } from '../../assets';
 import { useBackend } from '../../backend';
 import { Window } from '../../layouts';
 
+type DifficultyLevel = {
+  value: number;
+  label: string;
+  tooltip: string;
+  minPlayers: number;
+};
+
+const DIFFICULTY_LEVELS: readonly DifficultyLevel[] = [
+  {
+    value: 0.3,
+    label: 'Extended',
+    tooltip: 'Peaceful mode - minimal threats, more positive events',
+    minPlayers: 0, // Any online
+  },
+  {
+    value: 0.7,
+    label: 'Adventure',
+    tooltip: 'Easy mode - moderate events, balance between good and bad',
+    minPlayers: 0,
+  },
+  {
+    value: 1.0,
+    label: 'Struggle',
+    tooltip: 'Standard mode - balanced events and threats',
+    minPlayers: 15,
+  },
+  {
+    value: 2.0,
+    label: 'Blood and Ash',
+    tooltip: 'Hard mode - frequent threats and event escalation',
+    minPlayers: 30,
+  },
+  {
+    value: 5.0,
+    label: 'Losing is Fun',
+    tooltip: 'Extreme mode - maximum difficulty and constant threats',
+    minPlayers: 50,
+  },
+];
+
 // Tooltips for parameters in status and settings
-// These explain how parameters affect event planning,
-// global objectives, and branching sub-objectives, balancing threats, pacing, and antagonist activity for rounds.
 const TOOLTIPS = {
   // Status (Overview)
-  mood: 'The current mood of the storyteller. It acts as a modifier for event difficulty and directly influences the interval between events.',
+  mood: 'The current mood of the storyteller. It acts as a modifier for event difficulty and directly influences the interval between events. Each mood has its own pace and aggression.',
   tension:
-    'Current round tension (0-100%). Depending on the target tension the storyteller aims for, higher values may lead to more positive events.',
+    'Current round tension (0-100%). Shows the overall level of stress and threats on the station. Higher values may lead to more positive events for balance.',
   targetTension:
     'Target tension (0-100%). The storyteller strives to maintain it by planning events: low values decrease the overall difficulty modifier, high values increase it. Values closer to 100 lead to extreme event difficulty.',
   threatLevel:
-    'Threat level (0-100%). Indicates the current threat points available to the storyteller (from 1 to 10,000).',
+    'Threat level (0-100%). Shows the current threat points available to the storyteller (from 1 to 10,000). Used for scaling event intensity.',
   effectiveThreat:
-    'Effective threat level (accounts for players and progress). Based on round time, antagonist activity, and overall tension.',
+    'Effective threat level (accounts for players and progress). Based on round time, antagonist activity, and overall tension. Determines the actual difficulty of events.',
   roundProgression:
-    'Round progression (0-1). When it reaches 1, nearly all events become available. By default, the upper progression level is reached in two hours.',
+    'Round progression (0-1). When it reaches 1, nearly all events become available. By default, the maximum progression level is reached in two hours.',
   playersAntags:
     'Number of players / antagonists. Current ratio of active players on the station (not in guest roles and not engaged in ERP) to active antagonists.',
   balance:
     'Antagonist balance (0-100%). Below 40% — "boring," storyteller intensifies antagonist branches; above 60% — "chaos," adds neutral events for a breather.',
   difficulty:
-    'Event difficulty modifier (×1). Overall modifier that increases the threat points applied to an event.',
+    'Event difficulty modifier (×1). Overall modifier that increases the threat points applied to an event. Affects the intensity of all events.',
   nextThink:
-    'Time until the storyteller\'s next "think." At this point, it analyzes the station.',
+    'Time until the storyteller\'s next "think." At this point, it analyzes the station and plans events.',
 
   // Settings (Settings & Advanced)
   moodSelect:
     'Mood selection to change the global objective style. Each mood affects planning pace: "Fast Chaos" — frequent antagonist branches, "Slow Schemer" — hidden sub-objectives.',
   pace: 'Event pace multiplier (0.5-2.0). 0.5 — slows sub-objective intervals for deep roleplay; 2.0 — accelerates for dynamic rounds, like in RimWorld with "manic miner."',
   reanalyse:
-    'Reanalyze station: recalculates players, threats, and balance to adjust the plan.',
+    'Reanalyze station: recalculates players, threats, and balance to adjust the plan. Use when there are significant changes on the station.',
   replan:
-    'Replan: launches the analyzer and rebuilds the event queue based on the obtained data.',
+    'Replan: launches the analyzer and rebuilds the event queue based on the obtained data. Use for a complete plan revision.',
   difficultySlider:
-    'Global difficulty multiplier (0.3-5). Increases the threat points received by the storyteller, as well as the amount of threat points allocated to events.',
+    'Global difficulty multiplier (0.3-5.0). Increases the threat points received by the storyteller, as well as the amount of threat points allocated to events. High values make the round significantly harder.',
   targetTensionSlider:
     'Target tension for auto-balance. The storyteller plans events to achieve it: low — peaceful sub-objectives, high — escalation of antagonist branches.',
   threatGrowthRate:
-    'Threat growth rate (0.1-5). Amount of threat points received by the storyteller per thinking cycle.',
+    'Threat growth rate (0.1-5.0). Amount of threat points received by the storyteller per thinking cycle. High values lead to rapid threat accumulation.',
   thinkDelay:
     'Think delay (seconds, 1-240). Frequent thinking — for dynamic branch planning; rare — for strategic approach, like in RimWorld with long-term threats.',
   averageEventInterval:
@@ -85,7 +124,7 @@ type StorytellerCandidates = {
 type StorytellerMood = {
   id: string;
   name: string;
-  pace: number; // multiplier (e.g. 0.5 fast, 2.0 slow)
+  pace: number;
   threat?: number;
 };
 
@@ -116,21 +155,21 @@ type StorytellerData = {
   ooc_desc?: string;
   ooc_difficulty?: string;
   mood?: StorytellerMood;
-  upcoming_goals?: StorytellerUpcomingGoal[]; // Chain preview
+  upcoming_goals?: StorytellerUpcomingGoal[];
   next_think_time?: number;
   base_think_delay?: number;
   average_event_interval?: number;
   threat_growth_rate: number;
   grace_period: number;
-  threat_level?: number; // 0..100
+  threat_level?: number;
   effective_threat_level?: number;
-  round_progression?: number; // 0..1
-  target_tension?: number; // 0..100
+  round_progression?: number;
+  target_tension?: number;
   current_tension?: number;
   recent_events?: StorytellerEventLog[];
   player_count?: number;
   antag_count?: number;
-  player_antag_balance?: number; // 0..100
+  player_antag_balance?: number;
   event_difficulty_modifier?: number;
   available_moods?: StorytellerMood[];
   available_goals?: StorytellerGoal[];
@@ -140,9 +179,9 @@ type StorytellerData = {
 };
 
 type scrollConfigProp = {
-  value: any;
+  value: string;
   setValue: (value: string) => void;
-  onSet: any;
+  onSet: () => void;
   max: number;
   min: number;
   step: number;
@@ -155,21 +194,19 @@ const InputScrollApply = (props: scrollConfigProp) => {
   return (
     <Stack>
       <Stack.Item grow>
-        {''}
         <input
           type="range"
           min={min}
           max={max}
           step={step}
-          defaultValue={value / delim}
+          defaultValue={Number(value) / delim}
           onChange={(e) =>
             setValue(String(Number(e.currentTarget.value) * delim))
           }
           style={{ width: '100%' }}
-          width="100%"
         />
       </Stack.Item>
-      <Stack.Item>{value / delim}</Stack.Item>
+      <Stack.Item>{Number(value) / delim}</Stack.Item>
       <Stack.Item>
         <Button icon="check" tooltip="Apply" onClick={onSet} />
       </Stack.Item>
@@ -211,15 +248,17 @@ const ProgressRow = ({
   );
 };
 
+type UpcomingGoalItemProps = {
+  goal: StorytellerUpcomingGoal;
+  current_world_time?: number;
+  act: (action: string, params?: Record<string, unknown>) => void;
+};
+
 const UpcomingGoalItem = ({
   goal,
   current_world_time,
   act,
-}: {
-  goal: StorytellerUpcomingGoal;
-  current_world_time?: number;
-  act: any;
-}) => {
+}: UpcomingGoalItemProps) => {
   const [expanded, setExpanded] = useState(false);
   const isAntag = goal.is_antagonist;
   const isStoryteller = goal.storyteller_implementation;
@@ -268,16 +307,12 @@ const UpcomingGoalItem = ({
               <Box inline ml={1} color="red" opacity={0.9}>
                 - antagonist
               </Box>
-            ) : (
-              ''
-            )}
+            ) : null}
             {isStoryteller && !isAntag ? (
               <Box opacity={0.9} color="blue">
                 {'(Storyteller)'}
               </Box>
-            ) : (
-              ''
-            )}
+            ) : null}
           </Button>
         </Stack.Item>
 
@@ -380,31 +415,38 @@ const UpcomingGoalItem = ({
   );
 };
 
+type GoalSearchDropdownProps = {
+  available_goals: StorytellerGoal[];
+  selectedGoal: string;
+  setSelectedGoal: (id: string) => void;
+  onInsert: () => void;
+};
+
 const GoalSearchDropdown = ({
   available_goals,
   selectedGoal,
   setSelectedGoal,
   onInsert,
-}: {
-  available_goals: StorytellerGoal[];
-  selectedGoal: string;
-  setSelectedGoal: (id: string) => void;
-  onInsert: () => void;
-}) => {
+}: GoalSearchDropdownProps) => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const searchKey = searchTerm;
+  const filteredGoals = useMemo(
+    () =>
+      available_goals.filter((goal) => {
+        if (!goal) return false;
+        if (!searchTerm) return true;
+        const text = String(goal.name ?? goal.id ?? '').toLowerCase();
+        return text.includes(searchTerm.toLowerCase());
+      }),
+    [available_goals, searchTerm],
+  );
 
-  const filteredGoals = available_goals.filter((goal) => {
-    if (!goal) return false;
-    if (!searchTerm) return true;
-    const text = String(goal.name ?? goal.id ?? '').toLowerCase();
-    return text.includes(searchTerm.toLowerCase());
-  });
-
-  const handleGoalSelect = (goal: StorytellerGoal) => {
-    setSelectedGoal(String(goal.id));
-  };
+  const handleGoalSelect = useCallback(
+    (goal: StorytellerGoal) => {
+      setSelectedGoal(String(goal.id));
+    },
+    [setSelectedGoal],
+  );
 
   return (
     <Stack vertical>
@@ -429,7 +471,7 @@ const GoalSearchDropdown = ({
         </Stack>
       </Stack.Item>
       <Stack.Item grow minHeight="120px">
-        <Section scrollable fill key={searchKey}>
+        <Section scrollable fill>
           {filteredGoals.length ? (
             filteredGoals.map((g) => (
               <Box
@@ -493,11 +535,9 @@ export const Storyteller = (props) => {
     candidates = [],
     available_moods = [],
     available_goals = [],
-    can_force_event,
     current_world_time,
   } = data;
 
-  // Replacement of useLocalState with useState
   const [tab, setTab] = useState<
     'overview' | 'goals' | 'settings' | 'advanced' | 'logs'
   >('overview');
@@ -505,12 +545,32 @@ export const Storyteller = (props) => {
   const [pace, setPace] = useState(String(mood?.pace ?? 1.0));
   const [selectedGoal, setSelectedGoal] = useState('');
   const [selectedCandidate, setSelectedCandidate] = useState('');
+
   // Advanced parameter local states
   const [difficulty, setDifficulty] = useState(
     String(event_difficulty_modifier ?? 1.0),
   );
+  const [difficultyLevel, setDifficultyLevel] = useState(() => {
+    // Find closest difficulty level to current value
+    // Filter by available levels if player_count is known, otherwise use all levels
+    const currentPlayerCount = player_count ?? 0;
+    const available =
+      currentPlayerCount > 0
+        ? DIFFICULTY_LEVELS.filter(
+            (level) =>
+              level.minPlayers === 0 || currentPlayerCount >= level.minPlayers,
+          )
+        : DIFFICULTY_LEVELS;
+    const closest = available.reduce((prev, curr) =>
+      Math.abs(curr.value - (event_difficulty_modifier ?? 1.0)) <
+      Math.abs(prev.value - (event_difficulty_modifier ?? 1.0))
+        ? curr
+        : prev,
+    );
+    return String(closest.value);
+  });
   const [targetTension, setTargetTension] = useState(
-    String(target_tension ?? 1.0),
+    String(target_tension ?? 50),
   );
   const [threatGrowthRate, setThreatGrowthRate] = useState(
     String(threat_growth_rate ?? 1.0),
@@ -524,21 +584,72 @@ export const Storyteller = (props) => {
     String(grace_period ?? 1),
   );
 
-  const handleInsertGoal = () => {
+  const selectedDifficultyInfo = useMemo(
+    () =>
+      DIFFICULTY_LEVELS.find((l) => String(l.value) === difficultyLevel) ||
+      DIFFICULTY_LEVELS[2],
+    [difficultyLevel],
+  );
+
+  // Filter available difficulty levels based on player count
+  const availableDifficultyLevels = useMemo(
+    () =>
+      DIFFICULTY_LEVELS.filter(
+        (level) =>
+          level.minPlayers === 0 || (player_count ?? 0) >= level.minPlayers,
+      ),
+    [player_count],
+  );
+
+  // Auto-adjust difficulty level if current selection becomes unavailable
+  useEffect(() => {
+    const currentLevel = DIFFICULTY_LEVELS.find(
+      (l) => String(l.value) === difficultyLevel,
+    );
+    if (
+      currentLevel &&
+      currentLevel.minPlayers > 0 &&
+      (player_count ?? 0) < currentLevel.minPlayers
+    ) {
+      // Find the highest available difficulty level
+      const available = availableDifficultyLevels
+        .filter((l) => l.value <= currentLevel.value)
+        .sort((a, b) => b.value - a.value)[0];
+      if (available) {
+        setDifficultyLevel(String(available.value));
+        setDifficulty(String(available.value));
+        act('set_difficulty', { value: available.value });
+      }
+    }
+  }, [player_count, availableDifficultyLevels, difficultyLevel, act]);
+
+  const handleInsertGoal = useCallback(() => {
     if (selectedGoal) {
       act('insert_goal_to_chain', { id: selectedGoal });
     }
-  };
+  }, [selectedGoal, act]);
 
-  const handleSetAverageEventInterval = () => {
+  const handleSetAverageEventInterval = useCallback(() => {
     act('set_average_event_interval', {
       min: Number(averageEventInterval) || 1000,
     });
-  };
+  }, [averageEventInterval, act]);
 
-  const handleSetThreatGrowthRate = () => {
+  const handleSetThreatGrowthRate = useCallback(() => {
     act('set_threat_growth_rate', { value: Number(threatGrowthRate) || 1 });
-  };
+  }, [threatGrowthRate, act]);
+
+  const handleDifficultyChange = useCallback(
+    (value: string) => {
+      setDifficultyLevel(value);
+      setDifficulty(value);
+      const numValue = Number(value);
+      if (numValue) {
+        act('set_difficulty', { value: numValue });
+      }
+    },
+    [act],
+  );
 
   return (
     <Window
@@ -574,7 +685,7 @@ export const Storyteller = (props) => {
           <Stack.Item>
             <Button
               icon="check"
-              tooltip="Insert"
+              tooltip="Set"
               disabled={!selectedCandidate}
               onClick={() => act('set_storyteller', { id: selectedCandidate })}
             />
@@ -730,7 +841,7 @@ export const Storyteller = (props) => {
         )}
         {tab === 'goals' && (
           <>
-            <Section title="Insert event">
+            <Section title="Insert Event">
               <GoalSearchDropdown
                 available_goals={available_goals}
                 selectedGoal={selectedGoal}
@@ -905,18 +1016,42 @@ export const Storyteller = (props) => {
                   label="Difficulty"
                   tooltip={TOOLTIPS.difficultySlider}
                 >
-                  <InputScrollApply
-                    value={difficulty}
-                    setValue={setDifficulty}
-                    max={5}
-                    min={0.3}
-                    step={0.1}
-                    onSet={() =>
-                      act('set_difficulty', {
-                        value: Number(difficulty) || 1,
-                      })
-                    }
-                  />
+                  <Stack align="center">
+                    <Stack.Item grow>
+                      <Dropdown
+                        selected={difficultyLevel}
+                        onSelected={handleDifficultyChange}
+                        options={availableDifficultyLevels.map((level) => ({
+                          value: String(level.value),
+                          displayText:
+                            level.minPlayers > 0
+                              ? `${level.label} (${level.minPlayers}+)`
+                              : level.label,
+                        }))}
+                        width="100%"
+                      />
+                    </Stack.Item>
+                    <Stack.Item>
+                      <Tooltip
+                        content={
+                          selectedDifficultyInfo.minPlayers > 0
+                            ? `${selectedDifficultyInfo.tooltip} (Requires ${selectedDifficultyInfo.minPlayers}+ players)`
+                            : selectedDifficultyInfo.tooltip
+                        }
+                      >
+                        <Box ml={1} color="label">
+                          ×{Number(difficultyLevel).toFixed(1)}
+                        </Box>
+                      </Tooltip>
+                    </Stack.Item>
+                  </Stack>
+                  {availableDifficultyLevels.length <
+                    DIFFICULTY_LEVELS.length && (
+                    <Box mt={0.5} color="average" fontSize="0.9em">
+                      Some difficulty levels require more players (Current:{' '}
+                      {player_count ?? 0})
+                    </Box>
+                  )}
                 </LabeledList.Item>
                 <LabeledList.Item
                   label="Target Tension"
@@ -936,7 +1071,7 @@ export const Storyteller = (props) => {
                   />
                 </LabeledList.Item>
                 <LabeledList.Item
-                  label="Threat growth rate"
+                  label="Threat Growth Rate"
                   tooltip={TOOLTIPS.threatGrowthRate}
                 >
                   <InputScrollApply
@@ -976,7 +1111,6 @@ export const Storyteller = (props) => {
                 >
                   <Stack>
                     <Stack.Item grow>
-                      {''}
                       <input
                         type="range"
                         min={1}
@@ -989,7 +1123,6 @@ export const Storyteller = (props) => {
                           )
                         }
                         style={{ width: '100%' }}
-                        width="100%"
                       />
                     </Stack.Item>
                     <Stack.Item>
@@ -1059,7 +1192,7 @@ export const Storyteller = (props) => {
               <Table>
                 <Table.Row header>
                   <Table.Cell>Time</Table.Cell>
-                  <Table.Cell>Desc</Table.Cell>
+                  <Table.Cell>Description</Table.Cell>
                   <Table.Cell>Status</Table.Cell>
                   <Table.Cell>ID</Table.Cell>
                 </Table.Row>

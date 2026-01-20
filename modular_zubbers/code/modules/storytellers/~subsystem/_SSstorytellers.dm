@@ -16,6 +16,7 @@ SUBSYSTEM_DEF(storytellers)
 	var/selected_difficulty
 
 	var/current_vote_duration = 60 SECONDS
+	var/vote_start_time = 0  // Global vote start time
 
 	VAR_PRIVATE/list/storyteller_vote_cache
 
@@ -64,7 +65,6 @@ SUBSYSTEM_DEF(storytellers)
 	load_event_config()
 	load_vote_cahce()
 
-	// Load config values (assuming global config loader; adjust if needed)
 	storyteller_replace_dynamic = config.Get(/datum/config_entry/flag/storyteller_replace_dynamic) || TRUE
 	storyteller_helps_antags = config.Get(/datum/config_entry/flag/storyteller_helps_antags) || FALSE
 	storyteller_allows_speech = config.Get(/datum/config_entry/flag/storyteller_allows_speech) || TRUE
@@ -594,10 +594,81 @@ ADMIN_VERB(storyteller_simulation, R_ADMIN, "Storyteller - Simulation", "Simulat
 	default = TRUE
 
 /datum/config_entry/flag/storyteller_helps_antags
-	default = TRUE
+	default = FALSE
 
 /datum/config_entry/flag/storyteller_allows_speech
 	default = TRUE
+
+// Population threshold config entries
+/datum/config_entry/number/story_population_threshold_low
+	default = 10
+	integer = TRUE
+	min_val = 1
+
+/datum/config_entry/number/story_population_threshold_medium
+	default = 21
+	integer = TRUE
+	min_val = 1
+
+/datum/config_entry/number/story_population_threshold_high
+	default = 32
+	integer = TRUE
+	min_val = 1
+
+/datum/config_entry/number/story_population_threshold_full
+	default = 51
+	integer = TRUE
+	min_val = 1
+
+// Population factor config entries
+/datum/config_entry/number/story_population_factor_low
+	default = 0.3
+	min_val = 0.1
+	max_val = 2.0
+
+/datum/config_entry/number/story_population_factor_medium
+	default = 0.5
+	min_val = 0.1
+	max_val = 2.0
+
+/datum/config_entry/number/story_population_factor_high
+	default = 0.8
+	min_val = 0.1
+	max_val = 2.0
+
+/datum/config_entry/number/story_population_factor_full
+	default = 1.0
+	min_val = 0.1
+	max_val = 2.0
+
+/datum/config_entry/number/story_population_smooth_weight
+	default = 0.4
+	min_val = 0.0
+	max_val = 1.0
+
+/datum/config_entry/number/story_population_history_max
+	default = 20
+	integer = TRUE
+	min_val = 5
+	max_val = 100
+
+// Planner multi-event config entries
+/datum/config_entry/number/story_max_consecutive_events
+	default = 3
+	integer = TRUE
+	min_val = 1
+	max_val = 10
+
+/datum/config_entry/number/story_multi_event_tension_threshold
+	default = 40
+	integer = TRUE
+	min_val = 0
+	max_val = 100
+
+/datum/config_entry/number/story_multi_event_threat_threshold
+	default = 500
+	integer = TRUE
+	min_val = 0
 
 #undef FIRE_PRIORITY_STORYTELLERS
 #undef STORYTELLER_JSON_PATH

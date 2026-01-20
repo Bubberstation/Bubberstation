@@ -91,9 +91,28 @@
 		if(timeline[offset_str][ENTRY_STATUS] == STORY_GOAL_PENDING)
 			pending_count++
 
-	// Add next event if low on pending and cooldown finished
+	// Add next event(s) if low on pending and cooldown finished
 	if(pending_count <= STORY_INITIAL_GOALS_COUNT && COOLDOWN_FINISHED(src, event_planning_cooldown))
-		if(add_next_event(ctl, inputs, bal))
+		var/max_consecutive = CONFIG_GET(number/story_max_consecutive_events)
+		var/multi_event_tension = CONFIG_GET(number/story_multi_event_tension_threshold)
+		var/multi_event_threat = CONFIG_GET(number/story_multi_event_threat_threshold)
+
+		// Determine how many events to plan based on storyteller state
+		var/events_to_plan = 1
+		if(ctl.current_tension >= multi_event_tension && ctl.threat_points >= multi_event_threat)
+			// Plan multiple events if tension and threat are high enough
+			events_to_plan = min(max_consecutive, max(1, round((ctl.current_tension - multi_event_tension) / 20) + 1))
+
+		var/planned_count = 0
+		for(var/i = 1 to events_to_plan)
+			if(pending_count + planned_count >= STORY_INITIAL_GOALS_COUNT + max_consecutive)
+				break
+			if(add_next_event(ctl, inputs, bal))
+				planned_count++
+			else
+				break
+
+		if(planned_count > 0)
 			COOLDOWN_START(src, event_planning_cooldown, planning_cooldown)
 
 	// Recalculate if cooldown finished
@@ -158,7 +177,7 @@
 			required_offset += scaled_grace
 
 		var/new_time = offset_str
-		if(required_offset < offset_str)
+		if(required_offset < text2num(offset_str))
 			var/difference = required_offset - offset_str
 			if(difference >= 5 MINUTES)
 				difference = 5 MINUTES
@@ -235,7 +254,9 @@
 		if(!silence)
 			var/format_time = time2text(target_str, "hh:mm", NO_TIMEZONE)
 			var/format_name = "[event_control.name || event_control.id] [event_control.story_category & STORY_GOAL_ANTAGONIST ? span_red("- Antagonist event") : ""]"
-			message_admins("[owner.name] planned new event [format_name] at [format_time].")
+			var/cancel_ref = "[REF(event_control)]_[target_time]"
+			var/reroll_ref = "[REF(event_control)]_[target_time]_reroll"
+			message_admins("[owner.name] planned new event [format_name] at [format_time]. (<a href='byond://?src=[REF(src)];cancel_event=[cancel_ref]'>CANCEL</a>) (<a href='byond://?src=[REF(src)];reroll_event=[reroll_ref]'>REROLL</a>)")
 		return TRUE
 		base_delay += EVENT_CLUSTER_AVOIDANCE_BUFFER + rand(10 SECONDS, 30 SECONDS)
 		attempts++
@@ -419,6 +440,60 @@
 	if(length(timeline))
 		return get_closest_offest()
 	return min(world.time, ctl.last_event_time)
+
+/datum/storyteller_planner/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return TRUE
+
+	var/mob/user = usr
+	if(!user || !user.client || !check_rights_for(user.client, R_ADMIN))
+		return TRUE
+
+	if(href_list["cancel_event"])
+		var/ref_data = href_list["cancel_event"]
+		var/list/parts = splittext(ref_data, "_")
+		if(length(parts) >= 2)
+			var/time_str = parts[2]
+			var/time_val = text2num(time_str)
+
+			// Find event at this time
+			var/offset_str = time_key(time_val)
+			var/list/entry = get_entry_at(offset_str)
+			if(entry && entry[ENTRY_EVENT])
+				var/datum/round_event_control/evt = entry[ENTRY_EVENT]
+				cancel_event(time_val)
+				message_admins("[key_name_admin(user)] canceled [owner.name]'s planned event [evt.name || evt.id] at [time2text(time_val, "hh:mm", NO_TIMEZONE)].")
+				log_admin("[key_name(user)] canceled storyteller event [evt.name || evt.id]")
+		return TRUE
+
+	if(href_list["reroll_event"])
+		var/ref_data = href_list["reroll_event"]
+		var/list/parts = splittext(ref_data, "_")
+		if(length(parts) >= 3)
+			var/time_str = parts[2]
+			var/time_val = text2num(time_str)
+
+			// Find event at this time
+			var/offset_str = time_key(time_val)
+			var/list/entry = get_entry_at(offset_str)
+			if(entry && entry[ENTRY_EVENT])
+				var/datum/round_event_control/old_evt = entry[ENTRY_EVENT]
+				cancel_event(time_val)
+
+				var/datum/round_event_control/new_evt = build_event(owner)
+				if(new_evt)
+					var/new_time = time_val + rand(-2 MINUTES, 2 MINUTES) // Small variation
+					if(try_plan_event(new_evt, new_time, FALSE, TRUE))
+						message_admins("[key_name_admin(user)] rerolled [owner.name]'s planned event from [old_evt.name || old_evt.id] to [new_evt.name || new_evt.id].")
+						log_admin("[key_name(user)] rerolled storyteller event from [old_evt.name || old_evt.id] to [new_evt.name || new_evt.id]")
+					else
+						message_admins("[key_name_admin(user)] attempted to reroll [owner.name]'s event but failed to find a slot.")
+				else
+					message_admins("[key_name_admin(user)] attempted to reroll [owner.name]'s event but no new event could be generated.")
+		return TRUE
+
+	return FALSE
 
 
 #undef ENTRY_EVENT

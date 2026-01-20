@@ -1,20 +1,4 @@
-// Default population thresholds (can be overridden per storyteller instance)
-#define STORY_POPULATION_THRESHOLD_LOW_DEFAULT 10	  // Very low pop → mercy mode (positive goals)
-#define STORY_POPULATION_THRESHOLD_MEDIUM_DEFAULT 21  // Medium → standard
-#define STORY_POPULATION_THRESHOLD_HIGH_DEFAULT 32	  // High → challenge
-#define STORY_POPULATION_THRESHOLD_FULL_DEFAULT 51	  // Full → max escalation
-
-#define STORY_POPULATION_FACTOR_LOW_DEFAULT 0.3		  // Low pop: easier, more positive branches
-#define STORY_POPULATION_FACTOR_MEDIUM_DEFAULT 0.5
-#define STORY_POPULATION_FACTOR_HIGH_DEFAULT 0.8
-#define STORY_POPULATION_FACTOR_FULL_DEFAULT 1.0
-
-#define STORY_POPULATION_SMOOTH_WEIGHT_DEFAULT 0.4
-
-#define STORY_POPULATION_HISTORY_MAX 20
-
 /datum/storyteller
-
 	/* BASIC STORYTELLER INFO */
 
 	var/name = "John Dynamic"
@@ -105,25 +89,25 @@
 	VAR_PRIVATE/list/population_history = list()
 	/// History of raw crew counts (numeric) — used for spike detection
 	VAR_PRIVATE/list/population_count_history = list()
-	/// Population scaling configuration
+	/// Population scaling configurations
 	/// Threshold for low population classification
-	var/population_threshold_low = STORY_POPULATION_THRESHOLD_LOW_DEFAULT
+	var/population_threshold_low
 	/// Threshold for medium population classification
-	var/population_threshold_medium = STORY_POPULATION_THRESHOLD_MEDIUM_DEFAULT
+	var/population_threshold_medium
 	/// Threshold for high population classification
-	var/population_threshold_high = STORY_POPULATION_THRESHOLD_HIGH_DEFAULT
+	var/population_threshold_high
 	/// Threshold for full population classification
-	var/population_threshold_full = STORY_POPULATION_THRESHOLD_FULL_DEFAULT
+	var/population_threshold_full
 	/// Factor multiplier for low population (lower = fewer/smaller threats)
-	var/population_factor_low = STORY_POPULATION_FACTOR_LOW_DEFAULT
+	var/population_factor_low
 	/// Factor multiplier for medium population
-	var/population_factor_medium = STORY_POPULATION_FACTOR_MEDIUM_DEFAULT
+	var/population_factor_medium
 	/// Factor multiplier for high population
-	var/population_factor_high = STORY_POPULATION_FACTOR_HIGH_DEFAULT
+	var/population_factor_high
 	/// Factor multiplier for full population (1.0 = full scaling)
-	var/population_factor_full = STORY_POPULATION_FACTOR_FULL_DEFAULT
+	var/population_factor_full
 	/// Smoothing weight for population factor changes (0-1, higher = slower changes)
-	var/population_smooth_weight = STORY_POPULATION_SMOOTH_WEIGHT_DEFAULT
+	var/population_smooth_weight
 
 
 	/* ANTAG VARIBLES */
@@ -154,6 +138,17 @@
 	analyzer = new /datum/storyteller_analyzer(src)
 	balancer = new /datum/storyteller_balance(src)
 	inputs = new /datum/storyteller_inputs
+
+	// Load population config values
+	population_threshold_low = CONFIG_GET(number/story_population_threshold_low)
+	population_threshold_medium = CONFIG_GET(number/story_population_threshold_medium)
+	population_threshold_high = CONFIG_GET(number/story_population_threshold_high)
+	population_threshold_full = CONFIG_GET(number/story_population_threshold_full)
+	population_factor_low = CONFIG_GET(number/story_population_factor_low)
+	population_factor_medium = CONFIG_GET(number/story_population_factor_medium)
+	population_factor_high = CONFIG_GET(number/story_population_factor_high)
+	population_factor_full = CONFIG_GET(number/story_population_factor_full)
+	population_smooth_weight = CONFIG_GET(number/story_population_smooth_weight)
 
 /datum/storyteller/Destroy(force)
 	qdel(mood)
@@ -394,7 +389,8 @@
 
 	var/latest_key = num2text(world.time)
 	tension_history[latest_key] = current_tension
-	if(length(tension_history) > STORY_POPULATION_HISTORY_MAX)
+	var/max_history = CONFIG_GET(number/story_population_history_max)
+	if(length(tension_history) > max_history)
 		tension_history.Cut(1, 2)
 
 	// 7) Schedule next cycle
@@ -480,10 +476,11 @@
 	population_factor = clamp(new_factor, 0.1, 1.0)
 
 	population_history[num2text(world.time)] = population_factor
-	if(length(population_history) > STORY_POPULATION_HISTORY_MAX)
+	var/max_history = CONFIG_GET(number/story_population_history_max)
+	if(length(population_history) > max_history)
 		population_history.Cut(1, 2)
 	population_count_history[num2text(world.time)] = current
-	if(length(population_count_history) > STORY_POPULATION_HISTORY_MAX)
+	if(length(population_count_history) > max_history)
 		population_count_history.Cut(1, 2)
 
 
@@ -528,7 +525,7 @@
 			continue
 		total += text2num(population_count_history[key])
 		count++
-	var/avg = (count > 0 ? total / count : 0)ss
+	var/avg = (count > 0 ? total / count : 0)
 	if(count < 3 || avg <= 0)
 		// not enough history to make a decision
 		return FALSE
@@ -755,13 +752,3 @@
 		return "Low"
 
 
-#undef STORY_POPULATION_THRESHOLD_LOW_DEFAULT
-#undef STORY_POPULATION_THRESHOLD_MEDIUM_DEFAULT
-#undef STORY_POPULATION_THRESHOLD_HIGH_DEFAULT
-#undef STORY_POPULATION_THRESHOLD_FULL_DEFAULT
-#undef STORY_POPULATION_FACTOR_LOW_DEFAULT
-#undef STORY_POPULATION_FACTOR_MEDIUM_DEFAULT
-#undef STORY_POPULATION_FACTOR_HIGH_DEFAULT
-#undef STORY_POPULATION_FACTOR_FULL_DEFAULT
-#undef STORY_POPULATION_SMOOTH_WEIGHT_DEFAULT
-#undef STORY_POPULATION_HISTORY_MAX

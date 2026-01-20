@@ -98,6 +98,7 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 	// Clears existing UIs to prevent duplicates or stale data
 	storyteller_vote_uis = list()
 	vote_active = TRUE
+	vote_start_time = world.time  // Set global vote start time
 	to_chat(world, span_boldnotice("Storyteller voting has started!"))
 	current_vote_duration = duration
 	for (var/client/cln in GLOB.clients)
@@ -129,11 +130,6 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 	var/act_vote = "[custom_link_style_start]<a href='byond://?src=[REF(vote_action)];open_ui=1'[custom_link_style_end]>\[Vote Now\]</a>"
 
 	var/surrounding_icon
-	// You can set a chat_text_border_icon if desired, e.g., image('icons/hud/actions.dmi', icon_state = "vote")
-	// var/chat_text_border_icon = image('icons/hud/actions.dmi', icon_state = "vote")
-	// if(chat_text_border_icon)
-	// 	var/image/surrounding_image = chat_text_border_icon
-	// 	surrounding_icon = icon2html(surrounding_image, cln.mob, extra_classes = "bigicon")
 	var/final_message = boxed_message("<span style='text-align:center;display:block'>[surrounding_icon] <span style='font-size:1.2em'>[span_ooc("Storyteller Vote Started! Vote for your preferred storyteller.")]</span> [surrounding_icon]\n[act_vote]</span>")
 	to_chat(cln.mob, final_message)
 
@@ -143,6 +139,7 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 		return
 
 	vote_active = FALSE
+	vote_start_time = 0  // Reset vote start time
 	deltimer(vote_timer_id)
 	var/list/tallies = list()
 	var/list/all_diffs = list()
@@ -185,7 +182,7 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 		selected_id_str = pick(best_storytellers)
 		to_chat(world, span_announce("Tie broken randomly!"))
 
-	selected_id = selected_id_str  // Set ID from JSON
+	selected_id = selected_id_str
 	var/avg_diff = length(all_diffs) ? get_avg(all_diffs) : 1.0
 	selected_difficulty = avg_diff
 
@@ -254,7 +251,7 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 		return
 	owner = vote_client
 	vote_duration = duration
-	vote_end_time = world.time + duration
+	vote_end_time = SSstorytellers.vote_start_time ? SSstorytellers.vote_start_time + duration : world.time + duration
 	candidates = list()
 	var/current_id
 	if(SSstorytellers.active)
@@ -333,11 +330,12 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 	data["total_voters"] = length(GLOB.clients)
 	var/voted_count = 0
 	for (var/id_str in tallies)
-		voted_count += tallies[id_str]  // Fixed: voted_count as total votes cast
+		voted_count += tallies[id_str]
 	data["voted_count"] = voted_count
-	data["time_left"] = max(0, (vote_end_time - world.time))
+	var/global_vote_end_time = SSstorytellers.vote_start_time ? SSstorytellers.vote_start_time + SSstorytellers.current_vote_duration : vote_end_time
+	data["time_left"] = max(0, (global_vote_end_time - world.time))
 	data["top_tallies"] = top_tallies
-	data["is_open"] = world.time < vote_end_time
+	data["is_open"] = world.time < global_vote_end_time && SSstorytellers.vote_active
 
 	var/can_vote = TRUE
 
