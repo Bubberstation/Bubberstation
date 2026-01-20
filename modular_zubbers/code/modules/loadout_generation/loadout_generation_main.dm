@@ -1,18 +1,3 @@
-GLOBAL_LIST_INIT(loadout_blacklist_terms,list(
-	"debug",
-	"admin",
-	"god",
-	"dev",
-	"centcom",
-	"central com",
-
-))
-
-GLOBAL_LIST_INIT(loadout_blacklist,generate_loadout_blacklist())
-
-
-GLOBAL_LIST_INIT(loadout_blacklist_names,list())
-
 /proc/generate_loadout_blacklist() as /list
 
 	. = list()
@@ -31,20 +16,20 @@ GLOBAL_LIST_INIT(loadout_blacklist_names,list())
 
 /proc/is_loadout_safe(obj/item/item_to_check,do_debug=FALSE)
 
-	//Manually blacklisted.
-	if(length(GLOB.loadout_blacklist) && GLOB.loadout_blacklist[item_to_check])
-		return FALSE
-
-	//Already exists
-	if(length(GLOB.loadout_blacklist_names) && GLOB.loadout_blacklist[GLOB.loadout_blacklist_names])
-		return FALSE
-
 	//Is abstract
 	if(item_to_check == item_to_check.abstract_type)
 		return FALSE
 
 	//(Likely) is abstract
 	if(!item_to_check.name || !item_to_check.desc || !item_to_check.icon || !item_to_check.icon_state)
+		return FALSE
+
+	//Already exists
+	if(length(GLOB.loadout_blacklist_names) && GLOB.loadout_blacklist_names[item_to_check.name])
+		return FALSE
+
+	//Blacklisted.
+	if(length(GLOB.loadout_blacklist) && GLOB.loadout_blacklist[item_to_check])
 		return FALSE
 
 	//Resistance Flags

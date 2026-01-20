@@ -9,6 +9,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 
 /// Inits the global list of loadout category singletons
 /// Also inits loadout item singletons
+/* BUBBERSTATION CHANGE: MOVED TO MODULAR
 /proc/init_loadout_categories()
 	var/list/loadout_categories = list()
 	for(var/category_type in subtypesof(/datum/loadout_category))
@@ -16,6 +17,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 
 	sortTim(loadout_categories, /proc/cmp_loadout_categories)
 	return loadout_categories
+BUBBERSTATION CHANGE END*/
 
 /proc/cmp_loadout_categories(datum/loadout_category/A, datum/loadout_category/B)
 	var/a_order = A::tab_order
