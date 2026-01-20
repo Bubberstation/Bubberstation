@@ -22,13 +22,21 @@
 
 // Is this event avaible for selection on storyteller
 /datum/round_event_control/proc/is_avaible(datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
-	if(!can_spawn_event(inputs.get_entry(STORY_VAULT_CREW_ALIVE_COUNT)))
+	if(occurrences >= max_occurrences)
+		return FALSE
+	if(get_story_weight(inputs, storyteller) <= 0)
+		return FALSE
+	if(wizardevent != SSevents.wizardmode)
+		return FALSE
+	if(inputs.player_count() < min_players)
+		return FALSE
+	if(holidayID && !check_holidays(holidayID))
 		return FALSE
 	if(!valid_for_map())
 		return FALSE
-	if(storyteller.get_effective_threat() < requierd_threat_level)
+	if((storyteller.get_effective_threat() < requierd_threat_level) && !has_tag(STORY_TAG_ROUNDSTART))
 		return FALSE
-	if(storyteller.round_progression < required_round_progress)
+	if(storyteller.round_progression < required_round_progress && !has_tag(STORY_TAG_ROUNDSTART))
 		return FALSE
 	return TRUE
 
@@ -260,6 +268,8 @@
 	. = ..()
 	delayed = TRUE
 	candidates = list()
+	var/admin_msg = span_danger("[storyteller.name] is spawning [length(candidates)] [antag_name](s) in [admin_cancel_delay / 10] seconds. <a href='?src=[REF(src)];cancel_antag=1'>CANCEL</a>")
+	message_admins(admin_msg)
 	candidates = poll_candidates_for_antag(inputs, storyteller, candidates)
 	// Set up admin cancel callback if needed
 	if(admin_cancel_delay > 0)
@@ -286,14 +296,11 @@
 /datum/round_event_control/antagonist/proc/admin_cancel_event(datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
 	if(!candidate_selected)
 		return
-	// Notify with cancel link
-	var/admin_msg = span_danger("[storyteller.name] is spawning [length(candidates)] [antag_name](s). <a href='?src=[REF(src)];cancel_antag=1'>CANCEL</a>")
-	message_admins(admin_msg)
 
 /datum/round_event_control/antagonist/Topic(href, href_list)
 	if(href_list["cancel_antag"])
 		canceled = TRUE
-		message_admins("Admin canceled [antag_name] spawn by [SSstorytellers?.active.name || "storyteller"].")
+		message_admins("[key_name_admin(usr)] canceled [antag_name] spawn by [SSstorytellers?.active.name || "storyteller"].")
 		return TRUE
 
 /datum/round_event_control/antagonist/proc/poll_candidates_for_antag(datum/storyteller_inputs/inputs, datum/storyteller/storyteller, list/current_candidates)
@@ -406,6 +413,7 @@
 	if(canceled)
 		deadchat_broadcast("[storyteller.name]'s [antag_name] event was canceled", message_type=DEADCHAT_ANNOUNCEMENT)
 		message_admins("[storyteller.name]'s [antag_name] event canceled by admin.")
+		canceled = FALSE
 		return FALSE
 
 	if(!antag_datum_type)
@@ -525,9 +533,11 @@
 	var/ask = tgui_alert(clicker, "Are you sure you want to load your current character preferences?", "Load current character", list("Yes", "Nevermind"))
 	if(ask != "Yes")
 		return
-
 	client?.prefs?.apply_prefs_to(clicker)
 	SSquirks.OverrideQuirks(clicker, client)
+	var/name_ask =  tgui_alert(clicker, "Would you like to generate a random name for your character?", "Generate random name", list("Yes", "No"))
+	if(name_ask == "Yes")
+		clicker.generate_random_mob_name()
 	var/msg = span_notice("[key_name(clicker)] has used the [name] ability to apply their character preferences to their current mob. [ADMIN_VERBOSEJMP(clicker)]")
 	message_admins(msg)
 	Remove(clicker)

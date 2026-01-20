@@ -67,7 +67,7 @@
 /datum/round_event_control/antagonist/from_ghosts/loneop/proc/get_disk()
 	var/obj/item/disk/nuclear/real_disk
 	for(var/obj/item/disk/nuclear/disk in SSpoints_of_interest.real_nuclear_disks)
-		if(!disk.fake)
+		if(disk.fake)
 			continue
 		if(!is_station_level(get_turf(disk)))
 			continue

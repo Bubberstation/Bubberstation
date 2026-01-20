@@ -70,6 +70,11 @@ SUBSYSTEM_DEF(storytellers)
 	storyteller_allows_speech = config.Get(/datum/config_entry/flag/storyteller_allows_speech) || TRUE
 
 	RegisterSignal(SSdcs, COMSIG_GLOB_CLIENT_CONNECT, PROC_REF(on_login))
+
+#ifdef DEBUG
+	hard_debug = TRUE
+#endif
+
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/storytellers/Destroy()
@@ -625,26 +630,31 @@ ADMIN_VERB(storyteller_simulation, R_ADMIN, "Storyteller - Simulation", "Simulat
 	default = 0.3
 	min_val = 0.1
 	max_val = 2.0
+	integer = FALSE
 
 /datum/config_entry/number/story_population_factor_medium
 	default = 0.5
 	min_val = 0.1
 	max_val = 2.0
+	integer = FALSE
 
 /datum/config_entry/number/story_population_factor_high
 	default = 0.8
 	min_val = 0.1
 	max_val = 2.0
+	integer = FALSE
 
 /datum/config_entry/number/story_population_factor_full
 	default = 1.0
 	min_val = 0.1
 	max_val = 2.0
+	integer = FALSE
 
 /datum/config_entry/number/story_population_smooth_weight
 	default = 0.4
 	min_val = 0.0
 	max_val = 1.0
+	integer = FALSE
 
 /datum/config_entry/number/story_population_history_max
 	default = 20

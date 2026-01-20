@@ -86,8 +86,8 @@
 	var/antag_strength_raw = (antag_activity_norm * 0.6) + (clamp(antag_weight_normalized, 0, 2) * 0.4)
 	var/antag_strength_norm = clamp(antag_strength_raw, 0, 1)
 
-	// Calculate balance ratio (antag strength / station strength, inverted so higher = station stronger)
-	var/balance_ratio = station_strength_norm > 0 ? (antag_strength_norm / station_strength_norm) : 1.0
+	// Calculate balance ratio (station strength / antag strength, higher = antags stronger)
+	var/balance_ratio = NORMALIZE(antag_strength_norm > 0 ? (station_strength_norm / antag_strength_norm) : 1.0, 1.0)
 
 	// Calculate antag activity index (0-1)
 	var/antag_activity_index = antag_activity_norm * (1.0 - antag_inactive_ratio)
@@ -181,8 +181,9 @@
 	else
 		integrity_penalty *= 0.8
 
-	var/antag_bias = max(snap.balance_ratio - 1, 0)
-	var/bias_penalty = antag_bias * BIAS_WEIGHT
+	//Balance bias based on balance ratio (-BIAS_WEIGHT, +BIAS_WEIGHT)
+	var/antag_bias = max(snap.balance_ratio - 1, 0.1)
+	var/bias_penalty = -(antag_bias * BIAS_WEIGHT)
 
 	var/activity_modifier = snap.antag_activity_index * ACTIVITY_WEIGHT
 

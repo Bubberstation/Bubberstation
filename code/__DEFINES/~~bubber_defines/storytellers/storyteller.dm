@@ -246,7 +246,7 @@ DEFINE_BITFIELD(story_job_flags, list(
 #define STORY_THINK_BASE_DELAY (2 MINUTES)          // Base delay between thinker cycles
 #define STORY_MIN_EVENT_INTERVAL (30 SECONDS)       // Minimum time between events
 #define STORY_MAX_EVENT_INTERVAL (20 MINUTES)       // Maximum time between events
-#define STORY_DEFAULT_PLAYER_ANTAG_BALANCE 50       // Default balance target (0-100, 50 = balanced)
+#define STORY_DEFAULT_PLAYER_ANTAG_BALANCE 0.5      // Default balance target (0-100, 50 = balanced)
 
 // Threat/adaptation constants
 #define STORY_THREAT_GROWTH_RATE 1.0                // How fast threat points accumulate

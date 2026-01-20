@@ -33,30 +33,34 @@ const DIFFICULTY_LEVELS: readonly DifficultyLevel[] = [
     value: 0.3,
     label: 'Extended',
     tooltip: 'Peaceful mode - minimal threats, more positive events',
-    minPlayers: 0, // Any online
+    minPlayers: 0,
   },
   {
     value: 0.7,
-    label: 'Adventure',
+    label: 'Adventure story',
     tooltip: 'Easy mode - moderate events, balance between good and bad',
     minPlayers: 0,
   },
   {
     value: 1.0,
-    label: 'Struggle',
+    label: 'Strive to survive',
     tooltip: 'Standard mode - balanced events and threats',
     minPlayers: 15,
   },
   {
     value: 2.0,
-    label: 'Blood and Ash',
-    tooltip: 'Hard mode - frequent threats and event escalation',
+    label: 'Blood and dust',
+    tooltip:
+      'Hard mode - frequent threats and event escalation \n\n Recommended for: \n Experienced players who want to struggle to survive',
     minPlayers: 30,
   },
   {
     value: 5.0,
     label: 'Losing is Fun',
-    tooltip: 'Extreme mode - maximum difficulty and constant threats',
+    tooltip:
+      'Extreme mode - maximum difficulty and constant threats. \n\n Recommended for: \n \
+      Experienced players who want to face a brutal, unfair challenge where even \
+      great skill may not prevent death \n Lovers of tragedy \n Digital masochists',
     minPlayers: 50,
   },
 ];

@@ -164,12 +164,12 @@
 
 
 /datum/storyteller/proc/initialize()
-	round_start_time = world.time
+	round_start_time = SSticker.round_start_time
 
 
 	// Schedule roundstart antagonist selection approximately 10 minutes after round start
 	// Will check for sufficient population when time comes
-	roundstart_antag_selection_time = world.time + 10 MINUTES
+	roundstart_antag_selection_time = round_start_time + 10 MINUTES
 	RegisterSignal(analyzer, COMSIG_STORYTELLER_FINISHED_ANALYZING, PROC_REF(on_metrics_finished))
 	run_metrics(RESCAN_STATION_INTEGRITY | RESCAN_STATION_VALUE)
 
@@ -182,6 +182,7 @@
 
 	last_event_time = world.time
 	var/datum/storyteller_balance_snapshot/bal = balancer.make_snapshot(inputs)
+	update_population_factor(instant=TRUE)
 	planner.build_timeline(src, inputs, bal)
 	initialized = TRUE
 
@@ -283,8 +284,8 @@
 	log_storyteller("Triggered random event via SSevents")
 
 
+/// Scale effective threat by population_factor: low pop = lower effective threat
 /datum/storyteller/proc/get_effective_threat()
-	// Scale effective threat by population_factor: low pop = lower effective threat
 	return (threat_points/10) * mood.get_threat_multiplier() * difficulty_multiplier * clamp(population_factor, 0.3, 1.0)
 
 
@@ -373,18 +374,9 @@
 	// 6) Check if it's time to select roundstart antagonists
 	// Wait for ~10 minutes and check if there are enough people on station
 	if(!roundstart_antags_selected && world.time >= roundstart_antag_selection_time)
-		var/pop = inputs.player_count()
-
-		// Check if we have enough people (at least medium population threshold)
-		if(pop >= population_threshold_low)
-			if(spawn_initial_antagonists())
-				roundstart_antags_selected = TRUE
-				COOLDOWN_START(src, antag_balance_check_cooldown, antag_balance_check_interval)
-			else
-			// Not enough people yet, wait a bit more (check again in 2 minutes)
-				roundstart_antag_selection_time = world.time + (2 MINUTES)
-		else
-			roundstart_antag_selection_time = world.time + (5 MINUTES)
+		if(spawn_initial_antagonists())
+			roundstart_antags_selected = TRUE
+			COOLDOWN_START(src, antag_balance_check_cooldown, antag_balance_check_interval)
 
 
 	var/latest_key = num2text(world.time)
@@ -447,7 +439,7 @@
 
 
 
-/datum/storyteller/proc/update_population_factor()
+/datum/storyteller/proc/update_population_factor(instant = FALSE)
 	var/current = inputs.vault[STORY_VAULT_CREW_ALIVE_COUNT] || 0
 
 	var/low_thresh = population_threshold_low * (mood ? mood.aggression : 1.0)
@@ -464,7 +456,10 @@
 		desired = population_factor_high
 	else
 		desired = population_factor_full
-
+	if(instant)
+		population_factor = desired
+		population_history[num2text(world.time)] = population_factor
+		return
 
 	var/effective_smooth = population_smooth_weight
 	if(has_population_spike(20))

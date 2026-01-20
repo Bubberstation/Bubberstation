@@ -25,9 +25,9 @@
 	var/reason = ""
 
 	if(!force)
-		if(population_factor <= population_factor_low)
+		if(population_factor <= population_factor_low && !HAS_TRAIT(src, STORYTELLER_TRAIT_NO_MERCY))
 			needs_antags = FALSE
-			reason = "insufficient population (factor: [population_factor])"
+			reason = "insufficient population!"
 		// No antags at all
 		else if(antag_count <= 0)
 			needs_antags = TRUE
@@ -73,28 +73,54 @@
 		return
 
 	if(HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ANTAGS))
-		message_admins("[name] skipped initial antagonist spawn (NO_ANTAGS trait)")
-		return FALSE
+		if(SSstorytellers.hard_debug)
+			message_admins("[name] skipped initial antagonist spawn because of NO_ANTAGS trait")
+		return TRUE
 
 	var/pop = inputs.player_count()
-	if(pop < population_threshold_low)
-		message_admins("[name] skipped initial antagonist spawn - insufficient population (pop: [pop])")
+	if(pop < population_threshold_low && !HAS_TRAIT(src, STORYTELLER_TRAIT_IMMEDIATE_ANTAG_SPAWN))
+		message_admins("[name] replan initial antagonist spawn because of insufficient population")
+		roundstart_antag_selection_time = world.time + 10 MINUTES
 		return FALSE
+	else if(HAS_TRAIT(src, STORYTELLER_TRAIT_IMMEDIATE_ANTAG_SPAWN))
+		message_admins("[name] there is insufficient population but [name] spawns initial antagonists due to IMMEDIATE_ANTAG_SPAWN trait")
 
-	var/list/possible_candidates = SSstorytellers.filter_goals(STORY_GOAL_ANTAGONIST, STORY_TAG_ROUNDSTART)
+
+	var/list/possible_candidates = SSstorytellers.filter_goals(STORY_GOAL_ANTAGONIST, STORY_TAG_ROUNDSTART, STORY_TAGS_MATCH)
+	if(!length(possible_candidates))
+		message_admins("[name] failed to spawn initial antagonists - no available roundstart antagonist events")
+		return TRUE
+
+	for(var/datum/round_event_control/ev in possible_candidates)
+		if(ev.story_category & STORY_GOAL_MAJOR)
+			if(HAS_TRAIT(src, STORYTELLER_TRAIT_MAJOR_ANTAGONISTS))
+				continue
+			if((pop > population_threshold_low) || HAS_TRAIT(src, STORYTELLER_TRAIT_NO_MERCY))
+				continue
+			possible_candidates -= ev
 	var/datum/storyteller_balance_snapshot/bal = balancer.make_snapshot(inputs)
 	var/tags = behevour.tokenize(STORY_GOAL_ANTAGONIST, inputs, bal, mood)
-	var/spawn_count = calculate_roundstart_antag_count(pop, bal.balance_ratio)
+	var/spawn_count = calculate_roundstart_antag_count(pop)
+	if(spawn_count <= 0)
+		message_admins("[name] skipped initial antagonist spawn - no antagonists needed!")
+		return TRUE
+
 	for(var/i = 1 to spawn_count)
 		var/datum/round_event_control/antag_event = behevour.select_weighted_goal(inputs, bal, possible_candidates, population_factor, tags)
 		if(!antag_event)
-			log_storyteller("[name] failed to select initial antagonist goal ([i]/[spawn_count])")
+			log_storyteller("[name] failed to select initial antagonist goal!")
 			continue
 		var/spawn_offset = rand(45 SECONDS, 120 SECONDS)
 		if(HAS_TRAIT(src, STORYTELLER_TRAIT_FREQUENT_ANTAG_SPAWN))
 			spawn_offset *= 0.7
 		if(!planner.try_plan_event(antag_event, world.time + (spawn_offset * i)))
-			message_admins("[name] failed to execute initial antagonist goal [antag_event.name] ([i]/[spawn_count])")
+			message_admins("[name] failed to execute initial antagonist goal [antag_event.name]!")
+			continue
+		if(antag_event.story_category & STORY_GOAL_MAJOR)
+			possible_candidates -= antag_event
+			if(!HAS_TRAIT(src, STORYTELLER_TRAIT_NO_MERCY))
+				break
+
 	message_admins("[name] spawned [spawn_count] initial antagonists for population [pop]")
 	return TRUE
 
@@ -148,8 +174,9 @@
 
 
 /// Calculates desired roundstart antagonist count based on population and balance
-/datum/storyteller/proc/calculate_roundstart_antag_count(pop, balance_ratio)
+/datum/storyteller/proc/calculate_roundstart_antag_count(pop)
 	var/count = 0
+	var/security_count = inputs.get_entry(STORY_VAULT_SECURITY_COUNT) || 0
 	// Base count on population
 	if(pop >= population_threshold_full)
 		count = 3
@@ -160,11 +187,17 @@
 	else
 		count = 0
 
+	var/ignore_security = (HAS_TRAIT(src, STORYTELLER_TRAIT_NO_MERCY) || HAS_TRAIT(src, STORYTELLER_TRAIT_IGNORE_SECURITY))
+	if(security_count <= 0 && (ignore_security || difficulty_multiplier > 1.0))
+		security_count = 1
+	if(security_count <= 0)
+		return 0  // No security, no antags
+
 	var/adjustment_mult = 1.0
-	if(balance_ratio < 0.4)
-		adjustment_mult = 1.5  // Boost spawns if antags are very weak
-	else if(balance_ratio > 1.3)
-		adjustment_mult = 0.7  // Reduce spawns if antags are strong
+	if(security_count == 1 && !ignore_security)
+		adjustment_mult = 0.5
+	else if(security_count >= 5)
+		adjustment_mult = 1.3
 	// Apply storyteller personality traits
 	if(HAS_TRAIT(src, STORYTELLER_TRAIT_RARE_ANTAG_SPAWN))
 		adjustment_mult *= 0.5
@@ -174,7 +207,6 @@
 	count = max(0, round(count * adjustment_mult))
 	// Clamp to reasonable limits
 	count = clamp(count, 0, 4)
-
 	return count
 
 /// Calculates spawn weight for wave-based antagonist spawning

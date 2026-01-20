@@ -336,6 +336,8 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 	data["time_left"] = max(0, (global_vote_end_time - world.time))
 	data["top_tallies"] = top_tallies
 	data["is_open"] = world.time < global_vote_end_time && SSstorytellers.vote_active
+	data["debug_mode"] = SSstorytellers.hard_debug
+	data["admin_mode"] = check_rights(R_ADMIN)
 
 	var/can_vote = TRUE
 
@@ -363,17 +365,22 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 		return
 	var/ckey = owner.ckey
 	switch (action)
-		if ("select_storyteller")
+		if("select_storyteller")
 			var/id = params["id"]
 			var/list/personal = votes[ckey] || list()
 			personal["storyteller"] = id
 			votes[ckey] = personal
 			return TRUE
-		if ("set_difficulty")
+		if("set_difficulty")
 			var/value = text2num(params["value"])
 			value = clamp(value, 0.3, 5.0)
 			var/list/personal = votes[ckey] || list()
 			personal["difficulty"] = value
 			votes[ckey] = personal
 			return TRUE
+		if("force_end_vote")
+			if(!check_rights(R_ADMIN))
+				return TRUE
+			SSstorytellers.end_vote()
+			message_admins("[key_name_admin(owner)] has forced the end of the storyteller vote.")
 	return FALSE

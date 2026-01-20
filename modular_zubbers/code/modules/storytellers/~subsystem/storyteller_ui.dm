@@ -286,7 +286,7 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 				if(ask != "Confirm")
 					return TRUE
 			message_admins("[key_name_admin(usr)] forced antagonist spawn check for [ctl.name].")
-			ctl.check_and_spawn_antagonists()
+			ctl.check_and_spawn_antagonists(force = TRUE)
 			return TRUE
 		if("reload_event_config")
 			SSstorytellers.load_event_config()

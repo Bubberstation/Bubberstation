@@ -176,14 +176,14 @@
 		if(evt.story_category & STORY_GOAL_MAJOR)
 			required_offset += scaled_grace
 
-		var/new_time = offset_str
-		if(required_offset < text2num(offset_str))
-			var/difference = required_offset - offset_str
+		var/new_time = text2num(offset_str)
+		if(required_offset < new_time)
+			var/difference = required_offset - new_time
 			if(difference >= 5 MINUTES)
 				difference = 5 MINUTES
 			difference *= ctl.mood.get_event_frequency_multiplier()
 			required_offset += difference
-			new_time = planned_when + (required_offset - offset_str)
+			new_time = planned_when + (required_offset - new_time)
 			reschedule_event(offset_str, new_time)
 		current_time = new_time
 	sort_events()

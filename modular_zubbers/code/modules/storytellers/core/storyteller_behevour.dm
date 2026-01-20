@@ -1,6 +1,6 @@
 //Here's where is magic begin
 #define STORY_REPETITION_DECAY_TIME (20 MINUTES)
-#define STORY_TAG_MATCH_BONUS 0.45
+#define STORY_TAG_MATCH_BONUS 0.5
 #define STORY_REP_PENALTY_MAX 0.5
 
 
@@ -335,10 +335,10 @@
 		score_good += tension_diff * 0.8
 	// Low tension -> prefer bad events (challenge)
 	else if(tension < target)
-		score_bad += (1 - tension_diff) * 0.6
+		score_bad += (1 - tension_diff) * 0.8
 
 	// Mood influence
-	var/mood_aggr = owner.mood.get_threat_multiplier()
+	var/mood_aggr = owner.get_effective_threat()
 	score_bad += (mood_aggr - 1.0) * 0.3
 
 	// Population scaling
@@ -351,11 +351,11 @@
 	if(HAS_TRAIT(owner, STORYTELLER_TRAIT_NO_GOOD_EVENTS))
 		score_good = 0
 	if(HAS_TRAIT(owner, STORYTELLER_TRAIT_MORE_GOOD_EVENTS))
-		score_good += 0.3
+		score_good += 0.25
 	if(HAS_TRAIT(owner, STORYTELLER_TRAIT_MORE_BAD_EVENTS))
-		score_bad += 0.3
+		score_bad += 0.25
 	if(HAS_TRAIT(owner, STORYTELLER_TRAIT_MORE_NEUTRAL_EVENTS))
-		score_neutral += 0.3
+		score_neutral += 0.25
 
 	// Random volatility
 	if(HAS_TRAIT(owner, STORYTELLER_TRAIT_HARDCORE_RANDOM))
