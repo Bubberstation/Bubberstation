@@ -268,3 +268,6 @@
 	key_third_person = "barks"
 	message = "barks."
 	emote_type = EMOTE_AUDIBLE
+
+/datum/emote/living/exp_growl/getsound(mob/living/user)
+	return 'modular_zubbers/sound/emotes/screams/exp_bark.ogg'
