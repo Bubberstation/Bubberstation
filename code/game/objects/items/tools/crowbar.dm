@@ -272,8 +272,8 @@
 
 /obj/item/crowbar/power/paramedic
 	name = "jaws of recovery"
-	desc = "An advanced version of the jaws of life, primarily to be used by paramedics to recover the injured and the recently deceased. Rather than a cutting arm, this tool has a bonesetting apparatus. \
-		Cannot access certain high security areas due to safety concerns." // BUBBER EDIT
+	desc = "A specialized version of the jaws of life, primarily to be used by paramedics to recover the injured and the recently deceased. Rather than a cutting arm, this tool has a bonesetting apparatus. \
+		Cannot access certain high security areas due to safety concerns."
 	icon_state = "jaws_paramedic"
 	inhand_icon_state = "jawsparamedic"
 	worn_icon_state = "jawsparamedic"
@@ -300,9 +300,9 @@
 		ACCESS_RD,
 		ACCESS_SYNDICATE,
 	)
-	custom_materials = list( // BUBBER EDIT - Materials changes to try to reflect normal size
-		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.50,
-		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 2.00,
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 4.75,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 2.50,
 		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 1.75,
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.25,
 	)
