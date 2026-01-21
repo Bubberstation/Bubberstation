@@ -76,7 +76,7 @@
 	// Calculate antagonist strength
 	var/antag_activity_norm = clamp(antag_presence / STORY_VAULT_MANY_ANTAGONISTS, 0, 1)
 	var/antag_weight_normalized = antag_count > 0 ? clamp(antag_weight / crew_weight, 0, 2) : 0
-	var/antag_strength_raw = (antag_activity_norm * 0.25) + (antag_weight_normalized * 0.25)
+	var/antag_strength_raw = (antag_activity_norm * 0.3) + (antag_weight_normalized * 0.3)
 	var/antag_strength_norm = clamp(antag_strength_raw, 0, 1)
 
 	// Calculate balance ratio (antag strength / station strength, higher = antags stronger)
@@ -135,8 +135,8 @@
 
 	//Raw values from vault
 	var/station_integrity = inputs.get_entry(STORY_VAULT_STATION_INTEGRITY) || 100
-	var/crew_health = inputs.get_entry(STORY_VAULT_AVG_CREW_HEALTH)   || 100
-	var/security_count = inputs.get_entry(STORY_VAULT_SECURITY_COUNT)    || 0
+	var/crew_health = inputs.get_entry(STORY_VAULT_AVG_CREW_HEALTH) || 100
+	var/security_count = inputs.get_entry(STORY_VAULT_SECURITY_COUNT) || 0
 
 	//Normalized (0→1)
 	var/integrity_factor = clamp(station_integrity / 100, 0, 1)
