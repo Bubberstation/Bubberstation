@@ -69,3 +69,4 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/wall_torch/spawns_lit, 28)
 	icon_state = "walltorch"
 	result_path = /obj/structure/wall_torch
 	pixel_shift = 28
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 2, /datum/material/iron = SHEET_MATERIAL_AMOUNT)

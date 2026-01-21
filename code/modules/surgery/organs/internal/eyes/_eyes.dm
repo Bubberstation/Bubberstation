@@ -37,6 +37,9 @@
 
 	var/eye_color_left = null // set to a hex code to override a mob's left eye color
 	var/eye_color_right = null // set to a hex code to override a mob's right eye color
+	/// The icon file of that eyes as its applied to the mob
+	var/eye_icon = 'icons/mob/human/human_eyes.dmi'
+	/// The icon state of that eyes as its applied to the mob
 	var/eye_icon_state = "eyes"
 	/// Do these eyes have blinking animations
 	var/blink_animation = TRUE
@@ -127,11 +130,6 @@
 	if(CONFIG_GET(flag/native_fov) && native_fov)
 		affected_human.add_fov_trait(type, native_fov)
 
-	// SKYRAT EDIT ADDITION - EMISSIVES
-	if (affected_human.emissive_eyes)
-		is_emissive = TRUE
-	// SKYRAT EDIT END
-
 	if(call_update)
 		affected_human.update_body()
 
@@ -166,7 +164,6 @@
 
 	organ_owner.update_tint()
 	organ_owner.update_sight()
-	is_emissive = FALSE // SKYRAT EDIT ADDITION
 	UnregisterSignal(organ_owner, list(
 		COMSIG_ATOM_BULLET_ACT,
 		COMSIG_COMPONENT_CLEAN_FACE_ACT,
@@ -293,28 +290,11 @@
 	if(!istype(parent) || parent.get_organ_by_type(/obj/item/organ/eyes) != src)
 		CRASH("Generating a body overlay for [src] targeting an invalid parent '[parent]'.")
 
-	if(isnull(eye_icon_state) || eye_icon_state == "None") // SKYRAT EDIT - Synths, adds eye_icon_state == "None"
+	if(isnull(eye_icon_state))
 		return list()
 
-	var/eye_icon = parent.dna?.species.eyes_icon || 'icons/mob/human/human_face.dmi' // SKYRAT EDIT ADDITION
-
-	var/mutable_appearance/eye_left = mutable_appearance(eye_icon, "[eye_icon_state]_l", -eyes_layer, parent) // SKYRAT EDIT CHANGE - Customization - ORIGINAL: var/mutable_appearance/eye_left = mutable_appearance('icons/mob/human/human_face.dmi', "[eye_icon_state]_l", -EYES_LAYER, parent)
-	var/mutable_appearance/eye_right = mutable_appearance(eye_icon, "[eye_icon_state]_r", -eyes_layer, parent) // SKYRAT EDIT CHANGE - Customization - ORIGINAL: var/mutable_appearance/eye_right = mutable_appearance('icons/mob/human/human_face.dmi', "[eye_icon_state]_r", -EYES_LAYER, parent)
-
-	// BEGIN BUBBER ADDITION:
-	if(HAS_TRAIT(owner, TRAIT_QUAD_EYES)) // (*) (*) v (*) (*)
-		var/mutable_appearance/eye_left_2 = new /mutable_appearance(eye_left)
-		eye_left_2.pixel_x -= 1
-		eye_left_2.pixel_y += parent.quad_eyes_offset
-		var/mutable_appearance/eye_right_2 = new /mutable_appearance(eye_right)
-		eye_right_2.pixel_x += 1
-		eye_right_2.pixel_y += parent.quad_eyes_offset
-
-		eye_left.underlays.Add(eye_left_2)
-		eye_right.underlays.Add(eye_right_2)
-
-	// END BUBBER ADDITION
-
+	var/mutable_appearance/eye_left = mutable_appearance(eye_icon, "[eye_icon_state]_l", -EYES_LAYER, parent)
+	var/mutable_appearance/eye_right = mutable_appearance(eye_icon, "[eye_icon_state]_r", -EYES_LAYER, parent)
 	var/list/overlays = list(eye_left, eye_right)
 
 	if(!(parent.obscured_slots & HIDEEYES))
@@ -333,23 +313,14 @@
 			overlays += eyelids
 
 	if (scarring & RIGHT_EYE_SCAR)
-		var/mutable_appearance/right_scar = mutable_appearance('icons/mob/human/human_face.dmi', "eye_scar_right", -EYES_LAYER, parent)
+		var/mutable_appearance/right_scar = mutable_appearance('icons/mob/human/human_eyes.dmi', "eye_scar_right", -EYES_LAYER, parent)
 		right_scar.color = my_head.draw_color
 		overlays += right_scar
 
 	if (scarring & LEFT_EYE_SCAR)
-		var/mutable_appearance/left_scar = mutable_appearance('icons/mob/human/human_face.dmi', "eye_scar_left", -EYES_LAYER, parent)
+		var/mutable_appearance/left_scar = mutable_appearance('icons/mob/human/human_eyes.dmi', "eye_scar_left", -EYES_LAYER, parent)
 		left_scar.color = my_head.draw_color
 		overlays += left_scar
-
-	// SKYRAT EDIT START - Customization Emissives
-	if(is_emissive)
-		var/mutable_appearance/emissive_left = emissive_appearance_copy(eye_left, owner)
-		var/mutable_appearance/emissive_right = emissive_appearance_copy(eye_right, owner)
-
-		overlays += emissive_left
-		overlays += emissive_right
-	// SKYRAT EDIT END - Customization Emissives
 
 	if(my_head.worn_face_offset)
 		for (var/mutable_appearance/overlay as anything in overlays)
@@ -561,9 +532,7 @@
 		addtimer(CALLBACK(src, PROC_REF(animate_eyelids), owner), blink_delay + duration)
 
 /obj/item/organ/eyes/proc/animate_eyelids(mob/living/carbon/human/parent)
-	if(CONFIG_GET(flag/disable_blinking)) return // BUBBER EDIT - CONFIG BLINKING
-
-	var/sync_blinking = TRUE // synchronized_blinking && (parent.get_organ_loss(ORGAN_SLOT_BRAIN) < ASYNC_BLINKING_BRAIN_DAMAGE) // BUBBER EDIT - REMOVE ASYNC BLINKING UNTIL https://github.com/tgstation/tgstation/issues/90269 is fixed
+	var/sync_blinking = synchronized_blinking && (parent.get_organ_loss(ORGAN_SLOT_BRAIN) < BRAIN_DAMAGE_ASYNC_BLINKING)
 	// Randomize order for unsynched animations
 	if (sync_blinking || prob(50))
 		var/list/anim_times = animate_eyelid(eyelid_left, parent, sync_blinking)
@@ -574,7 +543,7 @@
 
 /obj/effect/abstract/eyelid_effect
 	name = "eyelid"
-	icon = 'icons/mob/human/human_face.dmi'
+	icon = 'icons/mob/human/human_eyes.dmi'
 	layer = -EYES_LAYER
 	vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_PLANE | VIS_INHERIT_ID
 
@@ -597,6 +566,7 @@
 #define NIGHTVISION_LIGHT_HIG 3
 
 /obj/item/organ/eyes/night_vision
+	abstract_type = /obj/item/organ/eyes/night_vision
 	actions_types = list(/datum/action/item_action/organ_action/use)
 
 	// These lists are used as the color cutoff for the eye
@@ -763,6 +733,7 @@
 	iris_overlay = null
 	flash_protect = FLASH_PROTECTION_WELDER
 	tint = INFINITY
+	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2.5, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 1.9)
 	var/obj/item/flashlight/eyelight/eye
 	light_reactive = FALSE
 	pupils_name = "flashlights"
@@ -850,20 +821,8 @@
 /// Set the initial color of the eyes on insert to be the mob's previous eye color.
 /obj/item/organ/eyes/robotic/glow/on_mob_insert(mob/living/carbon/eye_recipient, special = FALSE, movement_flags)
 	. = ..()
-	//BUBBER EDIT CHANGE BEGIN
-	//left_eye_color_string = eye_color_left
-	//right_eye_color_string = eye_color_right
-	if (ishuman(eye_recipient))
-		var/mob/living/carbon/human/H = eye_recipient
-		left_eye_color_string = H.eye_color_left
-		right_eye_color_string = H.eye_color_right
-		light_color_string = H.eye_color_left
-	else
-		left_eye_color_string = eye_color_left
-		right_eye_color_string = eye_color_right
-		light_color_string = eye_color_left
-	eye.set_light_color(light_color_string)
-	//BUBBER EDIT CHANGE END
+	left_eye_color_string = eye_color_left
+	right_eye_color_string = eye_color_right
 	update_mob_eye_color(eye_recipient)
 	deactivate(close_ui = TRUE)
 	eye.forceMove(eye_recipient)
@@ -919,13 +878,12 @@
 			set_beam_range(new_range)
 			return TRUE
 		if("pick_color")
-			// BUBBERSTATION EDIT START: TGUI COLOR PICKER
-			var/new_color = tgui_color_picker(
+			var/new_color = input(
 				usr,
 				"Choose eye color color:",
 				"High Luminosity Eyes Menu",
 				light_color_string
-			) // BUBBERSTATION EDIT END: TGUI COLOR PICKER
+			) as color|null
 			if(new_color)
 				var/to_update = params["to_update"]
 				set_beam_color(new_color, to_update)
@@ -1198,7 +1156,7 @@
 	name = "reptile eyes"
 	desc = "A pair of reptile eyes with thin vertical slits for pupils."
 	icon_state = "lizard_eyes"
-	// synchronized_blinking = FALSE // BUBBER EDIT - REMOVE ASYNC BLINKING UNTIL https://github.com/tgstation/tgstation/issues/90269 is fixed
+	synchronized_blinking = FALSE
 	pupils_name = "slit pupils"
 	penlight_message = "have vertically slit pupils and tinted whites"
 
@@ -1236,9 +1194,9 @@
 	name = "pod eyes"
 	desc = "Strangest salad you've ever seen."
 	icon_state = "eyes_pod"
-	// eye_color_left = "#375846" BUBBER EDIT - ALLOWS EYE COLOR TO BE CHANGED AGAIN
-	// eye_color_right = "#375846" BUBBER EDIT - ALLOWS EYE COLOR TO BE CHANGED AGAIN
-	// iris_overlay = null BUBBER EDIT - ALLOWS EYE COLOR TO BE CHANGED AGAIN
+	eye_color_left = "#375846"
+	eye_color_right = "#375846"
+	iris_overlay = null
 	foodtype_flags = PODPERSON_ORGAN_FOODTYPES
 	penlight_message = "are green and plant-like"
 

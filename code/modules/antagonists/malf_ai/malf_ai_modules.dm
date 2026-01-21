@@ -505,15 +505,16 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module/malf))
 	cooldown_period = 10 SECONDS
 
 /datum/action/innate/ai/destroy_rcds/Activate()
-	for(var/I in GLOB.rcd_list)
+	for(var/potential_rcd in GLOB.rcd_list)
 		// BUBBER EDIT BEGIN - Ghost role RCDs are spared
-		var/turf/rcd_loc = get_turf(I)
+		var/turf/rcd_loc = get_turf(potential_rcd)
 		if(!is_station_level(rcd_loc.z))
 			continue
 		// BUBBER EDIT END
-		if(!istype(I, /obj/item/construction/rcd/borg)) //Ensures that cyborg RCDs are spared.
-			var/obj/item/construction/rcd/RCD = I
-			RCD.detonate_pulse()
+		if(istype(potential_rcd, /obj/item/construction/rcd/borg)) //Ensures that cyborg RCDs are spared.
+			continue
+		var/obj/item/construction/rcd/definite_rcd = potential_rcd
+		definite_rcd.detonate_pulse()
 	to_chat(owner, span_danger("RCD detonation pulse emitted."))
 	owner.playsound_local(owner, 'sound/machines/beep/twobeep.ogg', 50, 0)
 

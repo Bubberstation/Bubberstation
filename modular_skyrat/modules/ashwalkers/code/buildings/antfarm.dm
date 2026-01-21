@@ -5,6 +5,7 @@
 	icon_state = "anthill"
 	density = TRUE
 	anchored = TRUE
+	custom_materials = list(/datum/material/sand = SHEET_MATERIAL_AMOUNT * 20)
 	/// If the farm is occupied by ants
 	var/has_ants = FALSE
 	/// the chance for the farm to get ants

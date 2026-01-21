@@ -20,6 +20,8 @@
 	icon = 'icons/obj/machines/scangate.dmi'
 	icon_state = "scangate_black"
 	circuit = /obj/item/circuitboard/machine/export_gate
+	/// Used to secure changing of payment mode
+	req_one_access = list(ACCESS_QM, ACCESS_ALL_PERSONAL_LOCKERS)
 	/// Cooldown on the scanner's beep
 	COOLDOWN_DECLARE(scanner_beep)
 	/// Cooldown on payout calculation
@@ -30,7 +32,9 @@
 	var/locked = FALSE
 	/// The holding bank account used for the export gate
 	var/datum/bank_account/holding_account
-	/// List of crew accounts who split the scanned bounties
+	/// Which crew members receive a share of the scanned bounties
+	var/payment_mode = EX_CARGO_TECHNICIAN | EX_CUSTOMS_AGENT
+	/// List of crew accounts associated with the current payment mode
 	var/list/payment_accounts
 	///Our internal radio
 	var/obj/item/radio/radio
@@ -107,9 +111,11 @@
 	. += span_notice("The status display reads:")
 	. += span_info("Income last cycle: <b>[income_previous] cr.</b>")
 	. += span_info("Share per account last cycle: <b>[income_share] cr.</b>")
+	. += span_info("Payment mode: <b>[display_payment_mode()].</b>")
 	. += span_info("Registered crew accounts last cycle: <b>[LAZYLEN(payment_accounts)]</b>")
 	. += span_info("Total cubes registered: <b>[cubes_registered]</b>")
 	. += span_info("Total income: <b>[income_total] cr.</b>")
+	. += span_notice("The payment mode can be changed by swiping an authorized command ID card.")
 
 /obj/machinery/export_gate/wrench_act(mob/living/user, obj/item/tool)
 	default_unfasten_wrench(user, tool)
@@ -176,22 +182,81 @@
 	cube.AddComponent(/datum/component/pricetag, holding_account, cube.handler_tip, FALSE)
 	cube.bounty_handler_account = holding_account
 	cubes_registered += 1
-	var/message = "Cube value of [cube_value ? "+[floor(cube_value * cube.handler_tip)]+ credits " : ""]successfully registered."
+	var/message = "Cube value of [cube_value ? "[floor(cube_value * cube.handler_tip)] credits " : ""]successfully registered."
 	say(message)
 	for(var/datum/bank_account/tech_account as anything in payment_accounts)
 		tech_account.bank_card_talk(message)
 
-/obj/machinery/export_gate/proc/refresh_payment_accounts()
-	var/list/manifest_accounts = list()
-	var/list/cargo_tech_accounts = SSeconomy.bank_accounts_by_job[/datum/job/cargo_technician]
-	if(isnull(cargo_tech_accounts))
+#define MODE_CARGO_TECH "Cargo Technician"
+#define MODE_CUSTOMS_AGENT "Cargo Technician / Customs Agent"
+#define MODE_QUARTERMASTER "Cargo Technician / Customs Agent / Quartermaster"
+
+/obj/machinery/export_gate/proc/set_payment_mode(mob/user, obj/item/card/id/id_card)
+	var/list/payment_modes = list(MODE_CARGO_TECH, MODE_CUSTOMS_AGENT, MODE_QUARTERMASTER)
+	var/selected_mode = tgui_input_list(user, "Set bounty payment mode:", src.name, payment_modes)
+	if(!selected_mode)
 		return
 
-	for(var/datum/bank_account/tech_account as anything in cargo_tech_accounts)
-		if(tech_account.off_duty_check())
-			continue
+	switch(selected_mode)
+		if(MODE_CARGO_TECH)
+			payment_mode = EX_CARGO_TECHNICIAN
+		if(MODE_CUSTOMS_AGENT)
+			payment_mode = EX_CARGO_TECHNICIAN | EX_CUSTOMS_AGENT
+		if(MODE_QUARTERMASTER)
+			payment_mode = EX_CARGO_TECHNICIAN | EX_CUSTOMS_AGENT | EX_QUARTERMASTER
 
-		LAZYADD(manifest_accounts, tech_account)
+	log_econ("[src.name] payment mode changed by [user] ([id_card.registered_name]) to [display_payment_mode()].")
+	radio.talk_into(src, "Payment mode set to [display_payment_mode()] by authorized ID [id_card.registered_name].", RADIO_CHANNEL_SUPPLY)
+
+/obj/machinery/export_gate/proc/display_payment_mode()
+	if(payment_mode & EX_QUARTERMASTER)
+		return MODE_QUARTERMASTER
+	if(payment_mode & EX_CUSTOMS_AGENT)
+		return MODE_CUSTOMS_AGENT
+	else
+		return MODE_CARGO_TECH
+
+#undef MODE_CARGO_TECH
+#undef MODE_CUSTOMS_AGENT
+#undef MODE_QUARTERMASTER
+
+/obj/machinery/export_gate/proc/refresh_payment_accounts(retry = FALSE)
+	LAZYINITLIST(payment_accounts)
+	var/list/manifest_accounts = list()
+	var/list/CT_accounts = SSeconomy.bank_accounts_by_job[/datum/job/cargo_technician]
+	var/list/CA_accounts = SSeconomy.bank_accounts_by_job[/datum/job/customs_agent]
+	var/list/QM_accounts = SSeconomy.bank_accounts_by_job[/datum/job/quartermaster]
+	if(isnull(CT_accounts) && isnull(CA_accounts) && isnull(QM_accounts))
+		return
+
+	if(payment_mode & EX_CARGO_TECHNICIAN)
+		for(var/datum/bank_account/CT_account as anything in CT_accounts)
+			if(CT_account.off_duty_check())
+				continue
+
+			manifest_accounts += CT_account
+
+	if(payment_mode & EX_CUSTOMS_AGENT)
+		for(var/datum/bank_account/CA_account as anything in CA_accounts)
+			if(CA_account.off_duty_check())
+				continue
+
+			manifest_accounts += CA_account
+
+	if(payment_mode & EX_QUARTERMASTER)
+		for(var/datum/bank_account/QM_account as anything in QM_accounts)
+			if(QM_account.off_duty_check())
+				continue
+
+			manifest_accounts += QM_account
+
+	// If there's nobody to pay, fallback to paying everyone
+	if(LAZYLEN(manifest_accounts) == 0 && !retry)
+		payment_mode = EX_CARGO_TECHNICIAN | EX_CUSTOMS_AGENT | EX_QUARTERMASTER
+		log_econ("[src.name] payment mode falling back to [display_payment_mode()] due to lack of crew")
+		radio.talk_into(src, "Payment mode falling back to [display_payment_mode()] due to lack of crew.", RADIO_CHANNEL_SUPPLY)
+		refresh_payment_accounts(retry = TRUE)
+		return
 
 	payment_accounts = manifest_accounts
 
@@ -220,6 +285,17 @@
 			payout_account.bank_card_talk("Export gate payment of [income_share] cr. processed, account now holds [payout_account.account_balance] cr.")
 		else
 			stack_trace("[src.name] attempted to perform a bounty cube export payment to [payout_account.account_holder], but it failed!")
+
+/obj/machinery/export_gate/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	update_last_used(user)
+	var/obj/item/card/id/id_card = tool.GetID()
+	if(istype(id_card))
+		if(check_access(id_card))
+			set_payment_mode(user, id_card)
+			return ITEM_INTERACT_SUCCESS
+		else
+			user.balloon_alert(user, "insufficient access!")
+			return ITEM_INTERACT_BLOCKING
 
 /datum/controller/subsystem/economy/issue_paydays()
 	for(var/obj/machinery/export_gate/payout_gate as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/export_gate))

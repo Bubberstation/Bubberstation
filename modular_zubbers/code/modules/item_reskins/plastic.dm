@@ -1,11 +1,15 @@
-/obj/item/grenade/c4
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Moth" = list(
-		RESKIN_ICON = 'modular_zubbers/code/modules/item_reskins/mothbomb.dmi',
-		RESKIN_ICON_STATE= "moffplush_bomb",
-		),
-		"C4" = list(
-			RESKIN_ICON_STATE = "plastic-explosive0",
-		),
-	)
+/obj/item/grenade/c4/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/c4)
+
+/datum/atom_skin/c4
+	abstract_type = /datum/atom_skin/c4
+
+/datum/atom_skin/c4/moth
+	preview_name = "Moth"
+	new_icon = 'modular_zubbers/icons/obj/equipment/mothbomb.dmi'
+	new_icon_state = "moffplush_bomb"
+
+/datum/atom_skin/c4/default
+	preview_name = "C4"
+	new_icon_state = "plastic-explosive0"

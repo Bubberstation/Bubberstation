@@ -4,22 +4,50 @@
 	name = "crusader helmet"
 	desc = "Helfen, Wehren, Heilen."
 	icon_state = "knight_generic"
-	unique_reskin = list(
-		"Basic" = "knight_generic",
-		"Winged" = "knight_winged",
-		"Horned" = "knight_horned",
-		)
+
+/obj/item/clothing/head/helmet/chaplain/bland/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/chaplain_helm)
+
+/datum/atom_skin/chaplain_helm
+	abstract_type = /datum/atom_skin/chaplain_helm
+
+/datum/atom_skin/chaplain_helm/basic
+	preview_name = "Basic"
+	new_icon_state = "knight_generic"
+
+/datum/atom_skin/chaplain_helm/winged
+	preview_name = "Winged"
+	new_icon_state = "knight_winged"
+
+/datum/atom_skin/chaplain_helm/horned
+	preview_name = "Horned"
+	new_icon_state = "knight_horned"
 
 /obj/item/clothing/suit/chaplainsuit/armor/templar/generic
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/chaplain.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/chaplain.dmi'
 	desc = "Protect the weak and defenceless, live by honor and glory, and fight for the welfare of all!"
 	icon_state = "knight_generic"
-	unique_reskin = list(
-		"Basic" = "knight_generic",
-		"Teutonic" = "knight_teutonic",
-		"Hospitaller" = "knight_hospitaller",
-	)
+
+/obj/item/clothing/suit/chaplainsuit/armor/templar/generic/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/chaplain_armor)
+
+/datum/atom_skin/chaplain_armor
+	abstract_type = /datum/atom_skin/chaplain_armor
+
+/datum/atom_skin/chaplain_armor/basic
+	preview_name = "Basic"
+	new_icon_state = "knight_generic"
+
+/datum/atom_skin/chaplain_armor/teutonic
+	preview_name = "Teutonic"
+	new_icon_state = "knight_teutonic"
+
+/datum/atom_skin/chaplain_armor/hospitaller
+	preview_name = "Hospitaller"
+	new_icon_state = "knight_hospitaller"
 
 /obj/item/storage/box/holy/knight
 	name = "knight's kit"

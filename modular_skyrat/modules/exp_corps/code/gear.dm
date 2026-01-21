@@ -50,6 +50,11 @@
 	max_integrity = 200
 	shield_break_sound = 'sound/effects/glass/glassbr3.ogg'
 	shield_break_leftover = /obj/item/pointman_broken
+	custom_materials = list(
+		/datum/material/alloy/plasteel = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
+	)
 	var/repairable_by = /obj/item/stack/sheet/plasteel //what to repair the shield with
 
 /obj/item/shield/riot/pointman/attackby(obj/item/W, mob/user, params)
@@ -94,10 +99,12 @@
 
 /obj/item/storage/pouch/ammo/marksman
 	name = "marksman's knife pouch"
-	unique_reskin = NONE
 
 /obj/item/storage/pouch/ammo/marksman/Initialize(mapload)
 	. = ..()
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+		qdel(reskin_component)
 	create_storage(storage_type = /datum/storage/marksman)
 
 /datum/storage/marksman
