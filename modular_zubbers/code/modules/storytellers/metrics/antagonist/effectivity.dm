@@ -95,7 +95,7 @@
 		return 0.5
 
 	var/absorb_factor = absorbed_count > 0 ? (true_absorbs / absorbed_count) : 0
-	var/power_factor  = purchased_powers > 0 ? 1 : 0
+	var/power_factor  = length(purchased_powers) > 0 ? 1 : 0
 
 	var/base = 0.5 + 0.5 * absorb_factor * power_factor
 	base = clamp(base, 0, 1.5)
