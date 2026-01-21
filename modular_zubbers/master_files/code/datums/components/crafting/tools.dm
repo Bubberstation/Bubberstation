@@ -7,7 +7,7 @@
 	reqs = list(
 		/obj/item/crowbar/power = 1,
 		/obj/item/bonesetter = 1,
-		/obj/item/sticky_tape/surgical = 2,
+		/obj/item/stack/sticky_tape/surgical = 2,
 		/obj/item/radio = 1,
 	)
 	category = CAT_TOOLS
