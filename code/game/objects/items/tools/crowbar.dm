@@ -277,8 +277,8 @@
 	icon_state = "jaws_paramedic"
 	inhand_icon_state = "jawsparamedic"
 	worn_icon_state = "jawsparamedic"
-	w_class = WEIGHT_CLASS_NORMAL // BUBBER EDIT
-	toolspeed = 0.6 // BUBBER EDIT
+	w_class = WEIGHT_CLASS_BULKY
+	toolspeed = 1
 	slot_flags = null
 	active_text = "bonesetting"
 	second_tool_behavior = TOOL_BONESET
