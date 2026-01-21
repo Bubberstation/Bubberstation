@@ -12,7 +12,7 @@
 	)
 	category = CAT_TOOLS
 
-	/datum/crafting_recipe/jaws_of_recovery/New()
+/datum/crafting_recipe/jaws_of_recovery/New()
 	..()
 	blacklist |= typesof(/obj/item/radio/headset)
 	blacklist |= typesof(/obj/item/radio/intercom)
