@@ -130,3 +130,4 @@
 		/obj/item/bonesetter = 1,
 	)
 	category = CAT_TOOLS
+
