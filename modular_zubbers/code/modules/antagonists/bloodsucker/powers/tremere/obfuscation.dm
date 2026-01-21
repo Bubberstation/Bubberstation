@@ -45,7 +45,6 @@
 		COMSIG_ATOM_HULK_ATTACK,
 		COMSIG_ATOM_ATTACK_PAW,
 		COMSIG_CARBON_CUFF_ATTEMPTED,
-		COMSIG_ATOM_WAS_ATTACKED
 	)
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/obfuscation/on_power_upgrade()

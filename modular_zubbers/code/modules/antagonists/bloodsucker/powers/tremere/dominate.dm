@@ -43,7 +43,7 @@
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/get_power_desc_extended()
 	. = ..()
 	if(level_current >= DOMINATE_GHOUL_LEVEL)
-		. += "If your target is in critical condition or dead, they will instead be turned into a temporary Vassal. This will cost [TEMP_GHOUL_COST] blood. Pre-existing dead ghouls will simply be revived. This also works on Oozeling cores."
+		. += "If your target is in critical condition or dead, they will instead be turned into a temporary Vassal. This will cost [TEMP_GHOUL_COST] blood. Pre-existing dead ghouls will simply be revived."
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/get_power_explanation_extended()
 	. = list()
@@ -57,12 +57,6 @@
 	. += "If you use this on a currently dead normal Vassal, they will will not suddenly cease to live as if a temporary Vassal."
 	. += "They will have complete loyalty to you, until their death in [DisplayTimeText(get_ghoul_duration())] upon use."
 	. += "Vassalizing or reviving a ghoul will make this ability go on cooldown for [DisplayTimeText(get_ghoulize_cooldown())]."
-
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/CheckValidTarget(atom/target_atom)
-	// oozeling cores have special snowflake checks
-	if(level_current >= DOMINATE_GHOUL_LEVEL)
-		return TRUE
-	return FALSE
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/CheckCanTarget(atom/target_atom)
 	var/mob/living/selected_target = target_atom
