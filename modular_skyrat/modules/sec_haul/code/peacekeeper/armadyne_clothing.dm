@@ -156,20 +156,6 @@
 	l_pocket = /obj/item/megaphone/command
 	id = /obj/item/card/id/advanced/armadyne/security
 
-/datum/outfit/armadyne_security/commander/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	if(visualsOnly)
-		return
-
-	var/obj/item/storage/belt/security/webbing/W = H.belt
-	if(istype(W))
-		W.current_skin = "Black Variant"
-		W.icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
-		W.icon_state = "armadyne_webbing"
-		W.worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
-		W.worn_icon_state = "armadyne_webbing"
-		W.update_appearance()
-	..()
-
 /datum/outfit/armadyne_security/high_alert
 	name = "Armadyne Corporate Security (High Alert)"
 	belt = /obj/item/storage/belt/security/webbing
@@ -179,20 +165,6 @@
 		/obj/item/storage/box/handcuffs,
 		/obj/item/ammo_box/magazine/c40sol_rifle/standard = 2,
 	)
-
-/datum/outfit/armadyne_security/high_alert/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	if(visualsOnly)
-		return
-
-	var/obj/item/storage/belt/security/webbing/W = H.belt
-	if(istype(W))
-		W.current_skin = "Black Variant"
-		W.icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
-		W.icon_state = "armadyne_webbing"
-		W.worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
-		W.worn_icon_state = "armadyne_webbing"
-		W.update_appearance()
-	..()
 
 /datum/outfit/armadyne_security/commander/high_alert
 	name = "Armadyne Corporate Security Commander (High Alert)"
