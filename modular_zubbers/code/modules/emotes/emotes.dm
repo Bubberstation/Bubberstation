@@ -269,5 +269,5 @@
 	message = "barks."
 	emote_type = EMOTE_AUDIBLE
 
-/datum/emote/living/exp_growl/get_sound(mob/living/user)
+/datum/emote/living/exp_bark/get_sound(mob/living/user)
 	return 'modular_zubbers/sound/emotes/screams/exp_bark.ogg'

@@ -10,5 +10,7 @@
 
 /datum/scream_type/expie
 	name = "Experiment Scream"
-	male_screamsounds = pick('modular_zubbers/sound/emotes/screams/exp_bark.ogg' , 'modular_zubbers/sound/emotes/screams/exp_growl.ogg')
-	female_screamsounds = pick('modular_zubbers/sound/emotes/screams/exp_bark.ogg' , 'modular_zubbers/sound/emotes/screams/exp_growl.ogg')
+	male_screamsounds = list('modular_zubbers/sound/emotes/screams/exp_bark.ogg', 
+						'modular_zubbers/sound/emotes/screams/exp_growl.ogg')
+	female_screamsounds = list('modular_zubbers/sound/emotes/screams/exp_bark.ogg', 
+							'modular_zubbers/sound/emotes/screams/exp_growl.ogg')
