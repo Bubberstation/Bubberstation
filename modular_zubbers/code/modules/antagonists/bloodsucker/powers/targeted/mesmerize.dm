@@ -103,7 +103,7 @@
 		return FALSE
 
 	var/mob/living/living_owner = owner
-	if(istype(living_owner) && !(living_owner.mobility_flags & MOBILITY_STAND))
+	if(istype(living_owner) && living_owner.body_position != STANDING_UP)
 		owner.balloon_alert(owner, "must stay standing!")
 		return FALSE
 

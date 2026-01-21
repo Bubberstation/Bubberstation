@@ -271,7 +271,8 @@
 
 /obj/item/shield/bloodsucker/dropped(mob/user, silent)
 	. = ..()
-	qdel(src)
+	if(!QDELING(src))
+		qdel(src)
 
 /obj/item/shield/bloodsucker/on_shield_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner)
