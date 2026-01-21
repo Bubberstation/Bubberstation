@@ -56,7 +56,6 @@
 // Engineering BRPED
 /obj/item/borg/upgrade/rped/Initialize(mapload)
 	. = ..()
-	icon_state = "module_engineer"
 	items_to_add = list(/obj/item/storage/part_replacer/bluespace)
 	items_to_add -= list(/obj/item/storage/part_replacer)
 
