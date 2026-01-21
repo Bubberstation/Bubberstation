@@ -260,7 +260,7 @@
 	message = "growls."
 	emote_type = EMOTE_AUDIBLE
 	
-/datum/emote/living/exp_growl/getsound(mob/living/user)
+/datum/emote/living/exp_growl/get_sound(mob/living/user)
 	return 'modular_zubbers/sound/emotes/screams/exp_growl.ogg'
 
 /datum/emote/living/exp_bark
@@ -269,5 +269,5 @@
 	message = "barks."
 	emote_type = EMOTE_AUDIBLE
 
-/datum/emote/living/exp_growl/getsound(mob/living/user)
+/datum/emote/living/exp_growl/get_sound(mob/living/user)
 	return 'modular_zubbers/sound/emotes/screams/exp_bark.ogg'
