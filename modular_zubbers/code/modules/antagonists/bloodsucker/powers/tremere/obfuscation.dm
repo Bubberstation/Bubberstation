@@ -127,7 +127,7 @@
 	if(!revealed)
 		revealed = TRUE
 		animate(owner, alpha = OBFUSCATION_REVEALED_ALPHA, time = 2 SECONDS)
-	recloak_timer = addtimer(CALLBACK(src, PROC_REF(recloak)), OBFUSCATION_RECLOAK_TIME, TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE)
+	recloak_timer = addtimer(CALLBACK(src, PROC_REF(recloak)), get_recloak_time(), TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE)
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/obfuscation/proc/get_recloak_time()
 	return min(0.5 SECONDS, OBFUSCATION_RECLOAK_TIME - 0.5 SECONDS * level_current)
