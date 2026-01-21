@@ -268,7 +268,7 @@
 	. = ..()
 	delayed = TRUE
 	candidates = list()
-	var/admin_msg = span_danger("[storyteller.name] is spawning [antag_name] event in [admin_cancel_delay / 10] seconds. <a href='?src=[REF(src)];cancel_antag=1'>CANCEL</a>")
+	var/admin_msg = span_danger("[storyteller.name] is spawning [antag_name] event in [admin_cancel_delay / 10] seconds. <a href='byond://?src[REF(src)];cancel_antag=1'>CANCEL</a>")
 	message_admins(admin_msg)
 	candidates = poll_candidates_for_antag(inputs, storyteller, candidates)
 	// Set up admin cancel callback if needed
@@ -329,7 +329,7 @@
 						selected += ghost
 			else if(ghost_votes && istype(ghost_votes, /mob))
 				var/mob/ghost = ghost_votes
-				if(ghost in all_candidates && can_be_candidate(ghost, inputs, storyteller))
+				if((ghost in all_candidates) && can_be_candidate(ghost, inputs, storyteller))
 					selected += ghost
 
 	// Crew signup if we need more candidates
@@ -537,7 +537,7 @@
 		return
 	client?.prefs?.apply_prefs_to(clicker)
 	SSquirks.OverrideQuirks(clicker, client)
-	var/name_ask =  tgui_alert(clicker, "Would you like to generate a random name for your character?", "Generate random name", list("Yes", "No"))
+	var/name_ask = tgui_alert(clicker, "Would you like to generate a random name for your character?", "Generate random name", list("Yes", "No"))
 	if(name_ask == "Yes")
 		clicker.generate_random_mob_name()
 	var/msg = span_notice("[key_name(clicker)] has used the [name] ability to apply their character preferences to their current mob. [ADMIN_VERBOSEJMP(clicker)]")

@@ -95,7 +95,7 @@ DEFINE_BITFIELD(story_analyzer_flags, list(
 #define STORYTELLER_TRAIT_BALANCING_TENSTION "BALANCER"
 // Storyteller don't selected any good event
 #define STORYTELLER_TRAIT_NO_GOOD_EVENTS "NO_GOOD_EVENTS"
- // Good event will be more likely
+// Good event will be more likely
 #define STORYTELLER_TRAIT_KIND "KIND"
 // No adaptation decay, IT'S VEY BAD FOR CREW
 #define STORYTELLER_TRAIT_NO_ADAPTATION_DECAY "NO_ADAPTAION_DECAY"
@@ -119,12 +119,12 @@ DEFINE_BITFIELD(story_analyzer_flags, list(
 /* BALANCE TRAITS */
 
 // Storyteller ignore security power for for balancer
-#define STORYTELLER_TRAIT_IGNORE_SECURITY "IGNORE_SECUIRTY"
+#define STORYTELLER_TRAIT_IGNORE_SECURITY "IGNORE_SECURITY"
 // Storyteller ignore resource level for balancer
 #define STORYTELLER_TRAIT_IGNORE_RESOURCES "IGNORE_RESOURCES"
 // Storyteller ignore lack of heads in command
 #define STORYTELLER_TRAIT_IGNORE_HEADS "IGNORE_HEADS"
-// Storyteller ignore egngineering, that's mean SM, Power, hull breaches - everything realted to engineering
+// Storyteller ignore engineering, that's mean SM, Power, hull breaches - everything related to engineering
 #define STORYTELLER_TRAIT_IGNORE_ENGI "IGNORE_ENGI"
 // Storyteller ignore crew health at calculations
 #define STORYTELLER_TRAIT_IGNORE_CREW_HEALTH "IGNORE_CREW_HEALTH"
@@ -203,7 +203,7 @@ DEFINE_BITFIELD(story_job_flags, list(
 
 // Escalation category
 #define STORY_TAG_ESCALATION "STORY_ESCALATION"
-#define STORY_TAG_DEESCALATION "STORY_DEESCLATION"
+#define STORY_TAG_DEESCALATION "STORY_DEESCALATION"
 
 // A classification of an event
 #define STORY_TAG_COMBAT "STORY_COMBAT"
@@ -286,7 +286,7 @@ DEFINE_BITFIELD(story_job_flags, list(
 #define STORY_OBJECTIVES_CAP 4                     // Maximum objectives value (0-4)
 
 // Round progression tuning (target: ~3 hours average round, 60-80 players)
-#define STORY_ROUND_PROGRESSION_TRESHOLD (2 HOURS)  // Time for 100% progression
+#define STORY_ROUND_PROGRESSION_THRESHOLD (2 HOURS)  // Time for 100% progression
 
 // Threat point thresholds (for event intensity scaling)
 #define STORY_THREAT_LOW 100                       // Low threat threshold

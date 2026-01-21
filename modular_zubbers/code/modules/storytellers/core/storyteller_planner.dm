@@ -19,7 +19,7 @@
 	/// Recalc frequency
 	VAR_PRIVATE/recalc_interval = STORY_RECALC_INTERVAL
 
-	VAR_PRIVATE/planning_cooldown = 5 MINUTES
+	VAR_PRIVATE/planning_cooldown = 2 MINUTES
 
 	VAR_PRIVATE/last_major_event
 
@@ -67,12 +67,12 @@
 			continue
 
 		// Prevent multiple antagonist events in one cycle
-		var/should_continue = TRUE
+		var/has_antagonist = FALSE
 		for(var/datum/round_event_control/ready in ready_events)
-			if((ready.story_category & STORY_GOAL_ANTAGONIST) && (evt.story_category & STORY_GOAL_ANTAGONIST))
-				should_continue = FALSE
+			if(ready.story_category & STORY_GOAL_ANTAGONIST)
+				has_antagonist = TRUE
 				break
-		if(!should_continue)
+		if(has_antagonist && (evt.story_category & STORY_GOAL_ANTAGONIST))
 			continue
 
 		// Mark as firing and add to ready list (do not execute here)
@@ -137,7 +137,7 @@
 		var/list/entry = timeline[offset_str]
 		var/datum/round_event_control/event_control = entry[ENTRY_EVENT]
 		if(!event_control.is_avaible(inputs, ctl) && !SSstorytellers.hard_debug)
-			message_admins("[ctl.name] canceled event [event_control.name] since it no more avaible for firing")
+			message_admins("[ctl.name] canceled event [event_control.name] since it is no longer available for firing")
 			to_delete += offset_str
 			continue
 		if(entry[ENTRY_STATUS] == STORY_GOAL_PENDING)
@@ -146,18 +146,19 @@
 	for(var/delete_offset in to_delete)
 		cancel_event(delete_offset)
 
-	// Full rebuild if needed
+	// Full rebuild if forced or population spike detected
 	var/needs_full_rebuild = force || ctl.has_population_spike(20)
-	if(!needs_full_rebuild && pending_count)
+	if(!needs_full_rebuild && pending_count >= STORY_INITIAL_GOALS_COUNT)
 		scale_timeline(ctl, inputs, bal)
 		return timeline
 
-
-	message_admins("[ctl.name] [force ? "was forced to" : ""] rebuild event time line [ctl.has_population_spike(20) ? "because of population spike" : ""]")
-	clear_timeline(force)
+	message_admins("[ctl.name] [force ? "was forced to" : ""] rebuild event timeline [ctl.has_population_spike(20) ? "because of population spike" : ""]")
+	clear_timeline()
 	build_timeline(ctl, inputs, bal)
 
 
+/// Scales the timeline by adjusting event times to match current storyteller pacing.
+/// Attempts to bring future events closer if they are too far ahead, respecting major event spacing and mood multipliers.
 /datum/storyteller_planner/proc/scale_timeline(datum/storyteller/ctl, datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/bal, force = FALSE)
 	var/list/upcoming_offsets = get_upcoming_events(length(timeline))
 	var/scaled_average_time = ctl.get_event_interval()
@@ -171,27 +172,32 @@
 		var/datum/round_event_control/evt = entry[ENTRY_EVENT]
 		if(!evt)
 			cancel_event(offset_str)
+			continue
 		var/planned_when = entry[ENTRY_PLANNED_TIME]
+		// Calculate ideal time based on current pacing
 		var/required_offset = current_time + scaled_average_time
 		if(evt.story_category & STORY_GOAL_MAJOR)
 			required_offset += scaled_grace
 
-		var/new_time = text2num(offset_str)
-		if(required_offset < new_time)
-			var/difference = required_offset - new_time
+		var/event_time = text2num(offset_str)
+		if(required_offset < event_time)
+			// Event is too far in the future, try to bring it closer
+			var/difference = required_offset - event_time
 			if(difference >= 5 MINUTES)
-				difference = 5 MINUTES
+				difference = 5 MINUTES  // Cap the adjustment
 			difference *= ctl.mood.get_event_frequency_multiplier()
 			required_offset += difference
-			new_time = planned_when + (required_offset - new_time)
+			var/new_time = planned_when + (required_offset - event_time)
 			reschedule_event(offset_str, new_time)
-		current_time = new_time
+			current_time = new_time
+		else
+			current_time = event_time
 	sort_events()
 	return timeline
 
 
 /// Build initial timeline: Generates adaptive sequence with anti-clustering and major spacing.
-/datum/storyteller_planner/proc/build_timeline(datum/storyteller/ctl, datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/bal, derived_tags)
+/datum/storyteller_planner/proc/build_timeline(datum/storyteller/ctl, datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/bal)
 	timeline = list()
 
 	var/target_count = STORY_INITIAL_GOALS_COUNT
@@ -269,8 +275,6 @@
 				(<a href='byond://?src=[REF(src)];cancel_event=[cancel_ref]'>CANCEL</a>) \
 				(<a href='byond://?src=[REF(src)];reroll_event=[reroll_ref]'>REROLL</a>)")
 		return TRUE
-		base_delay += EVENT_CLUSTER_AVOIDANCE_BUFFER + rand(10 SECONDS, 30 SECONDS)
-		attempts++
 
 	stack_trace("[owner.name] Failed to find free slot after [MAX_PLAN_ATTEMPTS] attempts for event [event_control.id || event_control.name].")
 	return FALSE
@@ -359,7 +363,7 @@
 /datum/storyteller_planner/proc/get_upcoming_events(limit = length(timeline))
 	var/list/upcoming = list()
 	var/count = 0
-	for(var/offset_str in sortTim(timeline.Copy(), GLOBAL_PROC_REF(cmp_text_asc)))
+	for(var/offset_str in sortTim(timeline.Copy(), GLOBAL_PROC_REF(cmp_time_keys_asc)))
 		if(count >= limit)
 			break
 		upcoming += offset_str
@@ -368,13 +372,13 @@
 
 
 /datum/storyteller_planner/proc/get_closest_event()
-	for(var/offset_str in sortTim(timeline.Copy(), GLOBAL_PROC_REF(cmp_text_asc)))
+	for(var/offset_str in sortTim(timeline.Copy(), GLOBAL_PROC_REF(cmp_time_keys_asc)))
 		var/entry = timeline[offset_str]
 		return entry[ENTRY_EVENT]
 
 
 /datum/storyteller_planner/proc/get_closest_entry()
-	for(var/offset_str in sortTim(timeline.Copy(), GLOBAL_PROC_REF(cmp_text_asc)))
+	for(var/offset_str in sortTim(timeline.Copy(), GLOBAL_PROC_REF(cmp_time_keys_asc)))
 		return timeline[offset_str]
 	return null
 
@@ -410,12 +414,12 @@
 	return upcoming
 
 
-/datum/storyteller_planner/proc/next_offest()
+/datum/storyteller_planner/proc/next_offset()
 	return owner.get_event_interval() * (length(timeline) + 1)
 
 
-/datum/storyteller_planner/proc/get_closest_offest()
-	for(var/offset_str in sortTim(timeline.Copy(), GLOBAL_PROC_REF(cmp_text_asc)))
+/datum/storyteller_planner/proc/get_closest_offset()
+	for(var/offset_str in sortTim(timeline.Copy(), GLOBAL_PROC_REF(cmp_time_keys_asc)))
 		return text2num(offset_str)
 
 
@@ -448,7 +452,7 @@
 
 /datum/storyteller_planner/proc/get_last_reference_time(datum/storyteller/ctl)
 	if(length(timeline))
-		return get_closest_offest()
+		return get_closest_offset()
 	return min(world.time, ctl.last_event_time)
 
 /datum/storyteller_planner/Topic(href, href_list)

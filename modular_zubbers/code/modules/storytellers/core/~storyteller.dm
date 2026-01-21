@@ -335,7 +335,7 @@
 
 	// 1) Balance snapshot: derive tension, station strength, antag efficacy/inactivity
 	var/datum/storyteller_balance_snapshot/snap = balancer.make_snapshot(inputs)
-	player_antag_balance = round(snap.balance_ratio * 10)
+	player_antag_balance = round(snap.balance_ratio * 100)
 
 	// 2) Mood: adapt mood based on current tension vs target and recent adaptation
 	if(COOLDOWN_FINISHED(src, mood_update_cooldown))
@@ -347,7 +347,7 @@
 	var/list/events_to_fire = planner.update_plan(src, inputs, snap)
 	if(length(events_to_fire))
 		for(var/datum/round_event_control/evt in events_to_fire)
-			var/threat_points = get_event_threat_points()
+			var/threat_points = get_event_threat_points(evt.story_category)
 			INVOKE_ASYNC(evt, TYPE_PROC_REF(/datum/round_event_control, run_event_as_storyteller), inputs, src, threat_points)
 			record_event(evt, "Fired")
 			post_event(evt)
@@ -361,7 +361,7 @@
 
 	if(!HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ADAPTATION_DECAY))
 		adaptation_factor = max(0, adaptation_factor - adaptation_decay_rate)
-	round_progression = clamp((world.time - round_start_time) / STORY_ROUND_PROGRESSION_TRESHOLD, 0, 1)
+	round_progression = clamp((world.time - round_start_time) / STORY_ROUND_PROGRESSION_THRESHOLD, 0, 1)
 	current_tension = snap.overall_tension
 	balancer.tension_bonus = max(balancer.tension_bonus - STORY_TENSION_BONUS_DECAY_RATE * difficulty_multiplier, 0)
 	update_population_factor()
@@ -413,7 +413,7 @@
 			loss_percentage *= 2
 
 		var/threat_loss = threat_points * (loss_percentage / 100)
-		threat_points = min(threat_points, threat_points - threat_loss)
+		threat_points = max(0, threat_points - threat_loss)
 		tension_effect += 10
 
 	balancer.tension_bonus = min(balancer.tension_bonus + tension_effect, STORY_MAX_TENSION_BONUS)
@@ -697,7 +697,7 @@
 		advisory_desc += ". Conditions appear more favorable than typical"
 
 	// Build report text based on storyteller personality
-	var/report = "Advisory Level: <b>[advisory_level]</b></center><BR>"
+	var/report = "<center>Advisory Level: <b>[advisory_level]</b></center><BR>"
 	report += "Your sector's advisory level is [advisory_level]. "
 
 	// Add storyteller-specific flavor text
