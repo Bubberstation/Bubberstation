@@ -76,7 +76,7 @@
 	// Calculate antagonist strength
 	var/antag_activity_norm = clamp(antag_presence / STORY_VAULT_MANY_ANTAGONISTS, 0, 1)
 	var/antag_weight_normalized = antag_count > 0 ? clamp(antag_weight / crew_weight, 0, 2) : 0
-	var/antag_strength_raw = (antag_activity_norm * 0.4) + (antag_weight_normalized * 0.4)
+	var/antag_strength_raw = (antag_activity_norm * 0.25) + (antag_weight_normalized * 0.25)
 	var/antag_strength_norm = clamp(antag_strength_raw, 0, 1)
 
 	// Calculate balance ratio (antag strength / station strength, higher = antags stronger)
