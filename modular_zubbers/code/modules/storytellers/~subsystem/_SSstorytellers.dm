@@ -337,7 +337,7 @@ SUBSYSTEM_DEF(storytellers)
 			WARNING("Storyteller event control [event_control.name] has no ID using name instead.")
 			event_control.id = event_control.name
 		if(events_by_id[event_control.id])  // Prevent duplicates
-			stack_trace("Duplicate event control ID [event_control.id] for [event_control.name], skipping.")
+			WARNING("Duplicate event control ID [event_control.id] for [event_control.name], skipping.")
 			continue
 		events_by_id[event_control.id] = event_control
 
