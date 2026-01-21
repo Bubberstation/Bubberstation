@@ -55,6 +55,7 @@
 	smoothing_groups = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE + SMOOTH_GROUP_SHIPWALLS
 	canSmoothWith = SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE
 	obj_flags = CAN_BE_HIT
+	custom_materials = list(/datum/material/alloy/plastitaniumglass = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/structure/window/reinforced/shuttle/spaceship/tinted
 	opacity = TRUE
