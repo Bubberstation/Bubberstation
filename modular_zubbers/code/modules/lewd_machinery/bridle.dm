@@ -1,7 +1,7 @@
 
 /obj/item/clothing/mask/bridle
 	name = "bridle"
-	desc = "A Sunny Stables design of a leather horse bridle, complete with blinders and a bit. It's made of several leather straps and metal fittings. You can tighten or loosen the straps to make sure that the blinders and the bit stay in place."
+	desc = "A Sunny Stables design of a horse bridle, including with blinders and a bit. It's made of several leather straps and metal fittings. You can tighten or loosen the straps to make sure that the blinders and the bit stay in place."
 	icon_state = "bridle"
 	inhand_icon_state = "sechailer"
 	icon = 'modular_zubbers/icons/obj/clothing/mask/mask.dmi'
@@ -90,7 +90,8 @@
 	. = ..()
 	var/blinders_state_text = blinders_enabled ? "on" : "off"
 	var/gag_state_text = gag_enabled ? "set" : "unset"
-	. += span_notice("The blinders are [blinders_state_text], and the bit is [gag_state_text].")
+	var/straps_state_text = straps_locked ? "nice and tight" : "loose"
+	. += span_notice("The straps are [straps_state_text]. The bit is [gag_state_text], and the blinders are [blinders_state_text].")
 
 /obj/item/clothing/mask/bridle/proc/update_bridle_state(mob/user, notify_wearer = TRUE)
 	var/mob/living/carbon/wearer = get_wearer()
@@ -139,7 +140,7 @@
 					gag_effect = "letting you speak freely"
 					gag_self = "loosens, allowing you to speak freely"
 				if(user && user != wearer)
-					to_chat(wearer, span_userdanger("[user] [gag_action] the bridle's bit, [gag_effect]."))
+					to_chat(wearer, span_notice("[user] [gag_action] the bridle's bit, [gag_effect]."))
 				else if(user)
 					to_chat(wearer, span_notice("You [gag_action_self] the bridle's bit, [gag_effect]."))
 				else
