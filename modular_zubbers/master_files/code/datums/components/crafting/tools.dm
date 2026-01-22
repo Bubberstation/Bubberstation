@@ -14,5 +14,8 @@
 
 /datum/crafting_recipe/jaws_of_recovery/New()
 	..()
+	blacklist |= typesof(/obj/item/crowbar/power/paramedic)
+	blacklist |= typesof(/obj/item/crowbar/power/protonitrate)
+
 	blacklist |= typesof(/obj/item/radio/headset)
 	blacklist |= typesof(/obj/item/radio/intercom)
