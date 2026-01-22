@@ -88,7 +88,7 @@
 
 /obj/item/clothing/mask/bridle/examine(mob/user)
 	. = ..()
-	var/blinders_state_text = blinders_enabled ? "down" : "up"
+	var/blinders_state_text = blinders_enabled ? "on" : "off"
 	var/gag_state_text = gag_enabled ? "set" : "unset"
 	. += span_notice("The blinders are [blinders_state_text], and the bit is [gag_state_text].")
 
@@ -115,7 +115,8 @@
 					blinders_effect = "restoring your sight"
 					blinders_self = "raise, restoring your sight"
 				if(user && user != wearer)
-					to_chat(wearer, span_userdanger("[user] [blinders_action] the bridle's blinders, [blinders_effect]."))
+					to_chat(wearer, span_userdanger("[user] begins setting your bridle..."))
+					to_chat(wearer, span_notice("[user] [blinders_action] the bridle's blinders, [blinders_effect]."))
 				else if(user)
 					to_chat(wearer, span_notice("You [blinders_action_self] the bridle's blinders, [blinders_effect]."))
 				else
