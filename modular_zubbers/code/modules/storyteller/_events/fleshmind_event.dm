@@ -44,7 +44,8 @@
 		CRASH("Fleshmind failed to pick a valid turf!")
 
 	make_core(spawn_turf)
-	SSgamemode.inject_event(/datum/round_event_control/wire_priest)
+	var/datum/round_event_control/event = locate(/datum/round_event_control/wire_priest) in SSevents.control
+	event.run_event(admin_forced = TRUE)
 
 /datum/round_event/fleshmind/proc/make_core(turf/location)
 	new /obj/structure/fleshmind/structure/core(location)
