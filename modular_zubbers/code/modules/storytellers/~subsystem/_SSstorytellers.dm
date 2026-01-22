@@ -683,7 +683,7 @@ ADMIN_VERB(storyteller_simulation, R_ADMIN, "Storyteller - Simulation", "Simulat
 /datum/config_entry/number/strong_security_count
 	default = 8
 	integer = TRUE
-	min_val = 1
+	min_val = 2
 
 
 #undef FIRE_PRIORITY_STORYTELLERS
