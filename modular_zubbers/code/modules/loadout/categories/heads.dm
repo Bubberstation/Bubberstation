@@ -59,12 +59,12 @@
 	donator_only = TRUE
 	restricted_roles = list(JOB_NT_REP)
 
-/* why does sec have two caps with different stats ? VIROWIP
+/* why does sec have two caps with different stats ? this is so fucking messy VIROWIP
+
 /datum/loadout_item/head/security_cap
 	name = "Security Cap"
 	item_path = /obj/item/clothing/head/security_cap
 	restricted_roles = list(ALL_JOBS_SEC)
-*/
 
 /datum/loadout_item/head/security_cap/veteran
 	name = "Veteran's Soft Security Cap"
@@ -74,7 +74,7 @@
 /datum/loadout_item/head/security_cap/colonial
 	name = "Imperial Police Cap"
 	item_path = /obj/item/clothing/head/hats/colonial/nri_police
-	restricted_roles = list(ALL_JOBS_SEC, JOB_CUSTOMS_AGENT)
+	restricted_roles = list(JOB_CUSTOMS_AGENT)
 
 /datum/loadout_item/head/security_beanie
 	name = "Security Beanie"
@@ -109,27 +109,14 @@
 /datum/loadout_item/head/helmet/nri_police
 	name = "Imperial Police Helmet"
 	item_path = /obj/item/clothing/head/helmet/nri_police
-	restricted_roles = list(ALL_JOBS_SEC, JOB_CUSTOMS_AGENT)
-
-/datum/loadout_item/head/hats/security_kepi
-	name = "Security Kepi"
-	item_path = /obj/item/clothing/head/security_kepi
-	restricted_roles = list(ALL_JOBS_SEC)
-
-/datum/loadout_item/head/beret/sec/peacekeeper/armadyne
-	name = "Armadyne Corporate Beret"
-	item_path = /obj/item/clothing/head/beret/sec/peacekeeper/armadyne
-	restricted_roles = list(ALL_JOBS_SEC)
-
-/datum/loadout_item/head/helmet/sec/peacekeeper/security_medic
-	name = "Security Medic Helmet"
-	item_path = /obj/item/clothing/head/helmet/sec/peacekeeper/security_medic
-	restricted_roles = list(JOB_SECURITY_MEDIC)
+	restricted_roles = list(JOB_CUSTOMS_AGENT)
 
 /datum/loadout_item/head/beret/sec/peacekeeper/security_medic
 	name = "Security Medic Beret"
 	item_path = /obj/item/clothing/head/beret/sec/peacekeeper/security_medic
 	restricted_roles = list(JOB_SECURITY_MEDIC)
+
+*/
 
 /datum/loadout_item/head/lace_bow
 	name = "Hair Bow"

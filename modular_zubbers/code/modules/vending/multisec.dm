@@ -1,9 +1,4 @@
 /obj/machinery/vending/wardrobe/sec_wardrobe
-	name = "\improper SecDrobe"  // multisec no more
-	desc = "A vending machine stocked with a multitude of security outfits, including standardized uniforms in multiple colors and general equipment. Now with more Multi!"
-	icon = 'modular_zubbers/icons/obj/machines/vending.dmi'
-	icon_state = "multisec"
-	light_mask = null
 	products = list() // Overriding this to the default to prevent any issues when building the product menu
 	product_categories = list(
 		list(

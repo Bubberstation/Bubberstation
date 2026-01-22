@@ -114,30 +114,3 @@
 	fire = 100
 	acid = 50
 	wound = 25
-
-/*
-	// VIROSEC
-*/
-
-// OFFICER
-
-/obj/item/clothing/suit/armor/vest/alt/sec/viro
-	name = "security plate carrier"
-	icon_state = "sec_platecarrier"
-//	icon = 'modular_zubbers/modules/virosec/clothing/obj/armor.dmi'
-	worn_icon = 'modular_zubbers/modules/virosec/clothing/mob/armor.dmi'
-
-/obj/item/clothing/suit/armor/vest/alt/sec/viro
-	name = "security plate carrier"
-	icon_state = "sec_platecarrier"
-//	icon = 'modular_zubbers/modules/virosec/clothing/obj/armor.dmi'
-	worn_icon = 'modular_zubbers/modules/virosec/clothing/mob/armor.dmi'
-
-// WARDEN
-
-// HOS
-
-/obj/item/clothing/suit/armor/vest/alt/sec/viro
-	name = " armor"
-	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'

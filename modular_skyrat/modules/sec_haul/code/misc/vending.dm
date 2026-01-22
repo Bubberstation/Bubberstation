@@ -1,8 +1,4 @@
 /obj/machinery/vending/security
-	name = "\improper Armadyne Peacekeeper Equipment Vendor"
-	desc = "An Armadyne peacekeeper equipment vendor."
-	product_ads = "Crack capitalist skulls!;Beat some heads in!;Don't forget - harm is good!;Your weapons are right here.;Handcuffs!;Freeze, scumbag!;Don't tase me bro!;Tase them, bro.;Why not have a donut?"
-	icon = 'modular_skyrat/modules/sec_haul/icons/vending/vending.dmi'
 	products = list(
 		/obj/item/restraints/handcuffs = 18,
 		/obj/item/restraints/handcuffs/cable/zipties = 22,
@@ -35,6 +31,9 @@
 /obj/item/vending_refill/security
 	machine_name = "Armadyne Peacekeeper Equipment Vendor"
 
+/*
+
+// BUBBER EDIT - useless
 
 /obj/machinery/vending/wardrobe/sec_wardrobe
 	name = "\improper Peacekeeper Outfitting Station"
@@ -80,7 +79,11 @@
 /obj/item/vending_refill/wardrobe/sec_wardrobe
 	machine_name = "Peacekeeper Outfitting Station"
 
+
+*/
+
 //List for the old one, for when its mapped in; curates it nicely, adds /redsec to the items, and also prevents some conflicts with the above vendor
+// antiquated, but stuff uses it
 /obj/machinery/vending/wardrobe/sec_wardrobe/red
 	name = "\improper SecDrobe"
 	desc = "A vending machine for security and security-related clothing!"

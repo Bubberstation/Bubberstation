@@ -43,6 +43,34 @@
 	// ARMORS
 */
 
+/obj/item/clothing/suit/armor/vest/alt/sec/viro // too many subtypes
+	name = "security plate carrier"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	icon_state = "sec_platecarrier"
+
+/obj/item/clothing/suit/armor/vest/alt/sec/viro/heavyvest
+	name = "security heavy vest"
+	desc = "An alternate armour vest for Security employees, featuring more coverage at the cost of weight."
+	body_parts_covered = CHEST|GROIN|ARMS
+	cold_protection = CHEST|GROIN|ARMS
+	heat_protection = CHEST|GROIN|ARMS
+	icon_state = "sec_heavyvest"
+
+/obj/item/clothing/suit/armor/vest/alt/sec/viro/leatherjacket
+	name = "security leather jacket"
+	desc = "Made out of synthetic leather materials, this jacket is designed for formal events, but is applicable for general use with it's ceramic-woven leather."
+	icon_state = "sec_leatherjacket"
+	body_parts_covered = CHEST|GROIN|ARMS
+	cold_protection = CHEST|GROIN|ARMS
+	heat_protection = CHEST|GROIN|ARMS
+
+// WARDEN
+
+
+
+// HOS
+
 /obj/item/clothing/suit/armor/hos
 	name = "\improper Head of Security's leather greatcoat"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
