@@ -81,3 +81,48 @@
 	greyscale_colors = "#A53228#333333#292929"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
+	uses_advanced_reskins = FALSE
+
+/obj/item/clothing/under/rank/security/viro
+	name = "security test uniform"
+	desc = "fuck off cunt"
+	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	icon_state = "security_uniform"
+
+/obj/item/clothing/under/rank/security/viro/hos
+	icon_state = "hos_uniform"
+
+/obj/item/clothing/suit/armor/vest/viro
+	name = "security test uniform"
+	desc = "fuck off cunt"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	icon_state = "sec_plate_carrier"
+
+/obj/item/clothing/suit/armor/vest/viro/hos
+	icon_state = "hos_trenchcoat"
+
+/obj/item/clothing/gloves/viro
+	name = "security test uniform"
+	desc = "fuck off cunt"
+	icon = 'modular_zubbers/icons/obj/clothing/gloves/gloves.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/gloves/gloves.dmi'
+	icon_state = "sec_gloves"
+
+/obj/item/clothing/shoes/viro
+	name = "security test uniform"
+	desc = "fuck off cunt"
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	icon_state = "sec_boots"
+
+/obj/item/clothing/head/viro
+	name = "security test uniform"
+	desc = "fuck off cunt"
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "sec_cap"
+
+/obj/item/clothing/head/viro/hos
+	icon_state = "hos_beret"
