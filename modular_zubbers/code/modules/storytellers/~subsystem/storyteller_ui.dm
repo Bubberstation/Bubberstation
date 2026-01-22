@@ -5,13 +5,17 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 /datum/storyteller_admin_ui
 	/// cached reference to storyteller
 	var/datum/storyteller/ctl
+	var/view_only = FALSE
 
 /datum/storyteller_admin_ui/New()
 	. = ..()
 	ctl = SSstorytellers?.active
 
 /datum/storyteller_admin_ui/ui_state(mob/user)
+	if(view_only)
+		return GLOB.always_state
 	return ADMIN_STATE(R_ADMIN)
+
 
 /datum/storyteller_admin_ui/ui_interact(mob/user, datum/tgui/ui)
 	ctl = SSstorytellers?.active
@@ -156,7 +160,7 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 	. = ..()
 	if(.)
 		return
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_ADMIN) || view_only)
 		return TRUE
 	ctl = SSstorytellers?.active
 	if(!ctl)
