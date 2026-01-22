@@ -104,14 +104,6 @@
 	new /obj/item/clothing/head/hats/hos/cap(src)
 	new /obj/item/clothing/mask/gas/sechailer/swat(src)
 	new /obj/item/clothing/neck/cloak/hos(src)
-//BUBBER ADDITION BEGIN
-	new /obj/item/clothing/neck/cloak/hos(src)
-	new /obj/item/clothing/under/rank/security/head_of_security(src)
-	new /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch(src)
-	new /obj/item/clothing/shoes/jackboots/sec(src)
-	new /obj/item/clothing/head/hos_kepi(src)
-	new /obj/item/clothing/under/rank/security/peacekeeper/skirt_hos(src)
-//BUBBER ADDITION END
 //Duplication from Commdrobe
 	new /obj/item/clothing/head/hats/warden/drill/hos(src)
 	new	/obj/item/clothing/under/rank/security/head_of_security/alt/roselia(src)
