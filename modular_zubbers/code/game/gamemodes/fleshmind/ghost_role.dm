@@ -51,7 +51,7 @@
 	track = EVENT_TRACK_GHOSTSET
 
 /datum/round_event/ghost_role/wire_priest/spawn_role()
-	var/mob/chosen_one = SSpolling.poll_ghost_candidates(check_jobban = ROLE_WIRE_PRIEST, role = ROLE_WIRE_PRIEST, role_name_text = role_name, amount_to_pick = 1)
+	var/mob/chosen_one = SSpolling.poll_ghost_candidates(check_jobban = ROLE_WIRE_PRIEST, role = ROLE_WIRE_PRIEST, role_name_text = role_name, amount_to_pick = 1, alert_pic = /obj/structure/fleshmind/structure/core )
 	if(isnull(chosen_one))
 		return NOT_ENOUGH_PLAYERS
 	var/datum/mind/player_mind = new /datum/mind(chosen_one.key)
@@ -65,23 +65,14 @@
 		return MAP_ERROR
 
 	var/mob/living/carbon/human/priest = new(spawn_location)
-	priest.randomize_human_appearance(~RANDOMIZE_SPECIES)
-	priest.dna.update_dna_identity()
-	var/datum/mind/Mind = new /datum/mind(chosen_one.key)
-	Mind.set_assigned_role(SSjob.get_job_type(/datum/job/wire_priest))
-	Mind.active = TRUE
-	Mind.transfer_to(priest)
-
-	if(!priest.client?.prefs.read_preference(/datum/preference/toggle/nuke_ops_species))
-		var/species_type = priest.client.prefs.read_preference(/datum/preference/choiced/species)
-		priest.set_species(species_type) //Apply the preferred species to our freshly-made body.
-
-	player_mind.set_assigned_role(SSjob.get_job_type(/datum/job/wire_priest))
-	player_mind.add_antag_datum(/datum/antagonist/wire_priest)
+	priest.PossessByPlayer(chosen_one.key)
+	priest.client?.prefs?.safe_transfer_prefs_to(priest)
+	priest.mind.add_antag_datum(/datum/antagonist/wire_priest)
+	spawned_mobs += priest
 
 	message_admins("[ADMIN_LOOKUPFLW(priest)] has been made into a Wire Priest by an event.")
 	priest.log_message("was spawned as a Wire Priest by an event.", LOG_GAME)
-	spawned_mobs += priest
+
 	return SUCCESSFUL_SPAWN
 
 /datum/round_event/ghost_role/wire_priest

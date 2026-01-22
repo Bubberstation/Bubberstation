@@ -1,7 +1,7 @@
 import { type Antagonist, Category } from '../base';
 
 const Wire_Priest: Antagonist = {
-  key: 'wire_priest',
+  key: 'wirepriest',
   name: 'Wire Priest',
   description: [
     `

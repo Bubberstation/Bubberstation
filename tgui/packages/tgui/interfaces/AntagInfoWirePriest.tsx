@@ -10,7 +10,7 @@ const noticestyle = {
   color: 'lightblue',
 };
 
-export const AntagInfoVoidwalker = (props) => {
+export const AntagInfoWirePriest = (props) => {
   return (
     <Window width={660} height={660}>
       <Window.Content backgroundColor="#0d0d0d">
