@@ -2,7 +2,7 @@
 	name = "Jaws of Recovery"
 	desc = "A surprisingly successfull attempt at replicating the genuine NT Jaws of Recovery™ - While you'd think you couldn't make anything but a crude copy, somehow attaching a handheld radio to the internal mechanism of the jaws boosts their performance."
 	time = 10 SECONDS
-	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WELDER)
+	tool_behaviors = list(TOOL_WRENCH)
 	result = /obj/item/crowbar/power/paramedic
 	reqs = list(
 		/obj/item/crowbar/power = 1,
