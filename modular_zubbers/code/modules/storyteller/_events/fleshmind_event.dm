@@ -44,6 +44,7 @@
 		CRASH("Fleshmind failed to pick a valid turf!")
 
 	make_core(spawn_turf)
+	SSgamemode.TriggerEvent(/datum/round_event_control/wire_priest)
 
 /datum/round_event/fleshmind/proc/make_core(turf/location)
 	new /obj/structure/fleshmind/structure/core(location)

@@ -102,6 +102,3 @@
 #define MECHIVER_INTERNAL_MOB_DAMAGE_LOWER 20 // Lower damage done to internal mob
 #define MECHIVER_CONVERSION_TIME 20 SECONDS // Time to convert someone inside
 #define MECHIVER_CONSUME_COOLDOWN 1 MINUTES // How long it takes to be ready to consume again
-
-// GHOST ROLE RELATED DEFINES
-#define ROLE_WIRE_PRIEST "Wire Priest"
