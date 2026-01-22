@@ -343,10 +343,12 @@ const GoalSearchDropdown = React.memo(
                 >
                   <Box>
                     {g.name ?? String(g.id)}
-                    {g.is_antagonist && (
+                    {g.is_antagonist ? (
                       <Box inline ml={1}>
                         (antagonist)
                       </Box>
+                    ) : (
+                      ''
                     )}
                     {selectedGoal === String(g.id) && (
                       <Box inline ml={1}>

@@ -205,8 +205,15 @@
 
 /// Adds the next event to the timeline with improved planning: selects category/event, calculates delay,
 /// enforces major event spacing and anti-clustering during insertion.
-/datum/storyteller_planner/proc/add_next_event(datum/storyteller/ctl, datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/bal)
-	var/datum/round_event_control/new_event_control = build_event(ctl)
+/datum/storyteller_planner/proc/add_next_event(datum/storyteller/ctl, datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/bal, evt, silence = FALSE)
+	var/datum/round_event_control/new_event_control
+	if(istype(evt, /datum/round_event_control))
+		new_event_control = evt
+	else if(ispath(evt, /datum/round_event_control))
+		evt = locate(evt) in SSstorytellers.events_by_id
+	if(!evt)
+		evt = build_event(ctl)
+	new_event_control = evt
 	if(!new_event_control)
 		return FALSE
 
@@ -214,7 +221,7 @@
 	var/last_time = get_last_reference_time()
 	var/fire_offset = last_time + next_delay
 
-	if(try_plan_event(new_event_control, fire_offset, FALSE))  // Allow insertion with anti-clustering
+	if(try_plan_event(new_event_control, fire_offset, FALSE, silence))  // Allow insertion with anti-clustering
 		new_event_control.on_planned(fire_offset)
 		return TRUE
 	return FALSE
@@ -419,6 +426,8 @@
 
 
 /datum/storyteller_planner/proc/get_last_reference_time()
+	if(length(timeline))
+		return get_closest_offset()
 	return owner.get_time_since_last_event()
 
 /datum/storyteller_planner/Topic(href, href_list)

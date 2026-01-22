@@ -217,18 +217,18 @@
 /// Linear interpolation: low pop (0.3) -> 1.5x grace, high pop (1.0) -> 0.5x grace
 /datum/storyteller/proc/get_scaled_grace()
 	var/pop_mod = lerp(1.5, 0.5, 1.0 / max(0.1, population_factor))
-	pop_mod = clamp(pop_mod, 0.3, 1.5)
+	pop_mod = clamp(pop_mod * get_effective_pace(), 0.5, 1.5)
 	return grace_period * pop_mod
 
 
 
 /// Base event interval, scaled by pace and population factor.
 /// Low population = longer intervals (fewer events), high population = shorter intervals (more frequent events)
-/// event_interval = average_event_interval * effective_pace * (1 - population_factor)
+/// event_interval = average_event_interval * effective_pace * max(0.5, 1 - population_factor)
 /datum/storyteller/proc/get_event_interval()
 	var/base = average_event_interval * get_effective_pace()
-	var/pop_mod = 1 - max(0.3, population_factor)
-	return round(base * pop_mod)
+	var/pop_mod = max(0.5, 1.5 - population_factor)
+	return base * pop_mod
 
 
 

@@ -239,8 +239,7 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 			var/datum/round_event_control/evt = SSstorytellers.events_by_id[id]
 			if(istype(evt))
 				var/datum/round_event_control/new_event_control = new evt.type
-				var/fire_offset = ctl.planner.get_next_event_delay(new_event_control, ctl)
-				ctl.planner.try_plan_event(new_event_control, fire_offset, silence = TRUE)
+				ctl.planner.add_next_event(ctl, evt = new_event_control, silence = TRUE)
 				message_admins("[key_name_admin(usr)] is planned event [evt.name || evt.id] for [ctl.name]")
 			return TRUE
 		if("trigger_goal")

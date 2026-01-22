@@ -443,10 +443,12 @@ export const StorytellerVote = () => {
                             <Stack.Item>
                               <Tooltip
                                 content={
-                                  selectedDifficultyInfo.minPlayers > 0 &&
-                                  !debug_mode
-                                    ? `${selectedDifficultyInfo.tooltip} (Requires ${selectedDifficultyInfo.minPlayers}+ players)`
-                                    : selectedDifficultyInfo.tooltip
+                                  <Box className="difficulty-tooltip">
+                                    {selectedDifficultyInfo.minPlayers > 0 &&
+                                    !debug_mode
+                                      ? `${selectedDifficultyInfo.tooltip} (Requires ${selectedDifficultyInfo.minPlayers}+ players)`
+                                      : selectedDifficultyInfo.tooltip}
+                                  </Box>
                                 }
                               />
                             </Stack.Item>
@@ -493,8 +495,15 @@ export const StorytellerVote = () => {
                                 maxValue={total_voters || 1}
                                 color="good"
                               >
-                                <b>{t.name}</b>: {t.count} votes (avg diff:{' '}
-                                {t.avg_diff.toFixed(1)})
+                                <b>{t.name}</b>: {t.count} votes ({''}
+                                {
+                                  DIFFICULTY_LEVELS.find(
+                                    (level) =>
+                                      level.value ===
+                                      Number(t.avg_diff.toFixed(1)),
+                                  )?.label
+                                }
+                                )
                               </ProgressBar>
                             </Box>
                           ))}

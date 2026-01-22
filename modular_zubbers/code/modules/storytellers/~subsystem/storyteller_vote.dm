@@ -142,7 +142,7 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 	vote_start_time = 0  // Reset vote start time
 	deltimer(vote_timer_id)
 	var/list/tallies = list()
-	var/list/all_diffs = list()
+	var/list/diff_tallies = list()
 	var/total_votes = 0
 	for(var/client/client in storyteller_vote_uis)
 		var/datum/storyteller_vote_ui/ui = storyteller_vote_uis[client]
@@ -153,7 +153,9 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 				continue
 			tallies[id_str] = (tallies[id_str] || 0) + 1
 			if (v["difficulty"])
-				all_diffs += v["difficulty"]
+				if(!diff_tallies[id_str])
+					diff_tallies[id_str] = list()
+				diff_tallies[id_str] += v["difficulty"]
 			total_votes++
 		SStgui.close_uis(ui.owner.mob, ui)
 		qdel(ui)
@@ -168,7 +170,7 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 			best_storytellers = list(id_str)
 		else if (count == max_votes)
 			best_storytellers += id_str
-
+	var/selected_difficulty
 	if(!length(best_storytellers))
 		to_chat(world, span_boldnotice("No votes were cast! Random storyteller selected."))
 		selected_id = pick(list(storyteller_data))
@@ -183,12 +185,30 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 		to_chat(world, span_announce("Tie broken randomly!"))
 
 	selected_id = selected_id_str
-	var/avg_diff = length(all_diffs) ? get_avg(all_diffs) : 1.0
-	selected_difficulty = avg_diff
+	var/list/diffs_for_selected = diff_tallies[selected_id_str] || list()
+	if(!length(diffs_for_selected))
+		selected_difficulty = 1.0
+	else
+		var/list/diff_counts = list()
+		for(var/d in diffs_for_selected)
+			var/d_str = num2text(d)
+			diff_counts[d_str] = (diff_counts[d_str] || 0) + 1
+		var/max_count = 0
+		var/list/best_diffs = list()
+		for(var/d_str in diff_counts)
+			var/c = diff_counts[d_str]
+			if(c > max_count)
+				max_count = c
+				best_diffs = list(text2num(d_str))
+			else if(c == max_count)
+				best_diffs += text2num(d_str)
+		selected_difficulty = best_diffs.len == 1 ? best_diffs[1] : pick(best_diffs)
+		if(best_diffs.len > 1)
+			to_chat(world, span_announce("Difficulty tie broken randomly!"))
 
 	var/selected_name = find_candidate_name_global(selected_id_str)
-	to_chat(world, span_boldnotice("Storyteller selected: [selected_name] at difficulty [round(avg_diff, 0.1)]."))
-	log_storyteller("Storyteller vote ended: [selected_id_str] (votes=[max_votes], diff=[avg_diff]), total votes=[total_votes]")
+	to_chat(world, span_boldnotice("Storyteller selected: [selected_name] at majority-voted difficulty [round(selected_difficulty, 0.1)]."))
+	log_storyteller("Storyteller vote ended: [selected_id_str] (votes=[max_votes], majority_diff=[selected_difficulty]), total votes=[total_votes]")
 	SEND_SIGNAL(src, COMSIG_STORYTELLER_VOTE_END)
 
 	if(SSticker.current_state < GAME_STATE_PLAYING)
@@ -213,7 +233,7 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 		qdel(active)
 
 	active = create_storyteller_from_data(selected_id)
-	active.difficulty_multiplier = clamp(avg_diff, 0.3, 5.0)
+	active.difficulty_multiplier = clamp(selected_difficulty, 0.3, 5.0)
 	active.initialize()
 
 /datum/storyteller_vote_ui/proc/find_candidate_name(id_str)
