@@ -1,3 +1,9 @@
+/datum/round_event_control/operative
+	story_category = STORY_GOAL_NEVER
+
+/datum/round_event_control/dark_matteor
+	story_category = STORY_GOAL_NEVER
+
 /datum/round_event_control/radiation_storm
 	id = "radiation_storm"
 	typepath = /datum/round_event/radiation_storm
@@ -61,3 +67,22 @@
 	required_round_progress = STORY_ROUND_PROGRESSION_MID
 	requierd_threat_level = STORY_GOAL_THREAT_ELEVATED
 	story_weight = STORY_GOAL_BASE_WEIGHT * 0.8
+
+
+/datum/round_event_control/vent_clog/critical
+	id = "vent_clog_critical"
+	story_category = STORY_GOAL_BAD
+	tags = list(STORY_TAG_ENVIRONMENTAL, STORY_TAG_REQUIRES_ENGINEERING, STORY_TAG_AFFECTS_WHOLE_STATION, STORY_TAG_ESCALATION)
+	typepath = /datum/round_event/vent_clog/critical
+	min_players = 10
+	required_round_progress = STORY_ROUND_PROGRESSION_MID
+	story_weight = STORY_GOAL_BASE_WEIGHT * 0.4
+
+
+/datum/round_event_control/immovable_rod
+	id = "immovable_rod"
+	typepath = /datum/round_event/immovable_rod
+	story_category = STORY_GOAL_BAD
+	tags = list(STORY_TAG_HUMOROUS, STORY_TAG_CHAOTIC)
+	min_players = 5
+	required_round_progress = STORY_ROUND_PROGRESSION_MID

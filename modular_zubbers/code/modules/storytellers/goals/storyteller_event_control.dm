@@ -2,7 +2,7 @@
 	// Universal id of this event
 	var/id
 	// A storyteller category of this event
-	var/story_category = STORY_GOAL_RANDOM
+	var/story_category = STORY_GOAL_NEVER
 	// Is control of this event was overrided by storyteller
 	var/storyteller_override = FALSE
 	// A universal tags that helps storyteller to predict event behevour
@@ -22,6 +22,8 @@
 
 // Is this event avaible for selection on storyteller
 /datum/round_event_control/proc/is_avaible(datum/storyteller_inputs/inputs, datum/storyteller/storyteller)
+	if(!can_spawn_event(inputs.player_count(), allow_magic = FALSE))
+		return FALSE
 	if(occurrences >= max_occurrences)
 		return FALSE
 	if(get_story_weight(inputs, storyteller) <= 0)
