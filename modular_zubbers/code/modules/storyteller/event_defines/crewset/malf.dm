@@ -12,8 +12,8 @@
 
 	antag_datum = /datum/antagonist/malf_ai
 	antag_flag = ROLE_MALF
-	weight = 1
-	tags = list(TAG_CREW_ANTAG, TAG_COMBAT, TAG_DESTRUCTIVE, TAG_CHAOTIC)
+	weight = 4
+	tags = list(TAG_CREW_ANTAG, TAG_COMBAT, TAG_CHAOTIC)
 	restricted_roles = list("Cyborg")
 
 /datum/round_event_control/antagonist/solo/malf/can_spawn_event(players_amt, allow_magic, popchecks)

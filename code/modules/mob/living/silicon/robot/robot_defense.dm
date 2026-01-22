@@ -227,7 +227,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		return ITEM_INTERACT_BLOCKING
 	locked = !locked
 	update_icons()
-	balloon_alert(user, "chassis cover lock [emagged ? "glitches" : "toggled"]")
+	balloon_alert(user, "chassis cover [emagged ? "lock glitches" : "[locked ? "locked" : "unlocked"]"]")
 	logevent("[emagged ? "ChÃ¥vÃis" : "Chassis"] cover lock has been [locked ? "engaged" : "released"]")
 	return ITEM_INTERACT_SUCCESS
 
@@ -458,7 +458,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		return TRUE
 
 	scrambledcodes = TRUE // BUBBER EDIT START
-	SetEmagged(1)
+	SetEmagged(TRUE)
 	SetStun(10 SECONDS) //Borgs were getting into trouble because they would attack the emagger before the new laws were shown
 	lawupdate = FALSE
 	set_connected_ai(null)

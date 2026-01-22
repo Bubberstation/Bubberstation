@@ -8,6 +8,7 @@
 	layer = BELOW_OBJ_LAYER // I think this is the default but lets be safe?
 	resistance_flags = FLAMMABLE
 	flags_1 = ON_BORDER_1
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
 	/// If we randomize our icon on spawning
 	var/random_icons = TRUE
 
@@ -33,6 +34,7 @@
 	desc = "A basic wooden gate meant to prevent animals like you escaping."
 	icon_state = "gate"
 	random_icons = FALSE
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
 	/// Has the gate been opened or not?
 	var/opened = FALSE
 
