@@ -112,6 +112,8 @@
 
 	/* ANTAG VARIBLES */
 
+	/// Is storyteller attempting to spawn antagonists currently, it's need to prevent race conditions
+	VAR_PRIVATE/attempted_spawning = FALSE
 	/// Base interval for checking antagonist balance (default: 30 minutes for wave-based spawning)
 	var/antag_balance_check_interval = 30 MINUTES
 	/// Next time to check antagonist balance
@@ -200,8 +202,6 @@
 /// Checks if an event can trigger at a future time, respecting grace period after last event.
 /// Aids scheduling during sub-goal analysis without disrupting global objective pacing.
 /datum/storyteller/proc/can_trigger_event_at(time)
-	// Scale grace period by population_factor: low pop = longer grace period
-	// Linear interpolation: low pop (0.3) -> 1.5x grace, high pop (1.0) -> 1.0x grace
 	var/pop_grace_mult = 1.5 - (population_factor - 0.3) * (1.5 - 1.0) / (1.0 - 0.3)
 	pop_grace_mult = clamp(pop_grace_mult, 1.0, 1.5)
 	var/effective_grace = get_effective_pace()
@@ -209,24 +209,25 @@
 
 
 /// Effective event pace: mood frequency multiplier * (1 - adaptation). Lower = slower events,
-/// building tension toward global goals during crew adaptation phases.
 /datum/storyteller/proc/get_effective_pace()
-	return mood.get_event_frequency_multiplier() * (1.5 - adaptation_factor)
+	return mood.get_event_frequency_multiplier() * max(0.5, (1 - adaptation_factor))
 
 
-
+/// Effective grace period scaled by population factor: low pop = longer grace period
+/// Linear interpolation: low pop (0.3) -> 1.5x grace, high pop (1.0) -> 0.5x grace
 /datum/storyteller/proc/get_scaled_grace()
-	var/pop_grace_mult = lerp(1.5, 0.5, (population_factor - 0.3) / (1.0 - 0.3))
-	pop_grace_mult = clamp(pop_grace_mult, 0.0, 1.5)
-	return grace_period * pop_grace_mult
+	var/pop_mod = lerp(1.5, 0.5, 1.0 / max(0.1, population_factor))
+	pop_mod = clamp(pop_mod, 0.3, 1.5)
+	return grace_period * pop_mod
 
 
 
 /// Base event interval, scaled by pace and population factor.
 /// Low population = longer intervals (fewer events), high population = shorter intervals (more frequent events)
+/// event_interval = average_event_interval * effective_pace * (1 - population_factor)
 /datum/storyteller/proc/get_event_interval()
 	var/base = average_event_interval * get_effective_pace()
-	var/pop_mod = 1.5 - population_factor
+	var/pop_mod = 1 - max(0.3, population_factor)
 	return round(base * pop_mod)
 
 

@@ -3,10 +3,6 @@
 #define ENTRY_PLANNED_TIME "planned_time"
 #define ENTRY_CATEGORY "category"
 #define ENTRY_STATUS "status"
-#define STORY_MOOD_AGGR_SHIFT_FACTOR 0.3
-
-#define MIN_MAJOR_EVENT_INTERVAL (10 MINUTES)  		  // Minimum time between major events
-#define MAX_RECENT_FIRED_HISTORY 5             		  // Max recent fired events to store
 #define EVENT_CLUSTER_AVOIDANCE_BUFFER (150 SECONDS)  // Buffer to avoid clustering events too closely
 #define MAX_PLAN_ATTEMPTS 100                  		  // Max attempts to find a free slot during planning
 
@@ -14,21 +10,17 @@
 	VAR_PRIVATE/datum/storyteller/owner
 	/// Timeline plan: Assoc list of "[world.time + offset]" -> list(event_instance, category, status="pending|firing|completed")
 	VAR_PRIVATE/list/timeline = list()
-	/// Recent fired events history: list of last MAX_RECENT_FIRED_HISTORY fired entries (for storyteller memory)
-	VAR_PRIVATE/list/recent_fired = list()
 	/// Recalc frequency
 	VAR_PRIVATE/recalc_interval = STORY_RECALC_INTERVAL
 
-	VAR_PRIVATE/planning_cooldown = 2 MINUTES
-
-	VAR_PRIVATE/last_major_event
-
-	VAR_PRIVATE/major_event_cooldown
+	VAR_PRIVATE/planning_cooldown = 5 MINUTES
 
 	COOLDOWN_DECLARE(event_planning_cooldown)
 
 	COOLDOWN_DECLARE(recalculate_cooldown)
 
+	// Threshold for population spike detection
+	var/population_spike_threshold = 30
 
 /datum/storyteller_planner/New(datum/storyteller/_owner)
 	..()
@@ -36,8 +28,8 @@
 
 
 /// Main update_plan: Scans timeline for ready events, marks them for firing, cleans up, and returns list of ready events.
-/// Does NOT execute events—returns them for the storyteller to handle. Maintains recent fired history (last 5).
-/// Handles recalculation and adding new events if needed. Inspired by adaptive scheduling with anti-clustering.
+/// Does NOT execute events—returns them for the storyteller to handle.
+/// Handles recalculation and adding new events if needed. Inspired by adaptive scheduling algorithms from rimworld
 /datum/storyteller_planner/proc/update_plan(datum/storyteller/ctl, datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/bal)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!timeline)
@@ -62,7 +54,7 @@
 		if(!evt.can_fire_now(inputs, ctl))
 			timeline -= offset_str
 			var/replan_delay = get_next_event_delay(evt, ctl)
-			var/last_time = get_last_reference_time(ctl)
+			var/last_time = get_last_reference_time()
 			try_plan_event(evt, last_time + replan_delay, FALSE)  // Allow insertion/shifting
 			continue
 
@@ -75,12 +67,12 @@
 		if(has_antagonist && (evt.story_category & STORY_GOAL_ANTAGONIST))
 			continue
 
-		// Mark as firing and add to ready list (do not execute here)
+		// Mark as firing and add to ready
 		entry[ENTRY_STATUS] = STORY_GOAL_FIRING
 		ready_events += evt
 
 	// Clean up completed/failed events from timeline
-	for(var/offset_str in timeline.Copy())  // Copy to avoid runtime during iteration
+	for(var/offset_str in timeline.Copy())
 		var/list/entry = timeline[offset_str]
 		if(entry[ENTRY_STATUS] in list(STORY_GOAL_COMPLETED, STORY_GOAL_FAILED, STORY_GOAL_FIRING))
 			timeline -= offset_str
@@ -147,18 +139,20 @@
 		cancel_event(delete_offset)
 
 	// Full rebuild if forced or population spike detected
-	var/needs_full_rebuild = force || ctl.has_population_spike(20)
-	if(!needs_full_rebuild && pending_count >= STORY_INITIAL_GOALS_COUNT)
-		scale_timeline(ctl, inputs, bal)
+	var/need_recalc = ctl.has_population_spike(population_spike_threshold) && !force
+	if(need_recalc && pending_count >= STORY_INITIAL_GOALS_COUNT)
+		scale_timeline()
 		return timeline
-
-	message_admins("[ctl.name] [force ? "was forced to" : ""] rebuild event timeline [ctl.has_population_spike(20) ? "because of population spike" : ""]")
+	if(!force)
+		return timeline
+	// Actually rebuilding timeline
+	message_admins("[ctl.name] [force ? "was forced to" : ""] rebuild event timeline!")
 	clear_timeline()
 	build_timeline(ctl, inputs, bal)
 
 
 /// Scales the timeline by adjusting event times to match current storyteller pacing.
-/// Attempts to bring future events closer if they are too far ahead, respecting major event spacing and mood multipliers.
+/// Attempts to bring future events closer if they are too far ahead
 /datum/storyteller_planner/proc/scale_timeline(datum/storyteller/ctl, datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/bal, force = FALSE)
 	var/list/upcoming_offsets = get_upcoming_events(length(timeline))
 	var/scaled_average_time = ctl.get_event_interval()
@@ -196,7 +190,7 @@
 	return timeline
 
 
-/// Build initial timeline: Generates adaptive sequence with anti-clustering and major spacing.
+/// Build initial timeline
 /datum/storyteller_planner/proc/build_timeline(datum/storyteller/ctl, datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/bal)
 	timeline = list()
 
@@ -217,12 +211,8 @@
 		return FALSE
 
 	var/next_delay = get_next_event_delay(new_event_control, ctl)
-	var/last_time = get_last_reference_time(ctl)
+	var/last_time = get_last_reference_time()
 	var/fire_offset = last_time + next_delay
-
-	// Enforce major event spacing if this is a major event
-	if(new_event_control.story_category & STORY_GOAL_MAJOR)
-		fire_offset = enforce_major_spacing(fire_offset)
 
 	if(try_plan_event(new_event_control, fire_offset, FALSE))  // Allow insertion with anti-clustering
 		new_event_control.on_planned(fire_offset)
@@ -268,11 +258,12 @@
 			else
 				time_str = "[round(delay_minutes)]m"
 
+			var/is_antag = event_control.story_category & STORY_GOAL_ANTAGONIST
 			var/format_name = "[event_control.name || event_control.id] [event_control.story_category & STORY_GOAL_ANTAGONIST ? span_red("- Antagonist event") : ""]"
 			var/cancel_ref = "[REF(event_control)]_[target_time]"
 			var/reroll_ref = "[REF(event_control)]_[target_time]_reroll"
 			message_admins("[owner.name] planned new event [format_name] in <b>[time_str]</b>. \
-				(<a href='byond://?src=[REF(src)];cancel_event=[cancel_ref]'>CANCEL</a>) \
+				[is_antag ? "" : "(<a href='byond://?src=[REF(src)];cancel_event=[cancel_ref]'>CANCEL</a>)"] \
 				(<a href='byond://?src=[REF(src)];reroll_event=[reroll_ref]'>REROLL</a>)")
 		return TRUE
 
@@ -288,29 +279,6 @@
 		if(abs(target_time - existing_time) < buffer)
 			return FALSE
 	return TRUE
-
-
-/// Enforces minimum interval between major events by shifting the proposed time if too close.
-/datum/storyteller_planner/proc/enforce_major_spacing(proposed_time)
-	var/last_major_time = get_last_major_event_time()
-	if(last_major_time && (proposed_time - last_major_time) < MIN_MAJOR_EVENT_INTERVAL)
-		proposed_time = last_major_time + MIN_MAJOR_EVENT_INTERVAL + rand(0, 2 MINUTES)  // Add slight randomness
-	return proposed_time
-
-
-/// Returns the fire time of the most recent major event in timeline or recent_fired.
-/datum/storyteller_planner/proc/get_last_major_event_time()
-	var/last_major = 0
-	for(var/offset_str in timeline)
-		var/list/entry = timeline[offset_str]
-		if(entry[ENTRY_CATEGORY] & STORY_GOAL_MAJOR)
-			last_major = max(last_major, text2num(offset_str))
-
-	for(var/list/entry in recent_fired)
-		if(entry[ENTRY_CATEGORY] & STORY_GOAL_MAJOR)
-			last_major = max(last_major, entry[ENTRY_FIRE_TIME])
-
-	return last_major
 
 
 /proc/cmp_time_keys_asc(a, b)
@@ -440,7 +408,7 @@
 	var/delay = ctl.get_event_interval()
 	if(event_control)
 		if(event_control.story_category & STORY_GOAL_GOOD)
-			delay *= 0.75
+			delay *= 0.8
 		else if(event_control.story_category & STORY_GOAL_BAD)
 			delay += ctl.get_scaled_grace()
 		else if(event_control.story_category & STORY_GOAL_NEUTRAL)
@@ -450,10 +418,8 @@
 	return delay
 
 
-/datum/storyteller_planner/proc/get_last_reference_time(datum/storyteller/ctl)
-	if(length(timeline))
-		return get_closest_offset()
-	return min(world.time, ctl.last_event_time)
+/datum/storyteller_planner/proc/get_last_reference_time()
+	return owner.get_time_since_last_event()
 
 /datum/storyteller_planner/Topic(href, href_list)
 	. = ..()
@@ -514,9 +480,6 @@
 #undef ENTRY_FIRE_TIME
 #undef ENTRY_CATEGORY
 #undef ENTRY_STATUS
-#undef STORY_MOOD_AGGR_SHIFT_FACTOR
-#undef MIN_MAJOR_EVENT_INTERVAL
-#undef MAX_RECENT_FIRED_HISTORY
 #undef EVENT_CLUSTER_AVOIDANCE_BUFFER
 #undef MAX_PLAN_ATTEMPTS
 #undef ENTRY_PLANNED_TIME

@@ -262,7 +262,7 @@ SUBSYSTEM_DEF(storytellers)
 
 /datum/controller/subsystem/storytellers/fire(resumed)
 	if(active)
-		INVOKE_ASYNC(active, TYPE_PROC_REF(/datum/storyteller, think))
+		active.think()
 	for(var/datum/round_event/evt in active_events)
 		if(!evt || QDELETED(evt))
 			active_events -= evt
@@ -679,6 +679,12 @@ ADMIN_VERB(storyteller_simulation, R_ADMIN, "Storyteller - Simulation", "Simulat
 	default = 500
 	integer = TRUE
 	min_val = 0
+
+/datum/config_entry/number/strong_security_count
+	default = 8
+	integer = TRUE
+	min_val = 1
+
 
 #undef FIRE_PRIORITY_STORYTELLERS
 #undef STORYTELLER_JSON_PATH

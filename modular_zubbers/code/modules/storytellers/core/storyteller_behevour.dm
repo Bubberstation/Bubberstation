@@ -16,6 +16,13 @@
 	return tags
 
 /datum/storyteller_behevour/proc/is_event_valid_for_behevour(datum/round_event_control/evt, datum/storyteller_balance_snapshot/bal, datum/storyteller_inputs/inputs)
+	if(evt.story_category & STORY_GOAL_MAJOR && HAS_TRAIT(owner, STORYTELLER_TRAIT_NO_MAJOR_EVENTS))
+		return FALSE
+	if(evt.story_category & STORY_GOAL_GOOD && HAS_TRAIT(owner, STORYTELLER_TRAIT_NO_GOOD_EVENTS))
+		return FALSE
+	if((evt.story_category & STORY_GOAL_ANTAGONIST) && (evt.story_category & STORY_GOAL_MAJOR))
+		if(!HAS_TRAIT(owner, STORYTELLER_TRAIT_MAJOR_ANTAGONISTS))
+			return FALSE
 	return TRUE
 
 

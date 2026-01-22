@@ -2,7 +2,6 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 	var/datum/storyteller_admin_ui/ui = new
 	ui.ui_interact(usr)
 
-
 /datum/storyteller_admin_ui
 	/// cached reference to storyteller
 	var/datum/storyteller/ctl
@@ -23,6 +22,7 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 
 /datum/storyteller_admin_ui/ui_static_data(mob/user)
 	var/list/data = list()
+
 	var/list/moods = list()
 	for(var/mood_type in subtypesof(/datum/storyteller_mood))
 		if(mood_type == /datum/storyteller_mood)
@@ -36,20 +36,6 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 		))
 	data["available_moods"] = moods
 
-	// Available goals from the subsystem registry, filtered by availability
-	var/list/goals = list()
-	if(ctl)
-		for(var/id_key in SSstorytellers.events_by_id)
-			var/datum/round_event_control/evt = SSstorytellers.events_by_id[id_key]
-			if(evt.is_avaible(ctl.inputs, ctl))
-				goals += list(list(
-					"id" = evt.id,
-					"name" = evt.name || evt.id,
-					"weight" = evt.get_story_weight(ctl.inputs, ctl),
-					"is_antagonist" = (evt.story_category & STORY_GOAL_ANTAGONIST),
-				))
-	data["available_goals"] = goals
-
 	var/list/candidates = list()
 	for(var/id in SSstorytellers.storyteller_data)
 		var/list/storyteller_data = SSstorytellers.storyteller_data[id]
@@ -60,16 +46,26 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 			"id" = id,
 		))
 	data["candidates"] = candidates
-	return data
 
+	var/list/goals = list()
+	for(var/id_key in SSstorytellers.events_by_id)
+		var/datum/round_event_control/evt = SSstorytellers.events_by_id[id_key]
+		if(!evt)
+			continue
+		goals += list(list(
+			"id" = evt.id,
+			"name" = evt.name || evt.id,
+			"desc" = evt.description,
+			"is_antagonist" = (evt.story_category & STORY_GOAL_ANTAGONIST),
+		))
+	data["available_goals"] = goals
+
+	return data
 
 /datum/storyteller_admin_ui/ui_assets(mob/user)
 	return list(
 		get_asset_datum(/datum/asset/simple/storyteller_portraits_icons),
 	)
-
-
-
 
 /datum/storyteller_admin_ui/ui_data(mob/user)
 	var/list/data = list()
@@ -90,6 +86,7 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 			"pace" = ctl.mood.pace,
 			"threat" = ctl.mood.get_threat_multiplier(),
 		)
+
 	var/list/upcoming = ctl.planner.get_upcoming_events(10)
 	data["upcoming_goals"] = list()
 	for(var/offset in upcoming)
@@ -115,6 +112,7 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 			"storyteller_implementation" = storyteller_implementation,
 			"is_antagonist" = (evt.story_category & STORY_GOAL_ANTAGONIST),
 		))
+
 	data["effective_threat_level"] = ctl.get_effective_threat()
 	data["target_tension"] = ctl.target_tension
 	data["round_progression"] = ctl.round_progression
@@ -131,6 +129,7 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 	data["current_tension"] = ctl.current_tension
 	data["can_force_event"] = TRUE
 	data["current_world_time"] = world.time
+
 	var/list/events = list()
 	for(var/id in ctl.recent_events)
 		if(!id || !ctl.recent_events[id])
@@ -140,30 +139,17 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 			continue
 		var/list/event_data = details[1]
 		events += list(list(
-			"fired_at" = event_data["desc"],
+			"fired_at" = event_data["fired_at"] || world.time,
 			"desc" = event_data["desc"],
 			"status" = event_data["status"],
 			"id" = event_data["id"],
 		))
 
-	// sortTim(events, some sorter?, "time") TODO: sort this shit by time
-	data["recent_events"] = events.len ? events.Copy(1, min(20, events.len + 1)) : list()
-	data["available_moods"] = list()
-	for(var/path in subtypesof(/datum/storyteller_mood))
-		var/datum/storyteller_mood/M = path
-		data["available_moods"] += list(list(
-			"id" = "[path]",
-			"name" = initial(M.name),
-		))
-	data["available_goals"] = list()
-	for(var/id in SSstorytellers.events_by_id)
-		var/datum/round_event_control/evt = SSstorytellers.events_by_id[id]
-		if(!evt)
-			continue
-		data["available_goals"] += list(list(
-			"id" = evt.id,
-			"name" = evt.name || evt.id,
-		))
+	if(events.len)
+		events = sortTim(events, GLOBAL_PROC_REF(cmp_time_keys_asc), "fired_at")
+
+	data["recent_events"] = events.len ? events.Copy(1, min(51, events.len + 1)) : list()
+
 	return data
 
 /datum/storyteller_admin_ui/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -182,7 +168,6 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 			ctl.next_think_time = world.time + 1 SECONDS
 			return TRUE
 		if("trigger_event")
-			// Trigger ad-hoc random event outside chain
 			ctl.trigger_random_event(ctl.inputs.vault, ctl.inputs, ctl)
 			return TRUE
 		if("force_fire_next")
@@ -223,7 +208,6 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 		if("replan")
 			ctl.planner.recalculate_plan(ctl, ctl.inputs, ctl.balancer.make_snapshot(ctl.inputs), TRUE)
 			return TRUE
-		// Advanced setters
 		if("set_difficulty")
 			var/value = clamp(text2num(params["value"]), 0.1, 5.0)
 			ctl.difficulty_multiplier = value
@@ -233,7 +217,7 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 			ctl.target_tension = value
 			return TRUE
 		if("set_think_delay")
-			var/value = max(0, round(text2num(params["value"])) )
+			var/value = max(0, round(text2num(params["value"])))
 			ctl.base_think_delay = value
 			ctl.schedule_next_think()
 			return TRUE
@@ -241,7 +225,7 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 			ctl.average_event_interval = round(text2num(params["average_event_interval"]))
 			return TRUE
 		if("set_grace_period")
-			var/value = max(0, round(text2num(params["value"])) )
+			var/value = max(0, round(text2num(params["value"])))
 			ctl.grace_period = value
 			return TRUE
 		if("set_repetition_penalty")

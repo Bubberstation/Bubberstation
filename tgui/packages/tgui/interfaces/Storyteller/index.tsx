@@ -1,5 +1,5 @@
 import '../../styles/interfaces/StorytellerVote.scss';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   Box,
   Button,
@@ -26,7 +26,7 @@ import {
   TOOLTIPS,
 } from './types';
 
-const InputScrollApply = (props: scrollConfigProp) => {
+const InputScrollApply = React.memo((props: scrollConfigProp) => {
   const { value, setValue, onSet, min, max, step, delim = 1 } = props;
 
   return (
@@ -50,7 +50,7 @@ const InputScrollApply = (props: scrollConfigProp) => {
       </Stack.Item>
     </Stack>
   );
-};
+});
 
 const formatTime = (ticks?: number, current_time?: number) => {
   if (!ticks && ticks !== 0) return '—';
@@ -65,26 +65,28 @@ const formatTime = (ticks?: number, current_time?: number) => {
   return `${sign}${minutes}m ${sign}${remainderSeconds.toString().padStart(2, '0')}s`;
 };
 
-const ProgressRow = ({
-  label,
-  value,
-  color,
-  tooltip,
-}: {
-  label: string;
-  value?: number;
-  color?: 'good' | 'average' | 'bad';
-  tooltip?: string;
-}) => {
-  const pct = Math.max(0, Math.min(1, value ?? 0));
-  return (
-    <LabeledList.Item label={label} tooltip={tooltip}>
-      <ProgressBar value={pct} color={color}>
-        {Math.round(pct * 100)}%
-      </ProgressBar>
-    </LabeledList.Item>
-  );
-};
+const ProgressRow = React.memo(
+  ({
+    label,
+    value,
+    color,
+    tooltip,
+  }: {
+    label: string;
+    value?: number;
+    color?: 'good' | 'average' | 'bad';
+    tooltip?: string;
+  }) => {
+    const pct = Math.max(0, Math.min(1, value ?? 0));
+    return (
+      <LabeledList.Item label={label} tooltip={tooltip}>
+        <ProgressBar value={pct} color={color}>
+          {Math.round(pct * 100)}%
+        </ProgressBar>
+      </LabeledList.Item>
+    );
+  },
+);
 
 type UpcomingGoalItemProps = {
   goal: StorytellerUpcomingGoal;
@@ -92,166 +94,181 @@ type UpcomingGoalItemProps = {
   act: (action: string, params?: Record<string, unknown>) => void;
 };
 
-const UpcomingGoalItem = ({
-  goal,
-  current_world_time,
-  act,
-}: UpcomingGoalItemProps) => {
-  const [expanded, setExpanded] = useState(false);
-  const isAntag = goal.is_antagonist;
-  const isStoryteller = goal.storyteller_implementation;
-  const fireTimeText =
-    goal.fire_time <= (current_world_time ?? 0)
-      ? 'Firing'
-      : formatTime(goal.fire_time, current_world_time);
+const UpcomingGoalItem = React.memo(
+  ({ goal, current_world_time, act }: UpcomingGoalItemProps) => {
+    const [expanded, setExpanded] = useState(false);
+    const isAntag = goal.is_antagonist;
+    const isStoryteller = goal.storyteller_implementation;
 
-  const boxBgColor = isAntag
-    ? 'rgba(255, 60, 60, 0.2)'
-    : 'rgba(120,120,120,0.15)';
-  const headerBgColor = isAntag
-    ? 'rgba(255, 50, 50, 0.3)'
-    : 'rgba(180,180,180,0.1)';
+    const fireTimeText = useMemo(
+      () =>
+        goal.fire_time <= (current_world_time ?? 0)
+          ? 'Firing'
+          : formatTime(goal.fire_time, current_world_time),
+      [goal.fire_time, current_world_time],
+    );
 
-  return (
-    <Box
-      mb={1.5}
-      p={1}
-      style={{
-        borderRadius: '2px',
-        backgroundColor: boxBgColor,
-        boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
-      }}
-    >
-      <Stack align="center">
-        <Stack.Item grow>
-          <Button
-            icon={expanded ? 'chevron-down' : 'chevron-right'}
-            onClick={() => setExpanded(!expanded)}
-            backgroundColor={headerBgColor}
-            color="white"
-            textColor="white"
-            fluid
-            textAlign="left"
-            style={{
-              borderRadius: '2px',
-              fontWeight: 600,
-              textTransform: 'none',
-              justifyContent: 'flex-start',
-              padding: '0.4rem 0.7rem',
-            }}
-          >
-            {goal.name || goal.id}
-            {isAntag ? (
-              <Box inline ml={1} color="red" opacity={0.9}>
-                - antagonist
-              </Box>
-            ) : null}
-            {isStoryteller && !isAntag ? (
-              <Box opacity={0.9} color="blue">
-                {'(Storyteller)'}
-              </Box>
-            ) : null}
-          </Button>
-        </Stack.Item>
+    const boxBgColor = useMemo(
+      () => (isAntag ? 'rgba(255, 60, 60, 0.2)' : 'rgba(120,120,120,0.15)'),
+      [isAntag],
+    );
+    const headerBgColor = useMemo(
+      () => (isAntag ? 'rgba(255, 50, 50, 0.3)' : 'rgba(180,180,180,0.1)'),
+      [isAntag],
+    );
 
-        <Stack.Item>
+    const handleTrigger = useCallback(
+      () => act('trigger_goal', { offset: goal.fire_time }),
+      [act, goal.fire_time],
+    );
+    const handleRemove = useCallback(
+      () => act('remove_goal', { offset: goal.fire_time }),
+      [act, goal.fire_time],
+    );
+
+    return (
+      <Box
+        mb={1.5}
+        p={1}
+        style={{
+          borderRadius: '2px',
+          backgroundColor: boxBgColor,
+          boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
+        }}
+      >
+        <Stack align="center">
+          <Stack.Item grow>
+            <Button
+              icon={expanded ? 'chevron-down' : 'chevron-right'}
+              onClick={() => setExpanded(!expanded)}
+              backgroundColor={headerBgColor}
+              color="white"
+              textColor="white"
+              fluid
+              textAlign="left"
+              style={{
+                borderRadius: '2px',
+                fontWeight: 600,
+                textTransform: 'none',
+                justifyContent: 'flex-start',
+                padding: '0.4rem 0.7rem',
+              }}
+            >
+              {goal.name || goal.id}
+              {isAntag ? (
+                <Box inline ml={1} color="red" opacity={0.9}>
+                  - antagonist
+                </Box>
+              ) : null}
+              {isStoryteller && !isAntag ? (
+                <Box opacity={0.9} color="blue">
+                  {'(Storyteller)'}
+                </Box>
+              ) : null}
+            </Button>
+          </Stack.Item>
+
+          <Stack.Item>
+            <Box
+              px={1}
+              py={0.3}
+              style={{
+                backgroundColor:
+                  goal.fire_time <= (current_world_time ?? 0)
+                    ? 'rgba(0, 120, 255, 0.3)'
+                    : 'rgba(255,255,255,0.1)',
+                borderRadius: '2px',
+                fontWeight: 500,
+              }}
+            >
+              {fireTimeText}
+            </Box>
+          </Stack.Item>
+
+          {!expanded && (
+            <>
+              <Stack.Item>
+                <Button
+                  icon="play"
+                  tooltip="Fire"
+                  color="good"
+                  onClick={() =>
+                    act('trigger_goal', { offset: goal.fire_time })
+                  }
+                />
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  icon="trash"
+                  tooltip="Remove"
+                  color="bad"
+                  onClick={() => act('remove_goal', { offset: goal.fire_time })}
+                />
+              </Stack.Item>
+            </>
+          )}
+        </Stack>
+
+        {expanded && (
           <Box
+            mt={1}
             px={1}
-            py={0.3}
+            py={0.5}
             style={{
-              backgroundColor:
-                goal.fire_time <= (current_world_time ?? 0)
-                  ? 'rgba(0, 120, 255, 0.3)'
-                  : 'rgba(255,255,255,0.1)',
+              backgroundColor: 'rgba(255,255,255,0.05)',
               borderRadius: '2px',
-              fontWeight: 500,
             }}
           >
-            {fireTimeText}
+            <LabeledList>
+              <LabeledList.Item label="Status">
+                <Box
+                  color={
+                    goal.status === 'active'
+                      ? 'good'
+                      : goal.status === 'failed'
+                        ? 'bad'
+                        : 'average'
+                  }
+                  fontWeight={600}
+                >
+                  {goal.status}
+                </Box>
+              </LabeledList.Item>
+              <LabeledList.Item label="Weight">
+                <Box>{goal.weight ?? '—'}</Box>
+              </LabeledList.Item>
+
+              <LabeledList.Item label="Description">
+                <Box opacity={0.9}>
+                  {goal.desc || 'No description available.'}
+                </Box>
+              </LabeledList.Item>
+            </LabeledList>
+
+            <Stack mt={1}>
+              <Stack.Item>
+                <Button
+                  icon="play"
+                  tooltip="Fire"
+                  color="good"
+                  onClick={handleTrigger}
+                />
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  icon="trash"
+                  tooltip="Remove"
+                  color="bad"
+                  onClick={handleRemove}
+                />
+              </Stack.Item>
+            </Stack>
           </Box>
-        </Stack.Item>
-
-        {!expanded && (
-          <>
-            <Stack.Item>
-              <Button
-                icon="play"
-                tooltip="Fire"
-                color="good"
-                onClick={() => act('trigger_goal', { offset: goal.fire_time })}
-              />
-            </Stack.Item>
-            <Stack.Item>
-              <Button
-                icon="trash"
-                tooltip="Remove"
-                color="bad"
-                onClick={() => act('remove_goal', { offset: goal.fire_time })}
-              />
-            </Stack.Item>
-          </>
         )}
-      </Stack>
-
-      {expanded && (
-        <Box
-          mt={1}
-          px={1}
-          py={0.5}
-          style={{
-            backgroundColor: 'rgba(255,255,255,0.05)',
-            borderRadius: '2px',
-          }}
-        >
-          <LabeledList>
-            <LabeledList.Item label="Status">
-              <Box
-                color={
-                  goal.status === 'active'
-                    ? 'good'
-                    : goal.status === 'failed'
-                      ? 'bad'
-                      : 'average'
-                }
-                fontWeight={600}
-              >
-                {goal.status}
-              </Box>
-            </LabeledList.Item>
-            <LabeledList.Item label="Weight">
-              <Box>{goal.weight ?? '—'}</Box>
-            </LabeledList.Item>
-
-            <LabeledList.Item label="Description">
-              <Box opacity={0.9}>
-                {goal.desc || 'No description available.'}
-              </Box>
-            </LabeledList.Item>
-          </LabeledList>
-
-          <Stack mt={1}>
-            <Stack.Item>
-              <Button
-                icon="play"
-                tooltip="Fire"
-                color="good"
-                onClick={() => act('trigger_goal', { offset: goal.fire_time })}
-              />
-            </Stack.Item>
-            <Stack.Item>
-              <Button
-                icon="trash"
-                tooltip="Remove"
-                color="bad"
-                onClick={() => act('remove_goal', { offset: goal.fire_time })}
-              />
-            </Stack.Item>
-          </Stack>
-        </Box>
-      )}
-    </Box>
-  );
-};
+      </Box>
+    );
+  },
+);
 
 type GoalSearchDropdownProps = {
   available_goals: StorytellerGoal[];
@@ -260,94 +277,96 @@ type GoalSearchDropdownProps = {
   onInsert: () => void;
 };
 
-const GoalSearchDropdown = ({
-  available_goals,
-  selectedGoal,
-  setSelectedGoal,
-  onInsert,
-}: GoalSearchDropdownProps) => {
-  const [searchTerm, setSearchTerm] = useState('');
+const GoalSearchDropdown = React.memo(
+  ({
+    available_goals,
+    selectedGoal,
+    setSelectedGoal,
+    onInsert,
+  }: GoalSearchDropdownProps) => {
+    const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredGoals = useMemo(
-    () =>
-      available_goals.filter((goal) => {
-        if (!goal) return false;
-        if (!searchTerm) return true;
-        const text = String(goal.name ?? goal.id ?? '').toLowerCase();
-        return text.includes(searchTerm.toLowerCase());
-      }),
-    [available_goals, searchTerm],
-  );
+    const filteredGoals = useMemo(
+      () =>
+        available_goals.filter((goal) => {
+          if (!goal) return false;
+          if (!searchTerm) return true;
+          const text = String(goal.name ?? goal.id ?? '').toLowerCase();
+          return text.includes(searchTerm.toLowerCase());
+        }),
+      [available_goals, searchTerm],
+    );
 
-  const handleGoalSelect = useCallback(
-    (goal: StorytellerGoal) => {
-      setSelectedGoal(String(goal.id));
-    },
-    [setSelectedGoal],
-  );
+    const handleGoalSelect = useCallback(
+      (goal: StorytellerGoal) => {
+        setSelectedGoal(String(goal.id));
+      },
+      [setSelectedGoal],
+    );
 
-  return (
-    <Stack vertical>
-      <Stack.Item>
-        <Stack>
-          <Stack.Item grow>
-            <Input
-              placeholder="Search events..."
-              value={searchTerm}
-              onChange={(str) => setSearchTerm(str)}
-              width="100%"
-            />
-          </Stack.Item>
-          <Stack.Item>
-            <Button
-              icon="check"
-              tooltip="Insert Selected"
-              disabled={!selectedGoal}
-              onClick={onInsert}
-            />
-          </Stack.Item>
-        </Stack>
-      </Stack.Item>
-      <Stack.Item grow minHeight="120px">
-        <Section scrollable fill>
-          {filteredGoals.length ? (
-            filteredGoals.map((g) => (
-              <Box
-                key={g.id}
-                mb={0.5}
-                backgroundColor={g.is_antagonist ? 'color-red' : 'color-gray'}
-                className={g.is_antagonist ? 'antag-goal' : ''}
-                onClick={() => handleGoalSelect(g)}
-                style={{
-                  cursor: 'pointer',
-                  opacity: selectedGoal === String(g.id) ? 1 : 0.7,
-                }}
-              >
-                <Box>
-                  {g.name ?? String(g.id)}
-                  {g.is_antagonist && (
-                    <Box inline ml={1}>
-                      (antagonist)
-                    </Box>
-                  )}
-                  {selectedGoal === String(g.id) && (
-                    <Box inline ml={1}>
-                      (selected)
-                    </Box>
-                  )}
+    return (
+      <Stack vertical>
+        <Stack.Item>
+          <Stack>
+            <Stack.Item grow>
+              <Input
+                placeholder="Search events..."
+                value={searchTerm}
+                onChange={(str) => setSearchTerm(str)}
+                width="100%"
+              />
+            </Stack.Item>
+            <Stack.Item>
+              <Button
+                icon="check"
+                tooltip="Insert Selected"
+                disabled={!selectedGoal}
+                onClick={onInsert}
+              />
+            </Stack.Item>
+          </Stack>
+        </Stack.Item>
+        <Stack.Item grow minHeight="120px">
+          <Section scrollable fill>
+            {filteredGoals.length ? (
+              filteredGoals.map((g) => (
+                <Box
+                  key={g.id}
+                  mb={0.5}
+                  backgroundColor={g.is_antagonist ? 'color-red' : 'color-gray'}
+                  className={g.is_antagonist ? 'antag-goal' : ''}
+                  onClick={() => handleGoalSelect(g)}
+                  style={{
+                    cursor: 'pointer',
+                    opacity: selectedGoal === String(g.id) ? 1 : 0.7,
+                  }}
+                >
+                  <Box>
+                    {g.name ?? String(g.id)}
+                    {g.is_antagonist && (
+                      <Box inline ml={1}>
+                        (antagonist)
+                      </Box>
+                    )}
+                    {selectedGoal === String(g.id) && (
+                      <Box inline ml={1}>
+                        (selected)
+                      </Box>
+                    )}
+                  </Box>
                 </Box>
+              ))
+            ) : (
+              <Box opacity={0.6} color="white">
+                No events found.
               </Box>
-            ))
-          ) : (
-            <Box opacity={0.6} color="white">
-              No events found.
-            </Box>
-          )}
-        </Section>
-      </Stack.Item>
-    </Stack>
-  );
-};
+            )}
+          </Section>
+        </Stack.Item>
+      </Stack>
+    );
+  },
+);
 
 export const Storyteller = (props) => {
   const { data, act } = useBackend<StorytellerData>();

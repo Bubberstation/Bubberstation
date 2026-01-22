@@ -49,7 +49,7 @@
 
 
 /datum/storyteller/proc/spawn_initial_antagonists()
-	if(!SSstorytellers?.storyteller_replace_dynamic)
+	if(!SSstorytellers?.storyteller_replace_dynamic || attempted_spawning)
 		return
 
 	if(HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ANTAGS))
@@ -72,19 +72,22 @@
 		return TRUE
 
 	for(var/datum/round_event_control/ev in possible_candidates)
-		if(ev.story_category & STORY_GOAL_MAJOR)
-			if(HAS_TRAIT(src, STORYTELLER_TRAIT_MAJOR_ANTAGONISTS))
-				continue
-			if((pop > population_threshold_low) || HAS_TRAIT(src, STORYTELLER_TRAIT_NO_MERCY))
-				continue
+		if(!behevour.is_event_valid_for_behevour(ev, null, inputs))
 			possible_candidates -= ev
+			continue
+		if(ev.story_category & STORY_GOAL_MAJOR && pop < population_threshold_low)
+			if(!HAS_TRAIT(src, STORYTELLER_TRAIT_NO_MERCY))
+				possible_candidates -= ev
+
 	var/datum/storyteller_balance_snapshot/bal = balancer.make_snapshot(inputs)
 	var/tags = behevour.tokenize(STORY_GOAL_ANTAGONIST, inputs, bal, mood)
 	var/spawn_count = calculate_roundstart_antag_count(pop)
 	if(spawn_count <= 0)
-		message_admins("[name] skipped initial antagonist spawn - no antagonists needed!")
+		message_admins("[name] skipped initial antagonist spawn - no antagonists needed for current station state!")
+		log_storyteller("[name] skipped initial antagonist spawn - no antagonists needed for current station state!")
 		return TRUE
 
+	attempted_spawning = TRUE
 	for(var/i = 1 to spawn_count)
 		var/datum/round_event_control/antag_event = behevour.select_weighted_goal(inputs, bal, possible_candidates, population_factor, tags)
 		if(!antag_event)
@@ -100,7 +103,7 @@
 			possible_candidates -= antag_event
 			if(!HAS_TRAIT(src, STORYTELLER_TRAIT_NO_MERCY))
 				break
-
+	attempted_spawning = FALSE
 	message_admins("[name] spawned [spawn_count] initial antagonists for population [pop]")
 	return TRUE
 
@@ -111,7 +114,6 @@
 /datum/storyteller/proc/calculate_antagonist_spawn_weight_wave(datum/storyteller_balance_snapshot/snap, antag_weight, player_weight)
 	var/spawn_weight = 0.0
 	var/balance_ratio = snap.balance_ratio
-
 
 	// Balance factor: higher when antags are weaker relative to station
 	var/balance_factor = 0.0
@@ -150,7 +152,15 @@
 		stagnation_factor = 0   // Active, no stagnation
 	// Combine factors
 	spawn_weight = min(balance_factor + threat_factor + weight_factor + stagnation_factor, STORY_MAJOR_ANTAG_WEIGHT)
-
+	var/ignore_security = (HAS_TRAIT(src, STORYTELLER_TRAIT_NO_MERCY) || HAS_TRAIT(src, STORYTELLER_TRAIT_IGNORE_SECURITY))
+	if(!ignore_security)
+		var/security_count = inputs.get_entry(STORY_VAULT_SECURITY_COUNT) || 0
+		var/strong_security = CONFIG_GET(number/strong_security_count)
+		var/normalized_security = clamp(security_count / strong_security, 0, 1)
+		if(normalized_security <= 0)
+			spawn_weight *= 0.4
+		if(normalized_security < 0.7)
+			spawn_weight *= 0.6
 
 	// Adjust based on storyteller traits
 	if(HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ANTAGS))
@@ -173,7 +183,7 @@
 /// Called approximately every ~30 minutes based on cooldown
 /// Uses threat level, balance ratio, and antag weight to determine if spawns are needed
 /datum/storyteller/proc/check_and_spawn_antagonists(datum/storyteller_balance_snapshot/snap, force = FALSE)
-	if(!SSstorytellers.storyteller_replace_dynamic && !force)
+	if((!SSstorytellers.storyteller_replace_dynamic && !force) || attempted_spawning)
 		return
 
 	if(HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ANTAGS) && !force)
@@ -219,8 +229,6 @@
 	// Calculate spawn weight based on threat level, balance ratio, and antag weight
 	var/spawn_weight = calculate_antagonist_spawn_weight_wave(snap, antag_weight, player_weight)
 	if(spawn_weight <= 0 && !force)
-		return
-	else if(force)
 		message_admins("[name] is forcing antagonist spawn wave despite low spawn weight ([spawn_weight]). Aborting!")
 		return
 	INVOKE_ASYNC(src, PROC_REF(try_spawn_midround_antagonist_wave), snap, spawn_weight)
@@ -239,6 +247,7 @@
 		log_storyteller("[name] skipped antag spawn - no available midround antagonist events")
 		return
 
+	attempted_spawning = TRUE
 	var/tags = behevour.tokenize(STORY_GOAL_ANTAGONIST, inputs, snap, mood)
 	var/list/valid_candidates = list()
 	for(var/datum/round_event_control/ev in possible_candidates)
@@ -251,6 +260,7 @@
 
 	if(!length(valid_candidates))
 		log_storyteller("[name] skipped midround antag wave - no valid candidates after filtering")
+		attempted_spawning = FALSE
 		return
 	var/spawned_count = 0
 	var/max_attempts = 25
@@ -288,7 +298,7 @@
 		log_storyteller("[name] spawned [spawned_count] midround antagonists with [wave_weight] remaining wave weight")
 	else
 		message_admins("[name] failed to spawn any midround antagonists despite [wave_weight] wave weight")
-
+	attempted_spawning = FALSE
 
 #undef BALANCE_LOW
 #undef BALANCE_MED
