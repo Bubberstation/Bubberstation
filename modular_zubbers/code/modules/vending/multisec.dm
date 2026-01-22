@@ -1,5 +1,5 @@
 /obj/machinery/vending/wardrobe/sec_wardrobe
-	name = "\improper MultiSec Outfitting Station"
+	name = "\improper SecDrobe"  // multisec no more
 	desc = "A vending machine stocked with a multitude of security outfits, including standardized uniforms in multiple colors and general equipment. Now with more Multi!"
 	icon = 'modular_zubbers/icons/obj/machines/vending.dmi'
 	icon_state = "multisec"
@@ -15,41 +15,15 @@
 					/obj/item/storage/backpack/satchel/sec = 6,
 					/obj/item/storage/backpack/duffelbag/sec = 6,
 					/obj/item/clothing/under/rank/security/officer = 6,
-					/obj/item/clothing/under/rank/security/peacekeeper/armadyne = 6,
-					/obj/item/clothing/under/rank/security/camo = 6,
 					/obj/item/clothing/shoes/jackboots = 6,
-					/obj/item/clothing/shoes/jackboots/peacekeeper/armadyne = 6,
-					/obj/item/clothing/shoes/jackboots/gogo_boots = 6,
+					/obj/item/clothing/shoes/jackboots/sec = 6,
 					/obj/item/clothing/head/helmet/sec = 6,
 					/obj/item/clothing/head/beret/sec = 6,
-					/obj/item/clothing/head/security_kepi = 6,
-					/obj/item/clothing/head/beret/sec/peacekeeper/armadyne = 6,
 					/obj/item/clothing/head/soft/sec = 6,
 					/obj/item/clothing/head/security_beanie = 6,
-					/obj/item/clothing/head/costume/ushanka/sec = 10,
-					/obj/item/clothing/head/playbunnyears/security = 6,
-					/obj/item/clothing/under/rank/security/security_bunnysuit = 6,
-					/obj/item/clothing/suit/armor/security_tailcoat = 6,
-					/obj/item/clothing/neck/tie/bunnytie/security = 6,
-					/obj/item/clothing/head/playbunnyears/security/assistant = 6,
-					/obj/item/clothing/under/rank/security/security_assistant_bunnysuit = 6,
-					/obj/item/clothing/suit/armor/security_tailcoat/assistant = 6,
-					/obj/item/clothing/neck/tie/bunnytie/security_assistant = 6,
 					/obj/item/clothing/mask/bandana/red = 6,
-					/obj/item/clothing/neck/pauldron = 6,
-					/obj/item/clothing/neck/pauldron/commander = 6,
-					/obj/item/clothing/neck/pauldron/captain = 6,
 					/obj/item/clothing/gloves/color/black = 6,
-					/obj/item/clothing/gloves/combat/peacekeeper/armadyne = 6,
 					/obj/item/clothing/under/rank/security/officer/skirt = 6,
-					/obj/item/clothing/under/rank/security/skyrat/utility = 6,
-					/obj/item/clothing/under/rank/security/peacekeeper/skirt_redsec = 6,
-					/obj/item/clothing/suit/toggle/jacket/sec/old = 6,
-					/obj/item/clothing/suit/armor/vest/secjacket = 6,
-					/obj/item/clothing/suit/armor/vest/peacekeeper/armadyne = 6,
-					/obj/item/clothing/suit/armor/vest/peacekeeper/armadyne/armor = 6,
-					/obj/item/clothing/suit/armor/vest/caligram_parka_vest_tan = 6,
-					/obj/item/clothing/suit/toggle/jacket/zubber/bomber/sec = 6,
 				),
 			),
 		list(
@@ -57,9 +31,7 @@
 			"icon" = "notes-medical",
 			"products" = list(
 					/obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic = 3,
-					/obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic/blue = 3,
 					/obj/item/clothing/suit/hazardvest/security_medic = 3,
-					/obj/item/clothing/suit/hazardvest/security_medic/blue = 3,
 					/obj/item/clothing/head/helmet/sec/peacekeeper/security_medic = 3,
 					/obj/item/clothing/head/beret/sec/peacekeeper/security_medic = 3,
 					/obj/item/clothing/head/playbunnyears/brig_phys = 3,
@@ -90,7 +62,6 @@
 	)
 	premium = list(
 					/obj/item/clothing/under/rank/security/officer/formal = 6,
-					/obj/item/clothing/suit/jacket/officer/blue = 6,
 					/obj/item/clothing/head/beret/sec/navyofficer = 6,
 					/obj/item/clothing/suit/jacket/officer/tan = 6,
 					/obj/item/clothing/accessory/badge/holo = 10, //I know there's a box of them but, why not have more, eh?

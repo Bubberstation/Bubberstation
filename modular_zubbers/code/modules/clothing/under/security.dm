@@ -50,36 +50,3 @@
 
 */
 
-// OFFICER
-
-/obj/item/clothing/under/rank/security/viro
-	name = "security uniform"
-	desc = "Standard-issue Security department uniform, given to members of Nanotrasen Corporate Security."
-	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
-	icon_state = "security_uniform"
-	female_sprite_flags = NO_FEMALE_UNIFORM
-
-/obj/item/clothing/under/rank/security/viro/skirt
-	name = "security jumpskirt"
-	desc = "A padded jumpskirt made out of wind-resistant, slightly water-repellent materials for Nanotrasen Corporate Security."
-	icon_state = "security_skirt"
-	body_parts_covered = CHEST|GROIN|ARMS
-	dying_key = DYE_REGISTRY_JUMPSKIRT
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
-
-// WARDEN
-
-/obj/item/clothing/under/rank/security/viro/warden
-	name = "\proper the Warden's uniform"
-	desc = "A padded jumpskirt made out of wind-resistant, slightly water-repellent materials for Nanotrasen Corporate Security."
-	icon_state = "warden_uniform"
-
-// HOS
-
-/obj/item/clothing/under/rank/security/viro/hos
-	name = "\proper the Head of Security's uniform"
-	desc = "A padded jumpskirt made out of wind-resistant, slightly water-repellent materials for Nanotrasen Corporate Security."
-	icon_state = "hos_uniform"
-	armor_type = /datum/armor/clothing_under/security_head_of_security
-	strip_delay = 6 SECONDS

@@ -1,42 +1,95 @@
 /*
-	// ACCESSORIES
+	// UNIFORMS
 */
 
-/obj/item/clothing/neck/security_cape/armplate  // going to kill this item, only here so the game boots
-	name = "security gauntlet"
-	desc = "A fashionable full-arm gauntlet worn by security officers. The gauntlet itself is made of plastic, and provides no protection, but it looks cool as hell."
-	icon_state = "armplate_black"
+// OFFICER
 
+/obj/item/clothing/under/rank/security/officer/viro // theres too many subtypes so we just snowflake
+	name = "security uniform"
+	desc = "Standard-issue Security department uniform, given to members of Nanotrasen Corporate Security."
+	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	icon_state = "security_uniform"
+	female_sprite_flags = NO_FEMALE_UNIFORM
+
+/obj/item/clothing/under/rank/security/officer/viro/skirt
+	name = "security jumpskirt"
+	desc = "A padded jumpskirt made out of wind-resistant, slightly water-repellent materials for Nanotrasen Corporate Security."
+	icon_state = "security_skirt"
+	body_parts_covered = CHEST|GROIN|ARMS
+	dying_key = DYE_REGISTRY_JUMPSKIRT
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+
+// WARDEN
+
+/obj/item/clothing/under/rank/security/warden
+	name = "\proper the Warden's uniform"
+	desc = "A padded jumpskirt made out of wind-resistant, slightly water-repellent materials for Nanotrasen Corporate Security."
+	icon_state = "warden_uniform"
+	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	female_sprite_flags = NO_FEMALE_UNIFORM
+
+// HOS
+
+/obj/item/clothing/under/rank/security/head_of_security
+	name = "\proper the Head of Security's uniform"
+	desc = "A padded jumpskirt made out of wind-resistant, slightly water-repellent materials for Nanotrasen Corporate Security."
+	icon_state = "hos_uniform"
+	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 
 /*
-	// GLASSES
+	// ARMORS
 */
 
-/obj/item/clothing/glasses/hud/eyepatch/sec
-	name = "security eyepatch HUD"
-	desc = "Lost your eye beating an innocent clown? Thankfully your corporate overlords have made something to make up for this. May not do well against flashes."
-	clothing_traits = list(TRAIT_SECURITY_HUD)
-	glass_colour_type = /datum/client_colour/glass_colour/red
+/obj/item/clothing/suit/armor/hos
+	name = "\improper Head of Security's leather greatcoat"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	icon_state = "hos_greatcoat"
 
-/obj/item/clothing/glasses/hud/eyepatch/sec/blindfold
-	name = "sec blindfold HUD"
-	desc = "a fake blindfold with a security HUD inside, helps you look like blind justice. This won't provide the same protection that you'd get from sunglasses."
-	icon_state =  "secfold"
-	base_icon_state =  "secfold"
+/obj/item/clothing/suit/armor/hos/trenchcoat
+	name = "\improper Head of Security's leather overcoat"
+	icon_state = "hos_leathercoat"
+
+/obj/item/clothing/suit/armor/hos/overcoat
+	name = "\improper Head of Security's overcoat"
+	icon_state = "hos_overcoat"
+
+/obj/item/clothing/suit/armor/hos/trenchcoat/winter
+	name = "\improper Head of Security's winter trenchcoat"
+	icon_state = "hos_wintercoat"
+
+/obj/item/clothing/suit/armor/hos/vest
+	name = "\improper Head of Security's plate carrier"
+	desc = "Specially issued plate carrier for Security command staff. On the front is an embroided patch, that in big yellow letters says: \"HEAD OF SECURITY\""
+	body_parts_covered = CHEST|GROIN
+	cold_protection = CHEST|GROIN
+	heat_protection = CHEST|GROIN
 
 /*
 	// GLOVES
 */
 
 /obj/item/clothing/gloves/tackler/security	//Can't just overwrite tackler, as there's a ton of subtypes that we'd then need to account for. This is easier. MUCH easier.
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/gloves.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/hands.dmi'
 	icon_state = "tackle_blue"
 
 /obj/item/clothing/gloves/kaza_ruk/sec
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/gloves.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/hands.dmi'
 	icon_state = "fightgloves_blue"
+
+/*
+	// SHOES
+*/
+/obj/item/clothing/shoes/jackboots/sec
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	icon_state = "sec_boots"
+
 
 /*
 	// PRISONER (why is this here ?)
@@ -148,3 +201,40 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	icon_state = "runner"
 	can_adjust = FALSE
+
+/*
+	// ANTIQUATED
+*/
+
+//Not technically an override but oh well
+/obj/item/clothing/neck/security_cape
+	name = "security cape"
+	desc = "A fashionable cape worn by security officers."
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/neck.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
+	icon_state = "cape_black"
+	inhand_icon_state = "" //no unique inhands
+	///Decides the shoulder it lays on, false = RIGHT, TRUE = LEFT
+	var/swapped = FALSE
+
+/obj/item/clothing/neck/security_cape/armplate  // wanted to kill this item but stuff relies on it so i cant
+	name = "security gauntlet"
+	desc = "A fashionable full-arm gauntlet worn by security officers. The gauntlet itself is made of plastic, and provides no protection, but it looks cool as hell."
+	icon_state = "armplate_black"
+
+
+/*
+	// ANTIQUATED GLASSES
+*/
+
+/obj/item/clothing/glasses/hud/eyepatch/sec
+	name = "security eyepatch HUD"
+	desc = "Lost your eye beating an innocent clown? Thankfully your corporate overlords have made something to make up for this. May not do well against flashes."
+	clothing_traits = list(TRAIT_SECURITY_HUD)
+	glass_colour_type = /datum/client_colour/glass_colour/red
+
+/obj/item/clothing/glasses/hud/eyepatch/sec/blindfold
+	name = "sec blindfold HUD"
+	desc = "a fake blindfold with a security HUD inside, helps you look like blind justice. This won't provide the same protection that you'd get from sunglasses."
+	icon_state =  "secfold"
+	base_icon_state =  "secfold"
