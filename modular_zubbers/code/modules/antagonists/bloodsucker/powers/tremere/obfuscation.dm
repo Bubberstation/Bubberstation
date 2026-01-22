@@ -15,7 +15,7 @@
 
 #define OBFUSCATION_HIDDEN_ALPHA 22
 #define OBFUSCATION_REVEALED_ALPHA 255
-#define OBFUSCATION_RECLOAK_TIME (4 SECONDS)
+#define OBFUSCATION_RECLOAK_TIME (4.5 SECONDS)
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/obfuscation
 	name = "Obfuscation"
@@ -126,7 +126,7 @@
 		CRASH("reveal() somehow called while ability is inactive?")
 	if(!revealed)
 		revealed = TRUE
-		animate(owner, alpha = OBFUSCATION_REVEALED_ALPHA, time = 2 SECONDS)
+		animate(owner, alpha = OBFUSCATION_REVEALED_ALPHA, get_recloak_time() * 0.5)
 	recloak_timer = addtimer(CALLBACK(src, PROC_REF(recloak)), get_recloak_time(), TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE)
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/obfuscation/proc/get_recloak_time()

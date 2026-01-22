@@ -278,7 +278,7 @@
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner)
 	if(bloodsuckerdatum)
 		bloodsuckerdatum.AdjustBloodVolume(-BLOOD_SHIELD_BLOOD_COST)
-	owner.spray_blood(REVERSE_DIR(hitby.dir), min(1, damage / 10))
+	owner.spray_blood(hitby.dir, 1)
 	return ..()
 
 
