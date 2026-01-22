@@ -26,9 +26,34 @@
 /datum/techweb_node/parts_bluespace/New()
 	. = ..()
 	design_ids += list(
-		"bs_experi_scanner",
-		"bs_experi_scanner_cyborg",
+		"bs_experi_scanner"
 	)
+
+//Research borg tech node
+/datum/techweb_node/borg_research
+	id = TECHWEB_NODE_BORG_RESEARCH
+	display_name = "Research Cyborg Upgrades"
+	description = "They are taking our jobs now!"
+	prereq_ids = list(TECHWEB_NODE_BORG_ENGI, TECHWEB_NODE_BORG_MEDICAL)
+	design_ids = list(
+		"bs_experi_scanner_cyborg",
+		"borg_upgrade_advancedanalyzer",
+		"borg_upgrade_inducer_sci",
+		"borg_upgrade_brped",
+		"borg_upgrade_surgicalprocessor_sci",
+		"borg_upgrade_research_rcd"
+	)
+	announce_channels = list(RADIO_CHANNEL_SCIENCE)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
+
+//Mining borg upgrades
+/datum/techweb_node/borg_mining/New()
+	.=..()
+	design_ids += list(
+		"borg_upgrade_advcutter",
+		"borg_upgrade_welding",
+	)
+
 
 /datum/techweb_node/ai_laws/New()
 	. = ..()
@@ -39,13 +64,6 @@
 	)
 
 // MEDICAL
-
-/datum/techweb_node/medbay_equip_adv/New()
-	. = ..()
-	design_ids += list(
-		"borg_upgrade_advancedanalyzer",
-	)
-
 /datum/techweb_node/xenobiology/New()
 	. = ..()
 	design_ids += list(
@@ -75,9 +93,6 @@
 /datum/techweb_node/borg_engi/New()
 	. = ..()
 	design_ids += list(
-		"borg_upgrade_advcutter",
-		"borg_upgrade_inducer_sci",
-		"borg_upgrade_brped",
 		"rld_cyborg"
 	)
 
@@ -91,7 +106,6 @@
 
 /datum/techweb_node/borg_medical/New()
 	design_ids += list(
-		"borg_upgrade_surgicalprocessor_sci",
 		"borg_upgrade_pinpointer",
 	)
 	return ..()
