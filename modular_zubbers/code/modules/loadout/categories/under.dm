@@ -30,14 +30,9 @@
 	item_path = /obj/item/clothing/under/rank/medical/scrubs/skyrat/red/sec
 	restricted_roles = list(JOB_SECURITY_MEDIC)
 
-/datum/loadout_item/uniform/security/officer/redsec
+/datum/loadout_item/uniform/security/officer
 	name = "Security Red Uniform"
-	item_path = /obj/item/clothing/under/rank/security/officer/redsec
-	restricted_roles = list(ALL_JOBS_SEC)
-
-/datum/loadout_item/uniform/security/peacekeeper/armadyne
-	name = "Armadyne Corporate Uniform"
-	item_path =/obj/item/clothing/under/rank/security/peacekeeper/armadyne
+	item_path = /obj/item/clothing/under/rank/security/officer
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/uniform/security/utility/redsec

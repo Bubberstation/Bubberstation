@@ -21,44 +21,6 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/maidsec.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/maidsec_d.dmi'
 
-//Metro Cops
-
-/obj/item/clothing/under/rank/security/metrocop //Sprite done by HL13 Station
-	name = "civil protection uniform"
-	desc = "Standard issue uniforms for Civil Protection forces. Uses advanced GigaSlop brand Matrixes to allow alternative variants!"
-	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
-	icon_state = "civilprotection"
-	inhand_icon_state =  null
-	can_adjust = FALSE
-
-/obj/item/clothing/under/rank/security/metrocop/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/metrocop)
-
-/datum/atom_skin/metrocop
-	abstract_type = /datum/atom_skin/metrocop
-
-/datum/atom_skin/metrocop/metro
-	preview_name = "MetroCop"
-	new_icon_state = "civilprotection"
-
-/datum/atom_skin/metrocop/red
-	preview_name = "Red"
-	new_icon_state = "divisionallead"
-
-/datum/atom_skin/metrocop/overwatch_white
-	preview_name = "White Overwatch"
-	new_icon_state = "overwatch_white"
-
-/datum/atom_skin/metrocop/overwatch
-	preview_name = "Overwatch"
-	new_icon_state = "overwatch"
-
-/datum/atom_skin/metrocop/overwatch_red
-	preview_name = "Red Overwatch"
-	new_icon_state = "overwatch_red"
-
 //MGS stuff sprited by Crumpaloo for onlyplateau, please credit when porting, which you obviously have permission to do.
 /obj/item/clothing/under/rank/security/snake
 	name = "stealth suit"
@@ -81,48 +43,43 @@
 	greyscale_colors = "#A53228#333333#292929"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
-	uses_advanced_reskins = FALSE
+
+/*
+
+ // VIROSEC
+
+*/
+
+// OFFICER
 
 /obj/item/clothing/under/rank/security/viro
-	name = "security test uniform"
-	desc = "fuck off cunt"
+	name = "security uniform"
+	desc = "Standard-issue Security department uniform, given to members of Nanotrasen Corporate Security."
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	icon_state = "security_uniform"
+	female_sprite_flags = NO_FEMALE_UNIFORM
+
+/obj/item/clothing/under/rank/security/viro/skirt
+	name = "security jumpskirt"
+	desc = "A padded jumpskirt made out of wind-resistant, slightly water-repellent materials for Nanotrasen Corporate Security."
+	icon_state = "security_skirt"
+	body_parts_covered = CHEST|GROIN|ARMS
+	dying_key = DYE_REGISTRY_JUMPSKIRT
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+
+// WARDEN
+
+/obj/item/clothing/under/rank/security/viro/warden
+	name = "\proper the Warden's uniform"
+	desc = "A padded jumpskirt made out of wind-resistant, slightly water-repellent materials for Nanotrasen Corporate Security."
+	icon_state = "warden_uniform"
+
+// HOS
 
 /obj/item/clothing/under/rank/security/viro/hos
+	name = "\proper the Head of Security's uniform"
+	desc = "A padded jumpskirt made out of wind-resistant, slightly water-repellent materials for Nanotrasen Corporate Security."
 	icon_state = "hos_uniform"
-
-/obj/item/clothing/suit/armor/vest/viro
-	name = "security test uniform"
-	desc = "fuck off cunt"
-	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
-	icon_state = "sec_plate_carrier"
-
-/obj/item/clothing/suit/armor/vest/viro/hos
-	icon_state = "hos_trenchcoat"
-
-/obj/item/clothing/gloves/viro
-	name = "security test uniform"
-	desc = "fuck off cunt"
-	icon = 'modular_zubbers/icons/obj/clothing/gloves/gloves.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/gloves/gloves.dmi'
-	icon_state = "sec_gloves"
-
-/obj/item/clothing/shoes/viro
-	name = "security test uniform"
-	desc = "fuck off cunt"
-	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
-	icon_state = "sec_boots"
-
-/obj/item/clothing/head/viro
-	name = "security test uniform"
-	desc = "fuck off cunt"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
-	icon_state = "sec_cap"
-
-/obj/item/clothing/head/viro/hos
-	icon_state = "hos_beret"
+	armor_type = /datum/armor/clothing_under/security_head_of_security
+	strip_delay = 6 SECONDS

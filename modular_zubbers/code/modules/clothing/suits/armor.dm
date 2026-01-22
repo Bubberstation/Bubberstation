@@ -115,45 +115,29 @@
 	acid = 50
 	wound = 25
 
-//MetroCop armor, by HL13 station.
-/obj/item/clothing/suit/armor/vest/alt/sec/metrocop
-	name = "metrocop armor"
-	desc = "Pick up that can. Uses advanced GigaSlop brand Matrixes to allow alternative variants!"
+/*
+	// VIROSEC
+*/
+
+// OFFICER
+
+/obj/item/clothing/suit/armor/vest/alt/sec/viro
+	name = "security plate carrier"
+	icon_state = "sec_platecarrier"
+//	icon = 'modular_zubbers/modules/virosec/clothing/obj/armor.dmi'
+	worn_icon = 'modular_zubbers/modules/virosec/clothing/mob/armor.dmi'
+
+/obj/item/clothing/suit/armor/vest/alt/sec/viro
+	name = "security plate carrier"
+	icon_state = "sec_platecarrier"
+//	icon = 'modular_zubbers/modules/virosec/clothing/obj/armor.dmi'
+	worn_icon = 'modular_zubbers/modules/virosec/clothing/mob/armor.dmi'
+
+// WARDEN
+
+// HOS
+
+/obj/item/clothing/suit/armor/vest/alt/sec/viro
+	name = " armor"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
-	icon_state = "civilprotection"
-
-/obj/item/clothing/suit/armor/vest/alt/sec/metrocop/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/metrocop_armor)
-
-/datum/atom_skin/metrocop_armor
-	abstract_type = /datum/atom_skin/metrocop_armor
-
-/datum/atom_skin/metrocop_armor/metro_cop
-	preview_name = "Metro Cop"
-	new_icon_state = "civilprotection"
-
-/datum/atom_skin/metrocop_armor/metro_coat
-	preview_name = "MetroCop Coat"
-	new_icon_state = "cp_trenchcoat"
-
-/datum/atom_skin/metrocop_armor/medic
-	preview_name = "Medic"
-	new_icon_state = "medicalofficer"
-
-/datum/atom_skin/metrocop_armor/red_trim
-	preview_name = "Red Trim"
-	new_icon_state = "dv_vest"
-
-/datum/atom_skin/metrocop_armor/overwatch_white
-	preview_name = "White Overwatch"
-	new_icon_state = "overwatch_white"
-
-/datum/atom_skin/metrocop_armor/overwatch
-	preview_name = "Overwatch"
-	new_icon_state = "overwatch"
-
-/datum/atom_skin/metrocop_armor/overwatch_red
-	preview_name = "Red Overwatch"
-	new_icon_state = "overwatch_red"

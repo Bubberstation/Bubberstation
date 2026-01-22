@@ -29,11 +29,6 @@
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/security
 	restricted_roles = list(ALL_JOBS_SEC)
 
-/datum/loadout_item/suit/hooded/wintercoat/security/redsec
-	name = "Security Red Winter Coat"
-	item_path = /obj/item/clothing/suit/hooded/wintercoat/security/redsec
-	restricted_roles = list(ALL_JOBS_SEC)
-
 /datum/loadout_item/suit/toggle/jacket/sec/old
 	name = "Security Red Jacket"
 	item_path = /obj/item/clothing/suit/toggle/jacket/sec/old

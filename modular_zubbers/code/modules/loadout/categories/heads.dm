@@ -31,11 +31,6 @@
 	item_path = /obj/item/clothing/head/hats/warden/police/patrol
 	restricted_roles = list(ALL_JOBS_SEC)
 
-/datum/loadout_item/head/helmet/sec/futuristic
-	name = "Futuristic Security Helmet"
-	item_path = /obj/item/clothing/head/helmet/sec/futuristic
-	restricted_roles = list(ALL_JOBS_SEC)
-
 /datum/loadout_item/head/sombrero
 	name = "Sombrero"
 	item_path = /obj/item/clothing/head/costume/sombrero
@@ -64,20 +59,12 @@
 	donator_only = TRUE
 	restricted_roles = list(JOB_NT_REP)
 
-/datum/loadout_item/head/security_garrison
-	name = "Security Garrison Cap"
-	item_path = /obj/item/clothing/head/security_garrison
-	restricted_roles = list(ALL_JOBS_SEC)
-
+/* why does sec have two caps with different stats ? VIROWIP
 /datum/loadout_item/head/security_cap
 	name = "Security Cap"
 	item_path = /obj/item/clothing/head/security_cap
 	restricted_roles = list(ALL_JOBS_SEC)
-
-/datum/loadout_item/head/security_cap/soft
-	name = "Security Soft Cap"
-	item_path = /obj/item/clothing/head/soft/sec
-	restricted_roles = list(ALL_JOBS_SEC)
+*/
 
 /datum/loadout_item/head/security_cap/veteran
 	name = "Veteran's Soft Security Cap"
@@ -114,9 +101,9 @@
 	item_path = /obj/item/clothing/head/hats/warden/police/patrol
 	restricted_roles = list(ALL_JOBS_SEC)
 
-/datum/loadout_item/head/helmet/sec/redsec
+/datum/loadout_item/head/helmet/sec
 	name = "Security Red Helmet"
-	item_path = /obj/item/clothing/head/helmet/sec/redsec
+	item_path = /obj/item/clothing/head/helmet/sec
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/helmet/nri_police
