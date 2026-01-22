@@ -26,8 +26,6 @@
 
 /// Stores the approach direction for Oversized players sitting on tables
 /obj/structure/table/var/list/oversized_sit_directions = null
-/// Stores the original turf position for Oversized players sitting on tables (so they can return there when standing)
-/obj/structure/table/var/list/oversized_sit_original_turfs = null
 
 /// Position Oversized players at the edge of the table they approached from
 /obj/structure/table/post_buckle_mob(mob/living/buckled)
@@ -74,7 +72,7 @@
 		// Face away from the table edge (toward the direction they came from)
 		buckled.setDir(approach_dir)
 
-/// Clean up stored directions and return Oversized players to their original position when unbuckling
+/// Clean up stored directions and place Oversized players adjacent to the table when unbuckling
 /obj/structure/table/post_unbuckle_mob(mob/living/unbuckled)
 	. = ..()
 	// Only handle Oversized players on regular tables
@@ -86,18 +84,37 @@
 	// Remove offsets
 	unbuckled.remove_offsets(type)
 
-	// Get the original turf position
-	var/turf/original_turf = LAZYACCESS(oversized_sit_original_turfs, unbuckled)
-	if(original_turf && isturf(original_turf))
-		// Move them back to their original position
-		unbuckled.forceMove(original_turf)
+	// Find the nearest unblocked, maneuverable location adjacent to the table
+	var/turf/table_turf = get_turf(src)
+	var/turf/destination_turf = null
+
+	// Try to use the approach direction first, otherwise try all cardinal directions
+	var/approach_dir = LAZYACCESS(oversized_sit_directions, unbuckled)
+	var/list/dirs_to_try = list()
+	if(approach_dir && (approach_dir in GLOB.cardinals))
+		dirs_to_try += approach_dir
+	// Add remaining cardinal directions
+	for(var/dir in GLOB.cardinals)
+		if(dir != approach_dir)
+			dirs_to_try += dir
+
+	// Find the first unblocked, maneuverable turf
+	for(var/dir in dirs_to_try)
+		var/turf/test_turf = get_step(table_turf, dir)
+		if(test_turf && !test_turf.is_blocked_turf(exclude_mobs = FALSE, source_atom = unbuckled))
+			destination_turf = test_turf
+			break
+
+	// If no adjacent turf is available, try the table's own turf as last resort
+	if(!destination_turf)
+		if(!table_turf.is_blocked_turf(exclude_mobs = TRUE, source_atom = unbuckled))
+			destination_turf = table_turf
+
+	if(destination_turf)
+		unbuckled.forceMove(destination_turf)
 
 	// Clean up stored data
 	if(oversized_sit_directions)
 		LAZYREMOVE(oversized_sit_directions, unbuckled)
 		if(!length(oversized_sit_directions))
 			oversized_sit_directions = null
-	if(oversized_sit_original_turfs)
-		LAZYREMOVE(oversized_sit_original_turfs, unbuckled)
-		if(!length(oversized_sit_original_turfs))
-			oversized_sit_original_turfs = null
