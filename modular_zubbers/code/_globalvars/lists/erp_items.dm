@@ -9,6 +9,7 @@ GLOBAL_LIST_INIT(erp_items, list(
 	/obj/item/clothing/gloves/ball_mittens_reinforced,
 	/obj/item/clothing/head/domina_cap,
 	/obj/item/clothing/mask/ballgag,
+	/obj/item/clothing/mask/bridle,
 	/obj/item/clothing/mask/gas/bdsm_mask,
 	/obj/item/clothing/mask/leatherwhip,
 	/obj/item/clothing/neck/kink_collar,
