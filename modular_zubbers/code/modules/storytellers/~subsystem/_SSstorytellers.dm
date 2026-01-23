@@ -86,7 +86,6 @@ SUBSYSTEM_DEF(storytellers)
 	QDEL_LIST(storyteller_vote_uis)
 	QDEL_LIST(events_by_id)
 
-
 /// Initializes the active storyteller from selected_id (JSON profile), applying parsed data for adaptive behavior.
 /// Delegates creation to create_storyteller_from_data() for modularity; kicks off round analysis/planning.
 /// Ensures chain starts with 3+ events, biased by profile (e.g., low tension for chill).
@@ -105,7 +104,6 @@ SUBSYSTEM_DEF(storytellers)
 
 	active = create_storyteller_from_data(selected_id)
 	active.difficulty_multiplier = clamp(selected_difficulty, 0.3, 5.0)
-
 
 /datum/controller/subsystem/storytellers/proc/initialize_storyteller()
 	if(!active)

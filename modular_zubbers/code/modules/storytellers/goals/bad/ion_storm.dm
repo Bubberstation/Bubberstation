@@ -12,7 +12,7 @@
 	)
 	typepath = /datum/round_event/ion_storm
 
-	story_weight = STORY_GOAL_BASE_WEIGHT * 0.5
+	story_weight = STORY_GOAL_BASE_WEIGHT * 0.8
 
 /datum/round_event/ion_storm
 	STORYTELLER_EVENT

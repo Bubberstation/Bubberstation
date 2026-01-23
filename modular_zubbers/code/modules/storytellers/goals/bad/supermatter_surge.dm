@@ -5,7 +5,7 @@
 	tags = list(STORY_TAG_REQUIRES_ENGINEERING, STORY_TAG_EPIC)
 	min_players = 10
 	required_round_progress = STORY_ROUND_PROGRESSION_MID
-	story_weight = STORY_GOAL_BASE_WEIGHT * 0.4
+	story_weight = STORY_GOAL_BASE_WEIGHT * 0.6
 
 /datum/round_event/supermatter_surge
 	STORYTELLER_EVENT

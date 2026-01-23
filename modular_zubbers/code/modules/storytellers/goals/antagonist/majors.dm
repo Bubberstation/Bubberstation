@@ -69,7 +69,7 @@
 	for(var/obj/item/disk/nuclear/disk in SSpoints_of_interest.real_nuclear_disks)
 		if(disk.fake)
 			continue
-		if(!is_station_level(get_turf(disk)))
+		if(!is_station_level(disk.z))
 			continue
 		real_disk = disk
 		break

@@ -1,7 +1,7 @@
 //Here's where is magic begin
-#define STORY_REPETITION_DECAY_TIME (20 MINUTES)
+#define STORY_REPETITION_DECAY_TIME (30 MINUTES)
 #define STORY_TAG_MATCH_BONUS 0.5
-#define STORY_REP_PENALTY_MAX 0.5
+#define STORY_REP_PENALTY_MAX 1
 
 
 /datum/storyteller_behevour
@@ -32,7 +32,7 @@
 	if(!length(tag_filter))
 		return null
 	review_tags(tag_filter, bal, inputs)
-	var/list/candidates = SSstorytellers.filter_goals(category, tag_filter, null, FALSE)
+	var/list/candidates = SSstorytellers.filter_goals(category, tag_filter, STORY_TAGS_SOME_MATCH)
 	if(!candidates.len)
 		candidates = SSstorytellers.filter_goals(STORY_GOAL_RANDOM)
 	return select_weighted_goal(inputs, bal, candidates, owner.population_factor, tag_filter)
@@ -334,7 +334,7 @@
 	// Simple scoring
 	var/score_good = 0
 	var/score_bad = 0
-	var/score_neutral = 0.3 // Base neutral chance
+	var/score_neutral = 0.25 // Base neutral chance
 
 	// High tension -> prefer good events (recovery)
 	if(tension > target)

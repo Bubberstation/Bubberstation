@@ -7,7 +7,7 @@
 	typepath = /datum/round_event/storyteller_brand_intelligence
 
 	min_players = 5
-	requierd_threat_level = STORY_GOAL_THREAT_ELEVATED
+	requierd_threat_level = STORY_GOAL_THREAT_BASIC
 
 /datum/round_event/storyteller_brand_intelligence
 	STORYTELLER_EVENT
