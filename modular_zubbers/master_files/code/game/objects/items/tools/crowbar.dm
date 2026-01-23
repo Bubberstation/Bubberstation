@@ -1,5 +1,4 @@
 /obj/item/crowbar/power/paramedic
-	name = "jaws of recovery"
 	desc = "An advanced version of the jaws of life, primarily to be used by paramedics to recover the injured and the recently deceased. Rather than a cutting arm, this tool has a bonesetting apparatus. \
 		Cannot access certain high security areas due to safety concerns."
 
