@@ -229,8 +229,8 @@ SUBSYSTEM_DEF(train_controller)
 	if(!planned_to_load)
 		return
 	var/station_abstract = (loaded_station.station_flags & TRAINSTATION_ABSCTRACT) ? TRUE : FALSE
-	var/msg = span_boldnotice("The train will begin moving in [DisplayTimeText(delay)]! \
-			[station_abstract ? "" : "Please prepare to depart from [loaded_station.name]."])")
+	var/msg = "The train will begin moving in [DisplayTimeText(delay)]! \
+			[station_abstract ? "" : "Please prepare to depart from [loaded_station.name]."]"
 	priority_announce(msg, "Train Departure")
 	tain_starting = TRUE
 	addtimer(CALLBACK(src, PROC_REF(start_moving), FALSE, TRUE, 0), delay)

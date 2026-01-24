@@ -1,5 +1,4 @@
 import {
-  AnimatedNumber,
   Box,
   Button,
   Divider,
@@ -7,10 +6,10 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { formatTime } from 'tgui-core/format';
 import type { BooleanLike } from 'tgui-core/react';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-import { formatTime } from 'tgui-core/format';
 
 interface TrainControlData {
   is_moving: boolean;
