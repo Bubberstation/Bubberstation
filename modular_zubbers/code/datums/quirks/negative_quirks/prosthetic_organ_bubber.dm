@@ -75,6 +75,28 @@
 	Additionally, any EMP will make it cease full functions for a time."))
 
 /datum/quirk/prosthetic_organ/remove()
+	var/mob/living/carbon/human/human_holder = quirk_holder
 	if(old_organ)
+		if(old_organ.slot == AUGMENT_SLOT_BRAIN) //there's no way this works again
+
+			var/obj/item/organ/brain/current_brain = human_holder.get_organ_slot(ORGAN_SLOT_BRAIN)
+			var/obj/item/organ/brain/insert_brain = old_organ //less confusing name
+
+			var/datum/mind/holder_mind = human_holder.mind
+
+			insert_brain.modular_persistence = current_brain.modular_persistence
+			insert_brain.modular_persistence?.owner = insert_brain
+			current_brain.modular_persistence = null
+
+			insert_brain.copy_traits_from(current_brain)
+			insert_brain.Insert(human_holder, special = TRUE)
+			current_brain.moveToNullspace()  // Maybe this works also lmao
+			STOP_PROCESSING(SSobj, current_brain)
+
+			if(!holder_mind)
+				return
+
+			holder_mind.transfer_to(human_holder, TRUE)
+	else
 		old_organ.Insert(quirk_holder, special = TRUE)
-	old_organ = null
+		old_organ = null
