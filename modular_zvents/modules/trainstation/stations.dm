@@ -310,4 +310,4 @@
 	station_flags = TRAINSTATION_BLOCKING
 	required_stations = 3
 
-	ambience_sounds = list('modular_zvents/sounds/radiosphere_loop1.ogg' = 39.5 SECONDS)
+	ambience_sounds = list('modular_zvents/sounds/radiosphere_loop1.ogg' = 40 SECONDS)

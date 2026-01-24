@@ -21,6 +21,20 @@
 	icon_state = "rails"
 
 
+/area/trainstation/outdoor/station
+	name = "Station"
+
+/area/trainstation/outdoor/station/radiosphere
+	name = "The Radiosphere"
+	icon_state = "radio"
+	min_ambience_cooldown = 30 SECONDS
+	max_ambience_cooldown = 1 MINUTES
+	ambientsounds = list(
+		'modular_zvents/sounds/radiosphere_ambience1.ogg',
+		'modular_zvents/sounds/radiosphere_ambience2.ogg'
+	)
+
+
 
 /* ВНУТРЕННИЕ ЗОНЫ */
 
@@ -30,6 +44,51 @@
 
 	allow_shuttle_docking = FALSE
 	daylight = FALSE
+
+/area/trainstation/indoors/radiosphere
+	name = "The Radiosphere"
+	icon_state = "radio"
+	min_ambience_cooldown = 15 SECONDS
+	max_ambience_cooldown = 30 SECONDS
+	ambientsounds = list(
+		'modular_zvents/sounds/radiosphere_ambience1.ogg',
+		'modular_zvents/sounds/radiosphere_ambience2.ogg'
+	)
+
+/area/trainstation/indoors/station
+	name = "Station"
+
+
+
+/area/trainstation/indoors/station/collapsed_lab
+	name = "Collapsed Laboratory"
+	icon_state = "soyuz"
+	always_unpowered = FALSE
+	power_environ = FALSE
+	power_equip = FALSE
+	power_light = TRUE
+	requires_power = FALSE
+
+/area/trainstation/indoors/station/collapsed_lab/caves
+	name = "Caves"
+	sound_environment = SOUND_ENVIRONMENT_CAVE
+	min_ambience_cooldown = 45 SECONDS
+	ambientsounds = list(
+		'modular_zvents/sounds/ambience/he_caves_moans1.ogg',
+		'modular_zvents/sounds/ambience/he_caves_moans2.ogg',
+		'modular_zvents/sounds/ambience/he_caves_moans3.ogg',
+		'modular_zvents/sounds/ambience/he_caves_moans4.ogg',
+		'modular_zvents/sounds/ambience/he_caves_rock1.ogg',
+		'modular_zvents/sounds/ambience/he_caves_rock2.ogg',
+		'modular_zvents/sounds/ambience/he_caves_rock3.ogg',
+	)
+
+/area/trainstation/indoors/station/collapsed_lab/cargo
+	name = "Collapsed Cargo Bay"
+
+/area/trainstation/indoors/station/collapsed_lab/facility
+	name = "Facility Ruins"
+
 
 /*ЗОНЫ СВЯЗАННЫЕ С ПОЕЗДОМ */
 

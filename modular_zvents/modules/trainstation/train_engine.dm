@@ -393,7 +393,7 @@
 
 
 /datum/component/plumbing/steam_turbine
-	demand_connects = WEST | EAST
+	demand_connects = NORTH | SOUTH
 
 /datum/component/plumbing/steam_turbine/Initialize(start, ducting_layer, turn_connects, datum/reagents/custom_receiver, extend_pipe_to_edge)
 	. = ..()

@@ -15,7 +15,11 @@
 	icon_state = "main"
 	density = TRUE
 	uses_integrity = FALSE
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
+	flags_1 = SUPERMATTER_IGNORES_1
 	pixel_x = -240
 	pixel_x = -32
 
+	plane = MASSIVE_OBJ_PLANE
+	plane = ABOVE_LIGHTING_PLANE
+	appearance_flags = LONG_GLIDE
