@@ -8,7 +8,7 @@
 
 
 /obj/structure/prop/big/bigdice/radiosphere
-	name = "\imporer The Radiosphere"
+	name = "The Radiosphere"
 	desc = "A massive array of sensors and signal amplifiers enclosed in a \
 			shell resembling a symmetrical octahedron. A faint noise emanates from this object."
 	density = TRUE

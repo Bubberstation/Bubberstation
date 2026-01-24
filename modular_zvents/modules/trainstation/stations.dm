@@ -136,11 +136,11 @@
 	template.returns_created_atoms = TRUE
 	SSmapping.map_templates[template.name] = template
 
-	if(ambience_sound)
-		create_ambience(start_immediately = FALSE)
+	if(ambience_sounds)
+		create_ambience()
 
 /datum/train_station/proc/create_ambience()
-	station_loop_soound = new()
+	station_loop_soound = new(start_immediately = FALSE)
 	station_loop_soound.create_from_list(ambience_sounds)
 
 /datum/train_station/proc/connect_stations()
