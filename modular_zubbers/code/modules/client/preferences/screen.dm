@@ -1,7 +1,7 @@
 // Replaces the toggle preference with a dropdown
 /datum/preference/choiced/widescreen
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
-	savefile_key = "widescreenpref"
+	savefile_key = "viewport_size"
 	savefile_identifier = PREFERENCE_PLAYER
 
 /datum/preference/choiced/widescreen/init_possible_values()
@@ -18,7 +18,7 @@
 	var/list/data = ..()
 
 	data[CHOICED_PREFERENCE_DISPLAY_NAMES] = list(
-		SQUARE_VIEWPORT_SIZE = "Standard (15x15)",
+		SQUARE_VIEWPORT_SIZE = "Square (15x15)",
 		WIDESCREEN_VIEWPORT_SIZE = "Widescreen (19x15)",
 		EXTRAWIDESCREEN_VIEWPORT_SIZE = "Ultrawide (21x15)",
 	)
