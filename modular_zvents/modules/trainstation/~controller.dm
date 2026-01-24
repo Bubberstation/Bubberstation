@@ -33,9 +33,13 @@ SUBSYSTEM_DEF(train_controller)
 	// Известные, загруженные станции
 	var/static/list/known_stations = list()
 
-	var/default_travel_time = 35 MINUTES
+	var/tain_starting = FALSE
+	var/minimum_travel_time = 15 MINUTES
+	var/maximum_travel_time = 30 MINUTES
 	var/time_to_next_station
 	var/total_travel_time
+	var/stations_visited = 0
+
 
 /datum/controller/subsystem/train_controller/Initialize()
 	var/list/map_traits = SSmapping.current_map.traits[1]
@@ -165,6 +169,8 @@ SUBSYSTEM_DEF(train_controller)
 			break
 		if(station == loaded_station)
 			continue
+		if(stations_visited < station.required_stations)
+			continue
 		if(station.station_flags & TRAINSTATION_ABSCTRACT)
 			continue
 		if(station.station_flags & TRAINSTATION_NO_SELECTION)
@@ -212,6 +218,24 @@ SUBSYSTEM_DEF(train_controller)
 	if(T in to_process)
 		to_process -= T
 
+
+/datum/controller/subsystem/train_controller/proc/attempt_start(delay = 15 SECONDS)
+	if(moving || tain_starting)
+		return
+	if(loaded_station && loaded_station.blocking_moving)
+		return
+	if(!check_start())
+		return
+	if(!planned_to_load)
+		return
+	var/station_abstract = (loaded_station.station_flags & TRAINSTATION_ABSCTRACT) ? TRUE : FALSE
+	var/msg = span_boldnotice("The train will begin moving in [DisplayTimeText(delay)]! \
+			[station_abstract ? "" : "Please prepare to depart from [loaded_station.name]."])")
+	priority_announce(msg, "Train Departure")
+	tain_starting = TRUE
+	addtimer(CALLBACK(src, PROC_REF(start_moving), FALSE, TRUE, 0), delay)
+
+
 /datum/controller/subsystem/train_controller/proc/start_moving(force = FALSE, unload_station = TRUE)
 	if(moving)
 		return
@@ -221,9 +245,13 @@ SUBSYSTEM_DEF(train_controller)
 		return
 	if(!planned_to_load)
 		return
+
 	if(!(loaded_station.station_flags & TRAINSTATION_ABSCTRACT))
-		time_to_next_station = default_travel_time
-		total_travel_time = default_travel_time
+		var/time_to_next = rand(minimum_travel_time, maximum_travel_time)
+		time_to_next_station = time_to_next
+		total_travel_time = time_to_next
+		stations_visited += 1
+
 	moving = TRUE
 	if(unload_station && !istype(loaded_station, /datum/train_station/train_backstage))
 		load_station(/datum/train_station/train_backstage, FALSE, TRUE, FALSE)
@@ -234,6 +262,7 @@ SUBSYSTEM_DEF(train_controller)
 		T.check_process(register = TRUE)
 	soundloop.start()
 	sound_to_playing_players('modular_zvents/sounds/steam_short.ogg', volume = 60)
+	tain_starting = FALSE
 	SEND_SIGNAL(src, COMSIG_TRAIN_BEGIN_MOVING)
 
 /datum/controller/subsystem/train_controller/proc/stop_moving()
@@ -374,8 +403,8 @@ ADMIN_VERB(open_train_controller, R_ADMIN, "Open train controller", "Open active
 	if(LAZYLEN(client_view) == 2)
 		view_x = client_view[1]
 		view_y = client_view[2]
-	maptext_x = icon_size * view_x + round(icon_size * 0.5)
-	maptext_y = icon_size * view_y + round(icon_size * 0.5)
+	maptext_x = ((icon_size * view_x) + round(icon_size * 0.5)) * 2
+	maptext_y = ((icon_size * view_y) + round(icon_size * 0.5)) * 2
 	transform.Translate(10, 10)
 	ASYNC
 		rollem()

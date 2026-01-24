@@ -278,6 +278,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/auto_detect, 24)
 	icon_keyboard = "id_key"
 
 	var/read_only = FALSE
+	COOLDOWN_DECLARE(toggle_moving_cd)
 
 /obj/machinery/computer/train_control_terminal/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
@@ -328,11 +329,19 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/auto_detect, 24)
 			if(!TC.train_engine.is_active())
 				balloon_alert_to_viewers("Train engine is not active!")
 				return TRUE
+			if(!COOLDOWN_FINISHED(src, toggle_moving_cd))
+				balloon_alert_to_viewers("Please wait before toggling movement again.")
+				return TRUE
 			if(!TC.is_moving() && TC.planned_to_load && !TC.loaded_station?.blocking_moving)
-				TC.start_moving()
+				TC.attempt_start()
+				COOLDOWN_START(src, toggle_moving_cd, 60 SECONDS)
 			return TRUE
 		if("stop_moving")
+			if(!COOLDOWN_FINISHED(src, toggle_moving_cd))
+				balloon_alert_to_viewers("Please wait before toggling movement again.")
+				return TRUE
 			if(TC.is_moving())
+				COOLDOWN_START(src, toggle_moving_cd, 60 SECONDS)
 				TC.stop_moving()
 			return TRUE
 		if("choose_next")
@@ -348,7 +357,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/auto_detect, 24)
 /obj/machinery/computer/train_control_terminal/read_only
 	name = "Train terminal"
 	read_only = TRUE
-
 
 /obj/machinery/recharge_station/train
 	name = "train recharging station"

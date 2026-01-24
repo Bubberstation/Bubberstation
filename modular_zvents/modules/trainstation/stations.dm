@@ -115,16 +115,15 @@
 	var/name = "Train station"
 	var/desc = "A generic train station"
 	var/station_flags = NONE
-
-	var/datum/map_template/template = null
-	var/ambience_sound = null
-	var/map_path
 	var/visible = TRUE
 
-	var/z_level = 0
+	var/required_stations = 0
+
+	var/ambience_sound = null
+	var/map_path
+	var/datum/map_template/template = null
 
 	var/list/docking_turfs = list()
-
 	var/list/possible_next = list()
 	// Блокирует ли эта станция движение поезда
 	var/blocking_moving = FALSE
