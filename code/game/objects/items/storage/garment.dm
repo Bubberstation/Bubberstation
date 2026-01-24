@@ -122,7 +122,7 @@
 	new /obj/item/clothing/suit/jacket/hos/blue(src)
 	new /obj/item/clothing/neck/mantle/hosmantle(src)
 
-/obj/item/storage/bag/garment/warden/PopulateContents()
+/obj/item/storage/bag/garment/warden/PopulateContents() /* BUBBER EDIT - OVERWRITTEN IN modular_zubbers\code\modules\security\sec_garment_overrides.dm
 	new /obj/item/clothing/suit/armor/vest/warden(src)
 	new /obj/item/clothing/head/hats/warden(src)
 	new /obj/item/clothing/head/hats/warden/drill(src)
@@ -133,7 +133,7 @@
 	new /obj/item/clothing/under/rank/security/warden/skirt(src)
 	new /obj/item/clothing/gloves/kaza_ruk/sec(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses(src)
-	new /obj/item/clothing/mask/gas/sechailer(src)
+	new /obj/item/clothing/mask/gas/sechailer(src) */
 
 /obj/item/storage/bag/garment/research_director/PopulateContents()
 	new /obj/item/clothing/under/rank/rnd/research_director(src)

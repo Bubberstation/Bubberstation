@@ -1,4 +1,47 @@
 /*
+	// HATS
+*/
+
+// OFFICER
+
+/obj/item/clothing/head/helmet/sec
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "security_helmet"
+	base_icon_state = "security_helmet"
+
+// WARDEN
+
+/obj/item/clothing/head/hats/warden/viro // too many subtypes, who would've guessed?
+	name = "\proper the Warden's cap"
+	desc = "It's a special armored hat issued to the Warden of Nanotrasen Corporate Security. Protects the head from impacts."
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "warden_cap"
+
+/obj/item/clothing/head/hats/warden/viro/alt
+	icon_state = "warden_cap_red"
+
+/obj/item/clothing/head/hats/warden/drill/viro
+	name = "\proper the Warden's campaign cover"
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "warden_campaign"
+
+/obj/item/clothing/head/hats/warden/viro/beret // not greyscaled and its easier to do this then make it a subtype of regular berets
+	name = "\proper the Warden's beret"
+	desc = "A special beret with the Warden's insignia emblazoned on it. For wardens with class."
+	icon_state = "warden_beret"
+
+// HOS
+
+/obj/item/clothing/head/helmet/sec/hos
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "hos_helmet"
+	base_icon_state = "hos_helmet"
+
+/*
 	// UNIFORMS
 */
 
@@ -65,32 +108,58 @@
 	cold_protection = CHEST|GROIN|ARMS
 	heat_protection = CHEST|GROIN|ARMS
 
+
+/obj/item/clothing/suit/armor/vest/alt/sec/viro/softshell
+	name = "security softshell"
+	desc = "A windproof, rainproof, insulation jacket made for Security — with an internal sweater sewn into the collar of the suit, the suit keeps the wearer insulated while allowing the jacket to be unzipped."
+	icon_state = "sec_leatherjacket"
+	body_parts_covered = CHEST|GROIN|ARMS
+	cold_protection = CHEST|GROIN|ARMS
+	heat_protection = CHEST|GROIN|ARMS
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+
 // WARDEN
 
+/obj/item/clothing/suit/armor/vest/warden
+	name = "\proper the Warden's jacket"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	desc = "A grey armored jacket with red shoulder designations and '/Warden/' stitched into one of the chest pockets."
+	icon_state = "warden_alt"
 
+/obj/item/clothing/suit/armor/vest/warden/alt
+	name = "\proper the Warden's armoured jacket"
+	desc = "A grey jacket with silver rank pips and body armor strapped on top."
+	icon_state = "warden_jacket"
+
+/obj/item/clothing/suit/armor/vest/warden/alt/winter
+	name = "\proper the Warden's winter jacket"
+	desc = "A modification of the Warden's standard armoured jacket, made out of synthetic cotton woven with ceramic, and lined with faux-fur. For the cozy Warden."
+	icon_state = "warden_winterjacket"
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 
 // HOS
 
 /obj/item/clothing/suit/armor/hos
-	name = "\improper Head of Security's leather greatcoat"
+	name = "\proper the Head of Security's leather greatcoat"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "hos_greatcoat"
 
 /obj/item/clothing/suit/armor/hos/trenchcoat
-	name = "\improper Head of Security's leather overcoat"
+	name = "\proper the Head of Security's leather overcoat"
 	icon_state = "hos_leathercoat"
 
 /obj/item/clothing/suit/armor/hos/overcoat
-	name = "\improper Head of Security's overcoat"
+	name = "\proper the Head of Security's overcoat"
 	icon_state = "hos_overcoat"
 
 /obj/item/clothing/suit/armor/hos/trenchcoat/winter
-	name = "\improper Head of Security's winter trenchcoat"
+	name = "\proper the Head of Security's winter trenchcoat"
 	icon_state = "hos_wintercoat"
 
 /obj/item/clothing/suit/armor/hos/vest
-	name = "\improper Head of Security's plate carrier"
+	name = "\proper the Head of Security's plate carrier"
 	desc = "Specially issued plate carrier for Security command staff. On the front is an embroided patch, that in big yellow letters says: \"HEAD OF SECURITY\""
 	body_parts_covered = CHEST|GROIN
 	cold_protection = CHEST|GROIN
@@ -113,7 +182,9 @@
 /*
 	// SHOES
 */
+
 /obj/item/clothing/shoes/jackboots/sec
+	name = "security jackboots"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	icon_state = "sec_boots"

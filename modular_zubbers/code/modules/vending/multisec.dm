@@ -94,4 +94,4 @@
 
 
 /obj/item/vending_refill/wardrobe/sec_wardrobe
-	machine_name = "MultiSec Outfitting Station"
+	machine_name = "SecDrobe Outfitting Station"
