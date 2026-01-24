@@ -18,7 +18,7 @@
 
 /datum/supply_pack/engineering/charger
 	contains = list(/obj/item/wallframe/cell_charger_multi)
-	cost = PAYCHECK_CREW
+	cost = CARGO_CRATE_VALUE * 1.5
 
 /datum/supply_pack/engineering/water_synth
 	contains = list(/obj/item/flatpacked_machine/water_synth)
@@ -58,14 +58,17 @@
 	contains = list(/obj/item/flatpacked_machine/fuel_generator)
 	access_view = ACCESS_ENGINEERING
 
-/datum/supply_pack/engineering/equipment/wearable/weldhat
+/datum/supply_pack/goody/engineering
+	group = "Engineering"
+
+/datum/supply_pack/goody/engineering/weldhat
 	contains = list(/obj/item/clothing/head/utility/hardhat/welding/orange)
 	cost = PAYCHECK_CREW * 1.5
 
-/datum/supply_pack/engineering/equipment/wearable/gasmask
+/datum/supply_pack/goody/engineering/gasmask
 	contains = list(/obj/item/clothing/mask/gas/alt)
 	cost = PAYCHECK_LOWER
 
-/datum/supply_pack/engineering/equipment/wearable/hazard_vest
+/datum/supply_pack/goody/engineering/hazard_vest
 	contains = list(/obj/item/clothing/suit/hazardvest)
 	cost = PAYCHECK_CREW

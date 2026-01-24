@@ -64,14 +64,6 @@
 	. = ..()
 	contains += list(/obj/item/storage/toolbox/guncase/skyrat/pistol/pepperball = 2)
 
-/datum/supply_pack/security
-	access = ACCESS_SECURITY
-	cost = PAYCHECK_COMMAND
-	group = "Security" //figure this out later
-	order_flags = ORDER_GOODY
-	crate_type = null
-	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
-
 /datum/supply_pack/security/armory/mechthermal
 	access = FALSE
 	access_any = list(ACCESS_SECURITY, ACCESS_ROBOTICS)
