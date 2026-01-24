@@ -11,14 +11,11 @@
 	name = "The Radiosphere"
 	desc = "A massive array of sensors and signal amplifiers enclosed in a \
 			shell resembling a symmetrical octahedron. A faint noise emanates from this object."
+	icon = 'modular_zvents/icons/structures/radiosphere.dmi'
+	icon_state = "main"
 	density = TRUE
 	uses_integrity = FALSE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	pixel_x = -240
+	pixel_x = -32
 
-/obj/structure/prop/big/bigdice/radiosphere/Initialize(mapload)
-	. = ..()
-	var/matrix/M = matrix()
-	M.Scale(8, 8)
-	transform = M
-	pixel_x = -128
-	pixel_y = -128
