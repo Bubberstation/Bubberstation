@@ -403,8 +403,8 @@ ADMIN_VERB(open_train_controller, R_ADMIN, "Open train controller", "Open active
 	if(LAZYLEN(client_view) == 2)
 		view_x = client_view[1]
 		view_y = client_view[2]
-	maptext_x = ((icon_size * view_x) + round(icon_size * 0.5)) * 2
-	maptext_y = ((icon_size * view_y) + round(icon_size * 0.5)) * 2
+	maptext_x = ((icon_size * view_x) + round(icon_size * 0.5)) * 10
+	maptext_y = ((icon_size * view_y) + round(icon_size * 0.5)) * 10
 	transform.Translate(10, 10)
 	ASYNC
 		rollem()

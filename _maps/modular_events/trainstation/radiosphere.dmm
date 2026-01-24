@@ -21,6 +21,15 @@
 	icon_state = "floorsec2"
 	},
 /area/trainstation/outdoor/station/radiosphere)
+"at" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown/half/contrasted{
+	dir = 1
+	},
+/turf/open/floor/iron/edge,
+/area/trainstation/indoors/radiosphere)
 "aH" = (
 /obj/effect/turf_decal/siding/thinplating_new/light{
 	dir = 5
@@ -65,6 +74,13 @@
 	dir = 1
 	},
 /area/trainstation/indoors/radiosphere)
+"ba" = (
+/obj/structure/prop/general/zbunkbed2{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/radiosphere)
 "bi" = (
 /obj/structure/decorative{
 	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
@@ -94,12 +110,53 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/chasm,
 /area/trainstation/outdoor/station/radiosphere)
+"cd" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner,
+/turf/open/floor/plating,
+/area/trainstation/outdoor/station/radiosphere)
+"cj" = (
+/obj/structure/decorative{
+	name = "recorder";
+	desc = "Some kind of machine.";
+	density = 1;
+	anchored = 1;
+	icon = 'icons/obj/machines/telecomms.dmi';
+	icon_state = "blackbox_b";
+	pixel_y = 0
+	},
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/radiosphere)
 "cp" = (
 /obj/structure/shipping_container/kahraman,
 /obj/effect/light_emitter/daylight,
 /obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station/radiosphere)
+"cG" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/structure/marker_beacon/burgundy,
+/obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/trainstation/outdoor/station/radiosphere)
+"cT" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/structure/closet/secure_closet/personal/wall{
+	pixel_y = 0;
+	pixel_x = 30
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/diagonal,
+/area/trainstation/indoors/radiosphere)
 "dl" = (
 /obj/structure/lattice/catwalk/mining,
 /obj/structure/railing{
@@ -138,12 +195,17 @@
 /area/trainstation/outdoor)
 "ee" = (
 /turf/closed/wall/mineral/titanium/shuttle_wall/evac{
-	icon_state = "5,12"
+	icon_state = "10,6";
+	dir = 4
 	},
 /area/trainstation/indoors/radiosphere)
 "ef" = (
 /obj/effect/turf_decal/siding/thinplating_new/light,
 /obj/effect/turf_decal/lunar_sand/plating,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 1
+	},
+/obj/effect/light_emitter/daylight,
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
 "eg" = (
@@ -168,6 +230,18 @@
 	dir = 4
 	},
 /turf/open/floor/iron/stairs/old,
+/area/trainstation/indoors/radiosphere)
+"eF" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/machinery/light/cold/no_nightlight/directional/west,
+/turf/open/floor/iron/edge{
+	dir = 8
+	},
 /area/trainstation/indoors/radiosphere)
 "eG" = (
 /obj/effect/turf_decal/weather/snow/corner,
@@ -197,6 +271,17 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station/radiosphere)
+"gu" = (
+/obj/effect/turf_decal/siding/white,
+/obj/structure/chair/office{
+	dir = 8;
+	pixel_x = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/edge{
+	dir = 1
+	},
+/area/trainstation/indoors/radiosphere)
 "gy" = (
 /turf/closed/indestructible/rock/snow/ice/ore,
 /area/trainstation/outdoor/station/radiosphere)
@@ -209,15 +294,32 @@
 /obj/effect/turf_decal/siding/white/corner{
 	dir = 8
 	},
-/turf/open/floor/iron/corner{
-	dir = 8
-	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/large,
 /area/trainstation/indoors/radiosphere)
 "gJ" = (
 /turf/closed/indestructible/rock{
 	icon_state = "rock2"
 	},
 /area/trainstation/indoors)
+"gO" = (
+/obj/structure/prop/nt_biocan,
+/obj/structure/prop/conduit_spin,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/radiosphere)
+"gR" = (
+/obj/structure/decorative{
+	name = "recorder";
+	desc = "Some kind of machine.";
+	density = 1;
+	anchored = 1;
+	icon = 'icons/obj/machines/telecomms.dmi';
+	icon_state = "blackbox"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/radiosphere)
 "gS" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -245,6 +347,18 @@
 	dir = 8
 	},
 /area/trainstation/indoors/radiosphere)
+"hm" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/machinery/light/cold/no_nightlight/directional/east,
+/turf/open/floor/iron/edge{
+	dir = 4
+	},
+/area/trainstation/indoors/radiosphere)
 "hu" = (
 /obj/effect/decal/fakelattice,
 /obj/effect/turf_decal/siding/dark,
@@ -258,6 +372,8 @@
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station/radiosphere)
 "hw" = (
+/obj/structure/closet/cardboard,
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/radiosphere)
 "hJ" = (
@@ -289,6 +405,10 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
+"hZ" = (
+/obj/structure/displaycase,
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/radiosphere)
 "ia" = (
 /obj/effect/turf_decal/lunar_sand/plating,
 /obj/effect/turf_decal/shuttle/exploration/hazardstripe{
@@ -297,18 +417,38 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
+"ig" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 10
+	},
+/obj/structure/chair/office{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron,
+/area/trainstation/indoors/radiosphere)
 "iy" = (
 /obj/effect/turf_decal/siding/thinplating_new/light,
 /obj/effect/turf_decal/lunar_sand/plating,
 /obj/structure/marker_beacon/burgundy,
 /obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 1
+	},
 /turf/open/floor/plating,
+/area/trainstation/outdoor/station/radiosphere)
+"iC" = (
+/obj/effect/light_emitter/daylight,
+/obj/machinery/light/small/red/dim/directional/west,
+/turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station/radiosphere)
 "iH" = (
 /obj/structure/railing/corner,
 /obj/structure/railing/corner{
 	dir = 8
 	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/shuttle/exploration/uside{
 	dir = 1
 	},
@@ -322,8 +462,31 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/chasm,
 /area/trainstation/outdoor/station/radiosphere)
+"iP" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/structure/marker_beacon/burgundy,
+/obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/trainstation/outdoor/station/radiosphere)
 "iY" = (
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/shuttle/exploration/invertcorner_side,
+/area/trainstation/indoors/radiosphere)
+"je" = (
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 8
+	},
+/obj/machinery/light/floor{
+	pixel_x = 16;
+	pixel_y = 16
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/shuttle/exploration/corner{
+	dir = 4
+	},
 /area/trainstation/indoors/radiosphere)
 "jA" = (
 /obj/effect/turf_decal/siding/dark{
@@ -333,7 +496,16 @@
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station/radiosphere)
 "jF" = (
-/turf/open/floor/plating,
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/edge{
+	dir = 4
+	},
 /area/trainstation/indoors/radiosphere)
 "jU" = (
 /obj/effect/turf_decal/stripes/line{
@@ -343,33 +515,52 @@
 /obj/effect/turf_decal/siding/wideplating/dark/corner{
 	dir = 8
 	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/shuttle/exploration/invertcorner_side{
 	dir = 4
 	},
 /area/trainstation/indoors/radiosphere)
 "jW" = (
 /obj/effect/turf_decal/siding/white{
-	dir = 8
+	dir = 9
 	},
-/obj/machinery/computer{
-	dir = 4
-	},
-/obj/effect/mapping_helpers/trigger_helper/hand_punch{
-	EDITOR_TARGET = /obj/machinery/computer;
-	trigger_key = "ts_rs_1"
-	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/edge{
 	dir = 1
 	},
 /area/trainstation/indoors/radiosphere)
 "jY" = (
-/obj/structure/lattice,
-/turf/closed/wall/mineral/titanium/shuttle_wall/arrivals,
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
+	},
+/turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
 "kf" = (
 /obj/structure/sneak_pod/rock,
 /turf/open/misc/dirt/icy_planet,
 /area/trainstation/indoors)
+"kk" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/structure/closet/secure_closet/personal/wall{
+	pixel_y = 0;
+	pixel_x = -29
+	},
+/turf/open/floor/iron/diagonal,
+/area/trainstation/indoors/radiosphere)
+"kq" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/large,
+/area/trainstation/indoors/radiosphere)
 "kw" = (
 /obj/structure/lattice/catwalk/mining,
 /obj/structure/railing{
@@ -391,14 +582,23 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/floor/asphalt,
 /area/trainstation/outdoor/station/radiosphere)
+"kL" = (
+/obj/effect/turf_decal/siding/white,
+/turf/open/floor/iron/edge,
+/area/trainstation/indoors/radiosphere)
 "kR" = (
-/obj/effect/turf_decal/siding/white{
+/obj/structure/closet/secure_closet/personal,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/radiosphere)
+"kW" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
 	dir = 5
 	},
-/turf/open/floor/iron/edge{
-	dir = 1
-	},
-/area/trainstation/indoors/radiosphere)
+/turf/open/floor/plating,
+/area/trainstation/outdoor/station/radiosphere)
 "la" = (
 /obj/effect/turf_decal/siding/wideplating/dark/corner{
 	dir = 4
@@ -412,6 +612,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/shuttle/exploration/corner_invcorner{
 	dir = 1
 	},
@@ -435,6 +636,24 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/floor/asphalt,
 /area/trainstation/outdoor/station/radiosphere)
+"lH" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/structure/marker_beacon/burgundy,
+/obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/trainstation/outdoor/station/radiosphere)
+"lO" = (
+/obj/machinery/space_heater,
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/radiosphere)
+"lR" = (
+/obj/structure/ore_box,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/radiosphere)
 "me" = (
 /obj/structure/railing{
 	dir = 8
@@ -450,6 +669,10 @@
 	dir = 4
 	},
 /area/trainstation/indoors/radiosphere)
+"mj" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/shuttle/exploration/uside,
+/area/trainstation/indoors/radiosphere)
 "mq" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 4
@@ -457,12 +680,17 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 8
 	},
+/obj/effect/turf_decal/tile/brown/half/contrasted{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/edge{
 	dir = 8
 	},
 /area/trainstation/indoors/radiosphere)
 "ms" = (
 /obj/structure/railing/corner,
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/shuttle/exploration/uside{
 	dir = 1
 	},
@@ -471,6 +699,15 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 10
 	},
+/obj/machinery/computer{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/trigger_helper/hand_punch{
+	EDITOR_TARGET = /obj/machinery/computer;
+	trigger_key = "ts_rs_1"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron,
 /area/trainstation/indoors/radiosphere)
 "mz" = (
@@ -478,6 +715,10 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/lunar_sand/plating,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 8
+	},
+/obj/effect/light_emitter/daylight,
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
 "mK" = (
@@ -486,6 +727,9 @@
 	},
 /obj/effect/turf_decal/siding/white{
 	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
 	},
 /turf/open/floor/iron/corner{
 	dir = 8
@@ -510,6 +754,13 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/floor/iron/shuttle/exploration/hazard,
 /area/trainstation/outdoor/station/radiosphere)
+"mO" = (
+/obj/effect/turf_decal/siding/white,
+/obj/effect/turf_decal/tile/brown/half/contrasted,
+/turf/open/floor/iron/edge{
+	dir = 1
+	},
+/area/trainstation/indoors/radiosphere)
 "nc" = (
 /turf/closed/wall/mineral/titanium/shuttle_wall/evac{
 	icon_state = "7,13";
@@ -526,6 +777,24 @@
 	},
 /turf/open/floor/iron/shuttle/exploration/doubleside{
 	dir = 8
+	},
+/area/trainstation/indoors/radiosphere)
+"nr" = (
+/obj/machinery/computer/terminal,
+/obj/structure/railing{
+	dir = 8;
+	pixel_y = -11
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/cobweb{
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/side{
+	dir = 1
 	},
 /area/trainstation/indoors/radiosphere)
 "nw" = (
@@ -546,6 +815,28 @@
 	},
 /turf/open/floor/iron/shuttle/exploration/equipmentrail2,
 /area/trainstation/indoors/radiosphere)
+"of" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/machinery/light/cold/no_nightlight/directional/west,
+/obj/structure/chair/office{
+	dir = 4
+	},
+/turf/open/floor/iron/edge{
+	dir = 8
+	},
+/area/trainstation/indoors/radiosphere)
+"oo" = (
+/obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 5
+	},
+/turf/open/misc/asteroid/snow/standard_air,
+/area/trainstation/outdoor/station/radiosphere)
 "ox" = (
 /obj/structure/lattice/catwalk/mining,
 /obj/structure/railing{
@@ -555,6 +846,17 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/chasm,
 /area/trainstation/outdoor/station/radiosphere)
+"oT" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4
+	},
+/turf/open/floor/iron/edge{
+	dir = 8
+	},
+/area/trainstation/indoors/radiosphere)
 "oU" = (
 /turf/closed/wall/mineral/titanium/shuttle_wall/evac{
 	icon_state = "10,6";
@@ -584,23 +886,36 @@
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
 "pb" = (
-/obj/structure/lattice,
-/turf/closed/wall/mineral/titanium/shuttle_wall/arrivals,
+/obj/effect/turf_decal/siding/white/end,
+/turf/open/floor/iron/diagonal,
 /area/trainstation/indoors/radiosphere)
 "pf" = (
 /obj/machinery/door/manual_airlock,
-/turf/open/floor/plating,
+/turf/open/floor/iron/shuttle/exploration/smooth,
 /area/trainstation/indoors/radiosphere)
 "pg" = (
 /obj/structure/flora/bush/snow/style_random,
 /obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station/radiosphere)
-"pr" = (
-/obj/effect/turf_decal/siding/thinplating_new/light{
-	dir = 8
+"pm" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
 	},
+/obj/structure/marker_beacon/jade,
+/obj/machinery/modular_computer/preset/command,
+/obj/item/radio/intercom/command/directional/north,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
+/area/trainstation/indoors/radiosphere)
+"pr" = (
 /obj/effect/turf_decal/lunar_sand/plating,
+/obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 10
+	},
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
 "py" = (
@@ -610,6 +925,10 @@
 /turf/open/floor/iron/shuttle/exploration/invertcorner_side{
 	dir = 1
 	},
+/area/trainstation/indoors/radiosphere)
+"pF" = (
+/obj/structure/table,
+/turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/radiosphere)
 "pS" = (
 /obj/effect/turf_decal/lunar_sand/plating,
@@ -626,8 +945,43 @@
 /area/trainstation/outdoor/station/radiosphere)
 "pY" = (
 /obj/effect/turf_decal/lunar_sand/plating,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 1
+	},
+/obj/effect/light_emitter/daylight,
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
+"pZ" = (
+/obj/machinery/light/small/dim/directional/north,
+/obj/structure/table,
+/obj/effect/turf_decal/siding/white{
+	dir = 5
+	},
+/obj/item/chair{
+	pixel_x = -15;
+	pixel_y = 5
+	},
+/obj/item/storage/box/colonial_rations{
+	pixel_x = -5;
+	pixel_y = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/edge{
+	dir = 1
+	},
+/area/trainstation/indoors/radiosphere)
+"qb" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/machinery/light/cold/no_nightlight/directional/east,
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/diagonal,
+/area/trainstation/indoors/radiosphere)
 "qu" = (
 /turf/closed/wall/mineral/titanium/shuttle_wall/arrivals{
 	dir = 8
@@ -638,6 +992,9 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/white,
+/obj/effect/turf_decal/tile/brown/half/contrasted{
+	dir = 1
+	},
 /turf/open/floor/iron/edge,
 /area/trainstation/indoors/radiosphere)
 "qI" = (
@@ -651,6 +1008,7 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 6
 	},
+/obj/effect/turf_decal/tile/brown/anticorner/contrasted,
 /turf/open/floor/iron,
 /area/trainstation/indoors/radiosphere)
 "qP" = (
@@ -674,6 +1032,14 @@
 	},
 /turf/open/floor/iron/shuttle/exploration/uside,
 /area/trainstation/indoors/radiosphere)
+"rj" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 5
+	},
+/turf/open/floor/iron/corner{
+	dir = 8
+	},
+/area/trainstation/indoors/radiosphere)
 "rl" = (
 /obj/structure/sneak_pod/iced,
 /turf/open/misc/dirt/icy_planet,
@@ -687,6 +1053,9 @@
 	color = "#666666";
 	pixel_y = 0
 	},
+/obj/machinery/computer/terminal{
+	dir = 1
+	},
 /turf/open/floor/iron/dark/side,
 /area/trainstation/indoors/radiosphere)
 "ru" = (
@@ -694,11 +1063,45 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 5
 	},
+/obj/effect/turf_decal/tile/brown/anticorner/contrasted{
+	dir = 4
+	},
 /turf/open/floor/iron,
+/area/trainstation/indoors/radiosphere)
+"rz" = (
+/obj/effect/turf_decal/siding/dark/end{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/small,
+/area/trainstation/indoors/radiosphere)
+"rB" = (
+/obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner,
+/turf/open/floor/asphalt,
+/area/trainstation/outdoor/station/radiosphere)
+"rF" = (
+/obj/structure/closet/secure_closet/personal/wall{
+	pixel_y = -28
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 6
+	},
+/turf/open/floor/iron/edge{
+	dir = 1
+	},
 /area/trainstation/indoors/radiosphere)
 "rJ" = (
 /obj/structure/railing{
 	dir = 4
+	},
+/obj/structure/decorative{
+	name = "recorder";
+	desc = "Some kind of machine.";
+	density = 1;
+	anchored = 1;
+	icon = 'icons/obj/machines/telecomms.dmi';
+	icon_state = "blackbox"
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/radiosphere)
@@ -719,6 +1122,10 @@
 	},
 /obj/effect/turf_decal/lunar_sand/plating,
 /obj/structure/marker_beacon/burgundy,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 5
+	},
+/obj/effect/light_emitter/daylight,
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
 "sj" = (
@@ -727,8 +1134,32 @@
 	},
 /obj/effect/turf_decal/lunar_sand/plating,
 /obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner,
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
+"sk" = (
+/obj/effect/turf_decal/siding/thinplating_new/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/trainstation/outdoor/station/radiosphere)
+"sp" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/edge{
+	dir = 4
+	},
+/area/trainstation/indoors/radiosphere)
 "st" = (
 /turf/closed/wall/mineral/titanium/shuttle_wall/window/evac{
 	icon_state = "15,14";
@@ -767,9 +1198,8 @@
 /area/trainstation/outdoor)
 "tk" = (
 /obj/effect/turf_decal/siding/white,
-/turf/open/floor/iron/edge{
-	dir = 1
-	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/large,
 /area/trainstation/indoors/radiosphere)
 "tl" = (
 /obj/effect/mapping_helpers/turf_cracks,
@@ -783,7 +1213,7 @@
 /obj/effect/turf_decal/siding/white/corner{
 	dir = 2
 	},
-/turf/open/floor/iron/corner,
+/turf/open/floor/iron/large,
 /area/trainstation/indoors/radiosphere)
 "tw" = (
 /obj/effect/turf_decal/weather/snow/corner{
@@ -799,6 +1229,9 @@
 /obj/effect/turf_decal/lunar_sand/plating,
 /obj/structure/marker_beacon/burgundy,
 /obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 5
+	},
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
 "tE" = (
@@ -806,11 +1239,15 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station/radiosphere)
-"tR" = (
+"tO" = (
 /obj/effect/turf_decal/lunar_sand/plating,
-/turf/closed/wall/mineral/titanium/shuttle_wall/evac{
-	icon_state = "7,13";
-	dir = 8
+/obj/effect/light_emitter/daylight,
+/turf/closed/indestructible/rock/snow/ice/ore,
+/area/trainstation/outdoor/station/radiosphere)
+"tR" = (
+/turf/closed/wall/mineral/titanium/shuttle_wall/window/evac{
+	icon_state = "15,14";
+	dir = 2
 	},
 /area/trainstation/indoors/radiosphere)
 "tS" = (
@@ -833,6 +1270,27 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
+"um" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/structure/closet/secure_closet/personal/wall{
+	pixel_y = 0;
+	pixel_x = 30
+	},
+/turf/open/floor/iron/diagonal,
+/area/trainstation/indoors/radiosphere)
+"uy" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 9
+	},
+/turf/open/floor/plating,
+/area/trainstation/outdoor/station/radiosphere)
 "uD" = (
 /turf/closed/wall/mineral/titanium/shuttle_wall/arrivals,
 /area/trainstation/outdoor/station/radiosphere)
@@ -840,6 +1298,9 @@
 /obj/effect/turf_decal/siding/thinplating_new/light,
 /obj/effect/turf_decal/lunar_sand/plating,
 /obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
 "vb" = (
@@ -847,6 +1308,7 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 1
 	},
+/obj/effect/turf_decal/tile/brown/half/contrasted,
 /turf/open/floor/iron/edge{
 	dir = 1
 	},
@@ -857,11 +1319,20 @@
 /area/trainstation/indoors/radiosphere)
 "vi" = (
 /obj/effect/turf_decal/siding/white{
-	dir = 8
+	dir = 9
 	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/edge{
 	dir = 1
 	},
+/area/trainstation/indoors/radiosphere)
+"vo" = (
+/obj/effect/turf_decal/siding/white/end{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron,
 /area/trainstation/indoors/radiosphere)
 "vr" = (
 /turf/closed/indestructible/rock/snow/ice/ore,
@@ -886,6 +1357,9 @@
 	},
 /obj/effect/turf_decal/weather/snow/corner,
 /obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 8
+	},
 /turf/open/floor/asphalt,
 /area/trainstation/outdoor/station/radiosphere)
 "vJ" = (
@@ -904,6 +1378,7 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/large,
 /area/trainstation/indoors/radiosphere)
 "we" = (
@@ -931,20 +1406,38 @@
 	pixel_x = 16;
 	pixel_y = 16
 	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/radiosphere)
+"ww" = (
+/turf/closed/wall/mineral/titanium/shuttle_wall/evac{
+	icon_state = "5,13";
+	dir = 8
+	},
 /area/trainstation/indoors/radiosphere)
 "wC" = (
 /turf/closed/wall/mineral/titanium/shuttle_wall/window/evac{
 	icon_state = "15,11";
-	dir = 8
+	dir = 2
 	},
 /area/trainstation/indoors/radiosphere)
+"wL" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/structure/marker_beacon/burgundy,
+/obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/trainstation/outdoor/station/radiosphere)
 "wX" = (
-/obj/effect/turf_decal/siding/white{
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
 	dir = 1
 	},
-/turf/open/floor/iron/corner,
-/area/trainstation/indoors/radiosphere)
+/turf/open/floor/plating,
+/area/trainstation/outdoor/station/radiosphere)
 "xd" = (
 /obj/structure/lattice/catwalk/mining,
 /obj/structure/railing{
@@ -978,6 +1471,34 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/chasm,
 /area/trainstation/outdoor/station/radiosphere)
+"xy" = (
+/obj/effect/turf_decal/siding/white/end{
+	dir = 1
+	},
+/turf/open/floor/iron/diagonal,
+/area/trainstation/indoors/radiosphere)
+"xE" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/item/stack/sheet/cardboard,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/edge{
+	dir = 8
+	},
+/area/trainstation/indoors/radiosphere)
+"xI" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/corner{
+	dir = 4
+	},
+/area/trainstation/indoors/radiosphere)
 "xJ" = (
 /obj/structure/prop/bsc{
 	name = "Strange crystal"
@@ -991,7 +1512,9 @@
 	EDITOR_use_time = 100
 	},
 /turf/open/floor/plating{
-	icon_state = "black"
+	icon_state = "chasms-255";
+	base_icon_state = "chasms";
+	icon = 'icons/turf/floors/chasms.dmi'
 	},
 /area/trainstation/outdoor/station/radiosphere)
 "xN" = (
@@ -1001,10 +1524,25 @@
 /obj/effect/turf_decal/siding/white/corner{
 	dir = 1
 	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
 /turf/open/floor/iron/corner{
 	dir = 4
 	},
 /area/trainstation/indoors/radiosphere)
+"xR" = (
+/obj/effect/turf_decal/siding/thinplating_new/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
+	},
+/obj/machinery/light/small/red/dim/directional/west,
+/turf/open/floor/plating,
+/area/trainstation/outdoor/station/radiosphere)
 "xW" = (
 /obj/structure/fence/interlink{
 	dir = 8;
@@ -1040,11 +1578,35 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
+"yn" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 2;
+	color = "#666666";
+	pixel_y = 0
+	},
+/obj/machinery/computer/terminal{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/side,
+/area/trainstation/indoors/radiosphere)
+"yy" = (
+/obj/effect/turf_decal/siding/white,
+/obj/structure/chair/office,
+/turf/open/floor/iron/edge,
+/area/trainstation/indoors/radiosphere)
 "yG" = (
 /obj/structure/lattice/catwalk/mining,
 /obj/effect/light_emitter/daylight,
 /turf/open/chasm,
 /area/trainstation/outdoor/station/radiosphere)
+"yJ" = (
+/obj/structure/prop/nt_biocan,
+/obj/structure/prop/conduit_spin,
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/radiosphere)
 "yS" = (
 /obj/effect/turf_decal/lunar_sand/plating,
 /obj/structure/railing{
@@ -1056,6 +1618,15 @@
 	color = "#666666"
 	},
 /obj/effect/light_emitter/daylight,
+/turf/open/floor/plating,
+/area/trainstation/outdoor/station/radiosphere)
+"yU" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/structure/marker_beacon/burgundy,
+/obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
 "yW" = (
@@ -1094,10 +1665,35 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/chasm,
 /area/trainstation/outdoor/station/radiosphere)
+"zm" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/structure/marker_beacon/burgundy,
+/obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 9
+	},
+/turf/open/floor/plating,
+/area/trainstation/outdoor/station/radiosphere)
 "zB" = (
 /turf/closed/wall/mineral/titanium/shuttle_wall/evac{
 	icon_state = "5,13";
 	dir = 1
+	},
+/area/trainstation/indoors/radiosphere)
+"zG" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/machinery/light/cold/no_nightlight/directional/east,
+/obj/structure/chair/office{
+	dir = 8;
+	pixel_x = 5
+	},
+/turf/open/floor/iron/edge{
+	dir = 4
 	},
 /area/trainstation/indoors/radiosphere)
 "zN" = (
@@ -1114,6 +1710,9 @@
 /obj/effect/turf_decal/lunar_sand/plating,
 /obj/structure/marker_beacon/burgundy,
 /obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 6
+	},
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
 "zQ" = (
@@ -1126,14 +1725,21 @@
 	dir = 2
 	},
 /area/trainstation/indoors/radiosphere)
+"Ac" = (
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/modular_computer/laptop/preset/civilian,
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/radiosphere)
 "Af" = (
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/trainstation/indoors/radiosphere)
 "Aj" = (
-/obj/effect/turf_decal/siding/thinplating_new/light{
-	dir = 5
-	},
 /obj/effect/turf_decal/lunar_sand/plating,
+/obj/structure/marker_beacon/burgundy,
+/obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 6
+	},
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
 "Am" = (
@@ -1152,6 +1758,31 @@
 	dir = 8
 	},
 /area/trainstation/outdoor/station/radiosphere)
+"Ao" = (
+/obj/effect/turf_decal/siding/white,
+/obj/machinery/light/cold/no_nightlight/directional/south,
+/obj/structure/table,
+/obj/item/storage/box/colonial_rations{
+	pixel_x = -5;
+	pixel_y = 8
+	},
+/obj/item/storage/box/mothic_rations{
+	pixel_x = 1;
+	pixel_y = 2
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/edge{
+	dir = 1
+	},
+/area/trainstation/indoors/radiosphere)
+"Ax" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 6
+	},
+/turf/open/floor/plating,
+/area/trainstation/outdoor/station/radiosphere)
 "AD" = (
 /obj/effect/turf_decal/siding/thinplating_new/light{
 	dir = 1
@@ -1159,6 +1790,7 @@
 /obj/effect/turf_decal/lunar_sand/plating,
 /obj/structure/marker_beacon/burgundy,
 /obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner,
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
 "AJ" = (
@@ -1169,6 +1801,29 @@
 	dir = 8
 	},
 /turf/open/floor/iron/stairs/old,
+/area/trainstation/indoors/radiosphere)
+"AW" = (
+/obj/machinery/light/small/dim/directional/north,
+/obj/structure/table,
+/obj/effect/turf_decal/siding/white{
+	dir = 5
+	},
+/obj/item/chair{
+	pixel_x = -11;
+	pixel_y = 7
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/edge{
+	dir = 1
+	},
+/area/trainstation/indoors/radiosphere)
+"BA" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/corner,
 /area/trainstation/indoors/radiosphere)
 "BH" = (
 /obj/effect/turf_decal/siding/wideplating/dark/corner{
@@ -1183,6 +1838,9 @@
 /obj/effect/turf_decal/lunar_sand/plating,
 /obj/structure/marker_beacon/burgundy,
 /obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
 "BS" = (
@@ -1192,13 +1850,23 @@
 /area/trainstation/outdoor)
 "Ce" = (
 /obj/effect/turf_decal/weather/snow/corner,
-/obj/effect/turf_decal/weather/snow/corner{
-	dir = 1
-	},
 /obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 5
+	},
 /turf/open/floor/asphalt,
 /area/trainstation/outdoor/station/radiosphere)
+"Ci" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/turf/open/floor/iron/diagonal,
+/area/trainstation/indoors/radiosphere)
 "Ck" = (
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/shuttle/exploration/tripleinvertcorner,
 /area/trainstation/indoors/radiosphere)
 "Co" = (
@@ -1236,6 +1904,11 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/floor/asphalt,
 /area/trainstation/outdoor/station/radiosphere)
+"CJ" = (
+/obj/structure/closet/crate/cardboard,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/shuttle/exploration/uside,
+/area/trainstation/indoors/radiosphere)
 "CP" = (
 /obj/structure/prop/general/centerroadbarrier2{
 	pixel_y = 29;
@@ -1249,6 +1922,7 @@
 /turf/open/floor/iron/shuttle/exploration/hazard,
 /area/trainstation/outdoor/station/radiosphere)
 "Dg" = (
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/shuttle/exploration/doubleside{
 	dir = 8
 	},
@@ -1285,6 +1959,22 @@
 	},
 /turf/open/misc/dirt/icy_planet,
 /area/trainstation/indoors)
+"DG" = (
+/obj/structure/closet/secure_closet/personal/wall{
+	pixel_y = -28
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 6
+	},
+/obj/structure/chair/office{
+	dir = 8;
+	pixel_x = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/edge{
+	dir = 1
+	},
+/area/trainstation/indoors/radiosphere)
 "DI" = (
 /obj/structure/decorative{
 	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
@@ -1306,8 +1996,35 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station/radiosphere)
+"DN" = (
+/obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 1
+	},
+/turf/open/floor/asphalt,
+/area/trainstation/outdoor/station/radiosphere)
+"DQ" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/corner{
+	dir = 1
+	},
+/area/trainstation/indoors/radiosphere)
 "En" = (
 /turf/open/floor/iron/stairs/old,
+/area/trainstation/indoors/radiosphere)
+"Eq" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/obj/structure/marker_beacon/jade,
+/obj/machinery/modular_computer/preset/command,
+/obj/item/radio/intercom/command/directional/north,
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
 /area/trainstation/indoors/radiosphere)
 "Et" = (
 /obj/effect/turf_decal/siding/dark/corner{
@@ -1320,6 +2037,27 @@
 	dir = 8
 	},
 /area/trainstation/indoors/radiosphere)
+"Ew" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
+/area/trainstation/indoors/radiosphere)
+"EA" = (
+/obj/effect/decal/fakelattice,
+/obj/effect/turf_decal/siding/dark,
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/turf/open/misc/asteroid/snow/standard_air,
+/area/trainstation/outdoor/station/radiosphere)
+"EE" = (
+/obj/structure/table,
+/obj/item/modular_computer/laptop/preset/civilian,
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/radiosphere)
 "EH" = (
 /obj/effect/turf_decal/lunar_sand/plating,
 /obj/effect/light_emitter/daylight,
@@ -1331,17 +2069,50 @@
 	},
 /turf/open/misc/dirt/icy_planet,
 /area/trainstation/indoors)
-"EV" = (
+"EP" = (
 /obj/effect/turf_decal/siding/white{
+	dir = 9
+	},
+/obj/structure/table,
+/obj/item/chair,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/edge{
 	dir = 1
 	},
-/turf/open/floor/iron/edge,
+/area/trainstation/indoors/radiosphere)
+"EV" = (
+/obj/machinery/computer/terminal,
+/obj/structure/railing{
+	dir = 8;
+	pixel_y = -11
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/cobweb{
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
 /area/trainstation/indoors/radiosphere)
 "Fg" = (
-/obj/effect/turf_decal/siding/white{
+/obj/machinery/computer/terminal,
+/obj/structure/railing{
+	dir = 4;
+	pixel_y = -11
+	},
+/obj/effect/turf_decal/siding/dark{
 	dir = 5
 	},
-/turf/open/floor/iron,
+/obj/effect/decal/cleanable/cobweb/cobweb2{
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
 /area/trainstation/indoors/radiosphere)
 "Fi" = (
 /obj/effect/turf_decal/weather/snow/corner,
@@ -1351,6 +2122,18 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/floor/asphalt,
 /area/trainstation/outdoor/station/radiosphere)
+"Fr" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/structure/chair/office{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/edge{
+	dir = 1
+	},
+/area/trainstation/indoors/radiosphere)
 "Ft" = (
 /obj/effect/light_emitter/daylight,
 /turf/open/floor/iron/shuttle/evac{
@@ -1359,6 +2142,7 @@
 /area/trainstation/outdoor/station/radiosphere)
 "Fu" = (
 /obj/effect/turf_decal/lunar_sand/plating,
+/obj/machinery/door/poddoor/preopen,
 /turf/open/floor/plating,
 /area/trainstation/indoors/radiosphere)
 "FF" = (
@@ -1373,6 +2157,16 @@
 	},
 /turf/open/misc/dirt/icy_planet,
 /area/trainstation/indoors)
+"FM" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white/corner,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/edge{
+	dir = 8
+	},
+/area/trainstation/indoors/radiosphere)
 "FS" = (
 /obj/machinery/door/manual_airlock,
 /turf/open/floor/iron/dark/smooth_large,
@@ -1396,7 +2190,50 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/floor/iron/shuttle/exploration/hazard,
 /area/trainstation/outdoor/station/radiosphere)
+"Gs" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/turf/open/floor/iron/edge{
+	dir = 8
+	},
+/area/trainstation/indoors/radiosphere)
+"GG" = (
+/obj/effect/turf_decal/siding/dark/end{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/small,
+/area/trainstation/indoors/radiosphere)
+"GW" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/machinery/light/cold/no_nightlight/directional/west,
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/diagonal,
+/area/trainstation/indoors/radiosphere)
+"Ht" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8
+	},
+/turf/open/floor/iron/edge{
+	dir = 4
+	},
+/area/trainstation/indoors/radiosphere)
 "HA" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/white/corner,
 /turf/open/floor/iron,
 /area/trainstation/indoors/radiosphere)
 "HF" = (
@@ -1406,6 +2243,9 @@
 /obj/effect/turf_decal/lunar_sand/plating,
 /obj/structure/marker_beacon/burgundy,
 /obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 10
+	},
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
 "HH" = (
@@ -1504,6 +2344,12 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/floor/asphalt,
 /area/trainstation/outdoor/station/radiosphere)
+"IN" = (
+/obj/structure/prop/general/zbunkbed2{
+	dir = 4
+	},
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/radiosphere)
 "Ja" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
@@ -1515,6 +2361,14 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station/radiosphere)
+"Je" = (
+/obj/structure/closet/secure_closet/personal/wall{
+	pixel_y = -28
+	},
+/obj/machinery/space_heater,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/radiosphere)
 "Jf" = (
 /obj/structure/sneak_pod/iced/enterence{
 	dir = 1
@@ -1543,15 +2397,40 @@
 	},
 /area/trainstation/outdoor)
 "JB" = (
-/obj/effect/turf_decal/siding/thinplating_new/light{
-	dir = 10
-	},
-/obj/effect/turf_decal/lunar_sand/plating,
-/turf/open/floor/plating,
-/area/trainstation/outdoor/station/radiosphere)
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/radiosphere)
 "JK" = (
 /obj/effect/turf_decal/siding/white,
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4
+	},
+/obj/item/radio/intercom/directional/south,
 /turf/open/floor/iron,
+/area/trainstation/indoors/radiosphere)
+"JP" = (
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/storage/box/colonial_rations{
+	pixel_x = -3;
+	pixel_y = 2
+	},
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/radiosphere)
+"JY" = (
+/obj/structure/displaycase,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/radiosphere)
+"Kf" = (
+/obj/structure/decorative{
+	name = "recorder";
+	desc = "Some kind of machine.";
+	density = 1;
+	anchored = 1;
+	icon = 'icons/obj/machines/telecomms.dmi';
+	icon_state = "blackbox"
+	},
+/turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/radiosphere)
 "Kj" = (
 /obj/effect/light_emitter/daylight,
@@ -1565,6 +2444,16 @@
 	},
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station/radiosphere)
+"Kl" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/item/stack/sheet/cardboard,
+/turf/open/floor/iron/diagonal,
+/area/trainstation/indoors/radiosphere)
 "Kr" = (
 /obj/effect/light_emitter/interlink,
 /obj/effect/light_emitter/daylight,
@@ -1580,6 +2469,9 @@
 /obj/effect/turf_decal/siding/white/corner{
 	dir = 2
 	},
+/obj/effect/turf_decal/tile/brown/half/contrasted{
+	dir = 1
+	},
 /turf/open/floor/iron/edge,
 /area/trainstation/indoors/radiosphere)
 "Ky" = (
@@ -1589,12 +2481,7 @@
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
 "KA" = (
-/obj/effect/turf_decal/siding/white{
-	dir = 6
-	},
-/turf/open/floor/iron/edge{
-	dir = 1
-	},
+/turf/open/floor/carpet/black,
 /area/trainstation/indoors/radiosphere)
 "KE" = (
 /obj/effect/light_emitter/daylight,
@@ -1609,12 +2496,10 @@
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station/radiosphere)
 "KQ" = (
-/obj/effect/turf_decal/siding/white{
-	dir = 9
+/obj/structure/prop/general/zbunkbed2{
+	dir = 8
 	},
-/turf/open/floor/iron/edge{
-	dir = 1
-	},
+/turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/radiosphere)
 "KY" = (
 /turf/closed/wall/mineral/titanium/shuttle_wall/evac{
@@ -1622,17 +2507,26 @@
 	dir = 8
 	},
 /area/trainstation/outdoor)
-"Lo" = (
-/obj/effect/turf_decal/siding/wideplating/dark/corner{
+"Lj" = (
+/obj/effect/turf_decal/siding/white{
 	dir = 8
 	},
-/obj/machinery/light/floor{
-	pixel_x = 16;
-	pixel_y = 16
-	},
-/turf/open/floor/iron/shuttle/exploration/corner{
+/obj/effect/turf_decal/siding/white{
 	dir = 4
 	},
+/turf/open/floor/iron/edge{
+	dir = 4
+	},
+/area/trainstation/indoors/radiosphere)
+"Lm" = (
+/obj/structure/ore_box,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/shuttle/exploration/uside,
+/area/trainstation/indoors/radiosphere)
+"Lo" = (
+/obj/effect/turf_decal/siding/dark/end,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/radiosphere)
 "Lp" = (
 /turf/open/floor/iron/shuttle/exploration/doubleside,
@@ -1646,6 +2540,29 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station/radiosphere)
+"LS" = (
+/obj/effect/turf_decal/siding/white,
+/obj/structure/chair/office{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/edge{
+	dir = 1
+	},
+/area/trainstation/indoors/radiosphere)
+"Ml" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/machinery/light/small/dim/directional/north,
+/obj/structure/closet/secure_closet/personal/wall{
+	pixel_y = 29
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/edge{
+	dir = 1
+	},
+/area/trainstation/indoors/radiosphere)
 "Mr" = (
 /obj/structure/decorative{
 	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
@@ -1658,6 +2575,16 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
+"MG" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/item/radio/intercom/directional/west,
+/turf/open/floor/iron/diagonal,
+/area/trainstation/indoors/radiosphere)
 "MJ" = (
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/indoors)
@@ -1666,12 +2593,30 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station/radiosphere)
+"MR" = (
+/obj/effect/light_emitter/daylight,
+/obj/structure/decorative{
+	anchored = 1;
+	desc = "A small set of steps you can use to reach high shelves or climb onto platforms, just watch your ankles.";
+	icon = 'icons/obj/small_stairs.dmi';
+	name = "steps";
+	icon_state = "iron";
+	dir = 8;
+	pixel_y = -7
+	},
+/turf/open/misc/asteroid/snow/standard_air,
+/area/trainstation/outdoor/station/radiosphere)
 "MU" = (
 /obj/effect/turf_decal/lunar_sand/plating,
 /obj/structure/marker_beacon/burgundy,
 /obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner,
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
+"MX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/black,
+/area/trainstation/indoors/radiosphere)
 "Ne" = (
 /obj/structure/decorative{
 	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
@@ -1685,6 +2630,13 @@
 	icon_state = "floorsec2"
 	},
 /area/trainstation/outdoor/station/radiosphere)
+"Ni" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/white,
+/turf/open/floor/iron,
+/area/trainstation/indoors/radiosphere)
 "Nl" = (
 /obj/effect/turf_decal/lunar_sand/plating,
 /obj/effect/turf_decal/shuttle/exploration/hazardstripe{
@@ -1693,13 +2645,32 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
+"Nm" = (
+/obj/effect/turf_decal/siding/wideplating/dark/corner,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/shuttle/exploration/corner{
+	dir = 1
+	},
+/area/trainstation/indoors/radiosphere)
 "Nn" = (
 /turf/open/floor/iron/shuttle/exploration/uside,
 /area/trainstation/indoors/radiosphere)
 "Np" = (
 /turf/closed/wall/mineral/titanium/shuttle_wall/evac{
-	icon_state = "7,18"
+	icon_state = "5,13";
+	dir = 2
 	},
+/area/trainstation/indoors/radiosphere)
+"Ns" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white/corner,
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/diagonal,
 /area/trainstation/indoors/radiosphere)
 "Ob" = (
 /obj/effect/light_emitter/daylight,
@@ -1709,6 +2680,17 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/floor/asphalt,
 /area/trainstation/outdoor/station/radiosphere)
+"Oz" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1
+	},
+/turf/open/floor/iron/edge{
+	dir = 4
+	},
+/area/trainstation/indoors/radiosphere)
 "OA" = (
 /turf/closed/wall/mineral/titanium/shuttle_wall/evac{
 	icon_state = "10,6";
@@ -1733,6 +2715,16 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station/radiosphere)
+"OW" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/diagonal,
+/area/trainstation/indoors/radiosphere)
 "Pb" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 5
@@ -1770,6 +2762,10 @@
 	color = "#666666";
 	pixel_y = 0
 	},
+/obj/machinery/computer/terminal{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/side,
 /area/trainstation/indoors/radiosphere)
 "PB" = (
@@ -1790,17 +2786,21 @@
 	icon_state = "floorsec2"
 	},
 /area/trainstation/outdoor/station/radiosphere)
-"PO" = (
-/obj/effect/decal/fakelattice,
-/obj/effect/turf_decal/siding/dark,
-/obj/effect/turf_decal/siding/dark{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/dark{
+"PF" = (
+/obj/effect/turf_decal/siding/white,
+/obj/structure/chair/office{
 	dir = 8
 	},
-/turf/open/misc/asteroid/snow/standard_air,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/edge{
+	dir = 1
+	},
 /area/trainstation/indoors/radiosphere)
+"PO" = (
+/obj/effect/light_emitter/daylight,
+/obj/effect/light_emitter/daylight,
+/turf/open/misc/asteroid/snow/standard_air,
+/area/trainstation/outdoor)
 "PP" = (
 /turf/closed/wall/mineral/titanium/shuttle_wall/window/evac{
 	icon_state = "1,12";
@@ -1820,6 +2820,30 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
+"Qa" = (
+/obj/effect/turf_decal/siding/white,
+/obj/structure/table,
+/obj/item/storage/box/colonial_rations{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/obj/item/storage/box/colonial_rations{
+	pixel_x = 3;
+	pixel_y = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/edge{
+	dir = 1
+	},
+/area/trainstation/indoors/radiosphere)
+"Qe" = (
+/obj/structure/closet/secure_closet/personal/wall{
+	pixel_y = -28
+	},
+/obj/machinery/space_heater,
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/radiosphere)
 "Qi" = (
 /obj/effect/turf_decal/siding/wideplating/dark/corner{
 	dir = 1
@@ -1843,8 +2867,26 @@
 	dir = 4
 	},
 /area/trainstation/indoors/radiosphere)
+"Qu" = (
+/obj/structure/rack/shelf,
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/radiosphere)
+"QB" = (
+/obj/machinery/computer/terminal{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/radiosphere)
 "QH" = (
 /obj/effect/turf_decal/siding/wideplating/dark/corner,
+/obj/structure/decorative{
+	name = "recorder";
+	desc = "Some kind of machine.";
+	density = 1;
+	anchored = 1;
+	icon = 'icons/obj/machines/telecomms.dmi';
+	icon_state = "blackbox"
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/radiosphere)
 "QO" = (
@@ -1864,7 +2906,20 @@
 /obj/effect/turf_decal/lunar_sand/plating,
 /obj/structure/marker_beacon/burgundy,
 /obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 8
+	},
 /turf/open/floor/plating,
+/area/trainstation/outdoor/station/radiosphere)
+"QS" = (
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
+	},
+/obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 1
+	},
+/turf/open/floor/asphalt,
 /area/trainstation/outdoor/station/radiosphere)
 "QY" = (
 /obj/structure/decorative{
@@ -1879,6 +2934,10 @@
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
 "Rl" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/edge{
 	dir = 1
 	},
@@ -1899,6 +2958,8 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/lunar_sand/plating,
+/obj/effect/turf_decal/weather/snow/corner,
+/obj/effect/light_emitter/daylight,
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
 "RE" = (
@@ -1912,19 +2973,39 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station/radiosphere)
+"RM" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 10
+	},
+/obj/effect/turf_decal/tile/brown/anticorner/contrasted{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron,
+/area/trainstation/indoors/radiosphere)
 "RS" = (
 /obj/structure/railing,
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/radiosphere)
 "RX" = (
 /turf/closed/indestructible/rock,
 /area/trainstation/indoors)
+"RY" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8
+	},
+/turf/open/floor/iron/large,
+/area/trainstation/indoors/radiosphere)
 "Sk" = (
 /obj/effect/turf_decal/siding/white/corner{
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/white{
 	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
 	},
 /turf/open/floor/iron/corner{
 	dir = 8
@@ -1937,6 +3018,10 @@
 /obj/effect/turf_decal/siding/white/corner{
 	dir = 8
 	},
+/obj/effect/turf_decal/tile/brown/anticorner/contrasted{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron,
 /area/trainstation/indoors/radiosphere)
 "Sq" = (
@@ -1952,6 +3037,28 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
+"Ss" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/trainstation/outdoor/station/radiosphere)
+"Sv" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/structure/closet/secure_closet/personal/wall{
+	pixel_y = 0;
+	pixel_x = -29
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/diagonal,
+/area/trainstation/indoors/radiosphere)
 "SE" = (
 /obj/effect/light_emitter/daylight,
 /obj/effect/light_emitter/daylight,
@@ -1992,6 +3099,10 @@
 /obj/effect/turf_decal/siding/white/corner{
 	dir = 4
 	},
+/obj/effect/turf_decal/tile/brown/anticorner/contrasted{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron,
 /area/trainstation/indoors/radiosphere)
 "SX" = (
@@ -2009,9 +3120,39 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station/radiosphere)
+"Tf" = (
+/obj/effect/turf_decal/siding/thinplating_new/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 8
+	},
+/obj/machinery/light/small/red/dim/directional/east,
+/turf/open/floor/plating,
+/area/trainstation/outdoor/station/radiosphere)
 "Ti" = (
 /obj/structure/marker_beacon/burgundy,
 /obj/structure/prop/nt_obelisk,
+/obj/effect/light_emitter/daylight,
+/turf/open/floor/iron/shuttle/evac{
+	icon_state = "flooreng2"
+	},
+/area/trainstation/outdoor/station/radiosphere)
+"Tp" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/white,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron,
+/area/trainstation/indoors/radiosphere)
+"Tq" = (
+/obj/structure/marker_beacon/burgundy,
+/obj/structure/prop/nt_obelisk{
+	desc = "moldb was here"
+	},
 /obj/effect/light_emitter/daylight,
 /turf/open/floor/iron/shuttle/evac{
 	icon_state = "flooreng2"
@@ -2026,9 +3167,27 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/floor/asphalt,
 /area/trainstation/outdoor)
-"TD" = (
-/turf/open/misc/asteroid/snow/standard_air,
+"Tz" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/diagonal,
 /area/trainstation/indoors/radiosphere)
+"TD" = (
+/obj/effect/turf_decal/siding/thinplating_new/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/effect/light_emitter/daylight,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/trainstation/outdoor/station/radiosphere)
 "TH" = (
 /obj/effect/turf_decal/lunar_sand/plating,
 /obj/structure/railing{
@@ -2038,6 +3197,43 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/floor/plating,
 /area/trainstation/outdoor/station/radiosphere)
+"TN" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/corner{
+	dir = 8
+	},
+/area/trainstation/indoors/radiosphere)
+"TS" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 2;
+	color = "#666666";
+	pixel_y = 0
+	},
+/obj/machinery/computer/terminal{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/side,
+/area/trainstation/indoors/radiosphere)
+"TY" = (
+/obj/structure/decorative{
+	name = "recorder";
+	desc = "Some kind of machine.";
+	density = 1;
+	anchored = 1;
+	icon = 'icons/obj/machines/telecomms.dmi';
+	icon_state = "blackbox_b";
+	pixel_y = 0
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/radiosphere)
 "Ul" = (
 /obj/structure/railing{
 	dir = 8
@@ -2045,6 +3241,16 @@
 /obj/effect/turf_decal/siding/wideplating/dark/corner{
 	dir = 4
 	},
+/obj/structure/decorative{
+	name = "recorder";
+	desc = "Some kind of machine.";
+	density = 1;
+	anchored = 1;
+	icon = 'icons/obj/machines/telecomms.dmi';
+	icon_state = "blackbox_b";
+	pixel_y = 0
+	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/radiosphere)
 "Uq" = (
@@ -2064,6 +3270,11 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/chasm,
 /area/trainstation/outdoor/station/radiosphere)
+"Ux" = (
+/obj/machinery/space_heater,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/radiosphere)
 "UG" = (
 /turf/closed/wall/mineral/titanium/shuttle_wall/arrivals{
 	dir = 4
@@ -2073,6 +3284,10 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 9
 	},
+/obj/effect/turf_decal/tile/brown/anticorner/contrasted{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron,
 /area/trainstation/indoors/radiosphere)
 "UU" = (
@@ -2083,6 +3298,7 @@
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station/radiosphere)
 "UY" = (
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/shuttle/exploration/doubleinvertcorner_side{
 	dir = 1
 	},
@@ -2092,6 +3308,29 @@
 	icon_state = "7,13";
 	dir = 1
 	},
+/area/trainstation/indoors/radiosphere)
+"Ve" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/edge{
+	dir = 8
+	},
+/area/trainstation/indoors/radiosphere)
+"Vh" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/white,
+/obj/effect/turf_decal/tile/brown/half/contrasted{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/edge,
 /area/trainstation/indoors/radiosphere)
 "Vs" = (
 /turf/closed/wall/mineral/titanium/shuttle_wall/evac{
@@ -2119,6 +3358,14 @@
 	dir = 4
 	},
 /area/trainstation/indoors/radiosphere)
+"Wi" = (
+/obj/effect/turf_decal/siding/white,
+/obj/effect/turf_decal/tile/brown/half/contrasted,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/edge{
+	dir = 1
+	},
+/area/trainstation/indoors/radiosphere)
 "Ww" = (
 /turf/closed/wall/mineral/titanium/shuttle_wall/evac{
 	icon_state = "7,13";
@@ -2139,6 +3386,19 @@
 	icon_state = "floorsec2"
 	},
 /area/trainstation/outdoor/station/radiosphere)
+"WY" = (
+/obj/effect/turf_decal/siding/white,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/edge,
+/area/trainstation/indoors/radiosphere)
+"Xk" = (
+/obj/effect/turf_decal/siding/white/end{
+	dir = 4
+	},
+/obj/structure/closet/crate/cardboard,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/diagonal,
+/area/trainstation/indoors/radiosphere)
 "Xs" = (
 /obj/effect/light_emitter/interlink,
 /obj/effect/light_emitter/daylight,
@@ -2170,13 +3430,23 @@
 /obj/machinery/autolathe,
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/radiosphere)
+"XT" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/machinery/light/cold/no_nightlight/directional/east,
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/turf/open/floor/iron/diagonal,
+/area/trainstation/indoors/radiosphere)
 "Yc" = (
 /obj/structure/prop/stalagmite/style_random,
 /turf/open/misc/dirt/icy_planet,
 /area/trainstation/indoors)
 "Yr" = (
 /obj/effect/light_emitter/daylight,
-/turf/open/floor/plating,
+/turf/closed/indestructible/rock/snow/ice/ore,
 /area/trainstation/outdoor/station/radiosphere)
 "YC" = (
 /obj/structure/prop/general/centerroadbarrier2{
@@ -2231,6 +3501,10 @@
 	dir = 4
 	},
 /area/trainstation/indoors/radiosphere)
+"YW" = (
+/obj/effect/turf_decal/siding/dark/end,
+/turf/open/floor/iron/dark/small,
+/area/trainstation/indoors/radiosphere)
 "YX" = (
 /obj/effect/turf_decal/siding/wideplating/dark/corner{
 	dir = 4
@@ -2242,6 +3516,14 @@
 	dir = 1
 	},
 /turf/open/floor/iron/shuttle/exploration/corner,
+/area/trainstation/indoors/radiosphere)
+"Zs" = (
+/obj/effect/turf_decal/siding/white,
+/obj/machinery/light/cold/no_nightlight/directional/south,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/edge{
+	dir = 1
+	},
 /area/trainstation/indoors/radiosphere)
 "Zw" = (
 /obj/effect/turf_decal/weather/snow/corner{
@@ -2260,6 +3542,24 @@
 /obj/effect/light_emitter/daylight,
 /turf/open/chasm,
 /area/trainstation/outdoor/station/radiosphere)
+"ZA" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/item/radio/intercom/directional/east,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/diagonal,
+/area/trainstation/indoors/radiosphere)
+"ZP" = (
+/obj/effect/turf_decal/siding/white/end{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/diagonal,
+/area/trainstation/indoors/radiosphere)
 
 (1,1,1) = {"
 qT
@@ -5654,9 +6954,9 @@ Uq
 Oi
 Oi
 YP
-PO
-TD
-TD
+Ib
+Uq
+Uq
 YP
 Ib
 Uq
@@ -5717,7 +7017,7 @@ Uq
 Uq
 YP
 mf
-st
+tR
 wC
 YP
 Ib
@@ -5840,9 +7140,9 @@ Uq
 Uq
 Uq
 YP
+Ac
 gS
-Rl
-tk
+gu
 YP
 Lt
 Uq
@@ -5902,9 +7202,9 @@ Uq
 Uq
 Uq
 YP
+KQ
 FF
-HA
-tk
+LS
 YP
 Lt
 Uq
@@ -5964,9 +7264,9 @@ Uq
 Uq
 Uq
 YP
+Ac
 FF
-HA
-tk
+Ao
 YP
 Lt
 Uq
@@ -6026,9 +7326,9 @@ Uq
 Uq
 Uq
 YP
-gS
+KQ
 HA
-tk
+DG
 mf
 Lt
 Uq
@@ -6088,9 +7388,9 @@ Uq
 Uq
 Uq
 YP
-gS
-HA
-KA
+EP
+Ni
+Je
 mf
 Lt
 Uq
@@ -6150,7 +7450,7 @@ Uq
 Uq
 Uq
 YP
-gS
+pZ
 JK
 YP
 mf
@@ -6212,10 +7512,10 @@ Uq
 Uq
 Uq
 YP
-gS
-JK
+kR
+vo
 YP
-Lt
+EA
 Uq
 Uq
 Uq
@@ -6399,8 +7699,8 @@ Uq
 Uq
 Uq
 Uq
-Uq
-Uq
+MR
+iC
 Uq
 Uq
 Uq
@@ -6465,7 +7765,7 @@ Uq
 Uq
 Uq
 Uq
-gy
+wl
 Uq
 Uq
 Uq
@@ -6521,14 +7821,14 @@ Uq
 Uq
 Uq
 Uq
-vJ
-vJ
-vJ
+wl
+wl
+wl
 gy
 gy
-gy
-gy
-gy
+wl
+wl
+wl
 Uq
 Uq
 Uq
@@ -6581,16 +7881,16 @@ Oi
 eG
 Uq
 Uq
-vJ
-vJ
-vJ
-vJ
-vJ
-vJ
+wl
+wl
+wl
 gy
 gy
 gy
 gy
+gy
+gy
+wl
 Uq
 Uq
 Uq
@@ -6642,13 +7942,13 @@ Oi
 Oi
 eG
 Uq
-vJ
-vJ
-vJ
-vJ
-vJ
-vJ
-vJ
+wl
+gy
+gy
+gy
+wl
+wl
+wl
 gy
 gy
 gy
@@ -6704,11 +8004,11 @@ Oi
 Oi
 eG
 Uq
-vJ
-vJ
-vJ
-vJ
-vJ
+wl
+wl
+wl
+wl
+wl
 Uq
 Uq
 Uq
@@ -6757,7 +8057,7 @@ vr
 Jx
 Jx
 Jx
-qT
+PO
 MK
 Uq
 tE
@@ -6831,13 +8131,13 @@ Uq
 Uq
 Uq
 Uq
-MU
-sA
-sA
+zm
+TD
+Tf
 QR
-sA
-sA
-MU
+TD
+TD
+wL
 Uq
 Uq
 Uq
@@ -6891,15 +8191,15 @@ Oi
 eG
 Uq
 Uq
-MU
-sA
+zm
+TD
 wf
-YP
-YP
+Ww
+Qp
 pf
-YP
-YP
-Aj
+Ww
+Qp
+aH
 mz
 HF
 Uq
@@ -6957,9 +8257,9 @@ uI
 mf
 mf
 YP
-jF
-jF
-jF
+vf
+KA
+gO
 YP
 YP
 YP
@@ -7014,19 +8314,19 @@ Oi
 Oi
 eG
 Uq
-MU
+zm
 wf
 YP
-jF
-jF
-jF
-jF
-jF
-jF
-jF
+ZP
+kk
+Ci
+XT
+ZA
+Sv
+pb
 YP
-Aj
-MU
+aH
+wL
 Uq
 Uq
 Uq
@@ -7077,17 +8377,17 @@ Oi
 eG
 Uq
 uI
-YP
-YP
+Ww
+Qp
 pf
-YP
-YP
-mf
-mf
-mf
+Ww
+OA
+OA
+ee
+Qp
 pf
-YP
-pb
+Ww
+Qp
 sj
 Uq
 Uq
@@ -7140,15 +8440,15 @@ eG
 Uq
 uI
 YP
-jF
-jF
-jF
-jF
-jF
-jF
-jF
-jF
-jF
+ba
+BA
+FM
+Gs
+of
+Gs
+oT
+xI
+JY
 YP
 sj
 Uq
@@ -7201,16 +8501,16 @@ Oi
 eG
 Uq
 iy
-YP
-jF
-jF
-jF
-jF
-jF
-jF
-jF
-jF
-jF
+Ww
+Qp
+Ml
+yy
+EE
+EE
+EE
+Fr
+kL
+Ux
 YP
 AD
 Uq
@@ -7264,15 +8564,15 @@ eG
 Uq
 uI
 YP
+KQ
+rj
+Ht
 jF
-jF
-jF
-jF
-jF
-jF
-jF
-jF
-jF
+zG
+Lj
+Oz
+DQ
+JY
 YP
 sj
 Uq
@@ -7325,17 +8625,17 @@ Oi
 eG
 Uq
 uI
-YP
-YP
+Ww
+Qp
 pf
-YP
-YP
-YP
-YP
-YP
+Ww
+OA
+OA
+ee
+Qp
 pf
-YP
-pb
+Ww
+Qp
 sj
 Uq
 Uq
@@ -7386,19 +8686,19 @@ Oi
 Oi
 eG
 Uq
-MU
-JB
+cG
+Dl
 YP
-jF
-jF
-jF
-jF
-jF
-jF
-jF
+ZP
+Kl
+MG
+GW
+Tz
+OW
+pb
 YP
 eg
-MU
+Aj
 Uq
 Uq
 Uq
@@ -7453,9 +8753,9 @@ ef
 YP
 YP
 YP
-jF
-jF
-jF
+gO
+KA
+kR
 YP
 YP
 YP
@@ -7512,13 +8812,13 @@ eG
 Uq
 Uq
 rX
-pr
-JB
-YP
-YP
+Xt
+Dl
+Ww
+Qp
 pf
-YP
-YP
+Ww
+Qp
 eg
 Xt
 zP
@@ -7575,13 +8875,13 @@ Uq
 Tt
 Uq
 Uq
-MU
-Xt
-Xt
+cG
+sk
+sk
 BK
-Xt
-Xt
-MU
+xR
+sk
+Aj
 Uq
 Uq
 Uq
@@ -7762,13 +9062,13 @@ Uq
 Tt
 Uq
 Uq
-MU
-sA
-sA
+zm
+TD
+Tf
 QR
-sA
-sA
-MU
+TD
+TD
+wL
 Uq
 Uq
 Uq
@@ -7822,15 +9122,15 @@ eG
 Uq
 Uq
 Uq
-MU
-sA
+zm
+TD
 wf
-YP
-YP
+Ww
+Qp
 pf
-YP
-YP
-Aj
+Ww
+Qp
+aH
 mz
 HF
 Uq
@@ -7886,11 +9186,11 @@ Uq
 Uq
 uI
 YP
+mf
 YP
-YP
-jF
-jF
-jF
+vf
+KA
+gO
 YP
 YP
 YP
@@ -7945,19 +9245,19 @@ Oi
 eG
 Uq
 Uq
-MU
+zm
 wf
 YP
-jF
-jF
-jF
-jF
-jF
-jF
-jF
+xy
+kk
+Ci
+qb
+ZA
+Sv
+pb
 YP
-Aj
-MU
+aH
+wL
 Uq
 MK
 MK
@@ -7999,8 +9299,8 @@ vr
 gy
 UG
 gz
-gz
-UG
+An
+nc
 qI
 Oi
 Oi
@@ -8008,17 +9308,17 @@ eG
 Uq
 Uq
 uI
-YP
-YP
+Ww
+Qp
 pf
-YP
-YP
-YP
-YP
-YP
+Ww
+OA
+OA
+ee
+Qp
 pf
-YP
-pb
+Ww
+Qp
 sj
 Uq
 Uq
@@ -8071,15 +9371,15 @@ Uq
 Uq
 uI
 YP
-jF
-jF
-jF
-jF
-jF
-jF
-jF
-jF
-jF
+IN
+BA
+FM
+xE
+eF
+Gs
+Ve
+xI
+hZ
 YP
 sj
 Uq
@@ -8132,16 +9432,16 @@ eG
 Uq
 Uq
 iy
-YP
-jF
-jF
-jF
-jF
-jF
-jF
-jF
-jF
-jF
+Ww
+Qp
+Ml
+WY
+hZ
+yJ
+hZ
+Rl
+WY
+lO
 YP
 AD
 Uq
@@ -8185,25 +9485,25 @@ gy
 UG
 UG
 gz
-gz
-UG
+An
+nc
 qI
 Oi
 Oi
-Oi
+rB
 Uq
 Uq
 uI
 YP
+KQ
+TN
+sp
 jF
-jF
-jF
-jF
-jF
-jF
-jF
-jF
-jF
+hm
+Lj
+Oz
+DQ
+hZ
 YP
 sj
 Uq
@@ -8256,17 +9556,17 @@ Zw
 Uq
 Uq
 uI
-YP
-YP
+Ww
+Qp
 pf
-YP
-mf
-mf
-mf
-YP
+Ww
+OA
+OA
+ee
+Qp
 pf
-YP
-jY
+Ww
+nc
 sj
 Uq
 Uq
@@ -8317,19 +9617,19 @@ eG
 Uq
 Uq
 Uq
-MU
+cG
 Dl
 mf
-jF
-jF
-jF
-jF
-jF
-jF
-jF
+xy
+um
+MG
+GW
+Ns
+cT
+pb
 YP
 eg
-MU
+Aj
 Uq
 Uq
 MK
@@ -8372,7 +9672,7 @@ UG
 gz
 gz
 gz
-Oi
+DN
 Oi
 Oi
 eG
@@ -8384,9 +9684,9 @@ uI
 mf
 YP
 YP
-jF
-jF
-jF
+yJ
+KA
+Xk
 YP
 YP
 YP
@@ -8434,7 +9734,7 @@ UG
 gz
 gz
 gz
-hJ
+QS
 hJ
 hJ
 Zw
@@ -8443,15 +9743,15 @@ Uq
 Uq
 Uq
 tx
-Xt
+sk
 Dl
-YP
-YP
+Ww
+Qp
 pf
-YP
-YP
+Ww
+Qp
 eg
-Xt
+sk
 zP
 Uq
 Uq
@@ -8506,13 +9806,13 @@ Uq
 Uq
 Uq
 Uq
-MU
-Xt
-Xt
+cG
+sk
+sk
 BK
-Xt
-Xt
-MU
+xR
+sk
+Aj
 Uq
 Uq
 Uq
@@ -8633,11 +9933,11 @@ Uq
 Uq
 Uq
 Uq
-EH
-EH
-MU
-EH
-EH
+uy
+Ss
+yU
+Ss
+pr
 Uq
 Uq
 Uq
@@ -8693,15 +9993,15 @@ MK
 Uq
 Uq
 MK
-MU
-EH
+zm
+Ss
 sW
 sW
 sW
 sW
 sW
-EH
-MU
+Ss
+wL
 Uq
 Uq
 Uq
@@ -8753,8 +10053,8 @@ Uq
 Uq
 Uq
 Uq
-MU
-EH
+zm
+Ss
 sW
 ld
 Uw
@@ -8764,8 +10064,8 @@ Uw
 Uw
 zd
 EH
-EH
-MU
+Ss
+wL
 Uq
 Uq
 gy
@@ -8815,7 +10115,7 @@ Uq
 MK
 MK
 Uq
-EH
+wX
 ld
 Uw
 Uw
@@ -8827,7 +10127,7 @@ Uw
 Uw
 Uw
 zd
-EH
+cd
 Uq
 MK
 gy
@@ -8876,7 +10176,7 @@ Uq
 Uq
 MK
 Uq
-MU
+zm
 Am
 Uw
 Uw
@@ -8890,7 +10190,7 @@ Uw
 Uw
 Uw
 ui
-MU
+wL
 Uq
 gy
 gy
@@ -8938,7 +10238,7 @@ Uq
 Uq
 Uq
 Uq
-EH
+wX
 ld
 Uw
 Uw
@@ -8952,7 +10252,7 @@ Uw
 Uw
 Uw
 zd
-EH
+cd
 Uq
 gy
 gy
@@ -8999,7 +10299,7 @@ Lt
 Uq
 Uq
 Uq
-EH
+uy
 Am
 Uw
 Uw
@@ -9015,7 +10315,7 @@ Uw
 Uw
 Uw
 ui
-EH
+pr
 gy
 gy
 "}
@@ -9061,7 +10361,7 @@ Lt
 Uq
 Uq
 Uq
-EH
+wX
 Am
 Uw
 Uw
@@ -9077,7 +10377,7 @@ Uw
 Uw
 Uw
 ui
-EH
+cd
 gy
 gy
 "}
@@ -9123,7 +10423,7 @@ Lt
 Uq
 Uq
 Uq
-MU
+iP
 Am
 Uw
 Uw
@@ -9185,7 +10485,7 @@ Lt
 Uq
 Uq
 Uq
-EH
+wX
 Am
 Uw
 Uw
@@ -9201,7 +10501,7 @@ Uw
 Uw
 Uw
 ui
-EH
+cd
 gy
 gy
 "}
@@ -9247,7 +10547,7 @@ Lt
 Uq
 Uq
 Uq
-EH
+kW
 Am
 Uw
 Uw
@@ -9263,7 +10563,7 @@ Uw
 Uw
 Uw
 ui
-EH
+Ax
 gy
 gy
 "}
@@ -9310,7 +10610,7 @@ Uq
 Uq
 Uq
 Uq
-EH
+wX
 ya
 Uw
 Uw
@@ -9324,7 +10624,7 @@ Uw
 Uw
 Uw
 TH
-EH
+cd
 Uq
 gy
 gy
@@ -9372,7 +10672,7 @@ Uq
 Uq
 Uq
 Uq
-MU
+cG
 Am
 Uw
 Uw
@@ -9386,7 +10686,7 @@ Uw
 Uw
 Uw
 ui
-MU
+Aj
 Uq
 gy
 gy
@@ -9435,7 +10735,7 @@ Uq
 Uq
 MK
 Uq
-EH
+wX
 yS
 Uw
 Uw
@@ -9447,7 +10747,7 @@ Uw
 Uw
 Uw
 TH
-EH
+cd
 Uq
 Uq
 gy
@@ -9497,8 +10797,8 @@ Uq
 Uq
 Uq
 Uq
-MU
-EH
+cG
+jY
 SL
 ya
 Uw
@@ -9508,8 +10808,8 @@ Zy
 Uw
 TH
 SL
-EH
-MU
+jY
+Aj
 Uq
 MK
 gy
@@ -9541,7 +10841,7 @@ An
 nC
 An
 nc
-Ti
+Tq
 Ft
 OJ
 Ft
@@ -9561,15 +10861,15 @@ Uq
 MK
 Uq
 Uq
-MU
+cG
 EH
 SL
 EH
 EH
 EH
 SL
-EH
-MU
+jY
+Aj
 Uq
 Uq
 Uq
@@ -9624,12 +10924,12 @@ Uq
 MK
 Uq
 Uq
-Uq
-EH
-EH
-MU
-EH
-EH
+oo
+kW
+jY
+lH
+jY
+Ax
 Uq
 Uq
 Uq
@@ -9807,11 +11107,6 @@ Uq
 Uq
 Uq
 Uq
-EH
-EH
-EH
-EH
-pY
 Uq
 Uq
 Uq
@@ -9822,6 +11117,11 @@ Uq
 Uq
 Uq
 Uq
+Uq
+Uq
+Uq
+Uq
+Yr
 gy
 gy
 "}
@@ -9867,23 +11167,23 @@ Uq
 Uq
 Uq
 Uq
-EH
-EH
-pY
-pY
-pY
-pY
-pY
-EH
-EH
-EH
-EH
-EH
-EH
-EH
-EH
-EH
 Uq
+uy
+EH
+EH
+EH
+EH
+EH
+pr
+Uq
+Uq
+Uq
+Uq
+Uq
+Uq
+Uq
+Uq
+Yr
 gy
 gy
 "}
@@ -9919,8 +11219,8 @@ gy
 UG
 UG
 UG
-UG
-UG
+An
+nc
 lp
 Oi
 Oi
@@ -9929,11 +11229,11 @@ xZ
 Uq
 Uq
 Uq
-EH
-EH
+Uq
+wX
 Np
-Ww
-Qp
+OA
+OA
 ee
 Wf
 aH
@@ -9944,8 +11244,8 @@ sA
 sA
 sA
 EH
-EH
-Uq
+Yr
+Yr
 gy
 gy
 "}
@@ -9991,23 +11291,23 @@ eG
 Uq
 Uq
 Uq
-EH
-EH
+Uq
+wX
 vu
-UL
-mx
-hw
-vu
+nr
+kq
+QB
+YP
 tR
-OA
-Qp
+wC
+YP
 Fu
 Fu
 Fu
 aN
-aH
-sA
-Uq
+Yr
+Yr
+Yr
 gy
 gy
 "}
@@ -10053,14 +11353,14 @@ Oi
 xZ
 Uq
 Uq
-EH
-EH
+Uq
+wX
 vu
-EV
+pm
 tk
 Ww
 zB
-Nn
+CJ
 ms
 en
 YV
@@ -10115,14 +11415,14 @@ Oi
 eG
 Uq
 Uq
-EH
-EH
-UZ
+Uq
 wX
-gB
+Vs
+Fg
+RY
 Pm
 st
-hw
+lR
 wt
 me
 Qi
@@ -10177,19 +11477,19 @@ Oi
 eG
 Uq
 Uq
-EH
-EH
+Uq
+wX
 Vs
-EV
+Qp
 to
-rt
+TS
 he
 hw
 RS
 QO
 la
 Af
-Lp
+Ew
 Vs
 uD
 uD
@@ -10239,14 +11539,14 @@ Oi
 Oi
 xZ
 Uq
-EH
-EH
+Uq
+wX
 Vs
 EV
 tk
 Ww
 Qp
-Nn
+Lm
 iH
 AJ
 rc
@@ -10301,14 +11601,14 @@ Oi
 Oi
 eG
 Uq
-EH
-EH
+Uq
+wX
 Vs
-EV
+Eq
 gB
-Pm
+yn
 st
-hw
+JB
 RS
 me
 BH
@@ -10364,13 +11664,13 @@ Oi
 eG
 Uq
 Uq
-EH
+wX
 Vs
 Fg
 vV
 rt
 he
-hw
+JB
 wt
 nH
 Nn
@@ -10414,9 +11714,9 @@ Uq
 Uq
 Uq
 YP
-PO
-TD
-TD
+Ib
+Uq
+Uq
 YP
 Kj
 Uq
@@ -10426,13 +11726,13 @@ Oi
 Oi
 xZ
 Uq
-EH
-OA
-Qp
+wX
+ww
+Wf
 FS
 Ww
 Qp
-hw
+JB
 RS
 nH
 Af
@@ -10477,7 +11777,7 @@ Uq
 Uq
 YP
 mf
-st
+tR
 wC
 YP
 Kj
@@ -10488,13 +11788,13 @@ Oi
 Oi
 eG
 Uq
-EH
+wX
 YP
 Vs
 UL
-mx
+RM
 FS
-Nn
+mj
 iH
 AJ
 YX
@@ -10540,7 +11840,7 @@ Uq
 YP
 KQ
 vi
-mx
+ig
 YP
 ek
 Uq
@@ -10550,19 +11850,19 @@ Oi
 Oi
 eG
 Uq
-EH
+wX
 YP
 Vs
-EV
-tk
+at
+Wi
 Ww
 OA
+ee
 OA
+ee
 OA
-OA
-OA
-Ww
-Qp
+ee
+YP
 uD
 uD
 uD
@@ -10600,9 +11900,9 @@ Uq
 Uq
 Uq
 YP
-gS
+Ac
 Rl
-tk
+Qa
 YP
 ek
 Uq
@@ -10612,18 +11912,18 @@ Oi
 Oi
 eG
 Uq
-EH
+wX
 Ww
-OA
+zB
 Kt
 Sk
 SV
-vf
-PP
-hw
-IG
+kR
+st
+cj
+rz
 Lo
-hw
+Kf
 aN
 uD
 uD
@@ -10662,9 +11962,9 @@ Uq
 MK
 MK
 YP
+KQ
 FF
-HA
-tk
+PF
 YP
 ek
 Uq
@@ -10674,18 +11974,18 @@ Oi
 Oi
 eG
 Uq
+kW
 EH
-pY
 st
 qA
 HH
 vb
-vf
-PP
-hw
-Et
-Co
-hw
+kR
+he
+Kf
+IG
+je
+cj
 Vs
 uD
 uD
@@ -10724,9 +12024,9 @@ MK
 Uq
 Uq
 YP
+JP
 FF
-HA
-tk
+Zs
 YP
 ek
 Uq
@@ -10736,18 +12036,18 @@ Oi
 Oi
 eG
 Uq
-EH
+Uq
 pY
 PP
-qA
+Vh
 XQ
 mK
-mx
+RM
 zV
-hw
-hw
-hw
-hw
+cj
+Et
+Nm
+cj
 Vs
 uD
 uD
@@ -10786,9 +12086,9 @@ Uq
 Uq
 Uq
 YP
-gS
+KQ
 HA
-tk
+rF
 mf
 ek
 Uq
@@ -10798,18 +12098,18 @@ Oi
 Oi
 eG
 Uq
+uy
 EH
-pY
 he
 Sn
 mq
 xN
-tk
+mO
 UZ
 rJ
 IG
-Lo
-hw
+je
+gR
 Vs
 uD
 uD
@@ -10848,9 +12148,9 @@ MK
 Uq
 Uq
 YP
-gS
-HA
-KA
+EP
+Tp
+Qe
 mf
 ek
 Uq
@@ -10860,18 +12160,18 @@ Oi
 Oi
 eG
 Uq
-EH
+wX
 Ww
 OA
-Ww
-Qp
+ee
+Wf
 ru
 qO
 FS
 En
 Et
 Co
-hw
+TY
 Vs
 uD
 uD
@@ -10910,7 +12210,7 @@ Uq
 Uq
 Uq
 YP
-gS
+AW
 JK
 YP
 mf
@@ -10922,23 +12222,23 @@ Oi
 Oi
 eG
 Uq
-EH
+wX
 aZ
 YP
 YP
 Vs
-hw
-hw
+pF
+Qu
 zV
 Ul
-hw
-hw
+GG
+YW
 QH
 Vs
-qu
-qu
-qu
-qu
+gy
+gy
+gy
+gy
 qu
 "}
 (141,1,1) = {"
@@ -10972,10 +12272,10 @@ Uq
 MK
 Uq
 YP
-gS
-JK
+kR
+vo
 YP
-ek
+Kj
 Uq
 Uq
 Uq
@@ -10984,22 +12284,22 @@ Oi
 Oi
 eG
 Uq
-EH
+wX
 Ww
 OA
-Ww
-Qp
+OA
 YP
-YP
-Ww
 OA
+ee
 OA
+ee
 OA
+ee
 OA
-OA
-EH
+zB
+tO
 Yr
-MK
+Yr
 gy
 gy
 "}
@@ -11035,7 +12335,7 @@ MK
 Uq
 YP
 kR
-KA
+MX
 YP
 ek
 Uq
@@ -11046,7 +12346,7 @@ Oi
 Oi
 eG
 Uq
-EH
+kW
 EH
 EH
 EH
@@ -11059,9 +12359,9 @@ Ky
 Ky
 Ky
 Ky
-EH
-Yr
+Ax
 Uq
+Yr
 gy
 gy
 "}
@@ -11108,21 +12408,21 @@ Oi
 Oi
 eG
 Uq
-EH
-EH
-EH
-EH
-EH
-EH
-EH
-EH
-EH
-EH
-EH
-EH
-EH
-Yr
-Yr
+Uq
+Uq
+Uq
+Uq
+Uq
+Uq
+Uq
+Uq
+Uq
+Uq
+Uq
+Uq
+Uq
+Uq
+Uq
 MK
 gy
 gy
@@ -11160,7 +12460,7 @@ MK
 Uq
 Uq
 Uq
-Uq
+iC
 Uq
 Uq
 Uq
