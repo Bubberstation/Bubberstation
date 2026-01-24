@@ -19,7 +19,7 @@ SUBSYSTEM_DEF(train_controller)
 	// Список обьектов для регистрации на процессинг
 	VAR_PRIVATE/list/queue_list = list()
 
-	VAR_PRIVATE/datum/looping_sound/train_sound_loop/soundloop
+	VAR_PRIVATE/datum/looping_sound/global_sound/train_sound_loop/soundloop
 
 	var/list/station_terminals
 
@@ -418,66 +418,8 @@ ADMIN_VERB(open_train_controller, R_ADMIN, "Open train controller", "Open active
 	parent.screen -= src
 	qdel(src)
 
-/datum/looping_sound/train_sound_loop
-	parent_type = /datum/looping_sound
 
-	var/new_player = TRUE
-	var/static/list/train_sounds = list(
+/datum/looping_sound/global_sound/train_sound_loop
+	sounds_to_play = list(
 		'modular_zvents/sounds/loop_trainride.ogg' = 63 SECONDS,
 	)
-
-	direct = TRUE
-	volume = 45
-	vary = FALSE
-	extra_range = -1
-	ignore_walls = TRUE
-	pressure_affected = FALSE
-	use_reverb = FALSE
-	chance = 100
-	in_order = TRUE
-	each_once = FALSE
-
-/datum/looping_sound/train_sound_loop/New(start_immediately = FALSE)
-	mid_sounds = list()
-	for(var/sound_path in train_sounds)
-		var/pause_length = train_sounds[sound_path]
-		if(isfile(sound_path) && pause_length > 0)
-			mid_sounds[sound_path] = pause_length
-
-	if(!length(mid_sounds))
-		stack_trace("train_sound_loop created without sounds!")
-		qdel(src)
-		return
-
-	..(null, start_immediately)
-
-/datum/looping_sound/train_sound_loop/get_sound(_mid_sounds)
-	var/soundfile = ..()
-
-	if(soundfile && (soundfile in train_sounds))
-		set_mid_length(train_sounds[soundfile])
-
-	return soundfile
-
-/datum/looping_sound/train_sound_loop/play(soundfile, volume_override)
-	if(!soundfile)
-		return
-
-	var/sound/S = sound(soundfile)
-	S.volume = volume_override || volume
-	S.channel = sound_channel || SSsounds.random_available_channel()
-	for(var/mob/M as anything in GLOB.player_list)
-		if(!M.client)
-			continue
-		if(!new_player && isnewplayer(M))
-			continue
-
-		SEND_SOUND(M, S)
-
-/datum/looping_sound/train_sound_loop/stop(null_parent = FALSE)
-	if(sound_channel)
-		for(var/mob/M as anything in GLOB.player_list)
-			if(M.client)
-				M.stop_sound_channel(sound_channel)
-
-	return ..()

@@ -147,7 +147,7 @@
 	var/max_rpm = 7000
 	var/produced_energy = 0
 	var/max_temperature = 1000
-	var/efficiency_rate = 30
+	var/efficiency_rate = 50
 	var/damage = 0
 	var/damage_archived = 0
 	var/all_parts_connected = FALSE
@@ -273,7 +273,6 @@
 			COOLDOWN_START(src, turbine_damage_alert, 10 SECONDS)
 			playsound(src, 'sound/machines/engine_alert/engine_alert1.ogg', 100, FALSE)
 			balloon_alert_to_viewers("overheating! integrity [get_integrity()]%")
-	// 1000 RPM above 5000
 	var/safe_threshold = max_rpm * 0.9
 	if(rpm > safe_threshold)
 		damage += (rpm - safe_threshold) * 0.001 * seconds_per_tick
@@ -287,12 +286,13 @@
 		update_effects()
 
 	if(get_integrity() <= 0)
-		explosion(src, devastation_range = 1, heavy_impact_range = 2, light_impact_range = 4)
+		explosion(src, devastation_range = 0, heavy_impact_range = 2, light_impact_range = 4)
 		deactivate_parts()
 		qdel(src)
 		return PROCESS_KILL
 
-	add_avail(power_to_energy(produced_energy))
+
+	add_avail(produced_energy)
 	apply_thrust_to_train()
 
 /obj/machinery/power/train_turbine/core_rotor/get_integrity()
@@ -393,6 +393,7 @@
 
 
 /datum/component/plumbing/steam_turbine
+	demand_connects = WEST | EAST
 
 /datum/component/plumbing/steam_turbine/Initialize(start, ducting_layer, turn_connects, datum/reagents/custom_receiver, extend_pipe_to_edge)
 	. = ..()
