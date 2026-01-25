@@ -62,6 +62,7 @@
 	name = "Cabin 1";
 	id_tag = "interlink_cabin_1"
 	},
+/obj/machinery/duct,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink/dorm_rooms)
 "adi" = (
@@ -763,10 +764,6 @@
 	pixel_x = 5;
 	pixel_y = -14
 	},
-/obj/item/stamp{
-	pixel_x = 5;
-	pixel_y = -9
-	},
 /obj/item/reagent_containers/cup/glass/mug/nanotrasen{
 	pixel_x = 7;
 	pixel_y = 16
@@ -778,6 +775,7 @@
 /obj/machinery/door/window/brigdoor/left/directional/west{
 	name = "Captain's Desk"
 	},
+/obj/item/stamp/granted,
 /turf/open/indestructible/hoteltile{
 	icon_state = "carpet_royalblack-255";
 	base_icon_state = "carpet_royalblack";
@@ -903,6 +901,7 @@
 /obj/machinery/door/airlock/bathroom{
 	name = "Bathroom"
 	},
+/obj/machinery/duct,
 /turf/open/floor/wood,
 /area/centcom/interlink/dorm_rooms)
 "avS" = (
@@ -1151,6 +1150,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/sign/poster/random/directional/south,
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "aBa" = (
@@ -1227,6 +1227,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/turf_decal/vg_decals/numbers/seven,
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "aCs" = (
@@ -1246,11 +1247,10 @@
 /turf/open/misc/grass/planet,
 /area/centcom/holding/cafe/park)
 "aCK" = (
-/obj/effect/turf_decal/tile/green/opposingcorners,
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron/showroomfloor,
 /area/centcom/interlink)
 "aCM" = (
 /obj/structure/flora/bush/flowers_pp/style_2,
@@ -1550,10 +1550,10 @@
 /turf/open/misc/grass/planet,
 /area/centcom/holding/cafe/park)
 "aMM" = (
-/obj/machinery/computer/security,
-/obj/effect/turf_decal/tile/green/opposingcorners,
 /obj/effect/turf_decal/siding/wood,
-/turf/open/floor/iron,
+/obj/effect/turf_decal/tile/dark_blue/opposingcorners,
+/obj/structure/showcase/fakesec,
+/turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "aMQ" = (
 /turf/open/indestructible/hotelwood,
@@ -1690,8 +1690,7 @@
 /obj/machinery/button/door/directional/west{
 	id = "il_bar";
 	name = "Bar Shutter Control";
-	pixel_y = -8;
-	req_access = list("bar")
+	pixel_y = -8
 	},
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
@@ -2095,6 +2094,7 @@
 	name = "Cabin 4";
 	id_tag = "interlink_cabin_4"
 	},
+/obj/machinery/duct,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink/dorm_rooms)
 "aZU" = (
@@ -2158,11 +2158,9 @@
 /turf/closed/indestructible/steel,
 /area/centcom/holding/cafe/station/command)
 "beg" = (
-/obj/effect/turf_decal/tile/green/opposingcorners,
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 1
-	},
-/turf/open/floor/iron,
+/obj/machinery/light/directional/east,
+/obj/effect/turf_decal/tile/dark_blue/opposingcorners,
+/turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "ben" = (
 /obj/structure/dresser,
@@ -2633,8 +2631,8 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/green/opposingcorners,
-/turf/open/floor/iron,
+/obj/effect/turf_decal/tile/dark_blue/opposingcorners,
+/turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "bHv" = (
 /obj/effect/turf_decal/tile/dark_red{
@@ -2681,7 +2679,6 @@
 /obj/machinery/door/airlock/security/glass{
 	name = "Interlink Security Post"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /obj/effect/turf_decal/siding/white{
 	dir = 8
@@ -2984,6 +2981,7 @@
 /obj/effect/turf_decal/trimline/dark_green/filled/corner{
 	dir = 1
 	},
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "bVH" = (
@@ -3004,10 +3002,9 @@
 /area/centcom/holding/cafe/station/maint)
 "bWy" = (
 /obj/machinery/button/door/directional/east{
-	id = "arr_hall_lookout";
+	id = "evac_hall_lookout_2";
 	name = "Lookout Shutters Control";
-	pixel_y = -8;
-	req_access = list("command")
+	pixel_y = -8
 	},
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
@@ -3397,6 +3394,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
+/obj/machinery/duct,
 /turf/open/floor/wood/large,
 /area/centcom/interlink/dorm_rooms)
 "cwA" = (
@@ -3590,8 +3588,7 @@
 /area/centcom/holding/cafe/station/command)
 "cFK" = (
 /obj/machinery/light/directional/east,
-/obj/effect/turf_decal/tile/green/opposingcorners,
-/turf/open/floor/iron,
+/turf/open/floor/carpet/green,
 /area/centcom/interlink)
 "cGk" = (
 /obj/effect/turf_decal/caution/stand_clear,
@@ -3692,6 +3689,13 @@
 	},
 /turf/open/floor/iron,
 /area/centcom/interlink)
+"cLi" = (
+/obj/effect/turf_decal/trimline/dark_green/filled/warning{
+	dir = 10
+	},
+/obj/machinery/duct,
+/turf/open/floor/iron,
+/area/centcom/interlink)
 "cLD" = (
 /obj/structure/table,
 /obj/effect/turf_decal/delivery/blue,
@@ -3705,17 +3709,11 @@
 /area/centcom/interlink)
 "cMs" = (
 /obj/structure/table/wood,
-/obj/item/stamp/centcom{
-	pixel_x = -8;
-	pixel_y = 10
-	},
-/obj/item/stamp{
-	pixel_y = 10
-	},
 /obj/item/stamp/void{
 	pixel_x = 8;
 	pixel_y = 10
 	},
+/obj/item/stamp/granted,
 /turf/open/floor/wood,
 /area/centcom/interlink)
 "cME" = (
@@ -3777,7 +3775,6 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/airlock/access/any/cent_com/rep_or_captain,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "cPy" = (
@@ -3935,9 +3932,9 @@
 /area/centcom/interlink)
 "cYc" = (
 /obj/structure/closet/crate/bin,
-/obj/effect/turf_decal/tile/green/opposingcorners,
 /obj/effect/turf_decal/delivery,
-/turf/open/floor/iron,
+/obj/effect/turf_decal/tile/dark_blue/opposingcorners,
+/turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "cYF" = (
 /obj/effect/light_emitter/interlink,
@@ -3954,6 +3951,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/duct,
 /turf/open/floor/wood/large,
 /area/centcom/interlink/dorm_rooms)
 "cYT" = (
@@ -4361,6 +4359,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/duct,
 /turf/open/floor/wood/large,
 /area/centcom/interlink/dorm_rooms)
 "dtL" = (
@@ -4651,6 +4650,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/mirror/directional/east,
 /obj/structure/sink/directional/west,
+/obj/machinery/duct,
 /turf/open/floor/iron/white,
 /area/centcom/interlink/dorm_rooms)
 "dLc" = (
@@ -4761,6 +4761,10 @@
 	icon_state = "darkfull"
 	},
 /area/centcom/holding/cafe/station/command)
+"dQK" = (
+/obj/effect/turf_decal/tile/dark_blue/opposingcorners,
+/turf/open/floor/iron/dark,
+/area/centcom/interlink)
 "dQM" = (
 /obj/structure/chair/sofa/bench/right{
 	dir = 4
@@ -4873,6 +4877,7 @@
 	name = "Cabin 5";
 	id_tag = "interlink_cabin_5"
 	},
+/obj/machinery/duct,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink/dorm_rooms)
 "dZF" = (
@@ -5269,6 +5274,7 @@
 /obj/machinery/door/airlock/bathroom{
 	name = "Bathroom"
 	},
+/obj/machinery/duct,
 /turf/open/floor/wood/large,
 /area/centcom/interlink/dorm_rooms)
 "ett" = (
@@ -5348,6 +5354,7 @@
 	shuttle_id = "arrivals_shuttle";
 	width = 5
 	},
+/obj/effect/light_emitter/interlink,
 /turf/open/floor/iron/dark/smooth_large,
 /area/centcom/interlink)
 "ewW" = (
@@ -5366,6 +5373,7 @@
 /obj/machinery/door/airlock/bathroom{
 	name = "Bathroom"
 	},
+/obj/machinery/duct,
 /turf/open/floor/iron/white,
 /area/centcom/interlink/dorm_rooms)
 "eAj" = (
@@ -5395,6 +5403,12 @@
 /obj/structure/chair/sofa/corp/right,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe/station/command/cap)
+"eDf" = (
+/obj/effect/light_emitter/interlink,
+/obj/effect/turf_decal/weather/dirt,
+/obj/effect/turf_decal/siding/thinplating_new/corner,
+/turf/open/floor/grass,
+/area/centcom/interlink)
 "eDi" = (
 /obj/structure/fluff/metalpole/anchor,
 /obj/effect/light_emitter/interlink,
@@ -5988,9 +6002,11 @@
 	pixel_y = -4
 	},
 /obj/item/paper/crumpled,
-/obj/effect/turf_decal/tile/green/opposingcorners,
 /obj/effect/turf_decal/delivery,
-/turf/open/floor/iron,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/iron/showroomfloor,
 /area/centcom/interlink)
 "fiZ" = (
 /obj/effect/turf_decal/tile/green{
@@ -6246,6 +6262,8 @@
 "fzV" = (
 /obj/structure/rack,
 /obj/item/pushbroom,
+/obj/item/rag,
+/obj/item/mop,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "fAk" = (
@@ -6373,6 +6391,7 @@
 /obj/effect/turf_decal/trimline/dark_green/filled/line{
 	dir = 8
 	},
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "fFa" = (
@@ -6573,6 +6592,7 @@
 /obj/machinery/door/airlock/bathroom{
 	name = "Bathroom"
 	},
+/obj/machinery/duct,
 /turf/open/floor/wood/tile,
 /area/centcom/interlink/dorm_rooms)
 "fRy" = (
@@ -6619,6 +6639,13 @@
 	dir = 8
 	},
 /turf/open/floor/grass,
+/area/centcom/interlink)
+"fTY" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Interlink Dormitories Wing"
+	},
+/obj/machinery/duct,
+/turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "fVh" = (
 /obj/structure/closet/crate/trashcart,
@@ -6754,11 +6781,10 @@
 /area/centcom/interlink/dorm_rooms)
 "gaT" = (
 /obj/effect/light_emitter/interlink,
-/obj/structure/railing{
-	invisibility = 100;
+/obj/effect/turf_decal/siding/white{
 	dir = 1
 	},
-/obj/effect/turf_decal/siding/white{
+/obj/structure/railing{
 	dir = 1
 	},
 /turf/open/floor/iron/herringbone,
@@ -6851,6 +6877,11 @@
 	icon_state = "white"
 	},
 /area/centcom/holding/cafe/station/service/janitor)
+"ghv" = (
+/obj/effect/turf_decal/trimline/dark_green/filled/warning,
+/obj/machinery/duct,
+/turf/open/floor/iron,
+/area/centcom/interlink)
 "gif" = (
 /obj/machinery/vending/wardrobe/chem_wardrobe/ghost_cafe{
 	shut_up = 1
@@ -6916,8 +6947,8 @@
 "gjK" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/shutters/indestructible/preopen{
-	id = "il_kitchen";
-	name = "Interlink Kitchen Shutters"
+	id = "il_bar";
+	name = "Interlink Bar Shutters"
 	},
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
@@ -7274,7 +7305,6 @@
 /obj/machinery/door/airlock/medical{
 	name = "Interlink Medical Cold Room"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/medical/general,
 /obj/effect/turf_decal/siding/white,
 /turf/open/floor/iron/white,
 /area/centcom/interlink)
@@ -7600,6 +7630,7 @@
 /obj/effect/turf_decal/siding/thinplating_new/light{
 	dir = 4
 	},
+/obj/machinery/duct,
 /turf/open/floor/iron/white,
 /area/centcom/interlink/dorm_rooms)
 "gVD" = (
@@ -7898,6 +7929,7 @@
 /obj/effect/turf_decal/siding/thinplating_new/light{
 	dir = 8
 	},
+/obj/machinery/duct,
 /turf/open/floor/iron/white,
 /area/centcom/interlink/dorm_rooms)
 "hmh" = (
@@ -8128,6 +8160,7 @@
 	dir = 4
 	},
 /obj/structure/flora/bush/flowers_pp/style_random,
+/obj/effect/turf_decal/siding/thinplating_new/corner,
 /turf/open/floor/grass,
 /area/centcom/interlink)
 "hAh" = (
@@ -8417,12 +8450,14 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/light/directional/south,
+/obj/machinery/duct,
 /turf/open/floor/wood/large,
 /area/centcom/interlink/dorm_rooms)
 "hRG" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/trimline/dark_green/filled/line,
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "hSs" = (
@@ -8469,6 +8504,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
+/obj/machinery/duct,
 /turf/open/floor/wood/large,
 /area/centcom/interlink/dorm_rooms)
 "hTv" = (
@@ -8688,6 +8724,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/chair/wood,
+/obj/machinery/duct,
 /turf/open/floor/wood,
 /area/centcom/interlink/dorm_rooms)
 "idQ" = (
@@ -8778,11 +8815,10 @@
 /turf/open/misc/dirt/planet,
 /area/centcom/holding/cafe/ruin/icemoon)
 "igp" = (
-/obj/effect/turf_decal/tile/green/opposingcorners,
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
-/turf/open/floor/iron,
+/turf/open/floor/carpet/green,
 /area/centcom/interlink)
 "igD" = (
 /obj/structure/flora/bush/fullgrass{
@@ -8876,10 +8912,10 @@
 /turf/open/floor/iron/dark/textured_large,
 /area/cruiser_dock)
 "ijv" = (
-/obj/machinery/modular_computer/preset/command,
-/obj/effect/turf_decal/tile/green/opposingcorners,
 /obj/effect/turf_decal/siding/wood,
-/turf/open/floor/iron,
+/obj/effect/turf_decal/tile/dark_blue/opposingcorners,
+/obj/structure/showcase/fakeid,
+/turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "ika" = (
 /obj/effect/landmark/latejoin,
@@ -8931,8 +8967,8 @@
 /turf/open/floor/wood/large,
 /area/centcom/interlink/dorm_rooms)
 "ilq" = (
-/obj/machinery/computer/records/security,
 /obj/effect/turf_decal/tile/red/opposingcorners,
+/obj/structure/showcase/fakesec,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "ime" = (
@@ -9088,6 +9124,7 @@
 	name = "Cabin 6";
 	id_tag = "interlink_cabin_6"
 	},
+/obj/machinery/duct,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink/dorm_rooms)
 "iyN" = (
@@ -9377,6 +9414,14 @@
 	smoothing_flags = 0
 	},
 /area/centcom/holding/cafe/station/service/barber)
+"iON" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/trimline/dark_green/filled/warning{
+	dir = 4
+	},
+/obj/machinery/duct,
+/turf/open/floor/iron,
+/area/centcom/interlink)
 "iOQ" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "ghostcafekitchen";
@@ -9513,6 +9558,15 @@
 "iUm" = (
 /obj/machinery/griddle,
 /turf/open/floor/iron/cafeteria,
+/area/centcom/interlink)
+"iUz" = (
+/obj/structure/chair/office{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/carpet/green,
 /area/centcom/interlink)
 "iVr" = (
 /obj/structure/sink/directional/south,
@@ -10183,6 +10237,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/mirror/directional/west,
 /obj/structure/sink/directional/east,
+/obj/machinery/duct,
 /turf/open/floor/iron/white,
 /area/centcom/interlink/dorm_rooms)
 "jxU" = (
@@ -10203,6 +10258,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
+/obj/machinery/duct,
 /turf/open/floor/wood/tile,
 /area/centcom/interlink/dorm_rooms)
 "jys" = (
@@ -10769,8 +10825,7 @@
 /obj/machinery/button/door/directional/north{
 	id = "il_kitchen";
 	name = "Kitchen Shutter Control";
-	pixel_x = -8;
-	req_access = list("kitchen")
+	pixel_x = -8
 	},
 /turf/open/floor/iron/cafeteria,
 /area/centcom/interlink)
@@ -10912,6 +10967,7 @@
 	pixel_y = -24;
 	id = "interlink_cabin_curtains_6"
 	},
+/obj/machinery/duct,
 /turf/open/floor/wood/large,
 /area/centcom/interlink/dorm_rooms)
 "krc" = (
@@ -11269,6 +11325,7 @@
 "kOg" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/duct,
 /turf/open/floor/carpet/red,
 /area/centcom/interlink/dorm_rooms)
 "kOk" = (
@@ -11463,14 +11520,13 @@
 	},
 /area/centcom/holding/cafe/park)
 "kZQ" = (
-/obj/machinery/modular_computer/preset/command{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green/opposingcorners,
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/turf/open/floor/iron,
+/obj/structure/showcase/fakesec{
+	dir = 1
+	},
+/turf/open/floor/iron/showroomfloor,
 /area/centcom/interlink)
 "laN" = (
 /obj/machinery/door/airlock/multi_tile/public/glass{
@@ -11552,7 +11608,6 @@
 /obj/machinery/door/airlock/centcom{
 	name = "Blueshield's Office"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/command/captain,
 /obj/effect/turf_decal/siding/white,
 /obj/effect/turf_decal/tile/green/opposingcorners,
 /turf/open/floor/iron,
@@ -11570,10 +11625,10 @@
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "lic" = (
-/obj/machinery/computer/records/security{
+/obj/effect/turf_decal/tile/red/opposingcorners,
+/obj/structure/showcase/fakesec{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/red/opposingcorners,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "liW" = (
@@ -12009,7 +12064,6 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/access/all/command/general,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "lGv" = (
@@ -12271,6 +12325,7 @@
 "lTN" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/duct,
 /turf/open/floor/wood/parquet,
 /area/centcom/interlink/dorm_rooms)
 "lUz" = (
@@ -12306,7 +12361,18 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/trimline/dark_green/filled/warning,
 /obj/effect/turf_decal/vg_decals/numbers/two,
+/obj/machinery/duct,
 /turf/open/floor/iron,
+/area/centcom/interlink)
+"lWP" = (
+/obj/effect/light_emitter/interlink,
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/turf/open/floor/iron/herringbone,
 /area/centcom/interlink)
 "lWV" = (
 /obj/effect/turf_decal/tile/blue{
@@ -12426,7 +12492,6 @@
 /obj/machinery/door/airlock/medical{
 	name = "Interlink Operating Room"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/medical/general,
 /obj/machinery/duct,
 /turf/open/floor/iron/white,
 /area/centcom/interlink)
@@ -12610,9 +12675,6 @@
 /area/centcom/holding/cafe/dorms)
 "mkD" = (
 /obj/structure/table/reinforced,
-/obj/machinery/recharger{
-	pixel_y = 5
-	},
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
@@ -12660,11 +12722,11 @@
 /obj/structure/chair/office{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/green/opposingcorners,
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
-/turf/open/floor/iron,
+/obj/effect/turf_decal/tile/dark_blue/opposingcorners,
+/turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "mnG" = (
 /obj/machinery/door/airlock/service{
@@ -12676,13 +12738,12 @@
 /obj/structure/closet,
 /obj/item/clothing/under/rank/centcom/intern,
 /obj/item/banner/command/mundane,
-/obj/effect/turf_decal/tile/green/opposingcorners,
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
 /obj/item/toner/extreme,
-/turf/open/floor/iron,
+/turf/open/floor/iron/showroomfloor,
 /area/centcom/interlink)
 "mon" = (
 /obj/structure/fans/tiny/invisible,
@@ -12721,6 +12782,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/siding/wood,
+/obj/machinery/duct,
 /turf/open/floor/wood/large,
 /area/centcom/interlink/dorm_rooms)
 "muu" = (
@@ -13726,7 +13788,8 @@
 /turf/open/floor/iron/dark/textured_large,
 /area/cruiser_dock)
 "nud" = (
-/turf/open/floor/iron/white/textured_large,
+/obj/machinery/duct,
+/turf/open/floor/iron,
 /area/centcom/interlink)
 "nuw" = (
 /obj/effect/turf_decal/tile/green,
@@ -13834,6 +13897,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
+/obj/machinery/duct,
 /turf/open/floor/wood/parquet,
 /area/centcom/interlink/dorm_rooms)
 "nAp" = (
@@ -13949,8 +14013,7 @@
 /obj/machinery/button/door/directional/south{
 	id = "bs_shutters";
 	name = "Privacy Shutter Comtrol";
-	pixel_x = 8;
-	req_access = list("command")
+	pixel_x = 8
 	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/wood,
@@ -14110,6 +14173,7 @@
 	dir = 4
 	},
 /obj/machinery/light/directional/south,
+/obj/machinery/duct,
 /turf/open/floor/iron/white,
 /area/centcom/interlink/dorm_rooms)
 "nNe" = (
@@ -14147,7 +14211,6 @@
 /obj/machinery/door/airlock/centcom{
 	name = "Nanotrasen Consultant's Office"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
 /obj/effect/turf_decal/siding/white{
 	dir = 4
 	},
@@ -14174,10 +14237,9 @@
 /turf/open/floor/carpet/black,
 /area/centcom/interlink)
 "nOo" = (
-/obj/structure/rack,
-/obj/item/mop,
-/obj/item/rag,
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/caution/stand_clear,
+/obj/effect/turf_decal/caution/stand_clear,
+/turf/closed/indestructible/rock,
 /area/centcom/interlink)
 "nPr" = (
 /obj/structure/table{
@@ -14620,6 +14682,11 @@
 	},
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe/station/service/library)
+"oqI" = (
+/obj/effect/light_emitter/interlink,
+/obj/effect/turf_decal/caution/stand_clear,
+/turf/open/floor/iron/dark/smooth_large,
+/area/centcom/interlink)
 "orJ" = (
 /obj/machinery/light/directional/south,
 /obj/item/kirbyplants/random,
@@ -14816,6 +14883,12 @@
 "oGw" = (
 /obj/effect/light_emitter/interlink,
 /turf/closed/indestructible/riveted,
+/area/centcom/interlink)
+"oHy" = (
+/obj/effect/turf_decal/trimline/dark_green/filled/line,
+/obj/machinery/light/directional/south,
+/obj/machinery/duct,
+/turf/open/floor/iron,
 /area/centcom/interlink)
 "oIK" = (
 /obj/effect/turf_decal/trimline/dark_green/filled/warning{
@@ -15622,6 +15695,7 @@
 /obj/effect/turf_decal/trimline/dark_green/filled/line{
 	dir = 8
 	},
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "pBW" = (
@@ -15660,8 +15734,7 @@
 /obj/machinery/button/door/directional/west{
 	id = "evac_hall_lookout";
 	name = "Lookout Shutters Control";
-	pixel_y = -8;
-	req_access = list("command")
+	pixel_y = -8
 	},
 /obj/effect/turf_decal/trimline/dark_green/corner{
 	dir = 4
@@ -15671,7 +15744,6 @@
 	name = "Interlink Access Shutters"
 	},
 /obj/effect/mapping_helpers/airlock/cutaiwire,
-/obj/effect/mapping_helpers/airlock/access/any/cent_com/rep_or_captain,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "pDp" = (
@@ -15711,7 +15783,6 @@
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "pFr" = (
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
 /obj/machinery/door/airlock/security{
 	name = "Interlink Security Processing"
 	},
@@ -15741,6 +15812,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/trimline/dark_green/filled/warning,
 /obj/effect/turf_decal/vg_decals/numbers/one,
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "pFM" = (
@@ -15782,11 +15854,15 @@
 	},
 /obj/effect/turf_decal/trimline/dark_green/corner,
 /obj/machinery/door/poddoor/shutters/indestructible{
-	id = "arr_hall_lookout";
+	id = "evac_hall_lookout_2";
 	name = "Interlink Access Shutters"
 	},
 /obj/effect/mapping_helpers/airlock/cutaiwire,
-/obj/effect/mapping_helpers/airlock/access/any/cent_com/rep_or_captain,
+/obj/machinery/button/door/directional/west{
+	id = "evac_hall_lookout_2";
+	name = "Lookout Shutters Control";
+	pixel_y = 8
+	},
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "pHi" = (
@@ -15802,6 +15878,7 @@
 	name = "Cabin 3";
 	id_tag = "interlink_cabin_3"
 	},
+/obj/machinery/duct,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink/dorm_rooms)
 "pIw" = (
@@ -15880,6 +15957,7 @@
 /obj/machinery/door/airlock/bathroom{
 	name = "Bathroom"
 	},
+/obj/machinery/duct,
 /turf/open/floor/wood/parquet,
 /area/centcom/interlink/dorm_rooms)
 "pOL" = (
@@ -15923,6 +16001,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "pPO" = (
@@ -15974,6 +16053,7 @@
 /obj/effect/turf_decal/trimline/dark_green/filled/corner{
 	dir = 8
 	},
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "pSx" = (
@@ -16050,8 +16130,7 @@
 /obj/machinery/button/door/directional/north{
 	id = "ntrep_shutters";
 	name = "Privacy Shutter Comtrol";
-	pixel_x = 8;
-	req_access = list("command")
+	pixel_x = 8
 	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/wood,
@@ -16107,8 +16186,7 @@
 /obj/machinery/button/door/directional/east{
 	id = "evac_hall_lookout";
 	name = "Lookout Shutters Control";
-	pixel_y = -8;
-	req_access = list("command")
+	pixel_y = -8
 	},
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
@@ -16196,6 +16274,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/trimline/dark_green/filled/warning,
 /obj/effect/turf_decal/vg_decals/numbers/five,
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "qdd" = (
@@ -16434,6 +16513,16 @@
 /obj/structure/table/wood,
 /turf/open/misc/dirt/planet,
 /area/centcom/holding/cafe/ruin/ash_walkers)
+"qph" = (
+/obj/effect/light_emitter/interlink,
+/obj/effect/turf_decal/weather/dirt{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/thinplating_new/corner{
+	dir = 8
+	},
+/turf/open/floor/grass,
+/area/centcom/interlink)
 "qpp" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -16477,6 +16566,7 @@
 	dir = 8
 	},
 /obj/machinery/light/directional/west,
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "quz" = (
@@ -16484,6 +16574,7 @@
 /obj/effect/turf_decal/siding/thinplating_new/light{
 	dir = 8
 	},
+/obj/machinery/duct,
 /turf/open/floor/iron/white,
 /area/centcom/interlink/dorm_rooms)
 "quB" = (
@@ -16739,8 +16830,7 @@
 /turf/open/floor/grass,
 /area/centcom/interlink)
 "qIY" = (
-/obj/effect/turf_decal/tile/green/opposingcorners,
-/turf/open/floor/iron,
+/turf/open/floor/carpet/green,
 /area/centcom/interlink)
 "qJG" = (
 /obj/structure/chair/office/light{
@@ -17045,6 +17135,7 @@
 /obj/effect/turf_decal/trimline/dark_green/filled/corner{
 	dir = 8
 	},
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "qWd" = (
@@ -17137,6 +17228,7 @@
 /obj/effect/turf_decal/trimline/dark_green/filled/line,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "raS" = (
@@ -17239,6 +17331,7 @@
 	name = "Cabin 7";
 	id_tag = "interlink_cabin_7"
 	},
+/obj/machinery/duct,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink/dorm_rooms)
 "rhV" = (
@@ -17604,6 +17697,7 @@
 "rFp" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/duct,
 /turf/open/floor/wood/large,
 /area/centcom/interlink/dorm_rooms)
 "rFY" = (
@@ -17687,6 +17781,7 @@
 	light_range = 20;
 	nightshift_light_power = 10
 	},
+/obj/effect/turf_decal/caution/stand_clear,
 /turf/open/floor/plating,
 /area/centcom/interlink)
 "rLx" = (
@@ -17853,7 +17948,6 @@
 /obj/machinery/door/airlock/centcom{
 	name = "Blueshield's Office"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/command/captain,
 /obj/effect/turf_decal/siding/white{
 	dir = 4
 	},
@@ -18074,6 +18168,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/vg_decals/numbers/three,
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "sfd" = (
@@ -18442,6 +18537,7 @@
 "sDF" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/duct,
 /turf/open/floor/iron/white,
 /area/centcom/interlink/dorm_rooms)
 "sDJ" = (
@@ -18665,7 +18761,6 @@
 /obj/machinery/door/airlock/medical{
 	name = "Interlink Operating Room"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/medical/surgery,
 /turf/open/floor/iron/white,
 /area/centcom/interlink)
 "sTH" = (
@@ -19117,7 +19212,6 @@
 /obj/machinery/door/airlock/security/glass{
 	name = "Interlink Security Post"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /obj/effect/turf_decal/siding/white{
 	dir = 4
@@ -19154,6 +19248,7 @@
 	id = "interlink_cabin_curtains_7"
 	},
 /obj/machinery/light/directional/south,
+/obj/machinery/duct,
 /turf/open/floor/wood/large,
 /area/centcom/interlink/dorm_rooms)
 "tso" = (
@@ -19818,6 +19913,11 @@
 	},
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe/station/commons/fitness/recreation/sauna)
+"ugf" = (
+/obj/effect/light_emitter/interlink,
+/obj/effect/turf_decal/siding/thinplating_new,
+/turf/open/misc/dirt/planet,
+/area/centcom/interlink)
 "ugt" = (
 /turf/open/floor/mineral/silver,
 /area/centcom/holding/cafe/station/commons/toilet)
@@ -19825,6 +19925,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/siding/wood,
+/obj/machinery/duct,
 /turf/open/floor/wood/parquet,
 /area/centcom/interlink/dorm_rooms)
 "ugU" = (
@@ -19943,11 +20044,11 @@
 /area/centcom/holding/cafe/dorms)
 "ujZ" = (
 /obj/item/kirbyplants/organic/plant22,
-/obj/effect/turf_decal/tile/green/opposingcorners,
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
-/turf/open/floor/iron,
+/obj/effect/turf_decal/tile/dark_blue/opposingcorners,
+/turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "ukW" = (
 /obj/machinery/computer{
@@ -20082,7 +20183,6 @@
 /obj/machinery/door/airlock/centcom{
 	name = "Nanotrasen Consultant's Office"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
 /obj/effect/turf_decal/siding/white{
 	dir = 1
 	},
@@ -20134,6 +20234,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/vg_decals/numbers/six,
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "utx" = (
@@ -20349,6 +20450,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/vg_decals/numbers/four,
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "uIn" = (
@@ -20603,6 +20705,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/siding/wood,
+/obj/machinery/duct,
 /turf/open/floor/wood/tile,
 /area/centcom/interlink/dorm_rooms)
 "uWE" = (
@@ -20754,8 +20857,8 @@
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "vcB" = (
-/obj/machinery/computer/crew,
 /obj/effect/turf_decal/tile/red/opposingcorners,
+/obj/structure/showcase/fake_cafe_console,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "vdc" = (
@@ -21407,6 +21510,13 @@
 /obj/structure/hedge,
 /turf/open/misc/dirt/planet,
 /area/centcom/interlink)
+"vIq" = (
+/obj/effect/light_emitter/interlink,
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 4
+	},
+/turf/open/misc/dirt/planet,
+/area/centcom/interlink)
 "vIB" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
@@ -21547,7 +21657,6 @@
 	dir = 8
 	},
 /obj/structure/railing{
-	invisibility = 100;
 	dir = 4
 	},
 /turf/open/floor/iron/stairs/old{
@@ -21786,6 +21895,13 @@
 "wdC" = (
 /turf/open/floor/carpet,
 /area/centcom/holding/cafe/beach)
+"wdW" = (
+/obj/item/kirbyplants/organic/plant22,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/carpet/green,
+/area/centcom/interlink)
 "wem" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
@@ -22138,6 +22254,7 @@
 "wuB" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/duct,
 /turf/open/floor/wood,
 /area/centcom/interlink/dorm_rooms)
 "wuH" = (
@@ -22162,6 +22279,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/mirror/directional/east,
 /obj/structure/sink/directional/west,
+/obj/machinery/duct,
 /turf/open/floor/iron/white,
 /area/centcom/interlink/dorm_rooms)
 "wvy" = (
@@ -22277,10 +22395,10 @@
 /turf/open/misc/grass/planet,
 /area/centcom/holding/cafe/park)
 "wCN" = (
-/obj/machinery/computer/records/security,
-/obj/effect/turf_decal/tile/green/opposingcorners,
 /obj/effect/turf_decal/siding/wood,
-/turf/open/floor/iron,
+/obj/effect/turf_decal/tile/dark_blue/opposingcorners,
+/obj/structure/showcase/fake_cafe_console,
+/turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "wEk" = (
 /obj/effect/turf_decal/tile/blue/half/contrasted{
@@ -22311,13 +22429,14 @@
 "wEz" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/duct,
 /turf/open/floor/wood/tile,
 /area/centcom/interlink/dorm_rooms)
 "wGV" = (
-/obj/machinery/computer/operating{
+/obj/effect/turf_decal/delivery/blue,
+/obj/structure/showcase/fake_cafe_console{
 	dir = 4
 	},
-/obj/effect/turf_decal/delivery/blue,
 /turf/open/floor/iron/white,
 /area/centcom/interlink)
 "wHj" = (
@@ -22326,6 +22445,7 @@
 /obj/structure/chair/wood{
 	dir = 4
 	},
+/obj/machinery/duct,
 /turf/open/floor/wood/tile,
 /area/centcom/interlink/dorm_rooms)
 "wHm" = (
@@ -22699,6 +22819,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/mirror/directional/west,
 /obj/structure/sink/directional/east,
+/obj/machinery/duct,
 /turf/open/floor/iron/white,
 /area/centcom/interlink/dorm_rooms)
 "xcG" = (
@@ -22926,6 +23047,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
+/obj/machinery/duct,
 /turf/open/floor/wood,
 /area/centcom/interlink/dorm_rooms)
 "xuk" = (
@@ -23129,6 +23251,7 @@
 	name = "Cabin 2";
 	id_tag = "interlink_cabin_2"
 	},
+/obj/machinery/duct,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink/dorm_rooms)
 "xEQ" = (
@@ -23196,6 +23319,7 @@
 /obj/effect/turf_decal/trimline/dark_green/filled/line,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "xIr" = (
@@ -23405,6 +23529,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/duct,
 /turf/open/floor/carpet/red,
 /area/centcom/interlink/dorm_rooms)
 "xPn" = (
@@ -23428,7 +23553,7 @@
 "xPZ" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/indestructible{
-	id = "arr_hall_lookout";
+	id = "evac_hall_lookout_2";
 	name = "Interlink Access Shutters"
 	},
 /turf/open/floor/plating,
@@ -23461,6 +23586,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
+/obj/machinery/duct,
 /turf/open/floor/wood,
 /area/centcom/interlink/dorm_rooms)
 "xRs" = (
@@ -23598,15 +23724,11 @@
 /turf/open/floor/grass,
 /area/centcom/interlink)
 "xYO" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/light/floor{
-	alpha = 0;
-	invisibility = 100;
-	light_power = 10;
-	light_range = 20;
-	nightshift_light_power = 10
+/obj/effect/light_emitter/interlink,
+/obj/effect/turf_decal/siding/thinplating_new/corner{
+	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/open/misc/dirt/planet,
 /area/centcom/interlink)
 "xZm" = (
 /obj/machinery/light/directional/north,
@@ -23797,6 +23919,7 @@
 /obj/machinery/door/airlock/bathroom{
 	name = "Bathroom"
 	},
+/obj/machinery/duct,
 /turf/open/floor/wood/large,
 /area/centcom/interlink/dorm_rooms)
 "yfm" = (
@@ -23861,22 +23984,14 @@
 /area/centcom/interlink)
 "yjX" = (
 /obj/structure/closet,
-/obj/item/clothing/under/rank/centcom/officer/replica{
-	desc = "A cheaper, unarmored CentCom turtleneck meant for everyday wear. Somewhat of a status symbol.";
-	name = "\improper Civilian CentCom turtleneck"
-	},
-/obj/item/clothing/under/rank/centcom/officer_skirt/replica{
-	desc = "A cheaper, unarmored CentCom skirtleneck meant for everyday wear. Somewhat of a status symbol.";
-	name = "\improper Civilian CentCom skirtleneck"
-	},
 /obj/item/bedsheet/centcom,
-/obj/effect/turf_decal/tile/green/opposingcorners,
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 8
 	},
 /obj/item/toner/extreme,
-/turf/open/floor/iron,
+/obj/effect/turf_decal/tile/dark_blue/opposingcorners,
+/turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "yjZ" = (
 /obj/structure/broken_flooring/corner/directional/east,
@@ -29090,7 +29205,7 @@ tvw
 tvw
 tvw
 tvw
-jvk
+nOo
 vLx
 vLx
 vLx
@@ -29852,7 +29967,7 @@ vLx
 vLx
 vLx
 vat
-vat
+wpz
 vat
 vat
 vat
@@ -30638,7 +30753,7 @@ iPs
 fFy
 kJZ
 vat
-gaT
+lWP
 sBH
 pyH
 lPi
@@ -30881,7 +30996,7 @@ pNv
 pNv
 hjm
 vat
-vat
+wpz
 vat
 vat
 vat
@@ -32166,7 +32281,7 @@ pNv
 pNv
 hjm
 vat
-vat
+wpz
 vat
 eSk
 vat
@@ -33476,7 +33591,7 @@ lPi
 hpl
 wck
 tvw
-nOo
+uis
 fMM
 tvw
 ijv
@@ -33737,7 +33852,7 @@ fzV
 fMM
 tvw
 yjX
-igp
+bHb
 bHb
 mnj
 ujZ
@@ -33746,11 +33861,11 @@ gjd
 aXG
 xKI
 aeG
-ujZ
-mnj
+wdW
+iUz
 igp
 igp
-beg
+aCK
 tvw
 aXG
 cuM
@@ -33988,16 +34103,16 @@ olE
 wtI
 wtI
 wUm
-cGt
+ghv
 mVc
 fMM
 fMM
 tvw
 cYc
-cFK
-qIY
-qIY
-qIY
+beg
+dQK
+dQK
+dQK
 lgF
 gjd
 aXG
@@ -34245,7 +34360,7 @@ vFU
 uOe
 lPi
 jRq
-nJp
+fEa
 tvw
 tvw
 tvw
@@ -34502,7 +34617,7 @@ vFU
 nbn
 lPi
 hpl
-cGt
+ghv
 pHe
 saE
 saE
@@ -34759,7 +34874,7 @@ fFN
 ygY
 lPi
 hpl
-cGt
+ghv
 xPZ
 aXG
 bWy
@@ -34988,9 +35103,9 @@ vat
 tqe
 pNv
 pNv
-nud
-bbk
-bbk
+jRU
+pNv
+pNv
 tvw
 tvw
 aDg
@@ -35016,7 +35131,7 @@ tvw
 tvw
 jHw
 oVl
-iWN
+oHy
 rYy
 tvw
 tvw
@@ -35245,9 +35360,9 @@ fJQ
 tqe
 pNv
 pNv
-nud
-bbk
-bbk
+jRU
+pNv
+pNv
 aDg
 pmJ
 aXG
@@ -35502,9 +35617,9 @@ rSa
 tqe
 pNv
 pNv
-bbk
-bbk
-bbk
+pNv
+pNv
+oqI
 rKM
 fkz
 sbM
@@ -35530,7 +35645,7 @@ vhK
 tvw
 efr
 lkp
-hvQ
+nud
 hvQ
 hvQ
 hvQ
@@ -35759,9 +35874,9 @@ vat
 tqe
 pNv
 pNv
-bbk
-bbk
-bbk
+pNv
+pNv
+pNv
 aDg
 cal
 nIy
@@ -35787,7 +35902,7 @@ gkL
 tvw
 jRq
 hvQ
-hvQ
+nud
 hvQ
 hvQ
 hvQ
@@ -36016,10 +36131,10 @@ vat
 tqe
 pNv
 pNv
-nud
-bbk
-bbk
-xYO
+jRU
+pNv
+pNv
+aDg
 cal
 sYb
 oIL
@@ -36044,7 +36159,7 @@ qXQ
 tvw
 jRq
 hvQ
-hvQ
+nud
 hvQ
 hvQ
 hvQ
@@ -36273,9 +36388,9 @@ vat
 tqe
 pNv
 pNv
-nud
-bbk
-bbk
+jRU
+pNv
+pNv
 tvw
 xJE
 mmp
@@ -36301,7 +36416,7 @@ uAz
 tvw
 eWT
 hvQ
-hvQ
+nud
 aBm
 axB
 axB
@@ -36530,9 +36645,9 @@ stg
 tqe
 pNv
 pNv
-bbk
-bbk
-bbk
+pNv
+pNv
+pNv
 tvw
 ssn
 qXl
@@ -36558,7 +36673,7 @@ eeP
 laN
 wUm
 hvQ
-hvQ
+nud
 hvQ
 hvQ
 hvQ
@@ -36787,9 +36902,9 @@ vat
 tqe
 pNv
 pNv
-bbk
-bbk
-bbk
+pNv
+pNv
+pNv
 tvw
 xlE
 kLz
@@ -36815,7 +36930,7 @@ ows
 oNk
 wUm
 hvQ
-hvQ
+nud
 jGy
 bNh
 bNh
@@ -37044,10 +37159,10 @@ vat
 tqe
 pNv
 pNv
-nud
-bbk
-bbk
-xYO
+jRU
+pNv
+pNv
+aDg
 cal
 cGQ
 reT
@@ -37072,7 +37187,7 @@ lPi
 tvw
 gyK
 hvQ
-hvQ
+nud
 hvQ
 hvQ
 hvQ
@@ -37301,9 +37416,9 @@ vat
 tqe
 pNv
 pNv
-nud
-bbk
-bbk
+jRU
+pNv
+pNv
 aDg
 cal
 fjr
@@ -37329,7 +37444,7 @@ wHJ
 qhz
 wUm
 hvQ
-hvQ
+nud
 hvQ
 hvQ
 hvQ
@@ -37558,9 +37673,9 @@ rSa
 tqe
 pNv
 pNv
-bbk
-bbk
-bbk
+pNv
+pNv
+oqI
 rKM
 fkz
 sbM
@@ -37586,7 +37701,7 @@ cGt
 qhz
 hhj
 fnX
-hvQ
+nud
 hvQ
 hvQ
 hvQ
@@ -37815,9 +37930,9 @@ vat
 tqe
 pNv
 pNv
-bbk
-bbk
-bbk
+pNv
+pNv
+pNv
 aDg
 jXO
 aXG
@@ -37843,7 +37958,7 @@ bod
 dIM
 mjK
 cTy
-gVZ
+iON
 jsN
 eYX
 eYX
@@ -38072,9 +38187,9 @@ stg
 tqe
 pNv
 pNv
-nud
+jRU
 ewI
-bbk
+pNv
 tvw
 tvw
 aDg
@@ -38100,7 +38215,7 @@ tvw
 tvw
 tvw
 oBN
-oBN
+fTY
 rYy
 tvw
 qAW
@@ -38357,7 +38472,7 @@ nok
 viH
 tvw
 qDV
-wHJ
+cLi
 tvw
 cSX
 cSX
@@ -38614,7 +38729,7 @@ kyA
 mNq
 tvw
 iMY
-nJp
+fEa
 qhz
 cSX
 rPg
@@ -39114,7 +39229,7 @@ cSn
 oOn
 iPs
 iPs
-iPs
+ugf
 fov
 qWd
 hRG
@@ -39365,13 +39480,13 @@ vat
 vat
 vat
 pFM
-fVr
-iPs
-iPs
+eDf
+vIq
+xYO
 iPs
 iPs
 qEZ
-iem
+qph
 tvw
 oVl
 hRG
@@ -42703,8 +42818,8 @@ hpg
 hpg
 ivJ
 vat
-jvk
-jvk
+vLx
+vLx
 tvw
 aqG
 aqG
@@ -42949,18 +43064,18 @@ aaa
 aaa
 tvw
 vLx
-jvk
-jvk
-jvk
-jvk
+vLx
+vLx
+vLx
+vLx
 vat
 vat
 vat
 vat
 vat
 vat
-jvk
-jvk
+vLx
+vLx
 tvw
 tvw
 uHW
