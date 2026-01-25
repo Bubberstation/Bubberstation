@@ -1,3 +1,6 @@
+/datum/supply_pack/engineering
+	auto_name = TRUE
+
 /datum/supply_pack/engineering/omni_drill
 	contains = list(/obj/item/screwdriver/omni_drill)
 
