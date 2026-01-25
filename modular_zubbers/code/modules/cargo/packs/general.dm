@@ -8,7 +8,7 @@
 	crate_type = /obj/structure/closet/crate/wooden
 	contains = list()
 	crate_name = "seance starter kit"
-
+	auto_name = FALSE
 
 /datum/supply_pack/misc/ouija_board/fill(obj/structure/closet/crate/our_crate)
 	new /obj/item/storage/fancy/candle_box(our_crate)
@@ -37,3 +37,4 @@
 	)
 	cost = 3000
 	crate_name = "construction kit crate"
+	auto_name = FALSE
