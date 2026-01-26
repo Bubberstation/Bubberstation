@@ -29,12 +29,10 @@
 
 	switch(rand(1,10))
 		if(6 to 10)
-			new_objective = new /datum/objective/abductee/fearful()
+			base_objective = new /datum/objective/abductee/fearful()
 		if(3 to 5)
-			new_objective = new /datum/objective/abductee/violent()
+			base_objective = new /datum/objective/abductee/violent()
 		if(1 to 2)
-			new_objective = new /datum/objective/abductee/paranoid()
+			base_objective = new /datum/objective/abductee/paranoid()
 
-	new_objective.owner = owner
-	objectives += new_objective
-	log_objective(H, new_objective.explanation_text)
+	objectives += base_objective
