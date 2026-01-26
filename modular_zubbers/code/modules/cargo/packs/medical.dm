@@ -342,6 +342,11 @@
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/janitor)
 	auto_name = TRUE
 
+/datum/supply_pack/goody/medical/implant/paperwork
+	name = "Paperwork Implant Set Single-Pack"
+	desc = "A goody case containing an implant, which can be surgically implanted to effectivize crewmembers at paperwork. Warranty void if exposed to electromagnetic pulses."
+	contains = list(/obj/item/organ/cyberimp/arm/toolkit/paperwork)
+
 /datum/supply_pack/goody/medical/medpod
 	contains = list(/obj/item/survivalcapsule/medical)
 	cost = PAYCHECK_COMMAND * 40
