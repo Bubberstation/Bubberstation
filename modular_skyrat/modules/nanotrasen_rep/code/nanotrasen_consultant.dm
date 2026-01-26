@@ -36,7 +36,6 @@
 		/obj/item/reagent_containers/cup/glass/bottle/champagne = 10
 	)
 
-	// BUBBER EDIT: Previous - job_flags = STATION_JOB_FLAGS | JOB_BOLD_SELECT_TEXT | JOB_CANNOT_OPEN_SLOTS
 	job_flags = STATION_JOB_FLAGS | JOB_BOLD_SELECT_TEXT | HEAD_OF_STAFF_JOB_FLAGS
 
 /datum/outfit/job/nanotrasen_consultant
