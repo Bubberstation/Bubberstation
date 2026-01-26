@@ -240,5 +240,3 @@
 /datum/loadout_item/suit/trenchcoat
 	name = "Trenchcoat"
 	item_path = /obj/item/clothing/suit/toggle/jacket/trenchcoat
-
-	
