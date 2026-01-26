@@ -1,7 +1,7 @@
 /datum/supply_pack/mining
 	access = NONE
 	cost = PAYCHECK_LOWER
-	group = "Mining" //figure this out later
+	group = "Mining"
 	order_flags = ORDER_GOODY
 	crate_type = null
 	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
