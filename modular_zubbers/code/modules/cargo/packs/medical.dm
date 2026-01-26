@@ -134,7 +134,7 @@
 	auto_name = TRUE
 
 /datum/supply_pack/goody/medical/medpen/morpital
-	contains = list(/obj/item/reagent_containers/hypospray/medipen/deforest/occuisate)
+	contains = list(/obj/item/reagent_containers/hypospray/medipen/deforest/morpital)
 	auto_name = TRUE
 
 /datum/supply_pack/goody/medical/medpen/lipital
