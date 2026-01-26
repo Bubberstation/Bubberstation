@@ -211,21 +211,6 @@
 	cost = PAYCHECK_COMMAND * 1.4
 	auto_name = TRUE
 
-/datum/supply_pack/medical/defibrillator
-	contains = list(/obj/item/defibrillator/loaded)
-	cost = PAYCHECK_COMMAND * 6
-	auto_name = TRUE
-
-/datum/supply_pack/medical/loaded_belt_defib
-	contains = list(/obj/item/defibrillator/compact/loaded)
-	cost = PAYCHECK_COMMAND * 9
-	auto_name = TRUE
-
-/datum/supply_pack/medical/surgical_tools
-	contains = list(/obj/item/surgery_tray/full)
-	cost = PAYCHECK_COMMAND * 8
-	auto_name = TRUE
-
 /datum/supply_pack/goody/medical/health_analyzer_advanced
 	contains = list(/obj/item/healthanalyzer/advanced)
 	cost = PAYCHECK_COMMAND * 4
