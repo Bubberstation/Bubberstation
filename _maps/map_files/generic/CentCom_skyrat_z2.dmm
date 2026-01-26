@@ -2561,8 +2561,7 @@
 /area/centcom/interlink)
 "bCB" = (
 /obj/machinery/door/window/brigdoor/left/directional/north{
-	name = "Interlink Wardens Office";
-	req_access = list("armory")
+	name = "Interlink Wardens Office"
 	},
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /turf/open/floor/iron/dark,
@@ -4241,8 +4240,7 @@
 /area/centcom/holding/cafe/ruin/icemoon)
 "dkD" = (
 /obj/machinery/door/window/brigdoor/left/directional/south{
-	name = "Interlink Cell";
-	req_access = list("brig")
+	name = "Interlink Cell"
 	},
 /obj/effect/turf_decal/siding/white,
 /turf/open/floor/iron/smooth,
@@ -11019,6 +11017,15 @@
 "kvj" = (
 /turf/open/floor/plating,
 /area/cruiser_dock)
+"kvB" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/sign/painting/library{
+	pixel_y = -32
+	},
+/turf/open/floor/iron/showroomfloor,
+/area/centcom/interlink)
 "kvD" = (
 /obj/structure/sign/poster/random/directional/west,
 /turf/open/floor/iron/dark,
@@ -11037,8 +11044,7 @@
 /area/centcom/interlink)
 "kxy" = (
 /obj/machinery/door/window/brigdoor/right/directional/south{
-	name = "Interlink Cell";
-	req_access = list("brig")
+	name = "Interlink Cell"
 	},
 /obj/effect/turf_decal/siding/white,
 /turf/open/floor/iron/smooth,
@@ -11614,12 +11620,13 @@
 /turf/open/floor/fakebasalt,
 /area/centcom/holding/cafe/ruin/ash_walkers)
 "lgF" = (
+/obj/effect/turf_decal/siding/white,
+/obj/effect/turf_decal/tile/dark_blue/opposingcorners,
+/obj/effect/turf_decal/tile/dark_blue/opposingcorners,
 /obj/machinery/door/airlock/centcom{
 	name = "Blueshield's Office"
 	},
-/obj/effect/turf_decal/siding/white,
-/obj/effect/turf_decal/tile/green/opposingcorners,
-/turf/open/floor/iron,
+/turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "lhg" = (
 /obj/structure/table/wood,
@@ -14217,14 +14224,13 @@
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "nOb" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
 /obj/machinery/door/airlock/centcom{
 	name = "Nanotrasen Consultant's Office"
 	},
-/obj/effect/turf_decal/siding/white{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green/opposingcorners,
-/turf/open/floor/iron,
+/turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "nOf" = (
 /obj/structure/table/wood,
@@ -17958,14 +17964,14 @@
 /turf/open/floor/wood,
 /area/centcom/interlink)
 "rRv" = (
-/obj/machinery/door/airlock/centcom{
-	name = "Blueshield's Office"
-	},
 /obj/effect/turf_decal/siding/white{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/green/opposingcorners,
-/turf/open/floor/iron,
+/obj/effect/turf_decal/tile/dark_blue/opposingcorners,
+/obj/machinery/door/airlock/centcom{
+	name = "Blueshield's Office"
+	},
+/turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "rRz" = (
 /obj/effect/turf_decal/tile/dark_blue/fourcorners,
@@ -20193,14 +20199,11 @@
 /turf/open/indestructible/stone,
 /area/centcom/holding/cafe/station/command/cap)
 "uqJ" = (
+/obj/effect/turf_decal/siding/white,
 /obj/machinery/door/airlock/centcom{
 	name = "Nanotrasen Consultant's Office"
 	},
-/obj/effect/turf_decal/siding/white{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green/opposingcorners,
-/turf/open/floor/iron,
+/turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "urm" = (
 /obj/structure/table/wood,
@@ -22410,6 +22413,9 @@
 /obj/effect/turf_decal/siding/wood,
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners,
 /obj/structure/showcase/fake_cafe_console,
+/obj/structure/sign/painting/library{
+	pixel_y = 32
+	},
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "wEk" = (
@@ -33886,7 +33892,7 @@ wdW
 iUz
 igp
 igp
-aCK
+kvB
 tvw
 aXG
 cuM
