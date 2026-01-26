@@ -410,3 +410,11 @@
 	attack_verb_simple = list("mar", "bite", "chomp", "paw", "fwoomp", "marmar")
 	gender = FEMALE
 	squeak_override = list('modular_zubbers/sound/emotes/sound_voice_mar.ogg' = 1)
+
+/obj/item/toy/plush/ethereal
+	name = "Modern Ethereal Plush"
+	desc = "A plushie showing a succesful ethereal, manufactured by a noble entrepreneur's attempts to raise visibility of Sproutians and their culture. 3% proceedings from sales go to charity."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "ethereal"
+	attack_verb_simple = list("bzzt", "short", "liquify", "self-improve", "")
+	squeak_override = list('sound/effects/sparks/sparks1.ogg' = 99, 'sound/mobs/non-humanoids/hygienebot/cutarteries.ogg' = 1)
