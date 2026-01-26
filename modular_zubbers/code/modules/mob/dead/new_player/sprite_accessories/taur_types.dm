@@ -55,6 +55,9 @@
 				if (STYLE_TAUR_HOOF)
 					if (worn_suit.worn_icon_taur_hoof)
 						return TRUE
+				if (STYLE_TAUR_BIG)
+					if (worn_suit.worn_icon_taur_big)
+						return TRUE
 
 	if(target.owned_turf)
 		var/list/used_in_turf = list("tail")
@@ -229,7 +232,7 @@
 /datum/sprite_accessory/taur/biglegs
 	name = "Big Legs"
 	icon_state = "biglegs"
-	taur_mode = STYLE_TAUR_PAW
+	taur_mode = STYLE_TAUR_BIG
 	organ_type = /obj/item/organ/taur_body/anthro
 
 /datum/sprite_accessory/taur/biglegs/stanced

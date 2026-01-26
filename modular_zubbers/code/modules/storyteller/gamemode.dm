@@ -132,6 +132,8 @@ SUBSYSTEM_DEF(gamemode)
 
 	//Security Based Antag Cap
 	var/sec_antag_cap = 0
+	/// A list of event controls to re-roll antagonists
+	var/list/antag_rerolls
 
 	/// Whether we looked up pop info in this process tick
 	var/pop_data_cached = FALSE
@@ -179,8 +181,14 @@ SUBSYSTEM_DEF(gamemode)
 			if(!holiday_categorized)
 				uncategorized += event
 			continue
-		else
-			event_pools[event.track] += event //Add it to the categorized event pools
+
+		var/list/event_tags = event.tags
+		if(LAZYLEN(event_tags))
+			if(LAZYFIND(event_tags, TAG_ANTAG_REROLL))
+				LAZYADDASSOC(antag_rerolls, event.type, event.weight)
+				continue
+
+		event_pools[event.track] += event //Add it to the categorized event pools
 
 	return SS_INIT_SUCCESS
 
@@ -846,5 +854,36 @@ SUBSYSTEM_DEF(gamemode)
 	for(var/datum/round_event_control/event as anything in track_events)
 		if(event.type == text2path(type))
 			return event
+
+/datum/controller/subsystem/gamemode/proc/inject_event(datum/round_event_control/event_control)
+	if(!istype(event_control, /datum/round_event_control))
+		stack_trace("Storyteller was requested to inject event type [event_control ? event_control : "NULL"], but it's invalid!")
+		return
+
+	var/datum/round_event_control/event = locate(event_control) in SSevents.control
+	if(!event)
+		stack_trace("Storyteller was requested to inject event type [event_control] but could not locate it in SSevents.")
+		return
+
+	event.run_event(admin_forced = TRUE)
+
+/datum/controller/subsystem/gamemode/proc/reroll_antagonist(datum/round_event_control/event_control, antag_name)
+	message_admins(span_yellowteamradio("[key_name_admin(usr)] requested a new antagonist to replace [antag_name]."))
+	log_admin("[key_name_admin(usr)] requested a new antagonist to replace [antag_name].")
+	if(isnull(event_control))
+		event_control = pick_weight(SSgamemode.antag_rerolls)
+	SSgamemode.inject_event(event_control = event_control)
+
+ADMIN_VERB(create_antagonist, R_FUN, "Create Antagonist", "Inject a little more action into the round.", ADMIN_CATEGORY_EVENTS)
+	var/list/available_antags = list()
+	for(var/datum/round_event_control/event_control as anything in SSgamemode.antag_rerolls)
+		var/datum/round_event_control/event = locate(event_control) in SSevents.control
+		LAZYADD(available_antags, event)
+
+	var/datum/round_event_control/selected_event = tgui_input_list(user, "Choose a crew antagonist type to spawn.", "Create Antagonist", available_antags)
+	if(isnull(selected_event))
+		return
+
+	SSgamemode.reroll_antagonist(event_control = selected_event, antag_name = "nobody")
 
 #undef INIT_ORDER_GAMEMODE

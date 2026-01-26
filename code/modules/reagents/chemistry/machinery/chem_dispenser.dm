@@ -686,7 +686,7 @@
 		/datum/reagent/consumable/tonic,
 		/datum/reagent/water,
 	)
-	upgrade_reagents = null
+	// upgrade_reagents = null // BUBBER EDIT REMOVAL - Multi-tiered dispenser upgrades
 	/// The default list of emagged reagents dispensable by the soda dispenser
 	var/static/list/drink_emagged_reagents = list(
 		/datum/reagent/consumable/ethanol/thirteenloko,
