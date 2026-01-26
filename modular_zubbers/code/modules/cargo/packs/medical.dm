@@ -46,21 +46,6 @@
 	cost = PAYCHECK_COMMAND * 15
 	auto_name = TRUE
 
-/datum/supply_pack/medical/first_aid_kit_responder
-	contains = list(/obj/item/storage/backpack/duffelbag/deforest_surgical/stocked)
-	cost = PAYCHECK_COMMAND * 14
-	auto_name = TRUE
-
-/datum/supply_pack/medical/first_aid_kit_orange
-	contains = list(/obj/item/storage/backpack/duffelbag/deforest_medkit/stocked)
-	cost = PAYCHECK_COMMAND * 24.2
-	auto_name = TRUE
-
-/datum/supply_pack/medical/first_aid_kit_technician
-	contains = list(/obj/item/storage/backpack/duffelbag/deforest_paramedic/stocked)
-	cost = PAYCHECK_COMMAND * 24.2
-	auto_name = TRUE
-
 /datum/supply_pack/goody/medical/coagulant
 	contains = list(/obj/item/stack/medical/suture/coagulant)
 	cost = PAYCHECK_CREW * 1.8
