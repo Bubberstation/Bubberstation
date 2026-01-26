@@ -25,6 +25,10 @@
 		return FALSE
 
 	//Already exists
+	if(length(GLOB.all_loadout_datums) && GLOB.all_loadout_datums[item_to_check])
+		return FALSE
+
+	//Already exists
 	if(length(GLOB.loadout_blacklist_names) && GLOB.loadout_blacklist_names[item_to_check.name])
 		return FALSE
 
@@ -46,6 +50,9 @@
 
 	//Gives you unreasonable shock resist.
 	if(item_to_check.siemens_coefficient < 0.5) //0.5 is considered normal for most items.
+		return FALSE
+
+	if(item_to_check in GLOB.erp_items) //No free dildos for you.
 		return FALSE
 
 	//We're clothing.
@@ -114,3 +121,53 @@
 				return FALSE
 
 	return TRUE
+
+/proc/init_loadout_categories()
+
+	var/list/loadout_categories = list()
+
+	//Step 0: Create the loadout categories
+	for(var/category_type in subtypesof(/datum/loadout_category))
+		var/datum/loadout_category/created_category = new category_type()
+		created_category.associated_items = list()
+		loadout_categories += created_category
+
+	//Step 1: Create loadout items based config.
+	for(var/datum/loadout_category/found_category as anything in loadout_categories)
+		found_category.generate_from_config()
+
+#ifndef ABSOLUTE_MINIMUM
+	//Step 2: Create loadout items based on vendors
+	//Access Vendors (Command is the only one of this type).
+	for(var/obj/machinery/vending/access/vendor as anything in GLOB.access_vendors_for_loadout)
+		generate_loadout_list_from_access_vendor(
+			vendor,
+			loadout_categories
+		)
+	//Regular Vendors.
+	for(var/obj/machinery/vending/vendor as anything in GLOB.vendor_to_loadout)
+		generate_loadout_list_from_vendor(
+			vendor,
+			GLOB.vendor_to_loadout[vendor],
+			loadout_categories
+		)
+
+	//Vendor Overrides.
+	for(var/obj/machinery/vending/vendor as anything in GLOB.vendor_to_loadout_overrides)
+		generate_loadout_list_from_vendor(
+			vendor,
+			GLOB.vendor_to_loadout_overrides[vendor],
+			loadout_categories,
+			TRUE
+		)
+#endif
+
+#ifndef LOWMEMORYMODE
+		//Step 3: Create loadout items based on world.
+		for(var/datum/loadout_category/found_category as anything in loadout_categories)
+			found_category.generate_from_world()
+#endif
+
+	sortTim(loadout_categories, /proc/cmp_loadout_categories)
+
+	return loadout_categories

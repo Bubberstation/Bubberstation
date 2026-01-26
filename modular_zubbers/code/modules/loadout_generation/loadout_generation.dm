@@ -23,9 +23,9 @@
 			continue
 
 		var/item_name = full_capitalize("[item_path.name]") //The square brackets allow text macros to run.
-		var/datum/loadout_item/loadout_item_datum = new type_to_generate(
+		var/datum/loadout_item/loadout_item_datum = new found_type(
 			src,
-			item_name,
+			"[item_name] (config)",
 			item_path
 		)
 		src.associated_items += loadout_item_datum
@@ -52,12 +52,13 @@
 	for(var/obj/item/item_to_check as anything in generation_subtype)
 		if(!is_loadout_safe(item_to_check))
 			continue
-		var/item_name = full_capitalize("[item_to_check.name]") //The square brackets allow text macros to run.
+		var/item_name = full_capitalize("[item_to_check.name] (gen)") //The square brackets allow text macros to run.
 		var/datum/loadout_item/loadout_item_datum = new type_to_generate(
 			src,
 			item_name,
 			item_to_check
 		)
+		loadout_item_datum.generated = TRUE
 		src.associated_items += loadout_item_datum
 
 	return length(src.associated_items) > 0

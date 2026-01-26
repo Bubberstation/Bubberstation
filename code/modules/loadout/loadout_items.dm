@@ -83,12 +83,6 @@ BUBBERSTATION CHANGE END*/
 /datum/loadout_item/New(category,desired_name,obj/item/desired_item_path) //BUBBERSTATION ADDITION, ADDITIONAL ARGS
 
 	src.category = category
-	//BUBBERSTATION ADDITION START, ADDITIONAL ARGS
-	if(desired_name)
-		src.name = desired_name
-	if(desired_item_path)
-		src.item_path = desired_item_path
-	//BUBBERSTATION ADDITION END, ADDITIONAL ARGS
 
 	if(!(loadout_flags & LOADOUT_FLAG_BLOCK_GREYSCALING) && is_greyscale_item())
 		loadout_flags |= LOADOUT_FLAG_GREYSCALING_ALLOWED
