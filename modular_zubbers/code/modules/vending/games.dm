@@ -15,6 +15,7 @@
 				/obj/item/toy/plush/bubbledragon = 3,
 				/obj/item/toy/plush/bubbleplush = 3,
 				/obj/item/toy/plush/carpplushie = 3,
+				/obj/item/toy/plush/cello_plush = 3,
 				/obj/item/toy/plush/chirp_plush = 3,
 				/obj/item/toy/plush/goatplushie = 3,
 				/obj/item/toy/plush/headcrab = 3,

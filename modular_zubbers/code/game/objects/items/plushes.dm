@@ -422,9 +422,7 @@
 	gender = FEMALE
 	var/shirt = TRUE
 	squeak_override = list(
-		'sound/mobs/non-humanoids/fish/fish_slap1.ogg' = 1,
-		'sound/mobs/non-humanoids/fish/fish_slap2.ogg' = 1,
-		'sound/mobs/non-humanoids/fish/fish_drop1.ogg' = 1,
+		'sound/mobs/non-humanoids/fish/fish_slap1.ogg' = 1, 'sound/mobs/non-humanoids/fish/fish_slap2.ogg' = 1,
 		)
 
 /obj/item/toy/plush/cello_plush/click_alt(mob/user)
