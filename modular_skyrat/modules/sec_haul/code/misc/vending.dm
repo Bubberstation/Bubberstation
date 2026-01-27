@@ -29,6 +29,7 @@
 		/obj/item/storage/belt/holster/energy = 4,
 		/obj/item/storage/box/holobadge = 1,
 		/obj/item/ammo_box/magazine/security = 12,
+		/obj/item/ammo_box/magazine/pepperball = 12,
 		/obj/item/ammo_box/advanced/s12gauge/frangible = 2,
 	)
 
