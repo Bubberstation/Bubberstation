@@ -619,7 +619,7 @@
 		target,
 		"[alterer.get_visible_name()] wants to transform you into [target_char_name]. Do you consent?",
 		"Transformation",
-		list("Yes", "No"),
+		list("No", "Yes"),
 		10 SECONDS,
 		FALSE
 	)
