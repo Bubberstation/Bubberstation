@@ -18,7 +18,7 @@
 
 //PEACEKEEPER ARMOR
 
-/obj/item/clothing/suit/armor/vest/peacekeeper/brit
+/obj/item/clothing/suit/armor/vest/brit
 	name = "high vis armored vest"
 	desc = "Oi bruv, you got a loicence for that?"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi'
@@ -26,7 +26,7 @@
 	icon_state = "hazardbg"
 	worn_icon_state = "hazardbg"
 
-/obj/item/clothing/suit/armor/vest/peacekeeper/brit/Initialize(mapload)
+/obj/item/clothing/suit/armor/vest/brit/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/toggle_icon, "zipper")
 

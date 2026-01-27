@@ -83,9 +83,9 @@
 	item_path = /obj/item/clothing/head/beret/sec/peacekeeper
 	restricted_roles = list(ALL_JOBS_SEC)
 
-/datum/loadout_item/head/beret/sec/peacekeeper/white
+/datum/loadout_item/head/beret/sec/white
 	name = "Peacekeeper White Beret"
-	item_path = /obj/item/clothing/head/beret/sec/peacekeeper/white
+	item_path = /obj/item/clothing/head/beret/sec/white
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/helmet/sec/terra
@@ -108,9 +108,9 @@
 	item_path = /obj/item/clothing/head/helmet/nri_police
 	restricted_roles = list(JOB_CUSTOMS_AGENT)
 
-/datum/loadout_item/head/beret/sec/peacekeeper/security_medic
+/datum/loadout_item/head/beret/sec/security_medic
 	name = "Security Medic Beret"
-	item_path = /obj/item/clothing/head/beret/sec/peacekeeper/security_medic
+	item_path = /obj/item/clothing/head/beret/sec/security_medic
 	restricted_roles = list(JOB_SECURITY_MEDIC)
 
 */

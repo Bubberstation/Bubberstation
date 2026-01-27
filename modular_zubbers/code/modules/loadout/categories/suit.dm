@@ -54,14 +54,14 @@
 	item_path = /obj/item/clothing/suit/armor/vest/secjacket
 	restricted_roles = list(ALL_JOBS_SEC)
 
-/datum/loadout_item/suit/armor/vest/peacekeeper/armadyne
+/datum/loadout_item/suit/armor/vest/armadyne
 	name = "Armadyne Jacket"
-	item_path = /obj/item/clothing/suit/armor/vest/peacekeeper/armadyne
+	item_path = /obj/item/clothing/suit/armor/vest/armadyne
 	restricted_roles = list(ALL_JOBS_SEC)
 
-/datum/loadout_item/suit/armor/vest/peacekeeper/armadyne/armor
+/datum/loadout_item/suit/armor/vest/armadyne/armor
 	name = "Armadyne Armor Vest"
-	item_path = /obj/item/clothing/suit/armor/vest/peacekeeper/armadyne/armor
+	item_path = /obj/item/clothing/suit/armor/vest/armadyne/armor
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/suit/armor/vest/nri_police
