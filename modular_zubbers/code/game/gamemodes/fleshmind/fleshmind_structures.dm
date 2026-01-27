@@ -290,14 +290,17 @@
 	. = ..()
 	notify_ghosts("New fleshmind core at [get_area(src)]", src)
 	update_appearance()
+	if(!(src in GLOB.fleshmind_cores))
+		GLOB.fleshmind_cores += src
 	SSpoints_of_interest.make_point_of_interest(src)
 	if(spawn_controller)
 		our_controller = new controller_type(src)
-		AddComponent(/datum/component/gps, "*!Rouge Wireweed Signal!*")
+		AddComponent(/datum/component/gps, "*!Rogue Wireweed Signal!*")
 	START_PROCESSING(SSobj, src)
 
 /obj/structure/fleshmind/structure/core/Destroy()
 	STOP_PROCESSING(SSobj, src)
+	GLOB.fleshmind_cores -= src
 	return ..()
 
 /obj/structure/fleshmind/structure/core/atom_destruction(damage_flag)

@@ -64,7 +64,7 @@
 	player_mind.active = TRUE
 
 	var/spawn_location
-	var/obj/structure/fleshmind/structure/core/core = locate(/obj/structure/fleshmind/structure/core) in world
+	var/obj/structure/fleshmind/structure/core/core = pick(GLOB.fleshmind_cores)
 	if(core)
 		spawn_location = core.loc
 	if(isnull(spawn_location))
