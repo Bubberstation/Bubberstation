@@ -129,7 +129,7 @@
 	auto_name = TRUE
 
 /datum/supply_pack/nri/pods/sixbysix
-	contains = list(/obj/item/survivalcapsule/)
+	contains = list(/obj/item/survivalcapsule/sixbysix)
 	cost = PAYCHECK_COMMAND * 2
 	auto_name = TRUE
 
