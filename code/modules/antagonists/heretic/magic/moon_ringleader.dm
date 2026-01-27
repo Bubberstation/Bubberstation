@@ -55,37 +55,33 @@
 	shove_clone.AddElement(/datum/element/relay_attackers)
 	RegisterSignal(shove_clone, COMSIG_ATOM_WAS_ATTACKED, PROC_REF(on_attacked))
 
-/// Used by Ringleaders Rise, illusions created by this spell will explode when they are interacted with
+// BUBBER EDIT - START
 /datum/action/cooldown/spell/aoe/moon_ringleader/proc/on_attacked(mob/victim, atom/attacker)
 	SIGNAL_HANDLER
-	if(isliving(attacker))
-		var/mob/living/living_attacker = attacker
-		if(IS_HERETIC_OR_MONSTER(living_attacker)) // Heretics cant smack these guys to trigger their effects
-			return
+
+	if(!isliving(attacker))
+		return
+	var/mob/living/living_attacker = attacker
+
+	if(IS_HERETIC_OR_MONSTER(living_attacker))
+		return
+
 	playsound(victim, 'sound/items/party_horn.ogg', 30)
 	new /obj/effect/decal/cleanable/confetti(get_turf(victim))
+	var/mob/living/basic/illusion/fake_clone = victim
+	var/mob/living/living_owner = fake_clone.parent_mob_ref?.resolve()
 
-	for(var/mob/living/mob in range(3, victim))
-		if(IS_HERETIC_OR_MONSTER(mob))
-			continue
-		if(mob.can_block_magic(antimagic_flags))
-			continue
-
-		//If our moon heretic has their level 3 passive, we channel the amulet effect
-		var/mob/living/basic/illusion/fake_clone = victim
-		var/mob/living/living_owner = fake_clone.parent_mob_ref.resolve()
-		if(!living_owner)
-			continue
+	if(living_owner)
 		var/datum/status_effect/heretic_passive/moon/our_passive = living_owner.has_status_effect(/datum/status_effect/heretic_passive/moon)
-		// We channel the amulet before the "spell effects" so that people don't get converted after 1 clone goes off
-		our_passive?.amulet?.channel_amulet(living_owner, mob)
+		our_passive?.amulet?.channel_amulet(living_owner, living_attacker)
 
-		mob.AdjustStun(1 SECONDS)
-		mob.AdjustKnockdown(1 SECONDS)
-		mob.adjust_organ_loss(ORGAN_SLOT_BRAIN, 50, 150)
-		mob.mob_mood?.adjust_sanity(-50)
+	living_attacker.AdjustStun(2 SECONDS)
+	living_attacker.AdjustKnockdown(1 SECONDS)
+	living_attacker.adjust_organ_loss(ORGAN_SLOT_BRAIN, 50, 150)
+	living_attacker.mob_mood?.adjust_sanity(-50)
 
 	qdel(victim)
+// BUBBER EDIT - END
 
 /obj/effect/temp_visual/moon_ringleader
 	icon = 'icons/effects/eldritch.dmi'

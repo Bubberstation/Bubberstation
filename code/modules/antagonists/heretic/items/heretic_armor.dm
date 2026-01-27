@@ -198,8 +198,8 @@
 
 /datum/armor/eldritch_armor/ash
 	melee = 40
-	bullet = 60
-	laser = 50
+	bullet = 40 // BUBBER EDIT - Previous: 60
+	laser = 60 // BUBBER EDIT - Previous: 50
 	energy = 50
 	bomb = 100
 	bio = 20
@@ -999,15 +999,15 @@
 		set_armor(/datum/armor/eldritch_armor/rust)
 
 /datum/armor/eldritch_armor/rust
-	melee = 30
-	bullet = 30
-	laser = 30
-	energy = 30
-	bomb = 50
-	bio = 30
-	fire = 30
-	acid = 30
-	wound = 30
+	melee = 24 // BUBBER EDIT - Previous: 30
+	bullet = 24 // BUBBER EDIT - Previous: 30
+	laser = 24 // BUBBER EDIT - Previous: 30
+	energy = 24 // BUBBER EDIT - Previous: 30
+	bomb = 40 // BUBBER EDIT - Previous: 50
+	bio = 24 // BUBBER EDIT - Previous: 30
+	fire = 24 // BUBBER EDIT - Previous: 30
+	acid = 24 // BUBBER EDIT - Previous: 30
+	wound = 24 // BUBBER EDIT - Previous: 30
 
 /datum/armor/eldritch_armor/rust/on_rust
 	melee = 60
@@ -1056,7 +1056,7 @@
 	. = ..()
 	if(!COOLDOWN_FINISHED(src, stealth_cooldown))
 		return
-	COOLDOWN_START(src, stealth_cooldown, 20 SECONDS)
+	COOLDOWN_START(src, stealth_cooldown, 40 SECONDS) // BUBBER EDIT - Previous: COOLDOWN_START(src, stealth_cooldown, 20 SECONDS)
 	stealth_timer = addtimer(CALLBACK(src, PROC_REF(end_stealth), owner), 5 SECONDS, TIMER_STOPPABLE)
 	owner.alpha = 0
 	return TRUE

@@ -19,6 +19,8 @@
 	invocation_type = INVOCATION_NONE
 	spell_requirements = NONE
 
+	cooldown_time = 20 SECONDS // BUBBER EDIT - ADDITION
+
 	jaunt_type = /obj/effect/dummy/phased_mob/spell_jaunt/space
 	///List of traits that are added to the heretic while in space phase jaunt
 	var/static/list/jaunting_traits = list(TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTCOLD, TRAIT_NOBREATH)

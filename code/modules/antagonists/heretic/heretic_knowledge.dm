@@ -264,7 +264,7 @@
 /datum/heretic_knowledge/limited_amount/starting
 	abstract_parent_type = /datum/heretic_knowledge/limited_amount/starting
 	limit = 2
-	cost = 1
+	cost = 2
 	priority = MAX_KNOWLEDGE_PRIORITY - 5
 	/// The status effect typepath we apply on people on mansus grasp.
 	var/datum/status_effect/eldritch/mark_type
@@ -363,7 +363,7 @@
  */
 /datum/heretic_knowledge/blade_upgrade
 	abstract_parent_type = /datum/heretic_knowledge/blade_upgrade
-	cost = 1
+	cost = 2
 
 /datum/heretic_knowledge/blade_upgrade/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
 	RegisterSignal(user, COMSIG_HERETIC_BLADE_ATTACK, PROC_REF(on_eldritch_blade))
@@ -467,7 +467,7 @@
 	return TRUE
 
 /// The amount of knowledge points the knowledge ritual gives on success.
-#define KNOWLEDGE_RITUAL_POINTS 4
+#define KNOWLEDGE_RITUAL_POINTS 3 // BUBBER EDIT - Previous: 4
 
 /**
  * A subtype of knowledge that generates random ritual components.
@@ -477,10 +477,13 @@
 	desc = "A randomly generated transmutation ritual that rewards knowledge points and can only be completed once."
 	gain_text = "Everything can be a key to unlocking the secrets behind the Gates. I must be wary and wise."
 	abstract_parent_type = /datum/heretic_knowledge/knowledge_ritual
-	cost = 1
+	cost = 0 // BUBBER EDIT - Previous: 1
 	priority = MAX_KNOWLEDGE_PRIORITY - 10 // A pretty important midgame ritual.
 	research_tree_icon_path = 'icons/obj/antags/eldritch.dmi'
 	research_tree_icon_state = "book_open"
+	// BUBBER EDIT - START
+	is_starting_knowledge = TRUE
+	// BUBBER EDIT - END
 	/// Whether we've done the ritual. Only doable once.
 	var/was_completed = FALSE
 

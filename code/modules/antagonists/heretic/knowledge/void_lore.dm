@@ -90,7 +90,7 @@
 	gain_text = "The entity calls themself the Aristocrat. They effortlessly walk through air like \
 		nothing - leaving a harsh, cold breeze in their wake. They disappear, and I am left in the blizzard."
 	action_to_add = /datum/action/cooldown/spell/pointed/void_phase
-	cost = 2
+	cost = 3 // BUBBER EDIT - Previous: 2
 	research_tree_icon_frame = 7
 
 /datum/heretic_knowledge/spell/void_prison
@@ -103,7 +103,7 @@
 		My smiling face turns to regard me, reflecting back in glassy eyes the empty path I have been lead down."
 
 	action_to_add = /datum/action/cooldown/spell/pointed/void_prison
-	cost = 2
+	cost = 3 // BUBBER EDIT - Previous: 2
 	drafting_tier = 5
 
 /datum/heretic_knowledge/armor/void
@@ -140,7 +140,7 @@
 		The Aristocrat reveals themselves to me again. They tell me I am late. Their pull is immense, I cannot turn back."
 
 	action_to_add = /datum/action/cooldown/spell/aoe/void_pull
-	cost = 2
+	cost = 3 // BUBBER EDIT - Previous: 2
 	research_tree_icon_frame = 6
 
 /datum/heretic_knowledge/blade_upgrade/void
@@ -177,7 +177,7 @@
 		Over the noise, there is no distinction to the clattering of window panes and the yawning knowledge that ricochets through my skull. \
 		The doors won't close. I can't keep the cold out now."
 	action_to_add = /datum/action/cooldown/spell/conjure/void_conduit
-	cost = 2
+	cost = 3 // BUBBER EDIT - Previous: 2
 	is_final_knowledge = TRUE
 
 /datum/heretic_knowledge/ultimate/void_final

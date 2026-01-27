@@ -221,11 +221,11 @@
 	heretic_datum.total_sacrifices++
 	check_sacrifice_total(user, heretic_datum) //BUBBER EDIT
 	if((sac_job_flag & JOB_HEAD_OF_STAFF))
-		heretic_datum.adjust_knowledge_points(3)
+		heretic_datum.adjust_knowledge_points(4) // BUBBER EDIT - Previous: 3
 		heretic_datum.high_value_sacrifices++
 		feedback += " <i>graciously</i>"
 	if(cultist_datum)
-		heretic_datum.adjust_knowledge_points(1)
+		heretic_datum.adjust_knowledge_points(2) // BUBBER EDIT - Previous: (1)
 		grant_reward(user, sacrifice, loc)
 		// easier to read
 		var/rewards_given = heretic_datum.rewards_given
@@ -244,7 +244,7 @@
 			to_chat(user, non_flavor_warning)
 		return
 	else
-		heretic_datum.adjust_knowledge_points(2)
+		heretic_datum.adjust_knowledge_points(3) // BUBBER EDIT - Previous: (2)
 
 	to_chat(user, span_hypnophrase("[feedback]."))
 	if(!begin_sacrifice(sacrifice))

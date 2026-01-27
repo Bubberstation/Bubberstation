@@ -108,7 +108,7 @@
 	gain_text = "The hills sparkled now, as I neared them my mind began to wander. I quickly regained my resolve and pushed forward, this last leg would be the most treacherous."
 
 	action_to_add = /datum/action/cooldown/mob_cooldown/charge/rust
-	cost = 2
+	cost = 3 // BUBBER EDIT - Previous: 2
 	is_final_knowledge = TRUE
 
 /datum/heretic_knowledge/spell/rust_construction
@@ -118,7 +118,7 @@
 	gain_text = "Images of foreign and ominous structures began to dance in my mind. Covered head to toe in thick rust, \
 		they no longer looked man made. Or perhaps they never were in the first place."
 	action_to_add = /datum/action/cooldown/spell/pointed/rust_construction
-	cost = 2
+	cost = 3 // BUBBER EDIT - Previous: 2
 
 /datum/heretic_knowledge/armor/rust
 	desc = "Allows you to transmute a table (or a suit), a mask and any trash item to create a Salvaged Remains. \
@@ -140,7 +140,7 @@
 		Already rusted surfaces are destroyed \ Also improves the rusting abilities of non rust-heretics."
 	gain_text = "All wise men know well not to visit the Rusted Hills... Yet the Blacksmith's tale was inspiring."
 	action_to_add = /datum/action/cooldown/spell/aoe/rust_conversion
-	cost = 2
+	cost = 3 // BUBBER EDIT - Previous: 2
 	research_tree_icon_frame = 5
 
 /datum/heretic_knowledge/blade_upgrade/rust
@@ -168,7 +168,7 @@
 		The Blacksmith was gone, and you hold their blade. Champions of hope, the Rustbringer is nigh!"
 
 	action_to_add = /datum/action/cooldown/spell/cone/staggered/entropic_plume
-	cost = 2
+	cost = 3 // BUBBER EDIT - Previous: 2
 	drafting_tier = 5
 
 /datum/heretic_knowledge/ultimate/rust_final
