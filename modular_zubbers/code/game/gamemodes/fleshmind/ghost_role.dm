@@ -1,3 +1,4 @@
+
 /datum/job/wire_priest
 	title = ROLE_WIRE_PRIEST
 
@@ -13,11 +14,16 @@
 	ui_name = "AntagInfoWirePriest"
 	suicide_cry = "FOR THE FLESHMIND!!"
 	var/datum/outfit/outfit = /datum/outfit/wire_priest
+	var/datum/fleshmind_controller/brain_jack
 
 /datum/antagonist/wire_priest/on_gain()
 	. = ..()
-	owner.current.AddComponent(/datum/component/human_corruption)
+	owner.current.AddComponent(/datum/component/human_corruption, brain_jack)
 	equip_wire_priest()
+
+/datum/antagonist/wire_priest/Destroy()
+	. = ..()
+	brain_jack = null
 
 /datum/antagonist/wire_priest/get_preview_icon()
 	var/icon/icon = icon('modular_zubbers/icons/fleshmind/fleshmind_machines.dmi', "core")
@@ -64,9 +70,15 @@
 	if(isnull(spawn_location))
 		return MAP_ERROR
 
+	if(!core.fleshmind_controller)
+		stack_trace("Wire Priest event tried to spawn but no fleshmind controller was found on the core!")
+		return EVENT_CANT_RUN
+
 	var/mob/living/carbon/human/priest = new(spawn_location)
 	priest.PossessByPlayer(chosen_one.key)
 	priest.client?.prefs?.safe_transfer_prefs_to(priest)
+	var/datum/antagonist/wire_priest/priest = new()
+	priest.brain_jack = core.fleshmind_controller
 	priest.mind.add_antag_datum(/datum/antagonist/wire_priest)
 	spawned_mobs += priest
 
@@ -74,6 +86,10 @@
 	priest.log_message("was spawned as a Wire Priest by an event.", LOG_GAME)
 
 	return SUCCESSFUL_SPAWN
+
+/datum/round_event/ghost_role/wire_priest/Destroy(force)
+	. = ..()
+	fleshmind_controller = null
 
 /datum/round_event/ghost_role/wire_priest
 	minimum_required = 1
