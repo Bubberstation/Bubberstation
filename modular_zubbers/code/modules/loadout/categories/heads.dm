@@ -24,7 +24,8 @@
 
 /datum/loadout_item/head/hats/warden/drill
 	name = "Warden's Campaign Hat"
-	item_path = /obj/item/clothing/head/hats/warden/drill/viro
+	item_path = /obj/item/clothing/head/hats/warden/drill
+	restricted_roles = list(JOB_WARDEN)
 
 
 /datum/loadout_item/head/sombrero

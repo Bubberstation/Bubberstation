@@ -47,10 +47,10 @@
 	outfit = /datum/outfit/persistence/command
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/prisoner
-	name = "Syndicate Hostage"
-	prompt_name = "a Syndicate hostage"
-	you_are_text = "You are a hostage onboard an unknown vessel"
-	flavour_text = "Unaware of where you are, all you know is you are a prisoner. The plastitanium should clue you into who your captors are... as for why you're here? That's for you to know, and for us to find out."
+	name = "Syndicate Intern"
+	prompt_name = "a Syndicate intern"
+	you_are_text = "You are an intern onboard an unknown vessel"
+	flavour_text = "Unaware of where you are, all you know is you are a intern. The plastitanium should clue you into who your employer is... as for why you're here? That's for you to know, and for us to find out."
 	important_text = "You are not an antagonist. You are still bound to the Roleplay Rules regarding escalation. Syndicate personnel will throw you into lava or plasma outside if you antagonize them."
 	outfit = /datum/outfit/persistence/prisoner
 	computer_area = /area/ruin/space/has_grav/bubbers/persistance/sec/prison
@@ -151,8 +151,8 @@
 
 /datum/outfit/persistence/prisoner
 	name = "Persistence Syndicate Prisoner"
-	uniform = /obj/item/clothing/under/rank/prisoner/syndicate
-	shoes = /obj/item/clothing/shoes/sneakers/crimson
+	uniform = /obj/item/clothing/under/syndicate/skyrat/tactical
+	shoes = /obj/item/clothing/shoes/combat
 	id = /obj/item/card/id/advanced/prisoner/ds2
 	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/prisoner
 
