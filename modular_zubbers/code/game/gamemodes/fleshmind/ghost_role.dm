@@ -57,7 +57,7 @@
 	track = EVENT_TRACK_GHOSTSET
 
 /datum/round_event/ghost_role/wire_priest/spawn_role()
-	var/mob/chosen_one = SSpolling.poll_ghost_candidates(check_jobban = ROLE_WIRE_PRIEST, role = ROLE_WIRE_PRIEST, role_name_text = role_name, amount_to_pick = 1, alert_pic = /obj/structure/fleshmind/structure/core )
+	var/mob/chosen_one = SSpolling.poll_ghost_candidates(check_jobban = ROLE_WIRE_PRIEST, role = ROLE_WIRE_PRIEST, role_name_text = role_name, amount_to_pick = 1, alert_pic = /obj/structure/fleshmind/structure/core)
 	if(isnull(chosen_one))
 		return NOT_ENOUGH_PLAYERS
 	var/datum/mind/player_mind = new /datum/mind(chosen_one.key)
@@ -65,31 +65,28 @@
 
 	var/spawn_location
 	var/obj/structure/fleshmind/structure/core/core = pick(GLOB.fleshmind_cores)
+	var/datum/fleshmind_controller/controller = core.our_controller
 	if(core)
 		spawn_location = core.loc
 	if(isnull(spawn_location))
 		return MAP_ERROR
 
-	if(!core.fleshmind_controller)
+	if(isnull(controller))
 		stack_trace("Wire Priest event tried to spawn but no fleshmind controller was found on the core!")
 		return EVENT_CANT_RUN
 
 	var/mob/living/carbon/human/priest = new(spawn_location)
 	priest.PossessByPlayer(chosen_one.key)
 	priest.client?.prefs?.safe_transfer_prefs_to(priest)
-	var/datum/antagonist/wire_priest/priest = new()
-	priest.brain_jack = core.fleshmind_controller
-	priest.mind.add_antag_datum(/datum/antagonist/wire_priest)
+	var/datum/antagonist/wire_priest/priest_datum = new()
+	priest_datum.brain_jack = controller
+	priest.mind.add_antag_datum(priest_datum)
 	spawned_mobs += priest
 
 	message_admins("[ADMIN_LOOKUPFLW(priest)] has been made into a Wire Priest by an event.")
 	priest.log_message("was spawned as a Wire Priest by an event.", LOG_GAME)
 
 	return SUCCESSFUL_SPAWN
-
-/datum/round_event/ghost_role/wire_priest/Destroy(force)
-	. = ..()
-	fleshmind_controller = null
 
 /datum/round_event/ghost_role/wire_priest
 	minimum_required = 1
