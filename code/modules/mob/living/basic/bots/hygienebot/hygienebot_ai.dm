@@ -81,6 +81,14 @@
 		if(LAZYACCESS(ignore_list, wash_potential))
 			continue
 
+
+		// BUBBER EDIT ADDITION BEGIN - Dirty quirk
+		var/datum/quirk/dirty/dirty_quirk = locate(/datum/quirk/dirty) in wash_potential.quirks
+		if (!isnull(dirty_quirk) && !dirty_quirk.cleaned)
+			found_target = wash_potential
+			break
+		// BUGGER EDIT ADDITION END
+
 		if(our_access_flags & BOT_COVER_EMAGGED)
 			controller.add_to_blacklist(wash_potential)
 			found_target = wash_potential
