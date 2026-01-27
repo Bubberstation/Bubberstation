@@ -1,5 +1,3 @@
-#define TF_OUTCOME_NAME(name, species_name, gender) ("[name], [gender]; [species_name]")
-
 /datum/species/jelly
 	mutant_bodyparts = list()
 	hair_alpha = 160 //a notch brighter so it blends better.
@@ -661,5 +659,3 @@
 /datum/species/jelly/on_bloodsucker_loss(mob/living/carbon/human/target)
 	// regenerate_organs with replace doesn't seem to automatically remove invalid organs unfortunately
 	normalize_organs()
-
-#undef TF_OUTCOME_NAME
