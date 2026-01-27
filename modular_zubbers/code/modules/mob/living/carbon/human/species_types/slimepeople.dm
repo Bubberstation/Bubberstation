@@ -549,6 +549,13 @@
 				alterer.dna.features["balls_size"] = avocados.balls_description_to_size(new_size)
 				avocados.set_size(alterer.dna.features["balls_size"])
 
+/**
+ * The beginning for character alteration. Handles all the settings and targetting. Leads into [do_char_alteration].
+ *
+ * Args:
+ * * mob/living/carbon/human/alterer: The mob doing the transforming.
+ *
+ */
 /datum/action/innate/alter_form/proc/begin_character_alteration(mob/living/carbon/human/alterer)
 	var/list/mob/living/carbon/viable_targets = list()
 
@@ -632,6 +639,14 @@
 
 	prefs.load_character(old_slot)
 
+/**
+ * The second and final step in character alteration. Actually sets the target to the new character.
+ *
+ * Args:
+ * * mob/living/carbon/human/alterer: The mob doing the transforming.
+ * * mob/living/carbon/human/target: The target to be transformed. Must have passed [is_valid_char_alteration_target].
+ * * datum/preferences/char_source: The source of the character. Generally either target's or alterer's preference datum.
+ */
 /datum/action/innate/alter_form/proc/do_char_alteration(mob/living/carbon/human/alterer, mob/living/carbon/human/target, datum/preferences/char_source)
 	target.visible_message(
 		span_warning("[target.get_visible_name()] unnervingly twitches, [target.p_their()] body distorting... until eventually transforming into something new."),
@@ -644,6 +659,15 @@
 
 	log_game("[key_name(target)] has been transformed by [key_name(alterer)] using polymorph, at [loc_name(src)]. Original Name: [original_name], New Name: [target.dna.real_name].")
 
+/**
+ * Validates if the target can be transformed.
+ *
+ * Args:
+ * * mob/living/carbon/human/target: The check target.
+ *
+ * Returns:
+ * * FALSE if the target has no client or is dead. TRUE otherwise.
+ */
 /datum/action/innate/alter_form/proc/is_valid_char_alteration_target(mob/living/carbon/target)
 	var/client/client = target.client
 	if (isnull(client))
