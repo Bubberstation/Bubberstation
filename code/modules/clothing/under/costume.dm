@@ -470,6 +470,8 @@
 	post_init_icon_state = "martial_arts_gi"
 	greyscale_config = /datum/greyscale_config/gi
 	greyscale_config_worn = /datum/greyscale_config/gi/worn
+	greyscale_config_worn_digi = /datum/greyscale_config/gi/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/gi/worn/teshari
 	greyscale_colors = "#f1eeee#000000"
 	flags_1 = IS_PLAYER_COLORABLE_1
 	inhand_icon_state = null
