@@ -559,6 +559,9 @@
 /datum/action/innate/alter_form/proc/begin_character_alteration(mob/living/carbon/human/alterer)
 	var/list/mob/living/carbon/viable_targets = list()
 
+	to_chat(alterer, span_userdanger("This ability is not meant to be used for mechanical advantage."))
+	to_chat(alterer, span_warning("Your use of character mode will be admin logged! Don't mess about!"))
+
 	for (var/mob/living/carbon/human/iter_carbon in view(alterer))
 		if (!is_valid_char_alteration_target(iter_carbon))
 			continue
@@ -657,7 +660,9 @@
 	char_source.safe_transfer_prefs_to_with_damage(target)
 	target.dna.update_dna_identity()
 
-	log_game("[key_name(target)] has been transformed by [key_name(alterer)] using polymorph, at [loc_name(src)]. Original Name: [original_name], New Name: [target.dna.real_name].")
+	var/output = "[key_name(target)] has been transformed by [key_name(alterer)] using polymorph, at [loc_name(src)]. Original Name: [original_name], New Name: [target.dna.real_name]."
+	message_admins(output)
+	log_game(output)
 
 /**
  * Validates if the target can be transformed.
