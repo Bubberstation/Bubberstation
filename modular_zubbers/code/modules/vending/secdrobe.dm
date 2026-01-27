@@ -12,16 +12,21 @@
 					/obj/item/clothing/under/rank/security/officer/formal/skirt = 6,
 					/obj/item/clothing/under/rank/security/officer/viro/lowcut = 6,
 					/obj/item/clothing/under/rank/security/officer/viro/bodysuit = 6,
+					/obj/item/clothing/suit/armor/vest/alt/sec/viro = 6,
+					/obj/item/clothing/suit/armor/vest/alt/sec/viro/heavyvest = 6,
+					/obj/item/clothing/suit/armor/vest/alt/sec/viro/leatherjacket = 6,
+					/obj/item/clothing/suit/armor/vest/alt/sec/viro/softshell = 6,
 					/obj/item/storage/backpack/security/ = 6,
 					/obj/item/storage/backpack/satchel/sec = 6,
 					/obj/item/storage/backpack/duffelbag/sec = 6,
+					/obj/item/storage/backpack/messenger/sec = 6,
 					/obj/item/clothing/shoes/jackboots = 6,
 					/obj/item/clothing/shoes/jackboots/sec = 6,
 					/obj/item/clothing/head/helmet/sec = 6,
 					/obj/item/clothing/head/beret/sec = 6,
 					/obj/item/clothing/head/soft/sec = 6,
 					/obj/item/clothing/head/security_beanie = 6,
-					/obj/item/clothing/mask/bandana/red = 6,
+					/obj/item/clothing/mask/bandana/sec = 6,
 					/obj/item/clothing/gloves/color/black = 6,
 
 				),
@@ -61,9 +66,6 @@
 		),
 	)
 	premium = list(
-					/obj/item/clothing/under/rank/security/officer/formal = 6,
-					/obj/item/clothing/head/beret/sec/navyofficer = 6,
-					/obj/item/clothing/suit/jacket/officer/tan = 6,
 					/obj/item/clothing/accessory/badge/holo = 10, //I know there's a box of them but, why not have more, eh?
 					/obj/item/clothing/accessory/badge/holo/cord = 10,
 					/obj/item/clothing/head/helmet/blueshirt = 3,

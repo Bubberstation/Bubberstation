@@ -79,13 +79,6 @@
 
 // HOS
 
-/obj/item/clothing/head/helmet/sec/hos
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
-	icon_state = "hos_helmet"
-	base_icon_state = "hos_helmet"
-	armor_type = /datum/armor/hats_hos
-
 /obj/item/clothing/head/hats/hos/cap
 	name = "\proper the Head of Security's cap"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
@@ -101,6 +94,14 @@
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
+
+/obj/item/clothing/head/helmet/sec/hos
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "hos_helmet"
+	base_icon_state = "hos_helmet"
+	armor_type = /datum/armor/hats_hos
+
 
 /*
 	// UNIFORMS
@@ -325,7 +326,7 @@
 
 /obj/item/storage/backpack/security
 	worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
-	icon_state = "backpack-security"
+	icon_state = "security-backpack"
 
 /obj/item/storage/backpack/satchel/sec
 	worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
