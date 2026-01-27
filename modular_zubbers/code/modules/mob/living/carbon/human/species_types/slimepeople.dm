@@ -642,6 +642,7 @@
 	var/original_name = target.dna.real_name
 
 	char_source.safe_transfer_prefs_to_with_damage(target)
+	target.dna.update_dna_identity()
 
 	log_game("[key_name(target)] has been transformed by [key_name(alterer)] using polymorph, at [loc_name(src)]. Original Name: [original_name], New Name: [target.dna.real_name].")
 
@@ -649,10 +650,10 @@
 	var/client/client = target.client
 	if (isnull(client))
 		return FALSE
+	if (target.stat == DEAD)
+		return FALSE
 
 	return TRUE
-
-/datum/action/innate/alter_form/
 
 /datum/species/jelly/on_bloodsucker_gain(mob/living/carbon/human/target)
 	humanize_organs(target)
