@@ -143,11 +143,6 @@
 	item_path = /obj/item/clothing/gloves/mikugloves
 	//ckeywhitelist = list("grandvegeta")
 
-/datum/loadout_item/gloves/elofy
-	name = "Solar Admiral Gloves"
-	item_path = /obj/item/clothing/gloves/elofy
-//	ckeywhitelist = list("october23")
-
 /datum/loadout_item/gloves/hypnoring_sharkenning
 	name = "Suspiciously Glossy Ring"
 	item_path = /obj/item/clothing/gloves/ring/hypno/sharkenning

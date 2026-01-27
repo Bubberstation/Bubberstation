@@ -10,6 +10,50 @@
 	icon_state = "security_helmet"
 	base_icon_state = "security_helmet"
 
+/obj/item/clothing/mask/bandana/sec
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "security_bandana"
+	post_init_icon_state = "security_bandana"
+	greyscale_config = null
+	greyscale_config_worn = null
+	greyscale_config_inhand_left = /datum/greyscale_config/bandana/inhands_left
+	greyscale_config_inhand_right = /datum/greyscale_config/bandana/inhands_right
+	greyscale_colors = "#7d2a25"
+
+/obj/item/clothing/head/beret/sec
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "security_beret"
+	post_init_icon_state = "security_beret"
+	greyscale_config = null
+	greyscale_config_worn = null
+	greyscale_colors = null
+	armor_type = /datum/armor/cosmetic_sec
+
+/obj/item/clothing/head/beret/sec
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "security_beret"
+	post_init_icon_state = "security_beret"
+	greyscale_config = null
+	greyscale_config_worn = null
+	greyscale_colors = null
+	armor_type = /datum/armor/cosmetic_sec
+
+/obj/item/clothing/head/soft/sec
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "security_cap"
+
+/obj/item/clothing/head/security_beanie
+	name = "security beanie"
+	desc = "A robust beanie with the security insignia emblazoned on it. Uses reinforced fabric to offer sufficient protection."
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "security_beanie"
+	armor_type = /datum/armor/cosmetic_sec
+
 // WARDEN
 
 /obj/item/clothing/head/hats/warden/viro // too many subtypes, who would've guessed?
@@ -28,7 +72,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "warden_campaign"
 
-/obj/item/clothing/head/hats/warden/viro/beret // not greyscaled and its easier to do this then make it a subtype of regular berets
+/obj/item/clothing/head/hats/warden/viro/beret // not greyscaled so its easier to do this then make it a subtype of regular berets
 	name = "\proper the Warden's beret"
 	desc = "A special beret with the Warden's insignia emblazoned on it. For wardens with class."
 	icon_state = "warden_beret"
@@ -40,6 +84,23 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "hos_helmet"
 	base_icon_state = "hos_helmet"
+	armor_type = /datum/armor/hats_hos
+
+/obj/item/clothing/head/hats/hos/cap
+	name = "\proper the Head of Security's cap"
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "hos_cap"
+
+/obj/item/clothing/head/hats/hos/beret
+	name = "\proper the Head of Security's beret"
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "hos_beret"
+	post_init_icon_state = "hos_beret"
+	greyscale_config = null
+	greyscale_config_worn = null
+	greyscale_colors = null
 
 /*
 	// UNIFORMS
@@ -63,6 +124,48 @@
 	dying_key = DYE_REGISTRY_JUMPSKIRT
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
+/obj/item/clothing/under/rank/security/officer/viro/jumpsuit
+	name = "security jumpsuit"
+	desc = "Previous standard-issue attire for Officers, technically antiquated but still popular with utilitarian Officers."
+	icon_state = "security_jumpsuit"
+
+/obj/item/clothing/under/rank/security/officer/formal
+	name = "security officer formals"
+	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	icon_state = "security_formals"
+	female_sprite_flags = NO_FEMALE_UNIFORM
+
+/obj/item/clothing/under/rank/security/officer/formal/skirt
+	name = "security officer's formal skirt"
+	icon_state = "security_formals_skirt"
+	body_parts_covered = CHEST|GROIN|ARMS
+	dying_key = DYE_REGISTRY_JUMPSKIRT
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+
+/obj/item/clothing/under/rank/security/officer/viro/lowcut
+	name = "security summer uniform"
+	desc = "Alternative to the standard Security uniform, with an <i>incredibly</i> low-cut collar and cut sleeves."
+	icon_state = "security_lowcut"
+
+/obj/item/clothing/under/rank/security/officer/viro/bodysuit
+	name = "security bodysuit"
+	desc = "Designed out of synthetic leather that automatically seals around the user to reduce heat-related problems while inside a MODsuit. \
+			While the bodysuit was only designed to be used while inside of and operating a MODsuit, the bodysuit found a niche with certain... eccentric officers."
+	icon_state = "security_bodysuit"
+	female_sprite_flags = FEMALE_UNIFORM_FULL
+
+/obj/item/clothing/under/rank/security/officer/viro/bodysuit/equipped(mob/living/affected_mob, slot) // stolen from the lustwish catsuit lol
+	. = ..()
+	var/mob/living/carbon/human/affected_human = affected_mob
+	if(src == affected_human.w_uniform)
+		if(affected_mob.gender == FEMALE)
+			icon_state = "security_bodysuit_female"
+		else
+			icon_state = "security_bodysuit_male"
+
+		affected_mob.update_worn_undersuit()
+
 // WARDEN
 
 /obj/item/clothing/under/rank/security/warden
@@ -73,6 +176,13 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	female_sprite_flags = NO_FEMALE_UNIFORM
 
+/obj/item/clothing/under/rank/security/warden/skirt
+	name = "\proper the Warden's jumpskirt"
+	desc = "A padded jumpskirt made out of wind-resistant, slightly water-repellent materials for the Wardens of Nanotrasen Corporate Security."
+	icon_state = "warden_uniform"
+	female_sprite_flags = NO_FEMALE_UNIFORM
+
+
 // HOS
 
 /obj/item/clothing/under/rank/security/head_of_security
@@ -81,6 +191,11 @@
 	icon_state = "hos_uniform"
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+
+/obj/item/clothing/under/rank/security/head_of_security/skirt
+	name = "\proper the Head of Security's jumpskirt"
+	desc = "A padded jumpskirt made out of wind-resistant, slightly water-repellent materials for the Head of Security for Nanotrasen Corporate Security."
+	icon_state = "hos_skirt"
 
 /*
 	// ARMORS
@@ -108,10 +223,9 @@
 	cold_protection = CHEST|GROIN|ARMS
 	heat_protection = CHEST|GROIN|ARMS
 
-
 /obj/item/clothing/suit/armor/vest/alt/sec/viro/softshell
 	name = "security softshell"
-	desc = "A windproof, rainproof, insulation jacket made for Security — with an internal sweater sewn into the collar of the suit, the suit keeps the wearer insulated while allowing the jacket to be unzipped."
+	desc = "A windproof, rainproof, insulation jacket made for Security — with an internal sweater sewn into the collar of the suit, the sweater keeps the wearer insulated while allowing the jacket to be unzipped."
 	icon_state = "sec_leatherjacket"
 	body_parts_covered = CHEST|GROIN|ARMS
 	cold_protection = CHEST|GROIN|ARMS
@@ -184,11 +298,46 @@
 */
 
 /obj/item/clothing/shoes/jackboots/sec
-	name = "security jackboots"
-	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
+	name = "security boots"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
-	icon_state = "sec_boots"
+	icon_state = "jackboots_sec"
 
+/*
+	// NECK
+*/
+
+
+// OFFICER
+
+
+// WARDEN
+
+
+// HOS
+
+/obj/item/clothing/neck/cloak/hos  // still ugly but i tried
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
+
+/*
+	// BACKPACKS
+*/
+
+/obj/item/storage/backpack/security
+	worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
+	icon_state = "backpack-security"
+
+/obj/item/storage/backpack/satchel/sec
+	worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
+	icon_state = "security-satchel"
+
+/obj/item/storage/backpack/duffelbag/sec
+	worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
+	icon_state = "security-duffel"
+
+/obj/item/storage/backpack/messenger/sec
+	worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
+	icon_state = "messenger_security"
 
 /*
 	// PRISONER (why is this here ?)

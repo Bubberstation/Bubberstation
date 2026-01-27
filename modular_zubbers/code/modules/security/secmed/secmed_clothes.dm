@@ -54,7 +54,7 @@
 	icon_state = "secmed_vest_blue"
 	worn_icon_state = "secmed_vest_blue"
 
-/obj/item/clothing/suit/armor/vest/peacekeeper/security_medic
+/obj/item/clothing/suit/armor/vest/security_medic
 	name = "security medic armor vest"
 	desc = "A security medic's armor vest, with little pockets for little things."
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
@@ -64,7 +64,7 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	allowed = list(/obj/item/analyzer, /obj/item/stack/medical, /obj/item/dnainjector, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/hypospray, /obj/item/healthanalyzer, /obj/item/flashlight, /obj/item/reagent_containers/cup/bottle, /obj/item/reagent_containers/cup/beaker, /obj/item/reagent_containers/applicator/pill, /obj/item/storage/pill_bottle, /obj/item/paper, /obj/item/melee/baton/telescopic, /obj/item/soap, /obj/item/tank/internals/emergency_oxygen, /obj/item/gun, /obj/item/storage/medkit)
 
-/obj/item/clothing/under/rank/security/peacekeeper/security_medic/alternate
+/obj/item/clothing/under/rank/security/security_medic/alternate
 	name = "security medic uniform"
 	desc = "A lightly armored uniform worn by Nanotrasen's Asset Protection Medical Corps."
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
@@ -73,7 +73,7 @@
 	worn_icon_state = "security_medic_jumpsuit"
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 
-/obj/item/clothing/under/rank/security/peacekeeper/security_medic
+/obj/item/clothing/under/rank/security/security_medic
 	name = "security medic turtleneck"
 	desc = "A comfy turtleneck with a white armband, denoting the wearer as a security medic."
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
@@ -82,7 +82,7 @@
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
-/obj/item/clothing/under/rank/security/peacekeeper/security_medic/skirt
+/obj/item/clothing/under/rank/security/security_medic/skirt
 	name = "security medic skirtleneck"
 	desc = "A comfy turtleneck with a white armband and brown skirt, denoting the wearer as a security medic."
 	icon_state = "security_medic_turtleneck_skirt"
@@ -90,15 +90,15 @@
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
-/obj/item/clothing/head/beret/sec/peacekeeper/security_medic
+/obj/item/clothing/head/beret/sec/security_medic
 	name = "security medic beret"
 	desc = "A robust beret with the medical insignia emblazoned on it. Uses reinforced fabric to offer sufficient protection."
-	icon_state = "/obj/item/clothing/head/beret/sec/peacekeeper/security_medic"
+	icon_state = "/obj/item/clothing/head/beret/sec/security_medic"
 	greyscale_colors = "#3F3C40#870E12"
 	post_init_icon_state = "beret_badge_med"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
-/obj/item/clothing/head/helmet/sec/peacekeeper/security_medic
+/obj/item/clothing/head/helmet/sec/security_medic
 	name = "security medic helmet"
 	desc = "A standard issue combat helmet for security medics. Has decent tensile strength and armor. Keep your head down."
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/head/helmet.dmi'

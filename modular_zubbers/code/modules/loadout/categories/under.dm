@@ -45,19 +45,19 @@
 	item_path = /obj/item/clothing/under/rank/security/officer/formal
 	restricted_roles = list(ALL_JOBS_SEC)
 
-/datum/loadout_item/uniform/security/peacekeeper/security_medic
+/datum/loadout_item/uniform/security/security_medic
 	name = "Security Medic Turtleneck"
-	item_path =/obj/item/clothing/under/rank/security/peacekeeper/security_medic
+	item_path =/obj/item/clothing/under/rank/security/security_medic
 	restricted_roles = list(JOB_SECURITY_MEDIC)
 
-/datum/loadout_item/uniform/security/peacekeeper/security_medic/skirt
+/datum/loadout_item/uniform/security/security_medic/skirt
 	name = "Security Medic Skirtleneck"
-	item_path =/obj/item/clothing/under/rank/security/peacekeeper/security_medic/skirt
+	item_path =/obj/item/clothing/under/rank/security/security_medic/skirt
 	restricted_roles = list(JOB_SECURITY_MEDIC)
 
-/datum/loadout_item/uniform/security/peacekeeper/security_medic/alternate
+/datum/loadout_item/uniform/security/security_medic/alternate
 	name = "Security Medic Jumpsuit"
-	item_path = /obj/item/clothing/under/rank/security/peacekeeper/security_medic/alternate
+	item_path = /obj/item/clothing/under/rank/security/security_medic/alternate
 	restricted_roles = list(JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/uniform/security/corrections_officer

@@ -24,12 +24,8 @@
 
 /datum/loadout_item/head/hats/warden/drill
 	name = "Warden's Campaign Hat"
-	item_path = /obj/item/clothing/head/hats/warden/drill
+	item_path = /obj/item/clothing/head/hats/warden/drill/viro
 
-/datum/loadout_item/head/hats/warden/police/patrol
-	name = "Police Patrol Cap"
-	item_path = /obj/item/clothing/head/hats/warden/police/patrol
-	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/sombrero
 	name = "Sombrero"
