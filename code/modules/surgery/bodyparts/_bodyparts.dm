@@ -423,7 +423,11 @@
 
 	if(ishuman(victim))
 		var/mob/living/carbon/human/human_victim = victim
-		if(HAS_TRAIT(victim, TRAIT_LIMBATTACHMENT) || HAS_TRAIT(src, TRAIT_EASY_ATTACH))
+		if(HAS_TRAIT(victim, TRAIT_LIMBATTACHMENT) || HAS_TRAIT(src, TRAIT_EASY_ATTACH) || (HAS_TRAIT(victim, TRAIT_ROBOTIC_LIMBATTACHMENT) && bodytype & BODYTYPE_ROBOTIC)) // BUBBER EDIT CHANGE - ORIGINAL: if(HAS_TRAIT(victim, TRAIT_LIMBATTACHMENT) || HAS_TRAIT(src, TRAIT_EASY_ATTACH))
+			// BUBBER EDIT ADDITION START - robot_limb_detach_quirk
+			if (!HAS_TRAIT(victim, TRAIT_LIMBATTACHMENT) && !HAS_TRAIT(victim, TRAIT_EASY_ATTACH) && !(bodytype & BODYTYPE_ROBOTIC) && !(bodytype & BODYTYPE_KINETIC) && !(bodytype & BODYTYPE_PEG)) //if we're trying to attach something that's not synthetic, end out
+				return
+			// BUBBER EDIT ADDITION END
 			if(!human_victim.get_bodypart(body_zone))
 				user.temporarilyRemoveItemFromInventory(src, TRUE)
 				if(!try_attach_limb(victim))
