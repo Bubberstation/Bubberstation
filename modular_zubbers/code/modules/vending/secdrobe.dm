@@ -23,7 +23,7 @@
 					/obj/item/clothing/shoes/jackboots = 6,
 					/obj/item/clothing/shoes/jackboots/sec = 6,
 					/obj/item/clothing/head/helmet/sec = 6,
-					/obj/item/clothing/head/beret/sec = 6,
+					/obj/item/clothing/head/beret/sec/viro = 6,
 					/obj/item/clothing/head/soft/sec = 6,
 					/obj/item/clothing/head/security_beanie = 6,
 					/obj/item/clothing/mask/bandana/sec = 6,

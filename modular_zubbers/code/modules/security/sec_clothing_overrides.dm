@@ -21,17 +21,7 @@
 	greyscale_config_inhand_right = /datum/greyscale_config/bandana/inhands_right
 	greyscale_colors = "#7d2a25"
 
-/obj/item/clothing/head/beret/sec
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
-	icon_state = "security_beret"
-	post_init_icon_state = "security_beret"
-	greyscale_config = null
-	greyscale_config_worn = null
-	greyscale_colors = null
-	armor_type = /datum/armor/cosmetic_sec
-
-/obj/item/clothing/head/beret/sec
+/obj/item/clothing/head/beret/sec/viro
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "security_beret"
