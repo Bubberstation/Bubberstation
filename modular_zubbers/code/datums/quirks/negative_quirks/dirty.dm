@@ -6,7 +6,7 @@
 	desc = "You haven't taken a shower in a loooong time, and as a result, you are caked in an everpresent layer of grime and track it everywhere."
 	icon = FA_ICON_TRASH
 	value = -2
-	mob_trait = TRAIT_HEAVY_SLEEPER
+	//mob_trait = TRAIT_HEAVY_SLEEPER
 	gain_text = span_danger("You feel dirty!")
 	lose_text = span_notice("You're finally clean...")
 	medical_record_text = "Patient has atrocious hygene standards."
@@ -18,6 +18,10 @@
 	var/dirt_color
 
 	var/cleaned = FALSE
+
+/datum/quirk/dity/post_add()
+	dirty_text = quirk_holder.client.prefs.read_preference(/datum/preference/text/dirty_text)
+	dirt_color = quirk_holder.client.prefs.read_preference(/datum/preference/color/dirty_color)
 
 /datum/quirk_constant_data/dirty
 	associated_typepath = /datum/quirk/dirty
@@ -59,7 +63,7 @@
 
 /datum/quirk/dirty/add(client/client_source)
 	RegisterSignal(quirk_holder, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
-	RegisterSignal(quirk_holder, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(on_cleaned))
+	RegisterSignal(quirk_holder, COMSIG_ATOM_POST_CLEAN, PROC_REF(on_cleaned))
 	RegisterSignal(quirk_holder, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
 	RegisterSignal(quirk_holder, COMSIG_LIVING_SEARCHED_TRASH_PILE, PROC_REF(searched_trash_pile))
 
@@ -105,7 +109,7 @@
 
 	examine_list += span_notice(dirty_text)
 
-/datum/quirk/dirty/proc/on_cleaned(datum/source, clean_types)
+/datum/quirk/dirty/proc/on_cleaned(datum/component/cleaner/source, mob/living/user)
 	SIGNAL_HANDLER
 
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/mob, emote), "scream")
