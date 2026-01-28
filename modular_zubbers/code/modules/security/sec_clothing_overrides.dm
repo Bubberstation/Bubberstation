@@ -74,7 +74,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "hoscap"
 
-/obj/item/clothing/head/hats/hos/beret
+/obj/item/clothing/head/hats/hos/beret/viro
 	name = "\proper the Head of Security's beret"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
