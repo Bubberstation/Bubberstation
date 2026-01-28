@@ -170,6 +170,22 @@
 	icon_state = "warden_uniform"
 	female_sprite_flags = NO_FEMALE_UNIFORM
 
+/obj/item/clothing/under/rank/security/warden/grey
+	icon = 'icons/obj/clothing/under/security.dmi'
+	worn_icon = 'icons/mob/clothing/under/security.dmi'
+
+/obj/item/clothing/under/rank/security/warden/formal
+	name = "\proper the Warden's formals"
+	icon_state = "wardenblueclothes"
+
+/obj/item/clothing/under/rank/security/warden/formal
+	name = "\proper the Warden's formal skirt"
+	icon_state = "wardenblueclothes_skirt"
+	body_parts_covered = CHEST|GROIN|ARMS
+	dying_key = DYE_REGISTRY_JUMPSKIRT
+	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+
 
 // HOS
 
@@ -184,6 +200,35 @@
 	name = "\proper the Head of Security's jumpskirt"
 	desc = "A padded jumpskirt made out of wind-resistant, slightly water-repellent materials for the Head of Security for Nanotrasen Corporate Security."
 	icon_state = "hos_skirt"
+
+/obj/item/clothing/under/rank/security/head_of_security/grey
+	icon = 'icons/obj/clothing/under/security.dmi'
+	worn_icon = 'icons/mob/clothing/under/security.dmi'
+
+/obj/item/clothing/under/rank/security/head_of_security/alt
+	name = "\proper the Head of Security's turtleneck"
+	icon_state = "hosalt"
+	inhand_icon_state = "bl_suit"
+
+/obj/item/clothing/under/rank/security/head_of_security/alt/skirt
+	name = "\proper the Head of Security's skirtleneck"
+	icon_state = "hosalt_skirt"
+
+/obj/item/clothing/under/rank/security/head_of_security/parade
+	icon = 'icons/obj/clothing/under/security.dmi'
+	worn_icon = 'icons/mob/clothing/under/security.dmi'
+
+/obj/item/clothing/under/rank/security/head_of_security/formal
+	name = "\proper the Head of Security's formals"
+	icon_state = "hosblueclothes"
+
+/obj/item/clothing/under/rank/security/head_of_security/formal
+	name = "\proper the Head of Security's formal skirt"
+	icon_state = "hosblueclothes_skirt"
+	body_parts_covered = CHEST|GROIN|ARMS
+	dying_key = DYE_REGISTRY_JUMPSKIRT
+	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /*
 	// ARMORS
