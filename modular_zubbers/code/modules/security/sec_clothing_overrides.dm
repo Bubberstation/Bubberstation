@@ -80,7 +80,11 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "hos_beret"
 	post_init_icon_state = "hos_beret"
+	greyscale_config = null
 	greyscale_config_worn = null
+	greyscale_config_inhand_left = /datum/greyscale_config/bandana/inhands_left
+	greyscale_config_inhand_right = /datum/greyscale_config/bandana/inhands_right
+	greyscale_colors = "#33353a"
 
 /obj/item/clothing/head/helmet/sec/hos
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
