@@ -58,7 +58,6 @@
 
 /obj/item/clothing/head/hats/warden/drill/viro
 	name = "\proper the Warden's campaign cover"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "warden_campaign"
 
@@ -71,7 +70,6 @@
 
 /obj/item/clothing/head/hats/hos/cap
 	name = "\proper the Head of Security's cap"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "hos_cap"
 
@@ -81,9 +79,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "hos_beret"
 	post_init_icon_state = "hos_beret"
-	greyscale_config = null
 	greyscale_config_worn = null
-	greyscale_colors = null
 
 /obj/item/clothing/head/helmet/sec/hos
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
@@ -269,6 +265,10 @@
 	body_parts_covered = CHEST|GROIN
 	cold_protection = CHEST|GROIN
 	heat_protection = CHEST|GROIN
+
+/obj/item/clothing/suit/armor/hos/hos_formal // so annoying
+	icon = 'icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'icons/mob/clothing/suits/armor.dmi'
 
 /*
 	// GLOVES
