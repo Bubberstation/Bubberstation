@@ -237,3 +237,8 @@
 	. = ..()
 	if(CONFIG_GET(flag/disable_lewd_items))
 		return INITIALIZE_HINT_QDEL
+
+/obj/item/clothing/mask/bridle/Initialize(mapload)
+	. = ..()
+	if(CONFIG_GET(flag/disable_lewd_items))
+		return INITIALIZE_HINT_QDEL
