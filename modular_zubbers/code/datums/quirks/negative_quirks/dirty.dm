@@ -4,7 +4,7 @@
 /datum/quirk/dirty
 	name = "Dirty"
 	desc = "You haven't taken a shower in a loooong time, and as a result, you are caked in an everpresent layer of grime and track it everywhere."
-	icon = FA_ICON_TRASH
+	icon = FA_ICON_TRASH_ALT
 	value = -2
 	quirk_flags = QUIRK_PROCESSES
 	gain_text = span_danger("You feel dirty!")
