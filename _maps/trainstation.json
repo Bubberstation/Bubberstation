@@ -1,0 +1,32 @@
+{
+	"version": 1,
+	"map_name": "Trainstation",
+	"map_path": "modular_events",
+	"map_file": "trainstation.dmm",
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"planetary": 1,
+	"trainstation": 1,
+	"shuttles": {
+		"cargo": "cargo_nova",
+		"ferry": "ferry_fancy",
+		"whiteship": "whiteship_box",
+		"emergency": "emergency_box"
+	},
+	"traits": [
+		{
+			"Mining": false,
+			"Linkage": null,
+			"Gravity": true,
+			"No Parallax": true,
+			"Trainstation": true,
+			"Baseturf": "/turf/open/space/basic"
+		}
+	],
+	"minetype": "none",
+	"job_changes": {
+		"Captain": {
+			"special_charter": "train"
+		}
+	}
+}

@@ -204,7 +204,7 @@
 		if(target.client?.prefs.read_preference(/datum/preference/toggle/sound_announcements))
 			SEND_SOUND(target, sound(sound_to_play))
 	*/
-	if(!sound_override)
+	if(!sound_override && !should_play_sound)
 		sound_override = SSstation.announcer.get_rand_alert_sound()
 	else if(SSstation.announcer.event_sounds[sound_override])
 		var/list/announcer_key = SSstation.announcer.event_sounds[sound_override]

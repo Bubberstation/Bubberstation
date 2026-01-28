@@ -291,6 +291,7 @@
 	if(humanc) // Quirks may change manifest datapoints, so inject only after assigning quirks
 		GLOB.manifest.inject(humanc, null, humanc.client) // SKYRAT EDIT - Added humanc.client - ALTERNATIVE_JOB_TITLES
 		SEND_SIGNAL(humanc, COMSIG_HUMAN_CHARACTER_SETUP_FINISHED)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOBAL_PLAYER_SETUP_FINISHED, character)
 	var/area/station/arrivals = GLOB.areas_by_type[/area/station/hallway/secondary/entry]
 	if(humanc && arrivals && !arrivals.power_environ) //arrivals depowered
 		humanc.put_in_hands(new /obj/item/crowbar/large/emergency(get_turf(humanc))) //if hands full then just drops on the floor
