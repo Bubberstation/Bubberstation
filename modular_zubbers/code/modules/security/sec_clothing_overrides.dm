@@ -297,6 +297,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/belt.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
 	icon_state = "securitywebbing"
+	worn_icon_state = "securitywebbing"
 
 /*
 	// SHOES
