@@ -102,6 +102,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	icon_state = "security_uniform"
 	female_sprite_flags = NO_FEMALE_UNIFORM
+	worn_icon_digi =
 
 /obj/item/clothing/under/rank/security/officer/viro/skirt
 	name = "security jumpskirt"

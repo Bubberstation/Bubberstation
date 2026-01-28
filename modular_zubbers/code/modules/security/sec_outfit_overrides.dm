@@ -6,4 +6,4 @@
 	head = /obj/item/clothing/head/hats/warden/drill/viro
 
 /datum/outfit/job/hos
-	head = /obj/item/clothing/head/hats/hos/beret/viro
+	head = /obj/item/clothing/head/hats/hos/cap/beret
