@@ -117,7 +117,7 @@
 
 /obj/item/clothing/under/rank/security/officer/viro/jumpsuit
 	name = "security jumpsuit"
-	desc = "Previous standard-issue attire for Officers, technically antiquated but still popular with utilitarian Officers."
+	desc = "Previous standard-issue attire for officers, technically antiquated but still popular with utilitarian officers."
 	icon_state = "security_jumpsuit"
 
 /obj/item/clothing/under/rank/security/officer/formal
@@ -161,7 +161,7 @@
 
 /obj/item/clothing/under/rank/security/warden
 	name = "\proper the Warden's uniform"
-	desc = "A padded jumpskirt made out of wind-resistant, slightly water-repellent materials for Nanotrasen Corporate Security."
+	desc = "Standard-issue Security department uniform, given to the Warden of Nanotrasen Corporate Security."
 	icon_state = "warden_uniform"
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
@@ -169,7 +169,7 @@
 
 /obj/item/clothing/under/rank/security/warden/skirt
 	name = "\proper the Warden's jumpskirt"
-	desc = "A padded jumpskirt made out of wind-resistant, slightly water-repellent materials for the Wardens of Nanotrasen Corporate Security."
+	desc = "A padded jumpskirt made out of wind-resistant, slightly water-repellent materials for the Warden of Nanotrasen Corporate Security."
 	icon_state = "warden_uniform"
 	female_sprite_flags = NO_FEMALE_UNIFORM
 
@@ -178,7 +178,7 @@
 
 /obj/item/clothing/under/rank/security/head_of_security
 	name = "\proper the Head of Security's uniform"
-	desc = "A padded jumpskirt made out of wind-resistant, slightly water-repellent materials for Nanotrasen Corporate Security."
+	desc = "Standard-issue Security department uniform, given to the Head of Security of Nanotrasen Corporate Security."
 	icon_state = "hos_uniform"
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
@@ -280,9 +280,23 @@
 	icon_state = "tackle_blue"
 
 /obj/item/clothing/gloves/kaza_ruk/sec
-	icon = 'modular_zubbers/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/hands.dmi'
-	icon_state = "fightgloves_blue"
+	icon_state = "fightgloves"
+
+/*
+	// BELTS
+*/
+
+/obj/item/storage/belt/security
+	icon = 'modular_zubbers/icons/obj/clothing/belt.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
+	icon_state = "security"
+	content_overlays = FALSE
+
+/obj/item/storage/belt/security/webbing
+	icon = 'modular_zubbers/icons/obj/clothing/belt.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
+	icon_state = "securitywebbing"
 
 /*
 	// SHOES
