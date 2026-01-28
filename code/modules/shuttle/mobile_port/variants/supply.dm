@@ -260,11 +260,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			miscboxes[buyer] = new /obj/item/storage/lockbox/order(pick_n_take(empty_turfs))
 			var/obj/item/storage/lockbox/order/our_case = miscboxes[buyer]
 			our_case.buyer_account = buying_account
-			/// SKYRAT EDIT ADDITION START - FIXES COMMAND BUDGET CASES BEING UNOPENABLE
-			if(istype(our_case.buyer_account, /datum/bank_account/department))
-				our_case.department_purchase = TRUE
-				our_case.department_account = our_case.buyer_account
-			/// SKYRAT EDIT ADDITION END
 			miscboxes[buyer].name = "goody case - purchased by [buyer]"
 		misc_contents[buyer] = list()
 

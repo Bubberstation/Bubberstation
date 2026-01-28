@@ -16,7 +16,7 @@
 	crate_name = "patriotic crate"
 	order_flags = ORDER_CONTRABAND
 
-/datum/supply_pack/imports/lizardgoodscrate
+/datum/supply_pack/lizardgoodscrate
 	name = "Lizard Goods Crate"
 	desc = "Limited edition Lizard Goods Crate! Contains a random assortment of your FAVOURITE lizard related items, including the coveted 'weh-nade'"
 	cost = CARGO_CRATE_VALUE * 3
