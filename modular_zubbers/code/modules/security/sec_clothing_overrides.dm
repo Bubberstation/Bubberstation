@@ -294,7 +294,7 @@
 	icon_state = "hos_greatcoat"
 
 /obj/item/clothing/suit/armor/hos/trenchcoat
-	name = "\proper the Head of Security's leather overcoat"
+	name = "\proper the Head of Security's leather trenchcoat"
 	icon_state = "hos_leathercoat"
 
 /obj/item/clothing/suit/armor/hos/overcoat
@@ -389,6 +389,7 @@
 	icon_state = "duffel-security"
 
 /obj/item/storage/backpack/messenger/sec
+	icon = 'icons/obj/storage/backpack.dmi' // yeah i dont know either
 	worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
 	icon_state = "messenger_security"
 

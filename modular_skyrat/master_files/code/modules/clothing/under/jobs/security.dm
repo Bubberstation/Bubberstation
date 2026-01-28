@@ -6,10 +6,6 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 
-/obj/item/clothing/under/rank/security/head_of_security/skyrat
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
-
 // syndicate stuff uses this, gotta keep it
 
 /obj/item/clothing/under/rank/security/skyrat/utility
