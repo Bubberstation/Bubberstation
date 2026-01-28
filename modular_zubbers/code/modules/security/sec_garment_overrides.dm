@@ -15,7 +15,7 @@
 
 /obj/item/storage/bag/garment/hos/PopulateContents()
 	new	/obj/item/clothing/head/hats/hos/cap(src)
-	new	/obj/item/clothing/head/hats/hos/beret(src)
+	new	/obj/item/clothing/head/hats/hos/cap/beret(src)
 	new /obj/item/clothing/head/helmet/sec/hos(src)
 	new	/obj/item/clothing/under/rank/security/head_of_security(src)
 	new	/obj/item/clothing/under/rank/security/head_of_security/alt(src)
