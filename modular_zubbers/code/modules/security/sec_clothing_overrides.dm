@@ -20,6 +20,7 @@
 	greyscale_config_inhand_left = /datum/greyscale_config/bandana/inhands_left
 	greyscale_config_inhand_right = /datum/greyscale_config/bandana/inhands_right
 	greyscale_colors = "#7d2a25"
+	armor_type = /datum/armor/cosmetic_sec
 
 /obj/item/clothing/head/beret/sec/viro
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
@@ -331,15 +332,15 @@
 
 /obj/item/storage/backpack/security
 	worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
-	icon_state = "security-backpack"
+	icon_state = "backpack-security"
 
 /obj/item/storage/backpack/satchel/sec
 	worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
-	icon_state = "security-satchel"
+	icon_state = "satchel-security"
 
 /obj/item/storage/backpack/duffelbag/sec
 	worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
-	icon_state = "security-duffel"
+	icon_state = "duffel-security"
 
 /obj/item/storage/backpack/messenger/sec
 	worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
