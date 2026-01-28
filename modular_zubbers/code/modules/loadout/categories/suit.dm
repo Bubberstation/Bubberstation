@@ -236,3 +236,7 @@
 /datum/loadout_item/suit/paraimposterbomber
 	name = "Suspicious Bomber Jacket"
 	item_path = /obj/item/clothing/suit/toggle/jacket/zubber/bomber/syndicate/fake
+
+/datum/loadout_item/suit/trenchcoat
+	name = "Trenchcoat"
+	item_path = /obj/item/clothing/suit/toggle/jacket/trenchcoat
