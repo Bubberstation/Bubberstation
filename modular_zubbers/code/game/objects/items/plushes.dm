@@ -431,12 +431,12 @@
 /obj/item/toy/plush/cello_plush/click_alt(mob/user)
 	shirt = !shirt
 	if(!shirt)
-		balloon_alert(user, "You show the tummy...")
+		balloon_alert(user, "you show the tummy...")
 		icon_state = "celloplush-alt"
 		inhand_icon_state = "celloplush-alt"
 
 	else
-		balloon_alert(user, "You tuck the tummy away...")
+		balloon_alert(user, "you tuck the tummy away...")
 		icon_state = "celloplush"
 		inhand_icon_state = "celloplush-shirt"
 
