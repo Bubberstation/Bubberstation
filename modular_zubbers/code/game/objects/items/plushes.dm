@@ -413,14 +413,17 @@
 
 //Plushie for Roxy, of Cellophane
 /obj/item/toy/plush/cello_plush
+	var/shirt = TRUE
 	name = "concerningly large merseed plush"
 	desc = "A large, silky-soft plushie of a merseed dragon. When you hug it, you can't get your arms around it no matter how hard you try."
-	icon_state = "celloplush"
-	attack_verb_continuous = list("squishes", "smothers", "obliterates", "bullies", "pancakes", "flops at", "smears", "dents")
-	attack_verb_simple = list("squish", "smother", "obliterate", "bully", "pancake", "flop", "smear", "dent")
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_righthand.dmi'
+	icon_state = "celloplush"
+	inhand_icon_state = "celloplush-shirt"
+	attack_verb_continuous = list("squishes", "smothers", "smacks", "bullies", "pancakes", "flops at", "smears", "dents")
+	attack_verb_simple = list("squish", "smother", "smack", "bully", "pancake", "flop", "smear", "dent")
 	gender = FEMALE
-	var/shirt = TRUE
 	squeak_override = list(
 		'sound/mobs/non-humanoids/fish/fish_slap1.ogg' = 1, 'sound/mobs/non-humanoids/fish/fish_slap2.ogg' = 1,
 		)
@@ -428,9 +431,14 @@
 /obj/item/toy/plush/cello_plush/click_alt(mob/user)
 	shirt = !shirt
 	if(!shirt)
-		icon_state = "celloplush-alt"
 		balloon_alert(user, "You show the tummy...")
+		icon_state = "celloplush-alt"
+		inhand_icon_state = "celloplush-alt"
+
 	else
-		icon_state = "celloplush"
 		balloon_alert(user, "You tuck the tummy away...")
+		icon_state = "celloplush"
+		inhand_icon_state = "celloplush-shirt"
+
+	update_inhand_icon()
 	return ..()
