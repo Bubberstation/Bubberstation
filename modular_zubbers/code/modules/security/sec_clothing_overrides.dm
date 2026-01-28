@@ -394,8 +394,8 @@
 	icon_state = "messenger_security"
 
 
-	lefthand_file = 'modular_skyrat/master_files/icons/mob/inhands/clothing/backpack_lefthand.dmi' // fucking kill me
-	righthand_file = 'modular_skyrat/master_files/icons/mob/inhands/clothing/backpack_righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi' // fucking kill me
+	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
 
 
 /*
