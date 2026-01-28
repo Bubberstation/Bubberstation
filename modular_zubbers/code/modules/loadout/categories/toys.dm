@@ -131,4 +131,8 @@
 	name = "Bureaucratic Goat Plush"
 	item_path = /obj/item/toy/plush/tian_plush
 
+/datum/loadout_item/toys/plush/ethereal
+	name = "Ethereal Plush"
+	item_path = /obj/item/toy/plush/ethereal
+
 
