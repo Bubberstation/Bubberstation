@@ -60,7 +60,7 @@
 /obj/item/clothing/head/hats/warden/drill/viro
 	name = "\proper the Warden's campaign cover"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
-	icon_state = "warden_campaign"
+	icon_state = "wardendrill"
 
 /obj/item/clothing/head/hats/warden/viro/beret // not greyscaled so its easier to do this then make it a subtype of regular berets
 	name = "\proper the Warden's beret"
@@ -72,7 +72,7 @@
 /obj/item/clothing/head/hats/hos/cap
 	name = "\proper the Head of Security's cap"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
-	icon_state = "hos_cap"
+	icon_state = "hoscap"
 
 /obj/item/clothing/head/hats/hos/beret
 	name = "\proper the Head of Security's beret"
@@ -320,10 +320,18 @@
 	// GLOVES
 */
 
+/obj/item/clothing/gloves/color/black/security
+	icon = 'modular_zubbers/icons/obj/clothing/gloves.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/hands.dmi'
+	icon_state = "sec_gloves"
+
+/obj/item/clothing/gloves/color/black/security/blu
+	icon_state = "sec_gloves"
+
 /obj/item/clothing/gloves/tackler/security	//Can't just overwrite tackler, as there's a ton of subtypes that we'd then need to account for. This is easier. MUCH easier.
 	icon = 'modular_zubbers/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/hands.dmi'
-	icon_state = "tackle_blue"
+	icon_state = "tackle_red"
 
 /obj/item/clothing/gloves/kaza_ruk/sec
 	worn_icon = 'modular_zubbers/icons/mob/clothing/hands.dmi'
