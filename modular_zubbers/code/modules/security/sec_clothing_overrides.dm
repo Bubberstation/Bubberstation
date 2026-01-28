@@ -178,7 +178,7 @@
 	name = "\proper the Warden's formals"
 	icon_state = "wardenblueclothes"
 
-/obj/item/clothing/under/rank/security/warden/formal
+/obj/item/clothing/under/rank/security/warden/formal/skirt
 	name = "\proper the Warden's formal skirt"
 	icon_state = "wardenblueclothes_skirt"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -222,7 +222,7 @@
 	name = "\proper the Head of Security's formals"
 	icon_state = "hosblueclothes"
 
-/obj/item/clothing/under/rank/security/head_of_security/formal
+/obj/item/clothing/under/rank/security/head_of_security/formal/skirt
 	name = "\proper the Head of Security's formal skirt"
 	icon_state = "hosblueclothes_skirt"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -358,13 +358,6 @@
 	// NECK
 */
 
-
-// OFFICER
-
-
-// WARDEN
-
-
 // HOS
 
 /obj/item/clothing/neck/cloak/hos  // still ugly but i tried
@@ -390,6 +383,14 @@
 /obj/item/storage/backpack/messenger/sec
 	worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
 	icon_state = "messenger_security"
+
+/*
+	// EYES
+*/
+
+/obj/item/clothing/glasses/hud/security/sunglasses
+	worn_icon = 'modular_zubbers/icons/mob/clothing/eyes.dmi'
+
 
 /*
 	// PRISONER (why is this here ?)
