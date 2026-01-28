@@ -331,7 +331,7 @@
 /obj/item/clothing/gloves/tackler/security	//Can't just overwrite tackler, as there's a ton of subtypes that we'd then need to account for. This is easier. MUCH easier.
 	icon = 'modular_zubbers/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/hands.dmi'
-	icon_state = "tackle_red"
+	icon_state = "sec_gloves"
 
 /obj/item/clothing/gloves/kaza_ruk/sec
 	worn_icon = 'modular_zubbers/icons/mob/clothing/hands.dmi'
@@ -392,6 +392,11 @@
 	icon = 'icons/obj/storage/backpack.dmi' // yeah i dont know either
 	worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
 	icon_state = "messenger_security"
+
+
+	lefthand_file = 'modular_skyrat/master_files/icons/mob/inhands/clothing/backpack_lefthand.dmi' // fucking kill me
+	righthand_file = 'modular_skyrat/master_files/icons/mob/inhands/clothing/backpack_righthand.dmi'
+
 
 /*
 	// EYES
