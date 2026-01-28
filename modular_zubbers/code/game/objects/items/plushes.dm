@@ -413,7 +413,7 @@
 
 /obj/item/toy/plush/ethereal
 	name = "Businessman Ethereal Plush"
-	desc = "A plushie showing a succesful ethereal, manufactured in attempts to raise visibility of Sproutians and their culture. 3% proceedings from sales go to charity. Its shoe-straps can be tugged on to activate the voicebox, playing real ethereal noises!"
+	desc = "A plushie showing a succesful ethereal, manufactured in attempts to raise visibility of Sproutians and their culture, and 3% are going to charity! Its shoe-straps can be tugged on to activate the voicebox, playing real ethereal noises!"
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "ethereal"
 	attack_verb_simple = list("businesscard-slap", "financially educate", "threaten to sue", )
