@@ -116,6 +116,7 @@
 	name = "security jumpsuit"
 	desc = "Previous standard-issue attire for officers, technically antiquated but still popular with utilitarian officers."
 	icon_state = "security_jumpsuit"
+	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/security/officer/formal
 	name = "security officer formals"
@@ -143,6 +144,7 @@
 			While the bodysuit was only designed to be used while inside of and operating a MODsuit, the bodysuit found a niche with certain... eccentric officers."
 	icon_state = "security_bodysuit"
 	female_sprite_flags = FEMALE_UNIFORM_FULL
+	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/officer/viro/bodysuit/equipped(mob/living/affected_mob, slot) // stolen from the lustwish catsuit lol
 	. = ..()
