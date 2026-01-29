@@ -252,3 +252,22 @@
 
 /datum/emote/living/snort/get_sound(mob/living/user)
 	return 'sound/mobs/non-humanoids/pony/snort.ogg'
+
+
+/datum/emote/living/exp_growl
+	key = "xpgrowl"
+	key_third_person = "growls"
+	message = "growls."
+	emote_type = EMOTE_AUDIBLE
+	
+/datum/emote/living/exp_growl/get_sound(mob/living/user)
+	return 'modular_zubbers/sound/emotes/screams/exp_growl.ogg'
+
+/datum/emote/living/exp_bark
+	key = "xpbark"
+	key_third_person = "barks"
+	message = "barks."
+	emote_type = EMOTE_AUDIBLE
+
+/datum/emote/living/exp_bark/get_sound(mob/living/user)
+	return 'modular_zubbers/sound/emotes/screams/exp_bark.ogg'
