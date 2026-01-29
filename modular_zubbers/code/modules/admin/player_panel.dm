@@ -75,16 +75,16 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		else
 			.["current_faction"] = list()
 
+	.["discord_id"] = discord_id_cache
+
 	if(target_mob.client)
 		target_client = target_mob.client
 		.["client_ckey"] = target_client.ckey
 		.["client_muted"] = target_client.prefs.muted
 		.["client_rank"] = target_client.holder ? target_client.holder.ranks : "Player"
-		.["discord_id"] = discord_id_cache
 	else
 		target_client = null
 		.["client_ckey"] = null
-		.["discord_id"] = discord_id_cache
 
 		if (target_mob.ckey)
 			.["last_ckey"] = get_target_ckey()
@@ -156,6 +156,8 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 
 /datum/player_panel/ui_act(action, params, datum/tgui/ui)
 	. = ..()
+	if(.)
+		return
 
 	if(!target_mob)
 		return TRUE
@@ -627,6 +629,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 				else
 					living_mob.status_flags &= ~numeric_flag
 				log_admin("[key_name(admin_client)] [enabled ? "enabled" : "disabled"] status flag [numeric_flag] on [key_name(target_mob)].")
+			SStgui.update_uis(src)
 
 		/// Sets the movement speed of the selected mob
 		if ("set_speed")
@@ -638,13 +641,25 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 			if(isnull(new_speed))
 				return
 
-			// Remove existing admin speed modifier
+			// Remove existing admin speed modifier first to get base speed
 			living_mob.remove_movespeed_modifier(/datum/movespeed_modifier/admin_varedit)
+			// Calculate diff from base speed (after removing amodifier)
 			var/diff = new_speed - living_mob.cached_multiplicative_slowdown
 			if(diff != 0)
 				living_mob.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/admin_varedit, multiplicative_slowdown = diff)
 
 			log_admin("[key_name(admin_client)] set speed of [key_name(target_mob)] to [new_speed].")
+			SStgui.update_uis(src)
+
+		/// Resets the movement speed
+		if ("reset_speed")
+			var/mob/living/living_mob = target_mob
+			if(!istype(living_mob))
+				return
+
+			living_mob.remove_movespeed_modifier(/datum/movespeed_modifier/admin_varedit)
+			log_admin("[key_name(admin_client)] reset speed modifier of [key_name(target_mob)].")
+			SStgui.update_uis(src)
 		/// Adds a faction to the selected mob
 		if ("add_faction")
 			var/mob/living/living_mob = target_mob
@@ -667,6 +682,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 
 			log_admin("[key_name(admin_client)] added faction [new_faction] to [key_name(target_mob)].")
 			message_admins(span_adminnotice("[key_name_admin(admin_client)] added faction [new_faction] to [key_name_admin(target_mob)]."))
+			SStgui.update_uis(src)
 		/// Removes a faction from the selected mob
 		if ("remove_faction")
 			var/mob/living/living_mob = target_mob
@@ -681,6 +697,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 
 			log_admin("[key_name(admin_client)] removed faction [faction_to_remove] from [key_name(target_mob)].")
 			message_admins(span_adminnotice("[key_name_admin(admin_client)] removed faction [faction_to_remove] from [key_name_admin(target_mob)]."))
+			SStgui.update_uis(src)
 
 		/// Loads the client's preferences onto the selected human mob
 		if ("load_preferences")

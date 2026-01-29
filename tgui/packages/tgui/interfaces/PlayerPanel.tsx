@@ -667,7 +667,19 @@ const PhysicalActions = () => {
         />
       </Section>
 
-      <Section title="Speed">
+      <Section
+        title="Speed"
+        buttons={
+          <Button
+            icon="sync"
+            onClick={() => {
+              act('reset_speed');
+            }}
+          >
+            Reset
+          </Button>
+        }
+      >
         <Tooltip
           content="Negative values = faster, positive values = slower"
           position="bottom"
