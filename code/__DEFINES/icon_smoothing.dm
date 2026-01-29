@@ -243,6 +243,12 @@ DEFINE_BITFIELD(smoothing_junction, list(
 #define SMOOTH_GROUP_WATER S_OBJ(89) ///obj/effect/abstract/liquid_turf
 //SKYRAT EDIT END
 
+//BUBBER EDIT ADDITION
+#define SMOOTH_GROUP_SNOW_WALLS S_OBJ(90) ///turf/closed/wall/mineral/snow
+#define SMOOTH_GROUP_CLOCKWORK_WALLS S_OBJ(91) ///turf/closed/wall/mineral/bronze
+#define SMOOTH_GROUP_CULT_WALLS S_OBJ(92) ///turf/closed/wall/mineral/cult
+//BUBBER EDIT END
+
 /// Performs the work to set smoothing_groups and canSmoothWith.
 /// An inlined function used in both turf/Initialize and atom/Initialize.
 #define SETUP_SMOOTHING(...) \

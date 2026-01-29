@@ -1,11 +1,4 @@
-//WARNING
-
-//standard
-/obj/effect/turf_decal/stripes
-	icon = 'modular_zubbers/icons/turf/decals/decals.dmi'
-
-//SIDING
-
+//siding
 /obj/effect/turf_decal/siding
 	icon = 'modular_zubbers/icons/turf/decals/decals.dmi'
 
@@ -15,7 +8,6 @@
 	color = "#653923"
 
 //standard
-
 /obj/effect/turf_decal/siding/thinplating
 	color = "#757476"
 
@@ -29,7 +21,6 @@
 	color = "#757476"
 
 //dark
-
 /obj/effect/turf_decal/siding/dark
 	color = "#3d3e44"
 
@@ -46,7 +37,6 @@
 	color = "#3d3e44"
 
 //light
-
 /obj/effect/turf_decal/siding/light
 	color = "#e2e2e2"
 
@@ -61,3 +51,11 @@
 
 /obj/effect/turf_decal/siding/wideplating_new/light
 	color = "#e2e2e2"
+
+
+//misc
+/obj/effect/turf_decal/stripes
+	icon = 'modular_zubbers/icons/turf/decals/decals.dmi'
+
+/obj/effect/turf_decal/mining
+	icon = 'modular_zubbers/icons/turf/decals/decals.dmi'

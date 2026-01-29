@@ -46,6 +46,10 @@
 /turf/open/floor/cult/broken_states()
 	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
 
+/turf/open/floor/bamboo
+	icon = 'modular_zubbers/icons/turf/floors/bamboo_mat.dmi'
+
+
 // TRAM FLOORS
 
 /turf/open/floor/noslip/tram
