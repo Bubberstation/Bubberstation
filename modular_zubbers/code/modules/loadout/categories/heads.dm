@@ -109,7 +109,7 @@
 
 /datum/loadout_item/head/hats/hos/cap
 	name = "Head of Security's Cap"
-	item_path = /obj/item/clothing/head/hats/warden/viro/beret
+	item_path = /obj/item/clothing/head/hats/hos/cap
 	restricted_roles = list(JOB_HEAD_OF_SECURITY)
 
 /datum/loadout_item/head/hats/hos/cap/beret
