@@ -32,7 +32,7 @@
 
 
 /datum/outfit/job/warden
-	suit = /obj/item/clothing/suit/armor/vest/warden //SKYRAT EDIT CHANGE - Original: /obj/item/clothing/suit/armor/vest/warden/alt
+	suit = /obj/item/clothing/suit/armor/vest/warden
 	suit_store = /obj/item/flashlight/seclite
 	backpack_contents = list(
 	/obj/item/evidencebag = 1,
