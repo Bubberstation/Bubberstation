@@ -1,0 +1,24 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><base href="../../../../"><link rel="stylesheet" href="dmdoc.css"><title>modular_zubbers/code/datums/components/vore/README.md - /tg/ Station 13</title></head><body><header><a href="index.html">/tg/ Station 13</a> - <a href="index.html#modules">Modules</a> - <a href="index.html#types">Types</a></header><main><h1>Modular DCS Vore <aside>modular_zubbers/code/datums/components/vore/README.md</aside> <a href="https://github.com/Bubberstation/Bubberstation/blob/fd8fcb008182295698dbdaf8a25de00809b2e4a1/modular_zubbers/code/datums/components/vore/README.md"><img src="git.png" width="16" height="16" title="modular_zubbers/code/datums/components/vore/README.md"></a></h1><table class="summary" cellspacing="0"><tr><td colspan="2"><p>This is an implementation of vore made entirely using components.</p>
+<p>By <a href="https://github.com/ShadowLarkens/">Shadow Larkens</a></p>
+<h2 id="configuration">Configuration</h2>
+<p>Most critical options are in <a href="./_defines.dm">_defines.dm</a> including things such as the max amount of bellies that can
+be created, how many prey can be eaten, etc.</p>
+<h2 id="debugging">Debugging</h2>
+<p>If you need to debug this system, go to the top of <a href="./_defines.dm">_defines.dm</a> and uncomment <code>#define VORE_TESTING</code>
+to enable helpful debugging features such as not needing clients and working on all living mobs.</p>
+<h2 id="code-overview">Code Overview</h2>
+<p><a href="./_defines.dm">_defines.dm</a> - Settings and constants.
+<a href="./absorb_control.dm">absorb_control.dm</a> - Component used for prey controlling preds temporarily
+<a href="./belly.dm">belly.dm</a> - Individual areas that have their own name, description and digestion mode.
+<a href="./belly_messages.dm">belly_messages.dm</a> - Contains helpers for all of the many different customizable messages a belly can produce.
+<a href="./belly_serd.dm">belly_serde.dm</a> - Controls belly serialization and deserialization.
+<a href="./digest_modes.dm">digest_modes.dm</a> - Singletons that handle affecting a belly's contents on each process.
+<a href="./preferences.dm">preferences.dm</a> - Vore related preferences
+<a href="./subsystem.dm">subsystem.dm</a> - Belly processing subsystem / global event listener
+<a href="./ui.dm">ui.dm</a> - tgui interface for managing the component
+<a href="./vore.dm">vore.dm</a> - The main component that orchestrates everything else.
+<a href="./z_undefs.dm">z_undefs.dm</a> - undefs to keep defines from escaping.</p>
+<h2 id="special-notes">Special Notes</h2>
+<ul>
+<li>Being absorbed is marked by TRAIT_RESTRAINED and TRAIT_STASIS with a source of TRAIT_SOURCE_VORE.</li>
+</ul></td></tr></table></main><footer>tgstation.dme <a href="https://github.com/Bubberstation/Bubberstation/tree/fd8fcb008182295698dbdaf8a25de00809b2e4a1">fd8fcb0</a> (master) — <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.11.0</a></footer></body></html>

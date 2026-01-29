@@ -1,0 +1,39 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><base href="../"><link rel="stylesheet" href="dmdoc.css"><title>/datum/vore_pref - /tg/ Station 13</title></head><body><header><a href="index.html">/tg/ Station 13</a> - <a href="index.html#modules">Modules</a> - <a href="index.html#types">Types</a> — <a href="datum/vore_pref.html#proc">Proc Details</a></header><main><h1>vore_pref <aside>/<a href="datum.html">datum</a>/<a href="datum/vore_pref.html">vore_pref</a></aside> <a href="https://github.com/Bubberstation/Bubberstation/blob/fd8fcb008182295698dbdaf8a25de00809b2e4a1/modular_zubbers/code/datums/components/vore/preferences.dm#L221"><img src="git.png" width="16" height="16" title="modular_zubbers/code/datums/components/vore/preferences.dm 221"></a></h1><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Procs</h2></td></tr><tr><th><a href="datum/vore_pref.html#proc/create_default_value">create_default_value</a></th><td>Produce a default, potentially random value for when no value for this
+preference is found in the savefile.
+Either this or create_informed_default_value must be overriden by subtypes.</td></tr><tr><th><a href="datum/vore_pref.html#proc/create_informed_default_value">create_informed_default_value</a></th><td>Produce a default, potentially random value for when no value for this
+preference is found in the savefile.
+Unlike create_default_value(), will provide the preferences object if you
+need to use it.
+If not overriden, will call create_default_value() instead.</td></tr><tr><th><a href="datum/vore_pref.html#proc/deserialize">deserialize</a></th><td>Called on the saved input when retrieving.
+Also called by the value sent from the user through UI. Do not trust it.
+Input is the value inside the savefile, output is to tell other code
+what the value is.
+This is useful either for more optimal data saving or for migrating
+older data.
+Must be overridden by subtypes.
+Can return null if no value was found.</td></tr><tr><th><a href="datum/vore_pref.html#proc/is_valid">is_valid</a></th><td>Checks that a given value is valid.
+Must be overriden by subtypes.
+Any type can be passed through.</td></tr><tr><th><a href="datum/vore_pref.html#proc/read">read</a></th><td>Given a savefile, return either the saved data or an acceptable default.
+This will write to the savefile if a value was not found with the new value.</td></tr><tr><th><a href="datum/vore_pref.html#proc/serialize">serialize</a></th><td>Called on the input while saving.
+Input is the current value, output is what to save in the savefile.</td></tr><tr><th><a href="datum/vore_pref.html#proc/write">write</a></th><td>Given a savefile, writes the inputted value.
+Returns TRUE for a successful application.
+Return FALSE if it is invalid.</td></tr></table><h2 id="proc">Proc Details</h2><h3 id="proc/create_default_value"><aside class="declaration">proc </aside>create_default_value<aside>()  <a href="https://github.com/Bubberstation/Bubberstation/blob/fd8fcb008182295698dbdaf8a25de00809b2e4a1/modular_zubbers/code/datums/components/vore/preferences.dm#L255"><img src="git.png" width="16" height="16" title="modular_zubbers/code/datums/components/vore/preferences.dm 255"></a></aside></h3><p>Produce a default, potentially random value for when no value for this
+preference is found in the savefile.
+Either this or create_informed_default_value must be overriden by subtypes.</p><h3 id="proc/create_informed_default_value"><aside class="declaration">proc </aside>create_informed_default_value<aside>(/<a href="datum.html">datum</a>/vore_preferences/preferences)  <a href="https://github.com/Bubberstation/Bubberstation/blob/fd8fcb008182295698dbdaf8a25de00809b2e4a1/modular_zubbers/code/datums/components/vore/preferences.dm#L265"><img src="git.png" width="16" height="16" title="modular_zubbers/code/datums/components/vore/preferences.dm 265"></a></aside></h3><p>Produce a default, potentially random value for when no value for this
+preference is found in the savefile.
+Unlike create_default_value(), will provide the preferences object if you
+need to use it.
+If not overriden, will call create_default_value() instead.</p><h3 id="proc/deserialize"><aside class="declaration">proc </aside>deserialize<aside>(input, /<a href="datum.html">datum</a>/vore_preferences/preferences)  <a href="https://github.com/Bubberstation/Bubberstation/blob/fd8fcb008182295698dbdaf8a25de00809b2e4a1/modular_zubbers/code/datums/components/vore/preferences.dm#L241"><img src="git.png" width="16" height="16" title="modular_zubbers/code/datums/components/vore/preferences.dm 241"></a></aside></h3><p>Called on the saved input when retrieving.
+Also called by the value sent from the user through UI. Do not trust it.
+Input is the value inside the savefile, output is to tell other code
+what the value is.
+This is useful either for more optimal data saving or for migrating
+older data.
+Must be overridden by subtypes.
+Can return null if no value was found.</p><h3 id="proc/is_valid"><aside class="declaration">proc </aside>is_valid<aside>(value)  <a href="https://github.com/Bubberstation/Bubberstation/blob/fd8fcb008182295698dbdaf8a25de00809b2e4a1/modular_zubbers/code/datums/components/vore/preferences.dm#L228"><img src="git.png" width="16" height="16" title="modular_zubbers/code/datums/components/vore/preferences.dm 228"></a></aside></h3><p>Checks that a given value is valid.
+Must be overriden by subtypes.
+Any type can be passed through.</p><h3 id="proc/read"><aside class="declaration">proc </aside>read<aside>(/list/save_data, /<a href="datum.html">datum</a>/vore_preferences/preferences)  <a href="https://github.com/Bubberstation/Bubberstation/blob/fd8fcb008182295698dbdaf8a25de00809b2e4a1/modular_zubbers/code/datums/components/vore/preferences.dm#L270"><img src="git.png" width="16" height="16" title="modular_zubbers/code/datums/components/vore/preferences.dm 270"></a></aside></h3><p>Given a savefile, return either the saved data or an acceptable default.
+This will write to the savefile if a value was not found with the new value.</p><h3 id="proc/serialize"><aside class="declaration">proc </aside>serialize<aside>(input)  <a href="https://github.com/Bubberstation/Bubberstation/blob/fd8fcb008182295698dbdaf8a25de00809b2e4a1/modular_zubbers/code/datums/components/vore/preferences.dm#L248"><img src="git.png" width="16" height="16" title="modular_zubbers/code/datums/components/vore/preferences.dm 248"></a></aside></h3><p>Called on the input while saving.
+Input is the current value, output is what to save in the savefile.</p><h3 id="proc/write"><aside class="declaration">proc </aside>write<aside>(/list/save_data, value)  <a href="https://github.com/Bubberstation/Bubberstation/blob/fd8fcb008182295698dbdaf8a25de00809b2e4a1/modular_zubbers/code/datums/components/vore/preferences.dm#L286"><img src="git.png" width="16" height="16" title="modular_zubbers/code/datums/components/vore/preferences.dm 286"></a></aside></h3><p>Given a savefile, writes the inputted value.
+Returns TRUE for a successful application.
+Return FALSE if it is invalid.</p></main><footer>tgstation.dme <a href="https://github.com/Bubberstation/Bubberstation/tree/fd8fcb008182295698dbdaf8a25de00809b2e4a1">fd8fcb0</a> (master) — <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.11.0</a></footer></body></html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><base href="../../"><link rel="stylesheet" href="dmdoc.css"><title>modular_skyrat/modules/magfed_turret/readme.md - /tg/ Station 13</title></head><body><header><a href="index.html">/tg/ Station 13</a> - <a href="index.html#modules">Modules</a> - <a href="index.html#types">Types</a></header><main><h1>modular_skyrat/modules/magfed_turret/readme.md <a href="https://github.com/Bubberstation/Bubberstation/blob/fd8fcb008182295698dbdaf8a25de00809b2e4a1/modular_skyrat/modules/magfed_turret/readme.md"><img src="git.png" width="16" height="16" title="modular_skyrat/modules/magfed_turret/readme.md"></a></h1><table class="summary" cellspacing="0"><tr><td colspan="2"><h2 id="title-magazine-fed-turrets">Title: Magazine Fed Turrets</h2>
+<p>MODULE ID: MAGFED TURRETS</p>
+<h3 id="description">Description:</h3>
+<p>Magazine fed turrets for temporary threats in space ruins for either ruin tiding or ghostroles, along with Target Designators made for controlling said turrets..</p>
+<p>Contains Code and Sprites.</p>
+<p>If changes are needed involving defines and flags, Please make said changes within the framework file.</p>
+<p>cargo.dm is for models that are available through cargo. Currently, This is just a gags-ible toy turret that shoots foam darts.</p>
+<p>ruins.dm is for models that are available within space, lavaland, icemoon, etc, or ghost role ruins.</p>
+<p>if additional files are needed for, say, research or fully crafting reliant (or other methods), it is advised to follow similar formats.</p>
+<p>Notable Changes/abilities:</p>
+<ul>
+<li>Bullet specific effects (Dragonsbreath, Pellet clouds, Recyclability(foam darts :p))</li>
+<li>Burst-fire with modular burst-rate and volley count (Optional)</li>
+<li>Tool-less deployment and retraction (Optional)</li>
+<li>Deployment through throwing (Cant be cooked like a grenade, but will deploy shortly after turf impact) (Optional)</li>
+<li>Can be toggled between shooting no human-like being, shooting indescriminantly at anything not in its factions, or shooting according to normal turret targeting flags.</li>
+<li>Can be refilled by attacking with magazines</li>
+<li>Can be made fragile, causing the turret to break into an assembly rather than dropping its toolbox on non-dissassembly destruction.</li>
+<li>Can be linked to and forced to target an object through a target designator (Currently Prototyping)</li>
+</ul>
+<h3 id="tg-proc-changes">TG Proc Changes:</h3>
+<ul>
+<li>None, However over-writes most turret procs for magazine fed turrets.</li>
+</ul>
+<h3 id="defines">Defines:</h3>
+<ul>
+<li>Several temporary defines. See first section of turret_framework.dm</li>
+</ul>
+<h3 id="master-file-additions">Master file additions</h3>
+<ul>
+<li>N\A</li>
+</ul>
+<h3 id="included-files-that-are-not-contained-in-this-module">Included files that are not contained in this module:</h3>
+<ul>
+<li>modular_nova\module\GAGS\json_configs\turret.json</li>
+<li>modular_nova\module\GAGS\json_configs\turret_toolbox.json</li>
+<li>modular_nova\module\tarkon\code\misc_fluff\turret.dm</li>
+<li>modular_nova\nodule\tarkon\icons\obj\turret.dmi</li>
+<li>modular_nova\nodule\tarkon\icons\mob\clothing\belt.dmi // PARTIAL</li>
+<li>modular_nova\nodule\tarkon\icons\mob\inhands\lefthand.dmi // PARTIAL</li>
+<li>modular_nova\nodule\tarkon\icons\mob\inhands\righthand.dmi // PARTIAL</li>
+</ul>
+<h3 id="credits">Credits:</h3>
+<p>ZenithEevee - Main author
+CliffracerX - GAGS work
+VinylSpider - Code Assistance
+Paxil - i nabbed a bit of your artstyle and colour for some of the sprites</p></td></tr></table></main><footer>tgstation.dme <a href="https://github.com/Bubberstation/Bubberstation/tree/fd8fcb008182295698dbdaf8a25de00809b2e4a1">fd8fcb0</a> (master) — <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.11.0</a></footer></body></html>
