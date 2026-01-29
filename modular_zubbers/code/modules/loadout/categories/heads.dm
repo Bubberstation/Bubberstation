@@ -56,11 +56,16 @@
 	donator_only = TRUE
 	restricted_roles = list(JOB_NT_REP)
 
-/* why does sec have two caps with different stats ? this is so fucking messy VIROWIP
+// SECOFF
 
-/datum/loadout_item/head/security_cap
+/datum/loadout_item/head/security_helmet
+	name = "Security Helmet"
+	item_path = /obj/item/clothing/head/helmet/sec
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/head/head/soft/sec
 	name = "Security Cap"
-	item_path = /obj/item/clothing/head/security_cap
+	item_path = /obj/item/clothing/head/soft/sec
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/security_cap/veteran
@@ -68,52 +73,59 @@
 	item_path = /obj/item/clothing/head/soft/veteran
 	restricted_roles = list(ALL_JOBS_SEC)
 
-/datum/loadout_item/head/security_cap/colonial
-	name = "Imperial Police Cap"
-	item_path = /obj/item/clothing/head/hats/colonial/nri_police
-	restricted_roles = list(JOB_CUSTOMS_AGENT)
-
 /datum/loadout_item/head/security_beanie
 	name = "Security Beanie"
 	item_path = /obj/item/clothing/head/security_beanie
 	restricted_roles = list(ALL_JOBS_SEC)
 
-/datum/loadout_item/head/beret/sec/peacekeeper
-	name = "Peacekeeper Beret"
-	item_path = /obj/item/clothing/head/beret/sec/peacekeeper
+/datum/loadout_item/head/beret/sec/viro
+	name = "Security Beret"
+	item_path = /obj/item/clothing/head/beret/sec/viro
 	restricted_roles = list(ALL_JOBS_SEC)
 
-/datum/loadout_item/head/beret/sec/white
-	name = "Peacekeeper White Beret"
-	item_path = /obj/item/clothing/head/beret/sec/white
-	restricted_roles = list(ALL_JOBS_SEC)
+// WARDEN
 
-/datum/loadout_item/head/helmet/sec/terra
-	name = "Sol Police Helmet"
-	item_path = /obj/item/clothing/head/helmet/sec/terra
-	restricted_roles = list(ALL_JOBS_SEC)
+/datum/loadout_item/head/hats/warden/viro
+	name = "Warden's Cap"
+	item_path = /obj/item/clothing/head/hats/warden/viro
+	restricted_roles = list(JOB_WARDEN)
 
-/datum/loadout_item/head/hats/warden/police/patrol
-	name = "Warden's Police Cap"
-	item_path = /obj/item/clothing/head/hats/warden/police/patrol
-	restricted_roles = list(ALL_JOBS_SEC)
+/datum/loadout_item/head/hats/warden/viro/alt
+	name = "Warden's Cap"
+	item_path = /obj/item/clothing/head/hats/warden/viro/alt
+	restricted_roles = list(JOB_WARDEN)
 
-/datum/loadout_item/head/helmet/sec
-	name = "Security Red Helmet"
-	item_path = /obj/item/clothing/head/helmet/sec
-	restricted_roles = list(ALL_JOBS_SEC)
+/datum/loadout_item/head/hats/warden/drill/viro
+	name = "Warden's Campaign Cover"
+	item_path = /obj/item/clothing/head/hats/warden/drill/viro
+	restricted_roles = list(JOB_WARDEN)
 
-/datum/loadout_item/head/helmet/nri_police
-	name = "Imperial Police Helmet"
-	item_path = /obj/item/clothing/head/helmet/nri_police
-	restricted_roles = list(JOB_CUSTOMS_AGENT)
+/datum/loadout_item/head/hats/warden/viro/beret
+	name = "Warden's Campaign Beret"
+	item_path = /obj/item/clothing/head/hats/warden/viro/beret
+	restricted_roles = list(JOB_WARDEN)
+
+// HOS
+
+/datum/loadout_item/head/hats/hos/cap
+	name = "Head of Security's Cap"
+	item_path = /obj/item/clothing/head/hats/warden/viro/beret
+	restricted_roles = list(JOB_HEAD_OF_SECURITY)
+
+/datum/loadout_item/head/hats/hos/cap/beret
+	name = "Head of Security's Beret"
+	item_path = /obj/item/clothing/head/hats/hos/cap/beret
+	restricted_roles = list(JOB_HEAD_OF_SECURITY)
+
+/datum/loadout_item/head/helmet/sec/hos
+	name = "Head of Security's Helmet"
+	item_path = /obj/item/clothing/head/helmet/sec/hos
+	restricted_roles = list(JOB_HEAD_OF_SECURITY)
 
 /datum/loadout_item/head/beret/sec/security_medic
 	name = "Security Medic Beret"
 	item_path = /obj/item/clothing/head/beret/sec/security_medic
 	restricted_roles = list(JOB_SECURITY_MEDIC)
-
-*/
 
 /datum/loadout_item/head/lace_bow
 	name = "Hair Bow"
@@ -149,3 +161,12 @@
 	name = "Skull Helmet"
 	item_path = /obj/item/clothing/head/helmet/skull/fake
 
+/datum/loadout_item/head/security_cap/colonial
+	name = "Imperial Police Cap"
+	item_path = /obj/item/clothing/head/hats/colonial/nri_police
+	restricted_roles = list(JOB_CUSTOMS_AGENT)
+
+/datum/loadout_item/head/helmet/nri_police
+	name = "Imperial Police Helmet"
+	item_path = /obj/item/clothing/head/helmet/nri_police
+	restricted_roles = list(JOB_CUSTOMS_AGENT)
