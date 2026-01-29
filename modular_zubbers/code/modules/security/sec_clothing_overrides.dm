@@ -102,6 +102,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	icon_state = "security_uniform"
 	female_sprite_flags = NO_FEMALE_UNIFORM
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 
 /obj/item/clothing/under/rank/security/officer/viro/skirt
 	name = "security jumpskirt"
@@ -120,6 +121,7 @@
 	name = "security officer formals"
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 	icon_state = "security_formals"
 	female_sprite_flags = NO_FEMALE_UNIFORM
 
@@ -172,6 +174,7 @@
 /obj/item/clothing/under/rank/security/warden/grey
 	icon = 'icons/obj/clothing/under/security.dmi'
 	worn_icon = 'icons/mob/clothing/under/security.dmi'
+	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/security_digi.dmi'
 
 /obj/item/clothing/under/rank/security/warden/formal
 	name = "\proper the Warden's formals"
@@ -194,15 +197,19 @@
 	icon_state = "hos_uniform"
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
+	female_sprite_flags = NO_FEMALE_UNIFORM
 
 /obj/item/clothing/under/rank/security/head_of_security/skirt
 	name = "\proper the Head of Security's jumpskirt"
 	desc = "A padded jumpskirt made out of wind-resistant, slightly water-repellent materials for the Head of Security for Nanotrasen Corporate Security."
 	icon_state = "hos_skirt"
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/under/rank/security/head_of_security/grey
 	icon = 'icons/obj/clothing/under/security.dmi'
 	worn_icon = 'icons/mob/clothing/under/security.dmi'
+	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/security_digi.dmi'
 
 /obj/item/clothing/under/rank/security/head_of_security/alt
 	name = "\proper the Head of Security's turtleneck"
@@ -212,10 +219,12 @@
 /obj/item/clothing/under/rank/security/head_of_security/alt/skirt
 	name = "\proper the Head of Security's skirtleneck"
 	icon_state = "hosalt_skirt"
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/under/rank/security/head_of_security/parade
 	icon = 'icons/obj/clothing/under/security.dmi'
 	worn_icon = 'icons/mob/clothing/under/security.dmi'
+	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/security_digi.dmi'
 
 /obj/item/clothing/under/rank/security/head_of_security/formal
 	name = "\proper the Head of Security's formals"
@@ -359,6 +368,7 @@
 /obj/item/clothing/shoes/jackboots/sec
 	name = "security boots"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	icon_state = "jackboots_sec"
 
 /*
