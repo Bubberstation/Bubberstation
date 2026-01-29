@@ -78,15 +78,6 @@
 	inhand_icon_state = "jackboots"
 	worn_icon_state = "armadyne_boots"
 
-
-/obj/item/storage/belt/security/webbing/peacekeeper/armadyne
-	name = "armadyne webbing"
-	desc = "Unique and versatile chest rig, can hold security gear."
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
-	icon_state = "armadyne_webbing"
-	worn_icon_state = "armadyne_webbing"
-
 /obj/item/storage/belt/security/peacekeeper/armadyne
 	name = "armadyne belt"
 	desc = "Can hold security gear like handcuffs and flashes. Has a holster for a gun."
@@ -154,7 +145,7 @@
 	suit = /obj/item/clothing/suit/armor/vest/peacekeeper/armadyne/armor
 	suit_store = /obj/item/gun/ballistic/automatic/sol_rifle
 	shoes = /obj/item/clothing/shoes/jackboots/peacekeeper/armadyne
-	belt = /obj/item/storage/belt/security/webbing/peacekeeper/armadyne
+	belt = /obj/item/storage/belt/security/webbing
 	backpack_contents = list(
 		/obj/item/storage/box/handcuffs,
 		/obj/item/ammo_box/magazine/c40sol_rifle/standard,
@@ -165,17 +156,15 @@
 	l_pocket = /obj/item/megaphone/command
 	id = /obj/item/card/id/advanced/armadyne/security
 
-
 /datum/outfit/armadyne_security/high_alert
 	name = "Armadyne Corporate Security (High Alert)"
-	belt = /obj/item/storage/belt/security/webbing/peacekeeper/armadyne
+	belt = /obj/item/storage/belt/security/webbing
 	suit_store = /obj/item/gun/ballistic/automatic/sol_rifle
 	backpack_contents = list(
 		/obj/item/melee/baton/telescopic,
 		/obj/item/storage/box/handcuffs,
 		/obj/item/ammo_box/magazine/c40sol_rifle/standard = 2,
 	)
-
 
 /datum/outfit/armadyne_security/commander/high_alert
 	name = "Armadyne Corporate Security Commander (High Alert)"
