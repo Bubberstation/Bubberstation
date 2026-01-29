@@ -42,7 +42,7 @@
 	. = ..()
 	restricted_roles |= JOB_SECURITY_MEDIC
 
-/datum/loadout_item/under/jumpsuit/security_peacekeeper/New()
+/datum/loadout_item/under/jumpsuit/security/New()
 	. = ..()
 	restricted_roles |= JOB_SECURITY_MEDIC
 

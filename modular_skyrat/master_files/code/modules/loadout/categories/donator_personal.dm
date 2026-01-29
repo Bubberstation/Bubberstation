@@ -459,18 +459,6 @@
 	item_path = /obj/item/toy/plush/skyrat/plushie_elofy
 	//ckeywhitelist = list("october23") // Asked it to be public.
 
-/datum/loadout_item/suit/elofy
-	name = "Solar Admiral Coat"
-	item_path = /obj/item/clothing/suit/armor/hos/elofy
-//	ckeywhitelist = list("october23")
-	restricted_roles = list(JOB_HEAD_OF_SECURITY)
-
-/datum/loadout_item/head/elofy
-	name = "Solar Admiral Hat"
-	item_path = /obj/item/clothing/head/hats/hos/elofy
-	ckeywhitelist = list("october23")
-	restricted_roles = list(JOB_HEAD_OF_SECURITY)
-
 /datum/loadout_item/pocket_items/transponder
 	name = "Broken Helian Transponder"
 	item_path = /obj/item/donator/transponder

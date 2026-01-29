@@ -1,15 +1,9 @@
 //Title Capitalization for names please!!!
 
-/datum/loadout_item/uniform/security/hecu
-	name = "Urban Camouflage BDU"
-	item_path = /obj/item/clothing/under/rank/security/officer/hecu
-	donator_only = TRUE
-	restricted_roles = list(ALL_JOBS_SEC, JOB_BLUESHIELD)
-
 /datum/loadout_item/uniform/security/camo
 	name = "Armored Camouflage Uniform"
 	item_path = /obj/item/clothing/under/rank/security/camo
-	restricted_roles = list(ALL_JOBS_SEC, JOB_BLUESHIELD)
+	restricted_roles = list(JOB_BLUESHIELD)
 
 /datum/loadout_item/uniform/camo
 	name = "Camouflage Uniform"
@@ -25,44 +19,19 @@
 	item_path = /obj/item/clothing/under/rank/nanotrasen_consultant/stripper
 	restricted_roles = list(JOB_NT_REP)
 
-/datum/loadout_item/uniform/medrscrubs
-	name = "Security Medic's Scrubs"
-	item_path = /obj/item/clothing/under/rank/medical/scrubs/skyrat/red/sec
-	restricted_roles = list(JOB_SECURITY_MEDIC)
-
-/datum/loadout_item/uniform/security/officer/redsec
-	name = "Security Red Uniform"
-	item_path = /obj/item/clothing/under/rank/security/officer/redsec
-	restricted_roles = list(ALL_JOBS_SEC)
-
-/datum/loadout_item/uniform/security/peacekeeper/armadyne
-	name = "Armadyne Corporate Uniform"
-	item_path =/obj/item/clothing/under/rank/security/peacekeeper/armadyne
-	restricted_roles = list(ALL_JOBS_SEC)
-
-/datum/loadout_item/uniform/security/utility/redsec
-	name = "Security Red Utility Uniform"
-	item_path = /obj/item/clothing/under/rank/security/skyrat/utility/redsec
-	restricted_roles = list(ALL_JOBS_SEC)
-
-/datum/loadout_item/uniform/security/officer/formal
-	name = "Security Officer's Formal Uniform"
-	item_path = /obj/item/clothing/under/rank/security/officer/formal
-	restricted_roles = list(ALL_JOBS_SEC)
-
-/datum/loadout_item/uniform/security/peacekeeper/security_medic
+/datum/loadout_item/uniform/security/security_medic
 	name = "Security Medic Turtleneck"
-	item_path =/obj/item/clothing/under/rank/security/peacekeeper/security_medic
+	item_path =/obj/item/clothing/under/rank/security/security_medic
 	restricted_roles = list(JOB_SECURITY_MEDIC)
 
-/datum/loadout_item/uniform/security/peacekeeper/security_medic/skirt
+/datum/loadout_item/uniform/security/security_medic/skirt
 	name = "Security Medic Skirtleneck"
-	item_path =/obj/item/clothing/under/rank/security/peacekeeper/security_medic/skirt
+	item_path =/obj/item/clothing/under/rank/security/security_medic/skirt
 	restricted_roles = list(JOB_SECURITY_MEDIC)
 
-/datum/loadout_item/uniform/security/peacekeeper/security_medic/alternate
+/datum/loadout_item/uniform/security/security_medic/alternate
 	name = "Security Medic Jumpsuit"
-	item_path = /obj/item/clothing/under/rank/security/peacekeeper/security_medic/alternate
+	item_path = /obj/item/clothing/under/rank/security/security_medic/alternate
 	restricted_roles = list(JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/uniform/security/corrections_officer

@@ -181,7 +181,6 @@
 		"Engi Yellow" = /obj/effect/turf_decal/tile/yellow::color,
 		"Med Blue" = /obj/effect/turf_decal/tile/blue::color,
 		"R&D Purple" = /obj/effect/turf_decal/tile/purple::color,
-		"Sec Blue" = "#486091", // BUBBER EDIT CHANGE
 		"Sec Red" = /obj/effect/turf_decal/tile/red::color,
 		"Service Green" = /obj/effect/turf_decal/tile/green::color,
 		"Custom" = "custom",
@@ -236,7 +235,6 @@
 		"Engi Yellow" = /obj/effect/turf_decal/siding/yellow::color,
 		"Med Blue" = /obj/effect/turf_decal/siding/blue::color,
 		"R&D Purple" = /obj/effect/turf_decal/siding/purple::color,
-		"Sec Blue" = "#486091", // BUBBER EDIT CHANGE
 		"Sec Red" = /obj/effect/turf_decal/siding/red::color,
 		"Service Green" = /obj/effect/turf_decal/siding/green::color,
 		"Custom" = "custom",

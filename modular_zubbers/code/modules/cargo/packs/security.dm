@@ -95,6 +95,7 @@
 /datum/supply_pack/security/armory/laser_carbine
 	cost = CARGO_CRATE_VALUE * 7
 
+/* ugly takyon sprites - readd later VIROWIP
 /datum/supply_pack/security/combine
 	name = "Civil Protection Uniforms"
 	desc = "Extra supplies we got from some weird old guy in a blue suit. Contains six uniforms, \
@@ -110,3 +111,4 @@
 				)
 	crate_name = "benefactor supply crate"
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
+*/

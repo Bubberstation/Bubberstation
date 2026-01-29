@@ -1,0 +1,1 @@
+/datum/outfit/job/security

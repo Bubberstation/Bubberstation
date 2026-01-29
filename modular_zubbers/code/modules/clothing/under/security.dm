@@ -21,44 +21,6 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/maidsec.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/maidsec_d.dmi'
 
-//Metro Cops
-
-/obj/item/clothing/under/rank/security/metrocop //Sprite done by HL13 Station
-	name = "civil protection uniform"
-	desc = "Standard issue uniforms for Civil Protection forces. Uses advanced GigaSlop brand Matrixes to allow alternative variants!"
-	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
-	icon_state = "civilprotection"
-	inhand_icon_state =  null
-	can_adjust = FALSE
-
-/obj/item/clothing/under/rank/security/metrocop/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/metrocop)
-
-/datum/atom_skin/metrocop
-	abstract_type = /datum/atom_skin/metrocop
-
-/datum/atom_skin/metrocop/metro
-	preview_name = "MetroCop"
-	new_icon_state = "civilprotection"
-
-/datum/atom_skin/metrocop/red
-	preview_name = "Red"
-	new_icon_state = "divisionallead"
-
-/datum/atom_skin/metrocop/overwatch_white
-	preview_name = "White Overwatch"
-	new_icon_state = "overwatch_white"
-
-/datum/atom_skin/metrocop/overwatch
-	preview_name = "Overwatch"
-	new_icon_state = "overwatch"
-
-/datum/atom_skin/metrocop/overwatch_red
-	preview_name = "Red Overwatch"
-	new_icon_state = "overwatch_red"
-
 //MGS stuff sprited by Crumpaloo for onlyplateau, please credit when porting, which you obviously have permission to do.
 /obj/item/clothing/under/rank/security/snake
 	name = "stealth suit"
@@ -81,3 +43,10 @@
 	greyscale_colors = "#A53228#333333#292929"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
+
+/*
+
+	// VIROSEC
+
+*/
+
