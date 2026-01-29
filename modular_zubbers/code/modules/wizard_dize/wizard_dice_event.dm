@@ -14,9 +14,6 @@
 	weight = 10
 	earliest_start = 60 MINUTES
 
-	track = EVENT_TRACK_MODERATE
-	tags = list(TAG_COMMUNAL,TAG_COMBAT)	
-
 /datum/round_event/wizard_dice
 	announce_chance = 100
 	//the "when" stuff is measured in 2 second ticks, not deciseconds.

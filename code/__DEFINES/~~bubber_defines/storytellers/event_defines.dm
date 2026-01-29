@@ -1,0 +1,34 @@
+#define STORYTELLER_EVENT storyteller_implementation = TRUE
+/proc/is_storyteller_event(_evt)
+	if(istype(_evt, /datum/round_event))
+		var/datum/round_event/evt = _evt
+		return evt.storyteller_implementation
+	else
+		return FALSE
+
+#define BB_RAIDER_GROUP_LEADER "BB_raider_group_leader"
+#define BB_RAIDER_STRIKE_POINT "BB_raider_strike_point"
+#define BB_RAIDER_HIGH_VALUE_AREAS "BB_raider_hightvalue_areas"
+#define BB_RAIDER_CURRENT_OBJECTIVE "BB_raider_current_objective"
+#define BB_RAIDER_GROUP_MEMBERS "BB_raider_group_members"
+#define BB_RAIDER_ATTACK_METHOD "BB_raider_attack_method"
+#define BB_RAIDER_INTERESTING_ITEMS "BB_raider_interesting_items"
+#define BB_RAIDER_INTERESTING_TARGETS "BB_raider_interesting_targets"
+#define BB_RAIDER_MY_ROLE "BB_raider_my_role"
+#define BB_RAIDER_ROLE_LEADER "BB_raider_role_leader"
+#define BB_RAIDER_ROLE_MEMBER "BB_raider_role_member"
+#define BB_RAIDER_ROLE_SHOOTER "BB_raider_role_shooter"
+#define BB_RAIDER_ROLE_LOOTER "BB_raider_role_looter"
+#define BB_RAIDER_ROLE_SABOTEUR "BB_raider_role_saboteur"
+#define BB_RAIDER_VALUABLE_OBJECTS "BB_raider_valuable_objects"
+#define BB_RAIDER_TEAM "BB_raider_team"
+#define BB_RAIDER_REACH_STRIKE_POINT "BB_raider_reach_strike_point"
+#define BB_RAIDER_PATH_WAYPOINTS "BB_raider_path_waipoints"
+#define BB_RAIDER_FINAL_DESTINATION "BB_raider_final_deestination"
+#define BB_PATH_FINDER "BB_my_pathfinder"
+#define BB_RAIDER_DESTRUCTION_TARGET "BB_raider_destruction_target"
+#define BB_RAIDER_LOOT_TARGET "BB_raider_loot_target"
+#define BB_RAIDER_SEARCH_COOLDOWN_END "BB_riader_search_cooldown_end"
+#define BB_RAIDER_HOLD_COOLDOWN_END "BB_raider_hold_cooldown_end"
+
+#define TRAIT_NO_REBOOT_EVENT "stroyteller_trait_no_reboot_event"

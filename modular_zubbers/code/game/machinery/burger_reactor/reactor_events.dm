@@ -9,8 +9,7 @@ GLOBAL_VAR_INIT(rbmk_did_warning, FALSE)
 	earliest_start = 30 MINUTES
 	min_players = 30
 	description = "Gives a warning that the station is using too much RBMK for its own good. If the event is run twice, the warning turns into consequences."
-	tags = list(TAG_COMMUNAL, TAG_DESTRUCTIVE)
-	track = EVENT_TRACK_MODERATE
+	tags = list(STORY_TAG_TRAGIC, STORY_TAG_ENVIRONMENTAL)
 
 /datum/round_event_control/rbmk_voidcheck/can_spawn_event(players_amt, allow_magic)
 

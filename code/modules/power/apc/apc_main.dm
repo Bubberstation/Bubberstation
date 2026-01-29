@@ -530,6 +530,7 @@
 			if(get_malf_status(user))
 				malfvacate()
 		if("reboot")
+			if(HAS_TRAIT(src, TRAIT_NO_REBOOT_EVENT)) return TRUE // BUBBER EDIT
 			failure_timer = 0
 			force_update = FALSE
 			update_appearance()

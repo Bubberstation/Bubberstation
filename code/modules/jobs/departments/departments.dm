@@ -44,6 +44,7 @@
 			job_datum.job_flags &= ~JOB_NEW_PLAYER_JOINABLE
 			job_datum.spawn_positions = 0
 			job_datum.total_positions = 0
+			add_storyweight(job_datum) // BUBBER EDIT
 
 /// Returns all jobs that are in this category for jobbans
 /datum/job_department/proc/get_jobban_jobs()

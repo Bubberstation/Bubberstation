@@ -1,0 +1,494 @@
+#define ENTRY_EVENT "event"
+#define ENTRY_FIRE_TIME "fire_time"
+#define ENTRY_PLANNED_TIME "planned_time"
+#define ENTRY_CATEGORY "category"
+#define ENTRY_STATUS "status"
+#define EVENT_CLUSTER_AVOIDANCE_BUFFER (150 SECONDS)  // Buffer to avoid clustering events too closely
+#define MAX_PLAN_ATTEMPTS 100                  		  // Max attempts to find a free slot during planning
+
+/datum/storyteller_planner
+	VAR_PRIVATE/datum/storyteller/owner
+	/// Timeline plan: Assoc list of "[world.time + offset]" -> list(event_instance, category, status="pending|firing|completed")
+	VAR_PRIVATE/list/timeline = list()
+	/// Recalc frequency
+	VAR_PRIVATE/recalc_interval = STORY_RECALC_INTERVAL
+
+	VAR_PRIVATE/planning_cooldown = 5 MINUTES
+
+	COOLDOWN_DECLARE(event_planning_cooldown)
+
+	COOLDOWN_DECLARE(recalculate_cooldown)
+
+	// Threshold for population spike detection
+	var/population_spike_threshold = 30
+
+/datum/storyteller_planner/New(datum/storyteller/_owner)
+	..()
+	owner = _owner
+
+
+/// Main update_plan: Scans timeline for ready events, marks them for firing, cleans up, and returns list of ready events.
+/// Does NOT execute events—returns them for the storyteller to handle.
+/// Handles recalculation and adding new events if needed. Inspired by adaptive scheduling algorithms from rimworld
+/datum/storyteller_planner/proc/update_plan(datum/storyteller/ctl, datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/bal)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!timeline)
+		build_timeline(ctl, inputs, bal)
+
+	var/list/ready_events = list()  // Events ready to fire (returned to storyteller)
+	var/current_time = world.time
+
+	// Scan and process upcoming events
+	for(var/offset_str in get_upcoming_events())
+		var/offset = text2num(offset_str)
+		var/list/entry = get_entry_at(offset)
+		var/datum/round_event_control/evt = entry[ENTRY_EVENT]
+
+		if(current_time < offset)
+			continue
+
+		var/status = entry[ENTRY_STATUS] || STORY_GOAL_PENDING
+		if(status != STORY_GOAL_PENDING)
+			continue
+
+		if(!evt.can_fire_now(inputs, ctl))
+			timeline -= offset_str
+			var/replan_delay = get_next_event_delay(evt, ctl)
+			var/last_time = get_last_reference_time()
+			try_plan_event(evt, last_time + replan_delay, FALSE)  // Allow insertion/shifting
+			continue
+
+		// Prevent multiple antagonist events in one cycle
+		var/has_antagonist = FALSE
+		for(var/datum/round_event_control/ready in ready_events)
+			if(ready.story_category & STORY_GOAL_ANTAGONIST)
+				has_antagonist = TRUE
+				break
+		if(has_antagonist && (evt.story_category & STORY_GOAL_ANTAGONIST))
+			continue
+
+		// Mark as firing and add to ready
+		entry[ENTRY_STATUS] = STORY_GOAL_FIRING
+		ready_events += evt
+
+	// Clean up completed/failed events from timeline
+	for(var/offset_str in timeline.Copy())
+		var/list/entry = timeline[offset_str]
+		if(entry[ENTRY_STATUS] in list(STORY_GOAL_COMPLETED, STORY_GOAL_FAILED, STORY_GOAL_FIRING))
+			timeline -= offset_str
+
+	// Count pending events
+	var/pending_count = 0
+	for(var/offset_str in timeline)
+		if(timeline[offset_str][ENTRY_STATUS] == STORY_GOAL_PENDING)
+			pending_count++
+
+	// Add next event(s) if low on pending and cooldown finished
+	if(pending_count <= STORY_INITIAL_GOALS_COUNT && COOLDOWN_FINISHED(src, event_planning_cooldown))
+		var/max_consecutive = CONFIG_GET(number/story_max_consecutive_events)
+		var/multi_event_tension = CONFIG_GET(number/story_multi_event_tension_threshold)
+		var/multi_event_threat = CONFIG_GET(number/story_multi_event_threat_threshold)
+
+		// Determine how many events to plan based on storyteller state
+		var/events_to_plan = 1
+		if(ctl.current_tension >= multi_event_tension && ctl.threat_points >= multi_event_threat)
+			// Plan multiple events if tension and threat are high enough
+			events_to_plan = min(max_consecutive, max(1, round((ctl.current_tension - multi_event_tension) / 20) + 1))
+
+		var/planned_count = 0
+		for(var/i = 1 to events_to_plan)
+			if(pending_count + planned_count >= STORY_INITIAL_GOALS_COUNT + max_consecutive)
+				break
+			if(add_next_event(ctl, inputs, bal))
+				planned_count++
+			else
+				break
+
+		if(planned_count > 0)
+			COOLDOWN_START(src, event_planning_cooldown, planning_cooldown)
+
+	// Recalculate if cooldown finished
+	if(COOLDOWN_FINISHED(src, recalculate_cooldown))
+		COOLDOWN_START(src, recalculate_cooldown, recalc_interval)
+		recalculate_plan(ctl, inputs, bal, FALSE)
+
+	sort_events()
+	return ready_events  // Return ready events for storyteller to fire
+
+
+/// Recalculate the entire plan: Rebuild timeline from current state.
+/// Clears invalid/unavailable events, ensures at least STORY_INITIAL_GOALS_COUNT pending events.
+/// Generates adaptive chain with anti-clustering and major event spacing.
+/datum/storyteller_planner/proc/recalculate_plan(datum/storyteller/ctl, datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/bal, force = FALSE)
+	// Clean invalid events and count pending
+	var/pending_count = 0
+	var/list/upcoming_offsets = get_upcoming_events(length(timeline))
+	var/list/to_delete = list()
+
+	for(var/offset_str in upcoming_offsets)
+		var/list/entry = timeline[offset_str]
+		var/datum/round_event_control/event_control = entry[ENTRY_EVENT]
+		if(!event_control.is_avaible(inputs, ctl) && !SSstorytellers.hard_debug)
+			message_admins("[ctl.name] canceled event [event_control.name] since it is no longer available for firing")
+			to_delete += offset_str
+			continue
+		if(entry[ENTRY_STATUS] == STORY_GOAL_PENDING)
+			pending_count += 1
+
+	for(var/delete_offset in to_delete)
+		cancel_event(delete_offset)
+
+	// Full rebuild if forced or population spike detected
+	var/need_recalc = ctl.has_population_spike(population_spike_threshold) && !force
+	if(need_recalc && pending_count >= STORY_INITIAL_GOALS_COUNT)
+		scale_timeline()
+		return timeline
+	if(!force)
+		return timeline
+	// Actually rebuilding timeline
+	message_admins("[ctl.name] [force ? "was forced to" : ""] rebuild event timeline!")
+	clear_timeline()
+	build_timeline(ctl, inputs, bal)
+
+
+/// Scales the timeline by adjusting event times to match current storyteller pacing.
+/// Attempts to bring future events closer if they are too far ahead
+/datum/storyteller_planner/proc/scale_timeline(datum/storyteller/ctl, datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/bal, force = FALSE)
+	var/list/upcoming_offsets = get_upcoming_events(length(timeline))
+	var/scaled_average_time = ctl.get_event_interval()
+	var/scaled_grace = ctl.get_scaled_grace()
+	var/current_time = world.time
+
+	for(var/offset_str in upcoming_offsets)
+		var/list/entry = timeline[offset_str]
+		if(!entry[ENTRY_EVENT])
+			continue
+		var/datum/round_event_control/evt = entry[ENTRY_EVENT]
+		if(!evt)
+			cancel_event(offset_str)
+			continue
+		var/planned_when = entry[ENTRY_PLANNED_TIME]
+		// Calculate ideal time based on current pacing
+		var/required_offset = current_time + scaled_average_time
+		if(evt.story_category & STORY_GOAL_MAJOR)
+			required_offset += scaled_grace
+
+		var/event_time = text2num(offset_str)
+		if(required_offset < event_time)
+			// Event is too far in the future, try to bring it closer
+			var/difference = required_offset - event_time
+			if(difference >= 5 MINUTES)
+				difference = 5 MINUTES  // Cap the adjustment
+			difference *= ctl.mood.get_event_frequency_multiplier()
+			required_offset += difference
+			var/new_time = planned_when + (required_offset - event_time)
+			reschedule_event(offset_str, new_time)
+			current_time = new_time
+		else
+			current_time = event_time
+	sort_events()
+	return timeline
+
+
+/// Build initial timeline
+/datum/storyteller_planner/proc/build_timeline(datum/storyteller/ctl, datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/bal)
+	timeline = list()
+
+	var/target_count = STORY_INITIAL_GOALS_COUNT
+	for(var/i = 1 to target_count)
+		add_next_event(ctl, inputs, bal)
+
+	COOLDOWN_START(src, event_planning_cooldown, planning_cooldown)
+	COOLDOWN_START(src, recalculate_cooldown, recalc_interval)
+	return timeline
+
+
+/// Adds the next event to the timeline with improved planning: selects category/event, calculates delay,
+/// enforces major event spacing and anti-clustering during insertion.
+/datum/storyteller_planner/proc/add_next_event(datum/storyteller/ctl, datum/storyteller_inputs/inputs, datum/storyteller_balance_snapshot/bal, evt, silence = FALSE)
+	var/datum/round_event_control/new_event_control
+	if(istype(evt, /datum/round_event_control))
+		new_event_control = evt
+	else if(ispath(evt, /datum/round_event_control))
+		evt = locate(evt) in SSstorytellers.events_by_id
+	if(!evt)
+		evt = build_event(ctl)
+	new_event_control = evt
+	if(!new_event_control)
+		return FALSE
+
+	var/next_delay = get_next_event_delay(new_event_control, ctl)
+	var/last_time = get_last_reference_time()
+	var/fire_offset = last_time + next_delay
+
+	if(try_plan_event(new_event_control, fire_offset, FALSE, silence))  // Allow insertion with anti-clustering
+		new_event_control.on_planned(fire_offset)
+		return TRUE
+	return FALSE
+
+
+/// Attempts to plan an event at the target time. If slot taken, tries to insert nearby with buffer.
+/// If fixed_time=TRUE, fails if exact time unavailable. Enforces anti-clustering buffer.
+/datum/storyteller_planner/proc/try_plan_event(datum/round_event_control/event_control, time, fixed_time = FALSE, silence = FALSE)
+	if(!event_control)
+		return FALSE
+	if(!timeline)
+		timeline = list()
+
+	var/base_delay = time
+	var/attempts = 0
+
+	while(attempts < MAX_PLAN_ATTEMPTS)
+		var/target_time = fixed_time ? time : base_delay
+		var/target_str = time_key(target_time)
+		// Check for clustering, ensure no event within EVENT_CLUSTER_AVOIDANCE_BUFFER
+		if(!is_slot_available(target_time) && !silence)
+			base_delay += EVENT_CLUSTER_AVOIDANCE_BUFFER + rand(10 SECONDS, 30 SECONDS)
+			attempts++
+			continue
+
+		timeline[target_str] = list(
+			ENTRY_EVENT = event_control,
+			ENTRY_FIRE_TIME = target_time,
+			ENTRY_CATEGORY = event_control.story_category,
+			ENTRY_STATUS = STORY_GOAL_PENDING,
+			ENTRY_PLANNED_TIME = world.time,
+		)
+		if(!silence)
+			var/delay = text2num(target_str) - world.time
+			var/delay_minutes = round(delay / 600, 0.1)  // deciseconds → minutes
+			var/time_str
+			if (delay_minutes >= 60)
+				var/h = round(delay_minutes / 60)
+				var/m = round(delay_minutes % 60)
+				time_str = m ? "[h]h [m]m" : "[h]h"
+			else
+				time_str = "[round(delay_minutes)]m"
+
+			var/is_antag = event_control.story_category & STORY_GOAL_ANTAGONIST
+			var/format_name = "[event_control.name || event_control.id] [event_control.story_category & STORY_GOAL_ANTAGONIST ? span_red("- Antagonist event") : ""]"
+			var/cancel_ref = "[REF(event_control)]_[target_time]"
+			var/reroll_ref = "[REF(event_control)]_[target_time]_reroll"
+			message_admins("[owner.name] planned new event [format_name] in <b>[time_str]</b>. \
+				[is_antag ? "" : "(<a href='byond://?src=[REF(src)];cancel_event=[cancel_ref]'>CANCEL</a>)"] \
+				(<a href='byond://?src=[REF(src)];reroll_event=[reroll_ref]'>REROLL</a>)")
+		return TRUE
+
+	stack_trace("[owner.name] Failed to find free slot after [MAX_PLAN_ATTEMPTS] attempts for event [event_control.id || event_control.name].")
+	return FALSE
+
+
+/// Checks if a time slot is available, considering anti-clustering buffer around existing events.
+/datum/storyteller_planner/proc/is_slot_available(target_time)
+	var/buffer = EVENT_CLUSTER_AVOIDANCE_BUFFER
+	for(var/offset_str in timeline)
+		var/existing_time = text2num(offset_str)
+		if(abs(target_time - existing_time) < buffer)
+			return FALSE
+	return TRUE
+
+
+/proc/cmp_time_keys_asc(a, b)
+	return text2num(a) - text2num(b)
+
+/datum/storyteller_planner/proc/sort_events()
+	if(!timeline || !length(timeline))
+		return
+	var/list/sorted_keys = sortTim(timeline.Copy(), GLOBAL_PROC_REF(cmp_time_keys_asc))
+	var/list/new_timeline = list()
+	for(var/key in sorted_keys)
+		new_timeline[key] = timeline[key]
+	timeline = new_timeline
+
+/// Checks if an event is already in the timeline.
+/datum/storyteller_planner/proc/is_event_in_timeline(datum/round_event_control/event_control)
+	if(ispath(event_control))
+		event_control = locate(event_control) in SSstorytellers.events_by_id
+
+	for(var/offset_str in timeline)
+		var/list/entry = timeline[offset_str]
+		if(entry[ENTRY_EVENT] == event_control)
+			return TRUE
+	return FALSE
+
+
+/datum/storyteller_planner/proc/time_key(num)
+	PRIVATE_PROC(TRUE)
+	if(!isnum(num))
+		return num
+	return _num2text(num)
+
+
+/datum/storyteller_planner/proc/get_entry_at(time)
+	var/key = ""
+	if(isnum(time))
+		key = time_key(time)
+	else
+		key = time
+	return timeline[key]
+
+
+/datum/storyteller_planner/proc/set_entry_at(time, entry)
+	if(!entry || !islist(entry)) return
+	timeline[time_key(time)] = entry
+	return TRUE
+
+
+/// Returns list of upcoming offset strings (keys), limited to N.
+/datum/storyteller_planner/proc/get_upcoming_events(limit = length(timeline))
+	var/list/upcoming = list()
+	var/count = 0
+	for(var/offset_str in sortTim(timeline.Copy(), GLOBAL_PROC_REF(cmp_time_keys_asc)))
+		if(count >= limit)
+			break
+		upcoming += offset_str
+		count++
+	return upcoming
+
+
+/datum/storyteller_planner/proc/get_closest_event()
+	for(var/offset_str in sortTim(timeline.Copy(), GLOBAL_PROC_REF(cmp_time_keys_asc)))
+		var/entry = timeline[offset_str]
+		return entry[ENTRY_EVENT]
+
+
+/datum/storyteller_planner/proc/get_closest_entry()
+	for(var/offset_str in sortTim(timeline.Copy(), GLOBAL_PROC_REF(cmp_time_keys_asc)))
+		return timeline[offset_str]
+	return null
+
+
+/// Reschedules an event to a new offset, using try_plan_event for insertion.
+/datum/storyteller_planner/proc/reschedule_event(old_offset, new_offset)
+	var/old_str = time_key(old_offset)
+	if(!timeline[old_str])
+		return FALSE
+
+	if(try_plan_event(timeline[old_str][ENTRY_EVENT], new_offset, FALSE, TRUE))
+		cancel_event(old_offset)
+		return TRUE
+	return FALSE
+
+
+/// Cancels an event by removing it from timeline.
+/datum/storyteller_planner/proc/cancel_event(offset)
+	var/offset_str = time_key(offset)
+	if(!timeline[offset_str])
+		return FALSE
+	timeline -= offset_str
+	return TRUE
+
+
+/datum/storyteller_planner/proc/get_events_in_time(time = 1 MINUTES)
+	var/list/upcoming = list()
+	var/current_time = world.time
+	for(var/i = current_time to current_time + time)
+		var/str_i = time_key(i)
+		if(timeline[str_i])
+			upcoming += timeline[str_i]
+	return upcoming
+
+
+/datum/storyteller_planner/proc/next_offset()
+	return owner.get_event_interval() * (length(timeline) + 1)
+
+
+/datum/storyteller_planner/proc/get_closest_offset()
+	for(var/offset_str in sortTim(timeline.Copy(), GLOBAL_PROC_REF(cmp_time_keys_asc)))
+		return text2num(offset_str)
+
+
+/datum/storyteller_planner/proc/clear_timeline(clear_antagonist_events = FALSE)
+	for(var/offset in get_upcoming_events(length(timeline)))
+		var/list/entry = get_entry_at(offset)
+		if(!entry || !entry[ENTRY_CATEGORY] || !entry[ENTRY_EVENT])
+			timeline -= offset
+		if((entry[ENTRY_CATEGORY] & STORY_GOAL_ANTAGONIST) && !clear_antagonist_events)
+			continue
+		cancel_event(offset)
+
+
+/datum/storyteller_planner/proc/build_event(datum/storyteller/ctl)
+	return ctl.get_next_event()
+
+/datum/storyteller_planner/proc/get_next_event_delay(datum/round_event_control/event_control, datum/storyteller/ctl)
+	var/delay = ctl.get_event_interval()
+	if(event_control)
+		if(event_control.story_category & STORY_GOAL_GOOD)
+			delay *= 0.8
+		else if(event_control.story_category & STORY_GOAL_BAD)
+			delay += ctl.get_scaled_grace()
+		else if(event_control.story_category & STORY_GOAL_NEUTRAL)
+			delay *= 0.9
+		else if(event_control.story_category & STORY_GOAL_RANDOM)
+			delay *= rand(0.8, 1.2)
+	return delay
+
+
+/datum/storyteller_planner/proc/get_last_reference_time()
+	if(length(timeline))
+		return get_closest_offset()
+	return owner.get_time_since_last_event()
+
+/datum/storyteller_planner/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return TRUE
+
+	var/mob/user = usr
+	if(!user || !user.client || !check_rights_for(user.client, R_ADMIN))
+		return TRUE
+
+	if(href_list["cancel_event"])
+		var/ref_data = href_list["cancel_event"]
+		var/list/parts = splittext(ref_data, "_")
+		if(length(parts) >= 2)
+			var/time_str = parts[2]
+			var/time_val = text2num(time_str)
+
+			// Find event at this time
+			var/offset_str = time_key(time_val)
+			var/list/entry = get_entry_at(offset_str)
+			if(entry && entry[ENTRY_EVENT])
+				var/datum/round_event_control/evt = entry[ENTRY_EVENT]
+				cancel_event(time_val)
+				message_admins("[key_name_admin(user)] canceled [owner.name]'s planned event [evt.name || evt.id] at [time2text(time_val, "hh:mm", NO_TIMEZONE)].")
+				log_admin("[key_name(user)] canceled storyteller event [evt.name || evt.id]")
+		return TRUE
+
+	if(href_list["reroll_event"])
+		var/ref_data = href_list["reroll_event"]
+		var/list/parts = splittext(ref_data, "_")
+		if(length(parts) >= 3)
+			var/time_str = parts[2]
+			var/time_val = text2num(time_str)
+
+			// Find event at this time
+			var/offset_str = time_key(time_val)
+			var/list/entry = get_entry_at(offset_str)
+			if(entry && entry[ENTRY_EVENT])
+				var/datum/round_event_control/old_evt = entry[ENTRY_EVENT]
+				cancel_event(time_val)
+
+				var/datum/round_event_control/new_evt = build_event(owner)
+				if(new_evt)
+					var/new_time = time_val + rand(-2 MINUTES, 2 MINUTES) // Small variation
+					if(try_plan_event(new_evt, new_time, FALSE, TRUE))
+						message_admins("[key_name_admin(user)] rerolled [owner.name]'s planned event from [old_evt.name || old_evt.id] to [new_evt.name || new_evt.id].")
+						log_admin("[key_name(user)] rerolled storyteller event from [old_evt.name || old_evt.id] to [new_evt.name || new_evt.id]")
+					else
+						message_admins("[key_name_admin(user)] attempted to reroll [owner.name]'s event but failed to find a slot.")
+				else
+					message_admins("[key_name_admin(user)] attempted to reroll [owner.name]'s event but no new event could be generated.")
+		return TRUE
+
+	return FALSE
+
+
+#undef ENTRY_EVENT
+#undef ENTRY_FIRE_TIME
+#undef ENTRY_CATEGORY
+#undef ENTRY_STATUS
+#undef EVENT_CLUSTER_AVOIDANCE_BUFFER
+#undef MAX_PLAN_ATTEMPTS
+#undef ENTRY_PLANNED_TIME

@@ -86,7 +86,8 @@
 
 	else if(href_list["gamemode_panel"])
 		// dynamic_panel(usr) // BUBBER EDIT - STORYTELLER
-		SSgamemode.ui_interact(usr) // BUBBER EDIT - STORYTELLER
+		var/datum/storyteller_admin_ui/stl_ui = new // BUBBER EDIT - STORYTELLER
+		stl_ui.ui_interact(usr) // BUBBER EDIT - STORYTELLER
 
 	else if(href_list["call_shuttle"])
 		if(!check_rights(R_ADMIN))

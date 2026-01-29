@@ -1,0 +1,20 @@
+.theme-stortellerVote {
+  .TitleBar {
+    background: var(--background-color);
+  }
+
+  .Window {
+    background: var(--background-color);
+
+    &__content {
+      background-image: none;
+    }
+  }
+}
+
+.tooltip-content,
+.difficulty-tooltip {
+  white-space: pre-line;
+  line-height: 1.4;
+  padding: 2px 0;
+}
