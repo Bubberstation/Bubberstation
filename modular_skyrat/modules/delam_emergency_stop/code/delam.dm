@@ -14,6 +14,9 @@
 	if(sm.station_notified)
 		return
 
+	if(istype(sm.delamination_strategy, /datum/sm_delam/cascade))
+		return
+
 	SSsecurity_level.minimum_security_level(SEC_LEVEL_ORANGE, TRUE, FALSE)
 	var/obj/machinery/announcement_system/system = pick(GLOB.announcement_systems)
 	system.broadcast("Danger! Crystal hyperstructure integrity faltering! Integrity: [round(sm.get_integrity_percent(), 0.01)]%", list(RADIO_CHANNEL_COMMAND), list(SPAN_COMMAND))
