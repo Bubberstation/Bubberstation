@@ -1,6 +1,7 @@
 /datum/species/vox
 	// Bird-like humanoids
 	name = "Vox Primalis"
+	plural_form = "Vox Primalis"
 	id = SPECIES_VOX
 	can_augment = FALSE
 	inherent_traits = list(
