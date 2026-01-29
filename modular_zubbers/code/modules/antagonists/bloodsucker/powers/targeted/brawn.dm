@@ -24,12 +24,12 @@
 	// Did we break out of our handcuffs?
 	if(break_restraints())
 		playsound(get_turf(owner), 'sound/effects/grillehit.ogg', 80, 1, -1)
-		PowerActivatedSuccesfully()
+		power_activated_successfully()
 		return FALSE
 	// Did we knock a grabber down? We can only do this while not also breaking restraints if strong enough.
 	if(owner.pulledby)
 		if(level_current >= BRAWN_BREAKOUT_LEVEL && escape_puller())
-			PowerActivatedSuccesfully()
+			power_activated_successfully()
 			return FALSE
 		owner.balloon_alert(owner, "ability level too low to break free!")
 	// Did neither, now we can PUNCH.

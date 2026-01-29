@@ -241,6 +241,11 @@
 //     ARCHIVES     //
 //////////////////////
 
+/obj/item/book/codex_gigas/Initialize(mapload)
+	. = ..()
+	var/turf/current_turf = get_turf(src)
+	new /obj/item/book/kindred(current_turf)
+
 /**
  *	# Archives of the Kindred:
  *+
@@ -334,12 +339,6 @@
 		data["clans"] += list(clan_data)
 
 	return data
-
-/obj/structure/displaycase/curator
-	desc = "This book was found inside a coffin of a long dead Curator. It is said to be able to reveal the true nature of those who feed upon mankind."
-	start_showpiece_type = /obj/item/book/kindred
-	req_access = list(ACCESS_LIBRARY)
-
 
 /// just a typepath to specify that it's monkey-owned, used for the heart thief objective
 /obj/item/organ/heart/monkey
