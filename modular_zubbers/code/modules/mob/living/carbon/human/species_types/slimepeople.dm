@@ -139,6 +139,7 @@
 			"DNA" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "dna"),
 			"Hair" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "scissors"),
 			"Markings" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "rainbow_spraycan"),
+			"Character" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "alter_form"),
 		),
 		tooltips = TRUE,
 	)
@@ -151,7 +152,8 @@
 			alter_hair(alterer)
 		if("Markings")
 			alter_markings(alterer)
-
+		if("Character")
+			begin_character_alteration(alterer)
 /**
  * Alter colours handles the changing of mutant colours
  * This affects skin tone primarily, though has the option to change hair, markings, and mutant body parts to match
@@ -546,6 +548,139 @@
 			if(new_size)
 				alterer.dna.features["balls_size"] = avocados.balls_description_to_size(new_size)
 				avocados.set_size(alterer.dna.features["balls_size"])
+
+/**
+ * The beginning for character alteration. Handles all the settings and targetting. Leads into [do_char_alteration].
+ *
+ * Args:
+ * * mob/living/carbon/human/alterer: The mob doing the transforming.
+ *
+ */
+/datum/action/innate/alter_form/proc/begin_character_alteration(mob/living/carbon/human/alterer)
+	var/list/mob/living/carbon/viable_targets = list()
+
+	to_chat(alterer, span_userdanger("This ability is not meant to be used for mechanical advantage."))
+	to_chat(alterer, span_warning("Your use of character mode will be admin logged! Don't mess about!"))
+
+	for (var/mob/living/carbon/human/iter_carbon in view(alterer))
+		if (!is_valid_char_alteration_target(iter_carbon))
+			continue
+		viable_targets += iter_carbon
+
+	var/mob/living/carbon/target = tgui_input_list(
+		alterer,
+		"Who do you want to transform?",
+		"Visible mobs",
+		viable_targets,
+		alterer,
+		5 SECONDS,
+	)
+	if (isnull(target) || !is_valid_char_alteration_target(target))
+		alterer.balloon_alert(alterer, "invalid selection!")
+		return
+
+	var/mode = tgui_alert(
+		alterer,
+		"Do you want to use your characters, or theirs?",
+		"Character Source",
+		list("Yours", "Theirs", "Cancel"),
+		5 SECONDS,
+		FALSE
+	)
+	var/client/target_client
+	switch (mode)
+		if ("Yours")
+			target_client = alterer.client
+		if ("Theirs")
+			target_client = target.client
+		if ("Cancel")
+			return
+
+	if (isnull(target_client))
+		alterer.balloon_alert(alterer, "invalid selection!")
+		return
+
+	var/list/prefdata_names = target_client.prefs.create_character_profiles()
+	if (isnull(prefdata_names))
+		return
+
+	var/target_char_name = tgui_input_list(
+		alterer,
+		"Which character?",
+		"Character",
+		prefdata_names,
+		timeout = 5 SECONDS
+	)
+	if (isnull(target_char_name))
+		alterer.balloon_alert(alterer, "no selection!")
+		return
+
+	if (!is_valid_char_alteration_target(target))
+		return
+
+	var/allowed = tgui_alert(
+		target,
+		"[alterer.get_visible_name()] wants to transform you into [target_char_name]. Do you consent?",
+		"Transformation",
+		list("No", "Yes"),
+		10 SECONDS,
+		FALSE
+	)
+
+	if (allowed != "Yes")
+		alterer.balloon_alert(alterer, "transformation rejected")
+		return
+
+	var/datum/preferences/prefs = target_client?.prefs
+	if (isnull(prefs))
+		return
+
+	var/old_slot = prefs.savefile.get_entry("default_slot")
+	prefs.load_character(prefdata_names.Find(target_char_name))
+
+	do_char_alteration(alterer, target, prefs)
+
+	prefs.load_character(old_slot)
+
+/**
+ * The second and final step in character alteration. Actually sets the target to the new character.
+ *
+ * Args:
+ * * mob/living/carbon/human/alterer: The mob doing the transforming.
+ * * mob/living/carbon/human/target: The target to be transformed. Must have passed [is_valid_char_alteration_target].
+ * * datum/preferences/char_source: The source of the character. Generally either target's or alterer's preference datum.
+ */
+/datum/action/innate/alter_form/proc/do_char_alteration(mob/living/carbon/human/alterer, mob/living/carbon/human/target, datum/preferences/char_source)
+	target.visible_message(
+		span_warning("[target.get_visible_name()] unnervingly twitches, [target.p_their()] body distorting... until eventually transforming into something new."),
+		span_warning("Your body sears and tears, taking a new form!")
+	)
+	var/original_name = target.dna.real_name
+
+	char_source.safe_transfer_prefs_to_with_damage(target)
+	target.dna.update_dna_identity()
+
+	var/output = "[key_name(target)] has been transformed by [key_name(alterer)] using polymorph, at [loc_name(src)]. Original Name: [original_name], New Name: [target.dna.real_name]."
+	message_admins(output)
+	log_game(output)
+
+/**
+ * Validates if the target can be transformed.
+ *
+ * Args:
+ * * mob/living/carbon/human/target: The check target.
+ *
+ * Returns:
+ * * FALSE if the target has no client or is dead. TRUE otherwise.
+ */
+/datum/action/innate/alter_form/proc/is_valid_char_alteration_target(mob/living/carbon/target)
+	var/client/client = target.client
+	if (isnull(client))
+		return FALSE
+	if (target.stat == DEAD)
+		return FALSE
+
+	return TRUE
 
 /datum/species/jelly/on_bloodsucker_gain(mob/living/carbon/human/target)
 	humanize_organs(target)
