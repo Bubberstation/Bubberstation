@@ -8,7 +8,7 @@
 	if(SSsecurity_level.get_current_level_as_number() < min_level)
 		SSsecurity_level.set_level(min_level)
 
-	if(eng_access)
+	if(eng_access && !GLOB.force_eng_override)
 		GLOB.force_eng_override = TRUE
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_FORCE_ENG_OVERRIDE, TRUE)
 
