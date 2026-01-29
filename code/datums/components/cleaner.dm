@@ -127,6 +127,11 @@
 	//do the cleaning
 	var/clean_succeeded = FALSE
 	if(do_after(user, cleaning_duration, target = target))
+
+		// BUBBER EDIT ADDITION BEGIN - Dirty quirk
+		SEND_SIGNAL(target, COMSIG_ATOM_POST_CLEAN, user)
+		// BUBBER EDIT ADDITION END
+
 		clean_succeeded = TRUE
 		for(var/obj/effect/decal/cleanable/cleanable_decal in target) //it's important to do this before you wash all of the cleanables off
 			if(call_wash && grant_xp)
