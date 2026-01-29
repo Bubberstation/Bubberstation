@@ -53,3 +53,6 @@
 
 /datum/species/teshari/get_scream_sound(mob/living/carbon/human/teshari)
 	return 'modular_skyrat/modules/emotes/sound/emotes/raptorscream.ogg'
+
+/datum/species/gas/get_scream_sound(mob/living/carbon/human/serpentid)
+	return 'modular_skyrat/modules/emotes/sound/emotes/serpentidscream.ogg'
