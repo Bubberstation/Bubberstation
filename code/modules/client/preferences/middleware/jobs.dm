@@ -1,8 +1,12 @@
+/datum/preferences/
+	var/list/job_prefered_character = list()
+
 /datum/preference_middleware/jobs
 	action_delegations = list(
 		"set_job_preference" = PROC_REF(set_job_preference),
 		// SKYRAT EDIT
 		"set_job_title" = PROC_REF(set_job_title),
+		"set_preferred_character" = PROC_REF(set_preferred_character),
 		// SKYRAT EDIT END
 	)
 
@@ -28,7 +32,38 @@
 
 	return TRUE
 
+/datum/preference_middleware/jobs/proc/get_set_job_character(character, datum/job/job)
+	. = job.get_job_pref_character(preferences)
+	 // find this characters job, if it doesnt have one preferred, set it
+	if(!.)
+		var/list/to_write = list(job.title, character)
+		preferences.job_prefered_character |= to_write
+		. = to_write[job.title]
 // SKYRAT EDIT
+/datum/preference_middleware/jobs/proc/set_preferred_character(list/params, mob/user)
+
+	var/preferred_character= params["preferred_character"]
+
+	var/job_title = params["job"]
+
+	var/datum/job/job = SSjob.get_job(job_title)
+
+
+	. = get_set_job_character(preferred_character, job)
+
+	if (isnull(preferred_character))
+		return FALSE
+
+	return .
+
+
+
+/datum/job/proc/get_job_pref_character(datum/preferences/pref, character)
+	var/list/character_resolver = pref.job_prefered_character
+	var/our_jobs_character = character_resolver[title]
+	return our_jobs_character
+
+
 /datum/preference_middleware/jobs/proc/set_job_title(list/params, mob/user)
 	var/job_title = params["job"]
 	var/new_job_title = params["new_title"]
