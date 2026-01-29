@@ -112,6 +112,7 @@
  *
  * Returns a list of singleton datums
  */
+ /* BUBBER EDIT START: REDOES THIS IN A MODULAR FILE
 /proc/loadout_list_to_datums(list/loadout_list) as /list
 	var/list/datums = list()
 
@@ -127,6 +128,7 @@
 		datums += actual_datum
 
 	return datums
+BUBBER EDIT END */
 
 // BUBBER EDIT ADDITION BEGIN
 /*

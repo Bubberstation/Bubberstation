@@ -17,6 +17,7 @@
 /datum/preference_middleware/loadout/on_new_character(mob/user)
 	preferences.character_preview_view?.update_body()
 
+/* BUBBER EDIT REMOVAL: NEW CUSTOM LOADOUT HANDLING
 /datum/preference_middleware/loadout/proc/action_select_item(list/params, mob/user)
 	PRIVATE_PROC(TRUE)
 	var/path_to_use = text2path(params["path"])
@@ -30,6 +31,7 @@
 	else if(!interacted_item.is_disabled())
 		select_item(interacted_item)
 	return TRUE
+*/
 
 /* BUBBER EDIT REMOVAL: Multiple loadout presets: Handled in the modular file.
 /datum/preference_middleware/loadout/proc/action_clear_all(list/params, mob/user)
