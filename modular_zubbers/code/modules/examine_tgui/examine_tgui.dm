@@ -140,9 +140,8 @@
 			flavor_text = holder_human.dna.features["flavor_text"]
 			art_ref = holder_human.dna.features["art_ref"]
 			name = holder.name
-			if(show_nsfw_flavor_text == "Always On" || (show_nsfw_flavor_text == "Nude Only" && !(holder_human.w_uniform)))
-				flavor_text_nsfw = holder_human.dna.features["flavor_text_nsfw"]
-				headshot_nsfw = holder_human.dna.features["headshot_nsfw"]
+			flavor_text_nsfw = holder_human.dna.features["flavor_text_nsfw"]
+			headshot_nsfw = holder_human.dna.features["headshot_nsfw"]
 
 		//Custom species handling. Reports the normal custom species if there is not one set.
 			if(holder_human.dna.species.lore_protected || holder_human.dna.features["custom_species"] == "")
