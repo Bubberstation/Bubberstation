@@ -107,7 +107,7 @@
 
 	uniform = /obj/item/clothing/under/rank/rnd/roboticist
 	belt = /obj/item/storage/belt/utility/full
-	suit = /obj/item/clothing/suit/hooded/techpriest
+	suit = /obj/item/clothing/suit/hooded/techpriest/fleshmind
 	gloves = /obj/item/clothing/gloves/color/black
 	shoes = /obj/item/clothing/shoes/laceup
 	l_pocket = /obj/item/knife/combat/survival
