@@ -113,6 +113,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	dying_key = DYE_REGISTRY_JUMPSKIRT
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	gets_cropped_on_taurs = FALSE
 
 /obj/item/clothing/under/rank/security/officer/viro/jumpsuit
 	name = "security jumpsuit"
@@ -189,7 +190,7 @@
 	icon_state = "wardenblueclothes_skirt"
 	body_parts_covered = CHEST|GROIN|ARMS
 	dying_key = DYE_REGISTRY_JUMPSKIRT
-	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
+	female_sprite_flags = NO_FEMALE_UNIFORM
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 
@@ -224,6 +225,8 @@
 	name = "\proper the Head of Security's skirtleneck"
 	icon_state = "hosalt_skirt"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	gets_cropped_on_taurs = FALSE
+	female_sprite_flags = NO_FEMALE_UNIFORM
 
 /obj/item/clothing/under/rank/security/head_of_security/parade
 	icon = 'icons/obj/clothing/under/security.dmi'
@@ -241,6 +244,7 @@
 	dying_key = DYE_REGISTRY_JUMPSKIRT
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	gets_cropped_on_taurs = FALSE
 
 /*
 	// ARMORS
@@ -285,6 +289,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	desc = "A grey armored jacket with red shoulder designations and '/Warden/' stitched into one of the chest pockets."
 	icon_state = "warden_alt"
+	worn_icon_digi = null
 
 /obj/item/clothing/suit/armor/vest/warden/alt
 	name = "\proper the Warden's armoured jacket"
@@ -304,6 +309,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "hos_greatcoat"
+	worn_icon_digi = null
 
 /obj/item/clothing/suit/armor/hos/trenchcoat
 	name = "\proper the Head of Security's leather trenchcoat"
@@ -358,6 +364,17 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
 	icon_state = "security"
 	content_overlays = FALSE
+
+/obj/item/storage/belt/security/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_belt)
+
+/datum/atom_skin/security_belt
+	abstract_type = /datum/atom_skin/security_belt
+
+/datum/atom_skin/security_belt/black
+	preview_name = "Black Variant"
+	new_icon_state = "security_black"
 
 /obj/item/storage/belt/security/webbing
 	icon = 'modular_zubbers/icons/obj/clothing/belt.dmi'

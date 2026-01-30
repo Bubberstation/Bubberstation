@@ -5,6 +5,7 @@
 	new /obj/item/clothing/under/rank/security/warden/formal/skirt(src)
 	new /obj/item/clothing/head/hats/warden/viro(src)
 	new /obj/item/clothing/head/hats/warden/viro/alt(src)
+	new /obj/item/clothing/head/hats/warden/viro/beret(src)
 	new /obj/item/clothing/head/hats/warden/drill/viro(src)
 	new /obj/item/clothing/suit/armor/vest/warden/alt(src)
 	new /obj/item/clothing/suit/armor/vest/warden(src)
