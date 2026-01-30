@@ -410,3 +410,35 @@
 	attack_verb_simple = list("mar", "bite", "chomp", "paw", "fwoomp", "marmar")
 	gender = FEMALE
 	squeak_override = list('modular_zubbers/sound/emotes/sound_voice_mar.ogg' = 1)
+
+//Plushie for Roxy, of Cellophane
+/obj/item/toy/plush/cello_plush
+	var/shirt = TRUE
+	name = "concerningly large merseed plush"
+	desc = "A large, silky-soft plushie of a merseed dragon. When you hug it, you can't get your arms around it no matter how hard you try."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_righthand.dmi'
+	icon_state = "celloplush"
+	inhand_icon_state = "celloplush-shirt"
+	attack_verb_continuous = list("squishes", "smothers", "smacks", "bullies", "pancakes", "flops at", "smears", "dents")
+	attack_verb_simple = list("squish", "smother", "smack", "bully", "pancake", "flop", "smear", "dent")
+	gender = FEMALE
+	squeak_override = list(
+		'sound/mobs/non-humanoids/fish/fish_slap1.ogg' = 1, 'sound/mobs/non-humanoids/fish/fish_slap2.ogg' = 1,
+		)
+
+/obj/item/toy/plush/cello_plush/click_alt(mob/user)
+	shirt = !shirt
+	if(!shirt)
+		balloon_alert(user, "tummy shown...")
+		icon_state = "celloplush-alt"
+		inhand_icon_state = "celloplush-alt"
+
+	else
+		balloon_alert(user, "tummy tucked away...")
+		icon_state = "celloplush"
+		inhand_icon_state = "celloplush-shirt"
+
+	update_inhand_icon()
+	return ..()
