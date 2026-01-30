@@ -1,13 +1,14 @@
 
 /datum/outfit/job/security
 	uniform = /obj/item/clothing/under/rank/security/officer/viro
+	suit = /obj/item/clothing/suit/armor/vest/alt/sec/viro
 	suit_store = /obj/item/flashlight/seclite
 	backpack_contents = list(
 		/obj/item/evidencebag = 1,
 		/obj/item/security_voucher/primary = 1,
 		/obj/item/security_voucher/utility = 1
 		)
-	glasses = /obj/item/clothing/glasses/hud/security
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 
 /datum/outfit/job/corrections_officer
 	suit_store = /obj/item/flashlight/seclite

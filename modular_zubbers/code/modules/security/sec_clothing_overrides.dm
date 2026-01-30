@@ -9,6 +9,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "security_helmet"
 	base_icon_state = "security_helmet"
+	worn_icon_muzzled = null
 
 /obj/item/clothing/mask/bandana/sec
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
@@ -35,7 +36,8 @@
 /obj/item/clothing/head/soft/sec
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
-	icon_state = "security_cap"
+	icon_state = "secsoft"
+	soft_type = "sec"
 
 /obj/item/clothing/head/security_beanie
 	name = "security beanie"
@@ -269,7 +271,7 @@
 /obj/item/clothing/suit/armor/vest/alt/sec/viro/softshell
 	name = "security softshell"
 	desc = "A windproof, rainproof, insulation jacket made for Security — with an internal sweater sewn into the collar of the suit, the sweater keeps the wearer insulated while allowing the jacket to be unzipped."
-	icon_state = "sec_leatherjacket"
+	icon_state = "sec_softshell"
 	body_parts_covered = CHEST|GROIN|ARMS
 	cold_protection = CHEST|GROIN|ARMS
 	heat_protection = CHEST|GROIN|ARMS
