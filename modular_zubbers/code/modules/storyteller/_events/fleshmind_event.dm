@@ -5,7 +5,7 @@
 	weight = 10
 	min_players = 35
 	tags = list(TAG_DESTRUCTIVE, TAG_COMBAT, TAG_CHAOTIC)
-	earliest_start = 30 MINUTES
+	earliest_start = 60 MINUTES
 	track = EVENT_TRACK_MAJOR
 
 /datum/round_event/fleshmind
