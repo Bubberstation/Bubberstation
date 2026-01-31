@@ -30,6 +30,7 @@
 	simple_treat_text = "<b>Replacing</b> of broken wiring, or <b>repairing</b> via a wirecutter. <b>Bandaging</b> binds the wiring and reduces intensity buildup, \
 	as does <b>firmly grasping</b> the limb - both the victim and someone else can do this. <b>Roboticists/Engineers</b> get a bonus to treatment, as do <b>diagnostic HUDs</b>."
 	homemade_treat_text = "<b>Sutures</b> can repair the wiring at reduced efficiency, as can <b>retractors</b>. In a pinch, <b>high temperatures</b> can repair the wiring!"
+	treat_text_short = "Replace wiring or apply wirecutters."
 
 	wound_flags = (ACCEPTS_GAUZE|CAN_BE_GRASPED|SPLINT_OVERLAY)
 
@@ -554,6 +555,7 @@
 	occur_text = "sends some electrical fiber in the direction of the blow, beginning to profusely spark"
 	examine_desc = "has multiple severed wires visible to the outside"
 	treat_text = "Containment of damaged wiring via gauze, then application of fresh wiring/sutures, or resetting of displaced wiring via wirecutter/retractor."
+	treat_text_short = "Apply gauze and replace wiring."
 
 	sound_effect = 'modular_skyrat/modules/medical/sound/robotic_slash_T2.ogg'
 
@@ -598,6 +600,7 @@
 	examine_desc = "has lots of mauled wires sticking out"
 	treat_text = "Immediate securing via gauze, followed by emergency cable replacement and securing via wirecutters or retractor. \
 		If the fault has become uncontrollable, extreme heat therapy is recommended."
+	treat_text_short = "Apply gauze, replace wires, and use wirecutters or a retractor."
 
 	severity = WOUND_SEVERITY_CRITICAL
 	wound_flags = (ACCEPTS_GAUZE|MANGLES_EXTERIOR|CAN_BE_GRASPED|SPLINT_OVERLAY)
