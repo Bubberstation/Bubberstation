@@ -393,6 +393,19 @@
 	icon_state = "jackboots_sec"
 
 /*
+	// MASK
+*/
+
+/obj/item/clothing/mask/gas/sechailer
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/mask.dmi'
+	worn_icon_muzzled = 'modular_zubbers/icons/mob/clothing/head/mask_muzzled.dmi'
+
+/obj/item/clothing/mask/gas/sechailer/swat/spacepol
+	icon = 'icons/obj/clothing/masks.dmi'
+	worn_icon = 'icons/mob/clothing/mask.dmi'
+	worn_icon_muzzled = 'modular_skyrat/master_files/icons/mob/clothing/mask_muzzled.dmi'
+
+/*
 	// NECK
 */
 
@@ -433,8 +446,19 @@
 */
 
 /obj/item/clothing/glasses/hud/security/sunglasses
+	icon = 'modular_zubbers/icons/obj/clothing/glasses.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/eyes.dmi'
 
+/obj/item/clothing/glasses/hud/security/sunglasses/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_sunglasses)
+
+/datum/atom_skin/security_sunglasses
+	abstract_type = /datum/atom_skin/security_sunglasses
+
+/datum/atom_skin/security_sunglasses/black
+	preview_name = "Black Variant"
+	new_icon_state = "sunhudsec_blk"
 
 /*
 	// PRISONER (why is this here ?)
