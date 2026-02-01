@@ -326,6 +326,7 @@
 /obj/item/clothing/suit/armor/hos/vest
 	name = "\proper the Head of Security's plate carrier"
 	desc = "Specially issued plate carrier for Security command staff. On the front is an embroided patch, that in big yellow letters says: \"HEAD OF SECURITY\""
+	icon_state = "hos_platecarrier"
 	body_parts_covered = CHEST|GROIN
 	cold_protection = CHEST|GROIN
 	heat_protection = CHEST|GROIN
@@ -459,6 +460,9 @@
 /datum/atom_skin/security_sunglasses/black
 	preview_name = "Black Variant"
 	new_icon_state = "sunhudsec_blk"
+
+/obj/item/clothing/glasses/hud/security/sunglasses/gars
+	icon = 'icons/obj/clothing/glasses.dmi'
 
 /*
 	// PRISONER (why is this here ?)
