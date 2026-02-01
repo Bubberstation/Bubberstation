@@ -451,7 +451,7 @@
 	light_power = 1.4
 	light_color = COLOR_LIGHT_ORANGE
 	light_on = FALSE
-	name = "extra hot moff plush"
+	name = "extra hot moth plush"
 	desc = "An action plush of a mothic engineer. Comes with family-friendly, self-igniting action! Not a viable source of heat, or fire. "
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_lefthand.dmi'
