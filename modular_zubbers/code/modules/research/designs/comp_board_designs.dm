@@ -17,3 +17,13 @@
 		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_RESEARCH
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design/board/bitrunning_equipment_vendor
+	name = "Bitrunning Rewards Vendor Board"
+	desc = "The circuit board for a Bitrunning Rewards Vendor."
+	id = "bitrunning_equipment_vendor"
+	build_path = /obj/item/circuitboard/computer/order_console/bitrunning
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_CARGO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_CARGO

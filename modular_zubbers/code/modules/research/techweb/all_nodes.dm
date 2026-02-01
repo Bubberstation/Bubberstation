@@ -88,6 +88,12 @@
 		"interdyne_mining_equipment_vendor",
 	)
 
+/datum/techweb_node/bitrunning/New()
+	. = ..()
+	design_ids += list(
+		"bitrunning_equipment_vendor",
+	)
+
 // Robotics Tech
 
 /datum/techweb_node/borg_engi/New()
