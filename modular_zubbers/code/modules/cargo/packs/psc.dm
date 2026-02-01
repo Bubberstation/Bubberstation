@@ -1,6 +1,5 @@
 /datum/supply_pack/psc
 	access = NONE
-	cost = PAYCHECK_LOWER
 	group = "PSC Surplus"
 	crate_type = /obj/structure/closet/crate/secure/gear
 
@@ -57,42 +56,42 @@
 	cost = CARGO_CRATE_VALUE * 9
 	auto_name = TRUE
 
-/datum/supply_pack/psc/pods/botany
+/datum/supply_pack/psc/goodies/pods/botany
 	contains = list(/obj/item/survivalcapsule/botany)
 	cost = PAYCHECK_COMMAND * 4
 	auto_name = TRUE
 
-/datum/supply_pack/psc/pods/botany_trays
+/datum/supply_pack/psc/goodies/pods/botany_trays
 	contains = list(/obj/item/survivalcapsule/trays)
 	cost = PAYCHECK_COMMAND * 2
 	auto_name = TRUE
 
-/datum/supply_pack/psc/pods/kitchen
+/datum/supply_pack/psc/goodies/pods/kitchen
 	contains = list(/obj/item/survivalcapsule/kitchen)
 	cost = PAYCHECK_COMMAND * 4
 	auto_name = TRUE
 
-/datum/supply_pack/psc/pods/oxygen
+/datum/supply_pack/psc/goodies/pods/oxygen
 	contains = list(/obj/item/survivalcapsule/o2)
 	cost = PAYCHECK_COMMAND * 4
 	auto_name = TRUE
 
-/datum/supply_pack/psc/pods/fanpod
+/datum/supply_pack/psc/goodies/pods/fanpod
 	contains = list(/obj/item/survivalcapsule/fan)
 	cost = PAYCHECK_COMMAND
 	auto_name = TRUE
 
-/datum/supply_pack/psc/pods/threebythree
+/datum/supply_pack/psc/goodies/pods/threebythree
 	contains = list(/obj/item/survivalcapsule/threebythree)
 	cost = PAYCHECK_COMMAND
 	auto_name = TRUE
 
-/datum/supply_pack/psc/pods/sixbysix
+/datum/supply_pack/psc/goodies/pods/sixbysix
 	contains = list(/obj/item/survivalcapsule/sixbysix)
 	cost = PAYCHECK_COMMAND * 2
 	auto_name = TRUE
 
-/datum/supply_pack/psc/pods/cabin
+/datum/supply_pack/psc/goodies/pods/cabin
 	contains = list(/obj/item/survivalcapsule/cabin)
 	cost = PAYCHECK_COMMAND * 2
 	auto_name = TRUE
