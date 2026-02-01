@@ -1,5 +1,7 @@
-/// Immovable rod random event.
-/// The rod will spawn at some location outside the station, and travel in a straight line to the opposite side of the station
+/// The wizard die of fate event.
+/// The die gets spawned in the hands of a random crewmember, if they roll the dice and get a 1, they die. If they get a 20, they get the wizard antagonist.
+/// Either way, it moves to a new crewmember and repeats 20 times.
+
 /datum/round_event_control/wizard_dice
 	name = "Wizard Dice"
 	typepath = /datum/round_event/wizard_dice
@@ -15,7 +17,7 @@
 	earliest_start = 60 MINUTES
 
 	track = EVENT_TRACK_MODERATE
-	tags = list(TAG_COMMUNAL,TAG_COMBAT)	
+	tags = list(TAG_COMMUNAL,TAG_COMBAT)
 
 /datum/round_event/wizard_dice
 	announce_chance = 100

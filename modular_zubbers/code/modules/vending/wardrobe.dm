@@ -211,6 +211,7 @@
 	)
 	zubbers_premium = list(
 		/obj/item/flatpack/export_gate = 1,
+		/obj/item/flatpack/materials_market = 1,
 	)
 
 /obj/machinery/vending/wardrobe/chap_wardrobe

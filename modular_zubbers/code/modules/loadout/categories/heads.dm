@@ -25,6 +25,7 @@
 /datum/loadout_item/head/hats/warden/drill
 	name = "Warden's Campaign Hat"
 	item_path = /obj/item/clothing/head/hats/warden/drill
+	restricted_roles = list(JOB_WARDEN)
 
 /datum/loadout_item/head/hats/warden/police/patrol
 	name = "Police Patrol Cap"
@@ -173,3 +174,8 @@
 /datum/loadout_item/head/soft/frontier_colonist
 	name = "Frontier Cap"
 	item_path = /obj/item/clothing/head/soft/frontier_colonist
+
+/datum/loadout_item/head/skull
+	name = "Skull Helmet"
+	item_path = /obj/item/clothing/head/helmet/skull/fake
+

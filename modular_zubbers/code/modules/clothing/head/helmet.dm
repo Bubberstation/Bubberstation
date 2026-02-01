@@ -731,3 +731,13 @@
 	fire = 100
 	acid = 50
 	wound = 25
+
+/obj/item/clothing/head/helmet/skull/fake
+
+	strip_delay = 2 SECONDS
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDESNOUT
+	flags_cover = HEADCOVERSEYES
+	min_cold_protection_temperature = HELMET_MIN_TEMP_PROTECT
+	max_heat_protection_temperature = HELMET_MAX_TEMP_PROTECT
+	armor_type = /datum/armor/none
+	resistance_flags = FIRE_PROOF
