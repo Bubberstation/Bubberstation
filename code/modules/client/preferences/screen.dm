@@ -1,3 +1,5 @@
+// BUBBER EDIT START - Replaced with choiced dropdown version in modular_zubbers in code/modules/client/preferences/screen.dm
+/*
 /datum/preference/toggle/widescreen
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
 	savefile_key = "widescreenpref"
@@ -5,6 +7,8 @@
 
 /datum/preference/toggle/widescreen/apply_to_client(client/client, value)
 	client.view_size?.setDefault(VIEWPORT_USE_PREF)
+*/
+// BUBBER EDIT END
 
 /datum/preference/toggle/fullscreen_mode
 	default_value = FALSE
