@@ -110,5 +110,4 @@
 	suit = /obj/item/clothing/suit/hooded/techpriest/fleshmind
 	gloves = /obj/item/clothing/gloves/color/black
 	shoes = /obj/item/clothing/shoes/laceup
-	l_pocket = /obj/item/knife/combat/survival
-	l_hand = /obj/item/crowbar/large/twenty_force // Putting this here until I make them a proper weapon or find a more fitting replacement.
+	l_hand = /obj/item/wire_priest_staff
