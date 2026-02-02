@@ -28,11 +28,11 @@
 	base_objective.owner = owner
 
 	switch(rand(1,10))
-		if(6 to 10)
-			base_objective = new /datum/objective/abductee/fearful()
-		if(3 to 5)
+		// if(6 to 10)
+		// 	base_objective = new /datum/objective/abductee/fearful()
+		if(1 to 10)
 			base_objective = new /datum/objective/abductee/violent()
-		if(1 to 2)
-			base_objective = new /datum/objective/abductee/paranoid()
+		// if(1 to 2)
+		// 	base_objective = new /datum/objective/abductee/paranoid()
 
 	objectives += base_objective
