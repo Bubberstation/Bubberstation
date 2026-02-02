@@ -59,18 +59,16 @@
 		/obj/item/detective_scanner = 1,
 		/obj/item/melee/baton = 1,
 		/obj/item/storage/box/evidence = 1,
-		/obj/item/flashlight/seclite = 1, // BUBBER EDIT ADDITION
 		)
-	belt = /obj/item/storage/belt/holster/detective/full // SKYRAT EDIT CHANGE - ORIGINAL: /obj/item/modular_computer/pda/detective
+	belt = /obj/item/modular_computer/pda/detective
 	ears = /obj/item/radio/headset/headset_sec/alt
 	gloves = /obj/item/clothing/gloves/color/black
 	head = /obj/item/clothing/head/fedora/det_hat
 	mask = /obj/item/cigarette
 	neck = /obj/item/clothing/neck/tie/detective
 	shoes = /obj/item/clothing/shoes/sneakers/brown
-	l_pocket = /obj/item/modular_computer/pda/detective // SKYRAT EDIT CHANGE - ORIGINAL: /obj/item/toy/crayon/white
+	l_pocket = /obj/item/toy/crayon/white
 	r_pocket = /obj/item/lighter
-	pda_slot = ITEM_SLOT_LPOCKET // BUBBER EDIT ADDITION
 
 	chameleon_extras = list(
 		/obj/item/clothing/glasses/sunglasses,

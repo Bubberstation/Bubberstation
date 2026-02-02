@@ -135,4 +135,8 @@
 	name = "Ethereal Plush"
 	item_path = /obj/item/toy/plush/ethereal
 
+/datum/loadout_item/toys/plush/cello_plush
+	name = "Concerningly Large Merseed Plush"
+	item_path = /obj/item/toy/plush/cello_plush
+
 
