@@ -22,3 +22,8 @@
 	department_ID = ACCOUNT_SEC
 	department_name = ACCOUNT_SEC_NAME
 	icon_state = "sec_budget"
+
+/obj/item/card/id/departmental_budget/int
+	department_ID = ACCOUNT_INT
+	department_name = ACCOUNT_INT_NAME
+	icon_state = "budgetcard"
