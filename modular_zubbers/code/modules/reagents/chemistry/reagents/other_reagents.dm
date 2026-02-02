@@ -416,9 +416,6 @@
 		return
 	M.emote("weh")
 
-/******NICHE******/
-//todo
-
 
 #undef MUT_MSG_IMMEDIATE
 #undef MUT_MSG_EXTENDED
