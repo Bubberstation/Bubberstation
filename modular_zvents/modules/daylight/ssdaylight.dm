@@ -1,3 +1,5 @@
+#define LUMINOSITY_DAYLIGHT 1.5
+
 /area
 	var/daylight = FALSE
 
@@ -14,39 +16,61 @@
 
 SUBSYSTEM_DEF(daylight)
 	name = "Daylight Controller"
-	wait = 10 SECONDS
+	wait = 1 SECONDS
 	runlevels = RUNLEVEL_GAME
 	dependencies = list(
 		/datum/controller/subsystem/mapping,
 		/datum/controller/subsystem/lighting
 	)
 
-	var/list/obj/effect/light_emitter/daylight/all_emitters = list()
+	var/static/list/daylight_areas = list()
+	var/static/list/obj/effect/light_emitter/daylight/all_emitters = list()
 
 	var/current_intensity = 1
 	var/current_color = "#ffffff"
+	var/list/current_rgb = list(255, 255, 255)
 
-	var/day_length = 1 HOURS
-	var/daylight_fraction = 0.66
+	var/daylight_fraction = 0.77
 
-	var/cycle_locked = TRUE
+	var/delta_cycle_progress = 0.05
+	var/cycle_locked = FALSE
 	var/time_locked = FALSE
 	var/manual_time = -1
 
 	var/list/setup_queue = list()
 	var/setup_running = FALSE
 
+	var/last_cycle_progress = -1
 
 	var/static/list/day_colors = list(
-		"0.00" = "#ff8c4d",
-		"0.15" = "#ffd4b0",
-		"0.30" = "#fff4ea",
-		"0.50" = "#ffffff",
-		"0.70" = "#fff8e1",
-		"0.85" = "#ffaa70",
-		"1.00" = "#ff6a4d"
+		"0.00"  = "#ff704d",
+		"0.10"  = "#ffab81",
+		"0.20"  = "#ffd1a8",
+		"0.35"  = "#fffdf7",
+		"0.50"  = "#fffdf7",
+		"0.65"  = "#fffdf7",
+		"0.78"  = "#ffda9f",
+		"0.88"  = "#ffb875",
+		"0.94"  = "#ff8f5c",
+		"1.00"  = "#ff5f3a"
 	)
-	var/static/night_color = "#4a6ab9"
+	var/static/night_color = "#b1b1b1"
+
+	var/daylight_update_cooldown = 2 MINUTES
+	// Daylight cycle in minutes
+	var/daylight_cycle = 40
+	COOLDOWN_DECLARE(daylight_update_cd)
+
+/datum/controller/subsystem/daylight/Initialize()
+	SSticker.station_time_rate_multiplier = 1440 / daylight_cycle
+
+	current_rgb = hex2rgb(current_color)
+	var/initial_progress = station_time() / (24 HOURS)
+	last_cycle_progress = initial_progress
+	current_intensity = clamp(initial_progress / daylight_fraction, 0, 1)
+	current_color = get_daylight_color(current_intensity)
+
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/daylight/proc/queue_area_for_setup(area/A)
 	if(!istype(A) || QDELETED(A) || !(A in GLOB.areas) || !A.daylight)
@@ -55,12 +79,8 @@ SUBSYSTEM_DEF(daylight)
 	if(A in setup_queue)
 		return FALSE
 
+	daylight_areas += A
 	setup_queue += A
-
-	if(!setup_running)
-		setup_running = TRUE
-		INVOKE_ASYNC(src, PROC_REF(process_setup_queue))
-
 	return TRUE
 
 /datum/controller/subsystem/daylight/proc/process_setup_queue()
@@ -74,19 +94,11 @@ SUBSYSTEM_DEF(daylight)
 		if(!istype(A) || QDELETED(A) || !(A in GLOB.areas) || !A.daylight)
 			continue
 
-		for(var/turf/T in A.contents)
-			if(locate(/obj/effect/light_emitter/daylight) in T)
-				continue
-
-			var/obj/effect/light_emitter/daylight/new_emitter = new(T)
-			register_emitter(new_emitter)
-			CHECK_TICK
-
-		stoplag(1)
-
+		A.set_base_lighting(current_color, round(current_intensity * 255, 1))
+		CHECK_TICK
 
 	setup_running = FALSE
-	if(setup_queue.len)
+	if(length(setup_queue))
 		setup_running = TRUE
 		INVOKE_ASYNC(src, PROC_REF(process_setup_queue))
 
@@ -107,10 +119,19 @@ SUBSYSTEM_DEF(daylight)
 /datum/controller/subsystem/daylight/proc/unregister_emitter(obj/effect/light_emitter/daylight/emitter)
 	all_emitters -= emitter
 
-/datum/controller/subsystem/daylight/proc/update_all_emitters()
-	for(var/obj/effect/light_emitter/daylight/E as anything in all_emitters)
-		if(!QDELETED(E))
-			E.apply_current_state()
+
+/datum/controller/subsystem/daylight/proc/change_turf_light(turf/T, intensity, color)
+
+
+
+/datum/controller/subsystem/daylight/proc/update_all_areas()
+	if(setup_running)
+		return
+	setup_running = TRUE
+	for(var/area/A in daylight_areas)
+		A.set_base_lighting(current_color, round(current_intensity * 255, 1))
+		CHECK_TICK
+	setup_running = FALSE
 
 /datum/controller/subsystem/daylight/proc/set_intensity_and_color(intensity, color, force = FALSE)
 	intensity = clamp(intensity, 0, 1)
@@ -120,72 +141,87 @@ SUBSYSTEM_DEF(daylight)
 
 	current_intensity = intensity
 	current_color = color
-	INVOKE_ASYNC(src, PROC_REF(update_all_emitters))
+	current_rgb = hex2rgb(color)
 
-/datum/controller/subsystem/daylight/proc/get_target_intensity_and_color()
-	var/target_intensity = 0
-	var/target_color = night_color
+	if(force || changed)
+		update_all_areas()
 
-	if(manual_time >= 0)
-		target_intensity = manual_time
-		target_color = (manual_time >= 0.9 ? "#ffffff" : manual_time >= 0.1 ? "#ffaa70" : night_color)
+/datum/controller/subsystem/daylight/proc/get_daylight_color(progress = 0)
+	progress = clamp(progress, 0, 1)
 
-	else if(time_locked || cycle_locked)
-		target_intensity = current_intensity
-		target_color = current_color
+	if(progress <= 0)
+		return "#ff704d"
+	if(progress >= 1)
+		return "#ff5f3a"
 
-	else
-		var/cycle_progress = (world.time / day_length) % 1
+	var/list/keys = sort_list(day_colors)
 
-		if(cycle_progress < daylight_fraction)
-			var/day_progress = cycle_progress / daylight_fraction
+	var/lower = 0
+	var/upper = 1
+	var/lower_key = "0.00"
+	var/upper_key = "1.00"
 
-			target_intensity = (day_progress < 0.2 ? day_progress / 0.2 : day_progress > 0.8 ? (1 - day_progress) / 0.2 : 1)
+	for(var/key in keys)
+		var/val = text2num(key)
+		if(val <= progress && val > lower)
+			lower = val
+			lower_key = key
+		if(val >= progress && val < upper)
+			upper = val
+			upper_key = key
 
-			var/list/keys = day_colors
-			var/lower = 0
-			var/upper = 1
-			var/lower_key = "0.00"
-			var/upper_key = "1.00"
+	var/color1 = day_colors[lower_key]
+	var/color2 = day_colors[upper_key]
 
-			for(var/k in keys)
-				var/val = text2num(k)
-				if(val <= day_progress && val > lower)
-					lower = val
-					lower_key = k
-				if(val >= day_progress && val < upper)
-					upper = val
-					upper_key = k
+	if(lower == upper || lower_key == upper_key)
+		return color1
 
-			var/color1 = day_colors[lower_key]
-			var/color2 = day_colors[upper_key]
-			var/mix = (upper > lower) ? (day_progress - lower) / (upper - lower) : 0
-			target_color = color_interpolate(color1, color2, mix)
-
-		else
-			target_intensity = 0
-			target_color = night_color
-
-	return list(target_intensity, target_color)
+	var/mix = (progress - lower) / (upper - lower)
+	return color_interpolate(color1, color2, mix)
 
 /datum/controller/subsystem/daylight/fire()
-	var/list/target = get_target_intensity_and_color()
-	var/t_intensity = target[1]
-	var/t_color = target[2]
 
-	var/intensity_diff = abs(current_intensity - t_intensity) > 0.005
-	var/color_diff = (current_color != t_color)
+	if(length(setup_queue) && !setup_running)
+		setup_running = TRUE
+		INVOKE_ASYNC(src, PROC_REF(process_setup_queue))
+		return
 
-	if(intensity_diff || color_diff)
-		if(intensity_diff)
-			var/step = (t_intensity - current_intensity) * 0.05
-			current_intensity = clamp(current_intensity + step, 0, 1)
+	if(!COOLDOWN_FINISHED(src, daylight_update_cd))
+		return
+	COOLDOWN_START(src, daylight_update_cd, daylight_update_cooldown)
 
-		if(color_diff)
-			current_color = t_color
+	var/auto_cycle = (manual_time < 0 && !time_locked && !cycle_locked)
+	var/cycle_progress = station_time() / (24 HOURS)
 
-		INVOKE_ASYNC(src, PROC_REF(update_all_emitters))
+	if(auto_cycle)
+		if(last_cycle_progress < 0)
+			last_cycle_progress = cycle_progress
+		else
+			if(cycle_progress < last_cycle_progress - 0.01)
+				message_admins("A new day has dawned on the station!")
+				SEND_SIGNAL(src, COMSIG_DAYLIGHT_NEW_DAY)
+				SEND_SIGNAL(src, COMSIG_DAYLIGHT_DAY_START)
 
+			else if(last_cycle_progress < daylight_fraction && cycle_progress >= daylight_fraction)
+				message_admins("Night has fallen on the station.")
+				SEND_SIGNAL(src, COMSIG_DAYLIGHT_NIGHT_START)
+
+	if(!auto_cycle)
+		return
+	if(abs(cycle_progress - last_cycle_progress) < delta_cycle_progress)
+		return
+	var/new_value = 0
+	var/color = night_color
+
+	if(cycle_progress > daylight_fraction || cycle_progress < (1 - daylight_fraction))
+		new_value = 0.01
+		color = night_color
+	else
+		new_value = clamp(1 - cycle_progress, 0, 1)
+		color = get_daylight_color(new_value)
+
+	SSdaylight.set_intensity_and_color(new_value, color, force = TRUE)
+	last_cycle_progress = cycle_progress
 
 /proc/hex2rgb(hex)
 	if(!hex)
@@ -232,7 +268,7 @@ ADMIN_VERB(set_daylight_time, R_ADMIN, "Set Daylight Time (0-1)", "Force dayligh
 
 	if(value >= 0)
 		var/color = (value >= 0.9 ? "#ffffff" : value >= 0.1 ? "#ffaa70" : SSdaylight.night_color)
-		SSdaylight.set_intensity_and_color(value, color, force = TRUE)
+		INVOKE_ASYNC(SSdaylight, TYPE_PROC_REF(/datum/controller/subsystem/daylight, set_intensity_and_color), value, color, TRUE)
 
 	log_admin("[key_name(usr)] set daylight time to [value == -1 ? "AUTO" : value]")
 	message_admins(span_adminnotice("[key_name_admin(usr)] set daytime: [value == -1 ? "auto" : value]"))
@@ -278,3 +314,22 @@ ADMIN_VERB(toggle_daylight_cycle_lock, R_ADMIN, "Toggle Daylight Cycle Lock", "L
 	if(SSdaylight)
 		SSdaylight.unregister_emitter(src)
 	return ..()
+
+#undef LUMINOSITY_DAYLIGHT
+
+
+/datum/element/daylight_overlay
+	element_flags = ELEMENT_DETACH_ON_HOST_DESTROY
+
+/datum/element/daylight_overlay/Attach(datum/target)
+	. = ..()
+	if(!istype(target, /turf))
+		return ELEMENT_INCOMPATIBLE
+
+
+/datum/element/daylight_overlay/Detach(datum/source)
+	SIGNAL_HANDLER
+	. = ..()
+	if(!istype(source, /turf))
+		return
+

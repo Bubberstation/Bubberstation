@@ -1,5 +1,5 @@
 /area/silent_island
-	daylight = FALSE
+	daylight = TRUE
 
 /area/silent_island/outdoors
 	outdoors = TRUE
