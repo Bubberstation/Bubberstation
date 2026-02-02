@@ -50,6 +50,11 @@
 #define COMSIG_MOB_REACHED_MAX_BLOOD "mob_reached_max_blood"
 	#define REACHED_MAX_BLOOD (1 << 0)
 
+/// From /obj/structure/trash_pile/attack_hand - trigged on successful search. (atom/source, obj/structure/trash_pile)
+#define COMSIG_LIVING_SEARCHED_TRASH_PILE "living_searched_trash_pile"
+/// From /datum/component/cleaner/proc/clean - triggered on successful clean. (/datum/component/cleaner/source, mob/living/user)
+#define COMSIG_ATOM_POST_CLEAN "atom_post_clean"
+
 // CORRUPTION SIGNALS
 
 /// From /obj/structure/fleshmind/structure/proc/activate_ability() (src)

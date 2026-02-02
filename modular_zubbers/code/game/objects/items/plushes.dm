@@ -442,3 +442,45 @@
 
 	update_inhand_icon()
 	return ..()
+
+//Plushie for / of MyrThel
+/obj/item/toy/plush/myrthel_plush
+	var/myrfire = TRUE
+	light_system = COMPLEX_LIGHT
+	light_range = 2
+	light_power = 1.4
+	light_color = COLOR_LIGHT_ORANGE
+	light_on = FALSE
+	name = "extra hot moth plush"
+	desc = "An action plush of a mothic engineer. Comes with family-friendly, self-igniting action! Not a viable source of heat, or fire. "
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_righthand.dmi'
+	icon_state = "myrthel-plush"
+	inhand_icon_state = "myrthelplush"
+	attack_verb_continuous = list("smacks", "beans", "paffs", "buzzes", "dents")
+	attack_verb_simple = list("smack", "bean", "paff", "buzz", "dent")
+	gender = MALE
+	squeak_override = list(
+		'sound/mobs/humanoids/moth/moth_death.ogg' = 3,
+		'sound/mobs/humanoids/moth/moth_chitter.ogg' = 3,
+		'sound/mobs/humanoids/moth/moth_flutter.ogg' = 3,
+		'sound/mobs/humanoids/moth/moth_squeak.ogg' = 3,
+		'sound/items/weapons/emitter.ogg' = 1,
+		'sound/items/weapons/emitter2.ogg' = 1,
+		'sound/effects/sparks/sparks4.ogg' = 1,
+		)
+
+/obj/item/toy/plush/myrthel_plush/click_alt(mob/user)
+	myrfire = !myrfire
+	if(!myrfire)
+		set_light_on(TRUE)
+		playsound(src, 'sound/effects/fire_puff.ogg', 20, TRUE)
+		playsound(src, 'sound/mobs/humanoids/moth/scream_moth.ogg', 20, TRUE)
+		icon_state = "myrthel-plush-fire"
+	else
+		set_light_on(FALSE)
+		playsound(src, 'sound/effects/wounds/sizzle2.ogg', 10, TRUE)
+		icon_state = "myrthel-plush"
+	update_light()
+	return ..()
