@@ -410,3 +410,77 @@
 	attack_verb_simple = list("mar", "bite", "chomp", "paw", "fwoomp", "marmar")
 	gender = FEMALE
 	squeak_override = list('modular_zubbers/sound/emotes/sound_voice_mar.ogg' = 1)
+
+//Plushie for Roxy, of Cellophane
+/obj/item/toy/plush/cello_plush
+	var/shirt = TRUE
+	name = "concerningly large merseed plush"
+	desc = "A large, silky-soft plushie of a merseed dragon. When you hug it, you can't get your arms around it no matter how hard you try."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_righthand.dmi'
+	icon_state = "celloplush"
+	inhand_icon_state = "celloplush-shirt"
+	attack_verb_continuous = list("squishes", "smothers", "smacks", "bullies", "pancakes", "flops at", "smears", "dents")
+	attack_verb_simple = list("squish", "smother", "smack", "bully", "pancake", "flop", "smear", "dent")
+	gender = FEMALE
+	squeak_override = list(
+		'sound/mobs/non-humanoids/fish/fish_slap1.ogg' = 1, 'sound/mobs/non-humanoids/fish/fish_slap2.ogg' = 1,
+		)
+
+/obj/item/toy/plush/cello_plush/click_alt(mob/user)
+	shirt = !shirt
+	if(!shirt)
+		balloon_alert(user, "tummy shown...")
+		icon_state = "celloplush-alt"
+		inhand_icon_state = "celloplush-alt"
+
+	else
+		balloon_alert(user, "tummy tucked away...")
+		icon_state = "celloplush"
+		inhand_icon_state = "celloplush-shirt"
+
+	update_inhand_icon()
+	return ..()
+
+//Plushie for / of MyrThel
+/obj/item/toy/plush/myrthel_plush
+	var/myrfire = TRUE
+	light_system = COMPLEX_LIGHT
+	light_range = 2
+	light_power = 1.4
+	light_color = COLOR_LIGHT_ORANGE
+	light_on = FALSE
+	name = "extra hot moth plush"
+	desc = "An action plush of a mothic engineer. Comes with family-friendly, self-igniting action! Not a viable source of heat, or fire. "
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_righthand.dmi'
+	icon_state = "myrthel-plush"
+	inhand_icon_state = "myrthelplush"
+	attack_verb_continuous = list("smacks", "beans", "paffs", "buzzes", "dents")
+	attack_verb_simple = list("smack", "bean", "paff", "buzz", "dent")
+	gender = MALE
+	squeak_override = list(
+		'sound/mobs/humanoids/moth/moth_death.ogg' = 3,
+		'sound/mobs/humanoids/moth/moth_chitter.ogg' = 3,
+		'sound/mobs/humanoids/moth/moth_flutter.ogg' = 3,
+		'sound/mobs/humanoids/moth/moth_squeak.ogg' = 3,
+		'sound/items/weapons/emitter.ogg' = 1,
+		'sound/items/weapons/emitter2.ogg' = 1,
+		'sound/effects/sparks/sparks4.ogg' = 1,
+		)
+
+/obj/item/toy/plush/myrthel_plush/click_alt(mob/user)
+	myrfire = !myrfire
+	if(!myrfire)
+		set_light_on(TRUE)
+		playsound(src, 'sound/effects/fire_puff.ogg', 20, TRUE)
+		playsound(src, 'sound/mobs/humanoids/moth/scream_moth.ogg', 20, TRUE)
+		icon_state = "myrthel-plush-fire"
+	else
+		set_light_on(FALSE)
+		playsound(src, 'sound/effects/wounds/sizzle2.ogg', 10, TRUE)
+		icon_state = "myrthel-plush"
+	update_light()
+	return ..()

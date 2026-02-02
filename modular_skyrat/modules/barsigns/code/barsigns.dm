@@ -309,19 +309,19 @@
 	name = "Cold Ones"
 	icon_state = "cold-ones"
 	desc = "That's what they call the yogurt effect."
-	neon_color = ""
+	neon_color = "#dabd70"
 
 /datum/barsign/skyrat/doctorsorders
 	name = "Doctor's Orders"
 	icon_state = "doctors-orders"
 	desc = "For over-the-counter painkillers."
-	neon_color = ""
+	neon_color = "#3e92e0"
 
 /datum/barsign/skyrat/lowhanginfruit
 	name = "The Low Hangin Fruit"
 	icon_state = "the-low-hangin-fruit"
 	desc = "Botanists have one joke..."
-	neon_color = ""
+	neon_color = "#37be49"
 
 /datum/barsign/skyrat/peeps
 	name = "Peeps"
@@ -333,12 +333,42 @@
 	name = "Wrong Turn"
 	icon_state = "wrong-turn"
 	desc = "You don't feel lost. Nothing a few drinks cant fix, though."
-	neon_color = ""
+	neon_color = "#c52121"
 
 /datum/barsign/skyrat/o2n2
 	name = "02n2"
 	icon_state = "02n2"
 	desc = "The kind of place where beer's served in a gilded glass... At ten-times the cost."
+	neon_color = ""
+
+/datum/barsign/skyrat/nyameowmrrp
+	name = "Nya Nya Meow Mrrp"
+	icon_state = "nya-meow-mrrp"
+	desc = "Would you like some alcohol with your sugar as well?"
+	neon_color = "#ff4cff"
+
+/datum/barsign/skyrat/punpunspub
+	name = "Pun Pun's Pub"
+	icon_state = "pun-puns-pub"
+	desc = "After all he's been through, I'd also want to be close to alcohol 24/7."
+	neon_color = "#3874cf"
+
+/datum/barsign/skyrat/stoutbottom
+	name = "The Stout Bottom"
+	icon_state = "the-stout-bottom"
+	desc = "Strike the moon!"
+	neon_color = "#e98a32"
+
+/datum/barsign/skyrat/nutcracker
+	name = "The Nutcracker"
+	icon_state = "the-nutcracker"
+	desc = "Based on a historical Terran ballet about security's most robust officer."
+	neon_color = ""
+
+/datum/barsign/skyrat/entertainmentTV
+	name = "Entertainment TV"
+	icon_state = "entertainment-tv"
+	desc = "All the wonders of interstellar cable, without any of the choice."
 	neon_color = ""
 
 // 96x96 signs
