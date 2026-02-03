@@ -189,7 +189,8 @@
 /datum/quirk/dirty/proc/on_cleaned(datum/source)
 	SIGNAL_HANDLER
 
-	INVOKE_ASYNC(quirk_holder, TYPE_PROC_REF(/mob, emote), "scream")
+	if (!cleaned)
+		INVOKE_ASYNC(quirk_holder, TYPE_PROC_REF(/mob, emote), "scream")
 
 	set_cleaned(TRUE)
 
