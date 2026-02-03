@@ -463,6 +463,7 @@
 
 /obj/item/clothing/glasses/hud/security/sunglasses/gars
 	icon = 'icons/obj/clothing/glasses.dmi'
+	worn_icon = 'icons/mob/clothing/eyes.dmi'
 
 /*
 	// PRISONER (why is this here ?)
