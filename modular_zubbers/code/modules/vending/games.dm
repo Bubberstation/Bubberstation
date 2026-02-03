@@ -26,6 +26,7 @@
 				/obj/item/toy/plush/moth = 3,
 				/obj/item/toy/plush/moth/lovers = 3,
 				/obj/item/toy/plush/mothroach_plush = 3,
+				/obj/item/toy/plush/myrthel_plush = 3,
 				/obj/item/toy/plush/nukeplushie = 3,
 				/obj/item/toy/plush/pkplush = 3,
 				/obj/item/toy/plush/plasmamanplushie = 3,
