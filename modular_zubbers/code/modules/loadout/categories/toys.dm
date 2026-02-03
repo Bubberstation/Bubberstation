@@ -131,8 +131,16 @@
 	name = "Bureaucratic Goat Plush"
 	item_path = /obj/item/toy/plush/tian_plush
 
+/datum/loadout_item/toys/plush/ethereal
+	name = "Ethereal Plush"
+	item_path = /obj/item/toy/plush/ethereal
+
 /datum/loadout_item/toys/plush/cello_plush
 	name = "Concerningly Large Merseed Plush"
 	item_path = /obj/item/toy/plush/cello_plush
+
+/datum/loadout_item/toys/plush/myrthel_plush
+	name = "Extra Hot Moth Plush"
+	item_path = /obj/item/toy/plush/myrthel_plush
 
 
