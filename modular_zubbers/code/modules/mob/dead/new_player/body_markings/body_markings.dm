@@ -280,7 +280,7 @@
 	icon_state = "chembelly_trim"
 	affected_bodyparts = CHEST
 
-/// Easternd
+/// Eastern Dragon
 /datum/body_marking_set/easternd
 	name = "Eastern Dragon"
 	body_marking_list = list("Eastern Dragon", "Eastern Dragon 2")

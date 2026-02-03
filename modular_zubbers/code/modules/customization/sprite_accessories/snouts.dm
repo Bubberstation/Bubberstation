@@ -69,4 +69,4 @@
 /datum/sprite_accessory/snouts/mammal/easterndragon/alt
 	name = "Eastern Dragon (Alt)"
 	icon_state = "easterndalt"
-	icon = 'modular_zubbers/icons/customization/snouts.dmi'
+
