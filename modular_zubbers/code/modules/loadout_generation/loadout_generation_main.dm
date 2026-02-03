@@ -33,7 +33,7 @@
 		return FALSE
 
 	//Blacklisted.
-	if(length(GLOB.loadout_blacklist) && GLOB.loadout_blacklist[item_to_check])
+	if(length(GLOB.loadout_blacklist_types) && GLOB.loadout_blacklist_types[item_to_check])
 		return FALSE
 
 	//Resistance Flags
@@ -148,7 +148,7 @@
 				var/obj/item/clothing/glasses/found_clothing_as_glasses = found_clothing
 				if(found_clothing_as_glasses.vision_flags)
 					return FALSE
-				if(found_clothing.invis_view > SEE_INVISIBLE_LIVING)
+				if(found_clothing_as_glasses.invis_view > SEE_INVISIBLE_LIVING)
 					return FALSE
 
 	//Check for common debug/admin/dev nonsense
