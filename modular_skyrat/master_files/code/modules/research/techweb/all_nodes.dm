@@ -1,18 +1,29 @@
 
 // NEW NODES
 
-/datum/techweb_node/adv_vision
-	id = TECHWEB_NODE_ADVANCED_VISION
-	display_name = "Combat Cybernetic Eyes"
-	description = "Military grade combat implants to improve vision."
+/datum/techweb_node/xray_vision
+	id = TECHWEB_NODE_XRAY_VISION
+	display_name = "X-ray Cybernetic Eyes"
+	description = "Sensory organs utiziling technology reverse-engineered from the abductors."
 	prereq_ids = list(TECHWEB_NODE_COMBAT_IMPLANTS, TECHWEB_NODE_ALIEN_SURGERY)
 	design_ids = list(
-		"ci-thermals",
 		"ci-xray",
-		"ci-thermals-moth",
 		"ci-xray-moth",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
+	announce_channels = list(RADIO_CHANNEL_SCIENCE, RADIO_CHANNEL_MEDICAL)
+
+/datum/techweb_node/thermal_vision
+	id = TECHWEB_NODE_THERMAL_VISION
+	display_name = "Thermal Cybernetic Eyes"
+	description = "Military grade combat implants to improve vision."
+	prereq_ids = list(TECHWEB_NODE_COMBAT_IMPLANTS, TECHWEB_NODE_SYNDICATE_BASIC)
+	design_ids = list(
+		"ci-thermals",
+		"ci-thermals-moth",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
+	announce_channels = list(RADIO_CHANNEL_SCIENCE, RADIO_CHANNEL_MEDICAL)
 
 /datum/techweb_node/borg_shapeshifter
 	id = TECHWEB_NODE_BORG_SHAPESHIFTER

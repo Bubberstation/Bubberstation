@@ -249,11 +249,8 @@
 	design_ids = list(
 		"cybernetic_ears_xray",
 		"cybernetic_ears_xray_cat",
-		"ci-thermals",
-		"ci-xray",
-		"ci-thermals-moth",
-		"ci-xray-moth",
+		"ci-nv",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
-	discount_experiments = list(/datum/experiment/scanning/people/android = TECHWEB_TIER_5_POINTS)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
+	discount_experiments = list(/datum/experiment/scanning/people/android = TECHWEB_TIER_4_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SCIENCE, RADIO_CHANNEL_MEDICAL)

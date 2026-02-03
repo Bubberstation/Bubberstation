@@ -1,4 +1,3 @@
-#define TECHWEB_NODE_ADVANCED_VISION "adv_vision"
 #define TECHWEB_NODE_ANDROID_ORGANS "android_organs"
 #define TECHWEB_NODE_ANDROID_CHASSIS "android_chassis"
 #define TECHWEB_NODE_BORG_SHAPESHIFTER "borg_shapeshifter"
@@ -28,3 +27,5 @@
 #define TECHWEB_NODE_XENOARCH_STORAGE "xenoarch_storage"
 #define TECHWEB_NODE_AYY_CYBER_IMPLANTS "ayy_cyber_implants"
 #define TECHWEB_NODE_POWERATOR "powerator"
+#define TECHWEB_NODE_XRAY_VISION "xray_vision"
+#define TECHWEB_NODE_THERMAL_VISION "thermal_vision"
