@@ -52,7 +52,7 @@
 
 /proc/create_loadouts_from_list(list/found_products,list/restricted_roles,processed_loadout_categories,override_restricted_roles)
 
-	for(var/found_item as anything in found_products)
+	for(var/obj/item/found_item as anything in found_products)
 
 		//Only get clothing items!
 		//For loops check for types, not paths.
@@ -78,7 +78,7 @@
 		var/created_item = FALSE
 		for(var/datum/loadout_category/found_category as anything in processed_loadout_categories) //Search the loadout categories.
 
-			for(var/possible_subtype_path as anything in found_category.generation_subtypes_whitelist)
+			for(var/obj/item/possible_subtype_path as anything in found_category.generation_subtypes_whitelist)
 
 				if(!ispath(found_clothing,possible_subtype_path))
 					continue
@@ -86,7 +86,7 @@
 				//We're the right path as one of the subtypes.
 				var/datum/loadout_item/loadout_item_datum = new found_category.type_to_generate(
 					found_category,
-					full_capitalize("[found_clothing.name] (Vend)"),
+					full_capitalize("[found_clothing.name]"),
 					found_clothing
 				)
 				loadout_item_datum.restricted_roles = restricted_roles ? restricted_roles.Copy() : null

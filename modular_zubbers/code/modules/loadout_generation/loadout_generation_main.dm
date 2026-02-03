@@ -44,15 +44,42 @@
 	if(item_to_check.item_flags & LOADOUT_BLACKLISTED_ITEM_FLAGS)
 		return FALSE
 
+	//Sharp
+	if(item_to_check.sharpness)
+		return FALSE
+
 	//Makes you fast.
 	if(item_to_check.slowdown < 0)
+		return FALSE
+
+	//Too damaging.
+	if(item_to_check.force > 5)
+		return FALSE
+
+	//Attacks fast.
+	if(item_to_check.attack_speed < CLICK_CD_MELEE)
+		return FALSE
+
+	//Reagent rings and whatnot.
+	if(item_to_check.skyrat_obj_flags & ANVIL_REPAIR)
+		return FALSE
+
+	//Probably abstract. It's honestly a shitfix to prevent modsuit parts from appearing.
+	if(!item_to_check.drop_sound)
 		return FALSE
 
 	//Gives you unreasonable shock resist.
 	if(item_to_check.siemens_coefficient < 0.5) //0.5 is considered normal for most items.
 		return FALSE
 
+	//Restraint items, like a straightjacket or erp stuff.
+	if(item_to_check.breakouttime > 0)
+		return FALSE
+
 	if(item_to_check in GLOB.erp_items) //No free dildos for you.
+		return FALSE
+
+	if(item_to_check in GLOB.pref_checked_clothes) //No free ballgags for you.
 		return FALSE
 
 	//We're clothing.
@@ -61,7 +88,9 @@
 		var/obj/item/clothing/found_clothing = item_to_check
 
 		//Flash Protection
-		if(found_clothing.flash_protect > FLASH_PROTECTION_NONE)
+		//We specifically check if it isn't none because we also want to filter stuf that gives sensitive eye protection
+		//Like mesons.
+		if(found_clothing.flash_protect != FLASH_PROTECTION_NONE)
 			return FALSE
 
 		//Clothing Flags
@@ -112,6 +141,14 @@
 				if(found_armor.get_rating(LASER) > 0)
 					return FALSE
 				if(found_armor.get_rating(FIRE) > 0)
+					return FALSE
+
+			//Glasses
+			if(ispath(found_clothing,/obj/item/clothing/glasses))
+				var/obj/item/clothing/glasses/found_clothing_as_glasses = found_clothing
+				if(found_clothing_as_glasses.vision_flags)
+					return FALSE
+				if(found_clothing.invis_view > SEE_INVISIBLE_LIVING)
 					return FALSE
 
 	//Check for common debug/admin/dev nonsense

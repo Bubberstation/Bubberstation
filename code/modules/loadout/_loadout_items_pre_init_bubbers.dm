@@ -12,7 +12,7 @@ GLOBAL_LIST_INIT(access_string_to_job,list(
 	"[ACCESS_COMMAND]" = list(JOB_CAPTAIN,JOB_HEAD_OF_PERSONNEL,JOB_CHIEF_MEDICAL_OFFICER,JOB_RESEARCH_DIRECTOR,JOB_CHIEF_ENGINEER,JOB_HEAD_OF_SECURITY,JOB_QUARTERMASTER),
 ))
 
-GLOBAL_LIST_INIT(loadout_blacklist,list())
+GLOBAL_LIST_INIT(loadout_blacklist_types,generate_loadout_blacklist())
 
 GLOBAL_LIST_INIT(loadout_blacklist_terms,list(
 	"debug",

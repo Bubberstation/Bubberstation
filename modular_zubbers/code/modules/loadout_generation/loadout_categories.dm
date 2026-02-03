@@ -3,7 +3,7 @@
 		/obj/item/clothing/head
 	)
 	generation_subtypes_blacklist = list(
-		/obj/item/clothing/head/hooded
+		/obj/item/clothing/head/hooded,
 	)
 
 /datum/loadout_category/suits
@@ -23,6 +23,9 @@
 /datum/loadout_category/shoes
 	generation_subtypes_whitelist = list(
 		/obj/item/clothing/shoes
+	)
+	generation_subtypes_blacklist = list(
+		/obj/item/clothing/shoes/gunboots
 	)
 
 /datum/loadout_category/pocket
@@ -45,12 +48,13 @@
 		/obj/item/clothing/ears
 	)
 
+//Empty because gloves just have so much bullshit you just can't filter out reasonably.
 /datum/loadout_category/gloves
 	generation_subtypes_whitelist = list(
-		/obj/item/clothing/gloves
+
 	)
 	generation_subtypes_blacklist = list(
-		/obj/item/clothing/gloves/tackler
+
 	)
 
 /datum/loadout_category/mask
@@ -59,7 +63,8 @@
 	)
 	generation_subtypes_blacklist = list(
 		/obj/item/clothing/mask/muzzle,
-		/obj/item/clothing/mask/facehugger
+		/obj/item/clothing/mask/facehugger,
+		/obj/item/clothing/mask/whistle/minigame
 	)
 
 /datum/loadout_category/uniform

@@ -3,7 +3,7 @@
 	var/uses_integrity = FALSE
 
 	VAR_PROTECTED/datum/armor/armor_type = /datum/armor/none
-	VAR_PRIVATE/datum/armor/armor
+	var/datum/armor/armor //BUBBERSTATION CHANGE: REMOVES VAR_PRIVATE FROM THIS
 
 	VAR_PRIVATE/atom_integrity //defaults to max_integrity
 	var/max_integrity = 500
