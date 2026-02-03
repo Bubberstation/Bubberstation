@@ -17,24 +17,19 @@
 	organ_flags = ORGAN_ROBOTIC | ORGAN_NANOMACHINE
 	organ_traits = list(TRAIT_SILICON_EMOTES_ALLOWED)
 	/// Whether or not the protean is stuck in their suit or not.
-	var/dead = FALSE
 	COOLDOWN_DECLARE(message_cooldown)
 	COOLDOWN_DECLARE(refactory_cooldown)
 	COOLDOWN_DECLARE(orchestrator_cooldown)
 
 /obj/item/organ/brain/protean/on_life(seconds_per_tick, times_fired)
 	. = ..()
-	if(dead)
-		return
+
 	handle_refactory(owner.get_organ_slot(ORGAN_SLOT_STOMACH))
 	handle_orchestrator(owner.get_organ_slot(ORGAN_SLOT_HEART))
-	if(owner.stat >= HARD_CRIT && !dead)
+	if(owner.stat >= DEAD)
 		to_chat(owner, span_red("Your fragile refactory withers away with your mass reduced to scraps. Someone will have to help you."))
-		dead = TRUE
-		owner.revive(list(HEAL_DAMAGE, HEAL_ORGANS), TRUE, TRUE) // So we dont get dead human inside of suit
-		qdel(owner.get_organ_slot(ORGAN_SLOT_STOMACH))
-		go_into_suit(TRUE)
-		owner.add_traits(list(TRAIT_CRITICAL_CONDITION)) // Just to make crew monitoring console scream
+		splat_handler()
+
 
 /obj/item/organ/brain/protean/proc/handle_refactory(obj/item/organ) // Slowly degrade
 	var/datum/species/protean/species = owner?.dna.species
@@ -67,60 +62,16 @@
 /datum/movespeed_modifier/protean_slowdown
 	variable = TRUE
 
-/obj/item/organ/brain/protean/proc/go_into_suit(forced)
-	var/datum/species/protean/protean = owner.dna?.species
-	if(!istype(protean) || owner.loc == protean.species_modsuit)
-		return
-	var/obj/item/mod/control/pre_equipped/protean/suit = protean.species_modsuit
-	if(!forced)
-		if(!do_after(owner, 5 SECONDS))
-			return
-	owner.visible_message(span_warning("[owner] retreats into [suit]!"))
-	owner.extinguish_mob()
-	owner.invisibility = 101
-	new /obj/effect/temp_visual/protean_to_suit(owner.loc, owner.dir)
-	owner.Stun(INFINITY, TRUE)
-	owner.add_traits(TRANSFORM_TRAITS, PROTEAN_TRAIT)
-	owner.remove_status_effect(/datum/status_effect/protean_low_power_mode/low_power)
-	suit.drop_suit()
-	owner.forceMove(suit)
-	sleep(12) //Sleep is fine here because I'm not returning anything and if the brain gets deleted within 12 ticks of this being ran, we have some other serious issues.
-	owner.invisibility = initial(owner.invisibility)
+/obj/item/organ/brain/protean/proc/splat_handler()
+	var/obj/item/mmi/posibrain/sphere/protean_mmi = new(get_turf(src))
 
-/obj/item/organ/brain/protean/proc/leave_modsuit()
-	var/datum/species/protean/protean = owner.dna?.species
-	if(!istype(protean))
-		return
-	var/obj/item/mod/control/pre_equipped/protean/suit = protean.species_modsuit
-	if(dead)
-		to_chat(owner, span_warning("Your mass is destroyed. You are unable to leave."))
-		return
-	if(!do_after(owner, 5 SECONDS, suit, IGNORE_INCAPACITATED))
-		return
-	if(istype(suit.loc, /obj/item/reagent_containers/cup/soup_pot)) // If protean inside of soup pot
-		var/obj/item/reagent_containers/cup/soup_pot/pot = suit.loc
-		pot.remove_first_ingredient(null)
-	var/mob/living/carbon/mob = suit.loc
-	if(istype(mob))
-		mob.dropItemToGround(suit, TRUE)
-	var/datum/storage/storage = suit.loc.atom_storage
-	if(istype(storage))
-		storage.remove_single(null, suit, get_turf(suit), TRUE)
-	suit.invisibility = 101
-	new /obj/effect/temp_visual/protean_from_suit(suit.loc, owner.dir)
-	sleep(12) //Same as above
-	suit.drop_suit()
-	owner.forceMove(suit.loc)
-	if(owner.get_item_by_slot(ITEM_SLOT_BACK))
-		owner.dropItemToGround(owner.get_item_by_slot(ITEM_SLOT_BACK), TRUE, TRUE, TRUE)
-	owner.equip_to_slot_if_possible(suit, ITEM_SLOT_BACK, disable_warning = TRUE)
-	suit.invisibility = initial(suit.invisibility)
-	owner.SetStun(0)
-	owner.remove_traits(TRANSFORM_TRAITS, PROTEAN_TRAIT)
-	owner.apply_status_effect(/datum/status_effect/protean_low_power_mode/reform)
-	owner.visible_message(span_warning("[owner] reforms from [suit]!"))
-	if(!HAS_TRAIT(suit, TRAIT_NODROP))
-		ADD_TRAIT(suit, TRAIT_NODROP, "protean")
+	var/list/droplist = owner.drop_everything(del_on_drop = FALSE, force = TRUE, del_if_nodrop = FALSE)
+	for(var/obj/loot as anything in droplist)
+		loot.throw_at(get_step_rand(src), 2, 4, owner, TRUE)
+	owner.gib(DROP_BRAIN | DROP_ITEMS)
+	protean_mmi.force_brain_into(src)
+
+
 
 /obj/item/organ/brain/protean/proc/replace_limbs()
 	var/obj/item/organ/stomach/protean/stomach = owner.get_organ_slot(ORGAN_SLOT_STOMACH)
@@ -169,16 +120,27 @@
 	else if(organ_flags & ORGAN_NANOMACHINE)
 		liver.set_organ_damage(0)
 
-/obj/item/organ/brain/protean/proc/revive()
-	dead = FALSE
-	playsound(owner, 'sound/machines/ping.ogg', 30)
-	to_chat(owner, span_warning("You have regained all your mass!"))
-	owner.fully_heal()
-	owner.remove_traits(list(TRAIT_CRITICAL_CONDITION))
+/obj/item/organ/brain/protean/proc/enter_core_revive()
 
-/obj/item/organ/brain/protean/proc/revive_timer()
-	balloon_alert_to_viewers("repairing")
-	addtimer(CALLBACK(src, PROC_REF(revive)), 5 MINUTES) // Bump to 5 minutes
+/obj/item/mmi/posibrain/sphere/tool_act(mob/living/user, obj/item/tool, list/modifiers)
+	. = ..()
+	brain.tool_act(user, tool, modifiers)
+
+/obj/item/organ/brain/protean/tool_act(mob/living/user, obj/item/tool, list/modifiers)
+	. = ..()
+
+	if(istype(tool, /obj/item/pen))
+		to_chat(user, span_notice("You begin to reset the protean's random access memory using a pen."))
+		user.balloon_alert_to_viewers("resetting memory")
+		user.visible_message(span_boldwarning("[user] is reaching a pen into [src]!"))
+		playsound(src, 'sound/machines/synth/synth_no.ogg', 100)
+		if(!do_after(user, 10 SECONDS))
+			return
+		src.say("Alert - Random Access Memory Reset. Current memories lost. Any interactions that were ongoing have been forgotten.", forced = TRUE)
+		src.log_message("has had their memory reset.", LOG_ATTACK)
+		to_chat(src, span_boldwarning("Your memories have been reset. You cannot remember who reset you or any of the events leading up to your reset."))
+		playsound(src, 'sound/machines/synth/synth_yes.ogg', 100)
+		playsound(src, 'sound/machines/click.ogg', 100)
 
 /obj/effect/temp_visual/protean_to_suit
 	name = "to_suit"

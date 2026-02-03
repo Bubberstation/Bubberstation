@@ -298,13 +298,8 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		if (sensor_mode >= SENSOR_LIVING)
 			entry["is_dnr"] = tracked_human.get_dnr()
 			// Current status
-			var/obj/item/organ/brain/protean/protean_brain = tracked_human.get_organ_slot(ORGAN_SLOT_BRAIN)
-			if(istype(protean_brain))
-				if(!isprotean(tracked_human))
-					stack_trace("[tracked_human] brain-species mismatch! Species is [tracked_human.dna.species] but brain is Protean")
-				entry["life_status"] = protean_brain?.dead ? DEAD : tracked_living_mob.stat // If brain not dead/no brain then handling as usual
-			else
-				entry["life_status"] = tracked_living_mob.stat
+		else
+			entry["life_status"] = tracked_living_mob.stat
 		// BUBBERSTATION EDIT END
 
 		// Damage

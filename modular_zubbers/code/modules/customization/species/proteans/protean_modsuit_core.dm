@@ -19,8 +19,6 @@
 	var/obj/item/organ/brain/protean/brain = linked_species.owner.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(!istype(stomach))
 		return null
-	if(brain.dead)
-		return null
 	return stomach.metal
 
 /obj/item/mod/core/protean/max_charge_amount()
@@ -38,7 +36,7 @@
 	var/obj/item/organ/brain/protean/brain = linked_species.owner.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(stomach.metal <= PROTEAN_STOMACH_FALTERING)
 		return FALSE
-	if(!istype(brain) || brain.dead)
+	if(!istype(brain))
 		return FALSE
 	return TRUE
 
