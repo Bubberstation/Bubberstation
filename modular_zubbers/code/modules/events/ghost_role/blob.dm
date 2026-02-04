@@ -35,9 +35,9 @@
 /datum/round_event/ghost_role/blob/announce(fake)
 	. = ..()
 	if(fake)
-		addtimer(CALLBACK(src,GLOBAL_PROC_REF(lose_some_weight_lardass)),rand(60 SECONDS,180 SECONDS))
+		addtimer(CALLBACK(GLOBAL_PROC,GLOBAL_PROC_REF(lose_some_weight_lardass)),rand(60 SECONDS,180 SECONDS))
 
 /datum/dynamic_ruleset/midround/from_ghosts/blob/false_alarm()
 	. = ..()
-	addtimer(CALLBACK(src,GLOBAL_PROC_REF(lose_some_weight_lardass)),rand(60 SECONDS,180 SECONDS))
+	addtimer(CALLBACK(GLOBAL_PROC,GLOBAL_PROC_REF(lose_some_weight_lardass)),rand(60 SECONDS,180 SECONDS))
 
