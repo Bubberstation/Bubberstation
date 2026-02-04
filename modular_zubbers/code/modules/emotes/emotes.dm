@@ -271,3 +271,20 @@
 
 /datum/emote/living/exp_bark/get_sound(mob/living/user)
 	return 'modular_zubbers/sound/emotes/screams/exp_bark.ogg'
+/datum/emote/living/bray
+	key = "bray"
+	key_third_person = "brays"
+	message = "brays loudly."
+	emote_type = EMOTE_AUDIBLE
+
+/datum/emote/living/bray/get_sound(mob/living/user)
+	return 'modular_zubbers/sound/emotes/bray.ogg'
+
+/datum/emote/living/bellow
+	key = "bellow"
+	key_third_person = "bellows"
+	message = "lets out a deep bellow."
+	emote_type = EMOTE_AUDIBLE
+
+/datum/emote/living/bellow/get_sound(mob/living/user)
+	return 'modular_zubbers/sound/emotes/bellow.ogg'
