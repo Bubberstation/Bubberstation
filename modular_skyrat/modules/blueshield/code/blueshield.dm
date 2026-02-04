@@ -40,7 +40,7 @@
 		/obj/item/restraints/legcuffs/bola/energy = 10,
 	)
 
-	job_flags = STATION_JOB_FLAGS | JOB_CANNOT_OPEN_SLOTS
+	job_flags = STATION_JOB_FLAGS | HEAD_OF_STAFF_JOB_FLAGS
 
 /datum/outfit/job/blueshield
 	name = "Blueshield"
