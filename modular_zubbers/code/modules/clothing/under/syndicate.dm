@@ -27,7 +27,7 @@
 	name = "utility overalls turtleneck"
 	desc = "A pair of spiffy overalls with a turtleneck underneath, useful for both engineering and botanical work."
 	icon_state = "syndicate_overalls"
-	armor_type = /datum/armor/clothing_under/none
+	armor_type = /datum/armor/clothing_under
 	has_sensor = HAS_SENSORS
 	can_adjust = TRUE
 

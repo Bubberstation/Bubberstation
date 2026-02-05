@@ -86,6 +86,7 @@
 
 /turf/open/floor/iron/shuttle/evac
 	name = "shuttle floor"
+	floor_tile = /obj/item/stack/tile/mineral/titanium/shuttle_evac
 	icon = 'modular_skyrat/modules/advanced_shuttles/icons/evac_shuttle.dmi'
 	icon_state = "floor"
 
@@ -106,6 +107,7 @@
 
 /turf/open/floor/iron/shuttle/arrivals
 	name = "shuttle floor"
+	floor_tile = /obj/item/stack/tile/mineral/titanium/shuttle_arrivals
 	icon = 'modular_skyrat/modules/advanced_shuttles/icons/wagon.dmi'
 	icon_state = "floor"
 
@@ -126,11 +128,28 @@
 
 /turf/open/floor/iron/shuttle/cargo
 	name = "shuttle floor"
+	floor_tile = /obj/item/stack/tile/mineral/titanium/cargo
 	icon = 'modular_skyrat/modules/advanced_shuttles/icons/cargo.dmi'
 	icon_state = "floor"
+	base_icon_state = "floor"
 
 /turf/open/floor/iron/shuttle/cargo/airless
 	initial_gas_mix = AIRLESS_ATMOS
+
+/turf/open/floor/iron/shuttle/cargo/cargo_mainta
+	floor_tile = /obj/item/stack/tile/mineral/titanium/cargo/mainta
+	icon_state = "floor_mainta"
+	base_icon_state = "floor_mainta"
+
+/turf/open/floor/iron/shuttle/cargo/cargo_maintb
+	floor_tile = /obj/item/stack/tile/mineral/titanium/cargo/maintb
+	icon_state = "floor_maintb"
+	base_icon_state = "floor_maintb"
+
+/turf/open/floor/iron/shuttle/cargo/cargo_maintc
+	floor_tile = /obj/item/stack/tile/mineral/titanium/cargo/maintc
+	icon_state = "floor_maintc"
+	base_icon_state = "floor_maintc"
 
 /*
 *	MINING
@@ -168,8 +187,10 @@
 
 /turf/open/floor/iron/shuttle/exploration
 	name = "shuttle floor"
+	floor_tile = /obj/item/stack/tile/mineral/titanium/exploration
 	icon = 'modular_skyrat/modules/advanced_shuttles/icons/exploration_floor.dmi'
 	icon_state = "oside"
+	base_icon_state = "oside"
 
 /turf/open/floor/iron/shuttle/exploration/uside
 	icon_state = "uside"
@@ -217,13 +238,17 @@
 	icon_state = "blank"
 
 /turf/open/floor/iron/shuttle/exploration/flat
+	floor_tile = /obj/item/stack/tile/mineral/titanium/exploration/flat
 	icon_state = "flat"
+	base_icon_state = "flat"
 
 /turf/open/floor/iron/shuttle/exploration/flat/airless
 	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/floor/iron/shuttle/exploration/textured_flat
+	floor_tile = /obj/item/stack/tile/mineral/titanium/exploration/flat_textured
 	icon_state = "flattexture"
+	base_icon_state = "flattexture"
 
 /turf/open/floor/iron/shuttle/exploration/textured_flat/airless
 	initial_gas_mix = AIRLESS_ATMOS
@@ -238,7 +263,112 @@
 	icon_state = "rail3"
 
 /turf/open/floor/iron/shuttle/exploration/hazard
+	floor_tile = /obj/item/stack/tile/mineral/titanium/exploration/hazard
 	icon_state = "hazard"
+	base_icon_state = "hazard"
 
 /turf/open/floor/iron/shuttle/exploration/hazard/airless
 	initial_gas_mix = AIRLESS_ATMOS
+
+/turf/open/floor/iron/shuttle/exploration/smooth
+	name = "shuttle floor"
+	icon = 'modular_zubbers/icons/turf/floors/exploration_floor.dmi'
+	icon_state = "exploration-0"
+	base_icon_state = "exploration"
+	floor_tile = /obj/item/stack/tile/mineral/titanium/exploration
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_EXPLORATION_FLOOR
+	canSmoothWith = SMOOTH_GROUP_EXPLORATION_FLOOR
+
+/*
+*	TILE STACKS
+*/
+
+/obj/item/stack/tile/mineral/titanium/cargo
+	name = "cargo shuttle tile"
+	singular_name = "cargo shuttle floor tile"
+	desc = "Utilitarian titanium floor tiles, used for cargo shuttles."
+	icon = 'modular_zubbers/icons/obj/tiles_misc.dmi'
+	icon_state = "cargo"
+	inhand_icon_state = "tile-shuttle"
+	turf_type = /turf/open/floor/iron/shuttle/cargo
+	mineralType = "titanium"
+	merge_type = /obj/item/stack/tile/mineral/titanium/cargo
+
+/obj/item/stack/tile/mineral/titanium/cargo/mainta
+	name = "cargo shuttle charger A tile"
+	singular_name = "cargo shuttle charger A floor tile"
+	icon_state = "cargo_mainta"
+	turf_type = /turf/open/floor/iron/shuttle/cargo/cargo_mainta
+	merge_type = /obj/item/stack/tile/mineral/titanium/cargo/mainta
+	tile_rotate_dirs = list(SOUTH, NORTH, EAST, WEST)
+
+/obj/item/stack/tile/mineral/titanium/cargo/maintb
+	name = "cargo shuttle charger B tile"
+	singular_name = "cargo shuttle charger B floor tile"
+	icon_state = "cargo_maintb"
+	turf_type = /turf/open/floor/iron/shuttle/cargo/cargo_maintb
+	merge_type = /obj/item/stack/tile/mineral/titanium/cargo/maintb
+	tile_rotate_dirs = list(SOUTH, NORTH, EAST, WEST)
+
+/obj/item/stack/tile/mineral/titanium/cargo/maintc
+	name = "cargo shuttle edge tile"
+	singular_name = "cargo shuttle edge floor tile"
+	icon_state = "cargo_maintc"
+	turf_type = /turf/open/floor/iron/shuttle/cargo/cargo_maintc
+	merge_type = /obj/item/stack/tile/mineral/titanium/cargo/maintc
+	tile_rotate_dirs = list(SOUTH, NORTH, EAST, WEST, SOUTHEAST, SOUTHWEST, NORTHEAST, NORTHWEST)
+
+/obj/item/stack/tile/mineral/titanium/exploration
+	name = "mining shuttle tile"
+	singular_name = "mining shuttle floor tile"
+	desc = "rugged titanium floor tiles, used for mining shuttles."
+	icon = 'modular_zubbers/icons/obj/tiles_misc.dmi'
+	icon_state = "exploration"
+	inhand_icon_state = "tile-shuttle"
+	turf_type = /turf/open/floor/iron/shuttle/exploration/smooth
+	mineralType = "titanium"
+	merge_type = /obj/item/stack/tile/mineral/titanium/exploration
+
+/obj/item/stack/tile/mineral/titanium/exploration/flat
+	name = "flat mining shuttle tile"
+	singular_name = "flat mining shuttle floor tile"
+	icon_state = "exploration_flat"
+	turf_type = /turf/open/floor/iron/shuttle/exploration/flat
+	merge_type = /obj/item/stack/tile/mineral/titanium/exploration/flat
+
+/obj/item/stack/tile/mineral/titanium/exploration/flat_textured
+	name = "textured mining shuttle tile"
+	singular_name = "textured mining shuttle floor tile"
+	icon_state = "exploration_flat_textured"
+	turf_type = /turf/open/floor/iron/shuttle/exploration/textured_flat
+	merge_type = /obj/item/stack/tile/mineral/titanium/exploration/flat_textured
+
+/obj/item/stack/tile/mineral/titanium/exploration/hazard
+	name = "hazard mining shuttle tile"
+	singular_name = "hazard mining shuttle floor tile"
+	icon_state = "exploration_flat_hazard"
+	turf_type = /turf/open/floor/iron/shuttle/exploration/hazard
+	merge_type = /obj/item/stack/tile/mineral/titanium/exploration/hazard
+
+/obj/item/stack/tile/mineral/titanium/shuttle_arrivals
+	name = "striped shuttle tile"
+	singular_name = "striped shuttle floor tile"
+	desc = "striped titanium floor tiles, used for shuttles."
+	icon = 'modular_zubbers/icons/obj/tiles_misc.dmi'
+	icon_state = "shuttle_arrivals"
+	inhand_icon_state = "tile-shuttle"
+	turf_type = /turf/open/floor/iron/shuttle/arrivals
+	mineralType = "titanium"
+	merge_type = /obj/item/stack/tile/mineral/titanium/shuttle_arrivals
+
+/obj/item/stack/tile/mineral/titanium/shuttle_evac
+	name = "shuttle tile"
+	singular_name = "shuttle floor tile"
+	desc = "striped titanium floor tiles, used for shuttles."
+	icon = 'modular_zubbers/icons/obj/tiles_misc.dmi'
+	icon_state = "shuttle_evac"
+	inhand_icon_state = "tile-shuttle"
+	turf_type = /turf/open/floor/iron/shuttle/evac
+	mineralType = "titanium"
+	merge_type = /obj/item/stack/tile/mineral/titanium/shuttle_evac

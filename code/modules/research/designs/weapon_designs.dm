@@ -71,7 +71,7 @@
 
 /datum/design/c38_true
 	name = "Speedloader (.38 True Strike) (Lethal)"
-	desc = "Designed to quickly reload revolvers. Bullets bounce towards new targets with surprising accuracy."
+	desc = "Designed to quickly reload revolvers. Bullets bounce towards new targets with surprising accuracy and can strike through armored target"
 	id = "c38_true_strike"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -183,7 +183,7 @@
 
 /datum/design/c38_true_mag
 	name = "Magazine (.38 True Strike) (Lethal)"
-	desc = "Designed to tactically reload a NT BR-38 Battle Rifle. Bullets bounce towards new targets with surprising accuracy."
+	desc = "Designed to tactically reload a NT BR-38 Battle Rifle. Bullets bounce towards new targets with surprising accuracy and can strike through armored target"
 	id = "c38_true_strike_mag"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -216,7 +216,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/c38_flare_mag
-	name = "Magazine (.38 Flae) (VERY Lethal)"
+	name = "Magazine (.38 Flare) (VERY Lethal)"
 	desc = "Designed to tactically reload a NT BR-38 Battle Rifle. Flare casings launch a concentrated particle beam towards a target, lighting them up for everyone to see."
 	id = "c38_flare_mag"
 	build_type = PROTOLATHE | AWAY_LATHE

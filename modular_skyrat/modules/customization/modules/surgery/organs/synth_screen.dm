@@ -20,6 +20,3 @@
 
 /datum/bodypart_overlay/mutant/synth_screen/override_color(rgb_value)
 	return draw_color
-
-/datum/bodypart_overlay/mutant/synth_screen/get_global_feature_list()
-	return SSaccessories.sprite_accessories[MUTANT_SYNTH_SCREEN]

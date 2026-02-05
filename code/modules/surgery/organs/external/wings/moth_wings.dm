@@ -5,7 +5,7 @@
 	name = "moth wings"
 	desc = "Spread your wings and FLOOOOAAAAAT!"
 
-	//dna_block = /datum/dna_block/feature/moth_wing // BUBBER EDIT REMOVAL
+	//dna_block = /datum/dna_block/feature/accessory/moth_wing // BUBBER EDIT REMOVAL
 
 	bodypart_overlay = /datum/bodypart_overlay/mutant/wings/moth
 	restyle_flags = EXTERNAL_RESTYLE_FLESH
@@ -104,7 +104,6 @@
 
 /datum/bodypart_overlay/mutant/wings/moth/New()
 	burn_datum = fetch_sprite_datum(burn_datum)
-
 	return ..()
 
 /datum/bodypart_overlay/mutant/wings/moth/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner)

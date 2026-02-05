@@ -165,7 +165,7 @@
 
 	var/obj/item/mod/module/storage/storage = locate() in species_modsuit.modules // Give a storage if we don't have one.
 	if(!storage)
-		storage = new()
+		storage = new /obj/item/mod/module/storage/large_capacity()
 		species_modsuit.install(storage, owner, TRUE)
 
 	if(outfit.backpack_contents)
@@ -193,3 +193,22 @@
 			Proteans are unkillable. Instead, they shunt themselves away into their core when catastrophic losses to their swarm occur. Their cores also mimic the functions of a modsuit and can even assimilate more functional suits to use. \
 			Proteans only have a few vital organs, which can only be replaced via cargo. Their refactory is a miniature factory, and without it, they will face slow, agonizing degradation. Their Orchestrator is a miniature processor required for ease of movement. \
 			Proteans are an extremely fragile species, weak in combat, but a powerful aid, or a puppeteer pulling the strings.")
+
+/datum/species/protean/create_pref_unique_perks()
+	var/list/perk_descriptions = list()
+
+	perk_descriptions += list(list(
+		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+		SPECIES_PERK_ICON = FA_ICON_REFRESH,
+		SPECIES_PERK_NAME = "MODsuit Mode",
+		SPECIES_PERK_DESC = "[plural_form] are able to turn into MODsuits, and have some special components available to them. When [plural_form] enter a critical state, they instead withdraw into MODsuit form until a refactory is inserted into them."
+	))
+
+	perk_descriptions += list(list(
+		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+		SPECIES_PERK_ICON = FA_ICON_SQUARE_VIRUS,
+		SPECIES_PERK_NAME = "Protean Oddities",
+		SPECIES_PERK_DESC = "[plural_form] are inorganic beings. They are unable to gain nutrition from traditional foods. Instead, they must consume metals - Primarily, iron. \ In addition to this, [plural_form] are unable to be surgically or chemically headed; [plural_form] regenerate their body over time, consuming their nutrition to do so."
+	))
+
+	return perk_descriptions

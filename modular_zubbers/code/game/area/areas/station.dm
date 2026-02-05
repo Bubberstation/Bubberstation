@@ -2,6 +2,8 @@
 //	MODULAR AREAS	//
 */	//	//	//	//	//
 
+/**********************Station Cargo areas**************************/
+
 /area/station/cargo/blacksmith
 	name = "\improper Blacksmith Workshop"
 	icon_state = "cargo_warehouse"
@@ -18,3 +20,11 @@
 /area/station/commons/dock/secondary
 	name = "\improper Secondary Ship Dock"
 	icon_state = "hallAS"
+
+/**********************Lavaland Mine areas**************************/
+
+/area/mine/blacksmith
+	name = "\improper Blacksmith Mining Workshop"
+	icon = 'modular_zubbers/icons/areas/miningsmithy_area.dmi'
+	icon_state = "mining_smithy"
+	sound_environment = SOUND_AREA_TUNNEL_ENCLOSED

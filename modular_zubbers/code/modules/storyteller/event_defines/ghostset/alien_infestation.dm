@@ -4,7 +4,7 @@
 	weight = 2
 	track = EVENT_TRACK_GHOSTSET
 	tags = list(TAG_COMBAT, TAG_SPOOKY, TAG_CHAOTIC)
-	min_players = 10
+	min_players = 35
 	category = EVENT_CATEGORY_ENTITIES
 	description = "A xenomorph larva spawns on a random vent."
 

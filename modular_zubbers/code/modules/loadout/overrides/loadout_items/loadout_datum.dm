@@ -2,26 +2,6 @@
 	. = ..()
 	restricted_roles |= JOB_SECURITY_MEDIC
 
-/datum/loadout_item/glasses/medicpatch/New()
-	. = ..()
-	restricted_roles |= JOB_SECURITY_MEDIC
-
-/datum/loadout_item/glasses/medhud_glasses/New()
-	. = ..()
-	restricted_roles |= JOB_SECURITY_MEDIC
-
-/datum/loadout_item/glasses/aviator_health/New()
-	. = ..()
-	restricted_roles |= JOB_SECURITY_MEDIC
-
-/datum/loadout_item/glasses/prescription_aviator_health/New()
-	. = ..()
-	restricted_roles |= JOB_SECURITY_MEDIC
-
-/datum/loadout_item/glasses/retinal_projector_health/New()
-	. = ..()
-	restricted_roles |= JOB_SECURITY_MEDIC
-
 /datum/loadout_item/head/cowboyhat_sec/New()
 	. = ..()
 	restricted_roles |= JOB_SECURITY_MEDIC

@@ -1,5 +1,5 @@
 // Ringing Bell
-// All json_config files are located on modular_skyrat/modules/GAGS/json_configs/
+// All Zubber json_config files are located on modular_zubbers/code/datums/greyscale/json_configs
 // Reason: See code/datums/greyscale/_greyscale_config.dm lines 63-69.
 
 /datum/greyscale_config/collar/ringbell
@@ -273,3 +273,32 @@
 /datum/greyscale_config/galfedribbons/worn
 	name = "GalFed Ribbons (Worn)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
+
+//Midnight Gown (created on Nova by  Jureiia)
+
+/datum/greyscale_config/midnight_gown
+	name = "Midnight Gown"
+	icon_file = 'modular_zubbers/icons/obj/clothing/under/skirts_dresses.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/dresses/midnight_gown.json'
+
+/datum/greyscale_config/midnight_gown/worn
+	name = "Midnight Gown (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/skirts_dresses.dmi'
+
+/datum/greyscale_config/midnight_gown/worn/digi
+	name = "Midnight Gown (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/skirts_dresses_digi.dmi'
+
+//Camo from Nova
+/datum/greyscale_config/camo
+	name = "Camouflage"
+	icon_file = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/uniform/maincamo.json'
+
+/datum/greyscale_config/camo/worn
+	name = "Camouflage (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+
+/datum/greyscale_config/camo/worn/digi
+	name = "Camouflage (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'

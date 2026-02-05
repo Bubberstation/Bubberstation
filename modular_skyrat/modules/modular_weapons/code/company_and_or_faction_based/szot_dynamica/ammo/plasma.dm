@@ -19,3 +19,8 @@
 	wound_bonus = -50 // However we do not very much against armor
 	pass_flags = PASSTABLE | PASSGRILLE // His ass does NOT pass through glass!
 	weak_against_armour = TRUE
+
+/obj/projectile/beam/laser/plasma_glob/supercharged
+	name = "overcharged plasma globule"
+	icon_state = "plasma_glob_super"
+	weak_against_armour = FALSE

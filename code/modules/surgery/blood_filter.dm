@@ -86,7 +86,7 @@
 		for(var/datum/reagent/chem as anything in target.reagents.reagent_list)
 			if(!length(bloodfilter.whitelist) || !(chem.type in bloodfilter.whitelist))
 				target.reagents.remove_reagent(chem.type, clamp(round(chem.volume * 0.22, 0.2), 0.4, 10))
-	target.adjustToxLoss(amount = clamp(round(target.toxloss * -0.07, 2), -2, -10), forced = TRUE) // BUBBER EDIT ADDITION - Filtration fixes toxins
+	target.adjust_tox_loss(amount = clamp(round(target.toxloss * -0.07, 2), -2, -10), forced = TRUE) // BUBBER EDIT ADDITION - Filtration fixes toxins
 	display_results(
 		user,
 		target,
@@ -108,4 +108,4 @@
 		span_warning("[user] screws up, brusing [target]'s chest!"),
 		span_warning("[user] screws up!"),
 	)
-	target.adjustBruteLoss(5)
+	target.adjust_brute_loss(5)

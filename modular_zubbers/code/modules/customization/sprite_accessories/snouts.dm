@@ -60,3 +60,13 @@
 	icon = 'modular_zubbers/icons/customization/snouts.dmi'
 	icon_state = "cryptid"
 	organ_type = /obj/item/organ/snout/top_adj
+
+/datum/sprite_accessory/snouts/mammal/easterndragon
+	name = "Eastern Dragon"
+	icon_state = "easternd"
+	icon = 'modular_zubbers/icons/customization/snouts.dmi'
+
+/datum/sprite_accessory/snouts/mammal/easterndragon/alt
+	name = "Eastern Dragon (Alt)"
+	icon_state = "easterndalt"
+

@@ -19,7 +19,6 @@
 					/obj/item/ammo_box/speedloader/c38/hotshot,
 					/obj/item/ammo_box/speedloader/c38/iceblox,
 				)
-	special = FALSE
 //This makes the Security ammo crate use the cool advanced ammo boxes instead of the old ones
 
 
@@ -53,12 +52,6 @@
 		/obj/item/storage/backpack/duffelbag/deforest_medkit/stocked,
 	)
 
-/datum/supply_pack/security/plasma_marksman
-	name = "Gwiazda Plasma Sharpshooter Single-Pack"
-	crate_name = "Gwiadza Plasma Sharpshooter Crate"
-	desc = "Contains a Gwiazda Plasma Sharpshooter and one plasma battery for it."
-	contains = list(/obj/item/gun/ballistic/automatic/pistol/plasma_marksman = 1,
-	/obj/item/ammo_box/magazine/recharge/plasma_battery = 1)
 	cost = CARGO_CRATE_VALUE * 10
 	access = ACCESS_SECURITY
 
@@ -107,7 +100,7 @@
 	desc = "Extra supplies we got from some weird old guy in a blue suit. Contains six uniforms, \
 		vests, boots, gloves and helmets."
 	cost = 1116
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND
 	contains = list(/obj/item/clothing/head/helmet/metrocophelmet = 6,
 					/obj/item/clothing/suit/armor/vest/alt/sec/metrocop = 6,
 					/obj/item/clothing/under/rank/security/metrocop = 6,

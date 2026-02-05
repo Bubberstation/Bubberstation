@@ -1,9 +1,6 @@
-/datum/supply_pack/goody/disablersmg_single
+/datum/supply_pack/goody/smg_single
 	name = "Disabler SMG Single-Pack"
-	desc = "Contains one disabler SMG, an automatic variant of the original workhorse."
 	cost = PAYCHECK_COMMAND * 3
-	access_view = ACCESS_WEAPONS
-	contains = list(/obj/item/gun/energy/disabler/smg)
 
 /datum/supply_pack/goody/lasercarbine_single
 	name = "Laser Carbine Single-Pack"
@@ -48,39 +45,23 @@
 
 /datum/supply_pack/goody/double_barrel
 	cost = PAYCHECK_COMMAND * 10 //1400 is too much considering the combat shotgun is 1500 for 1
+	access_view = ACCESS_WEAPONS
 
-/datum/supply_pack/goody/mars_single
-	special = FALSE
+/datum/supply_pack/goody/plasma_marksman
+	name = "Gwiazda Plasma Sharpshooters Single-pack"
+	desc = "Contains a Gwiazda Plasma Sharpshooter and one plasma battery free of additional charge."
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/plasma_marksman = 1,
+	/obj/item/ammo_box/magazine/recharge/plasma_battery = 1)
+	access_view = ACCESS_WEAPONS
+	cost = PAYCHECK_COMMAND * 4
 
-/datum/supply_pack/goody/dumdum38
-	special = FALSE
+/datum/supply_pack/goody/plasma_marksman_ammo
+	name = "Plasma Battery Single-pack"
+	desc = "Contains a single plasma battery."
+	contains = list(/obj/item/ammo_box/magazine/recharge/plasma_battery = 1)
+	access_view = ACCESS_WEAPONS
+	cost = PAYCHECK_COMMAND * 1
 
-/datum/supply_pack/goody/match38
-	special = FALSE
-
-/datum/supply_pack/goody/rubber
-	special = FALSE
-
-/datum/supply_pack/goody/ballistic_single
-	special = FALSE
-
-/datum/supply_pack/goody/disabler_single
-	special = FALSE
-
-/datum/supply_pack/goody/energy_single
-	cost = PAYCHECK_COMMAND * 7
-	special = FALSE
-
-/datum/supply_pack/goody/laser_single
-	cost = PAYCHECK_COMMAND * 7
-	special = FALSE
-
-/datum/supply_pack/goody/hell_single
-	cost = PAYCHECK_CREW * 5
-	special = FALSE
-
-/datum/supply_pack/goody/thermal_single
-	special = FALSE
 
 /datum/supply_pack/goody/medkit_surgery
 	name = "High Capacity Surgical Medkit"
@@ -151,7 +132,7 @@
 	desc ="A suit by Honk Ltd. Protects against low humor environments. Most of the tech went to lower the power cost."
 	cost = PAYCHECK_COMMAND * 2
 	contains = list(/obj/item/mod/construction/plating/cosmohonk)
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND
 
 /datum/supply_pack/goody/magnetic_deployable
 	name = "MOD Magnetic Deployment Module"
@@ -165,3 +146,14 @@
 	cost = PAYCHECK_COMMAND
 	contains = list(/obj/item/mod/module/storage/large_capacity)
 
+/datum/supply_pack/goody/crew_monitor
+	name = "Handheld Crew Monitor Single-Pack"
+	desc = "A miniature machine that tracks suit sensors across the station."
+	cost = PAYCHECK_COMMAND * 4.5
+	contains = list(/obj/item/sensor_device)
+
+/datum/supply_pack/goody/soap
+	name = "Soap Single-Pack"
+	desc = "Recommended for emergency self-cleaning, passive-aggressive demonstrations, or reminding others that hygiene is, in fact, part of the job."
+	cost = PAYCHECK_LOWER * 3
+	contains = list(/obj/item/soap/deluxe)

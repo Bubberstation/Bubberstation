@@ -23,6 +23,6 @@
 	max_purchase = 4
 	cost = 5
 
-/datum/armament_entry/hecu/melee/nonlethal/kravmaga
-	item_type = /obj/item/clothing/gloves/krav_maga/combatglovesplus
+/datum/armament_entry/hecu/melee/nonlethal/kazaruk
+	item_type = /obj/item/clothing/gloves/kaza_ruk/combatglovesplus
 	cost = 10

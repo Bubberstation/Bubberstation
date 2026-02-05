@@ -52,33 +52,33 @@
 	icon_state = "policeofficerpatrolcap"
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 	armor_type = /datum/armor/head_helmet
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "policeofficercap",
-			RESKIN_WORN_ICON_STATE = "policeofficercap"
-		),
-		"Black and Blue Variant" = list(
-			RESKIN_ICON_STATE = "policeofficerpatrolcap",
-			RESKIN_WORN_ICON_STATE = "policeofficerpatrolcap"
-		),
-		"Sillitoe Variant" = list(
-			RESKIN_ICON_STATE = "policetrafficcap",
-			RESKIN_WORN_ICON_STATE = "policetrafficcap"
-		),
-		"Long Kesh Variant" = list(
-			RESKIN_ICON_STATE = "corrections_officer",
-			RESKIN_WORN_ICON_STATE = "corrections_officer"
-		),
-		"Sillitoe Variant" = list(
-			RESKIN_ICON_STATE = "policetrafficcap",
-			RESKIN_WORN_ICON_STATE = "policetrafficcap"
-		),
-		"Cadet Variant" = list(
-			RESKIN_ICON_STATE = "policecadetcap",
-			RESKIN_WORN_ICON_STATE = "policecadetcap"
-		),
-	)
+
+/obj/item/clothing/head/hats/warden/police/patrol/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/police_patrol_cap)
+
+/datum/atom_skin/police_patrol_cap
+	abstract_type = /datum/atom_skin/police_patrol_cap
+
+/datum/atom_skin/police_patrol_cap/blue
+	preview_name = "Blue Variant"
+	new_icon_state = "policeofficercap"
+
+/datum/atom_skin/police_patrol_cap/black_blue
+	preview_name = "Black and Blue Variant"
+	new_icon_state = "policeofficerpatrolcap"
+
+/datum/atom_skin/police_patrol_cap/sillitoe
+	preview_name = "Sillitoe Variant"
+	new_icon_state = "policetrafficcap"
+
+/datum/atom_skin/police_patrol_cap/long_kesh
+	preview_name = "Long Kesh Variant"
+	new_icon_state = "corrections_officer"
+
+/datum/atom_skin/police_patrol_cap/cadet
+	preview_name = "Cadet Variant"
+	new_icon_state = "policecadetcap"
 
 /obj/item/clothing/glasses/hud/security/sunglasses/peacekeeper
 	name = "peacekeeper hud glasses"
@@ -173,9 +173,9 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "peacekeeper_gripper_gloves"
 
-/obj/item/clothing/gloves/krav_maga/sec/peacekeeper
-	name = "peacekeeper krav maga gloves"
-	desc = "These gloves can teach you to perform Krav Maga using nanochips."
+/obj/item/clothing/gloves/kaza_ruk/sec/peacekeeper
+	name = "peacekeeper kaza ruk gloves"
+	desc = "These gloves can teach you to perform Kaza Ruk using nanochips."
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "peacekeeper_gripper_gloves"

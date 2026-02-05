@@ -5,6 +5,7 @@
 	icon_state = "water_basin"
 	anchored = TRUE
 	density = TRUE
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
 
 	/// Tracks if you can fish from this basin
 	var/datum/component/fishing_spot/fishable

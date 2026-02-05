@@ -214,25 +214,6 @@
 *	ENGINEERING
 */
 
-/datum/supply_pack/engineering/constructionkit
-	name = "Construction Kit Crate"
-	desc = "For all those DIY projects without all the running around. Contains a toolset, welding helmet, and varied materials."
-	contains = list(
-		/obj/item/storage/belt/utility/full, // Yes, this is a filled toolbelt.
-		/obj/item/clothing/head/utility/welding,
-		/obj/item/stack/sheet/mineral/wood/fifty, // ~600 or x 3 Crate Cost from Wood Plank Crate
-		/obj/item/stack/sheet/iron/fifty = 2, // ~400 or x 2 Crate Cost from Iron Sheet Crate
-		/obj/item/stack/sheet/glass/fifty, // ~400 or x 2 Crate Cost from Glass Sheet Crate
-		/obj/item/stack/sheet/cloth/ten = 5, // Curtains, Bedseets, Towels
-		/obj/item/stack/sheet/rglass = 20, // ~60 Credits
-		/obj/item/survivalcapsule/fan = 2, // ~200 from Imports
-		/obj/item/construction/rtd, // RLD is 500, maybe this should be similar?
-		/obj/item/storage/box/lights/mixed, // 200
-		/obj/item/toy/crayon/spraycan = 3,
-	)
-	cost = CARGO_CRATE_VALUE * 11.25 // ~2250
-	crate_name = "construction kit crate"
-
 /datum/supply_pack/engineering/material_pouches
 	name = "Material Pouches Crate"
 	desc = "Contains three material pouches."
@@ -679,7 +660,7 @@
 	name = "Authentic Renaissance Faire Crate"
 	desc = "Contains two authentic suits of armor, swords, and two bows and cuirass' for the cowards hiding in the back."
 	cost = CARGO_CRATE_VALUE * 30
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND
 	contains = list(
 		/obj/item/clothing/suit/armor/riot/knight/larp/red,
 		/obj/item/clothing/gloves/plate/larp/red,
@@ -759,7 +740,7 @@
 /datum/supply_pack/imports/cin_surplus
 	name = "CIN Military Surplus Crate"
 	desc = "A collection of surplus equipment sourced from the Coalition of Independent Nations' military stockpiles. Likely to contain old and outdated equipment, as is the nature of surplus."
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND
 	cost = CARGO_CRATE_VALUE * 9
 	contains = list(
 		/obj/item/storage/box/colonial_rations = 1,

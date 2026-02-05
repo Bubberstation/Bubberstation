@@ -18,7 +18,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/wall_torch, 28)
 	. = ..()
 	if(spawns_lit)
 		light_it_up()
-	find_and_hang_on_wall()
+	if(mapload)
+		find_and_mount_on_atom()
 
 /obj/structure/wall_torch/attackby(obj/item/used_item, mob/living/user, params)
 	if(used_item.get_temperature())
@@ -68,3 +69,4 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/wall_torch/spawns_lit, 28)
 	icon_state = "walltorch"
 	result_path = /obj/structure/wall_torch
 	pixel_shift = 28
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 2, /datum/material/iron = SHEET_MATERIAL_AMOUNT)

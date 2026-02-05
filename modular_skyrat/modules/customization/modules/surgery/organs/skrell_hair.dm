@@ -14,12 +14,9 @@
 	use_mob_sprite_as_obj_sprite = TRUE
 
 /datum/bodypart_overlay/mutant/skrell_hair
-	feature_key = "skrell_hair"
+	feature_key = FEATURE_SKRELL_HAIR
 	layers = EXTERNAL_FRONT | EXTERNAL_ADJACENT
 	color_source = ORGAN_COLOR_OVERRIDE
 
 /datum/bodypart_overlay/mutant/skrell_hair/override_color(rgb_value)
 	return draw_color
-
-/datum/bodypart_overlay/mutant/skrell_hair/get_global_feature_list()
-	return SSaccessories.sprite_accessories["skrell_hair"]

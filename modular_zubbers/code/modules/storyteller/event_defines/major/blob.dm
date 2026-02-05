@@ -5,7 +5,7 @@
 	tags = list(TAG_DESTRUCTIVE, TAG_COMBAT, TAG_CHAOTIC)
 	weight = 10
 	max_occurrences = 1
-	min_players = 50
+	min_players = 35
 	category = EVENT_CATEGORY_ENTITIES
 	description = "Spawns a new blob overmind."
 

@@ -6,6 +6,7 @@
 	lava_damage = 0
 	lava_firestacks = 0
 	temperature_damage = 0
+	slowdown = 0
 	immunity_trait = TRAIT_GHOSTROLE
 	immunity_resistance_flags = LAVA_PROOF
 	var/give_turf_traits = list(TRAIT_TURF_IGNORE_SLOWDOWN, TRAIT_LAVA_STOPPED, TRAIT_IMMERSE_STOPPED)
@@ -20,7 +21,7 @@
 	icon_state = "titanium_blue_old";
 	name = "bathroom floor"
 	footstep = FOOTSTEP_FLOOR
-	tiled_dirt = FALSE
+	tiled_turf = FALSE
 
 /turf/open/indestructible/carpet
 	desc = "It's really cozy! Great for soft paws!";
@@ -32,4 +33,8 @@
 	barefootstep = FOOTSTEP_CARPET_BAREFOOT
 	clawfootstep = FOOTSTEP_CARPET_BAREFOOT
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
-	tiled_dirt = FALSE
+	tiled_turf = FALSE
+
+/turf/open/water/hot_spring/cafe
+	planetary_atmos = TRUE
+	initial_gas_mix = OPENTURF_DEFAULT_ATMOS

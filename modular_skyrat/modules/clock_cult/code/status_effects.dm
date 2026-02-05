@@ -1,6 +1,6 @@
 /datum/status_effect/interdiction
 	id = "interdicted"
-	duration = 2.5 SECONDS
+	duration = 2.6 SECONDS
 	status_type = STATUS_EFFECT_REFRESH
 	tick_interval = 0.2 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/interdiction

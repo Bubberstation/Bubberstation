@@ -428,27 +428,6 @@
 *	JOB-LOCKED
 */
 
-/datum/loadout_item/head/imperial_cap
-	name = "Captain's Naval Cap"
-	item_path = /obj/item/clothing/head/hats/imperial/cap
-	restricted_roles = list(JOB_CAPTAIN, JOB_NT_REP)
-
-/datum/loadout_item/head/imperial_hop
-	name = "Head of Personnel's Naval Cap"
-	item_path = /obj/item/clothing/head/hats/imperial/hop
-	restricted_roles = list(JOB_HEAD_OF_PERSONNEL, JOB_NT_REP)
-
-
-/datum/loadout_item/head/imperial_cmo
-	name = "Chief Medical Officer's Naval Cap"
-	item_path = /obj/item/clothing/head/hats/imperial/cmo
-	restricted_roles = list(JOB_CHIEF_MEDICAL_OFFICER)
-
-/datum/loadout_item/head/imperial_ce
-	name = "Chief Engineer's blast helmet."
-	item_path = /obj/item/clothing/head/hats/imperial/ce
-	restricted_roles = list(JOB_CHIEF_ENGINEER)
-
 /datum/loadout_item/head/cowboyhat_sec
 	name = "Cattleman Hat, Security"
 	item_path = /obj/item/clothing/head/cowboy/skyrat/cattleman/sec
@@ -463,15 +442,6 @@
 	name = "Security Ushanka"
 	item_path = /obj/item/clothing/head/costume/ushanka/sec
 	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER)
-
-/datum/loadout_item/head/blasthelmet
-	name = "Blast Helmet"
-	item_path = /obj/item/clothing/head/hats/imperial/helmet
-
-/datum/loadout_item/head/navybluehoscap
-	name = "Head of Security's Naval Cap"
-	item_path = /obj/item/clothing/head/hats/imperial/hos
-	restricted_roles = list(JOB_HEAD_OF_SECURITY)
 
 /datum/loadout_item/head/navyblueofficerberet
 	name = "Security Officer's Navy Blue beret"
@@ -495,22 +465,6 @@
 /datum/loadout_item/head/nursehat
 	name = "Nurse Hat"
 	item_path = /obj/item/clothing/head/costume/nursehat
-
-/datum/loadout_item/head/imperial_generic
-	name = "Grey Naval Officer Cap"
-	item_path = /obj/item/clothing/head/hats/imperial
-
-/datum/loadout_item/head/imperial_grey
-	name = "Dark Grey Naval Officer Cap"
-	item_path = /obj/item/clothing/head/hats/imperial/grey
-
-/datum/loadout_item/head/imperial_red
-	name = "Red Naval Officer Cap"
-	item_path = /obj/item/clothing/head/hats/imperial/red
-
-/datum/loadout_item/head/imperial_white
-	name = "White Naval Officer Cap"
-	item_path = /obj/item/clothing/head/hats/imperial/white
 
 /datum/loadout_item/head/jester
 	name = "Jester hat"

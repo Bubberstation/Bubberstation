@@ -1,20 +1,81 @@
 //Title Capitalization for names please!!!
 
-/datum/loadout_item/accessory/fake_medal
-	name = "Fake Medal"
-	item_path = /obj/item/clothing/accessory/fake/medal
+/datum/loadout_item/accessory/armband
+	abstract_type = /datum/loadout_item/accessory/armband
+	group = "Armbands"
 
-/datum/loadout_item/accessory/holobadge
+/datum/loadout_item/accessory/armband/med/blue
+	name = "Blue-White Armband"
+	item_path = /obj/item/clothing/accessory/armband/medblue/nonsec
+
+/datum/loadout_item/accessory/armband/med
+	name = "White Armband"
+	item_path = /obj/item/clothing/accessory/armband/med/nonsec
+
+/datum/loadout_item/accessory/armband/cargo
+	name = "Brown Armband"
+	item_path = /obj/item/clothing/accessory/armband/cargo/nonsec
+
+/datum/loadout_item/accessory/armband/engineering
+	name = "Orange Armband"
+	item_path = /obj/item/clothing/accessory/armband/engine/nonsec
+
+/datum/loadout_item/accessory/armband/blue
+	name = "Blue Armband"
+	item_path = /obj/item/clothing/accessory/armband/deputy/lopland/nonsec
+
+/datum/loadout_item/accessory/armband/security
+	name = "Security Armband"
+	item_path = /obj/item/clothing/accessory/armband/deputy/lopland
+	restricted_roles = list(JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_CORRECTIONS_OFFICER)
+
+/datum/loadout_item/accessory/armband/security/deputy
+	name = "Security Deputy Armband"
+	item_path = /obj/item/clothing/accessory/armband/deputy
+	restricted_roles = list(JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_CORRECTIONS_OFFICER)
+
+/datum/loadout_item/accessory/armband/science
+	name = "Purple Armband"
+	item_path = /obj/item/clothing/accessory/armband/science/nonsec
+
+//No red armband for obvious reasons.
+
+/*
+*	MISC
+*/
+
+/datum/loadout_item/accessory/heirloom
+	abstract_type = /datum/loadout_item/accessory/heirloom
+	group = "Heirlooms and Badges"
+
+/datum/loadout_item/accessory/heirloom/bone_charm
+	name = "Heirloom Bone Talisman"
+	item_path = /obj/item/clothing/accessory/talisman/armourless
+
+/datum/loadout_item/accessory/heirloom/bone_codpiece
+	name = "Heirloom Skull Codpiece"
+	item_path = /obj/item/clothing/accessory/skullcodpiece/armourless
+
+/datum/loadout_item/accessory/heirloom/sinew_kilt
+	name = "Heirloom Sinew Skirt"
+	item_path = /obj/item/clothing/accessory/skilt/armourless
+
+/datum/loadout_item/accessory/heirloom/holobadge
 	name = "Holobadge"
 	item_path = /obj/item/clothing/accessory/badge/holo
 
-/datum/loadout_item/accessory/holobadge_cord
+/datum/loadout_item/accessory/heirloom/holobadge/cord
 	name = "Holobadge with Lanyard"
 	item_path = /obj/item/clothing/accessory/badge/holo/cord
 
-/datum/loadout_item/accessory/dogtags
+/datum/loadout_item/accessory/heirloom/dogtags
 	name = "Dogtags"
 	item_path = /obj/item/clothing/accessory/dogtags
+
+/datum/loadout_item/accessory/heirloom/mercbadge
+	name = "Jade Badge"
+	item_path = /obj/item/clothing/accessory/badge/holo/jade
+	//ckeywhitelist = list("konstyantyn")
 
 /*
 *
@@ -24,6 +85,10 @@
 /datum/loadout_item/accessory/medal
 	abstract_type = /datum/loadout_item/accessory/medal
 	group = "Medals"
+
+/datum/loadout_item/accessory/medal/fake_medal
+	name = "Fake Medal"
+	item_path = /obj/item/clothing/accessory/fake/medal
 
 /datum/loadout_item/accessory/medal/shield
 	name = "Medal - Shield"
@@ -113,6 +178,11 @@
 /datum/loadout_item/accessory/medal/rankpin_twobar
 	name = "Rankpin (Double Bars)"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal/rankpin/two_bar
+
+/datum/loadout_item/accessory/medal/kiara
+	name = "Insignia of Steele"
+	item_path = /obj/item/clothing/accessory/medal/steele
+	//ckeywhitelist = list("inferno707")
 
 /*
 * Special Pins

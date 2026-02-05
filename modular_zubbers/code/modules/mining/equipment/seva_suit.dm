@@ -3,7 +3,7 @@
 	desc = "A fire-proof suit for exploring hot environments. Its design doesn't allow for upgrading with goliath plates."
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
-	worn_icon_muzzled = 'modular_zubbers/icons/mob/clothing/suits/armor_digi.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/armor_digi.dmi'
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
 	icon_state = "seva"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
