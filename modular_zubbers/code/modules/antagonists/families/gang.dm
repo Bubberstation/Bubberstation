@@ -560,12 +560,12 @@
 	roundend_category = "O'Driscoll's Gangsters"
 	gang_name = "O'Driscoll's Gang"
 	gang_id = "DB"
-	acceptable_clothes = list(/obj/item/clothing/neck/infinity_scarf/driscoll, //DEBUG: temp clothing. make a green variant
+	acceptable_clothes = list(/obj/item/clothing/neck/infinity_scarf/driscoll,
 		/obj/item/clothing/under/costume/buttondown/slacks,
 		/obj/item/clothing/suit/toggle/jacket/trenchcoat,
 		/obj/item/clothing/mask/gas/driscoll,
 		/obj/item/clothing/shoes/cowboy)
-	free_clothes = list(/obj/item/clothing/neck/infinity_scarf/driscoll, //DEBUG: temp clothing. make a green variant
+	free_clothes = list(/obj/item/clothing/neck/infinity_scarf/driscoll,
 		/obj/item/clothing/under/costume/buttondown/slacks,
 		/obj/item/clothing/suit/toggle/jacket/trenchcoat,
 		/obj/item/clothing/mask/gas/driscoll,

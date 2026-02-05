@@ -50,7 +50,7 @@
 	plasmaman_outfit = /datum/outfit/plasmaman/security
 	var/free_clothes = list(/obj/item/clothing/glasses/hud/spacecop/hidden,
 						/obj/item/clothing/under/rank/security/officer/beatcop,
-						/obj/item/clothing/head) //DEBUG: Placeholder head clothing. Replace this with something appropriate
+						/obj/item/clothing/head) //TODO: Placeholder head clothing. Replace this with something appropriate when properly adding spacecops
 	forge_objectives_for_ert = FALSE
 	equip_ert = FALSE
 	random_names = FALSE
