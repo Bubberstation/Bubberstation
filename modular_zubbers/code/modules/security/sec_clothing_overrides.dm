@@ -50,7 +50,7 @@
 // WARDEN
 
 /obj/item/clothing/head/hats/warden/viro // too many subtypes, who would've guessed?
-	name = "\proper the Warden's cap"
+	name = "\proper the Warden's service cap"
 	desc = "It's a special armored hat issued to the Warden of Nanotrasen Corporate Security. Protects the head from impacts."
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
@@ -61,6 +61,7 @@
 
 /obj/item/clothing/head/hats/warden/drill/viro
 	name = "\proper the Warden's campaign cover"
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "wardendrill"
 
@@ -69,14 +70,22 @@
 	desc = "A special beret with the Warden's insignia emblazoned on it. For wardens with class."
 	icon_state = "warden_beret"
 
+/obj/item/clothing/head/soft/sec/warden
+	name = "\proper the Warden's cap"
+	desc = "An armoured grey baseball cap, attached on front is the Warden's insignia, a deep-red patch emblazoned with a jailcell, with words around stating '/WARDEN CORRECTIONALS  -  NANOTRASEN CORPORATE SECURITY'/"
+	icon_state = "wardensoft"
+	soft_type = "warden"
+	armor_type = /datum/armor/hats_warden
+
 // HOS
 
 /obj/item/clothing/head/hats/hos/cap
-	name = "\proper the Head of Security's cap"
+	name = "\proper the Head of Security's service cap"
+	icon = 'icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "hoscap"
 
-/obj/item/clothing/head/hats/hos/cap/beret // so ghetto
+/obj/item/clothing/head/hats/hos/cap/beret // so jank
 	name = "\proper the Head of Security's beret"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
@@ -90,6 +99,18 @@
 	base_icon_state = "hos_helmet"
 	armor_type = /datum/armor/hats_hos
 
+/obj/item/clothing/head/soft/sec/hos
+	name = "\proper the Head of Security's cap"
+	desc = "An armoured black baseball cap, attached on front are embroided yellow letters stating '/HEAD OF SECURITY'/"
+	icon_state = "hossoft"
+	soft_type = "hos"
+	armor_type = /datum/armor/hats_hos
+
+/obj/item/clothing/head/hats/hos/cap/cowboy
+	name = "\proper the Head of Security's cowboy hat"
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "hos_cowboy"
 
 /*
 	// UNIFORMS
@@ -135,6 +156,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	dying_key = DYE_REGISTRY_JUMPSKIRT
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	gets_cropped_on_taurs = FALSE
 
 /obj/item/clothing/under/rank/security/officer/viro/lowcut
 	name = "security summer uniform"
@@ -146,8 +168,10 @@
 	desc = "Designed out of synthetic leather that automatically seals around the user to reduce heat-related problems while inside a MODsuit. \
 			While the bodysuit was only designed to be used while inside of and operating a MODsuit, the bodysuit found a niche with certain... eccentric officers."
 	icon_state = "security_bodysuit"
-	female_sprite_flags = FEMALE_UNIFORM_FULL
 	can_adjust = FALSE
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	female_sprite_flags = FEMALE_UNIFORM_FULL
+	strip_delay = 80
 
 /obj/item/clothing/under/rank/security/officer/viro/bodysuit/equipped(mob/living/affected_mob, slot) // stolen from the lustwish catsuit lol
 	. = ..()
@@ -173,8 +197,9 @@
 /obj/item/clothing/under/rank/security/warden/skirt
 	name = "\proper the Warden's jumpskirt"
 	desc = "A padded jumpskirt made out of wind-resistant, slightly water-repellent materials for the Warden of Nanotrasen Corporate Security."
-	icon_state = "warden_uniform"
+	icon_state = "warden_skirt"
 	female_sprite_flags = NO_FEMALE_UNIFORM
+	gets_cropped_on_taurs = FALSE
 
 /obj/item/clothing/under/rank/security/warden/grey
 	icon = 'icons/obj/clothing/under/security.dmi'
@@ -192,6 +217,7 @@
 	dying_key = DYE_REGISTRY_JUMPSKIRT
 	female_sprite_flags = NO_FEMALE_UNIFORM
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	gets_cropped_on_taurs = FALSE
 
 
 // HOS
@@ -365,6 +391,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
 	icon_state = "security"
 	content_overlays = FALSE
+	alternate_worn_layer = LOW_NECK_LAYER  // so it goes under things like the HOS' trenchcoats
 
 /obj/item/storage/belt/security/Initialize(mapload)
 	. = ..()
@@ -382,6 +409,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
 	icon_state = "securitywebbing"
 	worn_icon_state = "securitywebbing"
+	alternate_worn_layer = BELT_LAYER
 
 /*
 	// SHOES

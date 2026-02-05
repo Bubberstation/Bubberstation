@@ -22,12 +22,6 @@
 	item_path = /obj/item/clothing/head/helmet/abductor/fake
 	donator_only = TRUE //Dono item for MyphicBowser
 
-/datum/loadout_item/head/hats/warden/drill
-	name = "Warden's Campaign Hat"
-	item_path = /obj/item/clothing/head/hats/warden/drill
-	restricted_roles = list(JOB_WARDEN)
-
-
 /datum/loadout_item/head/sombrero
 	name = "Sombrero"
 	item_path = /obj/item/clothing/head/costume/sombrero
@@ -86,12 +80,12 @@
 // WARDEN
 
 /datum/loadout_item/head/hats/warden/viro
-	name = "Warden's Cap"
+	name = "Warden's Service Cap"
 	item_path = /obj/item/clothing/head/hats/warden/viro
 	restricted_roles = list(JOB_WARDEN)
 
 /datum/loadout_item/head/hats/warden/viro/alt
-	name = "Warden's Cap"
+	name = "Warden's Service Cap"
 	item_path = /obj/item/clothing/head/hats/warden/viro/alt
 	restricted_roles = list(JOB_WARDEN)
 
@@ -101,8 +95,13 @@
 	restricted_roles = list(JOB_WARDEN)
 
 /datum/loadout_item/head/hats/warden/viro/beret
-	name = "Warden's Campaign Beret"
+	name = "Warden's Beret"
 	item_path = /obj/item/clothing/head/hats/warden/viro/beret
+	restricted_roles = list(JOB_WARDEN)
+
+/datum/loadout_item/head/hats/soft/sec/warden
+	name = "Warden's Cap"
+	item_path = /obj/item/clothing/head/soft/sec/warden
 	restricted_roles = list(JOB_WARDEN)
 
 // HOS
@@ -121,6 +120,18 @@
 	name = "Head of Security's Helmet"
 	item_path = /obj/item/clothing/head/helmet/sec/hos
 	restricted_roles = list(JOB_HEAD_OF_SECURITY)
+
+/datum/loadout_item/head/hats/soft/sec/hos
+	name = "Head of Security's Cap"
+	item_path = /obj/item/clothing/head/soft/sec/hos
+	restricted_roles = list(JOB_HEAD_OF_SECURITY)
+
+/datum/loadout_item/head/hats/hos/cap/beret
+	name = "Head of Security's Cowboy Hat"
+	item_path = /obj/item/clothing/head/hats/hos/cap/cowboy
+	restricted_roles = list(JOB_HEAD_OF_SECURITY)
+
+//
 
 /datum/loadout_item/head/beret/sec/security_medic
 	name = "Security Medic Beret"

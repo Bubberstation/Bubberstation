@@ -69,8 +69,6 @@
 	premium = list(
 					/obj/item/clothing/accessory/badge/holo = 10, //I know there's a box of them but, why not have more, eh?
 					/obj/item/clothing/accessory/badge/holo/cord = 10,
-					/obj/item/clothing/head/helmet/blueshirt = 3,
-					/obj/item/clothing/suit/armor/vest/blueshirt = 3,
 					/obj/item/riding_saddle/leather/peacekeeper = 3,
 	)
 

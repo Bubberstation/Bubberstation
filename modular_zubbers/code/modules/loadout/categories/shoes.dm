@@ -47,11 +47,6 @@
 	name = "Knee Boots"
 	item_path = /obj/item/clothing/shoes/jackboots/knee
 
-/datum/loadout_item/shoes/boots/jackboots/gogo_boots
-	name = "Tactical Go-Go boots"
-	item_path = /obj/item/clothing/shoes/jackboots/gogo_boots
-	restricted_roles = list(ALL_JOBS_SEC)
-
 /datum/loadout_item/shoes/boots/diesel_m
 	name = "Male Diesel Boots"
 	item_path = /obj/item/clothing/shoes/jackboots/diesel_m
