@@ -857,10 +857,12 @@ SUBSYSTEM_DEF(gamemode)
 
 /datum/controller/subsystem/gamemode/proc/inject_event(datum/round_event_control/event_control)
 	if(!istype(event_control, /datum/round_event_control))
+		stack_trace("Storyteller was requested to inject event type [event_control ? event_control : "NULL"], but it's invalid!")
 		return
 
 	var/datum/round_event_control/event = locate(event_control) in SSevents.control
 	if(!event)
+		stack_trace("Storyteller was requested to inject event type [event_control] but could not locate it in SSevents.")
 		return
 
 	event.run_event(admin_forced = TRUE)
