@@ -3,7 +3,7 @@
 
 /datum/supply_pack/goody/blacksteel/hunting_knife
 	contains = list(/obj/item/knife/hunting)
-	cost = PAYCHECK_CREW * 2
+	cost = PAYCHECK_COMMAND
 	auto_name = TRUE
 
 /datum/supply_pack/goody/blacksteel/bowie_knife

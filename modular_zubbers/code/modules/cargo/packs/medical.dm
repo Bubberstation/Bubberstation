@@ -18,27 +18,27 @@
 
 /datum/supply_pack/medical/first_aid_kit_civil
 	contains = list(/obj/item/storage/medkit/civil_defense/stocked)
-	cost = PAYCHECK_COMMAND * 5
+	cost = CARGO_CRATE_VALUE * 2.5
 	auto_name = TRUE
 
 /datum/supply_pack/medical/first_aid_kit_comfort
 	contains = list(/obj/item/storage/medkit/civil_defense/comfort/stocked)
-	cost = PAYCHECK_COMMAND * 8
+	cost = CARGO_CRATE_VALUE * 4
 	auto_name = TRUE
 
 /datum/supply_pack/medical/first_aid_kit_frontier
 	contains = list(/obj/item/storage/medkit/frontier/stocked)
-	cost = PAYCHECK_COMMAND * 8
+	cost = CARGO_CRATE_VALUE * 4
 	auto_name = TRUE
 
 /datum/supply_pack/medical/first_aid_kit_robotics
 	contains = list(/obj/item/storage/medkit/robotic_repair/stocked)
-	cost = PAYCHECK_COMMAND * 8
+	cost = CARGO_CRATE_VALUE * 4
 	auto_name = TRUE
 
 /datum/supply_pack/medical/first_aid_kit_premium_robotics
 	contains = list(/obj/item/storage/medkit/robotic_repair/preemo/stocked)
-	cost = PAYCHECK_COMMAND * 15
+	cost = CARGO_CRATE_VALUE * 7.5
 	auto_name = TRUE
 
 /datum/supply_pack/goody/medical/super_robofoam
@@ -57,6 +57,11 @@
 	contains = list(/obj/item/reagent_containers/hypospray/medipen/deforest/robot_system_cleaner)
 	auto_name = TRUE
 
+/datum/supply_pack/goody/medical/hypospray
+	contains = list(/obj/item/hypospray/mkii)
+	cost = PAYCHECK_COMMAND * 5
+	auto_name = TRUE
+
 /datum/supply_pack/goody/medical/hypospray_upgrade
 	contains = list(/obj/item/device/custom_kit/deluxe_hypo2)
 	cost = PAYCHECK_COMMAND * 4.5
@@ -69,8 +74,25 @@
 
 /datum/supply_pack/medical/medstation
 	contains = list(/obj/item/wallframe/frontier_medstation)
-	cost = PAYCHECK_COMMAND * 12
+	cost = CARGO_CRATE_VALUE * 6
 	auto_name = TRUE
+
+/datum/supply_pack/medical/surgery_tray
+	contains = list(/obj/item/surgery_tray/full)
+	cost = CARGO_CRATE_VALUE * 3
+	auto_name = TRUE
+
+/datum/supply_pack/medical/advanced_tools
+	name = "Advanced Tools Crate"
+	desc = "Is Science slacking? Is your chemistry department lacking? Order an advanced tools crate today."
+	contains = list(
+		/obj/item/cautery/advanced,
+		/obj/item/scalpel/advanced,
+		/obj/item/retractor/advanced,
+		/obj/item/blood_filter/advanced,
+		/obj/item/healthanalyzer/advanced,
+	)
+	cost = CARGO_CRATE_VALUE * 12.5
 
 /datum/supply_pack/goody/medical/medhud_night_sci
 	contains = list(/obj/item/clothing/glasses/hud/health/night/science)

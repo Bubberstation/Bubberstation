@@ -20,3 +20,11 @@
 				)
 	crate_name = "branded carpet crate"
 	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
+
+/datum/supply_pack/goody/service
+	group = "Service"
+
+/datum/supply_pack/goody/service/hydro_synth
+	contains = list(/obj/item/flatpacked_machine/hydro_synth)
+	cost = PAYCHECK_CREW
+	auto_name = TRUE

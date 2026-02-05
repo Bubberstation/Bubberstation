@@ -11,7 +11,7 @@
 		/obj/item/clothing/head/helmet/cin_surplus_helmet/random_color,
 		/obj/item/clothing/suit/armor/vest/cin_surplus_vest,
 	)
-	cost = PAYCHECK_CREW * 8
+	cost = CARGO_CRATE_VALUE * 2
 	auto_name = TRUE
 
 /datum/supply_pack/psc/police
@@ -26,7 +26,7 @@
 		/obj/item/clothing/head/helmet/nri_police,
 		/obj/item/clothing/suit/armor/vest/nri_police,
 	)
-	cost = PAYCHECK_CREW * 10
+	cost = CARGO_CRATE_VALUE * 2.5
 	auto_name = TRUE
 
 /datum/supply_pack/psc/goodies
