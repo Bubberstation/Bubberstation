@@ -9,3 +9,14 @@
 /datum/supply_pack/organic/exoticseeds/New()
 	. = ..()
 	contains += /obj/item/seeds/vaporsac
+
+/datum/supply_pack/service/carpet_branded
+	name = "Branded Carpet Crate"
+	desc = "Here is a group of carpets coming in stacks of fifty guarenteed to add some corporate appreciation to your shift."
+	cost = CARGO_CRATE_VALUE * 3
+	contains = list(/obj/item/stack/tile/carpet/stellar = 50,
+					/obj/item/stack/tile/carpet/donk = 50,
+					/obj/item/stack/tile/carpet/executive = 50,
+				)
+	crate_name = "branded carpet crate"
+	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE

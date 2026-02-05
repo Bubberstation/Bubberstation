@@ -94,42 +94,6 @@
 	cost = PAYCHECK_CREW * 12
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/rope)
 
-/datum/supply_pack/goody/food/ready/standard
-	contains = list(/obj/item/food/ready_donk)
-	auto_name = TRUE
-
-/datum/supply_pack/goody/food/ready/donkhiladas
-	contains = list(/obj/item/food/ready_donk/donkhiladas)
-	auto_name = TRUE
-
-/datum/supply_pack/goody/food/ready/mac_n_cheese
-	contains = list(/obj/item/food/ready_donk/mac_n_cheese)
-	auto_name = TRUE
-
-/datum/supply_pack/goody/food/pockets/standard
-	contains = list(/obj/item/storage/box/donkpockets)
-	auto_name = TRUE
-
-/datum/supply_pack/goody/food/pockets/berry
-	contains = list(/obj/item/storage/box/donkpockets/donkpocketberry)
-	auto_name = TRUE
-
-/datum/supply_pack/goody/food/pockets/banana
-	contains = list(/obj/item/storage/box/donkpockets/donkpockethonk)
-	auto_name = TRUE
-
-/datum/supply_pack/goody/food/pockets/pizza
-	contains = list(/obj/item/storage/box/donkpockets/donkpocketpizza)
-	auto_name = TRUE
-
-/datum/supply_pack/goody/food/pockets/spicy
-	contains = list(/obj/item/storage/box/donkpockets/donkpocketspicy)
-	auto_name = TRUE
-
-/datum/supply_pack/goody/food/pockets/teriyaki
-	contains = list(/obj/item/storage/box/donkpockets/donkpocketteriyaki)
-	auto_name = TRUE
-
 /datum/supply_pack/goody/merch/donk_carpet
 	contains = list(/obj/item/stack/tile/carpet/donk/thirty)
 	auto_name = TRUE
