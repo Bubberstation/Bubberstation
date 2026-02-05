@@ -2554,7 +2554,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
 	},
-/obj/item/stamp{
+/obj/item/stamp/granted{
 	pixel_x = 8;
 	pixel_y = 1
 	},
@@ -4265,7 +4265,7 @@
 /obj/machinery/suit_storage_unit{
 	mask_type = /obj/item/clothing/mask/gas/syndicate;
 	mod_type = /obj/item/mod/control/pre_equipped/traitor_elite;
-	storage_type = /obj/item/tank/jetpack/oxygen/harness
+	storage_type = /obj/item/tank/jetpack/harness
 	},
 /obj/effect/turf_decal/siding/dark,
 /obj/machinery/status_display/department_balance{
@@ -4404,7 +4404,6 @@
 	ailock = 1;
 	control_area = "/area/ruin/space/has_grav/bubbers/dauntless/command/vault";
 	dir = 1;
-	icon_state = "control_kill";
 	lethal = 1;
 	name = "Base turret controls";
 	pixel_y = 30;

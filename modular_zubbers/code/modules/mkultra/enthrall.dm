@@ -241,7 +241,7 @@
 			enthrall_victim.set_stutter(0)
 			enthrall_victim.set_jitter(0)
 			if(owner.get_organ_loss(ORGAN_SLOT_BRAIN) >= 20)
-				owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, -0.2)
+				owner.adjust_organ_loss(ORGAN_SLOT_BRAIN, -0.2)
 			if(withdrawl_active == TRUE)
 				REMOVE_TRAIT(owner, TRAIT_PACIFISM, "MKUltra")
 				enthrall_victim.clear_mood_event("EnthMissing1")
@@ -262,7 +262,7 @@
 				if(prob(5))
 					to_chat(owner, span_notice("You're starting to miss [(lewd?"your [enthrall_gender]":"[enthrall_mob]")]."))
 				if(prob(5))
-					owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.1)
+					owner.adjust_organ_loss(ORGAN_SLOT_BRAIN, 0.1)
 					to_chat(owner, span_userlove("[(lewd?"[enthrall_gender]":"[enthrall_mob]")] will surely be back soon!>")) //denial
 			if(48) // 03:00 - You can now try and break away
 				var/message = "[(lewd?"I feel empty when [enthrall_gender]'s not around..":"I miss [enthrall_mob]'s presence")]"
@@ -270,11 +270,11 @@
 			if(49 to 71) // 03:00-05:00 - barganing
 				if(prob(10))
 					to_chat(owner, span_userlove("They are coming back, right...?"))
-					owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.5)
+					owner.adjust_organ_loss(ORGAN_SLOT_BRAIN, 0.5)
 				if(prob(10))
 					if(lewd)
 						to_chat(owner, span_userlove("I just need to be a good pet for [enthrall_gender], they'll surely return if I'm a good pet."))
-					owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1.5)
+					owner.adjust_organ_loss(ORGAN_SLOT_BRAIN, -1.5)
 			if(72) // 05:00
 				enthrall_victim.clear_mood_event("EnthMissing1")
 				var/message = "[(lewd?"I feel so lost in this complicated world without [enthrall_gender]..":"I have to return to [enthrall_mob]!")]"
@@ -319,7 +319,7 @@
 						to_chat(owner, span_warning("You're unable to hold back your tears, suddenly sobbing as the desire to see your [enthrall_gender] oncemore overwhelms you."))
 					else
 						to_chat(owner, span_warning("You are overwheled with withdrawl from [enthrall_mob]."))
-					owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1)
+					owner.adjust_organ_loss(ORGAN_SLOT_BRAIN, 1)
 					owner.adjust_stutter(15 SECONDS)
 					owner.adjust_jitter(15 SECONDS)
 					if(prob(10))//2% chance
@@ -335,14 +335,14 @@
 			if(144 to INFINITY) // 11:00+ - acceptance
 				if(prob(15))
 					delta_resist += 5
-					owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1)
+					owner.adjust_organ_loss(ORGAN_SLOT_BRAIN, -1)
 					if(prob(20))
 						if(lewd)
 							to_chat(owner, span_boldnicegreen("Maybe you'll be okay without your [enthrall_gender]."))
 						else
 							to_chat(owner, span_boldnicegreen("You feel your mental functions slowly begin to return."))
 				if(prob(5))
-					owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1)
+					owner.adjust_organ_loss(ORGAN_SLOT_BRAIN, 1)
 					enthrall_victim.adjust_hallucinations(10 SECONDS)
 
 		withdrawl_progress += 1 //Enough to leave you with a major brain trauma, but not kill you.

@@ -323,6 +323,7 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/grenade/chem_grenade/glitter/blue = 100,
 		/obj/item/grenade/chem_grenade/metalfoam = 100,
 		/obj/item/grenade/chem_grenade/smart_metal_foam = 75,
+		/obj/item/grenade/chem_grenade/wehnade = 75,
 		/obj/item/grenade/chem_grenade/teargas = 25,
 		/obj/item/grenade/firecracker = 25,
 		/obj/item/grenade/flashbang = 10,

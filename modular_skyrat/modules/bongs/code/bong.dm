@@ -6,6 +6,7 @@
 	righthand_file = 'modular_skyrat/modules/bongs/icons/righthand.dmi'
 	icon_state = "bongoff"
 	inhand_icon_state = "bongoff"
+	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 10, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 5)
 
 	///The icon state when the bong is lit
 	var/icon_on = "bongon"
@@ -186,6 +187,7 @@
 	chem_volume = 50
 	smoke_range = 7
 	moan_chance = 50
+	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 20, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
 
 #define MAX_FAKE_STEAM_STAGES 5
 #define STAGE_DOWN_TIME (10 SECONDS)

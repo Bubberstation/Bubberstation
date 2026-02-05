@@ -245,14 +245,6 @@
 	mood_change = -15
 	event_flags = MOOD_EVENT_PAIN
 
-/datum/mood_event/sad_empath
-	description = "Someone seems upset..."
-	mood_change = -1
-	timeout = 60 SECONDS
-
-/datum/mood_event/sad_empath/add_effects(mob/sadtarget)
-	description = "[sadtarget.name] seems upset..."
-
 /datum/mood_event/sacrifice_bad
 	description = "Those darn savages!"
 	mood_change = -5
@@ -581,11 +573,22 @@
 	if(HAS_TRAIT(dead_mob, TRAIT_SPAWNED_MOB))
 		mood_change *= 0.25
 		timeout *= 0.2
+	if(istype(owner.mind?.assigned_role, /datum/job/bitrunning_glitch) || istype(owner.mind?.assigned_role, /datum/job/bit_avatar))
+		// Digital beings shouldn't care about death it's just gaming
+		mood_change *= -0.25
+		description = "Another one bites the dust!"
+		return
 	if(HAS_TRAIT(owner, TRAIT_CULT_HALO) && !HAS_TRAIT(dead_mob, TRAIT_CULT_HALO))
 		// When cultists get halos, they stop caring about death
 		mood_change *= -0.5
 		description = "More souls for the Geometer!"
 		return
+	if(IS_REVOLUTIONARY(owner))
+		var/datum/job/possible_head_job = dead_mob.mind?.assigned_role
+		if(possible_head_job.job_flags & JOB_HEAD_OF_STAFF)
+			mood_change *= -0.5
+			description = "[possible_head_job.title ? "The [LOWER_TEXT(possible_head_job.title)]" : "Another head of staff"] is dead! Long live the revolution!"
+			return
 
 	var/ispet = istype(dead_mob, /mob/living/basic/pet) || ismonkey(dead_mob)
 	if(HAS_PERSONALITY(owner, /datum/personality/callous) || (ispet && HAS_PERSONALITY(owner, /datum/personality/animal_disliker)))
@@ -595,7 +598,7 @@
 		return
 	// future todo : make the hop care about ian, cmo runtime, etc.
 	if(ispet)
-		description = replacetext(pet_message, "%DEAD_MOB%", capitalize(dead_mob.name)) // doesn't use a descriptor, so it says "Ian died"
+		description = capitalize(replacetext(pet_message, "%DEAD_MOB%", "[dead_mob]")) // doesn't use a descriptor, so it says "Ian died"
 		if(HAS_PERSONALITY(owner, /datum/personality/animal_friend))
 			mood_change *= 1.5
 			timeout *= 1.25

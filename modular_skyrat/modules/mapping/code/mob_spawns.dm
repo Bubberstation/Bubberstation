@@ -29,6 +29,7 @@
 	quirks_enabled = TRUE
 	random_appearance = FALSE
 	loadout_enabled = TRUE
+	allow_custom_character = ALL
 
 /datum/outfit/black_market
 	name = "Black Market Trader"
@@ -138,17 +139,17 @@
 	mob_type = /mob/living/carbon/human/species/lizard/ashwalker;
 	outfit = /datum/outfit/consumed_ashwalker
 
-/obj/effect/mob_spawn/ghost_role/human/oldsec
+/obj/effect/mob_spawn/ghost_role/human/oldstation/sec
 	loadout_enabled = TRUE
 	quirks_enabled = TRUE
 	random_appearance = FALSE
 
-/obj/effect/mob_spawn/ghost_role/human/oldsci
+/obj/effect/mob_spawn/ghost_role/human/oldstation/sci
 	loadout_enabled = TRUE
 	quirks_enabled = TRUE
 	random_appearance = FALSE
 
-/obj/effect/mob_spawn/ghost_role/human/oldeng
+/obj/effect/mob_spawn/ghost_role/human/oldstation/eng
 	loadout_enabled = TRUE
 	quirks_enabled = TRUE
 	random_appearance = FALSE
@@ -307,7 +308,7 @@
 	r_pocket = /obj/item/flashlight/seclite
 	implants = list(
 		/obj/item/implant/weapons_auth,
-		/obj/item/implant/krav_maga
+		/obj/item/implant/kaza_ruk
 		)
 
 /datum/outfit/ds2/syndicate_command/corporateliaison

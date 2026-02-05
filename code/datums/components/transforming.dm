@@ -243,7 +243,10 @@
 
 	source.hitsound = initial(source.hitsound)
 	source.update_weight_class(initial(source.w_class))
-	source.icon_state = initial(source.icon_state)
+	if(source.post_init_icon_state) // BUBBER CHANGE START : Bug Fix.
+		source.icon_state = initial(source.post_init_icon_state)
+	else
+		source.icon_state = initial(source.icon_state) // BUBBER CHANGE END
 	source.inhand_icon_state = initial(source.inhand_icon_state)
 	source.update_appearance()
 	source.update_inhand_icon()
@@ -273,11 +276,11 @@
 		var/obj/item/item_parent = parent
 		switch(item_parent.damtype)
 			if(STAMINA)
-				user.adjustStaminaLoss(clumsy_damage)
+				user.adjust_stamina_loss(clumsy_damage)
 			if(OXY)
-				user.adjustOxyLoss(clumsy_damage)
+				user.adjust_oxy_loss(clumsy_damage)
 			if(TOX)
-				user.adjustToxLoss(clumsy_damage)
+				user.adjust_tox_loss(clumsy_damage)
 			if(BRUTE)
 				user.take_bodypart_damage(brute=clumsy_damage)
 			if(BURN)

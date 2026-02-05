@@ -43,8 +43,10 @@
 				/obj/item/bdsm_candle = 4,
 				/obj/item/spanking_pad = 4,
 				/obj/item/tickle_feather = 8,
-				/obj/item/borg/upgrade/dominatrixmodule = 5,
-				/obj/item/borg/upgrade/obediencemodule = 5,
+				/obj/item/borg/upgrade/dominatrixmodule = 6,
+				/obj/item/borg/upgrade/obediencemodule = 6,
+				/obj/item/borg/upgrade/expand = 6,
+				/obj/item/borg/upgrade/shrink = 6,
 				/obj/item/reagent_containers/venom_milker = 5,
 			),
 		),
@@ -70,6 +72,7 @@
 				/obj/item/clothing/under/misc/latex_halfcatsuit = 8,
 				/obj/item/clothing/gloves/latex_gloves = 8,
 				/obj/item/clothing/shoes/latex_heels = 4,
+				/obj/item/clothing/shoes/latex_heels/ballet_heels = 4,
 				/obj/item/clothing/shoes/latex_socks = 8,
 
 				/obj/item/storage/belt/erpbelt = 5,//Leather Belt, holds a lot of tools.

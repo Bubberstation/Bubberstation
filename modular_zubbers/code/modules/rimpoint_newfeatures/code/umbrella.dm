@@ -2,8 +2,8 @@
 
 /obj/item/umbrella
 	name = "umbrella"
-	icon = 'modular_zubbers/icons/obj/equipment/umbrella.dmi'
-	icon_state = "umbrella"
+	icon = 'icons/map_icons/items/_item.dmi'
+	icon_state = "/obj/item/umbrella"
 	post_init_icon_state = "umbrella"
 	lefthand_file = 'modular_zubbers/icons/obj/equipment/umbrella_inhand_l.dmi'
 	righthand_file = 'modular_zubbers/icons/obj/equipment/umbrella_inhand_r.dmi'
@@ -126,6 +126,7 @@
 /obj/item/umbrella/parasol
 	name = "parasol"
 	desc = "A black laced parsol, how intricate."
+	icon = 'modular_zubbers/icons/obj/equipment/umbrella.dmi'
 	icon_state = "parasol"
 	inhand_icon_state = "parasol_closed"
 	on_inhand_icon_state = "parasol_on"

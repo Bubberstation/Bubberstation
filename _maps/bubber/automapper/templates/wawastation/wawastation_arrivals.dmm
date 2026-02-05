@@ -104,12 +104,22 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
+/obj/effect/landmark/firealarm_sanity,
 /turf/open/floor/wood/tile,
 /area/station/service/bar)
 "fD" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/light/dim/directional/east,
+/obj/machinery/firealarm/directional/east,
 /turf/open/floor/engine,
+/area/station/hallway/secondary/entry)
+"fS" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/light/directional/west,
+/obj/machinery/firealarm/directional/west,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/hallway/secondary/entry)
 "ge" = (
 /obj/structure/table/wood,
@@ -317,7 +327,7 @@
 "rx" = (
 /obj/machinery/door/airlock/maintenance/external/glass,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
-/obj/effect/mapping_helpers/airlock/unres{
+/obj/effect/mapping_helpers/airlock/unres/delayed{
 	dir = 8
 	},
 /obj/machinery/door/firedoor,
@@ -343,7 +353,7 @@
 /area/station/asteroid)
 "ul" = (
 /obj/machinery/door/airlock/maintenance,
-/obj/effect/mapping_helpers/airlock/unres{
+/obj/effect/mapping_helpers/airlock/unres/delayed{
 	dir = 1
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
@@ -397,6 +407,12 @@
 /obj/machinery/light/dim/directional/east,
 /turf/open/floor/engine,
 /area/station/hallway/secondary/entry)
+"zV" = (
+/obj/effect/turf_decal/sand/plating,
+/obj/effect/spawner/random/structure/crate,
+/obj/structure/extinguisher_cabinet/directional/north,
+/turf/open/floor/plating,
+/area/station/asteroid)
 "zW" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -433,7 +449,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/airlock/maintenance/external,
-/obj/effect/mapping_helpers/airlock/unres{
+/obj/effect/mapping_helpers/airlock/unres/delayed{
 	dir = 8
 	},
 /obj/effect/turf_decal/sand/plating,
@@ -470,7 +486,7 @@
 "Dm" = (
 /obj/machinery/door/airlock/maintenance/external/glass,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
-/obj/effect/mapping_helpers/airlock/unres{
+/obj/effect/mapping_helpers/airlock/unres/delayed{
 	dir = 4
 	},
 /turf/open/floor/engine,
@@ -847,7 +863,6 @@
 /obj/effect/turf_decal/sand/plating,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/light/small/dim/directional/west,
-/obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/plating,
 /area/station/asteroid)
 "XY" = (
@@ -857,6 +872,11 @@
 /obj/machinery/light/directional/north,
 /obj/machinery/firealarm/directional/north,
 /turf/open/floor/catwalk_floor/iron_white,
+/area/station/hallway/secondary/entry)
+"Ym" = (
+/obj/effect/turf_decal/stripes/full,
+/obj/effect/landmark/firealarm_sanity,
+/turf/open/floor/engine,
 /area/station/hallway/secondary/entry)
 "YC" = (
 /obj/effect/turf_decal/sand/plating,
@@ -880,7 +900,7 @@ Vt
 Vt
 Vt
 Tp
-ub
+zV
 XH
 jQ
 Rg
@@ -1231,7 +1251,7 @@ gV
 gV
 gV
 fD
-gX
+Ym
 zU
 gV
 gV
@@ -1278,7 +1298,7 @@ TC
 TC
 Au
 TC
-WD
+fS
 TC
 TC
 TC

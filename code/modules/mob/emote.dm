@@ -12,7 +12,7 @@
 #define BEYBLADE_CONFUSION_LIMIT (40 SECONDS)
 
 //The code execution of the emote datum is located at code/datums/emotes.dm
-/mob/proc/emote(act, m_type = null, message = null, intentional = FALSE, force_silence = FALSE, forced = FALSE)
+/mob/proc/emote(act, type_override =  NONE, message = null, intentional = FALSE, force_silence = FALSE, forced = FALSE)
 	var/param = message
 	var/custom_param = findchar(act, " ")
 	if(custom_param)
@@ -33,11 +33,11 @@
 			continue
 		if(!forced && !emote.can_run_emote(src, TRUE, intentional, param))
 			continue
-		if(SEND_SIGNAL(src, COMSIG_MOB_PRE_EMOTED, emote.key, param, m_type, intentional, emote) & COMPONENT_CANT_EMOTE)
+		if(SEND_SIGNAL(src, COMSIG_MOB_PRE_EMOTED, emote.key, param, type_override, intentional, emote) & COMPONENT_CANT_EMOTE)
 			silenced = TRUE
 			continue
-		emote.run_emote(src, param, m_type, intentional)
-		SEND_SIGNAL(src, COMSIG_MOB_EMOTE, emote, act, m_type, message, intentional)
+		emote.run_emote(src, param, type_override, intentional)
+		SEND_SIGNAL(src, COMSIG_MOB_EMOTE, emote, act, type_override, message, intentional)
 		SEND_SIGNAL(src, COMSIG_MOB_EMOTED(emote.key))
 		return TRUE
 	if(intentional && !silenced && !force_silence)
@@ -80,20 +80,25 @@
 	hands_use_check = TRUE
 	mob_type_allowed_typecache = list(/mob/living, /mob/dead/observer, /mob/eye/imaginary_friend)
 	mob_type_ignore_stat_typecache = list(/mob/dead/observer, /mob/living/silicon/ai, /mob/eye/imaginary_friend)
+	/// The probability we fall our our arse
+	var/fall_over_prob = 60
+	/// The direction we spin in. TRUE means clockwise, FALSE means counter-clockwise.
+	var/clockwise_spin = TRUE
 
-// BUBBER EDIT CHANGE BEGIN - Flip Cooldown
 /datum/emote/flip/run_emote(mob/user, params , type_override, intentional)
 	. = ..()
+	// BUBBER EDIT CHANGE BEGIN - Flip Cooldown
 	if(iscarbon(user))
 		var/mob/living/carbon/flippy_mcgee = user
 		flippy_mcgee.set_confusion_if_lower(FLIP_EMOTE_DURATION)
 		if(flippy_mcgee.get_timed_status_effect_duration(/datum/status_effect/confusion) > BEYBLADE_PUKE_THRESHOLD)
 			flippy_mcgee.vomit(VOMIT_CATEGORY_KNOCKDOWN, lost_nutrition = BEYBLADE_PUKE_NUTRIENT_LOSS, distance = 0)
 			return
+	// BUBBER EDIT CHANGE END - Flip Cooldown
 
-	user.SpinAnimation(FLIP_EMOTE_DURATION, 1)
+	user.SpinAnimation(FLIP_EMOTE_DURATION, 1, clockwise = clockwise_spin)
 
-/*
+/* BUBBER EDIT CHANGE BEGIN - Flip Cooldown
 /datum/emote/flip/check_cooldown(mob/user, intentional)
 	. = ..()
 	if(.)
@@ -102,43 +107,50 @@
 		return
 	if(isliving(user))
 		var/mob/living/flippy_mcgee = user
-		if(prob(20))
+		if(prob(fall_over_prob))
 			flippy_mcgee.Knockdown(1 SECONDS)
 			flippy_mcgee.visible_message(
 				span_notice("[flippy_mcgee] attempts to do a flip and falls over, what a doofus!"),
 				span_notice("You attempt to do a flip while still off balance from the last flip and fall down!")
 			)
-			if(prob(50))
-				flippy_mcgee.adjustBruteLoss(1)
+			if(prob(fall_over_prob/2))
+				flippy_mcgee.adjust_brute_loss(1)
 		else
 			flippy_mcgee.visible_message(
 				span_notice("[flippy_mcgee] stumbles a bit after their flip."),
 				span_notice("You stumble a bit from still being off balance from your last flip.")
 			)
 */
-/datum/emote/flip/check_cooldown(mob/living/carbon/user, intentional)
+/datum/emote/flip/check_cooldown(mob/user, intentional)
 	. = ..()
 	if(.)
 		return
 	if(!can_run_emote(user, intentional=intentional))
 		return
-	if(!iscarbon(user))
+	if(!isliving(user))
 		return
-
 	var/mob/living/flippy_mcgee = user
 	var/sickness = flippy_mcgee.get_timed_status_effect_duration(/datum/status_effect/confusion)
-	if(sickness && !(HAS_TRAIT(flippy_mcgee, TRAIT_FREERUNNING)))
-		if(prob(20))
-			flippy_mcgee.Knockdown(1.5 SECONDS)
-			flippy_mcgee.visible_message(
-				span_notice("[flippy_mcgee] attempts to do a flip and falls over, what a doofus!"),
-				span_notice("You attempt to do a flip while still off balance from the last flip and fall down!")
-			)
-		user.set_dizzy_if_lower(BEYBLADE_DIZZINESS_DURATION)
-		user.adjust_confusion_up_to(BEYBLADE_CONFUSION_INCREMENT, BEYBLADE_CONFUSION_LIMIT)
-		if(sickness > (BEYBLADE_PUKE_THRESHOLD * 0.5))
-			to_chat(user, span_warning("You feel woozy from flipping."))
+	if(!sickness || HAS_TRAIT(flippy_mcgee, TRAIT_FREERUNNING))
+		return
+	if(prob(20))
+		flippy_mcgee.Knockdown(1.5 SECONDS)
+		flippy_mcgee.visible_message(
+			span_notice("[flippy_mcgee] attempts to do a flip and falls over, what a doofus!"),
+			span_notice("You attempt to do a flip while still off balance from the last flip and fall down!")
+		)
+	flippy_mcgee.set_dizzy_if_lower(BEYBLADE_DIZZINESS_DURATION)
+	flippy_mcgee.adjust_confusion_up_to(BEYBLADE_CONFUSION_INCREMENT, BEYBLADE_CONFUSION_LIMIT)
+	if(sickness > (BEYBLADE_PUKE_THRESHOLD * 0.5))
+		to_chat(user, span_warning("You feel woozy from flipping."))
 // BUBBER EDIT CHANGE END
+
+
+/datum/emote/flip/backflip
+	key = "backflip"
+	key_third_person = "backflips"
+	fall_over_prob = 20
+	clockwise_spin = FALSE
 
 /datum/emote/spin
 	key = "spin"

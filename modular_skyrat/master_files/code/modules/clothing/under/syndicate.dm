@@ -31,37 +31,60 @@
 	inhand_icon_state = "b_suit"
 	can_adjust = TRUE
 	has_sensor = HAS_SENSORS
-	armor_type = /datum/armor/clothing_under/none
+	armor_type = /datum/armor/clothing_under
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
-	unique_reskin = list(
-		RESKIN_NT = "tactifool_blue",
-		RESKIN_CHARCOAL = "tactifool"
-	)
 	resistance_flags = FLAMMABLE
 
-/obj/item/clothing/under/syndicate/tacticool/reskin_obj(mob/M)
-	..()
-	if(current_skin && current_skin == RESKIN_CHARCOAL)
-		desc = "Just looking at it makes you want to buy an SKS, go into the woods, and -operate-." //Default decription of the normal tacticool
-		inhand_icon_state = "bl_suit" //May as well, while we're updating it
+/obj/item/clothing/under/syndicate/tacticool/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/tacticool_turtleneck)
+	RegisterSignal(src, COMSIG_OBJ_RESKIN, PROC_REF(on_reskin))
+
+/datum/atom_skin/tacticool_turtleneck
+	abstract_type = /datum/atom_skin/tacticool_turtleneck
+
+/datum/atom_skin/tacticool_turtleneck/nt
+	preview_name = RESKIN_NT
+	new_icon_state = "tactifool_blue"
+
+/datum/atom_skin/tacticool_turtleneck/charcoal
+	preview_name = RESKIN_CHARCOAL
+	new_icon_state = "tactifool"
+
+/obj/item/clothing/under/syndicate/tacticool/proc/on_reskin()
+	SIGNAL_HANDLER
+	if(icon_state == "tactifool")
+		desc = "Just looking at it makes you want to buy an SKS, go into the woods, and -operate-."
+		inhand_icon_state = "bl_suit"
 
 /obj/item/clothing/under/syndicate/tacticool/skirt //Overwrites the 'fake' one. Zero armor, sensors, and default blue. More Balanced to make station-available.
 	name = "tacticool skirtleneck"
 	desc = "A snug skirtleneck, in fabulous Nanotrasen-blue. Just looking at it makes you want to buy a NT-certifed coffee, go into the office, and -work-."
 	icon_state = "tactifool_blue_skirt"
-	armor_type = /datum/armor/clothing_under/none
+	armor_type = /datum/armor/clothing_under
 	body_parts_covered = CHEST|GROIN|ARMS
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	dying_key = DYE_REGISTRY_JUMPSKIRT
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
-	unique_reskin = list(
-		RESKIN_NT = "tactifool_blue_skirt",
-		RESKIN_CHARCOAL = "tactifool_skirt"
-	)
+
+/obj/item/clothing/under/syndicate/tacticool/skirt/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/tacticool_skirtleneck)
+
+/datum/atom_skin/tacticool_skirtleneck
+	abstract_type = /datum/atom_skin/tacticool_skirtleneck
+
+/datum/atom_skin/tacticool_skirtleneck/nt
+	preview_name = RESKIN_NT
+	new_icon_state = "tactifool_blue_skirt"
+
+/datum/atom_skin/tacticool_skirtleneck/charcoal
+	preview_name = RESKIN_CHARCOAL
+	new_icon_state = "tactifool_skirt"
 
 /obj/item/clothing/under/syndicate/bloodred/sleepytime/sensors //Halloween-only
 	has_sensor = HAS_SENSORS
-	armor_type = /datum/armor/clothing_under/none
+	armor_type = /datum/armor/clothing_under
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/syndicate/skyrat/baseball
@@ -83,15 +106,27 @@
 	alt_covers_chest = TRUE
 	armor_type = /datum/armor/clothing_under/syndicate
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
-	unique_reskin = list(
-		RESKIN_SYNDIE = "syndicate_red",
-		RESKIN_CHARCOAL = "syndicate"
-	)
 
-/obj/item/clothing/under/syndicate/skyrat/tactical/reskin_obj(mob/M)
-	..()
-	if(current_skin && current_skin == RESKIN_CHARCOAL)
-		desc = "A non-descript and slightly suspicious looking turtleneck with digital camouflage cargo pants." //(Digital camo? Brown? What?)
+/obj/item/clothing/under/syndicate/skyrat/tactical/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/tactical_turtleneck)
+	RegisterSignal(src, COMSIG_OBJ_RESKIN, PROC_REF(on_reskin))
+
+/datum/atom_skin/tactical_turtleneck
+	abstract_type = /datum/atom_skin/tactical_turtleneck
+
+/datum/atom_skin/tactical_turtleneck/syndie
+	preview_name = RESKIN_SYNDIE
+	new_icon_state = "syndicate_red"
+
+/datum/atom_skin/tactical_turtleneck/charcoal
+	preview_name = RESKIN_CHARCOAL
+	new_icon_state = "syndicate"
+
+/obj/item/clothing/under/syndicate/skyrat/tactical/proc/on_reskin()
+	SIGNAL_HANDLER
+	if(icon_state == "syndicate")
+		desc = "A non-descript and slightly suspicious looking turtleneck with digital camouflage cargo pants."
 		inhand_icon_state = "bl_suit"
 
 /obj/item/clothing/under/syndicate/skyrat/tactical/skirt
@@ -102,14 +137,25 @@
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	dying_key = DYE_REGISTRY_JUMPSKIRT
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
-	unique_reskin = list(
-		RESKIN_SYNDIE = "syndicate_red_skirt",
-		RESKIN_CHARCOAL = "syndicate_skirt"
-	)
 
-/obj/item/clothing/under/syndicate/skyrat/tactical/skirt/reskin_obj(mob/M)
-	..()
-	if(current_skin && current_skin == RESKIN_CHARCOAL)
+/obj/item/clothing/under/syndicate/skyrat/tactical/skirt/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/tactical_skirtleneck)
+
+/datum/atom_skin/tactical_skirtleneck
+	abstract_type = /datum/atom_skin/tactical_skirtleneck
+
+/datum/atom_skin/tactical_skirtleneck/syndie
+	preview_name = RESKIN_SYNDIE
+	new_icon_state = "syndicate_red_skirt"
+
+/datum/atom_skin/tactical_skirtleneck/charcoal
+	preview_name = RESKIN_CHARCOAL
+	new_icon_state = "syndicate_skirt"
+
+/obj/item/clothing/under/syndicate/skyrat/tactical/skirt/on_reskin()
+	. = ..()
+	if(icon_state == "syndicate_skirt")
 		desc = "A non-descript and slightly suspicious looking skirtleneck."
 		inhand_icon_state = "bl_suit"
 
@@ -121,7 +167,7 @@
 	desc = "Throughout the stars, rumors of mad scientists and angry drill sergeants run rampant; of creatures in armor black as night, being led by men or women wearing this uniform. They share one thing: a deep, natonalistic zeal of the dream of America."
 	icon_state = "enclave"
 	can_adjust = TRUE
-	armor_type = /datum/armor/clothing_under/none
+	armor_type = /datum/armor/clothing_under
 
 /obj/item/clothing/under/syndicate/skyrat/enclave/officer
 	name = "neo-American officer uniform"

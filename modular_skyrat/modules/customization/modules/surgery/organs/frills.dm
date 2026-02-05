@@ -14,6 +14,3 @@
 	if(!human)
 		return TRUE
 	return !sprite_datum.is_hidden(human)
-
-/datum/bodypart_overlay/mutant/frills/get_global_feature_list()
-	return SSaccessories.sprite_accessories["frills"]

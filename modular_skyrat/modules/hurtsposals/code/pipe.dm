@@ -19,7 +19,7 @@
 			continue
 		//Moon has ~100 disposal corners if you fall in the main loop, worst case scenario.
 		//20% * 100 * 4 = 80 damage.
-		found_victim.adjustBruteLoss(4)
+		found_victim.adjust_brute_loss(4)
 		did_damage = TRUE
 
 	if(did_damage)

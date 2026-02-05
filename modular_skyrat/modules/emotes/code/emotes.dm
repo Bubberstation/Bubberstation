@@ -275,6 +275,12 @@
 	return pick('modular_zubbers/sound/emotes/claponce1.ogg',
 				'modular_zubbers/sound/emotes/claponce2.ogg')
 
+/datum/emote/living/slowclap
+	key = "slowclap"
+	message = "activates their slow clap processor."
+	emote_type = EMOTE_AUDIBLE
+	sound = 'sound/machines/slowclap.ogg'
+
 /datum/emote/living/clap1/can_run_emote(mob/living/carbon/user, status_check = TRUE , intentional)
 	if(!istype(user) || user.usable_hands < 2)
 		return FALSE

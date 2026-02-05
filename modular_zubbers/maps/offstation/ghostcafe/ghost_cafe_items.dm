@@ -30,7 +30,7 @@
 /obj/structure/closet/ghostcafe/build/PopulateContents()
 	..()
 	for(var/i in 1 to 4)
-		new /obj/item/storage/belt/utility/full/powertools/ircd(src)
+		new /obj/item/storage/belt/utility/full/powertools/ghostcafe(src)
 	for(var/i in 1 to 4)
 		new /obj/item/clothing/glasses/welding(src)
 	new /obj/item/stack/tile/carpet/black/fifty(src)
@@ -79,3 +79,14 @@
 	trim = /datum/id_trim/admin
 	wildcard_slots = WILDCARD_LIMIT_ADMIN
 
+/obj/item/storage/belt/utility/full/powertools/ghostcafe/PopulateContents()
+	new /obj/item/screwdriver/power(src)
+	new /obj/item/crowbar/power(src)
+	new /obj/item/weldingtool/abductor(src)
+	new /obj/item/pipe_dispenser(src)
+	new /obj/item/wrench/bolter(src)
+	new /obj/item/multitool/abductor(src)
+
+/obj/machinery/photocopier/gratis/infinite
+	starting_toner = /obj/item/toner/infinite
+	starting_paper = 30

@@ -5,24 +5,24 @@
 
 	used_capacity = 380
 	storedinfo = list(
-		1 = "<span class='game say'><span class='name'>The universal recorder</span> <span class='message'>says, \"<span class='tape_recorder '>Recording started.</span>\"</span></span>",
-		2 = "<span class='game say'><span class='name'>Officer ???</span> <span class='message'>says, \"<span class=' '>... Yeesh... Its good we got here when we did...</span>\"</span></span>",
-		3 = "<span class='game say'><span class='name'>Janitor ???</span> <span class='message'>sighs, \"<span class=' '>Could have done sooner... Bloke got at me while i went to repaint the stripe on the floor</span>\"</span></span>",
-		4 = "<span class='game say'><span class='name'>Officer ???</span> <span class='message'>sighs, \"<span class=' '>I still need to talk to the Site Director about getting the safe moved... Its better than the cell, And the shutters are nice...</span>\"</span></span>",
-		5 = "<span class='game say'><span class='name'>Janitor ???</span> <span class='message'>scoffs, \"<span class=' '>Yeah, Another set of shutter tracks i'll have to clean out so they dont jam up...</span>\"</span></span>",
-		6 = "<span class='game say'><span class='name'>Officer ???</span> <span class='message'>grumbles, \"<span class=' '>If you dont like bucket work, You could go with the mining crew</span>\"</span></span>",
-		7 = "<span class='game say'><span class='name'>Janitor ???</span> <span class='message'>groans, \"<span class=' '>... Atleast it wouldn't be one of the directors cleansing squads. Those bugs... They've been active recently, can hear them under the halls.</span>\"</span></span>",
-		8 = "<span class='game say'><span class='name'>The universal recorder</span> <span class='message'>says, \"<span class='tape_recorder '>Recording stopped.</span>\"</span></span>"
+		/* 1 = */ "<span class='game say'><span class='name'>The universal recorder</span> <span class='message'>says, \"<span class='tape_recorder '>Recording started.</span>\"</span></span>",
+		/* 2 = */ "<span class='game say'><span class='name'>Officer ???</span> <span class='message'>says, \"<span class=' '>... Yeesh... Its good we got here when we did...</span>\"</span></span>",
+		/* 3 = */ "<span class='game say'><span class='name'>Janitor ???</span> <span class='message'>sighs, \"<span class=' '>Could have done sooner... Bloke got at me while i went to repaint the stripe on the floor</span>\"</span></span>",
+		/* 4 = */ "<span class='game say'><span class='name'>Officer ???</span> <span class='message'>sighs, \"<span class=' '>I still need to talk to the Site Director about getting the safe moved... Its better than the cell, And the shutters are nice...</span>\"</span></span>",
+		/* 5 = */ "<span class='game say'><span class='name'>Janitor ???</span> <span class='message'>scoffs, \"<span class=' '>Yeah, Another set of shutter tracks i'll have to clean out so they dont jam up...</span>\"</span></span>",
+		/* 6 = */ "<span class='game say'><span class='name'>Officer ???</span> <span class='message'>grumbles, \"<span class=' '>If you dont like bucket work, You could go with the mining crew</span>\"</span></span>",
+		/* 7 = */ "<span class='game say'><span class='name'>Janitor ???</span> <span class='message'>groans, \"<span class=' '>... Atleast it wouldn't be one of the directors cleansing squads. Those bugs... They've been active recently, can hear them under the halls.</span>\"</span></span>",
+		/* 8 = */ "<span class='game say'><span class='name'>The universal recorder</span> <span class='message'>says, \"<span class='tape_recorder '>Recording stopped.</span>\"</span></span>"
 	)
 	timestamp = list(
-		1 = 0,
-		2 = 30,
-		3 = 130,
-		4 = 180,
-		5 = 230,
-		6 = 280,
-		7 = 330,
-		8 = 380
+		/* 1 = */ 0,
+		/* 2 = */ 30,
+		/* 3 = */ 130,
+		/* 4 = */ 180,
+		/* 5 = */ 230,
+		/* 6 = */ 280,
+		/* 7 = */ 330,
+		/* 8 = */ 380,
 	)
 
 /obj/item/tape/ruins/tarkon/safe	//A tape recorded by the foreman.
@@ -31,24 +31,24 @@
 
 	used_capacity = 380
 	storedinfo = list(
-		1 = "<span class='game say'><span class='name'>The universal recorder</span> <span class='message'>says, \"<span class='tape_recorder '>Recording started.</span>\"</span></span>",
-		2 = "<span class='game say'><span class='name'>Foreman ???</span> <span class='message'>sighs, \"<span class=' '>Right... Research near finish? Need to stash this back between the solar batteries before I sleep..</span>\"</span></span>",
-		3 = "<span class='game say'><span class='name'>Science Lead ???</span> <span class='message'>says, \"<span class=' '>We're getting the atmospheric scans done... Its definitely an odd find.</span>\"</span></span>",
-		4 = "<span class='game say'><span class='name'>Foreman ???</span> <span class='message'>grumbles, \"<span class=' '>We've been finding some weird stuff in those tunnels.. Its a shame the machines framing was broken.</span>\"</span></span>",
-		5 = "<span class='game say'><span class='name'>Science Lead ???</span> <span class='message'>pauses then sighs out, \"<span class=' '>Yeah... Best we could figure from the wreckage was some sort of focusing device for a crystal..?</span>\"</span></span>",
-		6 = "<span class='game say'><span class='name'>Foreman ???</span> <span class='message'>scoffs, \"<span class=' '>... A crystal?</span>\"</span></span>",
-		7 = "<span class='game say'><span class='name'>Foreman ???</span> <span class='message'>quips, \"<span class=' '>Yes... We have some possible- Ah... The scan finished.. I'm sure you'd rather get to rest than listen to my ramble, so just go.</span>\"</span></span>",
-		8 = "<span class='game say'><span class='name'>The universal recorder</span> <span class='message'>says, \"<span class='tape_recorder '>Recording stopped.</span>\"</span></span>"
+		/* 1 = */ "<span class='game say'><span class='name'>The universal recorder</span> <span class='message'>says, \"<span class='tape_recorder '>Recording started.</span>\"</span></span>",
+		/* 2 = */ "<span class='game say'><span class='name'>Foreman ???</span> <span class='message'>sighs, \"<span class=' '>Right... Research near finish? Need to stash this back between the solar batteries before I sleep..</span>\"</span></span>",
+		/* 3 = */ "<span class='game say'><span class='name'>Science Lead ???</span> <span class='message'>says, \"<span class=' '>We're getting the atmospheric scans done... Its definitely an odd find.</span>\"</span></span>",
+		/* 4 = */ "<span class='game say'><span class='name'>Foreman ???</span> <span class='message'>grumbles, \"<span class=' '>We've been finding some weird stuff in those tunnels.. Its a shame the machines framing was broken.</span>\"</span></span>",
+		/* 5 = */ "<span class='game say'><span class='name'>Science Lead ???</span> <span class='message'>pauses then sighs out, \"<span class=' '>Yeah... Best we could figure from the wreckage was some sort of focusing device for a crystal..?</span>\"</span></span>",
+		/* 6 = */ "<span class='game say'><span class='name'>Foreman ???</span> <span class='message'>scoffs, \"<span class=' '>... A crystal?</span>\"</span></span>",
+		/* 7 = */ "<span class='game say'><span class='name'>Foreman ???</span> <span class='message'>quips, \"<span class=' '>Yes... We have some possible- Ah... The scan finished.. I'm sure you'd rather get to rest than listen to my ramble, so just go.</span>\"</span></span>",
+		/* 8 = */ "<span class='game say'><span class='name'>The universal recorder</span> <span class='message'>says, \"<span class='tape_recorder '>Recording stopped.</span>\"</span></span>"
 	)
 	timestamp = list(
-		1 = 0,
-		2 = 30,
-		3 = 130,
-		4 = 180,
-		5 = 230,
-		6 = 280,
-		7 = 330,
-		8 = 380
+		/* 1 = */ 0,
+		/* 2 = */ 30,
+		/* 3 = */ 130,
+		/* 4 = */ 180,
+		/* 5 = */ 230,
+		/* 6 = */ 280,
+		/* 7 = */ 330,
+		/* 8 = */ 380,
 	)
 
 /obj/item/tape/ruins/tarkon/celebration	//A tape recorded by the ensign during the mid-construction celebration.
@@ -57,24 +57,24 @@
 
 	used_capacity = 380
 	storedinfo = list(
-		1 = "<span class='game say'><span class='name'>The universal recorder</span> <span class='message'>says, \"<span class='tape_recorder '>Recording started.</span>\"</span></span>",
-		2 = "<span class='game say'><span class=' '>Drinks can be heard clinking together, busy chatter of a party drowning out most noises</span></span>",
-		3 = "<span class='game say'><span class='name'>Ensign ???</span> <span class='message'>says, \"<span class=' '>Hey, HEY! Everyone! Shut up for a toast!</span>\"</span></span>",
-		4 = "<span class='game say'><span class='message'>The boistrous cheering can be heard slowly calming down to an eerie silence.</span></span>",
-		5 = "<span class='game say'><span class='name'>Ensign ???</span> <span class='message'>clears their throat then starts to announce, \"<span class=' '>As you've all known.. Its been years since this project started... Bright minds and talented engineers hand in hand working on this project...</span>\"</span></span>",
-		6 = "<span class='game say'><span class='name'>Ensign ???</span> <span class='message'>says pointedly, \"<span class=' '>And after five long years, Tarkon Industries has had its first success. The driver finding a suitable asteroid, And making its mark known by carving out the current docking bay for our transport.</span>\"</span></span>",
-		7 = "<span class='game say'><span class='name'>Ensign ???</span> <span class='message'>announces, \"<span class=' '>Yesterday, We've worked, Toiled in the rock and sand of what is our new home... But today! We celebrate, For Tarkons first success, And for a bright future in the next century! The Twenty-Sixth century is looking bright for us!</span>\"</span></span>",
-		8 = "<span class='game say'><span class='name'>The universal recorder</span> <span class='message'>says, \"<span class='tape_recorder '>Recording stopped.</span>\"</span></span>"
+		/* 1 = */ "<span class='game say'><span class='name'>The universal recorder</span> <span class='message'>says, \"<span class='tape_recorder '>Recording started.</span>\"</span></span>",
+		/* 2 = */ "<span class='game say'><span class=' '>Drinks can be heard clinking together, busy chatter of a party drowning out most noises</span></span>",
+		/* 3 = */ "<span class='game say'><span class='name'>Ensign ???</span> <span class='message'>says, \"<span class=' '>Hey, HEY! Everyone! Shut up for a toast!</span>\"</span></span>",
+		/* 4 = */ "<span class='game say'><span class='message'>The boistrous cheering can be heard slowly calming down to an eerie silence.</span></span>",
+		/* 5 = */ "<span class='game say'><span class='name'>Ensign ???</span> <span class='message'>clears their throat then starts to announce, \"<span class=' '>As you've all known.. Its been years since this project started... Bright minds and talented engineers hand in hand working on this project...</span>\"</span></span>",
+		/* 6 = */ "<span class='game say'><span class='name'>Ensign ???</span> <span class='message'>says pointedly, \"<span class=' '>And after five long years, Tarkon Industries has had its first success. The driver finding a suitable asteroid, And making its mark known by carving out the current docking bay for our transport.</span>\"</span></span>",
+		/* 7 = */ "<span class='game say'><span class='name'>Ensign ???</span> <span class='message'>announces, \"<span class=' '>Yesterday, We've worked, Toiled in the rock and sand of what is our new home... But today! We celebrate, For Tarkons first success, And for a bright future in the next century! The Twenty-Sixth century is looking bright for us!</span>\"</span></span>",
+		/* 8 = */ "<span class='game say'><span class='name'>The universal recorder</span> <span class='message'>says, \"<span class='tape_recorder '>Recording stopped.</span>\"</span></span>"
 	)
 	timestamp = list(
-		1 = 0,
-		2 = 30,
-		3 = 130,
-		4 = 180,
-		5 = 230,
-		6 = 280,
-		7 = 330,
-		8 = 380
+		/* 1 = */ 0,
+		/* 2 = */ 30,
+		/* 3 = */ 130,
+		/* 4 = */ 180,
+		/* 5 = */ 230,
+		/* 6 = */ 280,
+		/* 7 = */ 330,
+		/* 8 = */ 380,
 	)
 
 /* ----------------- Fluff/Paper ----------------- */

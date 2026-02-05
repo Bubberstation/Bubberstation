@@ -29,6 +29,7 @@
 	base_icon_state = "ashenbow"
 	inhand_icon_state = "ashenbow"
 	worn_icon_state = "ashenbow"
+	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 4)
 
 /obj/item/gun/ballistic/bow/tribalbow/pipe
 	name = "pipe bow"
@@ -38,3 +39,4 @@
 	base_icon_state = "pipebow"
 	worn_icon_state = "pipebow"
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_SUITSTORE
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 5)
