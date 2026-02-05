@@ -386,10 +386,10 @@
 		/obj/item/clothing/head/beanie/yellow,
 		/obj/item/clothing/mask/bandana/gold,
 		/obj/item/clothing/head/utility/hardhat/orange,
-		/obj/item/clothing/suit/toggle/jacket/sweater) //DEBUG: recolor this later
+		/obj/item/clothing/suit/toggle/jacket/sweater) //TODO: recolor this later
 	free_clothes = list(/obj/item/clothing/under/suit/fancy,
 		/obj/item/clothing/shoes/laceup,
-		/obj/item/clothing/suit/toggle/jacket/sweater, //DEBUG: recolor this later
+		/obj/item/clothing/suit/toggle/jacket/sweater, //TODO: recolor this later
 		/obj/item/clothing/head/utility/hardhat/orange,
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "Tojo"
@@ -438,12 +438,12 @@
 	gang_id = "VDL"
 	acceptable_clothes = list(/obj/item/clothing/head/soft/black,
 		/obj/item/clothing/under/costume/dutch,
-		///obj/item/clothing/suit/costume/dutch, DEBUG: doesn't seem to exist anymore
+		/obj/item/clothing/suit/costume/dutch,
 		/obj/item/clothing/head/hats/bowler,
 		/obj/item/clothing/mask/bandana/black)
 	free_clothes = list(/obj/item/clothing/under/costume/dutch,
 		/obj/item/clothing/head/hats/bowler,
-		/obj/item/clothing/under/costume/dutch,
+		/obj/item/clothing/suit/costume/dutch,
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "Dutch"
 	gang_team_type = /datum/team/gang/dutch
@@ -536,10 +536,10 @@
 	gang_name = "Powder Gangers"
 	gang_id = "PG"
 	acceptable_clothes = list(/obj/item/clothing/suit/costume/pg,
-		/obj/item/clothing/under/color/orange, //DEBUG: temp clothes. closest think to prisoner suit without stuck sensors
+		/obj/item/clothing/under/costume/pg,
 		/obj/item/clothing/head/beanie)
 	free_clothes = list(/obj/item/clothing/suit/costume/pg,
-		/obj/item/clothing/under/color/orange, //DEBUG: temp clothes. closest think to prisoner suit without stuck sensors
+		/obj/item/clothing/under/costume/pg,
 		/obj/item/clothing/head/beanie,
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "PowderGang"
@@ -560,12 +560,12 @@
 	roundend_category = "O'Driscoll's Gangsters"
 	gang_name = "O'Driscoll's Gang"
 	gang_id = "DB"
-	acceptable_clothes = list(/obj/item/clothing/neck/infinity_scarf, //DEBUG: temp clothing. make a green variant
+	acceptable_clothes = list(/obj/item/clothing/neck/infinity_scarf/driscoll, //DEBUG: temp clothing. make a green variant
 		/obj/item/clothing/under/costume/buttondown/slacks,
 		/obj/item/clothing/suit/toggle/jacket/trenchcoat,
 		/obj/item/clothing/mask/gas/driscoll,
 		/obj/item/clothing/shoes/cowboy)
-	free_clothes = list(/obj/item/clothing/neck/infinity_scarf, //DEBUG: temp clothing. make a green variant
+	free_clothes = list(/obj/item/clothing/neck/infinity_scarf/driscoll, //DEBUG: temp clothing. make a green variant
 		/obj/item/clothing/under/costume/buttondown/slacks,
 		/obj/item/clothing/suit/toggle/jacket/trenchcoat,
 		/obj/item/clothing/mask/gas/driscoll,

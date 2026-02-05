@@ -143,3 +143,22 @@
 	name = "basil boys uniform"
 	icon_state = "football_red"
 	can_adjust = FALSE
+
+/obj/item/clothing/suit/costume/dutch
+	icon = 'modular_zubbers/icons/misc/families_icons/obj/suits.dmi'
+	worn_icon = 'modular_zubbers/icons/misc/families_icons/mob/suit.dmi'
+	name = "Dutch Jacket"
+	desc = "Not exactly fit for Tahiti, but it'll do for now"
+	icon_state = "DutchJacket"
+	body_parts_covered = CHEST|ARMS
+
+/obj/item/clothing/under/costume/pg
+	icon = 'modular_zubbers/icons/misc/families_icons/obj/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/misc/families_icons/mob/costume.dmi'
+	name = "Powder Ganger Prison Jumpsuit"
+	icon_state = "pg_jumpsuit"
+	can_adjust = FALSE
+
+/obj/item/clothing/neck/infinity_scarf/driscoll
+	greyscale_colors = "#b70101"
+	name = "O'Driscoll Scarf"

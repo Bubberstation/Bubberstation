@@ -1,6 +1,6 @@
 /obj/item/radio/gangphone
 	name = "Cellphone"
-	desc = "The new upgraded model which changed nothing"
+	desc = "TODO: funny joke about the 80s, brick phones"
 	icon = 'icons/obj/antags/gang/cell_phone.dmi'
 	icon_state = "phone_off"
 	throwforce = 15 // these things are dense as fuck
