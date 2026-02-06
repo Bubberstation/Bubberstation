@@ -407,8 +407,7 @@
 /obj/item/storage/belt/security/webbing
 	icon = 'modular_zubbers/icons/obj/clothing/belt.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
-	icon_state = "securitywebbing"
-	worn_icon_state = "securitywebbing"
+	icon_state = "security_webbing"
 	alternate_worn_layer = BELT_LAYER
 
 /*
