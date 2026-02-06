@@ -408,6 +408,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/belt.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
 	icon_state = "security_webbing"
+	worn_icon_state = "security_webbing"
 	alternate_worn_layer = BELT_LAYER
 
 /*
