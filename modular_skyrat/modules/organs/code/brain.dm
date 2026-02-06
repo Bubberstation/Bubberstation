@@ -93,5 +93,5 @@
 
 /obj/item/organ/brain/cybernetic/surplus/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/dangerous_organ_removal, /*surgical = */ TRUE)
+	AddElement(/datum/element/dangerous_organ_removal, /*surgical = */ TRUE, /*annihilate = */ FALSE)
 
