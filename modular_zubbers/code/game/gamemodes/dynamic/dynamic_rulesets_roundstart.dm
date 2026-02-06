@@ -40,7 +40,7 @@
 	config_tag = "Midround gang"
 	preview_antag_datum = /datum/antagonist/gang
 	pref_flag = ROLE_FAMILY_HEAD_ASPIRANT
-	midround_ruleset_style = HEAVY_MIDROUND
+	midround_type = HEAVY_MIDROUND
 	weight = 1
 	min_pop = 10
 	max_antag_cap = 3
