@@ -42,6 +42,7 @@
 	mutantheart = /obj/item/organ/heart/serpentid
 	mutantliver = /obj/item/organ/liver/serpentid
 	mutantears = /obj/item/organ/ears/serpentid
+	mutanttongue = /obj/item/organ/tongue/synth
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/mutant/serpentid,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/mutant/serpentid,
@@ -97,7 +98,7 @@
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "star-of-life",
-		SPECIES_PERK_NAME = "Durable leather",
+		SPECIES_PERK_NAME = "Durable Leather",
 		SPECIES_PERK_DESC = "The Giant Armored Serpentid chitin is very robust and protects them from pressure and low temperature hazards, while also providing decent brute resistance."
 	))
 
@@ -109,16 +110,47 @@
 	))
 
 	perk_descriptions += list(list(
+		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+		SPECIES_PERK_ICON = "star-of-life",
+		SPECIES_PERK_NAME = "Active Camouflage",
+		SPECIES_PERK_DESC = "The cells in a Giant Armored Serpentid's body are able to camouflage themselves to an extent, making the GAS appear translucent to the naked eye."
+	))
+
+	perk_descriptions += list(list(
+		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+		SPECIES_PERK_ICON = "star-of-life",
+		SPECIES_PERK_NAME = "Shielded Eyes",
+		SPECIES_PERK_DESC = "Giant Armored Serpentid have sensitive eyes, luckily they have eyeshields that can be used to make up for this."
+	))
+
+	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "star-of-life",
-		SPECIES_PERK_NAME = "Custom body",
+		SPECIES_PERK_NAME = "Custom Body",
 		SPECIES_PERK_DESC = "Giant Armored Serpentid has a nonhumanoid body and can't wear most clothes."
+	))
+
+	perk_descriptions += list(list(
+		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+		SPECIES_PERK_ICON = "star-of-life",
+		SPECIES_PERK_NAME = "Heat Intolerance",
+		SPECIES_PERK_DESC = "Giant Armored Serpentid cannot stand to be in overly warm environments for extended periods of time."
+	))
+
+	perk_descriptions += list(list(
+		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+		SPECIES_PERK_ICON = "star-of-life",
+		SPECIES_PERK_NAME = "Cold-Blooded",
+		SPECIES_PERK_DESC = "Giant Armored Serpentid are a cold blooded species and are vulnerable to temperature changes in their environment."
 	))
 
 	return perk_descriptions
 
+/datum/species/gas/body_temperature_core(mob/living/carbon/human/humi, seconds_per_tick, times_fired)
+	return
+
 /obj/item/organ/ears/serpentid
-	name = "serpentid ears"
+	name = "antennae"
 	icon = 'modular_skyrat/modules/organs/icons/serpentid_organs.dmi'
 	icon_state = "ears"
 
@@ -126,25 +158,37 @@
 	name = "serpentid heart"
 	icon = 'modular_skyrat/modules/organs/icons/serpentid_organs.dmi'
 	icon_state = "heart"
+	actions_types = list(/datum/action/cooldown/spell/toggle_active_camo)
+	var/camouflaged = FALSE
+
+/obj/item/organ/heart/serpentid/proc/toggle_camo()
+	if(!camouflaged)
+		owner.alpha = 100
+		camouflaged = TRUE
+	else
+		owner.alpha = 255
+		camouflaged = FALSE
 
 /obj/item/organ/brain/serpentid
-	name = "serpentid brain"
+	name = "distributed nervous system"
 	icon = 'modular_skyrat/modules/organs/icons/serpentid_organs.dmi'
 	icon_state = "brain"
 
 /obj/item/organ/eyes/serpentid
-	name = "serpentid eyes"
+	name = "compound eyes"
 	desc = "Small orange orbs."
 	icon = 'modular_skyrat/modules/organs/icons/serpentid_organs.dmi'
 	icon_state = "eyes"
-	flash_protect = FLASH_PROTECTION_SENSITIVE
+	flash_protect = FLASH_PROTECTION_HYPER_SENSITIVE
 	iris_overlay = null
 	blink_animation = FALSE
 	eye_icon = 'modular_skyrat/modules/organs/icons/serpentid_eyes.dmi'
 	eye_icon_state = "eyes"
+	actions_types = list(/datum/action/cooldown/spell/toggle_eye_shields)
+	var/eyes_shielded
 
 /obj/item/organ/lungs/serpentid
-	name = "serpentid lungs"
+	name = "tracheae"
 	icon = 'modular_skyrat/modules/organs/icons/serpentid_organs.dmi'
 	icon_state = "lungs"
 
@@ -168,7 +212,7 @@
 	heat_damage_type = BURN
 
 /obj/item/organ/liver/serpentid
-	name = "skrell liver"
+	name = "toxin filter"
 	icon_state = "liver"
 	icon = 'modular_skyrat/modules/organs/icons/serpentid_organs.dmi'
 	liver_resistance = 0.8 * LIVER_DEFAULT_TOX_RESISTANCE // -40%
