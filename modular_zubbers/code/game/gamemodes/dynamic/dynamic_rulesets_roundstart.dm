@@ -22,7 +22,7 @@
 	return handler.post_setup_analogue(TRUE)
 
 /*
-//Removing this will surely be fine! DEBUG:
+//Removing this will surely be fine!
 /datum/dynamic_ruleset/roundstart/gang/clean_up()
 	QDEL_NULL(handler)
 	..()
@@ -40,6 +40,7 @@
 	config_tag = "Midround gang"
 	preview_antag_datum = /datum/antagonist/gang
 	pref_flag = ROLE_FAMILY_HEAD_ASPIRANT
+	midround_ruleset_style = HEAVY_MIDROUND
 	weight = 1
 	min_pop = 10
 	max_antag_cap = 3
