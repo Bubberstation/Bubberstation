@@ -4,8 +4,8 @@
 		Procedure, eat donuts."
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	faction = FACTION_STATION
-	total_positions = 8 //Handled in /datum/controller/occupations/proc/setup_officer_positions() //SKYRAT EDIT: SET TO 8, WAS 5
-	spawn_positions = 8 //Handled in /datum/controller/occupations/proc/setup_officer_positions() //SKYRAT EDIT: SEE ABOVE
+	total_positions = 5 //Handled in /datum/controller/occupations/proc/setup_officer_positions()
+	spawn_positions = 5 //Handled in /datum/controller/occupations/proc/setup_officer_positions()
 	supervisors = "the Head of Security, and the head of your assigned department (if applicable)"
 	minimal_player_age = 7
 	exp_requirements = 300
@@ -28,7 +28,7 @@
 		/datum/job_department/security,
 		)
 
-	family_heirlooms = list(/obj/item/book/manual/wiki/security_space_law, /obj/item/clothing/head/beret/sec/peacekeeper) //SKYRAT EDIT ADD - /peacekeeper
+	family_heirlooms = list(/obj/item/book/manual/wiki/security_space_law, /obj/item/clothing/head/beret/sec)
 
 	mail_goodies = list(
 		/obj/item/food/donut/caramel = 10,
@@ -57,27 +57,18 @@ GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, S
  */
 GLOBAL_LIST_EMPTY(security_officer_distribution)
 
-
 /datum/job/security_officer/after_roundstart_spawn(mob/living/spawning, client/player_client)
 	. = ..()
-	//SKYRAT EDIT REMOVAL
-	/*
 	if(ishuman(spawning))
 		setup_department(spawning, player_client, move_to = TRUE)
-	*/
-	//SKYRAT EDIT END
 
 
 /datum/job/security_officer/after_latejoin_spawn(mob/living/spawning)
 	. = ..()
-	//SKYRAT EDIT REMOVAL
-	/*
 	if(ishuman(spawning))
 		var/department = setup_department(spawning, spawning.client)
 		if(department)
 			announce_latejoin(spawning, department, GLOB.security_officer_distribution)
-	*/
-	//SKYRAT EDIT END
 
 
 /// Returns the department this mob was assigned to, if any.
@@ -227,17 +218,15 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	id_trim = /datum/id_trim/job/security_officer
 	uniform = /obj/item/clothing/under/rank/security/officer
 	suit = /obj/item/clothing/suit/armor/vest/alt/sec
-	suit_store = /obj/item/gun/energy/e_gun/advtaser //BUBBER EDIT CHANGE - Original: /obj/item/gun/energy/disabler
+	suit_store = /obj/item/gun/energy/disabler
 	backpack_contents = list(
 		/obj/item/evidencebag = 1,
-		/obj/item/flashlight/seclite = 1, // BUBBER EDIT ADDITION
 		)
 	belt = /obj/item/modular_computer/pda/security
 	ears = /obj/item/radio/headset/headset_sec/alt
 	gloves = /obj/item/clothing/gloves/color/black/security
-	head = /obj/item/clothing/head/security_garrison //SKYRAT EDIT CHANGE - Original: /obj/item/clothing/head/helmet/sec
+	head = /obj/item/clothing/head/helmet/sec
 	shoes = /obj/item/clothing/shoes/jackboots/sec
-	glasses = /obj/item/clothing/glasses/hud/security //SKYRAT EDIT - ADDITION
 	l_pocket = /obj/item/restraints/handcuffs
 	r_pocket = /obj/item/assembly/flash/handheld
 

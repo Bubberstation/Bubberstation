@@ -38,6 +38,7 @@
 						/obj/item/restraints/handcuffs/lewd,
 						/obj/item/reagent_containers/cup/lewd_filter,
 						/obj/item/assembly/signaler, //because it's used for several toys
+						/obj/item/clicker,
 
 						//clothing
 						/obj/item/clothing/mask/ballgag,
