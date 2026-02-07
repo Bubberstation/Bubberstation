@@ -47,3 +47,38 @@
 		update_button_state("gas-cloak-1")
 	else
 		update_button_state("gas-cloak-0")
+
+/datum/action/cooldown/spell/toggle_threat_display
+	name = "Toggle Threat Display"
+	desc = "Toggle your active camo ability, becoming more translucent.."
+	button_icon = 'modular_zubbers/icons/actions/gas.dmi'
+	button_icon_state = "gas-threat"
+	spell_requirements = null
+
+/datum/species/gas
+	var/displaying_threat = FALSE
+	var/image/threat_overlay
+
+/datum/action/cooldown/spell/toggle_threat_display/cast(atom/target)
+	. = ..()
+	var/mob/living/carbon/human/snake_owner = owner
+	var/datum/species/gas/gas_species = snake_owner.dna?.species
+	if(!isgas(owner))
+		return
+	if(owner.incapacitated)
+		to_chat(owner, span_warning("You can't do a threat display in your current state."))
+		return
+	if(gas_species.displaying_threat == FALSE)
+		gas_species.threat_overlay = image('modular_skyrat/modules/bodyparts/icons/serpentid_parts_greyscale.dmi', "threat", MOB_LAYER)
+		var/message = tgui_alert(owner, "Would you like to show a scary message?", "Be Scary", list("Yes", "No", "Cancel"))
+		if(message == "Cancel")
+			return
+		else if(message == "Yes")
+			owner.visible_message(span_warning("\The [owner]'s skin shifts to a deep red colour with dark chevrons running down in an almost hypnotic \
+				pattern. Standing tall, [owner.p_they()] strikes, sharp spikes aimed at those threatening [owner.p_them()], claws whooshing through the air past them."))
+		playsound(owner.loc, 'modular_skyrat/modules/emotes/sound/emotes/angryserpentid.ogg', 60, 0)
+		gas_species.displaying_threat = TRUE
+		snake_owner.add_overlay(gas_species.threat_overlay)
+	else
+		snake_owner.cut_overlay(gas_species.threat_overlay)
+		gas_species.displaying_threat = FALSE

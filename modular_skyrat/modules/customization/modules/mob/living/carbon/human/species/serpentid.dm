@@ -173,6 +173,7 @@
 	name = "distributed nervous system"
 	icon = 'modular_skyrat/modules/organs/icons/serpentid_organs.dmi'
 	icon_state = "brain"
+	actions_types = list(/datum/action/cooldown/spell/toggle_threat_display)
 
 /obj/item/organ/eyes/serpentid
 	name = "compound eyes"
