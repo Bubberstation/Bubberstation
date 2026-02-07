@@ -6,12 +6,14 @@
 	var/living_only
 	/// List of emotes to play
 	var/list/emote_list
+// BUBBER EDIT - START: FLESHMIND
 	/// Audiable emotes to play
 	var/list/audible_emote_list
 	/// Do we taunt the target?
 	var/list/speak_list
 	/// Do we play any sounds?
 	var/list/sounds
+// BUBBER EDIT - END
 	/// Chance to play an emote
 	var/emote_chance
 	/// Chance to subtract every time we play an emote (permanently)
@@ -23,9 +25,9 @@
 	target_key = BB_BASIC_MOB_CURRENT_TARGET,
 	living_only = FALSE,
 	list/emote_list,
-	list/speak_list,
-	list/sounds,
-	list/audible_emote_list,
+	list/speak_list, // BUBBER EDIT - ADDITION: FLESHMIND
+	list/sounds, // BUBBER EDIT - ADDITION: FLESHMIND
+	list/audible_emote_list, // BUBBER EDIT - ADDITION: FLESHMIND
 	emote_chance = 30,
 	minimum_chance = 2,
 	subtract_chance = 7,
@@ -39,9 +41,9 @@
 
 	src.target_key = target_key
 	src.emote_list = emote_list
-	src.speak_list = speak_list
-	src.sounds = sounds
-	src.audible_emote_list = audible_emote_list
+	src.speak_list = speak_list // BUBBER EDIT - ADDITION: FLESHMIND
+	src.sounds = sounds // BUBBER EDIT - ADDITION: FLESHMIND
+	src.audible_emote_list = audible_emote_list // BUBBER EDIT - ADDITION: FLESHMIND
 	src.emote_chance = emote_chance
 	src.minimum_chance = minimum_chance
 	src.subtract_chance = subtract_chance
@@ -58,6 +60,7 @@
 /datum/component/aggro_emote/proc/on_target_changed(atom/source)
 	SIGNAL_HANDLER
 	var/atom/new_target = source.ai_controller.blackboard[target_key]
+// BUBBER EDIT - START: FLESHMIND
 	var/mob/living/mob = source
 /// Used to pick and choose between emotes and audiable sounds
 
@@ -72,11 +75,13 @@
 	var/sound_to_play = length(sounds) > 0 ? pick(sounds) : null
 	// Calculate the emote chance and determin if you'll run an emote
 	emote_chance = max(emote_chance - subtract_chance, minimum_chance)
+// BUBBER EDIT - END
 	if (isnull(new_target) || !prob(emote_chance))
 		return
 	if (living_only && !isliving(new_target))
 		return // If we don't want to bark at food items or chairs or windows
 
+// BUBBER EDIT - START: FLESHMIND
 /// Randomly choose between each emote
 	if(random_number_in_range <= audible_emote_length)
 		source.manual_emote("[pick(audible_emote_list)]")
@@ -86,3 +91,4 @@
 	else
 		INVOKE_ASYNC(mob, TYPE_PROC_REF(/atom/movable, say), pick(speak_list), forced = "AI Controller")
 		playsound(source, sound_to_play, 80, vary = TRUE)
+// BUBBER EDIT - END
