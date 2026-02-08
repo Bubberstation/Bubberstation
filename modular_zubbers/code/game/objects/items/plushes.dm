@@ -490,8 +490,8 @@
 /obj/item/toy/plush/tian_plush
 	name = "bureaucratic goat plush"
 	desc = "A giant, weighted plushie of a goat-carp that loves to eat paper and is very nice to hug. It has a faint scent of paperwork and weed. A tag on the back reads 'Comfort provided under license.'"
-	attack_verb_continuous = list("chomps", "nibbles", "gnashes", "bites")
-	attack_verb_simple = list("gnash", "nibble", "chomp", "bite")
+	attack_verb_continuous = list("stomps", "smothers", "buries", "squishes", "nibbles", "gnashes", "flattens", "pummels", "chomps")
+	attack_verb_simple = list("stomp", "smother", "bury", "squish", "nibble", "gnash", "flatten", "pummel", "chomp")
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "tianplush"
 	gender = FEMALE
