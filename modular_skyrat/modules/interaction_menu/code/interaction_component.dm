@@ -130,6 +130,7 @@
 		data["pleasure"] = user_pleasure
 		data["arousal"] = user_arousal
 		data["pain"] = user_pain
+		data["yourName"] = human_user.real_name
 
 
 	// self - the one who the interaction component belongs to, aka who it's opened on (confusing var name yep)
@@ -137,6 +138,7 @@
 		data["theirPleasure"] = self.pleasure
 		data["theirArousal"] = self.arousal
 		data["theirPain"] = self.pain
+		data["theirName"] = self.real_name
 
 	var/list/parts = list()
 

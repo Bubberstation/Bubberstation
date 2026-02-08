@@ -13,6 +13,8 @@ type HeaderInfo = {
   theirArousal: number;
   theirPain: number;
   arousalLimit: number;
+  theirName: string;
+  yourName: string;
 };
 
 export const InfoSection = () => {
@@ -25,11 +27,19 @@ export const InfoSection = () => {
     theirPleasure,
     theirArousal,
     theirPain,
+    yourName,
+    theirName,
     arousalLimit,
   } = data;
   return (
     <Section fill>
       <Stack vertical fill>
+        <Stack.Item grow>
+          <Stack>
+            <Stack.Item grow>{yourName}</Stack.Item>
+            {!isTargetSelf ? <Stack.Item grow>{theirName}</Stack.Item> : null}
+          </Stack>
+        </Stack.Item>
         <Stack.Item>
           <Stack fill>
             <Stack.Item grow>
