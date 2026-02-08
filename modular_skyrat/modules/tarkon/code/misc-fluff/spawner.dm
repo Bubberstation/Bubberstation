@@ -103,7 +103,7 @@
 	skillchips = list(/obj/item/skillchip/job/miner)
 
 /obj/effect/mob_spawn/ghost_role/human/tarkon/sci
-	name = "Port Tarkon Reserach Crew Member"
+	name = "Port Tarkon Research Crew Member"
 	prompt_name = "a port researcher"
 	outfit = /datum/outfit/tarkon/sci
 

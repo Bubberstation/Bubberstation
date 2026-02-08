@@ -173,6 +173,10 @@
 	name = "Colourable Cloth Wraps"
 	item_path = /obj/item/clothing/shoes/wraps/cloth
 
+/datum/loadout_item/shoes/tribal/clearcuffs
+	name = "Clear Leg Wraps"
+	item_path = /obj/item/clothing/shoes/wraps/clear
+
 /*
 *	FORMAL
 */

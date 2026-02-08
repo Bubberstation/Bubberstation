@@ -201,7 +201,7 @@
 /// Note the joining mob has no client at this point.
 /datum/job/proc/announce_job(mob/living/joining_mob, job_title) // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - Original: /datum/job/proc/announce_job(mob/living/joining_mob)
 	if(head_announce)
-		announce_head(joining_mob, list(head_announce))
+		announce_head(joining_mob, list(head_announce), job_title)	// BUBBER EDIT - fixes alternative job titles
 
 
 //Used for a special check of whether to allow a client to latejoin as this job.
