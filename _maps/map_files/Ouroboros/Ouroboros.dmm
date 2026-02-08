@@ -8128,24 +8128,8 @@
 /turf/open/floor/iron/small,
 /area/station/hallway/secondary/entry)
 "ctc" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/structure/table/reinforced,
-/obj/item/grenade/barrier{
-	pixel_y = 10;
-	pixel_x = 6
-	},
-/obj/item/grenade/barrier{
-	pixel_y = 9;
-	pixel_x = -6
-	},
-/obj/item/grenade/barrier{
-	pixel_y = 5
-	},
-/obj/effect/turf_decal/bot,
 /obj/item/radio/intercom/directional/north,
-/turf/open/floor/engine,
+/turf/open/floor/iron/dark/diagonal,
 /area/station/security/armory)
 "ctf" = (
 /turf/closed/wall,
@@ -15646,27 +15630,9 @@
 "eBi" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/table/reinforced,
-/obj/item/clothing/head/helmet/alt{
-	pixel_y = 9;
-	pixel_x = -9
-	},
-/obj/item/clothing/head/helmet/alt{
-	pixel_y = 9;
-	pixel_x = -1
-	},
-/obj/item/clothing/head/helmet/alt{
-	pixel_y = 9;
-	pixel_x = 7
-	},
-/obj/item/clothing/suit/armor/bulletproof{
-	pixel_x = -8
-	},
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof{
-	pixel_x = 8
-	},
 /obj/effect/turf_decal/bot,
 /obj/machinery/airalarm/directional/north,
+/obj/effect/spawner/random/armory/barrier_grenades,
 /turf/open/floor/engine,
 /area/station/security/armory)
 "eBo" = (
@@ -34834,25 +34800,10 @@
 "kdj" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/table/reinforced,
-/obj/item/clothing/head/helmet/sec{
-	pixel_y = 8;
-	pixel_x = -8
-	},
-/obj/item/clothing/head/helmet/sec{
-	pixel_y = 8
-	},
-/obj/item/clothing/head/helmet/sec{
-	pixel_y = 8;
-	pixel_x = 8
-	},
-/obj/item/clothing/suit/armor/vest/alt/sec{
-	pixel_x = -8
-	},
-/obj/item/clothing/suit/armor/vest/alt/sec,
-/obj/item/clothing/suit/armor/vest/alt/sec{
-	pixel_x = 8
-	},
 /obj/effect/turf_decal/bot,
+/obj/effect/spawner/random/armory/riot_armor,
+/obj/effect/spawner/random/armory/riot_helmet,
+/obj/effect/spawner/random/armory/riot_shield,
 /turf/open/floor/engine,
 /area/station/security/armory)
 "kdk" = (
@@ -36087,8 +36038,9 @@
 	},
 /obj/effect/turf_decal/bot,
 /obj/structure/rack/gunrack,
-/obj/item/gun/energy/ionrifle,
 /obj/item/gun/energy/temperature/security,
+/obj/item/clothing/suit/hooded/ablative,
+/obj/item/gun/energy/ionrifle,
 /turf/open/floor/engine,
 /area/station/security/armory)
 "ktc" = (
@@ -42728,26 +42680,10 @@
 "mlU" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/table/reinforced,
-/obj/item/clothing/head/helmet/toggleable/riot{
-	pixel_y = 10;
-	pixel_x = -9
-	},
-/obj/item/clothing/head/helmet/toggleable/riot{
-	pixel_y = 10
-	},
-/obj/item/clothing/head/helmet/toggleable/riot{
-	pixel_y = 10;
-	pixel_x = 9
-	},
-/obj/item/clothing/suit/armor/riot{
-	pixel_x = -8
-	},
-/obj/item/clothing/suit/armor/riot,
-/obj/item/clothing/suit/armor/riot{
-	pixel_x = 8
-	},
 /obj/effect/turf_decal/bot,
 /obj/machinery/light/cold/directional/north,
+/obj/effect/spawner/random/armory/bulletproof_helmet,
+/obj/effect/spawner/random/armory/bulletproof_armor,
 /turf/open/floor/engine,
 /area/station/security/armory)
 "mlX" = (
@@ -45353,14 +45289,11 @@
 	req_access = list("armory")
 	},
 /obj/effect/spawner/random/maintenance/three,
-/obj/effect/spawner/random/contraband/armory,
-/obj/effect/spawner/random/contraband/armory,
-/obj/effect/spawner/random/contraband/armory,
-/obj/effect/spawner/random/contraband/armory,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
 /obj/effect/turf_decal/box,
+/obj/effect/spawner/random/contraband/armory,
 /turf/open/floor/engine,
 /area/station/security/armory)
 "mWa" = (
@@ -46194,16 +46127,24 @@
 "njD" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/bot,
-/obj/item/melee/breaching_hammer{
-	pixel_x = -6
-	},
-/obj/item/melee/breaching_hammer,
-/obj/item/melee/breaching_hammer{
-	pixel_x = 6
-	},
 /obj/structure/rack/shelf,
 /obj/machinery/light/cold/directional/north,
-/obj/effect/spawner/random/armory/dragnet,
+/obj/item/clothing/glasses/hud/security/sunglasses/gars{
+	pixel_x = 3;
+	pixel_y = -2
+	},
+/obj/item/clothing/glasses/hud/security/sunglasses/gars{
+	pixel_x = 3;
+	pixel_y = 2
+	},
+/obj/item/clothing/glasses/hud/security/sunglasses{
+	pixel_x = -3;
+	pixel_y = -2
+	},
+/obj/item/clothing/glasses/hud/security/sunglasses{
+	pixel_x = -3;
+	pixel_y = 2
+	},
 /turf/open/floor/engine,
 /area/station/security/armory)
 "njJ" = (
@@ -48677,8 +48618,6 @@
 	},
 /obj/effect/turf_decal/bot,
 /obj/structure/rack/gunrack,
-/obj/effect/spawner/random/armory/e_gun,
-/obj/effect/spawner/random/armory/e_gun,
 /obj/effect/spawner/random/armory/e_gun,
 /turf/open/floor/engine,
 /area/station/security/armory)
@@ -54813,21 +54752,12 @@
 /area/station/science/ordnance)
 "pNQ" = (
 /obj/structure/rack/shelf,
-/obj/item/shield/riot{
-	pixel_x = -6;
-	pixel_y = 6
-	},
-/obj/item/shield/riot{
-	pixel_y = 6;
-	pixel_x = 6
-	},
-/obj/item/shield/riot{
-	pixel_y = -3
-	},
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
 	},
 /obj/effect/turf_decal/bot,
+/obj/item/gun/energy/e_gun/dragnet,
+/obj/item/gun/energy/e_gun/dragnet,
 /turf/open/floor/engine,
 /area/station/security/armory)
 "pNT" = (
@@ -54954,7 +54884,6 @@
 /turf/open/floor/iron/dark,
 /area/station/security/processing)
 "pQw" = (
-/obj/structure/rack/gunrack,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -54962,10 +54891,9 @@
 /obj/machinery/light/cold/directional/south,
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
-/obj/item/clothing/suit/hooded/ablative,
-/obj/item/gun/ballistic/automatic/battle_rifle{
-	pixel_y = 3
-	},
+/obj/structure/closet/secure_closet/armory_kiboko,
+/obj/item/ammo_box/c980grenade/smoke,
+/obj/item/ammo_box/c980grenade/riot,
 /turf/open/floor/engine,
 /area/station/security/armory)
 "pQx" = (
@@ -62101,15 +62029,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/hos)
-"rXg" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/bot,
-/obj/machinery/dish_drive/bullet,
-/turf/open/floor/engine,
-/area/station/security/armory)
 "rXs" = (
 /obj/machinery/door/airlock/medical{
 	name = "Janitorial Closet"
@@ -70593,9 +70512,7 @@
 	},
 /obj/effect/turf_decal/bot,
 /obj/structure/rack/gunrack,
-/obj/effect/spawner/random/armory/shotgun,
-/obj/effect/spawner/random/armory/shotgun,
-/obj/effect/spawner/random/armory/shotgun,
+/obj/effect/spawner/armory_spawn/shotguns,
 /turf/open/floor/engine,
 /area/station/security/armory)
 "uvc" = (
@@ -70854,6 +70771,9 @@
 /obj/item/storage/box/lethalshot{
 	pixel_y = -4;
 	pixel_x = -2
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
 	},
 /turf/open/floor/engine,
 /area/station/security/armory)
@@ -74246,9 +74166,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/bot,
-/obj/effect/spawner/random/armory/laser_gun,
-/obj/effect/spawner/random/armory/laser_gun,
-/obj/effect/spawner/random/armory/laser_gun,
+/obj/effect/spawner/armory_spawn/smg,
 /turf/open/floor/engine,
 /area/station/security/armory)
 "vxo" = (
@@ -80078,14 +79996,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
-"xab" = (
-/obj/effect/turf_decal/stripes/end{
-	dir = 8
-	},
-/obj/effect/turf_decal/bot,
-/obj/machinery/ammo_workbench,
-/turf/open/floor/engine,
-/area/station/security/armory)
 "xac" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger{
@@ -123693,7 +123603,7 @@ sau
 sau
 mlU
 hSi
-xab
+hSi
 hBn
 wcf
 tzX
@@ -123950,7 +123860,7 @@ xyv
 sau
 kdj
 hSi
-rXg
+hSi
 jsY
 lEq
 sFW
