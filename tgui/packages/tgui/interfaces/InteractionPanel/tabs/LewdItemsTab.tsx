@@ -12,14 +12,14 @@ type LewdSlot = {
   ref_user: string;
 };
 
-interface LewdItemsTabPropsData {
-  searchText;
-}
+type LewdItemsTabPropsData = {
+  searchText: string;
+};
 
-export const LewdItemsTab = ({ searchText }: LewdItemsTabPropsData) => {
+export const LewdItemsTab = (props: LewdItemsTabPropsData) => {
   const { act, data } = useBackend<LewdSlot>();
   const { lewd_slots = [], ref_self, ref_user } = data;
-
+  const { searchText } = props;
   const searchLower = searchText.toLowerCase();
 
   const filteredSlots = lewd_slots.filter((slot) => {

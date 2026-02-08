@@ -23,15 +23,12 @@ type Interaction = {
   block_interact: BooleanLike;
 };
 
-interface InteractionsTabPropsData {
-  searchText;
-  showCategories;
-}
+type InteractionsTabProps = {
+  searchText: string;
+  showCategories: boolean;
+};
 
-export const InteractionsTab = ({
-  searchText,
-  showCategories,
-}: InteractionsTabPropsData) => {
+export const InteractionsTab = (props: InteractionsTabProps) => {
   const { act, data } = useBackend<Interaction>();
   const {
     categories = [],
@@ -42,6 +39,7 @@ export const InteractionsTab = ({
     ref_user,
     block_interact,
   } = data;
+  const { searchText, showCategories } = props;
 
   const searchLower = searchText.toLowerCase();
 
