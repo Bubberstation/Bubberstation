@@ -51,6 +51,12 @@
 		return
 
 	if((squash_flags & SQUASHED_SHOULD_BE_DOWN) && parent_as_living.body_position != LYING_DOWN)
+		//BUBBER EDIT - Light step/walk/bots dont knock down
+		if(isliving(crossing_movable))
+			var/mob/living/crossing_mob = crossing_movable
+			if((crossing_mob.move_intent == MOVE_INTENT_WALK) || HAS_TRAIT(crossing_mob, TRAIT_LIGHT_STEP) || isbot(crossing_mob))
+				return
+		//BUBBER EDIT END
 		parent_as_living.Knockdown(1 SECONDS) // BUBBER EDIT - MICRO BALANCE
 		return
 

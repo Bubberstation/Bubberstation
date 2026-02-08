@@ -108,7 +108,7 @@
 		UnregisterSignal(chamber, COMSIG_PREQDELETED)
 	chamber = new_chamber
 	if(chamber)
-		RegisterSignal(chamber, COMSIG_PREQDELETED, .proc/react_to_chamber_del)
+		RegisterSignal(chamber, COMSIG_PREQDELETED, PROC_REF(react_to_chamber_del))
 
 /obj/machinery/computer/nanite_chamber_control/proc/react_to_chamber_del(datum/source)
 	SIGNAL_HANDLER

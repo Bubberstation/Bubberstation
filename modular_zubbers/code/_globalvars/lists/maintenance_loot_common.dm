@@ -60,7 +60,6 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/storage/belt/security/peacekeeper = 1,
 		/obj/item/storage/belt/security/redsec = 1,
 		/obj/item/storage/belt/security/webbing = 1,
-		/obj/item/storage/belt/security/webbing/peacekeeper = 1,
 		/obj/item/storage/belt/utility = 200,
 		/obj/item/storage/belt/utility/full = 25,
 		/obj/item/storage/belt/utility/syndicate = 1,
