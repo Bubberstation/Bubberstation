@@ -297,7 +297,8 @@
 				// BUBBER EDIT END - NAME PREFS
 			if(allow_custom_character & GHOSTROLE_TAKE_PREFS_SPECIES)
 				spawned_human.set_species(mob_possessor.client.prefs.read_preference(/datum/preference/choiced/species))
-				spawned_human.fully_replace_character_name(spawned_human.real_name, spawned_human.generate_random_mob_name())
+				if(!(allow_custom_character & GHOSTROLE_TAKE_PREFS_NAME))
+					spawned_human.fully_replace_character_name(spawned_human.real_name, spawned_human.generate_random_mob_name())
 		if(mob_possessor.mind)
 			mob_possessor.mind.transfer_to(spawned_mob, force_key_move = TRUE)
 		else
