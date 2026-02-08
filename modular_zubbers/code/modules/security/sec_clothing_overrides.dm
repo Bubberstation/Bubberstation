@@ -401,29 +401,6 @@
 	content_overlays = FALSE
 	alternate_worn_layer = LOW_NECK_LAYER  // so it goes under things like the HOS' trenchcoats
 
-/*
-
-// this for some reason doesn't fucking work i have no idea
-
-/obj/item/storage/belt/security/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_belt)
-
-/datum/atom_skin/security_belt
-	abstract_type = /datum/atom_skin/security_belt
-
-/datum/atom_skin/security_belt/red
-	preview_name = "Red Variant"
-	new_icon_state = "security"
-
-/datum/atom_skin/security_belt/black
-	preview_name = "Black Variant"
-	new_icon = 'modular_zubbers/icons/obj/clothing/belt.dmi'
-	new_worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi' // idk
-	new_icon_state = "security_black"
-
-*/
-
 /obj/item/storage/belt/security/webbing
 	icon = 'modular_zubbers/icons/obj/clothing/belt.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
