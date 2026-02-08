@@ -11,6 +11,8 @@
 #define TENSION_LOW 0.3
 #define TENSION_MED 0.5
 
+#define MIMIMAL_ANTAG_SPAWN_WEIGHT 15
+
 /// Calculates desired roundstart antagonist count based on population and balance
 /datum/storyteller/proc/calculate_roundstart_antag_count(pop)
 	var/count = 0
@@ -53,8 +55,7 @@
 		return
 
 	if(HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ANTAGS))
-		if(SSstorytellers.hard_debug)
-			message_admins("[name] skipped initial antagonist spawn because of NO_ANTAGS trait")
+		message_admins("[name] skipped initial antagonist spawn because of NO_ANTAGS trait")
 		return TRUE
 
 	var/pop = inputs.player_count()
@@ -118,9 +119,9 @@
 	// Balance factor: higher when antags are weaker relative to station
 	var/balance_factor = 0.0
 	if(balance_ratio < BALANCE_LOW)
-		balance_factor += 50
+		balance_factor += 40
 	else if(balance_ratio < BALANCE_MED)
-		balance_factor += 30
+		balance_factor += 25
 	else if(balance_ratio < BALANCE_HIGH)
 		balance_factor += 20
 	else
@@ -133,7 +134,7 @@
 
 	var/weight_factor = 0.0
 	if(weight_ratio < WEIGHT_LOW)
-		weight_factor = 25  // Very low antag weight
+		weight_factor = 20  // Very low antag weight
 	else if(weight_ratio < WEIGHT_MED)
 		weight_factor = 15  // Low antag weight
 	else if(weight_ratio < WEIGHT_HIGH)
@@ -177,25 +178,24 @@
 	if(snap.antag_weak)
 		spawn_weight *= 1.2
 	spawn_weight *= clamp(mood.aggression, 0.5, 1.5)
-	return clamp(spawn_weight, 0, 100)
+	return clamp(spawn_weight, 0, 80)
 
 /// Checks antagonist balance and spawns midround antagonists in waves if needed
 /// Called approximately every ~30 minutes based on cooldown
 /// Uses threat level, balance ratio, and antag weight to determine if spawns are needed
 /datum/storyteller/proc/check_and_spawn_antagonists(datum/storyteller_balance_snapshot/snap, force = FALSE)
 	if((!SSstorytellers.storyteller_replace_dynamic && !force) || attempted_spawning)
-		return
+		return FALSE
 
 	if(HAS_TRAIT(src, STORYTELLER_TRAIT_NO_ANTAGS) && !force)
-		return
+		return FALSE
 	if(determine_greenshift_status())
 		if(force)
 			message_admins("[name] skipped antagonist spawn wave due to greenshift, change difficulty to allow spawns")
-		return
+		return FALSE
 	if(!snap)
 		snap = balancer.make_snapshot(inputs)
 
-	var/balance_ratio = snap.balance_ratio
 	var/antag_count = inputs.antag_count()
 	var/antag_weight = inputs.antag_weight()
 	var/player_weight = inputs.crew_weight()
@@ -207,32 +207,33 @@
 		if(population_factor <= population_factor_low && !HAS_TRAIT(src, STORYTELLER_TRAIT_NO_MERCY))
 			needs_antags = FALSE
 			reason = "insufficient population!"
-		else if(antag_count <= 0 && target_player_antag_balance > 20)
+		else if(antag_count <= 0 && target_player_antag_balance > 30 && prob(40 * mood.get_threat_multiplier()))
 			needs_antags = TRUE
 			reason = "no antagonists"
-		else if(snap.antag_weak && (player_antag_balance < 50 || prob(30 * mood.get_threat_multiplier())))
+		else if((player_antag_balance < (target_player_antag_balance - 10)) && prob(35 * mood.get_threat_multiplier()))
 			needs_antags = TRUE
-			reason = "antagonists too weak"
-		else if(balance_ratio < 0.4)
+			reason = "antagonists weak relative to player balance, antag balance: [player_antag_balance], target: [target_player_antag_balance])"
+		else if(snap.antag_weak && (target_player_antag_balance > 50 || prob(30 * mood.get_threat_multiplier())))
 			needs_antags = TRUE
-			reason = "antagonists too weak relative to station (ratio: [balance_ratio])"
+			reason = "antagonists are weak"
 		else if(player_weight > 0 && antag_weight / player_weight < 0.4)
 			needs_antags = TRUE
-			reason = "antagonist weight too low (antag: [antag_weight], players: [player_weight])"
+			reason = "antagonist weight too low, antag: [antag_weight], crew: [player_weight])"
+
 		if(!needs_antags)
 			message_admins("[name] skipped antagonist spawn wave because of [reason]")
-			return
+			return FALSE
 	else
 		needs_antags = TRUE
 		message_admins("[name] forced antagonist spawn wave!")
 
 	// Calculate spawn weight based on threat level, balance ratio, and antag weight
 	var/spawn_weight = calculate_antagonist_spawn_weight_wave(snap, antag_weight, player_weight)
-	if(spawn_weight <= 0 && !force)
+	if(spawn_weight <= MIMIMAL_ANTAG_SPAWN_WEIGHT && !force)
 		message_admins("[name] is forcing antagonist spawn wave despite low spawn weight ([spawn_weight]). Aborting!")
-		return
+		return FALSE
 	INVOKE_ASYNC(src, PROC_REF(try_spawn_midround_antagonist_wave), snap, spawn_weight)
-
+	return TRUE
 
 
 
@@ -308,3 +309,4 @@
 #undef WEIGHT_HIGH
 #undef TENSION_LOW
 #undef TENSION_MED
+#undef MIMIMAL_ANTAG_SPAWN_WEIGHT

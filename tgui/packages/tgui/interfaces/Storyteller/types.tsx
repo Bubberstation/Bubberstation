@@ -54,6 +54,8 @@ export type StorytellerData = {
   desc?: string;
   ooc_desc?: string;
   ooc_difficulty?: string;
+  population_factor?: number;
+  threat_points?: number;
   mood?: StorytellerMood;
   upcoming_goals?: StorytellerUpcomingGoal[];
   next_think_time?: number;
@@ -134,8 +136,6 @@ export const TOOLTIPS = {
     'Current round tension (0-100%). Shows the overall level of stress and threats on the station. Higher values may lead to more positive events for balance.',
   targetTension:
     'Target tension (0-100%). The storyteller strives to maintain it by planning events: low values decrease the overall difficulty modifier, high values increase it. Values closer to 100 lead to extreme event difficulty.',
-  threatLevel:
-    'Threat level (0-100%). Shows the current threat points available to the storyteller (from 1 to 10,000). Used for scaling event intensity.',
   effectiveThreat:
     'Effective threat level (accounts for players and progress). Based on round time, antagonist activity, and overall tension. Determines the actual difficulty of events.',
   roundProgression:
@@ -150,6 +150,10 @@ export const TOOLTIPS = {
     'Time until the storyteller\'s next "think." At this point, it analyzes the station and plans events.',
   nextAntagWave:
     "Time until the next antagonist wave. if unplanned then initial antagonists still doesn't selected!.",
+  populationFacotr:
+    'Current storyteller population factor. It affect the number of threat points that events will receive, as well as the overall threat level and the number of events.',
+  threatPoints:
+    'The number of threat points accumulated by storytellers passively increases over time and affects the difficulty of events and the amount of threat they will create.',
   // Settings (Settings & Advanced)
   moodSelect:
     'Mood selection to change the global objective style. Each mood affects planning pace: "Fast Chaos" — frequent antagonist branches, "Slow Schemer" — hidden sub-objectives.',

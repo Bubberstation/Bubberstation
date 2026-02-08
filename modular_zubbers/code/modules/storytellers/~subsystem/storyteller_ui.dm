@@ -83,6 +83,8 @@ ADMIN_VERB(storyteller_admin, R_ADMIN, "Storyteller UI", "Open the storyteller a
 	data["desc"] = ctl.desc
 	data["ooc_desc"] = ctl.ooc_desc
 	data["ooc_difficulty"] = ctl.ooc_difficulty
+	data["population_factor"] = ctl.population_factor
+	data["threat_points"] = ctl.threat_points
 	if(ctl.mood)
 		data["mood"] = list(
 			"id" = "[ctl.mood.type]",

@@ -214,6 +214,8 @@
 		STORY_TAG_EPIC,
 		STORY_TAG_CHAOTIC,
 	)
+	enabled = FALSE
+
 	story_weight = STORY_WEIGHT_MAJOR_ANTAGONIST
 	story_prioty = STORY_GOAL_HIGH_PRIORITY
 	requierd_threat_level = STORY_GOAL_THREAT_HIGH

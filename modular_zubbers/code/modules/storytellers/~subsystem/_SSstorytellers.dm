@@ -423,6 +423,8 @@ SUBSYSTEM_DEF(storytellers)
 
 /datum/controller/subsystem/storytellers/proc/filter_goals(category = null, list/required_tags = null, minimum_match_category = STORY_TAGS_SOME_MATCH)
 	var/list/result = list()
+	if(!islist(required_tags))
+		required_tags = list(required_tags)
 
 	var/list/events_to_check = list()
 	var/category_str

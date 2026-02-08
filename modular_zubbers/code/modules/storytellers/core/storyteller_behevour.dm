@@ -1,5 +1,7 @@
 //Here's where is magic begin
 #define STORY_REPETITION_DECAY_TIME (30 MINUTES)
+#define DEFAULT_TAG_CHANCE(__bias) (prob(20 * __bias))
+#define HIGH_TAG_CHANCE(__bias) (prob(35 * __bias))
 #define STORY_TAG_MATCH_BONUS 0.5
 #define STORY_REP_PENALTY_MAX 1
 
@@ -60,8 +62,12 @@
 
 
 /datum/storyteller_behevour/proc/add_tag_with_bias(list/tags, tag, bias, probability)
+	if(!islist(tags))
+		tags = list()
+	if(tag in tags)
+		return
 	if(prob(probability * bias))
-		LAZYADD(tags, tag)
+		tags += tag
 
 
 /datum/storyteller_behevour/proc/tokenize( \
@@ -107,40 +113,41 @@
 	// Health-based tags (only if not ignored by trait)
 	if(!HAS_TRAIT(owner, STORYTELLER_TRAIT_IGNORE_CREW_HEALTH))
 		var/crew_health = inputs.get_entry(STORY_VAULT_AVG_CREW_HEALTH) || 100
-		if(crew_health < 50)
-			add_tag_with_bias(., STORY_TAG_HEALTH, bias, 60)
-			if(category & STORY_GOAL_GOOD)
-				add_tag_with_bias(., STORY_TAG_REQUIRES_MEDICAL, bias, 70)
-			else if(category & STORY_GOAL_BAD)
-				add_tag_with_bias(., STORY_TAG_COMBAT, bias, 40)
+		// If crew health is low or with random chance, prefer health-related events
+		if(crew_health < 50 || DEFAULT_TAG_CHANCE(bias))
+			add_tag_with_bias(., STORY_TAG_HEALTH, bias, 50)
+			if(category & STORY_GOAL_BAD)
+				add_tag_with_bias(., STORY_TAG_REQUIRES_MEDICAL, bias, 40)
 
 		var/crew_wounding = inputs.get_entry(STORY_VAULT_CREW_WOUNDING) || STORY_VAULT_NO_WOUNDS
 		if(crew_wounding >= STORY_VAULT_MANY_WOUNDED)
-			add_tag_with_bias(., STORY_TAG_HEALTH, bias, 50)
-			if(category & STORY_GOAL_GOOD)
-				add_tag_with_bias(., STORY_TAG_REQUIRES_MEDICAL, bias, 60)
+			if(category & STORY_GOAL_BAD)
+				add_tag_with_bias(., STORY_TAG_TRAGIC, bias, 30)
+			else if(category & STORY_GOAL_GOOD)
+				add_tag_with_bias(., STORY_TAG_DEESCALATION, bias, 60)
 
 		var/crew_diseases = inputs.get_entry(STORY_VAULT_CREW_DISEASES) || STORY_VAULT_NO_DISEASES
 		if(crew_diseases >= STORY_VAULT_MAJOR_DISEASES)
-			add_tag_with_bias(., STORY_TAG_HEALTH, bias, 70)
-			if(category & STORY_GOAL_GOOD)
-				add_tag_with_bias(., STORY_TAG_REQUIRES_MEDICAL, bias, 80)
+			if(category & STORY_GOAL_BAD)
+				add_tag_with_bias(., STORY_TAG_TRAGIC, bias, 30)
+			else if(category & STORY_GOAL_GOOD)
+				add_tag_with_bias(., STORY_TAG_DEESCALATION, bias, 60)
+
 
 	// Infrastructure-based tags (only if not ignored by trait)
 	if(!HAS_TRAIT(owner, STORYTELLER_TRAIT_IGNORE_ENGI))
-		var/infra_damage = inputs.get_entry(STORY_VAULT_INFRA_DAMAGE) || STORY_VAULT_NO_DAMAGE
-		if(infra_damage >= STORY_VAULT_MINOR_DAMAGE)
-			add_tag_with_bias(., STORY_TAG_ENVIRONMENTAL, bias, 50)
-			if(category & STORY_GOAL_GOOD)
-				add_tag_with_bias(., STORY_TAG_REQUIRES_ENGINEERING, bias, 60)
-			else if(category & STORY_GOAL_BAD)
-				add_tag_with_bias(., STORY_TAG_ESCALATION, bias, 40)
-
 		var/station_integrity = inputs.get_entry(STORY_VAULT_STATION_INTEGRITY) || 100
+
 		if(station_integrity < 50)
-			add_tag_with_bias(., STORY_TAG_ENVIRONMENTAL, bias, 60)
-			if(category & STORY_GOAL_GOOD)
-				add_tag_with_bias(., STORY_TAG_REQUIRES_ENGINEERING, bias, 70)
+			if(category & STORY_GOAL_BAD && DEFAULT_TAG_CHANCE(bias))
+				add_tag_with_bias(., STORY_TAG_ESCALATION, bias, 30)
+				add_tag_with_bias(., STORY_TAG_ENVIRONMENTAL, bias, 20)
+			else if(category & STORY_GOAL_GOOD)
+				add_tag_with_bias(., STORY_TAG_DEESCALATION, bias, 40)
+				add_tag_with_bias(., STORY_TAG_ENVIRONMENTAL, bias, 40)
+
+			if(category & STORY_GOAL_BAD)
+				add_tag_with_bias(., STORY_TAG_REQUIRES_ENGINEERING, bias, 50)
 
 		var/power_status = inputs.get_entry(STORY_VAULT_POWER_STATUS) || STORY_VAULT_FULL_POWER
 		if(power_status >= STORY_VAULT_LOW_POWER)
@@ -153,6 +160,7 @@
 			add_tag_with_bias(., STORY_TAG_ENVIRONMENTAL, bias, 55)
 			if(category & STORY_GOAL_GOOD)
 				add_tag_with_bias(., STORY_TAG_REQUIRES_ENGINEERING, bias, 65)
+
 
 	// Antagonist-based tags
 	var/antagonist_weight = inputs.get_entry(STORY_VAULT_ANTAG_WEIGHT) || 0
@@ -274,7 +282,7 @@
 			continue
 
 		// Base weight
-		var/weight = evt.get_story_weight(inputs, owner)
+		var/weight = evt.get_story_weight(inputs, owner) * 10
 
 		// Repetition penalty (simplified)
 		var/list/rep_info = owner.get_repeat_info(evt.id)
@@ -290,7 +298,7 @@
 				if(evt.has_tag(tag))
 					matches += 1
 			if(matches > 0)
-				weight *= (1 + matches * STORY_TAG_MATCH_BONUS)
+				weight += (1 + matches) * STORY_TAG_MATCH_BONUS
 
 		var/tension_diff = abs(bal.overall_tension - owner.target_tension) / 100.0
 		if(tension_diff > 0.2)
@@ -313,7 +321,7 @@
 		if(owner.planner.is_event_in_timeline(evt))
 			weight *= 0.3
 
-		weighted[evt] = max(0.1, weight)
+		weighted[evt] = max(1, weight)
 
 	if(!length(weighted))
 		return null
@@ -341,7 +349,7 @@
 		score_good += tension_diff * 0.8
 	// Low tension -> prefer bad events (challenge)
 	else if(tension < target)
-		score_bad += (1 - tension_diff) * 0.8
+		score_bad += (1 - tension_diff)
 
 	// Mood influence
 	var/mood_aggr = owner.get_effective_threat()
@@ -357,11 +365,11 @@
 	if(HAS_TRAIT(owner, STORYTELLER_TRAIT_NO_GOOD_EVENTS))
 		score_good = 0
 	if(HAS_TRAIT(owner, STORYTELLER_TRAIT_MORE_GOOD_EVENTS))
-		score_good += 0.25
+		score_good += 0.3
 	if(HAS_TRAIT(owner, STORYTELLER_TRAIT_MORE_BAD_EVENTS))
-		score_bad += 0.25
+		score_bad += 0.3
 	if(HAS_TRAIT(owner, STORYTELLER_TRAIT_MORE_NEUTRAL_EVENTS))
-		score_neutral += 0.25
+		score_neutral += 0.15
 
 	// Random volatility
 	if(HAS_TRAIT(owner, STORYTELLER_TRAIT_HARDCORE_RANDOM))
@@ -475,3 +483,5 @@
 #undef STORY_REPETITION_DECAY_TIME
 #undef STORY_TAG_MATCH_BONUS
 #undef STORY_REP_PENALTY_MAX
+#undef DEFAULT_TAG_CHANCE
+#undef HIGH_TAG_CHANCE

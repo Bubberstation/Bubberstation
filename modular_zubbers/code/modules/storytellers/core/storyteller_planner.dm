@@ -270,7 +270,9 @@
 			var/cancel_ref = "[REF(event_control)]_[target_time]"
 			var/reroll_ref = "[REF(event_control)]_[target_time]_reroll"
 			message_admins("[owner.name] planned new event [format_name] in <b>[time_str]</b>. \
-				[is_antag ? "" : "(<a href='byond://?src=[REF(src)];cancel_event=[cancel_ref]'>CANCEL</a>)"] \
+				[is_antag ? \
+				"" : \
+				"(<a href='byond://?src=[REF(src)];cancel_event=[cancel_ref]'>CANCEL</a>)"] \
 				(<a href='byond://?src=[REF(src)];reroll_event=[reroll_ref]'>REROLL</a>)")
 		return TRUE
 
@@ -428,7 +430,7 @@
 /datum/storyteller_planner/proc/get_last_reference_time()
 	if(length(timeline))
 		return get_closest_offset()
-	return owner.get_time_since_last_event()
+	return owner.last_event_time
 
 /datum/storyteller_planner/Topic(href, href_list)
 	. = ..()

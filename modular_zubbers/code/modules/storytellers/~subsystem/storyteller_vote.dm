@@ -69,8 +69,6 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 
 /datum/action/storyteller_vote/proc/on_vote_ended()
 	SIGNAL_HANDLER
-
-	UnregisterSignal(SSstorytellers, COMSIG_STORYTELLER_VOTE_END)
 	Remove(owner)
 
 /datum/action/storyteller_vote/Remove(mob/removed_from)
@@ -81,6 +79,7 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 		var/datum/persistent_client/persistent_client = GLOB.persistent_clients_by_ckey[removed_from.ckey]
 		persistent_client?.player_actions -= src
 
+	UnregisterSignal(SSstorytellers, COMSIG_STORYTELLER_VOTE_END)
 	return ..()
 
 /datum/controller/subsystem/storytellers
@@ -178,7 +177,7 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 		return
 
 	var/selected_id_str
-	if (best_storytellers.len == 1)
+	if(length(best_storytellers) == 1)
 		selected_id_str = best_storytellers[1]
 	else
 		selected_id_str = pick(best_storytellers)
@@ -194,6 +193,7 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 			var/d_str = num2text(d)
 			diff_counts[d_str] = (diff_counts[d_str] || 0) + 1
 		var/max_count = 0
+
 		var/list/best_diffs = list()
 		for(var/d_str in diff_counts)
 			var/c = diff_counts[d_str]
@@ -202,7 +202,7 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 				best_diffs = list(text2num(d_str))
 			else if(c == max_count)
 				best_diffs += text2num(d_str)
-		selected_difficulty = best_diffs.len == 1 ? best_diffs[1] : pick(best_diffs)
+		selected_difficulty = length(best_diffs) == 1 ? best_diffs[length(best_diffs)] : pick(best_diffs)
 		if(best_diffs.len > 1)
 			to_chat(world, span_announce("Difficulty tie broken randomly!"))
 
@@ -214,6 +214,7 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 	if(SSticker.current_state < GAME_STATE_PLAYING)
 		storyteller_vote_cache = list()
 		storyteller_vote_cache += selected_id
+		src.selected_difficulty = clamp(selected_difficulty, 0.3, 5.0)
 		write_cache()
 
 	if(SSticker.current_state != GAME_STATE_PLAYING)
@@ -357,7 +358,7 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 	data["top_tallies"] = top_tallies
 	data["is_open"] = world.time < global_vote_end_time && SSstorytellers.vote_active
 	data["debug_mode"] = SSstorytellers.hard_debug
-	data["admin_mode"] = check_rights(R_ADMIN)
+	data["admin_mode"] = check_rights(R_ADMIN, show_msg = FALSE)
 
 	var/can_vote = TRUE
 
@@ -378,6 +379,12 @@ ADMIN_VERB(storyteller_end_vote, R_ADMIN | R_DEBUG, "Storyteller - End Vote", "E
 	if (!ui)
 		ui = new(user, src, "StorytellerVote", "Storyteller Vote")
 		ui.open()
+
+/datum/storyteller_vote_ui/Destroy()
+	. = ..()
+	for(var/datum/action/action in owner.mob.actions)
+		if(istype(action, /datum/action/storyteller_vote) && !QDELETED(action))
+			action.Remove(owner.mob)
 
 /datum/storyteller_vote_ui/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()

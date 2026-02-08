@@ -516,7 +516,7 @@ export const StorytellerVote = () => {
             </Stack>
           </Stack.Item>
 
-          {!!admin_mode && is_open ? (
+          {admin_mode && is_open ? (
             <Stack.Item>
               <Box
                 position="absolute"

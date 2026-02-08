@@ -62,7 +62,7 @@
 		return
 
 	for(var/mob/living/carbon/human/crew in get_earbzzz_candidates())
-		to_chat(crew, span_warning("Can you hear the white noise from your [crew.ears.name]"))
+		to_chat(crew, span_danger("You can hear the white noise from your [crew.ears.name]"))
 
 /datum/round_event/communications_blackout/storyteller/__storyteller_tick(seconds_per_tick)
 	if(COOLDOWN_FINISHED(src, tcom_pulse_cooldown))
@@ -115,4 +115,4 @@
 			continue
 		ears.adjust_temporary_deafness(rand(5-15))
 		SEND_SOUND(crew, sound('sound/items/weapons/flash_ring.ogg',0,1,0,250))
-		to_chat(src, span_warning("Your [crew.ears.name], bursts with a terrible crack, tearing your ears apart."))
+		to_chat(src, span_userdanger("Your [crew.ears.name], bursts with a terrible crack, tearing your ears apart."))

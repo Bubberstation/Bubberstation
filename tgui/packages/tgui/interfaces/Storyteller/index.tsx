@@ -379,6 +379,8 @@ export const Storyteller = (props) => {
     id,
     ooc_desc,
     ooc_difficulty,
+    population_factor,
+    threat_points,
     upcoming_goals = [],
     next_think_time,
     next_antag_wave_time,
@@ -617,6 +619,18 @@ export const Storyteller = (props) => {
                 >
                   {mood ? `${mood.name} (×${mood.pace})` : '—'}
                 </LabeledList.Item>
+                <LabeledList.Item
+                  label="Population factor"
+                  tooltip={TOOLTIPS.populationFacotr}
+                >
+                  {data.population_factor ? `${data.population_factor}` : '—'}
+                </LabeledList.Item>
+                <LabeledList.Item
+                  label="Threat Points"
+                  tooltip={TOOLTIPS.threatPoints}
+                >
+                  {Number(threat_points) * 100 ?? '—'}
+                </LabeledList.Item>
                 <ProgressRow
                   label="Tension"
                   value={(data.current_tension ?? 0) / 100}
@@ -633,24 +647,12 @@ export const Storyteller = (props) => {
                   tooltip={TOOLTIPS.targetTension}
                 />
                 <ProgressRow
-                  label="Threat Level"
-                  value={(data.threat_level ?? 0) / 100}
-                  color={
-                    data.threat_level || 0 > 70
-                      ? 'bad'
-                      : data.threat_level || 0 > 30
-                        ? 'average'
-                        : 'good'
-                  }
-                  tooltip={TOOLTIPS.threatLevel}
-                />
-                <ProgressRow
                   label="Effective Threat"
-                  value={(data.effective_threat_level ?? 0) / 100}
+                  value={(data.effective_threat_level ?? 0) / 10}
                   color={
-                    data.effective_threat_level || 0 > 70
+                    data.effective_threat_level || 0 > 7
                       ? 'bad'
-                      : data.effective_threat_level || 0 > 30
+                      : data.effective_threat_level || 0 > 3
                         ? 'average'
                         : 'good'
                   }

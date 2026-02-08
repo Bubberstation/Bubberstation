@@ -176,6 +176,8 @@
 	var/restricted_roles = list()
 	// Preferred jobs (only these allowed; e.g., list(JOB_CAPTAIN))
 	var/preferred_roles = list()
+	// Is living with mindshield can roll this antag
+	var/allow_mindshield = FALSE
 	var/max_candidates = 1
 	var/min_candidates = 1
 	var/ghost_candidates = TRUE
@@ -236,8 +238,16 @@
 		return FALSE
 	if(canceled)
 		return FALSE
-	if(is_banned_from(candidate, role_flag))
+	var/static/list/cached_bans = list()
+	if(!cached_bans[candidate.key])
+		if(is_banned_from(candidate, role_flag))
+			cached_bans[candidate.key] = "banned"
+			return FALSE
+		else
+			cached_bans[candidate.key] = "not_banned"
+	else if(cached_bans[candidate.key] == "banned")
 		return FALSE
+
 	if(!(role_flag in candidate.client.prefs.be_special))
 		return FALSE
 
@@ -250,7 +260,8 @@
 			return FALSE
 		if(length(preferred_roles) && !(job?.type in preferred_roles))
 			return FALSE
-
+		if((locate(/obj/item/implant/mindshield) in L.implants) && !allow_mindshield)
+			return FALSE
 	else if(isobserver(candidate))
 		return TRUE
 	return TRUE

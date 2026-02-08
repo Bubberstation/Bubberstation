@@ -128,6 +128,7 @@
 
 	antag_datum_type = /datum/antagonist/obsessed
 	antag_name = "Obsessed"
+	allow_mindshield = TRUE
 	role_flag = ROLE_OBSESSED
 	max_candidates = 1
 	min_candidates = 1
@@ -241,6 +242,7 @@
 	requierd_threat_level = STORY_GOAL_THREAT_BASIC
 	required_round_progress = STORY_ROUND_PROGRESSION_START
 
+	enabled = FALSE
 	antag_datum_type = /datum/antagonist/brother
 	antag_name = "Blood Brother"
 	role_flag = ROLE_BROTHER

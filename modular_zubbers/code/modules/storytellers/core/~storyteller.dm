@@ -122,7 +122,8 @@
 	var/roundstart_antag_selection_time = 0
 	/// Whether roundstart antagonists have been selected
 	var/static/roundstart_antags_selected = FALSE
-
+	/// Is we send roundstart report?
+	var/static/report_sended = FALSE
 	/* STATE TRACKING VARIABLES */
 
 	/// Next time to update analysis and planning (in world.time)
@@ -189,6 +190,8 @@
 	update_population_factor(instant=TRUE)
 	planner.build_timeline(src, inputs, bal)
 	initialized = TRUE
+	if(difficulty_multiplier < 0.3)
+		difficulty_multiplier = STORY_DIFFICULTY_MULTIPLIER
 
 	// Send round start report (generates custom report based on storyteller parameters)
 	send_round_start_report()
@@ -217,7 +220,7 @@
 /// Linear interpolation: low pop (0.3) -> 1.5x grace, high pop (1.0) -> 0.5x grace
 /datum/storyteller/proc/get_scaled_grace()
 	var/pop_mod = lerp(1.5, 0.5, 1.0 / max(0.1, population_factor))
-	pop_mod = clamp(pop_mod * get_effective_pace(), 0.5, 1.5)
+	pop_mod = clamp(pop_mod * mood.get_event_frequency_multiplier(), 0.5, 1.5)
 	return grace_period * pop_mod
 
 
@@ -226,7 +229,11 @@
 /// Low population = longer intervals (fewer events), high population = shorter intervals (more frequent events)
 /// event_interval = average_event_interval * effective_pace * max(0.5, 1 - population_factor)
 /datum/storyteller/proc/get_event_interval()
-	var/base = average_event_interval * get_effective_pace()
+	var/base = average_event_interval * clamp(mood.get_event_frequency_multiplier(), 0.5, 1.5)
+	// If adaptation is above 0.4, start increasing intervals to slow down events
+	base -= base * max(0, adaptation_factor - 0.4)
+	if(difficulty_multiplier > 1.0)
+		base -= (base * 0.1) * difficulty_multiplier
 	var/pop_mod = max(0.5, 1.5 - population_factor)
 	return base * pop_mod
 
@@ -289,7 +296,9 @@
 
 /// Scale effective threat by population_factor: low pop = lower effective threat
 /datum/storyteller/proc/get_effective_threat()
-	return (threat_points/10) * mood.get_threat_multiplier() * difficulty_multiplier * clamp(population_factor, 0.3, 1.0)
+	var/base = threat_points / 10
+	base *= (mood.get_threat_multiplier() * difficulty_multiplier)
+	return base * (0.5 + clamp(population_factor, 0.3, 1.0))
 
 
 /datum/storyteller/proc/get_next_possible_event_time()
@@ -367,11 +376,14 @@
 	balancer.tension_bonus = max(balancer.tension_bonus - STORY_TENSION_BONUS_DECAY_RATE * difficulty_multiplier, 0)
 	update_population_factor()
 
-
 	// 5) Check antagonist balance and spawn if needed
 	if(next_atnag_balance_check_time <= world.time && SSstorytellers?.storyteller_replace_dynamic && roundstart_antags_selected)
-		check_and_spawn_antagonists(snap)
-		next_atnag_balance_check_time = world.time + antag_balance_check_interval
+		var/next_time = 10 MINUTES
+		if(check_and_spawn_antagonists(snap))
+			next_time = antag_balance_check_interval * 2 - population_factor
+		else
+			next_time = (antag_balance_check_interval * 0.5) * 1.5 - population_factor
+		next_atnag_balance_check_time = world.time + next_time
 
 
 	// 6) Check if it's time to select roundstart antagonists
@@ -379,7 +391,8 @@
 	if(!roundstart_antags_selected && world.time >= roundstart_antag_selection_time)
 		if(spawn_initial_antagonists())
 			roundstart_antags_selected = TRUE
-			next_atnag_balance_check_time = world.time + antag_balance_check_interval
+			var/next_time = antag_balance_check_interval * 1.7 - population_factor
+			next_atnag_balance_check_time = world.time + next_time
 
 
 	var/latest_key = num2text(world.time)
@@ -451,7 +464,9 @@
 
 
 	var/desired = population_factor_medium
-	if(current <= low_thresh)
+	if(current <= low_thresh * 0.8)
+		desired = 0.1
+	else if(current <= low_thresh)
 		desired = population_factor_low
 	else if(current <= med_thresh)
 		desired = population_factor_medium
@@ -557,6 +572,8 @@
 /// Generates and sends round start report based on storyteller parameters
 /// Should be called after round initialization
 /datum/storyteller/proc/send_round_start_report()
+	if(report_sended)
+		return
 	if(!CONFIG_GET(flag/no_intercept_report))
 		// Generate and send full roundstart report independently
 		addtimer(CALLBACK(src, PROC_REF(send_full_roundstart_report)), \
@@ -645,7 +662,7 @@
 #endif
 
 	log_storyteller("[name] sent full roundstart report with advisory level based on target_tension=[target_tension], difficulty=[difficulty_multiplier]")
-
+	report_sended = TRUE
 
 /// Determines if this should be treated as a greenshift (no threats)
 /datum/storyteller/proc/determine_greenshift_status()

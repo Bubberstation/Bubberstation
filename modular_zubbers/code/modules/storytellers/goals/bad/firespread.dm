@@ -27,23 +27,23 @@
 	. = ..()
 	if(threat_points < STORY_THREAT_LOW)
 		waves_count = 1
-		wave_delay = 2 MINUTES
+		wave_delay = 120
 		hot_spots = 1
 	else if(threat_points < STORY_THREAT_MODERATE)
 		waves_count = 2
-		wave_delay = 90 SECONDS
+		wave_delay = 90
 		hot_spots = 2
 	else if(threat_points < STORY_THREAT_HIGH)
 		waves_count = 3
-		wave_delay = 1 MINUTES
+		wave_delay = 60
 		hot_spots = 4
 	else if(threat_points < STORY_THREAT_EXTREME)
 		waves_count = 4
-		wave_delay = 45 SECONDS
+		wave_delay = 45
 		hot_spots = 6
 	else
 		waves_count = 5
-		wave_delay = 30 SECONDS
+		wave_delay = 30
 		hot_spots = 8
 
 	end_when = wave_delay * waves_count
