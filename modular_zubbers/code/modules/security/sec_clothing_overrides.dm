@@ -397,6 +397,7 @@
 /obj/item/storage/belt/security
 	icon = 'modular_zubbers/icons/obj/clothing/belt.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
+	icon_state = "security"
 	content_overlays = FALSE
 	alternate_worn_layer = LOW_NECK_LAYER  // so it goes under things like the HOS' trenchcoats
 
