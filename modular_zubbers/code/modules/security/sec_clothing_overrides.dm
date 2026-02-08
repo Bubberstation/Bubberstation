@@ -10,6 +10,7 @@
 	icon_state = "security_helmet"
 	base_icon_state = "security_helmet"
 	worn_icon_muzzled = null
+	hair_mask = /datum/hair_mask/standard_hat_middle
 
 /obj/item/clothing/mask/bandana/sec
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
@@ -22,6 +23,7 @@
 	greyscale_config_inhand_right = /datum/greyscale_config/bandana/inhands_right
 	greyscale_colors = "#7d2a25"
 	armor_type = /datum/armor/cosmetic_sec
+	hair_mask = /datum/hair_mask/standard_hat_low
 
 /obj/item/clothing/head/beret/sec/viro
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
@@ -46,6 +48,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "security_beanie"
 	armor_type = /datum/armor/cosmetic_sec
+	hair_mask = /datum/hair_mask/standard_hat_low
 
 // WARDEN
 
@@ -55,6 +58,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "warden_cap"
+	hair_mask = /datum/hair_mask/standard_hat_middle
 
 /obj/item/clothing/head/hats/warden/viro/alt
 	icon_state = "warden_cap_red"
@@ -64,6 +68,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "wardendrill"
+	hair_mask = /datum/hair_mask/standard_hat_low
 
 /obj/item/clothing/head/hats/warden/viro/beret // not greyscaled so its easier to do this then make it a subtype of regular berets
 	name = "\proper the Warden's beret"
@@ -84,6 +89,7 @@
 	icon = 'icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "hoscap"
+	hair_mask = /datum/hair_mask/standard_hat_low
 
 /obj/item/clothing/head/hats/hos/cap/beret // so jank
 	name = "\proper the Head of Security's beret"
@@ -111,6 +117,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "hos_cowboy"
+	hair_mask = /datum/hair_mask/standard_hat_middle
 
 /*
 	// UNIFORMS
@@ -192,6 +199,7 @@
 	icon_state = "warden_uniform"
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 	female_sprite_flags = NO_FEMALE_UNIFORM
 
 /obj/item/clothing/under/rank/security/warden/skirt
@@ -315,7 +323,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	desc = "A grey armored jacket with red shoulder designations and '/Warden/' stitched into one of the chest pockets."
 	icon_state = "warden_alt"
-	worn_icon_digi = null
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/suit/armor/vest/warden/alt
 	name = "\proper the Warden's armoured jacket"
@@ -389,9 +397,12 @@
 /obj/item/storage/belt/security
 	icon = 'modular_zubbers/icons/obj/clothing/belt.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
-	icon_state = "security"
 	content_overlays = FALSE
 	alternate_worn_layer = LOW_NECK_LAYER  // so it goes under things like the HOS' trenchcoats
+
+/*
+
+// this for some reason doesn't fucking work i have no idea
 
 /obj/item/storage/belt/security/Initialize(mapload)
 	. = ..()
@@ -400,9 +411,17 @@
 /datum/atom_skin/security_belt
 	abstract_type = /datum/atom_skin/security_belt
 
+/datum/atom_skin/security_belt/red
+	preview_name = "Red Variant"
+	new_icon_state = "security"
+
 /datum/atom_skin/security_belt/black
 	preview_name = "Black Variant"
+	new_icon = 'modular_zubbers/icons/obj/clothing/belt.dmi'
+	new_worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi' // idk
 	new_icon_state = "security_black"
+
+*/
 
 /obj/item/storage/belt/security/webbing
 	icon = 'modular_zubbers/icons/obj/clothing/belt.dmi'
@@ -411,15 +430,32 @@
 	worn_icon_state = "security_webbing"
 	alternate_worn_layer = BELT_LAYER
 
+
 /*
 	// SHOES
 */
 
 /obj/item/clothing/shoes/jackboots/sec
 	name = "security boots"
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	icon_state = "jackboots_sec"
+
+/obj/item/clothing/shoes/jackboots/sec/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_jackboots, infinite = TRUE)
+
+/datum/atom_skin/security_jackboots
+	abstract_type = /datum/atom_skin/security_jackboots
+
+/datum/atom_skin/security_jackboots/bloused
+	preview_name = "Bloused"
+	new_icon_state = "jackboots_sec"
+
+/datum/atom_skin/security_jackboots/unbloused
+	preview_name = "Unbloused"
+	new_icon_state = "jackboots_sec_unbloused"
 
 /*
 	// MASK
@@ -484,6 +520,10 @@
 
 /datum/atom_skin/security_sunglasses
 	abstract_type = /datum/atom_skin/security_sunglasses
+
+/datum/atom_skin/security_sunglasses/red
+	preview_name = "Red Variant"
+	new_icon_state = "sunhudsec"
 
 /datum/atom_skin/security_sunglasses/black
 	preview_name = "Black Variant"
