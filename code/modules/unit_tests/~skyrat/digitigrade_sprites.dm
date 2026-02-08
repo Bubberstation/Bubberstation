@@ -9,11 +9,8 @@
 	var/typepath_files = list()
 	for(var/folder_name in modular_folders)
 		var/dir = "[folder_name]/"
-
 		for(var/file in flist(dir))
-
 			var/list/files = find_all_dm_files(dir)
-
 			for(var/full_path in files)
 				var/text = rustg_file_read(full_path)
 				if(!text)
@@ -22,7 +19,6 @@
 				if(!length(matches))
 					continue
 				typepath_files |= parse_typepaths_from_text(text)
-
 	return typepath_files
 
 /datum/unit_test/modular_digitigrade_sprites/proc/parse_typepaths_from_text(text)
@@ -46,12 +42,10 @@
 
 /datum/unit_test/modular_digitigrade_sprites/Run()
 	var/list/typepath_files = get_folders_of_typepaths()
-
 	for(var/obj/item/clothing/under/valid_subtype as anything in subtypesof(/obj/item/clothing/under))
 		var/subtype_string = "[valid_subtype]"
 		if(!(subtype_string in typepath_files))
 			continue
-
 		var/flags = valid_subtype::supports_variations_flags
 		if(!(flags & CLOTHING_DIGITIGRADE_VARIATION) && !(flags & CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON))
 			TEST_FAIL("[subtype_string] is missing required digitigrade variation flags.")
