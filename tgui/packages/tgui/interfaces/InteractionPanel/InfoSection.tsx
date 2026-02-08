@@ -1,11 +1,6 @@
-// THIS IS A NOVA SECTOR UI FILE
-import {
-  Icon,
-  ProgressBar,
-  Section,
-  Stack,
-} from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+// THIS IS A BUBBER UI FILE
+import { Icon, ProgressBar, Section, Stack } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../../backend';
 
@@ -30,23 +25,11 @@ export const InfoSection = () => {
     theirPleasure,
     theirArousal,
     theirPain,
-    arousalLimit
+    arousalLimit,
   } = data;
   return (
     <Section fill>
       <Stack vertical fill>
-        <Stack.Item grow>
-          <Stack>
-            <Stack.Item grow>
-                You...
-            </Stack.Item>
-            {!isTargetSelf ? (
-              <Stack.Item grow>
-                  They...
-              </Stack.Item>
-            ) : null}
-          </Stack>
-        </Stack.Item>
         <Stack.Item>
           <Stack fill>
             <Stack.Item grow>
@@ -55,7 +38,8 @@ export const InfoSection = () => {
                   <ProgressBar
                     value={pleasure}
                     maxValue={arousalLimit}
-                    color="purple">
+                    color="purple"
+                  >
                     <Icon name="heart" /> Pleasure
                   </ProgressBar>
                 </Stack.Item>
@@ -63,14 +47,13 @@ export const InfoSection = () => {
                   <ProgressBar
                     value={arousal}
                     maxValue={arousalLimit}
-                    color="pink">
+                    color="pink"
+                  >
                     <Icon name="tint" /> Arousal
                   </ProgressBar>
                 </Stack.Item>
                 <Stack.Item>
-                  <ProgressBar
-                    value={pain}
-                    maxValue={arousalLimit} color="red">
+                  <ProgressBar value={pain} maxValue={arousalLimit} color="red">
                     <Icon name="bolt" /> Pain
                   </ProgressBar>
                 </Stack.Item>
@@ -83,7 +66,8 @@ export const InfoSection = () => {
                     <ProgressBar
                       value={theirPleasure}
                       maxValue={arousalLimit}
-                      color="purple">
+                      color="purple"
+                    >
                       <Icon name="heart" /> Pleasure
                     </ProgressBar>
                   </Stack.Item>
@@ -91,7 +75,8 @@ export const InfoSection = () => {
                     <ProgressBar
                       value={theirArousal}
                       maxValue={arousalLimit}
-                      color="pink">
+                      color="pink"
+                    >
                       <Icon name="tint" /> Arousal
                     </ProgressBar>
                   </Stack.Item>
@@ -99,7 +84,8 @@ export const InfoSection = () => {
                     <ProgressBar
                       value={theirPain}
                       maxValue={arousalLimit}
-                      color="red">
+                      color="red"
+                    >
                       <Icon name="bolt" /> Pain
                     </ProgressBar>
                   </Stack.Item>
