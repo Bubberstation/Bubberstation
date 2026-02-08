@@ -8,6 +8,10 @@
 #define GHOSTROLE_TAKE_PREFS_SPECIES (1<<0)
 /// Ghost role will take on the player's apperance (though exlcuding name)
 #define GHOSTROLE_TAKE_PREFS_APPEARANCE (1<<1)
+// BUBBER EDIT START - NAME PREFS
+/// Ghost role will take on the player's pref name
+#define GHOSTROLE_TAKE_PREFS_NAME (1<<2)
+// BUBBER EDIT END - NAME PREFS
 
 /// Return from create to stop the spawn process. Falsy value so one can just check !create()
 #define CANCEL_SPAWN FALSE

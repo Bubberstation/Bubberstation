@@ -289,7 +289,12 @@
 		if(mob_possessor.client && apply_prefs && allow_custom_character && ishuman(spawned_mob))
 			var/mob/living/carbon/human/spawned_human = spawned_mob
 			if(allow_custom_character & GHOSTROLE_TAKE_PREFS_APPEARANCE)
-				mob_possessor.client.prefs.apply_prefs_to(spawned_human, icon_updates = TRUE, do_not_apply = typesof(/datum/preference/name, /datum/preference/choiced/species))
+				// BUBBER EDIT START - NAME PREFS
+				var/do_not_apply = typesof(/datum/preference/choiced/species)
+				if(!(allow_custom_character & GHOSTROLE_TAKE_PREFS_NAME))
+					do_not_apply += typesof(/datum/preference/name)
+				mob_possessor.client.prefs.apply_prefs_to(spawned_human, icon_updates = TRUE, do_not_apply = do_not_apply)
+				// BUBBER EDIT END - NAME PREFS
 			if(allow_custom_character & GHOSTROLE_TAKE_PREFS_SPECIES)
 				spawned_human.set_species(mob_possessor.client.prefs.read_preference(/datum/preference/choiced/species))
 				spawned_human.fully_replace_character_name(spawned_human.real_name, spawned_human.generate_random_mob_name())

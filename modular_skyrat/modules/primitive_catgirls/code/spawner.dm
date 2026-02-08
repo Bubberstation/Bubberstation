@@ -14,6 +14,7 @@
 		neighbors. Keep your village and your Kin safe, but bringing death on their heads from \
 		being reckless with the outsiders will not have the Gods be so kind."
 	spawner_job_path = /datum/job/primitive_catgirl
+	allow_custom_character = GHOSTROLE_TAKE_PREFS_APPEARANCE|GHOSTROLE_TAKE_PREFS_NAME
 
 	/// The team the spawner will assign players to and use to keep track of people that have already used the spawner
 	var/datum/team/primitive_catgirls/team
