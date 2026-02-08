@@ -543,7 +543,7 @@
 	if(is_type_in_typecache(tool, folder_insertables))
 		if(!user.transferItemToLoc(tool, src, silent = FALSE))
 			return ITEM_INTERACT_BLOCKING
-		balloon_alert(user, "Nom!")
+		balloon_alert(user, "nom!")
 		return ITEM_INTERACT_SUCCESS
 	return NONE
 
@@ -558,7 +558,7 @@
 		item_to_insert.do_pickup_animation(src)
 		item_to_insert.forceMove(src)
 	playsound(src, item_to_insert.pickup_sound, PICKUP_SOUND_VOLUME, item_to_insert.sound_vary, ignore_walls = FALSE)
-	balloon_alert(user, "Nom!")
+	balloon_alert(user, "nom!")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/toy/plush/tian_plush/ui_interact(mob/user, datum/tgui/ui)
