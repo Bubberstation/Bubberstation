@@ -489,7 +489,7 @@
 // Props to Seijan-Etroix for helping with the redesign!
 /obj/item/toy/plush/tian_plush
 	name = "bureaucratic goat plush"
-	desc = "A giant, weighted plushie of a goat-carp that loves to eat paper and is very nice to hug. It has a faint scent of paperwork and weed. A tag on the back reads 'Comfort provided under license.'"
+	desc = "A giant, weighted plushie of a goat-carp that loves to eat paper, and is very nice to hug. It has a faint scent of paperwork and weed. A tag on the back reads 'Comfort provided under license.'"
 	attack_verb_continuous = list("stomps", "smothers", "buries", "squishes", "nibbles", "gnashes", "flattens", "pummels", "chomps")
 	attack_verb_simple = list("stomp", "smother", "bury", "squish", "nibble", "gnash", "flatten", "pummel", "chomp")
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
@@ -534,7 +534,7 @@
 //Plot armour
 /obj/item/toy/plush/tian_plush/attackby(obj/item/I, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(I.get_sharpness())
-		to_chat(user, span_notice("It just bounces off!"))
+		to_chat(user, span_notice("[I] just bounces off!"))
 		return
 	return ..()
 
