@@ -90,7 +90,6 @@
 /datum/loadout_item/shoes/boots/elofy
 	name = "Solar Admiral Boots"
 	item_path = /obj/item/clothing/shoes/jackboots/elofy
-	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_ALLOW_RESKIN
 //	ckeywhitelist = list("october23")
 
 /*
@@ -194,6 +193,10 @@
 /datum/loadout_item/shoes/tribal/clothwrap
 	name = "Colourable Cloth Wraps"
 	item_path = /obj/item/clothing/shoes/wraps/cloth
+
+/datum/loadout_item/shoes/tribal/clearcuffs
+	name = "Clear Leg Wraps"
+	item_path = /obj/item/clothing/shoes/wraps/clear
 
 /*
 *	FORMAL

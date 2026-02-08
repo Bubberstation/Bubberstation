@@ -33,7 +33,7 @@
 	if(damage < 10) //Most things that deal 10 or more damage are heavy, like toolboxes.
 		return
 
-	if(prob(owner.getStaminaLoss()))
+	if(prob(owner.get_stamina_loss()))
 		owner.visible_message(
 			span_warning("The force of [attack_text] from [hitby] knocks down [owner]!"),
 			span_userdanger("The force of [attack_text] from [hitby] knocks you down!"),
@@ -42,7 +42,7 @@
 		)
 		owner.Knockdown(2 SECONDS) //The shield saved you, but at what cost?
 
-	owner.adjustStaminaLoss(damage*0.5)
+	owner.adjust_stamina_loss(damage*0.5)
 	owner.set_jitter_if_lower(1 SECONDS)
 	owner.Immobilize(1 SECONDS)
 

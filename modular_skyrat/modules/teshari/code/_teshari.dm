@@ -6,7 +6,6 @@
 	name = "Teshari"
 	id = SPECIES_TESHARI
 	no_gender_shaping = TRUE // Female uniform shaping breaks Teshari worn sprites, so this is disabled. This will not affect anything else in regards to gender however.
-	eyes_icon = 'modular_skyrat/modules/organs/icons/teshari_eyes.dmi'
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,
 		TRAIT_CAN_STRIP,
@@ -18,6 +17,7 @@
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	payday_modifier = 1.0
 	mutanttongue = /obj/item/organ/tongue/teshari
+	mutanteyes = /obj/item/organ/eyes/teshari
 	custom_worn_icons = list(
 		OFFSET_HEAD = TESHARI_HEAD_ICON,
 		OFFSET_FACEMASK = TESHARI_MASK_ICON,
@@ -61,6 +61,10 @@
 /obj/item/organ/tongue/teshari
 	liked_foodtypes = SEAFOOD | VEGETABLES | NUTS
 	disliked_foodtypes = GROSS | GRAIN
+
+/obj/item/organ/eyes/teshari
+	name = "teshari eyes"
+	eye_icon = 'modular_skyrat/modules/organs/icons/teshari_eyes.dmi'
 
 /datum/species/teshari/prepare_human_for_preview(mob/living/carbon/human/tesh)
 	var/base_color = "#c0965f"

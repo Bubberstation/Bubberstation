@@ -58,7 +58,7 @@
 		to_chat(user, span_boldwarning("[fail_reason]"))
 		return
 
-	carbon_target.adjustOxyLoss(amount = HEALTH_THRESHOLD_CRIT, updating_health = TRUE, forced = TRUE)
+	carbon_target.adjust_oxy_loss(amount = HEALTH_THRESHOLD_CRIT, updating_health = TRUE, forced = TRUE)
 	playsound(src, 'modular_skyrat/modules/emotes/sound/emotes/female/female_sniff.ogg', 50, FALSE)
 
 	if(defib_result == DEFIB_POSSIBLE)

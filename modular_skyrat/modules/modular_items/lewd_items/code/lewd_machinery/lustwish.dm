@@ -72,6 +72,7 @@
 				/obj/item/clothing/under/misc/latex_halfcatsuit = 8,
 				/obj/item/clothing/gloves/latex_gloves = 8,
 				/obj/item/clothing/shoes/latex_heels = 4,
+				/obj/item/clothing/shoes/latex_heels/ballet_heels = 4,
 				/obj/item/clothing/shoes/latex_socks = 8,
 
 				/obj/item/storage/belt/erpbelt = 5,//Leather Belt, holds a lot of tools.

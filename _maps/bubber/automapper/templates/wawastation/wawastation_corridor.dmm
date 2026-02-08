@@ -57,7 +57,7 @@
 	desc = "There's always a light at the end of the tunnel. It may seem hard to get to it, but you can do it! Just keep working towards it and you'll find the positive side of things. Alternatively, you'll find a tram to the face."
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
-/obj/effect/mapping_helpers/airlock/unres{
+/obj/effect/mapping_helpers/airlock/unres/delayed{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -119,6 +119,13 @@
 	},
 /turf/closed/wall,
 /area/station/hallway/secondary/entry)
+"la" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/station/maintenance/central/greater)
 "ma" = (
 /obj/structure/fluff/tram_rail/electric,
 /obj/structure/transport/linear/tram,
@@ -334,13 +341,8 @@
 /turf/open/floor/plating,
 /area/station/maintenance/central/greater)
 "CO" = (
-/obj/machinery/light/blacklight/directional/south{
-	brightness = 9;
-	nightshift_brightness = 9;
-	bulb_power = 0.4;
-	light_angle = 180
-	},
-/turf/template_noop,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
 /area/station/maintenance/central/greater)
 "Dy" = (
 /obj/structure/transport/linear/tram/corner/northeast,
@@ -450,6 +452,10 @@
 /area/station/maintenance/central/greater)
 "Np" = (
 /obj/effect/landmark/start/hangover,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/station/maintenance/central/greater)
 "Nq" = (
@@ -586,7 +592,7 @@
 /obj/machinery/door/airlock/command{
 	name = "Corporate Private Dock"
 	},
-/obj/effect/mapping_helpers/airlock/unres{
+/obj/effect/mapping_helpers/airlock/unres/delayed{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -640,7 +646,7 @@
 	name = "Tram Guideway";
 	desc = "There's always a light at the end of the tunnel. It may seem hard to get to it, but you can do it! Just keep working towards it and you'll find the positive side of things. Alternatively, you'll find a tram to the face."
 	},
-/obj/effect/mapping_helpers/airlock/unres,
+/obj/effect/mapping_helpers/airlock/unres/delayed,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/catwalk_floor/titanium,
 /area/station/maintenance/central/greater)
@@ -956,7 +962,7 @@ Pm
 VV
 Ol
 tK
-RJ
+om
 Ok
 "}
 (21,1,1) = {"
@@ -971,8 +977,8 @@ Pm
 VV
 Ol
 tK
-RJ
-CO
+la
+Ok
 "}
 (22,1,1) = {"
 Ok
@@ -986,7 +992,7 @@ Pm
 VV
 Ol
 tK
-RJ
+la
 Ok
 "}
 (23,1,1) = {"
@@ -1001,8 +1007,8 @@ Pm
 VV
 Ol
 tK
-RJ
-Cj
+la
+Ok
 "}
 (24,1,1) = {"
 Ok
@@ -1031,7 +1037,7 @@ Pm
 VV
 Ol
 tK
-RJ
+la
 Ok
 "}
 (26,1,1) = {"
@@ -1046,7 +1052,7 @@ Pm
 VV
 Ol
 tK
-RJ
+la
 Ok
 "}
 (27,1,1) = {"
@@ -1061,7 +1067,7 @@ Pm
 VV
 Ol
 tK
-RJ
+la
 Ok
 "}
 (28,1,1) = {"
@@ -1077,5 +1083,5 @@ VV
 Ol
 tK
 Hs
-Ok
+CO
 "}

@@ -15,6 +15,7 @@
 				/obj/item/toy/plush/bubbledragon = 3,
 				/obj/item/toy/plush/bubbleplush = 3,
 				/obj/item/toy/plush/carpplushie = 3,
+				/obj/item/toy/plush/cello_plush = 3,
 				/obj/item/toy/plush/chirp_plush = 3,
 				/obj/item/toy/plush/goatplushie = 3,
 				/obj/item/toy/plush/headcrab = 3,
@@ -25,6 +26,7 @@
 				/obj/item/toy/plush/moth = 3,
 				/obj/item/toy/plush/moth/lovers = 3,
 				/obj/item/toy/plush/mothroach_plush = 3,
+				/obj/item/toy/plush/myrthel_plush = 3,
 				/obj/item/toy/plush/nukeplushie = 3,
 				/obj/item/toy/plush/pkplush = 3,
 				/obj/item/toy/plush/plasmamanplushie = 3,
@@ -99,6 +101,14 @@
 				/obj/item/toy/plush/xenoplush/xenomaidplush = 3,
 			),
 		),
+		list(
+			"name" = "Art",
+			"icon" = "palette",
+			"products" = list(
+				/obj/item/modular_computer/mini_painting_printer = 2,
+			)
+		),
+
 		list(
 			"name" = "Other",
 			"icon" = "star",

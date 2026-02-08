@@ -29,6 +29,7 @@
 	quirks_enabled = TRUE
 	random_appearance = FALSE
 	loadout_enabled = TRUE
+	allow_custom_character = ALL
 
 /datum/outfit/black_market
 	name = "Black Market Trader"

@@ -135,3 +135,17 @@
 /obj/structure/curtain/cloth/prison
 	name = "Prisoner Privacy Curtains"
 	color = "#ACD1E9"
+
+/obj/structure/fluff/fake_firedoor
+	name = /obj/machinery/door/firedoor::name
+	desc = /obj/machinery/door/firedoor::desc
+	icon = /obj/machinery/door/firedoor::icon
+	icon_state = /obj/machinery/door/firedoor::icon_state
+	layer = /obj/machinery/door/firedoor::layer
+
+/obj/structure/fluff/standalone_wooden_post
+	name = "wooden post"
+	desc = "A sturdy space-wood post; upright, on it's lonesome. Ominous."
+	icon = 'modular_skyrat/modules/mapping/icons/obj/fluff.dmi'
+	icon_state = "wooden_post"
+	can_buckle = TRUE

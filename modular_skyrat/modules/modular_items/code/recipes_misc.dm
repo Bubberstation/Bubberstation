@@ -4,6 +4,7 @@
 	reqs = list(/obj/item/stack/sheet/iron = 4,
 				/obj/item/stack/sheet/cloth = 1,
 				/obj/item/stack/cable_coil = 1)
+	requirements_mats_blacklist = list(/obj/item/stack/cable_coil)
 	time = 120
 	category = CAT_MISC
 
@@ -14,6 +15,7 @@
 	reqs = list(/obj/item/stack/cable_coil = 1,
 				/obj/item/stack/sheet/cloth = 2,
 				/obj/item/stack/rods = 2)
+	requirements_mats_blacklist = list(/obj/item/stack/cable_coil)
 	time = 80
 	category = CAT_MISC
 
@@ -36,6 +38,7 @@
 	result = /obj/item/wirecutters/makeshift
 	reqs = list(/obj/item/stack/cable_coil = 2,
 				/obj/item/stack/rods = 4)
+	requirements_mats_blacklist = list(/obj/item/stack/cable_coil)
 	time = 80
 	category = CAT_MISC
 
@@ -48,6 +51,7 @@
 				/obj/item/stack/sheet/iron = 3,
 				/obj/item/stack/rods = 1,
 				/obj/item/stack/sheet/cloth = 2)
+	requirements_mats_blacklist = list(/obj/item/stack/cable_coil)
 	time = 80
 	category = CAT_MISC
 
@@ -59,3 +63,4 @@
 				/obj/item/stack/sheet/mineral/wood = 1)
 	time = 80
 	category = CAT_MISC
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY

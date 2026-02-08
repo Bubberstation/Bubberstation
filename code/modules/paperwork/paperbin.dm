@@ -13,6 +13,7 @@
 	throw_speed = 3
 	throw_range = 7
 	pressure_resistance = 8
+	custom_materials = list(/datum/material/paper = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/iron = SHEET_MATERIAL_AMOUNT) // BUBBER EDIT ADDITION - Needed for crafting material parity
 	var/papertype = /obj/item/paper
 	var/total_paper = 30
 	var/list/paper_stack = list()
@@ -215,6 +216,7 @@
 	papertype = /obj/item/paper/natural
 	resistance_flags = FLAMMABLE
 	bin_overlay_string = "paper_bundle_overlay"
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT)
 	///Cable this bundle is held together with.
 	var/obj/item/stack/cable_coil/binding_cable
 

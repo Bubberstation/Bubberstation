@@ -70,6 +70,10 @@
 	. = ..()
 	if(!.)
 		return
+	var/crew_antag_time_maximum = CONFIG_GET(number/disallow_crew_antags_time_threshold)
+	if(crew_antag_time_maximum >= 0)
+		if( (world.time-SSticker.round_start_time) >= (crew_antag_time_maximum MINUTES))
+			return FALSE
 	if(!roundstart && !SSgamemode.can_inject_antags())
 		return FALSE
 	if(!get_antag_amount())
@@ -160,6 +164,8 @@
 /datum/round_event/antagonist/solo/start()
 	for(var/datum/mind/antag_mind as anything in setup_minds)
 		add_datum_to_mind(antag_mind)
+		log_game("[antag_mind.current] was selected for antagonist role [antag_flag].")
+		message_admins(span_yellowteamradio("[ADMIN_LOOKUPFLW(antag_mind.current)] was selected for antagonist role [antag_flag]."))
 
 /datum/round_event/antagonist/proc/add_datum_to_mind(datum/mind/antag_mind)
 	antag_mind.add_antag_datum(antag_datum)
@@ -181,6 +187,8 @@
 /datum/round_event/antagonist/team/start()
 	for(var/datum/mind/antag_mind as anything in setup_minds)
 		add_datum_to_mind(antag_mind)
+		log_game("[antag_mind.current] was selected for antagonist role [antag_flag].")
+		message_admins(span_yellowteamradio("[ADMIN_LOOKUPFLW(antag_mind.current)] was selected for antagonist role [antag_flag]."))
 
 /datum/round_event/antagonist/team/load_vars(datum/round_event_control/antagonist/team/cast_control)
 	. = ..()

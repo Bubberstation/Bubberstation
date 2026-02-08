@@ -2,7 +2,6 @@
 	// Bird-like humanoids
 	name = "Vox Primalis"
 	id = SPECIES_VOX
-	eyes_icon = 'modular_skyrat/modules/organs/icons/vox_eyes.dmi'
 	can_augment = FALSE
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,
@@ -14,6 +13,7 @@
 	mutanttongue = /obj/item/organ/tongue/vox
 	mutantlungs = /obj/item/organ/lungs/nitrogen/vox
 	mutantbrain = /obj/item/organ/brain/cybernetic/cortical/vox
+	mutanteyes = /obj/item/organ/eyes/vox
 	breathid = "n2"
 	mutant_bodyparts = list()
 	payday_modifier = 1.0
@@ -126,3 +126,7 @@
 	vox.dna.mutant_bodyparts[FEATURE_SNOUT] = list(MUTANT_INDEX_NAME = "Vox Snout", MUTANT_INDEX_COLOR_LIST = list("#EEDD88"))
 	regenerate_organs(vox, src, visual_only = TRUE)
 	vox.update_body(TRUE)
+
+/obj/item/organ/eyes/vox
+	name = "vox eyes"
+	eye_icon = 'modular_skyrat/modules/organs/icons/vox_eyes.dmi'

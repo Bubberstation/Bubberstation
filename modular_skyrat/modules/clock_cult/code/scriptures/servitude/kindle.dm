@@ -80,7 +80,7 @@
 		carbon_hit.adjust_silence(EFFECT_TIME)
 		carbon_hit.AdjustKnockdown(EFFECT_TIME)
 
-		carbon_hit.adjustStaminaLoss(80)
+		carbon_hit.adjust_stamina_loss(80)
 
 	if(hit_mob.client)
 		var/client_color = hit_mob.client.color

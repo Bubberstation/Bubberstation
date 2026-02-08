@@ -54,7 +54,7 @@
 	desc = "A purrfect drink for a cat."
 
 /datum/reagent/consumable/catnip_tea/on_mob_life(mob/living/carbon/M)
-	M.adjustStaminaLoss(min(50 - M.getStaminaLoss(), 3))
+	M.adjust_stamina_loss(min(50 - M.get_stamina_loss(), 3))
 	if(isfeline(M))
 		if(prob(20))
 			M.emote("nya")
@@ -79,3 +79,10 @@
 	icon_state = "chocolatepudding"
 	name = "glass of beer batter"
 	desc = "Used in cooking, pure cholesterol, Scottish people eat it."
+
+/datum/reagent/consumable/liz_fizz
+	name = "Liz Fizz"
+	description = "Triple citrus layered with some ice and cream."
+	color = "#D8FF59"
+	quality = DRINK_NICE
+	taste_description = "brain freezing sourness"

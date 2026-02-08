@@ -39,6 +39,7 @@
 	icon_state = "headdress"
 	supports_variations_flags = NONE
 	armor_type = /datum/armor/ash_headdress
+	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
 
 	greyscale_colors = null
 	greyscale_config = null
@@ -73,6 +74,7 @@
 	worn_icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_clothing_mob.dmi'
 	icon_state = "robes"
 	armor_type = /datum/armor/clothing_under/ash_robes
+	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
 
 	greyscale_colors = null
 	greyscale_config = null
@@ -98,6 +100,7 @@
 	icon_state = "combat_plates"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	armor_type = /datum/armor/clothing_under/ash_robes
+	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
 
 	greyscale_colors = null
 	greyscale_config = null
@@ -136,6 +139,7 @@
 	body_parts_covered = parent_type::body_parts_covered | LEGS
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	armor_type = /datum/armor/bone_greaves
+	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 2)
 
 /datum/crafting_recipe/ash_recipe/bone_greaves
 	name = "Bone Greaves"

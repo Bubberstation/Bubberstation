@@ -61,6 +61,6 @@
 			span_warning("[user] screws up, while trying to repair [target]'s NIF!"),
 			"[user] fails to complete the repair on [target]'s NIF.")
 
-		target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 20)
+		target.adjust_organ_loss(ORGAN_SLOT_BRAIN, 20)
 	return FALSE
 

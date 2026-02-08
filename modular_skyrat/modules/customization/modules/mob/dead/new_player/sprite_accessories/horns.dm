@@ -6,23 +6,7 @@
 	organ_type = /obj/item/organ/horns
 
 /datum/sprite_accessory/horns/is_hidden(mob/living/carbon/human/wearer)
-	if(!wearer.head && !wearer.wear_mask)
-		return FALSE
-
-	// Can hide if wearing hat
-	if(key in wearer.try_hide_mutant_parts)
-		return TRUE
-
-	// Exception for MODs
-	if(istype(wearer.head, /obj/item/clothing/head/mod))
-		return FALSE
-
-	// Hide accessory if flagged to do so
-	if((wearer.covered_slots & HIDEHAIR) \
-		&& !(wearer.wear_mask && wearer.wear_mask.flags_inv & SHOWSPRITEEARS))
-		return TRUE
-
-	return FALSE
+	return is_deely_bobber_hidden(wearer, HIDEHAIR, SHOWSPRITEEARS)
 
 /datum/sprite_accessory/horns/none
 	name = SPRITE_ACCESSORY_NONE

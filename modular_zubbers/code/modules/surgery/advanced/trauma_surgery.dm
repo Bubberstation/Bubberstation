@@ -71,7 +71,7 @@
 	)
 	display_pain(target, "Your head goes totally numb for a moment, the pain is overwhelming!")
 
-	target.setOrganLoss(ORGAN_SLOT_BRAIN, target.get_organ_loss(ORGAN_SLOT_BRAIN) - 40)
+	target.set_organ_loss(ORGAN_SLOT_BRAIN, target.get_organ_loss(ORGAN_SLOT_BRAIN) - 40)
 	target.cure_all_traumas(TRAUMA_RESILIENCE_BASIC)
 	target.cure_all_traumas(TRAUMA_RESILIENCE_SURGERY)
 	target.cure_all_traumas(TRAUMA_RESILIENCE_LOBOTOMY)

@@ -119,7 +119,7 @@ GLOBAL_LIST_INIT(custom_blood_colors, list(
 	"Lime/Xeno" = BLOOD_COLOR_XENO,
 	"Violet/Avali" = BLOOD_COLOR_VIOLET,
 	"Cyan/Vox" = BLOOD_COLOR_CYAN,
-	"Brown/Skrell" = BLOOD_COLOR_COPPER,
+	"Teal/Skrell" = BLOOD_COLOR_COPPER,
 	"White/Nanites" = BLOOD_COLOR_NANITE_SLURRY,
 	"Black" = BLOOD_COLOR_BLACK,
 ))

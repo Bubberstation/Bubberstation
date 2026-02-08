@@ -52,33 +52,33 @@
 	icon_state = "policeofficerpatrolcap"
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 	armor_type = /datum/armor/head_helmet
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "policeofficercap",
-			RESKIN_WORN_ICON_STATE = "policeofficercap"
-		),
-		"Black and Blue Variant" = list(
-			RESKIN_ICON_STATE = "policeofficerpatrolcap",
-			RESKIN_WORN_ICON_STATE = "policeofficerpatrolcap"
-		),
-		"Sillitoe Variant" = list(
-			RESKIN_ICON_STATE = "policetrafficcap",
-			RESKIN_WORN_ICON_STATE = "policetrafficcap"
-		),
-		"Long Kesh Variant" = list(
-			RESKIN_ICON_STATE = "corrections_officer",
-			RESKIN_WORN_ICON_STATE = "corrections_officer"
-		),
-		"Sillitoe Variant" = list(
-			RESKIN_ICON_STATE = "policetrafficcap",
-			RESKIN_WORN_ICON_STATE = "policetrafficcap"
-		),
-		"Cadet Variant" = list(
-			RESKIN_ICON_STATE = "policecadetcap",
-			RESKIN_WORN_ICON_STATE = "policecadetcap"
-		),
-	)
+
+/obj/item/clothing/head/hats/warden/police/patrol/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/police_patrol_cap)
+
+/datum/atom_skin/police_patrol_cap
+	abstract_type = /datum/atom_skin/police_patrol_cap
+
+/datum/atom_skin/police_patrol_cap/blue
+	preview_name = "Blue Variant"
+	new_icon_state = "policeofficercap"
+
+/datum/atom_skin/police_patrol_cap/black_blue
+	preview_name = "Black and Blue Variant"
+	new_icon_state = "policeofficerpatrolcap"
+
+/datum/atom_skin/police_patrol_cap/sillitoe
+	preview_name = "Sillitoe Variant"
+	new_icon_state = "policetrafficcap"
+
+/datum/atom_skin/police_patrol_cap/long_kesh
+	preview_name = "Long Kesh Variant"
+	new_icon_state = "corrections_officer"
+
+/datum/atom_skin/police_patrol_cap/cadet
+	preview_name = "Cadet Variant"
+	new_icon_state = "policecadetcap"
 
 /obj/item/clothing/glasses/hud/security/sunglasses/peacekeeper
 	name = "peacekeeper hud glasses"
@@ -219,40 +219,6 @@
 	new /obj/item/grenade/flashbang(src)
 	new /obj/item/assembly/flash/handheld(src)
 	update_icon()
-
-/obj/item/storage/belt/security/webbing/peacekeeper
-	name = "peacekeeper webbing"
-	desc = "A tactical chest rig issued to peacekeepers; slow is smooth, smooth is fast. Has a notable lack of a holster that fits energy-based weapons."
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
-	icon_state = "peacekeeper_webbing"
-	worn_icon_state = "peacekeeper_webbing"
-	content_overlays = FALSE
-	custom_premium_price = PAYCHECK_CREW * 3
-
-/obj/item/storage/belt/security/webbing/peacekeeper/Initialize(mapload)
-	. = ..()
-	atom_storage.max_slots = 7
-	atom_storage.set_holdable(list(
-		/obj/item/melee/baton,
-		/obj/item/melee/baton,
-		/obj/item/grenade,
-		/obj/item/reagent_containers/spray/pepper,
-		/obj/item/restraints/handcuffs,
-		/obj/item/assembly/flash/handheld,
-		/obj/item/clothing/glasses,
-		/obj/item/ammo_casing/shotgun,
-		/obj/item/ammo_box,
-		/obj/item/food/donut,
-		/obj/item/knife/combat,
-		/obj/item/flashlight/seclite,
-		/obj/item/melee/baton/telescopic,
-		/obj/item/radio,
-		/obj/item/clothing/gloves,
-		/obj/item/restraints/legcuffs/bola,
-		/obj/item/holosign_creator/security
-		))
-
 
 //BOOTS
 /obj/item/clothing/shoes/jackboots/peacekeeper
