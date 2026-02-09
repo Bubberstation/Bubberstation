@@ -56,5 +56,25 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/syndicate.dmi'
 	icon_state = "boss"
 
+// overrides "supports_variations_flags = NONE" in base code/.../syndicate.dm
+// (we have digi sprites for these)
+/obj/item/clothing/under/syndicate/bloodred
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
 /obj/item/clothing/under/syndicate/sniper
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/under/syndicate/camo
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/under/syndicate/soviet
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/under/syndicate/combat
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/under/syndicate/rus_army
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/under/syndicate/scrubs
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
