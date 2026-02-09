@@ -40,9 +40,9 @@
 
 /datum/antagonist/gang/get_admin_commands()
 	. = ..()
-	.["Give extra equipment"] = CALLBACK(src, .proc/equip_gangster_in_inventory)
+	.["Give extra equipment"] = CALLBACK(src, PROC_REF(equip_gangster_in_inventory))
 	if(!starter_gangster)
-		.["Make Leader"] = CALLBACK(src, .proc/make_gangster_leader)
+		.["Make Leader"] = CALLBACK(src, PROC_REF(make_gangster_leader))
 
 /datum/antagonist/gang/proc/make_gangster_leader()
 	if(starter_gangster)

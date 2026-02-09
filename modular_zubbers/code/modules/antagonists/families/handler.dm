@@ -171,7 +171,7 @@ GLOBAL_VAR(families_override_theme)
 
 		// see /datum/antagonist/gang/create_team() for how the gang team datum gets instantiated and added to our gangs list
 
-	addtimer(CALLBACK(src, .proc/announce_gang_locations), 5 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(announce_gang_locations)), 5 MINUTES)
 	return TRUE
 
 /**
