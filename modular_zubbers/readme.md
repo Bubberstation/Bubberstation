@@ -4,24 +4,34 @@
 
 ## Introduction
 
-To develop and maintain a separate codebase is a big task, that many have failed and suffered the consequences of, such as outdated, and messy code.
-It's not necessarily the fault of lack of skill of the people maintaining it, merely the lack of resources and how much continuous effort such an endeavor takes.
+Developing and maintaining a separate codebase is a large complex project with lots of risk.
 
-One of the solutions for such, is to base our server on a solid codebase, that is primarily maintained by somebody else, in this case tgstation, and insert our content in a modular fashion, while following the general code (but not gameplay) direction of the upstream, mirroring any changes they do for parity.
+To deal with this, Bubberstation has chosen a solution of modularization, wherein the codebase is based on an upstream (/tg/station) where we pull core features and code from, and gain the benefit of mirroring any changes they perform on their codebase at parity. From there, we add our own content in a modular fashion which we are responsible for.
 
-Git, as a version control system, is very useful, however it is just a very methodical thing, that follows its many algorithms, that sadly cannot always intelligently resolve certain changes in the code in an unambiguous way, giving us conflicts, that need to be resolved in a manual fashion.
+This allows us to focus more on content and a customized experience, while also reducing a degree of overhead in maintenance effort.
 
-Due to maintainability being one of the main reasons behind our rebase to another codebase, **this protocol will seriously be enforced.**
-A well organized, documented and atomized code saves our maintainers a lot of headache, when being reviewed.
-Don't dump on them the work that you could have done yourself.
+It is important to note that Git as a tool for a version control system is very useful, but does come with the caveat that we need to carefully resolve code conflicts that come from our upstream source.
 
-This document is meant to be updated and changed, whenever any new exceptions are added onto it. It might be worth it to check, from time to time, whether we didn't define a more unique standardized way of handling some common change.
+This guide is intended to provide examples, guidance, and ultimately standards on how we manage our implementation of modularization.
+
+Considering that maintainability is one of the key reasons behind our rebase to another codebase, **this standard will be strictly enforced**.
+
+A well organized, documented and atomized code is the standard we want to set in order to reduce development time, debugging and general pain points.
+It is important that contributors adhere to this standard, to the benefit of all.
+
+This document should be considered a living breathing document which can be changed and updated at any time. Considering reviewing it regularly, or even contributing!
 
 ## Important note - TEST YOUR PULL REQUESTS
 
-You are responsible for the testing of your content. You should not mark a pull request ready for review until you have actually tested it. If you require a separate client for testing, you can use a guest account by logging out of BYOND and connecting to your test server. Test merges are not for bug finding, they are for stress tests where local testing simply doesn't allow for this.
+You are responsible for the testing of your content. You should not mark a pull request ready for review until you have actually tested it. You should ensure that you have evidence of testing your PR before submitting it.
 
-### The nature of conflicts
+For example: If you are adding a new hairstyle, have a short video of a character sporting your hairstyle in-game, showing off all angles of the hairstyle. Or a screenshot of all angles of the hairstyle taken from in-game. This shows that your PR runs, and that the hairstyle works and is selectable in-game to the people reviewing your PR. It also shows off the hairstyle to people wanting to see it.
+
+If you require a separate client for testing, you can use a guest account by logging out of BYOND and connecting to your test server. Test merges are not for bug finding, they are for stress tests where local testing simply doesn't allow for this.
+
+### The nature of merge conflicts
+
+A merge conflict happens when your upstream pull commit is competing with your master or local branch commit.
 
 For example, let's have an original
 
