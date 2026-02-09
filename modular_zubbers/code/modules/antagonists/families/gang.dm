@@ -1,3 +1,5 @@
+#define MAX_GANG_OUTNUMBERING 3
+
 /datum/antagonist/gang
 	name = "\improper Family Member"
 	roundend_category = "gangsters"
@@ -213,9 +215,9 @@
 	name = "Induct via Secret Handshake"
 	desc = "Teach new recruits the Secret Handshake to join."
 	check_flags = AB_CHECK_CONSCIOUS
-	button_icon_state = "recruit"
+	button_icon_state = "recruit_1"
 	base_icon_state = 'icons/obj/antags/gang/actions.dmi'
-	cooldown_time = 300
+	cooldown_time = 30 SECONDS
 	/// The family antagonist datum of the "owner" of this action.
 	var/datum/antagonist/gang/my_gang_datum
 
@@ -235,6 +237,10 @@
  */
 /datum/action/cooldown/spawn_induction_package/proc/offer_handshake()
 	var/mob/living/carbon/human/human_owner = owner
+	var/datum/team/gang/smallest = get_smallest_gang()
+	if (my_gang_datum.my_gang.members.len >= smallest.members.len + MAX_GANG_OUTNUMBERING)
+		to_chat(owner, span_warning("You already have enough members in your gang. This might change if your enemies decide to recruit more members themselves."))
+		return FALSE
 	if(human_owner.stat != CONSCIOUS || human_owner.incapacitated != NONE)
 		return FALSE
 	var/obj/item/hand_item/slapper/secret_handshake/secret_handshake_item = new(owner)
@@ -260,6 +266,18 @@
 		return FALSE
 	human_owner.apply_status_effect(/datum/status_effect/offering/secret_handshake, secret_handshake_item)
 	return TRUE
+
+/datum/action/cooldown/spawn_induction_package/proc/get_smallest_gang()
+	var/datum/team/gang/smallest
+	var/smallest_size = INFINITY
+	var/datum/gang_handler/handler = my_gang_datum.handler
+	for(var/datum/team/gang/family in handler.gangs)
+		if(!family.members.len)
+			continue
+		if(family.members.len < smallest_size)
+			smallest = family
+			smallest_size = family.members.len
+	return smallest
 
 /datum/status_effect/offering/secret_handshake
 	id = "secret_handshake"
@@ -803,3 +821,6 @@
 		gangster.current.fully_replace_character_name(gangster.current.real_name, "Basil Coach [last_name.match]")
 	else
 		gangster.current.fully_replace_character_name(gangster.current.real_name, original_name)
+
+
+#undef MAX_GANG_OUTNUMBERING
