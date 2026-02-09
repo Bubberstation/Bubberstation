@@ -33,7 +33,7 @@ GLOBAL_LIST_EMPTY(gangster_cell_phones)
 	. = ..()
 	if(!activated)
 		return
-	if(src.loc != speaker)
+	if(get_turf(speaker) != get_turf(src))
 		return
 	broadcast_message(raw_message, speaker)
 

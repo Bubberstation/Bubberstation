@@ -53,3 +53,12 @@
 
 	update_icon()
 
+/obj/item/radio/gangphone/examine(mob/user)
+	var/list/lines = ..()
+	for (var/i = lines.len; i >= 1; i--)
+		if (findtext(lines[i], "It is set to broadcast over the") || findtext(lines[i], "attached"))
+			lines.Cut(i, i + 1)
+	if (!isnull(gang_id))
+		lines += span_notice("When turned on, it will broadcast to other active phones of your gang.")
+		lines += span_notice("You can speak into it by holding it in your hand and using the .r or .l prefix")
+	return lines
