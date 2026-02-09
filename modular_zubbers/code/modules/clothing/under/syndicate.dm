@@ -55,3 +55,6 @@
 	icon = 'modular_zubbers/icons/obj/clothing/under/syndicate.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/syndicate.dmi'
 	icon_state = "boss"
+
+/obj/item/clothing/under/syndicate/sniper
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
