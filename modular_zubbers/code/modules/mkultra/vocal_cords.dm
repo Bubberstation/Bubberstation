@@ -181,7 +181,7 @@
 			else
 				enthrall_chem.enthrall_tally += power_multiplier*1.25 //thinking about it, I don't know how this can proc
 			if(enthrall_chem.lewd)
-				addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, enthrall_listener, "<span class='nicegreen'><i><b>[enthrall_chem.enthrall_gender] is so nice to listen to.</b></i></span>"), 5)
+				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), enthrall_listener, "<span class='nicegreen'><i><b>[enthrall_chem.enthrall_gender] is so nice to listen to.</b></i></span>"), 5)
 			enthrall_chem.cooldown += 1
 
 	//REWARD mixable works
@@ -193,13 +193,13 @@
 			if(enthrall_listener == user)
 				continue
 			if (enthrall_chem.lewd)
-				addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, enthrall_listener, "<span class='love'>[enthrall_chem.enthrall_gender] has praised me!!</span>"), 5)
+				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), enthrall_listener, "<span class='love'>[enthrall_chem.enthrall_gender] has praised me!!</span>"), 5)
 				if(HAS_TRAIT(enthrall_listener, TRAIT_MASOCHISM))
 					enthrall_chem.enthrall_tally -= power_multiplier
 					enthrall_chem.resistance_tally += power_multiplier
 					enthrall_chem.cooldown += 1
 			else
-				addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, enthrall_listener, "<span class='nicegreen'><b><i>I've been praised for doing a good job!</b></i></span>"), 5)
+				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), enthrall_listener, "<span class='nicegreen'><b><i>I've been praised for doing a good job!</b></i></span>"), 5)
 			enthrall_chem.resistance_tally -= power_multiplier
 			enthrall_chem.enthrall_tally += power_multiplier
 			var/descmessage = "<span class='love'><i>[(enthrall_chem.lewd?"I feel so happy! I'm a good pet who [enthrall_chem.enthrall_gender] loves!":"I did a good job!")]</i></span>"
@@ -222,11 +222,11 @@
 					descmessage += "And yet, it feels so good..!</span>" //I don't really understand masco, is this the right sort of thing they like?
 					enthrall_chem.enthrall_tally += power_multiplier
 					enthrall_chem.resistance_tally -= power_multiplier
-					addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, enthrall_listener, "<span class='love'>I've let [enthrall_chem.enthrall_gender] down...!</b></span>"), 5)
+					addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), enthrall_listener, "<span class='love'>I've let [enthrall_chem.enthrall_gender] down...!</b></span>"), 5)
 				else
-					addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, enthrall_listener, "<span class='warning'>I've let [enthrall_chem.enthrall_gender] down...</b></span>"), 5)
+					addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), enthrall_listener, "<span class='warning'>I've let [enthrall_chem.enthrall_gender] down...</b></span>"), 5)
 			else
-				addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, enthrall_listener, "<span class='warning'>I've failed [enthrall_chem.enthrall_mob]...</b></span>"), 5)
+				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), enthrall_listener, "<span class='warning'>I've failed [enthrall_chem.enthrall_mob]...</b></span>"), 5)
 				enthrall_chem.resistance_tally += power_multiplier
 				enthrall_chem.enthrall_tally += power_multiplier
 				enthrall_chem.cooldown += 1
@@ -259,9 +259,9 @@
 					enthrall_chem.status = null
 					user.emote("snap")
 					if(enthrall_chem.lewd)
-						addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, enthrall_listener, "<span class='big warning'>The snapping of your [enthrall_chem.enthrall_gender]'s fingers brings you back to your enthralled state, obedient and ready to serve.</b></span>"), 5)
+						addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), enthrall_listener, "<span class='big warning'>The snapping of your [enthrall_chem.enthrall_gender]'s fingers brings you back to your enthralled state, obedient and ready to serve.</b></span>"), 5)
 					else
-						addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, enthrall_listener, "<span class='big warning'>The snapping of [enthrall_chem.enthrall_mob]'s fingers brings you back to being under their influence.</b></span>"), 5)
+						addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), enthrall_listener, "<span class='big warning'>The snapping of [enthrall_chem.enthrall_mob]'s fingers brings you back to being under their influence.</b></span>"), 5)
 					to_chat(user, "<span class='notice'><i>You wake up [enthrall_listener]!</i></span>")
 
 	//tier 1
@@ -391,7 +391,7 @@
 				ADD_TRAIT(carbon_mob, TRAIT_MUTE, "enthrall")
 			else
 				carbon_mob.adjust_silence((10 SECONDS * power_multiplier) * enthrall_chem.phase)
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, carbon_mob, "<span class='notice'>You are unable to speak!</b></span>"), 5)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), carbon_mob, "<span class='notice'>You are unable to speak!</b></span>"), 5)
 			to_chat(user, "<span class='notice'><i>You silence [carbon_mob].</i></span>")
 			enthrall_chem.cooldown += 3
 
@@ -411,7 +411,7 @@
 			var/mob/living/enthrall_listener = enthrall_victim
 			var/datum/status_effect/chem/enthrall/enthrall_chem = enthrall_listener.has_status_effect(/datum/status_effect/chem/enthrall)
 			enthrall_chem.status = "Antiresist"
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, enthrall_listener, "<span class='big warning'>Your mind clouds over, as you find yourself unable to resist!</b></span>"), 5)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), enthrall_listener, "<span class='big warning'>Your mind clouds over, as you find yourself unable to resist!</b></span>"), 5)
 			enthrall_chem.status_strength = (1 * power_multiplier * enthrall_chem.phase)
 			enthrall_chem.cooldown += 15//Too short? yes, made 15
 			to_chat(user, "<span class='notice'><i>You frustrate [enthrall_listener]'s attempts at resisting.</i></span>")
@@ -424,7 +424,7 @@
 			enthrall_chem.delta_resist += (power_multiplier)
 			enthrall_chem.owner_resist()
 			enthrall_chem.cooldown += 2
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, carbon_mob, "<span class='notice'>You are spurred into resisting from [user]'s words!'</b></span>"), 5)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), carbon_mob, "<span class='notice'>You are spurred into resisting from [user]'s words!'</b></span>"), 5)
 			to_chat(user, "<span class='notice'><i>You spark resistance in [carbon_mob].</i></span>")
 
 	//FORGET (A way to cancel the process)
@@ -432,9 +432,9 @@
 		for(var/mob/living/carbon/carbon_mob in listeners)
 			var/datum/status_effect/chem/enthrall/enthrall_chem = carbon_mob.has_status_effect(/datum/status_effect/chem/enthrall)
 			if(enthrall_chem.phase == 4)
-				addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, carbon_mob, "<span class='warning'>You're unable to forget about [(enthrall_chem.lewd?"the dominating presence of [enthrall_chem.enthrall_gender]":"[enthrall_chem.enthrall_mob]")]!</b></span>"), 5)
+				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), carbon_mob, "<span class='warning'>You're unable to forget about [(enthrall_chem.lewd?"the dominating presence of [enthrall_chem.enthrall_gender]":"[enthrall_chem.enthrall_mob]")]!</b></span>"), 5)
 				continue
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, carbon_mob, "<span class='warning'>You wake up, forgetting everything that just happened. You must've dozed off..? How embarassing!</b></span>"), 5)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), carbon_mob, "<span class='warning'>You wake up, forgetting everything that just happened. You must've dozed off..? How embarassing!</b></span>"), 5)
 			carbon_mob.Sleeping(50)
 			switch(enthrall_chem.phase)
 				if(1 to 2)
@@ -445,9 +445,9 @@
 					enthrall_chem.phase = 0
 					enthrall_chem.cooldown = 0
 					if(enthrall_chem.lewd)
-						addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, carbon_mob, "<span class='big warning'>You revert to yourself before being enthralled by your [enthrall_chem.enthrall_gender], with no memory of what happened.</b></span>"), 5)
+						addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), carbon_mob, "<span class='big warning'>You revert to yourself before being enthralled by your [enthrall_chem.enthrall_gender], with no memory of what happened.</b></span>"), 5)
 					else
-						addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, carbon_mob, "<span class='big warning'>You revert to who you were before, with no memory of what happened with [enthrall_chem.enthrall_mob].</b></span>"), 5)
+						addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), carbon_mob, "<span class='big warning'>You revert to who you were before, with no memory of what happened with [enthrall_chem.enthrall_mob].</b></span>"), 5)
 					to_chat(user, "<span class='notice'><i>You put [carbon_mob] into a sleeper state, ready to turn them back at the snap of your fingers.</i></span>")
 
 	//ATTRACT
@@ -457,7 +457,7 @@
 			var/datum/status_effect/chem/enthrall/enthrall_chem = enthrall_listener.has_status_effect(/datum/status_effect/chem/enthrall)
 			enthrall_listener.throw_at(get_step_towards(user,enthrall_listener), 3 * power_multiplier, 1 * power_multiplier)
 			enthrall_chem.cooldown += 3
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, enthrall_listener, "<span class='notice'>You are drawn towards [user]!</b></span>"), 5)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), enthrall_listener, "<span class='notice'>You are drawn towards [user]!</b></span>"), 5)
 			to_chat(user, "<span class='notice'><i>You draw [enthrall_listener] towards you!</i></span>")
 
 	//SLEEP
@@ -468,7 +468,7 @@
 				if(2 to INFINITY)
 					carbon_mob.Sleeping(45 * power_multiplier)
 					enthrall_chem.cooldown += 10
-					addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, carbon_mob, "<span class='notice'>Drowsiness suddenly overwhelms you as you fall asleep!</b></span>"), 5)
+					addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), carbon_mob, "<span class='notice'>Drowsiness suddenly overwhelms you as you fall asleep!</b></span>"), 5)
 					to_chat(user, "<span class='notice'><i>You send [carbon_mob] to sleep.</i></span>")
 
 	//STRIP
@@ -486,7 +486,7 @@
 						if(W == humanoid.w_uniform && W != humanoid.wear_suit)
 							humanoid.dropItemToGround(W, TRUE)
 							return
-					addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, humanoid, "<span class='[(enthrall_chem.lewd?"love":"warning")]'>Before you can even think about it, you quickly remove your clothes in response to [(enthrall_chem.lewd?"your [enthrall_chem.enthrall_gender]'s command'":"[enthrall_chem.enthrall_mob]'s directive'")].</b></span>"), 5)
+					addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), humanoid, "<span class='[(enthrall_chem.lewd?"love":"warning")]'>Before you can even think about it, you quickly remove your clothes in response to [(enthrall_chem.lewd?"your [enthrall_chem.enthrall_gender]'s command'":"[enthrall_chem.enthrall_mob]'s directive'")].</b></span>"), 5)
 					enthrall_chem.cooldown += 10
 
 	//WALK
@@ -499,7 +499,7 @@
 					if(enthrall_listener.move_intent != MOVE_INTENT_WALK)
 						enthrall_listener.toggle_move_intent()
 						enthrall_chem.cooldown += 1
-						addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, enthrall_listener, "<span class='notice'>You slow down to a walk.</b></span>"), 5)
+						addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), enthrall_listener, "<span class='notice'>You slow down to a walk.</b></span>"), 5)
 						to_chat(user, "<span class='notice'><i>You encourage [enthrall_listener] to slow down.</i></span>")
 
 	//RUN
@@ -512,7 +512,7 @@
 					if(enthrall_listener.move_intent != MOVE_INTENT_RUN)
 						enthrall_listener.toggle_move_intent()
 						enthrall_chem.cooldown += 1
-						addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, enthrall_listener, "<span class='notice'>You speed up into a jog!</b></span>"), 5)
+						addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), enthrall_listener, "<span class='notice'>You speed up into a jog!</b></span>"), 5)
 						to_chat(user, "<span class='notice'><i>You encourage [enthrall_listener] to pick up the pace!</i></span>")
 
 	//LIE DOWN
@@ -524,7 +524,7 @@
 				if(2 to INFINITY)
 					enthrall_listener.toggle_resting()
 					enthrall_chem.cooldown += 10
-					addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, enthrall_listener, "[(enthrall_chem.lewd?"<span class='love'>You eagerly lie down!":"<span class='notice'>You suddenly lie down!")]</b></span>"), 5)
+					addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), enthrall_listener, "[(enthrall_chem.lewd?"<span class='love'>You eagerly lie down!":"<span class='notice'>You suddenly lie down!")]</b></span>"), 5)
 					to_chat(user, "<span class='notice'><i>You encourage [enthrall_listener] to lie down.</i></span>")
 
 	//KNOCKDOWN
@@ -536,7 +536,7 @@
 				if(2 to INFINITY)
 					enthrall_listener.StaminaKnockdown(30 * power_multiplier * enthrall_chem.phase)
 					enthrall_chem.cooldown += 8
-					addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, enthrall_listener, "<span class='notice'>You suddenly drop to the ground!</b></span>"), 5)
+					addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), enthrall_listener, "<span class='notice'>You suddenly drop to the ground!</b></span>"), 5)
 					to_chat(user, "<span class='notice'><i>You encourage [enthrall_listener] to drop down to the ground.</i></span>")
 
 	//tier3
@@ -555,7 +555,7 @@
 				for (var/trigger in enthrall_chem.custom_triggers)
 					speaktrigger += "[trigger], "
 				to_chat(user, "<b>[carbon_mob]</b> whispers, \"<i>[speaktrigger] are my triggers.</i>\"")//So they don't trigger themselves!
-				addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, carbon_mob, "<span class='notice'>You whisper your triggers to [(enthrall_chem.lewd?"Your [enthrall_chem.enthrall_gender]":"[enthrall_chem.enthrall_mob]")].</span>"), 5)
+				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), carbon_mob, "<span class='notice'>You whisper your triggers to [(enthrall_chem.lewd?"Your [enthrall_chem.enthrall_gender]":"[enthrall_chem.enthrall_mob]")].</span>"), 5)
 
 
 	//CUSTOM TRIGGERS
@@ -588,7 +588,7 @@
 							else
 								enthrall_chem.custom_triggers[trigger] = trigger2
 							enthrall_chem.mental_capacity -= 5
-							addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, humanoid, "<span class='notice'>[(enthrall_chem.lewd?"your [enthrall_chem.enthrall_gender]":"[enthrall_chem.enthrall_mob]")] whispers you a new trigger.</span>"), 5)
+							addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), humanoid, "<span class='notice'>[(enthrall_chem.lewd?"your [enthrall_chem.enthrall_gender]":"[enthrall_chem.enthrall_mob]")] whispers you a new trigger.</span>"), 5)
 							to_chat(user, "<span class='notice'><i>You sucessfully set the trigger word [trigger] in [humanoid]</i></span>")
 						else
 							to_chat(user, "<span class='warning'>Your pet looks at you confused, it seems they don't understand that effect!</b></span>")
@@ -649,7 +649,7 @@
 						objective = replacetext(LOWER_TEXT(objective), "strangle", "meow at")
 						objective = replacetext(LOWER_TEXT(objective), "suicide", "self-love")
 						message_admins("[humanoid] has been implanted by [user] with the objective [objective].")
-						addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, humanoid, "<span class='notice'>[(enthrall_chem.lewd?"Your [enthrall_chem.enthrall_gender]":"[enthrall_chem.enthrall_mob]")] whispers you a new objective.</span>"), 5)
+						addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), humanoid, "<span class='notice'>[(enthrall_chem.lewd?"Your [enthrall_chem.enthrall_gender]":"[enthrall_chem.enthrall_mob]")] whispers you a new objective.</span>"), 5)
 						brainwash(humanoid, objective)
 						enthrall_chem.mental_capacity -= 200
 						to_chat(user, "<span class='notice'><i>You sucessfully give an objective to [humanoid]</i></span>")
@@ -677,7 +677,7 @@
 			if(enthrall_chem.phase > 1)
 				if(user.ckey == enthrall_chem.enthrall_ckey && user.real_name == enthrall_chem.enthrall_mob.real_name)
 					enthrall_chem.enthrall_mob = user
-					addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, humanoid, "<span class='nicegreen'>[(enthrall_chem.lewd?"You hear the words of your [enthrall_chem.enthrall_gender] again!! They're back!!":"You recognise the voice of [enthrall_chem.enthrall_mob].")]</b></span>"), 5)
+					addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), humanoid, "<span class='nicegreen'>[(enthrall_chem.lewd?"You hear the words of your [enthrall_chem.enthrall_gender] again!! They're back!!":"You recognise the voice of [enthrall_chem.enthrall_mob].")]</b></span>"), 5)
 					to_chat(user, "<span class='notice'><i>[humanoid] looks at you with sparkling eyes, recognising you!</i></span>")
 
 	//I dunno how to do state objectives without them revealing they're an antag
@@ -692,7 +692,7 @@
 					enthrall_chem.status = "heal"
 					enthrall_chem.status_strength = (5 * power_multiplier)
 					enthrall_chem.cooldown += 5
-					addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, enthrall_listener, "<span class='notice'>You begin to lick your wounds.</b></span>"), 5)
+					addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), enthrall_listener, "<span class='notice'>You begin to lick your wounds.</b></span>"), 5)
 					enthrall_listener.Stun(15 * power_multiplier)
 					to_chat(user, "<span class='notice'><i>[enthrall_listener] begins to lick their wounds.</i></span>")
 
@@ -705,7 +705,7 @@
 				if(3 to INFINITY)
 					enthrall_listener.Stun(40 * power_multiplier)
 					enthrall_chem.cooldown += 8
-					addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, enthrall_listener, "<span class='notice'>Your muscles freeze up!</b></span>"), 5)
+					addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), enthrall_listener, "<span class='notice'>Your muscles freeze up!</b></span>"), 5)
 					to_chat(user, "<span class='notice'><i>You cause [enthrall_listener] to freeze up!</i></span>")
 
 	//HALLUCINATE
@@ -726,7 +726,7 @@
 			switch(enthrall_chem.phase)
 				if(3 to INFINITY)
 					enthrall_listener.adjust_bodytemperature(50 * power_multiplier)//This seems nuts, reduced it, but then it didn't do anything, so I reverted it.
-					addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, enthrall_listener, "<span class='notice'>You feel your metabolism speed up!</b></span>"), 5)
+					addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), enthrall_listener, "<span class='notice'>You feel your metabolism speed up!</b></span>"), 5)
 					to_chat(user, "<span class='notice'><i>You speed [enthrall_listener]'s metabolism up!</i></span>")
 
 	//COLD
@@ -737,7 +737,7 @@
 			switch(enthrall_chem.phase)
 				if(3 to INFINITY)
 					enthrall_listener.adjust_bodytemperature(-50 * power_multiplier)
-					addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, enthrall_listener, "<span class='notice'>You feel your metabolism slow down!</b></span>"), 5)
+					addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), enthrall_listener, "<span class='notice'>You feel your metabolism slow down!</b></span>"), 5)
 					to_chat(user, "<span class='notice'><i>You slow [enthrall_listener]'s metabolism down!</i></span>")
 
 	//GET UP
@@ -751,7 +751,7 @@
 					enthrall_listener.SetAllImmobility(0)
 					enthrall_listener.SetUnconscious(0) //i said get up i don't care if you're being tased
 					enthrall_chem.cooldown += 10 //This could be really strong
-					addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, enthrall_listener, "<span class='notice'>You jump to your feet from sheer willpower!</b></span>"), 5)
+					addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), enthrall_listener, "<span class='notice'>You jump to your feet from sheer willpower!</b></span>"), 5)
 					to_chat(user, "<span class='notice'><i>You spur [enthrall_listener] to their feet!</i></span>")
 
 	//PACIFY
@@ -763,7 +763,7 @@
 				if(3)//Tier 3 only
 					enthrall_chem.status = "pacify"
 					enthrall_chem.cooldown += 10
-					addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, enthrall_listener, "<span class='notice'>You feel like never hurting anyone ever again.</b></span>"), 5)
+					addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), enthrall_listener, "<span class='notice'>You feel like never hurting anyone ever again.</b></span>"), 5)
 					to_chat(user, "<span class='notice'><i>You remove any intent to harm from [enthrall_listener]'s mind.</i></span>")
 
 	//CHARGE
