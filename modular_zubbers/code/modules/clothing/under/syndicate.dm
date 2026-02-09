@@ -78,3 +78,5 @@
 
 /obj/item/clothing/under/syndicate/scrubs
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	// overrides an override
+	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/medical.dmi'
