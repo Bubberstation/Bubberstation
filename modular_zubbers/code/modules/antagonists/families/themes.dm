@@ -212,7 +212,7 @@
 		Ensure there is an AI on the station, and that it's laws are purged.\
 		Nanotrasen will NOT get away with their ABUSE of INNOCENT AI LIVES! >_<"
 	)
-
+/*
 /datum/gang_theme/space_rosa
 	name = "Space Rosa"
 	description = "Hey there, this is the Economy Zone on BOX News 66.6. The stock market is still reeling from accusations that three well known corporate entities \
@@ -239,7 +239,7 @@
 		It has been disguised as the nuclear authentication disk and entrusted to the Captain. Your objective is simple. \
 		Get that fucking disk. You have been provided with a Pinpointer to assist in this task.",
 	)
-
+*/
 /datum/gang_theme/third_world_war
 	name = "Third World War"
 	description = "Thanks for tuning in to the History Channel, funded with the help of listeners like you. Tonight, we're going to talk about the Third World War on Earth during the 21st century, \
