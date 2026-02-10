@@ -44,7 +44,7 @@
 	var/list/typepath_files = get_folders_of_typepaths()
 	for(var/obj/item/clothing/under/valid_subtype as anything in subtypesof(/obj/item/clothing/under))
 		var/subtype_string = "[valid_subtype]"
-		if(!(subtype_string in typepath_files))
+		if(subtype_string in typepath_files)
 			continue
 		var/flags = valid_subtype::supports_variations_flags
 		if(!(flags & CLOTHING_DIGITIGRADE_VARIATION) && !(flags & CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON))
