@@ -209,6 +209,11 @@
 		report += "[my_gang_datum.roundend_category] were:"
 		report += printplayerlist(members)
 
+	var/percentage = my_gang_datum.handler.get_territory_percentage(src)
+	var/most_territory = my_gang_datum.handler.has_most_territory(src)
+	report += span_greentext("[name] controlled [percentage]% of all tagged territory")
+	if(most_territory)
+		report += "<span class='greentext big'>This Family owned the most Territory!</span>"
 	return "<div class='panel redborder'>[report.Join("<br>")]</div>"
 
 /datum/action/cooldown/spawn_induction_package
