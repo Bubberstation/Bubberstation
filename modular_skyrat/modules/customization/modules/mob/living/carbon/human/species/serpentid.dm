@@ -146,6 +146,23 @@
 
 	return perk_descriptions
 
+/datum/species/gas/get_species_description()
+	return list(
+		"Giant Armoured Serpentids, or GAS as they are often called are large insectoids hailing from a planet in the Tiziran Empire. \
+		They are excellent hunters, with phenomenal stealth capabilities, but are lacking in communication skills."
+	)
+
+/datum/species/gas/get_species_lore()
+	return list(
+		"The Giant Armoured Serpentids are an old race, of insectoid creatures from a high gravity world in the Tiziran Empire. \
+		Covered in intersecting scales, with a pair of huge claws as their main limbs, they vaguely resemble Terran mantids, though they've more \
+		in common with snakes and other reptiles from a Terran point of view.",
+		"Living in a semi-hive/colony state, GAS, as they're referred to by Nanotrasen, have a lack of self identity compared to most species, \
+		with few having a given name. This however is routinely ignored by most other races, and often they assign one to one they're working with, \
+		for ease of communication. While they live in large colonies with other GAS, up to and rarely exceeding two hundred individuals, they do not \
+		care for physical interaction with most, preferring to be left alone and given their personal space, such that they can seem aggressive even \
+		when normal actions such as a handshake or hug are offered by ignorant members of other species."
+	)
 /datum/species/gas/body_temperature_core(mob/living/carbon/human/humi, seconds_per_tick, times_fired)
 	return
 
