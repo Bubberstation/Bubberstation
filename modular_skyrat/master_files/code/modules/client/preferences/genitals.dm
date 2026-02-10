@@ -62,8 +62,8 @@
 	if(preferences.read_preference(/datum/preference/toggle/allow_mismatched_parts))
 		return TRUE
 
-	var/datum/species/species = preferences.read_preference(/datum/preference/choiced/species)
-	species = new species
+	var/species_type = preferences.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species = GLOB.species_prototypes[species_type]
 
 	return (savefile_key in species.get_features())
 
@@ -99,8 +99,8 @@
 
 /datum/preference/toggle/genital_skin_color/is_accessible(datum/preferences/preferences)
 	var/passed_initial_check = ..(preferences)
-	var/datum/species/species = preferences.read_preference(/datum/preference/choiced/species)
-	species = new species
+	var/species_type = preferences.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species = GLOB.species_prototypes[species_type]
 	if(!(TRAIT_USES_SKINTONES in species.inherent_traits))
 		return FALSE
 
@@ -111,11 +111,8 @@
 
 /datum/preference/toggle/genital_skin_color/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	// If they're not using skintones, let's not apply this yeah?
-	var/datum/species/species = preferences?.read_preference(/datum/preference/choiced/species)
-	if(!species)
-		return FALSE
-
-	species = new species
+	var/species_type = preferences.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species = GLOB.species_prototypes[species_type]
 	if(!(TRAIT_USES_SKINTONES in species.inherent_traits))
 		return FALSE
 

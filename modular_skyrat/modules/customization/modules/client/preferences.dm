@@ -1,22 +1,32 @@
 /// Cleans up any invalid languages. Typically happens on language renames and codedels.
 /datum/preferences/proc/sanitize_languages()
+	var/species_type = read_preference(/datum/preference/choiced/species)
+	var/datum/species/species = GLOB.species_prototypes[species_type]
+	var/list/whitelist = species.language_prefs_whitelist
+
 	var/languages_edited = FALSE
-	for(var/lang_path in languages)
-		if(!lang_path)
-			languages.Remove(lang_path)
-			languages_edited = TRUE
+	var/list/to_remove = list()
+
+	for (var/lang_path in languages)
+		if (!lang_path)
+			to_remove += lang_path
 			continue
 
-		var/datum/language/language = new lang_path()
-		// Yes, checking subtypes is VERY necessary, because byond doesn't check to see if a path is valid at runtime!
-		// If you delete /datum/language/meme, it will still load as /datum/language/meme, and will instantiate with /datum/language's defaults!
-		var/species_type = read_preference(/datum/preference/choiced/species)
-		var/datum/species/species = new species_type()
-		if(!(language.type in subtypesof(/datum/language)) || (language.secret && !(language.type in species.language_prefs_whitelist)))
-			languages.Remove(lang_path)
-			languages_edited = TRUE
-		qdel(species)
-		qdel(language)
+		var/datum/language/language_prototype = GLOB.language_datum_instances[lang_path]
+		// Path no longer exists
+		if (isnull(language_prototype))
+			to_remove += lang_path
+			continue
+
+		// If it's a secret language, ensure it's allowed
+		if (language_prototype.secret && whitelist && isnull(whitelist[lang_path]))
+			to_remove += lang_path
+
+	// Only modify list once
+	if (length(to_remove))
+		languages -= to_remove
+		languages_edited = TRUE
+
 	return languages_edited
 
 /// Cleans any quirks that should be hidden, or just simply don't exist from quirk code.

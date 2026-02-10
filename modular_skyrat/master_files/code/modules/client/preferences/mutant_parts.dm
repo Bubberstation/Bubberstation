@@ -479,8 +479,8 @@
 	return TRUE
 
 /datum/preference/choiced/mutant_choice/ipc_screen/is_accessible(datum/preferences/preferences)
-	var/datum/species/species = preferences.read_preference(/datum/preference/choiced/species)
-	species = new species
+	var/species_type = preferences.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species = GLOB.species_prototypes[species_type]
 
 	if(savefile_key in species.get_features())
 		return ..()
