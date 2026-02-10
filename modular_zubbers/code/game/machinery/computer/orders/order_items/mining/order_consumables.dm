@@ -8,4 +8,5 @@
 	cost_per_order = 750
 
 /datum/orderable_item/consumables/consumables_pen/synthcare
+	purchase_path = /obj/item/reagent_containers/hypospray/medipen/synthcare
 	cost_per_order = 250
