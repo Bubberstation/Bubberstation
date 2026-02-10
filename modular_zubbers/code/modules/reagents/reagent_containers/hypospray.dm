@@ -3,6 +3,7 @@
 	desc = "A single use applicator made to care for synthetic parts, be it a single prosthetic or an IPC. <b> WARNING : DO NOT APPLY A SECOND APPLICATOR UNTIL FIRST HAS FULLY PROCESSED. FAILURE TO FOLLOW INSTRUCTIONS CAN PROVE HAZARDOUS TO SYNTHETICS. DOES NOT WORK ON CYBORGS. DO NOT MIX WITH ADVANCED NANITE SLURRY.</b>"
 	icon_state = "gorillapen"
 	base_icon_state = "gorillapen"
+	inhand_icon_state = "atropen"
 	amount_per_transfer_from_this = 9
 	volume = 9
 	list_reagents = list(/datum/reagent/medicine/nanite_slurry = 9)
