@@ -1,6 +1,7 @@
 
 /datum/outfit/job/security
 	uniform = /obj/item/clothing/under/rank/security/officer/viro
+	head = /obj/item/clothing/head/soft/sec
 	suit = /obj/item/clothing/suit/armor/vest/alt/sec/viro
 	suit_store = /obj/item/flashlight/seclite
 	backpack_contents = list(

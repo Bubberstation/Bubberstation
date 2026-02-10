@@ -21,7 +21,7 @@
 	greyscale_config_worn = null
 	greyscale_config_inhand_left = /datum/greyscale_config/bandana/inhands_left
 	greyscale_config_inhand_right = /datum/greyscale_config/bandana/inhands_right
-	greyscale_colors = "#7d2a25"
+	greyscale_colors = "#c41521"
 	armor_type = /datum/armor/cosmetic_sec
 	hair_mask = /datum/hair_mask/standard_hat_low
 
@@ -114,6 +114,7 @@
 
 /obj/item/clothing/head/hats/hos/cap/cowboy
 	name = "\proper the Head of Security's cowboy hat"
+	desc = "An armoured cattleman's hat, emblazoned with the Head of Security's insignia attached to a red band that goes around the hat."
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "hos_cowboy"
@@ -130,9 +131,9 @@
 	desc = "Standard-issue Security department uniform, given to members of Nanotrasen Corporate Security."
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 	icon_state = "security_uniform"
 	female_sprite_flags = NO_FEMALE_UNIFORM
-	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 
 /obj/item/clothing/under/rank/security/officer/viro/skirt
 	name = "security jumpskirt"
@@ -145,7 +146,7 @@
 
 /obj/item/clothing/under/rank/security/officer/viro/jumpsuit
 	name = "security jumpsuit"
-	desc = "Previous standard-issue attire for officers, technically antiquated but still popular with utilitarian officers."
+	desc = "The previous standard-issue attire for officers, technically antiquated but still popular with utilitarian officers."
 	icon_state = "security_jumpsuit"
 	alt_covers_chest = TRUE
 
@@ -167,12 +168,12 @@
 
 /obj/item/clothing/under/rank/security/officer/viro/lowcut
 	name = "security summer uniform"
-	desc = "Alternative to the standard Security uniform, with an <i>incredibly</i> low-cut collar and cut sleeves."
+	desc = "An alternative to the standard Security uniform, with an <i>incredibly</i> low-cut collar and cut sleeves."
 	icon_state = "security_lowcut"
 
 /obj/item/clothing/under/rank/security/officer/viro/bodysuit
 	name = "security bodysuit"
-	desc = "Designed out of synthetic leather that automatically seals around the user to reduce heat-related problems while inside a MODsuit. \
+	desc = "Designed out of synthetic leather that automatically seals around the user to reduce overheating and snagging issues that arise while inside a MODsuit. \
 			While the bodysuit was only designed to be used while inside of and operating a MODsuit, the bodysuit found a niche with certain... eccentric officers."
 	icon_state = "security_bodysuit"
 	can_adjust = FALSE
@@ -401,6 +402,21 @@
 	content_overlays = FALSE
 	alternate_worn_layer = LOW_NECK_LAYER  // so it goes under things like the HOS' trenchcoats
 
+/obj/item/storage/belt/security/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_belt)
+
+/datum/atom_skin/security_belt
+	abstract_type = /datum/atom_skin/security_belt
+
+/datum/atom_skin/security_belt/red
+	preview_name = "Red Variant"
+	new_icon_state = "security"
+
+/datum/atom_skin/security_belt/black // why doesn't this work ????
+	preview_name = "Black Variant"
+	new_icon_state = "security_black"
+
 /obj/item/storage/belt/security/webbing
 	icon = 'modular_zubbers/icons/obj/clothing/belt.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
@@ -442,6 +458,9 @@
 /obj/item/clothing/mask/gas/sechailer
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/mask.dmi'
 	worn_icon_muzzled = 'modular_zubbers/icons/mob/clothing/head/mask_muzzled.dmi'
+
+/obj/item/clothing/mask/gas/sechailer/swat
+	flags_inv = HIDEFACIALHAIR | HIDEFACE | HIDEEYES | HIDEEARS | HIDESNOUT
 
 /obj/item/clothing/mask/gas/sechailer/swat/spacepol
 	icon = 'icons/obj/clothing/masks.dmi'
