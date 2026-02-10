@@ -57,6 +57,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/announcement_size = OVERMIND_ANNOUNCEMENT_MIN_SIZE // Announce the biohazard when this size is reached
 	var/announcement_time
 	var/has_announced = FALSE
+	var/ending_round = FALSE //BUBBER ADDITION - to do the victory scene when the shuttle docks
 
 	/// The list of strains the blob can reroll for.
 	var/list/strain_choices
@@ -172,15 +173,34 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 			qdel(src)
 	else if(!victory_in_progress && (blobs_legit.len >= blobwincount))
 		victory_in_progress = TRUE
-		priority_announce("Biohazard has reached critical mass. Station loss is imminent.", "Biohazard Alert")
+		priority_announce("Biohazard has reached critical mass. Station loss is likely.", "Biohazard Alert") //BUBBER CHANGE - was "Biohazard has reached critical mass. Station loss is imminent."
 		SSsecurity_level.set_level(SEC_LEVEL_DELTA)
 
 		// Set status displays to biohazard alert - critical level
 		send_status_display_biohazard_alert()
 
 		max_blob_points = INFINITY
-		blob_points = INFINITY
-		addtimer(CALLBACK(src, PROC_REF(victory)), 45 SECONDS)
+		//blob_points = INFINITY //BUBBER REMOVAL
+		//addtimer(CALLBACK(src, PROC_REF(victory)), 45 SECONDS) //BUBBER REMOVAL
+		//BUBBER ADDITION START - Makes Blob non-round ending. This code ensures having critical mass at round-end still counts as a victory.
+		var/datum/antagonist/blob/B = mind.has_antag_datum(/datum/antagonist/blob)
+		if(B)
+			var/datum/objective/blob_takeover/main_objective = locate() in B.objectives
+			if(main_objective)
+				main_objective.completed = TRUE
+		//BUBBER ADDITION END
+	//BUBBER ADDITION START - Makes blob non-round ending. This code ensures that falling below critical mass is correctly counted as a loss
+	else if (victory_in_progress && (blobs_legit.len < blobwincount))
+		victory_in_progress = FALSE
+		priority_announce("Biohazard has fallen below critical mass. Station loss may now be averted.", "Biohazard Alert")
+		SSsecurity_level.set_level(SEC_LEVEL_RED)
+		max_blob_points = OVERMIND_MAX_POINTS_DEFAULT
+		var/datum/antagonist/blob/B = mind.has_antag_datum(/datum/antagonist/blob)
+		if(B)
+			var/datum/objective/blob_takeover/main_objective = locate() in B.objectives
+			if(main_objective)
+				main_objective.completed = FALSE
+	//BUBBER ADDITION END
 	else if(!free_strain_rerolls && (last_reroll_time + BLOB_POWER_REROLL_FREE_TIME<world.time))
 		to_chat(src, span_boldnotice("You have gained another free strain re-roll."))
 		free_strain_rerolls = 1
@@ -195,6 +215,14 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 		send_status_display_biohazard_alert()
 
 		has_announced = TRUE
+	//BUBBER ADDITION START - Makes Blob non-round ending. Plays the Blob Victory scene once the shuttle docks
+	if(victory_in_progress && SSshuttle.emergency?.mode == SHUTTLE_DOCKED && !ending_round)
+		ending_round = TRUE
+		priority_announce("Biohazard has become uncontainable. Explosive growth imminent. Station loss has become unavoidable", "Biohazard Alert")
+		blob_points = INFINITY
+		addtimer(CALLBACK(src, PROC_REF(victory)), 45 SECONDS)
+
+	//BUBBER ADDITION END
 
 /// Create a blob spore and link it to us
 /mob/eye/blob/proc/create_spore(turf/spore_turf, spore_type = /mob/living/basic/blob_minion/spore/minion)
