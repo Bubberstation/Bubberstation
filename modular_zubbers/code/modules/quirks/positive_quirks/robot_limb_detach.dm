@@ -1,6 +1,6 @@
 /datum/quirk/robot_limb_detach
 	name = "Cybernetic Limb Mounts"
-	desc = "You are able to detach and reattach any installed robotic limbs with very little effort, as long as they're in good condition. (Right click on self to use)"
+	desc = "You are able to detach and reattach any installed robotic limbs with very little effort, as long as they're in good condition. Right Click yourself while targeting a limb to remove it."
 	gain_text = span_notice("Internal sensors report limb disengagement protocols are ready and waiting.")
 	lose_text = span_notice("ERROR: LIMB DISENGAGEMENT PROTOCOLS OFFLINE.")
 	medical_record_text = "Patient bears quick-attach and release limb joint cybernetics."
