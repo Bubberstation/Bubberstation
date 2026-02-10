@@ -15,4 +15,11 @@
 	base_icon_state = "luxpen"
 	volume = 70
 	amount_per_transfer_from_this = 70
-	list_reagents = list(/datum/reagent/medicine/salbutamol = 10, /datum/reagent/medicine/c2/penthrite = 10, /datum/reagent/medicine/oxandrolone = 10, /datum/reagent/medicine/sal_acid = 10, /datum/reagent/toxin = 5, /datum/reagent/medicine/leporazine = 10)
+	list_reagents = list(
+	/datum/reagent/medicine/salbutamol = 10,
+	/datum/reagent/medicine/c2/penthrite = 10,
+	/datum/reagent/medicine/oxandrolone = 10,
+	/datum/reagent/medicine/sal_acid = 10,
+	/datum/reagent/toxin = 5,
+	/datum/reagent/medicine/leporazine = 10)
+
