@@ -518,14 +518,15 @@
 	addtimer(CALLBACK(human_user, TYPE_PROC_REF(/mob/living/carbon/human, dropItemToGround), src, TRUE), 1)
 
 /obj/item/toy/plush/plushling/New()
-	. = ..()
-	var/initial_state = pick("plushie_lizard", "plushie_snake", "plushie_slime")
+	var/initial_state = pick("mothroach", "moffplush_lovers", "johnghoul")
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = initial_state
 	START_PROCESSING(SSobj, src)
+	return ..()
 
 /obj/item/toy/plush/plushling/Destroy()
-	. = ..()
 	STOP_PROCESSING(SSobj, src)
+	return ..()
 
 /obj/item/toy/plush/plushling/process()
 	if(world.time < next_absorb || world.time < next_check)
