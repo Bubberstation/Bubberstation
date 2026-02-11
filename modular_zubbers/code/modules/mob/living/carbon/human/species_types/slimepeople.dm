@@ -639,6 +639,9 @@
 	if (isnull(prefs))
 		return
 
+	if (!is_valid_char_alteration_target(target))
+		return
+
 	var/old_slot = prefs.savefile.get_entry("default_slot")
 	prefs.load_character(prefdata_names.Find(target_char_name))
 
@@ -665,6 +668,7 @@
 	target.apply_status_effect(/datum/status_effect/shapeshift_transformed, original_name)
 	char_source.safe_transfer_prefs_to_with_damage(target)
 	target.dna.update_dna_identity()
+	SSquirks.OverrideQuirks(target, char_source.parent)
 
 	var/output = "[key_name(target)] has been transformed by [key_name(alterer)] using polymorph, at [loc_name(target)]. Original Name: [original_name], New Name: [target.dna.real_name]."
 	message_admins(output)
