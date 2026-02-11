@@ -165,7 +165,7 @@
 
 /datum/chemical_reaction/plushmium
 	results = list(/datum/reagent/plushmium = 5)
-	required_reagents = list(/datum/reagent/medicine/strange_reagent = 5, /datum/reagent/drug/happiness = 3, /datum/reagent/blood = 10, /datum/reagent/consumable/laughter = 5, /datum/reagent/toxin/bad_food = 6)
+	required_reagents = list(/datum/reagent/medicine/strange_reagent = 5, /datum/reagent/drug/happiness = 3, /datum/reagent/blood = 10, /datum/reagent/consumable/laughter = 5)
 	optimal_temp = 533
 	overheat_temp = 800
 	optimal_ph_min = 2
@@ -180,7 +180,7 @@
 	reaction_tags = REACTION_TAG_EXPLOSIVE | REACTION_TAG_MODERATE
 
 /datum/chemical_reaction/plushmium/reaction_step(datum/reagents/holder, datum/equilibrium/reaction, delta_t, delta_ph, step_reaction_vol)
-	var/datum/reagent/plushmium = holder.has_reagent(/datum/reagent/drug/methamphetamine)
+	var/datum/reagent/plushmium = holder.has_reagent(/datum/reagent/plushmium)
 	if(!plushmium)//First step
 		reaction.thermic_mod = (1-delta_ph)*5
 		return
