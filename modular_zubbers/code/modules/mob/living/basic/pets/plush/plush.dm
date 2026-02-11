@@ -18,7 +18,7 @@
 	response_help_simple = "pet"
 	response_help_continuous = "pets"
 	response_disarm_simple = "gently shove"
-	response_disarm_continuous = "gently shovess"
+	response_disarm_continuous = "gently shoves"
 	response_harm_simple = "hit"
 	response_harm_continuous = "hits"
 

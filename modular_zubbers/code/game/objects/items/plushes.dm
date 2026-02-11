@@ -555,7 +555,7 @@
 /obj/item/toy/plush/plushling/proc/plushie_absorb(obj/item/toy/plush/victim)
 	if(!victim)
 		return
-	visible_message(span_warning("[src] gruesomely mutilliates [victim], leaving nothing more than dust!"))
+	visible_message(span_warning("[src] gruesomely mutilates [victim], leaving nothing more than dust!"))
 	name = victim.name
 	desc = victim.desc + " Wait, did it just move..?"
 	icon_state = victim.icon_state
