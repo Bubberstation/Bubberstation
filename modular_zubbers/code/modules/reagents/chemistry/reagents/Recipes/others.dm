@@ -195,7 +195,7 @@
 	plushplosion(holder, equilibrium.reacted_vol)
 
 /datum/chemical_reaction/plushmium/reaction_finish(datum/reagents/holder, datum/equilibrium/reaction, react_vol)
-	var/datum/reagent/plushmium = holder.has_reagent(/datum/reagent/drug/methamphetamine)
+	var/datum/reagent/plushmium = holder.has_reagent(/datum/reagent/plushmium)
 	if(!plushmium)//Other procs before this can already blow us up
 		return ..()
 	if(plushmium.purity < purity_min)
