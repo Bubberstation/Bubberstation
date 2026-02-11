@@ -515,7 +515,7 @@
 		return
 	human_user.add_mood_event("plush_bite", /datum/mood_event/plush_bite)
 	human_user.apply_damage(5, BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
-	addtimer(CALLBACK(human_user, /mob/living/carbon/human.proc/dropItemToGround, src, TRUE), 1)
+	addtimer(CALLBACK(human_user, TYPE_PROC_REF(/mob/living/carbon/human, dropItemToGround), src, TRUE), 1)
 
 /obj/item/toy/plush/plushling/New()
 	var/initial_state = pick("plushie_lizard", "plushie_snake", "plushie_slime")
