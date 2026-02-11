@@ -205,6 +205,9 @@
 
 /datum/chemical_reaction/plushmium/proc/plushplosion(datum/reagents/holder, explode_vol)
 	var/atom/my_atom = holder.my_atom
-	new /obj/effect/spawner/random/entertainment/plushie_delux(get_turf(my_atom))
+	if(holder.total_volume < 20) //It creates a normal plush at low volume.. at higher amounts, things get slightly more interesting.
+		new /obj/effect/spawner/random/entertainment/plushie_delux(get_turf(my_atom))
+	else
+		new /obj/item/toy/plush/plushling(get_turf(my_atom))
 	my_atom.visible_message(span_boldwarning("The reaction suddenly zaps, creating a plushie!"))
 	holder.clear_reagents()
