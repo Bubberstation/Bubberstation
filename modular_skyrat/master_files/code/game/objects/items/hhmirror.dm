@@ -21,7 +21,7 @@
 	if(!choosable_races.len)
 		for(var/datum/species/iterated_species as anything in subtypesof(/datum/species))
 			if(!(iterated_species::id in races_blacklist))
-				choosable_races += iterated_species.id
+				choosable_races += iterated_species::id
 	..()
 
 /obj/item/hhmirror/fullmagic/attack_self(mob/user)
