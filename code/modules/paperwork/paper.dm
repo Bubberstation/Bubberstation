@@ -382,7 +382,7 @@
 		return UI_CLOSE
 	if(!user.can_read(src))
 		return UI_CLOSE
-	if(in_contents_of(/obj/machinery/door/airlock) || in_contents_of(/obj/item/clipboard) || in_contents_of(/obj/item/folder))
+	if(in_contents_of(/obj/machinery/door/airlock) || in_contents_of(/obj/item/clipboard) || in_contents_of(/obj/item/folder) || in_contents_of(/obj/item/toy/plush/tian_plush)) //BUBBER EDIT - /obj/item/toy/plush/tian_plush
 		return UI_INTERACTIVE
 	return ..()
 
