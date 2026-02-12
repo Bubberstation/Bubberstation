@@ -147,7 +147,7 @@
 	var/max_rpm = 7000
 	var/produced_energy = 0
 	var/max_temperature = 1000
-	var/efficiency_rate = 50
+	var/efficiency_rate = 90
 	var/damage = 0
 	var/damage_archived = 0
 	var/all_parts_connected = FALSE

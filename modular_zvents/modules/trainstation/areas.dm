@@ -99,23 +99,44 @@
 	icon_state = "bathroom"
 
 /area/trainstation/indoors/train/kitchen
+	name = "Train kitchen"
 	icon_state = "kitchen"
 
 /area/trainstation/indoors/train/reustoran
+	name = "Restauran car"
 	icon_state = "tea"
 
 /area/trainstation/indoors/train/cook
+
+	name = "Train kitchen"
 	icon_state = "chef"
 
 /area/trainstation/indoors/train/vip
 	icon_state = "vip"
 
 /area/trainstation/indoors/train/security
+	name = "Security car"
 	icon_state = "security"
 
 /area/trainstation/indoors/train/medical
+	name = "Medical car"
 	icon_state = "medic"
 
+/area/trainstation/indoors/train/cargo
+	name = "Cargo car"
+	icon_state = "maintenance"
+
+/area/trainstation/indoors/train/containment
+	name = "Containment car"
+	icon_state = "maintenance"
+
+/area/trainstation/indoors/train/reserch
+	name = "Research car"
+	icon_state = "soyuz"
+
+/area/trainstation/indoors/train/server
+	name = "Research car"
+	icon_state = "soyuz"
 
 // Индивидуальные зоны вагонов
 /area/trainstation/indoors/train/vagon_1

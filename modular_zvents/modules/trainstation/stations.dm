@@ -14,6 +14,10 @@
 /obj/effect/landmark/trainstation/station_spawnpoint
 	name = "Station Placer"
 
+/obj/effect/landmark/trainstation/nearstation_spawnpoint
+	name = "Nearstation Placer"
+
+
 /obj/effect/landmark/trainstation/train_spawnpoint
 	name = "Train Placer"
 
@@ -116,17 +120,19 @@
 	var/desc = "A generic train station"
 	var/station_flags = NONE
 	var/visible = TRUE
-
 	var/required_stations = 0
 
 	var/map_path
-	var/datum/map_template/template = null
+	VAR_PRIVATE/datum/map_template/template = null
 
-	var/list/docking_turfs = list()
+	var/list/possible_nearstations = list(/datum/train_station/near_station/static_default)
 	var/list/possible_next = list()
+
+	VAR_PRIVATE/list/docking_turfs = list()
+	VAR_PRIVATE/datum/train_station/near_station/loaded_nearstation = null
+
 	// Блокирует ли эта станция движение поезда
 	var/blocking_moving = FALSE
-
 	var/ambience_sounds = null
 	VAR_PRIVATE/datum/looping_sound/global_sound/station_loop_soound = null
 
@@ -152,19 +158,45 @@
 		else
 			stack_trace("Invalid possible_next path [path] for station [type]")
 
-/datum/train_station/proc/load_station(datum/callback/load_callback)
+	if(station_flags & TRAINSTATION_NO_NEARSTATION)
+		return
+
+	for(var/i in 1 to length(possible_nearstations))
+		var/path = possible_nearstations[i]
+		var/datum/train_station/st = locate(path) in SStrain_controller.known_stations
+		if(st)
+			possible_nearstations[i] = st
+		else
+			stack_trace("Invalid possible_nearstations path [path] for station [type]")
+
+/datum/train_station/proc/get_spawnpoint()
+	return locate(/obj/effect/landmark/trainstation/station_spawnpoint) in GLOB.landmarks_list
+
+/datum/train_station/proc/get_spawn_offset(turf/spawn_turf)
+	var/offset_x = spawn_turf.x
+	var/offset_y = spawn_turf.y - template.height + 1
+	var/offset_z = spawn_turf.z
+	return list("x" = offset_x, "y" = offset_y, "z" = offset_z)
+
+
+/datum/train_station/proc/load_station(datum/callback/load_callback, silent = FALSE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 
 	if(!template)
 		return FALSE
 	var/start_time = world.realtime
-	var/obj/effect/landmark/trainstation/station_spawnpoint/spawnpoint = locate() in GLOB.landmarks_list
+	var/obj/effect/landmark/trainstation/station_spawnpoint/spawnpoint = get_spawnpoint()
 	if(!spawnpoint || !istype(spawnpoint))
 		stack_trace("Failed to load train station [name], no available spawnpoints!")
 		return FALSE
-	var/offset_x = spawnpoint.x
-	var/offset_y = spawnpoint.y - template.height + 1
-	var/offset_z = spawnpoint.z
+
+	var/list/spawn_offset = get_spawn_offset(get_turf(spawnpoint))
+	if(!islist(spawn_offset) || length(spawn_offset) != 3)
+		stack_trace("Failed to load train station [name], invalid spawn offset!")
+		return FALSE
+	var/offset_x = spawn_offset["x"]
+	var/offset_y = spawn_offset["y"]
+	var/offset_z = spawn_offset["z"]
 
 	var/turf/actual_spawnpoint = locate(offset_x, offset_y, offset_z)
 	if(!actual_spawnpoint)
@@ -179,8 +211,14 @@
 	if(template.width < world.maxx)
 		create_indestructible_borders(actual_spawnpoint)
 
+	if((islist(possible_nearstations) && length(possible_nearstations)) && !(station_flags & TRAINSTATION_NO_NEARSTATION))
+		var/datum/train_station/our_neatstation = pick(possible_nearstations)
+		if(our_neatstation && our_neatstation.load_station(silent = TRUE))
+			loaded_nearstation = our_neatstation
+
 	var/load_in = world.realtime - start_time
-	message_admins("TRAINSTATION: Loaded station [name] in [time2text(load_in, "ss")] seconds!")
+	if(!silent)
+		message_admins("TRAINSTATION: Loaded station [name] in [time2text(load_in, "ss")] seconds!")
 	if(load_callback)
 		load_callback.Invoke()
 	return TRUE
@@ -251,12 +289,39 @@
 	if(unload_callback)
 		unload_callback.Invoke()
 	Master.StopLoadingMap()
+	if(loaded_nearstation)
+		loaded_nearstation.unload_station()
+		loaded_nearstation = null
 	after_unload()
 
 /datum/train_station/proc/after_unload()
 	if(station_loop_soound)
 		station_loop_soound.stop()
 
+
+/datum/train_station/near_station
+	name = "Near station"
+	station_flags = TRAINSTATION_ABSCTRACT | TRAINSTATION_NO_FORKS | TRAINSTATION_NO_SELECTION | TRAINSTATION_NO_NEARSTATION
+	possible_nearstations = null
+	visible = FALSE
+
+/datum/train_station/near_station/get_spawnpoint()
+	return locate(/obj/effect/landmark/trainstation/nearstation_spawnpoint) in GLOB.landmarks_list
+
+/datum/train_station/near_station/get_spawn_offset(turf/spawn_turf)
+	return list("x" = spawn_turf.x, "y" = spawn_turf.y, "z" = spawn_turf.z)
+
+/datum/train_station/near_station/static_default
+	name = "Nearstation static - Default"
+	map_path = "_maps/modular_events/trainstation/nearstations/static_default.dmm"
+
+/datum/train_station/near_station/moving_default
+	name = "Nearstation - Forest outskirts"
+	map_path = "_maps/modular_events/trainstation/nearstations/moving_default.dmm"
+
+/datum/train_station/near_station/moving_deepforerst
+	name = "Nearstation - Deep forest"
+	map_path = "_maps/modular_events/trainstation/nearstations/moving_deep_forest.dmm"
 
 
 /datum/train_station/train_backstage
@@ -265,6 +330,10 @@
 	station_flags = TRAINSTATION_ABSCTRACT | TRAINSTATION_NO_FORKS | TRAINSTATION_NO_SELECTION
 	visible = FALSE
 
+	possible_nearstations = list(
+		/datum/train_station/near_station/moving_default,
+		/datum/train_station/near_station/moving_deepforerst
+	)
 
 
 /datum/train_station/start_point
