@@ -97,49 +97,49 @@
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-		SPECIES_PERK_ICON = "star-of-life",
-		SPECIES_PERK_NAME = "Durable Leather",
+		SPECIES_PERK_ICON = FA_ICON_SHIELD,
+		SPECIES_PERK_NAME = "Durable Chitin",
 		SPECIES_PERK_DESC = "The Giant Armored Serpentid chitin is very robust and protects them from pressure and low temperature hazards, while also providing decent brute resistance."
 	))
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-		SPECIES_PERK_ICON = "star-of-life",
+		SPECIES_PERK_ICON = FA_ICON_WEIGHT_HANGING,
 		SPECIES_PERK_NAME = "Heavy Skeleton",
-		SPECIES_PERK_DESC = "Giant Armored Serpentid are large and heavy. They can't be properly grabbed by other creatures."
+		SPECIES_PERK_DESC = "Giant Armored Serpentid are large and heavy, this makes them excellent at avoiding slipping and being grabbed."
 	))
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-		SPECIES_PERK_ICON = "star-of-life",
+		SPECIES_PERK_ICON = FA_ICON_USER_NINJA,
 		SPECIES_PERK_NAME = "Active Camouflage",
 		SPECIES_PERK_DESC = "The cells in a Giant Armored Serpentid's body are able to camouflage themselves to an extent, making the GAS appear translucent to the naked eye."
 	))
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
-		SPECIES_PERK_ICON = "star-of-life",
+		SPECIES_PERK_ICON = FA_ICON_EYE,
 		SPECIES_PERK_NAME = "Shielded Eyes",
 		SPECIES_PERK_DESC = "Giant Armored Serpentid have sensitive eyes, luckily they have eyeshields that can be used to make up for this."
+	))
+
+	perk_descriptions += list(list(
+		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+		SPECIES_PERK_ICON = FA_ICON_FACE_ANGRY,
+		SPECIES_PERK_NAME = "Threat Display",
+		SPECIES_PERK_DESC = "Giant Armored Serpentid are not good at communication, however, they can perform a threat display to show when they want to attack someone."
 	))
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "star-of-life",
 		SPECIES_PERK_NAME = "Custom Body",
-		SPECIES_PERK_DESC = "Giant Armored Serpentid has a nonhumanoid body and can't wear most clothes."
+		SPECIES_PERK_DESC = "Giant Armored Serpentid have a non-humanoid body and can't wear most clothes."
 	))
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
-		SPECIES_PERK_ICON = "star-of-life",
-		SPECIES_PERK_NAME = "Heat Intolerance",
-		SPECIES_PERK_DESC = "Giant Armored Serpentid cannot stand to be in overly warm environments for extended periods of time."
-	))
-
-	perk_descriptions += list(list(
-		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
-		SPECIES_PERK_ICON = "star-of-life",
+		SPECIES_PERK_ICON = FA_ICON_TEMPERATURE_HALF,
 		SPECIES_PERK_NAME = "Cold-Blooded",
 		SPECIES_PERK_DESC = "Giant Armored Serpentid are a cold blooded species and are vulnerable to temperature changes in their environment."
 	))
