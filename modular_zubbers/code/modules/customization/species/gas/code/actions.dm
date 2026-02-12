@@ -30,7 +30,7 @@
 
 /datum/action/cooldown/spell/toggle_active_camo
 	name = "Toggle Active Camo"
-	desc = "Toggle your active camo ability, becoming more translucent.."
+	desc = "Toggle your active camo ability, becoming more translucent."
 	button_icon = 'modular_zubbers/icons/actions/gas.dmi'
 	button_icon_state = "gas-cloak-0"
 	spell_requirements = null
@@ -50,7 +50,7 @@
 
 /datum/action/cooldown/spell/toggle_threat_display
 	name = "Toggle Threat Display"
-	desc = "Toggle your active camo ability, becoming more translucent.."
+	desc = "Toggle your threat display, letting your enemies know that you are ready for a fight!"
 	button_icon = 'modular_zubbers/icons/actions/gas.dmi'
 	button_icon_state = "gas-threat"
 	spell_requirements = null
@@ -61,10 +61,10 @@
 
 /datum/action/cooldown/spell/toggle_threat_display/cast(atom/target)
 	. = ..()
-	var/mob/living/carbon/human/snake_owner = owner
-	var/datum/species/gas/gas_species = snake_owner.dna?.species
 	if(!isgas(owner))
 		return
+	var/mob/living/carbon/human/snake_owner = owner
+	var/datum/species/gas/gas_species = snake_owner.dna.species
 	if(owner.incapacitated)
 		to_chat(owner, span_warning("You can't do a threat display in your current state."))
 		return
