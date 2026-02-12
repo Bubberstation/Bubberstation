@@ -1,11 +1,6 @@
 /obj/item/organ/heart/gland/Start()
-	active = 1
-
+	. = ..()
 	owner?.mind?.add_antag_datum(/datum/antagonist/abductee)
-
-	COOLDOWN_START(src, activation_cooldown, rand(cooldown_low, cooldown_high))
-
-
 	if(!ownerCheck() || !active_mind_control)
 		return
 	to_chat(owner, span_userdanger("You feel the compulsion fade, and you <i>completely forget</i> about your previous orders."))
