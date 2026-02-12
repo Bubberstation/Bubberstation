@@ -486,10 +486,10 @@
 	return ..()
 
 // Plushie coded and sprited by Mathilde.
-// Props to Seijan-Etroix for helping with the redesign!
+// Props to Seijan-Etroix for helping with the design!
 /obj/item/toy/plush/tian_plush
 	name = "bureaucratic goat plush"
-	desc = "A giant, weighted plushie of a goat-carp that loves to eat paper, and is very nice to hug. It has a faint scent of paperwork and weed. A tag on the back reads 'Comfort provided under license.'"
+	desc = "A giant, weighted plushie of a goat-carp bureaucrat, who seems to be very hungry for paper(work). It's nearly impossible to get your arms all the way around her.<br><br><span style=color:#6685F5><i>A tag on the back reads 'Comfort provided under official licence.'</i></span>"
 	attack_verb_continuous = list("stomps", "smothers", "buries", "squishes", "nibbles", "gnashes", "flattens", "pummels", "chomps")
 	attack_verb_simple = list("stomp", "smother", "bury", "squish", "nibble", "gnash", "flatten", "pummel", "chomp")
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
@@ -506,30 +506,24 @@
 		/obj/item/paperwork,
 	))
 
+/obj/item/toy/plush/tian_plush/interact(mob/user)
+	return
+
+/obj/item/toy/plush/tian_plush/attack_self_secondary(mob/user, modifiers)
+	. = ..()
+	if(.)
+		return
+	add_fingerprint(user)
+	ui_interact(user)
+	return TRUE
+
 /obj/item/toy/plush/tian_plush/attack_hand_secondary(mob/user, list/modifiers)
+	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
 	add_fingerprint(user)
 	ui_interact(user)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-//Had to copy over the plushie procs because I can't get it to work properly otherwise
-/obj/item/toy/plush/tian_plush/attack_self(mob/user, modifiers)
-	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user) & COMPONENT_CANCEL_ATTACK_CHAIN)
-		return TRUE
-	add_fingerprint(user)
-	if(stuffed || grenade)
-		to_chat(user, span_notice("You pet [src]. D'awww."))
-		if(grenade && !grenade.active)
-			user.log_message("activated a hidden grenade in [src].", LOG_VICTIM)
-			grenade.arm_grenade(user, msg = FALSE, volume = 10)
-	else
-		to_chat(user, span_notice("You try to pet [src], but it has no stuffing. Aww..."))
-
-	if(stuffed)
-		if(HAS_TRAIT(user, TRAIT_MONOPHOBIA))
-			to_chat(user, span_notice("You feel your heart warm up... You don't feel so alone."))
-	else
-		if(HAS_TRAIT(user, TRAIT_MONOPHOBIA))
-			to_chat(user, span_warning("You remember that even stitched companions can't stop the solitude building up inside your heart..."))
-	return TRUE
 
 //Plot armour
 /obj/item/toy/plush/tian_plush/attackby(obj/item/I, mob/living/user, list/modifiers, list/attack_modifiers)
