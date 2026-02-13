@@ -28,6 +28,9 @@
 	var/list/weak_sounds = list()
 	var/list/strong_sounds = list()
 
+/datum/weather/ash_storm/get_playlist_ref()
+	return GLOB.ash_storm_sounds
+
 /datum/weather/ash_storm/telegraph()
 	for(var/area/impacted_area as anything in impacted_areas)
 		//BUBBER ADDITION BEGIN - This is a HORRIBLE HACK to stop the weather from triggering for these locations

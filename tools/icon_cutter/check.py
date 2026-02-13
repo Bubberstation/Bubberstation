@@ -75,7 +75,7 @@ fail_count = 0
 output_hash = {}
 files = []
 if platform.system() == "Windows":
-    files = glob.glob(f"{path_to_us}\..\\..\\icons\\**\*.toml", recursive = True)
+    files = glob.glob(f"{path_to_us}\\..\\..\\icons\\**\\*.toml", recursive = True)
     files += glob.glob(f"{path_to_us}\..\\..\\modular_zubbers\\icons\\**\*.toml", recursive = True) # BUBBER EDIT ADDITION: Modular icon cutter
 else:
     files = glob.glob(f"{path_to_us}/../../icons/**/*.toml", recursive = True)
@@ -102,7 +102,7 @@ if len(output_hash) == 0:
 
 # Execute cutter
 if platform.system() == "Windows":
-    subprocess.run(f"{path_to_us}\..\\build\\build.bat --force-recut --ci icon-cutter")
+    subprocess.run(f"{path_to_us}\\..\\build\\build.bat --force-recut --ci icon-cutter")
 else:
     subprocess.run(f"{path_to_us}/../build/build.sh --force-recut --ci icon-cutter", shell = True)
 

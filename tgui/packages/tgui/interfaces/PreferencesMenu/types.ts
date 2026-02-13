@@ -1,6 +1,6 @@
 import type { BooleanLike } from 'tgui-core/react';
 
-import type { sendAct } from '../../backend';
+import type { sendAct } from '../../events/act';
 import type {
   LoadoutCategory,
   LoadoutList,
@@ -186,28 +186,23 @@ export enum PrefsWindow {
   Keybindings = 2,
 }
 
-export type PreferencesMenuData = {
-  character_preview_view: string;
-  character_profiles: (string | null)[];
-
+export type CharacterPreferencesData = {
   preview_options: string[]; // SKYRAT EDIT ADDITION
   preview_selection: string; // SKYRAT EDIT ADDITION
+  clothing: Record<string, string>;
+  features: Record<string, string>;
+  game_preferences: Record<string, unknown>;
+  non_contextual: {
+    random_body: RandomSetting;
+    [otherKey: string]: unknown;
+  };
+  secondary_features: Record<string, unknown>;
+  supplemental_features: Record<string, unknown>;
+  manually_rendered_features: Record<string, string>;
 
-  character_preferences: {
-    clothing: Record<string, string>;
-    features: Record<string, string>;
-    game_preferences: Record<string, unknown>;
-    non_contextual: {
-      random_body: RandomSetting;
-      [otherKey: string]: unknown;
-    };
-    secondary_features: Record<string, unknown>;
-    supplemental_features: Record<string, unknown>;
-    manually_rendered_features: Record<string, string>;
+  names: Record<string, string>;
 
-    names: Record<string, string>;
-
-    misc: {
+   misc: {
       gender: Gender;
       joblessrole: JoblessRole;
       species: string;
@@ -217,8 +212,14 @@ export type PreferencesMenuData = {
       background_state: string; // BUBBER EDIT ADDITION: Swappable character editor backgrounds
     };
 
-    randomization: Record<string, RandomSetting>;
-  };
+  randomization: Record<string, RandomSetting>;
+};
+
+export type PreferencesMenuData = {
+  character_preview_view: string;
+  character_profiles: (string | null)[];
+
+  character_preferences: CharacterPreferencesData;
 
   content_unlocked: BooleanLike;
 

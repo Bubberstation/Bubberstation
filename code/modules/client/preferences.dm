@@ -312,13 +312,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/default_value = read_preference(requested_preference.type)
 
 			// Yielding
-			// BUBBERSTATION EDIT START: TGUI COLOR PICKER
 			var/new_color = tgui_color_picker(
 				usr,
 				"Select new color",
 				null,
 				default_value || COLOR_WHITE,
-			) // BUBBERSTATION EDIT END: TGUI COLOR PICKER
+			)
 
 			if (!new_color)
 				return FALSE

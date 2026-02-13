@@ -18,7 +18,7 @@
 	bypasses_immunity = TRUE
 	var/being_stealthy = TRUE // BUBBER EDIT ADD
 
-/datum/disease/chronic_illness/stage_act(seconds_per_tick, times_fired)
+/datum/disease/chronic_illness/stage_act(seconds_per_tick)
 	. = ..()
 	if(!.)
 		return

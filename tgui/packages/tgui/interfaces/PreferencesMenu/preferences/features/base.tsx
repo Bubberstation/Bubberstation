@@ -19,7 +19,11 @@ import {
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
-import { createSetPreference, type PreferencesMenuData } from '../../types';
+import {
+  type CharacterPreferencesData,
+  createSetPreference,
+  type PreferencesMenuData,
+} from '../../types';
 import { useServerPrefs } from '../../useServerPrefs';
 
 export function sortChoices(array: [string, ReactNode][]) {
@@ -59,6 +63,7 @@ export type FeatureValueProps<
   serverData: TServerData | undefined;
   shrink?: boolean;
   value: TReceiving;
+  character_preferences: CharacterPreferencesData;
 }>;
 
 export function FeatureColorInput(props: FeatureValueProps<string>) {
@@ -238,6 +243,7 @@ export function FeatureValueInput(props: FeatureValueInputProps) {
     shrink: props.shrink,
     handleSetValue: changeValue,
     value: predictedValue,
+    character_preferences: data.character_preferences,
   });
 }
 
