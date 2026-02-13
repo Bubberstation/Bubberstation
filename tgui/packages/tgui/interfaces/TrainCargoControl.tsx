@@ -344,7 +344,7 @@ export const TrainCargoControl = () => {
                 format={(v) => `${Number(v).toFixed(1)}°`}
                 color="transparent"
                 style={{
-                  opacity: 0.1,
+                  opacity: 0.8,
                   height: '6px',
                   marginTop: '30px',
                   pointerEvents: 'auto',

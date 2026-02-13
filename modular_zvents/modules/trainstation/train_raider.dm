@@ -45,7 +45,7 @@
 	new /obj/effect/temp_visual/telegraphing/boss_hit(target_turf)
 
 	var/ignores = IGNORE_SLOWDOWNS|IGNORE_TARGET_LOC_CHANGE|IGNORE_USER_LOC_CHANGE
-	if(!do_after(jumper, 2 SECONDS, jumper, ignores, max_interact_count = 1))
+	if(!do_after(jumper, 1 SECONDS, jumper, ignores, max_interact_count = 1))
 		StartCooldown(3 SECONDS)
 		jumper.balloon_alert(jumper, "Interupted!")
 		return FALSE
@@ -55,43 +55,68 @@
 
 /datum/action/cooldown/jetpack_jump/proc/perform_jump(mob/living/carbon/human/jumper, turf/target_turf)
 	jumper.movement_type = FLYING
+
 	if(jumper.buckled)
 		var/atom/movable/our_vehicle = jumper.buckled
 		our_vehicle.unbuckle_mob(jumper, TRUE, FALSE)
 
-	jumper.pixel_z = 0
-	jumper.set_anchored(TRUE)
+	playsound(jumper, 'sound/items/weapons/resonator_blast.ogg', 100, TRUE)
+	new /obj/effect/temp_visual/fire(get_turf(jumper))
 
 	var/start_z = jumper.pixel_z
 	var/start_y = jumper.pixel_y
+
+	jumper.set_anchored(TRUE)
+
 	var/dist_to_turf = get_dist(jumper, target_turf)
-	for(var/i = 1 to dist_to_turf * 4)
+	var/steps = dist_to_turf * 4
+	var/apex_height = 60 + dist_to_turf * 9
+	for(var/i in 1 to steps)
 		if(get_turf(jumper) == target_turf)
 			break
-		var/progress = i / (dist_to_turf * 2)
-		var/turf/next_turf = get_step_towards(jumper, target_turf)
 
-		if(progress < 0.51)
-			jumper.pixel_z = lerp(jumper.pixel_z, 150, progress)
-			jumper.pixel_y = lerp(jumper.pixel_y, 150, progress)
-		else if(progress > 0.81)
-			jumper.pixel_z = lerp(jumper.pixel_z, start_z, progress)
-			jumper.pixel_y = lerp(jumper.pixel_y, start_y, progress)
+		var/t = i / steps
+		var/height_mult = 1.0
+		if(t < 0.15)
+			height_mult = 1 + 2.5 * (1 - t/0.15)**2
+
+		var/height = 4 * t * (1 - t)
+		height *= 1 + 0.25 * sin(t * 180)
+
+		var/current_z = start_z + apex_height * height * height_mult
+		var/current_y = start_y + (apex_height * 0.55) * height
+		var/lean = -sin(t * 180) * 25
+		var/dx = target_turf.x - jumper.x
+		lean += dx * 8
+
+		jumper.transform = matrix(jumper.transform) * matrix(lean, MATRIX_ROTATE)
+		jumper.pixel_z = current_z
+		jumper.pixel_y = current_y
 		new /obj/effect/temp_visual/decoy/fading/halfsecond(get_turf(jumper), jumper, 200)
 		if(i % 4 == 0)
+			var/turf/next_turf = get_step_towards(jumper, target_turf)
+
 			if(isclosedturf(next_turf))
 				jumper.Knockdown(3 SECONDS)
 				break
-			if(next_turf.is_blocked_turf_ignore_climbable())
+
+			if(next_turf.is_blocked_turf(TRUE, jumper))
 				jumper.Knockdown(1 SECONDS)
 				break
+
 			jumper.forceMove(next_turf)
+
 		sleep(2 TICKS)
 
 	jumper.set_anchored(FALSE)
 	jumper.movement_type = GROUND
+
+
 	jumper.pixel_z = start_z
 	jumper.pixel_y = start_y
+	jumper.transform = initial(jumper.transform)
+
+	playsound(jumper, 'sound/items/weapons/kinetic_accel.ogg', 100, TRUE)
 
 	for(var/mob/living/L in get_turf(jumper))
 		if(L == jumper)
@@ -278,6 +303,10 @@
 /datum/round_event/ghost_role/train_raiders/proc/strike_raider(mob/living/raider, obj/vehicle/ridden/trainstation/raider_bike)
 	if(!raider || !raider_bike)
 		return
+	if(raider.open_uis)
+		for(var/datum/tgui/ui in raider.open_uis)
+			ui.close(FALSE)
+
 	var/turf/target_turf = get_ranged_target_turf(raider_bike, raider_bike.dir, 15)
 	if(!target_turf)
 		return
@@ -289,4 +318,5 @@
 		sleep(3 TICKS)
 		CHECK_TICK
 	raider_bike.last_real_move = world.time + 10 SECONDS
-
+	if(station_time() > 18 HOURS)
+		raider_bike.set_light_on(TRUE)

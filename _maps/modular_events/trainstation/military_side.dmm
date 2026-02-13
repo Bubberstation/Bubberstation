@@ -1,23 +1,27 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "al" = (
 /obj/structure/bonfire,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/dirt/station,
 /area/trainstation/outdoor)
 "aK" = (
-/obj/effect/light_emitter/daylight,
-/obj/effect/light_emitter/daylight,
-/turf/open/indestructible/train_platform,
+/obj/structure/decorative{
+	anchored = 1;
+	name = "flesh cluster";
+	desc = "Something's moving inside...";
+	icon = 'icons/mob/simple/animal.dmi';
+	icon_state = "fleshblob";
+	pixel_x = 6;
+	pixel_y = -1
+	},
+/turf/open/indestructible/meat,
 /area/trainstation/outdoor)
 "bc" = (
 /obj/item/crowbar/red,
 /obj/item/clothing/glasses/regular,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/dirt/station,
 /area/trainstation/outdoor)
 "be" = (
 /obj/effect/turf_decal/weather/snow,
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "bl" = (
@@ -36,7 +40,6 @@
 /obj/effect/turf_decal/weather/dirt{
 	dir = 1
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/cobble,
 /area/trainstation/outdoor)
 "cm" = (
@@ -54,7 +57,6 @@
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "cw" = (
-/obj/effect/light_emitter/daylight,
 /turf/closed/indestructible/rock/snow/ice/ore,
 /area/trainstation/outdoor)
 "cG" = (
@@ -70,19 +72,16 @@
 "dk" = (
 /obj/structure/flora/tree/dead/style_random,
 /obj/structure/flora/bush/snow/style_random,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "dH" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 8
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/floor/asphalt,
 /area/trainstation/outdoor)
 "dK" = (
 /obj/structure/prop/general/zenithplatform3,
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
 "dO" = (
@@ -93,7 +92,6 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/thinplating,
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/cobble,
 /area/trainstation/outdoor)
 "dR" = (
@@ -123,7 +121,6 @@
 /obj/effect/turf_decal/weather/dirt{
 	dir = 6
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "ez" = (
@@ -134,6 +131,12 @@
 	dir = 4
 	},
 /turf/open/indestructible/vault,
+/area/trainstation/outdoor)
+"eF" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/turf/open/indestructible/meat,
 /area/trainstation/outdoor)
 "ft" = (
 /obj/structure/rack/shelf,
@@ -158,7 +161,6 @@
 "fK" = (
 /obj/structure/prop/general/zenithplatform3,
 /obj/structure/railing/corner,
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
 "fO" = (
@@ -166,22 +168,27 @@
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "fT" = (
-/obj/effect/light_emitter/daylight,
-/obj/effect/light_emitter/daylight,
-/turf/open/indestructible/train_platform/bottom,
+/obj/structure/decorative{
+	anchored = 1;
+	name = "flesh cluster";
+	desc = "Something's moving inside...";
+	icon = 'icons/mob/simple/animal.dmi';
+	icon_state = "fleshblob";
+	pixel_x = 6;
+	pixel_y = -1
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/indestructible/meat,
 /area/trainstation/outdoor)
 "fW" = (
 /obj/item/clothing/head/beret/militia,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "gm" = (
 /obj/effect/turf_decal/weather/snow,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor)
 "gz" = (
-/obj/effect/light_emitter/daylight,
 /mob/living/basic/bear/snow,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
@@ -205,17 +212,14 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/thinplating,
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/cobble,
 /area/trainstation/outdoor)
 "hy" = (
 /obj/structure/marker_beacon/burgundy,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor)
 "ia" = (
 /obj/effect/spawner/random/structure/shipping_container,
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
 "ie" = (
@@ -225,7 +229,6 @@
 "il" = (
 /obj/structure/railing,
 /obj/effect/turf_decal/weather/snow/corner,
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "iz" = (
@@ -245,12 +248,10 @@
 "jo" = (
 /obj/structure/flora/tree/pine/style_random,
 /obj/effect/turf_decal/weather/dirt,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "ju" = (
 /obj/structure/railing/corner,
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "jN" = (
@@ -259,11 +260,9 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 1
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor)
 "jV" = (
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/cobble/corner{
 	dir = 8
 	},
@@ -283,13 +282,10 @@
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "kw" = (
-/obj/structure/prop/general/zenithplatform3,
-/obj/structure/railing,
-/obj/effect/light_emitter/daylight,
-/turf/open/indestructible/train_platform,
+/obj/effect/turf_decal/lunar_sand/plating,
+/turf/open/floor/plating,
 /area/trainstation/outdoor)
 "kx" = (
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "kO" = (
@@ -300,7 +296,6 @@
 /obj/effect/decal/cleanable/blood/footprints{
 	dir = 8
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "lo" = (
@@ -308,15 +303,18 @@
 	dir = 1
 	},
 /obj/structure/marker_beacon/burgundy,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
+/area/trainstation/outdoor)
+"lq" = (
+/obj/effect/turf_decal/siding/dark,
+/obj/effect/decal/cleanable/blood,
+/turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "lv" = (
 /obj/structure/fluff/clockwork/alloy_shards/large,
 /obj/effect/turf_decal/weather/dirt{
 	dir = 1
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/cobble/side,
 /area/trainstation/outdoor)
 "ly" = (
@@ -325,19 +323,16 @@
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "lB" = (
-/obj/effect/turf_decal/tile/yellow/opposingcorners,
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 10
 	},
-/obj/structure/rack/shelf,
-/turf/open/indestructible/vault,
+/turf/closed/indestructible/meat,
 /area/trainstation/outdoor)
 "lC" = (
 /obj/structure/flora/tree/dead/style_random,
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 8
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/dirt/station,
 /area/trainstation/outdoor)
 "lF" = (
@@ -347,22 +342,30 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/floor/iron/stairs/medium,
+/area/trainstation/outdoor)
+"lT" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/machinery/computer/cargo{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/box,
+/turf/open/floor/plating,
 /area/trainstation/outdoor)
 "md" = (
 /obj/structure/flora/tree/pine/style_random,
 /obj/effect/turf_decal/weather/dirt{
 	dir = 8
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "mq" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 8
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor)
 "mB" = (
@@ -382,8 +385,11 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 1
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/vault,
+/area/trainstation/outdoor)
+"mQ" = (
+/obj/effect/mob_spawn/ghost_role/flesh_spider,
+/turf/open/indestructible/meat,
 /area/trainstation/outdoor)
 "na" = (
 /obj/structure/railing/corner{
@@ -398,26 +404,22 @@
 	layer = 5.02
 	},
 /obj/effect/turf_decal/weather/snow,
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "nc" = (
-/obj/effect/light_emitter/daylight,
 /obj/structure/prop/vehicle/zengarbagetruck,
 /turf/open/floor/asphalt,
 /area/trainstation/outdoor)
 "nm" = (
 /obj/effect/spawner/random/structure/billboard/nanotrasen,
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
 "nX" = (
-/obj/effect/light_emitter/daylight,
-/turf/open/indestructible/train_platform,
+/obj/effect/decal/cleanable/blood,
+/turf/open/indestructible/meat,
 /area/trainstation/outdoor)
 "oe" = (
 /obj/structure/chair/sofa/bench/left,
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
 "of" = (
@@ -432,33 +434,32 @@
 "op" = (
 /obj/item/clothing/head/beret/militia,
 /obj/effect/decal/cleanable/blood/old,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/dirt/station,
 /area/trainstation/outdoor)
 "ou" = (
-/obj/effect/light_emitter/daylight,
 /obj/structure/prop/vehicle/meridiancar_5,
 /turf/open/floor/asphalt,
 /area/trainstation/outdoor)
 "oC" = (
 /obj/structure/flora/rock/style_3,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor)
+"oV" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/mob_spawn/ghost_role/flesh_spider,
+/turf/open/indestructible/meat,
+/area/trainstation/outdoor)
 "pj" = (
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/cobble,
 /area/trainstation/outdoor)
 "po" = (
 /obj/structure/flora/rock/style_random,
 /obj/structure/flora/tree/pine/style_random,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "pM" = (
 /obj/structure/fluff/clockwork/alloy_shards,
 /obj/effect/turf_decal/weather/dirt,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "qe" = (
@@ -472,7 +473,6 @@
 	name = "HOPIUM";
 	color = "#FFA500"
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/dirt/station,
 /area/trainstation/outdoor)
 "qN" = (
@@ -481,12 +481,10 @@
 	},
 /obj/structure/closet/crate/bin,
 /obj/effect/turf_decal/weather/snow,
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "ri" = (
 /obj/effect/decal/cleanable/blood/drip,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "rr" = (
@@ -496,7 +494,6 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/floor/iron/stairs/medium,
 /area/trainstation/outdoor)
 "rs" = (
@@ -504,14 +501,12 @@
 /obj/structure/railing/corner{
 	dir = 8
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
 "rC" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 1
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/cobble/side,
 /area/trainstation/outdoor)
 "rY" = (
@@ -533,7 +528,6 @@
 /area/trainstation/outdoor)
 "sl" = (
 /obj/structure/chair/sofa/bench/right,
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
 "sr" = (
@@ -554,32 +548,27 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/weather/snow,
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "th" = (
 /obj/structure/flora/tree/pine/style_random,
 /obj/structure/flora/bush/snow/style_random,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "tm" = (
 /obj/structure/prop/city/buildingventbig11_off{
 	name = "Generator"
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/dirt/station,
 /area/trainstation/outdoor)
 "tP" = (
 /obj/structure/flora/tree/pine/style_random,
 /obj/structure/fluff/clockwork/alloy_shards,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "uk" = (
 /obj/structure/flora/rock/style_random,
 /obj/structure/flora/bush/snow/style_random,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "uo" = (
@@ -587,9 +576,21 @@
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "up" = (
-/obj/effect/light_emitter/daylight,
-/obj/effect/light_emitter/daylight,
-/turf/open/misc/asteroid/snow/indestructible,
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/structure/railing{
+	dir = 1;
+	color = "#666666"
+	},
+/obj/effect/turf_decal/trimline/white,
+/obj/machinery/light/floor,
+/turf/open/floor/plating,
+/area/trainstation/outdoor)
+"ur" = (
+/obj/effect/turf_decal/tile/yellow/half{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "ux" = (
 /obj/structure/reagent_dispensers/plumbed/fuel,
@@ -603,12 +604,10 @@
 "uz" = (
 /obj/structure/fluff/clockwork/alloy_shards,
 /obj/structure/flora/rock/style_random,
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/cobble,
 /area/trainstation/outdoor)
 "uA" = (
 /obj/structure/flora/tree/pine/style_random,
-/obj/effect/light_emitter/daylight,
 /mob/living/basic/bear/snow,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
@@ -626,7 +625,6 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/weather/snow/corner,
-/obj/effect/light_emitter/daylight,
 /turf/open/floor/stone/icemoon,
 /area/trainstation/outdoor)
 "uR" = (
@@ -645,13 +643,17 @@
 /obj/item/clothing/head/beret/militia{
 	pixel_x = 9
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/dirt/station,
+/area/trainstation/outdoor)
+"vt" = (
+/obj/structure/statue/bone/rib{
+	dir = 8
+	},
+/turf/open/indestructible/meat,
 /area/trainstation/outdoor)
 "vy" = (
 /obj/effect/decal/cleanable/blood/gibs/old,
 /obj/item/broken_bottle,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/dirt/station,
 /area/trainstation/outdoor)
 "vG" = (
@@ -661,14 +663,12 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 1
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "wb" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 1
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "wo" = (
@@ -678,12 +678,10 @@
 /obj/effect/turf_decal/weather/dirt{
 	dir = 1
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor)
 "wH" = (
 /obj/structure/flora/rock/style_3,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "wK" = (
@@ -693,7 +691,6 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 8
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "wO" = (
@@ -702,19 +699,16 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 6
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/tram,
 /area/trainstation/outdoor)
 "wV" = (
 /obj/effect/decal/cleanable/blood/tracks,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/ice/coldroom,
 /area/trainstation/outdoor)
 "xz" = (
 /obj/structure/chair/sofa/bench/left{
 	dir = 1
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
 "xA" = (
@@ -724,12 +718,18 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 4
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/cobble,
+/area/trainstation/outdoor)
+"xK" = (
+/obj/effect/decal/fakelattice,
+/obj/effect/turf_decal/siding/dark,
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor)
 "xQ" = (
 /obj/effect/turf_decal/weather/snow,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "xW" = (
@@ -743,7 +743,6 @@
 "xY" = (
 /obj/effect/turf_decal/weather/snow,
 /obj/effect/turf_decal/weather/dirt,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor)
 "yg" = (
@@ -752,7 +751,6 @@
 /area/trainstation/outdoor)
 "yt" = (
 /obj/structure/fluff/clockwork/alloy_shards/medium,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/dirt/station,
 /area/trainstation/outdoor)
 "yA" = (
@@ -763,38 +761,63 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 1
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/cobble/side{
 	dir = 8
 	},
 /area/trainstation/outdoor)
 "yF" = (
 /obj/structure/flora/tree/pine/style_random,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "yX" = (
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/ice/coldroom,
 /area/trainstation/outdoor)
 "zq" = (
-/obj/effect/light_emitter/daylight,
 /turf/open/floor/iron/stairs/medium,
+/area/trainstation/outdoor)
+"zA" = (
+/obj/effect/turf_decal/siding/dark,
+/obj/effect/decal/cleanable/blood,
+/mob/living/basic/corrupted_arachnid,
+/turf/open/indestructible/meat,
+/area/trainstation/outdoor)
+"zB" = (
+/obj/structure/statue/bone/rib,
+/turf/open/indestructible/meat,
 /area/trainstation/outdoor)
 "zG" = (
 /turf/open/indestructible/train_platform/bottom,
 /area/trainstation/outdoor)
+"zQ" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/structure/railing{
+	dir = 2;
+	color = "#666666";
+	pixel_y = 0
+	},
+/obj/effect/turf_decal/trimline/white,
+/obj/machinery/light/floor,
+/turf/open/floor/plating,
+/area/trainstation/outdoor)
 "zV" = (
 /obj/structure/flora/rock/style_4,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor)
 "Aa" = (
 /obj/effect/turf_decal/siding/dark/corner,
-/turf/open/indestructible/vault,
+/obj/effect/decal/cleanable/blood,
+/obj/structure/decorative{
+	anchored = 1;
+	name = "flesh cluster";
+	desc = "Something's moving inside...";
+	icon = 'icons/mob/simple/animal.dmi';
+	icon_state = "fleshblob";
+	pixel_x = 6;
+	pixel_y = -1
+	},
+/turf/open/indestructible/meat,
 /area/trainstation/outdoor)
 "Aw" = (
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor)
 "AB" = (
@@ -807,7 +830,6 @@
 "AO" = (
 /obj/structure/reagent_dispensers/beerkeg,
 /obj/effect/turf_decal/weather/dirt,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "AU" = (
@@ -826,22 +848,25 @@
 /area/trainstation/outdoor)
 "BC" = (
 /obj/structure/flora/bush/snow/style_random,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
+/area/trainstation/outdoor)
+"BG" = (
+/obj/effect/turf_decal/tile/yellow/opposingcorners,
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/effect/decal/cleanable/blood,
+/turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "Ce" = (
 /obj/effect/turf_decal/weather/snow,
 /obj/structure/fence/interlink{
 	dir = 8
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/tram,
 /area/trainstation/outdoor)
 "Cf" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 8
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "Ch" = (
@@ -850,7 +875,6 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 4
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "Cl" = (
@@ -861,7 +885,6 @@
 /area/trainstation/outdoor)
 "Ct" = (
 /obj/structure/flora/bush/snow/style_random,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "Cv" = (
@@ -876,12 +899,10 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 1
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor)
 "Cx" = (
 /obj/effect/spawner/random/structure/crate_loot,
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
 "CA" = (
@@ -911,6 +932,7 @@
 /area/trainstation/outdoor)
 "Dk" = (
 /obj/machinery/light/directional/west,
+/obj/effect/decal/cleanable/blood,
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "Du" = (
@@ -922,7 +944,6 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 8
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/floor/stone/icemoon,
 /area/trainstation/outdoor)
 "DG" = (
@@ -935,16 +956,19 @@
 /area/trainstation/outdoor)
 "DQ" = (
 /obj/effect/turf_decal/weather/dirt,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "DS" = (
 /obj/structure/flora/tree/dead/style_random,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "EG" = (
 /obj/machinery/light/directional/east,
+/turf/open/indestructible/vault,
+/area/trainstation/outdoor)
+"EK" = (
+/obj/effect/turf_decal/tile/yellow/half,
+/obj/effect/decal/cleanable/blood,
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "EP" = (
@@ -962,8 +986,16 @@
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "Fe" = (
-/obj/effect/light_emitter/daylight,
-/turf/open/indestructible/train_platform/bottom,
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/structure/railing{
+	dir = 2;
+	color = "#666666";
+	pixel_y = 0
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating,
 /area/trainstation/outdoor)
 "Ff" = (
 /obj/structure/fence/interlink,
@@ -974,7 +1006,6 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 4
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/tram,
 /area/trainstation/outdoor)
 "Fk" = (
@@ -987,20 +1018,17 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 4
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/tram,
 /area/trainstation/outdoor)
 "Fn" = (
 /obj/structure/flora/rock/style_random,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "Fv" = (
-/obj/effect/turf_decal/tile/yellow/opposingcorners,
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
 	},
-/turf/open/indestructible/vault,
+/turf/closed/indestructible/meat,
 /area/trainstation/outdoor)
 "Fx" = (
 /obj/effect/turf_decal/tile/dark/opposingcorners,
@@ -1024,7 +1052,6 @@
 /obj/effect/turf_decal/weather/dirt{
 	dir = 8
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "FO" = (
@@ -1055,7 +1082,6 @@
 /obj/effect/turf_decal/weather/dirt{
 	dir = 9
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "Gp" = (
@@ -1068,7 +1094,9 @@
 /area/trainstation/outdoor)
 "Ha" = (
 /obj/machinery/light/directional/north,
-/turf/open/indestructible/vault,
+/obj/effect/decal/cleanable/blood,
+/obj/structure/statue/bone/rib,
+/turf/open/indestructible/meat,
 /area/trainstation/outdoor)
 "Hp" = (
 /obj/effect/turf_decal/tile/yellow/opposingcorners,
@@ -1094,7 +1122,6 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 1
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "HS" = (
@@ -1104,12 +1131,10 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 4
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "HY" = (
 /obj/effect/spawner/random/structure/billboard/roadsigns,
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
 "It" = (
@@ -1119,14 +1144,20 @@
 /obj/structure/closet/crate/bin,
 /turf/open/floor/iron,
 /area/trainstation/outdoor)
+"IF" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/structure/railing{
+	dir = 5;
+	color = "#666666"
+	},
+/turf/open/floor/plating,
+/area/trainstation/outdoor)
 "Jk" = (
 /obj/structure/marker_beacon/burgundy,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "Jr" = (
 /obj/machinery/light/directional/north,
-/obj/effect/light_emitter/daylight,
 /turf/open/floor/asphalt,
 /area/trainstation/outdoor)
 "JK" = (
@@ -1134,8 +1165,20 @@
 /obj/effect/turf_decal/weather/dirt{
 	dir = 10
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
+/area/trainstation/outdoor)
+"JY" = (
+/obj/effect/decal/cleanable/blood,
+/obj/structure/decorative{
+	anchored = 1;
+	name = "flesh cluster";
+	desc = "Something's moving inside...";
+	icon = 'icons/mob/simple/animal.dmi';
+	icon_state = "fleshblob";
+	pixel_x = 6;
+	pixel_y = -1
+	},
+/turf/open/indestructible/meat,
 /area/trainstation/outdoor)
 "Kd" = (
 /obj/effect/turf_decal/tile/dark/opposingcorners{
@@ -1157,7 +1200,6 @@
 /obj/effect/turf_decal/weather/dirt{
 	dir = 5
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/cobble,
 /area/trainstation/outdoor)
 "KK" = (
@@ -1174,7 +1216,6 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/floor/iron/stairs/medium,
 /area/trainstation/outdoor)
 "KS" = (
@@ -1187,7 +1228,6 @@
 /area/trainstation/outdoor)
 "Le" = (
 /obj/structure/flora/rock/style_4,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "Lw" = (
@@ -1203,7 +1243,6 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/floor/iron/stairs/medium,
 /area/trainstation/outdoor)
 "LU" = (
@@ -1213,12 +1252,10 @@
 /obj/effect/turf_decal/weather/dirt{
 	dir = 1
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/cobble,
 /area/trainstation/outdoor)
 "LW" = (
 /obj/effect/turf_decal/weather/snow/corner,
-/obj/effect/light_emitter/daylight,
 /turf/open/floor/asphalt,
 /area/trainstation/outdoor)
 "Mg" = (
@@ -1226,13 +1263,11 @@
 	dir = 1;
 	layer = 5.02
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "Mm" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning,
 /obj/effect/turf_decal/weather/snow,
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "ME" = (
@@ -1260,7 +1295,6 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 10
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/floor/stone/icemoon,
 /area/trainstation/outdoor)
 "MK" = (
@@ -1288,29 +1322,35 @@
 /obj/effect/turf_decal/weather/dirt{
 	dir = 4
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "Ng" = (
 /turf/closed/indestructible/normal_wall,
 /area/trainstation/outdoor)
+"Ni" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/structure/railing{
+	dir = 2;
+	color = "#666666";
+	pixel_y = 0
+	},
+/turf/open/floor/plating,
+/area/trainstation/outdoor)
 "Nq" = (
-/obj/effect/turf_decal/weather/snow,
-/obj/structure/fence/interlink,
-/obj/effect/light_emitter/daylight,
-/obj/effect/light_emitter/daylight,
-/turf/open/indestructible/tram,
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating,
 /area/trainstation/outdoor)
 "Nv" = (
 /obj/effect/turf_decal/trimline/yellow/line{
 	dir = 4
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/floor/asphalt,
 /area/trainstation/outdoor)
 "NI" = (
 /obj/structure/flora/rock/style_2,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "NK" = (
@@ -1328,15 +1368,18 @@
 	dir = 1
 	},
 /obj/structure/flora/rock/style_4,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
+/area/trainstation/outdoor)
+"Oi" = (
+/obj/structure/statue/bone/rib,
+/obj/effect/decal/cleanable/blood,
+/turf/open/indestructible/meat,
 /area/trainstation/outdoor)
 "Oj" = (
 /turf/open/floor/asphalt,
 /area/trainstation/outdoor)
 "Ok" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning,
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "Oz" = (
@@ -1347,7 +1390,6 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 9
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/tram,
 /area/trainstation/outdoor)
 "OH" = (
@@ -1361,7 +1403,6 @@
 "OS" = (
 /obj/effect/turf_decal/weather/snow,
 /obj/structure/fence/interlink,
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/tram,
 /area/trainstation/outdoor)
 "OY" = (
@@ -1370,15 +1411,11 @@
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "Pd" = (
-/obj/effect/light_emitter/daylight,
 /mob/living/basic/bear/snow,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor)
 "Pe" = (
-/obj/effect/turf_decal/tile/yellow/anticorner{
-	dir = 8
-	},
-/turf/open/indestructible/vault,
+/turf/open/indestructible/meat,
 /area/trainstation/outdoor)
 "Pm" = (
 /obj/structure/rack/shelf,
@@ -1393,7 +1430,6 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 1
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "QS" = (
@@ -1405,7 +1441,6 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/weather/snow/corner,
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/tram,
 /area/trainstation/outdoor)
 "Ro" = (
@@ -1429,7 +1464,6 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 5
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/floor/stone/icemoon,
 /area/trainstation/outdoor)
 "RY" = (
@@ -1438,7 +1472,6 @@
 	},
 /obj/effect/turf_decal/siding/thinplating,
 /obj/effect/turf_decal/siding/thinplating,
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/cobble,
 /area/trainstation/outdoor)
 "Sn" = (
@@ -1449,17 +1482,20 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 1
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/tram,
 /area/trainstation/outdoor)
 "So" = (
 /obj/structure/flora/rock/style_2,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor)
 "SF" = (
-/obj/effect/light_emitter/daylight,
-/turf/closed/indestructible/normal_wall,
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/structure/railing{
+	dir = 1;
+	color = "#666666"
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating,
 /area/trainstation/outdoor)
 "SL" = (
 /obj/structure/chair/comfy/black{
@@ -1467,37 +1503,48 @@
 	},
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
+"SM" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/structure/railing{
+	dir = 9;
+	color = "#666666"
+	},
+/turf/open/floor/plating,
+/area/trainstation/outdoor)
 "SU" = (
 /obj/structure/flora/tree/pine/style_random,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor)
 "Ta" = (
-/obj/effect/turf_decal/tile/yellow/opposingcorners,
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
 	},
 /obj/machinery/light/directional/west,
-/turf/open/indestructible/vault,
+/obj/structure/decorative{
+	anchored = 1;
+	name = "flesh cluster";
+	desc = "Something's moving inside...";
+	icon = 'icons/mob/simple/animal.dmi';
+	icon_state = "fleshblob";
+	pixel_x = 6;
+	pixel_y = -1
+	},
+/turf/open/indestructible/meat,
 /area/trainstation/outdoor)
 "Tf" = (
-/obj/effect/turf_decal/tile/yellow/opposingcorners,
 /obj/effect/turf_decal/siding/thinplating/dark,
-/obj/structure/rack/shelf,
-/turf/open/indestructible/vault,
+/turf/closed/indestructible/meat,
 /area/trainstation/outdoor)
 "Ti" = (
 /obj/item/reagent_containers/cup/glass/bottle/beer/almost_empty{
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 15)
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/dirt/station,
 /area/trainstation/outdoor)
 "Tk" = (
 /obj/structure/chair/sofa/bench/right{
 	dir = 1
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
 "TB" = (
@@ -1510,7 +1557,6 @@
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "TF" = (
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/dirt/station,
 /area/trainstation/outdoor)
 "TK" = (
@@ -1525,13 +1571,15 @@
 	layer = 3
 	},
 /obj/effect/turf_decal/weather/dirt,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
+/area/trainstation/outdoor)
+"Ub" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "Ui" = (
 /obj/structure/marker_beacon/burgundy,
 /obj/structure/flora/rock/pile,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor)
 "Uk" = (
@@ -1543,7 +1591,6 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 8
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "UC" = (
@@ -1562,7 +1609,6 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 5
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/cobble,
 /area/trainstation/outdoor)
 "VC" = (
@@ -1573,12 +1619,10 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 4
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
 "VF" = (
 /obj/structure/prop/big/ship_memorial,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor)
 "VJ" = (
@@ -1588,30 +1632,41 @@
 /obj/structure/table/reinforced,
 /turf/open/indestructible/vault,
 /area/trainstation/outdoor)
+"VV" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/docking_port/stationary{
+	dir = 8;
+	dwidth = 5;
+	height = 7;
+	name = "Cargo Bay";
+	shuttle_id = "cargo_home";
+	width = 12
+	},
+/turf/open/floor/plating,
+/area/trainstation/outdoor)
 "VZ" = (
-/obj/effect/light_emitter/daylight,
-/turf/open/indestructible/vault,
+/turf/closed/indestructible/meat,
 /area/trainstation/outdoor)
 "Wc" = (
 /obj/structure/flora/rock/style_random,
 /obj/effect/turf_decal/weather/snow,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "Wl" = (
-/obj/effect/light_emitter/daylight,
-/turf/open/floor/asphalt,
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating,
 /area/trainstation/outdoor)
 "Wr" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 9
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "Wv" = (
 /obj/structure/flora/tree/dead/style_random,
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor)
 "Wy" = (
@@ -1624,7 +1679,6 @@
 /obj/structure/prop/general/trashblue{
 	pixel_y = 14
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
 "Xl" = (
@@ -1638,14 +1692,12 @@
 /obj/effect/turf_decal/weather/dirt{
 	dir = 4
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "XL" = (
 /obj/effect/turf_decal/trimline/yellow/line{
 	dir = 8
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/floor/asphalt,
 /area/trainstation/outdoor)
 "XT" = (
@@ -1654,7 +1706,6 @@
 /obj/effect/turf_decal/weather/dirt{
 	dir = 6
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor)
 "Yh" = (
@@ -1663,7 +1714,6 @@
 /obj/structure/railing/corner{
 	dir = 8
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
 "Ym" = (
@@ -1682,7 +1732,6 @@
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 4
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/indestructible/tram,
 /area/trainstation/outdoor)
 "YN" = (
@@ -1690,7 +1739,6 @@
 /obj/effect/turf_decal/weather/dirt{
 	dir = 8
 	},
-/obj/effect/light_emitter/daylight,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
 "YO" = (
@@ -4078,7 +4126,7 @@ Ct
 Ct
 yF
 kx
-up
+kx
 yF
 kx
 kx
@@ -4107,8 +4155,8 @@ kx
 Aw
 xQ
 kx
-up
-up
+kx
+kx
 yF
 kx
 kx
@@ -4182,16 +4230,16 @@ Aw
 cw
 "}
 (78,1,1) = {"
-SF
+Ng
 OS
 OS
 OS
 OS
 OS
-SF
+Ng
 OS
-Nq
-SF
+OS
+Ng
 kx
 uk
 kx
@@ -4214,13 +4262,13 @@ Aw
 cw
 "}
 (79,1,1) = {"
-Fe
-nX
-nX
-nX
-nX
-nX
-kw
+zG
+wo
+wo
+wo
+wo
+wo
+uF
 Aw
 Aw
 Ce
@@ -4246,13 +4294,13 @@ Aw
 cw
 "}
 (80,1,1) = {"
-fT
-nX
-nX
-aK
-nX
-nX
-kw
+zG
+wo
+wo
+wo
+wo
+wo
+uF
 Aw
 Aw
 Ce
@@ -4278,13 +4326,13 @@ Aw
 cw
 "}
 (81,1,1) = {"
-Fe
-nX
-nX
-nX
-nX
-nX
-kw
+zG
+wo
+wo
+wo
+wo
+wo
+uF
 Aw
 Aw
 Ng
@@ -4310,21 +4358,21 @@ Aw
 cw
 "}
 (82,1,1) = {"
-Fe
-nX
-nX
+zG
+wo
+wo
 xz
 sl
-nX
-kw
+wo
+uF
 Aw
 Aw
 Ng
 cY
 Dk
-fu
-sS
-sS
+mQ
+VZ
+VZ
 Ng
 Aw
 Aw
@@ -4342,21 +4390,21 @@ Aw
 cw
 "}
 (83,1,1) = {"
-Fe
-nX
-nX
+zG
+wo
+wo
 Tk
 oe
-nX
-kw
+wo
+uF
 Aw
 Aw
 Ng
 cY
-sS
-fu
-sS
-sS
+Ub
+Oi
+VZ
+VZ
 Ng
 Aw
 Aw
@@ -4374,21 +4422,21 @@ Aw
 cw
 "}
 (84,1,1) = {"
-Fe
-nX
-nX
-nX
+zG
+wo
+wo
+wo
 WJ
-nX
-kw
+wo
+uF
 Aw
 Aw
 Ng
 sF
 sS
-fu
-sS
-sS
+lq
+oV
+VZ
 Ng
 Aw
 Aw
@@ -4406,21 +4454,21 @@ Aw
 cw
 "}
 (85,1,1) = {"
-Fe
-nX
-nX
+zG
+wo
+wo
 xz
 sl
-nX
-kw
+wo
+uF
 Aw
 Aw
 Ng
 NK
 sS
 fu
-sS
-sS
+nX
+zB
 Ng
 Aw
 Aw
@@ -4438,13 +4486,13 @@ Aw
 cw
 "}
 (86,1,1) = {"
-Fe
-nX
-nX
+zG
+wo
+wo
 Tk
 oe
-nX
-kw
+wo
+uF
 Aw
 Aw
 Ng
@@ -4452,7 +4500,7 @@ cY
 sS
 Kn
 sS
-sS
+nX
 Ng
 Aw
 Aw
@@ -4470,13 +4518,13 @@ Aw
 cw
 "}
 (87,1,1) = {"
-Fe
-nX
-nX
-nX
-nX
-nX
-kw
+zG
+wo
+wo
+wo
+wo
+wo
+uF
 Aw
 Aw
 Ng
@@ -4502,13 +4550,13 @@ Aw
 cw
 "}
 (88,1,1) = {"
-Fe
-nX
-nX
-nX
-nX
-nX
-kw
+zG
+wo
+wo
+wo
+wo
+wo
+uF
 Aw
 Aw
 Ng
@@ -4534,13 +4582,13 @@ Aw
 cw
 "}
 (89,1,1) = {"
-Fe
-nX
-nX
-nX
-nX
-nX
-kw
+zG
+wo
+wo
+wo
+wo
+wo
+uF
 Aw
 Aw
 Ng
@@ -4566,13 +4614,13 @@ Aw
 cw
 "}
 (90,1,1) = {"
-Fe
-nX
-nX
-nX
-nX
-nX
-kw
+zG
+wo
+wo
+wo
+wo
+wo
+uF
 Aw
 Aw
 Ng
@@ -4598,13 +4646,13 @@ Aw
 cw
 "}
 (91,1,1) = {"
-Fe
-nX
-nX
+zG
+wo
+wo
 xz
 sl
-nX
-kw
+wo
+uF
 Aw
 Aw
 Ng
@@ -4630,13 +4678,13 @@ cw
 cw
 "}
 (92,1,1) = {"
-Fe
-nX
-nX
+zG
+wo
+wo
 Tk
 oe
-nX
-kw
+wo
+uF
 Aw
 Aw
 Ng
@@ -4662,21 +4710,21 @@ cw
 cw
 "}
 (93,1,1) = {"
-Fe
-nX
-nX
-nX
+zG
+wo
+wo
+wo
 WJ
-nX
-kw
+wo
+uF
 Aw
 Aw
 Ng
 Kd
 Ng
-sS
+nX
 Aa
-UE
+eF
 UE
 Ym
 UE
@@ -4694,12 +4742,12 @@ cw
 cw
 "}
 (94,1,1) = {"
-Fe
-nX
-nX
+zG
+wo
+wo
 xz
 sl
-nX
+wo
 dK
 Ng
 Ng
@@ -4707,7 +4755,7 @@ Ng
 Ng
 Ng
 Ha
-fu
+zA
 je
 je
 je
@@ -4726,19 +4774,19 @@ cw
 cw
 "}
 (95,1,1) = {"
-Fe
-nX
-nX
+zG
+wo
+wo
 Tk
 oe
-nX
+wo
 dK
 Ng
 Pm
 yg
 sS
 Ng
-sS
+nX
 fu
 iP
 iP
@@ -4758,19 +4806,19 @@ Aw
 cw
 "}
 (96,1,1) = {"
-Fe
-nX
-nX
-nX
-nX
-nX
+zG
+wo
+wo
+wo
+wo
+wo
 dK
 Ng
 bp
 sS
 sS
 YO
-sS
+JY
 fu
 iP
 OY
@@ -4790,12 +4838,12 @@ Aw
 cw
 "}
 (97,1,1) = {"
-Fe
-nX
-nX
-nX
-nX
-nX
+zG
+wo
+wo
+wo
+wo
+wo
 dK
 Ng
 bp
@@ -4818,16 +4866,16 @@ Aw
 gm
 Aw
 Aw
-SF
+Ng
 cw
 "}
 (98,1,1) = {"
-Fe
-nX
-nX
-nX
-nX
-nX
+zG
+wo
+wo
+wo
+wo
+wo
 dK
 Ng
 sg
@@ -4849,17 +4897,17 @@ QS
 Aw
 gm
 Aw
-SF
-SF
+Ng
+Ng
 cw
 "}
 (99,1,1) = {"
-Fe
-nX
-nX
-nX
-nX
-nX
+zG
+wo
+wo
+wo
+wo
+wo
 dK
 Ng
 Ng
@@ -4881,21 +4929,21 @@ wO
 Aw
 gm
 Aw
-SF
-SF
+Ng
+Ng
 cw
 "}
 (100,1,1) = {"
-Fe
-nX
-nX
+zG
+wo
+wo
 xz
 sl
-nX
-kw
+wo
+uF
 Aw
 mF
-VZ
+sS
 ju
 KK
 TF
@@ -4913,17 +4961,17 @@ Aw
 gm
 Aw
 Aw
-SF
+Ng
 cw
 cw
 "}
 (101,1,1) = {"
-Fe
-nX
-nX
+zG
+wo
+wo
 Tk
 oe
-nX
+wo
 Yh
 Lw
 na
@@ -4950,13 +4998,13 @@ Ng
 Ng
 "}
 (102,1,1) = {"
-Fe
-nX
-nX
-nX
+zG
+wo
+wo
+wo
 WJ
-nX
-kw
+wo
+uF
 oC
 vG
 il
@@ -4968,27 +5016,27 @@ mq
 mq
 Ct
 Sn
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
 Ng
 Ng
 Ng
 Ng
 "}
 (103,1,1) = {"
-Fe
-nX
-nX
+zG
+wo
+wo
 xz
 sl
-nX
-kw
+wo
+uF
 Aw
 vG
 il
@@ -5014,13 +5062,13 @@ Oj
 Oj
 "}
 (104,1,1) = {"
-Fe
-nX
-nX
+zG
+wo
+wo
 Tk
 oe
-nX
-kw
+wo
+uF
 hy
 vG
 il
@@ -5031,27 +5079,27 @@ Aw
 Aw
 Aw
 Jk
-SF
+Ng
 Jr
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
 rY
 Oj
 Oj
 Oj
 "}
 (105,1,1) = {"
-Fe
-nX
-nX
-nX
-nX
-nX
+zG
+wo
+wo
+wo
+wo
+wo
 rs
 rr
 Mg
@@ -5064,122 +5112,122 @@ rr
 rr
 wK
 Ok
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
 rY
 Oj
 Oj
 Oj
 "}
 (106,1,1) = {"
-Fe
-nX
-nX
-nX
-nX
-nX
+zG
+wo
+wo
+wo
+wo
+wo
 dK
 zq
-VZ
+sS
 be
 zq
 zq
-VZ
-VZ
+sS
+sS
 zq
 zq
-VZ
+sS
 Ok
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
 rY
 Oj
 Oj
 Oj
 "}
 (107,1,1) = {"
-Fe
-nX
-nX
-nX
-nX
-nX
+zG
+wo
+wo
+wo
+wo
+wo
 dK
 zq
-VZ
-VZ
+sS
+sS
 zq
 zq
-VZ
-VZ
+sS
+sS
 zq
 zq
-VZ
+sS
 Ok
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
 rY
 Oj
 Oj
 Oj
 "}
 (108,1,1) = {"
-Fe
-nX
-nX
-nX
-nX
-nX
+zG
+wo
+wo
+wo
+wo
+wo
 dK
 zq
-VZ
-VZ
+sS
+sS
 zq
 zq
-VZ
-VZ
+sS
+sS
 zq
 zq
-VZ
+sS
 Ok
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
 rY
 Oj
 Oj
 Oj
 "}
 (109,1,1) = {"
-Fe
-nX
-nX
+zG
+wo
+wo
 xz
 sl
-nX
+wo
 fK
 lF
 HS
@@ -5192,27 +5240,27 @@ lF
 lF
 HS
 Mm
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
 rY
 Oj
 Oj
 Oj
 "}
 (110,1,1) = {"
-Fe
-nX
-nX
+zG
+wo
+wo
 Tk
 oe
-nX
-kw
+wo
+uF
 hy
 Aw
 zV
@@ -5223,28 +5271,28 @@ Aw
 Aw
 Aw
 Jk
-SF
+Ng
 Jr
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
 rY
 Oj
 Oj
 Oj
 "}
 (111,1,1) = {"
-Fe
-nX
-nX
-nX
+zG
+wo
+wo
+wo
 WJ
-nX
-kw
+wo
+uF
 VF
 kx
 kx
@@ -5256,27 +5304,27 @@ Aw
 Aw
 NI
 Sn
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
 rY
 Oj
 Oj
 Oj
 "}
 (112,1,1) = {"
-Fe
-nX
-nX
+zG
+wo
+wo
 xz
 sl
-nX
-kw
+wo
+uF
 Aw
 kx
 wH
@@ -5288,27 +5336,27 @@ kx
 Aw
 kx
 Sn
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
 rY
 Oj
 Oj
 Oj
 "}
 (113,1,1) = {"
-Fe
-nX
-nX
+zG
+wo
+wo
 Tk
 oe
-nX
-kw
+wo
+uF
 Aw
 kx
 kx
@@ -5334,13 +5382,13 @@ Oj
 Oj
 "}
 (114,1,1) = {"
-Fe
-nX
-nX
-nX
-nX
-nX
-kw
+zG
+wo
+wo
+wo
+wo
+wo
+uF
 Aw
 kx
 yF
@@ -5352,27 +5400,27 @@ Aw
 Aw
 Jk
 Sn
-Wl
+Oj
 ou
-Wl
+Oj
 nc
-Wl
+Oj
 nc
-Wl
-Wl
-SF
-SF
-SF
-SF
+Oj
+Oj
+Ng
+Ng
+Ng
+Ng
 "}
 (115,1,1) = {"
-Fe
-nX
-nX
-nX
-nX
-nX
-kw
+zG
+wo
+wo
+wo
+wo
+wo
+uF
 Aw
 yF
 kx
@@ -5383,28 +5431,28 @@ yF
 kx
 Aw
 kx
-SF
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
-SF
-SF
-SF
-SF
+Ng
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Ng
+Ng
+Ng
+Ng
 "}
 (116,1,1) = {"
-Fe
-nX
-nX
-nX
-nX
-nX
-kw
+zG
+wo
+wo
+wo
+wo
+wo
+uF
 hy
 kx
 kx
@@ -5416,27 +5464,27 @@ kx
 Aw
 kx
 Hz
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
 LW
 Ct
-SF
+Ng
 cw
 cw
 "}
 (117,1,1) = {"
-Fe
-nX
-nX
-nX
-nX
-nX
-kw
+zG
+wo
+wo
+wo
+wo
+wo
+uF
 zV
 kx
 yF
@@ -5448,27 +5496,27 @@ yF
 Aw
 Jk
 Hz
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
-Wl
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
 LW
 kx
-SF
-SF
+Ng
+Ng
 cw
 "}
 (118,1,1) = {"
-Fe
-nX
-nX
-nX
-nX
-nX
-kw
+zG
+wo
+wo
+wo
+wo
+wo
+uF
 Aw
 kx
 yF
@@ -5479,7 +5527,7 @@ kx
 kx
 Aw
 kx
-SF
+Ng
 Ch
 Ch
 Ch
@@ -5489,18 +5537,18 @@ Ch
 Ch
 Ch
 Uk
-SF
-SF
+Ng
+Ng
 cw
 "}
 (119,1,1) = {"
-Fe
-nX
+zG
+wo
 ia
-nX
-nX
-nX
-kw
+wo
+wo
+wo
+uF
 Aw
 kx
 kx
@@ -5522,17 +5570,17 @@ hy
 kx
 kx
 Aw
-SF
+Ng
 cw
 "}
 (120,1,1) = {"
-Fe
-nX
-nX
-nX
-nX
+zG
+wo
+wo
+wo
+wo
 ia
-kw
+uF
 Aw
 yF
 kx
@@ -5558,354 +5606,354 @@ Aw
 cw
 "}
 (121,1,1) = {"
-Fe
-nX
-nX
-nX
-nX
-nX
-kw
+zG
+wo
+wo
+wo
+wo
+wo
+uF
 Aw
 kx
 kx
 hm
 kx
-yF
-kx
-kx
-kx
-kx
-yF
-kx
-kx
-kx
-kx
-yF
-kx
-Aw
-kx
-kx
-Aw
+SM
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+Ni
+xK
 cw
 cw
 "}
 (122,1,1) = {"
-Fe
-nX
-nX
+zG
+wo
+wo
 Cx
-nX
-nX
-kw
+wo
+wo
+uF
 hy
 kx
 yF
 hm
 Fn
-kx
-kx
-yF
-kx
-kx
-kx
-kx
-yF
-kx
-kx
-kx
-kx
-Aw
-kx
-kx
-Aw
+up
+Nq
+Nq
+Nq
+Nq
+Nq
+Nq
+Nq
+Nq
+Nq
+Nq
+Nq
+Nq
+Nq
+zQ
+xK
 cw
 cw
 "}
 (123,1,1) = {"
-Fe
-nX
-nX
+zG
+wo
+wo
 ia
-nX
-nX
-kw
+wo
+wo
+uF
 zV
 kx
 kx
 hm
 Aw
-kx
-kx
-kx
-Fn
-Ct
-kx
-yF
-kx
-Fn
-Ct
-kx
-yF
-Aw
-kx
-kx
-cw
+SF
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+Fe
+xK
 cw
 cw
 "}
 (124,1,1) = {"
-Fe
-nX
-nX
-nX
-nX
-nX
-kw
+zG
+wo
+wo
+wo
+wo
+wo
+uF
 Aw
 yF
 kx
 RY
 yF
-kx
-kx
-yF
-kx
-Ct
-kx
-kx
-Aw
-Aw
-Aw
-Aw
-Aw
-Aw
-kx
-DS
-cw
+SF
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+Fe
+xK
 cw
 cw
 "}
 (125,1,1) = {"
-Fe
-nX
-nX
-nX
+zG
+wo
+wo
+wo
 Cx
-nX
-kw
+wo
+uF
 Aw
 kx
 kx
 RY
 kx
-kx
-kx
-kx
-kx
-yF
-yF
-kx
-kx
-kx
-kx
-yF
-kx
-Aw
-yF
-kx
-cw
+SF
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+Fe
+xK
 cw
 cw
 "}
 (126,1,1) = {"
-Fe
+zG
 HY
-nX
-nX
-nX
-nX
-kw
+wo
+wo
+wo
+wo
+uF
 Aw
 kx
 kx
 hm
 yF
-kx
-kx
-kx
-kx
-kx
-kx
-kx
-yF
-kx
-kx
-kx
-kx
-Aw
-kx
-kx
-Aw
+SF
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+Fe
+xK
 cw
 cw
 "}
 (127,1,1) = {"
-Fe
-nX
-nX
-nX
-nX
-nX
-kw
+zG
+wo
+wo
+wo
+wo
+wo
+uF
 Aw
 Aw
 SU
 hm
 kx
-kx
-kx
-yF
-kx
-kx
-kx
-kx
-kx
-kx
-yF
-kx
-kx
-Aw
-Aw
-Aw
-Aw
+SF
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+Fe
+xK
 Aw
 cw
 "}
 (128,1,1) = {"
-Fe
-nX
-nX
-nX
-nX
-nX
-kw
+zG
+wo
+wo
+wo
+wo
+wo
+uF
 Aw
 Aw
 Aw
 hm
 SU
-kx
-kx
-kx
-Fn
-Ct
-kx
-yF
-kx
-Fn
-Ct
-kx
-yF
-Aw
-kx
-kx
-Aw
+SF
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+Fe
+xK
 Aw
 cw
 "}
 (129,1,1) = {"
-Fe
+zG
 nm
-nX
-nX
-nX
-nX
-kw
+wo
+wo
+wo
+wo
+uF
 Ui
 Aw
 Aw
 hm
 Aw
-kx
-kx
-Aw
-Aw
-Aw
-kx
-kx
-Aw
-Aw
-Aw
-Aw
-Aw
-Aw
-kx
-DS
-Aw
+SF
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+VV
+kw
+kw
+kw
+kw
+kw
+Fe
+xK
 Aw
 cw
 "}
 (130,1,1) = {"
-Fe
-nX
-nX
-nX
-nX
-nX
-kw
+zG
+wo
+wo
+wo
+wo
+wo
+uF
 Aw
 Wv
 Aw
 hm
 Aw
-yF
-kx
-kx
-kx
-kx
-yF
-kx
-kx
-kx
-kx
-yF
-kx
-Aw
-yF
-kx
-Aw
+up
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+Wl
+lT
+Wl
+Wl
+Wl
+Wl
+Wl
+zQ
+xK
 Aw
 cw
 "}
 (131,1,1) = {"
-Fe
-nX
-nX
-nX
-nX
-nX
-kw
+zG
+wo
+wo
+wo
+wo
+wo
+uF
 Aw
 SU
 Aw
 hm
 SU
-kx
-kx
-yF
-kx
-kx
-kx
-kx
-Aw
-Aw
-Aw
-Aw
-Aw
-Aw
-Ct
-kx
-Aw
+IF
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+kw
+Ni
+xK
 Aw
 cw
 "}
@@ -6145,7 +6193,7 @@ gN
 VJ
 FO
 EP
-EP
+zB
 Pe
 Tf
 Ng
@@ -6174,11 +6222,11 @@ kb
 cn
 Ng
 gN
-ZP
+ur
 sS
-sS
-sS
-PM
+Ub
+mQ
+fT
 Tf
 Ng
 Du
@@ -6208,10 +6256,10 @@ Ng
 AV
 dR
 iP
-sS
-sS
-PM
-ly
+aK
+nX
+Pe
+Tf
 Ng
 hy
 Aw
@@ -6240,7 +6288,7 @@ Ng
 OH
 of
 Wy
-sS
+vt
 sS
 PM
 cG
@@ -6274,7 +6322,7 @@ ZP
 sS
 ie
 ie
-PM
+EK
 ly
 Ng
 Aw
@@ -6307,7 +6355,7 @@ sS
 NZ
 SL
 PM
-ly
+BG
 Ng
 Aw
 Aw
@@ -6385,7 +6433,7 @@ Du
 Du
 Du
 Du
-SF
+Ng
 cw
 cw
 "}

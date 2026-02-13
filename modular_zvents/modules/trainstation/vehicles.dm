@@ -44,6 +44,10 @@
 	layer = LYING_MOB_LAYER
 	pixel_x = -16
 	pixel_y = -16
+	light_on = FALSE
+	light_range = 5
+	light_angle = 90
+	light_color = COLOR_WHITE
 
 	var/riding_component_type = /datum/component/riding/vehicle/train_bike
 	var/cover_iconstate = "bike_cover"

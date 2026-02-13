@@ -128,7 +128,10 @@
 	var/map_path
 	VAR_PRIVATE/datum/map_template/template = null
 
-	var/list/possible_nearstations = list(/datum/train_station/near_station/static_default)
+	var/list/possible_nearstations = list(
+		/datum/train_station/near_station/static_default,
+		/datum/train_station/near_station/static_mountaints,
+	)
 	var/list/possible_next = list()
 
 	VAR_PRIVATE/list/docking_turfs = list()
@@ -318,6 +321,11 @@
 	name = "Nearstation static - Default"
 	map_path = "_maps/modular_events/trainstation/nearstations/static_default.dmm"
 
+/datum/train_station/near_station/static_mountaints
+	name = "Nearstation static - Default"
+	map_path = "_maps/modular_events/trainstation/nearstations/static_mountains.dmm"
+
+
 /datum/train_station/near_station/moving_default
 	name = "Nearstation - Forest outskirts"
 	map_path = "_maps/modular_events/trainstation/nearstations/moving_default.dmm"
@@ -347,25 +355,37 @@
 	name = "Abandoned depo"
 	map_path = "_maps/modular_events/trainstation/abandoned_train_depo.dm.dmm"
 	creator = "Fenysha"
-	possible_nearstations = list(/datum/train_station/near_station/abandoned_depo)
+	possible_nearstations = list(/datum/train_station/infected_laboratory)
 	possible_next = list(/datum/train_station/start_point)
 	station_flags = TRAINSTATION_NO_FORKS | TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING
 
-
-/datum/train_station/start_point
-	name = "Start-point"
-	map_path = "_maps/modular_events/trainstation/startpoint.dmm"
-	creator = "Fenysha & TYWONKA"
-	possible_next = list(/datum/train_station/military_house)
-	station_flags = TRAINSTATION_NO_FORKS | TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING
-
-
-/datum/train_station/military_house
-	name = "Military Side"
-	creator = "Fenysha & TYWONKA"
-	map_path = "_maps/modular_events/trainstation/military_side.dmm"
+/datum/train_station/infected_laboratory
+	name = "Infected laboratory"
+	map_path = "_maps/modular_events/trainstation/infected_lab.dmm"
+	creator = "Fenysha & v1s1ti"
 	station_flags = TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING
 
+
+/datum/train_station/start_point
+	name = "Union Plasa"
+	map_path = "_maps/modular_events/trainstation/startpoint.dmm"
+	creator = "Fenysha"
+	possible_next = list()
+	station_flags = TRAINSTATION_NO_FORKS | TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING
+	required_stations = 8
+
+/datum/train_station/military_house
+	name = "Evacuated Military Side"
+	creator = "Fenysha & TYWONKA"
+	map_path = "_maps/modular_events/trainstation/military_side.dmm"
+	station_flags = TRAINSTATION_BLOCKING
+
+/datum/train_station/missle_military_side
+	name = "Corrupted military Side"
+	creator = "v1s1ti"
+	map_path = "_maps/modular_events/trainstation/missle_military_side.dmm"
+	station_flags = TRAINSTATION_BLOCKING
+	required_stations = 6
 
 /datum/train_station/warehouses
 	name = "Abandoned warehousess"
@@ -382,25 +402,27 @@
 	name = "Abandoned mines"
 	creator = "Kierri"
 	map_path = "_maps/modular_events/trainstation/abandoned_mines.dmm"
+	possible_nearstations = list(/datum/train_station/near_station/static_mountaints)
 	station_flags = TRAINSTATION_BLOCKING
 
 /datum/train_station/deep_forest
 	name = "Deep forest"
 	creator = "Fenysha"
 	map_path = "_maps/modular_events/trainstation/deep_forest.dmm"
+	possible_nearstations = list(/datum/train_station/near_station/static_mountaints)
 
 /datum/train_station/collapsed_lab
 	name = "Collapsed laboratory"
-	creator = "Mold"
+	creator = "Mold & Fenysha"
 	map_path = "_maps/modular_events/trainstation/collapsed_lab.dmm"
 	station_flags = TRAINSTATION_BLOCKING
-	required_stations = 3
+	required_stations = 5
 
 /datum/train_station/radiosphere
 	name = "The Radiosphere"
 	creator = "Fenysha & Mold"
 	map_path = "_maps/modular_events/trainstation/radiosphere.dmm"
 	station_flags = TRAINSTATION_BLOCKING
-	required_stations = 3
+	required_stations = 5
 
 	ambience_sounds = list('modular_zvents/sounds/radiosphere_loop1.ogg' = 40 SECONDS)

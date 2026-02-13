@@ -96,7 +96,7 @@ SUBSYSTEM_DEF(train_controller)
 	load_train()
 	load_startpoint()
 	for(var/obj/machinery/light/light in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/light))
-		light.update_light()
+		light.update()
 
 /datum/controller/subsystem/train_controller/proc/set_lobby_screen()
 	SStitle.change_title_screen('modular_zvents/icons/lobby/trainstation.jpg')
