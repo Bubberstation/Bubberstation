@@ -1,4 +1,24 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ad" = (
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-4-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222"
+	},
+/obj/structure/fake_stairs/directional/south{
+	icon_state = "stairs-old";
+	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
+	color = "#666666";
+	dir = 4
+	},
+/obj/structure/railing/corner/end/flip{
+	dir = 4;
+	color = "#666666"
+	},
+/turf/open/indestructible/train_platform,
+/area/space)
 "ag" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/drip{
@@ -15,29 +35,15 @@
 /obj/item/kirbyplants/organic/applebush,
 /turf/open/floor/iron/white,
 /area/space)
-"aq" = (
-/obj/structure/emergency_shield/regenerating{
-	uses_integrity = 0;
-	pixel_y = 32;
-	name = "stasis field";
-	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
+"aM" = (
+/obj/structure/broken_flooring/pile{
+	color = "#9F9F9F";
+	desc = null;
+	name = "tiling"
 	},
-/obj/structure/railing/corner/end/flip{
-	dir = 4
-	},
-/obj/structure/prop/general/zcomputermachine{
-	name = "locked down stasis control terminal";
-	desc = "A relatively low-tech solution for internal computing, internal network mail, and logging. This model appears to be quite old."
-	},
-/turf/open/floor/iron/dark/textured_large,
-/area/space)
-"as" = (
-/obj/structure/prop/general/highvoltagegrille_off,
-/obj/structure/railing{
-	dir = 9;
-	color = "#666666"
-	},
-/turf/open/indestructible/train_platform,
+/obj/effect/decal/cleanable/blood,
+/obj/item/gun/energy/modular_laser_rifle/carbine,
+/turf/open/floor/plating,
 /area/space)
 "aX" = (
 /turf/closed/indestructible/meat,
@@ -105,12 +111,12 @@
 	},
 /turf/closed/wall/city/siding,
 /area/space)
-"bI" = (
-/obj/machinery/light,
-/turf/open/indestructible/meat,
-/area/space)
 "bV" = (
 /obj/effect/gibspawner/human,
+/turf/open/floor/iron/white,
+/area/space)
+"cc" = (
+/obj/structure/prop/general/hospitalcurtain,
 /turf/open/floor/iron/white,
 /area/space)
 "cf" = (
@@ -120,10 +126,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/stone,
 /area/space)
-"cn" = (
-/obj/structure/flora/bush/fullgrass/style_random,
-/turf/open/misc/asteroid/snow/indestructible,
-/area/space)
 "cx" = (
 /obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -131,13 +133,13 @@
 	},
 /turf/open/floor/iron/white,
 /area/space)
-"cE" = (
-/obj/effect/turf_decal/lunar_sand/plating,
-/obj/structure/railing{
-	dir = 9;
-	color = "#666666"
+"cB" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
 	},
-/turf/open/floor/plating,
+/obj/structure/prop/general/bigroller_up2,
+/obj/effect/mob_spawn/corpse/human/charredskeleton,
+/turf/open/floor/iron/white,
 /area/space)
 "cF" = (
 /obj/structure/bed/medical/anchored{
@@ -167,6 +169,11 @@
 	},
 /turf/open/floor/plating,
 /area/space)
+"cI" = (
+/turf/closed/indestructible/hoteldoor/fakedoor{
+	name = "City"
+	},
+/area/space)
 "cX" = (
 /obj/structure/decorative{
 	icon = 'icons/obj/tram/tram_controllers.dmi';
@@ -177,16 +184,6 @@
 	pixel_y = 3
 	},
 /turf/closed/wall/city/siding,
-/area/space)
-"dh" = (
-/obj/structure/fence/interlink{
-	dir = 2
-	},
-/obj/effect/turf_decal/tile/dark/half{
-	dir = 8;
-	alpha = 200
-	},
-/turf/open/indestructible/train_platform,
 /area/space)
 "dm" = (
 /obj/structure/decorative{
@@ -221,17 +218,6 @@
 	},
 /turf/open/indestructible/meat,
 /area/space)
-"dw" = (
-/obj/machinery/computer/trainstation_control{
-	dir = 8
-	},
-/turf/open/floor/iron/white,
-/area/space)
-"dz" = (
-/obj/machinery/light,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/iron/white,
-/area/space)
 "dC" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/decorative{
@@ -257,18 +243,14 @@
 	},
 /turf/open/floor/iron/white,
 /area/space)
-"dL" = (
-/obj/effect/mob_spawn/corpse/human,
-/obj/structure/decorative{
-	anchored = 1;
-	name = "flesh cluster";
-	desc = "Something's moving inside...";
-	icon = 'icons/mob/simple/animal.dmi';
-	icon_state = "fleshblob";
-	pixel_x = 6;
-	pixel_y = -1
+"dJ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
 	},
-/turf/open/indestructible/meat,
+/obj/structure/closet/body_bag,
+/obj/effect/mob_spawn/corpse/human/charredskeleton,
+/turf/open/floor/iron/white,
 /area/space)
 "dN" = (
 /obj/effect/turf_decal/trimline/blue/line{
@@ -284,14 +266,33 @@
 	},
 /turf/open/floor/iron/dark/small,
 /area/space)
+"dW" = (
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-1-4";
+	anchored = 1;
+	name = "cable";
+	color = "#222222"
+	},
+/turf/open/indestructible/train_platform,
+/area/space)
 "dY" = (
 /obj/item/kirbyplants/organic/plant22,
 /turf/open/floor/iron/white,
+/area/space)
+"dZ" = (
+/turf/closed/indestructible/hoteldoor/fakedoor{
+	name = "Infection lab"
+	},
 /area/space)
 "ea" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/mob_spawn/ghost_role/flesh_spider,
 /turf/open/indestructible/meat,
+/area/space)
+"eg" = (
+/mob/living/basic/corrupted_arachnid,
+/turf/open/floor/iron/white,
 /area/space)
 "ei" = (
 /obj/effect/decal/cleanable/dirt,
@@ -316,6 +317,12 @@
 "es" = (
 /obj/machinery/computer,
 /turf/open/floor/iron/dark/small,
+/area/space)
+"eu" = (
+/obj/machinery/computer/trainstation_control{
+	dir = 8
+	},
+/turf/open/floor/iron/white,
 /area/space)
 "eB" = (
 /obj/machinery/light/small/directional/west{
@@ -371,10 +378,8 @@
 /turf/open/floor/iron/white,
 /area/space)
 "eW" = (
-/obj/structure/prop/vehicle/marshalls{
-	pixel_y = -12
-	},
-/turf/open/indestructible/meat,
+/obj/structure/flora/tree/dead,
+/turf/open/misc/asteroid/snow/indestructible,
 /area/space)
 "eZ" = (
 /obj/structure/table,
@@ -393,6 +398,15 @@
 	},
 /turf/open/floor/iron/white,
 /area/space)
+"fv" = (
+/obj/structure/fence/interlink{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
+	},
+/turf/open/indestructible/train_platform,
+/area/space)
 "fC" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/asphalt,
@@ -403,6 +417,10 @@
 	pixel_y = 8
 	},
 /turf/open/floor/iron/dark/small,
+/area/space)
+"fE" = (
+/obj/structure/sign/warning/electric_shock,
+/turf/closed/wall/ice,
 /area/space)
 "fF" = (
 /obj/effect/mob_spawn/corpse/human/doctor,
@@ -528,16 +546,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/iron/white,
 /area/space)
-"ha" = (
-/obj/structure/decorative{
-	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
-	icon_state = "l4-1-4";
-	anchored = 1;
-	name = "cable";
-	color = "#222222"
-	},
-/turf/open/indestructible/train_platform,
-/area/space)
 "hc" = (
 /obj/structure/chair/office{
 	dir = 4
@@ -556,11 +564,6 @@
 	},
 /turf/open/indestructible/meat,
 /area/space)
-"hl" = (
-/obj/structure/closet/body_bag,
-/obj/effect/mob_spawn/corpse/human/charredskeleton,
-/turf/open/floor/iron/white,
-/area/space)
 "ho" = (
 /obj/machinery/light/floor,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -575,9 +578,24 @@
 /obj/item/surgicaldrill,
 /turf/open/floor/iron/dark/small,
 /area/space)
-"hz" = (
-/obj/structure/statue/bone/rib,
-/turf/open/indestructible/meat,
+"hB" = (
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-1-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222"
+	},
+/turf/open/indestructible/train_platform,
+/area/space)
+"hD" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/structure/railing{
+	dir = 1;
+	color = "#666666"
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating,
 /area/space)
 "hJ" = (
 /obj/effect/turf_decal/trimline/blue/corner{
@@ -616,24 +634,18 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/iron/white,
 /area/space)
+"if" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/space)
 "ig" = (
 /obj/machinery/light/small/directional/west{
 	dir = 1
 	},
 /turf/open/indestructible/meat,
-/area/space)
-"ij" = (
-/obj/structure/prop/general/zhalfgrate1{
-	dir = 8
-	},
-/obj/structure/decorative{
-	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
-	icon_state = "l4-4-8";
-	anchored = 1;
-	name = "cable";
-	color = "#222222"
-	},
-/turf/open/indestructible/train_platform,
 /area/space)
 "ik" = (
 /obj/machinery/light/small/directional/east,
@@ -661,13 +673,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/space)
-"iH" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 8
-	},
-/obj/item/healthanalyzer/advanced,
-/turf/open/floor/iron/white,
-/area/space)
 "iI" = (
 /obj/machinery/light/small/directional/east{
 	dir = 2
@@ -684,6 +689,17 @@
 	dir = 8
 	},
 /turf/open/floor/iron/dark/small,
+/area/space)
+"iV" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/machinery/computer/cargo{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/box,
+/turf/open/floor/plating,
 /area/space)
 "iY" = (
 /obj/effect/decal/cleanable/blood/tracks{
@@ -717,14 +733,6 @@
 /obj/effect/turf_decal/trimline/blue/corner{
 	dir = 1
 	},
-/turf/open/floor/iron/white,
-/area/space)
-"jl" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 4
-	},
-/obj/structure/prop/general/bigroller_up2,
-/obj/effect/mob_spawn/corpse/human/charredskeleton,
 /turf/open/floor/iron/white,
 /area/space)
 "jn" = (
@@ -772,16 +780,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/space)
-"jK" = (
-/obj/structure/fence/corner{
-	dir = 10
-	},
-/obj/effect/turf_decal/tile/dark/half{
-	dir = 4;
-	alpha = 200
-	},
-/turf/open/indestructible/train_platform,
-/area/space)
 "jQ" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/indestructible/meat,
@@ -798,6 +796,12 @@
 	},
 /obj/item/folder,
 /turf/open/indestructible/meat,
+/area/space)
+"jS" = (
+/obj/machinery/light/floor,
+/obj/structure/prop/general/bigroller_down,
+/obj/effect/mob_spawn/corpse/human/charredskeleton,
+/turf/open/floor/iron/white,
 /area/space)
 "jV" = (
 /obj/effect/turf_decal/trimline/blue/corner{
@@ -891,13 +895,38 @@
 /obj/structure/barricade/wooden/crude,
 /turf/open/floor/plating,
 /area/space)
-"kQ" = (
-/obj/effect/turf_decal/lunar_sand/plating,
+"kI" = (
+/obj/structure/prop/general/highvoltagegrille_off,
 /obj/structure/railing{
-	dir = 5;
+	dir = 1;
 	color = "#666666"
 	},
-/turf/open/floor/plating,
+/turf/open/indestructible/train_platform,
+/area/space)
+"kO" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/healthanalyzer/advanced,
+/turf/open/floor/iron/white,
+/area/space)
+"lg" = (
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-4-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222"
+	},
+/obj/structure/fake_stairs/directional/south{
+	icon_state = "stairs-old";
+	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
+	color = "#666666";
+	dir = 8
+	},
+/obj/structure/railing/corner/end{
+	dir = 8;
+	color = "#666666"
+	},
+/turf/open/indestructible/train_platform,
 /area/space)
 "lk" = (
 /obj/effect/decal/cleanable/blood/tracks{
@@ -952,19 +981,10 @@
 /area/space)
 "lU" = (
 /obj/effect/turf_decal/lunar_sand/plating,
-/obj/docking_port/stationary{
-	dir = 8;
-	dwidth = 5;
-	height = 7;
-	name = "Cargo Bay";
-	shuttle_id = "cargo_home";
-	width = 12
+/obj/structure/railing{
+	dir = 9;
+	color = "#666666"
 	},
-/turf/open/floor/plating,
-/area/space)
-"me" = (
-/obj/effect/decal/cleanable/blood,
-/obj/item/gun/energy/modular_laser_rifle/carbine,
 /turf/open/floor/plating,
 /area/space)
 "mf" = (
@@ -1004,6 +1024,14 @@
 /obj/structure/table,
 /obj/item/folder,
 /turf/open/indestructible/meat,
+/area/space)
+"ms" = (
+/obj/structure/prop/general/highvoltagegrille_off,
+/obj/structure/railing{
+	dir = 5;
+	color = "#666666"
+	},
+/turf/open/indestructible/train_platform,
 /area/space)
 "mu" = (
 /obj/structure/decorative{
@@ -1077,6 +1105,14 @@
 	},
 /turf/open/indestructible/meat,
 /area/space)
+"ni" = (
+/obj/effect/decal/fakelattice,
+/obj/effect/turf_decal/siding/dark,
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/turf/open/misc/asteroid/snow/standard_air,
+/area/space)
 "nn" = (
 /obj/effect/decal/cleanable/blood/drip{
 	pixel_x = 19;
@@ -1115,29 +1151,22 @@
 /obj/item/shard,
 /turf/open/floor/iron/white,
 /area/space)
-"nR" = (
-/obj/structure/decorative{
-	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
-	icon_state = "l4-4-8";
-	anchored = 1;
-	name = "cable";
-	color = "#222222"
-	},
-/obj/structure/fake_stairs/directional/south{
-	icon_state = "stairs-old";
-	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
-	color = "#666666";
-	dir = 4
-	},
-/obj/structure/railing/corner/end/flip{
-	dir = 4;
-	color = "#666666"
-	},
-/turf/open/indestructible/train_platform,
-/area/space)
 "nW" = (
 /obj/machinery/pdapainter/medbay,
 /turf/open/floor/iron/white,
+/area/space)
+"nX" = (
+/obj/effect/mob_spawn/corpse/human,
+/obj/structure/decorative{
+	anchored = 1;
+	name = "flesh cluster";
+	desc = "Something's moving inside...";
+	icon = 'icons/mob/simple/animal.dmi';
+	icon_state = "fleshblob";
+	pixel_x = 6;
+	pixel_y = -1
+	},
+/turf/open/indestructible/meat,
 /area/space)
 "om" = (
 /obj/effect/turf_decal/trimline/blue/filled/warning{
@@ -1162,9 +1191,23 @@
 	},
 /turf/open/floor/asphalt,
 /area/space)
+"oH" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags,
+/turf/open/floor/iron/white,
+/area/space)
 "oI" = (
 /mob/living/basic/flesh_mutant_spider,
 /obj/effect/decal/cleanable/blood,
+/turf/open/floor/iron/white,
+/area/space)
+"oJ" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/effect/mob_spawn/corpse/human/doctor,
 /turf/open/floor/iron/white,
 /area/space)
 "oR" = (
@@ -1192,25 +1235,6 @@
 	},
 /turf/open/indestructible/meat,
 /area/space)
-"oY" = (
-/obj/structure/prop/general/zhalfgrate1{
-	dir = 4
-	},
-/turf/open/indestructible/train_platform,
-/area/space)
-"oZ" = (
-/obj/structure/decorative{
-	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
-	icon_state = "l4-2-8";
-	anchored = 1;
-	name = "cable";
-	color = "#222222"
-	},
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/open/indestructible/train_platform/bottom,
-/area/space)
 "pb" = (
 /turf/open/floor/asphalt,
 /area/space)
@@ -1236,6 +1260,19 @@
 	},
 /turf/open/indestructible/meat,
 /area/space)
+"pt" = (
+/obj/structure/fake_stairs/directional/south{
+	icon_state = "stairs-old";
+	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
+	color = "#666666";
+	dir = 4
+	},
+/obj/structure/railing/corner/end/flip{
+	dir = 4;
+	color = "#666666"
+	},
+/turf/open/indestructible/train_platform,
+/area/space)
 "pv" = (
 /obj/structure/broken_flooring/pile{
 	color = "#9F9F9F";
@@ -1247,13 +1284,15 @@
 	},
 /turf/open/floor/plating,
 /area/space)
-"pz" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 8
+"py" = (
+/obj/structure/fence/corner{
+	dir = 6
 	},
-/obj/structure/closet/body_bag,
-/obj/effect/mob_spawn/corpse/human/charredskeleton,
-/turf/open/floor/iron/white,
+/obj/effect/turf_decal/tile/dark/half{
+	dir = 8;
+	alpha = 200
+	},
+/turf/open/indestructible/train_platform,
 /area/space)
 "pD" = (
 /obj/structure/table,
@@ -1262,6 +1301,15 @@
 	pixel_y = 8
 	},
 /turf/open/floor/iron/dark/small,
+/area/space)
+"pE" = (
+/obj/structure/fence/interlink{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 1
+	},
+/turf/open/indestructible/train_platform,
 /area/space)
 "pL" = (
 /obj/machinery/computer/dna_console{
@@ -1297,12 +1345,21 @@
 /obj/item/pen,
 /turf/open/floor/iron/white,
 /area/space)
-"qm" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
+"qj" = (
+/obj/structure/emergency_shield/regenerating{
+	uses_integrity = 0;
+	pixel_y = 32;
+	name = "stasis field";
+	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
+	},
+/obj/structure/railing/corner/end/flip{
 	dir = 4
 	},
-/obj/structure/prop/general/hospitalcurtain,
-/turf/open/floor/iron/white,
+/obj/structure/prop/general/zcomputermachine{
+	name = "locked down stasis control terminal";
+	desc = "A relatively low-tech solution for internal computing, internal network mail, and logging. This model appears to be quite old."
+	},
+/turf/open/floor/iron/dark/textured_large,
 /area/space)
 "qo" = (
 /obj/effect/mob_spawn/corpse/human/doctor,
@@ -1410,23 +1467,15 @@
 /obj/item/shard,
 /turf/open/indestructible/meat,
 /area/space)
-"rj" = (
-/obj/structure/emergency_shield/regenerating{
-	uses_integrity = 0;
-	pixel_y = 32;
-	name = "stasis field";
-	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
+"rg" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/structure/railing{
+	dir = 1;
+	color = "#666666"
 	},
-/obj/structure/railing/corner/end{
-	dir = 8
-	},
-/turf/open/floor/plating/reinforced,
-/area/space)
-"rm" = (
-/obj/structure/prop/city/buildingventbig11_off{
-	name = "Generator"
-	},
-/turf/open/floor/plating/reinforced,
+/obj/effect/turf_decal/trimline/white,
+/obj/machinery/light/floor,
+/turf/open/floor/plating,
 /area/space)
 "rn" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1472,6 +1521,31 @@
 /obj/effect/spawner/structure/window/reinforced/indestructible,
 /turf/open/floor/iron/white,
 /area/space)
+"rL" = (
+/obj/structure/emergency_shield/regenerating{
+	uses_integrity = 0;
+	pixel_y = 32;
+	name = "stasis field";
+	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
+	},
+/obj/structure/railing/corner/end{
+	dir = 8
+	},
+/turf/open/floor/plating/reinforced,
+/area/space)
+"rN" = (
+/obj/structure/prop/general/zhalfgrate1{
+	dir = 4
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-4-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222"
+	},
+/turf/open/indestructible/train_platform,
+/area/space)
 "rP" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/spray/cleaner,
@@ -1480,16 +1554,6 @@
 	pixel_y = 2
 	},
 /turf/open/floor/iron/white,
-/area/space)
-"rU" = (
-/obj/effect/turf_decal/lunar_sand/plating,
-/obj/structure/railing{
-	dir = 1;
-	color = "#666666"
-	},
-/obj/effect/turf_decal/trimline/white,
-/obj/machinery/light/floor,
-/turf/open/floor/plating,
 /area/space)
 "sg" = (
 /obj/effect/decal/cleanable/blood/drip{
@@ -1519,17 +1583,43 @@
 	},
 /turf/open/indestructible/meat,
 /area/space)
-"sk" = (
-/obj/structure/barricade/sandbags,
-/turf/open/floor/iron/white,
+"sK" = (
+/obj/structure/prop/general/zhalfgrate1{
+	dir = 8
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-4-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222"
+	},
+/turf/open/indestructible/train_platform,
 /area/space)
 "sS" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/white,
 /area/space)
+"sV" = (
+/obj/effect/mob_spawn/corpse/human,
+/turf/open/floor/asphalt,
+/area/space)
+"sX" = (
+/turf/closed/indestructible/hoteldoor/fakedoor{
+	name = "Exit"
+	},
+/area/space)
 "sY" = (
 /obj/effect/gibspawner/human,
 /turf/open/floor/plating,
+/area/space)
+"ti" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/structure/prop/general/hospitalcurtain,
+/turf/open/floor/iron/white,
 /area/space)
 "tl" = (
 /obj/machinery/light/small/directional/east,
@@ -1555,25 +1645,8 @@
 /obj/effect/gibspawner/human,
 /turf/open/floor/iron/white,
 /area/space)
-"tz" = (
-/obj/structure/flora/tree/massive/dead/style_random,
-/obj/structure/flora/bush/fullgrass/style_random,
-/turf/open/misc/asteroid/snow/indestructible,
-/area/space)
 "tE" = (
-/obj/structure/flora/tree/dead,
-/turf/open/misc/asteroid/snow/indestructible,
-/area/space)
-"tH" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 4
-	},
-/obj/effect/mob_spawn/corpse/human/doctor,
-/turf/open/floor/iron/white,
-/area/space)
-"tI" = (
-/obj/effect/spawner/random/structure/billboard/nanotrasen,
-/turf/open/indestructible/train_platform/bottom,
+/turf/open/floor/plating/cobblestone,
 /area/space)
 "tJ" = (
 /obj/structure/decorative{
@@ -1602,11 +1675,6 @@
 /obj/machinery/smartfridge/chemistry/virology/preloaded,
 /turf/open/floor/iron/white,
 /area/space)
-"tU" = (
-/obj/structure/prop/general/bigroller_down,
-/obj/effect/mob_spawn/corpse/human/charredskeleton,
-/turf/open/floor/iron/white,
-/area/space)
 "tX" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/white,
@@ -1617,10 +1685,14 @@
 	},
 /turf/closed/wall/city/siding,
 /area/space)
-"ui" = (
-/turf/closed/indestructible/hoteldoor/fakedoor{
-	name = "City"
-	},
+"uf" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/iron/white,
+/area/space)
+"uk" = (
+/obj/structure/closet/body_bag,
+/obj/effect/mob_spawn/corpse/human/charredskeleton,
+/turf/open/floor/iron/white,
 /area/space)
 "ul" = (
 /obj/structure/barricade/wooden,
@@ -1657,6 +1729,16 @@
 /obj/item/stack/sheet/mineral/plasma,
 /turf/open/floor/iron/white,
 /area/space)
+"vj" = (
+/obj/structure/fence/corner{
+	dir = 10
+	},
+/obj/effect/turf_decal/tile/dark/half{
+	dir = 4;
+	alpha = 200
+	},
+/turf/open/indestructible/train_platform,
+/area/space)
 "vo" = (
 /obj/machinery/door/window/left/directional/north{
 	name = "Pharmacy Desk";
@@ -1672,14 +1754,9 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/iron/white,
 /area/space)
-"vG" = (
-/obj/structure/fence/interlink{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wideplating/dark{
-	dir = 1
-	},
-/turf/open/indestructible/train_platform,
+"vy" = (
+/obj/structure/flora/rock/style_2,
+/turf/open/misc/asteroid/snow/indestructible,
 /area/space)
 "vI" = (
 /obj/structure/decorative{
@@ -1740,11 +1817,6 @@
 "vY" = (
 /turf/open/misc/asphalt,
 /area/space)
-"vZ" = (
-/obj/structure/flora/bush/fullgrass/style_random,
-/obj/structure/flora/bush/fullgrass/style_random,
-/turf/open/misc/asteroid/snow/indestructible,
-/area/space)
 "wf" = (
 /obj/machinery/light/floor,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -1773,6 +1845,16 @@
 /obj/effect/mob_spawn/corpse/human/charredskeleton,
 /turf/open/floor/iron/white,
 /area/space)
+"wN" = (
+/obj/structure/fence/interlink{
+	dir = 2
+	},
+/obj/effect/turf_decal/tile/dark/half{
+	dir = 8;
+	alpha = 200
+	},
+/turf/open/indestructible/train_platform,
+/area/space)
 "wV" = (
 /turf/closed/wall/city/siding,
 /area/space)
@@ -1783,6 +1865,12 @@
 /obj/effect/mob_spawn/corpse/human/doctor,
 /obj/machinery/light,
 /turf/open/floor/iron/white,
+/area/space)
+"xj" = (
+/obj/structure/statue/bone/rib{
+	dir = 8
+	},
+/turf/open/indestructible/meat,
 /area/space)
 "xk" = (
 /obj/effect/decal/cleanable/blood/drip{
@@ -1797,44 +1885,13 @@
 	},
 /turf/open/floor/iron/white,
 /area/space)
+"xs" = (
+/turf/open/misc/dirt/icy_planet,
+/area/space)
 "xt" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/gibspawner/human,
 /turf/open/floor/plating,
-/area/space)
-"xv" = (
-/obj/structure/fence/interlink{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wideplating/dark/corner{
-	dir = 4
-	},
-/turf/open/indestructible/train_platform,
-/area/space)
-"xA" = (
-/obj/structure/emergency_shield/regenerating{
-	uses_integrity = 0;
-	pixel_y = 32;
-	name = "stasis field";
-	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
-	},
-/obj/structure/railing/corner/end{
-	dir = 8
-	},
-/obj/structure/prop/general/zcomputermachine{
-	name = "locked down stasis control terminal";
-	desc = "A relatively low-tech solution for internal computing, internal network mail, and logging. This model appears to be quite old."
-	},
-/turf/open/floor/iron/dark/textured_large,
-/area/space)
-"xD" = (
-/obj/effect/decal/cleanable/blood,
-/obj/vehicle/ridden/trainstation/bike/red{
-	dir = 8;
-	pixel_x = -2;
-	pixel_y = 6
-	},
-/turf/open/floor/asphalt,
 /area/space)
 "xL" = (
 /obj/structure/prop/vehicle/truck_cargo{
@@ -1852,6 +1909,42 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/asphalt,
+/area/space)
+"xQ" = (
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-4-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222"
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/indestructible/train_platform/bottom,
+/area/space)
+"xW" = (
+/obj/structure/emergency_shield/regenerating{
+	uses_integrity = 0;
+	pixel_y = 32;
+	name = "stasis field";
+	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-4-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222"
+	},
+/obj/structure/railing/corner/end{
+	dir = 8
+	},
+/obj/structure/prop/general/zcomputermachine_off{
+	desc = "A relatively low-tech solution for internal computing, internal network mail, and logging. This model appears to be quite old.";
+	name = "locked down stasis control terminal"
+	},
+/turf/open/floor/iron/dark/textured_large,
 /area/space)
 "xY" = (
 /obj/structure/window/reinforced/spawner/directional/east,
@@ -1981,16 +2074,15 @@
 	},
 /turf/open/indestructible/meat,
 /area/space)
+"yS" = (
+/obj/structure/fence/door,
+/turf/open/indestructible/train_platform,
+/area/space)
 "yT" = (
 /obj/effect/turf_decal/trimline/blue/corner{
 	dir = 4
 	},
 /turf/open/floor/iron/white,
-/area/space)
-"za" = (
-/obj/structure/flora/tree/massive/dead/style_random,
-/obj/structure/flora/rock/style_2,
-/turf/open/misc/asteroid/snow/indestructible,
 /area/space)
 "zh" = (
 /obj/machinery/door/airlock/virology/glass{
@@ -2020,10 +2112,6 @@
 /obj/item/gun/energy/modular_laser_rifle/carbine,
 /turf/open/indestructible/meat,
 /area/space)
-"zz" = (
-/obj/effect/mob_spawn/corpse/human/charredskeleton,
-/turf/open/floor/iron/white,
-/area/space)
 "zB" = (
 /obj/effect/mob_spawn/corpse/human/charredskeleton,
 /obj/structure/decorative{
@@ -2043,14 +2131,6 @@
 	dir = 4
 	},
 /turf/open/floor/iron/white,
-/area/space)
-"zJ" = (
-/obj/structure/prop/city/buildingventbig11_off{
-	name = "Generator";
-	dir = 1;
-	pixel_x = -16
-	},
-/turf/open/floor/plating/reinforced,
 /area/space)
 "zZ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -2077,10 +2157,11 @@
 	},
 /turf/open/floor/iron/white,
 /area/space)
-"Ao" = (
-/obj/structure/flora/bush/fullgrass/style_random,
-/obj/structure/flora/rock/style_2,
-/turf/open/misc/asteroid/snow/indestructible,
+"An" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/indestructible/train_platform/bottom,
 /area/space)
 "Aq" = (
 /obj/machinery/light/small/directional/west{
@@ -2093,6 +2174,19 @@
 	dir = 4
 	},
 /turf/open/floor/iron/white,
+/area/space)
+"AD" = (
+/obj/structure/fence/interlink{
+	dir = 2
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/dark/half{
+	dir = 8;
+	alpha = 200
+	},
+/turf/open/indestructible/train_platform/bottom,
 /area/space)
 "AI" = (
 /obj/structure/fake_stairs/directional/north,
@@ -2245,6 +2339,16 @@
 	},
 /turf/open/floor/iron/white,
 /area/space)
+"BX" = (
+/obj/structure/flora/tree/massive/dead/style_random,
+/obj/structure/flora/rock/style_2,
+/turf/open/misc/asteroid/snow/indestructible,
+/area/space)
+"BY" = (
+/obj/structure/flora/bush/fullgrass/style_random,
+/obj/structure/flora/rock/style_2,
+/turf/open/misc/asteroid/snow/indestructible,
+/area/space)
 "Ca" = (
 /obj/effect/decal/cleanable/blood/drip{
 	pixel_x = -4;
@@ -2252,17 +2356,14 @@
 	},
 /turf/open/floor/iron/white,
 /area/space)
-"Cb" = (
+"Cj" = (
+/obj/effect/turf_decal/lunar_sand/plating,
 /obj/structure/railing{
-	dir = 1
+	dir = 2;
+	color = "#666666";
+	pixel_y = 0
 	},
-/turf/open/indestructible/train_platform/bottom,
-/area/space)
-"Ck" = (
-/obj/structure/prop/general/zhalfgrate1{
-	dir = 8
-	},
-/turf/open/indestructible/train_platform,
+/turf/open/floor/plating,
 /area/space)
 "Cu" = (
 /obj/machinery/light/floor,
@@ -2285,6 +2386,19 @@
 "CD" = (
 /obj/item/kirbyplants/organic/plant3,
 /turf/open/floor/iron/white,
+/area/space)
+"CH" = (
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-2-4";
+	anchored = 1;
+	name = "cable";
+	color = "#222222"
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/indestructible/train_platform/bottom,
 /area/space)
 "CU" = (
 /obj/machinery/computer/operating,
@@ -2311,9 +2425,18 @@
 	},
 /turf/open/floor/iron/white,
 /area/space)
-"Dm" = (
-/obj/effect/mob_spawn/corpse/human,
-/turf/open/floor/asphalt,
+"Dk" = (
+/obj/structure/fake_stairs/directional/south{
+	icon_state = "stairs-old";
+	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
+	color = "#666666";
+	dir = 8
+	},
+/obj/structure/railing/corner/end{
+	dir = 8;
+	color = "#666666"
+	},
+/turf/open/indestructible/train_platform,
 /area/space)
 "Dp" = (
 /obj/effect/turf_decal/trimline/blue/line{
@@ -2322,6 +2445,12 @@
 /obj/structure/closet/secure_closet/medical2,
 /obj/item/stack/medical/suture,
 /turf/open/floor/iron/white,
+/area/space)
+"Dt" = (
+/obj/structure/prop/general/zhalfgrate1{
+	dir = 8
+	},
+/turf/open/indestructible/train_platform,
 /area/space)
 "Dw" = (
 /obj/effect/decal/cleanable/dirt,
@@ -2333,20 +2462,17 @@
 /obj/effect/mob_spawn/corpse/human/doctor,
 /turf/open/floor/iron/white,
 /area/space)
-"DQ" = (
-/obj/structure/flora/bush/fullgrass/style_random,
-/obj/structure/flora/bush/fullgrass/style_random,
-/obj/structure/flora/rock/style_2,
-/turf/open/misc/asteroid/snow/indestructible,
+"DN" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/structure/closet/body_bag,
+/obj/effect/mob_spawn/corpse/human/charredskeleton,
+/turf/open/floor/iron/white,
 /area/space)
 "DT" = (
 /obj/structure/table_frame,
 /obj/item/shard,
-/turf/open/floor/iron/white,
-/area/space)
-"DU" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/healthanalyzer/advanced,
 /turf/open/floor/iron/white,
 /area/space)
 "DV" = (
@@ -2371,37 +2497,41 @@
 	},
 /turf/open/indestructible/meat,
 /area/space)
-"DX" = (
-/obj/structure/barricade/sandbags,
-/turf/open/indestructible/meat,
-/area/space)
-"Ek" = (
-/obj/effect/turf_decal/lunar_sand/plating,
+"DW" = (
+/obj/structure/fence/interlink{
+	dir = 2
+	},
 /obj/structure/railing{
-	dir = 2;
-	color = "#666666";
-	pixel_y = 0
+	dir = 1
 	},
-/turf/open/floor/plating,
+/obj/effect/turf_decal/tile/dark/half{
+	dir = 4;
+	alpha = 200
+	},
+/turf/open/indestructible/train_platform/bottom,
 /area/space)
-"Em" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 8
+"DY" = (
+/obj/structure/fence/interlink{
+	dir = 2
 	},
-/obj/item/shard,
-/obj/structure/barricade/sandbags,
-/turf/open/floor/iron/white,
+/obj/effect/turf_decal/tile/dark/half{
+	dir = 4;
+	alpha = 200
+	},
+/turf/open/indestructible/train_platform,
 /area/space)
 "Eo" = (
-/obj/structure/prop/general/zhalfgrate1{
-	dir = 4
+/obj/structure/flora/bush/fullgrass/style_random,
+/obj/structure/flora/bush/fullgrass/style_random,
+/obj/structure/flora/rock/style_2,
+/turf/open/misc/asteroid/snow/indestructible,
+/area/space)
+"Ez" = (
+/obj/structure/fence/interlink{
+	dir = 8
 	},
-/obj/structure/decorative{
-	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
-	icon_state = "l4-4-8";
-	anchored = 1;
-	name = "cable";
-	color = "#222222"
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 4
 	},
 /turf/open/indestructible/train_platform,
 /area/space)
@@ -2444,24 +2574,13 @@
 /obj/item/kirbyplants/organic/plant21,
 /turf/open/floor/iron/white,
 /area/space)
-"EW" = (
-/obj/structure/emergency_shield/regenerating{
-	uses_integrity = 0;
-	pixel_y = 32;
-	name = "stasis field";
-	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
+"EZ" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
 	},
-/obj/structure/decorative{
-	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
-	icon_state = "l4-4-8";
-	anchored = 1;
-	name = "cable";
-	color = "#222222"
-	},
-/obj/structure/railing/corner/end/flip{
-	dir = 4
-	},
-/turf/open/indestructible/train_platform/bottom,
+/obj/item/shard,
+/obj/structure/barricade/sandbags,
+/turf/open/floor/iron/white,
 /area/space)
 "Fa" = (
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -2474,25 +2593,18 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning,
 /turf/open/floor/iron/white,
 /area/space)
-"Fk" = (
-/obj/effect/decal/fakelattice,
-/obj/effect/turf_decal/siding/dark,
-/obj/effect/turf_decal/siding/dark{
-	dir = 1
-	},
-/turf/open/misc/asteroid/snow/standard_air,
-/area/space)
 "Fn" = (
 /obj/machinery/gulag_item_reclaimer,
 /turf/closed/wall/city/siding,
 /area/space)
-"Fw" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 4
+"Fs" = (
+/obj/effect/decal/cleanable/blood,
+/obj/vehicle/ridden/trainstation/bike/red{
+	dir = 8;
+	pixel_x = -2;
+	pixel_y = 6
 	},
-/obj/structure/closet/body_bag,
-/obj/effect/mob_spawn/corpse/human/charredskeleton,
-/turf/open/floor/iron/white,
+/turf/open/floor/asphalt,
 /area/space)
 "FA" = (
 /obj/machinery/door/airlock/medical/glass{
@@ -2501,6 +2613,11 @@
 /obj/structure/barricade/wooden/crude,
 /obj/structure/barricade/wooden,
 /turf/open/floor/plating,
+/area/space)
+"FB" = (
+/obj/effect/turf_decal/trimline/blue/line,
+/obj/structure/barricade/sandbags,
+/turf/open/floor/iron/white,
 /area/space)
 "FM" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark{
@@ -2527,20 +2644,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/space)
-"Gp" = (
-/obj/effect/turf_decal/lunar_sand/plating,
-/obj/structure/railing{
-	dir = 1;
-	color = "#666666"
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plating,
-/area/space)
-"Gr" = (
-/obj/effect/turf_decal/trimline/blue/filled/warning,
-/obj/structure/barricade/sandbags,
-/turf/open/floor/iron/white,
-/area/space)
 "Gs" = (
 /obj/machinery/computer/security/telescreen/med_sec/directional/west,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -2559,14 +2662,6 @@
 	pixel_y = -1
 	},
 /turf/open/indestructible/meat,
-/area/space)
-"GB" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 8
-	},
-/obj/structure/prop/general/hospitalcurtain,
-/turf/open/floor/iron/white,
 /area/space)
 "GC" = (
 /obj/structure/mirror/directional/west{
@@ -2589,32 +2684,34 @@
 /obj/effect/turf_decal/siding/wideplating_new/dark,
 /turf/open/floor/stone,
 /area/space)
-"GP" = (
-/obj/structure/decorative{
-	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
-	icon_state = "l4-2-4";
-	anchored = 1;
-	name = "cable";
-	color = "#222222"
+"GN" = (
+/obj/structure/emergency_shield/regenerating{
+	uses_integrity = 0;
+	pixel_y = 32;
+	name = "stasis field";
+	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
 	},
-/obj/structure/railing{
-	dir = 1
+/obj/structure/railing/corner/end/flip{
+	dir = 4
 	},
-/turf/open/indestructible/train_platform/bottom,
+/turf/open/floor/plating/reinforced,
 /area/space)
-"Hn" = (
-/turf/closed/indestructible/hoteldoor/fakedoor{
-	name = "Infection lab"
-	},
+"GT" = (
+/obj/structure/flora/tree/massive/dead/style_random,
+/obj/structure/flora/bush/fullgrass/style_random,
+/turf/open/misc/asteroid/snow/indestructible,
 /area/space)
-"Hv" = (
-/obj/structure/fence/interlink{
+"Hq" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
 	},
-/obj/effect/turf_decal/siding/wideplating/dark/corner{
-	dir = 1
-	},
-/turf/open/indestructible/train_platform,
+/obj/structure/barricade/sandbags,
+/turf/open/floor/iron/white,
+/area/space)
+"Hr" = (
+/obj/structure/prop/general/bigroller_down,
+/obj/effect/mob_spawn/corpse/human/charredskeleton,
+/turf/open/floor/iron/white,
 /area/space)
 "Hw" = (
 /obj/structure/meateor_fluff/eyeball,
@@ -2623,13 +2720,9 @@
 	},
 /turf/open/indestructible/meat,
 /area/space)
-"Hz" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 8
-	},
-/obj/structure/closet/body_bag,
-/obj/effect/mob_spawn/corpse/human/charredskeleton,
+"Hx" = (
+/obj/machinery/light,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/iron/white,
 /area/space)
 "HA" = (
@@ -2680,15 +2773,21 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/misc/asphalt/no_border,
 /area/space)
-"HW" = (
-/obj/structure/fence/interlink{
-	dir = 2
+"HU" = (
+/obj/structure/emergency_shield/regenerating{
+	uses_integrity = 0;
+	pixel_y = 32;
+	name = "stasis field";
+	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
 	},
-/obj/effect/turf_decal/tile/dark/half{
-	dir = 4;
-	alpha = 200
+/obj/structure/railing/corner/end{
+	dir = 8
 	},
-/turf/open/indestructible/train_platform,
+/obj/structure/prop/general/zcomputermachine{
+	name = "locked down stasis control terminal";
+	desc = "A relatively low-tech solution for internal computing, internal network mail, and logging. This model appears to be quite old."
+	},
+/turf/open/floor/iron/dark/textured_large,
 /area/space)
 "HZ" = (
 /obj/machinery/door/airlock/medical/glass{
@@ -2696,12 +2795,13 @@
 	},
 /turf/open/floor/iron/white,
 /area/space)
-"Id" = (
-/obj/effect/turf_decal/lunar_sand/plating,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
+"Ib" = (
+/obj/structure/prop/city/buildingventbig11_off{
+	name = "Generator";
+	dir = 1;
+	pixel_x = -16
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/reinforced,
 /area/space)
 "Ih" = (
 /obj/structure/reagent_dispensers/plumbed,
@@ -2725,40 +2825,17 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/iron/white,
 /area/space)
-"Ix" = (
-/obj/effect/turf_decal/lunar_sand/plating,
-/turf/open/floor/plating,
-/area/space)
 "Iy" = (
 /obj/machinery/computer/pandemic,
 /turf/open/floor/iron/white,
 /area/space)
-"IX" = (
-/obj/structure/statue/bone/rib,
-/obj/structure/decorative{
-	anchored = 1;
-	name = "egg cluster";
-	desc = "Something's moving inside...";
-	icon = 'icons/mob/simple/meteor_heart.dmi';
-	icon_state = "flesh_pod_open";
-	pixel_x = -8;
-	pixel_y = 7
-	},
+"IQ" = (
+/obj/machinery/light,
 /turf/open/indestructible/meat,
 /area/space)
 "Jg" = (
 /obj/structure/window/reinforced/spawner/directional/east,
 /turf/open/floor/iron/white,
-/area/space)
-"Jh" = (
-/obj/structure/decorative{
-	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
-	icon_state = "l4-1-8";
-	anchored = 1;
-	name = "cable";
-	color = "#222222"
-	},
-/turf/open/indestructible/train_platform,
 /area/space)
 "Ji" = (
 /mob/living/basic/flesh_mutant_spider,
@@ -2784,29 +2861,11 @@
 	},
 /turf/open/floor/iron/white,
 /area/space)
-"Jt" = (
-/obj/structure/prop/general/hospitalcurtain,
-/turf/open/floor/iron/white,
-/area/space)
-"Jz" = (
-/obj/structure/decorative{
-	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
-	icon_state = "l4-4-8";
-	anchored = 1;
-	name = "cable";
-	color = "#222222"
+"JD" = (
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 4
 	},
-/obj/structure/fake_stairs/directional/south{
-	icon_state = "stairs-old";
-	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
-	color = "#666666";
-	dir = 8
-	},
-/obj/structure/railing/corner/end{
-	dir = 8;
-	color = "#666666"
-	},
-/turf/open/indestructible/train_platform,
+/turf/open/indestructible/meat,
 /area/space)
 "JZ" = (
 /obj/effect/turf_decal/trimline/blue/corner{
@@ -2839,6 +2898,25 @@
 /obj/effect/gibspawner/human,
 /turf/open/indestructible/meat,
 /area/space)
+"Kx" = (
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 1
+	},
+/obj/structure/barricade/sandbags,
+/turf/open/floor/iron/white,
+/area/space)
+"Kz" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/docking_port/stationary{
+	dir = 8;
+	dwidth = 5;
+	height = 7;
+	name = "Cargo Bay";
+	shuttle_id = "cargo_home";
+	width = 12
+	},
+/turf/open/floor/plating,
+/area/space)
 "KB" = (
 /obj/machinery/computer/dna_console,
 /turf/open/floor/iron/white,
@@ -2869,6 +2947,16 @@
 	},
 /turf/open/indestructible/meat,
 /area/space)
+"KP" = (
+/obj/structure/statue/bone/rib,
+/turf/open/indestructible/meat,
+/area/space)
+"KV" = (
+/obj/structure/prop/city/buildingventbig11_off{
+	name = "Generator"
+	},
+/turf/open/floor/plating/reinforced,
+/area/space)
 "KW" = (
 /obj/structure/closet/shuttle/engivent{
 	pixel_x = 30;
@@ -2886,15 +2974,20 @@
 	},
 /turf/open/floor/iron/white,
 /area/space)
+"Lj" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/space)
 "Ln" = (
-/obj/structure/fence/corner{
-	dir = 6
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
 	},
-/obj/effect/turf_decal/tile/dark/half{
-	dir = 8;
-	alpha = 200
-	},
-/turf/open/indestructible/train_platform,
+/obj/structure/closet/body_bag,
+/obj/effect/mob_spawn/corpse/human/charredskeleton,
+/turf/open/floor/iron/white,
 /area/space)
 "Lr" = (
 /obj/effect/mob_spawn/corpse/human/doctor,
@@ -2906,13 +2999,6 @@
 	dir = 1
 	},
 /obj/machinery/computer,
-/turf/open/floor/iron/white,
-/area/space)
-"Lx" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 4
-	},
-/obj/structure/barricade/sandbags,
 /turf/open/floor/iron/white,
 /area/space)
 "LB" = (
@@ -2943,26 +3029,6 @@
 "LL" = (
 /obj/effect/mob_spawn/corpse/human/intern,
 /turf/open/indestructible/meat,
-/area/space)
-"LY" = (
-/obj/effect/turf_decal/lunar_sand/plating,
-/obj/structure/railing{
-	dir = 2;
-	color = "#666666";
-	pixel_y = 0
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/space)
-"Mc" = (
-/obj/structure/prop/general/highvoltagegrille_off,
-/obj/structure/railing{
-	dir = 1;
-	color = "#666666"
-	},
-/turf/open/indestructible/train_platform,
 /area/space)
 "Mf" = (
 /obj/effect/turf_decal/trimline/blue/line{
@@ -3017,28 +3083,14 @@
 	},
 /turf/open/indestructible/meat,
 /area/space)
-"MZ" = (
-/obj/structure/emergency_shield/regenerating{
-	uses_integrity = 0;
-	pixel_y = 32;
-	name = "stasis field";
-	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
-	},
-/obj/structure/decorative{
-	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
-	icon_state = "l4-4-8";
-	anchored = 1;
-	name = "cable";
-	color = "#222222"
-	},
-/obj/structure/railing/corner/end{
-	dir = 8
-	},
-/obj/structure/prop/general/zcomputermachine_off{
-	desc = "A relatively low-tech solution for internal computing, internal network mail, and logging. This model appears to be quite old.";
-	name = "locked down stasis control terminal"
-	},
-/turf/open/floor/iron/dark/textured_large,
+"ML" = (
+/obj/structure/barricade/sandbags,
+/turf/open/indestructible/meat,
+/area/space)
+"Nd" = (
+/obj/effect/decal/cleanable/blood,
+/obj/item/gun/energy/modular_laser_rifle/carbine,
+/turf/open/floor/plating,
 /area/space)
 "Nf" = (
 /obj/structure/decorative{
@@ -3107,6 +3159,10 @@
 /obj/machinery/light,
 /turf/open/floor/iron/white,
 /area/space)
+"NY" = (
+/obj/structure/flora/bush/fullgrass/style_random,
+/turf/open/misc/asteroid/snow/indestructible,
+/area/space)
 "NZ" = (
 /obj/effect/decal/cleanable/blood/drip{
 	pixel_y = -1;
@@ -3121,6 +3177,17 @@
 	},
 /turf/open/floor/iron/white,
 /area/space)
+"Oo" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/structure/railing{
+	dir = 2;
+	color = "#666666";
+	pixel_y = 0
+	},
+/obj/effect/turf_decal/trimline/white,
+/obj/machinery/light/floor,
+/turf/open/floor/plating,
+/area/space)
 "Op" = (
 /obj/effect/decal/cleanable/blood/drip{
 	pixel_x = 11
@@ -3128,18 +3195,26 @@
 /obj/effect/gibspawner/human,
 /turf/open/floor/iron/white,
 /area/space)
-"Os" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 8
-	},
-/obj/structure/barricade/sandbags,
-/turf/open/floor/iron/white,
-/area/space)
 "Ou" = (
 /obj/effect/mob_spawn/corpse/human/cmo,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/gibspawner/human,
 /turf/open/indestructible/meat,
+/area/space)
+"Ow" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/item/healthanalyzer/advanced,
+/turf/open/floor/iron/white,
+/area/space)
+"OA" = (
+/obj/structure/prop/general/highvoltagegrille_off,
+/obj/structure/railing{
+	dir = 9;
+	color = "#666666"
+	},
+/turf/open/indestructible/train_platform,
 /area/space)
 "OB" = (
 /obj/structure/broken_flooring/pile{
@@ -3197,6 +3272,25 @@
 	},
 /turf/open/indestructible/meat,
 /area/space)
+"ON" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/structure/railing{
+	dir = 2;
+	color = "#666666";
+	pixel_y = 0
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/space)
+"OQ" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/structure/prop/general/hospitalcurtain,
+/turf/open/floor/iron/white,
+/area/space)
 "OX" = (
 /obj/effect/decal/cleanable/blood/drip{
 	pixel_x = 6;
@@ -3244,6 +3338,19 @@
 	dir = 4
 	},
 /turf/open/floor/iron/dark/small,
+/area/space)
+"Pu" = (
+/obj/structure/statue/bone/rib,
+/obj/structure/decorative{
+	anchored = 1;
+	name = "egg cluster";
+	desc = "Something's moving inside...";
+	icon = 'icons/mob/simple/meteor_heart.dmi';
+	icon_state = "flesh_pod_open";
+	pixel_x = -8;
+	pixel_y = 7
+	},
+/turf/open/indestructible/meat,
 /area/space)
 "PI" = (
 /obj/structure/prop/city/atm{
@@ -3345,6 +3452,19 @@
 /obj/item/shard,
 /turf/open/floor/iron/dark/small,
 /area/space)
+"Ri" = (
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-2-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222"
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/indestructible/train_platform/bottom,
+/area/space)
 "Rj" = (
 /obj/effect/turf_decal/trimline/blue/line{
 	dir = 6
@@ -3353,10 +3473,6 @@
 	dir = 4
 	},
 /turf/open/floor/iron/white,
-/area/space)
-"RE" = (
-/obj/structure/fence/door,
-/turf/open/indestructible/train_platform,
 /area/space)
 "RG" = (
 /obj/effect/turf_decal/trimline/blue/filled/warning,
@@ -3427,17 +3543,6 @@
 /obj/effect/gibspawner/human,
 /turf/open/floor/plating,
 /area/space)
-"Ss" = (
-/obj/effect/turf_decal/lunar_sand/plating,
-/obj/structure/railing{
-	dir = 2;
-	color = "#666666";
-	pixel_y = 0
-	},
-/obj/effect/turf_decal/trimline/white,
-/obj/machinery/light/floor,
-/turf/open/floor/plating,
-/area/space)
 "Sv" = (
 /obj/machinery/light/small/directional/west,
 /obj/effect/decal/cleanable/blood/drip{
@@ -3456,10 +3561,6 @@
 /obj/effect/gibspawner/human,
 /turf/open/indestructible/meat,
 /area/space)
-"SC" = (
-/obj/structure/flora/rock/style_2,
-/turf/open/misc/asteroid/snow/indestructible,
-/area/space)
 "SJ" = (
 /obj/effect/mob_spawn/corpse/human,
 /obj/structure/decorative{
@@ -3473,6 +3574,11 @@
 	},
 /obj/effect/gibspawner/human,
 /turf/open/indestructible/meat,
+/area/space)
+"SP" = (
+/obj/effect/turf_decal/trimline/blue/filled/warning,
+/obj/structure/barricade/sandbags,
+/turf/open/floor/iron/white,
 /area/space)
 "SW" = (
 /obj/structure/chair/sofa/bench/right{
@@ -3497,11 +3603,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/space)
-"Tp" = (
-/obj/effect/turf_decal/trimline/blue/line,
-/obj/structure/barricade/sandbags,
-/turf/open/floor/iron/white,
-/area/space)
 "Ts" = (
 /obj/structure/table/reinforced,
 /obj/item/folder/white{
@@ -3519,28 +3620,17 @@
 	},
 /turf/open/floor/iron/white,
 /area/space)
-"Tw" = (
-/obj/structure/broken_flooring/pile{
-	color = "#9F9F9F";
-	desc = null;
-	name = "tiling"
-	},
-/obj/effect/decal/cleanable/blood,
-/obj/item/gun/energy/modular_laser_rifle/carbine,
-/turf/open/floor/plating,
-/area/space)
-"TB" = (
-/obj/machinery/light/floor,
-/obj/structure/prop/general/bigroller_down,
-/obj/effect/mob_spawn/corpse/human/charredskeleton,
-/turf/open/floor/iron/white,
-/area/space)
 "TH" = (
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/machinery/light/small/directional/west{
 	dir = 4
 	},
 /turf/open/floor/iron/white,
+/area/space)
+"TI" = (
+/obj/structure/flora/bush/fullgrass/style_random,
+/obj/structure/flora/bush/fullgrass/style_random,
+/turf/open/misc/asteroid/snow/indestructible,
 /area/space)
 "TQ" = (
 /obj/effect/turf_decal/trimline/blue/line{
@@ -3553,12 +3643,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/space)
-"TR" = (
-/obj/effect/turf_decal/trimline/blue/filled/warning{
-	dir = 4
-	},
-/turf/open/indestructible/meat,
-/area/space)
 "TW" = (
 /turf/open/misc/asteroid/snow/indestructible,
 /area/space)
@@ -3567,10 +3651,37 @@
 /obj/item/storage/box/bodybags,
 /turf/open/floor/iron/dark/small,
 /area/space)
+"Ud" = (
+/obj/structure/emergency_shield/regenerating{
+	uses_integrity = 0;
+	pixel_y = 32;
+	name = "stasis field";
+	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-4-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222"
+	},
+/obj/structure/railing/corner/end/flip{
+	dir = 4
+	},
+/turf/open/indestructible/train_platform/bottom,
+/area/space)
 "Uj" = (
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/item/kirbyplants/organic/plant22,
 /turf/open/floor/iron/white,
+/area/space)
+"Uk" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/structure/railing{
+	dir = 5;
+	color = "#666666"
+	},
+/turf/open/floor/plating,
 /area/space)
 "Ul" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -3608,28 +3719,31 @@
 	},
 /turf/open/indestructible/meat,
 /area/space)
-"UD" = (
-/obj/structure/fake_stairs/directional/south{
-	icon_state = "stairs-old";
-	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
-	color = "#666666";
-	dir = 4
-	},
-/obj/structure/railing/corner/end/flip{
-	dir = 4;
-	color = "#666666"
-	},
-/turf/open/indestructible/train_platform,
-/area/space)
 "UH" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/iron/white,
 /area/space)
-"UM" = (
-/obj/structure/sign/warning/electric_shock,
-/turf/closed/wall/ice,
+"UI" = (
+/obj/structure/prop/general/highvoltagegrille_off,
+/obj/structure/decorative{
+	density = 1;
+	anchored = 1;
+	name = "magnetic stasis emitter";
+	desc = "A machine that somehow fabricates hardlight using electrons. Seems to be impervious to conventional means of damage.";
+	icon = 'icons/obj/machines/modular_shield_generator.dmi';
+	icon_state = "charger_on_closed";
+	dir = 1;
+	uses_integrity = 0
+	},
+/obj/structure/emergency_shield/regenerating{
+	uses_integrity = 0;
+	pixel_y = 32;
+	name = "stasis field";
+	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
+	},
+/turf/open/indestructible/train_platform/bottom,
 /area/space)
 "UO" = (
 /obj/structure/table/glass,
@@ -3684,19 +3798,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/space)
-"Vo" = (
-/obj/structure/fence/interlink{
-	dir = 2
-	},
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/dark/half{
-	dir = 4;
-	alpha = 200
-	},
-/turf/open/indestructible/train_platform/bottom,
-/area/space)
 "Vu" = (
 /obj/effect/gibspawner/human,
 /obj/structure/statue/bone/rib{
@@ -3715,19 +3816,6 @@
 	pixel_y = 30
 	},
 /turf/open/floor/plating,
-/area/space)
-"VQ" = (
-/obj/structure/decorative{
-	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
-	icon_state = "l4-4-8";
-	anchored = 1;
-	name = "cable";
-	color = "#222222"
-	},
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/open/indestructible/train_platform/bottom,
 /area/space)
 "VU" = (
 /obj/structure/broken_flooring/pile{
@@ -3750,17 +3838,9 @@
 	},
 /turf/open/indestructible/meat,
 /area/space)
-"Wf" = (
-/obj/structure/emergency_shield/regenerating{
-	uses_integrity = 0;
-	pixel_y = 32;
-	name = "stasis field";
-	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
-	},
-/obj/structure/railing/corner/end/flip{
-	dir = 4
-	},
-/turf/open/floor/plating/reinforced,
+"VY" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/turf/open/floor/plating,
 /area/space)
 "Wk" = (
 /obj/effect/decal/cleanable/blood,
@@ -3772,26 +3852,6 @@
 	name = "\improper ROBOTICS!"
 	},
 /turf/open/floor/plating,
-/area/space)
-"Wq" = (
-/obj/structure/prop/general/highvoltagegrille_off,
-/obj/structure/decorative{
-	density = 1;
-	anchored = 1;
-	name = "magnetic stasis emitter";
-	desc = "A machine that somehow fabricates hardlight using electrons. Seems to be impervious to conventional means of damage.";
-	icon = 'icons/obj/machines/modular_shield_generator.dmi';
-	icon_state = "charger_on_closed";
-	dir = 1;
-	uses_integrity = 0
-	},
-/obj/structure/emergency_shield/regenerating{
-	uses_integrity = 0;
-	pixel_y = 32;
-	name = "stasis field";
-	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
-	},
-/turf/open/indestructible/train_platform/bottom,
 /area/space)
 "Wt" = (
 /turf/open/floor/iron/dark/small,
@@ -3836,6 +3896,10 @@
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/iron/white,
 /area/space)
+"WW" = (
+/obj/effect/spawner/random/structure/billboard/nanotrasen,
+/turf/open/indestructible/train_platform/bottom,
+/area/space)
 "WY" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/decorative{
@@ -3865,18 +3929,11 @@
 	},
 /turf/open/floor/plating,
 /area/space)
-"Xs" = (
-/turf/open/floor/plating/cobblestone,
-/area/space)
 "Xt" = (
 /obj/structure/chair/office{
 	dir = 8
 	},
 /turf/open/indestructible/meat,
-/area/space)
-"Xv" = (
-/mob/living/basic/corrupted_arachnid,
-/turf/open/floor/iron/white,
 /area/space)
 "Xw" = (
 /obj/effect/turf_decal/trimline/blue/line{
@@ -3896,11 +3953,23 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/iron/white,
 /area/space)
+"XL" = (
+/obj/structure/prop/general/zhalfgrate1{
+	dir = 4
+	},
+/turf/open/indestructible/train_platform,
+/area/space)
 "XP" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
 	},
 /turf/open/floor/iron/white,
+/area/space)
+"XR" = (
+/obj/structure/prop/vehicle/marshalls{
+	pixel_y = -12
+	},
+/turf/open/indestructible/meat,
 /area/space)
 "XY" = (
 /obj/structure/closet/secure_closet/medical2,
@@ -3928,9 +3997,6 @@
 /obj/effect/mob_spawn/corpse/human/charredskeleton,
 /turf/open/indestructible/meat,
 /area/space)
-"Yi" = (
-/turf/open/misc/dirt/icy_planet,
-/area/space)
 "Yl" = (
 /obj/structure/sign/departments/virology,
 /turf/closed/wall/city/siding,
@@ -3946,41 +4012,11 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/grass,
 /area/space)
-"Yy" = (
-/obj/structure/statue/bone/rib{
-	dir = 8
-	},
-/turf/open/indestructible/meat,
-/area/space)
-"Yz" = (
-/obj/structure/prop/general/highvoltagegrille_off,
-/obj/structure/railing{
-	dir = 5;
-	color = "#666666"
-	},
-/turf/open/indestructible/train_platform,
-/area/space)
 "YB" = (
 /obj/machinery/light/small/directional/west{
 	dir = 4
 	},
 /turf/open/floor/iron/white,
-/area/space)
-"YC" = (
-/obj/effect/turf_decal/lunar_sand/plating,
-/obj/machinery/computer/cargo{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/box,
-/turf/open/floor/plating,
-/area/space)
-"YK" = (
-/turf/closed/indestructible/hoteldoor/fakedoor{
-	name = "Exit"
-	},
 /area/space)
 "YQ" = (
 /obj/effect/mob_spawn/corpse/human,
@@ -3990,31 +4026,8 @@
 /obj/structure/sign/directions/medical/directional/east,
 /turf/open/floor/plating,
 /area/space)
-"Za" = (
-/obj/structure/fence/interlink{
-	dir = 2
-	},
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/dark/half{
-	dir = 8;
-	alpha = 200
-	},
-/turf/open/indestructible/train_platform/bottom,
-/area/space)
-"Zl" = (
-/obj/effect/turf_decal/lunar_sand/plating,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/space)
-"Zo" = (
-/obj/effect/turf_decal/trimline/blue/filled/warning{
-	dir = 1
-	},
-/obj/structure/barricade/sandbags,
+"Zc" = (
+/obj/effect/mob_spawn/corpse/human/charredskeleton,
 /turf/open/floor/iron/white,
 /area/space)
 "Zr" = (
@@ -4040,19 +4053,6 @@
 "ZW" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/iron/white,
-/area/space)
-"ZX" = (
-/obj/structure/fake_stairs/directional/south{
-	icon_state = "stairs-old";
-	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
-	color = "#666666";
-	dir = 8
-	},
-/obj/structure/railing/corner/end{
-	dir = 8;
-	color = "#666666"
-	},
-/turf/open/indestructible/train_platform,
 /area/space)
 
 (1,1,1) = {"
@@ -4573,7 +4573,7 @@ gj
 gj
 "}
 (12,1,1) = {"
-tI
+WW
 mX
 mX
 mX
@@ -4855,7 +4855,7 @@ gj
 gj
 "}
 (18,1,1) = {"
-tI
+WW
 mX
 mX
 mX
@@ -5065,15 +5065,15 @@ kf
 sS
 kf
 kf
-Jt
+cc
 wh
-hl
-hl
+uk
+uk
 kf
-DU
+kO
 kf
-tU
-Jt
+Hr
+cc
 kf
 rK
 kf
@@ -5111,15 +5111,15 @@ rn
 Tb
 BS
 ho
-tH
+oJ
 gN
 BS
 zZ
 wf
-qm
-jl
+OQ
+cB
 yh
-Fw
+Ln
 VD
 kf
 WT
@@ -5351,10 +5351,10 @@ zZ
 BS
 lF
 BS
-tH
+oJ
 BS
 BS
-Lx
+oH
 Yo
 kf
 qc
@@ -5393,16 +5393,16 @@ dH
 ix
 kv
 fR
-Hz
-iH
+dJ
+Ow
 XP
-Em
+EZ
 Cu
-GB
-pz
-pz
-Os
-TB
+ti
+DN
+DN
+Hq
+jS
 kf
 Ts
 kf
@@ -5442,13 +5442,13 @@ sS
 fM
 ag
 wG
-zz
-sk
+Zc
+uf
 kf
 kf
 kf
 sS
-Jt
+cc
 kf
 kf
 bD
@@ -5701,9 +5701,9 @@ gj
 gj
 "}
 (36,1,1) = {"
-Vo
-HW
-jK
+DW
+DY
+vj
 vQ
 wV
 wV
@@ -5748,9 +5748,9 @@ gj
 gj
 "}
 (37,1,1) = {"
-rj
-zJ
-vG
+rL
+Ib
+fv
 mX
 wV
 gj
@@ -5795,9 +5795,9 @@ gj
 gj
 "}
 (38,1,1) = {"
-Wq
-as
-vG
+UI
+OA
+fv
 mX
 wV
 gj
@@ -5842,9 +5842,9 @@ gj
 gj
 "}
 (39,1,1) = {"
-aq
-Jz
-vG
+qj
+lg
+fv
 mX
 wV
 gj
@@ -5889,9 +5889,9 @@ gj
 gj
 "}
 (40,1,1) = {"
-Cb
-ij
-Hv
+An
+sK
+pE
 mX
 wV
 gj
@@ -5909,14 +5909,14 @@ QL
 kf
 Vh
 Pa
-sk
+uf
 nO
 VU
 QL
 kf
 fr
 kf
-Tp
+FB
 Yl
 qt
 mQ
@@ -5936,9 +5936,9 @@ gj
 gj
 "}
 (41,1,1) = {"
-GP
-Jh
-RE
+CH
+hB
+yS
 mX
 wV
 gj
@@ -5955,7 +5955,7 @@ zj
 fr
 rA
 nC
-Zo
+Kx
 kf
 kf
 NV
@@ -5963,7 +5963,7 @@ kq
 nO
 QL
 Ji
-Gr
+SP
 zh
 kf
 kf
@@ -5983,9 +5983,9 @@ gj
 gj
 "}
 (42,1,1) = {"
-VQ
-oY
-xv
+xQ
+XL
+Ez
 mX
 wV
 gj
@@ -6030,9 +6030,9 @@ gj
 gj
 "}
 (43,1,1) = {"
-MZ
-UD
-vG
+xW
+pt
+fv
 mX
 wV
 gj
@@ -6077,9 +6077,9 @@ gj
 gj
 "}
 (44,1,1) = {"
-Wq
-Mc
-UM
+UI
+kI
+fE
 mX
 wV
 gj
@@ -6124,9 +6124,9 @@ gj
 gj
 "}
 (45,1,1) = {"
-EW
-ZX
-vG
+Ud
+Dk
+fv
 mX
 wV
 gj
@@ -6171,9 +6171,9 @@ gj
 gj
 "}
 (46,1,1) = {"
-VQ
-Ck
-Hv
+xQ
+Dt
+pE
 mX
 wV
 gj
@@ -6218,9 +6218,9 @@ gj
 gj
 "}
 (47,1,1) = {"
-oZ
-ha
-RE
+Ri
+dW
+yS
 mX
 wV
 gj
@@ -6265,9 +6265,9 @@ gj
 gj
 "}
 (48,1,1) = {"
-Cb
-Eo
-xv
+An
+rN
+Ez
 mX
 wV
 gj
@@ -6312,9 +6312,9 @@ gj
 gj
 "}
 (49,1,1) = {"
-xA
-nR
-vG
+HU
+ad
+fv
 mX
 wV
 gj
@@ -6359,9 +6359,9 @@ gj
 gj
 "}
 (50,1,1) = {"
-Wq
-Yz
-vG
+UI
+ms
+fv
 mX
 wV
 gj
@@ -6406,9 +6406,9 @@ gj
 gj
 "}
 (51,1,1) = {"
-Wf
-rm
-vG
+GN
+KV
+fv
 mX
 wV
 gj
@@ -6424,7 +6424,7 @@ gj
 ov
 Bo
 Bj
-me
+Nd
 oI
 jn
 aX
@@ -6453,9 +6453,9 @@ gj
 gj
 "}
 (52,1,1) = {"
-Za
-dh
-Ln
+AD
+wN
+py
 mX
 wV
 gj
@@ -6549,8 +6549,8 @@ gj
 (54,1,1) = {"
 TW
 TW
-Xs
-Xs
+tE
+tE
 wV
 wV
 wV
@@ -6595,9 +6595,9 @@ gj
 "}
 (55,1,1) = {"
 TW
-Xs
-Xs
-Xs
+tE
+tE
+tE
 gj
 gj
 gj
@@ -6642,8 +6642,8 @@ gj
 "}
 (56,1,1) = {"
 TW
-Xs
-Xs
+tE
+tE
 TW
 gj
 gj
@@ -6689,8 +6689,8 @@ gj
 "}
 (57,1,1) = {"
 TW
-Xs
-Yi
+tE
+xs
 TW
 gj
 gj
@@ -6735,9 +6735,9 @@ gj
 gj
 "}
 (58,1,1) = {"
-tE
-Yi
-Yi
+eW
+xs
+xs
 gj
 gj
 gj
@@ -6783,8 +6783,8 @@ gj
 "}
 (59,1,1) = {"
 TW
-Xs
-Yi
+tE
+xs
 gj
 gj
 gj
@@ -6830,8 +6830,8 @@ gj
 "}
 (60,1,1) = {"
 TW
-Xs
-Yi
+tE
+xs
 gj
 gj
 gj
@@ -6851,7 +6851,7 @@ gj
 gj
 gj
 wV
-sk
+uf
 Io
 VX
 wV
@@ -6876,9 +6876,9 @@ gj
 gj
 "}
 (61,1,1) = {"
-cn
-Yi
-Yi
+NY
+xs
+xs
 gj
 gj
 wV
@@ -6898,7 +6898,7 @@ aX
 aX
 aX
 aX
-DX
+ML
 Nf
 Wk
 CD
@@ -6923,9 +6923,9 @@ gj
 gj
 "}
 (62,1,1) = {"
-cn
-Xs
-Yi
+NY
+tE
+xs
 gj
 gj
 wV
@@ -6971,8 +6971,8 @@ gj
 "}
 (63,1,1) = {"
 TW
-Yi
-Yi
+xs
+xs
 gj
 gj
 wV
@@ -7005,7 +7005,7 @@ QL
 kf
 kf
 kf
-Hn
+dZ
 gj
 gj
 gj
@@ -7018,8 +7018,8 @@ gj
 "}
 (64,1,1) = {"
 TW
-Xs
-Yi
+tE
+xs
 gj
 gj
 wV
@@ -7064,9 +7064,9 @@ gj
 gj
 "}
 (65,1,1) = {"
-cn
-Yi
-Yi
+NY
+xs
+xs
 TW
 gj
 wV
@@ -7076,7 +7076,7 @@ kf
 ZW
 AW
 aX
-Tw
+aM
 RU
 gd
 wV
@@ -7112,9 +7112,9 @@ gj
 "}
 (66,1,1) = {"
 TW
-Xs
-Xs
-Yi
+tE
+tE
+xs
 gj
 gj
 wV
@@ -7159,9 +7159,9 @@ gj
 "}
 (67,1,1) = {"
 TW
-Yi
-Yi
-Yi
+xs
+xs
+xs
 gj
 gj
 wV
@@ -7205,10 +7205,10 @@ gj
 gj
 "}
 (68,1,1) = {"
+eW
 tE
-Xs
-Yi
-Xs
+xs
+tE
 TW
 gj
 gj
@@ -7234,7 +7234,7 @@ gj
 aX
 qT
 Wk
-dz
+Hx
 wV
 gj
 gj
@@ -7253,10 +7253,10 @@ gj
 "}
 (69,1,1) = {"
 TW
-Yi
-Yi
-Xs
-Yi
+xs
+xs
+tE
+xs
 gj
 gj
 gj
@@ -7300,10 +7300,10 @@ gj
 "}
 (70,1,1) = {"
 TW
-Xs
-Yi
-Yi
-Yi
+tE
+xs
+xs
+xs
 TW
 gj
 gj
@@ -7346,12 +7346,12 @@ gj
 gj
 "}
 (71,1,1) = {"
-tE
+eW
 TW
-Xs
-Yi
-Xs
-Yi
+tE
+xs
+tE
+xs
 gj
 gj
 gj
@@ -7393,12 +7393,12 @@ gj
 gj
 "}
 (72,1,1) = {"
-cn
+NY
 TW
-Xs
-Yi
-Yi
-Yi
+tE
+xs
+xs
+xs
 TW
 gj
 gj
@@ -7422,7 +7422,7 @@ gj
 aX
 qT
 qT
-bI
+IQ
 aX
 gj
 gj
@@ -7440,14 +7440,14 @@ gj
 gj
 "}
 (73,1,1) = {"
-cn
+NY
 TW
 TW
-Xs
-Yi
-Xs
-cn
 tE
+xs
+tE
+NY
+eW
 TW
 wV
 gj
@@ -7487,15 +7487,15 @@ gj
 gj
 "}
 (74,1,1) = {"
-cn
+NY
 TW
+eW
 tE
-Xs
-Xs
-Yi
-Yi
+tE
+xs
+xs
 TW
-cn
+NY
 wV
 gj
 gj
@@ -7515,7 +7515,7 @@ gj
 gj
 aX
 qT
-TR
+JD
 qT
 aX
 gj
@@ -7534,15 +7534,15 @@ gj
 gj
 "}
 (75,1,1) = {"
-cn
+NY
 TW
 TW
 TW
-Xs
-Yi
-Xs
-Yi
-cn
+tE
+xs
+tE
+xs
+NY
 wV
 gj
 gj
@@ -7581,15 +7581,15 @@ gj
 gj
 "}
 (76,1,1) = {"
-cn
+NY
 TW
+eW
+TW
+xs
+xs
 tE
-TW
-Yi
-Yi
-Xs
-Yi
-cn
+xs
+NY
 wV
 gj
 gj
@@ -7628,14 +7628,14 @@ gj
 gj
 "}
 (77,1,1) = {"
-cn
-cn
+NY
+NY
 TW
 TW
-Xs
-Yi
-Yi
-Xs
+tE
+xs
+xs
+tE
 TW
 wV
 gj
@@ -7675,15 +7675,15 @@ gj
 gj
 "}
 (78,1,1) = {"
-cn
-cn
+NY
+NY
 TW
 TW
-Xs
-Xs
-Yi
-Xs
-Yi
+tE
+tE
+xs
+tE
+xs
 wV
 gj
 gj
@@ -7722,15 +7722,15 @@ gj
 gj
 "}
 (79,1,1) = {"
-cn
+NY
 TW
 TW
 TW
 TW
-Xs
-Yi
-Xs
-Yi
+tE
+xs
+tE
+xs
 wV
 gj
 gj
@@ -7771,13 +7771,13 @@ gj
 (80,1,1) = {"
 TW
 TW
-cn
+NY
 TW
+eW
 tE
-Xs
-Xs
-Yi
-Yi
+tE
+xs
+xs
 wV
 gj
 gj
@@ -7816,15 +7816,15 @@ gj
 gj
 "}
 (81,1,1) = {"
-cn
+NY
+eW
+NY
+TW
+TW
+TW
 tE
-cn
-TW
-TW
-TW
-Xs
-Xs
-Yi
+tE
+xs
 wV
 gj
 gj
@@ -7866,12 +7866,12 @@ gj
 TW
 TW
 TW
-cn
+NY
 TW
 TW
-Xs
-Xs
-Yi
+tE
+tE
+xs
 wV
 gj
 gj
@@ -7914,11 +7914,11 @@ TW
 TW
 TW
 TW
-cn
+NY
 TW
-Xs
-Yi
-Xs
+tE
+xs
+tE
 wV
 gj
 gj
@@ -7942,7 +7942,7 @@ kf
 kf
 tO
 kf
-Yy
+xj
 qT
 aX
 gj
@@ -7961,11 +7961,11 @@ TW
 TW
 TW
 TW
-cn
+NY
 TW
-Xs
-Yi
-Xs
+tE
+xs
+tE
 wV
 gj
 gj
@@ -8011,8 +8011,8 @@ TW
 TW
 TW
 TW
-Xs
-Xs
+tE
+tE
 wV
 wV
 wV
@@ -8059,11 +8059,11 @@ TW
 TW
 TW
 TW
-Yi
-Yi
-Xs
-Xs
-Xs
+xs
+xs
+tE
+tE
+tE
 TW
 TW
 TW
@@ -8107,9 +8107,9 @@ TW
 TW
 TW
 TW
-Yi
-Yi
-Yi
+xs
+xs
+xs
 TW
 TW
 TW
@@ -8121,7 +8121,7 @@ wV
 gj
 gj
 aX
-Yy
+xj
 kf
 Wk
 kf
@@ -8130,7 +8130,7 @@ kf
 kf
 kf
 qT
-Yy
+xj
 qT
 aX
 gj
@@ -8176,7 +8176,7 @@ kf
 Wk
 kf
 kf
-DX
+ML
 GA
 km
 aX
@@ -8194,37 +8194,37 @@ gj
 (89,1,1) = {"
 TW
 TW
-cE
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ek
-Fk
+lU
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+Cj
+ni
 TW
 wV
 gj
 gj
 aX
 GA
-DX
-DX
+ML
+ML
 kf
 kf
 kf
 kf
 kf
-sk
-DX
+uf
+ML
 GA
 aX
 aX
@@ -8241,22 +8241,22 @@ gj
 (90,1,1) = {"
 TW
 TW
-rU
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Ss
-Fk
+rg
+Lj
+Lj
+Lj
+Lj
+Lj
+Lj
+Lj
+Lj
+Lj
+Lj
+Lj
+Lj
+Lj
+Oo
+ni
 TW
 wV
 gj
@@ -8264,14 +8264,14 @@ aX
 aX
 qT
 qT
-DX
+ML
 kf
 kf
 kf
 kf
 kf
 kf
-DX
+ML
 hi
 aX
 aX
@@ -8288,29 +8288,29 @@ gj
 (91,1,1) = {"
 TW
 TW
-Gp
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-LY
-Fk
+hD
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+ON
+ni
 TW
 wV
 gj
 aX
 qT
 qT
-IX
+Pu
 GA
 kf
 kf
@@ -8335,22 +8335,22 @@ gj
 (92,1,1) = {"
 TW
 TW
-Gp
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-LY
-Fk
+hD
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+ON
+ni
 TW
 wV
 gj
@@ -8366,7 +8366,7 @@ kf
 kf
 kf
 qT
-hz
+KP
 qT
 aX
 gj
@@ -8382,22 +8382,22 @@ gj
 (93,1,1) = {"
 TW
 TW
-Gp
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-LY
-Fk
+hD
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+ON
+ni
 TW
 wV
 gj
@@ -8429,22 +8429,22 @@ gj
 (94,1,1) = {"
 TW
 TW
-Gp
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-LY
-Fk
+hD
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+ON
+ni
 TW
 wV
 gj
@@ -8455,7 +8455,7 @@ qT
 tO
 kf
 kf
-dw
+eu
 kf
 tO
 kf
@@ -8476,22 +8476,22 @@ gj
 (95,1,1) = {"
 TW
 TW
-Gp
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-LY
-Fk
+hD
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+ON
+ni
 TW
 wV
 gj
@@ -8508,7 +8508,7 @@ kf
 kf
 kf
 qT
-Yy
+xj
 wV
 gj
 gj
@@ -8523,28 +8523,28 @@ gj
 (96,1,1) = {"
 TW
 TW
-Gp
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-LY
-Fk
+hD
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+ON
+ni
 TW
 wV
 gj
 aX
 qT
-Yy
+xj
 kf
 kf
 kf
@@ -8570,22 +8570,22 @@ gj
 (97,1,1) = {"
 TW
 TW
-Gp
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-lU
-Ix
-Ix
-Ix
-Ix
-Ix
-LY
-Fk
+hD
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+Kz
+VY
+VY
+VY
+VY
+VY
+ON
+ni
 TW
 wV
 gj
@@ -8617,22 +8617,22 @@ gj
 (98,1,1) = {"
 TW
 TW
-rU
-Zl
-Zl
-Zl
-Zl
-Zl
-Zl
-Zl
-YC
-Zl
-Zl
-Zl
-Zl
-Zl
-Ss
-Fk
+rg
+if
+if
+if
+if
+if
+if
+if
+iV
+if
+if
+if
+if
+if
+Oo
+ni
 TW
 wV
 gj
@@ -8664,22 +8664,22 @@ gj
 (99,1,1) = {"
 TW
 TW
-kQ
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
-Ek
-Fk
+Uk
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+VY
+Cj
+ni
 TW
 wV
 gj
@@ -8690,7 +8690,7 @@ kf
 kf
 kf
 kf
-Xv
+eg
 kf
 kf
 kf
@@ -8832,7 +8832,7 @@ kf
 kf
 qT
 qT
-hz
+KP
 qT
 qT
 qT
@@ -8922,7 +8922,7 @@ wV
 kf
 kf
 qT
-Yy
+xj
 qT
 qT
 qT
@@ -8930,7 +8930,7 @@ qT
 qT
 qT
 qT
-Yy
+xj
 qT
 wV
 gj
@@ -9016,13 +9016,13 @@ wV
 wV
 wV
 wV
-YK
+sX
 ZO
 ZO
 ZO
 ZO
 ZO
-YK
+sX
 wV
 wV
 wV
@@ -9320,9 +9320,9 @@ gj
 gj
 "}
 (113,1,1) = {"
-cn
-cn
-tE
+NY
+NY
+eW
 TW
 TW
 TW
@@ -9368,7 +9368,7 @@ gj
 "}
 (114,1,1) = {"
 TW
-cn
+NY
 TW
 TW
 TW
@@ -9414,7 +9414,7 @@ gj
 gj
 "}
 (115,1,1) = {"
-SC
+vy
 TW
 TW
 TW
@@ -9461,7 +9461,7 @@ gj
 gj
 "}
 (116,1,1) = {"
-cn
+NY
 TW
 TW
 Qx
@@ -9469,7 +9469,7 @@ TW
 TW
 TW
 TW
-tE
+eW
 TW
 TW
 TW
@@ -9491,7 +9491,7 @@ DV
 YQ
 qT
 VX
-xD
+Fs
 QX
 aX
 gj
@@ -9511,9 +9511,9 @@ gj
 TW
 TW
 TW
-SC
-cn
-cn
+vy
+NY
+NY
 TW
 TW
 TW
@@ -9557,9 +9557,9 @@ gj
 (118,1,1) = {"
 TW
 TW
-cn
+NY
 TW
-SC
+vy
 TW
 TW
 TW
@@ -9602,14 +9602,14 @@ gj
 gj
 "}
 (119,1,1) = {"
-cn
+NY
 TW
-cn
+NY
 TW
-SC
+vy
 TW
 TW
-cn
+NY
 TW
 TW
 TW
@@ -9699,13 +9699,13 @@ gj
 TW
 TW
 TW
-cn
-cn
+NY
+NY
 TW
 TW
-cn
+NY
 Qx
-cn
+NY
 TW
 TW
 TW
@@ -9746,7 +9746,7 @@ gj
 TW
 TW
 TW
-Ao
+BY
 TW
 TW
 TW
@@ -9772,7 +9772,7 @@ GL
 pb
 pb
 pc
-dL
+nX
 GA
 QX
 Ni
@@ -9793,12 +9793,12 @@ gj
 TW
 TW
 Qx
-cn
+NY
 TW
 TW
 TW
-vZ
-cn
+TI
+NY
 TW
 TW
 TW
@@ -9840,11 +9840,11 @@ gj
 TW
 TW
 TW
-cn
+NY
 TW
 TW
-cn
-cn
+NY
+NY
 TW
 TW
 TW
@@ -9885,13 +9885,13 @@ gj
 "}
 (125,1,1) = {"
 TW
-tE
+eW
 TW
-tE
+eW
 TW
-SC
-cn
-cn
+vy
+NY
+NY
 TW
 TW
 TW
@@ -9910,11 +9910,11 @@ gj
 gj
 Ni
 GL
-dL
+nX
 pb
 pc
 pb
-Dm
+sV
 QX
 Ni
 gj
@@ -9932,11 +9932,11 @@ gj
 "}
 (126,1,1) = {"
 TW
-cn
-cn
+NY
+NY
 TW
 TW
-SC
+vy
 TW
 wV
 wV
@@ -9957,7 +9957,7 @@ gj
 gj
 Ni
 GL
-eW
+XR
 GA
 pb
 pb
@@ -9980,12 +9980,12 @@ gj
 (127,1,1) = {"
 TW
 TW
-cn
+NY
 TW
 TW
-SC
+vy
 TW
-ui
+cI
 wV
 wV
 wV
@@ -10075,9 +10075,9 @@ gj
 TW
 TW
 TW
-SC
+vy
 TW
-cn
+NY
 TW
 pZ
 wV
@@ -10121,10 +10121,10 @@ gj
 (130,1,1) = {"
 TW
 TW
-cn
+NY
 TW
 TW
-tE
+eW
 TW
 pZ
 wV
@@ -10215,9 +10215,9 @@ gj
 (132,1,1) = {"
 TW
 TW
-cn
-cn
-cn
+NY
+NY
+NY
 TW
 TW
 pZ
@@ -10262,7 +10262,7 @@ gj
 (133,1,1) = {"
 TW
 TW
-SC
+vy
 TW
 TW
 TW
@@ -10308,9 +10308,9 @@ gj
 "}
 (134,1,1) = {"
 TW
-cn
-za
-cn
+NY
+BX
+NY
 TW
 TW
 TW
@@ -10357,7 +10357,7 @@ gj
 TW
 TW
 TW
-Ao
+BY
 TW
 TW
 TW
@@ -10401,10 +10401,10 @@ gj
 gj
 "}
 (136,1,1) = {"
-tE
+eW
 TW
 TW
-cn
+NY
 TW
 TW
 TW
@@ -10448,12 +10448,12 @@ gj
 gj
 "}
 (137,1,1) = {"
-tE
+eW
 TW
-SC
+vy
 TW
 TW
-tE
+eW
 TW
 pZ
 wV
@@ -10497,10 +10497,10 @@ gj
 (138,1,1) = {"
 TW
 TW
-cn
-SC
+NY
+vy
 TW
-tE
+eW
 TW
 pZ
 wV
@@ -10637,7 +10637,7 @@ gj
 "}
 (141,1,1) = {"
 TW
-cn
+NY
 TW
 TW
 TW
@@ -10684,9 +10684,9 @@ gj
 "}
 (142,1,1) = {"
 TW
-cn
+NY
 TW
-cn
+NY
 TW
 TW
 TW
@@ -10731,7 +10731,7 @@ gj
 "}
 (143,1,1) = {"
 TW
-cn
+NY
 TW
 TW
 TW
@@ -10779,8 +10779,8 @@ gj
 (144,1,1) = {"
 TW
 Qx
-cn
-cn
+NY
+NY
 TW
 TW
 TW
@@ -10827,7 +10827,7 @@ gj
 TW
 TW
 TW
-SC
+vy
 TW
 gj
 gj
@@ -10871,11 +10871,11 @@ gj
 gj
 "}
 (146,1,1) = {"
-cn
-cn
-cn
-cn
-cn
+NY
+NY
+NY
+NY
+NY
 gj
 gj
 gj
@@ -10921,7 +10921,7 @@ gj
 TW
 TW
 TW
-tz
+GT
 TW
 wV
 wV
@@ -10967,8 +10967,8 @@ gj
 (148,1,1) = {"
 TW
 TW
-SC
-cn
+vy
+NY
 TW
 wV
 wV
@@ -11013,10 +11013,10 @@ gj
 "}
 (149,1,1) = {"
 TW
-cn
+NY
 TW
 TW
-cn
+NY
 pZ
 wV
 wV
@@ -11062,7 +11062,7 @@ gj
 TW
 Qx
 TW
-tE
+eW
 TW
 pZ
 wV
@@ -11297,7 +11297,7 @@ gj
 TW
 TW
 TW
-tE
+eW
 TW
 pZ
 wV
@@ -11343,8 +11343,8 @@ gj
 (156,1,1) = {"
 TW
 TW
-SC
-tE
+vy
+eW
 TW
 pZ
 wV
@@ -11438,7 +11438,7 @@ gj
 TW
 TW
 TW
-cn
+NY
 TW
 wV
 wV
@@ -11482,10 +11482,10 @@ gj
 gj
 "}
 (159,1,1) = {"
-cn
+NY
 TW
 TW
-cn
+NY
 TW
 TW
 TW
@@ -11578,8 +11578,8 @@ gj
 (161,1,1) = {"
 TW
 TW
-cn
-cn
+NY
+NY
 TW
 TW
 TW
@@ -11625,8 +11625,8 @@ gj
 (162,1,1) = {"
 TW
 TW
-cn
-cn
+NY
+NY
 TW
 TW
 Qx
@@ -11719,9 +11719,9 @@ gj
 (164,1,1) = {"
 TW
 TW
-SC
+vy
 TW
-tE
+eW
 TW
 gj
 gj
@@ -11812,8 +11812,8 @@ gj
 "}
 (166,1,1) = {"
 TW
-za
-cn
+BX
+NY
 wV
 wV
 wV
@@ -11907,7 +11907,7 @@ gj
 (168,1,1) = {"
 TW
 TW
-SC
+vy
 pZ
 wV
 wV
@@ -12000,7 +12000,7 @@ gj
 "}
 (170,1,1) = {"
 TW
-tz
+GT
 TW
 pZ
 wV
@@ -12047,8 +12047,8 @@ gj
 "}
 (171,1,1) = {"
 TW
-cn
-SC
+NY
+vy
 pZ
 wV
 wV
@@ -12094,7 +12094,7 @@ gj
 "}
 (172,1,1) = {"
 TW
-cn
+NY
 TW
 pZ
 wV
@@ -12142,7 +12142,7 @@ gj
 (173,1,1) = {"
 TW
 TW
-SC
+vy
 pZ
 wV
 wV
@@ -12282,7 +12282,7 @@ gj
 "}
 (176,1,1) = {"
 TW
-DQ
+Eo
 TW
 wV
 wV
@@ -12329,8 +12329,8 @@ gj
 "}
 (177,1,1) = {"
 TW
-SC
-cn
+vy
+NY
 TW
 TW
 TW
@@ -12376,7 +12376,7 @@ gj
 "}
 (178,1,1) = {"
 TW
-tE
+eW
 TW
 TW
 TW
@@ -12423,7 +12423,7 @@ gj
 "}
 (179,1,1) = {"
 TW
-DQ
+Eo
 TW
 TW
 TW
@@ -12470,7 +12470,7 @@ gj
 "}
 (180,1,1) = {"
 TW
-cn
+NY
 TW
 TW
 TW
@@ -12517,7 +12517,7 @@ gj
 "}
 (181,1,1) = {"
 TW
-cn
+NY
 TW
 TW
 TW
@@ -12565,9 +12565,9 @@ gj
 (182,1,1) = {"
 TW
 Qx
-cn
-cn
-tE
+NY
+NY
+eW
 TW
 wV
 gj
@@ -12707,8 +12707,8 @@ gj
 TW
 TW
 TW
-cn
-za
+NY
+BX
 TW
 wV
 gj
@@ -12802,7 +12802,7 @@ TW
 Qx
 TW
 TW
-tz
+GT
 TW
 wV
 gj
@@ -12990,7 +12990,7 @@ gj
 TW
 TW
 TW
-tE
+eW
 TW
 wV
 gj
