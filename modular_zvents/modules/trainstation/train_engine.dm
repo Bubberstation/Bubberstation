@@ -70,9 +70,7 @@
 	output_mix.temperature = max((output_mix.temperature * output_mix_heat_capacity + work_done * TURBINE_HEAT_CONVERSION_MULTIPLIER) / output_mix_heat_capacity, TCMB)
 	return work_done
 
-// ====================================================================
-// Входная часть: Inlet Compressor
-// ====================================================================
+
 /obj/machinery/power/train_turbine/inlet_compressor
 	name = "train turbine inlet compressor"
 	desc = "Inlet part of the train turbine. Connects to pipes for hot water vapor intake."
@@ -122,10 +120,6 @@
 	compressor_pressure = PRESSURE_MAX(machine_gasmix.return_pressure())
 
 	return temperature
-
-// ====================================================================
-// Ядро: Core Rotor
-// ====================================================================
 
 /datum/looping_sound/turbine_loop
 	mid_sounds = 'modular_zvents/sounds/turbine_loop.ogg'
@@ -369,42 +363,35 @@
 
 	var/turf/open/output_turf
 	var/datum/component/plumbing/steam_turbine/plumbing
-	var/datum/reagents/internal_reagents
+
 
 /obj/machinery/power/train_turbine/turbine_outlet/Initialize(mapload)
 	. = ..()
-	internal_reagents = new(1000)
-	internal_reagents.my_atom = src
+	reagents = new(1000)
+	reagents.my_atom = src
 
-	reagents = internal_reagents
-	plumbing = AddComponent(/datum/component/plumbing/steam_turbine, custom_receiver = internal_reagents)
+	plumbing = AddComponent(/datum/component/plumbing/steam_turbine)
 	plumbing.enable()
 
 /obj/machinery/power/train_turbine/turbine_outlet/Destroy()
 	QDEL_NULL(plumbing)
-	QDEL_NULL(internal_reagents)
 	return ..()
 
 /obj/machinery/power/train_turbine/turbine_outlet/proc/produce_water(amount)
-	internal_reagents.add_reagent(/datum/reagent/water, amount)
-	if(plumbing && internal_reagents.has_reagent(/datum/reagent/water, 10))
-		internal_reagents.remove_reagent(/datum/reagent/water, 10)
-		plumbing.reagents.add_reagent(/datum/reagent/water, 10)
+	reagents.add_reagent(/datum/reagent/water, amount)
 
 
 /datum/component/plumbing/steam_turbine
 	demand_connects = NORTH | SOUTH
 
 /datum/component/plumbing/steam_turbine/Initialize(start, ducting_layer, turn_connects, datum/reagents/custom_receiver, extend_pipe_to_edge)
-	. = ..()
 	if(!istype(parent, /obj/machinery/power/train_turbine/turbine_outlet))
 		return COMPONENT_INCOMPATIBLE
 	var/obj/machinery/power/train_turbine/turbine_outlet/turbine = parent
-	reagents = turbine.internal_reagents
+	reagents = turbine.reagents
+	return ..()
 
-// ====================================================================
-// Компьютер управления
-// ====================================================================
+
 /obj/machinery/computer/train_turbine_computer
 	name = "train turbine control computer"
 	desc = "Computer to control the train's steam turbine. Monitor RPM, temperature, and more like a Barotrauma nuclear reactor."
@@ -444,6 +431,8 @@
 
 /obj/machinery/computer/train_turbine_computer/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
+	var/obj/machinery/power/train_turbine/core_rotor/main_control = rotor_ref?.resolve()
+	main_control.activate_parts(user, check_only = TRUE)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "TrainTurbineComputer", name)
@@ -474,7 +463,7 @@
 	// Давления по стадиям
 	.["compressor_pressure"] = main_control.compressor?.compressor_pressure || MINIMUM_TURBINE_PRESSURE
 	.["rotor_pressure"] = main_control.machine_gasmix?.return_pressure() || MINIMUM_TURBINE_PRESSURE
-	.["outlet_water_volume"] = main_control.turbine?.internal_reagents.total_volume || 0
+	.["outlet_water_volume"] = main_control.turbine?.reagents.total_volume || 0
 
 	.["regulator"] = main_control.compressor?.intake_regulator || 0.5
 	.["target_rpm"] = main_control.target_rpm
@@ -525,9 +514,6 @@
 			main_control.emergency_vent()
 			return TRUE
 
-// ====================================================================
-// Остальные части (взаимодействие, апгрейды и т.д.) остались без изменений
-// ====================================================================
 
 /obj/item/paper/guides/jobs/atmos/train_turbine
 	name = "paper- 'Quick guide on the train turbine!'"
@@ -678,7 +664,7 @@
 	plasma_stack.use(plasma_consumed)
 	var/energy_generated = plasma_consumed * PLASMA_SHEET_BURN_ENERGY
 	if(temperature < target_temperature)
-		temperature += energy_generated / reagents.heat_capacity() * seconds_per_tick
+		temperature += energy_generated / reagents.heat_capacity() * 5 * seconds_per_tick
 
 	if(temperature < MIN_PLASMA_COMBUSTION_TEMP)
 		return

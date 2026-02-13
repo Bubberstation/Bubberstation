@@ -54,7 +54,6 @@
 	return ..()
 
 /datum/action/cooldown/jetpack_jump/proc/perform_jump(mob/living/carbon/human/jumper, turf/target_turf)
-	var/initital_move_type = jumper.movement_type
 	jumper.movement_type = FLYING
 	if(jumper.buckled)
 		var/atom/movable/our_vehicle = jumper.buckled
@@ -90,7 +89,7 @@
 		sleep(2 TICKS)
 
 	jumper.set_anchored(FALSE)
-	jumper.movement_type = initital_move_type
+	jumper.movement_type = GROUND
 	jumper.pixel_z = start_z
 	jumper.pixel_y = start_y
 

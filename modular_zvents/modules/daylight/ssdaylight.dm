@@ -6,12 +6,18 @@
 	. = ..()
 	initialize_daylight()
 
+/area/Destroy()
+	. = ..()
+	remove_daylight()
+
 /area/proc/initialize_daylight()
 	if(daylight)
-		SSdaylight.queue_area_for_setup(src)
-	else
-		SSdaylight.remove_daylight_from_area(src)
+		SSdaylight.daylight_areas += src
+		SSdaylight.update_area(src)
 
+/area/proc/remove_daylight()
+	if(daylight)
+		SSdaylight.daylight_areas -= src
 
 SUBSYSTEM_DEF(daylight)
 	name = "Daylight Controller"
@@ -79,35 +85,10 @@ SUBSYSTEM_DEF(daylight)
 
 	return SS_INIT_SUCCESS
 
-/datum/controller/subsystem/daylight/proc/queue_area_for_setup(area/A)
-	if(!istype(A) || QDELETED(A) || !(A in GLOB.areas) || !A.daylight)
-		return FALSE
-
-	if(A in setup_queue)
-		return FALSE
-
-	daylight_areas += A
-	setup_queue += A
-	return TRUE
-
-/datum/controller/subsystem/daylight/proc/process_setup_queue()
-	var/list/areas_to_process = setup_queue.Copy()
-	setup_queue.Cut()
-
-	while(areas_to_process.len)
-		var/area/A = areas_to_process[areas_to_process.len]
-		areas_to_process.len--
-
-		if(!istype(A) || QDELETED(A) || !(A in GLOB.areas) || !A.daylight)
-			continue
-
-		A.set_base_lighting(current_color, round(current_intensity * 255, 1))
-		CHECK_TICK
-
-	setup_running = FALSE
-	if(length(setup_queue))
-		setup_running = TRUE
-		INVOKE_ASYNC(src, PROC_REF(process_setup_queue))
+/datum/controller/subsystem/daylight/proc/update_area(area/A)
+	if(!istype(A) || QDELETED(A) || !A.daylight)
+		return
+	A.set_base_lighting(current_color, round(current_intensity * 255, 1))
 
 /datum/controller/subsystem/daylight/proc/remove_daylight_from_area(area/A)
 	if(!istype(A) || QDELETED(A) || !(A in GLOB.areas))
@@ -134,7 +115,7 @@ SUBSYSTEM_DEF(daylight)
 		return
 	setup_running = TRUE
 	for(var/area/A in daylight_areas)
-		A.set_base_lighting(current_color, round(current_intensity * 255, 1))
+		update_area(A)
 		stoplag(1)
 	setup_running = FALSE
 
@@ -201,11 +182,6 @@ SUBSYSTEM_DEF(daylight)
 	return color_interpolate(color1, color2, mix)
 
 /datum/controller/subsystem/daylight/fire()
-
-	if(length(setup_queue) && !setup_running)
-		setup_running = TRUE
-		INVOKE_ASYNC(src, PROC_REF(process_setup_queue))
-
 	if(transition_steps > 0)
 		var/fraction = 1 - (transition_steps - 1) / TRANSITION_STEPS
 		var/new_intensity = lerp(start_intensity, target_intensity, fraction)
@@ -343,8 +319,6 @@ ADMIN_VERB(toggle_daylight_cycle_lock, R_ADMIN, "Toggle Daylight Cycle Lock", "L
 	return ..()
 
 #undef LUMINOSITY_DAYLIGHT
-/obj/machinery/brm
-
 /datum/element/daylight_overlay
 	element_flags = ELEMENT_DETACH_ON_HOST_DESTROY
 	var/mutable_appearance/overlay

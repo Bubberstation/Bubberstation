@@ -53,8 +53,8 @@ SUBSYSTEM_DEF(train_controller)
 	soundloop = new(start_immediately = FALSE)
 	RegisterSignal(SSticker, COMSIG_TICKER_ENTER_PREGAME, PROC_REF(on_enter_pregame))
 	load_stations()
-	load_startpoint()
-	load_train()
+	add_startup_message("Trainstation: loading game map...")
+	load_map()
 
 /datum/controller/subsystem/train_controller/Destroy()
 	all_simulated_turfs.Cut()
@@ -87,11 +87,16 @@ SUBSYSTEM_DEF(train_controller)
 
 /datum/controller/subsystem/train_controller/proc/on_enter_pregame()
 	SIGNAL_HANDLER
-
 	// Сперва на перво сообщим об правилах игры
 	announce_game()
 	set_station_name("Trainstation 13")
 	addtimer(CALLBACK(src, PROC_REF(set_lobby_screen)), 5 SECONDS)
+
+/datum/controller/subsystem/train_controller/proc/load_map()
+	load_train()
+	load_startpoint()
+	for(var/obj/machinery/light/light in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/light))
+		light.update_light()
 
 /datum/controller/subsystem/train_controller/proc/set_lobby_screen()
 	SStitle.change_title_screen('modular_zvents/icons/lobby/trainstation.jpg')
@@ -110,6 +115,7 @@ SUBSYSTEM_DEF(train_controller)
 		stack_trace("Failed to load train, spawnpoint out of bounds!")
 		return
 	train_template.load(actual_spawnpoint, centered = FALSE)
+
 
 /datum/controller/subsystem/train_controller/proc/on_station_unloaded()
 
