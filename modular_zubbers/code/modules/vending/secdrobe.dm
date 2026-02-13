@@ -76,13 +76,6 @@
 
 
 	contraband = list(
-					/obj/item/clothing/under/colonial/nri_police = 3,
-					/obj/item/clothing/suit/british_officer = 3,
-					/obj/item/clothing/head/fedora/det_hat/cybergoggles = 3,
-					/obj/item/clothing/glasses/hud/eyepatch/sec = 3, //No flash protection on the eyepatches, so they're worse than the sunnies.
-					/obj/item/clothing/glasses/hud/eyepatch/sec/blindfold = 3, //Ditto
-					/obj/item/clothing/glasses/hud/ar/aviator/security = 3, //Printable, but you have to choose between HUD and flash protection.
-					/obj/item/clothing/glasses/hud/ar/projector/security = 3,
 					/obj/item/clothing/mask/gas/half_mask = 3,
 					/obj/item/clothing/head/soft/veteran = 1,
 					/obj/item/clothing/head/helmet/toggleable/justice = 1, //More than one of these in the Vendor and they'll get annoying fast. Hence why Justice2 isn't here.

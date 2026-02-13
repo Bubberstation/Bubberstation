@@ -671,6 +671,8 @@
 	desc = "Lost your eye beating an innocent clown? Thankfully your corporate overlords have made something to make up for this. May not do well against flashes."
 	clothing_traits = list(TRAIT_SECURITY_HUD)
 	glass_colour_type = /datum/client_colour/glass_colour/red
+	icon = 'modular_zubbers/icons/obj/clothing/glasses.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/eyes.dmi'
 
 /obj/item/clothing/glasses/hud/eyepatch/sec/blindfold
 	name = "sec blindfold HUD"
