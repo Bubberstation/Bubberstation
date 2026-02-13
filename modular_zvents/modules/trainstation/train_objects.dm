@@ -134,7 +134,7 @@
 	density = TRUE
 	anchored = TRUE
 	opacity = TRUE
-	flags_1 = NO_TURF_MOVEMENT
+	flags_1 = NO_TURF_MOVEMENT_1
 
 /obj/structure/gangway/Initialize(mapload)
 	. = ..()

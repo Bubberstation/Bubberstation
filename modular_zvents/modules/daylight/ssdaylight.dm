@@ -64,7 +64,7 @@ SUBSYSTEM_DEF(daylight)
 
 	var/daylight_update_cooldown = 2 MINUTES
 	// Daylight cycle in minutes
-	var/daylight_cycle = 40
+	var/daylight_cycle = 60
 	COOLDOWN_DECLARE(daylight_update_cd)
 
 /datum/controller/subsystem/daylight/Initialize()
@@ -314,7 +314,7 @@ ADMIN_VERB(toggle_daylight_cycle_lock, R_ADMIN, "Toggle Daylight Cycle Lock", "L
 
 
 /obj/effect/light_emitter
-	flags_1 = NO_TURF_MOVEMENT
+	flags_1 = NO_TURF_MOVEMENT_1
 
 /obj/effect/light_emitter/daylight
 	set_luminosity = 2

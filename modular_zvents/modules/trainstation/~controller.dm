@@ -10,7 +10,8 @@ SUBSYSTEM_DEF(train_controller)
 		/datum/controller/subsystem/mapping,
 		/datum/controller/subsystem/daylight,
 	)
-
+	// В какую сторону якобы двигается наш поезд
+	var/abstract_moving_direction = EAST
 	VAR_PRIVATE/moving = FALSE
 	// Список всех зарегестрированных турфов
 	VAR_PRIVATE/list/all_simulated_turfs = list()
@@ -96,7 +97,7 @@ SUBSYSTEM_DEF(train_controller)
 	SStitle.change_title_screen('modular_zvents/icons/lobby/trainstation.jpg')
 
 /datum/controller/subsystem/train_controller/proc/load_startpoint()
-	load_station(/datum/train_station/start_point, stop_moving = FALSE, hide_for_players = FALSE, announce = FALSE)
+	load_station(/datum/train_station/abandoned_depo, stop_moving = FALSE, hide_for_players = FALSE, announce = FALSE)
 
 /datum/controller/subsystem/train_controller/proc/load_train()
 	var/datum/map_template/train/train_template = new()
@@ -182,10 +183,11 @@ SUBSYSTEM_DEF(train_controller)
 /datum/controller/subsystem/train_controller/proc/is_moving()
 	return moving
 
-/datum/controller/subsystem/train_controller/proc/show_station_logo(datum/train_station/station)
+/datum/controller/subsystem/train_controller/proc/show_station_logo(datum/train_station/station, silent = FALSE)
 	for(var/mob/player in GLOB.player_list)
-		SEND_SOUND(player, 'modular_zvents/sounds/effects/station_logo.ogg')
-		new /atom/movable/screen/station_logo(null, null, station.name, player.client)
+		if(!silent)
+			SEND_SOUND(player, 'modular_zvents/sounds/effects/station_logo.ogg')
+		new /atom/movable/screen/station_logo(null, null, station.name, station.creator, player.client)
 
 
 /datum/controller/subsystem/train_controller/proc/check_start()
@@ -206,18 +208,19 @@ SUBSYSTEM_DEF(train_controller)
 	all_simulated_turfs -= T
 
 /datum/controller/subsystem/train_controller/proc/queue_process(turf/open/moving/T)
-	if(!queue_list)
-		queue_list = list()
+	if(!to_process)
+		to_process = list()
 	if(to_process && (T in to_process))
 		return
-	if(T in queue_list)
+	if(T in to_process)
 		return
-	queue_list += T
+	to_process += T
+
 
 /datum/controller/subsystem/train_controller/proc/unqueue_process(turf/open/moving/T)
 	if(T in to_process)
 		to_process -= T
-
+		T.processing = FALSE
 
 /datum/controller/subsystem/train_controller/proc/attempt_start(delay = 15 SECONDS)
 	if(moving || tain_starting)
@@ -279,11 +282,6 @@ SUBSYSTEM_DEF(train_controller)
 
 /datum/controller/subsystem/train_controller/fire(resumed)
 	if(!moving)
-		return
-	if(LAZYLEN(queue_list))
-		to_process += queue_list
-		LAZYNULL(queue_list)
-	if(!LAZYLEN(to_process))
 		return
 	if(!train_engine || !train_engine.is_active())
 		stop_moving()
@@ -389,12 +387,12 @@ ADMIN_VERB(open_train_controller, R_ADMIN, "Open train controller", "Open active
 	var/fade_delay = 7 SECONDS
 	var/client/parent = null
 
-/atom/movable/screen/station_logo/Initialize(mapload, datum/hud/hud_owner, station_name, client/to_show)
+/atom/movable/screen/station_logo/Initialize(mapload, datum/hud/hud_owner, station_name, creator, client/to_show)
 	. = ..()
 	parent = to_show
 	parent.screen += src
 	var/icon_size = world.icon_size
-	maptext = {"<div style="font:'Small Fonts'">[station_name]</div>"}
+	maptext = {"<div style="font:'Small Fonts'">[station_name] \n mady by [creator]</div>"}
 	maptext_height = icon_size * 6
 	maptext_width = icon_size * 24
 	var/list/client_view = splittext(parent.view, "x")
@@ -403,14 +401,14 @@ ADMIN_VERB(open_train_controller, R_ADMIN, "Open train controller", "Open active
 	if(LAZYLEN(client_view) == 2)
 		view_x = client_view[1]
 		view_y = client_view[2]
-	maptext_x = ((icon_size * view_x) + round(icon_size * 0.5)) * 10
-	maptext_y = ((icon_size * view_y) + round(icon_size * 0.5)) * 10
+	maptext_x = ((icon_size * view_x) + round(icon_size * 0.5)) * 13
+	maptext_y = ((icon_size * view_y) + round(icon_size * 0.5)) * 13
 	transform.Translate(10, 10)
 	ASYNC
 		rollem()
 
 /atom/movable/screen/station_logo/proc/rollem()
-	sleep(2 SECONDS)
+	sleep(3 SECONDS)
 	animate(src, alpha = 0, time = fade_delay, flags = ANIMATION_PARALLEL)
 	addtimer(CALLBACK(src, PROC_REF(fadeout)), fade_delay + 0.1 SECONDS)
 

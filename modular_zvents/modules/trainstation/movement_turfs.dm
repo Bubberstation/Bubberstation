@@ -1,3 +1,12 @@
+/atom/proc/attempt_moving_turf_step(turf/mover, direction)
+	return TRUE
+
+/atom/movable/attempt_moving_turf_step(turf/mover, direction)
+	if(movement_type & FLYING || movement_type & PHASING)
+		return FALSE
+	return TRUE
+
+
 /turf/open/moving
 	name = "Matrix"
 	desc = "You probably shouldn't see this"
@@ -15,6 +24,7 @@
 	// Префиксы для icon_state (анимация турфа)
 	var/moving_prefix = "moving"
 	var/still_prefix = "still"
+	var/processing = FALSE
 
 	// Скорость движения фона (px/сек) — регулируй для реализма (100-300); override глобальной если нужно
 	var/speed = 200
@@ -45,17 +55,22 @@
 	. = ..()
 	if(!moving)
 		return
-	if(QDELETED(mover) || isobserver(mover) || mover.flags_1 & NO_TURF_MOVEMENT)
+	if(QDELETED(mover) || isobserver(mover) || mover.flags_1 & NO_TURF_MOVEMENT_1 || !mover.attempt_moving_turf_step(src, movement_direction) || processing)
 		return
 	SStrain_controller.queue_process(src)
+
+/turf/open/moving/Exit(atom/movable/mover, atom/newloc)
+	. = ..()
+	if(!check_process(TRUE))
+		SStrain_controller.unqueue_process(src)
 
 /turf/open/moving/proc/check_process(register = TRUE)
 	if(!length(contents))
 		return FALSE
 	for(var/atom/movable/AM in contents)
-		if(QDELETED(AM) || isobserver(AM) || AM.flags_1 & NO_TURF_MOVEMENT)
+		if(QDELETED(AM) || isobserver(AM) || AM.flags_1 & NO_TURF_MOVEMENT_1 || !AM.attempt_moving_turf_step(src, movement_direction))
 			continue
-		if(register)
+		if(register && !processing)
 			SStrain_controller.queue_process(src)
 		return TRUE
 	return FALSE
@@ -65,11 +80,11 @@
 		return
 	processing_content = TRUE
 	for(var/atom/movable/AM as anything in contents)
-		if(QDELETED(AM) || isobserver(AM) || AM.flags_1 & NO_TURF_MOVEMENT)
+		if(QDELETED(AM) || isobserver(AM) || AM.flags_1 & NO_TURF_MOVEMENT_1 || !AM.attempt_moving_turf_step(src, movement_direction))
 			continue
 		move_object(AM)
 	processing_content = FALSE
-	if(!check_process(register = FALSE))
+	if(!check_process(FALSE))
 		SStrain_controller.unqueue_process(src)
 
 /turf/open/moving/proc/move_object(atom/movable/object)
@@ -86,7 +101,13 @@
 			qdel(object)
 	else
 		ASYNC
-			object.Move(target)
+			move_and_bump(target, object)
+
+/turf/open/moving/proc/move_and_bump(turf/target, atom/movable/AM)
+	if(target.is_blocked_turf())
+		AM.forceMove(target)
+	else
+		AM.Move(target, SStrain_controller.abstract_moving_direction)
 
 /turf/open/moving/update_appearance(updates)
 	. = ..()

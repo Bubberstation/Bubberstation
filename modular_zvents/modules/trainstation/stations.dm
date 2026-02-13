@@ -1,6 +1,6 @@
 /obj/effect/landmark/trainstation
 	icon_state = "tdome_admin"
-	flags_1 = NO_TURF_MOVEMENT
+	flags_1 = NO_TURF_MOVEMENT_1
 
 /obj/effect/landmark/trainstation/Initialize(mapload)
 	. = ..()
@@ -24,6 +24,8 @@
 /obj/effect/landmark/trainstation/crew_spawnpoint
 	name = "Crew Placer"
 
+/obj/effect/landmark/trainstation/raider_spawnpoint
+	name = "Raider spawner"
 
 /obj/effect/landmark/trainstation/object_spawner
 	name = "Object spawner"
@@ -121,6 +123,7 @@
 	var/station_flags = NONE
 	var/visible = TRUE
 	var/required_stations = 0
+	var/creator = "Fenysha"
 
 	var/map_path
 	VAR_PRIVATE/datum/map_template/template = null
@@ -185,8 +188,8 @@
 	if(!template)
 		return FALSE
 	var/start_time = world.realtime
-	var/obj/effect/landmark/trainstation/station_spawnpoint/spawnpoint = get_spawnpoint()
-	if(!spawnpoint || !istype(spawnpoint))
+	var/obj/effect/landmark/trainstation/spawnpoint = get_spawnpoint()
+	if(!spawnpoint)
 		stack_trace("Failed to load train station [name], no available spawnpoints!")
 		return FALSE
 
@@ -336,45 +339,66 @@
 	)
 
 
+/datum/train_station/near_station/abandoned_depo
+	name = "Nearstation - Abandoned depo"
+	map_path = "_maps/modular_events/trainstation/nearstations/static_abandoned_train_depo.dmm"
+
+/datum/train_station/abandoned_depo
+	name = "Abandoned depo"
+	map_path = "_maps/modular_events/trainstation/abandoned_train_depo.dm.dmm"
+	creator = "Fenysha"
+	possible_nearstations = list(/datum/train_station/near_station/abandoned_depo)
+	possible_next = list(/datum/train_station/start_point)
+	station_flags = TRAINSTATION_NO_FORKS | TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING
+
+
 /datum/train_station/start_point
 	name = "Start-point"
 	map_path = "_maps/modular_events/trainstation/startpoint.dmm"
+	creator = "Fenysha & TYWONKA"
 	possible_next = list(/datum/train_station/military_house)
 	station_flags = TRAINSTATION_NO_FORKS | TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING
 
+
 /datum/train_station/military_house
 	name = "Military Side"
+	creator = "Fenysha & TYWONKA"
 	map_path = "_maps/modular_events/trainstation/military_side.dmm"
 	station_flags = TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING
 
 
 /datum/train_station/warehouses
-	name = "Abandoned warehouses"
+	name = "Abandoned warehousess"
+	creator = "Fenysha & TYWONKA"
 	map_path = "_maps/modular_events/trainstation/warehouse.dmm"
 	station_flags = TRAINSTATION_BLOCKING
 
 /datum/train_station/frozen_lake
 	name = "Frozen lake"
+	creator = "Fenysha"
 	map_path = "_maps/modular_events/trainstation/iced_lake.dmm"
 
 /datum/train_station/mines
 	name = "Abandoned mines"
+	creator = "Kierri"
 	map_path = "_maps/modular_events/trainstation/abandoned_mines.dmm"
 	station_flags = TRAINSTATION_BLOCKING
 
 /datum/train_station/deep_forest
 	name = "Deep forest"
+	creator = "Fenysha"
 	map_path = "_maps/modular_events/trainstation/deep_forest.dmm"
 
 /datum/train_station/collapsed_lab
 	name = "Collapsed laboratory"
+	creator = "Mold"
 	map_path = "_maps/modular_events/trainstation/collapsed_lab.dmm"
 	station_flags = TRAINSTATION_BLOCKING
 	required_stations = 3
 
-
 /datum/train_station/radiosphere
 	name = "The Radiosphere"
+	creator = "Fenysha & Mold"
 	map_path = "_maps/modular_events/trainstation/radiosphere.dmm"
 	station_flags = TRAINSTATION_BLOCKING
 	required_stations = 3

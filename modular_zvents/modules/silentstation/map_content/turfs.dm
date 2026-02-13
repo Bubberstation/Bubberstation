@@ -27,7 +27,6 @@
 
 /turf/closed/wall/city/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/daylight_overlay)
 
 /turf/closed/wall/city/lower
 	icon_state = "low-0"
