@@ -1035,12 +1035,13 @@
 "em" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/research{
-	name = "Science & Telecomms";
-	req_one_access = list("science, tcomms")
+	name = "Science & Telecomms"
 	},
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/any/science/general,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/tcoms,
 /turf/open/floor/iron/dark/textured_large,
 /area/trainstation/indoors/train/reserch)
 "en" = (
@@ -2404,10 +2405,6 @@
 /obj/effect/overlay/water/top{
 	alpha = 100
 	},
-/obj/effect/overlay/water/top{
-	alpha = 100
-	},
-/obj/effect/overlay/water,
 /turf/open/floor/plating/cold_cargo_storage,
 /area/trainstation/indoors/train/containment)
 "jX" = (
@@ -5373,6 +5370,20 @@
 	},
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
+/obj/structure/rack/shelf,
+/obj/item/clothing/suit/hooded/wintercoat{
+	pixel_x = 6;
+	pixel_y = -3
+	},
+/obj/item/clothing/suit/hooded/wintercoat{
+	pixel_x = 1;
+	pixel_y = 1
+	},
+/obj/item/clothing/suit/hooded/wintercoat{
+	pixel_x = -4;
+	pixel_y = 5
+	},
+/obj/structure/marker_beacon/cerulean,
 /turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/train/tech_3)
 "xg" = (
@@ -5707,12 +5718,13 @@
 "yQ" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/research{
-	name = "Telecomms & AI";
-	req_one_access = list("science, tcomms")
+	name = "Telecomms & AI"
 	},
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/any/science/general,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/tcoms,
 /turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/train/reserch)
 "yR" = (
@@ -7517,12 +7529,13 @@
 "Gx" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/research{
-	name = "PINK";
-	req_one_access = list("science, tcomms")
+	name = "PINK"
 	},
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/any/science/general,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/tcoms,
 /turf/open/floor/iron/dark/textured_large,
 /area/trainstation/indoors/train/reserch)
 "Gy" = (
@@ -8265,6 +8278,20 @@
 /obj/effect/turf_decal/siding/dark/corner{
 	dir = 4
 	},
+/obj/structure/rack/shelf,
+/obj/item/clothing/suit/hooded/wintercoat{
+	pixel_x = 6;
+	pixel_y = -3
+	},
+/obj/item/clothing/suit/hooded/wintercoat{
+	pixel_x = 1;
+	pixel_y = 1
+	},
+/obj/item/clothing/suit/hooded/wintercoat{
+	pixel_x = -4;
+	pixel_y = 5
+	},
+/obj/structure/marker_beacon/cerulean,
 /turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/train/tech_3)
 "JV" = (
@@ -8563,9 +8590,9 @@
 /obj/structure/cable/layer1,
 /obj/structure/cable,
 /obj/machinery/door/airlock/research{
-	name = "SMES Containment Area";
-	req_one_access = list("science, tcomms")
+	name = "SMES Containment Area"
 	},
+/obj/effect/mapping_helpers/airlock/access/any/science/general,
 /turf/open/floor/iron/dark,
 /area/trainstation/indoors/train/reserch)
 "Lp" = (
@@ -10041,6 +10068,20 @@
 	},
 /obj/effect/turf_decal/siding/dark/corner,
 /obj/structure/cable,
+/obj/structure/rack/shelf,
+/obj/item/clothing/suit/hooded/wintercoat{
+	pixel_x = 6;
+	pixel_y = -3
+	},
+/obj/item/clothing/suit/hooded/wintercoat{
+	pixel_x = 1;
+	pixel_y = 1
+	},
+/obj/item/clothing/suit/hooded/wintercoat{
+	pixel_x = -4;
+	pixel_y = 5
+	},
+/obj/structure/marker_beacon/cerulean,
 /turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/train/tech_3)
 "RA" = (
@@ -10760,6 +10801,20 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/structure/rack/shelf,
+/obj/item/clothing/suit/hooded/wintercoat{
+	pixel_x = 6;
+	pixel_y = -3
+	},
+/obj/item/clothing/suit/hooded/wintercoat{
+	pixel_x = 1;
+	pixel_y = 1
+	},
+/obj/item/clothing/suit/hooded/wintercoat{
+	pixel_x = -4;
+	pixel_y = 5
+	},
+/obj/structure/marker_beacon/cerulean,
 /turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/train/tech_3)
 "UB" = (
@@ -11498,8 +11553,8 @@
 "Xn" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden,
 /obj/machinery/door/window/survival_pod/left/directional/east{
-	req_one_access = list("rd, tcomms");
-	name = "Telecomms & AI Core"
+	name = "Telecomms & AI Core";
+	req_access = list("rd")
 	},
 /obj/structure/cable/layer1,
 /turf/open/floor/iron/dark,
@@ -11582,8 +11637,8 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden,
 /obj/machinery/meter,
 /obj/machinery/door/window/survival_pod/left/directional/west{
-	req_one_access = list("rd, tcomms");
-	name = "Telecomms & AI Core"
+	name = "Telecomms & AI Core";
+	req_access = list("rd")
 	},
 /obj/structure/cable/layer1,
 /obj/structure/fans/tiny/invisible,
