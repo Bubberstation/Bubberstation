@@ -1,8 +1,6 @@
-// WEE WOO WEE WOO WANTED
-//Temporarily removed until reviewer feedback
-/*
-/datum/hud
-	var/atom/movable/screen/wanted/wanted_lvl
+//Also kinda exists for goofsec?
+//seemingly more localized implementation
+//found under "modular_skyrat/modules/goofsec/code/hud.dm"
 
 /atom/movable/screen/wanted
 	name = "Space Police Alertness"
@@ -30,4 +28,3 @@
 /atom/movable/screen/wanted/update_icon_state()
 	icon_state = "[base_icon_state]_[level][cops_arrived ? "_active" : null]"
 	return ..()
-*/

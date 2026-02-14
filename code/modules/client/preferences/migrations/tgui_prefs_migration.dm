@@ -39,6 +39,8 @@
 	migrate_antagonist(ROLE_TRAITOR, list(ROLE_SYNDICATE_INFILTRATOR, ROLE_SLEEPER_AGENT))
 	migrate_antagonist(ROLE_WIZARD, list(ROLE_WIZARD_MIDROUND))
 
+	migrate_antagonist("Familes Antagonists", list(ROLE_FAMILIES, ROLE_FAMILY_HEAD_ASPIRANT)) //Bubber Addition
+
 
 // If you have an antagonist enabled, it will add the alternative preferences for said antag in be_special.
 // will_exist is the role we check if enabled, to_add list is the antagonists we add onto the be_special list.

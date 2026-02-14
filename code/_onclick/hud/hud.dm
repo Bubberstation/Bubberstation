@@ -120,6 +120,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	var/atom/movable/screen/healthdoll/healthdoll
 	var/atom/movable/screen/spacesuit
 	var/atom/movable/screen/hunger/hunger
+	var/atom/movable/screen/wanted/wanted_lvl //Bubber addition
 
 	/// Subtypes can override this to force a specific UI style
 	var/ui_style
@@ -275,6 +276,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	healths = null
 	stamina = null
 	healthdoll = null
+	wanted_lvl = null //Bubber addition
 	spacesuit = null
 	hunger = null
 	alien_plasma_display = null
