@@ -666,3 +666,10 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
 	worn_icon_teshari = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_teshari.dmi'
+
+/obj/item/clothing/under/rank/lace
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	// awkwardly shoving this in with the skyrat donator item sprites until someone tells me no. send help
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_teshari.dmi'
+
