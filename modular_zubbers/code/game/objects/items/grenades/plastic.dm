@@ -7,7 +7,7 @@
 		return FALSE
 
 	if(isliving(bomb_target) && bomb_target.GetComponent(/datum/component/c4_body_tracker))
-		to_chat(user,span_warning("It would be pretty fucked up and evil to plant a second c4 bomb on someone..."))
+		to_chat(user,span_warning("There is already an explosive charge planted on [bomb_target]!"))
 		return FALSE
 
 	. = ..()
