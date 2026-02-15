@@ -46,7 +46,7 @@
 		icon_keyboard = "med_key"
 		update_appearance()
 		set_light(l_range = initial(brightness_on), l_power = initial(light_power), l_color = initial(light_color), l_on = TRUE)
-	addtimer(CALLBACK(src, .proc/alarm), SENSORS_UPDATE_PERIOD) // Fix this for 515
+	addtimer(CALLBACK(src, PROC_REF(alarm)), SENSORS_UPDATE_PERIOD)
 
 	return canalarm
 

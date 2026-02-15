@@ -66,10 +66,6 @@
 /datum/quirk/dirty/process(seconds_per_tick)
 	if (cleaned)
 		return
-	for (var/mob/living/iter_mob in get_hearers_in_view(4, quirk_holder))
-		if (HAS_TRAIT(iter_mob, TRAIT_DIRTY) || HAS_TRAIT(iter_mob, TRAIT_ANOSMIA))
-			continue
-		iter_mob.add_mood_event("dirty_smell", /datum/mood_event/dirty_smell)
 
 /datum/quirk/dirty/add(client/client_source)
 	RegisterSignal(quirk_holder, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
@@ -82,7 +78,7 @@
 	dirty_text = quirk_holder.client.prefs.read_preference(/datum/preference/text/dirty_text)
 	dirt_color = quirk_holder.client.prefs.read_preference(/datum/preference/color/dirty_color)
 
-	to_chat(quirk_holder, span_notice("You're dirty! You'll spread dirt when you walk, and can add a mood debuff to people around you. \
+	to_chat(quirk_holder, span_notice("You're dirty! You'll spread dirt when you walk. \
 	Being cleaned will remove your filth - rummage through a trash pile to get it back."))
 
 	return ..()
@@ -212,16 +208,6 @@
 		REMOVE_TRAIT(quirk_holder, TRAIT_DIRTY, QUIRK_TRAIT)
 
 	cleaned = new_cleaned
-
-/datum/mood_event/dirty_smell
-	description = "Something... or someone... smells rotten around here..."
-	mood_change = -2
-	timeout = 25 SECONDS
-
-/datum/mood_event/dirty_smell/add_effects(...)
-	. = ..()
-
-	to_chat(owner, span_warning("You catch the distinct scent of someone who hasn't showered in years. Disgusting."))
 
 /datum/mood_event/dirty_washed
 	description = "What is this smell...? Lavender soap? A hint of citrus?! ELDERBERRIES?! DISGUSTING! I need to wash myself in dirt!"

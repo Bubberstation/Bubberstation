@@ -205,22 +205,6 @@
 	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
 	new_icon_state = "peacekeeper_webbing"
 
-/obj/item/storage/belt/security/webbing/peacekeeper //did I mention this codebase is fucking awful
-
-/obj/item/storage/belt/security/webbing/peacekeeper/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
-
-/obj/item/storage/belt/security/webbing/peacekeeper/armadyne //You two only exist because I don't want to purge you, because it'd break some stuff. Thin fucking ice.
-
-/obj/item/storage/belt/security/webbing/peacekeeper/armadyne/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
-
 ///Enables you to quickdraw weapons from security holsters
 /datum/storage/security/open_storage(datum/source, mob/user)
 	var/atom/resolve_parent = parent
