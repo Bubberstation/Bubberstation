@@ -374,6 +374,26 @@
 /obj/item/plant_analyzer,
 /turf/open/floor/iron,
 /area/awaymission/caves/maintsroom)
+"bp" = (
+/obj/machinery/light/directional/south,
+/obj/structure/table/wood,
+/obj/item/food/drug/moon_rock{
+	pixel_x = 11;
+	pixel_y = -2;
+	anchored = 1
+	},
+/obj/item/food/drug/moon_rock{
+	pixel_x = 10;
+	pixel_y = 4;
+	anchored = 1
+	},
+/obj/item/reagent_containers/syringe/contraband/space_drugs{
+	pixel_x = 5;
+	pixel_y = -5;
+	anchored = 1
+	},
+/turf/open/floor/wood,
+/area/awaymission/caves/maintsroom)
 "bq" = (
 /obj/machinery/light/floor,
 /obj/structure/chair/plastic{
@@ -582,12 +602,19 @@
 /area/awaymission/caves/maintsroom)
 "cf" = (
 /obj/structure/closet/body_bag/bluespace,
+/obj/structure/sign/warning/secure_area/directional/south,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "ch" = (
 /obj/structure/fluff/divine/powerpylon,
 /turf/open/floor/iron/chapel{
 	dir = 4
+	},
+/area/awaymission/caves/maintsroom)
+"ci" = (
+/turf/open/chasm/jungle{
+	name = "Pit";
+	desc = "A pit, it leads to- nothing, if you were to for some reason throw down a refined anomaly, after a few minutes a mixture of supplies and oxygen and plasma tanks would be thrown up- denting the ceiling which, is already extremely dented."
 	},
 /area/awaymission/caves/maintsroom)
 "cj" = (
@@ -600,6 +627,10 @@
 /obj/effect/landmark/start/hangover,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
+"cm" = (
+/mob/living/simple_animal/hostile/devourdem,
+/turf/open/floor/white,
+/area/awaymission/caves/maintsroom/deeper)
 "co" = (
 /obj/item/toy/reality_pierce,
 /obj/effect/heretic_rune,
@@ -818,6 +849,10 @@
 /obj/effect/gibspawner,
 /turf/open/floor/stone,
 /area/awaymission/caves/maintsroom)
+"cT" = (
+/mob/living/basic/vatbeast,
+/turf/open/floor/white,
+/area/awaymission/caves/maintsroom/deeper)
 "cV" = (
 /mob/living/basic/mining/legion/houndoftindalos,
 /turf/open/floor/iron/smooth,
@@ -925,7 +960,9 @@
 /turf/open/misc/asteroid/snow/indestructible/planet,
 /area/awaymission/caves/maintsroom)
 "dt" = (
-/obj/machinery/scanner_gate/luxury_shuttle,
+/obj/machinery/scanner_gate/luxury_shuttle{
+	name = "Insurance"
+	},
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "du" = (
@@ -1118,6 +1155,12 @@
 "dT" = (
 /obj/machinery/door/airlock/vault,
 /obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/circuit/red/anim,
+/area/awaymission/caves/maintsroom)
+"dU" = (
+/mob/living/basic/malf_borg/sec{
+	faction = list("hostile","cult")
+	},
 /turf/open/floor/circuit/red/anim,
 /area/awaymission/caves/maintsroom)
 "dV" = (
@@ -1566,7 +1609,9 @@
 /turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "fo" = (
-/obj/machinery/scanner_gate/luxury_shuttle,
+/obj/machinery/scanner_gate/luxury_shuttle{
+	name = "Insurance"
+	},
 /turf/open/floor/iron/stairs{
 	dir = 4
 	},
@@ -1623,6 +1668,10 @@
 /obj/item/reagent_containers/cup/soda_cans/monkey_energy,
 /obj/machinery/camera/xray/directional/north,
 /turf/open/floor/plating,
+/area/awaymission/caves/maintsroom)
+"fv" = (
+/mob/living/basic/blob_minion/spore/independent,
+/turf/open/indestructible/meat,
 /area/awaymission/caves/maintsroom)
 "fw" = (
 /obj/item/cigarette/robust,
@@ -1808,6 +1857,10 @@
 /obj/structure/alien/weeds,
 /obj/structure/cable,
 /turf/open/floor/plating,
+/area/awaymission/caves/maintsroom)
+"gc" = (
+/obj/structure/sign/warning/secure_area/directional/north,
+/turf/open/floor/sepia,
 /area/awaymission/caves/maintsroom)
 "gd" = (
 /obj/structure/chair/sofa/bench/right{
@@ -2677,6 +2730,7 @@
 	dir = 4
 	},
 /mob/living/basic/trader/mrbones,
+/obj/effect/mapping_helpers/mob_buckler,
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "iV" = (
@@ -2784,6 +2838,10 @@
 /obj/structure/sign/flag/nanotrasen/directional/north,
 /turf/open/floor/iron,
 /area/awaymission/caves/maintsroom)
+"jo" = (
+/mob/living/basic/mining/cazador,
+/turf/open/floor/white,
+/area/awaymission/caves/maintsroom/deeper)
 "jp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/alien/resin/wall,
@@ -2917,8 +2975,7 @@
 /turf/open/floor/iron/small,
 /area/awaymission/caves/maintsroom)
 "jH" = (
-/obj/structure/blob/shield/core,
-/turf/open/indestructible/meat,
+/turf/closed/wall/material/meat,
 /area/awaymission/caves/maintsroom)
 "jI" = (
 /obj/structure/chair/comfy/brown{
@@ -3273,6 +3330,17 @@
 /obj/machinery/atmospherics/components/binary/pump/off,
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
+"kJ" = (
+/obj/structure/chair/comfy/brown{
+	dir = 4
+	},
+/mob/living/basic/trooper/nanotrasen/ranged/elite{
+	desc = "A nanotrasen assault officer at the end of the world, theyre arm wrestling the syndicate commando across from them, they are both locked eyes and there is a- quite large pile of money underneath their hands, they are evenly matched and neither of them budge while theyre arms still shake, theyre giving it their all but neither can win out over the other.";
+	faction = list("neutral")
+	},
+/obj/effect/mapping_helpers/mob_buckler,
+/turf/open/floor/wood,
+/area/awaymission/caves/maintsroom)
 "kK" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -3288,9 +3356,8 @@
 /turf/open/water,
 /area/awaymission/caves/maintsroom)
 "kN" = (
-/obj/machinery/door/poddoor/shutters/window/indestructible/maints_armory,
-/obj/structure/sign/flag/terragov/terragov_marines,
-/turf/open/floor/iron/diagonal,
+/mob/living/basic/mothroach/bar,
+/turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "kO" = (
 /obj/effect/decal/cleanable/dirt,
@@ -3313,6 +3380,12 @@
 	},
 /obj/effect/spawner/random/entertainment/money_medium,
 /turf/open/floor/iron/dark/smooth_corner,
+/area/awaymission/caves/maintsroom)
+"kR" = (
+/mob/living/basic/malf_borg{
+	faction = list("hostile","cult")
+	},
+/turf/open/floor/circuit/red/off,
 /area/awaymission/caves/maintsroom)
 "kS" = (
 /obj/structure/fermenting_barrel,
@@ -3554,7 +3627,9 @@
 /turf/open/floor/plating/rust,
 /area/awaymission/caves/maintsroom)
 "lE" = (
-/obj/machinery/scanner_gate/luxury_shuttle,
+/obj/machinery/scanner_gate/luxury_shuttle{
+	name = "Insurance"
+	},
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/iron/white,
 /area/awaymission/caves/maintsroom)
@@ -3630,6 +3705,12 @@
 "lT" = (
 /obj/structure/trash_pile,
 /turf/open/floor/plating,
+/area/awaymission/caves/maintsroom)
+"lU" = (
+/obj/structure/railing/unbreakable{
+	dir = 8
+	},
+/turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "lV" = (
 /obj/effect/spawner/random/exotic/antag_gear,
@@ -3723,7 +3804,6 @@
 /area/awaymission/caves/maintsroom)
 "mn" = (
 /obj/structure/blob/special/node,
-/obj/structure/blob/shield/core,
 /turf/open/indestructible/meat,
 /area/awaymission/caves/maintsroom)
 "mo" = (
@@ -4085,9 +4165,14 @@
 /obj/machinery/power/floodlight,
 /turf/open/floor/iron,
 /area/awaymission/caves/maintsroom)
+"ns" = (
+/obj/effect/light_emitter/fake_outdoors,
+/turf/open/floor/white,
+/area/awaymission/caves/maintsroom/deeper)
 "nt" = (
 /obj/effect/decal/remains/human,
 /obj/effect/turf_decal/trimline/yellow/filled/warning,
+/obj/structure/sign/warning/secure_area/directional/east,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "nu" = (
@@ -4805,13 +4890,16 @@
 /turf/open/floor/carpet/lone,
 /area/awaymission/caves/maintsroom)
 "pT" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
+/obj/structure/chair/comfy/brown{
+	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/neutral/fourcorners,
-/mob/living/basic/malf_borg,
-/turf/open/floor/iron,
+/mob/living/basic/blackmesa/human/blackops{
+	faction = list("neutral");
+	name = "weary operative";
+	desc = "They seem dreary and tired, they are regaining their strength over a couple of beers"
+	},
+/obj/effect/mapping_helpers/mob_buckler,
+/turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "pU" = (
 /obj/structure/disposalpipe/trunk{
@@ -5105,7 +5193,9 @@
 /area/awaymission/caves/maintsroom)
 "qX" = (
 /obj/machinery/door/airlock/maintenance,
-/obj/machinery/scanner_gate/luxury_shuttle,
+/obj/machinery/scanner_gate/luxury_shuttle{
+	name = "Insurance"
+	},
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "qY" = (
@@ -5160,8 +5250,11 @@
 /turf/open/misc/asteroid/basalt,
 /area/awaymission/caves/maintsroom)
 "rc" = (
-/mob/living/basic/malf_borg,
-/turf/open/floor/iron,
+/obj/effect/light_emitter/fake_outdoors,
+/mob/living/basic/blackmesa/human/blackops/ranged{
+	faction = list("Deathsquad")
+	},
+/turf/open/misc/beach/sand,
 /area/awaymission/caves/maintsroom)
 "rd" = (
 /obj/effect/turf_decal/stripes/corner{
@@ -5239,6 +5332,17 @@
 	},
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
+"rq" = (
+/obj/effect/light_emitter/fake_outdoors,
+/mob/living/basic/blackmesa/human/blackops{
+	faction = list("Deathsquad")
+	},
+/turf/open/misc/beach/sand,
+/area/awaymission/caves/maintsroom)
+"rr" = (
+/mob/living/basic/mega_arachnid,
+/turf/open/floor/white,
+/area/awaymission/caves/maintsroom/deeper)
 "rs" = (
 /turf/open/lava/smooth/weak{
 	name = "lava?"
@@ -5343,6 +5447,17 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/gun/ballistic/automatic/pistol/deagle/gold,
 /turf/open/floor/iron/smooth,
+/area/awaymission/caves/maintsroom)
+"rN" = (
+/obj/structure/chair/comfy/brown{
+	dir = 8
+	},
+/mob/living/basic/trooper/syndicate/ranged/smg/space/stormtrooper{
+	desc = "A syndicate commando at the end of the world, theyre arm wrestling the nanotrasen assault officer across from them, they are both locked eyes and there is a- quite large pile of money underneath their hands, they are evenly matched and neither of them budge while theyre arms still shake, theyre giving it their all but neither can win out over the other.";
+	faction = list("neutral")
+	},
+/obj/effect/mapping_helpers/mob_buckler,
+/turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "rP" = (
 /obj/effect/turf_decal/stripes/line,
@@ -5512,6 +5627,10 @@
 	pixel_y = 5;
 	anchored = 1
 	},
+/turf/open/floor/iron/smooth,
+/area/awaymission/caves/maintsroom)
+"st" = (
+/obj/structure/sign/flag/usa/directional/west,
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "su" = (
@@ -5762,7 +5881,9 @@
 	dir = 6
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/mob/living/basic/malf_borg,
+/mob/living/basic/malf_borg{
+	faction = list("hostile","cult")
+	},
 /turf/open/floor/iron,
 /area/awaymission/caves/maintsroom)
 "tk" = (
@@ -5778,9 +5899,14 @@
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "tm" = (
-/obj/structure/blob/shield/core,
-/mob/living/basic/blob_minion/blobbernaut,
-/turf/open/indestructible/meat,
+/obj/item/toy/spinningtoy{
+	desc = "A singularity- no, this one isnt moving, or taking in any of the surrounding gasses- its staying perfectly still, a small gravitational singularity- or wormhole?";
+	anchored = 1
+	},
+/turf/open/water/xen_acid{
+	name = "Acid";
+	desc = "Some kind of acid- a digestive kind that can be found in a creatures stomach."
+	},
 /area/awaymission/caves/maintsroom)
 "tn" = (
 /obj/item/cigbutt/cigarbutt{
@@ -6142,8 +6268,8 @@
 /turf/open/misc/asteroid/basalt,
 /area/awaymission/caves/maintsroom)
 "us" = (
-/obj/structure/sign/flag/terragov/terragov_marines,
-/turf/closed/indestructible/reinforced,
+/mob/living/basic/blob_minion/blobbernaut/independent,
+/turf/open/indestructible/meat,
 /area/awaymission/caves/maintsroom)
 "ut" = (
 /obj/item/ectoplasm/construct,
@@ -6240,6 +6366,10 @@
 	slowdown = 10
 	},
 /area/awaymission/caves/maintsroom)
+"uJ" = (
+/mob/living/basic/statue,
+/turf/open/floor/white,
+/area/awaymission/caves/maintsroom/deeper)
 "uL" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/iron/small,
@@ -6687,9 +6817,9 @@
 /turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "ws" = (
-/obj/structure/sign/warning/secure_area,
-/turf/closed/indestructible/reinforced,
-/area/awaymission/caves/maintsroom)
+/mob/living/basic/mining/legion/houndoftindalos,
+/turf/open/floor/white,
+/area/awaymission/caves/maintsroom/deeper)
 "wt" = (
 /obj/effect/turf_decal/trimline/red/line{
 	dir = 9
@@ -6938,6 +7068,10 @@
 /obj/structure/fluff/divine/nexus,
 /turf/open/floor/bronze/filled,
 /area/awaymission/caves/maintsroom)
+"xn" = (
+/mob/living/simple_animal/hostile/trog,
+/turf/open/floor/white,
+/area/awaymission/caves/maintsroom/deeper)
 "xo" = (
 /obj/structure/table/wood,
 /obj/item/food/canned/beans{
@@ -7046,6 +7180,12 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/sepia,
 /area/awaymission/caves/maintsroom)
+"xF" = (
+/obj/effect/spawner/random/structure/girder,
+/obj/item/clothing/head/utility/welding,
+/obj/item/wrench,
+/turf/open/floor/white,
+/area/awaymission/caves/maintsroom/deeper)
 "xG" = (
 /turf/open/lava/smooth/weak,
 /area/awaymission/caves/maintsroom)
@@ -7198,6 +7338,10 @@
 /obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
+"yh" = (
+/mob/living/basic/stickman/ranged,
+/turf/open/floor/white,
+/area/awaymission/caves/maintsroom/deeper)
 "yj" = (
 /obj/structure/closet/crate/cardboard,
 /obj/item/book/manual/wiki/engineering_guide,
@@ -7430,8 +7574,8 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "za" = (
-/mob/living/basic/malf_borg,
-/turf/open/floor/circuit/red/anim,
+/mob/living/basic/mimic/crate,
+/turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "zb" = (
 /obj/machinery/camera/emp_proof/directional/north,
@@ -7489,6 +7633,16 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
+"zo" = (
+/obj/structure/fans/tiny,
+/obj/machinery/scanner_gate/luxury_shuttle{
+	name = "Insurance"
+	},
+/obj/structure/mineral_door/wood{
+	name = "Edge of the universe"
+	},
+/turf/open/floor/wood,
+/area/awaymission/caves/maintsroom)
 "zp" = (
 /obj/structure/alien/weeds,
 /obj/structure/cable,
@@ -7525,6 +7679,12 @@
 /obj/structure/trash_pile,
 /turf/open/floor/plating/rust,
 /area/awaymission/caves/maintsroom)
+"zu" = (
+/obj/structure/closet/crate/trashcart,
+/obj/effect/mob_spawn/corpse/human/blood_cultist,
+/obj/item/organ/body_egg/alien_embryo,
+/turf/open/floor/wood,
+/area/awaymission/caves/maintsroom)
 "zv" = (
 /obj/structure/water_source/puddle,
 /turf/open/misc/asteroid,
@@ -7552,8 +7712,10 @@
 /turf/open/floor/iron/cafeteria,
 /area/awaymission/caves/maintsroom)
 "zz" = (
-/obj/structure/mold/structure/wall,
-/turf/open/floor/plating,
+/mob/living/basic/malf_borg/roomba{
+	faction = list("hostile","cult")
+	},
+/turf/open/floor/circuit/green,
 /area/awaymission/caves/maintsroom)
 "zA" = (
 /obj/effect/spawner/random/structure/table,
@@ -7694,6 +7856,18 @@
 	},
 /turf/open/floor/iron/small,
 /area/awaymission/caves/maintsroom)
+"zW" = (
+/obj/structure/chair/comfy/brown{
+	dir = 8
+	},
+/mob/living/basic/blackmesa/human/blackops/ranged{
+	faction = list("neutral");
+	name = "weary operative";
+	desc = "They seem dreary and tired, they are regaining their strength over a couple of beers"
+	},
+/obj/effect/mapping_helpers/mob_buckler,
+/turf/open/floor/wood,
+/area/awaymission/caves/maintsroom)
 "zX" = (
 /obj/effect/rune/manifest,
 /turf/open/floor/engine/cult,
@@ -7713,6 +7887,10 @@
 /obj/structure/rack,
 /obj/item/clothing/suit/apron/chef,
 /turf/open/floor/iron/showroomfloor,
+/area/awaymission/caves/maintsroom)
+"Ad" = (
+/obj/structure/sign/flag/terragov/directional/north,
+/turf/open/floor/iron/cafeteria,
 /area/awaymission/caves/maintsroom)
 "Ae" = (
 /obj/structure/window/reinforced/plasma/spawner/directional/north,
@@ -7779,7 +7957,6 @@
 /area/awaymission/caves/maintsroom)
 "Ao" = (
 /obj/effect/decal/remains/human,
-/obj/effect/spawner/random/maintsrooms/no_walls,
 /turf/open/floor/white,
 /area/awaymission/caves/maintsroom/deeper)
 "Ap" = (
@@ -7884,8 +8061,9 @@
 /turf/open/floor/plating/rust,
 /area/awaymission/caves/maintsroom)
 "AG" = (
-/mob/living/basic/malf_borg,
-/turf/open/floor/circuit/red/off,
+/obj/effect/light_emitter/fake_outdoors,
+/obj/structure/sign/flag/nanotrasen/directional/south,
+/turf/open/misc/beach/sand,
 /area/awaymission/caves/maintsroom)
 "AH" = (
 /obj/structure/sink/oil_well,
@@ -8001,6 +8179,10 @@
 /obj/machinery/hydroponics/soil/fake_turf,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
+"AZ" = (
+/obj/effect/spawner/random/structure/girder,
+/turf/open/floor/white,
+/area/awaymission/caves/maintsroom/deeper)
 "Ba" = (
 /obj/effect/spawner/random/trash/mess,
 /mob/living/basic/mouse/rat,
@@ -8458,7 +8640,6 @@
 /area/awaymission/caves/maintsroom)
 "CC" = (
 /obj/structure/cable,
-/mob/living/basic/malf_borg,
 /turf/open/floor/circuit/green,
 /area/awaymission/caves/maintsroom)
 "CE" = (
@@ -8705,6 +8886,23 @@
 /obj/effect/turf_decal/sand/plating,
 /obj/structure/alien/weeds,
 /turf/open/floor/plating,
+/area/awaymission/caves/maintsroom)
+"Du" = (
+/obj/structure/chair/comfy/brown{
+	dir = 4
+	},
+/mob/living/basic/trooper/syndicate/ranged/anthro{
+	faction = list("neutral");
+	name = "Syndicate Private";
+	desc = "An anthromorphic member of the Syndicate, theyre holding a pistol in one hand tightly and a pillow in the other, theyre slumped in the chair, theyre trying to sleep."
+	},
+/obj/effect/mapping_helpers/mob_buckler,
+/obj/item/pillow{
+	pixel_x = 3;
+	pixel_y = 6;
+	anchored = 1
+	},
+/turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "Dv" = (
 /obj/machinery/light/directional/east,
@@ -9203,7 +9401,9 @@
 /obj/machinery/conveyor/auto/hardened{
 	dir = 4
 	},
-/obj/machinery/scanner_gate/luxury_shuttle,
+/obj/machinery/scanner_gate/luxury_shuttle{
+	name = "Insurance"
+	},
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "Fh" = (
@@ -9450,7 +9650,9 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "FT" = (
-/mob/living/basic/malf_borg,
+/mob/living/basic/malf_borg/sec{
+	faction = list("hostile","cult")
+	},
 /turf/open/floor/circuit/green,
 /area/awaymission/caves/maintsroom)
 "FU" = (
@@ -9607,6 +9809,59 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron,
 /area/awaymission/caves/maintsroom)
+"Gt" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lantern/on{
+	pixel_x = -1;
+	pixel_y = 27
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_x = 7;
+	pixel_y = 3;
+	anchored = 1
+	},
+/obj/item/stack/spacecash/c100{
+	pixel_x = 5;
+	pixel_y = 8;
+	anchored = 1
+	},
+/obj/item/stack/spacecash/c1000{
+	pixel_x = 5;
+	pixel_y = -1;
+	anchored = 1
+	},
+/obj/item/stack/spacecash/c10000{
+	pixel_x = -4;
+	pixel_y = 0;
+	anchored = 1
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = 4;
+	pixel_y = 10;
+	anchored = 1
+	},
+/obj/item/stack/spacecash/c200{
+	pixel_x = -5;
+	pixel_y = 7;
+	anchored = 1
+	},
+/obj/item/stack/spacecash/c50{
+	pixel_x = 2;
+	pixel_y = 8;
+	anchored = 1
+	},
+/obj/item/stack/spacecash/c500{
+	pixel_x = 1;
+	pixel_y = 11;
+	anchored = 1
+	},
+/obj/item/stack/spacecash/c5000{
+	pixel_x = -3;
+	pixel_y = 9;
+	anchored = 1
+	},
+/turf/open/floor/wood,
+/area/awaymission/caves/maintsroom)
 "Gu" = (
 /obj/effect/spawner/random/trash/mess,
 /mob/living/basic/mouse/rat,
@@ -9687,8 +9942,12 @@
 /area/awaymission/caves/maintsroom)
 "GH" = (
 /obj/structure/fans/tiny,
-/obj/structure/mineral_door/wood,
-/obj/machinery/scanner_gate/luxury_shuttle,
+/obj/structure/mineral_door/wood{
+	name = "Edge of the universe"
+	},
+/obj/machinery/scanner_gate/luxury_shuttle{
+	name = "Insurance"
+	},
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "GI" = (
@@ -10013,7 +10272,9 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "HP" = (
-/obj/machinery/scanner_gate/luxury_shuttle,
+/obj/machinery/scanner_gate/luxury_shuttle{
+	name = "Insurance"
+	},
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "HQ" = (
@@ -10260,6 +10521,11 @@
 /obj/item/ammo_box/magazine/smgm9mm,
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
+"IQ" = (
+/obj/machinery/light/red/directional/west,
+/obj/item/clothing/glasses/meson/engine/tray,
+/turf/open/floor/plating,
+/area/awaymission/caves/maintsroom)
 "IR" = (
 /obj/machinery/computer/atmos_alert/station_only{
 	dir = 1
@@ -10438,12 +10704,25 @@
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/awaymission/caves/maintsroom)
 "Jy" = (
-/obj/machinery/scanner_gate/luxury_shuttle,
+/obj/machinery/scanner_gate/luxury_shuttle{
+	name = "Insurance"
+	},
 /turf/open/floor/black,
 /area/awaymission/caves/maintsroom)
 "Jz" = (
 /obj/structure/wall_torch/spawns_lit/directional/east,
 /turf/open/misc/asteroid/basalt,
+/area/awaymission/caves/maintsroom)
+"JA" = (
+/obj/structure/chair/comfy/brown{
+	dir = 8
+	},
+/mob/living/basic/wizard{
+	desc = "A- wizard, theyre scrawling down notes into a thick tome using a pen that has a feather attached to it thats far larger than the pen itself, they pay you no mind.";
+	faction = list("neutral")
+	},
+/obj/effect/mapping_helpers/mob_buckler,
+/turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "JB" = (
 /obj/effect/mapping_helpers/broken_floor,
@@ -10539,7 +10818,6 @@
 /area/awaymission/caves/maintsroom)
 "JQ" = (
 /obj/effect/decal/remains/robot,
-/obj/effect/spawner/random/maintsrooms/no_walls,
 /turf/open/floor/white,
 /area/awaymission/caves/maintsroom/deeper)
 "JS" = (
@@ -10716,6 +10994,19 @@
 /obj/machinery/camera/xray/directional/north,
 /turf/open/floor/circuit/red,
 /area/awaymission/caves/maintsroom)
+"Kw" = (
+/obj/structure/table/wood,
+/obj/machinery/light/floor,
+/obj/item/reagent_containers/cup/glass/bottle/beer{
+	pixel_x = 9;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/cup/glass/bottle/beer{
+	pixel_x = -11;
+	pixel_y = 5
+	},
+/turf/open/floor/wood,
+/area/awaymission/caves/maintsroom)
 "Kx" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/effect/mapping_helpers/airlock/locked,
@@ -10806,6 +11097,10 @@
 /obj/structure/flora/bush/fullgrass,
 /turf/open/floor/grass,
 /area/awaymission/caves/maintsroom)
+"KS" = (
+/obj/structure/sign/flag/usa/directional/east,
+/turf/open/floor/iron/smooth,
+/area/awaymission/caves/maintsroom)
 "KT" = (
 /obj/structure/barricade/wooden/crude,
 /obj/structure/barricade/wooden,
@@ -10843,7 +11138,9 @@
 /obj/effect/mapping_helpers/airlock/access/any/cent_com/rep_or_captain,
 /obj/structure/barricade/wooden,
 /obj/structure/barricade/wooden/crude,
-/obj/machinery/scanner_gate/luxury_shuttle,
+/obj/machinery/scanner_gate/luxury_shuttle{
+	name = "Insurance"
+	},
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "KZ" = (
@@ -11129,6 +11426,9 @@
 	},
 /turf/open/floor/iron/diagonal,
 /area/awaymission/caves/maintsroom)
+"LQ" = (
+/turf/open/floor/white,
+/area/awaymission/caves/maintsroom/deeper)
 "LS" = (
 /turf/open/chasm,
 /area/awaymission/caves/maintsroom)
@@ -11519,6 +11819,17 @@
 /obj/effect/spawner/random/food_or_drink/cake_ingredients,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/awaymission/caves/maintsroom)
+"Ng" = (
+/mob/living/basic/malf_borg/big_guy{
+	faction = list("neutral");
+	name = "Military Siegebot";
+	desc = "A high end military robot usually deployed from orbit as a replacement for- tanks and other heavily armored vehicles meant to soak up fire and provide cover for friendly units, heres hoping your not on the wrong end of its gun.";
+	environment_smash = 0;
+	health = 300;
+	ghost_controllable = 1
+	},
+/turf/open/floor/white,
+/area/awaymission/caves/maintsroom/deeper)
 "Nh" = (
 /obj/structure/chair/stool/directional/west,
 /obj/effect/mapping_helpers/broken_floor,
@@ -11526,11 +11837,17 @@
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "Ni" = (
-/obj/machinery/scanner_gate/luxury_shuttle,
+/obj/machinery/scanner_gate/luxury_shuttle{
+	name = "Insurance"
+	},
 /turf/open/floor/engine{
 	slowdown = 2
 	},
 /area/awaymission/caves/maintsroom)
+"Nj" = (
+/mob/living/simple_animal/hostile/true_changeling,
+/turf/open/floor/white,
+/area/awaymission/caves/maintsroom/deeper)
 "Nk" = (
 /obj/structure/flora/tree/palm,
 /turf/open/floor/holofloor/beach,
@@ -11731,7 +12048,6 @@
 /area/awaymission/caves/maintsroom)
 "NO" = (
 /obj/effect/decal/remains/xeno,
-/obj/effect/spawner/random/maintsrooms/no_walls,
 /turf/open/floor/white,
 /area/awaymission/caves/maintsroom/deeper)
 "NP" = (
@@ -11794,7 +12110,9 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/science/glass,
-/obj/machinery/scanner_gate/luxury_shuttle,
+/obj/machinery/scanner_gate/luxury_shuttle{
+	name = "Insurance"
+	},
 /turf/open/floor/sepia{
 	slowdown = 10
 	},
@@ -11809,6 +12127,11 @@
 "Oc" = (
 /obj/effect/mob_spawn/corpse/human/assistant/spanishflu_infection,
 /turf/open/misc/grass/jungle,
+/area/awaymission/caves/maintsroom)
+"Od" = (
+/obj/machinery/light/directional/south,
+/obj/structure/table/wood,
+/turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "Oe" = (
 /obj/item/ectoplasm,
@@ -12222,6 +12545,18 @@
 /obj/effect/decal/remains/human,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
+"PG" = (
+/obj/structure/chair/comfy/brown{
+	dir = 8
+	},
+/mob/living/basic/abductor{
+	faction = list("neutral");
+	name = "abductor";
+	desc = "The grey is staring at the ceiling with their wide eyes while their arms are standing still at their side, the moonrocks infront of them indicate theyre stoned, how they consumed the moonrocks- is unknown.."
+	},
+/obj/effect/mapping_helpers/mob_buckler,
+/turf/open/floor/wood,
+/area/awaymission/caves/maintsroom)
 "PH" = (
 /obj/item/trash/can/food/pine_nuts,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -12362,6 +12697,8 @@
 "Qf" = (
 /mob/living/basic/trader/deathsquadtrader,
 /obj/structure/railing/unbreakable,
+/obj/structure/chair/comfy/brown,
+/obj/effect/mapping_helpers/mob_buckler,
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "Qg" = (
@@ -12505,9 +12842,8 @@
 	},
 /area/awaymission/caves/maintsroom)
 "QD" = (
-/obj/structure/sign/flag/nanotrasen/directional/south,
-/obj/effect/light_emitter/fake_outdoors,
-/turf/open/misc/beach/sand,
+/obj/structure/sign/flag/terragov/directional/west,
+/turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "QF" = (
 /obj/structure/disposalpipe/segment{
@@ -12883,6 +13219,16 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron,
 /area/awaymission/caves/maintsroom)
+"RI" = (
+/obj/effect/turf_decal/trimline/dark_red/line{
+	dir = 4
+	},
+/obj/effect/light_emitter/fake_outdoors,
+/mob/living/basic/blackmesa/human/blackops{
+	faction = list("Deathsquad")
+	},
+/turf/open/misc/beach/sand,
+/area/awaymission/caves/maintsroom)
 "RJ" = (
 /obj/machinery/hydroponics/constructable,
 /obj/effect/turf_decal/bot,
@@ -13064,6 +13410,12 @@
 /obj/item/clothing/head/costume/papersack/smiley,
 /turf/open/floor/plating/rust,
 /area/awaymission/caves/maintsroom)
+"Sn" = (
+/mob/living/basic/malf_borg/heavy{
+	faction = list("hostile","cult")
+	},
+/turf/open/floor/circuit/red/anim,
+/area/awaymission/caves/maintsroom)
 "Sp" = (
 /obj/vehicle/sealed/mecha/ripley/mk2,
 /turf/open/floor/iron/diagonal,
@@ -13121,10 +13473,9 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "SA" = (
-/obj/machinery/light/red/directional/east,
-/obj/machinery/light/red/directional/west,
-/turf/open/floor/plating,
-/area/awaymission/caves/maintsroom)
+/mob/living/basic/blankbody/shaggoth,
+/turf/open/floor/white,
+/area/awaymission/caves/maintsroom/deeper)
 "SB" = (
 /obj/structure/toiletbong{
 	dir = 1
@@ -13156,6 +13507,14 @@
 /obj/machinery/camera/xray/directional/north,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
+"SH" = (
+/mob/living/basic/illusion{
+	name = "frayed person";
+	desc = "I am not out of my mind, most excellent Festus, but I am speaking true and rational words.";
+	health = 1000
+	},
+/turf/open/floor/white,
+/area/awaymission/caves/maintsroom/deeper)
 "SI" = (
 /obj/structure/kitchenspike_frame,
 /obj/item/paper/crumpled,
@@ -13543,7 +13902,9 @@
 /area/awaymission/caves/maintsroom)
 "TZ" = (
 /obj/machinery/door/airlock/science,
-/obj/machinery/scanner_gate/luxury_shuttle,
+/obj/machinery/scanner_gate/luxury_shuttle{
+	name = "Insurance"
+	},
 /turf/open/floor/sepia,
 /area/awaymission/caves/maintsroom)
 "Ua" = (
@@ -13606,7 +13967,6 @@
 /area/awaymission/caves/maintsroom)
 "Uo" = (
 /obj/effect/decal/remains/xeno/larva,
-/obj/effect/spawner/random/maintsrooms/no_walls,
 /turf/open/floor/white,
 /area/awaymission/caves/maintsroom/deeper)
 "Up" = (
@@ -13626,8 +13986,10 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "Ur" = (
-/mob/living/basic/malf_borg,
-/turf/open/floor/mineral/plastitanium,
+/mob/living/basic/malf_borg/protect{
+	faction = list("hostile","cult")
+	},
+/turf/open/floor/circuit/red/anim,
 /area/awaymission/caves/maintsroom)
 "Us" = (
 /obj/structure/table/wood,
@@ -13912,6 +14274,11 @@
 /obj/machinery/camera/xray/directional/north,
 /turf/open/floor/sepia,
 /area/awaymission/caves/maintsroom)
+"Vn" = (
+/obj/effect/spawner/random/structure/girder,
+/obj/item/weldingtool/mini,
+/turf/open/floor/white,
+/area/awaymission/caves/maintsroom/deeper)
 "Vp" = (
 /obj/structure/table/reinforced,
 /obj/projectile/bullet/cannonball/meteorslug,
@@ -14110,9 +14477,8 @@
 /turf/open/floor/iron,
 /area/awaymission/caves/maintsroom)
 "Wa" = (
-/obj/structure/blob/shield/core,
-/turf/open/floor/plating,
-/area/awaymission/caves/maintsroom)
+/turf/closed/indestructible/steel,
+/area/awaymission/caves/maintsroom/deeper)
 "Wc" = (
 /obj/effect/turf_decal/trimline/red/line,
 /obj/effect/turf_decal/trimline/red/filled/warning{
@@ -14666,6 +15032,10 @@
 	dir = 8
 	},
 /area/awaymission/caves/maintsroom)
+"XV" = (
+/obj/structure/sign/flag/terragov/directional/east,
+/turf/open/floor/iron/smooth,
+/area/awaymission/caves/maintsroom)
 "XW" = (
 /obj/effect/spawner/random/structure/crate,
 /obj/item/storage/box/monkeycubes,
@@ -14699,6 +15069,17 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
+/area/awaymission/caves/maintsroom)
+"Yd" = (
+/obj/structure/chair/comfy/brown{
+	dir = 8
+	},
+/mob/living/basic/voidwalker/sunwalker{
+	desc = "A cosmic entity covered in stellar corona. You DEFINITELY shouldn't stare, but this one is dimmer than normal, theyre sitting in the chair in spite of the lack of legs with their hands firmly holding thier face while their elbows rest on the table.";
+	faction = list("neutral")
+	},
+/obj/effect/mapping_helpers/mob_buckler,
+/turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "Ye" = (
 /obj/effect/decal/cleanable/dirt,
@@ -14933,6 +15314,10 @@
 	dir = 4
 	},
 /turf/open/floor/wood/parquet,
+/area/awaymission/caves/maintsroom)
+"YU" = (
+/obj/structure/sign/flag/usa/directional/north,
+/turf/open/floor/iron/cafeteria,
 /area/awaymission/caves/maintsroom)
 "YW" = (
 /obj/structure/table/reinforced,
@@ -20446,8 +20831,8 @@ ow
 pr
 UJ
 XK
-SA
-uG
+Nz
+zJ
 bU
 uG
 uG
@@ -22083,7 +22468,7 @@ Rf
 Rf
 Rf
 Rf
-kN
+Ch
 dV
 HD
 LP
@@ -22827,7 +23212,7 @@ cN
 wQ
 Pu
 GS
-AG
+tB
 tB
 tB
 GS
@@ -23051,7 +23436,7 @@ GS
 hG
 hG
 hG
-FT
+hG
 GS
 uG
 uG
@@ -23476,11 +23861,11 @@ wQ
 wQ
 cN
 wQ
-za
+xH
 GS
 tB
 tB
-tB
+kR
 GS
 hG
 hG
@@ -23601,7 +23986,7 @@ Rf
 Rf
 Rf
 Rf
-QD
+Rf
 Ch
 dV
 HD
@@ -23697,9 +24082,9 @@ xH
 Fe
 tB
 tB
-AG
+tB
 GS
-FT
+zz
 hG
 hG
 hG
@@ -23818,7 +24203,7 @@ Rf
 Rf
 Rf
 Rf
-Rf
+AG
 jf
 jf
 jf
@@ -24574,7 +24959,7 @@ uA
 aQ
 tM
 wQ
-xH
+Ur
 LM
 aQ
 ES
@@ -24757,7 +25142,7 @@ wQ
 GS
 Rg
 GS
-zz
+jH
 En
 cK
 cK
@@ -24779,7 +25164,7 @@ wQ
 cN
 wQ
 QO
-pT
+UW
 bm
 JW
 JW
@@ -24793,7 +25178,7 @@ xH
 dT
 xH
 xH
-xH
+Ur
 Bf
 wQ
 kd
@@ -24938,9 +25323,9 @@ pp
 pp
 jf
 XG
-pp
+XV
 XG
-pp
+KS
 XG
 pp
 XG
@@ -24972,9 +25357,9 @@ GS
 GS
 GS
 GS
-zz
-zz
-zz
+jH
+jH
+jH
 GS
 GS
 GS
@@ -25155,13 +25540,13 @@ pp
 pp
 jf
 jf
-us
 jf
 jf
 jf
 jf
 jf
-us
+jf
+jf
 jf
 jf
 jf
@@ -25185,19 +25570,19 @@ jf
 jf
 jf
 jf
-zz
-zz
-zz
-zz
-zz
-zz
-zz
-zz
-zz
-zz
-zz
-zz
-zz
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
 GS
 MS
 cK
@@ -25224,7 +25609,7 @@ xH
 xH
 wQ
 kl
-za
+xH
 xH
 wQ
 xH
@@ -25402,19 +25787,19 @@ jf
 jf
 jf
 jf
-zz
 jH
+bB
+bB
+bB
+bB
+bB
+bB
+bB
+bB
+bB
+bB
+bB
 jH
-jH
-jH
-jH
-jH
-jH
-jH
-jH
-jH
-jH
-zz
 Rg
 cK
 jW
@@ -25546,10 +25931,10 @@ Xx
 LT
 EZ
 Rf
+rq
 Rf
 Rf
-Rf
-Rf
+rc
 Rf
 Rf
 Rf
@@ -25619,19 +26004,19 @@ jf
 jf
 jf
 jf
-zz
 jH
-tm
+bB
+bB
+bB
+bB
+bB
+bB
+bB
+bB
+bB
+bB
+bB
 jH
-jH
-jH
-jH
-jH
-jH
-jH
-tm
-jH
-zz
 GS
 Jd
 cK
@@ -25655,13 +26040,13 @@ rP
 wQ
 yH
 aQ
-za
+xH
 wQ
 Kd
 aQ
 jy
 wQ
-za
+xH
 vK
 wQ
 kd
@@ -25789,8 +26174,8 @@ pp
 ou
 pp
 pp
-us
-mf
+jf
+Ad
 mf
 Hc
 mf
@@ -25836,19 +26221,19 @@ jf
 jf
 jf
 jf
-zz
 jH
-jH
+bB
+us
 mn
-jH
-jH
-jH
-jH
-jH
+bB
+bB
+fv
+bB
+us
 mn
+bB
+bB
 jH
-jH
-zz
 GS
 cK
 RP
@@ -26053,19 +26438,19 @@ jf
 jf
 jf
 jf
-zz
 jH
+bB
+bB
+bB
+bB
+bB
+bB
+bB
+bB
+bB
+us
+bB
 jH
-jH
-tm
-jH
-jH
-jH
-tm
-jH
-jH
-jH
-zz
 GS
 cK
 FQ
@@ -26091,7 +26476,7 @@ yH
 xH
 xH
 dQ
-xH
+dU
 aQ
 xH
 oT
@@ -26224,7 +26609,7 @@ mf
 gN
 Vr
 jf
-mf
+YU
 mf
 mf
 mf
@@ -26240,9 +26625,9 @@ pp
 pp
 jf
 XG
-pp
+XV
 XG
-pp
+KS
 XG
 pp
 XG
@@ -26270,19 +26655,19 @@ jf
 jf
 jf
 jf
-zz
+jH
+bB
+bB
+bB
+bB
 jH
 jH
 jH
+bB
+bB
+bB
+bB
 jH
-jH
-jH
-jH
-jH
-jH
-jH
-jH
-zz
 GS
 cK
 Jd
@@ -26414,10 +26799,10 @@ Xx
 LT
 gQ
 gQ
+RI
 gQ
 gQ
-gQ
-Rf
+rc
 Rf
 Rf
 Rf
@@ -26487,19 +26872,19 @@ jf
 jf
 jf
 jf
-zz
 jH
-jH
-jH
-jH
+bB
+bB
+bB
 jH
 tm
+tm
+tm
 jH
+bB
+bB
+bB
 jH
-jH
-jH
-jH
-zz
 GS
 jW
 cK
@@ -26524,9 +26909,9 @@ OQ
 wQ
 kv
 kv
+Sn
 xH
-xH
-Ur
+aQ
 xH
 wQ
 wQ
@@ -26658,7 +27043,7 @@ mf
 mf
 Hw
 jf
-mf
+YU
 mf
 mf
 Lv
@@ -26704,19 +27089,19 @@ LS
 LS
 LS
 jf
-zz
 jH
+bB
+us
+bB
+bB
 tm
-jH
-jH
-jH
-jH
-jH
-jH
-jH
 tm
+tm
+bB
+bB
+bB
+bB
 jH
-zz
 GS
 hT
 iZ
@@ -26921,19 +27306,19 @@ jf
 jf
 jf
 jf
-zz
 jH
-jH
-jH
-jH
+bB
+bB
+bB
 jH
 tm
+tm
+tm
 jH
+bB
+bB
+bB
 jH
-jH
-jH
-jH
-zz
 GS
 cY
 GS
@@ -26961,7 +27346,7 @@ aQ
 aQ
 os
 Tr
-xH
+Sn
 KU
 yl
 ii
@@ -27091,8 +27476,8 @@ zy
 iE
 mf
 Ef
-us
-mf
+jf
+Ad
 mf
 Hc
 me
@@ -27138,19 +27523,19 @@ jf
 jf
 jf
 jf
-zz
+jH
+bB
+fv
+bB
+bB
 jH
 jH
 jH
+bB
+bB
+bB
+bB
 jH
-jH
-jH
-jH
-jH
-jH
-jH
-jH
-zz
 GS
 il
 qN
@@ -27171,11 +27556,11 @@ Vq
 ev
 ST
 OA
-rc
+iA
 wQ
 aQ
 aQ
-Ur
+aQ
 aQ
 aQ
 xH
@@ -27355,19 +27740,19 @@ jf
 jf
 jf
 jf
-zz
 jH
+bB
+bB
+bB
+us
+bB
+bB
+bB
+bB
+bB
+bB
+bB
 jH
-jH
-tm
-jH
-jH
-jH
-tm
-jH
-jH
-jH
-zz
 GS
 cK
 Eb
@@ -27572,19 +27957,19 @@ uG
 uG
 mQ
 er
-Wa
 jH
-jH
+bB
+bB
 mn
-jH
-jH
-jH
-jH
-jH
+bB
+fv
+bB
+fv
+bB
 mn
+bB
+bB
 jH
-jH
-zz
 GS
 MS
 cK
@@ -27789,19 +28174,19 @@ uG
 uG
 mQ
 er
-Wa
 jH
-tm
+bB
+us
+bB
+bB
+bB
+bB
+bB
+bB
+bB
+us
+bB
 jH
-jH
-jH
-jH
-jH
-jH
-jH
-tm
-jH
-zz
 GS
 GS
 GS
@@ -28006,21 +28391,21 @@ uG
 uG
 mQ
 er
-Wa
+jH
+bB
+bB
+bB
+bB
+bB
+bB
+us
+bB
+bB
+bB
+bB
 jH
 jH
 jH
-jH
-jH
-jH
-jH
-jH
-jH
-jH
-jH
-zz
-zz
-zz
 Rg
 uG
 uG
@@ -28223,21 +28608,21 @@ jf
 jf
 jf
 jf
-zz
-zz
-zz
-zz
-zz
-zz
-zz
-zz
-zz
-zz
-zz
-zz
-zz
-zz
-zz
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
 jf
 jf
 zl
@@ -28393,8 +28778,8 @@ zy
 iE
 mf
 Ef
-us
-mf
+jf
+Ad
 mf
 Hc
 me
@@ -28471,7 +28856,7 @@ cK
 Cz
 GS
 GS
-uG
+za
 uG
 uG
 GS
@@ -28828,7 +29213,7 @@ mf
 mf
 Hw
 jf
-mf
+YU
 mf
 mf
 mU
@@ -29262,7 +29647,7 @@ mf
 gN
 Vr
 jf
-mf
+YU
 mf
 mf
 mf
@@ -29278,9 +29663,9 @@ pp
 pp
 jf
 tt
-pp
+QD
 tt
-pp
+st
 tt
 pp
 tt
@@ -29695,8 +30080,8 @@ pp
 ou
 pp
 pp
-us
-mf
+jf
+Ad
 mf
 Hc
 mf
@@ -30363,13 +30748,13 @@ pp
 pp
 jf
 jf
-us
 jf
 jf
 jf
 jf
 jf
-us
+jf
+jf
 jf
 jf
 jf
@@ -30580,9 +30965,9 @@ pp
 pp
 jf
 tt
-pp
+QD
 tt
-pp
+st
 tt
 pp
 tt
@@ -31630,7 +32015,7 @@ Rf
 Rf
 Rf
 Rf
-Rf
+AG
 jf
 jf
 jf
@@ -31847,7 +32232,7 @@ Rf
 Rf
 Rf
 Rf
-QD
+Rf
 Ch
 dV
 HD
@@ -31978,8 +32363,8 @@ jf
 jf
 jf
 jf
-ws
-zm
+jf
+gc
 zm
 zm
 zm
@@ -32007,7 +32392,7 @@ qr
 uG
 YQ
 cf
-ws
+jf
 CE
 jf
 jf
@@ -32655,7 +33040,7 @@ jf
 jf
 jf
 jf
-ws
+jf
 Fg
 jf
 jf
@@ -33367,7 +33752,7 @@ Rf
 Rf
 Rf
 Rf
-kN
+Ch
 dV
 HD
 LP
@@ -34339,7 +34724,7 @@ AI
 AI
 jf
 uG
-zJ
+IQ
 GS
 uG
 uG
@@ -34516,7 +34901,7 @@ hn
 Af
 CH
 GS
-uG
+za
 uG
 uG
 GS
@@ -40718,6 +41103,7 @@ AK
 AK
 AK
 AK
+LQ
 AK
 AK
 AK
@@ -40842,6 +41228,7 @@ AK
 AK
 AK
 AK
+ws
 AK
 AK
 AK
@@ -40850,9 +41237,7 @@ AK
 AK
 AK
 AK
-AK
-AK
-AK
+ws
 AK
 AK
 AK
@@ -41067,6 +41452,7 @@ AK
 AK
 AK
 AK
+SA
 AK
 AK
 AK
@@ -41081,12 +41467,11 @@ AK
 AK
 AK
 AK
+ws
 AK
 AK
 AK
-AK
-AK
-AK
+ws
 AK
 AK
 AK
@@ -41216,6 +41601,7 @@ AK
 AK
 AK
 AK
+rr
 AK
 AK
 AK
@@ -41301,6 +41687,7 @@ AK
 AK
 AK
 AK
+ws
 AK
 AK
 AK
@@ -41323,9 +41710,7 @@ AK
 AK
 AK
 AK
-AK
-AK
-AK
+ws
 AK
 AK
 AK
@@ -41475,7 +41860,7 @@ AK
 AK
 AK
 AK
-AK
+uJ
 AK
 AK
 AK
@@ -41641,6 +42026,7 @@ AK
 AK
 AK
 AK
+SH
 AK
 AK
 AK
@@ -41708,8 +42094,7 @@ AK
 AK
 AK
 AK
-AK
-AK
+SA
 AK
 AK
 AK
@@ -41812,6 +42197,7 @@ AK
 AK
 AK
 AK
+SA
 AK
 AK
 AK
@@ -41821,8 +42207,7 @@ AK
 AK
 AK
 AK
-AK
-AK
+LQ
 AK
 AK
 AK
@@ -41888,7 +42273,7 @@ AK
 AK
 AK
 AK
-AK
+SA
 AK
 AK
 AK
@@ -42324,7 +42709,7 @@ AK
 AK
 AK
 AK
-AK
+ws
 AK
 AK
 AK
@@ -42498,7 +42883,7 @@ AK
 AK
 AK
 AK
-AK
+ws
 AK
 AK
 AK
@@ -42793,12 +43178,12 @@ AK
 AK
 AK
 AK
+ws
 AK
 AK
 AK
 AK
-AK
-AK
+xC
 xC
 xC
 xC
@@ -42816,6 +43201,7 @@ sK
 AK
 AK
 AK
+ws
 AK
 AK
 AK
@@ -42833,8 +43219,7 @@ AK
 AK
 AK
 AK
-AK
-AK
+SA
 AK
 AK
 AK
@@ -42922,6 +43307,7 @@ AK
 AK
 AK
 AK
+yh
 AK
 AK
 AK
@@ -42983,6 +43369,9 @@ AK
 AK
 AK
 AK
+Wa
+Wa
+Wa
 AK
 AK
 AK
@@ -43011,23 +43400,19 @@ AK
 AK
 AK
 AK
-AK
-AK
-AK
-AK
-AK
+zu
 xC
 EH
 YL
-Ex
+ci
 xC
 bW
 vf
 Aa
 vf
-vr
-vr
-vf
+pT
+kJ
+Du
 xC
 AK
 AK
@@ -43058,6 +43443,7 @@ AK
 AK
 AK
 AK
+ws
 AK
 AK
 AK
@@ -43066,14 +43452,13 @@ AK
 AK
 AK
 AK
+ws
 AK
 AK
 AK
 AK
 AK
-AK
-AK
-AK
+SA
 AK
 AK
 AK
@@ -43201,11 +43586,11 @@ AK
 AK
 AK
 AK
-AK
-AK
-AK
-AK
-AK
+Wa
+Ng
+Wa
+Wa
+AZ
 AK
 AK
 AK
@@ -43234,23 +43619,24 @@ AK
 AK
 AK
 xC
-vf
+Ex
 Qy
-vf
+lU
 xC
 ox
 vf
 ce
 vf
-aC
-Vj
-wj
+Kw
+Gt
+Od
 xC
 AK
 AK
 AK
 AK
 AK
+SA
 AK
 AK
 AK
@@ -43272,8 +43658,7 @@ AK
 AK
 AK
 AK
-AK
-AK
+ws
 AK
 AK
 AK
@@ -43414,14 +43799,14 @@ AK
 AK
 AK
 AK
+SA
 AK
 AK
 AK
-AK
-AK
-AK
-AK
-AK
+Wa
+Wa
+Wa
+AZ
 AK
 AK
 AK
@@ -43456,13 +43841,13 @@ vf
 vf
 xC
 vf
-vf
+kN
 Vj
 vf
-jI
-jI
+zW
+rN
 vf
-GH
+zo
 AK
 AK
 AK
@@ -43633,6 +44018,11 @@ AK
 AK
 AK
 AK
+LQ
+AK
+Wa
+Vn
+xF
 AK
 AK
 AK
@@ -43655,12 +44045,7 @@ AK
 AK
 AK
 AK
-AK
-AK
-AK
-AK
-AK
-AK
+SA
 AK
 AK
 AK
@@ -43864,7 +44249,7 @@ AK
 AK
 AK
 AK
-AK
+Nj
 AK
 AK
 AK
@@ -44038,7 +44423,7 @@ AK
 AK
 AK
 AK
-AK
+SA
 AK
 AK
 AK
@@ -44112,11 +44497,11 @@ lP
 vf
 aC
 Vj
-wj
+bp
 xC
 AK
 AK
-AK
+LQ
 AK
 AK
 AK
@@ -44160,7 +44545,7 @@ AK
 AK
 AK
 AK
-AK
+ws
 AK
 AK
 AK
@@ -44246,7 +44631,7 @@ AK
 AK
 AK
 AK
-AK
+SA
 AK
 AK
 AK
@@ -44327,9 +44712,9 @@ vf
 vf
 Ql
 vf
-jI
-jI
-vf
+Yd
+JA
+PG
 xC
 AK
 AK
@@ -44356,7 +44741,7 @@ AK
 AK
 AK
 AK
-AK
+SA
 AK
 AK
 AK
@@ -44400,6 +44785,7 @@ AK
 AK
 AK
 AK
+ws
 AK
 AK
 AK
@@ -44452,6 +44838,7 @@ AK
 AK
 AK
 AK
+SH
 AK
 AK
 AK
@@ -44495,9 +44882,7 @@ AK
 AK
 AK
 AK
-AK
-AK
-AK
+ws
 AK
 AK
 AK
@@ -44639,62 +45024,7 @@ AK
 AK
 AK
 AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-RL
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
+SH
 AK
 AK
 AK
@@ -44725,6 +45055,61 @@ AK
 AK
 AK
 AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+RL
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+SA
 AK
 AK
 AK
@@ -44828,6 +45213,7 @@ AK
 AK
 AK
 AK
+SA
 AK
 AK
 AK
@@ -44909,8 +45295,7 @@ AK
 AK
 AK
 AK
-AK
-AK
+ws
 AK
 AK
 RL
@@ -45278,7 +45663,7 @@ AK
 AK
 AK
 AK
-AK
+ws
 AK
 AK
 AK
@@ -45432,7 +45817,7 @@ AK
 AK
 AK
 AK
-AK
+SA
 AK
 AK
 AK
@@ -45518,6 +45903,13 @@ AK
 AK
 AK
 RL
+ws
+AK
+AK
+AK
+AK
+AK
+ws
 AK
 AK
 AK
@@ -45564,14 +45956,7 @@ AK
 AK
 AK
 AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
+xn
 AK
 AK
 AK
@@ -45758,7 +46143,7 @@ AK
 AK
 AK
 AK
-AK
+SA
 AK
 AK
 AK
@@ -45839,7 +46224,7 @@ AK
 AK
 AK
 AK
-AK
+SA
 AK
 AK
 AK
@@ -45943,7 +46328,7 @@ AK
 AK
 AK
 AK
-AK
+SA
 AK
 AK
 AK
@@ -45965,7 +46350,7 @@ AK
 AK
 AK
 AK
-AK
+SA
 AK
 AK
 AK
@@ -46172,7 +46557,7 @@ AK
 AK
 AK
 AK
-AK
+SA
 AK
 AK
 AK
@@ -46366,7 +46751,7 @@ AK
 AK
 AK
 AK
-AK
+SA
 AK
 AK
 AK
@@ -46806,7 +47191,7 @@ AK
 AK
 AK
 AK
-AK
+ws
 AK
 AK
 AK
@@ -47033,7 +47418,7 @@ AK
 AK
 AK
 AK
-RL
+ns
 AK
 AK
 AK
@@ -47094,6 +47479,7 @@ AK
 AK
 AK
 AK
+LQ
 AK
 AK
 AK
@@ -47121,8 +47507,7 @@ AK
 AK
 AK
 AK
-AK
-AK
+SA
 AK
 AK
 AK
@@ -47231,7 +47616,7 @@ AK
 AK
 AK
 AK
-AK
+ws
 AK
 AK
 AK
@@ -47317,7 +47702,7 @@ AK
 AK
 AK
 AK
-AK
+jo
 AK
 AK
 AK
@@ -47487,7 +47872,7 @@ AK
 AK
 AK
 AK
-AK
+ws
 AK
 AK
 AK
@@ -47556,7 +47941,7 @@ AK
 AK
 AK
 AK
-AK
+ws
 AK
 AK
 AK
@@ -47763,6 +48148,7 @@ AK
 AK
 AK
 AK
+SH
 AK
 AK
 AK
@@ -47775,8 +48161,7 @@ AK
 AK
 AK
 AK
-AK
-AK
+ws
 AK
 AK
 AK
@@ -47937,7 +48322,7 @@ AK
 AK
 AK
 AK
-AK
+ws
 AK
 AK
 AK
@@ -48015,6 +48400,7 @@ AK
 AK
 RL
 AK
+cT
 AK
 AK
 AK
@@ -48027,8 +48413,7 @@ AK
 AK
 AK
 AK
-AK
-AK
+SA
 AK
 AK
 AK
@@ -48318,48 +48703,7 @@ AK
 AK
 AK
 AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-RL
-AK
-AK
-AK
-AK
+ws
 AK
 AK
 AK
@@ -48432,6 +48776,47 @@ AK
 AK
 AK
 AK
+AK
+AK
+AK
+AK
+AK
+RL
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+SA
 AK
 AK
 AK
@@ -48520,7 +48905,7 @@ AK
 AK
 AK
 AK
-AK
+ws
 AK
 AK
 AK
@@ -48555,7 +48940,7 @@ RL
 AK
 AK
 AK
-AK
+xn
 AK
 AK
 AK
@@ -48683,7 +49068,7 @@ AK
 AK
 AK
 AK
-AK
+SA
 AK
 AK
 AK
@@ -48749,7 +49134,7 @@ AK
 AK
 NO
 AK
-AK
+SA
 AK
 AK
 AK
@@ -48822,7 +49207,7 @@ AK
 AK
 AK
 AK
-AK
+SA
 AK
 AK
 AK
@@ -48987,7 +49372,7 @@ AK
 wQ
 AK
 AK
-AK
+xn
 AK
 AK
 AK
@@ -49165,7 +49550,7 @@ wH
 (157,1,1) = {"
 wH
 AK
-AK
+SA
 AK
 AK
 AK
@@ -49261,6 +49646,7 @@ AK
 AK
 AK
 AK
+ws
 AK
 AK
 AK
@@ -49284,8 +49670,7 @@ AK
 AK
 AK
 AK
-AK
-AK
+SA
 AK
 AK
 AK
@@ -49422,7 +49807,7 @@ Aj
 VD
 wQ
 AK
-AK
+xn
 RL
 AK
 AK
@@ -49592,7 +49977,7 @@ AK
 AK
 AK
 AK
-AK
+ws
 AK
 wH
 "}
@@ -49630,7 +50015,7 @@ AK
 AK
 AK
 AK
-AK
+SA
 AK
 AK
 AK
@@ -49658,7 +50043,7 @@ AK
 AK
 AK
 AK
-AK
+SH
 AK
 AK
 AK
@@ -49713,7 +50098,7 @@ AK
 AK
 AK
 AK
-AK
+ws
 AK
 AK
 AK
@@ -49893,7 +50278,7 @@ AK
 AK
 AK
 AK
-AK
+SA
 AK
 AK
 AK
@@ -49997,7 +50382,7 @@ AK
 AK
 AK
 AK
-AK
+ws
 AK
 AK
 AK
@@ -50177,7 +50562,7 @@ AK
 AK
 AK
 AK
-AK
+ws
 AK
 AK
 AK
@@ -50302,6 +50687,7 @@ AK
 AK
 AK
 AK
+SA
 AK
 AK
 AK
@@ -50331,6 +50717,25 @@ AK
 AK
 AK
 AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+ws
+AK
+AK
+AK
+AK
+AK
+RL
 AK
 AK
 AK
@@ -50353,26 +50758,6 @@ AK
 RL
 AK
 AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-RL
-AK
-AK
 RL
 AK
 AK
@@ -50403,6 +50788,7 @@ AK
 AK
 AK
 AK
+SA
 AK
 AK
 AK
@@ -50440,8 +50826,7 @@ AK
 AK
 AK
 AK
-AK
-AK
+ws
 AK
 AK
 AK
@@ -50624,6 +51009,28 @@ AK
 AK
 AK
 AK
+ws
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+ws
 AK
 AK
 AK
@@ -50645,29 +51052,7 @@ AK
 AK
 AK
 AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
+ws
 AK
 AK
 AK
@@ -50747,7 +51132,7 @@ AK
 AK
 AK
 AK
-AK
+ws
 AK
 AK
 AK
@@ -50860,7 +51245,7 @@ AK
 AK
 AK
 AK
-AK
+SA
 AK
 AK
 AK
@@ -50906,6 +51291,7 @@ AK
 AK
 AK
 AK
+cm
 AK
 AK
 AK
@@ -50914,6 +51300,7 @@ AK
 AK
 AK
 AK
+SA
 AK
 AK
 AK
@@ -51070,9 +51457,7 @@ AK
 AK
 AK
 AK
-AK
-AK
-AK
+ws
 AK
 AK
 AK
@@ -51306,7 +51691,7 @@ AK
 AK
 AK
 AK
-AK
+ws
 AK
 AK
 AK
@@ -51403,6 +51788,7 @@ AK
 AK
 AK
 AK
+SA
 AK
 AK
 AK
@@ -51470,6 +51856,7 @@ AK
 AK
 AK
 AK
+ws
 AK
 AK
 AK
@@ -51488,6 +51875,7 @@ AK
 AK
 AK
 AK
+ws
 AK
 AK
 AK
@@ -51521,10 +51909,7 @@ AK
 AK
 AK
 AK
-AK
-AK
-AK
-AK
+SA
 AK
 AK
 AK
@@ -51858,6 +52243,7 @@ AK
 AK
 AK
 AK
+SA
 AK
 AK
 AK
@@ -51962,8 +52348,7 @@ AK
 AK
 AK
 AK
-AK
-AK
+SA
 AK
 AK
 AK
