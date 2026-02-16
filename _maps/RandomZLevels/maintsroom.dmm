@@ -60,7 +60,8 @@
 /turf/open/floor/mineral/gold,
 /area/awaymission/caves/maintsroom)
 "am" = (
-/turf/open/misc/asteroid/forest/mushroom/green,
+/obj/structure/flora/rock/pile/jungle/style_random,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "an" = (
 /obj/effect/decal/cleanable/dirt,
@@ -162,7 +163,6 @@
 /obj/item/trash/blins,
 /obj/item/trash/can/food/pine_nuts,
 /obj/item/trash/can/food/tuna,
-/obj/item/trash/chigirtma,
 /obj/item/trash/vendor_trash/mothmallow,
 /obj/item/food/chips,
 /turf/open/floor/plating,
@@ -321,11 +321,6 @@
 /area/awaymission/caves/maintsroom)
 "bf" = (
 /obj/effect/spawner/random/decoration/showcase,
-/turf/open/floor/plating,
-/area/awaymission/caves/maintsroom)
-"bh" = (
-/obj/structure/spider/stickyweb,
-/mob/living/basic/spider/giant/webslinger,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "bi" = (
@@ -595,12 +590,6 @@
 	dir = 4
 	},
 /area/awaymission/caves/maintsroom)
-"ci" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/misc/asteroid/forest/mushroom/blue,
-/area/awaymission/caves/maintsroom)
 "cj" = (
 /obj/machinery/camera/xray/directional/north,
 /turf/open/floor/bronze/filled,
@@ -753,7 +742,6 @@
 /obj/item/clothing/neck/cross,
 /obj/item/clothing/mask/gas/nightlight,
 /obj/item/gun/ballistic/revolver/cowboy,
-/obj/item/storage/backpack/tinypakc,
 /obj/effect/light_emitter/fake_outdoors,
 /obj/item/storage/belt/holster,
 /turf/open/floor/holofloor/pure_white,
@@ -785,8 +773,7 @@
 /area/awaymission/caves/maintsroom)
 "cO" = (
 /obj/machinery/light/red,
-/obj/structure/flora/mushroom/blue,
-/turf/open/misc/asteroid/forest/mushroom/blue,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "cP" = (
 /obj/effect/turf_decal/trimline/red/line{
@@ -838,11 +825,11 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/misc/asteroid/forest/mushroom/blue,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "cZ" = (
-/obj/effect/mob_spawn/corpse/human/assistant/brainrot_infection,
-/turf/open/misc/asteroid/forest/mushroom,
+/mob/living/simple_animal/hostile/cult/magic/elite,
+/turf/open/floor/engine/cult,
 /area/awaymission/caves/maintsroom)
 "da" = (
 /obj/effect/spawner/random/trash/bacteria,
@@ -865,12 +852,6 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/awaymission/caves/maintsroom)
-"dd" = (
-/mob/living/basic/evilborgs/evilborg/peace{
-	faction = list("hostile","cult")
-	},
-/turf/open/floor/circuit/red/off,
-/area/awaymission/caves/maintsroom)
 "de" = (
 /obj/item/kirbyplants/random,
 /turf/open/floor/iron,
@@ -881,7 +862,7 @@
 /area/awaymission/caves/maintsroom)
 "dg" = (
 /obj/effect/mob_spawn/corpse/human/assistant/beesease_infection,
-/turf/open/misc/asteroid/forest/mushroom,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "dh" = (
 /obj/machinery/vending/cigarette,
@@ -936,10 +917,6 @@
 /obj/structure/flora/tree/pine/style_random,
 /obj/effect/light_emitter/fake_outdoors,
 /turf/open/misc/asteroid/snow/indestructible/planet,
-/area/awaymission/caves/maintsroom)
-"ds" = (
-/obj/item/storage/toolbox/ammobox/full/sakhno,
-/turf/open/floor/bronze/filled,
 /area/awaymission/caves/maintsroom)
 "dt" = (
 /obj/machinery/scanner_gate/luxury_shuttle,
@@ -1026,11 +1003,9 @@
 /turf/open/floor/plating/rust,
 /area/awaymission/caves/maintsroom)
 "dH" = (
-/obj/item/gun/ballistic/automatic/type213{
-	anchored = 1
-	},
-/obj/structure/rack,
-/turf/open/floor/iron/smooth,
+/obj/effect/rune/empower,
+/mob/living/simple_animal/hostile/cult,
+/turf/open/floor/engine/cult,
 /area/awaymission/caves/maintsroom)
 "dI" = (
 /mob/living/basic/mining/ice_demon,
@@ -1173,7 +1148,7 @@
 /area/awaymission/caves/maintsroom)
 "ec" = (
 /obj/structure/lattice/catwalk,
-/turf/open/misc/asteroid/forest/mushroom/green,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "ed" = (
 /mob/living/basic/trooper/pirate/ranged/space,
@@ -1436,7 +1411,7 @@
 	dir = 4
 	},
 /obj/structure/holosign/barrier/atmos,
-/turf/open/misc/asteroid/forest/mushroom/blue,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "eM" = (
 /obj/structure/chair/sofa/bench{
@@ -1533,13 +1508,6 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/awaymission/caves/maintsroom)
-"fg" = (
-/obj/item/gun/ballistic/automatic/nt20{
-	anchored = 1
-	},
-/obj/structure/rack,
-/turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "fh" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1672,7 +1640,7 @@
 "fA" = (
 /obj/structure/lattice,
 /obj/structure/sign/warning/secure_area/directional/east,
-/turf/open/misc/asteroid/forest/mushroom/green,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "fB" = (
 /obj/structure/safe/floor,
@@ -1792,7 +1760,6 @@
 	pixel_x = 32;
 	spawn_loot_chance = 50
 	},
-/obj/effect/spawner/random/trash/food_packaging,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "fX" = (
@@ -1910,8 +1877,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/flora/mushroom/blue,
-/turf/open/misc/asteroid/forest/mushroom/blue,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "gs" = (
 /obj/structure/safe/vault,
@@ -2214,8 +2180,8 @@
 /turf/open/water/no_planet_atmos,
 /area/awaymission/caves/maintsroom)
 "hi" = (
-/obj/structure/flora/tree/mushroom/green,
-/turf/open/misc/asteroid/forest/mushroom/green,
+/obj/structure/flora/rock/pile/jungle/large/style_random,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "hj" = (
 /obj/structure/closet/crate/trashcart/filled,
@@ -2240,13 +2206,10 @@
 "hm" = (
 /obj/structure/closet,
 /obj/item/clothing/gloves/captain/pilot,
-/obj/item/clothing/under/rank/captain/nova/pilot,
 /obj/item/clothing/head/hats/caphat/pilot,
 /obj/item/clothing/shoes/jackboots,
-/obj/item/clothing/mask/gas/hecu,
 /obj/item/tank/internals/emergency_oxygen/double,
 /obj/item/tank/internals/emergency_oxygen/double,
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy,
 /obj/item/clothing/glasses/welding,
 /obj/item/clothing/mask/gas/welding,
 /turf/open/floor/circuit/red/anim,
@@ -2257,7 +2220,7 @@
 /area/awaymission/caves/maintsroom)
 "ho" = (
 /obj/machinery/door/airlock/maintenance,
-/turf/open/misc/asteroid/forest/mushroom/blue,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "hp" = (
 /obj/machinery/hydroponics/soil/fake_turf,
@@ -2339,6 +2302,7 @@
 	name = "Old Dorms"
 	},
 /obj/structure/alien/weeds,
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "hD" = (
@@ -2418,7 +2382,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
-/turf/open/misc/asteroid/forest/mushroom/blue,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "hW" = (
 /obj/structure/sign/poster/abductor/ayy_recruitment/directional/north,
@@ -2436,12 +2400,6 @@
 	},
 /obj/structure/rack,
 /turf/open/floor/iron/smooth,
-/area/awaymission/caves/maintsroom)
-"hZ" = (
-/mob/living/basic/evilborgs/evilborg/sec{
-	faction = list("hostile","cult")
-	},
-/turf/open/floor/mineral/plastitanium,
 /area/awaymission/caves/maintsroom)
 "ia" = (
 /obj/structure/door_assembly/door_assembly_mhatch,
@@ -2517,7 +2475,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
-/turf/open/misc/asteroid/forest/mushroom/blue,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "im" = (
 /obj/effect/turf_decal/trimline/red/corner{
@@ -2557,7 +2515,6 @@
 /area/awaymission/caves/maintsroom)
 "ir" = (
 /obj/effect/light_emitter/fake_outdoors,
-/obj/effect/spawner/armory_spawn/centcom_rifles,
 /obj/structure/rack,
 /turf/open/floor/asphalt,
 /area/awaymission/caves/maintsroom)
@@ -2614,11 +2571,6 @@
 /area/awaymission/caves/maintsroom)
 "iA" = (
 /turf/open/floor/iron,
-/area/awaymission/caves/maintsroom)
-"iB" = (
-/obj/structure/trash_pile,
-/obj/structure/flora/mushroom/blue,
-/turf/open/misc/asteroid/forest/mushroom/blue,
 /area/awaymission/caves/maintsroom)
 "iC" = (
 /obj/machinery/light/directional/south,
@@ -2729,7 +2681,7 @@
 /area/awaymission/caves/maintsroom)
 "iZ" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/misc/asteroid/forest/mushroom/blue,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "ja" = (
 /obj/effect/decal/cleanable/dirt,
@@ -2925,9 +2877,6 @@
 /obj/effect/spawner/random/food_or_drink/donkpockets,
 /obj/effect/spawner/random/food_or_drink/donkpockets,
 /obj/effect/spawner/random/food_or_drink/donkpockets,
-/obj/effect/spawner/random/food_or_drink/readydonk,
-/obj/effect/spawner/random/food_or_drink/readydonk,
-/obj/effect/spawner/random/food_or_drink/readydonk,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/awaymission/caves/maintsroom)
 "jD" = (
@@ -3490,11 +3439,6 @@
 /mob/living/basic/clockwork_marauder,
 /turf/open/floor/bronze/filled,
 /area/awaymission/caves/maintsroom)
-"lm" = (
-/mob/living/basic/mining/ice_whelp,
-/obj/effect/light_emitter/fake_outdoors,
-/turf/open/misc/asteroid/snow/indestructible/planet,
-/area/awaymission/caves/maintsroom)
 "ln" = (
 /obj/machinery/computer/mech_bay_power_console{
 	dir = 8
@@ -3525,9 +3469,7 @@
 /turf/open/floor/holofloor/pure_white,
 /area/awaymission/caves/maintsroom)
 "lt" = (
-/obj/item/clothing/under/syndicate/nova/tactical,
 /obj/item/clothing/shoes/jackboots,
-/obj/effect/spawner/random/weapon/black_market_trader,
 /obj/item/clothing/gloves/color/black,
 /obj/item/clothing/mask/gas/syndicate,
 /obj/item/clothing/head/helmet/swat,
@@ -3580,8 +3522,8 @@
 /turf/open/floor/iron,
 /area/awaymission/caves/maintsroom)
 "lC" = (
-/obj/structure/flora/tree/mushroom,
-/turf/open/misc/asteroid/forest/mushroom,
+/obj/structure/flora/bush/ferny/style_random,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "lD" = (
 /obj/structure/closet/crate/trashcart/filled,
@@ -3714,15 +3656,9 @@
 "mf" = (
 /turf/open/floor/iron/cafeteria,
 /area/awaymission/caves/maintsroom)
-"mg" = (
-/obj/structure/closet/secure_closet/des_two/engie_locker,
-/turf/open/floor/plating,
-/area/awaymission/caves/maintsroom)
 "mh" = (
 /obj/effect/rune/convert,
-/mob/living/basic/construct/harvester{
-	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile_obstacles
-	},
+/mob/living/simple_animal/hostile/cult/ghost,
 /turf/open/floor/engine/cult,
 /area/awaymission/caves/maintsroom)
 "mi" = (
@@ -4209,9 +4145,7 @@
 /turf/open/misc/asteroid/basalt,
 /area/awaymission/caves/maintsroom)
 "nI" = (
-/mob/living/basic/cult{
-	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile_obstacles
-	},
+/mob/living/simple_animal/hostile/cult,
 /turf/open/floor/engine/cult,
 /area/awaymission/caves/maintsroom)
 "nJ" = (
@@ -4558,7 +4492,7 @@
 "oU" = (
 /obj/structure/lattice,
 /obj/effect/spawner/random/structure/grille,
-/turf/open/misc/asteroid/forest/mushroom,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "oV" = (
 /obj/effect/spawner/random/vending/snackvend,
@@ -4585,7 +4519,7 @@
 /area/awaymission/caves/maintsroom)
 "oZ" = (
 /obj/effect/mob_spawn/corpse/human/clock_cultist/armored,
-/turf/open/misc/asteroid/forest/mushroom,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "pa" = (
 /obj/effect/gibspawner/robot,
@@ -4595,9 +4529,6 @@
 /area/awaymission/caves/maintsroom)
 "pb" = (
 /obj/effect/rune/wall,
-/mob/living/basic/cult/warrior{
-	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile_obstacles
-	},
 /turf/open/floor/engine/cult,
 /area/awaymission/caves/maintsroom)
 "pc" = (
@@ -4851,10 +4782,13 @@
 /turf/open/floor/carpet/lone,
 /area/awaymission/caves/maintsroom)
 "pT" = (
-/mob/living/basic/cult/mannequin{
-	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile_obstacles
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
 	},
-/turf/open/floor/plating,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/mob/living/basic/malf_borg,
+/turf/open/floor/iron,
 /area/awaymission/caves/maintsroom)
 "pU" = (
 /obj/structure/disposalpipe/trunk{
@@ -4956,7 +4890,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
-/turf/open/misc/asteroid/forest/mushroom/blue,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "ql" = (
 /obj/effect/decal/hammerandsickle,
@@ -5083,7 +5017,7 @@
 "qN" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/mob_spawn/corpse/human/assistant/brainrot_infection,
-/turf/open/misc/asteroid/forest/mushroom/blue,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "qO" = (
 /obj/structure/showcase/mecha/marauder/fakeout/command,
@@ -5201,8 +5135,8 @@
 /turf/open/misc/asteroid/basalt,
 /area/awaymission/caves/maintsroom)
 "rc" = (
-/obj/item/pickaxe,
-/turf/open/misc/asteroid,
+/mob/living/basic/malf_borg,
+/turf/open/floor/iron,
 /area/awaymission/caves/maintsroom)
 "rd" = (
 /obj/effect/turf_decal/stripes/corner{
@@ -5263,7 +5197,7 @@
 /obj/structure/sign/nanotrasen{
 	pixel_x = 32
 	},
-/turf/open/misc/asteroid/forest/mushroom/green,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "ro" = (
 /obj/structure/table,
@@ -5279,12 +5213,6 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/awaymission/caves/maintsroom)
-"rq" = (
-/mob/living/basic/evilborgs/evilborg/protect{
-	faction = list("hostile","cult")
-	},
-/turf/open/floor/mineral/plastitanium,
 /area/awaymission/caves/maintsroom)
 "rs" = (
 /turf/open/lava/smooth/weak{
@@ -5461,8 +5389,8 @@
 /area/awaymission/caves/maintsroom)
 "sd" = (
 /obj/item/paper{
-	name = "The lore of this place given in an out of character manner for ghosts and administraitors.";
-	default_raw_text = "This place is a space in between spaces, this place is kind of a semi equivalent to the backrooms in that you only end up in this place if youve really fucked up, lore wise this place does go on forever - but ya know, gameplay limitations. The location that looks like a marine base- used to be a marine base staffed by marines and a mix of NT personell as it was a joint training facility for NT and Marines. This facility was brought here by the syndicate messing with an artifact that they probably shouldnt have, all of the simplemob humans here have lost their mind, the clock cultists ended up here by messing with the same artifact and the blood cultists are here because they also found said micguffin artifact and got sent here, there are other ways to get here too- certain interactions with the SM, some interactions with singularities and black holes, and sometimes if the stability in a given area is low enough you could just fall through the floor and end up here."
+	name = "Ghost role relevent lore to know";
+	default_raw_text = "This place is a space in between spaces, for the xenomorph hive here you cannot hear anybody in the hivemind besides the kin that are stuck with you, take this as a permit to be more docile or more hostile, if you are the ghost role that spawns here you should have it make lore sense as to why they are here, pretty much anybody can end up here simply if they're unlucky but in this particular segment a marine or something of similar nature would be more likely but im not gonna hold your hand and tell you how to roleplay your creature, aspiring wizard, heretic, cultist, cosmic horror manifested, etc, sure, just understand everybody is a player and you should treat others how you would want to be treated, and most importantly, don't be cringe."
 	},
 /obj/item/toy/plush/lizard_plushie/green{
 	name = "Passes-The-Checks(PLEASE)"
@@ -5476,7 +5404,7 @@
 /area/awaymission/caves/maintsroom)
 "sf" = (
 /obj/structure/rack,
-/obj/item/gun/ballistic/automatic/nt20{
+/obj/item/gun/ballistic/automatic/c20r{
 	anchored = 1
 	},
 /turf/open/floor/iron/smooth,
@@ -5487,14 +5415,10 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "sh" = (
-/obj/effect/spawner/random/trash/graffiti{
-	pixel_x = 32;
-	spawn_loot_chance = 50
-	},
-/obj/item/reagent_containers/cup/glass/bottle/beer{
-	pixel_x = 8
-	},
-/turf/open/floor/iron,
+/obj/machinery/light/directional/north,
+/obj/structure/spider/stickyweb,
+/mob/living/basic/spider/giant/tank,
+/turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "si" = (
 /obj/machinery/hydroponics/soil/fake_turf,
@@ -5564,10 +5488,6 @@
 	anchored = 1
 	},
 /turf/open/floor/iron/smooth,
-/area/awaymission/caves/maintsroom)
-"st" = (
-/obj/machinery/chem_master/fullupgrade,
-/turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "su" = (
 /obj/structure/bed/maint,
@@ -5698,7 +5618,6 @@
 /area/awaymission/caves/maintsroom)
 "sN" = (
 /obj/structure/rack,
-/obj/item/storage/toolbox/emergency,
 /turf/open/misc/asteroid,
 /area/awaymission/caves/maintsroom)
 "sO" = (
@@ -5818,6 +5737,7 @@
 	dir = 6
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/mob/living/basic/malf_borg,
 /turf/open/floor/iron,
 /area/awaymission/caves/maintsroom)
 "tk" = (
@@ -5913,6 +5833,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "ty" = (
@@ -6723,7 +6644,7 @@
 "wn" = (
 /obj/effect/spawner/random/environmentally_safe_anomaly/immobile,
 /obj/structure/disposalpipe/segment,
-/turf/open/misc/asteroid/forest/mushroom/blue,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "wo" = (
 /obj/machinery/light/directional/west,
@@ -6737,7 +6658,7 @@
 "wr" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/structure/disposalpipe/segment,
-/turf/open/misc/asteroid/forest/mushroom/blue,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "ws" = (
 /obj/structure/sign/warning/secure_area,
@@ -6840,11 +6761,6 @@
 /obj/machinery/recharge_station,
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
-"wK" = (
-/obj/effect/mob_spawn/corpse/human/assistant/brainrot_infection,
-/obj/structure/flora/mushroom,
-/turf/open/misc/asteroid/forest/mushroom,
-/area/awaymission/caves/maintsroom)
 "wL" = (
 /obj/structure/destructible/clockwork/trap/skewer,
 /turf/open/floor/bronze/filled,
@@ -6892,7 +6808,6 @@
 /obj/structure/closet/syndicate,
 /obj/item/clothing/under/costume/soviet,
 /obj/item/clothing/suit/costume/soviet,
-/obj/item/storage/toolbox/ammobox/full/sakhno,
 /turf/open/floor/mineral/plastitanium/red,
 /area/awaymission/caves/maintsroom)
 "wU" = (
@@ -7017,7 +6932,7 @@
 	name = "Panacea"
 	},
 /obj/machinery/camera/xray/directional/north,
-/turf/open/misc/asteroid/forest/mushroom,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "xr" = (
 /obj/effect/turf_decal/trimline/red/corner{
@@ -7195,8 +7110,8 @@
 /turf/open/floor/iron/dark,
 /area/awaymission/caves/maintsroom)
 "ya" = (
-/obj/structure/spider/stickyweb,
-/mob/living/basic/spider/giant/ogre,
+/obj/effect/mapping_helpers/broken_floor,
+/mob/living/simple_animal/hostile/cult/mannequin,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "yc" = (
@@ -7471,9 +7386,7 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "za" = (
-/mob/living/basic/evilborgs/evilborg/heavy{
-	faction = list("hostile","cult")
-	},
+/mob/living/basic/malf_borg,
 /turf/open/floor/circuit/red/anim,
 /area/awaymission/caves/maintsroom)
 "zb" = (
@@ -7489,12 +7402,6 @@
 /obj/structure/alien/weeds/creature,
 /obj/machinery/light/directional/west,
 /turf/open/floor/plating,
-/area/awaymission/caves/maintsroom)
-"ze" = (
-/obj/structure/disposalpipe/segment,
-/obj/effect/mob_spawn/corpse/human/assistant/brainrot_infection,
-/obj/structure/flora/mushroom/blue,
-/turf/open/misc/asteroid/forest/mushroom/blue,
 /area/awaymission/caves/maintsroom)
 "zf" = (
 /obj/machinery/shower/directional/south,
@@ -7748,11 +7655,11 @@
 /turf/open/floor/engine/cult,
 /area/awaymission/caves/maintsroom)
 "zZ" = (
-/obj/structure/flora/tree/mushroom/blue/reverse,
-/turf/open/misc/asteroid/forest/mushroom/blue,
+/obj/structure/flora/bush/fullgrass/style_random,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "Aa" = (
-/obj/machinery/vending/imported/nt,
+/obj/machinery/vending/imported/yangyu,
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "Ab" = (
@@ -7843,6 +7750,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/alien/weeds,
 /obj/structure/cable,
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "As" = (
@@ -7860,9 +7768,7 @@
 /turf/open/floor/circuit/red,
 /area/awaymission/caves/maintsroom)
 "Av" = (
-/mob/living/basic/cult/assassin{
-	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile_obstacles
-	},
+/mob/living/simple_animal/hostile/cult/assassin,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "Aw" = (
@@ -7934,8 +7840,8 @@
 /turf/open/floor/plating/rust,
 /area/awaymission/caves/maintsroom)
 "AG" = (
-/obj/structure/flora/mushroom,
-/turf/open/misc/asteroid/forest/mushroom,
+/mob/living/basic/malf_borg,
+/turf/open/floor/circuit/red/off,
 /area/awaymission/caves/maintsroom)
 "AH" = (
 /obj/structure/sink/oil_well,
@@ -8033,7 +7939,7 @@
 /turf/open/floor/sepia,
 /area/awaymission/caves/maintsroom)
 "AW" = (
-/obj/vehicle/sealed/mecha/gygax,
+/obj/structure/mecha_wreckage/gygax,
 /turf/open/floor/circuit/red/anim,
 /area/awaymission/caves/maintsroom)
 "AX" = (
@@ -8204,11 +8110,6 @@
 /obj/item/reagent_containers/cup/glass/bottle/vodka/badminka,
 /turf/open/floor/mineral/plastitanium/red,
 /area/awaymission/caves/maintsroom)
-"Bw" = (
-/obj/machinery/light/directional/east,
-/obj/structure/reagent_dispensers/water_cooler/directional/east,
-/turf/open/floor/iron/white,
-/area/awaymission/caves/maintsroom)
 "Bx" = (
 /obj/machinery/teleport/hub,
 /turf/open/floor/plating,
@@ -8335,7 +8236,7 @@
 /area/awaymission/caves/maintsroom)
 "BM" = (
 /obj/effect/spawner/random/environmentally_safe_anomaly/immobile,
-/turf/open/misc/asteroid/forest/mushroom/blue,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "BN" = (
 /obj/effect/decal/cleanable/blood/gibs/limb,
@@ -8498,7 +8399,7 @@
 /obj/machinery/door/airlock/maintenance,
 /obj/structure/barricade/wooden/crude,
 /obj/structure/barricade/wooden,
-/turf/open/misc/asteroid/forest/mushroom/blue,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "CA" = (
 /turf/open/floor/carpet/lone,
@@ -8512,6 +8413,7 @@
 /area/awaymission/caves/maintsroom)
 "CC" = (
 /obj/structure/cable,
+/mob/living/basic/malf_borg,
 /turf/open/floor/circuit/green,
 /area/awaymission/caves/maintsroom)
 "CE" = (
@@ -8563,7 +8465,7 @@
 /obj/structure/sign/nanotrasen{
 	pixel_x = 32
 	},
-/turf/open/misc/asteroid/forest/mushroom/green,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "CR" = (
 /obj/item/clockwork/weapon/brass_sword,
@@ -8573,9 +8475,6 @@
 "CS" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/effect/spawner/random/structure/closet_empty/crate,
-/obj/item/stack/ore/iron{
-	amount = 25
-	},
 /obj/structure/alien/weeds,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
@@ -8589,6 +8488,7 @@
 "CU" = (
 /obj/machinery/door/airlock/glass,
 /obj/machinery/door/firedoor,
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "CV" = (
@@ -8615,10 +8515,7 @@
 /area/awaymission/caves/maintsroom)
 "CX" = (
 /obj/effect/rune/apocalypse,
-/mob/living/basic/cult/magic/elite/fireball{
-	death_loot = list(/obj/item/sharpener/cult);
-	ai_controller = /datum/ai_controller/basic_controller/skeleton
-	},
+/mob/living/basic/construct/harvester,
 /turf/open/floor/engine/cult,
 /area/awaymission/caves/maintsroom)
 "CY" = (
@@ -8640,12 +8537,6 @@
 "Da" = (
 /obj/machinery/suit_storage_unit/pirate,
 /turf/open/floor/wood,
-/area/awaymission/caves/maintsroom)
-"Dc" = (
-/mob/living/basic/evilborgs/evilborg{
-	faction = list("hostile","cult")
-	},
-/turf/open/floor/circuit,
 /area/awaymission/caves/maintsroom)
 "Dd" = (
 /obj/machinery/computer/mech_bay_power_console{
@@ -8850,13 +8741,9 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
-"DN" = (
-/obj/structure/flora/mushroom/blue,
-/turf/open/misc/asteroid/forest/mushroom/blue,
-/area/awaymission/caves/maintsroom)
 "DO" = (
-/obj/structure/flora/tree/mushroom/blue,
-/turf/open/misc/asteroid/forest/mushroom/blue,
+/mob/living/simple_animal/hostile/engorge,
+/turf/open/floor/black,
 /area/awaymission/caves/maintsroom)
 "DP" = (
 /turf/closed/mineral/ash_rock,
@@ -8992,7 +8879,7 @@
 "En" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/structure/holosign/barrier/atmos,
-/turf/open/misc/asteroid/forest/mushroom/blue,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "Eo" = (
 /obj/structure/sign/poster/contraband/random/directional/south,
@@ -9178,8 +9065,7 @@
 /area/awaymission/caves/maintsroom)
 "ER" = (
 /obj/structure/lattice,
-/obj/structure/flora/mushroom/green,
-/turf/open/misc/asteroid/forest/mushroom/green,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "ES" = (
 /obj/structure/table/reinforced,
@@ -9287,6 +9173,7 @@
 "Fj" = (
 /obj/effect/rune/empower,
 /obj/machinery/camera/xray/directional/north,
+/mob/living/basic/construct/wraith,
 /turf/open/floor/engine/cult,
 /area/awaymission/caves/maintsroom)
 "Fk" = (
@@ -9508,9 +9395,7 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "FT" = (
-/mob/living/basic/evilborgs/evilborg/protect{
-	faction = list("hostile","cult")
-	},
+/mob/living/basic/malf_borg,
 /turf/open/floor/circuit/green,
 /area/awaymission/caves/maintsroom)
 "FU" = (
@@ -9602,10 +9487,8 @@
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "Gi" = (
-/mob/living/basic/evilborgs/evilborg{
-	faction = list("hostile","cult")
-	},
-/turf/open/floor/circuit/green,
+/obj/structure/flora/bush/flowers_yw/style_random,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "Gj" = (
 /obj/effect/mapping_helpers/airlock/locked,
@@ -10029,8 +9912,8 @@
 /turf/open/floor/iron,
 /area/awaymission/caves/maintsroom)
 "HI" = (
-/mob/living/basic/cult/magic,
 /obj/effect/rune/empower,
+/mob/living/simple_animal/hostile/cult/magic,
 /turf/open/floor/engine/cult,
 /area/awaymission/caves/maintsroom)
 "HJ" = (
@@ -10154,7 +10037,7 @@
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "Ij" = (
-/obj/vehicle/sealed/mecha/odysseus/artifact,
+/obj/vehicle/sealed/mecha/odysseus,
 /turf/open/floor/iron/diagonal,
 /area/awaymission/caves/maintsroom)
 "Ik" = (
@@ -10248,7 +10131,7 @@
 /area/awaymission/caves/maintsroom)
 "IE" = (
 /obj/effect/mob_spawn/corpse/human/assistant/brainrot_infection,
-/turf/open/misc/asteroid/forest/mushroom/blue,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "IF" = (
 /obj/structure/curtain/cloth/fancy/mechanical/start_closed/maints_finale,
@@ -10289,7 +10172,7 @@
 "IL" = (
 /obj/structure/safe/floor,
 /obj/item/gun/energy/laser/musket,
-/obj/item/book/granter/crafting_recipe/dusting/laser_musket_prime,
+/obj/item/gun/energy/laser/musket,
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "IM" = (
@@ -10343,7 +10226,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
-/turf/open/misc/asteroid/forest/mushroom/blue,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "IW" = (
 /obj/structure/rack,
@@ -10375,12 +10258,6 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/awaymission/caves/maintsroom)
-"Jd" = (
-/mob/living/basic/cult/engorge{
-	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile_obstacles
-	},
-/turf/open/floor/black,
 /area/awaymission/caves/maintsroom)
 "Je" = (
 /obj/structure/table/reinforced,
@@ -10554,7 +10431,6 @@
 "JI" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/structure/table,
-/obj/item/stack/ore/bananium,
 /obj/structure/alien/weeds,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
@@ -10635,13 +10511,10 @@
 "JY" = (
 /obj/structure/closet,
 /obj/item/gun/energy/laser/hellgun,
-/obj/item/clothing/under/rank/security/nova/turtleneck/blue,
 /obj/item/clothing/shoes/jackboots,
 /obj/item/clothing/gloves/plate/blue,
-/obj/item/clothing/suit/armor/vest/sol,
 /obj/item/clothing/mask/gas/sechailer/swat/spacepol,
 /obj/item/clothing/head/helmet/swat/nanotrasen,
-/obj/item/storage/backpack/security/blue,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "JZ" = (
@@ -10722,17 +10595,16 @@
 /area/awaymission/caves/maintsroom)
 "Km" = (
 /obj/structure/broken_flooring/corner/directional/south,
-/obj/effect/spawner/random/trash/food_packaging,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "Kn" = (
-/mob/living/basic/evilborgs/evilborg/bigguy{
-	name = "High end military robot";
-	desc = "A military robot unit, hacked or malfunctioning. This one looks really tough, and even tougher than its usual model! you should RUN.";
-	health = 500
+/obj/machinery/door/airlock{
+	name = "Maintenance"
 	},
-/turf/open/floor/circuit/red/anim,
+/obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "Kp" = (
 /obj/effect/decal/cleanable/dirt,
@@ -10794,9 +10666,6 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/awaymission/caves/maintsroom)
-"KA" = (
-/turf/open/misc/asteroid/forest/mushroom/blue,
 /area/awaymission/caves/maintsroom)
 "KB" = (
 /obj/structure/table/wood/poker,
@@ -11308,9 +11177,6 @@
 /area/awaymission/caves/maintsroom)
 "Mn" = (
 /obj/structure/closet/crate/trashcart,
-/obj/effect/spawner/random/trash/food_packaging,
-/obj/effect/spawner/random/trash/food_packaging,
-/obj/effect/spawner/random/trash/cigbutt,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/alien/weeds,
 /turf/open/floor/iron,
@@ -11321,11 +11187,8 @@
 /turf/open/floor/bronze/filled,
 /area/awaymission/caves/maintsroom)
 "Mp" = (
-/obj/effect/rune/summon,
-/mob/living/basic/cult/spear{
-	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile_obstacles
-	},
-/turf/open/floor/engine/cult,
+/mob/living/basic/construct/wraith,
+/turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "Mq" = (
 /obj/structure/signpost/salvation{
@@ -11499,7 +11362,7 @@
 /area/awaymission/caves/maintsroom)
 "MS" = (
 /obj/structure/trash_pile,
-/turf/open/misc/asteroid/forest/mushroom/blue,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "MT" = (
 /obj/machinery/porta_turret/syndicate/energy/heavy,
@@ -11508,13 +11371,6 @@
 "MU" = (
 /obj/structure/fermenting_barrel,
 /turf/open/floor/plating/rust,
-/area/awaymission/caves/maintsroom)
-"MV" = (
-/mob/living/basic/evilborgs/evilborg/sec{
-	faction = list("hostile","cult")
-	},
-/obj/item/kirbyplants/random,
-/turf/open/floor/circuit/red/anim,
 /area/awaymission/caves/maintsroom)
 "MW" = (
 /obj/machinery/camera/xray/directional/east,
@@ -11882,7 +11738,7 @@
 /area/awaymission/caves/maintsroom)
 "Oc" = (
 /obj/effect/mob_spawn/corpse/human/assistant/spanishflu_infection,
-/turf/open/misc/asteroid/forest/mushroom,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "Oe" = (
 /obj/item/ectoplasm,
@@ -11904,6 +11760,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/machinery/door/firedoor,
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/iron/grimy,
 /area/awaymission/caves/maintsroom)
 "Oh" = (
@@ -12002,15 +11859,6 @@
 /obj/structure/sign/poster/contraband/soviet_propaganda/directional/north,
 /turf/open/floor/mineral/plastitanium/red,
 /area/awaymission/caves/maintsroom)
-"Oz" = (
-/obj/structure/spider/stickyweb,
-/mob/living/basic/spider/giant/baron{
-	health = 500;
-	name = "Injured baron spider";
-	speed = 1
-	},
-/turf/open/floor/plating,
-/area/awaymission/caves/maintsroom)
 "OA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/mecha_wreckage/odysseus,
@@ -12051,8 +11899,8 @@
 /turf/open/floor/iron,
 /area/awaymission/caves/maintsroom)
 "OH" = (
-/obj/structure/flora/tree/mushroom/reverse,
-/turf/open/misc/asteroid/forest/mushroom,
+/obj/structure/flora/tree/jungle/small/style_random,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "OI" = (
 /obj/structure/chair/wood/wings{
@@ -12126,9 +11974,8 @@
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "OU" = (
-/obj/structure/table/reinforced,
-/obj/item/folder/yellow/nanite,
-/turf/open/floor/iron,
+/obj/structure/flora/tree/jungle/style_random,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "OV" = (
 /obj/effect/spawner/random/trash/soap,
@@ -12297,10 +12144,6 @@
 /obj/item/clothing/suit/armor/vest/marine,
 /obj/item/clothing/suit/armor/vest/marine/security,
 /turf/open/floor/asphalt,
-/area/awaymission/caves/maintsroom)
-"PD" = (
-/obj/structure/reagent_dispensers/water_cooler/directional/east,
-/turf/open/floor/iron/white,
 /area/awaymission/caves/maintsroom)
 "PF" = (
 /obj/item/cigarette/pipe/crackpipe,
@@ -12502,11 +12345,6 @@
 /obj/structure/rack/wooden,
 /obj/item/clothing/glasses/clockwork/judicial_visor,
 /turf/open/floor/bronze/filled,
-/area/awaymission/caves/maintsroom)
-"Qs" = (
-/obj/structure/lattice,
-/obj/structure/flora/tree/mushroom/green,
-/turf/open/misc/asteroid/forest/mushroom/green,
 /area/awaymission/caves/maintsroom)
 "Qt" = (
 /obj/machinery/light/very_dim/directional/west,
@@ -12798,12 +12636,6 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron,
 /area/awaymission/caves/maintsroom)
-"Rj" = (
-/obj/structure/signpost/salvation{
-	name = "Mercy"
-	},
-/turf/open/floor/carpet/green,
-/area/awaymission/caves/maintsroom)
 "Rk" = (
 /obj/structure/sign/poster/abductor/ayylian/directional/west,
 /turf/open/floor/plating/abductor,
@@ -12842,8 +12674,8 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "Rr" = (
-/obj/structure/flora/mushroom/green,
-/turf/open/misc/asteroid/forest/mushroom/green,
+/obj/structure/flora/rock/pile/style_random,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "Rs" = (
 /obj/structure/railing{
@@ -13136,9 +12968,7 @@
 /turf/open/floor/iron/white,
 /area/awaymission/caves/maintsroom)
 "Sk" = (
-/mob/living/basic/cult/ghost{
-	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile_obstacles
-	},
+/mob/living/simple_animal/hostile/cult,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "Sl" = (
@@ -13155,9 +12985,7 @@
 /turf/open/floor/iron/diagonal,
 /area/awaymission/caves/maintsroom)
 "Sq" = (
-/mob/living/basic/cult/horror{
-	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile_obstacles
-	},
+/mob/living/simple_animal/hostile/cult/horror,
 /turf/open/floor/engine/cult,
 /area/awaymission/caves/maintsroom)
 "Sr" = (
@@ -13180,9 +13008,6 @@
 "Su" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/basic/evilborgs/evilborg/roomba{
-	faction = list("hostile","cult")
-	},
 /turf/open/floor/circuit/green,
 /area/awaymission/caves/maintsroom)
 "Sv" = (
@@ -13495,7 +13320,6 @@
 /area/awaymission/caves/maintsroom)
 "Tz" = (
 /obj/structure/table,
-/obj/item/shovel,
 /obj/structure/alien/weeds,
 /turf/open/misc/asteroid,
 /area/awaymission/caves/maintsroom)
@@ -13657,11 +13481,6 @@
 /obj/effect/spawner/random/maintenance/two,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
-"Ud" = (
-/obj/item/ammo_box/advanced/s12gauge/antitide,
-/obj/structure/closet,
-/turf/open/floor/plating,
-/area/awaymission/caves/maintsroom)
 "Ue" = (
 /obj/effect/spawner/random/maintenance,
 /obj/structure/sign/poster/contraband/random/directional/east,
@@ -13723,9 +13542,7 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "Ur" = (
-/mob/living/basic/evilborgs/evilborg/heavy{
-	faction = list("hostile","cult")
-	},
+/mob/living/basic/malf_borg,
 /turf/open/floor/mineral/plastitanium,
 /area/awaymission/caves/maintsroom)
 "Us" = (
@@ -14382,13 +14199,6 @@
 /obj/structure/flora/bush/jungle/b/style_random,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
-"WB" = (
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
-/obj/structure/flora/mushroom/blue,
-/turf/open/misc/asteroid/forest/mushroom/blue,
-/area/awaymission/caves/maintsroom)
 "WC" = (
 /obj/machinery/autolathe/hacked,
 /turf/open/floor/plating,
@@ -14569,7 +14379,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/open/misc/asteroid/forest/mushroom/green,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "Xe" = (
 /obj/structure/wall_torch/spawns_lit/directional/east,
@@ -14690,10 +14500,6 @@
 /obj/structure/chair/stool/directional/east,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/wood,
-/area/awaymission/caves/maintsroom)
-"Xz" = (
-/obj/structure/lattice,
-/turf/open/misc/asteroid/forest/mushroom/green,
 /area/awaymission/caves/maintsroom)
 "XA" = (
 /obj/machinery/light/directional/north,
@@ -15001,7 +14807,7 @@
 	dir = 4
 	},
 /obj/effect/mob_spawn/corpse/human/assistant/brainrot_infection,
-/turf/open/misc/asteroid/forest/mushroom/blue,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "YN" = (
 /obj/structure/rack,
@@ -15054,7 +14860,7 @@
 	dir = 4
 	},
 /obj/machinery/camera/xray/directional/north,
-/turf/open/misc/asteroid/forest/mushroom/blue,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "YY" = (
 /obj/structure/table/wood,
@@ -15268,7 +15074,8 @@
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "ZH" = (
-/turf/open/misc/asteroid/forest/mushroom,
+/obj/structure/flora/bush/generic/style_random,
+/turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "ZI" = (
 /obj/structure/broken_flooring/pile/directional/east,
@@ -15296,10 +15103,8 @@
 /turf/open/floor/plating/rust,
 /area/awaymission/caves/maintsroom)
 "ZK" = (
-/mob/living/basic/evilborgs/evilborg/roomba{
-	faction = list("hostile","cult")
-	},
-/turf/open/floor/circuit/red/off,
+/mob/living/simple_animal/hostile/cult/warrior,
+/turf/open/floor/engine/cult,
 /area/awaymission/caves/maintsroom)
 "ZL" = (
 /obj/structure/chair/sofa/bench{
@@ -15312,9 +15117,7 @@
 /obj/item/clothing/head/helmet/space/plasmaman/atmospherics,
 /obj/item/clothing/gloves/color/plasmaman/atmos,
 /obj/item/clothing/under/plasmaman/atmospherics,
-/obj/item/storage/toolbox/guncase/nova/pistol/opfor/plasma_pistol,
 /obj/item/construction/rcd,
-/obj/item/clothing/under/syndicate/nova/enclave/real/officer,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "ZN" = (
@@ -15392,8 +15195,8 @@
 /turf/open/floor/plating/rust,
 /area/awaymission/caves/maintsroom)
 "ZX" = (
-/obj/structure/bed/double/pelt/black,
 /obj/item/bedsheet/black/double,
+/obj/structure/bed/double,
 /turf/open/floor/black,
 /area/awaymission/caves/maintsroom)
 "ZY" = (
@@ -17820,7 +17623,7 @@ DT
 oc
 DT
 oc
-DT
+yc
 oc
 di
 kM
@@ -18192,7 +17995,7 @@ jR
 XZ
 Il
 Il
-Il
+ZK
 Il
 zX
 UF
@@ -18211,7 +18014,7 @@ Bh
 Bh
 Bh
 Bh
-ds
+Bh
 Bh
 Bh
 Tv
@@ -18408,13 +18211,13 @@ jf
 jR
 xw
 Il
-Il
+cZ
 CX
 Il
 gl
 mh
-UF
-Mp
+dH
+gl
 jR
 uG
 GS
@@ -18598,7 +18401,7 @@ GS
 oY
 Il
 Il
-Il
+Sq
 GS
 zl
 lT
@@ -18616,17 +18419,17 @@ GS
 TE
 cc
 lE
-PD
+Cu
 MX
 Cu
-Bw
+MX
 Cu
 jf
 jR
 ZS
 Il
 Il
-Il
+ZK
 Il
 gl
 gl
@@ -18684,13 +18487,13 @@ DT
 DT
 DT
 oc
+DT
+oc
+DT
+oc
+DT
+oc
 yc
-oc
-DT
-oc
-DT
-oc
-DT
 kM
 di
 kM
@@ -18815,7 +18618,7 @@ GS
 oY
 ZQ
 yd
-Sq
+Il
 GS
 uG
 uG
@@ -18826,7 +18629,7 @@ ED
 qt
 Zn
 xV
-qt
+ya
 ED
 jd
 GS
@@ -18846,7 +18649,7 @@ Il
 Il
 lu
 zX
-UF
+dH
 Cg
 pb
 jR
@@ -19044,7 +18847,7 @@ xV
 xV
 xV
 ED
-pT
+uG
 uG
 GS
 wa
@@ -19779,7 +19582,7 @@ DT
 DT
 DT
 DT
-DT
+sR
 DT
 DT
 DT
@@ -19987,12 +19790,12 @@ oc
 DT
 oc
 DT
-lm
+oc
 DT
 oc
 DT
 dr
-sR
+DT
 oc
 DT
 oc
@@ -20805,13 +20608,13 @@ zL
 GS
 uG
 GS
-ZH
-AG
-ZH
-ZH
-ZH
-ZH
-ZH
+ii
+ii
+iT
+ii
+ii
+lC
+ii
 GS
 fK
 Bh
@@ -21024,10 +20827,10 @@ uG
 GS
 xq
 OH
-AG
-ZH
-ZH
-lC
+ii
+ii
+ii
+OH
 Oc
 GS
 fK
@@ -21219,7 +21022,7 @@ uG
 uG
 gR
 Jw
-uG
+Mp
 pV
 GS
 zm
@@ -21239,13 +21042,13 @@ GS
 GS
 uG
 GS
-AG
-AG
+ii
+ii
 dg
-cZ
-AG
+IE
+ii
 ZH
-AG
+ii
 GS
 fK
 fK
@@ -21456,11 +21259,11 @@ jd
 GS
 uG
 GS
-ZH
-ZH
-AG
-ZH
-ZH
+ii
+Gi
+ii
+ii
+OH
 dg
 oZ
 GS
@@ -21673,12 +21476,12 @@ kp
 GS
 uG
 GS
-ZH
-AG
-ZH
-ZH
-ZH
-ZH
+OH
+ii
+ii
+iT
+ii
+ii
 GS
 GS
 SF
@@ -21890,12 +21693,12 @@ Sk
 GS
 uG
 GS
-AG
-ZH
-ZH
+ii
+ii
 OH
-wK
 ZH
+IE
+ii
 GS
 GS
 GS
@@ -22107,12 +21910,12 @@ Jg
 GS
 uG
 GS
-ZH
-ZH
+ii
+ii
 ZH
 Oc
 ZH
-AG
+ii
 GS
 cP
 Kl
@@ -22312,10 +22115,10 @@ aA
 aA
 YY
 GS
+zZ
 am
-am
-am
-am
+zZ
+ii
 GS
 GS
 GS
@@ -22529,22 +22332,22 @@ GS
 GS
 GS
 GS
-am
-am
-hi
-am
-am
-am
-am
-am
-am
+ii
+ii
+ii
+ii
+ii
+ii
+ii
+ii
+ii
 GS
 QX
 GS
 GS
 GS
 GS
-Xz
+ER
 GS
 bn
 GS
@@ -22743,25 +22546,25 @@ RV
 GS
 lV
 GS
-am
-am
-am
-am
-am
-am
-am
+ii
+ii
+ii
+ii
+OH
+ii
 Rr
+ii
+zZ
+ii
 am
-am
-Rr
-am
+ii
 GS
 yf
 gV
 BY
 Es
 eO
-Xz
+ER
 GS
 Te
 GS
@@ -22928,13 +22731,13 @@ cN
 wQ
 Pu
 GS
-tB
+AG
 tB
 tB
 GS
 hG
 hG
-Gi
+hG
 hG
 GS
 uG
@@ -22960,18 +22763,18 @@ vf
 GS
 GS
 GS
+ii
+ii
 am
-am
-Rr
-am
-am
-am
-am
-am
-am
-am
-am
-am
+ii
+ii
+hi
+ii
+ii
+ii
+ii
+ii
+ii
 GS
 GS
 GS
@@ -23146,13 +22949,13 @@ wQ
 dA
 GS
 tB
-ZK
+tB
 tB
 GS
 hG
 hG
 hG
-hG
+FT
 GS
 uG
 uG
@@ -23175,27 +22978,27 @@ mv
 mv
 tl
 GS
+ii
+ii
 am
+ii
+ii
 am
-am
-am
-am
-am
-am
+ii
+ii
+OU
+ii
+ii
+ii
+OU
 Rr
-am
-am
-am
-am
-hi
-am
-am
+ii
 eO
 qq
 iA
 wC
 eO
-Xz
+ER
 GS
 eP
 GS
@@ -23364,7 +23167,7 @@ xH
 GS
 tB
 tB
-dd
+tB
 GS
 hG
 hG
@@ -23392,27 +23195,27 @@ GS
 GS
 GS
 GS
-am
-am
-am
-am
-hi
-am
-am
-am
-am
-am
-am
-am
+ii
+ii
+ii
 Rr
-am
-Xz
+ii
+ii
+ii
+ii
+hi
+ii
+ii
+hi
+ii
+ii
+ER
 GS
 lv
 GS
 GS
 GS
-Xz
+ER
 GS
 uG
 GS
@@ -23577,7 +23380,7 @@ wQ
 wQ
 cN
 wQ
-xH
+za
 GS
 tB
 tB
@@ -23586,7 +23389,7 @@ GS
 hG
 hG
 hG
-Gi
+hG
 GS
 uG
 uG
@@ -23604,32 +23407,32 @@ Uz
 GS
 uG
 GS
+ii
+ii
+ii
+ii
 am
-am
-am
-am
-am
-am
-am
-am
-Rr
-am
-am
-am
-am
-am
-hi
-am
-Rr
-am
-am
-am
-Xz
+ii
+ii
+ii
+OU
+zZ
+ii
+ii
+ii
+ii
+ii
+ii
+OH
+ii
+zZ
+ii
+ER
 ec
-Xz
-am
-am
-am
+ER
+ii
+ii
+ii
 GS
 uG
 GS
@@ -23798,9 +23601,9 @@ xH
 Fe
 tB
 tB
-tB
+AG
 GS
-hG
+FT
 hG
 hG
 hG
@@ -23825,28 +23628,28 @@ ec
 ec
 rn
 ec
-am
-am
-am
-am
-am
-am
-am
-am
-am
-am
-am
-am
-am
-am
-am
-Rr
-Xz
-ec
-Xz
-am
-am
+ii
+ii
+ii
+ii
+ii
+ii
+OH
 hi
+ii
+ii
+zZ
+ii
+ii
+ZH
+ii
+Rr
+ER
+ec
+ER
+ii
+ii
+OH
 GS
 Th
 GS
@@ -23994,15 +23797,15 @@ sm
 Cu
 wQ
 MS
-KA
-DO
+ii
+ii
 IE
-KA
-DN
-KA
+ii
+ii
+ii
 GS
-KA
-DN
+ii
+ii
 kk
 zm
 zm
@@ -24042,28 +23845,28 @@ GS
 rG
 GS
 GS
+ii
+zZ
 am
-am
-am
-am
+ii
 Xc
+ii
+zZ
+zZ
+ii
 am
+ZH
+ii
+ii
+ii
+OU
 am
-am
-am
-am
-am
-am
-Rr
-am
-am
-am
-Xz
+ER
 ec
-Xz
-am
-am
-am
+ER
+hi
+ii
+ii
 GS
 uG
 GS
@@ -24210,16 +24013,16 @@ Ra
 sm
 MT
 wQ
-KA
-KA
-KA
-DN
-KA
+ii
+ii
+ii
+ii
+ii
 IE
-KA
+ii
 ho
 IE
-KA
+ii
 GS
 dx
 zm
@@ -24270,16 +24073,16 @@ Hd
 Hd
 Hd
 Hd
-am
-am
-am
-am
-am
-Xz
+ii
+ii
+hi
+ii
+ii
+ER
 ec
-Xz
-am
-am
+ER
+OH
+ii
 Rr
 GS
 uG
@@ -24427,16 +24230,16 @@ jf
 wQ
 wQ
 wQ
-DN
-KA
+ii
+ii
 GS
 GS
 GS
 GS
 GS
 GS
-KA
-KA
+ii
+ii
 GS
 fX
 zm
@@ -24488,16 +24291,16 @@ KB
 Qn
 Hd
 Hd
-Xz
-Xz
-Qs
-Xz
-Xz
+ER
+ER
+ER
+ER
+ER
 ec
-Xz
-Xz
-Xz
-Xz
+ER
+ER
+ER
+ER
 GS
 uG
 GS
@@ -24643,17 +24446,17 @@ uG
 GS
 GS
 GS
-KA
-DN
+ii
+ii
 IE
 GS
 BM
-KA
-KA
-KA
+ii
+ii
+ii
 GS
-DO
-KA
+ii
+ii
 GS
 Tu
 zm
@@ -24706,14 +24509,14 @@ Bn
 rz
 Hd
 Hd
-am
-am
-am
-Xz
+ii
+ii
+ii
+ER
 ec
-Xz
-am
-am
+ER
+ii
+ii
 fA
 GS
 uG
@@ -24860,17 +24663,17 @@ Rg
 GS
 zz
 En
-zZ
-KA
-iB
+ii
+ii
+MS
 GS
-KA
-zZ
+ii
+ii
 IE
-KA
+ii
 GS
-KA
-DN
+ii
+ii
 GS
 yP
 qG
@@ -24880,16 +24683,16 @@ wQ
 cN
 wQ
 QO
-UW
+pT
 bm
-Dc
+JW
 JW
 rP
 wQ
 hm
 xH
 xH
-Kn
+xH
 xH
 dT
 xH
@@ -24912,7 +24715,7 @@ jd
 GS
 to
 aR
-Rj
+fj
 fj
 fj
 Gv
@@ -24923,14 +24726,14 @@ Gp
 vf
 Xy
 Hd
-am
-Rr
-am
+ii
+ii
+OH
 ER
 ec
-Xz
-Rr
-am
+ER
+ii
+OU
 GS
 GS
 HG
@@ -25086,7 +24889,7 @@ GS
 GS
 ho
 GS
-KA
+ii
 IE
 GS
 GS
@@ -25140,14 +24943,14 @@ mS
 vf
 cQ
 Hd
-am
-am
-am
-Xz
+zZ
+ii
+ii
+ER
 ec
-Xz
+ER
 hi
-am
+ii
 GS
 zl
 uG
@@ -25301,10 +25104,10 @@ zz
 zz
 GS
 MS
-KA
+ii
 GS
-KA
-KA
+ii
+ii
 GS
 zm
 zm
@@ -25324,8 +25127,8 @@ yH
 xH
 xH
 wQ
-MV
-xH
+kl
+za
 xH
 wQ
 xH
@@ -25357,14 +25160,14 @@ vf
 Gp
 Nh
 Hd
+zZ
 Rr
-am
-am
-Xz
+ii
+ER
 ec
 CO
-am
-am
+ii
+zZ
 GS
 uG
 GS
@@ -25517,11 +25320,11 @@ jH
 jH
 zz
 Rg
-KA
-KA
+ii
+ii
 GS
-KA
-KA
+ii
+ii
 kk
 bK
 zm
@@ -25574,14 +25377,14 @@ Bn
 vf
 La
 Hd
-Xz
-Xz
-Xz
+ER
+ER
+ER
 GS
 yt
 GS
-Xz
-Xz
+ER
+ER
 GS
 uG
 GS
@@ -25735,9 +25538,9 @@ jH
 zz
 GS
 IE
-DN
+ii
 GS
-DN
+ii
 cO
 GS
 zm
@@ -25797,8 +25600,8 @@ GS
 GS
 Bk
 Hd
-am
-am
+zZ
+ii
 GS
 uG
 GS
@@ -25951,11 +25754,11 @@ jH
 jH
 zz
 GS
-KA
-KA
+ii
+ii
 GS
 IE
-KA
+ii
 GS
 bN
 zm
@@ -26015,7 +25818,7 @@ GS
 ye
 GS
 GS
-am
+ii
 GS
 uG
 GS
@@ -26168,11 +25971,11 @@ jH
 jH
 zz
 GS
-KA
-zZ
+ii
+ii
 GS
-KA
-KA
+ii
+ii
 GS
 zm
 zm
@@ -26232,7 +26035,7 @@ EQ
 Bk
 rd
 GS
-am
+ii
 GS
 uG
 GS
@@ -26385,7 +26188,7 @@ jH
 jH
 zz
 GS
-KA
+ii
 IE
 GS
 ho
@@ -26449,7 +26252,7 @@ GS
 nh
 uG
 GS
-Xz
+ER
 GS
 uG
 GS
@@ -26602,15 +26405,15 @@ jH
 jH
 zz
 GS
-DN
-KA
+ii
+ii
 GS
-KA
-KA
+ii
+ii
 IE
-KA
-DO
-KA
+ii
+ii
+ii
 MS
 GS
 li
@@ -26666,7 +26469,7 @@ NN
 lT
 YZ
 GS
-am
+ii
 GS
 uG
 GS
@@ -26842,7 +26645,7 @@ ru
 wQ
 aQ
 aQ
-hZ
+aQ
 aQ
 aQ
 xH
@@ -26883,7 +26686,7 @@ GS
 yO
 uG
 GS
-am
+ii
 GS
 uG
 GS
@@ -27044,7 +26847,7 @@ GS
 GS
 GS
 GS
-KA
+ii
 YM
 GS
 uG
@@ -27100,7 +26903,7 @@ bO
 uG
 uG
 GS
-am
+ii
 GS
 Th
 GS
@@ -27258,11 +27061,11 @@ qN
 iZ
 iZ
 iZ
-WB
+qk
 MS
 GS
-KA
-ci
+ii
+gr
 GS
 uG
 uG
@@ -27272,11 +27075,11 @@ Vq
 ev
 ST
 OA
-iA
+rc
 wQ
 aQ
-rq
 aQ
+Ur
 aQ
 aQ
 xH
@@ -27470,16 +27273,16 @@ jH
 jH
 zz
 GS
-KA
-KA
-KA
-DN
-KA
-ci
+ii
+ii
+ii
+ii
+ii
+gr
 IE
 GS
-DN
-ci
+ii
+gr
 GS
 uG
 uG
@@ -27688,15 +27491,15 @@ jH
 zz
 GS
 MS
-KA
-KA
+ii
+ii
 IE
-zZ
-ci
-DN
+ii
+gr
+ii
 GS
-KA
-ci
+ii
+gr
 GS
 uG
 uG
@@ -27913,7 +27716,7 @@ eL
 GS
 GS
 IE
-ci
+gr
 GS
 lT
 lO
@@ -28126,10 +27929,10 @@ Rg
 uG
 uG
 GS
-ci
-KA
+gr
+ii
 GS
-KA
+ii
 gr
 GS
 GS
@@ -28344,15 +28147,15 @@ jf
 zl
 GS
 YX
-KA
-KA
-KA
+ii
+ii
+ii
 il
 Cz
 iZ
 IV
-KA
-KA
+ii
+ii
 Cz
 GS
 uG
@@ -28560,15 +28363,15 @@ lV
 jf
 jU
 GS
-ci
-KA
-KA
-KA
-KA
-KA
-KA
-KA
-KA
+gr
+ii
+ii
+ii
+ii
+ii
+ii
+ii
+ii
 Cz
 GS
 GS
@@ -28777,11 +28580,11 @@ GS
 TB
 uG
 GS
-ci
-KA
-zZ
-KA
-DN
+gr
+ii
+ii
+ii
+ii
 GS
 GS
 GS
@@ -28997,7 +28800,7 @@ GS
 il
 wn
 iZ
-ze
+qN
 iZ
 dm
 Pz
@@ -34380,7 +34183,7 @@ Wx
 qY
 Wx
 GS
-ya
+Wx
 Wx
 Wx
 Wx
@@ -34429,7 +34232,7 @@ GS
 uG
 uG
 jf
-mg
+uG
 uG
 uG
 uG
@@ -34601,7 +34404,7 @@ Lu
 Wx
 Wx
 Wx
-bh
+Wx
 Wx
 Ic
 GS
@@ -35065,11 +34868,11 @@ SF
 kd
 kd
 kd
-kd
+DO
 kd
 kd
 FB
-Jd
+kd
 kd
 kd
 kd
@@ -35926,7 +35729,7 @@ iS
 uG
 Xv
 GS
-OU
+nK
 aY
 Yr
 aY
@@ -36096,8 +35899,8 @@ jf
 LS
 jf
 GS
-Lu
-Oz
+sh
+Wx
 Wx
 GS
 Rm
@@ -36208,7 +36011,7 @@ GS
 GS
 NU
 tV
-oJ
+Kn
 uG
 uG
 uG
@@ -36636,7 +36439,7 @@ eV
 dF
 fQ
 sQ
-sh
+iF
 fW
 ym
 JZ
@@ -37413,7 +37216,7 @@ GS
 GS
 GS
 GS
-Ud
+qA
 uG
 jN
 uG
@@ -37630,7 +37433,7 @@ eU
 Zs
 pB
 GS
-Ud
+qA
 qQ
 Bd
 uG
@@ -37714,7 +37517,7 @@ QA
 QA
 QA
 QA
-rc
+PB
 pM
 Dt
 ob
@@ -38026,7 +37829,7 @@ Mj
 qf
 SE
 hY
-fg
+Gh
 jw
 pp
 pp
@@ -38894,7 +38697,7 @@ ss
 ou
 zK
 qz
-dH
+sf
 DC
 pp
 pp
@@ -43556,7 +43359,7 @@ Bm
 vf
 vf
 xC
-st
+vf
 vf
 Vj
 vf
