@@ -233,9 +233,6 @@
 "acX" = (
 /turf/open/floor/iron,
 /area/station/science/genetics)
-"adu" = (
-/turf/open/space/openspace,
-/area/station/maintenance/starboard/upper)
 "adC" = (
 /obj/structure/cable,
 /turf/open/floor/iron,
@@ -1877,7 +1874,6 @@
 /obj/effect/mapping_helpers/airlock/access/any/security/brig,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark/textured,
 /area/station/security/evidence)
 "aJL" = (
@@ -6945,9 +6941,9 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/fore)
 "cAe" = (
-/obj/machinery/firealarm/directional/north,
-/turf/open/floor/iron,
-/area/station/science/research)
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/iron/dark,
+/area/station/science/lower)
 "cAh" = (
 /obj/machinery/power/apc/auto_name/directional/west,
 /obj/structure/cable,
@@ -8475,9 +8471,6 @@
 	},
 /obj/effect/turf_decal/trimline/red/filled/corner,
 /obj/effect/turf_decal/trimline/dark_red/corner,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -17176,7 +17169,6 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port/lower)
 "gmv" = (
-/obj/effect/landmark/firealarm_sanity,
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/department/crew_quarters/bar)
 "gmK" = (
@@ -32956,6 +32948,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
+/obj/effect/landmark/firealarm_sanity,
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/maintenance/department/crew_quarters/bar)
 "lRz" = (
@@ -57807,9 +57800,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/engineering/atmos/pumproom)
-"uCe" = (
-/turf/open/space/openspace,
-/area/station/maintenance/fore/upper)
 "uCf" = (
 /mob/living/basic/pet/fox/renault,
 /obj/structure/bed/dogbed/renault,
@@ -99843,7 +99833,7 @@ jZo
 qeF
 avM
 tpI
-wuh
+cAe
 jZo
 gvX
 ras
@@ -155370,9 +155360,9 @@ cys
 uOJ
 tzu
 cys
-uCe
-uCe
-uCe
+hHc
+hHc
+hHc
 cys
 tzu
 fXt
@@ -155627,9 +155617,9 @@ cys
 ttU
 tzu
 cys
-uCe
-uCe
-uCe
+hHc
+hHc
+hHc
 cys
 tzu
 fXt
@@ -155884,9 +155874,9 @@ cys
 tLM
 tzu
 cys
-uCe
-uCe
-uCe
+hHc
+hHc
+hHc
 cys
 kCM
 hrV
@@ -166414,7 +166404,7 @@ gDS
 gcX
 gcX
 gcX
-cAe
+dCg
 tbH
 kAO
 phW
@@ -181383,7 +181373,7 @@ rSb
 rSb
 rSb
 rSb
-adu
+hHc
 doC
 mUC
 doC
