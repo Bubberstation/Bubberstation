@@ -111,6 +111,7 @@
 		TRADER_LORE_PHRASE = list(
 			"Heya buddy- you made your way here- somehow. From what I have seen that ladder has many many MANY entrances but you will leave the same way you came in. I come here to do deals every cycle and I make a killing with it. Although the low stability gets to my mind sometimes.",
 			"How did I get here? Well- there is this wall that i know that never seems right. Walking through said wall brings me here, I climb that ladder a few times and I saw what was on the other side. After that I decided it was not my time to venture out of this room, but this place allowed me to quit my deadend job and peddle weapons instead.",
+			"A flyer? What I dont hand out any flyers you must be mistaken, that one doesnt look like anything I wrote but- its, true, i do sell ballistic guns and buy energy guns, I-, whatever. That HAS to be a coincidence but it sucks to know I have competition.",
 		),
 		TRADER_NOT_BUYING_ANYTHING = list(
 			"I'm not buying anythhing else today if I peddle away too many weapons the cops get suspicious- well, the ones who I DONT pay off get suspicious and THATS a real problem.",

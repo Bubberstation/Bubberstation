@@ -1483,6 +1483,10 @@
 /obj/effect/turf_decal/bot_red,
 /turf/open/floor/iron,
 /area/awaymission/caves/maintsroom)
+"fa" = (
+/obj/structure/bookcase,
+/turf/open/floor/wood,
+/area/awaymission/caves/maintsroom)
 "fc" = (
 /mob/living/simple_animal/bot/secbot/pingsky{
 	faction = list("hostile","cult")
@@ -3481,6 +3485,10 @@
 /obj/structure/signpost/salvation{
 	name = "signpost at the edge of the universe"
 	},
+/obj/item/paper{
+	name = "I see you";
+	default_raw_text = "Yea i see you, you little freak, tearing up all of the tiles instead of walking past them like a normal person, or even just using a t-ray scanner, use environmental context clues in this place to find hidden safes not fucking brute force you moron"
+	},
 /turf/open/floor/holofloor/pure_white,
 /area/awaymission/caves/maintsroom)
 "lt" = (
@@ -5406,8 +5414,8 @@
 /area/awaymission/caves/maintsroom)
 "sd" = (
 /obj/item/paper{
-	name = "Ghost role relevent lore to know";
-	default_raw_text = "This place is a space in between spaces, for the xenomorph hive here you cannot hear anybody in the hivemind besides the kin that are stuck with you, take this as a permit to be more docile or more hostile, if you are the ghost role that spawns here you should have it make lore sense as to why they are here, pretty much anybody can end up here simply if they're unlucky but in this particular segment a marine or something of similar nature would be more likely but im not gonna hold your hand and tell you how to roleplay your creature, aspiring wizard, heretic, cultist, cosmic horror manifested, etc, sure, just understand everybody is a player and you should treat others how you would want to be treated, and most importantly, don't be cringe."
+	name = "I see you";
+	default_raw_text = "Yea i see you, you little freak, tearing up all of the tiles instead of walking past them like a normal person, or even just using a t-ray scanner, use environmental context clues in this place to find hidden safes not fucking brute force you moron"
 	},
 /obj/item/toy/plush/lizard_plushie/green{
 	name = "Passes-The-Checks(PLEASE)"
@@ -7053,11 +7061,29 @@
 /obj/vehicle/ridden/wheelchair,
 /turf/open/floor/iron/white,
 /area/awaymission/caves/maintsroom)
+"xK" = (
+/obj/structure/chair/comfy/brown{
+	dir = 8
+	},
+/obj/item/storage/bag/money,
+/obj/effect/decal/cleanable/blood/footprints/dirty{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/awaymission/caves/maintsroom)
 "xL" = (
 /obj/structure/table/wood,
 /obj/item/book/bible,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_edge,
+/area/awaymission/caves/maintsroom)
+"xM" = (
+/obj/structure/lattice/catwalk/mining,
+/obj/item/paper{
+	name = "Gun store flyer";
+	default_raw_text = "Come down to the gun dealership! We sell stuff were not supposed to! We buy energy weapons and sell ballistic weapons!"
+	},
+/turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "xN" = (
 /obj/item/gun/ballistic/bow/clockwork,
@@ -12045,6 +12071,7 @@
 "Pb" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/cup/glass/mug/coco,
+/obj/item/crowbar,
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "Pc" = (
@@ -15081,8 +15108,14 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "Zy" = (
-/obj/item/gun/ballistic/automatic/pistol/aps,
-/turf/closed/indestructible/reinforced,
+/obj/structure/safe/floor,
+/obj/item/paper{
+	name = "Do good";
+	default_raw_text = "Thou shalt not kill the undeserving, thou shalt be humble, thou shalt be fair"
+	},
+/turf/open/floor/engine{
+	slowdown = 2
+	},
 /area/awaymission/caves/maintsroom)
 "Zz" = (
 /obj/machinery/smartfridge/drying,
@@ -19823,7 +19856,7 @@ fK
 fK
 fK
 jf
-CE
+Zy
 jf
 jf
 jf
@@ -20497,7 +20530,7 @@ xo
 Ka
 Pb
 vf
-CW
+vf
 vf
 oN
 DT
@@ -20711,7 +20744,7 @@ jf
 jf
 oN
 Rv
-jI
+xK
 jI
 vf
 vf
@@ -20928,7 +20961,7 @@ jf
 jf
 oN
 oN
-Rv
+fa
 Rv
 ua
 vf
@@ -21364,7 +21397,7 @@ jf
 oN
 vf
 vf
-vf
+CW
 vf
 vf
 oN
@@ -21905,7 +21938,7 @@ ov
 ov
 ov
 ov
-TM
+xM
 TM
 TM
 TM
@@ -38241,7 +38274,7 @@ jf
 jf
 jf
 jf
-Zy
+jf
 jf
 jf
 jf
