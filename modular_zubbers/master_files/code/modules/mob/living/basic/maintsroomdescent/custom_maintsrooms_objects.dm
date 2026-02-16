@@ -59,5 +59,5 @@
 /obj/item/paper/carbon/rare_pepe
 	name = "Strange Anthropomorphic Frog Poster"
 	desc = "A poster of a strange looking frog, its grinning."
-	icon = 'modular_nova/modules/clock_cult/icons/clockwork_objects.dmi'
+	icon = 'modular_skyrat/modules/clock_cult/icons/clockwork_objects.dmi'
 	icon_state = "rare_pepe"
