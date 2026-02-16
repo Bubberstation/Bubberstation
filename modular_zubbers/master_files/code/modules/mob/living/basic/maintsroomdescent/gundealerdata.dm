@@ -32,7 +32,6 @@
 		/obj/item/gun/ballistic/shotgun/doublebarrel = list(PAYCHECK_CREW * 40, INFINITY),
 		/obj/item/gun/ballistic/shotgun/katyusha/jager = list(PAYCHECK_CREW * 2000, INFINITY),
 		/obj/item/ammo_box/magazine/jager/large = list(PAYCHECK_CREW * 50, INFINITY),
-		/obj/item/gun/ballistic/automatic/nt20 = list(PAYCHECK_CREW * 2000, INFINITY),
 		/obj/item/ammo_box/magazine/smgm45 = list(PAYCHECK_CREW * 10, INFINITY),
 		/obj/item/gun/ballistic/revolver/golden = list(PAYCHECK_CREW * 800, INFINITY),
 		/obj/item/ammo_box/speedloader/c357 = list(PAYCHECK_CREW * 800, INFINITY),

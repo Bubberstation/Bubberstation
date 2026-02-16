@@ -20,13 +20,12 @@
 		/obj/item/stack/sheet/mineral/diamond = 0.1,
 		/obj/item/stack/sheet/mineral/adamantine = 0.2,
 		/obj/item/stack/sheet/mineral/abductor = 0.1,
-		/obj/item/stack/sheet/hot_ice = 0.1,
+		/obj/item/stack/sheet/hot_ice = 0.2,
 		/obj/item/stack/sheet/hauntium = 0.1,
 		/obj/item/stack/sheet/bronze = 0.2,
 		/obj/item/stack/sheet/runed_metal = 0.2,
 		/obj/item/stack/telecrystal = 0.1,
 		/obj/item/stack/ore/bluespace_crystal = 0.1,
-		/obj/machinery/artifact/bluespace_crystal = 0.1,
 		/obj/item/hypernoblium_crystal = 0.1,
 	)
 
