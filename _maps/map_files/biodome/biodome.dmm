@@ -5102,13 +5102,12 @@
 /turf/open/floor/iron,
 /area/station/science/lower)
 "bTn" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+/obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/stone,
-/area/station/biodome)
+/obj/item/kirbyplants/random,
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/hop)
 "bTu" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -6294,6 +6293,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/mapping_helpers/airlock/access/all/security/general,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/iron/dark,
 /area/station/security/eva)
 "cop" = (
@@ -15497,10 +15497,6 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/port)
 "fHy" = (
-/obj/machinery/requests_console/directional/south{
-	department = "Head of Personnel's Desk";
-	name = "Head of Personnel's Requests Console"
-	},
 /obj/machinery/vending/cart{
 	req_access = list("hop")
 	},
@@ -21173,12 +21169,6 @@
 "hNy" = (
 /turf/closed/mineral/random/stationside/asteroid/porus,
 /area/station/asteroid)
-"hNK" = (
-/obj/machinery/power/apc/auto_name/directional/north,
-/obj/machinery/duct,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/station/maintenance/fore/upper)
 "hNL" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/light/directional/south,
@@ -25352,10 +25342,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
-"joT" = (
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space)
 "jpi" = (
 /obj/machinery/door/airlock/research/glass{
 	name = "Ordnance Lab"
@@ -29608,8 +29594,10 @@
 /obj/machinery/door/airlock/external{
 	name = "Construction Zone"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/aux_base,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/station/construction/mining/aux_base)
 "kLX" = (
@@ -42596,8 +42584,6 @@
 	pixel_y = 3
 	},
 /obj/item/stack/sheet/iron/fifty,
-/obj/effect/mapping_helpers/requests_console/ore_update,
-/obj/effect/mapping_helpers/requests_console/supplies,
 /obj/effect/turf_decal/tile/purple/opposingcorners,
 /turf/open/floor/iron/white,
 /area/station/science/lab)
@@ -48818,10 +48804,6 @@
 	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
-"rwY" = (
-/obj/structure/grille/broken,
-/turf/open/space/basic,
-/area/space)
 "rxc" = (
 /obj/machinery/ai_slipper{
 	uses = 10
@@ -48896,8 +48878,6 @@
 /obj/machinery/camera/directional/north{
 	c_tag = "Civilian - Locker and Dorms Junction"
 	},
-/obj/machinery/power/apc/auto_name/directional/north,
-/obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "ryq" = (
@@ -49679,7 +49659,10 @@
 /obj/effect/mapping_helpers/requests_console/announcement,
 /obj/effect/mapping_helpers/requests_console/assistance,
 /obj/effect/mapping_helpers/requests_console/information,
-/obj/item/kirbyplants/random,
+/obj/machinery/requests_console/directional/south{
+	department = "Head of Personnel's Desk";
+	name = "Head of Personnel's Requests Console"
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
 "rMf" = (
@@ -54607,9 +54590,6 @@
 "twZ" = (
 /turf/open/floor/carpet/red,
 /area/station/service/theater)
-"txf" = (
-/turf/closed/wall/r_wall,
-/area/space)
 "txg" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/item/food/meat/slab/human/mutant/skeleton,
@@ -55255,6 +55235,8 @@
 	department = "Science";
 	name = "Science Requests Console"
 	},
+/obj/effect/mapping_helpers/requests_console/supplies,
+/obj/effect/mapping_helpers/requests_console/ore_update,
 /turf/open/floor/iron/white,
 /area/station/science/lab)
 "tHI" = (
@@ -61032,8 +61014,6 @@
 /turf/open/floor/plating,
 /area/station/construction)
 "vLS" = (
-/obj/machinery/power/apc/auto_name/directional/east,
-/obj/structure/cable,
 /obj/structure/railing/corner{
 	dir = 4
 	},
@@ -64883,14 +64863,12 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/aux_base,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/landmark/navigate_destination/dockaux,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/iron,
 /area/station/construction/mining/aux_base)
 "wZU" = (
@@ -65822,9 +65800,6 @@
 /area/station/science/ordnance)
 "xrP" = (
 /obj/effect/landmark/start/hangover,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 1
-	},
 /turf/open/floor/stone,
 /area/station/biodome)
 "xrQ" = (
@@ -67662,7 +67637,7 @@
 /area/station/commons/dorms/laundry)
 "xWx" = (
 /obj/machinery/turretid{
-	control_area = "/area/station/ai_monitored/turret_protected/ai_upload";
+	control_area = "/area/station/ai/upload/chamber";
 	name = "AI Upload Turret Control";
 	pixel_y = 25
 	},
@@ -100155,7 +100130,7 @@ vxL
 vxL
 iuL
 rwt
-ngd
+hLn
 pSz
 bdX
 iZy
@@ -100926,7 +100901,7 @@ qOe
 frf
 ngd
 bEE
-bTn
+jDj
 jDj
 pMz
 lfX
@@ -101183,7 +101158,7 @@ dHp
 hiF
 dfV
 rwt
-ngd
+gwP
 fPp
 bdX
 xfQ
@@ -108379,7 +108354,7 @@ qdp
 jNO
 uks
 lNU
-kSx
+bTn
 uAI
 wJC
 gjx
@@ -109719,9 +109694,9 @@ usE
 xOv
 bcK
 tZU
-hlg
-hlg
-hlg
+hNy
+hNy
+hNy
 vtU
 cCZ
 cCZ
@@ -111217,7 +111192,7 @@ cCZ
 cCZ
 cCZ
 cCZ
-joT
+vtU
 cCZ
 cCZ
 cCZ
@@ -111474,7 +111449,7 @@ cCZ
 cCZ
 cCZ
 cCZ
-joT
+vtU
 cCZ
 cCZ
 cCZ
@@ -111731,7 +111706,7 @@ cCZ
 cCZ
 cCZ
 cCZ
-joT
+vtU
 cCZ
 cCZ
 cCZ
@@ -111988,7 +111963,7 @@ cCZ
 cCZ
 cCZ
 cCZ
-joT
+vtU
 cCZ
 cCZ
 cCZ
@@ -112241,15 +112216,15 @@ hWr
 jza
 qyO
 feS
-joT
-joT
-joT
-joT
-joT
-joT
-joT
-rwY
-rwY
+vtU
+vtU
+vtU
+vtU
+vtU
+vtU
+vtU
+nfN
+nfN
 eAX
 aIm
 lZk
@@ -112502,7 +112477,7 @@ cCZ
 cCZ
 cCZ
 cCZ
-joT
+vtU
 cCZ
 cCZ
 cCZ
@@ -112759,7 +112734,7 @@ cCZ
 cCZ
 cCZ
 cCZ
-joT
+vtU
 cCZ
 cCZ
 cCZ
@@ -113016,7 +112991,7 @@ cCZ
 cCZ
 cCZ
 cCZ
-joT
+vtU
 cCZ
 cCZ
 cCZ
@@ -113273,7 +113248,7 @@ cCZ
 cCZ
 cCZ
 cCZ
-joT
+vtU
 cCZ
 cCZ
 cCZ
@@ -117441,9 +117416,9 @@ cCZ
 cCZ
 cCZ
 cCZ
-joT
-joT
-joT
+vtU
+vtU
+vtU
 vtU
 hNy
 hNy
@@ -120498,7 +120473,7 @@ cCZ
 cCZ
 cCZ
 cCZ
-txf
+cCZ
 cCZ
 cCZ
 cCZ
@@ -152043,7 +152018,7 @@ pNg
 pNg
 pNg
 gRj
-cFR
+pNg
 iOZ
 cFR
 cFR
@@ -172446,8 +172421,8 @@ hHc
 hHc
 hHc
 hHc
-nZB
-hlg
+rRv
+hNy
 hHc
 hHc
 hHc
@@ -172703,8 +172678,8 @@ hHc
 hHc
 hHc
 hHc
-nZB
-hlg
+rRv
+hNy
 hHc
 hHc
 hHc
@@ -172960,8 +172935,8 @@ hHc
 hHc
 hHc
 hHc
-nZB
-hlg
+rRv
+hNy
 hHc
 hHc
 hHc
@@ -173217,8 +173192,8 @@ hHc
 hHc
 hHc
 hHc
-nZB
-hlg
+rRv
+hNy
 hHc
 hHc
 hHc
@@ -173474,7 +173449,7 @@ hHc
 hHc
 hHc
 hHc
-nZB
+rRv
 hHc
 hHc
 hHc
@@ -173615,7 +173590,7 @@ tzu
 uyi
 sDK
 cys
-hNK
+aDb
 eYl
 tYC
 mGi
@@ -173731,7 +173706,7 @@ hHc
 hHc
 hHc
 hHc
-nZB
+rRv
 hHc
 hHc
 hHc
@@ -173988,7 +173963,7 @@ hHc
 hHc
 hHc
 hHc
-hlg
+hNy
 hHc
 hHc
 hHc
