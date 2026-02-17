@@ -679,3 +679,5 @@
 	desc = "a fake blindfold with a security HUD inside, helps you look like blind justice. This won't provide the same protection that you'd get from sunglasses."
 	icon_state =  "secfold"
 	base_icon_state =  "secfold"
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/glasses.dmi'
+	worn_icon = 'modular_skyrat/master_files/mob/clothing/eyes.dmi'
