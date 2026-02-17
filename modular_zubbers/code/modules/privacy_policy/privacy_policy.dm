@@ -44,3 +44,5 @@
 
 	var/datum/privacy_policy_ui/ui = new(src)
 	ui.ui_interact(mob)
+
+#undef CURRENT_PRIVACY_VERSION
