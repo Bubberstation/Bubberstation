@@ -468,7 +468,7 @@
 			to_chat(usr, span_warning("Invalid antagonist ref to be removed."))
 			return
 
-		SSgamemode.reroll_antagonist(antag_name = name)
+		SSstorytellers.reroll_antagonist(antag_name = name)
 		antag.admin_remove(usr)
 	// BUBBER EDIT ADDITION END - ANTAG RE-ROLLING
 

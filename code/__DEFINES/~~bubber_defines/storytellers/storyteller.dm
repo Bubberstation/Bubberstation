@@ -1,0 +1,367 @@
+// Weights for Entities in Balancing
+// These weights are used in the balancer subsystem to compute relative importance
+// of entities (e.g., players vs. antagonists) when updating plans or adjusting difficulty.
+// They scale based on STORY_DEFAULT_WEIGHT and influence global goal progress,
+// event intensity, and antagonist spawning.
+
+
+// Baseline weight for generic entities
+#define STORY_DEFAULT_WEIGHT 10
+// Weight for living mobs (e.g., animals)
+#define STORY_LIVING_WEIGHT (STORY_DEFAULT_WEIGHT * 2)
+// Weight for carbon-based life (organic complexity)
+#define STORY_CARBON_WEIGHT (STORY_DEFAULT_WEIGHT * 5)
+// Weight for humans (core crew members)
+#define STORY_HUMAN_WEIGHT (STORY_DEFAULT_WEIGHT * 10)
+// Weight for antagonists (high threat/disruption)
+#define STORY_DEFAULT_ANTAG_WEIGHT (STORY_DEFAULT_WEIGHT * 3.5)
+
+// Minor antagonist weight (weak threats like space ninjas)
+#define STORY_MINOR_ANTAG_WEIGHT (STORY_DEFAULT_ANTAG_WEIGHT)
+
+// Medium antagonist weight (moderate threats like traitors)
+#define STORY_MEDIUM_ANTAG_WEIGHT (STORY_MINOR_ANTAG_WEIGHT * 1.4)
+
+// Major antagonist weight (severe threats like cults or blobs)
+#define STORY_MAJOR_ANTAG_WEIGHT (STORY_MEDIUM_ANTAG_WEIGHT * 2)
+
+// Job Roles Weights
+// These modifiers adjust weights based on job roles, affecting how the storyteller
+// prioritizes events or subgoals involving specific crew members.
+// For example, engineers might have higher weight in infrastructure-related goals.
+
+#define STORY_DEFAULT_JOB_WEIGHT 10.0  // Default multiplier for job-based weight adjustments
+
+#define STORY_ENGINEER_JOB_WEIGHT (STORY_DEFAULT_JOB_WEIGHT * 1.5)
+
+#define STORY_SECURITY_JOB_WEIGHT (STORY_DEFAULT_JOB_WEIGHT * 2.5)
+
+#define STORY_MEDICAL_JOB_WEIGHT (STORY_DEFAULT_JOB_WEIGHT * 1.5)
+
+#define STORY_HEAD_JOB_WEIGHT (STORY_DEFAULT_JOB_WEIGHT * 3)
+
+#define STORY_UNIMPORTANT_JOB_WEIGHT (STORY_DEFAULT_JOB_WEIGHT * 0.5)
+
+// Goal weight modifiers (affects event selection probability)
+#define STORY_GOAL_BASE_WEIGHT 5.0  // Standard event weight
+#define STORY_GOAL_BIG_WEIGHT 8.0   // Significant event weight
+#define STORY_GOAL_MAJOR_WEIGHT 12.0  // Major event weight
+
+#define STORY_WEIGHT_MINOR_ANTAGONIST (STORY_GOAL_BIG_WEIGHT * 1.2)
+#define STORY_WEIGHT_MAJOR_ANTAGONIST (STORY_GOAL_MAJOR_WEIGHT * 1.2)
+
+
+// Goal priority levels (affects scheduling order)
+#define STORY_GOAL_BASE_PRIORITY 1    // Normal priority
+#define STORY_GOAL_HIGH_PRIORITY 5    // High priority
+#define STORY_GOAL_CRITICAL_PRIORITY 10  // Critical priority
+
+// Goal threat levels (determines when events can trigger)
+#define STORY_GOAL_NO_THREAT 0.0       // No threat required
+#define STORY_GOAL_THREAT_BASIC 0.9    // Low threat level
+#define STORY_GOAL_THREAT_ELEVATED 2.5 // Medium threat level
+#define STORY_GOAL_THREAT_HIGH 3.0     // High threat level
+#define STORY_GOAL_THREAT_EXTREME 5.0  // Extreme threat level
+
+// Round progression milestones (0.0 = start, 1.0 = end)
+#define STORY_ROUND_PROGRESSION_START 0    // Round start (0%)
+#define STORY_ROUND_PROGRESSION_EARLY 0.12 // Early phase (0-12%)
+#define STORY_ROUND_PROGRESSION_MID 0.51   // Mid phase (12-51%)
+#define STORY_ROUND_PROGRESSION_LATE 0.73  // Late phase (51-73%)
+
+// Analyzer scan flags (bitflags for what to scan)
+#define RESCAN_STATION_INTEGRITY (1 << 0)  // Scan station integrity/hull
+#define RESCAN_STATION_VALUE (1 << 1)      // Scan station value/resources
+
+DEFINE_BITFIELD(story_analyzer_flags, list(
+	"STORYTELLER_SCAN_INTEGRITY" = RESCAN_STATION_INTEGRITY,
+	"STORYTELLER_SCAN_VALUE" = RESCAN_STATION_VALUE,
+))
+
+
+// Storytellers traits
+
+/* GENERAL TRAITS */
+
+// No bonus tension from events, faster events even in lowpop
+#define STORYTELLER_TRAIT_NO_MERCY "NO_MERCY"
+// Storyteller can send helping events
+#define STORYTELLER_TRAIT_CAN_HELP "CAN_HELP"
+// Force tension to target even if balance is bad
+#define STORYTELLER_TRAIT_FORCE_TENSION "FORCE_TENSION"
+// Storyteller will speak more often
+#define STORYTELLER_TRAIT_SPEAKER "LOVE_SPEAK"
+// Storyteller will try to keep balanced on target level
+#define STORYTELLER_TRAIT_BALANCING_TENSTION "BALANCER"
+// Storyteller don't selected any good event
+#define STORYTELLER_TRAIT_NO_GOOD_EVENTS "NO_GOOD_EVENTS"
+// Good event will be more likely
+#define STORYTELLER_TRAIT_KIND "KIND"
+// No adaptation decay, IT'S VEY BAD FOR CREW
+#define STORYTELLER_TRAIT_NO_ADAPTATION_DECAY "NO_ADAPTAION_DECAY"
+
+/* ANTAG TRAITS */
+
+// Rare antagonist spawns
+#define STORYTELLER_TRAIT_RARE_ANTAG_SPAWN "RARE_ANTAG_SPAWN"
+// Frequent antagonist spawns
+#define STORYTELLER_TRAIT_FREQUENT_ANTAG_SPAWN "FREQUENT_ANTAG_SPAWN"
+// No antagonists at all
+#define STORYTELLER_TRAIT_NO_ANTAGS "NO_ANTAGS"
+// Spawn immediately when current weight drops
+#define STORYTELLER_TRAIT_IMMEDIATE_ANTAG_SPAWN "IMMEDIATE_ANTAG_SPAWN"
+// Storyteller can spawn minor antagonists
+#define STORYTELLER_TRAIT_MINOR_ANTAGONISTS "MINOR_ANTAGONISTS"
+// Storyteller can spawn major antagonists
+#define STORYTELLER_TRAIT_MAJOR_ANTAGONISTS "MAJOR_ANTAGONISTS"
+
+
+/* BALANCE TRAITS */
+
+// Storyteller ignore security power for for balancer
+#define STORYTELLER_TRAIT_IGNORE_SECURITY "IGNORE_SECURITY"
+// Storyteller ignore resource level for balancer
+#define STORYTELLER_TRAIT_IGNORE_RESOURCES "IGNORE_RESOURCES"
+// Storyteller ignore lack of heads in command
+#define STORYTELLER_TRAIT_IGNORE_HEADS "IGNORE_HEADS"
+// Storyteller ignore engineering, that's mean SM, Power, hull breaches - everything related to engineering
+#define STORYTELLER_TRAIT_IGNORE_ENGI "IGNORE_ENGI"
+// Storyteller ignore crew health at calculations
+#define STORYTELLER_TRAIT_IGNORE_CREW_HEALTH "IGNORE_CREW_HEALTH"
+
+
+/* EVENTS TRAITS */
+
+// Storyteller probably select events randomly
+#define STORYTELLER_TRAIT_HARDCORE_RANDOM "HARDCORE_RANDOM"
+// Storyteller try to keep GOOD events more
+#define STORYTELLER_TRAIT_MORE_GOOD_EVENTS "MORE_GOOD_EVENTS"
+// Storyteller try to keep BAD events more
+#define STORYTELLER_TRAIT_MORE_BAD_EVENTS "MORE_BAD_EVENTS"
+// Storyteller try to keep NEUTRAL events more
+#define STORYTELLER_TRAIT_MORE_NEUTRAL_EVENTS "MORE_NEUTRAL_EVENTS"
+// Storyteller don't select major events for planning
+#define STORYTELLER_TRAIT_NO_MAJOR_EVENTS "NO_MAJOR_EVENTS"
+
+
+// Bitfield categories for story goals
+
+// Goals selected in a random order
+#define STORY_GOAL_RANDOM (1 << 0)
+// Positive goals
+#define STORY_GOAL_GOOD (1 << 1)
+// Negative goals
+#define STORY_GOAL_BAD (1 << 2)
+// Global goals that can be selected as the primary goal, actually it's a sub-category
+#define STORY_GOAL_GLOBAL (1 << 3)
+// Goals related to actions involving antagonists
+#define STORY_GOAL_NEUTRAL (1 << 4)
+// Goals without a specific category
+#define STORY_GOAL_UNCATEGORIZED (1 << 5)
+// Goal that's wound't be selected
+#define STORY_GOAL_NEVER (1 << 6)
+// Antagonist-related goals
+#define STORY_GOAL_ANTAGONIST (1 << 7)
+// Major event
+#define STORY_GOAL_MAJOR (1 << 8)
+
+DEFINE_BITFIELD(story_goal_category, list(
+	"GOAL_RANDOM" = STORY_GOAL_RANDOM,
+	"GOAL_GOOD" = STORY_GOAL_GOOD,
+	"GOAL_BAD" = STORY_GOAL_BAD,
+	"GOAL_GLOBAL" = STORY_GOAL_GLOBAL,
+	"GOAL_NEUTRAL" = STORY_GOAL_NEUTRAL,
+	"GOAL_UNCATEGORIZED" = STORY_GOAL_UNCATEGORIZED,
+	"GOAL_NEVER" = STORY_GOAL_NEVER,
+	"GOAL_ANTAGONIST" = STORY_GOAL_ANTAGONIST,
+	"STORY_GOAL_MAJOR" = STORY_GOAL_MAJOR,
+))
+
+// Bitfield categories for jobs flags
+// Flags that mark job roles for special handling in storyteller logic
+
+#define STORY_JOB_IMPORTANT (1 << 0)    // Important role (heads, etc.)
+#define STORY_JOB_COMBAT (1 << 1)       // Combat-oriented role
+#define STORY_JOB_ANTAG_MAGNET (1 << 2) // Role attracts antagonists
+#define STORY_JOB_HEAVYWEIGHT (1 << 3)  // High-value target
+#define STORY_JOB_SECURITY (1 << 4)     // Security/peacekeeping role
+
+DEFINE_BITFIELD(story_job_flags, list(
+	"JOB_IMPORTANT" = STORY_JOB_IMPORTANT,
+	"JOB_COMBAT" = STORY_JOB_COMBAT,
+	"JOB_ANTAG_MAGNET" = STORY_JOB_ANTAG_MAGNET,
+	"JOB_HEAVYWEIGHT" = STORY_JOB_HEAVYWEIGHT,
+	"JOB_SECURITY" = STORY_JOB_SECURITY,
+))
+
+
+
+#define STORY_TAGS_MATCH 1 				// Tags are completely the same
+#define STORY_TAGS_MOST_MATCH 2 		// Most tags are the same
+#define STORY_TAGS_SOME_MATCH 3 		// Tags are somewhat different
+#define STORY_TAGS_DIFFERENT 4 			// Tags are completely different
+
+// Escalation category
+#define STORY_TAG_ESCALATION "STORY_ESCALATION"
+#define STORY_TAG_DEESCALATION "STORY_DEESCALATION"
+
+// A classification of an event
+#define STORY_TAG_COMBAT "STORY_COMBAT"
+#define STORY_TAG_SOCIAL "STORY_SOCIAL"
+#define STORY_TAG_ENVIRONMENTAL "STORY_ENVIRONMENTAL"
+#define STORY_TAG_ENTITIES "STORY_TAG_ENTITIES"
+#define STORY_TAG_CHAOTIC "STORY_TAG_CHAOTIC"
+#define STORY_TAG_HEALTH "STORY_TAG_HEALTH"
+
+// Event target category
+#define STORY_TAG_WIDE_IMPACT "STORY_TAG_WIDE_IMPACT"
+#define STORY_TAG_TARGETS_INDIVIDUALS "STORY_TAG_TARGETS_INDIVIDUALS"
+#define STORY_TAG_AFFECTS_WHOLE_STATION "STORY_TAG_AFFECTS_WHOLE_STATION"
+
+// A requirement for the event to be selected
+#define STORY_TAG_REQUIRES_SECURITY "STORY_REQUIRES_SECURITY"
+#define STORY_TAG_REQUIRES_ENGINEERING "STORY_REQUIRES_ENGINEERING"
+#define STORY_TAG_REQUIRES_MEDICAL "STORY_REQUIRES_MEDICAL"
+
+// A tone of event
+#define STORY_TAG_EPIC "STORY_EPIC"
+#define STORY_TAG_HUMOROUS "STORY_HUMOROUS"
+#define STORY_TAG_TRAGIC "STORY_TRAGIC"
+
+// Antagonist related tags
+#define STORY_TAG_ANTAGONIST "STORY_TAG_ANTAGONIST"
+#define STORY_TAG_MAJOR "STORY_MAJOR"
+#define STORY_TAG_MIDROUND "STORY_TAG_MIDROUND"
+#define STORY_TAG_ROUNDSTART "STORY_TAG_ROUNDSTART"
+
+// Goals statuses in planning tree for external use
+#define STORY_GOAL_PENDING "goal_pending"
+#define STORY_GOAL_FIRING "goal_firing"
+#define STORY_GOAL_COMPLETED "goal_completed"
+#define STORY_GOAL_FAILED "goal_failed"
+
+
+
+// Core storyteller pacing and difficulty constants
+#define STORY_THINK_BASE_DELAY (2 MINUTES)          // Base delay between thinker cycles
+#define STORY_MIN_EVENT_INTERVAL (30 SECONDS)       // Minimum time between events
+#define STORY_MAX_EVENT_INTERVAL (20 MINUTES)       // Maximum time between events
+#define STORY_DEFAULT_PLAYER_ANTAG_BALANCE 0.5      // Default balance target (0-100, 50 = balanced)
+
+// Threat/adaptation constants
+#define STORY_THREAT_GROWTH_RATE 1.0                // How fast threat points accumulate
+#define STORY_ADAPTATION_DECAY_RATE 0.05            // Rate of adaptation decay per cycle
+#define STORY_RECENT_DAMAGE_THRESHOLD 20            // Damage threshold for triggering adaptation
+#define STORY_TARGET_TENSION 50                     // Target tension level (0-100)
+#define STORY_GRACE_PERIOD (10 MINUTES)             // Cooldown after major events
+#define STORY_MAX_THREAT_SCALE 100.0                // Maximum threat scale (max 10000 points)
+#define STORY_REPETITION_PENALTY 0.5                // Penalty multiplier for repeated events
+#define STORY_DIFFICULTY_MULTIPLIER 1.0             // Base difficulty multiplier
+
+// Planner constants
+#define STORY_RECALC_INTERVAL (5 MINUTES)           // Interval for plan recalculation
+#define STORY_INITIAL_GOALS_COUNT 3               	// Minimum pending goals in timeline
+#define STORY_PICK_THREAT_BONUS_SCALE 0.1           // Threat bonus scaling for goal selection
+#define STORY_BALANCE_BONUS 0.5                     // Balance adjustment bonus multiplier
+#define STORY_PACE_MIN 0.1                          // Minimum pace multiplier
+#define STORY_PACE_MAX 3.0                          // Maximum pace multiplier
+
+// Balancer constants
+#define STORY_BALANCER_PLAYER_WEIGHT 1.0            // Base weight per player
+#define STORY_BALANCER_ANTAG_WEIGHT 2.0            // Base weight per antagonist
+#define STORY_BALANCER_WEAK_ANTAG_THRESHOLD 0.5    // Threshold for "weak antags" (0-1)
+#define STORY_BALANCER_INACTIVE_ACTIVITY_THRESHOLD 0.25  // Threshold for inactive antags (0-1)
+#define STORY_STATION_STRENGTH_MULTIPLIER 1.0       // Station strength multiplier
+#define STORY_MAX_TENSION_BONUS 30                  // Maximum tension bonus from events
+#define STORY_TENSION_BONUS_DECAY_RATE 1           // Tension bonus decay per cycle
+
+// Metric thresholds (scaling factors for activity calculations)
+#define STORY_INACTIVITY_ACT_INDEX_THRESHOLD 0.15  // Threshold for inactive activity index
+#define STORY_ACTIVITY_CREW_SCALE 0.1              // Crew activity scaling factor
+#define STORY_DAMAGE_SCALE 100                     // Damage scaling divisor
+#define STORY_ACTIVITY_TIME_SCALE 10               // Time-based activity scaling
+#define STORY_DISRUPTION_SCALE 10                  // Disruption scaling divisor
+#define STORY_INFLUENCE_SCALE 5                    // Influence scaling divisor
+#define STORY_KILLS_CAP 3                          // Maximum kills value (0-3)
+#define STORY_OBJECTIVES_CAP 4                     // Maximum objectives value (0-4)
+
+// Round progression tuning (target: ~3 hours average round, 60-80 players)
+#define STORY_ROUND_PROGRESSION_THRESHOLD (2 HOURS)  // Time for 100% progression
+
+// Threat point thresholds (for event intensity scaling)
+#define STORY_THREAT_LOW 100                       // Low threat threshold
+#define STORY_THREAT_MODERATE 500                  // Moderate threat threshold
+#define STORY_THREAT_HIGH 2000                     // High threat threshold
+#define STORY_THREAT_EXTREME 5000                  // Extreme threat threshold
+#define STORY_THREAT_APOCALYPTIC 10000             // Apocalyptic threat threshold
+
+#define STORY_INVERTED_THREAT_POINTS(TP) (max(STORY_THREAT_APOCALYPTIC - (TP), 0))
+
+
+// Converts threat points to good points for good event scaling
+#define STORY_GOOD_POINTS(TP) (STORY_INVERTED_THREAT_POINTS(TP))
+
+#define STORY_GOOD_EXTREME 0                   // Extreme good threshold (low threat)
+#define STORY_GOOD_HIGH 2000                   // High good threshold
+#define STORY_GOOD_MODERATE 5000               // Moderate good threshold
+#define STORY_GOOD_LOW 7000                    // Low good threshold
+#define STORY_GOOD_MINIMAL 9000
+
+#define STORY_USEFULNESS_LEVEL(TP) ( \
+	(TP) <= STORY_GOOD_EXTREME ? 5 : \
+	(TP) <= STORY_GOOD_HIGH ? 4 : \
+	(TP) <= STORY_GOOD_MODERATE ? 3 : \
+	(TP) <= STORY_GOOD_LOW ? 2 : \
+	1 \
+)
+
+
+#define ROLE_BLACKLIST_SECLIKE list( \
+		JOB_CYBORG, \
+		JOB_AI, \
+		JOB_SECURITY_OFFICER, \
+		JOB_WARDEN, \
+		JOB_DETECTIVE, \
+		JOB_HEAD_OF_SECURITY, \
+		JOB_CAPTAIN, \
+		JOB_CORRECTIONS_OFFICER, \
+		JOB_NT_REP, \
+		JOB_BLUESHIELD, \
+		JOB_ORDERLY, \
+		JOB_BOUNCER, \
+		JOB_CUSTOMS_AGENT, \
+		JOB_ENGINEERING_GUARD, \
+		JOB_SCIENCE_GUARD, \
+	)
+
+#define ROLE_BLACKLIST_HEAD list( \
+		JOB_CAPTAIN, \
+		JOB_HEAD_OF_SECURITY, \
+		JOB_RESEARCH_DIRECTOR, \
+		JOB_CHIEF_ENGINEER, \
+		JOB_CHIEF_MEDICAL_OFFICER, \
+		JOB_HEAD_OF_PERSONNEL, \
+	)
+
+#define ROLE_BLACKLIST_SECHEAD list( \
+		JOB_CAPTAIN, \
+		JOB_HEAD_OF_SECURITY, \
+		JOB_WARDEN, \
+		JOB_DETECTIVE, \
+		JOB_CHIEF_ENGINEER, \
+		JOB_CHIEF_MEDICAL_OFFICER, \
+		JOB_RESEARCH_DIRECTOR, \
+		JOB_HEAD_OF_PERSONNEL, \
+		JOB_CYBORG, \
+		JOB_AI, \
+		JOB_SECURITY_OFFICER, \
+		JOB_WARDEN, \
+		JOB_CORRECTIONS_OFFICER, \
+		JOB_NT_REP, \
+		JOB_BLUESHIELD, \
+		JOB_ORDERLY, \
+		JOB_BOUNCER, \
+		JOB_CUSTOMS_AGENT, \
+		JOB_ENGINEERING_GUARD, \
+		JOB_SCIENCE_GUARD, \
+	)

@@ -1,0 +1,38 @@
+# Storyteller Configuration
+# This file contains configuration values for the storyteller system
+
+# Population thresholds (player counts)
+# These determine when population scaling factors are applied
+STORY_POPULATION_THRESHOLD_LOW 10
+STORY_POPULATION_THRESHOLD_MEDIUM 21
+STORY_POPULATION_THRESHOLD_HIGH 32
+STORY_POPULATION_THRESHOLD_FULL 51
+
+# Population factors (multipliers for event frequency/intensity)
+# Lower values = fewer/smaller events for that population range
+STORY_POPULATION_FACTOR_LOW 0.3
+STORY_POPULATION_FACTOR_MEDIUM 0.5
+STORY_POPULATION_FACTOR_HIGH 0.8
+STORY_POPULATION_FACTOR_FULL 1.0
+
+# Population smoothing weight (0-1, higher = slower changes)
+STORY_POPULATION_SMOOTH_WEIGHT 0.2
+
+# Maximum history entries for population tracking
+STORY_POPULATION_HISTORY_MAX 20
+
+# Multiple events plansning (based on storyteller state)
+# Maximum consecutive events that can be planned in one cycle
+STORY_MAX_CONSECUTIVE_EVENTS 3
+# Minimum tension required to plan multiple events
+STORY_MULTI_EVENT_TENSION_THRESHOLD 40
+# Minimum threat points required to plan multiple events
+STORY_MULTI_EVENT_THREAT_THRESHOLD 500
+
+# Is storyteller should replace dynamic
+STORYTELLER_REPLACE_DYNAMIC 1
+# Uncomment this line to allow storyteller helping active antagonists
+# STORYTELLER_HELPS_ANTAGS 1
+
+# How many security officers need for storyteller recognice them as strong
+STRONG_SECURITY_COUNT 8

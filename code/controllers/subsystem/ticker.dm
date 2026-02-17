@@ -162,13 +162,9 @@ SUBSYSTEM_DEF(ticker)
 				send2chat(new /datum/tgs_message_content("Round **[GLOB.round_id]** starting on [SSmapping.current_map.map_name], [CONFIG_GET(string/servername)]! \nIf you wish to be pinged for game related stuff, go to <#[CONFIG_GET(string/role_assign_channel_id)]> and assign yourself the roles."), channel_tag)
 				// BUBBER EDIT CHANGE END - Replace with more rich message
 			current_state = GAME_STATE_PREGAME
-		// BUBBERSTATION EDIT START
-			var/storyteller = CONFIG_GET(string/default_storyteller)
-			if(storyteller)
-				SSgamemode.set_storyteller(text2path(storyteller), TRUE)
-			else
-				SSvote.initiate_vote(/datum/vote/storyteller, "Storyteller Vote", forced = TRUE)
-		// BUBBERSTATION EDIT END
+			// BUBBERSTATION EDIT START
+			SSstorytellers.start_vote(2 MINUTES) //Storyteller vote start
+			// BUBBERSTATION EDIT END
 			SStitle.change_title_screen() //SKYRAT EDIT ADDITION - Title screen
 			addtimer(CALLBACK(SStitle, TYPE_PROC_REF(/datum/controller/subsystem/title, change_title_screen)), 1 SECONDS) //SKYRAT EDIT ADDITION - Title screen
 			//Everyone who wants to be an observer is now spawned
@@ -260,10 +256,7 @@ SUBSYSTEM_DEF(ticker)
 	//Configure mode and assign player to antagonists
 	var/can_continue = FALSE
 //	can_continue = SSdynamic.select_roundstart_antagonists() //Choose antagonists // BUBBER EDIT - STORYTELLER (note: maybe disable)
-	//BUBBER EDIT BEGIN - STORYTELLER
-	SSgamemode.init_storyteller()
-	can_continue = SSgamemode.pre_setup()
-	//BUBBER EDIT END - STORYTELLER
+	can_continue = SSstorytellers.setup_game() // BUBBER EDIT - STORYTELLER
 
 	CHECK_TICK
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_PRE_JOBS_ASSIGNED, src)
@@ -334,10 +327,12 @@ SUBSYSTEM_DEF(ticker)
 	set waitfor = FALSE
 
 	// Spawn traitors and stuff
+	/* BUBBER EDIT REMOVAL BEGIN - Storyteller, storyteller role antags by itself
 	for(var/datum/dynamic_ruleset/roundstart/ruleset in SSdynamic.queued_rulesets)
 		ruleset.execute()
 		SSdynamic.queued_rulesets -= ruleset
 		SSdynamic.executed_rulesets += ruleset
+	*/ // BUBBER EDIT REMOVAL END - Storyteller
 	// Queue roundstart intercept report
 	/* BUBBER EDIT REMOVAL BEGIN - Storyteller
 	if(!CONFIG_GET(flag/no_intercept_report))
@@ -369,7 +364,6 @@ SUBSYSTEM_DEF(ticker)
 			query_round_game_mode.Execute()
 			qdel(query_round_game_mode)
 
-	SSgamemode.post_setup() // BUBBER EDIT - Storyteller
 	GLOB.start_state = new /datum/station_state()
 	GLOB.start_state.count()
 
@@ -402,6 +396,7 @@ SUBSYSTEM_DEF(ticker)
 			to_chat(iter_human, span_notice("You will gain [round(iter_human.hardcore_survival_score) * 2] hardcore random points if you greentext this round!"))
 		else
 			to_chat(iter_human, span_notice("You will gain [round(iter_human.hardcore_survival_score)] hardcore random points if you survive this round!"))
+	SSstorytellers.post_setup() // BUBBER EDIT BEGIN - Setup game for storyteller
 
 /datum/controller/subsystem/ticker/proc/display_roundstart_logout_report()
 	var/list/msg = list("[span_boldnotice("Roundstart logout report")]\n\n")
