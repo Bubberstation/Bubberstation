@@ -81,7 +81,7 @@ The best practice for modularization involves making a **`modular_zubbers/`** ve
 
 New files go in **`modular_zubbers/`** as well, go with your heart as to which file to put them in if there are no exact file matches on /tg/, a personal suggestion would be to look at where _similar_ files go.
 
-**All files in `modular_skyrat/` are free to be edited as you please without need for modularization**.
+**All files in `modular_skyrat/` are free to be edited as you please without need for modularization, however, file creations are restricted, as we aim to remove that folder eventually.**
 
 ### Maps
 
