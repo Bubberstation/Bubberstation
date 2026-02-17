@@ -1,0 +1,1 @@
+#define COSMIG_CONTROLLER_SET_TARGET "fleshmind_set_target"
