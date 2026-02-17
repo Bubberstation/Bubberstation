@@ -13,6 +13,7 @@
 	hair_mask = /datum/hair_mask/standard_hat_middle
 
 /obj/item/clothing/mask/bandana/sec
+	name = "red bandana"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "security_bandana"
@@ -23,7 +24,6 @@
 	greyscale_config_inhand_right = /datum/greyscale_config/bandana/inhands_right
 	greyscale_colors = "#c41521"
 	armor_type = /datum/armor/cosmetic_sec
-	hair_mask = /datum/hair_mask/standard_hat_low
 
 /obj/item/clothing/head/beret/sec/viro
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
