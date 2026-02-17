@@ -869,7 +869,9 @@
 /turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
 "cZ" = (
-/mob/living/simple_animal/hostile/cult/magic/elite,
+/mob/living/simple_animal/hostile/cult/magic/elite{
+	ai_controller = /datum/ai_controller/basic_controller/wraith
+	},
 /turf/open/floor/engine/cult,
 /area/awaymission/caves/maintsroom)
 "da" = (
@@ -1047,7 +1049,9 @@
 /area/awaymission/caves/maintsroom)
 "dH" = (
 /obj/effect/rune/empower,
-/mob/living/simple_animal/hostile/cult,
+/mob/living/simple_animal/hostile/cult{
+	ai_controller = /datum/ai_controller/basic_controller/proteon
+	},
 /turf/open/floor/engine/cult,
 /area/awaymission/caves/maintsroom)
 "dI" = (
@@ -2437,9 +2441,7 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "hS" = (
-/mob/living/basic/construct/proteon{
-	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile_obstacles
-	},
+/mob/living/basic/construct/proteon/hostile,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "hT" = (
@@ -3762,7 +3764,9 @@
 /area/awaymission/caves/maintsroom)
 "mh" = (
 /obj/effect/rune/convert,
-/mob/living/simple_animal/hostile/cult/ghost,
+/mob/living/simple_animal/hostile/cult/ghost{
+	ai_controller = /datum/ai_controller/basic_controller/proteon
+	},
 /turf/open/floor/engine/cult,
 /area/awaymission/caves/maintsroom)
 "mi" = (
@@ -3801,10 +3805,6 @@
 /obj/structure/table/reinforced/plasmarglass,
 /obj/item/fuel_pellet/advanced,
 /turf/open/floor/mineral/titanium/purple,
-/area/awaymission/caves/maintsroom)
-"mn" = (
-/obj/structure/blob/special/node,
-/turf/open/indestructible/meat,
 /area/awaymission/caves/maintsroom)
 "mo" = (
 /obj/machinery/mech_bay_recharge_port,
@@ -4253,7 +4253,9 @@
 /turf/open/misc/asteroid/basalt,
 /area/awaymission/caves/maintsroom)
 "nI" = (
-/mob/living/simple_animal/hostile/cult,
+/mob/living/simple_animal/hostile/cult{
+	ai_controller = /datum/ai_controller/basic_controller/proteon
+	},
 /turf/open/floor/engine/cult,
 /area/awaymission/caves/maintsroom)
 "nJ" = (
@@ -5827,9 +5829,7 @@
 /area/awaymission/caves/maintsroom)
 "tb" = (
 /obj/item/bodypart/head,
-/mob/living/basic/construct/proteon{
-	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile_obstacles
-	},
+/mob/living/basic/construct/proteon/hostile,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "tc" = (
@@ -7989,7 +7989,9 @@
 /turf/open/floor/circuit/red,
 /area/awaymission/caves/maintsroom)
 "Av" = (
-/mob/living/simple_animal/hostile/cult/assassin,
+/mob/living/simple_animal/hostile/cult/assassin{
+	ai_controller = /datum/ai_controller/basic_controller/proteon
+	},
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "Aw" = (
@@ -8741,7 +8743,9 @@
 /area/awaymission/caves/maintsroom)
 "CX" = (
 /obj/effect/rune/apocalypse,
-/mob/living/basic/construct/harvester,
+/mob/living/basic/construct/harvester{
+	ai_controller = /datum/ai_controller/basic_controller/proteon
+	},
 /turf/open/floor/engine/cult,
 /area/awaymission/caves/maintsroom)
 "CY" = (
@@ -9423,7 +9427,7 @@
 "Fj" = (
 /obj/effect/rune/empower,
 /obj/machinery/camera/xray/directional/north,
-/mob/living/basic/construct/wraith,
+/mob/living/basic/construct/wraith/hostile,
 /turf/open/floor/engine/cult,
 /area/awaymission/caves/maintsroom)
 "Fk" = (
@@ -10227,7 +10231,9 @@
 /area/awaymission/caves/maintsroom)
 "HI" = (
 /obj/effect/rune/empower,
-/mob/living/simple_animal/hostile/cult/magic,
+/mob/living/simple_animal/hostile/cult/magic{
+	ai_controller = /datum/ai_controller/basic_controller/wraith
+	},
 /turf/open/floor/engine/cult,
 /area/awaymission/caves/maintsroom)
 "HJ" = (
@@ -11554,10 +11560,6 @@
 /obj/item/clockwork/weapon/brass_battlehammer,
 /obj/effect/mob_spawn/corpse/human/clock_cultist/armored,
 /turf/open/floor/bronze/filled,
-/area/awaymission/caves/maintsroom)
-"Mp" = (
-/mob/living/basic/construct/wraith,
-/turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "Mq" = (
 /obj/structure/signpost/salvation{
@@ -13398,7 +13400,9 @@
 /turf/open/floor/iron/white,
 /area/awaymission/caves/maintsroom)
 "Sk" = (
-/mob/living/simple_animal/hostile/cult,
+/mob/living/simple_animal/hostile/cult{
+	ai_controller = /datum/ai_controller/basic_controller/proteon
+	},
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "Sl" = (
@@ -13421,7 +13425,9 @@
 /turf/open/floor/iron/diagonal,
 /area/awaymission/caves/maintsroom)
 "Sq" = (
-/mob/living/simple_animal/hostile/cult/horror,
+/mob/living/simple_animal/hostile/cult/horror{
+	ai_controller = /datum/ai_controller/basic_controller/proteon
+	},
 /turf/open/floor/engine/cult,
 /area/awaymission/caves/maintsroom)
 "Sr" = (
@@ -14244,9 +14250,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/awaymission/caves/maintsroom)
 "Vg" = (
-/mob/living/basic/construct/wraith{
-	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile_obstacles
-	},
+/mob/living/basic/construct/wraith/hostile,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "Vh" = (
@@ -15584,7 +15588,9 @@
 /turf/open/floor/plating/rust,
 /area/awaymission/caves/maintsroom)
 "ZK" = (
-/mob/living/simple_animal/hostile/cult/warrior,
+/mob/living/simple_animal/hostile/cult/warrior{
+	ai_controller = /datum/ai_controller/basic_controller/proteon
+	},
 /turf/open/floor/engine/cult,
 /area/awaymission/caves/maintsroom)
 "ZL" = (
@@ -15616,9 +15622,7 @@
 /turf/open/floor/iron,
 /area/awaymission/caves/maintsroom)
 "ZQ" = (
-/mob/living/basic/construct/artificer{
-	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile_obstacles
-	},
+/mob/living/basic/construct/artificer/hostile,
 /turf/open/floor/engine/cult,
 /area/awaymission/caves/maintsroom)
 "ZR" = (
@@ -21503,7 +21507,7 @@ uG
 uG
 gR
 Jw
-Mp
+Vg
 pV
 GS
 zm
@@ -26224,13 +26228,13 @@ jf
 jH
 bB
 us
-mn
+bB
 bB
 bB
 fv
 bB
 us
-mn
+bB
 bB
 bB
 jH
@@ -27960,13 +27964,13 @@ er
 jH
 bB
 bB
-mn
+bB
 bB
 fv
 bB
 fv
 bB
-mn
+bB
 bB
 bB
 jH
