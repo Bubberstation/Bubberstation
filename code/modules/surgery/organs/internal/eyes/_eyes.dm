@@ -130,10 +130,10 @@
 	if(CONFIG_GET(flag/native_fov) && native_fov)
 		affected_human.add_fov_trait(type, native_fov)
 
-	// SKYRAT EDIT ADDITION - EMISSIVES
+	// BUBBER EDIT ADDITION - EMISSIVES
 	if (affected_human.emissive_eyes)
 		is_emissive = TRUE
-	// SKYRAT EDIT END
+	// BUBBER EDIT END
 
 	if(call_update)
 		affected_human.update_body()
@@ -169,7 +169,7 @@
 
 	organ_owner.update_tint()
 	organ_owner.update_sight()
-	is_emissive = FALSE // SKYRAT EDIT ADDITION
+	is_emissive = FALSE // BUBBER EDIT ADDITION
 	UnregisterSignal(organ_owner, list(
 		COMSIG_ATOM_BULLET_ACT,
 		COMSIG_COMPONENT_CLEAN_FACE_ACT,
@@ -328,14 +328,14 @@
 		left_scar.color = my_head.draw_color
 		overlays += left_scar
 
-	// SKYRAT EDIT START - Customization Emissives
+	// BUBBER EDIT START - Customization Emissives
 	if(is_emissive)
 		var/mutable_appearance/emissive_left = emissive_appearance_copy(eye_left, owner)
 		var/mutable_appearance/emissive_right = emissive_appearance_copy(eye_right, owner)
 
 		overlays += emissive_left
 		overlays += emissive_right
-	// SKYRAT EDIT END - Customization Emissives
+	// BUBBER EDIT END - Customization Emissives
 
 	if(my_head.worn_face_offset)
 		for (var/mutable_appearance/overlay as anything in overlays)
