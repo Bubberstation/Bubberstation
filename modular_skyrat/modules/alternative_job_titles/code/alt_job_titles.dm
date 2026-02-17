@@ -28,6 +28,7 @@
 		"Colonist",
 		"Contractor",
 		"Civilian",
+		"Duchess",
 		"Duke",
 		"Diplomat",
 		"Entertainer",
@@ -367,12 +368,12 @@
 		"Nanotrasen Advisor",
 		"Nanotrasen Diplomat",
 		"Nanotrasen Representative",
-		"Nanotrasen Liason",
+		"Nanotrasen Liaison",
 		"Command Consultant",
 		"Command Advisor",
 		"Corporate Diplomat",
 		"Corporate Representative",
-		"Corporate Liason",
+		"Corporate Liaison",
 		"Corporate Interest Officer",
 	)
 

@@ -320,16 +320,6 @@
 	icon_state = "lazy_synth"
 	squeak_override = list('modular_zubbers/sound/misc/squeakle.ogg' = 1)
 
-
-/obj/item/toy/plush/tian_plush
-	name = "bureaucratic goat plush"
-	desc = "A big, soft plush of a goat-carp creature, that clearly hasn't slept in a lot. It has a faint smell of ink and weed."
-	attack_verb_continuous = list("chomps", "nibbles", "gnashes", "bites")
-	attack_verb_simple = list("gnashes")
-	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
-	icon_state = "tian_plush"
-	squeak_override = list('modular_skyrat/modules/emotes/sound/voice/baa.ogg' = 1)
-
 /obj/item/toy/plush/goatplushie
 	name = "strange goat plushie"
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
@@ -494,3 +484,200 @@
 		icon_state = "myrthel-plush"
 	update_light()
 	return ..()
+
+// Plushie coded and sprited by Mathilde.
+// Props to Seijan-Etroix for helping with the design!
+/obj/item/toy/plush/tian_plush
+	name = "bureaucratic goat plush"
+	desc = "A giant, weighted plushie of a goat-carp bureaucrat, who seems to be very hungry for paper(work). It's nearly impossible to get your arms all the way around her.<br><br><span style=color:#6685F5><i>A tag on the back reads 'Comfort provided under official licence.'</i></span>"
+	attack_verb_continuous = list("stomps", "smothers", "buries", "squishes", "nibbles", "gnashes", "flattens", "pummels", "chomps")
+	attack_verb_simple = list("stomp", "smother", "bury", "squish", "nibble", "gnash", "flatten", "pummel", "chomp")
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "tianplush"
+	gender = FEMALE
+	squeak_override = list('modular_zubbers/sound/misc/meatybaa.ogg'=1)
+	var/shirt = TRUE
+
+	var/bg_color = "#9b2e8c"
+	var/static/list/folder_insertables = typecacheof(list(
+		/obj/item/paper,
+		/obj/item/photo,
+		/obj/item/documents,
+		/obj/item/paperwork,
+	))
+
+/obj/item/toy/plush/tian_plush/interact(mob/user)
+	return
+
+/obj/item/toy/plush/tian_plush/attack_self_secondary(mob/user, modifiers)
+	. = ..()
+	if(.)
+		return
+	add_fingerprint(user)
+	ui_interact(user)
+	return TRUE
+
+/obj/item/toy/plush/tian_plush/attack_hand_secondary(mob/user, list/modifiers)
+	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
+	add_fingerprint(user)
+	ui_interact(user)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
+//Plot armour
+/obj/item/toy/plush/tian_plush/attackby(obj/item/I, mob/living/user, list/modifiers, list/attack_modifiers)
+	if(I.get_sharpness())
+		to_chat(user, span_notice("[I] just bounces off!"))
+		return
+	return ..()
+
+//The plushie works exactly like a folder
+/obj/item/toy/plush/tian_plush/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(is_type_in_typecache(tool, folder_insertables))
+		if(!user.transferItemToLoc(tool, src, silent = FALSE))
+			return ITEM_INTERACT_BLOCKING
+		balloon_alert(user, "nom!")
+		return ITEM_INTERACT_SUCCESS
+	return NONE
+
+/obj/item/toy/plush/tian_plush/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	if(!is_type_in_typecache(interacting_with, folder_insertables))
+		return NONE
+	var/obj/item/item_to_insert = interacting_with
+	if(item_to_insert.loc == user)
+		if(!user.transferItemToLoc(item_to_insert, src, silent = TRUE))
+			return ITEM_INTERACT_BLOCKING
+	else
+		item_to_insert.do_pickup_animation(src)
+		item_to_insert.forceMove(src)
+	playsound(src, item_to_insert.pickup_sound, PICKUP_SOUND_VOLUME, item_to_insert.sound_vary, ignore_walls = FALSE)
+	balloon_alert(user, "nom!")
+	return ITEM_INTERACT_SUCCESS
+
+/obj/item/toy/plush/tian_plush/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Folder")
+		ui.open()
+
+/obj/item/toy/plush/tian_plush/ui_data(mob/user)
+	var/list/data = list()
+	data["bg_color"] = "[bg_color]"
+	data["folder_name"] = "[name]"
+
+	data["contents"] = list()
+	data["contents_ref"] = list()
+	for(var/Content in src)
+		data["contents"] += "[Content]"
+		data["contents_ref"] += "[REF(Content)]"
+
+	return data
+
+/obj/item/toy/plush/tian_plush/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+
+	if(usr.stat != CONSCIOUS || HAS_TRAIT(usr, TRAIT_HANDS_BLOCKED))
+		return
+
+	switch(action)
+		if("remove")
+			var/obj/item/Item = locate(params["ref"]) in src
+			if(istype(Item))
+				Item.forceMove(usr.loc)
+				usr.put_in_hands(Item)
+				to_chat(usr, span_notice("You remove [Item] from [src]."))
+				. = TRUE
+		if("examine")
+			var/obj/item/Item = locate(params["ref"]) in src
+			if(istype(Item))
+				usr.examinate(Item)
+				. = TRUE
+//Belly
+/obj/item/toy/plush/tian_plush/click_alt(mob/user)
+	shirt = !shirt
+	if(!shirt)
+		balloon_alert(user, "tummy shown...")
+		icon_state = "tianplush-alt"
+
+	else
+		balloon_alert(user, "tummy tucked away...")
+		icon_state = "tianplush"
+	return ..()
+
+// Plushling, used when plushnium reactions fail
+/obj/item/toy/plush/plushling
+	name = "peculiar plushie"
+	desc = "An adorable stuffed toy- wait, did it just move?"
+	/// Cooldown ticks between absorbs
+	var/absorb_cooldown = 100
+	/// When can it absorb another plushie
+	var/next_absorb = 0
+	var/check_interval = 20
+	var/next_check = 0
+
+/obj/item/toy/plush/plushling/attack_self(mob/user)
+	if(!user)
+		return
+	to_chat(user, span_warning("You try to pet the plushie, but recoil as it bites your hand instead! OW!"))
+	var/mob/living/carbon/human/human_user = user
+	if(!human_user)
+		return
+	human_user.add_mood_event("plush_bite", /datum/mood_event/plush_bite)
+	human_user.apply_damage(5, BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
+	addtimer(CALLBACK(human_user, TYPE_PROC_REF(/mob/living/carbon/human, dropItemToGround), src, TRUE), 1)
+
+/obj/item/toy/plush/plushling/New()
+	var/initial_state = pick("mothroach", "moffplush_lovers", "johnghoul")
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = initial_state
+	START_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/item/toy/plush/plushling/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/item/toy/plush/plushling/process()
+	if(world.time < next_absorb || world.time < next_check)
+		return
+	next_check = world.time + check_interval
+	var/obj/item/toy/plush/target
+	for(var/obj/item/toy/plush/possible_target in loc) //First, it tries to get anything in its same location, be it a tile or a backpack
+		if(possible_target == src || istype(possible_target, /obj/item/toy/plush/plushling))
+			continue
+		target = possible_target
+		break
+	if(!target)
+		if(!isturf(loc))
+			return
+		for(var/obj/item/toy/plush/adjacent_plush in oview(1, src)) //If that doesn't work, it hunts for plushies adjacent to its own tile
+			if(istype(adjacent_plush, /obj/item/toy/plush/plushling)) //These do not hunt their own kind
+				continue
+			src.throw_at(adjacent_plush, 1, 2)
+			visible_message(span_danger("[src] leaps at [adjacent_plush]!"))
+			break
+		return
+	if(istype(target, /obj/item/toy/plush/plushling)) //These do not consume their own.
+		return
+	next_absorb = world.time + absorb_cooldown
+	plushie_absorb(target)
+
+/obj/item/toy/plush/plushling/proc/plushie_absorb(obj/item/toy/plush/victim)
+	if(!victim)
+		return
+	visible_message(span_warning("[src] gruesomely mutilates [victim], leaving nothing more than dust!"))
+	name = victim.name
+	desc = victim.desc + " Wait, did it just move..?"
+	icon_state = victim.icon_state
+	squeak_override = victim.squeak_override
+	new /obj/effect/decal/cleanable/ash(get_turf(victim))
+	qdel(victim)
+
+/obj/item/toy/plush/plushling/love(obj/item/toy/plush/kisser, mob/living/user) //You shouldn't have come here, poor plush.
+	if(!kisser)
+		return
+	plushie_absorb(kisser)
+
