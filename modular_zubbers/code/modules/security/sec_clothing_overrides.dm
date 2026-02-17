@@ -680,4 +680,4 @@
 	icon_state =  "secfold"
 	base_icon_state =  "secfold"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/glasses.dmi'
-	worn_icon = 'modular_skyrat/master_files/mob/clothing/eyes.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi'
