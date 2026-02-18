@@ -4,7 +4,7 @@
 
 	antag_flag = ROLE_HERETIC
 	antag_datum = /datum/antagonist/heretic
-	weight = 0
+	weight = 0 //Disabled, but people can still opfor.
 	min_players = 30
 
 	maximum_antags_global = 2
