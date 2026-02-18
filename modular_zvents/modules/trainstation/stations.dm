@@ -27,80 +27,6 @@
 /obj/effect/landmark/trainstation/raider_spawnpoint
 	name = "Raider spawner"
 
-/obj/effect/landmark/trainstation/object_spawner
-	name = "Object spawner"
-
-	var/accuracy = 1
-	var/list/possible_objects = list()
-	var/min_delay = 1 SECONDS
-	var/max_delay = 3 SECONDS
-
-	VAR_PRIVATE/spawning = FALSE
-	COOLDOWN_DECLARE(spawn_cd)
-
-
-/obj/effect/landmark/trainstation/object_spawner/Initialize(mapload)
-	. = ..()
-	RegisterSignal(SStrain_controller, COMSIG_TRAIN_BEGIN_MOVING, PROC_REF(on_train_begin_moving))
-	RegisterSignal(SStrain_controller, COMSIG_TRAIN_STOP_MOVING, PROC_REF(on_train_stop_moving))
-
-/obj/effect/landmark/trainstation/object_spawner/Destroy()
-	. = ..()
-
-/obj/effect/landmark/trainstation/object_spawner/proc/on_train_begin_moving()
-	SIGNAL_HANDLER
-	START_PROCESSING(SSobj, src)
-
-/obj/effect/landmark/trainstation/object_spawner/proc/on_train_stop_moving()
-	SIGNAL_HANDLER
-	STOP_PROCESSING(SSobj, src)
-
-/obj/effect/landmark/trainstation/object_spawner/process(seconds_per_tick)
-	if(spawning)
-		return
-	if(!COOLDOWN_FINISHED(src, spawn_cd))
-		return
-	COOLDOWN_START(src, spawn_cd, rand(min_delay, max_delay))
-	INVOKE_ASYNC(src, PROC_REF(attempt_spawn))
-
-
-/obj/effect/landmark/trainstation/object_spawner/proc/attempt_spawn()
-	if(!length(possible_objects))
-		return
-	spawning = TRUE
-	var/turf/target_turf = get_turf(src)
-	if(accuracy > 0)
-		for(var/turf/T as anything in shuffle(RANGE_TURFS(accuracy, src)))
-			if(!can_see(src, T, accuracy))
-				continue
-			if(isopenturf(T))
-				target_turf = T
-				break
-	var/selected = pick(possible_objects)
-	var/atom/movable/new_obj = new selected(src)
-	if(new_obj)
-		ASYNC
-			new_obj.Move(target_turf, update_dir = FALSE)
-	spawning = FALSE
-
-/obj/effect/landmark/trainstation/object_spawner/trees
-	possible_objects = list(
-		/obj/structure/flora/tree/pine/style_random
-	)
-
-/obj/effect/landmark/trainstation/object_spawner/bushes
-	accuracy = 3
-	possible_objects = list(
-		/obj/structure/flora/bush/snow/style_random
-	)
-
-/obj/effect/landmark/trainstation/object_spawner/grass
-	accuracy = 3
-	possible_objects = list(
-		/obj/structure/flora/grass/both/style_random
-	)
-	max_delay = 4 SECONDS
-
 
 /datum/map_template/train_station
 	name = "Train Station Template"
@@ -118,29 +44,46 @@
 
 
 /datum/train_station
+	/// Название станции
 	var/name = "Train station"
+	/// Полное описание станции
 	var/desc = "A generic train station"
+	/// Флаги станции, подробнее в файле modular_zvents/__DEFINES/trainstation.dm
 	var/station_flags = NONE
+	/// Видна ли эта станция в меню train_controll'ера, если FALSE - так же не даст  стнциаи быть выбранной в качестве следующей
 	var/visible = TRUE
+	/// Сколько станций поезду нужно посетить перед этой станцией
 	var/required_stations = 0
+	/// Максимально количество посещений для этой станции
+	var/maximum_visits = 1
+	/// Сколько раз - эта станция была посещена
+	var/visited = 0
+	/// Необходим ли пароль для разблокирования этой станции
+	var/required_password = TRUE
+	/// Создатель этой станции, будет отобржен при её посещении
 	var/creator = "Fenysha"
 
-	var/map_path
-	VAR_PRIVATE/datum/map_template/template = null
 
+	/// Путь к карте станции, автоматически создает темплейт для неё
+	var/map_path
+	/// list() - эмбиет звуков, что играют на этой станции
+	var/ambience_sounds = null
+	/// Список возможных окрестностей станции(генерируются над поездом)
 	var/list/possible_nearstations = list(
 		/datum/train_station/near_station/static_default,
 		/datum/train_station/near_station/static_mountaints,
 	)
+	/// Возможные следующие станции. По умолчанию - пуст и будет наполнен при загрузке, но может устаовлен заранее
 	var/list/possible_next = list()
+	// Блокирует ли эта станция движение поезда, будет установлен автоматически, если у станции есть флаг TRAINSTATION_BLOCKING
+	var/blocking_moving = FALSE
 
+	VAR_PRIVATE/datum/looping_sound/global_sound/station_loop_soound = null
+	VAR_PRIVATE/datum/map_template/template = null
 	VAR_PRIVATE/list/docking_turfs = list()
 	VAR_PRIVATE/datum/train_station/near_station/loaded_nearstation = null
+	VAR_PRIVATE/unlock_password
 
-	// Блокирует ли эта станция движение поезда
-	var/blocking_moving = FALSE
-	var/ambience_sounds = null
-	VAR_PRIVATE/datum/looping_sound/global_sound/station_loop_soound = null
 
 /datum/train_station/New()
 	. = ..()
@@ -227,6 +170,7 @@
 		message_admins("TRAINSTATION: Loaded station [name] in [time2text(load_in, "ss")] seconds!")
 	if(load_callback)
 		load_callback.Invoke()
+	after_load()
 	return TRUE
 
 
@@ -261,12 +205,34 @@
 				top_turf.ChangeTurf(/turf/closed/indestructible/train_border)
 				docking_turfs += top_turf
 
+/datum/train_station/proc/generate_password()
+	var/static/list/possible_letters = \
+		list("1", "2", "3",
+			"4", "5", "6",
+			"7", "8", "9", "0")
+	var/new_pass = ""
+	for(var/i = 1 to 5)
+		new_pass += pick(possible_letters)
+	return new_pass
+
+/datum/train_station/proc/get_password()
+	return unlock_password
+
+/datum/train_station/proc/is_right_code(code)
+	if(trim(code) != trim(unlock_password))
+		return FALSE
+	return TRUE
+
+/datum/train_station/proc/pre_load()
+	if(required_password)
+		unlock_password = generate_password()
 
 /datum/train_station/proc/after_load()
 	if(station_flags & TRAINSTATION_BLOCKING)
 		blocking_moving = TRUE
 	if(station_loop_soound)
 		station_loop_soound.start()
+
 
 
 /datum/train_station/proc/unload_station(datum/callback/unload_callback)
@@ -340,11 +306,7 @@
 	map_path = "_maps/modular_events/trainstation/backstage.dmm"
 	station_flags = TRAINSTATION_ABSCTRACT | TRAINSTATION_NO_FORKS | TRAINSTATION_NO_SELECTION
 	visible = FALSE
-
-	possible_nearstations = list(
-		/datum/train_station/near_station/moving_default,
-		/datum/train_station/near_station/moving_deepforerst
-	)
+	possible_nearstations = list(/datum/train_station/near_station/moving_default)
 
 
 /datum/train_station/near_station/abandoned_depo
@@ -355,8 +317,8 @@
 	name = "Abandoned depo"
 	map_path = "_maps/modular_events/trainstation/abandoned_train_depo.dm.dmm"
 	creator = "Fenysha"
-	possible_nearstations = list(/datum/train_station/infected_laboratory)
-	possible_next = list(/datum/train_station/start_point)
+	possible_nearstations = list(/datum/train_station/near_station/abandoned_depo)
+	possible_next = list(/datum/train_station/infected_laboratory)
 	station_flags = TRAINSTATION_NO_FORKS | TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING
 
 /datum/train_station/infected_laboratory

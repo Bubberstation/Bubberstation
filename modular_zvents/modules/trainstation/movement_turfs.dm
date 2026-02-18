@@ -17,25 +17,24 @@
 	planetary_atmos = TRUE
 	rust_resistance = RUST_RESISTANCE_ABSOLUTE
 
+	// Префиксы для icon_state (анимация турфа)
+	var/moving_prefix = "moving"
+	var/still_prefix = "still"
+	var/fake = FALSE
+
 	// Двигаемся ли мы прямо сейчас (синхронизировано контроллером)
 	VAR_FINAL/moving = FALSE
 	// Направление симуляции движения фона (WEST = поезд "едет" EAST)
 	VAR_FINAL/movement_direction = WEST
-	// Префиксы для icon_state (анимация турфа)
-	var/moving_prefix = "moving"
-	var/still_prefix = "still"
-	var/processing = FALSE
-
-	// Скорость движения фона (px/сек) — регулируй для реализма (100-300); override глобальной если нужно
-	var/speed = 200
+	// Происходит ли в данный момент процессинг содержимого турфа
 	VAR_PRIVATE/processing_content = FALSE
 
 /turf/open/moving/Initialize(mapload)
 	. = ..()
-	SStrain_controller.register(src)
+	SSmoving_turfs.register(src)
 
 /turf/open/moving/Destroy()
-	SStrain_controller.unregister(src)
+	SSmoving_turfs.unregister(src)
 	return ..()
 
 /turf/open/moving/Melt()
@@ -53,25 +52,29 @@
 
 /turf/open/moving/Enter(atom/movable/mover)
 	. = ..()
+	if(fake)
+		return
 	if(!moving)
 		return
-	if(QDELETED(mover) || isobserver(mover) || mover.flags_1 & NO_TURF_MOVEMENT_1 || !mover.attempt_moving_turf_step(src, movement_direction) || processing)
+	if(QDELETED(mover) || isobserver(mover) || mover.flags_1 & NO_TURF_MOVEMENT_1 || !mover.attempt_moving_turf_step(src, movement_direction))
 		return
-	SStrain_controller.queue_process(src)
+	SSmoving_turfs.queue_process(src)
 
 /turf/open/moving/Exit(atom/movable/mover, atom/newloc)
 	. = ..()
+	if(fake)
+		return
 	if(!check_process(TRUE))
-		SStrain_controller.unqueue_process(src)
+		SSmoving_turfs.unqueue_process(src)
 
 /turf/open/moving/proc/check_process(register = TRUE)
-	if(!length(contents))
+	if(!length(contents) || fake)
 		return FALSE
 	for(var/atom/movable/AM in contents)
 		if(QDELETED(AM) || isobserver(AM) || AM.flags_1 & NO_TURF_MOVEMENT_1 || !AM.attempt_moving_turf_step(src, movement_direction))
 			continue
-		if(register && !processing)
-			SStrain_controller.queue_process(src)
+		if(register)
+			SSmoving_turfs.queue_process(src)
 		return TRUE
 	return FALSE
 
@@ -85,29 +88,66 @@
 		move_object(AM)
 	processing_content = FALSE
 	if(!check_process(FALSE))
-		SStrain_controller.unqueue_process(src)
+		SSmoving_turfs.unqueue_process(src)
 
-/turf/open/moving/proc/move_object(atom/movable/object)
-	var/turf/current = object.loc
+/turf/open/moving/proc/move_object(atom/movable/ram)
+	if(QDELETED(ram))
+		return
+
+	var/turf/current = ram.loc
 	var/turf/target = get_step(current, movement_direction)
-	if(!target || isclosedturf(target))
-		if(isliving(object) && !HAS_TRAIT(object, TRAIT_GODMODE))
-			var/mob/living/L = object
+
+	if(!target)
+		if(isliving(ram) && !HAS_TRAIT(ram, TRAIT_GODMODE))
+			var/mob/living/L = ram
 			L.adjust_brute_loss(50)
 			L.throw_at(get_step(current, movement_direction), 1, 2)
 			if(L.stat == DEAD)
 				L.gib()
 		else
-			qdel(object)
+			qdel(ram)
+		return
+
+	if(target.density)
+		if(isliving(ram) && !HAS_TRAIT(ram, TRAIT_GODMODE))
+			var/mob/living/L = ram
+			L.adjust_brute_loss(50)
+			L.throw_at(get_step(current, movement_direction), 1, 2)
+			if(L.stat == DEAD && isclosedturf(target))
+				L.gib()
+		else
+			qdel(ram)
+		return
+
+
+	var/atom/movable/blocker = null
+	for(var/atom/movable/AM as anything in target.contents)
+		if(AM == ram || !AM.density || ismob(AM))
+			continue
+		if(ram.CanPass(AM, movement_direction) || AM.CanPass(ram, turn(movement_direction, 180)))
+			continue
+		blocker = AM
+		break
+
+	if(blocker)
+		if(isobj(blocker))
+			var/obj/O = blocker
+			O.take_damage(40, BRUTE)
+		else if(isliving(blocker))
+			var/mob/living/L = blocker
+			L.adjust_brute_loss(50)
+
+		if(QDELETED(blocker) || !blocker.density || blocker.loc != target)
+			ASYNC
+				move_and_bump(target, ram)
+			return
 	else
 		ASYNC
-			move_and_bump(target, object)
+			move_and_bump(target, ram)
+		return
 
 /turf/open/moving/proc/move_and_bump(turf/target, atom/movable/AM)
-	if(target.is_blocked_turf())
-		AM.forceMove(target)
-	else
-		AM.Move(target, SStrain_controller.abstract_moving_direction)
+	AM.Move(target, SStrain_controller.abstract_moving_direction)
 
 /turf/open/moving/update_appearance(updates)
 	. = ..()
@@ -122,6 +162,12 @@
 	base_icon_state = "snow"
 
 	slowdown = 2
+
+/turf/open/moving/snow/fake
+	fake = TRUE
+
+/turf/open/moving/snow/fake/dense
+	density = TRUE
 
 /turf/open/moving/rails
 	name = "Rails"

@@ -4,7 +4,7 @@
 
 SUBSYSTEM_DEF(train_controller)
 	name = "Train Controller"
-	wait = 0.2 SECONDS
+	wait = 1 SECONDS
 
 	dependencies = list(
 		/datum/controller/subsystem/mapping,
@@ -12,18 +12,17 @@ SUBSYSTEM_DEF(train_controller)
 	)
 	// В какую сторону якобы двигается наш поезд
 	var/abstract_moving_direction = EAST
+	/// Может ли наш поезд двигаться без рабочего двигателя?
+	VAR_PRIVATE/no_engine_mode = FALSE
 	VAR_PRIVATE/moving = FALSE
-	// Список всех зарегестрированных турфов
-	VAR_PRIVATE/list/all_simulated_turfs = list()
-	// Список текущих processing турфов
-	VAR_PRIVATE/list/to_process
-	// Список обьектов для регистрации на процессинг
-	VAR_PRIVATE/list/queue_list = list()
-
 	VAR_PRIVATE/datum/looping_sound/global_sound/train_sound_loop/soundloop
 
-	var/list/station_terminals
+	var/list/running_events
 
+	var/list/station_terminals
+	/// Теущая выбранная тема для окружения поезда в движении
+	var/datum/train_object_spawner_theme/selected_theme = null
+	/// Ссылка на двигатель поезда!
 	var/obj/machinery/power/train_turbine/core_rotor/train_engine = null
 	// Загружается или выгружается в данный момент станция
 	var/loading = FALSE
@@ -42,24 +41,18 @@ SUBSYSTEM_DEF(train_controller)
 	var/stations_visited = 0
 
 
-/datum/controller/subsystem/train_controller/Initialize()
-	var/list/map_traits = SSmapping.current_map.traits[1]
-	if(!map_traits || !islist(map_traits))
-		return
-	var/is_trainstation = map_traits[ZTRAIT_TRAINSTATION] || FALSE
-	if(!is_trainstation)
-		return SS_INIT_NO_NEED
 
-	soundloop = new(start_immediately = FALSE)
-	RegisterSignal(SSticker, COMSIG_TICKER_ENTER_PREGAME, PROC_REF(on_enter_pregame))
-	load_stations()
-	add_startup_message("Trainstation: loading game map...")
-	load_map()
+/**
+ * Geters
+ */
 
-/datum/controller/subsystem/train_controller/Destroy()
-	all_simulated_turfs.Cut()
-	to_process.Cut()
-	return ..()
+/datum/controller/subsystem/train_controller/proc/is_moving()
+	return moving
+
+/datum/controller/subsystem/train_controller/proc/allow_spawning()
+	if(loaded_station.station_flags & TRAINSTATION_NO_SPAWNING)
+		return FALSE
+	return TRUE
 
 /datum/controller/subsystem/train_controller/proc/check_trainstation()
 	if(!SSmapping.current_map)
@@ -68,29 +61,30 @@ SUBSYSTEM_DEF(train_controller)
 		return FALSE
 	return FALSE
 
+/**
+ * Loading and inititialization
+ */
+
+/datum/controller/subsystem/train_controller/Initialize()
+	var/list/map_traits = SSmapping.current_map.traits[1]
+	if(!map_traits || !islist(map_traits))
+		return
+	var/is_trainstation = map_traits[ZTRAIT_TRAINSTATION] || FALSE
+	if(!is_trainstation)
+		return SS_INIT_NO_NEED
+
+	running_events = list()
+	soundloop = new(start_immediately = FALSE)
+	RegisterSignal(SSticker, COMSIG_TICKER_ENTER_PREGAME, PROC_REF(on_enter_pregame))
+	load_stations()
+	add_startup_message("Trainstation: loading game map...")
+	load_map()
+
 /datum/controller/subsystem/train_controller/proc/load_stations()
 	for(var/path in subtypesof(/datum/train_station))
 		known_stations += new path
 	for(var/datum/train_station/station in known_stations)
 		station.connect_stations()
-
-/datum/controller/subsystem/train_controller/proc/announce_game()
-	to_chat(world, span_boldnotice( \
-		"Trainstation mode - active \n \
-		The station will be replaced by train that will move between different stations. \
-		You and your colleagues will have to get from the starting station to the final destination, \
-		and in the process, you will have to make sure that the train provided to you remains in good working order and can \
-		continue your journey. \n \
-		Event by: Fenysha \
-	"))
-
-
-/datum/controller/subsystem/train_controller/proc/on_enter_pregame()
-	SIGNAL_HANDLER
-	// Сперва на перво сообщим об правилах игры
-	announce_game()
-	set_station_name("Trainstation 13")
-	addtimer(CALLBACK(src, PROC_REF(set_lobby_screen)), 5 SECONDS)
 
 /datum/controller/subsystem/train_controller/proc/load_map()
 	load_train()
@@ -98,11 +92,6 @@ SUBSYSTEM_DEF(train_controller)
 	for(var/obj/machinery/light/light in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/light))
 		light.update()
 
-/datum/controller/subsystem/train_controller/proc/set_lobby_screen()
-	SStitle.change_title_screen('modular_zvents/icons/lobby/trainstation.jpg')
-
-/datum/controller/subsystem/train_controller/proc/load_startpoint()
-	load_station(/datum/train_station/abandoned_depo, stop_moving = FALSE, hide_for_players = FALSE, announce = FALSE)
 
 /datum/controller/subsystem/train_controller/proc/load_train()
 	var/datum/map_template/train/train_template = new()
@@ -115,6 +104,66 @@ SUBSYSTEM_DEF(train_controller)
 		stack_trace("Failed to load train, spawnpoint out of bounds!")
 		return
 	train_template.load(actual_spawnpoint, centered = FALSE)
+
+/datum/controller/subsystem/train_controller/proc/load_startpoint()
+	load_station(/datum/train_station/abandoned_depo, stop_moving = FALSE, hide_for_players = FALSE, announce = FALSE)
+
+
+/datum/controller/subsystem/train_controller/proc/announce_game()
+	to_chat(world, span_boldnotice( \
+		"Trainstation mode - active \n \
+		The station will be replaced by train that will move between different stations. \
+		You and your colleagues will have to get from the starting station to the final destination, \
+		and in the process, you will have to make sure that the train provided to you remains in good working order and can \
+		continue your journey. \n \
+		Event by: Fenysha \
+	"))
+
+/datum/controller/subsystem/train_controller/proc/set_lobby_screen()
+	SStitle.change_title_screen('modular_zvents/icons/lobby/trainstation.jpg')
+
+
+/datum/controller/subsystem/train_controller/proc/on_enter_pregame()
+	SIGNAL_HANDLER
+	// Сперва на перво сообщим об правилах игры
+	announce_game()
+	set_station_name("Trainstation 13")
+	addtimer(CALLBACK(src, PROC_REF(set_lobby_screen)), 5 SECONDS)
+
+
+
+/**
+ * Station handling
+ */
+
+/datum/controller/subsystem/train_controller/proc/connect_terminals()
+	if(!station_terminals || !length(station_terminals))
+		return
+	for(var/obj/machinery/computer/trainstation_control/control in station_terminals)
+		control.set_station(loaded_station)
+
+
+/datum/controller/subsystem/train_controller/proc/pick_possible_stations()
+	var/station_count = rand(1, 2)
+	var/list/possible = shuffle(known_stations.Copy())
+	var/selected = null
+	var/selected_count = 0
+	for(var/datum/train_station/station in possible)
+		if(selected_count >= station_count)
+			break
+		if(station == loaded_station)
+			continue
+		if(stations_visited < station.required_stations)
+			continue
+		if(station.station_flags & TRAINSTATION_ABSCTRACT)
+			continue
+		if(station.station_flags & TRAINSTATION_NO_SELECTION)
+			continue
+		if(station.visited >= station.maximum_visits)
+			continue
+		LAZYADD(selected, station)
+		selected_count += 1
+	loaded_station.possible_next = selected
 
 
 /datum/controller/subsystem/train_controller/proc/on_station_unloaded()
@@ -143,11 +192,11 @@ SUBSYSTEM_DEF(train_controller)
 	if(loaded_station)
 		unload_station(loaded_station, hide_for_players)
 	loading = TRUE
+	loaded_station = to_load
+	loaded_station.pre_load()
 	var/result = to_load.load_station(CALLBACK(src, PROC_REF(on_station_loaded)))
 	if(!result)
 		return
-	message_admins("TRAINSTATION: start to load station: [to_load.name]!")
-	loaded_station = to_load
 	if(stop_moving)
 		stop_moving()
 	for(var/mob/living/L in GLOB.alive_player_list)
@@ -155,39 +204,10 @@ SUBSYSTEM_DEF(train_controller)
 	if(announce && !(loaded_station.station_flags & TRAINSTATION_ABSCTRACT))
 		show_station_logo(to_load)
 	connect_terminals()
-	loaded_station.after_load()
 	if(loaded_station.station_flags & TRAINSTATION_NO_FORKS)
 		return
 	pick_possible_stations()
 
-/datum/controller/subsystem/train_controller/proc/connect_terminals()
-	if(!station_terminals || !length(station_terminals))
-		return
-	for(var/obj/machinery/computer/trainstation_control/control in station_terminals)
-		control.set_station(loaded_station)
-
-/datum/controller/subsystem/train_controller/proc/pick_possible_stations()
-	var/station_count = rand(1, 2)
-	var/list/possible = shuffle(known_stations.Copy())
-	var/selected = null
-	var/selected_count = 0
-	for(var/datum/train_station/station in possible)
-		if(selected_count >= station_count)
-			break
-		if(station == loaded_station)
-			continue
-		if(stations_visited < station.required_stations)
-			continue
-		if(station.station_flags & TRAINSTATION_ABSCTRACT)
-			continue
-		if(station.station_flags & TRAINSTATION_NO_SELECTION)
-			continue
-		LAZYADD(selected, station)
-		selected_count += 1
-	loaded_station.possible_next = selected
-
-/datum/controller/subsystem/train_controller/proc/is_moving()
-	return moving
 
 /datum/controller/subsystem/train_controller/proc/show_station_logo(datum/train_station/station, silent = FALSE)
 	for(var/mob/player in GLOB.player_list)
@@ -196,37 +216,17 @@ SUBSYSTEM_DEF(train_controller)
 		new /atom/movable/screen/station_logo(null, null, station.name, station.creator, player.client)
 
 
-/datum/controller/subsystem/train_controller/proc/check_start()
-	if(SEND_SIGNAL(src, COMSIG_TRAIN_TRY_MOVE) & COMPONENT_BLOCK_TRAIN_MOVEMENT)
-		return FALSE
-	if(!train_engine)
-		return FALSE
-	if(!train_engine.is_active())
-		return FALSE
-	return TRUE
-
-/datum/controller/subsystem/train_controller/proc/register(turf/open/moving/T)
-	if(T in all_simulated_turfs)
+/datum/controller/subsystem/train_controller/proc/set_movement_theme(datum/train_object_spawner_theme/new_theme)
+	if(!new_theme)
+		stack_trace("Trying set null movement theme!")
 		return
-	all_simulated_turfs += T
+	selected_theme = new_theme
+	for(var/obj/effect/landmark/trainstation/object_spawner/spawner in GLOB.train_object_spawners)
+		spawner.set_theme(new_theme)
 
-/datum/controller/subsystem/train_controller/proc/unregister(turf/open/moving/T)
-	all_simulated_turfs -= T
-
-/datum/controller/subsystem/train_controller/proc/queue_process(turf/open/moving/T)
-	if(!to_process)
-		to_process = list()
-	if(to_process && (T in to_process))
-		return
-	if(T in to_process)
-		return
-	to_process += T
-
-
-/datum/controller/subsystem/train_controller/proc/unqueue_process(turf/open/moving/T)
-	if(T in to_process)
-		to_process -= T
-		T.processing = FALSE
+/**
+ * Movement handling
+ */
 
 /datum/controller/subsystem/train_controller/proc/attempt_start(delay = 15 SECONDS)
 	if(moving || tain_starting)
@@ -245,30 +245,43 @@ SUBSYSTEM_DEF(train_controller)
 	addtimer(CALLBACK(src, PROC_REF(start_moving), FALSE, TRUE, 0), delay)
 
 
+/datum/controller/subsystem/train_controller/proc/check_start()
+	if(SEND_SIGNAL(src, COMSIG_TRAIN_TRY_MOVE) & COMPONENT_BLOCK_TRAIN_MOVEMENT)
+		return FALSE
+	if(!train_engine && !no_engine_mode)
+		return FALSE
+	if(!train_engine.is_active() && !no_engine_mode)
+		return FALSE
+	return TRUE
+
+/datum/controller/subsystem/train_controller/proc/pick_theme()
+	for(var/theme_type in shuffle(GLOB.train_spwaner_themes.Copy()))
+		var/datum/train_object_spawner_theme/theme = GLOB.train_spwaner_themes[theme_type]
+		if(!theme.allow_selection)
+			continue
+		return theme
+
 /datum/controller/subsystem/train_controller/proc/start_moving(force = FALSE, unload_station = TRUE)
 	if(moving)
 		return
-	if(loaded_station && loaded_station.blocking_moving)
+	if((loaded_station && loaded_station.blocking_moving) && !force)
 		return
 	if(!check_start() && !force)
 		return
 	if(!planned_to_load)
-		return
+		if(!force)
+			return
+		planned_to_load = pick(loaded_station.possible_next)
 
 	if(!(loaded_station.station_flags & TRAINSTATION_ABSCTRACT))
 		var/time_to_next = rand(minimum_travel_time, maximum_travel_time)
 		time_to_next_station = time_to_next
-		total_travel_time = time_to_next
 		stations_visited += 1
-
+	set_movement_theme(pick_theme())
 	moving = TRUE
 	if(unload_station && !istype(loaded_station, /datum/train_station/train_backstage))
 		load_station(/datum/train_station/train_backstage, FALSE, TRUE, FALSE)
-
-	for(var/turf/open/moving/T as anything in all_simulated_turfs)
-		T.moving = TRUE
-		T.update_appearance()
-		T.check_process(register = TRUE)
+	SSmoving_turfs.on_train_start()
 	soundloop.start()
 	sound_to_playing_players('modular_zvents/sounds/steam_short.ogg', volume = 60)
 	tain_starting = FALSE
@@ -278,34 +291,33 @@ SUBSYSTEM_DEF(train_controller)
 	if(!moving)
 		return
 	moving = FALSE
-	for(var/turf/open/moving/T as anything in all_simulated_turfs)
-		T.moving = FALSE
-		T.update_appearance()
-	to_process = null
+	SSmoving_turfs.on_train_stop()
 	soundloop.stop(FALSE)
 	sound_to_playing_players('modular_zvents/sounds/steam_long.ogg', volume = 60)
+	if(no_engine_mode)
+		no_engine_mode = FALSE
 	SEND_SIGNAL(src, COMSIG_TRAIN_STOP_MOVING)
 
 /datum/controller/subsystem/train_controller/fire(resumed)
+	if(length(running_events))
+		for(var/datum/round_event/evt in running_events)
+			evt.process()
+
 	if(!moving)
 		return
-	if(!train_engine || !train_engine.is_active())
+	if((!train_engine || !train_engine.is_active()) && !no_engine_mode)
 		stop_moving()
 		return
+
 	if(moving && planned_to_load && time_to_next_station > 0)
 		time_to_next_station -= wait
+		total_travel_time += wait
 		if(time_to_next_station <= 0)
 			time_to_next_station = 0
 			stop_moving()
 			load_station(planned_to_load, stop_moving = TRUE, hide_for_players = TRUE, announce = TRUE)
 			planned_to_load = null
-	INVOKE_ASYNC(src, PROC_REF(process_turfs), world.tick_usage)
 
-/datum/controller/subsystem/train_controller/proc/process_turfs(seconds_per_tick)
-	set background = TRUE
-	for(var/turf/open/moving/T as anything in to_process)
-		T.process_contents(seconds_per_tick)
-	CHECK_TICK
 
 /datum/controller/subsystem/train_controller/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -319,7 +331,7 @@ SUBSYSTEM_DEF(train_controller)
 /datum/controller/subsystem/train_controller/ui_data(mob/user)
 	var/list/data = list()
 	data["moving"] = moving
-	data["num_turfs"] = length(to_process)
+	data["num_turfs"] = length(SSmoving_turfs.to_process)
 	data["stations"] = list()
 	data["planned_station"] = planned_to_load?.name || "None"
 	data["time_to_next_station"] = time_to_next_station
@@ -354,7 +366,9 @@ SUBSYSTEM_DEF(train_controller)
 				planned_to_load = next
 			return TRUE
 		if("start_moving")
-			start_moving()
+			if(!train_engine && !train_engine.is_active())
+				no_engine_mode = TRUE
+			start_moving(force = TRUE)
 			return TRUE
 		if("stop_moving")
 			stop_moving()

@@ -1,10 +1,3 @@
-/obj/vehicle
-	var/last_real_move
-
-/obj/vehicle/Move(newloc, dir)
-	. = ..()
-	last_real_move = world.time
-
 /obj/vehicle/attempt_moving_turf_step(turf/open/moving/moving_turf, direction)
 	if(!moving_turf || !SStrain_controller.is_moving())
 		return FALSE
@@ -12,8 +5,6 @@
 		return TRUE
 	if(dir != SStrain_controller.abstract_moving_direction)
 		return TRUE
-	if(last_real_move + 1.5 SECONDS > world.time)
-		return FALSE
 	return TRUE
 
 /datum/component/riding/vehicle/train_bike

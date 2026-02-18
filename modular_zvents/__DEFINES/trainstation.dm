@@ -16,3 +16,22 @@
 #define TRAINSTATION_BLOCKING (1 << 3)
 #define TRAINSTATION_NO_SELECTION (1 << 4)
 #define TRAINSTATION_NO_NEARSTATION (1 << 5)
+#define TRAINSTATION_NO_SPAWNING (1 << 6)
+
+#define FACTION_CIVILIAN "civilian"
+#define FACTION_POLICE "police"
+#define FACTION_MILITARY "military"
+#define FACTION_KHARA "khara"
+
+
+/proc/find_nearest_ally(atom/source, faction, range = 12)
+	var/closest
+	var/closest_dist = INFINITY
+	for(var/mob/living/basic/M in view(range, source))
+		if(M == source || !M.faction.Find(faction))
+			continue
+		var/dist = get_dist(source, M)
+		if(dist < closest_dist)
+			closest = M
+			closest_dist = dist
+	return closest

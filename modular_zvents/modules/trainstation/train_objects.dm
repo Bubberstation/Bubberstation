@@ -226,6 +226,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/auto_detect, 24)
 
 	var/unlocked = FALSE
 	var/datum/train_station/station = null
+	var/current_code = ""
 
 /obj/machinery/computer/trainstation_control/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
@@ -252,23 +253,110 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/auto_detect, 24)
 
 /obj/machinery/computer/trainstation_control/interact(mob/user, special_state)
 	. = ..()
-	if(unlocked)
-		return
-	if(world.time > next_clicksound && isliving(user))
-		next_clicksound = world.time + rand(50, 150)
-		playsound(src, SFX_KEYBOARD, 40)
-	if(!do_after(user, 3 SECONDS, src))
+	ui_interact(user)
+
+/obj/machinery/computer/trainstation_control/ui_interact(mob/user, datum/tgui/ui)
+	. = ..()
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "TrainStationControl")
+		ui.open()
+
+/obj/machinery/computer/trainstation_control/ui_data(mob/user)
+	var/list/data = list()
+	data["unlocked"] = unlocked
+	data["requires_password"] = station?.required_password
+	data["station_name"] = station?.name
+	data["entered_code"] = replacetextEx(current_code, ".", "*")
+	return data
+
+/obj/machinery/computer/trainstation_control/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
 		return
 
-	unlock_station()
-	remove_filter("story_outline")
+	if(unlocked)
+		return TRUE
+	playsound(src, SFX_KEYBOARD, 40)
+
+	switch(action)
+		if("unlock")
+			if(station.required_password)
+				return TRUE
+			unlock_station()
+			return TRUE
+
+		if("digit")
+			if(!station.required_password)
+				return TRUE
+
+			var/dig = params["dig"]
+			if(!isnum(text2num(dig)))
+				return TRUE
+
+			if(length(current_code) >= 5)
+				return TRUE
+
+			current_code += dig
+			. = TRUE
+
+		if("clear")
+			if(!station.required_password)
+				return TRUE
+
+			current_code = ""
+			. = TRUE
+
+		if("enter")
+			if(!station.required_password)
+				return TRUE
+
+			if(!do_after(usr, 1 SECONDS, src))
+				return TRUE
+
+			if(!station.is_right_code(current_code))
+				balloon_alert(usr, "incorrect code!")
+				current_code = ""
+				return TRUE
+
+			unlock_station()
+			current_code = ""
+			return TRUE
 
 /obj/machinery/computer/trainstation_control/proc/unlock_station()
 	station.blocking_moving = FALSE
 	balloon_alert_to_viewers("Station unlocked!")
+	priority_announce("Station's magnetic locks were disabled. Traffic permitted.", station?.name)
 	SEND_SIGNAL(SStrain_controller, COMSIG_TRAINSTATION_UNLOCKED)
 	unlocked = TRUE
+	remove_filter("story_outline")
 
+/obj/item/paper/trainstation_password
+	name = "station security update"
+	default_raw_text = \
+	"<center><b>York-3 Higher Chamber Directive</b></center>\
+	<BR>\
+	Station: <b>%STATIONNAME%</b>\
+	<BR><BR>\
+	Magnetic interlock password has been changed.\
+	<BR>\
+	New code: <b>%STATIONPASSWORD%</b>\
+	<BR><BR>\
+	<b>CLASSIFIED – LEVEL III</b><BR>\
+	This document is confidential.<BR>\
+	Do not copy. Do not discuss. Do not leave unsecured.\
+	<BR><BR>\
+	<BR>\
+	— York-3 Metropolitan Council"
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+
+/obj/item/paper/trainstation_password/Initialize(mapload)
+	var/datum/train_station/current_station = SStrain_controller?.loaded_station
+	name = "[current_station.name] - security update"
+	default_raw_text = replacetext(default_raw_text, "%STATIONNAME%", current_station.name)
+	default_raw_text = replacetext(default_raw_text, "%STATIONPASSWORD%", current_station.get_password())
+	SSpoints_of_interest.make_point_of_interest(src)
+	return ..()
 
 
 /obj/machinery/computer/train_control_terminal

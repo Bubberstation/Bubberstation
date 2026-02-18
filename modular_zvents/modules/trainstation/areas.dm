@@ -58,7 +58,15 @@
 /area/trainstation/indoors/station
 	name = "Station"
 
-
+/area/trainstation/indoors/station/controll
+	name = "Magnetic interlock controll"
+	requires_power = FALSE
+	always_unpowered = FALSE
+	power_environ = TRUE
+	power_equip = TRUE
+	power_light = TRUE
+	min_ambience_cooldown = 2 MINUTES
+	max_ambience_cooldown = 6 MINUTES
 
 /area/trainstation/indoors/station/collapsed_lab
 	name = "Collapsed Laboratory"

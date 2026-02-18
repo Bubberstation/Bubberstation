@@ -317,6 +317,5 @@
 		raider_bike.forceMove(get_step_towards(raider_bike, target_turf))
 		sleep(3 TICKS)
 		CHECK_TICK
-	raider_bike.last_real_move = world.time + 10 SECONDS
 	if(station_time() > 18 HOURS)
 		raider_bike.set_light_on(TRUE)
