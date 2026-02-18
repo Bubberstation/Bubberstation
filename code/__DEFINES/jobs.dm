@@ -145,7 +145,7 @@
 // Off-Station
 #define JOB_SPACE_POLICE "Space Police"
 #define JOB_TERRAGOV "TerraGov"
-#define JOB_TERRAGOV_LIASON "TerraGov Liason"
+#define JOB_TERRAGOV_LIASON "TerraGov Liaison"
 // SKYRAT EDIT ADDITION END
 
 //Lost crew

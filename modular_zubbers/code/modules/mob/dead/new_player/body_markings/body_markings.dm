@@ -279,3 +279,18 @@
 	name = "Belly trim"
 	icon_state = "chembelly_trim"
 	affected_bodyparts = CHEST
+
+/// Eastern Dragon
+/datum/body_marking_set/easternd
+	name = "Eastern Dragon"
+	body_marking_list = list("Eastern Dragon", "Eastern Dragon 2")
+
+/datum/body_marking/bubber/easternd
+	name = "Eastern Dragon"
+	icon_state = "easternd"
+	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
+
+/datum/body_marking/bubber/easternd2
+	name = "Eastern Dragon 2"
+	icon_state = "easternd2"
+	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT

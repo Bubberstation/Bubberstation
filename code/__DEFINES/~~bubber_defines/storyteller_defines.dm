@@ -11,6 +11,8 @@
 #define TAG_TARGETED "targeted"
 /// When the event is positive and helps the crew, in some capacity (Shuttle Loan, Supply Pod)
 #define TAG_POSITIVE "positive"
+/// Events that don't directly affect the crew and serve mostly for environmental purposes
+#define TAG_NEUTRAL "neutral"
 /// When one of the crewmembers becomes an antagonist
 #define TAG_CREW_ANTAG "crew_antag"
 /// When the antagonist event is focused around team cooperation.
