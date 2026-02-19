@@ -2,5 +2,5 @@
 /obj/machinery/light/floor/biodome
 	nightshift_allowed = 1
 	nightshift_brightness = 3.0
-	nightshift_light_color = "#11325a"
-	nightshift_light_power = 0.2
+	nightshift_light_color = "#08035A"
+	//nightshift_light_power = 0.2
