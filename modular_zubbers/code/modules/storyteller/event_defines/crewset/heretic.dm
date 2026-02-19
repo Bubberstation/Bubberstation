@@ -8,7 +8,6 @@
 	max_occurrences = 0
 	min_players = 30
 
-
 	maximum_antags_global = 2
 
 	tags = list(TAG_COMBAT, TAG_SPOOKY, TAG_CREW_ANTAG)
