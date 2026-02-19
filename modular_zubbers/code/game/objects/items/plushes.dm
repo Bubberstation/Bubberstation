@@ -606,3 +606,78 @@
 		balloon_alert(user, "tummy tucked away...")
 		icon_state = "tianplush"
 	return ..()
+
+// Plushling, used when plushnium reactions fail
+/obj/item/toy/plush/plushling
+	name = "peculiar plushie"
+	desc = "An adorable stuffed toy- wait, did it just move?"
+	/// Cooldown ticks between absorbs
+	var/absorb_cooldown = 100
+	/// When can it absorb another plushie
+	var/next_absorb = 0
+	var/check_interval = 20
+	var/next_check = 0
+
+/obj/item/toy/plush/plushling/attack_self(mob/user)
+	if(!user)
+		return
+	to_chat(user, span_warning("You try to pet the plushie, but recoil as it bites your hand instead! OW!"))
+	var/mob/living/carbon/human/human_user = user
+	if(!human_user)
+		return
+	human_user.add_mood_event("plush_bite", /datum/mood_event/plush_bite)
+	human_user.apply_damage(5, BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
+	addtimer(CALLBACK(human_user, TYPE_PROC_REF(/mob/living/carbon/human, dropItemToGround), src, TRUE), 1)
+
+/obj/item/toy/plush/plushling/New()
+	var/initial_state = pick("mothroach", "moffplush_lovers", "johnghoul")
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = initial_state
+	START_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/item/toy/plush/plushling/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/item/toy/plush/plushling/process()
+	if(world.time < next_absorb || world.time < next_check)
+		return
+	next_check = world.time + check_interval
+	var/obj/item/toy/plush/target
+	for(var/obj/item/toy/plush/possible_target in loc) //First, it tries to get anything in its same location, be it a tile or a backpack
+		if(possible_target == src || istype(possible_target, /obj/item/toy/plush/plushling))
+			continue
+		target = possible_target
+		break
+	if(!target)
+		if(!isturf(loc))
+			return
+		for(var/obj/item/toy/plush/adjacent_plush in oview(1, src)) //If that doesn't work, it hunts for plushies adjacent to its own tile
+			if(istype(adjacent_plush, /obj/item/toy/plush/plushling)) //These do not hunt their own kind
+				continue
+			src.throw_at(adjacent_plush, 1, 2)
+			visible_message(span_danger("[src] leaps at [adjacent_plush]!"))
+			break
+		return
+	if(istype(target, /obj/item/toy/plush/plushling)) //These do not consume their own.
+		return
+	next_absorb = world.time + absorb_cooldown
+	plushie_absorb(target)
+
+/obj/item/toy/plush/plushling/proc/plushie_absorb(obj/item/toy/plush/victim)
+	if(!victim)
+		return
+	visible_message(span_warning("[src] gruesomely mutilates [victim], leaving nothing more than dust!"))
+	name = victim.name
+	desc = victim.desc + " Wait, did it just move..?"
+	icon_state = victim.icon_state
+	squeak_override = victim.squeak_override
+	new /obj/effect/decal/cleanable/ash(get_turf(victim))
+	qdel(victim)
+
+/obj/item/toy/plush/plushling/love(obj/item/toy/plush/kisser, mob/living/user) //You shouldn't have come here, poor plush.
+	if(!kisser)
+		return
+	plushie_absorb(kisser)
+

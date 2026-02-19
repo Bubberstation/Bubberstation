@@ -1,8 +1,4 @@
 /obj/machinery/vending/security
-	name = "\improper Armadyne Peacekeeper Equipment Vendor"
-	desc = "An Armadyne peacekeeper equipment vendor."
-	product_ads = "Crack capitalist skulls!;Beat some heads in!;Don't forget - harm is good!;Your weapons are right here.;Handcuffs!;Freeze, scumbag!;Don't tase me bro!;Tase them, bro.;Why not have a donut?"
-	icon = 'modular_skyrat/modules/sec_haul/icons/vending/vending.dmi'
 	products = list(
 		/obj/item/restraints/handcuffs = 18,
 		/obj/item/restraints/handcuffs/cable/zipties = 22,
@@ -36,6 +32,9 @@
 /obj/item/vending_refill/security
 	machine_name = "Armadyne Peacekeeper Equipment Vendor"
 
+/*
+
+// BUBBER EDIT - useless
 
 /obj/machinery/vending/wardrobe/sec_wardrobe
 	name = "\improper Peacekeeper Outfitting Station"
@@ -47,7 +46,7 @@
 	vend_reply = "Good luck, Peacekeeper!"
 	products = list(/obj/item/clothing/suit/hooded/wintercoat/security = 5,
 					/obj/item/clothing/suit/toggle/jacket/sec = 5,
-					/obj/item/clothing/suit/armor/vest/peacekeeper/brit = 5,
+					/obj/item/clothing/suit/armor/vest/brit = 5,
 					/obj/item/clothing/neck/security_cape = 5,
 					/obj/item/clothing/neck/security_cape/armplate = 5,
 					/obj/item/storage/backpack/security = 5,
@@ -56,21 +55,21 @@
 					/obj/item/storage/backpack/duffelbag/sec = 5,
 					/obj/item/clothing/under/rank/security/officer = 10,
 					/obj/item/clothing/under/rank/security/officer/skirt = 10,
-					/obj/item/clothing/under/rank/security/peacekeeper/skirt = 10,
-					/obj/item/clothing/under/rank/security/peacekeeper/shortskirt = 10,
-					/obj/item/clothing/under/rank/security/peacekeeper/miniskirt = 10,
-					/obj/item/clothing/under/rank/security/peacekeeper/jumpsuit = 10,
+					/obj/item/clothing/under/rank/security/skirt = 10,
+					/obj/item/clothing/under/rank/security/shortskirt = 10,
+					/obj/item/clothing/under/rank/security/miniskirt = 10,
+					/obj/item/clothing/under/rank/security/jumpsuit = 10,
 					/obj/item/clothing/under/rank/security/peacekeeper = 10,
 					/obj/item/clothing/under/rank/security/skyrat/utility = 3,
 					/obj/item/clothing/shoes/jackboots/sec = 10,
-					/obj/item/clothing/head/security_garrison = 10,
-					/obj/item/clothing/head/security_cap = 10,
+//					/obj/item/clothing/head/security_garrison = 10,
+//					/obj/item/clothing/head/security_cap = 10,
 					/obj/item/clothing/head/beret/sec/peacekeeper = 5,
 					/obj/item/clothing/head/helmet/sec/terra = 5,
 					/obj/item/clothing/head/hats/warden/police/patrol = 5,
 					/obj/item/clothing/head/costume/ushanka/sec = 10,
 					/obj/item/clothing/gloves/color/black/security = 10,
-					/obj/item/clothing/head/helmet/sec/futuristic = 5,
+//					/obj/item/clothing/head/helmet/sec/futuristic = 5,
 					)
 	premium = list( /obj/item/clothing/under/rank/security/officer/formal = 3,
 					/obj/item/clothing/suit/jacket/officer/blue = 3,
@@ -81,7 +80,11 @@
 /obj/item/vending_refill/wardrobe/sec_wardrobe
 	machine_name = "Peacekeeper Outfitting Station"
 
+
+*/
+
 //List for the old one, for when its mapped in; curates it nicely, adds /redsec to the items, and also prevents some conflicts with the above vendor
+// antiquated, but stuff uses it
 /obj/machinery/vending/wardrobe/sec_wardrobe/red
 	name = "\improper SecDrobe"
 	desc = "A vending machine for security and security-related clothing!"
@@ -89,18 +92,18 @@
 	vend_reply = "Thank you for using the SecDrobe!"
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "secdrobe"
-	products = list(/obj/item/clothing/suit/hooded/wintercoat/security/redsec = 3,
-					/obj/item/storage/backpack/security/redsec = 3,
-					/obj/item/storage/backpack/satchel/sec/redsec = 3,
-					/obj/item/storage/backpack/duffelbag/sec/redsec = 3,
-					/obj/item/clothing/under/rank/security/officer/redsec = 3,
+	products = list(/obj/item/clothing/suit/hooded/wintercoat/security = 3,
+					/obj/item/storage/backpack/security = 3,
+					/obj/item/storage/backpack/satchel/sec = 3,
+					/obj/item/storage/backpack/duffelbag/sec = 3,
+					/obj/item/clothing/under/rank/security/officer = 3,
 					/obj/item/clothing/shoes/jackboots = 3,
 					/obj/item/clothing/head/beret/sec = 3,
 					/obj/item/clothing/head/soft/sec = 3,
 					/obj/item/clothing/mask/bandana/red = 3,
 					/obj/item/clothing/gloves/color/black = 3,
 					/obj/item/clothing/under/rank/security/officer/skirt = 3,
-					/obj/item/clothing/under/rank/security/skyrat/utility/redsec = 3,
+					/obj/item/clothing/under/rank/security/skyrat/utility = 3,
 					/obj/item/clothing/suit/toggle/jacket/sec/old = 3,
 					)
 	premium = list( /obj/item/clothing/under/rank/security/officer/formal = 5,
