@@ -169,8 +169,6 @@ SUBSYSTEM_DEF(ticker)
 			else
 				SSvote.initiate_vote(/datum/vote/storyteller, "Storyteller Vote", forced = TRUE)
 		// BUBBERSTATION EDIT END
-			SStitle.change_title_screen() //SKYRAT EDIT ADDITION - Title screen
-			addtimer(CALLBACK(SStitle, TYPE_PROC_REF(/datum/controller/subsystem/title, change_title_screen)), 1 SECONDS) //SKYRAT EDIT ADDITION - Title screen
 			//Everyone who wants to be an observer is now spawned
 			SEND_SIGNAL(src, COMSIG_TICKER_ENTER_PREGAME)
 
@@ -513,12 +511,8 @@ SUBSYSTEM_DEF(ticker)
 			GLOB.joined_player_list += player.ckey
 			var/atom/destination = player.mind.assigned_role.get_roundstart_spawn_point()
 			if(!destination) // Failed to fetch a proper roundstart location, won't be going anywhere.
-				player.show_title_screen() //SKYRAT EDIT CHANGE
 				continue
 			player.create_character(destination)
-		else
-			player.show_title_screen() //SKYRAT EDIT ADDITION
-
 
 		CHECK_TICK
 

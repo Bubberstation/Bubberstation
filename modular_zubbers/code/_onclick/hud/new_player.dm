@@ -1,5 +1,3 @@
-// BUBBER EDIT - REMOVAL - START - CUSTOM TILE - (Moved to modular_zubbers/code/_onclick/hud/new_player.dm)
-/*
 #define SHUTTER_MOVEMENT_DURATION 0.4 SECONDS
 #define SHUTTER_WAIT_DURATION 0.2 SECONDS
 /// Maximum number of station trait buttons we will display, please think hard before creating scenarios where there are more than this
@@ -822,5 +820,3 @@
 #undef TRAIT_BUTTON_X_ORIGIN
 #undef TRAIT_BUTTON_OFFSET
 #undef SQUARE_VIEWPORT_OFFSET
-*/
-// BUBBER EDIT - REMOVAL - END
