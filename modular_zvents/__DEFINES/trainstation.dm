@@ -24,6 +24,13 @@
 #define FACTION_KHARA "khara"
 
 
+#define BB_NPC_PATROL_POINT "bb_npc_patrol_point"
+#define BB_BASIC_MOB_CUFF_TYPE "bb_cuff_type"
+#define BB_BASIC_MOB_DEFAULT_CUFF_TYPE (/obj/item/restraints/handcuffs/cable/zipties/used)
+#define BB_BASIC_MOB_BEGIN_CUFFING "bb_begin_cuffing"
+#define BB_MEMORY_LAST_TARGET "bb_memo_last_target"
+#define BB_MEMORY_LAST_TARGET_TIME "bb_memo_last_target_time"
+
 /proc/find_nearest_ally(atom/source, faction, range = 12)
 	var/closest
 	var/closest_dist = INFINITY

@@ -17,6 +17,8 @@ SUBSYSTEM_DEF(train_controller)
 	VAR_PRIVATE/moving = FALSE
 	VAR_PRIVATE/datum/looping_sound/global_sound/train_sound_loop/soundloop
 
+	var/mode_active = TRUE
+
 	var/list/running_events
 
 	var/list/station_terminals
@@ -73,6 +75,8 @@ SUBSYSTEM_DEF(train_controller)
 	if(!is_trainstation)
 		return SS_INIT_NO_NEED
 
+	mode_active = TRUE
+	update_tittle_screen()
 	running_events = list()
 	soundloop = new(start_immediately = FALSE)
 	RegisterSignal(SSticker, COMSIG_TICKER_ENTER_PREGAME, PROC_REF(on_enter_pregame))
@@ -108,29 +112,12 @@ SUBSYSTEM_DEF(train_controller)
 /datum/controller/subsystem/train_controller/proc/load_startpoint()
 	load_station(/datum/train_station/abandoned_depo, stop_moving = FALSE, hide_for_players = FALSE, announce = FALSE)
 
-
-/datum/controller/subsystem/train_controller/proc/announce_game()
-	to_chat(world, span_boldnotice( \
-		"Trainstation mode - active \n \
-		The station will be replaced by train that will move between different stations. \
-		You and your colleagues will have to get from the starting station to the final destination, \
-		and in the process, you will have to make sure that the train provided to you remains in good working order and can \
-		continue your journey. \n \
-		Event by: Fenysha \
-	"))
-
-/datum/controller/subsystem/train_controller/proc/set_lobby_screen()
-	SStitle.change_title_screen('modular_zvents/icons/lobby/trainstation.jpg')
-
-
 /datum/controller/subsystem/train_controller/proc/on_enter_pregame()
 	SIGNAL_HANDLER
 	// Сперва на перво сообщим об правилах игры
 	announce_game()
 	set_station_name("Trainstation 13")
 	addtimer(CALLBACK(src, PROC_REF(set_lobby_screen)), 5 SECONDS)
-
-
 
 /**
  * Station handling
