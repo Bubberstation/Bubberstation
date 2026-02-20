@@ -218,7 +218,7 @@ SUBSYSTEM_DEF(daylight)
 /datum/controller/subsystem/daylight/proc/flash(color, duration = 10 SECONDS, transition_time = 2 SECONDS, areas)
 	set waitfor = FALSE
 	if(falshing)
-		FALSE
+		return
 	falshing = TRUE
 	if(!areas)
 		areas = daylight_areas.Copy()

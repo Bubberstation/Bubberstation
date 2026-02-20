@@ -273,6 +273,7 @@ SUBSYSTEM_DEF(train_controller)
 
 	if(!(loaded_station.station_flags & TRAINSTATION_ABSCTRACT))
 		var/time_to_next = rand(minimum_travel_time, maximum_travel_time)
+		total_travel_time = time_to_next
 		time_to_next_station = time_to_next
 		stations_visited += 1
 	set_movement_theme(pick_theme())
@@ -309,7 +310,6 @@ SUBSYSTEM_DEF(train_controller)
 
 	if(moving && planned_to_load && time_to_next_station >= 0)
 		time_to_next_station -= wait
-		total_travel_time += wait
 		if(time_to_next_station <= 0)
 			time_to_next_station = 0
 			stop_moving()
