@@ -76,7 +76,8 @@
 /obj/effect/turf_decal/tile/dark/full{
 	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
 	icon_state = "black";
-	color = "#FFFFFF"
+	color = "#FFFFFF";
+	alpha = 200
 	},
 /obj/structure/drain/big{
 	color = "#FFFFFF";
@@ -138,6 +139,9 @@
 	alpha = 200
 	},
 /obj/structure/prop/city/street_off,
+/obj/machinery/light/floor{
+	pixel_y = -8
+	},
 /turf/open/indestructible/tram{
 	name = "dam wall";
 	icon = 'modular_zvents/icons/turf/city/siding.dmi';
@@ -160,6 +164,7 @@
 /obj/structure/railing{
 	dir = 9
 	},
+/obj/structure/ore_box,
 /turf/open/floor/plating,
 /area/trainstation/outdoor)
 "ec" = (
@@ -169,7 +174,8 @@
 /obj/effect/turf_decal/tile/dark/full{
 	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
 	icon_state = "black";
-	color = "#FFFFFF"
+	color = "#FFFFFF";
+	alpha = 200
 	},
 /obj/effect/turf_decal/tile/dark/half{
 	dir = 1
@@ -195,7 +201,8 @@
 /obj/effect/turf_decal/tile/dark/full{
 	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
 	icon_state = "black";
-	color = "#FFFFFF"
+	color = "#FFFFFF";
+	alpha = 200
 	},
 /obj/effect/turf_decal/tile/dark/half{
 	dir = 1
@@ -604,6 +611,9 @@
 /turf/open/indestructible/dark/textured,
 /area/trainstation/outdoor)
 "nU" = (
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 8
+	},
 /turf/open/indestructible/train_platform/bottom,
 /area/trainstation/outdoor)
 "ob" = (
@@ -628,6 +638,14 @@
 	color = "#3d3e44";
 	dir = 8
 	},
+/turf/open/floor/plating,
+/area/trainstation/outdoor)
+"oq" = (
+/obj/effect/turf_decal/lunar_sand/plating,
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/ore_box,
 /turf/open/floor/plating,
 /area/trainstation/outdoor)
 "ov" = (
@@ -793,7 +811,8 @@
 /obj/effect/turf_decal/tile/dark/full{
 	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
 	icon_state = "black";
-	color = "#FFFFFF"
+	color = "#FFFFFF";
+	alpha = 200
 	},
 /obj/effect/turf_decal/tile/dark/half{
 	dir = 1
@@ -819,6 +838,13 @@
 	},
 /turf/open/water/deep_beach/lethal,
 /area/trainstation/outdoor)
+"ud" = (
+/obj/structure/sign/directions/supply{
+	pixel_y = 0;
+	dir = 2
+	},
+/turf/closed/wall/ice,
+/area/trainstation/outdoor)
 "ui" = (
 /obj/effect/turf_decal/tile/dark/half{
 	dir = 8
@@ -843,7 +869,8 @@
 /obj/effect/turf_decal/tile/dark/full{
 	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
 	icon_state = "black";
-	color = "#FFFFFF"
+	color = "#FFFFFF";
+	alpha = 200
 	},
 /obj/effect/turf_decal/tile/dark/half{
 	dir = 1
@@ -971,6 +998,15 @@
 	pixel_y = -14
 	},
 /turf/open/indestructible/plating,
+/area/trainstation/outdoor)
+"wD" = (
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 5
+	},
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 8
+	},
+/turf/open/water/deep_beach/lethal,
 /area/trainstation/outdoor)
 "wK" = (
 /obj/effect/turf_decal/siding/dark{
@@ -1147,6 +1183,11 @@
 /obj/effect/turf_decal/siding/dark,
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
+	},
+/obj/effect/turf_decal/tile/dark/full{
+	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
+	icon_state = "black";
+	color = "#FFFFFF"
 	},
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor)
@@ -1480,7 +1521,8 @@
 /obj/effect/turf_decal/tile/dark/full{
 	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
 	icon_state = "black";
-	color = "#FFFFFF"
+	color = "#FFFFFF";
+	alpha = 200
 	},
 /turf/open/indestructible/tram{
 	name = "dam wall";
@@ -1658,6 +1700,13 @@
 	},
 /obj/structure/prop/city/street_off,
 /obj/effect/turf_decal/weather/snow,
+/obj/machinery/light/floor{
+	pixel_y = -8
+	},
+/obj/structure/sign/directions/supply{
+	pixel_y = 8;
+	dir = 8
+	},
 /turf/open/indestructible/tram{
 	name = "dam wall";
 	icon = 'modular_zvents/icons/turf/city/siding.dmi';
@@ -1751,6 +1800,7 @@
 /obj/structure/railing{
 	dir = 10
 	},
+/obj/structure/ore_box,
 /turf/open/floor/plating,
 /area/trainstation/outdoor)
 "PD" = (
@@ -1760,7 +1810,8 @@
 /obj/effect/turf_decal/tile/dark/full{
 	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
 	icon_state = "black";
-	color = "#FFFFFF"
+	color = "#FFFFFF";
+	alpha = 200
 	},
 /obj/effect/turf_decal/tile/dark/half{
 	dir = 1
@@ -1857,7 +1908,8 @@
 /obj/effect/turf_decal/tile/dark/full{
 	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
 	icon_state = "black";
-	color = "#FFFFFF"
+	color = "#FFFFFF";
+	alpha = 200
 	},
 /turf/open/indestructible/tram{
 	name = "dam wall";
@@ -2010,7 +2062,8 @@
 /obj/effect/turf_decal/tile/dark/full{
 	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
 	icon_state = "black";
-	color = "#FFFFFF"
+	color = "#FFFFFF";
+	alpha = 200
 	},
 /obj/effect/turf_decal/tile/dark/half{
 	dir = 4
@@ -2202,11 +2255,11 @@ gz
 gz
 gz
 gz
+yI
 gz
 gz
 gz
-gz
-gz
+yI
 gz
 gz
 gz
@@ -2280,7 +2333,7 @@ yI
 gz
 gz
 gz
-gz
+yI
 gz
 gz
 gz
@@ -2363,16 +2416,16 @@ gz
 Kd
 gz
 gz
-yI
 gz
 gz
 gz
 gz
 gz
 gz
-yI
 gz
-yI
+gz
+gz
+gz
 gz
 yI
 gz
@@ -2405,10 +2458,10 @@ on
 Aa
 Dp
 dN
+oq
 mm
-mm
-mm
-mm
+oq
+oq
 mm
 OP
 on
@@ -2776,7 +2829,7 @@ cg
 gz
 gz
 gz
-gz
+yI
 gz
 gi
 ai
@@ -2816,7 +2869,7 @@ cg
 "}
 (17,1,1) = {"
 gz
-gz
+ud
 gz
 gz
 gz
@@ -2860,7 +2913,7 @@ cg
 gz
 tB
 gz
-yI
+gz
 gz
 gz
 gz
@@ -3697,7 +3750,7 @@ cg
 cg
 "}
 (38,1,1) = {"
-yI
+gz
 Xs
 FZ
 vq
@@ -5342,7 +5395,7 @@ IS
 IS
 XB
 Qs
-aV
+HH
 aV
 aV
 aV
@@ -5384,8 +5437,8 @@ IS
 IS
 XB
 Qs
-aV
-aV
+mb
+HH
 aV
 aV
 aV
@@ -5426,9 +5479,9 @@ bQ
 IS
 XB
 Qs
-aV
-aV
-aV
+UW
+lU
+Nb
 aV
 aV
 aV
@@ -5468,9 +5521,9 @@ IS
 IS
 XB
 Qs
-aV
-aV
-aV
+UW
+Tm
+HH
 aV
 aV
 aV
@@ -5510,10 +5563,10 @@ IS
 IS
 XB
 Qs
-aV
-aV
-aV
-aV
+UW
+jh
+Nu
+Nb
 aV
 aV
 aV
@@ -5552,9 +5605,9 @@ IS
 IS
 XB
 Qs
-aV
-aV
-aV
+xW
+pL
+jV
 aV
 aV
 aV
@@ -5594,7 +5647,7 @@ IS
 IS
 XB
 Qs
-aV
+pL
 aV
 aV
 aV
@@ -5636,7 +5689,7 @@ IS
 IS
 XB
 Qs
-aV
+HH
 aV
 aV
 aV
@@ -5678,8 +5731,8 @@ bQ
 IS
 XB
 Qs
-aV
-aV
+mb
+HH
 aV
 aV
 aV
@@ -5720,9 +5773,9 @@ IS
 IS
 XB
 Qs
-aV
-aV
-aV
+Nt
+Nu
+Nb
 aV
 aV
 aV
@@ -5762,8 +5815,8 @@ IS
 IS
 XB
 Qs
-aV
-aV
+wD
+jV
 aV
 aV
 aV
@@ -5804,8 +5857,8 @@ IS
 IS
 XB
 Qs
-aV
-aV
+mb
+Nb
 aV
 aV
 aV
@@ -5846,8 +5899,8 @@ IS
 IS
 XB
 Qs
-aV
-aV
+xW
+Nb
 aV
 aV
 aV
@@ -5888,7 +5941,7 @@ IS
 IS
 XB
 Qs
-aV
+pL
 aV
 aV
 aV
