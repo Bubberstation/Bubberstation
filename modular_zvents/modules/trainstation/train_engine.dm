@@ -126,6 +126,7 @@
 	mid_length = 3 SECONDS
 	volume = 60
 	falloff_exponent = 3
+	ignore_walls = FALSE
 
 /obj/machinery/power/train_turbine/core_rotor
 	name = "train turbine core rotor"

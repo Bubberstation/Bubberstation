@@ -531,3 +531,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/auto_detect, 24)
 			D.lock()
 			balloon_alert(user, "You lock the train door with the master key.")
 		return TRUE
+
+/obj/effect/turf_decal/train_sigh
+	name = "Train sigh"
+	icon = 'modular_zvents/icons/structures/train_sigh.dmi'
+	icon_state = "sigh"

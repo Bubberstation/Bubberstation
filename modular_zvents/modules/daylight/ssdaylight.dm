@@ -48,6 +48,7 @@ SUBSYSTEM_DEF(daylight)
 	var/time_locked = FALSE
 	var/manual_time = -1
 
+	var/falshing = FALSE
 	var/setup_queue = list()
 	var/setup_running = FALSE
 
@@ -216,6 +217,9 @@ SUBSYSTEM_DEF(daylight)
 
 /datum/controller/subsystem/daylight/proc/flash(color, duration = 10 SECONDS, transition_time = 2 SECONDS, areas)
 	set waitfor = FALSE
+	if(falshing)
+		FALSE
+	falshing = TRUE
 	if(!areas)
 		areas = daylight_areas.Copy()
 	var/trainstation_wait = 0.1 SECONDS
@@ -223,7 +227,7 @@ SUBSYSTEM_DEF(daylight)
 	var/orig_target_color = target_color
 	var/steps_up = round(transition_time / wait, 1)
 	var/steps_down = steps_up
-	var/hold_steps = round(duration / wait, 1) - steps_up - steps_down
+	var/hold_steps = round(duration / trainstation_wait, 1) - steps_up - steps_down
 	if(hold_steps < 0)
 		hold_steps = 0
 		steps_down = round((duration / wait) / 2, 1)
@@ -236,7 +240,7 @@ SUBSYSTEM_DEF(daylight)
 		CHECK_TICK
 
 	for(var/i in 1 to hold_steps)
-		sleep(trainstation_wait)
+		sleep(duration / hold_steps)
 		CHECK_TICK
 
 	set_target(orig_target_intensity, orig_target_color)
@@ -244,6 +248,7 @@ SUBSYSTEM_DEF(daylight)
 		fire()
 		sleep(trainstation_wait)
 		CHECK_TICK
+	falshing = FALSE
 
 /proc/hex2rgb(hex)
 	if(!hex)

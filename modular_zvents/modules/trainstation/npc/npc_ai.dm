@@ -14,10 +14,10 @@
 	only_players = TRUE
 
 /datum/ai_behavior/observed_aggression
-	var/target_list_kay = BB_BASIC_MOB_RETALIATE_LIST
+	var/target_list_key = BB_BASIC_MOB_RETALIATE_LIST
 
 /datum/ai_behavior/observed_aggression/perform(seconds_per_tick, datum/ai_controller/controller, atom/target)
-	var/list/target_list = controller.blackboard[target_list_kay]
+	var/list/target_list = controller.blackboard[target_list_key]
 	if(!target || !target_list || !islist(target_list))
 		return AI_BEHAVIOR_FAILED | AI_BEHAVIOR_INSTANT
 
@@ -26,6 +26,42 @@
 	target_list += target
 	return AI_BEHAVIOR_SUCCEEDED | AI_BEHAVIOR_INSTANT
 
+
+/datum/ai_planning_subtree/clear_retaliate
+	var/target_list_key = BB_BASIC_MOB_RETALIATE_LIST
+	var/clear_if_dead = TRUE
+	var/clear_distance = 30
+	var/cleat_cuffed = TRUE
+
+/datum/ai_planning_subtree/clear_retaliate/SelectBehaviors(datum/ai_controller/controller, seconds_per_tick)
+	var/list/target_list = controller.blackboard[target_list_key]
+	if(!target_list || !islist(target_list))
+		return
+	controller.queue_behavior(/datum/ai_behavior/clear_retaliate_rulled, target_list_key, clear_if_dead, clear_distance, cleat_cuffed)
+
+/datum/ai_behavior/clear_retaliate_rulled
+
+/datum/ai_behavior/clear_retaliate_rulled/perform(seconds_per_tick, datum/ai_controller/controller, target_list_key, clear_if_dead, clear_distance, cleat_cuffed)
+	var/list/enemy_list = controller.blackboard[target_list_key]
+	if(!enemy_list || !islist(enemy_list))
+		return AI_BEHAVIOR_FAILED | AI_BEHAVIOR_INSTANT
+
+	for(var/mob/living/enemy in enemy_list)
+		if(QDELING(enemy))
+			enemy_list -= enemy
+			continue
+		if(get_dist(controller.pawn, enemy) >= clear_distance)
+			enemy_list -= enemy
+			continue
+		if(enemy.stat <= controller.blackboard[BB_TARGET_MINIMUM_STAT] || DEAD)
+			enemy_list -= enemy
+			continue
+		if(iscarbon(enemy))
+			var/mob/living/carbon/carbon_enemy = enemy
+			if(cleat_cuffed && carbon_enemy.handcuffed)
+				enemy_list -= enemy
+				continue
+	return AI_BEHAVIOR_SUCCEEDED | AI_BEHAVIOR_INSTANT
 
 /datum/ai_controller/basic_controller/civilian
 	blackboard = list(
@@ -39,6 +75,7 @@
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/escape_captivity,
 		/datum/ai_planning_subtree/clean_target_timed/flee_from,
+		/datum/ai_planning_subtree/clear_retaliate,
 		/datum/ai_planning_subtree/target_retaliate/to_flee,
 		/datum/ai_planning_subtree/call_for_help/from_flee_key,
 		/datum/ai_planning_subtree/flee_target/from_flee_key,
@@ -167,6 +204,7 @@
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/escape_captivity,
 		/datum/ai_planning_subtree/clean_target_timed,
+		/datum/ai_planning_subtree/clear_retaliate,
 		/datum/ai_planning_subtree/target_retaliate/check_faction,
 		/datum/ai_planning_subtree/simple_find_target,
 		/datum/ai_planning_subtree/call_for_help/police,
@@ -183,6 +221,7 @@
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/escape_captivity,
 		/datum/ai_planning_subtree/clean_target_timed,
+		/datum/ai_planning_subtree/clear_retaliate,
 		/datum/ai_planning_subtree/target_retaliate/check_faction,
 		/datum/ai_planning_subtree/simple_find_target,
 		/datum/ai_planning_subtree/call_for_help/police,

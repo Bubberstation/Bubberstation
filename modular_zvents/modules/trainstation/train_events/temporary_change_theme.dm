@@ -50,7 +50,7 @@
 	typepath = /datum/round_event/train_event/temporary_change_theme/war
 
 	selected_theme = /datum/train_object_spawner_theme/war
-	duration = 240
+	duration = 180
 
 /datum/round_event/train_event/temporary_change_theme/war
 	var/datum/looping_sound/global_sound/war_sounds = null

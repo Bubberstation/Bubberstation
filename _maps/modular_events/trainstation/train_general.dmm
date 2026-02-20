@@ -227,7 +227,11 @@
 /area/trainstation/indoors/train/medical)
 "aV" = (
 /obj/machinery/atmospherics/components/binary/pump/off,
-/turf/open/floor/plating,
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/train/vagon_7)
 "aW" = (
 /turf/open/floor/iron/kitchen/small,
@@ -295,8 +299,11 @@
 /turf/open/floor/catwalk_floor/iron_dark/telecomms,
 /area/trainstation/indoors/train/server)
 "bl" = (
-/obj/machinery/holopad{
-	pixel_x = 1
+/obj/machinery/atmospherics/pipe/smart/manifold4w/purple/visible,
+/obj/structure/cable,
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 4
 	},
 /turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/train/vagon_7)
@@ -389,6 +396,10 @@
 /area/trainstation/indoors/train/security)
 "bF" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/purple/visible,
+/obj/item/construction/plumbing,
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/structure/railing,
+/obj/item/wrench,
 /turf/open/floor/plating,
 /area/trainstation/indoors/train/vagon_7)
 "bH" = (
@@ -558,7 +569,9 @@
 /area/trainstation/indoors/train/tech_2)
 "cG" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/west,
-/obj/machinery/power/apc/auto_name/directional/north,
+/obj/machinery/power/apc/auto_name/directional/north{
+	cable_layer = 1
+	},
 /obj/effect/mapping_helpers/apc/full_charge,
 /obj/effect/mapping_helpers/apc/cell_10k,
 /obj/structure/cable/layer1,
@@ -774,6 +787,8 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
+/obj/effect/turf_decal/stripes/full,
+/obj/machinery/recharge_station/train,
 /turf/open/floor/iron/dark/diagonal,
 /area/trainstation/indoors/train/vagon_7)
 "dA" = (
@@ -834,11 +849,13 @@
 	},
 /obj/machinery/duct,
 /obj/structure/cable,
+/obj/structure/extinguisher_cabinet/directional/west,
 /turf/open/floor/iron/dark/snowdin,
 /area/trainstation/indoors/train/vagon_7)
 "dH" = (
+/obj/structure/railing/corner,
 /obj/machinery/duct,
-/turf/closed/wall/mineral/titanium/spaceship/nodiagonal,
+/turf/open/floor/plating,
 /area/trainstation/indoors/train/vagon_7)
 "dI" = (
 /obj/machinery/door/airlock/engineering/glass,
@@ -892,15 +909,11 @@
 /turf/open/floor/iron/dark,
 /area/trainstation/indoors/train/reserch)
 "dP" = (
-/obj/effect/turf_decal/siding/dark/corner{
-	dir = 4
+/obj/machinery/door/poddoor/shutters{
+	id = "turbine_storage";
+	name = "Turbine storage"
 	},
-/obj/effect/turf_decal/siding/dark{
-	dir = 10
-	},
-/obj/structure/extinguisher_cabinet/directional/west,
-/obj/structure/closet/crate/bin,
-/turf/open/floor/iron/dark/diagonal,
+/turf/open/floor/plating/reinforced,
 /area/trainstation/indoors/train/vagon_7)
 "dQ" = (
 /obj/effect/turf_decal/stripes/line{
@@ -1013,11 +1026,8 @@
 /turf/open/floor/iron/dark,
 /area/trainstation/indoors/train/security)
 "ek" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/train/vagon_7)
 "el" = (
 /obj/effect/turf_decal/siding/white{
@@ -1278,16 +1288,12 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/train/security)
 "eY" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/obj/structure/railing{
-	dir = 1
-	},
 /obj/structure/cable,
-/obj/machinery/power/terminal,
 /obj/machinery/camera/autoname/engineering/directional/east,
-/turf/open/floor/plating,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/train/vagon_7)
 "fa" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -1904,10 +1910,9 @@
 /turf/open/floor/iron/dark/textured_large,
 /area/trainstation/indoors/train/tech_3)
 "hF" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/purple/visible,
-/obj/effect/turf_decal/siding/thinplating/dark,
-/obj/structure/railing,
-/turf/open/floor/iron/dark/small,
+/obj/machinery/power/train_heater,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
 /area/trainstation/indoors/train/vagon_7)
 "hG" = (
 /obj/machinery/door/poddoor/shutters{
@@ -2372,9 +2377,10 @@
 /turf/open/floor/plating,
 /area/trainstation/indoors/train/cargo)
 "jQ" = (
-/obj/structure/extinguisher_cabinet/directional/west,
 /obj/structure/cable,
-/obj/structure/railing,
+/obj/machinery/button/door/directional/west{
+	id = "turbine_storage"
+	},
 /turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/train/vagon_7)
 "jR" = (
@@ -3725,12 +3731,9 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/train/tech_1)
 "pY" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/obj/machinery/light/directional/south,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/obj/structure/sign/warning/fire/directional/south,
+/turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/train/vagon_7)
 "pZ" = (
 /obj/effect/turf_decal/siding/dark{
@@ -4075,14 +4078,11 @@
 /turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/train/tech_7)
 "rB" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/dark,
-/obj/machinery/power/apc/auto_name/directional/north,
-/obj/structure/cable,
-/turf/open/floor/iron/dark/diagonal,
-/area/trainstation/indoors/train/vagon_6)
+/obj/machinery/atmospherics/pipe/smart/manifold4w/purple/visible,
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/structure/railing,
+/turf/open/floor/plating,
+/area/trainstation/indoors/train/vagon_7)
 "rC" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
@@ -4514,9 +4514,9 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
 	},
-/obj/machinery/light/small/dim/directional/north,
 /obj/effect/turf_decal/siding/dark,
 /obj/structure/cable,
+/obj/machinery/light/small/dim/directional/south,
 /turf/open/floor/iron/dark/diagonal,
 /area/trainstation/indoors/train/vagon_6)
 "tE" = (
@@ -4536,12 +4536,9 @@
 /turf/closed/wall/mineral/titanium/spaceship/nodiagonal,
 /area/trainstation/indoors/train/vagon_5)
 "tJ" = (
-/obj/effect/turf_decal/siding/dark,
-/obj/machinery/light/directional/north,
-/obj/effect/turf_decal/siding/dark{
-	dir = 1
-	},
-/turf/open/floor/iron/dark/diagonal,
+/obj/machinery/light/small/dim/directional/north,
+/obj/machinery/portable_atmospherics/canister/water_vapor,
+/turf/open/floor/plating/reinforced,
 /area/trainstation/indoors/train/vagon_7)
 "tK" = (
 /obj/effect/turf_decal/stripes/line{
@@ -4776,6 +4773,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/machinery/light/small/dim/directional/south,
 /turf/open/floor/iron/dark/diagonal,
 /area/trainstation/indoors/train/vagon_6)
 "uF" = (
@@ -5531,12 +5529,6 @@
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/trainstation/indoors/train/tech_5)
-"xL" = (
-/obj/machinery/power/train_turbine/inlet_compressor{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/trainstation/indoors/train/vagon_7)
 "xM" = (
 /obj/machinery/mecha_part_fabricator{
 	drop_direction = 4
@@ -6033,23 +6025,22 @@
 /area/trainstation/indoors/train/medical)
 "Af" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 9
+	dir = 5
 	},
 /obj/structure/railing{
-	dir = 1
+	dir = 5
 	},
-/obj/structure/cable,
-/obj/machinery/power/terminal,
-/turf/open/floor/plating,
+/turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/train/vagon_7)
 "Ah" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 4
-	},
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
 	},
 /obj/machinery/light/directional/west,
+/obj/structure/closet/crate/bin,
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
 /turf/open/floor/iron/dark/diagonal,
 /area/trainstation/indoors/train/vagon_7)
 "Ai" = (
@@ -6950,10 +6941,9 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/train/vagon_1)
 "Ee" = (
-/obj/machinery/atmospherics/components/unary/portables_connector,
 /obj/machinery/light/directional/north,
-/obj/machinery/portable_atmospherics/canister/water_vapor,
-/turf/open/floor/iron/dark/small,
+/obj/machinery/duct,
+/turf/open/floor/plating,
 /area/trainstation/indoors/train/vagon_7)
 "Ef" = (
 /obj/structure/window/reinforced/shuttle/survival_pod,
@@ -7313,8 +7303,8 @@
 /turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/train/tech_7)
 "Fu" = (
-/obj/structure/railing,
-/obj/structure/chair/plastic,
+/obj/machinery/power/smes/full,
+/obj/structure/cable,
 /turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/train/vagon_7)
 "Fw" = (
@@ -7574,9 +7564,9 @@
 /turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/train/security)
 "GD" = (
-/obj/structure/railing/corner,
+/obj/structure/extinguisher_cabinet/directional/west,
 /obj/machinery/duct,
-/turf/open/floor/iron/dark/small,
+/turf/open/floor/plating,
 /area/trainstation/indoors/train/vagon_7)
 "GE" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
@@ -7586,7 +7576,7 @@
 /turf/closed/wall/mineral/titanium/spaceship/nodiagonal,
 /area/trainstation/indoors/train/kitchen)
 "GI" = (
-/turf/open/floor/iron/dark/small,
+/turf/open/floor/plating,
 /area/trainstation/indoors/train/vagon_7)
 "GJ" = (
 /obj/effect/turf_decal/tile/dark_blue/diagonal_centre,
@@ -7743,14 +7733,12 @@
 /turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/train/vagon_7)
 "Hj" = (
-/obj/structure/chair/sofa/bench/right{
-	dir = 1
-	},
 /obj/effect/turf_decal/siding/dark,
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
 	},
 /obj/machinery/light/directional/south,
+/obj/machinery/suit_storage_unit/engine,
 /turf/open/floor/iron/dark/diagonal,
 /area/trainstation/indoors/train/vagon_7)
 "Hl" = (
@@ -7920,11 +7908,9 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/trainstation/indoors/train/cargo)
 "HV" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/purple/visible,
-/obj/item/construction/plumbing,
-/obj/effect/turf_decal/siding/thinplating/dark,
-/obj/structure/railing,
-/turf/open/floor/iron/dark/small,
+/obj/machinery/atmospherics/components/unary/portables_connector,
+/obj/machinery/portable_atmospherics/canister/water_vapor,
+/turf/open/floor/plating,
 /area/trainstation/indoors/train/vagon_7)
 "HW" = (
 /obj/effect/turf_decal/siding/dark/corner{
@@ -7966,9 +7952,8 @@
 /turf/open/floor/iron/white/small,
 /area/trainstation/indoors/train/bathroom)
 "Iq" = (
-/obj/machinery/power/train_heater,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/iron/dark/small,
+/obj/machinery/duct,
+/turf/open/floor/plating,
 /area/trainstation/indoors/train/vagon_7)
 "Ir" = (
 /obj/effect/turf_decal/siding/dark/end{
@@ -8032,10 +8017,10 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
 	},
-/obj/machinery/light/small/dim/directional/north,
 /obj/effect/turf_decal/siding/dark,
 /obj/structure/cable,
 /obj/machinery/newscaster/directional/south,
+/obj/machinery/light/small/dim/directional/south,
 /turf/open/floor/iron/dark/diagonal,
 /area/trainstation/indoors/train/vagon_6)
 "IK" = (
@@ -8097,9 +8082,10 @@
 /turf/open/floor/plating,
 /area/trainstation/indoors/train/security)
 "IR" = (
-/obj/structure/extinguisher_cabinet/directional/west,
-/obj/machinery/duct,
-/turf/open/floor/iron/dark/small,
+/obj/effect/turf_decal/train_sigh{
+	pixel_y = 14
+	},
+/turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/train/vagon_7)
 "IS" = (
 /obj/structure/railing{
@@ -8382,18 +8368,13 @@
 /turf/open/floor/wood/large,
 /area/trainstation/indoors/train/conductor_4)
 "Ks" = (
-/obj/structure/rack/shelf,
-/obj/item/clothing/gloves/color/yellow,
-/obj/item/clothing/gloves/color/yellow,
-/obj/item/clothing/gloves/color/yellow,
-/obj/item/clothing/gloves/color/yellow,
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
 	},
-/obj/structure/extinguisher_cabinet/directional/east,
+/obj/machinery/vending/engivend,
 /turf/open/floor/iron/dark/diagonal,
 /area/trainstation/indoors/train/vagon_7)
 "Kt" = (
@@ -8787,9 +8768,12 @@
 /turf/open/floor/iron/dark/textured_large,
 /area/trainstation/indoors/train/tech_2)
 "Ml" = (
-/obj/machinery/power/smes/full,
-/obj/structure/cable,
-/turf/open/floor/plating,
+/obj/effect/turf_decal/siding/dark,
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/obj/machinery/suit_storage_unit/engine,
+/turf/open/floor/iron/dark/diagonal,
 /area/trainstation/indoors/train/vagon_7)
 "Mm" = (
 /obj/structure/table/train_table{
@@ -9103,6 +9087,7 @@
 	dir = 8
 	},
 /obj/machinery/camera/autoname/engineering/directional/west,
+/obj/structure/extinguisher_cabinet/directional/west,
 /turf/open/floor/iron/dark/diagonal,
 /area/trainstation/indoors/train/vagon_7)
 "Nu" = (
@@ -9792,6 +9777,10 @@
 /obj/effect/turf_decal/siding/dark,
 /turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/train/reustoran)
+"Ql" = (
+/obj/machinery/portable_atmospherics/canister/water_vapor,
+/turf/open/floor/plating/reinforced,
+/area/trainstation/indoors/train/vagon_7)
 "Qm" = (
 /obj/structure/railing{
 	dir = 1;
@@ -9882,10 +9871,6 @@
 /obj/machinery/light/directional/west,
 /turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/train/tech_2)
-"QN" = (
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/trainstation/indoors/train/vagon_7)
 "QP" = (
 /obj/effect/decal/cleanable/food/flour,
 /turf/open/floor/iron/kitchen/diagonal,
@@ -10111,10 +10096,6 @@
 /obj/structure/gangway,
 /turf/template_noop,
 /area/trainstation/indoors/train/tech_6)
-"RK" = (
-/obj/effect/turf_decal/siding/dark,
-/turf/open/floor/iron/dark/diagonal,
-/area/trainstation/indoors/train/vagon_7)
 "RL" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -10393,8 +10374,11 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/train/vagon_2)
 "SJ" = (
-/obj/structure/railing,
-/turf/open/floor/iron/dark/small,
+/obj/structure/closet/crate/engineering,
+/obj/item/stack/sheet/mineral/plasma/fifty,
+/obj/item/stack/sheet/mineral/plasma/fifty,
+/obj/item/stack/sheet/mineral/plasma/fifty,
+/turf/open/floor/plating/reinforced,
 /area/trainstation/indoors/train/vagon_7)
 "SM" = (
 /obj/effect/turf_decal/stripes/line{
@@ -10462,10 +10446,7 @@
 	},
 /obj/machinery/light/small/dim/directional/west,
 /obj/structure/broken_flooring/singular,
-/obj/effect/spawner/random/trash/cigbutt,
-/obj/effect/spawner/random/trash/cigbutt{
-	pixel_y = -16
-	},
+/obj/structure/railing,
 /turf/open/floor/iron/dark/diagonal,
 /area/trainstation/indoors/train/vagon_7)
 "Tb" = (
@@ -10838,19 +10819,8 @@
 	},
 /turf/open/floor/iron/white,
 /area/trainstation/indoors/train/medical)
-"UF" = (
-/obj/structure/chair/sofa/bench/left{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/dark,
-/obj/effect/turf_decal/siding/dark{
-	dir = 1
-	},
-/turf/open/floor/iron/dark/diagonal,
-/area/trainstation/indoors/train/vagon_7)
 "UG" = (
-/obj/effect/turf_decal/siding/dark,
-/turf/closed/wall/mineral/titanium/spaceship/nodiagonal,
+/turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/train/vagon_7)
 "UH" = (
 /obj/effect/turf_decal/siding/dark{
@@ -10987,7 +10957,7 @@
 /turf/open/floor/iron/white/textured_corner,
 /area/trainstation/indoors/train/vagon_1)
 "Vl" = (
-/obj/structure/curtain/bounty,
+/obj/structure/window/reinforced/shuttle/survival_pod,
 /turf/open/floor/iron/dark/diagonal,
 /area/trainstation/indoors/train/vagon_7)
 "Vo" = (
@@ -11072,12 +11042,12 @@
 /turf/open/floor/iron/white/textured_large,
 /area/trainstation/indoors/train/medical)
 "VD" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 8
-	},
-/obj/machinery/power/smes/full,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/machinery/light/directional/south,
+/turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/train/vagon_7)
 "VF" = (
 /obj/effect/turf_decal/siding/dark_blue{
@@ -11230,18 +11200,11 @@
 /turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/train/tech_2)
 "Wb" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/obj/structure/railing{
-	dir = 1
+/obj/machinery/power/train_turbine/inlet_compressor{
+	dir = 8
 	},
 /obj/structure/cable,
-/obj/structure/railing{
-	dir = 4;
-	pixel_y = 0
-	},
-/turf/open/floor/iron/dark/small,
+/turf/open/floor/plating,
 /area/trainstation/indoors/train/vagon_7)
 "Wd" = (
 /obj/structure/table,
@@ -11271,11 +11234,16 @@
 /turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/train/tech_2)
 "Wi" = (
-/obj/effect/turf_decal/siding/thinplating/dark/corner{
+/obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
 	},
-/obj/structure/cable,
-/turf/open/floor/plating,
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/machinery/holopad{
+	pixel_x = 1
+	},
+/turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/train/vagon_7)
 "Wk" = (
 /turf/closed/wall/mineral/titanium/spaceship/nodiagonal,
@@ -11347,12 +11315,6 @@
 /turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/train/tech_2)
 "Wz" = (
-/obj/machinery/recharge_station/train,
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/thinplating/dark/end,
-/obj/effect/turf_decal/stripes/full,
 /turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/train/vagon_7)
 "WA" = (
@@ -11436,11 +11398,13 @@
 /area/trainstation/indoors/train/vagon_5)
 "WN" = (
 /obj/effect/turf_decal/siding/dark{
-	dir = 6
+	dir = 1
 	},
-/obj/machinery/camera/autoname/engineering/directional/west,
+/obj/effect/turf_decal/siding/dark,
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/directional/south,
 /turf/open/floor/iron/dark/diagonal,
-/area/trainstation/indoors/train/vagon_7)
+/area/trainstation/indoors/train/vagon_6)
 "WO" = (
 /obj/effect/turf_decal/tile/brown/diagonal_edge,
 /obj/machinery/vending/wardrobe/cargo_wardrobe,
@@ -11450,13 +11414,16 @@
 /turf/open/floor/iron/dark/diagonal,
 /area/trainstation/indoors/train/cargo)
 "WP" = (
-/obj/structure/closet/crate/bin,
 /obj/effect/turf_decal/siding/dark{
 	dir = 10
 	},
 /obj/effect/turf_decal/siding/dark/corner{
 	dir = 4
 	},
+/obj/structure/rack/shelf,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/yellow,
 /turf/open/floor/iron/dark/diagonal,
 /area/trainstation/indoors/train/vagon_7)
 "WQ" = (
@@ -11953,6 +11920,10 @@
 /obj/structure/cable,
 /turf/open/floor/wood/large,
 /area/trainstation/indoors/train/vagon_2)
+"Zb" = (
+/obj/machinery/light/directional/north,
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/train/vagon_7)
 "Zd" = (
 /obj/effect/turf_decal/siding/dark_blue{
 	dir = 9
@@ -15048,7 +15019,7 @@ TA
 (191,1,1) = {"
 rU
 My
-fV
+WN
 tO
 dT
 cJ
@@ -15063,7 +15034,7 @@ tO
 (192,1,1) = {"
 rU
 Oa
-rB
+fV
 tO
 Bf
 Lr
@@ -15356,7 +15327,7 @@ dM
 FQ
 QV
 QV
-Ps
+QV
 QV
 QV
 "}
@@ -15387,7 +15358,7 @@ fO
 QV
 Co
 cE
-UF
+Ml
 QV
 "}
 (214,1,1) = {"
@@ -15447,83 +15418,83 @@ QV
 QV
 QV
 QV
-nq
+QV
 QV
 "}
 (218,1,1) = {"
 IU
 Yw
-dH
-IR
+QV
+Iq
 GD
+dH
 fa
 dF
 RU
 jQ
-ek
-QV
-lZ
+dP
 SJ
+QV
 "}
 (219,1,1) = {"
 Ya
 Yw
-dH
+QV
 Iq
 hF
+rB
 gS
 pm
 oJ
-bl
 ek
+dP
+Ql
 QV
-lZ
-Fu
 "}
 (220,1,1) = {"
 rT
 DO
-dH
+QV
 Ee
 HV
+bF
 gS
 RO
-Wb
-OV
+Wi
 pY
 QV
 tJ
-SJ
+QV
 "}
 (221,1,1) = {"
 Ya
 Yw
-dH
+QV
 Iq
 hF
+rB
 gS
-xL
+Wb
 Af
 VD
-Wi
 QV
-lZ
-Fu
+QV
+QV
 "}
 (222,1,1) = {"
 Ya
 Yw
 QV
 GI
-hF
+GI
+rB
 aV
-bF
+bl
 eY
-Ml
-QN
+ek
 QV
-lZ
-SJ
+UG
+UG
 "}
 (223,1,1) = {"
 QV
@@ -15532,13 +15503,13 @@ QV
 QV
 QV
 QV
+Fu
+Fu
+Fu
+ek
 QV
-QV
-QV
-QV
-QV
-nq
-QV
+UG
+UG
 "}
 (224,1,1) = {"
 QV
@@ -15546,14 +15517,14 @@ Aq
 wq
 Ns
 Ah
-dP
 QV
-Wz
-ot
-td
-Vl
-RK
-SJ
+QV
+QV
+QV
+QV
+QV
+UG
+IR
 "}
 (225,1,1) = {"
 QV
@@ -15561,14 +15532,14 @@ WD
 qG
 qG
 di
-wg
+Wz
 nq
 td
-Qg
+ot
 Qg
 Vl
-RK
-SJ
+UG
+UG
 "}
 (226,1,1) = {"
 QV
@@ -15581,9 +15552,9 @@ QV
 zP
 tL
 Wd
-Vl
-RK
-SJ
+QV
+Zb
+UG
 "}
 (227,1,1) = {"
 QV
@@ -15596,9 +15567,9 @@ QV
 jr
 DK
 Wd
-Vl
-RK
-SJ
+QV
+UG
+UG
 "}
 (228,1,1) = {"
 QV
@@ -15613,7 +15584,7 @@ QV
 QV
 QV
 UG
-QV
+UG
 "}
 (229,1,1) = {"
 QV
@@ -15626,9 +15597,9 @@ nq
 BX
 cy
 SZ
-WN
-GI
-OV
+UG
+UG
+UG
 "}
 (230,1,1) = {"
 dS
@@ -15640,8 +15611,8 @@ QV
 QV
 Ne
 Ne
-Ne
-Ne
 OV
+UG
+UG
 dS
 "}
