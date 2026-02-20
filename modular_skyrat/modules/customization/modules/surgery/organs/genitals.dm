@@ -311,7 +311,11 @@
 	layers = EXTERNAL_ADJACENT | EXTERNAL_BEHIND
 
 /obj/item/organ/genital/testicles/update_genital_icon_state()
-	var/measured_size = clamp(genital_size, 1, TESTICLES_MAX_SIZE)
+	var/measured_size = FLOOR(genital_size,1)
+	var/max_size = TESTICLES_MAX_SIZE
+	if(genital_name != "Pair (Alt)" && genital_name != "Sheathed Pair")
+		max_size -= 2
+	measured_size = clamp(measured_size, 1, max_size)
 	var/passed_string = "testicles_[genital_type]_[measured_size]"
 	if(uses_skintones)
 		passed_string += "_s"
@@ -335,7 +339,10 @@
 
 /obj/item/organ/genital/testicles/get_sprite_size_string()
 	var/measured_size = FLOOR(genital_size,1)
-	measured_size = clamp(measured_size, 0, TESTICLES_MAX_SIZE)
+	var/max_size = TESTICLES_MAX_SIZE
+	if(genital_name != "Pair (Alt)" && genital_name != "Sheathed Pair")
+		max_size -= 2
+	measured_size = clamp(measured_size, 0, max_size)
 	var/passed_string = "[genital_type]_[measured_size]"
 	if(uses_skintones)
 		passed_string += "_s"
