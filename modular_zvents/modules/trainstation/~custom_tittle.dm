@@ -223,7 +223,7 @@ img.bg {
 	"))
 
 /datum/controller/subsystem/train_controller/proc/set_lobby_screen()
-	SStitle.change_title_screen('modular_zvents/icons/lobby/trainstation.jpg')
+	SStitle.change_title_screen('modular_zvents/icons/lobby/trainstation_v2.png')
 	SSticker.set_lobby_music('modular_zvents/sounds/trainstation_lobbymusic.ogg', override = TRUE)
 	for(var/client/C in GLOB.clients)
 		C?.playtitlemusic(volume_multiplier = 1)

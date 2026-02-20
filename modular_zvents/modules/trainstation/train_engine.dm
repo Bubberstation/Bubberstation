@@ -126,6 +126,7 @@
 	mid_length = 3 SECONDS
 	volume = 60
 	falloff_exponent = 3
+	ignore_walls = FALSE
 
 /obj/machinery/power/train_turbine/core_rotor
 	name = "train turbine core rotor"
@@ -141,7 +142,8 @@
 	var/max_rpm = 7000
 	var/produced_energy = 0
 	var/max_temperature = 1000
-	var/efficiency_rate = 90
+	var/efficiency_rate = 100
+	var/work_time = 0
 	var/damage = 0
 	var/damage_archived = 0
 	var/all_parts_connected = FALSE
@@ -178,7 +180,6 @@
 
 /obj/machinery/power/train_turbine/core_rotor/begin_processing()
 	. = ..()
-	soundloop.start()
 
 /obj/machinery/power/train_turbine/core_rotor/end_processing()
 	. = ..()
@@ -196,6 +197,11 @@
 
 /obj/machinery/power/train_turbine/core_rotor/proc/update_effects()
 	var/work_procentage = clamp(rpm / (max_rpm * 0.9), 0, 1)
+	if(work_procentage < 0.1 && soundloop.timer_id)
+		soundloop.stop()
+		return
+	if(!soundloop.timer_id)
+		soundloop.start()
 	if(work_procentage >= 0.85 && soundloop.volume != 70)
 		soundloop.volume = 100
 		soundloop.extra_range = 10
@@ -204,6 +210,9 @@
 		soundloop.extra_range = 5
 	else if(work_procentage >= 0.2 && soundloop.volume != 30)
 		soundloop.volume = 40
+		soundloop.extra_range = 0
+	else if(work_procentage >= 0.1 && soundloop.volume != 20)
+		soundloop.volume = 20
 		soundloop.extra_range = 0
 	else
 		soundloop.extra_range = 0
@@ -215,12 +224,13 @@
 
 /obj/machinery/power/train_turbine/core_rotor/process(seconds_per_tick)
 	if((!active || !all_parts_connected || !powered(ignore_use_power = TRUE)) && rpm <= 0)
+		work_time = 0
 		deactivate_parts()
 		return PROCESS_KILL
 	var/target_flow_multiplier = target_rpm / max_rpm
 	var/inlet_temperature = compressor.compress_gases()
 	if(!inlet_temperature || inlet_temperature < MIN_STEAM_TEMPERATURE)
-		rpm = max(rpm - 400 * seconds_per_tick, 0)
+		rpm = max(rpm - 50 * seconds_per_tick, 0)
 		produced_energy = 0
 		return
 
@@ -285,8 +295,8 @@
 		qdel(src)
 		return PROCESS_KILL
 
-
-	add_avail(produced_energy)
+	work_time += seconds_per_tick
+	add_avail(produced_energy * (1 + 0.1 * (work_time / (15 * 60))))
 	apply_thrust_to_train()
 
 /obj/machinery/power/train_turbine/core_rotor/get_integrity()
@@ -382,7 +392,7 @@
 
 
 /datum/component/plumbing/steam_turbine
-	demand_connects = NORTH | SOUTH
+	supply_connects = NORTH | SOUTH
 
 /datum/component/plumbing/steam_turbine/Initialize(start, ducting_layer, turn_connects, datum/reagents/custom_receiver, extend_pipe_to_edge)
 	if(!istype(parent, /obj/machinery/power/train_turbine/turbine_outlet))
@@ -432,7 +442,8 @@
 /obj/machinery/computer/train_turbine_computer/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
 	var/obj/machinery/power/train_turbine/core_rotor/main_control = rotor_ref?.resolve()
-	main_control.activate_parts(user, check_only = TRUE)
+	if(!main_control.activate_parts(user, check_only = TRUE))
+		main_control.activate_parts(user)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "TrainTurbineComputer", name)
@@ -528,7 +539,8 @@
 	- Balance power output with temperature — overheating causes damage!<BR>\
 	- Emergency vent available for rapid cooling.<BR>\
 	- Outputs CO2 to atmosphere and cooled water for recirculation.<BR>\
-	- Hot water vapor must be hot enough or the compressor won't accept it."
+	- Hot water vapor must be hot enough or the compressor won't accept it. <BR> \
+	The turbine is equipped with a special acceleration mechanism that will increase output by 10% every 15 minutes of continuous operation."
 
 #undef PRESSURE_MAX
 #undef MINIMUM_TURBINE_PRESSURE

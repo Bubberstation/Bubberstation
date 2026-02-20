@@ -41,7 +41,7 @@ PROCESSING_SUBSYSTEM_DEF(moving_turfs)
 		to_process -= T
 
 /datum/controller/subsystem/processing/moving_turfs/fire()
-	if(!SStrain_controller.is_moving())
+	if(!SStrain_controller.is_moving() || SStrain_controller.loading)
 		return
 	INVOKE_ASYNC(src, PROC_REF(process_turfs))
 

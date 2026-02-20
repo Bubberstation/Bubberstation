@@ -44,17 +44,10 @@
 /turf/open/floor/plating,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "ah" = (
-/obj/structure/fence/interlink{
-	dir = 2
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
 	},
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/dark/half{
-	dir = 4;
-	alpha = 200
-	},
-/turf/open/indestructible/train_platform/bottom,
+/turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
 "aj" = (
 /obj/machinery/computer{
@@ -145,6 +138,13 @@
 /obj/structure/prop/tgmc_console3,
 /turf/open/floor/iron/shuttle/exploration/blanktile,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
+"aC" = (
+/obj/effect/turf_decal/weather/snow/corner,
+/obj/effect/turf_decal/stripes/asteroid{
+	dir = 8
+	},
+/turf/open/indestructible/train_platform,
+/area/trainstation/outdoor)
 "aE" = (
 /obj/structure/railing{
 	dir = 1
@@ -244,6 +244,22 @@
 /obj/structure/marker_beacon/burgundy,
 /turf/open/indestructible/meat,
 /area/trainstation/indoors/station/collapsed_lab/facility)
+"aS" = (
+/obj/structure/prop/city/buildingventbig11_off{
+	name = "Generator";
+	dir = 1;
+	pixel_x = -16
+	},
+/obj/structure/railing{
+	dir = 2;
+	color = "#666666";
+	pixel_y = 0
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 10
+	},
+/turf/open/indestructible/dark/textured,
+/area/trainstation/outdoor)
 "aT" = (
 /obj/item/radio/intercom/directional/south,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -640,10 +656,21 @@
 /obj/effect/decal/cleanable/blood/gibs/old,
 /turf/open/misc/dirt/icy_planet,
 /area/trainstation/indoors/station/collapsed_lab/caves)
+"cf" = (
+/obj/machinery/door/airlock/shuttle/ferry{
+	name = "Magnetic interlock control"
+	},
+/turf/open/indestructible/dark/textured,
+/area/trainstation/outdoor)
 "cg" = (
 /obj/structure/lattice/catwalk/mining,
 /turf/open/chasm,
 /area/trainstation/indoors/station/collapsed_lab)
+"ci" = (
+/obj/effect/turf_decal/siding/dark,
+/obj/item/radio/intercom/directional/south,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
+/area/trainstation/outdoor)
 "ck" = (
 /obj/structure/broken_flooring/plating/directional/south,
 /obj/effect/decal/cleanable/rubble,
@@ -773,14 +800,34 @@
 	},
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "cM" = (
-/obj/structure/fence/corner{
-	dir = 10
+/obj/structure/railing/unbreakable{
+	dir = 1
 	},
-/obj/effect/turf_decal/tile/dark/half{
-	dir = 4;
-	alpha = 200
+/obj/structure/decorative{
+	density = 1;
+	anchored = 1;
+	name = "magnetic stasis emitter";
+	desc = "A machine that somehow fabricates hardlight using electrons. Seems to be impervious to conventional means of damage.";
+	icon = 'icons/obj/machines/modular_shield_generator.dmi';
+	icon_state = "charger_on_closed";
+	dir = 1;
+	uses_integrity = 0
 	},
-/turf/open/indestructible/train_platform,
+/obj/structure/emergency_shield/regenerating{
+	uses_integrity = 0;
+	pixel_y = 32;
+	name = "stasis field";
+	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-4-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222";
+	pixel_y = -14
+	},
+/turf/open/indestructible/plating,
 /area/trainstation/outdoor)
 "cN" = (
 /obj/effect/gibspawner/human,
@@ -803,6 +850,17 @@
 /obj/structure/sign/departments/restroom/directional/west,
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
+"cQ" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/machinery/modular_computer/preset/civilian{
+	dir = 4
+	},
+/turf/open/floor/iron/shuttle/exploration/doubleside{
+	dir = 8
+	},
+/area/trainstation/outdoor)
 "cS" = (
 /obj/structure/chair/sofa/bench/tram/left{
 	dir = 1
@@ -816,16 +874,26 @@
 	},
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "cV" = (
+/obj/structure/railing/unbreakable{
+	dir = 9
+	},
+/obj/structure/decorative{
+	density = 1;
+	anchored = 1;
+	name = "magnetic stasis emitter";
+	desc = "A machine that somehow fabricates hardlight using electrons. Seems to be impervious to conventional means of damage.";
+	icon = 'icons/obj/machines/modular_shield_generator.dmi';
+	icon_state = "charger_on_closed";
+	dir = 1;
+	uses_integrity = 0
+	},
 /obj/structure/emergency_shield/regenerating{
 	uses_integrity = 0;
 	pixel_y = 32;
 	name = "stasis field";
 	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
 	},
-/obj/structure/railing/corner/end/flip{
-	dir = 4
-	},
-/turf/open/floor/plating/reinforced,
+/turf/open/indestructible/plating,
 /area/trainstation/outdoor)
 "cY" = (
 /obj/item/stack/sheet/iron{
@@ -1195,6 +1263,14 @@
 "ey" = (
 /turf/open/floor/carpet/black,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
+"ez" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/turf/open/floor/iron/shuttle/exploration/doubleside{
+	dir = 8
+	},
+/area/trainstation/outdoor)
 "eB" = (
 /obj/effect/decal/cleanable/glass,
 /obj/structure/broken_flooring/plating/directional/west,
@@ -1405,6 +1481,13 @@
 /obj/effect/spawner/random/engineering/material_rare,
 /turf/open/floor/iron/shuttle/exploration/blanktile,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
+"fr" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 5
+	},
+/obj/effect/spawner/random/trash/graffiti,
+/turf/open/indestructible/dark/textured,
+/area/trainstation/outdoor)
 "fs" = (
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor)
@@ -1421,6 +1504,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
+"fw" = (
+/obj/structure/railing/unbreakable{
+	dir = 1
+	},
+/obj/structure/prop/general/highvoltagegrille_off,
+/turf/open/indestructible/plating,
+/area/trainstation/outdoor)
 "fx" = (
 /obj/structure/fake_stairs/directional/south{
 	icon_state = "stairs-old";
@@ -1483,13 +1573,10 @@
 /turf/open/misc/dirt/icy_planet,
 /area/trainstation/indoors/station/collapsed_lab/caves)
 "fJ" = (
-/obj/structure/decorative{
-	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
-	icon_state = "l4-1-4";
-	anchored = 1;
-	name = "cable";
-	color = "#222222"
+/obj/effect/turf_decal/stripes/asteroid{
+	dir = 8
 	},
+/obj/effect/spawner/random/structure/shipping_container/gas,
 /turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
 "fK" = (
@@ -1511,6 +1598,18 @@
 /obj/machinery/light/red/directional/south,
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/station/collapsed_lab/facility)
+"fO" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer/trainstation_control{
+	dir = 8
+	},
+/turf/open/floor/iron/shuttle/exploration/doubleinvertcorner_side{
+	dir = 8
+	},
+/area/trainstation/outdoor)
 "fQ" = (
 /turf/open/floor/iron/dark/side{
 	dir = 4
@@ -1698,6 +1797,16 @@
 	planetary_atmos = 0
 	},
 /area/trainstation/indoors/station/collapsed_lab/cargo)
+"gF" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 10
+	},
+/obj/structure/closet/secure_closet/personal,
+/obj/item/clothing/under/syndicate/skyrat/overalls/unarmoured,
+/obj/effect/spawner/random/special_lighter,
+/obj/effect/spawner/random/entertainment/plushie_delux,
+/turf/open/indestructible/dark/textured,
+/area/trainstation/outdoor)
 "gH" = (
 /obj/structure/prop/general/centerroadbarrier2{
 	pixel_y = 29;
@@ -1823,10 +1932,12 @@
 	},
 /area/trainstation/indoors/station/collapsed_lab/facility)
 "hc" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/open/indestructible/train_platform/bottom,
+/obj/effect/turf_decal/siding/dark,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/reinforced,
+/obj/item/storage/fancy/donut_box,
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
 /area/trainstation/outdoor)
 "he" = (
 /obj/structure/decorative{
@@ -1859,10 +1970,50 @@
 	},
 /turf/open/indestructible/meat,
 /area/trainstation/indoors/station/collapsed_lab/facility)
+"hl" = (
+/obj/structure/railing/unbreakable{
+	dir = 1
+	},
+/obj/structure/emergency_shield/regenerating{
+	uses_integrity = 0;
+	pixel_y = 32;
+	name = "stasis field";
+	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-4-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222"
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-4-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222"
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-4-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222";
+	pixel_y = -14
+	},
+/turf/open/indestructible/plating,
+/area/trainstation/outdoor)
 "hm" = (
 /obj/structure/statue/bone/rib,
 /turf/open/indestructible/meat,
 /area/trainstation/indoors/station/collapsed_lab/facility)
+"ho" = (
+/obj/structure/chair/office/tactical{
+	dir = 1
+	},
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/trainstation/outdoor)
 "hp" = (
 /obj/structure/toilet{
 	dir = 1
@@ -2077,14 +2228,19 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/station/collapsed_lab)
 "hV" = (
-/obj/structure/fence/corner{
+/obj/effect/turf_decal/siding/dark{
+	dir = 5
+	},
+/turf/open/indestructible/dark/textured,
+/area/trainstation/outdoor)
+"hW" = (
+/obj/structure/rack/shelf,
+/obj/effect/turf_decal/delivery,
+/obj/effect/turf_decal/siding/dark{
 	dir = 6
 	},
-/obj/effect/turf_decal/tile/dark/half{
-	dir = 8;
-	alpha = 200
-	},
-/turf/open/indestructible/train_platform,
+/obj/effect/spawner/random/engineering/material_cheap,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
 /area/trainstation/outdoor)
 "hX" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/north{
@@ -2278,12 +2434,8 @@
 /turf/open/floor/iron/shuttle/exploration/corner_invcorner,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "iB" = (
-/obj/structure/prop/general/highvoltagegrille_off,
-/obj/structure/railing{
-	dir = 9;
-	color = "#666666"
-	},
-/turf/open/indestructible/train_platform,
+/obj/structure/sign/warning/electric_shock,
+/turf/closed/wall/city/siding/style/style_1,
 /area/trainstation/outdoor)
 "iC" = (
 /obj/structure/chair,
@@ -2401,6 +2553,18 @@
 	},
 /turf/open/indestructible/meat,
 /area/trainstation/indoors/station/collapsed_lab/caves)
+"iX" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/obj/structure/chair/office/tactical{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/shuttle/exploration/doubleside{
+	dir = 8
+	},
+/area/trainstation/outdoor)
 "iY" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -2588,10 +2752,16 @@
 	},
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "jH" = (
-/obj/effect/turf_decal/siding/wideplating/dark/corner{
+/obj/effect/turf_decal/siding/dark,
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/microwave/engineering/cell_included,
+/obj/structure/table/reinforced,
+/turf/open/floor/iron/shuttle/exploration/corner_invcorner{
 	dir = 4
 	},
-/turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
 "jK" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -2913,8 +3083,8 @@
 /turf/open/floor/iron/shuttle/exploration/corner,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "kQ" = (
-/obj/structure/sign/warning/electric_shock,
-/turf/closed/wall/ice,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/trainstation/outdoor)
 "kT" = (
 /obj/effect/turf_decal/siding/thinplating_new/light/end{
@@ -2993,6 +3163,14 @@
 /obj/effect/decal/cleanable/blood/gibs/old,
 /turf/open/misc/dirt/icy_planet,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
+"lf" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/status_display/evac/directional/east,
+/turf/open/indestructible/dark/textured,
+/area/trainstation/outdoor)
 "lg" = (
 /obj/item/phone{
 	pixel_x = -2;
@@ -3580,20 +3758,13 @@
 	},
 /area/trainstation/indoors/station/collapsed_lab/caves)
 "nd" = (
-/obj/structure/emergency_shield/regenerating{
-	uses_integrity = 0;
-	pixel_y = 32;
-	name = "stasis field";
-	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
+/obj/effect/turf_decal/siding/dark{
+	dir = 6
 	},
-/obj/structure/railing/corner/end/flip{
-	dir = 4
+/obj/item/kirbyplants/random,
+/turf/open/floor/iron/shuttle/exploration/corner_invcorner{
+	dir = 1
 	},
-/obj/structure/prop/general/zcomputermachine{
-	name = "locked down stasis control terminal";
-	desc = "A relatively low-tech solution for internal computing, internal network mail, and logging. This model appears to be quite old."
-	},
-/turf/open/floor/iron/dark/textured_large,
 /area/trainstation/outdoor)
 "ne" = (
 /obj/structure/fake_stairs/directional/south{
@@ -3674,6 +3845,13 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/white/small,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
+"nx" = (
+/obj/effect/turf_decal/siding/dark,
+/obj/structure/table/reinforced,
+/obj/machinery/coffeemaker/impressa,
+/obj/item/storage/box/coffeepack,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
+/area/trainstation/outdoor)
 "ny" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
@@ -3835,6 +4013,27 @@
 /obj/structure/prop/stalagmite/style_4,
 /turf/open/misc/dirt/icy_planet,
 /area/trainstation/indoors/station/collapsed_lab/caves)
+"od" = (
+/obj/structure/railing/unbreakable{
+	dir = 1
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-2-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222"
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-4-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222";
+	pixel_y = -14
+	},
+/turf/open/indestructible/plating,
+/area/trainstation/outdoor)
 "og" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
@@ -4526,12 +4725,16 @@
 /turf/open/floor/iron/white/smooth_large,
 /area/trainstation/indoors/station/collapsed_lab/facility)
 "qq" = (
-/obj/structure/prop/city/buildingventbig11_off{
-	name = "Generator";
-	dir = 1;
-	pixel_x = -16
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
 	},
-/turf/open/floor/plating/reinforced,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/railing/unbreakable{
+	dir = 1
+	},
+/turf/open/floor/iron/shuttle/exploration/doubleside{
+	dir = 8
+	},
 /area/trainstation/outdoor)
 "qs" = (
 /obj/machinery/computer{
@@ -4901,17 +5104,11 @@
 /turf/open/misc/dirt/icy_planet,
 /area/trainstation/indoors/station/collapsed_lab/caves)
 "rJ" = (
-/obj/structure/fake_stairs/directional/south{
-	icon_state = "stairs-old";
-	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
-	color = "#666666";
-	dir = 8
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
 	},
-/obj/structure/railing/corner/end{
-	dir = 8;
-	color = "#666666"
-	},
-/turf/open/indestructible/train_platform,
+/obj/machinery/photocopier/prebuilt,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
 /area/trainstation/outdoor)
 "rM" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -4956,10 +5153,23 @@
 	},
 /turf/open/floor/iron/shuttle/exploration/blanktile,
 /area/trainstation/indoors/station/collapsed_lab)
+"rQ" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 6
+	},
+/obj/effect/spawner/random/structure/crate,
+/turf/open/indestructible/dark/textured,
+/area/trainstation/outdoor)
 "rS" = (
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/misc/dirt/icy_planet,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
+"rT" = (
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
+	},
+/turf/open/indestructible/train_platform/bottom,
+/area/trainstation/outdoor)
 "rU" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 8
@@ -5011,10 +5221,29 @@
 /obj/machinery/light/small/red/dim/directional/south,
 /turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
+"sd" = (
+/obj/structure/decorative/fluff{
+	name = "broken console";
+	desc = "Ruthlessly broken.";
+	icon_state = "computer_broken";
+	icon = 'icons/obj/machines/computer.dmi';
+	anchored = 1;
+	color = "#ecd6c9";
+	density = 1;
+	can_be_unanchored = 1;
+	dir = 2
+	},
+/turf/closed/indestructible/rock/snow/ice/ore,
+/area/trainstation/indoors)
 "se" = (
 /obj/machinery/porta_turret/syndicate,
 /turf/open/floor/iron/shuttle/exploration/blanktile,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
+"sg" = (
+/obj/effect/turf_decal/trimline/tram,
+/obj/machinery/light/floor/transport,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
+/area/trainstation/outdoor)
 "sh" = (
 /obj/effect/turf_decal/tile/neutral/tram,
 /turf/open/floor/iron/shuttle/exploration/blanktile,
@@ -5087,6 +5316,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/radio/intercom/directional/east,
+/obj/item/paper/trainstation_password,
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/station/collapsed_lab/facility)
 "sr" = (
@@ -5378,6 +5608,12 @@
 	dir = 1
 	},
 /area/trainstation/indoors/station/collapsed_lab/cargo)
+"tt" = (
+/obj/machinery/door/airlock/shuttle/ferry{
+	name = "Magnetic interlock control"
+	},
+/turf/open/indestructible/vault,
+/area/trainstation/outdoor)
 "tu" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating/reinforced,
@@ -5398,6 +5634,13 @@
 /obj/structure/broken_flooring/plating/directional/south,
 /turf/open/misc/dirt/icy_planet,
 /area/trainstation/indoors/station/collapsed_lab/caves)
+"tz" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/obj/machinery/modular_computer/preset/civilian,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
+/area/trainstation/outdoor)
 "tD" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /obj/machinery/light/small/red/dim/directional/east,
@@ -5613,10 +5856,7 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "us" = (
-/obj/structure/prop/city/buildingventbig11_off{
-	name = "Generator"
-	},
-/turf/open/floor/plating/reinforced,
+/turf/closed/wall/city/siding/style/style_2,
 /area/trainstation/outdoor)
 "uv" = (
 /obj/structure/deployable_barricade/metal{
@@ -5699,17 +5939,20 @@
 /turf/open/floor/iron/shuttle/exploration/hazard,
 /area/trainstation/indoors/station/collapsed_lab/caves)
 "uJ" = (
-/obj/structure/fence/interlink{
-	dir = 2
-	},
-/obj/structure/railing{
+/obj/structure/railing/unbreakable{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/dark/half{
-	dir = 8;
-	alpha = 200
+/obj/structure/emergency_shield/regenerating{
+	uses_integrity = 0;
+	pixel_y = 32;
+	name = "stasis field";
+	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
 	},
-/turf/open/indestructible/train_platform/bottom,
+/obj/structure/prop/general/zcomputermachine_off{
+	desc = "A relatively low-tech solution for internal computing, internal network mail, and logging. This model appears to be quite old.";
+	name = "locked down stasis control terminal"
+	},
+/turf/open/indestructible/plating,
 /area/trainstation/outdoor)
 "uK" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -6035,17 +6278,13 @@
 	},
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "vC" = (
-/obj/structure/fake_stairs/directional/south{
-	icon_state = "stairs-old";
-	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
-	color = "#666666";
-	dir = 4
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
 	},
-/obj/structure/railing/corner/end/flip{
-	dir = 4;
-	color = "#666666"
-	},
-/turf/open/indestructible/train_platform,
+/obj/structure/closet/secure_closet/personal,
+/obj/effect/spawner/random/weapon,
+/obj/effect/spawner/random/medical/minor_healing,
+/turf/open/indestructible/dark/textured,
 /area/trainstation/outdoor)
 "vD" = (
 /obj/effect/turf_decal/box/corners{
@@ -6129,6 +6368,14 @@
 	icon_state = "rock2"
 	},
 /area/trainstation/indoors/station/collapsed_lab/caves)
+"vM" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/turf/open/floor/iron/shuttle/exploration/corner_invcorner{
+	dir = 4
+	},
+/area/trainstation/outdoor)
 "vP" = (
 /obj/structure/fluff/paper/stack{
 	dir = 4
@@ -6274,6 +6521,18 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/station/collapsed_lab/facility)
+"wh" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 9
+	},
+/obj/machinery/light/red/directional/west,
+/obj/structure/closet/secure_closet/personal,
+/obj/item/clothing/under/syndicate/skyrat/overalls/unarmoured,
+/obj/effect/spawner/random/medical/minor_healing,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/entertainment/musical_instrument,
+/turf/open/indestructible/dark/textured,
+/area/trainstation/outdoor)
 "wk" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 9
@@ -6471,17 +6730,11 @@
 /turf/open/misc/dirt/icy_planet,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "xo" = (
-/obj/structure/decorative{
-	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
-	icon_state = "l4-2-4";
-	anchored = 1;
-	name = "cable";
-	color = "#222222"
-	},
-/obj/structure/railing{
+/obj/effect/turf_decal/siding/dark{
 	dir = 1
 	},
-/turf/open/indestructible/train_platform/bottom,
+/obj/structure/filingcabinet/medical,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
 /area/trainstation/outdoor)
 "xp" = (
 /turf/open/floor/mineral/titanium/tiled/yellow,
@@ -6504,14 +6757,11 @@
 /turf/open/floor/iron/dark,
 /area/trainstation/indoors/station/collapsed_lab/facility)
 "xu" = (
-/obj/structure/decorative{
-	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
-	icon_state = "l4-1-8";
-	anchored = 1;
-	name = "cable";
-	color = "#222222"
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
 	},
-/turf/open/indestructible/train_platform,
+/obj/machinery/status_display/evac/directional/north,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
 /area/trainstation/outdoor)
 "xx" = (
 /obj/effect/decal/cleanable/blood/gibs/old,
@@ -6624,11 +6874,7 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/station/collapsed_lab)
 "xN" = (
-/obj/structure/prop/general/highvoltagegrille_off,
-/obj/structure/railing{
-	dir = 1;
-	color = "#666666"
-	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
 "xQ" = (
@@ -6699,15 +6945,8 @@
 /turf/closed/indestructible/rock/snow/ice/ore,
 /area/trainstation/indoors/station/collapsed_lab/caves)
 "yo" = (
-/obj/structure/decorative{
-	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
-	icon_state = "l4-2-8";
-	anchored = 1;
-	name = "cable";
-	color = "#222222"
-	},
-/obj/structure/railing{
-	dir = 1
+/obj/effect/turf_decal/stripes/asteroid{
+	dir = 8
 	},
 /turf/open/indestructible/train_platform/bottom,
 /area/trainstation/outdoor)
@@ -6954,12 +7193,7 @@
 	},
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "yZ" = (
-/obj/structure/fence/interlink{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wideplating/dark/corner{
-	dir = 4
-	},
+/obj/effect/turf_decal/weather/snow/corner,
 /turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
 "zf" = (
@@ -7125,9 +7359,20 @@
 	},
 /turf/open/indestructible/meat,
 /area/trainstation/indoors/station/collapsed_lab/caves)
+"zN" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
+/area/trainstation/outdoor)
 "zQ" = (
 /turf/open/floor/iron,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
+"zS" = (
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/weather/snow/corner,
+/turf/open/indestructible/train_platform,
+/area/trainstation/outdoor)
 "zT" = (
 /obj/structure/table,
 /obj/machinery/microwave{
@@ -7675,6 +7920,14 @@
 	},
 /turf/open/indestructible/meat,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
+"Ce" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 5
+	},
+/turf/open/floor/iron/shuttle/exploration/corner_invcorner{
+	dir = 8
+	},
+/area/trainstation/outdoor)
 "Cf" = (
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 5
@@ -7801,10 +8054,37 @@
 /turf/open/floor/iron/large,
 /area/trainstation/indoors/station/collapsed_lab/facility)
 "CF" = (
-/obj/structure/prop/general/zhalfgrate1{
-	dir = 8
+/obj/effect/turf_decal/siding/dark{
+	dir = 9
 	},
-/turf/open/indestructible/train_platform,
+/turf/open/indestructible/dark/textured,
+/area/trainstation/outdoor)
+"CG" = (
+/obj/structure/railing/unbreakable{
+	dir = 1
+	},
+/obj/structure/emergency_shield/regenerating{
+	uses_integrity = 0;
+	pixel_y = 32;
+	name = "stasis field";
+	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-4-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222"
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-4-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222";
+	pixel_y = -14
+	},
+/turf/open/indestructible/plating,
 /area/trainstation/outdoor)
 "CH" = (
 /obj/structure/girder,
@@ -8488,17 +8768,10 @@
 /turf/open/misc/dirt/icy_planet,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "EZ" = (
-/obj/structure/decorative{
-	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
-	icon_state = "l4-4-8";
-	anchored = 1;
-	name = "cable";
-	color = "#222222"
+/obj/structure/deployable_barricade/metal{
+	dir = 8
 	},
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/open/indestructible/train_platform/bottom,
+/turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
 "Fa" = (
 /obj/effect/turf_decal/weather/dirt{
@@ -8624,23 +8897,14 @@
 	},
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "Fw" = (
-/obj/structure/emergency_shield/regenerating{
-	uses_integrity = 0;
-	pixel_y = 32;
-	name = "stasis field";
-	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
 	},
-/obj/structure/decorative{
-	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
-	icon_state = "l4-4-8";
-	anchored = 1;
-	name = "cable";
-	color = "#222222"
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
 	},
-/obj/structure/railing/corner/end/flip{
-	dir = 4
-	},
-/turf/open/indestructible/train_platform/bottom,
+/obj/effect/spawner/random/trash/box,
+/turf/open/floor/iron/shuttle/exploration/corner_invcorner,
 /area/trainstation/outdoor)
 "Fx" = (
 /obj/structure/railing,
@@ -8884,6 +9148,10 @@
 	dir = 4
 	},
 /area/trainstation/indoors/station/collapsed_lab/facility)
+"Gu" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/indestructible/train_platform,
+/area/trainstation/outdoor)
 "Gv" = (
 /turf/open/floor/iron/dark/side{
 	dir = 6
@@ -9154,6 +9422,22 @@
 	dir = 8
 	},
 /area/trainstation/indoors/station/collapsed_lab)
+"Hv" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/item/flashlight/lamp,
+/obj/item/papercutter,
+/obj/item/pen,
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/iron/shuttle/exploration/corner_invcorner{
+	dir = 8
+	},
+/area/trainstation/outdoor)
 "Hy" = (
 /obj/structure/prop/city/buildingventbig11_off,
 /turf/open/floor/plating,
@@ -9170,6 +9454,27 @@
 	planetary_atmos = 0
 	},
 /area/trainstation/indoors/station/collapsed_lab/cargo)
+"HC" = (
+/obj/structure/railing/unbreakable{
+	dir = 1
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-2-4";
+	anchored = 1;
+	name = "cable";
+	color = "#222222"
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-4-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222";
+	pixel_y = -14
+	},
+/turf/open/indestructible/plating,
+/area/trainstation/outdoor)
 "HH" = (
 /obj/machinery/door/airlock/bathroom{
 	name = "Restroom"
@@ -9177,13 +9482,7 @@
 /turf/open/floor/iron/shuttle/exploration/smooth,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "HI" = (
-/obj/structure/fence/interlink{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wideplating/dark{
-	dir = 1
-	},
-/turf/open/indestructible/train_platform,
+/turf/closed/wall/city/siding/style/style_1,
 /area/trainstation/outdoor)
 "HL" = (
 /obj/structure/railing{
@@ -9195,9 +9494,19 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/station/collapsed_lab/facility)
 "HO" = (
-/obj/machinery/computer/trainstation_control,
 /obj/structure/marker_beacon/indigo,
 /obj/machinery/light/small/directional/north,
+/obj/structure/decorative/fluff{
+	name = "broken console";
+	desc = "Ruthlessly broken.";
+	icon_state = "computer_broken";
+	icon = 'icons/obj/machines/computer.dmi';
+	anchored = 1;
+	color = "#ecd6c9";
+	density = 1;
+	can_be_unanchored = 1;
+	dir = 2
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/station/collapsed_lab/facility)
 "HR" = (
@@ -9505,24 +9814,10 @@
 /turf/open/floor/plating/reinforced,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "Jp" = (
-/obj/structure/prop/general/highvoltagegrille_off,
-/obj/structure/decorative{
-	density = 1;
-	anchored = 1;
-	name = "magnetic stasis emitter";
-	desc = "A machine that somehow fabricates hardlight using electrons. Seems to be impervious to conventional means of damage.";
-	icon = 'icons/obj/machines/modular_shield_generator.dmi';
-	icon_state = "charger_on_closed";
-	dir = 1;
-	uses_integrity = 0
-	},
-/obj/structure/emergency_shield/regenerating{
-	uses_integrity = 0;
-	pixel_y = 32;
-	name = "stasis field";
-	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
-	},
-/turf/open/indestructible/train_platform/bottom,
+/obj/structure/window/reinforced/tinted/frosted/spawner/directional/east,
+/obj/structure/window/reinforced/tinted/frosted/spawner/directional/west,
+/obj/structure/grille/indestructible,
+/turf/open/floor/plating,
 /area/trainstation/outdoor)
 "Jt" = (
 /obj/structure/sneak_pod/rock/enterence,
@@ -9807,16 +10102,9 @@
 /turf/open/floor/iron/large,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "Km" = (
-/obj/structure/emergency_shield/regenerating{
-	uses_integrity = 0;
-	pixel_y = 32;
-	name = "stasis field";
-	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
-	},
-/obj/structure/railing/corner/end{
-	dir = 8
-	},
-/turf/open/floor/plating/reinforced,
+/obj/effect/turf_decal/weather/snow/corner,
+/obj/structure/barricade/security,
+/turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
 "Ko" = (
 /obj/structure/deployable_barricade/metal,
@@ -9952,6 +10240,18 @@
 /obj/machinery/cell_charger,
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/station/collapsed_lab/facility)
+"KN" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/item/folder/blue,
+/turf/open/floor/iron/shuttle/exploration/doubleside{
+	dir = 8
+	},
+/area/trainstation/outdoor)
 "KO" = (
 /obj/effect/turf_decal/box/corners,
 /obj/effect/turf_decal/box/corners{
@@ -10014,16 +10314,10 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "Lb" = (
-/obj/structure/prop/general/zhalfgrate1{
-	dir = 4
+/obj/effect/turf_decal/stripes/asteroid{
+	dir = 8
 	},
-/obj/structure/decorative{
-	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
-	icon_state = "l4-4-8";
-	anchored = 1;
-	name = "cable";
-	color = "#222222"
-	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
 "Lc" = (
@@ -10058,6 +10352,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
+"Lm" = (
+/obj/effect/turf_decal/siding/dark,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
+/area/trainstation/outdoor)
 "Ln" = (
 /obj/structure/bodycontainer/crematorium{
 	dir = 2
@@ -10161,23 +10459,8 @@
 	},
 /area/trainstation/outdoor)
 "Lz" = (
-/obj/structure/decorative{
-	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
-	icon_state = "l4-4-8";
-	anchored = 1;
-	name = "cable";
-	color = "#222222"
-	},
-/obj/structure/fake_stairs/directional/south{
-	icon_state = "stairs-old";
-	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
-	color = "#666666";
-	dir = 8
-	},
-/obj/structure/railing/corner/end{
-	dir = 8;
-	color = "#666666"
-	},
+/obj/effect/turf_decal/weather/snow/corner,
+/obj/effect/decal/cleanable/blood,
 /turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
 "LC" = (
@@ -10278,7 +10561,9 @@
 /turf/open/floor/iron/white/smooth_corner,
 /area/trainstation/indoors/station/collapsed_lab/facility)
 "LV" = (
-/obj/structure/fence/door,
+/obj/effect/turf_decal/stripes/asteroid{
+	dir = 8
+	},
 /turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
 "LX" = (
@@ -10427,17 +10712,17 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/station/collapsed_lab/facility)
 "Mu" = (
-/obj/structure/prop/general/zhalfgrate1{
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/fax{
+	fax_name = "Head of Personnel's Office";
+	name = "Head of Personnel's Fax Machine"
+	},
+/turf/open/floor/iron/shuttle/exploration/doubleside{
 	dir = 8
 	},
-/obj/structure/decorative{
-	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
-	icon_state = "l4-4-8";
-	anchored = 1;
-	name = "cable";
-	color = "#222222"
-	},
-/turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
 "Mx" = (
 /obj/structure/decorative/fluff{
@@ -10534,20 +10819,14 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/station/collapsed_lab/facility)
 "MQ" = (
-/obj/structure/emergency_shield/regenerating{
-	uses_integrity = 0;
-	pixel_y = 32;
-	name = "stasis field";
-	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
+/obj/effect/turf_decal/siding/dark/corner,
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
 	},
-/obj/structure/railing/corner/end{
-	dir = 8
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/shuttle/exploration/corner_invcorner{
+	dir = 1
 	},
-/obj/structure/prop/general/zcomputermachine{
-	name = "locked down stasis control terminal";
-	desc = "A relatively low-tech solution for internal computing, internal network mail, and logging. This model appears to be quite old."
-	},
-/turf/open/floor/iron/dark/textured_large,
 /area/trainstation/outdoor)
 "MV" = (
 /obj/effect/decal/cleanable/blood/gibs/old,
@@ -10978,6 +11257,14 @@
 /obj/structure/prop/medium/dark_pillar,
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/station/collapsed_lab)
+"OK" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/turf/open/floor/iron/shuttle/exploration/doubleinvertcorner_side{
+	dir = 4
+	},
+/area/trainstation/outdoor)
 "OO" = (
 /turf/open/floor/iron/dark/corner{
 	dir = 8
@@ -11009,10 +11296,26 @@
 /turf/open/misc/dirt/icy_planet,
 /area/trainstation/indoors/station/collapsed_lab/caves)
 "OY" = (
-/obj/structure/railing/corner/end/flip{
-	dir = 4
+/obj/structure/railing/unbreakable{
+	dir = 5
 	},
-/turf/open/indestructible/train_platform/bottom,
+/obj/structure/decorative{
+	density = 1;
+	anchored = 1;
+	name = "magnetic stasis emitter";
+	desc = "A machine that somehow fabricates hardlight using electrons. Seems to be impervious to conventional means of damage.";
+	icon = 'icons/obj/machines/modular_shield_generator.dmi';
+	icon_state = "charger_on_closed";
+	dir = 1;
+	uses_integrity = 0
+	},
+/obj/structure/emergency_shield/regenerating{
+	uses_integrity = 0;
+	pixel_y = 32;
+	name = "stasis field";
+	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
+	},
+/turf/open/indestructible/plating,
 /area/trainstation/outdoor)
 "Pa" = (
 /obj/structure/frame/machine/secured,
@@ -11271,14 +11574,7 @@
 	},
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "Qb" = (
-/obj/structure/fence/interlink{
-	dir = 2
-	},
-/obj/effect/turf_decal/tile/dark/half{
-	dir = 4;
-	alpha = 200
-	},
-/turf/open/indestructible/train_platform,
+/turf/closed/wall/city/siding,
 /area/trainstation/outdoor)
 "Qc" = (
 /obj/structure/frame/machine/secured,
@@ -11293,6 +11589,17 @@
 	dir = 4
 	},
 /area/trainstation/indoors/station/collapsed_lab/facility)
+"Qg" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/effect/spawner/random/entertainment/lighter,
+/obj/effect/spawner/random/medical/medkit,
+/obj/structure/table/reinforced,
+/turf/open/floor/iron/shuttle/exploration/doubleside{
+	dir = 8
+	},
+/area/trainstation/outdoor)
 "Qh" = (
 /obj/structure/shipping_container/nakamura{
 	icon_state = "kosmologistika"
@@ -11362,22 +11669,9 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/station/collapsed_lab/caves)
 "Qq" = (
-/obj/structure/decorative{
-	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
-	icon_state = "l4-4-8";
-	anchored = 1;
-	name = "cable";
-	color = "#222222"
-	},
-/obj/structure/fake_stairs/directional/south{
-	icon_state = "stairs-old";
-	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
-	color = "#666666";
+/obj/effect/turf_decal/weather/snow/corner,
+/obj/effect/turf_decal/weather/snow/corner{
 	dir = 4
-	},
-/obj/structure/railing/corner/end/flip{
-	dir = 4;
-	color = "#666666"
 	},
 /turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
@@ -11691,10 +11985,8 @@
 	},
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "Ry" = (
-/obj/structure/prop/general/highvoltagegrille_off,
-/obj/structure/railing{
-	dir = 5;
-	color = "#666666"
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 8
 	},
 /turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
@@ -12209,27 +12501,8 @@
 /turf/open/misc/dirt/icy_planet,
 /area/trainstation/indoors/station/collapsed_lab/caves)
 "TG" = (
-/obj/structure/emergency_shield/regenerating{
-	uses_integrity = 0;
-	pixel_y = 32;
-	name = "stasis field";
-	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
-	},
-/obj/structure/decorative{
-	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
-	icon_state = "l4-4-8";
-	anchored = 1;
-	name = "cable";
-	color = "#222222"
-	},
-/obj/structure/railing/corner/end{
-	dir = 8
-	},
-/obj/structure/prop/general/zcomputermachine_off{
-	desc = "A relatively low-tech solution for internal computing, internal network mail, and logging. This model appears to be quite old.";
-	name = "locked down stasis control terminal"
-	},
-/turf/open/floor/iron/dark/textured_large,
+/obj/structure/barricade/security,
+/turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
 "TJ" = (
 /obj/effect/turf_decal/weather/dirt{
@@ -12278,14 +12551,7 @@
 /turf/open/floor/iron/shuttle/exploration/corner,
 /area/trainstation/indoors/station/collapsed_lab/facility)
 "Ua" = (
-/obj/structure/fence/interlink{
-	dir = 2
-	},
-/obj/effect/turf_decal/tile/dark/half{
-	dir = 8;
-	alpha = 200
-	},
-/turf/open/indestructible/train_platform,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
 /area/trainstation/outdoor)
 "Ub" = (
 /obj/structure/decorative{
@@ -12313,6 +12579,14 @@
 	dir = 4
 	},
 /area/trainstation/indoors/station/collapsed_lab/facility)
+"Uh" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/turf/open/floor/iron/shuttle/exploration/doubleside{
+	dir = 8
+	},
+/area/trainstation/outdoor)
 "Ul" = (
 /obj/structure/extinguisher_cabinet/directional/west,
 /turf/open/floor/iron/dark/smooth_large,
@@ -12588,13 +12862,7 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/station/collapsed_lab/facility)
 "Vz" = (
-/obj/structure/fence/interlink{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wideplating/dark/corner{
-	dir = 1
-	},
-/turf/open/indestructible/train_platform,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/trainstation/outdoor)
 "VA" = (
 /obj/structure/prop/general/centerroadbarrier2{
@@ -12785,8 +13053,11 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "Wi" = (
-/obj/structure/prop/general/zhalfgrate1{
-	dir = 4
+/obj/structure/deployable_barricade/metal{
+	dir = 8
+	},
+/obj/structure/deployable_barricade/metal{
+	dir = 1
 	},
 /turf/open/indestructible/train_platform,
 /area/trainstation/outdoor)
@@ -12960,6 +13231,15 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/iron/shuttle/exploration/side,
 /area/trainstation/indoors/station/collapsed_lab)
+"WP" = (
+/obj/structure/rack/shelf,
+/obj/effect/turf_decal/delivery,
+/obj/effect/turf_decal/siding/dark{
+	dir = 10
+	},
+/obj/effect/spawner/random/engineering,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
+/area/trainstation/outdoor)
 "WQ" = (
 /obj/item/radio/intercom/directional/south,
 /turf/open/floor/iron/dark/side,
@@ -13144,6 +13424,15 @@
 "Xu" = (
 /turf/open/floor/plating,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
+"Xv" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/obj/structure/extinguisher_cabinet/directional/west,
+/turf/open/floor/iron/shuttle/exploration/doubleside{
+	dir = 8
+	},
+/area/trainstation/outdoor)
 "Xz" = (
 /obj/structure/table/reinforced,
 /obj/structure/displaycase/forsale/kitchen,
@@ -13480,6 +13769,20 @@
 	dir = 6
 	},
 /area/trainstation/indoors/station/collapsed_lab)
+"YS" = (
+/obj/structure/prop/city/buildingventbig11_off{
+	name = "Generator"
+	},
+/obj/structure/railing{
+	dir = 2;
+	color = "#666666";
+	pixel_y = 0
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 6
+	},
+/turf/open/indestructible/dark/textured,
+/area/trainstation/outdoor)
 "Za" = (
 /obj/effect/spawner/structure/flipped_table,
 /obj/structure/prop/general/coffeecuppaijoe{
@@ -13753,6 +14056,15 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/station/collapsed_lab/caves)
+"ZY" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 9
+	},
+/obj/structure/table/reinforced,
+/obj/item/flashlight/lamp,
+/obj/effect/spawner/random/entertainment/deck,
+/turf/open/floor/iron/shuttle/exploration/corner_invcorner,
+/area/trainstation/outdoor)
 
 (1,1,1) = {"
 Ar
@@ -13864,7 +14176,7 @@ cw
 cw
 cw
 cw
-cw
+yZ
 Ar
 Ot
 Ot
@@ -13916,7 +14228,7 @@ cw
 cw
 cw
 cw
-cw
+yZ
 fs
 Ar
 Ot
@@ -13968,7 +14280,7 @@ cw
 cw
 cw
 cw
-cw
+yZ
 fs
 Ar
 Ot
@@ -14020,7 +14332,7 @@ cw
 cw
 cw
 cw
-cw
+yZ
 fs
 fs
 Ar
@@ -14072,7 +14384,7 @@ cw
 cw
 cw
 cw
-cw
+yZ
 fs
 XC
 Ar
@@ -14124,7 +14436,7 @@ cw
 cw
 cw
 cw
-cw
+yZ
 fs
 fs
 Ar
@@ -14176,7 +14488,7 @@ cw
 cw
 cw
 cw
-cw
+yZ
 iu
 fs
 Ar
@@ -14223,12 +14535,12 @@ Ot
 Ot
 "}
 (10,1,1) = {"
-OY
+BB
 cw
 cw
 cw
 cw
-cw
+yZ
 fs
 fs
 Ar
@@ -14275,12 +14587,12 @@ Ot
 Ot
 "}
 (11,1,1) = {"
-ah
-Qb
-cM
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 XC
 Ar
@@ -14327,12 +14639,12 @@ Ot
 Ot
 "}
 (12,1,1) = {"
-Km
-qq
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 Ar
@@ -14379,12 +14691,12 @@ Ot
 Ot
 "}
 (13,1,1) = {"
-Jp
-iB
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 iu
 Ar
@@ -14431,12 +14743,12 @@ Ot
 Ot
 "}
 (14,1,1) = {"
-nd
-Lz
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 du
 fs
 Ar
@@ -14483,12 +14795,12 @@ Ot
 Ot
 "}
 (15,1,1) = {"
-hc
-Mu
-Vz
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 Ar
@@ -14535,12 +14847,12 @@ Ot
 Ot
 "}
 (16,1,1) = {"
-xo
-xu
-LV
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -14587,12 +14899,12 @@ Ot
 Ot
 "}
 (17,1,1) = {"
-EZ
-Wi
+BB
+cw
+cw
+cw
+cw
 yZ
-cw
-cw
-cw
 fs
 iu
 fs
@@ -14639,12 +14951,12 @@ Ot
 Ot
 "}
 (18,1,1) = {"
-TG
-vC
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 du
@@ -14691,12 +15003,12 @@ Ot
 Ot
 "}
 (19,1,1) = {"
-Jp
-xN
-kQ
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -14743,12 +15055,12 @@ Ot
 Ot
 "}
 (20,1,1) = {"
-Fw
-rJ
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 XC
@@ -14795,12 +15107,12 @@ Ot
 Ot
 "}
 (21,1,1) = {"
-EZ
-CF
-Vz
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 du
 fs
@@ -14847,12 +15159,12 @@ Ot
 Ot
 "}
 (22,1,1) = {"
-yo
-fJ
-LV
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -14899,12 +15211,12 @@ Ot
 Ot
 "}
 (23,1,1) = {"
-hc
-Lb
+BB
+cw
+cw
+cw
+cw
 yZ
-cw
-cw
-cw
 fs
 iu
 fs
@@ -14951,12 +15263,12 @@ Ot
 Ot
 "}
 (24,1,1) = {"
-MQ
-Qq
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 XC
@@ -15003,12 +15315,12 @@ Ot
 Ot
 "}
 (25,1,1) = {"
-Jp
-Ry
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -15055,12 +15367,12 @@ Ot
 Ot
 "}
 (26,1,1) = {"
-cV
-us
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 Ar
@@ -15107,12 +15419,12 @@ Ot
 Ot
 "}
 (27,1,1) = {"
-uJ
-Ua
-hV
+BB
 cw
 cw
 cw
+cw
+yZ
 Ar
 Ar
 Ot
@@ -15159,7 +15471,7 @@ Ot
 Ot
 "}
 (28,1,1) = {"
-mH
+BB
 cw
 cw
 cw
@@ -15575,12 +15887,12 @@ Ot
 Ot
 "}
 (36,1,1) = {"
-OY
+BB
 cw
 cw
 cw
 cw
-cw
+yZ
 Ar
 gC
 uh
@@ -15627,12 +15939,12 @@ Ot
 Ot
 "}
 (37,1,1) = {"
-ah
-Qb
-cM
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 Ar
 Ot
@@ -15679,12 +15991,12 @@ Ot
 Ot
 "}
 (38,1,1) = {"
-Km
-qq
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 Ar
@@ -15731,12 +16043,12 @@ Ot
 Ot
 "}
 (39,1,1) = {"
-Jp
-iB
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 Ar
@@ -15783,12 +16095,12 @@ Ot
 Ot
 "}
 (40,1,1) = {"
-nd
-Lz
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 Ar
@@ -15835,12 +16147,12 @@ Ot
 Ot
 "}
 (41,1,1) = {"
-hc
-Mu
-Vz
+BB
 cw
 cw
 cw
+cw
+yZ
 iu
 fs
 fs
@@ -15887,12 +16199,12 @@ Ot
 Ot
 "}
 (42,1,1) = {"
-xo
-xu
-LV
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 XC
 fs
@@ -15939,12 +16251,12 @@ Ot
 Ot
 "}
 (43,1,1) = {"
-EZ
-Wi
+BB
+cw
+cw
+cw
+cw
 yZ
-cw
-cw
-cw
 fs
 fs
 du
@@ -15991,12 +16303,12 @@ Ot
 Ot
 "}
 (44,1,1) = {"
-TG
-vC
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -16043,12 +16355,12 @@ Ot
 Ot
 "}
 (45,1,1) = {"
-Jp
-xN
-kQ
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -16095,12 +16407,12 @@ Ot
 Ot
 "}
 (46,1,1) = {"
-Fw
-rJ
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -16147,12 +16459,12 @@ Ot
 Ot
 "}
 (47,1,1) = {"
-EZ
-CF
-Vz
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -16199,12 +16511,12 @@ Ot
 Ot
 "}
 (48,1,1) = {"
-yo
-fJ
-LV
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 iu
 fs
@@ -16251,12 +16563,12 @@ Ot
 Ot
 "}
 (49,1,1) = {"
-hc
-Lb
+BB
+cw
+cw
+cw
+cw
 yZ
-cw
-cw
-cw
 fs
 fs
 fs
@@ -16303,12 +16615,12 @@ Ot
 Ot
 "}
 (50,1,1) = {"
-MQ
-Qq
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -16355,12 +16667,12 @@ Ot
 Ot
 "}
 (51,1,1) = {"
-Jp
-Ry
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 XC
@@ -16407,12 +16719,12 @@ Ot
 Ot
 "}
 (52,1,1) = {"
-cV
-us
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -16459,12 +16771,12 @@ Ot
 Ot
 "}
 (53,1,1) = {"
-uJ
-Ua
-hV
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -16516,7 +16828,7 @@ cw
 cw
 cw
 cw
-cw
+yZ
 fs
 fs
 iu
@@ -16568,7 +16880,7 @@ cw
 cw
 cw
 cw
-cw
+yZ
 fs
 fs
 fs
@@ -16620,7 +16932,7 @@ cw
 cw
 cw
 cw
-cw
+yZ
 fs
 XC
 fs
@@ -16672,7 +16984,7 @@ cw
 cw
 cw
 cw
-cw
+yZ
 fs
 du
 fs
@@ -16724,7 +17036,7 @@ cw
 cw
 cw
 cw
-cw
+yZ
 fs
 fs
 fs
@@ -16776,7 +17088,7 @@ cw
 cw
 cw
 cw
-cw
+yZ
 fs
 fs
 fs
@@ -16828,7 +17140,7 @@ cw
 cw
 cw
 cw
-cw
+yZ
 fs
 fs
 iu
@@ -16880,7 +17192,7 @@ cw
 cw
 cw
 cw
-cw
+yZ
 fs
 fs
 du
@@ -16927,12 +17239,12 @@ Ot
 Ot
 "}
 (62,1,1) = {"
-OY
+BB
 cw
 cw
 cw
 cw
-cw
+yZ
 fs
 fs
 fs
@@ -16979,12 +17291,12 @@ Ot
 Ot
 "}
 (63,1,1) = {"
-ah
-Qb
-cM
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 XC
 fs
@@ -17031,12 +17343,12 @@ Ot
 Ot
 "}
 (64,1,1) = {"
-Km
-qq
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 iu
 fs
@@ -17083,12 +17395,12 @@ Ot
 Ot
 "}
 (65,1,1) = {"
-Jp
-iB
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -17135,12 +17447,12 @@ Ot
 Ot
 "}
 (66,1,1) = {"
-nd
-Lz
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 Ar
@@ -17187,12 +17499,12 @@ Ot
 Ot
 "}
 (67,1,1) = {"
-hc
-Mu
-Vz
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 Ar
@@ -17239,12 +17551,12 @@ Ot
 Ot
 "}
 (68,1,1) = {"
-xo
-xu
-LV
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 Ar
@@ -17291,12 +17603,12 @@ Ot
 Ot
 "}
 (69,1,1) = {"
-EZ
-Wi
+BB
+cw
+cw
+cw
+cw
 yZ
-cw
-cw
-cw
 fs
 fs
 fs
@@ -17343,12 +17655,12 @@ Ot
 Ot
 "}
 (70,1,1) = {"
-TG
-vC
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 iu
 fs
@@ -17395,12 +17707,12 @@ Ot
 Ot
 "}
 (71,1,1) = {"
-Jp
-xN
-kQ
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -17447,12 +17759,12 @@ Ot
 Ot
 "}
 (72,1,1) = {"
-Fw
-rJ
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -17499,12 +17811,12 @@ Ot
 Ot
 "}
 (73,1,1) = {"
-EZ
-CF
-Vz
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 du
 fs
@@ -17551,12 +17863,12 @@ Ot
 Ot
 "}
 (74,1,1) = {"
-yo
-fJ
-LV
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -17603,12 +17915,12 @@ Ot
 Ot
 "}
 (75,1,1) = {"
-hc
-Lb
+BB
+cw
+cw
+cw
+cw
 yZ
-cw
-cw
-cw
 fs
 fs
 iu
@@ -17655,12 +17967,12 @@ Ot
 Ot
 "}
 (76,1,1) = {"
-MQ
-Qq
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -17707,12 +18019,12 @@ Ot
 Ot
 "}
 (77,1,1) = {"
-Jp
-Ry
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -17759,12 +18071,12 @@ Ot
 Ot
 "}
 (78,1,1) = {"
-cV
-us
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 Ar
@@ -17811,12 +18123,12 @@ Ot
 Ot
 "}
 (79,1,1) = {"
-uJ
-Ua
-hV
+BB
 cw
 cw
 cw
+cw
+yZ
 iu
 fs
 Ar
@@ -17863,12 +18175,12 @@ Ot
 Ot
 "}
 (80,1,1) = {"
-mH
+BB
 cw
 cw
 cw
 cw
-cw
+yZ
 fs
 fs
 Ar
@@ -17920,7 +18232,7 @@ cw
 cw
 cw
 cw
-cw
+yZ
 fs
 fs
 Ar
@@ -17972,7 +18284,7 @@ cw
 cw
 cw
 cw
-cw
+yZ
 fs
 iu
 Ar
@@ -18024,7 +18336,7 @@ cw
 cw
 cw
 cw
-cw
+yZ
 fs
 fs
 Ar
@@ -18076,7 +18388,7 @@ cw
 cw
 cw
 cw
-cw
+yZ
 fs
 fs
 fs
@@ -18128,7 +18440,7 @@ cw
 cw
 cw
 cw
-cw
+yZ
 fs
 iu
 du
@@ -18180,7 +18492,7 @@ cw
 cw
 cw
 cw
-cw
+yZ
 fs
 fs
 XC
@@ -18232,7 +18544,7 @@ cw
 cw
 cw
 cw
-cw
+yZ
 fs
 du
 fs
@@ -18279,12 +18591,12 @@ Ot
 Ot
 "}
 (88,1,1) = {"
-OY
+BB
 cw
 cw
 cw
 cw
-cw
+yZ
 fs
 fs
 fs
@@ -18331,12 +18643,12 @@ Ot
 Ot
 "}
 (89,1,1) = {"
-ah
-Qb
-cM
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -18383,12 +18695,12 @@ Ot
 Ot
 "}
 (90,1,1) = {"
-Km
-qq
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 iu
 XC
@@ -18435,12 +18747,12 @@ Ot
 Ot
 "}
 (91,1,1) = {"
-Jp
-iB
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -18487,12 +18799,12 @@ Ot
 Ot
 "}
 (92,1,1) = {"
-nd
-Lz
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -18539,12 +18851,12 @@ Ot
 Ot
 "}
 (93,1,1) = {"
-hc
-Mu
-Vz
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 iu
@@ -18591,12 +18903,12 @@ Ot
 Ot
 "}
 (94,1,1) = {"
-xo
-xu
-LV
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 du
@@ -18643,12 +18955,12 @@ Ot
 Ot
 "}
 (95,1,1) = {"
-EZ
-Wi
+BB
+cw
+cw
+cw
+cw
 yZ
-cw
-cw
-cw
 fs
 iu
 fs
@@ -18695,12 +19007,12 @@ Ot
 Ot
 "}
 (96,1,1) = {"
-TG
-vC
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 XC
@@ -18747,12 +19059,12 @@ Ot
 Ot
 "}
 (97,1,1) = {"
-Jp
-xN
-kQ
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -18799,12 +19111,12 @@ Ot
 Ot
 "}
 (98,1,1) = {"
-Fw
-rJ
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 iu
@@ -18851,12 +19163,12 @@ Ot
 Ot
 "}
 (99,1,1) = {"
-EZ
-CF
-Vz
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 XC
 fs
@@ -18903,12 +19215,12 @@ Ot
 Ot
 "}
 (100,1,1) = {"
-yo
-fJ
-LV
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -18955,12 +19267,12 @@ Ot
 Ot
 "}
 (101,1,1) = {"
-hc
-Lb
+BB
+cw
+cw
+cw
+cw
 yZ
-cw
-cw
-cw
 fs
 iu
 Ar
@@ -19007,12 +19319,12 @@ Ot
 Ot
 "}
 (102,1,1) = {"
-MQ
-Qq
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 Ar
@@ -19059,12 +19371,12 @@ Ot
 Ot
 "}
 (103,1,1) = {"
-Jp
-Ry
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 Ar
@@ -19111,12 +19423,12 @@ Ot
 Ot
 "}
 (104,1,1) = {"
-cV
-us
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 Ar
@@ -19163,12 +19475,12 @@ Ot
 Ot
 "}
 (105,1,1) = {"
-uJ
-Ua
-hV
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 Ar
 Ot
@@ -19215,12 +19527,12 @@ Ot
 Ot
 "}
 (106,1,1) = {"
-mH
+BB
 cw
 cw
 cw
 cw
-cw
+yZ
 eF
 Ar
 Ot
@@ -19631,12 +19943,12 @@ OQ
 Ot
 "}
 (114,1,1) = {"
-OY
+BB
 cw
 cw
 cw
 cw
-cw
+yZ
 fs
 Ar
 Ot
@@ -19683,12 +19995,12 @@ OQ
 Ot
 "}
 (115,1,1) = {"
-ah
-Qb
-cM
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 Ar
@@ -19735,12 +20047,12 @@ OQ
 Ot
 "}
 (116,1,1) = {"
-Km
-qq
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 Ar
@@ -19787,12 +20099,12 @@ OQ
 Ot
 "}
 (117,1,1) = {"
-Jp
-iB
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 Ar
@@ -19839,12 +20151,12 @@ OQ
 Ot
 "}
 (118,1,1) = {"
-nd
-Lz
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -19891,12 +20203,12 @@ OQ
 Ot
 "}
 (119,1,1) = {"
-hc
-Mu
-Vz
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -19943,12 +20255,12 @@ OQ
 Ot
 "}
 (120,1,1) = {"
-xo
-xu
-LV
+BB
 cw
 cw
 cw
+cw
+yZ
 iu
 du
 fs
@@ -19995,12 +20307,12 @@ OQ
 Ot
 "}
 (121,1,1) = {"
-EZ
-Wi
+BB
+cw
+cw
+cw
+cw
 yZ
-cw
-cw
-cw
 fs
 iu
 fs
@@ -20047,12 +20359,12 @@ OQ
 Ot
 "}
 (122,1,1) = {"
-TG
-vC
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -20099,16 +20411,16 @@ OQ
 Ot
 "}
 (123,1,1) = {"
-Jp
-xN
-kQ
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
-XC
-iu
-du
+fs
+fs
+fs
 fs
 Ar
 Ot
@@ -20151,17 +20463,17 @@ OQ
 Ot
 "}
 (124,1,1) = {"
-Fw
-rJ
-HI
+BB
 cw
 cw
 cw
-iu
-du
-fs
-fs
-fs
+cw
+cw
+Ry
+Ry
+Ry
+Ry
+Ry
 Ar
 Ot
 Ot
@@ -20203,17 +20515,17 @@ OQ
 Ot
 "}
 (125,1,1) = {"
-EZ
-CF
-Vz
+BB
 cw
 cw
 cw
-XC
-fs
-fs
-fs
-fs
+cw
+cw
+cw
+cw
+cw
+cw
+cw
 fs
 Ar
 Ot
@@ -20258,14 +20570,14 @@ Ot
 yo
 fJ
 LV
-cw
-cw
-cw
-fs
-fs
-XC
-fs
-iu
+fJ
+LV
+LV
+LV
+Lb
+Lb
+Lb
+aC
 fs
 fs
 Ar
@@ -20307,17 +20619,17 @@ OQ
 Ot
 "}
 (127,1,1) = {"
-hc
-Lb
-jH
+BB
 cw
 cw
 cw
-iu
-du
-fs
-fs
-fs
+xN
+xN
+Wi
+EZ
+EZ
+xN
+yZ
 fs
 fs
 Ar
@@ -20359,17 +20671,17 @@ OQ
 Ot
 "}
 (128,1,1) = {"
-MQ
-Qq
-HI
+BB
 cw
 cw
 cw
-fs
-iu
-fs
-iu
-du
+cw
+cw
+cw
+cw
+cw
+cw
+Lz
 fs
 fs
 Ar
@@ -20411,17 +20723,17 @@ OQ
 Ot
 "}
 (129,1,1) = {"
-Jp
-Ry
+BB
+Qb
 HI
+Qb
+Qb
+Qb
+HI
+Qb
 cw
 cw
-cw
-fs
-fs
-fs
-fs
-fs
+yZ
 fs
 fs
 Ar
@@ -20465,15 +20777,15 @@ Ot
 (130,1,1) = {"
 cV
 us
-HI
+CF
+aS
+wh
+vC
+gF
+Qb
 cw
 cw
-cw
-fs
-XC
-iu
-du
-fs
+yZ
 fs
 fs
 Ar
@@ -20516,17 +20828,17 @@ Ot
 "}
 (131,1,1) = {"
 uJ
-Ua
+us
 hV
+YS
+fr
+lf
+rQ
+Qb
 cw
 cw
-cw
+Km
 fs
-fs
-fs
-fs
-fs
-iu
 fs
 Ar
 Ot
@@ -20567,17 +20879,17 @@ OQ
 Ot
 "}
 (132,1,1) = {"
-mH
-cw
-cw
-cw
-cw
-cw
-fs
-XC
-iu
-du
-fs
+HC
+HI
+Qb
+Qb
+cf
+Qb
+Qb
+HI
+Qb
+TG
+Km
 fs
 fs
 Ar
@@ -20619,18 +20931,18 @@ OQ
 Ot
 "}
 (133,1,1) = {"
-BB
+fw
+Qb
+ZY
+KN
+ez
+Xv
+vM
+WP
+iB
 cw
-cw
-cw
-cw
-cw
+yZ
 fs
-fs
-iu
-fs
-iu
-du
 fs
 Ar
 Ot
@@ -20671,17 +20983,17 @@ OQ
 Ot
 "}
 (134,1,1) = {"
-BB
+CG
+Qb
+tz
+ho
+kQ
+Vz
+Ua
+Lm
+tt
 cw
-cw
-cw
-cw
-cw
-fs
-fs
-fs
-fs
-fs
+yZ
 fs
 fs
 Ar
@@ -20723,17 +21035,17 @@ OQ
 Ot
 "}
 (135,1,1) = {"
-BB
+cM
+us
+Hv
+cQ
+Mu
+Uh
+MQ
+hW
+Qb
 cw
-cw
-cw
-cw
-cw
-fs
-fs
-XC
-iu
-du
+yZ
 fs
 fs
 Ar
@@ -20775,17 +21087,17 @@ OQ
 Ot
 "}
 (136,1,1) = {"
-BB
+hl
+Qb
+Fw
+iX
+OK
+ez
+jH
+Qb
+HI
 cw
-cw
-cw
-cw
-cw
-fs
-fs
-fs
-fs
-XC
+yZ
 fs
 fs
 Ar
@@ -20827,17 +21139,17 @@ OQ
 Ot
 "}
 (137,1,1) = {"
-BB
+fw
+Qb
+xo
+Vz
+Ua
+Vz
+nx
+Qb
 cw
 cw
-cw
-cw
-cw
-fs
-fs
-iu
-du
-fs
+yZ
 fs
 fs
 Ar
@@ -20879,18 +21191,18 @@ OQ
 Ot
 "}
 (138,1,1) = {"
-BB
+od
+Qb
+rJ
+kQ
+sg
+Vz
+hc
+HI
 cw
 cw
-cw
-cw
-cw
+yZ
 fs
-fs
-fs
-iu
-fs
-iu
 fs
 Ar
 Ot
@@ -20931,17 +21243,17 @@ OQ
 Ot
 "}
 (139,1,1) = {"
-BB
+uJ
+Qb
+xu
+Vz
+zN
+Vz
+ci
+us
+Gu
 cw
-cw
-cw
-cw
-cw
-fs
-iu
-fs
-fs
-fs
+yZ
 fs
 fs
 Ar
@@ -20984,17 +21296,17 @@ Ot
 "}
 (140,1,1) = {"
 OY
+us
+Ce
+Qg
+fO
+qq
+nd
+Qb
 cw
 cw
-cw
-cw
-cw
+yZ
 fs
-XC
-fs
-XC
-iu
-du
 fs
 Ar
 Ot
@@ -21037,16 +21349,16 @@ Ot
 (141,1,1) = {"
 ah
 Qb
-cM
+Qb
+Jp
+Jp
+Jp
+Qb
+HI
 cw
 cw
-cw
+yZ
 fs
-fs
-fs
-iu
-fs
-iu
 Ar
 Ot
 Ot
@@ -21087,17 +21399,17 @@ OQ
 Ot
 "}
 (142,1,1) = {"
-Km
-qq
-HI
+BB
 cw
 cw
 cw
-fs
-iu
-du
-fs
-fs
+cw
+cw
+cw
+cw
+cw
+cw
+yZ
 fs
 Ar
 Ot
@@ -21139,17 +21451,17 @@ OQ
 Ot
 "}
 (143,1,1) = {"
-Jp
-iB
-HI
+BB
 cw
 cw
 cw
-iu
-fs
-iu
-fs
-iu
+cw
+cw
+ah
+ah
+ah
+ah
+Qq
 du
 Ar
 Ot
@@ -21191,12 +21503,12 @@ OQ
 Ot
 "}
 (144,1,1) = {"
-nd
-Lz
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -21243,12 +21555,12 @@ OQ
 Ot
 "}
 (145,1,1) = {"
-hc
-Mu
-Vz
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 XC
@@ -21295,12 +21607,12 @@ OQ
 Ot
 "}
 (146,1,1) = {"
-xo
-xu
-LV
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 iu
 du
@@ -21347,12 +21659,12 @@ OQ
 Ot
 "}
 (147,1,1) = {"
-EZ
-Wi
+BB
+cw
+cw
+cw
+cw
 yZ
-cw
-cw
-cw
 iu
 XC
 fs
@@ -21399,12 +21711,12 @@ OQ
 OQ
 "}
 (148,1,1) = {"
-TG
-vC
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 XC
 fs
 fs
@@ -21451,12 +21763,12 @@ OQ
 OQ
 "}
 (149,1,1) = {"
-Jp
-xN
-kQ
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 iu
 du
@@ -21503,12 +21815,12 @@ mW
 mW
 "}
 (150,1,1) = {"
-Fw
-rJ
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 iu
 fs
 iu
@@ -21555,12 +21867,12 @@ mW
 mW
 "}
 (151,1,1) = {"
-EZ
-CF
-Vz
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -21607,12 +21919,12 @@ mW
 mW
 "}
 (152,1,1) = {"
-yo
-fJ
-LV
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 XC
@@ -21659,19 +21971,19 @@ mW
 mW
 "}
 (153,1,1) = {"
-hc
-Lb
+BB
+cw
+cw
+cw
+cw
 yZ
-cw
-cw
-cw
 fs
 XC
 iu
 du
 Ar
 Ot
-Ot
+sd
 Ot
 gj
 xp
@@ -21711,12 +22023,12 @@ mW
 mW
 "}
 (154,1,1) = {"
-MQ
-Qq
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 iu
 fs
@@ -21763,12 +22075,12 @@ mW
 mW
 "}
 (155,1,1) = {"
-Jp
-Ry
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 fs
 fs
@@ -21815,12 +22127,12 @@ mW
 mW
 "}
 (156,1,1) = {"
-cV
-us
-HI
+BB
 cw
 cw
 cw
+cw
+yZ
 fs
 XC
 iu
@@ -21867,12 +22179,12 @@ mW
 mW
 "}
 (157,1,1) = {"
-uJ
-Ua
-hV
+BB
 cw
 cw
 cw
+cw
+yZ
 iu
 du
 fs
@@ -21919,12 +22231,12 @@ mW
 mW
 "}
 (158,1,1) = {"
-mH
+BB
 cw
 cw
 cw
 cw
-cw
+yZ
 XC
 fs
 fs
@@ -21976,7 +22288,7 @@ cw
 cw
 cw
 cw
-cw
+yZ
 fs
 fs
 XC
@@ -22023,12 +22335,12 @@ mW
 mW
 "}
 (160,1,1) = {"
-BB
-cw
-cw
-cw
-cw
-cw
+rT
+ah
+ah
+ah
+ah
+zS
 iu
 du
 fs

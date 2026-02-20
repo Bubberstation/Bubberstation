@@ -318,15 +318,29 @@
 	map_path = "_maps/modular_events/trainstation/abandoned_train_depo.dm.dmm"
 	creator = "Fenysha"
 	possible_nearstations = list(/datum/train_station/near_station/abandoned_depo)
+	possible_next = list(/datum/train_station/gairen)
+	station_flags = TRAINSTATION_NO_FORKS | TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING
+
+/datum/train_station/gairen
+	name = "Gairen city"
+	map_path = "_maps/modular_events/trainstation/start_city.dmm"
+	creator = "Kierri & Fenysha"
+	ambience_sounds = list('modular_zvents/sounds/thefinalstation/piano_loop.ogg' = 33 SECONDS)
 	possible_next = list(/datum/train_station/infected_laboratory)
 	station_flags = TRAINSTATION_NO_FORKS | TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING
 
+/datum/train_station/emergency_station_a13
+	name = "Emergency station A13"
+	map_path = "_maps/modular_events/trainstation/emergency_a13.dmm"
+	creator = "Fenysha"
+	visible = FALSE
+	station_flags = TRAINSTATION_NO_FORKS | TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING
+
 /datum/train_station/infected_laboratory
-	name = "Infected laboratory"
+	name = "Gaizhin city"
 	map_path = "_maps/modular_events/trainstation/infected_lab.dmm"
 	creator = "Fenysha & v1s1ti"
 	station_flags = TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING
-
 
 /datum/train_station/start_point
 	name = "Union Plasa"
@@ -337,7 +351,7 @@
 	required_stations = 8
 
 /datum/train_station/military_house
-	name = "Evacuated Military Side"
+	name = "Gaizhin evacuated military side"
 	creator = "Fenysha & TYWONKA"
 	map_path = "_maps/modular_events/trainstation/military_side.dmm"
 	station_flags = TRAINSTATION_BLOCKING
@@ -355,10 +369,16 @@
 	map_path = "_maps/modular_events/trainstation/warehouse.dmm"
 	station_flags = TRAINSTATION_BLOCKING
 
-/datum/train_station/frozen_lake
-	name = "Frozen lake"
-	creator = "Fenysha"
-	map_path = "_maps/modular_events/trainstation/iced_lake.dmm"
+
+/datum/train_station/near_station/lost_dam
+	name = "Nearstation - Lost dam"
+	map_path = "_maps/modular_events/trainstation/nearstations/static_lost_dam.dmm"
+
+/datum/train_station/lost_dam
+	name = "Lost dam"
+	creator = "Mold & Fenysha"
+	map_path = "_maps/modular_events/trainstation/lost_dam.dmm"
+	possible_nearstations = list(/datum/train_station/near_station/lost_dam)
 
 /datum/train_station/mines
 	name = "Abandoned mines"

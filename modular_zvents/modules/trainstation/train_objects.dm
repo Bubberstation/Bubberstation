@@ -531,3 +531,29 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/auto_detect, 24)
 			D.lock()
 			balloon_alert(user, "You lock the train door with the master key.")
 		return TRUE
+
+/obj/effect/turf_decal/train_sigh
+	name = "Train sigh"
+	icon = 'modular_zvents/icons/structures/train_sigh.dmi'
+	icon_state = "sigh"
+
+/obj/structure/prop/big/military_nuke
+	name = "Military container"
+	desc = "An incredibly sturdy, locked container. What could be inside?"
+	icon = 'modular_zvents/icons/structures/props/goon/64x48.dmi'
+	anchored = FALSE
+	opacity = FALSE
+	density = TRUE
+	icon_state = "car-nukes"
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
+	flags_1 = SUPERMATTER_IGNORES_1
+	base_pixel_x = -16
+	pixel_x = -16
+
+/obj/structure/prop/big/military_nuke/examine(mob/user)
+	. = ..()
+	. += span_purple("This is an important cargo - it should not be lost.")
+
+/obj/structure/prop/big/military_nuke/Initialize(mapload)
+	. = ..()
+	SSpoints_of_interest.make_point_of_interest(src)
