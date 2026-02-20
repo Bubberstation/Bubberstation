@@ -6,6 +6,9 @@
 /obj/effect/turf_decal/weather/snow/corner,
 /turf/open/floor/asphalt,
 /area/trainstation/outdoor/rails)
+"b" = (
+/turf/closed/wall/ice,
+/area/trainstation/outdoor/rails)
 "c" = (
 /obj/structure/fence/interlink{
 	dir = 8;
@@ -20,6 +23,13 @@
 	icon_state = "deepwater"
 	},
 /area/trainstation/outdoor/rails)
+"e" = (
+/obj/item/storage/bag/fishing{
+	pixel_x = -7;
+	pixel_y = 14
+	},
+/turf/open/floor/fake_snow/safe,
+/area/trainstation/outdoor/rails)
 "g" = (
 /turf/open/floor/plating/snowed/smoothed,
 /area/trainstation/outdoor/rails)
@@ -30,6 +40,23 @@
 	},
 /obj/effect/turf_decal/weather/snow/corner,
 /turf/open/floor/asphalt,
+/area/trainstation/outdoor/rails)
+"t" = (
+/obj/structure/railing/unbreakable{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1
+	},
+/obj/item/chair/plastic,
+/obj/item/chair/plastic{
+	pixel_x = 0;
+	pixel_y = 5
+	},
+/turf/open/floor/plating/snowed/smoothed,
 /area/trainstation/outdoor/rails)
 "u" = (
 /obj/effect/turf_decal/weather/snow,
@@ -56,11 +83,68 @@
 	icon_state = "deepwater"
 	},
 /area/trainstation/outdoor/rails)
+"F" = (
+/obj/structure/railing/unbreakable{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1
+	},
+/obj/item/paper/pamphlet{
+	pixel_x = 6;
+	pixel_y = 3;
+	name = "Fishing Spot PSA";
+	default_raw_text = "<b>Welcome to the Northsbrook Dam.</b><br>Congratulations! You've found the official fishing spot. However, in order for you to be able to fish here, you must acknowledge the following:<br><b>DO NOT CLIMB OVER THE RAILING AND/OR THE FENCES.</b> They're set in place so that nobody falls over the dam, into the lake, and accidentally kills themselves. Again,<br><b>DO NOT CLIMB THE RAILING AND/OR THE FENCE.</b> If you die due to a sudden miscalculation in your common sense - it's <b>ENTIRELY</b> on you. No Gods will return you anything.<br>Thank you for your understanding, and enjoy your fishing spot at the Northsbrook Dam."
+	},
+/obj/item/storage/box/fishing_lures{
+	pixel_x = -14;
+	pixel_y = 3
+	},
+/turf/open/floor/plating/snowed/smoothed,
+/area/trainstation/outdoor/rails)
+"G" = (
+/obj/structure/railing/unbreakable{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1
+	},
+/obj/item/storage/toolbox/fishing{
+	pixel_x = -1;
+	pixel_y = 6
+	},
+/obj/item/storage/toolbox/fishing{
+	pixel_x = -1;
+	pixel_y = 0
+	},
+/obj/structure/marker_beacon/cerulean,
+/turf/open/floor/plating/snowed/smoothed,
+/area/trainstation/outdoor/rails)
 "K" = (
 /turf/open/floor/fake_snow/safe,
 /area/trainstation/outdoor/rails)
 "L" = (
 /turf/open/water/deep_beach/lethal,
+/area/trainstation/outdoor/rails)
+"M" = (
+/obj/structure/railing/unbreakable{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1
+	},
+/turf/open/floor/plating/snowed/smoothed,
 /area/trainstation/outdoor/rails)
 "O" = (
 /obj/effect/turf_decal/weather/snow,
@@ -70,8 +154,18 @@
 /obj/effect/turf_decal/weather/snow/corner,
 /turf/open/floor/asphalt,
 /area/trainstation/outdoor/rails)
+"Q" = (
+/obj/structure/sign/warning/directional/north,
+/turf/open/floor/fake_snow/safe,
+/area/trainstation/outdoor/rails)
 "U" = (
 /turf/closed/indestructible/train_border,
+/area/trainstation/outdoor/rails)
+"W" = (
+/obj/machinery/light/floor{
+	pixel_y = 10
+	},
+/turf/open/floor/fake_snow/safe,
 /area/trainstation/outdoor/rails)
 
 (1,1,1) = {"
@@ -479,7 +573,7 @@ L
 L
 L
 C
-K
+W
 g
 "}
 (25,1,1) = {"
@@ -615,7 +709,7 @@ L
 L
 L
 C
-K
+W
 g
 "}
 (33,1,1) = {"
@@ -751,7 +845,7 @@ L
 L
 L
 C
-K
+W
 O
 "}
 (41,1,1) = {"
@@ -887,7 +981,7 @@ L
 L
 L
 C
-K
+W
 a
 "}
 (49,1,1) = {"
@@ -1023,7 +1117,7 @@ L
 L
 L
 C
-K
+W
 a
 "}
 (57,1,1) = {"
@@ -1159,7 +1253,7 @@ L
 L
 L
 C
-K
+W
 a
 "}
 (65,1,1) = {"
@@ -1295,7 +1389,7 @@ L
 L
 L
 C
-K
+W
 a
 "}
 (73,1,1) = {"
@@ -1448,7 +1542,7 @@ L
 L
 L
 C
-K
+W
 O
 "}
 (82,1,1) = {"
@@ -1601,7 +1695,7 @@ L
 L
 L
 C
-K
+W
 a
 "}
 (91,1,1) = {"
@@ -1737,7 +1831,7 @@ L
 L
 L
 C
-K
+W
 a
 "}
 (99,1,1) = {"
@@ -1873,7 +1967,7 @@ L
 L
 L
 C
-K
+W
 a
 "}
 (107,1,1) = {"
@@ -2009,7 +2103,7 @@ L
 L
 L
 C
-K
+W
 a
 "}
 (115,1,1) = {"
@@ -2145,7 +2239,7 @@ L
 L
 L
 C
-K
+W
 O
 "}
 (123,1,1) = {"
@@ -2281,7 +2375,7 @@ L
 L
 L
 C
-K
+W
 g
 "}
 (131,1,1) = {"
@@ -2417,7 +2511,7 @@ L
 L
 L
 C
-K
+W
 g
 "}
 (139,1,1) = {"
@@ -2450,8 +2544,8 @@ L
 L
 L
 L
-c
-K
+b
+Q
 g
 "}
 (141,1,1) = {"
@@ -2467,7 +2561,7 @@ L
 L
 L
 L
-c
+M
 K
 g
 "}
@@ -2484,7 +2578,7 @@ L
 L
 L
 L
-c
+M
 K
 g
 "}
@@ -2501,7 +2595,7 @@ L
 L
 L
 L
-c
+t
 K
 g
 "}
@@ -2518,7 +2612,7 @@ L
 L
 L
 L
-c
+G
 K
 K
 "}
@@ -2535,8 +2629,8 @@ L
 L
 L
 L
-c
-K
+F
+e
 K
 "}
 (146,1,1) = {"
@@ -2552,8 +2646,8 @@ L
 L
 L
 L
-c
-K
+b
+Q
 g
 "}
 (147,1,1) = {"
