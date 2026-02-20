@@ -896,7 +896,8 @@
 /area/trainstation/indoors/station/controll)
 "dn" = (
 /obj/structure/prop/general/smallwallvent1{
-	pixel_y = 26
+	pixel_y = 26;
+	density = 0
 	},
 /turf/open/floor/stone,
 /area/trainstation/outdoor/powered_light)
@@ -1703,7 +1704,7 @@
 	dir = 5;
 	color = "#666666"
 	},
-/obj/structure/lattice,
+/obj/effect/decal/fakelattice,
 /obj/effect/turf_decal/siding/wideplating/dark,
 /obj/effect/turf_decal/siding/wideplating/dark{
 	dir = 1
@@ -2154,7 +2155,10 @@
 /turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/station/powered)
 "hY" = (
-/obj/structure/prop/city/phonebox_closed_broken,
+/obj/structure/prop/city/phonebox_closed_broken{
+	pixel_x = 5;
+	pixel_y = -9
+	},
 /turf/open/floor/stone,
 /area/trainstation/outdoor/powered_light)
 "hZ" = (
@@ -3133,7 +3137,9 @@
 /turf/open/floor/carpet/blue,
 /area/trainstation/indoors/station/controll)
 "lA" = (
-/obj/structure/prop/general/wymanhole_open,
+/obj/structure/prop/general/wymanhole_open{
+	density = 0
+	},
 /turf/open/floor/stone,
 /area/trainstation/outdoor/powered_light)
 "lB" = (
@@ -3449,7 +3455,9 @@
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 4
 	},
-/obj/structure/prop/general/wymanhole,
+/obj/structure/prop/general/wymanhole{
+	density = 0
+	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/stone,
 /area/trainstation/outdoor/powered_light)
@@ -6719,7 +6727,7 @@
 	dir = 9;
 	color = "#666666"
 	},
-/obj/structure/lattice,
+/obj/effect/decal/fakelattice,
 /obj/effect/turf_decal/siding/wideplating/dark,
 /obj/effect/turf_decal/siding/wideplating/dark{
 	dir = 1
@@ -7468,7 +7476,9 @@
 /turf/open/floor/wood/large,
 /area/trainstation/indoors/station/controll)
 "Be" = (
-/obj/structure/prop/general/wymanhole,
+/obj/structure/prop/general/wymanhole{
+	density = 0
+	},
 /turf/open/floor/stone,
 /area/trainstation/outdoor/powered_light)
 "Bh" = (
@@ -8700,7 +8710,7 @@
 	dir = 1;
 	color = "#666666"
 	},
-/obj/structure/lattice,
+/obj/effect/decal/fakelattice,
 /obj/effect/turf_decal/siding/wideplating/dark,
 /obj/effect/turf_decal/siding/wideplating/dark{
 	dir = 1
@@ -9792,7 +9802,9 @@
 /turf/open/floor/iron/dark,
 /area/trainstation/indoors/station/powered)
 "Jw" = (
-/obj/structure/prop/general/wymanhole_open,
+/obj/structure/prop/general/wymanhole_open{
+	density = 0
+	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/stone,
 /area/trainstation/outdoor/powered_light)
@@ -10175,7 +10187,10 @@
 /turf/open/floor/iron/dark/diagonal,
 /area/trainstation/indoors/station/powered)
 "KP" = (
-/obj/structure/prop/city/phonebox_closed_light,
+/obj/structure/prop/city/phonebox_closed_light{
+	pixel_x = 5;
+	pixel_y = -9
+	},
 /obj/structure/fans/tiny/invisible{
 	density = 1
 	},
@@ -11407,7 +11422,9 @@
 /turf/open/floor/iron/white,
 /area/trainstation/indoors/station/controll)
 "Pw" = (
-/obj/structure/prop/general/atm_off,
+/obj/structure/prop/general/atm_off{
+	pixel_x = 6
+	},
 /turf/open/floor/stone,
 /area/trainstation/outdoor/powered_light)
 "Py" = (
@@ -13030,7 +13047,9 @@
 /turf/open/floor/iron/dark,
 /area/trainstation/indoors/station/controll)
 "Vr" = (
-/obj/structure/prop/general/atm_off,
+/obj/structure/prop/general/atm_off{
+	pixel_x = 6
+	},
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor/powered_light)
 "Vt" = (
