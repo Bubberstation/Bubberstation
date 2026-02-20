@@ -1,3 +1,6 @@
+/proc/is_npc(thing)
+	return istype(thing, /mob/living/basic/npc)
+
 /mob/living/basic/npc
 	name = "Civilian"
 	desc = ""
@@ -52,21 +55,46 @@
 	var/ranged_cooldown = 1 SECONDS
 
 
-	var/speech_chance = 10
+	var/speech_chance = 20
 	var/list/speech_phrases = list(
-		"Hello %MOBNAME%!",
-		"How it's going %MOBNAME%?",
-		"Be careful at stations...",
+		"Quiet… the walls are listening.",
+		"Sirens all night again…",
+		"Never believe the announcements.",
+		"%MOBNAME%, are you coughing too?",
+		"They say it'll be over soon…",
+		"I forgot what clean air smells like.",
+		"They took someone again last night.",
+		"Dont go near the checkpoint without a mask.",
+		"Yesterday there was a neighbor… today — gone.",
+		"Everythings under control, right? Heh…",
+		"Another lockdowns coming, I can feel it.",
+		"My eyes hurt… that dust again.",
+		"Anyone seen the sun without filters?",
+		"Dont ask where this scar came from.",
+		"Just stay away from the news."
 	)
 
 	var/list/speech_emote_see = list(
-		"shakes.",
-		"shakes %PTHEIR% head.",
-		"looks around.",
+		"nervously looks around.",
+		"presses a hand to their mouth and coughs.",
+		"flinches at a distant siren.",
+		"clenches their fists and stares into nothing.",
+		"quickly pulls the mask up over their nose.",
+		"rubs red, irritated eyes and winces.",
+		"freezes, listening hard.",
+		"hides their hands in sleeves and hunches over.",
+		"keeps touching their throat unconsciously."
 	)
 
 	var/list/speech_emote_hear = list(
-		"mumbles something under %PTHEIR% breath.",
+		"whispers barely audible: «they’re watching…»",
+		"mumbles curses in a low, rough voice.",
+		"coughs hoarsely and spits to the side.",
+		"mutters: «one more day… one more…»",
+		"lets out a short, choked sob and goes silent.",
+		"breathes out slowly through clenched teeth.",
+		"whispers a three-word prayer and stops.",
+		"quietly repeats: «don’t look back… don’t look back…»"
 	)
 
 	var/save_data = TRUE
@@ -99,13 +127,6 @@
 	gender = pick(MALE, FEMALE)
 	INVOKE_ASYNC(src, PROC_REF(generate_dynamic_appearance))
 	generate_desc_based_on_species()
-	if(mapping_anchor)
-		for(var/turf/T in view(anchor_search_range, src))
-			var/point = locate(mapping_anchor) in T
-			if(!point)
-				continue
-			ai_controller?.set_blackboard_key(BB_NPC_PATROL_POINT, point)
-			break
 	if(ranged)
 		AddComponent(/datum/component/ranged_attacks,\
 			casing_type = casingtype,\
@@ -115,6 +136,17 @@
 		)
 		if(ranged_cooldown <= 1 SECONDS)
 			AddComponent(/datum/component/ranged_mob_full_auto)
+	return INITIALIZE_HINT_LATELOAD
+
+/mob/living/basic/npc/LateInitialize()
+	if(mapping_anchor)
+		for(var/turf/T in view(anchor_search_range, src))
+			var/point = locate(mapping_anchor) in T
+			if(!point)
+				continue
+			ai_controller?.set_blackboard_key(BB_NPC_PATROL_POINT, point)
+			break
+
 
 /mob/living/basic/npc/examine(mob/user)
 	. = ..()
@@ -406,7 +438,7 @@
 		/datum/outfit/trainstation_civilian/police/alt,
 	)
 
-	speech_chance = 5
+	speech_chance = 15
 	speech_phrases = list(
 		"Move along!",
 		"Everything under control here.",
@@ -469,6 +501,7 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 30
 	ai_controller = /datum/ai_controller/basic_controller/npc_police/ranged
+	mapping_anchor = /obj/effect/landmark/military_patrol_point
 	lighting_cutoff_red = 22
 	lighting_cutoff_green = 5
 	lighting_cutoff_blue = 5
@@ -479,16 +512,50 @@
 	casingtype = /obj/item/ammo_casing/c38
 	burst_shots = 3
 
-	speech_chance = 5
+	speech_chance = 15
 	speech_phrases = list(
-		"Move along!",
+		"Move along.",
+		"Keep moving.",
 		"You shouldn't be here.",
-		"Keep your hands visible.",
-		"Don't hang around here.",
-		"That's not your concern.",
+		"Clear the area.",
+		"Hands where I can see them.",
+		"This zone is restricted.",
+		"Disperse, now.",
+		"Not your business.",
+		"Back off.",
+		"Get out of here.",
+		"Area's off-limits.",
+		"Keep walking.",
+		"Step aside.",
+		"No loitering.",
+		"Move it, civilian."
 	)
-	speech_emote_see = list("scans the surroundings.")
-	speech_emote_hear = list("mutters into radio.")
+
+	speech_emote_see = list(
+		"scans the surroundings.",
+		"levels their weapon slightly.",
+		"steps forward one pace.",
+		"keeps a hand on their rifle.",
+		"narrows their eyes at you.",
+		"gestures sharply to move.",
+		"stands blocking the path.",
+		"turns their head to scan behind.",
+		"rests a hand near their holster.",
+		"watches you without blinking."
+	)
+
+	speech_emote_hear = list(
+		"mutters into radio.",
+		"speaks low into comms.",
+		"grunts something unintelligible.",
+		"barks a short code word.",
+		"whispers coordinates.",
+		"reports quietly: «one civilian»",
+		"mutters: «another straggler»",
+		"clicks tongue and keys the radio.",
+		"breathes heavily into the mic.",
+		"repeats a curt order under breath."
+	)
 
 	possible_outfits = list(/datum/outfit/trainstation_military)
 

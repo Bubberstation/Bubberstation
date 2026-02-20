@@ -1,4 +1,3 @@
-#define LUMINOSITY_DAYLIGHT 1.5  // Unused, but kept for compatibility if needed
 /area
 	var/daylight = FALSE
 
@@ -49,7 +48,7 @@ SUBSYSTEM_DEF(daylight)
 	var/time_locked = FALSE
 	var/manual_time = -1
 
-	var/list/setup_queue = list()
+	var/setup_queue = list()
 	var/setup_running = FALSE
 
 	var/last_cycle_progress = -1
@@ -90,15 +89,6 @@ SUBSYSTEM_DEF(daylight)
 		return
 	A.set_base_lighting(current_color, round(current_intensity * 255, 1))
 
-/datum/controller/subsystem/daylight/proc/remove_daylight_from_area(area/A)
-	if(!istype(A) || QDELETED(A) || !(A in GLOB.areas))
-		return
-
-	daylight_areas -= A
-	for(var/turf/T in A.contents)
-		for(var/obj/effect/light_emitter/daylight/E in T)
-			qdel(E)
-
 /datum/controller/subsystem/daylight/proc/register_emitter(obj/effect/light_emitter/daylight/emitter)
 	if(!emitter || QDELETED(emitter) || (emitter in all_emitters))
 		return
@@ -107,8 +97,6 @@ SUBSYSTEM_DEF(daylight)
 
 /datum/controller/subsystem/daylight/proc/unregister_emitter(obj/effect/light_emitter/daylight/emitter)
 	all_emitters -= emitter
-
-/datum/controller/subsystem/daylight/proc/change_turf_light(turf/T, intensity, color)
 
 /datum/controller/subsystem/daylight/proc/update_all_areas()
 	if(setup_running)
@@ -126,7 +114,7 @@ SUBSYSTEM_DEF(daylight)
 	start_color = current_color
 	transition_steps = TRANSITION_STEPS
 
-/datum/controller/subsystem/daylight/proc/set_intensity_and_color(intensity, color, force = FALSE)
+/datum/controller/subsystem/daylight/proc/set_intensity_and_color(intensity = target_intensity, color = target_color, force = FALSE)
 	if(force)
 		transition_steps = 0
 		update_current(intensity, color)
@@ -226,6 +214,37 @@ SUBSYSTEM_DEF(daylight)
 	set_target(new_value, color)
 	last_cycle_progress = cycle_progress
 
+/datum/controller/subsystem/daylight/proc/flash(color, duration = 10 SECONDS, transition_time = 2 SECONDS, areas)
+	set waitfor = FALSE
+	if(!areas)
+		areas = daylight_areas.Copy()
+	var/trainstation_wait = 0.1 SECONDS
+	var/orig_target_intensity = target_intensity
+	var/orig_target_color = target_color
+	var/steps_up = round(transition_time / wait, 1)
+	var/steps_down = steps_up
+	var/hold_steps = round(duration / wait, 1) - steps_up - steps_down
+	if(hold_steps < 0)
+		hold_steps = 0
+		steps_down = round((duration / wait) / 2, 1)
+		steps_up = steps_down
+
+	set_target(1, color)
+	for(var/i in 1 to steps_up)
+		fire()
+		sleep(trainstation_wait)
+		CHECK_TICK
+
+	for(var/i in 1 to hold_steps)
+		sleep(trainstation_wait)
+		CHECK_TICK
+
+	set_target(orig_target_intensity, orig_target_color)
+	for(var/i in 1 to steps_down)
+		fire()
+		sleep(trainstation_wait)
+		CHECK_TICK
+
 /proc/hex2rgb(hex)
 	if(!hex)
 		return list(255, 255, 255)
@@ -270,7 +289,7 @@ ADMIN_VERB(set_daylight_time, R_ADMIN, "Set Daylight Time (0-1)", "Force dayligh
 	SSdaylight.cycle_locked = (value >= 0)
 
 	if(value >= 0)
-		var/color = (value >= 0.9 ? "#ffffff" : value >= 0.1 ? "#ffaa70" : SSdaylight.night_color)
+		var/color = SSdaylight.get_daylight_color(value)
 		SSdaylight.set_intensity_and_color(value, color, TRUE)
 
 	log_admin("[key_name(usr)] set daylight time to [value == -1 ? "AUTO" : value]")
@@ -287,6 +306,27 @@ ADMIN_VERB(toggle_daylight_cycle_lock, R_ADMIN, "Toggle Daylight Cycle Lock", "L
 
 	log_admin("[key_name(usr)] [SSdaylight.cycle_locked ? "locked" : "unlocked"] daylight cycle")
 	message_admins(span_adminnotice("[key_name_admin(usr)] [SSdaylight.cycle_locked ? "locked" : "unlocked"] daylight cycle"))
+
+ADMIN_VERB(flash_daylight, R_ADMIN, "Flash Daylight", "Temporarily flash areas with a color", ADMIN_CATEGORY_EVENTS)
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/color = input(usr, "Choose flash color", "Flash Color") as color|null
+	if(isnull(color))
+		return
+
+	var/duration = input(usr, "Set flash duration in seconds", "Flash Duration", 10) as num|null
+	if(isnull(duration))
+		return
+
+	var/transition_time = input(usr, "Set transition time in seconds", "Transition Time", 2) as num|null
+	if(isnull(transition_time))
+		return
+
+	SSdaylight.flash(color, duration SECONDS, transition_time SECONDS)
+
+	log_admin("[key_name(usr)] triggered daylight flash with color [color] for [duration] seconds")
+	message_admins(span_adminnotice("[key_name_admin(usr)] triggered daylight flash with color [color] for [duration] seconds"))
 
 
 /obj/effect/light_emitter
@@ -318,7 +358,6 @@ ADMIN_VERB(toggle_daylight_cycle_lock, R_ADMIN, "Toggle Daylight Cycle Lock", "L
 		SSdaylight.unregister_emitter(src)
 	return ..()
 
-#undef LUMINOSITY_DAYLIGHT
 /datum/element/daylight_overlay
 	element_flags = ELEMENT_DETACH_ON_HOST_DESTROY
 	var/mutable_appearance/overlay

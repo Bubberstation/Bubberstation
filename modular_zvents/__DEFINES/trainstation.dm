@@ -8,6 +8,8 @@
 #define COMSIG_TRAIN_TRY_MOVE "train_try_move"
 	#define COMPONENT_BLOCK_TRAIN_MOVEMENT (1 << 2)
 #define COMSIG_TRAINSTATION_UNLOCKED "trainstation_unlocked"
+#define COMSIG_TRAINSTATION_LOADED "trainstation_loaded"
+#define COMSIG_TRAINSTATION_UNLOADED "trainstation_unloaded"
 
 #define TRAIT_NO_STATION_UNLOAD "!no_unload"
 
@@ -30,6 +32,9 @@
 #define BB_BASIC_MOB_BEGIN_CUFFING "bb_begin_cuffing"
 #define BB_MEMORY_LAST_TARGET "bb_memo_last_target"
 #define BB_MEMORY_LAST_TARGET_TIME "bb_memo_last_target_time"
+
+#define BB_MEMORY_ENEMIES_LIST "enemies_list"
+
 
 /proc/find_nearest_ally(atom/source, faction, range = 12)
 	var/closest

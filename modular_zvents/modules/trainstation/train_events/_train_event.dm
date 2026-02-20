@@ -5,6 +5,11 @@
 	typepath = /datum/round_event/train_event
 	weight = 0
 
+/datum/round_event_control/train_event/can_spawn_event(players_amt, allow_magic)
+	if(!SStrain_controller.mode_active)
+		return FALSE
+	return ..()
+
 /datum/round_event/train_event
 	fakeable = FALSE
 

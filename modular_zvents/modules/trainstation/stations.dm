@@ -321,12 +321,18 @@
 	possible_next = list(/datum/train_station/infected_laboratory)
 	station_flags = TRAINSTATION_NO_FORKS | TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING
 
+/datum/train_station/emergency_station_a13
+	name = "Emergency station A13"
+	map_path = "_maps/modular_events/trainstation/emergency_a13.dmm"
+	creator = "Fenysha"
+	visible = FALSE
+	station_flags = TRAINSTATION_NO_FORKS | TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING
+
 /datum/train_station/infected_laboratory
 	name = "Infected laboratory"
 	map_path = "_maps/modular_events/trainstation/infected_lab.dmm"
 	creator = "Fenysha & v1s1ti"
 	station_flags = TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING
-
 
 /datum/train_station/start_point
 	name = "Union Plasa"
