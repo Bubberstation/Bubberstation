@@ -209,7 +209,7 @@ img.bg {
 /datum/asset/simple/lobby
 	assets = list(
 		"FixedsysExcelsior3.01Regular.ttf" = 'html/browser/FixedsysExcelsior3.01Regular.ttf',
-		"OCRAExtended.ttf" = 'html/browser/OCRAEXT.TTF',
+		"OCRAExtended.ttf" = 'modular_zvents/html/OCRAEXT.TTF',
 	)
 
 /datum/controller/subsystem/train_controller/proc/announce_game()
