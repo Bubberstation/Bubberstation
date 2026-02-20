@@ -15,6 +15,16 @@
 	allow_shuttle_docking = TRUE
 	daylight = TRUE
 
+/area/trainstation/outdoor/powered_light
+	name = "Train station"
+	requires_power = FALSE
+	always_unpowered = TRUE
+	power_light = TRUE
+	min_ambience_cooldown = 2 MINUTES
+	max_ambience_cooldown = 6 MINUTES
+
+	allow_shuttle_docking = TRUE
+	daylight = TRUE
 
 /area/trainstation/outdoor/rails
 	name = "Railways"
@@ -60,6 +70,16 @@
 
 /area/trainstation/indoors/station/controll
 	name = "Magnetic interlock controll"
+	requires_power = FALSE
+	always_unpowered = FALSE
+	power_environ = TRUE
+	power_equip = TRUE
+	power_light = TRUE
+	min_ambience_cooldown = 2 MINUTES
+	max_ambience_cooldown = 6 MINUTES
+
+/area/trainstation/indoors/station/powered
+	name = "Trainstation"
 	requires_power = FALSE
 	always_unpowered = FALSE
 	power_environ = TRUE

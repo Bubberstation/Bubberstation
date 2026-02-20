@@ -15,6 +15,13 @@ GLOBAL_LIST_EMPTY(train_object_spawners)
 	var/accuracy_max = 1
 	var/allow_selection = TRUE
 
+/datum/train_object_spawner_theme/proc/on_selected()
+	return
+
+/datum/train_object_spawner_theme/proc/on_deselected()
+	return
+
+
 /datum/train_object_spawner_theme/forest
 	weighted_spawnlist = list(
 		/obj/structure/flora/tree/pine/style_random = 60,
@@ -23,6 +30,33 @@ GLOBAL_LIST_EMPTY(train_object_spawners)
 	)
 	accuracy_max = 3
 	max_delay = 4 SECONDS
+
+/datum/train_object_spawner_theme/war
+	weighted_spawnlist = list(
+		/obj/structure/flora/tree/dead/style_random = 60,
+		/obj/structure/flora/grass/both/style_random = 20,
+		/obj/effect/decal/cleanable/blood/gibs/body = 15,
+		/obj/effect/decal/cleanable/blood/gibs/down = 15,
+		/obj/structure/mecha_wreckage/durand = 15,
+		/obj/structure/mecha_wreckage/seraph = 15,
+		/obj/structure/mecha_wreckage/marauder = 15,
+		/obj/structure/prop/vehicle/tank/broken = 5,
+	)
+	accuracy_max = 2
+	max_delay = 3 SECONDS
+	allow_selection = FALSE
+
+/datum/train_object_spawner_theme/they
+	weighted_spawnlist = list(
+		/obj/structure/flora/tree/dead/style_random = 70,
+		/obj/structure/flora/grass/both/style_random = 25,
+		/obj/structure/prop/special_they = 5,
+	)
+	accuracy_max = 2
+	max_delay = 7 SECONDS
+	allow_selection = FALSE
+
+
 
 /obj/effect/landmark/trainstation/object_spawner
 	name = "Object spawner"

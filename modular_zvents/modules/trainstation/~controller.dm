@@ -191,6 +191,8 @@ SUBSYSTEM_DEF(train_controller)
 	if(announce && !(loaded_station.station_flags & TRAINSTATION_ABSCTRACT))
 		show_station_logo(to_load)
 	connect_terminals()
+	SEND_SIGNAL(src, COMSIG_TRAINSTATION_LOADED, loaded_station)
+	loading = FALSE
 	if(loaded_station.station_flags & TRAINSTATION_NO_FORKS)
 		return
 	pick_possible_stations()
@@ -204,12 +206,21 @@ SUBSYSTEM_DEF(train_controller)
 
 
 /datum/controller/subsystem/train_controller/proc/set_movement_theme(datum/train_object_spawner_theme/new_theme)
-	if(!new_theme)
+	var/datum/train_object_spawner_theme/selected = null
+	if(ispath(new_theme))
+		selected = GLOB.train_spwaner_themes[new_theme]
+	else if(istype(new_theme, /datum/train_object_spawner_theme))
+		selected = new_theme
+
+	if(!selected)
 		stack_trace("Trying set null movement theme!")
 		return
-	selected_theme = new_theme
+	if(selected_theme)
+		selected_theme.on_deselected()
+	selected_theme = selected
+	selected_theme.on_selected()
 	for(var/obj/effect/landmark/trainstation/object_spawner/spawner in GLOB.train_object_spawners)
-		spawner.set_theme(new_theme)
+		spawner.set_theme(selected)
 
 /**
  * Movement handling
@@ -296,7 +307,7 @@ SUBSYSTEM_DEF(train_controller)
 		stop_moving()
 		return
 
-	if(moving && planned_to_load && time_to_next_station > 0)
+	if(moving && planned_to_load && time_to_next_station >= 0)
 		time_to_next_station -= wait
 		total_travel_time += wait
 		if(time_to_next_station <= 0)
