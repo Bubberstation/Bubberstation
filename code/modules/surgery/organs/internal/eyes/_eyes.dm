@@ -514,7 +514,7 @@
 /obj/item/organ/eyes/proc/blink(duration = BLINK_DURATION, restart_animation = TRUE)
 	var/left_delayed = prob(50)
 	// Storing blink delay so mistimed blinks of lizards don't get cut short
-	var/sync_blinking = synchronized_blinking && (owner.get_organ_loss(ORGAN_SLOT_BRAIN) < BRAIN_DAMAGE_ASYNC_BLINKING)
+	var/sync_blinking = TRUE //BUBBERSTATION CHANGE: DISABLES SYNCED BLINKING UNTIL /TG/ AND/OR BYOND FIXES IT. OLD CODE: synchronized_blinking && (owner.get_organ_loss(ORGAN_SLOT_BRAIN) < BRAIN_DAMAGE_ASYNC_BLINKING)
 	var/blink_delay = sync_blinking ? 0 : rand(0, RAND_BLINKING_DELAY)
 	animate(eyelid_left, alpha = 0, time = 0)
 	if (!sync_blinking && left_delayed)
@@ -532,7 +532,7 @@
 		addtimer(CALLBACK(src, PROC_REF(animate_eyelids), owner), blink_delay + duration)
 
 /obj/item/organ/eyes/proc/animate_eyelids(mob/living/carbon/human/parent)
-	var/sync_blinking = synchronized_blinking && (parent.get_organ_loss(ORGAN_SLOT_BRAIN) < BRAIN_DAMAGE_ASYNC_BLINKING)
+	var/sync_blinking = TRUE //BUBBERSTATION CHANGE: DISABLES SYNCED BLINKING UNTIL /TG/ AND/OR BYOND FIXES IT. OLD CODE: synchronized_blinking && (parent.get_organ_loss(ORGAN_SLOT_BRAIN) < BRAIN_DAMAGE_ASYNC_BLINKING)
 	// Randomize order for unsynched animations
 	if (sync_blinking || prob(50))
 		var/list/anim_times = animate_eyelid(eyelid_left, parent, sync_blinking)

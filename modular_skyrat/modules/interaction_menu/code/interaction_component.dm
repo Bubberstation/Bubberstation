@@ -67,7 +67,7 @@
 /datum/component/interactable/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "InteractionMenu")
+		ui = new(user, src, "InteractionPanel")
 		ui.open()
 
 /datum/component/interactable/ui_status(mob/user, datum/ui_state/state)
@@ -75,6 +75,11 @@
 		return UI_CLOSE
 
 	return UI_INTERACTIVE // This UI is always interactive as we handle distance flags via can_interact
+
+/datum/component/interactable/ui_static_data(mob/user)
+	var/list/data = list()
+	data["arousalLimit"] = AROUSAL_LIMIT
+	return data
 
 /datum/component/interactable/ui_data(mob/user)
 	var/list/data = list()
@@ -106,6 +111,34 @@
 			data["self"] = body_relay.name
 	data["block_interact"] = interact_next >= world.time
 	data["interactions"] = categories
+	data["erp_interaction"] = self.client?.prefs?.read_preference(/datum/preference/toggle/erp)
+
+	var/mob/living/carbon/human/human_user = user
+
+	data["isTargetSelf"] = (user == self)
+
+	// user (the one who opened the ui)
+	var/user_pleasure = 0
+	var/user_arousal = 0
+	var/user_pain = 0
+
+	if(user)
+		user_pleasure = human_user.pleasure
+		user_arousal = human_user.arousal
+		user_pain = human_user.pain
+
+		data["pleasure"] = user_pleasure
+		data["arousal"] = user_arousal
+		data["pain"] = user_pain
+		data["yourName"] = human_user.real_name
+
+
+	// self - the one who the interaction component belongs to, aka who it's opened on (confusing var name yep)
+	if(user != self)
+		data["theirPleasure"] = self.pleasure
+		data["theirArousal"] = self.arousal
+		data["theirPain"] = self.pain
+		data["theirName"] = self.real_name
 
 	var/list/parts = list()
 

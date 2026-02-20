@@ -20,6 +20,11 @@
 	desc = "Ankle coverings. Hang ten, brother."
 	icon_state = "bluecuffs"
 
+/obj/item/clothing/shoes/wraps/clear
+	name = "clear leg wraps"
+	desc = "A simple, inconspicuous replacement for shoes."
+	icon_state = "clearcuffs"
+
 /obj/item/clothing/shoes/cowboyboots
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/feet.dmi'
