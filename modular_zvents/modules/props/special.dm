@@ -13,6 +13,7 @@
 	uses_integrity = FALSE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	flags_1 = SUPERMATTER_IGNORES_1
+	alpha = 125
 
 	pixel_x =  -64
 	plane = MASSIVE_OBJ_PLANE
