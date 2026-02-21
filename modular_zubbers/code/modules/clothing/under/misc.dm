@@ -290,17 +290,6 @@
 
 //SECURITY
 
-/obj/item/clothing/under/rank/security/security_bunnysuit
-	desc = "The staple of any bunny themed security officers. The red coloring helps to hide any blood that may stain this."
-	name = "security bunnysuit"
-	icon_state = "bunnysuit_sec"
-	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
-	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
-	body_parts_covered = CHEST|GROIN|LEGS
-	alt_covers_chest = TRUE
-
-
 /obj/item/clothing/under/rank/security/security_assistant_bunnysuit
 	desc = "The staple of any bunny themed security assistants. Can't lost respect you don't have!"
 	name = "security assistant's bunnysuit"
@@ -310,19 +299,6 @@
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
-
-
-
-/obj/item/clothing/under/rank/security/warden_bunnysuit
-	desc = "The staple of any bunny themed wardens. The more formal security bunny suit for a less combat focused job."
-	name = "warden's bunnysuit"
-	icon_state = "bunnysuit_warden"
-	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
-	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
-	body_parts_covered = CHEST|GROIN|LEGS
-	alt_covers_chest = TRUE
-
 
 /obj/item/clothing/under/rank/security/brig_phys_bunnysuit
 	desc = "The staple of any bunny themed brig physicians. The rejected alternative to an already discontinued alternate uniform, now sold at a premium!"
@@ -361,17 +337,6 @@
 	name = "prisoner's bunnysuit"
 	icon_state = "bunnysuit_prisoner"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
-	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
-	body_parts_covered = CHEST|GROIN|LEGS
-	alt_covers_chest = TRUE
-
-
-/obj/item/clothing/under/rank/security/head_of_security/bunnysuit
-	desc = "The staple of any bunny themed security commanders. Includes kevlar weave stockings and a gilded tail."
-	name = "Head of Security's bunnysuit"
-	icon_state = "bunnysuit_hos"
-	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
@@ -651,3 +616,49 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
+
+/obj/item/clothing/under/syndicate/tacticool/black
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_teshari.dmi'
+
+/obj/item/clothing/under/rank/civilian/clown/britches
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_teshari.dmi'
+
+/obj/item/clothing/under/rank/blueshield/netra
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_teshari.dmi'
+
+/obj/item/clothing/under/rank/lace
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	// awkwardly shoving this in with the skyrat donator item sprites until someone tells me no. send help
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_teshari.dmi'
+
+/obj/item/clothing/under/suit/fancy
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	greyscale_config_worn_digi = /datum/greyscale_config/fancy_suit/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/fancy_suit/worn/teshari
+
+/obj/item/clothing/under/texas
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/uniform_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/mob/clothing/species/teshari/uniform.dmi'
+
+/obj/item/clothing/under/doug_dimmadome
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/uniform_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/mob/clothing/species/teshari/uniform.dmi'
+
+/obj/item/clothing/under/custom/blutigen_undergarment
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_teshari.dmi'
+
+/obj/item/clothing/under/occult
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_teshari.dmi'
