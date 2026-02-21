@@ -1,38 +1,4 @@
-/obj/item/clothing/head/beret/sec/peacekeeper
-	name = "peacekeeper beret"
-	desc = "A robust beret with the peacekeeper insignia emblazoned on it. Uses reinforced fabric to offer sufficient protection."
-	icon_state = "/obj/item/clothing/head/beret/sec/peacekeeper"
-	greyscale_config = /datum/greyscale_config/beret_badge
-	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
-	post_init_icon_state = "beret_badge"
-	greyscale_colors = "#3F3C40#375989"
-	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
-	armor_type = /datum/armor/head_helmet
-
-/obj/item/clothing/head/beret/sec/peacekeeper/white
-	icon_state = "/obj/item/clothing/head/beret/sec/peacekeeper/white"
-	greyscale_config = /datum/greyscale_config/beret
-	greyscale_config_worn = /datum/greyscale_config/beret/worn
-	greyscale_config_worn_teshari = /datum/greyscale_config/beret/worn/teshari
-	post_init_icon_state = "beret"
-	greyscale_colors = "#EAEAEA"
-
-/obj/item/clothing/head/hats/hos/beret/peacekeeper
-	name = "head of security's peacekeeper beret"
-	desc = "A special beret with the Head of Security's insignia emblazoned on it. A symbol of excellence, a badge of courage, a mark of distinction."
-	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
-	armor_type = /datum/armor/hats_hos
-
-/obj/item/clothing/head/beret/sec/navywarden/peacekeeper
-	name = "warden's peacekeeper beret"
-	desc = "A special beret with the Warden's insignia emblazoned on it. For wardens with class."
-	icon_state = "/obj/item/clothing/head/beret/sec/navywarden/peacekeeper"
-	greyscale_config = /datum/greyscale_config/beret_badge_fancy
-	greyscale_config_worn = /datum/greyscale_config/beret_badge_fancy/worn
-	greyscale_colors = "#3f6e9e#FF0000#00AEEF"
-	post_init_icon_state = "beret_badge_fancy_twist"
-	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
-	armor_type = /datum/armor/hats_warden
+// anything here is non-sec specific or is used for armadyne, which is out-of-scope
 
 /obj/item/clothing/head/helmet/sec/terra
 	name = "sol police helmet"
@@ -44,90 +10,15 @@
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 	armor_type = /datum/armor/head_helmet
 
-/obj/item/clothing/head/hats/warden/police/patrol
-	name = "police patrol cap"
-	desc = "A dark colored hat with a silver badge, for the officer interested in style."
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
-	icon_state = "policeofficerpatrolcap"
-	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
-	armor_type = /datum/armor/head_helmet
-
-/obj/item/clothing/head/hats/warden/police/patrol/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/police_patrol_cap)
-
-/datum/atom_skin/police_patrol_cap
-	abstract_type = /datum/atom_skin/police_patrol_cap
-
-/datum/atom_skin/police_patrol_cap/blue
-	preview_name = "Blue Variant"
-	new_icon_state = "policeofficercap"
-
-/datum/atom_skin/police_patrol_cap/black_blue
-	preview_name = "Black and Blue Variant"
-	new_icon_state = "policeofficerpatrolcap"
-
-/datum/atom_skin/police_patrol_cap/sillitoe
-	preview_name = "Sillitoe Variant"
-	new_icon_state = "policetrafficcap"
-
-/datum/atom_skin/police_patrol_cap/long_kesh
-	preview_name = "Long Kesh Variant"
-	new_icon_state = "corrections_officer"
-
-/datum/atom_skin/police_patrol_cap/cadet
-	preview_name = "Cadet Variant"
-	new_icon_state = "policecadetcap"
-
 /obj/item/clothing/glasses/hud/security/sunglasses/peacekeeper
 	name = "peacekeeper hud glasses"
 	icon_state = "peacekeeperglasses"
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi'
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/glasses.dmi'
 
-//PEACEKEEPER UNIFORM
-/obj/item/clothing/under/rank/security/peacekeeper
-	name = "peacekeeper uniform"
-	desc = "A sleek peacekeeper uniform, made to a price."
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
-	icon_state = "peacekeeper"
-	can_adjust = TRUE
-	sensor_mode = SENSOR_COORDS
-	random_sensor = FALSE
-
-/obj/item/clothing/under/rank/security/warden/peacekeeper
-	name = "peacekeeper wardens suit"
-	desc = "A formal security suit for officers complete with Armadyne belt buckle."
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
-	icon_state = "peacekeeper_warden"
-
-/obj/item/clothing/under/rank/security/warden
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
-
-/obj/item/clothing/under/rank/security/head_of_security/peacekeeper
-	name = "head of security's peacekeeper jumpsuit"
-	desc = "A security jumpsuit decorated for those few with the dedication to achieve the position of Head of Security."
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
-	icon_state = "peacekeeper_hos"
-
 //PEACEKEEPER ARMOR
-/obj/item/clothing/suit/armor/vest/peacekeeper
-	name = "peacekeeper armor vest"
-	desc = "A standard issue peacekeeper armor vest, versatile, lightweight, and most importantly, cheap."
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi'
-	icon_state = "peacekeeper_white"
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
-/obj/item/clothing/suit/armor/vest/peacekeeper/black
-	icon_state = "peacekeeper_black"
-
-/obj/item/clothing/suit/armor/vest/peacekeeper/brit
+/obj/item/clothing/suit/armor/vest/brit
 	name = "high vis armored vest"
 	desc = "Oi bruv, you got a loicence for that?"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi'
@@ -135,18 +26,9 @@
 	icon_state = "hazardbg"
 	worn_icon_state = "hazardbg"
 
-/obj/item/clothing/suit/armor/vest/peacekeeper/brit/Initialize(mapload)
+/obj/item/clothing/suit/armor/vest/brit/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/toggle_icon, "zipper")
-
-/obj/item/clothing/suit/armor/vest/peacekeeper/spacecoat
-	name = "peacekeeper sleek coat"
-	desc = "An incredibly stylish and heavy black coat made of synthetic kangaroo leather, padded with durathread and lined with kevlar."
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi'
-	icon_state = "peacekeeper_spacecoat"
-	worn_icon_state = "peacekeeper_spacecoat"
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 //PEACEKEEPER GLOVES
 /obj/item/clothing/gloves/combat/peacekeeper
@@ -165,20 +47,6 @@
 	resistance_flags = FLAMMABLE
 	armor_type = /datum/armor/none
 	cut_type = null
-
-/obj/item/clothing/gloves/tackler/peacekeeper
-	name = "peacekeeper gripper gloves"
-	desc = "Special gloves that manipulate the blood vessels in the wearer's hands, granting them the ability to launch headfirst into walls."
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
-	icon_state = "peacekeeper_gripper_gloves"
-
-/obj/item/clothing/gloves/kaza_ruk/sec/peacekeeper
-	name = "peacekeeper kaza ruk gloves"
-	desc = "These gloves can teach you to perform Kaza Ruk using nanochips."
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
-	icon_state = "peacekeeper_gripper_gloves"
 
 //PEACEKEEPER BELTS
 /obj/item/storage/belt/security/peacekeeper
