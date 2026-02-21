@@ -77,13 +77,12 @@
 	glasses = /obj/item/clothing/glasses/hud/ar/aviator/security
 	suit = /obj/item/clothing/suit/hooded/wintercoat/security
 	uniform = /obj/item/clothing/under/rank/security/corrections_officer/sweater
-	belt = /obj/item/storage/belt/security/webbing/peacekeeper
+	belt = /obj/item/storage/belt/security/webbing
 	gloves = /obj/item/clothing/gloves/color/black/security/blu
 	shoes = /obj/item/clothing/shoes/combat/swat
 	back = /obj/item/storage/backpack/messenger/blueshield
 
 /datum/outfit/trainstation_civilian/police/alt
-	suit = /obj/item/clothing/suit/armor/vest/peacekeeper
 	back = /obj/item/storage/backpack/security
 
 /datum/outfit/trainstation_military
