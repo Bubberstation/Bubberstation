@@ -1299,7 +1299,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood/old,
-/mob/living/basic/flesh_spider,
+/mob/living/basic/khara_mutant/flesh_spider,
 /turf/open/floor/wood/parquet,
 /area/trainstation/indoors/station/controll)
 "eF" = (
@@ -5910,7 +5910,7 @@
 /area/trainstation/indoors/station/powered)
 "vz" = (
 /obj/effect/decal/cleanable/blood/old,
-/mob/living/basic/flesh_spider,
+/mob/living/basic/khara_mutant/flesh_spider,
 /turf/open/floor/wood/tile,
 /area/trainstation/indoors/station/controll)
 "vA" = (
@@ -6935,6 +6935,13 @@
 	},
 /turf/open/floor/stone,
 /area/trainstation/outdoor/powered_light)
+"za" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/mob/living/basic/khara_mutant/reaper,
+/turf/open/floor/iron/white,
+/area/trainstation/indoors/station/controll)
 "zc" = (
 /obj/machinery/recharger{
 	pixel_x = 14
@@ -7083,6 +7090,12 @@
 	pixel_x = -4;
 	pixel_y = 2
 	},
+/turf/open/floor/iron/white,
+/area/trainstation/indoors/station/controll)
+"zE" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/machinery/light/dim/directional/south,
+/mob/living/basic/khara_mutant/reaper,
 /turf/open/floor/iron/white,
 /area/trainstation/indoors/station/controll)
 "zJ" = (
@@ -8151,7 +8164,7 @@
 "DC" = (
 /obj/effect/turf_decal/siding/dark,
 /obj/effect/turf_decal/tile/yellow/diagonal_centre,
-/mob/living/basic/flesh_spider,
+/mob/living/basic/khara_mutant/flesh_spider,
 /turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/station/controll)
 "DF" = (
@@ -8775,6 +8788,10 @@
 	},
 /turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/station/powered)
+"FS" = (
+/mob/living/basic/khara_mutant/reaper,
+/turf/open/floor/iron/white,
+/area/trainstation/indoors/station/controll)
 "FT" = (
 /obj/structure/bed/medical/emergency,
 /obj/effect/turf_decal/siding,
@@ -10186,6 +10203,10 @@
 	},
 /turf/open/floor/iron/dark/diagonal,
 /area/trainstation/indoors/station/powered)
+"KO" = (
+/mob/living/basic/khara_mutant/reaper,
+/turf/open/floor/wood/parquet,
+/area/trainstation/indoors/station/controll)
 "KP" = (
 /obj/structure/prop/city/phonebox_closed_light{
 	pixel_x = 5;
@@ -10939,7 +10960,7 @@
 /area/trainstation/indoors/station/powered)
 "NB" = (
 /obj/machinery/digital_clock/directional/east,
-/mob/living/basic/flesh_spider,
+/mob/living/basic/khara_mutant/flesh_spider,
 /turf/open/floor/wood/tile,
 /area/trainstation/indoors/station/controll)
 "NE" = (
@@ -11190,6 +11211,10 @@
 "Ou" = (
 /obj/effect/turf_decal/tile/dark_blue/diagonal_edge,
 /turf/open/floor/iron/dark/diagonal,
+/area/trainstation/indoors/station/controll)
+"Ow" = (
+/mob/living/basic/khara_mutant/reaper,
+/turf/open/floor/iron/dark,
 /area/trainstation/indoors/station/controll)
 "Oy" = (
 /obj/structure/prop/general/roadbarrierpolice,
@@ -12597,6 +12622,13 @@
 /obj/effect/turf_decal/lunar_sand/plating,
 /turf/open/floor/plating,
 /area/trainstation/indoors/station/controll)
+"TX" = (
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 8
+	},
+/mob/living/basic/khara_mutant/reaper,
+/turf/open/floor/iron/white,
+/area/trainstation/indoors/station/controll)
 "TZ" = (
 /obj/effect/spawner/random/vending/colavend,
 /obj/effect/turf_decal/tile/dark_blue/diagonal_edge,
@@ -12739,7 +12771,7 @@
 /area/trainstation/outdoor/powered_light)
 "Up" = (
 /obj/effect/decal/cleanable/blood/old,
-/mob/living/basic/flesh_spider,
+/mob/living/basic/khara_mutant/flesh_spider,
 /turf/open/floor/wood/parquet,
 /area/trainstation/indoors/station/controll)
 "Ur" = (
@@ -17702,7 +17734,7 @@ mr
 fx
 oP
 uf
-zV
+FS
 zV
 zV
 Rq
@@ -17880,7 +17912,7 @@ rT
 PL
 YZ
 zV
-Ez
+zE
 Rq
 FT
 YZ
@@ -18035,7 +18067,7 @@ Ve
 zV
 Rq
 jR
-eR
+za
 BB
 nn
 US
@@ -18269,7 +18301,7 @@ VO
 QZ
 Oj
 Oz
-DU
+KO
 DU
 Oj
 Rq
@@ -18850,7 +18882,7 @@ Km
 XC
 XC
 BP
-XC
+Ow
 XC
 XC
 wY
@@ -18865,7 +18897,7 @@ pg
 Cd
 Cd
 Cd
-Cd
+TX
 mI
 ki
 lf

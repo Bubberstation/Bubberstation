@@ -25,6 +25,14 @@
 #define FACTION_MILITARY "military"
 #define FACTION_KHARA "khara"
 
+#define TRAIT_KHARAMUTANT "khara_mutant"
+
+#define BB_MOB_ABILITY_BONESHARD "bb_ability_boneshard"
+#define BB_MOB_ABILITY_LEAP "bb_ability_leap"
+#define BB_MOB_ABILITY_MEAT_BALL "bb_ability_meatball"
+#define BB_MOB_ABILITY_RUMBLE "bb_ability_rumble"
+#define BB_MOB_AILITY_SLASH "bb_ability_slash"
+#define BB_MOB_ABILITY_FAST_CHARGE "bb_ability_fast_charge"
 
 #define BB_NPC_PATROL_POINT "bb_npc_patrol_point"
 #define BB_BASIC_MOB_CUFF_TYPE "bb_cuff_type"

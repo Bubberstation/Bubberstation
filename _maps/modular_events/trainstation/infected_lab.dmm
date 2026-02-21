@@ -262,7 +262,7 @@
 /turf/open/indestructible/dark/textured,
 /area/trainstation/outdoor)
 "dG" = (
-/mob/living/basic/flesh_mutant_spider,
+/mob/living/basic/khara_mutant/flesh_spider,
 /obj/structure/broken_flooring/pile,
 /turf/open/floor/plating,
 /area/trainstation/indoors/station)
@@ -311,7 +311,7 @@
 /turf/open/indestructible/meat,
 /area/trainstation/indoors/station)
 "eg" = (
-/mob/living/basic/corrupted_arachnid,
+/mob/living/basic/khara_mutant/reaper,
 /turf/open/floor/iron/white,
 /area/trainstation/indoors/station)
 "ei" = (
@@ -908,7 +908,7 @@
 /obj/effect/turf_decal/trimline/blue/line{
 	dir = 10
 	},
-/mob/living/basic/flesh_mutant_spider,
+/mob/living/basic/khara_mutant/flesh_spider,
 /turf/open/floor/iron/white,
 /area/trainstation/indoors/station)
 "kq" = (
@@ -928,7 +928,7 @@
 /area/trainstation/indoors/station)
 "kx" = (
 /obj/effect/decal/cleanable/blood,
-/mob/living/basic/flesh_mutant_spider,
+/mob/living/basic/khara_mutant/flesh_spider,
 /turf/open/floor/iron/white,
 /area/trainstation/indoors/station)
 "kD" = (
@@ -1038,6 +1038,7 @@
 	pixel_x = 3;
 	pixel_y = 7
 	},
+/mob/living/basic/khara_mutant/reaper,
 /turf/open/indestructible/meat,
 /area/trainstation/indoors/station)
 "mk" = (
@@ -1250,7 +1251,7 @@
 /turf/open/floor/iron/white,
 /area/trainstation/indoors/station)
 "oI" = (
-/mob/living/basic/flesh_mutant_spider,
+/mob/living/basic/khara_mutant/flesh_spider,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/iron/white,
 /area/trainstation/indoors/station)
@@ -1365,14 +1366,10 @@
 /turf/open/floor/iron/white,
 /area/trainstation/indoors/station)
 "qh" = (
-/obj/effect/turf_decal/siding{
-	dir = 1;
-	pixel_y = -16
-	},
-/obj/effect/turf_decal/siding{
-	pixel_y = 16
-	},
-/turf/closed/indestructible/rock/snow/ice/ore,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/mob_spawn/corpse/human,
+/mob/living/basic/khara_mutant/arachnid,
+/turf/open/indestructible/meat,
 /area/trainstation/outdoor)
 "qi" = (
 /obj/structure/prop/city/buildingventbig11_off{
@@ -1667,10 +1664,9 @@
 /turf/open/floor/asphalt,
 /area/trainstation/outdoor)
 "sX" = (
-/turf/closed/indestructible/hoteldoor/fakedoor{
-	name = "Exit"
-	},
-/area/trainstation/indoors/station)
+/mob/living/basic/khara_mutant/reaper,
+/turf/open/floor/asphalt,
+/area/trainstation/outdoor)
 "sY" = (
 /obj/effect/gibspawner/human,
 /turf/open/floor/plating,
@@ -1828,6 +1824,10 @@
 /obj/structure/prop/general/hospitalcurtain,
 /turf/open/indestructible/meat,
 /area/trainstation/indoors/station)
+"vb" = (
+/obj/effect/mob_spawn/ghost_role/flesh_spider,
+/turf/open/floor/asphalt,
+/area/trainstation/outdoor)
 "vc" = (
 /obj/structure/window/reinforced/tinted/frosted/spawner/directional/east,
 /obj/structure/window/reinforced/tinted/frosted/spawner/directional/west,
@@ -2248,6 +2248,13 @@
 /obj/item/gun/energy/modular_laser_rifle/carbine,
 /turf/open/indestructible/meat,
 /area/trainstation/indoors/station)
+"zt" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 11
+	},
+/mob/living/basic/khara_mutant/reaper,
+/turf/open/floor/iron/white,
+/area/trainstation/indoors/station)
 "zB" = (
 /obj/effect/mob_spawn/corpse/human/charredskeleton,
 /obj/structure/decorative{
@@ -2560,10 +2567,7 @@
 /turf/open/floor/iron/shuttle/exploration/doubleside,
 /area/trainstation/outdoor)
 "Dk" = (
-/obj/effect/turf_decal/siding/wideplating_new/dark{
-	dir = 1
-	},
-/turf/closed/indestructible/rock/snow/ice/ore,
+/turf/open/floor/stone,
 /area/trainstation/outdoor)
 "Dl" = (
 /obj/effect/turf_decal/siding/dark{
@@ -2928,7 +2932,7 @@
 /turf/open/floor/iron/white,
 /area/trainstation/indoors/station)
 "Ji" = (
-/mob/living/basic/flesh_mutant_spider,
+/mob/living/basic/khara_mutant/flesh_spider,
 /turf/open/floor/iron/white,
 /area/trainstation/indoors/station)
 "Jn" = (
@@ -2940,7 +2944,7 @@
 /turf/open/floor/iron/white,
 /area/trainstation/indoors/station)
 "Jq" = (
-/mob/living/basic/flesh_mutant_spider,
+/mob/living/basic/khara_mutant/flesh_spider,
 /obj/structure/broken_flooring/pile{
 	color = "#9F9F9F";
 	desc = null;
@@ -3646,8 +3650,9 @@
 /turf/open/floor/iron/white,
 /area/trainstation/indoors/station)
 "RJ" = (
-/obj/machinery/door/airlock/centcom,
-/turf/open/indestructible/meat,
+/turf/closed/indestructible/hoteldoor/fakedoor{
+	name = "Exit"
+	},
 /area/trainstation/outdoor)
 "RK" = (
 /obj/structure/broken_flooring/pile{
@@ -3838,6 +3843,15 @@
 "TW" = (
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
+"TY" = (
+/obj/structure/broken_flooring/pile{
+	color = "#9F9F9F";
+	desc = null;
+	name = "tiling"
+	},
+/mob/living/basic/khara_mutant/reaper,
+/turf/open/floor/plating,
+/area/trainstation/indoors/station)
 "TZ" = (
 /obj/effect/turf_decal/siding/dark,
 /obj/effect/turf_decal/siding/dark{
@@ -3902,6 +3916,7 @@
 	pixel_x = 11;
 	pixel_y = 6
 	},
+/mob/living/basic/khara_mutant/reaper,
 /turf/open/indestructible/meat,
 /area/trainstation/indoors/station)
 "UH" = (
@@ -4043,6 +4058,10 @@
 "Wt" = (
 /turf/open/floor/iron/dark/small,
 /area/trainstation/indoors/station)
+"WA" = (
+/mob/living/basic/khara_mutant/arachnid,
+/turf/open/indestructible/meat,
+/area/trainstation/indoors/station)
 "WD" = (
 /obj/effect/turf_decal/trimline/blue/corner{
 	dir = 8
@@ -4069,6 +4088,7 @@
 	desc = null;
 	name = "tiling"
 	},
+/mob/living/basic/khara_mutant/reaper,
 /turf/open/indestructible/meat,
 /area/trainstation/indoors/station)
 "WT" = (
@@ -4189,11 +4209,9 @@
 /turf/open/floor/iron/white,
 /area/trainstation/indoors/station)
 "XR" = (
-/obj/structure/prop/vehicle/marshalls{
-	pixel_y = -12
-	},
-/turf/open/indestructible/meat,
-/area/trainstation/outdoor)
+/mob/living/basic/khara_mutant/arachnid,
+/turf/open/floor/iron/white,
+/area/trainstation/indoors/station)
 "XY" = (
 /obj/structure/closet/secure_closet/medical2,
 /obj/item/stack/sticky_tape/surgical,
@@ -4273,14 +4291,15 @@
 /turf/open/floor/iron/shuttle/exploration/doubleside,
 /area/trainstation/outdoor)
 "ZK" = (
-/mob/living/basic/flesh_mutant_spider,
+/mob/living/basic/khara_mutant/flesh_spider,
 /obj/item/gun/energy/modular_laser_rifle/carbine,
 /turf/open/indestructible/meat,
 /area/trainstation/indoors/station)
 "ZO" = (
-/obj/effect/spawner/structure/window/reinforced/indestructible,
-/turf/open/floor/plating,
-/area/trainstation/indoors/station)
+/obj/effect/decal/cleanable/blood,
+/mob/living/basic/khara_mutant/reaper,
+/turf/open/floor/asphalt,
+/area/trainstation/outdoor)
 "ZQ" = (
 /obj/effect/turf_decal/trimline/blue/line{
 	dir = 10
@@ -4288,6 +4307,10 @@
 /obj/structure/table_frame,
 /turf/open/floor/iron/white,
 /area/trainstation/indoors/station)
+"ZS" = (
+/mob/living/basic/khara_mutant/spreader,
+/turf/open/indestructible/meat,
+/area/trainstation/outdoor)
 "ZW" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/iron/white,
@@ -6156,7 +6179,7 @@ Vh
 Pa
 uf
 il
-VU
+TY
 QL
 eu
 fr
@@ -6353,7 +6376,7 @@ wV
 wV
 wV
 wV
-eu
+eg
 Wk
 Wk
 eu
@@ -6716,7 +6739,7 @@ kf
 aX
 hP
 AW
-KE
+zt
 sY
 RG
 nC
@@ -8703,7 +8726,7 @@ eu
 eu
 eu
 tO
-eu
+XR
 eu
 qT
 rS
@@ -8743,7 +8766,7 @@ gj
 aX
 rS
 hi
-qT
+WA
 eu
 eu
 eu
@@ -8935,7 +8958,7 @@ eu
 eu
 eu
 eu
-eg
+eu
 eu
 eu
 eu
@@ -9261,13 +9284,13 @@ wV
 wV
 wV
 wV
-sX
-ZO
-ZO
-ZO
-ZO
-ZO
-sX
+wV
+QL
+QL
+QL
+QL
+QL
+wV
 wV
 wV
 wV
@@ -9642,7 +9665,7 @@ rT
 xL
 oF
 vL
-NH
+qh
 cf
 OR
 gj
@@ -10195,24 +10218,24 @@ gj
 gj
 gj
 gj
-gj
-gj
-gj
-gj
-gj
+Ni
+Ni
+Ni
+Ni
+Ni
 Ni
 GL
-XR
+rT
 GA
 pb
 pb
 pb
 QX
 Ni
-gj
-gj
-gj
-gj
+Ni
+Ni
+Ni
+Ni
 gj
 "}
 (127,1,1) = {"
@@ -10242,24 +10265,24 @@ gj
 gj
 gj
 fE
-gj
-gj
-gj
-gj
-gj
+Ni
 Dk
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
+Dk
+Dk
+Dk
+Dk
+Dk
+pb
+pb
+pb
+pb
+pb
+Dk
+Dk
+Dk
+Dk
+Dk
+Ni
 gj
 "}
 (128,1,1) = {"
@@ -10289,24 +10312,24 @@ gj
 gj
 gj
 fE
-gj
-gj
-qh
-gj
-gj
+Ni
 Dk
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+Dk
+Ni
 gj
 "}
 (129,1,1) = {"
@@ -10336,24 +10359,24 @@ gj
 gj
 gj
 gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
+Ni
+Dk
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+Dk
+Ni
 gj
 "}
 (130,1,1) = {"
@@ -10383,24 +10406,24 @@ gj
 gj
 gj
 gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
+Ni
+Dk
+pb
+pb
+vb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+Dk
+Ni
 gj
 "}
 (131,1,1) = {"
@@ -10430,24 +10453,24 @@ gj
 gj
 gj
 gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
+Ni
+Dk
+pb
+pb
+pb
+fC
+fC
+rT
+rT
+rT
+rT
+fC
+fC
+pb
+pb
+pb
+Dk
+Ni
 gj
 "}
 (132,1,1) = {"
@@ -10477,24 +10500,24 @@ gj
 gj
 gj
 gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
+RJ
+Dk
+pb
+pb
+pb
+fC
+rT
+rT
+rT
+rT
+rT
+pb
+pb
+pb
+pb
+pb
+Dk
+RJ
 gj
 "}
 (133,1,1) = {"
@@ -10524,24 +10547,24 @@ gj
 gj
 gj
 gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
+Ni
+Dk
+pb
+pb
+pb
+rT
+rT
+rT
+rT
+rT
+rT
+rT
+pb
+ZO
+pb
+pb
+Dk
+Ni
 gj
 "}
 (134,1,1) = {"
@@ -10571,24 +10594,24 @@ gj
 gj
 gj
 gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
+Ni
+Dk
+pb
+pb
+fC
+rT
+rT
+rT
+rT
+rT
+rT
+rT
+rT
+fC
+pb
+pb
+Dk
+Ni
 gj
 "}
 (135,1,1) = {"
@@ -10618,24 +10641,24 @@ gj
 gj
 gj
 gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
+Ni
+Dk
+pb
+pb
+fC
+pb
+rT
+rT
+rT
+rT
+ZS
+rT
+rT
+fC
+fC
+pb
+Dk
+Ni
 gj
 "}
 (136,1,1) = {"
@@ -10665,24 +10688,24 @@ gj
 gj
 gj
 gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
+Ni
+Dk
+pb
+pb
+pb
+pb
+pb
+pb
+rT
+rT
+rT
+rT
+rT
+pb
+pb
+pb
+Dk
+Ni
 gj
 "}
 (137,1,1) = {"
@@ -10712,24 +10735,24 @@ gj
 gj
 gj
 gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
+Ni
+Dk
+pb
+pb
+sX
+pb
+fC
+fC
+pb
+rT
+rT
+rT
+rT
+pb
+pb
+pb
+Dk
+Ni
 gj
 "}
 (138,1,1) = {"
@@ -10759,24 +10782,24 @@ gj
 gj
 gj
 gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
+Ni
+Dk
+pb
+pb
+pb
+pb
+pb
+fC
+fC
+rT
+rT
+rT
+rT
+rT
+fC
+pb
+Dk
+Ni
 gj
 "}
 (139,1,1) = {"
@@ -10806,24 +10829,24 @@ gj
 gj
 gj
 gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
+Ni
+Dk
+pb
+pb
+pb
+pb
+pb
+pb
+fC
+fC
+rT
+rT
+rT
+pb
+fC
+pb
+Dk
+Ni
 gj
 "}
 (140,1,1) = {"
@@ -10853,24 +10876,24 @@ gj
 gj
 gj
 gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
+Ni
+Dk
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+fC
+pb
+pb
+pb
+pb
+fC
+pb
+Dk
+Ni
 gj
 "}
 (141,1,1) = {"
@@ -10900,24 +10923,24 @@ gj
 gj
 gj
 gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
+Ni
+Dk
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+fC
+fC
+pb
+vb
+pb
+pb
+Dk
+Ni
 gj
 "}
 (142,1,1) = {"
@@ -10947,24 +10970,24 @@ gj
 gj
 gj
 gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
+Ni
+Dk
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+Dk
+Ni
 gj
 "}
 (143,1,1) = {"
@@ -10994,24 +11017,24 @@ gj
 gj
 gj
 gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
+Ni
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
+Ni
 gj
 "}
 (144,1,1) = {"
@@ -11041,24 +11064,24 @@ gj
 gj
 gj
 gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
-gj
+Ni
+Ni
+Ni
+Ni
+Ni
+Ni
+RJ
+Ni
+Ni
+Ni
+Ni
+Ni
+Ni
+Ni
+Ni
+Ni
+Ni
+Ni
 gj
 "}
 (145,1,1) = {"
