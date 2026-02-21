@@ -1,0 +1,5 @@
+#define MARTIALART_FLYINGFANG "flying fang"
+#define MARTIALART_ULTRAVIOLENCE "ultra violence"
+#define MARTIALART_GARDENWARFARE "garden warfare"
+#define MARTIALART_WORLDBREAKER "worldbreaker"
+#define MARTIALART_LIGHTNINGFLOW "lightning flow"
