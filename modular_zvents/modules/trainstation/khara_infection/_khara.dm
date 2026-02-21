@@ -227,14 +227,14 @@
 	name = "Khara fog"
 	desc = "Fog formed by Khara spores filling the air..."
 
-	telegraph_message = span_warning("Fog filled with Khara spores descends from the sky!")
+	telegraph_message = span_userdanger("Fog filled with KHARA spores descends from the sky!")
 	telegraph_duration = 30 SECONDS
 
-	weather_message = span_danger("A thick, acrid fog descends from the sky. It's time to switch to internals!")
+	weather_message = span_userdanger("A thick, acrid fog descends from the sky. It's time to switch to internals!")
 	weather_overlay = "dust_med"
 	weather_color = COLOR_MAROON
 
-	end_message = span_danger("The fog is lifting!")
+	end_message = span_userdanger("The fog is lifting!")
 	end_duration = 0 SECONDS
 
 	area_type = /area

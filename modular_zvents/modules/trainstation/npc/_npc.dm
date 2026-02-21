@@ -565,3 +565,8 @@
 	casingtype = /obj/item/ammo_casing/p50
 	burst_shots = 1
 	ranged_cooldown = 7 SECONDS
+
+
+
+/mob/living/basic/npc/police/military/bad_guys
+	faction = list(FACTION_HOSTILE)

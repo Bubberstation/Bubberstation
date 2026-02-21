@@ -56,7 +56,7 @@
 		return
 	if(!moving)
 		return
-	if(QDELETED(mover) || isobserver(mover) || mover.flags_1 & NO_TURF_MOVEMENT_1 || !mover.attempt_moving_turf_step(src, movement_direction))
+	if(QDELETED(mover) || isobserver(mover) || mover.flags_1 & NO_TURF_MOVEMENT_1)
 		return
 	SSmoving_turfs.queue_process(src)
 
@@ -71,7 +71,7 @@
 	if(!length(contents) || fake)
 		return FALSE
 	for(var/atom/movable/AM in contents)
-		if(QDELETED(AM) || isobserver(AM) || AM.flags_1 & NO_TURF_MOVEMENT_1 || !AM.attempt_moving_turf_step(src, movement_direction))
+		if(QDELETED(AM) || isobserver(AM) || AM.flags_1 & NO_TURF_MOVEMENT_1)
 			continue
 		if(register)
 			SSmoving_turfs.queue_process(src)
@@ -132,7 +132,7 @@
 	if(blocker)
 		if(isobj(blocker))
 			var/obj/O = blocker
-			O.take_damage(40, BRUTE)
+			O.take_damage(15, BRUTE)
 		else if(isliving(blocker))
 			var/mob/living/L = blocker
 			L.adjust_brute_loss(50)

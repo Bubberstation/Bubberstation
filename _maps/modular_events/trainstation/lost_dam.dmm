@@ -3298,19 +3298,11 @@
 	},
 /area/trainstation/outdoor)
 "Fj" = (
-/obj/effect/turf_decal/tile/dark/full{
-	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
-	icon_state = "black";
-	color = "#FFFFFF"
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 1
 	},
 /obj/effect/mapping_helpers/looping_sound_emiter/dam_sounds,
-/turf/open/indestructible/tram{
-	name = "dam wall";
-	icon = 'modular_zvents/icons/turf/city/siding.dmi';
-	icon_state = "wall-0";
-	base_icon_state = "wall";
-	desc = "The wall of this now-frozen dam. Looks nigh-impenetrable to damage."
-	},
+/turf/open/floor/asphalt,
 /area/trainstation/outdoor)
 "Fn" = (
 /obj/effect/turf_decal/siding/dark{
@@ -8647,10 +8639,10 @@ IV
 cg
 "}
 (81,1,1) = {"
-KT
+Fj
 cN
 PD
-Fj
+IS
 IS
 XB
 Qs

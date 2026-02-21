@@ -142,14 +142,14 @@
 	var/max_rpm = 7000
 	var/produced_energy = 0
 	var/max_temperature = 1000
-	var/efficiency_rate = 100
+	var/efficiency_rate = 120
 	var/work_time = 0
 	var/damage = 0
 	var/damage_archived = 0
 	var/all_parts_connected = FALSE
 
 	var/steam_consumption_rate = 0.1
-	var/water_production_rate = 0.1
+	var/water_production_rate = 0.6
 
 	/// Целевые обороты в % от максимума (0-1). Управляется из UI.
 	var/target_rpm = 0
