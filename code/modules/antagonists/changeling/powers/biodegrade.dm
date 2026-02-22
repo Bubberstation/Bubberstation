@@ -70,9 +70,11 @@
 		playsound(user, 'sound/items/tools/welder.ogg', 50, TRUE)
 		. = TRUE
 
-	if(space_invader)
-		punish_with_acid(user, space_invader)
-		. = TRUE
+//----------------BUBBER CHANGE------------------------
+	//if(space_invader)
+		//punish_with_acid(user, space_invader)
+		//. = TRUE
+//---------------END OF BUBBER CHANGE------------------
 	return .
 
 /// Spawn green acid puddle underneath obj, used for callback
