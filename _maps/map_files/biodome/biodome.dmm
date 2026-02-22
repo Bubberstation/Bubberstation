@@ -7880,9 +7880,7 @@
 /area/station/maintenance/port/upper)
 "cNt" = (
 /obj/effect/turf_decal/tile/yellow/diagonal_edge,
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
 /area/station/construction/mining/aux_base)
 "cNw" = (
@@ -11506,11 +11504,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/medical/cryo)
-"efn" = (
-/obj/effect/turf_decal/tile/yellow/diagonal_edge,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron,
-/area/station/construction/mining/aux_base)
 "efr" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 9
@@ -25050,6 +25043,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/misc/asteroid,
 /area/station/maintenance/port/lower)
+"jdM" = (
+/obj/effect/turf_decal/tile/yellow/diagonal_edge,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/iron,
+/area/station/construction/mining/aux_base)
 "jdP" = (
 /obj/machinery/door/airlock/public/glass,
 /obj/machinery/door/firedoor,
@@ -43505,6 +43505,7 @@
 /obj/effect/turf_decal/stripes{
 	dir = 8
 	},
+/obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
 "pBY" = (
@@ -155981,7 +155982,7 @@ fDn
 vvq
 rlP
 wZS
-cNt
+jdM
 kLg
 czz
 kLT
@@ -156239,7 +156240,7 @@ vvq
 fDn
 rHl
 jys
-efn
+cNt
 czz
 rrD
 tJQ
