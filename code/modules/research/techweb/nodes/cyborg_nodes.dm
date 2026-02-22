@@ -162,7 +162,7 @@
 	design_ids = list(
 		"ci-breather",
 		"ci-nutriment",
-		"ci-nutrimentplus", // BUBBER EDIT: Moved to base cybernetic from integrated toolsets.
+		"ci-nutrimentplus", // BUBBER EDIT - ADDITION
 		"ci-thrusters",
 		"ci-connector",
 	)
