@@ -7880,7 +7880,9 @@
 /area/station/maintenance/port/upper)
 "cNt" = (
 /obj/effect/turf_decal/tile/yellow/diagonal_edge,
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
 /area/station/construction/mining/aux_base)
 "cNw" = (
@@ -9059,13 +9061,6 @@
 /obj/structure/ladder,
 /turf/open/floor/plating,
 /area/station/maintenance/fore/upper)
-"dka" = (
-/obj/effect/turf_decal/trimline/dark_blue/filled/warning{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/floor/iron/dark,
-/area/station/command/teleporter)
 "dke" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple/layer2{
 	dir = 10
@@ -11504,6 +11499,13 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/medical/cryo)
+"efn" = (
+/obj/effect/turf_decal/trimline/dark_blue/filled/warning{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/iron/dark,
+/area/station/command/teleporter)
 "efr" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 9
@@ -25043,13 +25045,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/misc/asteroid,
 /area/station/maintenance/port/lower)
-"jdM" = (
-/obj/effect/turf_decal/tile/yellow/diagonal_edge,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron,
-/area/station/construction/mining/aux_base)
 "jdP" = (
 /obj/machinery/door/airlock/public/glass,
 /obj/machinery/door/firedoor,
@@ -27316,12 +27311,10 @@
 /turf/open/floor/iron/white,
 /area/station/science/ordnance)
 "jUi" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 4
-	},
-/obj/effect/spawner/structure/window,
-/turf/closed/wall/mineral/wood,
-/area/station/service/kitchen/diner)
+/obj/effect/turf_decal/tile/yellow/diagonal_edge,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron,
+/area/station/construction/mining/aux_base)
 "jUm" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
@@ -56041,7 +56034,6 @@
 /area/station/hallway/primary/port)
 "tKB" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/engine,
 /area/station/science/cytology)
@@ -103315,7 +103307,7 @@ dTM
 iuz
 iuz
 nTy
-jUi
+hiF
 iuz
 sec
 rVj
@@ -155982,7 +155974,7 @@ fDn
 vvq
 rlP
 wZS
-jdM
+cNt
 kLg
 czz
 kLT
@@ -156240,7 +156232,7 @@ vvq
 fDn
 rHl
 jys
-cNt
+jUi
 czz
 rrD
 tJQ
@@ -173997,7 +173989,7 @@ rOP
 hiu
 wXd
 mYA
-dka
+efn
 eeh
 fio
 fQs
