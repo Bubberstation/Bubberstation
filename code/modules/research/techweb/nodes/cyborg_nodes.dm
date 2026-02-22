@@ -164,6 +164,7 @@
 		"ci-nutriment",
 		"ci-nutrimentplus", // BUBBER EDIT: Moved to base cybernetic from integrated toolsets.
 		"ci-thrusters",
+		//"ci-herculean", // BUBBER EDIT - REMOVAL
 		"ci-connector",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
@@ -194,6 +195,7 @@
 	description = "Decades of contraband smuggling by assistants have led to the development of a full toolbox that fits seamlessly into your arm."
 	prereq_ids = list(TECHWEB_NODE_COMBAT_IMPLANTS, TECHWEB_NODE_EXP_TOOLS)
 	design_ids = list(
+		//"ci-nutrimentplus", // BUBBER EDIT - REMOVAL
 		"ci-toolset",
 		"ci-surgery",
 	)
