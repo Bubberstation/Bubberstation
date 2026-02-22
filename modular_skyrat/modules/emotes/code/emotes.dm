@@ -564,3 +564,27 @@
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'modular_skyrat/modules/emotes/sound/voice/mggaow.ogg'
+
+/datum/emote/living/teshchirp
+	key = "teshchirp"
+	key_third_person = "chirps!"
+	message = "chirps!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_skyrat/modules/emotes/sound/voice/teshchirp.ogg' // Credits to Virgo Station for the files.
+
+/datum/emote/living/teshsqueak
+	key = "teshsqueak"
+	key_third_person = "squeaks!"
+	message = "squeaks!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_skyrat/modules/emotes/sound/voice/teshsqueak.ogg' // Credits to Virgo Station for the files.
+
+/datum/emote/living/teshtrill
+	key = "teshtrill"
+	key_third_person = "trills!"
+	message = "trills!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_skyrat/modules/emotes/sound/voice/teshtrill.ogg' // Credits to Virgo Station for the files.

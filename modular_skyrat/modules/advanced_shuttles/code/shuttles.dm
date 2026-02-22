@@ -134,6 +134,16 @@
 	port_id = "whiteship"
 	suffix = "blueshift"
 
+/datum/map_template/shuttle/cargo/skyrat/ouroboros
+	suffix = "ouroboros"
+
+/datum/map_template/shuttle/whiteship/ouroboros
+	name = "JN Chasse-Galerie"
+	description = "A small Jim Nortons shuttle meant to be a mobile cafe. No hostiles onboard, but multiple corpses of Jim Nortons employees."
+	prefix = "_maps/shuttles/skyrat/"
+	port_id = "whiteship"
+	suffix = "ouroboros"
+
 /datum/map_template/shuttle/arrivals_skyrat
 	name = "NTV Relay (Arrivals)"
 	prefix = "_maps/shuttles/skyrat/"
