@@ -11,6 +11,10 @@
 	name="Biodome Waters"
 	planetary_atmos = FALSE
 
+/turf/open/misc/beach/sand/biodome
+	name="Biodome Beach"
+	planetary_atmos = FALSE
+
 /turf/open/misc/ashplanet/wateryrock/biodome
 	name="Biodome Lake Rocks"
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
