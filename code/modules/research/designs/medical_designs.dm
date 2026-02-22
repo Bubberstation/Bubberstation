@@ -896,7 +896,7 @@
 	)
 	build_path = /obj/item/organ/heart/cybernetic/anomalock
 	category = list(
-		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT // BUBBER EDIT: Combat implants in the combat implant section
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT // BUBBER EDIT - CHANGE - PREVIOUS: RND_CATEGORY_EQUIPMENT
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
