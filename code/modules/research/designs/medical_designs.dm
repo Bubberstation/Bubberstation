@@ -687,7 +687,7 @@
 	)
 	build_path = /obj/item/organ/cyberimp/chest/reviver
 	category = list(
-		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT // BUBBER EDIT: Combat implants in the combat implant section
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT // BUBBER EDIT - CHANGE - PREVIOUS: RND_CATEGORY_CYBERNETICS
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
